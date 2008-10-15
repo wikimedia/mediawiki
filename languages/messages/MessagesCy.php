@@ -1036,6 +1036,22 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'rightslogtext' => 'Lòg y newidiadau i alluoedd defnyddwyr yw hwn.',
 'rightsnone'    => '(dim)',
 
+# Associated actions - in the sentence "You do not have permission to X"
+'action-read'           => 'darllen y dudalen',
+'action-edit'           => "golygu'r dudalen",
+'action-createpage'     => 'creu tudalennau',
+'action-createtalk'     => 'creu tudalennau sgwrs',
+'action-createaccount'  => "creu'r cyfrif defnyddiwr hwn",
+'action-minoredit'      => "marcio'r golygiad yn un bach",
+'action-move'           => 'symud y dudalen',
+'action-move-subpages'  => "symud y dudalen a'i is-dudalennau",
+'action-upload'         => "uwchlwytho'r ffeil",
+'action-upload_by_url'  => "uuchlwytho'r ffeil o gyfeiriad URL",
+'action-delete'         => "dileu'r dudalen",
+'action-deleterevision' => "dileu'r golygiad",
+'action-deletedhistory' => 'gweld hanes dilëedig y dudalen hon',
+'action-browsearchive'  => 'chwilio drwy tudalennau dilëedig',
+
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|newid|newid|newid|newid|newid|o newidiadau}}',
 'recentchanges'                     => 'Newidiadau diweddar',

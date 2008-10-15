@@ -1542,7 +1542,6 @@ Igwa nang páhina na "[[:$1]]". Gusto mong parâon ini tangarig maibalyó?',
 'delete_and_move_confirm' => 'Iyo, parâon an pahina',
 'delete_and_move_reason'  => 'Pinarâ tangarig maibalyó',
 'selfmove'                => 'Pareho an páhinang ginikanan asin destinasyon; dai pwedeng ibalyó an sarong páhina sa sadiri.',
-'immobile_namespace'      => 'An titulo kan ginikanan o destinasyon sarong espesyal na tipo; dai pwedeng ibalyó an mga pahina hali or paduman sa ngaran-espacio na iyan.',
 
 # Export
 'export'            => 'Iluwas an mga pahina',

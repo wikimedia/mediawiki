@@ -1650,7 +1650,6 @@ Ya desisti la páhina "[[:$1]]". Te petaria esborrala pa premitil el treslau?',
 'delete_and_move_confirm' => 'Sí, esborral la páhina',
 'delete_and_move_reason'  => 'Esborrá pa premitil el treslau',
 'selfmove'                => "Los entítulus d'orihin i destinu son los mesmus. Nu es posibri movel una páhina sobri sí mesma..",
-'immobile_namespace'      => 'El entítulu e destinu es dun tipu especial. Nu es posibri movel páhinas a esi espaciu e nombris.',
 
 # Export
 'export'            => 'Esporteal páhinas',

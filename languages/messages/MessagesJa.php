@@ -16,6 +16,7 @@
  * @author JtFuruhata
  * @author Kahusi
  * @author Kkkdc
+ * @author Koba-chan
  * @author Lovekhmer
  * @author Marine-Blue
  * @author Mizusumashi
@@ -2025,7 +2026,7 @@ $NEWPAGE
 'thumbnail_error'          => 'サムネイルの作成中にエラーが発生しました: $1',
 'djvu_page_error'          => '指定ページ数はDjVuページ範囲を越えています',
 'djvu_no_xml'              => 'DjVuファイルのXMLデータを取得できません',
-'thumbnail_invalid_params' => 'サムネイルの指定パラメータが不正です',
+'thumbnail_invalid_params' => 'サムネイルの指定パラメータが適切でないか、画像ファイルの画素数が1,250万ピクセル以上です。',
 'thumbnail_dest_directory' => '出力ディレクトリを作成できません',
 
 # Special:Import

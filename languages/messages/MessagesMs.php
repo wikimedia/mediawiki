@@ -501,9 +501,9 @@ Pertanyaan: $2',
 
 # Login and logout pages
 'logouttitle'                => 'Log keluar',
-'logouttext'                 => "<strong>Anda telah log keluar.</strong>
+'logouttext'                 => '<strong>Anda telah log keluar.</strong>
 
-Anda boleh terus menggunakan {{SITENAME}} sebagai pengguna tanpa nama, atau anda boleh [[Special:UserLogin|log masuk sekali lagi]] sebagai pengguna lain. Sila ambil perhatian bahawa sesetengah laman mungkin dipaparkan seolah-olah anda masih lagi log masuk, sehinggalah anda membersihkan ''cache'' pelayar anda.",
+Anda boleh terus menggunakan {{SITENAME}} sebagai pengguna tanpa nama, atau anda boleh [[Special:UserLogin|log masuk sekali lagi]] sebagai pengguna lain. Anda boleh membersihkan cache pelayar web anda sekiranya terdapat laman yang memaparkan seolah-olah anda masih log masuk.',
 'welcomecreation'            => '== Selamat datang, $1! ==
 
 Akaun anda telah dibuka. Jangan lupa untuk mengubah [[Special:Preferences|keutamaan {{SITENAME}}]] anda.',
@@ -691,10 +691,10 @@ Jika anda tiba di sini secara tak sengaja, hanya klik butang '''back''' pada pel
 'anontalkpagetext'                 => "----''Ini ialah laman perbincangan bagi pengguna tanpa nama yang belum membuka akaun atau tidak log masuk. Kami terpaksa menggunakan alamat IP untuk mengenal pasti pengguna tersebut. Alamat IP ini boleh dikongsi oleh ramai pengguna. Sekiranya anda adalah seorang pengguna tanpa nama dan berasa bahawa komen yang tidak kena mengena telah ditujui kepada anda, sila [[Special:UserLogin|buka akaun baru atau log masuk]] untuk mengelakkan sebarang kekeliruan dengan pengguna tanpa nama yang lain.''",
 'noarticletext'                    => 'Tiada teks dalam laman ini pada masa sekarang. Anda boleh [[Special:Search/{{PAGENAME}}|mencari tajuk bagi laman ini]] dalam laman-laman lain atau [{{fullurl:{{FULLPAGENAME}}|action=edit}} menyunting laman ini].',
 'userpage-userdoesnotexist'        => 'Akaun pengguna "$1" tidak berdaftar. Sila pastikan sama ada anda mahu mencipta/menyunting laman ini.',
-'clearyourcache'                   => "'''Catatan: Selepas menyimpan laman ini, anda mungkin perlu mengosongkan fail simpanan (''cache'') pelayar anda terlebih dahulu untuk mengenakan perubahan.'''
+'clearyourcache'                   => "'''Catatan: Selepas menyimpan laman ini, anda mungkin perlu membersihkan cache pelayar web anda terlebih dahulu untuk mengenakan perubahan.'''
 '''Mozilla/Firefox/Safari:''' tahan ''Shift'' ketika mengklik ''Reload'' atau tekan ''Ctrl+F5'' atau tekan ''Ctrl+R'' (''Command+R'' dalam komputer Macintosh).
 '''Konqueror:''' klik butang ''Reload'' atau tekan ''F5''.
-'''Opera:''' kosongkan fail simpanan melalui menu ''Tools → Preferences''.
+'''Opera:''' bersihkan cache melalui menu ''Tools → Preferences''.
 '''Internet Explorer:''' tahan ''Ctrl'' ketika mengklik ''Refresh'' atau tekan ''Ctrl+F5''.",
 'usercssjsyoucanpreview'           => "<strong>Petua:</strong> Gunakan butang 'Pratonton' untuk menguji CSS/JS baru anda sebelum menyimpan.",
 'usercsspreview'                   => "'''Ingat bahawa anda hanya sedang melihat pratonton CSS peribadi anda. Laman ini belum lagi disimpan!'''",
@@ -1152,7 +1152,7 @@ daripada satu kata kunci (hanya laman yang mengandungi kesemua kata kunci akan d
 'right-reupload-own'         => 'Menulis ganti fail sedia ada yang dimuat naik sendiri',
 'right-reupload-shared'      => 'Mengatasi fail di gedung media kongsi',
 'right-upload_by_url'        => 'Memuat naik fail daripada alamat URL',
-'right-purge'                => 'Membersihkan fail simpanan sementara bagi sesebuah laman tanpa pengesahan',
+'right-purge'                => 'Membersihkan cache bagi sesebuah laman tanpa pengesahan',
 'right-autoconfirmed'        => 'Menyunting laman yang dilindungi separa',
 'right-bot'                  => 'Dianggap melakukan tugas-tugas automatik',
 'right-nominornewtalk'       => 'Suntingan kecil pada laman perbincangan seseorang pengguna tidak menghidupkan isyarat pesanan baru untuk pengguna itu',
@@ -1670,49 +1670,51 @@ atau telah memilih untuk tidak menerima e-mel daripada pengguna lain.',
 'emailuserfooter' => 'E-mel ini telah dikirim oleh $1 kepada $2 menggunakan alat "E-mel pengguna" di {{SITENAME}}.',
 
 # Watchlist
-'watchlist'            => 'Senarai pantau',
-'mywatchlist'          => 'Senarai pantau saya',
-'watchlistfor'         => "(bagi '''$1''')",
-'nowatchlist'          => 'Tiada item dalam senarai pantau anda.',
-'watchlistanontext'    => 'Sila $1 terlebih dahulu untuk melihat atau menyunting senarai pantau anda.',
-'watchnologin'         => 'Belum log masuk',
-'watchnologintext'     => 'Anda mesti [[Special:UserLogin|log masuk]] terlebih dahulu untuk mengubah senarai pantau.',
-'addedwatch'           => 'Senarai pantau dikemaskinikan',
-'addedwatchtext'       => "Laman \"[[:\$1]]\" telah ditambahkan ke dalam [[Special:Watchlist|senarai pantau]] anda.
+'watchlist'                => 'Senarai pantau',
+'mywatchlist'              => 'Senarai pantau saya',
+'watchlistfor'             => "(bagi '''$1''')",
+'nowatchlist'              => 'Tiada item dalam senarai pantau anda.',
+'watchlistanontext'        => 'Sila $1 terlebih dahulu untuk melihat atau menyunting senarai pantau anda.',
+'watchnologin'             => 'Belum log masuk',
+'watchnologintext'         => 'Anda mesti [[Special:UserLogin|log masuk]] terlebih dahulu untuk mengubah senarai pantau.',
+'addedwatch'               => 'Senarai pantau dikemaskinikan',
+'addedwatchtext'           => "Laman \"[[:\$1]]\" telah ditambahkan ke dalam [[Special:Watchlist|senarai pantau]] anda.
 Semua perubahan bagi laman tersebut dan laman perbincangannya akan disenaraikan di sana,
 dan tajuk laman tersebut juga akan ditonjolkan dalam '''teks tebal''' di [[Special:RecentChanges|senarai perubahan terkini]]
 untuk memudahkan anda.
 
 Jika anda mahu membuang laman tersebut daripada senarai pantau, klik \"Nyahpantau\" pada bar sisi.",
-'removedwatch'         => 'Dibuang daripada senarai pantau',
-'removedwatchtext'     => 'Laman "[[:$1]]" telah dibuang daripada senarai pantau anda.',
-'watch'                => 'Pantau',
-'watchthispage'        => 'Pantau laman ini',
-'unwatch'              => 'Nyahpantau',
-'unwatchthispage'      => 'Berhenti memantau',
-'notanarticle'         => 'Bukan laman kandungan',
-'notvisiblerev'        => 'Semakan ini telah dihapuskan',
-'watchnochange'        => 'Tiada perubahan pada laman-laman yang dipantau dalam tempoh yang ditunjukkan.',
-'watchlist-details'    => '$1 laman dipantau (tidak termasuk laman perbincangan).',
-'wlheader-enotif'      => '* Pemberitahuan melalui e-mel diaktifkan.',
-'wlheader-showupdated' => "* Laman-laman yang telah diubah sejak kunjungan terakhir anda dipaparkan dalam '''teks tebal'''",
-'watchmethod-recent'   => 'menyemak laman yang dipantau dalam suntingan-suntingan terkini',
-'watchmethod-list'     => 'menyemak suntingan terkini pada laman-laman yang dipantau',
-'watchlistcontains'    => 'Terdapat $1 laman dalam senarai pantau anda.',
-'iteminvalidname'      => "Terdapat masalah dengan item '$1', nama tidak sah...",
-'wlnote'               => "Berikut ialah '''$1''' perubahan terakhir sejak '''$2''' jam yang lalu.",
-'wlshowlast'           => 'Tunjukkan $1 jam / $2 hari yang lalu / $3.',
-'watchlist-show-bots'  => 'Papar suntingan bot',
-'watchlist-hide-bots'  => 'Sembunyi suntingan bot',
-'watchlist-show-own'   => 'Papar suntingan saya',
-'watchlist-hide-own'   => 'Sembunyi suntingan saya',
-'watchlist-show-minor' => 'Papar suntingan kecil',
-'watchlist-hide-minor' => 'Sembunyi suntingan kecil',
-'watchlist-show-anons' => 'Munculkan suntingan pengguna tanpa nama',
-'watchlist-hide-anons' => 'Sembunyikan suntingan pengguna tanpa nama',
-'watchlist-show-liu'   => 'Munculkan suntingan pengguna log masuk',
-'watchlist-hide-liu'   => 'Sembunyikan suntingan pengguna log masuk',
-'watchlist-options'    => 'Pilihan senarai pantau',
+'removedwatch'             => 'Dibuang daripada senarai pantau',
+'removedwatchtext'         => 'Laman "[[:$1]]" telah dibuang daripada senarai pantau anda.',
+'watch'                    => 'Pantau',
+'watchthispage'            => 'Pantau laman ini',
+'unwatch'                  => 'Nyahpantau',
+'unwatchthispage'          => 'Berhenti memantau',
+'notanarticle'             => 'Bukan laman kandungan',
+'notvisiblerev'            => 'Semakan ini telah dihapuskan',
+'watchnochange'            => 'Tiada perubahan pada laman-laman yang dipantau dalam tempoh yang ditunjukkan.',
+'watchlist-details'        => '$1 laman dipantau (tidak termasuk laman perbincangan).',
+'wlheader-enotif'          => '* Pemberitahuan melalui e-mel diaktifkan.',
+'wlheader-showupdated'     => "* Laman-laman yang telah diubah sejak kunjungan terakhir anda dipaparkan dalam '''teks tebal'''",
+'watchmethod-recent'       => 'menyemak laman yang dipantau dalam suntingan-suntingan terkini',
+'watchmethod-list'         => 'menyemak suntingan terkini pada laman-laman yang dipantau',
+'watchlistcontains'        => 'Terdapat $1 laman dalam senarai pantau anda.',
+'iteminvalidname'          => "Terdapat masalah dengan item '$1', nama tidak sah...",
+'wlnote'                   => "Berikut ialah '''$1''' perubahan terakhir sejak '''$2''' jam yang lalu.",
+'wlshowlast'               => 'Tunjukkan $1 jam / $2 hari yang lalu / $3.',
+'watchlist-show-bots'      => 'Papar suntingan bot',
+'watchlist-hide-bots'      => 'Sembunyi suntingan bot',
+'watchlist-show-own'       => 'Papar suntingan saya',
+'watchlist-hide-own'       => 'Sembunyi suntingan saya',
+'watchlist-show-minor'     => 'Papar suntingan kecil',
+'watchlist-hide-minor'     => 'Sembunyi suntingan kecil',
+'watchlist-show-anons'     => 'Papar suntingan pengguna tanpa nama',
+'watchlist-hide-anons'     => 'Sembunyi suntingan pengguna tanpa nama',
+'watchlist-show-liu'       => 'Papar suntingan pengguna log masuk',
+'watchlist-hide-liu'       => 'Sembunyi suntingan pengguna log masuk',
+'watchlist-show-patrolled' => 'Papar suntingan dironda',
+'watchlist-hide-patrolled' => 'Sembunyi suntingan dironda',
+'watchlist-options'        => 'Pilihan senarai pantau',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Memantau...',

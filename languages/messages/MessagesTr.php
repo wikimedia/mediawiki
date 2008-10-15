@@ -907,7 +907,7 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'recentchanges-legend'              => 'Son değişiklikler seçenekleri',
 'recentchangestext'                 => 'Yapılan en son değişiklikleri bu sayfadan izleyin.',
 'recentchanges-feed-description'    => "Bu beslemedeki viki'de yapılan en son değişiklikleri takip edin.",
-'rcnote'                            => "$4 tarihi ve saat $5 itibariyle, son {{PLURAL:$2|1 günde|'''$2''' günde}} yapılan, {{PLURAL:$1|'''1''' değişiklik|'''$1''' değişiklik}}, aşağıdadır.",
+'rcnote'                            => "$4 tarihi ve saat $5 itibarı ile, son {{PLURAL:$2|1 günde|'''$2''' günde}} yapılan, {{PLURAL:$1|'''1''' değişiklik|'''$1''' değişiklik}}, aşağıdadır.",
 'rclistfrom'                        => '$1 tarihinden beri yapılan değişiklikleri göster',
 'rcshowhideminor'                   => 'küçük değişiklikleri $1',
 'rcshowhidebots'                    => 'botları $1',
@@ -1785,7 +1785,7 @@ Lütfen başka bir isim deneyiniz.',
 'noimages'              => 'Görecek bir şey yok.',
 'ilsubmit'              => 'Ara',
 'bydate'                => 'kronolojik sırayla',
-'sp-newimages-showfrom' => '$1, $2 tarihi itibariyle yeni resimleri göster',
+'sp-newimages-showfrom' => '$1, $2 tarihi itibarı ile yeni resimleri göster',
 
 # Bad image list
 'bad_image_list' => 'Format şöyle:

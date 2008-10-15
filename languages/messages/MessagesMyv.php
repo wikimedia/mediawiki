@@ -155,8 +155,8 @@ $messages = array(
 'returnto'          => 'Велявтомс $1 лопантень.',
 'tagline'           => '{{SITENAME}} -нь пельде',
 'help'              => 'Лезкс',
-'search'            => 'Вешнемс',
-'searchbutton'      => 'Вешнек',
+'search'            => 'Вешнэмс',
+'searchbutton'      => 'Вешнэк',
 'go'                => 'Адя',
 'searcharticle'     => 'Адя',
 'history'           => 'Лопань полавтнемат - витнемат',
@@ -204,7 +204,7 @@ $messages = array(
 'protectedpage'     => 'Те лопась ванстомасо',
 'jumpto'            => 'Тёкадемс тей:',
 'jumptonavigation'  => 'Новигациясь-лездамось',
-'jumptosearch'      => 'вешнеме',
+'jumptosearch'      => 'вешнэме',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} ланга',
@@ -340,7 +340,7 @@ $messages = array(
 'username'                   => 'Теицянь леметь:',
 'uid'                        => 'Теицянь ID:',
 'yourrealname'               => 'Алкуксонь леметь:',
-'yourlanguage'               => 'Кель:',
+'yourlanguage'               => 'Келесь:',
 'yournick'                   => 'Кедень путома:',
 'badsiglength'               => 'Кедень путомат пек кувака; иляст уле эйсэнзэ $1 -до ламо тешкст.',
 'email'                      => 'Е-сёрма',
@@ -662,7 +662,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'retypenew'                => 'Сёрмадык омбоцеде совамо валот:',
 'textboxsize'              => 'Витнема-петнема',
 'columns'                  => 'Палманть:',
-'searchresultshead'        => 'Вешнема',
+'searchresultshead'        => 'Вешнэма',
 'resultsperpage'           => 'Зяроксть вастневи ве лопасо:',
 'contextlines'             => 'Зяро рисьметь эрьва муевкссэ:',
 'timezonelegend'           => 'Часовойть каркст',
@@ -768,7 +768,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'filename'           => 'Файлонь лем',
 'filedesc'           => 'Нурькинестэ',
 'fileuploadsummary'  => 'Нурькинестэ:',
-'filesource'         => 'Лисьмапря:',
+'filesource'         => 'Лисьмапрязо:',
 'uploadedfiles'      => 'Йовкстань файлат',
 'minlength1'         => 'Файлалемесь аштезэ вейке эли седе ламо тешксттнэстэ.',
 'badfilename'        => 'Файланть лемесь полавтозь "$1"-кс.',
@@ -937,7 +937,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 
 # Special:Log
 'specialloguserlabel'  => 'Теицясь:',
-'speciallogtitlelabel' => 'Конякс:',
+'speciallogtitlelabel' => 'Коняксозо:',
 'log'                  => 'Совамо-лисема тевть (регистрациясь)',
 'all-logs-page'        => 'Веси совамотне-кемекстамотьне',
 
@@ -964,7 +964,8 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'special-categories-sort-abc'   => 'аравтомс альфавитэнь коряс',
 
 # Special:LinkSearch
-'linksearch-ns' => 'Лем потмось:',
+'linksearch-ns' => 'Лем потмозо:',
+'linksearch-ok' => 'Вешнэмс',
 
 # Special:ListUsers
 'listusers-submit'   => 'Невтемс',
@@ -1106,11 +1107,11 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'undeletedfiles'           => '{{PLURAL:$1|1 файла|$1 файлат}} вельмевтезь',
 'undelete-search-box'      => 'Вешнемс нардань лопатнень йутксто',
 'undelete-search-prefix'   => 'Невтемс лопат тестэ саезь:',
-'undelete-search-submit'   => 'Вешнемс',
+'undelete-search-submit'   => 'Вешнэмс',
 'undelete-error-short'     => '"$1" файлань вельмевтемстэ лиссь ильведевкс',
 
 # Namespace form on various pages
-'namespace'      => 'Сёрмадовксонть лемезе:',
+'namespace'      => 'Лем потмозо:',
 'invert'         => 'Велявтомс якстерьгавтозенть-невтевезенть',
 'blanknamespace' => '(Прявкс)',
 
@@ -1125,7 +1126,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'sp-contributions-newbies-sub' => 'Од акаунтс',
 'sp-contributions-blocklog'    => 'Пекстамонь журналось',
 'sp-contributions-username'    => 'IP адрес эли теицянь лем:',
-'sp-contributions-submit'      => 'Вешнемс',
+'sp-contributions-submit'      => 'Вешнэмс',
 
 # What links here
 'whatlinkshere'            => 'Мезе тезэнь сюлмави',
@@ -1148,7 +1149,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'blockip-legend'          => 'Аравтомс теицянть саймас',
 'ipaddress'               => 'IP адрес:',
 'ipadressorusername'      => 'IP адрес эли теицянь лем:',
-'ipbexpiry'               => 'Пинге пезэ:',
+'ipbexpiry'               => 'Таштомома шказо:',
 'ipbreason'               => 'Тувталось:',
 'ipbreasonotherlist'      => 'Лия тувтал',
 'ipbsubmit'               => 'Озавтомс те теицянть саймес',
@@ -1165,7 +1166,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'unblockip'               => 'Нолдамс теицянть сайместэ',
 'ipusubmit'               => 'Нолдамс те адресэнть саймасто',
 'ipblocklist'             => 'Саймес саень IP адресст ды теицят',
-'ipblocklist-submit'      => 'Вешнеме',
+'ipblocklist-submit'      => 'Вешнэме',
 'infiniteblock'           => 'певтеме',
 'expiringblock'           => 'прядови $1',
 'blocklink'               => 'блокось',
@@ -1349,7 +1350,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'newimages'    => 'Од файлатьнень галлереясь',
 'showhidebots' => '($1 ботт)',
 'noimages'     => 'Арась мезе ваномс.',
-'ilsubmit'     => 'Вешнемс',
+'ilsubmit'     => 'Вешнэмс',
 'bydate'       => 'чинь коряс',
 
 # Bad image list
@@ -1377,7 +1378,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'exif-xresolution'     => 'Горизонтальсэ сеедезэ',
 'exif-yresolution'     => 'Вертикальсэ сеедезэ',
 'exif-software'        => 'Тевс нолдазь программатне',
-'exif-artist'          => 'Авторось',
+'exif-artist'          => 'Теицязо',
 'exif-copyright'       => 'Копия теемань видечинь кирдицясь',
 'exif-colorspace'      => 'Тюс ютко',
 'exif-usercomment'     => 'Теицянь мельть-арьсемат',
@@ -1388,7 +1389,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'exif-gpslatituderef'  => 'Йакшамо йононь эли лембе мастор йононь келезэ',
 'exif-gpslatitude'     => 'Келезэ',
 'exif-gpslongituderef' => 'Чилисемань эли чивалгомань кувалмо',
-'exif-gpslongitude'    => 'Кувалмо',
+'exif-gpslongitude'    => 'Кувалмозо',
 'exif-gpsaltitude'     => 'Сэрь',
 'exif-gpsspeedref'     => 'Курокксчинь единица',
 'exif-gpsdatestamp'    => 'GPS чи',

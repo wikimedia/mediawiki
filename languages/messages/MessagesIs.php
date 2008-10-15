@@ -920,12 +920,15 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'revdelete-hide-restricted' => 'Setja þessar hömlur á fyrir stjórnendur og læsa viðmótinu',
 'revdelete-hide-image'      => 'Fela efni skráar',
 'revdelete-log'             => 'Athugasemd atburðaskráar:',
+'revdelete-submit'          => 'Setja á valda breytingu',
 'revdel-restore'            => 'Breyta sýn',
 'pagehist'                  => 'Breytingaskrá',
 'deletedhist'               => 'Eyðingaskrá',
 'revdelete-content'         => 'efni',
 'revdelete-summary'         => 'breytingarágrip',
 'revdelete-uname'           => 'notandanafn',
+'revdelete-restricted'      => 'hömlur settar á stjórnendur',
+'revdelete-unrestricted'    => 'fjarlægja hömlur á stjórnendur',
 'revdelete-log-message'     => '$1 fyrir $2 {{PLURAL:$2|breytingu|breytingar}}',
 
 # History merging
@@ -1013,6 +1016,9 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'powersearch-redir'         => 'Lista tilvísanir',
 'powersearch-field'         => 'Leita að',
 'search-external'           => 'Ytri leit',
+'searchdisabled'            => '{{SITENAME}}-leit er óvirk.
+Þú getur leitað í genum Google á meðan.
+Athugaðu að skrár þeirra yfir {{SITENAME}}-efni kunna að vera úreltar.',
 
 # Preferences page
 'preferences'              => 'Stillingar',
@@ -1057,6 +1063,7 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'resultsperpage'           => 'Niðurstöður á síðu',
 'contextlines'             => 'Línur á hverja niðurstöðu',
 'contextchars'             => 'Stafir í samhengi á hverja línu',
+'stub-threshold'           => 'Þröskuldur fyrir sniði <a href="#" class="stub">stubbatengla</a> (bæt):',
 'recentchangesdays'        => 'Hve marga daga á að sýna í nýlegum breytingum:',
 'recentchangescount'       => 'Fjöldi síðna á „nýlegum breytingum“',
 'savedprefs'               => 'Stillingarnar þínar hafa verið vistaðar.',
@@ -1087,6 +1094,8 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 * Óvalinn reitur þýðir að notandinn er ekki í hópnum.
 * Stjarnan (*) þýðir að þú getur ekki fært hópinn eftir að þú hefur breytt honum, eða öfugt.',
 'userrights-reason'           => 'Ástæða fyrir breytingunni:',
+'userrights-no-interwiki'     => 'Þú hefur ekki leyfi til að breyta notandaréttindum á öðrum wiki-síðum.',
+'userrights-nodatabase'       => 'Gagnagrunnurinn $1 er ekki til eða ekki staðbundinn.',
 'userrights-nologin'          => 'Þú verður að [[Special:UserLogin|innskrá]] þig á möppudýraaðgang til að geta útdeilt notandaréttindum.',
 'userrights-notallowed'       => 'Þinn aðgangur hefur ekki réttindi til að útdeila notandaréttindum.',
 'userrights-changeable-col'   => 'Hópar sem þú getur breytt',
@@ -1117,22 +1126,33 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'grouppage-suppress'      => '{{ns:project}}:Umsjón',
 
 # Rights
-'right-read'          => 'Lesa síður',
-'right-edit'          => 'Breyta síðum',
-'right-createpage'    => 'Gera síður (sem eru ekki spjallsíður)',
-'right-createtalk'    => 'Gera spjallsíður',
-'right-createaccount' => 'Gera nýja notandaaðganga',
-'right-minoredit'     => 'Merkja sem minniháttarbreytingar',
-'right-move'          => 'Færa síður',
-'right-move-subpages' => 'Færa síður með undirsíðum þeirra',
-'right-upload'        => 'Hlaða inn skrám',
-'right-autoconfirmed' => 'Breyta hálfvernduðum síðum',
-'right-delete'        => 'Eyða síðum',
-'right-bigdelete'     => 'Eyða síðum með stórum breytingaskrám',
-'right-browsearchive' => 'Leita í eyddum síðum',
-'right-undelete'      => 'Endurvekja eydda síðu',
-'right-editinterface' => 'Breyta notandaviðmótinu',
-'right-editusercssjs' => 'Breyta CSS- og JS-skrám annarra',
+'right-read'             => 'Lesa síður',
+'right-edit'             => 'Breyta síðum',
+'right-createpage'       => 'Gera síður (sem eru ekki spjallsíður)',
+'right-createtalk'       => 'Gera spjallsíður',
+'right-createaccount'    => 'Gera nýja notandaaðganga',
+'right-minoredit'        => 'Merkja sem minniháttarbreytingar',
+'right-move'             => 'Færa síður',
+'right-move-subpages'    => 'Færa síður með undirsíðum þeirra',
+'right-suppressredirect' => 'Ekki búa til tilvísun frá gamla nafninu þegar síða er færð',
+'right-upload'           => 'Hlaða inn skrám',
+'right-reupload'         => 'Yfirrita núverandi skrá',
+'right-reupload-own'     => 'Yfirrita núverandi skrá sem að ég hlóð inn sjálf(ur)',
+'right-purge'            => 'Hreinsa skyndiminni síðu án staðfestingar',
+'right-autoconfirmed'    => 'Breyta hálfvernduðum síðum',
+'right-nominornewtalk'   => 'Ekki láta minniháttar breytingar á spjallsíðum kveða upp áminningu um ný skilaboð',
+'right-delete'           => 'Eyða síðum',
+'right-bigdelete'        => 'Eyða síðum með stórum breytingaskrám',
+'right-deleterevision'   => 'Eyða og endurvekja sérstaka breytignar á síðum',
+'right-browsearchive'    => 'Leita í eyddum síðum',
+'right-undelete'         => 'Endurvekja eydda síðu',
+'right-suppressrevision' => 'Skoða og endurvekja breytingar faldar fyrir stjórnendum',
+'right-suppressionlog'   => 'Skoða einrænar aðgerðaskrár',
+'right-block'            => 'Banna öðrum notendum að gera breytingar',
+'right-blockemail'       => 'Banna notanda að senda tölvupóst',
+'right-hideuser'         => 'Banna notandanafn, og þannig fela það frá almenningi',
+'right-editinterface'    => 'Breyta notandaviðmótinu',
+'right-editusercssjs'    => 'Breyta CSS- og JS-skrám annarra',
 
 # User rights log
 'rightslog'      => 'Réttindaskrá notenda',
@@ -1141,20 +1161,23 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'rightsnone'     => '(engin)',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-read'          => 'lesa þessa síðu',
-'action-edit'          => 'breyta þessari síðu',
-'action-createpage'    => 'skapa síður',
-'action-createtalk'    => 'skapa spjallsíður',
-'action-createaccount' => 'skapa þennan notandaaðgang',
-'action-minoredit'     => 'merkja þessa breytingu sem minniháttar',
-'action-move'          => 'færa þessa síðu',
-'action-move-subpages' => 'færa þessa síðu, og undirsíður hennar',
-'action-upload'        => 'hlaða inn þessari skrá',
-'action-reupload'      => 'yfirrita þessa skrá',
-'action-delete'        => 'eyða þessari síðu',
-'action-browsearchive' => 'leita í eyddum síðum',
-'action-undelete'      => 'endurvekja þessa síðu',
-'action-siteadmin'     => 'læsa eða opna gagnagrunninn',
+'action-read'           => 'lesa þessa síðu',
+'action-edit'           => 'breyta þessari síðu',
+'action-createpage'     => 'skapa síður',
+'action-createtalk'     => 'skapa spjallsíður',
+'action-createaccount'  => 'skapa þennan notandaaðgang',
+'action-minoredit'      => 'merkja þessa breytingu sem minniháttar',
+'action-move'           => 'færa þessa síðu',
+'action-move-subpages'  => 'færa þessa síðu, og undirsíður hennar',
+'action-upload'         => 'hlaða inn þessari skrá',
+'action-reupload'       => 'yfirrita þessa skrá',
+'action-delete'         => 'eyða þessari síðu',
+'action-deleterevision' => 'eyða þessari breytingu',
+'action-deletedhistory' => 'skoða breytingaskrá þessarar síðu',
+'action-browsearchive'  => 'leita í eyddum síðum',
+'action-undelete'       => 'endurvekja þessa síðu',
+'action-protect'        => 'breyta verndunarstigum fyrir þessa síðu',
+'action-siteadmin'      => 'læsa eða opna gagnagrunninn',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|breyting|breytingar}}',
@@ -1199,13 +1222,12 @@ Síður á [[Special:Watchlist|vaktlistanum þínum]] eru '''feitletraðar'''.",
 'uploadnologintext'  => 'Þú verður að vera [[Special:UserLogin|skráð(ur) inn]]
 til að hlaða inn skrám.',
 'uploaderror'        => 'Villa í innhlaðningu',
-'uploadtext'         => "Notaðu eyðublaðið hér fyrir neðan til að hlaða upp skrám.
-Farðu á [[Special:ImageList|skráarlistann]] til að skoða eða leita að áður upphlöðnum skrám, einnig má finna í [[Special:Log/upload|innhlaðningarskránni]] skrár sem hafa verið hlaðið upp og eytt.
+'uploadtext'         => "Notaðu eyðublaðið hér fyrir neðan til að hlaða inn skrám.
+Til að skoða eða leita í áður innhlöðnum skrám ferðu á [[Special:ImageList|skráarlistann]], (endur)innhlaðnar skrár eru skráðar í [[Special:Log/upload|innhlaðningarskránni]], eyðingar í [[Special:Log/delete|eyðingaskránni]].
 
-Til að tengja í skrána frá síðu, notaðu eftirfarandi aðferðir
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Skráarheiti.jpg]]</nowiki>''',
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Skráarheiti.png|alt text]]</nowiki>''' eða
-'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Skráarheiti.ogg]]</nowiki>''' fyrir beina tengla á skrána.",
+* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Skrá.jpg]]</nowiki></tt>'''
+* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Skrá.png|200px|thumb|left|alt-texti]]</nowiki></tt>'''
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Skrá.ogg]]</nowiki></tt>'''",
 'uploadlog'          => 'innhlaðningarskrá',
 'uploadlogpage'      => 'Innhlaðningarskrá',
 'uploadlogpagetext'  => 'Þetta er listi yfir skrár sem nýlega hefur verið hlaðið inn.',
@@ -1792,6 +1814,7 @@ Sjá [[Special:IPBlockList|ítarlegri lista]] fyrir öll núgildandi bönn.',
 'blockme'                     => 'Banna mig',
 'proxyblocker-disabled'       => 'Þessi virkni er óvirk.',
 'proxyblocksuccess'           => 'Búinn.',
+'cant-block-while-blocked'    => 'Þú getur ekki bannað aðra notendur á meðan þú ert í banni.',
 
 # Developer tools
 'lockdb'              => 'Læsa gagnagrunninum',
@@ -1809,58 +1832,72 @@ Mundu að [[Special:UnlockDB|opna hann aftur]] þegar þú hefur lokið viðger�
 'databasenotlocked'   => 'Gagnagrunnurinn er ekki læstur.',
 
 # Move page
-'move-page'               => 'Færa $1',
-'move-page-legend'        => 'Færa síðu',
-'movepagetext'            => "Hér er hægt að endurnefna síðu. Hún færist, ásamt breytingaskránni, yfir á nýtt heiti og eldra heitið myndar tilvísun á það. Þú getur sjálfkrafa uppfært tilvísanir á nýja heitið. Ef þú vilt það síður, athugaðu þá hvort nokkuð myndist [[Special:DoubleRedirects|tvöfaldar]] eða [[Special:BrokenRedirects|brotnar tilvísanir]].
+'move-page'                 => 'Færa $1',
+'move-page-legend'          => 'Færa síðu',
+'movepagetext'              => "Hér er hægt að endurnefna síðu. Hún færist, ásamt breytingaskránni, yfir á nýtt heiti og eldra heitið myndar tilvísun á það. Þú getur sjálfkrafa uppfært tilvísanir á nýja heitið. Ef þú vilt það síður, athugaðu þá hvort nokkuð myndist [[Special:DoubleRedirects|tvöfaldar]] eða [[Special:BrokenRedirects|brotnar tilvísanir]].
 Þú berð ábyrgð á því að tenglar vísi á rétta staði.
 
 Athugaðu að síðan mun '''ekki''' færast ef þegar er síða á nafninu sem þú hyggst færa hana á, nema sú síða sé tóm eða tilvísun sem vísar á síðuna sem þú ætlar að færa. Þú getur þar með fært síðuna aftur til baka án þess að missa breytingarsöguna, en ekki fært hana yfir venjulega síðu.
 
 '''Varúð:'''
 Athugaðu að þessi aðgerð getur kallað fram viðbrögð annarra notenda og getur þýtt mjög rótækar breytingar á vinsælum síðum.",
-'movepagetalktext'        => 'Spallsíða síðunnar verður sjálfkrafa færð með ef hún er til nema:
+'movepagetalktext'          => 'Spallsíða síðunnar verður sjálfkrafa færð með ef hún er til nema:
 * Þú sért að færa síðuna á milli nafnrýma
 * Spallsíða sé þegar til undir nýja nafninu
 * Þú veljir að færa hana ekki
 Í þeim tilfellum verður að færa hana handvirkt.',
-'movearticle'             => 'Færa síðu:',
-'movenologin'             => 'Óinnskráð(ur)',
-'movenologintext'         => 'Þú verður að vera [[Special:UserLogin|innskráð(ur)]] til að geta fært síður.',
-'movenotallowed'          => 'Þú hefur ekki leyfi til að færa síður.',
-'newtitle'                => 'Á nýja titilinn:',
-'move-watch'              => 'Vakta þessa síðu',
-'movepagebtn'             => 'Færa síðu',
-'pagemovedsub'            => 'Færsla tókst',
-'movepage-moved'          => "<big>'''„$1“ hefur verið færð á „$2“'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'           => 'Annaðhvort er þegar til síða undir þessum titli, eða sá titill sem þú hefur valið er ekki gildur.
+'movearticle'               => 'Færa síðu:',
+'movenologin'               => 'Óinnskráð(ur)',
+'movenologintext'           => 'Þú verður að vera [[Special:UserLogin|innskráð(ur)]] til að geta fært síður.',
+'movenotallowed'            => 'Þú hefur ekki leyfi til að færa síður.',
+'cant-move-user-page'       => 'Þú hefur ekki leyfi til að færa notandasíðu (fyrir utan undirsíður).',
+'cant-move-to-user-page'    => 'Þú hefur ekki leyfi til að færa síðu á notandasíðu (að frátöldum undirsíðum notanda).',
+'newtitle'                  => 'Á nýja titilinn:',
+'move-watch'                => 'Vakta þessa síðu',
+'movepagebtn'               => 'Færa síðu',
+'pagemovedsub'              => 'Færsla tókst',
+'movepage-moved'            => "<big>'''„$1“ hefur verið færð á „$2“'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'             => 'Annaðhvort er þegar til síða undir þessum titli, eða sá titill sem þú hefur valið er ekki gildur.
 Vinsamlegast veldu annan titil.',
-'talkexists'              => "'''Færsla á síðunni sjálfri heppnaðist, en ekki var hægt að færa spjallsíðuna því hún er nú þegar til á nýja titlinum.
+'cantmove-titleprotected'   => 'Þú getur ekki fært síðu á þessa staðsetningu, því nýi titillinn hefur verið verndaður gegn sköpun',
+'talkexists'                => "'''Færsla á síðunni sjálfri heppnaðist, en ekki var hægt að færa spjallsíðuna því hún er nú þegar til á nýja titlinum.
 Gjörðu svo vel og færðu hana handvirkt.'''",
-'movedto'                 => 'fært á',
-'movetalk'                => 'Færa meðfylgjandi spjallsíðu',
-'move-subpages'           => 'Færa allar undirsíður ef það er hægt',
-'move-talk-subpages'      => 'Færa allar undirsíður spjallsíðunnar ef það er hægt',
-'movepage-page-exists'    => 'Síðan $1 er nú þegar til og er ekki hægt að yfirskrifa sjálfkrafa.',
-'movepage-page-moved'     => 'Síðan $1 hefur verið færð á $2.',
-'movepage-page-unmoved'   => 'Ekki var hægt að færa síðuna $1 á $2.',
-'1movedto2'               => '[[$1]] færð á [[$2]]',
-'1movedto2_redir'         => '[[$1]] færð á [[$2]] yfir tilvísun',
-'movelogpage'             => 'Flutningaskrá',
-'movelogpagetext'         => 'Þetta er listi yfir síður sem nýlega hafa verið færðar.',
-'movereason'              => 'Ástæða:',
-'revertmove'              => 'taka til baka',
-'delete_and_move'         => 'Eyða og flytja',
-'delete_and_move_text'    => '==Beiðni um eyðingu==
+'movedto'                   => 'fært á',
+'movetalk'                  => 'Færa meðfylgjandi spjallsíðu',
+'move-subpages'             => 'Færa allar undirsíður ef það er hægt',
+'move-talk-subpages'        => 'Færa allar undirsíður spjallsíðunnar ef það er hægt',
+'movepage-page-exists'      => 'Síðan $1 er nú þegar til og er ekki hægt að yfirskrifa sjálfkrafa.',
+'movepage-page-moved'       => 'Síðan $1 hefur verið færð á $2.',
+'movepage-page-unmoved'     => 'Ekki var hægt að færa síðuna $1 á $2.',
+'movepage-max-pages'        => 'Hámarkinu, $1 {{PLURAL:$1|síða|síður}}, hefur verið náð og verða engar fleiri færðar sjálfvirkt.',
+'1movedto2'                 => '[[$1]] færð á [[$2]]',
+'1movedto2_redir'           => '[[$1]] færð á [[$2]] yfir tilvísun',
+'movelogpage'               => 'Flutningaskrá',
+'movelogpagetext'           => 'Þetta er listi yfir síður sem nýlega hafa verið færðar.',
+'movereason'                => 'Ástæða:',
+'revertmove'                => 'taka til baka',
+'delete_and_move'           => 'Eyða og flytja',
+'delete_and_move_text'      => '==Beiðni um eyðingu==
 
 Síðan „[[:$1]]“ er þegar til. Viltu eyða henni til þess að rýma til fyrir flutningi?',
-'delete_and_move_confirm' => 'Já, eyða síðunni',
-'delete_and_move_reason'  => 'Eytt til að rýma til fyrir flutning',
-'selfmove'                => 'Nýja nafnið er það sama og gamla, þú verður að velja annað nafn.',
-'fix-double-redirects'    => 'Uppfæra tilvísanir sem vísa á upphaflegan titil',
+'delete_and_move_confirm'   => 'Já, eyða síðunni',
+'delete_and_move_reason'    => 'Eytt til að rýma til fyrir flutning',
+'selfmove'                  => 'Nýja nafnið er það sama og gamla, þú verður að velja annað nafn.',
+'immobile-source-namespace' => 'Get ekki fært síður í nafnrýminu „$1“',
+'immobile-target-namespace' => 'Get ekki fært síður inn í nafnrýmið „$1“',
+'immobile-source-page'      => 'Þessi síða er ekki færanleg.',
+'immobile-target-page'      => 'Get ekki fært á áætlaðan titil.',
+'imagenocrossnamespace'     => 'Get ekki fært skrá í skrálaust nafnrými',
+'imagetypemismatch'         => 'Nýi nafnaukinn passar ekki við tegund hennar',
+'imageinvalidfilename'      => 'Markskráarnafnið er ógilt',
+'fix-double-redirects'      => 'Uppfæra tilvísanir sem vísa á upphaflegan titil',
+'move-leave-redirect'       => 'Skilja tilvísun eftir',
 
 # Export
 'export'            => 'Flytja út síður',
 'exportcuronly'     => 'Aðeins núverandi útgáfu án breytingaskrár',
+'exportnohistory'   => "----
+'''Athugaðu:''' Að flytja út alla breytingasögu síðna á þennan hátt hefur verið óvirkjað vegna ástæðna afkasta.",
 'export-submit'     => 'Flytja',
 'export-addcattext' => 'Bæta við síðum frá flokkinum:',
 'export-addcat'     => 'Bæta við',
@@ -1871,8 +1908,8 @@ Síðan „[[:$1]]“ er þegar til. Viltu eyða henni til þess að rýma til f
 'allmessagesname'           => 'Titill',
 'allmessagesdefault'        => 'Sjálfgefinn texti',
 'allmessagescurrent'        => 'Núverandi texti',
-'allmessagestext'           => 'Listi yfir meldingar í „Melding“ nafnrýminu.
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
+'allmessagestext'           => 'Þetta er listi yfir kerfismeldingar í Melding-nafnrýminu.
+Gjörðu svo vel og heimsæktu [http://www.mediawiki.org/wiki/Localisation MediaWiki-staðfæringuna] og [http://translatewiki.net Betawiki] ef þú vilt taka þátt í almennri MediaWiki-staðfæringu.',
 'allmessagesnotsupportedDB' => "Það er ekki hægt að nota '''{{ns:special}}:Allmessages''' því '''\$wgUseDatabaseMessages''' hefur verið gerð óvirk.",
 'allmessagesmodified'       => 'Sýna aðeins breyttar',
 
@@ -2027,6 +2064,9 @@ Allir innflutningar eru skráð í [[Special:Log/import|innflutningsskránna]].'
 'previousdiff' => '← Eldri breyting',
 'nextdiff'     => 'Nýrri breyting →',
 
+# Visual comparison
+'visual-comparison' => 'Sjónrænn samanburður',
+
 # Media information
 'mediawarning'         => "'''AÐVÖRUN''': Þessi skrá kann að hafa meinfýsinn kóða, ef keyrður kann hann að stofna kerfinu þínu í hættu.<hr />",
 'imagemaxsize'         => 'Takmarka myndir á skráarlýsingasíðum við:',
@@ -2043,6 +2083,8 @@ Allir innflutningar eru skráð í [[Special:Log/import|innflutningsskránna]].'
 'newimages'             => 'Myndasafn nýlegra skráa',
 'imagelisttext'         => 'Hér fyrir neðan er {{PLURAL:$1|einni skrá|$1 skrám}} raðað $2.',
 'newimages-summary'     => 'Þessi kerfissíða sýnir nýlega innhlaðnar skrár.',
+'newimages-legend'      => 'Sía',
+'newimages-label'       => 'Skráarnafn (eða hluti þess):',
 'showhidebots'          => '($1 vélmenni)',
 'noimages'              => 'Ekkert að sjá.',
 'ilsubmit'              => 'Leita',

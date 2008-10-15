@@ -1781,8 +1781,6 @@ Buri meng buran bang malaus ing pamanales?',
 'delete_and_move_reason'  => 'Mebura ya bang malaus ing pamanalis',
 'selfmove'                => 'Pareu ya ing penibatan ampo ing puntalan;
 e maliaring itumpak king sarili na ing metung a bulung.',
-'immobile_namespace'      => 'Makabukud/espesial yang uri ing bansag ning penibatan o puntalan;
-e maliaring manalis bulung manibat o papunta king pirinan lagyung (namespace) ita',
 'imagenocrossnamespace'   => 'E ne ayalis ing larawan king pirinan lagyung e-panglarawan (non-image namespace)',
 'imagetypemismatch'       => 'E ne kaparis ning bayung file extension itang kayang uri (type)',
 

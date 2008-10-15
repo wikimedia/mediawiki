@@ -502,8 +502,7 @@ The title of the warning is the message [[MediaWiki:Nosuchspecialpage/{{SUBPAGEN
 * [[Special:CreateAccount]]
 
 $1 is the minimum number of characters in the password.',
-'mailmypassword'             => 'Shown at [[Special:UserLogin]]
-{{Identical|E-mail password}}',
+'mailmypassword'             => 'Shown at [[Special:UserLogin]]',
 'passwordremindertitle'      => 'Title of e-mail which contains temporary password',
 'passwordremindertext'       => 'This text is used in an e-mail sent when a user requests a new temporary password (he has forgotten his password) or when an sysop creates a new user account choosing to have password and username sent to the new user by e-mail.
 * $1 is an IP addres. Example: 123.123.123.123
@@ -745,9 +744,17 @@ Parameter $1 is either {{msg|revdelete-content}} (when unhiding the page content
 'editundo'                => 'Undo link when viewing diffs',
 'diff-multi'              => "This message appears in the revision history of a page when comparing two versions which aren't consecutive.",
 'diff-src'                => '{{Identical|Source}}',
+'diff-with'               => '* "<code><nowiki>&amp;#32;</nowiki></code>" is a forced space; leave it in if your language uses spaces
+* $1 is <need more info>
+* $2 is <need more info>
+Used in conjunction with {{msg-mw|diff-with-additional}} and {{msg-mw|diff-with-final}} in the head position before a {{msg-mw|comma-separator}} separated list.',
+'diff-with-additional'    => '* $1 is <need more info>
+* $2 is <need more info>
+Used, possibly repeatedly, in a {{msg-mw|comma-separator}} separated list after {{msg-mw|diff-with}} and before {{msg-mw|diff-with-final}}.',
 'diff-with-final'         => '* "<code><nowiki>&amp;#32;</nowiki></code>" is a forced space; leave it in if your language uses spaces
 * $1 is <need more info>
-* $2 is <need more info>',
+* $2 is <need more info>
+Used in the final position of a {{msg-mw|comma-separator}} separated list headed by {{msg-mw|diff-with}} followed by zero or more repetitions of {{msg-mw|diff-with-additional}}.',
 'diff-width'              => '{{Identical|Width}}',
 'diff-height'             => '{{Identical|Height}}',
 
@@ -1694,7 +1701,6 @@ Example line:
 'ipblocklist-sh-addressblocks' => 'Top selection button at [[Special:IPBlockList]]
 
 * $1 - word "{{msg|Hide}}" or "{{msg|Show}}"',
-'ipblocklist-scanrange'        => 'A switch on [[Special:IPBlockList]] allowing to display all relevant blocks (including range blocks) for every IP address, not just the single-IP block',
 'ipblocklist-submit'           => '{{Identical|Search}}',
 'blocklistline'                => 'This is the text of an entry in the Special:IPBlockList.
 *$1 is the hour and date of the block. 

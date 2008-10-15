@@ -1464,7 +1464,6 @@ $NEWPAGE
 'delete_and_move_confirm' => '係嗰，刪卟箇頁',
 'delete_and_move_reason'  => '為到移動刪卟佢',
 'selfmove'                => '原始標題同目標標題一樣，一隻頁面移伓正到佢自家。',
-'immobile_namespace'      => '目標標題係特別類型；面移伓進去箇隻空間名。',
 
 # Export
 'export'            => '導出頁面',

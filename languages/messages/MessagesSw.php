@@ -194,12 +194,18 @@ $messages = array(
 'nstab-category' => 'Jamii',
 
 # General errors
-'error'          => 'Kosa',
-'badtitle'       => 'Jina halifai',
-'badtitletext'   => 'Jina la ukurasa ulilotaka ni batilifu, tupu, au limeungwa vibaya na jina la lugha nyingine au Wiki nyingine.  Labda linazo herufi moja a zaidi ambazo hazitumiki katika majina.',
-'viewsource'     => 'Tazama chanzo',
-'viewsourcefor'  => 'kwa $1',
-'viewsourcetext' => 'Unaweza kutazama na kuiga chanzo cha ukurasa huu:',
+'error'              => 'Kosa',
+'badtitle'           => 'Jina halifai',
+'badtitletext'       => 'Jina la ukurasa ulilotaka ni batilifu, tupu, au limeungwa vibaya na jina la lugha nyingine au Wiki nyingine.  Labda linazo herufi moja a zaidi ambazo hazitumiki katika majina.',
+'viewsource'         => 'Tazama chanzo',
+'viewsourcefor'      => 'kwa $1',
+'protectedpagetext'  => 'Ukurasa huu umefungwa ili kuepuka uhariri.',
+'viewsourcetext'     => 'Unaweza kutazama na kuiga chanzo cha ukurasa huu:',
+'protectedinterface' => 'Ukurasa huu unatoa maelezo ya msingi ya bidhaa pepe, na pia umefungwa ili kuzuiya uharibifu.',
+'editinginterface'   => "'''Ilani:''' Una hariri ukurasa unaotumika kutoa maelezo ya msingi ya bidhaa pepe.
+Mabadiliko katika ukurasa huu yataathiri mwonekano mzima wa viungo vya watumiaji wengine.
+Kwa lengo la kutaka kutafsiri, tafadhali fikiria kutumia  [http://translatewiki.net/wiki/Main_Page?setlang=en Betawiki], kwa kuweka miradi ya MediaWiki kwa kienyeji.",
+'sqlhidden'          => '(maulizo ya SQL yamefichwa)',
 
 # Login and logout pages
 'welcomecreation'           => '== Karibu, $1! ==
@@ -230,7 +236,7 @@ Usisahau kubadilisha mapendekezo yako ya [[Special:Preferences|{{SITENAME}}]].',
 Tafadhali chagua jina lingine.',
 'youremail'                 => 'Barua pepe yako:',
 'username'                  => 'Jina la mtumiaji:',
-'uid'                       => 'Jina la akaunti ya mtumiaji:',
+'uid'                       => 'Namba ya mtumiaji:',
 'prefs-memberingroups'      => 'Mwanachama wa {{PLURAL:$1|group|makundi}}:',
 'yourrealname'              => 'Jina lako halisi:',
 'yourlanguage'              => 'Lugha:',
@@ -345,6 +351,7 @@ Tafadhali fikiria kuhusu kuvunja ukurasa kwa vipande vifupi.</strong>',
 'template-protected'     => '(kulindwa)',
 'template-semiprotected' => '(ulindaji kwa kiasi)',
 'nocreatetext'           => '{{SITENAME}} imebana uwezekano kutengeneza kurasa mpya. Unaweza kurudia na kuhariri kurasa zilizomo, au [[Special:UserLogin|ingia au anza akaunti]].',
+'nocreate-loggedin'      => 'Huna ruhusa ya kuazisha kurasa mpya.',
 'recreate-deleted-warn'  => "'''Ilani: Unatengeneza tena ukurasa uliofutwa tayari.'''
 
 Fikiria kama inafaa kuendelea kuhariri ukurasa huu.

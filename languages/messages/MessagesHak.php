@@ -1266,7 +1266,6 @@ Ngì khok-ngin sî-yeu chhù-thet ngièn hong-mien khi̍p chin-hàng yì-thung m
 'delete_and_move_confirm' => 'Chhie̍t-tui, chhù-thet chhṳ́ hong-mien',
 'delete_and_move_reason'  => 'Chhù-thet yî-phien yì-thung',
 'selfmove'                => 'Ngièn-sṳ́ phêu-thì khi̍p muk-phêu phêu-thì siông-thùng, vù-nèn yì-thung yit-chông fu̍k-koi pún-sṳ̂n.',
-'immobile_namespace'      => 'Muk-phêu phêu-thì su̍k-yî thi̍t-phe̍t lui-hìn; put-nèn chiông vùn-chông yì-ngi̍p liá-ke miàng-sṳ khûng-kiên.',
 
 # Export
 'export'            => 'Thô-chhut vùn-chông',

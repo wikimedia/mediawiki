@@ -520,6 +520,7 @@ $messages = array(
 'editold'                 => 'szerkesztés',
 'viewsourceold'           => 'lapforrás',
 'editlink'                => 'szerkesztés',
+'viewsourcelink'          => 'forráskód megtekintése',
 'editsectionhint'         => 'Szakasz szerkesztése: $1',
 'toc'                     => 'Tartalomjegyzék',
 'showtoc'                 => 'megjelenítés',
@@ -697,12 +698,14 @@ Ellenőrizd, hogy helyesen írtad-e be.',
 Legalább {{PLURAL:$1|egy|$1}} karakterből kell állnia, és nem egyezhet meg a felhasználói neveddel.',
 'mailmypassword'             => 'Új jelszó küldése e-mailben',
 'passwordremindertitle'      => 'Ideiglenes jelszó a(z) {{SITENAME}} wikire',
-'passwordremindertext'       => 'Valaki (vélhetően te, a(z) $1 IP-címről)
-azt kérte, hogy küldjünk neked új {{SITENAME}}-jelszót ($4).
-A(z) "$2" nevű szerkesztő jelszava jelenleg "$3".
-Lépj be, és változtasd meg.
+'passwordremindertext'       => 'Valaki (vélhetően te, a(z) $1 IP-címről) új jelszót kért a(z)
+{{SITENAME}} wikis ($4) felhasználói fiókjához.
+"$2" számára most egy ideiglenes jelszót készítettünk: "$3".
+Ha te kértél új jelszót, lépj be, és változtasd meg.
 
-Ha nem kértél új jelszót, vagy közben eszedbe jutott a régi, és már nem akarod megváltoztatni, nyugodtan hagyd figyelmen kívül ezt az értesítést, és használd továbbra is a régi jelszavadat.',
+Ha nem te küldted a kérést, vagy közben eszedbe jutott a régi,
+és már nem akarod megváltoztatni, nyugodtan hagyd figyelmen kívül
+ezt az üzenetet, és használd továbbra is a régi jelszavadat.',
 'noemail'                    => '„$1” e-mail címe nincs megadva.',
 'passwordsent'               => 'Az új jelszót elküldtük „$1” e-mail címére.
 Lépj be a levélben található adatokkal.',
@@ -898,7 +901,7 @@ Visszamehetsz és szerkeszthetsz egy létező lapot, valamint [[Special:UserLogi
 'nocreate-loggedin'                => 'Nincs jogod új lapokat létrehozni.',
 'permissionserrors'                => 'Engedélyezési hiba',
 'permissionserrorstext'            => 'A művelet elvégzése nem engedélyezett a számodra, a következő {{PLURAL:$1|ok|okok}} miatt:',
-'permissionserrorstext-withaction' => 'Nincs jogosultságod a(z) $2 elvégzéséhez, az alábbi {{PLURAL:$1|ok|okok}} miatt:',
+'permissionserrorstext-withaction' => 'Nincs jogosultságod a következő művelet elvégzéséhez: $2, az alábbi {{PLURAL:$1|ok|okok}} miatt:',
 'recreate-deleted-warn'            => "'''Vigyázat: egy olyan lapot akarsz létrehozni, amelyet korábban már töröltünk.'''
 
 Mielőtt létrehoznád, nézd meg, miért került korábban törlésre és ellenőrizd,
@@ -1317,6 +1320,40 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'rightslogtext'  => 'Ez a rendszernapló a felhasználó jogosultságok változásait mutatja.',
 'rightslogentry' => 'megváltoztatta $1 szerkesztő felhasználó jogait (régi: $2; új: $3)',
 'rightsnone'     => '(semmi)',
+
+# Associated actions - in the sentence "You do not have permission to X"
+'action-read'                 => 'lap olvasása',
+'action-edit'                 => 'lap szerkesztése',
+'action-createpage'           => 'új lap készítése',
+'action-createtalk'           => 'vitalap készítése',
+'action-createaccount'        => 'felhasználói fiók elkészítése',
+'action-minoredit'            => 'szerkesztés aprónak jelölése',
+'action-move'                 => 'lap átnevezése',
+'action-move-subpages'        => 'lap és allapjainak átnevezése',
+'action-upload'               => 'fájl feltöltése',
+'action-reupload'             => 'már létező fájl felülírása',
+'action-reupload-shared'      => 'közös megosztón található fájl felülírása',
+'action-upload_by_url'        => 'fájl feltöltése URL-címről',
+'action-writeapi'             => 'író API használata',
+'action-delete'               => 'lap törlése',
+'action-deleterevision'       => 'változat törlése',
+'action-deletedhistory'       => 'lap törölt laptörténetének megtekintése',
+'action-browsearchive'        => 'keresés a törölt lapok között',
+'action-undelete'             => 'lap helyreállítása',
+'action-suppressrevision'     => 'rejtett változat megtekintése és helyreállítása',
+'action-suppressionlog'       => 'privát napló megtekintése',
+'action-block'                => 'szerkesztő blokkolása',
+'action-protect'              => 'lap védelmi szintjének megváltoztatása',
+'action-import'               => 'lap importálása más wikiből',
+'action-importupload'         => 'lap importálása fájl feltöltésével',
+'action-patrol'               => 'mások szerkesztéseinek ellenőrzöttként való megjelölése',
+'action-autopatrol'           => 'saját szerkesztések ellenőrzöttként való megjelölése',
+'action-unwatchedpages'       => 'nem figyelt lapok listájának megtekintése',
+'action-trackback'            => 'trackback küldése',
+'action-mergehistory'         => 'lap laptörténetének egyesítése',
+'action-userrights'           => 'összes szerkesztő jogainak módosítása',
+'action-userrights-interwiki' => 'más wikik szerkesztői jogainak módosítása',
+'action-siteadmin'            => 'adatbázis lezárása vagy felnyitása',
 
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|egy|$1}} változtatás',
@@ -1780,45 +1817,47 @@ nem kíván másoktól leveleket kapni.',
 'emailuserfooter' => 'Ezt az e-mailt $1 küldte $2 számára, az „E-mail küldése ezen szerkesztőnek” funkció használatával a(z) {{SITENAME}} wikin.',
 
 # Watchlist
-'watchlist'            => 'Figyelőlistám',
-'mywatchlist'          => 'figyelőlistám',
-'watchlistfor'         => "('''$1''' részére)",
-'nowatchlist'          => 'Nincs lap a figyelőlistádon.',
-'watchlistanontext'    => 'A figyelőlistád megtekintéséhez és szerkesztéséhez $1.',
-'watchnologin'         => 'Nem vagy bejelentkezve',
-'watchnologintext'     => 'Ahhoz, hogy figyelőlistád lehessen, [[Special:UserLogin|be kell lépned]].',
-'addedwatch'           => 'Figyelőlistához hozzáfűzve',
-'addedwatchtext'       => "A(z) „[[:$1]]” lapot hozzáadtam a [[Special:Watchlist|figyelőlistádhoz]].
+'watchlist'                => 'Figyelőlistám',
+'mywatchlist'              => 'figyelőlistám',
+'watchlistfor'             => "('''$1''' részére)",
+'nowatchlist'              => 'Nincs lap a figyelőlistádon.',
+'watchlistanontext'        => 'A figyelőlistád megtekintéséhez és szerkesztéséhez $1.',
+'watchnologin'             => 'Nem vagy bejelentkezve',
+'watchnologintext'         => 'Ahhoz, hogy figyelőlistád lehessen, [[Special:UserLogin|be kell lépned]].',
+'addedwatch'               => 'Figyelőlistához hozzáfűzve',
+'addedwatchtext'           => "A(z) „[[:$1]]” lapot hozzáadtam a [[Special:Watchlist|figyelőlistádhoz]].
 Ezután minden, a lapon vagy annak vitalapján történő változást ott fogsz látni, és a lap '''vastagon''' fog szerepelni a [[Special:RecentChanges|friss változtatások]] lapon, hogy könnyen észrevehető legyen.",
-'removedwatch'         => 'Figyelőlistáról eltávolítva',
-'removedwatchtext'     => 'A „<nowiki>$1</nowiki>” lapot eltávolítottam a figyelőlistáról.',
-'watch'                => 'Lap figyelése',
-'watchthispage'        => 'Lap figyelése',
-'unwatch'              => 'Lapfigyelés vége',
-'unwatchthispage'      => 'Figyelés leállítása',
-'notanarticle'         => 'Nem szócikk',
-'notvisiblerev'        => 'A változat törölve lett',
-'watchnochange'        => 'Egyik figyelt lap sem változott a megadott időintervallumon belül.',
-'watchlist-details'    => 'A vitalapokon kívül {{PLURAL:$1|egy|$1}} lap van a figyelőlistádon.',
-'wlheader-enotif'      => '* E-mail értesítés engedélyezve.',
-'wlheader-showupdated' => "* Azok a lapok, amelyek megváltoztak, mióta utoljára megnézted őket, '''vastagon''' láthatóak.",
-'watchmethod-recent'   => 'a figyelt lapokon belüli legfrissebb szerkesztések',
-'watchmethod-list'     => 'a legfrissebb szerkesztésekben található figyelt lapok',
-'watchlistcontains'    => 'A figyelőlistádon $1 lap szerepel.',
-'iteminvalidname'      => "Probléma a '$1' elemmel: érvénytelen név...",
-'wlnote'               => "Az utolsó '''{{PLURAL:$2|egy|$2}}''' óra '''{{PLURAL:$1|egy|$1}}''' változtatása látható az alábbiakban.",
-'wlshowlast'           => 'Az elmúlt $1 órában | $2 napon | $3 történt változtatások legyenek láthatóak',
-'watchlist-show-bots'  => 'Botok szerkesztéseinek megjelenítése',
-'watchlist-hide-bots'  => 'Botok szerkesztéseinek elrejtése',
-'watchlist-show-own'   => 'Saját szerkesztések megjelenítése',
-'watchlist-hide-own'   => 'Saját szerkesztések elrejtése',
-'watchlist-show-minor' => 'Apró módosítások megjelenítése',
-'watchlist-hide-minor' => 'Apró módosítások elrejtése',
-'watchlist-show-anons' => 'Névtelen szerkesztések megjelenítése',
-'watchlist-hide-anons' => 'Névtelen szerkesztések elrejtése',
-'watchlist-show-liu'   => 'Bejelentkezett szerkesztők módosításainak megjelenítése',
-'watchlist-hide-liu'   => 'Bejelentkezett szerkesztők módosításainak elrejtése',
-'watchlist-options'    => 'A figyelőlista beállításai',
+'removedwatch'             => 'Figyelőlistáról eltávolítva',
+'removedwatchtext'         => 'A „<nowiki>$1</nowiki>” lapot eltávolítottam a figyelőlistáról.',
+'watch'                    => 'Lap figyelése',
+'watchthispage'            => 'Lap figyelése',
+'unwatch'                  => 'Lapfigyelés vége',
+'unwatchthispage'          => 'Figyelés leállítása',
+'notanarticle'             => 'Nem szócikk',
+'notvisiblerev'            => 'A változat törölve lett',
+'watchnochange'            => 'Egyik figyelt lap sem változott a megadott időintervallumon belül.',
+'watchlist-details'        => 'A vitalapokon kívül {{PLURAL:$1|egy|$1}} lap van a figyelőlistádon.',
+'wlheader-enotif'          => '* E-mail értesítés engedélyezve.',
+'wlheader-showupdated'     => "* Azok a lapok, amelyek megváltoztak, mióta utoljára megnézted őket, '''vastagon''' láthatóak.",
+'watchmethod-recent'       => 'a figyelt lapokon belüli legfrissebb szerkesztések',
+'watchmethod-list'         => 'a legfrissebb szerkesztésekben található figyelt lapok',
+'watchlistcontains'        => 'A figyelőlistádon $1 lap szerepel.',
+'iteminvalidname'          => "Probléma a '$1' elemmel: érvénytelen név...",
+'wlnote'                   => "Az utolsó '''{{PLURAL:$2|egy|$2}}''' óra '''{{PLURAL:$1|egy|$1}}''' változtatása látható az alábbiakban.",
+'wlshowlast'               => 'Az elmúlt $1 órában | $2 napon | $3 történt változtatások legyenek láthatóak',
+'watchlist-show-bots'      => 'Botok szerkesztéseinek megjelenítése',
+'watchlist-hide-bots'      => 'Botok szerkesztéseinek elrejtése',
+'watchlist-show-own'       => 'Saját szerkesztések megjelenítése',
+'watchlist-hide-own'       => 'Saját szerkesztések elrejtése',
+'watchlist-show-minor'     => 'Apró módosítások megjelenítése',
+'watchlist-hide-minor'     => 'Apró módosítások elrejtése',
+'watchlist-show-anons'     => 'Névtelen szerkesztések megjelenítése',
+'watchlist-hide-anons'     => 'Névtelen szerkesztések elrejtése',
+'watchlist-show-liu'       => 'Bejelentkezett szerkesztők módosításainak megjelenítése',
+'watchlist-hide-liu'       => 'Bejelentkezett szerkesztők módosításainak elrejtése',
+'watchlist-show-patrolled' => 'Ellenőrzött lapok megjelenítése',
+'watchlist-hide-patrolled' => 'Ellenőrzött lapok elrejtése',
+'watchlist-options'        => 'A figyelőlista beállításai',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Figyelés...',
@@ -1953,6 +1992,7 @@ Megváltoztathatod ezen lap védelmi szintjét, de az nem lesz hatással a kaszk
 ** Gyakori vandalizmus
 ** Gyakori spamelés
 ** Nagyforgalmú lap',
+'protect-edit-reasonlist'     => 'Lapvédelem oka',
 'protect-expiry-options'      => '2 óra:2 hours,1 nap:1 day,3 nap:3 days,1 hét:1 week,2 hét:2 weeks,1 hónap:1 month,3 hónap:3 months,6 hónap:6 months,1 év:1 year,végtelen:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Engedély:',
 'restriction-level'           => 'Korlátozási szint:',
@@ -2206,6 +2246,8 @@ Ezen esetekben a vitalapot külön, kézzel kell átnevezned a kívánságaid sz
 'movenologin'               => 'Nem jelentkeztél be',
 'movenologintext'           => 'Ahhoz, hogy átnevezhess egy lapot, [[Special:UserLogin|be kell lépned]].',
 'movenotallowed'            => 'Nincs jogod a lapok átnevezéséhez.',
+'cant-move-user-page'       => 'Nem nevezhetsz át szerkesztői lapokat (az allapokon kívül).',
+'cant-move-to-user-page'    => 'Nincs jogosultságod átnevezni egy lapot szerkesztői lapnak (kivéve annak allapjának).',
 'newtitle'                  => 'Az új cím:',
 'move-watch'                => 'Figyeld a lapot',
 'movepagebtn'               => 'Lap átnevezése',
@@ -2238,10 +2280,13 @@ Az átnevezés céljaként megadott „[[:$1]]” szócikk már létezik.  Ha az
 'selfmove'                  => 'A cikk jelenlegi címe megegyezik azzal, amire át szeretnéd mozgatni. Egy szócikket saját magára mozgatni nem lehet.',
 'immobile-source-namespace' => 'A(z) „$1” névtér lapjai nem nevezhetőek át',
 'immobile-target-namespace' => 'A(z) „$1” névtérbe nem mozgathatsz át lapokat',
+'immobile-source-page'      => 'Ez a lap nem nevezhető át.',
+'immobile-target-page'      => 'A lap nem helyezhető át a megadott címre.',
 'imagenocrossnamespace'     => 'A fájlok nem helyezhetőek át más névtérbe',
 'imagetypemismatch'         => 'Az új kiterjesztés nem egyezik meg a fájl típusával',
 'imageinvalidfilename'      => 'A célnév érvénytelen',
 'fix-double-redirects'      => 'Az eredeti címre mutató hivatkozások frissítése',
+'move-leave-redirect'       => 'Átirányítás készítése a régi címről az új címre',
 
 # Export
 'export'            => 'Lapok exportálása',
@@ -2968,6 +3013,15 @@ Add meg a fájl nevét „{{ns:image}}:” előtag nélkül.',
 # Special:BlankPage
 'blankpage'              => 'Üres lap',
 'intentionallyblankpage' => 'Ez a lap szándékosan maradt üresen',
+
+# External image whitelist
+'external_image_whitelist' => ' #Ezt a sort hagyd pontosan így, ahogy van<pre>
+#Ide reguláris kifejezéseket írharsz (Azon részüket, amik a // közé mennek)
+#Ezek egyeztetve lesznek a külső képek URL-jeivel
+#Azoknál, amelyeknél egyezés van, képként fognak megjelenni, egyébként csak egy link fog rá mutatni
+#A #-tel kezdődő sorok megjegyzésnek számítanak
+
+#A reguláris kifejezéseket ezen sor alá írd. Ezt a sort hagyd így, ahogy van.</pre>',
 
 # Special:Nuke
 'nuke'               => 'Halmozott törlés',

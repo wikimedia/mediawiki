@@ -933,7 +933,7 @@ U belooft ook u dat u de oorspronkelijke auteur bent van dit materiaal, of dat u
 Wellicht kan deze pagina gesplitst worden in kleinere delen.</strong>",
 'longpageerror'                    => '<strong>FOUT: de tekst die u hebt toegevoegd heeft is $1 kilobyte groot, wat groter is dan het maximum van $2 kilobyte.
 Opslaan is niet mogelijk.</strong>',
-'readonlywarning'                  => '<strong>De database is geblokkeerd voor bewerkingen, waarschijnlijk voor regulier databaseonderhoud, dus u kunt deze nu niet opslaan.
+'readonlywarning'                  => '<strong>WAARSCHUWING: De database is geblokkeerd voor bewerkingen, waarschijnlijk voor regulier databaseonderhoud, dus u kunt deze nu niet opslaan.
 Het is misschien verstandig om uw tekst tijdelijk in een tekstbestand op te slaan om dit te bewaren voor wanneer de blokkering van de database opgeheven is.</strong>
 
 Een beheerder heeft de database geblokkeerd om de volgende reden: $1',
@@ -2254,7 +2254,6 @@ Zie de [[Special:IPBlockList|Lijst van geblokkeerde IP-adressen]] voor recente b
 'ipblocklist-sh-userblocks'       => 'gebruikersblokkades $1',
 'ipblocklist-sh-tempblocks'       => 'tijdelijke blokkades $1',
 'ipblocklist-sh-addressblocks'    => 'enkele IP-blokkades $1',
-'ipblocklist-scanrange'           => 'Alle blokkades weergeven waarin het IP-adres zich bevindt',
 'ipblocklist-submit'              => 'Zoeken',
 'blocklistline'                   => 'Op $1 blokkeerde $2: $3 ($4)',
 'infiniteblock'                   => 'onbeperkt',

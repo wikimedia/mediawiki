@@ -10,13 +10,20 @@
 
 $messages = array(
 # User preference toggles
-'tog-underline'       => 'Links unjastritje:',
-'tog-highlightbroken' => 'Links opp ladje Siede besondasch wiese <a href="" class="new">soo aus dit</a> (Alternative: soo aus dit<a href="" class="internal">?</a>).',
-'tog-justify'         => 'Tatjst em Blocksautz',
-'tog-hideminor'       => 'Tjliene Endarunge ute latste Tiet nich wiese',
-'tog-extendwatchlist' => 'Moak dee Oppaussied-List jrata en wies aula Endarunge',
-'tog-usenewrc'        => 'Betre Doastalinj (JavaScript es needich)',
-'tog-showhiddencats'  => "Wies fe'stoakne Kategorien",
+'tog-underline'               => 'Links unjastritje:',
+'tog-highlightbroken'         => 'Links opp ladje Siede besondasch wiese <a href="" class="new">soo aus dit</a> (Alternative: soo aus dit<a href="" class="internal">?</a>).',
+'tog-justify'                 => 'Tatjst em Blocksautz',
+'tog-hideminor'               => 'Tjliene Endarunge ute latste Tiet nich wiese',
+'tog-extendwatchlist'         => 'Moak dee Oppaussied-List jrata en wies aula Endarunge',
+'tog-usenewrc'                => 'Betre Doastalinj (JavaScript es needich)',
+'tog-numberheadings'          => 'Ewaschrefte automatisch numerere',
+'tog-showtoolbar'             => 'Instrumente-Leist wiese (JavaScript)',
+'tog-editondblclick'          => 'Siede mett Dobbeltklick beoabeide (JavaScript)',
+'tog-editsection'             => 'Links tom Beoabeide von eenzelne Aufschnette wiese',
+'tog-editsectiononrightclick' => 'Eenzelne Aufschnette mett eenem Rajsch-Klick beoabeide (JavaScript)',
+'tog-showtoc'                 => 'Wies dee List mettem Enhault (fe Siede mett meea aus dree Ewaschrefte)',
+'tog-rememberpassword'        => 'Login bewoare, dee Brucka blift aun disem Computer aunjemaldt',
+'tog-showhiddencats'          => "Wies fe'stoakne Kategorien",
 
 'underline-always' => 'Emma',
 'underline-never'  => 'Nienijch',

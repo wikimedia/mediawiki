@@ -1226,7 +1226,6 @@ Anda tebɣiḍ tesmimeḍ "[[:$1]]" yella yagi. tebɣiḍ ad temḥuḍ iwakken 
 'delete_and_move_confirm' => 'Ih, mḥu asebter',
 'delete_and_move_reason'  => 'Mḥu iwakken yeqqim-d wemkan i usmimeḍ',
 'selfmove'                => 'Izwal amezwaru d uneggaru kif-kif; ur yezmir ara ad yesmimeḍ asebter ɣur iman-is.',
-'immobile_namespace'      => 'Azwel n uɣbalu neɣ anda tebɣiḍ tesmimeḍ d anaw aslig; ur yezmir ara ad yesmimeḍ isebtar seg/ɣer isem n taɣult-agi.',
 
 # Export
 'export'            => 'Ssufeɣ isebtar',

@@ -285,6 +285,8 @@ $messages = array(
 'editsection'             => 'wysig',
 'editold'                 => 'wysig',
 'viewsourceold'           => 'bekyk bronteks',
+'editlink'                => 'wysig',
+'viewsourcelink'          => 'wys bronkode',
 'editsectionhint'         => 'Wysig afdeling: $1',
 'toc'                     => 'Inhoud',
 'showtoc'                 => 'wys',
@@ -658,6 +660,13 @@ U kan slegs bestaande bladsye wysig, of u kan [[Special:UserLogin|aanteken of re
 
 U moet besluit of dit wys is om voort te gaan en aan die bladsy te werk. 
 Die verwyderingslogboek vir die blad word hieronder vertoon vir u gerief:",
+'deletelog-fulllog'                => 'Wys volledige logboek',
+'edit-gone-missing'                => 'Die bladsy is nie gewysig nie.
+Dit lyk of dit verwyder is.',
+'edit-conflict'                    => 'Wysigingskonflik',
+'edit-no-change'                   => 'U wysiging was geignoreer omdat die teks nie verander is nie.',
+'edit-already-exists'              => 'Die bladsy is nie geskep nie.
+Dit bestaan alreeds.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Waarskuwing: Die bladsy gebruik te veel duur ontlederfunksies.
@@ -695,7 +704,7 @@ Die rede verskaf deur $3 is ''$2''",
 'page_last'              => 'laaste',
 'histlegend'             => 'Byskrif: (huidige) = verskil van huidige weergawe,
 (vorige) = verskil van vorige weergawe, M = klein wysiging',
-'history-fieldset-title' => 'Soek in geskiedenis',
+'history-fieldset-title' => 'Blaai deur geskiedenis',
 'deletedrev'             => '[geskrap]',
 'histfirst'              => 'Oudste',
 'histlast'               => 'Nuutste',
