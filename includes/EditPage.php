@@ -385,7 +385,6 @@ class EditPage {
 		$permErrors = $this->getEditPermissionErrors();
 		if ( $permErrors ) {
 			wfDebug( __METHOD__.": User can't edit\n" );
-			wfRunHooks( 'EditPageNoPermission', array( &$this, &$permErrors ) );
 			$this->readOnlyPage( $this->getContent(), true, $permErrors, 'edit' );
 			wfProfileOut( __METHOD__ );
 			return;
