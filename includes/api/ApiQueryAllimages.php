@@ -61,8 +61,9 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 		$params = $this->extractRequestParams();
 
 		// Image filters
-		if (!is_null($params['from']))
-			$this->addWhere('img_name>=' . $db->addQuotes($this->titlePartToKey($params['from'])));
+		$dir = ($params['dir'] == 'descending' ? 'older' : 'newer');
+		$from = (is_null($params['from']) ? null : $this->titlePartToKey($params['from']));
+		$this->addWhereRange('img_name', $dir, $from, null);
 		if (isset ($params['prefix']))
 			$this->addWhere("img_name LIKE '" . $db->escapeLike($this->titlePartToKey($params['prefix'])) . "%'");
 
