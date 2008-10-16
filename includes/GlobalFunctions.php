@@ -2145,7 +2145,7 @@ function wfIniGetBool( $setting ) {
  * @return collected stdout as a string (trailing newlines stripped)
  */
 function wfShellExec( $cmd, &$retval=null ) {
-	global $IP, $wgMaxShellMemory, $wgMaxShellFileSize;
+	global $IP, $wgMaxShellMemory, $wgMaxShellFileSize, $wgMaxShellTime;
 
 	if( wfIniGetBool( 'safe_mode' ) ) {
 		wfDebug( "wfShellExec can't run in safe_mode, PHP's exec functions are too broken.\n" );
@@ -2155,7 +2155,7 @@ function wfShellExec( $cmd, &$retval=null ) {
 	wfInitShellLocale();
 
 	if ( php_uname( 's' ) == 'Linux' ) {
-		$time = intval( ini_get( 'max_execution_time' ) );
+		$time = intval( $wgMaxShellTime );
 		$mem = intval( $wgMaxShellMemory );
 		$filesize = intval( $wgMaxShellFileSize );
 

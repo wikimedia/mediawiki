@@ -3257,6 +3257,11 @@ $wgMaxShellMemory = 102400;
 $wgMaxShellFileSize = 102400;
 
 /**
+ * Maximum CPU time in seconds for shell processes under linux
+ */
+$wgMaxShellTime = 180;
+
+/**
 * Executable name of PHP cli client (php/php5)
 */
 $wgPhpCli = 'php';
