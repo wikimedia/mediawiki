@@ -191,6 +191,7 @@
 	'mdf' => 'Мокшень',		# Moksha
 	'mg' => 'Malagasy',		# Malagasy
 	'mh' => 'Ebon',			# Marshallese
+	'mhr' => 'Олык Марий',	# Eastern Mari
 	'mi' => 'Māori',	# Maori
 	'mk' => 'Македонски',	# Macedonian
 	'ml' => 'മലയാളം',	# Malayalam
