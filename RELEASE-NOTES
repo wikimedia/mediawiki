@@ -166,6 +166,8 @@ The following extensions are migrated into MediaWiki 1.14:
 * Added a call to the 'UnwatchArticleComplete' hook to the watchlist editor.  This 
 	should make it so that ALL user-accessible methods of removing a page from a watchlist
   lead to this hook being called (it was previously only called from within Article.php
+* Maximum execution time for shell processes on linux is now configured with 
+  $wgMaxShellTime (180 seconds by default)
    
 === Bug fixes in 1.14 ===
 
