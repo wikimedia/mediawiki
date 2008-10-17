@@ -44,6 +44,8 @@ $namespaceAliases = array(
 	'Aparteko'          => NS_SPECIAL,
 );
 
+$separatorTransformTable = array( ',' => '.', '.' => ',' ); /* Bug 15717 */
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Loturak azpimarratu:',
