@@ -465,6 +465,7 @@ $wgAutoloadLocalClasses = array(
 	'MostrevisionsPage' => 'includes/specials/SpecialMostrevisions.php',
 	'MovePageForm' => 'includes/specials/SpecialMovepage.php',
 	'SpecialNewpages' => 'includes/specials/SpecialNewpages.php',
+	'SpecialContributions' => 'includes/specials/SpecialContributions.php',
 	'NewPagesPager' => 'includes/specials/SpecialNewpages.php',
 	'PageArchive' => 'includes/specials/SpecialUndelete.php',
 	'PasswordResetForm' => 'includes/specials/SpecialResetpass.php',
