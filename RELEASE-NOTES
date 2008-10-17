@@ -168,7 +168,9 @@ The following extensions are migrated into MediaWiki 1.14:
   lead to this hook being called (it was previously only called from within Article.php
 * Maximum execution time for shell processes on linux is now configured with 
   $wgMaxShellTime (180 seconds by default)
-   
+* (bug 1306) 'Email user' link no longer shown on user page when emailing
+  is not available due to lack of confirmed address or disabled preference
+
 === Bug fixes in 1.14 ===
 
 * (bug 14907) DatabasePostgres::fieldType now defined.

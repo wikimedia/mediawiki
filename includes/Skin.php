@@ -1573,14 +1573,10 @@ END;
 	}
 
 	function showEmailUser( $id ) {
-		global $wgEnableEmail, $wgEnableUserEmail, $wgUser;
-		return $wgEnableEmail &&
-		       $wgEnableUserEmail &&
-		       $wgUser->isLoggedIn() && # show only to signed in users
-		       0 != $id; # we can only email to non-anons ..
-#		       '' != $id->getEmail() && # who must have an email address stored ..
-#		       0 != $id->getEmailauthenticationtimestamp() && # .. which is authenticated
-#		       1 != $wgUser->getOption('disablemail'); # and not disabled
+		global $wgUser;
+		$targetUser = User::newFromId( $id );
+		return	$wgUser->canSendEmail() && # the sending user must have a confirmed email address
+			$targetUser->canReceiveEmail(); # the target user must have a confirmed email address and allow emails from users
 	}
 
 	function emailUserLink() {
