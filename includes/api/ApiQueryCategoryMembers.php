@@ -76,17 +76,9 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		$this->addTables(array('page','categorylinks'));	// must be in this order for 'USE INDEX'
 									// Not needed after bug 10280 is applied to servers
 		if($params['sort'] == 'timestamp')
-		{
 			$this->addOption('USE INDEX', 'cl_timestamp');
-			// cl_timestamp will be added by addWhereRange() later
-			$this->addOption('ORDER BY', 'cl_to');
-		}
 		else
-		{
-			$dir = ($params['dir'] == 'desc' ? ' DESC' : '');
 			$this->addOption('USE INDEX', 'cl_sortkey');
-			$this->addOption('ORDER BY', 'cl_to, cl_sortkey' . $dir . ', cl_from' . $dir);
-		}
 
 		$this->addWhere('cl_from=page_id');
 		$this->setContinuation($params['continue'], $params['dir']);
@@ -94,6 +86,11 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		$this->addWhereFld('page_namespace', $params['namespace']);
 		if($params['sort'] == 'timestamp')
 			$this->addWhereRange('cl_timestamp', ($params['dir'] == 'asc' ? 'newer' : 'older'), $params['start'], $params['end']);
+		else
+		{
+			$this->addWhereRange('cl_sortkey', ($params['dir'] == 'asc' ? 'newer' : 'older'), $params['startsortkey'], $params['endsortkey']);
+			$this->addWhereRange('cl_from', ($params['dir'] == 'asc' ? 'newer' : 'older'), null, null);
+		}
 
 		$limit = $params['limit'];
 		$this->addOption('LIMIT', $limit +1);
@@ -225,7 +222,9 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			),
 			'end' => array(
 				ApiBase :: PARAM_TYPE => 'timestamp'
-			)
+			),
+			'startsortkey' => null,
+			'endsortkey' => null,
 		);
 	}
 
@@ -238,6 +237,8 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			'dir' => 'In which direction to sort',
 			'start' => 'Timestamp to start listing from. Can only be used with cmsort=timestamp',
 			'end' => 'Timestamp to end listing at. Can only be used with cmsort=timestamp',
+			'startsortkey' => 'Sortkey to start listing from. Can only be used with cmsort=sortkey',
+			'endsortkey' => 'Sortkey to end listing at. Can only be used with cmsort=sortkey',
 			'continue' => 'For large categories, give the value retured from previous query',
 			'limit' => 'The maximum number of pages to return.',
 		);
