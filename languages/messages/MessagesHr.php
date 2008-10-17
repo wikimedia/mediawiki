@@ -258,14 +258,32 @@ $magicWords = array(
 	'staticredirect'        => array( '1', '__NEPOMIČNOPREUSMJERAVANJE__', '__STATICREDIRECT__' ),
 );
 
-$datePreferences = false;
+$datePreferences = array(
+	'default',
+	'dmy hr',
+	'mdy',
+	'ymd',
+	'ISO 8601',
+);
 
-$defaultDateFormat = 'dmy';
+$defaultDateFormat = 'dmy hr';
 
 $dateFormats = array(
-	'dmy time' => 'H:i',
-	'dmy date' => 'j. F Y.',
-	'dmy both' => 'H:i, j. F Y.',
+	'dmy hr time' => 'H:i',
+	'dmy hr date' => 'j. F Y.',
+	'dmy hr both' => 'H:i, j. F Y.',
+
+	'mdy time' => 'H:i',
+	'mdy date' => 'F j, Y',
+	'mdy both' => 'H:i, F j, Y',
+
+	'ymd time' => 'H:i',
+	'ymd date' => 'Y F j',
+	'ymd both' => 'H:i, Y F j',
+
+	'ISO 8601 time' => 'xnH:xni:xns',
+	'ISO 8601 date' => 'xnY-xnm-xnd',
+	'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni:xns',
 );
 
 $separatorTransformTable = array(',' => '.', '.' => ',' );
