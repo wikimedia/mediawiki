@@ -176,7 +176,7 @@ class RecentChange
 
 		# Notify external application via UDP
 		if ( $wgRC2UDPAddress && ( !$this->mAttribs['rc_bot'] || !$wgRC2UDPOmitBots ) ) {
-			self::sendToUDP( $this->getIRCLine() );
+			UDP::sendToUDP( $this->getIRCLine() );
 		}
 
 		# E-mail notifications
@@ -203,40 +203,6 @@ class RecentChange
 
 		# Notify extensions
 		wfRunHooks( 'RecentChange_save', array( &$this ) );
-	}
-
-	/**
-	 * Send some text to UDP
-	 * @param string $line
-	 * @param string $prefix
-	 * @param string $address
-	 * @return bool success
-	 */
-	public static function sendToUDP( $line, $address = '', $prefix = '' ) {
-		global $wgRC2UDPAddress, $wgRC2UDPPrefix, $wgRC2UDPPort;
-		# Assume default for standard RC case
-		$address = $address ? $address : $wgRC2UDPAddress;
-		$prefix = $prefix ? $prefix : $wgRC2UDPPrefix;
-		# Notify external application via UDP
-		if( $address ) {
-			$conn = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
-			if( $conn ) {
-				$line = $prefix . $line;
-				socket_sendto( $conn, $line, strlen($line), 0, $address, $wgRC2UDPPort );
-				socket_close( $conn );
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	/**
-	 * Remove newlines and carriage returns
-	 * @param string $line
-	 * @return string
-	 */
-	public static function cleanupForIRC( $text ) {
-		return str_replace(array("\n", "\r"), array("", ""), $text);
 	}
 
 	/**
@@ -618,7 +584,7 @@ class RecentChange
 			$titleObj =& $this->getTitle();
 		}
 		$title = $titleObj->getPrefixedText();
-		$title = self::cleanupForIRC( $title );
+		$title = UDP::cleanupForIRC( $title );
 
 		// FIXME: *HACK* these should be getFullURL(), hacked for SSL madness --brion 2005-12-26
 		if ( $rc_type == RC_LOG ) {
@@ -645,14 +611,14 @@ class RecentChange
 			$szdiff = '';
 		}
 
-		$user = self::cleanupForIRC( $rc_user_text );
+		$user = UDP::cleanupForIRC( $rc_user_text );
 
 		if ( $rc_type == RC_LOG ) {
 			$targetText = $this->getTitle()->getPrefixedText();
-			$comment = self::cleanupForIRC( str_replace("[[$targetText]]","[[\00302$targetText\00310]]",$actionComment) );
+			$comment = UDP::cleanupForIRC( str_replace("[[$targetText]]","[[\00302$targetText\00310]]",$actionComment) );
 			$flag = $rc_log_action;
 		} else {
-			$comment = self::cleanupForIRC( $rc_comment );
+			$comment = UDP::cleanupForIRC( $rc_comment );
 			$flag = ($rc_new ? "N" : "") . ($rc_minor ? "M" : "") . ($rc_bot ? "B" : "");
 		}
 		# see http://www.irssi.org/documentation/formats for some colour codes. prefix is \003,
