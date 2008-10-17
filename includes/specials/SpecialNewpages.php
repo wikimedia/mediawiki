@@ -12,7 +12,7 @@ class SpecialNewpages extends SpecialPage {
 	// Some internal settings
 	protected $showNavigation = false;
 
-	public function __construct(){
+	public function __construct() {
 		parent::__construct( 'Newpages' );
 		$this->includable( true );	
 	}
@@ -360,7 +360,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 		$this->opts = $opts;
 	}
 
-	function getTitle(){
+	function getTitle() {
 		static $title = null;
 		if ( $title === null )
 			$title = $this->mForm->getTitle();
