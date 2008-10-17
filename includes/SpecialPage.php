@@ -127,7 +127,7 @@ class SpecialPage
 		'Prefixindex'               => 'SpecialPrefixindex',
 		'Ipblocklist'               => array( 'SpecialPage', 'Ipblocklist' ),
 		'Specialpages'              => array( 'UnlistedSpecialPage', 'Specialpages' ),
-		'Contributions'             => array( 'SpecialPage', 'Contributions' ),
+		'Contributions'             => 'SpecialContributions',
 		'Emailuser'                 => array( 'UnlistedSpecialPage', 'Emailuser' ),
 		'Whatlinkshere'             => array( 'SpecialPage', 'Whatlinkshere' ),
 		'LinkSearch'                => array( 'SpecialPage', 'LinkSearch' ),
