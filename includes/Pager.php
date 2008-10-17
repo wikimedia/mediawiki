@@ -297,8 +297,7 @@ abstract class IndexPager implements Pager {
 			$attrs .= " class=\"mw-{$type}link\"" ;
 		}
 		return $this->getSkin()->makeKnownLinkObj( $this->getTitle(), $text,
-				wfArrayToCGI( $query, $this->getDefaultQuery() ), '', '',
-				$attrs );
+			wfArrayToCGI( $query, $this->getDefaultQuery() ), '', '', $attrs );
 	}
 
 	/**
@@ -850,7 +849,7 @@ abstract class TablePager extends IndexPager {
 			"<form method=\"get\" action=\"$url\">" .
 			wfMsgHtml( 'table_pager_limit', $this->getLimitSelect() ) .
 			"\n<input type=\"submit\" value=\"$msgSubmit\"/>\n" .
-			$this->getHiddenFields( 'limit' ) .
+			$this->getHiddenFields( array('limit','title') ) .
 			"</form>\n";
 	}
 
