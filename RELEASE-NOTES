@@ -339,6 +339,8 @@ The following extensions are migrated into MediaWiki 1.14:
   and patrolmarks right
 * (bug 15985) acfrom and aifrom parameters didn't work when sorting in
   descending order.
+* (bug 15995) Add cmstartsortkey and cmendsortkey parameters to
+  list=categorymembers
 
 === Languages updated in 1.14 ===
 
