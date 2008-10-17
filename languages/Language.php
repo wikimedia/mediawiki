@@ -1813,7 +1813,8 @@ class Language {
 	  * </code>
 	  *
 	  * See LanguageGu.php for the Gujarati implementation and
-	  * LanguageIs.php for the , => . and . => , implementation.
+	  * $separatorTransformTable on MessageIs.php for
+	  * the , => . and . => , implementation.
 	  *
 	  * @todo check if it's viable to use localeconv() for the decimal
 	  *       separator thing.
