@@ -1259,7 +1259,14 @@ class OutputPage {
 			} else {
 				$this->setPageTitle( wfMsg( 'badaccess' ) );
 			}
+			if( $protected ) {
+				$this->addHTML( "<div class='mw-warning-with-logexcerpt'>\n" );
+			}
 			$this->addWikiText( $this->formatPermissionsErrorMessage( $reasons, $action ) );
+			if( $protected ) {
+				LogEventsList::showLogExtract( $this, 'protect', $wgTitle->getPrefixedText(), '', 1 );
+				$this->addHTML( "</div>\n" );
+			}
 		} else {
 			// Wiki is read only
 			$this->setPageTitle( wfMsg( 'readonly' ) );
