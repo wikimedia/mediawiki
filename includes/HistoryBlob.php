@@ -1,41 +1,33 @@
 <?php
 
 /**
- * Pure virtual parent
- * @todo document (needs a one-sentence top-level class description, that answers the question: "what is a HistoryBlob?")
+ * Base class for general text storage via the "object" flag in old_flags, or 
+ * two-part external storage URLs. Used for represent efficient concatenated 
+ * storage, and migration-related pointer objects.
  */
 interface HistoryBlob
 {
 	/**
-	 * setMeta and getMeta currently aren't used for anything, I just thought
-	 * they might be useful in the future.
-	 * @param $meta String: a single string.
-	 */
-	public function setMeta( $meta );
-
-	/**
-	 * setMeta and getMeta currently aren't used for anything, I just thought
-	 * they might be useful in the future.
-	 * Gets the meta-value
-	 */
-	public function getMeta();
-
-	/**
 	 * Adds an item of text, returns a stub object which points to the item.
 	 * You must call setLocation() on the stub object before storing it to the
 	 * database
+	 * Returns the key for getItem()
 	 */
 	public function addItem( $text );
 
 	/**
-	 * Get item by hash
+	 * Get item by key, or false if the key is not present
 	 */
-	public function getItem( $hash );
+	public function getItem( $key );
 
-	# Set the "default text"
-	# This concept is an odd property of the current DB schema, whereby each text item has a revision
-	# associated with it. The default text is the text of the associated revision. There may, however,
-	# be other revisions in the same object
+	/**
+	 * Set the "default text"
+	 * This concept is an odd property of the current DB schema, whereby each text item has a revision
+	 * associated with it. The default text is the text of the associated revision. There may, however,
+	 * be other revisions in the same object.
+	 *
+	 * Default text is not required for two-part external storage URLs.
+	 */
 	public function setText( $text );
 
 	/**
@@ -45,8 +37,8 @@ interface HistoryBlob
 }
 
 /**
- * The real object
- * @todo document (needs one-sentence top-level class description + function descriptions).
+ * Concatenated gzip (CGZ) storage
+ * Improves compression ratio by concatenating like objects before gzipping
  */
 class ConcatenatedGzipHistoryBlob implements HistoryBlob
 {
@@ -60,34 +52,15 @@ class ConcatenatedGzipHistoryBlob implements HistoryBlob
 		}
 	}
 
-	#
-	# HistoryBlob implementation:
-	#
-
-	/** @todo document */
-	public function setMeta( $metaData ) {
-		$this->uncompress();
-		$this->mItems['meta'] = $metaData;
-	}
-
-	/** @todo document */
-	public function getMeta() {
-		$this->uncompress();
-		return $this->mItems['meta'];
-	}
-
-	/** @todo document */
 	public function addItem( $text ) {
 		$this->uncompress();
 		$hash = md5( $text );
 		$this->mItems[$hash] = $text;
 		$this->mSize += strlen( $text );
 
-		$stub = new HistoryBlobStub( $hash );
-		return $stub;
+		return $hash;
 	}
 
-	/** @todo document */
 	public function getItem( $hash ) {
 		$this->uncompress();
 		if ( array_key_exists( $hash, $this->mItems ) ) {
@@ -97,29 +70,27 @@ class ConcatenatedGzipHistoryBlob implements HistoryBlob
 		}
 	}
 
-	/** @todo document */
 	public function setText( $text ) {
 		$this->uncompress();
-		$stub = $this->addItem( $text );
-		$this->mDefaultHash = $stub->mHash;
+		$this->mDefaultHash = $this->addItem( $text );
 	}
 
-	/** @todo document */
 	public function getText() {
 		$this->uncompress();
 		return $this->getItem( $this->mDefaultHash );
 	}
 
-	# HistoryBlob implemented.
-
-
-	/** @todo document */
+	/**
+	 * Remove an item
+	 */
 	public function removeItem( $hash ) {
 		$this->mSize -= strlen( $this->mItems[$hash] );
 		unset( $this->mItems[$hash] );
 	}
 
-	/** @todo document */
+	/**
+	 * Compress the bulk data in the object
+	 */
 	public function compress() {
 		if ( !$this->mCompressed  ) {
 			$this->mItems = gzdeflate( serialize( $this->mItems ) );
@@ -127,7 +98,9 @@ class ConcatenatedGzipHistoryBlob implements HistoryBlob
 		}
 	}
 
-	/** @todo document */
+	/**
+	 * Uncompress bulk data
+	 */
 	public function uncompress() {
 		if ( $this->mCompressed ) {
 			$this->mItems = unserialize( gzinflate( $this->mItems ) );
@@ -136,19 +109,18 @@ class ConcatenatedGzipHistoryBlob implements HistoryBlob
 	}
 
 
-	/** @todo document */
 	function __sleep() {
 		$this->compress();
 		return array( 'mVersion', 'mCompressed', 'mItems', 'mDefaultHash' );
 	}
 
-	/** @todo document */
 	function __wakeup() {
 		$this->uncompress();
 	}
 
 	/**
-	 * Determines if this object is happy
+	 * Helper function for compression jobs
+	 * Returns true until the object is "full" and ready to be committed
 	 */
 	public function isHappy( $maxFactor, $factorThreshold ) {
 		if ( count( $this->mItems ) == 0 ) {
@@ -184,12 +156,15 @@ $wgBlobCache = array();
 
 
 /**
- * @todo document (needs one-sentence top-level class description + some function descriptions).
+ * Pointer object for an item within a CGZ blob stored in the text table.
  */
 class HistoryBlobStub {
 	var $mOldId, $mHash, $mRef;
 
-	/** @todo document */
+	/**
+	 * @param string $hash The content hash of the text
+	 * @param integer $oldid The old_id for the CGZ object
+	 */
 	function HistoryBlobStub( $hash = '', $oldid = 0 ) {
 		$this->mHash = $hash;
 	}
@@ -216,7 +191,6 @@ class HistoryBlobStub {
 		return $this->mRef;
 	}
 
-	/** @todo document */
 	function getText() {
 		$fname = 'HistoryBlobStub::getText';
 		global $wgBlobCache;
@@ -264,7 +238,9 @@ class HistoryBlobStub {
 		return $obj->getItem( $this->mHash );
 	}
 
-	/** @todo document */
+	/**
+	 * Get the content hash
+	 */
 	function getHash() {
 		return $this->mHash;
 	}
@@ -282,7 +258,9 @@ class HistoryBlobStub {
 class HistoryBlobCurStub {
 	var $mCurId;
 
-	/** @todo document */
+	/**
+	 * @param integer $curid The cur_id pointed to
+	 */
 	function HistoryBlobCurStub( $curid = 0 ) {
 		$this->mCurId = $curid;
 	}
@@ -295,7 +273,6 @@ class HistoryBlobCurStub {
 		$this->mCurId = $id;
 	}
 
-	/** @todo document */
 	function getText() {
 		$dbr = wfGetDB( DB_SLAVE );
 		$row = $dbr->selectRow( 'cur', array( 'cur_text' ), array( 'cur_id' => $this->mCurId ) );
@@ -303,5 +280,125 @@ class HistoryBlobCurStub {
 			return false;
 		}
 		return $row->cur_text;
+	}
+}
+
+/**
+ * Diff-based history compression
+ * Requires xdiff 1.5+ and zlib
+ */
+class DiffHistoryBlob implements HistoryBlob {
+	/** Uncompressed item cache */
+	var $mItems = array();
+
+	/** 
+	 * Array of diffs, where $this->mDiffs[0] is the diff between 
+	 * $this->mDiffs[0] and $this->mDiffs[1]
+	 */
+	var $mDiffs = array();
+
+	/**
+	 * The key for getText()
+	 */
+	var $mDefaultKey;
+
+	/**
+	 * Compressed storage
+	 */
+	var $mCompressed;
+
+	/**
+	 * True if the object is locked against further writes
+	 */
+	var $mFrozen = false;
+
+
+	function __construct() {
+		if ( !function_exists( 'xdiff_string_bdiff' ) ){ 
+			throw new MWException( "Need xdiff 1.5+ support to read or write DiffHistoryBlob\n" );
+		}
+		if ( !function_exists( 'gzdeflate' ) ) {
+			throw new MWException( "Need zlib support to read or write DiffHistoryBlob\n" );
+		}
+	}
+
+	function addItem( $text ) {
+		if ( $this->mFrozen ) {
+			throw new MWException( __METHOD__.": Cannot add more items after sleep/wakeup" );
+		}
+
+		$this->mItems[] = $text;
+		$i = count( $this->mItems ) - 1;
+		if ( $i > 0 ) {
+			# Need to do a null concatenation with warnings off, due to bugs in the current version of xdiff
+			# "String is not zero-terminated"
+			wfSuppressWarnings();
+			$this->mDiffs[] = xdiff_string_bdiff( $this->mItems[$i-1], $text ) . '';
+			wfRestoreWarnings();
+		}
+		return $i;
+	}
+
+	function getItem( $key ) {
+		if ( $key > count( $this->mDiffs ) + 1 ) {
+			return false;
+		}
+		$key = intval( $key );
+		if ( $key == 0 ) {
+			return $this->mItems[0];
+		}
+
+		$last = count( $this->mItems ) - 1;
+		for ( $i = $last + 1; $i <= $key; $i++ ) {
+			# Need to do a null concatenation with warnings off, due to bugs in the current version of xdiff
+			# "String is not zero-terminated"
+			wfSuppressWarnings();
+			$this->mItems[$i] = xdiff_string_bpatch( $this->mItems[$i - 1], $this->mDiffs[$i - 1] ) . '';
+			wfRestoreWarnings();
+		}
+		return $this->mItems[$key];
+	}
+
+	function setText( $text ) {
+		$this->mDefaultKey = $this->addItem( $text );
+	}
+
+	function getText() {
+		return $this->getItem( $this->mDefaultKey );
+	}
+
+	function __sleep() {
+		if ( !isset( $this->mItems[0] ) ) {
+			// Empty object
+			$info = false;
+		} else {
+			$info = array(
+				'base' => $this->mItems[0],
+				'diffs' => $this->mDiffs
+			);
+		}
+		if ( isset( $this->mDefaultKey ) ) {
+			$info['default'] = $this->mDefaultKey;
+		}
+		$this->mCompressed = gzdeflate( serialize( $info ) );
+		return array( 'mCompressed' );
+	}
+
+	function __wakeup() {
+		// addItem() doesn't work if mItems is partially filled from mDiffs
+		$this->mFrozen = true;
+		$info = unserialize( gzinflate( $this->mCompressed ) );
+		unset( $this->mCompressed );
+
+		if ( !$info ) {
+			// Empty object
+			return;
+		}
+
+		if ( isset( $info['default'] ) ) {
+			$this->mDefaultKey = $info['default'];
+		}
+		$this->mItems[0] = $info['base'];
+		$this->mDiffs = $info['diffs'];
 	}
 }

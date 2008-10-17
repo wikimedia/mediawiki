@@ -4,10 +4,6 @@
  * @ingroup Maintenance ExternalStorage
  */
 
-/** */
-require_once( 'Revision.php' );
-require_once( 'ExternalStoreDB.php' );
-
 /** @todo document */
 function compressOldPages( $start = 0, $extdb = '' ) {
 	$fname = 'compressOldPages';
@@ -229,7 +225,7 @@ function compressWithConcat( $startId, $maxChunkSize, $maxChunkFactor, $factorTh
 						$stub = false;
 						print 'x';
 					} else {
-						$stub = $chunk->addItem( $text );
+						$stub = new HistoryBlobStub( $chunk->addItem( $text ) );
 						$stub->setLocation( $primaryOldid );
 						$stub->setReferrer( $oldid );
 						print '.';
