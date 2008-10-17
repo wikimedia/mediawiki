@@ -2381,6 +2381,7 @@ class User {
 		);
 		wfRunHooks( 'UserSaveSettings', array( $this ) );
 		$this->clearSharedCache();
+		$this->getUserPage()->invalidateCache();
 	}
 
 	/**
@@ -2914,6 +2915,10 @@ class User {
 	 * @return \type{\bool} True if allowed
 	 */
 	function canSendEmail() {
+		global $wgEnableEmail, $wgEnableUserEmail;
+		if( !$wgEnableEmail || !$wgEnableUserEmail ) {
+			return false;
+		}
 		$canSend = $this->isEmailConfirmed();
 		wfRunHooks( 'UserCanSendEmail', array( &$this, &$canSend ) );
 		return $canSend;
