@@ -49,15 +49,13 @@ class RecentChange
 
 	# Factory methods
 
-	public static function newFromRow( $row )
-	{
+	public static function newFromRow( $row ) {
 		$rc = new RecentChange;
 		$rc->loadFromRow( $row );
 		return $rc;
 	}
 
-	public static function newFromCurRow( $row )
-	{
+	public static function newFromCurRow( $row ) {
 		$rc = new RecentChange;
 		$rc->loadFromCurRow( $row );
 		$rc->notificationtimestamp = false;
@@ -110,27 +108,23 @@ class RecentChange
 
 	# Accessors
 
-	function setAttribs( $attribs )
-	{
+	public function setAttribs( $attribs ) {
 		$this->mAttribs = $attribs;
 	}
 
-	function setExtra( $extra )
-	{
+	public function setExtra( $extra ) {
 		$this->mExtra = $extra;
 	}
 
-	function &getTitle()
-	{
-		if ( $this->mTitle === false ) {
+	public function &getTitle() {
+		if( $this->mTitle === false ) {
 			$this->mTitle = Title::makeTitle( $this->mAttribs['rc_namespace'], $this->mAttribs['rc_title'] );
 		}
 		return $this->mTitle;
 	}
 
-	function getMovedToTitle()
-	{
-		if ( $this->mMovedToTitle === false ) {
+	public function getMovedToTitle() {
+		if( $this->mMovedToTitle === false ) {
 			$this->mMovedToTitle = Title::makeTitle( $this->mAttribs['rc_moved_to_ns'],
 				$this->mAttribs['rc_moved_to_title'] );
 		}
@@ -138,23 +132,22 @@ class RecentChange
 	}
 
 	# Writes the data in this object to the database
-	function save()
-	{
+	public function save() {
 		global $wgLocalInterwiki, $wgPutIPinRC, $wgRC2UDPAddress, $wgRC2UDPOmitBots;
 		$fname = 'RecentChange::save';
 
 		$dbw = wfGetDB( DB_MASTER );
-		if ( !is_array($this->mExtra) ) {
+		if( !is_array($this->mExtra) ) {
 			$this->mExtra = array();
 		}
 		$this->mExtra['lang'] = $wgLocalInterwiki;
 
-		if ( !$wgPutIPinRC ) {
+		if( !$wgPutIPinRC ) {
 			$this->mAttribs['rc_ip'] = '';
 		}
 
 		# If our database is strict about IP addresses, use NULL instead of an empty string
-		if ( $dbw->strictIPs() and $this->mAttribs['rc_ip'] == '' ) {
+		if( $dbw->strictIPs() and $this->mAttribs['rc_ip'] == '' ) {
 			unset( $this->mAttribs['rc_ip'] );
 		}
 
@@ -164,7 +157,7 @@ class RecentChange
 		$this->mAttribs['rc_id'] = $dbw->nextSequenceValue( 'rc_rc_id_seq' );
 
 		## If we are using foreign keys, an entry of 0 for the page_id will fail, so use NULL
-		if ( $dbw->cascadingDeletes() and $this->mAttribs['rc_cur_id']==0 ) {
+		if( $dbw->cascadingDeletes() and $this->mAttribs['rc_cur_id']==0 ) {
 			unset ( $this->mAttribs['rc_cur_id'] );
 		}
 
@@ -175,7 +168,7 @@ class RecentChange
 		$this->mAttribs['rc_id'] = $dbw->insertId();
 
 		# Notify external application via UDP
-		if ( $wgRC2UDPAddress && ( !$this->mAttribs['rc_bot'] || !$wgRC2UDPOmitBots ) ) {
+		if( $wgRC2UDPAddress && ( !$this->mAttribs['rc_bot'] || !$wgRC2UDPOmitBots ) ) {
 			UDP::sendToUDP( $this->getIRCLine() );
 		}
 
@@ -234,34 +227,29 @@ class RecentChange
 		$errors = array();
 		// If recentchanges patrol is disabled, only new pages
 		// can be patrolled
-		if ( !$wgUseRCPatrol 
-			&& ( !$wgUseNPPatrol || $this->getAttribute( 'rc_type' ) != RC_NEW ) ) 
-		{
+		if( !$wgUseRCPatrol && ( !$wgUseNPPatrol || $this->getAttribute('rc_type') != RC_NEW ) ) {
 			$errors[] = array('rcpatroldisabled');
 		}
-
 		// Automatic patrol needs "autopatrol", ordinary patrol needs "patrol"
 		$right = $auto ? 'autopatrol' : 'patrol';
 		$errors = array_merge( $errors, $this->getTitle()->getUserPermissionsErrors( $right, $wgUser ) );
-		if( !wfRunHooks('MarkPatrolled', array($this->getAttribute('rc_id'), &$wgUser, false)) )
+		if( !wfRunHooks('MarkPatrolled', array($this->getAttribute('rc_id'), &$wgUser, false)) ) {
 			$errors[] = array('hookaborted');
-
+		}
 		// Users without the 'autopatrol' right can't patrol their
 		// own revisions
-		if( $wgUser->getName() == $this->getAttribute('rc_user_text') && !$wgUser->isAllowed('autopatrol') )
+		if( $wgUser->getName() == $this->getAttribute('rc_user_text') && !$wgUser->isAllowed('autopatrol') ) {
 			$errors[] = array('markedaspatrollederror-noautopatrol');
-
+		}
 		if( $errors ) {
 			return $errors;
 		}
-
 		// If the change was patrolled already, do nothing
-		if( $this->getAttribute('rc_patrolled') )
+		if( $this->getAttribute('rc_patrolled') ) {
 			return array();
-
+		}
 		// Actually set the 'patrolled' flag in RC
 		$this->reallyMarkPatrolled();
-
 		// Log this patrol event
 		PatrolLog::record( $this, $auto );
 		wfRunHooks( 'MarkPatrolledComplete', array($this->getAttribute('rc_id'), &$wgUser, false) );
@@ -291,9 +279,9 @@ class RecentChange
 	public static function notifyEdit( $timestamp, &$title, $minor, &$user, $comment,
 		$oldId, $lastTimestamp, $bot, $ip = '', $oldSize = 0, $newSize = 0, $newId = 0)
 	{
-		if ( !$ip ) {
+		if( !$ip ) {
 			$ip = wfGetIP();
-			if ( !$ip ) {
+			if( !$ip ) {
 				$ip = '';
 			}
 		}
@@ -345,9 +333,9 @@ class RecentChange
 	public static function notifyNew( $timestamp, &$title, $minor, &$user, $comment, $bot,
 	  $ip='', $size = 0, $newId = 0 )
 	{
-		if ( !$ip ) {
+		if( !$ip ) {
 			$ip = wfGetIP();
-			if ( !$ip ) {
+			if( !$ip ) {
 				$ip = '';
 			}
 		}
@@ -396,9 +384,9 @@ class RecentChange
 	{
 		global $wgRequest;
 
-		if ( !$ip ) {
+		if( !$ip ) {
 			$ip = wfGetIP();
-			if ( !$ip ) {
+			if( !$ip ) {
 				$ip = '';
 			}
 		}
@@ -453,9 +441,9 @@ class RecentChange
 	{
 		global $wgRequest;
 
-		if ( !$ip ) {
+		if( !$ip ) {
 			$ip = wfGetIP();
-			if ( !$ip ) {
+			if( !$ip ) {
 				$ip = '';
 			}
 		}
@@ -497,16 +485,14 @@ class RecentChange
 	}
 
 	# Initialises the members of this object from a mysql row object
-	function loadFromRow( $row )
-	{
+	public function loadFromRow( $row ) {
 		$this->mAttribs = get_object_vars( $row );
 		$this->mAttribs["rc_timestamp"] = wfTimestamp(TS_MW, $this->mAttribs["rc_timestamp"]);
 		$this->mExtra = array();
 	}
 
 	# Makes a pseudo-RC entry from a cur row
-	function loadFromCurRow( $row )
-	{
+	public function loadFromCurRow( $row ) {
 		$this->mAttribs = array(
 			'rc_timestamp' => wfTimestamp(TS_MW, $row->rev_timestamp),
 			'rc_cur_time' => $row->rev_timestamp,
@@ -536,7 +522,6 @@ class RecentChange
 			// this one REALLY should be set...
 			'rc_deleted' => isset($row->rc_deleted) ? $row->rc_deleted: 0,
 		);
-
 		$this->mExtra = array();
 	}
 
@@ -554,12 +539,11 @@ class RecentChange
 	 * Gets the end part of the diff URL associated with this object
 	 * Blank if no diff link should be displayed
 	 */
-	function diffLinkTrail( $forceCur )
-	{
-		if ( $this->mAttribs['rc_type'] == RC_EDIT ) {
+	public function diffLinkTrail( $forceCur ) {
+		if( $this->mAttribs['rc_type'] == RC_EDIT ) {
 			$trail = "curid=" . (int)($this->mAttribs['rc_cur_id']) .
 				"&oldid=" . (int)($this->mAttribs['rc_last_oldid']);
-			if ( $forceCur ) {
+			if( $forceCur ) {
 				$trail .= '&diff=0' ;
 			} else {
 				$trail .= '&diff=' . (int)($this->mAttribs['rc_this_oldid']);
@@ -570,7 +554,7 @@ class RecentChange
 		return $trail;
 	}
 
-	function getIRCLine() {
+	protected function getIRCLine() {
 		global $wgUseRCPatrol;
 
 		// FIXME: Would be good to replace these 2 extract() calls with something more explicit
@@ -578,7 +562,7 @@ class RecentChange
 		extract($this->mAttribs);
 		extract($this->mExtra);
 
-		if ( $rc_type == RC_LOG ) {
+		if( $rc_type == RC_LOG ) {
 			$titleObj = Title::newFromText( "Log/$rc_log_type", NS_SPECIAL );
 		} else {
 			$titleObj =& $this->getTitle();
@@ -587,23 +571,23 @@ class RecentChange
 		$title = UDP::cleanupForIRC( $title );
 
 		// FIXME: *HACK* these should be getFullURL(), hacked for SSL madness --brion 2005-12-26
-		if ( $rc_type == RC_LOG ) {
+		if( $rc_type == RC_LOG ) {
 			$url = '';
-		} elseif ( $rc_new && $wgUseRCPatrol ) {
+		} elseif( $rc_new && $wgUseRCPatrol ) {
 			$url = $titleObj->getInternalURL("rcid=$rc_id");
-		} else if ( $rc_new ) {
+		} else if( $rc_new ) {
 			$url = $titleObj->getInternalURL();
-		} else if ( $wgUseRCPatrol ) {
+		} else if( $wgUseRCPatrol ) {
 			$url = $titleObj->getInternalURL("diff=$rc_this_oldid&oldid=$rc_last_oldid&rcid=$rc_id");
 		} else {
 			$url = $titleObj->getInternalURL("diff=$rc_this_oldid&oldid=$rc_last_oldid");
 		}
 
-		if ( isset( $oldSize ) && isset( $newSize ) ) {
+		if( isset( $oldSize ) && isset( $newSize ) ) {
 			$szdiff = $newSize - $oldSize;
-			if ($szdiff < -500) {
+			if($szdiff < -500) {
 				$szdiff = "\002$szdiff\002";
-			} elseif ($szdiff >= 0) {
+			} elseif($szdiff >= 0) {
 				$szdiff = '+' . $szdiff ;
 			}
 			$szdiff = '(' . $szdiff . ')' ;
@@ -613,7 +597,7 @@ class RecentChange
 
 		$user = UDP::cleanupForIRC( $rc_user_text );
 
-		if ( $rc_type == RC_LOG ) {
+		if( $rc_type == RC_LOG ) {
 			$targetText = $this->getTitle()->getPrefixedText();
 			$comment = UDP::cleanupForIRC( str_replace("[[$targetText]]","[[\00302$targetText\00310]]",$actionComment) );
 			$flag = $rc_log_action;
@@ -632,7 +616,7 @@ class RecentChange
 	 * Returns the change size (HTML).
 	 * The lengths can be given optionally.
 	 */
-	function getCharacterDifference( $old = 0, $new = 0 ) {
+	public function getCharacterDifference( $old = 0, $new = 0 ) {
 		global $wgRCChangedSizeThreshold, $wgLang;
 
 		if( $old === 0 ) {
