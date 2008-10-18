@@ -170,6 +170,8 @@ The following extensions are migrated into MediaWiki 1.14:
   $wgMaxShellTime (180 seconds by default)
 * (bug 1306) 'Email user' link no longer shown on user page when emailing
   is not available due to lack of confirmed address or disabled preference
+* Special:Wanted templates special page added to display missing templates
+  linked from articles
 
 === Bug fixes in 1.14 ===
 

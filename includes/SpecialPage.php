@@ -109,6 +109,7 @@ class SpecialPage
 		'Wantedpages'               => array( 'IncludableSpecialPage', 'Wantedpages' ),
 		'Wantedcategories'          => array( 'SpecialPage', 'Wantedcategories' ),
 		'Wantedfiles'               => array( 'SpecialPage', 'Wantedfiles' ),
+		'Wantedtemplates'           => array( 'SpecialPage', 'Wantedtemplates' ),
 		'Mostlinked'                => array( 'SpecialPage', 'Mostlinked' ),
 		'Mostlinkedcategories'      => array( 'SpecialPage', 'Mostlinkedcategories' ),
 		'Mostlinkedtemplates'       => array( 'SpecialPage', 'Mostlinkedtemplates' ),

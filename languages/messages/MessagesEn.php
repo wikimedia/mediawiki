@@ -383,6 +383,7 @@ $specialPageAliases = array(
 	'Wantedpages'               => array( 'WantedPages', 'BrokenLinks' ),
 	'Wantedcategories'          => array( 'WantedCategories' ),
 	'Wantedfiles'               => array( 'WantedFiles' ),
+	'Wantedtemplates'           => array( 'WantedTemplates' ),
 	'Mostlinked'                => array( 'MostLinked' ),
 	'Mostlinkedcategories'      => array( 'MostLinkedCategories', 'MostUsedCategories' ),
 	'Mostlinkedtemplates'       => array( 'MostLinkedTemplates', 'MostUsedTemplates' ),

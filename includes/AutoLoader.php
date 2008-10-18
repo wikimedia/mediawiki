@@ -501,13 +501,11 @@ $wgAutoloadLocalClasses = array(
 	'WantedCategoriesPage' => 'includes/specials/SpecialWantedcategories.php',
 	'WantedFilesPage' => 'includes/specials/SpecialWantedfiles.php',
 	'WantedPagesPage' => 'includes/specials/SpecialWantedpages.php',
+	'WantedTemplatesPage' => 'includes/specials/SpecialWantedtemplates.php',
 	'WhatLinksHerePage' => 'includes/specials/SpecialWhatlinkshere.php',
 	'WikiImporter' => 'includes/Import.php',
 	'WikiRevision' => 'includes/Import.php',
 	'WithoutInterwikiPage' => 'includes/specials/SpecialWithoutinterwiki.php',
-	
-	# UDP logging
-	'UDP' => 'includes/UDP.php',
 
 	# includes/templates
 	'UsercreateTemplate' => 'includes/templates/Userlogin.php',

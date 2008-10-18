@@ -2799,6 +2799,7 @@ $wgSpecialPageGroups = array(
 	'Wantedpages'               => 'maintenance',
 	'Wantedcategories'          => 'maintenance',
 	'Wantedfiles'               => 'maintenance',
+	'Wantedtemplates'           => 'maintenance',
 	'Unwatchedpages'            => 'maintenance',
 	'Fewestrevisions'           => 'maintenance',
 
