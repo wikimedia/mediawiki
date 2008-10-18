@@ -2048,6 +2048,8 @@ Each row contains links to the first and second redirect, as well as the target 
 'wantedpages-summary'             => '', # do not translate or duplicate this message to other languages
 'wantedfiles'                     => 'Wanted files',
 'wantedfiles-summary'             => '', # do not translate or duplicate this message to other languages
+'wantedtemplates'                 => 'Wanted templates',
+'wantedtemplates-summary'         => '', # do not translate or duplicate this message to other languages
 'mostlinked'                      => 'Most linked-to pages',
 'mostlinked-summary'              => '', # do not translate or duplicate this message to other languages
 'mostlinkedcategories'            => 'Most linked-to categories',

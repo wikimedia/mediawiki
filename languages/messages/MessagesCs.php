@@ -268,6 +268,7 @@ $specialPageAliases = array(
 	'Uncategorizedtemplates'    => array( 'Uncategorizedtemplates', 'Nekategorizované_šablony' ),
 	'Unusedcategories'          => array( 'Unusedcategories', 'Nepoužívané_kategorie', 'Nepouzivane_kategorie' ),
 	'Unusedimages'              => array( 'Unusedimages', 'Nepoužívané_soubory', 'Nepouzivane_soubory' ),
+	'Wantedtemplates'           => array( 'WantedTemplates', 'Chybějící šablony' ),
 	'Mostlinked'                => array( 'Mostlinked', 'Nejodkazovanější_stránky', 'Nejodkazovanejsi_stranky' ),
 	'Mostlinkedcategories'      => array( 'Mostlinkedcategories', 'Nejpoužívanější_kategorie', 'Nejpouzivanejsi_kategorie' ),
 	'Mostlinkedtemplates'       => array( 'Mostlinkedtemplates', 'Nejpoužívanější_šablony', 'Nejpouzavanejsi_sablony' ),
