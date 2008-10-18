@@ -35,13 +35,13 @@ class WantedTemplatesPage extends QueryPage {
 		$name = $dbr->addQuotes( $this->getName() );
 		return
 			"
-			  SELECT $name as type," . 
-			         NS_TEMPLATE . " as namespace,
+			  SELECT $name as type, 
+			         tl_namespace as namespace,
 			         tl_title as title,
 			         COUNT(*) as value
 			    FROM $templatelinks LEFT JOIN
-			         $page ON tl_title = page_title AND page_namespace = ". NS_TEMPLATE ."
-			   WHERE page_title IS NULL
+			         $page ON tl_title = page_title AND tl_namespace = page_namespace
+			   WHERE page_title IS NULL AND tl_namespace = ". NS_TEMPLATE ."
 			GROUP BY tl_title
 			";
 	}
