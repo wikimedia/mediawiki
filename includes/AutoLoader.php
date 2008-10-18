@@ -507,6 +507,9 @@ $wgAutoloadLocalClasses = array(
 	'WikiRevision' => 'includes/Import.php',
 	'WithoutInterwikiPage' => 'includes/specials/SpecialWithoutinterwiki.php',
 
+	# UDP logging 	 
+	'UDP' => 'includes/UDP.php',
+
 	# includes/templates
 	'UsercreateTemplate' => 'includes/templates/Userlogin.php',
 	'UserloginTemplate' => 'includes/templates/Userlogin.php',
