@@ -378,13 +378,15 @@ class LogEventsList {
 	 * @param string $type
 	 * @param string $page
 	 * @param string $user
+	 * @param int $lim
+	 * @param array $conds
 	 */
-	public static function showLogExtract( $out, $type='', $page='', $user='', $limit = NULL ) {
+	public static function showLogExtract( $out, $type='', $page='', $user='', $lim=0, $conds=array() ) {
 		global $wgUser;
 		# Insert list of top 50 or so items
 		$loglist = new LogEventsList( $wgUser->getSkin(), $out, 0 );
-		$pager = new LogPager( $loglist, $type, $user, $page, '' );
-		if( $limit ) $pager->mLimit = $limit;
+		$pager = new LogPager( $loglist, $type, $user, $page, '', $conds );
+		if( $lim > 0 ) $pager->mLimit = $lim;
 		$logBody = $pager->getBody();
 		if( $logBody ) {
 			$out->addHTML(
