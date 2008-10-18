@@ -9,7 +9,7 @@ class UploadFromUrl extends UploadBase {
 	}
 	static function isEnabled() {
 		global $wgAllowCopyUploads;
-		return $wgAllowCopyUploads && parent::isEnabled();
+		return $wgAllowCopyUploads && parent::isEnabled() && function_exists( 'curl_init' );
 	}
 	
 	function initialize( $name, $url ) {
@@ -53,22 +53,18 @@ class UploadFromUrl extends UploadBase {
 			# Could not open temporary file to write in
 			return 'upload-file-error';
 		}
-
-		$ch = curl_init();
-		curl_setopt( $ch, CURLOPT_HTTP_VERSION, 1.0); # Probably not needed, but apparently can work around some bug
-		curl_setopt( $ch, CURLOPT_TIMEOUT, 10); # 10 seconds timeout
-		curl_setopt( $ch, CURLOPT_LOW_SPEED_LIMIT, 512); # 0.5KB per second minimum transfer speed
-		curl_setopt( $ch, CURLOPT_URL, $this->mUrl);
-		curl_setopt( $ch, CURLOPT_WRITEFUNCTION, array( $this, 'uploadCurlCallback' ) );
-		curl_exec( $ch );
-		$error =  curl_errno( $ch );
-		curl_close( $ch );
-
+		
+		$opts = array(	CURLOPT_HTTP_VERSION => 1.0,
+						CURLOPT_LOW_SPEED_LIMIT => 512,
+						CURLOPT_WRITEFUNCTION => array( $this, 'uploadCurlCallback' )
+						);
+		Http::get( $this->mUrl, 10, $opts );
+		
 		fclose( $this->mCurlDestHandle );
 		unset( $this->mCurlDestHandle );
 		
-		if( $error ) 
-			return "upload-curl-error$errornum";
+		if( $this->curlErrno !== CURLE_OK ) 
+			return "upload-curl-error" . $this->curlErrno;
 
 		return true;
 	}
@@ -87,6 +83,7 @@ class UploadFromUrl extends UploadBase {
 			return 0;
 		}
 		fwrite( $this->mCurlDestHandle, $data );
+		$this->curlErrno = curl_errno( $ch );
 		return $length;
 	}
 }
