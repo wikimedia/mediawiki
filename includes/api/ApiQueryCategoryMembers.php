@@ -154,18 +154,15 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		if (is_null($continue))
 			return;	// This is not a continuation request
 
-		$continueList = explode('|', $continue);
-		$hasError = count($continueList) != 2;
-		$from = 0;
-		if (!$hasError && strlen($continueList[1]) > 0) {
-			$from = intval($continueList[1]);
-			$hasError = ($from == 0);
-		}
+		$pos = strrpos($continue, '|');
+		$sortkey = substr($continue, 0, $pos);
+		$fromstr = substr($continue, $pos + 1);
+		$from = intval($fromstr);
 
-		if ($hasError)
+		if ($from == 0 && strlen($fromstr) > 0)
 			$this->dieUsage("Invalid continue param. You should pass the original value returned by the previous query", "badcontinue");
 
-		$encSortKey = $this->getDB()->addQuotes($continueList[0]);
+		$encSortKey = $this->getDB()->addQuotes($sortkey);
 		$encFrom = $this->getDB()->addQuotes($from);
 		
 		$op = ($dir == 'desc' ? '<' : '>');
