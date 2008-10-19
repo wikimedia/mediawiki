@@ -275,6 +275,7 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 15717) Set $separatorTransformTable for language 'eu'
 * (bug 15605) Enabled $datePreferences for language 'hr'. Added standard date
   preferences.
+* (bug 13701) {{NUMBEROFVIEWS}} magic word to show number of total views.
 
 === API changes in 1.14 ===
 

@@ -121,6 +121,7 @@ class Parser_OldPP
 		$this->setFunctionHook( 'numberoffiles',    array( 'CoreParserFunctions', 'numberoffiles'    ), SFH_NO_HASH );
 		$this->setFunctionHook( 'numberofadmins',   array( 'CoreParserFunctions', 'numberofadmins'   ), SFH_NO_HASH );
 		$this->setFunctionHook( 'numberofedits',    array( 'CoreParserFunctions', 'numberofedits'    ), SFH_NO_HASH );
+		$this->setFunctionHook( 'numberofviews',    array( 'CoreParserFunctions', 'numberofviews'    ), SFH_NO_HASH );
 		$this->setFunctionHook( 'language',         array( 'CoreParserFunctions', 'language'         ), SFH_NO_HASH );
 		$this->setFunctionHook( 'padleft',          array( 'CoreParserFunctions', 'padleft'          ), SFH_NO_HASH );
 		$this->setFunctionHook( 'padright',         array( 'CoreParserFunctions', 'padright'         ), SFH_NO_HASH );
@@ -2565,6 +2566,8 @@ class Parser_OldPP
 				return $varCache[$index]  = $wgContLang->formatNum( SiteStats::numberingroup('sysop') );
 			case 'numberofedits':
 				return $varCache[$index]  = $wgContLang->formatNum( SiteStats::edits() );
+			case 'numberofviews':
+				return $varCache[$index]  = $wgContLang->formatNum( SiteStats::views() );
 			case 'currenttimestamp':
 				return $varCache[$index] = wfTimestampNow();
 			case 'localtimestamp':
