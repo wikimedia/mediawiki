@@ -6,6 +6,7 @@
  *
  * @author Kaffi
  * @author Robby
+ * @author Urhixidur
  * @author לערי ריינהארט
  */
 
@@ -711,7 +712,7 @@ Dir verspriecht ausserdeem datt dir dësen Text selwer verfaasst hutt, oder aus 
 <strong>DROT KEE COPYRECHTLECH GESCHÜTZTE CONTENU OUNI ERLAABNISS AN!</strong>',
 'copyrightwarning2'                => 'W.e.g. notéiert datt all Kontributiounen op {{SITENAME}} vun anere Benotzer verännert oder geläscht kënne ginn. Wann dir dat net wëllt, da setzt näischt heihinner.<br />
 Dir verspriecht ausserdeem datt dir dësen Text selwer verfaasst hutt, oder aus dem Domaine public oder anere fräie Quelle kopéiert hutt. (cf. $1 fir méi Detailler). <strong>DROT KEE COPYRECHTLECH GESCHÜTZTE CONTENU AN!</strong>',
-'longpagewarning'                  => '<strong>WARNUNG: Dës Säit ass $1 kB grouss; verschidde Browser kéinte Problemer hunn, Säiten ze verschaffen, déi méi grouss wéi 32 KB sinn.
+'longpagewarning'                  => '<strong>WARNUNG: Dës Säit ass $1 kB grouss; verschidde Browser kéinte Problemer hunn, Säiten ze verschaffen, déi méi grouss wéi 32 kB sinn.
 
 Iwwerleet w.e.g., ob eng Opdeelung vun der Säit a méi kleng Abschnitter méiglich ass.</strong>',
 'longpageerror'                    => '<strong>FEELER: Den Text, den Dir Versicht ze späicheren, huet $1 KB. Dëst ass méi wéi den erlaabte Maximum vun $2 KB – dofir kann den Text net gespäichert ginn.</strong>',
@@ -742,6 +743,7 @@ Fir iech z'informéieren fannt Dir hei d'Läschlescht mat dem Grond:",
 'deleted-notice'                   => 'Dës Seite gouf geläscht.
 Hei ass den Extrait aus der Läschlëscht fir déi Säit.',
 'deletelog-fulllog'                => 'Déi ganz Lëscht weisen',
+'edit-hook-aborted'                => "D'Ännerung gouf ouni Erklärung vun enger Schnëttstell (hook) ofgebrach.",
 'edit-gone-missing'                => "D'Säit konnt net aktualiséiert ginn.
 Si gouf anscheinend geläscht.",
 'edit-conflict'                    => 'Ännerungskonflikt.',
@@ -912,6 +914,7 @@ Passt op, datt d'Versiounsgeschicht der Säit historesch korrekt ass.
 'diff-div'                => "e '''Blockelement'''",
 'diff-ul'                 => "eng '''Lëscht'''",
 'diff-ol'                 => "eng '''numeréiert Lëscht'''",
+'diff-li'                 => "en '''Objet an enger Lëscht'''",
 'diff-table'              => "eng '''Tabell'''",
 'diff-tbody'              => "en '''Inhalt vun enger Tabell'''",
 'diff-tr'                 => "eine '''Reih'''",
@@ -1592,7 +1595,8 @@ Et ginn [[{{MediaWiki:Listgrouprights-helppage}}|zousätzlech Informatiounen]] i
 'mailnologintext' => 'Dir musst [[Special:UserLogin|ugemellt]] sinn an eng gülteg E-Mail Adress an äre [[Special:Preferences|Asteelunge]] aginn hunn, fir engem anere Benotzer eng E-Mail ze schécken.',
 'emailuser'       => 'Dësem Benotzer eng E-Mail schécken',
 'emailpage'       => 'Dem Benotzer eng E-Mail schécken',
-'emailpagetext'   => 'Wann dëse Benotzer eng gëlteg E-Mailadress a sengen Astellungen uginn huet, kënnt Dir mat dësem Formulaire e Message schécken. Déi E-Mailadress, déi dir an [[Special:Preferences|Ären Astellungen]] aginn hutt, steet an der "From" Adress vun der Mail, sou datt den Destinataire Iech direkt äntwerte kann.',
+'emailpagetext'   => 'Dir kënnt mat dësem Formulaire dësem Benotzer en E-Mail-Message schécken.
+D\'E-Mailadress, déi Dir an [[Special:Preferences|Ären Astellungen]] aginn hutt, steet an der "From" Adress vun der Mail, sou datt den Destinataire Iech direkt äntwerte kann.',
 'usermailererror' => 'E-Mail-Objet mellt deen heite Feeler:',
 'defemailsubject' => 'E-Mail vu(n) {{SITENAME}}',
 'noemailtitle'    => 'Keng E-Mailadress',
@@ -2396,6 +2400,7 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-gpsspeed'                    => 'Vitesse vum GPS-Empfänger',
 'exif-gpstrackref'                 => "Referenz fir d'Bewegungsrichtung",
 'exif-gpstrack'                    => 'Bewegungsrichtung',
+'exif-gpsimgdirectionref'          => "Referenz fir d'Ausriichtung vum Bild",
 'exif-gpsimgdirection'             => 'Bildrichtung',
 'exif-gpsdestlatituderef'          => "Referenz fir d'Breet",
 'exif-gpsdestlatitude'             => 'Breet',
@@ -2721,15 +2726,5 @@ Gitt den Numm vum Fichier ouni de Prefix \"{{ns:image}}:\" an.",
 #Zeilen, déi mat engem # ufänken, ginn als Bemierkung behandelt
 
 #All regulär Ausdréck ënnen un dëser Zeil androen. Dës Zeil genee esou loossen wéi se ass</pre>",
-
-# Special:Nuke
-'nuke'               => 'Masse-Läschung',
-'nuke-nopages'       => 'Et gëtt bei de läschten Ännerunge keng nei Säite vum [[Special:Contributions/$1|$1]].',
-'nuke-list'          => 'Dës Säite goufe viru kuerzem vum [[Special:Contributions/$1|$1]] nei ugeluecht; gitt w.e.g. eng Bemierkung an an dréckt op de Kneppche Läschen.',
-'nuke-defaultreason' => 'Masse-Läschung vu Säiten, déi vum $1 ugefaang goufen',
-'nuke-tools'         => "Dësen tool erlaabt masse-Läschunge vu Säiten déi vun engem Benotzer oder vun enger IP-Adresse ugeluecht goufen. Gitt w.e.g. d'IP-Adress respektiv de Benotzer un fir eng Lescht ze kréien:",
-'nuke-submit-user'   => 'Lass',
-'nuke-submit-delete' => 'Ugewielt läschen',
-'right-nuke'         => 'Vill Säite matenee läschen',
 
 );

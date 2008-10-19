@@ -1006,7 +1006,7 @@ Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det d
 'logdelete-log-message'       => '$1 för $2 {{PLURAL:$2|åtgärd|åtgärder}}',
 
 # Suppression log
-'suppressionlog'     => 'Versionsraderingslogg',
+'suppressionlog'     => 'Undanhållandelogg',
 'suppressionlogtext' => 'Nedan visas en lista över raderingar och blockeringar som berör innehåll dolt för administratörer.
 Se [[Special:IPBlockList|blockeringslistan]] för listan över gällande blockeringar.',
 
@@ -1237,7 +1237,7 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'group-bot'           => 'Robotar',
 'group-sysop'         => 'Administratörer',
 'group-bureaucrat'    => 'Byråkrater',
-'group-suppress'      => 'Versionsraderare',
+'group-suppress'      => 'Censorer',
 'group-all'           => '(alla)',
 
 'group-user-member'          => 'användare',
@@ -1245,14 +1245,14 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'group-bot-member'           => 'robot',
 'group-sysop-member'         => 'administratör',
 'group-bureaucrat-member'    => 'byråkrat',
-'group-suppress-member'      => 'versionsraderare',
+'group-suppress-member'      => 'Censor',
 
 'grouppage-user'          => '{{ns:project}}:Användare',
 'grouppage-autoconfirmed' => '{{ns:project}}:Bekräftade användare',
 'grouppage-bot'           => '{{ns:project}}:Robotar',
 'grouppage-sysop'         => '{{ns:project}}:Administratörer',
 'grouppage-bureaucrat'    => '{{ns:project}}:Byråkrater',
-'grouppage-suppress'      => '{{ns:project}}:Oversight',
+'grouppage-suppress'      => '{{ns:project}}:Censur',
 
 # Rights
 'right-read'                 => 'Se sidor',
@@ -1668,6 +1668,7 @@ En sida anses vara en förgreningssida om den inkluderar en mall som länkas til
 'wantedcategories'        => 'Önskade kategorier',
 'wantedpages'             => 'Önskade sidor',
 'wantedfiles'             => 'Önskade filer',
+'wantedtemplates'         => 'Önskade mallar',
 'mostlinked'              => 'Sidor med flest länkar till sig',
 'mostlinkedcategories'    => 'Kategorier med flest länkar till sig',
 'mostlinkedtemplates'     => 'Mest använda mallar',
@@ -1703,7 +1704,7 @@ En sida anses vara en förgreningssida om den inkluderar en mall som länkas til
 'nopagetext'              => 'Sidan som du vill flytta finns inte.',
 'pager-newer-n'           => '{{PLURAL:$1|1 nyare|$1 nyare}}',
 'pager-older-n'           => '{{PLURAL:$1|1 äldre|$1 äldre}}',
-'suppress'                => 'Oversight',
+'suppress'                => 'Censur',
 
 # Book sources
 'booksources'               => 'Bokkällor',
@@ -1790,7 +1791,7 @@ Det kan finnas [[{{MediaWiki:Listgrouprights-helppage}}|ytterligare information]
 'mailnologintext' => 'För att kunna skicka e-post till andra användare, måste du vara [[Special:UserLogin|inloggad]] och ha angivit en korrekt e-postadress i dina [[Special:Preferences|användarinställningar]].',
 'emailuser'       => 'Skicka e-post till den här användaren',
 'emailpage'       => 'Skicka e-post till annan användare',
-'emailpagetext'   => 'Om den här användaren har skrivit in en giltig e-postadress i sina användarinställningar, kommer formuläret nedan att skicka ett meddelande.
+'emailpagetext'   => 'Du kan använda det här formuläret för att skicka e-post till den här användaren.
 Den e-postadress du har angivit i [[Special:Preferences|dina användarinställningar]] kommer att visas som "Från"-adress i meddelandet, så att mottagaren har möjlighet att svara direkt till dig.',
 'usermailererror' => 'Fel i hanteringen av mail:',
 'defemailsubject' => '{{SITENAME}} e-post',
@@ -1905,7 +1906,7 @@ Bekräfta att du förstår vad du håller på med och vilka konsekvenser detta l
 'deletedtext'            => '"<nowiki>$1</nowiki>" har tagits bort.
 Se $2 för noteringar om de senaste raderingarna.',
 'deletedarticle'         => 'raderade "[[$1]]"',
-'suppressedarticle'      => 'upphävde "[[$1]]"',
+'suppressedarticle'      => 'undanhöll "[[$1]]"',
 'dellogpage'             => 'Raderingslogg',
 'dellogpagetext'         => 'Nedan listas de senaste raderingarna och återställningarna.',
 'deletionlog'            => 'raderingsloggen',
@@ -3015,16 +3016,5 @@ Skriv filnamnet utan prefixet "{{ns:image}}:" .',
 #Rader som börjar med # behandlas som kommentarer
 
 #Skriv alla fragment av reguljära uttryck ovanför den här raden. Lämna den här raden precis som den är</pre>',
-
-# Special:Nuke
-'nuke'               => 'Massradering',
-'nuke-nopages'       => 'Inga nya sidor av [[Special:Contributions/$1|$1]] bland de senaste ändringarna.',
-'nuke-list'          => 'Följande sidor har nyligen skapats av [[Special:Contributions/$1|$1]]. Skriv en raderingskommentar och klicka på knappen för att ta bort dem.',
-'nuke-defaultreason' => 'Massradering av sidor skapade av $1',
-'nuke-tools'         => 'Det här verktyget gör det möjligt att massradera sidor som nyligen skapats av en viss användare eller IP-adress.
-Ange ett användarnamn eller en IP-adress för att se en lista över sidor som kan tas bort.',
-'nuke-submit-user'   => 'Visa',
-'nuke-submit-delete' => 'Ta bort valda',
-'right-nuke'         => 'Massradera sidor',
 
 );

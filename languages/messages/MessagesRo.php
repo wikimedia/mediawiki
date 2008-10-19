@@ -10,6 +10,7 @@
  * @author Laurap
  * @author Mihai
  * @author SCriBu
+ * @author Urhixidur
  * @author לערי ריינהארט
  */
 
@@ -663,7 +664,7 @@ Please note that all contributions to {{SITENAME}} are considered to be released
 Dacă nu doriţi ca ceea ce scrieţi să fie modificat fără milă şi redistribuit în voie, atunci nu trimiteţi materialele respective aici.<br />
 De asemenea, ne asiguraţi că ceea ce aţi scris a fost compoziţie proprie sau copie dintr-o resursă publică sau liberă (vedeţi $1 pentru detalii).
 <strong>NU INTRODUCEŢI MATERIALE CU DREPTURI DE AUTOR FĂRĂ PERMISIUNE!</strong>',
-'longpagewarning'                  => '<strong>ATENŢIE! Conţinutul acestei pagini are $1 KB; unele browsere au probleme la modificarea paginilor în jur de 32 KB sau mai mari. Te rugăm să iei în considerare posibilitatea de a împărţi pagina în mai multe secţiuni.</strong>',
+'longpagewarning'                  => '<strong>ATENŢIE! Conţinutul acestei pagini are $1 kB; unele browsere au probleme la modificarea paginilor în jur de 32 kB sau mai mari. Te rugăm să iei în considerare posibilitatea de a împărţi pagina în mai multe secţiuni.</strong>',
 'longpageerror'                    => '<strong>EROARE: Textul pe care vrei să-l salvezi are $1 kilobytes,
 ceea ce înseamnă mai mult decât maximum de $2 kilobytes. Salvarea nu este posibilă.</strong>',
 'readonlywarning'                  => '<strong>ATENŢIE: Baza de date a fost blocată pentru întreţinere, deci nu veţi putea salva modificările în acest moment. Puteţi copia textul într-un fişier text local pentru a-l salva când va fi posibil.</strong>

@@ -8,6 +8,7 @@
  * @author Jordi
  * @author Ooswesthoesbes
  * @author Stretsh
+ * @author Urhixidur
  */
 
 $fallback = 'nl';
@@ -469,7 +470,7 @@ Efu yu no wani dati trawan e kenki noso panya san yu skrifi, no skrifi noti dyas
 Yu e pramisi unu dati na yu skrifi disi yusrefi, noso yu teki en puru fu wan fri, opo presi.<br />
 <strong>NO KEBROIKI SANI DI KIBRI BAKA SKRIFIMAN-LETI, SONDRO FU ABI PRIMISI FU DU SO!</strong>",
 'longpagewarning'        => '<strong>WARSKOW: A papira disi de $1 kilobyte bigi;
-Son browser abi problema fu kenki papira di bigi moro leki 32kb.
+Son browser abi problema fu kenki papira di bigi moro leki 32 kb.
 Kande yu kan prati a papira disi ini moro pikin pisi.</strong>',
 'templatesused'          => 'Template di ben kebroiki tapu a papira disi:',
 'templatesusedpreview'   => 'Template di ben kebroiki ini a Luku-na-fesi disi:',

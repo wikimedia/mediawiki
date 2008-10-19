@@ -310,7 +310,4 @@ Indi pagkalimti ang pag ilis sang imo mga pagpasulabi sa {{SITENAME}}.',
 # Special:SpecialPages
 'specialpages' => 'Pinasahi nga mga panid',
 
-# Special:Nuke
-'nuke-submit-user' => 'Lakat',
-
 );

@@ -745,15 +745,15 @@ Parameter $1 is either {{msg|revdelete-content}} (when unhiding the page content
 'diff-multi'              => "This message appears in the revision history of a page when comparing two versions which aren't consecutive.",
 'diff-src'                => '{{Identical|Source}}',
 'diff-with'               => '* "<code><nowiki>&amp;#32;</nowiki></code>" is a forced space; leave it in if your language uses spaces
-* $1 is <need more info>
-* $2 is <need more info>
+* $1 is a name of a HTML attribute (for example <code>style</code> or <code>class</code>)
+* $2 is the value of the attribute (for example <code>background:red;</code> in <code>style="background:red;"</code>)
 Used in conjunction with {{msg-mw|diff-with-additional}} and {{msg-mw|diff-with-final}} in the head position before a {{msg-mw|comma-separator}} separated list.',
-'diff-with-additional'    => '* $1 is <need more info>
-* $2 is <need more info>
+'diff-with-additional'    => '* $1 is a name of a HTML attribute (for example <code>style</code> or <code>class</code>)
+* $2 is the value of the attribute (for example <code>background:red;</code> in <code>style="background:red;"</code>)
 Used, possibly repeatedly, in a {{msg-mw|comma-separator}} separated list after {{msg-mw|diff-with}} and before {{msg-mw|diff-with-final}}.',
 'diff-with-final'         => '* "<code><nowiki>&amp;#32;</nowiki></code>" is a forced space; leave it in if your language uses spaces
-* $1 is <need more info>
-* $2 is <need more info>
+* $1 is a name of a HTML attribute (for example <code>style</code> or <code>class</code>)
+* $2 is the value of the attribute (for example <code>background:red;</code> in <code>style="background:red;"</code>)
 Used in the final position of a {{msg-mw|comma-separator}} separated list headed by {{msg-mw|diff-with}} followed by zero or more repetitions of {{msg-mw|diff-with-additional}}.',
 'diff-width'              => '{{Identical|Width}}',
 'diff-height'             => '{{Identical|Height}}',
@@ -2272,9 +2272,5 @@ $1 is the name of the requested file.',
 
 # Special:BlankPage
 'intentionallyblankpage' => 'Text displayed in [[Special:BlankPage]].',
-
-# Special:Nuke
-'nuke-submit-user' => '{{Identical|Go}}',
-'right-nuke'       => '{{doc-right}}',
 
 );

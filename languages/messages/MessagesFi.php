@@ -1218,7 +1218,7 @@ $1 | $2',
 'recentchangeslinked'          => 'Linkitettyjen sivujen muutokset',
 'recentchangeslinked-title'    => 'Sivulta $1 linkitettyjen sivujen muutokset',
 'recentchangeslinked-noresult' => 'Ei muutoksia linkitettyihin sivuihin annetulla aikavälillä.',
-'recentchangeslinked-summary'  => "Tämä toimintosivu näyttää muutokset sivuihin, joihin on viitattu tältä sivulta. Tarkkailulistallasi olevat sivut on '''paksunnettu'''.",
+'recentchangeslinked-summary'  => "Tämä toimintosivu näyttää muutokset sivuihin, joihin on viitattu tältä sivulta. [[Special:Watchlist|Tarkkailulistallasi]] olevat sivut on '''lihavoitu'''.",
 'recentchangeslinked-page'     => 'Sivu',
 'recentchangeslinked-to'       => 'Näytä muutokset sivuihin, joilla on linkki annettuun sivuun',
 
@@ -1477,6 +1477,7 @@ Seuraava lista näyttää {{PLURAL:$1|ensimmäisen linkittävän sivun|$1 ensimm
 'wantedcategories'        => 'Halutut luokat',
 'wantedpages'             => 'Halutut sivut',
 'wantedfiles'             => 'Halutut tiedostot',
+'wantedtemplates'         => 'Halutut mallineet',
 'mostlinked'              => 'Viitatuimmat sivut',
 'mostlinkedcategories'    => 'Viitatuimmat luokat',
 'mostlinkedtemplates'     => 'Viitatuimmat mallineet',
@@ -1640,7 +1641,7 @@ Lisätietoa yksittäisistä käyttäjäoikeuksista saattaa löytyä [[{{MediaWik
 'watchnochange'            => 'Valittuna ajanjaksona yhtäkään tarkkailemistasi sivuista ei muokattu.',
 'watchlist-details'        => 'Tarkkailulistalla on {{PLURAL:$1|$1 sivu|$1 sivua}} keskustelusivuja mukaan laskematta.',
 'wlheader-enotif'          => '* Sähköposti-ilmoitukset ovat käytössä.',
-'wlheader-showupdated'     => "* Sivut, joita on muokattu viimeisen käyntisi jälkeen on merkitty '''paksummalla'''",
+'wlheader-showupdated'     => "* Sivut, joita on muokattu viimeisen käyntisi jälkeen on '''lihavoitu'''.",
 'watchmethod-recent'       => 'tarkistetaan tuoreimpia muutoksia tarkkailluille sivuille',
 'watchmethod-list'         => 'tarkistetaan tarkkailtujen sivujen tuoreimmat muutokset',
 'watchlistcontains'        => 'Tarkkailulistallasi on {{PLURAL:$1|yksi sivu|$1 sivua}}.',
@@ -2761,15 +2762,5 @@ Kirjoita tiedostonimi ilman ”{{ns:image}}:”-etuliitettä.',
 # Special:BlankPage
 'blankpage'              => 'Tyhjä sivu',
 'intentionallyblankpage' => 'Tämä sivu on tarkoituksellisesti tyhjä.',
-
-# Special:Nuke
-'nuke'               => 'Massapoistaminen',
-'nuke-nopages'       => 'Ei käyttäjän [[Special:Contributions/$1|$1]] lisäämiä uusia sivuja tuoreissa muutoksissa.',
-'nuke-list'          => 'Käyttäjä [[Special:Contributions/$1|$1]] on äskettäin luonut seuraavat sivut.',
-'nuke-defaultreason' => 'Käyttäjän $1 lisäämien sivujen massapoistaminen',
-'nuke-tools'         => 'Tämä työkalu mahdollistaa äskettäin lisättyjen sivujen massapoistamisen käyttäjänimen tai IP:n perusteella. Kirjoita käyttäjänimi tai IP, niin saat listan poistettavista sivuista:',
-'nuke-submit-user'   => 'Siirry',
-'nuke-submit-delete' => 'Poista valitut',
-'right-nuke'         => 'Massapoistaa sivuja',
 
 );

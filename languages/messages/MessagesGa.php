@@ -8,6 +8,7 @@
  * @author Kwekubo
  * @author Moilleadóir
  * @author Spacebirdy
+ * @author Urhixidur
  * @author לערי ריינהארט
  */
 
@@ -612,7 +613,7 @@ Murar mian leat go gcuirfí do chuid scríbhinne in eagar go héadrócaireach, n
 Ina theannta sin, geallann tú gur scríobh tú féin an dréacht seo, nó gur chóipeáil tú é ó fhoinse san fhearann poiblí nó acmhainn eile saor ó chóipcheart (féach ar $1 le haghaidh tuilleadh eolais). 
 <strong>NÁ CUIR ISTEACH OBAIR LE CÓIPCHEART GAN CHEAD!</strong>',
 'longpagewarning'        => 'AIRE: Tá an leathanach seo $1 cilibheart i bhfad; ní féidir le roinnt brabhsálaithe
-leathanaigh a athrú má tá siad breis agus $1KiB, nó níos fada ná sin.
+leathanaigh a athrú má tá siad breis agus $1 KiB, nó níos fada ná sin.
 Más féidir, giotaigh an leathanach i gcodanna níos bige.',
 'readonlywarning'        => "'''AIRE:''' Glasáladh an bunachar sonraí, agus mar sin
 ní féidir leat do chuid athruithe a shábháil díreach anois. B'fhéidir gur mhaith leat an téacs a ghearr is

@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简化字)‬)
+/** Simplified Chinese (‪中文(简体)‬)
  *
  * @ingroup Language
  * @file
@@ -1602,49 +1602,49 @@ Template:消除歧義',
 'emailuserfooter' => '这封电邮是由$1寄给$2经{{SITENAME}}的“电邮用户”功能发出的。',
 
 # Watchlist
-'watchlist'            => '监视列表',
-'mywatchlist'          => '我的监视列表',
-'watchlistfor'         => "('''$1'''的监视列表')",
-'nowatchlist'          => '您的监视列表为空。',
-'watchlistanontext'    => '请$1以查看或编辑您的监视列表。',
-'watchnologin'         => '未登录',
-'watchnologintext'     => '您必须先[[Special:UserLogin|登录]]才能更改您的监视列表。',
-'addedwatch'           => '已添加至监视列表',
-'addedwatchtext'       => "页面\"[[:\$1]]\"已经被加入到您的[[Special:Watchlist|监视列表]]中。
+'watchlist'                => '监视列表',
+'mywatchlist'              => '我的监视列表',
+'watchlistfor'             => "('''$1'''的监视列表')",
+'nowatchlist'              => '您的监视列表为空。',
+'watchlistanontext'        => '请$1以查看或编辑您的监视列表。',
+'watchnologin'             => '未登录',
+'watchnologintext'         => '您必须先[[Special:UserLogin|登录]]才能更改您的监视列表。',
+'addedwatch'               => '已添加至监视列表',
+'addedwatchtext'           => "页面\"[[:\$1]]\"已经被加入到您的[[Special:Watchlist|监视列表]]中。
 将来有关此页面及其讨论页的任何修改将会在那里列出，
 而且还会在[[Special:RecentChanges|最近更改]]中
 以'''粗体'''形式列出以使起更容易识别。",
-'removedwatch'         => '已停止监视',
-'removedwatchtext'     => '页面"<nowiki>$1</nowiki>"已经从[[Special:Watchlist|您的监视页面]]中移除。',
-'watch'                => '监视',
-'watchthispage'        => '监视此页',
-'unwatch'              => '取消监视',
-'unwatchthispage'      => '停止监视',
-'notanarticle'         => '不是页面',
-'notvisiblerev'        => '修订版本已经删除',
-'watchnochange'        => '在显示的时间段内您所监视的页面没有更改。',
-'watchlist-details'    => '不包含讨论页，有 $1 页在您的监视列表上。',
-'wlheader-enotif'      => '* 已经启动电子邮件通知功能。',
-'wlheader-showupdated' => "* 在你上次查看后有被修改过的页面会显示为'''粗体'''",
-'watchmethod-recent'   => '检查被监视页面的最近编辑',
-'watchmethod-list'     => '查看监视页中的最新修改',
-'watchlistcontains'    => '您的监视列表包含$1个页面。',
-'iteminvalidname'      => "页面'$1'错误，无效命名...",
-'wlnote'               => "以下是最近'''$2'''小时内的最后'''$1'''次修改:",
-'wlshowlast'           => '显示最近$1小时 $2天 $3的修改',
-'watchlist-show-bots'  => '显示机器人的编辑',
-'watchlist-hide-bots'  => '隐藏机器人的编辑',
-'watchlist-show-own'   => '显示我的编辑',
-'watchlist-hide-own'   => '隐藏我的编辑',
-'watchlist-show-minor' => '显示小编辑',
-'watchlist-hide-minor' => '隐藏小编辑',
-'watchlist-show-anons' => '显示匿名用户的编辑',
-'watchlist-hide-anons' => '隐藏匿名用户的编辑',
-'watchlist-show-liu'   => '显示已登入用户的编辑',
-'watchlist-hide-liu'   => '隐藏已登入用户的编辑',
+'removedwatch'             => '已停止监视',
+'removedwatchtext'         => '页面"<nowiki>$1</nowiki>"已经从[[Special:Watchlist|您的监视页面]]中移除。',
+'watch'                    => '监视',
+'watchthispage'            => '监视此页',
+'unwatch'                  => '取消监视',
+'unwatchthispage'          => '停止监视',
+'notanarticle'             => '不是页面',
+'notvisiblerev'            => '修订版本已经删除',
+'watchnochange'            => '在显示的时间段内您所监视的页面没有更改。',
+'watchlist-details'        => '不包含讨论页，有 $1 页在您的监视列表上。',
+'wlheader-enotif'          => '* 已经启动电子邮件通知功能。',
+'wlheader-showupdated'     => "* 在你上次查看后有被修改过的页面会显示为'''粗体'''",
+'watchmethod-recent'       => '检查被监视页面的最近编辑',
+'watchmethod-list'         => '查看监视页中的最新修改',
+'watchlistcontains'        => '您的监视列表包含$1个页面。',
+'iteminvalidname'          => "页面'$1'错误，无效命名...",
+'wlnote'                   => "以下是最近'''$2'''小时内的最后'''$1'''次修改:",
+'wlshowlast'               => '显示最近$1小时 $2天 $3的修改',
+'watchlist-show-bots'      => '显示机器人的编辑',
+'watchlist-hide-bots'      => '隐藏机器人的编辑',
+'watchlist-show-own'       => '显示我的编辑',
+'watchlist-hide-own'       => '隐藏我的编辑',
+'watchlist-show-minor'     => '显示小编辑',
+'watchlist-hide-minor'     => '隐藏小编辑',
+'watchlist-show-anons'     => '显示匿名用户的编辑',
+'watchlist-hide-anons'     => '隐藏匿名用户的编辑',
+'watchlist-show-liu'       => '显示已登入用户的编辑',
+'watchlist-hide-liu'       => '隐藏已登入用户的编辑',
 'watchlist-show-patrolled' => '显示曾经巡查过的编辑',
 'watchlist-hide-patrolled' => '隐藏曾经巡查过的编辑',
-'watchlist-options'    => '监视列表选项',
+'watchlist-options'        => '监视列表选项',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => '监视……',
@@ -1996,9 +1996,9 @@ $1',
 'databasenotlocked'   => '数据库没有锁定。',
 
 # Move page
-'move-page'               => '移动$1',
-'move-page-legend'        => '移动页面',
-'movepagetext'            => "用下面的表单来重命名一个页面，并将其修订历史同时移动到新页面。
+'move-page'                 => '移动$1',
+'move-page-legend'          => '移动页面',
+'movepagetext'              => "用下面的表单来重命名一个页面，并将其修订历史同时移动到新页面。
 老的页面将成为新页面的重定向页。
 您可以自动地更新指到原标题的重定向。
 如果您选择不去做的话，请检查[[Special:DoubleRedirects|双重]]或[[Special:BrokenRedirects|损坏重定向]]连结。
@@ -2012,56 +2012,56 @@ $1',
 <b>警告！</b>
 对一个经常被访问的页面而言这可能是一个重大与唐突的更改；
 请在行动前先了结其所可能带来的后果。",
-'movepagetalktext'        => "有关的讨论页将被自动与该页面一起移动，'''除非''':
+'movepagetalktext'          => "有关的讨论页将被自动与该页面一起移动，'''除非''':
 *新页面已经有一个包含内容的讨论页，或者
 *您不勾选下面的复选框。
 
 在这些情况下，您在必要时必须手工移动或合并页面。",
-'movearticle'             => '移动页面:',
-'movenologin'             => '未登录',
-'movenologintext'         => '您必须是一名登记用户并且[[Special:UserLogin|登录]]
+'movearticle'               => '移动页面:',
+'movenologin'               => '未登录',
+'movenologintext'           => '您必须是一名登记用户并且[[Special:UserLogin|登录]]
 后才可移动一个页面。',
-'movenotallowed'          => '您并没有权限去移动页面。',
+'movenotallowed'            => '您并没有权限去移动页面。',
 'cant-move-user-page'       => '您并没有许可权去移动用户页面（它的字页面除外）。',
 'cant-move-to-user-page'    => '您并没有许可权去移动到用户页面（它的字页面除外）。',
-'newtitle'                => '新标题:',
-'move-watch'              => '监视此页',
-'movepagebtn'             => '移动页面',
-'pagemovedsub'            => '移动成功',
-'movepage-moved'          => "<big>'''“$1”已经移动到“$2”'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'           => '该名字的页面已经存在，或者您选择的名字无效。请再选一个名字。',
-'cantmove-titleprotected' => '您不可以移动这个页面到这个位置，因为该新标题已经被保护以防止创建。',
-'talkexists'              => '页面本身移动成功，
+'newtitle'                  => '新标题:',
+'move-watch'                => '监视此页',
+'movepagebtn'               => '移动页面',
+'pagemovedsub'              => '移动成功',
+'movepage-moved'            => "<big>'''“$1”已经移动到“$2”'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'             => '该名字的页面已经存在，或者您选择的名字无效。请再选一个名字。',
+'cantmove-titleprotected'   => '您不可以移动这个页面到这个位置，因为该新标题已经被保护以防止创建。',
+'talkexists'                => '页面本身移动成功，
 但是由于新标题下已经有对话页存在，所以对话页无法移动。请手工合并两个页面。',
-'movedto'                 => '移动到',
-'movetalk'                => '移动关联的讨论页',
-'move-subpages'           => '如果可能的话，同时移动所有的子页面',
-'move-talk-subpages'      => '如果可能的话，同时移动所有的子对话页面',
-'movepage-page-exists'    => '页面$1已经存在，不可以自动地覆写。',
-'movepage-page-moved'     => '页面$1已经移动到$2。',
-'movepage-page-unmoved'   => '页面$1不可以移动到$2。',
-'movepage-max-pages'      => '最多有$1个页面已经移动同时不可以自动地再移动更多。',
-'1movedto2'               => '[[$1]]移动到[[$2]]',
-'1movedto2_redir'         => '[[$1]]通过重定向移动到[[$2]]',
-'movelogpage'             => '移动日志',
-'movelogpagetext'         => '以下是已经移动的页面列表:',
-'movereason'              => '原因',
-'revertmove'              => '恢复该移动',
-'delete_and_move'         => '删除并移动',
-'delete_and_move_text'    => '==需要删除==
+'movedto'                   => '移动到',
+'movetalk'                  => '移动关联的讨论页',
+'move-subpages'             => '如果可能的话，同时移动所有的子页面',
+'move-talk-subpages'        => '如果可能的话，同时移动所有的子对话页面',
+'movepage-page-exists'      => '页面$1已经存在，不可以自动地覆写。',
+'movepage-page-moved'       => '页面$1已经移动到$2。',
+'movepage-page-unmoved'     => '页面$1不可以移动到$2。',
+'movepage-max-pages'        => '最多有$1个页面已经移动同时不可以自动地再移动更多。',
+'1movedto2'                 => '[[$1]]移动到[[$2]]',
+'1movedto2_redir'           => '[[$1]]通过重定向移动到[[$2]]',
+'movelogpage'               => '移动日志',
+'movelogpagetext'           => '以下是已经移动的页面列表:',
+'movereason'                => '原因',
+'revertmove'                => '恢复该移动',
+'delete_and_move'           => '删除并移动',
+'delete_and_move_text'      => '==需要删除==
 
 目标页面"[[:$1]]"已经存在。你确认需要删除原页面并以进行移动吗？',
-'delete_and_move_confirm' => '是的，删除此页面',
-'delete_and_move_reason'  => '删除以便移动',
-'selfmove'                => '原始标题和目标标题相同，不能移动一个页面到它自身。',
+'delete_and_move_confirm'   => '是的，删除此页面',
+'delete_and_move_reason'    => '删除以便移动',
+'selfmove'                  => '原始标题和目标标题相同，不能移动一个页面到它自身。',
 'immobile-source-namespace' => '不可以在空间名「$1」上移动页面',
 'immobile-target-namespace' => '不可以将页面移动到「$1」空间名中',
 'immobile-source-page'      => '这个页面不能移动。',
 'immobile-target-page'      => '无法移动至目标标题中。',
-'imagenocrossnamespace'   => '不可以移动文件到非文件名字空间',
-'imagetypemismatch'       => '该新副档名不匹配它的类型',
-'imageinvalidfilename'    => '目标文件名称是无效的',
-'fix-double-redirects'    => '更新指到原先标题的任何重定向',
+'imagenocrossnamespace'     => '不可以移动文件到非文件名字空间',
+'imagetypemismatch'         => '该新副档名不匹配它的类型',
+'imageinvalidfilename'      => '目标文件名称是无效的',
+'fix-double-redirects'      => '更新指到原先标题的任何重定向',
 'move-leave-redirect'       => '留下重新定向',
 
 # Export

@@ -2391,13 +2391,4 @@ Entrâd lo nom du fichiér sen lo prèfixe « {{ns:image}}: ».',
 # Special:SpecialPages
 'specialpages' => 'Pâges spèciâles',
 
-# Special:Nuke
-'nuke'               => 'Suprèssion en massa',
-'nuke-nopages'       => 'Niona novèla pâge crèâ per [[Special:Contributions/$1|$1]] dens la lista des dèrriérs changements.',
-'nuke-list'          => 'Les pâges siuventes ont étâ crèâs dèrriérement per [[Special:Contributions/$1|$1]] ; endicâd un comentèro et pués clicâd sur lo boton por les suprimar.',
-'nuke-defaultreason' => 'Suprèssion en massa de les pâges apondues per $1',
-'nuke-tools'         => 'Ceti outil ôtorise les suprèssions en massa de les pâges apondues dèrriérement per un utilisator enregistrâ ou per una adrèce IP. Endicâd l’adrèce IP por obtegnir la lista de les pâges a suprimar :',
-'nuke-submit-user'   => 'Validar',
-'nuke-submit-delete' => 'Suprèssion sèlèccionâ',
-
 );

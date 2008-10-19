@@ -5,8 +5,10 @@
  * @file
  *
  * @author Melos
+ * @author Santu
  * @author Sarvaturi
  * @author Tonyfroio
+ * @author Urhixidur
  * @author לערי ריינהארט
  */
 
@@ -158,6 +160,7 @@ $messages = array(
 'tog-watchlisthideown'        => "Ammuccia li mè canciamenti nta l'ossirvati spiciali",
 'tog-watchlisthidebots'       => "Ammuccia li canciamenti dî bot nta l'ossirvati spiciali",
 'tog-watchlisthideminor'      => "Ammuccia li canciamenti nichi nta l'ossirvati spiciali",
+'tog-watchlisthideliu'        => "Ammuccia li canciamneti di l'utenti riggistrati nta l'ussirvati spiciali",
 'tog-nolangconversion'        => 'Disattiva la cunvirsioni tra varianti linguìstichi',
 'tog-ccmeonemails'            => "Mànnami na copia dî missaggi spiditi a l'àutri utenti",
 'tog-diffonly'                => "Nun visualizzari lu cuntinutu dâ pàggina quannu s'esequi na ''diff'' tra dui virsioni",
@@ -360,6 +363,8 @@ $messages = array(
 'editsection'             => 'cancia',
 'editold'                 => 'cancia',
 'viewsourceold'           => 'talìa la fonti',
+'editlink'                => 'cancia',
+'viewsourcelink'          => 'Talìa la fonti',
 'editsectionhint'         => 'Cancia la sezzioni $1',
 'toc'                     => 'Ìndici',
 'showtoc'                 => 'ammustra',
@@ -369,7 +374,7 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|nu canciamentu annullatu|$1 canciamenti annullati}}',
 'feedlinks'               => 'Feed:',
 'feed-invalid'            => 'Mudalitati di suttascrizzioni dû feed nun vàlida.',
-'feed-unavailable'        => 'Nun sunu dispunibili li feed pi li cuntinuti di {{SITENAME}}',
+'feed-unavailable'        => 'Nun sunu dispunibili li feed',
 'site-rss-feed'           => 'Feed RSS di $1',
 'site-atom-feed'          => 'Feed Atom di $1',
 'page-rss-feed'           => 'Feed RSS pi "$1"',
@@ -657,7 +662,7 @@ Si agghicasti ccà pi sbagghiu, clicca lu buttuni ''''n arreri (back)''' dû tò
 Vuatri prumittiti puru chi lu scrivìstivu chî vostri palori, o chi lu cupiàstivu di nu duminiu pùbbricu o di risursi sìmili
 <strong>NUN SUTTAMITTÌTI MATIRIALI SUTTA COPYRIGHT SENZA PIRMISSU!</strong>",
 'copyrightwarning2'                => "Nota: tutti li cuntribbuti mannati a {{SITENAME}} ponnu èssiri mudificati o cancillati di parti di l'àutri participanti. Siddu nun addisìi ca li tò testi ponnu èssiri mudificati senza arcunu riguardu, nun mannàrili a stu situ.<br /> Cu la mannata dû testu dichiari noltri, sutta la tò rispunzabbilitati, ca lu testu hà statu scrittu di tia pirsunalmenti oppuru c'hà statu cupiatu di na fonti di pùbbricu dominiu o analucamenti lìbbira. (vidi $1 pi maiuri dittagghi) <strong>NUN MANNARI MATIRIALI CUPERTU DI DRITTU D'AUTURI SENZA AUTURIZZAZZIONI!</strong>",
-'longpagewarning'                  => "<strong>ACCURA: Sta pàggina è longa $1 kilobyte. Arcuni browser putìssiru prisintari dî prubbremi ntô canciari pàggini ca s'avvicìnanu o sùpiranu 32kb. Pi favuri pigghia n cunzidirazzioni la pussibbilitati di suddivìdiri la pàggina n sezzioni cchiù nichi.</strong>",
+'longpagewarning'                  => "<strong>ACCURA: Sta pàggina è longa $1 kilobyte. Arcuni browser putìssiru prisintari dî prubbremi ntô canciari pàggini ca s'avvicìnanu o sùpiranu 32 kb. Pi favuri pigghia n cunzidirazzioni la pussibbilitati di suddivìdiri la pàggina n sezzioni cchiù nichi.</strong>",
 'longpageerror'                    => "<strong>ERRURI: Lu testu ca hai suttamissu è longu $1 kilobyte, ch'è cchiù dû màssimu di $2 kilobyte. Nun pò èssiri sarvatu.</strong>",
 'readonlywarning'                  => "<strong>ACCURA: Lu database è fermu pi manutinzioni, pirciò nun poi sarvari li tò canciamenti nta stu mumentu. La cosa megghia è fari un copia e ncolla dû testu nta n'àutru prugramma e sarvàrilu pi quannu lu database è accissìbbili.</strong>
 
@@ -854,7 +859,7 @@ S'havi accirtari ca la cuntinuità storica di la pàggina nun veni altirata.",
 'mypreferences'            => 'Li mè prifirenzi',
 'prefs-edits'              => 'Nùmmuru di canciamenti:',
 'prefsnologin'             => 'Accessu nun effittuatu',
-'prefsnologintext'         => "Pi putiri pirsunalizzari li prifirenzi è nicissariu effittuari l'[[Special:UserLogin|accessu]].",
+'prefsnologintext'         => 'Pi putiri pirsunalizzari li prifirenzi è nicissariu effittuari l\'<span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} accessu]</span>.',
 'prefsreset'               => 'Li prifirenzi hannu statu ripristinati a li valura pridifiniti.',
 'qbsettings'               => 'Pusizzioni QuickBar',
 'qbsettings-none'          => 'Nuddu',
@@ -907,6 +912,7 @@ S'havi accirtari ca la cuntinuità storica di la pàggina nun veni altirata.",
 'servertime'               => 'Ura dû server',
 'guesstimezone'            => "Usa l'ura dû tò browser",
 'allowemail'               => 'Cunzenti la ricezzioni di e-mail di àutri utenti',
+'prefs-searchoptions'      => 'Opzioni di ricerca',
 'defaultns'                => 'Namespace pridifiniti pi la ricerca:',
 'default'                  => 'pridifinitu',
 'files'                    => 'Mmàggini',
@@ -970,6 +976,7 @@ S'havi accirtari ca la cuntinuità storica di la pàggina nun veni altirata.",
 'right-reupload-own'     => 'Sovrascrivi nu file esistenti caricatu dô stissu utenti',
 'right-upload_by_url'    => 'Carica nu file da nu ndirizzu URL',
 'right-autoconfirmed'    => 'Cancia pàggini semiprotetti',
+'right-bigdelete'        => 'Cancella pàggini cu la storia longa',
 'right-browsearchive'    => 'Talìa pàggini cancillati',
 'right-undelete'         => 'Riprìstina na pàggina',
 'right-suppressrevision' => 'Ritalìa e riprìstina virsioni ammucciati',

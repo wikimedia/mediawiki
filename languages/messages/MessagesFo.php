@@ -8,6 +8,7 @@
  * @author Quackor
  * @author S.Örvarr.S
  * @author Spacebirdy
+ * @author Urhixidur
  * @author לערי ריינהארט
  */
 
@@ -477,7 +478,7 @@ Ert tú ein dulnevndur brúkari, og kennir, at óvikomandi viðmerkingar eru ven
 Við at senda arbeiði títt inn, lovar tú, at tú hevur skrivað tað, ella at tú hevur avritað tað frá tilfeingi ið er almenn ogn &mdash; hetta umfatar '''ikki''' flestu vevsíður.
 <strong>SEND IKKI UPPHAVSRÆTTARVART TILFAR UTTAN LOYVI!</strong>",
 'longpagewarning'          => '<strong>ÁVARING: Henda síðan er $1 kilobýt long.
-Summir sneytarar kunnu hava trupulleikar við at viðgerða síður upp ímóti ella longri enn 32kb.
+Summir sneytarar kunnu hava trupulleikar við at viðgerða síður upp ímóti ella longri enn 32 kb.
 Vinarliga umhugsa at býta síðuna sundur í styttri pettir.</strong>',
 'protectedpagewarning'     => '<strong>ÁVARING: Henda síðan er friðað, so at einans brúkarar við umboðsstjóraheimildum kunnu broyta hana.</strong>',
 'semiprotectedpagewarning' => "'''Viðmerking:''' Hendan grein er læst soleiðis at bert skrásetir brúkaris kunnu rætta hana.",

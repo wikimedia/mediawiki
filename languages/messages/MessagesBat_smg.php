@@ -5,6 +5,7 @@
  * @file
  *
  * @author Hugo.arg
+ * @author Urhixidur
  * @author Zordsdavini
  * @author לערי ריינהארט
  */
@@ -504,7 +505,7 @@ Jēgo ėšsauguosėt sava pakeitėmus, paskum darītė pakeitėmā prapols.</str
 Tamsta tēpuogi pasėžadat, kū tas īr Tamstas patėis rašīts torėnīs a kuopėjouts ėš vėišū a panašiū valnū šaltėniu.
 <strong>NEKOPĖJOUKĖT AUTUORĖNIEM TEISIEM APSAUGUOTU DARBŪ BA LEIDĖMA!</strong>',
 'longpagewarning'           => '<strong>DIEMESĖ: Tas poslapis īr $1 kilobaitu ėlgoma; katruos nekatruos
-naršīklės gal torietė biedū redagounant poslapius bavēk a vėrš 32 KB.
+naršīklės gal torietė biedū redagounant poslapius bavēk a vėrš 32 kB.
 Prašuom pamiegītė poslapi padalėntė i keleta smolkesniū daliū.</strong>',
 'readonlywarning'           => '<strong>DIEMESĖ: Doumenū bazė bova ožrakėnta teknėnē pruofilaktėkā,
 tudie negaliesėt ėšsauguotė sava pakeitėmu daba. Tamsta galėt nosėkopėjoutė teksta i tekstėni faila

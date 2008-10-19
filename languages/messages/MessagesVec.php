@@ -8,6 +8,7 @@
  * @author Candalua
  * @author Nick1915
  * @author Omnipaedista
+ * @author Urhixidur
  * @author לערי ריינהארט
  */
 
@@ -36,15 +37,15 @@ $namespaceNames = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'Sotolinea i colegamenti:',
-'tog-highlightbroken'         => "Evidensia i colegamenti che punta a articołi 'ncora da scrìvar",
+'tog-underline'               => 'Sotołinea i cołegamenti:',
+'tog-highlightbroken'         => "Evidensia i cołegamenti che i punta a voxe 'ncora da scrìvar",
 'tog-justify'                 => 'Paragrafo: giustificà',
-'tog-hideminor'               => 'Scondi le modifiche picenine ne la pagina "Ultime modifiche"',
-'tog-extendwatchlist'         => 'Espandi la funzion osservati speciali mostrando tute le modifiche aplicabili',
+'tog-hideminor'               => 'Scondi łe modifighe picenine n\'te ła paxena "Ultime modifighe"',
+'tog-extendwatchlist'         => 'Espandi ła funsion osservai speciałi mostrando tute łe modifighe aplicabili',
 'tog-usenewrc'                => 'Ultime modifiche avanzade (ghe vol JavaScript)',
 'tog-numberheadings'          => 'Auto-numerazion dei titoli de paragrafo',
 'tog-showtoolbar'             => 'Mostra la barra dei strumenti de modifica (ghe vol JavaScript)',
-'tog-editondblclick'          => "Dopio clic par modificar l'articolo (ghe vol JavaScript)",
+'tog-editondblclick'          => 'Dopio clic par modificar ła voxe (ghe vol JavaScript)',
 'tog-editsection'             => 'Modifega de łe sezion tramite el cołegamento [modifica]',
 'tog-editsectiononrightclick' => 'Modifega de łe sezion tramite clic destro sul titoło (ghe vol JavaScript)',
 'tog-showtoc'                 => "Mostra l'indexe par łe pàxene con pì de 3 sezion",
@@ -52,21 +53,21 @@ $messages = array(
 'tog-editwidth'               => 'Casela de edizion slargà a la massima largheza',
 'tog-watchcreations'          => 'Xonta łe pàxene creàe a i osservati speciałi',
 'tog-watchdefault'            => 'Xonta łe pàxene modifegàe a i osservati speciałi',
-'tog-watchmoves'              => 'Zonta le pagine spostà ai osservati speciali',
-'tog-watchdeletion'           => 'Zonta le pagine scancelà ai osservati speciali',
+'tog-watchmoves'              => 'Xonta łe pàxene spostà ai oservai speciałi',
+'tog-watchdeletion'           => 'Xonta łe pàxene scancełà a i oservai speciałi',
 'tog-minordefault'            => 'Indica ogni modifica come picenina (solo come predefinìo)',
 'tog-previewontop'            => "Mostra l'anteprima de sora la casèla de modifica",
 'tog-previewonfirst'          => "Mostra l'anteprima par la prima modifica",
-'tog-nocache'                 => "Disativa la ''cache'' par le pagine",
+'tog-nocache'                 => "Disativa ła ''cache'' par łe pàxene",
 'tog-enotifwatchlistpages'    => 'Segnàleme via e-mail le modifiche a le pagine osservà',
-'tog-enotifusertalkpages'     => 'Segnàleme via e-mail le modifiche a la me pagina de discussion',
+'tog-enotifusertalkpages'     => 'Segnàleme via e-mail łe modifighe a ła me pàxena de discusion',
 'tog-enotifminoredits'        => 'Segnàleme via e-mail anca le modifiche picenine',
 'tog-enotifrevealaddr'        => 'Rivela el me indirizo e-mail nei messagi de aviso',
 'tog-shownumberswatching'     => "Mostra el nùmaro de utenti che tien d'ocio la pagina",
 'tog-fancysig'                => 'No modificar mìa el markup de la firma (da doparar par firme mìa standard)',
 'tog-externaleditor'          => 'Dòpara par default un editor de testi esterno (solo par i esperti, ghe vole dele inpostassion speciali sul to computer)',
 'tog-externaldiff'            => 'Dòpara par default un programa de diff esterno (solo par i esperti, ghe vole dele inpostassion speciali sul to computer)',
-'tog-showjumplinks'           => "Ativa i colegamenti acessibili 'và a'",
+'tog-showjumplinks'           => "Ativa i cołegamenti acesibiłi 'và a'",
 'tog-uselivepreview'          => "Ativa la funzion ''Live preview'' (ghe vol JavaScript; sperimental)",
 'tog-forceeditsummary'        => "Domanda conferma se l'ogeto de la modifica el xe vodo",
 'tog-watchlisthideown'        => 'Scondi łe me modifeghe ne i osservati speciałi',
@@ -76,11 +77,11 @@ $messages = array(
 'tog-watchlisthideanons'      => "Scondi le modifiche dei utenti anonimi tra le pàxene tegnùe d'ocio",
 'tog-ccmeonemails'            => 'Màndeme na copia dei messagi spedìi ai altri utenti',
 'tog-diffonly'                => 'No stà mostrar el contenuto de la pagina dopo el confronto tra version',
-'tog-showhiddencats'          => 'Mostra le categorie sconte',
+'tog-showhiddencats'          => 'Mostra łe categorie sconte',
 
 'underline-always'  => 'Senpre',
 'underline-never'   => 'Mai',
-'underline-default' => 'Mantien le inpostazion del browser',
+'underline-default' => 'Mantien łe inpostasion de el browser',
 
 # Dates
 'sunday'        => 'Domenega',
@@ -136,7 +137,7 @@ $messages = array(
 
 # Categories related messages
 'pagecategories'                 => '{{PLURAL:$1|Categoria|Categorie}}',
-'category_header'                => 'Voçi n\'te ła categoria "$1"',
+'category_header'                => 'Voxe n\'te ła categoria "$1"',
 'subcategories'                  => 'Sotocategorie',
 'category-media-header'          => 'File ne la categoria "$1"',
 'category-empty'                 => "''Al momento la categoria no la contien nissuna pagina né file multimediai.''",
@@ -151,14 +152,14 @@ $messages = array(
 'listingcontinuesabbrev'         => 'cont.',
 
 'mainpagetext'      => "'''MediaWiki xè stà instałà con sucesso.'''",
-'mainpagedocfooter' => "Consulta la [http://meta.wikimedia.org/wiki/Aiuto:Sommario Guida utente] (in italian) par verghe piassè informazion su l'uso de sto software wiki.
+'mainpagedocfooter' => "Varda ła [http://meta.wikimedia.org/wiki/Aiuto:Sommario Guida utente] (in tałian) par verghe piassè informasion su l'uso de sto software wiki.
 
 == Par scuminsiar ==
-I seguenti colegamenti i xe in lengua inglese:
+I seguenti cołegamenti i xe en lengua inglese:
 
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Inpostazion de configurazion]
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Inpostasion de configurasion]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Domande frequenti su MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list anunci MediaWiki]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list anunçi MediaWiki]",
 
 'about'          => 'Se parla de',
 'article'        => 'Voçe',
@@ -296,7 +297,7 @@ I seguenti colegamenti i xe in lengua inglese:
 'red-link-title'          => "$1 ('ncora da scrìvar)",
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'Voçe',
+'nstab-main'      => 'Voxe',
 'nstab-user'      => 'Utente',
 'nstab-media'     => 'File multimedial',
 'nstab-special'   => 'Speciale',
@@ -378,7 +379,7 @@ Query: $2',
 Tute le modifiche che te fè a sta pagina le se riflete su l'aspeto de l'interfacia grafica visualizà da tuti i altri utenti.
 Se te ghè bisogno de tradur in veneto un messagio de l'interfacia utente, te pol doparar [http://translatewiki.net/wiki/Main_Page?setlang=vec Betawiki], el progeto de localizazion de MediaWiki.",
 'sqlhidden'            => '(la query SQL la xe stà sconta)',
-'cascadeprotected'     => 'Su sta pagina no se pol far modifiche parché la xe stà inclusa {{PLURAL:$1|ne la pagina indicà de seguito, che la xe stà proteta|ne le pagine indichè de seguito, che le xe stà protete}} selezionando la protezion "ricorsiva":
+'cascadeprotected'     => 'Su sta pàxena no se pol far modifighe parché ła xe stà inclusa {{PLURAL:$1|ne ła pàxena indicà de seguito, che ła xe stà proteta|ne łe pàxene indicae de seguito, che łe xe stà protete}} selezionando ła protesion "ricorsiva":
 $2',
 'namespaceprotected'   => "No te ghè i permessi necessari par modificar le pagine del namespace '''$1'''.",
 'customcssjsprotected' => "No te pol mìa modificar sta pagina, parché la contien le inpostazion personali de n'altro utente.",
@@ -624,7 +625,7 @@ Con l'invio del testo te dichiari inoltre, soto la to responsabilità, che el te
 Se no te voli che i to scriti i vegna modificà sensa pietà, alora no sta inserirli qua.<br />
 Sapi che te stè prometendo che te stè inserendo un testo scrito de to pugno, o copià da na fonte de publico dominio o similarmente lìbara (varda $1 par i detagli).
 <strong>NO STA INSERIR OPERE PROTETE DA COPYRIGHT SENZA PERMESSO!</strong>',
-'longpagewarning'                  => "<strong>OCIO: Sta pàxena la xè longa $1 kilobyte; çerti browser i podarìa verghe dei problemi ne ła modifega de pàxene che se aviçina o supera i 32 KB. Valuta l'oportunità de sudivìdar ła pàxena in sezion pìassè picenine.</strong>",
+'longpagewarning'                  => "<strong>OCIO: Sta pàxena la xè longa $1 kilobyte; çerti browser i podarìa verghe dei problemi ne ła modifega de pàxene che se aviçina o supera i 32 kB. Valuta l'oportunità de sudivìdar ła pàxena in sezion pìassè picenine.</strong>",
 'longpageerror'                    => '<strong>ERROR: The text you have submitted is $1 kilobytes 
 long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</strong>',
 'readonlywarning'                  => "<strong>OCIO: El database el xe stà blocà par manutenzion, quindi no se pol salvar le modifiche in sto momento.
@@ -1408,6 +1409,7 @@ Vien considerà pagine de disanbiguazion tute quele che contien i template elenc
 'wantedcategories'        => 'Categorie richieste',
 'wantedpages'             => 'Pàxene pì richieste',
 'wantedfiles'             => 'File domandà',
+'wantedtemplates'         => 'Template richiesti',
 'mostlinked'              => 'Pàxene piassè puntà',
 'mostlinkedcategories'    => 'Categorie piassè riciamae',
 'mostlinkedtemplates'     => 'Template piassè doparà',
@@ -1531,7 +1533,7 @@ Se pol consultar anca dele altre [[{{MediaWiki:Listgrouprights-helppage}}|inform
 'mailnologintext' => 'Par inviare messagi e-mail ad altri utenti xè neçessario [[Special:UserLogin|açedere al sito]] e aver registrà un indirisso vałido ne łe proprie [[Special:Preferences|preferense]].',
 'emailuser'       => "Scrivi a l'utente",
 'emailpage'       => "Scrivi na e-mail a l'utente",
-'emailpagetext'   => 'Se sto utente el gà registrà na casela e-mail valida su le so preferense, el modulo qua soto el te consentirà de scriverghe un singolo messagio.
+'emailpagetext'   => 'Te podi usar el modulo chi soto par mandare na e-mail a sto utente.
 La e-mail che te ghè indicà ne le [[Special:Preferences|to preferense]] la vegnarà fora nel canpo "Da" de la mail, così che el destinatario el possa rispóndarte a ti diretamente.',
 'usermailererror' => "L'ogeto mail el gà restituìo l'eror:",
 'defemailsubject' => 'Messagio da {{SITENAME}}',
@@ -1550,47 +1552,49 @@ La e-mail che te ghè indicà ne le [[Special:Preferences|to preferense]] la veg
 'emailuserfooter' => 'Sta e-mail la xe stà mandà da $1 a $2 \'traverso la funsion "Manda na e-mail a l\'utente" su {{SITENAME}}.',
 
 # Watchlist
-'watchlist'            => "Pagine tegnùe d'ocio",
-'mywatchlist'          => 'osservati speciali',
-'watchlistfor'         => "(par '''$1''')",
-'nowatchlist'          => "No te ghè indicà pagine da tegner d'ocio.",
-'watchlistanontext'    => "Per vardar e modifegar l'ełenco de i osservati speciałi bisogna $1.",
-'watchnologin'         => 'Acesso non efetuà',
-'watchnologintext'     => 'Te ghè prima da far el [[Special:UserLogin|login]] par modificar la to lista de osservati speciali.',
-'addedwatch'           => 'Xontà ai tòi Osservati Speciali',
-'addedwatchtext'       => "La pàxena  \"<nowiki>\$1</nowiki>\" l'è stà xontà a la to [[Special:Watchlist|lista de osservati speciali]].
+'watchlist'                => "Pagine tegnùe d'ocio",
+'mywatchlist'              => 'osservati speciali',
+'watchlistfor'             => "(par '''$1''')",
+'nowatchlist'              => "No te ghè indicà pagine da tegner d'ocio.",
+'watchlistanontext'        => "Per vardar e modifegar l'ełenco de i osservati speciałi bisogna $1.",
+'watchnologin'             => 'Acesso non efetuà',
+'watchnologintext'         => 'Te ghè prima da far el [[Special:UserLogin|login]] par modificar la to lista de osservati speciali.',
+'addedwatch'               => 'Xontà ai tòi Osservati Speciali',
+'addedwatchtext'           => "La pàxena  \"<nowiki>\$1</nowiki>\" l'è stà xontà a la to [[Special:Watchlist|lista de osservati speciali]].
 Le future modifiche a sta pagina e a la relativa pagina de discussion le sarà elencae qui, e la paxena la vegnarà fora in '''grasseto''' ne la pàxena de le [[Special:RecentChanges|ultime modifiche]] par èssar pì façile da tegner d'ocio.
 
 Se pì avanti te vorè cavar sta articolo da la to lista de Osservati Speciali, maca \"No sta tegner d'ocio\" ne la barra dei menu.",
-'removedwatch'         => 'Cavà da la lista dei Osservati Speciali',
-'removedwatchtext'     => 'La pàxena "[[:$1]]" la xè stà cavà da ła to łista de le [[Special:Watchlist|pàxene tegnùe de ocio]].',
-'watch'                => "Tien d'ocio",
-'watchthispage'        => "Tien d'ocio sta voçe",
-'unwatch'              => "No sta tegner d'ocio",
-'unwatchthispage'      => "Desmeti de tegner d'ocio",
-'notanarticle'         => 'Sta pagina no la xè na voçe',
-'notvisiblerev'        => 'La revision la xe stà scancelà',
-'watchnochange'        => "Nissun de i to ojeti osservai l'è stà modificà nel periodo mostrà.",
-'watchlist-details'    => '{{PLURAL:$1|$1 pagina|$1 pagine}} tegnù de ocio, senza contar le pagine de discussion.',
-'wlheader-enotif'      => '* Xe ativà la notifica via e-mail.',
-'wlheader-showupdated' => "* Le pàxene che xe stà modificà da la to ultima visita le xe evidensià en '''grasseto'''",
-'watchmethod-recent'   => 'controło de łe modifeghe reçenti par i osservati speciałi',
-'watchmethod-list'     => 'controło de i osservati speciałi par modifeghe reçenti',
-'watchlistcontains'    => 'La lista de i osservati speciałi la contien {{PLURAL:$1|una pagina|$1 pagine}}.',
-'iteminvalidname'      => "Problemi con la voçe '$1', nome mìa vałido...",
-'wlnote'               => "Qua soto te cati {{PLURAL:$1|l'ultimo canbiamento|i ultimi '''$1''' canbiamenti}} ne {{PLURAL:$2|l'ultima ora|le ultime '''$2''' ore}}.",
-'wlshowlast'           => 'Mostra le ultime $1 ore $2 giòrni $3',
-'watchlist-show-bots'  => 'Mostra le modifiche dei bot',
-'watchlist-hide-bots'  => 'Scondi le modifiche dei bot',
-'watchlist-show-own'   => 'Mostra le me modifiche',
-'watchlist-hide-own'   => 'Scondi le me modifiche',
-'watchlist-show-minor' => 'Mostra le modifiche picenine',
-'watchlist-hide-minor' => 'Scondi le modifiche picenine',
-'watchlist-show-anons' => 'Fà védar le modifiche dei utenti anonimi',
-'watchlist-hide-anons' => 'Scondi le modifiche dei utenti anonimi',
-'watchlist-show-liu'   => 'Fà védar le modifiche dei utenti registrà',
-'watchlist-hide-liu'   => 'Scondi le modifiche dei utenti registrà',
-'watchlist-options'    => 'Preferense par i osservati speciali',
+'removedwatch'             => 'Cavà da la lista dei Osservati Speciali',
+'removedwatchtext'         => 'La pàxena "[[:$1]]" la xè stà cavà da ła to łista de le [[Special:Watchlist|pàxene tegnùe de ocio]].',
+'watch'                    => "Tien d'ocio",
+'watchthispage'            => "Tien d'ocio sta voçe",
+'unwatch'                  => "No sta tegner d'ocio",
+'unwatchthispage'          => "Desmeti de tegner d'ocio",
+'notanarticle'             => 'Sta pagina no la xè na voçe',
+'notvisiblerev'            => 'La revision la xe stà scancelà',
+'watchnochange'            => "Nissun de i to ojeti osservai l'è stà modificà nel periodo mostrà.",
+'watchlist-details'        => '{{PLURAL:$1|$1 pagina|$1 pagine}} tegnù de ocio, senza contar le pagine de discussion.',
+'wlheader-enotif'          => '* Xe ativà la notifica via e-mail.',
+'wlheader-showupdated'     => "* Le pàxene che xe stà modificà da la to ultima visita le xe evidensià en '''grasseto'''",
+'watchmethod-recent'       => 'controło de łe modifeghe reçenti par i osservati speciałi',
+'watchmethod-list'         => 'controło de i osservati speciałi par modifeghe reçenti',
+'watchlistcontains'        => 'La lista de i osservati speciałi la contien {{PLURAL:$1|una pagina|$1 pagine}}.',
+'iteminvalidname'          => "Problemi con la voçe '$1', nome mìa vałido...",
+'wlnote'                   => "Qua soto te cati {{PLURAL:$1|l'ultimo canbiamento|i ultimi '''$1''' canbiamenti}} ne {{PLURAL:$2|l'ultima ora|le ultime '''$2''' ore}}.",
+'wlshowlast'               => 'Mostra le ultime $1 ore $2 giòrni $3',
+'watchlist-show-bots'      => 'Mostra le modifiche dei bot',
+'watchlist-hide-bots'      => 'Scondi le modifiche dei bot',
+'watchlist-show-own'       => 'Mostra le me modifiche',
+'watchlist-hide-own'       => 'Scondi le me modifiche',
+'watchlist-show-minor'     => 'Mostra le modifiche picenine',
+'watchlist-hide-minor'     => 'Scondi le modifiche picenine',
+'watchlist-show-anons'     => 'Fà védar le modifiche dei utenti anonimi',
+'watchlist-hide-anons'     => 'Scondi le modifiche dei utenti anonimi',
+'watchlist-show-liu'       => 'Fà védar le modifiche dei utenti registrà',
+'watchlist-hide-liu'       => 'Scondi le modifiche dei utenti registrà',
+'watchlist-show-patrolled' => 'Mostra łe modifighe controłae',
+'watchlist-hide-patrolled' => 'Scondi łe modifighe controłae',
+'watchlist-options'        => 'Preferense par i osservati speciali',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Zonto ai oservati speciali...',
@@ -2585,7 +2589,7 @@ $1
 </div>',
 'trackbackremove'   => ' ([$1 Scancela])',
 'trackbacklink'     => 'Trackback',
-'trackbackdeleteok' => 'Informazion de trackback eliminà coretamente.',
+'trackbackdeleteok' => 'Informasion de trackback eliminà coretamente.',
 
 # Delete conflict
 'deletedwhileediting' => "'''Ocio''': Sta pàxena la xè stà scancełà dopo che te ghè scominzià a modificarla!",
@@ -2731,15 +2735,5 @@ Inserissi el nome del file senza el prefisso \"{{ns:image}}:\"",
 #Le linee che taca con # le xe de comento
 
 #Inserissi de sora de sta riga tuti i framenti de regex. Lassa sta riga esatamente cussita come la xe</pre>",
-
-# Special:Nuke
-'nuke'               => 'Scancelazion de massa',
-'nuke-nopages'       => 'No xe stà catà pagine nove creà da [[Special:Contributions/$1|$1]] tra le modifiche recenti.',
-'nuke-list'          => 'Le seguenti pagine le xe stà creà de recente da [[Special:Contributions/$1|$1]]; inserissi un comento e conferma la scancelazion.',
-'nuke-defaultreason' => 'Scancelazion de massa de le pagine creà da $1',
-'nuke-tools'         => "Sto strumento el permete la scancelazion in massa de le pagine creà de recente da un determinato utente o IP. Inserissi el nome utente o l'IP par la lista de le pagine da scancelar:",
-'nuke-submit-user'   => 'Và',
-'nuke-submit-delete' => 'Scancela la selezion',
-'right-nuke'         => 'Scancelassion de massa de le pagine',
 
 );

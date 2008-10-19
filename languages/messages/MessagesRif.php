@@ -6,6 +6,7 @@
  *
  * @author Agzennay
  * @author Jose77
+ * @author Urhixidur
  */
 
 $messages = array(
@@ -251,7 +252,7 @@ Ur ten-teg ca da.<br />
 tjadjid-anɣ Ɛawt ila qa d cekk ig yuran manaya, niɣ tesneɣlet-id zi ca n uɣbal nniḍn d alelli.
 <strong>UR SADDAF CA TIRRA ƔARSENT COPYRIGHTE BLA MA AD-IXES BAB-INES !</strong>',
 'longpagewarning'        => '<strong>WARNING: Tasna ya dag-s $1 kilobyte ;
-ca n imsuṭṭuyen(browsers) war zemren ca ad ẓṛegen tasniwin dag-sent 32kb niɣ ktar.
+ca n imsuṭṭuyen(browsers) war zemren ca ad ẓṛegen tasniwin dag-sent 32 kb niɣ ktar.
 ixessa ad ten tebḍid ɣar tigezmin(sections) d timeẓyanin.</strong>',
 'templatesused'          => 'Timudmiwin itwaggen di Tasna ya:',
 'templatesusedpreview'   => 'Timudmiwin igg itwasxdemen dg uzar-ascan a :',
@@ -737,8 +738,5 @@ mayn nniḍn ad itwasenfar.
 
 # Special:SpecialPages
 'specialpages' => 'Tasniwin timeẓlayin',
-
-# Special:Nuke
-'nuke-submit-user' => 'Raḥ ɣa',
 
 );

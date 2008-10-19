@@ -464,7 +464,7 @@ Truy vấn: $2',
 'sqlhidden'            => '(đã giấu truy vấn SQL)',
 'cascadeprotected'     => 'Trang này đã bị khóa không cho sửa đổi, vì nó được nhúng vào {{PLURAL:$1|trang|những trang}} đã bị khóa với tùy chọn “khóa theo tầng” được kích hoạt:
 $2',
-'namespaceprotected'   => "Bạn không được cấp quyền sửa các trang trong không gian '''$1'''.",
+'namespaceprotected'   => "Bạn không có quyền sửa các trang trong không gian tên '''$1'''.",
 'customcssjsprotected' => 'Bạn không có quyền sửa đổi trang này vì nó chứa các tùy chọn cá nhân của một thành viên khác.',
 'ns-specialprotected'  => 'Không thể sửa chữa các trang trong không gian tên {{ns:special}}.',
 'titleprotected'       => "Tựa đề này đã bị [[User:$1|$1]] khóa không cho tạo ra.
@@ -1510,6 +1510,7 @@ Có [[Special:WhatLinksHere/$2|danh sách đầy đủ ở đây]].',
 'wantedcategories'        => 'Thể loại cần thiết',
 'wantedpages'             => 'Trang cần viết',
 'wantedfiles'             => 'Tập tin cần thiết',
+'wantedtemplates'         => 'Tiêu bản cần viết nhất',
 'mostlinked'              => 'Trang được liên kết đến nhiều nhất',
 'mostlinkedcategories'    => 'Thể loại có nhiều trang nhất',
 'mostlinkedtemplates'     => 'Tiêu bản được liên kết đến nhiều nhất',
@@ -1632,7 +1633,7 @@ Có [[{{MediaWiki:Listgrouprights-helppage}}|thông tin thêm]] về từng nhó
 'mailnologintext' => 'Bạn phải [[Special:UserLogin|đăng nhập]] và khai báo một địa chỉ thư điện tử hợp lệ trong phần [[Special:Preferences|tùy chọn cá nhân]] thì mới gửi được thư cho người khác.',
 'emailuser'       => 'Gửi thư cho người này',
 'emailpage'       => 'Gửi thư',
-'emailpagetext'   => 'Nếu người dùng này đã cung cấp địa chỉ thư điện tử hợp lệ tại tùy chọn cá nhân, mẫu dưới đây sẽ gửi một bức thư điện tử tới người đó.
+'emailpagetext'   => 'Mẫu dưới đây sẽ gửi một bức thư điện tử tới người dùng này.
 Địa chỉ thư điện tử mà bạn đã cung cấp trong [[Special:Preferences|tùy chọn cá nhân của mình]] sẽ xuất hiện trong phần địa chỉ “Người gửi” của bức thư, do đó người nhận sẽ có thể trả lời trực tiếp cho bạn.',
 'usermailererror' => 'Lỗi gửi thư:',
 'defemailsubject' => 'thư gửi từ {{SITENAME}}',
@@ -1895,7 +1896,7 @@ Xem nhật trình xóa và phục hồi các trang gần đây tại [[Special:L
 $1',
 
 # Namespace form on various pages
-'namespace'      => 'Không gian:',
+'namespace'      => 'Không gian tên:',
 'invert'         => 'Đảo ngược lựa chọn',
 'blanknamespace' => '(Chính)',
 
@@ -2866,15 +2867,5 @@ Hãy cho vào tên của tập tin, trừ tiền tố “{{ns:image}}:”.',
 #Các dòng chú thích bắt đầu với dấu thăng (#).
 
 #Hãy cho vào các mảnh biểu thức chính quy ở trên dòng này. Xin để yên dòng này.</pre>',
-
-# Special:Nuke
-'nuke'               => 'Xóa hàng loạt',
-'nuke-nopages'       => 'Không có trang mới do [[Special:Contributions/$1|$1]] tạo ra trong thay đổi gần đây.',
-'nuke-list'          => 'Các trang sau do [[Special:Contributions/$1|$1]] tạo ra gần đây; hãy ghi lý do và nhấn nút để xóa tất cả những trang này.',
-'nuke-defaultreason' => 'Xóa hàng loạt các trang do $1 tạo ra',
-'nuke-tools'         => 'Công cụ này để xóa hàng lạt các trang do một người dùng tạo ra gần đây. Hãy cung cấp tên hiệu của thành viên hay địa chỉ IP của người dùng để tìm kiếm những trang để xóa:',
-'nuke-submit-user'   => 'Tìm kiếm',
-'nuke-submit-delete' => 'Xóa lựa chọn',
-'right-nuke'         => 'Xóa trang hàng loạt',
 
 );

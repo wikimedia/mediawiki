@@ -2691,14 +2691,4 @@ Mana “{{ns:image}}:” k'askaqniyuq willañiqip sutinta yaykuchiy.",
 
 #Tukuy regex rakikunata kay siq'ip hananman churay. Kay sinruta kay hinallatam saqiy</pre>",
 
-# Special:Nuke
-'nuke'               => 'Tawqa qulluy',
-'nuke-nopages'       => "Manam kanchu [[Special:Contributions/$1|$1]]-pa musuqta kamarisqan p'anqakuna ñaqha hukchasqakunapi.",
-'nuke-list'          => "Kay qatiq p'anqakunataqa [[Special:Contributions/$1|$1]] ruraqmi kamarirqun; imarayku nispa butunta ñit'iy tawqalla qullunapaq.",
-'nuke-defaultreason' => "$1-pa rurasqan p'anqakunata tawqalla qulluy",
-'nuke-tools'         => "Kay llamk'anawanqa huk ruraqpa kamarisqan p'anqakunata tawqalla qulluytam atinki. Ruraqpa sutinta icha IP huchhanta yaykuchiy qulluna p'anqakunata rikunaykipaq.",
-'nuke-submit-user'   => 'Riy',
-'nuke-submit-delete' => 'Akllasqata qulluy',
-'right-nuke'         => "Tawqa qulluna p'anqakuna",
-
 );

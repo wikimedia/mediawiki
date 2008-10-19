@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(傳統字)‬)
+/** Traditional Chinese (‪中文(繁體)‬)
  *
  * @ingroup Language
  * @file
@@ -1577,50 +1577,50 @@ Template:消除歧義',
 'emailuserfooter' => '這封電郵是由$1寄給$2經{{SITENAME}}的「電郵用戶」功能發出的。',
 
 # Watchlist
-'watchlist'            => '監視列表',
-'mywatchlist'          => '我的監視列表',
-'watchlistfor'         => "('''$1'''的監視列表)",
-'nowatchlist'          => '您的監視列表為空。',
-'watchlistanontext'    => '請$1以檢視或編輯您的監視列表。',
-'watchnologin'         => '未登入',
-'watchnologintext'     => '您必須先[[Special:UserLogin|登入]]
+'watchlist'                => '監視列表',
+'mywatchlist'              => '我的監視列表',
+'watchlistfor'             => "('''$1'''的監視列表)",
+'nowatchlist'              => '您的監視列表為空。',
+'watchlistanontext'        => '請$1以檢視或編輯您的監視列表。',
+'watchnologin'             => '未登入',
+'watchnologintext'         => '您必須先[[Special:UserLogin|登入]]
 才能更改您的監視列表',
-'addedwatch'           => '加入到監視列表',
-'addedwatchtext'       => "頁面\"[[:\$1]]\"已經被加入到您的[[Special:Watchlist|監視清單]]中。
+'addedwatch'               => '加入到監視列表',
+'addedwatchtext'           => "頁面\"[[:\$1]]\"已經被加入到您的[[Special:Watchlist|監視清單]]中。
 將來有關此頁面及其討論頁的任何修改將會在那裡列出，
 而且還會在[[Special:RecentChanges|最近更改]]中
 以'''粗體'''形式列出以使起更容易識別。",
-'removedwatch'         => '已停止監視',
-'removedwatchtext'     => '頁面「<nowiki>$1</nowiki>」已經從[[Special:Watchlist|您的監視頁面]]中移除。',
-'watch'                => '監視',
-'watchthispage'        => '監視本頁',
-'unwatch'              => '取消監視',
-'unwatchthispage'      => '停止監視',
-'notanarticle'         => '不是頁面',
-'notvisiblerev'        => '修訂版本已經刪除',
-'watchnochange'        => '在顯示的時間段內您所監視的頁面沒有更改。',
-'watchlist-details'    => '不包含討論頁，有 $1 頁在您的監視列表上。',
-'wlheader-enotif'      => '* 已經啟動電子郵件通知功能。',
-'wlheader-showupdated' => "* 在你上次檢視後有被修改過的頁面會顯示為'''粗體'''",
-'watchmethod-recent'   => '檢查被監視頁面的最近編輯',
-'watchmethod-list'     => '檢查最近編輯的被監視頁面',
-'watchlistcontains'    => '您的監視列表包含$1個頁面。',
-'iteminvalidname'      => "頁面'$1'錯誤，無效命名...",
-'wlnote'               => '以下是最近<b>$2</b>小時內的最後$1次修改。',
-'wlshowlast'           => '顯示最近$1小時；$2天；$3的修改。',
-'watchlist-show-bots'  => '顯示機器人的編輯',
-'watchlist-hide-bots'  => '隱藏機器人的編輯',
-'watchlist-show-own'   => '顯示我的修改',
-'watchlist-hide-own'   => '隱藏我的修改',
-'watchlist-show-minor' => '顯示小修改',
-'watchlist-hide-minor' => '隱藏小修改',
-'watchlist-show-anons' => '顯示匿名用戶的編輯',
-'watchlist-hide-anons' => '隱藏匿名用戶的編輯',
-'watchlist-show-liu'   => '顯示已登入用戶的編輯',
-'watchlist-hide-liu'   => '隱藏已登入用戶的編輯',
+'removedwatch'             => '已停止監視',
+'removedwatchtext'         => '頁面「<nowiki>$1</nowiki>」已經從[[Special:Watchlist|您的監視頁面]]中移除。',
+'watch'                    => '監視',
+'watchthispage'            => '監視本頁',
+'unwatch'                  => '取消監視',
+'unwatchthispage'          => '停止監視',
+'notanarticle'             => '不是頁面',
+'notvisiblerev'            => '修訂版本已經刪除',
+'watchnochange'            => '在顯示的時間段內您所監視的頁面沒有更改。',
+'watchlist-details'        => '不包含討論頁，有 $1 頁在您的監視列表上。',
+'wlheader-enotif'          => '* 已經啟動電子郵件通知功能。',
+'wlheader-showupdated'     => "* 在你上次檢視後有被修改過的頁面會顯示為'''粗體'''",
+'watchmethod-recent'       => '檢查被監視頁面的最近編輯',
+'watchmethod-list'         => '檢查最近編輯的被監視頁面',
+'watchlistcontains'        => '您的監視列表包含$1個頁面。',
+'iteminvalidname'          => "頁面'$1'錯誤，無效命名...",
+'wlnote'                   => '以下是最近<b>$2</b>小時內的最後$1次修改。',
+'wlshowlast'               => '顯示最近$1小時；$2天；$3的修改。',
+'watchlist-show-bots'      => '顯示機器人的編輯',
+'watchlist-hide-bots'      => '隱藏機器人的編輯',
+'watchlist-show-own'       => '顯示我的修改',
+'watchlist-hide-own'       => '隱藏我的修改',
+'watchlist-show-minor'     => '顯示小修改',
+'watchlist-hide-minor'     => '隱藏小修改',
+'watchlist-show-anons'     => '顯示匿名用戶的編輯',
+'watchlist-hide-anons'     => '隱藏匿名用戶的編輯',
+'watchlist-show-liu'       => '顯示已登入用戶的編輯',
+'watchlist-hide-liu'       => '隱藏已登入用戶的編輯',
 'watchlist-show-patrolled' => '顯示曾經巡查過的編輯',
 'watchlist-hide-patrolled' => '隱藏曾經巡查過的編輯',
-'watchlist-options'    => '監視列表選項',
+'watchlist-options'        => '監視列表選項',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => '正在監視...',
@@ -1969,9 +1969,9 @@ $1',
 'databasenotlocked'   => '資料庫沒有鎖定。',
 
 # Move page
-'move-page'               => '移動$1',
-'move-page-legend'        => '移動頁面',
-'movepagetext'            => "用下面的表單來重新命名一個頁面，並將其修訂歷史同時移動到新頁面。
+'move-page'                 => '移動$1',
+'move-page-legend'          => '移動頁面',
+'movepagetext'              => "用下面的表單來重新命名一個頁面，並將其修訂歷史同時移動到新頁面。
 老的頁面將成為新頁面的重定向頁。
 您可以自動地更新指到原標題的重定向。
 如果您選擇不去做的話，請檢查[[Special:DoubleRedirects|雙重]]或[[Special:BrokenRedirects|損壞重定向]]連結。
@@ -1985,57 +1985,57 @@ $1',
 <b>警告！</b>
 對一個經常被訪問的頁面而言這可能是一個重大與唐突的更改；
 請在行動前先了結其所可能帶來的後果。",
-'movepagetalktext'        => "有關的對話頁（如果有的話）將被自動與該頁面一起移動，'''除非'''：
+'movepagetalktext'          => "有關的對話頁（如果有的話）將被自動與該頁面一起移動，'''除非'''：
 *您將頁面移動到不同的名字空間；
 *新頁面已經有一個包含內容的對話頁，或者
 *您不勾選下面的覆選框。
 
 在這些情況下，您在必要時必須手工移動或合併頁面。",
-'movearticle'             => '移動頁面:',
-'movenologin'             => '未登入',
-'movenologintext'         => '您必須是一名登記用戶並且[[Special:UserLogin|登入]]
+'movearticle'               => '移動頁面:',
+'movenologin'               => '未登入',
+'movenologintext'           => '您必須是一名登記用戶並且[[Special:UserLogin|登入]]
 後才可移動一個頁面。',
-'movenotallowed'          => '您並沒有許可權去移動頁面。',
+'movenotallowed'            => '您並沒有許可權去移動頁面。',
 'cant-move-user-page'       => '您並沒有許可權去移動用戶頁面（它的字頁面除外）。',
 'cant-move-to-user-page'    => '您並沒有許可權去移動到用戶頁面（它的字頁面除外）。',
-'newtitle'                => '新標題:',
-'move-watch'              => '監視此頁',
-'movepagebtn'             => '移動頁面',
-'pagemovedsub'            => '移動成功',
-'movepage-moved'          => "<big>'''「$1」已經移動到「$2」'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'           => '該名字的頁面已經存在，或者您選擇的名字無效。請再選一個名字。',
-'cantmove-titleprotected' => '您不可以移動這個頁面到這個位置，因為該新標題已經被保護以防止建立。',
-'talkexists'              => '頁面本身移動成功，
+'newtitle'                  => '新標題:',
+'move-watch'                => '監視此頁',
+'movepagebtn'               => '移動頁面',
+'pagemovedsub'              => '移動成功',
+'movepage-moved'            => "<big>'''「$1」已經移動到「$2」'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'             => '該名字的頁面已經存在，或者您選擇的名字無效。請再選一個名字。',
+'cantmove-titleprotected'   => '您不可以移動這個頁面到這個位置，因為該新標題已經被保護以防止建立。',
+'talkexists'                => '頁面本身移動成功，
 但是由於新標題下已經有對話頁存在，所以對話頁無法移動。請手工合併兩個頁面。',
-'movedto'                 => '移動到',
-'movetalk'                => '如果可能的話，同時移動對話頁。',
-'move-subpages'           => '如果可能的話，同時移動所有的子頁面',
-'move-talk-subpages'      => '如果可能的話，同時移動所有的子對話頁面',
-'movepage-page-exists'    => '頁面$1已經存在，不可以自動地覆寫。',
-'movepage-page-moved'     => '頁面$1已經移動到$2。',
-'movepage-page-unmoved'   => '頁面$1不可以移動到$2。',
-'movepage-max-pages'      => '最多有$1個頁面已經移動同時不可以自動地再移動更多。',
-'1movedto2'               => '[[$1]]移動到[[$2]]',
-'1movedto2_redir'         => '[[$1]]透過重定向移動到[[$2]]',
-'movelogpage'             => '移動日誌',
-'movelogpagetext'         => '以下是已經移動的頁面清單:',
-'movereason'              => '原因',
-'revertmove'              => '恢復該移動',
-'delete_and_move'         => '刪除並移動',
-'delete_and_move_text'    => '==需要刪除==
+'movedto'                   => '移動到',
+'movetalk'                  => '如果可能的話，同時移動對話頁。',
+'move-subpages'             => '如果可能的話，同時移動所有的子頁面',
+'move-talk-subpages'        => '如果可能的話，同時移動所有的子對話頁面',
+'movepage-page-exists'      => '頁面$1已經存在，不可以自動地覆寫。',
+'movepage-page-moved'       => '頁面$1已經移動到$2。',
+'movepage-page-unmoved'     => '頁面$1不可以移動到$2。',
+'movepage-max-pages'        => '最多有$1個頁面已經移動同時不可以自動地再移動更多。',
+'1movedto2'                 => '[[$1]]移動到[[$2]]',
+'1movedto2_redir'           => '[[$1]]透過重定向移動到[[$2]]',
+'movelogpage'               => '移動日誌',
+'movelogpagetext'           => '以下是已經移動的頁面清單:',
+'movereason'                => '原因',
+'revertmove'                => '恢復該移動',
+'delete_and_move'           => '刪除並移動',
+'delete_and_move_text'      => '==需要刪除==
 
 目標頁面"[[:$1]]"已經存在。你確認需要刪除原頁面並以進行移動嗎？',
-'delete_and_move_confirm' => '是的，刪除此頁面',
-'delete_and_move_reason'  => '刪除以便移動',
-'selfmove'                => '原始標題與目標標題相同，您不能移動一頁覆蓋本身。',
+'delete_and_move_confirm'   => '是的，刪除此頁面',
+'delete_and_move_reason'    => '刪除以便移動',
+'selfmove'                  => '原始標題與目標標題相同，您不能移動一頁覆蓋本身。',
 'immobile-source-namespace' => '不可以在空間名「$1」上移動頁面',
 'immobile-target-namespace' => '不可以將頁面移動到「$1」空間名中',
 'immobile-source-page'      => '這個頁面不能移動。',
 'immobile-target-page'      => '無法移動至目標標題中。',
-'imagenocrossnamespace'   => '不可以移動檔案到非檔案名字空間',
-'imagetypemismatch'       => '該新副檔名不匹配它的類型',
-'imageinvalidfilename'    => '目標檔案名稱是無效的',
-'fix-double-redirects'    => '更新指到原先標題的任何重新定向',
+'imagenocrossnamespace'     => '不可以移動檔案到非檔案名字空間',
+'imagetypemismatch'         => '該新副檔名不匹配它的類型',
+'imageinvalidfilename'      => '目標檔案名稱是無效的',
+'fix-double-redirects'      => '更新指到原先標題的任何重新定向',
 'move-leave-redirect'       => '留下重新定向',
 
 # Export

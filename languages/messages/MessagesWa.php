@@ -5,6 +5,7 @@
  * @file
  *
  * @author Srtxg
+ * @author Urhixidur
  * @author לערי ריינהארט
  */
 
@@ -522,7 +523,7 @@ Vos nos acertinez eto ki vos avoz scrît l' tecse vos-minme, oudonbén l' avoz c
 <strong>N' EVOYÎZ NÉN DES TECSES DIZO ABONDROETS SINS PERMISSION!</strong>",
 'longpagewarning'           => "<strong>ASTEME: Cisse pådje fwait $1 kilo-octets; des
 betchteus waibes k' i gn a polèt aveut des rujhes po-z aspougnî
-des pådjes k' aprepièt ou di pus di 32Ko.
+des pådjes k' aprepièt ou di pus di 32 ko.
 Vos dvrîz tuzer a pårti l' pådje e pus ptits bokets.</strong>",
 'longpageerror'             => "<strong>AROKE: Li tecse ki vos avoz evoyî fwait di pus d' $1 kilo-octets, çou k' est pus ki l' macsimom di $2 kilo-octets. C' est nén possible del schaper sol sierveu.</strong>",
 'readonlywarning'           => "<strong>ASTEME: On-z overe sol båze di dnêyes pol moumint, ey elle a stî metowe e mode seulmint-lére.

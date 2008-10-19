@@ -821,7 +821,7 @@ Jetz kanns De Ding Änderunge nit mieh avspeichere.
 Dun se bei Dir om Rechner fasshalde un versök et späder noch ens.
 
 Nävvebei, dä Datenbank-Köbes hät för et Sperre och ene Jrund aanjejovve: $1',
-'protectedpagewarning'             => "'''Opjepass:''' Die Sigg hee es jäje Veränderunge jeschötz. Nor de Wiki-Köbese künne se ändere.</strong>",
+'protectedpagewarning'             => '<strong>Opjepass: Die Sigg hee es jäje Veränderunge jeschötz. Nor de Wiki-Köbese künne se ändere.</strong>',
 'semiprotectedpagewarning'         => "'''Opjepass:''' Die Sigg hee es halv jesperrt, wie mer sage, dat heiß, Do muss aanjemeldt un enjelogg sin, wann De dran ändere wells.",
 'cascadeprotectedwarning'          => "'''Opjepaß:''' Die Sigg es jeschöz, un nur de Wiki-Köbesse künne se ändere. Se es en en Schotz-Kaskad enjebonge, zosamme met dä {{PLURAL:$1|Sigg|Sigge}}:",
 'titleprotectedwarning'            => '<strong> <span style="text-transform:uppercase"> Opjepaß! </span> Di Sigg hee is jesperrt woode. Bloß bestemmpte Metmaacher dörve di Sigg neu aanläje.</strong>',
@@ -3103,21 +3103,5 @@ Der Name moß ohne der Försatz „{{ns:image}}:“ aanjejovve wääde.',
 # Treffer: Dat Beld weed jezeich. Söns: ene Link weed aanjezeich.
 # Reije met # am Aanfang, sen bloß Kommenta
 # Donn de Brochstöck hee noh endrare, un di Reih sellver nit ändere</pre>',
-
-# Special:Nuke
-'nuke'               => 'Sigge fottschmieße ang Mass',
-'nuke-nopages'       => 'Mer han kein neu Sigge fum [[Special:Contributions/$1|$1]] en de [[Special:RecentChanges|{{lcfirst:{{int:Recentchanges}}}}]].',
-'nuke-list'          => 'Hee di Sigge sen fum „[[Special:Contributions/$1|$1]]“ neu
-aanjelaat woode. Jiff enne Jrond för et Fottschmieße aan,
-un dann donn der Knopp zom Fottschmieße dröcke.',
-'nuke-defaultreason' => 'Fum $1 neu aanjelaate Sigge ang Block fottschmieße',
-'nuke-tools'         => 'Di Sigg hee hellef Der, angmaß Sigge fottzeschmieße,
-di ene bestemmpte enjeloggte udder namelose Metmaacher
-aanjalaat hät.
-Jif dä Metmaacher-Name udder de IP-Address dofun aan,
-öm en Liß met Sigge fun däm ze krijje.',
-'nuke-submit-user'   => 'Leß holle',
-'nuke-submit-delete' => 'Donn de üßjewählte Sigge fottschmieße!',
-'right-nuke'         => 'Massich Sigge Fottschmieße',
 
 );
