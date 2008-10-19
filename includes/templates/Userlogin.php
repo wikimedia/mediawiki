@@ -16,7 +16,7 @@ class UserloginTemplate extends QuickTemplate {
 ?>
 	<div class="<?php $this->text('messagetype') ?>box">
 		<?php if ( $this->data['messagetype'] == 'error' ) { ?>
-			<h2><?php $this->msg('loginerror') ?>:</h2>
+			<h2><?php $this->msg('loginerror') ?></h2>
 		<?php } ?>
 		<?php $this->html('message') ?>
 	</div>
@@ -113,7 +113,7 @@ class UsercreateTemplate extends QuickTemplate {
 ?>
 	<div class="<?php $this->text('messagetype') ?>box">
 		<?php if ( $this->data['messagetype'] == 'error' ) { ?>
-			<h2><?php $this->msg('loginerror') ?>:</h2>
+			<h2><?php $this->msg('loginerror') ?></h2>
 		<?php } ?>
 		<?php $this->html('message') ?>
 	</div>
