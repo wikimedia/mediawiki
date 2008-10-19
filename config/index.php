@@ -1947,7 +1947,7 @@ function printListItem( $item ) {
 }
 
 # Determine a suitable value for $wgShellLocale
-function getShellLocale( $wikiLanguage ) {
+function getShellLocale( $wikiLang ) {
 	# Give up now if we're in safe mode or open_basedir
 	# It's theoretically possible but tricky to work with
 	if ( wfIniGetBool( "safe_mode" ) || ini_get( 'open_basedir' ) ) {
