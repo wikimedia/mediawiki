@@ -15,6 +15,27 @@
  * @author לערי ריינהארט
  */
 
+$namespaceNames = array(
+	NS_MEDIA          => 'Медија',
+	NS_SPECIAL        => 'Специјални',
+	NS_MAIN           => '',
+	NS_TALK           => 'Разговор',
+	NS_USER           => 'Корисник',
+	NS_USER_TALK      => 'Разговор_со_корисник',
+	# NS_PROJECT set by $wgMetaNamespace
+	NS_PROJECT_TALK   => 'Разговор_за_$1',
+	NS_IMAGE          => 'Слика',
+	NS_IMAGE_TALK     => 'Разговор_за_слика',
+	NS_MEDIAWIKI      => 'МедијаВики',
+	NS_MEDIAWIKI_TALK => 'Разговор_за_МедијаВики',
+	NS_TEMPLATE       => 'Шаблон',
+	NS_TEMPLATE_TALK  => 'Разговор_за_шаблон',
+	NS_HELP           => 'Помош',
+	NS_HELP_TALK      => 'Разговор_за_помош',
+	NS_CATEGORY       => 'Категорија',
+	NS_CATEGORY_TALK  => 'Разговор_за_категорија',
+);
+
 $skinNames = array(
 	'standard'    => 'Класика',
 	'nostalgia'   => 'Носталгија',
@@ -22,6 +43,34 @@ $skinNames = array(
 	'monobook'    => 'Monobook',
 	'myskin'      => 'Моја маска',
 	'chick'       => 'Шик'
+);
+
+$specialPageAliases = array(
+	'DoubleRedirects'           => array( 'ДвојниПренасочувања' ),
+	'BrokenRedirects'           => array( 'ПрекинатиПренасочувања' ),
+	'Disambiguations'           => array( 'Појаснувања' ),
+	'Userlogin'                 => array( 'Најавување' ),
+	'Userlogout'                => array( 'Одјавување' ),
+	'CreateAccount'             => array( 'КреирајКирисничкаСметка' ),
+	'Preferences'               => array( 'Нагодувања' ),
+	'Watchlist'                 => array( 'ЛистаНаНабљудувања' ),
+	'Recentchanges'             => array( 'СкорешниПромени' ),
+	'Upload'                    => array( 'Подигнување' ),
+	'Imagelist'                 => array( 'ЛистаНаСлики' ),
+	'Newimages'                 => array( 'НовиСлики' ),
+	'Listusers'                 => array( 'ЛистаНаКорисници' ),
+	'Statistics'                => array( 'Статистики' ),
+	'Randompage'                => array( 'Случјана', 'СлучјанаСтраница' ),
+	'Lonelypages'               => array( 'ОсамениСтраници' ),
+	'Uncategorizedpages'        => array( 'НекатегоризираниСтраници' ),
+	'Uncategorizedcategories'   => array( 'НекатегоризираниКатегории' ),
+	'Uncategorizedimages'       => array( 'НекатегоризираниСлики' ),
+	'Uncategorizedtemplates'    => array( 'НекатегоризираниШаблони' ),
+	'Unusedcategories'          => array( 'НеискористениКатегории' ),
+	'Unusedimages'              => array( 'НеискористениСлики' ),
+	'Wantedpages'               => array( 'БараниСтраници', 'ПрекинатиВрски' ),
+	'Wantedcategories'          => array( 'БараниКатегории' ),
+	'Wantedfiles'               => array( 'БараниПодатотеки' ),
 );
 
 $magicWords = array(
@@ -59,27 +108,6 @@ $magicWords = array(
 	'notitleconvert'        => array( 0, '__NOTITLECONVERT__', '__NOTC__'),
 	'nocontentconvert'      => array( 0, '__NOCONTENTCONVERT__', '__NOCC__'),
 	'currentweek'           => array( 1, 'CURRENTWEEK', 'СЕГАШНАСЕДМИЦА'),
-);
-
-$namespaceNames = array(
-	NS_MEDIA          => 'Медија',
-	NS_SPECIAL        => 'Специјални',
-	NS_MAIN           => '',
-	NS_TALK           => 'Разговор',
-	NS_USER           => 'Корисник',
-	NS_USER_TALK      => 'Разговор_со_корисник',
-	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK   => 'Разговор_за_$1',
-	NS_IMAGE          => 'Слика',
-	NS_IMAGE_TALK     => 'Разговор_за_слика',
-	NS_MEDIAWIKI      => 'МедијаВики',
-	NS_MEDIAWIKI_TALK => 'Разговор_за_МедијаВики',
-	NS_TEMPLATE       => 'Шаблон',
-	NS_TEMPLATE_TALK  => 'Разговор_за_шаблон',
-	NS_HELP           => 'Помош',
-	NS_HELP_TALK      => 'Разговор_за_помош',
-	NS_CATEGORY       => 'Категорија',
-	NS_CATEGORY_TALK  => 'Разговор_за_категорија',
 );
 
 $linkTrail = '/^([a-zабвгдѓежзѕијклљмнњопрстќуфхцчџш]+)(.*)$/sDu';

@@ -7,19 +7,6 @@
  * @author Ahmed-Najib-Biabani-Ibrahimkhel
  */
 
-$specialPageAliases = array(
-	'Shortpages'                => array( 'لنډ_مخونه' ),
-	'Longpages'                 => array( 'اوږده_مخونه' ),
-	'Newpages'                  => array( 'نوي_مخونه' ),
-	'Protectedpages'            => array( 'ژغورلي_مخونه' ),
-	'Protectedtitles'           => array( 'ژغورلي_سرليکونه' ),
-	'Allpages'                  => array( 'ټول_مخونه' ),
-	'Categories'                => array( 'وېشنيزې' ),
-	'Mypage'                    => array( 'زما_پاڼه' ),
-	'Search'                    => array( 'لټون' ),
-	'LinkSearch'                => array( 'د تړنې پلټنه' ),
-);
-
 $skinNames = array(
 	'standard'    => 'کلاسيک',
 	'nostalgia'   => 'نوستالژي',
@@ -49,6 +36,43 @@ $namespaceNames = array(
 	NS_HELP_TALK      => 'د_لارښود_خبرې_اترې',
 	NS_CATEGORY       => 'وېشنيزه',
 	NS_CATEGORY_TALK  => 'د_وېشنيزې_خبرې_اترې',
+);
+
+$specialPageAliases = array(
+	'Userlogin'                 => array( 'ننوتل' ),
+	'Userlogout'                => array( 'وتل' ),
+	'CreateAccount'             => array( 'کارن-حساب جوړول' ),
+	'Preferences'               => array( 'غوره توبونه' ),
+	'Watchlist'                 => array( 'کتلی لړليک' ),
+	'Recentchanges'             => array( 'اوسني بدلونونه' ),
+	'Upload'                    => array( 'پورته کول' ),
+	'Imagelist'                 => array( 'د انځورونو لړليک' ),
+	'Newimages'                 => array( 'نوي انځورونه' ),
+	'Listusers'                 => array( 'د کارونکو لړليک' ),
+	'Randompage'                => array( 'ناټاکلی، ناټاکلی مخ' ),
+	'Lonelypages'               => array( 'يتيم مخونه' ),
+	'Shortpages'                => array( 'لنډ مخونه' ),
+	'Longpages'                 => array( 'اوږده مخونه' ),
+	'Newpages'                  => array( 'نوي مخونه' ),
+	'Ancientpages'              => array( 'لرغوني مخونه' ),
+	'Protectedpages'            => array( 'ژغورلي مخونه' ),
+	'Protectedtitles'           => array( 'ژغورلي سرليکونه' ),
+	'Allpages'                  => array( 'ټول مخونه' ),
+	'Specialpages'              => array( 'ځانګړي مخونه' ),
+	'Contributions'             => array( 'ونډې' ),
+	'Categories'                => array( 'وېشنيزې' ),
+	'Export'                    => array( 'صادرول' ),
+	'Version'                   => array( 'بڼه' ),
+	'Allmessages'               => array( 'ټول-پيغامونه' ),
+	'Log'                       => array( 'يادښتونه، يادښت' ),
+	'Undelete'                  => array( 'ناړنګول' ),
+	'Mypage'                    => array( 'زما پاڼه' ),
+	'Mytalk'                    => array( 'زما خبرې اترې' ),
+	'Mycontributions'           => array( 'زماونډې' ),
+	'Popularpages'              => array( 'نامتومخونه' ),
+	'Search'                    => array( 'لټون' ),
+	'LinkSearch'                => array( 'د تړنې پلټنه' ),
+	'DeletedContributions'      => array( 'ړنګې شوي ونډې' ),
 );
 
 $magicWords = array(

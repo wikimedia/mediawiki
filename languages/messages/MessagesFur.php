@@ -84,7 +84,6 @@ $specialPageAliases = array(
 	'Booksources'               => array( 'RicercjeISBN' ),
 	'Categories'                => array( 'Categoriis' ),
 	'Export'                    => array( 'Espuarte' ),
-	'Version'                   => array( 'Version' ),
 	'Allmessages'               => array( 'Messaçs' ),
 	'Log'                       => array( 'Regjistri', 'Regjistris' ),
 	'Blockip'                   => array( 'BlocheIP' ),

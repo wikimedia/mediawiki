@@ -85,6 +85,7 @@ $specialPageAliases = array(
 	'Wantedpages'               => array( 'Paginae desideratae', 'Nexus fracti' ),
 	'Wantedcategories'          => array( 'Categoriae desideratae' ),
 	'Wantedfiles'               => array( 'Fasciculi desiderati', 'Imagines desideratae' ),
+	'Wantedtemplates'           => array( 'Formulae desideratae' ),
 	'Mostlinked'                => array( 'Paginae maxime annexae' ),
 	'Mostlinkedcategories'      => array( 'Categoriae maxime annexae' ),
 	'Mostlinkedtemplates'       => array( 'Formulae maxime annexae' ),

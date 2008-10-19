@@ -28,6 +28,12 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK  => 'መደብ_ውይይት',
 );
 
+$specialPageAliases = array(
+	'Shortpages'                => array( 'አጫጭር_ገጾች' ),
+	'Longpages'                 => array( 'ረጃጅም_ገጾች' ),
+	'Newpages'                  => array( 'አዳዲስ_ገጾች' ),
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'በመያያዣ ስር አስምር',

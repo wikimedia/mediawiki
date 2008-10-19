@@ -10,6 +10,11 @@
 
 $fallback = 'sq';
 
+$specialPageAliases = array(
+	'Popularpages'              => array( 'Faqe të famshme' ),
+	'Search'                    => array( 'Kërko' ),
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Nënvizoji lidhjet',

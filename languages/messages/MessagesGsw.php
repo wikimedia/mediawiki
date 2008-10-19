@@ -14,6 +14,11 @@
  */
 
 $fallback = 'de';
+
+$specialPageAliases = array(
+	'Userlogin'                 => array( 'Amälde' ),
+);
+
 $linkTrail = '/^([äöüßa-z]+)(.*)$/sDu';
 
 $messages = array(

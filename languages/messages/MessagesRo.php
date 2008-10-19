@@ -58,26 +58,88 @@ $namespaceNames = array(
 );
 
 $specialPageAliases = array(
-	'DoubleRedirects'           => array( 'Redirectări_duble' ),
-	'BrokenRedirects'           => array( 'Redirectări_invalide' ),
+	'DoubleRedirects'           => array( 'Redirectări duble' ),
+	'BrokenRedirects'           => array( 'Redirectări invalide' ),
 	'Disambiguations'           => array( 'Dezambiguizări' ),
-	'Userlogin'                 => array( 'Conectare', 'Autentificare' ),
-	'Userlogout'                => array( 'Deconectare', 'Ieşire' ),
+	'Userlogin'                 => array( 'Autentificare' ),
+	'Userlogout'                => array( 'Ieşire' ),
 	'CreateAccount'             => array( 'Înregistrare' ),
 	'Preferences'               => array( 'Preferinţe' ),
-	'Watchlist'                 => array( 'Articole_urmărite', 'Pagini_urmărite' ),
-	'Recentchanges'             => array( 'Schimbări_recente' ),
-	'Upload'                    => array( 'Încarcă', 'Încărcare' ),
-	'Imagelist'                 => array( 'Listă_imagini', 'Lista_imaginilor' ),
-	'Newimages'                 => array( 'Imagini_noi', 'ImaginiNoi' ),
-	'Listusers'                 => array( 'Listă_utilizatori' ),
-	'Listgrouprights'           => array( 'Listă_drepturi_grup' ),
+	'Watchlist'                 => array( 'Pagini urmărite' ),
+	'Recentchanges'             => array( 'Schimbări recente' ),
+	'Upload'                    => array( 'Încărcare' ),
+	'Imagelist'                 => array( 'Listă imagini' ),
+	'Newimages'                 => array( 'Imagini noi' ),
+	'Listusers'                 => array( 'Listă utilizatori' ),
+	'Listgrouprights'           => array( 'Listă drepturi grup' ),
 	'Statistics'                => array( 'Statistici' ),
-	'Randompage'                => array( 'Aleatoriu', 'PaginăAleatorie' ),
-	'Lonelypages'               => array( 'Pagini_orfane', 'PaginiOrfane' ),
-	'Uncategorizedpages'        => array( 'PaginiNecategorizate' ),
-	'Uncategorizedcategories'   => array( 'CategoriiNecategorizate' ),
-	'Uncategorizedimages'       => array( 'ImaginiNecategorizate' ),
+	'Randompage'                => array( 'Aleatoriu', 'Pagină aleatorie' ),
+	'Lonelypages'               => array( 'Pagini orfane' ),
+	'Uncategorizedpages'        => array( 'Pagini necategorizate' ),
+	'Uncategorizedcategories'   => array( 'Categorii necategorizate' ),
+	'Uncategorizedimages'       => array( 'Imagini necategorizate' ),
+	'Uncategorizedtemplates'    => array( 'Formate necategorizate' ),
+	'Unusedcategories'          => array( 'Categorii nefolosite' ),
+	'Unusedimages'              => array( 'Imagini nefolosite' ),
+	'Wantedpages'               => array( 'Pagini dorite', 'Legături invalide' ),
+	'Wantedcategories'          => array( 'Categorii dorite' ),
+	'Mostlinked'                => array( 'Legături multe' ),
+	'Mostlinkedcategories'      => array( 'Categorii des folosite' ),
+	'Mostlinkedtemplates'       => array( 'Formate des folosite' ),
+	'Mostcategories'            => array( 'Categorii multe' ),
+	'Mostimages'                => array( 'Imagini multe' ),
+	'Mostrevisions'             => array( 'Revizii multe' ),
+	'Fewestrevisions'           => array( 'Revizii puţine' ),
+	'Shortpages'                => array( 'Pagini scurte' ),
+	'Longpages'                 => array( 'Pagini lungi' ),
+	'Newpages'                  => array( 'Pagini noi' ),
+	'Ancientpages'              => array( 'Pagini vechi' ),
+	'Deadendpages'              => array( 'Pagini fără legături' ),
+	'Protectedpages'            => array( 'Pagini protejate' ),
+	'Protectedtitles'           => array( 'Titluri protejate' ),
+	'Allpages'                  => array( 'Toate paginile' ),
+	'Prefixindex'               => array( 'Index' ),
+	'Ipblocklist'               => array( 'Listă IP blocat' ),
+	'Specialpages'              => array( 'Pagini speciale' ),
+	'Contributions'             => array( 'Contribuţii' ),
+	'Emailuser'                 => array( 'Email utilizator' ),
+	'Confirmemail'              => array( 'Confirmă email' ),
+	'Whatlinkshere'             => array( 'Ce se leagă aici' ),
+	'Recentchangeslinked'       => array( 'Modificări corelate' ),
+	'Movepage'                  => array( 'Mută pagina' ),
+	'Blockme'                   => array( 'Blochează-mă' ),
+	'Booksources'               => array( 'Referinţe în cărţi' ),
+	'Categories'                => array( 'Categorii' ),
+	'Export'                    => array( 'Exportă' ),
+	'Version'                   => array( 'Versiune' ),
+	'Allmessages'               => array( 'Toate mesajele' ),
+	'Log'                       => array( 'Jurnal', 'Jurnale' ),
+	'Blockip'                   => array( 'Blochează IP' ),
+	'Undelete'                  => array( 'Restaurează' ),
+	'Import'                    => array( 'Importă' ),
+	'Lockdb'                    => array( 'Blochează BD' ),
+	'Unlockdb'                  => array( 'Deblochează BD' ),
+	'Userrights'                => array( 'Drepturi utilizator' ),
+	'MIMEsearch'                => array( 'Căutare MIME' ),
+	'FileDuplicateSearch'       => array( 'Căutare fişier duplicat' ),
+	'Unwatchedpages'            => array( 'Pagini neurmărite' ),
+	'Listredirects'             => array( 'Listă redirectări' ),
+	'Revisiondelete'            => array( 'Şterge revizie' ),
+	'Unusedtemplates'           => array( 'Formate nefolosite' ),
+	'Randomredirect'            => array( 'Redirectare aleatorie' ),
+	'Mypage'                    => array( 'Pagina mea' ),
+	'Mytalk'                    => array( 'Discuţiile mele' ),
+	'Mycontributions'           => array( 'Contribuţiile mele' ),
+	'Listadmins'                => array( 'Listă administratori' ),
+	'Listbots'                  => array( 'Listă roboţi' ),
+	'Popularpages'              => array( 'Pagini populare' ),
+	'Search'                    => array( 'Căutare' ),
+	'Resetpass'                 => array( 'Resetează parola' ),
+	'Withoutinterwiki'          => array( 'Fără legături interwiki' ),
+	'MergeHistory'              => array( 'Istoria combinărilor' ),
+	'Filepath'                  => array( 'Cale fişier' ),
+	'Invalidateemail'           => array( 'Invalidează email' ),
+	'Blankpage'                 => array( 'Pagină goală' ),
 );
 
 $datePreferences = false;
@@ -500,8 +562,8 @@ a cerut să vi se trimită o nouă parolă pentru {{SITENAME}} ($4).
 Parola pentru utilizatorul "$2" este acum "$3".
 Este recomandat să intraţi pe {{SITENAME}} şi să vă schimbi parola cât mai curând.
 
-Dacă această cerere a fost efectuată de altcineva sau dacă v-aţi amintit 
-parola şi nu doriţi să o schimbaţi, ignoraţi acest mesaj şi continuaţi 
+Dacă această cerere a fost efectuată de altcineva sau dacă v-aţi amintit
+parola şi nu doriţi să o schimbaţi, ignoraţi acest mesaj şi continuaţi
 să folosiţi vechea parolă.',
 'noemail'                    => 'Nu este nici o adresă de e-mail înregistrată pentru utilizatorul "$1".',
 'passwordsent'               => 'O nouă parolă a fost trimisă la adresa de e-mail a utilizatorului "$1". Te rugăm să te autentifici pe {{SITENAME}} după ce o primeşti.',
@@ -636,7 +698,7 @@ Dacă sunteţi un astfel de utilizator şi credeţi că vă sunt adresate mesaje
 'session_fail_preview'             => '<strong>Ne pare rău! Nu am putut procesa modificarea dumneavoastră din cauza pierderii datelor sesiunii.
 Vă rugăm să încercaţi din nou.
 Dacă tot nu funcţionează, încercaţi să [[Special:UserLogout|închideţi sesiunea]] şi să vă autentificaţi din nou.</strong>',
-'session_fail_preview_html'        => "<strong>Ne pare rău! Modificările tale nu au putut fi procesate din cauza pierderii datelor sesiunii.</strong> 
+'session_fail_preview_html'        => "<strong>Ne pare rău! Modificările tale nu au putut fi procesate din cauza pierderii datelor sesiunii.</strong>
 
 ''Deoarece {{SITENAME}} are activat HTML brut, previzualizarea este ascunsă ca măsură de precauţie împotriva atacurilor JavaScript.''
 
@@ -1119,7 +1181,7 @@ Paginile pe care le [[Special:Watchlist|urmăriţi]] apar în '''aldine'''.",
 'upload_directory_missing'    => 'Directorul în care sunt încărcate fişierele ($1) lipseşte şi nu poate fi creat de serverul web.',
 'upload_directory_read_only'  => 'Directorul de trimitere ($1) nu are drepturi de scriere de către server.',
 'uploaderror'                 => 'Eroare la trimitere fişier',
-'uploadtext'                  => "Foloseşte formularul de mai jos pentru a trimite fişiere. 
+'uploadtext'                  => "Foloseşte formularul de mai jos pentru a trimite fişiere.
 Pentru a vizualiza sau căuta imagini deja trimise, mergi la [[Special:ImageList|lista de imagini]], încărcările şi ştergerile sunt de asemenea înregistrate în [[Special:Log/upload|jurnalul fişierelor trimise]], ştergerile în [[Special:Log/delete|jurnalul fişierelor şterse]].
 
 Pentru a include un fişier de sunet într-un articol, foloseşti o legătură de forma:
@@ -1147,7 +1209,7 @@ Vezi [[Special:NewImages|galeria fişierelor noi]] pentru o mai bună vizualizar
 'filetype-badmime'            => 'Nu este permisă încărcarea de fişiere de tipul MIME "$1".',
 'filetype-unwanted-type'      => "'''\".\$1\"''' este un tip de fişier nedorit.
 {{PLURAL:\$3|Tipul de fişier preferat este|Tipurile de fişiere preferate sunt}} \$2.",
-'filetype-banned-type'        => "'''\".\$1\"''' este un tip de fişier nepermis. 
+'filetype-banned-type'        => "'''\".\$1\"''' este un tip de fişier nepermis.
 {{PLURAL:\$3|Tip de fişier permis:|Tipuri de fişiere permise:}} \$2.",
 'filetype-missing'            => 'Fişierul nu are extensie (precum ".jpg").',
 'large-file'                  => 'Este recomandat ca fişierele să nu fie mai mari de $1; acest fişier are $2.',
@@ -1304,11 +1366,11 @@ Input: contenttype/subtype, e.g. <tt>image/jpeg</tt>.
 
 
 Această pagină specială permite căutarea fişierelor în funcţie de tipul MIME (Multipurpose Internet Mail Extensions). Cele mai des întâlnite sunt:
-* Imagini : <code>image/jpeg</code> 
-* Diagrame : <code>image/png</code>, <code>image/svg+xml</code> 
-* Imagini animate : <code>image/gif</code> 
-* Fişiere sunet : <code>audio/ogg</code>, <code>audio/x-ogg</code> 
-* Fişiere video : <code>video/ogg</code>, <code>video/x-ogg</code> 
+* Imagini : <code>image/jpeg</code>
+* Diagrame : <code>image/png</code>, <code>image/svg+xml</code>
+* Imagini animate : <code>image/gif</code>
+* Fişiere sunet : <code>audio/ogg</code>, <code>audio/x-ogg</code>
+* Fişiere video : <code>video/ogg</code>, <code>video/x-ogg</code>
 * Fişiere PDF : <code>application/pdf</code>
 
 Lista tipurilor MIME recunoscute de MediaWiki poate fi găsită la [http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/mime.types?view=markup fişiere mime.types].',

@@ -11,6 +11,35 @@
 
 $fallbak = 'ru';
 
+$specialPageAliases = array(
+	'DoubleRedirects'           => array( 'КафонзафЁтафтфксне' ),
+	'BrokenRedirects'           => array( 'СиньтьфЁтафтфксне' ),
+	'Watchlist'                 => array( 'Мельгеванома' ),
+	'Recentchanges'             => array( 'УлхкомбаньПолафнематне' ),
+	'Upload'                    => array( 'Тонгома' ),
+	'Imagelist'                 => array( 'НяйфКярькс' ),
+	'Newimages'                 => array( 'ОдНяйфне' ),
+	'Listusers'                 => array( 'ЛувомТиихне' ),
+	'Statistics'                => array( 'Статистик' ),
+	'Randompage'                => array( 'Кодама повсь', 'Кодама повсь лопа' ),
+	'Lonelypages'               => array( 'СькамоньЛопат', 'УрозЛопат' ),
+	'Uncategorizedpages'        => array( 'Апак категорияфттЛопат' ),
+	'Uncategorizedcategories'   => array( 'Апак категорияфттКатегориет' ),
+	'Uncategorizedimages'       => array( 'Апак категорияфттНяйфт' ),
+	'Uncategorizedtemplates'    => array( 'Апак категорияфттШаблотт' ),
+	'Unusedcategories'          => array( 'Апак нолдак тевсКатегориет' ),
+	'Unusedimages'              => array( 'Апак нолдак тевсНяйфне' ),
+	'Wantedpages'               => array( 'ВешевиЛопат', 'СиньтьфСюлмафкст' ),
+	'Wantedcategories'          => array( 'ВешевиКатегориет' ),
+	'Newpages'                  => array( 'ОдЛопат' ),
+	'Ancientpages'              => array( 'КунардоньЛопат' ),
+	'Protectedpages'            => array( 'АралафЛопат' ),
+	'Protectedtitles'           => array( 'АралафКонякст' ),
+	'Allpages'                  => array( 'СембеЛопат' ),
+	'Prefixindex'               => array( 'ВалынгольксИндекс' ),
+	'Specialpages'              => array( 'БашкаЛопат' ),
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Сюлмафкснень алга китькстамс:',

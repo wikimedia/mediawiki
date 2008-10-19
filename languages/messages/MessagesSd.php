@@ -9,6 +9,77 @@
 
 $rtl = true;
 
+$specialPageAliases = array(
+	'DoubleRedirects'           => array( 'ٻٽا چورڻا' ),
+	'BrokenRedirects'           => array( 'ٽٽل چورڻا' ),
+	'Disambiguations'           => array( 'سلجھائپ' ),
+	'Userlogin'                 => array( 'يوزر لاگ اِن' ),
+	'Userlogout'                => array( 'يوزر لاگ آئوٽ' ),
+	'CreateAccount'             => array( 'کاتو کوليو' ),
+	'Preferences'               => array( 'ترجيحات' ),
+	'Watchlist'                 => array( 'ٽيٽ فهرست' ),
+	'Recentchanges'             => array( 'تازيون تبديليون' ),
+	'Upload'                    => array( 'چاڙهيو' ),
+	'Imagelist'                 => array( 'عڪس فهرست' ),
+	'Newimages'                 => array( 'نوان عڪس' ),
+	'Listusers'                 => array( 'يوزر فهرست' ),
+	'Statistics'                => array( 'انگ اکر' ),
+	'Randompage'                => array( 'بلا ترتيب' ),
+	'Lonelypages'               => array( 'يتيم صفحا' ),
+	'Uncategorizedpages'        => array( 'اڻزمرايل صفحا' ),
+	'Uncategorizedcategories'   => array( 'اڻ زمرايل زمرا' ),
+	'Uncategorizedimages'       => array( 'اڻ زمرايل عڪس' ),
+	'Uncategorizedtemplates'    => array( 'اڻ زمرايل سانچا' ),
+	'Unusedcategories'          => array( 'اڻ استعماليل زمرا' ),
+	'Unusedimages'              => array( 'اڻ استعماليل عڪس' ),
+	'Wantedpages'               => array( 'گھربل صفحا' ),
+	'Wantedcategories'          => array( 'گھربل زمرا' ),
+	'Shortpages'                => array( 'مختصر صفحا' ),
+	'Longpages'                 => array( 'طويل صفحا' ),
+	'Newpages'                  => array( 'نوان صفحا' ),
+	'Ancientpages'              => array( 'قديم صفحا' ),
+	'Protectedpages'            => array( 'تحفظيل صفحا' ),
+	'Protectedtitles'           => array( 'تحفظيل عنوان' ),
+	'Allpages'                  => array( 'سڀ صفحا' ),
+	'Prefixindex'               => array( 'اڳياڙي ڏسڻي' ),
+	'Ipblocklist'               => array( 'آءِ پي بندش فهرست' ),
+	'Specialpages'              => array( 'خاص صفحا' ),
+	'Contributions'             => array( 'ڀاڱيداريون' ),
+	'Emailuser'                 => array( 'برقٽپال يوزر' ),
+	'Confirmemail'              => array( 'برقٽپال تصديقيو' ),
+	'Whatlinkshere'             => array( 'هتان ڳنڍيل صفحا' ),
+	'Movepage'                  => array( 'صفحو چوريو' ),
+	'Blockme'                   => array( 'مونکي بندشيو' ),
+	'Categories'                => array( 'زمرا' ),
+	'Export'                    => array( 'برآمد' ),
+	'Version'                   => array( 'ورزن' ),
+	'Allmessages'               => array( 'سڀ نياپا' ),
+	'Log'                       => array( 'لاگس' ),
+	'Blockip'                   => array( 'آءِ پي بندش' ),
+	'Undelete'                  => array( 'اڻ ڊاهيو' ),
+	'Import'                    => array( 'درآمد' ),
+	'Lockdb'                    => array( 'اعدادخانو بند' ),
+	'Unlockdb'                  => array( 'اعدادخانو کول' ),
+	'Userrights'                => array( 'يوزر حق' ),
+	'MIMEsearch'                => array( 'مائيم ڳولا' ),
+	'FileDuplicateSearch'       => array( 'ساڳيا فائيل ڳولا' ),
+	'Unwatchedpages'            => array( 'اڻٽيٽيل صفحا' ),
+	'Listredirects'             => array( 'چورڻا فهرست' ),
+	'Unusedtemplates'           => array( 'اڻ استعماليل سانچا' ),
+	'Randomredirect'            => array( 'بلا ترتيب چورڻو' ),
+	'Mypage'                    => array( 'منهنجو صفحو' ),
+	'Mytalk'                    => array( 'مون سان ڳالهه' ),
+	'Mycontributions'           => array( 'منهنجون ڀاڱيداريون' ),
+	'Listadmins'                => array( 'منتظمين فهرست' ),
+	'Listbots'                  => array( 'بوٽس فهرست' ),
+	'Popularpages'              => array( 'مقبول صفحا' ),
+	'Search'                    => array( 'ڳولا' ),
+	'Withoutinterwiki'          => array( 'ري بين الوڪي' ),
+	'MergeHistory'              => array( 'سوانح ضماءُ' ),
+	'Filepath'                  => array( 'فائيل ڏس' ),
+	'Invalidateemail'           => array( 'ناقابلڪار برقٽپال' ),
+);
+
 $messages = array(
 # User preference toggles
 'tog-showtoolbar'         => 'سنوارپ اوزار دٻي ڏيکاريو (جاوا اسڪرپٽ)',
@@ -256,7 +327,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'loginsuccesstitle'          => 'لاگ اِن ڪامياب',
 'loginsuccess'               => "'''هاڻي توهان {{SITENAME}} تي بطور \"\$1\" لاگ اِن ٿيل آهيو.'''",
 'nosuchuser'                 => '"$1" نالي سان ڪو به يوزر نه آهي. هِجي چڪاسيو، يا نئون کاتو کوليو.',
-'nosuchusershort'            => '"<nowiki>$1</nowiki>" نالي ڪو به يُوزر ناهي. 
+'nosuchusershort'            => '"<nowiki>$1</nowiki>" نالي ڪو به يُوزر ناهي.
 هِجي جي پڪ ڪندا.',
 'nouserspecified'            => 'توهان کي ڪو يوزرنانءُ ڄاڻائڻو پوندو.',
 'wrongpassword'              => 'ڏنل ڳجھو لفظ غير درست آهي. مهرباني ڪري ٻيهر ڪوشش ڪندا.',
@@ -325,7 +396,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'previewnote'            => '<strong>هيءَ محظ پيش نگاهه آهي، ترميمون اڃا سانڍجون ناهن!</strong>',
 'editing'                => 'زير ترميم $1',
 'editingsection'         => 'زير ترميم $1 (سيڪشن)',
-'copyrightwarning'       => 'ياد رکندا ته {{SITENAME}} لاءِ سموريون ڀاڱيداريون $2 تحت پڌريون ڪجن ٿيون (تفصيلن لاءِ $1 ڏسندا). اوهان جي تحرير کي {{SITENAME}} جي قائدن تحت ترميمي سگهجي ٿو. جيڪڏهن اوهان نه ٿا چاهيو ته اوهان جي لکڻين کي بي رحميءَ سان ترميميو وڃي يا ورهائي عام ڪيو وڃي ته پوءِ پنهنجي لکڻي هتي جمع نه ڪرايو. پنهنجو مواد هتي جمع ڪرڻ جو مطلب هوندو ته توهان کي جمع ڪرايل مواد جي مفت فراهمي ۽ کُليل تبديليءَ تي ڪو به اعتراز ناهي.<br /> 
+'copyrightwarning'       => 'ياد رکندا ته {{SITENAME}} لاءِ سموريون ڀاڱيداريون $2 تحت پڌريون ڪجن ٿيون (تفصيلن لاءِ $1 ڏسندا). اوهان جي تحرير کي {{SITENAME}} جي قائدن تحت ترميمي سگهجي ٿو. جيڪڏهن اوهان نه ٿا چاهيو ته اوهان جي لکڻين کي بي رحميءَ سان ترميميو وڃي يا ورهائي عام ڪيو وڃي ته پوءِ پنهنجي لکڻي هتي جمع نه ڪرايو. پنهنجو مواد هتي جمع ڪرڻ جو مطلب هوندو ته توهان کي جمع ڪرايل مواد جي مفت فراهمي ۽ کُليل تبديليءَ تي ڪو به اعتراز ناهي.<br />
 توهان اهڙي پڪ ڏيڻ جا پابند پڻ آهيو ته توهان جو جمع ڪرايل مواد توهان جو پنهنجو لکيل آهي يا وري توهان ڪنهن مفت وسيلي تان ڪاپي ڪيو آهي.
 </strong>تحفظيل حق ۽ واسطا رکندڙ مواد واسطيدار مالڪ کان اڳواٽ اجازت وٺڻ کان سواءِ هتي جمع نه ڪريو.<strong>',
 'longpagewarning'        => '<strong>خبردار: هيءُ صفحو $1 ڪلوٻاٽڻيون وڏو آهي؛ 32 ڪلوٻاٽڻين کان وڏا صفحا سنواريندي ڪن جھانگوئن سان مسئلا ٿين ٿا. مهرباني ڪري هن صفحي کي ننڍن سيڪشنز ۾ ٽوڙڻ تي ويچاريندا.</strong>',
@@ -663,11 +734,11 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 
 '''خبردار!'''
 اها هڪ مقبول صفحي لاءِ ڪا غير متوقه ۽ انتهائي اڻوڻندڙ تبديلي ثابت ٿي سگھي ٿي؛ براءِ مهرباني اڳتي وڌڻ کان اڳ پڪ ڪندا ته توهان اها تبديلي آڻڻ جي نتيجن کان چڱيءَ ريت واقف آهيو.",
-'movepagetalktext'        => 'واسطيدار مباحثي صفحو پاڻهي ئي چوريو ويندو ماهسوا: 
+'movepagetalktext'        => 'واسطيدار مباحثي صفحو پاڻهي ئي چوريو ويندو ماهسوا:
 
 *نئين عنوان سان هڪ اڻ پورو يعني غير خالي مباحثي صفحو اڳي ئي وجود رکندو هجي، يا
 *توهان هيٺين باڪس کي اڻ ٽِڪ ڪريو
- 
+
 انهن صورتن ۾، جيڪڏهن توهان چاهيو ته صفحي کي پاڻ چوري يا ضمائي سگھو ٿا.',
 'movearticle'             => 'صفحو چوريو:',
 'newtitle'                => 'نئين عنوان ڏانهن:',

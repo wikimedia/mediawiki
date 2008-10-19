@@ -11,6 +11,34 @@
 
 $fallback = 'fr';
 
+$specialPageAliases = array(
+	'Userlogin'                 => array( 'Lonku' ),
+	'Userlogout'                => array( 'Lonkiku' ),
+	'CreateAccount'             => array( 'Sos am sàq' ),
+	'Preferences'               => array( 'Tànneef' ),
+	'Watchlist'                 => array( 'Limu toppte' ),
+	'Recentchanges'             => array( 'Coppite yu mujj' ),
+	'Upload'                    => array( 'Yeb' ),
+	'Imagelist'                 => array( 'Limu nataal yi' ),
+	'Newimages'                 => array( 'Nataal bu bees' ),
+	'Listusers'                 => array( 'Limu jëfandikukat yi' ),
+	'Listgrouprights'           => array( 'Limu mboolooy jëfandikukat' ),
+	'Randompage'                => array( 'Xët cig mbetteel' ),
+	'Lonelypages'               => array( 'Xëtu jirim' ),
+	'Uncategorizedpages'        => array( 'Xët yi amul wàll' ),
+	'Uncategorizedcategories'   => array( 'Wàll yi amul wàll' ),
+	'Uncategorizedimages'       => array( 'Nataal yi amul wàll' ),
+	'Uncategorizedtemplates'    => array( 'Royuwaay yi amul wàll' ),
+	'Unusedcategories'          => array( 'royuwaay yiñ jëfandikuwul' ),
+	'Unusedimages'              => array( 'Nataal yiñ jëfandikuwul' ),
+	'Wantedpages'               => array( 'Xët  yiñ laaj' ),
+	'Wantedcategories'          => array( 'Wàll yiñ laaj' ),
+	'Mypage'                    => array( 'Sama xët' ),
+	'Mytalk'                    => array( 'Samay waxtaan' ),
+	'Mycontributions'           => array( 'Samay cëru' ),
+	'Search'                    => array( 'Ceet' ),
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Rëddaatu lëkkalekaay yi :',

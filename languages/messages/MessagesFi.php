@@ -120,6 +120,7 @@ $specialPageAliases = array(
 	'Wantedpages'               => array( 'Halutuimmat_sivut' ),
 	'Wantedcategories'          => array( 'Halutuimmat_luokat' ),
 	'Wantedfiles'               => array( 'Halutuimmat_tiedostot' ),
+	'Wantedtemplates'           => array( 'Halutuimmat_mallineet' ),
 	'Mostlinked'                => array( 'Viitatuimmat_sivut' ),
 	'Mostlinkedcategories'      => array( 'Viitatuimmat_luokat' ),
 	'Mostlinkedtemplates'       => array( 'Viitatuimmat_mallineet' ),
@@ -179,7 +180,6 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'Tyhjä_sivu' ),
 	'LinkSearch'                => array( 'Linkkihaku' ),
 	'DeletedContributions'      => array( 'Poistetut_muokkaukset' ),
-	'Nuke'                      => array( 'Massapoistaminen' ),
 );
 
 $linkTrail = '/^([a-zäö]+)(.*)$/sDu';

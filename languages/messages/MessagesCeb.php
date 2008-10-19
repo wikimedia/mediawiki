@@ -10,6 +10,30 @@
  * @author לערי ריינהארט
  */
 
+$specialPageAliases = array(
+	'DoubleRedirects'           => array( 'DoblengRedirekta' ),
+	'BrokenRedirects'           => array( 'BuakngaRedirekta' ),
+	'Disambiguations'           => array( 'Mga Pagklaro' ),
+	'CreateAccount'             => array( 'Paghimo\'gAkawnt' ),
+	'Preferences'               => array( 'Mga Preperensya' ),
+	'Watchlist'                 => array( 'Gibantayan' ),
+	'Recentchanges'             => array( 'Bag-ongGiusab' ),
+	'Upload'                    => array( 'Pagsumiter' ),
+	'Imagelist'                 => array( 'Listahan sa Imahen' ),
+	'Newimages'                 => array( 'Bag-ongImahen' ),
+	'Statistics'                => array( 'Estadistika' ),
+	'Randompage'                => array( 'Bisan-unsa', 'Bisan-unsangPanid' ),
+	'Lonelypages'               => array( 'Nag-inusarangPanid', 'Sinagop nga Panid' ),
+	'Allpages'                  => array( 'TanangPanid' ),
+	'Contributions'             => array( 'Mga Tampo' ),
+	'Categories'                => array( 'Mga Kategoriya' ),
+	'Version'                   => array( 'Bersiyon' ),
+	'Mypage'                    => array( 'AkongPanid' ),
+	'Mytalk'                    => array( 'AkongHisgot' ),
+	'Mycontributions'           => array( 'AkongTampo' ),
+	'Search'                    => array( 'Pangita' ),
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'            => 'Binadlisan nga mga sumpay:',
