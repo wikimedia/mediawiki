@@ -64,7 +64,7 @@ $messages = array(
 'tog-watchcreations'          => 'Añader les páxines que creo a la mio llista de vixilancia',
 'tog-watchdefault'            => "Añader les páxines qu'edito a la mio llista de vixilancia",
 'tog-watchmoves'              => 'Añader les páxines que muevo a la mio llista de vixilancia',
-'tog-watchdeletion'           => 'Añader les páxines que borro a la mio llista de vixilancia',
+'tog-watchdeletion'           => "Añader les páxines qu'esborro a la mio llista de vixilancia",
 'tog-minordefault'            => 'Marcar toles ediciones como menores por defeutu',
 'tog-previewontop'            => "Amosar previsualización enantes de la caxa d'edición",
 'tog-previewonfirst'          => 'Amosar previsualización na primer edición',
@@ -211,8 +211,8 @@ $messages = array(
 'create'            => 'Crear',
 'editthispage'      => 'Editar esta páxina',
 'create-this-page'  => 'Crear esta páxina',
-'delete'            => 'Borrar',
-'deletethispage'    => 'Borrar esta páxina',
+'delete'            => 'Esborrar',
+'deletethispage'    => 'Esborrar esta páxina',
 'undelete_short'    => 'Restaurar {{PLURAL:$1|una edición|$1 ediciones}}',
 'protect'           => 'Protexer',
 'protect_change'    => 'camudar',
@@ -296,7 +296,7 @@ $messages = array(
 'hidetoc'                 => 'esconder',
 'thisisdeleted'           => '¿Ver o restaurar $1?',
 'viewdeleted'             => '¿Ver $1?',
-'restorelink'             => '{{PLURAL:$1|una edición borrada|$1 ediciones borraes}}',
+'restorelink'             => '{{PLURAL:$1|una edición esborrada|$1 ediciones esborraes}}',
 'feedlinks'               => 'Canal:',
 'feed-invalid'            => 'Suscripción non válida a la triba de canal.',
 'feed-unavailable'        => 'Les canales de sindicación nun tán disponibles',
@@ -353,7 +353,7 @@ $1',
 L'alministrador que la candó conseñó esti motivu: $1",
 'missing-article'      => "La base de datos nun atopó'l testu d'una páxina qu'habría tener atopao, nomada \"\$1\" \$2.
 
-Esto débese davezu a siguir una dif caducada o un enllaz d'historial a una páxina que foi borrada.
+Esto débese davezu a siguir una dif caducada o un enllaz d'historial a una páxina que foi esborrada.
 
 Si esti nun ye'l casu, seique tengas atopao un bug nel software.
 Por favor informa d'esto a un [[Special:ListUsers/sysop|alministrador]], anotando la URL.",
@@ -364,14 +364,14 @@ Por favor informa d'esto a un [[Special:ListUsers/sysop|alministrador]], anotand
 'internalerror_info'   => 'Error internu: $1',
 'filecopyerror'        => 'Nun se pudo copiar l\'archivu "$1" como "$2".',
 'filerenameerror'      => 'Nun se pudo renomar l\'archivu "$1" como "$2".',
-'filedeleteerror'      => 'Nun se pudo borrar l\'archivu "$1".',
+'filedeleteerror'      => 'Nun se pudo esborrar l\'archivu "$1".',
 'directorycreateerror' => 'Nun se pudo crear el direutoriu "$1".',
 'filenotfound'         => 'Nun se pudo atopar l\'archivu "$1".',
 'fileexistserror'      => 'Nun se pue escribir nel archivu "$1": yá esiste',
 'unexpected'           => 'Valor inesperáu: "$1"="$2".',
 'formerror'            => 'Error: nun se pudo unviar el formulariu',
 'badarticleerror'      => 'Esta aición nun pue facese nesta páxina',
-'cannotdelete'         => 'Nun se pudo borrar la páxina o imaxe seleicionada (seique daquién yá la borrara).',
+'cannotdelete'         => 'Nun se pudo esborrar la páxina o imaxe seleicionada (seique daquién yá la esborrara).',
 'badtitle'             => 'Títulu incorreutu',
 'badtitletext'         => 'El títulu de páxina solicitáu nun ye válidu, ta vaciu o tien enllaces inter-llingua o inter-wiki incorreutos. Pue que contenga ún o más carauteres que nun puen ser usaos nos títulos.',
 'perfcached'           => 'Los siguientes datos tán na caché y pue que nun tean completamente actualizaos.',
@@ -601,7 +601,7 @@ Por favor, amiesta toos estos detalles nes consultes que faigas.',
 *'''Mozilla / Firefox / Safari:''' caltién ''Shift'' mentes calques en ''Reload'', o calca ''Ctrl-Shift-R'' (''Cmd-Shift-R'' en Apple Mac)
 *'''IE:''' caltién ''Ctrl'' mentes calques ''Refresh'', o calca ''Ctrl-F5''
 *'''Konqueror:''' calca nel botón ''Reload'', o calca ''F5''
-*'''Opera:''' los usuarios d'Opera seique necesiten borrar dafechu'l caché en ''Tools→Preferences''",
+*'''Opera:''' los usuarios d'Opera seique necesiten esborrar dafechu'l caché en ''Tools→Preferences''",
 'usercssjsyoucanpreview'           => "<strong>Conseyu:</strong> Usa'l bottón 'Amosar previsualización' pa probar el to nuevu CSS/JS enantes de guardalu.",
 'usercsspreview'                   => "'''Recuerda que namái tas previsualizando'l to CSS d'usuariu.'''
 '''¡Tovía nun ta guardáu!'''",
@@ -666,12 +666,12 @@ Pues volver atrás y editar una páxina esistente, o bien [[Special:UserLogin|id
 'permissionserrors'                => 'Errores de Permisos',
 'permissionserrorstext'            => 'Nun tienes permisu pa facer eso {{PLURAL:$1|pol siguiente motivu|polos siguientes motivos}}:',
 'permissionserrorstext-withaction' => 'Nun tienes permisu pa $2 {{PLURAL:$1|pol siguiente motivu|polos siguientes motivos}}:',
-'recreate-deleted-warn'            => "'''Avisu: Tas volviendo a crear una páxina que foi borrada anteriormente.'''
+'recreate-deleted-warn'            => "'''Avisu: Tas volviendo a crear una páxina que foi esborrada anteriormente.'''
 
 Habríes considerar si ye afechisco siguir editando esta páxina.
-Equí tienes el rexistru de borraos d'esta páxina:",
+Equí tienes el rexistru d'esborraos d'esta páxina:",
 'deleted-notice'                   => "Esta páxina foi eliminada.
-Como referencia, embaxo amuésase'l rexistru de borráu de la páxina.",
+Como referencia, embaxo amuésase'l rexistru d'esborráu de la páxina.",
 'deletelog-fulllog'                => 'Ver el rexistru completu',
 'edit-hook-aborted'                => 'Edición albortada pol hook.
 Nun conseñó esplicación.',
@@ -725,7 +725,7 @@ El motivu dau por $3 ye ''$2''",
 Lleenda: '''(act)''' = diferencies cola versión actual,
 '''(cab)''' = diferencies cola versión anterior, '''m''' = edición menor.",
 'history-fieldset-title' => 'Navegar pel historial',
-'deletedrev'             => '[borráu]',
+'deletedrev'             => '[esborráu]',
 'histfirst'              => 'Primera',
 'histlast'               => 'Cabera',
 'historysize'            => '({{PLURAL:$1|1 byte|$1 bytes}})',
@@ -736,7 +736,7 @@ Lleenda: '''(act)''' = diferencies cola versión actual,
 'history-feed-description'    => "Historial de revisiones d'esta páxina na wiki",
 'history-feed-item-nocomment' => '$1 en $2', # user at time
 'history-feed-empty'          => 'La páxina solicitada nun esiste.
-Seique fuera borrada o renomada na wiki.
+Seique fuera esborrada o renomada na wiki.
 Prueba a [[Special:Search|buscar na wiki]] otres páxines nueves.',
 
 # Revision deletion
@@ -745,20 +745,20 @@ Prueba a [[Special:Search|buscar na wiki]] otres páxines nueves.',
 'rev-deleted-event'           => '(aición de rexistru eliminada)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
 Esta revisión de la páxina foi eliminada de los archivos públicos.
-Pue haber detalles nel [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistru de borraos].
+Pue haber detalles nel [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistru d\'esborraos].
 </div>',
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
 Esta revisión de la páxina foi eliminada de los archivos públicos.
-Como alministrador d\'esti sitiu pues vela; pue haber detalles nel [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistru de borraos].
+Como alministrador d\'esti sitiu pues vela; pue haber detalles nel [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistru d\'esborraos].
 </div>',
 'rev-delundel'                => 'amosar/esconder',
-'revisiondelete'              => 'Borrar/restaurar revisiones',
+'revisiondelete'              => 'Esborrar/restaurar revisiones',
 'revdelete-nooldid-title'     => 'Revisión de destín non válida',
 'revdelete-nooldid-text'      => 'Nun especificasti una revisión o revisiones de destín sobre les que realizar esta función, la revisión especificada nun esiste, o tas intentando ocultar la revisión actual.',
-'revdelete-selected'          => '{{PLURAL:$2|Revisión seleicionada|Revisiones seleicionaes}} de [[:$1]]:',
-'logdelete-selected'          => '{{PLURAL:$1|Seleicionáu un eventu de rexistru|Seleicionaos eventos de rexistru}}:',
-'revdelete-text'              => "Les revisiones y eventos eliminaos van siguir apaeciendo nel historial de la páxina
-y nos rexistros, pero parte del so conteníu nun va ser accesible al públicu.
+'revdelete-selected'          => "'''{{PLURAL:$2|Revisión seleicionada|Revisiones seleicionaes}} de [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Seleicionáu un eventu de rexistru|Seleicionaos eventos de rexistru}}:'''",
+'revdelete-text'              => "'''Les revisiones y eventos eliminaos van siguir apaeciendo nel historial de la páxina
+y nos rexistros, pero parte del so conteníu nun va ser accesible al públicu.'''
 
 Otros alministrados de {{SITENAME}} van siguir pudiendo acceder al conteníu escondíu
 y puen restauralu de nuevo al traviés d'esta mesma interfaz, a nun ser que s'establezan
@@ -793,7 +793,7 @@ restricciones adicionales.",
 
 # Suppression log
 'suppressionlog'     => 'Rexistru de supresiones',
-'suppressionlogtext' => "Embaxo amuésase una llista de los borraos y bloqueos rellacionaos con conteníu ocultu a los alministradores.
+'suppressionlogtext' => "Embaxo amuésase una llista de los esborraos y bloqueos rellacionaos con conteníu ocultu a los alministradores.
 Mira'l [[Special:IPBlockList|rexistru de bloqueos d'IP]] pa ver una llista de los bloqueos activos anguaño.",
 
 # History merging
@@ -804,7 +804,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'mergehistory-from'                => "Páxina d'orixe:",
 'mergehistory-into'                => 'Páxina de destín:',
 'mergehistory-list'                => "Historial d'ediciones fusionable",
-'mergehistory-merge'               => "Les siguientes revisiones de [[:$1]] puen fusionase en [[:$2]]. Usa la columna de botones d'opción pa fusionar namaí les revisiones creaes na y enantes de la hora especificada. has fixate en que si uses los enllaces de navegación borraránse les seleiciones feches nesta columna.",
+'mergehistory-merge'               => "Les siguientes revisiones de [[:$1]] puen fusionase en [[:$2]]. Usa la columna de botones d'opción pa fusionar namaí les revisiones creaes na y enantes de la hora especificada. has fixate en que si uses los enllaces de navegación esborraránse les seleiciones feches nesta columna.",
 'mergehistory-go'                  => 'Amosar ediciones fusionables',
 'mergehistory-submit'              => 'Fusionar revisiones',
 'mergehistory-empty'               => 'Nun se pue fusionar nenguna revisión.',
@@ -1024,19 +1024,19 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'group-suppress'      => 'Güeyadores',
 'group-all'           => '(toos)',
 
-'group-user-member'          => 'Usuariu',
-'group-autoconfirmed-member' => 'Usuariu autoconfirmáu',
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Alministrador',
-'group-bureaucrat-member'    => 'Burócrata',
-'group-suppress-member'      => 'Güeyador',
+'group-user-member'          => 'usuariu',
+'group-autoconfirmed-member' => 'usuariu autoconfirmáu',
+'group-bot-member'           => 'bot',
+'group-sysop-member'         => 'alministrador',
+'group-bureaucrat-member'    => 'burócrata',
+'group-suppress-member'      => 'güeyador',
 
 'grouppage-user'          => '{{ns:project}}:Usuarios',
 'grouppage-autoconfirmed' => '{{ns:project}}:Usuarios autoconfirmaos',
 'grouppage-bot'           => '{{ns:project}}:Bots',
 'grouppage-sysop'         => '{{ns:project}}:Alministradores',
 'grouppage-bureaucrat'    => '{{ns:project}}:Burócrates',
-'grouppage-suppress'      => '{{ns:project}}:Güeyador',
+'grouppage-suppress'      => '{{ns:project}}:Güeyadores',
 
 # Rights
 'right-read'                 => 'Lleer páxines',
@@ -1059,11 +1059,11 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'right-nominornewtalk'       => "Nun amosar l'avisu de nuevos mensaxes cuando se faen ediciones menores en páxines d'alderique",
 'right-apihighlimits'        => 'Usar los llímites superiores nes consultes API',
 'right-writeapi'             => "Usar l'API d'escritura",
-'right-delete'               => 'Borrar páxines',
-'right-bigdelete'            => 'Borrar páxines con historiales grandes',
+'right-delete'               => 'Esborrar páxines',
+'right-bigdelete'            => 'Esborrar páxines con historiales grandes',
 'right-deleterevision'       => 'Eliminar y restaurar revisiones específiques de les páxines',
 'right-deletedhistory'       => 'Ver entraes eliminaes del historial ensin testu asociáu',
-'right-browsearchive'        => 'Buscar páxines borraes',
+'right-browsearchive'        => 'Buscar páxines esborraes',
 'right-undelete'             => 'Restaurar una páxina',
 'right-suppressrevision'     => 'Revisar y restaurar revisiones ocultes a los alministradores',
 'right-suppressionlog'       => 'Ver rexistros privaos',
@@ -1177,7 +1177,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'upload_directory_read_only'  => "El sirvidor nun pue modificar el direutoriu de xubida d'archivos ($1).",
 'uploaderror'                 => 'Error de xubida',
 'uploadtext'                  => "Usa'l formulariu d'abaxo pa xubir archivos.
-Pa ver o buscar archivos xubíos previamente, vete a la [[Special:ImageList|llista d'archivos xubíos]]. Les xubíes tamién queden conseñaos nel [[Special:Log/upload|rexistru de xubíes]], y los borraos nel [[Special:Log/delete|rexistru de borraos]].
+Pa ver o buscar archivos xubíos previamente, vete a la [[Special:ImageList|llista d'archivos xubíos]]. Les xubíes tamién queden conseñaos nel [[Special:Log/upload|rexistru de xubíes]], y los esborraos nel [[Special:Log/delete|rexistru d'esborraos]].
 
 P'amiestar un archivu nuna páxina, usa un enllaz con ún de los siguientes formatos:
 *'''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Archivu.jpg]]</nowiki></tt>''' pa usar la versión completa del archivu
@@ -1240,11 +1240,11 @@ Si tovía asina quies xubir l'archivu, por favor vuelvi atrás y usa otru nome. 
 'destfilename'                => 'Nome de destín:',
 'upload-maxfilesize'          => "Máximu tamañu d'archivu: $1",
 'watchthisupload'             => 'Vixilar esta páxina',
-'filewasdeleted'              => 'Yá foi xubíu y depués borráu un archivu con esti nome. Habríes comprobar el $1 enantes de volver a xubilu.',
-'upload-wasdeleted'           => "'''Avisu: Tas xubiendo un archivu que yá foi borráu anteriormente.'''
+'filewasdeleted'              => 'Yá foi xubíu y depués esborráu un archivu con esti nome. Habríes comprobar el $1 enantes de volver a xubilu.',
+'upload-wasdeleted'           => "'''Avisu: Tas xubiendo un archivu que yá foi esborráu anteriormente.'''
 
 Habríes considerar si ye afechisco continuar xubiendo esti archivu.
-Amuésase equí'l rexistru de borraos pa esti archivu a los efeutos oportunos:",
+Amuésase equí'l rexistru d'esborraos pa esti archivu a los efeutos oportunos:",
 'filename-bad-prefix'         => 'El nome del archivu que tas xubiendo entama con <strong>"$1"</strong>, que ye un nome non descriptivu típicamente asignáu automáticamente poles cámares dixitales. Por favor escueyi un nome más descriptivu pal to archivu.',
 
 'upload-proto-error'      => 'Protocolu incorreutu',
@@ -1285,8 +1285,8 @@ Calcando na cabecera d'una columna camúdase l'orde acordies con ella.",
 # Image description page
 'filehist'                       => 'Historial del archivu',
 'filehist-help'                  => "Calca nuna fecha/hora pa ver l'archivu como taba daquélla.",
-'filehist-deleteall'             => 'borrar too',
-'filehist-deleteone'             => 'borrar',
+'filehist-deleteall'             => 'esborrar too',
+'filehist-deleteone'             => 'esborrar',
 'filehist-revert'                => 'revertir',
 'filehist-current'               => 'actual',
 'filehist-datetime'              => 'Fecha/Hora',
@@ -1330,22 +1330,22 @@ Hai disponible una [[Special:WhatLinksHere/$2|llista completa]].",
 'filerevert-badversion'     => "Nun hai nenguna versión llocal previa d'esti archivu cola fecha conseñada.",
 
 # File deletion
-'filedelete'                  => 'Borrar $1',
-'filedelete-legend'           => 'borrar archivu',
-'filedelete-intro'            => "Tas borrando '''[[Media:$1|$1]]'''.",
-'filedelete-intro-old'        => "Tas borrando la versión de '''[[Media:$1|$1]]''' del [$4 $3 a les $2].",
+'filedelete'                  => 'Esborrar $1',
+'filedelete-legend'           => 'Esborrar archivu',
+'filedelete-intro'            => "Tas esborrando '''[[Media:$1|$1]]'''.",
+'filedelete-intro-old'        => "Tas esborrando la versión de '''[[Media:$1|$1]]''' del [$4 $3 a les $2].",
 'filedelete-comment'          => 'Comentariu:',
-'filedelete-submit'           => 'Borrar',
-'filedelete-success'          => "'''$1''' foi borráu.",
+'filedelete-submit'           => 'Esborrar',
+'filedelete-success'          => "'''$1''' foi esborráu.",
 'filedelete-success-old'      => "Eliminóse la versión de '''[[Media:$1|$1]]''' del $2 a les $3.",
 'filedelete-nofile'           => "'''$1''' nun esiste.",
 'filedelete-nofile-old'       => "Nun hai nenguna versión archivada de  '''$1''' colos atributos especificaos.",
 'filedelete-otherreason'      => 'Otru motivu/motivu adicional:',
 'filedelete-reason-otherlist' => 'Otru motivu',
-'filedelete-reason-dropdown'  => '*Motivos comunes de borráu
+'filedelete-reason-dropdown'  => "*Motivos comunes d'esborráu
 ** Violación de Copyright
-** Archivu duplicáu',
-'filedelete-edit-reasonlist'  => 'Editar los motivos de borráu',
+** Archivu duplicáu",
+'filedelete-edit-reasonlist'  => "Editar los motivos d'esborráu",
 
 # MIME search
 'mimesearch'         => 'Busca MIME',
@@ -1361,7 +1361,7 @@ Hai disponible una [[Special:WhatLinksHere/$2|llista completa]].",
 
 # Unused templates
 'unusedtemplates'     => 'Plantíes ensin usu',
-'unusedtemplatestext' => "Esta páxina llista toles páxines del espaciu de nomes de plantíes que nun tán inxeríes n'otres páxines. Alcuérdate de comprobar otros enllaces a les plantíes enantes de borrales.",
+'unusedtemplatestext' => "Esta páxina llista toles páxines del espaciu de nomes de plantíes que nun tán inxeríes n'otres páxines. Alcuérdate de comprobar otros enllaces a les plantíes enantes d'esborrales.",
 'unusedtemplateswlh'  => 'otros enllaces',
 
 # Random page
@@ -1404,7 +1404,7 @@ Hai disponible una [[Special:WhatLinksHere/$2|llista completa]].",
 'brokenredirects'        => 'Redireiciones rotes',
 'brokenredirectstext'    => 'Les siguientes redireiciones enllacien a páxines que nun esisten:',
 'brokenredirects-edit'   => '(editar)',
-'brokenredirects-delete' => '(borrar)',
+'brokenredirects-delete' => '(esborrar)',
 
 'withoutinterwiki'         => 'Páxines ensin interwikis',
 'withoutinterwiki-summary' => "Les páxines siguientes nun enllacien a versiones n'otres llingües:",
@@ -1433,6 +1433,7 @@ Hai disponible una [[Special:WhatLinksHere/$2|llista completa]].",
 'wantedcategories'        => 'Categoríes buscaes',
 'wantedpages'             => 'Páxines buscaes',
 'wantedfiles'             => 'Archivos buscaos',
+'wantedtemplates'         => 'Plantíes más buscaes',
 'mostlinked'              => 'Páxines más enllaciaes',
 'mostlinkedcategories'    => 'Categoríes más enllaciaes',
 'mostlinkedtemplates'     => 'Plantíes más enllaciaes',
@@ -1513,7 +1514,7 @@ Ver tamién les [[Special:WantedCategories|categoríes más buscaes]].",
 'special-categories-sort-abc'   => 'ordenar alfabéticamente',
 
 # Special:DeletedContributions
-'deletedcontributions' => "Contribuciones d'usuariu borraes",
+'deletedcontributions' => "Contribuciones d'usuariu esborraes",
 
 # Special:LinkSearch
 'linksearch'       => 'Buscar enllaces web',
@@ -1595,7 +1596,7 @@ Si más tarde quies quitala de la llista de vixilancia calca en "Dexar de vixila
 'unwatch'                  => 'Dexar de vixilar',
 'unwatchthispage'          => 'Dexar de vixilar',
 'notanarticle'             => 'Nun ye un artículu',
-'notvisiblerev'            => 'Borróse la revisión',
+'notvisiblerev'            => 'Esborróse la revisión',
 'watchnochange'            => 'Nenguna de les tos páxines vixilaes foi editada nel periodu escoyíu.',
 'watchlist-details'        => "{{PLURAL:$1|$1 páxina|$1 páxines}} na to llista de vixilancia ensin cuntar les páxines d'alderique.",
 'wlheader-enotif'          => '* La notificación per corréu electrónicu ta activada.',
@@ -1659,38 +1660,38 @@ Más aida y sofitu:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
-'deletepage'             => 'Borrar páxina',
+'deletepage'             => 'Esborrar páxina',
 'confirm'                => 'Confirmar',
 'excontent'              => "el conteníu yera: '$1'",
 'excontentauthor'        => "el conteníu yera: '$1' (y l'únicu autor yera '[[Special:Contributions/$2|$2]]')",
 'exbeforeblank'          => "el conteníu enantes de dexar en blanco yera: '$1'",
 'exblank'                => 'la páxina taba vacia',
-'delete-confirm'         => 'Borrar "$1"',
-'delete-legend'          => 'Borrar',
-'historywarning'         => 'Avisu: La páxina que vas borrar tien historial:',
-'confirmdeletetext'      => "Tas a piques de borrar una páxina xunto con tol so historial.
+'delete-confirm'         => 'Esborrar "$1"',
+'delete-legend'          => 'Esborrar',
+'historywarning'         => 'Avisu: La páxina que vas esborrar tien historial:',
+'confirmdeletetext'      => "Tas a piques d'esborrar una páxina xunto con tol so historial.
 Por favor confirma que ye lo que quies facer, qu'entiendes les consecuencies, y que lo tas faciendo acordies coles [[{{MediaWiki:Policy-url}}|polítiques]].",
 'actioncomplete'         => 'Aición completada',
-'deletedtext'            => 'Borróse "<nowiki>$1</nowiki>".
-Mira en $2 la llista de les últimes páxines borraes.',
-'deletedarticle'         => 'borró "[[$1]]"',
+'deletedtext'            => 'Esborróse "<nowiki>$1</nowiki>".
+Mira en $2 la llista de les últimes páxines esborraes.',
+'deletedarticle'         => 'esborró "[[$1]]"',
 'suppressedarticle'      => 'suprimió "[[$1]]"',
-'dellogpage'             => 'Rexistru de borraos',
-'dellogpagetext'         => 'Abaxo tán los artículos borraos más recién.',
-'deletionlog'            => 'rexistru de borraos',
+'dellogpage'             => "Rexistru d'esborraos",
+'dellogpagetext'         => 'Abaxo amuésase una llista de los artículos esborraos más recién.',
+'deletionlog'            => 'rexistru de-esborraos',
 'reverted'               => 'Revertida a una revisión anterior',
-'deletecomment'          => 'Motivu del borráu:',
+'deletecomment'          => 'Motivu del esborráu:',
 'deleteotherreason'      => 'Otru motivu/motivu adicional:',
 'deletereasonotherlist'  => 'Otru motivu',
-'deletereason-dropdown'  => '*Motivos comunes de borráu
+'deletereason-dropdown'  => "*Motivos comunes d'esborráu
 ** A pidimientu del autor
 ** Violación de Copyright
-** Vandalismu',
-'delete-edit-reasonlist' => 'Editar los motivos de borráu',
+** Vandalismu",
+'delete-edit-reasonlist' => "Editar los motivos d'esborráu",
 'delete-toobig'          => "Esta páxina tien un historial d'ediciones grande, más de $1 {{PLURAL:$1|revisión|revisiones}}.
-Restrinxóse'l borráu d'estes páxines pa evitar perturbaciones accidentales de {{SITENAME}}.",
+Restrinxóse l'esborráu d'estes páxines pa evitar perturbaciones accidentales de {{SITENAME}}.",
 'delete-warning-toobig'  => "Esta páxina tien un historial d'ediciones grande, más de $1 {{PLURAL:$1|revisión|revisiones}}.
-Borralu pue perturbar les operaciones de la base de datos de {{SITENAME}};
+Esborralu pue perturbar les operaciones de la base de datos de {{SITENAME}};
 obra con precaución.",
 
 # Rollback
@@ -1772,11 +1773,11 @@ Esta ye la configuración actual pa la páxina <strong>$1</strong>:',
 'restriction-level-all'           => 'cualesquier nivel',
 
 # Undelete
-'undelete'                     => 'Ver páxines borraes',
-'undeletepage'                 => 'Ver y restaurar páxines borraes',
-'undeletepagetitle'            => "'''Les siguientes son les revisiones borraes de [[:$1]]'''.",
-'viewdeletedpage'              => 'Ver páxines borraes',
-'undeletepagetext'             => "Les siguientes páxines foron borraes pero tovía tán nel archivu y puen
+'undelete'                     => 'Ver páxines esborraes',
+'undeletepage'                 => 'Ver y restaurar páxines esborraes',
+'undeletepagetitle'            => "'''Les siguientes son les revisiones esborraes de [[:$1]]'''.",
+'viewdeletedpage'              => 'Ver páxines esborraes',
+'undeletepagetext'             => "Les siguientes páxines foron esborraes pero tovía tán nel archivu y puen
 ser restauraes. L'archivu pue ser purgáu periódicamente.",
 'undelete-fieldset-title'      => 'Restaurar revisiones',
 'undeleteextrahelp'            => "Pa restaurar tol historial de la páxina, deseleiciona toles caxelles y calca en '''''Restaurar'''''.
@@ -1784,13 +1785,13 @@ Pa realizar una restauración selectiva, seleiciona les caxelles de la revisión
 Calcando en '''''Llimpiar''''' quedarán vacios el campu de comentarios y toles caxelles.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|revisión archivada|revisiones archivaes}}',
 'undeletehistory'              => 'Si restaures la páxina, restauraránse toles revisiones al historial.
-Si se creó una páxina col mesmu nome dende que fuera borrada, les revisiones restauraes van apaecer nel historial anterior.',
-'undeleterevdel'               => 'Nun se fadrá la restauración si ésta provoca un borráu parcial de la páxina cimera o de la revisión
-del archivu. Nestos casos, tienes que desmarcar o amosar les revisiones borraes más recién.',
-'undeletehistorynoadmin'       => "Esta páxina foi borrada. El motivu del borráu amuésase
+Si se creó una páxina col mesmu nome dende que fuera esborrada, les revisiones restauraes van apaecer nel historial anterior.',
+'undeleterevdel'               => 'Nun se fadrá la restauración si ésta provoca un esborráu parcial de la páxina cimera o de la revisión
+del archivu. Nestos casos, tienes que desmarcar o amosar les revisiones esborraes más recién.',
+'undeletehistorynoadmin'       => "Esta páxina foi esborrada. El motivu del esborráu amuésase
 nel resume d'embaxo, amás de detalles de los usuarios qu'editaron esta páxina enantes
-de ser borrada. El testu actual d'estes revisiones borraes ta disponible namái pa los alministradores.",
-'undelete-revision'            => 'Revisión borrada de $1 ($4, a les $5) fecha por $3:',
+de ser esborrada. El testu actual d'estes revisiones esborraes ta disponible namái pa los alministradores.",
+'undelete-revision'            => 'Revisión esborrada de $1 ($4, a les $5) fecha por $3:',
 'undeleterevision-missing'     => "Falta la revisión o nun ye válida. Sieque l'enllaz nun seya correutu, o que la
 revisión fuera restaurada o eliminada del archivu.",
 'undelete-nodiff'              => "Nun s'atopó revisión previa.",
@@ -1806,15 +1807,15 @@ revisión fuera restaurada o eliminada del archivu.",
 'cannotundelete'               => 'Falló la restauración; seique daquién yá restaurara la páxina enantes.',
 'undeletedpage'                => "<big>'''Restauróse $1'''</big>
 
-Consulta'l [[Special:Log/delete|rexistru de borraos]] pa ver los borraos y restauraciones recientes.",
-'undelete-header'              => 'Mira nel [[Special:Log/delete|rexistru de borraos]] les páxines borraes recién.',
-'undelete-search-box'          => 'Buscar páxines borraes',
+Consulta'l [[Special:Log/delete|rexistru d'esborraos]] pa ver los esborraos y restauraciones de recién.",
+'undelete-header'              => "Mira nel [[Special:Log/delete|rexistru d'esborraos]] les páxines esborraes recién.",
+'undelete-search-box'          => 'Buscar páxines esborraes',
 'undelete-search-prefix'       => "Amosar páxines qu'empecipien por:",
 'undelete-search-submit'       => 'Buscar',
-'undelete-no-results'          => "Nun s'atoparon páxines afechisques a la busca nel archivu de borraos.",
+'undelete-no-results'          => "Nun s'atoparon páxines afechisques a la busca nel archivu d'esborraos.",
 'undelete-filename-mismatch'   => "Nun se pue restaurar la revisión del archivu con fecha $1: el nome d'archivu nun concuaya",
-'undelete-bad-store-key'       => "Nun se pue restaurar la revisión del archivu con fecha $1: yá nun esistía l'archivu nel momentu de borralu.",
-'undelete-cleanup-error'       => 'Error al borrar l\'archivu non usáu "$1".',
+'undelete-bad-store-key'       => "Nun se pue restaurar la revisión del archivu con fecha $1: yá nun esistía l'archivu nel momentu d'esborralu.",
+'undelete-cleanup-error'       => 'Error al esborrar l\'archivu non usáu "$1".',
 'undelete-missing-filearchive' => "Nun se pue restaurar l'archivu col númberu d'identificación $1 porque nun ta na base de datos. Seique yá fuera restauráu.",
 'undelete-error-short'         => "Error al restaurar l'archivu: $1",
 'undelete-error-long'          => "Atopáronse errores al restaurar l'archivu:
@@ -2031,12 +2032,12 @@ Nestos casos vas tener que treslladar o fusionar la páxina manualmente.",
 'movelogpagetext'           => 'Esta ye la llista de páxines treslladaes.',
 'movereason'                => 'Motivu:',
 'revertmove'                => 'revertir',
-'delete_and_move'           => 'Borrar y treslladar',
-'delete_and_move_text'      => '==Necesítase borrar==
+'delete_and_move'           => 'Esborrar y treslladar',
+'delete_and_move_text'      => '==Necesítase esborrar==
 
-La páxina de destín "[[:$1]]" yá esiste. ¿Quies borrala pa dexar sitiu pal treslláu?',
-'delete_and_move_confirm'   => 'Sí, borrar la páxina',
-'delete_and_move_reason'    => 'Borrada pa facer sitiu pal treslláu',
+La páxina de destín "[[:$1]]" yá esiste. ¿Quies esborrala pa dexar sitiu pal treslláu?',
+'delete_and_move_confirm'   => 'Sí, esborrar la páxina',
+'delete_and_move_reason'    => 'Esborrada pa facer sitiu pal treslláu',
 'selfmove'                  => "Los nomes d'orixe y destín son los mesmos, nun se pue treslladar una páxina sobre ella mesma.",
 'immobile-source-namespace' => 'Nun se puen treslladar páxines nel espaciu de nomes "$1"',
 'immobile-target-namespace' => 'Nun se puen treslladar páxines al espaciu de nomes "$1"',
@@ -2145,8 +2146,8 @@ Guárdalu nel to ordenador y xúbilu equí.",
 'tooltip-ca-viewsource'           => 'Esta páxina ta protexida. Pues ver el so códigu fonte.',
 'tooltip-ca-history'              => "Versiones antigües d'esta páxina.",
 'tooltip-ca-protect'              => 'Protexe esta páxina',
-'tooltip-ca-delete'               => 'Borra esta páxina',
-'tooltip-ca-undelete'             => 'Restaura les ediciones feches nesta páxina enantes de que fuera borrada',
+'tooltip-ca-delete'               => 'Esborra esta páxina',
+'tooltip-ca-undelete'             => 'Restaura les ediciones feches nesta páxina enantes de que fuera esborrada',
 'tooltip-ca-move'                 => 'Tresllada esta páxina',
 'tooltip-ca-watch'                => 'Añade esta páxina a la to llista de vixilancia',
 'tooltip-ca-unwatch'              => 'Elimina esta páxina de la to llista de vixilancia',
@@ -2186,7 +2187,7 @@ Guárdalu nel to ordenador y xúbilu equí.",
 'tooltip-diff'                    => 'Amuesa los cambeos que fixisti nel testu.',
 'tooltip-compareselectedversions' => "Amuesa les diferencies ente les dos versiones seleicionaes d'esta páxina.",
 'tooltip-watch'                   => 'Amiesta esta páxina na to llista de vixilancia',
-'tooltip-recreate'                => 'Vuelve a crear la páxina magar que se tenga borrao',
+'tooltip-recreate'                => 'Vuelve a crear la páxina magar que se tenga esborrao',
 'tooltip-upload'                  => 'Empecipiar la xubida',
 'tooltip-rollback'                => '"Revertir" elimina la edición/es d\'esta páxina fecha/es pol postrer collaborador con un solu clic.',
 'tooltip-undo'                    => '"Esfacer" revierte esta edición y abre\'l formulariu d\'edición en mou de previsualización. Permite añader un motivu nel resume.',
@@ -2249,12 +2250,12 @@ Probablemente tea causao por un enllaz a un sitiu esternu de la llista prieta.',
 'patrol-log-auto'   => '(automática)',
 
 # Image deletion
-'deletedrevision'                 => 'Borrada la reversión vieya $1',
-'filedeleteerror-short'           => "Error al borrar l'archivu: $1",
-'filedeleteerror-long'            => "Atopáronse errores al borrar l'archivu:
+'deletedrevision'                 => 'Esborrada la reversión vieya $1',
+'filedeleteerror-short'           => "Error al esborrar l'archivu: $1",
+'filedeleteerror-long'            => "Atopáronse errores al esborrar l'archivu:
 
 $1",
-'filedelete-missing'              => 'L\'archivu "$1" nun pue borrase porque nun esiste.',
+'filedelete-missing'              => 'L\'archivu "$1" nun pue esborrase porque nun esiste.',
 'filedelete-old-unregistered'     => 'La revisión d\'archivu "$1" nun ta na base de datos.',
 'filedelete-current-unregistered' => 'L\'archivu especificáu "$1" nun ta na base de datos.',
 'filedelete-archive-read-only'    => 'El direutoriu d\'archivos "$1" nun pue ser modificáu pol sirvidor.',
@@ -2636,13 +2637,13 @@ Esti códigu de confirmación caduca\'l $4.',
 Retroenllaces pa esta páxina:<br />
 $1
 </div>',
-'trackbackremove'   => ' ([$1 Borrar])',
+'trackbackremove'   => ' ([$1 Esborrar])',
 'trackbacklink'     => 'Retroenllaz',
-'trackbackdeleteok' => 'El retroenllaz borróse correutamente.',
+'trackbackdeleteok' => 'El retroenllaz esborróse correutamente.',
 
 # Delete conflict
-'deletedwhileediting' => "'''Avisu''': ¡Esta páxina foi borrada depués de qu'entamaras a editala!",
-'confirmrecreate'     => "L'usuariu [[User:$1|$1]] ([[User talk:$1|alderique]]) borró esta páxina depués de qu'empecipiaras a editala pol siguiente motivu:
+'deletedwhileediting' => "'''Avisu''': ¡Esta páxina foi esborrada depués de qu'entamaras a editala!",
+'confirmrecreate'     => "L'usuariu [[User:$1|$1]] ([[User talk:$1|alderique]]) esborró esta páxina depués de qu'empecipiaras a editala pol siguiente motivu:
 : ''$2''
 Por favor confirma que daveres quies volver a crear esta páxina.",
 'recreate'            => 'Volver a crear',

@@ -607,11 +607,11 @@ $2',
 'revisiondelete'              => '刪除/反刪除修改',
 'revdelete-nooldid-title'     => '冇目標修訂',
 'revdelete-nooldid-text'      => '倷冇话箇隻操作嗰目标修改。',
-'revdelete-selected'          => "揀'''$1'''嗰$2回修訂:",
-'logdelete-selected'          => "揀'''$1'''嗰$2隻日誌事件:",
-'revdelete-text'              => '刪吥嗰改動哈會到頁面歷史裡頭顯示, 但公眾瀏覽伓正佢嗰內容。 
+'revdelete-selected'          => "'''揀'''$1'''嗰$2回修訂:'''",
+'logdelete-selected'          => "'''揀'''$1'''嗰$2隻日誌事件:'''",
+'revdelete-text'              => "'''刪吥嗰改動哈會到頁面歷史裡頭顯示, 但公眾瀏覽伓正佢嗰內容。'''
 
-箇站別嗰管理員哈係能眵吖弆到嗰內容，同到通過同佢一樣嗰界面恢復刪除，除非設正嘞附加嗰限制。',
+箇站別嗰管理員哈係能眵吖弆到嗰內容，同到通過同佢一樣嗰界面恢復刪除，除非設正嘞附加嗰限制。",
 'revdelete-legend'            => '設置修改限制',
 'revdelete-hide-text'         => '弆到修改內容',
 'revdelete-hide-name'         => '弆到動作同目標',

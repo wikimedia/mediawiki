@@ -879,7 +879,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 # Revision deletion
 'rev-delundel'       => '보이기/숨기기',
 'revisiondelete'     => '버전 삭제/복구',
-'revdelete-selected' => '[[:$1]]의 선택된 판:',
+'revdelete-selected' => "'''[[:$1]]의 선택된 판:'''",
 'pagehist'           => '문서 역사',
 'deletedhist'        => '삭제된 역사',
 'revdelete-content'  => '내용',

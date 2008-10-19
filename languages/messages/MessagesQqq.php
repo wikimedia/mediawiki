@@ -1013,7 +1013,9 @@ The rate limits have no effect on the groups that have this right. Rate limits i
 'action-unwatchedpages'       => '{{Doc-action}}',
 'action-trackback'            => '{{Doc-action}}',
 'action-mergehistory'         => '{{Doc-action}}',
-'action-userrights'           => '{{Doc-action}}',
+'action-userrights'           => '{{Doc-action}}
+
+This action allows editing of all of the "user rights", not just the rights of the group "all users".',
 'action-userrights-interwiki' => '{{Doc-action}}',
 'action-siteadmin'            => '{{Doc-action}}',
 
@@ -1773,6 +1775,8 @@ Shown as subtitle of [[Special:MovePage/testpage]]. $1 is the title of the page 
 * $1 is the source page as a link with display name
 * $2 is the target page as a link with display name', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movetalk'                => 'The text of the checkbox to watch the associated talk page to the page you are moving. This only appears when the talk page is not empty.',
+'move-subpages'           => 'The text of an option on the special page [[Special:MovePage|MovePage]]. If this option is ticked, any subpages will be moved with the main page to a new title.',
+'move-talk-subpages'      => 'The text of an option on the special page [[Special:MovePage|MovePage]]. If this option is ticked, any subpages will be moved with the talk page to a new title.',
 '1movedto2'               => "This is ''logentry'' message. $1 is the original page name, $2 is the destination page name.",
 '1movedto2_redir'         => "This is ''logentry'' message. $1 is the original page name, $2 is the destination page name.",
 'movelogpage'             => 'Title of special page',
@@ -2080,15 +2084,16 @@ Please leave the link http://www.mediawiki.org/wiki/Manual:External_editors exac
 {{Identical|All}}',
 
 # E-mail address confirmation
-'confirmemail_needlogin' => 'Used on [[Special:ConfirmEmail]] when you are logged out. Parameter $1 is a link to the log in form.',
-'confirmemail_body'      => 'This message is sent as an e-mail to users when they add or change their e-mail adress in [[Special:Preferences]].
+'confirmemail_needlogin'   => 'Used on [[Special:ConfirmEmail]] when you are logged out. Parameter $1 is a link to the log in form.',
+'confirmemail_body'        => 'This message is sent as an e-mail to users when they add or change their e-mail adress in [[Special:Preferences]].
 
 *$1 is the IP adress of the user that changed the e-mail adress
 *$2 is the name of the user
 *$3 is a URL to [[Special:ConfirmEmail]]
 *$4 is a time and date 
 *$5 is a URL to [[Special:InvalidateEmail]]',
-'invalidateemail'        => "This is the '''name of the special page''' where user goes if he chooses the cancel e-mail confirmation link from the confirmation e-mail.",
+'confirmemail_invalidated' => 'This is the text of the special page [[Special:InvalidateEmail|InvalidateEmail]] (with the title in [[Mediawiki:Invalidateemail]]) where user goes if he chooses the cancel e-mail confirmation link from the confirmation e-mail.',
+'invalidateemail'          => "This is the '''name of the special page''' where user goes if he chooses the cancel e-mail confirmation link from the confirmation e-mail.",
 
 # action=purge
 'confirm_purge_button' => '{{Identical|OK}}',

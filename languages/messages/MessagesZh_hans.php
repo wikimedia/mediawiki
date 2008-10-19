@@ -777,11 +777,11 @@ $2',
 'revdelete-nooldid-title'     => '无效的目标修订',
 'revdelete-nooldid-text'      => '您尚未指定一个目标修订去进行这个功能、
 所指定的修订不存在，或者您尝试去隐藏现时的修订。',
-'revdelete-selected'          => "选取'''$1'''的$2次修订:",
-'logdelete-selected'          => "选取'''$1'''的日志项目:",
-'revdelete-text'              => '删除的修订仍将显示在页面历史中, 但它们的文本内容已不能被公众访问。
+'revdelete-selected'          => "'''选取'''$1'''的$2次修订:'''",
+'logdelete-selected'          => "'''选取'''$1'''的日志项目:'''",
+'revdelete-text'              => "'''删除的修订仍将显示在页面历史中, 但它们的文本内容已不能被公众访问。'''
 
-在{{SITENAME}}的其他管理员将仍能访问隐藏的内容并通过与此相同的界面恢复删除，除非站点工作者进行了一些附加的限制。',
+在{{SITENAME}}的其他管理员将仍能访问隐藏的内容并通过与此相同的界面恢复删除，除非站点工作者进行了一些附加的限制。",
 'revdelete-legend'            => '设置可见性之限制',
 'revdelete-hide-text'         => '隐藏修订文本',
 'revdelete-hide-name'         => '隐藏动作和目标',

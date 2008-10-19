@@ -816,11 +816,11 @@ Nærmere oplysninger om sletningen samt en begrundelse for den findes i [{{fullu
 'revisiondelete'              => 'Slette/gendanne versioner',
 'revdelete-nooldid-title'     => 'Ingen version angivet',
 'revdelete-nooldid-text'      => 'Du har ikke angivet en version, som denne handling kan udføres på.',
-'revdelete-selected'          => "{{PLURAL:$2|Valgte version|Valgte versioner}} af '''$1:'''",
-'logdelete-selected'          => '{{PLURAL:$1|Valgte logbogsindførsel|Valgte logbogsindførsler}}:',
-'revdelete-text'              => 'Indholdet eller andre bestanddele er ikke mere offentligt tilgængelige, vises dog fortsat i versionshistorikken. 
+'revdelete-selected'          => "'''{{PLURAL:$2|Valgte version|Valgte versioner}} af '''$1:''''''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Valgte logbogsindførsel|Valgte logbogsindførsler}}:'''",
+'revdelete-text'              => "'''Indholdet eller andre bestanddele er ikke mere offentligt tilgængelige, vises dog fortsat i versionshistorikken.'''
 
-Administratorer kan dog fortsat se og gendanne det fjernede indhold, medmindre det er bestemt, at adgangsbegrænsningen også skal gælde for administratorer.',
+Administratorer kan dog fortsat se og gendanne det fjernede indhold, medmindre det er bestemt, at adgangsbegrænsningen også skal gælde for administratorer.",
 'revdelete-legend'            => 'Fastlægge begrænsninger for versionerne:',
 'revdelete-hide-text'         => 'Skjul versionens tekst',
 'revdelete-hide-name'         => 'Skjul logbogsaktionen',

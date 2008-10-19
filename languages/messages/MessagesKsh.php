@@ -990,12 +990,12 @@ Jetz ka\'mer se nit mieh beluure. Als ene Wiki-Köbes kriss De se ävver doch ze
 'revisiondelete'              => 'Versione fottschmieße un widder zeröck holle',
 'revdelete-nooldid-title'     => 'Kein Version aanjejovve, oddeer en Stuß-Nommer',
 'revdelete-nooldid-text'      => 'Do häs kein Version aanjejovve, womet mer dat maache sulle. Odder de Nommer wohr Stuß, verkeeht, et jitt se nit, odder De wellß de neuste Version fott maache.',
-'revdelete-selected'          => '{{PLURAL:$2|Ein usjewählte Version|$2 usjewählte Versione|Kein Version usjewählt}} vun [[:$1]]:',
-'logdelete-selected'          => '{{PLURAL:$1|Dä ußjewählte Logboch-Endrach|De Ußjewählte Logboch-Endrähsch}}:',
-'revdelete-text'              => 'Dä fottjeschmesse Sigge ehre Enhald kanns De nit mieh aanluure. Se blieve ävver en de Liss met de Versione dren.
+'revdelete-selected'          => "'''{{PLURAL:$2|Ein usjewählte Version|$2 usjewählte Versione|Kein Version usjewählt}} vun [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Dä ußjewählte Logboch-Endrach|De Ußjewählte Logboch-Endrähsch}}:'''",
+'revdelete-text'              => "'''Dä fottjeschmesse Sigge ehre Enhald kanns De nit mieh aanluure. Se blieve ävver en de Liss met de Versione dren.'''
 
 Ene Wiki Köbes kann de fottjeschmessene Krom immer noch aanluere un kann en och widder herholle, usser wann bei 
-dem Wiki singe Installation dat anders fassjelaht woode es.',
+dem Wiki singe Installation dat anders fassjelaht woode es.",
 'revdelete-legend'            => 'Dä öffentlije Zojang enschränke',
 'revdelete-hide-text'         => 'Dä Tex vun dä Version versteiche',
 'revdelete-hide-name'         => 'Der Förjang, un och der Enndraach uss_em Logboch, versteiche',
@@ -1661,7 +1661,7 @@ wääde, un luur Der die ander Links aan!',
 'statistics-header-edits'         => 'Zahle övver Änderunge',
 'statistics-header-views'         => 'Zahle övver afjeroofe Sigge',
 'statistics-header-users'         => 'Statistike üvver de Metmaacher',
-'statistics-articles'             => 'Atikelle',
+'statistics-articles'             => 'Atikele',
 'statistics-pages'                => 'Sigge jesamp',
 'statistics-pages-tooltip'        => 'All pages in the wiki, including talk pages, redirects, etc.
 All de Sigge em Wiki, och Klaafsigge, Ömleitunge, un esu jet',
@@ -1681,7 +1681,7 @@ All de Sigge em Wiki, och Klaafsigge, Ömleitunge, un esu jet',
 'disambiguations-text' => 'En de Sigge hee noh sin Links dren op en „(Watt ėßß datt?)“-Sigg.
 De Links sollte eijentlesch op en Sigg jon, di tirek jemeint es.
 
-(En Atikel jellt als en „(Watt ėßß datt?)“-Sigg un weed hee jeliss, wann en dä Sigg [[MediaWiki:Disambiguationspage]] ene Link op en drop dren is. Alles wat keij Atikelle sin, weed dobei jaa nit eez metjezallt)',
+(En Atikel jellt als en „(Watt ėßß datt?)“-Sigg un weed hee jeliss, wann en dä Sigg [[MediaWiki:Disambiguationspage]] ene Link op en drop dren is. Alles wat keij Atikele sin, weed dobei jaa nit eez metjezallt)',
 
 'doubleredirects'            => 'Ömleitunge op Ömleitunge',
 'doubleredirectstext'        => 'Dubbel Ömleitunge sin immer verkihrt, weil däm Wiki sing Soffwär de eetse Ömleitung 
@@ -1714,9 +1714,9 @@ vun dä Sigg dovör.',
 'nrevisions'              => '{{PLURAL:$1|Ein Änderung|$1 Änderunge|Keij Änderung}}',
 'nviews'                  => '{{PLURAL:$1|Eine Avrof|$1 Avrofe|Keine Avrof}}',
 'specialpage-empty'       => 'Hee en dä Liss es nix dren.',
-'lonelypages'             => 'Atikelle, wo nix drop link',
+'lonelypages'             => 'Atikele, wo nix drop link',
 'lonelypagestext'         => 'The following pages are not linked from other pages in this wiki.',
-'uncategorizedpages'      => 'Atikelle, die en kein Saachjrupp sin',
+'uncategorizedpages'      => 'Atikele, die en kein Saachjrupp sin',
 'uncategorizedcategories' => 'Saachjruppe, die selvs en kein Saachjruppe sin',
 'uncategorizedimages'     => 'Belder, Tön, uew., die en kein Saachjruppe dren sin',
 'uncategorizedtemplates'  => 'Schablone, die en kein Saachjruppe sen',
@@ -1726,6 +1726,7 @@ vun dä Sigg dovör.',
 'wantedcategories'        => 'Saachjruppe, die mer noch nit han, die noch jebruch wääde',
 'wantedpages'             => 'Sigge, die mer noch nit han, die noch jebruch wääde',
 'wantedfiles'             => 'Dateie, di onß noch fähle',
+'wantedtemplates'         => 'Schablone, die mer noch nit han, die noch jebruch wääde',
 'mostlinked'              => 'Atikele met de miehste Links drop',
 'mostlinkedcategories'    => 'Saachjruppe met de miehste Links drop',
 'mostlinkedtemplates'     => 'Schablone met de miehßte Lenks drop',
@@ -1733,10 +1734,10 @@ vun dä Sigg dovör.',
 'mostimages'              => 'Belder, Tön, uew. met de miehste Links drop',
 'mostrevisions'           => 'Atikkele met de miehste Änderunge',
 'prefixindex'             => 'All Sigge, die dänne ehr Name met enem bestemmte Wood oder Tex aanfange deit',
-'shortpages'              => 'Atikelle zoteet vun koot noh lang',
-'longpages'               => 'Atikelle zoteet vun lang noh koot',
-'deadendpages'            => 'Atikelle ohne Links dren',
-'deadendpagestext'        => 'De Atikelle hee han kein Links op ander Atikelle em Wiki.',
+'shortpages'              => 'Atikele zoteet vun koot noh lang',
+'longpages'               => 'Atikele zoteet vun lang noh koot',
+'deadendpages'            => 'Atikele ohne Links dren',
+'deadendpagestext'        => 'De Atikele hee han kein Links op ander Atikele em Wiki.',
 'protectedpages'          => 'Jeschötzte Sigge',
 'protectedpages-indef'    => 'Nor de Sigge zeije, woh alleins de Wiki-Köbesse draan dörrve',
 'protectedpages-cascade'  => 'Nur Sigge en ener Schotz-Kaskad',
@@ -2184,7 +2185,7 @@ Drag bei „Aanlass“ ene möchlichs jenaue Jrund en, wöröm dat Sperre passee
 'ipbreason'                       => 'Aanlass:',
 'ipbreasonotherlist'              => 'Ne andere Bejründung',
 'ipbreason-dropdown'              => '* Alljemein Jrönd för et Sperre
-** hät fekeehte Behouptunge udder Leeje en Atikelle jeschrevve
+** hät fekeehte Behouptunge udder Leeje en Atikele jeschrevve
 ** hät Sigge fottjeschmesse udder leddig jemaat
 ** hält sesch iewesch nit aan de Rejelle övver de Links op anger Websigge un jäje der Link-SPAM
 ** hät Sigge met Shtuß drop aajelaat
@@ -2277,7 +2278,7 @@ un verzäll dänne vun däm ärrje Risiko för de Secherheit fun dänne ehr Rä�
 # Developer tools
 'lockdb'              => 'Daatebank sperre',
 'unlockdb'            => 'Daatebank freijevve',
-'lockdbtext'          => 'Nohm Sperre kann keiner mieh Änderunge maache an sing Oppassliss, aan Enstellunge, Atikelle, uew. un neu Metmaacher jitt et och nit. Bes de secher, datte dat wells?',
+'lockdbtext'          => 'Nohm Sperre kann keiner mieh Änderunge maache an sing Oppassliss, aan Enstellunge, Atikele, uew. un neu Metmaacher jitt et och nit. Bes de secher, datte dat wells?',
 'unlockdbtext'        => 'Nohm Freijevve es de Daatebank nit mieh jesperrt, un all de normale Änderunge wääde widder müjjelich. Bes de secher, dat De dat wells?',
 'lockconfirm'         => 'Jo, ich well de Daatebank jesperrt han.',
 'unlockconfirm'       => 'Jo, ich well de Daatebank freijevve.',

@@ -831,9 +831,9 @@ der kinne details wêze yn it [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE
 'revisiondelete'              => 'Wiskje/weromsette ferzjes',
 'revdelete-nooldid-title'     => 'Gjin doelferzje',
 'revdelete-nooldid-text'      => 'Jo hawwe gjin doelferzje(s) foar dizze hanneling opjûn, de oanjûne ferzje bestiet net, of jo besykje de lêste ferzje te ferskûljen.',
-'revdelete-selected'          => 'Spesifisearre {{PLURAL:$2|ferzje|ferzjes}} fan [[:$1]]:',
-'logdelete-selected'          => '{{PLURAL:$1|keazen lochboekregel|keazen lochboekregels}}:',
-'revdelete-text'              => "Fuorthelle bewurkings binne sichtber yn 'e skiednis, mar de ynhâld is net langer publyk tagonklik.
+'revdelete-selected'          => "'''Spesifisearre {{PLURAL:$2|ferzje|ferzjes}} fan [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|keazen lochboekregel|keazen lochboekregels}}:'''",
+'revdelete-text'              => "'''Fuorthelle bewurkings binne sichtber yn 'e skiednis, mar de ynhâld is net langer publyk tagonklik.'''
 Oare behearders fan {{SITENAME}} kinne de ferburgen ynhâld benaderje en it fuortheljen ûngedien meitsje mei help fan dit skerm, of der moatte oanfoljende beheinings jilde dy't ynsteld binne troch de systeembehearder.",
 'revdelete-legend'            => 'Sichtberensbeheinings ynstelle.',
 'revdelete-hide-text'         => 'De bewurke tekst ferskûlje',

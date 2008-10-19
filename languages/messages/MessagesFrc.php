@@ -581,9 +581,9 @@ Assayez de [[Special:Search|charcher dans le wiki]] pour des nouvelles pages.',
 'revisiondelete'              => 'Ôter/rétablir les changements',
 'revdelete-nooldid-title'     => 'Aucun changement choisi',
 'revdelete-nooldid-text'      => 'Vous avez pas choisi le ou les changement(s) pour user cette fonction.',
-'revdelete-selected'          => "{{PLURAL:$2|Changement choisi|Changements choisis}} de '''$1:'''",
-'logdelete-selected'          => '{{PLURAL:$1|Événement de notes choisi|Événements de notes choisis}}:',
-'revdelete-text'              => "La liste des changements va sauver les versions ôtées, mais le public pourra pas voir certains morceaux de ces versions.  
+'revdelete-selected'          => "'''{{PLURAL:$2|Changement choisi|Changements choisis}} de '''$1:''''''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Événement de notes choisi|Événements de notes choisis}}:'''",
+'revdelete-text'              => "'''La liste des changements va sauver les versions ôtées, mais le public pourra pas voir certains morceaux de ces versions.'''
 
 Des autres administrateurs sus ce wiki ont la permission de voir et de rétablir les morceaux cachés hormis qu'y aye des restrictions.",
 'revdelete-legend'            => 'Mettre des restrictions',

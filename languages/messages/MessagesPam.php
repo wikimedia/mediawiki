@@ -685,11 +685,11 @@ mapaliaring maki detalle king [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE
 'revisiondelete'              => 'Ilako/e-ilako ing pamanalili',
 'revdelete-nooldid-title'     => 'E ustung pamanaliling target',
 'revdelete-nooldid-text'      => 'Mapaliaring ala kang binieng balak a pamanalili (target revision) ba meng daptan ing gamit (function) a iti, ala yu ing mebanggit a pamanaliling iti, o magtangka kang isalikut ya ing kasalungsungan a pamanalili.',
-'revdelete-selected'          => '{{PLURAL:$2|Mepiling bersion|Mepiling bersion}} ning [[:$1]]:',
-'logdelete-selected'          => '{{PLURAL:$1|Mepiling miliari king tala/listaan|Mepiling miliari king tala/listaan}}:',
-'revdelete-text'              => 'Lunto la pa murin king amlat ning bulung deng meburang pamanalili ampong kapaliarian (events), oneng e ra no abusni deng malda ding mapilang dake ning karelang laman.
+'revdelete-selected'          => "'''{{PLURAL:$2|Mepiling bersion|Mepiling bersion}} ning [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Mepiling miliari king tala/listaan|Mepiling miliari king tala/listaan}}:'''",
+'revdelete-text'              => "'''Lunto la pa murin king amlat ning bulung deng meburang pamanalili ampong kapaliarian (events), oneng e ra no abusni deng malda ding mapilang dake ning karelang laman.'''
 
-Abusni da pa murin deng aliwang talapanibala (admin) king {{SITENAME}} itang laman a makasalikut, at aurung da ing pangabura na niti kapamilatan na mismu niting interface, puera namu nung ating bayung pamag-limita o pamanyabat a miyutus.',
+Abusni da pa murin deng aliwang talapanibala (admin) king {{SITENAME}} itang laman a makasalikut, at aurung da ing pangabura na niti kapamilatan na mismu niting interface, puera namu nung ating bayung pamag-limita o pamanyabat a miyutus.",
 'revdelete-legend'            => 'Mitakdang angganan/limitasiun kareng maliaring akit',
 'revdelete-hide-text'         => 'Isalikut ya ing meyaliling kulitan',
 'revdelete-hide-name'         => 'Isalikut ya ing dapat (action) ampo ing balak (target)',
