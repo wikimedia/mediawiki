@@ -8,6 +8,26 @@
  * @author לערי ריינהארט
  */
 
+$specialPageAliases = array(
+	'Watchlist'                 => array( 'Angay Timan-an' ),
+	'Upload'                    => array( 'Pagkarga' ),
+	'Statistics'                => array( 'Mga Estadistika' ),
+	'Randompage'                => array( 'Bisan Ano', 'BisanAnongaPakli' ),
+	'Mostlinked'                => array( 'Gidamo-iHinSumpay' ),
+	'Shortpages'                => array( 'HaglipotngamgaPakli' ),
+	'Longpages'                 => array( 'HaglabangamgaPakli' ),
+	'Newpages'                  => array( 'Bag-ongamgaPakli' ),
+	'Allpages'                  => array( 'NgatananngaPakli' ),
+	'Specialpages'              => array( 'MgaIspisyalngaPakli' ),
+	'Contributions'             => array( 'Mga Ámot' ),
+	'Movepage'                  => array( 'BalhinaAnPakli' ),
+	'Categories'                => array( 'Mga Kategorya' ),
+	'Version'                   => array( 'Bersyon' ),
+	'Mypage'                    => array( 'AkonPakli' ),
+	'Mytalk'                    => array( 'AkonHiruhimangraw' ),
+	'Search'                    => array( 'Bilnga' ),
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'           => 'Bagisa ha ilarom an mga sumpay:',

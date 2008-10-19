@@ -158,19 +158,6 @@ $dateFormats = array(
 	'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni:xns',
 );
 
-/**
- * Magic words
- * Customisable syntax for wikitext and elsewhere.
- *
- * IDs must be valid identifiers, they can't contain hyphens. 
- *
- * Note to translators:
- *   Please include the English words as synonyms.  This allows people
- *   from other wikis to contribute more easily.
- *   Please don't remove deprecated values, them should be keeped for backward compatibility.
- *
- * This array can be modified at runtime with the LanguageGetMagic hook
- */
 $magicWords = array(
 #   ID                                 CASE  SYNONYMS
 	'redirect'               => array( 0,    '#REDIRECT', '#АЙДАУ' ),
@@ -382,10 +369,6 @@ $specialPageAliases = array(
 	'Filepath'                  => array( 'Файл_мекені' ),
 	'Invalidateemail'           => array( 'Құптамау_хаты' ),
 );
-
-#-------------------------------------------------------------------
-# Default messages
-#-------------------------------------------------------------------
 
 $messages = array(
 # User preference toggles

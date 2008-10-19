@@ -27,23 +27,23 @@
   * http://forum.pasok.gr
   * version 1.0 (initial release)
   *
-  *The project for the translation of MediaWiki into Greek
-  *was undertaken by a group of ICT volunteers working under
-  *the auspices of the Greek political party PASOK.
+  * The project for the translation of MediaWiki into Greek
+  * was undertaken by a group of ICT volunteers working under
+  * the auspices of the Greek political party PASOK.
   *
-  *The idea behind this effort was  to provide an extensible,
-  *easy-to-use and non-intimidating tool for content development
-  *and project management, to be used throughout the administrative
-  *and political structure of PASOK by staff, volunteers, party members
-  *and elected officials (all of whom possess varying degrees of ICT skills).
+  * The idea behind this effort was  to provide an extensible,
+  * easy-to-use and non-intimidating tool for content development
+  * and project management, to be used throughout the administrative
+  * and political structure of PASOK by staff, volunteers, party members
+  * and elected officials (all of whom possess varying degrees of ICT skills).
   *
-  *The PASOK ICT team and the volunteers who worked on this project are
-  *now returning the translated interface to the Open-Source Community
-  *with over 98% of the messages translated into user-friendly Greek.
+  * The PASOK ICT team and the volunteers who worked on this project are
+  * now returning the translated interface to the Open-Source Community
+  * with over 98% of the messages translated into user-friendly Greek.
   *
-  *We hope that it will be used as a tool by other civil society organizations
-  *in Greece, and that it will enhance the collective creation and the dissemination
-  *of knowledge - an essential component of the democratic process.
+  * We hope that it will be used as a tool by other civil society organizations
+  * in Greece, and that it will enhance the collective creation and the dissemination
+  * of knowledge - an essential component of the democratic process.
   */
 
 $namespaceNames = array(
@@ -66,6 +66,92 @@ $namespaceNames = array(
 	NS_CATEGORY         => 'Κατηγορία',
 	NS_CATEGORY_TALK    => 'Συζήτηση_κατηγορίας',
 );
+
+$specialPageAliases = array(
+	'DoubleRedirects'           => array( 'ΔιπλέςΑνακατευθύνσεις' ),
+	'BrokenRedirects'           => array( 'ΛανθασμένεςΑνακατευθύνσεις' ),
+	'Disambiguations'           => array( 'Αποσαφηνίσεις' ),
+	'Userlogin'                 => array( 'ΣύνδεσηΧρήστη' ),
+	'Userlogout'                => array( 'ΑποσύνδεσηΧρήστη' ),
+	'CreateAccount'             => array( 'ΔημιουργίαΛογαριασμού' ),
+	'Preferences'               => array( 'Προτιμήσεις' ),
+	'Watchlist'                 => array( 'ΛίσταΠαρακολούθησης' ),
+	'Recentchanges'             => array( 'ΠρόσφατεςΑλλαγές' ),
+	'Upload'                    => array( 'Επιφόρτωση' ),
+	'Imagelist'                 => array( 'ΚατάλογοςΕικόνων' ),
+	'Newimages'                 => array( 'ΝέεςΕικόνες' ),
+	'Listusers'                 => array( 'ΚατάλογοςΧρηστών' ),
+	'Listgrouprights'           => array( 'ΚατάλογοςΔικαιωμάτωνΧρηστών' ),
+	'Statistics'                => array( 'Στατιστικά' ),
+	'Randompage'                => array( 'Τυχαία' ),
+	'Lonelypages'               => array( 'ΟρφανέςΣελίδες' ),
+	'Uncategorizedpages'        => array( 'ΣελίδεςΧωρίςΚατηγορία' ),
+	'Uncategorizedcategories'   => array( 'ΚατηγορίεςΧωρίςΚατηγορία' ),
+	'Uncategorizedimages'       => array( 'ΕικόνεςΧωρίςΚατηγορία' ),
+	'Uncategorizedtemplates'    => array( 'ΠρότυπαΧωρίςΚατηγορία' ),
+	'Unusedcategories'          => array( 'ΑχρησιμοποίητεςΚατηγορίες' ),
+	'Unusedimages'              => array( 'ΑχρησιμοποίητεςΕικόνες' ),
+	'Wantedpages'               => array( 'ΕπιθυμητέςΣελίδες' ),
+	'Wantedcategories'          => array( 'ΕπιθυμητέςΚατηγορίες' ),
+	'Wantedfiles'               => array( 'ΕπιθυμητάΑρχεία' ),
+	'Mostlinked'                => array( 'ΠερισσότεροΣυνδεδεμένες' ),
+	'Mostlinkedcategories'      => array( 'ΠερισσότεροΧρησιμοποιούμενεςΚατηγορίες' ),
+	'Mostlinkedtemplates'       => array( 'ΠερισσότεροΧρησιμοποιούμεναΠρότυπα' ),
+	'Mostcategories'            => array( 'ΠερισσότερεςΚατηγορίες' ),
+	'Mostimages'                => array( 'ΠερισσότερεςΕικόνες' ),
+	'Mostrevisions'             => array( 'ΠερισσότερεςΕπεξεργασίες' ),
+	'Fewestrevisions'           => array( 'ΛιγότερεςΕπεξεργασίες' ),
+	'Shortpages'                => array( 'ΜικρέςΣελίδες' ),
+	'Longpages'                 => array( 'ΜακριέςΣελίδες' ),
+	'Newpages'                  => array( 'ΝέεςΣελίδες' ),
+	'Ancientpages'              => array( 'ΑρχαίεςΣελίδες' ),
+	'Deadendpages'              => array( 'ΑδιέξοδεςΣελίδες' ),
+	'Protectedpages'            => array( 'ΠροστατευμένεςΣελίδες' ),
+	'Protectedtitles'           => array( 'ΠροστετευμένοιΤίτλοι' ),
+	'Allpages'                  => array( 'ΌλεςΟιΣελίδες' ),
+	'Prefixindex'               => array( 'ΕυρετήριοΠροθεμάτων' ),
+	'Ipblocklist'               => array( 'ΚατάλογοςΦραγώνIP' ),
+	'Specialpages'              => array( 'ΕιδικέςΣελίδες' ),
+	'Contributions'             => array( 'Συνεισφορές' ),
+	'Emailuser'                 => array( 'EmailΧρήστη' ),
+	'Confirmemail'              => array( 'ΕπιβεβαίωσηEmail' ),
+	'Whatlinkshere'             => array( 'ΤιΣυνδέειΕδώ' ),
+	'Recentchangeslinked'       => array( 'ΣχετικέςΑλλαγές' ),
+	'Movepage'                  => array( 'ΜετακίνησηΣελίδας' ),
+	'Blockme'                   => array( 'ΦραγήΣεΜένα' ),
+	'Booksources'               => array( 'ΠηγέςΒιβλίων' ),
+	'Categories'                => array( 'Κατηγορίες' ),
+	'Export'                    => array( 'Εξαγωγή' ),
+	'Version'                   => array( 'Έκδοση' ),
+	'Allmessages'               => array( 'ΌλαΤαΜηνύματα' ),
+	'Log'                       => array( 'Μητρώο' ),
+	'Blockip'                   => array( 'ΦραγήIP' ),
+	'Undelete'                  => array( 'ΑναίρεσηΔιαγραφής' ),
+	'Import'                    => array( 'Εισαγωγή' ),
+	'Lockdb'                    => array( 'ΚλείδωμαΒάσης' ),
+	'Unlockdb'                  => array( 'ΞεκλείδωμαΒάσης' ),
+	'Userrights'                => array( 'ΔικαιώματαΧρηστών' ),
+	'MIMEsearch'                => array( 'ΑναζήτησηMIME' ),
+	'FileDuplicateSearch'       => array( 'ΑναζήτησηΔιπλώνΑρχείων' ),
+	'Unwatchedpages'            => array( 'ΜηΠαρακολουθούμενεςΣελίδες' ),
+	'Listredirects'             => array( 'ΚατάλογοςΑνακατευθύνσεων' ),
+	'Revisiondelete'            => array( 'ΔιαγραφήΈκδοσης' ),
+	'Unusedtemplates'           => array( 'ΜηΧρησιμοποιούμεναΠρότυπα' ),
+	'Randomredirect'            => array( 'ΤυχαίαΑνακατεύθυνση' ),
+	'Mypage'                    => array( 'ΗΣελίδαΜου' ),
+	'Mytalk'                    => array( 'ΗΣυζήτησήΜου' ),
+	'Mycontributions'           => array( 'ΟιΣυνεισφορέςΜου' ),
+	'Listadmins'                => array( 'ΚατάλογοςΔιαχειριστών' ),
+	'Listbots'                  => array( 'ΚατάλογοςBot' ),
+	'Popularpages'              => array( 'ΔημοφιλείςΣελίδες' ),
+	'Search'                    => array( 'Αναζήτηση' ),
+	'Resetpass'                 => array( 'ΑρχικοποίησηΚωδικού' ),
+	'Withoutinterwiki'          => array( 'ΧωρίςInterwiki' ),
+	'MergeHistory'              => array( 'ΣυγχώνευσηΙστορικού' ),
+	'Blankpage'                 => array( 'ΚενήΣελίδα' ),
+	'DeletedContributions'      => array( 'ΔιαγραμμένεςΣυνεισφορές' ),
+);
+
 $fallback8bitEncoding = 'iso-8859-7';
 $separatorTransformTable = array(',' => '.', '.' => ',' );
 $linkTrail = '/^([a-z]+)(.*)$/sD';

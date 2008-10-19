@@ -9,6 +9,22 @@
  * @author לערי ריינהארט
  */
 
+$specialPageAliases = array(
+	'Userlogin'                 => array( 'Yusa login' ),
+	'Userlogout'                => array( 'Yusa logaut' ),
+	'CreateAccount'             => array( 'Mekim nupela login' ),
+	'Preferences'               => array( 'Ol laik bilong mi' ),
+	'Watchlist'                 => array( 'Lukautbuk' ),
+	'Recentchanges'             => array( 'Nupela senis' ),
+	'Upload'                    => array( 'Salim media fail' ),
+	'Randompage'                => array( 'Soim wanpela pes' ),
+	'Specialpages'              => array( 'Sipesol pes' ),
+	'Contributions'             => array( 'Ol senis bilong yusa' ),
+	'Emailuser'                 => array( 'Imel yusa' ),
+	'Confirmemail'              => array( 'Orait long imel' ),
+	'Whatlinkshere'             => array( 'Ol link ikam long hia' ),
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Putim lain ananit long ol link:',

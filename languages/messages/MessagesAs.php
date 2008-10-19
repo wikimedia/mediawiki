@@ -46,6 +46,37 @@ $namespaceAliases = array(
 	'श्रेणी_वार्ता' => NS_CATEGORY_TALK,
 );
 
+$specialPageAliases = array(
+	'Userlogin'                 => array( 'সদস্যৰ প্রবেশ' ),
+	'Userlogout'                => array( 'সদস্যৰ প্রস্থান' ),
+	'CreateAccount'             => array( 'সদস্যভুক্তি' ),
+	'Preferences'               => array( 'পচন্দ' ),
+	'Watchlist'                 => array( 'লক্ষ্যতালিকা' ),
+	'Recentchanges'             => array( 'শেহতীয়া কাম' ),
+	'Upload'                    => array( 'বোজাই' ),
+	'Imagelist'                 => array( 'চিত্র-তালিকা' ),
+	'Newimages'                 => array( 'নতুন চিত্র' ),
+	'Listusers'                 => array( 'সদস্য-তালিকা' ),
+	'Listgrouprights'           => array( 'গোটৰ অধিকাৰসমুহ' ),
+	'Statistics'                => array( 'পৰিসংখ্যা' ),
+	'Randompage'                => array( 'আকস্মিক' ),
+	'Lonelypages'               => array( 'অকলশৰীয়া পৃষ্ঠা' ),
+	'Uncategorizedpages'        => array( 'অবিন্যস্ত পৃষ্ঠাসমুহ' ),
+	'Uncategorizedcategories'   => array( 'অবিন্যস্ত শ্ৰেণীসমূহ' ),
+	'Uncategorizedimages'       => array( 'অবিন্যস্ত চিত্ৰবোৰ' ),
+	'Uncategorizedtemplates'    => array( 'অবিন্যস্ত সাঁচবোৰ' ),
+	'Unusedcategories'          => array( 'অব্যৱহৃত শ্ৰেণীসমূহ' ),
+	'Unusedimages'              => array( 'অব্যৱহৃত চিত্ৰবোৰ' ),
+	'Wantedcategories'          => array( 'আকাংক্ষিত শ্ৰেণীসমূহ' ),
+	'Allpages'                  => array( 'সকলোবোৰ পৃষ্ঠা' ),
+	'Specialpages'              => array( 'বিশেষ পৃষ্ঠাবোৰ' ),
+	'Contributions'             => array( 'অৱদানবোৰ' ),
+	'Mypage'                    => array( 'মোৰ পৃষ্ঠা' ),
+	'Mytalk'                    => array( 'মোৰ কথোপকথন' ),
+	'Mycontributions'           => array( 'মোৰ অৱদান' ),
+	'Popularpages'              => array( 'জনপ্ৰিয় পৃষ্ঠাসমূহ' ),
+);
+
 $digitTransformTable = array(
 	'0' => '০', # &#x09e6;
 	'1' => '১', # &#x09e7;

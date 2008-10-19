@@ -40,10 +40,7 @@
  * Ã¤ => ä, Ã¶ => ö, Ã¼ => ü, Ã„ => Ä, Ã– => Ö, Ãœ => Ü, ÃŸ => ß
  * â€ž => „, â€œ => “
  */
-/**
- * Fallback language, used for all unspecified messages and behaviour. This
- * is English by default, for all files other than this one.
- */
+
 $fallback = 'de';
 
 $namespaceNames = array(
@@ -98,10 +95,6 @@ $namespaceAliases = array(
 
 $separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );
 
-/**
- * Skin names. If any key is not specified, the English one will be used.
- */
-
 $skinNames = array(
 	'standard'    => 'Klassesch',
 	'nostalgia'   => 'Nostaljesch',
@@ -111,6 +104,77 @@ $skinNames = array(
 	'chick'       => 'Höhnche',
 	'simple'      => 'Eifach',
 	'modern'      => 'Modern',
+);
+
+$specialPageAliases = array(
+	'DoubleRedirects'           => array( 'Ömleitunge op Ömleitunge' ),
+	'BrokenRedirects'           => array( 'Ömleitunge', 'die en et Leere jonn' ),
+	'Disambiguations'           => array( 'Wat-es-dat-Sigge', 'Watt ėßß datt?' ),
+	'Userlogin'                 => array( 'Enlogge' ),
+	'Userlogout'                => array( 'Ußlogge' ),
+	'CreateAccount'             => array( 'Aanmelde', 'Medmaacher wääde', 'Metmaacher wääde' ),
+	'Preferences'               => array( 'Ming Enstellunge', 'Enstellunge' ),
+	'Watchlist'                 => array( 'Ming Oppassliss', 'Oppassliss' ),
+	'Recentchanges'             => array( 'Neuste Änderunge', 'Änderunge' ),
+	'Upload'                    => array( 'Daate huhlade', 'Huhlade' ),
+	'Imagelist'                 => array( 'Datei', 'Dateie' ),
+	'Newimages'                 => array( 'Neu Dateie' ),
+	'Listusers'                 => array( 'Medmaacher', 'Metmaacher' ),
+	'Listgrouprights'           => array( 'Jrupperääschte', 'Jropperrääschte' ),
+	'Statistics'                => array( 'Statistik', 'Shtatißtike' ),
+	'Randompage'                => array( 'Zofällije Sigg' ),
+	'Lonelypages'               => array( 'Sigge ohne Links' ),
+	'Uncategorizedpages'        => array( 'Sigge ohne Saachjruppe' ),
+	'Uncategorizedcategories'   => array( 'Saachjruppe ohne Saachjruppe' ),
+	'Uncategorizedimages'       => array( 'Dateie ohne Saachjruppe' ),
+	'Uncategorizedtemplates'    => array( 'Schablone ohne Saachjruppe' ),
+	'Unusedcategories'          => array( 'Schablone ohne Links' ),
+	'Unusedimages'              => array( 'Dateie ohne Links' ),
+	'Wantedpages'               => array( 'Sigge fähle' ),
+	'Wantedcategories'          => array( 'Saachjruppe fähle', 'Saachjroppe fähle' ),
+	'Mostrevisions'             => array( 'Öff beärbeit', 'Öff beärbeidt', 'Off bearbeit' ),
+	'Fewestrevisions'           => array( 'Winnig beärbeit', 'Winnish beärbeidt', 'Winnich bearbeit' ),
+	'Shortpages'                => array( 'Koote Atikelle' ),
+	'Longpages'                 => array( 'Lang Atikelle' ),
+	'Newpages'                  => array( 'Neu Atikelle' ),
+	'Ancientpages'              => array( 'Ahl Atikelle' ),
+	'Protectedpages'            => array( 'Siggeschotz' ),
+	'Protectedtitles'           => array( 'Tittelschotz' ),
+	'Allpages'                  => array( 'All Sigge' ),
+	'Ipblocklist'               => array( 'Jesperrt', 'Jeshpächt' ),
+	'Specialpages'              => array( 'Sondersigge', 'Söndersigge' ),
+	'Contributions'             => array( 'Beidräch', 'Beidrääsh' ),
+	'Emailuser'                 => array( 'Email', 'E-mail' ),
+	'Confirmemail'              => array( 'Email Bestätije', 'E-mail Bestätije', 'EmailBestätije', 'E-mailBestätije' ),
+	'Whatlinkshere'             => array( 'Wat noh hee link' ),
+	'Movepage'                  => array( 'Ömnenne', 'Ömdäufe' ),
+	'Blockme'                   => array( 'Proxy-Sperre' ),
+	'Booksources'               => array( 'ISBN', 'Böcher', 'Böösher' ),
+	'Categories'                => array( 'Saachjruppe' ),
+	'Export'                    => array( 'Expocht' ),
+	'Allmessages'               => array( 'MediaWiki-Appachtemang' ),
+	'Log'                       => array( 'Logböcher', 'Logböösher' ),
+	'Blockip'                   => array( 'IP-Sperre' ),
+	'Undelete'                  => array( 'zeröckholle' ),
+	'Import'                    => array( 'Emport', 'Empocht' ),
+	'Lockdb'                    => array( 'Datebank-deeschmaache' ),
+	'Unlockdb'                  => array( 'Datebank-opmaache' ),
+	'Userrights'                => array( 'Medmaacherrääschte', 'Metmaacherrääschte' ),
+	'MIMEsearch'                => array( 'MIME-Typ', 'MIMEtüp' ),
+	'FileDuplicateSearch'       => array( 'Dubbel Dateie' ),
+	'Unwatchedpages'            => array( 'Sigge oohne Oppasser' ),
+	'Listredirects'             => array( 'Ömleitunge' ),
+	'Randomredirect'            => array( 'Zofällije Ömleitung' ),
+	'Mypage'                    => array( 'Ming Medmaachersigg', 'Ming Metmaachersigg', 'Medmaachersigg', 'Metmaachersigg' ),
+	'Mytalk'                    => array( 'Ming Klaafsigg', 'Klaaf' ),
+	'Mycontributions'           => array( 'Ming Beidräch', 'Beidrääsh' ),
+	'Listadmins'                => array( 'Köbese', 'Köbeße', 'Wiki-Köbesse' ),
+	'Listbots'                  => array( 'Bots' ),
+	'Search'                    => array( 'Sök', 'Söök', 'Söke', 'Sööke' ),
+	'Resetpass'                 => array( 'Neu Passwood' ),
+	'MergeHistory'              => array( 'Versione zosammeschmieße' ),
+	'Filepath'                  => array( 'Dateipaad' ),
+	'Invalidateemail'           => array( 'onjöltije e-mail Addräß', 'onjöltije E-Mail Adress' ),
 );
 
 $imageFiles = array(

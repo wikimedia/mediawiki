@@ -32,17 +32,43 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'კატეგორია_განხილვა'
 );
 
-$linkPrefixExtension = true;
+$specialPageAliases = array(
+	'DoubleRedirects'           => array( 'ორმაგიგადამისამართება' ),
+	'BrokenRedirects'           => array( 'გაწყვეტილიგადამისამართება' ),
+	'Disambiguations'           => array( 'მრავალმნიშვნელოვნება' ),
+	'Preferences'               => array( 'კონფიგურაცია' ),
+	'Watchlist'                 => array( 'კონტროლსია' ),
+	'Recentchanges'             => array( 'ბოლოცვლილებები' ),
+	'Upload'                    => array( 'ატვირთვა' ),
+	'Imagelist'                 => array( 'სურსია' ),
+	'Newimages'                 => array( 'ახსურათები' ),
+	'Statistics'                => array( 'სტატისტიკა' ),
+	'Randompage'                => array( 'შემთხვევით', 'შემთხვევითიგვერდი' ),
+	'Lonelypages'               => array( 'ობოლიგვერდები' ),
+	'Uncategorizedpages'        => array( 'უკატეგორიოგვერდები' ),
+	'Unusedcategories'          => array( 'გამოუყკატეგორიები' ),
+	'Unusedimages'              => array( 'გამოუყსურათები' ),
+	'Wantedcategories'          => array( 'მოთხოვნილიკატეგორიები' ),
+	'Shortpages'                => array( 'მოკლეგვერდები' ),
+	'Longpages'                 => array( 'გრძელიგვერდები' ),
+	'Newpages'                  => array( 'ახალიგვერდები' ),
+	'Ancientpages'              => array( 'მხცოვანიგვერდები' ),
+	'Allpages'                  => array( 'ყველაგვერდი' ),
+	'Categories'                => array( 'კატეგორიები' ),
+	'Version'                   => array( 'ვერსია' ),
+	'Undelete'                  => array( 'აღდგენა' ),
+	'Mypage'                    => array( 'ჩემიგვერდი' ),
+	'Popularpages'              => array( 'პოპგვერდები' ),
+	'Search'                    => array( 'ძიება' ),
+	'Withoutinterwiki'          => array( 'ინტერვიკისგარეშე' ),
+);
 
-$linkTrail = '/^([a-zაბგდევზთიკლმნოპჟრსტუფქღყშჩცძწჭხჯჰ“»]+)(.*)$/sDu';
-
-# Note to translators:
-#   Please include the English words as synonyms.  This allows people
-#   from other wikis to contribute more easily.
-#
 $magicWords = array(
 	'redirect' => array( 0   , '#REDIRECT', '#გადამისამართება' ),
 );
+
+$linkPrefixExtension = true;
+$linkTrail = '/^([a-zაბგდევზთიკლმნოპჟრსტუფქღყშჩცძწჭხჯჰ“»]+)(.*)$/sDu';
 
 $messages = array(
 # User preference toggles
@@ -1785,7 +1811,7 @@ $NEWPAGE
 'confirmemail_loggedin'   => 'თქვენი ელ. ფოსტის მისამართის დადასტურება მიღებულია.',
 'confirmemail_error'      => 'შეცდომა მოხდა თქვენი ელ. ფოსტის მისამართის დადასტურების დროს.',
 'confirmemail_subject'    => '{{SITENAME}} ელ. ფოსტის მისამართის დადასტურება',
-'confirmemail_body'       => 'ვიღაცამ, შესაძლოა თქვენ, IP მისამართით $1, დაარეგისტრირეთ 
+'confirmemail_body'       => 'ვიღაცამ, შესაძლოა თქვენ, IP მისამართით $1, დაარეგისტრირეთ
 ანგარიში "$2" ამ ელ-ფოსტის მისამართით აქ {{SITENAME}}.
 
 იმის დასადასტურებლად, რომ ეს ანგარიში ნამდვილად თქვენ გეკუთვნით

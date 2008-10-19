@@ -10,6 +10,12 @@
 
 $fallback = 'ro';
 
+$specialPageAliases = array(
+	'CreateAccount'             => array( 'КреареКонт' ),
+	'Preferences'               => array( 'Преферинце' ),
+	'Recentchanges'             => array( 'Модификэрьреченте' ),
+);
+
 $messages = array(
 # Dates
 'sun'       => 'Дум',

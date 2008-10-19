@@ -279,9 +279,6 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'LegePagina' ),
 	'LinkSearch'                => array( 'VerwijzingenZoeken', 'LinksZoeken' ),
 	'DeletedContributions'      => array( 'VerwijderdeBijdragen' ),
-	'ListUserRestrictions'      => array( 'Gebruikersbeperkingen' ),
-	'RemoveRestrictions'        => array( 'BeperkingenVerwijderen' ),
-	'RestrictUser'              => array( 'GebruikerBeperken' ),
 );
 
 $linkTrail = '/^([a-zäöüïëéèà]+)(.*)$/sDu';

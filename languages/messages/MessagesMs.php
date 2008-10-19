@@ -89,6 +89,7 @@ $specialPageAliases = array(
 	'Unusedimages'              => array( 'Imej_tak_digunakan' ),
 	'Wantedpages'               => array( 'Laman_dikehendaki' ),
 	'Wantedcategories'          => array( 'Kategori_dikehendaki' ),
+	'Wantedfiles'               => array( 'Fail_dikehendaki' ),
 	'Mostlinked'                => array( 'Laman_dipaut_terbanyak' ),
 	'Mostlinkedcategories'      => array( 'Kategori_dipaut_terbanyak' ),
 	'Mostlinkedtemplates'       => array( 'Templat_dipaut_terbanyak' ),

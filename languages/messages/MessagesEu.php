@@ -45,6 +45,11 @@ $namespaceAliases = array(
 	'Aparteko'          => NS_SPECIAL,
 );
 
+$specialPageAliases = array(
+	'Recentchanges'             => array( 'AzkenAldaketak' ),
+	'Upload'                    => array( 'Igo' ),
+);
+
 $separatorTransformTable = array( ',' => '.', '.' => ',' ); /* Bug 15717 */
 
 $messages = array(

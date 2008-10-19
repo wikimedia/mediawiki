@@ -198,6 +198,7 @@ $specialPageAliases = array(
 	'Uncategorizedtemplates'    => array( 'Некатэгарызаваныя_шаблёны' ),
 	'Wantedpages'               => array( 'Запатрабаваныя_старонкі', 'Некарэктныя_спасылкі' ),
 	'Wantedcategories'          => array( 'Запатрабаваныя_катэгорыі' ),
+	'Wantedfiles'               => array( 'Запатрабаваныя_файлы' ),
 	'Shortpages'                => array( 'Кароткія_старонкі' ),
 	'Longpages'                 => array( 'Доўгія_старонкі' ),
 	'Newpages'                  => array( 'Новыя_старонкі' ),
@@ -228,6 +229,8 @@ $specialPageAliases = array(
 	'Search'                    => array( 'Пошук' ),
 	'MergeHistory'              => array( 'Гісторыя_аб\'яднаньняў' ),
 	'Filepath'                  => array( 'Шлях_да_файла' ),
+	'LinkSearch'                => array( 'Пошук_вонкавых_спасылак' ),
+	'DeletedContributions'      => array( 'Выдалены_ўнёсак' ),
 );
 
 $separatorTransformTable = array(',' => '.', '.' => ',' );

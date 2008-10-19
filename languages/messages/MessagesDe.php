@@ -100,6 +100,7 @@ $specialPageAliases = array(
 	'Wantedpages'               => array( 'Gewünschte_Seiten' ),
 	'Wantedcategories'          => array( 'Gewünschte_Kategorien' ),
 	'Wantedfiles'               => array( 'Fehlende_Dateien' ),
+	'Wantedtemplates'           => array( 'Fehlende_Vorlagen' ),
 	'Mostlinked'                => array( 'Meistverlinkte_Seiten' ),
 	'Mostlinkedcategories'      => array( 'Meistbenutzte_Kategorien' ),
 	'Mostlinkedtemplates'       => array( 'Meistbenutzte_Vorlagen' ),

@@ -70,6 +70,7 @@ $specialPageAliases = array(
 	'Wantedpages'               => array( 'Gewënschte Säiten' ),
 	'Wantedcategories'          => array( 'Gewënschte Kategorien' ),
 	'Wantedfiles'               => array( 'Gewënschte Fichieren' ),
+	'Wantedtemplates'           => array( 'Gewënschte Schablounen' ),
 	'Mostlinked'                => array( 'Dacks verlinkte Säiten' ),
 	'Mostlinkedcategories'      => array( 'Dacks benotzte Kategorien' ),
 	'Mostlinkedtemplates'       => array( 'Dacks benotzte Schablounen' ),

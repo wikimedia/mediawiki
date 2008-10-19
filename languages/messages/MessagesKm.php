@@ -14,118 +14,6 @@
  * @author តឹក ប៊ុនលី
  */
 
-$digitTransformTable = array(
-	'0' => '០', # &#x17e0;
-	'1' => '១', # &#x17e1;
-	'2' => '២', # &#x17e2;
-	'3' => '៣', # &#x17e3;
-	'4' => '៤', # &#x17e4;
-	'5' => '៥', # &#x17e5;
-	'6' => '៦', # &#x17e6;
-	'7' => '៧', # &#x17e7;
-	'8' => '៨', # &#x17e8;
-	'9' => '៩', # &#x17e9;
-);
-
-$separatorTransformTable = array(
-	'.' => ','
-);
-
-$datePreferences = array(
-	'default',
-	'km',
-	'ISO 8601',
-);
- 
-$defaultDateFormat = 'km';
- 
-$dateFormats = array(
-	'km time' => 'ម៉ោងH:i',
-	'km date' => 'l ទីd F ឆ្នាំY',
-	'km both' =>  'ម៉ោងH:i l ទីd F ឆ្នាំY',
-);
-
-$specialPageAliases = array(
-	'DoubleRedirects'         => array( 'ការបញ្ជូនបន្តទ្វេដង' ),
-	'BrokenRedirects'         => array( 'ការបញ្ជូនបន្តដែលខូច' ),
-	'Userlogin'               => array( 'ការឡុកអ៊ីននៃអ្នកប្រើប្រាស់' ),
-	'Userlogout'              => array( 'ការចាកចេញរបស់អ្នកប្រើប្រាស់' ),
-	'CreateAccount'           => array( 'បង្កើតគណនី' ),
-	'Preferences'             => array( 'ចំណង់ចំណូលចិត្ត' ),
-	'Watchlist'               => array( 'បញ្ជីតាមដាន' ),
-	'Recentchanges'           => array( 'បំលាស់ប្តូរថ្មីៗ' ),
-	'Upload'                  => array( 'ផ្ទុកឯកសារឡើង' ),
-	'Imagelist'               => array( 'បញ្ជីរូបភាព' ),
-	'Newimages'               => array( 'រូបភាពថ្មីៗ' ),
-	'Listusers'               => array( 'បញ្ជីឈ្មោះអ្នកប្រើប្រាស់' ),
-	'Statistics'              => array( 'ស្ថិតិ' ),
-	'Randompage'              => array( 'ទំព័រចៃដន្យ' ),
-	'Lonelypages'             => array( 'ទំព័រកំព្រា' ),
-	'Uncategorizedpages'      => array( 'ទំព័រដែលគ្មានចំនាត់ថ្នាក់ក្រុម' ),
-	'Uncategorizedcategories' => array( 'ចំនាត់ថ្នាក់ក្រុមដែលគ្មានចំនាត់ថ្នាក់ក្រុម' ),
-	'Uncategorizedimages'     => array( 'រូបភាពដែលគ្មានចំនាត់ថ្នាក់ក្រុម' ),
-	'Uncategorizedtemplates'  => array( 'ទំព័រគំរូដែលគ្មានចំនាត់ថ្នាក់ក្រុម' ),
-	'Unusedcategories'        => array( 'ចំនាត់ថ្នាក់ក្រុមដែលមិនត្រូវបានប្រើប្រាស់' ),
-	'Unusedimages'            => array( 'រូបភាពដែលមិនត្រូវបានប្រើប្រាស់' ),
-	'Shortpages'              => array( 'ទំព័រខ្លីៗ' ),
-	'Longpages'               => array( 'ទំព័រវែងៗ' ),
-	'Newpages'                => array( 'ទំព័រថ្មីៗ' ),
-	'Ancientpages'            => array( 'ទំព័រចាស់ៗ' ),
-	'Protectedpages'          => array( 'ទំព័របានការពារ' ),
-	'Protectedtitles'         => array( 'ចំនងជើងបានការពារ' ),
-	'Allpages'                => array( 'គ្រប់ទំព័រ' ),
-	'Prefixindex'             => array( 'លិបិក្រមបុព្វបទ' ),
-	'Ipblocklist'             => array( 'បញ្ជីហាមឃាត់IP' ),
-	'Specialpages'            => array( 'ទំព័រពិសេសៗ' ),
-	'Contributions'           => array( 'ការរួមចំនែក' ),
-	'Emailuser'               => array( 'អ្នកប្រើប្រាស់អ៊ីមែល' ),
-	'Confirmemail'            => array( 'បញ្ជាក់ទទួលស្គាល់អ៊ីមែល' ),
-	'Whatlinkshere'           => array( 'អ្វីដែលភ្ជាប់មកទីនេះ' ),
-	'Movepage'                => array( 'ប្តូរទីតាំងទំព័រ' ),
-	'Booksources'             => array( 'ប្រភពសៀវភៅ' ),
-	'Categories'              => array( 'ចំនាត់ថ្នាក់ក្រុម' ),
-	'Export'                  => array( 'នាំចេញ' ),
-	'Version'                 => array( 'កំណែ' ),
-	'Allmessages'             => array( 'គ្រប់សារ' ),
-	'Log'                     => array( 'កំណត់ហេតុ' ),
-	'Blockip'                 => array( 'ហាមឃាត់IP' ),
-	'Undelete'                => array( 'ឈប់លុបចេញ' ),
-	'Import'                  => array( 'នាំចូល' ),
-	'Lockdb'                  => array( 'ចាក់សោមូលដ្ឋានទិន្នន័យ' ),
-	'Unlockdb'                => array( 'ដោះសោមូលដ្ឋានទិន្នន័យ' ),
-	'Userrights'              => array( 'សិទ្ធិអ្នកប្រើប្រាស់' ),
-	'FileDuplicateSearch'     => array( 'ស្វែងរកឯកសារជាន់គ្នា' ),
-	'Unwatchedpages'          => array( 'ទំព័រលែងបានតាមដាន' ),
-	'Listredirects'           => array( 'បញ្ជីទំព័របញ្ជូនបន្ត' ),
-	'Unusedtemplates'         => array( 'ទំព័រគំរូដែលមិនត្រូវបានប្រើប្រាស់' ),
-	'Randomredirect'          => array( 'ការបញ្ជូនបន្តដោយចៃដន្យ' ),
-	'Mypage'                  => array( 'ទំព័ររបស់ខ្ញុំ' ),
-	'Mytalk'                  => array( 'ការពិភាក្សារបស់ខ្ញុំ' ),
-	'Mycontributions'         => array( 'ការរួមចំនែករបស់ខ្ញុំ' ),
-	'Listadmins'              => array( 'បញ្ជីអ្នកអភិបាល' ),
-	'Listbots'                => array( 'បញ្ជីរូបយន្ត' ),
-	'Popularpages'            => array( 'ទំព័រដែលមានប្រជាប្រិយ' ),
-	'Search'                  => array( 'ស្វែងរក' ),
-	'Resetpass'               => array( 'ដាក់ពាក្យសំងាត់ថ្មីឡើងវិញ' ),
-	'Withoutinterwiki'        => array( 'ដោយគ្មានអន្តរវិគី' ),
-	'MergeHistory'            => array( 'ច្របាច់បញ្ជូលប្រវត្តិ' ),
-	'Filepath'                => array( 'ផ្លូវនៃឯកសារ' ),
-	'Invalidateemail'         => array( 'អ៊ីមែលមិនត្រឹមត្រូវ' ),
-	'Blankpage'               => array( 'ទំព័រទទេ' ),
-	'LinkSearch'                => array( 'ស្វែងរកតំនភ្ជាប់' ),
-);
-
-$skinNames = array(
-	'standard'    => 'បុរាណ',
-	'nostalgia'   => 'អាឡោះអាល័យ',
-	'cologneblue' => 'ទឹកអប់ខៀវ',
-	'monobook'    => 'សៀវភៅឯក',
-	'myskin'      => 'សំបកខ្ញុំ',
-	'chick'       => 'កូនមាន់',
-	'simple'      => 'សាមញ្ញ',
-	'modern'      => 'ទំនើប',
-);
-
 $namespaceNames = array(
 	NS_MEDIA          => 'មេឌា',
 	NS_SPECIAL        => 'ពិសេស',
@@ -158,6 +46,137 @@ $namespaceAliases = array(
 	'ជំនួយ-ពិភាក្សា'     => NS_HELP_TALK,
 	'ចំណាត់ក្រុម'       => NS_CATEGORY,
 	'ចំណាត់ក្រុម-ពិភាក្សា'  => NS_CATEGORY_TALK,
+);
+
+$skinNames = array(
+	'standard'    => 'បុរាណ',
+	'nostalgia'   => 'អាឡោះអាល័យ',
+	'cologneblue' => 'ទឹកអប់ខៀវ',
+	'monobook'    => 'សៀវភៅឯក',
+	'myskin'      => 'សំបកខ្ញុំ',
+	'chick'       => 'កូនមាន់',
+	'simple'      => 'សាមញ្ញ',
+	'modern'      => 'ទំនើប',
+);
+
+$digitTransformTable = array(
+	'0' => '០', # &#x17e0;
+	'1' => '១', # &#x17e1;
+	'2' => '២', # &#x17e2;
+	'3' => '៣', # &#x17e3;
+	'4' => '៤', # &#x17e4;
+	'5' => '៥', # &#x17e5;
+	'6' => '៦', # &#x17e6;
+	'7' => '៧', # &#x17e7;
+	'8' => '៨', # &#x17e8;
+	'9' => '៩', # &#x17e9;
+);
+
+$separatorTransformTable = array(
+	'.' => ','
+);
+
+$datePreferences = array(
+	'default',
+	'km',
+	'ISO 8601',
+);
+ 
+$defaultDateFormat = 'km';
+ 
+$dateFormats = array(
+	'km time' => 'ម៉ោងH:i',
+	'km date' => 'l ទីd F ឆ្នាំY',
+	'km both' =>  'ម៉ោងH:i l ទីd F ឆ្នាំY',
+);
+
+$specialPageAliases = array(
+	'DoubleRedirects'           => array( 'ការបញ្ជូនបន្តទ្វេដង' ),
+	'BrokenRedirects'           => array( 'ការបញ្ជូនបន្តដែលខូច' ),
+	'Disambiguations'           => array( 'ចំនងជើងស្រដៀងគ្នា' ),
+	'Userlogin'                 => array( 'ការឡុកអ៊ីនរបស់អ្នកប្រើប្រាស់' ),
+	'Userlogout'                => array( 'ការចាកចេញរបស់អ្នកប្រើប្រាស់' ),
+	'CreateAccount'             => array( 'បង្កើតគណនី' ),
+	'Preferences'               => array( 'ចំនង់ចំនូលចិត្ត' ),
+	'Watchlist'                 => array( 'បញ្ជីតាមដាន' ),
+	'Recentchanges'             => array( 'បំលាស់ប្តូរថ្មីៗ' ),
+	'Upload'                    => array( 'ផ្ទុកឯកសារឡើង' ),
+	'Imagelist'                 => array( 'បញ្ជីរូបភាព' ),
+	'Newimages'                 => array( 'រូបភាពថ្មីៗ' ),
+	'Listusers'                 => array( 'បញ្ជីឈ្មោះអ្នកប្រើប្រាស់' ),
+	'Listgrouprights'           => array( 'បញ្ជីក្រុមសិទ្ធិ' ),
+	'Statistics'                => array( 'ស្ថិតិ' ),
+	'Randompage'                => array( 'ទំព័រចៃដន្យ' ),
+	'Lonelypages'               => array( 'ទំព័រកំព្រា' ),
+	'Uncategorizedpages'        => array( 'ទំព័រដែលគ្មានចំនាត់ថ្នាក់ក្រុម' ),
+	'Uncategorizedcategories'   => array( 'ចំនាត់ថ្នាក់ក្រុមដែលគ្មានចំនាត់ថ្នាក់ក្រុម' ),
+	'Uncategorizedimages'       => array( 'រូបភាពដែលគ្មានចំនាត់ថ្នាក់ក្រុម' ),
+	'Uncategorizedtemplates'    => array( 'ទំព័រគំរូដែលគ្មានចំនាត់ថ្នាក់ក្រុម' ),
+	'Unusedcategories'          => array( 'ចំនាត់ថ្នាក់ក្រុមដែលមិនត្រូវបានប្រើប្រាស់' ),
+	'Unusedimages'              => array( 'រូបភាពដែលមិនត្រូវបានប្រើប្រាស់' ),
+	'Wantedpages'               => array( 'ទំព័រប្រើប្រាស់ច្រើន' ),
+	'Wantedcategories'          => array( 'ចំនាត់ថ្នាក់ក្រុមប្រើប្រាស់ច្រើន' ),
+	'Wantedfiles'               => array( 'រូបភាពប្រើប្រាស់ច្រើន' ),
+	'Wantedtemplates'           => array( 'ទំព័រគំរូប្រើប្រាស់ច្រើន' ),
+	'Mostlinked'                => array( 'ទំព័រមានតំនភ្ជាប់មកច្រើនជាងគេ' ),
+	'Mostlinkedcategories'      => array( 'ចំនាត់ថ្នាក់ក្រុមមានតំនភ្ជាប់មកច្រើនជាងគេ' ),
+	'Mostlinkedtemplates'       => array( 'ទំព័រគំរូមានតំនភ្ជាប់មកច្រើនជាងគេ' ),
+	'Mostcategories'            => array( 'ទំព័រមានចំនាត់ថ្នាក់ច្រើនជាំងគេ' ),
+	'Mostimages'                => array( 'ទំព័រមានរូបភាពច្រើនជាងគេ' ),
+	'Mostrevisions'             => array( 'ទំព័រមានកំនែច្រើនជាងគេ' ),
+	'Fewestrevisions'           => array( 'ទំព័រមានកំនែតិចជាងគេ' ),
+	'Shortpages'                => array( 'ទំព័រខ្លីៗ' ),
+	'Longpages'                 => array( 'ទំព័រវែងៗ' ),
+	'Newpages'                  => array( 'ទំព័រថ្មីៗ' ),
+	'Ancientpages'              => array( 'ទំព័រចាស់ៗ' ),
+	'Deadendpages'              => array( 'ទំព័រទាល់' ),
+	'Protectedpages'            => array( 'ទំព័របានការពារ' ),
+	'Protectedtitles'           => array( 'ចំនងជើងបានការពារ' ),
+	'Allpages'                  => array( 'គ្រប់ទំព័រ' ),
+	'Prefixindex'               => array( 'លិបិក្រមបុព្វបទ' ),
+	'Ipblocklist'               => array( 'បញ្ជីហាមឃាត់IP' ),
+	'Specialpages'              => array( 'ទំព័រពិសេសៗ' ),
+	'Contributions'             => array( 'ការរួមចំនែក' ),
+	'Emailuser'                 => array( 'អ្នកប្រើប្រាស់អ៊ីមែល' ),
+	'Confirmemail'              => array( 'បញ្ជាក់ទទួលស្គាល់អ៊ីមែល' ),
+	'Whatlinkshere'             => array( 'អ្វីដែលភ្ជាប់មកទីនេះ' ),
+	'Recentchangeslinked'       => array( 'បំលាស់ប្ដូរទាក់ទិន' ),
+	'Movepage'                  => array( 'ប្តូរទីតាំងទំព័រ' ),
+	'Blockme'                   => array( 'រាំងខ្ទប់' ),
+	'Booksources'               => array( 'ប្រភពសៀវភៅ' ),
+	'Categories'                => array( 'ចំនាត់ថ្នាក់ក្រុម' ),
+	'Export'                    => array( 'នាំចេញ' ),
+	'Version'                   => array( 'កំនែ' ),
+	'Allmessages'               => array( 'គ្រប់សារ' ),
+	'Log'                       => array( 'កំនត់ហេតុ' ),
+	'Blockip'                   => array( 'រាំងខ្ទប់IP' ),
+	'Undelete'                  => array( 'ឈប់លុបចេញ' ),
+	'Import'                    => array( 'នាំចូល' ),
+	'Lockdb'                    => array( 'ចាក់សោមូលដ្ឋានទិន្នន័យ' ),
+	'Unlockdb'                  => array( 'ដោះសោមូលដ្ឋានទិន្នន័យ' ),
+	'Userrights'                => array( 'សិទ្ធិអ្នកប្រើប្រាស់' ),
+	'MIMEsearch'                => array( 'MIMEស្វែងរក' ),
+	'FileDuplicateSearch'       => array( 'ស្វែងរកឯកសារដូចគ្នាបេះបិត' ),
+	'Unwatchedpages'            => array( 'ទំព័រលែងបានតាមដាន' ),
+	'Listredirects'             => array( 'បញ្ជីទំព័របញ្ជូនបន្ត' ),
+	'Revisiondelete'            => array( 'កំនែបានលុបចោល' ),
+	'Unusedtemplates'           => array( 'ទំព័រគំរូដែលមិនត្រូវបានប្រើប្រាស់' ),
+	'Randomredirect'            => array( 'ការបញ្ជូនបន្តដោយចៃដន្យ' ),
+	'Mypage'                    => array( 'ទំព័ររបស់ខ្ញុំ' ),
+	'Mytalk'                    => array( 'ការពិភាក្សារបស់ខ្ញុំ' ),
+	'Mycontributions'           => array( 'ការរួមចំនែករបស់ខ្ញុំ' ),
+	'Listadmins'                => array( 'បញ្ជីអ្នកអភិបាល' ),
+	'Listbots'                  => array( 'បញ្ជីរូបយន្ត' ),
+	'Popularpages'              => array( 'ទំព័រដែលមានប្រជាប្រិយ' ),
+	'Search'                    => array( 'ស្វែងរក' ),
+	'Resetpass'                 => array( 'ដាក់ពាក្យសំងាត់ថ្មីឡើងវិញ' ),
+	'Withoutinterwiki'          => array( 'ដោយគ្មានអន្តរវិគី' ),
+	'MergeHistory'              => array( 'ច្របាច់បញ្ជូលប្រវត្តិ' ),
+	'Filepath'                  => array( 'ផ្លូវនៃឯកសារ' ),
+	'Invalidateemail'           => array( 'អ៊ីមែលមិនត្រឹមត្រូវ' ),
+	'Blankpage'                 => array( 'ទំព័រទទេ' ),
+	'LinkSearch'                => array( 'ស្វែងរកតំនភ្ជាប់' ),
+	'DeletedContributions'      => array( 'ការរួមចំនែកដែលត្រូវបានលុបចោល' ),
 );
 
 $magicWords = array(

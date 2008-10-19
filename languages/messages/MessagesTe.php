@@ -42,22 +42,21 @@ $namespaceAliases = array(
 	'బొమ్మపై_చర్చ'          => NS_IMAGE_TALK
 );
 
+$specialPageAliases = array(
+	'Preferences'               => array( 'అభిరుచులు' ),
+	'Recentchanges'             => array( 'ఇటీవలిమార్పులు' ),
+	'Listusers'                 => array( 'వాడుకరులజాబితా' ),
+	'Statistics'                => array( 'గణాంకాలు' ),
+	'Shortpages'                => array( 'చిన్నపేజీలు' ),
+	'Newpages'                  => array( 'కొత్తపేజీలు' ),
+	'Allpages'                  => array( 'అన్నిపేజీలు' ),
+	'Specialpages'              => array( 'ప్రత్యేకపేజీలు' ),
+	'Categories'                => array( 'వర్గాలు' ),
+	'Mypage'                    => array( 'నాపేజీ' ),
+	'Search'                    => array( 'అన్వేషణ' ),
+);
 
 $linkTrail = "/^([\xE0\xB0\x81-\xE0\xB1\xAF]+)(.*)$/sDu";
-
-// nobody seems to use these anymore
-/*$digitTransformTable = array(
-	'0' => '౦',
-	'1' => '౧',
-	'2' => '౨',
-	'3' => '౩',
-	'4' => '౪',
-	'5' => '౫',
-	'6' => '౬',
-	'7' => '౭',
-	'8' => '౮',
-	'9' => '౯'
-);*/
 
 $messages = array(
 # User preference toggles
