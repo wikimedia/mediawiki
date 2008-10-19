@@ -544,6 +544,13 @@ class Revision {
 	public function isDeleted( $field ) {
 		return ($this->mDeleted & $field) == $field;
 	}
+	
+	/**
+	 * Get the deletion bitfield of the revision
+	 */	
+	public function getVisibility() {
+		return (int)$this->mDeleted;
+	}
 
 	/**
 	 * Fetch revision text if it's available to the specified audience.
