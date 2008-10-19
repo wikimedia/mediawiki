@@ -11,45 +11,45 @@ class SpecialContributions extends SpecialPage {
 		parent::__construct( 'Contributions' );
 	}
 
-	function execute( $par ) {
+	public function execute( $par ) {
 		global $wgUser, $wgOut, $wgLang, $wgRequest;
 
 		$this->setHeaders();
 		$this->outputHeader();
 
-		$options = array();
+		$this->opts = array();
 
-		if ( isset( $par ) && $par == 'newbies' ) {
+		if( $par == 'newbies' ) {
 			$target = 'newbies';
-			$options['contribs'] = 'newbie';
-		} elseif ( isset( $par ) ) {
+			$this->opts['contribs'] = 'newbie';
+		} elseif( isset( $par ) ) {
 			$target = $par;
 		} else {
 			$target = $wgRequest->getVal( 'target' );
 		}
 
 		// check for radiobox
-		if ( $wgRequest->getVal( 'contribs' ) == 'newbie' ) {
+		if( $wgRequest->getVal( 'contribs' ) == 'newbie' ) {
 			$target = 'newbies';
-			$options['contribs'] = 'newbie';
+			$this->opts['contribs'] = 'newbie';
 		}
 
-		if ( !strlen( $target ) ) {
+		if( !strlen( $target ) ) {
 			$wgOut->addHTML( $this->getForm( '' ) );
 			return;
 		}
 
-		$options['limit'] = $wgRequest->getInt( 'limit', 50 );
-		$options['target'] = $target;
+		$this->opts['limit'] = $wgRequest->getInt( 'limit', 50 );
+		$this->opts['target'] = $target;
 
 		$nt = Title::makeTitleSafe( NS_USER, $target );
-		if ( !$nt ) {
+		if( !$nt ) {
 			$wgOut->addHTML( $this->getForm( '' ) );
 			return;
 		}
 		$id = User::idFromName( $nt->getText() );
 
-		if ( $target != 'newbies' ) {
+		if( $target != 'newbies' ) {
 			$target = $nt->getText();
 			$wgOut->setSubtitle( $this->contributionsSub( $nt, $id ) );
 			$wgOut->setHTMLTitle( wfMsg( 'pagetitle', wfMsg( 'contributions-title', $target ) ) );
@@ -58,49 +58,56 @@ class SpecialContributions extends SpecialPage {
 			$wgOut->setHTMLTitle( wfMsg( 'pagetitle', wfMsg( 'sp-contributions-newbies-title' ) ) );
 		}
 
-		if ( ( $ns = $wgRequest->getVal( 'namespace', null ) ) !== null && $ns !== '' ) {
-			$options['namespace'] = intval( $ns );
+		if( ( $ns = $wgRequest->getVal( 'namespace', null ) ) !== null && $ns !== '' ) {
+			$this->opts['namespace'] = intval( $ns );
 		} else {
-			$options['namespace'] = '';
+			$this->opts['namespace'] = '';
 		}
 	
 		// Allows reverts to have the bot flag in recent changes. It is just here to
 		// be passed in the form at the top of the page 
-		if ( $wgUser->isAllowed( 'markbotedits' ) && $wgRequest->getBool( 'bot' ) ) {
-			$options['bot'] = '1';
+		if( $wgUser->isAllowed( 'markbotedits' ) && $wgRequest->getBool( 'bot' ) ) {
+			$this->opts['bot'] = '1';
 		}
 
 		$skip = $wgRequest->getText( 'offset' ) || $wgRequest->getText( 'dir' ) == 'prev';
 		# Offset overrides year/month selection
-		if ( ( $month = $wgRequest->getIntOrNull( 'month' ) ) !== null && $month !== -1 ) {
-			$options['month'] = intval( $month );
+		if( ( $month = $wgRequest->getIntOrNull( 'month' ) ) !== null && $month !== -1 ) {
+			$this->opts['month'] = intval( $month );
 		} else {
-			$options['month'] = '';
+			$this->opts['month'] = '';
 		}
-		if ( ( $year = $wgRequest->getIntOrNull( 'year' ) ) !== null ) {
-			$options['year'] = intval( $year );
-		} else if( $options['month'] ) {
+		if( ( $year = $wgRequest->getIntOrNull( 'year' ) ) !== null ) {
+			$this->opts['year'] = intval( $year );
+		} else if( $this->opts['month'] ) {
 			$thisMonth = intval( gmdate( 'n' ) );
 			$thisYear = intval( gmdate( 'Y' ) );
-			if( intval( $options['month'] ) > $thisMonth ) {
+			if( intval( $this->opts['month'] ) > $thisMonth ) {
 				$thisYear--;
 			}
-			$options['year'] = $thisYear;
+			$this->opts['year'] = $thisYear;
 		} else {
-			$options['year'] = '';
+			$this->opts['year'] = '';
+		}
+
+		if( $skip ) {
+			$this->opts['year'] = '';
+			$this->opts['month'] = '';
+		}
+		
+		// Add RSS/atom links
+		$this->setSyndicated();
+		$feedType = $wgRequest->getVal( 'feed' );
+		if( $feedType ) {
+			return $this->feed( $feedType );
 		}
 
 		wfRunHooks( 'SpecialContributionsBeforeMainOutput', $id );
 
-		if( $skip ) {
-			$options['year'] = '';
-			$options['month'] = '';
-		}
+		$wgOut->addHTML( $this->getForm( $this->opts ) );
 
-		$wgOut->addHTML( $this->getForm( $options ) );
-
-		$pager = new ContribsPager( $target, $options['namespace'], $options['year'], $options['month'] );
-		if ( !$pager->getNumRows() ) {
+		$pager = new ContribsPager( $target, $this->opts['namespace'], $this->opts['year'], $this->opts['month'] );
+		if( !$pager->getNumRows() ) {
 			$wgOut->addWikiMsg( 'nocontribs' );
 			return;
 		}
@@ -112,14 +119,14 @@ class SpecialContributions extends SpecialPage {
 		$wgOut->addHTML(
 			'<p>' . $pager->getNavigationBar() . '</p>' .
 			$pager->getBody() .
-			'<p>' . $pager->getNavigationBar() . '</p>' );
+			'<p>' . $pager->getNavigationBar() . '</p>'
+		);
 
 		# If there were contributions, and it was a valid user or IP, show
 		# the appropriate "footer" message - WHOIS tools, etc.
 		if( $target != 'newbies' ) {
-			$message = IP::isIPAddress( $target )
-				? 'sp-contributions-footer-anon'
-				: 'sp-contributions-footer';
+			$message = IP::isIPAddress( $target ) ?
+				'sp-contributions-footer-anon' : 'sp-contributions-footer';
 
 			$text = wfMsgNoTrans( $message, $target );
 			if( !wfEmptyMsg( $message, $text ) && $text != '-' ) {
@@ -128,6 +135,16 @@ class SpecialContributions extends SpecialPage {
 				$wgOut->addHtml( '</div>' );
 			}
 		}
+	}
+	
+	protected function setSyndicated() {
+		global $wgOut;
+		$queryParams = array(
+			'namespace' => $this->opts['namespace'],
+			'target'  => $this->opts['target']
+		);
+		$wgOut->setSyndicated( true );
+		$wgOut->setFeedAppendQuery( wfArrayToCGI( $queryParams ) );
 	}
 
 	/**
@@ -141,7 +158,7 @@ class SpecialContributions extends SpecialPage {
 
 		$sk = $wgUser->getSkin();
 
-		if ( 0 == $id ) {
+		if( 0 == $id ) {
 			$user = $nt->getText();
 		} else {
 			$user = $sk->makeLinkObj( $nt, htmlspecialchars( $nt->getText() ) );
@@ -187,42 +204,42 @@ class SpecialContributions extends SpecialPage {
 
 	/**
 	 * Generates the namespace selector form with hidden attributes.
-	 * @param $options Array: the options to be included.
+	 * @param $this->opts Array: the options to be included.
 	 */
-	protected function getForm( $options ) {
-		global $wgScript, $wgTitle, $wgRequest;
+	protected function getForm() {
+		global $wgScript, $wgTitle;
 	
-		$options['title'] = $wgTitle->getPrefixedText();
-		if ( !isset( $options['target'] ) ) {
-			$options['target'] = '';
+		$this->opts['title'] = $wgTitle->getPrefixedText();
+		if( !isset( $this->opts['target'] ) ) {
+			$this->opts['target'] = '';
 		} else {
-			$options['target'] = str_replace( '_' , ' ' , $options['target'] );
+			$this->opts['target'] = str_replace( '_' , ' ' , $this->opts['target'] );
 		}
 	
-		if ( !isset( $options['namespace'] ) ) {
-			$options['namespace'] = '';
+		if( !isset( $this->opts['namespace'] ) ) {
+			$this->opts['namespace'] = '';
 		}
 	
-		if ( !isset( $options['contribs'] ) ) {
-			$options['contribs'] = 'user';
+		if( !isset( $this->opts['contribs'] ) ) {
+			$this->opts['contribs'] = 'user';
 		}
 	
-		if ( !isset( $options['year'] ) ) {
-			$options['year'] = '';
+		if( !isset( $this->opts['year'] ) ) {
+			$this->opts['year'] = '';
 		}
 	
-		if ( !isset( $options['month'] ) ) {
-			$options['month'] = '';
+		if( !isset( $this->opts['month'] ) ) {
+			$this->opts['month'] = '';
 		}
 	
-		if ( $options['contribs'] == 'newbie' ) {
-			$options['target'] = '';
+		if( $this->opts['contribs'] == 'newbie' ) {
+			$this->opts['target'] = '';
 		}
 	
 		$f = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
 	
-		foreach ( $options as $name => $value ) {
-			if ( in_array( $name, array( 'namespace', 'target', 'contribs', 'year', 'month' ) ) ) {
+		foreach ( $this->opts as $name => $value ) {
+			if( in_array( $name, array( 'namespace', 'target', 'contribs', 'year', 'month' ) ) ) {
 				continue;
 			}
 			$f .= "\t" . Xml::hidden( $name, $value ) . "\n";
@@ -231,23 +248,23 @@ class SpecialContributions extends SpecialPage {
 		$f .= '<fieldset>' .
 			Xml::element( 'legend', array(), wfMsg( 'sp-contributions-search' ) ) .
 			Xml::radioLabel( wfMsgExt( 'sp-contributions-newbies', array( 'parseinline' ) ), 
-				'contribs', 'newbie' , 'newbie', $options['contribs'] == 'newbie' ? true : false ) . '<br />' .
+				'contribs', 'newbie' , 'newbie', $this->opts['contribs'] == 'newbie' ? true : false ) . '<br />' .
 			Xml::radioLabel( wfMsgExt( 'sp-contributions-username', array( 'parseinline' ) ), 
-				'contribs' , 'user', 'user', $options['contribs'] == 'user' ? true : false ) . ' ' .
-			Xml::input( 'target', 20, $options['target']) . ' '.
+				'contribs' , 'user', 'user', $this->opts['contribs'] == 'user' ? true : false ) . ' ' .
+			Xml::input( 'target', 20, $this->opts['target']) . ' '.
 			'<span style="white-space: nowrap">' .
 			Xml::label( wfMsg( 'namespace' ), 'namespace' ) . ' ' .
-			Xml::namespaceSelector( $options['namespace'], '' ) .
+			Xml::namespaceSelector( $this->opts['namespace'], '' ) .
 			'</span>' .
 			Xml::openElement( 'p' ) .
 			'<span style="white-space: nowrap">' .
 			Xml::label( wfMsg( 'year' ), 'year' ) . ' '.
-			Xml::input( 'year', 4, $options['year'], array('id' => 'year', 'maxlength' => 4) ) .
+			Xml::input( 'year', 4, $this->opts['year'], array('id' => 'year', 'maxlength' => 4) ) .
 			'</span>' .
 			' '.
 			'<span style="white-space: nowrap">' .
 			Xml::label( wfMsg( 'month' ), 'month' ) . ' '.
-			Xml::monthSelector( $options['month'], -1 ) . ' '.
+			Xml::monthSelector( $this->opts['month'], -1 ) . ' '.
 			'</span>' .
 			Xml::submitButton( wfMsg( 'sp-contributions-submit' ) ) .
 			Xml::closeElement( 'p' );
@@ -259,6 +276,92 @@ class SpecialContributions extends SpecialPage {
 		$f .= '</fieldset>' .
 			Xml::closeElement( 'form' );
 		return $f;
+	}
+	
+		/**
+	 * Output a subscription feed listing recent edits to this page.
+	 * @param string $type
+	 */
+	protected function feed( $type ) {
+		global $wgRequest, $wgFeed, $wgFeedClasses, $wgFeedLimit;
+
+		if( !$wgFeed ) {
+			global $wgOut;
+			$wgOut->addWikiMsg( 'feed-unavailable' );
+			return;
+		}
+
+		if( !isset( $wgFeedClasses[$type] ) ) {
+			global $wgOut;
+			$wgOut->addWikiMsg( 'feed-invalid' );
+			return;
+		}
+
+		$feed = new $wgFeedClasses[$type](
+			$this->feedTitle(),
+			wfMsg( 'tagline' ),
+			$this->getTitle()->getFullUrl() );
+
+		$pager = new ContribsPager( $this->opts['target'], $this->opts['namespace'], 
+			$this->opts['year'], $this->opts['month'] );
+
+		$pager->mLimit = min( $this->opts['limit'], $wgFeedLimit );
+
+		$feed->outHeader();
+		if( $pager->getNumRows() > 0 ) {
+			while( $row = $pager->mResult->fetchObject() ) {
+				$feed->outItem( $this->feedItem( $row ) );
+			}
+		}
+		$feed->outFooter();
+	}
+
+	protected function feedTitle() {
+		global $wgContLanguageCode, $wgSitename;
+		$page = SpecialPage::getPage( 'Contributions' );
+		$desc = $page->getDescription();
+		return "$wgSitename - $desc [$wgContLanguageCode]";
+	}
+
+	protected function feedItem( $row ) {
+		$title = Title::MakeTitle( intval( $row->page_namespace ), $row->page_title );
+		if( $title ) {
+			$date = $row->rev_timestamp;
+			$comments = $title->getTalkPage()->getFullURL();
+			$revision = Revision::newFromTitle( $title, $row->rev_id );
+
+			return new FeedItem(
+				$title->getPrefixedText(),
+				$this->feedItemDesc( $revision ),
+				$title->getFullURL(),
+				$date,
+				$this->feedItemAuthor( $revision ),
+				$comments
+			);
+		} else {
+			return NULL;
+		}
+	}
+
+	/**
+	 * Quickie hack... strip out wikilinks to more legible form from the comment.
+	 */
+	protected function stripComment( $text ) {
+		return preg_replace( '/\[\[([^]]*\|)?([^]]+)\]\]/', '\2', $text );
+	}
+
+	protected function feedItemAuthor( $revision ) {
+		return $revision->getUserText();
+	}
+
+	protected function feedItemDesc( $revision ) {
+		if( $revision ) {
+			return '<p>' . htmlspecialchars( $revision->getUserText() ) . ': ' .
+				htmlspecialchars( $this->stripComment( $revision->getComment() ) ) . 
+				"</p>\n<hr />\n<div>" .
+				nl2br( htmlspecialchars( $revision->getText() ) ) . "</div>";
+		}
+		return '';
 	}
 }
 
@@ -311,7 +414,7 @@ class ContribsPager extends ReverseChronologicalPager {
 	function getUserCond() {
 		$condition = array();
 		$join_conds = array();
-		if ( $this->target == 'newbies' ) {
+		if( $this->target == 'newbies' ) {
 			$tables = array( 'user_groups', 'page', 'revision' );
 			$max = $this->mDb->selectField( 'user', 'max(user_id)', false, __METHOD__ );
 			$condition[] = 'rev_user >' . (int)($max - $max / 100);
@@ -328,7 +431,7 @@ class ContribsPager extends ReverseChronologicalPager {
 	}
 
 	function getNamespaceCond() {
-		if ( $this->namespace !== '' ) {
+		if( $this->namespace !== '' ) {
 			return array( 'page_namespace' => (int)$this->namespace );
 		} else {
 			return array();
