@@ -865,11 +865,11 @@ Mehr över dat Wegsmieten is in dat [{{fullurl:Special:Log/delete|page={{FULLPAG
 'revisiondelete'              => 'Versionen wegsmieten/wedderhalen',
 'revdelete-nooldid-title'     => 'kene Versionen dor, de passt',
 'revdelete-nooldid-text'      => 'Du hest keen Version för disse Akschoon angeven, de utwählte Version gifft dat nich oder du versöchst, de ne’este Version wegtodoon.',
-'revdelete-selected'          => '{{PLURAL:$2|Wählte Version|Wählte Versionen}} vun [[:$1]]:',
-'logdelete-selected'          => '{{PLURAL:$1|Wählt Logbook-Indrag|Wählte Logbook-Indrääg}}:',
-'revdelete-text'              => 'Wegsmetene Versionen staht noch jümmer in de Versionsgeschicht, sünd aver nich mehr apen intosehn.
+'revdelete-selected'          => "'''{{PLURAL:$2|Wählte Version|Wählte Versionen}} vun [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Wählt Logbook-Indrag|Wählte Logbook-Indrääg}}:'''",
+'revdelete-text'              => "'''Wegsmetene Versionen staht noch jümmer in de Versionsgeschicht, sünd aver nich mehr apen intosehn.'''
 
-{{SITENAME}}-Administraters köönt de Sieden noch jümmer sehn un ok wedderhalen, solang dat nich extra fastleggt is, dat ok Administraters dat nich mehr mehr dröfft.',
+{{SITENAME}}-Administraters köönt de Sieden noch jümmer sehn un ok wedderhalen, solang dat nich extra fastleggt is, dat ok Administraters dat nich mehr mehr dröfft.",
 'revdelete-legend'            => 'Inschränkungen för de Sichtborkeit setten',
 'revdelete-hide-text'         => 'Versiontext versteken',
 'revdelete-hide-name'         => 'Akschoon un Teel versteken',

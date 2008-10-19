@@ -1021,12 +1021,12 @@ podrobnosti o smazání mohou být uvedeny v [{{fullurl:Special:Log/delete|page=
 'revisiondelete'              => 'Smazat/obnovit revize',
 'revdelete-nooldid-title'     => 'Nezadána revize',
 'revdelete-nooldid-text'      => 'Nezvolili jste revize, na které chcete tuto funkci použít.',
-'revdelete-selected'          => "{{PLURAL:$2|Vybrána $1 revize|Vybrány $1 revize|Vybráno $1 revizí}} stránky '''[[:$1]]:'''",
-'logdelete-selected'          => '{{PLURAL:$1|Vybraná protokolovaná událost|Vybrané protokolované události}}:',
-'revdelete-text'              => 'Smazané verze a události budou nadále zobrazeny v historii stránky a protokolovacích záznamech, ale jejich text nebude veřejně dostupný.
+'revdelete-selected'          => "'''{{PLURAL:$2|Vybrána $1 revize|Vybrány $1 revize|Vybráno $1 revizí}} stránky '''[[:$1]]:''''''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Vybraná protokolovaná událost|Vybrané protokolované události}}:'''",
+'revdelete-text'              => "'''Smazané verze a události budou nadále zobrazeny v historii stránky a protokolovacích záznamech, ale jejich text nebude veřejně dostupný.'''
 
 Ostatní správci {{grammar:2sg|{{SITENAME}}}} si budou moci skrytý obsah prohlížet a pomocí stejného rozhraní jej také obnovit,
-pokud to provozovatel serveru nezakázal.',
+pokud to provozovatel serveru nezakázal.",
 'revdelete-legend'            => 'Nastavit omezení k revizi:',
 'revdelete-hide-text'         => 'Skrýt text revize',
 'revdelete-hide-name'         => 'Skrýt událost a cíl',

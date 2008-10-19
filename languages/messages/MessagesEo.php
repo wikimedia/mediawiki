@@ -877,11 +877,11 @@ povas esti detaloj en la [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} prot
 'revdelete-nooldid-title'     => 'Nevalida cela revizio',
 'revdelete-nooldid-text'      => 'Vi ne specifis celan revizion aux reviziojn fari ĉi tiun 
 funkcion, la specifigita revizio ne ekzistas, aŭ vi estas provanta kaŝi la nunan revizion.',
-'revdelete-selected'          => "{{PLURAL:$2|Selektata revizio|Selektataj revizioj}} de '''[[:$1]]''':",
-'logdelete-selected'          => '{{PLURAL:$1|Selektata protokola evento|Selektataj protokolaj eventoj}}:',
-'revdelete-text'              => 'Forigitaj versioj kaj eventoj plu aperos en la historipagxoj, sed iliaj tekstoj ne estos alireblaj de  la publiko.
+'revdelete-selected'          => "'''{{PLURAL:$2|Selektata revizio|Selektataj revizioj}} de [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Selektata protokola evento|Selektataj protokolaj eventoj}}:'''",
+'revdelete-text'              => "'''Forigitaj versioj kaj eventoj plu aperos en la historipagxoj, sed iliaj tekstoj ne estos alireblaj de  la publiko.'''
 
-Aliaj administrantoj cxe {{SITENAME}} plu povos aliri la kasxitan entenon kaj restarigi gxin per la sama interfaco, krom se plia limigo estas metita de la pagxaradministrantoj.',
+Aliaj administrantoj cxe {{SITENAME}} plu povos aliri la kasxitan entenon kaj restarigi gxin per la sama interfaco, krom se plia limigo estas metita de la pagxaradministrantoj.",
 'revdelete-legend'            => 'Fari videblecajn limigojn',
 'revdelete-hide-text'         => 'Kaŝi tekston de versio',
 'revdelete-hide-name'         => 'Kaŝi agon kaj celon',

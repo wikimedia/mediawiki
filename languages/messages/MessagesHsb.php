@@ -790,11 +790,11 @@ Legenda: (akt) = rozdźěl k tuchwilnej wersiji, (posl) = rozdźěl k předchadn
 'revisiondelete'              => 'Wersije wušmórnyć/wobnowić',
 'revdelete-nooldid-title'     => 'Njepłaćiwa cilowa wersija',
 'revdelete-nooldid-text'      => 'Pak njejsy cilowu wersiju podał, zo by tutu funkciju wuwjedł, podata wersija njeeksistuje pak pospytuješ aktualnu wersiju schować.',
-'revdelete-selected'          => '{{PLURAL:$2|Wubrana wersija|Wubranej wersiji|Wubrane wersije|Wubranych wersijow}} wot [[:$1]]:',
-'logdelete-selected'          => "{{PLURAL:$1|Wubrany zapisk z protokola|Wubranej zapiskaj z protokola|Wubrane zapiski z protokola|Wubrane zapiski z protokola}} za '''$1:'''",
-'revdelete-text'              => 'Wušmórnjene wersije so w stawiznach dale jewja, jich wobsah pak za wužiwarjow čitajomne njeje.
+'revdelete-selected'          => "'''{{PLURAL:$2|Wubrana wersija|Wubranej wersiji|Wubrane wersije|Wubranych wersijow}} wot [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Wubrany zapisk z protokola|Wubranej zapiskaj z protokola|Wubrane zapiski z protokola|Wubrane zapiski z protokola}} za '''$1:''''''",
+'revdelete-text'              => "'''Wušmórnjene wersije so w stawiznach dale jewja, jich wobsah pak za wužiwarjow čitajomne njeje.'''
 
-Druzy administratorojo we {{SITENAME}} móža schowany tekst dale čitać a jón wobnowić, chibazo su tež jich prawa wobmjezowane.',
+Druzy administratorojo we {{SITENAME}} móža schowany tekst dale čitać a jón wobnowić, chibazo su tež jich prawa wobmjezowane.",
 'revdelete-legend'            => 'Wobmjezowanja za widźomnosć nastajić',
 'revdelete-hide-text'         => 'Tekst tuteje wersije schować',
 'revdelete-hide-name'         => 'Akciju w protokolach schować',

@@ -903,11 +903,11 @@ Grunnen som vart gjeven av $3 er ''$2''",
 'revisiondelete'              => 'Slett/attopprett versjonar',
 'revdelete-nooldid-title'     => 'Ugyldig målversjon',
 'revdelete-nooldid-text'      => 'Du har ikkje oppgjeve kva for versjon(ar) du vil utføre denne handlinga på, versjonen eksisterer ikkje, eller du prøver å gøyme den noverande versjonen.',
-'revdelete-selected'          => '{{PLURAL:$2|Vald versjon|Valde versjonar}} av [[:$1]]:',
-'logdelete-selected'          => '{{PLURAL:$1|Vald loggoppføring|Valde loggoppføringar}} for [[:$1]]:',
-'revdelete-text'              => 'Sletta versjonar og oppføringar vert framleis synlege i sidehistorikken og loggane, men delar av innhaldet deira vert ikkje lenger offentleggjort.
+'revdelete-selected'          => "'''{{PLURAL:$2|Vald versjon|Valde versjonar}} av [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Vald loggoppføring|Valde loggoppføringar}} for [[:$1]]:'''",
+'revdelete-text'              => "'''Sletta versjonar og oppføringar vert framleis synlege i sidehistorikken og loggane, men delar av innhaldet deira vert ikkje lenger offentleggjort.'''
 
-Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet og attopprette det, med mindre fleire avgrensingar vert lagde inn av sideoperatørane.',
+Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet og attopprette det, med mindre fleire avgrensingar vert lagde inn av sideoperatørane.",
 'revdelete-legend'            => 'Vel avgrensing for synlegdom',
 'revdelete-hide-text'         => 'Gøym endringssamandraga',
 'revdelete-hide-name'         => 'Gøym handling og sidenamn',

@@ -872,14 +872,14 @@ podrobnosti môžu byť v [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} zá
 'revisiondelete'              => 'Zmazať/obnoviť revízie',
 'revdelete-nooldid-title'     => 'Neplatná cieľová revízia',
 'revdelete-nooldid-text'      => 'Neuviedli ste cieľovú revíziu alebo revízie, na ktorých sa má táto funkcia vykonať, uvedená revízia neexistuje alebo sa pokúšate skryť aktuálnu revíziu.',
-'revdelete-selected'          => '{{PLURAL:$2|Vybraná jedna revízia|Vybrané $2 revízie|Vybraných $2 revízií}} z [[:$1]]:',
-'logdelete-selected'          => '{{PLURAL:$1|Vybraná udalosť záznamu|Vybrané udalosti záznamu}}:',
-'revdelete-text'              => 'Zmazané revízie sú stále viditeľné v histórii úprav stránky,
-ale ich obsah nebude prístupný verejnosti.
+'revdelete-selected'          => "'''{{PLURAL:$2|Vybraná jedna revízia|Vybrané $2 revízie|Vybraných $2 revízií}} z [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Vybraná udalosť záznamu|Vybrané udalosti záznamu}}:'''",
+'revdelete-text'              => "'''Zmazané revízie sú stále viditeľné v histórii úprav stránky,
+ale ich obsah nebude prístupný verejnosti.'''
 
 Iní správcovia {{GRAMMAR:genitív|{{SITENAME}}}} budú stále môcť pristupovať k skrytému obsahu a môžu
 ho znova obnoviť použitím tohto rozhrania v prípade, že operátormi projektu
-nie sú stanovené ďalšie obmedzenia.',
+nie sú stanovené ďalšie obmedzenia.",
 'revdelete-legend'            => 'Nastaviť obmedzenia viditeľnosti',
 'revdelete-hide-text'         => 'Skryť text revízie',
 'revdelete-hide-name'         => 'Skryť činnosť a cieľ',

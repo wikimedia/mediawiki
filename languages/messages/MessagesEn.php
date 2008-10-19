@@ -1282,11 +1282,11 @@ there may be details in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}
 'revdelete-nooldid-title'     => 'Invalid target revision',
 'revdelete-nooldid-text'      => 'You have either not specified a target revision(s) to perform this
 function, the specified revision does not exist, or you are attempting to hide the current revision.',
-'revdelete-selected'          => '\'\'\'{{PLURAL:$2|Selected revision|Selected revisions}} of [[:$1]]:\'\'\'',
-'logdelete-selected'          => '\'\'\'{{PLURAL:$1|Selected log event|Selected log events}}:\'\'\'',
-'revdelete-text'              => '\'\'\'Deleted revisions and events will still appear in the page history and logs, but parts of their content will be inaccessible to the public.\'\'\'
+'revdelete-selected'          => "'''{{PLURAL:$2|Selected revision|Selected revisions}} of [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Selected log event|Selected log events}}:'''",
+'revdelete-text'              => "'''Deleted revisions and events will still appear in the page history and logs, but parts of their content will be inaccessible to the public.'''
 
-Other admins on {{SITENAME}} will still be able to access the hidden content and can undelete it again through this same interface, unless additional restrictions are set.',
+Other admins on {{SITENAME}} will still be able to access the hidden content and can undelete it again through this same interface, unless additional restrictions are set.",
 'revdelete-legend'            => 'Set visibility restrictions',
 'revdelete-hide-text'         => 'Hide revision text',
 'revdelete-hide-name'         => 'Hide action and target',

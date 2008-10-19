@@ -752,11 +752,11 @@ $2',
 'revdelete-nooldid-title'     => '無效的目標修訂',
 'revdelete-nooldid-text'      => '您尚未指定一個目標修訂去進行這個功能、
 所指定的修訂不存在，或者您嘗試去隱藏現時的修訂。',
-'revdelete-selected'          => "選取'''$1'''的$2次修訂:",
-'logdelete-selected'          => "選取'''$1'''的日誌項目:",
-'revdelete-text'              => '刪除的修訂仍將顯示在頁面歷史中, 但它們的文字內容已不能被公眾訪問。
+'revdelete-selected'          => "'''選取'''$1'''的$2次修訂:'''",
+'logdelete-selected'          => "'''選取'''$1'''的日誌項目:'''",
+'revdelete-text'              => "'''刪除的修訂仍將顯示在頁面歷史中, 但它們的文字內容已不能被公眾訪問。'''
 
-在{{SITENAME}}的其他管理員將仍能訪問隱藏的內容並透過與此相同的介面恢復刪除，除非網站工作者進行了一些附加的限制。',
+在{{SITENAME}}的其他管理員將仍能訪問隱藏的內容並透過與此相同的介面恢復刪除，除非網站工作者進行了一些附加的限制。",
 'revdelete-legend'            => '設定可見性之限制',
 'revdelete-hide-text'         => '隱藏修訂文字',
 'revdelete-hide-name'         => '隱藏動作和目標',

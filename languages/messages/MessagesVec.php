@@ -818,9 +818,9 @@ Consulta el [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registro de scanc
 'revisiondelete'              => 'Scanceła o ripristina version',
 'revdelete-nooldid-title'     => 'Version mìa specificà',
 'revdelete-nooldid-text'      => 'No xe stà specificà alcuna version de la pagina su cui eseguir sta funzion.',
-'revdelete-selected'          => '{{PLURAL:$2|Version selezionà|Versioni selezionà}} de [[:$1]]:',
-'logdelete-selected'          => '{{PLURAL:$1|Evento del registro selezionà|Eventi del registro selezionè}}:',
-'revdelete-text'              => "Le versioni scancelàe le resta visibili ne la cronologia de la pagina, mentre el testo contegnùo no'l xe acessibile al publico.
+'revdelete-selected'          => "'''{{PLURAL:$2|Version selezionà|Versioni selezionà}} de [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Evento del registro selezionà|Eventi del registro selezionè}}:'''",
+'revdelete-text'              => "'''Le versioni scancelàe le resta visibili ne la cronologia de la pagina, mentre el testo contegnùo no'l xe acessibile al publico.'''
 
 I altri aministradori del sito i podarà accédar istesso ai contenuti sconti e ripristinarli atraverso questa stessa interfacia, se no xe stà inpostà altre limitazion in fase de instalazion del sito.",
 'revdelete-legend'            => 'Inposta le seguenti limitazion su le versioni scancelàe:',

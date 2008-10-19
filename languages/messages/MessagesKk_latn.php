@@ -1076,11 +1076,11 @@ Osı bettiñ tüzetwi barşa murağattarınan alastalğan.
 'revdelete-nooldid-title'     => 'Nısana tüzetw jaramsız',
 'revdelete-nooldid-text'      => 'Bul jeteni orındaw üşin nısana tüzetwin/tüzetwlerin keltirilmepsiz,
 keltirilgen tüzetw joq, ne ağımdıq tüzetwdi jasırw üşin ärekettenip kördiñiz.',
-'revdelete-selected'          => '[[:$1]] degenniñ bölektengen {{PLURAL:$2|tüzetwi|tüzetwleri}}:',
-'logdelete-selected'          => 'Bölektengen {{PLURAL:$1|jwrnal oqïğası|jwrnal oqïğaları}}:',
-'revdelete-text'              => 'Joýılğan tüzetwler men oqïğalardı äli de bet tarïxında jäne jwrnaldarda tabwğa boladı, biraq olardıñ mağlumat bölşekteri barşağa qatınalmaýdı.
+'revdelete-selected'          => "'''[[:$1]] degenniñ bölektengen {{PLURAL:$2|tüzetwi|tüzetwleri}}:'''",
+'logdelete-selected'          => "'''Bölektengen {{PLURAL:$1|jwrnal oqïğası|jwrnal oqïğaları}}:'''",
+'revdelete-text'              => "'''Joýılğan tüzetwler men oqïğalardı äli de bet tarïxında jäne jwrnaldarda tabwğa boladı, biraq olardıñ mağlumat bölşekteri barşağa qatınalmaýdı.'''
 
-{{SITENAME}} jobasınıñ basqa äkimşileri jasırın mağlumatqa qatınaý aladı, jäne qosımşa tïımdar qoýılğanşa deýin, osı tildesw arqılı joywdı boldırmawı mümkin.',
+{{SITENAME}} jobasınıñ basqa äkimşileri jasırın mağlumatqa qatınaý aladı, jäne qosımşa tïımdar qoýılğanşa deýin, osı tildesw arqılı joywdı boldırmawı mümkin.",
 'revdelete-legend'            => 'Körinis tïımdarın qoyw:',
 'revdelete-hide-text'         => 'Tüzetw mätinin jasır',
 'revdelete-hide-name'         => 'Äreket pen nısanasın jasır',

@@ -783,11 +783,11 @@ es possibile que se trova detalios in le [{{fullurl:Special:Log/delete|page={{FU
 'revdelete-nooldid-title'     => 'Le revision de destination es invalide',
 'revdelete-nooldid-text'      => 'O tu non ha specificate alcun revision(es) de destination pro executar iste 
 function, o le revision specificate non existe, o tu essaya celar le revision actual.',
-'revdelete-selected'          => '{{PLURAL:$2|Revision seligite|Revisiones seligite}} de [[:$1]]:',
-'logdelete-selected'          => '{{PLURAL:$1|Evento|Eventos}} de registro seligite:',
-'revdelete-text'              => 'Le revisiones e eventos delite continuara a apparer in le historia e registro del pagina, sed partes de lor contento essera inaccessibile al publico.
+'revdelete-selected'          => "'''{{PLURAL:$2|Revision seligite|Revisiones seligite}} de [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Evento|Eventos}} de registro seligite:'''",
+'revdelete-text'              => "'''Le revisiones e eventos delite continuara a apparer in le historia e registro del pagina, sed partes de lor contento essera inaccessibile al publico.'''
 
-Altere administratores in {{SITENAME}} continuara a poter acceder al contento celate e pote restaurar lo per medio de iste mesme interfacie, si non se ha definite restrictiones additional.',
+Altere administratores in {{SITENAME}} continuara a poter acceder al contento celate e pote restaurar lo per medio de iste mesme interfacie, si non se ha definite restrictiones additional.",
 'revdelete-legend'            => 'Definir restrictiones de visibilitate',
 'revdelete-hide-text'         => 'Celar texto del revision',
 'revdelete-hide-name'         => 'Celar action e objectivo',

@@ -845,11 +845,11 @@ Consultare il [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} log di cancella
 'revisiondelete'              => 'Cancella o ripristina versioni',
 'revdelete-nooldid-title'     => 'Versione non specificata',
 'revdelete-nooldid-text'      => 'Non è stata specificata alcuna versione della pagina su cui eseguire questa funzione.',
-'revdelete-selected'          => '{{PLURAL:$2|Versione selezionata|Versioni selezionate}} di [[:$1]]:',
-'logdelete-selected'          => '{{PLURAL:$1|Evento del registro selezionato|Eventi del registro selezionati}}:',
-'revdelete-text'              => 'Le versioni cancellate restano visibili nella cronologia della pagina, mentre il testo contenuto non è accessibile al pubblico.
+'revdelete-selected'          => "'''{{PLURAL:$2|Versione selezionata|Versioni selezionate}} di [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Evento del registro selezionato|Eventi del registro selezionati}}:'''",
+'revdelete-text'              => "'''Le versioni cancellate restano visibili nella cronologia della pagina, mentre il testo contenuto non è accessibile al pubblico.'''
 
-Gli altri amministratori del sito potranno accedere comunque ai contenuti nascosti e ripristinarli attraverso questa stessa interfaccia, se non sono state impostate altre limitazioni in fase di installazione del sito.',
+Gli altri amministratori del sito potranno accedere comunque ai contenuti nascosti e ripristinarli attraverso questa stessa interfaccia, se non sono state impostate altre limitazioni in fase di installazione del sito.",
 'revdelete-legend'            => 'Imposta le seguenti limitazioni sulle versioni cancellate:',
 'revdelete-hide-text'         => 'Nascondi il testo della versione',
 'revdelete-hide-name'         => 'Nascondi azione e oggetto della stessa',

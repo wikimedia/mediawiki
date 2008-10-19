@@ -8,6 +8,7 @@
  * @author Jimmy Collins <jimmy.collins@web.de>
  * @author Li-sung
  * @author Meno25
+ * @author Metalhead64
  * @author MichaelFrey
  * @author Omnipaedista
  * @author Pill
@@ -901,11 +902,11 @@ Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullu
 'revisiondelete'              => 'Versionen löschen/wiederherstellen',
 'revdelete-nooldid-title'     => 'Keine Version angegeben',
 'revdelete-nooldid-text'      => 'Du hast entweder keine Version angegeben, auf die diese Aktion ausgeführt werden soll, die gewählte Version ist nicht vorhanden oder du versuchst, die aktuelle Version zu entfernen.',
-'revdelete-selected'          => "{{PLURAL:$2|Ausgewählte Version|Ausgewählte Versionen}} von '''$1:'''",
-'logdelete-selected'          => '{{PLURAL:$1|Ausgewählter Logbucheintrag|Ausgewählte Logbucheinträge}}:',
-'revdelete-text'              => 'Der Inhalt oder andere Bestandteile gelöschter Versionen sind nicht mehr öffentlich einsehbar, erscheinen jedoch weiterhin als Einträge in der Versionsgeschichte.
+'revdelete-selected'          => "'''{{PLURAL:$2|Ausgewählte Version|Ausgewählte Versionen}} von [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Ausgewählter Logbucheintrag|Ausgewählte Logbucheinträge}}:'''",
+'revdelete-text'              => "'''Der Inhalt oder andere Bestandteile gelöschter Versionen sind nicht mehr öffentlich einsehbar, erscheinen jedoch weiterhin als Einträge in der Versionsgeschichte.'''
 
-{{SITENAME}}-Administratoren können den entfernten Inhalt oder andere entfernte Bestandteile weiterhin einsehen und wiederherstellen, es sei denn, es wurde festgelegt, dass die Zugangsbeschränkungen auch für Administratoren gelten.',
+{{SITENAME}}-Administratoren können den entfernten Inhalt oder andere entfernte Bestandteile weiterhin einsehen und wiederherstellen, es sei denn, es wurde festgelegt, dass die Zugangsbeschränkungen auch für Administratoren gelten.",
 'revdelete-legend'            => 'Setzen der Sichtbarkeits-Einschränkungen',
 'revdelete-hide-text'         => 'Text der Version verstecken',
 'revdelete-hide-name'         => 'Logbuch-Aktion verstecken',
@@ -1075,7 +1076,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen
 # Preferences page
 'preferences'              => 'Einstellungen',
 'mypreferences'            => 'Einstellungen',
-'prefs-edits'              => 'Anzahl Bearbeitungen:',
+'prefs-edits'              => 'Anzahl der Bearbeitungen:',
 'prefsnologin'             => 'Nicht angemeldet',
 'prefsnologintext'         => 'Du musst <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} angemeldet]</span> sein, um deine Einstellungen ändern zu können.',
 'prefsreset'               => 'Die Eingaben wurden verworfen, es erfolgte keine Speicherung.',
@@ -2335,8 +2336,8 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'tooltip-watch'                   => 'Füge diese Seite deiner Beobachtungsliste hinzu',
 'tooltip-recreate'                => 'Seite neu erstellen, obwohl sie gelöscht wurde.',
 'tooltip-upload'                  => 'Hochladen starten',
-'tooltip-rollback'                => 'macht alle letzten Änderungen der Seite, die vom gleichen Benutzer vorgenommen worden sind, durch nur einen Klick rückgängig.',
-'tooltip-undo'                    => 'macht lediglich diese eine Änderung rückgängig und zeigt das Resultat in der Vorschau an, damit in der Zusammenfassungszeile eine Begründung angegeben werden kann.',
+'tooltip-rollback'                => 'Macht alle letzten Änderungen der Seite, die vom gleichen Benutzer vorgenommen worden sind, durch nur einen Klick rückgängig.',
+'tooltip-undo'                    => 'Macht lediglich diese eine Änderung rückgängig und zeigt das Resultat in der Vorschau an, damit in der Zusammenfassungszeile eine Begründung angegeben werden kann.',
 
 # Stylesheets
 'common.css'      => '/* CSS an dieser Stelle wirkt sich auf alle Skins aus */',

@@ -730,11 +730,11 @@ Orrialdearen berrikuspen hau artxibo publikoetatik kendu da. Guneko administratz
 'revisiondelete'              => 'Berrikuspenak ezabatu/leheneratu',
 'revdelete-nooldid-title'     => 'Helburu berrikuspenik ez',
 'revdelete-nooldid-text'      => 'Ez d(it)uzu eragiketa hau burutzeko helburu berrikuspena(k) zehaztu.',
-'revdelete-selected'          => '{{PLURAL:$2|[[:$1]](r)en hautatutako berrikuspena:|[[:$1]](r)en hautatutako berrikuspenak}}',
-'logdelete-selected'          => '{{PLURAL:$1|Aukeratutako log gertakaria|Aukeratutako log gertakariak}}:',
-'revdelete-text'              => 'Ezabatutako berrikuspenek orrialdearen historian agertzen jarraituko dute, baina bere edukiak ez dira publikoki eskuratu ahal izango.
+'revdelete-selected'          => "'''{{PLURAL:$2|[[:$1]](r)en hautatutako berrikuspena:|[[:$1]](r)en hautatutako berrikuspenak}}'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Aukeratutako log gertakaria|Aukeratutako log gertakariak}}:'''",
+'revdelete-text'              => "'''Ezabatutako berrikuspenek orrialdearen historian agertzen jarraituko dute, baina bere edukiak ez dira publikoki eskuratu ahal izango.'''
 
-Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango dute, eta baita leheneratzeko ere, gunearen arduradunek beste mugapenen bat ezartzen ez badute behintzat.',
+Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango dute, eta baita leheneratzeko ere, gunearen arduradunek beste mugapenen bat ezartzen ez badute behintzat.",
 'revdelete-legend'            => 'Berrikuspen mugapenak ezarri:',
 'revdelete-hide-text'         => 'Berrikuspenaren testua ezkutatu',
 'revdelete-hide-name'         => 'Helburua eta ekintza izkutatu',

@@ -959,11 +959,11 @@ Coba [[Special:Search|lakukan pencarian di wiki]] untuk halaman baru yang releva
 'revisiondelete'              => 'Hapus/batal hapus revisi',
 'revdelete-nooldid-title'     => 'Target revisi tak ditemukan',
 'revdelete-nooldid-text'      => 'Anda belum memberikan target revisi untuk menjalankan fungsi ini.',
-'revdelete-selected'          => "{{PLURAL:$2|Revisi|Revisi-revisi}} pilihan dari '''$1'''",
-'logdelete-selected'          => '{{PLURAL:$1|Log|Log-log}} pilihan untuk:',
-'revdelete-text'              => 'Revisi dan tindakan yang telah dihapus akan tetap muncul di halaman versi terdahulu, tapi teks isi tidak bisa diakses publik.
+'revdelete-selected'          => "'''{{PLURAL:$2|Revisi|Revisi-revisi}} pilihan dari '''$1''''''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Log|Log-log}} pilihan untuk:'''",
+'revdelete-text'              => "'''Revisi dan tindakan yang telah dihapus akan tetap muncul di halaman versi terdahulu, tapi teks isi tidak bisa diakses publik.'''
 
-Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapusan melalui antarmuka yang sama, kecuali jika ada pembatasan lain yang dibuat oleh operator situs',
+Pengurus lain akan dapat mengakses isi tersebunyi dan dapat membatalkan penghapusan melalui antarmuka yang sama, kecuali jika ada pembatasan lain yang dibuat oleh operator situs",
 'revdelete-legend'            => 'Atur batasan:',
 'revdelete-hide-text'         => 'Sembunyikan teks revisi',
 'revdelete-hide-name'         => 'Sembunyikan tindakan dan target',

@@ -916,11 +916,11 @@ Essayez de [[Special:Search|rechercher sur le wiki]] pour trouver des pages en r
 'revisiondelete'              => 'Supprimer/Restaurer des versions',
 'revdelete-nooldid-title'     => 'Pas de cible pour la révision',
 'revdelete-nooldid-text'      => 'Vous n’avez pas précisé la(es) révision(s) cible(s) de cette fonction, la révision cible n’existe pas, ou encore la révision cible est celle en cours.',
-'revdelete-selected'          => "{{PLURAL:$2|Version sélectionnée|Versions sélectionnées}} de '''$1''' :",
-'logdelete-selected'          => '{{PLURAL:$1|Événement d’historique sélectionné|Événements d’historique sélectionnés}} :',
-'revdelete-text'              => 'Les révisions et événements supprimés apparaîtront encore dans l’historique de l’article, mais leur contenu textuel sera inaccessible au public.
+'revdelete-selected'          => "'''{{PLURAL:$2|Version sélectionnée|Versions sélectionnées}} de '''$1''' :'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Événement d’historique sélectionné|Événements d’historique sélectionnés}} :'''",
+'revdelete-text'              => "'''Les révisions et événements supprimés apparaîtront encore dans l’historique de l’article, mais leur contenu textuel sera inaccessible au public.'''
 
-D’autres administrateurs de {{SITENAME}} pourront toujours accéder au contenu caché et le restaurer à nouveau à travers cette même interface, à moins qu’une restriction supplémentaire ne soit mise en place par les opérateurs du site.',
+D’autres administrateurs de {{SITENAME}} pourront toujours accéder au contenu caché et le restaurer à nouveau à travers cette même interface, à moins qu’une restriction supplémentaire ne soit mise en place par les opérateurs du site.",
 'revdelete-legend'            => 'Mettre en place des restrictions de version :',
 'revdelete-hide-text'         => 'Masquer le texte de la version',
 'revdelete-hide-name'         => 'Masquer l’action et la cible',
@@ -1606,6 +1606,7 @@ Une page est traitée comme une page d’homonymie si elle utilise un modèle qu
 'wantedcategories'        => 'Catégories les plus demandées',
 'wantedpages'             => 'Pages les plus demandées',
 'wantedfiles'             => 'Fichiers désirés',
+'wantedtemplates'         => 'Modèles demandés',
 'mostlinked'              => 'Pages les plus liées',
 'mostlinkedcategories'    => 'Catégories les plus utilisées',
 'mostlinkedtemplates'     => 'Modèles les plus utilisés',

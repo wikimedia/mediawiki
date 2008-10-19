@@ -714,10 +714,10 @@ Marteze e kavot munudoù all war [{{fullurl:Special:Log/delete|page={{PAGENAMEE}
 'revisiondelete'              => 'Diverkañ/diziverkañ stummoù',
 'revdelete-nooldid-title'     => "N'eus stumm pal ebet evit an degasadennoù",
 'revdelete-nooldid-text'      => "Pe n'eo ket bet spisaet ganeoc'h ar stumm(où) pal da implijout an arc'hwel-mañ evito. pe n'eus ket eus ar stummoù spisaet, pe emaoc'h o klask kuzhat ar stumm red.",
-'revdelete-selected'          => '{{PLURAL:$2|Stumm dibabet|Stummoù dibabet}} eus [[:$1]] :',
-'logdelete-selected'          => '{{PLURAL:$1|Darvoud eus ar marilh diuzet|Darvoud eus ar marilh diuzet}} :',
-'revdelete-text'              => "Derc'hel a raio ar stummoù diverket da zont war wel war istor ar bajenn,
-met n'hallo ket an dud sellet outo.
+'revdelete-selected'          => "'''{{PLURAL:$2|Stumm dibabet|Stummoù dibabet}} eus [[:$1]] :'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Darvoud eus ar marilh diuzet|Darvoud eus ar marilh diuzet}} :'''",
+'revdelete-text'              => "'''Derc'hel a raio ar stummoù diverket da zont war wel war istor ar bajenn,
+met n'hallo ket an dud sellet outo.'''
 
 Gouest e vo merourien all {{SITENAME}} da dapout krog en testennoù kuzhet ha da ziziverkañ anezho en-dro dre an hevelep etrefas, nemet e vije bet lakaet e plas strishadurioù ouzhpenn gant renerien al lec'hienn.",
 'revdelete-legend'            => 'Lakaat strishadurioù gwelet',

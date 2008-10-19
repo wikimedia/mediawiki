@@ -737,7 +737,7 @@ Mande ou byen si ou ap byen fè kreye li ankò toutbon (gade jounal paj sa a pou
 'rev-delundel'              => 'montre/kache',
 'revisiondelete'            => 'Efase/Restore, remèt vèsyon sa',
 'revdelete-nooldid-title'   => 'Pa genyen sib, destinasyon pou revizyon sa',
-'revdelete-selected'        => "{{PLURAL:$2|Vèsyon ou seleksyone|Vèsyon ou seleksyone yo}} de '''$1''' :",
+'revdelete-selected'        => "'''{{PLURAL:$2|Vèsyon ou seleksyone|Vèsyon ou seleksyone yo}} de $1 :'''",
 'revdelete-legend'          => 'Mete restriksyon nan vizibilite yo :',
 'revdelete-hide-text'       => 'Kache tèks anba vèsyon sa',
 'revdelete-hide-name'       => 'Kache aksyon an ak sib li',

@@ -686,11 +686,11 @@ Powody wyćepańo idźe znejść we [{{fullurl:Special:Log/delete|page={{FULLPAG
 'revisiondelete'              => 'Wyćep/wćep nazod wersyje',
 'revdelete-nooldid-title'     => 'Ńy wybrano wersyji',
 'revdelete-nooldid-text'      => 'Ńy wybrano wersyji na kerych mo zostać wykůnano ta uoperacyjo.',
-'revdelete-selected'          => '{{PLURAL:$2|Wybrano wersyja|Wybrane wersyje}} zajty [[:$1]]:',
-'logdelete-selected'          => '{{PLURAL:$1|Wybrane zdařyńy s rejeru|Wybrane zdařyńa s rejeru}}:',
-'revdelete-text'              => 'Wyćepane wersyje bydům dali widočne w historyji zajty, nale jejich treść ńy bydźe publičńy dostympna.
+'revdelete-selected'          => "'''{{PLURAL:$2|Wybrano wersyja|Wybrane wersyje}} zajty [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Wybrane zdařyńy s rejeru|Wybrane zdařyńa s rejeru}}:'''",
+'revdelete-text'              => "'''Wyćepane wersyje bydům dali widočne w historyji zajty, nale jejich treść ńy bydźe publičńy dostympna.'''
 
-Inkśi admińistratoři {{GRAMMAR:D.lp|{{SITENAME}}}} dali bydům mjeć dostymp do schrůńůnych wersyji a bydům můgli je wćepać nazod, chyba aže uoperator serwisu nouožůu dodatkowe uograńičyńo.',
+Inkśi admińistratoři {{GRAMMAR:D.lp|{{SITENAME}}}} dali bydům mjeć dostymp do schrůńůnych wersyji a bydům můgli je wćepać nazod, chyba aže uoperator serwisu nouožůu dodatkowe uograńičyńo.",
 'revdelete-legend'            => 'Naštaluj uograńičyńo lo wersyji:',
 'revdelete-hide-text'         => 'Schrůń tekst wersyji',
 'revdelete-hide-name'         => 'Schrůń akcyjo a cyl',

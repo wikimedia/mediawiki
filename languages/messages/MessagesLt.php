@@ -854,11 +854,11 @@ Kaip šios svetainės administratorius, jūs galite jį pamatyti;
 'revisiondelete'              => 'Trinti/atkurti versijas',
 'revdelete-nooldid-title'     => 'Neleistina paskirties versija',
 'revdelete-nooldid-text'      => 'Jūs nenurodėte versijos (-ų), kurioms įvykdyti šią funkciją, nurodyta versija neegzistuoja arba jūs bandote paslėpti esamą versiją.',
-'revdelete-selected'          => '{{PLURAL:$2|Pasirinkta [[:$1]] versija|Pasirinktos [[:$1]] versijos}}:',
-'logdelete-selected'          => '{{PLURAL:$1|Pasirinktas istorijos įvykis|Pasirinkti istorijos įvykiai}}:',
-'revdelete-text'              => 'Ištrintos versijos bei įvykiai vistiek dar bus rodomi puslapio istorijoje ir specialiųjų veiksmų istorijoje, bet jų turinio dalys nebus viešai prieinamos.
+'revdelete-selected'          => "'''{{PLURAL:$2|Pasirinkta [[:$1]] versija|Pasirinktos [[:$1]] versijos}}:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Pasirinktas istorijos įvykis|Pasirinkti istorijos įvykiai}}:'''",
+'revdelete-text'              => "'''Ištrintos versijos bei įvykiai vistiek dar bus rodomi puslapio istorijoje ir specialiųjų veiksmų istorijoje, bet jų turinio dalys nebus viešai prieinamos.'''
 
-Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį ir galės jį atkurti vėl per tą pačią sąsają, nebent yra nustatyti papildomi apribojimai.',
+Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį ir galės jį atkurti vėl per tą pačią sąsają, nebent yra nustatyti papildomi apribojimai.",
 'revdelete-legend'            => 'Nustatyti matomumo apribojimus:',
 'revdelete-hide-text'         => 'Slėpti versijos tekstą',
 'revdelete-hide-name'         => 'Slėpti veiksmą ir paskirtį',

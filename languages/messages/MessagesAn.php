@@ -775,9 +775,9 @@ puede trobar más detalles en o [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}
 'revisiondelete'              => 'Borrar/esfer borrau de bersions',
 'revdelete-nooldid-title'     => 'A bersión de destino no ye conforme',
 'revdelete-nooldid-text'      => 'No ha espezificato garra bersión de destino ta aplicar-le ista funzión, a bersión espezificata no esiste u ye mirando de amagar a bersión autual.',
-'revdelete-selected'          => '{{PLURAL:$2|Bersión trigata|Bersions trigatas}} de [[:$1]]:',
-'logdelete-selected'          => "{{PLURAL:$1|Escaizimiento d'o rechistro trigato|Escaizimientos d'o rechistro trigatos}}:",
-'revdelete-text'              => "As bersions borratas encara aparixerán en o istorial y o rechistro d'a pachina, pero os suyos contenius no serán azesibles ta o publico.
+'revdelete-selected'          => "'''{{PLURAL:$2|Bersión trigata|Bersions trigatas}} de [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Escaizimiento d'o rechistro trigato|Escaizimientos d'o rechistro trigatos}}:'''",
+'revdelete-text'              => "'''As bersions borratas encara aparixerán en o istorial y o rechistro d'a pachina, pero os suyos contenius no serán azesibles ta o publico.'''
 
 Atros almenistradors de {{SITENAME}} encara podrán azeder t'o contineiu amagato y podrán esfer o borrau á trabiés d'a mesma interfaz, fueras de si os operadors establen restrizions adizionals.",
 'revdelete-legend'            => 'Establir as restrizions de bisibilidat:',

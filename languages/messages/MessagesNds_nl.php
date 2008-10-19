@@ -946,9 +946,9 @@ der kan veerdere infermasie staon in 't [{{fullurl:Special:Log/delete|page={{PAG
 'revisiondelete'              => 'Wiezigingen vortdoon/herstellen',
 'revdelete-nooldid-title'     => 'Gien doelversie',
 'revdelete-nooldid-text'      => 'Je hemmen gien versie an-egeven waor disse actie op uut-evoerd mut wonnen.',
-'revdelete-selected'          => "{{PLURAL:$2|Esillekteren bewarking|Esillekteren bewarkingen}} van '''[[:$1]]''':",
-'logdelete-selected'          => '{{PLURAL:$1|Esillecteren logboekboekactie|Esillecteren logboekacties}}:',
-'revdelete-text'              => "Bewarkingen dee vort-ehaold bin, ku-j wel zien in de geschiedenisse, mar de inhoud is neet langer pebliekelijk toegankelijk.
+'revdelete-selected'          => "'''{{PLURAL:$2|Esillekteren bewarking|Esillekteren bewarkingen}} van '''[[:$1]]''':'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Esillecteren logboekboekactie|Esillecteren logboekacties}}:'''",
+'revdelete-text'              => "'''Bewarkingen dee vort-ehaold bin, ku-j wel zien in de geschiedenisse, mar de inhoud is neet langer pebliekelijk toegankelijk.'''
 
 Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't weerummeplaosen mit behulpe van dit scharm, behalven as der aandere beparkingen gelden dee in-esteld bin deur de systeembeheerder.",
 'revdelete-legend'            => 'Stel versiebeparkingen in:',

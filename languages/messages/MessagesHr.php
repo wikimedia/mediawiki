@@ -988,14 +988,14 @@ detalji se vjerojatno nalaze u [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}
 'revisiondelete'              => 'Izbriši/vrati izmjene',
 'revdelete-nooldid-title'     => 'Nema tražene izmjene',
 'revdelete-nooldid-text'      => 'Niste naveli željenu izmjenu (izmjene), željena izmjena ne postoji, ili  pokušavate sakriti trenutačnu izmjenu.',
-'revdelete-selected'          => '{{PLURAL:$2|Odabrana izmjena|Odabrane izmjene|Odabrane izmjene}} stranice [[$1]]:',
-'logdelete-selected'          => '{{PLURAL:$1|Odabrani zapis u evidenciji|Odabrani zapisi u evidenciji}}:',
-'revdelete-text'              => 'Obrisane će se izmjene i dalje nalaziti u javnom popisu izmjena,
-ali njihov sadržaj neće biti dostupan javnosti.
+'revdelete-selected'          => "'''{{PLURAL:$2|Odabrana izmjena|Odabrane izmjene|Odabrane izmjene}} stranice [[$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Odabrani zapis u evidenciji|Odabrani zapisi u evidenciji}}:'''",
+'revdelete-text'              => "'''Obrisane će se izmjene i dalje nalaziti u javnom popisu izmjena,
+ali njihov sadržaj neće biti dostupan javnosti.'''
 
 Drugi administratori ovoga projekta moći će i dalje pristupiti skrivenom sadržaju i
 vratiti ga u javni pristup putem ovog sučelja, osim ako operateri na projektu nisu
-postavili dodatna ograničenja.',
+postavili dodatna ograničenja.",
 'revdelete-legend'            => 'Postavi ograničenja na izmjenu:',
 'revdelete-hide-text'         => 'Sakrij tekst izmjene',
 'revdelete-hide-name'         => 'Sakrij uređivanje i njegov predmet',

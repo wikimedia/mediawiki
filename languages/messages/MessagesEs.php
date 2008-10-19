@@ -822,11 +822,11 @@ puede haber detalles en el [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} re
 'revisiondelete'              => 'Borrar/deshacer borrado revisiones',
 'revdelete-nooldid-title'     => 'No hay revisión destino',
 'revdelete-nooldid-text'      => 'No se ha especificado una revisión o revisiones destino sobre las que realizar esta función.',
-'revdelete-selected'          => '{{PLURAL:$2|Revisión seleccionada|Revisiones seleccionadas}} de [[:$1]]:',
-'logdelete-selected'          => '{{PLURAL:$1|Seleccionado un evento|Seleccionados eventos}}:',
-'revdelete-text'              => 'Las revisiones borradas aún aparecerán en el historial de la página y en los registros, pero sus contenidos no serán accesibles al público.
+'revdelete-selected'          => "'''{{PLURAL:$2|Revisión seleccionada|Revisiones seleccionadas}} de [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Seleccionado un evento|Seleccionados eventos}}:'''",
+'revdelete-text'              => "'''Las revisiones borradas aún aparecerán en el historial de la página y en los registros, pero sus contenidos no serán accesibles al público.'''
 
-Otros administradores de {{SITENAME}} aún podrán acceder al contenido oculto y podrán deshacer el borrado a través de la misma interfaz, a menos que se establezcan restricciones adicionales.',
+Otros administradores de {{SITENAME}} aún podrán acceder al contenido oculto y podrán deshacer el borrado a través de la misma interfaz, a menos que se establezcan restricciones adicionales.",
 'revdelete-legend'            => 'Establecer restricciones de revisión:',
 'revdelete-hide-text'         => 'Ocultar el texto de la revisión',
 'revdelete-hide-name'         => 'Ocultar acción y objetivo',

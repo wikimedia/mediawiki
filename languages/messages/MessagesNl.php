@@ -1039,11 +1039,11 @@ er kunnen details aanwezig zijn in het [{{fullurl:Special:Log/delete|page={{PAGE
 'revisiondelete'              => 'Versies verwijderen/terugplaatsen',
 'revdelete-nooldid-title'     => 'Geen doelversie',
 'revdelete-nooldid-text'      => 'U hebt geen doelversie(s) voor deze handeling opgegeven, de aangegeven versie bestaat niet, of u probeert de laatste versie te verbergen.',
-'revdelete-selected'          => 'Geselecteerde {{PLURAL:$2|bewerking|bewerkingen}} van [[:$1]]:',
-'logdelete-selected'          => '{{PLURAL:$1|Geselecteerde logboekactie|Geselecteerde logboekacties}}:',
-'revdelete-text'              => 'Verwijderde bewerkingen zijn zichtbaar in de geschiedenis, maar de inhoud is niet langer publiek toegankelijk.
+'revdelete-selected'          => "'''Geselecteerde {{PLURAL:$2|bewerking|bewerkingen}} van [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Geselecteerde logboekactie|Geselecteerde logboekacties}}:'''",
+'revdelete-text'              => "'''Verwijderde bewerkingen zijn zichtbaar in de geschiedenis, maar de inhoud is niet langer publiek toegankelijk.'''
 
-Andere beheerders van {{SITENAME}} kunnen de verborgen inhoud benaderen en de verwijdering ongedaan maken met behulp van dit scherm, tenzij er aanvullende beperkingen gelden die zijn ingesteld door de systeembeheerder.',
+Andere beheerders van {{SITENAME}} kunnen de verborgen inhoud benaderen en de verwijdering ongedaan maken met behulp van dit scherm, tenzij er aanvullende beperkingen gelden die zijn ingesteld door de systeembeheerder.",
 'revdelete-legend'            => 'Zichtbaarheidsbeperkingen instellen',
 'revdelete-hide-text'         => 'De bewerkte tekst verbergen',
 'revdelete-hide-name'         => 'Actie en doel verbergen',
@@ -1765,6 +1765,7 @@ Meestal is de laatste pagina het eigenlijke doel.",
 'wantedcategories'        => 'Niet-bestaande categorieën met de meeste verwijzingen',
 'wantedpages'             => "Niet-bestaande pagina's met verwijzingen",
 'wantedfiles'             => 'Niet-bestaande bestanden met verwijzingen',
+'wantedtemplates'         => 'Niet-bestaande sjablonen met verwijzingen',
 'mostlinked'              => "Pagina's waar het meest naar verwezen wordt",
 'mostlinkedcategories'    => 'Categorieën waar het meest naar verwezen wordt',
 'mostlinkedtemplates'     => 'Meestgebruikte sjablonen',

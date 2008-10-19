@@ -707,9 +707,9 @@ der kunn\'n details anwezig zien in \'t [{{fullurl:Special:Log/delete|page={{PAG
 'revisiondelete'              => 'Versies verwiederen/trugplekken',
 'revdelete-nooldid-title'     => 'Hin doelversie',
 'revdelete-nooldid-text'      => 'Je ei hin doelversie(s) voe deêze handelienge opeheven, de aneheven versie besti nie, of je probeer de lèste versie te verberhen.',
-'revdelete-selected'          => 'Hesillecteerde {{PLURAL:$2|bewerkieng|bewerkiengen}} van [[:$1]]:',
-'logdelete-selected'          => '{{PLURAL:$1|Hesillecteerde logboekactie|Hesillecteerde logboekacties}}:',
-'revdelete-text'              => "Verwiederde bewerkiengen zien zichbaer in de heschiedenisse, mè den inoud is nie langer publiek toehankelijk.
+'revdelete-selected'          => "'''Hesillecteerde {{PLURAL:$2|bewerkieng|bewerkiengen}} van [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Hesillecteerde logboekactie|Hesillecteerde logboekacties}}:'''",
+'revdelete-text'              => "'''Verwiederde bewerkiengen zien zichbaer in de heschiedenisse, mè den inoud is nie langer publiek toehankelijk.'''
 
 Aore opzichters van {{SITENAME}} kunn'n de verborhen inoud benadern en de verwiederieng onedaene maeken mie de ulpe van dit scherm, tenzie an der anvull'nde beperkiengen heln die an zien inesteld deur de systeembeheêrder.",
 'revdelete-legend'            => "Zichbaereidsbeperkiengen instell'n",

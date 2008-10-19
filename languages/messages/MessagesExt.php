@@ -655,11 +655,11 @@ puei bel detallis nel [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rus
 'revisiondelete'              => 'Esborral/arrecuperal revisionis',
 'revdelete-nooldid-title'     => 'Nu ai una revisión destinu',
 'revdelete-nooldid-text'      => 'Nu as prehisau denguna revisión destinu ondi realizal esta hunción.',
-'revdelete-selected'          => "{{PLURAL:$2|Revisión aseñalá e|Revisionis aseñalás de}} '''[[:$1]]''':",
-'logdelete-selected'          => '{{PLURAL:$1|Eventu el rustrihu aseñalau|Eventus del rustrihu aseñalaus}}:',
-'revdelete-text'              => 'Las revisionis esborrás entovia apaicirán nel estorial la páhina, peru el su continiu nu sedrá acesibri pal púbricu.
+'revdelete-selected'          => "'''{{PLURAL:$2|Revisión aseñalá e|Revisionis aseñalás de}} '''[[:$1]]''':'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Eventu el rustrihu aseñalau|Eventus del rustrihu aseñalaus}}:'''",
+'revdelete-text'              => "'''Las revisionis esborrás entovia apaicirán nel estorial la páhina, peru el su continiu nu sedrá acesibri pal púbricu.'''
 
-El restu e çahorilis desti güiqui sí tendrán premisu pa visoreal el continiu açonchau, i revertil el esborrau si es mestel, a nu sel que los alministraoris del güiqui crein una restrición aicional.',
+El restu e çahorilis desti güiqui sí tendrán premisu pa visoreal el continiu açonchau, i revertil el esborrau si es mestel, a nu sel que los alministraoris del güiqui crein una restrición aicional.",
 'revdelete-legend'            => 'Establecel restricionis de visibiliá',
 'revdelete-hide-text'         => 'Açonchal el testu la revisión',
 'revdelete-hide-name'         => 'Açonchal ación i ohetivu',

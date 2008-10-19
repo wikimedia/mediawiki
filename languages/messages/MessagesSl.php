@@ -541,10 +541,10 @@ Prikazana redakacija strani je bila iz javnih arhivov odstranjena. Ogledate si j
 </div>',
 'rev-delundel'                => 'pokaži/skrij',
 'revisiondelete'              => 'Izbriši/obnovi redakcije',
-'revdelete-selected'          => 'Izbrana redakcija strani [[:$1]]:',
-'revdelete-text'              => 'Izbrisane redakcije bodo v zgodovini strani še vedno navedene, vendar bo njihova vsebina za javnost nedostopna.
+'revdelete-selected'          => "'''Izbrana redakcija strani [[:$1]]:'''",
+'revdelete-text'              => "'''Izbrisane redakcije bodo v zgodovini strani še vedno navedene, vendar bo njihova vsebina za javnost nedostopna.'''
 
-Do skrite vsebine bodo še vedno lahko dostopali drugi administratorji in jo z uporabo istega vmesnika tudi obnovili, razen kjer bodo operaterji spletišča uveljavili dodatne omejitve.',
+Do skrite vsebine bodo še vedno lahko dostopali drugi administratorji in jo z uporabo istega vmesnika tudi obnovili, razen kjer bodo operaterji spletišča uveljavili dodatne omejitve.",
 'revdelete-legend'            => 'Nastavitve z redakcijami povezanih omejitev:',
 'revdelete-hide-text'         => 'Skrij besedilo redakcije',
 'revdelete-hide-comment'      => 'Skrij povzetek urejanja',

@@ -576,9 +576,9 @@ Come manaedjeu so ç\' wiki ci, vos avoz l\' droet del vey; i gn a motoit des de
 </div>',
 'rev-delundel'                => 'mostrer/catchî',
 'revisiondelete'              => 'Disfacer/rapexhî des modêyes',
-'revdelete-selected'          => 'Tchoezeye modêye di [[:$1]]:',
-'logdelete-selected'          => "{{PLURAL:$2|Evenmint tchoezi|Evenmints tchoezis}} ezès djournås po '''$1:'''",
-'revdelete-text'              => "Les disfacêyès modêyes vont continouwer d' aparexhe dins l' pådje di l' istwere, mins leu contnou n' serè nén veyåve do publik.
+'revdelete-selected'          => "'''Tchoezeye modêye di [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$2|Evenmint tchoezi|Evenmints tchoezis}} ezès djournås po '''$1:''''''",
+'revdelete-text'              => "'''Les disfacêyès modêyes vont continouwer d' aparexhe dins l' pådje di l' istwere, mins leu contnou n' serè nén veyåve do publik.'''
 
 Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' rapexhî åd triviè di cisse minme eterface ci, a moens k' ene restriccion di pus ni soeye metowe en alaedje pås mwaisses-manaedjeus del waibe.",
 'revdelete-legend'            => 'Defini des restriccions sol modêye',

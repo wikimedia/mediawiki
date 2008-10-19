@@ -678,10 +678,10 @@ a peul esse che a sio restajne chèich marca ant ël [{{fullurl:Special:Log/dele
 'revisiondelete'              => 'Scancela/disdëscancela revision',
 'revdelete-nooldid-title'     => 'Version nen specificà',
 'revdelete-nooldid-text'      => "A l'ha pa visasse dë dì ansima a che version dla pàgina che a venta fé sossì.",
-'revdelete-selected'          => '{{PLURAL:$2|Revision|Revision}} selessionà për [[:$1]]:',
-'logdelete-selected'          => '{{PLURAL:$1|Event|Event}} dël registr selessionà:',
-'revdelete-text'              => "Le version scancelà a së s-ciaireran sempe ant la stòria dla pàgina,
-ma sò test al pùblich a-j andran pì nen.
+'revdelete-selected'          => "'''{{PLURAL:$2|Revision|Revision}} selessionà për [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Event|Event}} dël registr selessionà:'''",
+'revdelete-text'              => "'''Le version scancelà a së s-ciaireran sempe ant la stòria dla pàgina,
+ma sò test al pùblich a-j andran pì nen.'''
 
 J'àutri aministrator ëd sta wiki-sì a saran ancó sempe bon a s-ciairé ël contnù stërmà
 e a podran disdëscancelelo andré con la midema antërfacia, sempe che a sia nen staita butà

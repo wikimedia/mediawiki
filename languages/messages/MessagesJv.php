@@ -677,11 +677,11 @@ Minangka sawijning pangurus situs, panjenengan bisa mirsani; detil mbokmenawa ka
 'revisiondelete'              => 'Busak/batal busak revisi',
 'revdelete-nooldid-title'     => 'Target revisi ora ditemokaké',
 'revdelete-nooldid-text'      => 'Panjenengan durung mènèhi target revisi kanggo nglakoni fungsi iki.',
-'revdelete-selected'          => "{{PLURAL:$2|Revisi kapilih|Revisi kapilih}} dari '''$1'''",
-'logdelete-selected'          => '{{PLURAL:$1|Log kapilih|Log kapilih}} kanggo:',
-'revdelete-text'              => 'Revisi lan tindhakan sing wis kabusak bakal tetep muncul ing kaca versi sadurungé, nanging tèks iki ora bisa diaksès minangka umum.
+'revdelete-selected'          => "'''{{PLURAL:$2|Revisi kapilih|Revisi kapilih}} dari '''$1''''''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Log kapilih|Log kapilih}} kanggo:'''",
+'revdelete-text'              => "'''Revisi lan tindhakan sing wis kabusak bakal tetep muncul ing kaca versi sadurungé, nanging tèks iki ora bisa diaksès minangka umum.'''
 
-Pengurus liyané bakal tetep bisa ngaksès isi sing kadhelikaké iku lan bisa mbatalaké pambusakan ngliwati antarmuka sing padha, kejaba yèn ana pawatesan liyané sing digawé déning operator situs',
+Pengurus liyané bakal tetep bisa ngaksès isi sing kadhelikaké iku lan bisa mbatalaké pambusakan ngliwati antarmuka sing padha, kejaba yèn ana pawatesan liyané sing digawé déning operator situs",
 'revdelete-legend'            => 'Atur watesan:',
 'revdelete-hide-text'         => 'Dhelikna tèks revisi',
 'revdelete-hide-name'         => 'Dhelikna tindhakan lan targèt',

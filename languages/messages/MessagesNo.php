@@ -841,11 +841,11 @@ Denne revisjonen har blitt fjernet fra det offentlige arkivet. Som administrator
 'revisiondelete'              => 'Slett/gjenopprett revisjoner',
 'revdelete-nooldid-title'     => 'Ugyldig målversjon',
 'revdelete-nooldid-text'      => 'Du har ikke angitt en målversjon for denne funksjonen, den angitte versjonen finnes ikke, eller du forsøker å skjule den nåværende versjonen.',
-'revdelete-selected'          => '{{PLURAL:$2|Valgt revisjon|Valgte revisjoner}} av [[:$1]]:',
-'logdelete-selected'          => '{{PLURAL:$1|Valgt loggoppføring|Valgte loggoppføringer}}:',
-'revdelete-text'              => 'Slettede revisjoner vil fortsatt vises i sidehistorikken, men innholdet vil ikke være tilgjengelig for offentligheten.
+'revdelete-selected'          => "'''{{PLURAL:$2|Valgt revisjon|Valgte revisjoner}} av [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Valgt loggoppføring|Valgte loggoppføringer}}:'''",
+'revdelete-text'              => "'''Slettede revisjoner vil fortsatt vises i sidehistorikken, men innholdet vil ikke være tilgjengelig for offentligheten.'''
 
-Andre administratorer på {{SITENAME}} vil fortsatt kunne se det skjulte innholdet, og kan gjenopprette det, med mindre videre begrensninger blir gitt av sideoperatørene.',
+Andre administratorer på {{SITENAME}} vil fortsatt kunne se det skjulte innholdet, og kan gjenopprette det, med mindre videre begrensninger blir gitt av sideoperatørene.",
 'revdelete-legend'            => 'Fastsett synlighetsbegrensninger',
 'revdelete-hide-text'         => 'Skjul revisjonstekst',
 'revdelete-hide-name'         => 'Skjul handling og mål',

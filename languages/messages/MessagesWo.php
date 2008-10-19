@@ -677,11 +677,11 @@ Ngirtey téye gi $3 joxe, mooy ne: ''$2''.",
 'revisiondelete'              => 'Far/Lopppanti ay sumb',
 'revdelete-nooldid-title'     => 'Waxoo man sumb',
 'revdelete-nooldid-text'      => 'Waxoo ci man sumb mu xët wii ngay amal solo sii.',
-'revdelete-selected'          => "{{PLURAL:$2|Sumbum '''$1''' mi falu|Sumbi '''$1''' yi falu}} :",
-'logdelete-selected'          => '{{PLURAL:$1|Xew-xewu yéenekaay bi falu|Xew-xewi yéenekaay yi falu}}:',
-'revdelete-text'              => 'Sumb yi nga far dañuy wéy di feeñ ci jaar-jaaru xët wi, waaye mbind yi ñu ëmb ñépp duñ leen man a gis .
+'revdelete-selected'          => "'''{{PLURAL:$2|Sumbum '''$1''' mi falu|Sumbi '''$1''' yi falu}} :'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Xew-xewu yéenekaay bi falu|Xew-xewi yéenekaay yi falu}}:'''",
+'revdelete-text'              => "'''Sumb yi nga far dañuy wéy di feeñ ci jaar-jaaru xët wi, waaye mbind yi ñu ëmb ñépp duñ leen man a gis.'''
 
-Yeneen yorkati {{SITENAME}} itam di nañ man a gis ëmbit yu laqu yi te loppanti leen, walla xanaa rek kay dañ fee def ay digal yu leen koy tere man a def.',
+Yeneen yorkati {{SITENAME}} itam di nañ man a gis ëmbit yu laqu yi te loppanti leen, walla xanaa rek kay dañ fee def ay digal yu leen koy tere man a def.",
 'revdelete-legend'            => 'Taxawal ay digal ci sumb yi ñu far:',
 'revdelete-hide-text'         => 'Nëbb mbindum sumb mi',
 'revdelete-hide-name'         => 'Nëbb jëf ji ak njeexitam',

@@ -562,8 +562,8 @@ a cerut să vi se trimită o nouă parolă pentru {{SITENAME}} ($4).
 Parola pentru utilizatorul "$2" este acum "$3".
 Este recomandat să intraţi pe {{SITENAME}} şi să vă schimbi parola cât mai curând.
 
-Dacă această cerere a fost efectuată de altcineva sau dacă v-aţi amintit
-parola şi nu doriţi să o schimbaţi, ignoraţi acest mesaj şi continuaţi
+Dacă această cerere a fost efectuată de altcineva sau dacă v-aţi amintit 
+parola şi nu doriţi să o schimbaţi, ignoraţi acest mesaj şi continuaţi 
 să folosiţi vechea parolă.',
 'noemail'                    => 'Nu este nici o adresă de e-mail înregistrată pentru utilizatorul "$1".',
 'passwordsent'               => 'O nouă parolă a fost trimisă la adresa de e-mail a utilizatorului "$1". Te rugăm să te autentifici pe {{SITENAME}} după ce o primeşti.',
@@ -698,7 +698,7 @@ Dacă sunteţi un astfel de utilizator şi credeţi că vă sunt adresate mesaje
 'session_fail_preview'             => '<strong>Ne pare rău! Nu am putut procesa modificarea dumneavoastră din cauza pierderii datelor sesiunii.
 Vă rugăm să încercaţi din nou.
 Dacă tot nu funcţionează, încercaţi să [[Special:UserLogout|închideţi sesiunea]] şi să vă autentificaţi din nou.</strong>',
-'session_fail_preview_html'        => "<strong>Ne pare rău! Modificările tale nu au putut fi procesate din cauza pierderii datelor sesiunii.</strong>
+'session_fail_preview_html'        => "<strong>Ne pare rău! Modificările tale nu au putut fi procesate din cauza pierderii datelor sesiunii.</strong> 
 
 ''Deoarece {{SITENAME}} are activat HTML brut, previzualizarea este ascunsă ca măsură de precauţie împotriva atacurilor JavaScript.''
 
@@ -827,11 +827,11 @@ Ca administrator la acest site poţi să o vezi; s-ar putea să găseşti mai mu
 'revdelete-nooldid-title'     => 'Revizie invalidă',
 'revdelete-nooldid-text'      => 'Nu ai specificat revizie pentru a efectua această
 funcţie, revizia specificată nu există, sau eşti pe cale să ascunzi revizia curentă.',
-'revdelete-selected'          => '{{PLURAL:$2|Revizia aleasă|Reviziile alese}} pentru [[:$1]]:',
-'logdelete-selected'          => '{{PLURAL:$1|Revizia aleasă|Reviziile alese}}:',
-'revdelete-text'              => 'Reviziile şterse vor apărea în istoricul paginii, dar conţinutul lor nu va fi accesibil publicului.
+'revdelete-selected'          => "'''{{PLURAL:$2|Revizia aleasă|Reviziile alese}} pentru [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Revizia aleasă|Reviziile alese}}:'''",
+'revdelete-text'              => "'''Reviziile şterse vor apărea în istoricul paginii, dar conţinutul lor nu va fi accesibil publicului.'''
 
-Alţi administratori de pe acest wiki vor putea accesa conţinutul ascuns şi îl pot recupera prin aceeaşi interfaţă, dacă nu este impusă o altă restricţie de către operatorii sitului.',
+Alţi administratori de pe acest wiki vor putea accesa conţinutul ascuns şi îl pot recupera prin aceeaşi interfaţă, dacă nu este impusă o altă restricţie de către operatorii sitului.",
 'revdelete-legend'            => 'Setează restricţii pentru vizualizare',
 'revdelete-hide-text'         => 'Ascunde textul reviziei',
 'revdelete-hide-name'         => 'Ascunde acţiunea şi destinaţia',
@@ -1181,7 +1181,7 @@ Paginile pe care le [[Special:Watchlist|urmăriţi]] apar în '''aldine'''.",
 'upload_directory_missing'    => 'Directorul în care sunt încărcate fişierele ($1) lipseşte şi nu poate fi creat de serverul web.',
 'upload_directory_read_only'  => 'Directorul de trimitere ($1) nu are drepturi de scriere de către server.',
 'uploaderror'                 => 'Eroare la trimitere fişier',
-'uploadtext'                  => "Foloseşte formularul de mai jos pentru a trimite fişiere.
+'uploadtext'                  => "Foloseşte formularul de mai jos pentru a trimite fişiere. 
 Pentru a vizualiza sau căuta imagini deja trimise, mergi la [[Special:ImageList|lista de imagini]], încărcările şi ştergerile sunt de asemenea înregistrate în [[Special:Log/upload|jurnalul fişierelor trimise]], ştergerile în [[Special:Log/delete|jurnalul fişierelor şterse]].
 
 Pentru a include un fişier de sunet într-un articol, foloseşti o legătură de forma:
@@ -1209,7 +1209,7 @@ Vezi [[Special:NewImages|galeria fişierelor noi]] pentru o mai bună vizualizar
 'filetype-badmime'            => 'Nu este permisă încărcarea de fişiere de tipul MIME "$1".',
 'filetype-unwanted-type'      => "'''\".\$1\"''' este un tip de fişier nedorit.
 {{PLURAL:\$3|Tipul de fişier preferat este|Tipurile de fişiere preferate sunt}} \$2.",
-'filetype-banned-type'        => "'''\".\$1\"''' este un tip de fişier nepermis.
+'filetype-banned-type'        => "'''\".\$1\"''' este un tip de fişier nepermis. 
 {{PLURAL:\$3|Tip de fişier permis:|Tipuri de fişiere permise:}} \$2.",
 'filetype-missing'            => 'Fişierul nu are extensie (precum ".jpg").',
 'large-file'                  => 'Este recomandat ca fişierele să nu fie mai mari de $1; acest fişier are $2.',
@@ -1366,11 +1366,11 @@ Input: contenttype/subtype, e.g. <tt>image/jpeg</tt>.
 
 
 Această pagină specială permite căutarea fişierelor în funcţie de tipul MIME (Multipurpose Internet Mail Extensions). Cele mai des întâlnite sunt:
-* Imagini : <code>image/jpeg</code>
-* Diagrame : <code>image/png</code>, <code>image/svg+xml</code>
-* Imagini animate : <code>image/gif</code>
-* Fişiere sunet : <code>audio/ogg</code>, <code>audio/x-ogg</code>
-* Fişiere video : <code>video/ogg</code>, <code>video/x-ogg</code>
+* Imagini : <code>image/jpeg</code> 
+* Diagrame : <code>image/png</code>, <code>image/svg+xml</code> 
+* Imagini animate : <code>image/gif</code> 
+* Fişiere sunet : <code>audio/ogg</code>, <code>audio/x-ogg</code> 
+* Fişiere video : <code>video/ogg</code>, <code>video/x-ogg</code> 
 * Fişiere PDF : <code>application/pdf</code>
 
 Lista tipurilor MIME recunoscute de MediaWiki poate fi găsită la [http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/mime.types?view=markup fişiere mime.types].',

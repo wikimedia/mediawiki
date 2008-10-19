@@ -431,7 +431,7 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 
 # Revision deletion
 'rev-delundel'         => 'tiquittāz/tictlātīz',
-'revdelete-selected'   => '{{PLURAL:$2|Tlachiyaliztli ōmoēlēhui|Tlachiyaliztli ōmoēlēhuih}} [[:$1]] ītechcopa:',
+'revdelete-selected'   => "'''{{PLURAL:$2|Tlachiyaliztli ōmoēlēhui|Tlachiyaliztli ōmoēlēhuih}} [[:$1]] ītechcopa:'''",
 'revdelete-hide-text'  => 'Tictlātīz tlachiyaliztli ītlahcuilōl',
 'revdelete-hide-image' => 'Tictlātīz tlahcuilōlli ītlapiyaliz',
 'pagehist'             => 'Zāzanilli tlahcuilōlloh',

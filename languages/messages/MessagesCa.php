@@ -865,11 +865,11 @@ Aquesta versió de la pàgina ha estat eliminada dels arxius públics. Com a adm
 'revdelete-nooldid-title'     => 'La revisió objectiu no és vàlida',
 'revdelete-nooldid-text'      => "No heu especificat unes revisions objectius per a realitzar aquesta
 funció, la revisió especificada no existeix, o bé esteu provant d'amagar l'actual revisió.",
-'revdelete-selected'          => '{{PLURAL:$2|Revisió seleccionada|Revisions seleccionades}} de [[:$1]]:',
-'logdelete-selected'          => '{{PLURAL:$1|Esdeveniment del registre seleccionat|Esdeveniments del registre seleccionats}}:',
-'revdelete-text'              => 'Les versions esborrades es mostraran encara als historial i registres de les pàgines, si bé part del seu contingut serà inaccessible al públic.
+'revdelete-selected'          => "'''{{PLURAL:$2|Revisió seleccionada|Revisions seleccionades}} de [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Esdeveniment del registre seleccionat|Esdeveniments del registre seleccionats}}:'''",
+'revdelete-text'              => "'''Les versions esborrades es mostraran encara als historial i registres de les pàgines, si bé part del seu contingut serà inaccessible al públic.'''
 
-Els altres administradors del projecte {{SITENAME}} encara podrien accedir al contingut amagat i restituir-lo de nou mitjançant aquesta mateixa interfície, si no hi ha cap altra restricció addicional pels operadors del lloc web.',
+Els altres administradors del projecte {{SITENAME}} encara podrien accedir al contingut amagat i restituir-lo de nou mitjançant aquesta mateixa interfície, si no hi ha cap altra restricció addicional pels operadors del lloc web.",
 'revdelete-legend'            => 'Defineix restriccions en la visibilitat',
 'revdelete-hide-text'         => 'Amaga el text de revisió',
 'revdelete-hide-name'         => "Acció d'amagar i objectiu",

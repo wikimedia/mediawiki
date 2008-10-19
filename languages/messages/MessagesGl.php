@@ -844,11 +844,11 @@ se quere ampliar detalles, visite o [{{fullurl:Special:Log/delete|page={{PAGENAM
 'revdelete-nooldid-title'     => 'Revisión inválida',
 'revdelete-nooldid-text'      => 'Non indicou a revisión ou revisións sobre as que realizar esta
 función, a revisión especificada non existe, ou está intentando agochar a revisión actual.',
-'revdelete-selected'          => '{{PLURAL:$2|Revisión seleccionada|Revisións seleccionadas}} de [[:$1]]:',
-'logdelete-selected'          => '{{PLURAL:$1|Rexistro de evento seleccionado|Rexistro de eventos seleccionados}}:',
-'revdelete-text'              => 'As revisión eliminadas aínda aparecerán no historial da páxina, pero o contido do seu texto será inaccesíbel ao público.
+'revdelete-selected'          => "'''{{PLURAL:$2|Revisión seleccionada|Revisións seleccionadas}} de [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Rexistro de evento seleccionado|Rexistro de eventos seleccionados}}:'''",
+'revdelete-text'              => "'''As revisión eliminadas aínda aparecerán no historial da páxina, pero o contido do seu texto será inaccesíbel ao público.'''
 
-Outros administradores de {{SITENAME}} poderán acceder aínda ao contido oculto e poderán volver atrás esa eliminación a través desta mesma interface, a non ser que os operadores do sitio leven a cabo unha restrición adicional.',
+Outros administradores de {{SITENAME}} poderán acceder aínda ao contido oculto e poderán volver atrás esa eliminación a través desta mesma interface, a non ser que os operadores do sitio leven a cabo unha restrición adicional.",
 'revdelete-legend'            => 'Aplicar restricións de visibilidade',
 'revdelete-hide-text'         => 'Agochar texto da revisión',
 'revdelete-hide-name'         => 'Agochar acción e destino',

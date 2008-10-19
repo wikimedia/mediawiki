@@ -737,10 +737,10 @@ iske baare me aur jaankari [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}
 'revisiondelete'              => 'Badlao ke mitao/nai mitao',
 'revdelete-nooldid-title'     => 'Target revision jon ki valid nai hai',
 'revdelete-nooldid-text'      => 'Aap chaahe target revision(s) ke specify nai karaa hai, ii function ke perform kare ke khatir, specified revision haiye nai, nai to aap abhi ke badlao ke lukae ke kosis karta hai.',
-'revdelete-selected'          => '{{PLURAL:$2|Selected badlao|Selected badlao}} of [[:$1]]:',
-'logdelete-selected'          => '{{PLURAL:$1|Chuna gais log event|Chuna gais log events}}:',
-'revdelete-text'              => 'Mitawa gae badlao aur ghatna panna ke itihaas me dekhai, lekin content ke kuch part janta nai access kare saki.
-Duusra admins {{SITENAME}} me, lukawa gais content ke khole saki aur iske mitae bhi saki yahi interface use kar ke, jab tak ki aur rukawat nai lagawa jaae.',
+'revdelete-selected'          => "'''{{PLURAL:$2|Selected badlao|Selected badlao}} of [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Chuna gais log event|Chuna gais log events}}:'''",
+'revdelete-text'              => "'''Mitawa gae badlao aur ghatna panna ke itihaas me dekhai, lekin content ke kuch part janta nai access kare saki.'''
+Duusra admins {{SITENAME}} me, lukawa gais content ke khole saki aur iske mitae bhi saki yahi interface use kar ke, jab tak ki aur rukawat nai lagawa jaae.",
 'revdelete-legend'            => 'Dekhe waala rukawat set karo',
 'revdelete-hide-text'         => 'Badlawa gais text ke lukao',
 'revdelete-hide-name'         => 'Kaam aur manjil ke lukao',

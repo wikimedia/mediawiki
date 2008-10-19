@@ -879,11 +879,11 @@ có thể có thêm chi tiết tại [{{fullurl:Special:Log/delete|page={{FULLPA
 'revdelete-nooldid-text'      => 'Có thể bạn chưa xác định (các) phiên bản đích để thực hiện tác vụ,
 hoặc phiên bản đích không tồn tại,
 hoặc bạn đang tìm cách ẩn phiên bản hiện tại.',
-'revdelete-selected'          => '{{PLURAL:$2|Phiên bản|Các phiên bản}} được chọn của [[:$1]]:',
-'logdelete-selected'          => '{{PLURAL:$1|Nhật trình đã chọn|Các nhật trình đã chọn}}:',
-'revdelete-text'              => 'Các phiên bản và sự kiện bị xóa vẫn còn trong lịch sử trang và nhật trình, nhưng mọi người sẽ không xem được một số phần của các nội dung đó.
+'revdelete-selected'          => "'''{{PLURAL:$2|Phiên bản|Các phiên bản}} được chọn của [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Nhật trình đã chọn|Các nhật trình đã chọn}}:'''",
+'revdelete-text'              => "'''Các phiên bản và sự kiện bị xóa vẫn còn trong lịch sử trang và nhật trình, nhưng mọi người sẽ không xem được một số phần của các nội dung đó.'''
 
-Các quản lý khác ở {{SITENAME}} vẫn có thể truy nhập vào nội dung ẩn và phục hồi lại bằng cách dùng giao diện này, trừ trường hợp thiết lập thêm một số hạn chế.',
+Các quản lý khác ở {{SITENAME}} vẫn có thể truy nhập vào nội dung ẩn và phục hồi lại bằng cách dùng giao diện này, trừ trường hợp thiết lập thêm một số hạn chế.",
 'revdelete-legend'            => 'Thiết lập hạn chế khả kiến',
 'revdelete-hide-text'         => 'Ẩn nội dung phiên bản',
 'revdelete-hide-name'         => 'Ẩn tác vụ và đích của tác vụ',
