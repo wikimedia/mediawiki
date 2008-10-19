@@ -377,6 +377,8 @@ class WhatLinksHerePage {
 		$f .= Xml::label( wfMsg( 'namespace' ), 'namespace' ) . '&nbsp;' .
 			Xml::namespaceSelector( $namespace, '' );
 
+		$f .= ' ';
+
 		# Submit
 		$f .= Xml::submitButton( wfMsg( 'allpagessubmit' ) );
 
