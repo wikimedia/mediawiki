@@ -35,6 +35,7 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK  => 'Obrolan_kategori',
 );
 
+$specialPageAliases = array(
 	'DoubleRedirects'           => array( 'AlihanGanda' ),
 	'BrokenRedirects'           => array( 'AlihanPegat' ),
 	'Disambiguations'           => array( 'Disambiguasi' ),
