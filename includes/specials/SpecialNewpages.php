@@ -333,7 +333,7 @@ class SpecialNewpages extends SpecialPage {
 		$revision = Revision::newFromId( $row->rev_id );
 		if( $revision ) {
 			return '<p>' . htmlspecialchars( $revision->getUserText() ) . ': ' .
-				htmlspecialchars( $revision->getComment() ) . 
+				htmlspecialchars( $this->stripComment( $revision->getComment() ) ) . 
 				"</p>\n<hr />\n<div>" .
 				nl2br( htmlspecialchars( $revision->getText() ) ) . "</div>";
 		}
