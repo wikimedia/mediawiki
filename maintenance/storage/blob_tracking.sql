@@ -34,3 +34,11 @@ CREATE TABLE /*$wgDBprefix*/blob_tracking (
 	KEY (bt_cluster, bt_blob_id, bt_cgz_hash)
 ) /*$wgDBTableOptions*/;
 
+-- Tracking table for blob rows that aren't tracked by the text table
+CREATE TABLE /*$wgDBprefix*/blob_orphans (
+	bo_cluster varbinary(255),
+	bo_blob_id integer not null,
+
+	PRIMARY KEY (bo_cluster, bo_blob_id)
+) /*$wgDBTableOptions*/;
+
