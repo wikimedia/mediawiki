@@ -10,6 +10,7 @@
  * @author Malafaya
  * @author Theklan
  * @author Unai Fdz. de Betoño
+ * @author Urhixidur
  * @author לערי ריינהארט
  */
 
@@ -622,7 +623,7 @@ Era berean, bidaltzen ari zaren edukia zuk zeuk idatzitakoa dela edo jabetza pub
 'copyrightwarning2'                => 'Mesedez, kontuan izan {{SITENAME}}(e)n egindako ekarpen guztiak besteek aldatu edo ezabatu ditzaketela. Ez baduzu besteek aldaketak egitea nahi, ez ezazu bidali.<br />
 Era berean, bidaltzen ari zaren edukia zuk zeuk idatzitakoa dela edo jabetza publikoko edo baliabide aske batetik kopiatu duzula zin egin ari zara (ikus $1 informazio gehiagorako).
 <strong>EZ BIDALI BAIMENIK GABEKO COPYRIGHTDUN EDUKIRIK!</strong>',
-'longpagewarning'                  => '<strong>OHARRA: Orrialde honek $1 kilobyteko tamaina du; nabigatzaile batzuek arazoak izan litzakete 32kb-tik gorako testuekin. Mesedez, saiatu orrialdea atal txikiagoetan banatzen.</strong>',
+'longpagewarning'                  => '<strong>OHARRA: Orrialde honek $1 kilobyteko tamaina du; nabigatzaile batzuek arazoak izan litzakete 32 kb-tik gorako testuekin. Mesedez, saiatu orrialdea atal txikiagoetan banatzen.</strong>',
 'longpageerror'                    => '<strong>ERROREA: Bidali duzun testuak $1 kilobyteko luzera du, eta $2 kilobyteko maximoa baino luzeagoa da. Ezin da gorde.</strong>',
 'readonlywarning'                  => '<strong>OHARRA: Datu-basea blokeatu egin da mantenu lanak burutzeko, beraz ezingo dituzu orain zure aldaketak gorde. Testua fitxategi baten kopiatu dezakezu, eta beranduago erabiltzeko gorde.
 
@@ -667,6 +668,8 @@ Txantiloi batzuk ez dira erabiliko.',
 'post-expand-template-argument-category'  => 'Kontuan hartu ez diren txantiloiak dituzten orrialdeak',
 
 # "Undo" feature
+'undo-success' => 'Aldaketa desegin daiteke.
+Mesedez beheko alderaketa egiaztatu, egin nahi duzuna hori dela frogatzeko, eta ondoren azpiko aldaketak gorde, aldaketa desegiten amaitzeko.',
 'undo-failure' => 'Ezin izan da aldaketa desegin tarteko aldaketekin gatazkak direla-eta.',
 'undo-norev'   => 'Aldaketa ezin da desegin ez delako existitzen edo ezabatu zutelako.',
 'undo-summary' => '[[Special:Contributions/$2|$2(r)en]] $1 berrikuspena desegin da ([[User talk:$2|Eztabaida]])',
@@ -1293,23 +1296,24 @@ Aukera ezazu, mesedez, fitxategi izen deskriptiboago bat.',
 'randomredirect-nopages' => 'Ez dago birzuzenketarik izen-tarte honetan.',
 
 # Statistics
-'statistics'               => 'Estatistikak',
-'statistics-header-pages'  => 'Orrialdeen estatistikak',
-'statistics-header-edits'  => 'Aldaketen estatistikak',
-'statistics-header-views'  => 'Ikustaldien estatistikak',
-'statistics-header-users'  => 'Erabiltzaile estatistikak',
-'statistics-articles'      => 'Edukiak dituzten orrialdeak',
-'statistics-pages'         => 'Orrialdeak',
-'statistics-pages-tooltip' => 'Wikian dauden orrialde guztiak, eztabaida orrialdeak, birzuzenketa, etab. barne.',
-'statistics-files'         => 'Igotako fitxategiak',
-'statistics-edits'         => '{{SITENAME}} sortu zenetik eginiko aldaketa kopurua',
-'statistics-edits-average' => 'Bataz-besteko aldaketak orrialdeko',
-'statistics-views-total'   => 'Ikusitako orrialdeak guztira',
-'statistics-views-peredit' => 'Ikusitako orrialdeak aldaketa bakoitzeko',
-'statistics-jobqueue'      => '[http://www.mediawiki.org/wiki/Manual:Job_queue Lan zerrendaren] luzera',
-'statistics-users'         => 'Izen-emandako [[Special:ListUsers|lankideak]]',
-'statistics-users-active'  => 'Lankide aktiboak',
-'statistics-mostpopular'   => 'Orrialde bisitatuenak',
+'statistics'                      => 'Estatistikak',
+'statistics-header-pages'         => 'Orrialdeen estatistikak',
+'statistics-header-edits'         => 'Aldaketen estatistikak',
+'statistics-header-views'         => 'Ikustaldien estatistikak',
+'statistics-header-users'         => 'Erabiltzaile estatistikak',
+'statistics-articles'             => 'Edukiak dituzten orrialdeak',
+'statistics-pages'                => 'Orrialdeak',
+'statistics-pages-tooltip'        => 'Wikian dauden orrialde guztiak, eztabaida orrialdeak, birzuzenketa, etab. barne.',
+'statistics-files'                => 'Igotako fitxategiak',
+'statistics-edits'                => '{{SITENAME}} sortu zenetik eginiko aldaketa kopurua',
+'statistics-edits-average'        => 'Bataz-besteko aldaketak orrialdeko',
+'statistics-views-total'          => 'Ikusitako orrialdeak guztira',
+'statistics-views-peredit'        => 'Ikusitako orrialdeak aldaketa bakoitzeko',
+'statistics-jobqueue'             => '[http://www.mediawiki.org/wiki/Manual:Job_queue Lan zerrendaren] luzera',
+'statistics-users'                => 'Izen-emandako [[Special:ListUsers|lankideak]]',
+'statistics-users-active'         => 'Lankide aktiboak',
+'statistics-users-active-tooltip' => 'Aurreko hilabetean jardueraren bat gauzatu duten erabiltzaileak',
+'statistics-mostpopular'          => 'Orrialde bisitatuenak',
 
 'disambiguations'      => 'Argipen orrialdeak',
 'disambiguationspage'  => 'Template:argipen',
@@ -1963,6 +1967,8 @@ Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{ns:special}}:Expor
 'importhistoryconflict'      => 'Gatazka sortzen ari den berrikuspen historia dago (baliteke orrialdea lehenago inportatu izana)',
 'importnosources'            => 'Ez dago wikien arteko inportazio iturririk eta historialak zuzenean igotzea ezgaituta dago.',
 'importnofile'               => 'Ez da inportazio fitxategirik igo.',
+'importuploaderrorsize'      => 'Inportatutako artxiboaren igoera-porrota.
+Artxiboa onartutako igoera-tamaina baino handiagoa da.',
 'importuploaderrortemp'      => 'Inportatze fitxategiaren igoeran akatsa egon da. Karpeta tenporal bat falta da.',
 'import-parse-failure'       => 'XML inportatze parseak akatsa izan du',
 'import-noarticle'           => 'Ez dago inportatzeko orrialderik!',
@@ -2441,6 +2447,7 @@ Zerrenda elementuak (hasieran * duten lerroak) baino ez dira kontuan hartzen. Le
 'exif-gpslongitude-w' => 'Mendebaldeko longitudea',
 
 'exif-gpsstatus-a' => 'Neurketa burutzen',
+'exif-gpsstatus-v' => 'Neurketen interoperabilitatea',
 
 'exif-gpsmeasuremode-2' => '2 dimentsioko neurketa',
 'exif-gpsmeasuremode-3' => '3 dimentsioko neurketa',
@@ -2617,13 +2624,5 @@ Gainera [[special:Watchlist/raw|raw zerrenda editatu]] dezakezu.',
 # Special:BlankPage
 'blankpage'              => 'Orrialde txuria',
 'intentionallyblankpage' => 'Orri hau nahita utzi da hutsik',
-
-# Special:Nuke
-'nuke'               => 'Ezabaketa masiboa',
-'nuke-nopages'       => 'Aldaketa berrietan ez dago [[Special:Contributions/$1|$1]](r)en orri berririk.',
-'nuke-defaultreason' => '$1(e)k sortutako orrien ezabaketa masiboa',
-'nuke-submit-user'   => 'Joan',
-'nuke-submit-delete' => 'Aukeratutakoa ezabatu',
-'right-nuke'         => 'Masiboki ezabatutako orrialdeak',
 
 );

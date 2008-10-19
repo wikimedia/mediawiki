@@ -12,6 +12,7 @@
  * @author Michawiki
  * @author Mormegil
  * @author Reaperman
+ * @author Urhixidur
  * @author לערי ריינהארט
  */
 
@@ -898,7 +899,7 @@ Musíte sloučit své změny se stávajícím textem.
 Uložením příspěvku se zavazujete, že je vaším dílem nebo je zkopírován ze zdrojů, které nejsou chráněny autorským právem (tzv. <em>public domain</em>). <strong>Nekopírujte díla chráněná autorským právem bez dovolení!</strong>',
 'copyrightwarning2'                => 'Uvědomte si, že všechny příspěvky do {{grammar:2sg|{{SITENAME}}}} mohou být ostatními uživateli upraveny, pozměněny či odstraněny. Pokud si nepřejete, aby váš text byl nemilosrdně upravován, pak ho do {{grammar:2sg|{{SITENAME}}}} neukládejte.<br />
 Uložením příspěvku se zavazujete, že je vaším dílem nebo je zkopírován ze zdrojů, které nejsou chráněny autorským právem (tzv. <em>public domain</em>), podrobnosti najdete na $1. <strong>Nekopírujte díla chráněná autorským právem bez dovolení!</strong>',
-'longpagewarning'                  => 'VAROVÁNÍ: Tato stránka je $1 KB dlouhá; některé prohlížeče mohou mít problémy s editováním stran, které se blíží nebo jsou delší než 32 KB. Prosím zvažte rozdělení stránky na více částí.',
+'longpagewarning'                  => 'VAROVÁNÍ: Tato stránka je $1 kB dlouhá; některé prohlížeče mohou mít problémy s editováním stran, které se blíží nebo jsou delší než 32 kB. Prosím zvažte rozdělení stránky na více částí.',
 'longpageerror'                    => '<strong>CHYBA: Pokoušíte se uložit text o velikosti $1 KB, přičemž dovolené maximum je $2 KB. Vaše editace nemůže být uložena.</strong>',
 'readonlywarning'                  => '<strong>VAROVÁNÍ: Databáze byla uzamčena kvůli údržbě, takže nebudete moci uložit své změny. Můžete si okopírovat text do souboru a uložit ho na později.</strong>
 
@@ -3057,15 +3058,5 @@ Zadejte jméno souboru bez označení "{{ns:image}}:".',
 #Řádky začínající znakem # se považují za komentáře.
 
 #Všechny regulární výrazy uveďte nad touto řádkou. Tuto řádku ponechte beze změny.</pre>',
-
-# Special:Nuke
-'nuke'               => 'Hromadné mazání',
-'nuke-nopages'       => 'V posledních změnách nejsou žádné nové stránky od uživatele [[Special:Contributions/$1|$1]].',
-'nuke-list'          => 'Následující stránky nedávno vytvořil uživatel [[Special:Contributions/$1|$1]]; vyplňte komentář a všechny smažte kliknutím na tlačítko.',
-'nuke-defaultreason' => 'Hromadné odstranění stránek, které vytvořil $1',
-'nuke-tools'         => 'Tento nástroj umožňuje hromadné smazání stránek nedávno vytvořených zadaným uživatelem na IP adresou. Zadejte uživatelské jméno nebo IP adresu, jejichž seznam stránek ke smazání chcete zobrazit:',
-'nuke-submit-user'   => 'Provést',
-'nuke-submit-delete' => 'Smazat vybrané',
-'right-nuke'         => 'Hromadné mazání stránek',
 
 );

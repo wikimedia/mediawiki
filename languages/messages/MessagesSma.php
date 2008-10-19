@@ -5,6 +5,7 @@
  * @file
  *
  * @author M.M.S.
+ * @author Urhixidur
  */
 
 $messages = array(
@@ -287,7 +288,7 @@ Gïemhpes logge sïjse vihth männgan datne åtna låhka dïhte.',
 Datne luhpede mijjieh aaj datne tjaala tjaalege jïjtje, jallh kåpieeret raejeste gaaltjie goh ijje vaarjele dejstie bäjjesereaktah, jallh plïerehke.<br />
 <strong>LISSEHTE IJJE OLKESE BÄJJESEREAKTAHVAARJELE ÏEBNE NAMHTAH LUHPIE!</strong>',
 'longpagewarning'        => '<strong>VAAROEHTIDH: Dïhte bielie lea $1 kilobyteh guhkie; såemies
-gaskeviermie-låhkoeh åtna tsagkeseh värrhtoedimmie bielih stoerre jallh guhkies enn 32kb.
+gaskeviermie-låhkoeh åtna tsagkeseh värrhtoedimmie bielih stoerre jallh guhkies enn 32 kb.
 Joekedidh värrhtoedimmie sïjse unnebe sektiovneh.</strong>',
 'templatesused'          => 'Maaleh nuhtjie nille dïhte bielie:',
 'templatesusedpreview'   => 'Maaleh nuhtjie sïjse dïhte åvte-vuesiehtidh:',

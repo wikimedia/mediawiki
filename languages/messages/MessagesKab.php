@@ -7,6 +7,7 @@
  * @author Agurzil
  * @author Agzennay
  * @author Teak
+ * @author Urhixidur
  */
 
 $namespaceNames = array(
@@ -519,7 +520,7 @@ Aqlak teggaleḍ belli tureḍ wagi d kečč, neɣ teddmiḍ-t seg taɣult azaye
 'copyrightwarning2'         => 'Ssen belli akk tikkin deg {{SITENAME}} zemren ad ttubeddlen neɣ ttumḥan sɣur imdanen wiyaḍ. Lukan ur tebɣiḍ ara aru inek yettubeddel neɣ yettwazen u yettwaru deg imkanen nniḍen, ihi ur t-tazneḍ ara dagi.<br />
 Aqlak teggaleḍ belli tureḍ wagi d kečč, neɣ teddmiḍ-t seg taɣult azayez neɣ iɣbula tilelliyin (ẓer $1 akken ad tessneḍ kter).
 <strong>UR TEFKIḌ ARA AXDAM S COPYRIGHT MEBLA TURAGT!</strong>',
-'longpagewarning'           => '<strong>AƔTAL: Asebter-agi yesɛa $1 kilobytes/kilooctets; kra n browsers/explorateur ur zemren ara ad beddlen isebtar i yesɛan 32kB/ko neɣ kter.
+'longpagewarning'           => '<strong>AƔTAL: Asebter-agi yesɛa $1 kilobytes/kilooctets; kra n browsers/explorateur ur zemren ara ad beddlen isebtar i yesɛan 32 kB/ko neɣ kter.
 G leɛnayek frec asebter-nni.</strong>',
 'longpageerror'             => '<strong>AGUL: Aḍris i tefkiḍ yesɛa $1 kB/ko, tiddi-yagi kter n $2 kB/ko, ur yezmir ara ad yesmekti.</strong>',
 'readonlywarning'           => '<strong>AƔTAL: Database d tamsekker akken ad teddwaxdem,

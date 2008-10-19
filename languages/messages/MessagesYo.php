@@ -6,6 +6,7 @@
  *
  * @author Demmy
  * @author Meno25
+ * @author Urhixidur
  */
 
 $namespaceNames = array(
@@ -428,7 +429,7 @@ Tí ẹ kò bá fẹ́ kí ìkọọ́lẹ̀ yín ó jẹ́ títúnṣe tàbí k
 Bákannà ẹ tún ṣèlérí fún wa wípé ẹ̀yin lẹkọ́ fúnra arayín, tàbí ẹ wòókọ láti agbègbè ìgboro tàbí irú ìtìlẹ́yín ọ̀fẹ́ bíi bẹ́ẹ̀.
 <strong>Ẹ MỌ́ MÚ IṢẸ́ TÓ NÍ Ẹ̀TỌ́ÀWÒKỌ SÍLẸ̀ LÁÌ GBÀṢẸ!</strong>',
 'longpagewarning'        => "<strong>ÌKILỌ̀: Ojúewé yìí jẹ́ $1 kilobytes ní gúngùn;
-àwọn browsers míràn le è ní ṣòro láti ṣ'àtúnṣe àwọn ojúewé tó tó tàbí tògùnju 32kb lọ.
+àwọn browsers míràn le è ní ṣòro láti ṣ'àtúnṣe àwọn ojúewé tó tó tàbí tògùnju 32 kb lọ.
 Ẹ jọ̀wọ́ ẹ rò ó wò bóyá ẹ lè fọ́ ojúewé ọ̀ún sí abala kéékèké.</strong>",
 'templatesused'          => 'Àwọn àdàkọ tí a lò lórí ojúewé yìí:',
 'templatesusedpreview'   => 'Àwọn àdàkọ tí a lò nìnú àgbéyẹ́wò yìí:',

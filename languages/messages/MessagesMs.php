@@ -8,7 +8,9 @@
  * @author Aviator
  * @author Izzudin
  * @author Kurniasan
+ * @author Meno25
  * @author Putera Luqman Tunku Andre
+ * @author Urhixidur
  * @author לערי ריינהארט
  */
 
@@ -495,7 +497,7 @@ Pertanyaan: $2',
 'titleprotected'       => 'Tajuk ini telah dilindungi oleh [[User:$1|$1]] daripada dicipta. Sebab yang diberikan ialah <i>$2</i>.',
 
 # Virus scanner
-'virus-badscanner'     => 'Tatarajah rosak: pengimbas virus yang tidak diketahui: <i>$1</i>',
+'virus-badscanner'     => 'Konfigurasi rosak: pengimbas virus yang tidak diketahui: <i>$1</i>',
 'virus-scanfailed'     => 'pengimbasan gagal (kod $1)',
 'virus-unknownscanner' => 'antivirus tidak dikenali:',
 
@@ -738,7 +740,7 @@ Anda juga berjanji bahawa ini adalah hasil kerja tangan anda sendiri, atau
 disalin daripada domain awam atau mana-mana sumber bebas lain (lihat $1 untuk butiran lanjut).
 <strong>JANGAN KIRIM KARYA HAK CIPTA ORANG LAIN TANPA KEBENARAN!</strong>',
 'longpagewarning'                  => '<strong>AMARAN: Panjang laman ini ialah $1 kilobait.
-Terdapat beberapa pelayar web yang mempunyai masalah jika digunakan untuk menyunting laman yang menghampiri ataupun melebihi 32kB.
+Terdapat beberapa pelayar web yang mempunyai masalah jika digunakan untuk menyunting laman yang menghampiri ataupun melebihi 32 kB.
 Sila bahagikan rencana ini, jika boleh.</strong>',
 'longpageerror'                    => '<strong>RALAT: Panjang teks yang dikirim ialah $1 kilobait,
 melebihi had maksimum $2 kilobait. Ia tidak boleh disimpan.</strong>',
@@ -1524,6 +1526,7 @@ Anda boleh melihat [[Special:WhatLinksHere/$2|senarai penuh]].',
 'wantedcategories'        => 'Kategori dikehendaki',
 'wantedpages'             => 'Laman dikehendaki',
 'wantedfiles'             => 'Fail dikehendaki',
+'wantedtemplates'         => 'Templat dikehendaki',
 'mostlinked'              => 'Laman dipaut terbanyak',
 'mostlinkedcategories'    => 'Kategori dipaut terbanyak',
 'mostlinkedtemplates'     => 'Templat dipaut terbanyak',
@@ -1651,13 +1654,15 @@ terlebih dahulu dan mempunyai alamat e-mel yang sah dalam
 [[Special:Preferences|laman keutamaan]] untuk mengirim e-mel kepada pengguna lain.',
 'emailuser'       => 'Kirim e-mel kepada pengguna ini',
 'emailpage'       => 'E-mel pengguna',
-'emailpagetext'   => 'Jika pengguna ini telah memasukkan alamat e-mel yang sah dalam laman keutamaan, beliau akan menerima sebuah e-mel dengan pesanan yang diisi dalam borang di bawah. Alamat e-mel yang ditetapkan dalam [[Special:Preferences|keutamaan anda]] akan muncul dalam e-mel tersebut sebagai alamat "Daripada" supaya si penerima boleh membalasnya.',
+'emailpagetext'   => 'Gunakan borang berikut untuk mengirim pesanan e-mel kepada pengguna ini.
+
+Alamat e-mel yang ditetapkan dalam [[Special:Preferences|keutamaan anda]] akan digunakan sebagai alamat "Daripada" dalam e-mel tersebut supaya si penerima boleh membalasnya.',
 'usermailererror' => 'Objek Mail memulangkan ralat:',
 'defemailsubject' => 'E-mel {{SITENAME}}',
 'noemailtitle'    => 'Tiada alamat e-mel',
 'noemailtext'     => 'Pengguna ini tidak menetapkan alamat e-mel yang sah,
 atau telah memilih untuk tidak menerima e-mel daripada pengguna lain.',
-'email-legend'    => 'Kirim e-mel kepada pengguna {{Wikipedia}} lain',
+'email-legend'    => 'Kirim e-mel kepada pengguna {{SITENAME}} lain',
 'emailfrom'       => 'Daripada:',
 'emailto'         => 'Kepada:',
 'emailsubject'    => 'Perkara:',
@@ -2893,15 +2898,5 @@ Sila masukkan nama fail tanpa awalan "{{ns:image}}:".',
 #Baris yang bermula dengan aksara # diabaikan
 
 #Jangan letak ungkapan nalar di bawah baris ini dan jangan ubah baris ini</pre>',
-
-# Special:Nuke
-'nuke'               => 'Hapus pukal',
-'nuke-nopages'       => 'Tiada laman baru oleh [[Special:Contributions/$1|$1]] dalam senarai perubahan terkini.',
-'nuke-list'          => 'Laman-laman berikut dicipta oleh [[Special:Contributions/$1|$1]]; sila masukkan komen anda dan tekan butang untuk menghapuskannya.',
-'nuke-defaultreason' => 'Menghapuskan laman-laman yang ditambah oleh $1 secara pukal',
-'nuke-tools'         => 'Alat ini digunakan untuk menghapuskan laman-laman yang ditambah oleh pengguna atau IP yang dinyatakan secara pukal. Masukkan nama pengguna atau IP untuk mendapatkan senarai laman untuk dihapuskan:',
-'nuke-submit-user'   => 'Pergi',
-'nuke-submit-delete' => 'Hapus',
-'right-nuke'         => 'Menghapuskan laman secara pukal',
 
 );

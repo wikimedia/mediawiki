@@ -6,6 +6,7 @@
  *
  * @author Lloffiwr
  * @author Thaf
+ * @author Urhixidur
  * @author לערי ריינהארט
  */
 
@@ -641,7 +642,7 @@ Gosodwch eich cyfeiriad e-bost drwy eich [[Special:Preferences|dewisiadau defnyd
 'loginreqtitle'                    => 'Mae angen mewngofnodi',
 'loginreqlink'                     => 'mewngofnodi',
 'loginreqpagetext'                 => "Mae'n rhaid $1 er mwyn gweld tudalennau eraill.",
-'accmailtitle'                     => 'Wedi danfon cyfrinair.',
+'accmailtitle'                     => 'Wedi danfon y cyfrinair.',
 'accmailtext'                      => 'Anfonwyd cyfrinair "$1" at $2.',
 'newarticle'                       => '(Newydd)',
 'newarticletext'                   => "Rydych chi wedi dilyn cysylltiad i dudalen sydd heb gael ei chreu eto.
@@ -693,7 +694,7 @@ Rydych chi'n cadarnhau mai chi yw awdur y cyfraniad, neu eich bod chi wedi'i gop
 Os nad ydych chi'n fodlon i'ch gwaith gael ei olygu heb drugaredd, neu i gopïau ymddangos ar draws y we, peidiwch a'i gyfrannu yma.<br />
 Rydych chi'n cadarnhau mai chi yw awdur y cyfraniad, neu eich bod chi wedi'i gopïo o'r parth cyhoeddus (''public domain'') neu rywle rhydd tebyg.<br />
 <strong>PEIDIWCH Â CHYFRANNU GWAITH O DAN HAWLFRAINT HEB GANIATÂD!</strong>",
-'longpagewarning'                  => "<strong>RHYBUDD: Mae'r dudalen hon yn $1 cilobeit o hyd; mae rhai porwyr yn cael trafferth wrth lwytho tudalennau sy'n hirach na 32kb.
+'longpagewarning'                  => "<strong>RHYBUDD: Mae'r dudalen hon yn $1 cilobeit o hyd; mae rhai porwyr yn cael trafferth wrth lwytho tudalennau sy'n hirach na 32 kb.
 Byddai'n dda o beth llunio sawl tudalen llai o hyd o ddeunydd y dudalen hon.</strong>",
 'longpageerror'                    => "<strong>GWALL: Mae'r testun yr ydych wedi ei osod yma yn $1 cilobeit o hyd, ac yn hwy na'r hyd eithaf o $2 cilobeit.
 Ni ellir ei roi ar gadw.</strong>",
@@ -720,6 +721,8 @@ Cynigiodd y gweinyddwr a glodd y databas y rheswm hwn dros ei gloi: $1",
 
 Ystyriwch a fyddai'n dda o beth i barhau i olygu'r dudalen hon.
 Dyma lòg dileu'r dudalen, er gwybodaeth:",
+'deleted-notice'                   => "Dilëwyd y dudalen hon.
+Dangosir lòg dileu'r dudalen isod.",
 'edit-conflict'                    => 'Cyd-ddigwyddiad golyu.',
 
 # Parser/template warnings
@@ -1024,9 +1027,17 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'right-autoconfirmed'    => 'Golygu tudalennau sydd wedi eu lled-ddiogelu',
 'right-delete'           => 'Dileu tudalennau',
 'right-bigdelete'        => 'Dileu tudalennau a hanes llwythog iddynt',
+'right-deleterevision'   => 'Dileu a dad-ddileu golygiadau arbennig o dudalennau',
 'right-undelete'         => 'Adfer tudalen dilëedig',
+'right-suppressionlog'   => 'Gweld logiau preifat',
+'right-block'            => 'Atal defnyddwyr eraill rhag golygu',
+'right-blockemail'       => 'Atal defnyddiwr rhag anfon e-bost',
+'right-hideuser'         => "Atal enw defnyddiwr rhag i'r cyhoedd ei weld",
 'right-editinterface'    => "Golygu'r rhyngwyneb",
+'right-rollback'         => 'Gwrthdroi golygiadau defnyddiwr diwethaf rhyw dudalen yn sydyn',
+'right-markbotedits'     => 'Marcio golygiadau wedi eu gwrthdroi yn olygiadau bot',
 'right-import'           => 'Mewnforio tudalennau o wicïau eraill',
+'right-importupload'     => 'Mewnforio tudalennau drwy uwchlwytho ffeil XML',
 'right-mergehistory'     => 'Cyfuno hanes y tudalennau',
 'right-userrights'       => 'Golygu holl alluoedd defnyddwyr',
 'right-siteadmin'        => "Cloi a datgloi'r databas",
@@ -1037,24 +1048,32 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'rightsnone'    => '(dim)',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-read'           => 'darllen y dudalen',
-'action-edit'           => "golygu'r dudalen",
-'action-createpage'     => 'creu tudalennau',
-'action-createtalk'     => 'creu tudalennau sgwrs',
-'action-createaccount'  => "creu'r cyfrif defnyddiwr hwn",
-'action-minoredit'      => "marcio'r golygiad yn un bach",
-'action-move'           => 'symud y dudalen',
-'action-move-subpages'  => "symud y dudalen a'i is-dudalennau",
-'action-upload'         => "uwchlwytho'r ffeil",
-'action-upload_by_url'  => "uuchlwytho'r ffeil o gyfeiriad URL",
-'action-delete'         => "dileu'r dudalen",
-'action-deleterevision' => "dileu'r golygiad",
-'action-deletedhistory' => 'gweld hanes dilëedig y dudalen hon',
-'action-browsearchive'  => 'chwilio drwy tudalennau dilëedig',
+'action-read'             => 'darllen y dudalen',
+'action-edit'             => "golygu'r dudalen",
+'action-createpage'       => 'creu tudalennau',
+'action-createtalk'       => 'creu tudalennau sgwrs',
+'action-createaccount'    => "creu'r cyfrif defnyddiwr hwn",
+'action-minoredit'        => "marcio'r golygiad yn un bach",
+'action-move'             => 'symud y dudalen',
+'action-move-subpages'    => "symud y dudalen a'i is-dudalennau",
+'action-upload'           => "uwchlwytho'r ffeil",
+'action-upload_by_url'    => "uuchlwytho'r ffeil o gyfeiriad URL",
+'action-delete'           => "dileu'r dudalen",
+'action-deleterevision'   => "dileu'r golygiad",
+'action-deletedhistory'   => 'gweld hanes dilëedig y dudalen hon',
+'action-browsearchive'    => 'chwilio drwy tudalennau dilëedig',
+'action-undelete'         => "dad-ddileu'r dudalen",
+'action-suppressrevision' => 'gweld ac adfer y golygiad cudd hwn',
+'action-suppressionlog'   => 'gweld y lòg preifat hwn',
+'action-block'            => 'atal y defnyddiwr hwn rhag golygu',
+'action-import'           => "mewnforio'r dudalen hon o wici arall",
+'action-importupload'     => "mewnforio'r dudalen hon drwy uwchlwytho ffeil XML",
+'action-siteadmin'        => "cloi neu ddatgloi'r databas",
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|newid|newid|newid|newid|newid|o newidiadau}}',
 'recentchanges'                     => 'Newidiadau diweddar',
+'recentchanges-legend'              => "Opsiynau'r newidiadau diweddar",
 'recentchangestext'                 => "Dilynwch y newidiadau diweddaraf i'r wici ar y dudalen hon.",
 'recentchanges-feed-description'    => "Dilynwch y newidiadau diweddaraf i'r wici gyda'r porthiant hwn.",
 'rcnote'                            => "Isod mae'r '''$1''' newid diweddaraf yn ystod y {{PLURAL:$2|diwrnod|diwrnod|deuddydd|tridiau|'''$2''' diwrnod|'''$2''' diwrnod}} diwethaf, hyd at $5, $4.",
@@ -1205,6 +1224,9 @@ Efallai yr hoffech rhoi cynnig arni ar adeg llai prysur.',
 'filehist-revert'                => 'gwrthdroi',
 'filehist-current'               => 'cyfredol',
 'filehist-datetime'              => 'Dyddiad/Amser',
+'filehist-thumb'                 => 'Mân-lun',
+'filehist-thumbtext'             => 'Mân-lun y fersiwn am $1',
+'filehist-nothumb'               => 'Dim mân-lun',
 'filehist-user'                  => 'Defnyddiwr',
 'filehist-dimensions'            => 'Hyd a lled',
 'filehist-filesize'              => 'Maint y ffeil',
@@ -1987,6 +2009,9 @@ Os ydych am gyfrannu at y gwaith o gyfieithu ar gyfer holl prosiectau Mediawiki 
 'tooltip-watch'                   => "Ychwanegu'r dudalen hon at eich rhestr gwylio",
 'tooltip-recreate'                => "Ail-greu'r dudalen serch iddi gael ei dileu",
 'tooltip-upload'                  => 'Dechrau uwchlwytho',
+'tooltip-rollback'                => "Yn troi golygiad(au) y defnyddiwr diwethaf i'r dudalen hon yn ôl gydag un clic.",
+'tooltip-undo'                    => 'Mae "dadwneud" yn troi\'r golygiad hwn yn ôl ac yn dangos rhagolwg o\'r golygiad adferedig.
+Gellir ychwanegu rheswm dros y dadwneud yn y crynodeb.',
 
 # Metadata
 'nodublincore'      => "Mae metadata RDF 'Dublin Core' wedi cael ei analluogi ar y gwasanaethwr hwn.",
@@ -2240,6 +2265,8 @@ Cuddir y meysydd eraill trwy ragosodiad.
 # Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
 'exif-gpslongitude-e' => "Hydred i'r Dwyrain",
 'exif-gpslongitude-w' => "Hydred i'r Gorllewin",
+
+'exif-gpsstatus-a' => "Wrthi'n mesur",
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-k' => 'Cilomedr yr awr',

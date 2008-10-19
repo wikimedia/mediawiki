@@ -803,7 +803,7 @@ Du bestätigst hiermit auch, dass du diese Texte selbst geschrieben hast oder di
 Sichere den Text bitte lokal auf deinem Computer und versuche zu einem späteren Zeitpunkt, die Änderungen zu übertragen.</strong>
 
 Grund für die Sperre: $1',
-'protectedpagewarning'             => "'''ACHTUNG: Diese Seite wurde gesperrt. Nur Benutzer mit Administratorrechten können die Seite bearbeiten.'''",
+'protectedpagewarning'             => '<strong>ACHTUNG: Diese Seite wurde gesperrt. Nur Benutzer mit Administratorrechten können die Seite bearbeiten.</strong>',
 'semiprotectedpagewarning'         => "'''Halbsperrung:''' Die Seite wurde so gesperrt, dass nur registrierte Benutzer diese ändern können.",
 'cascadeprotectedwarning'          => "'''ACHTUNG: Diese Seite wurde gesperrt, so dass sie nur durch Benutzer mit Administratorrechten bearbeitet werden kann. Sie ist in die {{PLURAL:$1|folgende Seite|folgenden Seiten}} eingebunden, die mittels der Kaskadensperroption geschützt {{PLURAL:$1|ist|sind}}:'''",
 'titleprotectedwarning'            => '<strong>ACHTUNG: Die Seitenerstellung wurde gesperrt. Nur bestimmte Benutzergruppen können die Seite erstellen.</strong>',
@@ -845,7 +845,7 @@ Es {{PLURAL:$2|darf nicht mehr als 1 Aufruf|dürfen nicht mehr als $1 Aufrufe}} 
 'post-expand-template-argument-category'  => 'Seiten, die ignorierte Vorlagenargumente enthalten',
 
 # "Undo" feature
-'undo-success' => 'Die Änderung konnte erfolgreich rückgängig gemacht werden. Bitte die Bearbeitung in der Vergleichsansicht kontrollieren und dann auf „Seite speichern“ klicken, um sie zu speichern.',
+'undo-success' => 'Um die Änderung rückgängig zu machen, bitte die Bearbeitung in der Vergleichsansicht kontrollieren und dann auf „Seite speichern“ klicken.',
 'undo-failure' => '<span class="error">Die Änderung konnte nicht rückgängig gemacht werden, da der betroffene Abschnitt zwischenzeitlich verändert wurde.</span>',
 'undo-norev'   => 'Die Bearbeitung konnte nicht rückgängig gemacht werden, da sie nicht vorhanden ist oder gelöscht wurde.',
 'undo-summary' => 'Änderung $1 von [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) wurde rückgängig gemacht.',
@@ -1598,6 +1598,7 @@ Jede Zeile enthält Links zu der ersten und zweiten Weiterleitung sowie das Ziel
 'wantedcategories'        => 'Benutzte, aber nicht angelegte Kategorien',
 'wantedpages'             => 'Gewünschte Seiten',
 'wantedfiles'             => 'Fehlende Dateien',
+'wantedtemplates'         => 'Fehlende Vorlagen',
 'mostlinked'              => 'Häufig verlinkte Seiten',
 'mostlinkedcategories'    => 'Meistbenutzte Kategorien',
 'mostlinkedtemplates'     => 'Meistbenutzte Vorlagen',
@@ -1720,7 +1721,7 @@ Zusätzliche Informationen über einzelne Rechte können [[{{MediaWiki:Listgroup
 'mailnologintext' => 'Du musst [[Special:UserLogin|angemeldet sein]] und eine bestätigte E-Mail-Adresse in deinen [[Special:Preferences|Einstellungen]] eingetragen haben, um anderen Benutzern E-Mails schicken zu können.',
 'emailuser'       => 'E-Mail an diesen Benutzer',
 'emailpage'       => 'E-Mail an Benutzer',
-'emailpagetext'   => 'Wenn dieser Benutzer eine gültige E-Mail-Adresse in seinen Benutzereinstellungen eingetragen hat, kannst du ihm mit dem untenstehenden Formular eine E-Mail senden.
+'emailpagetext'   => 'Du kannst dem Benutzer mit dem unten stehenden Formular eine E-Mail senden.
 Als Absender wird die E-Mail-Adresse aus deinen [[Special:Preferences|Einstellungen]] eingetragen, damit der Benutzer dir antworten kann.',
 'usermailererror' => 'Das E-Mail-Objekt gab einen Fehler zurück:',
 'defemailsubject' => '{{SITENAME}}-E-Mail',
@@ -2958,16 +2959,5 @@ Die Eingabe muss ohne den Zusatz „{{ns:image}}:“ erfolgen.',
 #Ein positiver Vergleich führt zur Anzeige des Bildes, andernfalls wird das Bild nur als Link angezeigt
 #Zeilen, die mit einem # beginnen, werden als Kommentar behandelt
 #Fragmente regulärer Ausdrücke nach dieser Zeile eintragen. Diese Zeile nicht verändern</pre>',
-
-# Special:Nuke
-'nuke'               => 'Massenlöschung',
-'nuke-nopages'       => 'Es gibt in den Letzten Änderungen keine neuen Seiten von [[Special:Contributions/$1|$1]].',
-'nuke-list'          => 'Die folgenden Seiten wurden von [[Special:Contributions/$1|$1]] erzeugt;
-gib einen Kommentar ein und drücke auf den Löschknopf.',
-'nuke-defaultreason' => 'Massenlöschung von Seiten, die von „$1“ angelegt wurden',
-'nuke-tools'         => 'Dieses Werkzeug ermöglicht die Massenlöschung von Seiten, die von einer IP-Adresse oder einem Benutzer angelegt wurden. Gib die IP-Adresse/den Benutzernamen ein, um eine Liste zu erhalten.',
-'nuke-submit-user'   => 'Hole Liste',
-'nuke-submit-delete' => 'Löschen',
-'right-nuke'         => 'Massenlöschung von Seiten',
 
 );

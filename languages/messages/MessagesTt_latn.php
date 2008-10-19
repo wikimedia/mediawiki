@@ -5,6 +5,7 @@
  * @file
  *
  * @author Albert Fazlî
+ * @author Urhixidur
  * @author לערי ריינהארט
  */
 
@@ -319,7 +320,7 @@ Anı alğaç monda tağın kerep qara.',
 'editingold'         => '<strong>KİSÄTMÄ: Sin bu bitneñ iskergän yuramasın üzgärtäsen.
 Ägär sin monı saqlísıñ ikän, şul yuramadan soñ yasalğan üzgärmälär yuğalır.</strong>',
 'yourdiff'           => 'Ayırmalar',
-'longpagewarning'    => "KİSÄTMÄ: Bu bit zurlığı $1 KB; qayber browserlarda 32 KB'tan da zurraq bulğan bitlärne kürsätkändä qíınlıqlar bula.
+'longpagewarning'    => "KİSÄTMÄ: Bu bit zurlığı $1 kB; qayber browserlarda 32 kB'tan da zurraq bulğan bitlärne kürsätkändä qíınlıqlar bula.
 Zínhar, bu bitneñ wağraq kisäklärgä bülü turında uylap qara.",
 'template-protected' => '(yaqlanmış)',
 

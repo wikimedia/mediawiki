@@ -9,6 +9,7 @@
  * @author Dnik
  * @author Luka Krstulovic
  * @author MayaSimFan
+ * @author Meno25
  * @author Roberta F.
  * @author SpeedyGonsales
  * @author Suradnik13
@@ -693,7 +694,7 @@ Unesite neko drugo ime.',
 Možete omogućiti drugima da vas kontaktiraju na suradničkoj stranici ili stranici za razgovor bez javnog otkrivanja vaše e-mail adrese.',
 'prefs-help-email-required'  => 'Potrebno je navesti adresu e-pošte (e-mail).',
 'nocookiesnew'               => "Suradnički račun je otvoren, ali niste uspješno prijavljeni. Naime, {{SITENAME}} koristi kolačiće (''cookies'') u procesu prijave. Isključili ste kolačiće. Molim uključite ih i pokušajte ponovo s vašim novim imenom i lozinkom.",
-'nocookieslogin'             => "{{SITELOGIN}} koristi kolačiće (''cookies'') u procesu prijave. Isključili ste kolačiće. Molim uključite ih i pokušajte ponovo.",
+'nocookieslogin'             => "{{SITENAME}} koristi kolačiće (''cookies'') u procesu prijave. Isključili ste kolačiće. Molim uključite ih i pokušajte ponovo.",
 'noname'                     => 'Niste unijeli valjano suradničko ime.',
 'loginsuccesstitle'          => 'Prijava uspješna',
 'loginsuccess'               => 'Prijavili ste se na wiki kao "$1".',
@@ -1669,6 +1670,7 @@ koja obično ukazuje na "pravu" odredišnu stranicu, na koju bi trebalo pokaziva
 'wantedcategories'        => 'Tražene kategorije',
 'wantedpages'             => 'Tražene stranice',
 'wantedfiles'             => 'Tražene datoteke',
+'wantedtemplates'         => 'Traženi predlošci',
 'mostlinked'              => 'Stranice na koje vodi najviše poveznica',
 'mostlinkedcategories'    => 'Kategorije na koje vodi najviše poveznica',
 'mostlinkedtemplates'     => 'Predlošci na koje vodi najviše poveznica',
@@ -1793,7 +1795,7 @@ i imati valjanu adresu e-pošte u svojim [[Special:Preferences|postavkama]]
 da bi mogli slati poštu drugim suradnicima.',
 'emailuser'       => 'Pošalji e-poštu ovom suradniku',
 'emailpage'       => 'Pošalji e-poštu suradniku',
-'emailpagetext'   => 'Ako je suradnik unio valjanu e-mail adresu u svojim postavkama, bit će mu poslana poruka s tekstom iz donjeg obrasca.
+'emailpagetext'   => 'Možete koristiti ovaj obrazac za poslati elektroničku poštu ovom suradniku.
 E-mail adresa iz vaših [[Special:Preferences|postavki]] nalazit će se u "From" polju poruke i primatelj će vam moći odgovoriti.',
 'usermailererror' => 'Sustav pošte javio je pogrešku:',
 'defemailsubject' => '{{SITENAME}} elektronička pošta (e-mail)',
@@ -3021,15 +3023,5 @@ Unesite ime datoteke bez prefiksa "{{ns:image}}:"',
 #Redovi koji počinju sa # smatraju se komentarom.
 
 #Stavite sve regularne izraze iznad ovog reda. Ostavite ovaj redak točno ovakvim kakav je</pre>',
-
-# Special:Nuke
-'nuke'               => 'Skupno brisanje',
-'nuke-nopages'       => 'Nema novih stranica suradnika [[Special:Contributions/$1|$1]] među nedavnim promjenama.',
-'nuke-list'          => 'Slijedeće stranice je stvorio suradnik [[Special:Contributions/$1|$1]]; napišite zaključak i kliknite gumb za njihovo brisanje.',
-'nuke-defaultreason' => 'Skupno brisanje stranica suradnika $1',
-'nuke-tools'         => 'Ova ekstenzija omogućava skupno brisanje stranica (članaka) nekog prijavljenog ili neprijavljenog suradnika. Upišite ime ili IP adresu za dobivanje popisa stranica koje je moguće obrisati:',
-'nuke-submit-user'   => 'Kreni',
-'nuke-submit-delete' => 'Obriši označeno',
-'right-nuke'         => 'Skupno brisanje stranica',
 
 );

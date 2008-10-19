@@ -5,6 +5,7 @@
  * @file
  *
  * @author Slomox
+ * @author Urhixidur
  * @author לערי ריינהארט
  */
 
@@ -746,7 +747,7 @@ Wenn du dat nich wullst, dröffst du dien Text hier nich apentlich maken.<br />
 
 Du bestätigst ok, dat du den Text sülvst schreven hest oder ut en „Public Domain“-Born oder en annere fre'e Born kopeert hest (Kiek ok $1 för Details).
 <strong>Kopeer kene Warken, de enen Oorheverrecht ünnerliggt, ahn Verlööv vun de Copyright-Inhebbers!</strong>",
-'longpagewarning'                  => '<strong>Wohrscho: Disse Siet is $1 KB groot; en poor Browser köönt Probleme hebben, Sieten to bearbeiden, de grötter as 32 KB sünd.
+'longpagewarning'                  => '<strong>Wohrscho: Disse Siet is $1 kB groot; en poor Browser köönt Probleme hebben, Sieten to bearbeiden, de grötter as 32 kB sünd.
 Bedenk of disse Siet vilicht in lüttere Afsnitten opdeelt warrn kann.</strong>',
 'longpageerror'                    => "'''Fehler: Dien Text is $1 Kilobytes lang. Dat is länger as dat Maximum vun $2 Kilobytes. Kann den Text nich spiekern.'''",
 'readonlywarning'                  => '<strong>Wohrscho: De Datenbank is för Pleegarbeiden sparrt worrn, so dat du de Sied en Stoot nich
@@ -1656,7 +1657,7 @@ Mehr Informatschonen över enkelte Rechten staht ünner [[{{MediaWiki:Listgroupr
 'mailnologintext' => 'Du musst [[Special:UserLogin|anmellt wesen]] un in diene [[Special:Preferences|Instellungen]] en güllige E-Mail-Adress hebben, dat du annere Brukers E-Mails tostüren kannst.',
 'emailuser'       => 'E-Mail an dissen Bruker',
 'emailpage'       => 'E-Mail an Bruker',
-'emailpagetext'   => 'Wenn disse Bruker en güllige E-Mail-Adress angeven hett, kannst du em mit dit Formular en E-Mail tostüren. As Afsenner warrt de E-Mail-Adress ut dien [[Special:Preferences|Instellen]] indragen, dat de Bruker di antern kann.',
+'emailpagetext'   => 'Du kannst dissen Bruker mit dit Formular en E-Mail tostüren. As Afsenner warrt de E-Mail-Adress ut dien [[Special:Preferences|Instellen]] indragen, dat de Bruker di antern kann.',
 'usermailererror' => 'Dat Mail-Objekt hett en Fehler trüchgeven:',
 'defemailsubject' => '{{SITENAME}} E-Mail',
 'noemailtitle'    => 'Kene E-Mail-Adress',
@@ -2842,15 +2843,5 @@ Geev den Dateinaam ahn dat Präfix „{{ns:image}}:“ in.',
 #En positiv Vergliek föhrt dorto, dat dat Bild wiest warrt, ans warrt dat Bild blot as Lenk wiest
 #Regen, de mit en # anfangt, warrt as Kommentar behannelt
 #Delen vun reguläre Utdrück na disse Reeg indragen. Disse Reeg nich ännern</pre>',
-
-# Special:Nuke
-'nuke'               => 'General-Utmesten',
-'nuke-nopages'       => 'Gifft in de Ne’esten Ännern kene ne’en Sieden vun [[Special:Contributions/$1|$1]].',
-'nuke-list'          => 'Disse Sieden hett [[Special:Contributions/$1|$1]] nee maakt; geev en Kommentar in un drück op den Utmest-Knopp.',
-'nuke-defaultreason' => 'General-Utmesten vun Sieden, de $1 anleggt hett',
-'nuke-tools'         => 'Dit Warktüüch verlöövt dat General-Utmesten vun Sieden, de vun ene IP-Adress oder en Bruker anleggt worrn sünd. Geev de IP-Adress oder den Brukernaam in, dat du ene List kriggst:',
-'nuke-submit-user'   => 'List kriegen',
-'nuke-submit-delete' => 'Utmesten',
-'right-nuke'         => 'Groten Hümpel Sieden wegsmieten',
 
 );

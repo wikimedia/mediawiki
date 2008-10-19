@@ -338,6 +338,8 @@ $messages = array(
 'editsection'             => 'redakön',
 'editold'                 => 'redakön',
 'viewsourceold'           => 'logön fonätavödemi',
+'editlink'                => 'redakön',
+'viewsourcelink'          => 'logedön fonäti',
 'editsectionhint'         => 'Redakolöd dilädi: $1',
 'toc'                     => 'Ninäd',
 'showtoc'                 => 'jonolöd',
@@ -347,7 +349,7 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|redakama bal|redakamas $1}}',
 'feedlinks'               => 'Kanad:',
 'feed-invalid'            => 'Kanadabonedam no lonöfon.',
-'feed-unavailable'        => 'Nünamakanads no gebidons in {{SITENAME}}',
+'feed-unavailable'        => 'Nünamakanads no gebidons',
 'site-rss-feed'           => 'Kanad (RSS): $1',
 'site-atom-feed'          => 'Kanad (Atom): $1',
 'page-rss-feed'           => 'Kanad (RSS): "$1"',
@@ -654,7 +656,9 @@ Garanol obes, das ol it epenol atosi, u das ekopiedol atosi se räyun notidik u 
 If no vilol, das vödems olik poredakons nenmisero e poseagivons ma vil alana, tän no pladolös onis isio.<br />
 Garanol obes, das ol it epenol atosi, u das ekopiedol atosi se räyun notidik u se fon libik sümik (logolös $1 pro notets).
 <strong>NO PLADOLÖD ISIO NEN DÄL LAUTANA VÖDEMIS LABÜ KOPIEDAGITÄT!</strong>',
-'longpagewarning'           => '<strong>NUNED: Pad at labon lunoti miljölätas $1; bevüresodatävöms anik ba no fägons ad redakön nendsäkädo padis lunotü miljölats plu 32. Betikolös dilami pada at ad pads smalikum.</strong>',
+'longpagewarning'           => '<strong>NUNED: Pad at labon lunoti miljölätas $1;
+bevüresodatävöms anik ba no fägons ad redakön nendsäkädo padis lunotü miljölats plu 32.
+Betikolös dilami pada at ad pads smalikum.</strong>',
 'longpageerror'             => '<strong>PÖL: Vödem fa ol pesedöl labon lunoti miljölätas $1, kelos pluon leigodü völad muik pedälöl miljölätas $2. No kanon padakipön.</strong>',
 'readonlywarning'           => '<strong>NUNED: Vük pefärmükon kodü kodididazesüd. No kanol dakipön votükamis olik anu. Kopiedolös vödemi nulik ini program votik e dakipolös oni in nünöm olik. Poso okanol dönu steifülön ad pladön oni isio.</strong>',
 'protectedpagewarning'      => '<strong>NUNED: Pad at pejelon, dat te gebans labü guvanagitäts kanons redakön oni.</strong>',
@@ -670,13 +674,15 @@ Garanol obes, das ol it epenol atosi, u das ekopiedol atosi se räyun notidik u 
 'nocreatetitle'             => 'Padijafam pemiedükon',
 'nocreatetext'              => '{{SITENAME}} emiedükon mögi ad jafön padis nulik.
 Kanol redakön padi dabinöl, u [[Special:UserLogin|nunädön oli u jafön kali]].',
-'nocreate-loggedin'         => 'No dalol jafön padis nulik in {{SITENAME}}.',
+'nocreate-loggedin'         => 'No dalol jafön padis nulik.',
 'permissionserrors'         => 'Dälapöls',
 'permissionserrorstext'     => 'No dalol dunön atosi sekü {{PLURAL:$1|kod|kods}} sököl:',
 'recreate-deleted-warn'     => "'''NUNED: Dönujafol padi pemoüköl.'''
 
 Vätälolös, va binos pötik ad lairedakön padi at.
 Jenotalised moükama pada at pajonon is as yuf.",
+'edit-already-exists'       => 'No kanoy jafön padi nulik.
+On ya dabinon.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'  => 'Nuned: Pad at vokon „parser“-sekätis tusuvo.
@@ -2268,14 +2274,5 @@ Penolös ragivanemi nen foyümot: „{{ns:image}}:“',
 
 # Special:BlankPage
 'blankpage' => 'Pad vagik',
-
-# Special:Nuke
-'nuke'               => 'Moükön pademi',
-'nuke-nopages'       => 'Pads nonik fa geban: [[Special:Contributions/$1|$1]] pejaföls binons su lised votükamas nulik.',
-'nuke-list'          => 'Pads sököl pejafons brefabüo fa geban: [[Special:Contributions/$1|$1]]; penolös küpeti e klikolös gnobi ad moükön onis.',
-'nuke-defaultreason' => 'Moükam padas fa geban: $1 pejafölas',
-'nuke-tools'         => 'Stum at kanon moükön mödoti padas fa geban u ladet-IP semik brefabüo pejafölas. Penolös gebananemi u ladeti-IP ad dagetön lisedi padas moükovik:',
-'nuke-submit-user'   => 'Ledunolöd',
-'nuke-submit-delete' => 'Pevalöl ad pamoükön',
 
 );

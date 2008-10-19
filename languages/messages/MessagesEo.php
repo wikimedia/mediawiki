@@ -9,8 +9,8 @@
  * @author Malafaya
  * @author Michawiki
  * @author MinuteElectron
- * @author Raymond
  * @author Tlustulimu
+ * @author Urhixidur
  * @author Yekrats
  * @author לערי ריינהארט
  */
@@ -705,7 +705,7 @@ Vi ankaŭ ĵuras, ke vi mem verkis la tekston, aŭ ke vi kopiis ĝin el fonto se
 Vi ankaŭ promesu al ni ke vi verkis tion mem aŭ kopiis el publika domajno aŭ simila libera fonto (vidu $1 por detaloj).
 <strong>NE PROPONU KOPIRAJTITAJN VERKOJN SEN PERMESO!</strong>',
 'longpagewarning'                  => '<strong>AVERTO: Tiu ĉi paĝo longas $1 kilobitokojn; kelkaj retumiloj
-povas fuŝi redaktante paĝojn je longo proksime aŭ preter 32kb.
+povas fuŝi redaktante paĝojn je longo proksime aŭ preter 32 kb.
 Se eble, bonvolu disigi la paĝon al malpli grandajn paĝerojn.</strong>',
 'longpageerror'                    => '<strong>Eraro: La teksto, kiun vi prezentis, longas $1 kilobajtojn, kio estas pli longa ol la maksimumo de $2 kilobajtoj. Ĝi ne povas esti storata.</strong>',
 'readonlywarning'                  => '<strong>AVERTO: La datumbazo estas ŝlosita por teknika laboro, do vi ne eblas konservi viajn redaktojn nune.
@@ -1174,6 +1174,7 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'action-move-subpages'        => 'movi ĉi tiun paĝon, kaj ties subpaĝojn',
 'action-upload'               => 'alŝuti ĉi tiun dosieron',
 'action-reupload'             => 'anstataŭigi ĉi tiun ekzistantan dosieron',
+'action-reupload-shared'      => 'anstataŭigi ĉi tiun dosieron en kolektiva dosierujo',
 'action-upload_by_url'        => 'alŝuti ĉi tiun dosieron de URL-adreso',
 'action-writeapi'             => 'uzi la skriban API-on',
 'action-delete'               => 'forigi ĉi tiun paĝon',
@@ -1190,6 +1191,7 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'action-patrol'               => 'marki redakton de alia persono kiel patrolitan',
 'action-autopatrol'           => 'fari vian redakton markitan kiel patrolitan',
 'action-unwatchedpages'       => 'vidi la liston de neatentitaj paĝoj',
+'action-trackback'            => 'aldoni retrovojon',
 'action-mergehistory'         => 'kunigi la historion de ĉi tiu paĝo',
 'action-userrights'           => 'redakti ĉiujn rajtojn de uzantoj',
 'action-userrights-interwiki' => 'redakti uzulrajtojn de uzantoj en aliaj vikioj',
@@ -1500,6 +1502,7 @@ Paĝo estas traktata kiel apartigilo se ĝi uzas ŝablonon kiu estas ligita de [
 'wantedcategories'        => 'Dezirataj kategorioj',
 'wantedpages'             => 'Dezirataj paĝoj',
 'wantedfiles'             => 'Dezirataj dosieroj',
+'wantedtemplates'         => 'Dezirataj ŝablonoj',
 'mostlinked'              => 'Plej ligitaj paĝoj',
 'mostlinkedcategories'    => 'Plej ligitaj kategorioj',
 'mostlinkedtemplates'     => 'Plej ligitaj ŝablonoj',
@@ -1627,8 +1630,8 @@ Estas [[{{MediaWiki:Listgrouprights-helppage}}|aldona informo]] pri individuaj r
 'mailnologintext' => 'Vi nepre estu [[Special:UserLogin|salutanta]] kaj havanta validan retpoŝtadreson en viaj [[Special:Preferences|preferoj]] por retpoŝti al aliaj uzantoj.',
 'emailuser'       => 'Retpoŝti ĉi tiun uzanton',
 'emailpage'       => 'Retpoŝti uzanton',
-'emailpagetext'   => 'Se ĉi tiu uzanto enigis validan retadreson en ties uzanto-preferoj, la jena paĝo sendos unuopan mesaĝon.
-La retadreso kiun vi enigis en [[Special:Preferences|viaj preferoj]] aperos kiel la "De" adreso de la retpoŝto, do la ricevanto eblos respondi rekte al vi.',
+'emailpagetext'   => 'Vi povas uzi la jenan paĝon por sendi retpoŝtan mesaĝon al ĉi tiu uzanto.
+La retadreso kiun vi enigis en [[Special:Preferences|viaj preferoj]] aperos kiel la "De" adreso de la retpoŝto, do la ricevonto eblos respondi rekte al vi.',
 'usermailererror' => 'Resendita retmesaĝa erarsubjekto:',
 'defemailsubject' => '{{SITENAME}} ****-retmesaĝo',
 'noemailtitle'    => 'Neniu retpoŝtadreso',
@@ -2071,6 +2074,7 @@ Tiujokaze, vi nepre permane kunigu la diskuto-paĝojn se vi tion deziras.",
 'movenologintext'           => 'Vi nepre estu registrita uzanto kaj [[Special:UserLogin|ensalutu]] por rajti movi paĝojn.',
 'movenotallowed'            => 'Vi ne rajtas movi paĝojn.',
 'cant-move-user-page'       => 'Vi ne rajtas movi radikajn uzanto-paĝojn.',
+'cant-move-to-user-page'    => 'Vi ne rajtas movi paĝon al uzula paĝo (krom al uzula subpaĝo).',
 'newtitle'                  => 'Al nova titolo',
 'move-watch'                => 'Atenti ĉi tiun paĝon',
 'movepagebtn'               => 'Alinomigi paĝon',
@@ -2835,17 +2839,5 @@ Enigu la dosiernomon sen la "{{ns:image}}:" prefikso.',
 #Linioj komencantaj kun # estas traktata kiel komentoj.
 
 #Enmetu ĉiujn koderojn pri regulaj esprimoj super ĉi tiu linio. Lasu la linion senŝanĝe.</pre>',
-
-# Special:Nuke
-'nuke'               => 'Amasforigi',
-'nuke-nopages'       => 'Neniuj novaj paĝoj de [[Special:Contributions/$1|$1]] en lastaj ŝanĝoj.',
-'nuke-list'          => 'La jenaj paĝoj estis lastatempe kreitaj de [[Special:Contributions/$1|$1]];
-aldonu komenton kaj klaku la butonon forigi ilin.',
-'nuke-defaultreason' => 'Amasforigo de paĝoj aldonita de $1',
-'nuke-tools'         => 'Ĉi tiu ilo ebligas amasforigojn de paĝoj lastatempe aldonitaj de aparta uzanto aŭ IP-adreso.
-Enigu la salutnomon aŭ IP-adreson por akiri liston de paĝoj forigi:',
-'nuke-submit-user'   => 'Ek!',
-'nuke-submit-delete' => 'Forigi elekton',
-'right-nuke'         => 'Amasforigi paĝojn',
 
 );

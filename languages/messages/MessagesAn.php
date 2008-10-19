@@ -6,6 +6,7 @@
  *
  * @author Juanpabl
  * @author Remember the dot
+ * @author Urhixidur
  * @author Willtron
  * @author לערי ריינהארט
  */
@@ -677,7 +678,7 @@ Abrá d'encorporar os suyos cambeos en o testo esistent.
 <strong>NO COPIE SIN PREMISO ESCRITOS CON DREITOS D'AUTOR!</strong><br />",
 'copyrightwarning2'                => "Por fabor, pare cuenta que todas as contrebuzions á {{SITENAME}} pueden estar editatas, cambiatas u borratas por atros colaboradors. Si no deseya que atra chent corricha os suyos escritos sin piedat y los destribuiga librement, alabez, no debería meter-los aquí. <br /> En publicar aquí, tamién ye declarando que busté mesmo escribió iste testo y ye o dueño d'os dreitos d'autor, u bien lo copió dende o dominio publico u cualsiquier atra fuent libre (beyer $1 ta más informazión). <br />
 <strong>NO COPIE SIN PREMISO ESCRITOS CON DREITOS D'AUTOR!</strong>",
-'longpagewarning'                  => '<strong>Pare cuenta: Ista pachina tiene ya $1 kilobytes; bels nabegadors pueden tener problemas en editar pachinas de 32KB o más.
+'longpagewarning'                  => '<strong>Pare cuenta: Ista pachina tiene ya $1 kilobytes; bels nabegadors pueden tener problemas en editar pachinas de 32 kB o más.
 Considere, por fabor, a posibilidat de troxar ista pachina en trestallos más chicoz.</strong>',
 'longpageerror'                    => '<strong>ERROR: O testo que ha escrito ye de $1 kilobytes, que ye mayor que a grandaria maisima de $2 kilobytes. No se puede alzar.</strong>',
 'readonlywarning'                  => "<strong>Pare cuenta: A base de datos ye bloqueyata por custions de mantenimiento. Por ixo, en iste inte ye imposible d'alzar as suyas edizions. Puede copiar y apegar o testo en un archibo y alzar-lo ta dimpués.</strong>
@@ -2589,15 +2590,5 @@ Escriba o nombre de l\'archibo sin o prefixo "{{ns:image}}:".',
 # Special:BlankPage
 'blankpage'              => 'Pachina en blanco',
 'intentionallyblankpage' => "Esta pachina s'ha deixato en blanco aldredes y se fa serbir ta fer prebatinas, ezt.",
-
-# Special:Nuke
-'nuke'               => 'Borrato masibo',
-'nuke-nopages'       => 'No bi ha garra pachina nueba feita por [[Special:Contributions/$1|$1]] entre os zaguers cambeos.',
-'nuke-list'          => 'A siguients pachinas fuoron creyatas por [[Special:Contributions/$1|$1]]; escriba un comentario y punche o botón ta borrar-los.',
-'nuke-defaultreason' => "Borrato masibo d'as pachinas adibitas por $1",
-'nuke-tools'         => "Ista ferramienta fa posible de fer borratos masibos de pachinas adibitas en zaguerías por un usuario u adreza IP datos. Escriba o nombre d'usuario u l'adreza IP ta obtener una lista de pachinas ta borrar:",
-'nuke-submit-user'   => 'Ir-ie',
-'nuke-submit-delete' => 'Borrar as trigatas',
-'right-nuke'         => 'Borrar pachinas masibament',
 
 );

@@ -8,6 +8,7 @@
  * @author Dori
  * @author Eagleal
  * @author Ergon
+ * @author Urhixidur
  * @author לערי ריינהארט
  */
 
@@ -617,7 +618,7 @@ Ju duhet të përputhni ndryshimet tuaja me tekstin ekzistues.
 Po na premtoni që ç'ka po jepni këtu e keni kontributin tuaj ose e keni kopjuar nga domeni publik apo nga burime të tjera të lira sipas ligjeve përkatëse (shikoni $1 për hollësirat). 
 <strong>NDALOHET DHËNIA E PUNIMEVE PA PASUR LEJE NGA AUTORI NË MOSPËRPUTHJE ME KËTË LICENSË!</strong>",
 'longpagewarning'                  => 'KUJDES: Kjo faqe është $1 kilobytes e gjatë; disa
-shfletues mund të kenë probleme për të redaktuar faqe që afrohen ose janë akoma më shumë se 32kb.
+shfletues mund të kenë probleme për të redaktuar faqe që afrohen ose janë akoma më shumë se 32 kb.
 Konsideroni ta ndani faqen në disa seksione më të vogla.',
 'longpageerror'                    => '<strong>GABIM: Tesksti që ju po e redaktoni është $1 KB i gjatë dhe është më i gjatë se maksimumi i lejuar prej $2 KB. Ndryshimet nuk mund të ruhen.</strong>',
 'readonlywarning'                  => 'KUJDES: Regjistri është bllokuar për mirëmbajtje,

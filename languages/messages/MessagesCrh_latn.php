@@ -6,6 +6,7 @@
  *
  * @author AlefZet
  * @author Alessandro
+ * @author Urhixidur
  */
 
 $fallback8bitEncoding = 'windows-1254';
@@ -672,7 +673,7 @@ Ayrıca, mında isse qoşıp, bu isseniñ özüñiz tarafından yazılğanına, 
 'copyrightwarning2'                => '<strong>Lütfen, diqqat:</strong> {{SITENAME}} saytına siz qoşqan bütün isseler başqa bir qullanıcı tarafından deñiştirilip ya da yoq etilip olur. Qoşqan isseñizniñ başqa insanlar tarafından acımasızca deñiştirilmesini ya da azat tarzda ve sıñırsızca başqa yerlerge dağıtılmasını istemeseñiz, isse qoşmañız.<br />
 Ayrıca, mında isse qoşıp, bu isseniñ özüñiz tarafından yazılğanına, ya da cemaatqa açıq bir menbadan ya da başqa bir azat menbadan kopirlengenine garantiya bergen olasıñız ($1 baqıñız).<br />
 <strong>MÜELLİF AQQI İLE QORÇALANĞAN İÇ BİR METİNNİ MINDA EKLEMEÑİZ!</strong>',
-'longpagewarning'                  => '<strong>TENBİ: Bu saife $1 kilobayt büyükligindedir; bazı brauzerler deñişiklik yapqan vaqıtta 32kb ve üstü büyükliklerde problemalar yaşap olur. Saifeni bölümlerge ayırmağa tırışıñız.</strong>',
+'longpagewarning'                  => '<strong>TENBİ: Bu saife $1 kilobayt büyükligindedir; bazı brauzerler deñişiklik yapqan vaqıtta 32 kb ve üstü büyükliklerde problemalar yaşap olur. Saifeni bölümlerge ayırmağa tırışıñız.</strong>',
 'longpageerror'                    => '<strong>TENBİ: Bu saife $1 kilobayt büyükligindedir. Maksimum izinli büyüklik ise $2 kilobayt. Bu saife saqlanıp olamaz.</strong>',
 'readonlywarning'                  => '<strong>TENBİ: Baqım sebebi ile malümat bazası al-azırda kilitlidir. Bu sebepten deñişiklikleriñiz şimdi saqlap olamasıñız. Yazğanlarıñıznı başqa bir editor programmasına alıp saqlap olur ve daa soñ tekrar mında ketirip saqlap olursıñız</strong>
 
@@ -1185,7 +1186,7 @@ Mında [[Special:UnusedCategories|qullanılmağan kategoriyalar]] kösterilmegen
 'mailnologintext' => 'Diger qullanıcılarğa elektron mektüpler yollap olmaq içün [[Special:UserLogin|oturım açmalısıñız]] ve [[Special:Preferences|sazlamalarıñızda]] mevcüt olğan e-mail adresiniñ saibi olmalısıñız.',
 'emailuser'       => 'Qullanıcığa mektüp',
 'emailpage'       => 'Qullanıcığa elektron mektüp yolla',
-'emailpagetext'   => 'Bu qullanıcı öz sazlamalarında mevcüt olğan elektron poçta adresini yazğan olsa, aşağıdaki formanı toldurıp oña mektüp yollap olursıñız.
+'emailpagetext'   => 'Aşağıdaki formanı toldurıp bu qullanıcığa mektüp yollap olursıñız.
 [[Special:Preferences|Öz sazlamalarıñızda]] yazğan elektron adresiñiz mektüpniñ "Kimden" satırında yazılacaq, bunıñ içün mektüp alıcı doğrudan-doğru siziñ adresiñizge cevap yollap olur.',
 'usermailererror' => 'E-mail beyanatı yollanğan vaqıtta hata olıp çıqtı',
 'defemailsubject' => '{{SITENAME}} e-mail',

@@ -625,6 +625,7 @@ Legend: (viim) = erinevused võrreldes viimase redaktsiooniga,
 'historyempty'        => '(tühi)',
 
 # Revision deletion
+'rev-delundel'      => 'näita/peida',
 'revdel-restore'    => 'Muuda nähtavust',
 'pagehist'          => 'Lehekülje ajalugu',
 'deletedhist'       => 'Kustutatud ajalugu',

@@ -1499,6 +1499,7 @@ Cata linea contine ligamines al prime e al secunde redirection, con le destinati
 'wantedcategories'        => 'Categorias plus demandate',
 'wantedpages'             => 'Paginas plus demandate',
 'wantedfiles'             => 'Files desirate',
+'wantedtemplates'         => 'Patronos desirate',
 'mostlinked'              => 'Paginas le plus ligate',
 'mostlinkedcategories'    => 'Categorias le plus ligate',
 'mostlinkedtemplates'     => 'Patronos le plus utilisate',
@@ -1626,9 +1627,9 @@ e haber un adresse de e-mail valide in tu [[Special:Preferences|preferentias]]
 pro inviar e-mail a altere usatores.',
 'emailuser'       => 'Inviar e-mail a iste usator',
 'emailpage'       => 'Inviar e-mail al usator',
-'emailpagetext'   => 'Si iste usator forniva un adresse de e-mail valide in su preferentias de usator, le formulario infra le/la inviara un singule message.
-Le adresse de e-mail que tu forniva in [[Special:Preferences|tu preferentias de usator]] apparera
-como le adresse del expeditor del e-mail, a fin que le destinatario pote responder directemente a te.',
+'emailpagetext'   => 'Le formulario infra es pro inviar un message de e-mail a iste usator.
+Le adresse de e-mail que tu indicava in [[Special:Preferences|tu preferentias de usator]] apparera
+como le adresse del expeditor del e-mail, de modo que le destinatario pote responder directemente a te.',
 'usermailererror' => 'Le objecto de e-mail retornava le error:',
 'defemailsubject' => 'E-mail de {{SITENAME}}',
 'noemailtitle'    => 'Nulle adresse de e-mail',
@@ -2902,17 +2903,5 @@ Entra le nomine del file sin le prefixo \"{{ns:image}}:\".",
 #Le lineas comenciante con # essera tractate como commentos
 
 #Insere omne fragmentos regex super iste linea. Lassa iste linea exactemente como illo es</pre>',
-
-# Special:Nuke
-'nuke'               => 'Deletion in massa',
-'nuke-nopages'       => 'Nulle nove paginas per [[Special:Contributions/$1|$1]] trovate in le modificationes recente.',
-'nuke-list'          => 'Le sequente paginas esseva recentemente create per [[Special:Contributions/$1|$1]];
-entra un commento e clicca le button pro deler los.',
-'nuke-defaultreason' => 'Deletion in massa de paginas addite per $1',
-'nuke-tools'         => 'Iste instrumento permitte le deletion in massa de paginas recentemente addite per un usator o IP specific.
-Entra le nomine de usator o adresse IP pro obtener un lista de paginas a deler:',
-'nuke-submit-user'   => 'Ir',
-'nuke-submit-delete' => 'Deler seligites',
-'right-nuke'         => 'Deler paginas in massa',
 
 );

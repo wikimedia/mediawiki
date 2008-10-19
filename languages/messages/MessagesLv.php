@@ -387,9 +387,11 @@ Ja tu izvēlies to norādīt, šo lietos lai identificētu tavu darbu (ieguldīj
 'mailmypassword'             => 'Atsūtīt man jaunu paroli',
 'passwordremindertitle'      => 'Jauna pagaidu parole no {{SITENAME}}s',
 'passwordremindertext'       => 'Kads (iespejams, Tu pats, no IP adreses $1)
-ludza, lai nosutam Tev jaunu {{SITENAME}} ({{SERVER}}) ($4) paroli.
-Lietotajam $2 parole tagad ir $3.
-Ludzu, nomaini paroli, kad esi veiksmigi iekluvis ieksa.',
+ludza, lai nosutam Tev jaunu {{SITENAME}} ($4) paroli.
+Lietotajam $2 pagaidu parole tagad ir $3.
+Ludzu, nomaini paroli, kad esi veiksmigi iekluvis ieksa.
+
+Ja paroles pieprasījumu bija nosūtījis kāds cits, vai arī tu atcerējies savu veco paroli, šo var ignorēt. Vecā parole joprojām darbojas.',
 'noemail'                    => 'Lietotājs "$1" nav reģistrējis e-pasta adresi.',
 'passwordsent'               => 'Esam nosūtījuši jaunu paroli uz e-pasta adresi, kuru ir norādījis lietotājs $1. Lūdzu, nāc iekšā ar jauno paroli, kad būsi to saņēmis.',
 'blocked-mailpassword'       => "Tava IP adrese ir bloķēta un tāpēc nevar lietot paroles atjaunošanas (''recovery'') funkciju, lai nevarētu apiet bloku.",
@@ -859,7 +861,7 @@ Ja tev ir šis pats attēls pilnā izmērā, augšuplādē to, ja nav, tad nomai
 'uploadedimage'          => 'augšupielādēju "$1"',
 'overwroteimage'         => 'augšupielādēta jauna "[[$1]]" versija',
 'uploaddisabled'         => 'Augšupielāde atslēgta',
-'uploaddisabledtext'     => 'Failu augšupielāde šajā wiki ir atslēgta.',
+'uploaddisabledtext'     => 'Failu augšupielāde ir atslēgta.',
 'uploadscripted'         => 'Šis fails satur HTML vai skriptu kodu, kuru, interneta pārlūks, var kļūdas pēc, mēģināt interpretēt (ar potenciāli sliktām sekām).',
 'uploadcorrupt'          => 'Šis fails ir bojāts, vai arī tam ir nekorekts paplašinājums. Lūdzu pārbaudi failu un augšupielādē vēlreiz.',
 'uploadvirus'            => 'Šis fails satur vīrusu! Sīkāk: $1',
@@ -931,7 +933,7 @@ Uzklikšķinot uz kādas kolonnas virsraksta, var sakārtot pēc kāda cita para
 'filedelete-submit'           => 'Izdzēst',
 'filedelete-success'          => "'''$1''' tika veiksmīgi izdzēsts.",
 'filedelete-success-old'      => "Faila '''[[Media:$1|$1]]''' versija $3, $2 tika izdzēsta.",
-'filedelete-nofile'           => "'''$1''' {{grammar:lokatīvs|{{SITENAME}}}} nav atrodams.",
+'filedelete-nofile'           => "'''$1''' nav atrodams.",
 'filedelete-nofile-old'       => "Failam '''$1''' nav vecas versijas ar norādītajiem parametriem.",
 'filedelete-otherreason'      => 'Cits/papildu iemesls:',
 'filedelete-reason-otherlist' => 'Cits iemesls',
@@ -1072,7 +1074,8 @@ Papildu informāciju par katru individuālu piekļuves tiesību veidu, iespējam
 'mailnologintext' => 'Tev jābūt [[Special:UserLogin|iegājušam]], kā arī tev jābūt [[Special:Preferences|norādītai]] derīgai e-pasta adresei, lai sūtītu e-pastu citiem lietotājiem.',
 'emailuser'       => 'Sūtīt e-pastu šim lietotājam',
 'emailpage'       => 'Sūtīt e-pastu lietotājam',
-'emailpagetext'   => 'Ja šis lietotājs ir norādījis reālu e-pasta adresi savu izvēļu lapā, tad ar šo veidni ir iespējams viņam nosūtīt e-pastu. Tā e-pasta adrese, kuru tu esi norādījis [[Special:Preferences|savā izvēļu lapā]], parādīsies e-pasta "From" lauciņā, tādejādi saņēmējs varēs tev atbildēt.',
+'emailpagetext'   => 'Ar šo veidni ir iespējams nosūtīt e-pastu šim lietotājam.
+Tā e-pasta adrese, kuru tu esi norādījis [[Special:Preferences|savā izvēļu lapā]], parādīsies e-pasta "From" lauciņā, tādejādi saņēmējs varēs tev atbildēt.',
 'defemailsubject' => 'E-pasts par {{grammar:akuzatīvs|{{SITENAME}}}}',
 'noemailtitle'    => 'Nav e-pasta adreses',
 'noemailtext'     => 'Šis lietotājs nav norādījis derīgu e-pasta adresi vai arī ir izvēlējies nesaņemt e-pastu no citiem lietotājiem.',
@@ -1381,7 +1384,7 @@ Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvie
 'movearticle'             => 'Pārvietot lapu',
 'movenologin'             => 'Neesi iegājis kā reģistrēts lietotājs',
 'movenologintext'         => 'Tev ir jābūt reģistrētam lietotājam un jābūt [[Special:UserLogin|iegājušam]] {{grammar:lokatīvs|{{SITENAME}}}}, lai pārvietotu lapu.',
-'movenotallowed'          => 'Tev {{grammar:lokatīvs|{{SITENAME}}}} nav tiesību pārvietot lapas .',
+'movenotallowed'          => 'Tev nav tiesību pārvietot lapas.',
 'newtitle'                => 'Uz šādu lapu',
 'move-watch'              => 'Uzraudzīt šo lapu',
 'movepagebtn'             => 'Pārvietot lapu',

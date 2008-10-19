@@ -5,6 +5,7 @@
  * @file
  *
  * @author Katimawan2005
+ * @author Urhixidur
  * @author Val2397
  */
 
@@ -594,7 +595,7 @@ Nung e mu buri ing alilan deng alang patugut at alang lunus ing kekang sinulat, 
 Mangaku ka mu naman a ika mismu ing sinulat kaniti, o akopia me ketang metung a pikuanan a mipaintulutan king malda o aliwa pang libring pikukuanan (lon me ing $1 para kareng detalle).
 <strong>E KA MANAMBAG OBRANG MAKI COPYRIGHT NUNG ALANG PAINTULUT!',
 'longpagewarning'           => '<strong>KAPIADIAN: Maki kaba yang $1 kilobyte ining bulung;
-mágkasákit lang mag-edit bulung a maigit 32kb deng aliwang browser.
+mágkasákit lang mag-edit bulung a maigit 32 kb deng aliwang browser.
 Nung maliari, pakipitnan me kareng adua o maigit pang dake.</strong>',
 'longpageerror'             => '<strong>MALI: Miras yang $1 kilobyte ing kekang sinulat; sobra ya ketang $2 a pekamakabang maliaring iyambag. E ya ma-save iti.</strong>',
 'readonlywarning'           => '<strong>BABALA: Makasara ya ing database uling sasamasan de iti, ania e mo a-save ngeni detang kekang in-edit.

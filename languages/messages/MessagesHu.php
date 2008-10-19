@@ -3023,14 +3023,4 @@ Add meg a fájl nevét „{{ns:image}}:” előtag nélkül.',
 
 #A reguláris kifejezéseket ezen sor alá írd. Ezt a sort hagyd így, ahogy van.</pre>',
 
-# Special:Nuke
-'nuke'               => 'Halmozott törlés',
-'nuke-nopages'       => 'Nincsenek új oldalak [[Special:Contributions/$1|$1]] az aktuális események között.',
-'nuke-list'          => 'Az alábbi lapokat nem rég készítette [[Special:Contributions/$1|$1]]; adj meg egy indoklást, és kattints a gombra a törlésükhöz.',
-'nuke-defaultreason' => '$1 által készített lapok tömeges eltávolítása',
-'nuke-tools'         => 'Ez az eszköz lehetővé teszi egy adott felhasználó vagy IP által nem rég készített lapok tömeges törlését. Add meg a felhasználónevet vagy az IP-címet, hogy lekérd a törlendő lapok listáját:',
-'nuke-submit-user'   => 'Menj',
-'nuke-submit-delete' => 'Kijelöltek törlése',
-'right-nuke'         => 'oldalak tömeges törlése',
-
 );

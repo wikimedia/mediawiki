@@ -5,6 +5,7 @@
  * @file
  *
  * @author Jose77
+ * @author Meno25
  * @author Protostar
  */
 
@@ -103,7 +104,7 @@ $messages = array(
 'jumptosearch'     => 'luk foh am',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'            => 'Boht {{wehbsait-imnem}}',
+'aboutsite'            => 'Boht {{SITENAME}}',
 'aboutpage'            => 'Project:Boht',
 'bugreports'           => 'Wetin noh de wok',
 'bugreportspage'       => 'Project:Wetin noh de wok',
@@ -298,7 +299,8 @@ Di [[Special:WhatLinksHere/$2|ful list]] de yah.',
 'contribslink'       => 'kohntribyushohn-dehm',
 
 # Move page
-'move-watch' => 'Wach dis pej-ya',
+'movenologin' => 'Yu noh kam insai di sait yet',
+'move-watch'  => 'Wach dis pej-ya',
 
 # Thumbnails
 'thumbnail-more'  => 'Mek i big',
@@ -369,8 +371,5 @@ Na im source nohmoh yu go ebul luk.',
 
 # Special:SpecialPages
 'specialpages' => 'Spehshal pej-dehm',
-
-# Special:Nuke
-'nuke-submit-user' => 'Go to am',
 
 );

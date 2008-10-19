@@ -37,6 +37,7 @@
  * @author Technorum
  * @author Titoxd
  * @author Toniher
+ * @author Urhixidur
  * @author לערי ריינהארט
  */
 
@@ -665,7 +666,7 @@ Si la grabas, los cambios hechos desde esa revisión se perderán.</strong>',
 'yourdiff'                         => 'Diferencias',
 'copyrightwarning'                 => 'Por favor observa que todas las contribuciones a {{SITENAME}} se consideran hechas públicas bajo la $2 (ver detalles en $1).Si no deseas que la gente corrija tus escritos sin piedad y los distribuya libremente, entonces no los pongas aquí. También tú nos aseguras que escribiste esto texto tú mismo y eres dueño de los derechos de autor, o lo copiaste desde el dominio público u otra fuente libre.<strong>¡NO USES ESCRITOS CON COPYRIGHT SIN PERMISO!</strong><br />',
 'copyrightwarning2'                => 'Por favor, ten en cuenta que todas las contribuciones a {{SITENAME}} pueden ser editadas, modificadas o eliminadas por otros colaboradores. Si no deseas que la gente corrija tus escritos sin piedad y los distribuya libremente, entonces no los pongas aquí. <br />También tú nos aseguras que escribiste esto tú mismo y eres dueño de los derechos de autor, o lo copiaste desde el dominio público u otra fuente libre. (véase $1 para detalles). <br /><strong>¡NO USES ESCRITOS CON COPYRIGHT SIN PERMISO!</strong>',
-'longpagewarning'                  => '<strong>Atención: Esta página tiene un tamaño de $1 kilobytes; algunos navegadores pueden tener problemas editando páginas de 32KB o más.
+'longpagewarning'                  => '<strong>Atención: Esta página tiene un tamaño de $1 kilobytes; algunos navegadores pueden tener problemas editando páginas de 32 kB o más.
 Por favor considere la posibilidad de dividir esta página en secciones más pequeñas.</strong>',
 'longpageerror'                    => '<strong>ERROR: El texto que has enviado ocupa $1 kilobytes, que excede el máximo de $2 kilobytes. No se puede guardar.</strong>',
 'readonlywarning'                  => '<strong>Atención: La base de datos ha sido bloqueada por cuestiones de mantenimiento, así que no podrá guardar sus modificaciones en este momento.
@@ -1030,8 +1031,8 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'userrights-groupsmember'     => 'Miembro de:',
 'userrights-groups-help'      => 'Puedes modificar los grupos a los que pertenece este usuario:
 * Un recuadro marcado significa que el usuario está en ese grupo.
-* Un recuadro marcado significa que el usuario está en ese grupo.
-* Un * indica que no podrás retirar el grupo una vez que lo pongas, o viceversa.',
+* Un recuadro no marcado significa que el usuario no está en ese grupo.
+* Un * indica que no podrás retirar el grupo una vez que lo concedas, o viceversa.',
 'userrights-reason'           => 'Motivo para el cambio:',
 'userrights-no-interwiki'     => 'No tienes permiso para editar los grupos a los que pertenece un usuario en otros wikis.',
 'userrights-nodatabase'       => 'La base de datos $1 no existe o no es local.',
@@ -1467,6 +1468,7 @@ Cada fila contiene enlaces al segundo y tercer redirect, así como la primera l�
 'wantedcategories'        => 'Categorías requeridas',
 'wantedpages'             => 'Páginas requeridas',
 'wantedfiles'             => 'Ficheros requeridos',
+'wantedtemplates'         => 'Plantillas requeridas',
 'mostlinked'              => 'Artículos más enlazados',
 'mostlinkedcategories'    => 'Categorías más enlazadas',
 'mostlinkedtemplates'     => 'Plantillas más enlazadas',
@@ -1590,7 +1592,7 @@ Puede haber información adicional sobre privilegios individuales en [[{{MediaWi
 'mailnologintext' => 'Debes [[Special:UserLogin|iniciar sesión]] y tener una dirección electrónica válida en tus [[Special:Preferences|preferencias]] para enviar un correo electrónico a otros usuarios.',
 'emailuser'       => 'Enviar correo electrónico a este usuario',
 'emailpage'       => 'Correo electrónico a usuario',
-'emailpagetext'   => 'Si este usuario ha registrado una dirección electrónica válida en sus preferencias de usuario, el siguiente formulario servirá para enviarle un mensaje.
+'emailpagetext'   => 'Puedes usar el formulario de abajo para enviar un correo electrónico a este usuario.
 La dirección electrónica que indicaste en [[Special:Preferences|tus preferencias de usuario]] aparecerá en el remitente para que el destinatario pueda responderte.',
 'usermailererror' => 'El sistema de correo devolvió un error:',
 'defemailsubject' => 'Correo de {{SITENAME}}',
@@ -2067,6 +2069,7 @@ La página de destino ("[[:$1]]") ya existe. ¿Quiere borrarla para permitir al 
 'imagetypemismatch'         => 'La nueva extensión de archivo no corresponde con su tipo',
 'imageinvalidfilename'      => 'El nombre del fichero de destino no es válido',
 'fix-double-redirects'      => 'Actualizar las redirecciones que apuntan al título original',
+'move-leave-redirect'       => 'Dejar una redirección',
 
 # Export
 'export'            => 'Exportar páginas',
@@ -2809,17 +2812,5 @@ Ingrese el nombre del archivo sin el prefijo "{{ns:image}}:".',
 #Las líneas que empiezan por «#» se consideran comentarios
 
 #Put all regex fragments above this line. Deja esta línea exactamente como está</pre>',
-
-# Special:Nuke
-'nuke'               => 'borrado en masa',
-'nuke-nopages'       => 'No hay páginas nuevas de [[Special:Contributions/$1|$1]] en los cambios recientes.',
-'nuke-list'          => '[[Special:Contributions/$1|$1]] creó recientemente las siguientes páginas;
-escriba un comentario y haga clic en el botón para borrarlas.',
-'nuke-defaultreason' => 'eliminación en masa de páginas agregadas por $1',
-'nuke-tools'         => 'Esta herramienta permite borrados masivos de páginas creadas recientemente por un usuario o una IP
-Introduzca el nombre de usuario o la IP para obtener la lista de páginas a borrar.',
-'nuke-submit-user'   => 'Ir',
-'nuke-submit-delete' => 'Borrado seleccionado',
-'right-nuke'         => 'Borrar páginas masivamente',
 
 );

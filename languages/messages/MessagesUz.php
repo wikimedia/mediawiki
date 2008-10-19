@@ -6,6 +6,7 @@
  *
  * @author Abdulla
  * @author Behzod Saidov <behzodsaidov@gmail.com>
+ * @author Urhixidur
  */
 
 $fallback8bitEncoding = 'windows-1252';
@@ -279,7 +280,7 @@ Siz shuningdek bu yozganlaringiz sizniki yoki erkin litsenziya ostida ekanligini
 'copyrightwarning2'      => "Iltimos, shuni esda tutingki, {{SITENAME}} sahifalaridagi barcha matnlar boshqa foydalanuvchilar tomonidan tahrirlanishi, almashtirilishi yoki o'chirilishi mumkin. Agar siz yozgan ma'lumotlaringizni bunday tartibda tahrirlanishiga rozi bo'lmasangiz, unda uni bu yerga joylashtirmang.<br />
 Bundan tashqari, siz ushbu ma'lumotlarni o'zingiz yozgan bo'lishingiz yoki ruxsat berilgan internet manzilidan yoki shu kabi erkin resursdan nusxa olgan bo'lishingiz lozim (Qo'shimcha ma'lumotlar ushun $1 sahifasiga murojaat qiling).
 <strong>MUALLIFLIK HUQUQI QO'YILGAN ISHLARNI RUXSATSIZ BU YERGA JOYLASHTIRMANG!</strong>",
-'longpagewarning'        => "<strong>DIQQAT: Ushbu sahifa hajmi $1 kilobaytdir; ayrim browser'lar 32kb dan oshiq hajmli sahifalarni tahrirlashda muammolarga duch kelishi mumkin.
+'longpagewarning'        => "<strong>DIQQAT: Ushbu sahifa hajmi $1 kilobaytdir; ayrim browser'lar 32 kb dan oshiq hajmli sahifalarni tahrirlashda muammolarga duch kelishi mumkin.
 Agar sizda shunday muammolar yuzaga kelsa, iltimos, sahifani butunlay emas, qismlab tahrirlang.</strong>",
 'templatesused'          => 'Ushbu sahifada ishlatilgan andozalar:',
 'template-protected'     => '(himoyalangan)',

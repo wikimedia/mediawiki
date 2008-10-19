@@ -14,6 +14,7 @@
  * @author Morten LJ
  * @author Peter Andersen
  * @author Remember the dot
+ * @author Urhixidur
  */
 
 $namespaceNames = array(
@@ -720,7 +721,7 @@ Læg ingen tekster ind, hvis du ikke kan acceptere at disse kan ændres.
 
 Du bekræfter hermed også, at du selv har skrevet denne tekst eller kopieret den fra en offentlig kilde
 (se $1 for detaljer). <strong>OVERFØR IKKE OPHAVSRETSLIGT BESKYTTET INDHOLD!</strong>',
-'longpagewarning'                  => '<strong>ADVARSEL: Denne side er $1 kilobyte stor; nogle browsere kan have problemer med at redigere sider der nærmer sig eller er større end 32 Kb. 
+'longpagewarning'                  => '<strong>ADVARSEL: Denne side er $1 kilobyte stor; nogle browsere kan have problemer med at redigere sider der nærmer sig eller er større end 32 kb. 
 Overvej om siden kan opdeles i mindre dele.</strong>',
 'longpageerror'                    => '<strong>FEJL: Teksten, som du ville gemme, er $1 kB stor. Det er større end det tilladet maksimum på $2 kB. Det er ikke muligt at gemme.</strong>',
 'readonlywarning'                  => '<strong>ADVARSEL: Databasen er låst på grund af vedligeholdelse,

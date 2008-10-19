@@ -5,6 +5,7 @@
  * @file
  *
  * @author Alno
+ * @author Urhixidur
  * @author לערי ריינהארט
  */
 
@@ -388,10 +389,9 @@ ilay bokotra \"Tehirizo\" ianao. <br />",
 'editingold'             => "<strong>FAMPITANDREMANA: Ity pejy ity dia efa lany daty io votoatiny ovainao io.
 Raha io no tahirizinao, dia ho very ny fanovana ity pejy ity rehetra taorian'io fanovana io.</strong>",
 'yourdiff'               => 'Fampitahana',
-'longpagewarning'        => "
-<strong>FAMPITANDREMANA: Mahatratra $1 kilooktety ny hangezan'ity pejy ity; 
+'longpagewarning'        => "<strong>FAMPITANDREMANA: Mahatratra $1 kilooktety ny hangezan'ity pejy ity; 
 Ny navigateur sasantsasany dia mety hanana olana
-amin'ny fanovana ny pejy manakaiky na mihoatra ny 32ko.
+amin'ny fanovana ny pejy manakaiky na mihoatra ny 32 ko.
 Tsara raha saratsarahinao ho fizarana maromaro ity pejy ity.</strong>",
 'readonlywarning'        => '<strong>FAMPITANDREMANA: Nohidiana noho ny antony fikolokoloana aloha ny banky angona,
 koa tsy afaka mitahiry ny fanovana nataonao aloha ianao izao. Angamba tokony hanao Couper coller aloha 

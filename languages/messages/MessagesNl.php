@@ -928,7 +928,7 @@ Hierbij belooft u ons tevens dat u deze tekst zelf hebt geschreven, of overgenom
 Als u niet wilt dat uw teksten rigoureus aangepast worden door anderen, plaats ze hier dan niet.<br />
 U belooft ook u dat u de oorspronkelijke auteur bent van dit materiaal, of dat u het hebt gekopieerd uit een bron in het publieke domein, of een soortgelijke vrije bron (zie $1 voor details).
 <strong>GEBRUIK GEEN MATERIAAL DAT BESCHERMD WORDT DOOR AUTEURSRECHT, TENZIJ U DAARVOOR TOESTEMMING HEBT!</strong>',
-'longpagewarning'                  => "<strong>WAARSCHUWING: Deze pagina is $1 kilobyte groot; sommige browsers hebben problemen met het bewerken van pagina's die groter zijn dan 32kb.
+'longpagewarning'                  => "<strong>WAARSCHUWING: Deze pagina is $1 kilobyte groot; sommige browsers hebben problemen met het bewerken van pagina's die groter zijn dan 32 kilobyte.
 Wellicht kan deze pagina gesplitst worden in kleinere delen.</strong>",
 'longpageerror'                    => '<strong>FOUT: de tekst die u hebt toegevoegd heeft is $1 kilobyte groot, wat groter is dan het maximum van $2 kilobyte.
 Opslaan is niet mogelijk.</strong>',
@@ -1894,7 +1894,7 @@ Er kan [[{{MediaWiki:Listgrouprights-helppage}}|extra informatie]] over individu
 'mailnologintext' => 'U moet [[Special:UserLogin|aangemeld]] zijn en een geldig e-mailadres in uw [[Special:Preferences|voorkeuren]] vermelden om andere gebruikers te kunnen e-mailen.',
 'emailuser'       => 'Deze gebruiker e-mailen',
 'emailpage'       => 'Gebruiker e-mailen',
-'emailpagetext'   => 'Als deze gebruiker een geldig e-mailadres heeft opgegeven, dan kunt u via dit formulier een bericht verzenden.
+'emailpagetext'   => 'Via dit formulier kunt u een e-mail aan deze gebruiker verzenden.
 Het e-mailadres dat u hebt opgegeven bij [[Special:Preferences|uw voorkeuren]] wordt als afzender gebruikt.
 De ontvanger kan dus direct naar u reageren.',
 'usermailererror' => 'Foutmelding bij het verzenden:',
@@ -3183,16 +3183,5 @@ Voer de bestandsnaam in zonder het voorvoegsel "{{ns:image}}:".',
 #Regels die beginnen met "#" worden als opmerking behandeld
 
 #Zet alle Put all reguliere expressiefragmenten boven deze regel. Laat deze regel onveranderd</pre>',
-
-# Special:Nuke
-'nuke'               => 'Massaal verwijderen',
-'nuke-nopages'       => "Geen nieuwe pagina's van [[Special:Contributions/$1|$1]] in de recente wijzigingen.",
-'nuke-list'          => "De onderstaande pagina's zijn recentelijk aangemaakt door [[Special:Contributions/$1|$1]]; voer een reden in en klik op de knop om ze te verwijderen.",
-'nuke-defaultreason' => "Massaal verwijderen van pagina's van $1",
-'nuke-tools'         => "Dit hulpmiddel maakt het mogelijk massaal pagina's te verwijderen die recentelijk zijn aangemaakt door een gebruiker of IP-adres.
-Voer de gebruikernaam of het IP-adres in voor een lijst van te verwijderen pagina's.",
-'nuke-submit-user'   => 'OK',
-'nuke-submit-delete' => 'Geselecteerde verwijderen',
-'right-nuke'         => "Massaal pagina's verwijderen",
 
 );

@@ -540,6 +540,7 @@ $messages = array(
 'readonlytext'         => '데이터베이스가 잠겨 있어서 문서를 편집할 수 없습니다. 데이터베이스 관리가 끝난 후에는 정상으로 돌아올 것입니다.
 
 관리자가 데이터베이스를 잠글 때 남긴 메시지는 다음과 같습니다: $1',
+'missingarticle-rev'   => '(판번호: $1)',
 'missingarticle-diff'  => '(차이: $1, $2)',
 'readonly_lag'         => '슬레이브 데이터베이스가 마스터 서버의 자료를 갱신하는 중입니다. 데이터베이스가 자동으로 잠겨 있습니다.',
 'internalerror'        => '내부 오류',
@@ -575,6 +576,11 @@ $messages = array(
 'ns-specialprotected'  => '{{ns:special}} 네임스페이스의 문서는 편집할 수 없습니다.',
 'titleprotected'       => "[[User:$1|$1]] 사용자가 문서 생성을 금지했습니다.
 이유는 다음과 같습니다. ‘''$2''’",
+
+# Virus scanner
+'virus-badscanner'     => '잘못된 설정: 알 수 없는 바이러스 검사기: <i>$1</i>',
+'virus-scanfailed'     => '검사 실패 (코드 $1)',
+'virus-unknownscanner' => '알려지지 않은 백신:',
 
 # Login and logout pages
 'logouttitle'                => '로그아웃',
@@ -823,6 +829,9 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'deleted-notice'                   => '이 문서는 삭제되어 있습니다.
 이 문서의 삭제 기록은 다음과 같습니다.',
 
+# Parser/template warnings
+'expensive-parserfunction-category' => '느린 파서 함수 호출을 너무 많이 하는 문서',
+
 # "Undo" feature
 'undo-success' => '이 편집을 되돌리려면 아래의 변경되는 사항을 확인한 후 저장해주세요.',
 'undo-failure' => '중간의 다른 편집과 충돌하여 이 편집을 되돌릴 수 없습니다.',
@@ -867,11 +876,12 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 [[Special:Search|위키 검색 기능]]을 이용해 관련 문서를 찾아보세요.',
 
 # Revision deletion
-'rev-delundel'      => '보이기/숨기기',
-'revisiondelete'    => '버전 삭제/복구',
-'pagehist'          => '문서 역사',
-'deletedhist'       => '삭제된 역사',
-'revdelete-content' => '내용',
+'rev-delundel'       => '보이기/숨기기',
+'revisiondelete'     => '버전 삭제/복구',
+'revdelete-selected' => '[[:$1]]의 선택된 판:',
+'pagehist'           => '문서 역사',
+'deletedhist'        => '삭제된 역사',
+'revdelete-content'  => '내용',
 
 # Merge log
 'mergelog' => '합병 기록',
@@ -1733,6 +1743,7 @@ $1',
 'ipboptions'                  => '2시간:2 hours,1일:1 day,3일:3 days,1주일:1 week,2주일:2 weeks,1개월:1 month,3개월:3 months,6개월:6 months,1년:1 year,무기한:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => '수동으로 지정',
 'ipbotherreason'              => '다른 이유/추가적인 이유:',
+'ipbwatchuser'                => '이 사용자의 사용자 및 사용자토론 문서를 주시',
 'badipaddress'                => '잘못된 IP 주소',
 'blockipsuccesssub'           => '차단 완료',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] 사용자가 차단되었습니다. 차단된 사용자 목록은 [[Special:IPBlockList|여기]]에서 볼 수 있습니다.',
@@ -1882,7 +1893,7 @@ $1',
 'importtext' => '원본 위키에서 [[Special:Export|내보내기]] 기능을 사용해 파일을 내려받아서 여기에 올려주세요.',
 
 # Import log
-'importlogpage'             => '파일 올리기 기록',
+'importlogpage'             => '가져오기 기록',
 'importlogpagetext'         => '다른 위키에서 가져온 문서 기록입니다.',
 'import-logentry-interwiki' => '$1을(를) 다른 위키에서 가져왔습니다.',
 
@@ -2223,6 +2234,9 @@ $1',
 
 # Special:SpecialPages
 'specialpages'                   => '특수 문서 목록',
+'specialpages-note'              => '----
+* 일반 특수 문서.
+* <span class="mw-specialpagerestricted">제한된 특수 문서.</span>',
 'specialpages-group-maintenance' => '관리용 목록',
 'specialpages-group-other'       => '다른 특수문서',
 'specialpages-group-login'       => '로그인 / 등록',
@@ -2230,5 +2244,9 @@ $1',
 'specialpages-group-media'       => '파일 관리',
 'specialpages-group-users'       => '사용자와 권한',
 'specialpages-group-highuse'     => '많이 쓰이는 문서 목록',
+'specialpages-group-pages'       => '문서 목록',
+'specialpages-group-pagetools'   => '문서 도구',
+'specialpages-group-wiki'        => '위키 정보와 도구',
+'specialpages-group-redirects'   => '넘겨주기 특수 문서',
 
 );

@@ -16,6 +16,7 @@
  * @author Rodrigo Calanca Nishino
  * @author Sir Lestaty de Lioncourt
  * @author Sérgio Ribeiro
+ * @author Urhixidur
  * @author Villate
  * @author Waldir
  * @author Yves Marques Junqueira
@@ -759,7 +760,7 @@ Você está, ao mesmo tempo, a garantir-nos que isto é algo escrito por si, ou 
 Você está, ao mesmo tempo, a garantir-nos que isto é algo escrito por si, ou algo copiado de alguma fonte de textos em domínio público ou similarmente de teor livre (veja $1 para detalhes).
 <strong>NÃO ENVIE TRABALHO PROTEGIDO POR DIREITOS DE AUTOR SEM A DEVIDA PERMISSÃO!</strong>',
 'longpagewarning'                  => '<strong>AVISO: Esta página possui $1 kilobytes; alguns
-navegadores possuem problemas em editar páginas maiores que 32kb.
+navegadores possuem problemas em editar páginas maiores que 32 kb.
 Por favor, considere seccionar a página em secções de menor dimensão.</strong>',
 'longpageerror'                    => '<strong>ERRO: O texto de página que você submeteu tem mais de $1 kilobytes em tamanho, que é maior que o máximo de $2 kilobytes. A página não pode ser salva.</strong>',
 'readonlywarning'                  => '<strong>AVISO: A base de dados foi bloqueada para manutenção, pelo que não poderá salvar a sua edição neste momento.
@@ -1687,8 +1688,8 @@ Se encontram disponíveis [[{{MediaWiki:Listgrouprights-helppage}}|informações
 'mailnologintext' => 'Necessita de estar [[Special:UserLogin|autenticado]] e de possuir um endereço de e-mail válido nas suas [[Special:Preferences|preferências]] para poder enviar um e-mail a outros utilizadores.',
 'emailuser'       => 'Contactar este utilizador',
 'emailpage'       => 'Contactar utilizador',
-'emailpagetext'   => 'Se o utilizador introduziu um endereço válido de e-mail nas suas preferências, poderá usar o formulário abaixo para lhe enviar uma mensagem.
-O endereço que introduziu nas [[Special:Preferences|suas preferências]] irá aparecer no campo "From" do e-mail, para que o destinatário lhe possa responder directamente.',
+'emailpagetext'   => 'Utilize o formulário abaixo para enviar uma mensagem a este utilizador.
+O endereço que você introduziu nas [[Special:Preferences|suas preferências]] irá aparecer no campo "Remetente" do e-mail, para que o destinatário lhe possa responder directamente.',
 'usermailererror' => 'Objecto de correio retornou um erro:',
 'defemailsubject' => 'E-mail: {{SITENAME}}',
 'noemailtitle'    => 'Sem endereço de e-mail',
@@ -2905,15 +2906,5 @@ Entre com o nome de ficheiro sem fornecer o prefixo "{{ns:image}}:".',
 # Aqueles que corresponderem serão exibidos como imagens, caso contrário, apenas um link para a imagem será mostrada
 # As linhas que começam com # são tratadas como comentários
 # Coloque todos os fragmentos de regex acima dessa linha. Deixe esta linha exatamente como ela é </ pre>',
-
-# Special:Nuke
-'nuke'               => 'Eliminação em massa',
-'nuke-nopages'       => 'Não há páginas criadas por [[Special:Contributions/$1|$1]] nas mudanças recentes.',
-'nuke-list'          => 'As páginas a seguir foram criadas recentemente por [[Special:Contributions/$1|$1]]; forneça uma justificativa e pressione o botão a seguir para eliminá-las.',
-'nuke-defaultreason' => 'Eliminação em massa de páginas criadas por $1',
-'nuke-tools'         => 'Esta ferramenta permite a eliminação em massa de páginas recentemente criadas por um utilizador ou IP em específico. Forneça o nome de utilizador ou IP para obter uma lista de páginas a eliminar:',
-'nuke-submit-user'   => 'Ir',
-'nuke-submit-delete' => 'Eliminar as seleccionadas',
-'right-nuke'         => 'Eliminar páginas em massa',
 
 );

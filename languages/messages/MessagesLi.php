@@ -7,6 +7,7 @@
  * @author Cicero
  * @author Matthias
  * @author Ooswesthoesbes
+ * @author Pahles
  * @author Tibor
  * @author לערי ריינהארט
  */
@@ -572,7 +573,7 @@ Veur dien e-mailadres in en bevestig 'm bie [[Special:Preferences|dien veurkäö
 'nosuchsectiontext'                => "Doe probeers 'n subkop te bewerke dae neet bestuit. Omdet subkop $1 neet bestuit, kin diene bewerking ouch neet waere opgeslage.",
 'loginreqtitle'                    => 'Aanmelje verplich',
 'loginreqlink'                     => 'inglogge',
-'loginreqpagetext'                 => 'De mos $1 om anger pazjenas te bekieke.',
+'loginreqpagetext'                 => "De mos $1 om anger pazjena's te bekieke.",
 'accmailtitle'                     => 'Wachwaord versjtuurd.',
 'accmailtext'                      => "'t Wachwaord veur '$1' is nao $2 versjtuurd.",
 'newarticle'                       => '(Nuuj)',
@@ -679,7 +680,7 @@ De door $3 opgegaeve reje is ''$2''",
 'next'                => 'volgende',
 'last'                => 'vörrige',
 'page_first'          => 'ierste',
-'page_last'           => 'litste',
+'page_last'           => 'lèste',
 'histlegend'          => 'Verklaoring aafkortinge: (wijz) = versjil mit actueile versie, (vörrige) = versjil mit vörrige versie, K = kleine verangering',
 'deletedrev'          => '[gewis]',
 'histfirst'           => 'Aajste',
@@ -1009,7 +1010,7 @@ Mèrk op dat hun indexe van {{SITENAME}} content e bietje gedatierd kint zien.',
 'rcshowhideanons'                   => '$1 anonieme gebroekers',
 'rcshowhidepatr'                    => '$1 gecontroleerde bewerkinge',
 'rcshowhidemine'                    => '$1 mien bewerkinge',
-'rclinks'                           => 'Bekiek de $1 litste verangeringe van de aafgelaupe $2 daag.<br />$3',
+'rclinks'                           => 'Bekiek de $1 lèste verangeringe van de aafgeloupe $2 daag.<br />$3',
 'diff'                              => 'vers',
 'hist'                              => 'gesj',
 'hide'                              => 'Versjtaek',
@@ -1206,7 +1207,7 @@ Klikke op 'ne kolomkop verangert de sortering.",
 'download'           => 'Downloade',
 
 # Unwatched pages
-'unwatchedpages' => 'Neet-gevolgde pazjenas',
+'unwatchedpages' => "Neet-gevolgde pazjena's",
 
 # List redirects
 'listredirects' => 'Lies van redirects',
@@ -1227,7 +1228,7 @@ Klikke op 'ne kolomkop verangert de sortering.",
 # Statistics
 'statistics'              => 'Sjtattestieke',
 'statistics-header-users' => 'Stattestieke euver gebroekers',
-'statistics-mostpopular'  => 'Meisbekeke pazjenas',
+'statistics-mostpopular'  => "Meisbekeke pazjena's",
 
 'disambiguations'      => "Verdudelikingspazjena's",
 'disambiguationspage'  => 'Template:Verdudeliking',
@@ -1246,7 +1247,7 @@ Op eder raegel vings te de ierste redirectpazjena, de twiede redirectpazjena en 
 'brokenredirects-edit'   => '(bewerke)',
 'brokenredirects-delete' => '(wisse)',
 
-'withoutinterwiki'         => 'Interwikiloze pazjenas',
+'withoutinterwiki'         => "Pazjena's zónger interwiki's",
 'withoutinterwiki-summary' => "De volgende pagina's linke neet nao versies in 'n anger taal:",
 'withoutinterwiki-legend'  => 'Veurvoegsel',
 'withoutinterwiki-submit'  => 'Toean',
@@ -1257,7 +1258,7 @@ Op eder raegel vings te de ierste redirectpazjena, de twiede redirectpazjena en 
 'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
 'ncategories'             => '$1 {{PLURAL:$1|categorie|categorië}}',
 'nlinks'                  => '$1 {{PLURAL:$1|verwiezing|verwiezinge}}',
-'nmembers'                => '$1 {{PLURAL:$1|leed|lèjjer}}',
+'nmembers'                => '$1 {{PLURAL:$1|lid|lede}}',
 'nrevisions'              => '$1 {{PLURAL:$1|herzening|herzeninge}}',
 'nviews'                  => '{{PLURAL:$1|eine kieër|$1 kieër}} bekeke',
 'specialpage-empty'       => 'Deze pagina is laeg.',
@@ -1278,7 +1279,7 @@ Op eder raegel vings te de ierste redirectpazjena, de twiede redirectpazjena en 
 'mostcategories'          => 'Artikele mit de meiste kategorieë',
 'mostimages'              => 'Meis gelinkde aafbeildinge',
 'mostrevisions'           => 'Artikele mit de meiste bewirkinge',
-'prefixindex'             => 'Indèks dèr veurveugsele',
+'prefixindex'             => 'Prefixindex',
 'shortpages'              => 'Korte artikele',
 'longpages'               => 'Lang artikele',
 'deadendpages'            => "Doedloupende pazjena's",
@@ -1345,7 +1346,7 @@ Op eder raegel vings te de ierste redirectpazjena, de twiede redirectpazjena en 
 'special-categories-sort-abc'   => 'alfabetisch sortere',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Gewisdje gebroekersbiedraag',
+'deletedcontributions' => 'Gewisde gebroekersbiedrage',
 
 # Special:LinkSearch
 'linksearch'       => 'Extern links zeuke',
@@ -1620,7 +1621,7 @@ $1",
 'mycontris'     => 'Mien biedraag',
 'contribsub2'   => 'Veur $1 ($2)',
 'nocontribs'    => 'Gein wijzigingen gevonden die aan de gestelde criteria voldoen.',
-'uctop'         => ' (litste verangering)',
+'uctop'         => ' (lèste verangering)',
 'month'         => 'Van maondj (en irder):',
 'year'          => 'Van jaor (en irder):',
 
@@ -1875,7 +1876,7 @@ Alle transwiki-importhanjelinge waere opgeslage in 't [[Special:Log/import|impor
 'tooltip-pt-mytalk'               => 'Mien euverlikpazjena',
 'tooltip-pt-anontalk'             => 'Euverlèk euver verangeringe doer dit IP addres',
 'tooltip-pt-preferences'          => 'Mien veurkäöre',
-'tooltip-pt-watchlist'            => 'De liest van gevolgde pazjenas.',
+'tooltip-pt-watchlist'            => "De lies van gevolgde pazjena's.",
 'tooltip-pt-mycontris'            => 'Liest van mien biedraag',
 'tooltip-pt-login'                => 'De weurs aangemodigd om in te logge, meh t is neet verplich.',
 'tooltip-pt-anonlogin'            => 'De weurs aangemodigd om in te logge, meh t is neet verplich.',
@@ -1893,7 +1894,7 @@ Alle transwiki-importhanjelinge waere opgeslage in 't [[Special:Log/import|impor
 'tooltip-ca-unwatch'              => 'Dees pazjena van volgliest aafhaole',
 'tooltip-search'                  => 'Doorzeuk {{SITENAME}}',
 'tooltip-search-go'               => "Gao nao 'ne pazjena mit dezelfde naam es d'r bestuit",
-'tooltip-search-fulltext'         => 'Zeuk de pazjenas veur deze teks',
+'tooltip-search-fulltext'         => "Zeuk de pazjena's veur dees teks",
 'tooltip-p-logo'                  => 'Veurblaad',
 'tooltip-n-mainpage'              => "Bezeuk 't veurblaad",
 'tooltip-n-portal'                => 'Euver t projèk, was e kins doon, woe se dinger kins vinge',
@@ -1901,14 +1902,14 @@ Alle transwiki-importhanjelinge waere opgeslage in 't [[Special:Log/import|impor
 'tooltip-n-recentchanges'         => 'De lies van recènte verangeringe in de wiki.',
 'tooltip-n-randompage'            => 'Laadt n willekäörige pazjena',
 'tooltip-n-help'                  => 'De plek om informatie euver dit projèk te vinge.',
-'tooltip-t-whatlinkshere'         => 'Liest van alle wiki pazjenas die hieheen linke',
-'tooltip-t-recentchangeslinked'   => 'Recènte verangeringe in pazjenas woeheen gelinkt weurd',
+'tooltip-t-whatlinkshere'         => "Lies van alle wikipazjena's die hieheen linke",
+'tooltip-t-recentchangeslinked'   => "Recènte verangeringe in pazjena's woeheen gelink weurd",
 'tooltip-feed-rss'                => 'RSS feed veur dees pazjena',
 'tooltip-feed-atom'               => 'Atom feed veur dees pazjena',
 'tooltip-t-contributions'         => 'Bekiek de liest van contributies van dizze gebroeker',
 'tooltip-t-emailuser'             => 'Sjtuur inne mail noa dizze gebroeker',
 'tooltip-t-upload'                => 'Upload plaetsjes of media besjtande',
-'tooltip-t-specialpages'          => 'Liest van alle speciale pazjenas',
+'tooltip-t-specialpages'          => "Lies van alle speciaal pazjena's",
 'tooltip-t-print'                 => 'Printvruntjelike versie van deze pagina',
 'tooltip-t-permalink'             => 'Permanente link nao deze versie van de pagina',
 'tooltip-ca-nstab-main'           => 'Bekiek de pazjena',
@@ -2392,7 +2393,7 @@ $1',
 # Live preview
 'livepreview-loading' => 'Laje…',
 'livepreview-ready'   => 'Laje… Vaerdig!',
-'livepreview-failed'  => 'Live veurvertuun mislök!
+'livepreview-failed'  => 'Live veurvertuin mislök!
 Probeer normaal veurvertuin.',
 'livepreview-error'   => 'Verbènje mislök: $1 "$2"
 Probeer normaal veurvertuin.',
@@ -2492,15 +2493,5 @@ Gaef de bestandjsnaam zónger \'t "{{ns:image}}:" veurvoogsel.',
 # Special:BlankPage
 'blankpage'              => 'Laeg pazjena',
 'intentionallyblankpage' => 'Deze pagina is bewus laeg gelaote en wurt gebroek veur benchmarks, enzovoort.',
-
-# Special:Nuke
-'nuke'               => 'Massaal verwijdere',
-'nuke-nopages'       => "Gein nuje pagina's van [[special:Contributions/$1|$1]] in de recente wijziginge.",
-'nuke-list'          => "De onderstaonde pagina's zien recentelijk aangemaakt door [[Special:Contributions/$1|$1]]; voer 'n rede in en klik op de knop om ze te verwijdere/",
-'nuke-defaultreason' => "Massaal verwijdere van pagina's van $1",
-'nuke-tools'         => "Dit hulpmiddel maakt 't meugelik massaal pagina's te wisse die recentelijk zien aangemaakt door 'n gebroeker of IP-adres. Voer de gebroekersnaam of 't IP-adres in veur 'n lijst van te wisse pagina's:",
-'nuke-submit-user'   => 'Gao',
-'nuke-submit-delete' => 'Geslecteerd wisse',
-'right-nuke'         => "Massaal pagina's verwi'jdere",
 
 );

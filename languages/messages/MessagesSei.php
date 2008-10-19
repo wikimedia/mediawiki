@@ -7,6 +7,7 @@
  * @author Ccaxjoj Iteja Z Iti Poop
  * @author SeriCtam
  * @author Teak
+ * @author Urhixidur
  */
 
 $messages = array(
@@ -523,7 +524,7 @@ Jan lajxepe occuram me usadad proxy service anon web-based buggy.</strong>',
 'nonunicodebrowser'         => "<strong>ATTENCION: Mebrowser necoccebj compliantede 'unicode' (characterám sans huáp ti). Workaround coccebj hant itide me permiccion ticpatlöx páhinám: non-ASCII characterám coccebj codes hexidecimales.</strong>",
 'editingold'                => '<strong>ATTENCION: Me coccebj ticpatlöx revicion outdatenam zode jan páhina. Me xuniim zo, jömde quiíx hunde jan revicion coccebj delar poop.</strong>',
 'yourdiff'                  => 'Quiíx',
-'longpagewarning'           => '<strong>ATTENCION: Jan páhina coccebj $1 kilobynám; browserám pac pos-coccebj problemámde ticpatlöx páhinám necade jöx plusöxde 32kb.
+'longpagewarning'           => '<strong>ATTENCION: Jan páhina coccebj $1 kilobynám; browserám pac pos-coccebj problemámde ticpatlöx páhinám necade jöx plusöxde 32 kb.
 Cahöx ticpatlöx jan páhina minöx seccion iti.</strong>',
 'longpageerror'             => '<strong>RÖMJ: Textua zo mexuniim coccebj $1 kilobytenám, jan coccebj plusöxde maxde $2 kilobytenám. Zo necoccebj xuniim.</strong>',
 'readonlywarning'           => "<strong>ATTENCION: Database zo coccebj lockomde kyépöx, zo necoccebj posde xuniim meticpatlöx cmaa. Me coccebj considerom ''cut-n-paste'' textua zo ciúchande textua iti ö xuniimde diijömdexepe.</strong>",

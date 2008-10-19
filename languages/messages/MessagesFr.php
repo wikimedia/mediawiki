@@ -1729,7 +1729,7 @@ Il peut y avoir des [[{{MediaWiki:Listgrouprights-helppage}}|informations additi
 'mailnologintext' => 'Vous devez être [[Special:UserLogin|connecté]] et avoir indiqué une adresse électronique valide dans vos [[Special:Preferences|préférences]] pour avoir la permission d’envoyer un message à un autre utilisateur.',
 'emailuser'       => 'Envoyer un message à cet utilisateur',
 'emailpage'       => 'Envoyer un courriel à l’utilisateur',
-'emailpagetext'   => 'Si cet utilisateur a indiqué une adresse électronique valide dans ses préférences, le formulaire ci-dessous lui enverra un message.
+'emailpagetext'   => 'Vous pouvez utiliser le formulaire ci-dessous pour envoyer un courriel à cet utilisateur.
 L’adresse électronique que vous avez indiquée dans [[Special:Preferences|vos préférences]] apparaîtra dans le champ « Expéditeur » de votre message. Ainsi, le destinataire pourra vous répondre directement.',
 'usermailererror' => 'Erreur dans le sujet du courriel :',
 'defemailsubject' => 'Courriel envoyé depuis {{SITENAME}}',
@@ -2967,15 +2967,5 @@ Entrez le nom du fichier sans le préfixe « {{ns:image}}: ».',
 #Les lignes commençant avec # seront considérées comme des commentaires
 
 #Indiquez tous les fragments d’expressions régulières en bas de celle-ligne. Cette dernière doit être laissée exactement telle quelle.</pre>",
-
-# Special:Nuke
-'nuke'               => 'Suppression en masse',
-'nuke-nopages'       => 'Aucune nouvelle page créée par [[Special:Contributions/$1|$1]] dans la liste des changements récents.',
-'nuke-list'          => 'Les pages suivantes ont été créées récemment par [[Special:Contributions/$1|$1]]; Indiquer un commentaire et cliquer sur le bouton pour les supprimer.',
-'nuke-defaultreason' => 'Suppression en masse des pages ajoutées par $1',
-'nuke-tools'         => 'Cet outil autorise les suppressions en masse des pages ajoutées récemment par un utilisateur enregistré ou par une adresse IP. Indiquer l’adresse IP afin d’obtenir la liste des pages à supprimer :',
-'nuke-submit-user'   => 'Valider',
-'nuke-submit-delete' => 'Suppression sélectionnée',
-'right-nuke'         => 'Supprimer des pages en masse',
 
 );

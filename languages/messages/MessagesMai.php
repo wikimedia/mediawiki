@@ -5,6 +5,7 @@
  * @file
  *
  * @author Ggajendra
+ * @author Meno25
  */
 
 $fallback = 'hi';
@@ -104,7 +105,7 @@ $messages = array(
 'jumptosearch'     => 'ताकू',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'            => 'विषयमे {{वेब्साइटक नाम}}',
+'aboutsite'            => 'विषयमे {{SITENAME}}',
 'aboutpage'            => 'Project:विवरण',
 'copyrightpage'        => '{{ns:project}}:सर्वाधिकार',
 'disclaimers'          => 'अनाधिकार घोषणा',

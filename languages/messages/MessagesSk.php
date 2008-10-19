@@ -11,6 +11,7 @@
  * @author Mormegil
  * @author Palica
  * @author Sp5uhe
+ * @author Urhixidur
  * @author Valasek
  * @author לערי ריינהארט
  */
@@ -756,7 +757,7 @@ Týmto sa právne zaväzujete, že ste tento text buď napísali sám, alebo že
 z voľného diela (public domain) alebo podobného zdroja neobmedzeného autorskými právami (podrobnosti: $1).
 <strong>NEUMIESTŇUJTE SEM BEZ POVOLENIA DIELA CHRÁNENÉ AUTORSKÝM PRÁVOM!</strong>',
 'longpagewarning'                  => '<strong>UPOZORNENIE: Táto stránka má $1 kilobajtov; niektoré
-prehliadače by mohli mať problémy s úpravou stránok, ktorých veľkosť sa blíži k alebo presahuje 32kb.
+prehliadače by mohli mať problémy s úpravou stránok, ktorých veľkosť sa blíži k alebo presahuje 32 kb.
 Zvážte, či by nebolo možné rozdeliť stránku na menšie sekcie.</strong>',
 'longpageerror'                    => '<strong>CHYBA: Text, ktorý ste poslali má $1 kilobajtov, čo je viac ako maximum $2 kilobajtov. Nie je možné ho uložiť.</strong>',
 'readonlywarning'                  => '<strong>UPOZORNENIE: Databáza bola počas upravovania stránky zamknutá z dôvodu údržby,
@@ -2928,15 +2929,5 @@ Zadajte názov súboru bez predpony „{{ns:image}}:“.',
 #Riadky, ktoré začínajú znakom # sa považujú za komentáre
 
 #Napíšte všetky časti reg. výrazov nad tento riadok. Nechajte tento riadok presne tak, ako je</pre>',
-
-# Special:Nuke
-'nuke'               => 'Hromadné mazanie',
-'nuke-nopages'       => 'V posledných zmenách sa nenachádzajú nové stránky od [[Special:Contributions/$1|$1]].',
-'nuke-list'          => '[[Special:Contributions/$1|$1]] nedávno vytvoril nasledovné nové stránky; vyplňte komentár a stlačením tlačidla ich vymažete.',
-'nuke-defaultreason' => 'Hromadné odstránenie stránok, ktoré pridal $1',
-'nuke-tools'         => 'Tento nástroj umožňuje hromadné odstránenie stránok, ktoré nedávno pridal zadaný používateľ alebo IP. Zadajte používateľa alebo IP a dostanente zoznam stránok na zmazanie:',
-'nuke-submit-user'   => 'Vykonať',
-'nuke-submit-delete' => 'Zmazať vybrané',
-'right-nuke'         => 'Hromadné mazanie stránok',
 
 );

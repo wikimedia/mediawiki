@@ -315,7 +315,4 @@ Lantawa sa [[Special:Version|version kang page]].',
 # Special:SpecialPages
 'specialpages' => 'Manga espesyal nga pahina',
 
-# Special:Nuke
-'nuke-submit-user' => 'Agto',
-
 );

@@ -7,6 +7,7 @@
  * @author LeonardoG
  * @author Lijealso
  * @author Rodrigo Calanca Nishino
+ * @author Urhixidur
  * @author Yves Marques Junqueira
  * @author לערי ריינהארט
  * @author 555
@@ -727,7 +728,7 @@ Você está, ao mesmo tempo, garantindo-nos que isto é algo escrito por você m
 'copyrightwarning2'         => 'Por favor, note que todas as suas contribuições em {{SITENAME}} podem ser editadas, alteradas ou removidas por outros contribuidores. Se você não deseja que o seu texto seja inexoravelmente editado, não o envie.<br />
 Você está, ao mesmo tempo, a garantir-nos que isto é algo escrito por si, ou algo copiado de alguma fonte de textos em domínio público ou similarmente de teor livre (veja $1 para detalhes).
 <strong>NÃO ENVIE TRABALHO PROTEGIDO POR DIREITOS DE AUTOR SEM A DEVIDA PERMISSÃO!</strong>',
-'longpagewarning'           => '<strong>CUIDADO: Esta página tem $1 kilobytes; alguns browsers podem ter problemas ao editar páginas maiores que 32kb.
+'longpagewarning'           => '<strong>CUIDADO: Esta página tem $1 kilobytes; alguns browsers podem ter problemas ao editar páginas maiores que 32 kb.
 Por gentileza, considere quebrar a página em sessões menores.</strong>',
 'longpageerror'             => '<strong>ERRO: O texto de página que você submeteu tem mais de $1 kilobytes em tamanho, que é maior que o máximo de $2 kilobytes. A página não pode ser salva.</strong>',
 'readonlywarning'           => '<strong>CUIDADO: O banco de dados está sendo bloqueado para manutenção.

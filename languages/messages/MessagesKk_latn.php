@@ -7,6 +7,7 @@
  * @author AlefZet
  * @author Atabek
  * @author GaiJin
+ * @author Urhixidur
  */
 
 /**
@@ -992,8 +993,8 @@ Tağı da, bul mağlumat öziñiz jazğanıñızğa, ne qoğam qazınasınan nem
 Eger jazwıñızdıñ erkin öñdelwin qalamasañız, mında jarïyalamawıñız jön.<br />
 Tağı da, bul mağlumat öziñiz jazğanıñızğa, ne qoğam qazınasınan nemese sondaý aşıq qorlardan köşirilgenine bizge wäde beresiz (köbirek aqparat üşin $1 qwjatın qarañız).
 <strong>AWTORLIQ QUQIQPEN QORĞAWLI MAĞLUMATTI RUQSATSIZ JARÏYALAMAÑIZ!</strong>',
-'longpagewarning'                  => '<strong>QULAQTANDIRW: Bul bettiñ mölşeri — $1 KB;
-keýbir şolğıştarda bet mölşeri 32 KB jetse ne onı assa öñdew kürdeli bolwı mümkin.
+'longpagewarning'                  => '<strong>QULAQTANDIRW: Bul bettiñ mölşeri — $1 kB;
+keýbir şolğıştarda bet mölşeri 32 kB jetse ne onı assa öñdew kürdeli bolwı mümkin.
 Betti birneşe kişkin bölimderge bölip köriñiz.</strong>',
 'longpageerror'                    => '<strong>QATELİK: Jöneltpek mätiniñizdin mölşeri — $1 KB, eñ köbi $2 KB ruqsat etilgen mölşerinen asqan.
 Bul saqtaý alınbaýdı.</strong>',

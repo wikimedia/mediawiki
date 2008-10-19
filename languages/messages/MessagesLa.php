@@ -1109,6 +1109,7 @@ Pagina discretivam esse putatur si formulam adhibet ad quem [[MediaWiki:Disambig
 'wantedcategories'        => 'Categoriae desideratae',
 'wantedpages'             => 'Paginae desideratae',
 'wantedfiles'             => 'Fasciculi desiderati',
+'wantedtemplates'         => 'Formulae desideratae',
 'mostlinked'              => 'Paginae maxime annexae',
 'mostlinkedcategories'    => 'Categoriae maxime annexae',
 'mostlinkedtemplates'     => 'Formulae maxime annexae',
@@ -1208,7 +1209,7 @@ Vide etiam [[Special:WantedCategories|categorias desideratas]].',
 # E-mail user
 'emailuser'       => 'Litteras electronicas usori mittere',
 'emailpage'       => 'Mittere litteras electronicas huic usori',
-'emailpagetext'   => 'Si hic usor inscriptionem electronicam ratum in praeferentias usorum eius dedit, forma subter nuntium mittet.
+'emailpagetext'   => 'Forma subter nuntium ad usorem mittet.
 Inscriptio electronica quam in [[Special:Preferences|praeferentiis tuis]] dedis ut "Ab" inscriptione apparebit. Hoc modo usor tibi directe respondere poterit.',
 'defemailsubject' => '{{SITENAME}} - Litterae electronicae',
 'noemailtitle'    => 'Nulla inscriptio electronica',

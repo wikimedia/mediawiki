@@ -5,6 +5,7 @@
  * @file
  *
  * @author Mohau
+ * @author Urhixidur
  */
 
 $messages = array(
@@ -399,7 +400,7 @@ Ga eba o le fa ka phošo, o ka boela morago ka go šumiša konopo ya '''back''' 
 Gape o re holofetša  gore mengwalo ye e ngwadile ke wena, goba o e kopiša mothapong wa pepeneneng goba  ke mahala.
 <strong>O SE TSENYE MEŠOMO YA BATHO BA BANGWE NTLE LE TUMELLO YA BONA!</strong>',
 'longpagewarning'        => "<strong>TEMOŠO: Letlakala le le $1 kilobytes ka botelele;
-di-''browser'' tše dingwe dika ba le bothata go fetola matlakala a golena goba gofeta 32kb.
+di-''browser'' tše dingwe dika ba le bothata go fetola matlakala a golena goba gofeta 32 kb.
 
 Ka kgopela akanya ka go roba letlakala le goba le dikgaoe tše nnyenyane.</strong>",
 'templatesused'          => "''Templates'' tšeo di šomišitšwego letlakaleng le:",
@@ -1056,8 +1057,5 @@ letlakala la seswantšho ge tafola ya metadata e bulwa. Tše dingwe tša di ''fi
 
 # Special:SpecialPages
 'specialpages' => 'Matlakala a itšeng',
-
-# Special:Nuke
-'nuke-submit-user' => 'Sepela',
 
 );

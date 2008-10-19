@@ -668,7 +668,4 @@ $messages = array(
 # Special:SpecialPages
 'specialpages' => 'Pájina espesiál sira',
 
-# Special:Nuke
-'nuke-submit-user' => 'Bá',
-
 );

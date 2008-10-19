@@ -15,6 +15,7 @@
  * @author Runningfridgesrule
  * @author Srhat
  * @author Suelnur
+ * @author Urhixidur
  * @author Uğur Başak
  * @author לערי ריינהארט
  */
@@ -611,7 +612,7 @@ Ayrıca, buraya katkıda bulunarak, bu katkının kendiniz tarafından yazıldı
 <strong><center>TELİF HAKKI İLE KORUNAN HİÇBİR ÇALIŞMAYI BURAYA EKLEMEYİNİZ!</center></strong>",
 'copyrightwarning2'                => 'Lütfen, {{SITENAME}} sitesinea bulunacağınız tüm katkıların diğer üyeler tarafından düzenlenebileceğini, değiştirilebileceğini ya da silinebileceğini hatırlayın. Yazılarınızın merhametsizce değiştirilebilmesine rıza göstermiyorsanız buraya katkıda bulunmayın. <br />
 Ayrıca bu ekleyeceğiniz yazıyı sizin yazdığınızı ya da serbest kopyalama izni veren bir kaynaktan kopyaladığınızı bize taahhüt etmektesiniz (ayrıntılar için referans: $1).',
-'longpagewarning'                  => '<strong>UYARI: Bu sayfa $1 kilobayt büyüklüğündedir; bazı tarayıcılar değişiklik yaparken 32kb ve üstü büyüklüklerde sorunlar yaşayabilir. Sayfayı bölümlere ayırmaya çalışın.</strong>',
+'longpagewarning'                  => '<strong>UYARI: Bu sayfa $1 kilobayt büyüklüğündedir; bazı tarayıcılar değişiklik yaparken 32 kb ve üstü büyüklüklerde sorunlar yaşayabilir. Sayfayı bölümlere ayırmaya çalışın.</strong>',
 'longpageerror'                    => '<strong>HATA: Girdiğiniz metnin uzunluğu $1 kilobyte, ve maksimum uzunluktan $2 kilobyte daha fazladır.
 Kaydedilmesi mümkün değildir.</strong>',
 'readonlywarning'                  => '<strong>DİKKAT: Bakım nedeni ile veritabanı şu anda kilitlidir. Bu sebeple değişiklikleriniz şu anda kaydedilememektedir. Yazdıklarınızı başka bir editöre alıp saklayabilir ve daha sonra tekrar buraya getirip kaydedebilirsiniz</strong>',
@@ -2134,9 +2135,5 @@ Bir başlığı çıkarmak için, yanındaki kutucuğu işaretleyin, ve Başlık
 
 # Special:BlankPage
 'blankpage' => 'Boş sayfa',
-
-# Special:Nuke
-'nuke-submit-user'   => 'Git',
-'nuke-submit-delete' => 'Seçileni sil',
 
 );

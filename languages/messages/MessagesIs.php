@@ -11,6 +11,7 @@
  * @author S.Örvarr.S
  * @author Spacebirdy
  * @author Steinninn
+ * @author Urhixidur
  * @author לערי ריינהארט
  */
 
@@ -822,7 +823,7 @@ Ef þú vilt ekki að textanum verði breytt skaltu ekki senda hann inn hér.<br
 Þú lofar okkur einnig að þú hafir skrifað þetta sjálfur, að efnið sé í almannaeigu eða að það heyri undir frjálst leyfi. (sjá $1).
 <strong>EKKI SENDA INN HÖFUNDARRÉTTARVARIÐ EFNI ÁN LEYFIS RÉTTHAFA!</strong>',
 'longpagewarning'                  => '<strong>VIÐVÖRUN: Þessi síða er $1 kílóbæta löng; sumir
-vafrar gætu átt erfitt með að gera breytingar á síðum sem nálgast eða eru lengri en 32kb.
+vafrar gætu átt erfitt með að gera breytingar á síðum sem nálgast eða eru lengri en 32 kb.
 Vinsamlegast íhugaðu að skipta síðunni niður í smærri einingar.</strong>',
 'longpageerror'                    => '<strong>VILLA: Textinn sem þú sendir inn er $1 kílóbæti að lengd, en hámarkið er $2 kílóbæti. Ekki er hægt að vista textann.</strong>',
 'readonlywarning'                  => '<strong>AÐVÖRUN: Gagnagrunninum hefur verið læst til að unnt sé að framkvæma viðhaldsaðgerðir, svo þú getur ekki vistað breytingar þínar núna.
@@ -872,28 +873,29 @@ Hún er nú þegar til.',
 Ástæðan sem $3 gaf fyrir því er ''$2''",
 
 # History pages
-'viewpagelogs'        => 'Sýna aðgerðir varðandi þessa síðu',
-'nohistory'           => 'Þessi síða hefur enga breytingaskrá.',
-'currentrev'          => 'Núverandi útgáfa',
-'currentrev-asof'     => 'Núverandi breyting frá og með $1',
-'revisionasof'        => 'Útgáfa síðunnar $1',
-'revision-info'       => 'Útgáfa frá $1 eftir $2',
-'previousrevision'    => '←Fyrri útgáfa',
-'nextrevision'        => 'Næsta útgáfa→',
-'currentrevisionlink' => 'Núverandi útgáfa',
-'cur'                 => 'fyrri',
-'next'                => 'næst',
-'last'                => 'þessa',
-'page_first'          => 'fyrsta',
-'page_last'           => 'síðasta',
-'histlegend'          => 'Mismunarval: merktu við einvalshnappanna fyrir þær útgáfur sem á að bera saman og styddu svo á færsluhnappinn.<br />
+'viewpagelogs'           => 'Sýna aðgerðir varðandi þessa síðu',
+'nohistory'              => 'Þessi síða hefur enga breytingaskrá.',
+'currentrev'             => 'Núverandi útgáfa',
+'currentrev-asof'        => 'Núverandi breyting frá og með $1',
+'revisionasof'           => 'Útgáfa síðunnar $1',
+'revision-info'          => 'Útgáfa frá $1 eftir $2',
+'previousrevision'       => '←Fyrri útgáfa',
+'nextrevision'           => 'Næsta útgáfa→',
+'currentrevisionlink'    => 'Núverandi útgáfa',
+'cur'                    => 'fyrri',
+'next'                   => 'næst',
+'last'                   => 'þessa',
+'page_first'             => 'fyrsta',
+'page_last'              => 'síðasta',
+'histlegend'             => 'Mismunarval: merktu við einvalshnappanna fyrir þær útgáfur sem á að bera saman og styddu svo á færsluhnappinn.<br />
 Skýringartexti: (nú) = skoðanamunur á núverandi útgáfu,
 (síðast) = skoðanamunur á undanfarandi útgáfu, M = minniháttar breyting.',
-'deletedrev'          => '[eytt]',
-'histfirst'           => 'elstu',
-'histlast'            => 'yngstu',
-'historysize'         => '({{PLURAL:$1|1 bæti|$1 bæti}})',
-'historyempty'        => '(tóm)',
+'history-fieldset-title' => 'Skoða breytingaskrá',
+'deletedrev'             => '[eytt]',
+'histfirst'              => 'elstu',
+'histlast'               => 'yngstu',
+'historysize'            => '({{PLURAL:$1|1 bæti|$1 bæti}})',
+'historyempty'           => '(tóm)',
 
 # Revision feed
 'history-feed-title'          => 'Breytingaskrá',
@@ -953,6 +955,10 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'diff-h3'                 => "'''fyrirsögn (stig 3)'''",
 'diff-h4'                 => "'''fyrirsögn (stig 4)'''",
 'diff-h5'                 => "'''fyrirsögn (stig 5)'''",
+'diff-div'                => "'''skipting'''",
+'diff-ul'                 => "'''óraðaður listi'''",
+'diff-ol'                 => "'''raðaður listi'''",
+'diff-li'                 => "'''listaatriði'''",
 'diff-table'              => "'''tafla'''",
 'diff-tbody'              => "'''innihald töflu'''",
 'diff-tr'                 => "'''röð'''",
@@ -960,9 +966,14 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'diff-th'                 => "'''haus'''",
 'diff-br'                 => "'''línubil'''",
 'diff-hr'                 => "'''lárétt strik'''",
+'diff-code'               => "'''tölvukóðabálkur'''",
+'diff-dl'                 => "'''skilgreiningarlisti'''",
+'diff-dt'                 => "'''skilgreiningarhugtak'''",
+'diff-dd'                 => "'''skilgreining'''",
 'diff-input'              => "'''inntak'''",
 'diff-form'               => "'''eyðublað'''",
 'diff-img'                => "'''mynd'''",
+'diff-span'               => "'''spönn'''",
 'diff-a'                  => "'''tengill'''",
 'diff-i'                  => "'''skáletur'''",
 'diff-b'                  => "'''feitletur'''",
@@ -1126,33 +1137,38 @@ Athugaðu að skrár þeirra yfir {{SITENAME}}-efni kunna að vera úreltar.',
 'grouppage-suppress'      => '{{ns:project}}:Umsjón',
 
 # Rights
-'right-read'             => 'Lesa síður',
-'right-edit'             => 'Breyta síðum',
-'right-createpage'       => 'Gera síður (sem eru ekki spjallsíður)',
-'right-createtalk'       => 'Gera spjallsíður',
-'right-createaccount'    => 'Gera nýja notandaaðganga',
-'right-minoredit'        => 'Merkja sem minniháttarbreytingar',
-'right-move'             => 'Færa síður',
-'right-move-subpages'    => 'Færa síður með undirsíðum þeirra',
-'right-suppressredirect' => 'Ekki búa til tilvísun frá gamla nafninu þegar síða er færð',
-'right-upload'           => 'Hlaða inn skrám',
-'right-reupload'         => 'Yfirrita núverandi skrá',
-'right-reupload-own'     => 'Yfirrita núverandi skrá sem að ég hlóð inn sjálf(ur)',
-'right-purge'            => 'Hreinsa skyndiminni síðu án staðfestingar',
-'right-autoconfirmed'    => 'Breyta hálfvernduðum síðum',
-'right-nominornewtalk'   => 'Ekki láta minniháttar breytingar á spjallsíðum kveða upp áminningu um ný skilaboð',
-'right-delete'           => 'Eyða síðum',
-'right-bigdelete'        => 'Eyða síðum með stórum breytingaskrám',
-'right-deleterevision'   => 'Eyða og endurvekja sérstaka breytignar á síðum',
-'right-browsearchive'    => 'Leita í eyddum síðum',
-'right-undelete'         => 'Endurvekja eydda síðu',
-'right-suppressrevision' => 'Skoða og endurvekja breytingar faldar fyrir stjórnendum',
-'right-suppressionlog'   => 'Skoða einrænar aðgerðaskrár',
-'right-block'            => 'Banna öðrum notendum að gera breytingar',
-'right-blockemail'       => 'Banna notanda að senda tölvupóst',
-'right-hideuser'         => 'Banna notandanafn, og þannig fela það frá almenningi',
-'right-editinterface'    => 'Breyta notandaviðmótinu',
-'right-editusercssjs'    => 'Breyta CSS- og JS-skrám annarra',
+'right-read'                 => 'Lesa síður',
+'right-edit'                 => 'Breyta síðum',
+'right-createpage'           => 'Gera síður (sem eru ekki spjallsíður)',
+'right-createtalk'           => 'Gera spjallsíður',
+'right-createaccount'        => 'Gera nýja notandaaðganga',
+'right-minoredit'            => 'Merkja sem minniháttarbreytingar',
+'right-move'                 => 'Færa síður',
+'right-move-subpages'        => 'Færa síður með undirsíðum þeirra',
+'right-suppressredirect'     => 'Ekki búa til tilvísun frá gamla nafninu þegar síða er færð',
+'right-upload'               => 'Hlaða inn skrám',
+'right-reupload'             => 'Yfirrita núverandi skrá',
+'right-reupload-own'         => 'Yfirrita núverandi skrá sem að ég hlóð inn sjálf(ur)',
+'right-purge'                => 'Hreinsa skyndiminni síðu án staðfestingar',
+'right-autoconfirmed'        => 'Breyta hálfvernduðum síðum',
+'right-nominornewtalk'       => 'Ekki láta minniháttar breytingar á spjallsíðum kveða upp áminningu um ný skilaboð',
+'right-delete'               => 'Eyða síðum',
+'right-bigdelete'            => 'Eyða síðum með stórum breytingaskrám',
+'right-deleterevision'       => 'Eyða og endurvekja sérstaka breytignar á síðum',
+'right-browsearchive'        => 'Leita í eyddum síðum',
+'right-undelete'             => 'Endurvekja eydda síðu',
+'right-suppressrevision'     => 'Skoða og endurvekja breytingar faldar fyrir stjórnendum',
+'right-suppressionlog'       => 'Skoða einrænar aðgerðaskrár',
+'right-block'                => 'Banna öðrum notendum að gera breytingar',
+'right-blockemail'           => 'Banna notanda að senda tölvupóst',
+'right-hideuser'             => 'Banna notandanafn, og þannig fela það frá almenningi',
+'right-editprotected'        => 'Breyta verndaðar síður (án keðjuverndunar)',
+'right-editinterface'        => 'Breyta notandaviðmótinu',
+'right-editusercssjs'        => 'Breyta CSS- og JS-skrám annarra',
+'right-unwatchedpages'       => 'Skoða lista yfir óvaktaðar síður',
+'right-userrights'           => 'Breyta öllum notandaréttindum',
+'right-userrights-interwiki' => 'Breyta notandaréttindum annarra notenda á öðrum wiki-verkefnum',
+'right-siteadmin'            => 'Læsa og aflæsa gagnagrunninum',
 
 # User rights log
 'rightslog'      => 'Réttindaskrá notenda',
@@ -1161,27 +1177,30 @@ Athugaðu að skrár þeirra yfir {{SITENAME}}-efni kunna að vera úreltar.',
 'rightsnone'     => '(engin)',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-read'           => 'lesa þessa síðu',
-'action-edit'           => 'breyta þessari síðu',
-'action-createpage'     => 'skapa síður',
-'action-createtalk'     => 'skapa spjallsíður',
-'action-createaccount'  => 'skapa þennan notandaaðgang',
-'action-minoredit'      => 'merkja þessa breytingu sem minniháttar',
-'action-move'           => 'færa þessa síðu',
-'action-move-subpages'  => 'færa þessa síðu, og undirsíður hennar',
-'action-upload'         => 'hlaða inn þessari skrá',
-'action-reupload'       => 'yfirrita þessa skrá',
-'action-delete'         => 'eyða þessari síðu',
-'action-deleterevision' => 'eyða þessari breytingu',
-'action-deletedhistory' => 'skoða breytingaskrá þessarar síðu',
-'action-browsearchive'  => 'leita í eyddum síðum',
-'action-undelete'       => 'endurvekja þessa síðu',
-'action-protect'        => 'breyta verndunarstigum fyrir þessa síðu',
-'action-siteadmin'      => 'læsa eða opna gagnagrunninn',
+'action-read'                 => 'lesa þessa síðu',
+'action-edit'                 => 'breyta þessari síðu',
+'action-createpage'           => 'skapa síður',
+'action-createtalk'           => 'skapa spjallsíður',
+'action-createaccount'        => 'skapa þennan notandaaðgang',
+'action-minoredit'            => 'merkja þessa breytingu sem minniháttar',
+'action-move'                 => 'færa þessa síðu',
+'action-move-subpages'        => 'færa þessa síðu, og undirsíður hennar',
+'action-upload'               => 'hlaða inn þessari skrá',
+'action-reupload'             => 'yfirrita þessa skrá',
+'action-delete'               => 'eyða þessari síðu',
+'action-deleterevision'       => 'eyða þessari breytingu',
+'action-deletedhistory'       => 'skoða breytingaskrá þessarar síðu',
+'action-browsearchive'        => 'leita í eyddum síðum',
+'action-undelete'             => 'endurvekja þessa síðu',
+'action-protect'              => 'breyta verndunarstigum fyrir þessa síðu',
+'action-userrights'           => 'breyta öllum notandaréttindum',
+'action-userrights-interwiki' => 'breyta notandaréttindum annarra notenda á öðrum wiki-verkefnum',
+'action-siteadmin'            => 'læsa eða opna gagnagrunninn',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|breyting|breytingar}}',
 'recentchanges'                     => 'Nýlegar breytingar',
+'recentchanges-legend'              => 'Stillingar nýlegra breytinga',
 'recentchangestext'                 => 'Hér geturðu fylgst með nýjustu breytingunum.',
 'recentchanges-feed-description'    => 'Hér er hægt að fylgjast með nýlegum breytingum á {{SITENAME}}.',
 'rcnote'                            => "Að neðan {{PLURAL:$1|er '''1''' breyting|eru síðustu '''$1''' breytingar}} síðast {{PLURAL:$2|liðinn dag|liðna '''$2''' daga}}, frá $5, $4.",
@@ -1212,52 +1231,64 @@ Athugaðu að skrár þeirra yfir {{SITENAME}}-efni kunna að vera úreltar.',
 'recentchangeslinked-summary'  => "Þetta er listi yfir nýlega gerðar breytingar á síðum sem tengt er í frá tilgreindri síðu (eða á meðlimum úr tilgreindum flokki).
 Síður á [[Special:Watchlist|vaktlistanum þínum]] eru '''feitletraðar'''.",
 'recentchangeslinked-page'     => 'Nafn á síða:',
+'recentchangeslinked-to'       => 'Sýna breytingar á síðum sem tengjast uppgefinni síðu í staðinn',
 
 # Upload
-'upload'             => 'Hlaða inn skrá',
-'uploadbtn'          => 'Hlaða inn skrá',
-'reupload'           => 'Hlaða aftur inn',
-'reuploaddesc'       => 'Aftur á innhlaðningarformið.',
-'uploadnologin'      => 'Óinnskráð(ur)',
-'uploadnologintext'  => 'Þú verður að vera [[Special:UserLogin|skráð(ur) inn]]
+'upload'                 => 'Hlaða inn skrá',
+'uploadbtn'              => 'Hlaða inn skrá',
+'reupload'               => 'Hlaða aftur inn',
+'reuploaddesc'           => 'Aftur á innhlaðningarformið.',
+'uploadnologin'          => 'Óinnskráð(ur)',
+'uploadnologintext'      => 'Þú verður að vera [[Special:UserLogin|skráð(ur) inn]]
 til að hlaða inn skrám.',
-'uploaderror'        => 'Villa í innhlaðningu',
-'uploadtext'         => "Notaðu eyðublaðið hér fyrir neðan til að hlaða inn skrám.
+'uploaderror'            => 'Villa í innhlaðningu',
+'uploadtext'             => "Notaðu eyðublaðið hér fyrir neðan til að hlaða inn skrám.
 Til að skoða eða leita í áður innhlöðnum skrám ferðu á [[Special:ImageList|skráarlistann]], (endur)innhlaðnar skrár eru skráðar í [[Special:Log/upload|innhlaðningarskránni]], eyðingar í [[Special:Log/delete|eyðingaskránni]].
 
 * '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Skrá.jpg]]</nowiki></tt>'''
 * '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Skrá.png|200px|thumb|left|alt-texti]]</nowiki></tt>'''
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Skrá.ogg]]</nowiki></tt>'''",
-'uploadlog'          => 'innhlaðningarskrá',
-'uploadlogpage'      => 'Innhlaðningarskrá',
-'uploadlogpagetext'  => 'Þetta er listi yfir skrár sem nýlega hefur verið hlaðið inn.',
-'filename'           => 'Skráarnafn',
-'filedesc'           => 'Lýsing',
-'fileuploadsummary'  => 'Ágrip:',
-'filestatus'         => 'Staða höfundaréttar:',
-'filesource'         => 'Heimild:',
-'uploadedfiles'      => 'Hlóð inn skráunum',
-'ignorewarning'      => 'Hunsa viðvaranir og vista þessa skrá',
-'ignorewarnings'     => 'Hunsa allar viðvaranir',
-'minlength1'         => 'Skráarnöfn þurfa að vera að minnsta kosti einn stafur að lengd',
-'badfilename'        => 'Skáarnafninu hefur verið breytt í „$1“.',
-'filetype-missing'   => 'Skráin hefur engan viðauka (dæmi ".jpg").',
-'large-file'         => 'Það er mælt með að skrár séu ekki stærri en $1; þessi skrá er $2.',
-'fileexists'         => 'Skrá með þessu nafni er þegar til, skoðaðu <strong><tt>$1</tt></strong> ef þú ert óviss um hvort þú viljir breyta henni, ekki verður skrifað yfir gömlu skránna hlaðiru inn nýrri með sama nafni heldur verður núverandi útgáfa geymd í útgáfusögu.',
-'fileexists-thumb'   => "<center>'''Núverandi mynd'''</center>",
-'successfulupload'   => 'Innhlaðning tókst',
-'uploadwarning'      => 'Aðvörun',
-'savefile'           => 'Vista',
-'uploadedimage'      => 'hlóð inn „[[$1]]“',
-'overwroteimage'     => 'hlóð inn nýrri útgáfu af "[[$1]]"',
-'uploadscripted'     => 'Þetta skjal inniheldur (X)HTML eða forskriftu sem gæti valdið villum í vöfrum.',
-'uploadcorrupt'      => 'Skráin er skemmd eða hefur ranga skráarendingu. Vinsamlegast athugaðu skrána og reyndu svo aftur.',
-'uploadvirus'        => 'Skráin inniheldur veiru! Nánari upplýsingar: $1',
-'sourcefilename'     => 'Upprunalegt skráarnafn:',
-'destfilename'       => 'Móttökuskráarnafn:',
-'upload-maxfilesize' => 'Hámarks skráarstærð: $1',
-'watchthisupload'    => 'Vakta þessa síðu',
-'filewasdeleted'     => 'Skrá af sama nafni hefur áður verið hlaðið inn og síðan eytt. Þú ættir að athuga $1 áður en þú hleður skránni inn.',
+'upload-permitted'       => 'Heimilaðar skráargerðir: $1.',
+'upload-preferred'       => 'Ákjósanlegustu skrárgerðirnar: $1.',
+'upload-prohibited'      => 'Óheimiluð skrárgerð: $1.',
+'uploadlog'              => 'innhlaðningarskrá',
+'uploadlogpage'          => 'Innhlaðningarskrá',
+'uploadlogpagetext'      => 'Fyrir neðan er listi yfir nýlegustu innhlöðnu skrárnar.
+Sjá [[Special:NewImages|myndasafn nýrra mynda]] fyrir myndrænna yfirlit.',
+'filename'               => 'Skráarnafn',
+'filedesc'               => 'Lýsing',
+'fileuploadsummary'      => 'Ágrip:',
+'filestatus'             => 'Staða höfundaréttar:',
+'filesource'             => 'Heimild:',
+'uploadedfiles'          => 'Hlóð inn skráunum',
+'ignorewarning'          => 'Hunsa viðvaranir og vista þessa skrá',
+'ignorewarnings'         => 'Hunsa allar viðvaranir',
+'minlength1'             => 'Skráarnöfn þurfa að vera að minnsta kosti einn stafur að lengd',
+'illegalfilename'        => 'Skráarnafnið „$1“ inniheldur stafi sem eru ekki leyfðir í síðutitlum.
+Gjörðu svo vel og endurnefndu skrána og hladdu henni inn aftur.',
+'badfilename'            => 'Skáarnafninu hefur verið breytt í „$1“.',
+'filetype-badmime'       => 'Skrárir af MIME-gerðinni „$1“ er ekki leyfilegt að hlaða inn.',
+'filetype-unwanted-type' => "'''„.$1“''' er óæskileg skráargerð.
+{{PLURAL:$3|Ákjósanleg skráargerð er|Ákjósanlegar skráargerðir eru}} $2.",
+'filetype-banned-type'   => "'''„.$1“''' er ekki leyfileg skráargerð.
+{{PLURAL:$3|Leyfileg skráargerð er|Leyfilegar skráargerðir eru}} $2.",
+'filetype-missing'       => 'Skráin hefur engan viðauka (dæmi ".jpg").',
+'large-file'             => 'Það er mælt með að skrár séu ekki stærri en $1; þessi skrá er $2.',
+'fileexists'             => 'Skrá með þessu nafni er þegar til, skoðaðu <strong><tt>$1</tt></strong> ef þú ert óviss um hvort þú viljir breyta henni, ekki verður skrifað yfir gömlu skránna hlaðiru inn nýrri með sama nafni heldur verður núverandi útgáfa geymd í útgáfusögu.',
+'fileexists-thumb'       => "<center>'''Núverandi mynd'''</center>",
+'successfulupload'       => 'Innhlaðning tókst',
+'uploadwarning'          => 'Aðvörun',
+'savefile'               => 'Vista',
+'uploadedimage'          => 'hlóð inn „[[$1]]“',
+'overwroteimage'         => 'hlóð inn nýrri útgáfu af "[[$1]]"',
+'uploadscripted'         => 'Þetta skjal inniheldur (X)HTML eða forskriftu sem gæti valdið villum í vöfrum.',
+'uploadcorrupt'          => 'Skráin er skemmd eða hefur ranga skráarendingu. Vinsamlegast athugaðu skrána og reyndu svo aftur.',
+'uploadvirus'            => 'Skráin inniheldur veiru! Nánari upplýsingar: $1',
+'sourcefilename'         => 'Upprunalegt skráarnafn:',
+'destfilename'           => 'Móttökuskráarnafn:',
+'upload-maxfilesize'     => 'Hámarks skráarstærð: $1',
+'watchthisupload'        => 'Vakta þessa síðu',
+'filewasdeleted'         => 'Skrá af sama nafni hefur áður verið hlaðið inn og síðan eytt. Þú ættir að athuga $1 áður en þú hleður skránni inn.',
 
 'upload-proto-error' => 'Vitlaus samskiptaregla',
 'upload-file-error'  => 'Innri villa',
@@ -2127,6 +2158,7 @@ Ef skránni hefur verið breytt, kann að vera að einhverjar upplýsingar eigi 
 'exif-pixelydimension'  => 'Leyfð myndalengd',
 'exif-pixelxdimension'  => 'Leyfð myndahæð',
 'exif-usercomment'      => 'Athugunarsemdir notanda',
+'exif-flash'            => 'Leiftur',
 'exif-gpslatitude'      => 'Breiddargráða',
 'exif-gpslongitude'     => 'Lengdargráða',
 'exif-gpsaltitude'      => 'Stjörnuhæð',
@@ -2141,11 +2173,17 @@ Ef skránni hefur verið breytt, kann að vera að einhverjar upplýsingar eigi 
 'exif-subjectdistance-value' => '$1 metrar',
 
 'exif-lightsource-1'  => 'Dagsbirta',
+'exif-lightsource-4'  => 'Leiftur',
 'exif-lightsource-9'  => 'Gott veður',
 'exif-lightsource-10' => 'Skýjað',
 'exif-lightsource-11' => 'Skuggi',
 
 'exif-focalplaneresolutionunit-2' => 'tommur',
+
+'exif-scenecapturetype-0' => 'Staðlað',
+'exif-scenecapturetype-1' => 'Landslag',
+'exif-scenecapturetype-2' => 'Skammsnið',
+'exif-scenecapturetype-3' => 'Næturvettvangur',
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-k' => 'Kílómetrar á klukkustund',
@@ -2177,9 +2215,10 @@ Ef skránni hefur verið breytt, kann að vera að einhverjar upplýsingar eigi 
 'confirmemail_oncreate'    => 'Staðfestingarkóði hefur verði sendur á netfangið.
 Þennan kóða þarf ekki að staðfesta til að skrá sig inn, en þú þarft að gefa hann upp áður
 en opnað verður fyrir valmöguleika tengdum netfangi á þessu wiki-verkefni.',
-'confirmemail_sendfailed'  => 'Gat ekki sent staðfestingarkóða. Athugaðu hvort netfangið sé rétt.
+'confirmemail_sendfailed'  => '{{SITENAME}} gat ekki sent staðfestingarpóst.
+Athugaðu hvort ógild tákn séu í netfanginu þínu.
 
-Póstþjónninn gaf eftirfarandi skilaboð: $1',
+Póstþjónninn skilaði: $1',
 'confirmemail_invalid'     => 'Ógildur staðfestingarkóði. Hann gæti verið útrunninn.',
 'confirmemail_needlogin'   => 'Þú verður að $1 til að staðfesta netfangið þitt.',
 'confirmemail_success'     => 'Netfang þitt hefur verið staðfest. Þú getur nú skráð þig inn og vafrað um wiki-kerfið.',
@@ -2201,8 +2240,8 @@ $5
 'invalidateemail'          => 'Hætta við staðfestingu netfangs',
 
 # Scary transclusion
-'scarytranscludefailed'  => '[Gat ekki sótt snið fyrir $1; því miður]',
-'scarytranscludetoolong' => '[vefslóðin er of löng; því miður]',
+'scarytranscludefailed'  => '[Gat ekki sótt snið fyrir $1]',
+'scarytranscludetoolong' => '[vefslóðin er of löng]',
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">
@@ -2214,7 +2253,7 @@ $1
 'trackbackdeleteok' => 'Varanlega tenglinum var eytt.',
 
 # Delete conflict
-'deletedwhileediting' => 'Viðvörun: Þessari síðu var eytt á meðan þú varst að breyta henni!',
+'deletedwhileediting' => "'''Viðvörun''': Þessari síðu var eytt eftir að þú fórst að breyta henni!",
 'confirmrecreate'     => "Notandi [[User:$1|$1]] ([[User talk:$1|spjall]]) eyddi þessari síðu eftir að þú fórst að breyta henni út af:
 : ''$2''
 Vinsamlegast staðfestu að þú viljir endurvekja hana.",
@@ -2318,9 +2357,5 @@ $1',
 
 # Special:BlankPage
 'blankpage' => 'Tóm síða',
-
-# Special:Nuke
-'nuke'             => 'Fjöldaeyða',
-'nuke-submit-user' => 'Áfram',
 
 );

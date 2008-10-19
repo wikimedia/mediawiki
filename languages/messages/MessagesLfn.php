@@ -6,6 +6,7 @@
  *
  * @author Cgboeree
  * @author Malafaya
+ * @author Urhixidur
  */
 
 $messages = array(
@@ -289,7 +290,7 @@ $messages = array(
 'wrongpasswordempty'      => 'La sinia de entra es vacua. Per favore, atenta ancora.',
 'passwordtooshort'        => 'Tu sinia secreta no es legal o es tro corta.
 El debe ave a min {{PLURAL:$1|1 simbol|$1 simboles}} e debe difere de tu nom de usor.',
-'mailmypassword'          => 'Envia la sinia secreta par eposta',
+'mailmypassword'          => 'Envia la sinia secreta nova par eposta',
 'passwordremindertitle'   => 'Sinia secreta temporer nova per {{SITENAME}}',
 'passwordremindertext'    => 'Algun (tu, probable, de adirije IP $1)
 ia demanda ce nos envia a tu un sinia secreta nova per {{SITENAME}} ($4).
@@ -366,7 +367,7 @@ Si tu es asi par era, clica a la boton '''retro''' de tu surfador.",
 'copyrightwarning'       => 'Per favore nota ce tota labora a {{SITENAME}} es judida ce el es relasada su la $2 (vide $1 per detalias). Si tu no desira ce tu scrives ta es editada sin compati e redistribui sin tu permite, no sumita el asi!<br />
 Tu ance promete a nos ce tu ia scriveda esta par tu mesma, o copiada esta de un domina publica o otra orijin libre.
 <strong>NO SUMITA LABORA SU DIRETOS DE AUTOR SIN PERMITE!!</strong>',
-'longpagewarning'        => '<strong>AVISA: Esta paje usa $1 kilotetas; alga surfadores pote ave problemes con la edita de pajes plu grande ce 32ko.
+'longpagewarning'        => '<strong>AVISA: Esta paje usa $1 kilotetas; alga surfadores pote ave problemes con la edita de pajes plu grande ce 32 ko.
 Per favore, considera parti la paje en pesos plu poca.</strong>',
 'templatesused'          => 'Modeles usada a esta paje:',
 'templatesusedpreview'   => 'Modeles usada en esta previde:',
@@ -515,7 +516,7 @@ Pajes a [[Special:Watchlist|tu lista de pajes oservada]] es en leteras '''forte'
 'linkstoimage'              => 'Esta {{PLURAL:$1|paje|pajes}} lia a esta fix:',
 'nolinkstoimage'            => 'Es no pajes ce lia a esta fix.',
 'sharedupload'              => 'Esta fix es parti es pote es usada par otra projetas.',
-'noimage'                   => 'Es no fix con esta nom; tu pote $1.',
+'noimage'                   => 'Es no fix con esta nom, ma tu pote $1.',
 'noimage-linktext'          => 'envia un',
 'uploadnewversion-linktext' => 'Envia un varia nova de esta fix',
 
