@@ -261,7 +261,7 @@ class SpecialNewpages extends SpecialPage {
 	 * @param string $type
 	 */
 	protected function feed( $type ) {
-		global $wgFeed, $wgFeedClasses;
+		global $wgFeed, $wgFeedClasses, $wgFeedLimit;
 
 		if ( !$wgFeed ) {
 			global $wgOut;
@@ -282,11 +282,7 @@ class SpecialNewpages extends SpecialPage {
 
 		$pager = new NewPagesPager( $this, $this->opts );
 		$limit = $this->opts->getValue( 'limit' );
-		global $wgFeedLimit;
-		if( $limit > $wgFeedLimit ) {
-			$limit = $wgFeedLimit;
-		}
-		$pager->mLimit = $limit;
+		$pager->mLimit = min( $limit, $wgFeedLimit );
 
 		$feed->outHeader();
 		if( $pager->getNumRows() > 0 ) {
