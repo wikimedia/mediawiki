@@ -614,7 +614,7 @@ class LoginForm {
 			return;
 		}
 		if ( 0 == $u->getID() ) {
-			$this->mainLoginForm( wfMsg( 'nosuchuser', $u->getName() ) );
+			$this->mainLoginForm( wfMsgWikiHtml( 'nosuchuser', htmlspecialchars( $u->getName() ) ) );
 			return;
 		}
 
