@@ -303,6 +303,8 @@ class DeletedContributionsPage extends SpecialPage {
 			# Link to undeleted contributions
 			$tools[] = $sk->makeKnownLinkObj( SpecialPage::getTitleFor( 'Contributions', $nt->getDBkey() ),
 				wfMsgHtml( 'contributions' ) );
+				
+			wfRunHooks( 'ContributionsToolLinks', array( $id, $nt, &$tools ) );
 
 			$links = implode( ' | ', $tools );
 		}
