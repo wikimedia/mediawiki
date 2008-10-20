@@ -43,20 +43,6 @@ DETAILS_AT_TOP         = NO
 INHERIT_DOCS           = YES
 SEPARATE_MEMBER_PAGES  = NO
 TAB_SIZE               = 8
-ALIASES                = \
-	"type{1}=<b>\1</b>:" \
-	"twotypes{2}=<b>\1</b> or <b>\2</b>:" \
-	"threetypes{3}=<b>\1</b>, <b>\2</b>, or <b>\3</b>:" \
-	"arrayof{1}=<b>Array</b> of <b>\1</b>" \
-	"null=Null" \
-	"boolean=Boolean" \
-	"bool=\boolean" \
-	"integer=Integer" \
-	"int=\integer" \
-	"string=String" \
-	"str=\string" \
-	"array=Array" \
-	"mixed=Mixed"
 OPTIMIZE_OUTPUT_FOR_C  = NO
 OPTIMIZE_OUTPUT_JAVA   = NO
 BUILTIN_STL_SUPPORT    = NO
@@ -291,3 +277,16 @@ DOT_CLEANUP            = YES
 # Configuration::additions related to the search engine   
 #---------------------------------------------------------------------------
 SEARCHENGINE           = NO
+
+ALIASES =	"type{1}=<b> \1 </b>:" \
+		"2types{2}=<b> \1 </b> or <b> \2 </b>:" \
+		"3types{3}=<b> \1 </b>, <b> \2 </b>, or <b> \3 </b>:" \
+		"arrayof{2}=<b> Array </b> of \2" \
+		"null=\type{Null}" \
+		"boolean=\type{Boolean}" \
+		"bool=\boolean" \
+		"integer=\type{Integer}" \
+		"int=\integer" \
+		"string=\type{String}" \
+		"str=\string" \
+		"mixed=\type{Mixed}"
