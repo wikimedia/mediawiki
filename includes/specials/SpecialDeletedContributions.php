@@ -68,8 +68,8 @@ class DeletedContribsPager extends IndexPager {
 		$linkTexts = array(
 			'prev' => wfMsgHtml( 'pager-newer-n', $this->mLimit ),
 			'next' => wfMsgHtml( 'pager-older-n', $this->mLimit ),
-			'first' => wfMsgHtml( 'page_first' ),
-			'last' => wfMsgHtml( 'page_last' )
+			'first' => wfMsgHtml( 'histlast' ),
+			'last' => wfMsgHtml( 'histfirst' )
 		);
 
 		$pagingLinks = $this->getPagingLinks( $linkTexts );
