@@ -648,7 +648,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'nohistory'           => 'Те лопанть витнемадо-петнемадо икелькс умазо арась.',
 'currentrev'          => 'Тевате лиякстомтома',
 'revisionasof'        => '$1-це версиясь',
-'revision-info'       => '$1 -нь лиякстомтома, конань теизе $2',
+'revision-info'       => '$1 -нь лиякстомтома, конань теизе $2', # Additional available: $3: revision id
 'previousrevision'    => '←Седе икелень лиякстомтома',
 'nextrevision'        => 'Седе од вановкс→',
 'currentrevisionlink' => 'Тевате лиякстомтома',

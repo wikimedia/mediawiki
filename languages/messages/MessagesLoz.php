@@ -434,7 +434,7 @@ Desu dafi kulobala di petulo sa gi di informasi:",
 'viewpagelogs'        => 'Kamukile desu di petulo',
 'currentrev'          => 'Selt nca',
 'revisionasof'        => 'Selt di $1',
-'revision-info'       => 'Selt di $1 di $2',
+'revision-info'       => 'Selt di $1 di $2', # Additional available: $3: revision id
 'previousrevision'    => '←Kona selt',
 'nextrevision'        => 'Lila selt→',
 'currentrevisionlink' => 'Selt nca',

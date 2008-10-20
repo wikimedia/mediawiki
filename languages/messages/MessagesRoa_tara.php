@@ -346,7 +346,7 @@ Vide bbuene ce l'ha ccrejà sta pàgene, ce non ge sinde sicure vide l'archivie 
 'viewpagelogs'        => "Vide l'archivie pe sta pàgene",
 'currentrev'          => 'Versione de osce a die',
 'revisionasof'        => 'Versione de $1',
-'revision-info'       => "Versione scritte jndr'à $1 da $2",
+'revision-info'       => "Versione scritte jndr'à $1 da $2", # Additional available: $3: revision id
 'previousrevision'    => '← Versione Vecchje',
 'nextrevision'        => 'Versione cchiù nova →',
 'currentrevisionlink' => 'Versione de mò',
@@ -497,6 +497,7 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'filehist-comment'    => 'Commende',
 'imagelinks'          => 'Collegaminde',
 'nolinkstoimage'      => 'Non ge stonne pàggene ca appodene a stu fail.',
+'sharedupload'        => 'This file is a shared upload and may be used by other projects.',
 'noimage'             => "Non g'esiste nisciune fail cu stu nome, ma tu puè $1.",
 'noimage-linktext'    => 'carechene une',
 
@@ -545,6 +546,7 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'unusedimages'            => "Fail ca non g'avènene ausete",
 'wantedcategories'        => 'Categorije cerchete',
 'wantedpages'             => 'Pàggene cchiù cerchete',
+'mostcategories'          => "Pàggene cu 'nu sacche de categorije",
 'mostrevisions'           => 'Pàggene cchiù cangete',
 'prefixindex'             => "Indice p'u prefisse",
 'shortpages'              => 'Pàggene corte',
@@ -640,6 +642,7 @@ Vide $2 pe \'na reggistrazione de le scangellaziune recende.',
 'protect_expiry_invalid'      => 'Orarie de scadenze jè invalide.',
 'protect_expiry_old'          => "L'ore de scadenza jè jndr'à 'u passate.",
 'protect-unchain'             => 'Sblocche le permisse de spustaminde',
+'protect-text'                => "Tu puè vedè e cangià 'u levèlle de protezzione p'a pàgene <strong><nowiki>$1</nowiki></strong>.",
 'protect-default'             => '(defolt)',
 'protect-fallback'            => 'Richieste \'u permesse "$1"',
 'protect-level-autoconfirmed' => "Blocche l'utinde non reggistrete",
@@ -680,6 +683,7 @@ Vide $2 pe \'na reggistrazione de le scangellaziune recende.',
 'whatlinkshere'          => 'Appondene aqquà',
 'whatlinkshere-title'    => 'Pàggene ca appondene a "$1"',
 'whatlinkshere-backlink' => '← $1',
+'linkshere'              => "Le pàggene ca avènene appondene a '''[[:$1]]''':",
 'nolinkshere'            => "Nisciuna pàgene apponde a '''[[:$1]]'''.",
 'istemplate'             => 'inclusione',
 'whatlinkshere-prev'     => '{{PLURAL:$1|apprime|apprime $1}}',
@@ -704,6 +708,7 @@ Vide $2 pe \'na reggistrazione de le scangellaziune recende.',
 'pagemovedsub'       => 'Spustaminde eseguite',
 'movepage-moved'     => "<big>'''\"\$1\" ha state spustate jndr'à \"\$2\"'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movedto'            => 'spustete a',
+'movetalk'           => "Spuéste 'a pàgene de le 'ngazzaminde associete",
 '1movedto2'          => "[[$1]] spustete jndr'à [[$2]]",
 'movelogpage'        => 'Archivije de le spustaminde',
 'movereason'         => 'Raggione:',
@@ -727,6 +732,7 @@ Vide $2 pe \'na reggistrazione de le scangellaziune recende.',
 'tooltip-pt-preferences'          => 'Me piece accussì',
 'tooltip-pt-watchlist'            => "'A liste de le pàggene ca ste condrolle pe le camgiaminde",
 'tooltip-pt-mycontris'            => 'Liste de le condrebbute mie',
+'tooltip-pt-login'                => "Tu si 'ncoraggiete a cullegarte, jidde non g'è 'n'obblighe.",
 'tooltip-pt-logout'               => 'Isse',
 'tooltip-ca-talk'                 => "'Ngazzaminde sus 'a pàgene de le condenute",
 'tooltip-ca-edit'                 => "Tu puè cangià sta pàgene.
@@ -742,8 +748,10 @@ Puè vedè sulamende 'u sorgende.",
 'tooltip-search'                  => 'Cirche {{SITENAME}}',
 'tooltip-n-mainpage'              => "Vè vide 'a pàgene prengepàle",
 'tooltip-n-portal'                => "Parkanne d'u proggette, ce puà fà, addò puè acchjà le cose.",
+'tooltip-n-currentevents'         => "Iacchje le 'mbormaziune sus a 'u sfonde de 'u fatte corrende",
 'tooltip-n-recentchanges'         => "'A liste de le cangiaminde recende jndr'à uicchi.",
 'tooltip-n-randompage'            => "Careche 'na pàgene a uecchje",
+'tooltip-n-help'                  => "'Nu poste da scuprì",
 'tooltip-t-whatlinkshere'         => 'Liste de tutte le pàggene de Uicchi ca appondene aqquà',
 'tooltip-t-contributions'         => "Vide 'a liste de le condrebbute de quiste utende",
 'tooltip-t-emailuser'             => "Manne n'e-mail a stu utende",
@@ -781,10 +789,22 @@ Puè vedè sulamende 'u sorgende.",
 'metadata'          => 'Metadata',
 'metadata-expand'   => 'Fa vedè le dettaglie estese',
 'metadata-collapse' => 'Scunne le dettaglie estese',
+'metadata-fields'   => "EXIF le cambe de metadata elenghete jndr'à quiste messagge verranne mise sus a 'na pàgene de immaggine quanne 'a taggella de metadata jè collassete.
+Otre avènene scunnute pe defolt.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength", # Do not translate list items
 
 # EXIF tags
 'exif-software' => 'Softuer ausete',
 'exif-contrast' => 'Condraste',
+
+# External editor support
+'edit-externally'      => "Cange stu fail usanne n'applicazione esterne",
+'edit-externally-help' => "Vide le [http://www.mediawiki.org/wiki/Manual:External_editors 'struzione de configurazione] pe avèje cchiù dettaglie.",
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'tutte',

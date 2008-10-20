@@ -851,7 +851,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'currentrev'             => '현재 판',
 'currentrev-asof'        => '$1 현재 판',
 'revisionasof'           => '$1 판',
-'revision-info'          => '$2 사용자의 $1 버전',
+'revision-info'          => '$2 사용자의 $1 버전', # Additional available: $3: revision id
 'previousrevision'       => '← 이전 판',
 'nextrevision'           => '다음 판 →',
 'currentrevisionlink'    => '현재 판',

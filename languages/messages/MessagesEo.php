@@ -834,7 +834,7 @@ La kialo donata de $3 estas ''$2''.",
 'currentrev'             => 'Aktuala versio',
 'currentrev-asof'        => 'Nuna revizio ekde $1',
 'revisionasof'           => 'Kiel registrite je $1',
-'revision-info'          => 'Redakto de $1 de $2',
+'revision-info'          => 'Redakto de $1 de $2', # Additional available: $3: revision id
 'previousrevision'       => '← Antaŭa versio',
 'nextrevision'           => 'Sekva versio →',
 'currentrevisionlink'    => 'Rigardi nunan version',

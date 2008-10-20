@@ -788,7 +788,7 @@ $2',
 'currentrev'             => 'هنوکین بازبینی',
 'currentrev-asof'        => 'هنوکین بازبینی چه $1',
 'revisionasof'           => 'بازبینی په عنوان $1',
-'revision-info'          => 'بازبینی په داب $1 توسط $2',
+'revision-info'          => 'بازبینی په داب $1 توسط $2', # Additional available: $3: revision id
 'previousrevision'       => '←پیش ترین نسخه',
 'nextrevision'           => 'نوکین بازبینی→',
 'currentrevisionlink'    => 'هنوکین بازبینی',

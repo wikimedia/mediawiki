@@ -787,7 +787,7 @@ A justificativa apresentada por $3 foi ''$2''",
 'nohistory'           => 'Não há histórico de revisões para esta página.',
 'currentrev'          => 'Revisão atual',
 'revisionasof'        => 'Edição de $1',
-'revision-info'       => 'Edição feita às $1 por $2',
+'revision-info'       => 'Edição feita às $1 por $2', # Additional available: $3: revision id
 'previousrevision'    => '← Versão anterior',
 'nextrevision'        => 'Versão posterior →',
 'currentrevisionlink' => 'ver versão atual',

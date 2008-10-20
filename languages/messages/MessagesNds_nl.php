@@ -907,7 +907,7 @@ De deur $3 op-egeven rejen is ''$2''",
 'nohistory'           => 'Der bin gien eerdere versies van disse pagina.',
 'currentrev'          => 'Leste versie',
 'revisionasof'        => 'Versie op $1',
-'revision-info'       => 'Versie op $1 van $2',
+'revision-info'       => 'Versie op $1 van $2', # Additional available: $3: revision id
 'previousrevision'    => '&larr; eerdere versie',
 'nextrevision'        => 'niejere versie &rarr;',
 'currentrevisionlink' => "versie zoas 't noen is",

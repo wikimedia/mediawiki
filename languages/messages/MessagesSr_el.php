@@ -706,7 +706,7 @@ Možete se vratiti i urediti već postojeću stranu ili [[Special:UserLogin|se p
 'nohistory'           => 'Ne postoji istorija izmena za ovu stranicu.',
 'currentrev'          => 'Trenutna revizija',
 'revisionasof'        => 'Revizija od $1',
-'revision-info'       => 'Revizija od $1; $2',
+'revision-info'       => 'Revizija od $1; $2', # Additional available: $3: revision id
 'previousrevision'    => '← Prethodna revizija',
 'nextrevision'        => 'Sledeća revizija →',
 'currentrevisionlink' => 'Trenutna revizija',

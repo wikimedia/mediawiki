@@ -913,7 +913,7 @@ $2',
 'currentrev'             => 'Цяперашняя вэрсія',
 'currentrev-asof'        => 'Цяперашняя вэрсія на $1',
 'revisionasof'           => 'Вэрсія ад $1',
-'revision-info'          => 'Вэрсія ад $1, аўтар $2',
+'revision-info'          => 'Вэрсія ад $1, аўтар $2', # Additional available: $3: revision id
 'previousrevision'       => '←Папярэдняя вэрсія',
 'nextrevision'           => 'Наступная вэрсія→',
 'currentrevisionlink'    => 'Цяперашняя вэрсія',
@@ -2259,6 +2259,7 @@ $1',
 'imagetypemismatch'         => 'Новае пашырэньне файла не адпавядае яго тыпу',
 'imageinvalidfilename'      => 'Няслушная назва мэтавага файла',
 'fix-double-redirects'      => 'Абнавіць усе перанакіраваньні на першапачатковую назву',
+'move-leave-redirect'       => 'Пакінуць перанакіраваньне',
 
 # Export
 'export'            => 'Экспартаваць старонкі',
@@ -2399,6 +2400,7 @@ $1',
 'tooltip-watch'                   => 'Дадаць гэтую старонку ў Ваш сьпіс назіраньня',
 'tooltip-recreate'                => 'Аднавіць старонку, ня гледзячы на тое, што яна была выдаленая',
 'tooltip-upload'                  => 'Пачаць загрузку',
+'tooltip-rollback'                => '«Адкат» вяртае рэдагаваньні папярэдняга ўдзельніка адным клікам.',
 
 # Metadata
 'nodublincore'      => 'Мэтазьвесткі Dublin Core RDF забароненыя на гэтым сэрвэры.',
@@ -2694,7 +2696,11 @@ $1',
 
 'exif-focalplaneresolutionunit-2' => 'цаляў',
 
+'exif-sensingmethod-1' => 'Нявызначаны',
+
 'exif-customrendered-0' => 'Звычайны працэс',
+
+'exif-scenecapturetype-0' => 'Стандартны',
 
 'exif-contrast-0' => 'Звычайны',
 'exif-contrast-1' => 'Мяккі',

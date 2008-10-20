@@ -733,7 +733,7 @@ Alesanana $3 cenah ''$2''.",
 'nohistory'           => 'Teu aya jujutan édit pikeun kaca ieu.',
 'currentrev'          => 'Révisi kiwari',
 'revisionasof'        => 'Révisi nurutkeun $1',
-'revision-info'       => 'Révisi per $1; $2',
+'revision-info'       => 'Révisi per $1; $2', # Additional available: $3: revision id
 'previousrevision'    => '← Révisi leuwih heubeul',
 'nextrevision'        => 'Révisi nu leuwih anyar →',
 'currentrevisionlink' => 'Témbongkeun révisi kiwari',

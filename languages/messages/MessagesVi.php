@@ -835,7 +835,7 @@ Lý do được $3 đưa ra là ''$2''",
 'currentrev'             => 'Bản hiện tại',
 'currentrev-asof'        => 'Bản hiện tại lúc $1',
 'revisionasof'           => 'Phiên bản lúc $1',
-'revision-info'          => 'Phiên bản vào lúc $1 do $2 sửa đổi',
+'revision-info'          => 'Phiên bản vào lúc $1 do $2 sửa đổi', # Additional available: $3: revision id
 'previousrevision'       => '← Phiên bản cũ',
 'nextrevision'           => 'Phiên bản mới →',
 'currentrevisionlink'    => 'xem phiên bản hiện hành',

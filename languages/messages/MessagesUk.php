@@ -899,7 +899,7 @@ $3 зазначив наступну причину: ''$2''",
 'currentrev'             => 'Поточна версія',
 'currentrev-asof'        => 'Поточна версія на $1',
 'revisionasof'           => 'Версія $1',
-'revision-info'          => 'Версія від $1; $2',
+'revision-info'          => 'Версія від $1; $2', # Additional available: $3: revision id
 'previousrevision'       => '← Старіша версія',
 'nextrevision'           => 'Новіша версія →',
 'currentrevisionlink'    => 'Поточна версія',

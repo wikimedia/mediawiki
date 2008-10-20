@@ -672,7 +672,7 @@ Ille hanc causam dedit: ''$2''",
 'currentrev'             => 'Emendatio recentissima',
 'currentrev-asof'        => 'Emendatio recentissima ex $1',
 'revisionasof'           => 'Emendatio ex $1',
-'revision-info'          => 'Emendatio ex $1 ab $2',
+'revision-info'          => 'Emendatio ex $1 ab $2', # Additional available: $3: revision id
 'previousrevision'       => '← Emendatio senior',
 'nextrevision'           => 'Emendatio novior →',
 'currentrevisionlink'    => 'Emendatio currens',

@@ -1079,7 +1079,7 @@ $2',
 'currentrev'             => 'المراجعة الحالية',
 'currentrev-asof'        => 'المراجعة الحالية بتاريخ $1',
 'revisionasof'           => 'مراجعة $1',
-'revision-info'          => 'مراجعة $1 بواسطة $2',
+'revision-info'          => 'مراجعة $1 بواسطة $2', # Additional available: $3: revision id
 'previousrevision'       => '←مراجعة أقدم',
 'nextrevision'           => 'مراجعة أحدث→',
 'currentrevisionlink'    => 'المراجعة الحالية',

@@ -667,7 +667,7 @@ De deur $3 opeheven reeën is ''$2''",
 'nohistory'           => 'Deêze pagina is nie bewerkt.',
 'currentrev'          => 'Udihe versie',
 'revisionasof'        => 'Versie op $1',
-'revision-info'       => 'Versie op $1 van $2',
+'revision-info'       => 'Versie op $1 van $2', # Additional available: $3: revision id
 'previousrevision'    => '←Ouwere versie',
 'nextrevision'        => 'Nieuwere versie→',
 'currentrevisionlink' => 'Udihe versie',

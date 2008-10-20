@@ -401,7 +401,7 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'nohistory'           => 'Ne esas redakto-historio por ica pagino.',
 'currentrev'          => 'Aktuala versiono',
 'revisionasof'        => 'Versiono ye $1',
-'revision-info'       => 'Versiono en $1 per $2',
+'revision-info'       => 'Versiono en $1 per $2', # Additional available: $3: revision id
 'previousrevision'    => '←Plu anciena versiono',
 'nextrevision'        => 'Plu recenta versiono→',
 'currentrevisionlink' => 'Aktuala versiono',

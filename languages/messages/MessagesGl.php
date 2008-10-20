@@ -799,7 +799,7 @@ A razón dada por $3 foi ''$2''",
 'currentrev'             => 'Revisión actual',
 'currentrev-asof'        => 'Revisión actual ás $1',
 'revisionasof'           => 'Revisión como estaba ás $1',
-'revision-info'          => 'Revisión feita por $2 ás $1',
+'revision-info'          => 'Revisión feita por $2 ás $1', # Additional available: $3: revision id
 'previousrevision'       => '← Revisión máis antiga',
 'nextrevision'           => 'Revisión máis nova →',
 'currentrevisionlink'    => 'Ver revisión actual',

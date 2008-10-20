@@ -631,7 +631,7 @@ An paghalì kan historial para sa pahinang ini yaon digdi para sa saimong komben
 'nohistory'           => 'Mayong paghirá nin uusipón sa pahinang ini.',
 'currentrev'          => 'Sa ngonyan na pagpakarháy',
 'revisionasof'        => 'Pagpakarháy sa $1',
-'revision-info'       => 'An pagpakarháy sa $1 ni $2',
+'revision-info'       => 'An pagpakarháy sa $1 ni $2', # Additional available: $3: revision id
 'previousrevision'    => '←Mas lumang pagpakarhay',
 'nextrevision'        => 'Mas bàgong pagpakarháy→',
 'currentrevisionlink' => 'Sa ngonyan na pagpakarháy',

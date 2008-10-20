@@ -383,7 +383,7 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 'viewpagelogs'           => 'Vide la arcivo de esta paje',
 'currentrev'             => 'Cambia presente',
 'revisionasof'           => 'Revisa de $1',
-'revision-info'          => 'Revisa de $1 par $2',
+'revision-info'          => 'Revisa de $1 par $2', # Additional available: $3: revision id
 'previousrevision'       => '← Altera presedente',
 'nextrevision'           => 'Revisa plu nova→',
 'currentrevisionlink'    => 'Revisa presente',

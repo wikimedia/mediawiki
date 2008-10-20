@@ -756,7 +756,7 @@ $3 അതിനു കാണിച്ചിരിക്കുന്ന കാര
 'nohistory'           => 'ഈ താളിനു തിരുത്തല്‍ ചരിത്രം ആയിട്ടില്ല.',
 'currentrev'          => 'ഇപ്പോഴുള്ള രൂപം',
 'revisionasof'        => '$1-നു നിലവിലുണ്ടായിരുന്ന രൂപം',
-'revision-info'       => '$1-നു ഉണ്ടായിരുന്ന രൂപം സൃഷ്ടിച്ചത്:- $2',
+'revision-info'       => '$1-നു ഉണ്ടായിരുന്ന രൂപം സൃഷ്ടിച്ചത്:- $2', # Additional available: $3: revision id
 'previousrevision'    => '←പഴയ രൂപം',
 'nextrevision'        => 'പുതിയ രൂപം→',
 'currentrevisionlink' => 'ഇപ്പോഴുള്ള രൂപം',

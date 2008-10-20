@@ -268,7 +268,7 @@ tzemred addewred ɣar deffar, niɣ [[Special:UserLogin|Adeff niɣ egg amiḍan]]
 'viewpagelogs'        => 'Ẓar aɣmis n Tasna ya',
 'currentrev'          => 'Afegged n ruxa',
 'revisionasof'        => 'Affegged am $1',
-'revision-info'       => 'Afegged am $1 s $2',
+'revision-info'       => 'Afegged am $1 s $2', # Additional available: $3: revision id
 'previousrevision'    => '←Affegged n zik/zic',
 'nextrevision'        => 'Afegged d amaynu→',
 'currentrevisionlink' => 'Afegged n rux',

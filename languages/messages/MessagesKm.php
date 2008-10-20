@@ -951,7 +951,7 @@ $2',
 'nohistory'              => 'មិនមានប្រវត្តិកំនែប្រែ​ចំពោះទំព័រនេះ។',
 'currentrev'             => 'កំនែបច្ចុប្បន្ន',
 'revisionasof'           => 'កំនែ​របស់ $1',
-'revision-info'          => 'កំនែ​របស់ $1 ដោយ $2',
+'revision-info'          => 'កំនែ​របស់ $1 ដោយ $2', # Additional available: $3: revision id
 'previousrevision'       => '← កំនែ​មុន',
 'nextrevision'           => 'កំនែបន្ទាប់ →',
 'currentrevisionlink'    => 'កំនែប្រែបច្ចុប្បន្ន',

@@ -711,7 +711,7 @@ $2',
 'currentrev'             => 'Актуальная версія',
 'currentrev-asof'        => 'Актуальная версія на $1',
 'revisionasof'           => 'Версія ад $1',
-'revision-info'          => 'Версія ад $1, аўтар $2',
+'revision-info'          => 'Версія ад $1, аўтар $2', # Additional available: $3: revision id
 'previousrevision'       => '← Папярэдн. версія',
 'nextrevision'           => 'Навейшая версія →',
 'currentrevisionlink'    => 'Актуальная версія',

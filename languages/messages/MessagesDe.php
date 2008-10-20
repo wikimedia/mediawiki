@@ -864,7 +864,7 @@ Grund der Sperre: ''$2''",
 'currentrev'             => 'Aktuelle Version',
 'currentrev-asof'        => 'Aktuelle Version vom $1',
 'revisionasof'           => 'Version vom $1',
-'revision-info'          => 'Dies ist eine alte Version. Zeitpunkt der Bearbeitung: $1 durch $2.',
+'revision-info'          => 'Dies ist eine alte Version. Zeitpunkt der Bearbeitung: $1 durch $2.', # Additional available: $3: revision id
 'previousrevision'       => '← Nächstältere Version',
 'nextrevision'           => 'Nächstjüngere Version →',
 'currentrevisionlink'    => 'Aktuelle Version',

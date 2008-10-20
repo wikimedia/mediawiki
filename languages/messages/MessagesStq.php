@@ -686,7 +686,7 @@ Gruund fon ju Speere: ''$2''",
 'currentrev'             => 'Aktuälle Version',
 'currentrev-asof'        => 'Aktuelle Version fon $1',
 'revisionasof'           => 'Version fon $1',
-'revision-info'          => 'Dit is ne oolde Version. Tiedpunkt fon ju Beoarbaidenge: $1 truch $2.',
+'revision-info'          => 'Dit is ne oolde Version. Tiedpunkt fon ju Beoarbaidenge: $1 truch $2.', # Additional available: $3: revision id
 'previousrevision'       => '← Naistallere Version',
 'nextrevision'           => 'Naistjungere Version →',
 'currentrevisionlink'    => 'Aktuälle Version',

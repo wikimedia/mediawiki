@@ -691,7 +691,7 @@ $3(e)k emandako arrazoia: ''$2''",
 'currentrev'             => 'Oraingo berrikuspena',
 'currentrev-asof'        => '$1(e)an momentuko aldaketa',
 'revisionasof'           => '$1(e)ko berrikuspena',
-'revision-info'          => '$2(r)en berrikusketa, ordua: $1',
+'revision-info'          => '$2(r)en berrikusketa, ordua: $1', # Additional available: $3: revision id
 'previousrevision'       => '←Berrikuspen zaharragoa',
 'nextrevision'           => 'Berrikuspen berriagoa→',
 'currentrevisionlink'    => 'Oraingo berrikuspena ikusi',

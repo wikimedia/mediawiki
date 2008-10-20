@@ -754,7 +754,7 @@ $2',
 'nohistory'           => 'נישטא קיין ענדערן היסטאריע פאר דעם בלאט.',
 'currentrev'          => 'איצטיגע ווערסיע',
 'revisionasof'        => 'רעוויזיע ביי $1',
-'revision-info'       => 'רעוויזיע ביי $1 פון $2',
+'revision-info'       => 'רעוויזיע ביי $1 פון $2', # Additional available: $3: revision id
 'previousrevision'    => '→ עלטערער ווערסיע',
 'nextrevision'        => 'נייע ווערסיע ←',
 'currentrevisionlink' => 'איצטיגע ווערסיע',

@@ -415,7 +415,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'viewpagelogs'        => 'هن صفحي جا لاگ ڏسو',
 'currentrev'          => 'هاڻوڪو مسودو',
 'revisionasof'        => '$1 وارو پرت',
-'revision-info'       => '$1 تي $2 جي ترميم بعد مسودو',
+'revision-info'       => '$1 تي $2 جي ترميم بعد مسودو', # Additional available: $3: revision id
 'previousrevision'    => '←اڃا پراڻو پرت',
 'nextrevision'        => 'اڃا نئون پرت→',
 'currentrevisionlink' => 'هاڻوڪو پرت',

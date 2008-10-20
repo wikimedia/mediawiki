@@ -631,7 +631,7 @@ Bazeyena lazava ke $3 tir ''$2''.",
 'nohistory'           => 'Nedoy izvot va batu bu.',
 'currentrev'          => 'Noelaf siatos',
 'revisionasof'        => 'Siatos ba $1',
-'revision-info'       => 'Dimplekura va $1 gan $2',
+'revision-info'       => 'Dimplekura va $1 gan $2', # Additional available: $3: revision id
 'previousrevision'    => '← Abdif siatos',
 'nextrevision'        => 'Radimif siatos →',
 'currentrevisionlink' => 'Wira va noelaf siatos',

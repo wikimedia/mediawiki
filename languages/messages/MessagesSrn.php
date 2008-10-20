@@ -550,7 +550,7 @@ Denki fosi efu na wan bun sani fu meki a papira disi baka. A log buku fu puru so
 'viewpagelogs'        => 'Luku a log buku fu a papira disi',
 'currentrev'          => 'A versi disi',
 'revisionasof'        => 'Versi tapu $1',
-'revision-info'       => 'Versi na $1 fu $2',
+'revision-info'       => 'Versi na $1 fu $2', # Additional available: $3: revision id
 'previousrevision'    => '←Moro owru versi',
 'nextrevision'        => 'Moro nyun versi→',
 'currentrevisionlink' => 'A versi disi',

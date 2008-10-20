@@ -633,8 +633,9 @@ Please report at [[Support]] if you are unable to properly translate this messag
 'revisionasof'           => "Used on a difference page when comparing different versions of a page or when viewing an non-current version of a page. \$1 is the date/time at which the revision was created. Example: \"''Revision as of 14:44, 24 January 2008''\".",
 'revision-info'          => 'Appears just below the page title when an old version of the page is being viewed.
 
-$1 indicates the time of that revision and 
-$2 the author of the revision',
+* $1 indicates the time of that revision and 
+* $2 the author of the revision
+* (optional) $3 is the revision ID', # Additional available: $3: revision id
 'currentrevisionlink'    => '{{Identical|Current revision}}',
 'cur'                    => 'Link in page history',
 'next'                   => 'Link in page history

@@ -830,7 +830,7 @@ A justificativa apresentada por $3 foi ''$2''",
 'currentrev'             => 'Revisão actual',
 'currentrev-asof'        => 'Edição actual tal como $1',
 'revisionasof'           => 'Edição tal como às $1',
-'revision-info'          => 'Revisão de $1; $2',
+'revision-info'          => 'Revisão de $1; $2', # Additional available: $3: revision id
 'previousrevision'       => '← Versão anterior',
 'nextrevision'           => 'Versão posterior →',
 'currentrevisionlink'    => 'ver versão actual',

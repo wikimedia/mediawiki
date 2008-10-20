@@ -576,7 +576,7 @@ $3 norādītais iemesls ir ''$2''",
 'currentrev'             => 'Pašreizējā versija',
 'currentrev-asof'        => 'Pašreizējā versija, $1',
 'revisionasof'           => 'Versija, kas saglabāta $1',
-'revision-info'          => 'Versija $1 laikā, kādu to atstāja $2',
+'revision-info'          => 'Versija $1 laikā, kādu to atstāja $2', # Additional available: $3: revision id
 'previousrevision'       => '←Senāka versija',
 'nextrevision'           => 'Jaunāka versija→',
 'currentrevisionlink'    => 'skatīt pašreizējo versiju',

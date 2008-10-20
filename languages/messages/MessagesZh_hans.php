@@ -737,7 +737,7 @@ $2',
 'currentrev'             => '当前修订版本',
 'currentrev-asof'        => '在$1的当前修订版本',
 'revisionasof'           => '在$1所做的修订版本',
-'revision-info'          => '在$1由$2所做的修订版本',
+'revision-info'          => '在$1由$2所做的修订版本', # Additional available: $3: revision id
 'previousrevision'       => '←上一修订',
 'nextrevision'           => '下一修订→',
 'currentrevisionlink'    => '当前修订',

@@ -734,7 +734,7 @@ A razón endicata por $3 ye ''$2''",
 'nohistory'              => "Ista pachina no tiene un istorial d'edizions.",
 'currentrev'             => 'Bersión autual',
 'revisionasof'           => "Bersión d'o $1",
-'revision-info'          => "Bersión d'o $1 feita por $2",
+'revision-info'          => "Bersión d'o $1 feita por $2", # Additional available: $3: revision id
 'previousrevision'       => '← Bersión anterior',
 'nextrevision'           => 'Bersión siguient →',
 'currentrevisionlink'    => 'Beyer bersión autual',

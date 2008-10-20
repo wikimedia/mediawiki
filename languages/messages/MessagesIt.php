@@ -803,7 +803,7 @@ La motivazione del blocco fornita da $3 è la seguente: ''$2''",
 'currentrev'             => 'Versione corrente',
 'currentrev-asof'        => 'Versione corrente del $1',
 'revisionasof'           => 'Versione del $1',
-'revision-info'          => 'Versione del $1, autore: $2',
+'revision-info'          => 'Versione del $1, autore: $2', # Additional available: $3: revision id
 'previousrevision'       => '← Versione meno recente',
 'nextrevision'           => 'Versione più recente →',
 'currentrevisionlink'    => 'Versione corrente',

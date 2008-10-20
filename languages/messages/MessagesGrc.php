@@ -580,7 +580,7 @@ $1',
 'currentrev'             => 'Τὸ νῦν',
 'currentrev-asof'        => 'Τρέχουσα ἀναθεώρησις μέχρι $1',
 'revisionasof'           => 'Τὰ ἐπὶ $1',
-'revision-info'          => 'Τὸ ἐπὶ $1 ὑπὸ $2',
+'revision-info'          => 'Τὸ ἐπὶ $1 ὑπὸ $2', # Additional available: $3: revision id
 'previousrevision'       => '←Παλαιοτέρα ἀναθεώρησις',
 'nextrevision'           => 'Νεωτέρα ἀναθεώρησις→',
 'currentrevisionlink'    => 'Τὰ νῦν',

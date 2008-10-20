@@ -804,7 +804,7 @@ Käyttäjän $3 antama syy on ''$2''",
 'currentrev'             => 'Nykyinen versio',
 'currentrev-asof'        => 'Nykyinen versio $1',
 'revisionasof'           => 'Versio $1',
-'revision-info'          => 'Versio hetkellä $1 – tehnyt $2',
+'revision-info'          => 'Versio hetkellä $1 – tehnyt $2', # Additional available: $3: revision id
 'previousrevision'       => '← Vanhempi versio',
 'nextrevision'           => 'Uudempi versio →',
 'currentrevisionlink'    => 'Nykyinen versio',

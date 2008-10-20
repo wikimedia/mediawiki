@@ -614,7 +614,7 @@ La razón dá pol $3 es ''$2''",
 'nohistory'           => 'Nu ai dengún estorial d´eicionis pa esta páhina.',
 'currentrev'          => 'Revisión atual',
 'revisionasof'        => 'Revisión de $1',
-'revision-info'       => 'Revisión de $1 hecha pol $2',
+'revision-info'       => 'Revisión de $1 hecha pol $2', # Additional available: $3: revision id
 'previousrevision'    => '←Revisión mas antigua',
 'nextrevision'        => 'Revisión mas recienti→',
 'currentrevisionlink' => 'Revisión atual',

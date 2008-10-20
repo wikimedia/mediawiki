@@ -563,13 +563,17 @@ Ne zaboravite da prilagodite sebi svoja podešavanja.',
 'gotaccountlink'          => 'Prijavi se',
 'createaccountmail'       => 'e-poštom',
 'badretype'               => 'Lozinke koje ste unijeli se ne poklapaju.',
-'userexists'              => 'Korisničko ime koje ste unijeli je već u upotrebi.  Molimo Vas da izaberete drugo ime.',
+'userexists'              => 'Korisničko ime koje ste unijeli je već u upotrebi.
+Molimo Vas da izaberete drugo ime.',
 'youremail'               => 'E-pošta *',
 'username'                => 'Korisničko ime:',
 'uid'                     => 'Korisnički ID:',
+'prefs-memberingroups'    => 'Član {{PLURAL:$1|grupe|grupa}}:',
 'yourrealname'            => 'Vaše pravo ime *',
 'yourlanguage'            => 'Jezik:',
 'yournick'                => 'Nadimak (za potpise):',
+'badsig'                  => 'Loš sirovi potpis.
+Provjerite HTML tagove.',
 'badsiglength'            => 'Potpis je predug.
 Mora biti ispod $1 {{PLURAL:$1|karakter|karaktera}}.',
 'email'                   => 'E-mail',
@@ -761,7 +765,7 @@ Razmotrite je li nastavljanje uređivanja ove stranice u skladu s pravilima. Za 
 'nohistory'              => 'Ne postoji istorija izmjena za ovu stranicu.',
 'currentrev'             => 'Trenutna revizija',
 'revisionasof'           => 'Revizija od $1',
-'revision-info'          => 'Izmjena od $1 korisnika $2',
+'revision-info'          => 'Izmjena od $1 korisnika $2', # Additional available: $3: revision id
 'previousrevision'       => '←Starije izmjene',
 'nextrevision'           => 'Novija izmjena →',
 'currentrevisionlink'    => 'Trenutna verzija',

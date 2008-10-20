@@ -301,7 +301,7 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:UserLogin|logge s�
 'viewpagelogs'        => 'Vuesehte loggeh ihke dïhte bielie',
 'currentrev'          => 'Daaletje gïehtjedamme',
 'revisionasof'        => 'Gïehtjedamme ihke $1',
-'revision-info'       => 'Gïehtjedamme raejeste dïhte $1; $2',
+'revision-info'       => 'Gïehtjedamme raejeste dïhte $1; $2', # Additional available: $3: revision id
 'previousrevision'    => '←Båarasåabpoe gïehtjedamme',
 'nextrevision'        => 'Minngebe gïehtjedamme→',
 'currentrevisionlink' => 'Daaletje gïehtjedamme',

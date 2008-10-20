@@ -451,7 +451,7 @@ Sayfanın silmää jurnalı raatlık için yazılêr burada:",
 'viewpagelogs'        => 'Bu yaprak için jurnalları göster',
 'currentrev'          => 'Şindiki versiya',
 'revisionasof'        => 'Sayfanın $1 datasındaki hali',
-'revision-info'       => '$1; $2 datalı versiya',
+'revision-info'       => '$1; $2 datalı versiya', # Additional available: $3: revision id
 'previousrevision'    => '← İlerki hali',
 'nextrevision'        => 'Geerki hali →',
 'currentrevisionlink' => 'en bitki halini göster',

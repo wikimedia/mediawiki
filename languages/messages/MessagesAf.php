@@ -761,7 +761,7 @@ Die rede verskaf deur $3 is ''$2''",
 'currentrev'             => 'Huidige wysiging',
 'currentrev-asof'        => 'Huidige wysiging per $1',
 'revisionasof'           => 'Wysiging soos op $1',
-'revision-info'          => 'Weergawe soos op $1 deur $2',
+'revision-info'          => 'Weergawe soos op $1 deur $2', # Additional available: $3: revision id
 'previousrevision'       => '← Ouer weergawe',
 'nextrevision'           => 'Nuwer weergawe →',
 'currentrevisionlink'    => 'bekyk huidige weergawe',

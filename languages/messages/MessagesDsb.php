@@ -783,7 +783,7 @@ Pśicyna, kótaruž $3 jo zapódał, jo ''$2''.",
 'currentrev'             => 'Aktualna wersija',
 'currentrev-asof'        => 'Aktualna wersija wót $1',
 'revisionasof'           => 'Wersija z $1',
-'revision-info'          => 'Wersija z $1 wót wužywarja $2',
+'revision-info'          => 'Wersija z $1 wót wužywarja $2', # Additional available: $3: revision id
 'previousrevision'       => '← Zachadna rewizija',
 'nextrevision'           => 'Pśiduca wersija →',
 'currentrevisionlink'    => 'Aktualna wersija',

@@ -747,7 +747,7 @@ De door $3 opgegaeve reje is ''$2''",
 'nohistory'           => 'Dees pazjena is nog neet bewirk.',
 'currentrev'          => 'Hujige versie',
 'revisionasof'        => 'Versie op $1',
-'revision-info'       => 'Versie op $1 door $2',
+'revision-info'       => 'Versie op $1 door $2', # Additional available: $3: revision id
 'previousrevision'    => '← Awwer versie',
 'nextrevision'        => 'Nuujere versie→',
 'currentrevisionlink' => 'zuug hujige versie',

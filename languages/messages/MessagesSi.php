@@ -802,7 +802,7 @@ $3 විසින් සපයා ඇති හේතුව ''$2'' වේ",
 'currentrev'             => 'වත්මන් සංශෝධනය',
 'currentrev-asof'        => '$1 වන විට වත්මන් සංශෝධනය',
 'revisionasof'           => '$1 තෙක් සංශෝධනය',
-'revision-info'          => '$1 වන විට  $2 විසින් සිදු කර ඇති සංශෝධන',
+'revision-info'          => '$1 වන විට  $2 විසින් සිදු කර ඇති සංශෝධන', # Additional available: $3: revision id
 'previousrevision'       => '← පුරාණ සංශෝධනය',
 'nextrevision'           => 'නවීන සංශෝධනය →',
 'currentrevisionlink'    => 'වත්මන් සංශෝධනය',

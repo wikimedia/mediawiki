@@ -547,7 +547,7 @@ Ve ca par comoditât l'elenc des eliminazions precedentis par cheste pagjine:",
 'nohistory'              => 'Nol è presint un storic dai cambiaments par cheste pagjine.',
 'currentrev'             => 'Version atuâl',
 'revisionasof'           => 'Version dai $1',
-'revision-info'          => 'Version dal $1, autôr: $2',
+'revision-info'          => 'Version dal $1, autôr: $2', # Additional available: $3: revision id
 'previousrevision'       => '← Version plui vecje',
 'nextrevision'           => 'Version plui gnove →',
 'currentrevisionlink'    => 'Version atuâl',

@@ -876,7 +876,7 @@ La rason balhada per $3 èra ''$2''.",
 'currentrev'             => 'Version actuala',
 'currentrev-asof'        => 'Version actuala en data del $1',
 'revisionasof'           => 'Version del $1',
-'revision-info'          => 'Version del $1 per $2',
+'revision-info'          => 'Version del $1 per $2', # Additional available: $3: revision id
 'previousrevision'       => '← Version precedenta',
 'nextrevision'           => 'Version seguenta →',
 'currentrevisionlink'    => 'vejatz la version correnta',
@@ -1608,6 +1608,7 @@ Una pagina es tractada coma una pagina d’omonimia s'utiliza un modèl qu'es li
 'wantedcategories'        => 'Categorias mai demandadas',
 'wantedpages'             => 'Paginas mai demandadas',
 'wantedfiles'             => 'Fichièrs desirats',
+'wantedtemplates'         => 'Modèls demandats',
 'mostlinked'              => 'Paginas mai ligadas',
 'mostlinkedcategories'    => 'Categorias mai utilizadas',
 'mostlinkedtemplates'     => 'Modèls mai utilizats',
@@ -1733,7 +1734,7 @@ e aver indicat una adreça electronica valida dins vòstras [[Special:Preference
 per poder mandar un messatge a un autre utilizaire.',
 'emailuser'       => 'Mandar un messatge a aqueste utilizaire',
 'emailpage'       => 'Mandar un corrièr electronic a l’utilizaire',
-'emailpagetext'   => "S'aqueste utilizaire a indicat una adreça electronica valida dins sas preferéncias, lo formulari çaijós li mandarà un messatge.
+'emailpagetext'   => "Podètz utilizar lo formulari çaijós per mandar un corrièr electronic a aqueste utilizaire.
 L'adreça electronica qu'avètz indicada dins [[Special:Preferences|vòstras preferéncias]] apareisserà dins lo camp « Expeditor » de vòstre messatge. E mai, lo destinatari vos poirà respondre dirèctament.",
 'usermailererror' => 'Error dins lo subjècte del corrièr electronic :',
 'defemailsubject' => 'Corrièr electronic mandat dempuèi {{SITENAME}}',

@@ -406,7 +406,7 @@ Llogaria juej asht hap. Mos harroni me ndryshu parapëlqimet e {{SITENAME}}-s.',
 
 # History pages
 'revisionasof'     => 'Versioni i $1',
-'revision-info'    => 'Versioni me $1 nga $2',
+'revision-info'    => 'Versioni me $1 nga $2', # Additional available: $3: revision id
 'previousrevision' => '← Verzion ma i vjetër',
 'cur'              => 'tash',
 'last'             => 'fund',

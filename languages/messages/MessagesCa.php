@@ -824,7 +824,7 @@ El motiu donat per $3 és ''$2''",
 'currentrev'             => 'Revisió actual',
 'currentrev-asof'        => 'Revisió de $1',
 'revisionasof'           => 'Revisió de $1',
-'revision-info'          => 'Revisió de $1; $2',
+'revision-info'          => 'Revisió de $1; $2', # Additional available: $3: revision id
 'previousrevision'       => '←Versió més antiga',
 'nextrevision'           => 'Versió més nova→',
 'currentrevisionlink'    => 'Versió actual',

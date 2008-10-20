@@ -866,7 +866,7 @@ $2',
 'nohistory'           => 'Не постоји историја измена за ову страницу.',
 'currentrev'          => 'Тренутна ревизија',
 'revisionasof'        => 'Ревизија од $1',
-'revision-info'       => 'Ревизија од $1; $2',
+'revision-info'       => 'Ревизија од $1; $2', # Additional available: $3: revision id
 'previousrevision'    => '← Претходна ревизија',
 'nextrevision'        => 'Следећа ревизија →',
 'currentrevisionlink' => 'Тренутна ревизија',

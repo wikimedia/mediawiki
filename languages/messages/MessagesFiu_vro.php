@@ -622,7 +622,7 @@ $3 kirjäpant põhjus: ''$2''",
 'nohistory'           => 'Seo leheküle pääl ei olõq vanõmbit kujjõ.',
 'currentrev'          => 'Viimäne kujo',
 'revisionasof'        => 'Kujo $1',
-'revision-info'       => 'Kujo aost $1 - tennüq $2',
+'revision-info'       => 'Kujo aost $1 - tennüq $2', # Additional available: $3: revision id
 'previousrevision'    => '←Vanõmb kujo',
 'nextrevision'        => 'Vahtsõmb kujo→',
 'currentrevisionlink' => 'Viimäne kujo',

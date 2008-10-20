@@ -945,7 +945,7 @@ Razlog koji je dao/la $3 je ''$2''",
 'currentrev'             => 'Trenutačna inačica',
 'currentrev-asof'        => 'Trenutačna izmjena od $1',
 'revisionasof'           => 'Inačica od $1',
-'revision-info'          => 'Inačica od $1 koju je unio/unijela $2',
+'revision-info'          => 'Inačica od $1 koju je unio/unijela $2', # Additional available: $3: revision id
 'previousrevision'       => '←Starija inačica',
 'nextrevision'           => 'Novija inačica→',
 'currentrevisionlink'    => 'vidi trenutačnu inačicu',

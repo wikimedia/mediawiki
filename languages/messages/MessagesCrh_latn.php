@@ -723,7 +723,7 @@ $3 mına böyle bir sebep belgiledi: ''$2''",
 'nohistory'           => 'Bu saifeniñ keçmiş versiyası yoq.',
 'currentrev'          => 'Al-azırki versiya',
 'revisionasof'        => 'Saifeniñ $1 tarihındaki alı',
-'revision-info'       => 'Saifeniñ $2 tarafından oluştırılğan $1 tarihındaki alı',
+'revision-info'       => 'Saifeniñ $2 tarafından oluştırılğan $1 tarihındaki alı', # Additional available: $3: revision id
 'previousrevision'    => '← Evelki alı',
 'nextrevision'        => 'Soñraki alı →',
 'currentrevisionlink' => 'eñ yañı alını köster',

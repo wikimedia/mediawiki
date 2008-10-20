@@ -751,7 +751,7 @@ Y rheswm a roddwyd dros y bloc gan $3 yw ''$2''.",
 'nohistory'              => "Does dim hanes golygu i'r dudalen hon.",
 'currentrev'             => 'Diwygiad cyfoes',
 'revisionasof'           => 'Diwygiad $1',
-'revision-info'          => 'Y fersiwn a roddwyd ar gadw am $1 gan $2',
+'revision-info'          => 'Y fersiwn a roddwyd ar gadw am $1 gan $2', # Additional available: $3: revision id
 'previousrevision'       => '← at y diwygiad blaenorol',
 'nextrevision'           => 'At y diwygiad dilynol →',
 'currentrevisionlink'    => 'Y diwygiad cyfoes',

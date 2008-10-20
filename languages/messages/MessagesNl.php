@@ -998,7 +998,7 @@ De door $3 opgegeven reden is ''$2''",
 'currentrev'             => 'Huidige versie',
 'currentrev-asof'        => 'Huidige versie per $1',
 'revisionasof'           => 'Versie op $1',
-'revision-info'          => 'Versie op $1 van $2',
+'revision-info'          => 'Versie op $1 van $2', # Additional available: $3: revision id
 'previousrevision'       => '←Oudere versie',
 'nextrevision'           => 'Nieuwere versie→',
 'currentrevisionlink'    => 'Huidige versie',

@@ -503,7 +503,7 @@ Ngì thùng-sṳ̀ ya-yeu hiong Wikimedia pó-chṳn ngì só thì-kâu ke nui-y
 'nohistory'           => 'Mò-yû pún-chông ke siû-thin ki-liu̍k.',
 'currentrev'          => 'Tông-chhièn siû-thin pán-pún',
 'revisionasof'        => 'Chhai $1 só-cho ke siû-thin pán-pún',
-'revision-info'       => 'Chhai $1 yù $2 só-cho ke siû-thin pán-pún',
+'revision-info'       => 'Chhai $1 yù $2 só-cho ke siû-thin pán-pún', # Additional available: $3: revision id
 'previousrevision'    => '←Sông yit siû-thin',
 'nextrevision'        => 'Hâ-yit-ke siû-cháng →',
 'currentrevisionlink' => 'Tông-chhièn siû-thin pán-pún',

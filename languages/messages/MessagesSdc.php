@@ -681,7 +681,7 @@ La rasgioni frunidda da $3 è ''$2''",
 'nohistory'           => 'Cronologia di li versioni di chistha pàgina nò riperìbiri.',
 'currentrev'          => 'Versioni currenti',
 'revisionasof'        => 'Versioni di lu $1',
-'revision-info'       => 'Versioni di lu $1, autori: $2',
+'revision-info'       => 'Versioni di lu $1, autori: $2', # Additional available: $3: revision id
 'previousrevision'    => '← Versioni mancu rizzenti',
 'nextrevision'        => 'Versioni più rizzenti →',
 'currentrevisionlink' => 'Versioni currenti',
