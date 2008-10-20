@@ -3032,4 +3032,6 @@ $wgMessageComments = array(
 	'metadata-fields'             => 'Do not translate list items',
 	'version'                     => 'Not used as normal message but as header for the special page itself',
 	'userrights'                  => 'Not used as normal message but as header for the special page itself',
+	'revision-info'               => 'Additional available: $3: revision id',
+	'revision-info-current'       => 'Available parameters: $1: timestamp; $2: userlinks; $3: revision id',
 );
