@@ -980,7 +980,7 @@ $2',
 'currentrev'             => 'גרסה נוכחית',
 'currentrev-asof'        => 'גרסה נוכחית מתאריך $1',
 'revisionasof'           => 'גרסה מתאריך $1',
-'revision-info'          => 'גרסה מתאריך $1 מאת $2',
+'revision-info'          => 'גרסה מתאריך $1 מאת $2', # Additional available: $3: revision id
 'previousrevision'       => '→ הגרסה הקודמת',
 'nextrevision'           => 'הגרסה הבאה ←',
 'currentrevisionlink'    => 'הגרסה הנוכחית',

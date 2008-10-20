@@ -812,7 +812,7 @@ $3 nurodyta priežastis yra ''$2''",
 'currentrev'             => 'Dabartinė versija',
 'currentrev-asof'        => 'Dabartinė $1 versija',
 'revisionasof'           => '$1 versija',
-'revision-info'          => '$1 versija naudotojo $2',
+'revision-info'          => '$1 versija naudotojo $2', # Additional available: $3: revision id
 'previousrevision'       => '←Ankstesnė versija',
 'nextrevision'           => 'Vėlesnė versija→',
 'currentrevisionlink'    => 'Dabartinė versija',

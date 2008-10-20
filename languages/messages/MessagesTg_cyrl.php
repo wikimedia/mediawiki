@@ -660,7 +660,7 @@ $1',
 'nohistory'           => 'Таърихи вироиш барои ин саҳифа вуҷуд надорад.',
 'currentrev'          => 'Вироишоти кунунӣ',
 'revisionasof'        => 'Нусха $1',
-'revision-info'       => 'Нусхаи вироиш $2 дар таърихи $1',
+'revision-info'       => 'Нусхаи вироиш $2 дар таърихи $1', # Additional available: $3: revision id
 'previousrevision'    => '←Нусхаи кӯҳнатар',
 'nextrevision'        => 'Нусхаи навтарин→',
 'currentrevisionlink' => 'Намоиши нусхаи феълӣ',

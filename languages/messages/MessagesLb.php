@@ -377,7 +377,7 @@ $messages = array(
 'viewsourceold'           => 'Quellcode kucken',
 'editlink'                => 'änneren',
 'viewsourcelink'          => 'Quelltext weisen',
-'editsectionhint'         => 'Abschnitt veränneren: $1',
+'editsectionhint'         => 'Abschnitt: $1 änneren',
 'toc'                     => 'Inhaltsverzeechnis',
 'showtoc'                 => 'weisen',
 'hidetoc'                 => 'verstoppen',
@@ -776,7 +776,7 @@ Et däerfen net méi wéi $2 {{PLURAL:$2|Ufro|Ufroe}} sinn, aktuell {{PLURAL:$2|
 'currentrev'             => 'Aktuell Versioun',
 'currentrev-asof'        => 'Aktuell Versioun vum $1',
 'revisionasof'           => 'Versioun vum $1',
-'revision-info'          => 'Versioun vum $1 vum $2.',
+'revision-info'          => 'Versioun vum $1 vum $2.', # Additional available: $3: revision id
 'previousrevision'       => '← Méi al Versioun',
 'nextrevision'           => 'Méi rezent Ännerung→',
 'currentrevisionlink'    => 'Aktuell Versioun',

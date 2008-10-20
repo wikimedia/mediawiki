@@ -708,7 +708,7 @@ Arsyeja e dhënë nga $3 është ''$2''.",
 'nohistory'           => 'Nuk ka histori redaktimesh për këtë faqe.',
 'currentrev'          => 'Versioni i tanishëm',
 'revisionasof'        => 'Versioni i $1',
-'revision-info'       => 'Versioni më $1 nga $2',
+'revision-info'       => 'Versioni më $1 nga $2', # Additional available: $3: revision id
 'previousrevision'    => '← Version më i vjetër',
 'nextrevision'        => 'Version më i ri →',
 'currentrevisionlink' => 'shikoni versionin e tanishëm',

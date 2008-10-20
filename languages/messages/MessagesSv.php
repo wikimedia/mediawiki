@@ -933,7 +933,7 @@ Anledningen till blockeringen var "$2".',
 'currentrev'             => 'Nuvarande version',
 'currentrev-asof'        => 'Nuvarande version från $1',
 'revisionasof'           => 'Versionen från $1',
-'revision-info'          => 'Version från den $1 av $2',
+'revision-info'          => 'Version från den $1 av $2', # Additional available: $3: revision id
 'previousrevision'       => '← Äldre version',
 'nextrevision'           => 'Nyare version →',
 'currentrevisionlink'    => 'Nuvarande version',

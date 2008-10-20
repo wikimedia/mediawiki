@@ -870,7 +870,7 @@ Grunnen som vart gjeven av $3 er ''$2''",
 'currentrev'             => 'Noverande versjon',
 'currentrev-asof'        => 'Noverande versjon frå $1',
 'revisionasof'           => 'Versjonen frå $1',
-'revision-info'          => 'Versjonen frå $1 av $2',
+'revision-info'          => 'Versjonen frå $1 av $2', # Additional available: $3: revision id
 'previousrevision'       => '←Eldre versjon',
 'nextrevision'           => 'Nyare versjon→',
 'currentrevisionlink'    => 'Noverande versjon',

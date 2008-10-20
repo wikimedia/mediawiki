@@ -647,7 +647,7 @@ $1 საათში.',
 'nohistory'           => 'ამ გვერდს განხილვის გვერდი ცარიელი აქვს.',
 'currentrev'          => 'მიმდინარე შესწორება',
 'revisionasof'        => '$1-ის ვერსია',
-'revision-info'       => '$1-ის ვერსია, შეტანილი $2-ის მიერ',
+'revision-info'       => '$1-ის ვერსია, შეტანილი $2-ის მიერ', # Additional available: $3: revision id
 'previousrevision'    => '←წინა ვერსია',
 'nextrevision'        => 'შემდეგი ვერსია→',
 'currentrevisionlink' => 'მიმდინარე ვერსია',

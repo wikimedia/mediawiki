@@ -559,7 +559,7 @@ Rae' zo xuniim $3 mii coccebj ''$2''",
 'nohistory'           => 'Jan páhina necoccebj históriade ticpatlöx.',
 'currentrev'          => 'Revicion cmaa',
 'revisionasof'        => 'Revicionde $1',
-'revision-info'       => "Revicionde $1 'de $2",
+'revision-info'       => "Revicionde $1 'de $2", # Additional available: $3: revision id
 'previousrevision'    => '←Janrevicion',
 'nextrevision'        => 'Hunrevicion→',
 'currentrevisionlink' => 'Revicion currentuanon',

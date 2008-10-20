@@ -641,7 +641,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'nohistory'              => 'இப் பக்கத்துக்குத் தொகுப்பு வரலாறு இல்லை.',
 'currentrev'             => 'நடைமுறையிலுள்ள திருத்தம்',
 'revisionasof'           => '$1 இல் நிலவும் திருத்தம்',
-'revision-info'          => '$2 பயனரால் செய்யப்பட்ட $1 அன்றிருந்தவாரான திருத்தம்',
+'revision-info'          => '$2 பயனரால் செய்யப்பட்ட $1 அன்றிருந்தவாரான திருத்தம்', # Additional available: $3: revision id
 'previousrevision'       => '←முந்தைய தொகுப்பு',
 'nextrevision'           => 'புதிய தொகுப்பு→',
 'currentrevisionlink'    => 'நடப்பிலுள்ள திருத்தம்',

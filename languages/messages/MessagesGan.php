@@ -574,7 +574,7 @@ $2',
 'nohistory'           => '箇頁冇修改歷史。',
 'currentrev'          => '眼前嗰修改版本',
 'revisionasof'        => '$1嗰修改版本',
-'revision-info'       => '$2到$1扤嗰修訂版本',
+'revision-info'       => '$2到$1扤嗰修訂版本', # Additional available: $3: revision id
 'previousrevision'    => '←之前嗰修改',
 'nextrevision'        => '接到嗰修改→',
 'currentrevisionlink' => '眼前嗰修改',

@@ -418,7 +418,7 @@ Du geavaheaddjidovddaldat lea dál anus.
 'nohistory'           => 'Dán siiddus ii leat rievdadanhistorjá.',
 'currentrev'          => 'Dálá veršuvdna',
 'revisionasof'        => 'Veršuvdna $1',
-'revision-info'       => 'Dálá veršuvdna $1 – ráhkadan $2',
+'revision-info'       => 'Dálá veršuvdna $1 – ráhkadan $2', # Additional available: $3: revision id
 'previousrevision'    => '← Boarrásut veršuvdna',
 'nextrevision'        => 'Ođđasut veršuvdna →',
 'currentrevisionlink' => 'Dálá veršuvdna',

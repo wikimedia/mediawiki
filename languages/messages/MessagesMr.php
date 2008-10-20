@@ -796,7 +796,7 @@ $3ने ''$2'' कारण दिले आहे.",
 'nohistory'           => 'या पृष्ठासाठी आवृत्ती इतिहास अस्तित्वात नाही.',
 'currentrev'          => 'चालू आवृत्ती',
 'revisionasof'        => '$1 नुसारची आवृत्ती',
-'revision-info'       => '$2ने $1चे आवर्तन',
+'revision-info'       => '$2ने $1चे आवर्तन', # Additional available: $3: revision id
 'previousrevision'    => '←मागील आवृत्ती',
 'nextrevision'        => 'पुढील आवृत्ती→',
 'currentrevisionlink' => 'आताची आवृत्ती',

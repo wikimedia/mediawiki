@@ -735,7 +735,7 @@ $3 tarafından verilen sebep ''$2''",
 'currentrev'             => 'Güncel sürüm',
 'currentrev-asof'        => '$1 itibarı ile sayfanın şu anki hâli.',
 'revisionasof'           => 'Sayfanın $1 tarihindeki hâli',
-'revision-info'          => '$2 tarafından oluşturulmuş $1 tarihli sürüm',
+'revision-info'          => '$2 tarafından oluşturulmuş $1 tarihli sürüm', # Additional available: $3: revision id
 'previousrevision'       => '← Önceki hali',
 'nextrevision'           => 'Sonraki hali →',
 'currentrevisionlink'    => 'en güncel halini göster',

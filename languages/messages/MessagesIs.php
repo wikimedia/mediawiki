@@ -878,7 +878,7 @@ Hún er nú þegar til.',
 'currentrev'             => 'Núverandi útgáfa',
 'currentrev-asof'        => 'Núverandi breyting frá og með $1',
 'revisionasof'           => 'Útgáfa síðunnar $1',
-'revision-info'          => 'Útgáfa frá $1 eftir $2',
+'revision-info'          => 'Útgáfa frá $1 eftir $2', # Additional available: $3: revision id
 'previousrevision'       => '←Fyrri útgáfa',
 'nextrevision'           => 'Næsta útgáfa→',
 'currentrevisionlink'    => 'Núverandi útgáfa',

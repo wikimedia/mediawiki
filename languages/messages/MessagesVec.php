@@ -777,7 +777,7 @@ La motivazion del bloco fornìa da $3 la xe sta qua: ''$2''",
 'currentrev'             => 'Version atuałe',
 'currentrev-asof'        => 'Version corrente del $1',
 'revisionasof'           => 'Revixion $1',
-'revision-info'          => 'Version del $1, autor: $2',
+'revision-info'          => 'Version del $1, autor: $2', # Additional available: $3: revision id
 'previousrevision'       => '← Version manco reçente',
 'nextrevision'           => 'Version pì reçente →',
 'currentrevisionlink'    => 'Varda ła version atuałe',

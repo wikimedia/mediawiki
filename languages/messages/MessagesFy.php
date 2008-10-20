@@ -790,7 +790,7 @@ De fan $3 opjûne reden is ''$2''",
 'currentrev'             => 'Aktuele ferzje',
 'currentrev-asof'        => 'Hjoeddeiske ferzje sûnt $1',
 'revisionasof'           => 'Ferzje op $1',
-'revision-info'          => 'Ferzje op $1 fan $2',
+'revision-info'          => 'Ferzje op $1 fan $2', # Additional available: $3: revision id
 'previousrevision'       => '←Eardere ferskillen',
 'nextrevision'           => 'Nijere ferzje→',
 'currentrevisionlink'    => 'Rinnende ferzje',

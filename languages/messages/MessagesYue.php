@@ -791,7 +791,7 @@ $1',
 'currentrev'             => '家下嘅修訂',
 'currentrev-asof'        => '響 $1 嘅家下修訂',
 'revisionasof'           => '喺$1嘅修訂',
-'revision-info'          => '喺$1嘅修訂；修訂自$2',
+'revision-info'          => '喺$1嘅修訂；修訂自$2', # Additional available: $3: revision id
 'previousrevision'       => '←之前嘅修訂',
 'nextrevision'           => '新啲嘅修訂→',
 'currentrevisionlink'    => '家下嘅修訂版本',

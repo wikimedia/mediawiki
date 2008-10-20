@@ -1070,7 +1070,7 @@ $3 كەلتىرىلگەن سەبەبى: ''$2''",
 'nohistory'           => 'مىندا بۇل بەتتىنىڭ تۇزەتۋ تارىيحى جوق.',
 'currentrev'          => 'اعىمدىق تۇزەتۋ',
 'revisionasof'        => '$1 كەزىندەگى تۇزەتۋ',
-'revision-info'       => '$1 كەزىندەگى $2 ىستەگەن تۇزەتۋ',
+'revision-info'       => '$1 كەزىندەگى $2 ىستەگەن تۇزەتۋ', # Additional available: $3: revision id
 'previousrevision'    => '← ەسكىلەۋ تۇزەتۋى',
 'nextrevision'        => 'جاڭالاۋ تۇزەتۋى →',
 'currentrevisionlink' => 'اعىمدىق تۇزەتۋى',

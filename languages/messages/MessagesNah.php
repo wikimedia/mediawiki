@@ -405,7 +405,7 @@ Xiquimpiya motlahtōl.',
 'nohistory'              => 'Ahmo cah tlapatlaliztechcopa tlahcuilōlloh inīn zāzaniltechcopa.',
 'currentrev'             => 'Āxcān tlapatlaliztli',
 'revisionasof'           => 'Tlachiyaliztli īpan $1',
-'revision-info'          => 'Tlachiyaliztli īpan $1; $2',
+'revision-info'          => 'Tlachiyaliztli īpan $1; $2', # Additional available: $3: revision id
 'previousrevision'       => '← Huēhueh tlapatlaliztli',
 'nextrevision'           => 'Yancuīc tlapatlaliztli →',
 'currentrevisionlink'    => 'Āxcān tlapatlaliztli',

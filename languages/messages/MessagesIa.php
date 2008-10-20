@@ -740,7 +740,7 @@ Le motivo que $3 dava es ''$2''",
 'currentrev'             => 'Revision actual',
 'currentrev-asof'        => 'Version actual in data del $1',
 'revisionasof'           => 'Revision del $1',
-'revision-info'          => 'Revision del $1 per $2',
+'revision-info'          => 'Revision del $1 per $2', # Additional available: $3: revision id
 'previousrevision'       => '←Revision precedente',
 'nextrevision'           => 'Revision sequente→',
 'currentrevisionlink'    => 'Revision actual',

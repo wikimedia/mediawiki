@@ -643,7 +643,7 @@ Ngirtey téye gi $3 joxe, mooy ne: ''$2''.",
 'currentrev'             => 'Sumb mi teew',
 'currentrev-asof'        => 'Sumb mi teew mu $1',
 'revisionasof'           => 'Sumb mu $1',
-'revision-info'          => 'Sumb mu $1, jëfandikukat: $2',
+'revision-info'          => 'Sumb mu $1, jëfandikukat: $2', # Additional available: $3: revision id
 'previousrevision'       => '← Sumb mi jiitu',
 'nextrevision'           => 'Sumb mi toftal →',
 'currentrevisionlink'    => 'Sumb mi teew',

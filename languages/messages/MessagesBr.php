@@ -671,7 +671,7 @@ An abeg roet gant $3 zo ''$2''",
 'nohistory'           => "Ar bajenn-mañ n'he deus tamm istor ebet.",
 'currentrev'          => 'Stumm a-vremañ pe stumm red',
 'revisionasof'        => 'Stumm eus an $1',
-'revision-info'       => 'Stumm eus an $1 gant $2',
+'revision-info'       => 'Stumm eus an $1 gant $2', # Additional available: $3: revision id
 'previousrevision'    => '← Stumm kent',
 'nextrevision'        => "Stumm war-lerc'h →",
 'currentrevisionlink' => 'Gwelet ar stumm red',

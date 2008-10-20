@@ -881,7 +881,7 @@ La raison donnée par $3 était ''$2''.",
 'currentrev'             => 'Version actuelle',
 'currentrev-asof'        => 'Version actuelle en date du $1',
 'revisionasof'           => 'Version du $1',
-'revision-info'          => 'Version du $1 par $2',
+'revision-info'          => 'Version du $1 par $2', # Additional available: $3: revision id
 'previousrevision'       => '← Version précédente',
 'nextrevision'           => 'Version suivante →',
 'currentrevisionlink'    => 'Voir la version courante',

@@ -820,7 +820,7 @@ De Grund weer: ''$2''",
 'revisionasof'           => 'Version vun’n $1',
 'revision-info'          => '<div id="viewingold-warning" style="background: #ffbdbd; border: 1px solid #BB7979; font-weight: bold; padding: .5em 1em;">
 Dit is en ole Version vun disse Siet, so as $2 de $1 ännert hett. De Version kann temlich stark vun de <a href="{{FULLURL:{{FULLPAGENAME}}}}" title="{{FULLPAGENAME}}">aktuelle Version</a> afwieken.
-</div>',
+</div>', # Additional available: $3: revision id
 'previousrevision'       => 'Nächstöllere Version→',
 'nextrevision'           => 'Ne’ere Version →',
 'currentrevisionlink'    => 'aktuelle Version',

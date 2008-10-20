@@ -924,7 +924,7 @@ Alasan yang diberikan oleh $3 adalah ''$2''",
 'currentrev'             => 'Revisi terkini',
 'currentrev-asof'        => 'Revisi terkini pada $1',
 'revisionasof'           => 'Revisi per $1',
-'revision-info'          => 'Revisi per $1; $2',
+'revision-info'          => 'Revisi per $1; $2', # Additional available: $3: revision id
 'previousrevision'       => '←Revisi sebelumnya',
 'nextrevision'           => 'Revisi selanjutnya→',
 'currentrevisionlink'    => 'Revisi terkini',

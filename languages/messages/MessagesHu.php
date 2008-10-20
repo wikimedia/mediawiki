@@ -947,7 +947,7 @@ Néhány sablon nem fog megjelenni.',
 'currentrev'             => 'Aktuális változat',
 'currentrev-asof'        => 'A lap jelenlegi, $1-kori változata',
 'revisionasof'           => 'A lap $1-kori változata',
-'revision-info'          => 'A lap korábbi változatát látod, amilyen $2 $1-kor történt szerkesztése után volt.',
+'revision-info'          => 'A lap korábbi változatát látod, amilyen $2 $1-kor történt szerkesztése után volt.', # Additional available: $3: revision id
 'previousrevision'       => '←Régebbi változat',
 'nextrevision'           => 'Újabb változat→',
 'currentrevisionlink'    => 'Aktuális változat',

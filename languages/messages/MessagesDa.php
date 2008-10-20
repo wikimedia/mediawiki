@@ -779,7 +779,7 @@ Der bør være færre end $2, lige nu er der $1.',
 'nohistory'              => 'Der er ingen versionshistorik for denne side.',
 'currentrev'             => 'Nuværende version',
 'revisionasof'           => 'Versionen fra $1',
-'revision-info'          => 'Version fra $1 til $2',
+'revision-info'          => 'Version fra $1 til $2', # Additional available: $3: revision id
 'previousrevision'       => '←Ældre version',
 'nextrevision'           => 'Nyere version→',
 'currentrevisionlink'    => 'se nuværende version',

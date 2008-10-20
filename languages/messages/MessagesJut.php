@@ -429,7 +429,7 @@ denne side er vest nedenfør:",
 'viewpagelogs'        => 'Ves loglister før denne side',
 'currentrev'          => 'Nuværende hersenenge',
 'revisionasof'        => 'Hersenenger frå $1',
-'revision-info'       => 'Hersenenge frå $1 til $2',
+'revision-info'       => 'Hersenenge frå $1 til $2', # Additional available: $3: revision id
 'previousrevision'    => '←Ældre hersenenge',
 'nextrevision'        => 'Nyere hersenenge→',
 'currentrevisionlink' => 'se nuværende hersenenge',

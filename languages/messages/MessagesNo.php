@@ -804,7 +804,7 @@ Grunnen som ble oppgitt av $3 er ''$2''",
 'currentrev'             => 'Nåværende versjon',
 'currentrev-asof'        => 'Nåværende revisjon fra $1',
 'revisionasof'           => 'Versjonen fra $1',
-'revision-info'          => 'Revisjon per $1 av $2',
+'revision-info'          => 'Revisjon per $1 av $2', # Additional available: $3: revision id
 'previousrevision'       => '← Eldre versjon',
 'nextrevision'           => 'Nyere versjon →',
 'currentrevisionlink'    => 'Nåværende versjon',

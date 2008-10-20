@@ -661,7 +661,7 @@ La rêson balyê per $3 ére ''$2''.",
 'nohistory'           => 'Ègziste pas d’historico por ceta pâge.',
 'currentrev'          => 'Vèrsion d’ora',
 'revisionasof'        => 'Vèrsion du $1',
-'revision-info'       => 'Vèrsion du $1 per $2',
+'revision-info'       => 'Vèrsion du $1 per $2', # Additional available: $3: revision id
 'previousrevision'    => '← Vèrsion prècèdenta',
 'nextrevision'        => 'Vèrsion siuventa →',
 'currentrevisionlink' => 'vêde la vèrsion corenta',

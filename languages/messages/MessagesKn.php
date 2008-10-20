@@ -648,7 +648,7 @@ $2',
 'nohistory'              => 'ಈ ಪುಟಕ್ಕೆ ಬದಲಾವಣೆಗಳ ಇತಿಹಾಸ ಇಲ್ಲ.',
 'currentrev'             => 'ಈಗಿನ ತಿದ್ದುಪಡಿ',
 'revisionasof'           => '$1 ದಿನದ ಆವೃತ್ತಿ',
-'revision-info'          => '$2 ಅವರು $1 ಅಂದು ಸಂಪಾದನೆ ಮಾಡಿದ ನಂತರದ ಆವೃತ್ತಿ',
+'revision-info'          => '$2 ಅವರು $1 ಅಂದು ಸಂಪಾದನೆ ಮಾಡಿದ ನಂತರದ ಆವೃತ್ತಿ', # Additional available: $3: revision id
 'previousrevision'       => '←ಹಿಂದಿನ ಪರಿಷ್ಕರಣೆ',
 'nextrevision'           => 'ಮುಂದಿನ ಪರಿಷ್ಕರಣೆ',
 'currentrevisionlink'    => 'ಈಗಿನ ಪರಿಷ್ಕರಣೆ',

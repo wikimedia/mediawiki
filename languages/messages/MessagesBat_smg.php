@@ -539,7 +539,7 @@ Tomsta torėt nosprēst, a pritėnk tuoliau redagoutė šėta poslapi.
 'currentrev'          => 'Dabartėnė versėjė',
 'currentrev-asof'     => 'Dabartėnė $1 versėjė',
 'revisionasof'        => '$1 versėjė',
-'revision-info'       => '$1 versėjė nauduotuojė $2',
+'revision-info'       => '$1 versėjė nauduotuojė $2', # Additional available: $3: revision id
 'previousrevision'    => '←Onkstesnė versėjė',
 'nextrevision'        => 'Paskesnė versėjė→',
 'currentrevisionlink' => 'Dabartėnė versėjė',

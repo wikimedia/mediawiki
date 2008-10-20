@@ -944,7 +944,7 @@ Als Jrund för et Sperre es enjedraare: ''$2''",
 'currentrev'             => 'Neuste Version',
 'currentrev-asof'        => 'De neuste Version fum $1',
 'revisionasof'           => 'Version vum $1',
-'revision-info'          => 'Dat es de Version vum $1 vum $2.',
+'revision-info'          => 'Dat es de Version vum $1 vum $2.', # Additional available: $3: revision id
 'previousrevision'       => '← De Version dovör zeije',
 'nextrevision'           => 'De Version donoh zeije →',
 'currentrevisionlink'    => 'De neuste Version',

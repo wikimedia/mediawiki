@@ -644,7 +644,7 @@ Ini ing sangkan a binie nang $3: ''$2''",
 'nohistory'           => 'Alang amlat ning pamag-edit (edit history) para king bulung a ini.',
 'currentrev'          => 'Kasalungsungan a pangayalili',
 'revisionasof'        => 'Ing mibayu aniang $1',
-'revision-info'       => 'Deng miyalilan aniang $1 ibat kang $2',
+'revision-info'       => 'Deng miyalilan aniang $1 ibat kang $2', # Additional available: $3: revision id
 'previousrevision'    => '←Minunang pamagbayu',
 'nextrevision'        => 'Mas tauling pamagbayu→',
 'currentrevisionlink' => 'Kasalungsungan a pamagbayu',

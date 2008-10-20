@@ -635,7 +635,7 @@ La rason butà da $3 për ël blocagi a l'é staita: ''$2''",
 'nohistory'           => "La stòria dle version dë sta pàgina-sì a l'é pa trovasse.",
 'currentrev'          => "Versione dël dì d'ancheuj",
 'revisionasof'        => 'Revision $1',
-'revision-info'       => 'Revision al $1; $2',
+'revision-info'       => 'Revision al $1; $2', # Additional available: $3: revision id
 'previousrevision'    => '←Version pì veja',
 'nextrevision'        => 'Revision pì neuve→',
 'currentrevisionlink' => 'vardé la version corenta',

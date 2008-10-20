@@ -589,7 +589,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'nohistory'              => 'ለዚሁ ገጽ የዕትሞች ታሪክ የለም።',
 'currentrev'             => 'የአሁኑ እትም',
 'revisionasof'           => 'እትም በ$1',
-'revision-info'          => 'የ$1 ዕትም (ከ$2 ተዘጋጅቶ)',
+'revision-info'          => 'የ$1 ዕትም (ከ$2 ተዘጋጅቶ)', # Additional available: $3: revision id
 'previousrevision'       => '← የፊተኛው እትም',
 'nextrevision'           => 'የሚከተለው እትም →',
 'currentrevisionlink'    => '«የአሁኑን እትም ለመመልከት»',

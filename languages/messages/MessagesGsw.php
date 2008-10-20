@@ -498,7 +498,7 @@ Hie gesehsch ds Lösch-Logbuech vo dere Syte:",
 'viewpagelogs'        => 'Logbüecher für die Syten azeige',
 'currentrev'          => 'Itzigi Version',
 'revisionasof'        => 'Version vo $1',
-'revision-info'       => 'Alti Bearbeitig vom $1 dür $2',
+'revision-info'       => 'Alti Bearbeitig vom $1 dür $2', # Additional available: $3: revision id
 'previousrevision'    => '← Vorderi Version',
 'nextrevision'        => 'Nächschti Version →',
 'currentrevisionlink' => 'Itzigi Version',

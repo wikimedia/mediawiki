@@ -527,7 +527,7 @@ Nina'i i rasion ''$2'' as $3",
 'nohistory'           => "Tåya' historian tinilaika este na påhina.",
 'currentrev'          => 'Tinilaika modetnu',
 'revisionasof'        => 'Maribisa ginen $1',
-'revision-info'       => 'Tinilaika ginen $1 as $2',
+'revision-info'       => 'Tinilaika ginen $1 as $2', # Additional available: $3: revision id
 'previousrevision'    => "←Ribision mas amko'",
 'nextrevision'        => 'Mas nuebu na tinilaika→',
 'currentrevisionlink' => 'I mas nuebu na tinilaika',

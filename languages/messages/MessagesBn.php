@@ -638,7 +638,7 @@ $3-এর দেয়া কারণ হল ''$2''",
 'nohistory'           => 'এই পাতার কোন সম্পাদনার ইতিহাস নাই।',
 'currentrev'          => 'বর্তমান সংশোধন',
 'revisionasof'        => '$1 তারিখের সংশোধন',
-'revision-info'       => '$1-এ $2-এর করা সংশোধন',
+'revision-info'       => '$1-এ $2-এর করা সংশোধন', # Additional available: $3: revision id
 'previousrevision'    => '←পুর্বের সংস্করণ',
 'nextrevision'        => 'পরবর্তী সংস্করণ→',
 'currentrevisionlink' => 'বর্তমান সংশোধন',

@@ -755,7 +755,7 @@ Přičina za blokowanje, podata wot $3, je: ''$2''",
 'currentrev'             => 'Aktualna wersija',
 'currentrev-asof'        => 'Aktualna wersija wot $1',
 'revisionasof'           => 'Wersija z $1',
-'revision-info'          => 'Wersija z $1 wužiwarja $2',
+'revision-info'          => 'Wersija z $1 wužiwarja $2', # Additional available: $3: revision id
 'previousrevision'       => '←starša wersija',
 'nextrevision'           => 'nowša wersija→',
 'currentrevisionlink'    => 'Aktualnu wersiju pokazać',

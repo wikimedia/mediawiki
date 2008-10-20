@@ -707,7 +707,7 @@ Kod blokama fa el $3 pegivöl binon ''$2''",
 'nohistory'           => 'Pad at no labon redakamajenotemi.',
 'currentrev'          => 'Fomam anuik',
 'revisionasof'        => 'Fomam dätü $1',
-'revision-info'       => 'Fomam timü $1 fa el $2',
+'revision-info'       => 'Fomam timü $1 fa el $2', # Additional available: $3: revision id
 'previousrevision'    => '←Fomam vönedikum',
 'nextrevision'        => 'Fomam nulikum→',
 'currentrevisionlink' => 'Fomam anuik',

@@ -1034,7 +1034,7 @@ $3 keltirilgen sebebi: ''$2''",
 'nohistory'           => 'Mında bul bettiniñ tüzetw tarïxı joq.',
 'currentrev'          => 'Ağımdıq tüzetw',
 'revisionasof'        => '$1 kezindegi tüzetw',
-'revision-info'       => '$1 kezindegi $2 istegen tüzetw',
+'revision-info'       => '$1 kezindegi $2 istegen tüzetw', # Additional available: $3: revision id
 'previousrevision'    => '← Eskilew tüzetwi',
 'nextrevision'        => 'Jañalaw tüzetwi →',
 'currentrevisionlink' => 'Ağımdıq tüzetwi',

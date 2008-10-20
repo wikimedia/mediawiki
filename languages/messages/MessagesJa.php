@@ -705,7 +705,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'currentrev'             => '最新版',
 'currentrev-asof'        => '$1 時点における最新版',
 'revisionasof'           => '$1の版',
-'revision-info'          => '$1; $2 による版',
+'revision-info'          => '$1; $2 による版', # Additional available: $3: revision id
 'previousrevision'       => '←前の版',
 'nextrevision'           => '次の版→',
 'currentrevisionlink'    => '最新版を表示',

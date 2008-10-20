@@ -786,7 +786,7 @@ Motivul invocat de $3 este ''$2''",
 'currentrev'             => 'Versiunea curentă',
 'currentrev-asof'        => 'Versiunea curentă din $1',
 'revisionasof'           => 'Versiunea de la data $1',
-'revision-info'          => 'Revizia pentru $1; $2',
+'revision-info'          => 'Revizia pentru $1; $2', # Additional available: $3: revision id
 'previousrevision'       => '←Versiunea anterioară',
 'nextrevision'           => 'Versiunea următoare →',
 'currentrevisionlink'    => 'afişează versiunea curentă',

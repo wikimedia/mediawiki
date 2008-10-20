@@ -758,7 +758,7 @@ Ir-raġuni li ġiet mogħtija mingħand $3 kienet ''$2''",
 'nohistory'              => "M'hemm l-ebda kronoloġija ta' modifika f'din il-paġna.",
 'currentrev'             => 'Reviżjoni kurrenti',
 'revisionasof'           => "Reviżjoni ta' $1",
-'revision-info'          => "Reviżjoni ta' $1 minn $2",
+'revision-info'          => "Reviżjoni ta' $1 minn $2", # Additional available: $3: revision id
 'previousrevision'       => '←Reviżjoni eqdem',
 'nextrevision'           => 'Reviżjoni iġded→',
 'currentrevisionlink'    => 'Reviżjoni kurrenti',

@@ -637,7 +637,7 @@ An fáth a thabhairt an riarthóir a ghlasadh nach: '''$1'''",
 'nohistory'           => 'Níl aon stáir athraithe ag an leathanach seo.',
 'currentrev'          => 'Leagan reatha',
 'revisionasof'        => 'Leagan ó $1',
-'revision-info'       => 'Leagan mar $1 le $2',
+'revision-info'       => 'Leagan mar $1 le $2', # Additional available: $3: revision id
 'previousrevision'    => '← An leasú roimhe seo',
 'nextrevision'        => 'An chéad leasú eile →',
 'currentrevisionlink' => 'Leagan reatha',

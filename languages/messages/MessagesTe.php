@@ -707,7 +707,7 @@ $3 చెప్పిన కారణం: ''$2''",
 'currentrev'             => 'ప్రస్తుతపు సంచిక',
 'currentrev-asof'        => '$1 నాటి ప్రస్తుత కూర్పు',
 'revisionasof'           => '$1 నాటి సంచిక',
-'revision-info'          => '$1 నాటి కూర్పు. రచయిత: $2',
+'revision-info'          => '$1 నాటి కూర్పు. రచయిత: $2', # Additional available: $3: revision id
 'previousrevision'       => '←పాత సంచిక',
 'nextrevision'           => 'దీని తరువాతి సంచిక→',
 'currentrevisionlink'    => 'ప్రస్తుతపు సంచిక',

@@ -872,7 +872,7 @@ $2',
 'currentrev'             => 'Текуща версия',
 'currentrev-asof'        => 'Текуща версия към $1',
 'revisionasof'           => 'Версия от $1',
-'revision-info'          => 'Версия от $1 на $2',
+'revision-info'          => 'Версия от $1 на $2', # Additional available: $3: revision id
 'previousrevision'       => '←По-стара версия',
 'nextrevision'           => 'По-нова версия→',
 'currentrevisionlink'    => 'преглед на текущата версия',

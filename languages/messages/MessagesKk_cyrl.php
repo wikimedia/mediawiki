@@ -1031,7 +1031,7 @@ $3 келтірілген себебі: ''$2''",
 'nohistory'              => 'Мында бұл беттінің түзету тарихы жоқ.',
 'currentrev'             => 'Ағымдық түзету',
 'revisionasof'           => '$1 кезіндегі түзету',
-'revision-info'          => '$1 кезіндегі $2 істеген түзету',
+'revision-info'          => '$1 кезіндегі $2 істеген түзету', # Additional available: $3: revision id
 'previousrevision'       => '← Ескілеу түзетуі',
 'nextrevision'           => 'Жаңалау түзетуі →',
 'currentrevisionlink'    => 'Ағымдық түзетуі',

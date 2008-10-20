@@ -841,7 +841,7 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'nohistory'           => 'Այս էջը չունի խմբագրումների պատմություն։',
 'currentrev'          => 'Ընթացիկ տարբերակ',
 'revisionasof'        => '$1-ի տարբերակ',
-'revision-info'       => '$1 տարբերակ, $2',
+'revision-info'       => '$1 տարբերակ, $2', # Additional available: $3: revision id
 'previousrevision'    => '←Նախորդ տարբերակ',
 'nextrevision'        => 'Հաջորդ տարբերակ→',
 'currentrevisionlink' => 'Ընթացիկ տարբերակ',

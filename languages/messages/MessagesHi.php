@@ -695,7 +695,7 @@ Don't forget to personalize your {{SITENAME}} preferences.",
 'nohistory'           => 'इस पन्ने का कोई इतिहास नहीं',
 'currentrev'          => 'सद्य अवतरण',
 'revisionasof'        => '$1 का आवर्तन',
-'revision-info'       => '$2ने किया हुवा $1का अवतरण',
+'revision-info'       => '$2ने किया हुवा $1का अवतरण', # Additional available: $3: revision id
 'previousrevision'    => '← पुराना संशोधन',
 'nextrevision'        => 'नया संशोधन →',
 'currentrevisionlink' => 'वर्तमान संशोधन',

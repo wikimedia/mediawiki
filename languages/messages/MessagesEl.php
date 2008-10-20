@@ -939,7 +939,7 @@ $2',
 'currentrev'             => 'Τρέχουσα αναθεώρηση',
 'currentrev-asof'        => 'Παρούσα αναθεώρηση της $1',
 'revisionasof'           => 'Αναθεώρηση της $1',
-'revision-info'          => 'Έκδοση στις $1 υπό τον/την $2',
+'revision-info'          => 'Έκδοση στις $1 υπό τον/την $2', # Additional available: $3: revision id
 'previousrevision'       => '&larr;Παλιότερη αναθεώρηση',
 'nextrevision'           => 'Νεώτερη αναθεώρηση&rarr;',
 'currentrevisionlink'    => 'εμφάνιση της τρέχουσας αναθεώρησης',

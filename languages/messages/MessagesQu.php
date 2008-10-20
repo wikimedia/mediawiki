@@ -670,7 +670,7 @@ $3-qa nirqan kayraykum: ''$2''",
 'currentrev'             => 'Kunan hukchasqa',
 'currentrev-asof'        => 'Kunan musuqchasqa, $1 pacha',
 'revisionasof'           => "$1-pa llamk'apusqan",
-'revision-info'          => "Kayqa p'anqap mawk'a llamk'apusqa kasqanmi, $1 p'unchawpi $2-pa rurasqan",
+'revision-info'          => "Kayqa p'anqap mawk'a llamk'apusqa kasqanmi, $1 p'unchawpi $2-pa rurasqan", # Additional available: $3: revision id
 'previousrevision'       => '← ñawpaq hukchasqa',
 'nextrevision'           => 'Qatiq hukchasqa →',
 'currentrevisionlink'    => 'Kunan hukchasqata qhaway',

@@ -480,7 +480,7 @@ A razon dæta a l'è ''$2''",
 'viewpagelogs'        => "Veddi i log relativi a 'sta paggina.",
 'currentrev'          => 'Verscion attuâle',
 'revisionasof'        => 'Verscion do $1',
-'revision-info'       => 'Verscion do $1, outô: $2',
+'revision-info'       => 'Verscion do $1, outô: $2', # Additional available: $3: revision id
 'previousrevision'    => '← Verscion meno reçente',
 'nextrevision'        => 'Revixon ciû nêuva →',
 'currentrevisionlink' => 'Ûrtima revixon',

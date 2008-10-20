@@ -680,7 +680,7 @@ $3 макссь туфталсь - ''$2''",
 'nohistory'              => 'Тя лопать петнемань историяц аш.',
 'currentrev'             => 'Тяниень верзие',
 'revisionasof'           => '$1-нь верзиесь',
-'revision-info'          => '$1-нь верзие конань тизе $2',
+'revision-info'          => '$1-нь верзие конань тизе $2', # Additional available: $3: revision id
 'previousrevision'       => 'Сядынгольдень верзие',
 'nextrevision'           => 'Сяда од верзие',
 'currentrevisionlink'    => 'Тяниень верзие',

@@ -550,7 +550,7 @@ Ti inted a rason ni $3 ket ''$2''",
 'nohistory'           => 'Awan ti pakasaritaan ti panangbaliw iti daytoy a panid.',
 'currentrev'          => 'Agdama a revision',
 'revisionasof'        => 'Panangbalbaliw sipud $1',
-'revision-info'       => 'Panangbaliw ni $2 sipud idi $1',
+'revision-info'       => 'Panangbaliw ni $2 sipud idi $1', # Additional available: $3: revision id
 'previousrevision'    => '←Nadadaan a panangbalbaliw',
 'nextrevision'        => 'Nabarbaro a panangbalbaliw→',
 'currentrevisionlink' => 'kitaen ti agdama a revision',

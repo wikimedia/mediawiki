@@ -449,7 +449,7 @@ Bákannà ẹ tún ṣèlérí fún wa wípé ẹ̀yin lẹkọ́ fúnra arayín
 'viewpagelogs'        => 'Ẹ wo àkọsílẹ̀ fún ojúewé yìí',
 'currentrev'          => 'Àtúnyẹ̀wò ìsinsìnyí',
 'revisionasof'        => 'Àtúnyẹ̀wò ní $1',
-'revision-info'       => "Àtúnyẹ̀wò ní $1 l'átọwọ́ $2",
+'revision-info'       => "Àtúnyẹ̀wò ní $1 l'átọwọ́ $2", # Additional available: $3: revision id
 'previousrevision'    => '← Àtúnyẹ̀wò tópẹ́ju',
 'nextrevision'        => 'Àtúnyẹ̀wò tótuntunju →',
 'currentrevisionlink' => 'Àtúnyẹ̀wò ìsinsìnyí',

@@ -799,7 +799,7 @@ $2',
 'currentrev'             => 'Тековна ревизија',
 'currentrev-asof'        => 'Последна ревизија од $1',
 'revisionasof'           => 'Ревизија од $1',
-'revision-info'          => 'Ревизија од $1; направена од $2',
+'revision-info'          => 'Ревизија од $1; направена од $2', # Additional available: $3: revision id
 'previousrevision'       => '← Претходна ревизија',
 'nextrevision'           => 'Следна ревизија →',
 'currentrevisionlink'    => 'Последна ревизија',

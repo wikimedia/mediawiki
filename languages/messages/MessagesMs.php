@@ -809,7 +809,7 @@ Sebab yang diberikan oleh $3 ialah ''$2''",
 'currentrev'             => 'Semakan semasa',
 'currentrev-asof'        => 'Semakan semasa pada $1',
 'revisionasof'           => 'Semakan pada $1',
-'revision-info'          => 'Semakan pada $1 oleh $2',
+'revision-info'          => 'Semakan pada $1 oleh $2', # Additional available: $3: revision id
 'previousrevision'       => '←Semakan sebelumnya',
 'nextrevision'           => 'Semakan berikutnya→',
 'currentrevisionlink'    => 'Semakan semasa',
