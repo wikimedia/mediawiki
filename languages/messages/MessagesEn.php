@@ -1236,8 +1236,8 @@ The reason given by $3 is ''$2''",
 'currentrev'             => 'Current revision',
 'currentrev-asof'        => 'Current revision as of $1',
 'revisionasof'           => 'Revision as of $1',
-'revision-info'          => 'Revision as of $1 by $2',
-'revision-info-current'  => '-', # do not translate or duplicate this message to other languages
+'revision-info'          => 'Revision as of $1 by $2', # Additional available: $3: revision id
+'revision-info-current'  => '-', # Available parameters: $1: timestamp; $2: userlinks; $3: revision id; do not translate or duplicate this message to other languages
 'revision-nav'           => '($1) $2 | $3 ($4) | $5 ($6)', # do not translate or duplicate this message to other languages
 'previousrevision'       => '← Older revision',
 'nextrevision'           => 'Newer revision →',
