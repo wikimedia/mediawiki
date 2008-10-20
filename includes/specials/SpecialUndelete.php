@@ -849,11 +849,11 @@ class UndeleteForm {
 			"<col class='diff-content' />" .
 			"<tr>" .
 				"<td colspan='2' width='50%' align='center' class='diff-otitle'>" .
-				$this->diffHeader( $previousRev ) .
-				"</td>" .
+				$this->diffHeader( $previousRev, 'o' ) .
+				"</td>\n" .
 				"<td colspan='2' width='50%' align='center' class='diff-ntitle'>" .
-				$this->diffHeader( $currentRev ) .
-				"</td>" .
+				$this->diffHeader( $currentRev, 'n' ) .
+				"</td>\n" .
 			"</tr>" .
 			$diffEngine->generateDiffBody(
 				$previousRev->getText(), $currentRev->getText() ) .
@@ -862,7 +862,7 @@ class UndeleteForm {
 
 	}
 
-	private function diffHeader( $rev ) {
+	private function diffHeader( $rev, $prefix ) {
 		global $wgUser, $wgLang, $wgLang;
 		$sk = $wgUser->getSkin();
 		$isDeleted = !( $rev->getId() && $rev->getTitle() );
@@ -879,17 +879,17 @@ class UndeleteForm {
 			$targetQuery = 'oldid=' . $rev->getId();
 		}
 		return
-			'<div id="mw-diff-otitle1"><strong>' .
+			'<div id="mw-diff-'.$prefix.'title1"><strong>' .
 				$sk->makeLinkObj( $targetPage,
 					wfMsgHtml( 'revisionasof',
 						$wgLang->timeanddate( $rev->getTimestamp(), true ) ),
 					$targetQuery ) .
 				( $isDeleted ? ' ' . wfMsgHtml( 'deletedrev' ) : '' ) .
 			'</strong></div>' .
-			'<div id="mw-diff-otitle2">' .
+			'<div id="mw-diff-'.$prefix.'title2">' .
 				$sk->revUserTools( $rev ) . '<br/>' .
 			'</div>' .
-			'<div id="mw-diff-otitle3">' .
+			'<div id="mw-diff-'.$prefix.'title3">' .
 				$sk->revComment( $rev ) . '<br/>' .
 			'</div>';
 	}
