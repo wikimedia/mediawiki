@@ -261,9 +261,7 @@ ENDS;
 
 			$callback = array( $this->L, $checkFunctions[$check] );
 			if ( !is_callable( $callback ) ) {
-				# DEBUG
-				# throw new MWException( "Unkown check $check." );
-				continue;
+				throw new MWException( "Unkown check $check." );
 			}
 			$results[$check] = call_user_func( $callback , $code );
 		}
