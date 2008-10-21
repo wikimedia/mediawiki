@@ -49,6 +49,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added $wgRenderHashAppend to append some string to the parser cache and the
   sitenotice cache keys.
 * $wgRCChangedSizeThreshold is now a positive integer by default, 
+* (bug 16006) $wgEnableWriteAPI is now true by default. Authorized can perform
+  write actions using the API.
 
 === Migrated extensions ===
 The following extensions are migrated into MediaWiki 1.14:
