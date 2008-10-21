@@ -1448,14 +1448,14 @@ END;
 	}
 
 	function editThisPage() {
-		global $wgOut, $wgTitle;
+		global $wgOut, $wgTitle, $wgUser;
 
 		if ( !$wgOut->isArticleRelated() ) {
 			$s = wfMsg( 'protectedpage' );
 		} else {
-			if( $wgTitle->quickUserCan( 'edit' ) && $wgTitle->exists() ) {
+			if( $wgTitle->quickUserCan( 'edit' ) && $wgTitle->exists() && !$wgUser->isBlocked() ) {
 				$t = wfMsg( 'editthispage' );
-			} elseif( $wgTitle->quickUserCan( 'create' ) && !$wgTitle->exists() ) {
+			} elseif( $wgTitle->quickUserCan( 'create' ) && !$wgTitle->exists() && !$wgUser->isBlocked() ) {
 				$t = wfMsg( 'create-this-page' );
 			} else {
 				$t = wfMsg( 'viewsource' );
