@@ -3319,7 +3319,7 @@ $wgEnableAPI = true;
  * (page edits, rollback, etc.) when an authorised user
  * accesses it
  */
-$wgEnableWriteAPI = false;
+$wgEnableWriteAPI = true;
 
 /**
  * API module extensions
