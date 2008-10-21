@@ -781,9 +781,7 @@ class ParserTest {
 			wfDebug( "Already exists!\n" );
 			return $dir;
 		}
-		mkdir( $dir );
-		mkdir( $dir . '/3' );
-		mkdir( $dir . '/3/3a' );
+		wfMkdirParents( $dir . '/3/3a' );
 		copy( "$IP/skins/monobook/headbg.jpg", "$dir/3/3a/Foobar.jpg" );
 		return $dir;
 	}
