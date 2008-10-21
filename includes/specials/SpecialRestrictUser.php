@@ -106,7 +106,7 @@ class RestrictUserForm {
 		if ( $error )
 			$wgOut->wrapWikiMsg( '<strong class="error">$1</strong>', $error );
 		if ( $success )
-			$wgOut->wrapWikiMsg( '<strong class="success">$1/strong>', $success );
+			$wgOut->wrapWikiMsg( '<strong class="success">$1</strong>', $success );
 	}
 
 	public static function doPageRestriction( $uid, $user ) {
