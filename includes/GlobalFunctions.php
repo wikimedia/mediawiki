@@ -682,7 +682,7 @@ function wfMsgWikiHtml( $key ) {
  * Behavior for conflicting options (e.g., parse+parseinline) is undefined.
  */
 function wfMsgExt( $key, $options ) {
-	global $wgOut, $wgParser;
+	global $wgOut;
 
 	$args = func_get_args();
 	array_shift( $args );
