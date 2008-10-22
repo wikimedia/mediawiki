@@ -26,20 +26,20 @@ class FakeTitle extends Title {
 	function getPrefixedText() { $this->error(); }
 	function getFullText() { $this->error(); }
 	function getPrefixedURL() { $this->error(); }
-	function getFullURL() {$this->error(); }
-	function getLocalURL() { $this->error(); }
-	function escapeLocalURL() { $this->error(); }
-	function escapeFullURL() { $this->error(); }
-	function getInternalURL() { $this->error(); }
+	function getFullURL( $query = '', $variant = false ) {$this->error(); }
+	function getLocalURL( $query = '', $variant = false ) { $this->error(); }
+	function escapeLocalURL( $query = '' ) { $this->error(); }
+	function escapeFullURL( $query = '' ) { $this->error(); }
+	function getInternalURL( $query = '', $variant = false ) { $this->error(); }
 	function getEditURL() { $this->error(); }
 	function getEscapedText() { $this->error(); }
 	function isExternal() { $this->error(); }
-	function isSemiProtected() { $this->error(); }
-	function isProtected() { $this->error(); }
+	function isSemiProtected( $action = 'edit' ) { $this->error(); }
+	function isProtected( $action = '' ) { $this->error(); }
 	function userIsWatching() { $this->error(); }
-	function userCan() { $this->error(); }
+	function userCan( $action, $doExpensiveQueries = true ) { $this->error(); }
 	function userCanCreate() { $this->error(); }
-	function userCanEdit() { $this->error(); }
+	function userCanEdit( $doExpensiveQueries = true ) { $this->error(); }
 	function userCanMove() { $this->error(); }
 	function isMovable() { $this->error(); }
 	function userCanRead() { $this->error(); }
