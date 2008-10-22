@@ -1461,6 +1461,7 @@ tr.sv-space td { display: none; }
   - remove line wrapping for all td and th, set background color
   - restore line wrapping for the last two table cells (description and size)
 */
+.TablePager { min-width: 80%; }
 .TablePager_nav a { text-decoration: none; }
 .TablePager { border-collapse: collapse; }
 .TablePager, .TablePager td, .TablePager th { 
