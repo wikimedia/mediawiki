@@ -354,6 +354,8 @@ The following extensions are migrated into MediaWiki 1.14:
   sortkeys containing pipes
 * (bug 16018) Added uccontinue parameter to list=usercontribs so paging
   works properly when multiple users are queried or a userprefix is used
+* (bug 16047) Added activeusers attribute to meta=siteinfo&siprop=statistics
+  output
 
 === Languages updated in 1.14 ===
 
