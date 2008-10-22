@@ -43,6 +43,11 @@ class SearchEngine {
 		return null;
 	}
 	
+	/** If this search backend can list/unlist redirects */
+	function acceptListRedirects() {
+		return true;
+	}
+	
 	/**
 	 * If an exact title match can be find, or a very slightly close match,
 	 * return the title. If no match, returns NULL.
@@ -228,6 +233,10 @@ class SearchEngine {
 	 */
 	public static function userNamespaces( &$user ) {
 		$arr = array();
+		// for logged-in users use predefined defaults
+		if( $user->isLoggedIn() && $user->getOption( 'defaultusersearch', true ) )
+			return SearchEngine::projectNamespaces();
+			
 		foreach( SearchEngine::searchableNamespaces() as $ns => $name ) {
 			if( $user->getOption( 'searchNs' . $ns ) ) {
 				$arr[] = $ns;
@@ -262,7 +271,38 @@ class SearchEngine {
 		
 		return array_keys($wgNamespacesToBeSearchedDefault, true);
 	}
-
+	
+	/**
+	 * Get a list of namespace names useful for showing in tooltips
+	 * and preferences
+	 *
+	 * @param unknown_type $namespaces
+	 */
+	public static function namespacesAsText( $namespaces ){
+		global $wgContLang;
+		
+		$formatted = array_map( array($wgContLang,'getFormattedNsText'), $namespaces );
+		foreach( $formatted as $key => $ns ){
+			if ( empty($ns) )
+				$formatted[$key] = wfMsg( 'blanknamespace' );
+		}
+		return $formatted;
+	}
+	
+	/**
+	 * An array of "project" namespaces indexes typically searched
+	 * by logged-in users
+	 * 
+	 * @return array 
+	 * @static
+	 */
+	public static function projectNamespaces(){
+		global $wgNamespacesToBeSearchedDefault, $wgNamespacesToBeSearchedProject;
+		
+		return array_keys( $wgNamespacesToBeSearchedDefault + 
+			$wgNamespacesToBeSearchedProject, true);
+	}
+	
 	/**
 	 * Return a 'cleaned up' search string
 	 *
@@ -347,6 +387,7 @@ class SearchEngine {
 		else 
 			return $wgServer . $wgScriptPath . '/api.php?action=opensearch&search={searchTerms}&namespace={namespaces}';
 	}
+	
 }
 
 /**
@@ -483,11 +524,17 @@ class SearchResultTooMany {
  */
 class SearchResult {
 	var $mRevision = null;
+	var $mImage = null;
 
 	function SearchResult( $row ) {
 		$this->mTitle = Title::makeTitle( $row->page_namespace, $row->page_title );
-		if( !is_null($this->mTitle) )
+		if( !is_null($this->mTitle) ){
 			$this->mRevision = Revision::newFromTitle( $this->mTitle );
+			if($this->mTitle->getNamespace() == NS_IMAGE)
+				$this->mImage = wfFindFile( $this->mTitle );
+		}
+		
+		
 	}
 	
 	/**
@@ -509,7 +556,7 @@ class SearchResult {
 	 * @access public
 	 */
 	function isMissingRevision(){
-		if( !$this->mRevision )
+		if( !$this->mRevision && !$this->mImage )
 			return true;
 		return false;
 	}
@@ -534,7 +581,10 @@ class SearchResult {
 	 */
 	protected function initText(){
 		if( !isset($this->mText) ){
-			$this->mText = $this->mRevision->getText();
+			if($this->mRevision != null)
+				$this->mText = $this->mRevision->getText();
+			else
+				$this->mText = '';
 		}
 	}
 	
@@ -594,7 +644,10 @@ class SearchResult {
 	 * @return string timestamp
 	 */
 	function getTimestamp(){
-		return $this->mRevision->getTimestamp();
+		if($this->mRevision != null)
+			return $this->mRevision->getTimestamp();
+		else
+			return '';
 	}
 
 	/**

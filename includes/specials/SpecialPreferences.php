@@ -67,6 +67,7 @@ class PreferencesForm {
 		$this->mWatchlistDays = $request->getVal( 'wpWatchlistDays' );
 		$this->mWatchlistEdits = $request->getVal( 'wpWatchlistEdits' );
 		$this->mDisableMWSuggest = $request->getCheck( 'wpDisableMWSuggest' );
+		$this->mDefaultUserSearch = $request->getVal( 'wpUserSearch' ) != 'wpCustomUserSearch';
 
 		$this->mSaveprefs = $request->getCheck( 'wpSaveprefs' ) &&
 			$this->mPosted &&
@@ -289,6 +290,7 @@ class PreferencesForm {
 		$wgUser->setOption( 'underline', $this->validateInt($this->mUnderline, 0, 2) );
 		$wgUser->setOption( 'watchlistdays', $this->validateFloat( $this->mWatchlistDays, 0, 7 ) );
 		$wgUser->setOption( 'disablesuggest', $this->mDisableMWSuggest );
+		$wgUser->setOption( 'defaultusersearch', $this->mDefaultUserSearch );
 
 		# Set search namespace options
 		foreach( $this->mSearchNs as $i => $value ) {
@@ -503,7 +505,7 @@ class PreferencesForm {
 		return Xml::tags( 'tr', null, $td1 . $td2 ). $td3 . "\n";
 
 	}
-
+	
 	/**
 	 * @access private
 	 */
@@ -1048,11 +1050,16 @@ class PreferencesForm {
 		$wgOut->addHtml( '</fieldset>' );
 
 		# Search
+		$defaultNs = SearchEngine::namespacesAsText( SearchEngine::projectNamespaces() );
 		$mwsuggest = $wgEnableMWSuggest ?
 			$this->addRow(
 				Xml::label( wfMsg( 'mwsuggest-disable' ), 'wpDisableMWSuggest' ),
 				Xml::check( 'wpDisableMWSuggest', $this->mDisableMWSuggest, array( 'id' => 'wpDisableMWSuggest' ) )
 			) : '';
+		$userDefaultSearch = '<p>'.Xml::radioLabel(wfMsg('prefs-search-nsdefault'),'wpUserSearch','wpDefaultUserSearch','wpDefaultUserSearch',$this->mDefaultUserSearch).
+			'</p>'.implode(', ', $defaultNs).'<br/><br/><p>'.
+			Xml::radioLabel(wfMsg('prefs-search-nscustom'),'wpUserSearch','wpCustomUserSearch','wpCustomUserSearch',!$this->mDefaultUserSearch).
+			'</p>';
 		$wgOut->addHTML(
 			// Elements for the search tab itself
 			Xml::openElement( 'fieldset' ) .
@@ -1079,7 +1086,7 @@ class PreferencesForm {
 			// Elements for the namespace options in the search tab
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', null, wfMsg( 'prefs-namespaces' ) ) .
-			wfMsgExt( 'defaultns', array( 'parse' ) ) .
+			$userDefaultSearch.
 			$ps .
 			Xml::closeElement( 'fieldset' ) .
 			// End of the search tab

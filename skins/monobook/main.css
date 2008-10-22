@@ -1409,6 +1409,10 @@ div#searchTargetHide {
 	padding:2px;
 }
 
+#powersearch p {
+	margin-top:0px;
+}
+
 div.multipageimagenavbox {
    border: solid 1px silver;
    padding: 4px;

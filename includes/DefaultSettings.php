@@ -1865,9 +1865,24 @@ $wgNamespacesWithSubpages = array(
 	NS_CATEGORY_TALK  => true
 );
 
+/** Default search for anonymous users */
 $wgNamespacesToBeSearchedDefault = array(
 	NS_MAIN           => true,
 );
+
+/**
+ * Additional namespaces to those in $wgNamespacesToBeSearchedDefault that
+ * will be added to default search for logged-in users.
+ * 
+ * Same format as $wgNamespacesToBeSearchedDefault
+ */  
+$wgNamespacesToBeSearchedProject = array(
+	NS_USER           => true,
+	NS_PROJECT        => true,	
+	NS_HELP           => true,
+	NS_CATEGORY       => true,
+);
+
 
 /**
  * Site notice shown at the top of each page
