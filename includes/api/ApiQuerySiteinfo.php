@@ -239,6 +239,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['edits'] = intval( SiteStats::edits() );
 		$data['images'] = intval( SiteStats::images() );
 		$data['users'] = intval( SiteStats::users() );
+		$data['activeusers'] = intval( SiteStats::activeUsers() );
 		$data['admins'] = intval( SiteStats::numberingroup('sysop') );
 		$data['jobs'] = intval( SiteStats::jobs() );
 		$this->getResult()->addValue( 'query', $property, $data );
