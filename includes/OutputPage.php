@@ -905,9 +905,16 @@ class OutputPage {
 		if( $wgUniversalEditButton ) {
 			if( isset( $wgArticle ) && isset( $wgTitle ) && $wgTitle->quickUserCan( 'edit' )
 				&& ( $wgTitle->exists() || $wgTitle->quickUserCan( 'create' ) ) ) {
+				// Original UniversalEditButton
 				$this->addLink( array(
 					'rel' => 'alternate',
 					'type' => 'application/x-wiki',
+					'title' => wfMsg( 'edit' ),
+					'href' => $wgTitle->getFullURL( 'action=edit' )
+				) );
+				// Alternate edit link
+				$this->addLink( array(
+					'rel' => 'edit',
 					'title' => wfMsg( 'edit' ),
 					'href' => $wgTitle->getFullURL( 'action=edit' )
 				) );
