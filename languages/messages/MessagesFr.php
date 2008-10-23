@@ -2831,8 +2831,8 @@ Veuillez confirmer que vous désirez recréer cet article.",
 'recreate'            => 'Recréer',
 
 # action=purge
-'confirm_purge'        => 'Voulez-vous rafraîchir cette page (purger le cache) ? $1',
 'confirm_purge_button' => 'Confirmer',
+'confirm-purge-top'    => 'Voulez-vous rafraîchir cette page (purger le cache) ?',
 
 # Separators for various lists, etc.
 'semicolon-separator' => '&nbsp;;&#32;',

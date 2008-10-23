@@ -2396,10 +2396,8 @@ Cadarnhewch eich bod chi wir am ail-greu'r erthygl.",
 'recreate'            => 'Ail-greu',
 
 # action=purge
-'confirm_purge'        => "Clirio'r dudalen o'r storfa?
-
-$1",
 'confirm_purge_button' => 'Iawn',
+'confirm-purge-top'    => "Clirio'r dudalen o'r storfa?",
 
 # Multipage image navigation
 'imgmultipageprev' => "← i'r dudalen gynt",

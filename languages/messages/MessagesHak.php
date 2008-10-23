@@ -1539,10 +1539,8 @@ Chhiáng chhai chhùng-sîn kien-chho vùn-chông chhièn sâm-sṳ̂.",
 'recreate'            => 'Chhùng-kien',
 
 # action=purge
-'confirm_purge'        => 'Chhîn-chhù pún-chông chhòng-chhùn？
-
-$1',
 'confirm_purge_button' => 'Khok-thin',
+'confirm-purge-top'    => 'Chhîn-chhù pún-chông chhòng-chhùn？',
 
 # Multipage image navigation
 'imgmultipageprev' => '← sông yit-chông',

@@ -2602,10 +2602,8 @@ Bestäätigje, dät du disse Siede wuddelk näi moakje moatest.",
 'recreate'            => 'Wierhäärstaale',
 
 # action=purge
-'confirm_purge'        => 'Dän Cache fon disse Siede loosmoakje?
-
-$1',
 'confirm_purge_button' => 'OK',
+'confirm-purge-top'    => 'Dän Cache fon disse Siede loosmoakje?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← foarige Siede',

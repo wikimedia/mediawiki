@@ -1540,10 +1540,8 @@ Acertinez s' i vs plait ki vos vloz vormint rifé cisse pådje ci.",
 'recreate'            => 'Rifé',
 
 # action=purge
-'confirm_purge'        => "Netyî l' muchete di cisse pådje ci?
-
-$1",
 'confirm_purge_button' => "'l est bon",
+'confirm-purge-top'    => "Netyî l' muchete di cisse pådje ci?",
 
 # Multipage image navigation
 'imgmultipageprev' => '← pådje di dvant',

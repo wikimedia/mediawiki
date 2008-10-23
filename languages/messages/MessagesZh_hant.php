@@ -2662,8 +2662,8 @@ $1
 'recreate'            => '重建',
 
 # action=purge
-'confirm_purge'        => '要清除此頁面的快取嗎?\\n\\n$1',
 'confirm_purge_button' => '確定',
+'confirm-purge-top'    => '要清除此頁面的快取嗎?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← 上一頁',

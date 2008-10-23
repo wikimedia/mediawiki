@@ -2498,10 +2498,8 @@ Por favor, confirme que realmente deseja recriar esta página.",
 'recreate'            => 'Recriar',
 
 # action=purge
-'confirm_purge'        => 'Limpar a memória cache desta página?
-
-$1',
 'confirm_purge_button' => 'OK',
+'confirm-purge-top'    => 'Limpar a memória cache desta página?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← página anterior',

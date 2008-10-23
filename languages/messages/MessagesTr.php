@@ -2116,8 +2116,8 @@ Sayfayı baştan açmak isityorsanız, lütfen onaylayın.",
 'unit-pixel' => 'px',
 
 # action=purge
-'confirm_purge'        => 'Sayfa önbelleği temizlensin mi? $1',
 'confirm_purge_button' => 'Tamam',
+'confirm-purge-top'    => 'Sayfa önbelleği temizlensin mi?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← önceki sayfa',

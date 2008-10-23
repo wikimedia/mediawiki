@@ -2879,10 +2879,8 @@ Czy na pewno chcesz ją ponownie utworzyć?",
 'recreate'            => 'Utwórz ponownie',
 
 # action=purge
-'confirm_purge'        => 'Wyczyścić pamięć podręczną dla tej strony?
-
-$1',
 'confirm_purge_button' => 'Wyczyść',
+'confirm-purge-top'    => 'Wyczyścić pamięć podręczną dla tej strony?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← poprzednia strona',

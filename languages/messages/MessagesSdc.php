@@ -1955,10 +1955,8 @@ Pa piazeri, cunfèimma chi vòi ricrià avveru chistha pàgina.",
 'recreate'            => 'Ricrea',
 
 # action=purge
-'confirm_purge'        => 'Vói pulì la mimória cache di chistha pàgina?
-
-$1',
 'confirm_purge_button' => 'Cunfèimma',
+'confirm-purge-top'    => 'Vói pulì la mimória cache di chistha pàgina?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← pàgina prizzidenti',

@@ -3135,10 +3135,8 @@ $1
 'unit-pixel' => 'بك',
 
 # action=purge
-'confirm_purge'        => 'امسح مختزن هذه الصفحة؟
-
-$1',
 'confirm_purge_button' => 'موافق',
+'confirm-purge-top'    => 'امسح مختزن هذه الصفحة؟',
 
 # Separators for various lists, etc.
 'semicolon-separator' => '؛&#32;',

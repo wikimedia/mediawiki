@@ -644,10 +644,8 @@ Bler divertiment!',
 Conferma per plaschair che ti vuls propi crear danovamain quest artitgel.",
 
 # action=purge
-'confirm_purge'        => 'Stidar il cache da questa pagina?
-
-$1',
 'confirm_purge_button' => 'ok',
+'confirm-purge-top'    => 'Stidar il cache da questa pagina?',
 
 # Special:Version
 'version' => 'Versiun', # Not used as normal message but as header for the special page itself

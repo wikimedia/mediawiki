@@ -2294,10 +2294,8 @@ Bevestig asseblief dat u regtig hierdie blad oor wil skep.",
 'recreate'            => 'Herskep',
 
 # action=purge
-'confirm_purge'        => 'Verwyder die kas van hierdie blad?
-
-$1',
 'confirm_purge_button' => 'OK',
+'confirm-purge-top'    => 'Verwyder die kas van hierdie blad?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← vorige bladsy',

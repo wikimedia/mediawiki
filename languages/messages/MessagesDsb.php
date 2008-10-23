@@ -2677,8 +2677,8 @@ Pšosym wobkšuśiś, až napšawdu coš ten bok zasej wutwóriś.",
 'recreate'            => 'Wótnowótki wutwóriś',
 
 # action=purge
-'confirm_purge'        => 'Wulašowaś cache togo boka? $1',
 'confirm_purge_button' => 'W pórědku.',
+'confirm-purge-top'    => 'Wulašowaś cache togo boka?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← slědny bok',

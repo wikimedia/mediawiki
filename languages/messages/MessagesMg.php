@@ -1041,11 +1041,8 @@ Azafady hamafiso fa tena irinao averina hoforonina tokoa ity lahatsoratra ity.",
 'recreate'            => 'Jereo indray',
 
 # action=purge
-'confirm_purge'        => "
-Fafana ve ny cache-n'ity pejy ity?
-
-$1",
 'confirm_purge_button' => 'Eka',
+'confirm-purge-top'    => "Fafana ve ny cache-n'ity pejy ity?",
 
 # Special:SpecialPages
 'specialpages' => 'Pejy manokana',

@@ -2676,10 +2676,8 @@ Par piaser, conferma che te vołi dal bon ricrear sta voçe.",
 'recreate'            => 'Ricrea',
 
 # action=purge
-'confirm_purge'        => 'Vóto scancełar ła cache in sta pàxena?
-
-$1',
 'confirm_purge_button' => 'Conferma',
+'confirm-purge-top'    => 'Vóto scancełar ła cache in sta pàxena?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← pagina precedente',

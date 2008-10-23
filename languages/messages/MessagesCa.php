@@ -2768,10 +2768,8 @@ Confirmeu que realment voleu tornar-la a crear.",
 'recreate'            => 'Torna a crear',
 
 # action=purge
-'confirm_purge'        => "Voleu buidar la memòria cau d'aquesta pàgina?
-
-$1",
 'confirm_purge_button' => "D'acord",
+'confirm-purge-top'    => "Voleu buidar la memòria cau d'aquesta pàgina?",
 
 # Multipage image navigation
 'imgmultipageprev' => '← pàgina anterior',

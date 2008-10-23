@@ -374,9 +374,7 @@ Pinengneng so $2 para ed listaan na saray abural ran balo.',
 'deletedwhileediting' => 'Pasakbay: Abural yan bolong nen ginapuan mon baloen!',
 
 # action=purge
-'confirm_purge' => 'Ekalen so cache na sayan bolong?
-
-$1',
+'confirm-purge-top' => 'Ekalen so cache na sayan bolong?',
 
 # Multipage image navigation
 'imgmultipagenext' => 'ontombok ya bolong →',

@@ -1064,9 +1064,7 @@ $1',
 'deletedwhileediting' => 'Bu səhifə siz redaktə etməyə başladıqdan sonra silinmişdir!',
 
 # action=purge
-'confirm_purge' => 'Bu səhifə keşdən (cache) silinsin?
-
-$1',
+'confirm-purge-top' => 'Bu səhifə keşdən (cache) silinsin?',
 
 # Multipage image navigation
 'imgmultipageprev' => '&larr; əvvəlki səhifə',

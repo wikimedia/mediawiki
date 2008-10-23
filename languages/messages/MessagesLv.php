@@ -1669,10 +1669,8 @@ Lūdzu apstiprini, ka tiešām gribi izveidot šo lapu no jauna.",
 'recreate'            => 'Izveidot no jauna',
 
 # action=purge
-'confirm_purge'        => "Iztīrīt šīs lapas kešu (''cache'')?
-
-$1",
 'confirm_purge_button' => 'OK',
+'confirm-purge-top'    => "Iztīrīt šīs lapas kešu (''cache'')?",
 
 # Multipage image navigation
 'imgmultipageprev' => '← iepriekšējā lapa',

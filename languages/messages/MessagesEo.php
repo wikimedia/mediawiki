@@ -2753,10 +2753,8 @@ Bonvolu konfirmi ke vi ja volas rekrei la paĝon.",
 'recreate'            => 'Rekrei',
 
 # action=purge
-'confirm_purge'        => 'Ĉu forviŝigi la kaŝmemoron de tiu ĉi paĝo?
-
-$1',
 'confirm_purge_button' => 'Ek!',
+'confirm-purge-top'    => 'Ĉu forviŝigi la kaŝmemoron de tiu ĉi paĝo?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← antaŭa paĝo',

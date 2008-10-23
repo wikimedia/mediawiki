@@ -848,9 +848,7 @@ Jeatjebh dajveh lea gaptjedh goh sïejhme, bine vuesehte gåessie taabelle stoer
 'scarytranscludetoolong' => '[URL lea ihke guhkie; gaatelassjedh]',
 
 # action=purge
-'confirm_purge' => 'Döömedh cache ihke dïhte bielie?
-
-$1',
+'confirm-purge-top' => 'Döömedh cache ihke dïhte bielie?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← övtebe bielie',

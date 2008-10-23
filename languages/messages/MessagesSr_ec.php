@@ -2607,10 +2607,8 @@ $1
 'recreate'            => 'Поново направи',
 
 # action=purge
-'confirm_purge'        => 'Да ли желите очистити кеш ове странице?
-
-$1',
 'confirm_purge_button' => 'Да',
+'confirm-purge-top'    => 'Да ли желите очистити кеш ове странице?',
 
 # Multipage image navigation
 'imgmultipageprev' => '&larr; претходна страна',

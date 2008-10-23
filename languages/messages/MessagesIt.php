@@ -2741,19 +2741,8 @@ Per favore, conferma che desideri veramente ricreare questa pagina.",
 'recreate'            => 'Ricrea',
 
 # action=purge
-'confirm_purge'        => "Vuoi pulire la cache di questa pagina?  $1
-
-La ''cache'' è un archivio che contiene una copia provvisoria delle pagine web.
-
-Ogni volta che apri una pagina, il software si connette al database e crea al momento la pagina che viene inviata al tuo ''browser'' e visualizzata sul tuo computer. Questo processo impiega tempo e risorse. 
-
-Per le pagine più frequentemente richieste, questo processo risulterebbe troppo oneroso e perciò ingestibile. Per ovviare al problema il software crea automaticamente una copia della pagina che viene conservata per un certo tempo in una ''cache'', una memoria transitoria appositamente dedicata. In questo modo non è necessario effettuare ogni volta il processo di creazione, poichè la pagina è già pronta.
-
-* vantaggi: minor carico di lavoro per il sistema e maggiore velocità
-* svantaggi: è possibile che la pagina caricata non sia la versione più recente; la pagina potrebbe essere stata modificata dopo essere stata copiata nella ''cache''
-
-Pertanto, pulire (o aggiornare) la ''cache'' di una pagina, significa assicurarsi di visualizzare la versione più recente.",
 'confirm_purge_button' => 'Conferma',
+'confirm-purge-top'    => 'Vuoi pulire la cache di questa pagina?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← pagina precedente',

@@ -2284,10 +2284,8 @@ Mayari/mapasu ya ining confirmation code keng $4.',
 'recreate'            => 'Lalangan yang pasibayu',
 
 # action=purge
-'confirm_purge'        => 'Ilako ya king simpanan (cache) ing bulung a ine?
-
-$1',
 'confirm_purge_button' => 'Sigi',
+'confirm-purge-top'    => 'Ilako ya king simpanan (cache) ing bulung a ine?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← minunang bulung',

@@ -2253,10 +2253,8 @@ Vinsamlegast staðfestu að þú viljir endurvekja hana.",
 'recreate'            => 'Endurvekja',
 
 # action=purge
-'confirm_purge'        => 'Hreinsa skyndiminni þessarar síðu?
-
-$1',
 'confirm_purge_button' => 'Í lagi',
+'confirm-purge-top'    => 'Hreinsa skyndiminni þessarar síðu?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← fyrri síða',

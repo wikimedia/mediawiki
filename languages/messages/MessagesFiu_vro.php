@@ -2023,10 +2023,8 @@ Olõq hää, kinnüdäq, et tahat taad lehte vahtsõst luvvaq.",
 'recreate'            => 'Luuq vahtsõst',
 
 # action=purge
-'confirm_purge'        => 'Kas taa lehe vaihõmälokujoq tulõvaq ärq kistutaq?
-
-$1',
 'confirm_purge_button' => 'Hää külh',
+'confirm-purge-top'    => 'Kas taa lehe vaihõmälokujoq tulõvaq ärq kistutaq?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← mineväne leht',

@@ -2176,10 +2176,8 @@ Fümedolös, das jenöfo vilol dönujafön padi at.",
 'recreate'            => 'Dönujafön',
 
 # action=purge
-'confirm_purge'        => 'Vagükön eli caché pada at?
-
-$1',
 'confirm_purge_button' => 'Si!',
+'confirm-purge-top'    => 'Vagükön eli caché pada at?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← pad büik',

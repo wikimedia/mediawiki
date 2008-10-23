@@ -1789,10 +1789,8 @@ Saifeni yañıdan yaratmağa isteseñiz, lütfen, bunı tasdıqlañız.",
 'recreate'            => 'Saifeni yañıdan yarat',
 
 # action=purge
-'confirm_purge'        => 'Saife keşini temizlesinmi?
-
-$1',
 'confirm_purge_button' => 'Ok',
+'confirm-purge-top'    => 'Saife keşini temizlesinmi?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← evelki saife',

@@ -2352,8 +2352,8 @@ Mangga didhedhes (dikonfirmasi) menawa panjenengan kersa nggawé ulang kaca iki.
 'recreate'            => 'Gawé ulang',
 
 # action=purge
-'confirm_purge'        => "Busak ''cache'' kaca iki?$1",
 'confirm_purge_button' => 'OK',
+'confirm-purge-top'    => "Busak ''cache'' kaca iki?",
 
 # Multipage image navigation
 'imgmultipageprev' => '&larr; kaca sadurungé',

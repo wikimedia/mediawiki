@@ -3018,10 +3018,8 @@ Wells Do jetz met en neu Version die Sigg widder neu aanläje?',
 'unit-pixel' => 'px',
 
 # action=purge
-'confirm_purge'        => 'Dä Zweschespeicher för die Sigg fottschmieße?
-
-$1',
 'confirm_purge_button' => 'Jo — loss jonn!',
+'confirm-purge-top'    => 'Dä Zweschespeicher för die Sigg fottschmieße?',
 
 # Separators for various lists, etc.
 'semicolon-separator' => ';',

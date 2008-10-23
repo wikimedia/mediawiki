@@ -2678,10 +2678,8 @@ Du må stadfeste at du verkeleg vil nyopprette denne sida.",
 'recreate'            => 'Nyopprett',
 
 # action=purge
-'confirm_purge'        => 'Vil du slette tenarane sin mellomlagra versjon av denne sida?
-
-$1',
 'confirm_purge_button' => 'Ja',
+'confirm-purge-top'    => 'Vil du slette tenarane sin mellomlagra versjon av denne sida?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← førre side',

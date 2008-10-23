@@ -2642,10 +2642,8 @@ Por favor confirma que daveres quies volver a crear esta páxina.",
 'recreate'            => 'Volver a crear',
 
 # action=purge
-'confirm_purge'        => "¿Llimpiar la caché d'esta páxina?
-
-$1",
 'confirm_purge_button' => 'Aceutar',
+'confirm-purge-top'    => "¿Llimpiar la caché d'esta páxina?",
 
 # Multipage image navigation
 'imgmultipageprev' => '← páxina anterior',

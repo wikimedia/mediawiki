@@ -2088,10 +2088,8 @@ $3 хэрвээ биш бол нээх хэрэггүй. Баталгаажуу�
 'recreate'            => 'Дахин үүсгэх',
 
 # action=purge
-'confirm_purge'        => 'энэ хуудасны нөөц хувилбарыг устгах уу?
-
-$1',
 'confirm_purge_button' => 'Tэг',
+'confirm-purge-top'    => 'энэ хуудасны нөөц хувилбарыг устгах уу?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← өмнөх хуудас',

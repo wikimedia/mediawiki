@@ -2448,10 +2448,8 @@ $1
 'recreate'            => 'Herschrieven',
 
 # action=purge
-'confirm_purge'        => "Klik op 'bevestig' um de kas van disse pagina te legen.
-
-$1",
 'confirm_purge_button' => 'Bevestig',
+'confirm-purge-top'    => "Klik op 'bevestig' um de kas van disse pagina te legen.",
 
 # Multipage image navigation
 'imgmultipageprev' => '&larr; veurige',

@@ -2843,10 +2843,8 @@ $1
 'unit-pixel' => ' пікс.',
 
 # action=purge
-'confirm_purge'        => 'Очистити кеш цієї сторінки?
-
-$1',
 'confirm_purge_button' => 'Гаразд',
+'confirm-purge-top'    => 'Очистити кеш цієї сторінки?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← попередня сторінка',

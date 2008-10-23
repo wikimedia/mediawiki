@@ -2586,10 +2586,8 @@ Sollt et sech net ëm äre Benotzerkont handelen, da maacht de Link *net* op. De
 'recreate'            => 'Erëm uleeën',
 
 # action=purge
-'confirm_purge'        => 'Dës Säit aus dem Server-Cache läschen?
-
-$1',
 'confirm_purge_button' => 'OK',
+'confirm-purge-top'    => 'Dës Säit aus dem Server-Cache läschen?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← Säit virdrun',

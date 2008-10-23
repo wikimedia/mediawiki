@@ -2702,10 +2702,8 @@ $1
 'recreate'            => 'Crear de nuevo',
 
 # action=purge
-'confirm_purge'        => '¿Limpiar la caché de esta página?
-
-$1',
 'confirm_purge_button' => 'Aceptar',
+'confirm-purge-top'    => '¿Limpiar la caché de esta página?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← página anterior',

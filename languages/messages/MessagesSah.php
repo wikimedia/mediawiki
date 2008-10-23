@@ -2620,10 +2620,8 @@ $1
 'recreate'            => 'Саҥаттан оҥоруу',
 
 # action=purge
-'confirm_purge'        => 'Бу сирэй кээһин сотоору гынаҕын дуо?
-
-$1',
 'confirm_purge_button' => 'Сөп',
+'confirm-purge-top'    => 'Бу сирэй кээһин сотоору гынаҕын дуо?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← инники сирэй',

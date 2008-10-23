@@ -2799,10 +2799,8 @@ $5
 'unit-pixel' => 'пкс',
 
 # action=purge
-'confirm_purge'        => 'Ачысьціць кэш гэтай старонкі?
-
-$1',
 'confirm_purge_button' => 'Так',
+'confirm-purge-top'    => 'Ачысьціць кэш гэтай старонкі?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← папярэдняя старонка',

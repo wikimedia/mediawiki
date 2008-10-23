@@ -2486,10 +2486,8 @@ $5
 'recreate'            => 'पुनर्निर्माण',
 
 # action=purge
-'confirm_purge'        => 'यापानाची सय रिकामी करावयाची आहे?
-
-$1',
 'confirm_purge_button' => 'ठीक',
+'confirm-purge-top'    => 'यापानाची सय रिकामी करावयाची आहे?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← मागील पान',

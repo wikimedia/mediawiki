@@ -2703,10 +2703,8 @@ Wist du de Siet würklich nee anleggen?",
 'recreate'            => 'wedder nee anleggen',
 
 # action=purge
-'confirm_purge'        => 'Den Cache vun disse Siet leddig maken?
-
-$1',
 'confirm_purge_button' => 'Jo',
+'confirm-purge-top'    => 'Den Cache vun disse Siet leddig maken?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← vörige Siet',

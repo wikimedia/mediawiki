@@ -2688,8 +2688,8 @@ $1
 'recreate'            => '重建',
 
 # action=purge
-'confirm_purge'        => '要清除此页面的缓存吗?\\n\\n$1',
 'confirm_purge_button' => '确定',
+'confirm-purge-top'    => '要清除此页面的缓存吗?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← 上一页',

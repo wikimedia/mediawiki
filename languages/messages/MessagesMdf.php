@@ -2393,10 +2393,8 @@ $1
 'recreate'            => 'Тиемс одукс',
 
 # action=purge
-'confirm_purge'        => 'Нардамс тя лопать копияфтома пингонь файлснон?
-
-$1',
 'confirm_purge_button' => 'ОК',
+'confirm-purge-top'    => 'Нардамс тя лопать копияфтома пингонь файлснон?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← сядынгольдень лопась',

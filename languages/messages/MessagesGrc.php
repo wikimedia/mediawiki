@@ -2161,10 +2161,8 @@ $1
 'recreate' => 'Ἀναποιεῖν',
 
 # action=purge
-'confirm_purge'        => 'Καθαίρειν τὴν λανθάνουσαν μνήμην τῆσδε τῆς δέλτου;
-
-$1',
 'confirm_purge_button' => 'εἶεν',
+'confirm-purge-top'    => 'Καθαίρειν τὴν λανθάνουσαν μνήμην τῆσδε τῆς δέλτου.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← ἡ δέλτος ἡ προτέρα',

@@ -2832,10 +2832,8 @@ $1
 'unit-pixel' => 'پیکس',
 
 # action=purge
-'confirm_purge'        => 'ذخیره ای صفحه پهک کنت؟
-
-$1',
 'confirm_purge_button' => 'هوبنت',
+'confirm-purge-top'    => 'ذخیره ای صفحه پهک کنت؟',
 
 # Separators for various lists, etc.
 'semicolon-separator' => ';',

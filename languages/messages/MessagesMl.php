@@ -2135,10 +2135,8 @@ $5
 'recreate'            => 'പുനഃസൃഷ്ടിക്കുക',
 
 # action=purge
-'confirm_purge'        => 'ഈ താളിന്റെ കാഷെ ക്ലീയര്‍ ചെയ്യട്ടെ?
-
-$1',
 'confirm_purge_button' => 'ശരി',
+'confirm-purge-top'    => 'ഈ താളിന്റെ കാഷെ ക്ലീയര്‍ ചെയ്യട്ടെ?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← മുന്‍പത്തെ താള്‍',

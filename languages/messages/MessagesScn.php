@@ -2455,8 +2455,8 @@ Stu còdici di cunferma scadi automaticamenti a li $4.',
 'confirmrecreate'     => "L'utenti [[User:$1|$1]] ([[User talk:$1|discussioni]]) hà cancillatu sta pàggina doppu ca hai nizziatu a canciàrila, pi lu siquenti mutivu: ''$2'' Pi favuri, cunferma ca addisìi veramenti criari n'àutra vota sta pàggina.",
 
 # action=purge
-'confirm_purge'        => "S'addisìa puliri la cache di sta pàggina? $1",
 'confirm_purge_button' => 'Cunferma',
+'confirm-purge-top'    => "S'addisìa puliri la cache di sta pàggina?",
 
 # Multipage image navigation
 'imgmultipageprev' => '← pàggina pricidenti',

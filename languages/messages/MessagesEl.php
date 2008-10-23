@@ -2674,10 +2674,8 @@ $1
 'recreate'            => 'Επαναδημιουργία',
 
 # action=purge
-'confirm_purge'        => 'Καθαρισμός της λανθάνουσας μνήμης αυτής της σελίδας;
-
-$1',
 'confirm_purge_button' => 'Εντάξει',
+'confirm-purge-top'    => 'Καθαρισμός της λανθάνουσας μνήμης αυτής της σελίδας.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← προηγούμενη σελίδα',

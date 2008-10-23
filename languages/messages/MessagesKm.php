@@ -2503,10 +2503,8 @@ $5
 'recreate'            => 'បង្កើតឡើងវិញ',
 
 # action=purge
-'confirm_purge'        => 'សំអាតឃ្លាំងសំងាត់(cache)នៃទំព័រនេះ?
-
-$1',
 'confirm_purge_button' => 'យល់ព្រម',
+'confirm-purge-top'    => 'សំអាតឃ្លាំងសំងាត់(cache)នៃទំព័រនេះ?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← ទំព័រមុន',

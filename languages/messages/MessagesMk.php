@@ -2779,10 +2779,8 @@ $1
 'unit-pixel' => 'п',
 
 # action=purge
-'confirm_purge'        => 'Да се исчисти кешот на оваа страница?
-
-$1',
 'confirm_purge_button' => 'Да',
+'confirm-purge-top'    => 'Да се исчисти кешот на оваа страница?',
 
 # Multipage image navigation
 'imgmultipageprev' => '&larr; претходна страница',

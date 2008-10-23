@@ -2147,10 +2147,8 @@ $5
 'recreate'            => '새로 만들기',
 
 # action=purge
-'confirm_purge'        => '문서의 캐시를 지울까요?
-
-$1',
 'confirm_purge_button' => '확인',
+'confirm-purge-top'    => '문서의 캐시를 지울까요?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← 이전 문서',

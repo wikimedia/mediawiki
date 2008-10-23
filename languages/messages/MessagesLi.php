@@ -2430,10 +2430,8 @@ Bevèsteg estebleef dats te dees pazjena ech obbenuujts wils make.",
 'recreate'            => 'Pazjena obbenuujts make',
 
 # action=purge
-'confirm_purge'        => 'Wils te de buffer vaan dees paas wisse?
-
-$1',
 'confirm_purge_button' => 'ok',
+'confirm-purge-top'    => 'Wils te de buffer vaan dees paas wisse?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← veurige pazjena',

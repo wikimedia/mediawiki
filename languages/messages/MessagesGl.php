@@ -2745,10 +2745,8 @@ Por favor confirme que realmente quere crear o artigo de novo.",
 'recreate'            => 'Recrear',
 
 # action=purge
-'confirm_purge'        => 'Está seguro de que desexa limpar a memoria caché desta páxina?
-
-$1',
 'confirm_purge_button' => 'Si',
+'confirm-purge-top'    => 'Está seguro de que desexa limpar a memoria caché desta páxina?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← páxina anterior',

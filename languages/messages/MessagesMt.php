@@ -2526,10 +2526,8 @@ Jekk jogħġbok konferma jekk vera trid terġa' toħloq din il-paġna.",
 'recreate'            => "Erġa' oħloq",
 
 # action=purge
-'confirm_purge'        => "Ħassar il-''cache'' ta' din il-paġna?
-
-$1",
 'confirm_purge_button' => 'OK',
+'confirm-purge-top'    => "Ħassar il-''cache'' ta' din il-paġna?",
 
 # Separators for various lists, etc.
 'semicolon-separator' => ';',

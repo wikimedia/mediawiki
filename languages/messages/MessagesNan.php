@@ -834,7 +834,7 @@ $3
 Nā-chún *m̄-sī* lí, chhiáⁿ mài tòe liân-kiat khì.  Chit tiuⁿ phoe ê khak-jīn-bé ē chū-tōng tī $4 kòe-kî.',
 
 # action=purge
-'confirm_purge' => 'Kā chit ia̍h ê cache piàⁿ tiāu? $1',
+'confirm-purge-top' => 'Kā chit ia̍h ê cache piàⁿ tiāu?',
 
 # Table pager
 'table_pager_next'         => 'Aū-chi̍t-ia̍h',

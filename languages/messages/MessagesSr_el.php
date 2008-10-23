@@ -1934,10 +1934,8 @@ Molimo potvrdite da stvarno želite da ponovo napravite ovaj članak.",
 'recreate'            => 'Ponovo napravi',
 
 # action=purge
-'confirm_purge'        => 'Da li želite očistiti keš ove stranice?
-
-$1',
 'confirm_purge_button' => 'Da',
+'confirm-purge-top'    => 'Da li želite očistiti keš ove stranice?',
 
 # Multipage image navigation
 'imgmultipageprev' => '&larr; prethodna stranica',

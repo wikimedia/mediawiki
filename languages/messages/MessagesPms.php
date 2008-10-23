@@ -2270,10 +2270,8 @@ Për piasì, che an conferma che da bon a veul torna creélo.",
 'recreate'            => "Créa n'àutra vira",
 
 # action=purge
-'confirm_purge'        => 'Veujdé la memorisassion dë sta pàgina-sì?
-
-$1',
 'confirm_purge_button' => 'Va bin',
+'confirm-purge-top'    => 'Veujdé la memorisassion dë sta pàgina-sì?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← pàgina andré',

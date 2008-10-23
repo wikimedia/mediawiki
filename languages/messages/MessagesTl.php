@@ -644,9 +644,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'recreate'            => 'Likhain muli',
 
 # action=purge
-'confirm_purge' => 'Linisin ang baunan ng pahinang ito?
-
-$1',
+'confirm-purge-top' => 'Linisin ang baunan ng pahinang ito?',
 
 # Table pager
 'table_pager_first' => 'Unang pahina',

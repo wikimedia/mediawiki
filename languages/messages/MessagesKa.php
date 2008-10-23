@@ -1836,10 +1836,8 @@ $1
 'recreate'            => 'აღადგინე',
 
 # action=purge
-'confirm_purge'        => 'გსურთ ამ გვერდის ქეშის წაშლა?
-
-$1',
 'confirm_purge_button' => 'კარგი',
+'confirm-purge-top'    => 'გსურთ ამ გვერდის ქეშის წაშლა?',
 
 # Multipage image navigation
 'imgmultipageprev' => '&larr; წინა გვერდი',

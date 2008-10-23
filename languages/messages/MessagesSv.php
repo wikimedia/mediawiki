@@ -2881,10 +2881,8 @@ Bekräfta att du verkligen vill återskapa sidan.",
 'recreate'            => 'Återskapa',
 
 # action=purge
-'confirm_purge'        => 'Rensa denna sidas cache?
-
-$1',
 'confirm_purge_button' => 'OK',
+'confirm-purge-top'    => 'Rensa denna sidas cache?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← föregående sida',

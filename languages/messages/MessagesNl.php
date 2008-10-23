@@ -3028,10 +3028,8 @@ Bevestig dat u de pagina opnieuw wilt aanmaken.",
 'recreate'            => 'Opnieuw aanmaken',
 
 # action=purge
-'confirm_purge'        => 'De cache van deze pagina legen?
-
-$1',
 'confirm_purge_button' => 'OK',
+'confirm-purge-top'    => 'De cache van deze pagina legen?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← vorige pagina',

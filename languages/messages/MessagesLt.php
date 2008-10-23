@@ -2616,10 +2616,8 @@ Prašome patvirtinti, kad tikrai norite iš naujo sukurti puslapį.",
 'recreate'            => 'Atkurti',
 
 # action=purge
-'confirm_purge'        => 'Išvalyti šio puslapio podėlį?
-
-$1',
 'confirm_purge_button' => 'Gerai',
+'confirm-purge-top'    => 'Išvalyti šio puslapio podėlį?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← ankstesnis puslapis',
