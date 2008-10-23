@@ -1033,12 +1033,6 @@ Stelle sicher, dass die Versionsgeschichte eines Artikels historisch korrekt ist
 # Search results
 'searchresults'             => 'Suchergebnisse',
 'searchresults-title'       => 'Suchergebnisse für $1',
-'searchresulttext'          => 'Für mehr Informationen zur Suche siehe die [[{{MediaWiki:Helppage}}|Hilfeseite]].',
-'searchsubtitle'            => 'Deine Suchanfrage: „[[:$1|$1]]“ ([[Special:Prefixindex/$1|alle mit „$1“ beginnenden Seiten]] | [[Special:WhatLinksHere/$1|alle Seiten, die nach „$1“ verlinken]])',
-'searchsubtitleinvalid'     => 'Deine Suchanfrage: „$1“.',
-'noexactmatch'              => "'''Es existiert keine Seite mit dem Titel „$1“.'''
-Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen]].",
-'noexactmatch-nocreate'     => "'''Es existiert keine Seite mit dem Titel „$1“.'''",
 'toomanymatches'            => 'Die Anzahl der Suchergebnisse ist zu groß, bitte versuche eine andere Abfrage.',
 'titlematches'              => 'Übereinstimmungen mit Seitentiteln',
 'notitlematches'            => 'Keine Übereinstimmungen mit Seitentiteln',
@@ -1064,7 +1058,6 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen
 'showingresults'            => "Hier {{PLURAL:$1|ist '''1''' Ergebnis|sind '''$1''' Ergebnisse}}, beginnend mit Nummer '''$2.'''",
 'showingresultsnum'         => "Hier {{PLURAL:$3|ist '''1''' Ergebnis|sind '''$3''' Ergebnisse}}, beginnend mit Nummer '''$2.'''",
 'showingresultstotal'       => "Es {{PLURAL:$4|folgt Suchergebnis '''$1''' von '''$3:'''|folgen die Suchergebnisse '''$1–$2''' von '''$3:'''}}",
-'nonefound'                 => "'''Hinweis:''' Es werden standardmäßig nur einige Namensräume durchsucht. Setze ''all:'' vor deinen Suchbegriff, um alle Seiten (inkl. Diskussionsseiten, Vorlagen usw.) zu durchsuchen oder gezielt den Namen des zu durchsuchenden Namensraumes.",
 'powersearch'               => 'Erweiterte Suche',
 'powersearch-legend'        => 'Erweiterte Suche',
 'powersearch-ns'            => 'Suche in Namensräumen:',
@@ -1133,7 +1126,6 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen
 'allowemail'               => 'E-Mail-Empfang von anderen Benutzern ermöglichen',
 'prefs-searchoptions'      => 'Suchoptionen',
 'prefs-namespaces'         => 'Namensräume',
-'defaultns'                => 'In diesen Namensräumen soll standardmäßig gesucht werden:',
 'default'                  => 'Voreinstellung',
 'files'                    => 'Dateien',
 

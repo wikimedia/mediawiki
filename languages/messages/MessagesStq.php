@@ -855,13 +855,6 @@ Staal deertruch sicher, dät ju Versionsgeschichte fon n Artikkel historisk akro
 # Search results
 'searchresults'             => 'Säikresultoate',
 'searchresults-title'       => 'Säikresultoate foar $1',
-'searchresulttext'          => 'Foar moor Informatione tou ju Säike sjuch ju [[{{MediaWiki:Helppage}}|Hälpesiede]].',
-'searchsubtitle'            => 'Dien Säikanfroage: „[[:$1|$1]]“ ([[Special:Prefixindex/$1|aal mäd „$1“ ounfangende Sieden]] | [[Special:WhatLinksHere/$1|aal Sieden, do ätter „$1“ ferlinkje]])',
-'searchsubtitleinvalid'     => 'Foar dien Säikanfroage „$1“.',
-'noexactmatch'              => "'''Deer existiert neen Siede mäd dän Tittel „$1“.'''
-
-Wan du die mäd dät Thema uutkoanst, koast du sälwen ju [[:$1|Siede ferfoatje]].",
-'noexactmatch-nocreate'     => "'''Der bestoant neen Siede mäd dän Tittel „$1“.'''",
 'toomanymatches'            => 'Ju Antaal fon Säikresultoate is tou groot, fersäik ne näie Oufroage.',
 'titlematches'              => 'Uureenstämmengen mäd Uurschrifte',
 'notitlematches'            => 'Neen Uureenstimmengen',
@@ -887,7 +880,6 @@ Wan du die mäd dät Thema uutkoanst, koast du sälwen ju [[:$1|Siede ferfoatje]
 'showingresults'            => "Hier {{PLURAL:$1|is '''1''' Resultoat|sunt '''$1''' Resultoate}}, ounfangend mäd Nuumer '''$2'''.",
 'showingresultsnum'         => "Hier {{PLURAL:$3|is '''1''' Resultoat|sunt '''$3''' Resultoate}}, ounfangend mäd Nuumer '''$2'''.",
 'showingresultstotal'       => "Hier {{PLURAL:$4|foulget Säikresultoat '''$1''' fon '''$3:'''|foulgje do Säikresultoate '''$1–$2''' fon '''$3:'''}}",
-'nonefound'                 => "'''Waiwiesenge:''' Der wäide standoardmäitich man oankelde Noomensruume truchsoacht. Sät ''all:'' foar din Säikbegrip, uum aal Sieden (bietou Diskussionssieden, Foarloagen usw.) tou truchsäiken of sield dän Noome fon dän truchtousäikende Noomensruum.",
 'powersearch'               => 'Fääre säike',
 'powersearch-legend'        => 'Fääre säike',
 'powersearch-ns'            => 'Säik in Noomensruume:',
@@ -956,7 +948,6 @@ Wan du die mäd dät Thema uutkoanst, koast du sälwen ju [[:$1|Siede ferfoatje]
 'allowemail'               => 'Emails fon uur Benutsere kriegen',
 'prefs-searchoptions'      => 'Säikoptione',
 'prefs-namespaces'         => 'Noomensruume',
-'defaultns'                => 'In disse Noomensruume schäl standoardmäitich soacht wäide:',
 'default'                  => 'Standoardienstaalenge',
 'files'                    => 'Doatäie',
 

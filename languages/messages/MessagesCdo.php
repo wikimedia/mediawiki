@@ -355,16 +355,12 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 'diff-multi'              => '(Dài-dŏng ô {{PLURAL:$1|ék|$1}} bĭk bēng-buōng mò̤ hiēng-sê.)',
 
 # Search results
-'searchresults'         => 'Sìng-tō̤ giék-guō',
-'searchresulttext'      => 'Buóh liēu-gāi diŏh {{SITENAME}} sìng-tō̤ ùng-ciŏng gì gáing sâ̤ séng-sék, chiāng chăng-kō̤ [[{{ns:project}}:Sìng-tō̤]].',
-'searchsubtitle'        => "Nṳ̄ sìng-tō̤ '''[[:$1]]'''",
-'searchsubtitleinvalid' => "Nṳ̄ sìng-tō̤ '''$1'''",
-'noexactmatch'          => "'''Tō̤ mâ̤ diŏh dū-dū siŏh-iông gì miàng \"\$1\".''' Nṳ̄ â̤-sāi [[:\$1|cê-gă siā]].",
-'prevn'                 => 'sèng $1 hâung',
-'nextn'                 => 'â $1 hâung',
-'viewprevnext'          => 'Káng ($1) ($2) ($3).',
-'showingresults'        => "Hiēng-sê téng #<b>$2</b> kăi-sṳ̄ gì {{PLURAL:$1|'''1'''|'''$1'''}} bĭk giék-guō.",
-'showingresultsnum'     => "Hiēng-sê téng #<b>$2</b> kăi-sṳ̄ gì {{PLURAL:$3|'''1'''|'''$3'''}} bĭk giék-guō.",
+'searchresults'     => 'Sìng-tō̤ giék-guō',
+'prevn'             => 'sèng $1 hâung',
+'nextn'             => 'â $1 hâung',
+'viewprevnext'      => 'Káng ($1) ($2) ($3).',
+'showingresults'    => "Hiēng-sê téng #<b>$2</b> kăi-sṳ̄ gì {{PLURAL:$1|'''1'''|'''$1'''}} bĭk giék-guō.",
+'showingresultsnum' => "Hiēng-sê téng #<b>$2</b> kăi-sṳ̄ gì {{PLURAL:$3|'''1'''|'''$3'''}} bĭk giék-guō.",
 
 # Preferences page
 'preferences'           => 'Siék-diâng',

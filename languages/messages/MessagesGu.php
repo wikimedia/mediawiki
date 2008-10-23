@@ -353,8 +353,6 @@ $messages = array(
 
 # Search results
 'searchresults' => 'પરિણામોમાં શોધો',
-'noexactmatch'  => "'''\"\$1\" શિર્ષક વાળું કોઇ પાનું નથી.'''
-<br />તમે [[:\$1|આ પાનું બનાવી શકો છો]].",
 'prevn'         => 'પાછળનાં $1',
 'nextn'         => 'આગળનાં $1',
 'viewprevnext'  => 'જુઓ: ($1) ($2) ($3)',

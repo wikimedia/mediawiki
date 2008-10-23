@@ -810,30 +810,18 @@ Pokušajte [[Special:Search|pretražiti wiki]] za slične stranice.',
 'diff-multi'              => '({{plural:$1|Nije prikazana jedna međuverzija|Nisu prikazane $1 međuverzije|Nije prikazano $1 međuverzija}})',
 
 # Search results
-'searchresults'         => 'Rezultati pretrage',
-'searchresulttext'      => 'Za više informacija o pretraživanju {{SITENAME}}, pogledajte [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'        => "Tražili ste '''[[:$1]]'''",
-'searchsubtitleinvalid' => 'Tražili ste $1',
-'noexactmatch'          => "Nema stranice sa imenom \"\$1\".
-
-Možete '''[[:\$1|da napravite članak sa tim naslovom]]''' ili [[{{MediaWiki:Helppage}}|da stavite zahtjev za ovaj članak]] ili [[Special:AllPages/\$1|potražite na drugim stranicama]].
-
-::*'''''<u>Opomena: Nemojte da kopirate materijale za koje nemate dozvolu!</u>'''''",
-'titlematches'          => 'Naslov članka odgovara',
-'notitlematches'        => 'Naslov članka ne odgovara.',
-'textmatches'           => 'Tekst stranice odgovara',
-'notextmatches'         => 'Tekst članka ne odgovara',
-'prevn'                 => 'prethodnih $1',
-'nextn'                 => 'sledećih $1',
-'viewprevnext'          => 'Pogledaj ($1) ($2) ($3).',
-'showingresults'        => 'Prikazani su <b>$1</b> rezultata počev od <b>$2</b>.',
-'showingresultsnum'     => 'Prikazani su <b>$3</b> rezultati počev od <b>$2</b>.',
-'nonefound'             => "'''Pažnja''': neuspješne pretrage su
-često izazvane traženjem čestih riječi kao \"je\" ili \"od\",
-koje nisu indeksirane, ili navođenjem više od jednog izraza za traženje (samo stranice
-koje sadrže sve izraze koji se traže će se pojaviti u rezultatima).",
-'powersearch'           => 'Traži',
-'searchdisabled'        => '<p>Izvinjavamo se!  Puno pretraga teksta je privremeno onemogućena.  U međuvremenu, možete koristiti Google za pretragu.  Indeks može biti stariji.',
+'searchresults'     => 'Rezultati pretrage',
+'titlematches'      => 'Naslov članka odgovara',
+'notitlematches'    => 'Naslov članka ne odgovara.',
+'textmatches'       => 'Tekst stranice odgovara',
+'notextmatches'     => 'Tekst članka ne odgovara',
+'prevn'             => 'prethodnih $1',
+'nextn'             => 'sledećih $1',
+'viewprevnext'      => 'Pogledaj ($1) ($2) ($3).',
+'showingresults'    => 'Prikazani su <b>$1</b> rezultata počev od <b>$2</b>.',
+'showingresultsnum' => 'Prikazani su <b>$3</b> rezultati počev od <b>$2</b>.',
+'powersearch'       => 'Traži',
+'searchdisabled'    => '<p>Izvinjavamo se!  Puno pretraga teksta je privremeno onemogućena.  U međuvremenu, možete koristiti Google za pretragu.  Indeks može biti stariji.',
 
 # Preferences page
 'preferences'             => 'Podešavanja',
@@ -887,7 +875,6 @@ koje sadrže sve izraze koji se traže će se pojaviti u rezultatima).",
 'timezoneoffset'          => 'Odstupanje',
 'servertime'              => 'Vrijeme na serveru',
 'guesstimezone'           => 'Popuni iz brauzera',
-'defaultns'               => 'Uobičajeno tražite u ovim imenskim prostorima:',
 
 # User rights
 'editinguser' => "Uređujete '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",

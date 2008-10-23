@@ -976,11 +976,6 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 # Search results
 'searchresults'             => 'Risultati della ricerca',
 'searchresults-title'       => 'Risultati della ricerca di $1',
-'searchresulttext'          => 'Per maggiori informazioni sulla ricerca interna di {{SITENAME}}, vedi [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'            => "Ricerca di '''[[:$1]]'''",
-'searchsubtitleinvalid'     => "Ricerca di '''$1'''",
-'noexactmatch'              => "'''La pagina \"\$1\" non esiste.''' È possibile [[:\$1|crearla ora]].",
-'noexactmatch-nocreate'     => "'''La pagina con titolo \"\$1\" non esiste.'''",
 'toomanymatches'            => 'Troppe corrispondenze. Modificare la richiesta.',
 'titlematches'              => 'Corrispondenze nel titolo delle pagine',
 'notitlematches'            => 'Nessuna corrispondenza nei titoli delle pagine',
@@ -1006,7 +1001,6 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'showingresults'            => "Di seguito {{PLURAL:$1|viene presentato al massimo '''1''' risultato|vengono presentati al massimo '''$1''' risultati}} a partire dal numero '''$2'''.",
 'showingresultsnum'         => "Di seguito {{PLURAL:$3|viene presentato '''1''' risultato|vengono presentati '''$3''' risultati}} a partire dal numero '''$2'''.",
 'showingresultstotal'       => "Di seguito {{PLURAL:$4|viene mostrato il risultato '''$1''' di '''$3'''|vengono mostrati i risultati '''$1 - $2''' di '''$3'''}}",
-'nonefound'                 => "'''Nota''': la ricerca è effettuata per default solo in alcuni namespace. Prova a premettere ''all:'' al testo della ricerca per cercare in tutti i namespace (compresi pagine di discussione, template, ecc) oppure usa il namespace desiderato come prefisso.",
 'powersearch'               => 'Ricerca',
 'powersearch-legend'        => 'Ricerca avanzata',
 'powersearch-ns'            => 'Cerca nei namespace:',
@@ -1075,7 +1069,6 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'allowemail'               => 'Abilita la ricezione di email da altri utenti¹',
 'prefs-searchoptions'      => 'Opzioni di ricerca',
 'prefs-namespaces'         => 'Namespace',
-'defaultns'                => 'Cerca in questi namespace se non diversamente specificato:',
 'default'                  => 'predefinito',
 'files'                    => 'File',
 

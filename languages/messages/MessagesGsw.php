@@ -525,17 +525,12 @@ Erklärig: (aktuell) = Underschid zu jetz,
 'diff-multi'              => '(Der Versioneverglych zeigt ou d Änderige vo {{PLURAL:$1|1 Version|$1 Versione}} derzwüsche.)',
 
 # Search results
-'searchresults'         => 'Suech-Ergäbnis',
-'searchresulttext'      => 'Für wiiteri Informatione zuem Sueche uff {{SITENAME}} chönne Si mol uff [[{{MediaWiki:Helppage}}|{{int:help}}]] luege.',
-'searchsubtitle'        => 'Für d Suechaafrag «[[:$1]]»',
-'searchsubtitleinvalid' => 'Für d Suechaafrag «$1»',
-'noexactmatch'          => "'''Es git kei Syte mit em Tiel „$1“.'''
-Du chasch die [[:$1|Syte nöu schrybe]].",
-'prevn'                 => 'vorderi $1',
-'nextn'                 => 'nächschti $1',
-'viewprevnext'          => '($1) ($2) aazeige; ($3) uf ds Mal',
-'powersearch'           => 'Erwytereti Suechi',
-'searchdisabled'        => '<p>Die Volltextsuche wurde wegen Überlastung temporär deaktiviert. Derweil können Sie entweder folgende Google- oder Yahoo-Suche verwenden, die allerdings nicht den aktuellen Stand widerspiegeln.</p>',
+'searchresults'  => 'Suech-Ergäbnis',
+'prevn'          => 'vorderi $1',
+'nextn'          => 'nächschti $1',
+'viewprevnext'   => '($1) ($2) aazeige; ($3) uf ds Mal',
+'powersearch'    => 'Erwytereti Suechi',
+'searchdisabled' => '<p>Die Volltextsuche wurde wegen Überlastung temporär deaktiviert. Derweil können Sie entweder folgende Google- oder Yahoo-Suche verwenden, die allerdings nicht den aktuellen Stand widerspiegeln.</p>',
 
 # Preferences page
 'preferences'        => 'Iistellige',
@@ -572,7 +567,6 @@ Du chasch die [[:$1|Syte nöu schrybe]].",
 'servertime'         => 'Aktuelli Serverzyt',
 'guesstimezone'      => 'Vom Browser la ysetze',
 'allowemail'         => 'andere Benutzer erlaube, dass si Ihne E-Bost schicke chönne',
-'defaultns'          => 'Namensrüüm wo standardmäässig söll gsuecht wärde:',
 'files'              => 'Bilder',
 
 # User rights

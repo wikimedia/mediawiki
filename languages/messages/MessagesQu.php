@@ -844,11 +844,6 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 # Search results
 'searchresults'             => 'Maskaymanta tarisqakuna',
 'searchresults-title'       => '$1 nisqapaq maskaspa taripasqakuna',
-'searchresulttext'          => '{{SITENAME}}pi maskaymanta astawan ñawirinaykipaqqa, [[{{MediaWiki:Helppage}}|{{int:help}}]] nisqapi qhaway.',
-'searchsubtitle'            => '\'\'\'[[:$1]]\'\'\' nisqatam maskanki ([[Special:Prefixindex/$1|tukuy "$1" nisqawan qallariq p\'anqakuna]] | [[Special:WhatLinksHere/$1|tukuy "$1" nisqaman t\'inkimuq p\'anqakuna]])',
-'searchsubtitleinvalid'     => '"$1" nisqatam maskanki',
-'noexactmatch'              => "'''Manam kanchu \"\$1\" sutiyuq p'anqa.''' Munaspaykiqa [[:\$1|kamarillay]].",
-'noexactmatch-nocreate'     => "'''\"\$1\" sutiyuq p'anqaqa manam kanchu.'''",
 'toomanymatches'            => 'Nisyu taripasqakunam kutisqa, ama hina kaspa, huk taripanawan ruraykachay',
 'titlematches'              => "P'anqakunap sutinkunapi tarisqa",
 'notitlematches'            => "Manam ima p'anqakunap sutinkunapipas tarisqachu",
@@ -874,7 +869,6 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'showingresults'            => "Qhipanpiqa rikuchkanki {{PLURAL:$1|'''1''' tarisqatam|'''$1'''-kama tarisqakunatam}}, '''$2''' huchhawan qallarispa.",
 'showingresultsnum'         => "Qhipanpiqa rikuchkanki {{PLURAL:$3|'''1''' tarisqatam|'''$3''' tarisqakunatam}}, '''$2''' yupaywan qallarispa.",
 'showingresultstotal'       => "Kay qatiqpi {{PLURAL:$4||taripasqa '''$1''', '''$3'''-pura|taripasqakuna '''$1 - $2''', '''$3'''-pura}}",
-'nonefound'                 => "'''Musyay''': Kikinmantaqa huk suti k'itikunallapim maskanki, manataqmi tukuykunapichu. Ñawpaqninpi ''all:'' nisqata qillqaspaykiqa, tukuy suti k'itikunapim maskanki (rimachinakunapipas, plantillakunapipas). Huk sapaq suti k'itipi maskayta munaspaykiqa, chay k'itip sutinta k'askaq hina ñawpaqninpi qillqamuy.",
 'powersearch'               => 'Maskay',
 'powersearch-legend'        => 'Ñawparikusqa maskay',
 'powersearch-ns'            => "Kay suti k'itikunapi maskay:",
@@ -943,7 +937,6 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'allowemail'               => 'Huk ruraqkunamanta e-chaskita saqillay',
 'prefs-searchoptions'      => 'Akllanakunata maskay',
 'prefs-namespaces'         => "Suti k'itikuna",
-'defaultns'                => "Kay suti k'itikunapi kikinmanta maskay:",
 'default'                  => 'kikinmanta',
 'files'                    => 'Willañiqikuna',
 

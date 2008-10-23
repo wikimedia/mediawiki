@@ -1425,13 +1425,11 @@ Note that using the navigation links will reset this column.',
 'prevn'                            => 'previous $1',
 'nextn'                            => 'next $1',
 'viewprevnext'                     => 'View ($1) ($2) ($3)',
-'searchmenu-exists'                => "*Page '''[[$1]]'''
-",
-'searchmenu-new'                   => "*Create page '''[[$1]]'''
-",
-'searchmenu'                       => '*[[Special:AllPages/$1|Index]]
-*[[{{ns:project}}:Searching|{{int:help}}]]
-',
+'searchmenu-exists'                => "* Page '''[[$1]]'''",
+'searchmenu-new'                   => "* Create page '''[[$1]]'''",
+'searchhelp-url'                   => 'Project:Searching',
+'searchmenu'                       => '* [[Special:AllPages/$1|Index]]
+* [[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
 'searchprofile-articles'           => 'Pages',
 'searchprofile-project'            => 'Pages/Project',
 'searchprofile-images'             => 'Files',

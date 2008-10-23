@@ -359,7 +359,6 @@ $messages = array(
 
 # Search results
 'searchresults'     => 'Kiám-sek kiat-kó',
-'searchresulttext'  => 'Koan-hē kiám-sek {{SITENAME}} ê siông-sè pō·-sò·, chhiáⁿ chham-khó [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'titlematches'      => 'Phiau-tê ū-tùi ê bûn-chiuⁿ',
 'notitlematches'    => 'Bô sio-tùi ê ia̍h-piau-tê',
 'textmatches'       => 'Lōe-iông ū-tùi ê bûn-chiuⁿ',
@@ -413,7 +412,6 @@ $messages = array(
 'servertime'            => 'Server sî-kan hiān-chāi sī',
 'guesstimezone'         => 'Tùi liû-lám-khì chhau--lâi',
 'allowemail'            => 'Ún-chún pa̍t-ê iōng-chiá kià email kòe-lâi',
-'defaultns'             => 'Tī chiah ê miâ-khong-kan chhiau-chhōe:',
 'files'                 => 'Tóng-àn',
 
 'grouppage-sysop' => '{{ns:project}}:Hêng-chèng jîn-oân',

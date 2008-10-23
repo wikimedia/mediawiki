@@ -318,7 +318,6 @@ $messages = array(
 'lineno' => 'Liña $1:',
 
 # Search results
-'noexactmatch' => "'''Pájina ''$1'' la iha.''' Ó bele [[:$1|kria pájina ne'e]].",
 'prevn'        => 'molok $1',
 'nextn'        => 'oinmai $1',
 'viewprevnext' => 'Haree ($1) ($2) ($3)',

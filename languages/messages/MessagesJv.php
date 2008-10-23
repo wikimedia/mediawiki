@@ -764,11 +764,6 @@ Gunakna tombol radio kanggo nggabungaké révisi-révisi sing digawé sadurungé
 
 # Search results
 'searchresults'             => 'Pituwas panggolèkan',
-'searchresulttext'          => 'Kanggo informasi sabanjuré ngenani nggolèki apa-apa ing {{SITENAME}}, mangga mirsani [[{{MediaWiki:Helppage}}|kaca pitulung]].',
-'searchsubtitle'            => "Panjenengan nggolèki '''[[:$1]]'''",
-'searchsubtitleinvalid'     => "Panjenengan nggolèki '''$1'''",
-'noexactmatch'              => "'''Ora ana kaca mawa irah-irahan utawa judhul \"\$1\".''' Panjenengan bisa [[:\$1|nggawé kaca iki]].",
-'noexactmatch-nocreate'     => "'''Ora ana kaca mawa irah-irahan utawa judhul \"\$1\".'''",
 'toomanymatches'            => "Olèhé panjenengan golèk ngasilaké kakèhan pituwas, mangga nglebokaké ''query'' liyané",
 'titlematches'              => 'Irah-irahan artikel sing cocog',
 'notitlematches'            => 'Ora ana irah-irahan artikel sing cocog',
@@ -794,7 +789,6 @@ Gunakna tombol radio kanggo nggabungaké révisi-révisi sing digawé sadurungé
 'showingresults'            => "Ing ngisor iki dituduhaké {{PLURAL:$1|'''1''' kasil|'''$1''' kasil}}, wiwitané saking #<strong>$2</strong>.",
 'showingresultsnum'         => "Ing ngisor iki dituduhaké {{PLURAL:$3|'''1''' kasil|'''$3''' kasil}}, wiwitané saka #<strong>$2</strong>.",
 'showingresultstotal'       => "Ing ngisor iki kapacak pituwas {{PLURAL:$4|'''$1'''|'''$1 - $2'''}} saka '''$3'''",
-'nonefound'                 => "'''Cathetan''': Namung sawetara bilik nama sing digolèki sacara baku. Coba seselana mawa awalan ''all:'' kanggo golèk kabèh isi (kalebu kaca dhiskusi, cithakan lsp.), utawa nganggo bilik nama sing dipèngèni minangka préfiks.",
 'powersearch'               => 'Golèk',
 'powersearch-legend'        => "Panggolèkan sabanjuré (''advance search'')",
 'powersearch-redir'         => 'Pratélan pangalihan',
@@ -861,7 +855,6 @@ mangga delengen math/README kanggo cara konfigurasi.',
 'guesstimezone'            => 'Isinen saka panjlajah wèb',
 'allowemail'               => 'Marengaké panganggo liyané ngirim layang èlèktronik (email).',
 'prefs-searchoptions'      => 'Opsi-opsi panggolèkan',
-'defaultns'                => "Golèk ing bilik jeneng (''namespace'') iki mawa baku:",
 'default'                  => 'baku',
 'files'                    => 'Berkas',
 

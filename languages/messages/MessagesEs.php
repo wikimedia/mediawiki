@@ -956,11 +956,6 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 # Search results
 'searchresults'             => 'Resultados de la búsqueda',
 'searchresults-title'       => 'Resultados de la búsqueda de $1',
-'searchresulttext'          => 'Para más información acerca de las búsquedas en {{SITENAME}}, consulte la [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'            => "Has consultado por '''[[:$1]]''' ([[Special:Prefixindex/$1|todas las páginas que empiezan por «$1»]] | [[Special:WhatLinksHere/$1|todas las páginas que enlazan con «$1»]])",
-'searchsubtitleinvalid'     => "Buscaste '''$1'''",
-'noexactmatch'              => "'''No existe una página llamada \"\$1\".''' Puedes [[:\$1|crearla]].",
-'noexactmatch-nocreate'     => "'''No existe la página «$1».'''",
 'toomanymatches'            => 'Los resultados fueron demasiado extensos, por favor intente una consulta diferente',
 'titlematches'              => 'Coincidencias de título de artículo',
 'notitlematches'            => 'No hay coincidencias de título de artículo',
@@ -986,10 +981,6 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'showingresults'            => "Abajo se {{PLURAL:$1|muestra '''1''' resultado|muestran hasta '''$1''' resultados}} empezando por el nº '''$2'''.",
 'showingresultsnum'         => "Abajo se {{PLURAL:$3|muestra '''1''' resultado|muestran los '''$3''' resultados}} empezando por el nº '''$2'''.",
 'showingresultstotal'       => "Debajo se {{PLURAL:$4|muestra el resultado '''$1''' de '''$3'''|muestran los resultados entre el '''$1''' y el '''$2''', de un total de '''$3'''}}.",
-'nonefound'                 => "'''Nota''': Por defecto sólo se busca en algunos espacios de nombre.
-Prueba a usar el prefijo ''all:'' para buscar en todo el contenido (incluyendo páginas de discusión, plantillas, etc.) o usa el espacio de nombre que quieras como prefijo. También puedes usar el formulario de búsqueda avanzada que aparece abajo.
-
-Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la» o «de», que no están en el índice, o por especificar más de una palabra a buscar (sólo las páginas que contengan todos los términos de búsqueda aparecerán en el resultado).",
 'powersearch'               => 'Búsqueda',
 'powersearch-legend'        => 'Búsqueda avanzada',
 'powersearch-ns'            => 'Buscar en los espacios de nombres:',
@@ -1058,7 +1049,6 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'allowemail'               => 'Habilitar la recepción de correo de otros usuarios',
 'prefs-searchoptions'      => 'Opciones de búsqueda',
 'prefs-namespaces'         => 'Espacios de nombres',
-'defaultns'                => 'Buscar en estos espacios de nombres por defecto:',
 'default'                  => 'por defecto',
 'files'                    => 'Archivos',
 

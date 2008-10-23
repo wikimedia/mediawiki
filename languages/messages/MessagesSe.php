@@ -471,19 +471,16 @@ Eará bajasdoallit sáhtet lohkat čihkojuvvon sisdoalu ja máhcahit dan.",
 'diff-multi'              => '(Veršuvnnaid gaskas {{PLURAL:$1|okta rievdadus|$1 eará rievdadusa}}.)',
 
 # Search results
-'searchresults'         => 'Ohcama bohtosat',
-'searchsubtitle'        => 'Ohcan tearpmain [[:$1]]',
-'searchsubtitleinvalid' => 'Ohcan tearpmain $1',
-'noexactmatch'          => 'Siidu ”$1” ii dihtto. Sáhtat [[$1|álggahit ođđa siiddu]].',
-'notitlematches'        => 'Ohcansátni ii dihtton ovttasge bájilčállagis',
-'prevn'                 => '← $1 ovddit',
-'nextn'                 => '$1 čuovvovaš →',
-'viewprevnext'          => 'Čájet [$3] oktanaga.
+'searchresults'     => 'Ohcama bohtosat',
+'notitlematches'    => 'Ohcansátni ii dihtton ovttasge bájilčállagis',
+'prevn'             => '← $1 ovddit',
+'nextn'             => '$1 čuovvovaš →',
+'viewprevnext'      => 'Čájet [$3] oktanaga.
 
 $1 | $2',
-'showingresults'        => "{{PLURAL:$1|'''Okta''' boađus|'''$1''' bohtosa}} bohtosa'''$2''' rájes.",
-'showingresultsnum'     => "Vuolábealde {{PLURAL:$3|lea '''okta''' ohcanboađus|leat '''$3''' ohcanbohtosa}} '''$2.''' bohtosa rájes.",
-'powersearch'           => 'Oza',
+'showingresults'    => "{{PLURAL:$1|'''Okta''' boađus|'''$1''' bohtosa}} bohtosa'''$2''' rájes.",
+'showingresultsnum' => "Vuolábealde {{PLURAL:$3|lea '''okta''' ohcanboađus|leat '''$3''' ohcanbohtosa}} '''$2.''' bohtosa rájes.",
+'powersearch'       => 'Oza',
 
 # Preferences page
 'preferences'              => 'Ásahusat',
