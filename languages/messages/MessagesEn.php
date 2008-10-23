@@ -3491,10 +3491,9 @@ Please confirm that you really want to recreate this page.",
 'unit-pixel' => 'px', # only translate this message to other languages if you have to change it
 
 # action=purge
-'confirm_purge'        => 'Clear the cache of this page?
-
-$1',
 'confirm_purge_button' => 'OK',
+'confirm-purge-top'    => 'Clear the cache of this page?',
+'confirm-purge-bottom' => 'Purging a page clears the cache and forces the most current version to appear.',
 
 # Separators for various lists, etc.
 'catseparator'        => '|', # only translate this message to other languages if you have to change it
