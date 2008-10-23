@@ -758,6 +758,7 @@ class PPFrame_Hash implements PPFrame {
 
 	/**
 	 * Recursion depth of this frame, top = 0
+	 * Note that this is NOT the same as expansion depth in expand()
 	 */
 	var $depth;
 
@@ -810,6 +811,7 @@ class PPFrame_Hash implements PPFrame {
 	}
 
 	function expand( $root, $flags = 0 ) {
+		static $expansionDepth = 0;
 		if ( is_string( $root ) ) {
 			return $root;
 		}
@@ -818,10 +820,10 @@ class PPFrame_Hash implements PPFrame {
 		{
 			return '<span class="error">Node-count limit exceeded</span>';
 		}
-		if ( $this->depth > $this->parser->mOptions->mMaxPPExpandDepth ) {
+		if ( $expansionDepth > $this->parser->mOptions->mMaxPPExpandDepth ) {
 			return '<span class="error">Expansion depth limit exceeded</span>';
 		}
-		++$this->depth;
+		++$expansionDepth;
 
 		$outStack = array( '', '' );
 		$iteratorStack = array( false, $root );
@@ -974,7 +976,7 @@ class PPFrame_Hash implements PPFrame {
 				}
 			}
 		}
-		--$this->depth;
+		--$expansionDepth;
 		return $outStack[0];
 	}
 
