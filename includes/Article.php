@@ -1075,17 +1075,16 @@ class Article {
 				$this->view();
 			}
 		} else {
-			$msg = $wgOut->parse( wfMsg( 'confirm_purge' ) );
-			$action = htmlspecialchars( $_SERVER['REQUEST_URI'] );
-			$button = htmlspecialchars( wfMsg( 'confirm_purge_button' ) );
-			$msg = str_replace( '$1',
-				"<form method=\"post\" action=\"$action\">\n" .
-				"<input type=\"submit\" name=\"submit\" value=\"$button\" />\n" .
-				"</form>\n", $msg );
-
+			$action = htmlspecialchars( $wgRequest->getRequestURL() );
+			$button = wfMsgExt( 'confirm_purge_button', array('escapenoentities') );
+			$form = "<form method=\"post\" action=\"$action\">\n" .
+					"<input type=\"submit\" name=\"submit\" value=\"$button\" />\n" .
+					"</form>\n";
+			$top = wfMsgExt( 'confirm-purge-top', array('parse') );
+			$bottom = wfMsgExt( 'confirm-purge-bottom', array('parse') );
 			$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
 			$wgOut->setRobotPolicy( 'noindex,nofollow' );
-			$wgOut->addHTML( $msg );
+			$wgOut->addHTML( $top . $form . $bottom );
 		}
 	}
 

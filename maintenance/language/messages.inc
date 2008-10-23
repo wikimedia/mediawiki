@@ -2620,8 +2620,9 @@ $wgMessageStructure = array(
 		'unit-pixel',
 	),
 	'purge' => array(
-		'confirm_purge',
 		'confirm_purge_button',
+		'confirm-purge-top',
+		'confirm-purge-bottom',
 	),
 	'separators' => array(
 		'catseparator',
