@@ -131,9 +131,9 @@ class SpecialSearch {
 		// left - search box, right - search menu
 
 		$wgOut->addHtml( 
-			Xml::openElement('table', array( 'border'=>'0' ) ).
-			Xml::openElement('tr').
-			Xml::openElement('td')		
+			Xml::openElement( 'table', array( 'border'=>'0' ) ).
+			Xml::openElement( 'tr' ) .
+			Xml::openElement( 'td' ) . "\n"	
 		);
 	
 		
@@ -145,8 +145,7 @@ class SpecialSearch {
 			$showMenu = true;
 		}
 		
-		$wgOut->addHtml( Xml::closeElement('div').
-			Xml::closeElement('td'));
+		$wgOut->addHtml( Xml::closeElement( 'td' ) );
 			
 		
 		$wgOut->addHtml( Xml::openElement('td', array( 'id' => 'mw-search-menu' )) );
@@ -682,22 +681,22 @@ class SpecialSearch {
 		$st = SpecialPage::getTitleFor( 'Search' );		
 		$stParams = wfArrayToCGI( array( 
 				'search' 	=> $term, 
-				'fulltext' 	=> wfMsg('search')),
+				'fulltext' 	=> wfMsg( 'search' ) ),
 				$opt);
 				
-		return Xml::element('a', 
-			array('href'=> $st->getLocalURL($stParams), 'title' => $tooltip), 
-			$label);
+		return Xml::element( 'a', 
+			array( 'href'=> $st->getLocalURL( $stParams ), 'title' => $tooltip ), 
+			$label );
 		
 	}
 	
 	/** Check if query starts with image: prefix */
-	function startsWithImage($term){
+	function startsWithImage( $term ){
 		global $wgContLang;
 		
-		$p = explode(':',$term);
-		if( count($p)> 1 ){
-			return $wgContLang->getNsIndex($p[0]) == NS_IMAGE;
+		$p = explode( ':', $term );
+		if( count( $p ) > 1 ){
+			return $wgContLang->getNsIndex( $p[0] ) == NS_IMAGE;
 		}
 		return false;
 	}
@@ -706,26 +705,26 @@ class SpecialSearch {
 	function startsWithAll($term){
 		global $wgContLang;
 		
-		$p = explode(':',$term);
-		return count($p) > 1 && $p[0]==wfMsg('searchall');
+		$p = explode( ':', $term );
+		return count( $p ) > 1 && $p[0] == wfMsg( 'searchall' );
 	}
 
-	function formHeader($term) {
+	function formHeader( $term ) {
 		global $wgContLang;
 		
 		$sep = '&nbsp;&nbsp;&nbsp;';
-		$out = Xml::openElement('div', array('style'=>'padding-bottom:0.5em;'));
+		$out = Xml::openElement('div', array( 'style' => 'padding-bottom:0.5em;' ) );
 		
 		$bareterm = $term;
-		if($this->startsWithAll($term) || $this->startsWithImage($term))
-			$bareterm = substr( $term, strpos($term,':')+1 ); // delete all/image prefix
+		if( $this->startsWithAll( $term ) || $this->startsWithImage( $term ) )
+			$bareterm = substr( $term, strpos( $term, ':' ) + 1 ); // delete all/image prefix
 			
 		// figure out the active search profile header
 		if( $this->searchAdvanced )
 			$active = 'advanced';
-		else if( $this->namespaces == NS_IMAGE || $this->startsWithImage($term) )
+		else if( $this->namespaces == NS_IMAGE || $this->startsWithImage( $term ) )
 			$active = 'images';
-		elseif( $this->startsWithAll($term) )
+		elseif( $this->startsWithAll( $term ) )
 			$active = 'all';
 		elseif( $this->namespaces == SearchEngine::defaultNamespaces() )
 			$active = 'default';
@@ -736,57 +735,57 @@ class SpecialSearch {
 		
 		
 		// search profiles headers
-		$m = wfMsg('searchprofile-articles');
-		$tt = wfMsg('searchprofile-articles-tooltip', 
-			implode(', ', SearchEngine::namespacesAsText( SearchEngine::defaultNamespaces() )));
+		$m = wfMsg( 'searchprofile-articles' );
+		$tt = wfMsg( 'searchprofile-articles-tooltip', 
+			implode( ', ', SearchEngine::namespacesAsText( SearchEngine::defaultNamespaces() ) ) );
 		if( $active == 'default' ){
-			$out .= Xml::element('strong', array('title'=>$tt), $m);	
+			$out .= Xml::element( 'strong', array( 'title'=>$tt ), $m );	
 		} else
 			$out .= $this->makeSearchLink( $bareterm, SearchEngine::defaultNamespaces(), $m, $tt );
 			
 		$out .= $sep;
 			
-		$m = wfMsg('searchprofile-project');
-		$tt = wfMsg('searchprofile-project-tooltip', 
-			implode(', ', SearchEngine::namespacesAsText( SearchEngine::projectNamespaces() )));
+		$m = wfMsg( 'searchprofile-project' );
+		$tt = wfMsg( 'searchprofile-project-tooltip', 
+			implode( ', ', SearchEngine::namespacesAsText( SearchEngine::projectNamespaces() ) ) );
 		if( $active == 'project' ){
-			$out .= Xml::element('strong', array('title'=>$tt), $m);	
+			$out .= Xml::element( 'strong', array( 'title'=>$tt ), $m );	
 		} else
 			$out .= $this->makeSearchLink( $bareterm, SearchEngine::projectNamespaces(), $m, $tt );
 			
 		$out .= $sep;
 			
-		$m = wfMsg('searchprofile-images');
-		$tt = wfMsg('searchprofile-images-tooltip');
+		$m = wfMsg( 'searchprofile-images' );
+		$tt = wfMsg( 'searchprofile-images-tooltip' );
 		if( $active == 'images' ){
-			$out .= Xml::element('strong', array('title'=>$tt), $m);	
+			$out .= Xml::element( 'strong', array( 'title'=>$tt ), $m );	
 		} else
 			$out .= $this->makeSearchLink( $wgContLang->getFormattedNsText(NS_IMAGE).':'.$bareterm, array() , $m, $tt );
 			
 		$out .= $sep;
 			
-		$m = wfMsg('searchprofile-everything');
-		$tt = wfMsg('searchprofile-everything-tooltip');
+		$m = wfMsg( 'searchprofile-everything' );
+		$tt = wfMsg( 'searchprofile-everything-tooltip' );
 		if( $active == 'all' ){
-			$out .= Xml::element('strong', array('title'=>$tt), $m);	
+			$out .= Xml::element( 'strong', array( 'title'=>$tt ), $m );	
 		} else
-			$out .= $this->makeSearchLink( wfMsg('searchall').':'.$bareterm, array() , $m, $tt );
+			$out .= $this->makeSearchLink( wfMsg( 'searchall' ).':'.$bareterm, array() , $m, $tt );
 			
 		$out .= $sep;
 			
-		$m = wfMsg('searchprofile-advanced');
-		$tt = wfMsg('searchprofile-advanced-tooltip');
+		$m = wfMsg( 'searchprofile-advanced' );
+		$tt = wfMsg( 'searchprofile-advanced-tooltip' );
 		if( $active == 'advanced' ){
-			$out .= Xml::element('strong', array('title'=>$tt), $m);	
+			$out .= Xml::element( 'strong', array( 'title'=>$tt ), $m );	
 		} else
-			$out .= $this->makeSearchLink( $bareterm, array() , $m, $tt, array( 'advanced' => '1') );
+			$out .= $this->makeSearchLink( $bareterm, array() , $m, $tt, array( 'advanced' => '1' ) );
 			
 		$out .= Xml::closeElement('div') ;
 		
 		return $out;
 	}
 	
-	function shortDialog($term) {
+	function shortDialog( $term ) {
 		global $wgScript;
 		
 		$out = Xml::openElement( 'form', array(
@@ -795,8 +794,8 @@ class SpecialSearch {
 			'action' => $wgScript
 		));
 		$searchTitle = SpecialPage::getTitleFor( 'Search' );
-		$out .= Xml::hidden( 'title', $searchTitle->getPrefixedText() );
-		$out .= Xml::input( 'search', 50, $term, array( 'type' => 'text', 'id' => 'searchText' ) ) . ' ';
+		$out .= Xml::hidden( 'title', $searchTitle->getPrefixedText() ) . "\n";
+		$out .= Xml::input( 'search', 50, $term, array( 'type' => 'text', 'id' => 'searchText' ) ) . "\n";
 		
 		foreach( SearchEngine::searchableNamespaces() as $ns => $name ) {
 			if( in_array( $ns, $this->namespaces ) ) {
