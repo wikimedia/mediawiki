@@ -1531,11 +1531,6 @@ div#mw-search-interwiki-caption {
 	background: #cae8ff;
 }
 
-span.searchmatch {
-	font-weight: bold;
-	color: red;
-}
-
 /* God-damned hack for the crappy layout */
 .os-suggest {
 	font-size: 127%;

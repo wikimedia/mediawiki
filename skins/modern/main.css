@@ -647,7 +647,7 @@ div.patrollink {
 	font-size: 75%;
 	text-align: right;
 }
-span.newpage, span.minor, span.searchmatch, span.bot {
+span.newpage, span.minor, span.bot {
 	font-weight: bold;
 }
 span.unpatrolled {
@@ -655,9 +655,6 @@ span.unpatrolled {
 	color: red;
 }
 
-span.searchmatch {
-	color: red;
-}
 .sharedUploadNotice {
 	font-style: italic;
 }

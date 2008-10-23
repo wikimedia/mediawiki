@@ -201,10 +201,6 @@ table.small { font-size: 100% }
 	font-size:150%;
 	margin:5px;
 }
-.searchmatch {
-	color: red;
-	font-weight: bold;
-}
 .sharedUploadNotice {
 	font-style: italic;
 }
