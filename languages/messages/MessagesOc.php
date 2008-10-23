@@ -2820,6 +2820,7 @@ $1",
 # Separators for various lists, etc.
 'colon-separator'    => '&nbsp;:&#32;',
 'autocomment-prefix' => '-',
+'pipe-separator'     => '•',
 
 # Multipage image navigation
 'imgmultipageprev' => '← pagina precedenta',

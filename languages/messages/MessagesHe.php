@@ -1163,13 +1163,10 @@ $2',
 'prevn'                            => '$1 הקודמים',
 'nextn'                            => '$1 הבאים',
 'viewprevnext'                     => 'צפו ב - ($1) ($2) ($3)',
-'searchmenu-exists'                => "*הדף '''[[$1]]'''
-",
-'searchmenu-new'                   => "*יצירת הדף '''[[$1]]'''
-",
-'searchmenu'                       => '*[[Special:AllPages/$1|אינדקס]]
-*[[{{ns:project}}:חיפוש|{{int:help}}]]
-',
+'searchmenu-exists'                => "*הדף '''[[$1]]'''",
+'searchmenu-new'                   => "*יצירת הדף '''[[$1]]'''",
+'searchmenu'                       => '* [[Special:AllPages/$1|אינדקס]]
+* [[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
 'searchprofile-articles'           => 'דפים',
 'searchprofile-project'            => 'דפים/מיזם',
 'searchprofile-images'             => 'קבצים',
@@ -1771,6 +1768,7 @@ PICT # שונות
 # Book sources
 'booksources'               => 'משאבי ספרות חיצוניים',
 'booksources-search-legend' => 'חיפוש משאבי ספרות חיצוניים',
+'booksources-isbn'          => 'מסת"ב:',
 'booksources-go'            => 'הצגה',
 'booksources-text'          => 'להלן רשימת קישורים לאתרים אחרים המוכרים ספרים חדשים ויד־שנייה, ושבהם עשוי להיות מידע נוסף לגבי ספרים שאתם מחפשים:',
 

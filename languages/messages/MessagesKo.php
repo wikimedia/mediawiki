@@ -289,7 +289,7 @@ $messages = array(
 'tog-watchlisthidebots'       => '주시문서 목록에서 봇 편집을 숨기기',
 'tog-watchlisthideminor'      => '주시문서 목록에서 사소한 편집을 숨기기',
 'tog-watchlisthideliu'        => '주시문서 목록에서 로그인한 사용자의 편집을 숨기기',
-'tog-watchlisthideanons'      => '주시문서 목록에서 익명 사용자의 편집을 숨기기',
+'tog-watchlisthideanons'      => '주시문서 목록에서 비등록 사용자의 편집을 숨기기',
 'tog-ccmeonemails'            => '이메일을 보낼 때 내 이메일로 복사본을 보내기',
 'tog-diffonly'                => '편집 차이를 비교할 때 문서 내용을 보여주지 않기',
 'tog-showhiddencats'          => '숨겨진 분류 보기',
@@ -356,8 +356,8 @@ $messages = array(
 'subcategories'                  => '하위 분류',
 'category-media-header'          => '‘$1’ 분류에 속하는 자료',
 'category-empty'                 => '이 분류에 속하는 문서나 자료가 없습니다.',
-'hidden-categories'              => '숨겨진 분류',
-'hidden-category-category'       => '숨겨진 분류', # Name of the category where hidden categories will be listed
+'hidden-categories'              => '숨은 분류',
+'hidden-category-category'       => '숨은 분류', # Name of the category where hidden categories will be listed
 'category-subcat-count'          => '{{PLURAL:$2|이 분류에는 다음의 하위 분류만이 속해 있습니다.|다음은 이 분류에 속하는 $2 개의 하위 분류 중 $1 개입니다.}}',
 'category-subcat-count-limited'  => '이 분류에는 하위 분류가 $1개 있습니다.',
 'category-article-count'         => '{{PLURAL:$2|이 분류에는 다음의 문서만이 속해 있습니다.|다음은 이 분류에 속하는 $2 개의 문서 중 $1 개입니다.}}',
@@ -815,7 +815,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'templatesusedsection'             => '이 부분에서 사용하고 있는 틀:',
 'template-protected'               => '(보호됨)',
 'template-semiprotected'           => '(준보호됨)',
-'hiddencategories'                 => '이 문서는 아래의 $1개의 숨겨진 분류에 속해 있습니다.',
+'hiddencategories'                 => '이 문서는 다음 $1개의 숨은 분류에 속해 있습니다:',
 'edittools'                        => '<!-- 이 문서는 편집 창과 파일 올리기 창에 출력됩니다. -->',
 'nocreatetitle'                    => '문서 생성 제한',
 'nocreatetext'                     => '{{SITENAME}}에서 새로운 문서를 생성하는 것은 제한되어 있습니다. 이미 존재하는 다른 문서를 편집하거나, [[Special:UserLogin|로그인하거나 계정을 만들 수 있습니다]].',
@@ -829,6 +829,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 과거 삭제 기록은 다음과 같습니다:",
 'deleted-notice'                   => '이 문서는 삭제되어 있습니다.
 이 문서의 삭제 기록은 다음과 같습니다.',
+'edit-conflict'                    => '편집 충돌.',
 
 # Parser/template warnings
 'expensive-parserfunction-category' => '느린 파서 함수 호출을 너무 많이 하는 문서',
@@ -1064,6 +1065,9 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'rightslogentry' => '$1의 권한을 $2에서 $3으로 변경',
 'rightsnone'     => '(없음)',
 
+# Associated actions - in the sentence "You do not have permission to X"
+'action-userrights' => '모든 사용자의 권한을 조정',
+
 # Recent changes
 'nchanges'                          => '$1개 바뀜',
 'recentchanges'                     => '최근 바뀜',
@@ -1074,7 +1078,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'rclistfrom'                        => '$1 이래로 바뀐 문서',
 'rcshowhideminor'                   => '사소한 편집을 $1',
 'rcshowhidebots'                    => '봇을 $1',
-'rcshowhideliu'                     => '로그인한 사용자를 $1',
+'rcshowhideliu'                     => '등록 사용자를 $1',
 'rcshowhideanons'                   => '익명 사용자를 $1',
 'rcshowhidepatr'                    => '검토된 편집을 $1',
 'rcshowhidemine'                    => '내 편집을 $1',
@@ -1156,7 +1160,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'uploadedimage'               => '‘[[$1]]’을(를) 올렸습니다.',
 'overwroteimage'              => '‘[[$1]]’ 파일의 새 버전을 올렸습니다.',
 'uploaddisabled'              => '올리기 비활성화됨',
-'uploaddisabledtext'          => '{{SITENAME}}에서는 파일 올리기 기능이 비활성화되어 있습니다.',
+'uploaddisabledtext'          => '파일 올리기 기능이 비활성화되어 있습니다.',
 'uploadscripted'              => '이 파일에는 HTML이나 다른 스크립트 코드가 포함되어 있어, 웹 브라우저에서 오류를 일으킬 수 있습니다.',
 'uploadcorrupt'               => '이 파일은 잘못된 형식을 가지고 있습니다. 파일을 확인하고 다시 시도해 주세요.',
 'uploadvirus'                 => '파일이 바이러스를 포함하고 있습니다! 상세 설명: $1',
@@ -1192,9 +1196,9 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'license-nopreview' => '(미리보기 불가능)',
 
 # Special:ImageList
-'imagelist-summary'     => '이 특수문서는 올라온 모든 파일의 목록입니다.
-기본적으로 마지막으로 올라온 파일이 맨 위에 보입니다.
-다르게 정렬하려면 원하는 기준 열의 첫 칸을 누르세요.',
+'imagelist-summary'     => '이 위키에 올라와 있는 모든 파일이 나열되어 있습니다.
+기본적으로 가장 최근에 올라온 파일이 가장 위에 올라와 있습니다.
+다른 방식으로 정렬하려면 기준 열의 머리칸을 눌러주세요.',
 'imgfile'               => '파일',
 'imagelist'             => '그림 목록',
 'imagelist_date'        => '날짜',
@@ -1205,7 +1209,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 
 # Image description page
 'filehist'                  => '파일 역사',
-'filehist-help'             => '날짜/시간을 누르면 해당 시간에 올라온 파일을 볼 수 있습니다.',
+'filehist-help'             => '날짜/시간 링크를 클릭하면 해당 시간의 파일을 볼 수 있습니다.',
 'filehist-deleteall'        => '모두 삭제',
 'filehist-deleteone'        => '지우기',
 'filehist-revert'           => '되돌리기',
@@ -1224,7 +1228,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 이 파일을 가리키는 모든 문서를 보려면 [[Special:WhatLinksHere/$2|여기]]를 참고해 주십시오.',
 'nolinkstoimage'            => '이 그림을 사용하는 문서가 없습니다.',
 'morelinkstoimage'          => '이 파일이 쓰이고 있는 문서 목록 [[Special:WhatLinksHere/$1|더 보기]].',
-'duplicatesoffile'          => '다음의 $1개의 파일이 중복됩니다:',
+'duplicatesoffile'          => '다음 $1개의 파일이 중복됩니다:',
 'sharedupload'              => '이 자료는 위키미디어 공용에 있습니다. 다른 프로젝트에서 사용하고 있을 가능성이 있습니다.',
 'shareduploadwiki'          => '$1에서 더 자세한 정보를 얻을 수 있습니다.',
 'shareduploadwiki-desc'     => '이 $1를 아래에 표시합니다.',
@@ -1417,7 +1421,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 [[Special:WantedCategories|필요한 분류]]도 참고하세요.',
 
 # Special:DeletedContributions
-'deletedcontributions' => '삭제된 기여',
+'deletedcontributions' => '삭제된 기여 목록',
 
 # Special:LinkSearch
 'linksearch'     => '웹 링크 찾기',
@@ -1499,10 +1503,10 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'watchlist-hide-own'   => '나의 편집을 숨기기',
 'watchlist-show-minor' => '사소한 편집을 보이기',
 'watchlist-hide-minor' => '사소한 편집을 숨기기',
-'watchlist-show-anons' => '익명 사용자의 편집을 보이기',
-'watchlist-hide-anons' => '익명 사용자의 편집을 숨기기',
-'watchlist-show-liu'   => '로그인한 사용자의 편집을 보이기',
-'watchlist-hide-liu'   => '로그인한 사용자의 편집을 숨기기',
+'watchlist-show-anons' => '비등록 사용자의 편집을 보이기',
+'watchlist-hide-anons' => '비등록 사용자의 편집을 숨기기',
+'watchlist-show-liu'   => '등록 사용자의 편집을 보이기',
+'watchlist-hide-liu'   => '등록 사용자의 편집을 숨기기',
 'watchlist-options'    => '주시문서 목록 설정',
 
 # Displayed when you click the "watch" button and it is in the process of watching
@@ -1855,16 +1859,19 @@ $1',
 'fix-double-redirects'    => '기존 이름을 가리키는 넘겨주기를 갱신',
 
 # Export
-'export'          => '문서 내보내기',
-'exporttext'      => '특정 문서와 그 문서의 편집 역사를 XML 파일로 만들 수 있습니다. 이렇게 만들어진 파일은 다른 미디어위키에서 [[Special:Import|문서 가져오기]] 기능을 통해 가져갈 수 있습니다.
+'export'           => '문서 내보내기',
+'exporttext'       => '특정 문서와 그 문서의 편집 역사를 XML 파일로 만들 수 있습니다. 이렇게 만들어진 파일은 다른 미디어위키에서 [[Special:Import|문서 가져오기]] 기능을 통해 가져갈 수 있습니다.
 
 문서를 내보내려면, 내보내려는 문서 제목을 한 줄에 하나씩 입력해주세요. 그리고 문서의 전체 역사가 필요한지, 혹은 현재 버전만이 필요한지를 선택해 주세요.
 
 특정 문서를 내보내려면, 예를 들어 ‘[[{{MediaWiki:Mainpage}}]]’ 문서를 내보내려면 [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] 링크를 사용할 수도 있습니다.',
-'exportcuronly'   => '현재 버전만 포함하고, 전체 역사는 포함하지 않음',
-'exportnohistory' => "----
+'exportcuronly'    => '현재 버전만 포함하고, 전체 역사는 포함하지 않음',
+'exportnohistory'  => "----
 '''주의:''' 전체 문서 역사를 내보내는 기능은 성능 문제로 인해 비활성되어 있습니다.",
-'export-submit'   => '내보내기',
+'export-submit'    => '내보내기',
+'export-addcat'    => '추가',
+'export-download'  => '파일로 저장',
+'export-templates' => '틀 포함하기',
 
 # Namespace 8 related
 'allmessages'               => '시스템 메시지 목록',
@@ -2206,24 +2213,24 @@ $1',
 'version-software-version'     => '버전',
 
 # Special:FilePath
-'filepath'         => '파일 주소',
+'filepath'         => '파일 경로',
 'filepath-page'    => '파일:',
-'filepath-submit'  => '주소',
+'filepath-submit'  => '경로',
 'filepath-summary' => '파일의 전체 주소를 알려줍니다.
 그림은 최고 해상도로 보여주고 다른 파일은 연결된 프로그램으로 바로 실행합니다.
 
 "{{ns:image}}:" 접두어를 빼고 파일 이름만 넣으세요.',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => '중복 파일 찾기',
-'fileduplicatesearch-summary'  => '해시 값으로 중복 파일을 찾습니다.
+'fileduplicatesearch'          => '중복된 파일 찾기',
+'fileduplicatesearch-summary'  => '파일 해시값을 이용해 중복 파일을 찾습니다.
 
-"{{ns:image}}:" 접두어를 빼고 파일 이름만 넣으세요.',
+"{{ns:image}}:" 접두어를 뺀 파일 이름을 넣어주세요.',
 'fileduplicatesearch-legend'   => '중복 찾기',
-'fileduplicatesearch-filename' => '파일이름:',
+'fileduplicatesearch-filename' => '파일 이름:',
 'fileduplicatesearch-submit'   => '찾기',
 'fileduplicatesearch-info'     => '$1 × $2 픽셀<br />파일 크기: $3<br />MIME 유형: $4',
-'fileduplicatesearch-result-1' => '"$1"은 중복 파일이 없습니다.',
+'fileduplicatesearch-result-1' => '‘$1’ 파일과 중복된 파일이 없습니다.',
 'fileduplicatesearch-result-n' => '"$1"파일은 $2개의 중복 파일이 있습니다.',
 
 # Special:SpecialPages

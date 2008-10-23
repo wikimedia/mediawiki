@@ -304,6 +304,7 @@ $messages = array(
 # Recent changes
 'nchanges'        => '$1 {{PLURAL:$1|мѣ́на|мѣ́нꙑ|мѣ́нъ}}',
 'recentchanges'   => 'послѣ́дьнѩ мѣ́нꙑ',
+'rcnote'          => "нижѣ {{PLURAL:$1|'''1''' послѣ́дьнѭ мѣ́нѫ|'''$1''' послѣ́дьни мѣ́нꙑ|'''$1''' послѣ́дьнъ мѣ́нъ|'''$1''' послѣ́дьнъ мѣ́нъ}} ꙁа {{PLURAL:$2|дьнь|'''$2''' дьнꙗ|'''$2''' дьнъ|'''$2''' дьнъ}} · ꙗко нꙑнѣ $5 · $4 лѣ́та",
 'rcshowhideminor' => '$1 ма́лꙑ мѣ́нꙑ',
 'rcshowhidebots'  => '$1 аѵтома́тъ',
 'rcshowhidemine'  => '$1 моꙗ́ мѣ́нꙑ',
@@ -349,6 +350,9 @@ $messages = array(
 
 # Random page
 'randompage' => 'страни́ца въ нєꙁаа́пѫ',
+
+# Random redirect
+'randomredirect' => 'прѣнаправлѥ́ниє въ нєꙁаа́пѫ',
 
 # Statistics
 'statistics'              => 'Статїстїка',

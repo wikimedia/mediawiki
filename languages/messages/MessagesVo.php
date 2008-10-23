@@ -1269,6 +1269,7 @@ Pad palelogon telplänovapad if gebon samafomoti, lü kel payümon pad [[MediaWi
 'popularpages'            => 'Pads suvüno pelogöls',
 'wantedcategories'        => 'Klads mekabik',
 'wantedpages'             => 'Pads mekabik',
+'wantedtemplates'         => 'Samafomots mekabik',
 'mostlinked'              => 'Pads suvüno peyümöls',
 'mostlinkedcategories'    => 'Klads suvüno peyümöls',
 'mostlinkedtemplates'     => 'Samafomots suvüno pegeböls',

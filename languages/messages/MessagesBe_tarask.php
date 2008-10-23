@@ -1086,40 +1086,57 @@ $2',
 'diff-strike'             => "'''перакрэсьлены'''",
 
 # Search results
-'searchresults'             => 'Вынікі пошуку',
-'searchresults-title'       => 'Вынікі пошуку для $1',
-'toomanymatches'            => 'Знойдзена зашмат супадзеньняў з запытам, калі ласка, паспрабуйце зьмяніць запыт',
-'titlematches'              => 'Супадзеньні ў назвах старонак',
-'notitlematches'            => 'Супадзеньні ў назвах старонак ня знойдзеныя',
-'textmatches'               => 'Супадзеньні ў тэкстах старонак',
-'notextmatches'             => 'Супадзеньні ў тэкстах старонак ня знойдзеныя',
-'prevn'                     => 'папярэднія $1',
-'nextn'                     => 'наступныя $1',
-'viewprevnext'              => 'Паказаць ($1) ($2) ($3)',
-'search-result-size'        => '$1 ($2 {{PLURAL:$2|слова|словы|слоў}})',
-'search-result-score'       => 'Адпаведнасьць: $1%',
-'search-redirect'           => '(перанакіраваньне $1)',
-'search-section'            => '(сэкцыя $1)',
-'search-suggest'            => 'Вы мелі на ўвазе: $1',
-'search-interwiki-caption'  => 'Сумежныя праекты',
-'search-interwiki-default'  => 'вынікі з $1:',
-'search-interwiki-more'     => '(яшчэ)',
-'search-mwsuggest-enabled'  => 'з парадамі',
-'search-mwsuggest-disabled' => 'без парад',
-'search-relatedarticle'     => 'Зьвязаны',
-'mwsuggest-disable'         => 'Адключыць AJAX-падказкі',
-'searchrelated'             => 'зьвязаны',
-'searchall'                 => 'усе',
-'showingresults'            => "Ніжэй {{PLURAL:$1|паданы|паданыя|паданыя}} да '''$1''' {{PLURAL:$1|выніку|вынікаў|вынікаў}}, пачынаючы з #<b>$2</b>.",
-'showingresultsnum'         => "Ніжэй паказаны сьпіс з '''$3''' {{PLURAL:$3|выніка|вынікаў|вынікаў}}, пачынаючы ад № '''$2'''.",
-'showingresultstotal'       => "Ніжэй {{PLURAL:$4|паказаны '''$1''' вынік з '''$3'''|паказаныя вынікі '''$1 — $2''' з '''$3'''}}",
-'powersearch'               => 'Пошук',
-'powersearch-legend'        => 'Удасканалены пошук',
-'powersearch-ns'            => 'Шукаць у прасторах назваў:',
-'powersearch-redir'         => 'Паказваць перанакіраваньні',
-'powersearch-field'         => 'Шукаць',
-'search-external'           => 'Вонкавы пошук',
-'searchdisabled'            => 'Функцыя пошуку ў {{GRAMMAR:месны|{{SITENAME}}}} адключаная.
+'searchresults'                    => 'Вынікі пошуку',
+'searchresults-title'              => 'Вынікі пошуку для $1',
+'toomanymatches'                   => 'Знойдзена зашмат супадзеньняў з запытам, калі ласка, паспрабуйце зьмяніць запыт',
+'titlematches'                     => 'Супадзеньні ў назвах старонак',
+'notitlematches'                   => 'Супадзеньні ў назвах старонак ня знойдзеныя',
+'textmatches'                      => 'Супадзеньні ў тэкстах старонак',
+'notextmatches'                    => 'Супадзеньні ў тэкстах старонак ня знойдзеныя',
+'prevn'                            => 'папярэднія $1',
+'nextn'                            => 'наступныя $1',
+'viewprevnext'                     => 'Паказаць ($1) ($2) ($3)',
+'searchmenu-exists'                => "*Старонка '''[[$1]]'''",
+'searchmenu-new'                   => "*Стварыць старонку '''[[$1]]'''",
+'searchmenu'                       => '*[[Special:AllPages/$1|Індэкс]]
+*[[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
+'searchprofile-articles'           => 'Старонкі',
+'searchprofile-project'            => 'Старонкі/Праект',
+'searchprofile-images'             => 'Файлы',
+'searchprofile-everything'         => 'Усё',
+'searchprofile-advanced'           => 'Пашыраны',
+'searchprofile-articles-tooltip'   => 'Пошук у $1',
+'searchprofile-project-tooltip'    => 'Пошук у $1',
+'searchprofile-images-tooltip'     => 'Пошук файлаў',
+'searchprofile-everything-tooltip' => 'Шукаць усюды (уключна з старонкамі абмеркаваньня)',
+'searchprofile-advanced-tooltip'   => 'Шукаць у назвах',
+'prefs-search-nsdefault'           => 'Шукаць з выкарыстаньнем змоўчаньняў:',
+'prefs-search-nscustom'            => 'Пошук у назвах:',
+'search-result-size'               => '$1 ($2 {{PLURAL:$2|слова|словы|слоў}})',
+'search-result-score'              => 'Адпаведнасьць: $1%',
+'search-redirect'                  => '(перанакіраваньне $1)',
+'search-section'                   => '(сэкцыя $1)',
+'search-suggest'                   => 'Вы мелі на ўвазе: $1',
+'search-interwiki-caption'         => 'Сумежныя праекты',
+'search-interwiki-default'         => 'вынікі з $1:',
+'search-interwiki-more'            => '(яшчэ)',
+'search-mwsuggest-enabled'         => 'з парадамі',
+'search-mwsuggest-disabled'        => 'без парад',
+'search-relatedarticle'            => 'Зьвязаны',
+'mwsuggest-disable'                => 'Адключыць AJAX-падказкі',
+'searchrelated'                    => 'зьвязаны',
+'searchall'                        => 'усе',
+'showingresults'                   => "Ніжэй {{PLURAL:$1|паданы|паданыя|паданыя}} да '''$1''' {{PLURAL:$1|выніку|вынікаў|вынікаў}}, пачынаючы з #<b>$2</b>.",
+'showingresultsnum'                => "Ніжэй паказаны сьпіс з '''$3''' {{PLURAL:$3|выніка|вынікаў|вынікаў}}, пачынаючы ад № '''$2'''.",
+'showingresultstotal'              => "Ніжэй {{PLURAL:$4|паказаны '''$1''' вынік з '''$3'''|паказаныя вынікі '''$1 — $2''' з '''$3'''}}",
+'search-nonefound'                 => 'Супадзеньняў па запыце ня знойдзена.',
+'powersearch'                      => 'Пошук',
+'powersearch-legend'               => 'Удасканалены пошук',
+'powersearch-ns'                   => 'Шукаць у прасторах назваў:',
+'powersearch-redir'                => 'Паказваць перанакіраваньні',
+'powersearch-field'                => 'Шукаць',
+'search-external'                  => 'Вонкавы пошук',
+'searchdisabled'                   => 'Функцыя пошуку ў {{GRAMMAR:месны|{{SITENAME}}}} адключаная.
 Вы можаце пашукаць з дапамогай Google, але заўважце, што там інфармацыя пра старонкі {{GRAMMAR:родны|{{SITENAME}}}} можа быць састарэлай.',
 
 # Preferences page
@@ -2685,23 +2702,34 @@ $1',
 'exif-lightsource-255' => 'Іншая крыніца сьвятла',
 
 # Flash modes
-'exif-flash-mode-3' => 'аўтаматычны рэжым',
+'exif-flash-mode-3'     => 'аўтаматычны рэжым',
+'exif-flash-function-1' => 'Без успышкі',
 
 'exif-focalplaneresolutionunit-2' => 'цаляў',
 
 'exif-sensingmethod-1' => 'Нявызначаны',
+'exif-sensingmethod-7' => 'Трохлінейны сэнсар',
 
 'exif-customrendered-0' => 'Звычайны працэс',
 
+'exif-exposuremode-0' => 'Аўтаматычны лад насьвятленьня',
+
 'exif-scenecapturetype-0' => 'Стандартны',
+
+'exif-gaincontrol-0' => 'Няма',
 
 'exif-contrast-0' => 'Звычайны',
 'exif-contrast-1' => 'Мяккі',
 
 'exif-saturation-0' => 'Звычайная',
+'exif-saturation-1' => 'Невялікая насычанасьць',
 
 'exif-sharpness-0' => 'Звычайная',
 'exif-sharpness-1' => 'Мяккая',
+'exif-sharpness-2' => 'Высокі',
+
+'exif-subjectdistancerange-0' => 'Невядомы',
+'exif-subjectdistancerange-2' => 'Выгляд зблізку',
 
 # Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
 'exif-gpslatitude-n' => 'паўночнай шыраты',
@@ -2712,6 +2740,8 @@ $1',
 'exif-gpslongitude-w' => 'заходняй даўгаты',
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+'exif-gpsspeed-k' => 'Кілямэтраў за гадзіну',
+'exif-gpsspeed-m' => 'міляў за гадзіну',
 'exif-gpsspeed-n' => 'вузлоў',
 
 # External editor support
@@ -2756,11 +2786,15 @@ $5
 
 Код дзейнічае да $4.',
 
+# Trackbacks
+'trackbackremove' => ' ([$1 выдаліць])',
+
 # Delete conflict
-'confirmrecreate' => "Удзельнік [[User:$1|$1]] ([[User talk:$1|гутаркі]]) выдаліў гэтую старонку, перад тым як Вы пачалі яе рэдагаваць, з прычыны:
+'deletedwhileediting' => "'''Увага''': Гэтая старонка была выдаленая пасьля таго, як Вы пачалі яе рэдагаваньне!",
+'confirmrecreate'     => "Удзельнік [[User:$1|$1]] ([[User talk:$1|гутаркі]]) выдаліў гэтую старонку, перад тым як Вы пачалі яе рэдагаваць, з прычыны:
 : ''$2''
 Калі ласка, пацьвердзіце, што Вы сапраўды жадаеце стварыць нанава гэтую старонку.",
-'recreate'        => 'Стварыць ізноў',
+'recreate'            => 'Стварыць ізноў',
 
 'unit-pixel' => 'пкс',
 
@@ -2773,13 +2807,17 @@ $1',
 # Multipage image navigation
 'imgmultipageprev' => '← папярэдняя старонка',
 'imgmultipagenext' => 'наступная старонка →',
+'imgmultigo'       => 'Перайсьці!',
 'imgmultigoto'     => 'Перайсьці на старонку $1',
 
 # Table pager
-'table_pager_next'  => 'Наступная старонка',
-'table_pager_prev'  => 'Папярэдняя старонка',
-'table_pager_first' => 'Першая старонка',
-'table_pager_last'  => 'Апошняя старонка',
+'table_pager_next'         => 'Наступная старонка',
+'table_pager_prev'         => 'Папярэдняя старонка',
+'table_pager_first'        => 'Першая старонка',
+'table_pager_last'         => 'Апошняя старонка',
+'table_pager_limit'        => 'Паказаць $1 пазыцыяў на старонцы',
+'table_pager_limit_submit' => 'Перайсьці',
+'table_pager_empty'        => 'Ня знойдзена',
 
 # Auto-summaries
 'autosumm-blank'   => 'Зьмест старонкі выдалены цалкам',
@@ -2799,6 +2837,8 @@ $1',
 
 # Watchlist editor
 'watchlistedit-normal-title' => 'Рэдагаваць сьпіс назіраньня',
+'watchlistedit-raw-title'    => 'Рэдагаваць нефарматаваны сьпіс назіраньня',
+'watchlistedit-raw-legend'   => 'Рэдагаваць нефарматаваны сьпіс назіраньня',
 'watchlistedit-raw-titles'   => 'Назвы:',
 
 # Watchlist editing tools
@@ -2813,7 +2853,9 @@ $1',
 'version'                  => 'Вэрсія', # Not used as normal message but as header for the special page itself
 'version-extensions'       => 'Усталяваныя пашырэньні',
 'version-specialpages'     => 'Спэцыяльныя старонкі',
+'version-variables'        => 'Зьменныя',
 'version-other'            => 'Іншыя',
+'version-mediahandlers'    => 'Апрацоўшчыкі мэдыя',
 'version-version'          => 'Вэрсія',
 'version-license'          => 'Ліцэнзія',
 'version-software-version' => 'Вэрсія',
