@@ -997,11 +997,6 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 # Search results
 'searchresults'             => 'Resultats de la cerca',
 'searchresults-title'       => 'Resultats de la cerca per $1',
-'searchresulttext'          => 'Per a més informació de les cerques del projecte {{SITENAME}}, aneu a [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'            => "Heu cercat '''[[:$1]]'''  ([[Special:Prefixindex/$1|totes les pàgines que comencen amb «$1»]] | [[Special:WhatLinksHere/$1|totes les pàgines que enllacen amb «$1»]])",
-'searchsubtitleinvalid'     => "Heu cercat '''$1'''",
-'noexactmatch'              => "'''No hi ha cap pàgina anomenada «$1».''' Si voleu, podeu ajudar [[:$1|creant-la]].",
-'noexactmatch-nocreate'     => "'''No hi ha cap pàgina amb títol «$1».'''",
 'toomanymatches'            => "S'han retornat masses coincidències. Proveu-ho amb una consulta diferent.",
 'titlematches'              => 'Coincidències de títol de la pàgina',
 'notitlematches'            => 'No hi ha cap coincidència de títol de pàgina',
@@ -1027,7 +1022,6 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'showingresults'            => 'Tot seguit es {{PLURAL:$1|mostra el resultat|mostren els <b>$1</b> resultats començant pel número <b>$2</b>}}.',
 'showingresultsnum'         => 'Tot seguit es {{PLURAL:$3|llista el resultat|llisten els <b>$3</b> resultats començant pel número <b>$2</b>}}.',
 'showingresultstotal'       => "A continuació {{PLURAL:$4|es mostra el resultat '''$1''' de '''$3'''|es mostren els resultats '''$1 - $2''' de '''$3'''}}",
-'nonefound'                 => "'''Nota''': Només se cerca en alguns espais de noms per defecte. Proveu d'afegir el prefix ''all:'' a la vostra consulta per a cercar a tot el contingut (incloent-hi les pàgines de discussió, les plantilles, etc.), o feu servir l'espai de noms on vulgueu cercar com a prefix.",
 'powersearch'               => 'Cerca avançada',
 'powersearch-legend'        => 'Cerca avançada',
 'powersearch-ns'            => 'Cerca als espais de noms:',
@@ -1096,7 +1090,6 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'allowemail'               => "Habilita el correu electrònic des d'altres usuaris",
 'prefs-searchoptions'      => 'Preferències de la cerca',
 'prefs-namespaces'         => 'Espais de noms',
-'defaultns'                => 'Busca per defecte en els següents espais de noms:',
 'default'                  => 'per defecte',
 'files'                    => 'Fitxers',
 

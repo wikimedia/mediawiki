@@ -1123,12 +1123,6 @@ Donn de Version makeere bes wohen (inklusive) dat övverdraare wäde sull. Donn 
 # Search results
 'searchresults'             => 'Wat beim Söke eruskom',
 'searchresults-title'       => 'Noh $1 jesoht.',
-'searchresulttext'          => 'Luur en de [[{{MediaWiki:Helppage}}|{{int:help}}]]-Sigge noh, wann de mieh drüvver wesse wells, wie mer en de {{SITENAME}} jet fingk.',
-'searchsubtitle'            => 'För Ding Froch noh „[[:$1|$1]]“ — ([[Special:Prefixindex/$1|Sigge, di met „$1“ annfange]] | [[Special:WhatLinksHere/$1|Sigge, di Links noh „$1“ han]])',
-'searchsubtitleinvalid'     => 'För Ding Froch noh „$1“',
-'noexactmatch'              => 'Mer han kein Sigg met jenau däm Name „<strong>$1</strong>“ jefunge.
-Do kanns se [[:$1|aanläje]], wann De wells.',
-'noexactmatch-nocreate'     => "'''Et jitt kei Sigg met däm Titel „$1“.'''",
 'toomanymatches'            => 'Dat wore zo vill Treffer, beß esu joot, un donn en annder Ußwahl probeere!',
 'titlematches'              => 'Zopass Üvverschrefte',
 'notitlematches'            => 'Kein zopass Üvverschrefte',
@@ -1154,8 +1148,6 @@ Do kanns se [[:$1|aanläje]], wann De wells.',
 'showingresults'            => 'Unge {{PLURAL:$1|weed <strong>eine</strong>|wääde bes <strong>$1</strong>|weed <strong>keine</strong>}} vun de jefunge Endräch jezeich, vun de Nummer <strong>$2</strong> av.',
 'showingresultsnum'         => 'Unge {{PLURAL:$3|es ein|sin <strong>$3</strong>|sin <strong>kein</strong>}} vun de jefunge Endräch opjeliss, vun de Nummer <strong>$2</strong> av.',
 'showingresultstotal'       => "Hee {{PLURAL:$4|kütt der Treffer Numero '''$1''' uß|kumme de Treffer '''$1''' beß '''$2''' fun}} '''$3:'''",
-'nonefound'                 => '<strong>Opjepass:</strong>
-Wann beim Söke nix erus kütt, do kann dat dran lije, dat mer esu janz jewöhnliche Wööd, wie „hät“, „alsu“, „wääde“, un „sin“, uew. jar nit esu en de Daatebank dren han, dat se jefonge wääde künnte.',
 'powersearch'               => 'Söke',
 'powersearch-legend'        => 'Extra Sööke',
 'powersearch-ns'            => 'Söök en de Apachtemangs:',
@@ -1234,7 +1226,6 @@ Wiki-Köbes, enem Sörver-Minsch, oder luur ens en de
 'allowemail'               => 'E-Mail vun andere Metmaacher zolooße',
 'prefs-searchoptions'      => 'Enstellunge för et Sööke',
 'prefs-namespaces'         => 'Appachtemangs',
-'defaultns'                => 'Dun standaadmäßich en hee dä Appachtemengs söke:',
 'default'                  => 'Standaad',
 'files'                    => 'Dateie',
 

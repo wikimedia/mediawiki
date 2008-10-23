@@ -1153,11 +1153,6 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 # Search results
 'searchresults'             => 'Výsledky hledání',
 'searchresults-title'       => 'Výsledky hledání $1',
-'searchresulttext'          => 'Pro více informací o tom, jak hledat na {{grammar:6sg|{{SITENAME}}}}, se podívejte do [[{{MediaWiki:Helppage}}|nápovědy]].',
-'searchsubtitle'            => 'Hledáno „[[:$1]]“',
-'searchsubtitleinvalid'     => 'Hledáno „$1“',
-'noexactmatch'              => "'''Neexistuje žádná stránka s názvem \"\$1\".''' Můžete ji však [[:\$1|vytvořit]].",
-'noexactmatch-nocreate'     => "'''Neexistuje žádná stránka s názvem „$1“.'''",
 'toomanymatches'            => 'Požadavku odpovídá příliš mnoho záznamů, zkuste jiný dotaz.',
 'titlematches'              => 'Stránky s odpovídajícím názvem',
 'notitlematches'            => 'Žádné stránky názvem neodpovídají.',
@@ -1183,7 +1178,6 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'showingresults'            => 'Zobrazuji <strong>$1</strong> {{PLURAL:$1|výsledek|výsledky|výsledků}} počínaje od <strong>$2</strong>.',
 'showingresultsnum'         => 'Zobrazuji <strong>$3</strong> {{PLURAL:$3|výsledek|výsledky|výsledků}} počínaje od <strong>$2</strong>.',
 'showingresultstotal'       => "{{PLURAL:$4|Zobrazuje se výsledek '''$1''' z&nbsp;'''$3'''|Zobrazují se výsledky '''$1–$2''' z&nbsp;'''$3'''}}",
-'nonefound'                 => '<strong>Poznámka</strong>: neúspěšná hledání jsou často důsledkem zadání slov, která nejsou indexována, nebo uvedením mnoha slov najednou (ve výsledku se objeví jen ty stránky, které obsahují všechna zadaná slova).',
 'powersearch'               => 'Hledání',
 'powersearch-legend'        => 'Rozšířené vyhledávání',
 'powersearch-ns'            => 'Hledat ve jmenných prostorech:',
@@ -1252,7 +1246,6 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'allowemail'               => 'Povolit e-mail od ostatních uživatelů',
 'prefs-searchoptions'      => 'Možnosti vyhledávání',
 'prefs-namespaces'         => 'Jmenné prostory',
-'defaultns'                => 'Implicitně hledat v těchto jmenných prostorech:',
 'default'                  => 'implicitní',
 'files'                    => 'Soubory',
 

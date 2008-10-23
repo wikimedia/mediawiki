@@ -238,13 +238,11 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 'compareselectedversions' => 'Cumpara i versiun selezziunaa',
 
 # Search results
-'noexactmatch'          => "'''La pagina \"\$1\" la esista no.''' L'è pussibil [[:\$1|creala adèss]].",
-'noexactmatch-nocreate' => "'''La pagina cun el titul \"\$1\" la esista no.'''",
-'toomanymatches'        => "Gh'è tropi curispundens. Mudifichè la richiesta.",
-'prevn'                 => 'preçedeent $1',
-'nextn'                 => 'pròssim $1',
-'viewprevnext'          => 'Vidé ($1) ($2) ($3).',
-'powersearch'           => 'Truvá',
+'toomanymatches' => "Gh'è tropi curispundens. Mudifichè la richiesta.",
+'prevn'          => 'preçedeent $1',
+'nextn'          => 'pròssim $1',
+'viewprevnext'   => 'Vidé ($1) ($2) ($3).',
+'powersearch'    => 'Truvá',
 
 # Preferences page
 'preferences'        => 'Prefereenz',
@@ -279,7 +277,6 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 'servertime'         => 'Urari dal sèrver',
 'guesstimezone'      => 'Catá l urari dal sèrver',
 'allowemail'         => 'Permètt ai altar üteent də cuntatamm par email',
-'defaultns'          => 'Tröva sempar in di caamp:',
 'files'              => 'Archivi',
 
 # User rights

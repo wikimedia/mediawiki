@@ -204,12 +204,9 @@ Zã [[Special:Search|nuwo didi le wiki sia dzi]] kpɔ na axa yeyeawo.',
 'lineno'        => 'Fli $1:',
 
 # Search results
-'noexactmatch'          => "'''Tanya \"\$1\" mesɔ kple axa aɖeke tɔ o.'''
-Wòateŋu [[:\$1|adze axa sia gɔme]].",
-'noexactmatch-nocreate' => "'''Tanya \"\$1\" mesɔ kple axa aɖeke tɔ o.'''",
-'prevn'                 => '$1 do ŋgɔ',
-'viewprevnext'          => 'Kpɔ ($1) ($2) ($3)',
-'powersearch'           => 'Dii',
+'prevn'        => '$1 do ŋgɔ',
+'viewprevnext' => 'Kpɔ ($1) ($2) ($3)',
+'powersearch'  => 'Dii',
 
 # Preferences page
 'mypreferences' => 'Nyeƒe didiwo',

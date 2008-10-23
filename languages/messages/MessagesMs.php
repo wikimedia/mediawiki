@@ -989,11 +989,6 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 # Search results
 'searchresults'             => 'Keputusan carian',
 'searchresults-title'       => 'Keputusan carian $1',
-'searchresulttext'          => 'Untuk maklumat lanjut tentang carian dalam {{SITENAME}}, sila lihat [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'            => 'Anda mencari "[[$1]]"',
-'searchsubtitleinvalid'     => 'Untuk pertanyaan "$1"',
-'noexactmatch'              => "'''Tiada laman bertajuk \"\$1\".''' Anda boleh [[:\$1|menciptanya]].",
-'noexactmatch-nocreate'     => "'''Tiada laman bertajuk \"\$1\".'''",
 'toomanymatches'            => 'Terlalu banyak padanan dipulangkan, sila cuba pertanyaan lain',
 'titlematches'              => 'Padanan tajuk laman',
 'notitlematches'            => 'Tiada tajuk laman yang sepadan',
@@ -1019,10 +1014,6 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 'showingresults'            => "Berikut ialah '''$1''' hasil bermula daripada yang {{PLURAL:$2|pertama|ke-'''$2'''}}.",
 'showingresultsnum'         => "Berikut ialah '''$3''' hasil bermula daripada yang {{PLURAL:$2|pertama|ke-'''$2'''}}.",
 'showingresultstotal'       => "Berikut ialah {{PLURAL:$4|hasil '''$1'''|hasil '''$1 - $2'''}} daripada '''$3'''",
-'nonefound'                 => "'''Catatan''': Kegagalan pencarian biasanya
-disebabkan oleh pencarian perkataan-perkataan yang terlalu umum, seperti \"ada\"
-dan \"dari\" yang tidak diindekskan, atau disebabkan oleh pencarian lebih
-daripada satu kata kunci (hanya laman yang mengandungi kesemua kata kunci akan ditunjukkan).",
 'powersearch'               => 'Cari',
 'powersearch-legend'        => 'Gelintar maju',
 'powersearch-ns'            => 'Gelintar ruang nama:',
@@ -1091,7 +1082,6 @@ daripada satu kata kunci (hanya laman yang mengandungi kesemua kata kunci akan d
 'allowemail'               => 'Benarkan e-mel daripada pengguna lain',
 'prefs-searchoptions'      => 'Pilihan gelintar',
 'prefs-namespaces'         => 'Ruang nama',
-'defaultns'                => 'Cari dalam ruang nama ini secara lalai:',
 'default'                  => 'lalai',
 'files'                    => 'Fail',
 

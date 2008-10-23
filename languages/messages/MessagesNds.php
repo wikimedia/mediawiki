@@ -997,11 +997,6 @@ Seh to, dat de Versionsgeschicht vun’n Artikel vun de Historie her bi de Reeg 
 # Search results
 'searchresults'             => 'Söökresultaten',
 'searchresults-title'       => 'Söökresultaten för $1',
-'searchresulttext'          => 'För mehr Informatschonen över {{SITENAME}}, kiek [[{{MediaWiki:Helppage}}|{{SITENAME}} dörsöken]].',
-'searchsubtitle'            => 'För de Söökanfraag „[[:$1]]“',
-'searchsubtitleinvalid'     => 'För de Söökanfraag „$1“',
-'noexactmatch'              => 'Gifft kene Siet mit dissen Naam. Bruuk de Vulltextsöök oder legg de Siet [[:$1|nee]] an.',
-'noexactmatch-nocreate'     => "'''Gifft kene Siet mit’n Titel „$1“.'''",
 'toomanymatches'            => 'To veel Sieden funnen för de Söök, versöök en annere Affraag.',
 'titlematches'              => 'Övereenstimmen mit Överschriften',
 'notitlematches'            => 'Kene Övereenstimmen',
@@ -1027,8 +1022,6 @@ Seh to, dat de Versionsgeschicht vun’n Artikel vun de Historie her bi de Reeg 
 'showingresults'            => "Hier {{PLURAL:$1|is een Resultat|sünd '''$1''' Resultaten}}, anfungen mit #'''$2'''.",
 'showingresultsnum'         => "Hier {{PLURAL:$3|is een Resultat|sünd '''$3''' Resultaten}}, anfungen mit #'''$2'''.",
 'showingresultstotal'       => "Dit {{PLURAL:$4|is de Fundstell '''$1''' vun '''$3'''|sünd de Fundstellen '''$1–$2''' vun '''$3'''}}",
-'nonefound'                 => '<strong>Henwies</strong>:
-Söökanfragen ahn Spood hebbt faken de Oorsaak, dat no kotte oder gemeene Wöör söökt warrt, de nich indizeert sünd.',
 'powersearch'               => 'Betere Söök',
 'powersearch-legend'        => 'Betere Söök',
 'powersearch-ns'            => 'Söök in Naamrüüm:',
@@ -1098,7 +1091,6 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 'allowemail'               => 'Nettbreven vun annere Brukers annehmen',
 'prefs-searchoptions'      => 'Söökopschonen',
 'prefs-namespaces'         => 'Naamrüüm',
-'defaultns'                => 'In disse Naamrüüm schall standardmatig söökt warrn:',
 'default'                  => 'Standard',
 'files'                    => 'Datein',
 

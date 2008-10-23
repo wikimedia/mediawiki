@@ -863,11 +863,6 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 
 # Search results
 'searchresults'             => 'Zeukresultate',
-'searchresulttext'          => 'Veur mier informatie euver zeuke op {{SITENAME}}, zuug [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'            => "Doe zòchs veur '''[[:$1]]'''",
-'searchsubtitleinvalid'     => 'Voor zoekopdracht "$1"',
-'noexactmatch'              => "'''Dao besjteit gein pazjena mit de naam $1.''' De kèns 'm [[:$1|aanmake]].",
-'noexactmatch-nocreate'     => "'''Er besteit gein pagina genaamp \"\$1\".'''",
 'toomanymatches'            => "d'r Wore te väöl resultate. Probeer estebleef  'n anger zeukopdrach.",
 'titlematches'              => 'Overeinkoms mèt volgende titels',
 'notitlematches'            => 'Geen enkele paginatitel gevonden met de opgegeven zoekterm',
@@ -893,7 +888,6 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 'showingresults'            => 'Hieonger staon de <b>$1</b> {{PLURAL:$1|resultaat|resultaat}}, vanaaf #<b>$2</b>.',
 'showingresultsnum'         => "Hieonger {{PLURAL:$3|steit '''1''' resultaat|staon '''$3''' resultate}} vanaaf #<b>$2</b>.",
 'showingresultstotal'       => "Hie onger {{PLURAL:$3|wordt resultaat '''$1'''|waere de resultate '''$1 toet $2''' van '''$3'''}} weergegaeve",
-'nonefound'                 => '<strong>Lèt op:</strong> \'n zeukopdrach kan mislökke door \'t gebroek van (in \'t Ingelsj) väöl veurkómmende wäörd wie "of" en "be", die neet geïndexeerd zint, of door versjillende zeukterme tegeliek op te gaeve (de kries dan allein pazjena\'s te zeen woerin alle opgegaeve terme veurkómme).',
 'powersearch'               => 'Zeuke',
 'powersearch-legend'        => 'Oetgebrèd zeuke',
 'powersearch-ns'            => 'Zeuke in naamruumdjes:',
@@ -964,7 +958,6 @@ Mèrk op dat hun indexe van {{SITENAME}} content e bietje gedatierd kint zien.',
 'allowemail'               => 'E-mail van anger gebroekers toesjtaon',
 'prefs-searchoptions'      => 'Zeukinstellinge',
 'prefs-namespaces'         => 'Naamruimte',
-'defaultns'                => 'Zeuk sjtandaard in dees naomruumdes:',
 'default'                  => 'sjtandaard',
 'files'                    => 'Bestenj',
 

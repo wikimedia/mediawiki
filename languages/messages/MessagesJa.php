@@ -874,11 +874,6 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 # Search results
 'searchresults'             => '検索結果',
 'searchresults-title'       => '$1の検索結果',
-'searchresulttext'          => '{{SITENAME}}の検索に関する詳しい情報は、[[{{MediaWiki:Helppage}}|{{int:help}}]]をご覧ください。',
-'searchsubtitle'            => '検索語: \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|"$1" から始まるページ]] | [[Special:WhatLinksHere/$1|"$1" のリンク元]])',
-'searchsubtitleinvalid'     => "検索語: '''$1'''",
-'noexactmatch'              => '"$1" というタイトルのページは存在しませんでした。[[:$1|新規作成する]]。',
-'noexactmatch-nocreate'     => "''\"\$1\"'' というタイトルのページは存在しませんでした。",
 'toomanymatches'            => '一致したページが多すぎます、他の検索語を指定してください',
 'titlematches'              => 'ページタイトルと一致',
 'notitlematches'            => 'ページタイトルとは一致しませんでした',
@@ -904,7 +899,6 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'showingresults'            => '<b>$2</b> 件目から <b>$1</b> 件を表示しています。',
 'showingresultsnum'         => '<b>$2</b> 件目から <b>$3</b> 件を表示しています。',
 'showingresultstotal'       => "'''$3''' 件中 {{PLURAL:$4|'''$1''|'''$1 - $2'''}}件目の検索結果を表示",
-'nonefound'                 => "'''※'''検索がうまくいかないのは、「ある」や「から」のような一般的な語で索引付けがされていないか、複数の検索語を指定している（全ての検索語を含むページだけが結果に示されます）などのためかもしれません。",
 'powersearch'               => '検索',
 'powersearch-legend'        => '高度な検索',
 'powersearch-ns'            => '名前空間を指定して検索:',
@@ -973,7 +967,6 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'allowemail'               => '他の利用者からのメールの受け取りを許可する',
 'prefs-searchoptions'      => '検索のオプション',
 'prefs-namespaces'         => '名前空間',
-'defaultns'                => '標準で検索する名前空間:',
 'default'                  => 'デフォルト',
 'files'                    => '画像等',
 

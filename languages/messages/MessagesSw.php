@@ -386,7 +386,6 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'diff-multi'              => '(Hatuonyeshi {{PLURAL:$1|sahihisho moja la katikati|masahihisho $1 ya katikati}}.)',
 
 # Search results
-'noexactmatch' => "'''Hakuna ukurasa wenye jina \"\$1\".''' Unaweza [[:\$1|kuanza ukurasa huu]].",
 'prevn'        => '$1 iliyotangulia',
 'nextn'        => '$1 ijayo',
 'viewprevnext' => 'Tazama ($1) ($2) ($3)',

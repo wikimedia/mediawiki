@@ -830,11 +830,6 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 
 # Search results
 'searchresults'             => 'Arama sonuçları',
-'searchresulttext'          => '{{SITENAME}} içinde arama yapmak konusunda bilgi almak için [[{{MediaWiki:Helppage}}|{{int:help}}]] sayfasına bakabilirsiniz.',
-'searchsubtitle'            => "Aranan: \"'''[[:\$1]]'''\"",
-'searchsubtitleinvalid'     => 'Aranan: "$1"',
-'noexactmatch'              => "''Başlığı \"\$1\" olan bir madde bulunamadı.''' Bu sayfayı siz [[:\$1|oluşturabilirsiniz]].",
-'noexactmatch-nocreate'     => "'''\"\$1\" başlıklı sayfa bulunmamaktadır.'''",
 'titlematches'              => 'Madde adı eşleşiyor',
 'notitlematches'            => 'Hiçbir başlıkta bulunamadı',
 'textmatches'               => 'Sayfa metni eşleşiyor',
@@ -919,7 +914,6 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'allowemail'               => 'Diğer kullanıcılar size e-posta atabilsin',
 'prefs-searchoptions'      => 'Arama seçenekleri',
 'prefs-namespaces'         => 'İsim alanları',
-'defaultns'                => 'Aramayı aşağıdaki seçili alanlarda yap.',
 'default'                  => 'orijinal',
 'files'                    => 'Dosyalar',
 

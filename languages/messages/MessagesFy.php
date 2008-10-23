@@ -964,12 +964,6 @@ Tink derom it brûken fan de navigaasjeferwizings dy kolom op'e nij ynstelt.",
 # Search results
 'searchresults'             => 'Sykresultaat',
 'searchresults-title'       => 'Sykjeresultaten foar $1',
-'searchresulttext'          => 'Lês foar mear ynformaasje oer it sykjen yn de {{SITENAME}} de [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'            => 'Foar fraach "[[:$1]]"',
-'searchsubtitleinvalid'     => 'Foar fraach "$1"',
-'noexactmatch'              => "'''Der is gjin side mei krekt de titel \"\$1\".'''
-Jo kinne de [[:\$1|side oanmeitsje]].",
-'noexactmatch-nocreate'     => "'''Der is gjin side mei krekt de titel \"\$1\".'''",
 'toomanymatches'            => 'Der wiene tefolle resultaten.
 Prebearje in oare sykopdracht.',
 'titlematches'              => 'Titels',
@@ -996,9 +990,6 @@ Prebearje in oare sykopdracht.',
 'showingresults'            => "{{PLURAL:$1|'''1''' resultaat|'''$1''' resultaten}} fan #'''$2''' ôf.",
 'showingresultsnum'         => "{{PLURAL:$3|'''1''' resultaat|'''$3''' resultaten}} fan #'''$2''' ôf.",
 'showingresultstotal'       => "It binne hjirûnder  {{PLURAL:$4|resultaat '''$1''' fan '''$3'''|resultaten '''$1 - $2''' fan '''$3'''}}",
-'nonefound'                 => 'As der gjin resultaten binne, tink der dan om dat der <b>net</b> socht
-wurde kin om wurden as "it" en "in", om\'t dy net byhâlden wurde, en dat as der mear
-wurden syke wurde, allinnich siden fûn wurde wêr\'t <b>alle</b> worden op fûn wurde.',
 'powersearch'               => 'Sykje',
 'powersearch-legend'        => 'Sykje',
 'powersearch-ns'            => 'Sykje op nammeromten:',
@@ -1068,7 +1059,6 @@ Gean nei oft latex, dvips, en gs goed ynstallearre binne en set om',
 'allowemail'               => 'Lêt my ek e-mail fan oare meidoggers ûntfange',
 'prefs-searchoptions'      => 'Sykje-ynstellings',
 'prefs-namespaces'         => 'Nammeromten',
-'defaultns'                => "Nammeromten dy't normaal trochsocht wurde:",
 'default'                  => 'standert',
 'files'                    => 'Triemen',
 

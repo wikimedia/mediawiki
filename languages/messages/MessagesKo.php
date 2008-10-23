@@ -898,11 +898,6 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 # Search results
 'searchresults'            => '검색 결과',
 'searchresults-title'      => '"$1"에 대한 검색 결과',
-'searchresulttext'         => '{{SITENAME}}의 찾기 기능에 대한 자세한 정보는 [[{{MediaWiki:Helppage}}|{{int:help}}]] 문서를 참고해주세요.',
-'searchsubtitle'           => "'''[[:$1]]''' 문서를 검색하고 있습니다. ([[Special:Prefixindex/$1|이름이 ‘$1’(으)로 시작하는 문서 목록]] | [[Special:WhatLinksHere/$1|‘$1’ 문서를 가리키는 문서 목록]])",
-'searchsubtitleinvalid'    => "검색 단어 '''$1'''",
-'noexactmatch'             => "'''$1 문서가 없습니다.''' 문서를 [[:$1|만들 수]] 있습니다.",
-'noexactmatch-nocreate'    => "'''\"\$1\" 문서가 존재하지 않습니다.'''",
 'titlematches'             => '문서 제목 일치',
 'notitlematches'           => '해당하는 제목 없음',
 'textmatches'              => '문서 내용 일치',
@@ -918,7 +913,6 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'mwsuggest-disable'        => 'AJAX 추천 기능 끄기',
 'showingresults'           => '<strong>$2</strong>번 부터 <strong>$1</strong>개의 결과입니다.',
 'showingresultsnum'        => "'''$2'''번 부터 '''$3'''개의 결과입니다.",
-'nonefound'                => "'''참고''': 몇개의 이름공간만 기본 검색 범위입니다. 토론이나 틀 등의 모든 자료를 검색하기 위해서는 접두어로 '''all:''' 어떤 이름공간을 위해서는 접두어로 그 이름공간을 쓸 수 있습니다.",
 'powersearch'              => '찾기',
 'powersearch-legend'       => '고급 검색',
 'powersearch-ns'           => '다음의 이름공간에서 찾기:',
@@ -986,7 +980,6 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'allowemail'               => '다른 사용자로부터의 이메일 허용',
 'prefs-searchoptions'      => '검색 설정',
 'prefs-namespaces'         => '네임스페이스',
-'defaultns'                => '기본으로 다음의 이름공간에서 찾기:',
 'default'                  => '기본값',
 'files'                    => '파일',
 

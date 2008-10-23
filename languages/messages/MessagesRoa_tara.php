@@ -398,8 +398,6 @@ Vide bbuene ce l'ha ccrejà sta pàgene, ce non ge sinde sicure vide l'archivie 
 'diff-br'                 => "'n''''inderruzione'''",
 
 # Search results
-'noexactmatch'      => "'''Non g'esiste 'na pàgene ca se chiama \"\$1\".'''
-Tu puè [[:\$1|ccrejà sta pàgene]].",
 'prevn'             => 'rrede $1',
 'nextn'             => 'nnande $1',
 'viewprevnext'      => 'Vide ($1) ($2) ($3)',

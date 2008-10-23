@@ -1173,11 +1173,6 @@ Let op dat het gebruiken van de navigatieverwijzingen deze kolom opnieuw instelt
 # Search results
 'searchresults'             => 'Zoekresultaten',
 'searchresults-title'       => 'Zoekresultaten voor $1',
-'searchresulttext'          => 'Voor meer informatie over zoeken op {{SITENAME}}, zie [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'            => 'U zocht naar \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|pagina\'s die beginnen met "$1"]] | [[Special:WhatLinksHere/$1|pagina\'s die verwijzen naar "$1"]])',
-'searchsubtitleinvalid'     => 'Voor zoekopdracht "$1"',
-'noexactmatch'              => "'''Er bestaat geen pagina met de naam \"\$1\".''' U kunt deze [[:\$1|aanmaken]].",
-'noexactmatch-nocreate'     => "'''Er bestaat geen pagina genaamd \"\$1\".'''",
 'toomanymatches'            => 'Er waren te veel resultaten.
 Probeer een andere zoekopdracht.',
 'titlematches'              => 'Overeenkomst met onderwerp',
@@ -1204,9 +1199,6 @@ Probeer een andere zoekopdracht.',
 'showingresults'            => "Hieronder {{PLURAL:$1|staat '''1''' resultaat|staan '''$1''' resultaten}} vanaf #'''$2'''.",
 'showingresultsnum'         => "Hieronder {{PLURAL:$3|staat '''1''' resultaat|staan '''$3''' resultaten}} vanaf #'''$2'''.",
 'showingresultstotal'       => "Hieronder {{PLURAL:$4|wordt resultaat '''$1'''|worden resultaten '''$1 tot $2'''}} van '''$3''' weergegeven",
-'nonefound'                 => "'''Opmerking''': standaard worden niet alle naamruimten doorzocht.
-Als u in uw zoekopdracht als voorvoegsel \"''all:''\" gebruikt worden alle pagina's doorzocht (inclusief overlegpagina's, sjablonen, enzovoort).
-U kunt ook een naamruimte als voorvoegsel gebruiken.",
 'powersearch'               => 'Uitgebreid zoeken',
 'powersearch-legend'        => 'Uitgebreid zoeken',
 'powersearch-ns'            => 'Zoeken in naamruimten:',
@@ -1278,7 +1270,6 @@ Ga na of latex, dvips en gs correct geïnstalleerd zijn en zet om',
 'allowemail'               => 'E-mail van andere gebruikers toestaan',
 'prefs-searchoptions'      => 'Zoekinstellingen',
 'prefs-namespaces'         => 'Naamruimten',
-'defaultns'                => 'Standaard in deze naamruimten zoeken:',
 'default'                  => 'standaard',
 'files'                    => 'Bestanden',
 

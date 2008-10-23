@@ -486,11 +486,6 @@ Bákannà ẹ tún ṣèlérí fún wa wípé ẹ̀yin lẹkọ́ fúnra arayín
 # Search results
 'searchresults'         => 'Àwọn èsì àwáàrí',
 'searchresults-title'   => 'Àwọn èsì àwáàrí fún $1',
-'searchsubtitle'        => 'Ẹ ṣ\'àwáàrí fun \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|gbogbo ojúewé tó bẹ̀rẹ̀ pẹ̀lu "$1"]] | [[Special:WhatLinksHere/$1|gbogbo ojúewé tó jápọ̀ mọ́ "$1"]])',
-'searchsubtitleinvalid' => "Ẹ ṣ'àwáàrí fun '''$1'''",
-'noexactmatch'          => "'''Kò sí ojúewé pẹ̀lú àkọlé \"\$1\".'''
-Ẹ le [[:\$1|ṣ'èdá ojúewé yìí]].",
-'noexactmatch-nocreate' => "'''Kò sí ojúewé pẹ̀lú àkọlé \"\$1\".'''",
 'prevn'                 => 'titẹ́lẹ̀ $1',
 'nextn'                 => 'tókàn $1',
 'viewprevnext'          => 'Ẹ wo ($1) ($2) ($3)',

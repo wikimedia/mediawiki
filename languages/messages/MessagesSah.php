@@ -851,11 +851,6 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 # Search results
 'searchresults'             => 'Булулунна',
 'searchresults-title'       => 'Көрдөөһүн түмүгэ $1',
-'searchresulttext'          => 'Көрдөөһүн туһунан сиһилии ааҕыаххын баҕардаххына [[{{MediaWiki:Helppage}}|маны]] көр.',
-'searchsubtitle'            => 'Эн [[:$1]] көмөтүнэн ([[Special:Prefixindex/$1|"$1" саҕаланар сирэйдэри ]] | [[Special:WhatLinksHere/$1|"$1" сигэнэр сирэйдэри]]) көрдөөбүтүҥ',
-'searchsubtitleinvalid'     => 'По запросу «$1»',
-'noexactmatch'              => "'''«\$1» ааттаах сирэй суох.''' <span style=\"display: block; margin: 1.5em 2em\"> [[:\$1|Саҥа сирэйи оҥорорго]]</span>",
-'noexactmatch-nocreate'     => "'''Маннык ааттаах: \"\$1\" сирэй суох.'''",
 'toomanymatches'            => 'Наһаа элбэх ыйытыы төнүннэ, бука диэн атыннык көрдөө',
 'titlematches'              => 'Ыстатыйалар ааттара хоһулаһар',
 'notitlematches'            => 'Ыстатыйалар ааттара хоһуласпаттар',
@@ -881,7 +876,6 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'showingresults'            => 'Манна {{PLURAL:$1|түмүк|түмүктэр}} {{PLURAL:$1|көрдөрүлүннэ|көрдөрүлүннүлэр}} <strong>$1</strong> , мантан саҕалаан №&nbsp;<strong>$2</strong>.',
 'showingresultsnum'         => 'Манна {{PLURAL:$3|түмүк|түмүктэр}} {{PLURAL:$3|көрдөрөлүннэ|көрдөрүлүннүлэр}} <strong>$3</strong>, мантан саҕалаан №&nbsp;<strong>$2</strong>.',
 'showingresultstotal'       => "Аллара {{PLURAL:$4|'''$3''' '''$1''' түмүк|'''$3''' '''$1 - $2''' түмүк}} көрдөрүлүннэ",
-'nonefound'                 => "'''Болҕой:''' Анаан эппэтэххэ көрдөөһүн аат сорох далларыгар эрэ көрдүүр. Бу сыһыарыыны ''all:'' тутуннаххына аат туох баар далларыгар барытыгар (холобур, кыттаачылар ырыытыыларыгар, халыыптарга иҥин) көрдүөҕэ.",
 'powersearch'               => 'Бу бөлөхтөргө көрдөө',
 'powersearch-legend'        => 'Дириҥэтэн көрдөөһүн',
 'powersearch-ns'            => 'Аат далыгар көрдөө:',
@@ -950,7 +944,6 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'allowemail'               => 'Атын кыттааччылартан сурук тутары көҥүллүүргэ',
 'prefs-searchoptions'      => 'Көрдөөһүн туруоруулара',
 'prefs-namespaces'         => 'Аат дала',
-'defaultns'                => 'Чопчу ыйыллыбатаҕына бу ааттар быыстарыгар көрдүүргэ:',
 'default'                  => 'чопчу ыйыллыбатаҕына маннык',
 'files'                    => 'Билэлэр',
 

@@ -288,7 +288,6 @@ Legenda: (actu) = diferenças da versão actual,
 'editundo'                => 'desfazer',
 
 # Search results
-'noexactmatch' => "'''Num eisiste ua página com l títalo \"\$1\".''' Você puode [[:\$1|criar tal página]].",
 'prevn'        => 'anteriores $1',
 'nextn'        => 'próximos $1',
 'viewprevnext' => 'Ber ($1) ($2) ($3)',
