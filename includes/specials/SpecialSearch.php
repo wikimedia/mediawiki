@@ -658,7 +658,8 @@ class SpecialSearch {
 				$searchButton.
 			"</form>";
 
-		return $this->formHeader($term).$out;
+		return Xml::openElement( 'fieldset', array( 'id' => 'mw-searchoptions' ) ) . $this->formHeader($term) . 
+					$out . Xml::closeElement( 'fieldset' );
 	}
 
 	function powerSearchFocus() {
@@ -804,7 +805,7 @@ class SpecialSearch {
 		}
 		$out .= Xml::submitButton( wfMsg( 'searchbutton' ), array( 'name' => 'fulltext' ) );
 		$out .= Xml::closeElement( 'form' );
-
-		return $this->formHeader($term).$out;
+		return Xml::openElement( 'fieldset', array( 'id' => 'mw-searchoptions' ) ) . $this->formHeader($term) . 
+					$out . Xml::closeElement( 'fieldset' );
 	}
 }
