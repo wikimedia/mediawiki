@@ -159,8 +159,10 @@ class SpecialSearch {
 				}
 			}
 		}
-		$wgOut->addWikiMsg( 'searchmenu', wfEscapeWikiText( $term ) );
-		
+		if ( is_null($t) )
+			$wgOut->addWikiMsg( 'searchmenu-badtitle', wfEscapeWikiText( $term ) );
+		else
+			$wgOut->addWikiMsg( 'searchmenu', wfEscapeWikiText( $term ) );	
 		
 		$wgOut->addHtml(
 			Xml::closeElement('td').
