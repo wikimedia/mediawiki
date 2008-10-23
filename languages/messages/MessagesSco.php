@@ -1162,10 +1162,8 @@ This confirmation code will end at $4.',
 Please confirm that ye really want tae recreate this airticle.",
 
 # action=purge
-'confirm_purge'        => 'Clair the cache o this page?
-
-$1',
 'confirm_purge_button' => 'Aye',
+'confirm-purge-top'    => 'Clair the cache o this page?',
 
 # Multipage image navigation
 'imgmultigo' => 'Gang!',

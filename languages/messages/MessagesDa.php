@@ -2486,8 +2486,8 @@ Bekræft venligst, at du virkelig vil oprette denne side igen.",
 'recreate'            => 'Opret igen',
 
 # action=purge
-'confirm_purge'        => 'Slette denne side fra serverens cache? $1',
 'confirm_purge_button' => 'OK',
+'confirm-purge-top'    => 'Slette denne side fra serverens cache?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← forrige side',

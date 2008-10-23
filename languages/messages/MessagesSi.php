@@ -2508,10 +2508,8 @@ $1
 'unit-pixel' => 'පික්සල',
 
 # action=purge
-'confirm_purge'        => 'මෙම පිටුවෙහි පූර්වාපේක්‍ෂී සංචිතය (කෑෂය) හිස් කල යුතුද?
-
-$1',
 'confirm_purge_button' => 'හරි',
+'confirm-purge-top'    => 'මෙම පිටුවෙහි පූර්වාපේක්‍ෂී සංචිතය (කෑෂය) හිස් කල යුතුද?',
 
 # Separators for various lists, etc.
 'catseparator'        => '|',

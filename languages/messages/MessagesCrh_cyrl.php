@@ -1791,10 +1791,8 @@ $1
 'recreate'            => 'Саифени янъыдан ярат',
 
 # action=purge
-'confirm_purge'        => 'Саифе кэшини темизлесинми?
-
-$1',
 'confirm_purge_button' => 'Ок',
+'confirm-purge-top'    => 'Саифе кэшини темизлесинми?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← эвельки саифе',

@@ -1822,10 +1822,8 @@ Rachaidh an cód deimhnithe seo as feidhm ag $4.',
 'recreate' => 'Athchruthaigh',
 
 # action=purge
-'confirm_purge'        => 'An bhfuil tú cinnte go dteastaíonn uait taisce an leathanaigh seo a bhánú?
-
-$1',
 'confirm_purge_button' => 'Tá',
+'confirm-purge-top'    => 'An bhfuil tú cinnte go dteastaíonn uait taisce an leathanaigh seo a bhánú?',
 
 # Multipage image navigation
 'imgmultigoto' => 'Téigh go leathanach $1',

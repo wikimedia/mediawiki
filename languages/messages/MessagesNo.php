@@ -2724,8 +2724,8 @@ $1
 'recreate'            => 'Gjenopprett',
 
 # action=purge
-'confirm_purge'        => "Vil du slette tjenerens mellomlagrede versjon (''cache'') av denne siden? $1",
 'confirm_purge_button' => 'OK',
+'confirm-purge-top'    => "Vil du slette tjenerens mellomlagrede versjon (''cache'') av denne siden?",
 
 # Multipage image navigation
 'imgmultipageprev' => '← forrige side',

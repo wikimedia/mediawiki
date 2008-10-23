@@ -2552,10 +2552,8 @@ $1
 'recreate'            => 'สร้างใหม่',
 
 # action=purge
-'confirm_purge'        => 'ล้างแคชสำหรับหน้านี้หรือไม่
-
-$1',
 'confirm_purge_button' => 'ตกลง',
+'confirm-purge-top'    => 'ล้างแคชสำหรับหน้านี้หรือไม่',
 
 # Multipage image navigation
 'imgmultipageprev' => '← หน้าก่อนหน้า',

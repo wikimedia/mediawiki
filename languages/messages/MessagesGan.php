@@ -2017,10 +2017,8 @@ $3
 'recreate'            => '重建',
 
 # action=purge
-'confirm_purge'        => '想清卟箇頁嗰緩存?
-
-$1',
 'confirm_purge_button' => '做得',
+'confirm-purge-top'    => '想清卟箇頁嗰緩存?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← 上頁',

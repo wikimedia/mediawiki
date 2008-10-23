@@ -2827,8 +2827,8 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'recreate'            => 'Erneut anlegen',
 
 # action=purge
-'confirm_purge'        => 'Diese Seite aus dem Server-Cache löschen? $1',
 'confirm_purge_button' => 'OK',
+'confirm-purge-top'    => 'Diese Seite aus dem Server-Cache löschen?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← vorige Seite',

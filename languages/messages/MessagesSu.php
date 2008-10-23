@@ -2256,10 +2256,8 @@ mangga pastikeun yén anjeun rék nyieun deui artikel ieu.",
 'recreate'            => 'Jieun deui',
 
 # action=purge
-'confirm_purge'        => 'Hapus sindangan kaca ieu?
-
-$1',
 'confirm_purge_button' => 'Heug',
+'confirm-purge-top'    => 'Hapus sindangan kaca ieu?',
 
 # Multipage image navigation
 'imgmultipageprev' => '&larr; kaca saacana',

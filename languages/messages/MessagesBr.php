@@ -2336,10 +2336,8 @@ Kadarnait mar plij e fell deoc'h krouiñ ar pennad-mañ da vat.",
 'recreate'            => 'Adkrouiñ',
 
 # action=purge
-'confirm_purge'        => 'Spurjañ krubuilh ar bajenn-mañ?
-
-$1',
 'confirm_purge_button' => 'Mat eo',
+'confirm-purge-top'    => 'Spurjañ krubuilh ar bajenn-mañ?',
 
 # Multipage image navigation
 'imgmultipageprev' => '&larr; pajenn gent',

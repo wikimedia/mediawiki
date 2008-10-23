@@ -2800,10 +2800,8 @@ Prosím, potvrďte, že túto stránku chcete skutočne znovu vytvoriť.",
 'recreate'            => 'Znova vytvoriť',
 
 # action=purge
-'confirm_purge'        => 'Vyčistiť vyrovnávaciu pamäť (cache) tejto stránky?
-
-$1',
 'confirm_purge_button' => 'OK',
+'confirm-purge-top'    => 'Vyčistiť vyrovnávaciu pamäť (cache) tejto stránky?',
 
 # Multipage image navigation
 'imgmultipageprev' => '&larr; predošlá stránka',

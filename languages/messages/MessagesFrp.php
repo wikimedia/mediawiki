@@ -2236,10 +2236,8 @@ Volyéd confirmar que vos dèsirâd recrèar ceti articllo.",
 'recreate'            => 'Recrèar',
 
 # action=purge
-'confirm_purge'        => 'Voléd-vos rafrèchir ceta pâge (purgiér lo cache) ?
-
-$1',
 'confirm_purge_button' => 'Confirmar',
+'confirm-purge-top'    => 'Voléd-vos rafrèchir ceta pâge (purgiér lo cache) ?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← pâge prècèdenta',

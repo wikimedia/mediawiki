@@ -2158,10 +2158,8 @@ Ju lutem konfirmoni nëse dëshironi me të vertetë ta ri-krijoni këtë artiku
 'recreate'            => 'Rikrijo',
 
 # action=purge
-'confirm_purge'        => 'Pastro cache për këtë faqe?
-
-$1',
 'confirm_purge_button' => 'Shko',
+'confirm-purge-top'    => 'Pastro cache për këtë faqe?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← faqja e kaluar',

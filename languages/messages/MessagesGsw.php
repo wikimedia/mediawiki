@@ -1135,19 +1135,7 @@ De Bestätigung Code isch gültug bis $4.
 Fründtlechi Grüess",
 
 # action=purge
-'confirm_purge' => "Die Zwischeschpoicherung vo der Syte „{{FULLPAGENAME}}“ lösche?
-
-\$1
-
-<div style=\"font-size: 95%; margin-top: 2em;\">
-'''''Erklärig:'''''
-
-''Zwüschespycherige (Cache) sy temporäri Kopye vore Websyten uf dym Computer. We ne Syte us em Zwüschespycher abgrüefft wird, de bruucht das weniger Rächeleischtig füre {{SITENAME}}-Server als en Abrueff vor Originalsyte.''
-
-''Falls du e Syte scho nes Wyli am Aaluege bisch, de het dy Computer sone Zwüschespycherig gmacht. Derby chönnt die Syten unter Umständ scho i dere Zyt liecht veraltere.''
-
-''Ds Lösche vor Zwüschespycherig zwingt der Server, dir di aktuellschti Version vor Syte z gä!''
-</div>",
+'confirm-purge-top' => 'Die Zwischeschpoicherung vo der Syte lösche?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← vorderi Syte',

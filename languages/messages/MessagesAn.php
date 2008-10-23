@@ -2453,10 +2453,8 @@ Por fabor, confirme que reyalment deseya creyar l'articlo nuebament.",
 'recreate'            => 'Creyar nuebament',
 
 # action=purge
-'confirm_purge'        => "Limpiar a caché d'ista pachina?
-
-$1",
 'confirm_purge_button' => 'Confirmar',
+'confirm-purge-top'    => "Limpiar a caché d'ista pachina?",
 
 # Multipage image navigation
 'imgmultipageprev' => '← pachina anterior',

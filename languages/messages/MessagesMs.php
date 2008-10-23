@@ -2737,10 +2737,8 @@ Sila sahkan bahawa anda mahu mencipta semula laman ini.",
 'recreate'            => 'Cipta semula',
 
 # action=purge
-'confirm_purge'        => 'Kosongkan fail simpanan bagi laman ini?
-
-$1',
 'confirm_purge_button' => 'OK',
+'confirm-purge-top'    => 'Kosongkan fail simpanan bagi laman ini?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← halaman sebelumnya',

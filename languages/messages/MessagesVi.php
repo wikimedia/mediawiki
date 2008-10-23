@@ -2780,10 +2780,8 @@ Xin hãy xác nhận bạn thực sự muốn tạo lại trang này.",
 'recreate'            => 'Tạo ra lại',
 
 # action=purge
-'confirm_purge'        => 'Làm sạch vùng nhớ đệm của trang này?
-
-$1',
 'confirm_purge_button' => 'OK',
+'confirm-purge-top'    => 'Làm sạch vùng nhớ đệm của trang này?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← trang trước',

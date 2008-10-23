@@ -2464,10 +2464,8 @@ $5
 'recreate'            => 'फिरसे बनायें',
 
 # action=purge
-'confirm_purge'        => 'क्या आप यह पृष्ठ का कैश ख़ाली करने चाहिए?
-
-$1',
 'confirm_purge_button' => 'ओके',
+'confirm-purge-top'    => 'क्या आप यह पृष्ठ का कैश ख़ाली करने चाहिए?',
 
 # Separators for various lists, etc.
 'semicolon-separator' => ';',

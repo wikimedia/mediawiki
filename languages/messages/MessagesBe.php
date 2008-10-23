@@ -2582,10 +2582,8 @@ $1
 'unit-pixel' => 'крпк',
 
 # action=purge
-'confirm_purge'        => 'Ці ачысціць кэш для гэтай старонкі?
-
-$1',
 'confirm_purge_button' => 'ОК',
+'confirm-purge-top'    => 'Ці ачысціць кэш для гэтай старонкі?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← папярэдняя старонка',

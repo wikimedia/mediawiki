@@ -2823,10 +2823,8 @@ Osı betti qaýta bastawın naqtı tilegeniñizdi quptañız.",
 'unit-pixel' => ' nükte',
 
 # action=purge
-'confirm_purge'        => 'Bul bettin bürkemesin tazartasız ba?
-
-$1',
 'confirm_purge_button' => 'Jaraýdı',
+'confirm-purge-top'    => 'Bul bettin bürkemesin tazartasız ba?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← aldıñğı betke',

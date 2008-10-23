@@ -2809,10 +2809,8 @@ Silakan konfirmasi jika Anda ingin membuat ulang halaman ini.",
 'recreate'            => 'Buat ulang',
 
 # action=purge
-'confirm_purge'        => "Hapus ''cache'' halaman ini?
-
-$1",
 'confirm_purge_button' => 'OK',
+'confirm-purge-top'    => "Hapus ''cache'' halaman ini?",
 
 # Multipage image navigation
 'imgmultipageprev' => '&larr; halaman sebelumnya',

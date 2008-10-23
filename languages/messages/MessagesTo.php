@@ -1177,10 +1177,8 @@ Kātaki fakapapauʻi te ke fie toe fatu ʻa e kupu ni.",
 'recreate'            => 'Toe fakatupu',
 
 # action=purge
-'confirm_purge'        => 'Fakaʻatā ko e fafaʻo ʻo e pēsí ni?
-
-$1',
 'confirm_purge_button' => 'Fai ā',
+'confirm-purge-top'    => 'Fakaʻatā ko e fafaʻo ʻo e pēsí ni?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← Peesi ki muʻa',

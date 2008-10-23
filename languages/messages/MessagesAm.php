@@ -1930,10 +1930,8 @@ $3
 'recreate'            => 'እንደገና ይፈጠር',
 
 # action=purge
-'confirm_purge'        => 'የዚሁ ገጽ ካሽ (cache) ይጠረግ?
-
-$1',
 'confirm_purge_button' => 'እሺ',
+'confirm-purge-top'    => 'የዚሁ ገጽ ካሽ (cache) ይጠረግ?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← ፊተኛው ገጽ',

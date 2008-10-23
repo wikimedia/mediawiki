@@ -2878,10 +2878,8 @@ Kérlek erősítsd meg, hogy tényleg újra akarod-e írni a lapot.",
 'recreate'            => 'Újraírás',
 
 # action=purge
-'confirm_purge'        => 'Törlöd az oldal gyorsítótárban (cache) található változatát?
-
-$1',
 'confirm_purge_button' => 'OK',
+'confirm-purge-top'    => 'Törlöd az oldal gyorsítótárban (cache) található változatát?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← előző oldal',

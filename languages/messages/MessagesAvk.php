@@ -2120,10 +2120,8 @@ This confirmation code will expire at $4.',
 'recreate'            => 'Tolredura',
 
 # action=purge
-'confirm_purge'        => 'Palsexo ke batu bu zo gokarler ?
-
-$1',
 'confirm_purge_button' => 'En',
+'confirm-purge-top'    => 'Palsexo ke batu bu zo gokarler ?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← abduebu',

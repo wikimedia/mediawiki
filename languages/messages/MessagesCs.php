@@ -2904,10 +2904,8 @@ Opravdu si přejete znovu tuto stránku založit?',
 'recreate'            => 'Znovu založit',
 
 # action=purge
-'confirm_purge'        => 'Aktualizovat cachovanou verzi této stránky?
-
-$1',
 'confirm_purge_button' => 'OK',
+'confirm-purge-top'    => 'Aktualizovat cachovanou verzi této stránky?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← předchozí stránka',

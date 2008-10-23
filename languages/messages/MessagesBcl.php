@@ -1880,10 +1880,8 @@ Ikonpirmar tabi na talagang gusto mong gibohon giraray ining pahina.",
 'recreate'            => 'Gibohón giraray',
 
 # action=purge
-'confirm_purge'        => 'Halîon an an aliho kaining páhina?
-
-$1',
 'confirm_purge_button' => 'Sige',
+'confirm-purge-top'    => 'Halîon an an aliho kaining páhina?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← nakaaging pahina',

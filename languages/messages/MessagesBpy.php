@@ -903,10 +903,8 @@ $messages = array(
 'confirmemail_loggedin'   => 'তর ই-মেইল ঠিকানাহার লেপকরানিহান চুমিল।',
 
 # action=purge
-'confirm_purge'        => 'পাতা এহানর ক্যাশহান ঙক্ষি করানি মনারতা? 
-
-$1',
 'confirm_purge_button' => 'চুমিসে',
+'confirm-purge-top'    => 'পাতা এহানর ক্যাশহান ঙক্ষি করানি মনারতা?',
 
 # Auto-summaries
 'autoredircomment' => '[[$1]]-ত যানার বারো-র্নিদেশ করানি ইল',

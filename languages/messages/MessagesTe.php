@@ -2527,10 +2527,8 @@ $1
 'recreate'            => 'మళ్లీ సృష్టించు',
 
 # action=purge
-'confirm_purge'        => 'ఈ పేజీ యొక్క పాత కాపీని తొలగించమంటారా?
-
-$1',
 'confirm_purge_button' => 'సరే',
+'confirm-purge-top'    => 'ఈ పేజీ యొక్క పాత కాపీని తొలగించమంటారా?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← మునుపటి పేజీ',

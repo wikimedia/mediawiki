@@ -2859,10 +2859,8 @@ $1
 'unit-pixel' => ' نۇكتە',
 
 # action=purge
-'confirm_purge'        => 'بۇل بەتتىن بۇركەمەسىن تازارتاسىز با?
-
-$1',
 'confirm_purge_button' => 'جارايدى',
+'confirm-purge-top'    => 'بۇل بەتتىن بۇركەمەسىن تازارتاسىز با?',
 
 # Separators for various lists, etc.
 'semicolon-separator' => '؛&#32;',

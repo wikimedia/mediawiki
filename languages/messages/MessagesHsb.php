@@ -2636,8 +2636,8 @@ Prošu potwjerdź, zo chceš tutu stronu woprawdźe znowa wutworić.",
 'recreate'            => 'Znowa wutworić',
 
 # action=purge
-'confirm_purge'        => 'Pufrowak strony wuprózdnić? $1',
 'confirm_purge_button' => 'W porjadku',
+'confirm-purge-top'    => 'Pufrowak strony wuprózdnić?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← předchadna strona',

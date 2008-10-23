@@ -2438,10 +2438,8 @@ Potwjerdź chęć wćepańo nazod tygo artikla.",
 'recreate'            => 'Wćepej nazod',
 
 # action=purge
-'confirm_purge'        => 'Wyčyśćić pamjyńć podrynčnům do tyi zajty?
-
-$1',
 'confirm_purge_button' => 'OK',
+'confirm-purge-top'    => 'Wyčyśćić pamjyńć podrynčnům do tyi zajty?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← popředńo zajta',

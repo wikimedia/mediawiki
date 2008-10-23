@@ -2969,10 +2969,8 @@ $1
 'recreate'            => 'بازایجاد',
 
 # action=purge
-'confirm_purge'        => 'پاک کردن نسخهٔ حافظهٔ نهانی (Cache) این صفحه را تأیید می‌کنید؟
-
-$1',
 'confirm_purge_button' => 'تأیید',
+'confirm-purge-top'    => 'پاک کردن نسخهٔ حافظهٔ نهانی (Cache) این صفحه را تأیید می‌کنید؟',
 
 # Separators for various lists, etc.
 'semicolon-separator' => '؛&#32;',

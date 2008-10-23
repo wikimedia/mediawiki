@@ -1807,10 +1807,8 @@ $1
 'recreate'            => 'Partuaten manen',
 
 # action=purge
-'confirm_purge'        => 'Dalusan ti cache daytoy a panid?
-
-$1',
 'confirm_purge_button' => 'OK',
+'confirm-purge-top'    => 'Dalusan ti cache daytoy a panid?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← napalabas a panid',

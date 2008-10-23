@@ -2277,10 +2277,8 @@ $5
 'recreate'            => 'Аз нав созед',
 
 # action=purge
-'confirm_purge'        => 'Пок карадни нусхаи ҳофизаи ниҳонии (Cache) ин саҳифаро таъйид мекунед?
-
-$1',
 'confirm_purge_button' => 'Таъйид',
+'confirm-purge-top'    => 'Пок карадни нусхаи ҳофизаи ниҳонии (Cache) ин саҳифаро таъйид мекунед?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← саҳифаи пешин',

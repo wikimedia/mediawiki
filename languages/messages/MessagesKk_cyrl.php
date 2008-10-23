@@ -2825,10 +2825,8 @@ $1
 'unit-pixel' => ' нүкте',
 
 # action=purge
-'confirm_purge'        => 'Бұл беттін бүркемесін тазартасыз ба?
-
-$1',
 'confirm_purge_button' => 'Жарайды',
+'confirm-purge-top'    => 'Бұл беттін бүркемесін тазартасыз ба?',
 
 # Separators for various lists, etc.
 'semicolon-separator' => ';',

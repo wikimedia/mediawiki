@@ -2755,10 +2755,8 @@ Per favor confirma que tu realmente vole recrear iste pagina.",
 'recreate'            => 'Recrear',
 
 # action=purge
-'confirm_purge'        => 'Rader le cache de iste pagina?
-
-$1',
 'confirm_purge_button' => 'OK',
+'confirm-purge-top'    => 'Rader le cache de iste pagina?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← precedente pagina',

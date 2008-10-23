@@ -2143,10 +2143,8 @@ $1
 'recreate'            => 'পুনরায় তৈরি করো',
 
 # action=purge
-'confirm_purge'        => 'এই পাতার ক্যাশে পরিষ্কার করতে চান?
-
-$1',
 'confirm_purge_button' => 'ঠিক আছে',
+'confirm-purge-top'    => 'এই পাতার ক্যাশে পরিষ্কার করতে চান?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← পূর্ববর্তী পাতা',

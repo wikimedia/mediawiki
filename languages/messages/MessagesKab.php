@@ -1475,9 +1475,7 @@ G leɛnaya-k sentem belli ṣaḥḥ tebɣiḍ ad tɛiwedeḍ axlaq n usebter-ag
 'recreate'            => 'Ɛiwed xleq',
 
 # action=purge
-'confirm_purge' => 'Mḥu lkac n usebter-agi?
-
-$1',
+'confirm-purge-top' => 'Mḥu lkac n usebter-agi?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← asebter ssabeq',

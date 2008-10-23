@@ -2169,10 +2169,8 @@ $5
 'recreate'            => 'மீள உருவாக்கு',
 
 # action=purge
-'confirm_purge'        => 'இப்பக்கத்தின் இடைமாற்றை நீக்கவா?
-
-$1',
 'confirm_purge_button' => 'ஆம்',
+'confirm-purge-top'    => 'இப்பக்கத்தின் இடைமாற்றை நீக்கவா?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← முந்தைய பக்கம்',

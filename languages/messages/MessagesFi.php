@@ -2626,10 +2626,8 @@ Varmista, että haluat luoda sivun uudelleen.",
 'unit-pixel' => ' px',
 
 # action=purge
-'confirm_purge'        => 'Poistetaanko tämän sivun välimuistikopiot?
-
-$1',
 'confirm_purge_button' => 'Poista',
+'confirm-purge-top'    => 'Poistetaanko tämän sivun välimuistikopiot?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← edellinen sivu',

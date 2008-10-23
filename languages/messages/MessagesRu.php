@@ -2880,10 +2880,8 @@ $1
 'unit-pixel' => ' пикс.',
 
 # action=purge
-'confirm_purge'        => 'Очистить кеш этой страницы?
-
-$1',
 'confirm_purge_button' => 'OK',
+'confirm-purge-top'    => 'Очистить кеш этой страницы?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← предыдущая страница',

@@ -1775,10 +1775,8 @@ $5
 ביטע באשטעטיגט אז איר ווילט טאקע צוריקשטעלן דעם בלאט.",
 
 # action=purge
-'confirm_purge'        => 'אויסקלארן די קאשעי פון דעם בלאט?
-
-$1',
 'confirm_purge_button' => 'אויקעי',
+'confirm-purge-top'    => 'אויסקלארן די קאשעי פון דעם בלאט?',
 
 # Multipage image navigation
 'imgmultigo'   => 'גייט!',

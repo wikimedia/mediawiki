@@ -2561,10 +2561,8 @@ Ama hina kaspa, chiqapta kay p'anqatam musuqmanta kamayta munani nispa takyachiy
 'recreate'            => 'Musuqta paqarichiy',
 
 # action=purge
-'confirm_purge'        => "Kay p'anqap ''cache'' nisqa pakasqa hallch'an ch'usaqchasqa kachunchu?
-
-$1",
 'confirm_purge_button' => 'Arí niy',
+'confirm-purge-top'    => "Kay p'anqap ''cache'' nisqa pakasqa hallch'an ch'usaqchasqa kachunchu?",
 
 # Multipage image navigation
 'imgmultipageprev' => "← ñawpaq p'anqa",

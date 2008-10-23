@@ -2055,10 +2055,8 @@ $1
 'unit-pixel' => ' փիքսել',
 
 # action=purge
-'confirm_purge'        => 'Մաքրե՞լ այս էջի քեշը։
-
-$1',
 'confirm_purge_button' => 'OK',
+'confirm-purge-top'    => 'Մաքրե՞լ այս էջի քեշը։',
 
 # Multipage image navigation
 'imgmultipageprev' => '← նախորդ էջ',

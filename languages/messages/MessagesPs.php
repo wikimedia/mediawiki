@@ -1328,10 +1328,8 @@ $messages = array(
 'trackbackremove' => '([$1 ړنګول])',
 
 # action=purge
-'confirm_purge'        => 'په رښتيا د همدې مخ حافظه سپينول غواړۍ؟
-
-$1',
 'confirm_purge_button' => 'ښه/هو',
+'confirm-purge-top'    => 'په رښتيا د همدې مخ حافظه سپينول غواړۍ؟',
 
 # Multipage image navigation
 'imgmultipageprev' => '← پخوانی مخ',

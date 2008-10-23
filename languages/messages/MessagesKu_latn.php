@@ -1558,10 +1558,8 @@ Xêra xwe zanibe ku tu bi rastî dixwazê vê rûpelê dîsa çêkê",
 'recreate'            => 'Dîsa tomarbike',
 
 # action=purge
-'confirm_purge'        => 'Bîra vê rûpelê jêbîbe ?
-
-$1',
 'confirm_purge_button' => 'Temam',
+'confirm-purge-top'    => 'Bîra vê rûpelê jêbîbe ?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← rûpela berî vê',

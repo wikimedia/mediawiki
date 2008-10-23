@@ -2610,10 +2610,8 @@ $1
 'recreate'            => '新規作成する',
 
 # action=purge
-'confirm_purge'        => 'ページのキャッシュを破棄します。よろしいですか?
-
-$1',
 'confirm_purge_button' => 'はい',
+'confirm-purge-top'    => 'ページのキャッシュを破棄します。よろしいですか?',
 
 # Multipage image navigation
 'imgmultipageprev' => '&larr; 前ページ',

@@ -2518,10 +2518,8 @@ Egiaztapen kode hau $4 iraungiko da.',
 'recreate'            => 'Birsortu',
 
 # action=purge
-'confirm_purge'        => 'Orrialde honen katxea ezabatu?
-
-$1',
 'confirm_purge_button' => 'Ados',
+'confirm-purge-top'    => 'Orrialde honen katxea ezabatu?',
 
 # Multipage image navigation
 'imgmultipageprev' => '&larr; aurreko orrialdea',

@@ -2730,10 +2730,8 @@ $1
 'recreate'            => '重新整過',
 
 # action=purge
-'confirm_purge'        => '肯定要洗咗呢版個快取版本？
-
-$1',
 'confirm_purge_button' => '肯定',
+'confirm-purge-top'    => '肯定要洗咗呢版個快取版本？',
 
 # Multipage image navigation
 'imgmultipageprev' => '← 上一版',

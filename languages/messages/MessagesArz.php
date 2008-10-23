@@ -2987,10 +2987,8 @@ $1
 'unit-pixel' => 'بيكس',
 
 # action=purge
-'confirm_purge'        => 'امسح الكاش بتاع الصفحة دي؟
-
-$1',
 'confirm_purge_button' => 'طيب',
+'confirm-purge-top'    => 'امسح الكاش بتاع الصفحة دي؟',
 
 # Separators for various lists, etc.
 'semicolon-separator' => '؛&#32;',

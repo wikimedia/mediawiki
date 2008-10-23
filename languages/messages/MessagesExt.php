@@ -2157,10 +2157,8 @@ Pol favol, confirma si rialmenti quieis gorvel a crial la páhina.",
 'recreate'            => 'Gorvel a crial',
 
 # action=purge
-'confirm_purge'        => 'Esborral el caché desta páhina?
-
-$1',
 'confirm_purge_button' => 'Dalcuerdu',
+'confirm-purge-top'    => 'Esborral el caché desta páhina?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← páhina anteriol',

@@ -2950,10 +2950,8 @@ $1
 'recreate'            => 'יצירה מחדש',
 
 # action=purge
-'confirm_purge'        => 'לנקות את המטמון של דף זה?
-
-$1',
 'confirm_purge_button' => 'אישור',
+'confirm-purge-top'    => 'לנקות את המטמון של דף זה?',
 
 # Multipage image navigation
 'imgmultipageprev' => '→ לדף הקודם',

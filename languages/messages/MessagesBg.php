@@ -2677,10 +2677,8 @@ $1
 'recreate'            => 'Ново създаване',
 
 # action=purge
-'confirm_purge'        => 'Изчистване на складираното копие на страницата?
-
-$1',
 'confirm_purge_button' => 'Добре',
+'confirm-purge-top'    => 'Изчистване на складираното копие на страницата?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← предишна страница',

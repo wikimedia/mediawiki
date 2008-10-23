@@ -2166,10 +2166,8 @@ $1
 'recreate'            => '復',
 
 # action=purge
-'confirm_purge'        => '清謄本？
-
-$1',
 'confirm_purge_button' => '准',
+'confirm-purge-top'    => '清謄本？',
 
 # Separators for various lists, etc.
 'semicolon-separator' => '；',

@@ -2879,10 +2879,8 @@ Potvrdite namjeru vraćanja ovog članka.",
 'recreate'            => 'Vrati',
 
 # action=purge
-'confirm_purge'        => 'Isprazniti međuspremnik stranice?
-
-$1',
 'confirm_purge_button' => 'U redu',
+'confirm-purge-top'    => 'Isprazniti međuspremnik stranice?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← prethodna slika',

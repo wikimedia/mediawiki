@@ -1592,10 +1592,8 @@ Prosimo, potrdite, da jo resnično želite znova ustvariti.",
 'unit-pixel' => ' točk',
 
 # action=purge
-'confirm_purge'        => 'Osvežim predpomnjenje strani? 
- 
-$1',
 'confirm_purge_button' => 'Osveži',
+'confirm-purge-top'    => 'Osvežim predpomnjenje strani?',
 
 # Auto-summaries
 'autoredircomment' => 'preusmeritev na [[$1]]',
