@@ -174,6 +174,7 @@ The following extensions are migrated into MediaWiki 1.14:
   is not available due to lack of confirmed address or disabled preference
 * Special:Wanted templates special page added to display missing templates
   linked from articles
+* Make search matches bold only, not red as well
 
 === Bug fixes in 1.14 ===
 
