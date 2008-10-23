@@ -345,10 +345,6 @@ div.printfooter {
   display: none;
 }
 
-span.searchmatch {
-  font-weight: bold;
-}
-
 #preftoc {
     float: left;
     margin: 1em;

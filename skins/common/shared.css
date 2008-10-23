@@ -145,6 +145,11 @@ div.searchdidyoumean {
 	padding-top:1ex; 
 }
 
+.searchmatch {
+	color: red;
+	font-weight: bold;
+}
+
 /*
  * UserRights stuff
  */
@@ -292,4 +297,3 @@ div.mw-warning-with-logexcerpt {
 div.mw-warning-with-logexcerpt ul li {
 	font-size: 90%;
 }
-
