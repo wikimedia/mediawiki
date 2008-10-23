@@ -1428,6 +1428,8 @@ Note that using the navigation links will reset this column.',
 'searchmenu-exists'                => "* Page '''[[$1]]'''",
 'searchmenu-new'                   => "* Create page '''[[$1]]'''",
 'searchhelp-url'                   => 'Project:Searching',
+'searchmenu-badtitle'              => '* "$1" is not a valid title.
+* [[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
 'searchmenu'                       => '* [[Special:AllPages/$1|Index]]
 * [[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
 'searchprofile-articles'           => 'Pages',
