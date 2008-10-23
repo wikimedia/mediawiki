@@ -1558,6 +1558,7 @@ Uma página é considerada como de desambiguação se utilizar uma predefiniçã
 'wantedcategories'        => 'Categorias pedidas',
 'wantedpages'             => 'Páginas pedidas',
 'wantedfiles'             => 'Ficheiros desejados',
+'wantedtemplates'         => 'Predefinições pedidas',
 'mostlinked'              => 'Páginas com mais afluentes',
 'mostlinkedcategories'    => 'Categorias com mais membros',
 'mostlinkedtemplates'     => 'Predefinições com mais afluentes',

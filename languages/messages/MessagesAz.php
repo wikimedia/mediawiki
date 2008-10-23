@@ -561,10 +561,13 @@ Bu səhifə üçün silmə qeydləri aşağıda göstərilmişdir:",
 'imagelist_user' => 'İstifadəçi',
 
 # Image description page
-'imagelinks'                => 'İstifadə edilən səhifələr',
-'shareduploadwiki-linktext' => 'fayl təsvir səhifəsi',
-'noimage-linktext'          => 'faylı yüklə',
-'uploadnewversion-linktext' => 'Bu faylın yeni versiyasını yüklə',
+'imagelinks'                     => 'İstifadə edilən səhifələr',
+'shareduploadwiki-linktext'      => 'fayl təsvir səhifəsi',
+'shareduploadduplicate-linktext' => 'başqa fayl',
+'shareduploadconflict'           => 'Bu fayl ortaq mediya anbarındakı $1 faylı ilə eyni adı daşıyır.',
+'shareduploadconflict-linktext'  => 'başqa fayl',
+'noimage-linktext'               => 'faylı yüklə',
+'uploadnewversion-linktext'      => 'Bu faylın yeni versiyasını yüklə',
 
 # File deletion
 'filedelete'                  => '$1 adlı faylı sil',

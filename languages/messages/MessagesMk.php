@@ -914,17 +914,32 @@ $2',
 'logdelete-log-message'       => '$1 од $2 {{PLURAL:$2|настан|настани}}',
 
 # History merging
-'mergehistory-from'             => 'Изворна страница:',
-'mergehistory-into'             => 'Целна страница:',
-'mergehistory-submit'           => 'Спојување на ревизии',
-'mergehistory-autocomment'      => 'Споено [[:$1]] со [[:$2]]',
-'mergehistory-comment'          => 'Споено [[:$1]] со [[:$2]]: $3',
-'mergehistory-same-destination' => 'Изворната и целната страница треба да се различни',
+'mergehistory'                     => 'Спојување на истории на страница',
+'mergehistory-box'                 => 'Спојување на ревизии на две страници:',
+'mergehistory-from'                => 'Изворна страница:',
+'mergehistory-into'                => 'Целна страница:',
+'mergehistory-list'                => 'Можно спојување на историјата на уредување',
+'mergehistory-merge'               => 'Следните ревизии на [[:$1]] можат да се спојат во [[:$2]].
+Направете селекција само на оние ревизии креирани до специфицираното време.
+Предупредуваме дека ако ги користите навигационите врски селекцијата ќе биде изгубена.',
+'mergehistory-go'                  => 'Приказ на уредувања кои можат да се спојат',
+'mergehistory-submit'              => 'Спојување на ревизии',
+'mergehistory-empty'               => 'Нема ревизии кои можат да се спојат.',
+'mergehistory-success'             => '$3 {{PLURAL:$3|ревизија|ревизии}} на [[:$1]] успешно {{PLURAL:$3|е споена|се споени}} во [[:$2]].',
+'mergehistory-fail'                => 'Не е возможно да се направи спојување на историјата, проверете ја страницата и временските параметри.',
+'mergehistory-no-source'           => 'Изворната страница $1 не постои.',
+'mergehistory-no-destination'      => 'Целната страница $1 не постои.',
+'mergehistory-invalid-source'      => 'Изворната страница мора да има валиден наслов.',
+'mergehistory-invalid-destination' => 'Целната страница мора да има валиден наслов.',
+'mergehistory-autocomment'         => 'Споено [[:$1]] во [[:$2]]',
+'mergehistory-comment'             => 'Споено [[:$1]] во [[:$2]]: $3',
+'mergehistory-same-destination'    => 'Изворната и целната страница треба да се различни',
 
 # Merge log
 'mergelog'           => 'Дневник на спојувања',
-'pagemerge-logentry' => 'споено [[$1]] со [[$2]] (ревизии до $3)',
+'pagemerge-logentry' => 'споено [[$1]] во [[$2]] (ревизии до $3)',
 'revertmerge'        => 'Одвојување',
+'mergelogpagetext'   => 'Следи листа на скорешни спојувања на истории на страници.',
 
 # Diffs
 'history-title'           => 'Историја на ревизии за „$1“',
@@ -2581,8 +2596,8 @@ Variants for Chinese language
 'exif-exposureprogram-4' => 'Приоритет на затворачот',
 'exif-exposureprogram-5' => 'Уметничка програма (на база на нужната длабочина на полето)',
 'exif-exposureprogram-6' => 'Спортска програма (на база на што побрз затворач)',
-'exif-exposureprogram-7' => 'Портретен режим (за крупни кадри со неоцтра позадина)',
-'exif-exposureprogram-8' => 'Пејсажен режим (за слики на пејсажи со остра позадина)',
+'exif-exposureprogram-7' => 'Портретен начин (за фотографии одблизу со заматена позадина)',
+'exif-exposureprogram-8' => 'Пејсажен начин (за фотографии на пејсажи со остра позадина)',
 
 'exif-subjectdistance-value' => '$1 метри',
 
@@ -2845,6 +2860,8 @@ $1',
 'version-specialpages'     => 'Специјални страници',
 'version-variables'        => 'Променливи',
 'version-other'            => 'Друго',
+'version-hooks'            => 'Куки',
+'version-hook-name'        => 'Име на кука',
 'version-version'          => 'Верзија',
 'version-license'          => 'Лиценца',
 'version-software'         => 'Инсталиран софтвер',
@@ -2895,7 +2912,7 @@ $1',
 'intentionallyblankpage' => 'Оваа страница намерно е оставена празна',
 
 # External image whitelist
-'external_image_whitelist' => ' #Отсваи го овој ред точно каков што е<pre>
+'external_image_whitelist' => ' #Остави го овој ред точно каков што е<pre>
 #Put regular expression fragments (just the part that goes between the //) below
 #These will be matched with the URLs of external (hotlinked) images
 #Those that match will be displayed as images, otherwise only a link to the image will be shown

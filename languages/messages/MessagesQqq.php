@@ -781,6 +781,10 @@ It is also used by Whatlinkshere pages, where ($1) and ($2) are [[MediaWiki:What
 ($3) is made up in all cases of the various proposed numbers of results per page, e.g. "(20 | 50 | 100 | 250 | 500)".
 For Special pages, the navigation bar is prefixed by "([[MediaWiki:Page_first]] | [[MediaWiki:Page_last]])" (alphabetical order) or "([[MediaWiki:Histfirst]] | [[MediaWiki:Histlast]])" (date order).
 Viewprevnext is sometimes preceded by the [[MediaWiki:Showingresults]] or [[MediaWiki:Showingresultsnum]] message (for Special pages) or by the [[MediaWiki:Linkshere]] message (for Whatlinkshere pages).',
+'searchmenu-exists'        => 'An option shown in a menu beside search form offering a link to the existing page having the specified title (when using the default MediaWiki search engine).',
+'searchmenu-new'           => 'An option shown in a menu beside search form offering a red link to the not yet existing page having the specified title (when using the default MediaWiki search engine).',
+'searchhelp-url'           => 'Description: The URL of the search help page.
+{{doc-important|Do not change "Project:" part.}}',
 'search-result-size'       => 'Shown per line of a [[Special:Search|search result]]
 * $1 is the size of the page in bytes, but no need to add "byte" or similar as the unit is added by special function.
 * $2 is the sum of all words in this page.',
@@ -799,6 +803,7 @@ $1 is the relevance of this result in per cent.
 * $1–$2 is the range of results shown on the page
 * $3 is the total number of results from the search
 * $4 is the number of results shown on the page (equal to the size of the $1–$2 interval)',
+'search-nonefound'         => 'Message shown when a search returned no results (when using the default MediaWiki search engine).',
 'powersearch'              => 'Verb. Text of search button at the bottom of [[Special:Search]], for searching in selected namespaces.
 
 {{Identical|Advanced search}}',
@@ -1423,7 +1428,7 @@ Example: [[:Image:Addon-icn.png]]',
 
 # E-mail user
 'emailuser'       => 'Link in the sidebar',
-'emailpagetext'   => 'This is the text that is displayed above the e-mail form on Special:EmailUser.
+'emailpagetext'   => 'This is the text that is displayed above the e-mail form on [[Special:EmailUser]].
 
 Special:EmailUser appears when you click on the link "E-mail this user" in the sidebar, but only if there is an e-mail address in the recipient\'s user preferences. If there isn\'t then the message [[Mediawiki:Noemailtext]] will appear instead of Special:EmailUser.',
 'noemailtitle'    => 'The title of the message that appears instead of Special:EmailUser after clicking the "E-mail this user" link in the sidebar, if no e-mail can be sent to the user.',
@@ -1564,6 +1569,8 @@ Shown as subtitle of the protection form. $1 is the title of the page to be (un)
 * Example: See e.g. [[MediaWiki:Protect-expiry-options/nl]] if you still don't know how to do it.", # display1:time1,display2:time2,...
 'restriction-type'        => 'Used on [[Special:ProtectedPages]].',
 'restriction-level'       => 'Used on [[Special:ProtectedPages]].',
+'minimum-size'            => 'Used in [[Special:Protectedpages]] as a pair of radio buttons, with [[MediaWiki:Maximum-size]]. There is an input box to specify the minimum bites of the projected pages listed.',
+'maximum-size'            => 'Used in [[Special:Protectedpages]] as a pair of radio buttons, with [[MediaWiki:Minimum-size]]. There is an input box to specify the maximum bites of the projected pages listed.',
 
 # Restrictions (nouns)
 'restriction-edit'   => "Used on [[Special:ProtectedPages]]. Option in the 'permission' drop-down box.

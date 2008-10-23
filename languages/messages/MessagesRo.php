@@ -10,6 +10,7 @@
  * @author Laurap
  * @author Mihai
  * @author SCriBu
+ * @author Silviubogan
  * @author Urhixidur
  * @author לערי ריינהארט
  */
@@ -393,6 +394,8 @@ pe titlul secţiunii (JavaScript)',
 'editsection'             => 'modifică',
 'editold'                 => 'modifică',
 'viewsourceold'           => 'vizualizează sursa',
+'editlink'                => 'modifică',
+'viewsourcelink'          => 'vezi sursa',
 'editsectionhint'         => 'Modifică secţiunea: $1',
 'toc'                     => 'Cuprins',
 'showtoc'                 => 'arată',
@@ -753,6 +756,10 @@ Puteţi edita o pagină deja existentă sau puteţi să vă [[Special:UserLogin|
 'recreate-deleted-warn'            => "'''Atenție: Recreaţi o pagină care a fost ştearsă anterior.'''
 
 Pentru a verifica dacă recrearea paginii este într-adevăr oportună iată aici jurnalul ştergerilor:",
+'deletelog-fulllog'                => 'Vizualizează întreg jurnalul',
+'edit-gone-missing'                => 'Pagina nu s-a putut actualiza.
+Se pare că a fost ştearsă.',
+'edit-conflict'                    => 'Conflict de modificare.',
 'edit-already-exists'              => 'Pagina nouă nu a putut fi creată.
 Ea există deja.',
 
@@ -797,7 +804,7 @@ Motivul invocat de $3 este ''$2''",
 'page_last'              => 'ultim',
 'histlegend'             => 'Legendă: (actuală) = diferenţe faţă de versiunea curentă,
 (prec) = diferenţe faţă de versiunea precedentă, M = modificare minoră',
-'history-fieldset-title' => 'Caută în istoric',
+'history-fieldset-title' => 'Răsfoieşte istoricul',
 'deletedrev'             => '[şters]',
 'histfirst'              => 'Primele',
 'histlast'               => 'Ultimele',
@@ -899,31 +906,64 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'difference'              => '(Diferenţa dintre versiuni)',
 'lineno'                  => 'Linia $1:',
 'compareselectedversions' => 'Compară versiunile selectate',
+'visualcomparison'        => 'Comparare vizuală',
+'wikicodecomparison'      => 'Comparare a wikitext-ului',
 'editundo'                => 'anulează',
 'diff-multi'              => '({{PLURAL:$1|O revizie intermediară neafişată|$1 revizii intermediare neafişate}})',
 'diff-movedto'            => 'mutat la $1',
+'diff-styleadded'         => 'stilul $1 a fost adăugat',
+'diff-added'              => '$1 a fost adăugat',
+'diff-changedto'          => 'schimbat în $1',
 'diff-movedoutof'         => 'mutat din $1',
+'diff-styleremoved'       => 'stilul $1 a fost șters',
+'diff-removed'            => '$1 a fost șters',
 'diff-changedfrom'        => 'schimbat din $1',
 'diff-src'                => 'sursă',
+'diff-withdestination'    => 'cu destinaţia $1',
 'diff-with'               => '&#32;cu $1 $2',
+'diff-with-additional'    => '$1 $2',
 'diff-with-final'         => '&#32;şi $1 $2',
 'diff-width'              => 'lăţime',
 'diff-height'             => 'înălţime',
 'diff-p'                  => "un '''paragraf'''",
+'diff-blockquote'         => "un '''citat'''",
+'diff-h1'                 => "un '''antet (nivel 1)'''",
+'diff-h2'                 => "un '''antet (nivel 2)'''",
+'diff-h3'                 => "un '''antet (nivel 3)'''",
+'diff-h4'                 => "un '''antet (nivel 4)'''",
+'diff-h5'                 => "un '''antet (nivel 5)'''",
+'diff-pre'                => "un '''bloc preformatat'''",
+'diff-div'                => "o '''diviziune'''",
 'diff-ul'                 => "o '''listă neordonată'''",
 'diff-ol'                 => "o '''listă ordonată'''",
+'diff-li'                 => "un '''element de listă'''",
 'diff-table'              => "un '''tabel'''",
+'diff-tbody'              => "un '''conţinut al tabelului'''",
 'diff-tr'                 => "un '''rând'''",
 'diff-td'                 => "o '''celulă'''",
+'diff-th'                 => "un '''antet'''",
+'diff-br'                 => "o '''rupere de rând'''",
 'diff-hr'                 => "o '''bară orizontală'''",
+'diff-code'               => "un '''bloc de cod de calculator'''",
+'diff-dl'                 => "o '''listă de definiţii'''",
+'diff-dt'                 => "un '''termen de definiţie'''",
 'diff-dd'                 => "o '''definiţie'''",
+'diff-input'              => "o '''introducere'''",
 'diff-form'               => "un '''formular'''",
 'diff-img'                => "o '''imagine'''",
+'diff-span'               => "o '''parte'''",
+'diff-a'                  => "o '''legătură'''",
 'diff-i'                  => "'''cursiv'''",
 'diff-b'                  => "'''aldin'''",
+'diff-strong'             => "'''puternic'''",
+'diff-em'                 => "'''accentuat'''",
+'diff-font'               => "'''font'''",
+'diff-big'                => "'''mare'''",
+'diff-del'                => "'''şters'''",
 'diff-tt'                 => "'''lăţime fixă'''",
 'diff-sub'                => "'''indice inferior'''",
 'diff-sup'                => "'''indice superior'''",
+'diff-strike'             => "'''tăiat'''",
 
 # Search results
 'searchresults'             => 'Rezultatele căutării',
@@ -1128,6 +1168,30 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'rightslogentry' => 'a schimbat pentru $1 apartenenţa la un grup de la $2 la $3',
 'rightsnone'     => '(niciunul)',
 
+# Associated actions - in the sentence "You do not have permission to X"
+'action-read'           => 'citeşti această pagină',
+'action-edit'           => 'modifici această pagină',
+'action-createpage'     => 'creezi pagini',
+'action-createtalk'     => 'creezi pagini de discuţie',
+'action-createaccount'  => 'creezi acest cont de utilizator',
+'action-minoredit'      => 'marchezi această modificare ca minoră',
+'action-move'           => 'muţi această pagină',
+'action-move-subpages'  => 'muţi această pagină şi subpaginile sale',
+'action-upload'         => 'încarci acest fișier',
+'action-reupload'       => 'suprascrii fişierul existent',
+'action-upload_by_url'  => 'încarci acest fişier de la o adresă URL',
+'action-writeapi'       => 'utilizezi acest API',
+'action-delete'         => 'ștergi această pagină',
+'action-deleterevision' => 'ştergi această revizie',
+'action-deletedhistory' => 'vizualizezi istoricul şters al aceste pagini',
+'action-browsearchive'  => 'cauţi pagini şterse',
+'action-undelete'       => 'recuperezi această pagină',
+'action-suppressionlog' => 'vizualizezi acest jurnal privat',
+'action-protect'        => 'modifici nivelurile de protecţie pentru această pagină',
+'action-unwatchedpages' => 'vizualizezi lista de pagini neurmărite',
+'action-userrights'     => 'modifici toate drepturile de utilizator',
+'action-siteadmin'      => 'blochezi sau deblochezi baza de date',
+
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|modificare|modificări}}',
 'recentchanges'                     => 'Schimbări recente',
@@ -1232,7 +1296,7 @@ Dacă ai această imagine la rezoluţie mare încarc-o pe aceasta, altfel schimb
 'uploadedimage'               => 'a trimis [[$1]]',
 'overwroteimage'              => 'încărcat o versiune nouă a fişierului "[[$1]]"',
 'uploaddisabled'              => 'Ne pare rău, trimiterea de imagini este dezactivată.',
-'uploaddisabledtext'          => 'Încărcarea de fişiere este dezactivată pe acest wiki.',
+'uploaddisabledtext'          => 'Încărcările de fișiere sunt dezactivate.',
 'uploadscripted'              => 'Fişierul conţine HTML sau cod script care poate fi interpretat în mod eronat de un browser.',
 'uploadcorrupt'               => 'Fişierul este corupt sau are o extensie incorectă. Verifică fişierul şi trimite-l din nou.',
 'uploadvirus'                 => 'Fişierul conţine un virus! Detalii: $1',
@@ -1343,7 +1407,7 @@ O [[Special:WhatLinksHere/$2|listă completă]] este disponibilă.',
 'filedelete-submit'           => 'Şterge',
 'filedelete-success'          => "'''$1''' a fost şters.",
 'filedelete-success-old'      => "Versiunea fişierului '''[[Media:$1|$1]]''' din $2 $3 a fost ştearsă.",
-'filedelete-nofile'           => "'''$1''' nu există pe acest sit.",
+'filedelete-nofile'           => "'''$1''' nu există.",
 'filedelete-nofile-old'       => "Nu există nicio versiune arhivată a '''$1''' cu atributele specificate.",
 'filedelete-otherreason'      => 'Alt motiv (adiţional):',
 'filedelete-reason-otherlist' => 'Alt motiv',
@@ -1555,7 +1619,8 @@ Pot exista [[{{MediaWiki:Listgrouprights-helppage}}|informaţii adiţionale]] de
 'mailnologintext' => 'Trebuie să fii [[Special:UserLogin|autentificat]] şi să ai o adresă validă de e-mail în [[Special:Preferences|preferinţe]] pentru a trimite e-mail altor utilizatori.',
 'emailuser'       => 'Trimite e-mail',
 'emailpage'       => 'E-mail către utilizator',
-'emailpagetext'   => 'Dacă acest utilizator a introdus o adresă de e-mail validă în pagina de preferinţe atunci formularul de mai jos poate fi folosit pentru a-i trimite un mesaj prin e-mail. Adresa pe care ai introdus-o în [[Special:Preferences|pagina ta de preferinţe]] va apărea ca adresa de origine a mesajului, astfel încât destinatarul să îţi poată răspunde direct.',
+'emailpagetext'   => 'Poţi folosi formularul de mai jos pentru a trimite un e-mail acestui utilizator.
+Adresa de e-mail introdusă de tine în [[Special:Preferences|preferinţele de utilizator]] va apărea ca adresa expeditorului e-mail-ului, deci destinatarul va putea să îţi răspundă direct.',
 'usermailererror' => 'Obiectul de mail a dat eroare:',
 'defemailsubject' => 'E-mail {{SITENAME}}',
 'noemailtitle'    => 'Fără adresă de e-mail',
@@ -1871,7 +1936,7 @@ Precizaţi motivul blocării; de exemplu indicaţi paginile vandalizate de acest
 'ipb-edit-dropdown'               => 'Modifică motivele blocării',
 'ipb-unblock-addr'                => 'Deblochează $1',
 'ipb-unblock'                     => 'Deblochează un cont de utilizator sau o adresă IP',
-'ipb-blocklist-addr'              => 'Vezi blocările existente pentru $1',
+'ipb-blocklist-addr'              => 'Blocări existente pentru $1',
 'ipb-blocklist'                   => 'Vezi blocările existente',
 'unblockip'                       => 'Deblochează adresă IP',
 'unblockiptext'                   => 'Foloseşte chestionarul de mai jos pentru a restaura
@@ -2216,6 +2281,9 @@ $1',
 'previousdiff' => '← Diferenţa anterioară',
 'nextdiff'     => 'Diferenţa următoare →',
 
+# Visual comparison
+'visual-comparison' => 'Comparare vizuală',
+
 # Media information
 'mediawarning'         => "'''Atenţie''': Acest fişier poate conţine cod maliţios, executându-l, sistemul dvs. poate fi compromis.<hr />",
 'imagemaxsize'         => 'Limitează imaginile pe paginile de descriere la:',
@@ -2442,6 +2510,9 @@ Altele vor fi ascunse implicit.
 'exif-lightsource-24'  => 'Lumină artificială normată ISO în studio',
 'exif-lightsource-255' => 'Altă sursă de lumină',
 
+# Flash modes
+'exif-flash-mode-3' => 'modul automat',
+
 'exif-focalplaneresolutionunit-2' => 'ţoli',
 
 'exif-sensingmethod-1' => 'Nedefinit',
@@ -2583,6 +2654,9 @@ Vă rugăm să confirmaţi faptul că într-adevăr doriţi să recreaţi acest 
 # action=purge
 'confirm_purge'        => 'Doriţi să reîncărcaţi pagina? $1',
 'confirm_purge_button' => 'OK',
+
+# Separators for various lists, etc.
+'comma-separator' => ',&#32;',
 
 # Multipage image navigation
 'imgmultipageprev' => '← pagina anterioară',
