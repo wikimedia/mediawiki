@@ -1165,6 +1165,7 @@ $2',
 'viewprevnext'                     => 'צפו ב - ($1) ($2) ($3)',
 'searchmenu-exists'                => "*הדף '''[[$1]]'''",
 'searchmenu-new'                   => "*יצירת הדף '''[[$1]]'''",
+'searchhelp-url'                   => 'Project:חיפוש',
 'searchmenu'                       => '* [[Special:AllPages/$1|אינדקס]]
 * [[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
 'searchprofile-articles'           => 'דפים',
