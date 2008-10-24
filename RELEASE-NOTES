@@ -282,6 +282,7 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 5101) Image from Commons doesn't show up when searched in Wikipedia search box
 * (bug 14609) User's namespaces to be searched default not updated after adding new namespace
 * Purge form uses valid XHTML and (bug 8992) uses $wgRequest instead of $_SERVER
+* (bug 12764) Special:LonelyPages shows transcluded pages
 
 === API changes in 1.14 ===
 
