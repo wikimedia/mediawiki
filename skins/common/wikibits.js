@@ -104,22 +104,6 @@ if (wgBreakFrames) {
 	}
 }
 
-// for enhanced RecentChanges
-function toggleVisibility(_levelId, _otherId, _linkId) {
-	var thisLevel = document.getElementById(_levelId);
-	var otherLevel = document.getElementById(_otherId);
-	var linkLevel = document.getElementById(_linkId);
-	if (thisLevel.style.display == 'none') {
-		thisLevel.style.display = 'block';
-		otherLevel.style.display = 'none';
-		linkLevel.style.display = 'inline';
-	} else {
-		thisLevel.style.display = 'none';
-		otherLevel.style.display = 'inline';
-		linkLevel.style.display = 'none';
-	}
-}
-
 function showTocToggle() {
 	if (document.createTextNode) {
 		// Uses DOM calls to avoid document.write + XHTML issues
