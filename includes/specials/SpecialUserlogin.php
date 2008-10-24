@@ -379,18 +379,20 @@ class LoginForm {
 		}
 		
 		global $wgPasswordAttemptThrottle;
+
+		$throttleCount=0;
 		if ( is_array($wgPasswordAttemptThrottle) ) {
-			$key = wfMemcKey( 'password-throttle', wfGetIP(), md5( $this->mName ) );
+			$throttleKey = wfMemcKey( 'password-throttle', wfGetIP(), md5( $this->mName ) );
 			$count = $wgPasswordAttemptThrottle['count'];
 			$period = $wgPasswordAttemptThrottle['seconds'];
 			
 			global $wgMemc;
-			$cur = $wgMemc->get($key);
-			if ( !$cur ) {
-				$wgMemc->add( $key, 1, $period ); // start counter
-			} else if ( $cur < $count ) {
-				$wgMemc->incr($key);
-			} else if ( $cur >= $count ) {
+			$throttleCount = $wgMemc->get($throttleKey);
+			if ( !$throttleCount ) {
+				$wgMemc->add( $throttleKey, 1, $period ); // start counter
+			} else if ( $throttleCount < $count ) {
+				$wgMemc->incr($throttleKey);
+			} else if ( $throttleCount >= $count ) {
 				return self::THROTTLED;
 			}
 		}
@@ -461,6 +463,11 @@ class LoginForm {
 		} else {
 			$wgAuth->updateUser( $u );
 			$wgUser = $u;
+
+			// Please reset throttle for successful logins, thanks!
+			if($throttleCount) {
+				$wgMemc->delete($throttleKey);
+			}
 
 			if ( $isAutoCreated ) {
 				// Must be run after $wgUser is set, for correct new user log
