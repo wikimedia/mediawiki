@@ -360,6 +360,7 @@ The following extensions are migrated into MediaWiki 1.14:
   works properly when multiple users are queried or a userprefix is used
 * (bug 16047) Added activeusers attribute to meta=siteinfo&siprop=statistics
   output
+* Added redirect resolution to action=parse
 
 === Languages updated in 1.14 ===
 
