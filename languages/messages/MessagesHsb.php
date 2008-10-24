@@ -932,6 +932,8 @@ Zawěsć, zo tuta změna stawiznisku kontinuitu strony wobchowuje.',
 'searchmenu-exists'                => "* Strona '''[[$1]]'''",
 'searchmenu-new'                   => "* Stronu '''[[$1]]''' wutworić",
 'searchhelp-url'                   => 'Project:Pytanje',
+'searchmenu-badtitle'              => '* "$1" płaćiwy titul njeje.
+* [[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
 'searchmenu'                       => '* [[Special:AllPages/$1|Indeks]]
 * [[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
 'searchprofile-articles'           => 'Strony',
@@ -1476,7 +1478,7 @@ Slědowaca lisćina pokazuje jenož {{PLURAL:$1|prěni wotkaz strony|prěnjej $1
 'nviews'                  => '$1 {{PLURAL:$1|jedyn wopyt|wopytaj|wopyty|wopytow}}',
 'specialpage-empty'       => 'Tuchwilu žane zapiski.',
 'lonelypages'             => 'Wosyroćene strony',
-'lonelypagestext'         => 'Na slědowace strony druhe strony w tutym wikiju njewotkazuja:',
+'lonelypagestext'         => 'Slědowace strony njejsu wotkazowe cile druhich stronow abo njezapřijimaja so do druhich stronow w {{SITENAME}}.',
 'uncategorizedpages'      => 'Njekategorizowane strony',
 'uncategorizedcategories' => 'Njekategorizowane kategorije',
 'uncategorizedimages'     => 'Njekategorizowane dataje',
@@ -2656,6 +2658,7 @@ Prošu potwjerdź, zo chceš tutu stronu woprawdźe znowa wutworić.",
 # action=purge
 'confirm_purge_button' => 'W porjadku',
 'confirm-purge-top'    => 'Pufrowak strony wuprózdnić?',
+'confirm-purge-bottom' => 'Wuprózdnja pufrowak a wunuzuje zwobraznjenje aktualneje wersije.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← předchadna strona',

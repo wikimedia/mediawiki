@@ -1000,6 +1000,8 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 'searchmenu-exists'                => "* Laman '''[[$1]]'''",
 'searchmenu-new'                   => "* Cipta laman '''[[$1]]'''",
 'searchhelp-url'                   => 'Project:Gelintar',
+'searchmenu-badtitle'              => '* Tajuk "$1" tidak sah.
+* [[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
 'searchmenu'                       => '* [[Special:AllPages/$1|Indeks]]
 * [[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
 'searchprofile-articles'           => 'Laman',
@@ -1524,7 +1526,7 @@ Anda boleh melihat [[Special:WhatLinksHere/$2|senarai penuh]].',
 'nviews'                  => 'Dilihat $1 kali',
 'specialpage-empty'       => 'Tiada keputusan bagi laporan ini.',
 'lonelypages'             => 'Laman yatim',
-'lonelypagestext'         => 'Laman-laman berikut tidak dipaut dari laman lain dalam {{SITENAME}}.',
+'lonelypagestext'         => 'Laman-laman berikut tidak dipaut atau disertakan dari laman lain dalam {{SITENAME}}.',
 'uncategorizedpages'      => 'Laman tanpa kategori',
 'uncategorizedcategories' => 'Kategori tanpa kategori',
 'uncategorizedimages'     => 'Imej tanpa kategori',
@@ -2757,6 +2759,7 @@ Sila sahkan bahawa anda mahu mencipta semula laman ini.",
 # action=purge
 'confirm_purge_button' => 'OK',
 'confirm-purge-top'    => 'Kosongkan fail simpanan bagi laman ini?',
+'confirm-purge-bottom' => 'Kosongkan cache dan papar versi semasa.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← halaman sebelumnya',

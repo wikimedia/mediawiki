@@ -1044,9 +1044,12 @@ Stelle sicher, dass die Versionsgeschichte eines Artikels historisch korrekt ist
 'searchmenu-exists'                => "* Seite '''[[$1]]'''",
 'searchmenu-new'                   => "* Seite '''[[$1]]''' erstellen",
 'searchhelp-url'                   => 'Project:Suche',
+'searchmenu-badtitle'              => '* „$1“ ist kein gültiger Titel.
+* [[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
 'searchmenu'                       => '* [[Special:AllPages/$1|Alphabetischer Index]]
 * [[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
 'searchprofile-articles'           => 'Seiten',
+'searchprofile-project'            => 'Seiten/Projekt',
 'searchprofile-images'             => 'Dateien',
 'searchprofile-everything'         => 'Alles',
 'searchprofile-advanced'           => 'Erweitert',
@@ -1054,6 +1057,8 @@ Stelle sicher, dass die Versionsgeschichte eines Artikels historisch korrekt ist
 'searchprofile-project-tooltip'    => 'Suchen in $1',
 'searchprofile-images-tooltip'     => 'Nach Bildern suchen',
 'searchprofile-everything-tooltip' => 'Gesamten Inhalt durchsuchen (inklusive Diskussionsseiten)',
+'searchprofile-advanced-tooltip'   => 'Suche in weiteren Namensräumen',
+'prefs-search-nscustom'            => 'Suche in weiteren Namensräumen:',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 Wort|$2 Wörter}})',
 'search-result-score'              => 'Relevanz: $1 %',
 'search-redirect'                  => '(Weiterleitung $1)',
@@ -2830,6 +2835,7 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 # action=purge
 'confirm_purge_button' => 'OK',
 'confirm-purge-top'    => 'Diese Seite aus dem Server-Cache löschen?',
+'confirm-purge-bottom' => 'Leert den Cache einer Seite und erzwingt die Anzeige der aktuellen Version.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← vorige Seite',

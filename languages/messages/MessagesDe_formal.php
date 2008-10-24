@@ -24,7 +24,6 @@ $messages = array(
 'mainpagedocfooter' => 'Hilfe zur Benutzung und Konfiguration der Wiki-Software finden Sie im [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch].
 
 == Starthilfen ==
-
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Liste der Konfigurationsvariablen]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki-FAQ]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailingliste neuer MediaWiki-Versionen]',

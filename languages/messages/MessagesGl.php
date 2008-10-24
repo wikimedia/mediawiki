@@ -987,6 +987,8 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 'searchmenu-exists'                => "* Páxina \"'''[[\$1]]'''\"",
 'searchmenu-new'                   => "* Crear a páxina \"'''[[\$1]]'''\"",
 'searchhelp-url'                   => 'Project:Procura',
+'searchmenu-badtitle'              => '* "$1" non é un título válido.
+* [[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
 'searchmenu'                       => '* [[Special:AllPages/$1|Índice]]
 * [[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
 'searchprofile-articles'           => 'Páxinas',
@@ -1544,7 +1546,7 @@ Unha páxina trátase como páxina de homónimos cando nela se usa un modelo que
 'nviews'                  => 'vista {{PLURAL:$1|unha vez|$1 veces}}',
 'specialpage-empty'       => 'Non hai resultados para o que solicitou.',
 'lonelypages'             => 'Páxinas orfas',
-'lonelypagestext'         => 'As seguintes páxinas están illadas, non están enlazadas desde outras páxinas de {{SITENAME}}.',
+'lonelypagestext'         => 'As seguintes páxinas non teñen ningunha ligazón que apunte cara a ela noutra páxina de {{SITENAME}}.',
 'uncategorizedpages'      => 'Páxinas sen categorías',
 'uncategorizedcategories' => 'Categorías sen categorías',
 'uncategorizedimages'     => 'Ficheiros sen categorizar',
@@ -2765,6 +2767,7 @@ Por favor confirme que realmente quere crear o artigo de novo.",
 # action=purge
 'confirm_purge_button' => 'Si',
 'confirm-purge-top'    => 'Está seguro de que desexa limpar a memoria caché desta páxina?',
+'confirm-purge-bottom' => 'Ao purgar unha páxina, límpase a memoria caché e isto obriga tamén a que apareza a versión máis recente da páxina.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← páxina anterior',

@@ -1098,6 +1098,9 @@ $2',
 'viewprevnext'                     => 'Паказаць ($1) ($2) ($3)',
 'searchmenu-exists'                => "* Старонка '''[[$1]]'''",
 'searchmenu-new'                   => "* Стварыць старонку '''[[$1]]'''",
+'searchhelp-url'                   => 'Project:Пошук',
+'searchmenu-badtitle'              => '* «$1» — няслушная назва.
+* [[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
 'searchmenu'                       => '*[[Special:AllPages/$1|Індэкс]]
 *[[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
 'searchprofile-articles'           => 'Старонкі',
@@ -2697,6 +2700,7 @@ $1',
 
 'exif-lightsource-0'   => 'Невядомая',
 'exif-lightsource-1'   => 'Дзённае сьвятло',
+'exif-lightsource-2'   => 'Люмінісцэнтная',
 'exif-lightsource-4'   => 'Успышка',
 'exif-lightsource-11'  => 'Цень',
 'exif-lightsource-255' => 'Іншая крыніца сьвятла',

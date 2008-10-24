@@ -1058,6 +1058,8 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 'searchmenu-exists'                => "*Page '''[[$1]]'''",
 'searchmenu-new'                   => "*Créer la page '''[[$1]]'''",
 'searchhelp-url'                   => 'Project:Recherche',
+'searchmenu-badtitle'              => '* "$1" n\'est pas un nom valide de page.
+* [[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
 'searchmenu'                       => '*[[Special:AllPages/$1|Index]]
 *[[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
 'searchprofile-articles'           => 'Pages',
@@ -2833,6 +2835,7 @@ Veuillez confirmer que vous désirez recréer cet article.",
 # action=purge
 'confirm_purge_button' => 'Confirmer',
 'confirm-purge-top'    => 'Voulez-vous rafraîchir cette page (purger le cache) ?',
+'confirm-purge-bottom' => 'Purger une page vide le cache et force la dernière version à être affichée.',
 
 # Separators for various lists, etc.
 'semicolon-separator' => '&nbsp;;&#32;',
