@@ -1166,6 +1166,8 @@ $2',
 'searchmenu-exists'                => "*הדף '''[[$1]]'''",
 'searchmenu-new'                   => "*יצירת הדף '''[[$1]]'''",
 'searchhelp-url'                   => 'Project:חיפוש',
+'searchmenu-badtitle'              => '* "$1" אינה כותרת תקינה.
+* [[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
 'searchmenu'                       => '* [[Special:AllPages/$1|אינדקס]]
 * [[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
 'searchprofile-articles'           => 'דפים',
@@ -2952,6 +2954,7 @@ $1
 # action=purge
 'confirm_purge_button' => 'אישור',
 'confirm-purge-top'    => 'לנקות את המטמון של דף זה?',
+'confirm-purge-bottom' => 'ניקוי המטמון של דף גורם לגרסה החדשה ביותר להופיע.',
 
 # Multipage image navigation
 'imgmultipageprev' => '→ לדף הקודם',
