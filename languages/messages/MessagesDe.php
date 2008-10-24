@@ -1043,6 +1043,7 @@ Stelle sicher, dass die Versionsgeschichte eines Artikels historisch korrekt ist
 'viewprevnext'                     => 'Zeige ($1) ($2) ($3)',
 'searchmenu-exists'                => "* Seite '''[[$1]]'''",
 'searchmenu-new'                   => "* Seite '''[[$1]]''' erstellen",
+'searchhelp-url'                   => 'Project:Suche',
 'searchmenu'                       => '* [[Special:AllPages/$1|Alphabetischer Index]]
 * [[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
 'searchprofile-articles'           => 'Seiten',

@@ -1140,6 +1140,7 @@ $2',
 'viewprevnext'                     => 'بص ($1) ($2) ($3)',
 'searchmenu-exists'                => "*الصفحة '''[[$1]]'''",
 'searchmenu-new'                   => "*أنشئ الصفحة '''[[$1]]'''",
+'searchhelp-url'                   => 'Project:بحث',
 'searchmenu'                       => '*[[Special:AllPages/$1|فهرس]]
 *[[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
 'searchprofile-articles'           => 'الصفحات',

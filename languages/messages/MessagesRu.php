@@ -1088,6 +1088,9 @@ $3 указал следующую причину: ''$2''",
 'viewprevnext'                     => 'Просмотреть ($1) ($2) ($3)',
 'searchmenu-exists'                => "* Страница '''[[$1]]'''",
 'searchmenu-new'                   => "* Создать страницу '''[[$1]]'''",
+'searchhelp-url'                   => 'Project:Поиск',
+'searchmenu-badtitle'              => '* «$1» — недопустимое название.
+* [[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
 'searchmenu'                       => '* [[Special:AllPages/$1|Индекс]]
 * [[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
 'searchprofile-articles'           => 'Страницы',
@@ -2882,6 +2885,7 @@ $1
 # action=purge
 'confirm_purge_button' => 'OK',
 'confirm-purge-top'    => 'Очистить кеш этой страницы?',
+'confirm-purge-bottom' => 'После очистки кэша страницы будет показана её последняя версия.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← предыдущая страница',

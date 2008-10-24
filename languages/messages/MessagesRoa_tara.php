@@ -476,6 +476,7 @@ Leggenda: (cur) = differenze cu 'a versiona corrende,
 'searchprofile-articles-tooltip' => "Cirche jndr'à $1",
 'searchprofile-project-tooltip'  => "Cirche jndr'à $1",
 'search-section'                 => '(sezione $1)',
+'search-interwiki-more'          => '(de cchiù)',
 'searchall'                      => 'tutte',
 'powersearch'                    => 'Ricerche avanzete',
 'powersearch-field'              => 'Cirche pe',
@@ -486,6 +487,7 @@ Leggenda: (cur) = differenze cu 'a versiona corrende,
 'qbsettings-none'   => 'Ninde',
 'skin-preview'      => 'Andeprime',
 'math'              => 'Math',
+'dateformat'        => "Formete d'a date",
 'saveprefs'         => 'Reggistre',
 'oldpassword'       => 'Vécchie passuord:',
 'newpassword'       => 'Nova passuord:',
@@ -497,6 +499,7 @@ Leggenda: (cur) = differenze cu 'a versiona corrende,
 'userrights-irreversible-marker' => '$1*',
 
 # Groups
+'group'       => 'Gruppe:',
 'group-user'  => 'Utinde',
 'group-bot'   => 'Bot',
 'group-sysop' => 'Sysop',
@@ -511,6 +514,10 @@ Leggenda: (cur) = differenze cu 'a versiona corrende,
 'grouppage-bot'        => '{{ns:project}}:Bot',
 'grouppage-sysop'      => '{{ns:project}}:Amministratore',
 'grouppage-bureaucrat' => '{{ns:project}}:Burocrate',
+
+# Rights
+'right-minoredit' => 'Signe le cangiaminde cumme stuedéche',
+'right-move'      => 'Spuéste le pàggene',
 
 # User rights log
 'rightslog'  => "Archivie de le diritte de l'utende",
@@ -589,6 +596,7 @@ Pàggene sus 'a [[Special:Watchlist|le Pàggene condrollete]] sonde in '''grasce
 
 # File reversion
 'filerevert-backlink' => '← $1',
+'filerevert-comment'  => 'Commende:',
 
 # File deletion
 'filedelete'          => 'Scangille $1',
@@ -613,7 +621,10 @@ Pàggene sus 'a [[Special:Watchlist|le Pàggene condrollete]] sonde in '''grasce
 'randomredirect' => 'Redirezionamende a uecchie',
 
 # Statistics
-'statistics' => 'Statisteche',
+'statistics'              => 'Statisteche',
+'statistics-header-pages' => 'Pàgene de le statisteche',
+'statistics-header-edits' => 'Cange le statisteche',
+'statistics-header-views' => 'Vide le statisteche',
 
 'disambiguations' => 'Pàggene de disambiguazione',
 

@@ -1185,6 +1185,8 @@ Probeer een andere zoekopdracht.',
 'searchmenu-exists'                => "* Pagina '''[[$1]]'''",
 'searchmenu-new'                   => "* Pagina '''[[$1]]''' aanmaken",
 'searchhelp-url'                   => 'Project:Zoeken',
+'searchmenu-badtitle'              => '* "$1" is geen geldige paginanaam.
+* [[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
 'searchmenu'                       => '* [[Special:AllPages/$1|Index]]
 * [[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
 'searchprofile-articles'           => "Pagina's",
@@ -1197,6 +1199,7 @@ Probeer een andere zoekopdracht.',
 'searchprofile-images-tooltip'     => 'Zoeken naar bestanden',
 'searchprofile-everything-tooltip' => "Alle inhoud doorzoeken (inclusief overlegpagina's)",
 'searchprofile-advanced-tooltip'   => 'Zoeken in aangegeven naamruimten',
+'prefs-search-nsdefault'           => 'Zoeken met standaardinstellingen:',
 'prefs-search-nscustom'            => 'Zoeken in aangegeven naamruimten:',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 woord|$2 woorden}})',
 'search-result-score'              => 'Relevantie: $1%',
@@ -3030,6 +3033,7 @@ Bevestig dat u de pagina opnieuw wilt aanmaken.",
 # action=purge
 'confirm_purge_button' => 'OK',
 'confirm-purge-top'    => 'De cache van deze pagina legen?',
+'confirm-purge-bottom' => 'Het opschonen van de cache zorgt ervoor dat de meest recente versie van een pagina wordt weergegeven.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← vorige pagina',

@@ -1116,6 +1116,9 @@ Se till att sidhistorikens kontinuitet behålls när du sammanfogar historik.',
 'viewprevnext'                     => 'Visa ($1) ($2) ($3)',
 'searchmenu-exists'                => "*Sidan '''[[$1]]'''",
 'searchmenu-new'                   => "*Skapa sidan '''[[$1]]'''",
+'searchhelp-url'                   => 'Project:Sökning',
+'searchmenu-badtitle'              => '* "$1" är inte en giltig titel.
+* [[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
 'searchmenu'                       => '*[[Special:AllPages/$1|Index]]
 *[[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
 'searchprofile-articles'           => 'Sidor',
@@ -2883,6 +2886,7 @@ Bekräfta att du verkligen vill återskapa sidan.",
 # action=purge
 'confirm_purge_button' => 'OK',
 'confirm-purge-top'    => 'Rensa denna sidas cache?',
+'confirm-purge-bottom' => 'Rensning av en sida tömmer cachen och tvingar fram den senaste versionen.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← föregående sida',
