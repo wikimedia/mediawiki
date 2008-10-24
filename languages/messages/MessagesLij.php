@@ -480,7 +480,7 @@ A razon dæta a l'è ''$2''",
 'viewpagelogs'        => "Veddi i log relativi a 'sta paggina.",
 'currentrev'          => 'Verscion attuâle',
 'revisionasof'        => 'Verscion do $1',
-'revision-info'       => 'Verscion do $1, outô: $2', # Additional available: $3: revision id
+'revision-info'       => 'Verscion do $1, outô: $2', # Additionally available: $3: revision id
 'previousrevision'    => '← Verscion meno reçente',
 'nextrevision'        => 'Revixon ciû nêuva →',
 'currentrevisionlink' => 'Ûrtima revixon',
@@ -787,7 +787,7 @@ Ti te peu strinza a vista se ti te çerni un tipo de registro, un nomme de un ut
 da [[User:$2|$2]] ([[User talk:$2|Ciæti]]); quarche âtro 
 o l'à cangiâ ò o l'è zà tornòu inderê.
 L'ûrtimo cangiamento o ghe l'à fæto [[User:$3|$3]] ([[User talk:$3|Ciæti]]).",
-'revertpage'    => 'E modificaçioin de [[Special:Contributions/$2|$2]] ([[User talk:$2|Ciæti]]) son stæte eliminæ; riportæ a verscion de primma de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'    => 'E modificaçioin de [[Special:Contributions/$2|$2]] ([[User talk:$2|Ciæti]]) son stæte eliminæ; riportæ a verscion de primma de [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 
 # Protect
 'protectlogpage'              => 'Protessioîn',

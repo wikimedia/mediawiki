@@ -788,7 +788,7 @@ $2',
 'currentrev'             => 'هنوکین بازبینی',
 'currentrev-asof'        => 'هنوکین بازبینی چه $1',
 'revisionasof'           => 'بازبینی په عنوان $1',
-'revision-info'          => 'بازبینی په داب $1 توسط $2', # Additional available: $3: revision id
+'revision-info'          => 'بازبینی په داب $1 توسط $2', # Additionally available: $3: revision id
 'previousrevision'       => '←پیش ترین نسخه',
 'nextrevision'           => 'نوکین بازبینی→',
 'currentrevisionlink'    => 'هنوکین بازبینی',
@@ -1807,7 +1807,7 @@ $NEWPAGE
 
 آهری اصلاح توسط [[User:$3|$3]] ([[User talk:$3|گپ کن]]).',
 'editcomment'      => 'نظر اصلاح ات:"<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => 'ترینت اصلاحات توسط  [[Special:Contributions/$2|$2]] ([[User talk:$2|گپ کن]])په آهری بازبینی گون [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'ترینت اصلاحات توسط  [[Special:Contributions/$2|$2]] ([[User talk:$2|گپ کن]])په آهری بازبینی گون [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'اصلاحات ترینگ بوتت گون $1;
 په آهری نسخه ترینگ بوتنت گون $2.',
 'sessionfailure'   => 'چوش جاه کیت که گون شمی نند  وارد بییگ مشکلی هست;

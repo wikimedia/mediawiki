@@ -635,7 +635,7 @@ La rason butà da $3 për ël blocagi a l'é staita: ''$2''",
 'nohistory'           => "La stòria dle version dë sta pàgina-sì a l'é pa trovasse.",
 'currentrev'          => "Versione dël dì d'ancheuj",
 'revisionasof'        => 'Revision $1',
-'revision-info'       => 'Revision al $1; $2', # Additional available: $3: revision id
+'revision-info'       => 'Revision al $1; $2', # Additionally available: $3: revision id
 'previousrevision'    => '←Version pì veja',
 'nextrevision'        => 'Revision pì neuve→',
 'currentrevisionlink' => 'vardé la version corenta',
@@ -1388,7 +1388,7 @@ faite da [[User:$2|$2]] ([[User talk:$2|Talk]]); Cheidun d'àutr a l'ha già mod
 
 L'ùltima modìfica a l'é staita faita da [[User:$3|$3]] ([[User talk:$3|Talk]]).",
 'editcomment'      => 'Ël coment dla modìfica a l\'era: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => "Gavà via le modìfiche dl'utent [[Special:Contributions/$2|$2]] ([[User_talk:$2|Talk]]); ël contnù a l'é stait tirà andarè a l'ùltima version dl'utent [[User:$1|$1]]", # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => "Gavà via le modìfiche dl'utent [[Special:Contributions/$2|$2]] ([[User_talk:$2|Talk]]); ël contnù a l'é stait tirà andarè a l'ùltima version dl'utent [[User:$1|$1]]", # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => "Modìfiche anulà da $1; tirà andré a l'ùltima version da $2.",
 'sessionfailure'   => "A-i son ëstaje dle gran-e con la session che a identìfica sò acess; ël sistema a l'ha nen eseguì l'ordin che a l'ha daje për precaussion. Che a torna andaré a la pàgina prima con ël boton \"andaré\" ëd sò programa ëd navigassion (browser), peuj che as carìa n'àutra vira costa pàgina-sì e che a preuva torna a fé lòn che vorìa fé.",
 

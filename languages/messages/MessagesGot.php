@@ -218,7 +218,7 @@ $messages = array(
 # History pages
 'currentrev'          => 'Nu máideins',
 'revisionasof'        => 'Gamelido us $1',
-'revision-info'       => 'Máideins fram $1 bi $2', # Additional available: $3: revision id
+'revision-info'       => 'Máideins fram $1 bi $2', # Additionally available: $3: revision id
 'previousrevision'    => '←Áiris Máideins',
 'nextrevision'        => 'Iftuma máideins→',
 'currentrevisionlink' => 'Numáideins',

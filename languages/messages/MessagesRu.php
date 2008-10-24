@@ -901,7 +901,7 @@ $3 указал следующую причину: ''$2''",
 'currentrev'             => 'Текущая версия',
 'currentrev-asof'        => 'Текущая версия на $1',
 'revisionasof'           => 'Версия $1',
-'revision-info'          => 'Версия от $1; $2', # Additional available: $3: revision id
+'revision-info'          => 'Версия от $1; $2', # Additionally available: $3: revision id
 'previousrevision'       => '← Предыдущая',
 'nextrevision'           => 'Следующая →',
 'currentrevisionlink'    => 'Текущая версия',
@@ -1916,7 +1916,7 @@ $NEWPAGE
 
 Последние изменения внёс [[User:$3|$3]] ([[User talk:$3|Обсуждение]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => 'Изменение было пояснено так: <i>«$1»</i>.', # only shown if there is an edit comment
-'revertpage'       => 'Правки [[Special:Contributions/$2|$2]] ([[User talk:$2|обсуждение]]) откачены к версии [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Правки [[Special:Contributions/$2|$2]] ([[User talk:$2|обсуждение]]) откачены к версии [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Откачены правки $1; возврат к версии $2.',
 'sessionfailure'   => 'Похоже, возникли проблемы с текущим сеансом работы;
 это действие было отменено в целях предотвращения «захвата сеанса».

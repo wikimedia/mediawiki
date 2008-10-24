@@ -939,7 +939,7 @@ $2',
 'currentrev'             => 'Τρέχουσα αναθεώρηση',
 'currentrev-asof'        => 'Παρούσα αναθεώρηση της $1',
 'revisionasof'           => 'Αναθεώρηση της $1',
-'revision-info'          => 'Έκδοση στις $1 υπό τον/την $2', # Additional available: $3: revision id
+'revision-info'          => 'Έκδοση στις $1 υπό τον/την $2', # Additionally available: $3: revision id
 'previousrevision'       => '&larr;Παλιότερη αναθεώρηση',
 'nextrevision'           => 'Νεώτερη αναθεώρηση&rarr;',
 'currentrevisionlink'    => 'εμφάνιση της τρέχουσας αναθεώρησης',
@@ -1781,7 +1781,7 @@ Tο σύστημα ειδοποίησης του {{SITENAME}}
 
 Τελευταία αλλαγή από το χρήστη ([[User:$3|$3]] ([[User talk:$3|Συζήτηση]]) | [[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => 'Το σχόλιο της επεξεργασίας ήταν: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => 'Ανάκληση των αλλαγών $2 (επιστροφή στην προηγούμενη αναθεώρηση $1)', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Ανάκληση των αλλαγών $2 (επιστροφή στην προηγούμενη αναθεώρηση $1)', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Ανεστραμμένες εκδόσεις από $1, αλλάχθηκαν στην προηγούμενη έκδοση από $2.',
 'sessionfailure'   => 'Υπάρχει πρόβλημα με τη σύνδεσή σας -η ενέργεια αυτή ακυρώθηκε προληπτικά για την αντιμετώπιση τυχόν πειρατείας συνόδου (session hijacking). Παρακαλoύμε πατήστε "Επιστροφή", ξαναφορτώστε τη σελίδα από την οποία φθάσατε εδώ και προσπαθήστε ξανά.',
 

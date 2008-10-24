@@ -631,7 +631,7 @@ An paghalì kan historial para sa pahinang ini yaon digdi para sa saimong komben
 'nohistory'           => 'Mayong paghirá nin uusipón sa pahinang ini.',
 'currentrev'          => 'Sa ngonyan na pagpakarháy',
 'revisionasof'        => 'Pagpakarháy sa $1',
-'revision-info'       => 'An pagpakarháy sa $1 ni $2', # Additional available: $3: revision id
+'revision-info'       => 'An pagpakarháy sa $1 ni $2', # Additionally available: $3: revision id
 'previousrevision'    => '←Mas lumang pagpakarhay',
 'nextrevision'        => 'Mas bàgong pagpakarháy→',
 'currentrevisionlink' => 'Sa ngonyan na pagpakarháy',
@@ -1269,7 +1269,7 @@ ni [[User:$2|$2]] ([[User talk:$2|Olay]]); may ibang parágamit na naghirá na o
 
 Huring hirá ni [[User:$3|$3]] ([[User talk:$3|Olay]]).',
 'editcomment'      => 'Ini an nakakaag na komentaryo sa paghirá: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => 'Binawî na mga paghirá kan [[Special:Contributions/$2|$2]] ([[User talk:$2|Magtaram]]); pigbalik sa dating bersyón ni [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Binawî na mga paghirá kan [[Special:Contributions/$2|$2]] ([[User talk:$2|Magtaram]]); pigbalik sa dating bersyón ni [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Binawî na mga paghirá ni $1; pigbalik sa dating bersyón ni $2.',
 'sessionfailure'   => "Garo may problema sa paglaog mo;
 kinanselár ining aksyón bilang sarong paglikay kontra sa ''session hijacking''.

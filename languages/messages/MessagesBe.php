@@ -711,7 +711,7 @@ $2',
 'currentrev'             => 'Актуальная версія',
 'currentrev-asof'        => 'Актуальная версія на $1',
 'revisionasof'           => 'Версія ад $1',
-'revision-info'          => 'Версія ад $1, аўтар $2', # Additional available: $3: revision id
+'revision-info'          => 'Версія ад $1, аўтар $2', # Additionally available: $3: revision id
 'previousrevision'       => '← Папярэдн. версія',
 'nextrevision'           => 'Навейшая версія →',
 'currentrevisionlink'    => 'Актуальная версія',
@@ -1681,7 +1681,7 @@ $NEWPAGE
 
 Аўтарства апошняй праўкі: [[User:$3|$3]] ([[User talk:$3|Размова]]).',
 'editcomment'      => 'Тлумачэнне праўкі: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => 'Праўкі аўтарства [[Special:Contributions/$2|$2]] ([[User talk:$2|размова]]) адкочаныя; вернута апошняя версія аўтарства [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Праўкі аўтарства [[Special:Contributions/$2|$2]] ([[User talk:$2|размова]]) адкочаныя; вернута апошняя версія аўтарства [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Адкочаны праўкі $1; вернута апошняя версія $2.',
 'sessionfailure'   => 'Магчыма, ёсць праблемы з вашым сеансам працы ў сістэме. Таму вам было адмоўлена ў выкананні дзеяння, каб засцерагчыся ад захопу сеанса. Націсніце "Назад", і перачытайце старонку, з якой вы сюды прыйшлі, тады паспрабуйце нанова.',
 

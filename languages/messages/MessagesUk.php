@@ -899,7 +899,7 @@ $3 зазначив наступну причину: ''$2''",
 'currentrev'             => 'Поточна версія',
 'currentrev-asof'        => 'Поточна версія на $1',
 'revisionasof'           => 'Версія $1',
-'revision-info'          => 'Версія від $1; $2', # Additional available: $3: revision id
+'revision-info'          => 'Версія від $1; $2', # Additionally available: $3: revision id
 'previousrevision'       => '← Старіша версія',
 'nextrevision'           => 'Новіша версія →',
 'currentrevisionlink'    => 'Поточна версія',
@@ -1888,7 +1888,7 @@ $NEWPAGE
 
 Останні редагування зробив [[User:$3|$3]] ([[User talk:$3|обговорення]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => 'Редагування прокоментовано так: <em>«$1»</em>.', # only shown if there is an edit comment
-'revertpage'       => 'Редагування користувача [[Special:Contributions/$2|$2]] ([[User talk:$2|обговорення]]) відкинуті до версії користувача [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Редагування користувача [[Special:Contributions/$2|$2]] ([[User talk:$2|обговорення]]) відкинуті до версії користувача [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Відкинуті редагування користувача $1; повернення до версії користувача $2.',
 'sessionfailure'   => 'Здається, виникли проблеми з поточним сеансом роботи;
 ця дія була скасована з метою попередити «захоплення сеансу».

@@ -734,7 +734,7 @@ A razón endicata por $3 ye ''$2''",
 'nohistory'              => "Ista pachina no tiene un istorial d'edizions.",
 'currentrev'             => 'Bersión autual',
 'revisionasof'           => "Bersión d'o $1",
-'revision-info'          => "Bersión d'o $1 feita por $2", # Additional available: $3: revision id
+'revision-info'          => "Bersión d'o $1 feita por $2", # Additionally available: $3: revision id
 'previousrevision'       => '← Bersión anterior',
 'nextrevision'           => 'Bersión siguient →',
 'currentrevisionlink'    => 'Beyer bersión autual',
@@ -1590,7 +1590,7 @@ Se beiga en $2 un rechistro d\'os borraus rezients.',
 
 A zaguer edizión la fazió [[User:$3|$3]] ([[User talk:$3|descusión]]|[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => 'O comentario d\'a edizión ye: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => "S'han esfeito as edizions de [[Special:Contributions/$2|$2]] ([[User talk:$2|Descusión]]); retornando t'a zaguera bersión editada por [[User:$1|$1]]", # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => "S'han esfeito as edizions de [[Special:Contributions/$2|$2]] ([[User talk:$2|Descusión]]); retornando t'a zaguera bersión editada por [[User:$1|$1]]", # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => "Esfeitas as edizions de $1; s'ha retornato á la zaguer bersión de $2.",
 'sessionfailure'   => 'Pareix que bi ha un problema con a suya sesión;
 s\'ha anulato ista aizión como mida de precura contra secuestros de sesión.

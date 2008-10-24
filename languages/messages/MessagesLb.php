@@ -776,7 +776,7 @@ Et däerfen net méi wéi $2 {{PLURAL:$2|Ufro|Ufroe}} sinn, aktuell {{PLURAL:$2|
 'currentrev'             => 'Aktuell Versioun',
 'currentrev-asof'        => 'Aktuell Versioun vum $1',
 'revisionasof'           => 'Versioun vum $1',
-'revision-info'          => 'Versioun vum $1 vum $2.', # Additional available: $3: revision id
+'revision-info'          => 'Versioun vum $1 vum $2.', # Additionally available: $3: revision id
 'previousrevision'       => '← Méi al Versioun',
 'nextrevision'           => 'Méi rezent Ännerung→',
 'currentrevisionlink'    => 'Aktuell Versioun',
@@ -1728,7 +1728,7 @@ een Aneren huet dëst entweder scho gemaach oder nei Ännerungen agedroen.
 
 Déi lescht Ännerung vun der Säit ass vum [[User:$3|$3]] ([[User talk:$3|Diskussioun]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => 'Ännerungskommentar: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => 'Ännerunge vum [[Special:Contributions/$2|Kontributioune]] ([[User talk:$2|Diskussioun]]) zréckgesat op déi lescht Versioun vum [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Ännerunge vum [[Special:Contributions/$2|Kontributioune]] ([[User talk:$2|Diskussioun]]) zréckgesat op déi lescht Versioun vum [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => "D'Ännerunge vum $1 goufen zréckgesat op déi lescht Versioun vum $2.",
 'sessionfailure'   => 'Et schéngt e Problem mat ärer Loginséance ze ginn;
 Dës Aktioun gouf aus Sécherheetsgrënn afgebrach, fir ze verhënneren datt är Séance eine piratéiert ka ginn.

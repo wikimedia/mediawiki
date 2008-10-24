@@ -498,7 +498,7 @@ Hie gesehsch ds Lösch-Logbuech vo dere Syte:",
 'viewpagelogs'        => 'Logbüecher für die Syten azeige',
 'currentrev'          => 'Itzigi Version',
 'revisionasof'        => 'Version vo $1',
-'revision-info'       => 'Alti Bearbeitig vom $1 dür $2', # Additional available: $3: revision id
+'revision-info'       => 'Alti Bearbeitig vom $1 dür $2', # Additionally available: $3: revision id
 'previousrevision'    => '← Vorderi Version',
 'nextrevision'        => 'Nächschti Version →',
 'currentrevisionlink' => 'Itzigi Version',
@@ -844,7 +844,7 @@ Im $2 het’s e Lischte vo de letschte Löschige.',
 'alreadyrolled'  => 'Cha d Änderig uf [[:$1]] wo [[User:$2|$2]] ([[User talk:$2|Talk]]) gmacht het nit zruckneh will des öbber anderscht scho gmacht het.
 
 Di letschti Änderig het [[User:$3|$3]] ([[User talk:$3|Talk]]) gmacht.',
-'revertpage'     => 'Rückgängig gmacht zuer letschte Änderig vo [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) mit de letzte version vo [[User:$1|$1]] wiederhergstellt', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'     => 'Rückgängig gmacht zuer letschte Änderig vo [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) mit de letzte version vo [[User:$1|$1]] wiederhergstellt', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 
 # Protect
 'protectlogpage'              => 'Syteschutz-Logbuech',

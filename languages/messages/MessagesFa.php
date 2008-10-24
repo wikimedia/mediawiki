@@ -1031,7 +1031,7 @@ $2',
 'currentrev'             => 'نسخهٔ فعلی',
 'currentrev-asof'        => 'نسخهٔ کنونی تا $1',
 'revisionasof'           => 'نسخهٔ $1',
-'revision-info'          => 'ُویرایش در تاریخ $1 توسط $2', # Additional available: $3: revision id
+'revision-info'          => 'ُویرایش در تاریخ $1 توسط $2', # Additionally available: $3: revision id
 'previousrevision'       => '→ نسخهٔ قدیمی‌تر',
 'nextrevision'           => 'نسخهٔ جدیدتر←',
 'currentrevisionlink'    => 'نمایش نسخهٔ فعلی',
@@ -2020,7 +2020,7 @@ $NEWPAGE
 
 آخرین ویرایش توسط [[User:$3|$3]] ([[User talk:$3|بحث]]).',
 'editcomment'      => 'توضیح ویرایش این بود: «<i>$1</i>».', # only shown if there is an edit comment
-'revertpage'       => 'ویرایش $2 واگردانده شد به آخرین تغییری که  $1 انجام داده بود', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'ویرایش $2 واگردانده شد به آخرین تغییری که  $1 انجام داده بود', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'ویرایش‌های $1 واگردانی شد؛ صفحه به ویرایش $2 برگردانده شد.',
 'sessionfailure'   => 'بنظر می‌رسد مشکلی در مورد نشست کاربری شما وجود دارد؛ عمل درخواست شده بعنوان اقدام پیشگیرانه در برابر ربوده‌شدن اطلاعات نشست کاربری، لغو شد. لطفاً دکمهٔ «بازگشت» را در مرورگر خود بفشارید و صفحه‌ای که از آن به اینجا رسیده‌اید را مجدداً فراخوانی کنید، سپس مجدداً سعی کنید.',
 

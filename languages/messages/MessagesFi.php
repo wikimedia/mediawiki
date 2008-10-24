@@ -804,7 +804,7 @@ Käyttäjän $3 antama syy on ''$2''",
 'currentrev'             => 'Nykyinen versio',
 'currentrev-asof'        => 'Nykyinen versio $1',
 'revisionasof'           => 'Versio $1',
-'revision-info'          => 'Versio hetkellä $1 – tehnyt $2', # Additional available: $3: revision id
+'revision-info'          => 'Versio hetkellä $1 – tehnyt $2', # Additionally available: $3: revision id
 'previousrevision'       => '← Vanhempi versio',
 'nextrevision'           => 'Uudempi versio →',
 'currentrevisionlink'    => 'Nykyinen versio',
@@ -1734,7 +1734,7 @@ Sivulla $2 on lista viimeaikaisista poistoista.',
 
 Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|keskustelu]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => 'Muokkauksen yhteenveto oli: <i>$1</i>.', # only shown if there is an edit comment
-'revertpage'       => 'Käyttäjän [[Special:Contributions/$2|$2]] ([[User talk:$2|keskustelu]]) muokkaukset kumottiin ja sivu palautettiin viimeisimpään käyttäjän [[User:$1|$1]] tekemään versioon.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Käyttäjän [[Special:Contributions/$2|$2]] ([[User talk:$2|keskustelu]]) muokkaukset kumottiin ja sivu palautettiin viimeisimpään käyttäjän [[User:$1|$1]] tekemään versioon.', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Käyttäjän ”$1” tekemät muokkaukset kumottiin ja artikkeli palautettiin käyttäjän $2 versioon.',
 'sessionfailure'   => 'Istuntosi kanssa on ongelma. Muutosta ei toteutettu varotoimena sessionkaappauksien takia. Käytä selaimen paluutoimintoa ja päivitä sivu, jolta tulit, ja yritä uudelleen.',
 

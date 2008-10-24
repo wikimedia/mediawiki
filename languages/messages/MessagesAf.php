@@ -761,7 +761,7 @@ Die rede verskaf deur $3 is ''$2''",
 'currentrev'             => 'Huidige wysiging',
 'currentrev-asof'        => 'Huidige wysiging per $1',
 'revisionasof'           => 'Wysiging soos op $1',
-'revision-info'          => 'Weergawe soos op $1 deur $2', # Additional available: $3: revision id
+'revision-info'          => 'Weergawe soos op $1 deur $2', # Additionally available: $3: revision id
 'previousrevision'       => '← Ouer weergawe',
 'nextrevision'           => 'Nuwer weergawe →',
 'currentrevisionlink'    => 'bekyk huidige weergawe',
@@ -1605,7 +1605,7 @@ Verwydering van die soort blaaie is beperk om ontwrigting van {{SITENAME}} te vo
 'rollbackfailed'   => 'Terugrol onsuksesvol',
 'cantrollback'     => 'Kan nie na verandering terug keer nie; die laaste bydraer is die enigste outer van hierdie bladsy.',
 'editcomment'      => 'Die wysigopsomming was: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => 'Wysigings deur [[Special:Contributions/$2|$2]] teruggerol na laaste weergawe deur $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Wysigings deur [[Special:Contributions/$2|$2]] teruggerol na laaste weergawe deur $1', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Wysigings deur $1 teruggerol; terugverander na laaste weergawe deur $2.',
 
 # Protect

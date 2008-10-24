@@ -580,7 +580,7 @@ $1',
 'currentrev'             => 'Τὸ νῦν',
 'currentrev-asof'        => 'Τρέχουσα ἀναθεώρησις μέχρι $1',
 'revisionasof'           => 'Τὰ ἐπὶ $1',
-'revision-info'          => 'Τὸ ἐπὶ $1 ὑπὸ $2', # Additional available: $3: revision id
+'revision-info'          => 'Τὸ ἐπὶ $1 ὑπὸ $2', # Additionally available: $3: revision id
 'previousrevision'       => '←Παλαιοτέρα ἀναθεώρησις',
 'nextrevision'           => 'Νεωτέρα ἀναθεώρησις→',
 'currentrevisionlink'    => 'Τὰ νῦν',
@@ -1382,7 +1382,7 @@ $1',
 'cantrollback'     => 'Μὴ δυνατὴ ἡ ἀναστροφὴ·
 ὁ ὕστατος ἐρανιστὴς ἐστὶ μόνον δημιουργὸς τῆσδε τῆς δέλτου.',
 'editcomment'      => 'Τὸ σχόλιον ἑπὶ τῆς μεταγραφῆς ἦν: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => 'Ἐπαναφέρειν μεταγραφὰς ὑπὸ [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) εἰς τὴν ἐσχάτην ἔκδοσιν ὑπὸ [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Ἐπαναφέρειν μεταγραφὰς ὑπὸ [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) εἰς τὴν ἐσχάτην ἔκδοσιν ὑπὸ [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Ἀναστρέφειν μεταγραφὰς ὑπὸ $1;
 ἐπαναφορὰ εἰς τὴν προτέραν ἔκδοσιν ὑπὸ $2.',
 

@@ -725,7 +725,7 @@ $3 mına böyle bir sebep belgiledi: ''$2''",
 'nohistory'              => 'Bu saifeniñ keçmiş versiyası yoq.',
 'currentrev'             => 'Al-azırki versiya',
 'revisionasof'           => 'Saifeniñ $1 tarihındaki alı',
-'revision-info'          => 'Saifeniñ $2 tarafından oluştırılğan $1 tarihındaki alı', # Additional available: $3: revision id
+'revision-info'          => 'Saifeniñ $2 tarafından oluştırılğan $1 tarihındaki alı', # Additionally available: $3: revision id
 'previousrevision'       => '← Evelki alı',
 'nextrevision'           => 'Soñraki alı →',
 'currentrevisionlink'    => 'eñ yañı alını köster',
@@ -1309,7 +1309,7 @@ yaqın zamanda yoq etilgenlerni körmek içün: $2.',
 'rollbackfailed' => 'keri aluv işlemi muvafaqiyetsiz',
 'cantrollback'   => 'Deñişiklikler keri alınamay, soñki deñiştirgen kişi saifeniñ tek bir müellifidir',
 'editcomment'    => 'Deñiştirme izaatı: "<i>$1</i>" edi.', # only shown if there is an edit comment
-'revertpage'     => '[[Special:Contributions/$2|$2]] ([[User talk:$2|muzakere]]) tarafından yapılğan deñişiklikler keri alınıp, [[User:$1|$1]] tarafından deñiştirilgen evelki versiya keri ketirildi.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'     => '[[Special:Contributions/$2|$2]] ([[User talk:$2|muzakere]]) tarafından yapılğan deñişiklikler keri alınıp, [[User:$1|$1]] tarafından deñiştirilgen evelki versiya keri ketirildi.', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 
 # Protect
 'protectlogpage'              => 'Qorçalav jurnalı',

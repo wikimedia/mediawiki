@@ -181,7 +181,7 @@ Wòmageteŋu agbugbɔ aŋlɔe o.',
 
 # History pages
 'revisionasof'        => 'Tataa le $1',
-'revision-info'       => 'Tataa le $1 si $2 wɔ', # Additional available: $3: revision id
+'revision-info'       => 'Tataa le $1 si $2 wɔ', # Additionally available: $3: revision id
 'previousrevision'    => '← Tata xoxoa',
 'nextrevision'        => 'Tata yeyea →',
 'currentrevisionlink' => 'Tata susuea',

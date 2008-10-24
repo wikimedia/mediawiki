@@ -252,7 +252,7 @@ Nyoë pat nakeuh log seunampôh nibak ôn nyoë:",
 'viewpagelogs'        => 'Eu log ôn nyoë',
 'currentrev'          => 'Geunantoë jinoë',
 'revisionasof'        => 'Gantoë tiëp $1',
-'revision-info'       => 'Geunantoë tiëp $1; $2', # Additional available: $3: revision id
+'revision-info'       => 'Geunantoë tiëp $1; $2', # Additionally available: $3: revision id
 'previousrevision'    => '←Geunantoë sigohlomjih',
 'nextrevision'        => 'Geunantoë lheuëh nyan→',
 'currentrevisionlink' => 'Geunantoë jinoë',

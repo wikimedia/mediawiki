@@ -694,7 +694,7 @@ Iske kaaran, jon ki $3 diis hai, ''$2'' hai",
 'currentrev'             => 'Abhi ke sansodhan',
 'currentrev-asof'        => 'Abhi ke badlao ii tarik tak $1',
 'revisionasof'           => '$1 ke badlao',
-'revision-info'          => '$2 ke badlao $1 tak', # Additional available: $3: revision id
+'revision-info'          => '$2 ke badlao $1 tak', # Additionally available: $3: revision id
 'previousrevision'       => '← Purana badlao',
 'nextrevision'           => 'Nawaa badlao→',
 'currentrevisionlink'    => 'Abhi ke badlao',

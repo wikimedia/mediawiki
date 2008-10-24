@@ -631,7 +631,7 @@ Bazeyena lazava ke $3 tir ''$2''.",
 'nohistory'           => 'Nedoy izvot va batu bu.',
 'currentrev'          => 'Noelaf siatos',
 'revisionasof'        => 'Siatos ba $1',
-'revision-info'       => 'Dimplekura va $1 gan $2', # Additional available: $3: revision id
+'revision-info'       => 'Dimplekura va $1 gan $2', # Additionally available: $3: revision id
 'previousrevision'    => '← Abdif siatos',
 'nextrevision'        => 'Radimif siatos →',
 'currentrevisionlink' => 'Wira va noelaf siatos',
@@ -1402,7 +1402,7 @@ Bazen bartiv tir tel ke zanisiko.',
 
 Ironokafa betara gan [[User:$3|$3]] ([[User talk:$3|Prilara]]) zo skuyur.',
 'editcomment'      => 'Vildeks va betara tiyir : <i>« $1 »</i>.', # only shown if there is an edit comment
-'revertpage'       => 'Dimplekuyun betakseem ke [[Special:Contributions/$2|$2]] ([[User talk:$2|Prilara]]); dim ironokaf siatos ke [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Dimplekuyun betakseem ke [[Special:Contributions/$2|$2]] ([[User talk:$2|Prilara]]); dim ironokaf siatos ke [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Dimplekun betaks yo gan $1; dimpira ko ironokaf siatos ke $2.',
 
 # Protect

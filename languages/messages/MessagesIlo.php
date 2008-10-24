@@ -550,7 +550,7 @@ Ti inted a rason ni $3 ket ''$2''",
 'nohistory'           => 'Awan ti pakasaritaan ti panangbaliw iti daytoy a panid.',
 'currentrev'          => 'Agdama a revision',
 'revisionasof'        => 'Panangbalbaliw sipud $1',
-'revision-info'       => 'Panangbaliw ni $2 sipud idi $1', # Additional available: $3: revision id
+'revision-info'       => 'Panangbaliw ni $2 sipud idi $1', # Additionally available: $3: revision id
 'previousrevision'    => '←Nadadaan a panangbalbaliw',
 'nextrevision'        => 'Nabarbaro a panangbalbaliw→',
 'currentrevisionlink' => 'kitaen ti agdama a revision',
@@ -1140,7 +1140,7 @@ Kitaen ti $2 para iti record dagiti naudi a naikkat.',
 'rollbacklink'     => 'isubli',
 'rollbackfailed'   => 'Napaay ti panangisubli',
 'editcomment'      => 'Ti komento ti panangedit ket: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => 'Naikkat ti panangbaliw ni [[Special:Contributions/$2|$2]] ([[User talk:$2|Pagtutungtongan]]), naisubli iti kaudian a version ni [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Naikkat ti panangbaliw ni [[Special:Contributions/$2|$2]] ([[User talk:$2|Pagtutungtongan]]), naisubli iti kaudian a version ni [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Naibabawi dagiti panagedit ni $1;
 naisubli manen iti naudi a version ni $2.',
 

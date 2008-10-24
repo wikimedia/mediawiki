@@ -401,7 +401,7 @@ Vide bbuene ce l'ha ccrejà sta pàgene, ce non ge sinde sicure vide l'archivie 
 'viewpagelogs'        => "Vide l'archivie pe sta pàgene",
 'currentrev'          => 'Versione de osce a die',
 'revisionasof'        => 'Versione de $1',
-'revision-info'       => "Versione scritte jndr'à $1 da $2", # Additional available: $3: revision id
+'revision-info'       => "Versione scritte jndr'à $1 da $2", # Additionally available: $3: revision id
 'previousrevision'    => '← Versione Vecchje',
 'nextrevision'        => 'Versione cchiù nova →',
 'currentrevisionlink' => 'Versione de mò',

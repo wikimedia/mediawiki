@@ -709,7 +709,7 @@ Mande ou byen si ou ap byen fè kreye li ankò toutbon (gade jounal paj sa a pou
 'nohistory'           => 'Istorik pou paj sa pa egziste ditou.',
 'currentrev'          => 'Vèsyon kounye a',
 'revisionasof'        => 'Vèsyon jou $1',
-'revision-info'       => 'Vèsyon pou $1 pa $2', # Additional available: $3: revision id
+'revision-info'       => 'Vèsyon pou $1 pa $2', # Additionally available: $3: revision id
 'previousrevision'    => '← Vèsyon presedan',
 'nextrevision'        => 'Vèsyon swivan →',
 'currentrevisionlink' => 'Vèsyon kounye a',

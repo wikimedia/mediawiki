@@ -635,7 +635,7 @@ Please report at [[Support]] if you are unable to properly translate this messag
 
 * $1 indicates the time of that revision and 
 * $2 the author of the revision
-* (optional) $3 is the revision ID', # Additional available: $3: revision id
+* (optional) $3 is the revision ID', # Additionally available: $3: revision id
 'currentrevisionlink'    => '{{Identical|Current revision}}',
 'cur'                    => 'Link in page history',
 'next'                   => 'Link in page history

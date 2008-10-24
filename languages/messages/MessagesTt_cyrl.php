@@ -531,7 +531,7 @@ $2',
 'viewpagelogs'        => 'Бу бит өчен журналларны карарга',
 'currentrev'          => 'Агымдагы юрама',
 'revisionasof'        => 'Юрама $1',
-'revision-info'       => 'Юрама: $1; $2', # Additional available: $3: revision id
+'revision-info'       => 'Юрама: $1; $2', # Additionally available: $3: revision id
 'previousrevision'    => '← Алдагы төзәтмәләр',
 'nextrevision'        => 'Чираттагы төзәтмәләр →',
 'currentrevisionlink' => 'Агымдагы юрама',

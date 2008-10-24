@@ -765,7 +765,7 @@ Razmotrite je li nastavljanje uređivanja ove stranice u skladu s pravilima. Za 
 'nohistory'              => 'Ne postoji istorija izmjena za ovu stranicu.',
 'currentrev'             => 'Trenutna revizija',
 'revisionasof'           => 'Revizija od $1',
-'revision-info'          => 'Izmjena od $1 korisnika $2', # Additional available: $3: revision id
+'revision-info'          => 'Izmjena od $1 korisnika $2', # Additionally available: $3: revision id
 'previousrevision'       => '←Starije izmjene',
 'nextrevision'           => 'Novija izmjena →',
 'currentrevisionlink'    => 'Trenutna verzija',
@@ -1189,7 +1189,7 @@ Pogledajte $2 za zapis o skorašnjim brisanjima.',
 'cantrollback'   => 'Ne može se vratiti izmjena; poslednji autor je ujedno i jedini.',
 'alreadyrolled'  => 'Ne može se vratiti poslednja izmjena [[:$1]] od korisnika [[User:$2|$2]] ([[User talk:$2|razgovor]]); neko drugi je već izmjenio ili vratio članak.  Poslednja izmjena od korisnika [[User:$3|$3]] ([[User talk:$3|razgovor]]).',
 'editcomment'    => 'Komentar izmjene je: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'     => 'Vraćene izmjene $2 na poslednju izmjenu korisnika $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'     => 'Vraćene izmjene $2 na poslednju izmjenu korisnika $1', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 
 # Protect
 'protectlogpage'              => 'Protokol zaključavanja',

@@ -550,7 +550,7 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'nohistory'           => 'Ку страницăн улшăнусен журналĕ çук.',
 'currentrev'          => 'Хальхи верси',
 'revisionasof'        => '$1 верси',
-'revision-info'       => '$1 версийĕ; $2', # Additional available: $3: revision id
+'revision-info'       => '$1 версийĕ; $2', # Additionally available: $3: revision id
 'previousrevision'    => '&larr;Малтанхи верси',
 'nextrevision'        => 'Çěнěрех верси→',
 'currentrevisionlink' => 'хальхи верси çине куç',

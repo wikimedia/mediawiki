@@ -691,7 +691,7 @@ $3(e)k emandako arrazoia: ''$2''",
 'currentrev'             => 'Oraingo berrikuspena',
 'currentrev-asof'        => '$1(e)an momentuko aldaketa',
 'revisionasof'           => '$1(e)ko berrikuspena',
-'revision-info'          => '$2(r)en berrikusketa, ordua: $1', # Additional available: $3: revision id
+'revision-info'          => '$2(r)en berrikusketa, ordua: $1', # Additionally available: $3: revision id
 'previousrevision'       => '←Berrikuspen zaharragoa',
 'nextrevision'           => 'Berrikuspen berriagoa→',
 'currentrevisionlink'    => 'Oraingo berrikuspena ikusi',
@@ -1606,7 +1606,7 @@ Laguntza:
 'cantrollback'     => 'Ezin da aldaketa desegin; erabiltzaile bakarrak hartu du parte.',
 'alreadyrolled'    => 'Ezin da [[User:$2|$2]](e)k ([[User talk:$2|Eztabaida]]) [[$1]](e)n egindako azken aldaketa desegin; beste norbaitek editatu du edo jada desegin du. Azken aldaketa [[User:$3|$3]](e)k ([[User talk:$3|Eztabaida]]) egin du.',
 'editcomment'      => 'Aldaketaren iruzkina: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => '$2ren aldaketak ezabatu dira, $1ren azken bertsiora itzuliz.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => '$2ren aldaketak ezabatu dira, $1ren azken bertsiora itzuliz.', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => '$1(r)en aldaketak desegin dira, $2(r)en azken bertsiora itzuliz.',
 'sessionfailure'   => 'Badirudi saioarekin arazoren bat dagoela; bandalismoak saihesteko ekintza hau ezeztatu egin da. Mesedez, nabigatzaileko "atzera" botoian klik egin, hona ekarri zaituen orrialde hori berriz kargatu, eta saiatu berriz.',
 

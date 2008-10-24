@@ -780,7 +780,7 @@ $1 เป็นผู้ดำเนินการบล็อกในคร�
 'currentrev'             => 'รุ่นปัจจุบัน',
 'currentrev-asof'        => 'รุ่นปัจจุบันของ $1',
 'revisionasof'           => 'การปรับปรุง เมื่อ $1',
-'revision-info'          => 'การปรับปรุง เมื่อ $1 โดย $2', # Additional available: $3: revision id
+'revision-info'          => 'การปรับปรุง เมื่อ $1 โดย $2', # Additionally available: $3: revision id
 'previousrevision'       => '←รุ่นก่อนหน้า',
 'nextrevision'           => 'รุ่นถัดไป→',
 'currentrevisionlink'    => 'รุ่นปัจจุบัน',
@@ -1674,7 +1674,7 @@ $NEWPAGE
 
 การแก้ไขล่าสุดจัดทำโดย [[User:$3|$3]] ([[User talk:$3|พูดคุย]])',
 'editcomment'      => 'ความเห็นโดย: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => 'ย้อนการแก้ไขของ [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) ไปยังรุ่นของ [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'ย้อนการแก้ไขของ [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) ไปยังรุ่นของ [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'ย้อนการแก้ไขของ $1 ไปยังรุ่นของ $2',
 'sessionfailure'   => 'ท่าทางจะมีปัญหาเกี่ยวการล็อกอินในช่วงเวลานี้ เกิดจากทางระบบป้องกันการลักลอบการขโมยล็อกอิน กรุณาย้อนกลับไปหน้าก่อนหน้า และลองโหลดใหม่อีกครั้ง',
 

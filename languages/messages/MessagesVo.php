@@ -707,7 +707,7 @@ Kod blokama fa el $3 pegivöl binon ''$2''",
 'nohistory'           => 'Pad at no labon redakamajenotemi.',
 'currentrev'          => 'Fomam anuik',
 'revisionasof'        => 'Fomam dätü $1',
-'revision-info'       => 'Fomam timü $1 fa el $2', # Additional available: $3: revision id
+'revision-info'       => 'Fomam timü $1 fa el $2', # Additionally available: $3: revision id
 'previousrevision'    => '←Fomam vönedikum',
 'nextrevision'        => 'Fomam nulikum→',
 'currentrevisionlink' => 'Fomam anuik',
@@ -1508,7 +1508,7 @@ Prudö! Moükam onik ba osäkädükon jäfidi nünodema: {{SITENAME}}.',
 
 Redakam lätik päjenükon fa geban: [[User:$3|$3]] ([[User talk:$3|Bespikapad]]).',
 'editcomment'      => 'Redakamaküpet äbinon: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => 'Redakams ela [[Special:Contributions/$2|$2]] ([[User talk:$2|Bespik]]) pegeükons; pad labon nu fomami ma redakam lätik ela [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Redakams ela [[Special:Contributions/$2|$2]] ([[User talk:$2|Bespik]]) pegeükons; pad labon nu fomami ma redakam lätik ela [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Redakams gebana: $1 pesädunons; pad pevotükon ad fomam lätik fa geban: $2.',
 
 # Protect

@@ -907,7 +907,7 @@ De deur $3 op-egeven rejen is ''$2''",
 'nohistory'           => 'Der bin gien eerdere versies van disse pagina.',
 'currentrev'          => 'Leste versie',
 'revisionasof'        => 'Versie op $1',
-'revision-info'       => 'Versie op $1 van $2', # Additional available: $3: revision id
+'revision-info'       => 'Versie op $1 van $2', # Additionally available: $3: revision id
 'previousrevision'    => '&larr; eerdere versie',
 'nextrevision'        => 'niejere versie &rarr;',
 'currentrevisionlink' => "versie zoas 't noen is",
@@ -1709,7 +1709,7 @@ Een aander hef disse wieziging al hersteld tot een veurige versie van disse pagi
 
 De leste bewarking is edaon deur [[User:$3|$3]] ([[User talk:$3|Overleeg]]).",
 'editcomment'      => 'De samenvatting was: <i>$1</i>', # only shown if there is an edit comment
-'revertpage'       => 'Wiezigingen deur [[Special:Contributions/$2|$2]] hersteld tot de versie nao de leste wieziging deur $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Wiezigingen deur [[Special:Contributions/$2|$2]] hersteld tot de versie nao de leste wieziging deur $1', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Wiezigingen van $1; weerummedreid naor de leste versie van $2.',
 'sessionfailure'   => 'Der is een prebleem mit joew anmeldsessie. De actie is stop-ezet uut veurzörg tegen een beveiligingsrisico (dat besteet uut \'t meugelijke "kraken" van disse sessie). Gao een pagina weerumme, laot disse pagina opniej en prebeer \'t nog es.',
 

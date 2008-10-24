@@ -641,7 +641,7 @@ $3-н тодорхойлсон шалтгаан нь ''$2''",
 'nohistory'           => 'Хуудсанд засвар хийсэн түүх байхгүй байна.',
 'currentrev'          => 'Одоогийн засвар',
 'revisionasof'        => '$1-ий байдлаарх засвар',
-'revision-info'       => '$1-ий байдлаарх $2 хэрэглэгчийн хийсэн засвар', # Additional available: $3: revision id
+'revision-info'       => '$1-ий байдлаарх $2 хэрэглэгчийн хийсэн засвар', # Additionally available: $3: revision id
 'previousrevision'    => '←Хуучны засвар',
 'nextrevision'        => 'Дараагийн засвар→',
 'currentrevisionlink' => 'Одоогийн засвар',
@@ -1395,7 +1395,7 @@ URL нь зөв болон сайт ажиллагаатай байгаа эсэ
 'alreadyrolled'    => '[[User:$2|$2]] ([[User talk:$2|Яриа]])-ын хийсэн [[$1]] дэх сүүлчийн засварыг буцааж чадахгүй байна; хэн нэг нь аль хэдийн уг хуудсыг засварласан буюу буцаасан байж болзошгүй. Сүүлчийн засварыг [[User:$3|$3]] ([[User talk:$3|Яриа]]) хийсэн.',
 'editcomment'      => 'Засварлаж байгаа санал хүсэлт нь: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|Яриа]]) хэрэглэгчийн засваруудыг;
-[[User:$1|$1]] хэрэглэгчийн үйлдсэн хамгийн сүүлийн хувилбар руу буцаалаа', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+[[User:$1|$1]] хэрэглэгчийн үйлдсэн хамгийн сүүлийн хувилбар руу буцаалаа', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => '$1-н өөрчлөлтүүдийг $2-н үйлдсэн сүүлийн хувилбар руу буцаалаа.',
 'sessionfailure'   => 'Таны нэвтрэлд алдаа гарсан бололтой;
 компьютерийн систем дэх мэдээллийг хууль бусаар авах явдлаас хамгаалах гэж үйлдэл цуцлагдсан байна

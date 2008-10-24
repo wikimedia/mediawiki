@@ -369,7 +369,7 @@ $1',
 'viewpagelogs'        => 'نشودادن نمایه ها سی ای صفحه',
 'currentrev'          => 'نسخه جاری',
 'revisionasof'        => 'اصلاح $1',
-'revision-info'       => 'یه نسخه اصلاح شده درتاریخ  $1 بوسیله $2', # Additional available: $3: revision id
+'revision-info'       => 'یه نسخه اصلاح شده درتاریخ  $1 بوسیله $2', # Additionally available: $3: revision id
 'previousrevision'    => '← اصلاح قبلی',
 'nextrevision'        => 'نسخه بعدی →',
 'currentrevisionlink' => 'نسخه جاری',

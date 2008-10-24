@@ -740,7 +740,7 @@ Le motivo que $3 dava es ''$2''",
 'currentrev'             => 'Revision actual',
 'currentrev-asof'        => 'Version actual in data del $1',
 'revisionasof'           => 'Revision del $1',
-'revision-info'          => 'Revision del $1 per $2', # Additional available: $3: revision id
+'revision-info'          => 'Revision del $1 per $2', # Additionally available: $3: revision id
 'previousrevision'       => '←Revision precedente',
 'nextrevision'           => 'Revision sequente→',
 'currentrevisionlink'    => 'Revision actual',
@@ -1771,7 +1771,7 @@ un altere persona ha ja modificate o revocate le pagina.
 
 Le ultime modification esseva facite per [[User:$3|$3]] ([[User talk:$3|discussion]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => 'Le commento del modification esseva: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => 'Reverteva modificationes per [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]]) al ultime version per [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Reverteva modificationes per [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]]) al ultime version per [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Revocava modificationes per $1;
 retornava al version per $2.',
 'sessionfailure'   => 'Il pare haber un problema con tu session de conto;

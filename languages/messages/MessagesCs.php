@@ -979,7 +979,7 @@ $3 uvádí toto zdůvodnění: ''$2''",
 'currentrev'             => 'Aktuální verze',
 'currentrev-asof'        => 'Aktuální verze z $1',
 'revisionasof'           => 'Verze z $1',
-'revision-info'          => 'Verze z $1; $2', # Additional available: $3: revision id
+'revision-info'          => 'Verze z $1; $2', # Additionally available: $3: revision id
 'previousrevision'       => '← Starší verze',
 'nextrevision'           => 'Novější verze →',
 'currentrevisionlink'    => 'zobrazit aktuální verzi',
@@ -1976,7 +1976,7 @@ Rady a kontakt:
 
 Poslední editaci této stránky provedl(a) [[User:$3|$3]] ([[User talk:$3|diskuse]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => 'Shrnutí editace bylo: <i>„$1“</i>.', # only shown if there is an edit comment
-'revertpage'       => 'Editace uživatele „$2“ vrácena do předchozího stavu, jehož autorem je „$1“.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Editace uživatele „$2“ vrácena do předchozího stavu, jehož autorem je „$1“.', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Editace uživatele $1 byla vrácena na poslední verzi od uživatele $2.',
 'sessionfailure'   => 'Zřejmě je nějaký problém s vaším přihlášením;
 vámi požadovaná činnost byla stornována jako prevence před neoprávněným přístupem.

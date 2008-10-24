@@ -638,7 +638,7 @@ $3-এর দেয়া কারণ হল ''$2''",
 'nohistory'           => 'এই পাতার কোন সম্পাদনার ইতিহাস নাই।',
 'currentrev'          => 'বর্তমান সংশোধন',
 'revisionasof'        => '$1 তারিখের সংশোধন',
-'revision-info'       => '$1-এ $2-এর করা সংশোধন', # Additional available: $3: revision id
+'revision-info'       => '$1-এ $2-এর করা সংশোধন', # Additionally available: $3: revision id
 'previousrevision'    => '←পুর্বের সংস্করণ',
 'nextrevision'        => 'পরবর্তী সংস্করণ→',
 'currentrevisionlink' => 'বর্তমান সংশোধন',
@@ -1320,7 +1320,7 @@ $NEWPAGE
 
 শেষ সম্পাদনা করেছেন [[User:$3|$3]] ([[User talk:$3|আলাপ]])।',
 'editcomment'      => 'সম্পাদনা মন্তব্যটি ছিল: "<i>$1</i>"।', # only shown if there is an edit comment
-'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User_talk:$2|আলাপ]]) এর সম্পাদিত সংস্করণ হতে [[User:$1|$1]] এর সম্পাদিত সর্বশেষ সংস্করণে ফেরত যাওয়া হয়েছে।', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User_talk:$2|আলাপ]]) এর সম্পাদিত সংস্করণ হতে [[User:$1|$1]] এর সম্পাদিত সর্বশেষ সংস্করণে ফেরত যাওয়া হয়েছে।', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => '$1-এর সম্পাদনাগুলি পূর্বাবস্থায় ফিরিয়ে নেওয়া হয়েছে; $2-এর করা শেষ সংস্করণে পাতাটি ফেরত নেওয়া হয়েছে।',
 'sessionfailure'   => 'আপনার লগ ইন সেশনে একটি সমস্যা হয়েছে বলে মনে হচ্ছে;
 সেশন হাইজ্যাক প্রতিরোধের উপায় হিসেবে এই কাজটি বাতিল করা হয়েছে।

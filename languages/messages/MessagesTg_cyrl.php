@@ -660,7 +660,7 @@ $1',
 'nohistory'           => 'Таърихи вироиш барои ин саҳифа вуҷуд надорад.',
 'currentrev'          => 'Вироишоти кунунӣ',
 'revisionasof'        => 'Нусха $1',
-'revision-info'       => 'Нусхаи вироиш $2 дар таърихи $1', # Additional available: $3: revision id
+'revision-info'       => 'Нусхаи вироиш $2 дар таърихи $1', # Additionally available: $3: revision id
 'previousrevision'    => '←Нусхаи кӯҳнатар',
 'nextrevision'        => 'Нусхаи навтарин→',
 'currentrevisionlink' => 'Намоиши нусхаи феълӣ',
@@ -1419,7 +1419,7 @@ $NEWPAGE
 
 Охирин вироиш аз тарафи [[User:$3|$3]] ([[User talk:$3|Баҳс]]) буд.',
 'editcomment'      => 'Тавзеҳи вироиш ин буд: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => 'Вироиши [[Special:Contributions/$2|$2]] ([[User talk:$2|Баҳс]]) вогардонида шуд ба охирин тағйире, ки [[User:$1|$1]] анҷом дода буд', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Вироиши [[Special:Contributions/$2|$2]] ([[User talk:$2|Баҳс]]) вогардонида шуд ба охирин тағйире, ки [[User:$1|$1]] анҷом дода буд', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Вироишҳои $1 вогардонӣ шуд; саҳифа ба вироиши $2 баргардонида шуд.',
 'sessionfailure'   => 'Ба назар мерасад, мушкилие дар мавриди нишасти корбарии шумо вуҷуд дорад; амали дархостшуда ба унвони иқдоми пешгирона дар баробари рабуда шудани иттилооти нишасти корбарӣ, лағв шуд. Лутфан тугмаи "бозгашт"-ро дар мурургари худ пахш кунед ва саҳифае, ки аз он инҷо расидаед муҷаддадан фарохонӣ кунед, сипас муҷаддадан боз саъй кунед.',
 

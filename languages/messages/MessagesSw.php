@@ -361,7 +361,7 @@ Kumbukumbu ya kufuta ukurasa huu linapatikana hapa kukusaidia:",
 'viewpagelogs'        => 'Tazama kumbukumbu kwa ukurasa huu',
 'currentrev'          => 'Kiungo cha daima',
 'revisionasof'        => 'Sahihisho kutoka $1',
-'revision-info'       => 'Sahihisho kutoka $1 na $2', # Additional available: $3: revision id
+'revision-info'       => 'Sahihisho kutoka $1 na $2', # Additionally available: $3: revision id
 'previousrevision'    => '←Sahihisho lililotangulia',
 'nextrevision'        => 'Sahihisho mpya zaidi?',
 'currentrevisionlink' => 'Sahahisho ya sasa hivi',

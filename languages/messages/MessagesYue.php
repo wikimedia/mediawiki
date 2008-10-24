@@ -791,7 +791,7 @@ $1',
 'currentrev'             => '家下嘅修訂',
 'currentrev-asof'        => '響 $1 嘅家下修訂',
 'revisionasof'           => '喺$1嘅修訂',
-'revision-info'          => '喺$1嘅修訂；修訂自$2', # Additional available: $3: revision id
+'revision-info'          => '喺$1嘅修訂；修訂自$2', # Additionally available: $3: revision id
 'previousrevision'       => '←之前嘅修訂',
 'nextrevision'           => '新啲嘅修訂→',
 'currentrevisionlink'    => '家下嘅修訂版本',
@@ -1765,7 +1765,7 @@ wiki: $PAGEEDITOR_WIKI
 
 上次對呢版嘅編輯係由[[User:$3|$3]]（[[User talk:$3|留言]] | [[Special:Contributions/$3|{{int:contribslink}}]]）做嘅。',
 'editcomment'      => "編輯摘要係：\"''\$1''\"。", # only shown if there is an edit comment
-'revertpage'       => '已經反轉由[[Special:Contributions/$2|$2]]（[[User talk:$2|對話]]）所寫嘅編輯到[[User:$1|$1]]嘅最後版本。', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => '已經反轉由[[Special:Contributions/$2|$2]]（[[User talk:$2|對話]]）所寫嘅編輯到[[User:$1|$1]]嘅最後版本。', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => '已經反轉由$1所寫嘅編輯；恢復到$2嘅最後版本。',
 'sessionfailure'   => '你嘅登入會話 (session) 好似有啲問題；為咗防止會話劫持，呢個操作已經取消。請撳「返轉頭」然後重新載入你嚟自嘅頁面，然後再試吓啦。',
 

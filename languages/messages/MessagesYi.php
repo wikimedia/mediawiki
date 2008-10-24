@@ -754,7 +754,7 @@ $2',
 'nohistory'           => 'נישטא קיין ענדערן היסטאריע פאר דעם בלאט.',
 'currentrev'          => 'איצטיגע ווערסיע',
 'revisionasof'        => 'רעוויזיע ביי $1',
-'revision-info'       => 'רעוויזיע ביי $1 פון $2', # Additional available: $3: revision id
+'revision-info'       => 'רעוויזיע ביי $1 פון $2', # Additionally available: $3: revision id
 'previousrevision'    => '→ עלטערער ווערסיע',
 'nextrevision'        => 'נייע ווערסיע ←',
 'currentrevisionlink' => 'איצטיגע ווערסיע',
@@ -1263,7 +1263,7 @@ $NEWPAGE
 
 די לעצטע ענדערונג איז געווען פון [[User:$3|$3]] ([[User talk:$3|רעדן]]|[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'    => "קורץ ווארט איז געווען: \"'''\$1'''\".", # only shown if there is an edit comment
-'revertpage'     => 'אויפֿגעריכט פון באַנוצער $2 צוריק צום לעצטע ווערסיע פון באַנוצער $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'     => 'אויפֿגעריכט פון באַנוצער $2 צוריק צום לעצטע ווערסיע פון באַנוצער $1', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 
 # Protect
 'protectlogpage'              => 'שיצן לאָג',

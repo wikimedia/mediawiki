@@ -933,7 +933,7 @@ Anledningen till blockeringen var "$2".',
 'currentrev'             => 'Nuvarande version',
 'currentrev-asof'        => 'Nuvarande version från $1',
 'revisionasof'           => 'Versionen från $1',
-'revision-info'          => 'Version från den $1 av $2', # Additional available: $3: revision id
+'revision-info'          => 'Version från den $1 av $2', # Additionally available: $3: revision id
 'previousrevision'       => '← Äldre version',
 'nextrevision'           => 'Nyare version →',
 'currentrevisionlink'    => 'Nuvarande version',
@@ -1944,7 +1944,7 @@ Se $2 för noteringar om de senaste raderingarna.',
 
 Sidan ändrades senast av [[User:$3|$3]] ([[User talk:$3|diskussion]] | [[Special:Contributions/$2|{{int:contribslink}}]]).',
 'editcomment'      => 'Redigeringskommentaren var: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => 'Återställde redigeringar av  [[Special:Contributions/$2|$2]] ([[User talk:$2|användardiskussion]]) till senaste versionen av [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Återställde redigeringar av  [[Special:Contributions/$2|$2]] ([[User talk:$2|användardiskussion]]) till senaste versionen av [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Återställde ändringar av $1 till senaste versionen av $2.',
 'sessionfailure'   => 'Något med din session som inloggad är på tok. Din begärda åtgärd har avbrutits, för att förhindra att någon kapar din session. Klicka på "Tillbaka" i din webbläsare och ladda om den sida du kom ifrån. Försök sedan igen.',
 

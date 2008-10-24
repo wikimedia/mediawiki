@@ -263,7 +263,7 @@ O registo de eliminação desta página é exibido a seguir, para sua comodidade
 'viewpagelogs'        => 'Ber registos para yesta página',
 'currentrev'          => 'Revison actual',
 'revisionasof'        => 'Revisão de $1',
-'revision-info'       => 'Revison de $1; $2', # Additional available: $3: revision id
+'revision-info'       => 'Revison de $1; $2', # Additionally available: $3: revision id
 'previousrevision'    => '← Versão anterior',
 'nextrevision'        => 'Verson posterior →',
 'currentrevisionlink' => 'Ber berson actual',

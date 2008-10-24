@@ -790,7 +790,7 @@ De fan $3 opjûne reden is ''$2''",
 'currentrev'             => 'Aktuele ferzje',
 'currentrev-asof'        => 'Hjoeddeiske ferzje sûnt $1',
 'revisionasof'           => 'Ferzje op $1',
-'revision-info'          => 'Ferzje op $1 fan $2', # Additional available: $3: revision id
+'revision-info'          => 'Ferzje op $1 fan $2', # Additionally available: $3: revision id
 'previousrevision'       => '←Eardere ferskillen',
 'nextrevision'           => 'Nijere ferzje→',
 'currentrevisionlink'    => 'Rinnende ferzje',
@@ -1679,7 +1679,7 @@ in oar hat de feroaring werom set, of oars wat oan de side feroare.
 
 De lêste feroaring wie fan [[User:$3|$3]] ([[User talk:$3|Oerlis]]).',
 'editcomment'      => 'De gearfetting wie: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => 'Bewurkings fan [[Special:Contributions/$2|$2]] ([[User talk:$2|Oerlis]]) werom set ta de ferzje fan [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Bewurkings fan [[Special:Contributions/$2|$2]] ([[User talk:$2|Oerlis]]) werom set ta de ferzje fan [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Feroarings werom set fan $1; werom set nei de lêste ferzje fan $2.',
 
 # Protect
