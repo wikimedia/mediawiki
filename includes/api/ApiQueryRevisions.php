@@ -189,23 +189,30 @@ class ApiQueryRevisions extends ApiQueryBase {
 			}
 		}
 		elseif ($revCount > 0) {
-			$this->validateLimit('rev_count', $revCount, 1, $userMax, $botMax);
+			$max = $this->getMain()->canApiHighLimits() ? $botMax : $userMax;
+			$revs = $pageSet->getRevisionIDs();
+			if(self::truncateArray($revs, $max))
+				$this->setWarning("Too many values supplied for parameter 'revids': the limit is $max"); 
 
 			// Get all revision IDs
-			$this->addWhereFld('rev_id', array_keys($pageSet->getRevisionIDs()));
+			$this->addWhereFld('rev_id', array_keys($revs));
 
 			// assumption testing -- we should never get more then $revCount rows.
 			$limit = $revCount;
 		}
 		elseif ($pageCount > 0) {
+			$max = $this->getMain()->canApiHighLimits() ? $botMax : $userMax;
+			$titles = $pageSet->getGoodTitles();
+			if(self::truncateArray($titles, $max))
+				$this->setWarning("Too many values supplied for parameter 'titles': the limit is $max");
+			
 			// When working in multi-page non-enumeration mode,
 			// limit to the latest revision only
 			$this->addWhere('page_id=rev_page');
 			$this->addWhere('page_latest=rev_id');
-			$this->validateLimit('page_count', $pageCount, 1, $userMax, $botMax);
-
+			
 			// Get all page IDs
-			$this->addWhereFld('page_id', array_keys($pageSet->getGoodTitles()));
+			$this->addWhereFld('page_id', array_keys($titles));
 
 			// assumption testing -- we should never get more then $pageCount rows.
 			$limit = $pageCount;

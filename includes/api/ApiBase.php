@@ -562,9 +562,7 @@ abstract class ApiBase {
 			return array();
 		$sizeLimit = $this->mMainModule->canApiHighLimits() ? self::LIMIT_SML2 : self::LIMIT_SML1;
 		$valuesList = explode('|', $value, $sizeLimit + 1);
-		if( count($valuesList) == $sizeLimit + 1 ) {
-			$junk = array_pop($valuesList); // kill last jumbled param
-			// Set a warning too
+		if( self::truncateArray($valuesList, $sizeLimit) ) {
 			$this->setWarning("Too many values supplied for parameter '$valueName': the limit is $sizeLimit");
 		}
 		if (!$allowMultiple && count($valuesList) != 1) {
@@ -615,6 +613,23 @@ abstract class ApiBase {
 				$this->dieUsage($this->encodeParamName($paramName) . " may not be over $max (set to $value) for users", $paramName);
 			}
 		}
+	}
+	
+	/**
+	 * Truncate an array to a certain length.
+	 * @param $arr array Array to truncate
+	 * @param $limit int Maximum length
+	 * @return bool True if the array was truncated, false otherwise
+	 */
+	public static function truncateArray(&$arr, $limit)
+	{
+		$modified = false;
+		while(count($arr) > $limit)
+		{
+			$junk = array_pop($arr);
+			$modified = true;
+		}
+		return $modified;
 	}
 
 	/**
