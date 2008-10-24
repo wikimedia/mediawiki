@@ -113,7 +113,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			$this->addWhereFld($this->bl_ns, $this->rootTitle->getNamespace());
 		$this->addWhereFld('page_namespace', $this->params['namespace']);
 		if(!is_null($this->contID))
-			$this->addWhere("page_id>={$this->contID}");
+			$this->addWhere("pl_from>={$this->contID}");
 		if($this->params['filterredir'] == 'redirects')
 			$this->addWhereFld('page_is_redirect', 1);
 		if($this->params['filterredir'] == 'nonredirects')
@@ -147,7 +147,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$this->addWhere($titleWhere);
 		$this->addWhereFld('page_namespace', $this->params['namespace']);
 		if(!is_null($this->redirID))
-			$this->addWhere("page_id>={$this->redirID}");
+			$this->addWhere("pl_from>={$this->redirID}");
 		if($this->params['filterredir'] == 'redirects')
 			$this->addWhereFld('page_is_redirect', 1);
 		if($this->params['filterredir'] == 'nonredirects')
