@@ -803,7 +803,7 @@ La motivazione del blocco fornita da $3 è la seguente: ''$2''",
 'currentrev'             => 'Versione corrente',
 'currentrev-asof'        => 'Versione corrente delle $1',
 'revisionasof'           => 'Versione delle $1',
-'revision-info'          => 'Versione delle $1, autore: $2', # Additional available: $3: revision id
+'revision-info'          => 'Versione delle $1, autore: $2', # Additionally available: $3: revision id
 'previousrevision'       => '← Versione meno recente',
 'nextrevision'           => 'Versione più recente →',
 'currentrevisionlink'    => 'Versione corrente',
@@ -1796,7 +1796,7 @@ Consultare il log delle $2 per un elenco delle pagine cancellate di recente.',
 
 La modifica più recente alla pagina è stata apportata da [[User:$3|$3]] ([[User talk:$3|discussione]]).',
 'editcomment'      => 'Il commento alla modifica era: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => 'Annullate le modifiche di [[Special:Contributions/$2|$2]] ([[User talk:$2|discussione]]), riportata alla versione precedente di [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Annullate le modifiche di [[Special:Contributions/$2|$2]] ([[User talk:$2|discussione]]), riportata alla versione precedente di [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => "Annullate le modifiche di $1; pagina riportata all'ultima versione di $2.",
 'sessionfailure'   => "Si è verificato un problema nella sessione che identifica l'accesso; il sistema non ha eseguito il comando impartito per precauzione. Tornare alla pagina precedente con il tasto 'Indietro' del proprio browser, ricaricare la pagina e riprovare.",
 

@@ -661,7 +661,7 @@ La rêson balyê per $3 ére ''$2''.",
 'nohistory'           => 'Ègziste pas d’historico por ceta pâge.',
 'currentrev'          => 'Vèrsion d’ora',
 'revisionasof'        => 'Vèrsion du $1',
-'revision-info'       => 'Vèrsion du $1 per $2', # Additional available: $3: revision id
+'revision-info'       => 'Vèrsion du $1 per $2', # Additionally available: $3: revision id
 'previousrevision'    => '← Vèrsion prècèdenta',
 'nextrevision'        => 'Vèrsion siuventa →',
 'currentrevisionlink' => 'vêde la vèrsion corenta',
@@ -1378,7 +1378,7 @@ L’hora endicâ est cela du sèrvior.',
 
 La dèrriére modificacion at étâ fêta per [[User:$3|$3]] ([[User talk:$3|Discussion]]).',
 'editcomment'      => 'Lo rèsumâ de la modificacion ére : <i>« $1 »</i>.', # only shown if there is an edit comment
-'revertpage'       => 'Rèvocacion de les modificacions de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]]) (retôrn a la vèrsion prècèdenta de [[User:$1|$1]])', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Rèvocacion de les modificacions de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]]) (retôrn a la vèrsion prècèdenta de [[User:$1|$1]])', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Rèvocacion de les modificacions de $1 ; retôrn a la vèrsion de $2.',
 'sessionfailure'   => 'Voutra sèssion de conèccion semble avêr des problèmos ;
 cela accion at étâ anulâ en prèvencion d’un piratâjo de sèssion.

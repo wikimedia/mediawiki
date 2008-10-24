@@ -789,7 +789,7 @@ A justificativa apresentada por $3 foi ''$2''",
 'nohistory'           => 'Não há histórico de revisões para esta página.',
 'currentrev'          => 'Revisão atual',
 'revisionasof'        => 'Edição de $1',
-'revision-info'       => 'Edição feita às $1 por $2', # Additional available: $3: revision id
+'revision-info'       => 'Edição feita às $1 por $2', # Additionally available: $3: revision id
 'previousrevision'    => '← Versão anterior',
 'nextrevision'        => 'Versão posterior →',
 'currentrevisionlink' => 'ver versão atual',
@@ -1623,7 +1623,7 @@ alguém editou ou já reverteu o artigo.
 
 A última edição foi de [[User:$3|$3]] ([[User talk:$3|Discussão]]).',
 'editcomment'      => 'O sumário de edição era: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => 'Foram revertidas as edições de [[Special:Contributions/$2|$2]] ([[User talk:$2|disc]]) para a última versão por [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Foram revertidas as edições de [[Special:Contributions/$2|$2]] ([[User talk:$2|disc]]) para a última versão por [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Foram revertidas as edições de $1, com o conteúdo passando a estar como na última edição de $2.',
 'sessionfailure'   => 'Foram detetados problemas com a sua sessão;
 Esta ação foi cancelada como medida de proteção contra a intercepção de sessões.

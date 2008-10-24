@@ -647,7 +647,7 @@ $1 საათში.',
 'nohistory'           => 'ამ გვერდს განხილვის გვერდი ცარიელი აქვს.',
 'currentrev'          => 'მიმდინარე შესწორება',
 'revisionasof'        => '$1-ის ვერსია',
-'revision-info'       => '$1-ის ვერსია, შეტანილი $2-ის მიერ', # Additional available: $3: revision id
+'revision-info'       => '$1-ის ვერსია, შეტანილი $2-ის მიერ', # Additionally available: $3: revision id
 'previousrevision'    => '←წინა ვერსია',
 'nextrevision'        => 'შემდეგი ვერსია→',
 'currentrevisionlink' => 'მიმდინარე ვერსია',
@@ -1260,7 +1260,7 @@ $NEWPAGE
 'cantrollback'   => 'შეუძლებელია უწინდელი რედაქციის აღდგენა; ის, ვინც უკანასკნელი ცვლილებები შეიტანა, ამ სტატიის ერთადერთი ავტორია.',
 'alreadyrolled'  => '[[:$1]]-ს უკანასკნელი რედაქტირების უკუქცევა შეუძლებელია [[User:$2|$2]] ([[User talk:$2|Talk]]); ვიღაცამ უკვე დაარედაქტირა ან უკუაქცია გვერდი. უკანასკნელი რედაქტორი [[User:$3|$3]] ([[User talk:$3|Talk]]).',
 'editcomment'    => 'რედაქტირება განმარტებული იყო შემდეგნაირად: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'     => '[[Special:Contributions/$2|$2]]-ის რედაქტირება გაუქმდა; აღდგა ბოლოს [[User:$1|$1]]-ის მიერ რედაქტირებული ვერსია', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'     => '[[Special:Contributions/$2|$2]]-ის რედაქტირება გაუქმდა; აღდგა ბოლოს [[User:$1|$1]]-ის მიერ რედაქტირებული ვერსია', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'sessionfailure' => 'ჩანს, რომ პრობლემაა თქვენი რეგისტრაციის სესიისათვის;
 ეს მოქმედება შეჩერდა თქვენი სესიაში შემოჭრის თავიდან ასაცილებლად.
 გთხოვთ, დააწკაპუნოთ ღილაკს "უკან" და თავიდან ჩართოთ გვერდი, რომლიდანაც შემოხვედით და სცადოთ განმეორებით.',

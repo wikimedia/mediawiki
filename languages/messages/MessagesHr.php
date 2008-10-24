@@ -946,7 +946,7 @@ Razlog koji je dao/la $3 je ''$2''",
 'currentrev'             => 'Trenutačna inačica',
 'currentrev-asof'        => 'Trenutačna izmjena od $1',
 'revisionasof'           => 'Inačica od $1',
-'revision-info'          => 'Inačica od $1 koju je unio/unijela $2', # Additional available: $3: revision id
+'revision-info'          => 'Inačica od $1 koju je unio/unijela $2', # Additionally available: $3: revision id
 'previousrevision'       => '←Starija inačica',
 'nextrevision'           => 'Novija inačica→',
 'currentrevisionlink'    => 'vidi trenutačnu inačicu',
@@ -1936,7 +1936,7 @@ Sva vremena su prema poslužiteljevom vremenu.',
 
 Posljednju promjenu napravio je suradnik [[User:$3|$3]] ([[User talk:$3|Razgovor]]).',
 'editcomment'      => 'Komentar promjene je: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => 'Uklonjena promjena suradnika $2, vraćeno na zadnju inačicu suradnika $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Uklonjena promjena suradnika $2, vraćeno na zadnju inačicu suradnika $1', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Uklonjeno uređivanje suradnika $1; vraćeno na zadnju inačicu suradnika $2.',
 'sessionfailure'   => 'Uočili smo problem s vašom prijavom. Zadnja naredba nije izvršena
 kako bi izbjegla zloupotreba. Molimo vas da u pregledniku pritisnete "Natrag" (Back) i ponovno učitate stranicu

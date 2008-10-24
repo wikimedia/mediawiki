@@ -706,7 +706,7 @@ $3 keltirilgen sebebi: ''$2''",
 'nohistory'           => "Bul bettin' o'zgertiw tariyxı joq.",
 'currentrev'          => "Ha'zirgi nusqa",
 'revisionasof'        => '$1 waqtındagı nusqası',
-'revision-info'       => "$1 waqtındag'ı $2 istegen nusqası", # Additional available: $3: revision id
+'revision-info'       => "$1 waqtındag'ı $2 istegen nusqası", # Additionally available: $3: revision id
 'previousrevision'    => '←Eskilew nusqası',
 'nextrevision'        => "Jan'alaw nusqası→",
 'currentrevisionlink' => "Ha'zirgi nusqa",

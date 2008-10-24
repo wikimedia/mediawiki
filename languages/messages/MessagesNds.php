@@ -820,7 +820,7 @@ De Grund weer: ''$2''",
 'revisionasof'           => 'Version vun’n $1',
 'revision-info'          => '<div id="viewingold-warning" style="background: #ffbdbd; border: 1px solid #BB7979; font-weight: bold; padding: .5em 1em;">
 Dit is en ole Version vun disse Siet, so as $2 de $1 ännert hett. De Version kann temlich stark vun de <a href="{{FULLURL:{{FULLPAGENAME}}}}" title="{{FULLPAGENAME}}">aktuelle Version</a> afwieken.
-</div>', # Additional available: $3: revision id
+</div>', # Additionally available: $3: revision id
 'previousrevision'       => 'Nächstöllere Version→',
 'nextrevision'           => 'Ne’ere Version →',
 'currentrevisionlink'    => 'aktuelle Version',
@@ -1788,7 +1788,7 @@ Segg to, dat du över de Folgen Bescheed weetst un dat du in Övereenstimmen mit
 
 De letzte Ännern is vun [[User:$3|$3]] ([[User talk:$3|Diskuschoon]] | [[Special:Contributions/$3|Bidrääg]]).',
 'editcomment'      => "De Ännerkommentar weer: ''$1''.", # only shown if there is an edit comment
-'revertpage'       => 'Ännern vun [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskuschoon]]) rut un de Version vun [[User:$1]] wedderhaalt', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Ännern vun [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskuschoon]]) rut un de Version vun [[User:$1]] wedderhaalt', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Ännern vun $1 trüchsett op letzte Version vun $2.',
 'sessionfailure'   => 'Dor weer en Problem mit diene Brukersitzung.
 Disse Akschoon is nu ut Sekerheitsgrünn afbraken, dat de Ännern nich verkehrt en annern Bruker toornt warrt.

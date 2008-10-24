@@ -401,7 +401,7 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'nohistory'           => 'Ne esas redakto-historio por ica pagino.',
 'currentrev'          => 'Aktuala versiono',
 'revisionasof'        => 'Versiono ye $1',
-'revision-info'       => 'Versiono en $1 per $2', # Additional available: $3: revision id
+'revision-info'       => 'Versiono en $1 per $2', # Additionally available: $3: revision id
 'previousrevision'    => '←Plu anciena versiono',
 'nextrevision'        => 'Plu recenta versiono→',
 'currentrevisionlink' => 'Aktuala versiono',
@@ -767,7 +767,7 @@ da [[User:$2|$2]] ([[User talk:$2|Talk]]); ulu pluse ja editis o desfacis ica pa
 
 Lasta edito esis da [[User:$3|$3]] ([[User talk:$3|Talk]]).',
 'editcomment'    => 'La rezumo di la edito esis: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'     => 'Rekuperita redakti da [[Special:Contributions/$2|$2]] ([[User talk:$2|Debato]]); rekuperita la lasta redakto di [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'     => 'Rekuperita redakti da [[Special:Contributions/$2|$2]] ([[User talk:$2|Debato]]); rekuperita la lasta redakto di [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 
 # Protect
 'protectedarticle'       => 'protektita "[[$1]]"',

@@ -680,7 +680,7 @@ $3 макссь туфталсь - ''$2''",
 'nohistory'              => 'Тя лопать петнемань историяц аш.',
 'currentrev'             => 'Тяниень верзие',
 'revisionasof'           => '$1-нь верзиесь',
-'revision-info'          => '$1-нь верзие конань тизе $2', # Additional available: $3: revision id
+'revision-info'          => '$1-нь верзие конань тизе $2', # Additionally available: $3: revision id
 'previousrevision'       => 'Сядынгольдень верзие',
 'nextrevision'           => 'Сяда од верзие',
 'currentrevisionlink'    => 'Тяниень верзие',
@@ -1514,7 +1514,7 @@ $NEWPAGE
 
 Мекольце петнема  тизе [[User:$3|$3]] ([[User talk:$3|Корхнема]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => 'Петнема мяльполаткс ульсь: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => 'Петнематнень мърдафтозь [[Special:Contributions/$2|$2]] ([[User talk:$2|Корхнема]]) сядынгольдень верзиес мърдафтозе [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Петнематнень мърдафтозь [[Special:Contributions/$2|$2]] ([[User talk:$2|Корхнема]]) сядынгольдень верзиес мърдафтозе [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Петнематнень мърдафтозе $1; сядынгольдень верзиес мърдафтозе $2.',
 'sessionfailure'   => 'Улема, лиссь прябала тонь сувама пингста; програмонь якамась лотказевсь сувамать върьгятемада аралама туфталонкса. Эняльттяма, люпштак "меки" ди одонзафтт лопать, конаста тон сать, меле тик сембе одукс.',
 

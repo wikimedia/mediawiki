@@ -809,7 +809,7 @@ Sebab yang diberikan oleh $3 ialah ''$2''",
 'currentrev'             => 'Semakan semasa',
 'currentrev-asof'        => 'Semakan semasa pada $1',
 'revisionasof'           => 'Semakan pada $1',
-'revision-info'          => 'Semakan pada $1 oleh $2', # Additional available: $3: revision id
+'revision-info'          => 'Semakan pada $1 oleh $2', # Additionally available: $3: revision id
 'previousrevision'       => '←Semakan sebelumnya',
 'nextrevision'           => 'Semakan berikutnya→',
 'currentrevisionlink'    => 'Semakan semasa',
@@ -1795,7 +1795,7 @@ oleh [[User:$2|$2]] ([[User talk:$2|Perbincangan]]); terdapat pengguna yang tela
 
 Suntingan terakhir telah dibuat oleh [[User:$3|$3]] ([[User talk:$3|Perbincangan]]).',
 'editcomment'      => 'Komen suntingan: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => 'Membalikkan suntingan oleh [[Special:Contributions/$2|$2]] ([[User talk:$2|Perbincangan]]) kepada versi terakhir oleh [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Membalikkan suntingan oleh [[Special:Contributions/$2|$2]] ([[User talk:$2|Perbincangan]]) kepada versi terakhir oleh [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Membalikkan suntingan oleh $1 kepada versi terakhir oleh $2.',
 'sessionfailure'   => 'Terdapat sedikit masalah pada sesi log masuk anda.
 Tindakan ini telah dibatalkan untuk mencegah perampasan sesi.

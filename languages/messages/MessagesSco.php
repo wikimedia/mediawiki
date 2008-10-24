@@ -589,7 +589,7 @@ The grund for this, given by $3 is ''$2''",
 'nohistory'           => "The'r nae edit history for this page.",
 'currentrev'          => 'Current reveision',
 'revisionasof'        => 'Reveision as o $1',
-'revision-info'       => 'Revision as o $1 by $2', # Additional available: $3: revision id
+'revision-info'       => 'Revision as o $1 by $2', # Additionally available: $3: revision id
 'previousrevision'    => '← Aulder reveision',
 'nextrevision'        => 'Newer reveision →',
 'currentrevisionlink' => 'see current reveision',
@@ -879,7 +879,7 @@ an that ye'r daein this in accord wi [[{{MediaWiki:Policy-url}}]].",
 'cantrollback'   => 'Canna revert edit; last contreibutor is the ae author o this page.',
 'alreadyrolled'  => 'Canna rowback last edit o [[$1]] bi [[User:$2|$2]] ([[User talk:$2|Talk]]); some ither bodie haes editit or rowed back the page aareadies. Last edit wis bi [[User:$3|$3]] ([[User talk:$3|Talk]]).',
 'editcomment'    => 'The edit comment wis: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'     => 'Revertit edit o [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]), chynged back tae last version bi [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'     => 'Revertit edit o [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]), chynged back tae last version bi [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 
 # Protect
 'protectlogtext'         => 'Ablo is a leet o page locks/unlocks. See the [[Special:ProtectedPages|protected pages list]] for the list of currently operational page protections.',

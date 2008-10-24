@@ -852,7 +852,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'currentrev'             => '현재 판',
 'currentrev-asof'        => '$1 현재 판',
 'revisionasof'           => '$1 판',
-'revision-info'          => '$2 사용자의 $1 버전', # Additional available: $3: revision id
+'revision-info'          => '$2 사용자의 $1 버전', # Additionally available: $3: revision id
 'previousrevision'       => '← 이전 판',
 'nextrevision'           => '다음 판 →',
 'currentrevisionlink'    => '현재 판',
@@ -1584,7 +1584,7 @@ $NEWPAGE
 
 마지막으로 문서를 편집한 사람은 [[User:$3|$3]] ([[User talk:$3|토론]] | [[Special:Contributions/$3|{{int:contribslink}}]]) 입니다.',
 'editcomment'      => "편집 요약: ''$1''", # only shown if there is an edit comment
-'revertpage'       => '[[Special:Contributions/$2|$2]]([[User talk:$2|토론]])의 편집을 [[User:$1|$1]]의 마지막 버전으로 되돌림', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => '[[Special:Contributions/$2|$2]]([[User talk:$2|토론]])의 편집을 [[User:$1|$1]]의 마지막 버전으로 되돌림', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => '$1의 편집을 $2의 마지막 버전으로 되돌렸습니다.',
 'sessionfailure'   => '로그인 세션에 문제가 발생한 것 같습니다. 세션 하이재킹을 막기 위해 동작이 취소되었습니다. 브라우저의 "뒤로" 버튼을 누르고 문서를 새로고침한 후에 다시 시도해 주세요.',
 

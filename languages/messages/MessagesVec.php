@@ -777,7 +777,7 @@ La motivazion del bloco fornìa da $3 la xe sta qua: ''$2''",
 'currentrev'             => 'Version atuałe',
 'currentrev-asof'        => 'Version corrente del $1',
 'revisionasof'           => 'Revixion $1',
-'revision-info'          => 'Version del $1, autor: $2', # Additional available: $3: revision id
+'revision-info'          => 'Version del $1, autor: $2', # Additionally available: $3: revision id
 'previousrevision'       => '← Version manco reçente',
 'nextrevision'           => 'Version pì reçente →',
 'currentrevisionlink'    => 'Varda ła version atuałe',
@@ -1752,7 +1752,7 @@ Par piaser, conferma che l'è to intenzion proçedere a tałe scancełazion, con
 
 L'ultima modefega l'è stà fata da [[User:$3|$3]] ([[User talk:$3|discussion]] | [[Special:Contributions/$3|{{int:contribslink}}]]).",
 'editcomment'      => 'El comento a la modifica el xera: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => 'Anułàe łe modifeghe de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussion]]), riportà a ła version preçedente de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Anułàe łe modifeghe de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussion]]), riportà a ła version preçedente de [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Anulà le modifiche de $1; riportà a la version precedente de $2.',
 'sessionfailure'   => "Se gà verificà un problema ne la session che identifica l'acesso; el sistema, par precauzion, no'l gà mìa eseguìo el comando che te ghè dato. Torna a la pagina precedente col boton 'Indrìo' del to browser, ricarica la pagina e ripróa da novo.",
 

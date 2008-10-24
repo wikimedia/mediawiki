@@ -944,7 +944,7 @@ Als Jrund för et Sperre es enjedraare: ''$2''",
 'currentrev'             => 'Neuste Version',
 'currentrev-asof'        => 'De neuste Version fum $1',
 'revisionasof'           => 'Version vum $1',
-'revision-info'          => 'Dat es de Version vum $1 vum $2.', # Additional available: $3: revision id
+'revision-info'          => 'Dat es de Version vum $1 vum $2.', # Additionally available: $3: revision id
 'previousrevision'       => '← De Version dovör zeije',
 'nextrevision'           => 'De Version donoh zeije →',
 'currentrevisionlink'    => 'De neuste Version',
@@ -2022,7 +2022,7 @@ Do kanns hee noh Hölp luure:
 
 De Neuste Änderung aan dä Sigg es jetz vun däm Metmaacher „[[User:$3|$3]]“ ([[User talk:$3|Klaaf]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => 'Bei dä Änderung stundt: „<i>$1</i>“.', # only shown if there is an edit comment
-'revertpage'       => 'Änderunge vun däm Metmaacher „[[Special:Contributions/$2|$2]]“ ([[User talk:$2|däm sing Klaafsigg]]) fottjeschmesse, un doför de letzte Version vum „[[User:$1|$1]]“ widder zeröckjehollt', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Änderunge vun däm Metmaacher „[[Special:Contributions/$2|$2]]“ ([[User talk:$2|däm sing Klaafsigg]]) fottjeschmesse, un doför de letzte Version vum „[[User:$1|$1]]“ widder zeröckjehollt', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'De Änderungen vum $1 zeröckjenumme, un dobei de letzte Version vum $2 widder jehollt.',
 'sessionfailure'   => "Et jov wall e technisch Problem met Dingem Login. Dröm ha'mer dat us Vörsich jetz nit jemaht, domet mer nit villeich Ding Änderung däm verkihrte Metmaacher ungerjubele. Jangk zeröck un versök et noch ens.",
 

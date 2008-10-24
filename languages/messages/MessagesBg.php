@@ -872,7 +872,7 @@ $2',
 'currentrev'             => 'Текуща версия',
 'currentrev-asof'        => 'Текуща версия към $1',
 'revisionasof'           => 'Версия от $1',
-'revision-info'          => 'Версия от $1 на $2', # Additional available: $3: revision id
+'revision-info'          => 'Версия от $1 на $2', # Additionally available: $3: revision id
 'previousrevision'       => '←По-стара версия',
 'nextrevision'           => 'По-нова версия→',
 'currentrevisionlink'    => 'преглед на текущата версия',
@@ -1799,7 +1799,7 @@ $NEWPAGE
 
 Последната редакция е на [[User:$3|$3]] ([[User talk:$3|Беседа]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "Коментарът на редакцията е бил: „''$1''“.", # only shown if there is an edit comment
-'revertpage'       => 'Премахване на [[Special:Contributions/$2|редакции на $2]] ([[User talk:$2|беседа]]); възвръщане към последната версия на [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Премахване на [[Special:Contributions/$2|редакции на $2]] ([[User talk:$2|беседа]]); възвръщане към последната версия на [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Отменени редакции на $1; възвръщане към последната версия на $2.',
 'sessionfailure'   => 'Изглежда има проблем със сесията ви; действието беше отказано като предпазна мярка срещу крадене на сесията. Натиснете бутона за връщане на браузъра, презаредете страницата, от която сте дошли, и опитайте отново.',
 

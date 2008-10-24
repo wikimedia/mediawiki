@@ -804,7 +804,7 @@ $3 විසින් සපයා ඇති හේතුව ''$2'' වේ",
 'currentrev'             => 'වත්මන් සංශෝධනය',
 'currentrev-asof'        => '$1 වන විට වත්මන් සංශෝධනය',
 'revisionasof'           => '$1 තෙක් සංශෝධනය',
-'revision-info'          => '$1 වන විට  $2 විසින් සිදු කර ඇති සංශෝධන', # Additional available: $3: revision id
+'revision-info'          => '$1 වන විට  $2 විසින් සිදු කර ඇති සංශෝධන', # Additionally available: $3: revision id
 'previousrevision'       => '← පුරාණ සංශෝධනය',
 'nextrevision'           => 'නවීන සංශෝධනය →',
 'currentrevisionlink'    => 'වත්මන් සංශෝධනය',
@@ -1711,7 +1711,7 @@ $3 විසින් සපයා ඇති හේතුව ''$2'' වේ",
 'cantrollback'     => 'සංස්කරණය ප්‍රතිවර්තනය කල නොහැක;
 අවසන් දායකයා මෙම පිටුවේ එකම කතෘවරයාද වෙයි.',
 'editcomment'      => 'සංස්කරණ පරිකථනය වූයේ: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|සාකච්ඡාව]]) ගේ සංස්කරණයන්  [[User:$1|$1]] ගේ අවසන් අනුවාදය වෙත ප්‍රතිවර්තනය කෙරිණි', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|සාකච්ඡාව]]) ගේ සංස්කරණයන්  [[User:$1|$1]] ගේ අවසන් අනුවාදය වෙත ප්‍රතිවර්තනය කෙරිණි', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => ' $1 විසින් සිදුකල සංස්කරණයන් ප්‍රතිවර්තනය කරන ලදි;
 $2 ගේ අවසන් අනුවාදය වෙතට යළි වෙනස් කරන ලදි .',
 

@@ -913,7 +913,7 @@ $2',
 'currentrev'             => 'Цяперашняя вэрсія',
 'currentrev-asof'        => 'Цяперашняя вэрсія на $1',
 'revisionasof'           => 'Вэрсія ад $1',
-'revision-info'          => 'Вэрсія ад $1, аўтар $2', # Additional available: $3: revision id
+'revision-info'          => 'Вэрсія ад $1, аўтар $2', # Additionally available: $3: revision id
 'previousrevision'       => '←Папярэдняя вэрсія',
 'nextrevision'           => 'Наступная вэрсія→',
 'currentrevisionlink'    => 'Цяперашняя вэрсія',
@@ -1928,7 +1928,7 @@ $NEWPAGE
 
 Апошнія зьмены зробленыя [[User:$3|$3]] ([[User talk:$3|гутаркі]]).',
 'editcomment'      => 'Камэнтар рэдагаваньня быў: «<i>$1</i>».', # only shown if there is an edit comment
-'revertpage'       => 'Адмененыя рэдагаваньні [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) да папярэдняй вэрсіі [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Адмененыя рэдагаваньні [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) да папярэдняй вэрсіі [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Адмененыя рэдагаваньні $1;
 вернутая папярэдняя вэрсія $2.',
 'sessionfailure'   => 'Магчыма ўзьніклі праблемы ў Вашым цяперашнім сэансе працы;

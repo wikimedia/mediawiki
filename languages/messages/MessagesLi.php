@@ -747,7 +747,7 @@ De door $3 opgegaeve reje is ''$2''",
 'nohistory'           => 'Dees pazjena is nog neet bewirk.',
 'currentrev'          => 'Hujige versie',
 'revisionasof'        => 'Versie op $1',
-'revision-info'       => 'Versie op $1 door $2', # Additional available: $3: revision id
+'revision-info'       => 'Versie op $1 door $2', # Additionally available: $3: revision id
 'previousrevision'    => '← Awwer versie',
 'nextrevision'        => 'Nuujere versie→',
 'currentrevisionlink' => 'zuug hujige versie',
@@ -1585,7 +1585,7 @@ Emes angers haet de pazjena al hersjtèld of haet 'n anger bewèrking gedaon.
 
 De lèste bewèrking is gedaon door [[User:$3|$3]] ([[User talk:$3|euverlik]]).",
 'editcomment'      => '\'t Bewirkingscommentair waor: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => 'Wieziginge door [[Special:Contributions/$2|$2]] ([[User_talk:$2|Euverlik]]) trukgedriejd tot de lètste versie door [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Wieziginge door [[Special:Contributions/$2|$2]] ([[User_talk:$2|Euverlik]]) trukgedriejd tot de lètste versie door [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Wieziginge door $1 trökgedrèjd; letste versie van $2 hersteld.',
 'sessionfailure'   => "d'r Liek 'n probleem te zeen mit dien aanmelsessie. Diene hanjeling is gestop oet veurzorg taenge 'n beveiligingsrisico (det bestuit oet meugelik \"hijacking\"(euverkape) van deze sessie). Gao 'n pazjena trök, laaj die pazjena opnuuj en probeer 't nog ins.",
 

@@ -1034,7 +1034,7 @@ $3 keltirilgen sebebi: ''$2''",
 'nohistory'           => 'Mında bul bettiniñ tüzetw tarïxı joq.',
 'currentrev'          => 'Ağımdıq tüzetw',
 'revisionasof'        => '$1 kezindegi tüzetw',
-'revision-info'       => '$1 kezindegi $2 istegen tüzetw', # Additional available: $3: revision id
+'revision-info'       => '$1 kezindegi $2 istegen tüzetw', # Additionally available: $3: revision id
 'previousrevision'    => '← Eskilew tüzetwi',
 'nextrevision'        => 'Jañalaw tüzetwi →',
 'currentrevisionlink' => 'Ağımdıq tüzetwi',
@@ -1898,7 +1898,7 @@ basqa birew bul betti aldaqaşan öñdegen ne şegindirgen.
 
 soñğı öñdemesin [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|talqılawı]]) istegen.',
 'editcomment'      => 'Bolğan öñdeme mändemesi: «<i>$1</i>».', # only shown if there is an edit comment
-'revertpage'       => '[[{{#special:Contributions}}/$2|$2]] ([[{{ns:user_talk}}:$2|talqılawı]]) öñdemelerinen [[{{ns:user}}:$1|$1]] soñğı nusqasına qaýtardı', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => '[[{{#special:Contributions}}/$2|$2]] ([[{{ns:user_talk}}:$2|talqılawı]]) öñdemelerinen [[{{ns:user}}:$1|$1]] soñğı nusqasına qaýtardı', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => '$1 öñdemelerinen qaýtarğan;
 $2 soñğı nusqasına özgertti.',
 'sessionfailure'   => 'Kirw sessïyasında şataq bolğan sïyaqtı;

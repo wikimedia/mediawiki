@@ -427,7 +427,7 @@ Sedi ya phumulo ya letlakala e re:",
 'viewpagelogs'        => "Nyakoretša di-''log'' tša letlakala le",
 'currentrev'          => 'Poeletšo tša bjale',
 'revisionasof'        => 'Thumeletšo go tloga ka $1',
-'revision-info'       => 'Poeletšo go tloga $1 ka $2', # Additional available: $3: revision id
+'revision-info'       => 'Poeletšo go tloga $1 ka $2', # Additionally available: $3: revision id
 'previousrevision'    => '←Poeletšo tša kgalenyana',
 'nextrevision'        => 'Peletšo tše dimphsanyana→',
 'currentrevisionlink' => 'Poeletšo ya bjale',

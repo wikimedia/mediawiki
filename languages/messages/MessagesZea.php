@@ -667,7 +667,7 @@ De deur $3 opeheven reeën is ''$2''",
 'nohistory'           => 'Deêze pagina is nie bewerkt.',
 'currentrev'          => 'Udihe versie',
 'revisionasof'        => 'Versie op $1',
-'revision-info'       => 'Versie op $1 van $2', # Additional available: $3: revision id
+'revision-info'       => 'Versie op $1 van $2', # Additionally available: $3: revision id
 'previousrevision'    => '←Ouwere versie',
 'nextrevision'        => 'Nieuwere versie→',
 'currentrevisionlink' => 'Udihe versie',
@@ -1059,7 +1059,7 @@ A je de bladzie laeter weêr van je volglieste afaele wil, klik dan op \"nie me�
 # Rollback
 'alreadyrolled' => 'De lèste bewerkienge op [[$1]] deu [[User:$2|$2]] ([[User talk:$2|Overleggienge]]) kan nie vrommegedraoid ore; iemand aors eit de bladzie al bewerkt of ersteld.
 De lèste bewerkienge wier gedaen deu [[User:$3|$3]] ([[User talk:$3|Overleggienge]]).',
-'revertpage'    => 'Wiezigingen deur [[Special:Contributions/$2|$2]] ([[User talk:$2|Overleg]]) teruggedraoid nae de lèste versie van [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'    => 'Wiezigingen deur [[Special:Contributions/$2|$2]] ([[User talk:$2|Overleg]]) teruggedraoid nae de lèste versie van [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 
 # Protect
 'protectlogpage' => 'Beschermlogboek',

@@ -866,7 +866,7 @@ $2',
 'nohistory'           => 'Не постоји историја измена за ову страницу.',
 'currentrev'          => 'Тренутна ревизија',
 'revisionasof'        => 'Ревизија од $1',
-'revision-info'       => 'Ревизија од $1; $2', # Additional available: $3: revision id
+'revision-info'       => 'Ревизија од $1; $2', # Additionally available: $3: revision id
 'previousrevision'    => '← Претходна ревизија',
 'nextrevision'        => 'Следећа ревизија →',
 'currentrevisionlink' => 'Тренутна ревизија',
@@ -1716,7 +1716,7 @@ $NEWPAGE
 
 Последња измена од корисника [[User:$3|$3]] ([[User talk:$3|разговор]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => 'Коментар измене је: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => 'Враћене измене корисника [[Special:Contributions/$2|$2]] ([[User talk:$2|Разговор]]) на последњу измену корисника [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Враћене измене корисника [[Special:Contributions/$2|$2]] ([[User talk:$2|Разговор]]) на последњу измену корисника [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Враћене измене од стране $1; на последњу измену од стране $2.',
 'sessionfailure'   => 'Изгледа да постоји проблем са вашом сеансом пријаве;
 ова акција је прекинута као предострожност против преотимања сеанси.

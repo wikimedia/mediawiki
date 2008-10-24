@@ -641,7 +641,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'nohistory'              => 'இப் பக்கத்துக்குத் தொகுப்பு வரலாறு இல்லை.',
 'currentrev'             => 'நடைமுறையிலுள்ள திருத்தம்',
 'revisionasof'           => '$1 இல் நிலவும் திருத்தம்',
-'revision-info'          => '$2 பயனரால் செய்யப்பட்ட $1 அன்றிருந்தவாரான திருத்தம்', # Additional available: $3: revision id
+'revision-info'          => '$2 பயனரால் செய்யப்பட்ட $1 அன்றிருந்தவாரான திருத்தம்', # Additionally available: $3: revision id
 'previousrevision'       => '←முந்தைய தொகுப்பு',
 'nextrevision'           => 'புதிய தொகுப்பு→',
 'currentrevisionlink'    => 'நடப்பிலுள்ள திருத்தம்',
@@ -1406,7 +1406,7 @@ $NEWPAGE
 
 கடைசியாகத் தொகுத்தவர் [[பயனர்:$3|$3]] ([[பயனர் பேச்சு:$3|பேச்சு]]).',
 'editcomment'      => 'தொகுப்புக்குரிய கருத்துரை: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|பேச்சு]]) செய்தத் தொகுப்புகள் நீக்கப்பட்டு [[User:$1|$1]] இன் பதிப்புக்கு முன்நிலையாக்கப்பட்டது', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|பேச்சு]]) செய்தத் தொகுப்புகள் நீக்கப்பட்டு [[User:$1|$1]] இன் பதிப்புக்கு முன்நிலையாக்கப்பட்டது', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => '$1 செய்தத் தொகுப்புகள் நீக்கப்பட்டு $2 இன் பதிப்புக்கு முன்நிலையாக்கப்பட்டது.',
 'sessionfailure'   => 'உங்கள் புகுபதிகை அமர்வில் பிரச்சினை உள்ளது போல தோன்றுகிறது. செல்வழி திருட்டுக் கெதிரான முன்னெச்செரிக்கையாக இந்த நடவடிக்கை இரத்துச் செய்யப்பட்டது. உங்கள் உலாவியின் பின் செல்வதற்கான பொத்தானைச் செருகி மீண்டும் முயலவும்.',
 

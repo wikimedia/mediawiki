@@ -870,7 +870,7 @@ Grunnen som vart gjeven av $3 er ''$2''",
 'currentrev'             => 'Noverande versjon',
 'currentrev-asof'        => 'Noverande versjon frå $1',
 'revisionasof'           => 'Versjonen frå $1',
-'revision-info'          => 'Versjonen frå $1 av $2', # Additional available: $3: revision id
+'revision-info'          => 'Versjonen frå $1 av $2', # Additionally available: $3: revision id
 'previousrevision'       => '←Eldre versjon',
 'nextrevision'           => 'Nyare versjon→',
 'currentrevisionlink'    => 'Noverande versjon',
@@ -1782,7 +1782,7 @@ For hjelp og meir informasjon:
 
 Den siste endringa vart gjort av [[User:$3|$3]] ([[User talk:$3|brukardiskusjon]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => 'Samandraget for endringa var: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => 'Attenderulla endring gjort av [[Special:Contributions/$2|$2]] til tidlegare versjon endra av [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Attenderulla endring gjort av [[Special:Contributions/$2|$2]] til tidlegare versjon endra av [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Rulla attende endringane av $1, tilbake til siste versjon av $2.',
 'sessionfailure'   => 'Det ser ut til å vera eit problem med innloggingsøkta di. Handlinga er vorten avbroten for å vera føre var mot kidnapping av økta. Bruk attendeknappen i nettlesaren din og prøv om att.',
 

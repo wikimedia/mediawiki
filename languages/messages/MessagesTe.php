@@ -707,7 +707,7 @@ $3 చెప్పిన కారణం: ''$2''",
 'currentrev'             => 'ప్రస్తుతపు సంచిక',
 'currentrev-asof'        => '$1 నాటి ప్రస్తుత కూర్పు',
 'revisionasof'           => '$1 నాటి సంచిక',
-'revision-info'          => '$1 నాటి కూర్పు. రచయిత: $2', # Additional available: $3: revision id
+'revision-info'          => '$1 నాటి కూర్పు. రచయిత: $2', # Additionally available: $3: revision id
 'previousrevision'       => '←పాత సంచిక',
 'nextrevision'           => 'దీని తరువాతి సంచిక→',
 'currentrevisionlink'    => 'ప్రస్తుతపు సంచిక',
@@ -1634,7 +1634,7 @@ $NEWPAGE
 
 చివరి మార్పులు చేసినవారు: [[User:$3|$3]] ([[User talk:$3|చర్చ]]).',
 'editcomment'      => 'దిద్దుబాటు వ్యాఖ్య: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|చర్చ]]) చేసిన మార్పులను [[User:$1|$1]] యొక్క చివరి కూర్పు వరకు తిప్పికొట్టారు.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|చర్చ]]) చేసిన మార్పులను [[User:$1|$1]] యొక్క చివరి కూర్పు వరకు తిప్పికొట్టారు.', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => '$1 చేసిన దిద్దుబాట్లను వెనక్కు తీసుకెళ్ళాం; తిరిగి $2 చేసిన చివరి కూర్పుకు మార్చాం.',
 'sessionfailure'   => 'మీ లాగిన్ సెషనుతో ఏదో సమస్య ఉన్నట్లుంది;
 సెషను హైజాకు కాకుండా ఈ చర్యను రద్దు చేసాం.

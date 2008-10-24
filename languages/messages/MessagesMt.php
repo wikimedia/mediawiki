@@ -758,7 +758,7 @@ Ir-raġuni li ġiet mogħtija mingħand $3 kienet ''$2''",
 'nohistory'              => "M'hemm l-ebda kronoloġija ta' modifika f'din il-paġna.",
 'currentrev'             => 'Reviżjoni kurrenti',
 'revisionasof'           => "Reviżjoni ta' $1",
-'revision-info'          => "Reviżjoni ta' $1 minn $2", # Additional available: $3: revision id
+'revision-info'          => "Reviżjoni ta' $1 minn $2", # Additionally available: $3: revision id
 'previousrevision'       => '←Reviżjoni eqdem',
 'nextrevision'           => 'Reviżjoni iġded→',
 'currentrevisionlink'    => 'Reviżjoni kurrenti',
@@ -1617,7 +1617,7 @@ Tħassara tista' toħloq problema ta' funżjoni fid-database ta' {{SITENAME}}; m
 
 L-iktar modifika riċenti fuq dil-paġna saret minn [[User:$3|$3]] ([[User talk:$3|diskussjoni]]).",
 'editcomment'      => 'Il-Kumment tal-modifika kienet: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => "Modifiki mneħħa minn [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) għall-aħħar verżjoni ta' [[User:$1|$1]]", # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => "Modifiki mneħħa minn [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) għall-aħħar verżjoni ta' [[User:$1|$1]]", # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => "Modifiki mneħħa ta' $1;
 Modifikata lura għall-aħħar verżjoni ta' $2.",
 'sessionfailure'   => "Ġie verifikat problema fis-sessjoni tal-aċċess; din l-azzjoni ġiet imħassra bħalha prekawzjoni. Mur lura fil-paġna preċedenti bl-użu tal-buttuna 'Lura' tal-browser, niżżel il-paġna mill-ġdid u erġa' prova.",

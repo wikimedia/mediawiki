@@ -328,7 +328,7 @@ Si vu voli plu tardim ekarta li pagine fro vun observa-liste, klikta \"Desobserv
 'deletecomment'   => 'Resone de ekarto',
 
 # Rollback
-'revertpage' => 'Riverted modifikos da [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]); restaurad lasti versione da [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage' => 'Riverted modifikos da [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]); restaurad lasti versione da [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 
 # Protect
 'prot_1movedto2'      => '[[$1]] movat a [[$2]]',

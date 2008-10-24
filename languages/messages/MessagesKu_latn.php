@@ -1122,7 +1122,7 @@ bi [[User:$2|$2]] ([[User talk:$2|guftûgo]]) venizivre; keseke din wê rûpelê
 
 Guhartoya dawî bi [[User:$3|$3]] ([[User talk:$3|guftûgo]]).',
 'editcomment'      => 'Kurtenivîsê guherandinê ev bû: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => 'Guherandina $2 hat betal kirin, vegerand guhartoya dawî ya $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Guherandina $2 hat betal kirin, vegerand guhartoya dawî ya $1', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Guherandina $1 şondakir; dîsa guharte verzyona $2.',
 
 # Protect

@@ -755,7 +755,7 @@ Přičina za blokowanje, podata wot $3, je: ''$2''",
 'currentrev'             => 'Aktualna wersija',
 'currentrev-asof'        => 'Aktualna wersija wot $1',
 'revisionasof'           => 'Wersija z $1',
-'revision-info'          => 'Wersija z $1 wužiwarja $2', # Additional available: $3: revision id
+'revision-info'          => 'Wersija z $1 wužiwarja $2', # Additionally available: $3: revision id
 'previousrevision'       => '←starša wersija',
 'nextrevision'           => 'nowša wersija→',
 'currentrevisionlink'    => 'Aktualnu wersiju pokazać',
@@ -1733,7 +1733,7 @@ Prošu potwjerdź, zo maš wotpohlad to činić, zo rozumiš sćěwki a zo to wo
 
 Poslednja změna bě wot wužiwarja [[User:$3|$3]] ([[User talk:$3|Diskusija]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => 'Komentar wobdźěłanja běše: „<i>$1</i>”.', # only shown if there is an edit comment
-'revertpage'       => 'Změny [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskusija]]) cofnjene a nawróćene k poslednjej wersiji wužiwarja [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Změny [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskusija]]) cofnjene a nawróćene k poslednjej wersiji wužiwarja [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Změny wužiwarja $1 cofnjene; wróćo na wersiju wužiwarja $2.',
 'sessionfailure'   => 'Zda so, zo je problem z twojim přizjewjenjom; tuta akcija bu wěstosće dla přećiwo zadobywanju do posedźenja znjemóžniła. Prošu klikń na "Wróćo" a začitaj stronu, z kotrejež přińdźeš, znowa; potom spytaj hišće raz.',
 

@@ -706,7 +706,7 @@ Možete se vratiti i urediti već postojeću stranu ili [[Special:UserLogin|se p
 'nohistory'           => 'Ne postoji istorija izmena za ovu stranicu.',
 'currentrev'          => 'Trenutna revizija',
 'revisionasof'        => 'Revizija od $1',
-'revision-info'       => 'Revizija od $1; $2', # Additional available: $3: revision id
+'revision-info'       => 'Revizija od $1; $2', # Additionally available: $3: revision id
 'previousrevision'    => '← Prethodna revizija',
 'nextrevision'        => 'Sledeća revizija →',
 'currentrevisionlink' => 'Trenutna revizija',
@@ -1219,7 +1219,7 @@ od korisnika [[User:$2|$2]] ([[User_talk:$2|razgovor]]); neko drugi je već izme
 
 Poslednju izmenu je napravio korisnik [[User:$3|$3]] ([[User_talk:$3|razgovor]]).',
 'editcomment'    => 'Komentar izmene je: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'     => 'Vraćene izmene od [[{{ns:special}}:Contributions/$2|$2]] ([[User_talk:$2|razgovor]]) na poslednju izmenu od korisnika [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'     => 'Vraćene izmene od [[{{ns:special}}:Contributions/$2|$2]] ([[User_talk:$2|razgovor]]) na poslednju izmenu od korisnika [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'sessionfailure' => 'Izgleda da postoji problem sa vašom seansom prijave;
 ova akcija je prekinuta kao predostrožnost protiv preotimanja seansi.
 Molimo kliknite "back" i ponovo učitajte stranu odakle ste došli, a onda pokušajte ponovo.',

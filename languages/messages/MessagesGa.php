@@ -637,7 +637,7 @@ An fáth a thabhairt an riarthóir a ghlasadh nach: '''$1'''",
 'nohistory'           => 'Níl aon stáir athraithe ag an leathanach seo.',
 'currentrev'          => 'Leagan reatha',
 'revisionasof'        => 'Leagan ó $1',
-'revision-info'       => 'Leagan mar $1 le $2', # Additional available: $3: revision id
+'revision-info'       => 'Leagan mar $1 le $2', # Additionally available: $3: revision id
 'previousrevision'    => '← An leasú roimhe seo',
 'nextrevision'        => 'An chéad leasú eile →',
 'currentrevisionlink' => 'Leagan reatha',
@@ -1115,7 +1115,7 @@ d'athúsáid duine eile eagrán níos luaí cheana féin.
 
 [[User:$3|$3]] ([[User talk:$3|Plé]]) an té a rinne an athrú is déanaí.",
 'editcomment'    => 'Seo a raibh an mínithe athraithe: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'     => "Filleadh eagarthóireachtaí le [[Special:Contributions/$2|$2]] ([[User talk:$2|Plé]]); d'athúsáideadh an athrú seo caite le [[User:$1|$1]]", # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'     => "Filleadh eagarthóireachtaí le [[Special:Contributions/$2|$2]] ([[User talk:$2|Plé]]); d'athúsáideadh an athrú seo caite le [[User:$1|$1]]", # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 
 # Protect
 'protectlogpage'              => 'Cuntas_cosanta',

@@ -841,7 +841,7 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'nohistory'           => 'Այս էջը չունի խմբագրումների պատմություն։',
 'currentrev'          => 'Ընթացիկ տարբերակ',
 'revisionasof'        => '$1-ի տարբերակ',
-'revision-info'       => '$1 տարբերակ, $2', # Additional available: $3: revision id
+'revision-info'       => '$1 տարբերակ, $2', # Additionally available: $3: revision id
 'previousrevision'    => '←Նախորդ տարբերակ',
 'nextrevision'        => 'Հաջորդ տարբերակ→',
 'currentrevisionlink' => 'Ընթացիկ տարբերակ',
@@ -1472,7 +1472,7 @@ $NEWPAGE
 
 Վերջին խմբագրումը կատարվել է [[User:$3|$3]] ([[User talk:$3|Քննարկում]]) մասնակցի կողմից։',
 'editcomment'      => 'Խմբագրման մեկնաբանումն է. <i>«$1»</i>.', # only shown if there is an edit comment
-'revertpage'       => 'Ետ են շրջվել [[Special:Contributions/$2|$2]] ([[User talk:$2|քննարկում]]) մասնակցի խմբագրումները. վերադառձվել է [[User:$1|$1]] մասնակցի վերջին տարբերակին։', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Ետ են շրջվել [[Special:Contributions/$2|$2]] ([[User talk:$2|քննարկում]]) մասնակցի խմբագրումները. վերադառձվել է [[User:$1|$1]] մասնակցի վերջին տարբերակին։', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Ետ են շրջվել $1 մասնակցի խմբագրումները. վերադառձվել է $2 մասնակցի վերջին տարբերակին։',
 'sessionfailure'   => 'Կարծես խնդիր է առաջացել կապված ձեր ընթացիկ աշխատանքային սեսիայի հետ.
 այս գործողությունը բեկանվել է սեսիայի հափշտակման կանխման նպատակով։

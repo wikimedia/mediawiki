@@ -951,7 +951,7 @@ $2',
 'currentrev'             => 'النسخه دلوقتى',
 'currentrev-asof'        => 'المراجعة الحالية بتاريخ $1',
 'revisionasof'           => 'تعديلات من $1',
-'revision-info'          => 'نسخه $1 بواسطة $2', # Additional available: $3: revision id
+'revision-info'          => 'نسخه $1 بواسطة $2', # Additionally available: $3: revision id
 'previousrevision'       => '←نسخه اقدم',
 'nextrevision'           => 'نسخه احدث→',
 'currentrevisionlink'    => 'النسخه دلوقتى',
@@ -1990,7 +1990,7 @@ $NEWPAGE
 
 آخر واحد  عدل الصفحة دى هوه [[User:$3|$3]] ([[User talk:$3|نقاش]]).',
 'editcomment'      => 'تعليق التعديل كان: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => 'استرجع التعديلات بواسطة [[Special:Contributions/$2|$2]] ([[User talk:$2|مناقشة]]) لآخر نسخة بواسطة [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'استرجع التعديلات بواسطة [[Special:Contributions/$2|$2]] ([[User talk:$2|مناقشة]]) لآخر نسخة بواسطة [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'استرجع تعديلات $1؛
 استرجع لآخر نسخة بواسطة $2.',
 'sessionfailure'   => 'الظاهر انه فى مشكلة فى جلسة دخولك دى ؛

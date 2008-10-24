@@ -383,7 +383,7 @@ Ko e konga ʻi olunga, ko e '''konga pē ʻe taha''' ʻe haofaki ʻi he lomiʻi 
 'nohistory'           => 'ʻOku ʻikai ʻi ai ha hisitōlia fatu maʻa e kupú ni.',
 'currentrev'          => 'Paaki taka',
 'revisionasof'        => 'Paaki he ko $1',
-'revision-info'       => 'Paaki he ko $1 fai ʻe $2', # Additional available: $3: revision id
+'revision-info'       => 'Paaki he ko $1 fai ʻe $2', # Additionally available: $3: revision id
 'previousrevision'    => '←Paaki motuʻa ange',
 'nextrevision'        => 'Paaki foʻou ange→',
 'currentrevisionlink' => 'Paaki taka',

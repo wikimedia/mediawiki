@@ -804,7 +804,7 @@ Grunnen som ble oppgitt av $3 er ''$2''",
 'currentrev'             => 'Nåværende versjon',
 'currentrev-asof'        => 'Nåværende revisjon fra $1',
 'revisionasof'           => 'Versjonen fra $1',
-'revision-info'          => 'Revisjon per $1 av $2', # Additional available: $3: revision id
+'revision-info'          => 'Revisjon per $1 av $2', # Additionally available: $3: revision id
 'previousrevision'       => '← Eldre versjon',
 'nextrevision'           => 'Nyere versjon →',
 'currentrevisionlink'    => 'Nåværende versjon',
@@ -1787,7 +1787,7 @@ Tilbakemeldinger og videre assistanse:
 
 Den siste redigeringen ble foretatt av [[User:$3|$3]] ([[User talk:$3|diskusjon]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "Redigeringskommentaren var: «''$1''»", # only shown if there is an edit comment
-'revertpage'       => 'Tilbakestilte endring av [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusjon]]) til siste versjon av [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Tilbakestilte endring av [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusjon]]) til siste versjon av [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Tilbakestilte endringer av $1; endret til siste versjon av $2.',
 'sessionfailure'   => "Det ser ut til å være et problem med innloggingen din, og den ble avbrutt av sikkerhetshensyn. Trykk ''Tilbake'' i nettleseren din, oppdater siden og prøv igjen.",
 

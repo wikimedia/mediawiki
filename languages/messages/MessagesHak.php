@@ -503,7 +503,7 @@ Ngì thùng-sṳ̀ ya-yeu hiong Wikimedia pó-chṳn ngì só thì-kâu ke nui-y
 'nohistory'           => 'Mò-yû pún-chông ke siû-thin ki-liu̍k.',
 'currentrev'          => 'Tông-chhièn siû-thin pán-pún',
 'revisionasof'        => 'Chhai $1 só-cho ke siû-thin pán-pún',
-'revision-info'       => 'Chhai $1 yù $2 só-cho ke siû-thin pán-pún', # Additional available: $3: revision id
+'revision-info'       => 'Chhai $1 yù $2 só-cho ke siû-thin pán-pún', # Additionally available: $3: revision id
 'previousrevision'    => '←Sông yit siû-thin',
 'nextrevision'        => 'Hâ-yit-ke siû-cháng →',
 'currentrevisionlink' => 'Tông-chhièn siû-thin pán-pún',
@@ -1027,7 +1027,7 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.',
 'cantrollback'   => 'Vù-fap fî-fu̍k phiên-cho; chui-heu ke kung-hien-chá he pún vùn-chông ke vì-thu̍k chok-chá.',
 'alreadyrolled'  => 'Mò-fap fî-fu̍k yù [[User:$2|$2]] ([[User talk:$2|thó-lun]]) chin-hàng ke [[$1]] ke chui-heu phiên-si̍p; khì-thâ ngìn yí-kîn phiên-siá fe̍t-he fî-fu̍k liáu ke-hong. Chui-heu phiên-si̍p-chá: [[User:$3|$3]] ([[User talk:$3|Thó-lun]])。',
 'editcomment'    => 'Phiên-siá sot-mìn he: "<i>$1</i>"。', # only shown if there is an edit comment
-'revertpage'     => 'Fî-fu̍k yù [[Special:Contributions/$2|$2]] ([[User talk:$2|tui-fa]]) ke phiên-cho; kiên-kói fì-fu̍k [[User:$1|$1]] ke chui-heu yit-ke pán-pún', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'     => 'Fî-fu̍k yù [[Special:Contributions/$2|$2]] ([[User talk:$2|tui-fa]]) ke phiên-cho; kiên-kói fì-fu̍k [[User:$1|$1]] ke chui-heu yit-ke pán-pún', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'sessionfailure' => 'Ngì-ke tên-ngi̍p sṳ-fû yû mun-thì, vi-liáu fòng-chṳ́ sêu-sit pûn làn-chiet, pún-chhṳ chhâu-chok yí-kîn chhí-sêu, chhiáng-on "song-yit-chông" chhùng-sîn chai-ngi̍p.',
 
 # Protect

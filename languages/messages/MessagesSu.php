@@ -733,7 +733,7 @@ Alesanana $3 cenah ''$2''.",
 'nohistory'           => 'Teu aya jujutan édit pikeun kaca ieu.',
 'currentrev'          => 'Révisi kiwari',
 'revisionasof'        => 'Révisi nurutkeun $1',
-'revision-info'       => 'Révisi per $1; $2', # Additional available: $3: revision id
+'revision-info'       => 'Révisi per $1; $2', # Additionally available: $3: revision id
 'previousrevision'    => '← Révisi leuwih heubeul',
 'nextrevision'        => 'Révisi nu leuwih anyar →',
 'currentrevisionlink' => 'Témbongkeun révisi kiwari',
@@ -1519,7 +1519,7 @@ Hal ieu teu diwenangkeun pikeun nyegah karuksakan {{SITENAME}} nu teu dihaja.',
 
 Édit ahir ku [[User:$3|$3]] ([[User talk:$3|Obrolan]]).',
 'editcomment'      => 'Komentar ngéditna: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => 'Malikkeun éditan $2, diganti deui ka vérsi ahir ku $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Malikkeun éditan $2, diganti deui ka vérsi ahir ku $1', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Mulangkeun éditan $1; balik deui ka vérsi panungtung ku $2.',
 'sessionfailure'   => 'Sigana aya masalah jeung termin log anjeun; peta ieu geus dibolaykeun salaku pépéling pikeun ngalawan ayana pangbajak. Mangga pencét "back" jeung muat ulang ti kaca asal anjeun, lajeng cobaan deui.',
 

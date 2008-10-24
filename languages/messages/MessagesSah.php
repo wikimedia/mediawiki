@@ -678,7 +678,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'currentrev'             => 'Билиҥҥи барыл',
 'currentrev-asof'        => 'Билиҥҥи торум манна: $1',
 'revisionasof'           => '$1 барыл',
-'revision-info'          => 'Версия от $1; $2', # Additional available: $3: revision id
+'revision-info'          => 'Версия от $1; $2', # Additionally available: $3: revision id
 'previousrevision'       => '←Инники барыл',
 'nextrevision'           => 'Аныгыскы барыл→',
 'currentrevisionlink'    => 'Билиҥҥи барыл',
@@ -1671,7 +1671,7 @@ $NEWPAGE
 
 Кэнники уларытыыны [[User:$3|$3]] ([[User talk:$3|Ырытыы]] | [[Special:Contributions/$3|{{int:contribslink}}]]) оҥорбут.',
 'editcomment'      => 'Уларытыыны маннык быһаарбыттар: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => '([[User talk:$2|Ырытыы]]) көннөрүүлэрэ: [[Special:Contributions/$2|$2]] бу торумҥа: [[User:$1|$1]] төннөрүлүннүлэр', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => '([[User talk:$2|Ырытыы]]) көннөрүүлэрэ: [[Special:Contributions/$2|$2]] бу торумҥа: [[User:$1|$1]] төннөрүлүннүлэр', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => '$1 көннөрүүлэр бу торумҥа төннөрүлүннүлэр: $2.',
 'sessionfailure'   => 'Арааһа туох эрэ сатаммата, дьайыыҥ оҥоһуллубата. Браузергар "Төнүн" тимэҕи баттаа уонна бу иннинээҕи сирэйгин иккистээн киллэрэн көр.',
 

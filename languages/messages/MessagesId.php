@@ -924,7 +924,7 @@ Alasan yang diberikan oleh $3 adalah ''$2''",
 'currentrev'             => 'Revisi terkini',
 'currentrev-asof'        => 'Revisi terkini pada $1',
 'revisionasof'           => 'Revisi per $1',
-'revision-info'          => 'Revisi per $1; $2', # Additional available: $3: revision id
+'revision-info'          => 'Revisi per $1; $2', # Additionally available: $3: revision id
 'previousrevision'       => '←Revisi sebelumnya',
 'nextrevision'           => 'Revisi selanjutnya→',
 'currentrevisionlink'    => 'Revisi terkini',
@@ -1893,7 +1893,7 @@ pengguna lain telah menyunting atau melakukan pengembalian terhadap revisi terse
 
 Suntingan terakhir dilakukan oleh [[User:$3|$3]] ([[User talk:$3|bicara]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => 'Komentar penyuntingan adalah: "<em>$1</em>".', # only shown if there is an edit comment
-'revertpage'       => 'Suntingan [[Special:Contributions/$2|$2]] ([[User talk:$2|bicara]]) dikembalikan ke versi terakhir oleh [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Suntingan [[Special:Contributions/$2|$2]] ([[User talk:$2|bicara]]) dikembalikan ke versi terakhir oleh [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Pengembalian suntingan oleh $1; dikembalikan ke versi terakhir oleh $2.',
 'sessionfailure'   => 'Sepertinya ada masalah dengan sesi log anda; log anda telah dibatalkan untuk mencegah pembajakan. Silahkan tekan tombol "back" dan muat kembali halaman sebelum anda masuk, lalu coba lagi.',
 

@@ -712,7 +712,7 @@ $2',
 'currentrev'             => '當前修訂版本',
 'currentrev-asof'        => '在$1的當前修訂版本',
 'revisionasof'           => '在$1所做的修訂版本',
-'revision-info'          => '在$1由$2所做的修訂版本', # Additional available: $3: revision id
+'revision-info'          => '在$1由$2所做的修訂版本', # Additionally available: $3: revision id
 'previousrevision'       => '←上一修訂',
 'nextrevision'           => '下一修訂→',
 'currentrevisionlink'    => '當前修訂',
@@ -1697,7 +1697,7 @@ $NEWPAGE
 
 最後對頁面編輯的編輯者: [[User:$3|$3]] ([[User talk:$3|討論]] | [[Special:Contributions/$3|{{int:contribslink}}]])。',
 'editcomment'      => '編輯說明: "<i>$1</i>"。', # only shown if there is an edit comment
-'revertpage'       => '恢復由[[Special:Contributions/$2|$2]] ([[User talk:$2|對話]])的編輯至[[User:$1|$1]]的最後一個版本', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => '恢復由[[Special:Contributions/$2|$2]] ([[User talk:$2|對話]])的編輯至[[User:$1|$1]]的最後一個版本', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => '恢復由$1的編輯；更改回$2的最後一個版本。',
 'sessionfailure'   => '您的登入資訊似乎有問題，為防止此該訊息被攔截，本次操作已經取消，請按「上一頁」重新載入。',
 

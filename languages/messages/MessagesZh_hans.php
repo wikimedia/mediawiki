@@ -737,7 +737,7 @@ $2',
 'currentrev'             => '当前修订版本',
 'currentrev-asof'        => '在$1的当前修订版本',
 'revisionasof'           => '在$1所做的修订版本',
-'revision-info'          => '在$1由$2所做的修订版本', # Additional available: $3: revision id
+'revision-info'          => '在$1由$2所做的修订版本', # Additionally available: $3: revision id
 'previousrevision'       => '←上一修订',
 'nextrevision'           => '下一修订→',
 'currentrevisionlink'    => '当前修订',
@@ -1721,7 +1721,7 @@ $NEWPAGE
 
 最后对页面编辑的编辑者: [[User:$3|$3]] ([[User talk:$3|讨论]] | [[Special:Contributions/$3|{{int:contribslink}}]])。',
 'editcomment'      => '编辑说明: "<i>$1</i>"。', # only shown if there is an edit comment
-'revertpage'       => '恢复由[[Special:Contributions/$2|$2]] ([[User talk:$2|对话]])的编辑至[[User:$1|$1]]的最后一个版本', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => '恢复由[[Special:Contributions/$2|$2]] ([[User talk:$2|对话]])的编辑至[[User:$1|$1]]的最后一个版本', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => '恢复由$1的编辑；更改回$2的最后一个版本。',
 'sessionfailure'   => '似乎在您登录时发生问题，作为一项防范性措施，该动作已经被取消。请单击"后退"再次尝试！',
 

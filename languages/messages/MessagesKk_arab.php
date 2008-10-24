@@ -1070,7 +1070,7 @@ $3 كەلتىرىلگەن سەبەبى: ''$2''",
 'nohistory'           => 'مىندا بۇل بەتتىنىڭ تۇزەتۋ تارىيحى جوق.',
 'currentrev'          => 'اعىمدىق تۇزەتۋ',
 'revisionasof'        => '$1 كەزىندەگى تۇزەتۋ',
-'revision-info'       => '$1 كەزىندەگى $2 ىستەگەن تۇزەتۋ', # Additional available: $3: revision id
+'revision-info'       => '$1 كەزىندەگى $2 ىستەگەن تۇزەتۋ', # Additionally available: $3: revision id
 'previousrevision'    => '← ەسكىلەۋ تۇزەتۋى',
 'nextrevision'        => 'جاڭالاۋ تۇزەتۋى →',
 'currentrevisionlink' => 'اعىمدىق تۇزەتۋى',
@@ -1934,7 +1934,7 @@ $NEWPAGE
 
 سوڭعى وڭدەمەسىن [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|تالقىلاۋى]]) ىستەگەن.',
 'editcomment'      => 'بولعان وڭدەمە ماندەمەسى: «<i>$1</i>».', # only shown if there is an edit comment
-'revertpage'       => '[[{{#special:Contributions}}/$2|$2]] ([[{{ns:user_talk}}:$2|تالقىلاۋى]]) وڭدەمەلەرىنەن [[{{ns:user}}:$1|$1]] سوڭعى نۇسقاسىنا قايتاردى', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => '[[{{#special:Contributions}}/$2|$2]] ([[{{ns:user_talk}}:$2|تالقىلاۋى]]) وڭدەمەلەرىنەن [[{{ns:user}}:$1|$1]] سوڭعى نۇسقاسىنا قايتاردى', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => '$1 وڭدەمەلەرىنەن قايتارعان;
 $2 سوڭعى نۇسقاسىنا وزگەرتتى.',
 'sessionfailure'   => 'كىرۋ سەسسىيياسىندا شاتاق بولعان سىيياقتى;

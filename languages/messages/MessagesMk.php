@@ -842,7 +842,7 @@ $2',
 'currentrev'             => 'Тековна ревизија',
 'currentrev-asof'        => 'Последна ревизија од $1',
 'revisionasof'           => 'Ревизија од $1',
-'revision-info'          => 'Ревизија од $1; направена од $2', # Additional available: $3: revision id
+'revision-info'          => 'Ревизија од $1; направена од $2', # Additionally available: $3: revision id
 'previousrevision'       => '← Претходна ревизија',
 'nextrevision'           => 'Следна ревизија →',
 'currentrevisionlink'    => 'Последна ревизија',
@@ -1790,7 +1790,7 @@ $NEWPAGE
 
 Последното уредување беше на [[User:$3|$3]] ([[User talk:$3|Разговор]]).',
 'editcomment'      => 'Коментарот на уредувањето беше: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => 'Отстрането уредувањето на [[Special:Contributions/$2|$2]] ([[User talk:$2|разговор]]), вратено на последната верзија на [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Отстрането уредувањето на [[Special:Contributions/$2|$2]] ([[User talk:$2|разговор]]), вратено на последната верзија на [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Откажани уредувањата на $1; вратено на последната верзија на $2.',
 'sessionfailure'   => 'Има проблем со вашата сесија;
 оваа акција е откажана како превентива против преземање сесии.

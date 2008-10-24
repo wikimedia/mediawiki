@@ -835,7 +835,7 @@ Lý do được $3 đưa ra là ''$2''",
 'currentrev'             => 'Bản hiện tại',
 'currentrev-asof'        => 'Bản hiện tại lúc $1',
 'revisionasof'           => 'Phiên bản lúc $1',
-'revision-info'          => 'Phiên bản vào lúc $1 do $2 sửa đổi', # Additional available: $3: revision id
+'revision-info'          => 'Phiên bản vào lúc $1 do $2 sửa đổi', # Additionally available: $3: revision id
 'previousrevision'       => '← Phiên bản cũ',
 'nextrevision'           => 'Phiên bản mới →',
 'currentrevisionlink'    => 'xem phiên bản hiện hành',
@@ -1832,7 +1832,7 @@ người viết trang cuối cùng cũng là tác giả duy nhất của trang n
 
 Sửa đổi cuối cùng tại trang do [[User:$3|$3]] ([[User talk:$3|thảo luận]] | [[Special:Contributions/$3|{{int:contribslink}}]]) thực hiện.',
 'editcomment'      => 'Tóm lược sửa đổi: “<i>$1</i>”.', # only shown if there is an edit comment
-'revertpage'       => 'Đã hủy sửa đổi của [[Special:Contributions/$2|$2]] ([[User talk:$2|Thảo luận]]) quay về phiên bản của [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Đã hủy sửa đổi của [[Special:Contributions/$2|$2]] ([[User talk:$2|Thảo luận]]) quay về phiên bản của [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Đã hủy sửa đổi của $1;
 quay về phiên bản cuối của $2.',
 'sessionfailure'   => 'Dường như có trục trặc với phiên đăng nhập của bạn; thao tác này đã bị hủy để tránh việc cướp quyền đăng nhập. Xin hãy nhấn nút “Back”, tải lại trang đó, rồi thử lại.',

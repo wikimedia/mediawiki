@@ -878,7 +878,7 @@ Hún er nú þegar til.',
 'currentrev'             => 'Núverandi útgáfa',
 'currentrev-asof'        => 'Núverandi breyting frá og með $1',
 'revisionasof'           => 'Útgáfa síðunnar $1',
-'revision-info'          => 'Útgáfa frá $1 eftir $2', # Additional available: $3: revision id
+'revision-info'          => 'Útgáfa frá $1 eftir $2', # Additionally available: $3: revision id
 'previousrevision'       => '←Fyrri útgáfa',
 'nextrevision'           => 'Næsta útgáfa→',
 'currentrevisionlink'    => 'Núverandi útgáfa',
@@ -1640,7 +1640,7 @@ eitthver annar hefur breytt síðunni eða nú þegar tekið breytinguna til bak
 
 Síðasta breyting er frá [[User:$3|$3]] ([[User talk:$3|Spjall]]).',
 'editcomment'      => 'Beytingarágripið var: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => 'Tók aftur breytingar [[Special:Contributions/$2|$2]] ([[User talk:$2|spjall]]), breytt til síðustu útgáfu [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Tók aftur breytingar [[Special:Contributions/$2|$2]] ([[User talk:$2|spjall]]), breytt til síðustu útgáfu [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Tók til baka breytingar eftir $1; núverandi $2.',
 
 # Protect

@@ -574,7 +574,7 @@ $2',
 'nohistory'           => '箇頁冇修改歷史。',
 'currentrev'          => '眼前嗰修改版本',
 'revisionasof'        => '$1嗰修改版本',
-'revision-info'       => '$2到$1扤嗰修訂版本', # Additional available: $3: revision id
+'revision-info'       => '$2到$1扤嗰修訂版本', # Additionally available: $3: revision id
 'previousrevision'    => '←之前嗰修改',
 'nextrevision'        => '接到嗰修改→',
 'currentrevisionlink' => '眼前嗰修改',
@@ -1197,7 +1197,7 @@ $NEWPAGE
 
 最晏編輯人: [[User:$3|$3]] ([[User talk:$3|討論]])。',
 'editcomment'      => '編輯介紹: "<i>$1</i>"。', # only shown if there is an edit comment
-'revertpage'       => '返回由[[Special:Contributions/$2|$2]] ([[User talk:$2|對話]])嗰編輯；恢復到[[User:$1|$1]]嗰最末一隻版本', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => '返回由[[Special:Contributions/$2|$2]] ([[User talk:$2|對話]])嗰編輯；恢復到[[User:$1|$1]]嗰最末一隻版本', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => '返回由$1嗰編輯；恢復到$2嗰最末一隻版本。',
 'sessionfailure'   => '倷嗰登入好像有嚸問題，為到防範未然，箇隻動作拕取消嘞。
 

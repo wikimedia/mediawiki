@@ -712,7 +712,7 @@ El motivu dau por $3 ye ''$2''",
 'currentrev'             => 'Revisión actual',
 'currentrev-asof'        => 'Revisión actual a fecha de $1',
 'revisionasof'           => 'Revisión a fecha de $1',
-'revision-info'          => 'Revisión a fecha de $1; $2', # Additional available: $3: revision id
+'revision-info'          => 'Revisión a fecha de $1; $2', # Additionally available: $3: revision id
 'previousrevision'       => '←Revisión anterior',
 'nextrevision'           => 'Revisión siguiente→',
 'currentrevisionlink'    => 'Revisión actual',
@@ -1698,7 +1698,7 @@ daquién más yá editó o revirtió la páxina.
 
 La postrer edición foi fecha por [[User:$3|$3]] ([[User talk:$3|alderique]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => 'El comentariu de la edición yera: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => 'Revertíes les ediciones de [[Special:Contributions/$2|$2]] ([[User talk:$2|alderique]]) hasta la cabera versión de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Revertíes les ediciones de [[Special:Contributions/$2|$2]] ([[User talk:$2|alderique]]) hasta la cabera versión de [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Revertíes les ediciones de $1; camudáu a la última versión de $2.',
 'sessionfailure'   => 'Paez qu\'hai un problema cola to sesión; por precaución
 cancelóse l\'aición que pidisti. Da-y al botón "Atrás" del

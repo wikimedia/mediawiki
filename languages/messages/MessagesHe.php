@@ -982,7 +982,7 @@ $2',
 'currentrev'             => 'גרסה נוכחית',
 'currentrev-asof'        => 'גרסה נוכחית מתאריך $1',
 'revisionasof'           => 'גרסה מתאריך $1',
-'revision-info'          => 'גרסה מתאריך $1 מאת $2', # Additional available: $3: revision id
+'revision-info'          => 'גרסה מתאריך $1 מאת $2', # Additionally available: $3: revision id
 'previousrevision'       => '→ הגרסה הקודמת',
 'nextrevision'           => 'הגרסה הבאה ←',
 'currentrevisionlink'    => 'הגרסה הנוכחית',
@@ -1995,7 +1995,7 @@ $NEWPAGE
 
 העריכה האחרונה הייתה של [[User:$3|$3]] ([[User talk:$3|שיחה]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "תקציר העריכה היה: \"'''\$1'''\".", # only shown if there is an edit comment
-'revertpage'       => 'שוחזר מעריכה של [[Special:Contributions/$2|$2]] ([[User talk:$2|שיחה]]) לעריכה האחרונה של [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'שוחזר מעריכה של [[Special:Contributions/$2|$2]] ([[User talk:$2|שיחה]]) לעריכה האחרונה של [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'שוחזר מעריכה של $1 לעריכה האחרונה של $2',
 'sessionfailure'   => 'נראה שיש בעיה בחיבורכם לאתר. פעולתכם בוטלה כאמצעי זהירות כנגד התחזות לתקשורת ממחשבכם. אנא חיזרו לדף הקודם ונסו שנית.',
 

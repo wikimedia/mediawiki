@@ -695,7 +695,7 @@ Don't forget to personalize your {{SITENAME}} preferences.",
 'nohistory'           => 'इस पन्ने का कोई इतिहास नहीं',
 'currentrev'          => 'सद्य अवतरण',
 'revisionasof'        => '$1 का आवर्तन',
-'revision-info'       => '$2ने किया हुवा $1का अवतरण', # Additional available: $3: revision id
+'revision-info'       => '$2ने किया हुवा $1का अवतरण', # Additionally available: $3: revision id
 'previousrevision'    => '← पुराना संशोधन',
 'nextrevision'        => 'नया संशोधन →',
 'currentrevisionlink' => 'वर्तमान संशोधन',
@@ -1568,7 +1568,7 @@ $NEWPAGE
 इस पन्ने का आखिरी योगदानकर्ता इस लेख का एकमात्र लेखक हैं।',
 'alreadyrolled'    => '[[$1]] का [[User:$2|$2]] ([[User talk:$2|वार्ता]]) द्वारा किया गया पिछला बदलाव रोलबेक नहीं किया जा सकता; किसी और ने पहले ही इसे रोलबेक किया अथवा बदल दिया है । पिछला बदलाव [[User:$3|$3]] ([[User talk:$3|वार्ता]]) द्वारा किया गया है ।',
 'editcomment'      => 'संपादन टिप्पणी: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) के संपादनोंको हटाकर [[User:$1|$1]] के आखिरी अवतरण को पूर्ववत किया', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) के संपादनोंको हटाकर [[User:$1|$1]] के आखिरी अवतरण को पूर्ववत किया', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => '$1 के संपादन हटायें;
 $2 द्वारा संपादित आखिरी अवतरण को पुनर्स्थापित किया।',
 'sessionfailure'   => 'ऐसा प्रतीत होता है की आपके लोगिन सत्र के साथ कोई समस्या है।

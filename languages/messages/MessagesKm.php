@@ -951,7 +951,7 @@ $2',
 'nohistory'              => 'មិនមានប្រវត្តិកំនែប្រែ​ចំពោះទំព័រនេះ។',
 'currentrev'             => 'កំនែបច្ចុប្បន្ន',
 'revisionasof'           => 'កំនែ​របស់ $1',
-'revision-info'          => 'កំនែ​របស់ $1 ដោយ $2', # Additional available: $3: revision id
+'revision-info'          => 'កំនែ​របស់ $1 ដោយ $2', # Additionally available: $3: revision id
 'previousrevision'       => '← កំនែ​មុន',
 'nextrevision'           => 'កំនែបន្ទាប់ →',
 'currentrevisionlink'    => 'កំនែប្រែបច្ចុប្បន្ន',
@@ -1815,7 +1815,7 @@ $NEWPAGE
 'rollbacklink'   => 'ត្រឡប់',
 'cantrollback'   => 'មិនអាចត្រឡប់កំណែប្រែ។ អ្នករួមចំណែកចុងក្រោយទើបជាអ្នកនិពន្ធ​របស់ទំព័រនេះ។',
 'editcomment'    => 'វិចារក្នុងការកែប្រែ៖ "<i>$1</i>"។', # only shown if there is an edit comment
-'revertpage'     => 'បានត្រលប់កំនែប្រែដោយ[[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) ទៅកំនែប្រែចុងក្រោយដោយ [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'     => 'បានត្រលប់កំនែប្រែដោយ[[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) ទៅកំនែប្រែចុងក្រោយដោយ [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 
 # Protect
 'protectlogpage'              => 'កំនត់ហេតុនៃការការពារ',

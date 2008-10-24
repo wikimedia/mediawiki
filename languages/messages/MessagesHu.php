@@ -947,7 +947,7 @@ Néhány sablon nem fog megjelenni.',
 'currentrev'             => 'Aktuális változat',
 'currentrev-asof'        => 'A lap jelenlegi, $1-kori változata',
 'revisionasof'           => 'A lap $1-kori változata',
-'revision-info'          => 'A lap korábbi változatát látod, amilyen $2 $1-kor történt szerkesztése után volt.', # Additional available: $3: revision id
+'revision-info'          => 'A lap korábbi változatát látod, amilyen $2 $1-kor történt szerkesztése után volt.', # Additionally available: $3: revision id
 'previousrevision'       => '←Régebbi változat',
 'nextrevision'           => 'Újabb változat→',
 'currentrevisionlink'    => 'Aktuális változat',
@@ -1937,7 +1937,7 @@ időközben valaki már visszavonta, vagy szerkesztette a lapot.
 
 Az utolsó szerkesztést [[User:$3|$3]] ([[User talk:$3|vita]] | [[Special:Contributions/$3|{{int:contribslink}}]]) végezte.',
 'editcomment'      => 'A változtatás összefoglalója „<i>$1</i>” volt.', # only shown if there is an edit comment
-'revertpage'       => 'Visszaállítottam a lap korábbi változatát: [[Special:Contributions/$2|$2]]  ([[User talk:$2|vita]]) szerkesztéséről [[User:$1|$1]] szerkesztésére', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Visszaállítottam a lap korábbi változatát: [[Special:Contributions/$2|$2]]  ([[User talk:$2|vita]]) szerkesztéséről [[User:$1|$1]] szerkesztésére', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => '$1 szerkesztéseit visszaállítottam $2 utolsó változatára.',
 'sessionfailure'   => 'Úgy látszik, hogy probléma van a bejelentkezési munkameneteddel;
 ez a művelet a munkamenet eltérítése miatti óvatosságból megszakadt.

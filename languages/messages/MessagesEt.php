@@ -1093,7 +1093,7 @@ Kõik toodud kellaajad järgivad serveriaega.',
 'rollbackfailed' => 'Muudatuste tühistamine ebaõnnestus',
 'cantrollback'   => 'Ei saa muudatusi tagasi pöörata; viimane kaastööline on artikli ainus autor.',
 'editcomment'    => 'Artikli sisu oli: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'     => 'Tühistati [[Eri:Contributions/$2|$2]] ([[Kasutaja arutelu:$2|arutelu]]) muudatus ning pöörduti tagasi viimasele muudatusele, mille tegi [[Kasutaja:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'     => 'Tühistati [[Eri:Contributions/$2|$2]] ([[Kasutaja arutelu:$2|arutelu]]) muudatus ning pöörduti tagasi viimasele muudatusele, mille tegi [[Kasutaja:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 
 # Protect
 'protectlogpage'              => 'Kaitsmise logi',

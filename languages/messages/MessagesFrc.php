@@ -547,7 +547,7 @@ Les notes d'ôtage pour cette page sont données ici pour vous aider:",
 'nohistory'           => 'Y a pas de changements pour cette page.',
 'currentrev'          => 'Version courante',
 'revisionasof'        => 'Version depuis le $1',
-'revision-info'       => 'Version depuis le $1 par $2', # Additional available: $3: revision id
+'revision-info'       => 'Version depuis le $1 par $2', # Additionally available: $3: revision id
 'previousrevision'    => '←Version avant',
 'nextrevision'        => 'Version après→',
 'currentrevisionlink' => 'Version courante',

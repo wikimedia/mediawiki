@@ -743,7 +743,7 @@ Lu mutivu è ''$2''",
 'currentrev'             => 'Virsioni currenti',
 'currentrev-asof'        => 'Virsioni currenti dû $1',
 'revisionasof'           => 'Virsioni dû $1',
-'revision-info'          => 'Virsioni dû $1 di $2', # Additional available: $3: revision id
+'revision-info'          => 'Virsioni dû $1 di $2', # Additionally available: $3: revision id
 'previousrevision'       => '← Virsioni menu ricenti',
 'nextrevision'           => 'Virsioni cchiù ricenti →',
 'currentrevisionlink'    => 'Virsioni currenti',
@@ -1650,7 +1650,7 @@ Talìa $2 pi na lista di cancillazzioni ricenti.',
 
 Lu canciamentu cchiù ricenti â pàggina fu appurtata di [[User:$3|$3]] ([[User talk:$3|discussioni]]).",
 'editcomment'      => 'Lu cummentu â mudìfica era: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => "Canciu narrè di [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussioni]]) cu l'ùrtima virsioni di [[User:$1|$1]]", # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => "Canciu narrè di [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussioni]]) cu l'ùrtima virsioni di [[User:$1|$1]]", # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Annullati li canciamenti di $1; ritornata â virsioni pricidenti di $2.',
 'sessionfailure'   => 'S\'hà virificatu un prubbrema cu la tò sissioni di login;
 lu sistema nun hà esiquitu lu cumannu mpartitu pi pricauzzioni.

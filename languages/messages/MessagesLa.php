@@ -672,7 +672,7 @@ Ille hanc causam dedit: ''$2''",
 'currentrev'             => 'Emendatio recentissima',
 'currentrev-asof'        => 'Emendatio recentissima ex $1',
 'revisionasof'           => 'Emendatio ex $1',
-'revision-info'          => 'Emendatio ex $1 ab $2', # Additional available: $3: revision id
+'revision-info'          => 'Emendatio ex $1 ab $2', # Additionally available: $3: revision id
 'previousrevision'       => '← Emendatio senior',
 'nextrevision'           => 'Emendatio novior →',
 'currentrevisionlink'    => 'Emendatio currens',
@@ -1301,7 +1301,7 @@ Adfirma quaesumus te paginam re vera delere velle, te consequentias intellere, e
 
 Emendatio proxima ab usore [[User:$3|$3]] ([[User talk:$3|Disputatio]] | [[Special:Contributions/$3|{{int:contribslink}}]]) effecta est.',
 'editcomment'      => 'Dictum recensiti erat: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => 'Reverti recensiones ab usore [[Special:Contributions/$2|$2]] ([[User talk:$2|Disputatio]]) ad emendationem proximam ab [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Reverti recensiones ab usore [[Special:Contributions/$2|$2]] ([[User talk:$2|Disputatio]]) ad emendationem proximam ab [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Reverti recensiones ab usore $1
 ad emendationem proximam ab $2.',
 

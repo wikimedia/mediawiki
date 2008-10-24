@@ -876,7 +876,7 @@ La rason balhada per $3 èra ''$2''.",
 'currentrev'             => 'Version actuala',
 'currentrev-asof'        => 'Version actuala en data del $1',
 'revisionasof'           => 'Version del $1',
-'revision-info'          => 'Version del $1 per $2', # Additional available: $3: revision id
+'revision-info'          => 'Version del $1 per $2', # Additionally available: $3: revision id
 'previousrevision'       => '← Version precedenta',
 'nextrevision'           => 'Version seguenta →',
 'currentrevisionlink'    => 'vejatz la version correnta',
@@ -1869,7 +1869,7 @@ D'efectuar amb prudéncia.",
 
 La darrièra modificacion es estada efectuada per [[User:$3|$3]] ([[User talk:$3|Discussion]]).",
 'editcomment'      => 'Lo resumit de la modificacion èra: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => 'Anullacion de las modificacions de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]]) cap a la darrièra version de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Anullacion de las modificacions de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]]) cap a la darrièra version de [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Anullacion de las modificacions de $1 ; retorn a la version de $2.',
 'sessionfailure'   => 'Vòstra sesilha de connexion sembla aver de problèmas ;
 aquesta accion es estada anullada en prevencion d’un piratatge de sesilha.

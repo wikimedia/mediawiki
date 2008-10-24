@@ -725,7 +725,7 @@ $3 мына бойле бир себеп бельгиледи: ''$2''",
 'nohistory'              => 'Бу саифенинъ кечмиш версиясы ёкъ.',
 'currentrev'             => 'Ал-азырки версия',
 'revisionasof'           => 'Саифенинъ $1 тарихындаки алы',
-'revision-info'          => 'Саифенинъ $2 тарафындан олуштырылгъан $1 тарихындаки алы', # Additional available: $3: revision id
+'revision-info'          => 'Саифенинъ $2 тарафындан олуштырылгъан $1 тарихындаки алы', # Additionally available: $3: revision id
 'previousrevision'       => '← Эвельки алы',
 'nextrevision'           => 'Сонъраки алы →',
 'currentrevisionlink'    => 'энъ янъы алыны косьтер',
@@ -1312,7 +1312,7 @@ e-mail: $PAGEEDITOR_EMAIL
 'rollbackfailed' => 'кери алув ишлеми мувафакъиетсиз',
 'cantrollback'   => 'Денъишикликлер кери алынамай, сонъки денъиштирген киши саифенинъ тек бир муэллифидир',
 'editcomment'    => 'Денъиштирме изааты: "<i>$1</i>" эди.', # only shown if there is an edit comment
-'revertpage'     => '[[Special:Contributions/$2|$2]] ([[User talk:$2|музакере]]) тарафындан япылгъан денъишикликлер кери алынып, [[User:$1|$1]] тарафындан денъиштирильген эвельки версия кери кетирильди.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'     => '[[Special:Contributions/$2|$2]] ([[User talk:$2|музакере]]) тарафындан япылгъан денъишикликлер кери алынып, [[User:$1|$1]] тарафындан денъиштирильген эвельки версия кери кетирильди.', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 
 # Protect
 'protectlogpage'              => 'Къорчалав журналы',

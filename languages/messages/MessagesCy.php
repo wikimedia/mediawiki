@@ -753,7 +753,7 @@ Y rheswm a roddwyd dros y bloc gan $3 yw ''$2''.",
 'nohistory'              => "Does dim hanes golygu i'r dudalen hon.",
 'currentrev'             => 'Diwygiad cyfoes',
 'revisionasof'           => 'Diwygiad $1',
-'revision-info'          => 'Y fersiwn a roddwyd ar gadw am $1 gan $2', # Additional available: $3: revision id
+'revision-info'          => 'Y fersiwn a roddwyd ar gadw am $1 gan $2', # Additionally available: $3: revision id
 'previousrevision'       => '← at y diwygiad blaenorol',
 'nextrevision'           => 'At y diwygiad dilynol →',
 'currentrevisionlink'    => 'Y diwygiad cyfoes',
@@ -1612,7 +1612,7 @@ mae rhywun arall eisoes wedi dadwneud y golygiad neu wedi golygu'r dudalen.
 
 [[User:$3|$3]] ([[User talk:$3|Sgwrs]] | [[Special:Contributions/$3|{{int:contribslink}}]]) a wnaeth y golygiad diwethaf.",
 'editcomment'      => 'Crynodeb y golygiad oedd: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => 'Wedi gwrthdroi golygiadau gan [[Special:Contributions/$2|$2]] ([[User talk:$2|Sgwrs]]); wedi adfer y golygiad diweddaraf gan [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Wedi gwrthdroi golygiadau gan [[Special:Contributions/$2|$2]] ([[User talk:$2|Sgwrs]]); wedi adfer y golygiad diweddaraf gan [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => "Gwrthdrowyd y golygiadau gan $1; 
 wedi gwrthdroi i'r golygiad olaf gan $2.",
 'sessionfailure'   => "Mae'n debyg fod yna broblem gyda'ch sesiwn mewngofnodi; diddymwyd y weithred er mwyn diogelu'r sustem rhag ddefnyddwyr maleisus. Gwasgwch botwm 'nôl' eich porwr ac ail-lwythwch y dudalen honno, yna ceisiwch eto.",

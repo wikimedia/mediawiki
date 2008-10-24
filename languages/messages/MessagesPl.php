@@ -908,7 +908,7 @@ Podany przez $3 powód to ''$2''",
 'currentrev'             => 'Aktualna wersja',
 'currentrev-asof'        => 'Aktualna wersja na dzień $1',
 'revisionasof'           => 'Wersja z dnia $1',
-'revision-info'          => 'Wersja $2 z dnia $1', # Additional available: $3: revision id
+'revision-info'          => 'Wersja $2 z dnia $1', # Additionally available: $3: revision id
 'previousrevision'       => '← poprzednia wersja',
 'nextrevision'           => 'następna wersja →',
 'currentrevisionlink'    => 'przejdź do aktualnej wersji',
@@ -1922,7 +1922,7 @@ Ktoś inny zdążył już to zrobić lub wprowadził własne poprawki do treści
 
 Autorem ostatniej zmiany jest teraz [[User:$3|$3]] ([[User talk:$3|dyskusja]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => 'Edycję opisano: „<i>$1</i>”.', # only shown if there is an edit comment
-'revertpage'       => 'Wycofano edycje użytkownika [[Special:Contributions/$2|$2]] ([[User talk:$2|dyskusja]]). Autor przywróconej wersji to [[User:$1|$1]].', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Wycofano edycje użytkownika [[Special:Contributions/$2|$2]] ([[User talk:$2|dyskusja]]). Autor przywróconej wersji to [[User:$1|$1]].', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Wycofano edycje użytkownika $1.
 Przywrócono ostatnią wersję autorstwa $2.',
 'sessionfailure'   => 'Wystąpił problem z weryfikacją zalogowania.

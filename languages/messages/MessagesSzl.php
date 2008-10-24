@@ -644,7 +644,7 @@ Skuli: ''$2''",
 'currentrev'             => 'Aktualno wersyjo',
 'currentrev-asof'        => 'Aktualno wersyjo na dźyń $1',
 'revisionasof'           => 'Wersyjo s dńa $1',
-'revision-info'          => 'Wersyjo s dńa $1; $2', # Additional available: $3: revision id
+'revision-info'          => 'Wersyjo s dńa $1; $2', # Additionally available: $3: revision id
 'previousrevision'       => '← popředńo wersyjo',
 'nextrevision'           => 'Nastympno wersyjo→',
 'currentrevisionlink'    => 'Aktualno wersyjo',
@@ -1558,7 +1558,7 @@ Kto inkšy zdůnžůu juž to zrobić abo wprowadźiu wuasne poprowki do treść
 Autorym ostatńygo pomjyńyńo je terozki [[User:$3|$3]] ([[User talk:$3|godka]]).',
 'editcomment'      => 'Sprowjyńe uopisano: „<i>$1</i>”.', # only shown if there is an edit comment
 'revertpage'       => 'Wycofano sprowjyńe užytkowńika [[Special:Contributions/$2|$2]] ([[User talk:$2|godka]]).
-Autor přiwrůcůnej wersyji to [[User:$1|$1]].', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+Autor přiwrůcůnej wersyji to [[User:$1|$1]].', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Wycofano sprowjyńa užytkowńika $1.
 Přiwrůcůno uostatńo wersyja autorstwa  $2.',
 'sessionfailure'   => 'Feler weryfikacyji zalůgowańo.

@@ -633,7 +633,7 @@ Iŏk-sṳ̄ nṳ̄ buóh-siōng téng nṳ̄ gáng-sê-dăng gà̤-dēng dṳ̀ 
 
 Có̤i âu gì siŭ-gāi sê [[User:$3|$3]] ([[User talk:$3|Tō̤-lâung]]) sū có̤ gì.',
 'editcomment'    => 'Siŭ-gāi pàng-lâung sê: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'     => '[[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) sū có̤ gì siŭ-gāi duōng kó̤ [[User:$1|$1]] gì sèng 1 bĭk bēng-buōng', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'     => '[[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) sū có̤ gì siŭ-gāi duōng kó̤ [[User:$1|$1]] gì sèng 1 bĭk bēng-buōng', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 
 # Protect
 'protectlogpage'              => 'Bō̤-hô nĭk-cé',

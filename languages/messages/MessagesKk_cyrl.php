@@ -1031,7 +1031,7 @@ $3 келтірілген себебі: ''$2''",
 'nohistory'              => 'Мында бұл беттінің түзету тарихы жоқ.',
 'currentrev'             => 'Ағымдық түзету',
 'revisionasof'           => '$1 кезіндегі түзету',
-'revision-info'          => '$1 кезіндегі $2 істеген түзету', # Additional available: $3: revision id
+'revision-info'          => '$1 кезіндегі $2 істеген түзету', # Additionally available: $3: revision id
 'previousrevision'       => '← Ескілеу түзетуі',
 'nextrevision'           => 'Жаңалау түзетуі →',
 'currentrevisionlink'    => 'Ағымдық түзетуі',
@@ -1897,7 +1897,7 @@ $NEWPAGE
 
 соңғы өңдемесін [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|талқылауы]]) істеген.',
 'editcomment'      => 'Болған өңдеме мәндемесі: «<i>$1</i>».', # only shown if there is an edit comment
-'revertpage'       => '[[{{#special:Contributions}}/$2|$2]] ([[{{ns:user_talk}}:$2|талқылауы]]) өңдемелерінен [[{{ns:user}}:$1|$1]] соңғы нұсқасына қайтарды', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => '[[{{#special:Contributions}}/$2|$2]] ([[{{ns:user_talk}}:$2|талқылауы]]) өңдемелерінен [[{{ns:user}}:$1|$1]] соңғы нұсқасына қайтарды', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => '$1 өңдемелерінен қайтарған;
 $2 соңғы нұсқасына өзгертті.',
 'sessionfailure'   => 'Кіру сессиясында шатақ болған сияқты;

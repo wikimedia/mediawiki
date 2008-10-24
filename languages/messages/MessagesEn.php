@@ -1236,7 +1236,7 @@ The reason given by $3 is ''$2''",
 'currentrev'             => 'Current revision',
 'currentrev-asof'        => 'Current revision as of $1',
 'revisionasof'           => 'Revision as of $1',
-'revision-info'          => 'Revision as of $1 by $2', # Additional available: $3: revision id
+'revision-info'          => 'Revision as of $1 by $2', # Additionally available: $3: revision id
 'revision-info-current'  => '-', # Available parameters: $1: timestamp; $2: userlinks; $3: revision id; do not translate or duplicate this message to other languages
 'revision-nav'           => '($1) $2 | $3 ($4) | $5 ($6)', # do not translate or duplicate this message to other languages
 'previousrevision'       => '← Older revision',
@@ -2359,7 +2359,7 @@ someone else has edited or rolled back the page already.
 
 The last edit to the page was by [[User:$3|$3]] ([[User talk:$3|Talk]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => 'The edit comment was: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => 'Reverted edits by [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) to last version by [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Reverted edits by [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) to last version by [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Reverted edits by $1;
 changed back to last version by $2.',
 'sessionfailure'   => 'There seems to be a problem with your login session;

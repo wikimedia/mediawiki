@@ -644,7 +644,7 @@ Ini ing sangkan a binie nang $3: ''$2''",
 'nohistory'           => 'Alang amlat ning pamag-edit (edit history) para king bulung a ini.',
 'currentrev'          => 'Kasalungsungan a pangayalili',
 'revisionasof'        => 'Ing mibayu aniang $1',
-'revision-info'       => 'Deng miyalilan aniang $1 ibat kang $2', # Additional available: $3: revision id
+'revision-info'       => 'Deng miyalilan aniang $1 ibat kang $2', # Additionally available: $3: revision id
 'previousrevision'    => '←Minunang pamagbayu',
 'nextrevision'        => 'Mas tauling pamagbayu→',
 'currentrevisionlink' => 'Kasalungsungan a pamagbayu',
@@ -1472,7 +1472,7 @@ a gewa nang [[User:$2|$2]] ([[User talk:$2|Talk]]); atin nang aliwang menalili o
 I [[User:$3|$3]] ([[User talk:$3|Talk]]) ing tawling menalili.',
 'editcomment'      => 'Ini ing komentu king edit: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'       => 'Miurung la reng in-edit nang [[Special:Contributions/$2|$2]] ([[User talk:$2|Pamisabi-sabi]]);
-binalik neng [[User:$1|$1]] king tauling bersion', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+binalik neng [[User:$1|$1]] king tauling bersion', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Deng edit nang $1 a miurung;
 binalik nong $2 king sadiang bersion.',
 'sessionfailure'   => 'Balamu ating prublema king kekang login session;

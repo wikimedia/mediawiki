@@ -671,7 +671,7 @@ An abeg roet gant $3 zo ''$2''",
 'nohistory'           => "Ar bajenn-mañ n'he deus tamm istor ebet.",
 'currentrev'          => 'Stumm a-vremañ pe stumm red',
 'revisionasof'        => 'Stumm eus an $1',
-'revision-info'       => 'Stumm eus an $1 gant $2', # Additional available: $3: revision id
+'revision-info'       => 'Stumm eus an $1 gant $2', # Additionally available: $3: revision id
 'previousrevision'    => '← Stumm kent',
 'nextrevision'        => "Stumm war-lerc'h →",
 'currentrevisionlink' => 'Gwelet ar stumm red',
@@ -1481,7 +1481,7 @@ gant [[User:$2|$2]] ([[User talk:$2|Talk]]); kemmet pe distaolet eo bet c'hoazh 
 
 Ar c'hemm diwezhañ a oa gant [[User:$3|$3]] ([[User talk:$3|Talk]]).",
 'editcomment'      => 'Diverradenn ar c\'hemm a oa: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => "Kemmoù distaolet gant [[Special:Contributions/$2|$2]] ([[User talk:$2|Kaozeal]]); adlakaet d'ar stumm diwezhañ a-gent gant [[User:$1|$1]]", # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => "Kemmoù distaolet gant [[Special:Contributions/$2|$2]] ([[User talk:$2|Kaozeal]]); adlakaet d'ar stumm diwezhañ a-gent gant [[User:$1|$1]]", # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Disteuler kemmoù $1; distreiñ da stumm diwezhañ $2.',
 'sessionfailure'   => 'Evit doare ez eus ur gudenn gant ho talc\'h;
 Nullet eo bet an ober-mañ a-benn en em wareziñ diouzh an tagadennoù preizhañ.

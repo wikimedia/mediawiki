@@ -778,7 +778,7 @@ El motivo dado por $3 es ''$2''",
 'currentrev'             => 'Revisión actual',
 'currentrev-asof'        => 'última version al $1',
 'revisionasof'           => 'Revisión de $1',
-'revision-info'          => 'Revisión a fecha de $1; $2', # Additional available: $3: revision id
+'revision-info'          => 'Revisión a fecha de $1; $2', # Additionally available: $3: revision id
 'previousrevision'       => '← Revisión anterior',
 'nextrevision'           => 'Revisión siguiente →',
 'currentrevisionlink'    => 'Revisión actual',
@@ -1767,7 +1767,7 @@ Véase $2 para un registro de los borrados recientes.',
 
 La última edición fue hecha por [[User:$3|$3]] ([[User talk:$3|discusión]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => 'El resumen de la edición es: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => 'Revertidas las ediciones de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discusión]]) a la última edición de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Revertidas las ediciones de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discusión]]) a la última edición de [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Revertidas las ediciones de $1; recuperada la última versión de $2.',
 'sessionfailure'   => 'Parece que hay un problema con tu sesión;
 esta acción ha sido cancelada como medida de precaución contra secuestros de sesión.

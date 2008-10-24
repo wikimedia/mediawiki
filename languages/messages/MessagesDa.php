@@ -779,7 +779,7 @@ Der bør være færre end $2, lige nu er der $1.',
 'nohistory'              => 'Der er ingen versionshistorik for denne side.',
 'currentrev'             => 'Nuværende version',
 'revisionasof'           => 'Versionen fra $1',
-'revision-info'          => 'Version fra $1 til $2', # Additional available: $3: revision id
+'revision-info'          => 'Version fra $1 til $2', # Additionally available: $3: revision id
 'previousrevision'       => '←Ældre version',
 'nextrevision'           => 'Nyere version→',
 'currentrevisionlink'    => 'se nuværende version',
@@ -1621,7 +1621,7 @@ eller et billede sammen med hele den tilhørende historie fra databasen. Bekræf
 'cantrollback'     => 'Kan ikke fjerne redigering; den sidste bruger er den eneste forfatter.',
 'alreadyrolled'    => 'Kan ikke fjerne den seneste redigering af [[:$1]] foretaget af [[User:$2|$2]] ([[User talk:$2|diskussion]]); en anden har allerede redigeret siden eller fjernet redigeringen. Den seneste redigering er foretaget af [[User:$3|$3]] ([[User talk:$3|diskussion]]).',
 'editcomment'      => 'Kommentaren til redigeringen var: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => 'Gendannelse til seneste version ved $1, fjerner ændringer fra $2', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Gendannelse til seneste version ved $1, fjerner ændringer fra $2', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => "$1's ændringer er fjernet, gendannet til den seneste version af $2.",
 'sessionfailure'   => 'Der lader til at være et problem med din loginsession; denne handling blev annulleret som en sikkerhedsforanstaltning mod kapring af sessionen. Tryk på "tilbage"-knappen og genindlæs den side du kom fra, og prøv dernæst igen.',
 
