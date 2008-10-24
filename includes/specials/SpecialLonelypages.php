@@ -29,7 +29,7 @@ class LonelyPagesPage extends PageQueryPage {
 
 	function getSQL() {
 		$dbr = wfGetDB( DB_SLAVE );
-		list( $page, $pagelinks ) = $dbr->tableNamesN( 'page', 'pagelinks' );
+		list( $page, $pagelinks, $templatelinks ) = $dbr->tableNamesN( 'page', 'pagelinks', 'templatelinks' );
 
 		return
 		  "SELECT 'Lonelypages'  AS type,
@@ -39,9 +39,12 @@ class LonelyPagesPage extends PageQueryPage {
 		     FROM $page
 		LEFT JOIN $pagelinks
 		       ON page_namespace=pl_namespace AND page_title=pl_title
+		LEFT JOIN $templatelinks
+				ON page_namespace=tl_namespace AND page_title=tl_title
 		    WHERE pl_namespace IS NULL
 		      AND page_namespace=".NS_MAIN."
-		      AND page_is_redirect=0";
+		      AND page_is_redirect=0
+			  AND tl_namespace IS NULL";
 
 	}
 }

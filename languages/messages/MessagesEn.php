@@ -2041,7 +2041,7 @@ Each row contains links to the first and second redirect, as well as the target 
 'specialpage-empty'               => 'There are no results for this report.',
 'lonelypages'                     => 'Orphaned pages',
 'lonelypages-summary'             => '', # do not translate or duplicate this message to other languages
-'lonelypagestext'                 => 'The following pages are not linked from other pages in {{SITENAME}}.',
+'lonelypagestext'                 => 'The following pages are not linked from or transcluded into other pages in {{SITENAME}}.',
 'uncategorizedpages'              => 'Uncategorized pages',
 'uncategorizedpages-summary'      => '', # do not translate or duplicate this message to other languages
 'uncategorizedcategories'         => 'Uncategorized categories',
