@@ -1719,7 +1719,7 @@ PICT # שונות
 'nviews'                  => '{{PLURAL:$1|צפייה אחת|$1 צפיות}}',
 'specialpage-empty'       => 'אין תוצאות.',
 'lonelypages'             => 'דפים יתומים',
-'lonelypagestext'         => 'לדפים הבאים אין קישורים מדפים אחרים באתר זה.',
+'lonelypagestext'         => 'הדפים הבאים אינם מקושרים מדפים אחרים באתר זה ואינם מוכללים בהם.',
 'uncategorizedpages'      => 'דפים חסרי קטגוריה',
 'uncategorizedcategories' => 'קטגוריות חסרות קטגוריה',
 'uncategorizedimages'     => 'תמונות חסרות קטגוריה',
