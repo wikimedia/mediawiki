@@ -1363,6 +1363,7 @@ e-mail: $PAGEEDITOR_EMAIL
 'undeletecomment'    => 'Изаат:',
 'undeletedarticle'   => '"[[$1]]" кери кетирильди.',
 'undeletedrevisions' => 'Топлам {{PLURAL:$1|1 къайд|$1 къайд}} кери кетирильди.',
+'undelete-header'    => 'Кеченлерде ёкъ этильген саифелерни корьмек ичюн [[Special:Log/delete|ёкъ этюв журналына]] бакъынъыз.',
 
 # Namespace form on various pages
 'namespace'      => 'Исим фезасы:',

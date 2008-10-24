@@ -984,6 +984,13 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'prevn'                            => 'precedenti $1',
 'nextn'                            => 'successivi $1',
 'viewprevnext'                     => 'Vedi ($1) ($2) ($3).',
+'searchmenu-exists'                => "* Pagina '''[[$1]]'''",
+'searchmenu-new'                   => "* Crea la pagina '''[[$1]]'''",
+'searchhelp-url'                   => 'Project:Ricerca',
+'searchmenu-badtitle'              => '* "$1" non è un titolo valido.
+* [[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
+'searchmenu'                       => '* [[Special:AllPages/$1|Index]]
+* [[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
 'searchprofile-articles'           => 'Pagine',
 'searchprofile-project'            => 'Pagine/Progetto',
 'searchprofile-images'             => 'File',
@@ -1013,6 +1020,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'showingresults'                   => "Di seguito {{PLURAL:$1|viene presentato al massimo '''1''' risultato|vengono presentati al massimo '''$1''' risultati}} a partire dal numero '''$2'''.",
 'showingresultsnum'                => "Di seguito {{PLURAL:$3|viene presentato '''1''' risultato|vengono presentati '''$3''' risultati}} a partire dal numero '''$2'''.",
 'showingresultstotal'              => "Di seguito {{PLURAL:$4|viene mostrato il risultato '''$1''' di '''$3'''|vengono mostrati i risultati '''$1 - $2''' di '''$3'''}}",
+'search-nonefound'                 => 'La ricerca non ha prodotto risultati.',
 'powersearch'                      => 'Ricerca',
 'powersearch-legend'               => 'Ricerca avanzata',
 'powersearch-ns'                   => 'Cerca nei namespace:',

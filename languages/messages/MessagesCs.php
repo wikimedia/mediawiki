@@ -1163,6 +1163,9 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'viewprevnext'                     => 'Ukázat ($1) ($2) ($3).',
 'searchmenu-exists'                => "*Stránka '''[[$1]]'''",
 'searchmenu-new'                   => "*Založit stránku '''[[$1]]'''",
+'searchhelp-url'                   => 'Project:Hledání',
+'searchmenu-badtitle'              => '* „$1“ není použitelné jako název stránky.
+* [[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
 'searchmenu'                       => '*[[Special:AllPages/$1|Rejstřík]]
 *[[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
 'searchprofile-articles'           => 'Články',
@@ -2906,6 +2909,7 @@ Opravdu si přejete znovu tuto stránku založit?',
 # action=purge
 'confirm_purge_button' => 'OK',
 'confirm-purge-top'    => 'Aktualizovat cachovanou verzi této stránky?',
+'confirm-purge-bottom' => 'Aktualizace stránky vymaže cache a vynutí zobrazení nejaktuálnější verze.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← předchozí stránka',
