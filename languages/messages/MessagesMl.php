@@ -41,8 +41,18 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	"അംഗം" 			=> NS_USER,
-	"അംഗങ്ങളുടെ സംവാദം" 		=> NS_USER_TALK,
+	'അംഗം' => NS_USER,
+	'ഉ' => NS_USER,
+	'അംഗങ്ങളുടെ സംവാദം' => NS_USER_TALK,
+	'ഉസം' => NS_USER_TALK,
+	'ചി' => NS_IMAGE,
+	'ചിസം' => NS_IMAGE_TALK,
+	'ഫ' => NS_TEMPLATE,
+	'ഫസം' => NS_TEMPLATE_TALK,
+	'വി' => NS_CATEGORY,
+	'വിസം' => NS_CATEGORY_TALK,
+	'സ' => NS_HELP,
+	'സസം' => NS_HELP_TALK,
 );
 
 $skinNames = array(
