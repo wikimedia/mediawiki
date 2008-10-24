@@ -1099,6 +1099,17 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 'prevn'                     => '$1 sebelumnya',
 'nextn'                     => '$1 berikutnya',
 'viewprevnext'              => 'Lihat ($1) ($2) ($3)',
+'searchmenu-exists'         => "* Halaman '''[[$1]]'''",
+'searchmenu-new'            => "* Buat halaman '''[[$1]]'''",
+'searchhelp-url'            => 'Project:Pencarian',
+'searchmenu-badtitle'       => '* "$1" adalah judul yang tidak sah.
+* [[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
+'searchmenu'                => '* [[Special:AllPages/$1|Indeks]]
+* [[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
+'searchprofile-articles'    => 'Halaman-halaman',
+'searchprofile-project'     => 'Halaman/Proyek',
+'searchprofile-images'      => 'Berkas',
+'searchprofile-everything'  => 'Seluruhnya',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 kata|$2 kata}})',
 'search-result-score'       => 'Relevansi: $1%',
 'search-redirect'           => '(pengalihan $1)',

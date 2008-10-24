@@ -1141,8 +1141,10 @@ $2',
 'searchmenu-exists'                => "*الصفحة '''[[$1]]'''",
 'searchmenu-new'                   => "*أنشئ الصفحة '''[[$1]]'''",
 'searchhelp-url'                   => 'Project:بحث',
-'searchmenu'                       => '*[[Special:AllPages/$1|فهرس]]
-*[[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
+'searchmenu-badtitle'              => '* "$1" ليست عنوانا صحيحا.
+* [[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
+'searchmenu'                       => '* [[Special:AllPages/$1|فهرس]]
+* [[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
 'searchprofile-articles'           => 'الصفحات',
 'searchprofile-project'            => 'الصفحات/المشروع',
 'searchprofile-images'             => 'الملفات',
@@ -1712,7 +1714,7 @@ PICT # misc.
 'nviews'                  => '{{PLURAL:$1|مشاهدة واحدة|مشاهدتين|$1 مشاهدات|$1 مشاهدة}}',
 'specialpage-empty'       => 'مافيش نتايج للتقرير دا.',
 'lonelypages'             => 'صفحات يتيمه',
-'lonelypagestext'         => 'الصفحات دى ماعندهاش لينكات  من الصفحات التانية فى {{SITENAME}}.',
+'lonelypagestext'         => 'الصفحات دى ماعندهاش لينكات أو تضمينات من الصفحات التانية فى {{SITENAME}}.',
 'uncategorizedpages'      => 'صفحات مش متصنفه',
 'uncategorizedcategories' => 'تصنيفات مش متصنفه',
 'uncategorizedimages'     => 'ملفات مش متصنفه',
@@ -2990,6 +2992,7 @@ $1
 # action=purge
 'confirm_purge_button' => 'طيب',
 'confirm-purge-top'    => 'امسح الكاش بتاع الصفحة دي؟',
+'confirm-purge-bottom' => 'إفراغ كاش صفحة يمحو الكاش ويجبر أحدث نسخة على الظهور.',
 
 # Separators for various lists, etc.
 'semicolon-separator' => '؛&#32;',

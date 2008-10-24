@@ -2751,6 +2751,7 @@ Per favore, conferma che desideri veramente ricreare questa pagina.",
 # action=purge
 'confirm_purge_button' => 'Conferma',
 'confirm-purge-top'    => 'Vuoi pulire la cache di questa pagina?',
+'confirm-purge-bottom' => 'Ripulire la cache di una pagina consente di mostrare la sua versione più aggiornata.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← pagina precedente',

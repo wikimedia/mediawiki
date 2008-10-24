@@ -964,6 +964,8 @@ Zaruc, až historija wersijow nastawka jo njepśetergnjona.',
 'searchmenu-exists'                => "* Bok '''[[$1]]'''",
 'searchmenu-new'                   => "* Bok '''[[$1]]''' napóraś",
 'searchhelp-url'                   => 'Project:Pytanje',
+'searchmenu-badtitle'              => '* "$1" njejo płaśiwy titel.
+* [[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
 'searchmenu'                       => '* [[Special:AllPages/$1|Indeks]]
 * [[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
 'searchprofile-articles'           => 'Boki',
@@ -1508,7 +1510,8 @@ Bok wobjadnawa se ako bok wujasnjenja zapśimjeśa, gaž wótkazujo na nju [[Med
 'nviews'                  => '$1 {{PLURAL:$1|wótpšašanje|wótpšašani|wótpšašanja}}',
 'specialpage-empty'       => 'Toś ten bok njewopśimjejo tuchylu žedne zapise.',
 'lonelypages'             => 'Wósyrośone boki',
-'lonelypagestext'         => 'Na slědujuce boki njeeksistěrujo žeden wótkaz wót drugich bokow we {{GRAMMAR:lokatiw|{{SITENAME}}}}.',
+'lonelypagestext'         => 'Slědujuce boki njejsu wótkazowe cele drugich bokow abo njezapśimuju se do drugich bokow w
+{{GRAMMAR:lokatiw|{{SITENAME}}}}.',
 'uncategorizedpages'      => 'Boki bźez kategorijow',
 'uncategorizedcategories' => 'Njekategorizěrowane kategorije',
 'uncategorizedimages'     => 'Njekategorizěrowane dataje.',
@@ -2697,6 +2700,7 @@ Pšosym wobkšuśiś, až napšawdu coš ten bok zasej wutwóriś.",
 # action=purge
 'confirm_purge_button' => 'W pórědku.',
 'confirm-purge-top'    => 'Wulašowaś cache togo boka?',
+'confirm-purge-bottom' => 'Wuproznijo cache a wunuzijo zwobraznjenje aktualneje wersije.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← slědny bok',

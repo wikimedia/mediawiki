@@ -1133,16 +1133,23 @@ Donn de Version makeere bes wohen (inklusive) dat övverdraare wäde sull. Donn 
 'viewprevnext'                     => 'Bläddere: ($1) ($2) ($3).',
 'searchmenu-exists'                => "*Sigg '''[[$1]]'''",
 'searchmenu-new'                   => "*Donn de Sigg '''[[$1]]''' aanlääje",
+'searchhelp-url'                   => 'Project:Söke',
+'searchmenu-badtitle'              => '* „$1“ es keine jöltijje Tittel för en Sigg.
+* [[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
 'searchmenu'                       => '*[[Special:AllPages/$1|em Alfabeet]]
 *[[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
 'searchprofile-articles'           => 'Atikele',
 'searchprofile-project'            => 'Projeksigge',
 'searchprofile-images'             => 'Dateie',
 'searchprofile-everything'         => 'Övverall noh',
+'searchprofile-advanced'           => 'Extra',
 'searchprofile-articles-tooltip'   => 'Söök en de $1',
 'searchprofile-project-tooltip'    => 'Söök en de $1',
 'searchprofile-images-tooltip'     => 'Söök noh Dateie',
 'searchprofile-everything-tooltip' => 'Söök övverall dren, och op de Klaafsigge',
+'searchprofile-advanced-tooltip'   => 'Donn en ußjesohte Appachtemangs sööke',
+'prefs-search-nsdefault'           => 'Sök met dä Standat-Enstellunge:',
+'prefs-search-nscustom'            => 'Sök en dä Appachtemangs:',
 'search-result-size'               => '$1 ({{PLURAL:$2|Eij Woot|$2 Wööter|Keij Woot}})',
 'search-result-score'              => 'Jeweesch: $1%',
 'search-redirect'                  => '(Ömleitung $1)',
@@ -3020,6 +3027,7 @@ Wells Do jetz met en neu Version die Sigg widder neu aanläje?',
 # action=purge
 'confirm_purge_button' => 'Jo — loss jonn!',
 'confirm-purge-top'    => 'Dä Zweschespeicher för die Sigg fottschmieße?',
+'confirm-purge-bottom' => 'Dä Zweschespeicher för de Sigg fottzeschmieße sorresch doför, dat af dann de neuste Version vun dä Sigg (de Version vun jetz) aanjezeich weet.',
 
 # Separators for various lists, etc.
 'semicolon-separator' => ';',

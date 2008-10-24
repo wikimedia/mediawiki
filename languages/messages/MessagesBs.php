@@ -875,6 +875,7 @@ Pokušajte [[Special:Search|pretražiti wiki]] za slične stranice.',
 'timezoneoffset'          => 'Odstupanje',
 'servertime'              => 'Vrijeme na serveru',
 'guesstimezone'           => 'Popuni iz brauzera',
+'allowemail'              => 'Dozvoli e-poštu od ostalih korisnika',
 
 # User rights
 'editinguser' => "Uređujete '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
@@ -1056,14 +1057,16 @@ na kome bi se izvela ova funkcija.',
 'all-logs-page'        => 'Svi registri',
 
 # Special:AllPages
-'allpages'       => 'Sve stranice',
-'alphaindexline' => '$1 do $2',
-'nextpage'       => 'Sljedeća strana ($1)',
-'prevpage'       => 'Prethodna stranica ($1)',
-'allpagesfrom'   => 'Prikaži stranice počev od:',
-'allarticles'    => 'Svi članci',
-'allpagessubmit' => 'Idi',
-'allpagesprefix' => 'Prikaži stranice sa prefiksom:',
+'allpages'         => 'Sve stranice',
+'alphaindexline'   => '$1 do $2',
+'nextpage'         => 'Sljedeća strana ($1)',
+'prevpage'         => 'Prethodna stranica ($1)',
+'allpagesfrom'     => 'Prikaži stranice počev od:',
+'allarticles'      => 'Svi članci',
+'allpagessubmit'   => 'Idi',
+'allpagesprefix'   => 'Prikaži stranice sa prefiksom:',
+'allpagesbadtitle' => 'Dati naziv stranice je nepravilan ili ima međujezički ili interwiki prefiks.
+Možda sadrži jedan ili više znakova koji se ne mogu koristiti u naslovima.',
 
 # Special:Categories
 'categories'                  => 'Kategorije',
@@ -1187,7 +1190,9 @@ Pogledajte $2 za zapis o skorašnjim brisanjima.',
 'rollbacklink'   => 'vrati',
 'rollbackfailed' => 'Vraćanje nije uspjelo',
 'cantrollback'   => 'Ne može se vratiti izmjena; poslednji autor je ujedno i jedini.',
-'alreadyrolled'  => 'Ne može se vratiti poslednja izmjena [[:$1]] od korisnika [[User:$2|$2]] ([[User talk:$2|razgovor]]); neko drugi je već izmjenio ili vratio članak.  Poslednja izmjena od korisnika [[User:$3|$3]] ([[User talk:$3|razgovor]]).',
+'alreadyrolled'  => 'Ne može se vratiti posljednja izmjena [[:$1]] od korisnika [[User:$2|$2]] ([[User talk:$2|razgovor]] | [[Special:Contributions/$2|{{int:contribslink}}]]); neko drugi je već izmjenio ili vratio članak.
+
+Posljednja izmjena je bila od korisnika [[User:$3|$3]] ([[User talk:$3|razgovor]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'    => 'Komentar izmjene je: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'     => 'Vraćene izmjene $2 na poslednju izmjenu korisnika $1', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 
@@ -1288,6 +1293,7 @@ ili korisničkom imenu.',
 'ipusubmit'            => 'Deblokirajte ovog korisnika',
 'ipblocklist'          => 'Spisak blokiranih IP adresa i korisničkih imena',
 'blocklistline'        => '$1, $2 blokirao korisnika $3 ($4)',
+'anononlyblock'        => 'samo anonimni korisnici',
 'blocklink'            => 'blokirajte',
 'unblocklink'          => 'deblokiraj',
 'contribslink'         => 'doprinosi',
