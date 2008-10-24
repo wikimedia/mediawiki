@@ -47,6 +47,7 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
+	'특'  => NS_SPECIAL,
 	'MediaWiki토론'  => NS_MEDIAWIKI_TALK,
 );
 
