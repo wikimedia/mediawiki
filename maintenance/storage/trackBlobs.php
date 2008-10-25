@@ -6,6 +6,8 @@ require( dirname( __FILE__ ) .'/../commandLine.inc' );
 if ( count( $args ) < 1 ) {
 	echo "Usage: php trackBlobs.php <cluster> [... <cluster>]\n";
 	echo "Adds blobs from a given ES cluster to the blob_tracking table\n";
+	echo "Automatically deletes the tracking table and starts from the start again when restarted.\n";
+
 	exit( 1 );
 }
 $tracker = new TrackBlobs( $args );
@@ -42,9 +44,11 @@ class TrackBlobs {
 
 	function initTrackingTable() {
 		$dbw = wfGetDB( DB_MASTER );
-		if ( !$dbw->tableExists( 'blob_tracking' ) ) {
-			$dbw->sourceFile( dirname( __FILE__ ) . '/blob_tracking.sql' );
+		if ( $dbw->tableExists( 'blob_tracking' ) ) {
+			$dbw->query( 'DROP TABLE ' . $dbw->tableName( 'blob_tracking' ) );
+			$dbw->query( 'DROP TABLE ' . $dbw->tableName( 'blob_orphans' ) );
 		}
+		$dbw->sourceFile( dirname( __FILE__ ) . '/blob_tracking.sql' );
 	}
 
 	function getTextClause() {
@@ -240,11 +244,7 @@ class TrackBlobs {
 			return;
 		}
 
-		# Wait until the blob_tracking table is available in the slave
 		$dbw = wfGetDB( DB_MASTER );
-		$dbr = wfGetDB( DB_SLAVE );
-		$pos = $dbw->getMasterPos();
-		$dbr->masterPosWait( $pos, 100000 );
 
 		foreach ( $this->clusters as $cluster ) {
 			echo "Searching for orphan blobs in $cluster...\n";

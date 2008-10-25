@@ -22,10 +22,16 @@ CREATE TABLE /*$wgDBprefix*/blob_tracking (
 	-- The CGZ content hash, or null
 	bt_cgz_hash varbinary(255),
 
+	-- The URL this blob is to be moved to
+	bt_new_url varbinary(255),
+
+	-- True if the text table has been updated to point to bt_new_url
+	bt_moved bool not null default 0,
+
 	PRIMARY KEY (bt_rev_id, bt_text_id),
 
 	-- Sort by page for easy CGZ recompression
-	KEY (bt_page, bt_rev_id),
+	KEY (bt_moved, bt_page, bt_rev_id),
 
 	-- For fast orphan searches
 	KEY (bt_text_id),
