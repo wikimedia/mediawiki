@@ -704,6 +704,11 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 
 # Search results
 'searchresults'         => 'Hanapon an mga resulta',
+'searchresulttext'      => 'Para sa iba pang impormasyon manonongod sa paghanap sa {{SITENAME}}, hilingon tabî an [[{{MediaWiki:Helppage}}|{{int:help}}]].',
+'searchsubtitle'        => "Hinanap mo an '''[[:$1]]'''",
+'searchsubtitleinvalid' => "Hinanap mo an '''$1'''",
+'noexactmatch'          => "'''Mayong siring na pahinang may títulong \"\$1\".''' Pwede mong [[:\$1|gibohon ining pahina]].",
+'noexactmatch-nocreate' => "'''Mayong pahina sa titulong \"\$1\".'''",
 'toomanymatches'        => 'Kadakol-dakol na angay an ipigbalik, probaran an ibang kahaputan',
 'titlematches'          => 'Angay an título kan artíkulo',
 'notitlematches'        => 'Mayong ángay na título nin páhina',
@@ -716,6 +721,7 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 'searchall'             => 'gabos',
 'showingresults'        => "Pigpapahiling sa babâ sagkod sa {{PLURAL:$1|'''1''' resulta|'''$1''' mga resulta}} poon sa #'''$2'''.",
 'showingresultsnum'     => "Pigpapahiling sa babâ {{PLURAL:$3|'''1''' resulta|'''$3''' mga resulta}} poon sa #'''$2'''.",
+'nonefound'             => "'''Pagiromdom''': An mga prakasong paghanap pirmeng kawsa kan paghanap kan mga tataramon na komún arog kan \"may\" asin \"sa\", huli ta an mga ini dai nakaíndise, o sa pagpili kan sobra sa sarong tataramon (an mga páhina sana na igwá kan gabos na pighahanap na tataramon an maipapahiling sa resulta).",
 'powersearch'           => 'Pinaorog na paghanap',
 'searchdisabled'        => 'Pigpopogolan mûna an paghanap sa {{SITENAME}}. Mientras tanto, pwede ka man maghanap sa Google. Giromdomon tabî na an mga indise kan laog ninda sa {{SITENAME}} pwede ser na lumâ na.',
 
@@ -776,6 +782,7 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 'servertime'               => "Oras kan ''server''",
 'guesstimezone'            => "Bugtakan an ''browser''",
 'allowemail'               => "Togotan an mga ''e''-surat halî sa ibang mga parágamit",
+'defaultns'                => 'Maghilíng mûna sa ining mga ngaran-espacio:',
 'default'                  => 'pwestong normal',
 'files'                    => 'Mga dokumento',
 

@@ -1019,6 +1019,11 @@ Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't w
 
 # Search results
 'searchresults'             => 'Zeukrisseltaoten',
+'searchresulttext'          => "'''Opmarking:''' een pagina dee kortens an-emaak is ku-j meschien neet vienen via de zeukfunctie. 't Zeuken geet via een speciale zeukdatabanke dee ongeveer um de 30 tot 48 uur bie-ewörk wonnen.",
+'searchsubtitle'            => "Je zochen naor '''[[:$1]]'''",
+'searchsubtitleinvalid'     => 'Veur zeukopdrachte "$1"',
+'noexactmatch'              => "'''Der besteet gien artikel mit de naam $1.''' Je kunnen disse pagina [[:$1|anmaken]].",
+'noexactmatch-nocreate'     => "'''Der besteet gien pagina mit de naam \"\$1\".'''",
 'toomanymatches'            => 'Der wanen te veule risseltaoten. Prebeer asjeblief een aandere zeukopdrachte.',
 'titlematches'              => 'Overeenkoms mit volgende namen',
 'notitlematches'            => 'Gien overeenstemming',
@@ -1044,6 +1049,7 @@ Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't w
 'showingresults'            => "Hieronder {{PLURAL:$1|steet '''1''' risseltaot|staon '''$1''' risseltaoten}}  <b>$1</b> vanof nummer <b>$2</b>.",
 'showingresultsnum'         => "Hieronder {{PLURAL:$3|steet '''1''' risseltaot|staon '''$3''' risseltaoten}} vanof nummer '''$2'''.",
 'showingresultstotal'       => "Hieronder {{PLURAL:$4|wordt et risseltaot '''$1''' van '''$3''' weer-egeven|wonnen de risseltaoten '''$1 tot $2''' van '''$3''' weer-egeven}}",
+'nonefound'                 => '<strong>Let wel:</strong> as een zeukopdrachte mislok kump dat vake deur gebruuk van veulveurkoemmende woorden as "de" en "het", dee neet eïndexeerd bin.',
 'powersearch'               => 'Zeuk',
 'powersearch-legend'        => 'Uut-ebreid zeuken',
 'powersearch-ns'            => 'Zeuken in naamruumten:',
@@ -1112,6 +1118,7 @@ Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't w
 'allowemail'               => 'Berichen van aandere gebrukers toelaoten',
 'prefs-searchoptions'      => 'Zeukinstellingen',
 'prefs-namespaces'         => 'Naamruumtes',
+'defaultns'                => 'Naamruumtes um in te zeuken:',
 'default'                  => 'standard',
 'files'                    => 'Bestanden',
 

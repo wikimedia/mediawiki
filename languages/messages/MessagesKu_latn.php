@@ -647,18 +647,23 @@ Ev verzyona vê rûpelê hatîye jêbirin. Belkî înformasyon di [{{fullurl:Spe
 'diff-multi'              => '({{PLURAL:$1|Verzyonekî navberê netê|$1 verzyonên navberê netên}} dîtin.)',
 
 # Search results
-'searchresults'     => 'Encamên lêgerînê',
-'titlematches'      => 'Dîtinên di sernivîsên gotaran de',
-'notitlematches'    => 'Di nav sernivîsan de nehat dîtin.',
-'textmatches'       => 'Dîtinên di nivîsara rûpelan de',
-'notextmatches'     => 'Di nivîsarê de nehat dîtin.',
-'prevn'             => '$1 paş',
-'nextn'             => '$1 pêş',
-'viewprevnext'      => '($1) ($2) ($3).',
-'showingresults'    => "{{PLURAL:$1|Encamek|'''$1''' encam}}, bi #'''$2''' dest pê dike.",
-'showingresultsnum' => '<b>$3</b> encam, bi #<b>$2</b> dest pê dike.',
-'powersearch'       => 'Lê bigere',
-'searchdisabled'    => '<p>Tu dikarî li {{SITENAME}} bi Google an Yahoo! bigere. Têbînî: Dibe ku encamen lêgerîne ne yên herî nû ne.
+'searchresults'         => 'Encamên lêgerînê',
+'searchresulttext'      => 'Ji bo zêdetir agahî der barê lêgerînê di {{SITENAME}} de, binêre [[{{MediaWiki:Helppage}}|Searching {{SITENAME}}]].',
+'searchsubtitle'        => 'Ji bo query "[[:$1]]"',
+'searchsubtitleinvalid' => 'Ji bo query "$1"',
+'noexactmatch'          => "'''Rûpeleke bi navê \"\$1\" tune.''' Tu dikarî [[:\$1|vê rûpelê biafirînî]]",
+'noexactmatch-nocreate' => "'''Rûpelek bi nava \"\$1\" tune ye.'''",
+'titlematches'          => 'Dîtinên di sernivîsên gotaran de',
+'notitlematches'        => 'Di nav sernivîsan de nehat dîtin.',
+'textmatches'           => 'Dîtinên di nivîsara rûpelan de',
+'notextmatches'         => 'Di nivîsarê de nehat dîtin.',
+'prevn'                 => '$1 paş',
+'nextn'                 => '$1 pêş',
+'viewprevnext'          => '($1) ($2) ($3).',
+'showingresults'        => "{{PLURAL:$1|Encamek|'''$1''' encam}}, bi #'''$2''' dest pê dike.",
+'showingresultsnum'     => '<b>$3</b> encam, bi #<b>$2</b> dest pê dike.',
+'powersearch'           => 'Lê bigere',
+'searchdisabled'        => '<p>Tu dikarî li {{SITENAME}} bi Google an Yahoo! bigere. Têbînî: Dibe ku encamen lêgerîne ne yên herî nû ne.
 </p>',
 
 # Preferences page

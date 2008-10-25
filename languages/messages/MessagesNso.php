@@ -473,12 +473,14 @@ Leka [[Special:Search|go fetleka wikii]] go humana matlakala a mapsha.',
 'diff-multi'              => '({{PLURAL:$1|Phetogo ye kgolo|Diphetogo tše $1 tše kgolo}} gadi laetšwe.)',
 
 # Search results
-'searchresults' => 'Sephetho sa go fetleka',
-'prevn'         => 'gofeta $1',
-'nextn'         => 'latela $1',
-'viewprevnext'  => 'Lebelela ($1) ($2) ($3)',
-'searchall'     => 'tšohle',
-'powersearch'   => 'Fetleka ka tlhoko',
+'searchresults'         => 'Sephetho sa go fetleka',
+'searchsubtitleinvalid' => "O fetlekile o nyaka  '''$1'''",
+'noexactmatch'          => "'''Ga go letlaka leo le bitšwago \"\$1\".''' O ka tlhola [[:\$1|letlakala le]].",
+'noexactmatch-nocreate' => "'''Gago matlakala a thaetlele ya  \"\$1\".'''",
+'prevn'                 => 'gofeta $1',
+'nextn'                 => 'latela $1',
+'viewprevnext'          => 'Lebelela ($1) ($2) ($3)',
+'powersearch'           => 'Fetleka ka tlhoko',
 
 # Preferences page
 'preferences'        => 'Dikgatlhegelo',

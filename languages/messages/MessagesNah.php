@@ -456,6 +456,10 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 
 # Search results
 'searchresults'            => 'Tlatēmoliztli',
+'searchsubtitle'           => 'Ōtictēmōz \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|mochīntīn zāzaniltin mopēhua īca "$1"]] | [[Special:WhatLinksHere/$1|mochīntīn zāzaniltin tzonhuilia "$1" īhuīc]])',
+'searchsubtitleinvalid'    => "Ōtictēmōz '''$1'''",
+'noexactmatch'             => "'''Ahmo ia zāzanilli ītōcā \"\$1\".''' Tihuelīti [[:\$1|ticchīhua]].",
+'noexactmatch-nocreate'    => "'''Ahmo ia \"\$1\" zāzanilli.'''",
 'prevn'                    => '$1 achtopa',
 'nextn'                    => 'niman $1',
 'viewprevnext'             => 'Xiquintta ($1) ($2) ($3).',
@@ -494,6 +498,7 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 'localtime'             => 'Cāhuitl nicān',
 'prefs-searchoptions'   => 'Tlatēmoliztli tlaēlēhuiliztli',
 'prefs-namespaces'      => 'Tōcātzin',
+'defaultns'             => 'Tlatēmōz inīn tōcātzimpan ic default:',
 'default'               => 'ic default',
 'files'                 => 'Tlahcuilōlli',
 

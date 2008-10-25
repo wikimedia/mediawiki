@@ -855,6 +855,11 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 # Search results
 'searchresults'             => 'Bilaketaren emaitzak',
 'searchresults-title'       => '$1(e)rako emaitzak bilatu',
+'searchresulttext'          => '{{SITENAME}}(e)n bilaketak egiteko informazio gehiagorako, ikus [[{{MediaWiki:Helppage}}|{{int:help}}]].',
+'searchsubtitle'            => "'''[[:$1]]''' bilatu duzu",
+'searchsubtitleinvalid'     => "'''$1''' bilatu duzu",
+'noexactmatch'              => "'''Ez dago \"\$1\" izenburua duen orrialderik.''' [[:\$1|Orrialde hau]] sortu dezakezu.",
+'noexactmatch-nocreate'     => "'''Ez dago \"\$1\" izenburua duen orrialderik.'''",
 'titlematches'              => 'Emaitzak artikuluen izenburuetan',
 'notitlematches'            => 'Ez dago bat datorren orrialde izenbururik',
 'textmatches'               => 'Emaitza orrialde testuetan',
@@ -879,6 +884,7 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 'showingresults'            => "Jarraian {{PLURAL:$1|emaitza '''1''' ikus daiteke|'''$1''' emaitza ikus daitezke}}, #'''$2'''.etik hasita.",
 'showingresultsnum'         => "Hasieran #'''$2''' duten '''$3''' emaitza erakusten dira jarraian.",
 'showingresultstotal'       => "{{PLURAL:$4|'''$1'''(e)tik '''$3''' emaitza|'''$1 - $2'''(e)tik '''$3''' emaitzak}} erakusten",
+'nonefound'                 => "'''Oharra''': Arrakastarik gabeko bilaketen arrazoi nagusietako bat \"dute\" eta \"da\" bezalako hitz arruntak bilatzea izan ohi da, edo baita bilaketan hitz gehiegi zehazteagatik ere (emaitzetan hitz guztiak dituzten emaitzak baino ez dira azalduko).",
 'powersearch'               => 'Bilatu',
 'powersearch-legend'        => 'Bilaketa aurreratua',
 'powersearch-ns'            => 'Bilatu honako izen-tartetan:',
@@ -946,6 +952,7 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 'allowemail'               => 'Beste erabiltzaileengandik e-posta mezuak jasotzea gaitu',
 'prefs-searchoptions'      => 'Bilaketa aukerak',
 'prefs-namespaces'         => 'Izen-tarteak',
+'defaultns'                => 'Izen-tarte hauetan bilatu lehenetsitzat:',
 'default'                  => 'lehenetsia',
 'files'                    => 'Fitxategiak',
 

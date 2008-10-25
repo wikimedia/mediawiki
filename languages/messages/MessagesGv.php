@@ -416,6 +416,8 @@ Ta lioar ny scryssaghyn magh kiarit ayns shoh rere dty chaays hene:",
 
 # Search results
 'searchresults'            => 'Eiyrtysyn y ronsaghey',
+'noexactmatch'             => "'''Cha nel duillag lesh yn ennym \"\$1\".'''
+Foddee oo [[:\$1|croo yn duillag shoh]].",
 'prevn'                    => 'ny $1 roish',
 'nextn'                    => 'yn chied $1 elley',
 'viewprevnext'             => 'Jeeagh er ($1) ($2) ($3)',

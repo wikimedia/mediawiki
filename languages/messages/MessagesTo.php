@@ -413,11 +413,13 @@ Ko e konga ʻi olunga, ko e '''konga pē ʻe taha''' ʻe haofaki ʻi he lomiʻi 
 'diff-multi'              => '(Naʻe ʻikai ʻasi mai ʻa e paaki lotoloto ʻe $1).',
 
 # Search results
+'noexactmatch'      => "'''ʻOku ʻikai ʻi ai ha kupu mo hono ʻuluʻitohi \"\$1\".''' ʻOku lava ke ke [[:\$1|fakatupu he kupú ni]].",
 'prevn'             => '$1 ki muʻa',
 'nextn'             => '$1 hoko',
 'viewprevnext'      => 'Vakai ki he ($1) ($2) ($3).',
 'showingresults'    => "ʻOku ʻasi ʻi lalo ʻa e ngaahi fua ʻoku kamata mo e #'''$2''' (aʻu ki he '''$1''').",
 'showingresultsnum' => "ʻOku ʻasi ʻi lalo ha fua ʻe '''$3''', ʻoku kamata mo e #'''$2'''.",
+'nonefound'         => "'''Tokanga''': ko e ngaahi kumi ʻikai ke siaʻa, ko e ʻuhinga tuʻo lahi ia ko e ngāueʻaki he ʻū foʻi lea fuʻu noa pe he ʻū foʻi lea fuʻu lahi (ko e ngaahi peesi mo e ʻū foʻi lea kotoa ʻi loto, ʻe ʻasi mai pē).",
 'powersearch'       => 'Kumi',
 
 # Preferences page
@@ -457,6 +459,7 @@ Ko e konga ʻi olunga, ko e '''konga pē ʻe taha''' ʻe haofaki ʻi he lomiʻi 
 'timezoneoffset'        => 'Ngaahi houa ʻo e faikehekehe',
 'servertime'            => 'Taimi ʻo e tauhia',
 'allowemail'            => 'Fakamafeiaʻi ʻa e tohila mei he kau ʻetita ʻe taha',
+'defaultns'             => 'Kumi ʻi he vā hingoa fakatuʻunga:',
 'default'               => 'tuʻunga',
 'files'                 => 'Ngaahi faile',
 

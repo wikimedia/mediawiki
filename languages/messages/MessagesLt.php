@@ -965,6 +965,11 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 # Search results
 'searchresults'             => 'Paieškos rezultatai',
 'searchresults-title'       => 'Paieškos rezultatai $1',
+'searchresulttext'          => 'Daugiau informacijos apie paiešką projekte {{SITENAME}} rasite [[{{MediaWiki:Helppage}}|{{int:help}}]].',
+'searchsubtitle'            => 'Ieškoma „[[:$1]]“',
+'searchsubtitleinvalid'     => "Ieškoma '''$1'''",
+'noexactmatch'              => "'''Nėra jokio puslapio, pavadinto „$1“.''' Jūs galite [[:$1|sukurti šį puslapį]].",
+'noexactmatch-nocreate'     => "'''Nėra puslapio su pavadinimu „$1“.'''",
 'toomanymatches'            => 'Perdaug atitikmenų buvo grąžinta. Prašome pabandyti kitokią užklausą',
 'titlematches'              => 'Puslapių pavadinimų atitikmenys',
 'notitlematches'            => 'Jokių pavadinimo atitikmenų',
@@ -990,6 +995,7 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'showingresults'            => "Žemiau rodoma iki '''$1''' {{PLURAL:$1|rezultato|rezultatų|rezultatų}} pradedant #'''$2'''.",
 'showingresultsnum'         => "Žemiau rodoma '''$3''' {{PLURAL:$3|rezultato|rezultatų|rezultatų}}rezultatų pradedant #'''$2'''.",
 'showingresultstotal'       => "Žemiau rodom{{PLURAL:$3|as rezultatas '''$1''' iš '''$3'''|i rezultatai '''$1 - $2''' iš '''$3'''}}",
+'nonefound'                 => "'''Pastaba''': Pagal nutylėjimą ieškoma tik kai kuriose vardų srityse. Pamėginkite prirašyti priešdėlį ''all:'', jei norite ieškoti viso turinio (įskaitant aptarimo puslapius, šablonus ir t. t.), arba naudokite norimą vardų sritį kaip priešdėlį.",
 'powersearch'               => 'Išplėstinė paieška',
 'powersearch-legend'        => 'Išplėstinė paieška',
 'powersearch-ns'            => 'Ieškoti vardų srityse:',
@@ -1058,6 +1064,7 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'allowemail'               => 'Leisti siųsti el. laiškus iš kitų naudotojų',
 'prefs-searchoptions'      => 'Paieškos nuostatos',
 'prefs-namespaces'         => 'Vardų sritys',
+'defaultns'                => 'Pagal nutylėjimą ieškoti šiose vardų srityse:',
 'default'                  => 'pagal nutylėjimą',
 'files'                    => 'Failai',
 

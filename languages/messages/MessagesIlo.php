@@ -634,6 +634,11 @@ Legend: (agdama) = paggidiatan iti agdama a version,
 
 # Search results
 'searchresults'             => 'Dagiti resulta ti panagbirok',
+'searchsubtitle'            => "Sinapul mo ti '''[[:$1]]'''",
+'searchsubtitleinvalid'     => "Sinapulmo ti '''$1'''",
+'noexactmatch'              => "'''Awan ti panid nga addaan titulo a \"\$1\".'''
+Mabalinmo a [[:\$1|partuaten daytoy a panid]].",
+'noexactmatch-nocreate'     => "'''Awan panid nga addaan titulo a \"\$1\".'''",
 'notextmatches'             => 'Awan ti page text matches',
 'prevn'                     => 'napalabas $1',
 'nextn'                     => 'sumaruno $1',

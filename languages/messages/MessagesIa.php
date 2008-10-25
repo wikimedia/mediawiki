@@ -917,6 +917,12 @@ Nota que le uso del ligamines de navigation causara le perdita de tote cambios i
 # Search results
 'searchresults'             => 'Resultatos del recerca',
 'searchresults-title'       => 'Resultatos del recerca de $1',
+'searchresulttext'          => 'Pro plus informationes super le recerca in {{SITENAME}}, vide [[{{MediaWiki:Helppage}}|{{int:help}}]].',
+'searchsubtitle'            => 'Tu cercava \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|tote le paginas que comencia con "$1"]] | [[Special:WhatLinksHere/$1|tote le paginas con ligamines a "$1"]])',
+'searchsubtitleinvalid'     => "Tu cercava '''$1'''",
+'noexactmatch'              => "'''Non existe un pagina con le titulo \"\$1\".'''
+Tu pote [[:\$1|crear iste pagina]].",
+'noexactmatch-nocreate'     => "'''Non existe un pagina con titulo \"\$1\".'''",
 'toomanymatches'            => 'Se retornava troppo de resultatos. Per favor prova un altere consulta.',
 'titlematches'              => 'Correspondentias in le titulos de paginas',
 'notitlematches'            => 'Nulle correspondentias in le titulos de paginas',
@@ -942,6 +948,7 @@ Nota que le uso del ligamines de navigation causara le perdita de tote cambios i
 'showingresults'            => "Infra se monstra non plus de {{PLURAL:$1|'''1''' resultato|'''$1''' resultatos}} a partir del numero '''$2'''.",
 'showingresultsnum'         => "Infra se monstra {{PLURAL:$3|'''1''' resultato|'''$3''' resultatos}} a partir del numero '''$2'''.",
 'showingresultstotal'       => "Infra se monstra le {{PLURAL:$4|resultato '''$1''' de '''$3'''|resultatos '''$1 - $2''' de '''$3'''}}",
+'nonefound'                 => "'''Nota:''' Normalmente, se cerca solmente in alcun spatios de nomines. Prova prefixar tu consulta con ''all:'' pro cercar in tote le contento (includente paginas de discussion, patronos, etc.), o usa le spatio de nomines desirate como prefixo.",
 'powersearch'               => 'Recerca avantiate',
 'powersearch-legend'        => 'Recerca avantiate',
 'powersearch-ns'            => 'Cercar in spatios de nomines:',
@@ -1014,6 +1021,7 @@ per favor vide math/README pro configurar lo.",
 'allowemail'               => 'Activar reception de e-mail de altere usatores',
 'prefs-searchoptions'      => 'Optiones de recerca',
 'prefs-namespaces'         => 'Spatios de nomines',
+'defaultns'                => 'Cercar initialmente in iste spatios de nomines:',
 'default'                  => 'predefinition',
 'files'                    => 'Files',
 

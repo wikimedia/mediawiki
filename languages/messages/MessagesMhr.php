@@ -243,6 +243,10 @@ $messages = array(
 
 # Search results
 'searchresults'            => 'Кычалын мумо',
+'searchsubtitle'           => "Тые кычалыч '''[[:$1]]'''",
+'searchsubtitleinvalid'    => "Тые кычалыч '''$1'''",
+'noexactmatch'             => "'''\"\$1\" лӱман лаштык уке.'''
+Тый [[:\$1|тиде лаштыкым ыштен]] кертат.",
 'prevn'                    => 'кодшо $1',
 'nextn'                    => 'весе $1',
 'viewprevnext'             => 'Ончал ($1) ($2) ($3)',

@@ -894,6 +894,11 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 # Search results
 'searchresults'             => 'Søgeresultater',
 'searchresults-title'       => 'Søgeresultater for $1',
+'searchresulttext'          => 'For mere information om søgning på {{SITENAME}}, se [[{{MediaWiki:Helppage}}|{{int:help}}]].',
+'searchsubtitle'            => 'Til din søgning „[[:$1]]“.',
+'searchsubtitleinvalid'     => 'Til din søgning „$1“.',
+'noexactmatch'              => '{{SITENAME}} har ingen artikel med dette navn. Du kan [[:$1|oprette en artikel med dette navn]].',
+'noexactmatch-nocreate'     => "'''Der er ingen side med navnet \"\$1\".'''",
 'toomanymatches'            => 'Søgningen fandt for mange sider. Prøv venligst med en anden søgning.',
 'titlematches'              => 'Artikeltitler der opfyldte forespørgslen',
 'notitlematches'            => 'Ingen artikeltitler opfyldte forespørgslen',
@@ -919,6 +924,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'showingresults'            => 'Nedenfor vises <b>$1</b> {{PLURAL:$1|resultat|resultater}} startende med nummer <b>$2</b>.',
 'showingresultsnum'         => 'Herunder vises <b>$3</b> {{PLURAL:$3|resultat|resultater}} startende med nummer <b>$2</b>.',
 'showingresultstotal'       => "Viser {{PLURAL:$3|resultat '''$1''' af '''$3'''|resultaterne '''$1 - $2''' af '''$3'''}}",
+'nonefound'                 => '<strong>Bemærk</strong>: Søgning uden resultat skyldes at man søger efter almindelige ord som "har" og "fra", der ikke er indekseret, eller at man har angivet mere end ét søgeord (da kun sider indeholdende alle søgeordene vil blive fundet).',
 'powersearch'               => 'Søg',
 'powersearch-legend'        => 'Avanceret søgning',
 'powersearch-ns'            => 'Søg i navnerummene:',
@@ -987,6 +993,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'allowemail'               => 'Tillade E-mails fra andre brugere.',
 'prefs-searchoptions'      => 'Søgeindstillinger',
 'prefs-namespaces'         => 'Navnerum',
+'defaultns'                => 'Søg som standard i disse navnerum:',
 'default'                  => 'standard',
 'files'                    => 'Filer',
 

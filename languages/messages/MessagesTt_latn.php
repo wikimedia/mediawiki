@@ -377,6 +377,7 @@ Zínhar, bu bitneñ wağraq kisäklärgä bülü turında uylap qara.",
 'timezoneoffset'        => 'Çigenü',
 'servertime'            => 'Serverda xäzerge waqıt',
 'guesstimezone'         => 'Browserdan alası',
+'defaultns'             => 'Ğädättä bu isemarada ezlise:',
 'default'               => 'töpcay',
 'files'                 => 'Fayllar',
 
