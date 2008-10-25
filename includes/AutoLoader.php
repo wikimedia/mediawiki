@@ -290,7 +290,6 @@ $wgAutoloadLocalClasses = array(
 	'Services_JSON_Error' => 'includes/api/ApiFormatJson_json.php',
 	'Spyc' => 'includes/api/ApiFormatYaml_spyc.php',
 	'UsageException' => 'includes/api/ApiMain.php',
-	'YAMLNode' => 'includes/api/ApiFormatYaml_spyc.php',
 
 	# includes/db
 	'Blob' => 'includes/db/Database.php',
