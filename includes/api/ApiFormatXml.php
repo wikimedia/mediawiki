@@ -80,6 +80,7 @@ class ApiFormatXml extends ApiFormatBase {
 		} else {
 			$indstr = '';
 		}
+		$elemName = str_replace(' ', '_', $elemName);
 
 		switch (gettype($elemValue)) {
 			case 'array' :
@@ -104,6 +105,14 @@ class ApiFormatXml extends ApiFormatBase {
 				foreach ($elemValue as $subElemId => & $subElemValue) {
 					if (is_string($subElemValue) && $this->mDoubleQuote)
 						$subElemValue = $this->doubleQuote($subElemValue);
+					
+					// Replace spaces with underscores
+					$newSubElemId = str_replace(' ', '_', $subElemId);
+					if($newSubElemId != $subElemId) {
+						$elemValue[$newSubElemId] = $subElemValue;
+						unset($elemValue[$subElemId]);
+						$subElemId = $newSubElemId;
+					}
 
 					if (gettype($subElemId) === 'integer') {
 						$indElements[] = $subElemValue;

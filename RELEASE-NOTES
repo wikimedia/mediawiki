@@ -364,6 +364,7 @@ The following extensions are migrated into MediaWiki 1.14:
 * Added redirect resolution to action=parse
 * (bug 16074) rvprop=content combined with a generator with a high limit causes
   an error
+* (bug 16105) Image metadata attributes containing spaces result in invalid XML
 
 === Languages updated in 1.14 ===
 
