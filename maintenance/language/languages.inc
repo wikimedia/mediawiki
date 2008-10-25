@@ -619,6 +619,10 @@ class languages {
 		$this->loadFile( $code );
 		$magicWords = array();
 		foreach ( $this->mMagicWords[$code] as $key => $local ) {
+			if ( !isset( $this->mMagicWords['en'][$key] ) ) {
+				# Unrecognized magic word
+				continue;
+			}
 			$en = $this->mMagicWords['en'][$key];
 			array_shift( $local );
 			array_shift( $en );
@@ -644,6 +648,10 @@ class languages {
 		$this->loadFile( $code );
 		$magicWords = array();
 		foreach ( $this->mMagicWords[$code] as $key => $local ) {
+			if ( !isset( $this->mMagicWords['en'][$key] ) ) {
+				# Unrecognized magic word
+				continue;
+			}
 			if ( $local[0] != $this->mMagicWords['en'][$key][0] ) {
 				$magicWords[$key] = $local[0];
 			}
