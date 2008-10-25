@@ -1106,9 +1106,6 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 'viewprevnext'              => 'Lihat ($1) ($2) ($3)',
 'searchmenu-exists'         => "* Halaman '''[[$1]]'''",
 'searchmenu-new'            => "* Buat halaman '''[[$1]]'''",
-'searchhelp-url'            => 'Project:Pencarian',
-'searchmenu-badtitle'       => '* "$1" adalah judul yang tidak sah.
-* [[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
 'searchmenu'                => '* [[Special:AllPages/$1|Indeks]]
 * [[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
 'searchprofile-articles'    => 'Halaman-halaman',
