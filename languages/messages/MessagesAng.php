@@ -293,12 +293,14 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'editundo'                => 'undōn',
 
 # Search results
-'searchresults'     => 'Sōcnfintan',
-'notextmatches'     => 'Nāne trametrahtes mæccan',
-'nextn'             => 'nīehst $1',
-'showingresults'    => 'Īewan under oþ <b>$1</b> tōhīgunga onginnenda mid #<b>$2</b>.',
-'showingresultsnum' => 'Under sind <b>$3</b> tóhígunga onginnende mid #<b>$2</b>.',
-'powersearch'       => 'Sēcan',
+'searchresults'         => 'Sōcnfintan',
+'searchsubtitle'        => "Þu sōhtest '''[[:$1]]'''",
+'searchsubtitleinvalid' => "Þu sōhtest '''$1'''",
+'notextmatches'         => 'Nāne trametrahtes mæccan',
+'nextn'                 => 'nīehst $1',
+'showingresults'        => 'Īewan under oþ <b>$1</b> tōhīgunga onginnenda mid #<b>$2</b>.',
+'showingresultsnum'     => 'Under sind <b>$3</b> tóhígunga onginnende mid #<b>$2</b>.',
+'powersearch'           => 'Sēcan',
 
 # Preferences page
 'preferences'        => 'Foreberunga',
@@ -324,6 +326,7 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'savedprefs'         => 'Þīna foreberunga wurdon gesparod.',
 'timezonelegend'     => 'Tīdgyrtel',
 'servertime'         => 'Bryttantīma is nū',
+'defaultns'          => 'Sēcan in þissum namstedum be frambyge:',
 'default'            => 'gewunelic',
 
 # User rights

@@ -321,6 +321,8 @@ Nagatimaan ka usab nga ikaw mismo ang nagsulat niini, o gikopya nimo kini gikan 
 'histfirst'        => 'Kinaunahan',
 
 # Search results
+'noexactmatch' => "'''Walay panid nga ginganla'g \"\$1\".'''
+Mahimo mong [[:\$1|isulat kini nga panid]].",
 'viewprevnext' => 'Tan-awa sa ($1) ($2) ($3)',
 'powersearch'  => 'Abansadong pagpangita',
 

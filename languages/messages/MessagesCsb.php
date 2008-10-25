@@ -359,6 +359,7 @@ Eżlë klëczi na ti starnie nie są sczérowóne do ce, tedë [[Special:UserLog
 'compareselectedversions' => 'Przërównôj wëbróné wersëje',
 
 # Search results
+'noexactmatch' => "'''Nie dô starnë z dokładno taczim titlã \"\$1\"'''. Mòżesz [[:\$1|zrobic ną starnã]].",
 'viewprevnext' => 'Òbaczë ($1) ($2) ($3).',
 'powersearch'  => 'Szëkba',
 
@@ -405,6 +406,7 @@ Eżlë klëczi na ti starnie nie są sczérowóne do ce, tedë [[Special:UserLog
 'servertime'            => 'Aktualny czas serwera',
 'guesstimezone'         => 'Wezmi z przezérnika',
 'allowemail'            => 'Włączë mòżlewòtã sélaniô e-mailów òd jinëch brëkòwników',
+'defaultns'             => 'Domëslno przeszëkùjë nôslédné rëmnotë mionów:',
 'files'                 => 'Lopczi',
 
 # User rights

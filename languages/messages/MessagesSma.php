@@ -330,11 +330,14 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:UserLogin|logge s�
 'diff-multi'              => '({{PLURAL:$1|Akte gaskese gïehtjedamme|$1 gaskese gïehtjedammeh}} vuesehte ijje.)',
 
 # Search results
-'searchresults' => 'Ohtsedh resultaateh',
-'prevn'         => 'övtebe $1',
-'nextn'         => 'minngeben $1',
-'viewprevnext'  => 'Vuesehte ($1) ($2) ($3)',
-'powersearch'   => 'Ohtsedh',
+'searchresults'    => 'Ohtsedh resultaateh',
+'searchresulttext' => 'Ihke jeenjebe bïevnesh bïjre ohtsedh {{SITENAME}}, vuejnedh [[{{MediaWiki:Helppage}}|{{int:help}}]].',
+'searchsubtitle'   => "Dov ohtsedh ihke '''[[:$1]]'''",
+'noexactmatch'     => "'''Dïhte gååvnese ijje bielie meatan nommej \"\$1\".''' Dov dorje [[:\$1|skaepede dïhte bielie]].",
+'prevn'            => 'övtebe $1',
+'nextn'            => 'minngeben $1',
+'viewprevnext'     => 'Vuesehte ($1) ($2) ($3)',
+'powersearch'      => 'Ohtsedh',
 
 # Preferences page
 'preferences'        => 'Sïjsestäälningeh',

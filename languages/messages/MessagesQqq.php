@@ -761,6 +761,7 @@ Used in the final position of a {{msg-mw|comma-separator}} separated list headed
 
 # Search results
 'searchresults-title'      => 'Appears as page title in the html header of the search result special page.',
+'noexactmatch'             => 'This is the message that you get if you follow a link to a page or article that does not exist.',
 'notitlematches'           => 'Header of results page after a search for a title for which no page exists',
 'textmatches'              => 'When displaying search results',
 'notextmatches'            => 'Error message when there are no results',
@@ -803,7 +804,7 @@ $1 is the relevance of this result in per cent.
 * $1–$2 is the range of results shown on the page
 * $3 is the total number of results from the search
 * $4 is the number of results shown on the page (equal to the size of the $1–$2 interval)',
-'search-nonefound'         => 'Message shown when a search returned no results (when using the default MediaWiki search engine).',
+'nonefound'                => 'This message appears on the search results page if no results are found.',
 'powersearch'              => 'Verb. Text of search button at the bottom of [[Special:Search]], for searching in selected namespaces.
 
 {{Identical|Advanced search}}',
@@ -859,6 +860,7 @@ $1 is the relevance of this result in per cent.
 'prefs-searchoptions'   => "Shown at the top of the tab 'Search' in [[Special:Preferences]]",
 'prefs-namespaces'      => "{{Identical|Namespaces}}
 Shown as legend of the second fieldset of the tab 'Search' in [[Special:Preferences]]",
+'defaultns'             => 'Used in [[Special:Preferences]], tab "Search".',
 'default'               => '{{Identical|Default}}',
 'files'                 => 'Title of a tab in [[Special:Preferences]].',
 

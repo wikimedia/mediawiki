@@ -289,6 +289,7 @@ Kana avilyan kathe doshatar, ja palpale.',
 'timezoneoffset'        => 'Ververipen',
 'guesstimezone'         => 'Le les katar o browser',
 'allowemail'            => 'De drom te aven e-mailurya katar aver jene',
+'defaultns'             => 'Rod savaxt vi kai kadale riga:',
 'default'               => 'acharuno',
 'files'                 => 'Failurya',
 

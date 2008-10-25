@@ -1046,6 +1046,12 @@ Asseguratz-vos qu'aqueste cambiament pòsca conservar la continuitat de l'istori
 # Search results
 'searchresults'             => 'Resultats de la recèrca',
 'searchresults-title'       => 'Resultats de la recèrca per $1',
+'searchresulttext'          => "Per mai d'informacions sus la recèrca dins {{SITENAME}}, vejatz [[{{MediaWiki:Helppage}}|{{int:help}}]].",
+'searchsubtitle'            => "Avètz recercat « '''[[:$1]]''' » ([[Special:Prefixindex/$1|totas las paginas que començan per « $1 »]] | [[Special:WhatLinksHere/$1|totas las paginas qu'an un ligam cap a « $1 »]])",
+'searchsubtitleinvalid'     => 'Avètz recercat « $1 »',
+'noexactmatch'              => "'''Cap de pagina amb lo títol « $1 » existís pas.
+''' Podètz [[:$1|crear aqueste article]].",
+'noexactmatch-nocreate'     => "'''I a pas de pagina intitolada « $1 ».'''",
 'toomanymatches'            => 'Tròp d’ocuréncias son estadas trobadas, sètz pregat de sometre una requèsta diferenta.',
 'titlematches'              => "Correspondéncias dins los títols d'articles",
 'notitlematches'            => "Cap de títol d'article correspon pas a la recèrca.",
@@ -1071,6 +1077,9 @@ Asseguratz-vos qu'aqueste cambiament pòsca conservar la continuitat de l'istori
 'showingresults'            => "Afichatge {{PLURAL:$1|d''''1''' resultat|de '''$1''' resultats}} a partir del #'''$2'''.",
 'showingresultsnum'         => "Afichatge {{PLURAL:$3|d''''1''' resultat|de '''$3''' resultats}} a partir del #'''$2'''.",
 'showingresultstotal'       => "Visionament çaijós {{PLURAL:$4|del resultat '''$1''' de '''$3'''|dels resultats de '''$1 - $2''' de '''$3'''}}",
+'nonefound'                 => '<strong>Nòta</strong>: l\'abséncia de resultat es sovent deguda a l\'emplec de tèrmes de recèrca tròp corrents, coma "a" o "de",
+que son pas indexats, o a l\'emplec de mantun tèrme de recèrca (solas las paginas que
+contenon totes los tèrmes apareisson dins los resultats).',
 'powersearch'               => 'Recèrca avançada',
 'powersearch-legend'        => 'Recèrca avançada',
 'powersearch-ns'            => 'Recercar dins los espacis de nom :',
@@ -1141,6 +1150,7 @@ Atencion, lor indexacion de contengut {{SITENAME}} benlèu es pas a jorn.',
 'allowemail'               => 'Autorizar lo mandadís de corrièr electronic venent d’autres utilizaires',
 'prefs-searchoptions'      => 'Opcions de recèrca',
 'prefs-namespaces'         => 'Noms d’espacis',
+'defaultns'                => 'Per defaut, recercar dins aquestes espacis :',
 'default'                  => 'defaut',
 'files'                    => 'Fichièrs',
 

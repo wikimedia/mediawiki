@@ -625,18 +625,26 @@ Inedbalen wiyaḍ deg wiki-yagi zemren ad ẓren imuren i yettwafren u zemren a 
 'diff-multi'              => '({{PLURAL:$1|Yiwen tasiwelt tabusarit|$1 n tisiwal tibusarin}} ur ttumlalent ara.)',
 
 # Search results
-'searchresults'     => 'Igmad n unadi',
-'titlematches'      => 'Ayen yecban azwel n umegrad',
-'notitlematches'    => 'Ulac ayen yecban azwel n umegrad',
-'textmatches'       => 'Ayen yecban azwel n usebter',
-'notextmatches'     => 'ulac ayen yecban azwel n usebter',
-'prevn'             => '$1 ssabeq',
-'nextn'             => '$1 ameḍfir',
-'viewprevnext'      => 'Ẓer ($1) ($2) ($3).',
-'showingresults'    => "Tamuli n {{PLURAL:$1|'''Yiwen''' wegmud|'''$1''' n yigmad}} seg  #'''$2'''.",
-'showingresultsnum' => "Tamuli n {{PLURAL:$3|'''Yiwen''' wegmud|'''$3''' n yigmad}} seg  #'''$2'''.",
-'powersearch'       => 'Nadi',
-'searchdisabled'    => 'Anadi deg {{SITENAME}} yettwakkes. Tzemreḍ ad tnadiḍ s Google. Meɛna ur tettuḍ ara, tasmult n google taqdimt.',
+'searchresults'         => 'Igmad n unadi',
+'searchresulttext'      => 'Akken ad tessneḍ amek ara tnadiḍ deg {{SITENAME}}, ẓer [[{{MediaWiki:Helppage}}|{{int:help}}]].',
+'searchsubtitle'        => "Tnadiḍ ɣef '''[[:$1]]'''",
+'searchsubtitleinvalid' => "Tnadiḍ ɣef '''$1'''",
+'noexactmatch'          => "'''Asebter s yisem \"\$1\" ulac-it.''' Tzemreḍ ad [[:\$1|txelqeḍ asebter-agi]].",
+'titlematches'          => 'Ayen yecban azwel n umegrad',
+'notitlematches'        => 'Ulac ayen yecban azwel n umegrad',
+'textmatches'           => 'Ayen yecban azwel n usebter',
+'notextmatches'         => 'ulac ayen yecban azwel n usebter',
+'prevn'                 => '$1 ssabeq',
+'nextn'                 => '$1 ameḍfir',
+'viewprevnext'          => 'Ẓer ($1) ($2) ($3).',
+'showingresults'        => "Tamuli n {{PLURAL:$1|'''Yiwen''' wegmud|'''$1''' n yigmad}} seg  #'''$2'''.",
+'showingresultsnum'     => "Tamuli n {{PLURAL:$3|'''Yiwen''' wegmud|'''$3''' n yigmad}} seg  #'''$2'''.",
+'nonefound'             => "'''Tamawt''': S umata, asmi ur tufiḍ acemma
+d ilmen awalen am \"ala\" and \"seg\",
+awalen-agi mačči deg tasmult, neɣ tefkiḍ kter n yiwen n wawal (ala isebtar
+i yesɛan akk awalen i banen-d).",
+'powersearch'           => 'Nadi',
+'searchdisabled'        => 'Anadi deg {{SITENAME}} yettwakkes. Tzemreḍ ad tnadiḍ s Google. Meɛna ur tettuḍ ara, tasmult n google taqdimt.',
 
 # Preferences page
 'preferences'              => 'Isemyifiyen',
@@ -693,6 +701,7 @@ Inedbalen wiyaḍ deg wiki-yagi zemren ad ẓren imuren i yettwafren u zemren a 
 'servertime'               => 'Akud n server',
 'guesstimezone'            => 'Sseqdec azal n browser/explorateur',
 'allowemail'               => 'Eǧǧ imseqdacen wiyaḍ a k-aznen email',
+'defaultns'                => 'Nadi deg yismawen n taɣult s umeslugen:',
 'default'                  => 'ameslugen',
 'files'                    => 'Ifayluwen',
 

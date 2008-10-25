@@ -635,17 +635,22 @@ there micht be parteeculars in the [{{fullurl:Special:Log/delete|page={{FULLPAGE
 'compareselectedversions' => 'Compare selectit versions',
 
 # Search results
-'searchresults'     => 'Rake results',
-'titlematches'      => 'Airticle teitle matches',
-'notitlematches'    => 'Nae page teitle matches',
-'notextmatches'     => 'Nae page text matches',
-'prevn'             => 'foregaun $1',
-'nextn'             => 'neist $1',
-'searchall'         => 'aw',
-'showingresults'    => "Shawin ablo up tae {{PLURAL:$1|'''1''' result|'''$1''' results}} stertin wi #'''$2'''.",
-'showingresultsnum' => "Shawin ablo {{PLURAL:$3|'''1''' result|'''$3''' results}} stertin wi #'''$2'''.",
-'powersearch'       => 'Rake',
-'searchdisabled'    => 'Rakin throu {{SITENAME}} is disabled for performance raesons. Ye can rake via Google juist nou. Mynd that thair indexes o {{SITENAME}} content micht be oot o date.',
+'searchresults'         => 'Rake results',
+'searchresulttext'      => 'For mair information aboot rakin {{SITENAME}}, see [[{{MediaWiki:Helppage}}|Rakin {{SITENAME}}]].',
+'searchsubtitle'        => "Ye raked for '''[[:$1]]'''",
+'searchsubtitleinvalid' => "Ye raked for '''$1'''",
+'noexactmatch'          => "'''There nae page wi the teetle \"\$1\".''' Ye can [[:\$1|mak this page]].",
+'titlematches'          => 'Airticle teitle matches',
+'notitlematches'        => 'Nae page teitle matches',
+'notextmatches'         => 'Nae page text matches',
+'prevn'                 => 'foregaun $1',
+'nextn'                 => 'neist $1',
+'searchall'             => 'aw',
+'showingresults'        => "Shawin ablo up tae {{PLURAL:$1|'''1''' result|'''$1''' results}} stertin wi #'''$2'''.",
+'showingresultsnum'     => "Shawin ablo {{PLURAL:$3|'''1''' result|'''$3''' results}} stertin wi #'''$2'''.",
+'nonefound'             => "'''Mynd''': unsuccessfu rakes is afttimes caused bi rakin for common words like \"hae\" an \"frae\", that isna indexed, or bi specifeein mair nor ae rake term (juist pages haudin aa the rake terms will kythe in the result).",
+'powersearch'           => 'Rake',
+'searchdisabled'        => 'Rakin throu {{SITENAME}} is disabled for performance raesons. Ye can rake via Google juist nou. Mynd that thair indexes o {{SITENAME}} content micht be oot o date.',
 
 # Preferences page
 'mypreferences'      => 'Ma preferences',
@@ -674,6 +679,7 @@ there micht be parteeculars in the [{{fullurl:Special:Log/delete|page={{FULLPAGE
 'servertime'         => 'Server time is nou',
 'guesstimezone'      => 'Fill in frae brouser',
 'allowemail'         => 'Allou email frae ither uisers',
+'defaultns'          => 'Rake in thir namespaces bi defaut:',
 'default'            => 'defaut',
 
 # User rights

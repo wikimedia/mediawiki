@@ -816,6 +816,14 @@ Inkśi admińistratoři {{GRAMMAR:D.lp|{{SITENAME}}}} dali bydům mjeć dostymp 
 # Search results
 'searchresults'             => 'Wyńiki šnupańo',
 'searchresults-title'       => 'Wyniki šnupańo za „$1”',
+'searchresulttext'          => 'Coby dowjydźeć śe wjyncyj uo šnupańu w {{GRAMMAR:D.lp|{{SITENAME}}}}, uobezdřij [[{{MediaWiki:Helppage}}|{{int:help}}]].',
+'searchsubtitle'            => 'Wyńiki šnupańo za "[[:$1]]"
+([[Special:Prefixindex/$1|zajty kere začynajům śe uod „$1”]] |
+[[Special:WhatLinksHere/$1|zajty kere sům adresowane do „$1”]])',
+'searchsubtitleinvalid'     => 'Lo zapytańo "$1"',
+'noexactmatch'              => "'''Ńy mo sam zajtůw nazwanych \"\$1\".'''
+Možeš [[:\$1|tako utwořyć]], abo sprůbować pounygo šnupańo.",
+'noexactmatch-nocreate'     => "'''Ńy mo sam zajty uo mjańe \"\$1\".'''",
 'toomanymatches'            => 'Za dužo elymyntůw kere pasujům do wzorca, wćep inkše zapytańy',
 'titlematches'              => 'Znejdźono we titlach:',
 'notitlematches'            => 'Ńy znejdźono we titlach',
@@ -841,6 +849,7 @@ Inkśi admińistratoři {{GRAMMAR:D.lp|{{SITENAME}}}} dali bydům mjeć dostymp 
 'showingresults'            => "To lista na keryj je {{PLURAL:$1|'''1''' wyńik|'''$1''' wyńikůw}}, počynojůnc uod nůmeru '''$2'''.",
 'showingresultsnum'         => "To lista na keryj je {{PLURAL:$3|'''1''' wyńik|'''$3''' wyńikůw}}, počynojůnc uod nůmeru '''$2'''.",
 'showingresultstotal'       => "Půńižej {{PLURAL:$4|znojduje śe wynik šnupańo numer '''$1''' s '''$3'''|znojdujům śe wyńiki šnupańo '''$1 - $2''' ze '''$3'''}}",
+'nonefound'                 => "'''Dej pozůr''': Důmyślńy přešukiwane sům ino ńykere přestřyńy mjan. Poprůbuj popředźić wyšukiwano fraza předrostkym ''all:'', co spowoduje přešukańy coukij zawartośći {{GRAMMAR:D.lp|{{SITENAME}}}} (wůunčńy ze zajtami godki, šablůnůma atp.), abo poprůbuj užyć kej předrostka wybranyj, jydnyj přestřyńi mjan.",
 'powersearch'               => 'Šnupańy zaawansowane',
 'powersearch-legend'        => 'Šnupańy zaawansowane',
 'powersearch-ns'            => 'Šnupej we přestřyńach mjan:',
@@ -909,6 +918,7 @@ Inkśi admińistratoři {{GRAMMAR:D.lp|{{SITENAME}}}} dali bydům mjeć dostymp 
 'allowemail'               => 'Inkśi užytkowńicy můgům přesyuać mje e-brify',
 'prefs-searchoptions'      => 'Uopcyje šnupańo',
 'prefs-namespaces'         => 'Přystřyńe mjan',
+'defaultns'                => 'Důmyślńy šnupej we nastympujůncych přystřyńach mjan:',
 'default'                  => 'důmyślńy',
 'files'                    => 'Pliki',
 

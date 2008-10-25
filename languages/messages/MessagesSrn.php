@@ -591,11 +591,17 @@ A kan ben trowe efu dribi.
 'diff-multi'              => '(No e sori {{PLURAL:$1|wan versi|$1 versi}} na mindrisey.)',
 
 # Search results
-'searchresults' => 'Sukuleysi',
-'prevn'         => '$1 di psa',
-'nextn'         => '$1 trawan',
-'viewprevnext'  => 'Luku ($1) ($2) ($3).',
-'powersearch'   => 'Suku moro dipi',
+'searchresults'         => 'Sukuleysi',
+'searchresulttext'      => 'Fu pasa infrumasi abra suku opo {{SITENAME}}, leysi [[{{MediaWiki:Helppage}}|{{int:help}}]].',
+'searchsubtitle'        => "Y ben o suku na '''[[:$1]]'''",
+'searchsubtitleinvalid' => "Yu ben o suku na '''$1'''",
+'noexactmatch'          => "'''No wan papira de nanga a nen \"\$1\".'''
+Yu kan [[:\$1|meki a papira disi]].",
+'noexactmatch-nocreate' => "'''Da ben no papira nanga a nen \"\$1\".'''",
+'prevn'                 => '$1 di psa',
+'nextn'                 => '$1 trawan',
+'viewprevnext'          => 'Luku ($1) ($2) ($3).',
+'powersearch'           => 'Suku moro dipi',
 
 # Preferences page
 'preferences'              => 'Seti',
@@ -646,6 +652,7 @@ A kan ben trowe efu dribi.
 'servertime'               => 'Serverten',
 'guesstimezone'            => 'Fu a browser presi',
 'allowemail'               => 'E-mail fu trawan masyin adu',
+'defaultns'                => 'Soma ini disi nenpreki suku:',
 'default'                  => 'soma',
 'files'                    => 'Gefre',
 

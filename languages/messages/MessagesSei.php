@@ -608,11 +608,15 @@ Informacion: (curt) = quiíxde vercion currentua,
 'diff-multi'              => '({{PLURAL:$1|1 revicion páult|$1 revición páultíi}} necohuatlöx.)',
 
 # Search results
-'searchresults' => 'Resuluámde yahöx',
-'prevn'         => 'jan $1',
-'nextn'         => 'hun $1',
-'viewprevnext'  => 'Cohuatlöx ($1) ($2) ($3)',
-'powersearch'   => 'Yahöx',
+'searchresults'         => 'Resuluámde yahöx',
+'searchresulttext'      => 'Plusöxde informaciónde yahöx {{SITENAME}} iti, jumpöx [[{{MediaWiki:Helppage}}|{{int:help}}]].',
+'searchsubtitle'        => "Me yahöx '''[[:$1]]''' iti",
+'searchsubtitleinvalid' => "Me yahöx '''$1''' iti",
+'noexactmatch'          => "'''Páhina zo \"\$1\" coccebj ne'dáár.''' Mecoccebj [[:\$1|hunpáhinámom]].",
+'prevn'                 => 'jan $1',
+'nextn'                 => 'hun $1',
+'viewprevnext'          => 'Cohuatlöx ($1) ($2) ($3)',
+'powersearch'           => 'Yahöx',
 
 # Preferences page
 'preferences'           => 'Quáatlaác',
@@ -654,6 +658,7 @@ Informacion: (curt) = quiíxde vercion currentua,
 'servertime'            => 'Xepede server',
 'guesstimezone'         => "Xuniimyabuatlecaún dai'browser",
 'allowemail'            => 'Pos-coccebj e-iitomde diijömde caitóm',
+'defaultns'             => 'Yahöx jan ipartuatl iti auto:',
 'default'               => 'auto',
 'files'                 => 'Ciúchán',
 

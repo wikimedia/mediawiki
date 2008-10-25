@@ -762,6 +762,12 @@ Gamitan me ing radio button column bang bukud mung detang miyalilan aniang o bay
 
 # Search results
 'searchresults'             => 'Ding linual (resulta) king pamanintun',
+'searchresulttext'          => 'Nung bisa kang karagdagang impormasiun tungkul king pamanintun king {{SITENAME}}, lon me ing [[{{MediaWiki:Helppage}}|{{int:help}}]].',
+'searchsubtitle'            => "Penintun me ing '''[[:$1]]'''",
+'searchsubtitleinvalid'     => "Penintunan me ing '''$1'''",
+'noexactmatch'              => "'''Alang bulung a maki bansag a \"\$1\".'''
+Malyari meng [[:\$1|lalangan ing bulung a iti]].",
+'noexactmatch-nocreate'     => "'''Alang bulung a mikipamansag a \"\$1\".'''",
 'toomanymatches'            => 'Masiadu lang dakal deng tinud (matches); subukan meng alilan ing kekang kutang (query)',
 'titlematches'              => 'Deng tinud/mipareu kareng bansag bulung (page title matches)',
 'notitlematches'            => 'Ala yang kapareu kareng bansag da ring bulung (page title)',
@@ -787,6 +793,7 @@ Gamitan me ing radio button column bang bukud mung detang miyalilan aniang o bay
 'showingresults'            => "Ing/ding {{PLURAL:$1|'''1''' a resulta|'''$1''' resulta}} manibatan king #'''$2'''.",
 'showingresultsnum'         => "Ing/ding {{PLURAL:$3|'''1''' a resulta|'''$3''' resulta}} manibatan king #'''$2'''.",
 'showingresultstotal'       => "Makabili la king lalam deng linual/resulta '''$1 - $2''' ning '''$3'''",
+'nonefound'                 => "'''Kapabaluan''': Den mung aliwang pirinan lagiu (namespace) ing tambing a masisiasat o masusuri. Subukan meng umpisan king  ''eganagana:'' (''all:'') ing kekang kutang ba kang makapanintun king sablang laman (kayabe no reng pamisabi-sabi o talk pages, modelu o template, atlwp.), o gamitan me ing pirinan lagiung buri mu antimong mumunang paniapi (prefix) o mumunang/magumpisang lagiu.",
 'powersearch'               => 'Espesial a pamanintun',
 'powersearch-legend'        => 'Espesial a pamanintun',
 'powersearch-field'         => 'Paintunan ya ing',
@@ -852,6 +859,7 @@ pakilawe me ing math/README ba meng i-configure.',
 'servertime'               => 'Oras king server (server time)',
 'guesstimezone'            => 'Pakibatan ya manibat king browser',
 'allowemail'               => 'Pabustan ya ing e-mail ibat karing aliwang talagamit',
+'defaultns'                => 'Paintunan ya karening pirinan lagyu (namespaces) nung alang mepili:',
 'default'                  => 'alang mepili',
 'files'                    => 'Simpan (files)',
 

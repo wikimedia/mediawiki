@@ -698,6 +698,10 @@ Lisateedüst või ollaq [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} k
 
 # Search results
 'searchresults'             => 'Otsmisõ tulõmusõq',
+'searchresulttext'          => 'Lisateedüst otsmisõ kotsilõ kaeq [[{{MediaWiki:Helppage}}|{{SITENAME}} otsmisoppusõst]].',
+'searchsubtitle'            => "Otsminõ '''[[:$1]]''' perrä",
+'searchsubtitleinvalid'     => 'Otsminõ "$1"',
+'noexactmatch'              => "'''Olõ-i lehte päälkiräga \"\$1\".''' Võit tuu [[:\$1|esiq luvvaq]].",
 'titlematches'              => "Artiklipäälkir'ost löüt",
 'notitlematches'            => "Artiklipäälkir'ost es lövväq",
 'textmatches'               => 'Artiklitekstest löüt',
@@ -715,6 +719,8 @@ Lisateedüst või ollaq [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} k
 'showingresults'            => "{{PLURAL:$1|'''Üts''' tulõmus|'''$1''' tulõmust}} (tulõmusõst '''$2''' pääle).",
 'showingresultsnum'         => "Näüdätäs {{PLURAL:$3|'''1''' tulõmus|'''$3''' tulõmust}} tulõmusõst #'''$2''' pääle.",
 'showingresultstotal'       => "Tan ommaq tulõmusõq '''$1 - $2''' (kokko '''$3''')",
+'nonefound'                 => '<strong>Hoiatus</strong>: otsmishäti sakõs põhjusõs om tuu, et väega sagehõhe ettetulõvit sõnno võta-i massin otsmisõ man arvõhe. Tõõnõ põhjus või ollaq
+mitmõ otsmissõna pruukminõ (sis ilmusõq õnnõ leheküleq, kon ommaq kõik otsiduq sõnaq).',
 'powersearch'               => 'Otsminõ',
 'powersearch-legend'        => 'Laendõt otsminõ',
 'search-external'           => 'Väline otsminõ',
@@ -778,6 +784,7 @@ Lisateedüst või ollaq [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} k
 'servertime'               => 'Serveri aig',
 'guesstimezone'            => 'Võtaq aig võrgokaejast',
 'allowemail'               => 'Lupaq tõisil pruukjil mullõ e-posti saataq',
+'defaultns'                => 'Otsiq vaikimiisi naist nimeruumõst:',
 'default'                  => 'vaikimiisi',
 'files'                    => 'Teedüstüq',
 

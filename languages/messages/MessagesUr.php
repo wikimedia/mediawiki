@@ -298,11 +298,15 @@ $messages = array(
 'compareselectedversions' => 'منتخب متـن کا موازنہ',
 
 # Search results
-'searchresults' => 'تلاش کا نتیجہ',
-'prevn'         => 'پچھلے $1',
-'nextn'         => 'اگلے $1',
-'viewprevnext'  => 'دیکھیں($1) ($2) ($3)۔',
-'powersearch'   => 'تلاش کریں',
+'searchresults'         => 'تلاش کا نتیجہ',
+'searchresulttext'      => 'ویکیپیڈیا میں تلاش کے بارے میں مزید معلومات کے لیۓ، ویکیپیڈیا میں تلاش کا صفحہ دیکھیۓ۔',
+'searchsubtitle'        => "آپ کی تلاش براۓ '''[[:$1]]'''",
+'searchsubtitleinvalid' => "آپ کی تلاش براۓ '''$1'''",
+'noexactmatch'          => '"$1" کے عنوان سے کوئی صفحہ موجود نہیں۔ آپ اگر چاہیں تو اس نام سے  [[:$1|صفحہ بنا سکتے ہیں]]',
+'prevn'                 => 'پچھلے $1',
+'nextn'                 => 'اگلے $1',
+'viewprevnext'          => 'دیکھیں($1) ($2) ($3)۔',
+'powersearch'           => 'تلاش کریں',
 
 # Preferences page
 'preferences'       => 'ترجیحات',
