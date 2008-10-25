@@ -72,7 +72,8 @@ class CheckLanguageCLI {
 		return array(
 			'untranslated', 'duplicate', 'obsolete', 'variables', 'empty', 'plural',
 			'whitespace', 'xhtml', 'chars', 'links', 'unbalanced', 'namespace',
-			'projecttalk', 'skin', 'magic', 'magic-over', 'magic-case', 'special',
+			'projecttalk', 'skin', 'magic', 'magic-old', 'magic-over', 'magic-case',
+			'special', 'special-old',
 		);
 	}
 
@@ -82,8 +83,8 @@ class CheckLanguageCLI {
 	 */
 	protected function nonMessageChecks() {
 		return array(
-			'namespace', 'projecttalk', 'skin', 'magic', 'magic-over', 'magic-case',
-			'special',
+			'namespace', 'projecttalk', 'skin', 'magic', 'magic-old', 'magic-over',
+			'magic-case', 'special', 'special-old',
 		);
 	}
 
@@ -108,9 +109,31 @@ class CheckLanguageCLI {
 			'projecttalk'  => 'getProblematicProjectTalks',
 			'skin'         => 'getUntranslatedSkins',
 			'magic'        => 'getUntranslatedMagicWords',
+			'magic-old'    => 'getObsoleteMagicWords',
 			'magic-over'   => 'getOverridingMagicWords',
 			'magic-case'   => 'getCaseMismatchMagicWords',
 			'special'      => 'getUntraslatedSpecialPages',
+			'special-old'  => 'getObsoleteSpecialPages',
+		);
+	}
+
+	/**
+	 * Get total count for each check non-messages check.
+	 * @return An array of all check names mapped to a two-element array:
+	 * function name to get the total count and language code or null
+	 * for checked code.
+	 */
+	protected function getTotalCount() {
+		return array(
+			'namespace'    => array( 'getNamespaceNames', 'en' ),
+			'projecttalk'  => null,
+			'skin'         => array( 'getSkinNames', 'en' ),
+			'magic'        => array( 'getMagicWords', 'en' ),
+			'magic-old'    => array( 'getMagicWords', null ),
+			'magic-over'   => array( 'getMagicWords', null ),
+			'magic-case'   => array( 'getMagicWords', null ),
+			'special'      => array( 'getSpecialPageAliases', 'en' ),
+			'special-old'  => array( 'getSpecialPageAliases', null ),
 		);
 	}
 
@@ -135,9 +158,11 @@ class CheckLanguageCLI {
 			'projecttalk'  => '$1 namespace name(s) and alias(es) in $3 are project talk namespaces without the parameter:',
 			'skin'         => '$1 skin name(s) of $2 are not translated to $3, but exist in en:',
 			'magic'        => '$1 magic word(s) of $2 are not translated to $3, but exist in en:',
+			'magic-old'    => '$1 magic word(s) of $2 do not exist in en, but exist in $3:',
 			'magic-over'   => '$1 magic word(s) of $2 in $3 do not contain the original en word(s):',
 			'magic-case'   => '$1 magic word(s) of $2 in $3 change the case-sensitivity of the original en word:',
 			'special'      => '$1 special page alias(es) of $2 are not translated to $3, but exist in en:',
+			'special-old'  => '$1 special page alias(es) of $2 do not exist in en, but exist in $3:',
 		);
 	}
 
@@ -162,7 +187,7 @@ Parameters:
 Check codes (ideally, all of them should result 0; all the checks are executed by default (except language-specific check blacklists in checkLanguage.inc):
 	* untranslated: Messages which are required to translate, but are not translated.
 	* duplicate: Messages which translation equal to fallback
-	* obsolete: Messages which are untranslatable, but translated.
+	* obsolete: Messages which are untranslatable or do not exist, but are translated.
 	* variables: Messages without variables which should be used.
 	* empty: Empty messages and messages that contain only -.
 	* whitespace: Messages which have trailing whitespace.
@@ -174,9 +199,11 @@ Check codes (ideally, all of them should result 0; all the checks are executed b
 	* projecttalk: Namespace names and aliases where the project talk does not contain $1.
 	* skin: Skin names that were not translated.
 	* magic: Magic words that were not translated.
+	* magic-old: Magic words which do not exist.
 	* magic-over: Magic words that override the original English word.
 	* magic-case: Magic words whose translation changes the case-sensitivity of the original English word.
 	* special: Special page names that were not translated.
+	* special-old: Special page names which do not exist.
 Display levels (default: 2):
 	* 0: Skip the checks (useful for checking syntax).
 	* 1: Show only the stub headers and number of wrong messages, without list of messages.
@@ -263,7 +290,7 @@ ENDS;
 			if ( !is_callable( $callback ) ) {
 				throw new MWException( "Unkown check $check." );
 			}
-			$results[$check] = call_user_func( $callback , $code );
+			$results[$check] = call_user_func( $callback, $code );
 		}
 
 		return $results;
@@ -299,32 +326,17 @@ ENDS;
 			foreach ( $results as $check => $messages ) {
 				$count = count( $messages );
 				if ( $count ) {
-					switch( $check ) {
-						case 'untranslated':
-							$translatable = $this->L->getGeneralMessages();
-							$total = count( $translatable['translatable'] );
-							break;
-						case 'namespace':
-							$total = count( $this->L->getNamespaceNames( 'en' ) );
-							break;
-						case 'projecttalk':
-							$total = null;
-							break;
-						case 'skin':
-							$total = count( $this->L->getSkinNames( 'en' ) );
-							break;
-						case 'magic':
-							$total = count( $this->L->getMagicWords( 'en' ) );
-							break;
-						case 'magic-over':
-						case 'magic-case':
-							$total = count( $this->L->getMagicWords( $code ) );
-							break;
-						case 'special':
-							$total = count( $this->L->getSpecialPageAliases( 'en' ) );
-							break;
-						default:
-							$total = $translated;
+					if ( $check == 'untranslated' ) {
+						$translatable = $this->L->getGeneralMessages();
+						$total = count( $translatable['translatable'] );
+					} elseif ( in_array( $check, $this->nonMessageChecks() ) ) {
+						$totalCount = $this->getTotalCount();
+						$totalCount = $totalCount[$check];
+						$callback = array( $this->L, $totalCount[0] );
+						$callCode = $totalCount[1] ? $totalCount[1] : $code;
+						$total = count( call_user_func( $callback, $callCode ) );
+					} else {
+						$total = $translated;
 					}
 					$search = array( '$1', '$2', '$3' );
 					$replace = array( $count, $total, $code );

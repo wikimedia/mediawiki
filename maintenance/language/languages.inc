@@ -608,6 +608,25 @@ class languages {
 	}
 
 	/**
+	 * Get the obsolete magic words.
+	 *
+	 * @param $code The language code.
+	 *
+	 * @return The obsolete magic words in this language.
+	 */
+	public function getObsoleteMagicWords( $code ) {
+		$this->loadFile( 'en' );
+		$this->loadFile( $code );
+		$magicWords = array();
+		foreach ( $this->mMagicWords[$code] as $key => $value ) {
+			if ( !isset( $this->mMagicWords['en'][$key] ) ) {
+				$magicWords[$key] = $value[1];
+			}
+		}
+		return $magicWords;
+	}
+
+	/**
 	 * Get the magic words that override the original English magic word.
 	 *
 	 * @param $code The language code.
@@ -672,6 +691,25 @@ class languages {
 		$specialPageAliases = array();
 		foreach ( $this->mSpecialPageAliases['en'] as $key => $value ) {
 			if ( !isset( $this->mSpecialPageAliases[$code][$key] ) ) {
+				$specialPageAliases[$key] = $value[0];
+			}
+		}
+		return $specialPageAliases;
+	}
+
+	/**
+	 * Get the obsolete special page names.
+	 *
+	 * @param $code The language code.
+	 *
+	 * @return The obsolete special page names in this language.
+	 */
+	public function getObsoleteSpecialPages( $code ) {
+		$this->loadFile( 'en' );
+		$this->loadFile( $code );
+		$specialPageAliases = array();
+		foreach ( $this->mSpecialPageAliases[$code] as $key => $value ) {
+			if ( !isset( $this->mSpecialPageAliases['en'][$key] ) ) {
 				$specialPageAliases[$key] = $value[0];
 			}
 		}
