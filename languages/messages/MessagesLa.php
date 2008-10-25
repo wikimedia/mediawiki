@@ -727,8 +727,6 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'viewprevnext'          => 'Videre ($1) ($2) ($3).',
 'searchmenu-exists'     => "* Pagina '''[[$1]]'''",
 'searchmenu-new'        => "* Paginam '''[[$1]]''' creare",
-'searchmenu-badtitle'   => '* "$1" non est titulus permissus.
-* [[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]',
 'search-result-size'    => '$1 ({{PLURAL:$2|1 verbum|$2 verba}})',
 'search-result-score'   => 'Gravitas: $1%',
 'search-redirect'       => '(redirectio $1)',
