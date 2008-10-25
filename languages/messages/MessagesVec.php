@@ -1482,7 +1482,7 @@ Vien considerà pagine de disanbiguazion tute quele che contien i template elenc
 'nviews'                  => '$1 {{PLURAL:$1|visita|visite}}',
 'specialpage-empty'       => "Sto raporto no'l contien nissun risultato.",
 'lonelypages'             => 'Pàxene solitarie',
-'lonelypagestext'         => 'Le pagine indicà de seguito no le gà colegamenti che vegna da altre pagine del sito.',
+'lonelypagestext'         => 'Le pagine indicà de seguito no le gà colegamenti o trasclusioni che vegna da altre pagine de {{SITENAME}}.',
 'uncategorizedpages'      => 'Pàxene prive de categorie',
 'uncategorizedcategories' => 'Categorie prive de categorie',
 'uncategorizedimages'     => 'File che no gà na categoria',
@@ -2685,6 +2685,7 @@ Par piaser, conferma che te vołi dal bon ricrear sta voçe.",
 # action=purge
 'confirm_purge_button' => 'Conferma',
 'confirm-purge-top'    => 'Vóto scancełar ła cache in sta pàxena?',
+'confirm-purge-bottom' => 'Netar la cache de na pàxena parmete de far védar la so version piassè ajornà.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← pagina precedente',

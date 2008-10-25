@@ -493,6 +493,8 @@ $messages = array(
 'editsection'             => '편집',
 'editold'                 => '편집',
 'viewsourceold'           => '내용 보기',
+'editlink'                => '편집',
+'viewsourcelink'          => '내용 보기',
 'editsectionhint'         => '부분 편집: $1',
 'toc'                     => '목차',
 'showtoc'                 => '보이기',
@@ -759,7 +761,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'newarticletext'                   => "이 문서는 아직 만들어지지 않았습니다. 새 문서를 만들려면 아래의 상자에 문서 내용을 입력하면 됩니다(자세한 내용은 [[{{MediaWiki:Helppage}}|도움말]]을 읽어 주세요).
 만약 잘못 찾아온 문서라면, 웹 브라우저의 '''뒤로''' 버튼을 눌러 주세요.",
 'anontalkpagetext'                 => '----
-여기는 계정을 만들지 않았거나 사용하고 있지 않은 익명 사용자를 위한 토론 문서입니다. 익명 사용자를 구별하기 위해서는 숫자로 된 IP 주소를 사용해야만 합니다. IP 주소는 여러 사용자에 의해 공유될 수 있습니다. 자신과 관계없는 의견이 자신에게 남겨져 있어 불쾌하다고 생각하는 익명 사용자에게는 [[Special:UserLogin/signup|계정을 만들고]] [[Special:UserLogin|로그인 하여]] 미래의 다른 익명 사용자에게 올 수 있는 혼란을 줄이는 것을 추천합니다.',
+여기는 계정을 만들지 않았거나 사용하고 있지 않은 비등록 사용자를 위한 토론 문서입니다. 비등록 사용자를 구별하기 위해서는 숫자로 된 IP 주소를 사용해야만 합니다. IP 주소는 여러 사용자에 의해 공유될 수 있습니다. 자신과 관계없는 의견이 자신에게 남겨져 있어 불쾌하다고 생각하는 비등록 사용자에게는 [[Special:UserLogin/signup|계정을 만들고]] [[Special:UserLogin|로그인 하여]] 추후의 다른 비등록 사용자에게 올 수 있는 혼란을 줄이는 것을 추천합니다.',
 'noarticletext'                    => '현재 문서는 비어 있습니다. 이 제목으로 [[Special:Search/{{PAGENAME}}|검색]]하거나 문서를 [{{fullurl:{{FULLPAGENAME}}|action=edit}} 편집]할 수 있습니다.',
 'userpage-userdoesnotexist'        => '‘$1’ 계정은 등록되어 있지 않습니다. 이 문서를 만들거나 편집하려면 계정이 존재 하는지 확인해주세요.',
 'clearyourcache'                   => "'''참고 - 설정을 저장한 후에 바뀐 점을 확인하기 위해서는 브라우저의 캐시를 갱신해야 합니다.'''
@@ -808,7 +810,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 
 잠근 관리자가 남긴 설명은 다음과 같습니다: $1',
 'protectedpagewarning'             => "'''경고: 이 문서는 관리자만이 편집할 수 있도록 보호되어 있습니다.'''",
-'semiprotectedpagewarning'         => "'''주의''': 이 문서는 등록된 사용자만이 편집할 수 있도록 잠겨 있습니다.",
+'semiprotectedpagewarning'         => "'''안내:''' 이 문서는 가입한지 3일이 지난 사용자만이 편집할 수 있도록 잠겨 있습니다.",
 'cascadeprotectedwarning'          => "'''주의''': 이 문서는 자동으로 잠겨 있어 관리자만 편집할 수 있습니다. 연쇄적 보호가 걸린 다음의 문서에서 이 문서를 사용하고 있습니다:",
 'titleprotectedwarning'            => '<strong>주의: 이 문서는 잠겨 있어, 일부 사용자만이 생성할 수 있습니다.</strong>',
 'templatesused'                    => '이 문서에서 사용한 틀:',
@@ -1074,6 +1076,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'rightsnone'     => '(없음)',
 
 # Associated actions - in the sentence "You do not have permission to X"
+'action-edit'       => '문서 편집',
 'action-userrights' => '모든 사용자의 권한을 조정',
 
 # Recent changes
@@ -1162,6 +1165,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'fileexists-forbidden'        => '같은 이름의 파일이 이미 있습니다. 뒤로 돌아가서 다른 이름으로 시도해 주시기 바랍니다. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => '같은 이름의 파일이 이미 위키미디어 공용에 있습니다.
 파일을 업로드하길 원하신다면 뒤로 돌아가서 다른 이름으로 시도해 주시기 바랍니다. [[Image:$1|thumb|center|$1]]',
+'file-exists-duplicate'       => '현재 올리고 있는 파일이 아래 파일과 중복됩니다:',
 'successfulupload'            => '올리기 성공',
 'uploadwarning'               => '올리기 경고',
 'savefile'                    => '파일 저장',
@@ -1358,6 +1362,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'wantedcategories'        => '필요한 분류 목록',
 'wantedpages'             => '필요한 문서 목록',
 'wantedfiles'             => '필요한 파일 목록',
+'wantedtemplates'         => '필요한 틀 목록',
 'mostlinked'              => '가장 많이 연결된 문서 목록',
 'mostlinkedcategories'    => '가장 많이 연결된 분류 목록',
 'mostlinkedtemplates'     => '가장 많이 사용된 틀 목록',
@@ -1720,7 +1725,9 @@ $1',
 'whatlinkshere-next'       => '{{PLURAL:$1|다음|다음 $1}}',
 'whatlinkshere-links'      => '← 가리키는 문서 목록',
 'whatlinkshere-hideredirs' => '넘겨주기를 $1',
+'whatlinkshere-hidetrans'  => '틀 포함 $1',
 'whatlinkshere-hidelinks'  => '링크를 $1',
+'whatlinkshere-filters'    => '필터',
 
 # Block/unblock
 'blockip'                     => '사용자 차단',
@@ -1816,9 +1823,9 @@ $1',
 'databasenotlocked'   => '데이터베이스가 잠겨 있지 않습니다.',
 
 # Move page
-'move-page'               => '이동 $1',
-'move-page-legend'        => '문서 이동하기',
-'movepagetext'            => "아래 양식을 채워 문서의 이름을 바꾸고 모든 역사를 새 이름으로 옮길 수 있습니다.
+'move-page'                 => '이동 $1',
+'move-page-legend'          => '문서 이동하기',
+'movepagetext'              => "아래 양식을 채워 문서의 이름을 바꾸고 모든 역사를 새 이름으로 옮길 수 있습니다.
 기존의 이름은 새 이름으로 넘겨주는 문서가 됩니다.
 원래 이름을 가리키는 넘겨주기를 자동으로 갱신할 수 있습니다.
 만약 이 설정을 선택하지 않았다면 [[Special:DoubleRedirects|이중 넘겨주기]]와 [[Special:BrokenRedirects|끊긴 넘겨주기]]를 확인해주세요.
@@ -1829,42 +1836,44 @@ $1',
 '''주의!'''
 자주 사용하는 문서를 이동하면 위험한 결과를 가져올 수 있습니다.
 이동하기 전에, 이 문서를 이동해도 문제가 없다는 것을 확인해주세요.",
-'movepagetalktext'        => "딸린 토론 문서도 자동으로 이동합니다. 다음의 경우는 '''이동하지 않습니다''':
+'movepagetalktext'          => "딸린 토론 문서도 자동으로 이동합니다. 다음의 경우는 '''이동하지 않습니다''':
 * 이동할 이름으로 된 문서가 이미 있는 경우
 * 아래의 선택을 해제하는 경우
 이 경우에는 문서를 직접 이동하거나 두 문서를 합쳐야 합니다.",
-'movearticle'             => '문서 이동하기',
-'movenologin'             => '로그인하지 않음',
-'movenologintext'         => '[[Special:UserLogin|로그인]]해야만 문서를 이동할 수 있습니다.',
-'movenotallowed'          => '{{SITENAME}}에서 문서를 이동할 권한이 없습니다.',
-'newtitle'                => '새 문서 이름',
-'move-watch'              => '이 문서 주시하기',
-'movepagebtn'             => '이동',
-'pagemovedsub'            => '문서 이동함',
-'movepage-moved'          => '<big>\'\'\'"$1" 문서를 "$2" 문서로 이동했습니다.\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'           => '문서가 이미 존재하거나, 문서 이름이 올바르지 않습니다. 다른 제목으로 시도해주세요.',
-'cantmove-titleprotected' => '새로운 제목으로 문서를 만드는 것이 금지되어 있어, 문서를 이동할 수 없습니다.',
-'talkexists'              => "'''문서는 이동되었습니다. 하지만 딸린 토론 문서의 새 이름으로 된 문서가 이미 존재해서, 토론 문서는 이동하지 않았습니다. 직접 문서를 합쳐 주세요.'''",
-'movedto'                 => '새 이름',
-'movetalk'                => '딸린 토론도 함께 이동합니다.',
-'move-subpages'           => '하위 문서도 함께 이동합니다.',
-'move-talk-subpages'      => '토론 문서에 딸린 문서도 함께 이동합니다.',
-'movepage-page-exists'    => '이동할 수 없습니다. ‘$1’ 문서가 이미 존재합니다.',
-'movepage-page-moved'     => '$1 문서가 $2 (으)로 이동되었습니다.',
-'1movedto2'               => '[[$1]]을(를) [[$2]](으)로 옮김',
-'1movedto2_redir'         => '[[$1]]을(를) [[$2]](으)로 옮기면서 넘겨주기를 덮어 씀',
-'movelogpage'             => '이동 기록',
-'movelogpagetext'         => '아래는 옮겨진 문서의 목록입니다.',
-'movereason'              => '이유',
-'revertmove'              => '되돌리기',
-'delete_and_move'         => '삭제하고 이동',
-'delete_and_move_text'    => '== 삭제 필요 ==
+'movearticle'               => '문서 이동하기',
+'movenologin'               => '로그인하지 않음',
+'movenologintext'           => '[[Special:UserLogin|로그인]]해야만 문서를 이동할 수 있습니다.',
+'movenotallowed'            => '{{SITENAME}}에서 문서를 이동할 권한이 없습니다.',
+'newtitle'                  => '새 문서 이름',
+'move-watch'                => '이 문서 주시하기',
+'movepagebtn'               => '이동',
+'pagemovedsub'              => '문서 이동함',
+'movepage-moved'            => '<big>\'\'\'"$1" 문서를 "$2" 문서로 이동했습니다.\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'             => '문서가 이미 존재하거나, 문서 이름이 올바르지 않습니다. 다른 제목으로 시도해주세요.',
+'cantmove-titleprotected'   => '새로운 제목으로 문서를 만드는 것이 금지되어 있어, 문서를 이동할 수 없습니다.',
+'talkexists'                => "'''문서는 이동되었습니다. 하지만 딸린 토론 문서의 새 이름으로 된 문서가 이미 존재해서, 토론 문서는 이동하지 않았습니다. 직접 문서를 합쳐 주세요.'''",
+'movedto'                   => '새 이름',
+'movetalk'                  => '딸린 토론도 함께 이동합니다.',
+'move-subpages'             => '하위 문서도 함께 이동합니다.',
+'move-talk-subpages'        => '토론 문서에 딸린 문서도 함께 이동합니다.',
+'movepage-page-exists'      => '이동할 수 없습니다. ‘$1’ 문서가 이미 존재합니다.',
+'movepage-page-moved'       => '$1 문서가 $2 (으)로 이동되었습니다.',
+'1movedto2'                 => '[[$1]]을(를) [[$2]](으)로 옮김',
+'1movedto2_redir'           => '[[$1]]을(를) [[$2]](으)로 옮기면서 넘겨주기를 덮어 씀',
+'movelogpage'               => '이동 기록',
+'movelogpagetext'           => '아래는 옮겨진 문서의 목록입니다.',
+'movereason'                => '이유',
+'revertmove'                => '되돌리기',
+'delete_and_move'           => '삭제하고 이동',
+'delete_and_move_text'      => '== 삭제 필요 ==
 
 이동하려는 제목으로 된 문서 [[:$1]]이(가) 이미 존재합니다. 삭제하고 이동할까요?',
-'delete_and_move_confirm' => '네. 문서를 삭제합니다',
-'delete_and_move_reason'  => '문서를 이동하기 위해 삭제함',
-'selfmove'                => '이동하려는 제목이 원래 제목과 같습니다. 이동할 수 없습니다.',
-'fix-double-redirects'    => '기존 이름을 가리키는 넘겨주기를 갱신',
+'delete_and_move_confirm'   => '네. 문서를 삭제합니다',
+'delete_and_move_reason'    => '문서를 이동하기 위해 삭제함',
+'selfmove'                  => '이동하려는 제목이 원래 제목과 같습니다. 이동할 수 없습니다.',
+'immobile-source-namespace' => '"$1" 이름공간에 속한 문서는 이동시킬 수 없습니다.',
+'immobile-target-namespace' => '"$1" 이름공간에 속한 문서는 이동시킬 수 없습니다.',
+'fix-double-redirects'      => '기존 이름을 가리키는 넘겨주기를 갱신',
 
 # Export
 'export'           => '문서 내보내기',
@@ -2058,6 +2067,9 @@ $1',
 # Special:NewImages
 'newimages'             => '새 그림 파일 목록',
 'imagelisttext'         => '$1개의 파일이 $2 순으로 정렬되어 있습니다.',
+'newimages-summary'     => '이 특수 문서는 최근에 올라온 파일을 나열하고 있습니다.',
+'newimages-legend'      => '필터',
+'newimages-label'       => '파일이름 (또는 그 일부분):',
 'showhidebots'          => '(봇을 $1)',
 'noimages'              => '그림이 없습니다.',
 'ilsubmit'              => '찾기',

@@ -431,7 +431,7 @@ Lütfen, URL yazıp bundan [[Special:ListUsers/sysop|administratorğa]] haber be
 'badarticleerror'      => 'Siz yapmağa istegen işlev keçersizdir.',
 'cannotdelete'         => 'Belgilengen saife ya da körüniş yoq etilip olamadı. (başqa bir qullanıcı tarafından yoq etilgen ola bilir).',
 'badtitle'             => 'Keçersiz serleva',
-'badtitletext'         => 'İstenilgen saife adı doğru degil, boş yahut interviki ya da tillerara adı doğru belgilenmegen. İhtimalı bar ki, saife adında yasaqlanğan simvollar qullanıladır.',
+'badtitletext'         => 'İstenilgen saife adı doğru degil, boş yahut interviki ya da tillerara adı doğru belgilenmegen. İhtimalı bar ki, saife adında yasaqlanğan işaretler qullanıladır.',
 'perfcached'           => 'Malümatlar daa evelceden azırlanğan ola bilir. Bu sebepten eskirgen ola bilir!',
 'perfcachedts'         => 'Aşağıda keşte saqlanğan malümat buluna, soñki yañaruv zamanı: $1.',
 'querypage-no-updates' => 'Bu saifeni deñiştirmege şimdi izin yoq. Bu malümat aman yañartılmaycaq.',
@@ -494,7 +494,7 @@ Bu saytnıñ [[Special:Preferences|sazlamalarını]] şahsıñızğa köre deñi
 'yourvariant'                => 'Til saylavı:',
 'yournick'                   => 'Siziñ lağabıñız (imzalarda kösterilecek):',
 'badsig'                     => 'Yañlış imza. HTML tegleriniñ doğrulığını baqıñız.',
-'badsiglength'               => 'Qarardan ziyade uzun imzadır, $1-den ziyade simvoldan ibaret olması mümkün degil.',
+'badsiglength'               => 'Qarardan ziyade uzun imzadır, $1-den ziyade işaretten ibaret olması mümkün degil.',
 'email'                      => 'E-mail',
 'prefs-help-realname'        => 'Adıñız (mecburiy degildir): Eger belgileseñiz, saifelerdeki deñişikliklerini kimniñ yapqanını köstermek içün qullanılacaq.',
 'loginerror'                 => 'Oturım açma hatası',
@@ -510,7 +510,8 @@ Em de bu vikideki saifeñizden diger qullanıcılarğa siznen bağlanmağa imkâ
 'nosuchusershort'            => '"<nowiki>$1</nowiki>" adlı qullanıcı tapılamadı. Adıñıznı doğru yazğanıñızdan emin oluñız.',
 'nouserspecified'            => 'Qullanıcı adını belgilemek kereksiñiz.',
 'wrongpassword'              => 'Kirsetken paroliñiz yañlıştır. Lütfen, tekrar etiñiz.',
-'wrongpasswordempty'         => 'Boş parol kirmeñiz/belgilemeñiz.',
+'wrongpasswordempty'         => 'Kirsetken parоliñiz bоştır.
+Lütfen, tekrar etiñiz.',
 'passwordtooshort'           => 'Paroliñiz pek qısqa. Eñ az $1 arif ve ya raqamdan ibaret olmalı.',
 'mailmypassword'             => 'Yañı parol yiber',
 'passwordremindertitle'      => '{{grammar:genitive|{{SITENAME}}}} qullanıcınıñ parol hatırlatuvı',
@@ -664,7 +665,7 @@ Siziñ deñişiklikleriñiz altqa kösterildi. Soñki deñişikleriñizni yazın
 \"Saifeni saqla\"ğa basqanda '''tek''' yuqarıdaki yazı saqlanacaq.",
 'yourtext'                         => 'Siziñ metniñiz',
 'storedversion'                    => 'Saqlanğan metin',
-'nonunicodebrowser'                => '<strong>TENBİ: Brauzeriñizde Unicode ködirovkası tanılmaz. Saifeler deñiştirgende bütün ASCII olmağan simvollarnıñ yerine olarnıñ onaltılıq kodu yazılır.</strong>',
+'nonunicodebrowser'                => '<strong>TENBİ: Brauzeriñizde Unicode kodlaması tanılmaz. Saifeler deñiştirgende bütün ASCII olmağan işaretlerniñ yerine olarnıñ onaltılıq kodu yazılır.</strong>',
 'editingold'                       => '<strong>DİQQAT: Saifeniñ eski bir versiyasında deñişiklik yapmaqtasıñız.
 Saqlağanıñızda bu tarihlı versiyadan künümizge qadar olğan deñişiklikler yoq olacaq.</strong>',
 'yourdiff'                         => 'Qarşılaştırma',
@@ -676,7 +677,7 @@ Ayrıca, mında isse qoşıp, bu isseniñ özüñiz tarafından yazılğanına, 
 Ayrıca, mında isse qoşıp, bu isseniñ özüñiz tarafından yazılğanına, ya da cemaatqa açıq bir menbadan ya da başqa bir azat menbadan kopirlengenine garantiya bergen olasıñız ($1 baqıñız).<br />
 <strong>MÜELLİF AQQI İLE QORÇALANĞAN İÇ BİR METİNNİ MINDA EKLEMEÑİZ!</strong>',
 'longpagewarning'                  => '<strong>TENBİ: Bu saife $1 kilobayt büyükligindedir; bazı brauzerler deñişiklik yapqan vaqıtta 32 kb ve üstü büyükliklerde problemalar yaşap olur. Saifeni bölümlerge ayırmağa tırışıñız.</strong>',
-'longpageerror'                    => '<strong>TENBİ: Bu saife $1 kilobayt büyükligindedir. Maksimum izinli büyüklik ise $2 kilobayt. Bu saife saqlanıp olamaz.</strong>',
+'longpageerror'                    => '<strong>TENBİ: Bu saife $1 kilobayt büyükligindedir. Azamiy (maksimal) izinli büyüklik ise $2 kilobayt. Bu saife saqlanıp olamaz.</strong>',
 'readonlywarning'                  => '<strong>TENBİ: Baqım sebebi ile malümat bazası al-azırda kilitlidir. Bu sebepten deñişiklikleriñiz şimdi saqlap olamasıñız. Yazğanlarıñıznı başqa bir editor programmasına alıp saqlap olur ve daa soñ tekrar mında ketirip saqlap olursıñız</strong>
 
 Malümat bazasını kilitlegen administratоr öz areketini böyle añlattı: $1',
@@ -804,7 +805,7 @@ Vikide bu saifege oşağan saifelerni [[Special:Search|tapıp baqıñız]].',
 'changepassword'        => 'Parol deñiştir',
 'skin'                  => 'Resimleme',
 'skin-preview'          => 'Ög baquv',
-'math'                  => 'Riyaziy (matematik) simvollar',
+'math'                  => 'Riyaziy (matematik) işaretler',
 'dateformat'            => 'Tarih kösterimi',
 'datedefault'           => 'Standart',
 'datetime'              => 'Tarih ve saat',
@@ -822,7 +823,7 @@ Vikide bu saifege oşağan saifelerni [[Special:Search|tapıp baqıñız]].',
 'resetprefs'            => 'Saqlanmağan sazlamalarnı ilk alına ketir',
 'oldpassword'           => 'Eski parol',
 'newpassword'           => 'Yañı parol',
-'retypenew'             => 'Yañı parolnen tekrar kiriñiz',
+'retypenew'             => 'Yañı parolni tekrar yazıñız',
 'textboxsize'           => 'Saife yazuv penceresi',
 'rows'                  => 'Satır',
 'columns'               => 'Sutun',
@@ -839,7 +840,7 @@ Vikide bu saifege oşağan saifelerni [[Special:Search|tapıp baqıñız]].',
 'timezoneoffset'        => 'Saat farqı',
 'servertime'            => 'Viki serverinde şimdiki saat',
 'guesstimezone'         => 'Brauzeriñiz siziñ yeriñizge toldursın',
-'allowemail'            => 'Diger qullanıcılar sizge e-mail mektüpleri yollap olsun',
+'allowemail'            => 'Diger qullanıcılar maña e-mail mektüpleri yollap olsun',
 'prefs-searchoptions'   => 'Qıdıruv sazlamaları',
 'prefs-namespaces'      => 'İsim fezaları',
 'defaultns'             => 'Qıdıruvnı aşağıda saylanğan isim fezalarında yap.',
@@ -849,7 +850,7 @@ Vikide bu saifege oşağan saifelerni [[Special:Search|tapıp baqıñız]].',
 # User rights
 'userrights'               => 'Qullanıcı aqlarını idare etüv', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'   => 'Qullanıcı gruppalarnını idare et',
-'userrights-user-editname' => 'Öz qullanıcı adıñıznen kiriñiz:',
+'userrights-user-editname' => 'Öz qullanıcı adıñıznı yazıñız:',
 'editusergroup'            => 'Qullanıcı gruppaları nizamla',
 'editinguser'              => "'''[[User:$1|$1]]''' qullanıcısınıñ ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) izinlerini deñiştirmektesiñiz",
 'userrights-editusergroup' => 'Qullanıcı gruppaları nizamla',
@@ -981,14 +982,14 @@ Eger bu faylnı ep bir yüklemege isteseñiz, keri qaytıñız ve fayl ismini de
 'uploadvirus'                 => 'Bu fayl viruslıdır! $1 baqıñız',
 'sourcefilename'              => 'Yüklemege istegeniñiz fayl:',
 'destfilename'                => 'Faylnıñ istenilgen adı:',
-'upload-maxfilesize'          => 'Maksimal fayl büyükligi: $1',
+'upload-maxfilesize'          => 'Azamiy (maksimal) fayl büyükligi: $1',
 'watchthisupload'             => 'Bu faylnı közetüv cedveline kirset',
 'filewasdeleted'              => 'Bu isimde bir fayl mevcüt edi, amma yoq etilgen edi. Lütfen, tekrar yüklemeden evel $1 teşkeriñiz.',
 'upload-wasdeleted'           => "'''Diqqat: Evelde yoq etilgen faylnı yüklemektesiñiz.'''
 
 Er alda bu faylnı yüklemege devam etmege isteysiñizmi?
 Bu fayl içün yoq etüvniñ jurnalını mında baqıp olasıñız:",
-'filename-bad-prefix'         => 'Siz yüklegen fayl <strong>"$1"</strong>-nen başlay. Bu, adetince, raqamlı fotoapparatlardan fayl adına yazılğan manasız simvollardır. Lütfen, bu fayl içün añlıca bir ad saylap yazıñız.',
+'filename-bad-prefix'         => 'Siz yüklegen faylnıñ adı <strong>"$1"</strong>-nen başlana. Bu, adetince, raqamlı fotoapparatlardan fayl adına yazılğan manasız işaretlerdir. Lütfen, bu fayl içün añlıca bir ad saylap yazıñız.',
 
 'upload-proto-error'      => 'Yañlış protokol',
 'upload-proto-error-text' => 'İnternetten bir resim faylı yüklemege isteseñiz adres <code>http://</code> ya da <code>ftp://</code>nen başlamalı.',
@@ -1152,7 +1153,7 @@ Eger saifede, [[MediaWiki:Disambiguationspage]] saifesinde adı keçken şablon 
 'log'                  => 'Jurnallar',
 'all-logs-page'        => 'Bütün jurnallar',
 'logempty'             => 'Jurnalda bir kelgen malümat yoq.',
-'log-title-wildcard'   => 'Bu simvollardan başlanğan serlevalarnı qıdır',
+'log-title-wildcard'   => 'Bu işaretlerden başlanğan serlevalarnı qıdır',
 
 # Special:AllPages
 'allpages'          => 'Bütün saifeler',
@@ -1167,7 +1168,7 @@ Eger saifede, [[MediaWiki:Disambiguationspage]] saifesinde adı keçken şablon 
 'allpagesnext'      => 'Soñraki',
 'allpagessubmit'    => 'Köster',
 'allpagesprefix'    => 'Yazğan ariflernen başlağan saifelerni köster:',
-'allpagesbadtitle'  => 'Saifeniñ adı keçerli degil. Serlevada tiller arası prefiksi ya da vikiler arası bağlantı ya da başqa qullanıluvı yasaq olğan simvollar bardır.',
+'allpagesbadtitle'  => 'Saifeniñ adı keçerli degil. Serlevada tiller arası prefiksi ya da vikiler arası bağlantı ya da başqa qullanıluvı yasaq olğan işaretler bar.',
 'allpages-bad-ns'   => '{{SITENAME}} saytında "$1" isim fezası yoqtır.',
 
 # Special:Categories
@@ -1346,8 +1347,8 @@ Bu saifeniñ qorçalav seviyesini deñiştirip olasıñız, amma kaskadlı qorç
 'protect-expiry-options'      => '2 saat:2 hours,1 kün:1 day,3 kün:3 days,1 afta:1 week,2 afta:2 weeks,1 ay:1 month,3 ay:3 months,6 ay:6 months,1 yıl:1 year,müddetsiz:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Ruhseti:',
 'restriction-level'           => 'Ruhset seviyesi:',
-'minimum-size'                => 'Minimal büyüklik',
-'maximum-size'                => 'Maksimal büyüklik',
+'minimum-size'                => 'Asğariy (minimal) büyüklik',
+'maximum-size'                => 'Azamiy (maksimal) büyüklik:',
 'pagesize'                    => '(bayt)',
 
 # Restrictions (nouns)
@@ -1627,8 +1628,8 @@ MediaWiki interfeysiniñ çeşit tillerge tercime etüvde iştirak etmege istese
 # Media information
 'mediawarning'         => "'''DİQQAT!''': Bu faylda yaman maqsatlı (virus kibi) qısım bulunıp ola ve operatsion sistemañızğa zarar ketirip olur.
 <hr />",
-'imagemaxsize'         => 'Resimlerniñ malümat saifelerindeki resimniñ maksimal büyükligi:',
-'thumbsize'            => 'Kiçik büyüklik:',
+'imagemaxsize'         => 'Resimlerniñ malümat saifelerindeki resimniñ azamiy (maksimal) ölçüsi:',
+'thumbsize'            => 'Kiçik ölçü:',
 'widthheightpage'      => '$1 × $2, $3 saife',
 'file-info'            => '(fayl büyükligi: $1, MIME çeşiti: $2)',
 'file-info-size'       => '($1 × $2 piksel, fayl büyükligi: $3, MIME çeşiti: $4)',
@@ -1655,7 +1656,7 @@ MediaWiki interfeysiniñ çeşit tillerge tercime etüvde iştirak etmege istese
 # Bad image list
 'bad_image_list' => 'Format böyle olmalı:
 
-Er satır * simvolınen başlamalı. Satırnıñ birinci bağlantısı eklemege yasaqlanğan faylğa bağlanmalı.
+Er satır * işaretinen başlamalı. Satırnıñ birinci bağlantısı eklemege yasaqlanğan faylğa bağlanmalı.
 Şu satırda ilerideki bağlantılar istisna olurlar, yani şu saifelerde işbu fayl qullanmaq mümkün.',
 
 # Metadata
@@ -1762,7 +1763,7 @@ bu e-mail adresinen bağlanğan $2 qullanıcı esabı
 açıldı.
 
 Bu e-mail adresiniñ bahsı keçken qullanıcı esabına ait olğanını
-tasdıqlamaq ve {{SITENAME}} saytındaki e-mail funktsiyalarını aktiv alğa
+tasdıqlamaq ve {{SITENAME}} saytındaki e-mail funktsiyalarını faal alğa
 ketirmek içün aşağıdaki bağlantını basıñız:
 
 $3

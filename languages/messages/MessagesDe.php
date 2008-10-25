@@ -1589,7 +1589,7 @@ Jede Zeile enthält Links zu der ersten und zweiten Weiterleitung sowie das Ziel
 'nviews'                  => '{{PLURAL:$1|1 Abfrage|$1 Abfragen}}',
 'specialpage-empty'       => 'Die Seite enthält aktuell keine Einträge.',
 'lonelypages'             => 'Verwaiste Seiten',
-'lonelypagestext'         => 'Auf die folgenden Seiten wird nicht aus {{SITENAME}} verwiesen.',
+'lonelypagestext'         => 'Die folgenden Seiten werden nicht eingebunden oder es wird nicht auf sie in {{SITENAME}} verwiesen.',
 'uncategorizedpages'      => 'Nicht kategorisierte Seiten',
 'uncategorizedcategories' => 'Nicht kategorisierte Kategorien',
 'uncategorizedimages'     => 'Nicht kategorisierte Dateien',

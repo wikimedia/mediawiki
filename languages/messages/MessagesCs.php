@@ -1159,7 +1159,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'search-section'            => '(část $1)',
 'search-suggest'            => 'Mysleli jste: $1',
 'search-interwiki-caption'  => 'Sesterské projekty',
-'search-interwiki-default'  => '$1 {{PLURAL:$1|výsledek|výsledky|výsledků}}:',
+'search-interwiki-default'  => 'Výsledky z $1:',
 'search-interwiki-more'     => '(více)',
 'search-mwsuggest-enabled'  => 's návrhy',
 'search-mwsuggest-disabled' => 'bez návrhů',

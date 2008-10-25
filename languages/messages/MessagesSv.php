@@ -1659,7 +1659,7 @@ En sida anses vara en förgreningssida om den inkluderar en mall som länkas til
 'nviews'                  => '$1 {{PLURAL:$1|visning|visningar}}',
 'specialpage-empty'       => 'Den här sidan är tom.',
 'lonelypages'             => 'Föräldralösa sidor',
-'lonelypagestext'         => 'Följande sidor länkas inte till från någon annan sida på den här wikin.',
+'lonelypagestext'         => 'Följande sidor länkas inte till från någon annan sida på {{SITENAME}}.',
 'uncategorizedpages'      => 'Ej kategoriserade sidor',
 'uncategorizedcategories' => 'Ej kategoriserade kategorier',
 'uncategorizedimages'     => 'Filer utan kategori',

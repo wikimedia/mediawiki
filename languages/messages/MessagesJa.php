@@ -1397,7 +1397,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'nviews'                  => '$1 回表示',
 'specialpage-empty'       => '合致するものがありません。',
 'lonelypages'             => '孤立しているページ',
-'lonelypagestext'         => '以下のページは、どこからもリンクされていない孤立したページです。',
+'lonelypagestext'         => '以下のページは、{{SITENAME}}の他のページからリンクされておらず、また読み込まれてもいないページです。',
 'uncategorizedpages'      => 'カテゴリ未導入のページ',
 'uncategorizedcategories' => 'カテゴリ未導入のカテゴリ',
 'uncategorizedimages'     => 'カテゴリ未分類のファイル',

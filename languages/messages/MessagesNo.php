@@ -1521,7 +1521,7 @@ En side anses om en pekerside om den inneholder en mal som det lenkes til fra [[
 'nviews'                  => '$1 {{PLURAL:$1|visning|visninger}}',
 'specialpage-empty'       => 'Denne siden er tom.',
 'lonelypages'             => 'Foreldreløse sider',
-'lonelypagestext'         => 'Følgende sider blir ikke lenket til fra andre sider på {{SITENAME}}.',
+'lonelypagestext'         => 'Følgende sider blir ikke lenket til eller brukt på andre sider på {{SITENAME}}.',
 'uncategorizedpages'      => 'Ukategoriserte sider',
 'uncategorizedcategories' => 'Ukategoriserte kategorier',
 'uncategorizedimages'     => 'Ukategoriserte filer',
@@ -2733,6 +2733,7 @@ $1
 # action=purge
 'confirm_purge_button' => 'OK',
 'confirm-purge-top'    => "Vil du slette tjenerens mellomlagrede versjon (''cache'') av denne siden?",
+'confirm-purge-bottom' => 'Rensing av en side sletter mellomlageret og tvinger frem den nyeste versjonen.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← forrige side',
