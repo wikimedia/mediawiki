@@ -2824,6 +2824,7 @@ Confirmatz que desiratz tornar crear aqueste article.",
 # action=purge
 'confirm_purge_button' => 'Confirmar',
 'confirm-purge-top'    => "Volètz refrescar aquesta pagina (purgar l'amagatal) ?",
+'confirm-purge-bottom' => "Purgar una pagina vioda l'amagatal e fòrça la darrièra version a èsser afichada.",
 
 # Separators for various lists, etc.
 'colon-separator'    => '&nbsp;:&#32;',

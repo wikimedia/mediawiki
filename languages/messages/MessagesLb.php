@@ -1678,7 +1678,7 @@ Aktuell Versioun: $PAGETITLE_URL
 
 $NEWPAGE
 
-Zusammefaassung vuun dem Mataarbechter: $PAGESUMMARY $PAGEMINOREDIT
+Resumé vum Mataarbechter: $PAGESUMMARY $PAGEMINOREDIT
 
 Dëse Mataarbechter kontaktéieren:
 E-Mail: $PAGEEDITOR_EMAIL
@@ -2597,6 +2597,7 @@ Sollt et sech net ëm äre Benotzerkont handelen, da maacht de Link *net* op. De
 # action=purge
 'confirm_purge_button' => 'OK',
 'confirm-purge-top'    => 'Dës Säit aus dem Server-Cache läschen?',
+'confirm-purge-bottom' => "Mécht de Cache vun enger Säit eidel a forcéiert d'Uweise vun der aktueller Versioun.",
 
 # Multipage image navigation
 'imgmultipageprev' => '← Säit virdrun',

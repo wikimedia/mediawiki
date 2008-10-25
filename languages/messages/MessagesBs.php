@@ -887,6 +887,7 @@ koje sadrže sve izraze koji se traže će se pojaviti u rezultatima).",
 'timezoneoffset'          => 'Odstupanje',
 'servertime'              => 'Vrijeme na serveru',
 'guesstimezone'           => 'Popuni iz brauzera',
+'allowemail'              => 'Dozvoli e-poštu od ostalih korisnika',
 'defaultns'               => 'Uobičajeno tražite u ovim imenskim prostorima:',
 
 # User rights

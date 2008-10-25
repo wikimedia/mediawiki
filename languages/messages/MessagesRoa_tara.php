@@ -472,14 +472,16 @@ Leggenda: (cur) = differenze cu 'a versiona corrende,
 'diff-form'               => "'nu '''form'''",
 
 # Search results
-'noexactmatch'      => "'''Non g'esiste 'na pàgene ca se chiama \"\$1\".'''
+'noexactmatch'          => "'''Non g'esiste 'na pàgene ca se chiama \"\$1\".'''
 Tu puè [[:\$1|ccrejà sta pàgene]].",
-'prevn'             => 'rrede $1',
-'nextn'             => 'nnande $1',
-'viewprevnext'      => 'Vide ($1) ($2) ($3)',
-'searchall'         => 'tutte',
-'powersearch'       => 'Ricerche avanzete',
-'powersearch-field' => 'Cirche pe',
+'prevn'                 => 'rrede $1',
+'nextn'                 => 'nnande $1',
+'viewprevnext'          => 'Vide ($1) ($2) ($3)',
+'search-section'        => '(sezione $1)',
+'search-interwiki-more' => '(de cchiù)',
+'searchall'             => 'tutte',
+'powersearch'           => 'Ricerche avanzete',
+'powersearch-field'     => 'Cirche pe',
 
 # Preferences page
 'preferences'       => 'Me piece accussì',

@@ -7,6 +7,7 @@
  * @author Agzennay
  * @author Cedric31
  * @author ChrisPtDe
+ * @author Delhovlyn
  * @author Dereckson
  * @author Esbardu
  * @author Grondin
@@ -1335,12 +1336,12 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 'upload_directory_read_only'  => 'Le serveur Web ne peut écrire dans le dossier cible ($1).',
 'uploaderror'                 => 'Erreur',
 'uploadtext'                  => "Utilisez ce formulaire pour importer des fichiers sur le serveur.
-Pour voir ou rechercher des images précédemment envoyées, consultez la [[Special:ImageList|liste de images]]. Les imports sont aussi enregistrés dans l’[[Special:Log/upload|historique des imports]], les suppressions dans l’[[Special:Log/delete|historique des suppressions]].
+Pour voir ou rechercher des images précédemment envoyées, consultez la [[Special:ImageList|liste des images]]. Les imports sont aussi enregistrés dans l’[[Special:Log/upload|historique des imports]], les suppressions dans l’[[Special:Log/delete|historique des suppressions]].
 
 Pour inclure une image dans une page, utilisez un lien de la forme :
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:fichier.jpg]]</nowiki></tt>''' pour afficher le fichier en pleine résolution ;
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:fichier.png|200px|thumb|left|texte descriptif]]</nowiki></tt>''' pour utiliser une miniature de 200 pixels de large dans une boîte à gauche avec 'texte descriptif' comme description ;
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:fichier.ogg]]</nowiki></tt>''' pour lier directement vers le fichier sans l'afficher.",
+* '''<code><nowiki>[[</nowiki>{{ns:image}}<nowiki>:fichier.jpg]]</nowiki></code>''' pour afficher le fichier en pleine résolution ;
+* '''<code><nowiki>[[</nowiki>{{ns:image}}<nowiki>:fichier.png|200px|thumb|left|texte descriptif]]</nowiki></code>''' pour utiliser une miniature de 200 pixels de large dans une boîte à gauche avec « texte descriptif » comme description ;
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:fichier.ogg]]</nowiki></code>''' pour lier directement vers le fichier sans l'afficher.",
 'upload-permitted'            => 'Formats de fichiers autorisés : $1.',
 'upload-preferred'            => 'Formats de fichiers préférés : $1.',
 'upload-prohibited'           => 'Formats de fichiers interdits : $1.',
@@ -1595,7 +1596,7 @@ Une page est traitée comme une page d’homonymie si elle utilise un modèle qu
 'nviews'                  => '$1 {{PLURAL:$1|consultation|consultations}}',
 'specialpage-empty'       => 'Cette page est vide.',
 'lonelypages'             => 'Pages orphelines',
-'lonelypagestext'         => 'Les pages suivantes ne sont pas liées à partir d’autres pages du wiki.',
+'lonelypagestext'         => 'Les pages suivantes ne sont pas liées ou incluses à partir d’autres pages du wiki.',
 'uncategorizedpages'      => 'Pages sans catégorie',
 'uncategorizedcategories' => 'Catégories sans catégorie',
 'uncategorizedimages'     => 'Images sans catégorie',

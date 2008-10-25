@@ -782,8 +782,6 @@ It is also used by Whatlinkshere pages, where ($1) and ($2) are [[MediaWiki:What
 ($3) is made up in all cases of the various proposed numbers of results per page, e.g. "(20 | 50 | 100 | 250 | 500)".
 For Special pages, the navigation bar is prefixed by "([[MediaWiki:Page_first]] | [[MediaWiki:Page_last]])" (alphabetical order) or "([[MediaWiki:Histfirst]] | [[MediaWiki:Histlast]])" (date order).
 Viewprevnext is sometimes preceded by the [[MediaWiki:Showingresults]] or [[MediaWiki:Showingresultsnum]] message (for Special pages) or by the [[MediaWiki:Linkshere]] message (for Whatlinkshere pages).',
-'searchmenu-exists'        => 'An option shown in a menu beside search form offering a link to the existing page having the specified title (when using the default MediaWiki search engine).',
-'searchmenu-new'           => 'An option shown in a menu beside search form offering a red link to the not yet existing page having the specified title (when using the default MediaWiki search engine).',
 'search-result-size'       => 'Shown per line of a [[Special:Search|search result]]
 * $1 is the size of the page in bytes, but no need to add "byte" or similar as the unit is added by special function.
 * $2 is the sum of all words in this page.',

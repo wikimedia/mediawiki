@@ -1528,7 +1528,7 @@ to den vun den tweeten Wiederleiden wiest warrt, un to den de eerste Wiederleide
 'nviews'                  => '$1 {{PLURAL:$1|Affraag|Affragen}}',
 'specialpage-empty'       => 'Disse Siet is leddig.',
 'lonelypages'             => 'Weetsieden',
-'lonelypagestext'         => 'Op disse Sieden wiest kene annern Sieden vun {{SITENAME}}.',
+'lonelypagestext'         => 'Op disse Sieden wiest kene annern Sieden vun {{SITENAME}} un se sünd ok narms inbunnen.',
 'uncategorizedpages'      => 'Sieden ahn Kategorie',
 'uncategorizedcategories' => 'Kategorien ahn Kategorie',
 'uncategorizedimages'     => 'Datein ahn Kategorie',

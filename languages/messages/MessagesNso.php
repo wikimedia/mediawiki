@@ -480,6 +480,7 @@ Leka [[Special:Search|go fetleka wikii]] go humana matlakala a mapsha.',
 'prevn'                 => 'gofeta $1',
 'nextn'                 => 'latela $1',
 'viewprevnext'          => 'Lebelela ($1) ($2) ($3)',
+'searchall'             => 'tšohle',
 'powersearch'           => 'Fetleka ka tlhoko',
 
 # Preferences page

@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author לערי ריינהארט
  */
 
 $fallback = 'de';

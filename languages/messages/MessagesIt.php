@@ -1515,7 +1515,7 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'nviews'                  => '$1 {{PLURAL:$1|visita|visite}}',
 'specialpage-empty'       => 'Questa pagina speciale è attualmente vuota.',
 'lonelypages'             => 'Pagine orfane',
-'lonelypagestext'         => 'Le pagine indicate di seguito sono prive di collegamenti che provengono da altre pagine del sito.',
+'lonelypagestext'         => 'Le pagine indicate di seguito sono prive di collegamenti provenienti da altre pagine di {{SITENAME}} e non sono incluse in nessuna pagina del sito.',
 'uncategorizedpages'      => 'Pagine prive di categorie',
 'uncategorizedcategories' => 'Categorie non categorizzate',
 'uncategorizedimages'     => 'File privi di categorie',
