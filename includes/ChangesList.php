@@ -388,23 +388,6 @@ class OldChangesList extends ChangesList {
  * Generate a list of changes using an Enhanced system (use javascript).
  */
 class EnhancedChangesList extends ChangesList {
-
-	/**
-	*  Add the JavaScript file for enhanced changeslist
-	*  @ return string
-	*/
-	public function beginRecentChangesList() {
-		global $wgStylePath, $wgStyleVersion;
-		$this->rc_cache = array();
-		$this->rcMoveIndex = 0;
-		$this->rcCacheIndex = 0;
-		$this->lastdate = '';
-		$this->rclistOpen = false;
-		$script = Xml::tags( 'script', array(
-			'type' => 'text/javascript',
-			'src' => $wgStylePath . "/common/enhancedchanges.js?$wgStyleVersion" ), '' );
-		return $script;
-	}
 	/**
 	 * Format a line for enhanced recentchange (aka with javascript and block of lines).
 	 */
@@ -613,16 +596,13 @@ class EnhancedChangesList extends ChangesList {
 
 		$users = ' <span class="changedby">[' . implode( $this->message['semicolon-separator'], $users ) . ']</span>';
 
-		# ID for JS visibility toggle
-		$jsid = $this->rcCacheIndex;
-		# onclick handler to toggle hidden/expanded
-		$toggleLink = "onclick='toggleVisibility($jsid); return false'";
-		# Title for <a> tags
-		$expandTitle = wfMsg('rc-enhanced-expand');
-		$closeTitle = wfMsg('rc-enhanced-hide');
-
-		$tl  = "<span id='mw-rc-openarrow-$jsid' class='mw-changeslist-expanded' style='display:none'><a href='#' $toggleLink title='$expandTitle'>" . $this->sideArrow() . "</a></span>";
-		$tl .= "<span id='mw-rc-closearrow-$jsid' class='mw-changeslist-hidden' style='display:none'><a href='#' $toggleLink title='$closeTitle'>" . $this->downArrow() . "</a></span>";
+		# Arrow
+		$rci = 'RCI'.$this->rcCacheIndex;
+		$rcl = 'RCL'.$this->rcCacheIndex;
+		$rcm = 'RCM'.$this->rcCacheIndex;
+		$toggleLink = "javascript:toggleVisibility('$rci','$rcm','$rcl')";
+		$tl  = '<span id="'.$rcm.'"><a href="'.$toggleLink.'">' . $this->sideArrow() . '</a></span>';
+		$tl .= '<span id="'.$rcl.'" style="display:none"><a href="'.$toggleLink.'">' . $this->downArrow() . '</a></span>';
 		$r .= '<td valign="top" style="white-space: nowrap"><tt>'.$tl.'&nbsp;';
 
 		# Main line
@@ -700,7 +680,7 @@ class EnhancedChangesList extends ChangesList {
 		$r .= "</td></tr></table>\n";
 
 		# Sub-entries
-		$r .= '<div id="mw-rc-subentries-'.$jsid.'" class="mw-changeslist-hidden"><table cellpadding="0" cellspacing="0"  border="0" style="background: none">';
+		$r .= '<div id="'.$rci.'" style="display:none;"><table cellpadding="0" cellspacing="0"  border="0" style="background: none">';
 		foreach( $block as $rcObj ) {
 			# Get rc_xxxx variables
 			// FIXME: Would be good to replace this extract() call with something that explicitly initializes local variables.
@@ -779,10 +759,11 @@ class EnhancedChangesList extends ChangesList {
 	 * @param string $alt text
 	 * @return string HTML <img> tag
 	 */
-	protected function arrow( $dir ) {
+	protected function arrow( $dir, $alt='' ) {
 		global $wgStylePath;
 		$encUrl = htmlspecialchars( $wgStylePath . '/common/images/Arr_' . $dir . '.png' );
-		return "<img src=\"$encUrl\" width=\"12\" height=\"12\" />";
+		$encAlt = htmlspecialchars( $alt );
+		return "<img src=\"$encUrl\" width=\"12\" height=\"12\" alt=\"$encAlt\" />";
 	}
 
 	/**
@@ -793,7 +774,7 @@ class EnhancedChangesList extends ChangesList {
 	protected function sideArrow() {
 		global $wgContLang;
 		$dir = $wgContLang->isRTL() ? 'l' : 'r';
-		return $this->arrow( $dir );
+		return $this->arrow( $dir, '+' );
 	}
 
 	/**
@@ -802,7 +783,7 @@ class EnhancedChangesList extends ChangesList {
 	 * @return string HTML <img> tag
 	 */
 	protected function downArrow() {
-		return $this->arrow( 'd' );
+		return $this->arrow( 'd', '-' );
 	}
 
 	/**
@@ -810,7 +791,7 @@ class EnhancedChangesList extends ChangesList {
 	 * @return string HTML <img> tag
 	 */
 	protected function spacerArrow() {
-		return $this->arrow( '' );
+		return $this->arrow( '', ' ' );
 	}
 
 	/**
