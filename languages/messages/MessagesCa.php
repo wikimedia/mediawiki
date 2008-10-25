@@ -158,7 +158,7 @@ $specialPageAliases = array(
 	'Withoutinterwiki'          => array( 'Sense interwiki' ),
 	'MergeHistory'              => array( 'Fusiona historial' ),
 	'Blankpage'                 => array( 'Pàgina en blanc', 'Blanc' ),
-	'LinkSearch'                => array( 'Enllaços', 'Busca enllaços', 'Recerca d\'enllaços web' ),
+	'LinkSearch'                => array( 'Enllaços web', 'Busca enllaços', 'Recerca d\'enllaços web' ),
 	'DeletedContributions'      => array( 'Contribucions esborrades' ),
 );
 
