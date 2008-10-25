@@ -572,7 +572,7 @@ abstract class ApiBase {
 		if (is_array($allowedValues)) {
 			# Check for unknown values
 			$unknown = array_diff($valuesList, $allowedValues);
-			if(!empty($unknown))
+			if(count($unknown))
 			{
 				if($allowMultiple)
 				{

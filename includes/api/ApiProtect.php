@@ -46,7 +46,7 @@ class ApiProtect extends ApiBase {
 			$this->dieUsageMsg(array('missingparam', 'title'));
 		if(!isset($params['token']))
 			$this->dieUsageMsg(array('missingparam', 'token'));
-		if(!isset($params['protections']) || empty($params['protections']))
+		if(empty($params['protections']))
 			$this->dieUsageMsg(array('missingparam', 'protections'));
 
 		if(!$wgUser->matchEditToken($params['token']))
@@ -57,7 +57,7 @@ class ApiProtect extends ApiBase {
 			$this->dieUsageMsg(array('invalidtitle', $params['title']));
 
 		$errors = $titleObj->getUserPermissionsErrors('protect', $wgUser);
-		if(!empty($errors))
+		if($errors)
 			// We don't care about multiple errors, just report one of them
 			$this->dieUsageMsg(current($errors));
 

@@ -88,7 +88,7 @@ class ApiBlock extends ApiBase {
 
 		$userID = $expiry = null;
 		$retval = $form->doBlock($userID, $expiry);
-		if(!empty($retval))
+		if(count($retval))
 			// We don't care about multiple errors, just report one of them
 			$this->dieUsageMsg($retval);
 

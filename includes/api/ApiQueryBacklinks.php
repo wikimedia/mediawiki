@@ -211,7 +211,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		}
 		$db->freeResult($res);
 
-		if($this->redirect && !empty($this->redirTitles))
+		if($this->redirect && count($this->redirTitles))
 		{
 			$this->resetQueryParams();
 			$this->prepareSecondQuery($resultPageSet);

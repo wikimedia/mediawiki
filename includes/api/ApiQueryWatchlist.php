@@ -237,7 +237,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$vals['newlen'] = intval($row->rc_new_len);
 		}
 
-		if ($this->fld_comment && !empty ($row->rc_comment))
+		if ($this->fld_comment && isset( $row->rc_comment ))
 			$vals['comment'] = $row->rc_comment;
 
 		return $vals;

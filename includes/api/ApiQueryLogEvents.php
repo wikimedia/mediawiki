@@ -213,7 +213,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		if ($this->fld_timestamp) {
 			$vals['timestamp'] = wfTimestamp(TS_ISO_8601, $row->log_timestamp);
 		}
-		if ($this->fld_comment && !empty ($row->log_comment)) {
+		if ($this->fld_comment && isset($row->log_comment)) {
 			$vals['comment'] = $row->log_comment;
 		}
 

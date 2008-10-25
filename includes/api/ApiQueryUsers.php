@@ -68,7 +68,7 @@ if (!defined('MEDIAWIKI')) {
 			 else
 				$goodNames[] = $n;
 		}
-		if(empty($goodNames))
+		if(!count($goodNames))
 			return $retval;
 
 		$db = $this->getDb();

@@ -54,7 +54,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 
 		// Find the right prefix
 		global $wgUrlProtocols;
-		if(!is_null($protocol) && !empty($protocol) && !in_array($protocol, $wgUrlProtocols))
+		if($protocol && !in_array($protocol, $wgUrlProtocols))
 		{
 			foreach ($wgUrlProtocols as $p) {
 				if( substr( $p, 0, strlen( $protocol ) ) === $protocol ) {

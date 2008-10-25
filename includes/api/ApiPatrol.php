@@ -57,7 +57,7 @@ class ApiPatrol extends ApiBase {
 			$this->dieUsageMsg(array('nosuchrcid', $params['rcid']));
 		$retval = RecentChange::markPatrolled($params['rcid']);
 			
-		if(!empty($retval))
+		if($retval)
 			$this->dieUsageMsg(current($retval));
 		
 		$result = array('rcid' => $rc->getAttribute('rc_id'));

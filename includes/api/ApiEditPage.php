@@ -68,7 +68,7 @@ class ApiEditPage extends ApiBase {
 		$errors = $titleObj->getUserPermissionsErrors('edit', $wgUser);
 		if(!$titleObj->exists())
 			$errors = array_merge($errors, $titleObj->getUserPermissionsErrors('create', $wgUser));
-		if(!empty($errors))
+		if(count($errors))
 			$this->dieUsageMsg($errors[0]);
 
 		$articleObj = new Article($titleObj);
@@ -145,7 +145,7 @@ class ApiEditPage extends ApiBase {
 		$r = array();
 		if(!wfRunHooks('APIEditBeforeSave', array(&$ep, $ep->textbox1, &$r)))
 		{
-			if(!empty($r))
+			if(count($r))
 			{
 				$r['result'] = "Failure";
 				$this->getResult()->addValue(null, $this->getModuleName(), $r);

@@ -197,7 +197,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$pageLength = $pageSet->getCustomField('page_len');
 
 		$db = $this->getDB();
-		if ($fld_protection && !empty($titles)) {
+		if ($fld_protection && count($titles)) {
 			$this->addTables('page_restrictions');
 			$this->addFields(array('pr_page', 'pr_type', 'pr_level', 'pr_expiry', 'pr_cascade'));
 			$this->addWhereFld('pr_page', array_keys($titles));
@@ -273,7 +273,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 
 		// We don't need to check for pt stuff if there are no nonexistent titles
-		if($fld_protection && !empty($missing))
+		if($fld_protection && count($missing))
 		{
 			$this->resetQueryParams();
 			// Construct a custom WHERE clause that matches all titles in $missing
@@ -367,7 +367,7 @@ class ApiQueryInfo extends ApiQueryBase {
 				else if($fld_talkid)
 					$talktitles[] = $t->getTalkPage();
 			}
-			if(!empty($talktitles) || !empty($subjecttitles))
+			if(count($talktitles) || count($subjecttitles))
 			{
 				// Construct a custom WHERE clause that matches
 				// all titles in $talktitles and $subjecttitles
