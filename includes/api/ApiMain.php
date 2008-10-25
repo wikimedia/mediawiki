@@ -228,6 +228,8 @@ class ApiMain extends ApiBase {
 	 * Create an instance of an output formatter by its name
 	 */
 	public function createPrinterByName($format) {
+		if( !isset( $this->mFormats[$format] ) )
+			$this->dieUsage( "Unrecognized format: {$format}", 'unknown_format' );
 		return new $this->mFormats[$format] ($this, $format);
 	}
 
