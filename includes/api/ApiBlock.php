@@ -127,7 +127,7 @@ class ApiBlock extends ApiBase {
 			'autoblock' => false,
 			'noemail' => false,
 			'hidename' => false,
-			'allowusertalk' => $wgBlockAllowsUTEdit,
+			'allowusertalk' => (bool)$wgBlockAllowsUTEdit,
 		);
 	}
 
