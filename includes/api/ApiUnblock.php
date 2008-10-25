@@ -69,7 +69,7 @@ class ApiUnblock extends ApiBase {
 		$user = $params['user'];
 		$reason = (is_null($params['reason']) ? '' : $params['reason']);
 		$retval = IPUnblockForm::doUnblock($id, $user, $reason, $range);
-		if(!empty($retval))
+		if($retval)
 			$this->dieUsageMsg($retval);
 
 		$res['id'] = $id;

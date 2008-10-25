@@ -590,7 +590,7 @@ class ApiMain extends ApiBase {
 
 	public static function makeHelpMsgHeader($module, $paramName) {
 		$modulePrefix = $module->getModulePrefix();
-		if (!empty($modulePrefix))
+		if (strval($modulePrefix) !== '')
 			$modulePrefix = "($modulePrefix) ";
 
 		return "* $paramName={$module->getModuleName()} $modulePrefix*";

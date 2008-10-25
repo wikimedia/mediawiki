@@ -73,15 +73,15 @@ class ApiDelete extends ApiBase {
 
 		$reason = (isset($params['reason']) ? $params['reason'] : NULL);
 		if ($titleObj->getNamespace() == NS_IMAGE) {
-			$retval = self::deletefile($params['token'], $titleObj, $params['oldimage'], $reason, false);
-			if(!empty($retval))
+			$retval = self::deleteFile($params['token'], $titleObj, $params['oldimage'], $reason, false);
+			if(count($retval))
 				// We don't care about multiple errors, just report one of them
 				$this->dieUsageMsg(current($retval));
 		} else {
 			$articleObj = new Article($titleObj);
 			$retval = self::delete($articleObj, $params['token'], $reason);
 			
-			if(!empty($retval))
+			if(count($retval))
 				// We don't care about multiple errors, just report one of them
 				$this->dieUsageMsg(current($retval));
 			

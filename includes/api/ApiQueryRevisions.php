@@ -288,7 +288,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 		if ($this->fld_comment) {
 			$comment = $revision->getComment();
-			if (!empty($comment))		
+			if (strval($comment) !== '')
 				$vals['comment'] = $comment;
 		}
 

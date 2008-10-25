@@ -227,7 +227,7 @@ class ApiQueryContributions extends ApiQueryBase {
 				$vals['top'] = '';
 		}
 
-		if ($this->fld_comment && !empty ($row->rev_comment))
+		if ($this->fld_comment && isset( $row->rev_comment ) )
 			$vals['comment'] = $row->rev_comment;
 
 		return $vals;

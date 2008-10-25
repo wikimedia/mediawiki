@@ -50,9 +50,10 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 	private function run($resultPageSet = null) {
 		$params = $this->extractRequestParams();
 		$namespaces = $this->getPageSet()->getAllTitlesByNamespace();
-		$images = $namespaces[NS_IMAGE];
-		if(empty($images))
+		if ( empty( $namespaces[NS_IMAGE] ) ) {
 			return;
+		}
+		$images = $namespaces[NS_IMAGE];
 		
 		$this->addTables('image', 'i1');
 		$this->addTables('image', 'i2');

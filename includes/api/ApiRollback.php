@@ -66,7 +66,7 @@ class ApiRollback extends ApiBase {
 		$details = null;
 		$retval = $articleObj->doRollback($username, $summary, $params['token'], $params['markbot'], $details);
 
-		if(!empty($retval))
+		if($retval)
 			// We don't care about multiple errors, just report one of them
 			$this->dieUsageMsg(current($retval));
 

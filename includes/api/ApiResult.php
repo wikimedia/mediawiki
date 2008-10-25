@@ -100,7 +100,7 @@ class ApiResult extends ApiBase {
 		}
 		elseif (is_array($arr[$name]) && is_array($value)) {
 			$merged = array_intersect_key($arr[$name], $value);
-			if (empty ($merged))
+			if (!count($merged))
 				$arr[$name] += $value;
 			else
 				ApiBase :: dieDebug(__METHOD__, "Attempting to merge element $name");
@@ -180,7 +180,7 @@ class ApiResult extends ApiBase {
 			}
 		}
 
-		if (empty($name))
+		if (!$name)
 			$data[] = $value;	// Add list element
 		else
 			ApiResult :: setElement($data, $name, $value);	// Add named element
@@ -201,7 +201,7 @@ if (!function_exists('array_intersect_key')) {
 		$argc = func_num_args();
 
 		if ($argc > 2) {
-			for ($i = 1; !empty($isec) && $i < $argc; $i++) {
+			for ($i = 1; $isec && $i < $argc; $i++) {
 				$arr = func_get_arg($i);
 
 				foreach (array_keys($isec) as $key) {

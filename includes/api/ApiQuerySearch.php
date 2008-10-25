@@ -54,7 +54,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		$limit = $params['limit'];
 		$query = $params['search'];
 		$what = $params['what'];
-		if (is_null($query) || empty($query))
+		if (strval($query) === '')
 			$this->dieUsage("empty search string is not allowed", 'param-search');
 
 		$search = SearchEngine::create();

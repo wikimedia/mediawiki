@@ -256,7 +256,7 @@ class ApiQuery extends ApiBase {
 			);
 		}
 
-		if (!empty ($normValues)) {
+		if (count($normValues)) {
 			$result->setIndexedTagName($normValues, 'n');
 			$result->addValue('query', 'normalized', $normValues);
 		}
@@ -270,7 +270,7 @@ class ApiQuery extends ApiBase {
 			);
 		}
 
-		if (!empty ($intrwValues)) {
+		if (count($intrwValues)) {
 			$result->setIndexedTagName($intrwValues, 'i');
 			$result->addValue('query', 'interwiki', $intrwValues);
 		}
@@ -284,7 +284,7 @@ class ApiQuery extends ApiBase {
 			);
 		}
 
-		if (!empty ($redirValues)) {
+		if (count($redirValues)) {
 			$result->setIndexedTagName($redirValues, 'r');
 			$result->addValue('query', 'redirects', $redirValues);
 		}
@@ -293,7 +293,7 @@ class ApiQuery extends ApiBase {
 		// Missing revision elements
 		//
 		$missingRevIDs = $pageSet->getMissingRevisionIDs();
-		if (!empty ($missingRevIDs)) {
+		if (count($missingRevIDs)) {
 			$revids = array ();
 			foreach ($missingRevIDs as $revid) {
 				$revids[$revid] = array (
@@ -335,7 +335,7 @@ class ApiQuery extends ApiBase {
 			$pages[$pageid] = $vals;
 		}
 
-		if (!empty ($pages)) {
+		if (count($pages)) {
 
 			if ($this->params['indexpageids']) {
 				$pageIDs = array_keys($pages);

@@ -100,7 +100,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 		$this->addWhereRange('rc_timestamp', $dir, $start, $end);
 		$this->addWhereFld('rc_namespace', $namespace);
 		$this->addWhereFld('rc_deleted', 0);
-		if(!empty($titles))
+		if($titles)
 		{
 			$lb = new LinkBatch;
 			foreach($titles as $t)
@@ -256,7 +256,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 	private function extractRowInfo($row) {
 		/* If page was moved somewhere, get the title of the move target. */
 		$movedToTitle = false;
-		if (!empty($row->rc_moved_to_title))
+		if (isset($row->rc_moved_to_title) && $row->rc_moved_to_title !== '')
 			$movedToTitle = Title :: makeTitle($row->rc_moved_to_ns, $row->rc_moved_to_title);
 
 		/* Determine the title of the page that has been changed. */
@@ -320,7 +320,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			$vals['timestamp'] = wfTimestamp(TS_ISO_8601, $row->rc_timestamp);
 
 		/* Add edit summary / log summary. */
-		if ($this->fld_comment && !empty ($row->rc_comment)) {
+		if ($this->fld_comment && isset($row->rc_comment)) {
 			$vals['comment'] = $row->rc_comment;
 		}
 
