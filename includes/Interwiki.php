@@ -53,11 +53,12 @@ class Interwiki {
 		}
 		global $wgInterwikiCache;
 		if ($wgInterwikiCache) {
-			return Interwiki::getInterwikiCached( $key );
-		}
-		$iw = Interwiki::load( $prefix );
-		if( !$iw ){
-			$iw = false;
+			$iw = Interwiki::getInterwikiCached( $prefix );
+		} else {
+			$iw = Interwiki::load( $prefix );
+			if( !$iw ){
+				$iw = false;
+			}
 		}
 		if( self::CACHE_LIMIT && count( self::$smCache ) >= self::CACHE_LIMIT ){
 			reset( self::$smCache );
@@ -72,13 +73,13 @@ class Interwiki {
 	 *
 	 * @note More logic is explained in DefaultSettings.
 	 *
-	 * @param $key \type{\string} Database key
+	 * @param $prefix \type{\string} Interwiki prefix
 	 * @return \type{\Interwiki} An interwiki object
 	 */
-	protected static function getInterwikiCached( $key ) {
-		$value = self::getInterwikiCacheEntry( $key );
+	protected static function getInterwikiCached( $prefix ) {
+		$value = self::getInterwikiCacheEntry( $prefix );
 		
-		$s = new Interwiki( $key );
+		$s = new Interwiki( $prefix );
 		if ( $value != '' ) {
 			// Split values
 			list( $local, $url ) = explode( ' ', $value, 2 );
@@ -87,11 +88,6 @@ class Interwiki {
 		}else{
 			$s = false;
 		}
-		if( self::CACHE_LIMIT && count( self::$smCache ) >= self::CACHE_LIMIT ){
-			reset( self::$smCache );
-			unset( self::$smCache[ key( self::$smCache ) ] );
-		}
-		self::$smCache[$prefix] = $s;
 		return $s;
 	}
 	
@@ -100,13 +96,14 @@ class Interwiki {
 	 *
 	 * @note More logic is explained in DefaultSettings.
 	 *
-	 * @param $key \type{\string} Database key
+	 * @param $prefix \type{\string} Database key
 	 * @return \type{\string) The entry
 	 */
-	protected static function getInterwikiCacheEntry( $key ){
+	protected static function getInterwikiCacheEntry( $prefix ){
 		global $wgInterwikiCache, $wgInterwikiScopes, $wgInterwikiFallbackSite;
 		static $db, $site;
 
+		wfDebug( __METHOD__ . "( $prefix )\n" );
 		if( !$db ){
 			$db = dba_open( $wgInterwikiCache, 'r', 'cdb' );
 		}
@@ -118,14 +115,14 @@ class Interwiki {
 			}
 		}
 		
-		$value = dba_fetch( wfMemcKey( $key ), $db );
+		$value = dba_fetch( wfMemcKey( $prefix ), $db );
 		// Site level
 		if ( $value == '' && $wgInterwikiScopes >= 3 ) {
-			$value = dba_fetch( "_{$site}:{$key}", $db );
+			$value = dba_fetch( "_{$site}:{$prefix}", $db );
 		}
 		// Global Level
 		if ( $value == '' && $wgInterwikiScopes >= 2 ) {
-			$value = dba_fetch( "__global:{$key}", $db );
+			$value = dba_fetch( "__global:{$prefix}", $db );
 		}
 		if ( $value == 'undef' )
 			$value = '';
