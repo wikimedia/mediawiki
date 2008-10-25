@@ -93,7 +93,8 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 		$limit = $params['limit'];
 		$this->addOption('LIMIT', $limit +1);
-
+		
+		$index = false;
 		$user = $params['user'];
 		if (!is_null($user)) {
 			$userid = $db->selectField('user', 'user_id', array (
@@ -102,7 +103,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			if (!$userid)
 				$this->dieUsage("User name $user not found", 'param_user');
 			$this->addWhereFld('log_user', $userid);
-			$this->addOption('USE INDEX', array('logging' => array('user_time','page_time')));
+			$index = 'user_time';
 		}
 
 		$title = $params['title'];
@@ -112,8 +113,14 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				$this->dieUsage("Bad title value '$title'", 'param_title');
 			$this->addWhereFld('log_namespace', $titleObj->getNamespace());
 			$this->addWhereFld('log_title', $titleObj->getDBkey());
-			$this->addOption('USE INDEX', array('logging' => array('user_time','page_time')));
+
+			// Use the title index in preference to the user index if there is a conflict
+			$index = 'page_time';
 		}
+		if ( $index ) {
+			$this->addOption( 'USE INDEX', array( 'logging' => $index ) );
+		}
+
 
 		$data = array ();
 		$count = 0;
