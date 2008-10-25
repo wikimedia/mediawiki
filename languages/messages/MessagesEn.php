@@ -1714,6 +1714,8 @@ please see math/README to configure.',
 'rc_categories_any'                 => 'Any',
 'rc-change-size'                    => '$1', # only translate this message to other languages if you have to change it
 'newsectionsummary'                 => '/* $1 */ new section',
+'rc-enhanced-expand'                => 'Show details (requires JavaScript)',
+'rc-enhanced-hide'                  => 'Hide details',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Related changes',
