@@ -1393,6 +1393,11 @@ $addergroups : Array of groups that the user is in
 					'remove-self' => array( removable groups from self )
 				)
 
+'UserRights::showEditUserGroupsForm': called right before the form to edit group memberships at Special:UserRights is shown
+&$user: User or UserRightsProxy you're editing
+&$addable: Array of groups you can add the user into
+&$removable: Array of groups that you can remove the user from
+
 'UserRetrieveNewTalks': called when retrieving "You have new messages!" message(s)
 $user: user retrieving new talks messages
 $talks: array of new talks page(s)
