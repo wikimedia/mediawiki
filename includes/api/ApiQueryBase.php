@@ -136,7 +136,7 @@ abstract class ApiQueryBase extends ApiBase {
 		if (is_array($value)) {
 			// Sanity check: don't insert empty arrays,
 			// Database::makeList() chokes on them
-			if(!empty($value))
+			if ( count( $value ) )
 				$this->where = array_merge($this->where, $value);
 		}
 		else
@@ -160,10 +160,12 @@ abstract class ApiQueryBase extends ApiBase {
 	/**
 	 * Equivalent to addWhere(array($field => $value))
 	 * @param string $field Field name
-	 * @param string $value Value; ignored if nul;
+	 * @param string $value Value; ignored if null or empty array;
 	 */
 	protected function addWhereFld($field, $value) {
-		if (!is_null($value) && !empty($value))
+		// Use count() to its full documented capabilities to simultaneously 
+		// test for null, empty array or empty countable object
+		if ( count( $value ) )
 			$this->where[$field] = $value;
 	}
 
