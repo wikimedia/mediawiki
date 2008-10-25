@@ -301,8 +301,12 @@ class SpecialContributions extends SpecialPage {
 			$this->feedTitle(),
 			wfMsg( 'tagline' ),
 			$this->getTitle()->getFullUrl() );
-
-		$pager = new ContribsPager( $this->opts['target'], $this->opts['namespace'], 
+			
+		// Already valid title
+		$nt = Title::makeTitleSafe( NS_USER, $this->opts['target'] );
+		$target = $this->opts['target'] == 'newbies' ? 'newbies' : $nt->getText();
+			
+		$pager = new ContribsPager( $target, $this->opts['namespace'], 
 			$this->opts['year'], $this->opts['month'] );
 
 		$pager->mLimit = min( $this->opts['limit'], $wgFeedLimit );
