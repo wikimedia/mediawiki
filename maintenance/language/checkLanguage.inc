@@ -27,22 +27,22 @@ class CheckLanguageCLI {
 			exit();
 		}
 
-		if ( isset($options['lang']) ) {
+		if ( isset( $options['lang'] ) ) {
 			$this->code = $options['lang'];
 		} else {
 			global $wgLanguageCode;
 			$this->code = $wgLanguageCode;
 		}
 
-		if ( isset($options['level']) ) {
+		if ( isset( $options['level'] ) ) {
 			$this->level = $options['level'];
 		}
 
-		$this->doLinks = isset($options['links']);
-		$this->includeExif = !isset($options['noexif']);
-		$this->checkAll = isset($options['all']);
+		$this->doLinks = isset( $options['links'] );
+		$this->includeExif = !isset( $options['noexif'] );
+		$this->checkAll = isset( $options['all'] );
 
-		if ( isset($options['wikilang']) ) {
+		if ( isset( $options['wikilang'] ) ) {
 			$this->wikiCode = $options['wikilang'];
 		}
 
@@ -50,14 +50,16 @@ class CheckLanguageCLI {
 			$this->checks = explode( ',', $options['whitelist'] );
 		} elseif ( isset( $options['blacklist'] ) ) {
 			$this->checks = array_diff(
-				$this->defaultChecks(),
+				isset( $options['easy'] ) ? $this->easyChecks() : $this->defaultChecks(),
 				explode( ',', $options['blacklist'] )
 			);
+		} elseif ( isset( $options['easy'] ) ) {
+			$this->checks = $this->easyChecks();
 		} else {
 			$this->checks = $this->defaultChecks();
 		}
 
-		if ( isset($options['output']) ) {
+		if ( isset( $options['output'] ) ) {
 			$this->output = $options['output'];
 		}
 
@@ -78,13 +80,24 @@ class CheckLanguageCLI {
 	}
 
 	/**
-	 * Get the non-message checks.
+	 * Get the checks which check other things than messages.
 	 * @return A list of the non-message checks.
 	 */
 	protected function nonMessageChecks() {
 		return array(
 			'namespace', 'projecttalk', 'skin', 'magic', 'magic-old', 'magic-over',
 			'magic-case', 'special', 'special-old',
+		);
+	}
+
+	/**
+	 * Get the checks that can easily be treated by non-speakers of the language.
+	 * @return A list of the easy checks.
+	 */
+	protected function easyChecks() {
+		return array(
+			'duplicate', 'obsolete', 'empty', 'whitespace', 'xhtml', 'chars', 'magic-old',
+			'magic-over', 'magic-case', 'special-old',
 		);
 	}
 
@@ -183,6 +196,7 @@ Parameters:
 	* wikilang: For the links, what is the content language of the wiki to display the output in (default en).
 	* whitelist: Do only the following checks (form: code,code).
 	* blacklist: Don't do the following checks (form: code,code).
+	* easy: Do only the easy checks, which can be treated by non-speakers of the language.
 	* noexif: Don't check for EXIF messages (a bit hard and boring to translate), if you know that they are currently not translated and want to focus on other problems (default off).
 Check codes (ideally, all of them should result 0; all the checks are executed by default (except language-specific check blacklists in checkLanguage.inc):
 	* untranslated: Messages which are required to translate, but are not translated.
@@ -452,20 +466,20 @@ class CheckExtensionsCLI extends CheckLanguageCLI {
 			exit();
 		}
 
-		if ( isset($options['lang']) ) {
+		if ( isset( $options['lang'] ) ) {
 			$this->code = $options['lang'];
 		} else {
 			global $wgLanguageCode;
 			$this->code = $wgLanguageCode;
 		}
 
-		if ( isset($options['level']) ) {
+		if ( isset( $options['level'] ) ) {
 			$this->level = $options['level'];
 		}
 
-		$this->doLinks = isset($options['links']);
+		$this->doLinks = isset( $options['links'] );
 
-		if ( isset($options['wikilang']) ) {
+		if ( isset( $options['wikilang'] ) ) {
 			$this->wikiCode = $options['wikilang'];
 		}
 
@@ -473,14 +487,16 @@ class CheckExtensionsCLI extends CheckLanguageCLI {
 			$this->checks = explode( ',', $options['whitelist'] );
 		} elseif ( isset( $options['blacklist'] ) ) {
 			$this->checks = array_diff(
-				$this->defaultChecks(),
+				isset( $options['easy'] ) ? $this->easyChecks() : $this->defaultChecks(),
 				explode( ',', $options['blacklist'] )
 			);
+		} elseif ( isset( $options['easy'] ) ) {
+			$this->checks = $this->easyChecks();
 		} else {
 			$this->checks = $this->defaultChecks();
 		}
 
-		if ( isset($options['output']) ) {
+		if ( isset( $options['output'] ) ) {
 			$this->output = $options['output'];
 		}
 
@@ -492,23 +508,23 @@ class CheckExtensionsCLI extends CheckLanguageCLI {
 		$this->extensions = array();
 		$extensions = new PremadeMediawikiExtensionGroups();
 		$extensions->addAll();
-		if( $extension == 'all' ) {
-			foreach( MessageGroups::singleton()->getGroups() as $group ) {
-				if( strpos( $group->getId(), 'ext-' ) === 0 && !$group->isMeta() ) {
+		if ( $extension == 'all' ) {
+			foreach ( MessageGroups::singleton()->getGroups() as $group ) {
+				if ( strpos( $group->getId(), 'ext-' ) === 0 && !$group->isMeta() ) {
 					$this->extensions[] = new extensionLanguages( $group );
 				}
 			}
-		} elseif( $extension == 'wikimedia' ) {
+		} elseif ( $extension == 'wikimedia' ) {
 			$wikimedia = MessageGroups::getGroup( 'ext-0-wikimedia' );
-			foreach( $wikimedia->wmfextensions() as $extension ) {
+			foreach ( $wikimedia->wmfextensions() as $extension ) {
 				$group = MessageGroups::getGroup( $extension );
 				$this->extensions[] = new extensionLanguages( $group );
 			}
 		} else {
 			$extensions = explode( ',', $extension );
-			foreach( $extensions as $extension ) {
+			foreach ( $extensions as $extension ) {
 				$group = MessageGroups::getGroup( 'ext-' . $extension );
-				if( $group ) {
+				if ( $group ) {
 					$extension = new extensionLanguages( $group );
 					$this->extensions[] = $extension;
 				} else {
@@ -530,6 +546,24 @@ class CheckExtensionsCLI extends CheckLanguageCLI {
 	}
 
 	/**
+	 * Get the checks which check other things than messages.
+	 * @return A list of the non-message checks.
+	 */
+	protected function nonMessageChecks() {
+		return array();
+	}
+
+	/**
+	 * Get the checks that can easily be treated by non-speakers of the language.
+	 * @return A list of the easy checks.
+	 */
+	protected function easyChecks() {
+		return array(
+			'duplicate', 'obsolete', 'empty', 'whitespace', 'xhtml', 'chars',
+		);
+	}
+
+	/**
 	 * Get help.
 	 * @return The help string.
 	 */
@@ -546,7 +580,7 @@ Parameters:
 	* wikilang: For the links, what is the content language of the wiki to display the output in (default en).
 	* whitelist: Do only the following checks (form: code,code).
 	* blacklist: Do not perform the following checks (form: code,code).
-	* duplicate: Additionally check for messages which are translated the same to English (default off).
+	* easy: Do only the easy checks, which can be treated by non-speakers of the language.
 Check codes (ideally, all of them should result 0; all the checks are executed by default (except language-specific check blacklists in checkLanguage.inc):
 	* untranslated: Messages which are required to translate, but are not translated.
 	* duplicate: Messages which translation equal to fallback
