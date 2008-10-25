@@ -351,6 +351,8 @@ class UserrightsPage extends SpecialPage {
 
 		list( $addable, $removable ) = $this->splitGroups( $groups );
 
+		wfRunHooks( 'UserRights::showEditUserGroupsForm', array( &$user, &$addable, &$removable ) );
+
 		$list = array();
 		foreach( $user->getGroups() as $group )
 			$list[] = self::buildGroupLink( $group );

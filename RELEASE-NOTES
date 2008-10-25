@@ -177,6 +177,8 @@ The following extensions are migrated into MediaWiki 1.14:
 * Make search matches bold only, not red as well
 * Hook SkinTemplateTabAction now passes $title by reference allowing it to be 
   changed by extensions.
+* Added 'UserRights::showEditUserGroupsForm' hook to allow extensions to alter
+  the groups that the user can be added to or removed from in Special:UserRights
 
 === Bug fixes in 1.14 ===
 
