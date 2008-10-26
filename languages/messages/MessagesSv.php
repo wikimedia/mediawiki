@@ -1376,6 +1376,8 @@ $3',
 'rc_categories'                     => 'Begränsa till följande kategorier (separera med "|")',
 'rc_categories_any'                 => 'Vilken som helst',
 'newsectionsummary'                 => '/* $1 */ nytt avsnitt',
+'rc-enhanced-expand'                => 'Visa detaljer (kräver JavaScript)',
+'rc-enhanced-hide'                  => 'Göm detaljer',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Ändringar på angränsande sidor',

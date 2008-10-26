@@ -1259,6 +1259,8 @@ daripada satu kata kunci (hanya laman yang mengandungi kesemua kata kunci akan d
 'rc_categories'                     => 'Hadkan kepada kategori (asingkan dengan "|")',
 'rc_categories_any'                 => 'Semua',
 'newsectionsummary'                 => '/* $1 */ bahagian baru',
+'rc-enhanced-expand'                => 'Papar butiran (JavaScript diperlukan)',
+'rc-enhanced-hide'                  => 'Sembunyi butiran',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Perubahan berkaitan',

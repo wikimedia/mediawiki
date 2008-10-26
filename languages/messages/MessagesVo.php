@@ -1296,6 +1296,7 @@ Pad palelogon telplänovapad if gebon samafomoti, lü kel payümon pad [[MediaWi
 'protectedtitlestext'     => 'Tiäds sököl no dalons pajafön:',
 'protectedtitlesempty'    => 'Tiäds nonik pejelons me paramets at.',
 'listusers'               => 'Gebanalised',
+'usereditcount'           => '{{PLURAL:$1|redakam|redakams}} $1',
 'newpages'                => 'Pads nulik',
 'newpages-username'       => 'Gebananem:',
 'ancientpages'            => 'Pads bäldikün',

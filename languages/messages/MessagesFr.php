@@ -845,8 +845,8 @@ Demandez-vous s’il est réellement approprié de la recréer en vous référan
 'deleted-notice'                   => "Cette page a été supprimée.
 L'historique des suppressions est affiché ci-dessous pour référence.",
 'deletelog-fulllog'                => "Voir l'historique complet",
-'edit-hook-aborted'                => 'Modification échouée par crochet.
-Aucune explication donnée.',
+'edit-hook-aborted'                => 'Échec de la modification par une extension.
+Cause inconnue',
 'edit-gone-missing'                => 'N’a pas pu mettre à jour la page.
 Il semble qu’elle ait été supprimée.',
 'edit-conflict'                    => 'Modifier le conflit.',
@@ -2906,12 +2906,12 @@ Vous pouvez aussi [[Special:Watchlist/raw|la modifier en mode brut]].',
 'version-variables'                => 'Variables',
 'version-other'                    => 'Divers',
 'version-mediahandlers'            => 'Support média',
-'version-hooks'                    => 'Crochets',
+'version-hooks'                    => 'Extensions',
 'version-extension-functions'      => 'Fonctions des extensions',
 'version-parser-extensiontags'     => 'Balises supplémentaires du parseur',
 'version-parser-function-hooks'    => 'Crochets des fonctions du parseur',
 'version-skin-extension-functions' => 'Fonctions d’extension de l’interface',
-'version-hook-name'                => 'Nom du crochet',
+'version-hook-name'                => "Nom de l'extension",
 'version-hook-subscribedby'        => 'Défini par',
 'version-version'                  => 'Version',
 'version-license'                  => 'Licence',

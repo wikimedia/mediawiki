@@ -899,7 +899,7 @@ Musíte sloučit své změny se stávajícím textem.
 Uložením příspěvku se zavazujete, že je vaším dílem nebo je zkopírován ze zdrojů, které nejsou chráněny autorským právem (tzv. <em>public domain</em>). <strong>Nekopírujte díla chráněná autorským právem bez dovolení!</strong>',
 'copyrightwarning2'                => 'Uvědomte si, že všechny příspěvky do {{grammar:2sg|{{SITENAME}}}} mohou být ostatními uživateli upraveny, pozměněny či odstraněny. Pokud si nepřejete, aby váš text byl nemilosrdně upravován, pak ho do {{grammar:2sg|{{SITENAME}}}} neukládejte.<br />
 Uložením příspěvku se zavazujete, že je vaším dílem nebo je zkopírován ze zdrojů, které nejsou chráněny autorským právem (tzv. <em>public domain</em>), podrobnosti najdete na $1. <strong>Nekopírujte díla chráněná autorským právem bez dovolení!</strong>',
-'longpagewarning'                  => 'VAROVÁNÍ: Tato stránka je $1 kB dlouhá; některé prohlížeče mohou mít problémy s editováním stran, které se blíží nebo jsou delší než 32 kB. Prosím zvažte rozdělení stránky na více částí.',
+'longpagewarning'                  => 'VAROVÁNÍ: Tato stránka je $1 KiB dlouhá; některé prohlížeče mohou mít problémy s editováním stran, které se blíží nebo jsou delší než 32 KiB. Prosíme, zvažte rozdělení stránky na více částí.',
 'longpageerror'                    => '<strong>CHYBA: Pokoušíte se uložit text o velikosti $1 KB, přičemž dovolené maximum je $2 KB. Vaše editace nemůže být uložena.</strong>',
 'readonlywarning'                  => '<strong>VAROVÁNÍ: Databáze byla uzamčena kvůli údržbě, takže nebudete moci uložit své změny. Můžete si okopírovat text do souboru a uložit ho na později.</strong>
 
@@ -1408,6 +1408,8 @@ $3',
 'rc_categories'                     => 'Omezit na kategorie (oddělené „|“)',
 'rc_categories_any'                 => 'Všechny',
 'newsectionsummary'                 => 'Nová sekce /* $1 */',
+'rc-enhanced-expand'                => 'Zobrazit detaily (vyžaduje JavaScript)',
+'rc-enhanced-hide'                  => 'Skrýt detaily',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Související změny',
@@ -1680,7 +1682,7 @@ Vstup: <code>typ obsahu/podtyp</code>, např. <code>image/jpeg</code>.',
 'nviews'                  => '$1 {{PLURAL:$1|návšteva|návštevy|návštev}}',
 'specialpage-empty'       => 'Tomuto požadavku neodpovídají žádné záznamy.',
 'lonelypages'             => 'Sirotčí stránky',
-'lonelypagestext'         => 'Na následující stránky na {{grammar:6sg|{{SITENAME}}}} neodkazuje žádná jiná stránka.',
+'lonelypagestext'         => 'Následující stránky nejsou odkazovány z jiných stránek na na {{grammar:6sg|{{SITENAME}}}} nebo do nich vloženy.',
 'uncategorizedpages'      => 'Nekategorizované stránky',
 'uncategorizedcategories' => 'Nekategorizované kategorie',
 'uncategorizedimages'     => 'Nekategorizované soubory',
@@ -2823,11 +2825,7 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 # E-mail address confirmation
 'confirmemail'             => 'Potvrzení e-mailové adresy',
 'confirmemail_noemail'     => 'Ve svém [[Special:Preferences|uživatelském nastavení]] jste nezadali platnou e-mailovou adresu.',
-'confirmemail_text'        => 'Tato wiki vyžaduje, abyste potvrdili svou e-mailovou adresu
-před využíváním některých funkcí. Kliknutím na níže umístěné tlačítko dojde k odeslání
-potvrzovacího e-mailu na vámi uvedeno adresu. Tento mail obsahuje odkaz a potvrzovací kód;
-přejděte na odkazovanou stránku svým internetovým prohlížečem, tím potvrdíte, že
-zadaná adresa je platná.',
+'confirmemail_text'        => 'Tato wiki vyžaduje, abyste před využíváním některých funkcí potvrdili svoji e-mailovou adresu. Kliknutím na tlačítko níže odešlete potvrzovací e-mail na vámi uvedenou adresu. Tento e-mail obsahuje odkaz a potvrzovací kód; zobrazením odkazované stránky ve svém internetovém prohlížeči potvrdíte, že zadaná adresa je platná.',
 'confirmemail_pending'     => '<div class="error">
 Potvrzovací kód vám byl již zaslán na váš e-mail.
 Pokud jste si založili účet před chvílí, vyčkejte, prosíme, několik minut na doručení kódu dříve, než požádáte o nový.

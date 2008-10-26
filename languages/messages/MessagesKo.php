@@ -187,8 +187,8 @@ $magicWords = array(
 	'subjectpagename'       => array( '1', '본문서이름', 'SUBJECTPAGENAME', 'ARTICLEPAGENAME' ),
 	'subjectpagenamee'      => array( '1', '본문서이름E', 'SUBJECTPAGENAMEE', 'ARTICLEPAGENAMEE' ),
 	'subst'                 => array( '0', '풀기:', 'SUBST:' ),
-	'img_thumbnail'         => array( '1', '썸네일', 'thumbnail', 'thumb' ),
-	'img_manualthumb'       => array( '1', '썸네일=$1', 'thumbnail=$1', 'thumb=$1' ),
+	'img_thumbnail'         => array( '1', '섬네일', '썸네일', 'thumbnail', 'thumb' ),
+	'img_manualthumb'       => array( '1', '섬네일=$1', '썸네일=$1', 'thumbnail=$1', 'thumb=$1' ),
 	'img_right'             => array( '1', '오른쪽', 'right' ),
 	'img_left'              => array( '1', '왼쪽', 'left' ),
 	'img_none'              => array( '1', '없음', 'none' ),
@@ -233,7 +233,7 @@ $magicWords = array(
 	'special'               => array( '0', '특수기능', 'special' ),
 	'defaultsort'           => array( '1', '기본정렬:', 'DEFAULTSORT:', 'DEFAULTSORTKEY:', 'DEFAULTCATEGORYSORT:' ),
 	'filepath'              => array( '0', '파일경로:', '그림경로:', 'FILEPATH:' ),
-	'hiddencat'             => array( '1', '__숨김분류__', '__HIDDENCAT__' ),
+	'hiddencat'             => array( '1', '__숨은분류__', '__HIDDENCAT__' ),
 	'pagesincategory'       => array( '1', '분류문서수', 'PAGESINCATEGORY', 'PAGESINCAT' ),
 	'pagesize'              => array( '1', '문서크기', 'PAGESIZE' ),
 	'staticredirect'        => array( '1', '__넘겨주기고정__', '__STATICREDIRECT__' ),
@@ -895,7 +895,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'history-title'           => '"$1" 문서의 변경 내력',
 'difference'              => '(버전 사이의 차이)',
 'lineno'                  => '$1번째 줄:',
-'compareselectedversions' => '선택된 버전들을 비교하기',
+'compareselectedversions' => '선택된 판들을 비교하기',
 'editundo'                => '편집 취소',
 'diff-multi'              => '(중간 $1개의 편집이 숨겨짐)',
 
@@ -1129,7 +1129,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 
 문서에 그림을 넣으려면 아래 방법 중 하나를 사용하세요.
 * '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki></tt>''' 그림의 온전한 모양을 사용하고자 할 때.
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|200픽셀|썸네일|왼쪽|설명]]</nowiki></tt>''' 그림의 넓이를 200픽셀로 하고 왼쪽 정렬하며 '설명' 이라는 주석을 그림 밑에 달 때.
+* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|200픽셀|섬네일|왼쪽|설명]]</nowiki></tt>''' 그림의 넓이를 200픽셀로 하고 왼쪽 정렬하며 '설명' 이라는 주석을 그림 밑에 달 때.
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' 파일을 직접 보여주지 않고 파일로 바로 링크할때.",
 'upload-permitted'            => '허용하는 파일 확장자: $1',
 'upload-preferred'            => '권장하는 파일 확장자: $1',

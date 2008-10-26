@@ -1358,6 +1358,8 @@ Zapoznaj się z math/README w celu konfiguracji.',
 'rc_categories'                     => 'Ogranicz do kategorii (oddzielaj za pomocą „|”)',
 'rc_categories_any'                 => 'Wszystkie',
 'newsectionsummary'                 => '/* $1 */ nowa sekcja',
+'rc-enhanced-expand'                => 'Pokaż szczegóły (wymagana JavaScript)',
+'rc-enhanced-hide'                  => 'Ukryj szczegóły',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Zmiany w dolinkowanych',
@@ -1652,7 +1654,7 @@ Strona uznawana jest za ujednoznaczniającą, jeśli zawiera ona szablon linkowa
 'nviews'                  => 'odwiedzono $1 {{PLURAL:$1|raz|razy}}',
 'specialpage-empty'       => 'Ta strona raportu jest pusta.',
 'lonelypages'             => 'Porzucone strony',
-'lonelypagestext'         => 'Do poniższych stron nie odwołuje się żadna inna strona w {{GRAMMAR:MS.lp|{{SITENAME}}}}.',
+'lonelypagestext'         => 'Do poniższych stron nie linkuje żadna inna strona lub nie są one dołączone do innych stron w {{GRAMMAR:MS.lp|{{SITENAME}}}}.',
 'uncategorizedpages'      => 'Nieskategoryzowane strony',
 'uncategorizedcategories' => 'Nieskategoryzowane kategorie',
 'uncategorizedimages'     => 'Nieskategoryzowane pliki',
@@ -2890,6 +2892,7 @@ Czy na pewno chcesz ją ponownie utworzyć?",
 # action=purge
 'confirm_purge_button' => 'Wyczyść',
 'confirm-purge-top'    => 'Wyczyścić pamięć podręczną dla tej strony?',
+'confirm-purge-bottom' => 'Odświeżenie strony wyczyści pamięć podręczną i wymusi pokazanie jej aktualnej wersji.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← poprzednia strona',

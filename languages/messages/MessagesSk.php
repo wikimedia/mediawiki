@@ -1556,7 +1556,7 @@ Stránka sa považuje za rozlišovaciu, keď používa šablónu, na ktorú odka
 'nviews'                  => '$1 {{PLURAL:$1|návšteva|návštevy|návštev}}',
 'specialpage-empty'       => 'Táto správa neobsahuje žiadne položky.',
 'lonelypages'             => 'Opustené stránky',
-'lonelypagestext'         => 'Na nasledujúce stránky neodkazujú žiadne iné stránky z {{GRAMMAR:genitív|{{SITENAME}}}}.',
+'lonelypagestext'         => 'Na nasledujúce stránky neodkazujú ani ich nepoužívajú ako šablónu žiadne iné stránky z {{GRAMMAR:genitív|{{SITENAME}}}}.',
 'uncategorizedpages'      => 'Stránky nezaradené do kategórií',
 'uncategorizedcategories' => 'Kategórie nezaradené do kategórií',
 'uncategorizedimages'     => 'Nekategorizované súbory',
@@ -2792,6 +2792,7 @@ Prosím, potvrďte, že túto stránku chcete skutočne znovu vytvoriť.",
 # action=purge
 'confirm_purge_button' => 'OK',
 'confirm-purge-top'    => 'Vyčistiť vyrovnávaciu pamäť (cache) tejto stránky?',
+'confirm-purge-bottom' => 'Vyčistenie stránky vymaže vyrovnávaciu pamäť a vynúti zobrazenie najnovšej verzie.',
 
 # Multipage image navigation
 'imgmultipageprev' => '&larr; predošlá stránka',

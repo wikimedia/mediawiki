@@ -1221,6 +1221,8 @@ Móžoš bok ale teke [[:$1|sam załožyś]].",
 'rc_categories'                     => 'Jano boki z kategorijow (źělone z pomocu „|“):',
 'rc_categories_any'                 => 'wše',
 'newsectionsummary'                 => 'Nowy wótrězk /* $1 */',
+'rc-enhanced-expand'                => 'Drobnosći pokazaś (pomina se JavaScript)',
+'rc-enhanced-hide'                  => 'Drobnosći schowaś',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Změny w zwězanych bokach',
