@@ -813,7 +813,7 @@ class EnhancedChangesList extends ChangesList {
 	 * @return string HTML <img> tag
 	 */
 	protected function spacerArrow() {
-		return $this->arrow( '', ' ' );
+		return $this->arrow( '', codepointToUtf8( 0xa0 ) ); // non-breaking space
 	}
 
 	/**
