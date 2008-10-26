@@ -1423,6 +1423,8 @@ $2',
 'rc_categories'                     => 'הגבלה לקטגוריות (יש להפריד עם "|")',
 'rc_categories_any'                 => 'הכול',
 'newsectionsummary'                 => '/* $1 */ פסקה חדשה',
+'rc-enhanced-expand'                => 'הצגת הפרטים (נדרש JavaScript)',
+'rc-enhanced-hide'                  => 'הסתרת הפרטים',
 
 # Recent changes linked
 'recentchangeslinked'          => 'שינויים בדפים המקושרים',
