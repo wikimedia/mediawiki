@@ -57,6 +57,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				case 'specialpagealiases':
 					$this->appendSpecialPageAliases( $p );
 					break;
+				case 'magicwords':
+					$this->appendMagicWords( $p );
+					break;
 				case 'interwikimap':
 					$filteriw = isset( $params['filteriw'] ) ? $params['filteriw'] : false;
 					$this->appendInterwikiMap( $p, $filteriw );
@@ -164,6 +167,23 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$this->getResult()->setIndexedTagName( $data, 'specialpage' );
 		$this->getResult()->addValue( 'query', $property, $data );
 	}
+	
+	protected function appendMagicWords( $property ) {
+		global $wgContLang;
+		$data = array();
+		foreach($wgContLang->getMagicWords() as $magicword => $aliases)
+		{
+			$caseSensitive = array_shift($aliases);
+			$arr = array('name' => $magicword, 'aliases' => $aliases);
+			if($caseSensitive)
+				$arr['case-sensitive'] = '';
+			$this->getResult()->setIndexedTagName($arr['aliases'], 'alias');
+			$data[] = $arr;
+		}
+		$this->getResult()->setIndexedTagName($data, 'magicword');
+		$this->getResult()->addValue('query', $property, $data);
+	}
+			
 
 	protected function appendInterwikiMap( $property, $filter ) {
 		$this->resetQueryParams();
@@ -268,6 +288,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					'namespaces',
 					'namespacealiases',
 					'specialpagealiases',
+					'magicwords',
 					'interwikimap',
 					'dbrepllag',
 					'statistics',
@@ -292,6 +313,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				' "namespaces"   - List of registered namespaces (localized)',
 				' "namespacealiases" - List of registered namespace aliases',
 				' "specialpagealiases" - List of special page aliases',
+				' "magicwords"   - List of magic words and their aliases',
 				' "statistics"   - Returns site statistics',
 				' "interwikimap" - Returns interwiki map (optionally filtered)',
 				' "dbrepllag"    - Returns database server with the highest replication lag',
