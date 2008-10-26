@@ -1175,7 +1175,7 @@ $out: Css to return
 'SkinTemplateTabAction': Override SkinTemplate::tabAction().
        You can either create your own array, or alter the parameters for the normal one.
 &$this:     The SkinTemplate instance.
-&$title:     Title instance for the page.
+$title:     Title instance for the page.
 $message:   Visible label of tab.
 $selected:  Whether this is a selected tab.
 $checkEdit: Whether or not the action=edit query should be added if appropriate.
