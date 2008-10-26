@@ -1757,10 +1757,14 @@ function do_postgres_updates() {
 		dbsource(archive('patch-tsearch2funcs.sql'));
 
 	## Put a new row in the mediawiki_version table
-	$wgDatabase->query("INSERT INTO mediawiki_version"
-					   ."(type,ctype,mw_version,pg_version,sql_version,sql_date) "
-					   ."VALUES ('Update','U','$wgVersion','$version','"
-					   .'$LastChangedRevision$'."','"
-					   .'$LastChangedDate$'."')");
+	$wgDatabase->insert( 'mediawiki_version',
+		array(
+			'type' => 'Update',
+			'ctype' => 'U',
+			'mw_version' => $wgVersion,
+			'pg_version' => $version,
+			'sql_version' => '$LastChangedRevision$',
+			'sql_date' => '$LastChangedDate$',
+		) );
 	return;
 }
