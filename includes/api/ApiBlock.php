@@ -115,7 +115,6 @@ class ApiBlock extends ApiBase {
 	public function mustBePosted() { return true; }
 
 	public function getAllowedParams() {
-		global $wgBlockAllowsUTEdit;
 		return array (
 			'user' => null,
 			'token' => null,
@@ -127,7 +126,7 @@ class ApiBlock extends ApiBase {
 			'autoblock' => false,
 			'noemail' => false,
 			'hidename' => false,
-			'allowusertalk' => (bool)$wgBlockAllowsUTEdit,
+			'allowusertalk' => false,
 		);
 	}
 
