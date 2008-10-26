@@ -608,7 +608,7 @@ class SkinTemplate extends Skin {
 
 		$result = array();
 		if( !wfRunHooks('SkinTemplateTabAction', array(&$this,
-				&$title, $message, $selected, $checkEdit,
+				$title, $message, $selected, $checkEdit,
 				&$classes, &$query, &$text, &$result)) ) {
 			return $result;
 		}
