@@ -618,8 +618,8 @@ class EnhancedChangesList extends ChangesList {
 		# onclick handler to toggle hidden/expanded
 		$toggleLink = "onclick='toggleVisibility($jsid); return false'";
 		# Title for <a> tags
-		$expandTitle = wfMsg('rc-enhanced-expand');
-		$closeTitle = wfMsg('rc-enhanced-hide');
+		$expandTitle = htmlspecialchars( wfMsg('rc-enhanced-expand') );
+		$closeTitle = htmlspecialchars( wfMsg('rc-enhanced-hide') );
 
 		$tl  = "<span id='mw-rc-openarrow-$jsid' class='mw-changeslist-expanded' style='visibility:hidden'><a href='#' $toggleLink title='$expandTitle'>" . $this->sideArrow() . "</a></span>";
 		$tl .= "<span id='mw-rc-closearrow-$jsid' class='mw-changeslist-hidden' style='display:none'><a href='#' $toggleLink title='$closeTitle'>" . $this->downArrow() . "</a></span>";
@@ -777,12 +777,15 @@ class EnhancedChangesList extends ChangesList {
 	 * Generate HTML for an arrow or placeholder graphic
 	 * @param string $dir one of '', 'd', 'l', 'r'
 	 * @param string $alt text
+	 * @param string $title text
 	 * @return string HTML <img> tag
 	 */
-	protected function arrow( $dir ) {
+	protected function arrow( $dir, $alt='', $title='' ) {
 		global $wgStylePath;
 		$encUrl = htmlspecialchars( $wgStylePath . '/common/images/Arr_' . $dir . '.png' );
-		return "<img src=\"$encUrl\" width=\"12\" height=\"12\" />";
+		$encAlt = htmlspecialchars( $alt );
+		$encTitle = htmlspecialchars( $title );
+		return "<img src=\"$encUrl\" width=\"12\" height=\"12\" alt=\"$encAlt\" title=\"$encTitle\" />";
 	}
 
 	/**
@@ -793,7 +796,7 @@ class EnhancedChangesList extends ChangesList {
 	protected function sideArrow() {
 		global $wgContLang;
 		$dir = $wgContLang->isRTL() ? 'l' : 'r';
-		return $this->arrow( $dir );
+		return $this->arrow( $dir, '+', wfMsg('rc-enhanced-expand') );
 	}
 
 	/**
@@ -802,7 +805,7 @@ class EnhancedChangesList extends ChangesList {
 	 * @return string HTML <img> tag
 	 */
 	protected function downArrow() {
-		return $this->arrow( 'd' );
+		return $this->arrow( 'd', '-', wfMsg('rc-enhanced-hide') );
 	}
 
 	/**
@@ -810,7 +813,7 @@ class EnhancedChangesList extends ChangesList {
 	 * @return string HTML <img> tag
 	 */
 	protected function spacerArrow() {
-		return $this->arrow( '' );
+		return $this->arrow( '', ' ' );
 	}
 
 	/**
