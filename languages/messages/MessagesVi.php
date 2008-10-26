@@ -1278,6 +1278,8 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'rc_categories'                     => 'Hạn chế theo thể loại (phân cách bằng “|”)',
 'rc_categories_any'                 => 'Bất kỳ',
 'newsectionsummary'                 => 'Đề mục mới: /* $1 */',
+'rc-enhanced-expand'                => 'Xem chi tiết (cần JavaScript)',
+'rc-enhanced-hide'                  => 'Giấu chi tiết',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Thay đổi liên quan',

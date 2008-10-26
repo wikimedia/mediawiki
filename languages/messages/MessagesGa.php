@@ -628,6 +628,10 @@ An fáth a thabhairt an riarthóir a ghlasadh nach: '''$1'''",
 'template-semiprotected' => '(leath-ghlasáil)',
 'edittools'              => '<!-- Taispeánfar an téacs seo faoi foirmeacha eagarthóireachta agus uaslódála. -->',
 'permissionserrors'      => 'Cead rochtana earráidí',
+'recreate-deleted-warn'  => "'''Rabhadh: Tá tú ag athchruthú leathanach ina bhfuil scriostha roimhe.'''
+
+Bhreithneoidh tú cibé go bhfuil sé oiriúnach chun lean an leathanach seo a cur in eagar.<br />
+Tá an log scriosta ar fáil anseo mar áis:",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Ní féidir cuntas a chruthú',
@@ -797,8 +801,9 @@ den am an freastalaí (UTC).',
 'newsectionsummary'                 => '/* $1 */ mír nua',
 
 # Recent changes linked
-'recentchangeslinked'       => 'Athruithe gaolmhara',
-'recentchangeslinked-title' => 'Athruithe gaolmhar le "$1"',
+'recentchangeslinked'          => 'Athruithe gaolmhara',
+'recentchangeslinked-title'    => 'Athruithe gaolmhar le "$1"',
+'recentchangeslinked-noresult' => 'Níl aon athruaithe ar na leathanaigh naiscthe le linn an tréimhse tugtha.',
 
 # Upload
 'upload'            => 'Uaslódáil comhad',
@@ -852,6 +857,7 @@ uaslódáil é arís, le do thoil.',
 
 # Image description page
 'filehist'                  => 'Stair comhad',
+'filehist-help'             => 'Clic ar dáta/am chun an comhad a radharc mar a bhí sé ar an am.',
 'filehist-current'          => 'reatha',
 'filehist-datetime'         => 'Dáta/Am',
 'filehist-user'             => 'Úsáideoir',
@@ -930,7 +936,11 @@ ghnáth tugann sé sin an sprioc-alt "fíor".',
 'popularpages'            => 'Leathanaigh coitianta',
 'wantedcategories'        => 'Catagóirí agus iarraidh ag gabháil leis',
 'wantedpages'             => 'Leathanaigh de dhíth',
+'mostlinked'              => 'Na leathanaigh naiscthe is mó',
+'mostlinkedcategories'    => 'Na chatagóirí naiscthe is mó',
+'mostlinkedtemplates'     => 'Na teimpléid naiscthe is mó',
 'mostcategories'          => 'Leathanaigh leis na chatagóir is mó',
+'mostimages'              => 'Na comhaid naiscthe is mó',
 'mostrevisions'           => 'Leathanaigh leis na leasaithe is mó',
 'prefixindex'             => 'Innéacs réimír',
 'shortpages'              => 'Leathanaigh gearra',

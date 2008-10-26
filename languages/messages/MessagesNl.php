@@ -1446,6 +1446,8 @@ Ga na of latex, dvips en gs correct geïnstalleerd zijn en zet om',
 'rc_categories'                     => 'Beperken tot categorieën (scheiden met een "|")',
 'rc_categories_any'                 => 'Elke',
 'newsectionsummary'                 => '/* $1 */ nieuwe subkop',
+'rc-enhanced-expand'                => 'Details weergeven (JavaScript verplicht)',
+'rc-enhanced-hide'                  => 'Details verbergen',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Verwante wijzigingen',

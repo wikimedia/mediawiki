@@ -1226,6 +1226,8 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'rc_categories'                     => 'Limitar a las categorías (separadas por «|»)',
 'rc_categories_any'                 => 'Cualquiera',
 'newsectionsummary'                 => 'Nueva sección: /* $1 */',
+'rc-enhanced-expand'                => 'Mostrar detalles (requiere JavaScript)',
+'rc-enhanced-hide'                  => 'Ocultar detalles',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Cambios en enlazadas',
@@ -1499,7 +1501,7 @@ Cada fila contiene enlaces al segundo y tercer redirect, así como la primera l�
 'nviews'                  => '$1 {{PLURAL:$1|vista|vistas}}',
 'specialpage-empty'       => 'Esta página está vacía.',
 'lonelypages'             => 'Páginas huérfanas',
-'lonelypagestext'         => 'Ninguna página de {{SITENAME}} enlaza a las listadas aquí.',
+'lonelypagestext'         => 'Las siguientes páginas no están enlazadas ni transcluídas en otras páginas de {{SITENAME}}.',
 'uncategorizedpages'      => 'Páginas sin categorizar',
 'uncategorizedcategories' => 'Categorías sin categorizar',
 'uncategorizedimages'     => 'Imágenes sin categorizar',
@@ -2714,6 +2716,7 @@ $1
 # action=purge
 'confirm_purge_button' => 'Aceptar',
 'confirm-purge-top'    => '¿Limpiar la caché de esta página?',
+'confirm-purge-bottom' => 'Purgar una página limpia la caché y fuerza a que aparezca la versión más actual.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← página anterior',

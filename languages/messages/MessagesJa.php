@@ -2621,6 +2621,7 @@ $1
 # action=purge
 'confirm_purge_button' => 'はい',
 'confirm-purge-top'    => 'ページのキャッシュを破棄します。よろしいですか?',
+'confirm-purge-bottom' => 'ページをパージすると、キャッシュを破棄し、強制的に最新の版が表示されます。',
 
 # Multipage image navigation
 'imgmultipageprev' => '&larr; 前ページ',

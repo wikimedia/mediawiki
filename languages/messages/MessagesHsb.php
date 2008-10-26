@@ -1191,6 +1191,8 @@ Móžeš [[:\$1|tutu stronu wutworić]].",
 'rc_categories_any'                 => 'wšě',
 'rc-change-size'                    => '$1 {{PLURAL:$1|bajt|bajtaj|bajty|bajtow}}',
 'newsectionsummary'                 => 'nowy wotrězk: /* $1 */',
+'rc-enhanced-expand'                => 'Podrobnosće pokazać (wužaduje JavaScript)',
+'rc-enhanced-hide'                  => 'Podrobnosće schować',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Změny zwjazanych stron',

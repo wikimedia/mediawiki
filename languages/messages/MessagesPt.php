@@ -1273,6 +1273,8 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'rc_categories'                     => 'Limite para categorias (separar com "|")',
 'rc_categories_any'                 => 'Qualquer',
 'newsectionsummary'                 => '/* $1 */ nova secção',
+'rc-enhanced-expand'                => 'Mostrar detalhes (requer JavaScript)',
+'rc-enhanced-hide'                  => 'Esconder detalhes',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Alterações relacionadas',
@@ -1554,7 +1556,7 @@ Uma página é considerada como de desambiguação se utilizar uma predefiniçã
 'nviews'                  => '$1 {{PLURAL:$1|visita|visitas}}',
 'specialpage-empty'       => 'Actualmente não há dados a serem exibidos nesta página.',
 'lonelypages'             => 'Páginas órfãs',
-'lonelypagestext'         => 'As seguintes páginas não têm hiperligações a apontar para elas a partir de outras páginas nesta wiki.',
+'lonelypagestext'         => 'As seguintes páginas ou não têm hiperligações a apontar para elas ou não são transclusionadas a partir de outras páginas nesta wiki.',
 'uncategorizedpages'      => 'Páginas não categorizadas',
 'uncategorizedcategories' => 'Categorias não categorizadas',
 'uncategorizedimages'     => 'Imagens não categorizadas',
@@ -2771,6 +2773,7 @@ Por favor, confirme que realmente deseja recriar esta página.",
 # action=purge
 'confirm_purge_button' => 'OK',
 'confirm-purge-top'    => 'Limpar a memória cache desta página?',
+'confirm-purge-bottom' => 'Purgar uma página limpa a cache e força a sua versão mais recente a aparecer.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← página anterior',

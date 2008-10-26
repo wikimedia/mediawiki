@@ -1361,6 +1361,8 @@ Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencak
 'rc_categories'                     => 'Batasi sampai kategori (dipisah dengan "|")',
 'rc_categories_any'                 => 'Apapun',
 'newsectionsummary'                 => '/* $1 */ bagian baru',
+'rc-enhanced-expand'                => 'Tampilkan rincian (memerlukan JavaScript)',
+'rc-enhanced-hide'                  => 'Sembunyikan rincian',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Perubahan terkait',
@@ -1626,7 +1628,7 @@ Suatu halaman dianggap sebagai halaman disambiguasi apabila halaman tersebut men
 'nviews'                  => '$1 {{PLURAL:$1|penampilan|penampilan}}',
 'specialpage-empty'       => 'Tak ada yang perlu dilaporkan.',
 'lonelypages'             => 'Halaman tanpa pranala balik',
-'lonelypagestext'         => 'Halaman-halaman berikut tidak memiliki pranala dari halaman manapun di wiki ini.',
+'lonelypagestext'         => 'Halaman-halaman berikut tidak memiliki pranala dari atau ditransklusikan ke halaman manapun di {{SITENAME}}.',
 'uncategorizedpages'      => 'Halaman yang tak terkategori',
 'uncategorizedcategories' => 'Kategori yang tak terkategori',
 'uncategorizedimages'     => 'Berkas yang tak terkategori',
@@ -2817,7 +2819,8 @@ Silakan konfirmasi jika Anda ingin membuat ulang halaman ini.",
 
 # action=purge
 'confirm_purge_button' => 'OK',
-'confirm-purge-top'    => "Hapus ''cache'' halaman ini?",
+'confirm-purge-top'    => 'Hapus singgahan halaman ini?',
+'confirm-purge-bottom' => 'Membersihkan halaman akan sekaligus menghapus singgahan dan menampilkan versi halaman terkini.',
 
 # Multipage image navigation
 'imgmultipageprev' => '&larr; halaman sebelumnya',

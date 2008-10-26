@@ -1332,7 +1332,8 @@ Example: [[:Image:Addon-icn.png]]',
 'protectedpages-cascade'  => 'Option in [[Special:ProtectedPages]]',
 'protectedpagestext'      => 'Shown on top of [[Special:ProtectedPages]]',
 'protectedtitles'         => 'Name of special page displayed in [[Special:SpecialPages]]',
-'protectedtitlestext'     => 'Shown on top of [[Special:Protectedtitles]]',
+'protectedtitlestext'     => 'Shown on top of list of titles on [[Special:ProtectedTitles]]. If the list is empty the message [[MediaWiki:Protectedtitlesempty]] appears instead of this. See the [http://www.mediawiki.org/wiki/Project:Protected_titles help page on Mediawiki] for more information.',
+'protectedtitlesempty'    => 'Used on [[Special:ProtectedTitles]]. This text appears if the list of protected titles is empty. See the [http://www.mediawiki.org/wiki/Project:Protected_titles help page on Mediawiki] for more information.',
 'listusers'               => 'Name of special page displayed in [[Special:SpecialPages]]',
 'listusers-editsonly'     => 'Option in [[Special:ListUsers]].',
 'usereditcount'           => 'Shown behind every username on [[Special:ListUsers]].',
@@ -1526,49 +1527,52 @@ $1 = the name of the page',
 'rollback-success' => 'This message shows up on screen after successful revert (generally visible only to admins). $1 describes user whose changes have been reverted, $2 describes user which produced version, which replaces reverted version.',
 
 # Protect
-'protectlogpage'          => 'Title of [[Special:Log/protect]].',
-'protectlogtext'          => 'Text in [[Special:Log/protect]].',
-'protect-title'           => 'Title for the protection form. $1 is the title of the page to be (un)protected.',
-'protect-backlink'        => 'Optional message. Translate it only if you have to change it, i.e. for RTL wikis
+'protectlogpage'            => 'Title of [[Special:Log/protect]].',
+'protectlogtext'            => 'Text in [[Special:Log/protect]].',
+'protectedarticle'          => 'Text describing an action on [[Special:Log]]. $1 is a page title.',
+'modifiedarticleprotection' => 'Text describing an action on [[Special:Log]]. $1 is a page title.',
+'protect-title'             => 'Title for the protection form. $1 is the title of the page to be (un)protected.',
+'protect-backlink'          => 'Optional message. Translate it only if you have to change it, i.e. for RTL wikis
 
 Shown as subtitle of the protection form. $1 is the title of the page to be (un)protected.',
-'protect-legend'          => 'Legend of the fieldset around the input form of the protection form.',
-'protectcomment'          => '{{Identical|Comment}}',
-'protectexpiry'           => '{{Identical|Expires}}',
-'protect-unchain'         => 'Used for a checkbox to be able to change move permissions. See [[meta:Protect]] for more information.',
-'protect-text'            => 'Intro of the protection interface. See [[meta:Protect]] for more information.',
-'protect-default'         => '{{Identical|Default}}',
-'protect-fallback'        => 'This message is used as an option in the protection form on wikis were extra protection levels have been configured.',
-'protect-summary-cascade' => 'Used in edit summary when cascade protecting a page.',
-'protect-expiring'        => 'Used in page history.
+'protect-legend'            => 'Legend of the fieldset around the input form of the protection form.',
+'protectcomment'            => '{{Identical|Comment}}',
+'protectexpiry'             => '{{Identical|Expires}}',
+'protect-unchain'           => 'Used for a checkbox to be able to change move permissions. See [[meta:Protect]] for more information.',
+'protect-text'              => 'Intro of the protection interface. See [[meta:Protect]] for more information.',
+'protect-default'           => '{{Identical|Default}}',
+'protect-fallback'          => 'This message is used as an option in the protection form on wikis were extra protection levels have been configured.',
+'protect-summary-cascade'   => 'Used in edit summary when cascade protecting a page.',
+'protect-expiring'          => 'Used in page history.
 
 {{Identical|Expires $1 (UTC)}}',
-'protect-cascade'         => 'See [[meta:Protect]] for more information.',
-'protect-othertime'       => 'Used on the page protection form as label for the following input field (text)
+'protect-cascade'           => 'See [[meta:Protect]] for more information.',
+'protect-othertime'         => 'Used on the page protection form as label for the following input field (text)
 {{Identical|Other time}}',
-'protect-othertime-op'    => 'Used on the page protection form in the drop down menu
+'protect-othertime-op'      => 'Used on the page protection form in the drop down menu
 {{Identical|Other time}}',
-'protect-existing-expiry' => 'Shows the existing expiry time in the drop down menu of the protection form ([http://translatewiki.net/w/i.php?title=User:Raymond/test&action=unprotect example])
+'protect-existing-expiry'   => 'Shows the existing expiry time in the drop down menu of the protection form ([http://translatewiki.net/w/i.php?title=User:Raymond/test&action=unprotect example])
 
 * $1: date and time of the existing expiry time (kept for backward compatibility purposes)
 * $2: date of the existing expiry time
 * $3: time of the existing expiry time',
-'protect-otherreason'     => 'Shown on the page protection form as label for the following input field (text)
+'protect-otherreason'       => 'Shown on the page protection form as label for the following input field (text)
 {{Identical|Other/additional reason}}',
-'protect-otherreason-op'  => 'Shown on the page protection form in the drop down menu
+'protect-otherreason-op'    => 'Shown on the page protection form in the drop down menu
 {{Identical|Other/additional reason}}',
-'protect-dropdown'        => 'Shown on the page protection form as drop down menu for protection reasons.
+'protect-dropdown'          => 'Shown on the page protection form as drop down menu for protection reasons.
 
 <tt><nowiki>* Groupname</nowiki></tt> - defines a new group<br />
 <tt><nowiki>** Reason</nowiki></tt> - defines a reason in this group',
-'protect-edit-reasonlist' => 'Shown beneath the page protection form on the right side. It is a link to [[MediaWiki:Protect-dropdown]]. See also {{msg|Delete-edit-reasonlist}} and {{msg|Ipb-edit-dropdown}}.',
-'protect-expiry-options'  => "* Description: Options for the duration of the block. 
+'protect-edit-reasonlist'   => 'Shown beneath the page protection form on the right side. It is a link to [[MediaWiki:Protect-dropdown]]. See also {{msg|Delete-edit-reasonlist}} and {{msg|Ipb-edit-dropdown}}.',
+'protect-expiry-options'    => "* Description: Options for the duration of the block. 
 * <font color=\"red\">Be careful:</font> '''1 translation:1 english''', so the first part is the translation and the second part should stay in English. 
 * Example: See e.g. [[MediaWiki:Protect-expiry-options/nl]] if you still don't know how to do it.", # display1:time1,display2:time2,...
-'restriction-type'        => 'Used on [[Special:ProtectedPages]].',
-'restriction-level'       => 'Used on [[Special:ProtectedPages]].',
-'minimum-size'            => 'Used in [[Special:Protectedpages]] as a pair of radio buttons, with [[MediaWiki:Maximum-size]]. There is an input box to specify the minimum bites of the projected pages listed.',
-'maximum-size'            => 'Used in [[Special:Protectedpages]] as a pair of radio buttons, with [[MediaWiki:Minimum-size]]. There is an input box to specify the maximum bites of the projected pages listed.',
+'restriction-type'          => 'Used on [[Special:ProtectedPages]]. The text next to a drop-down box. See the help page on [http://meta.wikimedia.org/wiki/Protect Meta] for more information on protection.',
+'restriction-level'         => 'Used on [[Special:ProtectedPages]] and [[Special:ProtectedTitles]]. The text next to a drop-down box. See the [http://www.mediawiki.org/wiki/Project:Protected_titles help page on Mediawiki] and on [http://meta.wikimedia.org/wiki/Protect Meta] for more information.',
+'minimum-size'              => 'Used in [[Special:Protectedpages]] as a pair of radio buttons, with [[MediaWiki:Maximum-size]]. There is an input box to specify the minimum bites of the projected pages listed.',
+'maximum-size'              => 'Used in [[Special:Protectedpages]] as a pair of radio buttons, with [[MediaWiki:Minimum-size]]. There is an input box to specify the maximum bites of the projected pages listed.',
+'pagesize'                  => 'Used on [[Special:ProtectedPages]]. See the help page on [http://meta.wikimedia.org/wiki/Protect Meta] for more information on protection.',
 
 # Restrictions (nouns)
 'restriction-edit'   => "Used on [[Special:ProtectedPages]]. Option in the 'permission' drop-down box.
@@ -1577,11 +1581,14 @@ Shown as subtitle of the protection form. $1 is the title of the page to be (un)
 'restriction-move'   => "Used on [[Special:ProtectedPages]]. Option in the 'permission' drop-down box.
 
 {{Identical|Move}}",
-'restriction-create' => '{{Identical|Create}}',
+'restriction-create' => 'Used on [[Special:ProtectedPages]]. An option in a drop-down box. See the help pages on [http://www.mediawiki.org/wiki/Project:Protected_titles MediaWiki] and [http://meta.wikimedia.org/wiki/Protect Meta] for more information on protection.
+
+{{Identical|Create}}',
 
 # Restriction levels
-'restriction-level-sysop' => "Used on [[Special:ProtectedPages]]. An option in the drop-down box 'Restriction level'.",
-'restriction-level-all'   => "Used on [[Special:ProtectedPages]]. An option in the drop-down box 'Restriction level'.",
+'restriction-level-sysop'         => "Used on [[Special:ProtectedPages]] and [[Special:ProtectedTitles]]. An option in the drop-down box 'Restriction level'. See the [http://www.mediawiki.org/wiki/Project:Protected_titles help page on Mediawiki] and on [http://meta.wikimedia.org/wiki/Protect Meta] for more information.",
+'restriction-level-autoconfirmed' => "Used on [[Special:ProtectedPages]] and [[Special:ProtectedTitles]]. An option in the drop-down box 'Restriction level'. See the [http://www.mediawiki.org/wiki/Project:Protected_titles help page on Mediawiki] and on [http://meta.wikimedia.org/wiki/Protect Meta] for more information.",
+'restriction-level-all'           => "Used on [[Special:ProtectedPages]] and [[Special:ProtectedTitles]]. An option in the drop-down box 'Restriction level'. See the [http://www.mediawiki.org/wiki/Project:Protected_titles help page on Mediawiki] and on [http://meta.wikimedia.org/wiki/Protect Meta] for more information.",
 
 # Undelete
 'undelete'               => 'Name of special page for admins as displayed in [[Special:SpecialPages]].

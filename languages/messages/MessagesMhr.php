@@ -181,13 +181,22 @@ $messages = array(
 'yournick'                => 'Кидпале:',
 'email'                   => 'Электрон почто',
 'prefs-help-email'        => 'Электрон почтын адресшым ончыктыде кертат, адакшым тудо моло ушнышо-влаклан тыйын лаштык гоч тый денет кылым кучаш йӧным ышта, тыгодымак нунылан палыдыме кодеш.',
+'nosuchuser'              => '"$1" лӱман пайдаланыше уке.
+Лӱмым чын возымым терге але [[Special:UserLogin/signup|регистрацийым эрте]].',
+'nouserspecified'         => 'Тылат пайдаланышын лӱмжым пуртыман.',
 'wrongpassword'           => 'Тый йоҥылыш шолыпмутым пуртенат.
 Эше ик гана ыштен ончо.',
 'wrongpasswordempty'      => 'Тый яра шолыпмутым пуртенат.
 Эше ик гана ыштен ончо.',
 'passwordtooshort'        => 'Тыйын шолыпмутет келшен огеш тол але пеш кӱчык.
 Тудо {{PLURAL:$1|1 символ|$1 символ}} деч шагал огыл лийшаш да тыйын пайдаланыше лӱмет ден икгай лийшаш огыл.',
+'passwordremindertitle'   => '{{SITENAME}} сайтлан жаплан ыштыме у шолыпмут',
+'passwordremindertext'    => '{{SITENAME}} сайтлан ($4) $1 IP адрес гыч ала-кӧ (але тый) у шолыпмутым йодын. "$2" пайдаланышылан жаплан ыштыме у шолыпмутым ыштыме да "$3" электрон адресыш колтымо. Тидым тый йодынат гын, системыш у шолыпмут дене пуро.
+
+Йодмашым весе ыштен гын, але тый шке шолыпмутетым шарненат гын, тиде увертышым шотыш налде, тошто шолыпмут дене пайдалане.',
 'noemail'                 => '"$1" пайдаланыше электрон адресым палемден огыл.',
+'passwordsent'            => 'У шолыпмутым "$1" пайдаланышын электрон адресышкыже колтымо. Шолыпмутым налмеке системыш угыч пуро.',
+'eauthentsent'            => 'Пеҥгыдемдымаш дене серышым темлыме электрон адресыш колтымо. Электрон почто адресын тыйын улмым пеҥгыдемдаш, серышыште улшо инструкцийым шукто.',
 'emailauthenticated'      => 'Тыйын почто адресетым пеҥгыдемдыме $1.',
 'loginlanguagelabel'      => 'Йылме: $1',
 
@@ -330,7 +339,10 @@ $messages = array(
 'nolinkstoimage'     => 'Тиде файл дене кылдалтше ик лаштыкат уке.',
 
 # File deletion
-'filedelete-submit' => 'Шӧраш',
+'filedelete-comment'          => 'Шӧрымын амалже:',
+'filedelete-submit'           => 'Шӧраш',
+'filedelete-otherreason'      => 'Вес/ешартыш амал:',
+'filedelete-reason-otherlist' => 'Вес амал',
 
 # Random page
 'randompage' => 'Вучыдымо (случайный) статья',
@@ -373,6 +385,7 @@ $messages = array(
 'watchlistfor'         => "('''$1''' лан)",
 'addedwatch'           => 'Эскерымаш спискыш ешарыме',
 'removedwatch'         => 'Эскерымаш списке гыч шӧрымӧ',
+'removedwatchtext'     => '«[[:$1]]» лаштыкым [[Special:Watchlist|тыйын эскерыме лӱмер]] гыч кораҥдыме.',
 'watch'                => 'Эскераш',
 'watchthispage'        => 'Тиде лаштыкым эскераш',
 'unwatch'              => 'Эскерыман огыл',
@@ -388,15 +401,29 @@ $messages = array(
 'unwatching' => 'Эскерымаш списке гыч шӧрымаш...',
 
 # Delete
-'deletepage'     => 'Лаштыкым шӧраш',
-'delete-confirm' => 'Шӧраш "$1"',
-'delete-legend'  => 'Шӧраш',
-'dellogpage'     => 'Шӧрымӧ нерген журнал',
-'deletionlog'    => 'шӧрымӧ нерген журнал',
+'deletepage'            => 'Лаштыкым шӧраш',
+'delete-confirm'        => 'Шӧраш "$1"',
+'delete-legend'         => 'Шӧраш',
+'historywarning'        => 'Тӱтко лий: шӧраш шонымо лаштыкет вашталтыш-влак нерген историйым нумалеш:',
+'actioncomplete'        => 'Действийым ыштыме',
+'deletedtext'           => '«<nowiki>$1</nowiki>» шӧрымӧ.
+Ончо $2 пытартыш шӧрымӧ-влак лӱмер гыч.',
+'dellogpage'            => 'Шӧрымӧ нерген журнал',
+'deletionlog'           => 'шӧрымӧ нерген журнал',
+'deletecomment'         => 'Шӧрымын амалже:',
+'deleteotherreason'     => 'Вес/ешартыш амал:',
+'deletereasonotherlist' => 'Вес амал',
 
 # Protect
-'protectcomment'  => 'Аралыме нерген:',
-'protect-default' => '(ойлыде)',
+'protectcomment'              => 'Аралыме нерген:',
+'protectexpiry'               => 'Мучашлалтеш:',
+'protect_expiry_invalid'      => 'Йоҥылыш мучашлалтше жап.',
+'protect_expiry_old'          => 'Мучашлалтше жап эртен.',
+'protect-default'             => '(ойлыде)',
+'protect-level-autoconfirmed' => 'Регистрацийым эртыдыме да у пайдаланыше-влак деч петырыме',
+'protect-level-sysop'         => 'Сайтвиктарыше-влак гына',
+'protect-otherreason'         => 'Вес/ешартыш амал:',
+'protect-otherreason-op'      => 'вес/ешартыш амал',
 
 # Undelete
 'undelete-search-submit' => 'Кычал',
@@ -422,18 +449,27 @@ $messages = array(
 'whatlinkshere-links' => '← ссылке-влак',
 
 # Block/unblock
+'ipbreason'          => 'Амал:',
+'ipbreasonotherlist' => 'Вес амал',
+'ipbotherreason'     => 'Вес/ешартыш амал:',
 'ipblocklist-submit' => 'Кычал',
 'contribslink'       => 'надыр',
 
 # Move page
 'move-page-legend' => 'Лаштыкым кусараш',
 'movearticle'      => 'Тиде лаштыкым кусараш:',
+'newtitle'         => 'У лӱм:',
 'move-watch'       => 'Тиде лаштыкым эскераш',
 'movepagebtn'      => 'Лаштыкым кусараш',
+'pagemovedsub'     => 'Кусарымаш сайын эртен',
 'movepage-moved'   => '<big>\'\'\'"$1" лаштыкым "$2" лаштыкыш кусарыме\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'    => 'Тыгай лӱман лаштык уло але тиде лӱмым кучылташ огеш лий. Вес лӱмым ойыро.',
+'talkexists'       => "'''Лаштыкым кусарыме гынат, тудын каҥашымаш лаштыкшым тыгай лӱман лаштык улмылан кӧра кусараш огеш лий. Нуным шке кидет дене иктыш ушно.'''",
 'movedto'          => 'лаштыкыш кусарыме',
+'movetalk'         => 'Каҥашымаш лаштыкым кусараш',
 '1movedto2'        => '[[$1]] лаштыкым [[$2]] лаштыкыш кусарыме',
 'movelogpage'      => 'Кусарыме нерген журнал',
+'movereason'       => 'Амал:',
 
 # Thumbnails
 'thumbnail-more' => 'Кугемдаш',

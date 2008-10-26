@@ -66,14 +66,6 @@ $bookstoreList = array(
 $separatorTransformTable = array(',' => '.', '.' => ',' );
 $linkTrail = '/^([äöüßa-z]+)(.*)$/sDu';
 
-/**
- * Alternate names of special pages. All names are case-insensitive. The first
- * listed alias will be used as the default. Aliases from the fallback
- * localisation (usually English) will be included by default.
- *
- * This array may be altered at runtime using the LanguageGetSpecialPageAliases
- * hook.
- */
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'Doppelte_Weiterleitungen' ),
 	'BrokenRedirects'           => array( 'Kaputte_Weiterleitungen' ),
@@ -1301,6 +1293,8 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen
 'rc_categories_any'                 => 'Alle',
 'rc-change-size'                    => '$1 {{PLURAL:$1|Byte|Bytes}}',
 'newsectionsummary'                 => 'Neuer Abschnitt /* $1 */',
+'rc-enhanced-expand'                => 'Details anzeigen (benötigt JavaScript)',
+'rc-enhanced-hide'                  => 'Details verstecken',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Änderungen an verlinkten Seiten',
