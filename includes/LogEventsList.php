@@ -62,10 +62,11 @@ class LogEventsList {
 	 * @param string $user,
 	 * @param string $page,
 	 * @param string $pattern
-	 * @param int $year
-	 * @parm int $month
+	 * @param int $y year
+	 * @param int $y month
+	 * @param bool $filter
 	 */
-	public function showOptions( $type='', $user='', $page='', $pattern='', $year='', $month='' ) {
+	public function showOptions( $type='', $user='', $page='', $pattern='', $y='', $m='', $filter=null ) {
 		global $wgScript, $wgMiserMode;
 		$action = htmlspecialchars( $wgScript );
 		$title = SpecialPage::getTitleFor( 'Log' );
@@ -78,9 +79,42 @@ class LogEventsList {
 			$this->getUserInput( $user ) . "\n" .
 			$this->getTitleInput( $page ) . "\n" .
 			( !$wgMiserMode ? ($this->getTitlePattern( $pattern )."\n") : "" ) .
-			"<p>" . $this->getDateMenu( $year, $month ) . "\n" .
+			"<p>" . $this->getDateMenu( $y, $m ) . "\n" .
+			( empty($filter) ? "</p><p>".$this->getFilterLinks( $type, $filter )."\n" : "" ) .
 			Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "</p>\n" .
-			"</fieldset></form>" );
+			"</fieldset></form>"
+		);
+	}
+	
+	private function getFilterLinks( $logtype, $filter ) {
+		global $wgTitle;
+		// show/hide links
+		$showhide = array( wfMsgHtml( 'show' ), wfMsgHtml( 'hide' ) );
+		// Option value -> message mapping
+		$links = array();
+		foreach( $filter as $type => $val ) {
+			$onoff = 1 - intval($val);
+			$link = $this->skin->makeKnownLinkObj( $wgTitle, $showhide[$onoff],
+				wfArrayToCGI( array( "hide{$type}log" => $onoff ), $this->getDefaultQuery() )
+			);
+			$links[$type] = wfMsgHtml( "logshowhide-{$type}", $link );
+		}
+		// Build links
+		return implode( ' | ', $links );
+	}
+	
+	private function getDefaultQuery() {
+		if ( !isset( $this->mDefaultQuery ) ) {
+			$this->mDefaultQuery = $_GET;
+			unset( $this->mDefaultQuery['title'] );
+			unset( $this->mDefaultQuery['dir'] );
+			unset( $this->mDefaultQuery['offset'] );
+			unset( $this->mDefaultQuery['limit'] );
+			unset( $this->mDefaultQuery['order'] );
+			unset( $this->mDefaultQuery['month'] );
+			unset( $this->mDefaultQuery['year'] );
+		}
+		return $this->mDefaultQuery;
 	}
 
 	/**
@@ -458,6 +492,19 @@ class LogPager extends ReverseChronologicalPager {
 		$query['month'] = $this->mMonth;
 		$query['year'] = $this->mYear;
 		return $query;
+	}
+
+	public function getFilterParams() {
+		global $wgFilterLogTypes, $wgUser, $wgRequest;
+		$filters = array();
+		foreach( $wgFilterLogTypes as $type => $default ) {
+			// Avoid silly filtering
+			if( $type !== $this->type && ($type !== 'patrol' || $wgUser->useNPPatrol()) ) {
+				$filters[$type] = $wgRequest->getInt( "hide{$type}log", $default );
+				$this->mConds[] = 'log_type != '.$this->mDb->addQuotes( $this->mDb->strencode($type) );
+			}
+		}
+		return $filters;
 	}
 
 	/**

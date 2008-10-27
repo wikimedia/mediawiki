@@ -2126,6 +2126,7 @@ Each row contains links to the first and second redirect, as well as the target 
 You can narrow down the view by selecting a log type, the user name (case-sensitive), or the affected page (also case-sensitive).',
 'logempty'             => 'No matching items in log.',
 'log-title-wildcard'   => 'Search titles starting with this text',
+'logshowhide-patrol'   => '$1 patrol log',
 
 # Special:AllPages
 'allpages'          => 'All pages',
