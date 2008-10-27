@@ -1393,6 +1393,8 @@ Primijetite da uporaba navigacijskih poveznica resetira vaše izbore u koloni.',
 'rc_categories'                     => 'Ograniči na kategorije (odvojene znakom  "|")',
 'rc_categories_any'                 => 'Sve',
 'newsectionsummary'                 => '/* $1 */ Novi odlomak',
+'rc-enhanced-expand'                => 'Pokaži detalje (potreban JavaScript)',
+'rc-enhanced-hide'                  => 'Sakrij detalje',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Povezane stranice',
@@ -1660,7 +1662,7 @@ koja obično ukazuje na "pravu" odredišnu stranicu, na koju bi trebalo pokaziva
 'nviews'                  => '$1 {{PLURAL:$1|put pogledano|puta pogledano|puta pogledano}}',
 'specialpage-empty'       => 'Nema rezultata za traženi izvještaj.',
 'lonelypages'             => 'Stranice siročad',
-'lonelypagestext'         => 'Na sljedeće članke ne vode poveznice s drugih stranica na ovom wikiju ({{SITENAME}}).',
+'lonelypagestext'         => 'Sljedeće stranice nemaju poveznicu na druge stranice niti su uključene transkluzijom u druge stranice projekta {{SITENAME}}.',
 'uncategorizedpages'      => 'Nekategorizirane stranice',
 'uncategorizedcategories' => 'Nekategorizirane kategorije',
 'uncategorizedimages'     => 'Nekategorizirane datoteke',
@@ -2888,6 +2890,7 @@ Potvrdite namjeru vraćanja ovog članka.",
 # action=purge
 'confirm_purge_button' => 'U redu',
 'confirm-purge-top'    => 'Isprazniti međuspremnik stranice?',
+'confirm-purge-bottom' => 'Čišćenje stranice čisti priručnu memoriju i prikazuje trenutačnu inačicu stranice.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← prethodna slika',

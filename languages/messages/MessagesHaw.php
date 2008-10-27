@@ -160,6 +160,7 @@ $messages = array(
 'categorypage'     => 'Nānā i ka ‘ao‘ao mahele',
 'viewtalkpage'     => 'Nānā i ke kūkākūkā',
 'otherlanguages'   => "Ma nā leo 'ē a'e",
+'redirectedfrom'   => '(Hoʻoili mai $1)',
 'redirectpagesub'  => '‘Ao‘ao e alaka‘i ai',
 'protectedpage'    => '‘Ao‘ao ho‘omalu',
 'jumpto'           => 'Lele i:',
@@ -264,7 +265,7 @@ E koho i kekahi inoa, ke ‘olu‘olu.',
 'yourlanguage'            => "Kou 'ōlelo:",
 'yournick'                => 'Inoa kapakapa:',
 'email'                   => 'Leka uila',
-'mailmypassword'          => "Leka uila hua'ōlelo huna",
+'mailmypassword'          => 'Leka uila i ka huaʻōlelo huna',
 'emailauthenticated'      => 'Ua hō‘oia ‘ia kāu leka uila ma ka lā $2 i ka hola $3.',
 'emailconfirmlink'        => 'E hō‘oia i kāu leka uila',
 'accountcreated'          => 'Ua lilo ‘ia ka mea ho‘ohana',
@@ -480,7 +481,7 @@ hō‘ike ‘ia i lalo:",
 # Protect
 'prot_1movedto2'         => 'Ua hoʻoneʻe ʻo [[$1]] iā [[$2]]',
 'protect-default'        => '(paʻamau)',
-'protect-expiry-options' => '2 hours:2 hours,1 day:1 day,3 days:3 days,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,infinite:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options' => '2 hola:2 hours,1 lā:1 day,3 lā:3 days,1 pule:1 week,2 pule:2 weeks,1 mahina:1 month,3 mahina:3 months,6 mahina:6 months,1 makahiki:1 year,palena ʻole:infinite', # display1:time1,display2:time2,...
 
 # Restrictions (nouns)
 'restriction-edit' => 'E ho‘opololei',
@@ -547,6 +548,8 @@ hō‘ike ‘ia i lalo:",
 'tooltip-pt-logout'        => 'e ha‘alele',
 'tooltip-ca-talk'          => 'Kūkākūkā e pili ana i kekahi ‘ao‘ao.',
 'tooltip-ca-edit'          => 'Hiki iā‘oe ke ho‘opololei i kēia ‘ao‘ao. Imua o ka mālama, ho‘ohana i ka nāmua, ke ‘olu‘olu.',
+'tooltip-ca-viewsource'    => 'Pale ʻia kēia ʻaoʻao.
+Hiki iā ʻoe ke ʻikena i kāna molekumu.',
 'tooltip-ca-delete'        => 'E kāpae i kēia mo‘olelo',
 'tooltip-ca-move'          => 'E ne‘e i kēia mo‘olelo',
 'tooltip-search'           => 'Huli iā {{SITENAME}}',

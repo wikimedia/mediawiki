@@ -1243,6 +1243,8 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'rc_categories'                     => 'Limita alle categorie (separate da "|")',
 'rc_categories_any'                 => 'Qualsiasi',
 'newsectionsummary'                 => '/* $1 */ nuova sezione',
+'rc-enhanced-expand'                => 'Mostra dettagli (richiede JavaScript)',
+'rc-enhanced-hide'                  => 'Nascondi dettagli',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Modifiche correlate',

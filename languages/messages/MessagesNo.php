@@ -1242,6 +1242,8 @@ se math/README for oppsett.',
 'rc_categories'                     => 'Begrens til kategorier (skilletegn: «|»)',
 'rc_categories_any'                 => 'Alle',
 'newsectionsummary'                 => '/* $1 */ ny seksjon',
+'rc-enhanced-expand'                => 'Vis detaljer (trenger JavaScript)',
+'rc-enhanced-hide'                  => 'Skjul detaljer',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Relaterte endringer',

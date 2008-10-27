@@ -2635,6 +2635,7 @@ Varmista, että haluat luoda sivun uudelleen.",
 # action=purge
 'confirm_purge_button' => 'Poista',
 'confirm-purge-top'    => 'Poistetaanko tämän sivun välimuistikopiot?',
+'confirm-purge-bottom' => 'Välimuistikopioiden poistaminen tyhjentää välimuistin ja pakottaa sivun uusimman version näkyviin.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← edellinen sivu',

@@ -281,7 +281,7 @@ $messages = array(
 'deletethispage'    => 'Borrar ista pachina',
 'undelete_short'    => 'Restaurar {{PLURAL:$1|una edizión|$1 edizions}}',
 'protect'           => 'Protecher',
-'protect_change'    => 'cambiar a protezión',
+'protect_change'    => 'cambiar',
 'protectthispage'   => 'Protecher ista pachina',
 'unprotect'         => 'esprotecher',
 'unprotectthispage' => 'Esprotecher ista pachina',
@@ -363,7 +363,7 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|una edizión borrata|$1 edizions borratas}}',
 'feedlinks'               => 'Sendicazión como fuent de notizias:',
 'feed-invalid'            => 'Sendicazión como fuent de notizias no conforme.',
-'feed-unavailable'        => 'As fuents de sendicazión no son disponibles en {{SITENAME}}',
+'feed-unavailable'        => 'As canals de sendicazión no son disponibles.',
 'site-rss-feed'           => 'Canal RSS $1',
 'site-atom-feed'          => 'Canal Atom $1',
 'page-rss-feed'           => 'Canal RSS "$1"',
@@ -400,7 +400,7 @@ A zaguera consulta que se miró de fer estió: <blockquote><tt>$1</tt></blockquo
 "$1"
 aintro d\'a funzión "$2".
 A base de datos retornó a error "<tt>$3: $4</tt>".',
-'noconnect'            => "A wiki tiene agora bellas dificultaz tecnicas, y no se podió contautar con o serbidor d'a base de datos. <br />
+'noconnect'            => "Agora mesmo, a wiki ye tenendo bellas dificultaz tecnicas, y no se puede contautar con o serbidor d'a base de datos. <br />
 $1",
 'nodb'                 => 'No se podió trigar a base de datos $1',
 'cachederror'          => "Ista ye una copia en caché d'a pachina demandata, y puestar que no siga esbiellata.",
@@ -502,7 +502,7 @@ No xublide presonalizar [[Special:Preferences|as suyas preferenzias en {{SITENAM
 'email'                      => 'Adreza de correu-e',
 'prefs-help-realname'        => "* Nombre reyal (opzional): si esliche escribir-lo, se ferá serbir ta l'atribuzión d'a suya faina.",
 'loginerror'                 => 'Error en enzetar a sesión',
-'prefs-help-email'           => "Adreza de correu-e (opzional): Premite á atros usuarios nimbiar-le correus electronicos por meyo de a suya pachina d'usuario u de descusión d'usuario sin d'aber de rebelar a suya identidá.",
+'prefs-help-email'           => "L'adreza de correu-e ye opzional, pero premite que le nimbiemos una nueba palabra de paso si nunca la oblidase. Tamién premite que atros usuarios contauten con bustet dende a suya pachina d'usuario u de descusión d'usuario sin aber de rebelar a suya identidat.",
 'prefs-help-email-required'  => 'Cal una adreza de correu-e.',
 'nocookiesnew'               => "A cuenta d'usuario s'ha creyata, pero encara no ye indentificato. {{SITENAME}} fa serbir <em>cookies</em> ta identificar á os usuario rechistratos, pero pareix que las tiene desautibatas. Por fabor, autibe-las e identifique-se con o suyo nombre d'usuario y palabra de paso.",
 'nocookieslogin'             => "{{SITENAME}} fa serbir <em>cookies</em> ta la identificazión d'usuarios. Tiene as <em>cookies</em> desautibatas en o nabegador. Por fabor, autibe-las y prebe á identificar-se de nuebas.",
@@ -518,11 +518,11 @@ Comprebe si ha escrito bien o nombre u creye una nueba cuenta d\'usuario.',
 'passwordtooshort'           => "A suya palabra de paso no ye conforme u ye masiau curta. Ha de tener como menimo {{PLURAL:$1|1 caráuter|$1 caráuters}} y no puede estar o suyo nombre d'usuario.",
 'mailmypassword'             => 'Nimbía-me una nueba palabra de paso por correu electronico',
 'passwordremindertitle'      => 'Nueba palabra de paso temporal de {{SITENAME}}',
-'passwordremindertext'       => 'Belún (probablement busté, dende l\'adreza IP $1) demandó que li nimbiásenos una nueba palabra de paso ta la suya cuenta en {{SITENAME}} ($4).
-A palabra de paso ta l\'usuario "$2" ye agora "$3".
-Li consellamos que enzete agora una sesión y cambee a suya palabra de paso.
+'passwordremindertext'       => 'Belún (probablement busté, dende l\'adreza IP $1) demandó una nueba palabra de paso ta la suya cuenta en {{SITENAME}} ($4).
+S\'ha creyato una nueba palabra de paso temporal ta l\'usuario "$2", que ye "$3".
+Si isto ye lo que quereba, abrá de enzetar una sesión y trigar una nueba palabra de paso.
 
-Si iste mensache fue demandato por otri, u si ya se\'n ha alcordato d\'a palabra de paso y ya no deseya cambiar-la, puede innorar iste mensache y continar fendo serbir l\'antiga palabra de paso.',
+Si estió atro qui fazió ista demanda, u ya se\'n ha alcordau d\'a suya palabra de paso, y ya no deseya cambiar-la, puede inorar iste mensache y contar fendo serbir l\'antiga palabra de paso.',
 'noemail'                    => 'No bi ha garra adreza de correu electronico rechistrada ta "$1".',
 'passwordsent'               => 'Una nueba palabra de paso plega de nimbiar-se ta o correu electronico de "$1".
 Por fabor, identifique-se unatra bez malas que la reculla.',
@@ -530,8 +530,8 @@ Por fabor, identifique-se unatra bez malas que la reculla.',
 'eauthentsent'               => "S'ha nimbiato un correu electronico de confirmazión ta l'adreza espezificata. Antes que no se nimbíe dengún atro correu ta ixa cuenta, ha de confirmar que ixa adreza te pertenexe. Ta ixo, cal que siga as instruzions que trobará en o mensache.",
 'throttled-mailpassword'     => "Ya s'ha nimbiato un correu recordatorio con a suya palabra de paso fa menos de {{PLURAL:$1|1 ora|$1 oras}}. Ta escusar abusos, nomás se nimbia un recordatorio cada {{PLURAL:$1|ora|$1 oras}}.",
 'mailerror'                  => 'Error en nimbiar o correu: $1',
-'acct_creation_throttle_hit' => 'Lo sentimos, ya ha creyato $1 cuentas. No puede creyar más cuentas.',
-'emailauthenticated'         => 'A suya adreza de correu-e estió confirmata o $1.',
+'acct_creation_throttle_hit' => 'Ya ha creyato {{PLURAL:$1|1 cuenta|$1 cuentas}}. No puede creyar más cuentas.',
+'emailauthenticated'         => 'A suya adreza de correu-e estió confirmata o $2 á las $3.',
 'emailnotauthenticated'      => "A suya adreza de correu-e <strong> no ye encara confirmata </strong>. No podrá recullir garra correu t'as siguients funzions.",
 'noemailprefs'               => '<strong>Escriba una adreza de correu-e ta autibar istas carauteristicas.</strong>',
 'emailconfirmlink'           => 'Confirme a suya adreza de correu-e',
@@ -894,7 +894,7 @@ Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.",
 'mypreferences'            => 'Preferenzias',
 'prefs-edits'              => "Numero d'edizions:",
 'prefsnologin'             => 'No ye identificato',
-'prefsnologintext'         => "Ha d'estar [[Special:UserLogin|rechistrau]] y aber enzetau una sesión ta cambiar as preferenzias d'usuario.",
+'prefsnologintext'         => 'Ha d\'aber <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} enzetato una sesión] </span> ta cambiar as preferenzias d\'usuario.',
 'prefsreset'               => "S'ha tornato as preferenzias t'as suyas baluras almadazenatas.",
 'qbsettings'               => 'Preferenzias de "Quickbar"',
 'qbsettings-none'          => 'Denguna',
@@ -1142,7 +1142,7 @@ Por fabor, trigue un nombre diferent.",
 'fileexists-thumbnail-yes'    => "Parixe que l'archibo ye una imachen prou chicota <i>(miniatura)</i>. Comprebe por fabor l'archibo <strong><tt>$1</tt></strong>.<br />
 Si l'archibo comprebato ye a mesma imachen en tamaño orichinal no cal cargar una nueba miniatura.",
 'file-thumbnail-no'           => "O nombre de l'archibo prenzipia con <strong><tt>$1</tt></strong>. 
-Pareix que estase una imachen no guaire gran <i>(thumbnail)</i>.
+Pareix que estase una imachen achiquida <i>(thumbnail)</i>.
 Si tiene ista imachen a toda resoluzión, cargue-la, si no, por fabor, cambee o nombre de l'archibo.",
 'fileexists-forbidden'        => "Ya bi ha un archibo con iste nombre. Por fabor, cambee o nombre de l'archibo y torne á cargar-lo. [[Image:$1|thumb|center|$1]]",
 'fileexists-shared-forbidden' => "Ya bi ha un archibo con ixe nombre en o repositorio compartito; por fabor, torne t'a pachina anterior y cargue o suyo archibo con atro nombre. [[Image:$1|thumb|center|$1]]",
@@ -1462,8 +1462,8 @@ Protocolos suportados: <tt>$1</tt>',
 'mailnologintext' => "Ha d'aber [[Special:UserLogin|enzetato una sesión]] y tener una adreza de correu-e conforme en as suyas [[Special:Preferences|preferenzias]] ta nimbiar un correu eletronico ta atros usuarios.",
 'emailuser'       => 'Nimbiar un correu electronico ta iste usuario',
 'emailpage'       => "Nimbiar correu ta l'usuario",
-'emailpagetext'   => "Si iste usuario ese rechistrato una adreza de correu-e conforme en as suyas preferenzias d'usuario, puede nimbiar-le un mensache con iste formulario.
-L'adreza de correu-e que endicó en as suyas [[Special:Preferences|preferenzias d'usuario]] amaneixerá en o campo 'remitent' ta que o destinatario pueda responder-le.",
+'emailpagetext'   => 'Puede fer serbir o formulario que bi ye contino ta nimbiar un correu eletronico á iste usuario.
+L\'adreza de correu-e que endicó en as suyas [[Special:Preferences|preferenzias d\'usuario]] amaneixerá en o campo "Remitent" ta que o destinatario pueda responder-le.',
 'usermailererror' => "L'ocheto de correu retornó una error:",
 'defemailsubject' => 'Correu de {{SITENAME}}',
 'noemailtitle'    => 'No bi ha garra adreza de correu eletronico',
@@ -1656,13 +1656,13 @@ Contino se i amuestran as opzions autuals d'a pachina <strong>$1</strong>:",
 'viewdeletedpage'              => 'Beyer pachinas borratas',
 'undeletepagetext'             => "As pachinas siguiens han siu borradas, pero encara son en l'archibo y podría estar restauradas. El archibo se borra periodicamén.",
 'undelete-fieldset-title'      => 'Restaurar bersions',
-'undeleteextrahelp'            => "Ta restaurar a pachina antera con todas as bersions, deixe todas as caixetas sin siñalar y prete '''''Restaurar!'''''. Ta restaurar sólo belunas d'as bersions, siñale as caixetas correspondients á las bersions que quiere restaurar y punche dimpués '''''Restaurar!'''''. Punchando '''''Prenzipiar''''' se borrará o comentario y se tirarán os siñals d'as caixetas.",
+'undeleteextrahelp'            => "Ta restaurar tot o istorial de bersions d'una pachina, deixe todas as caixetas sin siñalar y prete '''''Restaurar!'''''. Ta restaurar sólo belunas d'as bersions, siñale as caixetas correspondients á las bersions que quiere restaurar y punche dimpués en '''''Restaurar!'''''. Punchando en '''''Prenzipiar''''' se borrará o comentario y se tirarán os siñals d'as caixetas.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|bersión|bersions}} archibatas',
 'undeletehistory'              => "Si restaura a pachina, se restaurarán  todas as bersions en o suyo istorial. 
 Si s'ha creyato una nueba pachina con o mesmo nombre dende que se borró a orichinal, as bersions restauradas amaneixerán antes en o istorial.",
 'undeleterevdel'               => "No s'esfará o borrau si isto resulta en o borrau parzial d'a pachina d'alto u a rebisión de l'archibo. En ixe caso, deselezione u amuestre as bersions borratas más rezients.",
 'undeletehistorynoadmin'       => "Esta pachina ye borrata. A razón d'o suyo borrau s'amuestra más t'abaixo en o resumen, asinas como os detalles d'os usuarios que eban editato a pachina antes d'o borrau. O testo completo d'istas edizions borratas ye disponible nomás ta os almenistradors.",
-'undelete-revision'            => "S'ha borrato a bersión de $1 de $2 (por $3):",
+'undelete-revision'            => 'Bersión borrata de $1 (editada por $3, o $4 á las $5):',
 'undeleterevision-missing'     => "Bersión no conforme u no trobata. Regular que o binclo sia incorreuto u que a bersión aiga estato restaurata u borrata de l'archibo.",
 'undelete-nodiff'              => "No s'ha trobato garra bersión anterior.",
 'undeletebtn'                  => 'Restaurar!',
@@ -2415,9 +2415,9 @@ Ya se le ha nimbiato un codigo de confirmazión; si creyó una cuenta fa poco ti
 'confirmemail_sent'        => "S'ha nimbiato un correu de confirmazión.",
 'confirmemail_oncreate'    => "S'ha nimbiato un codigo de confirmazión t'a suya adreza de correu-e.
 Iste codigo no ye nezesario ta dentrar, pero amenistará escribir-lo antis d'autibar cualsiquier funzión d'o wiki basata en o correu electronico.",
-'confirmemail_sendfailed'  => "No s'ha puesto nimbiar o mensache de confirmazión. Por fabor, comprebe que no bi aiga carauters no conformes en l'adreza de correu electronico endicata.
+'confirmemail_sendfailed'  => "{{SITENAME}} no ha puesto nimbiar-le o mensache de confirmazión. Por fabor, comprebe que no bi aiga carauters no conformes en l'adreza de correu electronico endicata.
 
-Correu tornato: $1",
+Correu retornato: $1",
 'confirmemail_invalid'     => 'O codigo de confirmazión no ye conforme. Regular que o codigo sía zircunduzito.',
 'confirmemail_needlogin'   => 'Amenistar $1 ta confirmar a suya adreza de correu-e.',
 'confirmemail_success'     => 'A suya adreza de correu-e ya ye confirmata. Agora puede dentrar en o wiki y espleitiar-lo.',

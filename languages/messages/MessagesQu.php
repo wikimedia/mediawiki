@@ -790,7 +790,7 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'diff-movedto'            => '$1-man astasqa',
 'diff-styleadded'         => '$1 allin rikuchina yapasqa',
 'diff-added'              => '$1 yapasqa',
-'diff-changedto'          => '$-man hukchasqa',
+'diff-changedto'          => '$1-man hukchasqa',
 'diff-movedoutof'         => '$1-manta astasqa',
 'diff-styleremoved'       => '$1 allin rikuchina qichusqa',
 'diff-removed'            => '$1 qichusqa',
@@ -1111,6 +1111,8 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'rc_categories'                     => 'Kay katiguriyakunaman saywachay ("|" nisqawan rakisqa)',
 'rc_categories_any'                 => 'Imallapas',
 'newsectionsummary'                 => 'Musuq raki: /* $1 */',
+'rc-enhanced-expand'                => 'Imaymanachakunata rikuchiy (JavaScript kananmi)',
+'rc-enhanced-hide'                  => 'Imaymanachakunata pakay',
 
 # Recent changes linked
 'recentchangeslinked'          => "Hukchasqa t'inkimuq",
@@ -1376,7 +1378,7 @@ Kay p'anqapiqa huk pusapuna p'anqaman pusapuq p'anqakunap sutinkunatam rikunki. 
 'nviews'                  => '$1 {{PLURAL:$1|rikuy|rikuykuna}}',
 'specialpage-empty'       => "Kay p'anqaqa ch'usaqmi.",
 'lonelypages'             => "Wakcha p'anqakuna",
-'lonelypagestext'         => "Kay qatiq p'anqakunaqa manam ima huk {{SITENAME}}pi kaq p'anqawanpas t'inkisqachu.",
+'lonelypagestext'         => "Kay qatiq p'anqakunaqa manam {{SITENAME}}pi ima huk kaq p'anqawanpas t'inkisqachu, manam ch'aqtasqachu ima.",
 'uncategorizedpages'      => "Katiguriyannaq p'anqakuna",
 'uncategorizedcategories' => 'Katiguriyannaq katiguriyakuna',
 'uncategorizedimages'     => 'Katiguriyannaq rikchakuna',
@@ -2570,6 +2572,7 @@ Ama hina kaspa, chiqapta kay p'anqatam musuqmanta kamayta munani nispa takyachiy
 # action=purge
 'confirm_purge_button' => 'Arí niy',
 'confirm-purge-top'    => "Kay p'anqap ''cache'' nisqa pakasqa hallch'an ch'usaqchasqa kachunchu?",
+'confirm-purge-bottom' => "P'anqa pichayqa pakasqa hallch'atam ch'usaqchan, qayna musuqchasqatataqmi rikch'achin.",
 
 # Multipage image navigation
 'imgmultipageprev' => "← ñawpaq p'anqa",

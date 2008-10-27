@@ -537,66 +537,68 @@ Iz razloga ''$2''.",
 'virus-unknownscanner' => 'nepoznati anti-virus program:',
 
 # Login and logout pages
-'logouttitle'             => 'Odjavite se',
-'logouttext'              => '<strong>Sad ste odjavljeni.</strong><br />
+'logouttitle'               => 'Odjavite se',
+'logouttext'                => '<strong>Sad ste odjavljeni.</strong><br />
 Možete nastaviti da koristite {{SITENAME}} anonimno, ili se ponovo prijaviti
 kao isti ili kao drugi korisnik.  Obratite pažnju da neke stranice mogu nastaviti da se prikazuju kao da ste još uvijek prijavljeni, dok ne očistite keš svog brauzera.',
-'welcomecreation'         => '<h2>Dobro došli, $1!</h2><p>Vaš nalog je napravljen.
+'welcomecreation'           => '<h2>Dobro došli, $1!</h2><p>Vaš nalog je napravljen.
 Ne zaboravite da prilagodite sebi svoja podešavanja.',
-'loginpagetitle'          => 'Prijavljivanje',
-'yourname'                => 'Korisničko ime',
-'yourpassword'            => 'Lozinka',
-'yourpasswordagain'       => 'Ponovite lozinku',
-'remembermypassword'      => 'Zapamti šifru za iduće posjete',
-'yourdomainname'          => 'Vaš domen',
-'login'                   => 'Prijavi se',
-'nav-login-createaccount' => 'Prijavi se / Registruj se',
-'loginprompt'             => "Morate imati kolačiće ('''cookies''') omogućene da biste se prijavili na {{SITENAME}}.",
-'userlogin'               => 'Prijavi se / Registruj se',
-'logout'                  => 'Odjavi me',
-'userlogout'              => 'Odjavi me',
-'notloggedin'             => 'Niste prijavljeni',
-'nologin'                 => 'Nemate korisničko ime? $1.',
-'nologinlink'             => 'Napravite nalog',
-'createaccount'           => 'Napravi nalog',
-'gotaccount'              => 'Imate nalog? $1.',
-'gotaccountlink'          => 'Prijavi se',
-'createaccountmail'       => 'e-poštom',
-'badretype'               => 'Lozinke koje ste unijeli se ne poklapaju.',
-'userexists'              => 'Korisničko ime koje ste unijeli je već u upotrebi.
+'loginpagetitle'            => 'Prijavljivanje',
+'yourname'                  => 'Korisničko ime',
+'yourpassword'              => 'Lozinka',
+'yourpasswordagain'         => 'Ponovite lozinku',
+'remembermypassword'        => 'Zapamti šifru za iduće posjete',
+'yourdomainname'            => 'Vaš domen',
+'externaldberror'           => 'Došlo je do greške pri vanjskoj autorizaciji baze podataka ili vam nije dopušteno osvježavanje Vašeg vanjskog korisničkog računa.',
+'login'                     => 'Prijavi se',
+'nav-login-createaccount'   => 'Prijavi se / Registruj se',
+'loginprompt'               => "Morate imati kolačiće ('''cookies''') omogućene da biste se prijavili na {{SITENAME}}.",
+'userlogin'                 => 'Prijavi se / Registruj se',
+'logout'                    => 'Odjavi me',
+'userlogout'                => 'Odjavi me',
+'notloggedin'               => 'Niste prijavljeni',
+'nologin'                   => 'Nemate korisničko ime? $1.',
+'nologinlink'               => 'Napravite nalog',
+'createaccount'             => 'Napravi nalog',
+'gotaccount'                => 'Imate nalog? $1.',
+'gotaccountlink'            => 'Prijavi se',
+'createaccountmail'         => 'e-poštom',
+'badretype'                 => 'Lozinke koje ste unijeli se ne poklapaju.',
+'userexists'                => 'Korisničko ime koje ste unijeli je već u upotrebi.
 Molimo Vas da izaberete drugo ime.',
-'youremail'               => 'E-pošta *',
-'username'                => 'Korisničko ime:',
-'uid'                     => 'Korisnički ID:',
-'prefs-memberingroups'    => 'Član {{PLURAL:$1|grupe|grupa}}:',
-'yourrealname'            => 'Vaše pravo ime *',
-'yourlanguage'            => 'Jezik:',
-'yournick'                => 'Nadimak (za potpise):',
-'badsig'                  => 'Loš sirovi potpis.
+'youremail'                 => 'E-pošta *',
+'username'                  => 'Korisničko ime:',
+'uid'                       => 'Korisnički ID:',
+'prefs-memberingroups'      => 'Član {{PLURAL:$1|grupe|grupa}}:',
+'yourrealname'              => 'Vaše pravo ime *',
+'yourlanguage'              => 'Jezik:',
+'yournick'                  => 'Nadimak (za potpise):',
+'badsig'                    => 'Loš sirovi potpis.
 Provjerite HTML tagove.',
-'badsiglength'            => 'Potpis je predug.
+'badsiglength'              => 'Potpis je predug.
 Mora biti ispod $1 {{PLURAL:$1|karakter|karaktera}}.',
-'email'                   => 'E-mail',
-'prefs-help-realname'     => 'Pravo ime nije obavezno.
+'email'                     => 'E-mail',
+'prefs-help-realname'       => 'Pravo ime nije obavezno.
 Ako izaberete da date ime, biće korišteno za pripisivanje za vaš rad.',
-'loginerror'              => 'Greška pri prijavljivanju',
-'prefs-help-email'        => '* E-mail (optional): Enables others to contact you through your user or user_talk page without the need of revealing your identity.',
-'nocookiesnew'            => "Korisnički nalog je napravljen, ali niste prijavljeni.  {{SITENAME}} koristi kolačiće (''cookies'') da bi se korisnici prijavili.  Vi ste onemogućili kolačiće na Vašem kompjuteru.  molimo Vas da ih omogućite, a onda se prijavite sa svojim novim korisničkim imenom i lozinkom.",
-'nocookieslogin'          => "{{SITENAME}} koristi kolačiće (''cookies'') da bi se korisnici prijavili.  Vi ste onemogućili kolačiće na Vašem kompjuteru.  Molimo Vas da ih omogućite i da pokušate ponovo sa prijavom.",
-'noname'                  => 'Niste izabrali ispravno korisničko ime.',
-'loginsuccesstitle'       => 'Prijavljivanje uspješno',
-'loginsuccess'            => "'''Sad ste prijavljeni na {{SITENAME}} kao \"\$1\".'''",
-'nosuchuser'              => 'Ne postoji korisnik sa imenom "$1". Provjerite vaše kucanje, ili [[Special:UserLogin/signup|napravite novi korisnički račun]].',
-'nosuchusershort'         => 'Ne postoji korisnik sa imenom "<nowiki>$1</nowiki>".
+'loginerror'                => 'Greška pri prijavljivanju',
+'prefs-help-email'          => '* E-mail (optional): Enables others to contact you through your user or user_talk page without the need of revealing your identity.',
+'prefs-help-email-required' => 'Neophodno je navesti e-mail adresu.',
+'nocookiesnew'              => "Korisnički nalog je napravljen, ali niste prijavljeni.  {{SITENAME}} koristi kolačiće (''cookies'') da bi se korisnici prijavili.  Vi ste onemogućili kolačiće na Vašem kompjuteru.  molimo Vas da ih omogućite, a onda se prijavite sa svojim novim korisničkim imenom i lozinkom.",
+'nocookieslogin'            => "{{SITENAME}} koristi kolačiće (''cookies'') da bi se korisnici prijavili.  Vi ste onemogućili kolačiće na Vašem kompjuteru.  Molimo Vas da ih omogućite i da pokušate ponovo sa prijavom.",
+'noname'                    => 'Niste izabrali ispravno korisničko ime.',
+'loginsuccesstitle'         => 'Prijavljivanje uspješno',
+'loginsuccess'              => "'''Sad ste prijavljeni na {{SITENAME}} kao \"\$1\".'''",
+'nosuchuser'                => 'Ne postoji korisnik sa imenom "$1". Provjerite vaše kucanje, ili [[Special:UserLogin/signup|napravite novi korisnički račun]].',
+'nosuchusershort'           => 'Ne postoji korisnik sa imenom "<nowiki>$1</nowiki>".
 Provjerite da li ste dobro ukucali.',
-'nouserspecified'         => 'Morate izabrati korisničko ime.',
-'wrongpassword'           => 'Unijeli ste neispravnu lozinku.  Molimo Vas da pokušate ponovo.',
-'wrongpasswordempty'      => 'Lozinka je bila prazna.  Molimo Vas da pokušate ponovo.',
-'passwordtooshort'        => 'Vaša šifra je prekratka.
+'nouserspecified'           => 'Morate izabrati korisničko ime.',
+'wrongpassword'             => 'Unijeli ste neispravnu lozinku.  Molimo Vas da pokušate ponovo.',
+'wrongpasswordempty'        => 'Lozinka je bila prazna.  Molimo Vas da pokušate ponovo.',
+'passwordtooshort'          => 'Vaša šifra je prekratka.
 Šifra mora imati najmanje {{PLURAL:$1|1 znak|$1 znakova}} i mora se razlikovati od Vašeg korisničkog imena.',
-'mailmypassword'          => 'Pošalji mi novu šifru',
-'passwordremindertitle'   => '{{SITENAME}} podsjetnik za lozinku',
-'passwordremindertext'    => 'Neko (vjerovatno Vi, sa IP adrese $1)
+'mailmypassword'            => 'Pošalji mi novu šifru',
+'passwordremindertitle'     => '{{SITENAME}} podsjetnik za lozinku',
+'passwordremindertext'      => 'Neko (vjerovatno Vi, sa IP adrese $1)
 je zahtjevao da vam pošaljemo novu {{SITENAME}} lozinku za prijavljivanje na {{SERVERNAME}} ($4).
 Lozinka za korisnika "$2" je sad "$3".
 Sad treba da se prijavite i promjenite lozinku.
@@ -604,31 +606,31 @@ Sad treba da se prijavite i promjenite lozinku.
 Ako je neko drugi napravio ovaj zahtjev ili ako ste se sjetili vaše lozinke i
 ne želite više da je promjenite, možete da ignorišete ovu poruku i da nastavite koristeći
 vašu staru lozinku.',
-'noemail'                 => 'Ne postoji adresa e-pošte za korisnika "$1".',
-'passwordsent'            => 'Nova lozinka je poslata na adresu e-pošte
+'noemail'                   => 'Ne postoji adresa e-pošte za korisnika "$1".',
+'passwordsent'              => 'Nova lozinka je poslata na adresu e-pošte
 korisnika "$1".
 Molimo Vas da se prijavite pošto je primite.',
-'blocked-mailpassword'    => 'Da bi se spriječila nedozvoljena akcija, vašoj IP adresi je onemogućeno uređivanje stranica kao i mogućnost zahtijevanje nove lozinke.',
-'eauthentsent'            => 'Na navedenu adresu poslan je e-mail s potvrdom. 
+'blocked-mailpassword'      => 'Da bi se spriječila nedozvoljena akcija, vašoj IP adresi je onemogućeno uređivanje stranica kao i mogućnost zahtijevanje nove lozinke.',
+'eauthentsent'              => 'Na navedenu adresu poslan je e-mail s potvrdom. 
 Prije nego što pošaljemo daljnje poruke, molimo vas da otvorite e-mail i slijedite u njemu sadržana uputstva da potvrdite da ste vi kreirali korisnički račun.',
-'mailerror'               => 'Greška pri slanju e-pošte: $1',
-'emailauthenticated'      => 'Vaša e-mail adresa je autentificirana na $2 u $3.',
-'emailnotauthenticated'   => 'Vaša e-mail adresa još nije autentificirana.
+'mailerror'                 => 'Greška pri slanju e-pošte: $1',
+'emailauthenticated'        => 'Vaša e-mail adresa je autentificirana na $2 u $3.',
+'emailnotauthenticated'     => 'Vaša e-mail adresa još nije autentificirana.
 Nijedan e-mail neće biti poslan za bilo koju uslugu od slijedećih.',
-'noemailprefs'            => 'Unesite e-mail adresu za osposobljavanje slijedećih usluga.',
-'emailconfirmlink'        => 'Potvrdite Vašu e-mail adresu',
-'invalidemailaddress'     => 'Ova e-mail adresa ne može biti prihvaćena jer je u neodgovarajućem obliku.
+'noemailprefs'              => 'Unesite e-mail adresu za osposobljavanje slijedećih usluga.',
+'emailconfirmlink'          => 'Potvrdite Vašu e-mail adresu',
+'invalidemailaddress'       => 'Ova e-mail adresa ne može biti prihvaćena jer je u neodgovarajućem obliku.
 Molimo vas da unesete ispravnu adresu ili ostavite prazno polje.',
-'accountcreated'          => 'Korisnički račun je napravljen',
-'accountcreatedtext'      => 'Korisnički račun za $1 je napravljen.',
-'createaccount-title'     => 'Pravljenje korisničkog računa za {{SITENAME}}',
-'createaccount-text'      => 'Neko je napravio korisnički račun za vašu e-mail adresu na {{SITENAME}} ($4) sa imenom "$2", i sa šifrom "$3".
+'accountcreated'            => 'Korisnički račun je napravljen',
+'accountcreatedtext'        => 'Korisnički račun za $1 je napravljen.',
+'createaccount-title'       => 'Pravljenje korisničkog računa za {{SITENAME}}',
+'createaccount-text'        => 'Neko je napravio korisnički račun za vašu e-mail adresu na {{SITENAME}} ($4) sa imenom "$2", i sa šifrom "$3".
 Trebali biste se prijaviti i promjeniti šifru.
 
 Možete ignorisati ovu poruku, ako je korisnički račun napravljen greškom.',
-'login-throttled'         => 'Previše puta ste pokušali unijeti šifru za korisnički račun.
+'login-throttled'           => 'Previše puta ste pokušali unijeti šifru za korisnički račun.
 Molimo vas da sačekate prije nego što pokušate ponovo.',
-'loginlanguagelabel'      => 'Jezik: $1',
+'loginlanguagelabel'        => 'Jezik: $1',
 
 # Password reset dialog
 'resetpass'               => 'Resetuj korisničku lozinku',

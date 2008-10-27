@@ -13,6 +13,7 @@
  * @author Gondnok
  * @author KossuthRad
  * @author Samat
+ * @author Terik
  * @author Tgr
  */
 
@@ -1064,11 +1065,18 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'wikicodecomparison'      => 'Wikikód összehasonlítása',
 'editundo'                => 'visszavonás',
 'diff-multi'              => '({{PLURAL:$1|Egy közbeeső változat|$1 közbeeső változat}} nincs mutatva)',
+'diff-movedto'            => 'Áthelyezve ide: $1',
 'diff-styleadded'         => 'A(z) $1 stílus hozzáadva',
 'diff-added'              => 'A(z) $1 hozzáadva',
+'diff-changedto'          => 'Cserélve erre: $1',
+'diff-movedoutof'         => 'Elrakva innen: $1',
 'diff-styleremoved'       => 'A(z) $1 stílus eltávolítva',
 'diff-removed'            => 'A(z) $1 eltávolítva',
+'diff-changedfrom'        => 'Cserélve erről: $1',
 'diff-src'                => 'forrás',
+'diff-withdestination'    => 'céllal $1',
+'diff-with'               => '&#32;$1 $2',
+'diff-with-additional'    => '$1 $2',
 'diff-with-final'         => '&#32;és $1 $2',
 'diff-width'              => 'szélesség',
 'diff-height'             => 'magasság',
@@ -1381,6 +1389,8 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'rc_categories'                     => 'Szűkítés kategóriákra („|” jellel válaszd el őket)',
 'rc_categories_any'                 => 'Bármelyik',
 'newsectionsummary'                 => '/* $1 */ (új szakasz)',
+'rc-enhanced-expand'                => 'Részletek megjelenítése (JavaScript szükséges)',
+'rc-enhanced-hide'                  => 'Részletek elrejtése',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Kapcsolódó változtatások',
@@ -1661,7 +1671,7 @@ Egy oldal egyértelműsítő lapnak számít, ha tartalmazza a [[MediaWiki:Disam
 'nviews'                  => '$1 megtekintés',
 'specialpage-empty'       => 'Ez az oldal üres.',
 'lonelypages'             => 'Magányos lapok',
-'lonelypagestext'         => 'A következő lapokra nem mutat belső link.',
+'lonelypagestext'         => 'A következő lapok nincsenek linkelve vagy beillesztve más lapokra a(z) {{SITENAME}} wikin.',
 'uncategorizedpages'      => 'Kategorizálatlan lapok',
 'uncategorizedcategories' => 'Kategorizálatlan kategóriák',
 'uncategorizedimages'     => 'Kategorizálatlan képek',
@@ -1799,7 +1809,8 @@ Az egyes csoportokról további információt [[{{MediaWiki:Listgrouprights-help
 'mailnologintext' => 'Ahhoz hogy másoknak e-mailt küldhess, [[Special:UserLogin|be kell jelentkezned]] és meg kell adnod egy érvényes e-mail címet a [[Special:Preferences|beállításaidban]].',
 'emailuser'       => 'E-mail küldése ezen szerkesztőnek',
 'emailpage'       => 'E-mail küldése',
-'emailpagetext'   => 'Ha ez a szerkesztő érvényes e-mail-címet adott meg a beállításainál, akkor ezen űrlap kitöltésével üzenetet tudsz neki küldeni. Feladóként a [[Special:Preferences|beállításaid]]nál megadott e-mail-címed fog szerepelni, így a címzett közvetlenül neked tud majd válaszolni.',
+'emailpagetext'   => 'A szerkesztő e-mail-címére ezen űrlap kitöltésével üzenetet tudsz küldeni.
+Feladóként a [[Special:Preferences|beállításaid]]nál megadott e-mail-címed fog szerepelni, így a címzett közvetlenül neked tud majd válaszolni.',
 'usermailererror' => 'A postázó objektum által visszaadott hiba:',
 'defemailsubject' => '{{SITENAME}} e-mail',
 'noemailtitle'    => 'Nincs e-mail cím',
@@ -2738,9 +2749,16 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 'exif-lightsource-255' => 'Egyéb fényforrás',
 
 # Flash modes
-'exif-flash-fired-0' => 'A vaku nem sült el',
-'exif-flash-fired-1' => 'A vaku elsült',
-'exif-flash-mode-3'  => 'automatikus mód',
+'exif-flash-fired-0'    => 'A vaku nem sült el',
+'exif-flash-fired-1'    => 'A vaku elsült',
+'exif-flash-return-0'   => 'Nincs strobe return detection funkció.',
+'exif-flash-return-2'   => 'strobe return light nincs érzékelve',
+'exif-flash-return-3'   => 'strobe return light érzékelve',
+'exif-flash-mode-1'     => 'Kötelező vaku',
+'exif-flash-mode-2'     => 'Kötelező vakuelnyomás',
+'exif-flash-mode-3'     => 'automatikus mód',
+'exif-flash-function-1' => 'Nincs vakufunkció',
+'exif-flash-redeye-1'   => 'Vörös szem eltávolító mód',
 
 'exif-focalplaneresolutionunit-2' => 'hüvelyk',
 
@@ -2887,6 +2905,7 @@ Kérlek erősítsd meg, hogy tényleg újra akarod-e írni a lapot.",
 # action=purge
 'confirm_purge_button' => 'OK',
 'confirm-purge-top'    => 'Törlöd az oldal gyorsítótárban (cache) található változatát?',
+'confirm-purge-bottom' => 'A lap ürítésével törlődik a gyorsítótárban lévő változat, és a legújabb változat fog megjelenni.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← előző oldal',
