@@ -306,7 +306,7 @@ un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'qbfind'         => 'Finnen',
 'qbbrowse'       => 'Blädern',
 'qbedit'         => 'Ännern',
-'qbpageoptions'  => 'Siedenopschonen',
+'qbpageoptions'  => 'Disse Sied',
 'qbpageinfo'     => 'Sietendaten',
 'qbmyoptions'    => 'Instellen',
 'qbspecialpages' => 'Spezialsieten',

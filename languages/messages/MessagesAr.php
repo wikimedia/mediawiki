@@ -1532,6 +1532,8 @@ $2',
 'rc_categories'                     => 'حصر لتصنيفات (مفرقة برمز "|")',
 'rc_categories_any'                 => 'أي',
 'newsectionsummary'                 => '/* $1 */ قسم جديد',
+'rc-enhanced-expand'                => 'عرض التفاصيل (يتطلب جافاسكريبت)',
+'rc-enhanced-hide'                  => 'إخفاء التفاصيل',
 
 # Recent changes linked
 'recentchangeslinked'          => 'تغييرات ذات علاقة',

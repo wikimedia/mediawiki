@@ -1534,7 +1534,7 @@ Una [[Special:WhatLinksHere/$2|tièra completa]] es disponibla.',
 
 # Unused templates
 'unusedtemplates'     => 'Modèls inutilizats',
-'unusedtemplatestext' => "Aquesta pagina lista totas las paginas de l’espaci de noms « Modèl » que son pas inclusas dins cap d'autra pagina. Doblidetz pas de verificar se i a pas d’autre ligam cap als modèls abans de los suprimir.",
+'unusedtemplatestext' => "Aquesta pagina lista totas las paginas de l’espaci de noms « Modèl » que son pas enclusas dins cap d'autra pagina. Doblidetz pas de verificar se i a pas d’autre ligam cap als modèls abans de los suprimir.",
 'unusedtemplateswlh'  => 'autres ligams',
 
 # Random page
@@ -1553,7 +1553,7 @@ Una [[Special:WhatLinksHere/$2|tièra completa]] es disponibla.',
 'statistics-header-users'         => "Estatisticas d'utilizaire",
 'statistics-articles'             => 'Paginas de contengut',
 'statistics-pages'                => 'Paginas',
-'statistics-pages-tooltip'        => 'Totas las paginas del wiki, inclusas las paginas de discussion, las redireccions, ...',
+'statistics-pages-tooltip'        => 'Totas las paginas del wiki, enclusas las paginas de discussion, las redireccions, ...',
 'statistics-files'                => 'Fichièrs importats',
 'statistics-edits'                => 'Modificacions de paginas dempuèi que {{SITENAME}} foguèt installat',
 'statistics-edits-average'        => 'Modificacions mejanas per pagina',
@@ -1597,7 +1597,7 @@ Una pagina es tractada coma una pagina d’omonimia s'utiliza un modèl qu'es li
 'nviews'                  => '$1 {{PLURAL:$1|consultacion|consultacions}}',
 'specialpage-empty'       => 'Aquesta pagina es voida.',
 'lonelypages'             => 'Paginas orfanèlas',
-'lonelypagestext'         => 'Las paginas seguentas son pas ligadas a partir d’autras paginas de {{SITENAME}}.',
+'lonelypagestext'         => 'Las paginas seguentas son pas ligadas o enclusas a partir d’autras paginas de {{SITENAME}}.',
 'uncategorizedpages'      => 'Paginas sens categorias',
 'uncategorizedcategories' => 'Categorias sens categorias',
 'uncategorizedimages'     => 'Imatges sens categorias',
@@ -1912,7 +1912,7 @@ Clicatz sus « Precedent » e tornatz cargar la pagina d’ont venètz, puèi en
 'protect-summary-cascade'     => 'proteccion en cascada',
 'protect-expiring'            => 'expira lo $1',
 'protect-expiry-indefinite'   => 'indefinit',
-'protect-cascade'             => 'Proteccion en cascada - Protegís totas las paginas inclusas dins aquesta.',
+'protect-cascade'             => 'Proteccion en cascada - Protegís totas las paginas enclusas dins aquesta.',
 'protect-cantedit'            => "Podètz pas modificar los nivèls de proteccion d'aquesta pagina perque avètz pas la permission de l'editar.",
 'protect-othertime'           => 'Autra expiracion :',
 'protect-othertime-op'        => 'Autra expiracion',
@@ -2478,7 +2478,7 @@ Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per e
 'metadata-help'     => "Aqueste fichièr conten d'entresenhas suplementàrias probablament apondudas per l’aparelh de fòto numeric o l'escanèr que las a aquesas. Se lo fichièr es estat modificat dempuèi son estat original, d'unes detalhs pòdon reflectir pas entièrament l’imatge modificat.",
 'metadata-expand'   => 'Mostrar las entresenhas detalhadas',
 'metadata-collapse' => 'Amagar las entresenhas detalhadas',
-'metadata-fields'   => 'Los camps de metadonadas d’EXIF listats dins aqueste message seràn incluses dins la pagina de descripcion de l’imatge quand la taula de metadonadas serà reduccha. Los autres camps seràn amagats per defaut.
+'metadata-fields'   => 'Los camps de metadonadas d’EXIF listats dins aqueste message seràn encluses dins la pagina de descripcion de l’imatge quand la taula de metadonadas serà reduccha. Los autres camps seràn amagats per defaut.
 * make
 * model
 * datetimeoriginal
@@ -2882,7 +2882,7 @@ Ensajatz la previsualizacion normala.',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Una pagina es estada levada|$1 paginas son estadas levadas}} de vòstra lista de seguit :',
 'watchlistedit-raw-title'      => 'Modificacion de la lista de seguit (mòde brut)',
 'watchlistedit-raw-legend'     => 'Modificacion de la lista de seguit en mòde brut',
-'watchlistedit-raw-explain'    => 'La lista de las paginas de vòstra lista de seguit es mostrada çaijós, sens las paginas de discussion (automaticament inclusas) e destriadas per espaci de noms. Podètz modificar la lista : apondètz las paginas que volètz seguir (pauc impòrta ont), una pagina per linha, e levatz las paginas que volètz pas mai seguir. Quand avètz acabat, clicatz sul boton en bas per metre la lista a jorn. Tanben podètz utilizar [[Special:Watchlist/edit|l’editaire normal]].',
+'watchlistedit-raw-explain'    => 'La lista de las paginas de vòstra lista de seguit es mostrada çaijós, sens las paginas de discussion (enclusas automaticament) e destriadas per espaci de noms. Podètz modificar la lista : apondètz las paginas que volètz seguir (pauc impòrta ont), una pagina per linha, e levatz las paginas que volètz pas mai seguir. Quand avètz acabat, clicatz sul boton en bas per metre la lista a jorn. Tanben podètz utilizar [[Special:Watchlist/edit|l’editador normal]].',
 'watchlistedit-raw-titles'     => 'Títols :',
 'watchlistedit-raw-submit'     => 'Metre la lista a jorn',
 'watchlistedit-raw-done'       => 'Vòstra lista de seguit es estada mesa a jorn.',

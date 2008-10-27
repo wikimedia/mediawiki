@@ -1172,9 +1172,13 @@ Example: [[:Image:Addon-icn.png]]',
 'shareduploadwiki-desc'          => "This message appears after [[MediaWiki:Sharedupload]]. \$1 is a link to the file description page on the shared repository with [[MediaWiki:Shareduploadwiki-linktext]] as display text. Example: \"''The description on its file description page there is shown below.''\"",
 'shareduploadwiki-linktext'      => 'This message is used as variable $1 in [[MediaWiki:Shareduploadwiki]] and in [[MediaWiki:Shareduploadwiki-desc]]',
 'shareduploadduplicate'          => '$1 is contents of message shareduploadduplicate-linktext (i.e. "another file")',
-'shareduploadduplicate-linktext' => '{{Identical|Another file}}',
+'shareduploadduplicate-linktext' => 'This message is the text of $1 in the message [[MediaWiki:Shareduploadduplicate]].
+
+{{Identical|Another file}}',
 'shareduploadconflict'           => '$1 is contents of message shareduploadconflict-linktext (i.e. "another file")',
-'shareduploadconflict-linktext'  => '{{Identical|Another file}}',
+'shareduploadconflict-linktext'  => 'This message is the text of $1 in the message [[MediaWiki:Shareduploadconflict]].
+
+{{Identical|Another file}}',
 'noimage'                        => 'In image description page when there is no file by that name.  The variable $1 comes from {{msg|noimage-linktext}}, which is only substituted in this message.',
 'noimage-linktext'               => 'This message is used as a variable in {{msg|noimage}}, and will not be used anywhere else.',
 'imagepage-searchdupe'           => 'This message is used as text on a link from image pages to [[Special:FileDuplicateSearch]].',
@@ -1885,7 +1889,9 @@ Related messages: {{msg|right-importupload|pl=yes}} (the user right for this).',
 'tooltip-ca-nstab-category'       => 'Tooltip shown when hovering over the {{msg|nstab-category}} tab.',
 'tooltip-minoredit'               => 'Tooltip shown when hovering over the "[[MediaWiki:Minoredit/{{SUBPAGENAME}}|{{int:minoredit}}]]" link below the edit form.',
 'tooltip-save'                    => "This is the text that appears when you hover the mouse over the 'Save page' button on the edit page",
-'tooltip-preview'                 => 'Tooltip shown when hovering over the "Show preview" button.',
+'tooltip-preview'                 => 'Tooltip shown when hovering over the "Show preview" button.
+
+If the length of the translated message is over 60 characters (including spaces) then the end of the message will be cut off when using Firefox 2.0.0.7 browser, Linux operating system and the Monobook skin.',
 'tooltip-diff'                    => 'This is the text (tooltip) that appears when you hover the mouse over the "Show changes" button ({{msg|showdiff}}) on the edit page.',
 'tooltip-compareselectedversions' => 'Tooltip of {{msg|compareselectedversions}} (which is used as button in history pages).',
 'tooltip-watch'                   => '{{Identical|Add this page to your watchlist}}',

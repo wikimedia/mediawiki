@@ -153,8 +153,8 @@ $messages = array(
 'tog-watchmoves'              => 'Säiten déi ech réckelen automatesch op meng Iwwerwaachungslëscht setzen',
 'tog-watchdeletion'           => 'Säiten déi ech läschen op meng Iwwerwaachungslëscht setzen',
 'tog-minordefault'            => "Alles wat ech änneren automatesch als 'Kleng Ännerungen' weisen",
-'tog-previewontop'            => "De ''Preview'' uewen un der Ännerungsfënster weisen",
-'tog-previewonfirst'          => "Beim éischten Änneren de ''Preview'' weisen.",
+'tog-previewontop'            => "Déi ''nach-net gespäichert Versioun'' uewen un der Ännerungsfënster weisen",
+'tog-previewonfirst'          => "Beim éischten Änneren déi  ''nach net gespäichert Versioun'' weisen.",
 'tog-nocache'                 => 'Säitecache deaktivéieren',
 'tog-enotifwatchlistpages'    => 'Schéckt mir eng E-Mail wann eng vun de Säiten op menger Iwwerwaachungslëscht geännert gëtt',
 'tog-enotifusertalkpages'     => 'Schéckt mir E-Maile wa meng Diskussiounssäit geännert gëtt.',
@@ -682,14 +682,14 @@ Si gouf nach net gepäichert!'''",
 'userjspreview'                    => "'''Denkt drun datt Dir äre Javascript nëmmen test, nach ass näischt gespäichert!'''",
 'updated'                          => '(Geännert)',
 'note'                             => '<strong>Notiz:</strong>',
-'previewnote'                      => "<strong>Dëst ass nëmmen e Preview; D'Ännerunge sinn nach net gespäichert!</strong>",
+'previewnote'                      => "<strong>Dëst ass nëmmen eng nach net gespäichert Versioun; d'Ännerunge sinn nach net gespäichert!</strong>",
 'previewconflict'                  => 'Dir gesitt an dem ieweschten Textfeld wéi den Text ausgesi wäert, wann Dir späichert.',
 'session_fail_preview'             => "<strong>Är Ännerung konnt net gespäichert gi well d'Date vun ärer Sessioun verluergaange sinn.
 Versicht et w.e.g. nach eng Kéier.
 Wann de Problem dann ëmmer nach bestoe sollt, da versicht iech [[Special:UserLogout|auszeloggen]] an dann erëm anzeloggen.</strong>",
 'session_fail_preview_html'        => "<strong>Är Ännerung konnt net gespäichert gi well d'Date vun ärer Sessioun verluergaange sinn.</strong>
 
-''Well op {{SITENAME}} ''raw HTML'' aktivéiert ass, gouf de Preview ausgeblendt fir JavaScript-Attacken ze vermeiden.''
+''Well op {{SITENAME}} ''raw HTML'' aktivéiert ass, gouf d'Uweise vun der nach-net gespäicherter Versioun ausgeblend fir JavaScript-Attacken ze vermeiden.''
 
 <strong>Wann dir eng berechtigt Ännerung maache wëllt, da versicht et w.e.g. nach eng Kéier. 
 Wann de Problem dann ëmmer nach bestoe sollt, versicht iech [[Special:UserLogout|auszeloggen]] an dann erëm anzeloggen.</strong>",
@@ -725,7 +725,7 @@ Den Administrateur den D'Datebank gespaart huet, huet dës Erklärung ginn: $1",
 'cascadeprotectedwarning'          => "'''Passt op:''' Dës Säit gouf gespaart a kann nëmme vu Benotzer mat Administreursrechter geännert ginn. Si ass an dës {{PLURAL:$1|Säit|Säiten}} agebonnen, déi duerch Kaskadespäroptioun protegéiert {{PLURAL:$1|ass|sinn}}:'''",
 'titleprotectedwarning'            => '<strong>OPGEPASST: Dës Säit gouf gespaart sou datt nëmme verschidde Benotzer se uleeë kënnen.</strong>',
 'templatesused'                    => 'Schablounen déi op dëser Säit am Gebrauch sinn:',
-'templatesusedpreview'             => 'Schablounen déi an dësem Preview am Gebrauch sinn:',
+'templatesusedpreview'             => 'Schablounen déi an dëser nach net gespäicherter Versioun benotzt ginn:',
 'templatesusedsection'             => 'Schablounen déi an dësem Abschnitt am Gebrauch sinn:',
 'template-protected'               => '(protegéiert)',
 'template-semiprotected'           => '(gespaart fir net-ugemellten an nei Benotzer)',
@@ -1924,7 +1924,7 @@ $1',
 
 Kuckt d'[[Special:IPBlockList|IP Spär-Lëscht]] fir all Spären ze gesin.",
 'ipb-edit-dropdown'               => 'Spärgrënn änneren',
-'ipb-unblock-addr'                => 'Spär vum $1 annuléieren',
+'ipb-unblock-addr'                => 'Spär vum $1 ophiewen',
 'ipb-unblock'                     => 'Spär vun enger IP-Adress oder engem Benotzer annuléieren',
 'ipb-blocklist-addr'              => 'Aktuell Späre fir $1',
 'ipb-blocklist'                   => 'Kuckt aktuell Spären',
@@ -2150,7 +2150,7 @@ Späichert en op ärem Computer of a lued en hei nees erop.',
 'tooltip-pt-anonlogin'            => 'Et wier gutt, Dir géift Iech aloggen, och wann et keng Musse-Saach ass.',
 'tooltip-pt-logout'               => 'Ofmellen',
 'tooltip-ca-talk'                 => 'Diskussioun iwwert de Säiteninhalt',
-'tooltip-ca-edit'                 => 'Dës Säit ka geännert ginn. Maacht vum Preview Gebrauch a kuckt ob alles an der Rei ass ier der ofspäichert.',
+'tooltip-ca-edit'                 => 'Dës Säit ka geännert ginn. Maacht vun der Méiglechkeet Gebrauch fir ze "kucken ouni ofzespäicheren" a kuckt ob alles an der Rei ass ier der ofspäichert.',
 'tooltip-ca-addsection'           => 'Eng Bemierkung bäi dës Diskussioun derbäisetzen.',
 'tooltip-ca-viewsource'           => 'Dës Säit ass protegéiert. Nëmmen de Quelltext ka gewise ginn.',
 'tooltip-ca-history'              => 'Vireg Versioune vun dëser Säit',
@@ -2192,7 +2192,7 @@ Späichert en op ärem Computer of a lued en hei nees erop.',
 'tooltip-ca-nstab-category'       => 'Kategoriesäit weisen',
 'tooltip-minoredit'               => 'Dës Ännerung als kleng markéieren.',
 'tooltip-save'                    => 'Ännerungen späicheren',
-'tooltip-preview'                 => "Klickt op 'Preview' éier Der späichert!",
+'tooltip-preview'                 => 'Kuckt är Ännerunge ouni ofzespäicheren, Benotzt dëst w.e.g. virum späicheren!',
 'tooltip-diff'                    => 'Weis wéi eng Ännerungen der beim Text gemaach hutt.',
 'tooltip-compareselectedversions' => "D'Ennerscheeder op dëser Säit tëscht den zwou gewielte Versioune weisen.",
 'tooltip-watch'                   => 'Dës Säit op är Iwwerwaachungslëscht bäisetzen',
@@ -2626,8 +2626,8 @@ Sollt et sech net ëm äre Benotzerkont handelen, da maacht de Link *net* op. De
 'livepreview-loading' => 'Lueden …',
 'livepreview-ready'   => 'Lueden … Fäerdeg!',
 'livepreview-failed'  => "Live-Preview huet net fonctionéiert! Benotzt w.e.g. d'Fonctioun ''Kucken ouni ofzespäicheren''.",
-'livepreview-error'   => 'Verbindung net méiglech: $1 „$2“. 
-Benotzt w.e.g. de normale Preview (Kucken ouni ofzespäicheren).',
+'livepreview-error'   => "Verbindung net méiglech: $1 „$2“. 
+Benotzt w.e.g. d'Funktioun fir déi nach net gespäichert Versioun ze kucken (Kucken ouni ofzespäicheren).",
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Ännerunge vun {{PLURAL:$1|der leschter Sekonn|de leschte(n) $1 Sekonnen}} kënne an dëser Lëscht net gewise ginn.',

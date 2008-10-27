@@ -1216,6 +1216,8 @@ Assicùrete che la continuità storica de la pagina no la vegna alterà.',
 'rc_categories'                     => 'Limita a le categorie (separà da "|")',
 'rc_categories_any'                 => 'Qualsiasi',
 'newsectionsummary'                 => '/* $1 */ sezion nova',
+'rc-enhanced-expand'                => 'Mostra detagli (ghe vole JavaScript)',
+'rc-enhanced-hide'                  => 'Scondi detagli',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Modifeghe ligà a sta pàxena',

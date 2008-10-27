@@ -1282,6 +1282,8 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'rc_categories'                     => 'Nur por jenaj kategorioj (disigu per "|")',
 'rc_categories_any'                 => 'ĉiu',
 'newsectionsummary'                 => '/* $1 */ nova sekcio',
+'rc-enhanced-expand'                => 'Montri detalojn (necesas JavaScript-on)',
+'rc-enhanced-hide'                  => 'Kaŝi detalojn',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Rilataj paĝoj',
@@ -1550,7 +1552,7 @@ Paĝo estas traktata kiel apartigilo se ĝi uzas ŝablonon kiu estas ligita de [
 'nviews'                  => '{{PLURAL:$1|unufoje|$1 fojojn}}',
 'specialpage-empty'       => 'Ne estas rezultoj por ĉi tiu raporto.',
 'lonelypages'             => 'Neligitaj paĝoj',
-'lonelypagestext'         => 'Jenaj paĝoj ne estas ligitaj de aliaj paĝoj en {{SITENAME}}.',
+'lonelypagestext'         => 'La jenaj paĝoj ne estas ligitaj de aŭ transikluzivita en aliaj paĝoj en {{SITENAME}}.',
 'uncategorizedpages'      => 'Neenkategoriitaj paĝoj',
 'uncategorizedcategories' => 'Neenkategoriitaj kategorioj',
 'uncategorizedimages'     => 'Neenkategoriigitaj dosieroj',
@@ -2765,6 +2767,7 @@ Bonvolu konfirmi ke vi ja volas rekrei la paĝon.",
 # action=purge
 'confirm_purge_button' => 'Ek!',
 'confirm-purge-top'    => 'Ĉu forviŝigi la kaŝmemoron de tiu ĉi paĝo?',
+'confirm-purge-bottom' => 'Refreŝigante paĝon forviŝas la memorkaŝejon kaj devigas la plej lastan version aperi.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← antaŭa paĝo',

@@ -1552,6 +1552,7 @@ PICT # misc.
 'deadendpages'            => 'Ќорсокак страници',
 'deadendpagestext'        => 'Следните страници немаат врски кон ниту една друга страница на ова вики.',
 'protectedpages'          => 'Заштитени страници',
+'protectedpages-cascade'  => 'Само каскадни заштити',
 'protectedpagestext'      => 'Следните страници се заштитени во поглед на преместување и уредување',
 'protectedpagesempty'     => 'Во моментов нема заштитени страници со параметрите кои ги зададовте.',
 'protectedtitles'         => 'Заштитени наслови',
@@ -1859,8 +1860,8 @@ $NEWPAGE
 'pagesize'                    => '(бајти)',
 
 # Restrictions (nouns)
-'restriction-edit'   => 'Уреди',
-'restriction-move'   => 'Премести',
+'restriction-edit'   => 'Уредување',
+'restriction-move'   => 'Преместување',
 'restriction-create' => 'Креирање',
 'restriction-upload' => 'Подигнување',
 
