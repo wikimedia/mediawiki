@@ -323,7 +323,7 @@ class TextNodeDiffer {
 			} else {
 				$prevResult = new LastCommonParentResult();
 				$prevResult->parent = $this->bodyNode;
-				$prevResult->indexInLastCommonParent = 0;
+				$prevResult->indexInLastCommonParent = -1;
 			}
 			if (isset($nextleaf)) {
 				$nextResult = $nextLeaf->getLastCommonParent($deletedNodes[count($deletedNodes) - 1]);
