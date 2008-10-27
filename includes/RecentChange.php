@@ -521,7 +521,8 @@ class RecentChange
 	# Initialises the members of this object from a mysql row object
 	public function loadFromRow( $row ) {
 		$this->mAttribs = get_object_vars( $row );
-		$this->mAttribs["rc_timestamp"] = wfTimestamp(TS_MW, $this->mAttribs["rc_timestamp"]);
+		$this->mAttribs['rc_timestamp'] = wfTimestamp(TS_MW, $this->mAttribs['rc_timestamp']);
+		$this->mAttribs['rc_deleted'] = $row->rc_deleted; // MUST be set
 		$this->mExtra = array();
 	}
 
@@ -553,8 +554,7 @@ class RecentChange
 			'rc_log_type' => isset($row->rc_log_type) ? $row->rc_log_type : null,
 			'rc_log_action' => isset($row->rc_log_action) ? $row->rc_log_action : null,
 			'rc_log_id' => isset($row->rc_log_id) ? $row->rc_log_id: 0,
-			// this one REALLY should be set...
-			'rc_deleted' => isset($row->rc_deleted) ? $row->rc_deleted: 0,
+			'rc_deleted' => $row->rc_deleted // MUST be set
 		);
 		$this->mExtra = array();
 	}
