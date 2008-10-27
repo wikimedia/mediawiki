@@ -1120,7 +1120,6 @@ class UndeleteForm {
 			// If revision was hidden from sysops
 				$del = wfMsgHtml('rev-delundel');
 			} else {
-				$ts = wfTimestamp( TS_MW, $row->ar_timestamp );
 				$del = $sk->makeKnownLinkObj( $revdel,
 					wfMsgHtml('rev-delundel'),
 					'target=' . $this->mTargetObj->getPrefixedUrl() . "&artimestamp=$ts" );
