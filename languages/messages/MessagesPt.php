@@ -70,8 +70,8 @@ $separatorTransformTable = array(',' => ' ', '.' => ',' );
 #$linkTrail = '/^([a-z]+)(.*)$/sD';# ignore list
 
 $specialPageAliases = array(
-	'DoubleRedirects'           => array( 'Redireccionamentos duplos', 'redirecionamentos duplos' ),
-	'BrokenRedirects'           => array( 'Redireccionamentos quebrados', 'redirecionamentos quebrados' ),
+	'DoubleRedirects'           => array( 'Redireccionamentos duplos', 'Redirecionamentos duplos' ),
+	'BrokenRedirects'           => array( 'Redireccionamentos quebrados', 'Redirecionamentos quebrados' ),
 	'Disambiguations'           => array( 'Páginas de desambiguação', 'Desambiguar', 'Desambiguações' ),
 	'Userlogin'                 => array( 'Entrar', 'Login' ),
 	'Userlogout'                => array( 'Sair', 'Logout' ),
