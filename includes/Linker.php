@@ -1698,38 +1698,37 @@ class Linker {
 	}
 
 	/**
-	 * Given the id of an interface element, constructs the appropriate title
-	 * and accesskey attributes from the system messages.  (Note, this is usu-
-	 * ally the id but isn't always, because sometimes the accesskey needs to
-	 * go on a different element than the id, for reverse-compatibility, etc.)
-	 *
-	 * @param string $name Id of the element, minus prefixes.
-	 * @return string title and accesskey attributes, ready to drop in an
-	 *   element (e.g., ' title="This does something [x]" accesskey="x"').
+	 * @deprecated Returns raw bits of HTML, use titleAttrib() and accesskey()
 	 */
 	public function tooltipAndAccesskey( $name ) {
-		wfProfileIn( __METHOD__ );
-		$attribs = array();
-
-		$tooltip = wfMsg( "tooltip-$name" );
-		if( !wfEmptyMsg( "tooltip-$name", $tooltip ) && $tooltip != '-' ) {
-			// Compatibility: formerly some tooltips had [alt-.] hardcoded
-			$tooltip = preg_replace( "/ ?\[alt-.\]$/", '', $tooltip );
-			$attribs['title'] = $tooltip;
+		# FIXME: If Sanitizer::expandAttributes() treated "false" as "output
+		# no attribute" instead of "output '' as value for attribute", this
+		# would be three lines.
+		$attribs = array(
+			'title' => $this->titleAttrib( $name, 'withaccess' ),
+			'accesskey' => $this->accesskey( $name )
+		);
+		if ( $attribs['title'] === false ) {
+			unset( $attribs['title'] );
 		}
-
-		$accesskey = wfMsg( "accesskey-$name" );
-		if( $accesskey != '' && $accesskey != '-' &&
-		!wfEmptyMsg( "accesskey-$name", $accesskey ) ) {
-			if( isset( $attribs['title'] ) ) {
-				$attribs['title'] .= " [$accesskey]";
-			}
-			$attribs['accesskey'] = $accesskey;
+		if ( $attribs['accesskey'] === false ) {
+			unset( $attribs['accesskey'] );
 		}
+		return Xml::expandAttributes( $attribs );
+	}
 
-		$ret = Xml::expandAttributes( $attribs );
-		wfProfileOut( __METHOD__ );
-		return $ret;
+	/** @deprecated Returns raw bits of HTML, use titleAttrib() */
+	public function tooltip( $name, $options = null ) {
+		# FIXME: If Sanitizer::expandAttributes() treated "false" as "output
+		# no attribute" instead of "output '' as value for attribute", this
+		# would be two lines.
+		$tooltip = $this->titleAttrib( $name, $options );
+		if ( $tooltip === false ) {
+			return '';
+		}
+		return Xml::expandAttributes( array(
+			'title' => $this->titleAttrib( $name, $options )
+		) );
 	}
 
 	/**
@@ -1741,29 +1740,57 @@ class Linker {
 	 * @param string $name    Id of the element, minus prefixes.
 	 * @param mixed  $options null or the string 'withaccess' to add an access-
 	 *   key hint
-	 * @return string title attribute, ready to drop in an element
-	 * (e.g., ' title="This does something"').
+	 * @return string Contents of the title attribute (which you must HTML-
+	 *   escape), or false for no title attribute
 	 */
-	public function tooltip( $name, $options = null ) {
+	public function titleAttrib( $name, $options = null ) {
 		wfProfileIn( __METHOD__ );
 
-		$attribs = array();
-
 		$tooltip = wfMsg( "tooltip-$name" );
-		if( !wfEmptyMsg( "tooltip-$name", $tooltip ) && $tooltip != '-' ) {
-			$attribs['title'] = $tooltip;
+		# Compatibility: formerly some tooltips had [alt-.] hardcoded
+		$tooltip = preg_replace( "/ ?\[alt-.\]$/", '', $tooltip );
+
+		# Message equal to '-' means suppress it.
+		if ( wfEmptyMsg( "tooltip-$name", $tooltip ) || $tooltip == '-' ) {
+			$tooltip = false;
 		}
 
-		if( isset( $attribs['title'] ) && $options == 'withaccess' ) {
-			$accesskey = wfMsg( "accesskey-$name" );
-			if( $accesskey != '' && $accesskey != '-' &&
-			!wfEmptyMsg( "accesskey-$name", $accesskey ) ) {
-				$attribs['title'] .= " [$accesskey]";
+		if ( $options == 'withaccess' ) {
+			$accesskey = $this->accesskey( $name );
+			if( $accesskey !== false ) {
+				if ( $tooltip === false || $tooltip === '' ) {
+					$tooltip = "[$accesskey]";
+				} else {
+					$tooltip .= " [$accesskey]";
+				}
 			}
 		}
 
-		$ret = Xml::expandAttributes( $attribs );
 		wfProfileOut( __METHOD__ );
-		return $ret;
+		return $tooltip;
+	}
+
+	/**
+	 * Given the id of an interface element, constructs the appropriate
+	 * accesskey attribute from the system messages.  (Note, this is usually
+	 * the id but isn't always, because sometimes the accesskey needs to go on
+	 * a different element than the id, for reverse-compatibility, etc.)
+	 *
+	 * @param string $name    Id of the element, minus prefixes.
+	 * @return string Contents of the accesskey attribute (which you must HTML-
+	 *   escape), or false for no accesskey attribute
+	 */
+	public function accesskey( $name ) {
+		$accesskey = wfMsg( "accesskey-$name" );
+
+		# FIXME: Per standard MW behavior, a value of '-' means to suppress the
+		# attribute, but this is broken for accesskey: that might be a useful
+		# value.
+		if( $accesskey != ''
+		&& $accesskey != '-'
+		&& !wfEmptyMsg( "accesskey-$name", $accesskey ) ) {
+			return $accesskey;
+		}
+		return false;
 	}
 }
