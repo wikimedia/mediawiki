@@ -51,15 +51,14 @@ function wfSpecialLog( $par = '' ) {
 		$y = '';
 		$m = '';
 	}
-	# Create a LogPager item to get the results and a LogEventsList
-	# item to format them...
+	# Create a LogPager item to get the results and a LogEventsList item to format them...
 	$loglist = new LogEventsList( $wgUser->getSkin(), $wgOut, 0 );
 	$pager = new LogPager( $loglist, $type, $user, $title, $pattern, array(), $y, $m );
 	# Set title and add header
 	$loglist->showHeader( $pager->getType() );
 	# Show form options
 	$loglist->showOptions( $pager->getType(), $pager->getUser(), $pager->getPage(), $pager->getPattern(),
-		$pager->getYear(), $pager->getMonth() );
+		$pager->getYear(), $pager->getMonth(), $pager->getFilterParams() );
 	# Insert list
 	$logBody = $pager->getBody();
 	if( $logBody ) {

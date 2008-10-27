@@ -2705,6 +2705,14 @@ $wgLogRestrictions = array(
 );
 
 /**
+ * Show/hide links on Special:Log will be shown for these log types
+ * This is associative array of log => (hidden by default)
+ */
+$wgFilterLogTypes = array(
+	'patrol' => true
+);
+
+/**
  * Lists the message key string for each log type. The localized messages
  * will be listed in the user interface.
  *
