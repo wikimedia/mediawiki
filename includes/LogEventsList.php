@@ -486,7 +486,7 @@ class LogPager extends ReverseChronologicalPager {
 		$this->getDateCond( $y, $m );
 	}
 
-	function getDefaultQuery() {
+	public function getDefaultQuery() {
 		$query = parent::getDefaultQuery();
 		$query['type'] = $this->type;
 		$query['month'] = $this->mMonth;
@@ -541,7 +541,7 @@ class LogPager extends ReverseChronologicalPager {
 	 * @param string $name (In)valid user name
 	 * @private
 	 */
-	function limitUser( $name ) {
+	private function limitUser( $name ) {
 		if( $name == '' ) {
 			return false;
 		}
@@ -567,7 +567,7 @@ class LogPager extends ReverseChronologicalPager {
 	 * @param string $page Title name as text
 	 * @private
 	 */
-	function limitTitle( $page, $pattern ) {
+	private function limitTitle( $page, $pattern ) {
 		global $wgMiserMode;
 
 		$title = Title::newFromText( $page );
@@ -599,7 +599,7 @@ class LogPager extends ReverseChronologicalPager {
 		}
 	}
 
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		$this->mConds[] = 'user_id = log_user';
 		# Don't use the wrong logging index
 		if( $this->title || $this->pattern || $this->user ) {
@@ -622,7 +622,7 @@ class LogPager extends ReverseChronologicalPager {
 		return 'log_timestamp';
 	}
 
-	function getStartBody() {
+	public function getStartBody() {
 		wfProfileIn( __METHOD__ );
 		# Do a link batch query
 		if( $this->getNumRows() > 0 ) {
@@ -639,7 +639,7 @@ class LogPager extends ReverseChronologicalPager {
 		return '';
 	}
 
-	function formatRow( $row ) {
+	public function formatRow( $row ) {
 		return $this->mLogEventsList->logLine( $row );
 	}
 
