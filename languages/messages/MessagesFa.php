@@ -1481,6 +1481,8 @@ $2',
 'rc_categories'                     => 'محدود به رده‌ها بشود (بین رده‌ها نویسهٔ | را قرار دهید)',
 'rc_categories_any'                 => 'هر کدام',
 'newsectionsummary'                 => '/* $1 */ بخش تازه',
+'rc-enhanced-expand'                => 'نمایش جزئیات (نیازمند جاوااسکریپت)',
+'rc-enhanced-hide'                  => 'نفتن جزئیات',
 
 # Recent changes linked
 'recentchangeslinked'          => 'تغییرات مرتبط',
@@ -2567,11 +2569,12 @@ $1',
 'markedaspatrollederror-noautopatrol' => 'شما نمی‌توانید به تغییرات انجام شده توسط خودتان برچسب گشت بزنید.',
 
 # Patrol log
-'patrol-log-page'   => 'سیاههٔ گشت',
-'patrol-log-header' => 'این سیاهه‌ای از ویرایش‌های گشت‌خورده است.',
-'patrol-log-line'   => 'به $1 از $2 برچسب گشت زد $3',
-'patrol-log-auto'   => '(خودکار)',
-'patrol-log-diff'   => 'نسخه $1',
+'patrol-log-page'    => 'سیاههٔ گشت',
+'patrol-log-header'  => 'این سیاهه‌ای از ویرایش‌های گشت‌خورده است.',
+'patrol-log-line'    => 'به $1 از $2 برچسب گشت زد $3',
+'patrol-log-auto'    => '(خودکار)',
+'patrol-log-diff'    => 'نسخه $1',
+'logshowhide-patrol' => 'سیاههٔ گشت $1',
 
 # Image deletion
 'deletedrevision'                 => '$1 نسخهٔ حذف شدهٔ قدیمی',

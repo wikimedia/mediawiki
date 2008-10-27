@@ -2369,10 +2369,11 @@ Datoj de revizioj kaj nomoj de redaktantoj estos preservitaj.
 'markedaspatrollederror-noautopatrol' => 'Vi ne rajtas marki viajn proprajn ŝanĝojn kiel patrolitajn.',
 
 # Patrol log
-'patrol-log-page'   => 'Protokolo pri patrolado',
-'patrol-log-header' => 'Jen protokolo de patrolitaj revizioj.',
-'patrol-log-line'   => 'markis $1 el $2 patrolitajn $3',
-'patrol-log-auto'   => '(aŭtomata)',
+'patrol-log-page'    => 'Protokolo pri patrolado',
+'patrol-log-header'  => 'Jen protokolo de patrolitaj revizioj.',
+'patrol-log-line'    => 'markis $1 el $2 patrolitajn $3',
+'patrol-log-auto'    => '(aŭtomata)',
+'logshowhide-patrol' => '$1 protokolo pri patrolado',
 
 # Image deletion
 'deletedrevision'                 => 'Forigita malnova versio $1',

@@ -2351,7 +2351,7 @@ IP-адреси, що блокуються автоматично тут не в
 'tooltip-feed-rss'                => 'Трансляція в RSS для цієї сторінки',
 'tooltip-feed-atom'               => 'Трансляція в Atom для цієї сторінки',
 'tooltip-t-contributions'         => 'Перегляд внеску цього користувача',
-'tooltip-t-emailuser'             => 'Надіслати листа цьому корситувачеві',
+'tooltip-t-emailuser'             => 'Надіслати листа цьому користувачеві',
 'tooltip-t-upload'                => 'Завантажити файли',
 'tooltip-t-specialpages'          => 'Список спеціальних сторінок',
 'tooltip-t-print'                 => 'Версія для друку цієї сторінки',
@@ -2449,10 +2449,11 @@ The wiki server can't provide data in a format your client can read.",
 'markedaspatrollederror-noautopatrol' => 'Вам не дозволено позначати власні редагування як перевірені.',
 
 # Patrol log
-'patrol-log-page'   => 'Журнал патрулювання',
-'patrol-log-header' => 'Це журнал перевірених змін.',
-'patrol-log-line'   => 'перевірена $1 з $2 $3',
-'patrol-log-auto'   => '(автоматично)',
+'patrol-log-page'    => 'Журнал патрулювання',
+'patrol-log-header'  => 'Це журнал перевірених змін.',
+'patrol-log-line'    => 'перевірена $1 з $2 $3',
+'patrol-log-auto'    => '(автоматично)',
+'logshowhide-patrol' => '$1 журнал патрулювання',
 
 # Image deletion
 'deletedrevision'                 => 'Вилучена стара версія $1',

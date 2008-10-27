@@ -677,8 +677,12 @@ Možda ste već promjenili šifru ili ste zatražili novu privremenu šifru.',
 'savearticle'              => 'Sačuvaj',
 'preview'                  => 'Pregled stranice',
 'showpreview'              => 'Prikaži izgled',
+'showlivepreview'          => 'Pregled uživo',
 'showdiff'                 => 'Prikaži izmjene',
 'anoneditwarning'          => 'Niste prijavljeni. Vaša IP adresa će biti zapisana.',
+'missingsummary'           => "'''Napomena:''' Niste unijeli sažetak izmjene.
+Ako kliknete na Sačuvaj, Vaša izmjena će biti sačuvana bez sažetka.",
+'missingcommenttext'       => 'Molimo unesite komentar ispod.',
 'summary-preview'          => 'Pregled sažetka',
 'blockedtitle'             => 'Korisnik je blokiran',
 'blockedtext'              => "<big>'''Vaše korisničko ime ili IP adresa je blokirana.'''</big>
@@ -699,7 +703,7 @@ Molimo Vas da navedete gornje podatke pri zahtjevu za deblokadu.",
 'blockedoriginalsource'    => "Izvor '''$1''' je prikazan ispod:",
 'blockededitsource'        => "Sadržaj '''vaših izmjena''' na '''$1''' je prikazan ispod:",
 'whitelistedittitle'       => 'Obavezno je prijavljivanje za uređivanje',
-'whitelistedittext'        => 'Morate da se [[Special:UserLogin|prijavite]] da bi ste uređivali stranice.',
+'whitelistedittext'        => 'Da bi ste uređivali stranice, morate se $1.',
 'confirmedittitle'         => 'Potvrda e-maila je potrebna za izmjene',
 'loginreqtitle'            => 'Potrebno je prijavljivanje',
 'accmailtitle'             => 'Lozinka poslata.',
@@ -748,9 +752,10 @@ nemojte ih slati ovdje. Takođe, slanje članka podrazumijeva i vašu izjavu da 
 'longpagewarning'          => '<strong>PAŽNJA: Ova stranica ima $1 kilobajta; neki
 preglednici mogu imati problema kad uređujete stranice skoro ili veće od 32 kilobajta.
 Molimo Vas da razmotrite razbijanje stranice na manje dijelove.</strong>',
-'readonlywarning'          => '<strong>PAŽNJA:  Baza je zaključana zbog održavanja,
-tako da nećete moći da sačuvate svoje izmjene za sada.  Možda želite da kopirate
-i nalijepite tekst u tekst editor i sačuvate ga za kasnije.</strong>',
+'readonlywarning'          => '<strong>PAŽNJA: Baza je zaključana zbog održavanja, tako da nećete moći da sačuvate svoje izmjene za sada. 
+Možda želite da kopirate i nalijepite tekst u tekst editor i sačuvate ga za kasnije.</strong>
+
+Administrator koji je zaključao bazu je naveo slijedeće objašnjenje: $1',
 'protectedpagewarning'     => '<strong>PAŽNJA: Ova stranica je zaključana tako da samo korisnici sa administratorskim privilegijama mogu da je mijenjaju.</strong>',
 'semiprotectedpagewarning' => "'''Pažnja:''' Ova stranica je zaključana tako da je samo registrovani korisnici mogu uređivati.",
 'templatesused'            => 'Šabloni koji su upotrebljeni na ovoj stranici:',
@@ -843,7 +848,7 @@ koje sadrže sve izraze koji se traže će se pojaviti u rezultatima).",
 'preferences'             => 'Podešavanja',
 'mypreferences'           => 'Moje postavke',
 'prefsnologin'            => 'Niste prijavljeni',
-'prefsnologintext'        => 'Morate biti [[Special:UserLogin|prijavljeni]] da biste podešavali korisnička podešavanja.',
+'prefsnologintext'        => 'Da biste mogli podešavati korisnička podešavanja, morate <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} biti prijavljeni]</span>.',
 'prefsreset'              => 'Podešavanja su vraćena na prvotne vrijednosti.',
 'qbsettings'              => 'Podešavanja brze palete',
 'qbsettings-none'         => 'Nikakva',
@@ -1485,11 +1490,11 @@ U drugom slučaju možete koristiti i vezu, npr. [[{{ns:special}}:Export/{{Media
 'notacceptable'     => 'Viki server ne može da pruži podatke u onom formatu koji Vaš klijent može da pročita.',
 
 # Attribution
-'anonymous'        => 'Anonimni korisnik od {{SITENAME}}',
+'anonymous'        => '{{PLURAL:$1|Anonimni korisnik|Anonimna korisnika|Anonimnih korisnika}} projekta {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} korisnik $1',
 'lastmodifiedatby' => 'Ovu stranicu je posljednji put promjenio $3, u $2, $1', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Bazirano na radu od strane korisnika $1.',
-'siteusers'        => '{{SITENAME}} korisnik (korisnici) $1',
+'siteusers'        => '{{SITENAME}} $1 {{PLURAL:$2|korisnik|korisnika}}',
 
 # Spam protection
 'spamprotectiontitle' => 'Filter za zaštitu od neželjenih poruka',

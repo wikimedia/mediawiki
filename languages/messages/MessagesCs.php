@@ -2481,10 +2481,11 @@ V druhém případě můžete také používat přímý odkaz, např. pomocí [[
 'markedaspatrollederror-noautopatrol' => 'Nemáte dovoleno označovat vlastní editace jako prověřené.',
 
 # Patrol log
-'patrol-log-page'   => 'Kniha prověřených editací',
-'patrol-log-header' => 'Toto je kniha prověřených verzí.',
-'patrol-log-line'   => 'označuje revizi $1 stránky $2 za prověřenou $3',
-'patrol-log-auto'   => '(automaticky)',
+'patrol-log-page'    => 'Kniha prověřených editací',
+'patrol-log-header'  => 'Toto je kniha prověřených verzí.',
+'patrol-log-line'    => 'označuje revizi $1 stránky $2 za prověřenou $3',
+'patrol-log-auto'    => '(automaticky)',
+'logshowhide-patrol' => '$1 knihu záznamů patroly',
 
 # Image deletion
 'deletedrevision'                 => 'Smazána stará revize $1',

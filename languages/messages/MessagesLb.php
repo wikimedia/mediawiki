@@ -1199,6 +1199,8 @@ iwwerpréift déi korrekt Installatioun vu LaTeX, dvips, gs a convert",
 'rc_categories_any'                 => 'All',
 'rc-change-size'                    => '$1 {{PLURAL:$1|Byte|Bytes}}',
 'newsectionsummary'                 => 'Neien Abschnitt /* $1 */',
+'rc-enhanced-expand'                => 'Detailer weisen (erfuedert JavaScript)',
+'rc-enhanced-hide'                  => 'Detailer verstoppen',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Ännerungen op verlinkte Säiten',
@@ -1476,6 +1478,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'wantedcategories'        => 'Gewënschte Kategorien',
 'wantedpages'             => 'Gewënschte Säiten',
 'wantedfiles'             => 'Gewënschte Fichieren',
+'wantedtemplates'         => 'Gewënschte Schablounen',
 'mostlinked'              => 'Dacks verlinkte Säiten',
 'mostlinkedcategories'    => 'Dacks benotzte Kategorien',
 'mostlinkedtemplates'     => 'Dacks benotzte Schablounen',

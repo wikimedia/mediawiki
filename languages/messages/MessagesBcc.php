@@ -1237,6 +1237,8 @@ Legend: (cur) = تفاوتان گون هنوکین نسخه,
 'rc_categories'                     => 'محدودیت په دسته جات(دورش گون"|")',
 'rc_categories_any'                 => 'هرچی',
 'newsectionsummary'                 => '/* $1 */ نوکین بخش',
+'rc-enhanced-expand'                => 'جزییات پیش دار(جاوا اسکریپت لازمنت)',
+'rc-enhanced-hide'                  => 'پناه کتن جزییات',
 
 # Recent changes linked
 'recentchangeslinked'          => 'مربوطین تغییرات',
@@ -1533,7 +1535,7 @@ PICT # misc.
 'nviews'                  => '$1 {{PLURAL:$1|دیستن|دیستن}}',
 'specialpage-empty'       => 'په ای گزارش هچ نتیجه ای نیست ان.',
 'lonelypages'             => 'صفحات یتیم',
-'lonelypagestext'         => 'جهلیگین صفحات چه دگه صفحات لینک نه بوتگنت ته {{SITENAME}}.',
+'lonelypagestext'         => 'جهلیگین صفحات چه دگه صفحات لینک یا داهل نه بوتگنت ته {{SITENAME}}.',
 'uncategorizedpages'      => 'صفحات بی دسته',
 'uncategorizedcategories' => 'دسته جات دسته بندی نه بوتگین',
 'uncategorizedimages'     => 'فایلان بی دسته',
@@ -1544,6 +1546,7 @@ PICT # misc.
 'wantedcategories'        => 'لوٹتگین دسته جات',
 'wantedpages'             => 'لوٹتگین صفحات',
 'wantedfiles'             => 'لوٹتگین فایلان',
+'wantedtemplates'         => 'لوٹتگین تمپلت',
 'mostlinked'              => 'صفحاتی که گیشنر لینک دیگ بیتگنت',
 'mostlinkedcategories'    => 'دسته جاتی که گیشتر لینک دیگ بیتگنت',
 'mostlinkedtemplates'     => 'تمپلتانی که گیشتر لینک بیتگنت',
@@ -1669,7 +1672,7 @@ PICT # misc.
 'mailnologintext' => 'شما بایدن [[Special:UserLogin|وارد بیت]] و یک معتبرین آدرس ایمیلی داشته بیت ته وتی [[Special:Preferences|ترجیحات]] په دیم داتن ایمیل په دگه کاربران',
 'emailuser'       => 'په ای کابر ایمیل دیم دی',
 'emailpage'       => 'ایمیل کاربر',
-'emailpagetext'   => 'اگر ای کاربر یک معتبرین آدرس ایمیلی ته وتی ترجیحات کاربری وارد کتت،جهلگین فرم په آیء یک کوله ای دیم دنت.
+'emailpagetext'   => 'گر ای کاربر یک معتبرین آدرس ایمیلی ته وتی ترجیحات کاربری وارد کتت،جهلگین فرم په آیء یک کوله ای دیم دنت.
 آدرس ایمیلی که شما وارد کتت ته [[Special:Preferences|وتی ترجیحات]] په داب آدرس  "From" پیش دارگ بیت، اچه گروک ایمیل تونیت پسوء دنت.',
 'usermailererror' => 'شی ایمیل حطا پیش داشت',
 'defemailsubject' => '{{SITENAME}} ایمیل',
@@ -2365,11 +2368,12 @@ $1',
 'markedaspatrollederror-noautopatrol' => 'شما را اجازت نیست وتی تغییراتء په عنوان نظارت بیتگین نشان کنیت.',
 
 # Patrol log
-'patrol-log-page'   => 'آمار نظارت',
-'patrol-log-header' => 'شی آماری چه بازبینی آن گشتی انت.',
-'patrol-log-line'   => 'نشان هلگ بیتن $1 چه $2 نظارت $3',
-'patrol-log-auto'   => '(اتوماتیک)',
-'patrol-log-diff'   => 'ر$1',
+'patrol-log-page'    => 'آمار نظارت',
+'patrol-log-header'  => 'شی آماری چه بازبینی آن گشتی انت.',
+'patrol-log-line'    => 'نشان هلگ بیتن $1 چه $2 نظارت $3',
+'patrol-log-auto'    => '(اتوماتیک)',
+'patrol-log-diff'    => 'ر$1',
+'logshowhide-patrol' => '$1  آمار گشت',
 
 # Image deletion
 'deletedrevision'                 => 'قدیمی بازبینی $1 حذف بوت',
@@ -2842,6 +2846,7 @@ $1
 # action=purge
 'confirm_purge_button' => 'هوبنت',
 'confirm-purge-top'    => 'ذخیره ای صفحه پهک کنت؟',
+'confirm-purge-bottom' => 'خالک کتن میانگیر یک صفحه باعث بیتن که آخرین نسخهٔ آی پیش دارگ بیت.',
 
 # Separators for various lists, etc.
 'semicolon-separator' => ';',

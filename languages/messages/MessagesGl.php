@@ -1246,6 +1246,8 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'rc_categories'                     => 'Límite para categorías (separado con "|")',
 'rc_categories_any'                 => 'Calquera',
 'newsectionsummary'                 => 'Nova sección: /* $1 */',
+'rc-enhanced-expand'                => 'Amosar os detalles (require JavaScript)',
+'rc-enhanced-hide'                  => 'Agochar os detalles',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Cambios relacionados',
@@ -2352,10 +2354,11 @@ Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está n
 'markedaspatrollederror-noautopatrol' => 'Non está permitido que un mesmo marque as propias edicións como revisadas.',
 
 # Patrol log
-'patrol-log-page'   => 'Rexistro de revisións',
-'patrol-log-header' => 'Este é un rexistro das revisións patrulladas.',
-'patrol-log-line'   => 'marcou a $1 de "$2" como revisada $3',
-'patrol-log-auto'   => '(automático)',
+'patrol-log-page'    => 'Rexistro de revisións',
+'patrol-log-header'  => 'Este é un rexistro das revisións patrulladas.',
+'patrol-log-line'    => 'marcou a $1 de "$2" como revisada $3',
+'patrol-log-auto'    => '(automático)',
+'logshowhide-patrol' => '$1 o rexistro de patrullas',
 
 # Image deletion
 'deletedrevision'                 => 'A revisión vella $1 foi borrada.',

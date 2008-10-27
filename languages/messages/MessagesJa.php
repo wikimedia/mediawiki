@@ -2145,7 +2145,7 @@ $NEWPAGE
 
 # Scripts
 'common.js'   => '/* ここに書いた JavaScript は全てのページ上で実行されます */',
-'monobook.js' => '/* こちらは廃止されました; [[MediaWiki:Common.js]]をお使いください */',
+'monobook.js' => '/* ここに書かれた JavaScript は MonoBook スキンを使っている全利用者に適用されます */',
 
 # Metadata
 'nodublincore'      => 'このサーバーでは Dublin Core RDF メタデータが許可されていません。',
@@ -2198,11 +2198,12 @@ $NEWPAGE
 'markedaspatrollederror-noautopatrol' => '自分自身による編集をパトロール済みにする権限がありません。',
 
 # Patrol log
-'patrol-log-page'   => 'パトロール記録',
-'patrol-log-header' => '以下はパトロールされた版の記録です。',
-'patrol-log-line'   => '$2 の $1 をパトロール済みにマーク$3',
-'patrol-log-auto'   => '（自動）',
-'patrol-log-diff'   => '第$1版',
+'patrol-log-page'    => 'パトロール記録',
+'patrol-log-header'  => '以下はパトロールされた版の記録です。',
+'patrol-log-line'    => '$2 の $1 をパトロール済みにマーク$3',
+'patrol-log-auto'    => '（自動）',
+'patrol-log-diff'    => '第$1版',
+'logshowhide-patrol' => 'パトロール・ログを$1',
 
 # Image deletion
 'deletedrevision'                 => '古い版 $1 を削除しました',

@@ -2329,11 +2329,12 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'markedaspatrollederror-noautopatrol' => 'Non si dispone dei permessi necessari per segnare le proprie modifiche come verificate.',
 
 # Patrol log
-'patrol-log-page'   => 'Modifiche verificate',
-'patrol-log-header' => 'Di seguito sono elencate le verifiche delle modifiche.',
-'patrol-log-line'   => 'ha segnato la $1 alla pagina $2 come verificata $3',
-'patrol-log-auto'   => '(verifica automatica)',
-'patrol-log-diff'   => 'modifica $1',
+'patrol-log-page'    => 'Modifiche verificate',
+'patrol-log-header'  => 'Di seguito sono elencate le verifiche delle modifiche.',
+'patrol-log-line'    => 'ha segnato la $1 alla pagina $2 come verificata $3',
+'patrol-log-auto'    => '(verifica automatica)',
+'patrol-log-diff'    => 'modifica $1',
+'logshowhide-patrol' => '$1 log delle modifiche verificate',
 
 # Image deletion
 'deletedrevision'                 => 'Cancellata la vecchia revisione di $1.',

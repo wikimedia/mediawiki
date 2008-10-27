@@ -2691,11 +2691,12 @@ $1',
 'markedaspatrollederror-noautopatrol' => 'من غير المسموح لك التعليم على تغييراتك الشخصية كمراجعة.',
 
 # Patrol log
-'patrol-log-page'   => 'سجل المراجعة',
-'patrol-log-header' => 'هذا سجل بالمراجعات المراجعة.',
-'patrol-log-line'   => 'علم على $1 من $2 كمراجعة $3',
-'patrol-log-auto'   => '(تلقائيا)',
-'patrol-log-diff'   => 'ن$1',
+'patrol-log-page'    => 'سجل المراجعة',
+'patrol-log-header'  => 'هذا سجل بالمراجعات المراجعة.',
+'patrol-log-line'    => 'علم على $1 من $2 كمراجعة $3',
+'patrol-log-auto'    => '(تلقائيا)',
+'patrol-log-diff'    => 'ن$1',
+'logshowhide-patrol' => '$1 سجل المراجعة',
 
 # Image deletion
 'deletedrevision'                 => 'حذف المراجعة القديمة $1',
