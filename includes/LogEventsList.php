@@ -80,7 +80,7 @@ class LogEventsList {
 			$this->getTitleInput( $page ) . "\n" .
 			( !$wgMiserMode ? ($this->getTitlePattern( $pattern )."\n") : "" ) .
 			"<p>" . $this->getDateMenu( $y, $m ) . "\n" .
-			( empty($filter) ? "</p><p>".$this->getFilterLinks( $type, $filter )."\n" : "" ) .
+			( !empty($filter) ? "</p><p>".$this->getFilterLinks( $type, $filter )."\n" : "" ) .
 			Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "</p>\n" .
 			"</fieldset></form>"
 		);
