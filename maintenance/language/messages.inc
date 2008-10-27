@@ -287,6 +287,8 @@ $wgMessageStructure = array(
 		'anonnotice',
 		'newsectionheaderdefaultlevel',
 		'red-link-title',
+		'protected-sub-allowed',
+		'protected-sub-disallowed',
 	),
 	'nstab' => array(
 		'nstab-main',

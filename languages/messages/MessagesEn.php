@@ -772,6 +772,8 @@ See [[Special:Version|version page]].',
 'anonnotice'                   => '-', # do not translate or duplicate this message to other languages
 'newsectionheaderdefaultlevel' => '== $1 ==', # do not translate or duplicate this message to other languages
 'red-link-title'               => '$1 (not yet written)',
+'protected-sub-allowed'        => "Some users '''cannot edit this page''' because it has been [$1 restricted] to prevent editing",
+'protected-sub-disallowed'     => "You '''cannot edit this page''' because it has been [$1 restricted] to prevent editing",
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Page',
@@ -3727,9 +3729,5 @@ Enter the filename without the "{{ns:image}}:" prefix.',
 #Lines beginning with # are treated as comments
 
 #Put all regex fragments above this line. Leave this line exactly as it is</pre>',
-
-# Unknown messages
-'protected-sub-allowed'    => "Some users '''cannot edit this page''' because it has been [$1 restricted] to prevent editing",
-'protected-sub-disallowed' => "You '''cannot edit this page''' because it has been [$1 restricted] to prevent editing",
 
 );
