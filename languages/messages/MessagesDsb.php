@@ -2297,10 +2297,11 @@ W zespominanju dajo se pśicyna pódaś.',
 'markedaspatrollederror-noautopatrol' => 'Njesmějoš swóje změny ako kontrolěrowane markěrowaś.',
 
 # Patrol log
-'patrol-log-page'   => 'Log-lisćina kontrolow',
-'patrol-log-header' => 'To jo protokol pśekontrolowanych wersijow.',
-'patrol-log-line'   => 'markěrował $1 wót $2 ako kontrolěrowane $3.',
-'patrol-log-auto'   => '(awtomatiski)',
+'patrol-log-page'    => 'Log-lisćina kontrolow',
+'patrol-log-header'  => 'To jo protokol pśekontrolowanych wersijow.',
+'patrol-log-line'    => 'markěrował $1 wót $2 ako kontrolěrowane $3.',
+'patrol-log-auto'    => '(awtomatiski)',
+'logshowhide-patrol' => 'Protokol doglědowanja $1',
 
 # Image deletion
 'deletedrevision'                 => 'wulašowana stara wersija: $1',

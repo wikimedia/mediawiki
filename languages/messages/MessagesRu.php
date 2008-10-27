@@ -1346,6 +1346,8 @@ $3 указал следующую причину: ''$2''",
 'rc_categories'                     => 'Только из категорий (разделитель «|»)',
 'rc_categories_any'                 => 'Любой',
 'newsectionsummary'                 => '/* $1 */ Новая тема',
+'rc-enhanced-expand'                => 'Показать подробности (используется JavaScript)',
+'rc-enhanced-hide'                  => 'Скрыть подробности',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Связанные правки',
@@ -1626,7 +1628,7 @@ PICT # различные
 'nviews'                  => '$1 {{PLURAL:$1|просмотр|просмотра|просмотров}}',
 'specialpage-empty'       => 'Запрос не дал результатов.',
 'lonelypages'             => 'Страницы-сироты',
-'lonelypagestext'         => 'На следующие страницы нет ссылок с других страниц данной вики.',
+'lonelypagestext'         => 'На следующие страницы нет ссылок с других страниц {{grammar:genitive|{{SITENAME}}}}, и они не включаются в другие страницы.',
 'uncategorizedpages'      => 'Некатегоризованные страницы',
 'uncategorizedcategories' => 'Некатегоризованные категории',
 'uncategorizedimages'     => 'Некатегоризованные изображения',
@@ -2448,10 +2450,11 @@ The wiki server can't provide data in a format your client can read.",
 'markedaspatrollederror-noautopatrol' => 'Вам не разрешено отмечать собственные правки как проверенные.',
 
 # Patrol log
-'patrol-log-page'   => 'Журнал патрулирования',
-'patrol-log-header' => 'Это журнал патрулированных версий.',
-'patrol-log-line'   => 'проверена $1 из $2 $3',
-'patrol-log-auto'   => '(автоматически)',
+'patrol-log-page'    => 'Журнал патрулирования',
+'patrol-log-header'  => 'Это журнал патрулированных версий.',
+'patrol-log-line'    => 'проверена $1 из $2 $3',
+'patrol-log-auto'    => '(автоматически)',
+'logshowhide-patrol' => '$1 журнал патрулирования',
 
 # Image deletion
 'deletedrevision'                 => 'Удалена старая версия $1',

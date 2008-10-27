@@ -2261,8 +2261,7 @@ No hay un directorio temporal.',
 
 # Scripts
 'common.js'   => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios en cada carga de página. */',
-'monobook.js' => '/* El código JavaScript que se ponga aquí será cargado por los usuarios de la piel MonoBook */
-/* No obstante se recomienda usar únicamente MediaWiki:common.js que hará que todos carguen el código */',
+'monobook.js' => '/* El código JavaScript que se ponga aquí será cargado por los usuarios de la piel MonoBook */',
 
 # Metadata
 'nodublincore'      => 'Metadatos Dublin Core RDF deshabilitados en este servidor.',

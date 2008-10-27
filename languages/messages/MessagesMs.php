@@ -2341,11 +2341,12 @@ Semua tindakan import transwiki dicatatkan dalam [[Special:Log/import|log import
 'markedaspatrollederror-noautopatrol' => 'Anda tidak dibenarkan menanda ronda perubahan anda sendiri.',
 
 # Patrol log
-'patrol-log-page'   => 'Log pemeriksaan',
-'patrol-log-header' => 'Berikut ialah log rondaan bagi semakan.',
-'patrol-log-line'   => 'menandakan $1 bagi $2 sebagai telah diperiksa $3',
-'patrol-log-auto'   => '(automatik)',
-'patrol-log-diff'   => 's$1',
+'patrol-log-page'    => 'Log pemeriksaan',
+'patrol-log-header'  => 'Berikut ialah log rondaan bagi semakan.',
+'patrol-log-line'    => 'menandakan $1 bagi $2 sebagai telah diperiksa $3',
+'patrol-log-auto'    => '(automatik)',
+'patrol-log-diff'    => 's$1',
+'logshowhide-patrol' => '$1 log rondaan',
 
 # Image deletion
 'deletedrevision'                 => 'Menghapuskan semakan lama $1.',
@@ -2701,7 +2702,7 @@ sebelum meminta kod baru.
 </div>',
 'confirmemail_send'        => 'E-melkan kod pengesahan',
 'confirmemail_sent'        => 'E-mel pengesahan dikirim.',
-'confirmemail_oncreate'    => 'Sebuah kod pengesahan telah dikirm kepada alamat e-mel anda.
+'confirmemail_oncreate'    => 'Sebuah kod pengesahan telah dikirim kepada alamat e-mel anda.
 Kod ini tidak diperlukan untuk log masuk, akan tetapi anda perlu menyediakannya untuk
 mengaktifkan ciri-ciri e-mel yang terdapat dalam wiki ini.',
 'confirmemail_sendfailed'  => '{{SITENAME}} tidak dapat menghantar e-mel pengesahan anda. Sila semak alamat e-mel tersebut.

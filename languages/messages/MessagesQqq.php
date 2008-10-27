@@ -1927,11 +1927,12 @@ See also [[MediaWiki:Lastmodifiedat/{{SUBPAGENAME}}]].', # $1 date, $2 time, $3 
 'mw_math_mathml' => 'In user preferences.',
 
 # Patrol log
-'patrol-log-page' => 'Name of log.',
-'patrol-log-line' => 'Text of notes on entries in the [[Special:Log|patrol log]]. $1 is the reference number of the revision in [[Mediawiki:patrol-log-diff]]. $2 is the page title. $3 appears to be [[Mediawiki:Patrol-log-auto]] (at least sometimes).',
-'patrol-log-auto' => 'Automated edit summary when patrolling.
+'patrol-log-page'    => 'Name of log.',
+'patrol-log-line'    => 'Text of notes on entries in the [[Special:Log|patrol log]]. $1 is the reference number of the revision in [[Mediawiki:patrol-log-diff]]. $2 is the page title. $3 appears to be [[Mediawiki:Patrol-log-auto]] (at least sometimes).',
+'patrol-log-auto'    => 'Automated edit summary when patrolling.
 
 {{Identical|Automatic}}',
+'logshowhide-patrol' => '* $1 is one of {{msg|show}} or {{msg|hide}}',
 
 # Browsing diffs
 'previousdiff' => 'Used when viewing the difference between edits. See also {{msg|nextdiff}}.',

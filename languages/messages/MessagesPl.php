@@ -2026,7 +2026,7 @@ Możesz mieć zły link lub wersja mogła zostać odtworzona lub usunięta z arc
 'undeletebtn'                  => 'Odtwórz',
 'undeletelink'                 => 'odtwórz',
 'undeletereset'                => 'Wyczyść',
-'undeleteinvert'               => 'Zaznacz/odznacz wszystkie',
+'undeleteinvert'               => 'Odwróć zaznaczenie',
 'undeletecomment'              => 'Powód odtworzenia:',
 'undeletedarticle'             => 'odtworzył [[$1]]',
 'undeletedrevisions'           => 'odtworzono {{PLURAL:$1|1 wersję|$1 wersje|$1 wersji}}',
@@ -2483,10 +2483,11 @@ Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony int
 'markedaspatrollederror-noautopatrol' => 'Nie masz uprawnień wymaganych do oznaczania swoich edycji jako „sprawdzone”.',
 
 # Patrol log
-'patrol-log-page'   => 'Dziennik patrolowania',
-'patrol-log-header' => 'Poniżej znajduje się dziennik patrolowania stron.',
-'patrol-log-line'   => 'oznaczył wersję $1 hasła $2 jako sprawdzoną $3',
-'patrol-log-auto'   => '(automatycznie)',
+'patrol-log-page'    => 'Dziennik patrolowania',
+'patrol-log-header'  => 'Poniżej znajduje się dziennik patrolowania stron.',
+'patrol-log-line'    => 'oznaczył wersję $1 hasła $2 jako sprawdzoną $3',
+'patrol-log-auto'    => '(automatycznie)',
+'logshowhide-patrol' => '$1 rejestr sprawdzania',
 
 # Image deletion
 'deletedrevision'                 => 'Usunięto poprzednie wersje $1',

@@ -2614,11 +2614,12 @@ Meestal wordt dit door een externe verwijzing op een zwarte lijst veroorzaakt.',
 'markedaspatrollederror-noautopatrol' => 'U kunt uw eigen wijzigingen niet als gecontroleerd markeren.',
 
 # Patrol log
-'patrol-log-page'   => 'Markeerlogboek',
-'patrol-log-header' => 'Dit logboek bevat versies die gemarkeerd zijn als gecontroleerd.',
-'patrol-log-line'   => 'markeerde versie $1 van $2 als gecontroleerd $3',
-'patrol-log-auto'   => '(automatisch)',
-'patrol-log-diff'   => '$1',
+'patrol-log-page'    => 'Markeerlogboek',
+'patrol-log-header'  => 'Dit logboek bevat versies die gemarkeerd zijn als gecontroleerd.',
+'patrol-log-line'    => 'markeerde versie $1 van $2 als gecontroleerd $3',
+'patrol-log-auto'    => '(automatisch)',
+'patrol-log-diff'    => '$1',
+'logshowhide-patrol' => 'Markeerlogboek $1',
 
 # Image deletion
 'deletedrevision'                 => 'Oude versie $1 verwijderd.',

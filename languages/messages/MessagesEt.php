@@ -600,7 +600,7 @@ Lehe eelnevad kustutamised:",
 
 # "Undo" feature
 'undo-success' => 'Selle redaktsiooni käigus tehtud muudatusi saab eemaldada. Palun kontrolli allolevat võrdlust veendumaks, et tahad need muudatused tõepoolest eemaldada. Seejärel saad lehekülje salvestada.',
-'undo-summary' => 'Tühistati muudatus $1, mille tegi [[Special:Contributions/$2|$2]] ([[User talk:$2|Arutelu]])',
+'undo-summary' => 'Tühistati muudatus $1, mille tegi [[Special:Contributions/$2|$2]] ([[User talk:$2|arutelu]])',
 
 # History pages
 'viewpagelogs'        => 'Vaata selle lehe logisid',
@@ -1011,11 +1011,12 @@ võidakse sinu ligipääs sulgeda.',
 'emailuser'       => 'Saada sellele kasutajale e-kiri',
 'emailpage'       => 'Saada kasutajale e-kiri',
 'emailpagetext'   => 'Kui see kasutaja on oma eelistuste lehel sisestanud e-posti aadressi, siis saate alloleva vormi kaudu talle kirja saata. Et kasutaja saaks vastata, täidetakse kirja saatja väli "kellelt" e-posti aadressiga, mille olete sisestanud oma eelistuste lehel.',
-'emailfrom'       => 'Kellelt',
-'emailto'         => 'Kellele',
-'emailsubject'    => 'Pealkiri',
-'emailmessage'    => 'Sõnum',
+'emailfrom'       => 'Kellelt:',
+'emailto'         => 'Kellele:',
+'emailsubject'    => 'Pealkiri:',
+'emailmessage'    => 'Sõnum:',
 'emailsend'       => 'Saada',
+'emailccme'       => 'Saada mulle koopia.',
 'emailsent'       => 'E-post saadetud',
 'emailsenttext'   => 'Teie sõnum on saadetud.',
 
@@ -1041,7 +1042,7 @@ Kui tahad seda lehte hiljem jälgimisloendist eemaldada, klõpsa päisenupule "L
 'unwatchthispage'      => 'Ära jälgi',
 'notanarticle'         => 'Pole artikkel',
 'watchnochange'        => 'Valitud perioodi jooksul ei ole üheski jälgitavas artiklis muudatusi tehtud.',
-'watchlist-details'    => '{{PLURAL:$1|$1 lehekülg|$1 lehekülge}} jälgimisloendis (ei arvestata arutelulehekülgi).',
+'watchlist-details'    => 'Jälgimisloendis on {{PLURAL:$1|$1 lehekülg|$1 lehekülge}} (ei arvestata arutelulehekülgi).',
 'wlheader-showupdated' => "* Leheküljed, mida on muudetud peale sinu viimast külastust, on '''rasvases kirjas'''",
 'watchmethod-list'     => 'jälgitavate lehekülgede viimased muudatused',
 'watchlistcontains'    => 'Sinu jälgimisloendis on $1 {{PLURAL:$1|artikkel|artiklit}}.',
@@ -1112,6 +1113,7 @@ Kõik toodud kellaajad järgivad serveriaega.',
 'prot_1movedto2'              => 'Lehekülg "[[$1]]" teisaldatud pealkirja "[[$2]]" alla',
 'protect-legend'              => 'Kinnita kaitsmine',
 'protectcomment'              => 'Põhjus',
+'protectexpiry'               => 'Aegub:',
 'protect-text'                => 'Siin võite vaadata ja muuta lehekülje <strong><nowiki>$1</nowiki></strong> kaitsesätteid.',
 'protect-default'             => '(tavaline)',
 'protect-level-autoconfirmed' => 'Ainult registreeritud kasutajad',
@@ -1456,6 +1458,10 @@ Kinnituskood aegub $4.',
 
 # Delete conflict
 'deletedwhileediting' => 'Hoiatus: Sel ajal, kui Te artiklit redigeerisite, on keegi selle kustutanud!',
+
+# Multipage image navigation
+'imgmultipageprev' => '← eelmine lehekülg',
+'imgmultipagenext' => 'järgmine lehekülg →',
 
 # Auto-summaries
 'autosumm-blank'   => 'Kustutatud kogu lehekülje sisu',

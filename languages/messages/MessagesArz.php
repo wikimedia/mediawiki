@@ -2556,11 +2556,12 @@ $1',
 'markedaspatrollederror-noautopatrol' => 'مش مسموح ليك تعلم على تغييراتك الشخصية كأنها متراجعة.',
 
 # Patrol log
-'patrol-log-page'   => 'سجل المراجعة',
-'patrol-log-header' => 'دا سجل بالنسخ المتراجعة',
-'patrol-log-line'   => 'علم على $1 من $2 كأنها متراجعة $3',
-'patrol-log-auto'   => '(اوتوماتيكي)',
-'patrol-log-diff'   => 'ن$1',
+'patrol-log-page'    => 'سجل المراجعة',
+'patrol-log-header'  => 'دا سجل بالنسخ المتراجعة',
+'patrol-log-line'    => 'علم على $1 من $2 كأنها متراجعة $3',
+'patrol-log-auto'    => '(اوتوماتيكي)',
+'patrol-log-diff'    => 'ن$1',
+'logshowhide-patrol' => '$1 سجل المراجعة',
 
 # Image deletion
 'deletedrevision'                 => 'مسح النسخة القديمة $1',
