@@ -289,6 +289,7 @@ The following extensions are migrated into MediaWiki 1.14:
   JavaScript is disabled.
 * (bug 4253) Recentchanges IRC messages no longer include title in diff URLs and
   the comment is trimmed if necessary to maintain proper message length.
+* Allow '0' to be an accesskey.
 
 === API changes in 1.14 ===
 

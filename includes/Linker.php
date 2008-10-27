@@ -1719,7 +1719,7 @@ class Linker {
 		}
 
 		$accesskey = wfMsg( "accesskey-$name" );
-		if( $accesskey && $accesskey != '-' &&
+		if( $accesskey != '' && $accesskey != '-' &&
 		!wfEmptyMsg( "accesskey-$name", $accesskey ) ) {
 			if( isset( $attribs['title'] ) ) {
 				$attribs['title'] .= " [$accesskey]";
@@ -1756,7 +1756,7 @@ class Linker {
 
 		if( isset( $attribs['title'] ) && $options == 'withaccess' ) {
 			$accesskey = wfMsg( "accesskey-$name" );
-			if( $accesskey && $accesskey != '-' &&
+			if( $accesskey != '' && $accesskey != '-' &&
 			!wfEmptyMsg( "accesskey-$name", $accesskey ) ) {
 				$attribs['title'] .= " [$accesskey]";
 			}
