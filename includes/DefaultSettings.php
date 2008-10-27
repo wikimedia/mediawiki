@@ -1217,8 +1217,22 @@ $wgGroupPermissions['bureaucrat']['noratelimit'] = true;
 $wgImplicitGroups = array( '*', 'user', 'autoconfirmed' );
 
 /**
- * These are the groups that users are allowed to add to or remove from
- * their own account via Special:Userrights.
+ * A map of group names that the user is in, to group names that those users
+ * are allowed to add or revoke.
+ *
+ * Setting the list of groups to add or revoke to true is equivalent to "any group".
+ * 
+ * For example to allow sysops to add themselves to the "bot" group:
+ *
+ *    $wgGroupsAddToSelf = array( 'sysop' => array( 'bot' ) );
+ *
+ * Implicit groups may be used for the source group, for instance:
+ *
+ *    $wgGroupsRemoveFromSelf = array( '*' => true );
+ *
+ * This allows users in the '*' group (i.e. any user) to remove themselves from
+ * any group that they happen to be in.
+ * 
  */
 $wgGroupsAddToSelf = array();
 $wgGroupsRemoveFromSelf = array();
