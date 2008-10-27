@@ -2126,7 +2126,6 @@ Each row contains links to the first and second redirect, as well as the target 
 You can narrow down the view by selecting a log type, the user name (case-sensitive), or the affected page (also case-sensitive).',
 'logempty'             => 'No matching items in log.',
 'log-title-wildcard'   => 'Search titles starting with this text',
-'logshowhide-patrol'   => '$1 patrol log',
 
 # Special:AllPages
 'allpages'          => 'All pages',
@@ -2998,11 +2997,12 @@ This is probably caused by a link to a blacklisted external site.',
 'markedaspatrollederror-noautopatrol' => 'You are not allowed to mark your own changes as patrolled.',
 
 # Patrol log
-'patrol-log-page'   => 'Patrol log',
-'patrol-log-header' => 'This is a log of patrolled revisions.',
-'patrol-log-line'   => 'marked $1 of $2 patrolled $3',
-'patrol-log-auto'   => '(automatic)',
-'patrol-log-diff'   => 'r$1', # only translate this message to other languages if you have to change it
+'patrol-log-page'    => 'Patrol log',
+'patrol-log-header'  => 'This is a log of patrolled revisions.',
+'patrol-log-line'    => 'marked $1 of $2 patrolled $3',
+'patrol-log-auto'    => '(automatic)',
+'patrol-log-diff'    => 'r$1', # only translate this message to other languages if you have to change it
+'logshowhide-patrol' => '$1 patrol log',
 
 # Image deletion
 'deletedrevision'                 => 'Deleted old revision $1',
@@ -3727,5 +3727,9 @@ Enter the filename without the "{{ns:image}}:" prefix.',
 #Lines beginning with # are treated as comments
 
 #Put all regex fragments above this line. Leave this line exactly as it is</pre>',
+
+# Unknown messages
+'protected-sub-allowed'    => "Some users '''cannot edit this page''' because it has been [$1 restricted] to prevent editing",
+'protected-sub-disallowed' => "You '''cannot edit this page''' because it has been [$1 restricted] to prevent editing",
 
 );

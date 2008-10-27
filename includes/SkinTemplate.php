@@ -203,12 +203,7 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'isarticle', $out->isArticle() );
 
 		$tpl->setRef( "thispage", $this->thispage );
-		$subpagestr = $this->subPageSubtitle();
-		$tpl->set(
-			'subtitle',  !empty($subpagestr)?
-			'<span class="subpages">'.$subpagestr.'</span>'.$out->getSubtitle():
-			$out->getSubtitle()
-		);
+
 		$undelete = $this->getUndeleteLink();
 		$tpl->set(
 			"undelete", !empty($undelete)?
@@ -416,7 +411,8 @@ class SkinTemplate extends Skin {
 				if ( $nt ) {
 					$language_urls[] = array(
 						'href' => $nt->getFullURL(),
-						'text' => ($wgContLang->getLanguageName( $nt->getInterwiki()) != ''?$wgContLang->getLanguageName( $nt->getInterwiki()) : $l),
+						'text' => $wgContLang->getLanguageName( $nt->getInterwiki() ) != '' ?
+							$wgContLang->getLanguageName( $nt->getInterwiki()) : $l,
 						'class' => $class
 					);
 				}
@@ -434,6 +430,12 @@ class SkinTemplate extends Skin {
 		$tpl->set('personal_urls', $this->buildPersonalUrls());
 		$content_actions = $this->buildContentActionUrls();
 		$tpl->setRef('content_actions', $content_actions);
+
+		$subpagestr = $this->subPageSubtitle();
+		$tpl->set(
+			'subtitle',  !empty($subpagestr) ?
+			'<span class="subpages">'.$subpagestr.'</span>'.$out->getSubtitle() : $out->getSubtitle()
+		);
 
 		// XXX: attach this from javascript, same with section editing
 		if($this->iseditable &&	$wgUser->getOption("editondblclick") )
@@ -652,7 +654,7 @@ class SkinTemplate extends Skin {
 		wfProfileIn( __METHOD__ );
 
 		global $wgUser, $wgRequest;
-		$action = $wgRequest->getText( 'action' );
+		$action = $wgRequest->getText( 'action', 'view' );
 		$section = $wgRequest->getText( 'section' );
 		$content_actions = array();
 
@@ -696,12 +698,26 @@ class SkinTemplate extends Skin {
 						'href' => $this->mTitle->getLocalUrl( 'action=edit&section=new' )
 					);
 				}
+				# Give notice if this page is locked for others
+				if( ($action == 'view' || $action == 'purge') && $this->mTitle->isProtected( 'edit' ) ) {
+					$wgOut->appendSubtitle( "<span class='plainlinks'>" . 
+						wfMsgExt('protected-sub-allowed',array('parse'),$this->mTitle->getFullUrl('action=protect')) .
+						"</span>"
+					);
+				}
 			} elseif ( $this->mTitle->exists() || $this->mTitle->isAlwaysKnown() ) {
 				$content_actions['viewsource'] = array(
 					'class' => ($action == 'edit') ? 'selected' : false,
 					'text' => wfMsg('viewsource'),
 					'href' => $this->mTitle->getLocalUrl( $this->editUrlOptions() )
 				);
+				# Give notice if this page is locked
+				if( ($action == 'view' || $action == 'purge') && $this->mTitle->isProtected( 'edit' ) ) {
+					$wgOut->appendSubtitle( "<span class='plainlinks'>" . 
+						wfMsgExt('protected-sub-disallowed',array('parseinline'),$this->mTitle->getFullUrl('action=protect')) .
+						"</span>"
+					);
+				}
 			}
 			wfProfileOut( __METHOD__."-edit" );
 
