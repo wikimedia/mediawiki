@@ -94,7 +94,7 @@ class ApiUnblock extends ApiBase {
 		return array (
 			'id' => 'ID of the block you want to unblock (obtained through list=blocks). Cannot be used together with user',
 			'user' => 'Username, IP address or IP range you want to unblock. Cannot be used together with id',
-			'token' => 'An unblock token previously obtained through the gettoken parameter',
+			'token' => 'An unblock token previously obtained through the gettoken parameter or prop=info',
 			'gettoken' => 'If set, an unblock token will be returned, and no other action will be taken',
 			'reason' => 'Reason for unblock (optional)',
 		);

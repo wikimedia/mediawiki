@@ -133,7 +133,7 @@ class ApiBlock extends ApiBase {
 	public function getParamDescription() {
 		return array (
 			'user' => 'Username, IP address or IP range you want to block',
-			'token' => 'A block token previously obtained through the gettoken parameter',
+			'token' => 'A block token previously obtained through the gettoken parameter or prop=info',
 			'gettoken' => 'If set, a block token will be returned, and no other action will be taken',
 			'expiry' => 'Relative expiry time, e.g. \'5 months\' or \'2 weeks\'. If set to \'infinite\', \'indefinite\' or \'never\', the block will never expire.',
 			'reason' => 'Reason for block (optional)',
