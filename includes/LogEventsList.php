@@ -497,9 +497,12 @@ class LogPager extends ReverseChronologicalPager {
 	public function getFilterParams() {
 		global $wgFilterLogTypes, $wgUser, $wgRequest;
 		$filters = array();
+		if( $this->type ) {
+			return $filters;
+		}
 		foreach( $wgFilterLogTypes as $type => $default ) {
 			// Avoid silly filtering
-			if( $type !== $this->type && ($type !== 'patrol' || $wgUser->useNPPatrol()) ) {
+			if( $type !== 'patrol' || $wgUser->useNPPatrol() ) {
 				$hide = $wgRequest->getInt( "hide{$type}log", $default );
 				$filters[$type] = $hide;
 				if( $hide )
