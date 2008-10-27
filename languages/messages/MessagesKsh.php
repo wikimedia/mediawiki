@@ -155,7 +155,7 @@ $specialPageAliases = array(
 	'Allmessages'               => array( 'MediaWiki-Appachtemang' ),
 	'Log'                       => array( 'Logböcher', 'Logböösher' ),
 	'Blockip'                   => array( 'IP-Sperre' ),
-	'Undelete'                  => array( 'zeröckholle' ),
+	'Undelete'                  => array( 'Zeröckholle' ),
 	'Import'                    => array( 'Emport', 'Empocht' ),
 	'Lockdb'                    => array( 'Datebank-deeschmaache' ),
 	'Unlockdb'                  => array( 'Datebank-opmaache' ),
@@ -174,7 +174,7 @@ $specialPageAliases = array(
 	'Resetpass'                 => array( 'Neu Passwood' ),
 	'MergeHistory'              => array( 'Versione zosammeschmieße' ),
 	'Filepath'                  => array( 'Dateipaad' ),
-	'Invalidateemail'           => array( 'onjöltije e-mail Addräß', 'onjöltije E-Mail Adress' ),
+	'Invalidateemail'           => array( 'Onjöltije e-mail Addräß', 'Onjöltije E-Mail Adress' ),
 );
 
 $imageFiles = array(
