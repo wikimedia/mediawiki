@@ -500,8 +500,10 @@ class LogPager extends ReverseChronologicalPager {
 		foreach( $wgFilterLogTypes as $type => $default ) {
 			// Avoid silly filtering
 			if( $type !== $this->type && ($type !== 'patrol' || $wgUser->useNPPatrol()) ) {
-				$filters[$type] = $wgRequest->getInt( "hide{$type}log", $default );
-				$this->mConds[] = 'log_type != '.$this->mDb->addQuotes( $this->mDb->strencode($type) );
+				$hide = $wgRequest->getInt( "hide{$type}log", $default );
+				$filters[$type] = $hide;
+				if( $hide )
+					$this->mConds[] = 'log_type != '.$this->mDb->addQuotes( $this->mDb->strencode($type) );
 			}
 		}
 		return $filters;
