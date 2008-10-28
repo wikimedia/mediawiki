@@ -530,23 +530,22 @@ class PageHistory {
 		$dbr = wfGetDB( DB_SLAVE );
 
 		if ($direction == PageHistory::DIR_PREV)
-		list($dirs, $oper) = array("ASC", ">=");
+			list($dirs, $oper) = array("ASC", ">=");
 		else /* $direction == PageHistory::DIR_NEXT */
-		list($dirs, $oper) = array("DESC", "<=");
+			list($dirs, $oper) = array("DESC", "<=");
 
 		if ($offset)
-		$offsets = array("rev_timestamp $oper '$offset'");
+			$offsets = array("rev_timestamp $oper '$offset'");
 		else
-		$offsets = array();
+			$offsets = array();
 
 		$page_id = $this->mTitle->getArticleID();
 
-		return $dbr->select(
-			'revision',
-		Revision::selectFields(),
-		array_merge(array("rev_page=$page_id"), $offsets),
-		__METHOD__,
-		array('ORDER BY' => "rev_timestamp $dirs",
+		return $dbr->select( 'revision',
+			Revision::selectFields(),
+			array_merge(array("rev_page=$page_id"), $offsets),
+			__METHOD__,
+			array( 'ORDER BY' => "rev_timestamp $dirs", 
 				'USE INDEX' => 'page_timestamp', 'LIMIT' => $limit)
 		);
 	}
