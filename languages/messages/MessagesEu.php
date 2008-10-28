@@ -46,8 +46,16 @@ $namespaceAliases = array(
 );
 
 $specialPageAliases = array(
+	'DoubleRedirects'           => array( 'BirzuzenketaBikoitzak' ),
+	'BrokenRedirects'           => array( 'HautsitakoBirzuzenketak' ),
+	'Disambiguations'           => array( 'Argipenak' ),
+	'Preferences'               => array( 'Hobespenak' ),
+	'Watchlist'                 => array( 'JarraipenZerrenda' ),
 	'Recentchanges'             => array( 'AzkenAldaketak' ),
 	'Upload'                    => array( 'Igo' ),
+	'Statistics'                => array( 'Estatistikak' ),
+	'Allpages'                  => array( 'OrrialdeGuztiak' ),
+	'Movepage'                  => array( 'OrrialdeaMugitu' ),
 );
 
 $separatorTransformTable = array( ',' => '.', '.' => ',' ); /* Bug 15717 */
