@@ -1223,8 +1223,8 @@ class UndeleteForm {
 		if( !$file->userCan(File::DELETED_USER) ) {
 			return '<span class="history-deleted">' . wfMsgHtml( 'rev-deleted-user' ) . '</span>';
 		} else {
-			$link = $sk->userLink( $file->getUser(), $file->getUserText() ) .
-				$sk->userToolLinks( $file->getUser(), $file->getUserText() );
+			$link = $sk->userLink( $file->getRawUser(), $file->getRawUserText() ) .
+				$sk->userToolLinks( $file->getRawUser(), $file->getRawUserText() );
 			if( $file->isDeleted(File::DELETED_USER) )
 				$link = '<span class="history-deleted">' . $link . '</span>';
 			return $link;
