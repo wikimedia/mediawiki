@@ -1033,7 +1033,7 @@ class UndeleteForm {
 			$wgOut->addHTML("<ul>");
 			$target = urlencode( $this->mTarget );
 			$remaining = $revisions->numRows();
-			$earliestLiveTime = $this->getEarliestTime( $this->mTargetObj );
+			$earliestLiveTime = $this->mTargetObj->getEarliestRevTime();
 
 			while( $row = $revisions->fetchObject() ) {
 				$remaining--;
@@ -1177,18 +1177,6 @@ class UndeleteForm {
 			$revdlink = "<tt>(<small>$del</small>)</tt>";
 		}
 		return "<li>$checkBox $revdlink $pageLink . . $userLink $data $comment</li>\n";
-	}
-
-	private function getEarliestTime( $title ) {
-		$dbr = wfGetDB( DB_SLAVE );
-		if( $title->exists() ) {
-			$min = $dbr->selectField( 'revision',
-				'MIN(rev_timestamp)',
-				array( 'rev_page' => $title->getArticleId() ),
-				__METHOD__ );
-			return wfTimestampOrNull( TS_MW, $min );
-		}
-		return null;
 	}
 
 	/**
