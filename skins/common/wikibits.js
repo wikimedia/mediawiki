@@ -503,6 +503,8 @@ var ts_image_down = "sort_down.gif";
 var ts_image_none = "sort_none.gif";
 var ts_europeandate = wgContentLanguage != "en"; // The non-American-inclined can change to "true"
 var ts_alternate_row_colors = false;
+var ts_number_transform_table = null;
+var ts_number_regex = null;
 
 function sortables_init() {
 	var idnum = 0;
@@ -575,9 +577,14 @@ function ts_resortTable(lnk) {
 		table = table.parentNode;
 	if (!table) return;
 
-	// Work out a type for the column
 	if (table.rows.length <= 1) return;
 
+	// Generate the number transform table if it's not done already
+	if (ts_number_transform_table == null) {
+		ts_initTransformTable();
+	}
+
+	// Work out a type for the column
 	// Skip the first row if that's where the headings are
 	var rowStart = (table.tHead && table.tHead.rows.length > 0 ? 0 : 1);
 
@@ -590,22 +597,21 @@ function ts_resortTable(lnk) {
 		}
 	}
 
-	var sortfn = ts_sort_caseinsensitive;
-	if (itm.match(/^\d\d[\/. -][a-zA-Z]{3}[\/. -]\d\d\d\d$/))
-		sortfn = ts_sort_date;
-	else if (itm.match(/^\d\d[\/.-]\d\d[\/.-]\d\d\d\d$/))
-		sortfn = ts_sort_date;
-	else if (itm.match(/^\d\d[\/.-]\d\d[\/.-]\d\d$/))
-		sortfn = ts_sort_date;
+	// TODO: bug 8226, localised date formats
+	var sortfn = ts_sort_generic;
+	var preprocessor = ts_toLowerCase;
+	if (/^\d\d[\/. -][a-zA-Z]{3}[\/. -]\d\d\d\d$/.test(itm)) {
+		preprocessor = ts_dateToSortKey;
+	} else if (/^\d\d[\/.-]\d\d[\/.-]\d\d\d\d$/.test(itm)) {
+		preprocessor = ts_dateToSortKey;
+	} else if (/^\d\d[\/.-]\d\d[\/.-]\d\d$/.test(itm)) {
+		preprocessor = ts_dateToSortKey;
 	// pound dollar euro yen currency cents
-	else if (itm.match(/(^[\u00a3$\u20ac\u00a4\u00a5]|\u00a2$)/))
-		sortfn = ts_sort_currency;
-	// We allow a trailing percent sign, which we just strip.  This works fine
-	// if percents and regular numbers aren't being mixed.
-	else if (itm.match(/^[+-]?\d[\d,]*(\.[\d,]*)?([eE][+-]?\d[\d,]*)?\%?$/) ||
-	itm.match(/^[+-]?\.\d[\d,]*([eE][+-]?\d[\d,]*)?\%?$/) ||
-	itm.match(/^0x[\da-f]+$/i))
-		sortfn = ts_sort_numeric;
+	} else if (/(^[\u00a3$\u20ac\u00a4\u00a5]|\u00a2$)/.test(itm)) {
+		preprocessor = ts_currencyToSortKey;
+	} else if (ts_number_regex.test(itm)) {
+		preprocessor = ts_parseFloat;
+	}
 
 	var reverse = (span.getAttribute("sortdir") == 'down');
 
@@ -614,8 +620,9 @@ function ts_resortTable(lnk) {
 		var row = table.rows[j];
 		var keyText = ts_getInnerText(row.cells[column]);
 		var oldIndex = (reverse ? -j : j);
+		var preprocessed = preprocessor( keyText );
 
-		newRows[newRows.length] = new Array(row, keyText, oldIndex);
+		newRows[newRows.length] = new Array(row, preprocessed, oldIndex);
 	}
 
 	newRows.sort(sortfn);
@@ -652,6 +659,63 @@ function ts_resortTable(lnk) {
 	if (ts_alternate_row_colors) {
 		ts_alternate(table);
 	}
+}
+
+function ts_initTransformTable() {
+	if ( typeof wgSeparatorTransformTable == "undefined"
+			|| ( wgSeparatorTransformTable[0] == '' && wgDigitTransformTable[2] == '' ) )
+	{
+		digitClass = "[0-9,.]";
+		ts_number_transform_table = false;
+	} else {
+		ts_number_transform_table = {};
+		// Unpack the transform table
+		// Separators
+		ascii = wgSeparatorTransformTable[0].split("\t");
+		localised = wgSeparatorTransformTable[1].split("\t");
+		for ( var i = 0; i < ascii.length; i++ ) { 
+			ts_number_transform_table[localised[i]] = ascii[i];
+		}
+		// Digits
+		ascii = wgDigitTransformTable[0].split("\t");
+		localised = wgDigitTransformTable[1].split("\t");
+		for ( var i = 0; i < ascii.length; i++ ) { 
+			ts_number_transform_table[localised[i]] = ascii[i];
+		}
+
+		// Construct regex for number identification
+		digits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ',', '\\.'];
+		maxDigitLength = 1;
+		for ( var digit in ts_number_transform_table ) {
+			// Escape regex metacharacters
+			digits.push( 
+				digit.replace( /[\\\\$\*\+\?\.\(\)\|\{\}\[\]\-]/,
+					function( s ) { return '\\' + s; } )
+			);
+			if (digit.length > maxDigitLength) {
+				maxDigitLength = digit.length;
+			}
+		}
+		if ( maxDigitLength > 1 ) {
+			digitClass = '[' + digits.join( '', digits ) + ']';
+		} else {
+			digitClass = '(' + digits.join( '|', digits ) + ')';
+		}
+	}
+
+	// We allow a trailing percent sign, which we just strip.  This works fine
+	// if percents and regular numbers aren't being mixed.
+	ts_number_regex = new RegExp(
+		"^(" +
+			"[+-]?[0-9][0-9,]*(\\.[0-9,]*)?(E[+-]?[0-9][0-9,]*)?" + // Fortran-style scientific
+			"|" +
+			"[+-]?" + digitClass + "+%?" + // Generic localised
+		")$", "i"
+	);
+}
+
+function ts_toLowerCase( s ) {
+	return s.toLowerCase();
 }
 
 function ts_dateToSortKey(date) {	
@@ -695,38 +759,34 @@ function ts_dateToSortKey(date) {
 	return "00000000";
 }
 
-function ts_parseFloat(num) {
-	if (!num) return 0;
-	num = parseFloat(num.replace(/,/g, ""));
-	return (isNaN(num) ? 0 : num);
+function ts_parseFloat( s ) {
+	if ( !s ) {
+		return 0;
+	}
+	if (ts_number_transform_table != false) {
+		var newNum = '', c;
+		
+		for ( var p = 0; p < s.length; p++ ) {
+			c = s.charAt( p );
+			if (c in ts_number_transform_table) {
+				newNum += ts_number_transform_table[c];
+			} else {
+				newNum += c;
+			}
+		}
+		s = newNum;
+	}
+
+	num = parseFloat(s.replace(/,/g, ""));
+	return (isNaN(num) ? s : num);
 }
 
-function ts_sort_date(a,b) {
-	var aa = ts_dateToSortKey(a[1]);
-	var bb = ts_dateToSortKey(b[1]);
-	return (aa < bb ? -1 : aa > bb ? 1 : a[2] - b[2]);
+function ts_currencyToSortKey( s ) {
+	return ts_parseFloat(s.replace(/[^0-9.,]/g,''));
 }
 
-function ts_sort_currency(a,b) {
-	var aa = ts_parseFloat(a[1].replace(/[^0-9.,]/g,''));
-	var bb = ts_parseFloat(b[1].replace(/[^0-9.,]/g,''));
-	return (aa != bb ? aa - bb : a[2] - b[2]);
-}
-
-function ts_sort_numeric(a,b) {
-	var aa = ts_parseFloat(a[1]);
-	var bb = ts_parseFloat(b[1]);
-	return (aa != bb ? aa - bb : a[2] - b[2]);
-}
-
-function ts_sort_caseinsensitive(a,b) {
-	var aa = a[1].toLowerCase();
-	var bb = b[1].toLowerCase();
-	return (aa < bb ? -1 : aa > bb ? 1 : a[2] - b[2]);
-}
-
-function ts_sort_default(a,b) {
-	return (a[1] < b[1] ? -1 : a[1] > b[1] ? 1 : a[2] - b[2]);
+function ts_sort_generic(a, b) {
+	return a[1] < b[1] ? -1 : a[1] > b[1] ? 1 : a[2] - b[2];
 }
 
 function ts_alternate(table) {
