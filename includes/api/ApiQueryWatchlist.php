@@ -76,8 +76,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$this->fld_patrol = isset($prop['patrol']);
 
 			if ($this->fld_patrol) {
-				global $wgUseRCPatrol, $wgUser;
-				if (!$wgUseRCPatrol || !$wgUser->isAllowed('patrol'))
+				global $wgUser;
+				if (!$wgUser->useRCPatrol() && !$wgUser->useNPPatrol())
 					$this->dieUsage('patrol property is not available', 'patrol');
 			}
 		}
@@ -141,10 +141,16 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			/* Check for conflicting parameters. */
 			if ((isset ($show['minor']) && isset ($show['!minor']))
 					|| (isset ($show['bot']) && isset ($show['!bot']))
-					|| (isset ($show['anon']) && isset ($show['!anon']))) {
+					|| (isset ($show['anon']) && isset ($show['!anon']))
+					|| (isset ($show['patrolled']) && isset ($show['!patrolled']))) {
 
 				$this->dieUsage("Incorrect parameter - mutually exclusive values may not be supplied", 'show');
 			}
+			
+			// Check permissions
+			global $wgUser;
+			if((isset($show['patrolled']) || isset($show['!patrolled'])) && !$wgUser->useRCPatrol() && !$wgUser->useNPPatrol())
+				$this->dieUsage("You need the patrol right to request the patrolled flag", 'permissiondenied');
 
 			/* Add additional conditions to query depending upon parameters. */
 			$this->addWhereIf('rc_minor = 0', isset ($show['!minor']));
@@ -153,6 +159,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$this->addWhereIf('rc_bot != 0', isset ($show['bot']));
 			$this->addWhereIf('rc_user = 0', isset ($show['anon']));
 			$this->addWhereIf('rc_user != 0', isset ($show['!anon']));
+			$this->addWhereIf('rc_patrolled = 0', isset($show['!patrolled']));
+			$this->addWhereIf('rc_patrolled != 0', isset($show['patrolled']));			
 		}
 
 
@@ -292,7 +300,9 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 					'bot',
 					'!bot',
 					'anon',
-					'!anon'
+					'!anon',
+					'patrolled',
+					'!patrolled',
 				)
 			)
 		);
