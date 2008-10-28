@@ -1960,7 +1960,7 @@ Input: contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 # Unused templates
 'unusedtemplates'         => 'Unused templates',
 'unusedtemplates-summary' => '', # do not translate or duplicate this message to other languages
-'unusedtemplatestext'     => 'This page lists all pages in the template namespace which are not included in another page.
+'unusedtemplatestext'     => 'This page lists all pages in the {{ns:template}} namespace which are not included in another page.
 Remember to check for other links to the templates before deleting them.',
 'unusedtemplateswlh'      => 'other links',
 
