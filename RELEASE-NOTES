@@ -51,6 +51,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * $wgRCChangedSizeThreshold is now a positive integer by default, 
 * (bug 16006) $wgEnableWriteAPI is now true by default. Authorized can perform
   write actions using the API.
+* Added $wgRC2UDPInterwikiPrefix which adds an interwiki prefix
+  ($wgLocalInterwiki) onto the page names in the UDP feed.
 
 === Migrated extensions ===
 The following extensions are migrated into MediaWiki 1.14:
