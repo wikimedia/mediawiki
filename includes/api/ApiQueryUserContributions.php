@@ -177,7 +177,7 @@ class ApiQueryContributions extends ApiQueryBase {
 			$this->addWhereIf('rev_minor_edit != 0', isset ($show['minor']));
 		}
 		$this->addOption('LIMIT', $this->params['limit'] + 1);
-		$this->addOption( 'USE INDEX', array( 'revision' => 'user_timestamp' ) );
+		$this->addOption( 'USE INDEX', array( 'revision' => 'usertext_timestamp' ) );
 
 		// Mandatory fields: timestamp allows request continuation
 		// ns+title checks if the user has access rights for this page
