@@ -1781,6 +1781,8 @@ class Linker {
 	 *   escape), or false for no accesskey attribute
 	 */
 	public function accesskey( $name ) {
+		wfProfileIn( __METHOD__ );
+
 		$accesskey = wfMsg( "accesskey-$name" );
 
 		# FIXME: Per standard MW behavior, a value of '-' means to suppress the
@@ -1791,6 +1793,8 @@ class Linker {
 		&& !wfEmptyMsg( "accesskey-$name", $accesskey ) ) {
 			return $accesskey;
 		}
+
+		wfProfileOut( __METHOD__ );
 		return false;
 	}
 }
