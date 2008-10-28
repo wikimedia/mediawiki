@@ -1645,7 +1645,7 @@ PICT # שונות
 
 # Unused templates
 'unusedtemplates'     => 'תבניות שאינן בשימוש',
-'unusedtemplatestext' => 'דף זה מכיל רשימה של כל הדפים במרחב השם של התבניות שאינם נכללים בדף אחר. אנא זכרו לבדוק את הקישורים האחרים לתבניות לפני שתמחקו אותן.',
+'unusedtemplatestext' => 'דף זה מכיל רשימה של כל הדפים במרחב השם {{ns:template}} שאינם נכללים בדף אחר. אנא זכרו לבדוק את הקישורים האחרים לתבניות לפני שתמחקו אותן.',
 'unusedtemplateswlh'  => 'קישורים אחרים',
 
 # Random page
@@ -2544,11 +2544,12 @@ $1',
 'markedaspatrollederror-noautopatrol' => 'אינכם מורשים לסמן את השינויים של עצמכם כבדוקים.',
 
 # Patrol log
-'patrol-log-page'   => 'יומן שינויים בדוקים',
-'patrol-log-header' => 'יומן זה מציג גרסאות שנבדקו.',
-'patrol-log-line'   => 'סימן את  $1 בדף $2 כבדוקה $3',
-'patrol-log-auto'   => '(אוטומטית)',
-'patrol-log-diff'   => 'גרסה $1',
+'patrol-log-page'    => 'יומן שינויים בדוקים',
+'patrol-log-header'  => 'יומן זה מציג גרסאות שנבדקו.',
+'patrol-log-line'    => 'סימן את  $1 בדף $2 כבדוקה $3',
+'patrol-log-auto'    => '(אוטומטית)',
+'patrol-log-diff'    => 'גרסה $1',
+'logshowhide-patrol' => '$1 יומן שינויים בדוקים',
 
 # Image deletion
 'deletedrevision'                 => 'מחק גרסה ישנה $1',
