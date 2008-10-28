@@ -1791,6 +1791,7 @@ class Linker {
 		if( $accesskey != ''
 		&& $accesskey != '-'
 		&& !wfEmptyMsg( "accesskey-$name", $accesskey ) ) {
+			wfProfileOut( __METHOD__ );
 			return $accesskey;
 		}
 
