@@ -664,7 +664,7 @@ class Revision {
 	  * $row is usually an object from wfFetchRow(), both the flags and the text
 	  * field must be included
 	  *
-	  * @param integer $row Id of a row
+	  * @param object $row The text data
 	  * @param string $prefix table prefix (default 'old_')
 	  * @return string $text|false the text requested
 	  */
