@@ -2048,6 +2048,7 @@ $wgRCLinkDays   = array( 1, 3, 7, 14, 30 );
 $wgRC2UDPAddress = false;
 $wgRC2UDPPort = false;
 $wgRC2UDPPrefix = '';
+$wgRC2UDPInterwikiPrefix = false;
 $wgRC2UDPOmitBots = false;
 
 /**
