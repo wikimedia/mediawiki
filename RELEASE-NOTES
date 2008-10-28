@@ -287,8 +287,7 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 12764) Special:LonelyPages shows transcluded pages
 * (bug 16073) Enhanced RecentChanges uses onclick handler with better fallback if
   JavaScript is disabled.
-* (bug 4253) Recentchanges IRC messages no longer include title in diff URLs and
-  the comment is trimmed if necessary to maintain proper message length.
+* (bug 4253) Recentchanges IRC messages no longer include title in diff URLs 
 * Allow '0' to be an accesskey.
 
 === API changes in 1.14 ===
