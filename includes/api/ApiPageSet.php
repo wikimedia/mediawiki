@@ -587,9 +587,9 @@ class ApiPageSet extends ApiQueryBase {
 
 				// Validation
 				if ($titleObj->getNamespace() < 0)
-					$this->dieUsage("No support for special pages has been implemented", 'unsupportednamespace');
-
-				$linkBatch->addObj($titleObj);
+					$this->setWarning("No support for special pages has been implemented");
+				else
+					$linkBatch->addObj($titleObj);
 			}
 
 			// Make sure we remember the original title that was given to us
