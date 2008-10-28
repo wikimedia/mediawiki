@@ -434,10 +434,10 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 	function getQueryInfo() {
 		$conds = $this->mConds;
 		$conds['rev_page'] = $this->articleID;
+		$conds['page_id'] = 'rev_page';
 		$conds[] = "rev_timestamp < {$this->maxTimestamp}";
-
 		return array(
-			'tables' => array('revision'),
+			'tables' => array('revision','page'),
 			'fields' => array( 'rev_minor_edit', 'rev_timestamp', 'rev_user', 'rev_user_text', 'rev_comment',
 				 'rev_id', 'rev_page', 'rev_text_id', 'rev_len', 'rev_deleted' ),
 			'conds' => $conds
