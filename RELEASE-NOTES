@@ -289,6 +289,7 @@ The following extensions are migrated into MediaWiki 1.14:
   JavaScript is disabled.
 * (bug 4253) Recentchanges IRC messages no longer include title in diff URLs 
 * Allow '0' to be an accesskey.
+* (bug 8063) Use language-dependent sorting in client-side sortable tables
 
 === API changes in 1.14 ===
 
