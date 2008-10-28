@@ -133,7 +133,7 @@ class PageHistory {
 		$action = htmlspecialchars( $wgScript );
 		$wgOut->addHTML(
 		Xml::fieldset( wfMsg( 'history-fieldset-title' ), false, array( 'id' => 'mw-history-search' ) ) .
-			"<form action=\"$action\" method=\"get\">" .
+			"<form action=\"$action\" method=\"get\" id=\"mw-history-searchform\">" .
 		Xml::hidden( 'title', $this->mTitle->getPrefixedDBKey() ) . "\n" .
 		Xml::hidden( 'action', 'history' ) . "\n" .
 		$this->getDateMenu( $year, $month ) . '&nbsp;' .
@@ -198,7 +198,7 @@ class PageHistory {
 		global $wgTitle, $wgScript, $wgEnableHtmlDiff;
 		$this->lastdate = '';
 		$s = wfMsgExt( 'histlegend', array( 'parse') );
-		$s .= Xml::openElement( 'form', array( 'action' => $wgScript ) );
+		$s .= Xml::openElement( 'form', array( 'action' => $wgScript, 'id' => 'mw-history-compare' ) );
 		$s .= Xml::hidden( 'title', $wgTitle->getPrefixedDbKey() );
 		if($wgEnableHtmlDiff){
 			$s .= $this->submitButton( wfMsg( 'visualcomparison'),
