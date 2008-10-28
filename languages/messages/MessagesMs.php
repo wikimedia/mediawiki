@@ -90,6 +90,7 @@ $specialPageAliases = array(
 	'Wantedpages'               => array( 'Laman dikehendaki' ),
 	'Wantedcategories'          => array( 'Kategori dikehendaki' ),
 	'Wantedfiles'               => array( 'Fail dikehendaki' ),
+	'Wantedtemplates'           => array( 'Templat dikehendaki' ),
 	'Mostlinked'                => array( 'Laman dipaut terbanyak' ),
 	'Mostlinkedcategories'      => array( 'Kategori dipaut terbanyak' ),
 	'Mostlinkedtemplates'       => array( 'Templat dipaut terbanyak' ),
