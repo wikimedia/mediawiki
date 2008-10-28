@@ -589,7 +589,7 @@ class RecentChange
 	}
 
 	protected function getIRCLine() {
-		global $wgUseRCPatrol;
+		global $wgUseRCPatrol, $wgRC2UDPInterwikiPrefix, $wgLocalInterwiki;
 
 		// FIXME: Would be good to replace these 2 extract() calls with something more explicit
 		// e.g. list ($rc_type, $rc_id) = array_values ($this->mAttribs); [or something like that]
@@ -641,9 +641,16 @@ class RecentChange
 			$comment = self::cleanupForIRC( $rc_comment );
 			$flag = ($rc_new ? "N" : "") . ($rc_minor ? "M" : "") . ($rc_bot ? "B" : "");
 		}
+		
+		if( $wgRC2UDPInterwikiPrefix && isset( $wgLocalInterwiki ) ) {
+			$titleString = "\00314[[\00303$wgLocalInterwiki:\00307$title\00314]]";
+		} else {
+			$titleString = "\00314[[\00307$title\00314]]";
+		}
+		
 		# see http://www.irssi.org/documentation/formats for some colour codes. prefix is \003,
 		# no colour (\003) switches back to the term default
-		$fullString = "\00314[[\00307$title\00314]]\0034 $flag\00310 " .
+		$fullString = "$titleString\0034 $flag\00310 " .
 		              "\00302$url\003 \0035*\003 \00303$user\003 \0035*\003 $szdiff \00310$comment\003\n";
 			
 		return $fullString;
