@@ -394,14 +394,14 @@ class EnhancedChangesList extends ChangesList {
 	*  @ return string
 	*/
 	public function beginRecentChangesList() {
-		global $wgStylePath, $wgStyleVersion;
+		global $wgStylePath, $wgJsMimeType, $wgStyleVersion;
 		$this->rc_cache = array();
 		$this->rcMoveIndex = 0;
 		$this->rcCacheIndex = 0;
 		$this->lastdate = '';
 		$this->rclistOpen = false;
 		$script = Xml::tags( 'script', array(
-			'type' => 'text/javascript',
+			'type' => $wgJsMimeType,
 			'src' => $wgStylePath . "/common/enhancedchanges.js?$wgStyleVersion" ), '' );
 		return $script;
 	}
