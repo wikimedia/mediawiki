@@ -3021,6 +3021,23 @@ class Title {
 	}
 
 	/**
+	 * Get the oldest revision timestamp of this page
+	 *
+	 * @return string, MW timestamp
+	 */
+	public function getEarliestRevTime() {
+		$dbr = wfGetDB( DB_SLAVE );
+		if( $this->exists() ) {
+			$min = $dbr->selectField( 'revision',
+				'MIN(rev_timestamp)',
+				array( 'rev_page' => $this->getArticleId() ),
+				__METHOD__ );
+			return wfTimestampOrNull( TS_MW, $min );
+		}
+		return null;
+	}
+
+	/**
 	 * Get the number of revisions between the given revision IDs.
 	 * Used for diffs and other things that really need it.
 	 *
