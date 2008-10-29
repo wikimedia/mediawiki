@@ -2365,7 +2365,7 @@ class Article {
 				$wgOut->returnToMain( false );
 				wfRunHooks('ArticleDeleteComplete', array(&$this, &$wgUser, $reason, $id));
 			} else {
-				if ($error = '')
+				if ($error == '')
 					$wgOut->showFatalError( wfMsg( 'cannotdelete' ) );
 				else
 					$wgOut->showFatalError( $error );
