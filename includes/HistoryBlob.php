@@ -43,7 +43,9 @@ interface HistoryBlob
 class ConcatenatedGzipHistoryBlob implements HistoryBlob
 {
 	public $mVersion = 0, $mCompressed = false, $mItems = array(), $mDefaultHash = '';
-	public $mFast = 0, $mSize = 0;
+	public $mSize = 0;
+	public $mMaxSize = 10000000;
+	public $mMaxCount = 100;
 
 	/** Constructor */
 	public function ConcatenatedGzipHistoryBlob() {
@@ -122,25 +124,9 @@ class ConcatenatedGzipHistoryBlob implements HistoryBlob
 	 * Helper function for compression jobs
 	 * Returns true until the object is "full" and ready to be committed
 	 */
-	public function isHappy( $maxFactor, $factorThreshold ) {
-		if ( count( $this->mItems ) == 0 ) {
-			return true;
-		}
-		if ( !$this->mFast ) {
-			$this->uncompress();
-			$record = serialize( $this->mItems );
-			$size = strlen( $record );
-			$avgUncompressed = $size / count( $this->mItems );
-			$compressed = strlen( gzdeflate( $record ) );
-
-			if ( $compressed < $factorThreshold * 1024 ) {
-				return true;
-			} else {
-				return $avgUncompressed * $maxFactor < $compressed;
-			}
-		} else {
-			return count( $this->mItems ) <= 10;
-		}
+	public function isHappy() {
+		return $this->mSize < $this->mMaxSize 
+			&& count( $this->mItems ) < $this->mMaxCount;
 	}
 }
 
@@ -313,6 +299,17 @@ class DiffHistoryBlob implements HistoryBlob {
 	var $mFrozen = false;
 
 
+	/**
+	 * The maximum uncompressed size before the object becomes sad
+	 * Should be less than max_allowed_packet
+	 */
+	var $mMaxSize = 10000000;
+
+	/**
+	 * The maximum number of text items before the object becomes sad
+	 */
+	var $mMaxCount = 100;
+
 	function __construct() {
 		if ( !function_exists( 'xdiff_string_bdiff' ) ){ 
 			throw new MWException( "Need xdiff 1.5+ support to read or write DiffHistoryBlob\n" );
@@ -328,6 +325,7 @@ class DiffHistoryBlob implements HistoryBlob {
 		}
 
 		$this->mItems[] = $text;
+		$this->mSize += strlen( $text );
 		$i = count( $this->mItems ) - 1;
 		if ( $i > 0 ) {
 			# Need to do a null concatenation with warnings off, due to bugs in the current version of xdiff
@@ -401,4 +399,14 @@ class DiffHistoryBlob implements HistoryBlob {
 		$this->mItems[0] = $info['base'];
 		$this->mDiffs = $info['diffs'];
 	}
+
+	/**
+	 * Helper function for compression jobs
+	 * Returns true until the object is "full" and ready to be committed
+	 */
+	function isHappy() {
+		return $this->mSize < $this->mMaxSize 
+			&& count( $this->mItems ) < $this->mMaxCount;
+	}
+
 }
