@@ -161,6 +161,19 @@ abstract class IndexPager implements Pager {
 	function getResult() {
 		return $this->mResult;
 	}
+	
+	/**
+	 * Set the offset from an other source than $wgRequest
+	 */
+	function setOffset( $offset ) {
+		$this->mOffset = $offset;
+	}
+	/**
+	 * Set the limit from an other source than $wgRequest
+	 */
+	function setLimit( $limit ) {
+		$this->mLimit = $limit;
+	}
 
 	/**
 	 * Extract some useful data from the result object for use by
