@@ -154,6 +154,13 @@ abstract class IndexPager implements Pager {
 
 		wfProfileOut( $fname );
 	}
+	
+	/**
+	 * Return the result wrapper.
+	 */
+	function getResult() {
+		return $this->mResult;
+	}
 
 	/**
 	 * Extract some useful data from the result object for use by
