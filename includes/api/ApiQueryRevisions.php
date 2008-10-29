@@ -100,6 +100,8 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 		$this->addTables('revision');
 		$this->addFields( Revision::selectFields() );
+		$this->addTables( 'page' );
+		$this->addWhere('page_id = rev_page');
 
 		$prop = array_flip($prop);
 
@@ -114,8 +116,6 @@ class ApiQueryRevisions extends ApiQueryBase {
 		$this->token = $token;
 
 		if ( !is_null($this->token) || ( $this->fld_content && $this->expandTemplates ) || $pageCount > 0) {
-			$this->addTables( 'page' );
-			$this->addWhere('page_id=rev_page');
 			$this->addFields( Revision::selectPageFields() );
 		}
 
