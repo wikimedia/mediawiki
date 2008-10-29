@@ -228,7 +228,7 @@
 	'om' => 'Oromoo', 		# Oromo
 	'or' => 'ଓଡ଼ିଆ',		# Oriya
 	'os' => 'Иронау', # Ossetic
-	'pa' => 'ਪੰਜਾਬੀ', # Punjabi
+	'pa' => 'ਪੰਜਾਬੀ', # Eastern Punjabi (pan)
 	'pag' => 'Pangasinan',	# Pangasinan
 	'pam' => 'Kapampangan',   # Pampanga
 	'pap' => 'Papiamentu',	# Papiamentu
