@@ -595,17 +595,15 @@ class SpecialRecentChanges extends SpecialPage {
 
 		$options = $nondefaults + $defaults;
 
-		if( $options['from'] )
-			$note = wfMsgExt( 'rcnotefrom', array( 'parseinline' ),
+		$note = '';
+		if( $options['from'] ) {
+			$note .= wfMsgExt( 'rcnotefrom', array( 'parseinline' ),
 				$wgLang->formatNum( $options['limit'] ),
-				$wgLang->timeanddate( $options['from'], true ) );
-		else
-			$note = wfMsgExt( 'rcnote', array( 'parseinline' ),
-				$wgLang->formatNum( $options['limit'] ),
-				$wgLang->formatNum( $options['days'] ),
-				$wgLang->timeAndDate( wfTimestampNow(), true ),
-				$wgLang->date( wfTimestampNow(), true ),
-				$wgLang->time( wfTimestampNow(), true ) );
+				$wgLang->timeanddate( $options['from'], true ) ) . '<br />';
+		}
+		if( !wfEmptyMsg( 'rclegend', wfMsg('rclegend') ) ) {
+			$note .= wfMsgExt( 'rclegend', array('parseinline') ) . '<br />';
+		}
 
 		# Sort data for display and make sure it's unique after we've added user data.
 		$wgRCLinkLimits[] = $options['limit'];
@@ -661,6 +659,6 @@ class SpecialRecentChanges extends SpecialPage {
 		$rclinks = wfMsgExt( 'rclinks', array( 'parseinline', 'replaceafter' ),
 			$cl, $dl, $hl );
 		$rclistfrom = wfMsgExt( 'rclistfrom', array( 'parseinline', 'replaceafter' ), $tl );
-		return "$note<br />$rclinks<br />$rclistfrom";
+		return "{$note}$rclinks<br />$rclistfrom";
 	}
 }
