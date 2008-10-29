@@ -985,6 +985,7 @@ Ju lutem kërkoni {{SITENAME}}-n përpara se të krijoni një artikull të ri se
 'recentchangestext'                 => 'Ndiqni ndryshime së fundmi tek kjo faqe.',
 'recentchanges-feed-description'    => 'Ndjek ndryshimet më të fundit në wiki tek kjo fushë.',
 'rcnote'                            => "Më poshtë {{PLURAL:$1|është '''1''' ndryshim| janë '''$1''' ndryshime}} së fundmi gjatë <strong>$2</strong> ditëve sipas të dhënave nga $4, $5.",
+'rcnotefrom'                        => 'Më poshtë janë ndryshime së fundmi nga <b>$2</b> (treguar deri në <b>$1</b>).',
 'rclistfrom'                        => 'Tregon ndryshime së fundmi duke filluar nga $1',
 'rcshowhideminor'                   => '$1 redaktimet e vogla',
 'rcshowhidebots'                    => '$1 robotët',

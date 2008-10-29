@@ -1171,6 +1171,7 @@ Móžeš [[:\$1|tutu stronu wutworić]].",
 'rcnote'                            => "Deleka {{PLURAL:\$1|je '''1''' změna|stej poslednjej '''\$1''' změnje|su poslednje '''\$1''' změny|je poslednich '''\$1''' změnow}} za {{PLURAL:\$2|posledny dźeń|poslednjej '''\$2''' dnjej|poslednje '''\$2''' dny|poslednich '''\$2''' dnjow}}, staw wot \$4, \$5. 
 <div id=\"rc-legend\" style=\"float:right;font-size:84%;margin-left:5px;\"> <b>Legenda</b><br />
 <b><tt>N</tt></b>&nbsp;– Nowy přinošk<br /> <b><tt>S</tt></b>&nbsp;– Snadna změna<br /> <b><tt>B</tt></b>&nbsp;– Změny awtomatiskich programow (bot)<br />  ''(± ličba)''&nbsp;– Změna wulkosće w bajtach </div>",
+'rcnotefrom'                        => "Deleka so změny wot '''$2''' pokazuja (hač k '''$1''').",
 'rclistfrom'                        => 'Nowe změny pokazać, započinajo z $1',
 'rcshowhideminor'                   => 'snadne změny $1',
 'rcshowhidebots'                    => 'změny awtomatiskich programow (bots) $1',
