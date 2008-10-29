@@ -28,16 +28,19 @@ CREATE TABLE /*$wgDBprefix*/blob_tracking (
 	-- True if the text table has been updated to point to bt_new_url
 	bt_moved bool not null default 0,
 
-	PRIMARY KEY (bt_rev_id, bt_text_id),
+	-- Primary key
+	-- Note that text_id is not unique due to null edits (protection, move)
+	-- moveTextRow(), commit(), trackOrphanText()
+	PRIMARY KEY (bt_text_id, bt_rev_id),
 
 	-- Sort by page for easy CGZ recompression
-	KEY (bt_moved, bt_page, bt_rev_id),
-
-	-- For fast orphan searches
-	KEY (bt_text_id),
+	-- doAllPages(), doAllOrphans(), doPage(), finishIncompleteMoves()
+	KEY (bt_moved, bt_page, bt_text_id),
 
 	-- Key for determining the revisions using a given blob
+	-- Not used by any scripts yet
 	KEY (bt_cluster, bt_blob_id, bt_cgz_hash)
+
 ) /*$wgDBTableOptions*/;
 
 -- Tracking table for blob rows that aren't tracked by the text table
