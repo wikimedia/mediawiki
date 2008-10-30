@@ -2762,6 +2762,7 @@ $wgLogHeaders = array(
 $wgLogActions = array(
 	'block/block'       => 'blocklogentry',
 	'block/unblock'     => 'unblocklogentry',
+	'block/reblock'     => 'reblock-logentry',
 	'protect/protect'   => 'protectedarticle',
 	'protect/modify'    => 'modifiedarticleprotection',
 	'protect/unprotect' => 'unprotectedarticle',

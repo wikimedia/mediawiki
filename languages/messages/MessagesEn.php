@@ -2552,6 +2552,7 @@ Fill in a specific reason below (for example, citing particular pages that were 
 'ipbhidename'                     => 'Hide username from the block log, active block list and user list',
 'ipbwatchuser'                    => "Watch this user's user and talk pages",
 'ipballowusertalk'                => 'Allow this user to edit own talk page while blocked',
+'ipb-change-block'                => 'Re-block the user with these settings',
 'badipaddress'                    => 'Invalid IP address',
 'blockipsuccesssub'               => 'Block succeeded',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] has been blocked.<br />
@@ -2593,6 +2594,7 @@ The reason given for $1\'s block is: "$2"',
 'blocklogpage'                    => 'Block log',
 'blocklog-fulllog'                => 'Full block log',
 'blocklogentry'                   => 'blocked [[$1]] with an expiry time of $2 $3',
+'reblock-logentry'                => 'changed block settings for [[$1]] with an expiry time of $2 $3',
 'blocklogtext'                    => 'This is a log of user blocking and unblocking actions.
 Automatically blocked IP addresses are not listed.
 See the [[Special:IPBlockList|IP block list]] for the list of currently operational bans and blocks.',
@@ -2607,6 +2609,8 @@ See the [[Special:IPBlockList|IP block list]] for the list of currently operatio
 'ipb_expiry_invalid'              => 'Expiry time invalid.',
 'ipb_expiry_temp'                 => 'Hidden username blocks must be permanent.',
 'ipb_already_blocked'             => '"$1" is already blocked',
+'ipb-needreblock'                 => '== Already blocked ==
+$1 is already blocked. Do you want to change the settings?',
 'ipb_cant_unblock'                => 'Error: Block ID $1 not found.
 It may have been unblocked already.',
 'ipb_blocked_as_range'            => 'Error: The IP $1 is not blocked directly and cannot be unblocked.
