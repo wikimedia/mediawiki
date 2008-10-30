@@ -475,8 +475,19 @@ class MediaWikiBagOStuff extends SqlBagOStuff {
 	function _fromunixtime($ts) {
 		return $this->_getDB()->timestamp($ts);
 	}
+	/***
+	 * Note -- this should *not* check wfReadOnly().
+	 * Read-only mode has been repurposed from the original
+	 * "nothing must write to the database" to "users should not
+	 * be able to edit or alter anything user-visible".
+	 *
+	 * Backend bits like the object cache should continue
+	 * to work in this mode, otherwise things will blow up
+	 * like the message cache failing to save its state,
+	 * causing long delays (bug 11533).
+	 */
 	function _readonly(){
-		return wfReadOnly();
+		return false;
 	}
 	function _strencode($s) {
 		return $this->_getDB()->strencode($s);
