@@ -120,7 +120,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['timezone'] = $tz;
 		$data['timeoffset'] = $offset;
 
-		$this->getResult()->addValue( 'query', $property, $data );
+		$this->getResult()->addValue( array( 'query', $this->getModuleName() ), $property, $data );
 	}
 
 	protected function appendNamespaces( $property ) {
@@ -137,7 +137,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		}
 
 		$this->getResult()->setIndexedTagName( $data, 'ns' );
-		$this->getResult()->addValue( 'query', $property, $data );
+		$this->getResult()->addValue( array( 'query', $this->getModuleName() ), $property, $data );
 	}
 
 	protected function appendNamespaceAliases( $property ) {
@@ -152,7 +152,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		}
 
 		$this->getResult()->setIndexedTagName( $data, 'ns' );
-		$this->getResult()->addValue( 'query', $property, $data );
+		$this->getResult()->addValue( array( 'query', $this->getModuleName() ), $property, $data );
 	}
 
 	protected function appendSpecialPageAliases( $property ) {
@@ -165,7 +165,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$data[] = $arr;
 		}
 		$this->getResult()->setIndexedTagName( $data, 'specialpage' );
-		$this->getResult()->addValue( 'query', $property, $data );
+		$this->getResult()->addValue( array( 'query', $this->getModuleName() ), $property, $data );
 	}
 	
 	protected function appendMagicWords( $property ) {
@@ -181,7 +181,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$data[] = $arr;
 		}
 		$this->getResult()->setIndexedTagName($data, 'magicword');
-		$this->getResult()->addValue('query', $property, $data);
+		$this->getResult()->addValue( array( 'query', $this->getModuleName() ), $property, $data );
 	}
 			
 
@@ -220,7 +220,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$db->freeResult( $res );
 
 		$this->getResult()->setIndexedTagName( $data, 'iw' );
-		$this->getResult()->addValue( 'query', $property, $data );
+		$this->getResult()->addValue( array( 'query', $this->getModuleName() ), $property, $data );
 	}
 
 	protected function appendDbReplLagInfo( $property, $includeAll ) {
@@ -246,9 +246,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			);
 		}
 
-		$result = $this->getResult();
-		$result->setIndexedTagName( $data, 'db' );
-		$result->addValue( 'query', $property, $data );
+		$this->getResult()->setIndexedTagName( $data, 'db' );
+		$this->getResult()->addValue( array( 'query', $this->getModuleName() ), $property, $data );
 	}
 
 	protected function appendStatistics( $property ) {
@@ -262,7 +261,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['activeusers'] = intval( SiteStats::activeUsers() );
 		$data['admins'] = intval( SiteStats::numberingroup('sysop') );
 		$data['jobs'] = intval( SiteStats::jobs() );
-		$this->getResult()->addValue( 'query', $property, $data );
+		$this->getResult()->addValue( array( 'query', $this->getModuleName() ), $property, $data );
 	}
 
 	protected function appendUserGroups( $property ) {
@@ -275,7 +274,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		}
 
 		$this->getResult()->setIndexedTagName( $data, 'group' );
-		$this->getResult()->addValue( 'query', $property, $data );
+		$this->getResult()->addValue( array( 'query', $this->getModuleName() ), $property, $data );
 	}
 
 	public function getAllowedParams() {
