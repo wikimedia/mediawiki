@@ -1364,7 +1364,7 @@ END;
 	function lastModified() {
 		global $wgLang, $wgArticle;
 		if( $this->mRevisionId ) {
-			$timestamp = Revision::getTimestampFromId( $this->mRevisionId, $wgArticle->getId() );
+			$timestamp = Revision::getTimestampFromId( $wgArticle->getTitle(), $this->mRevisionId );
 		} else {
 			$timestamp = $wgArticle->getTimestamp();
 		}
