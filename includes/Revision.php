@@ -953,15 +953,13 @@ class Revision {
 
 	/**
 	 * Get rev_timestamp from rev_id, without loading the rest of the row
+	 * @param Title $title
 	 * @param integer $id
-	 * @param integer $pageid, optional
 	 */
-	static function getTimestampFromId( $id, $pageId = 0 ) {
+	static function getTimestampFromId( $title, $id ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		$conds = array( 'rev_id' => $id );
-		if( $pageId ) {
-			$conds['rev_page'] = $pageId;
-		}
+		$conds['rev_page'] = $title->getArticleId();
 		$timestamp = $dbr->selectField( 'revision', 'rev_timestamp', $conds, __METHOD__ );
 		if ( $timestamp === false && wfGetLB()->getServerCount() > 1 ) {
 			# Not in slave, try master
