@@ -1065,7 +1065,7 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 'search-result-score'       => 'Pertinence : $1%',
 'search-redirect'           => '(redirection depuis $1)',
 'search-section'            => '(section $1)',
-'search-suggest'            => 'Avez-vous voulu dire : $1',
+'search-suggest'            => 'Essayez avec cette orthographe : $1',
 'search-interwiki-caption'  => 'Projets frères',
 'search-interwiki-default'  => 'Résultats sur $1 :',
 'search-interwiki-more'     => '(plus)',
@@ -1536,7 +1536,7 @@ Une [[Special:WhatLinksHere/$2|liste complète]] est disponible.',
 
 # Unused templates
 'unusedtemplates'     => 'Modèles inutilisés',
-'unusedtemplatestext' => 'Cette page liste toutes les pages de l’espace de noms « Modèle » qui ne sont incluses dans aucune autre page. N’oubliez pas de vérifier s’il n’y a pas d’autre lien vers les modèles avant de les supprimer.',
+'unusedtemplatestext' => 'Cette page liste toutes les pages de l’espace de noms « {{ns:template}} » qui ne sont incluses dans aucune autre page. N’oubliez pas de vérifier s’il n’y a pas d’autre lien vers les modèles avant de les supprimer.',
 'unusedtemplateswlh'  => 'autres liens',
 
 # Random page
@@ -2093,7 +2093,7 @@ Vous pouvez consulter la [[Special:IPBlockList|liste des comptes et des adresses
 'blocklist-nousertalk'            => 'ne peuvent modifier leur propre page de discussion',
 'ipblocklist-empty'               => 'La liste des adresses IP bloquées est actuellement vide.',
 'ipblocklist-no-results'          => 'L’adresse IP ou l’utilisateur n’a pas été bloqué.',
-'blocklink'                       => 'bloquer',
+'blocklink'                       => 'Bloquer',
 'unblocklink'                     => 'débloquer',
 'contribslink'                    => 'Contributions',
 'autoblocker'                     => 'Vous avez été bloqué automatiquement parce que votre adresse IP a été récemment utilisée par « $1 ». La raison fournie pour le blocage de $1 est : « $2 ».',
@@ -2426,11 +2426,12 @@ Ceci est probablement causé par un lien sur liste noire pointant vers un site e
 'markedaspatrollederror-noautopatrol' => 'Vous n’avez pas le droit de marquer vos propres modifications comme surveillées.',
 
 # Patrol log
-'patrol-log-page'   => 'Historique des versions patrouillées',
-'patrol-log-header' => 'Voici un journal des versions patrouillées.',
-'patrol-log-line'   => 'a marqué la version $1 de $2 comme vérifiée $3',
-'patrol-log-auto'   => '(automatique)',
-'patrol-log-diff'   => 'v$1',
+'patrol-log-page'    => 'Historique des versions patrouillées',
+'patrol-log-header'  => 'Voici un journal des versions patrouillées.',
+'patrol-log-line'    => 'a marqué la version $1 de $2 comme vérifiée $3',
+'patrol-log-auto'    => '(automatique)',
+'patrol-log-diff'    => 'v$1',
+'logshowhide-patrol' => "$1 l'historique des versions patrouillées",
 
 # Image deletion
 'deletedrevision'                 => 'L’ancienne version $1 a été supprimée',

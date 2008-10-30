@@ -1609,7 +1609,8 @@ A teljes lista [[Special:WhatLinksHere/$2|ezen a lapon]] található meg.',
 
 # Unused templates
 'unusedtemplates'     => 'Nem használt sablonok',
-'unusedtemplatestext' => 'Ez a lap azon sablon névtérben lévő lapokat gyűjti össze, melyek nem találhatók meg más lapokon. Ellenőrizd a hivatkozásokat, mielőtt törölnéd őket.',
+'unusedtemplatestext' => 'Ez a lap azon {{ns:template}} névtérbe tartozó lapokat gyűjti össze, melyek nincsenek használva egyetlen lapon sem.
+Ellenőrizd a meglévő hivatkozásokat, mielőtt törölnéd őket.',
 'unusedtemplateswlh'  => 'más hivatkozások',
 
 # Random page
@@ -2503,10 +2504,11 @@ Ez valószínűleg egy olyan link miatt van, ami egy feketelistán lévő oldalr
 'markedaspatrollederror-noautopatrol' => 'A saját változtatásaid megjelölése ellenőrzöttként nem engedélyezett.',
 
 # Patrol log
-'patrol-log-page'   => 'Ellenőrzési napló',
-'patrol-log-header' => 'Ez az ellenőrzött változatok naplója.',
-'patrol-log-line'   => 'megjelölve $1 / $2 ellenőrizve $3',
-'patrol-log-auto'   => '(automatikus)',
+'patrol-log-page'    => 'Ellenőrzési napló',
+'patrol-log-header'  => 'Ez az ellenőrzött változatok naplója.',
+'patrol-log-line'    => 'megjelölve $1 / $2 ellenőrizve $3',
+'patrol-log-auto'    => '(automatikus)',
+'logshowhide-patrol' => 'járőrnapló $1',
 
 # Image deletion
 'deletedrevision'                 => 'Régebbi változat törölve: $1',

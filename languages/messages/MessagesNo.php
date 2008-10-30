@@ -1461,7 +1461,7 @@ En [[Special:WhatLinksHere/$2|fullstendig liste]] er tilgjengelig.',
 
 # Unused templates
 'unusedtemplates'     => 'Ubrukte maler',
-'unusedtemplatestext' => 'Denne siden lister opp alle sider i malnavnerommet som ikke er inkludert på en annen side. Husk å sjekke for andre slags lenker til malen før du sletter den.',
+'unusedtemplatestext' => 'Denne siden lister opp alle sider i malnavnerommet ({{ns:template}}:) som ikke er inkludert på en annen side. Husk å sjekke for andre slags lenker til malen før du sletter den.',
 'unusedtemplateswlh'  => 'andre lenker',
 
 # Random page
@@ -2336,10 +2336,11 @@ Dette er sannsynligvis forårsaket av en lenke til et svartelistet eksternt nett
 'markedaspatrollederror-noautopatrol' => 'Du kan ikke merke dine egne endringer som godkjente.',
 
 # Patrol log
-'patrol-log-page'   => 'Godkjenningslogg',
-'patrol-log-header' => 'Dette er en logg over patruljerte sideversjoner.',
-'patrol-log-line'   => 'merket $1 av $2 godkjent $3',
-'patrol-log-auto'   => '(automatisk)',
+'patrol-log-page'    => 'Godkjenningslogg',
+'patrol-log-header'  => 'Dette er en logg over patruljerte sideversjoner.',
+'patrol-log-line'    => 'merket $1 av $2 godkjent $3',
+'patrol-log-auto'    => '(automatisk)',
+'logshowhide-patrol' => '$1 patruljeringslogg',
 
 # Image deletion
 'deletedrevision'                 => 'Slettet gammel revisjon $1.',

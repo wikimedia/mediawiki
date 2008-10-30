@@ -312,7 +312,7 @@ $messages = array(
 'articlepage'       => 'זעט אינהאלט בלאט',
 'talk'              => 'שמועס',
 'views'             => 'קוקן',
-'toolbox'           => 'טול באקס',
+'toolbox'           => 'טול קאסטן',
 'userpage'          => 'זעהט באנוצער בלאט',
 'projectpage'       => 'זעהט פראיעקט בלאט',
 'imagepage'         => 'זעט בילדער בלאט',
@@ -607,10 +607,10 @@ $2',
 'link_tip'        => "מאך דאס א '''לינק''' צו א וויקיפעדיע ארטיקל",
 'extlink_sample'  => 'http://www.example.com לינק טיטל',
 'extlink_tip'     => 'דערויסענדיגע לינק (געדענק http:// פרעפיקס)',
-'headline_sample' => 'לייג דא אריין דעם טעקסט פונעם נייעם קעפּל',
-'headline_tip'    => "אַ נײַער קעפּל, 2'טער שטאפל, אײַנצוטײלן דעם אַרטיקל",
+'headline_sample' => 'קעפּל',
+'headline_tip'    => 'קעפּל -2טער שטאפל',
 'math_sample'     => 'לייגט אריין פארמל דא',
-'math_tip'        => 'מאטעמאטישע פארמיולע (LaTeX)',
+'math_tip'        => 'מאטעמאטישע פארמל (LaTeX)',
 'nowiki_sample'   => 'אינסערט נישט-פארמארטירטע טעקסט דא',
 'nowiki_tip'      => 'דאָס וועט איגנאָרירן די וויקי פֿאָרמאַטינג קאָוד',
 'image_sample'    => 'ביישפיל.jpg',
@@ -746,6 +746,11 @@ $2',
 
 אנא שיקלו אם יהיה זה נכון להמשיך לערוך את הדף.
 יומן המחיקות של הדף מוצג להלן:",
+'deleted-notice'            => 'דער בלאט איז געווארן אויסגעמעקט.
+דאס אויסמעקן לאג-בוך פונעם בלאט איז געוויזן דא אונטן.',
+'edit-gone-missing'         => "נישט מעגלעך צו דערהיינטיגן דעם בלאט.
+ס'ווייזט אויס אז ער איז אויסגעמעקט.",
+'edit-conflict'             => 'רעדאקטירן קאנפֿליקט.',
 
 # "Undo" feature
 'undo-success' => 'די ענדערונג קען ווערן מבוטל. ביטע נאכקוקן די פארגלייך פון אונטן צו זיין זיכער אז דאס איז וואס איר ווילט טאן, און דערנאך היט-אפ די ענדערונגן פון אונטן צו ענדיגן דאס בטל מאכן די ענדערונג.',
@@ -758,26 +763,28 @@ $2',
 'cantcreateaccount-text' => 'שאפֿן קאנטעס פון דעם IP אדרעס (<b>$1</b>) איז געווארן בלאקירט דורך [[User:$3|$3]]. די סיבה געגעבן פֿון $3 איז "$2".',
 
 # History pages
-'viewpagelogs'        => 'זעה לאגס פאר דעם בלאט',
-'nohistory'           => 'נישטא קיין ענדערן היסטאריע פאר דעם בלאט.',
-'currentrev'          => 'איצטיגע ווערסיע',
-'revisionasof'        => 'רעוויזיע ביי $1',
-'revision-info'       => 'רעוויזיע ביי $1 פון $2', # Additionally available: $3: revision id
-'previousrevision'    => '→ עלטערער ווערסיע',
-'nextrevision'        => 'נייע ווערסיע ←',
-'currentrevisionlink' => 'איצטיגע ווערסיע',
-'cur'                 => 'איצט',
-'next'                => 'קומענדיגע',
-'last'                => 'לעצטע',
-'page_first'          => 'ערשט',
-'page_last'           => 'לעצט',
-'histlegend'          => 'פֿארגלייכן  אויסקלויב: צייכנט די קנעפלעך פֿון די ווערסיעס צו פֿארגלײַכן, און קלאפט  Enter אדער דאס קנעפל אונטן.<br />
+'viewpagelogs'           => 'זעה לאגס פאר דעם בלאט',
+'nohistory'              => 'נישטא קיין ענדערן היסטאריע פאר דעם בלאט.',
+'currentrev'             => 'איצטיגע ווערסיע',
+'currentrev-asof'        => 'לויפיקע רעוויזיע פון $1',
+'revisionasof'           => 'רעוויזיע ביי $1',
+'revision-info'          => 'רעוויזיע ביי $1 פון $2', # Additionally available: $3: revision id
+'previousrevision'       => '→ עלטערער ווערסיע',
+'nextrevision'           => 'נייע ווערסיע ←',
+'currentrevisionlink'    => 'איצטיגע ווערסיע',
+'cur'                    => 'איצט',
+'next'                   => 'קומענדיגע',
+'last'                   => 'לעצטע',
+'page_first'             => 'ערשט',
+'page_last'              => 'לעצט',
+'histlegend'             => 'פֿארגלייכן  אויסקלויב: צייכנט די קנעפלעך פֿון די ווערסיעס צו פֿארגלײַכן, און קלאפט  Enter אדער דאס קנעפל אונטן.<br />
 מקרא: (איצט) = אונטערשייד פֿון לויפֿיגער ווערסיע, (לעצט) = אונטערשייד פֿון פֿריערדיגער ווערסיע, מ = מינערדיקע רעדאקטירונג',
-'deletedrev'          => '[אויסגעמעקט]',
-'histfirst'           => 'ערשטע',
-'histlast'            => 'לעצטיגע',
-'historysize'         => '({{PLURAL:$1|1 בייט|$1 בייטן}})',
-'historyempty'        => '(ליידיג)',
+'history-fieldset-title' => 'בלעטערט די היסטאריע',
+'deletedrev'             => '[אויסגעמעקט]',
+'histfirst'              => 'ערשטע',
+'histlast'               => 'לעצטיגע',
+'historysize'            => '({{PLURAL:$1|1 בייט|$1 בייטן}})',
+'historyempty'           => '(ליידיג)',
 
 # Revision feed
 'history-feed-title'          => 'ווערסיע היסטאריע',
@@ -1868,6 +1875,22 @@ $5
 'iranian-calendar-m10' => 'דיי',
 'iranian-calendar-m11' => 'באַהמאַן',
 'iranian-calendar-m12' => 'עספֿאַנד',
+
+# Hebrew month names
+'hebrew-calendar-m1-gen'  => 'תשרי',
+'hebrew-calendar-m2-gen'  => 'חשוון',
+'hebrew-calendar-m3-gen'  => 'כסלו',
+'hebrew-calendar-m4-gen'  => 'טבת',
+'hebrew-calendar-m5-gen'  => 'שבט',
+'hebrew-calendar-m6-gen'  => 'אדר',
+'hebrew-calendar-m6a-gen' => "אדר א'",
+'hebrew-calendar-m6b-gen' => "אדר ב'",
+'hebrew-calendar-m7-gen'  => 'ניסן',
+'hebrew-calendar-m8-gen'  => 'אייר',
+'hebrew-calendar-m9-gen'  => 'סיוון',
+'hebrew-calendar-m10-gen' => 'תמוז',
+'hebrew-calendar-m11-gen' => 'אב',
+'hebrew-calendar-m12-gen' => 'אלול',
 
 # Special:Version
 'version'              => 'ווערסיע', # Not used as normal message but as header for the special page itself

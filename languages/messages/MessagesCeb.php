@@ -96,6 +96,7 @@ $messages = array(
 'november-gen'  => 'Nobyembre',
 'december-gen'  => 'Disyembre',
 'jan'           => 'Ene',
+'feb'           => 'Peb',
 'may'           => 'Mayo',
 'jun'           => 'Hun',
 'dec'           => 'Dis',

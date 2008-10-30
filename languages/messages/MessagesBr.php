@@ -95,6 +95,8 @@ $messages = array(
 'tog-watchlisthideown'        => "Kuzhat ma c'hemmoù er rollad evezhiañ",
 'tog-watchlisthidebots'       => 'Kuzhat kemmoù ar botoù er rollad evezhiañ',
 'tog-watchlisthideminor'      => "Kuzhat ar c'hemmoù dister er rollad evezhiañ",
+'tog-watchlisthideliu'        => 'Er roll evezhiañ, kuzhat kemmoù an implijerien kevreet.',
+'tog-watchlisthideanons'      => 'Er roll evezhiañ, kuzhat kemmoù an implijerien dianav',
 'tog-nolangconversion'        => "Diweredekaat an treiñ diforc'hioù yezh",
 'tog-ccmeonemails'            => 'Kas din un eilenn eus ar posteloù a gasan da implijerien all',
 'tog-diffonly'                => "Arabat diskouez danvez ar pennadoù dindan an diforc'hioù",
@@ -284,7 +286,7 @@ $messages = array(
 
 'badaccess'        => 'Fazi aotre',
 'badaccess-group0' => "N'oc'h ket aotreet da seveniñ ar pezh hoc'h eus goulennet.",
-'badaccess-groups' => 'Miret eo an ober-mañ evit an dud en unan eus ar strolladoù $1 hepken.',
+'badaccess-groups' => 'Miret eo an ober-mañ evit an implijerien zo {{PLURAL:$2|er strollad|en unan eus ar strolladoù}} : $1.',
 
 'versionrequired'     => 'Rekis eo Stumm $1 MediaWiki',
 'versionrequiredtext' => 'Rekis eo stumm $1 MediaWiki evit implijout ar bajenn-mañ. Sellit ouzh [[Special:Version]]',
@@ -298,6 +300,8 @@ $messages = array(
 'editsection'             => 'kemmañ',
 'editold'                 => 'kemmañ',
 'viewsourceold'           => 'gwelet ar vammenn',
+'editlink'                => 'kemmañ',
+'viewsourcelink'          => 'gwelet an tarzh',
 'editsectionhint'         => 'Kemmañ ar rann : $1',
 'toc'                     => 'Taolenn',
 'showtoc'                 => 'diskouez',
@@ -393,6 +397,9 @@ $2',
 'titleprotected'       => "Gwarezet eo bet an titl-mañ p'eo bet krouet gant [[User:$1|$1]].
 Setu amañ perak ''$2''.",
 
+# Virus scanner
+'virus-unknownscanner' => 'diviruzer dianav :',
+
 # Login and logout pages
 'logouttitle'                => 'Dilugañ',
 'logouttext'                 => "Diluget oc'h bremañ.
@@ -422,7 +429,8 @@ Na zisoñjit ket resisaat ho [[Special:Preferences|penndibaboù evit {{SITENAME}
 'gotaccountlink'             => 'En em lugañ',
 'createaccountmail'          => 'dre bostel',
 'badretype'                  => "N'eo ket peurheñvel an eil ouzh egile an daou c'her-tremen bet lakaet ganeoc'h.",
-'userexists'                 => "Implijet eo dija an anv implijer lakaet ganeoc'h. Dibabit unan all mar plij.",
+'userexists'                 => "Implijet eo an anv implijer lakaet ganeoc'h dija. 
+Dibabit un anv all mar plij.",
 'youremail'                  => 'Postel *:',
 'username'                   => 'Anv implijer :',
 'uid'                        => 'Niv. identelezh an implijer :',
@@ -493,7 +501,7 @@ Na daolit ket evezh ouzh ar c\'hemenn-mañ m\'eo bet krouet ar gont dre fazi.',
 'resetpass_submit'        => 'Kemmañ ar ger-tremen hag en em lugañ',
 'resetpass_success'       => "Kemmet mat eo bet ho ker-temen ! Emaoc'h oc'h en em lugañ e-barzh...",
 'resetpass_bad_temporary' => "Ger-tremen da c'hortoz faziek. Marteze hoc'h eus cheñchet ho ker-tremen dija pe hoc'h eus goulennet ur ger-tremen da c'hortoz all.",
-'resetpass_forbidden'     => "N'haller ket cheñch ar gerioù-termen war {{SITENAME}}",
+'resetpass_forbidden'     => "N'haller ket cheñch ar gerioù-termen",
 'resetpass_missing'       => "N'eus bet lakaet titour ebet.",
 
 # Edit page toolbar
@@ -641,6 +649,9 @@ Gallout a rit mont war-gil ha degas kemmoù en ur bajenn zo anezhi dija, pe [[Sp
 
 En em soñjit ervat ha talvoudus eo kenderc'hel krouiñ ar bajenn.
 Deoc'h da c'houzout, aze emañ marilh an diverkadenn :",
+'edit-conflict'                    => 'Kemmañ an dizemglev',
+'edit-already-exists'              => "N'eus ket bet gallet krouiñ ur bajenn nevez.
+Krouet e oa bet c'hoazh.",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => "Diwallit : Re a c'halvoù koustus e-keñver an arc'hwelioù parser zo gant ar bajenn-mañ.
@@ -786,9 +797,30 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'compareselectedversions' => 'Keñveriañ ar stummoù diuzet',
 'editundo'                => 'disteuler',
 'diff-multi'              => "({{PLURAL:$1|Ur reizhadenn da c'hortoz|$1 reizhadenn da c'hortoz}} kuzhet.)",
+'diff-added'              => '$1 ouzhpennet',
+'diff-changedto'          => 'kemmet war-du $1',
+'diff-removed'            => '$1 tennet kuit',
+'diff-src'                => 'tarzh',
+'diff-width'              => 'ledander',
+'diff-height'             => 'uhelder',
+'diff-table'              => "un '''daolenn'''",
+'diff-tr'                 => "ul '''linenn'''",
+'diff-td'                 => "ur '''gellig'''",
+'diff-br'                 => "un '''torr'''",
+'diff-img'                => "ur '''skeudenn'''",
+'diff-a'                  => "ul '''liamm'''",
+'diff-i'                  => "'''italeg'''",
+'diff-b'                  => "'''tev'''",
+'diff-strong'             => "'''kreñv'''",
+'diff-font'               => "'''font'''",
+'diff-big'                => "'''bras'''",
+'diff-del'                => "'''diverket'''",
+'diff-sub'                => "'''isskript'''",
+'diff-sup'                => "'''usskript'''",
 
 # Search results
 'searchresults'             => "Disoc'h ar c'hlask",
+'searchresults-title'       => "Disoc'hoù klask evit $1",
 'searchresulttext'          => "Evit kaout muioc'h a ditouroù diwar-benn ar c'hlask e {{SITENAME}}, sellet ouzh [[{{MediaWiki:Helppage}}|{{int:help}}]].",
 'searchsubtitle'            => 'Evit ar goulenn "[[:$1]]"',
 'searchsubtitleinvalid'     => 'Evit ar goulenn "$1"',
@@ -2337,7 +2369,7 @@ $1
 'trackbackdeleteok' => 'Diverket mat eo bet al liamm war-gil.',
 
 # Delete conflict
-'deletedwhileediting' => "Diwallit : Diverket eo bet ar bajenn-mañ bremañ ha krog e oac'h da zegas kemmoù enni!",
+'deletedwhileediting' => "'''Diwallit''' : Diverket eo bet ar bajenn-mañ bremañ ha krog e oac'h da zegas kemmoù enni!",
 'confirmrecreate'     => "Diverket eo bet ar pennad-mañ gant [[User:$1|$1]] ([[User talk:$1|kaozeal]]) goude ma vije bet kroget ganeoc'h kemmañ anezhañ :
 : ''$2''
 Kadarnait mar plij e fell deoc'h krouiñ ar pennad-mañ da vat.",

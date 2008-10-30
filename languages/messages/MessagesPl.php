@@ -1591,7 +1591,7 @@ Użycie: typ_treści/podtyp, np. <tt>image/jpeg</tt>.',
 
 # Unused templates
 'unusedtemplates'     => 'Nieużywane szablony',
-'unusedtemplatestext' => 'Poniżej znajduje się lista wszystkich stron znajdujących się w przestrzeni nazw przeznaczonej dla szablonów, które nie są używane przez inne strony.
+'unusedtemplatestext' => 'Poniżej znajduje się lista wszystkich stron znajdujących się w przestrzeni nazw {{ns:template}}, które nie są używane przez inne strony.
 Sprawdź inne linki do szablonów, zanim usuniesz tę stronę.',
 'unusedtemplateswlh'  => 'inne linkujące',
 

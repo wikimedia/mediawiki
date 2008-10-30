@@ -1466,7 +1466,7 @@ Podeu consultar la [[Special:WhatLinksHere/$2|llista completa]].",
 
 # Unused templates
 'unusedtemplates'     => 'Plantilles no utilitzades',
-'unusedtemplatestext' => "Aquesta pàgina mostra les pàgines en l'espai de noms de plantilles, que no estan incloses en cap altra pàgina. Recordeu de comprovar les pàgines que hi enllacen abans d'esborrar-les.",
+'unusedtemplatestext' => "Aquesta pàgina mostra les pàgines en l'espai de noms {{ns:template}}, que no estan incloses en cap altra pàgina. Recordeu de comprovar les pàgines que hi enllacen abans d'esborrar-les.",
 'unusedtemplateswlh'  => 'altres enllaços',
 
 # Random page
@@ -1530,7 +1530,7 @@ Cada fila conté enllaços a la segona i tercera redirecció, així com la prime
 'nviews'                  => '$1 {{PLURAL:$1|visita|visites}}',
 'specialpage-empty'       => 'Aquesta pàgina és buida.',
 'lonelypages'             => 'Pàgines òrfenes',
-'lonelypagestext'         => "Les següents pàgines no s'enllacen des d'altres pàgines del projecte {{SITENAME}}.",
+'lonelypagestext'         => "Les següents pàgines no s'enllacen ni s'inclouen en cap altra pàgina del projecte {{SITENAME}}.",
 'uncategorizedpages'      => 'Pàgines sense categoria',
 'uncategorizedcategories' => 'Categories sense categoria',
 'uncategorizedimages'     => 'Fitxers sense categoria',
@@ -1665,14 +1665,12 @@ i tenir una direcció electrònica vàlida en les vostres [[Special:Preferences|
 per enviar un correu electrònic a altres usuaris.",
 'emailuser'       => 'Envia un missatge de correu electrònic a aquest usuari',
 'emailpage'       => 'Correu electrònic a usuari',
-'emailpagetext'   => "Si aquest usuari ha entrat una adreça electrònica vàlida en les seves preferències d'usuari, el següent formulari enviarà un únic missatge.
-L'adreça electrònica que heu entrat en [[Special:Preferences|les vostres preferències d'usuari]] apareixerà en el remitent del correu electrònic, de manera que el destinatari us podrà respondre directament.",
+'emailpagetext'   => "Podeu usar el següent formulari per a enviar un missatge de correu electrònic a aquest usuari.
+L'adreça electrònica que heu entrat en [[Special:Preferences|les vostres preferències d'usuari]] apareixerà com a remitent del correu electrònic, de manera que el destinatari us podrà respondre directament.",
 'usermailererror' => "L'objecte de correu ha retornat un error:",
 'defemailsubject' => 'Adreça correl de {{SITENAME}}',
 'noemailtitle'    => 'No hi ha cap adreça electrònica',
-'noemailtext'     => "Aquest usuari no ha especificat una adreça electrònica vàlida, o ha escollit no rebre correu electrònic d'altres usuaris
-
-.",
+'noemailtext'     => "Aquest usuari no ha especificat una adreça electrònica vàlida, o ha escollit no rebre correu electrònic d'altres usuaris.",
 'email-legend'    => 'Enviar un correu electrònic a un altre usuari de {{SITENAME}}',
 'emailfrom'       => 'De:',
 'emailto'         => 'Per a:',

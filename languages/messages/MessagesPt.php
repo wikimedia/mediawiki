@@ -1260,7 +1260,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'rcshowhidebots'                    => '$1 robôs',
 'rcshowhideliu'                     => '$1 utilizadores registados',
 'rcshowhideanons'                   => '$1 utilizadores anónimos',
-'rcshowhidepatr'                    => '$1 edições verificadas',
+'rcshowhidepatr'                    => '$1 edições patrulhadas',
 'rcshowhidemine'                    => '$1 as minhas edições',
 'rclinks'                           => 'Mostrar as últimas $1 mudanças nos últimos $2 dias<br />$3',
 'diff'                              => 'dif',
@@ -2359,21 +2359,22 @@ Tal bloqueio foi provavelmente causado por uma ligação para um website externo
 'mw_math_mathml' => 'MathML se possível (experimental)',
 
 # Patrolling
-'markaspatrolleddiff'                 => 'Marcar como verificado',
-'markaspatrolledtext'                 => 'Marcar esta página como verificada',
-'markedaspatrolled'                   => 'Marcado como verificado',
-'markedaspatrolledtext'               => 'A edição seleccionada foi marcada como verificada.',
-'rcpatroldisabled'                    => 'Edições verificadas nas Mudanças Recentes desactivadas',
-'rcpatroldisabledtext'                => 'A funcionalidade de Edições verificadas nas Mudanças Recentes está actualmente desactivada.',
-'markedaspatrollederror'              => 'Não é possível marcar como verificado',
-'markedaspatrollederrortext'          => 'É necessário especificar uma edição a ser marcada como verificada.',
+'markaspatrolleddiff'                 => 'Marcar como patrulhada',
+'markaspatrolledtext'                 => 'Marcar esta página como patrulhada',
+'markedaspatrolled'                   => 'Marcado como patrulhado',
+'markedaspatrolledtext'               => 'A edição seleccionada foi marcada como patrulhada.',
+'rcpatroldisabled'                    => 'Edições patrulhadas nas Mudanças Recentes desactivadas',
+'rcpatroldisabledtext'                => 'A funcionalidade de edições patrulhadas nas Mudanças Recentes está actualmente desactivada.',
+'markedaspatrollederror'              => 'Não é possível marcar como patrulhada',
+'markedaspatrollederrortext'          => 'É necessário especificar uma edição a ser marcada como patrulhada.',
 'markedaspatrollederror-noautopatrol' => 'Você não está autorizado a marcar suas próprias edições como edições patrulhadas.',
 
 # Patrol log
-'patrol-log-page'   => 'Registo de edições patrulhadas',
-'patrol-log-header' => 'Este é um registo de edições patrulhadas.',
-'patrol-log-line'   => 'marcou a edição $1 de $2 como uma edição patrulhada $3',
-'patrol-log-auto'   => 'automaticamente',
+'patrol-log-page'    => 'Registo de edições patrulhadas',
+'patrol-log-header'  => 'Este é um registo de edições patrulhadas.',
+'patrol-log-line'    => 'marcou a edição $1 de $2 como uma edição patrulhada $3',
+'patrol-log-auto'    => 'automaticamente',
+'logshowhide-patrol' => '$1 registo de edições patrulhadas',
 
 # Image deletion
 'deletedrevision'                 => 'Apagada a versão antiga $1',

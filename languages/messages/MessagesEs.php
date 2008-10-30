@@ -2069,7 +2069,7 @@ las páginas en particular que han sido objeto de vandalismo).',
 'ipb_blocked_as_range'            => 'Error: la dirección IP $1 no está bloqueada directamente y no puede ser desbloqueada.
 Sin embargo, está bloqueada como parte del rango $2, que puede ser desbloqueado.',
 'ip_range_invalid'                => 'El rango de IP no es válido.',
-'blockme'                         => 'Bloqueame',
+'blockme'                         => 'Bloquearme',
 'proxyblocker'                    => 'Bloqueador de proxies',
 'proxyblocker-disabled'           => 'Esta función está deshabilitada.',
 'proxyblockreason'                => 'Su dirección IP ha sido bloqueada porque es un proxy abierto. Por favor, contacte con su proveedor de servicios de Internet o con su servicio de asistencia técnica e infórmeles de este grave problema de seguridad.',

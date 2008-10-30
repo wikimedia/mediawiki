@@ -1158,6 +1158,8 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'rc_categories'                     => 'Llímite pa les categoríes (dixebrar con "|")',
 'rc_categories_any'                 => 'Cualesquiera',
 'newsectionsummary'                 => '/* $1 */ nueva seición',
+'rc-enhanced-expand'                => 'Amosar detalles (requier JavaScript)',
+'rc-enhanced-hide'                  => 'Ocultar detalles',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Cambeos rellacionaos',
@@ -1362,7 +1364,8 @@ Hai disponible una [[Special:WhatLinksHere/$2|llista completa]].",
 
 # Unused templates
 'unusedtemplates'     => 'Plantíes ensin usu',
-'unusedtemplatestext' => "Esta páxina llista toles páxines del espaciu de nomes de plantíes que nun tán inxeríes n'otres páxines. Alcuérdate de comprobar otros enllaces a les plantíes enantes d'esborrales.",
+'unusedtemplatestext' => "Esta páxina llista toles páxines del espaciu de nomes {{ns:template}} que nun tán inxeríes n'otres páxines.
+Alcuérdate de comprobar otros enllaces a les plantíes enantes d'esborrales.",
 'unusedtemplateswlh'  => 'otros enllaces',
 
 # Random page
@@ -1423,7 +1426,7 @@ Hai disponible una [[Special:WhatLinksHere/$2|llista completa]].",
 'nviews'                  => '$1 {{PLURAL:$1|vista|vistes}}',
 'specialpage-empty'       => 'Nun hai resultaos nestos momentos.',
 'lonelypages'             => 'Páxines güérfanes',
-'lonelypagestext'         => 'Les páxines siguientes nun tán enllaciaes dende otres páxines de {{SITENAME}}.',
+'lonelypagestext'         => 'Les páxines siguientes nun tán enllaciaes nin trescluyíes dende otres páxines de {{SITENAME}}.',
 'uncategorizedpages'      => 'Páxines non categorizaes',
 'uncategorizedcategories' => 'Categoríes non categorizaes',
 'uncategorizedimages'     => 'Archivos non categorizaos',
@@ -2245,10 +2248,11 @@ Probablemente tea causao por un enllaz a un sitiu esternu de la llista prieta.',
 'markedaspatrollederror-noautopatrol' => 'Nun pues marcar los tos propios cambeos como supervisaos.',
 
 # Patrol log
-'patrol-log-page'   => 'Rexistru de supervisión',
-'patrol-log-header' => 'Esti ye un rexistru de les revisiones supervisaes.',
-'patrol-log-line'   => 'marcó la versión $1 de $2 como supervisada $3',
-'patrol-log-auto'   => '(automática)',
+'patrol-log-page'    => 'Rexistru de supervisión',
+'patrol-log-header'  => 'Esti ye un rexistru de les revisiones supervisaes.',
+'patrol-log-line'    => 'marcó la versión $1 de $2 como supervisada $3',
+'patrol-log-auto'    => '(automática)',
+'logshowhide-patrol' => '$1 rexistru de supervisión',
 
 # Image deletion
 'deletedrevision'                 => 'Esborrada la reversión vieya $1',
@@ -2652,6 +2656,7 @@ Por favor confirma que daveres quies volver a crear esta páxina.",
 # action=purge
 'confirm_purge_button' => 'Aceutar',
 'confirm-purge-top'    => "¿Llimpiar la caché d'esta páxina?",
+'confirm-purge-bottom' => 'Purgar una páxina esborra la caché y fuercia a apaecer la versión actual más recién.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← páxina anterior',

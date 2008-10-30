@@ -583,10 +583,11 @@ Parameters:
 * <tt>$7</tt> is the intended target of the block (what the blocking user specified in the blocking form)
 * <tt>$8</tt> is the timestamp when the block started',
 'blockednoreason'                  => '{{Identical|No reason given}}',
+'whitelistedittext'                => '* $1: link to Special:UserLogin with {{msg|loginreqlink}} as link description',
 'nosuchsectiontext'                => 'This message is displayed when a user tries to edit a section that does not exist. 
 
 Parameter $1 is the content of section parameter in the URL (for example 1234 in the URL http://translatewiki.net/w/i.php?title=Sandbox&action=edit&section=1234)',
-'loginreqlink'                     => 'Take a look on inflection. Used as parameter in messages loginreqpagetext and whitelistedittext.
+'loginreqlink'                     => 'Take a look on inflection. Used as parameter in {{msg|loginreqpagetext}} and {{msg|whitelistedittext}}.
 
 {{Identical|Log in}}',
 'newarticle'                       => '{{Identical|New}}',

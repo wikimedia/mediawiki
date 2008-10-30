@@ -288,7 +288,7 @@ $messages = array(
 # User preference toggles
 'tog-underline'               => 'Verwijzingen onderstrepen:',
 'tog-highlightbroken'         => 'Verwijzingen naar lege pagina’s <a href="" class="new">zo weergeven</a> (alternatief: zo weergeven<a href="" class="internal">?</a>).',
-'tog-justify'                 => 'Paragrafen uitvullen',
+'tog-justify'                 => "Alinea's uitvullen",
 'tog-hideminor'               => 'Kleine wijzigingen verbergen in recente wijzigingen',
 'tog-extendwatchlist'         => 'Uitgebreide volglijst gebruiken om alle toepasselijke wijzigingen te bekijken',
 'tog-usenewrc'                => 'Uitgebreide Recente Wijzigingen-pagina gebruiken (vereist JavaScript)',
@@ -304,7 +304,7 @@ $messages = array(
 'tog-watchdefault'            => 'Pagina’s die ik bewerk automatisch volgen',
 'tog-watchmoves'              => 'Pagina’s die ik hernoem automatisch volgen',
 'tog-watchdeletion'           => 'Pagina’s die ik verwijder automatisch volgen',
-'tog-minordefault'            => 'Al mijn bewerkingen als ‘klein’ markeren',
+'tog-minordefault'            => 'Mijn bewerkingen als ‘klein’ markeren',
 'tog-previewontop'            => 'Voorvertoning boven bewerkingsveld weergeven',
 'tog-previewonfirst'          => 'Voorvertoning bij eerste bewerking weergeven',
 'tog-nocache'                 => 'Geen caching gebruiken',
@@ -713,7 +713,7 @@ Controleer de schrijfwijze of [[Special:UserLogin/signup|maak een nieuwe gebruik
 'nosuchusershort'            => 'De gebruiker "<nowiki>$1</nowiki>" bestaat niet.
 Controleer de schrijfwijze.',
 'nouserspecified'            => 'U dient een gebruikersnaam op te geven.',
-'wrongpassword'              => 'Wachtwoord onjuist.
+'wrongpassword'              => 'Het ingegeven wachtwoord is onjuist.
 Probeer het opnieuw.',
 'wrongpasswordempty'         => 'Het opgegeven wachtwoord was leeg.
 Probeer het opnieuw.',
@@ -858,8 +858,8 @@ Voer uw e-mailadres in en bevestig het via [[Special:Preferences|uw voorkeuren]]
 'nosuchsectiontext'                => 'U probeerde een subkopje te bewerken dat niet bestaat.
 Omdat subkopje $1 niet bestaat, kan uw bewerking ook niet worden opgeslagen.',
 'loginreqtitle'                    => 'Aanmelden verplicht',
-'loginreqlink'                     => 'Aanmelden',
-'loginreqpagetext'                 => "$1 is verplicht om andere pagina's te kunnen zien.",
+'loginreqlink'                     => 'aanmelden',
+'loginreqpagetext'                 => "U moet zich $1 om andere pagina's te kunnen bekijken.",
 'accmailtitle'                     => 'Wachtwoord verzonden.',
 'accmailtext'                      => 'Het wachtwoord voor "$1" is verzonden naar $2.',
 'newarticle'                       => '(Nieuw)',
@@ -881,8 +881,8 @@ Controleer of u deze pagina wel wilt aanmaken/bewerken.',
 'usercssjsyoucanpreview'           => "<strong>Tip:</strong> Gebruik de knop 'Bewerking ter controle bekijken' om uw nieuwe CSS/JS te testen alvorens op te slaan.",
 'usercsspreview'                   => "'''Dit is alleen een voorvertoning van uw persoonlijke CSS.
 Deze is nog niet opgeslagen!'''",
-'userjspreview'                    => "'''Let op: u test nu uw persoonlijke JavaScript.
-De pagina is niet opgeslagen!'''",
+'userjspreview'                    => "'''Let op: u test nu uw persoonlijke JavaScript.'''
+'''De pagina is niet opgeslagen!'''",
 'userinvalidcssjstitle'            => "'''Waarschuwing:''' er is geen skin \"\$1\".
 Let op: uw eigen .css- en .js-pagina's beginnen met een kleine letter, bijvoorbeeld {{ns:user}}:Naam/monobook.css in plaats van {{ns:user}}:Naam/Monobook.css.",
 'updated'                          => '(Bijgewerkt)',
@@ -1334,7 +1334,7 @@ Ga na of latex, dvips en gs correct geïnstalleerd zijn en zet om',
 'right-createpage'           => "Pagina's aanmaken",
 'right-createtalk'           => "Overlegpagina's aanmaken",
 'right-createaccount'        => 'Nieuwe gebruikers aanmaken',
-'right-minoredit'            => 'Bewerkingen markeren als klein',
+'right-minoredit'            => 'Bewerkingen als klein markeren',
 'right-move'                 => "Pagina's hernoemen",
 'right-move-subpages'        => "Pagina's inclusief subpagina's verplaatsen",
 'right-suppressredirect'     => 'Een doorverwijzing op de doelpagina verwijderen bij het hernoemen van een pagina',
@@ -1692,7 +1692,7 @@ Invoer: contenttype/subtype, bijvoorbeeld <tt>image/jpeg</tt>.',
 
 # Unused templates
 'unusedtemplates'     => 'Ongebruikte sjablonen',
-'unusedtemplatestext' => 'Deze pagina geeft alle pagina\'s weer in de naamruimte sjabloon die op geen enkele pagina gebruikt worden.
+'unusedtemplatestext' => 'Deze pagina geeft alle pagina\'s weer in de naamruimte {{ns:template}} die op geen enkele pagina gebruikt worden.
 Vergeet niet de "Verwijzingen naar deze pagina" te controleren alvorens dit sjabloon te verwijderen.',
 'unusedtemplateswlh'  => 'andere verwijzingen',
 
@@ -2229,9 +2229,9 @@ Geef hieronder een reden op (bijvoorbeeld welke pagina's gevandaliseerd zijn).",
 'ipbenableautoblock'              => 'Automatisch de IP-adressen van deze gebruiker blokkeren',
 'ipbsubmit'                       => 'Deze gebruiker blokkeren',
 'ipbother'                        => 'Andere duur:',
-'ipboptions'                      => '15 minuten:15 min,1 uur:1 hour,2 uur:2 hours,6 uur:6 hours,12 uur:12 hours,1 dag:1 day,3 dagen:3 days,1 week:1 week,2 weken:2 weeks,1 maand:1 month,3 maanden:3 months,6 maanden:6 months,1 jaar:1 year,onbeperkt:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '15 minuten:15 min,1 uur:1 hour,2 uur:2 hours,6 uur:6 hours,12 uur:12 hours,1 dag:1 day,3 dagen:3 days,1 week:1 week,2 weken:2 weeks,1 maand:1 month,3 maanden:3 months,6 maanden:6 months,1 jaar:1 year,onbepaald:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'ander verloop',
-'ipbotherreason'                  => 'Andere/eventuele reden:',
+'ipbotherreason'                  => 'Andere/extra reden:',
 'ipbhidename'                     => 'Gebruiker in het blokkeerlogboek, de actieve blokkeerlijst en de gebruikerslijst verbergen',
 'ipbwatchuser'                    => 'Gebruikerspagina en overlegpagina op volglijst plaatsen',
 'ipballowusertalk'                => 'Deze gebruiker toestaan tijdens de blokkade de eigen overlegpagina te bewerken',
@@ -2239,7 +2239,7 @@ Geef hieronder een reden op (bijvoorbeeld welke pagina's gevandaliseerd zijn).",
 'blockipsuccesssub'               => 'Blokkering geslaagd',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] is geblokkeerd.<br />
 Zie de [[Special:IPBlockList|Lijst van geblokkeerde IP-adressen]] voor recente blokkades.',
-'ipb-edit-dropdown'               => 'lijst van redenen bewerken',
+'ipb-edit-dropdown'               => 'Lijst van redenen bewerken',
 'ipb-unblock-addr'                => '$1 deblokkeren',
 'ipb-unblock'                     => 'Een gebruiker of IP-adres deblokkeren',
 'ipb-blocklist-addr'              => 'Bestaande blokkades voor $1',
@@ -2497,7 +2497,7 @@ U kunt wel de broncode bekijken.',
 'tooltip-ca-watch'                => 'Deze pagina aan mijn volglijst toevoegen',
 'tooltip-ca-unwatch'              => 'Deze pagina van mijn volglijst verwijderen',
 'tooltip-search'                  => '{{SITENAME}} doorzoeken',
-'tooltip-search-go'               => 'Naar een pagina met deze exacte naam gaan als die bestaat',
+'tooltip-search-go'               => 'Naar een pagina met deze naam gaan als die bestaat',
 'tooltip-search-fulltext'         => "De pagina's voor deze tekst zoeken",
 'tooltip-p-logo'                  => 'Hoofdpaginalogo',
 'tooltip-n-mainpage'              => 'Ga naar de Hoofdpagina',
@@ -2605,7 +2605,7 @@ Meestal wordt dit door een externe verwijzing op een zwarte lijst veroorzaakt.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Markeren als gecontroleerd',
-'markaspatrolledtext'                 => 'Deze pagina markeren als gecontroleerd',
+'markaspatrolledtext'                 => 'Deze pagina als gecontroleerd markeren',
 'markedaspatrolled'                   => 'Gemarkeerd als gecontroleerd',
 'markedaspatrolledtext'               => 'De gekozen versie is gemarkeerd als gecontroleerd.',
 'rcpatroldisabled'                    => 'De controlemogelijkheid op recente wijzigingen is uitgeschakeld.',
@@ -2660,7 +2660,7 @@ $1',
 'newimages-legend'      => 'Bestandsnaam',
 'newimages-label'       => 'Bestandsnaam (of deel daarvan):',
 'showhidebots'          => '(Bots $1)',
-'noimages'              => 'Niets te zien.',
+'noimages'              => 'Er is niets te zien.',
 'ilsubmit'              => 'Zoeken',
 'bydate'                => 'op datum',
 'sp-newimages-showfrom' => 'Nieuwe bestanden bekijken vanaf $1 om $2.',

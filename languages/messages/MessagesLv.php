@@ -302,6 +302,12 @@ $1',
 'readonly'             => 'Datubāze bloķēta',
 'readonlytext'         => 'Datubāze šobrīd ir bloķēta pret jauniem ierakstiem un citām izmaiņām. Visdrīzāk iemesls ir parasts datubāzes uzturēšanas pasākums, pēc kura tā tiks atjaunota normālā stāvoklī. Administrators, kurš nobloķēja datubāzi, norādīja šādu iemeslu:
 <p>$1',
+'missing-article'      => 'Datubāze neatrada lapas, ar nosaukumu "$1" $2, tekstu.
+
+To parasti izraisa novecojusi izmaiņu vai hronoloģijas saite uz izdzēstu lapu.
+
+Ja tajai lapai tur bija jābūt, tā iespējams ir kļūda programmā.
+Par šo var paziņot [[Special:ListUsers/sysop|kādam administratoram]], norādot arī URL.',
 'internalerror'        => 'Iekšēja kļūda',
 'internalerror_info'   => 'Iekšējā kļūda: $1',
 'filecopyerror'        => 'Nav iespējams nokopēt failu "$1" uz "$2"',
@@ -399,7 +405,7 @@ Ja paroles pieprasījumu bija nosūtījis kāds cits, vai arī tu atcerējies sa
 'throttled-mailpassword'     => 'Paroles atgādinājums jau ir ticis nosūtīts {{PLURAL:$1|pēdējās stundas|pēdējo $1 stundu}} laikā.
 Lai novērstu šīs funkcijas ļaunprātīgu izmantošanu, iespējams nosūtīt tikai vienu paroles atgādinājumu, {{PLURAL:$1|katru stundu|katras $1 stundas}}.',
 'mailerror'                  => 'E-pasta sūtīšanas kļūda: $1',
-'acct_creation_throttle_hit' => 'Tu jau esi izveidojis $1 kontus. Tu vairāk izveidot nevari.',
+'acct_creation_throttle_hit' => 'Tu jau esi izveidojis {{PLURAL:$1|1 kontu|$1 kontus}}. Tu vairāk izveidot nevari.',
 'emailauthenticated'         => 'Tava e-pasta adrese tika apstiprināta $2, $3.',
 'emailnotauthenticated'      => 'Tava e-pasta adrese <strong>vēl nav apstiprināta</strong> un zemāk norādītās iespējas nav pieejamas.',
 'noemailprefs'               => '<strong>Norādi e-pasta adresi, lai lietotu šīs iespējas.</strong>',

@@ -1599,7 +1599,8 @@ Det finns en [[Special:WhatLinksHere/$2|fullständig lista]].',
 
 # Unused templates
 'unusedtemplates'     => 'Oanvända mallar',
-'unusedtemplatestext' => 'Denna sida listar alla de sidor i mallnamnrymden som inte inkluderas på någon annan sida. Innan mallarna raderas, kontrollera att det inte finns andra länkar till dem.',
+'unusedtemplatestext' => 'Denna sida listar alla sidor i {{ns:template}}-namnrymden som inte inkluderas på någon annan sida.
+Innan mallarna raderas, kontrollera att det inte finns andra länkar till dem.',
 'unusedtemplateswlh'  => 'andra länkar',
 
 # Random page
