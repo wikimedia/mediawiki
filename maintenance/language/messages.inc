@@ -213,6 +213,7 @@ $wgMessageStructure = array(
 		'jumpto',
 		'jumptonavigation',
 		'jumptosearch',
+		'footermessage',
 	),
 	'links' => array(
 		'aboutsite',
