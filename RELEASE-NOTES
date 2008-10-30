@@ -379,7 +379,6 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 16105) Image metadata attributes containing spaces result in invalid XML
 * (bug 16126) Added siprop=magicwords to meta=siteinfo
 * (bug 16159) Added wlshow=patrolled|!patrolled to list=watchlist
-* Put meta=siteinfo output in <siteinfo> element
 
 === Languages updated in 1.14 ===
 
