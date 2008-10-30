@@ -223,6 +223,7 @@ class MonoBookTemplate extends QuickTemplate {
 <?php 		}
 		}
 ?>
+				<li id="footermessage"><?php $this->msgWiki('footermessage') ?></li>
 			</ul>
 		</div>
 </div>
