@@ -40,12 +40,12 @@ abstract class ApiBase {
 
 	// These constants allow modules to specify exactly how to treat incomming parameters.
 
-	const PARAM_DFLT = 0;
-	const PARAM_ISMULTI = 1;
-	const PARAM_TYPE = 2;
-	const PARAM_MAX = 3;
-	const PARAM_MAX2 = 4;
-	const PARAM_MIN = 5;
+	const PARAM_DFLT = 0; // Default value of the parameter
+	const PARAM_ISMULTI = 1; // Boolean, do we accept more than one item for this parameters (ie: titles)
+	const PARAM_TYPE = 2; // Can be either a string type (ie: 'integer') or an array of allowed values
+	const PARAM_MAX = 3; // Max value allowed for a parameter
+	const PARAM_MAX2 = 4; // Max value allowed for a parameter (similar to the upper limits below)
+	const PARAM_MIN = 5; // Lowest value allowed for a parameter
 	const PARAM_ALLOW_DUPLICATES = 6;
 
 	const LIMIT_BIG1 = 500; // Fast query, std user limit
