@@ -2258,7 +2258,12 @@ class Title {
 	 * @return \type{Title} the object for the subject page
 	 */
 	public function getSubjectPage() {
-		return Title::makeTitle( MWNamespace::getSubject( $this->getNamespace() ), $this->getDBkey() );
+		// Is this the same title?
+		$subjectNS = MWNamespace::getSubject( $this->getNamespace() );
+		if( $this->getNamespace() == $subjectNS ) {
+			return $this;
+		}
+		return Title::makeTitle( $subjectNS, $this->getDBkey() );
 	}
 
 	/**
