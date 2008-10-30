@@ -222,12 +222,8 @@ class MonoBookTemplate extends QuickTemplate {
 ?>				<li id="<?php echo$aLink?>"><?php $this->html($aLink) ?></li>
 <?php 		}
 		}
-		if( !wfEmptyMsg( 'footermessage' ) {
-?>			<li id="footermessage"><?php $this->msgWiki('footermessage') ?></li>
-
-<?php	}
 ?>
-							</ul>
+			</ul>
 		</div>
 </div>
 <?php $this->html('bottomscripts'); /* JS call to runBodyOnloadHook */ ?>
