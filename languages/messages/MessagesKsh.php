@@ -1418,6 +1418,8 @@ Wiki-Köbes, enem Sörver-Minsch, oder luur ens en de
 'rc_categories_any'                 => 'All, wat mer han',
 'rc-change-size'                    => '$1 {{PLURAL:$1|Byte|Bytes}}',
 'newsectionsummary'                 => 'Neu Avschnet /* $1 */',
+'rc-enhanced-expand'                => 'Einzelheite zeije (bruch JavaSkripp)',
+'rc-enhanced-hide'                  => 'Einzelheite versteiche',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Änderunge aan Sigge, wo hee drop jelink es',
@@ -1658,9 +1660,9 @@ Zem Beispell: <tt>image/jpeg</tt>
 
 # Unused templates
 'unusedtemplates'     => 'Schablone oder Baustein, die nit jebruch wääde',
-'unusedtemplatestext' => 'Hee sin all de Schablone opjeliss, die em Appachtemeng „Schablon“ sin, die nit en 
+'unusedtemplatestext' => 'Hee sin all de Schablone opjeliss, die em Appachtemeng „{{ns:template}}“ sin, die nit en 
 ander Sigge enjefüg wääde. Ih De jet dovun fottschmieß, denk dran, se künnte och op en ander Aat jebruch 
-wääde, un luur Der die ander Links aan!',
+wääde, un luur Der der iehr ander Links aan!',
 'unusedtemplateswlh'  => 'ander Links',
 
 # Random page
@@ -1731,7 +1733,7 @@ vun dä Sigg dovör.',
 'nviews'                  => '{{PLURAL:$1|Eine Avrof|$1 Avrofe|Keine Avrof}}',
 'specialpage-empty'       => 'Hee en dä Liss es nix dren.',
 'lonelypages'             => 'Atikele, wo nix drop link',
-'lonelypagestext'         => 'The following pages are not linked from other pages in this wiki.',
+'lonelypagestext'         => 'De Sigge hee noh sin nörjenzwoh ennjebonge un et jonn och kein Linkß drop.',
 'uncategorizedpages'      => 'Atikele, die en kein Saachjrupp sin',
 'uncategorizedcategories' => 'Saachjruppe, die selvs en kein Saachjruppe sin',
 'uncategorizedimages'     => 'Belder, Tön, uew., die en kein Saachjruppe dren sin',
@@ -2595,11 +2597,12 @@ Esu kam_mer noch en Aanmerkung en „{{int:summary}}“ maache.',
 'markedaspatrollederror-noautopatrol' => 'Do darrefs Ding eije Änderunge nit op „Nohjeloort“ setze!',
 
 # Patrol log
-'patrol-log-page'   => 'Logboch vun de nohjeloorte Änderunge',
-'patrol-log-header' => '<!-- -->',
-'patrol-log-line'   => 'hät $1 von „$2“ $3 nohjeloort.',
-'patrol-log-auto'   => '(automatisch)',
-'patrol-log-diff'   => 'de Version $1',
+'patrol-log-page'    => 'Logboch vun de nohjeloorte Änderunge',
+'patrol-log-header'  => '<!-- -->',
+'patrol-log-line'    => 'hät $1 von „$2“ $3 nohjeloort.',
+'patrol-log-auto'    => '(automatisch)',
+'patrol-log-diff'    => 'de Version $1',
+'logshowhide-patrol' => '$1 et Logbuch vum Sigge nohlooere',
 
 # Image deletion
 'deletedrevision'                 => 'De ahl Version „$1“ es fottjeschmesse',

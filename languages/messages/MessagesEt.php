@@ -330,6 +330,10 @@ Vaata [[Special:Version|versiooni lehekülge]].',
 'viewdeleted'         => 'Vaata lehekülge $1?',
 'restorelink'         => '{{PLURAL:$1|üks kustutatud versioon|$1 kustutatud versiooni}}',
 'feedlinks'           => 'Sööde:',
+'site-rss-feed'       => '$1 RSS-toide',
+'site-atom-feed'      => '$1 Atom-toide',
+'page-rss-feed'       => '"$1" RSS-toide',
+'page-atom-feed'      => '"$1" Atom-toide',
 'red-link-title'      => '$1 (pole veel kirjutatud)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -597,6 +601,7 @@ Te kinnitate ka, et kirjutasite selle ise või võtsite selle kopeerimiskitsendu
 Kaaluge, kas lehe uuesti loomine on kohane.
 Lehe eelnevad kustutamised:",
 'deletelog-fulllog'        => 'Vaata täielikku logi',
+'edit-conflict'            => 'Redigeerimiskonflikt.',
 
 # "Undo" feature
 'undo-success' => 'Selle redaktsiooni käigus tehtud muudatusi saab eemaldada. Palun kontrolli allolevat võrdlust veendumaks, et tahad need muudatused tõepoolest eemaldada. Seejärel saad lehekülje salvestada.',

@@ -1464,7 +1464,7 @@ En [[Special:WhatLinksHere/$2|kumplette List]] gifft dat ok.',
 
 # Unused templates
 'unusedtemplates'     => 'Nich bruukte Vörlagen',
-'unusedtemplatestext' => 'Disse Sied wiest all Sieden in’n Vörlagen-Naamruum, de nich op annere Sieden inbunnen warrt.
+'unusedtemplatestext' => 'Disse Sied wiest all Sieden in’n Naamruum „{{ns:template}}“, de nich op annere Sieden inbunnen warrt.
 Denk dor an, natokieken, wat nich noch annere Sieden na de Vörlagen wiest, ehrdat du jem wegsmittst.',
 'unusedtemplateswlh'  => 'Annere Lenken',
 

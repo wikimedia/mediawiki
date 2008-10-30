@@ -1576,7 +1576,7 @@ $2',
 
 # Unused templates
 'unusedtemplates'     => 'Шаблёны, якія не выкарыстоўваюцца',
-'unusedtemplatestext' => 'На гэтай старонцы зьмешчаны сьпіс усіх старонак прасторы назваў «Шаблёны», якія ня ўключаныя ў іншыя старонкі.
+'unusedtemplatestext' => 'На гэтай старонцы зьмешчаны сьпіс усіх старонак прасторы назваў «{{ns:template}}», якія ня ўключаныя ў іншыя старонкі.
 Не забывайцеся праверыць іншыя спасылкі на шаблёны перад іх выдаленьнем.',
 'unusedtemplateswlh'  => 'іншыя спасылкі',
 
@@ -2829,10 +2829,14 @@ $5
 'livepreview-ready'   => 'Загрузка… Гатова!',
 
 # Watchlist editor
-'watchlistedit-normal-title' => 'Рэдагаваць сьпіс назіраньня',
-'watchlistedit-raw-title'    => 'Рэдагаваць нефарматаваны сьпіс назіраньня',
-'watchlistedit-raw-legend'   => 'Рэдагаваць нефарматаваны сьпіс назіраньня',
-'watchlistedit-raw-titles'   => 'Назвы:',
+'watchlistedit-normal-title'  => 'Рэдагаваць сьпіс назіраньня',
+'watchlistedit-normal-legend' => 'Выдаленьне старонак са сьпісу назіраньня',
+'watchlistedit-normal-submit' => 'Выдаліць са сьпісу',
+'watchlistedit-raw-title'     => 'Рэдагаваць нефарматаваны сьпіс назіраньня',
+'watchlistedit-raw-legend'    => 'Рэдагаваць нефарматаваны сьпіс назіраньня',
+'watchlistedit-raw-titles'    => 'Назвы:',
+'watchlistedit-raw-submit'    => 'Абнавіць сьпіс назіраньня',
+'watchlistedit-raw-done'      => 'Ваш сьпіс назіраньня быў абноўлены.',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Паказаць зьмены ў старонках зь сьпісу',
@@ -2843,15 +2847,20 @@ $5
 'unknown_extension_tag' => 'Невядомы тэг пашырэньня «$1»',
 
 # Special:Version
-'version'                  => 'Вэрсія', # Not used as normal message but as header for the special page itself
-'version-extensions'       => 'Усталяваныя пашырэньні',
-'version-specialpages'     => 'Спэцыяльныя старонкі',
-'version-variables'        => 'Зьменныя',
-'version-other'            => 'Іншыя',
-'version-mediahandlers'    => 'Апрацоўшчыкі мэдыя',
-'version-version'          => 'Вэрсія',
-'version-license'          => 'Ліцэнзія',
-'version-software-version' => 'Вэрсія',
+'version'                          => 'Вэрсія', # Not used as normal message but as header for the special page itself
+'version-extensions'               => 'Усталяваныя пашырэньні',
+'version-specialpages'             => 'Спэцыяльныя старонкі',
+'version-variables'                => 'Зьменныя',
+'version-other'                    => 'Іншыя',
+'version-mediahandlers'            => 'Апрацоўшчыкі мэдыя',
+'version-extension-functions'      => 'Функцыі пашырэньняў',
+'version-skin-extension-functions' => 'Функцыі пашырэньня скураў',
+'version-hook-subscribedby'        => 'Падпісаны на',
+'version-version'                  => 'Вэрсія',
+'version-license'                  => 'Ліцэнзія',
+'version-software'                 => 'Усталяванае праграмнае забесьпячэньне',
+'version-software-product'         => 'Прадукт',
+'version-software-version'         => 'Вэрсія',
 
 # Special:FilePath
 'filepath'        => 'Шлях да файла',
@@ -2860,23 +2869,45 @@ $5
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Пошук дублікатаў файлаў',
+'fileduplicatesearch-summary'  => 'Пошук аднолькавых файлаў на падставе іх хэшаў.
+
+Увядзіце назву файла бяз прэфіксу «{{ns:image}}:».',
+'fileduplicatesearch-legend'   => 'Пошук аднолькавых файлаў',
 'fileduplicatesearch-filename' => 'Назва файла:',
 'fileduplicatesearch-submit'   => 'Шукаць',
+'fileduplicatesearch-info'     => '$1 × $2 піксэляў<br />Памер файла: $3<br />Тып MIME: $4',
 'fileduplicatesearch-result-1' => 'Файл «$1» ня мае ідэнтычных копій.',
 'fileduplicatesearch-result-n' => 'Файл «$1» мае $2 {{PLURAL:$2|ідэнтычную копію|ідэнтычных копіі|ідэнтычных копій}}.',
 
 # Special:SpecialPages
-'specialpages'                 => 'Спэцыяльныя старонкі',
-'specialpages-group-other'     => 'Іншыя спэцыяльныя старонкі',
-'specialpages-group-changes'   => 'Апошнія зьмены і журналы падзеяў',
-'specialpages-group-media'     => 'Справаздачы пра мэдыя-файлы і загрузка',
-'specialpages-group-users'     => 'Удзельнікі і правы',
-'specialpages-group-pages'     => 'Сьпісы старонак',
-'specialpages-group-pagetools' => 'Інструмэнты для старонак',
-'specialpages-group-spam'      => 'Інструмэнты для барацьбы са спамам',
+'specialpages'                   => 'Спэцыяльныя старонкі',
+'specialpages-note'              => '----
+* Звычайныя спэцыяльныя старонкі.
+* <span class="mw-specialpagerestricted">Спэцыяльныя старонкі з абмежаваным доступам.</span>',
+'specialpages-group-maintenance' => 'Тэхнічныя справаздачы',
+'specialpages-group-other'       => 'Іншыя спэцыяльныя старонкі',
+'specialpages-group-login'       => 'Уваход / стварэньне рахунку',
+'specialpages-group-changes'     => 'Апошнія зьмены і журналы падзеяў',
+'specialpages-group-media'       => 'Справаздачы пра мэдыя-файлы і загрузка',
+'specialpages-group-users'       => 'Удзельнікі і правы',
+'specialpages-group-highuse'     => 'Частаўжываныя старонкі',
+'specialpages-group-pages'       => 'Сьпісы старонак',
+'specialpages-group-pagetools'   => 'Інструмэнты для старонак',
+'specialpages-group-wiki'        => 'Зьвесткі пра вікі і прылады',
+'specialpages-group-redirects'   => 'Спэцыяльныя старонкі-перанакіраваньні',
+'specialpages-group-spam'        => 'Інструмэнты для барацьбы са спамам',
 
 # Special:BlankPage
 'blankpage'              => 'Пустая старонка',
 'intentionallyblankpage' => 'Гэтая старонка наўмысна пакінутая пустой',
+
+# External image whitelist
+'external_image_whitelist' => ' #Пакіньце гэты радок такім, які ён ёсьць<pre>
+#Зьмясьціце часткі рэгулярных выразаў (толькі частку якая знаходзіцца паміж //) ніжэй
+#Яны будуць суаднесеныя з URL-адрасамі вонкавых выяваў
+#Тыя, якія будуць пасаваць будуць паказвацца як выявы, астатнія толькі як спасылкі
+#Радкі, пазначаныя #, лічыцца камэнтарамі
+
+#Зьмясьціце ўсе часткі рэгулярных выразаў над гэтым радком. Сам радок пакіньце ў такім жа выглядзе</pre>',
 
 );

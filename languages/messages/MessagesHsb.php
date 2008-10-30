@@ -1408,7 +1408,7 @@ Slědowaca lisćina pokazuje jenož {{PLURAL:$1|prěni wotkaz strony|prěnjej $1
 
 # Unused templates
 'unusedtemplates'     => 'Njewužiwane předłohi',
-'unusedtemplatestext' => 'Tuta specialna strona naliči wšě předłohi, kiž so w druhich stronach njewužiwaja. Prošu přepruwuj tež druhe móžne wotkazy na předłohi, prjedy hač je wušmórnješ.',
+'unusedtemplatestext' => 'Tuta strona nalistuje wšě strony w mjenowym rumje {{ns:template}}, kotrež so w druhich stronach njewužiwaja. Prošu přepruwuj druhe wotkazy k předłoham, prjedy hač je wušmórnješ.',
 'unusedtemplateswlh'  => 'Druhe wotkazy',
 
 # Random page

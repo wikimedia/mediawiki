@@ -618,6 +618,8 @@ Mangga digagas manèh apa suntingan panjenengan iki layak ora.
 Ing ngisor iki kapacak log pambusakan saka kaca iki:",
 'deleted-notice'            => 'Kaca iki wis dibusak. Minangka réferènsi, mangga iki log pambusakan kaca iki.',
 'deletelog-fulllog'         => 'Tudhuhna kabèh log',
+'edit-gone-missing'         => 'Ora bisa nganyari kaca.
+Katoné kaca iki wis dibusak.',
 'edit-conflict'             => 'Konflik panyuntingan.',
 'edit-no-change'            => 'Suntingan panjenengan dilirwakaké amerga panjenengan ora nglakoni pangowahan apa-apa ing tèks.',
 'edit-already-exists'       => 'Ora bisa nggawé kaca anyar.
@@ -763,6 +765,7 @@ Gunakna tombol radio kanggo nggabungaké révisi-révisi sing digawé sadurungé
 'diff-height'             => 'dhuwur',
 'diff-p'                  => "sawijining '''paragraf'''",
 'diff-blockquote'         => "sawijining '''sitat'''",
+'diff-form'               => "sawijining '''formulir'''",
 'diff-b'                  => "'''kandel'''",
 'diff-big'                => "'''gedhé'''",
 'diff-del'                => "'''dibusak'''",

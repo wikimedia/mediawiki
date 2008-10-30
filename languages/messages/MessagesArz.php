@@ -1641,7 +1641,7 @@ PICT # misc.
 
 # Unused templates
 'unusedtemplates'     => 'قوالب مش مستعمله',
-'unusedtemplatestext' => 'الصفحة دى فيها لستة بالصفحات من نطاق قالب و اللى مش مستعملة فى صفحات تانية
+'unusedtemplatestext' => 'الصفحة دى فيها لستة بالصفحات من نطاق {{ns:template}} و اللى مش مستعملة فى صفحات تانية
 افتكر قبل ما تمسحها تشوف لو فى وصلات تانية للقوالب دي',
 'unusedtemplateswlh'  => 'وصلات  تانيه',
 

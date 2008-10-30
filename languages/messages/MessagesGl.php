@@ -1474,7 +1474,8 @@ Entrada: tipodecontido/subtipo, p.ex. <tt>image/jpeg</tt>.',
 
 # Unused templates
 'unusedtemplates'     => 'Modelos sen uso',
-'unusedtemplatestext' => 'Esta páxina contén unha listaxe de todas as páxinas no espazo de nomes modelo que non están incluídas en ningunha outra páxina. Lembre verificar outros enlaces cara aos modelos antes de borralos.',
+'unusedtemplatestext' => 'Esta páxina contén unha lista de todas as páxinas no espazo de nomes {{ns:template}} que non están incluídas en ningunha outra páxina.
+Lembre verificar outras ligazóns cara aos modelos antes de borralos.',
 'unusedtemplateswlh'  => 'outras ligazóns',
 
 # Random page

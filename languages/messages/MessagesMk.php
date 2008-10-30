@@ -958,6 +958,9 @@ $2',
 'revdelete-log-message'       => '$1 од $2 {{PLURAL:$2|ревизија|ревизии}}',
 'logdelete-log-message'       => '$1 од $2 {{PLURAL:$2|настан|настани}}',
 
+# Suppression log
+'suppressionlog' => 'Дневник на сокривања',
+
 # History merging
 'mergehistory'                     => 'Спојување на истории на страница',
 'mergehistory-box'                 => 'Спојување на ревизии на две страници:',
@@ -1081,12 +1084,12 @@ $2',
 'searchall'                 => 'се',
 'showingresults'            => "Подолу {{PLURAL:$1|е прикажан '''1''' резултат|се прикажани '''$1''' резултати}} почнувајќи од #'''$2'''.",
 'showingresultsnum'         => "Подлу {{PLURAL:$3|е прикажан '''1''' резултат|се прикажани '''$3''' резултати}} почнувајќи од бројот '''$2'''.",
-'showingresultstotal'       => "Подолу {{PLURAL:$4|е прикажан '''$1''' од '''$3''' резултат|се прикажани '''$1 - $2''' од '''$3''' реузултати}}",
+'showingresultstotal'       => "Подолу {{PLURAL:$4|е прикажан '''$1''' резултат|се прикажани '''$1 - $2''' од '''$3''' резултати}}",
 'nonefound'                 => "'''Напомена''': По основно, пребарувањето се врши само низ некои именски простори. 
 Обидете се со додавање на префиксот ''се:'' за да пребарувате низ сите содржини (вклучувајќи страници за разговор, шаблони, итн) или користете го бараниот именски простор како префикс.",
 'powersearch'               => 'Напредно пребарување',
 'powersearch-legend'        => 'Напредно пребарување',
-'powersearch-ns'            => 'Пребарување цо именски простори:',
+'powersearch-ns'            => 'Пребарување во именски простори:',
 'powersearch-redir'         => 'Листа на пренасочувања',
 'powersearch-field'         => 'Пребарување на',
 'search-external'           => 'Надворешно пребарување',
@@ -1522,7 +1525,8 @@ PICT # misc.
 
 # Unused templates
 'unusedtemplates'     => 'Неискористени шаблони',
-'unusedtemplatestext' => 'Оваа страница ги прикажува сите страници во шаблонскиот именски простор кои не се вклучени во некоја друга страница. Не заборавајте да ги проверите другите врски во шаблоните пред да ги избришете.',
+'unusedtemplatestext' => 'Оваа страница ги прикажува сите страници во именскиот простор {{ns:template}} кои не се вклучени во друга страница. 
+Не заборавајте да ги проверите другите врски во шаблоните пред да ги избришете.',
 'unusedtemplateswlh'  => 'други врски',
 
 # Random page
@@ -1559,8 +1563,10 @@ PICT # misc.
 Тие треба да покажуваат кон соодветната тема.<br />
 Страница се третира како појаснувачка ако користи шаблон кој е наведен во [[MediaWiki:Disambiguationspage]]",
 
-'doubleredirects'     => 'Двојни пренасочувања',
-'doubleredirectstext' => 'Секој ред содржи врски кон првото и второто пренасочување, којшто обично ја посочува <i>вистинската</i> целна страница кон кое првото пренасочување би требало да насочува.',
+'doubleredirects'            => 'Двојни пренасочувања',
+'doubleredirectstext'        => 'Секој ред содржи врски кон првото и второто пренасочување, којшто обично ја посочува <i>вистинската</i> целна страница кон кое првото пренасочување би требало да насочува.',
+'double-redirect-fixed-move' => '[[$1]] беше преместена, сега пренасочува во [[$2]]',
+'double-redirect-fixer'      => 'Исправувач на пренасочувања',
 
 'brokenredirects'        => 'Прекинати пренасочувања',
 'brokenredirectstext'    => 'Следните пренасочувања покажуваат кон непостоечка статија.',
@@ -1733,7 +1739,7 @@ PICT # misc.
 
 # Watchlist
 'watchlist'            => 'Мои набљудувања',
-'mywatchlist'          => 'Набљудувања',
+'mywatchlist'          => 'Мои набљудувања',
 'watchlistfor'         => "(за '''$1''')",
 'nowatchlist'          => 'Немате ништо во вашата листа на набљудувања.',
 'watchlistanontext'    => 'Ве молиме $1 за преглед или уредување на вашата листа на набљудувања.',
@@ -1968,7 +1974,7 @@ $1',
 # Namespace form on various pages
 'namespace'      => 'Именски простор:',
 'invert'         => 'Инверзна селекција',
-'blanknamespace' => '(Главна)',
+'blanknamespace' => '(Главен)',
 
 # Contributions
 'contributions'       => 'Кориснички придонеси',
@@ -2061,7 +2067,7 @@ $1',
 'ipblocklist-sh-tempblocks'       => '$1 привремени блокирања',
 'ipblocklist-sh-addressblocks'    => '$1 блокирани поединечни IP адреси',
 'ipblocklist-submit'              => 'Пребарај',
-'blocklistline'                   => '$1, $2 го блокираше $3 (блокиран до $4)',
+'blocklistline'                   => '$1, $2 го блокираше $3 ($4)',
 'infiniteblock'                   => 'бесконечно',
 'expiringblock'                   => 'истекува на $1',
 'anononlyblock'                   => 'само анон.',
@@ -2491,7 +2497,7 @@ Variants for Chinese language
 
 # Metadata
 'metadata'          => 'Метаподатоци',
-'metadata-help'     => 'Оваа податотека содржи дополнителни информации, најверојатно додадени од дигитална камера или скенер користени за нивното креирање или дигитализација. Ако датотеката претрпела промени, некои детали може да не соодветствувата во целост после премената на податотеката.',
+'metadata-help'     => 'Оваа податотека содржи дополнителни информации, најверојатно додадени од дигитална камера или скенер користени за нејзино креирање или дигитализација. Ако при тоа податотеката претрпела промени, некои детали може да не соодветствуваат во целост после промената на податотеката.',
 'metadata-expand'   => 'Прикажи проширени информации',
 'metadata-collapse' => 'Сокриј проширени информации',
 'metadata-fields'   => 'EXIF мета полињата прикажани во оваа порака ќе бидат вклучени на страницата на сликата кога мета табелата ќе биде затворена.
@@ -2513,7 +2519,7 @@ Variants for Chinese language
 'exif-samplesperpixel'             => 'Број на колор компоненти',
 'exif-planarconfiguration'         => 'Принцип на распоредот на податоците',
 'exif-ycbcrsubsampling'            => 'Однос на компонентата Y спрема C',
-'exif-ycbcrpositioning'            => 'Распоред на компонентите Y и C',
+'exif-ycbcrpositioning'            => 'Y и C позиционирање',
 'exif-xresolution'                 => 'Хоризонтална резолуција',
 'exif-yresolution'                 => 'Вертикална резолуција',
 'exif-resolutionunit'              => 'Единица за резолуција',
@@ -2527,7 +2533,7 @@ Variants for Chinese language
 'exif-primarychromaticities'       => 'Хроматичност на примарните бои',
 'exif-ycbcrcoefficients'           => 'Матрични коефициенти на трансформација на колор просторот',
 'exif-referenceblackwhite'         => 'Место на белата и црната точка',
-'exif-datetime'                    => 'Датум на последната промена на датотеката',
+'exif-datetime'                    => 'Датум и време на промена на податотека',
 'exif-imagedescription'            => 'Име на сликата',
 'exif-make'                        => 'Производител на камерата',
 'exif-model'                       => 'Модел на камерата',
@@ -2553,7 +2559,7 @@ Variants for Chinese language
 'exif-exposuretime-format'         => '$1 sec ($2)',
 'exif-fnumber'                     => 'F број на отворот на блендата',
 'exif-fnumber-format'              => 'f/$1',
-'exif-exposureprogram'             => 'Програм за експозиција',
+'exif-exposureprogram'             => 'Програма за експозиција',
 'exif-spectralsensitivity'         => 'Спектрална осетливост',
 'exif-isospeedratings'             => 'ИСО вредност',
 'exif-oecf'                        => 'Оптоелектронски фактор на конверзија',
@@ -2579,7 +2585,7 @@ Variants for Chinese language
 'exif-filesource'                  => 'Извор на датотеката',
 'exif-scenetype'                   => 'Тип на сцена',
 'exif-cfapattern'                  => 'CFA шаблон',
-'exif-customrendered'              => 'Додатна обработка на сликата',
+'exif-customrendered'              => 'Дополнитела обработка на сликата',
 'exif-exposuremode'                => 'Режим за избор на експозицијата',
 'exif-whitebalance'                => 'Баланс на белата боја',
 'exif-digitalzoomratio'            => 'Однос на дигиталниот зум',
@@ -2922,18 +2928,21 @@ $1
 'iranian-calendar-m1' => 'Farvardin',
 
 # Special:Version
-'version'                  => 'Верзија', # Not used as normal message but as header for the special page itself
-'version-extensions'       => 'Инсталирани проширувања',
-'version-specialpages'     => 'Специјални страници',
-'version-variables'        => 'Променливи',
-'version-other'            => 'Друго',
-'version-hooks'            => 'Куки',
-'version-hook-name'        => 'Име на кука',
-'version-version'          => 'Верзија',
-'version-license'          => 'Лиценца',
-'version-software'         => 'Инсталиран софтвер',
-'version-software-product' => 'Производ',
-'version-software-version' => 'Верзија',
+'version'                       => 'Верзија', # Not used as normal message but as header for the special page itself
+'version-extensions'            => 'Инсталирани проширувања',
+'version-specialpages'          => 'Специјални страници',
+'version-parserhooks'           => 'Парсер куки',
+'version-variables'             => 'Променливи',
+'version-other'                 => 'Друго',
+'version-hooks'                 => 'Куки',
+'version-parser-function-hooks' => 'Куки на парсер функција',
+'version-hook-name'             => 'Име на кука',
+'version-hook-subscribedby'     => 'Претплатено од',
+'version-version'               => 'Верзија',
+'version-license'               => 'Лиценца',
+'version-software'              => 'Инсталиран софтвер',
+'version-software-product'      => 'Производ',
+'version-software-version'      => 'Верзија',
 
 # Special:FilePath
 'filepath'         => 'Патека до податотека',
