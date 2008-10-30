@@ -38,15 +38,15 @@
  */
 abstract class ApiBase {
 
-	// These constants allow modules to specify exactly how to treat incomming parameters.
+	// These constants allow modules to specify exactly how to treat incoming parameters.
 
 	const PARAM_DFLT = 0; // Default value of the parameter
-	const PARAM_ISMULTI = 1; // Boolean, do we accept more than one item for this parameters (ie: titles)
-	const PARAM_TYPE = 2; // Can be either a string type (ie: 'integer') or an array of allowed values
-	const PARAM_MAX = 3; // Max value allowed for a parameter
-	const PARAM_MAX2 = 4; // Max value allowed for a parameter (similar to the upper limits below)
-	const PARAM_MIN = 5; // Lowest value allowed for a parameter
-	const PARAM_ALLOW_DUPLICATES = 6;
+	const PARAM_ISMULTI = 1; // Boolean, do we accept more than one item for this parameter (e.g.: titles)?
+	const PARAM_TYPE = 2; // Can be either a string type (e.g.: 'integer') or an array of allowed values
+	const PARAM_MAX = 3; // Max value allowed for a parameter. Only applies if TYPE='integer'
+	const PARAM_MAX2 = 4; // Max value allowed for a parameter for bots and sysops. Only applies if TYPE='integer'
+	const PARAM_MIN = 5; // Lowest value allowed for a parameter. Only applies if TYPE='integer'
+	const PARAM_ALLOW_DUPLICATES = 6; // Boolean, do we allow the same value to be set more than once when ISMULTI=true
 
 	const LIMIT_BIG1 = 500; // Fast query, std user limit
 	const LIMIT_BIG2 = 5000; // Fast query, bot/sysop limit
@@ -147,7 +147,7 @@ abstract class ApiBase {
 	/**
 	 * Get the result data array
 	 */
-	public function & getResultData() {
+	public function getResultData() {
 		return $this->getResult()->getData();
 	}
 
@@ -156,20 +156,23 @@ abstract class ApiBase {
 	 * notice any changes in API.
 	 */
 	public function setWarning($warning) {
-		# If there is a warning already, append it to the existing one
-		$data =& $this->getResult()->getData();
+		$data = $this->getResult()->getData();
 		if(isset($data['warnings'][$this->getModuleName()]))
 		{
 			# Don't add duplicate warnings
 			$warn_regex = preg_quote($warning, '/');
 			if(preg_match("/{$warn_regex}(\\n|$)/", $data['warnings'][$this->getModuleName()]['*']))
 				return;
-			$warning = "{$data['warnings'][$this->getModuleName()]['*']}\n$warning";
-			unset($data['warnings'][$this->getModuleName()]);
+			$oldwarning = $data['warnings'][$this->getModuleName()]['*'];
+			# If there is a warning already, append it to the existing one
+			$warning = "$oldwarning\n$warning";
+			$this->getResult()->unsetValue('warnings', $this->getModuleName());
 		}
 		$msg = array();
 		ApiResult :: setContent($msg, $warning);
+		$this->getResult()->disableSizeCheck();
 		$this->getResult()->addValue('warnings', $this->getModuleName(), $msg);
+		$this->getResult()->enableSizeCheck();
 	}
 
 	/**
