@@ -1098,7 +1098,7 @@ class EditPage {
 	 *                      near the top, for captchas and the like.
 	 */
 	function showEditForm( $formCallback=null ) {
-		global $wgOut, $wgUser, $wgLang, $wgContLang, $wgMaxArticleSize, $wgTitle;
+		global $wgOut, $wgUser, $wgLang, $wgContLang, $wgMaxArticleSize, $wgTitle, $wgRequest;
 
 		# If $wgTitle is null, that means we're in API mode.
 		# Some hook probably called this function  without checking
@@ -1293,6 +1293,11 @@ class EditPage {
 				$this->watchthis = true;
 			} elseif ( $this->mTitle->userIsWatching() ) {
 				# Already watched
+				$this->watchthis = true;
+			}
+			
+			# May be overriden by request parameters
+			if( $wgRequest->getBool( 'watchthis' ) ) {
 				$this->watchthis = true;
 			}
 
