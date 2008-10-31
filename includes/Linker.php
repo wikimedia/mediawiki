@@ -1756,7 +1756,7 @@ class Linker {
 		}
 
 		if ( $options == 'withaccess' ) {
-			$accesskey = $this->accesskey( $name );
+			$accesskey = self::accesskey( $name );
 			if( $accesskey !== false ) {
 				if ( $tooltip === false || $tooltip === '' ) {
 					$tooltip = "[$accesskey]";
