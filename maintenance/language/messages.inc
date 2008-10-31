@@ -964,6 +964,7 @@ $wgMessageStructure = array(
 		'right-userrights',
 		'right-userrights-interwiki',
 		'right-siteadmin',
+		'right-move-rootuserpages',
 	),
 	'rightslog' => array(
 		'rightslog',
@@ -1004,6 +1005,7 @@ $wgMessageStructure = array(
 		'action-userrights',
 		'action-userrights-interwiki',
 		'action-siteadmin',
+		'action-move-rootuserpages',
 	),
 	'recentchanges' => array(
 		'nchanges',

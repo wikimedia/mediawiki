@@ -1643,6 +1643,7 @@ please see math/README to configure.',
 'right-userrights'           => 'Edit all user rights',
 'right-userrights-interwiki' => 'Edit user rights of users on other wikis',
 'right-siteadmin'            => 'Lock and unlock the database',
+'right-move-rootuserpages'   => 'Move root user pages',
 
 # User rights log
 'rightslog'      => 'User rights log',
@@ -1683,6 +1684,7 @@ please see math/README to configure.',
 'action-userrights'           => 'edit all user rights',
 'action-userrights-interwiki' => 'edit user rights of users on other wikis',
 'action-siteadmin'            => 'lock or unlock the database',
+'action-move-rootuserpages'   => 'move root user pages',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|change|changes}}',
