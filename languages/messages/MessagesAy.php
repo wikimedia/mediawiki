@@ -1,15 +1,77 @@
 <?php
-/** Aymara (Aymar)
+/** Aymara (Aymar aru)
  *
  * @ingroup Language
  * @file
  *
+ * @author Erebedhel
  * @author Kanon6917
  */
 
 $fallback = 'es';
 
 $messages = array(
+# User preference toggles
+'tog-underline'       => 'Chinu Siqiraña',
+'tog-highlightbroken' => 'P\'akita chinu utt\'ayaña <a href="" class="new">ukhama</a> (mawijata: ukhama<a href="" class="internal">?</a>).',
+'tog-justify'         => "Tanta amuyanak purapt'ayaña",
+'tog-hideminor'       => 'Jichha kutikiptatanakana «Janiw taqpachäkiti» imantaña',
+
+'underline-always' => 'Wiñaya',
+'underline-never'  => 'Janipini',
+
+# Dates
+'sunday'        => 'tuminku',
+'monday'        => 'lunisa',
+'tuesday'       => 'martisa',
+'wednesday'     => 'mirkulisa',
+'thursday'      => 'juywisa',
+'friday'        => 'wirnisa',
+'saturday'      => 'sawaru',
+'sun'           => 'tum',
+'mon'           => 'lun',
+'tue'           => 'mar',
+'wed'           => 'mir',
+'thu'           => 'juy',
+'fri'           => 'wir',
+'sat'           => 'saw',
+'january'       => 'iniru',
+'february'      => 'phiwriru',
+'march'         => 'marsu',
+'april'         => 'awrila',
+'may_long'      => 'mayu',
+'june'          => 'juñu',
+'july'          => 'jullu',
+'august'        => 'awustu',
+'september'     => 'sitimri',
+'october'       => 'uktuwri',
+'november'      => 'nuwimri',
+'december'      => 'risimri',
+'january-gen'   => 'iniru',
+'february-gen'  => 'phiwriru',
+'march-gen'     => 'marsu',
+'april-gen'     => 'awrila',
+'may-gen'       => 'mayu',
+'june-gen'      => 'juñu',
+'july-gen'      => 'jullu',
+'august-gen'    => 'awustu',
+'september-gen' => 'sitimri',
+'october-gen'   => 'uktuwri',
+'november-gen'  => 'nuwimri',
+'december-gen'  => 'risimri',
+'jan'           => 'ini',
+'feb'           => 'phi',
+'mar'           => 'mar',
+'apr'           => 'awr',
+'may'           => 'may',
+'jun'           => 'juñ',
+'jul'           => 'jul',
+'aug'           => 'awu',
+'sep'           => 'sit',
+'oct'           => 'ukt',
+'nov'           => 'nuw',
+'dec'           => 'ris',
+
 'article'    => 'Amtachinu',
 'cancel'     => 'Jan saña',
 'qbfind'     => 'Thaqaña',

@@ -2123,6 +2123,7 @@ Ange orsak nedan (exempelvis genom att nämna sidor som blivit vandaliserade).',
 'ipbhidename'                     => 'Dölj användarnamnet från blockeringsloggen, blockeringslistan och användarlistan',
 'ipbwatchuser'                    => 'Bevaka användarens användarsida och diskussionssida',
 'ipballowusertalk'                => 'Låt användaren redigera sin egen diskussionssida under blockeringen',
+'ipb-change-block'                => 'Återblockera användaren med de här inställningarna',
 'badipaddress'                    => 'Du har inte skrivit IP-adressen korrekt.',
 'blockipsuccesssub'               => 'Blockeringen är utförd',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] har blockerats.
@@ -2162,6 +2163,7 @@ Ange orsak nedan (exempelvis genom att nämna sidor som blivit vandaliserade).',
 'blocklogpage'                    => 'Blockeringslogg',
 'blocklog-fulllog'                => 'Fullständig blockeringslogg',
 'blocklogentry'                   => 'blockerade [[$1]] med blockeringstid på $2 $3',
+'reblock-logentry'                => 'ändrade blockeringsinställningar för [[$1]] med en varaktighet på $2 $3',
 'blocklogtext'                    => 'Detta är en logg över blockeringar och avblockeringar.
 Automatiskt blockerade IP-adresser listas ej.
 I [[Special:IPBlockList|blockeringslistan]] listas alla IP-adresser och användare som är blockerade för närvarande.',
@@ -2176,6 +2178,8 @@ I [[Special:IPBlockList|blockeringslistan]] listas alla IP-adresser och använda
 'ipb_expiry_invalid'              => 'Ogiltig varaktighetstid.',
 'ipb_expiry_temp'                 => 'För att dölja användarnamnet måste blockeringen vara permanent.',
 'ipb_already_blocked'             => '"$1" är redan blockerad',
+'ipb-needreblock'                 => '== Redan blockerad ==
+$1 är redan blockerad. Vill du ändra inställningarna?',
 'ipb_cant_unblock'                => 'Fel: Hittade inte blockering $1. Det är möjligt att den redan har upphävts.',
 'ipb_blocked_as_range'            => 'Fel: IP-adressen $1 är inte direkt blockerad, och kan därför inte avblockeras. Adressen är blockerad som en del av IP-intervallet $2, som kan avblockeras.',
 'ip_range_invalid'                => 'Ogiltigt IP-intervall.',

@@ -2225,6 +2225,7 @@ Drag bei „Aanlass“ ene möchlichs jenaue Jrund en, wöröm dat Sperre passee
 'ipbhidename'                     => 'Don däm Metmaacher singe Name versteiche: Em [[Special:Log/block|{{int:blocklogpage}}]], en de [[Special:IPBlockList|{{int:ipblocklist}}]], un en de [[Special:ListUsers|{{int:listusers}}]].',
 'ipbwatchuser'                    => 'Op däm Metmaacher sing Metmaachersigg un Klaafsigg oppasse',
 'ipballowusertalk'                => 'Lohß dä Metmaacher an sing eije Klaafsigg ändere, och su lang, wi sing Sperr dooht',
+'ipb-change-block'                => 'Wigger sperre met dä neue Enstellunge',
 'badipaddress'                    => 'Wat De do jeschrevve häs, dat es kein öntlije IP-Adress.',
 'blockipsuccesssub'               => 'De IP-Adress es jetz jesperrt',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] es jetz jesperrt.
@@ -2265,6 +2266,7 @@ un och wann De se ändere wells.',
 'blocklogpage'                    => 'Logboch met Metmaacher-Sperre',
 'blocklog-fulllog'                => 'Et janze Logboch fum Metmaacher-Sperre',
 'blocklogentry'                   => 'hät „[[$1]]“ fö de Zick vun $2 jesperrt. $3',
+'reblock-logentry'                => 'hät di Sperr för dä „[[$1]]“ met dä Duuer fun $2 $3 jeändert',
 'blocklogtext'                    => 'Hee es dat Logboch för et Metmaacher Sperre un Freijevve.
 Automatich jesperrte IP-Adresse sin nit hee, ävver en de [[Special:IPBlockList|{{int:ipblocklist}}]] ze finge.',
 'unblocklogentry'                 => 'Metmaacher „$1“ freijejovve',
@@ -2278,6 +2280,8 @@ Automatich jesperrte IP-Adresse sin nit hee, ävver en de [[Special:IPBlockList|
 'ipb_expiry_invalid'              => 'De Duur es Dress. Jevv se richtich aan.',
 'ipb_expiry_temp'                 => 'Sperre för Metmaacher met verstoche Name mößße för iewish doore.',
 'ipb_already_blocked'             => '„$1“ es ald jesperrt',
+'ipb-needreblock'                 => '== Ald jespert ==
+Dä Metmaacher „$1“ es ald jesperrt. Wellß De de Enstellunge för di Spär ändere?',
 'ipb_cant_unblock'                => '<strong>Ene Fähler:</strong> En Sperr met dä Nummer $1 es nit ze finge. Se künnt ald widder freijejovve woode sin.',
 'ipb_blocked_as_range'            => 'Dat jeit nit. De IP-Adress „$1“ es nit tirek jesperrt. Se es ävver en däm jesperrte Bereich „$2“ dren. Die Sperr kam_mer ophevve. Donoh kam_mer och kleiner Aandeile fun däm Bereich widder neu sperre. Di Adress alleins kam_mer ävver nit freijevve.',
 'ip_range_invalid'                => 'Dä Bereich vun IP_Adresse es nit en Oodnung.',

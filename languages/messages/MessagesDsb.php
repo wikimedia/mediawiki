@@ -1953,6 +1953,7 @@ $1',
 'ipbhidename'                     => 'Wužywarske mě z protokola blokěrowanjow, lisćiny aktiwnych blokěrowanjow a lisćiny wužywarjow schowaś',
 'ipbwatchuser'                    => 'Wužywarski a diskusijny bok toś togo wužywarja wobglědowaś',
 'ipballowusertalk'                => 'Toś tomu wužywarjeju dowóliś swój diskusijny bok wobźěłaś, mjazytm až jo blokěrowany.',
+'ipb-change-block'                => 'Wužywarja z toś tymi nastajenjami znowego blokěrowaś',
 'badipaddress'                    => 'IP-adresa jo njekorektna',
 'blockipsuccesssub'               => 'Wuspěšnje blokěrowane',
 'blockipsuccesstext'              => 'Wužywaŕ/IP-adresa [[Special:Contributions/$1|$1]] jo se blokěrował(a).<br />
@@ -1992,6 +1993,7 @@ Glědaj do [[Special:IPBlockList|lisćiny aktiwnych blokěrowanjow]].',
 'blocklogpage'                    => 'Log-lisćina blokěrowanjow',
 'blocklog-fulllog'                => 'Dopołny protokol blokěrowanjow',
 'blocklogentry'                   => '[[$1]] blokěrujo se na $2 $3',
+'reblock-logentry'                => 'jo změnił blokěrowańske nastajenja za [[$1]] z casom spadnjenja $2 $3',
 'blocklogtext'                    => 'To jo log-lisćina blokěrowanjow a dopušćenjow.
 IP-adresy, ako su awtomatiski se blokěrowali, se njepokažu.
 Na boce [[Special:IPBlockList|Lisćina blokěrowanych IP-adresow a wužywarskich mjenjow]] jo móžno, akualne blokěrowanja pśeglědowaś.',
@@ -2006,6 +2008,8 @@ Na boce [[Special:IPBlockList|Lisćina blokěrowanych IP-adresow a wužywarskich
 'ipb_expiry_invalid'              => 'Pódany cas jo njepłaśecy.',
 'ipb_expiry_temp'                 => 'Blokěrowanja schowanych wužywarskich mjenjow deje permanentne byś.',
 'ipb_already_blocked'             => '"$1" jo južo blokěrowany.',
+'ipb-needreblock'                 => '== Južo zablokěrowany ==
+$1 jo južo zablokěrowany. Coš nastajenja změniś?',
 'ipb_cant_unblock'                => 'Zmólka: Blokěrowańska ID $1 njejo se namakała. Blokěrowanje jo było južo wótpórane.',
 'ipb_blocked_as_range'            => 'Zmólka: IP-adresa $1 njejo direktnje blokěrowana a njeda se wótblokěrowaś. Jo pak ako źěl wobcerka $2 blokěrowana, kótaryž da se wótblokěrowaś.',
 'ip_range_invalid'                => 'Njepłaśecy wobłuk IP-adresow.',
@@ -2078,7 +2082,7 @@ W toś tyma padoma dej wopśimjeśe boka manualnje se pśesunuś resp. gromadu w
 'movepage-page-unmoved'     => 'Bok $1 njejo se do $2 pśesunuś dał.',
 'movepage-max-pages'        => 'Maksimalna licba $1 {{PLURAL:$1|boka|bokowu|bokow|bokow}} jo se pśesunuła a žedne dalšne wěcej njedaje se awtomatiski pśesunuś.',
 '1movedto2'                 => '„[[$1]]“ pśesunjone na „[[$2]]“',
-'1movedto2_redir'           => '„[[$1]]“ jo se pśesunuł(o/a) na „[[$2]]“. Pśi tom jo jadno dalejpósrědnjenje se pśepisało.',
+'1movedto2_redir'           => 'Nastawk „[[$1]]“ jo se pśesunuł na „[[$2]]“. Pśi tom jo jadno dalejpósrědnjenje se pśepisało.',
 'movelogpage'               => 'Protokol pśesunjenjow',
 'movelogpagetext'           => 'How jo lisćina wšyknych pśesunjonych bokow.',
 'movereason'                => 'Pśicyna',

@@ -442,6 +442,8 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'ignorewarning' => 'Hifadhi bila kujali maonyo yoyote.',
 'uploadedimage' => ' "[[$1]]" imepakiwa',
 
+'license' => 'Hatimiliki:',
+
 # Special:ImageList
 'imagelist' => 'Orodha ya mafaili',
 

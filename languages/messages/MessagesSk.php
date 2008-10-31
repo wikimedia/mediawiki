@@ -1274,6 +1274,8 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 'rc_categories'                     => 'Obmedziť na kategórie (oddeľte znakom „|“)',
 'rc_categories_any'                 => 'akékoľvek',
 'newsectionsummary'                 => '/* $1 */ nová sekcia',
+'rc-enhanced-expand'                => 'Zobraziť podrobnosti (vyžaduje JavaScript)',
+'rc-enhanced-hide'                  => 'Skryť podrobnosti',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Súvisiace úpravy',
@@ -1494,7 +1496,7 @@ Môžete si pozrieť [[Special:WhatLinksHere/$2|úplný zoznam]].',
 
 # Unused templates
 'unusedtemplates'     => 'Nepoužité šablóny',
-'unusedtemplatestext' => 'Táto stránka obsahuje zoznam všetkých stránok v mennom prisetore Šablóna:, ktoré nie sú vložené v žiadnej inej stránke. Pred zmazaním nezabudnite skontrolovať ostatné odkazy!',
+'unusedtemplatestext' => 'Táto stránka obsahuje zoznam všetkých stránok v mennom priestore {{ns:template}}:, ktoré nie sú vložené v žiadnej inej stránke. Pred zmazaním nezabudnite skontrolovať ostatné odkazy!',
 'unusedtemplateswlh'  => 'iné odkazy',
 
 # Random page
@@ -2021,6 +2023,7 @@ Nižšie uveďte konkrétny dôvod (napríklad uveďte konkrétne stránky, ktor
 'ipbhidename'                     => 'Skryť používateľa zo záznamu blokovaní, aktívneho zoznamu blokovaní a zoznamu používateľov',
 'ipbwatchuser'                    => 'Sledovať používateľskú a diskusnú stránku tohto používateľa',
 'ipballowusertalk'                => 'Umožniť tomuto používateľovi upravovať vlastnú diskusnú stránku aj keď je zablokovaný.',
+'ipb-change-block'                => 'Znovu zablokovať používateľa s týmito voľbami',
 'badipaddress'                    => 'IP adresa má nesprávny formát.',
 'blockipsuccesssub'               => 'Zablokovanie bolo úspešné',
 'blockipsuccesstext'              => '„$1“ bol/a zablokovaný/á.<br />
@@ -2061,6 +2064,7 @@ z/od momentálne zablokovanej IP adresy/používateľa.',
 'blocklogpage'                    => 'Záznam_blokovaní',
 'blocklog-fulllog'                => 'Úplný záznam blokovaní',
 'blocklogentry'                   => 'zablokoval/a "[[$1]]" s časom ukončenia $2 $3',
+'reblock-logentry'                => 'zmenené voľby zablokovania používateľa [[$1]] s časom vypršania $2, $3',
 'blocklogtext'                    => 'Toto je zoznam blokovaní a odblokovaní používateľov. Automaticky
 blokované IP adresy nie sú zahrnuté. Pozri zoznam
 [[Special:IPBlockList|aktuálnych blokovaní]].',
@@ -2075,6 +2079,8 @@ blokované IP adresy nie sú zahrnuté. Pozri zoznam
 'ipb_expiry_invalid'              => 'Neplatný čas ukončenia.',
 'ipb_expiry_temp'                 => 'Blokovania skrytých používateľských mien by mali byť trvalé.',
 'ipb_already_blocked'             => '„$1“ je už zablokovaný',
+'ipb-needreblock'                 => '== Už je zablokovaný ==
+$1 je už zablokovaný. Chcete zmeniť voľby blokovania?',
 'ipb_cant_unblock'                => 'Chyba: ID bloku $1 nenájdený. Možno už bol odblokovaný.',
 'ipb_blocked_as_range'            => 'Chyba: IP adresa $1 nie je blokovaná priamo a nie je ju teda možné odblokovať. Je však blokovaná v rámci rozsahu $2, ktorý je možné odblokovať.',
 'ip_range_invalid'                => 'Neplatný IP rozsah.',
@@ -2384,10 +2390,11 @@ Pravdepodobne to spôsobil odkaz na externú internetovú lokalitu, ktorá sa na
 'markedaspatrollederror-noautopatrol' => 'Nie je vám umožnené označiť vlastné zmeny za strážené.',
 
 # Patrol log
-'patrol-log-page'   => 'Záznam strážení',
-'patrol-log-header' => 'Toto je záznam strážených revízií.',
-'patrol-log-line'   => '$1 z $2 označených ako sledované $3',
-'patrol-log-auto'   => '(automaticky)',
+'patrol-log-page'    => 'Záznam strážení',
+'patrol-log-header'  => 'Toto je záznam strážených revízií.',
+'patrol-log-line'    => '$1 z $2 označených ako sledované $3',
+'patrol-log-auto'    => '(automaticky)',
+'logshowhide-patrol' => 'záznam stráženia $1',
 
 # Image deletion
 'deletedrevision'                 => 'Zmazať staré verzie $1',

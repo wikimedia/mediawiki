@@ -1380,6 +1380,7 @@ Ga na of latex, dvips en gs correct geïnstalleerd zijn en zet om',
 'right-userrights'           => 'Alle gebruikersrechten bewerken',
 'right-userrights-interwiki' => "Gebruikersrechten van gebruikers in andere wiki's wijzigen",
 'right-siteadmin'            => 'De database blokkeren en weer vrijgeven',
+'right-move-rootuserpages'   => "Gebruikerspagina's van het hoogste niveau hernoemen",
 
 # User rights log
 'rightslog'      => 'Gebruikersrechtenlogboek',
@@ -1420,6 +1421,7 @@ Ga na of latex, dvips en gs correct geïnstalleerd zijn en zet om',
 'action-userrights'           => 'alle gebruikersrechten te bewerken',
 'action-userrights-interwiki' => "gebruikersrechten van gebruikers van andere wiki's te bewerken",
 'action-siteadmin'            => 'de database af te sluiten of open te stellen',
+'action-move-rootuserpages'   => "gebruikerspagina's van het hoogste niveau te hernoemen",
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|bewerking|bewerkingen}}',
@@ -2235,6 +2237,7 @@ Geef hieronder een reden op (bijvoorbeeld welke pagina's gevandaliseerd zijn).",
 'ipbhidename'                     => 'Gebruiker in het blokkeerlogboek, de actieve blokkeerlijst en de gebruikerslijst verbergen',
 'ipbwatchuser'                    => 'Gebruikerspagina en overlegpagina op volglijst plaatsen',
 'ipballowusertalk'                => 'Deze gebruiker toestaan tijdens de blokkade de eigen overlegpagina te bewerken',
+'ipb-change-block'                => 'De gebruiker opnieuw blokkeren met deze instellingen',
 'badipaddress'                    => 'Geen geldig IP-adres',
 'blockipsuccesssub'               => 'Blokkering geslaagd',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] is geblokkeerd.<br />
@@ -2274,6 +2277,7 @@ Zie de [[Special:IPBlockList|Lijst van geblokkeerde IP-adressen]] voor recente b
 'blocklogpage'                    => 'Blokkeerlogboek',
 'blocklog-fulllog'                => 'Volledige blokkeerlogboek',
 'blocklogentry'                   => 'blokkeerde "[[$1]]" voor de duur van $2 $3',
+'reblock-logentry'                => 'heeft de instellingen voor de blokkade voor [[$1]] gewijzigd. Deze verloopt nu op $2 om $3',
 'blocklogtext'                    => 'Hier ziet u een lijst van de recente blokkeringen en deblokkeringen.
 Automatische blokkeringen en deblokkeringen komen niet in het logboek.
 Zie de [[Special:IPBlockList|Ipblocklist]] voor geblokkeerde adressen.',
@@ -2288,6 +2292,9 @@ Zie de [[Special:IPBlockList|Ipblocklist]] voor geblokkeerde adressen.',
 'ipb_expiry_invalid'              => 'Ongeldige duur.',
 'ipb_expiry_temp'                 => 'Blokkades voor verborgen gebruikers moeten permanent zijn.',
 'ipb_already_blocked'             => '"$1" is al geblokkeerd',
+'ipb-needreblock'                 => '== Deze gebruiker is al geblokkeerd ==
+$1 is al geblokkeerd.
+Wilt u de instellingen wijzigen?',
 'ipb_cant_unblock'                => 'Fout: blokkadenummer $1 niet gevonden.
 Misschien is de blokkade al opgeheven.',
 'ipb_blocked_as_range'            => 'Fout: het IP-adres $1 is niet direct geblokkeerd en de blokkade kan niet opgeheven worden.

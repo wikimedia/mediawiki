@@ -5,6 +5,7 @@
  * @file
  *
  * @author AminSanaei
+ * @author Varg
  */
 
 $fallback = 'fa';
@@ -20,6 +21,7 @@ $messages = array(
 'printableversion' => 'پرینتی نوسخه',
 'permalink'        => 'مؤنسنی پیوند',
 'edit'             => 'دچین واچین',
+'talkpagelinktext' => 'گب',
 'toolbox'          => 'ابزار جیگا',
 'jumptonavigation' => 'گردسن',
 'jumptosearch'     => 'واموج',
