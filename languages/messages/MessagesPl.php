@@ -2128,6 +2128,7 @@ Podaj powód (np. umieszczając nazwy stron, na których dopuszczono się wandal
 'ipbhidename'                     => 'Ukryj nazwę użytkownika/adres IP w rejestrze blokad, na liście aktywnych blokad i liście użytkowników',
 'ipbwatchuser'                    => 'Obserwuj stronę osobistą i stronę dyskusji tego użytkownika',
 'ipballowusertalk'                => 'Pozwól temu użytkownikowi edytować własną stronę dyskusji, kiedy jest zablokowany',
+'ipb-change-block'                => 'Zmień ustawienia blokady',
 'badipaddress'                    => 'Niepoprawny adres IP',
 'blockipsuccesssub'               => 'Zablokowanie powiodło się',
 'blockipsuccesstext'              => 'Użytkownik [[Special:Contributions/$1|$1]] został zablokowany.<br />
@@ -2168,6 +2169,7 @@ Przyczyna blokady $1 to: „$2”',
 'blocklogpage'                    => 'Historia blokad',
 'blocklog-fulllog'                => 'Pełny rejestr blokad',
 'blocklogentry'                   => 'zablokował [[$1]], czas blokady: $2 $3',
+'reblock-logentry'                => 'zmienił ustawienia blokady dla [[$1]], czas blokady: $2 $3',
 'blocklogtext'                    => 'Poniżej znajduje się lista blokad założonych i zdjętych z poszczególnych adresów IP.
 Na liście nie znajdą się adresy IP, które zablokowano w sposób automatyczny.
 By przejrzeć listę obecnie aktywnych blokad, przejdź na stronę [[Special:IPBlockList|zablokowanych adresów i użytkowników]].',
@@ -2182,6 +2184,8 @@ By przejrzeć listę obecnie aktywnych blokad, przejdź na stronę [[Special:IPB
 'ipb_expiry_invalid'              => 'Błędny czas wygaśnięcia blokady.',
 'ipb_expiry_temp'                 => 'Ukrytą nazwę użytkownika należy zablokować trwale.',
 'ipb_already_blocked'             => '„$1” jest już zablokowany',
+'ipb-needreblock'                 => '== Istniejąca blokada ==
+$1 jest już zablokowany. Czy chcesz zmienić ustawienia blokady?',
 'ipb_cant_unblock'                => 'Błąd: Blokada o ID $1 nie została znaleziona. Mogła ona zostać zdjęta wcześniej.',
 'ipb_blocked_as_range'            => 'Błąd: Adres IP $1 nie został zablokowany bezpośrednio i nie może zostać odblokowany.
 Należy on do zablokowanego zakresu adresów $2. Odblokować można tylko cały zakres.',

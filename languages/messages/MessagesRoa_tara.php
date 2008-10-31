@@ -13,8 +13,10 @@ $messages = array(
 'tog-highlightbroken' => 'Formete de collegamende sqausciete <a href="" class="new">cumme quiste</a> (in alternativa: cumme quiste<a href="" class="internal">?</a>).',
 'tog-justify'         => 'Giustifeche le paragrafe',
 'tog-hideminor'       => "Scunne le cangiaminde stuédeche jndr'à le cangiaminde recende",
+'tog-extendwatchlist' => 'Spanne le pàggene condrollete pe fa vedè tutte le cangiaminde fatte',
 'tog-showtoolbar'     => "Fà vedè 'a barra de le cangiaminde (JavaScript)",
 'tog-minordefault'    => 'Pe convenzione signe tutte le cangiaminde cumme a stuédeche',
+'tog-previewonfirst'  => "Fà vedè l'andeprime sus a 'u prime cangiaminde",
 'tog-showhiddencats'  => 'Fa vedè le categorije scunnute',
 
 'underline-always' => 'Sembre',
@@ -192,6 +194,7 @@ $messages = array(
 'editold'              => 'cange',
 'viewsourceold'        => 'vide sorgende',
 'editlink'             => 'cange',
+'viewsourcelink'       => "vide 'u sorgende",
 'editsectionhint'      => "Cange 'a sezione: $1",
 'toc'                  => 'Condenute',
 'showtoc'              => 'fà vedè',
@@ -350,6 +353,7 @@ Apprime ca otre e-mail avènene mannete a 'u cunde tue, tu ha seguì le 'struzio
 'anoneditwarning'        => "'''Attenziò:''' Tu non ge sinde colleghete..
 L'indirizze IP tue avène reggistrete jndr'à le cangiaminde de sta pàgene.",
 'summary-preview'        => "Andeprime d'u riepileghe",
+'blockedtitle'           => "L'utende è blocchete",
 'blockedtext'            => "<big>''''U nome de l'utende o l'indirizze IP ha state blocchete.'''</big>
 
 'U blocche ha state fatte da $1.
@@ -378,6 +382,7 @@ le cangiaminde non g'onne state angore reggistrete!</strong>",
 'editing'                => 'Cangiaminde de $1',
 'editingsection'         => 'Cangiaminde de $1 (sezione)',
 'editingcomment'         => 'Cangiaminde de $1 (commende)',
+'editconflict'           => 'Conflitte de cangiaminde: $1',
 'yourtext'               => "'U teste tue",
 'storedversion'          => 'Versione archivijete',
 'yourdiff'               => 'Differenze',
@@ -398,6 +403,7 @@ Tu puè turnà rrete e cangià 'na pàgene ca già esiste, oppure puè [[Special
 'recreate-deleted-warn'  => "'''Fa Attenziò: Ste ccreje 'na pàgene ca avère state scangillete apprime.'''
 
 Vide bbuene ce l'ha ccrejà sta pàgene, ce non ge sinde sicure vide l'archivie de le scangellaziune:",
+'edit-conflict'          => 'conflitte de cangiaminde.',
 
 # History pages
 'viewpagelogs'        => "Vide l'archivie pe sta pàgene",
@@ -423,10 +429,12 @@ Leggenda: (cur) = differenze cu 'a versiona corrende,
 'history-feed-item-nocomment' => '$1 a $2', # user at time
 
 # Revision deletion
-'rev-delundel'      => 'fa vedè/scunne',
-'revdelete-content' => 'condenute',
-'revdelete-summary' => "cange 'u riepileghe",
-'revdelete-uname'   => "nome de l'utende",
+'rev-delundel'           => 'fa vedè/scunne',
+'revdelete-hide-comment' => 'Scunne le commende de le cangiaminde',
+'revdelete-log'          => 'Archivie de le commende:',
+'revdelete-content'      => 'condenute',
+'revdelete-summary'      => "cange 'u riepileghe",
+'revdelete-uname'        => "nome de l'utende",
 
 # History merging
 'mergehistory-autocomment' => "Squagghiete [[:$1]] jndr'à [[:$2]]",
@@ -437,6 +445,7 @@ Leggenda: (cur) = differenze cu 'a versiona corrende,
 'difference'              => "(Differenze 'mbrà versiune)",
 'lineno'                  => 'Linea $1:',
 'compareselectedversions' => 'Combornde le versiune selezionete',
+'visualcomparison'        => 'Combronde visuele',
 'editundo'                => 'annulle',
 'diff-multi'              => "({{PLURAL:$1|'na versione de mmienze|$1 cchiù versiune de mmienze}} non ge se vèdene.)",
 'diff-movedto'            => "spustete jndr'à $1",
@@ -468,8 +477,27 @@ Leggenda: (cur) = differenze cu 'a versiona corrende,
 'diff-td'                 => "'na '''celle'''",
 'diff-th'                 => "'na '''testete'''",
 'diff-br'                 => "'n''''inderruzione'''",
+'diff-hr'                 => "'na '''horizontal rule'''",
+'diff-code'               => "'nu '''computer code block'''",
+'diff-dl'                 => "'na '''definition list'''",
+'diff-dt'                 => "'nu '''definition term'''",
+'diff-dd'                 => "'na '''definition'''",
 'diff-input'              => "'n''''input'''",
 'diff-form'               => "'nu '''form'''",
+'diff-img'                => "'n''''image'''",
+'diff-span'               => "'nu '''span'''",
+'diff-a'                  => "'nu '''link'''",
+'diff-i'                  => "'''italics'''",
+'diff-b'                  => "'''bold'''",
+'diff-strong'             => "'''strong'''",
+'diff-em'                 => "'''emphasis'''",
+'diff-font'               => "'''font'''",
+'diff-big'                => "'''big'''",
+'diff-del'                => "'''deleted'''",
+'diff-tt'                 => "'''fixed width'''",
+'diff-sub'                => "'''subscript'''",
+'diff-sup'                => "'''superscript'''",
+'diff-strike'             => "'''strikethrough'''",
 
 # Search results
 'noexactmatch'          => "'''Non g'esiste 'na pàgene ca se chiama \"\$1\".'''
@@ -529,9 +557,10 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'rightsnone' => '(ninde)',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-move'   => 'spuéste sta pàgene',
-'action-upload' => 'careche stu fail',
-'action-import' => "'mborte sta pàgene da n'otra Uicchi",
+'action-move'          => 'spuéste sta pàgene',
+'action-move-subpages' => 'spuéste sta pàgene e tutte chidde ca stonne sotte a jedde',
+'action-upload'        => 'careche stu fail',
+'action-import'        => "'mborte sta pàgene da n'otra Uicchi",
 
 # Recent changes
 'nchanges'                       => '$1 {{PLURAL:$1|cangiaminde|cangiaminde}}',

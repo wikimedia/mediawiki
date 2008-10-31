@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Bani
  * @author Brunoy Anastasiya Seryozhenko
  * @author Carla404
  * @author LeonardoG
@@ -392,6 +393,7 @@ $messages = array(
 'editold'                 => 'editar',
 'viewsourceold'           => 'ver código',
 'editlink'                => 'editar',
+'viewsourcelink'          => 'ver fonte',
 'editsectionhint'         => 'Editar secção: $1',
 'toc'                     => 'Tabela de conteúdo',
 'showtoc'                 => 'mostrar',
@@ -562,6 +564,7 @@ Verifique se digitou corretamente, ou [[Special:UserLogin/signup|crie uma nova c
 'passwordtooshort'           => 'A sua senha é inválida ou muito curta.
 Deve de ter no mínimo {{PLURAL:$1|1 caracter|$1 caracteres}} e ser diferente do seu nome de usuário.',
 'mailmypassword'             => 'Enviar uma nova senha por e-mail',
+'passwordremindertitle'      => 'Nova senha temporária em {{SITENAME}}',
 'passwordremindertext'       => 'Alguém (provavelmente você, a partir do endereço de IP $1) solicitou que fosse lhe enviada uma nova senha para {{SITENAME}} ($4).
 A senha do usuário "$2" é, a partir de agora, "$3". Você pode entrar na sua conta e alterar a senha, caso prefira.
 
@@ -904,6 +907,9 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 'compareselectedversions' => 'Compare as versões selecionadas',
 'editundo'                => 'desfazer',
 'diff-multi'              => '({{PLURAL:$1|uma edição intermediária não está sendo exibida|$1 edições intermediárias não estão sendo exibidas}}.)',
+'diff-width'              => 'largura',
+'diff-height'             => 'altura',
+'diff-font'               => "'''fonte'''",
 
 # Search results
 'searchresults'             => 'Resultados de pesquisa',
@@ -1114,6 +1120,12 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desat
 'rightslogtext'  => 'Este é um registro de mudanças nos privilégios de usuários.',
 'rightslogentry' => 'foi alterado o grupo de acesso de $1 (de $2 para $3)',
 'rightsnone'     => '(nenhum)',
+
+# Associated actions - in the sentence "You do not have permission to X"
+'action-read'       => 'ler esta página',
+'action-edit'       => 'editar esta página',
+'action-createpage' => 'criar páginas',
+'action-delete'     => 'excluir esta página',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|alteração|alterações}}',
