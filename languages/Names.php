@@ -24,7 +24,7 @@
 	'ast' => 'Asturianu',	# Asturian
 	'av' => 'Авар',	# Avar
 	'avk' => 'Kotava', # Kotava
-	'ay' => 'Aymar',		# Aymara, should possibly be Aymará
+	'ay' => 'Aymar aru',	# Aymara
 	'az' => 'Azərbaycan',	# Azerbaijani
 	'ba' => 'Башҡорт',	# Bashkir
 	'bar' => 'Boarisch',	# Bavarian (Austro-Bavarian and South Tyrolean)
