@@ -319,11 +319,13 @@ class DiffHistoryBlob implements HistoryBlob {
 	 * The maximum number of text items before the object becomes sad
 	 */
 	var $mMaxCount = 100;
+	
+	/** Constants from xdiff.h */
+	const XDL_BDOP_INS = 1;
+	const XDL_BDOP_CPY = 2;
+	const XDL_BDOP_INSB = 3;
 
 	function __construct() {
-		if ( !function_exists( 'xdiff_string_bdiff' ) ){ 
-			throw new MWException( "Need xdiff 1.5+ support to read or write DiffHistoryBlob\n" );
-		}
 		if ( !function_exists( 'gzdeflate' ) ) {
 			throw new MWException( "Need zlib support to read or write DiffHistoryBlob\n" );
 		}
@@ -353,6 +355,9 @@ class DiffHistoryBlob implements HistoryBlob {
 	}
 
 	function compress() {
+		if ( !function_exists( 'xdiff_string_bdiff' ) ){ 
+			throw new MWException( "Need xdiff 1.5+ support to write DiffHistoryBlob\n" );
+		}
 		if ( isset( $this->mDiffs ) ) {
 			// Already compressed
 			return;
@@ -431,10 +436,60 @@ class DiffHistoryBlob implements HistoryBlob {
 	}
 
 	function patch( $base, $diff ) {
-		wfSuppressWarnings();
-		$text = xdiff_string_bpatch( $base, $diff ) . '';
-		wfRestoreWarnings();
-		return $text;
+		if ( function_exists( 'xdiff_string_bpatch' ) ) {
+			wfSuppressWarnings();
+			$text = xdiff_string_bpatch( $base, $diff ) . '';
+			wfRestoreWarnings();
+			return $text;
+		}
+
+		# Pure PHP implementation
+
+		$header = unpack( 'Vofp/Vcsize', substr( $diff, 0, 8 ) );
+		
+		# Check the checksum if mhash is available
+		if ( extension_loaded( 'mhash' ) ) {
+			$ofp = mhash( MHASH_ADLER32, $base );
+			if ( $ofp !== substr( $diff, 0, 4 ) ) {
+				wfDebug( __METHOD__. ": incorrect base checksum\n" );
+				return false;
+			}
+		}
+		if ( $header['csize'] != strlen( $base ) ) {
+			wfDebug( __METHOD__. ": incorrect base length {$header['csize']} -> {strlen($base)}\n" );
+			return false;
+		}
+		
+		$p = 8;
+		$out = '';
+		while ( $p < strlen( $diff ) ) {
+			$x = unpack( 'Cop', substr( $diff, $p, 1 ) );
+			$op = $x['op'];
+			++$p;
+			switch ( $op ) {
+			case self::XDL_BDOP_INS:
+				$x = unpack( 'Csize', substr( $diff, $p, 1 ) );
+				$p++;
+				$out .= substr( $diff, $p, $x['size'] );
+				$p += $x['size'];
+				break;
+			case self::XDL_BDOP_INSB:
+				$x = unpack( 'Vcsize', substr( $diff, $p, 4 ) );
+				$p += 4;
+				$out .= substr( $diff, $p, $x['csize'] );
+				$p += $x['csize'];
+				break;
+			case self::XDL_BDOP_CPY:
+				$x = unpack( 'Voff/Vcsize', substr( $diff, $p, 8 ) );
+				$p += 8;
+				$out .= substr( $base, $x['off'], $x['csize'] );
+				break;
+			default:
+				wfDebug( __METHOD__.": invalid op\n" );
+				return false;
+			}
+		}
+		return $out;
 	}
 
 	function uncompress() {
