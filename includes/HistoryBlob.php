@@ -57,9 +57,10 @@ class ConcatenatedGzipHistoryBlob implements HistoryBlob
 	public function addItem( $text ) {
 		$this->uncompress();
 		$hash = md5( $text );
-		$this->mItems[$hash] = $text;
-		$this->mSize += strlen( $text );
-
+		if ( !isset( $this->mItems[$hash] ) ) {
+			$this->mItems[$hash] = $text;
+			$this->mSize += strlen( $text );
+		}
 		return $hash;
 	}
 
@@ -277,11 +278,21 @@ class DiffHistoryBlob implements HistoryBlob {
 	/** Uncompressed item cache */
 	var $mItems = array();
 
+	/** Total uncompressed size */
+	var $mSize = 0;
+
 	/** 
-	 * Array of diffs, where $this->mDiffs[0] is the diff between 
-	 * $this->mDiffs[0] and $this->mDiffs[1]
+	 * Array of diffs. If a diff D from A to B is notated D = B - A, and Z is 
+	 * an empty string:
+	 *
+	 *              { item[map[i]] - item[map[i-1]]   where i > 0
+	 *    diff[i] = { 
+	 *              { item[map[i]] - Z                where i = 0
 	 */
-	var $mDiffs = array();
+	var $mDiffs;
+
+	/** The diff map, see above */
+	var $mDiffMap;
 
 	/**
 	 * The key for getText()
@@ -297,7 +308,6 @@ class DiffHistoryBlob implements HistoryBlob {
 	 * True if the object is locked against further writes
 	 */
 	var $mFrozen = false;
-
 
 	/**
 	 * The maximum uncompressed size before the object becomes sad
@@ -326,34 +336,11 @@ class DiffHistoryBlob implements HistoryBlob {
 
 		$this->mItems[] = $text;
 		$this->mSize += strlen( $text );
-		$i = count( $this->mItems ) - 1;
-		if ( $i > 0 ) {
-			# Need to do a null concatenation with warnings off, due to bugs in the current version of xdiff
-			# "String is not zero-terminated"
-			wfSuppressWarnings();
-			$this->mDiffs[] = xdiff_string_bdiff( $this->mItems[$i-1], $text ) . '';
-			wfRestoreWarnings();
-		}
-		return $i;
+		$this->mDiffs = null; // later
+		return count( $this->mItems ) - 1;
 	}
 
 	function getItem( $key ) {
-		if ( $key > count( $this->mDiffs ) + 1 ) {
-			return false;
-		}
-		$key = intval( $key );
-		if ( $key == 0 ) {
-			return $this->mItems[0];
-		}
-
-		$last = count( $this->mItems ) - 1;
-		for ( $i = $last + 1; $i <= $key; $i++ ) {
-			# Need to do a null concatenation with warnings off, due to bugs in the current version of xdiff
-			# "String is not zero-terminated"
-			wfSuppressWarnings();
-			$this->mItems[$i] = xdiff_string_bpatch( $this->mItems[$i - 1], $this->mDiffs[$i - 1] ) . '';
-			wfRestoreWarnings();
-		}
 		return $this->mItems[$key];
 	}
 
@@ -365,14 +352,123 @@ class DiffHistoryBlob implements HistoryBlob {
 		return $this->getItem( $this->mDefaultKey );
 	}
 
+	function compress() {
+		if ( isset( $this->mDiffs ) ) {
+			// Already compressed
+			return;
+		}
+		if ( !count( $this->mItems ) ) {
+			// Empty
+			return;
+		}
+
+		// Create two diff sequences: one for main text and one for small text
+		$sequences = array(
+			'small' => array(
+				'tail' => '',
+				'diffs' => array(),
+				'map' => array(),
+			),
+			'main' => array(
+				'tail' => '',
+				'diffs' => array(),
+				'map' => array(),
+			),
+		);
+		$smallFactor = 0.5;
+
+		for ( $i = 0; $i < count( $this->mItems ); $i++ ) {
+			$text = $this->mItems[$i];
+			if ( $i == 0 ) {
+				$seqName = 'main';
+			} else {
+				$mainTail = $sequences['main']['tail'];
+				if ( strlen( $text ) < strlen( $mainTail ) * $smallFactor ) {
+					$seqName = 'small';
+				} else {
+					$seqName = 'main';
+				}
+			}
+			$seq =& $sequences[$seqName];
+			$tail = $seq['tail'];
+			$diff = $this->diff( $tail, $text );
+			$seq['diffs'][] = $diff;
+			$seq['map'][] = $i;
+			$seq['tail'] = $text;
+		}
+		unset( $seq ); // unlink dangerous alias
+
+		// Knit the sequences together
+		$tail = '';
+		$this->mDiffs = array();
+		$this->mDiffMap = array();
+		foreach ( $sequences as $seq ) {
+			if ( !count( $seq['diffs'] ) ) {
+				continue;
+			}
+			if ( $tail === '' ) {
+				$this->mDiffs[] = $seq['diffs'][0];
+			} else {
+				$head = $this->patch( '', $seq['diffs'][0] );
+				$this->mDiffs[] = $this->diff( $tail, $head );
+			}
+			$this->mDiffMap[] = $seq['map'][0];
+			for ( $i = 1; $i < count( $seq['diffs'] ); $i++ ) {
+				$this->mDiffs[] = $seq['diffs'][$i];
+				$this->mDiffMap[] = $seq['map'][$i];
+			}
+			$tail = $seq['tail'];
+		}
+	}
+
+	function diff( $t1, $t2 ) {
+		# Need to do a null concatenation with warnings off, due to bugs in the current version of xdiff
+		# "String is not zero-terminated"
+		wfSuppressWarnings();
+		$diff = xdiff_string_bdiff( $t1, $t2 ) . '';
+		wfRestoreWarnings();
+		return $diff;
+	}
+
+	function patch( $base, $diff ) {
+		wfSuppressWarnings();
+		$text = xdiff_string_bpatch( $base, $diff ) . '';
+		wfRestoreWarnings();
+		return $text;
+	}
+
+	function uncompress() {
+		if ( !$this->mDiffs ) {
+			return;
+		}
+		$tail = '';
+		for ( $diffKey = 0; $diffKey < count( $this->mDiffs ); $diffKey++ ) {
+			$textKey = $this->mDiffMap[$diffKey];
+			$text = $this->patch( $tail, $this->mDiffs[$diffKey] );
+			$this->mItems[$textKey] = $text;
+			$tail = $text;
+		}
+	}
+
 	function __sleep() {
-		if ( !isset( $this->mItems[0] ) ) {
+		$this->compress();
+		if ( !count( $this->mItems ) ) {
 			// Empty object
 			$info = false;
 		} else {
+			// Take forward differences to improve the compression ratio for sequences
+			$map = '';
+			$prev = 0;
+			foreach ( $this->mDiffMap as $i ) {
+				if ( $map !== '' ) {
+					$map .= ',';
+				}
+				$map .= $i - $prev;
+				$prev = $i;
+			}
 			$info = array(
-				'base' => $this->mItems[0],
-				'diffs' => $this->mDiffs
+				'diffs' => $this->mDiffs,
+				'map' => $map
 			);
 		}
 		if ( isset( $this->mDefaultKey ) ) {
@@ -396,8 +492,15 @@ class DiffHistoryBlob implements HistoryBlob {
 		if ( isset( $info['default'] ) ) {
 			$this->mDefaultKey = $info['default'];
 		}
-		$this->mItems[0] = $info['base'];
+		$map = explode( ',', $info['map'] );
+		$cur = 0;
+		$this->mDiffMap = array();
+		foreach ( $map as $i ) {
+			$cur += $i;
+			$this->mDiffMap[] = $cur;
+		}
 		$this->mDiffs = $info['diffs'];
+		$this->uncompress();
 	}
 
 	/**
