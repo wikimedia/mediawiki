@@ -1761,7 +1761,7 @@ class Language {
 					$aliases[$code] = $this->fixSpecialPageAliases( $aliases[$code] );
 					/* Merge the aliases, THIS will break if there is special page name
 					* which looks like a numerical key, thanks to PHP...
-					* See the comments for wfArrayMerge in GlobalSettings.php. */
+					* See the array_merge_recursive manual entry */
 					$this->mExtendedSpecialPageAliases = array_merge_recursive(
 						$this->mExtendedSpecialPageAliases, $aliases[$code] );
 

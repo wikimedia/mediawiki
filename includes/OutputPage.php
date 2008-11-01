@@ -531,8 +531,13 @@ class OutputPage {
 		$this->mNoGallery = $parserOutput->getNoGallery();
 		$this->mHeadItems = array_merge( $this->mHeadItems, (array)$parserOutput->mHeadItems );
 		// Versioning...
-		$this->mTemplateIds = wfArrayMerge( $this->mTemplateIds, (array)$parserOutput->mTemplateIds );
-
+		foreach ( (array)$parserOutput->mTemplateIds as $ns => $dbks ) {
+			if ( isset( $this->mTemplateIds[$ns] ) ) {
+				$this->mTemplateIds[$ns] = $dbks + $this->mTemplateIds[$ns];
+			} else {
+				$this->mTemplateIds[$ns] = $dbks;
+			}
+		}
 		// Display title
 		if( ( $dt = $parserOutput->getDisplayTitle() ) !== false )
 			$this->setPageTitle( $dt );

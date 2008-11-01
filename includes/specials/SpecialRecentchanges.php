@@ -580,7 +580,7 @@ class SpecialRecentChanges extends SpecialPage {
 	function makeOptionsLink( $title, $override, $options, $active = false ) {
 		global $wgUser;
 		$sk = $wgUser->getSkin();
-		$params = wfArrayMerge( $options, $override );
+		$params = $override + $options;
 		return $sk->link( $this->getTitle(), htmlspecialchars( $title ),
 			( $active ? array( 'style'=>'font-weight: bold;' ) : array() ), $params, array( 'known' ) );
 	}
