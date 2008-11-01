@@ -2104,12 +2104,19 @@ class User {
 	 * @todo FIXME : need to check the old failback system [AV]
 	 */
 	function &getSkin() {
-		global $wgRequest;
+		global $wgRequest, $wgAllowUserSkin, $wgDefaultSkin;
 		if ( ! isset( $this->mSkin ) ) {
 			wfProfileIn( __METHOD__ );
 
-			# get the user skin
-			$userSkin = $this->getOption( 'skin' );
+			if( $wgAllowUserSkin ) {
+				# get the user skin
+				$userSkin = $this->getOption( 'skin' );
+			} else {
+				# if we're not allowing users to override, then use the default
+				$userSkin = $wgDefaultSkin;
+			}
+			
+			# we'll allow skin "testing" regardless of the AllowUserSkin option
 			$userSkin = $wgRequest->getVal('useskin', $userSkin);
 
 			$this->mSkin =& Skin::newFromKey( $userSkin );
