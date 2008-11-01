@@ -87,6 +87,7 @@ class IPBlockForm {
 		$mIpbreason = Xml::label( wfMsg( 'ipbotherreason' ), 'mw-bi-reason' );
 
 		$titleObj = SpecialPage::getTitleFor( 'Blockip' );
+		$user = User::newFromName( $this->BlockAddress );
 		
 		$alreadyBlocked = false;
 		if ( $err && $err[0] != 'ipb_already_blocked' ) {
@@ -95,7 +96,10 @@ class IPBlockForm {
 			$wgOut->setSubtitle( wfMsgHtml( 'formerror' ) );
 			$wgOut->addHTML( Xml::tags( 'p', array( 'class' => 'error' ), $msg ) );
 		} elseif ( $this->BlockAddress ) {
-			$currentBlock = Block::newFromDB( $this->BlockAddress );
+			$userId = 0;
+			if ( is_object( $user ) )
+				$userId = $user->getId();
+			$currentBlock = Block::newFromDB( $this->BlockAddress, $userId );
 			if ( !is_null($currentBlock) && !$currentBlock->mAuto && !($currentBlock->mRangeStart && $currentBlock->mAddress != $this->BlockAddress) ) {
 				$wgOut->addWikiMsg( 'ipb-needreblock', $this->BlockAddress );
 				$alreadyBlocked = true;
@@ -293,7 +297,6 @@ class IPBlockForm {
 
 		$wgOut->addHtml( $this->getConvenienceLinks() );
 
-		$user = User::newFromName( $this->BlockAddress );
 		if( is_object( $user ) ) {
 			$this->showLogFragment( $wgOut, $user->getUserPage() );
 		} elseif( preg_match( '/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/', $this->BlockAddress ) ) {
@@ -405,7 +408,7 @@ class IPBlockForm {
 					return array( 'ipb_already_blocked' );
 				} else {
 					# This returns direct blocks before autoblocks/rangeblocks, since we should be sure the user is blocked by now it should work for our purposes
-					$currentBlock = Block::newFromDB( $this->BlockAddress );
+					$currentBlock = Block::newFromDB( $this->BlockAddress, $userId );
 					$currentBlock->delete();
 					$block->insert();
 					$log_action = 'reblock';
