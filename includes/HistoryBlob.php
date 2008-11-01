@@ -456,7 +456,7 @@ class DiffHistoryBlob implements HistoryBlob {
 			}
 		}
 		if ( $header['csize'] != strlen( $base ) ) {
-			wfDebug( __METHOD__. ": incorrect base length {$header['csize']} -> {strlen($base)}\n" );
+			wfDebug( __METHOD__. ": incorrect base length\n" );
 			return false;
 		}
 		
@@ -547,14 +547,23 @@ class DiffHistoryBlob implements HistoryBlob {
 		if ( isset( $info['default'] ) ) {
 			$this->mDefaultKey = $info['default'];
 		}
-		$map = explode( ',', $info['map'] );
-		$cur = 0;
-		$this->mDiffMap = array();
-		foreach ( $map as $i ) {
-			$cur += $i;
-			$this->mDiffMap[] = $cur;
-		}
 		$this->mDiffs = $info['diffs'];
+		if ( isset( $info['base'] ) ) {
+			// Old format
+			$this->mDiffMap = range( 0, count( $this->mDiffs ) - 1 );
+			array_unshift( $this->mDiffs, 
+				pack( 'VVCV', 0, 0, self::XDL_BDOP_INSB, strlen( $info['base'] ) ) .
+				$info['base'] );
+		} else {
+			// New format
+			$map = explode( ',', $info['map'] );
+			$cur = 0;
+			$this->mDiffMap = array();
+			foreach ( $map as $i ) {
+				$cur += $i;
+				$this->mDiffMap[] = $cur;
+			}
+		}
 		$this->uncompress();
 	}
 
