@@ -2468,11 +2468,11 @@ class Title {
 		}
 
 		if ( $auth ) {
-			$errors = wfArrayMerge($errors, 
-					$this->getUserPermissionsErrors('move', $wgUser),
-					$this->getUserPermissionsErrors('edit', $wgUser),
-					$nt->getUserPermissionsErrors('move-target', $wgUser),
-					$nt->getUserPermissionsErrors('edit', $wgUser));
+			$errors = wfMergeErrorArrays( $errors,
+				$this->getUserPermissionsErrors('move', $wgUser),
+				$this->getUserPermissionsErrors('edit', $wgUser),
+				$nt->getUserPermissionsErrors('move-target', $wgUser),
+				$nt->getUserPermissionsErrors('edit', $wgUser) );
 		}
 
 		$match = EditPage::matchSpamRegex( $reason );
