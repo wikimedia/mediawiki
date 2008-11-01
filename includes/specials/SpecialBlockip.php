@@ -100,9 +100,12 @@ class IPBlockForm {
 			if ( is_object( $user ) )
 				$userId = $user->getId();
 			$currentBlock = Block::newFromDB( $this->BlockAddress, $userId );
-			if ( !is_null($currentBlock) && !$currentBlock->mAuto && !($currentBlock->mRangeStart && $currentBlock->mAddress != $this->BlockAddress) ) {
-				$wgOut->addWikiMsg( 'ipb-needreblock', $this->BlockAddress );
-				$alreadyBlocked = true;
+			if ( !is_null($currentBlock) && !$currentBlock->mAuto && # The block exists and isn't an autoblock
+				( $currentBlock->mRangeStart == $currentBlock->mRangeEnd || # The block isn't a rangeblock
+				# or if it is, the range is what we're about to block
+				( $currentBlock->mAddress == $this->BlockAddress ) ) ) {
+					$wgOut->addWikiMsg( 'ipb-needreblock', $this->BlockAddress );
+					$alreadyBlocked = true;
 			}
 		}
 
