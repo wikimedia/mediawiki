@@ -838,7 +838,6 @@ $wgTranslateNumerals = true;
 
 /**
  * Translation using MediaWiki: namespace.
- * This will increase load times by 25-60% unless memcached is installed.
  * Interface messages will be loaded from the database.
  */
 $wgUseDatabaseMessages = true;
@@ -952,6 +951,16 @@ $wgCleanSignatures = true;
 $wgExtraSubtitle	= '';
 $wgSiteSupportPage	= ''; # A page where you users can receive donations
 
+/**
+ * Set this to a string to put the wiki into read-only mode. The text will be 
+ * used as an explanation to users. 
+ *
+ * This prevents most write operations via the web interface. Cache updates may 
+ * still be possible. To prevent database writes completely, use the read_only 
+ * option in MySQL.
+ */
+$wgReadOnly             = null;
+
 /***
  * If this lock file exists, the wiki will be forced into read-only mode.
  * Its contents will be shown to users as part of the read-only warning
@@ -960,15 +969,42 @@ $wgSiteSupportPage	= ''; # A page where you users can receive donations
 $wgReadOnlyFile         = false; ///< defaults to "{$wgUploadDirectory}/lock_yBgMBwiR";
 
 /**
+ * Filename for debug logging. 
  * The debug log file should be not be publicly accessible if it is used, as it
- * may contain private data. */
+ * may contain private data. 
+ */
 $wgDebugLogFile         = '';
 
-$wgDebugRedirects		= false;
-$wgDebugRawPage         = false; # Avoid overlapping debug entries by leaving out CSS
+/**
+ * Prefix for debug log lines
+ */
+$wgDebugLogPrefix       = '';
 
+/**
+ * If true, instead of redirecting, show a page with a link to the redirect 
+ * destination. This allows for the inspection of PHP error messages, and easy
+ * resubmission of form data. For developer use only.
+ */
+$wgDebugRedirects		= false;
+
+/**
+ * If true, log debugging data from action=raw. 
+ * This is normally false to avoid overlapping debug entries due to gen=css and
+ * gen=js requests.
+ */
+$wgDebugRawPage         = false;
+
+/**
+ * Send debug data to an HTML comment in the output.
+ *
+ * This may occasionally be useful when supporting a non-technical end-user. It's
+ * more secure than exposing the debug log file to the web, since the output only
+ * contains private data for the current user. But it's not ideal for development 
+ * use since data is lost on fatal errors and redirects.
+ */
 $wgDebugComments        = false;
-$wgReadOnly             = null;
+
+/** Does nothing. Obsolete? */
 $wgLogQueries           = false;
 
 /**
@@ -1027,7 +1063,8 @@ $wgUseCategoryBrowser   = false;
  * same options.
  *
  * This can provide a significant speedup for medium to large pages,
- * so you probably want to keep it on.
+ * so you probably want to keep it on. Extensions that conflict with the 
+ * parser cache should disable the cache on a per-page basis instead.
  */
 $wgEnableParserCache = true;
 

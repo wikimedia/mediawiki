@@ -15,7 +15,13 @@ if ( isset( $options['start'] ) ) {
 } else {
 	$start = '19700101000000';
 }
-$limit = isset( $options['limit'] ) ? $options['limit'] : 10;
+if ( isset( $options['limit'] ) ) {
+	$limit = $options['limit'];
+	$untilHappy = false;
+} else {
+	$limit = 1000;
+	$untilHappy = true;
+}
 $type = isset( $options['type'] ) ? $options['type'] : 'ConcatenatedGzipHistoryBlob';
 
 
@@ -43,16 +49,21 @@ foreach ( $res as $row ) {
 	$uncompressedSize += strlen( $text );
 	$hashes[$row->rev_id] = md5( $text );
 	$keys[$row->rev_id] = $blob->addItem( $text );
+	if ( $untilHappy && !$blob->isHappy() ) {
+		break;
+	}
 }
 
 $serialized = serialize( $blob );
 $t += microtime( true );
+#print_r( $blob->mDiffMap );
 
-printf( "Compression ratio for %d revisions: %5.2f, %s -> %s\n", 
-	$res->numRows(),
+printf( "%s\nCompression ratio for %d revisions: %5.2f, %s -> %d\n", 
+	$type,
+	count( $hashes ),
 	$uncompressedSize / strlen( $serialized ),
 	$wgLang->formatSize( $uncompressedSize ),
-	$wgLang->formatSize( strlen( $serialized ) )
+	strlen( $serialized )
 );
 printf( "Compression time: %5.2f ms\n", $t * 1000 );
 

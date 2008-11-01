@@ -195,6 +195,7 @@ function wfUrlencode( $s ) {
  */
 function wfDebug( $text, $logonly = false ) {
 	global $wgOut, $wgDebugLogFile, $wgDebugComments, $wgProfileOnly, $wgDebugRawPage;
+	global $wgDebugLogPrefix;
 	static $recursion = 0;
 
 	static $cache = array(); // Cache of unoutputted messages
@@ -227,6 +228,7 @@ function wfDebug( $text, $logonly = false ) {
 		# Strip unprintables; they can switch terminal modes when binary data
 		# gets dumped, which is pretty annoying.
 		$text = preg_replace( '![\x00-\x08\x0b\x0c\x0e-\x1f]!', ' ', $text );
+		$text = $wgDebugLogPrefix . $text;
 		wfErrorLog( $text, $wgDebugLogFile );
 	}
 }
