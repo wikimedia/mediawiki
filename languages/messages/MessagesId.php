@@ -1250,6 +1250,7 @@ Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencak
 'right-minoredit'            => 'Menandai suntingan sebagai minor',
 'right-move'                 => 'Memindahkan halaman',
 'right-move-subpages'        => 'Pindahkan halaman dengan seluruh sub halamannya',
+'right-move-rootuserpages'   => 'Pindahkan halaman utama pengguna',
 'right-suppressredirect'     => 'Tidak membuat pengalihan dari nama lama ketika memindahkan halaman',
 'right-upload'               => 'Memuat berkas',
 'right-reupload'             => 'Menimpa berkas yang sudah ada',
@@ -1309,6 +1310,7 @@ Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencak
 'action-minoredit'            => 'menandai sebagai suntingan kecil',
 'action-move'                 => 'memindahkan halaman ini',
 'action-move-subpages'        => 'memindahkan halaman ini, dan semua sub-halamannya',
+'action-move-rootuserpages'   => 'memindahkan halaman utama pengguna',
 'action-upload'               => 'memuatkan berkas ini',
 'action-reupload'             => 'menimpa berkas yang telah ada',
 'action-reupload-shared'      => 'menimpa berkas yang telah ada di tempat penyimpanan berkas bersama',
@@ -1566,7 +1568,8 @@ Juga tersedia [[Special:WhatLinksHere/$2|daftar selengkapnya]].',
 
 # Unused templates
 'unusedtemplates'     => 'Templat yang tak digunakan',
-'unusedtemplatestext' => 'Daftar berikut adalah halaman pada ruang nama templat yang tidak dipakai di halaman manapun. Cek dahulu pranala lain ke templat tersebut sebelum menghapusnya.',
+'unusedtemplatestext' => 'Daftar berikut adalah semua halaman pada ruang nama {{ns:template}] yang tidak dipakai di halaman manapun.
+Cek dahulu pranala lain ke templat tersebut sebelum menghapusnya.',
 'unusedtemplateswlh'  => 'pranala lain',
 
 # Random page
@@ -2085,6 +2088,7 @@ Masukkan alasan Anda di bawah (contoh, menuliskan nama halaman yang telah divand
 'ipbhidename'                     => 'Sembunyikan nama pengguna atau IP dari log pemblokiran, daftar blokir aktif, serta daftar pengguna',
 'ipbwatchuser'                    => 'Pantau halaman pengguna dan pembicaraan pengguna ini',
 'ipballowusertalk'                => 'Izinkan pengguna ini untuk menyunting halaman pembicaraan sendiri ketika diblokir',
+'ipb-change-block'                => 'Blokir kembali pengguna dengan set konfigurasi berikut',
 'badipaddress'                    => 'Format alamat IP atau nama pengguna salah.',
 'blockipsuccesssub'               => 'Pemblokiran sukses',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] telah diblokir.<br />
@@ -2124,6 +2128,7 @@ Lihat [[Special:IPBlockList|Daftar IP]] untuk meninjau kembali pemblokiran.',
 'blocklogpage'                    => 'Log pemblokiran',
 'blocklog-fulllog'                => 'Log pemblokiran penuh',
 'blocklogentry'                   => 'memblokir [[$1]] dengan waktu kadaluwarsa $2 $3',
+'reblock-logentry'                => 'mengubah pemblokiran [[$1]] dengan waktu kadaluwarsa $2 $3',
 'blocklogtext'                    => 'Di bawah ini adalah log pemblokiran dan pembukaan blokir terhadap pengguna.
 Alamat IP yang diblokir secara otomatis tidak terdapat di dalam daftar ini.
 Lihat [[Special:IPBlockList|daftar alamat IP yang diblokir]] untuk daftar pemblokiran terkini.',
@@ -2138,6 +2143,8 @@ Lihat [[Special:IPBlockList|daftar alamat IP yang diblokir]] untuk daftar pemblo
 'ipb_expiry_invalid'              => 'Waktu kadaluwarsa tidak sah.',
 'ipb_expiry_temp'                 => 'Pemblokiran atas nama pengguna yang disembunyikan harus permanen.',
 'ipb_already_blocked'             => '"$1" telah diblokir',
+'ipb-needreblock'                 => '== Sudah diblokir ==
+$1 sudah diblokir. Apakah Anda ingin mengubah set pemblokiran yang bersangkutan?',
 'ipb_cant_unblock'                => 'Kesalahan: Blokir dengan ID $1 tidak ditemukan. Blokir tersebut kemungkinan telah dibuka.',
 'ipb_blocked_as_range'            => 'Kesalahan: IP $1 tidak diblok secara langsung dan tidak dapat dilepaskan. IP $1 diblok sebagai bagian dari pemblokiran kelompok IP $2, yang dapat dilepaskan.',
 'ip_range_invalid'                => 'Blok IP tidak sah.',
@@ -2426,10 +2433,11 @@ Ini mungkin disebabkan oleh pranala ke situs luar yang termasuk dalam daftar hit
 'markedaspatrollederror-noautopatrol' => 'Anda tidak diizinkan menandai suntingan Anda sendiri dipatroli.',
 
 # Patrol log
-'patrol-log-page'   => 'Log patroli',
-'patrol-log-header' => 'Ini adalah log revisi terpatroli.',
-'patrol-log-line'   => 'menandai $1 dari $2 terpatroli $3',
-'patrol-log-auto'   => '(otomatis)',
+'patrol-log-page'    => 'Log patroli',
+'patrol-log-header'  => 'Ini adalah log revisi terpatroli.',
+'patrol-log-line'    => 'menandai $1 dari $2 terpatroli $3',
+'patrol-log-auto'    => '(otomatis)',
+'logshowhide-patrol' => '$1 log patroli',
 
 # Image deletion
 'deletedrevision'                 => 'Revisi lama yang dihapus $1',

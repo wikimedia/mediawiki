@@ -15,6 +15,7 @@
  * @author Sadik Khalid <sadik.khalid@gmail.com>
  * @author Shiju Alex <shijualexonline@gmail.com>
  * @author Shijualex
+ * @author Vssun
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @author לערי ריינהארט
  */
@@ -424,6 +425,7 @@ $messages = array(
 'editsection'             => 'തിരുത്തുക',
 'editold'                 => 'തിരുത്തുക',
 'viewsourceold'           => 'മൂലരൂപം കാണുക',
+'viewsourcelink'          => 'മൂലരൂപം കാണുക',
 'editsectionhint'         => 'ഉപവിഭാഗം തിരുത്തുക: $1',
 'toc'                     => 'ഉള്ളടക്കം',
 'showtoc'                 => 'പ്രദര്‍ശിപ്പിക്കുക',

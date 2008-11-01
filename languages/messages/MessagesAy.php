@@ -12,8 +12,8 @@ $fallback = 'es';
 
 $messages = array(
 # User preference toggles
-'tog-underline'       => 'Chinu Siqiraña',
-'tog-highlightbroken' => 'P\'akita chinu utt\'ayaña <a href="" class="new">ukhama</a> (mawijata: ukhama<a href="" class="internal">?</a>).',
+'tog-underline'       => 'Sipita siqiraña',
+'tog-highlightbroken' => 'P\'akita sipita utt\'ayaña <a href="" class="new">ukhama</a> (mawijata: ukhama<a href="" class="internal">?</a>).',
 'tog-justify'         => "Tanta amuyanak purapt'ayaña",
 'tog-hideminor'       => 'Jichha kutikiptatanakana «Janiw taqpachäkiti» imantaña',
 
@@ -75,7 +75,8 @@ $messages = array(
 'article'    => 'Amtachinu',
 'cancel'     => 'Jan saña',
 'qbfind'     => 'Thaqaña',
-'qbedit'     => 'Trukaña',
+'qbedit'     => 'Turkaña',
+'mypage'     => 'Uñstawija',
 'navigation' => 'Wampuña',
 
 'errorpagetitle'   => 'Pantja',
@@ -86,8 +87,9 @@ $messages = array(
 'searcharticle'    => 'Saraña',
 'history'          => 'Nayra qillqata',
 'history_short'    => 'Nayra qillqata',
-'edit'             => 'Trukaña',
+'edit'             => 'Turkaña',
 'delete'           => 'Pichaña',
+'protect_change'   => 'turkaña',
 'talkpagelinktext' => 'Kutkatasiña',
 'talk'             => 'Tuqisiwi',
 'otherlanguages'   => 'Yaqha arunaka',
@@ -102,13 +104,19 @@ $messages = array(
 'portal'               => 'Jayma punku',
 'portal-url'           => 'Project:Jayma punku',
 
-'editsection' => 'trukaña',
-'editold'     => 'trukaña',
-'showtoc'     => 'uñachayaña',
+'editsection'    => 'trukaña',
+'editold'        => 'trukaña',
+'editlink'       => 'trukaña',
+'showtoc'        => 'uñachayaña',
+'site-rss-feed'  => "$1 ''RSS'' jalsuri",
+'site-atom-feed' => "$1 ''Atom'' jalsuri",
+'page-rss-feed'  => "\"\$1\" ''RSS'' jalsuri",
+'page-atom-feed' => "\"\$1\" ''Atom'' jalsuri",
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'Amtachinu',
 'nstab-user'     => 'Apnaqiri',
+'nstab-image'    => "Q'ipi",
 'nstab-help'     => 'Yanapaña',
 'nstab-category' => 'Patawi',
 
@@ -183,7 +191,7 @@ $messages = array(
 'others' => 'yaqha',
 
 # action=purge
-'confirm_purge_button' => 'Iyaw saña',
+'confirm_purge_button' => 'Iyawa saña',
 
 # Multipage image navigation
 'imgmultigo' => '¡Saraña!',

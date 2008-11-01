@@ -705,6 +705,21 @@ Možete kontaktirati $1 ili nekog drugog [[{{MediaWiki:Grouppage-sysop}}|adminis
 Ne možete koristiti opciju ''Pošalji e-mail korisniku'' osim ako niste unijeli e-mail adresu u [[Special:Preferences|Vaše postavke]].
 Vaša trenutna IP adresa je $3, a oznaka blokade je #$5.
 Molimo Vas da navedete gornje podatke pri zahtjevu za deblokadu.",
+'autoblockedtext'                  => 'Vaša IP adresa je automatski blokirana jer je korištena od strane drugog korisnika, a blokirao ju je $1.
+Naveden je slijedeći razlog:
+
+:\'\'$2\'\'
+
+* Početak blokade: $8
+* Kraj blokade: $6
+* Blokirani korisnik: $7
+
+Možete kontaktirati $1 ili nekog drugog iz grupe [[{{MediaWiki:Grouppage-sysop}}|administratora]] i zahtijevati da Vas deblokira.
+
+Zapamtite da ne možete koristiti opciju "pošalji e-mail ovom korisniku" sve dok ne unesete validnu e-mail adresu pri registraciji u Vašim [[Special:Preferences|korisničkim postavkama]] te Vas ne spriječava ga je koristite.
+
+Vaša trenutna IP adresa je $3, a ID blokade je $5.
+Molimo da navedete sve gore navedene detalje u zahtjevu za deblokadu.',
 'blockednoreason'                  => 'razlog nije naveden',
 'blockedoriginalsource'            => "Izvor '''$1''' je prikazan ispod:",
 'blockededitsource'                => "Sadržaj '''vaših izmjena''' na '''$1''' je prikazan ispod:",
@@ -813,7 +828,11 @@ Možete se vratiti i uređivati već postojeće stranice ili se [[Special:UserLo
 'recreate-deleted-warn'            => "'''Upozorenje: Postavljate stranicu koja je prethodno brisana.'''
 
 Razmotrite je li nastavljanje uređivanja ove stranice u skladu s pravilima. Za vašu informaciju slijedi evidencija brisanja s obrazloženjem za prethodno brisanje:",
+'edit-gone-missing'                => 'Stranica se nije mogla osvježiti.
+Izgleda da je obrisana.',
 'edit-conflict'                    => 'Sukob izmjena.',
+'edit-already-exists'              => 'Stranica nije mogla biti kreirana.
+Izgleda da već postoji.',
 
 # Parser/template warnings
 'expensive-parserfunction-category'       => 'Stranice sa previše poziva parserskih funkcija',
@@ -823,6 +842,8 @@ Neki šabloni neće biti uključeni.',
 'post-expand-template-argument-category'  => 'Stranice koje sadrže nedostajuće argumente u šablonu',
 
 # "Undo" feature
+'undo-success' => 'Izmjena se može vratiti.
+Molimo da provjerite usporedbu ispod da budete sigurni da to želite učiniti, a zatim spremite promjene da bi ste završili vraćanje izmjene.',
 'undo-failure' => 'Izmjene se ne mogu vratiti zbog konflikta sa izmjenama u međuvremenu.',
 'undo-norev'   => 'Izmjena se ne može vratiti jer ne postoji ranija ili je obrisana.',
 'undo-summary' => 'Vraćena izmjena $1 [[Special:Contributions/$2|korisnika $2]] ([[User talk:$2|razgovor]])',
@@ -862,34 +883,41 @@ Moguće da je izbrisana sa wikija, ili preimenovana.
 Pokušajte [[Special:Search|pretražiti wiki]] za slične stranice.',
 
 # Revision deletion
-'rev-deleted-comment'    => '(komentar uklonjen)',
-'rev-deleted-user'       => '(korisničko ime uklonjeno)',
-'rev-deleted-event'      => '(stavka zapisa obrisana)',
-'rev-delundel'           => 'pokaži/sakrij',
-'revisiondelete'         => 'Obriši/vrati revizije',
-'revdelete-selected'     => "'''{{PLURAL:$2|Odabrana revizija|Odabrane revizije}} od [[:$1]]:'''",
-'logdelete-selected'     => "'''{{PLURAL:$1|Označena stavka zapisa|Označene stavke zapisa}}:'''",
-'revdelete-legend'       => 'Postavi ograničenja vidljivosti',
-'revdelete-hide-text'    => 'Sakrij tekst revizije',
-'revdelete-hide-name'    => 'Sakrij akciju i cilj',
-'revdelete-hide-user'    => 'Sakrij korisničko ime urednika/IP',
-'revdelete-hide-image'   => 'Sakrij sadržaj datoteke',
-'revdelete-unsuppress'   => 'Ukloni ograničenja na vraćenim revizijama',
-'revdelete-submit'       => 'Primijeni na odabranu reviziju',
-'revdel-restore'         => 'Promijeni dostupnost',
-'pagehist'               => 'Historija stranice',
-'deletedhist'            => 'Izbrisana historija',
-'revdelete-content'      => 'sadržaj',
-'revdelete-summary'      => 'sažetak',
-'revdelete-uname'        => 'korisničko ime',
-'revdelete-restricted'   => 'primijenjena ograničenja za administratore',
-'revdelete-unrestricted' => 'uklonjena ograničenja za administratore',
-'revdelete-hid'          => 'sakrij $1',
-'revdelete-unhid'        => 'otkrij $1',
+'rev-deleted-comment'     => '(komentar uklonjen)',
+'rev-deleted-user'        => '(korisničko ime uklonjeno)',
+'rev-deleted-event'       => '(stavka zapisa obrisana)',
+'rev-delundel'            => 'pokaži/sakrij',
+'revisiondelete'          => 'Obriši/vrati revizije',
+'revdelete-nooldid-title' => 'Nije unesena tačna revizija',
+'revdelete-selected'      => "'''{{PLURAL:$2|Odabrana revizija|Odabrane revizije}} od [[:$1]]:'''",
+'logdelete-selected'      => "'''{{PLURAL:$1|Označena stavka zapisa|Označene stavke zapisa}}:'''",
+'revdelete-legend'        => 'Postavi ograničenja vidljivosti',
+'revdelete-hide-text'     => 'Sakrij tekst revizije',
+'revdelete-hide-name'     => 'Sakrij akciju i cilj',
+'revdelete-hide-comment'  => 'Sakrij izmjene komentara',
+'revdelete-hide-user'     => 'Sakrij korisničko ime urednika/IP',
+'revdelete-suppress'      => 'Sakrij podatke od administratora kao i od drugih',
+'revdelete-hide-image'    => 'Sakrij sadržaj datoteke',
+'revdelete-unsuppress'    => 'Ukloni ograničenja na vraćenim revizijama',
+'revdelete-submit'        => 'Primijeni na odabranu reviziju',
+'revdel-restore'          => 'Promijeni dostupnost',
+'pagehist'                => 'Historija stranice',
+'deletedhist'             => 'Izbrisana historija',
+'revdelete-content'       => 'sadržaj',
+'revdelete-summary'       => 'sažetak',
+'revdelete-uname'         => 'korisničko ime',
+'revdelete-restricted'    => 'primijenjena ograničenja za administratore',
+'revdelete-unrestricted'  => 'uklonjena ograničenja za administratore',
+'revdelete-hid'           => 'sakrij $1',
+'revdelete-unhid'         => 'otkrij $1',
+
+# Suppression log
+'suppressionlog' => 'Zapisi sakrivanja',
 
 # History merging
 'mergehistory'      => 'Spoji historije stranice',
 'mergehistory-from' => 'Izvorna stranica:',
+'mergehistory-into' => 'Odredišna stranica:',
 
 # Diffs
 'history-title'           => 'Historija izmjena stranice "$1"',

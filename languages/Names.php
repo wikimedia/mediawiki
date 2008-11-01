@@ -240,6 +240,7 @@
 	'pl' => 'Polski',		# Polish
 	'plm' => 'Palembang',		# Palembang
 	'pms' => 'Piemontèis', 	# Piedmontese
+	'pnb' => 'پنجابی',	# Western Punjabi
 	'pnt' => 'Ποντιακά', 	# Pontic/Pontic Greek
 	'ps' => 'پښتو',	# Pashto, Northern/Paktu/Pakhtu/Pakhtoo/Afghan/Pakhto/Pashtu/Pushto/Yusufzai Pashto
 	'pt' => 'Português',	# Portuguese
