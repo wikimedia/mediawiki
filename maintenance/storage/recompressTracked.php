@@ -459,7 +459,7 @@ class RecompressTracked {
 			if ( !$res->numRows() ) {
 				break;
 			}
-			$this->debug( 'Incomplete: ' . $row->numRows() . ' rows' );
+			$this->debug( 'Incomplete: ' . $res->numRows() . ' rows' );
 			foreach ( $res as $row ) {
 				$this->moveTextRow( $row->bt_text_id, $row->bt_new_url );
 			}
