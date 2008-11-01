@@ -611,7 +611,7 @@ class IPBlockForm {
 				0, // suppress name?
 				0 // block from sending email?
 			);
-			$oldblock = Block::newFromDB( $u->getName() );
+			$oldblock = Block::newFromDB( $u->getName(), $u->getId() );
 			if( !$oldblock ) {
 				$block->insert();
 				# Prepare log parameters
