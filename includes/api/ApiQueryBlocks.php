@@ -42,10 +42,6 @@ class ApiQueryBlocks extends ApiQueryBase {
 	}
 
 	public function execute() {
-		$this->run();
-	}
-
-	private function run() {
 		global $wgUser;
 
 		$params = $this->extractRequestParams();
@@ -92,12 +88,12 @@ class ApiQueryBlocks extends ApiQueryBase {
 		$this->addOption('LIMIT', $params['limit'] + 1);
 		$this->addWhereRange('ipb_timestamp', $params['dir'], $params['start'], $params['end']);
 		if(isset($params['ids']))
-			$this->addWhere(array('ipb_id' => $params['ids']));
+			$this->addWhereFld('ipb_id', $params['ids']);
 		if(isset($params['users']))
 		{
 			foreach((array)$params['users'] as $u)
 				$this->prepareUsername($u);
-			$this->addWhere(array('ipb_address' => $this->usernames));
+			$this->addWhereFld('ipb_address', $this->usernames);
 		}
 		if(isset($params['ip']))
 		{
@@ -120,7 +116,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 			));
 		}
 		if(!$wgUser->isAllowed('suppress'))
-			$this->addWhere(array('ipb_deleted' => 0));
+			$this->addWhereFld('ipb_deleted', 0);
 
 		// Purge expired entries on one in every 10 queries
 		if(!mt_rand(0, 10))
@@ -131,7 +127,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 		$count = 0;
 		while($row = $res->fetchObject())
 		{
-			if($count++ == $params['limit'])
+			if(++$count > $params['limit'])
 			{
 				// We've had enough
 				$this->setContinueEnumParameter('start', wfTimestamp(TS_ISO_8601, $row->ipb_timestamp));
@@ -141,13 +137,9 @@ class ApiQueryBlocks extends ApiQueryBase {
 			if($fld_id)
 				$block['id'] = $row->ipb_id;
 			if($fld_user && !$row->ipb_auto)
-			{
 				$block['user'] = $row->ipb_address;
-			}
 			if($fld_by)
-			{
 				$block['by'] = $row->user_name;
-			}
 			if($fld_timestamp)
 				$block['timestamp'] = wfTimestamp(TS_ISO_8601, $row->ipb_timestamp);
 			if($fld_expiry)
@@ -197,13 +189,14 @@ class ApiQueryBlocks extends ApiQueryBase {
 	{
 		// Converts a hexadecimal IP to nnn.nnn.nnn.nnn format
 		$dec = wfBaseConvert($ip, 16, 10);
-		$parts[0] = (int)($dec / (256*256*256));
-		$dec %= 256*256*256;
-		$parts[1] = (int)($dec / (256*256));
-		$dec %= 256*256;
-		$parts[2] = (int)($dec / 256);
 		$parts[3] = $dec % 256;
-		return implode('.', $parts);
+		$dec /= 256;
+		$parts[2] = $dec % 256;
+		$dec /= 256;
+		$parts[1] = $dec % 256;
+		$dec /= 256;
+		$parts[0] = $dec % 256;
+		return implode('.', array_reverse($parts));
 	}
 
 	public function getAllowedParams() {
