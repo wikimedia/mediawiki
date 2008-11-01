@@ -109,7 +109,7 @@ class ApiProtect extends ApiBase {
 			$articleObj = new Article($titleObj);
 			$ok = $articleObj->updateRestrictions($protections, $params['reason'], $params['cascade'], $expiryarray);
 		} else
-			$ok = $titleObj->updateTitleProtection($protections['create'], $params['reason'], $expiry);
+			$ok = $titleObj->updateTitleProtection($protections['create'], $params['reason'], $expiryarray['create']);
 		if(!$ok)
 			// This is very weird. Maybe the article was deleted or the user was blocked/desysopped in the meantime?
 			// Just throw an unknown error in this case, as it's very likely to be a race condition
