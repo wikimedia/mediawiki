@@ -53,6 +53,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   write actions using the API.
 * Added $wgRC2UDPInterwikiPrefix which adds an interwiki prefix
   ($wgLocalInterwiki) onto the page names in the UDP feed.
+* Added $wgAllowUserSkin to let the wiki's owner disable user selectable skins
+  on the wiki. If it's set to true, then the skin used will *always* be
+  $wgDefaultSkin.
 
 === Migrated extensions ===
 The following extensions are migrated into MediaWiki 1.14:

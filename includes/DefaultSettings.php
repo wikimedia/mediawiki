@@ -2222,6 +2222,9 @@ $wgValidateAllHtml = false;
 /** See list of skins and their symbolic names in languages/Language.php */
 $wgDefaultSkin = 'monobook';
 
+/** Should we allow the user's to select their own skin that will override the default? */
+$wgAllowUserSkin = true;
+
 /**
  * Optionally, we can specify a stylesheet to use for media="handheld".
  * This is recognized by some, but not all, handheld/mobile/PDA browsers.
