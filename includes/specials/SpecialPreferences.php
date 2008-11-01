@@ -860,7 +860,7 @@ class PreferencesForm {
 			$checked = $wgAllowUserSkin ? $checked . '' : $checked . ' disabled=\'disabled\'';
 
 			$mplink = htmlspecialchars($mptitle->getLocalURL("useskin=$skinkey"));
-			$previewlink = "(<a target='_blank' href=\"$mplink\">$previewtext</a>)";
+			$previewlink = $wgAllowUserSkin ? "(<a target='_blank' href=\"$mplink\">$previewtext</a>)" : '';
 			if( $skinkey == $wgDefaultSkin )
 				$sn .= ' (' . wfMsg( 'default' ) . ')';
 			$wgOut->addHTML( "<input type='radio' name='wpSkin' id=\"wpSkin$skinkey\" value=\"$skinkey\"$checked /> <label for=\"wpSkin$skinkey\">{$sn}</label> $previewlink<br />\n" );
