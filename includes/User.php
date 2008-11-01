@@ -2111,14 +2111,12 @@ class User {
 			if( $wgAllowUserSkin ) {
 				# get the user skin
 				$userSkin = $this->getOption( 'skin' );
+				$userSkin = $wgRequest->getVal('useskin', $userSkin);
 			} else {
 				# if we're not allowing users to override, then use the default
 				$userSkin = $wgDefaultSkin;
 			}
 			
-			# we'll allow skin "testing" regardless of the AllowUserSkin option
-			$userSkin = $wgRequest->getVal('useskin', $userSkin);
-
 			$this->mSkin =& Skin::newFromKey( $userSkin );
 			wfProfileOut( __METHOD__ );
 		}
