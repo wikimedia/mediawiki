@@ -1423,7 +1423,7 @@ Se pode védar un [[Special:WhatLinksHere/$2|elenco par intiero]].',
 
 # Unused templates
 'unusedtemplates'     => 'Template mìa doparà',
-'unusedtemplatestext' => 'In sta pagina vien elencà tuti i template (pagine del namespace Template) che no xe inclusi in nissuna pagina. Prima de scancelarli xe mejo verificar che i singoli template no i gabia altri colegamenti entranti.',
+'unusedtemplatestext' => 'In sta pagina vien elencà tuti i template (pagine del namespace {{ns:template}}) che no xe inclusi in nissuna pagina. Prima de scancelarli xe mejo verificar che i singoli template no i gabia altri colegamenti entranti.',
 'unusedtemplateswlh'  => 'altri cołegamenti',
 
 # Random page
@@ -1942,6 +1942,7 @@ $1',
 'ipbhidename'                     => "Scondi el nome utente dal registro dei blochi, da l'elenco dei blochi ativi e da l'elenco utenti.",
 'ipbwatchuser'                    => "Tien d'ocio la pagina utente e la pagina de discussion de sto utente",
 'ipballowusertalk'                => 'Parmétighe a sto utente de scrìvar su la so pàxena de discussion finché el xe blocà',
+'ipb-change-block'                => "Bloca de novo l'utente co ste inpostassion",
 'badipaddress'                    => "L'indirisso IP indicà no'l xè mìa coreto.",
 'blockipsuccesssub'               => 'Bloco eseguìo',
 'blockipsuccesstext'              => 'L\'indirizzo IP "$1" l\'è sta bloccà.
@@ -1981,6 +1982,7 @@ $1',
 'blocklogpage'                    => 'Registro dei blochi',
 'blocklog-fulllog'                => 'Registro conpleto dei blochi',
 'blocklogentry'                   => 'gà blocà [[$1]] par un periodo de $2 $3',
+'reblock-logentry'                => "gà canbià le inpostassion del bloco par [[$1]] co' na scadensa de $2 $3",
 'blocklogtext'                    => "Sto qua xè un elenco de azioni de bloco e sbloco dei indirizi IP. I indirizi blocai in automatico no i xè mìa elencai. Varda l'[[Special:IPBlockList|elenco dei IP blocà]] par la lista dei indirizi el cui bloco el xè operativo.",
 'unblocklogentry'                 => 'gà sblocà $1',
 'block-log-flags-anononly'        => 'solo utenti anonimi',
@@ -1993,6 +1995,8 @@ $1',
 'ipb_expiry_invalid'              => 'Tenpo de scadensa mìa valido. Controla el [http://www.gnu.org/software/tar/manual/html_chapter/tar_7.html manual de tar] par la sintassi esatta.',
 'ipb_expiry_temp'                 => 'I blochi dei nomi utente sconti i dovarìa essar infiniti.',
 'ipb_already_blocked'             => 'L\'utente "$1" el xe zà blocà',
+'ipb-needreblock'                 => '== Xà blocà ==
+$1 xe xà blocà. Vuto canbiar le inpostassion?',
 'ipb_cant_unblock'                => 'Eror: Inpossibile catar el bloco con ID $1. El bloco el podarìa èssar zà stà cavà.',
 'ipb_blocked_as_range'            => "Eror: L'indirizo IP $1 no'l xe sogeto a bloco individual e no'l pol èssar sblocà. El bloco el xe invesse ativo a livel de l'intervalo $2, che el pol èssar sblocà.",
 'ip_range_invalid'                => 'Intervało de indirissi IP mìa vałido.',
@@ -2276,10 +2280,11 @@ Questo xe probabilmente dovùo a la presenza de un colegamento a un sito foresto
 'markedaspatrollederror-noautopatrol' => 'No te ghè i parmessi necessari par segnar le to stesse modifiche come verificàe.',
 
 # Patrol log
-'patrol-log-page'   => 'Modifiche verificàe',
-'patrol-log-header' => 'Qua de sèvito xe elencàe le verifiche de le modifiche.',
-'patrol-log-line'   => 'gà segnà la $1 a la pagina $2 come verificà $3',
-'patrol-log-auto'   => '(verifica automatica)',
+'patrol-log-page'    => 'Modifiche verificàe',
+'patrol-log-header'  => 'Qua de sèvito xe elencàe le verifiche de le modifiche.',
+'patrol-log-line'    => 'gà segnà la $1 a la pagina $2 come verificà $3',
+'patrol-log-auto'    => '(verifica automatica)',
+'logshowhide-patrol' => '$1 el registro dei canbiamenti verificài',
 
 # Image deletion
 'deletedrevision'                 => 'Vecia version scancełà $1',

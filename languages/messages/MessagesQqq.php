@@ -22,6 +22,7 @@
  * @author INkubusse
  * @author Jon Harald Søby
  * @author Kizito
+ * @author Leinad
  * @author Lejonel
  * @author Li-sung
  * @author Lloffiwr
@@ -994,6 +995,7 @@ The rate limits have no effect on the groups that have this right. Rate limits i
 'action-minoredit'            => '{{Doc-action}}',
 'action-move'                 => '{{Doc-action}}',
 'action-move-subpages'        => '{{Doc-action}}',
+'action-move-rootuserpages'   => '{{Doc-action}}',
 'action-upload'               => '{{Doc-action}}',
 'action-reupload'             => '{{Doc-action}}',
 'action-reupload-shared'      => '{{Doc-action}}',

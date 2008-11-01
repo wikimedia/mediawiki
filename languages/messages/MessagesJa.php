@@ -1946,6 +1946,7 @@ $NEWPAGE
 'ipbhidename'                     => '利用者名/IPを{{int:blocklogpage}}、{{int:ipblocklist}}、{{int:listusers}}などに載せない',
 'ipbwatchuser'                    => 'この利用者の利用者ページと利用者‐会話ページをウォッチリストに追加',
 'ipballowusertalk'                => 'ブロックされる利用者に対してブロック中の自身の会話ページ編集を許可',
+'ipb-change-block'                => '上記の設定で利用者を再びブロック',
 'badipaddress'                    => 'IPアドレスが異常です。',
 'blockipsuccesssub'               => 'ブロックに成功しました。',
 'blockipsuccesstext'              => '利用者またはIPアドレス [[Special:Contributions/$1|$1]] の投稿をブロックしました。<br />
@@ -1985,6 +1986,7 @@ $NEWPAGE
 'blocklogpage'                    => '投稿ブロック記録',
 'blocklog-fulllog'                => '投稿ブロック記録全てを見る',
 'blocklogentry'                   => '"$1" を $2 ブロックしました $3',
+'reblock-logentry'                => '[[$1]] のブロックの設定を $2 に変更しました $3',
 'blocklogtext'                    => 'このページは投稿ブロックと解除の記録です。自動的に投稿ブロックされたIPアドレスは記録されていません。現時点で有効な投稿ブロックは[[Special:IPBlockList|ブロック中の利用者一覧]]をご覧ください。',
 'unblocklogentry'                 => '"$1" をブロック解除しました',
 'block-log-flags-anononly'        => '匿名のみ',
@@ -1997,6 +1999,8 @@ $NEWPAGE
 'ipb_expiry_invalid'              => '不正な期間です。',
 'ipb_expiry_temp'                 => '利用者名を秘匿したブロックは無期限でなければなりません。',
 'ipb_already_blocked'             => '"$1" は既にブロックされています。',
+'ipb-needreblock'                 => '== すでにブロックされています ==
+$1 は、すでにブロックされています。あなたは設定を変えますか？',
 'ipb_cant_unblock'                => 'エラー: ブロックされた ID $1 が見つかりません。おそらく既にブロック解除されています。',
 'ipb_blocked_as_range'            => 'エラー: IPアドレス $1 は直接的なブロック対象となっていませんが、ブロックを解除できませんでした。これは恐らく、ブロック解除できないIPアドレス空間 $2 の範囲に含まれているためです。',
 'ip_range_invalid'                => '不正なIPアドレス範囲です。',

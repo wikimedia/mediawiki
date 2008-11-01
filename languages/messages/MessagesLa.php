@@ -838,6 +838,7 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'right-minoredit'            => 'Recensiones minores designare',
 'right-move'                 => 'Paginas movere',
 'right-move-subpages'        => 'Paginas una cum subpaginis movere',
+'right-move-rootuserpages'   => 'Paginas usorum movere',
 'right-suppressredirect'     => 'Non creare redirectionem ex titulo vetere paginam movendo',
 'right-upload'               => 'Fasciculos imponere',
 'right-upload_by_url'        => 'Fasciculum imponere ex inscriptione URL',
@@ -877,6 +878,7 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'action-minoredit'            => 'hanc recensionem minorem designare',
 'action-move'                 => 'hanc paginam movere',
 'action-move-subpages'        => 'hanc paginam una cum subpaginis movere',
+'action-move-rootuserpages'   => 'paginas usorum movere',
 'action-upload'               => 'hunc fasciculum imponere',
 'action-upload_by_url'        => 'hunc fasciculum imponere ex inscriptione URL',
 'action-delete'               => 'hanc paginam delere',
@@ -1432,6 +1434,7 @@ Si pagina nova cum ipso nomine post deletionem creata est, emendationes restitut
 'ipbotherreason'               => 'Causa alia vel explicatio:',
 'ipbwatchuser'                 => 'Paginam usoris disputationisque huius usoris custodire',
 'ipballowusertalk'             => 'Sinere hunc usorem, quamquam obstructus est, suam disputationis paginam recensere',
+'ipb-change-block'             => 'Obstructionem usoris modificare',
 'badipaddress'                 => 'Locus IP male formatus',
 'blockipsuccesssub'            => 'Locus prospere obstructus est',
 'blockipsuccesstext'           => '[[Special:Contributions/$1|$1]] obstructus est.
@@ -1466,6 +1469,7 @@ Si pagina nova cum ipso nomine post deletionem creata est, emendationes restitut
 'blocklogpage'                 => 'Index obstructionum',
 'blocklog-fulllog'             => 'Index plenissimus obstructionum',
 'blocklogentry'                => 'obstruxit [[$1]], exire $2 $3',
+'reblock-logentry'             => 'modificavit obstructionem usoris [[$1]], exire $2 $3',
 'blocklogtext'                 => 'Hic est index actorum obstructionis deobstructionisque. Loci IP qui automatice obstructi sunt non enumerantur. Vide [[Special:IPBlockList|indicem usorum locorumque IP obstructorum]] pro indice toto.',
 'unblocklogentry'              => 'deobstruxit $1',
 'block-log-flags-nocreate'     => 'creatio rationum obstructa',
@@ -1473,6 +1477,8 @@ Si pagina nova cum ipso nomine post deletionem creata est, emendationes restitut
 'block-log-flags-nousertalk'   => 'non potest paginam disputationis suam recensere',
 'ipb_expiry_invalid'           => 'Tempus exeundo invalidum fuit.',
 'ipb_already_blocked'          => '"$1" iam obstructus est',
+'ipb-needreblock'              => '== Iam obstructus ==
+$1 iam obstructus est. Visne obstructionem modificare?',
 'proxyblocksuccess'            => 'Factum.',
 'cant-block-while-blocked'     => 'Dum obstructus es, non potes usores alios obstruere.',
 

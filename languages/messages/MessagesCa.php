@@ -1265,6 +1265,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'rc_categories'                     => 'Limita a les categories (separades amb "|")',
 'rc_categories_any'                 => 'Qualsevol',
 'newsectionsummary'                 => '/* $1 */ secció nova',
+'rc-enhanced-hide'                  => 'Amagar detalls',
 
 # Recent changes linked
 'recentchangeslinked'          => "Seguiment d'enllaços",

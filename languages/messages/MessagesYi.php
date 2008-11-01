@@ -846,17 +846,29 @@ $2',
 'compareselectedversions' => 'פארגלייך סעלעקטירטע ווערסיעס',
 'editundo'                => 'טוה-אפ',
 'diff-multi'              => '({{PLURAL:$1|איין מיטלסטע ווערסיע |$1 מיטלסטע ווערסיעס}}  נישט געוויזן.)',
+'diff-movedto'            => 'אריבערגעפֿירט צו $1',
+'diff-styleadded'         => '$1 סטיל צוגעלייגט',
+'diff-added'              => '$1 צוגעלייגט',
+'diff-changedto'          => 'געענדערט צו $1',
+'diff-movedoutof'         => 'אריבערגעפֿירט פֿון $1',
+'diff-styleremoved'       => '$1 סטיל אוועקגענומען',
+'diff-removed'            => '$1 אוועקגענומען',
+'diff-changedfrom'        => 'געענדערט פֿון $1',
 'diff-src'                => 'מקור',
 'diff-with'               => '&#32;מיט $1 $2',
 'diff-with-final'         => '&#32;און $1 $2',
 'diff-width'              => 'ברייט',
 'diff-height'             => 'הייך',
+'diff-p'                  => "א '''פאַראַגראַף'''",
 'diff-table'              => "א '''טאבעלע'''",
 'diff-tr'                 => "א '''שורה'''",
 'diff-td'                 => "א '''צעל'''",
+'diff-th'                 => "אַ '''קעפל'''",
+'diff-img'                => "אַ '''בילד'''",
 
 # Search results
 'searchresults'            => 'זוכן רעזולטאטן',
+'searchresults-title'      => 'זוכן רעזולטאַטן פֿאַר $1',
 'searchresulttext'         => 'לערנען מער ווי צו זוכן אינעם {{SITENAME}} [[{{MediaWiki:Helppage}}|{{int:help}}]]',
 'searchsubtitle'           => '[[:$1]]',
 'searchsubtitleinvalid'    => '$1דו האסט געזוכט פאר',
@@ -867,6 +879,7 @@ $2',
 'nextn'                    => '$1 קומענדיגע',
 'viewprevnext'             => 'קוקט אויף ($1) ($2) ($3)',
 'search-result-size'       => '$1 ({{PLURAL:$2|איין ווארט|$2 ווערטער}})',
+'search-result-score'      => 'שייכותדיקייט: $1%',
 'search-redirect'          => '(ווײַטערפֿירן $1)',
 'search-section'           => '(אפטיילונג $1)',
 'search-suggest'           => 'צי האט איר געמיינט: $1',
@@ -1070,7 +1083,7 @@ $2',
 
 # Unused templates
 'unusedtemplates'     => 'נישט באניצטע מוסטערן',
-'unusedtemplatestext' => 'דער בלאט ווײַזט אלע בלעטער אינעם מוסטערן נאמענטייל וואס זענען נישט אײַנגעשלאסן אין אן אנדער בלאט. געדענקט צו באקוקן אנדערע בלעטער פאר לינקען צו די מוסטערן איידער איר מעקט זיי אויס.',
+'unusedtemplatestext' => 'דער בלאט ווײַזט אלע בלעטער אינעם {{ns:template}} נאמענטייל וואס זענען נישט אײַנגעשלאסן אין אן אנדער בלאט. געדענקט צו באקוקן אנדערע בלעטער פאר לינקען צו די מוסטערן איידער איר מעקט זיי אויס.',
 
 # Random page
 'randompage' => 'צופֿעליגער אַרטיקל',
@@ -1175,32 +1188,39 @@ $2',
 זעט אויך [[Special:WantedCategories|געזוכטע קאַטעגאריעס]].',
 'categoriesfrom'     => 'ווײַזן קאטעגאריעס אנהייבנדיג פֿון:',
 
+# Special:LinkSearch
+'linksearch-ok' => 'זוכן',
+
 # Special:ListUsers
 'listusers-submit'   => 'ווײַז',
 'listusers-noresult' => 'קיין באניצער נישט געטראפֿן.',
 
 # Special:Log/newusers
-'newuserlogpage'           => 'נייע באַניצערס לאָג-בוך',
-'newuserlogpagetext'       => 'דאס איז א לאג פון באַניצערס אײַנשרײַבונגען.',
-'newuserlog-create-entry'  => 'נײַער באניצער',
-'newuserlog-create2-entry' => 'געשאפֿן קאנטע פֿאר $1',
+'newuserlogpage'              => 'נייע באַניצערס לאָג-בוך',
+'newuserlogpagetext'          => 'דאס איז א לאג פון באַניצערס אײַנשרײַבונגען.',
+'newuserlog-byemail'          => 'פאַסווארט געשיקט דורך ע-פאסט',
+'newuserlog-create-entry'     => 'נײַער באניצער',
+'newuserlog-create2-entry'    => 'געשאפֿן קאנטע פֿאר $1',
+'newuserlog-autocreate-entry' => 'קאנטע באַשאַפֿן אויטאמאַטיש',
 
 # Special:ListGroupRights
-'listgrouprights'          => 'באַניצער גרופע רעכטן',
-'listgrouprights-group'    => 'גרופע',
-'listgrouprights-rights'   => 'רעכטן',
-'listgrouprights-helppage' => 'Help: גרופע רעכטן',
-'listgrouprights-members'  => '(רשימה פֿון מיטגלידער)',
-'listgrouprights-addgroup' => 'קען צולייגן {{PLURAL:$2|גרופע|גרופעס}}: $1',
+'listgrouprights'             => 'באַניצער גרופע רעכטן',
+'listgrouprights-group'       => 'גרופע',
+'listgrouprights-rights'      => 'רעכטן',
+'listgrouprights-helppage'    => 'Help: גרופע רעכטן',
+'listgrouprights-members'     => '(רשימה פֿון מיטגלידער)',
+'listgrouprights-addgroup'    => 'קען צולייגן {{PLURAL:$2|גרופע|גרופעס}}: $1',
+'listgrouprights-removegroup' => 'קען אראפנעמען {{PLURAL:$2|גרופע|גרופעס}}: $1',
 
 # E-mail user
-'emailuser'       => 'אי-מעיל דעם באנוצער',
-'emailpage'       => "אי-מעיל'ט באנוצער.",
+'emailuser'       => 'אַרויסשיקן ע-פאסט צו דעם באַניצער',
+'emailpage'       => 'אַרויסשיקן ע-פאסט צו באַניצער.',
 'emailpagetext'   => 'איר קענט ניצן דעם פֿארעם אונטן צו שיקן אן בליצבריוו צו דעם דאזיגן באַניצער.
 דער ע-פאסט אדרעס וואס איר האט אריינגעלייגט אין [[Special:Preferences| אייערע באניצער פרעפערנעצן]] וועט זיך ווייזן כאילו דאס איז געקומען פון דארטן, בכדי צו דערמעגלעכן א תשובה.',
-'defemailsubject' => 'אימעיל {{SITENAME}}',
+'defemailsubject' => 'ע-פאסט {{SITENAME}}',
 'noemailtitle'    => 'נישטא קיין אי-מעיל אדרעס',
 'noemailtext'     => 'דער באניצער האט נישט באשטימט קיין ע-פאסט אדרעס, אדער וויל נישט באקומען קיין ע-פאסט פון אנדערע באניצערס.',
+'email-legend'    => 'אַרויסשיקן ע-פאסט צו אַן אַנדער {{SITENAME}} באַניצער',
 'emailfrom'       => 'פון',
 'emailto'         => 'צו',
 'emailsubject'    => 'טעמע:',
@@ -1208,7 +1228,7 @@ $2',
 'emailsend'       => 'שיק',
 'emailccme'       => 'אימעיל מיר א קאפי פון מיין מעסעדזש.',
 'emailccsubject'  => 'קאפי פון דיין מעסעדזש צו $1: $2',
-'emailsent'       => 'א-מעיל געשיקט',
+'emailsent'       => 'ע-פאסט געשיקט',
 'emailsenttext'   => 'דיין אי-מעיל מעסעדזש איז געשיקט געווארן.',
 
 # Watchlist
@@ -1236,11 +1256,14 @@ $2',
 'wlheader-enotif'      => '* אי-מעיל נאטיפיקאציע ערמעגליכט.',
 'watchlistcontains'    => 'אייער אויפֿפאסונג ליסטע אנטהאלט {{PLURAL:$1|איין בלאט|$1 בלעטער}}.',
 'wlshowlast'           => "(ווײַזן די לעצטע $1 שעה'ן | $2 טעג | $3)",
+'watchlist-show-bots'  => 'ווייזן באט רעדאַקטירונגען',
 'watchlist-hide-bots'  => 'באהאלטן באטן',
 'watchlist-show-own'   => 'צייג מיינע ענדערונגן',
 'watchlist-hide-own'   => 'באהאלטן מיינע רעדאקטירונגען',
 'watchlist-show-minor' => 'צייג מינדעריגע ענדערונגן',
 'watchlist-hide-minor' => 'באהאלטן מינעריגע ענדערונגען',
+'watchlist-show-anons' => 'ווייזן אַנאנימע רעדאַקטירונגען',
+'watchlist-hide-anons' => 'באַהאַלטן אַנאנימע רעדאַקטירונגען',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'אויפפאסענדונג…',
@@ -1255,7 +1278,7 @@ $2',
 'enotif_subject'               => 'דער בלאט $PAGETITLE אין {{grammar:תחילית|{{SITENAME}}}} $CHANGEDORCREATED דורך $PAGEEDITOR',
 'enotif_lastvisited'           => 'זעה $1 פאר אלע ענדערונגען זינט אייער לעצטער וויזיט.',
 'enotif_lastdiff'              => 'זעה $1 פאר די ענדערונג.',
-'enotif_anon_editor'           => 'אנאנינאמע באנוצער $1',
+'enotif_anon_editor'           => 'אַנאנימער באַניצער $1',
 'enotif_body'                  => 'לכבוד $WATCHINGUSERNAME,
 
 די {{SITENAME}} בלאט $PAGETITLE איז געווארן $CHANGEDORCREATED אין $PAGEEDITDATE דורך $PAGEEDITOR, זעהט $PAGETITLE_URL פאר די איצטיגע ווערסיע.
@@ -1306,16 +1329,19 @@ $NEWPAGE
 ** וואנדאליזם',
 
 # Rollback
-'rollback_short' => 'אויפֿריכטן',
-'rollbacklink'   => 'צוריקדרייען',
-'cantrollback'   => 'מען קען נישט צוריקדרייען די ענדערונג – די לעצטער באטייליגער איז דער איינציגסטער באטייליגונג; פארט, קען מען אויסמעקן דעם בלאט.',
-'alreadyrolled'  => 'מען קעגן נישט צוריקדריין די לעצטע ענדערונג פון בלאט [[:$1]] דורך
+'rollback'         => 'דרייען צוריק רעדאַקטירונגען',
+'rollback_short'   => 'אויפֿריכטן',
+'rollbacklink'     => 'צוריקדרייען',
+'rollbackfailed'   => 'צוריקדרייען דורכגעפֿאַלן',
+'cantrollback'     => 'מען קען נישט צוריקדרייען די ענדערונג – די לעצטער באטייליגער איז דער איינציגסטער באטייליגונג; פארט, קען מען אויסמעקן דעם בלאט.',
+'alreadyrolled'    => 'מען קעגן נישט צוריקדריין די לעצטע ענדערונג פון בלאט [[:$1]] דורך
 [[User:$2|$2]] ([[User talk:$2|רעדן]]| [[Special:Contributions/$2|{{int:contribslink}}]]); 
 אן אנדערער האט שוין געענדערט אדער צוריקגעדרייט דעם בלאט.
 
 די לעצטע ענדערונג איז געווען פון [[User:$3|$3]] ([[User talk:$3|רעדן]]|[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'    => "קורץ ווארט איז געווען: \"'''\$1'''\".", # only shown if there is an edit comment
-'revertpage'     => 'אויפֿגעריכט פון באַנוצער $2 צוריק צום לעצטע ווערסיע פון באַנוצער $1', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => "קורץ ווארט איז געווען: \"'''\$1'''\".", # only shown if there is an edit comment
+'revertpage'       => 'אויפֿגעריכט פון באַנוצער $2 צוריק צום לעצטע ווערסיע פון באַנוצער $1', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'צוריקגעדרייט רעדאַקטירונגען פֿון $1 צו דער לעצטע ווערסיע פֿון $2',
 
 # Protect
 'protectlogpage'              => 'שיצן לאָג',
@@ -1603,6 +1629,7 @@ $NEWPAGE
 'tooltip-diff'                    => 'ווײַזן אייערע ענדערונגען צום טעקסט',
 'tooltip-compareselectedversions' => 'פארגלײַכם די צוויי ווערסיעס פון דעם בלאט',
 'tooltip-watch'                   => 'לייגט צו דעם בלאט צו אייער אויפֿפאסונג ליסטע',
+'tooltip-recreate'                => 'ווידערשאַפֿן דעם בלאַט כאטש ער איז אַמאל אויסגעמעקט',
 'tooltip-upload'                  => 'הייב אן אויפלאדן',
 
 # Stylesheets
@@ -1613,11 +1640,12 @@ $NEWPAGE
 'common.js' => '/* אלע סקריפטן פון JavaScript דא געשריבן וועט לויפן פאר אלע באנוצער ווען זיי וועלן לאדירן דעם בלאט */',
 
 # Attribution
-'anonymous'        => 'אַנאָנימע/ר באַניצער(ס) פֿון {{SITENAME}}',
+'anonymous'        => '{{PLURAL:$1|אַנאנימער באַניצער| אַנאנימע באַניצערס}} פֿון {{SITENAME}}',
+'siteuser'         => 'באַניצער {{SITENAME}} $1',
 'lastmodifiedatby' => 'די לעצטע ענדערונג פון די בלאט איז געווען $2, $1 ביי $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'באזירט אויף ארבעט פון $1.',
 'others'           => 'אנדערע',
-'siteusers'        => 'באניצער(ס) {{SITENAME}} $1',
+'siteusers'        => '{{PLURAL:$2|באַניצער| באַניצערס}} {{SITENAME}} $1',
 'creditspage'      => 'בלאט קרעדיטס',
 
 # Info page
@@ -1630,7 +1658,9 @@ $NEWPAGE
 'markedaspatrolled'   => 'באצייכנט אלס פאטראלירט',
 
 # Image deletion
-'deletedrevision' => 'אויסגעמעקט אלטע ווערסיע $1.',
+'deletedrevision'       => 'אויסגעמעקט אלטע ווערסיע $1.',
+'filedeleteerror-short' => 'גרייז ביים אויסמעקן טעקע: $1',
+'filedelete-missing'    => 'קען נישט אויסמעקן טעקע "$1", ווייל זי עקזיסטירט נישט.',
 
 # Browsing diffs
 'previousdiff' => 'פריערדיגע ווערסיע →',
