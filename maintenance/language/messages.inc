@@ -922,6 +922,7 @@ $wgMessageStructure = array(
 		'right-minoredit',
 		'right-move',
 		'right-move-subpages',
+		'right-move-rootuserpages',
 		'right-suppressredirect',
 		'right-upload',
 		'right-reupload',
@@ -965,7 +966,6 @@ $wgMessageStructure = array(
 		'right-userrights',
 		'right-userrights-interwiki',
 		'right-siteadmin',
-		'right-move-rootuserpages',
 	),
 	'rightslog' => array(
 		'rightslog',
@@ -982,6 +982,7 @@ $wgMessageStructure = array(
 		'action-minoredit',
 		'action-move',
 		'action-move-subpages',
+		'action-move-rootuserpages',
 		'action-upload',
 		'action-reupload',
 		'action-reupload-shared',
@@ -1006,7 +1007,6 @@ $wgMessageStructure = array(
 		'action-userrights',
 		'action-userrights-interwiki',
 		'action-siteadmin',
-		'action-move-rootuserpages',
 	),
 	'recentchanges' => array(
 		'nchanges',
