@@ -2320,13 +2320,16 @@ function wfRelativePath( $path, $from ) {
 }
 
 /**
- * array_merge() does awful things with "numeric" indexes, including
- * string indexes when happen to look like integers. When we want
- * to merge arrays with arbitrary string indexes, we don't want our
- * arrays to be randomly corrupted just because some of them consist
- * of numbers.
+ * Like array_merge(), but always applying the behavior for string
+ * keys. array_merge() has inconsistent behavior when your string
+ * indexes happen to look like integers, which is undesireable
+ * for arbitrary input.
  *
- * Fuck you, PHP. Fuck you in the ear!
+ * This is roughly equivalent to $array1 + $array2 + $array3...
+ * but has different behavior when there are conflicts.
+ *
+ * array_merge() and wfArrayMerge() take the right-hand value,
+ * whereas the + operator takes the left-hand value.
  *
  * @param array $array1, [$array2, [...]]
  * @return array
