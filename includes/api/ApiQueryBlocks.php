@@ -148,8 +148,8 @@ class ApiQueryBlocks extends ApiQueryBase {
 				$block['reason'] = $row->ipb_reason;
 			if($fld_range)
 			{
-				$block['rangestart'] = $this->convertHexIP($row->ipb_range_start);
-				$block['rangeend'] = $this->convertHexIP($row->ipb_range_end);
+				$block['rangestart'] = self::convertHexIP($row->ipb_range_start);
+				$block['rangeend'] = self::convertHexIP($row->ipb_range_end);
 			}
 			if($fld_flags)
 			{
@@ -185,7 +185,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 		$this->usernames[] = $name;
 	}
 
-	protected function convertHexIP($ip)
+	protected static function convertHexIP($ip)
 	{
 		// Converts a hexadecimal IP to nnn.nnn.nnn.nnn format
 		$dec = wfBaseConvert($ip, 16, 10);
@@ -194,8 +194,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 		$parts[2] = $dec % 256;
 		$dec /= 256;
 		$parts[1] = $dec % 256;
-		$dec /= 256;
-		$parts[0] = $dec % 256;
+		$parts[0] = $dec / 256;
 		return implode('.', array_reverse($parts));
 	}
 
