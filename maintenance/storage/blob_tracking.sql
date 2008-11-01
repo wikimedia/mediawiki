@@ -4,10 +4,14 @@
 CREATE TABLE /*$wgDBprefix*/blob_tracking (
 	-- page.page_id
 	-- This may be zero for orphan or deleted text
+	-- Note that this is for compression grouping only -- it doesn't need to be
+	-- accurate at the time recompressTracked is run. Operations such as a
+	-- delete/undelete cycle may make it inaccurate.
 	bt_page integer not null,
 
 	-- revision.rev_id
 	-- This may be zero for orphan or deleted text
+	-- Like bt_page, it does not need to be accurate when recompressTracked is run.
 	bt_rev_id integer not null,
 
 	-- text.old_id
