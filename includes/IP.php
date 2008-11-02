@@ -174,17 +174,16 @@ class IP {
 	 * @param $ip string Hex IP
 	 * @return string
 	 */ 
-	public static function hexToIP($ip)
-	{
+	public static function hexToIP( $ip ) {
 		// Converts a hexadecimal IP to nnn.nnn.nnn.nnn format
-		$dec = wfBaseConvert($ip, 16, 10);
+		$dec = wfBaseConvert( $ip, 16, 10 );
 		$parts[3] = $dec % 256;
 		$dec /= 256;
 		$parts[2] = $dec % 256;
 		$dec /= 256;
 		$parts[1] = $dec % 256;
 		$parts[0] = $dec / 256;
-		return implode('.', array_reverse($parts));
+		return implode( '.', array_reverse( $parts ) );
 	}
 
 	/**
