@@ -589,7 +589,7 @@ class RecentChange
 	}
 
 	protected function getIRCLine() {
-		global $wgUseRCPatrol, $wgRC2UDPInterwikiPrefix, $wgLocalInterwiki;
+		global $wgUseRCPatrol, $wgUseNPPatrol, $wgRC2UDPInterwikiPrefix, $wgLocalInterwiki;
 
 		// FIXME: Would be good to replace these 2 extract() calls with something more explicit
 		// e.g. list ($rc_type, $rc_id) = array_values ($this->mAttribs); [or something like that]
