@@ -580,7 +580,7 @@ class SpecialPage
 		if ( $subpage !== false && !is_null( $subpage ) ) {
 			$name = "$name/$subpage";
 		}
-		return $name;
+		return ucfirst( $name );
 	}
 
 	/**
