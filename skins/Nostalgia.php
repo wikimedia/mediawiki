@@ -53,7 +53,7 @@ class SkinNostalgia extends Skin {
 	}
 
 	function topLinks() {
-		global $wgOut, $wgUser;
+		global $wgOut, $wgUser, $wgEnableUploads;
 		$sep = " |\n";
 
 		$s = $this->mainPageLink() . $sep
@@ -71,6 +71,9 @@ class SkinNostalgia extends Skin {
 		if ( $wgUser->isAnon() ) {
 			$s .= $sep . $this->specialLink( "userlogin" );
 		} else {
+			if ( $wgEnableUploads ) {
+				$s .= $sep . $this->specialLink( "upload" );
+			}
 			$s .= $sep . $this->specialLink( "userlogout" );
 		}
 
