@@ -1969,6 +1969,12 @@ $wgSharpenParameter = '0x0.4';
 /** Reduction in linear dimensions below which sharpening will be enabled */
 $wgSharpenReductionThreshold = 0.85;
 
+/** 
+ * Temporary directory used for ImageMagick. The directory must exist. Leave 
+ * this set to false to let ImageMagick decide for itself.
+ */
+$wgImageMagickTempDir = false;
+
 /**
  * Use another resizing converter, e.g. GraphicMagick
  * %s will be replaced with the source path, %d with the destination
