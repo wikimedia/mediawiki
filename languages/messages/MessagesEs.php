@@ -2837,7 +2837,7 @@ También puedes utilizar el [[Special:Watchlist/edit|editor estándar]].',
 
 # Core parser functions
 'unknown_extension_tag' => 'Etiqueta desconocida «$1»',
-'duplicate_defaultsort' => 'Atención: La clave de ordenación por defecto «$2» anula la anterior clave ordenación por defecto «$1».',
+'duplicate-defaultsort' => 'Atención: La clave de ordenación por defecto «$2» anula la anterior clave ordenación por defecto «$1».',
 
 # Special:Version
 'version'                          => 'Versión', # Not used as normal message but as header for the special page itself
