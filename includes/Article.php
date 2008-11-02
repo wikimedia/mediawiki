@@ -2733,7 +2733,7 @@ class Article {
 		$wgOut->addHtml( wfMsgExt( 'rollback-success', array( 'parse', 'replaceafter' ), $old, $new ) );
 		$wgOut->returnToMain( false, $this->mTitle );
 
-		if( !$wgRequest->getBool( 'hidediff', false ) ) {
+		if( !$wgRequest->getBool( 'hidediff', false ) && !$wgUser->getBoolOption( 'norollbackdiff', false ) ) {
 			$de = new DifferenceEngine( $this->mTitle, $current->getId(), $newId, false, true );
 			$de->showDiff( '', '' );
 		}

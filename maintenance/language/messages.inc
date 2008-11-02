@@ -55,6 +55,7 @@ $wgMessageStructure = array(
 		'tog-diffonly',
 		'tog-showhiddencats',
 		'tog-noconvertlink',
+		'tog-norollbackdiff',
 	),
 	'underline' => array(
 		'underline-always',

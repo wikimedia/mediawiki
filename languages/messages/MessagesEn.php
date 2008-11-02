@@ -542,6 +542,7 @@ XHTML id names.
 'tog-diffonly'                => 'Do not show page content below diffs',
 'tog-showhiddencats'          => 'Show hidden categories',
 'tog-noconvertlink'           => 'Disable link title conversion', # only translate this message to other languages if you have to change it
+'tog-norollbackdiff'          => 'Omit diff after performing a rollback.',
 
 'underline-always'  => 'Always',
 'underline-never'   => 'Never',

@@ -91,6 +91,7 @@ class User {
 		'diffonly',
 		'showhiddencats',
 		'noconvertlink',
+		'norollbackdiff',
 	);
 
 	/**
