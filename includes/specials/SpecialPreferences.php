@@ -1005,8 +1005,12 @@ class PreferencesForm {
 				'externaldiff',
 				$wgLivePreview ? 'uselivepreview' : false,
 				'forceeditsummary',
-			) ) . '</fieldset>'
-		);
+			) ) );
+		
+                if( $wgUser->isAllowed( 'rollback' ) )
+			$wgOut->addHtml( $this->getToggle( 'norollbackdiff' ) );
+
+		$wgOut->addHtml( '</fieldset>' );
 
 		# Recent changes
 		$wgOut->addHtml( '<fieldset><legend>' . wfMsgHtml( 'prefs-rc' ) . '</legend>' );

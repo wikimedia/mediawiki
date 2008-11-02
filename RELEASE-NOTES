@@ -190,6 +190,7 @@ The following extensions are migrated into MediaWiki 1.14:
 * Set a special temporary directory for ImageMagick with $wgImageMagickTempDir
 * (bug 16113) Show/hide for redirects in Special:NewPages
 * (bug 15903) Upload link was added to Nostalgia skin
+* (bug 15761) Add user toggle to omit diff after rollback
 
 === Bug fixes in 1.14 ===
 
