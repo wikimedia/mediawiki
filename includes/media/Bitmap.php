@@ -41,7 +41,7 @@ class BitmapHandler extends ImageHandler {
 	}
 
 	function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
-		global $wgUseImageMagick, $wgImageMagickConvertCommand;
+		global $wgUseImageMagick, $wgImageMagickConvertCommand, $wgImageMagickTempDir;
 		global $wgCustomConvertCommand;
 		global $wgSharpenParameter, $wgSharpenReductionThreshold;
 		global $wgMaxAnimatedGifArea;
@@ -122,6 +122,12 @@ class BitmapHandler extends ImageHandler {
 				}
 			}
 
+			if ( strval( $wgImageMagickTempDir ) !== '' ) {
+				$tempEnv = 'MAGICK_TMPDIR=' . wfEscapeShellArg( $wgImageMagickTempDir ) . ' ';
+			} else {
+				$tempEnv = '';
+			}
+
 			# Specify white background color, will be used for transparent images
 			# in Internet Explorer/Windows instead of default black.
 
@@ -129,7 +135,9 @@ class BitmapHandler extends ImageHandler {
 			# It seems that ImageMagick has a bug wherein it produces thumbnails of
 			# the wrong size in the second case.
 
-			$cmd  =  wfEscapeShellArg($wgImageMagickConvertCommand) .
+			$cmd  = 
+				$tempEnv .
+				wfEscapeShellArg($wgImageMagickConvertCommand) .
 				" {$quality} -background white -size {$physicalWidth} ".
 				wfEscapeShellArg($srcPath . $frame) .
 				$animation .
