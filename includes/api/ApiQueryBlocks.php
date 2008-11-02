@@ -148,8 +148,8 @@ class ApiQueryBlocks extends ApiQueryBase {
 				$block['reason'] = $row->ipb_reason;
 			if($fld_range)
 			{
-				$block['rangestart'] = IP::hexToIP($row->ipb_range_start);
-				$block['rangeend'] = IP::hexToIP($row->ipb_range_end);
+				$block['rangestart'] = IP::hexToQuad($row->ipb_range_start);
+				$block['rangeend'] = IP::hexToQuad($row->ipb_range_end);
 			}
 			if($fld_flags)
 			{

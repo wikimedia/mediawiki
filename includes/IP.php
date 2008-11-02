@@ -152,7 +152,7 @@ class IP {
 	}
 	
 	/**
-	 * Given an unsigned integer, returns an IPv6 address in octet notation
+	 * Given a hexadecimal number, returns to an IPv6 address in octet notation
 	 * @param $ip string hex IP
 	 * @return string
 	 */
@@ -174,7 +174,7 @@ class IP {
 	 * @param $ip string Hex IP
 	 * @return string
 	 */ 
-	public static function hexToIP( $ip ) {
+	public static function hexToQuad( $ip ) {
 		// Converts a hexadecimal IP to nnn.nnn.nnn.nnn format
 		$dec = wfBaseConvert( $ip, 16, 10 );
 		$parts[3] = $dec % 256;
