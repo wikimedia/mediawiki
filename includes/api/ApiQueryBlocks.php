@@ -148,8 +148,8 @@ class ApiQueryBlocks extends ApiQueryBase {
 				$block['reason'] = $row->ipb_reason;
 			if($fld_range)
 			{
-				$block['rangestart'] = self::convertHexIP($row->ipb_range_start);
-				$block['rangeend'] = self::convertHexIP($row->ipb_range_end);
+				$block['rangestart'] = IP::hexToIP($row->ipb_range_start);
+				$block['rangeend'] = IP::hexToIP($row->ipb_range_end);
 			}
 			if($fld_flags)
 			{
@@ -183,19 +183,6 @@ class ApiQueryBlocks extends ApiQueryBase {
 		if($name === false)
 			$this->dieUsage("User name {$user} is not valid", 'param_user');
 		$this->usernames[] = $name;
-	}
-
-	protected static function convertHexIP($ip)
-	{
-		// Converts a hexadecimal IP to nnn.nnn.nnn.nnn format
-		$dec = wfBaseConvert($ip, 16, 10);
-		$parts[3] = $dec % 256;
-		$dec /= 256;
-		$parts[2] = $dec % 256;
-		$dec /= 256;
-		$parts[1] = $dec % 256;
-		$parts[0] = $dec / 256;
-		return implode('.', array_reverse($parts));
 	}
 
 	public function getAllowedParams() {

@@ -168,6 +168,24 @@ class IP {
    		$ip_oct = preg_replace( '/(^|:)0+' . RE_IPV6_WORD . '/', '$1$2', $ip_oct );
        	return $ip_oct;
 	}
+	
+	/**
+	 * Converts a hexadecimal number to an IPv4 address in octet notation
+	 * @param $ip string Hex IP
+	 * @return string
+	 */ 
+	public static function hexToIP($ip)
+	{
+		// Converts a hexadecimal IP to nnn.nnn.nnn.nnn format
+		$dec = wfBaseConvert($ip, 16, 10);
+		$parts[3] = $dec % 256;
+		$dec /= 256;
+		$parts[2] = $dec % 256;
+		$dec /= 256;
+		$parts[1] = $dec % 256;
+		$parts[0] = $dec / 256;
+		return implode('.', array_reverse($parts));
+	}
 
 	/**
 	 * Convert a network specification in IPv6 CIDR notation to an integer network and a number of bits
