@@ -306,6 +306,7 @@ The following extensions are migrated into MediaWiki 1.14:
   of time with CACHE_NONE (default objectcache table configuration).
 * Trying to set two different default category sort keys for one page now produces
   a warning
+* (bug 16143) Fix redirect loop on special pages starting with lower case letters.
 
 === API changes in 1.14 ===
 
