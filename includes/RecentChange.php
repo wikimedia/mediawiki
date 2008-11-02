@@ -607,7 +607,7 @@ class RecentChange
 		// FIXME: *HACK* these should be getFullURL(), hacked for SSL madness --brion 2005-12-26
 		if( $rc_type == RC_LOG ) {
 			$url = '';
-		} elseif( $rc_new && $wgUseRCPatrol ) {
+		} elseif( $rc_new && ($wgUseRCPatrol || $wgUseNPPatrol) ) {
 			$url = $titleObj->getInternalURL("rcid=$rc_id");
 		} else if( $rc_new ) {
 			$url = $titleObj->getInternalURL();
