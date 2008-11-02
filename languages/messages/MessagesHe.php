@@ -3075,6 +3075,7 @@ $1
 
 # Core parser functions
 'unknown_extension_tag' => 'תגית בלתי ידועה: "$1"',
+'duplicate_defaultsort' => 'אזהרה: המיון הרגיל "$2" דורס את המיון הרגיל המוקדם ממנו "$1".',
 
 # Special:Version
 'version'                          => 'גרסת התוכנה', # Not used as normal message but as header for the special page itself

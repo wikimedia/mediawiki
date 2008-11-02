@@ -2761,6 +2761,7 @@ $wgMessageStructure = array(
 	),
 	'CoreParserFunctions' => array(
 		'unknown_extension_tag',
+		'duplicate_defaultsort',
 	),
 	'version' => array(
 		'version',
