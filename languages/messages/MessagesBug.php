@@ -11,29 +11,48 @@ $fallback = "id";
 
 $messages = array(
 # Dates
-'sunday'    => 'ᨕᨕᨖ',
-'monday'    => 'ᨕᨔᨛᨙᨊ',
-'tuesday'   => 'ᨔᨒᨔ',
-'wednesday' => 'ᨕᨑᨅ',
-'thursday'  => 'ᨀᨆᨗᨔᨗ',
-'friday'    => 'ᨍᨘᨆᨕ',
-'saturday'  => 'ᨔᨈᨘ',
-'january'   => 'ᨙᨍᨊᨘᨕᨑᨗ',
-'february'  => 'ᨙᨄᨅᨛᨑᨘᨕᨑᨗ',
-'march'     => 'ᨆᨙᨑ',
-'april'     => 'ᨕᨄᨛᨑᨗᨒᨗ',
-'may_long'  => 'ᨙᨆᨕᨗ',
-'june'      => 'ᨍᨘᨊᨗ',
-'july'      => 'ᨍᨘᨒᨗ',
-'august'    => 'ᨕᨁᨘᨔᨘᨈᨘᨔᨘ',
-'september' => 'ᨙᨔᨙᨈᨇᨛᨑᨛ',
-'october'   => 'ᨕᨚᨀᨛᨈᨚᨅᨛᨑᨛ',
-'november'  => 'ᨊᨚᨙᨅᨇᨛᨑᨛ',
-'december'  => 'ᨉᨗᨙᨔᨇᨛᨑᨛ',
+'sunday'        => "Āha'",
+'monday'        => 'Asenéŋ',
+'tuesday'       => 'Salasa',
+'wednesday'     => 'Araba',
+'thursday'      => "Kamisi'",
+'friday'        => 'Jumā',
+'saturday'      => 'Sattu',
+'sun'           => 'Āha',
+'mon'           => 'Ase',
+'tue'           => 'Sal',
+'wed'           => 'Ara',
+'thu'           => 'Kam',
+'fri'           => 'Jum',
+'sat'           => 'Sat',
+'january'       => 'Uléŋ 1',
+'february'      => 'ᨙᨄᨅᨛᨑᨘᨕᨑᨗ',
+'march'         => 'ᨆᨙᨑ',
+'april'         => 'ᨕᨄᨛᨑᨗᨒᨗ',
+'may_long'      => 'ᨙᨆᨕᨗ',
+'june'          => 'ᨍᨘᨊᨗ',
+'july'          => 'ᨍᨘᨒᨗ',
+'august'        => 'ᨕᨁᨘᨔᨘᨈᨘᨔᨘ',
+'september'     => 'ᨙᨔᨙᨈᨇᨛᨑᨛ',
+'october'       => 'ᨕᨚᨀᨛᨈᨚᨅᨛᨑᨛ',
+'november'      => 'Uleŋ 11',
+'december'      => 'ᨉᨗᨙᨔᨇᨛᨑᨛ',
+'january-gen'   => 'Uleŋ 1',
+'february-gen'  => 'Uleŋ 2',
+'march-gen'     => 'Uleŋ 3',
+'april-gen'     => 'Uleŋ 4',
+'may-gen'       => 'Uleŋ 5',
+'june-gen'      => 'Uleŋ 6',
+'july-gen'      => 'Uleŋ 7',
+'august-gen'    => 'Uleŋ 8',
+'september-gen' => 'Uleŋ 9',
+'october-gen'   => 'Uleŋ 10',
+'november-gen'  => 'Uleŋ 11',
+'december-gen'  => 'Uleŋ 12',
 
 # Categories related messages
-'category_header' => 'ᨒᨛᨄ ᨑᨗᨒᨒᨛ ᨙᨀᨈᨛᨁᨚᨑᨗ "$1"',
-'subcategories'   => 'ᨔᨅᨛᨙᨀᨈᨛᨁᨚᨈᨗ',
+'category_header' => 'Leppa rilaleŋ kategori "$1"',
+'subcategories'   => 'Subkategori',
 
 'about'          => 'Atajangeng',
 'article'        => 'Lontara',
@@ -41,6 +60,7 @@ $messages = array(
 'qbbrowse'       => 'Berowoso',
 'qbedit'         => 'Padécéŋ',
 'qbpageoptions'  => 'Édé leppa',
+'qbpageinfo'     => 'Konteks',
 'qbmyoptions'    => "Leppana iya'",
 'qbspecialpages' => 'Leppa spésiala',
 'mypage'         => "Leppana iya'",
@@ -49,6 +69,11 @@ $messages = array(
 'navigation'     => 'napigasi',
 'and'            => 'éréngé',
 
+# Metadata in edit box
+'metadata_help' => 'Metadata:',
+
+'errorpagetitle'   => 'Éro',
+'returnto'         => 'Lisu ri $1.',
 'tagline'          => 'Polé {{SITENAME}}',
 'help'             => 'Panginriŋ',
 'search'           => 'assappa',
@@ -57,15 +82,19 @@ $messages = array(
 'searcharticle'    => 'Lao',
 'history'          => 'Versi riolo leppaë',
 'history_short'    => 'versi riolo',
-'edit'             => 'padécé',
+'info_short'       => 'Informasi',
+'permalink'        => 'Pranala permanen',
+'edit'             => 'Padécéŋ',
 'create'           => 'Ebbu',
 'editthispage'     => 'Padécéŋiki iyé leppa',
 'create-this-page' => 'Ebbuiki leppa iyé',
 'delete'           => 'peddé',
 'deletethispage'   => 'Peddé iyé leppa',
+'newpage'          => 'Leppa baru',
 'talkpage'         => 'Bicara iyé leppa',
 'talkpagelinktext' => 'Bicara',
 'specialpage'      => 'Leppa spésiala',
+'personaltools'    => 'Tool sialé-alé',
 'articlepage'      => 'Ita lontara',
 'talk'             => 'Bicara',
 'toolbox'          => 'Toolbox',
@@ -86,24 +115,30 @@ $messages = array(
 'currentevents'        => 'Accanjingeŋ kokkoro',
 'currentevents-url'    => 'Project:Accanjingeŋ kokkoro',
 'disclaimers'          => 'Diseklaima',
-'edithelp'             => 'Panginriŋ mapadécé',
-'edithelppage'         => 'Help:Mapadécé',
+'edithelp'             => 'Paŋinriŋ mapadécéŋ',
+'edithelppage'         => 'Help:Mapadécéŋ',
 'faq'                  => 'FAQ',
 'faqpage'              => 'Project:FAQ',
 'mainpage'             => 'Leppa Indoë',
 'mainpage-description' => 'Leppa Indoë',
 'portal'               => 'Portal komunitas',
 
-'editsection' => 'ᨙᨕᨉᨗ',
+'editsection'    => 'padécéŋ',
+'editold'        => 'padécéŋ',
+'viewsourceold'  => 'ita sumber',
+'editlink'       => 'padécéŋ',
+'viewsourcelink' => 'ita sumber',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'ᨒᨛᨄ',
-'nstab-user'      => 'ᨒᨛᨄ ᨄᨁᨘᨊ',
-'nstab-special'   => 'ᨔᨛᨙᨄᨔᨗᨕᨒ',
+'nstab-main'      => 'Leppa',
+'nstab-user'      => 'Leppa papaké',
+'nstab-media'     => 'Leppa média',
+'nstab-special'   => 'Spésiala',
+'nstab-project'   => 'Proyek',
 'nstab-image'     => 'Rapang',
 'nstab-mediawiki' => 'Méséje',
 'nstab-template'  => 'Templata',
-'nstab-help'      => 'Leppa panginriŋ',
+'nstab-help'      => 'Paŋinriŋ',
 'nstab-category'  => 'Kategori',
 
 # Main script and global functions
@@ -117,7 +152,7 @@ $messages = array(
 'internalerror'       => 'Éro internal',
 'internalerror_info'  => 'Éro internal: $1',
 'badtitle'            => 'Judul dek essa',
-'viewsource'          => 'Ita sorese',
+'viewsource'          => 'Ita sumber',
 'viewsourcefor'       => 'polé $1',
 
 # Virus scanner
@@ -147,7 +182,7 @@ $messages = array(
 'mailmypassword'          => 'E-mail pasewodo baru',
 
 # Edit page toolbar
-'bold_tip'    => 'ᨙᨈᨀᨛᨔᨛ ᨆᨕᨘᨇᨛ',
+'bold_tip'    => 'Teks maumpek',
 'italic_tip'  => 'Teks Italik',
 'extlink_tip' => 'Link risaliweŋ (jangan lupa awalan http:// )',
 
@@ -162,7 +197,33 @@ $messages = array(
 'accmailtitle'     => 'Ada sandi ni riantarak.',
 'accmailtext'      => 'Ada sandi "$1" riantarak ri $2.',
 'anontalkpagetext' => "----''Ini adalah halaman diskusi untuk pengguna anonim yang belum membuat rekening atau tidak menggunakannya. Karena tidak membuat rekening, kami terpaksa memakai alamat IP untuk mengenalinya. Alamat IP seperti ini dapat dipakai oleh beberapa pengguna yang berbeda. Jika Anda adalah pengguna anonim dan merasa mendapatkan komentar-komentar yang tidak berkaitan dengan anda, kami anjurkan untuk [[Special:UserLogin|membuat rekening atau masuk log]] untuk menghindari kerancuan dengan pengguna anonim lain.''",
-'editing'          => 'ᨙᨕᨉᨗᨈᨗ $1',
+'editing'          => 'Mapadécéŋ $1',
+
+# Diffs
+'editundo'             => 'undo',
+'diff-movedto'         => 'naésu ri $1',
+'diff-changedto'       => 'naséllé ri $1',
+'diff-movedoutof'      => 'naéssu polé $1',
+'diff-removed'         => '$1 ripeddéni',
+'diff-changedfrom'     => 'naséllé polé $1',
+'diff-src'             => 'sumber',
+'diff-with'            => '&#32;sibawa $1 $2',
+'diff-with-additional' => '$1 $2',
+'diff-with-final'      => '&#32;na $1 $2',
+'diff-height'          => 'lampé',
+'diff-input'           => "séuwa '''input'''",
+'diff-a'               => "séuwa '''linke'''",
+'diff-i'               => "'''italik'''",
+'diff-b'               => "'''umpek'''",
+'diff-strong'          => "'''terek'''",
+'diff-big'             => "'''loppo'''",
+'diff-del'             => "'''ripeddé'''",
+
+# Search results
+'searchsubtitle'        => "Masappa iko '''[[:$1]]'''",
+'searchsubtitleinvalid' => "Massappa iko '''$1'''",
+'viewprevnext'          => 'Ita ($1) ($2) ($3)',
+'search-redirect'       => '(redirect $1)',
 
 # Recent changes
 'recentchanges'   => 'Pappakinra tanappa',
@@ -181,6 +242,29 @@ $messages = array(
 # Upload
 'upload'    => 'Lureng berkas',
 'uploadbtn' => 'Lureng berkas',
+
+# Image description page
+'filehist-user'       => 'Papaké',
+'filehist-dimensions' => 'Dimensi',
+'imagelinks'          => 'Liŋke',
+
+# File reversion
+'filerevert-backlink' => '← $1',
+
+# File deletion
+'filedelete'             => 'Mapeddé $1',
+'filedelete-backlink'    => '← $1',
+'filedelete-legend'      => 'Mapeddé berkas',
+'filedelete-intro'       => "Iko purani mapeddé '''[[Media:$1|$1]]'''.",
+'filedelete-submit'      => 'Peddé',
+'filedelete-success'     => "'''$1''' purani ripeddé.",
+'filedelete-success-old' => "Berkas '''[[Media:$1|$1]]''' versi $3, $2 purani ripeddé.",
+'filedelete-nofile'      => "'''$1''' dé'na eŋka.",
+
+# MIME search
+'mimesearch' => 'Assapparaŋ MIME',
+'mimetype'   => 'Tipe MIME:',
+'download'   => 'unduh',
 
 # Random page
 'randompage' => 'Halamang rawak',
@@ -227,7 +311,8 @@ Apak ida ronnak mappedde halamang édé ri daftar jagaan, klik \"Mangedda jaga\"
 'blanknamespace' => '(Utama)',
 
 # What links here
-'whatlinkshere' => 'Pranala ri halamang édé',
+'whatlinkshere'       => 'Pranala ri halamang édé',
+'whatlinkshere-links' => '← liŋke',
 
 # Block/unblock
 'ipblocklist-submit' => 'Sappa',
@@ -250,7 +335,8 @@ Silakan pile aseng laing.',
 'tooltip-pt-mytalk'      => "Leppa bicara iya'",
 'tooltip-pt-preferences' => "Preferencena iya'",
 'tooltip-pt-logout'      => 'Log maessu',
-'tooltip-ca-talk'        => 'Appabiranna iyé leppa',
+'tooltip-ca-talk'        => 'Appabicaranna iyé leppa',
+'tooltip-n-mainpage'     => 'Lao ri Leppa Indoë',
 
 # Attribution
 'anonymous' => 'Pabbuak anonim {{SITENAME}}',
@@ -262,7 +348,10 @@ Silakan pile aseng laing.',
 'ilsubmit' => 'ᨔᨄ',
 
 # 'all' in various places, this might be different for inflected languages
-'imagelistall' => 'maneng',
+'imagelistall'  => 'maneng',
+'watchlistall2' => 'maneŋ',
+'namespacesall' => 'maneŋ',
+'monthsall'     => 'maneŋ',
 
 # Special:Version
 'version-specialpages' => 'Leppa spésiala',

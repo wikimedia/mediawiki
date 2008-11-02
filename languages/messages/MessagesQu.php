@@ -952,6 +952,7 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'qbsettings-floatingright' => 'Pañaman tuytuy',
 'changepassword'           => 'Yaykuna rimata hukchay',
 'skin'                     => 'Qara',
+'skin-override'            => "Kay hunt'ana p'anqaqa manam saqillasqachu kachkan, kay wiki ruraqpa qara allinchasqankunata kamachiqpa churasqan kikinmanta qarawan huknachaptinmi.",
 'skin-preview'             => 'Ñawpaqta qhaway',
 'math'                     => 'Minuywa',
 'dateformat'               => "P'unchaw pacha chanta",
@@ -1055,6 +1056,7 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'right-minoredit'            => 'Llamk\'apusqakunata "Kayqa uchuylla hukchaymi" nispa sananchay',
 'right-move'                 => "P'anqakunata astay",
 'right-move-subpages'        => "P'anqakunata urin p'anqankunatawan astay",
+'right-move-rootuserpages'   => "Ruraqpa saphi p'anqankunata astay",
 'right-suppressredirect'     => "Huk p'anqata astaspa pusapuna p'anqata mana kamariy",
 'right-upload'               => 'Willañiqikunata churkuy',
 'right-reupload'             => 'Kachkaqña willañiqita huknachay',
@@ -1114,6 +1116,7 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'action-minoredit'            => "kay llamk'apusqata asllalla nispa sananchay",
 'action-move'                 => "kay p'anqata astay",
 'action-move-subpages'        => "kay p'anqata urin p'anqankunatapas astay",
+'action-move-rootuserpages'   => "ruraqpa saphi p'anqankunata astay",
 'action-upload'               => 'kay willañiqita churkuy',
 'action-reupload'             => 'kay kachkaqña willañiqita huknachay',
 'action-reupload-shared'      => 'kay willañiqita rakinakusqa churanapi qhawarpariy',
@@ -1371,7 +1374,7 @@ Munaspaykiqa, [[Special:WhatLinksHere/$2|hunt'a sutisuyuta]] qhaway.",
 
 # Unused templates
 'unusedtemplates'     => "Mana llamk'achisqa plantillakuna",
-'unusedtemplatestext' => "Kay p'anqapi tukuy plantilla suti k'itipi kaq, manataq huk p'anqapi ch'aqtasqa p'anqakunap sutinkunam. Yuyariy, manaraq qulluspayki chay p'anqakunaman t'inkikunata qhaway.",
+'unusedtemplatestext' => "Kay p'anqapi tukuy {{ns:template}} suti k'itipi kaq, manataq huk p'anqapi ch'aqtasqa p'anqakunap sutinkunam. Yuyariy, manaraq qulluspayki chay p'anqakunaman t'inkikunata qhaway.",
 'unusedtemplateswlh'  => "huk t'inkikuna",
 
 # Random page
@@ -1889,6 +1892,7 @@ Willariy imaraykum hark'anki (ahinataq: sapaq wandaluchasqa p'anqakunamanta will
 'ipbhidename'                     => "Ruraqpa sutinta pakay hark'ay hallch'amanta, kunan hark'asqakunapi ruraqkunapipas",
 'ipbwatchuser'                    => "Kay ruraqpa p'anqanta rimachinantapas watiqay",
 'ipballowusertalk'                => "Kay ruraqta kikinpa rimanakuy p'anqanta hukchayta saqillay, hark'asqa kaptinpas",
+'ipb-change-block'                => "Ruraqta musuqmanta hark'ay kay allinchanakunata churaspa",
 'badipaddress'                    => 'IP huchhaqa manam allinchu.',
 'blockipsuccesssub'               => "Ruraqqa hark'asqañam",
 'blockipsuccesstext'              => "IP \"\$1\"-niyuq tiyayqa hark'asqañam. <br />[[Special:IPBlockList|Hark'asqakunamanta p'anqata]] qhaway hark'akunata hukchanaykipaq.",
@@ -1927,6 +1931,7 @@ Willariy imaraykum hark'anki (ahinataq: sapaq wandaluchasqa p'anqakunamanta will
 'blocklogpage'                    => "Ruraq hark'asqakuna",
 'blocklog-fulllog'                => "Hunt'a hark'ay hallch'asqata rikuy",
 'blocklogentry'                   => "hark'an [[$1]]-ta kay pachakama: $2 $3",
+'reblock-logentry'                => "hukchan [[$1]]-paq hark'ana allinchanakunata kay pachakama hark'aspa: $2 $3",
 'blocklogtext'                    => "Kayqa ruraqta hark'asqakunap qispichisqakunappas hallch'anmi. Kikinmanta hark'asqa tiyaykunataqa manam kaypi rikunkichu. [[Special:IPBlockList|Hark'asqakunamanta p'anqata]] qhaway kunan hark'asqakunata rikunaykipaq.",
 'unblocklogentry'                 => 'paskan "$1"-ta hark\'asqa kaymanta',
 'block-log-flags-anononly'        => 'sutinnaqlla',
@@ -1939,6 +1944,8 @@ Willariy imaraykum hark'anki (ahinataq: sapaq wandaluchasqa p'anqakunamanta will
 'ipb_expiry_invalid'              => 'Puchukana pachaqa manam allinchu.',
 'ipb_expiry_temp'                 => "Pakasqa ruraqpa sutin hark'aykunaqa tiyaqllam kachun.",
 'ipb_already_blocked'             => '"$1" sutiyuqqa hark\'asqañam kachkan.',
+'ipb-needreblock'                 => "== Hark'asqaña ==
+$1 sutiyuqqa hark'asqañam. Allinchanakunata hukchayta munankichu?",
 'ipb_cant_unblock'                => "'''Pantasqa''': Manam tarinichu ID $1 hark'ay huchhata. Qispisqañachá.",
 'ipb_blocked_as_range'            => "Pantasqa: IP $1 huchhaqa manam chiqallachu hark'asqa kaptinmi manam paskanallachu. Chaywanpas, $2 patayayku kaspataq hark'asqam kachkan. Chay patayaykuqa hark'asqamanta paskanallam.",
 'ip_range_invalid'                => "IP huchha k'itiqa manam chanichkanchu.",

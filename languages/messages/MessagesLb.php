@@ -1599,7 +1599,7 @@ Et ginn [[{{MediaWiki:Listgrouprights-helppage}}|zousätzlech Informatiounen]] i
 
 # E-mail user
 'mailnologin'     => 'Keng E-Mailadress',
-'mailnologintext' => 'Dir musst [[Special:UserLogin|ugemellt]] sinn an eng gülteg E-Mail Adress an äre [[Special:Preferences|Asteelunge]] aginn hunn, fir engem anere Benotzer eng E-Mail ze schécken.',
+'mailnologintext' => 'Dir musst [[Special:UserLogin|ugemellt]] sinn an eng gülteg E-Mail Adress an äre [[Special:Preferences|Astellungen]] aginn hunn, fir engem anere Benotzer eng E-Mail ze schécken.',
 'emailuser'       => 'Dësem Benotzer eng E-Mail schécken',
 'emailpage'       => 'Dem Benotzer eng E-Mail schécken',
 'emailpagetext'   => 'Dir kënnt mat dësem Formulaire dësem Benotzer en E-Mail-Message schécken.
@@ -1785,9 +1785,9 @@ Hei sinn déi aktuell Astellunge fir d'Säit <strong>$1</strong>:",
 'protect-othertime-op'        => 'aner Zäit',
 'protect-otherreason'         => 'Aneren/zousätzleche Grond:',
 'protect-otherreason-op'      => 'aneren/zousätzleche Grond',
-'protect-dropdown'            => '*Séi heefegst Grënn fir eng Säit ze spären
+'protect-dropdown'            => '*Déi heefegst Grënn fir eng Säit ze spären
 ** Weblink-Spam
-** permanenten Ännerungskonflikt
+** Permanenten Ännerungskonflikt
 ** Dacks benotzte Schablounen
 ** Säit déi dacks besicht gëtt',
 'protect-edit-reasonlist'     => 'Grënn vun der Protectioun änneren',

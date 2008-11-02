@@ -373,7 +373,7 @@ $messages = array(
 'restorelink'             => '$1 silinmiş değişikliği',
 'feedlinks'               => 'Besleme:',
 'feed-invalid'            => 'Hatalı besleme tipi.',
-'feed-unavailable'        => 'Sendikalaşma beslemeleri {{SITENAME}} üzerinde geçerli değil.',
+'feed-unavailable'        => 'Sendikalaşma özet akışları geçerli değil.',
 'site-rss-feed'           => '$1 RSS Aboneliği',
 'site-atom-feed'          => '$1 Atom Beslemesi',
 'page-rss-feed'           => '"$1" RSS Beslemesi',
@@ -574,7 +574,7 @@ Girişi bitirmek için, burada yeni bir parola yazın:',
 'resetpass_submit'        => 'Şifreyi ayarlayın ve oturum açın',
 'resetpass_success'       => 'Parolanız başarıyla değiştirldi! Şimdi oturumunuz açılıyor...',
 'resetpass_bad_temporary' => 'Geçersiz geçisi parola. Zaten başarıyla parolanızı değiştirmiş veya yeni geçici şifre istemiş olabilirsiniz.',
-'resetpass_forbidden'     => 'Parolalar {{SITENAME}} sitesinde değiştirilemiyor',
+'resetpass_forbidden'     => 'Parolalar değiştirilememektedir',
 'resetpass_missing'       => 'Form data yok.',
 
 # Edit page toolbar
@@ -659,8 +659,7 @@ Lütfen yapacağınız herhangi bir sorguda bu ID bulunsun.',
 'accmailtext'                      => '"$1" kullanıcısına ait parola $2 adresine gönderildi.',
 'newarticle'                       => '(Yeni)',
 'newarticletext'                   => "Henüz varolmayan bir sayfaya konulmuş bir bağlantıya tıkladınız. Bu sayfayı yaratmak için aşağıdaki metin kutusunu kullanınız. Bilgi için [[{{MediaWiki:Helppage}}|yardım sayfasına]] bakınız. Buraya yanlışlıkla geldiyseniz, programınızın '''Geri''' tuşuna tıklayınız.",
-'anontalkpagetext'                 => "----
-''Bu kayıtlı olmayan ya da kayıtlı adıyla sisteme giriş yapmamış bir kullanıcının mesaj sayfasıdır. Bu sebeple kimliği IP adresi ile gösterilmektedir. Bu tür IP adresleri diğer kişiler tarafından payşılabilir. Eğer siz de bir anonim kullanıcı iseniz ve yöneltilen yorumlar sizle ilgili değilse, [[Special:UserLogin|kayıt olun ya da sisteme girin ki]] ileride başka yanlış anlaşılma olmasın.''",
+'anontalkpagetext'                 => "----''Bu sayfa henüz bir kullanıcı hesabı oluşturmamış veya hesabını kullanmayan bir anonim kullanıcının mesaj sayfasıdır. Bu nedenle bu kişiyi belirtmek için rakamsal IP adresini kullanmak zorundayız. Bu gibi IP adresleri birçok kullanıcı tarafından paylaşılabilir. Eğer siz de bir anonim kullanıcıysanız ve size sizin ilginiz olmayan mesajlar geliyorsa, lütfen diğer anonim kullanıcılarla olabilecek olan karmaşayı önlemek için [[Special:UserLogin/signup|bir hesap oluşturun]] veya [[Special:UserLogin|oturum açın]].''",
 'noarticletext'                    => 'Bu sayfa boştur. Bu başlığı diğer sayfalarda [[Special:Search/{{PAGENAME}}|arayabilir]] veya bu sayfayı siz  [{{fullurl:{{FULLPAGENAME}}|action=edit}} yazabilirsiniz].',
 'userpage-userdoesnotexist'        => '"$1" kullanıcı hesabı kayıtlı değil. Bu sayfayı oluşturmak/değiştirmek istiyorsanız lütfen kontrol edin.',
 'clearyourcache'                   => "'''Not:''' Ayarlarınızı kaydettikten sonra, tarayıcınızın belleğini de temizlemeniz gerekmektedir: '''Mozilla / Firefox / Safari:''' ''Shift'' e basılıyken safyayı yeniden yükleyerek veya ''Ctrl-Shift-R'' yaparak (Apple Mac için ''Cmd-Shift-R'');, '''IE:''' ''Ctrl-F5'', '''Konqueror:''' Sadece sayfayı yeniden yükle tuşuna basarak.",
@@ -671,7 +670,13 @@ Lütfen yapacağınız herhangi bir sorguda bu ID bulunsun.',
 'updated'                          => '(Güncellendi)',
 'note'                             => '<strong>Not: </strong>',
 'previewnote'                      => '<strong>Bu yalnızca bir önizlemedir, ve değişiklikleriniz henüz kaydedilmemiştir!</strong>',
+'previewconflict'                  => 'Bu önizleme metin düzenleme kutucuğunun üstünde, maddenin eğer değişikliklerinizi kaydetmeyi seçerseniz nasıl görüneceğini yansıtır.',
 'session_fail_preview'             => 'Özür dileriz. Oturum açılması ile ilgili veri kaybından kaynaklı değişikliğinizi kaydedemedik. Lütfen tekrar deneyiniz. Eğer bu yöntem işe yaramazsa oturumu kapatıp tekrar sisteme geri giriş yapınız.',
+'session_fail_preview_html'        => "<strong>Üzgünüz! Oturum verisinin kaybolmasından dolayı düzenlemenizi işleme geçiremeyeceğiz.</strong>
+
+''Çünkü {{SITENAME}} sitesinde raw HTML etkindir, önizleme JavaScript saldırılarına önlem olarak gizlenmiştir.''
+
+<strong>Eğer bu haklı bir düzenleme girişimiyse, lütfen yeniden deneyin. Eğer hala çalışmazsa, [[Special:UserLogout|çıkış yapıp]] yeniden oturum açmayı deneyin.</strong>",
 'editing'                          => '"$1" sayfasını değiştirmektesiniz',
 'editingsection'                   => '"$1" sayfasında bölüm değiştirmektesiniz',
 'editingcomment'                   => '$1 sayfasına mesaj eklemektesiniz.',
