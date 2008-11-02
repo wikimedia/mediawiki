@@ -691,6 +691,11 @@ if( $conf->License == "gfdl" ) {
 	$conf->RightsIcon = '${wgScriptPath}/skins/common/images/gnu-fdl.png';
 } elseif( $conf->License == "none" ) {
 	$conf->RightsUrl = $conf->RightsText = $conf->RightsCode = $conf->RightsIcon = "";
+} elseif( $conf->License == "pd" ) {
+	$conf->RightsUrl = "http://en.wikipedia.org/wiki/Public_domain";
+	$conf->RightsText = "Public Domain";
+	$conf->RightsCode = "pd";
+	$conf->RightsIcon = '${wgScriptPath}/skins/common/images/public-domain.png';
 } else {
 	$conf->RightsUrl = importRequest( "RightsUrl", "" );
 	$conf->RightsText = importRequest( "RightsText", "" );
@@ -1180,6 +1185,7 @@ if( count( $errs ) ) {
 
 		<ul class="plain">
 		<li><?php aField( $conf, "License", "No license metadata", "radio", "none" ); ?></li>
+		<li><?php aField( $conf, "License", "Public Domain", "radio", "pd" ); ?></li>
 		<li><?php aField( $conf, "License", "GNU Free Documentation License 1.2 (Wikipedia-compatible)", "radio", "gfdl" ); ?></li>
 		<li><?php
 			aField( $conf, "License", "A Creative Commons license - ", "radio", "cc" );
@@ -1588,7 +1594,7 @@ function writeLocalSettings( $conf ) {
 
 	# Add slashes to strings for double quoting
 	$slconf = array_map( "escapePhpString", get_object_vars( $conf ) );
-	if( $conf->License == 'gfdl' ) {
+	if( $conf->License == 'gfdl' || $conf->License == 'pd' ) {
 		# Needs literal string interpolation for the current style path
 		$slconf['RightsIcon'] = $conf->RightsIcon;
 	}

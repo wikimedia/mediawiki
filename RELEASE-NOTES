@@ -186,7 +186,7 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 15820) Special:BlockIP shows a notice if the user being blocked is already
   directly blocked
 * (bug 13710) Allow to force "watch this" checkbox via URL using para "watchthis"
-
+* (bug 15125) Add Public Domain to default options when installing. Patch by Nathan Larson.
 === Bug fixes in 1.14 ===
 
 * (bug 14907) DatabasePostgres::fieldType now defined.
