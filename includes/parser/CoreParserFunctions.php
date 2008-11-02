@@ -330,9 +330,18 @@ class CoreParserFunctions {
 
 	public static function defaultsort( $parser, $text ) {
 		$text = trim( $text );
-		if( strlen( $text ) > 0 )
-			$parser->setDefaultSort( $text );
-		return '';
+		if( strlen( $text ) == 0 )
+			return '';
+		$old = $parser->getCustomDefaultSort();
+		$parser->setDefaultSort( $text );
+		if( $old === false || $old == $text )
+			return '';
+		else
+			return( '<span class="error">' .
+				wfMsgForContent( 'duplicate_defaultsort',
+						 htmlspecialchars( $old ),
+						 htmlspecialchars( $text ) ) .
+				'</span>' );
 	}
 
 	public static function filepath( $parser, $name='', $option='' ) {
@@ -367,7 +376,7 @@ class CoreParserFunctions {
 		$stripList = $parser->getStripList();
 		if ( !in_array( $tagName, $stripList ) ) {
 			return '<span class="error">' .
-				wfMsg( 'unknown_extension_tag', $tagName ) .
+				wfMsgForContent( 'unknown_extension_tag', $tagName ) .
 				'</span>';
 		}
 

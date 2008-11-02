@@ -4714,6 +4714,16 @@ class Parser
 	}
 
 	/**
+	 * Accessor for $mDefaultSort
+	 * Unlike getDefaultSort(), will return false if none is set
+	 *
+	 * @return string or false
+	 */
+	public function getCustomDefaultSort() {
+		return $this->mDefaultSort;
+	}
+
+	/**
 	 * Try to guess the section anchor name based on a wikitext fragment
 	 * presumably extracted from a heading, for example "Header" from
 	 * "== Header ==".

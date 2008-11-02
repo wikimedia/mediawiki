@@ -302,6 +302,8 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 16160) Suggestions box should be resized from left for RTL wikis
 * (bug 11533) Fixed insane slowdown when in read-only mode for long periods
   of time with CACHE_NONE (default objectcache table configuration).
+* Trying to set two different default category sort keys for one page now produces
+  a warning
 
 === API changes in 1.14 ===
 
