@@ -1060,6 +1060,7 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'qbsettings-floatingright' => 'Flotante a la derecha',
 'changepassword'           => 'Cambiar la contraseña',
 'skin'                     => 'Apariencia',
+'skin-override'            => 'Este formulario ha sido deshabilitado, ya que esta wiki sustituye la selección de apariencia del usuario por la indicada por el administrador.',
 'skin-preview'             => 'Ver cómo queda',
 'math'                     => 'Fórmulas',
 'dateformat'               => 'Formato de fecha',
@@ -1163,6 +1164,7 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'right-minoredit'            => 'Marcar ediciones como «menores»',
 'right-move'                 => 'Trasladar páginas',
 'right-move-subpages'        => 'Trasladar páginas con sus subpáginas',
+'right-move-rootuserpages'   => 'Mover páginas del usuario raíz',
 'right-suppressredirect'     => 'No crear una redirección en el viejo nombre al trasladar una página',
 'right-upload'               => 'Subir archivos',
 'right-reupload'             => 'Subir una nueva versión de un archivo existente',
@@ -1222,6 +1224,7 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'action-minoredit'            => 'marcar este cambio como menor',
 'action-move'                 => 'mover esta página',
 'action-move-subpages'        => 'mover esta página y sus subpáginas',
+'action-move-rootuserpages'   => 'mover páginas del usuario raíz',
 'action-upload'               => 'subir este archivo',
 'action-reupload'             => 'remplazar este archivo existente',
 'action-reupload-shared'      => 'remplazar este archivo existente en un depósito compartido',
@@ -1485,7 +1488,7 @@ Entrada: contenttype/subtype, p. ej. <tt>image/jpeg</tt>.',
 
 # Unused templates
 'unusedtemplates'     => 'Plantillas sin uso',
-'unusedtemplatestext' => 'Aquí se enumeran todas las páginas en la zona de plantillas que no están incluidas en otras páginas. Recuerda mirar lo que enlaza a las plantillas antes de borrarlas.',
+'unusedtemplatestext' => 'Aquí se enumeran todas las páginas en el espacio de nombres {{ns:template}} que no están incluidas en otras páginas. Recuerda mirar lo que enlaza a las plantillas antes de borrarlas.',
 'unusedtemplateswlh'  => 'otros enlaces',
 
 # Random page
@@ -1711,7 +1714,7 @@ La dirección electrónica que indicaste en [[Special:Preferences|tus preferenci
 'watchnologin'             => 'No ha iniciado sesión',
 'watchnologintext'         => 'Debes [[Special:UserLogin|iniciar sesión]] para modificar tu lista de seguimiento.',
 'addedwatch'               => 'Añadido a la lista de seguimiento',
-'addedwatchtext'           => "La página «[[:\$1]]» ha sido añadida a tu [[Special:Watchlist|lista se seguimiento]]. Cambios futuros en esta página y su página de discusión asociada se indicarán ahí, y la página aparecerá '''en negritas''' en la [[Special:RecentChanges|lista de cambios recientes]] para hacerla más fácil de detectar. <p>Cuando quieras eliminar la página de tu lista de seguimiento, presiona \"Dejar de vigilar\" en el menú.",
+'addedwatchtext'           => "La página «[[:$1]]» ha sido añadida a tu [[Special:Watchlist|lista se seguimiento]]. Los cambios futuros en esta página y en su página de discusión asociada se indicarán ahí, y la página aparecerá '''en negritas''' en la [[Special:RecentChanges|lista de cambios recientes]] para hacerla más fácil de detectar. <p>Cuando quieras eliminar la página de tu lista de seguimiento, presiona «Dejar de vigilar» en el menú.",
 'removedwatch'             => 'Eliminada de la lista de seguimiento',
 'removedwatchtext'         => 'La página «[[:$1]]» ha sido eliminada de tu [[Special:Watchlist|lista de seguimiento]].',
 'watch'                    => 'Vigilar',
@@ -2015,6 +2018,7 @@ las páginas en particular que han sido objeto de vandalismo).',
 'ipbhidename'                     => 'Ocultar usuario/IP en el registro de bloqueos, la lista de bloqueos activos y la lista de usuarios',
 'ipbwatchuser'                    => 'Vigilar las páginas de usuario y de discusión de este usuario',
 'ipballowusertalk'                => 'Permitir a este usuario editar su propia página de discusión mientras está bloqueado',
+'ipb-change-block'                => 'Rebloquear al usuario con estos datos',
 'badipaddress'                    => 'La dirección IP no tiene el formato correcto.',
 'blockipsuccesssub'               => 'Bloqueo realizado con éxito',
 'blockipsuccesstext'              => '"[[Special:Contributions/$1|$1]]" ha sido bloqueado. <br />Puede revisar la [[Special:IPBlockList|lista de bloqueos]].',
@@ -2049,10 +2053,11 @@ las páginas en particular que han sido objeto de vandalismo).',
 'blocklink'                       => 'bloquear',
 'unblocklink'                     => 'desbloquear',
 'contribslink'                    => 'contribuciones',
-'autoblocker'                     => 'Has sido bloqueado automáticamente porque tu dirección IP ha sido usada recientemente por "[[User:$1|$1]]". La razón esgrimida para bloquear a "[[User:$1|$1]]" fue "$2".',
+'autoblocker'                     => 'Has sido bloqueado automáticamente porque tu dirección IP ha sido usada recientemente por «[[User:$1|$1]]». La razón esgrimida para bloquear a «[[User:$1|$1]]» fue «$2».',
 'blocklogpage'                    => 'Bloqueos de usuarios',
 'blocklog-fulllog'                => 'Ver el registro de bloqueos completo',
 'blocklogentry'                   => 'bloqueó a "$1" $3 durante un plazo de "$2".',
+'reblock-logentry'                => 'cambiado el bloqueo para  [[$1]] con una caducidad de $2 $3',
 'blocklogtext'                    => 'Esto es un registro de bloqueos y desbloqueos de usuarios. Las direcciones bloqueadas automáticamente no aparecen aquí. Consulte la [[Special:IPBlockList|lista de direcciones IP bloqueadas]] para ver la lista de prohibiciones y bloqueos actualmente vigente.',
 'unblocklogentry'                 => 'desbloqueó a "$1"',
 'block-log-flags-anononly'        => 'sólo anónimos',
@@ -2065,6 +2070,8 @@ las páginas en particular que han sido objeto de vandalismo).',
 'ipb_expiry_invalid'              => 'El tiempo de caducidad no es válido.',
 'ipb_expiry_temp'                 => 'Los bloqueos a nombres de usuario ocultos deben ser permanentes.',
 'ipb_already_blocked'             => '"$1" ya se encuentra bloqueado.',
+'ipb-needreblock'                 => '== Ya está bloqueado ==
+$1 ya está bloqueado. ¿Quieres cambiar el bloqueo?',
 'ipb_cant_unblock'                => "'''Error''': Número ID $1 de bloqueo no encontrado. Pudo haber sido desbloqueado ya.",
 'ipb_blocked_as_range'            => 'Error: la dirección IP $1 no está bloqueada directamente y no puede ser desbloqueada.
 Sin embargo, está bloqueada como parte del rango $2, que puede ser desbloqueado.',
@@ -2363,10 +2370,11 @@ Esto podría estar causado por un enlace a un sitio externo incluido en la lista
 'markedaspatrollederror-noautopatrol' => 'No tienes permisos para marcar tus propios cambios como revisados.',
 
 # Patrol log
-'patrol-log-page'   => 'Registro de revisiones',
-'patrol-log-header' => 'Este es un registro de revisiones patrulladas.',
-'patrol-log-line'   => 'revisado $1 de $2 $3',
-'patrol-log-auto'   => '(automático)',
+'patrol-log-page'    => 'Registro de revisiones',
+'patrol-log-header'  => 'Este es un registro de revisiones patrulladas.',
+'patrol-log-line'    => 'revisado $1 de $2 $3',
+'patrol-log-auto'    => '(automático)',
+'logshowhide-patrol' => '$1 registro de patrullaje',
 
 # Image deletion
 'deletedrevision'                 => 'Borrada revisión antigua $1',
@@ -2413,8 +2421,8 @@ $1',
 # Bad image list
 'bad_image_list' => 'El formato es el siguiente:
 
-Solamente elementos enlistados (líneas que inician con *) serán tomados en cuenta.
-El primer enlace de cada linea debe ser un enlace al archivo que se quiere bloquear.
+Sólo se reconocen elementos de lista (líneas que comienzan con «*»).
+El primer enlace de cada línea debe ser un enlace al archivo que se quiere bloquear.
 Todos los demás enlaces en la misma línea se tomarán como excepciones (es decir, páginas donde sí se puede usar el archivo).',
 
 # Metadata
@@ -2784,8 +2792,8 @@ $1
 
 # Auto-summaries
 'autosumm-blank'   => 'Página blanqueada',
-'autosumm-replace' => 'Página reemplazada por "$1"',
-'autoredircomment' => 'Redireccionado a [[$1]]',
+'autosumm-replace' => "Página reemplazada por «'$1'»",
+'autoredircomment' => 'Redirigiendo a [[$1]]',
 'autosumm-new'     => 'Página nueva: $1',
 
 # Live preview
@@ -2829,6 +2837,7 @@ También puedes utilizar el [[Special:Watchlist/edit|editor estándar]].',
 
 # Core parser functions
 'unknown_extension_tag' => 'Etiqueta desconocida «$1»',
+'duplicate_defaultsort' => 'Atención: La clave de ordenación por defecto «$2» anula la anterior clave ordenación por defecto «$1».',
 
 # Special:Version
 'version'                          => 'Versión', # Not used as normal message but as header for the special page itself

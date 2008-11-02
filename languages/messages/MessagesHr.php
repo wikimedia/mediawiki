@@ -75,6 +75,7 @@ $specialPageAliases = array(
 	'Wantedpages'               => array( 'Tražene_stranice' ),
 	'Wantedcategories'          => array( 'Tražene_kategorije' ),
 	'Wantedfiles'               => array( 'Tražene_datoteke' ),
+	'Wantedtemplates'           => array( 'Traženi_predlošci' ),
 	'Mostlinked'                => array( 'Najviše_povezane_stranice' ),
 	'Mostlinkedcategories'      => array( 'Najviše_povezane_kategorije' ),
 	'Mostlinkedtemplates'       => array( 'Najviše_povezani_predlošci' ),

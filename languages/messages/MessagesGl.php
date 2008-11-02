@@ -1033,6 +1033,7 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'qbsettings-floatingright' => 'Flotante á dereita',
 'changepassword'           => 'Cambiar o meu contrasinal',
 'skin'                     => 'Aparencia',
+'skin-override'            => 'Este formulario foi deshabilitado porque este wiki sobreescribe a apariencia de usuario coa apariencia por defecto fixada polo administrador.',
 'skin-preview'             => 'Probar',
 'math'                     => 'Fórmulas matemáticas',
 'dateformat'               => 'Formato da data',
@@ -1136,6 +1137,7 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'right-minoredit'            => 'Marcar as edicións como pequenas',
 'right-move'                 => 'Mover páxinas',
 'right-move-subpages'        => 'Mover páxinas coas súas subpáxinas',
+'right-move-rootuserpages'   => 'Mover páxinas de usuario raíz',
 'right-suppressredirect'     => 'Non crear unha redirección dende o nome vello ao mover unha páxina',
 'right-upload'               => 'Cargar ficheiros',
 'right-reupload'             => 'Sobreescribir un ficheiro existente',
@@ -1195,6 +1197,7 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'action-minoredit'            => 'marcar esta edición como pequena',
 'action-move'                 => 'mover esta páxina',
 'action-move-subpages'        => 'mover esta páxina e as súas subpáxinas',
+'action-move-rootuserpages'   => 'mover páxinas de usuario raíz',
 'action-upload'               => 'cargar este ficheiro',
 'action-reupload'             => 'sobreescribir este ficheiro existente',
 'action-reupload-shared'      => 'sobreescribir este ficheiro nun repositorio compartido',
@@ -2004,6 +2007,7 @@ Explique a razón específica do bloqueo (por exemplo, citando as páxinas concr
 'ipbhidename'                     => 'Agochar nome de usuario no rexistro de bloqueos, na listaxe de bloqueos activos e na listaxe de usuarios',
 'ipbwatchuser'                    => 'Vixiar a páxina de usuario e a de conversa deste usuario',
 'ipballowusertalk'                => 'Permitir que este usuario poida editar a súa páxina de conversa mentres estea bloqueado',
+'ipb-change-block'                => 'Volver bloquear o usuario con estas configuracións',
 'badipaddress'                    => 'O enderezo IP non é válido',
 'blockipsuccesssub'               => 'Bloqueo con éxito',
 'blockipsuccesstext'              => 'O enderezo IP [[Special:Contributions/$1|$1]] foi bloqueado.<br />
@@ -2043,6 +2047,7 @@ Olle a [[Special:IPBlockList|lista de enderezos IP e usuarios bloqueados]] para 
 'blocklogpage'                    => 'Rexistro de bloqueos',
 'blocklog-fulllog'                => 'Rexistro de bloqueos totais',
 'blocklogentry'                   => 'bloqueou a "[[$1]]" cun tempo de duración de $2 $3',
+'reblock-logentry'                => 'cambiou as configuracións do bloqueo de "[[$1]]" cunha caducidade de $2 $3',
 'blocklogtext'                    => 'Este é o rexistro das accións de bloqueo e desbloqueo de usuarios.
 Non se listan os enderezos IP bloqueados automaticamente.
 Olle a [[Special:IPBlockList|lista de enderezos IP e usuarios bloqueados]] se quere comprobar a lista cos bloqueos vixentes.',
@@ -2057,6 +2062,8 @@ Olle a [[Special:IPBlockList|lista de enderezos IP e usuarios bloqueados]] se qu
 'ipb_expiry_invalid'              => 'Tempo de duración non válido.',
 'ipb_expiry_temp'                 => 'Os bloqueos a nomes de usuario agochados deberían ser permanentes.',
 'ipb_already_blocked'             => '"$1" xa está bloqueado',
+'ipb-needreblock'                 => '== Xa está bloqueado ==
+"$1" xa está bloqueado. Quere cambiar as configuracións?',
 'ipb_cant_unblock'                => 'Erro: Non se atopa o Block ID $1. Posiblemente xa foi desbloqueado.',
 'ipb_blocked_as_range'            => 'Erro: O enderezo IP $1 non está bloqueado directamente e non se pode desbloquear. Porén, está bloqueado por estar no rango $2, que si se pode desbloquear.',
 'ip_range_invalid'                => 'Rango IP non válido.',

@@ -16,6 +16,8 @@ $messages = array(
 'tog-highlightbroken' => 'P\'akita sipita utt\'ayaña <a href="" class="new">ukhama</a> (mawijata: ukhama<a href="" class="internal">?</a>).',
 'tog-justify'         => "Tanta amuyanak purapt'ayaña",
 'tog-hideminor'       => 'Jichha kutikiptatanakana «Janiw taqpachäkiti» imantaña',
+'tog-extendwatchlist' => "Sarayawi jaqukipaw uñachayasuñatakiw unch'ukit waruch aqatatayaña",
+'tog-usenewrc'        => "Jichhnaki jaqukipawi waliptäta (''JavaScript'')",
 
 'underline-always' => 'Wiñaya',
 'underline-never'  => 'Janipini',
@@ -104,8 +106,8 @@ $messages = array(
 'portal'               => 'Jayma punku',
 'portal-url'           => 'Project:Jayma punku',
 
-'editsection'    => 'trukaña',
-'editold'        => 'trukaña',
+'editsection'    => 'turkaña',
+'editold'        => 'turkaña',
 'editlink'       => 'trukaña',
 'showtoc'        => 'uñachayaña',
 'site-rss-feed'  => "$1 ''RSS'' jalsuri",

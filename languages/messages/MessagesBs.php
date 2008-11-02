@@ -202,7 +202,7 @@ $messages = array(
 'tog-watchmoves'              => 'Stranice koje premjestim dodaj na spisak praćenja',
 'tog-watchdeletion'           => 'Stranice koje obrišem dodaj na spisak praćenja',
 'tog-minordefault'            => 'Označi sve izmjene malim isprva',
-'tog-previewontop'            => 'Prikaži pretpregled prije polja za izmjenu a ne posle',
+'tog-previewontop'            => 'Prikaži pretpregled prije polja za izmjenu a ne poslije',
 'tog-previewonfirst'          => 'Prikaži izgled pri prvoj izmjeni',
 'tog-nocache'                 => 'Onemogući keširanje stranica',
 'tog-enotifwatchlistpages'    => 'Pošalji mi e-poštu kad se promijene stranice',
@@ -227,7 +227,7 @@ $messages = array(
 
 'underline-always'  => 'Uvijek',
 'underline-never'   => 'Nikad',
-'underline-default' => 'Po podešavanjima brauzera',
+'underline-default' => 'Po podešavanjima preglednika',
 
 # Dates
 'sunday'        => 'nedelja',
@@ -288,7 +288,7 @@ $messages = array(
 'category-media-header'          => 'Mediji u kategoriji "$1"',
 'category-empty'                 => "''Ova kategorija trenutno ne sadrži članke ni medije.''",
 'hidden-categories'              => '{{PLURAL:$1|Sakrivena kategorija|Sakrivene kategorije}}',
-'hidden-category-category'       => 'Skrivene kategorije', # Name of the category where hidden categories will be listed
+'hidden-category-category'       => 'Sakrivene kategorije', # Name of the category where hidden categories will be listed
 'category-subcat-count'          => '{{PLURAL:$2|Ova kategorija ima samo sljedeću podkategoriju.|Ova kategorija ima sljedeću {{PLURAL:$1|podkategoriju|$1 podkategorije}}, od $2 ukupno.}}',
 'category-subcat-count-limited'  => 'Ova kategorija sadrži {{PLURAL:$1|podkategoriju|$1 podkategorije|$1 podkategorija}}.',
 'category-article-count'         => '{{PLURAL:$2|U ovoj kategoriji se nalazi ovaj članak.|Prikazano je {{PLURAL:$1|članak|$1 članka|$1 članaka}} od ukupno $2 u ovoj kategoriji.}}',
@@ -324,7 +324,7 @@ $messages = array(
 'and'            => 'i',
 
 # Metadata in edit box
-'metadata_help' => 'Metadata:',
+'metadata_help' => 'Metapodaci:',
 
 'errorpagetitle'    => 'Greška',
 'returnto'          => 'Povratak na $1.',
@@ -839,6 +839,8 @@ Izgleda da već postoji.',
 'post-expand-template-inclusion-warning'  => 'Pažnja: Šablon koji je uključen je prevelik.
 Neki šabloni neće biti uključeni.',
 'post-expand-template-inclusion-category' => 'Stranice gdje su uključeni šabloni preveliki',
+'post-expand-template-argument-warning'   => 'Upozorenje: Ova stranica sadrži najmanje jedan argument u šablonu koji ima preveliku veličinu.
+Ovakvi argumenti se trebaju izbjegavati.',
 'post-expand-template-argument-category'  => 'Stranice koje sadrže nedostajuće argumente u šablonu',
 
 # "Undo" feature
@@ -850,6 +852,9 @@ Molimo da provjerite usporedbu ispod da budete sigurni da to želite učiniti, a
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Nije moguće napraviti korisnički račun',
+'cantcreateaccount-text' => "Pravljenje korisničkog računa sa ove IP adrese ('''$1''') je blokirano od strane [[User:$3|$3]].
+
+Razlog koji je naveo $3 je ''$2''",
 
 # History pages
 'viewpagelogs'           => 'Pogledaj protokol ove stranice',
@@ -883,41 +888,60 @@ Moguće da je izbrisana sa wikija, ili preimenovana.
 Pokušajte [[Special:Search|pretražiti wiki]] za slične stranice.',
 
 # Revision deletion
-'rev-deleted-comment'     => '(komentar uklonjen)',
-'rev-deleted-user'        => '(korisničko ime uklonjeno)',
-'rev-deleted-event'       => '(stavka zapisa obrisana)',
-'rev-delundel'            => 'pokaži/sakrij',
-'revisiondelete'          => 'Obriši/vrati revizije',
-'revdelete-nooldid-title' => 'Nije unesena tačna revizija',
-'revdelete-selected'      => "'''{{PLURAL:$2|Odabrana revizija|Odabrane revizije}} od [[:$1]]:'''",
-'logdelete-selected'      => "'''{{PLURAL:$1|Označena stavka zapisa|Označene stavke zapisa}}:'''",
-'revdelete-legend'        => 'Postavi ograničenja vidljivosti',
-'revdelete-hide-text'     => 'Sakrij tekst revizije',
-'revdelete-hide-name'     => 'Sakrij akciju i cilj',
-'revdelete-hide-comment'  => 'Sakrij izmjene komentara',
-'revdelete-hide-user'     => 'Sakrij korisničko ime urednika/IP',
-'revdelete-suppress'      => 'Sakrij podatke od administratora kao i od drugih',
-'revdelete-hide-image'    => 'Sakrij sadržaj datoteke',
-'revdelete-unsuppress'    => 'Ukloni ograničenja na vraćenim revizijama',
-'revdelete-submit'        => 'Primijeni na odabranu reviziju',
-'revdel-restore'          => 'Promijeni dostupnost',
-'pagehist'                => 'Historija stranice',
-'deletedhist'             => 'Izbrisana historija',
-'revdelete-content'       => 'sadržaj',
-'revdelete-summary'       => 'sažetak',
-'revdelete-uname'         => 'korisničko ime',
-'revdelete-restricted'    => 'primijenjena ograničenja za administratore',
-'revdelete-unrestricted'  => 'uklonjena ograničenja za administratore',
-'revdelete-hid'           => 'sakrij $1',
-'revdelete-unhid'         => 'otkrij $1',
+'rev-deleted-comment'         => '(komentar uklonjen)',
+'rev-deleted-user'            => '(korisničko ime uklonjeno)',
+'rev-deleted-event'           => '(stavka zapisa obrisana)',
+'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
+Revizija ove stranice je uklonjena iz javne arhive.
+Detalje možete vidjeti u [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zapisu brisanja].</div>',
+'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
+Revizija ove stranice je uklonjena iz javne arhive.
+Kao administrator na {{SITENAME}} Vi je možete vidjeti;
+detalji o tome se mogu vidjeti u [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zapisu brisanja].</div>',
+'rev-delundel'                => 'pokaži/sakrij',
+'revisiondelete'              => 'Obriši/vrati revizije',
+'revdelete-nooldid-title'     => 'Nije unesena tačna revizija',
+'revdelete-selected'          => "'''{{PLURAL:$2|Odabrana revizija|Odabrane revizije}} od [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Označena stavka zapisa|Označene stavke zapisa}}:'''",
+'revdelete-legend'            => 'Postavi ograničenja vidljivosti',
+'revdelete-hide-text'         => 'Sakrij tekst revizije',
+'revdelete-hide-name'         => 'Sakrij akciju i cilj',
+'revdelete-hide-comment'      => 'Sakrij izmjene komentara',
+'revdelete-hide-user'         => 'Sakrij korisničko ime urednika/IP',
+'revdelete-hide-restricted'   => 'Primijeni ova ograničenja na Administratore i zaključaj ovaj interfejs',
+'revdelete-suppress'          => 'Sakrij podatke od administratora kao i od drugih',
+'revdelete-hide-image'        => 'Sakrij sadržaj datoteke',
+'revdelete-unsuppress'        => 'Ukloni ograničenja na vraćenim revizijama',
+'revdelete-log'               => 'Komentar evidencije:',
+'revdelete-submit'            => 'Primijeni na odabranu reviziju',
+'revdelete-logentry'          => 'promijenjena vidljivost revizije [[$1]]',
+'revdelete-success'           => "'''Vidljivost revizije uspješno postavljena.'''",
+'logdelete-success'           => "'''Vidljivost evidencije uspješno postavljena.'''",
+'revdel-restore'              => 'Promijeni dostupnost',
+'pagehist'                    => 'Historija stranice',
+'deletedhist'                 => 'Izbrisana historija',
+'revdelete-content'           => 'sadržaj',
+'revdelete-summary'           => 'sažetak',
+'revdelete-uname'             => 'korisničko ime',
+'revdelete-restricted'        => 'primijenjena ograničenja za administratore',
+'revdelete-unrestricted'      => 'uklonjena ograničenja za administratore',
+'revdelete-hid'               => 'sakrij $1',
+'revdelete-unhid'             => 'otkrij $1',
 
 # Suppression log
 'suppressionlog' => 'Zapisi sakrivanja',
 
 # History merging
-'mergehistory'      => 'Spoji historije stranice',
-'mergehistory-from' => 'Izvorna stranica:',
-'mergehistory-into' => 'Odredišna stranica:',
+'mergehistory'                => 'Spoji historije stranice',
+'mergehistory-from'           => 'Izvorna stranica:',
+'mergehistory-into'           => 'Odredišna stranica:',
+'mergehistory-go'             => 'Prikaži izmjene koje se mogu spojiti',
+'mergehistory-submit'         => 'Spoji revizije',
+'mergehistory-empty'          => 'Nema revizija za spajanje.',
+'mergehistory-no-source'      => 'Izvorna stranica $1 ne postoji.',
+'mergehistory-no-destination' => 'Odredišna stranica $1 ne postoji.',
+'mergehistory-autocomment'    => 'Spoji [[:$1]] u [[:$2]]',
+'mergehistory-comment'        => 'Spojeno [[:$1]] u [[:$2]]: $3',
 
 # Diffs
 'history-title'           => 'Historija izmjena stranice "$1"',

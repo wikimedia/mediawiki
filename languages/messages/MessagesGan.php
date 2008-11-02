@@ -446,11 +446,11 @@ $2',
 'subject'                   => '主題/頭條',
 'minoredit'                 => '箇係隻細修改',
 'watchthis'                 => '眏到箇頁',
-'savearticle'               => '存到箇頁',
+'savearticle'               => '存到著',
 'preview'                   => '預覽',
 'showpreview'               => '望吖起',
 'showlivepreview'           => '即時預覽',
-'showdiff'                  => '顯示差異',
+'showdiff'                  => '望吖差別',
 'anoneditwarning'           => "'''警告:'''倷哈冇登入，箇頁嗰編寫歷史會記到倷嗰IP。",
 'missingsummary'            => "'''提示:''' 倷冇提供編寫摘要。要係倷再按係保存嗰話，倷保存嗰編輯就會冇編輯摘要。",
 'missingcommenttext'        => '請到底下評論。',
@@ -519,11 +519,11 @@ $2',
 'editingsection'            => '眼下在編輯$1 (段落)',
 'editingcomment'            => '眼下在編輯$1 (評論)',
 'editconflict'              => '編輯仗: $1',
-'explainconflict'           => "倷開始編輯之後有人改動嘞箇頁。
+'explainconflict'           => "倷起手編輯之後有人動過箇頁。
 上首嗰方框顯示嗰係眼下本頁嗰內容。
 倷嗰修改到下底嗰方框顯示。
-倷需要拿倷嗰修改並到眼下嗰內容。
-'''單只係'''上首方框嗰內容會等倷按\"存到箇頁\"之後拕保存。",
+倷要拿倷嗰修改并到現存嗰內容。
+'''單只係'''上首方框嗰內容會等倷按\"存到著\"之後拕保存。",
 'yourtext'                  => '倷編嗰內容',
 'storedversion'             => '存到嗰版本',
 'nonunicodebrowser'         => '<strong>警告：倷嗰瀏覽器伓兼容Unicode。箇度有隻辦法方便倷安全嗰編寫得正文章：伓係ASCII嗰字符會到編輯框裡度用十六進位編碼顯到。</strong>',
