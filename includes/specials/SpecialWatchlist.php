@@ -250,38 +250,40 @@ function wfSpecialWatchlist( $par ) {
 	$thisTitle = SpecialPage::getTitleFor( 'Watchlist' );
 	$skin = $wgUser->getSkin();
 
+	$showLinktext = wfMsgHtml( 'show' );
+	$hideLinktext = wfMsgHtml( 'hide' );
 	# Hide/show minor edits
-	$label = $hideMinor ? wfMsgHtml( 'watchlist-show-minor' ) : wfMsgHtml( 'watchlist-hide-minor' );
+	$label = $hideMinor ? $showLinktext : $hideLinktext;
 	$linkBits = wfArrayToCGI( array( 'hideMinor' => 1 - (int)$hideMinor ), $nondefaults );
-	$links[] = $skin->makeKnownLinkObj( $thisTitle, $label, $linkBits );
+	$links[] = wfMsgHtml( 'rcshowhideminor', $skin->makeKnownLinkObj( $thisTitle, $label, $linkBits ) );
 
 	# Hide/show bot edits
-	$label = $hideBots ? wfMsgHtml( 'watchlist-show-bots' ) : wfMsgHtml( 'watchlist-hide-bots' );
+	$label = $hideBots ? $showLinktext : $hideLinktext;
 	$linkBits = wfArrayToCGI( array( 'hideBots' => 1 - (int)$hideBots ), $nondefaults );
-	$links[] = $skin->makeKnownLinkObj( $thisTitle, $label, $linkBits );
+	$links[] = wfMsgHtml( 'rcshowhidebots', $skin->makeKnownLinkObj( $thisTitle, $label, $linkBits ) );
 
 	# Hide/show anonymous edits
-	$label = $hideAnons ? wfMsgHtml( 'watchlist-show-anons' ) : wfMsgHtml( 'watchlist-hide-anons' );
+	$label = $hideAnons ? $showLinktext : $hideLinktext;
 	$linkBits = wfArrayToCGI( array( 'hideAnons' => 1 - (int)$hideAnons ), $nondefaults );
-	$links[] = $skin->makeKnownLinkObj( $thisTitle, $label, $linkBits );
+	$links[] = wfMsgHtml( 'rcshowhideanons', $skin->makeKnownLinkObj( $thisTitle, $label, $linkBits ) );
 
 	# Hide/show logged in edits
-	$label = $hideLiu ? wfMsgHtml( 'watchlist-show-liu' ) : wfMsgHtml( 'watchlist-hide-liu' );
+	$label = $hideLiu ? $showLinktext : $hideLinktext;
 	$linkBits = wfArrayToCGI( array( 'hideLiu' => 1 - (int)$hideLiu ), $nondefaults );
-	$links[] = $skin->makeKnownLinkObj( $thisTitle, $label, $linkBits );
+	$links[] = wfMsgHtml( 'rcshowhideliu', $skin->makeKnownLinkObj( $thisTitle, $label, $linkBits ) );
 
 	# Hide/show own edits
-	$label = $hideOwn ? wfMsgHtml( 'watchlist-show-own' ) : wfMsgHtml( 'watchlist-hide-own' );
+	$label = $hideOwn ? $showLinktext : $hideLinktext;
 	$linkBits = wfArrayToCGI( array( 'hideOwn' => 1 - (int)$hideOwn ), $nondefaults );
-	$links[] = $skin->makeKnownLinkObj( $thisTitle, $label, $linkBits );
-	
+	$links[] = wfMsgHtml( 'rcshowhidemine', $skin->makeKnownLinkObj( $thisTitle, $label, $linkBits ) );
+
 	# Hide/show patrolled edits
 	if( $wgUser->useRCPatrol() ) {
-		$label = $hidePatrolled ? wfMsgHtml( 'watchlist-show-patrolled' ) : wfMsgHtml( 'watchlist-hide-patrolled' );
+		$label = $hidePatrolled ? $showLinktext : $hideLinktext;
 		$linkBits = wfArrayToCGI( array( 'hidePatrolled' => 1 - (int)$hidePatrolled ), $nondefaults );
-		$links[] = $skin->makeKnownLinkObj( $thisTitle, $label, $linkBits );
+		$links[] = wfMsgHtml( 'rcshowhidepatr', $skin->makeKnownLinkObj( $thisTitle, $label, $linkBits ) );
 	}
-	
+
 	# Namespace filter and put the whole form together.
 	$form .= $wlInfo;
 	$form .= $cutofflinks;

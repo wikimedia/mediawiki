@@ -2254,18 +2254,6 @@ Future changes to this page and its associated talk page will be listed there, a
 'iteminvalidname'          => "Problem with item '$1', invalid name...",
 'wlnote'                   => "Below {{PLURAL:$1|is the last change|are the last '''$1''' changes}} in the last {{PLURAL:$2|hour|'''$2''' hours}}.",
 'wlshowlast'               => 'Show last $1 hours $2 days $3',
-'watchlist-show-bots'      => 'Show bot edits',
-'watchlist-hide-bots'      => 'Hide bot edits',
-'watchlist-show-own'       => 'Show my edits',
-'watchlist-hide-own'       => 'Hide my edits',
-'watchlist-show-minor'     => 'Show minor edits',
-'watchlist-hide-minor'     => 'Hide minor edits',
-'watchlist-show-anons'     => 'Show anonymous edits',
-'watchlist-hide-anons'     => 'Hide anonymous edits',
-'watchlist-show-liu'       => 'Show logged-in user edits',
-'watchlist-hide-liu'       => 'Hide logged-in user edits',
-'watchlist-show-patrolled' => 'Show patrolled edits',
-'watchlist-hide-patrolled' => 'Hide patrolled edits',
 'watchlist-options'        => 'Watchlist options',
 
 # Displayed when you click the "watch" button and it is in the process of watching
