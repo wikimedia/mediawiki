@@ -952,7 +952,6 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'qbsettings-floatingright' => 'Pañaman tuytuy',
 'changepassword'           => 'Yaykuna rimata hukchay',
 'skin'                     => 'Qara',
-'skin-override'            => "Kay hunt'ana p'anqaqa manam saqillasqachu kachkan, kay wiki ruraqpa qara allinchasqankunata kamachiqpa churasqan kikinmanta qarawan huknachaptinmi.",
 'skin-preview'             => 'Ñawpaqta qhaway',
 'math'                     => 'Minuywa',
 'dateformat'               => "P'unchaw pacha chanta",

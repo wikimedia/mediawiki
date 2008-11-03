@@ -1074,7 +1074,6 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'qbsettings-floatingright' => 'Ŝvebas dekstre',
 'changepassword'           => 'Ŝanĝi pasvorton',
 'skin'                     => 'Etoso',
-'skin-override'            => 'Ĉi tiu paĝo estis malŝaltita, ĉar ĉi tiu vikio anstataŭigas la etosajn preferojn kun la defaŭlta etosaro de la administranto.',
 'skin-preview'             => 'Antaŭrigardo',
 'math'                     => 'Matematikaĵoj',
 'dateformat'               => 'Datformato',

@@ -1080,7 +1080,6 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen
 'qbsettings-floatingright' => 'Rechts, schwebend',
 'changepassword'           => 'Passwort ändern',
 'skin'                     => 'Skin',
-'skin-override'            => 'Dieses Formular wurde deaktiviert, da dieses Wiki die Skineinstellungen ignoriert und den Standardskin verwendet, der vom Administrator festgelegt wurde.',
 'skin-preview'             => 'Vorschau',
 'math'                     => 'TeX',
 'dateformat'               => 'Datumsformat',
