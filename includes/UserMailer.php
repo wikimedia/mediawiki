@@ -46,7 +46,7 @@ class MailAddress {
 
 	/**
 	 * Return formatted and quoted address to insert into SMTP headers
-	 * @param  bool $useRealName True will use real name instead of username
+	 * @param  bool $wgEnotifUseRealName true will use real name instead of username
 	 * @return string
 	 */
 	function toString() {
