@@ -1748,7 +1748,6 @@ PICT # שונות
 'usereditcount'           => '{{PLURAL:$1|עריכה אחת|$1 עריכות}}',
 'newpages'                => 'דפים חדשים',
 'newpages-username'       => 'שם משתמש:',
-'newpages-showhideredirs' => '$1 הפניות',
 'ancientpages'            => 'דפים מוזנחים',
 'move'                    => 'העברה',
 'movethispage'            => 'העברת דף זה',
