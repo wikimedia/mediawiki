@@ -746,12 +746,6 @@ Kapau ʻaho ʻe taha, te ke fietoʻo ʻa e pēsí mei hoʻo hokohoko leʻo, lomi
 'iteminvalidname'      => "Meʻa fihi mo e meʻa '$1', hingo taʻeʻaongaʻi...",
 'wlnote'               => 'ʻOku ʻasi ʻi lalo ʻa e liliu fakamuimui ʻe $1 ʻi he houa fakamuimui ʻe <b>$2</b>.',
 'wlshowlast'           => 'ʻAsi mai houa fakamuimui ʻe $1, ʻaho ʻe $2, $3',
-'watchlist-show-bots'  => 'ʻAsi mai fatu fakamīsini',
-'watchlist-hide-bots'  => 'Toi fatu fakamīsini',
-'watchlist-show-own'   => 'ʻAsi mai fatu ʻaʻaku',
-'watchlist-hide-own'   => 'Toi fatu ʻaʻaku',
-'watchlist-show-minor' => 'ʻAsi mai fatu siʻi',
-'watchlist-hide-minor' => 'Toi fatu siʻi',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'ʻOku leʻo...',

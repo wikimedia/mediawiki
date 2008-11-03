@@ -620,26 +620,23 @@ Pajes a [[Special:Watchlist|tu lista de pajes oservada]] es en leteras '''forte'
 'emailto'   => 'Per',
 
 # Watchlist
-'watchlist'            => 'Pajes oservada',
-'mywatchlist'          => 'Me lista de pajes oservada',
-'watchlistfor'         => "(per '''$1''')",
-'nowatchlist'          => 'Tu ave no cosas en tu lista oservada',
-'addedwatch'           => 'Juntada a la lista de pajes oservada',
-'addedwatchtext'       => "La paje \"[[:\$1]]\" ia es juntada a tu [[Special:Watchlist|lista de pajes oservada]].
+'watchlist'         => 'Pajes oservada',
+'mywatchlist'       => 'Me lista de pajes oservada',
+'watchlistfor'      => "(per '''$1''')",
+'nowatchlist'       => 'Tu ave no cosas en tu lista oservada',
+'addedwatch'        => 'Juntada a la lista de pajes oservada',
+'addedwatchtext'    => "La paje \"[[:\$1]]\" ia es juntada a tu [[Special:Watchlist|lista de pajes oservada]].
 Cambias future a esta paje e se paje de discutes va es listada ala, e la paje va apera en leteras '''forte''' en la [[Special:RecentChanges|lista de cambias resente]] per es plu fasil oservada.
 
 Si tu vole sutrae la paje de tu lista de pajes oservada en la futur, clica a \"no oserva\" en la bara a la lado.",
-'removedwatch'         => 'Sutraeda de la lista de pajes oservada',
-'removedwatchtext'     => 'La paje "[[:$1]]" ia es sutraeda de tu lista de pajes oservada.',
-'watch'                => 'Oserva',
-'watchthispage'        => 'Oserva esta paje',
-'unwatch'              => 'Nonoserva',
-'watchlist-details'    => '{{PLURAL:$1|$1 paje|$1 pajes}} osservada, sin pajes de discutes.',
-'watchlistcontains'    => 'Tu lista oservada teni $1 {{PLURAL:$1|paje|pajes}}.',
-'wlshowlast'           => 'Mostra la $1 oras e $2 dias presedente $3',
-'watchlist-hide-bots'  => 'Asconde editas de bot',
-'watchlist-hide-own'   => 'Asconde me editas',
-'watchlist-hide-minor' => 'Asconde editas minor',
+'removedwatch'      => 'Sutraeda de la lista de pajes oservada',
+'removedwatchtext'  => 'La paje "[[:$1]]" ia es sutraeda de tu lista de pajes oservada.',
+'watch'             => 'Oserva',
+'watchthispage'     => 'Oserva esta paje',
+'unwatch'           => 'Nonoserva',
+'watchlist-details' => '{{PLURAL:$1|$1 paje|$1 pajes}} osservada, sin pajes de discutes.',
+'watchlistcontains' => 'Tu lista oservada teni $1 {{PLURAL:$1|paje|pajes}}.',
+'wlshowlast'        => 'Mostra la $1 oras e $2 dias presedente $3',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Oserva...',

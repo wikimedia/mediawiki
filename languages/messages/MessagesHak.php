@@ -984,12 +984,6 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.',
 'iteminvalidname'      => "Hong-mien '$1' chho-ngu, mò-háu min-miàng...",
 'wlnote'               => 'Yî-ha he chui-khiûn <b>$2</b> séu-sṳ̀ nui-ke chui-heu $1-chhṳ chin-siû.',
 'wlshowlast'           => 'Hién-sṳ chui-khiûn $1 séu-sṳ̀ $2-thiên $3 ke chin-siû.',
-'watchlist-show-bots'  => 'Hién-sṳ kî-hi-ngìn ke phiên-cho',
-'watchlist-hide-bots'  => 'Yún-chhòng kî-hi-ngìn ke phiên-cho',
-'watchlist-show-own'   => 'Hién-sṳ ngô-ke siù-kói',
-'watchlist-hide-own'   => 'Yún-chhòng ngô-ke siù-kói',
-'watchlist-show-minor' => 'Hién-sṳ séu siù-kói',
-'watchlist-hide-minor' => 'Yún-chhòng séu siù-chho',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Chang-chhai kam-sṳ...',

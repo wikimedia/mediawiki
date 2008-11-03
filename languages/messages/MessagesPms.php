@@ -1308,12 +1308,6 @@ Se a vorèissa mai gavé st'articol-sì da 'nt la lista dij ''Sot Euj'', che a s
 'iteminvalidname'      => "Problema con l'element '$1', nòm nen vàlid...",
 'wlnote'               => "Ambelessì sota a-i {{PLURAL:$1|é l'ùltima modìfica|son j'ùltime '''$1''' modìfiche}} ant {{PLURAL:$2|l'ùltima ora|j'ùltime '''$2''' ore}}.",
 'wlshowlast'           => "Most-me j'ùltime $1 ore $2 dì $3",
-'watchlist-show-bots'  => 'Smon ëdcò ël travaj dij trigomiro',
-'watchlist-hide-bots'  => 'Stërma ël travaj dij trigomiro',
-'watchlist-show-own'   => 'Smon mie modìfiche',
-'watchlist-hide-own'   => 'Stërma mie modìfiche',
-'watchlist-show-minor' => 'Smon le modìfiche cite',
-'watchlist-hide-minor' => 'Stërma le modìfiche cite',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Sot euj...',

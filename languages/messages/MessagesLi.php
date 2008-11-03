@@ -1508,12 +1508,6 @@ Ouch versjiene gevolgde pazjena\'s in \'t <b>vet</b> in de [[Special:RecentChang
 'iteminvalidname'      => "Probleem mit object '$1', ongeljige naam...",
 'wlnote'               => "Hieonger {{PLURAL:$1|steit de lètste verangering|staon de lètste $1 verangeringe}} van {{PLURAL:$2|'t lètse oer|de lètste <b>$2</b> oer}}.",
 'wlshowlast'           => 'Tuin lètste $1 ore $2 daag $3',
-'watchlist-show-bots'  => 'Tuun bots',
-'watchlist-hide-bots'  => 'Verberg bots',
-'watchlist-show-own'   => 'Tuun mien bewerkinge',
-'watchlist-hide-own'   => 'Verberg mien bewerkinge',
-'watchlist-show-minor' => 'Tuun kleine bewerkinge',
-'watchlist-hide-minor' => 'Verberg kleine bewerkinge',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Aant volge...',

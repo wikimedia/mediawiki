@@ -29,10 +29,6 @@ $messages = array(
 # Recent changes
 'rcshowhidebots' => '$1機械人的編輯',
 
-# Watchlist
-'watchlist-show-bots' => '顯示機械人的編輯',
-'watchlist-hide-bots' => '隱藏機械人的編輯',
-
 # Tooltip help for the actions
 'tooltip-t-print' => '這個頁面的可打印版本',
 

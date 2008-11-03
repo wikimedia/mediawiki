@@ -1323,12 +1323,6 @@ Ta sulara va batu bu div rinafi suzdasiki, koe grablexo va « Mea suzdá » vule
 'iteminvalidname'      => 'Zvak icde « $1 » teliz : yolt tir mewadaf...',
 'wlnote'               => 'Vleveon tid tela $1 ironokafa betara mali <b>$2</b> ironokaf bartiv.',
 'wlshowlast'           => 'Nedira va ironokaf $1 bartiv isu $2 viel isu $3',
-'watchlist-show-bots'  => 'Nedira va stiernaf betakseem',
-'watchlist-hide-bots'  => 'Palsera va stiernaf betakseem',
-'watchlist-show-own'   => 'Nedira va jinaf webekseem',
-'watchlist-hide-own'   => 'Palsera va jinaf betamakseem',
-'watchlist-show-minor' => 'Nedira va betamakseem',
-'watchlist-hide-minor' => 'Palsera va betamakseem',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Nedis...',

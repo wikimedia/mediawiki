@@ -549,26 +549,23 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'emailuser' => 'Mtumie mtumiaji huyu barua pepe',
 
 # Watchlist
-'watchlist'            => 'Maangalizi yangu',
-'mywatchlist'          => 'Maangalizi yangu',
-'watchlistfor'         => "(kwa '''$1''')",
-'addedwatch'           => 'Imeongezwa kwenye maangalizi yako',
-'addedwatchtext'       => "Ukurasa \"[[:\$1]]\" umewekwa kwenye [[Special:Watchlist|maangalizi]] yako.
+'watchlist'         => 'Maangalizi yangu',
+'mywatchlist'       => 'Maangalizi yangu',
+'watchlistfor'      => "(kwa '''$1''')",
+'addedwatch'        => 'Imeongezwa kwenye maangalizi yako',
+'addedwatchtext'    => "Ukurasa \"[[:\$1]]\" umewekwa kwenye [[Special:Watchlist|maangalizi]] yako.
 Mabadiliko katika ukurasa huo na ukurasa wake wa majadiliano utaonekana hapo,
 na ukurasa utaonyeshwa wenye '''koze''' kwenye [[Special:RecentChanges|orodha ya mabadiliko ya karibuni]]
 ili kukusaidia kutambua.
 
 Ukitaka kufuta ukurasa huo kutoka maangalizi yako baadaye, bonyeza \"Acha kufuatilia\" katika mwamba pembeni.",
-'removedwatch'         => 'Imefutwa kutoka maangalizi yako',
-'removedwatchtext'     => 'Ukurasa "[[:$1]]" umefutwa kutoka maangalizi yako.',
-'watch'                => 'Fuatilia',
-'watchthispage'        => 'Fuatilia ukurasa huu',
-'unwatch'              => 'Acha kufuatilia',
-'watchlist-details'    => 'Unafuatilia {{PLURAL:$1|ukurasa $1|kurasa $1}} bila kuzingatia kurasa za majadiliano',
-'wlshowlast'           => 'Onyesha kutoka masaa $1 siku $2 $3',
-'watchlist-hide-bots'  => 'Ficha masahihisho ya roboti',
-'watchlist-hide-own'   => 'Ficha hariri zangu',
-'watchlist-hide-minor' => 'Ficha mabadiliko madogo',
+'removedwatch'      => 'Imefutwa kutoka maangalizi yako',
+'removedwatchtext'  => 'Ukurasa "[[:$1]]" umefutwa kutoka maangalizi yako.',
+'watch'             => 'Fuatilia',
+'watchthispage'     => 'Fuatilia ukurasa huu',
+'unwatch'           => 'Acha kufuatilia',
+'watchlist-details' => 'Unafuatilia {{PLURAL:$1|ukurasa $1|kurasa $1}} bila kuzingatia kurasa za majadiliano',
+'wlshowlast'        => 'Onyesha kutoka masaa $1 siku $2 $3',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Unafuatilia...',

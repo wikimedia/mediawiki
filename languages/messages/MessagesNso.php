@@ -725,27 +725,21 @@ Matlakala ago ba [[Special:Watchlist|lenanong la gago la matlakala ditlhapetšo]
 'emailsenttext'  => 'Molaetša wa gago wa email gawa romelwa.',
 
 # Watchlist
-'watchlist'            => 'Lenano la ditlhapetšo tša ka',
-'mywatchlist'          => 'Lenano la ditlhapetšo tša ka',
-'watchlistfor'         => "(ya '''$1''')",
-'addedwatch'           => 'Loketšwe go lenano la ditlhapetšo',
-'addedwatchtext'       => "Letlakala \"[[:\$1]]\" le tsene go [[Special:Watchlist|watchlist]] ya gago.
+'watchlist'         => 'Lenano la ditlhapetšo tša ka',
+'mywatchlist'       => 'Lenano la ditlhapetšo tša ka',
+'watchlistfor'      => "(ya '''$1''')",
+'addedwatch'        => 'Loketšwe go lenano la ditlhapetšo',
+'addedwatchtext'    => "Letlakala \"[[:\$1]]\" le tsene go [[Special:Watchlist|watchlist]] ya gago.
 Go tloga bjale, diphetogo letlakaleng le, le letlakaleng la dipoledišano la gona, di tla bontšhwa ka mongalo wa '''bold''' gare ga [[Special:RecentChanges|list of recent changes]] gore go be bonolo gore oa bone.
 
 Ga eba o nyaka go hloša letlaka le go lenano la ditlhapetšo tša gago, šomiša \"Tloša tlhapetšo\" go sidebar.",
-'removedwatch'         => 'Tlošitšwe go lenano la ditlhapetšo',
-'removedwatchtext'     => 'Letlakala "[[:$1]]" letlošitšwe go lenano la gago la ditlhapetšo.',
-'watch'                => 'Tlhapetša',
-'watchthispage'        => 'Tlhapetša letlakala le',
-'unwatch'              => 'Tloša tlhapešo',
-'watchlist-details'    => '{{PLURAL:$1|$1 ya letlakala|$1 ya matlakala}} a lenano la ditlhapetšo tša gago, re sa bale matlakala a dipoledišano (dipolelo).',
-'wlshowlast'           => 'Laetša  $1 diiri $2 matšatši $3 tša gofeta',
-'watchlist-show-bots'  => "Laetša diphetogo tša ''bot''",
-'watchlist-hide-bots'  => "Fihla diphetogo tša ''bot''",
-'watchlist-show-own'   => 'Laetša diphetogo tša ka',
-'watchlist-hide-own'   => 'Fihla diphetogo tša ka',
-'watchlist-show-minor' => 'Bontšha diphetogo tše nnyenyane',
-'watchlist-hide-minor' => 'Fihla diphetogo tše nnyenyane',
+'removedwatch'      => 'Tlošitšwe go lenano la ditlhapetšo',
+'removedwatchtext'  => 'Letlakala "[[:$1]]" letlošitšwe go lenano la gago la ditlhapetšo.',
+'watch'             => 'Tlhapetša',
+'watchthispage'     => 'Tlhapetša letlakala le',
+'unwatch'           => 'Tloša tlhapešo',
+'watchlist-details' => '{{PLURAL:$1|$1 ya letlakala|$1 ya matlakala}} a lenano la ditlhapetšo tša gago, re sa bale matlakala a dipoledišano (dipolelo).',
+'wlshowlast'        => 'Laetša  $1 diiri $2 matšatši $3 tša gofeta',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Tlhapeditše...',

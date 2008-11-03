@@ -916,23 +916,20 @@ Papira ini [[Special:Watchlist|yu Tan Luku réy]] '''fatu'''.",
 'emailsend'       => 'Stir',
 
 # Watchlist
-'watchlist'            => 'Mi Tan Luku réy',
-'mywatchlist'          => 'Mi Tan luku réy',
-'watchlistfor'         => "(fu '''$1''')",
-'addedwatch'           => 'Presi a yu sirey',
-'addedwatchtext'       => "A papira \"[[:\$1]]\" ben presi a yu [[Special:Watchlist|sirey]]. Folo kenki fu disi papira nanga a taki sey opo [[Special:Watchlist|yu sirey]] nanga sey '''deku''' ini a [[Special:RecentChanges|rey fu bakseywan kenki]].
+'watchlist'         => 'Mi Tan Luku réy',
+'mywatchlist'       => 'Mi Tan luku réy',
+'watchlistfor'      => "(fu '''$1''')",
+'addedwatch'        => 'Presi a yu sirey',
+'addedwatchtext'    => "A papira \"[[:\$1]]\" ben presi a yu [[Special:Watchlist|sirey]]. Folo kenki fu disi papira nanga a taki sey opo [[Special:Watchlist|yu sirey]] nanga sey '''deku''' ini a [[Special:RecentChanges|rey fu bakseywan kenki]].
 
 Iksi yu wan papira no langar wana si, go na a papira nanga du opo \"No si\" ini a menu.",
-'removedwatch'         => 'Trowe fu yu sirey',
-'removedwatchtext'     => 'A papira "[[:$1]]" ben trowe fu yu sirey.',
-'watch'                => 'Tan luku',
-'watchthispage'        => 'Tan luku a papira disi',
-'unwatch'              => 'No tan luku',
-'watchlist-details'    => '{{PLURAL:$1|Wan papira|$1 papira}} de ini yu Tan Luku réy, sondro fu teri den kruderi papira.',
-'wlshowlast'           => 'Sori laste $1 yuru, $2 dey ($3)',
-'watchlist-hide-bots'  => 'Kibri kenki fu den bot',
-'watchlist-hide-own'   => 'Kibri mi kenki',
-'watchlist-hide-minor' => 'Kibri pikin kenki',
+'removedwatch'      => 'Trowe fu yu sirey',
+'removedwatchtext'  => 'A papira "[[:$1]]" ben trowe fu yu sirey.',
+'watch'             => 'Tan luku',
+'watchthispage'     => 'Tan luku a papira disi',
+'unwatch'           => 'No tan luku',
+'watchlist-details' => '{{PLURAL:$1|Wan papira|$1 papira}} de ini yu Tan Luku réy, sondro fu teri den kruderi papira.',
+'wlshowlast'        => 'Sori laste $1 yuru, $2 dey ($3)',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'A wiki e poti a papira disi ini yu Tan Luku...',

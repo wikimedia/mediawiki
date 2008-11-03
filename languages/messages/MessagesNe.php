@@ -401,12 +401,6 @@ $messages = array(
 'wlheader-enotif'      => '* ईमेलद्वारा जानकारी गराउने तरिका enable गरियो ।',
 'wlheader-showupdated' => "* तपाइले पछिल्लो पल्ट भ्रमण गरेपछि परिवर्तन भएका पृष्ठहरूलाई '''गाढा''' गरेर देखाइएको छ ।",
 'wlshowlast'           => 'पछिल्ला $2 दिनहरूका $3 $1 घण्टाहरूका देखाउनुहोस्',
-'watchlist-show-bots'  => 'बोट सम्पादन देखाउनुहोस्',
-'watchlist-hide-bots'  => 'बोट सम्पादन लुकाउनुहोस्',
-'watchlist-show-own'   => 'मेरा सम्पादनहरु देखाउनुहोस्',
-'watchlist-hide-own'   => 'मेरा सम्पादनहरु लुकाउनुहोस्',
-'watchlist-show-minor' => 'सानो सम्पादन देखाउनुहोस्',
-'watchlist-hide-minor' => 'सानो सम्पादन लुकाउनुहोस्',
 
 'enotif_newpagetext' => 'यो नयाँ पृष्ठ हो।',
 'changed'            => 'परिवर्तन भइसकेको',

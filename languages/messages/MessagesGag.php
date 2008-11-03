@@ -650,27 +650,24 @@ Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 'emailuser' => 'Gönder bu kullanıcıya bir e-mail',
 
 # Watchlist
-'watchlist'            => 'Bakmaa listam',
-'mywatchlist'          => 'Bakmaa listam',
-'watchlistfor'         => "('''$1''' için)",
-'addedwatch'           => 'Bakmaa listasına registrat edildi.',
-'addedwatchtext'       => '"<nowiki>$1</nowiki>" adlı sayfa [[Special:Watchlist|bakmaa listanıza]] registrat olundu.
+'watchlist'         => 'Bakmaa listam',
+'mywatchlist'       => 'Bakmaa listam',
+'watchlistfor'      => "('''$1''' için)",
+'addedwatch'        => 'Bakmaa listasına registrat edildi.',
+'addedwatchtext'    => '"<nowiki>$1</nowiki>" adlı sayfa [[Special:Watchlist|bakmaa listanıza]] registrat olundu.
 
 Gelecektä, bu sayfaya hem ilgili konuşmaa sayfasına yapılacêk diişmäkler burada yazılacêk.
 
 [[Special:RecentChanges|Bitki diişmäkler listası]] başlıı altında yazılacêk kalın bukvalarnan neçin ki kolayca seçilsin.
 
 Ne zaman neetlendiniz sayfayı bakmaa listasınnan çıkarmaa tuşlayın "sayfaya bakmaa durgun" baalantısına.',
-'removedwatch'         => 'Bakmaa listanızdan silindi',
-'removedwatchtext'     => '"<nowiki>$1</nowiki>" yapraı siir listanızdan silindi.',
-'watch'                => 'Bak',
-'watchthispage'        => 'Bak bu sayfaya',
-'unwatch'              => 'Durgun sayfa izlemää',
-'watchlist-details'    => 'Diil konuşmaa sayfaları $1 sayfa bakmaa listanızda.',
-'wlshowlast'           => 'Bitki $1 saati $2 günü göster $3',
-'watchlist-hide-bots'  => 'Bot diişmäklerini sakla',
-'watchlist-hide-own'   => 'Benim diişmäklerimi sakla',
-'watchlist-hide-minor' => 'Küçük diişmäkleri sakla',
+'removedwatch'      => 'Bakmaa listanızdan silindi',
+'removedwatchtext'  => '"<nowiki>$1</nowiki>" yapraı siir listanızdan silindi.',
+'watch'             => 'Bak',
+'watchthispage'     => 'Bak bu sayfaya',
+'unwatch'           => 'Durgun sayfa izlemää',
+'watchlist-details' => 'Diil konuşmaa sayfaları $1 sayfa bakmaa listanızda.',
+'wlshowlast'        => 'Bitki $1 saati $2 günü göster $3',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Bakılêr...',

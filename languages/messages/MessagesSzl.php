@@ -1484,12 +1484,6 @@ Na tyi liśće bydźeš mjou rejer přišuych sprowjyń tyi zajty i jeji zajty g
 'iteminvalidname'      => 'Problym ze pozycjům „$1”, felerne mjano...',
 'wlnote'               => "Půńižy pokazano {{PLURAL:$1|ostatńy sprawjyńy dokůnane|ostatńy '''$1''' sprawjyńe dokůnane|ostatńych '''$1''' sprawjyń dokůnanych}} bez {{PLURAL:$2|uostatńo godźina|uostatńich '''$2''' godźin}}.",
 'wlshowlast'           => 'Pokož uostatńy $1 godźin $2 dńi ($3)',
-'watchlist-show-bots'  => 'pokaž sprowjyńo botůw',
-'watchlist-hide-bots'  => 'schowej sprowjyńa botůw',
-'watchlist-show-own'   => 'pokož bezy mje sprowjůne',
-'watchlist-hide-own'   => 'schowej moje sprawjyńa',
-'watchlist-show-minor' => 'pokož drobne pomjyńańa',
-'watchlist-hide-minor' => 'Schowej drobne pomjyńańa',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Dowom pozor...',

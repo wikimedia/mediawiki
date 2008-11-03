@@ -1767,16 +1767,6 @@ PICT # misc.
 'iteminvalidname'      => "Проблем со елементот '$1', неважечко име...",
 'wlnote'               => "Подолу {{PLURAL:$1|е прикажана последната промена|се прикажани последните '''$1''' промени}} во {{PLURAL:$2|последниов час|последниве '''$2''' часа}}.",
 'wlshowlast'           => 'Прикажи ги последните $1 часа, $2 денови, $3',
-'watchlist-show-bots'  => 'Прикажи бот уредувања',
-'watchlist-hide-bots'  => 'Сокриј бот уредувања',
-'watchlist-show-own'   => 'Прикажи мои уредувања',
-'watchlist-hide-own'   => 'Сокриј мои уредувања',
-'watchlist-show-minor' => 'Прикажи мали уредувања',
-'watchlist-hide-minor' => 'Сокриј мали измени',
-'watchlist-show-anons' => 'Прикажи анонимни уредувања',
-'watchlist-hide-anons' => 'Сокриј анонимни уредувања',
-'watchlist-show-liu'   => 'Прикажи уредувања на најавени корисници',
-'watchlist-hide-liu'   => 'Сокриј уредувања на најавени корисници',
 'watchlist-options'    => 'Опции на листа на набљудувања',
 
 # Displayed when you click the "watch" button and it is in the process of watching

@@ -1166,12 +1166,6 @@ Template:消除歧義',
 'iteminvalidname'      => "頁面'$1'錯誤，無效命名...",
 'wlnote'               => '以下是最近<b>$2</b>小時內的最後$1次修改。',
 'wlshowlast'           => '顯示最近$1小時；$2天；$3的修改。',
-'watchlist-show-bots'  => '顯示機器人的編輯',
-'watchlist-hide-bots'  => '隱藏機器人的編輯',
-'watchlist-show-own'   => '顯示我的修改',
-'watchlist-hide-own'   => '隱藏我的修改',
-'watchlist-show-minor' => '顯示細微修改',
-'watchlist-hide-minor' => '隱藏細微修改',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => '正在監視...',

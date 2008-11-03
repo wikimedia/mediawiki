@@ -1303,12 +1303,6 @@ Por suprimar cela pâge de voutra lista de siuvu, clicâd dessus « pas més siu
 'iteminvalidname'      => 'Problèmo avouéc l’articllo « $1 » : lo nom est envalido...',
 'wlnote'               => 'Ce-desot sè {{PLURAL:$1|trove la dèrriére modificacion|trovont les $1 dèrriéres modificacions}} dês {{PLURAL:$2|l’hora passâ|les <b>$2</b> hores passâs}}.',
 'wlshowlast'           => 'Montrar les $1 hores passâs, los $2 jorns passâs, ou ben $3 ;',
-'watchlist-show-bots'  => 'afichiér les contribucions de bots',
-'watchlist-hide-bots'  => 'mâscar les contribucions de bots',
-'watchlist-show-own'   => 'afichiér mes contribucions',
-'watchlist-hide-own'   => 'mâscar mes contribucions',
-'watchlist-show-minor' => 'afichiér les modificacions minores.',
-'watchlist-hide-minor' => 'mâscar les modificacions minores.',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Siuvu...',

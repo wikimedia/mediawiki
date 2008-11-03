@@ -552,25 +552,22 @@ $2',
 'emailuser' => 'امیل ای کاربر',
 
 # Watchlist
-'watchlist'            => 'لیست پیگیریهای مو',
-'mywatchlist'          => 'لیست پیگیریهای مو',
-'watchlistfor'         => "(سی '''$1''')",
-'addedwatch'           => 'اضاف وابید به لیست پیگیری',
-'addedwatchtext'       => "صفحه «<nowiki>$1</nowiki>» به [[Special:Watchlist|لیست پی‌گیری‌های ]] ایسا   
+'watchlist'         => 'لیست پیگیریهای مو',
+'mywatchlist'       => 'لیست پیگیریهای مو',
+'watchlistfor'      => "(سی '''$1''')",
+'addedwatch'        => 'اضاف وابید به لیست پیگیری',
+'addedwatchtext'    => "صفحه «<nowiki>$1</nowiki>» به [[Special:Watchlist|لیست پی‌گیری‌های ]] ایسا   
 اضاف وابید.
 تغییرات این صفحه و صفحه صحبت مر بوطه اش در آینده ایچو لیست ابوه. به‌علاوه، ای صفحه، سی واضح‌تر دیده وابیدن در [[Special:RecentChanges|فهرست تغییرات اخیر]] به شکل <b>سیاه</b> ایا.
 
 ایر بعدا خواستین ای  صفحه زه لیست پی‌گیریهاتو ورداشته بوه، رو «'''عدم پی‌گیری'''» در بالای صفحه کلیک کنین.",
-'removedwatch'         => 'زه لیست پیگیری حذف وابید',
-'removedwatchtext'     => 'آن صفحه"[[:$1]]" جابجا وابیده زه[[Special:لیست پیگیری|لیست پیگیری ایسا]].',
-'watch'                => 'پی‌گیری',
-'watchthispage'        => 'پیگیری ای صفحه',
-'unwatch'              => 'عدم پیگیری',
-'watchlist-details'    => '{{PLURAL:$1|$1 صفحه|$1 صفحات}} درلیست پیگیری ایسا, صفحات صحبت حساب نیبوه.',
-'wlshowlast'           => 'نمایش آخرین $1 ساعت $2 روز $3',
-'watchlist-hide-bots'  => 'قایم کردن اصلاحات بوت یا ربات',
-'watchlist-hide-own'   => 'قایم کردن اصلاحات مو',
-'watchlist-hide-minor' => 'قایم کردن اصلاحات ریز',
+'removedwatch'      => 'زه لیست پیگیری حذف وابید',
+'removedwatchtext'  => 'آن صفحه"[[:$1]]" جابجا وابیده زه[[Special:لیست پیگیری|لیست پیگیری ایسا]].',
+'watch'             => 'پی‌گیری',
+'watchthispage'     => 'پیگیری ای صفحه',
+'unwatch'           => 'عدم پیگیری',
+'watchlist-details' => '{{PLURAL:$1|$1 صفحه|$1 صفحات}} درلیست پیگیری ایسا, صفحات صحبت حساب نیبوه.',
+'wlshowlast'        => 'نمایش آخرین $1 ساعت $2 روز $3',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'درحال پیگیری...',

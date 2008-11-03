@@ -1559,12 +1559,6 @@ Evit tennañ ar bajenn-mañ a-ziwar ho rollad evezhiañ. klikit war "Paouez da e
 'iteminvalidname'      => "Ur gudenn zo gant ar pennad « $1 » : n'eo ket mat e anv...",
 'wlnote'               => 'A-is emañ an $1 kemm diwezhañ abaoe an <b>$2</b> eurvezh diwezhañ.',
 'wlshowlast'           => 'Diskouez an $1 eurvezh $2 devezh diwezhañ $3',
-'watchlist-show-bots'  => 'Diskouez kemmoù ar robotoù',
-'watchlist-hide-bots'  => 'Kuzhat kemmoù ar botoù',
-'watchlist-show-own'   => "Diskouez ma c'hemmoù",
-'watchlist-hide-own'   => "Kuzhat ma c'hemmoù",
-'watchlist-show-minor' => "Diskouez ar c'hemmoù dister",
-'watchlist-hide-minor' => "Kuzhat ar c'hemmoù dister",
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Heuliet...',

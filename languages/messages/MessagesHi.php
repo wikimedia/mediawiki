@@ -1486,12 +1486,6 @@ PICT # misc.
 'iteminvalidname'      => "'$1' के साथ समस्या, अवैध नाम...",
 'wlnote'               => "नीचे पीछले {{PLURAL:$2|घंटेमें|'''$2''' घंटोंमें}} हुए {{PLURAL:$1|आखिरी बदलाव|आखिरी '''$1''' बदलाव}} दिये हुए हैं।",
 'wlshowlast'           => 'पिछले $1 घंटे $2 दिन $3 देखें',
-'watchlist-show-bots'  => 'बोटों के बदलाव दर्शायें',
-'watchlist-hide-bots'  => 'बोट एडिट छुपायें',
-'watchlist-show-own'   => 'मेरे बदलाव दर्शायें',
-'watchlist-hide-own'   => 'मेरे बदलाव छुपायें',
-'watchlist-show-minor' => 'छोटे बदलाव दर्शायें',
-'watchlist-hide-minor' => 'छोटे बदलाव छुपायें',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'ध्यान दे रहे हैं...',

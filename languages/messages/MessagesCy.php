@@ -1541,16 +1541,6 @@ Os ydych am ddiddymu'r dudalen o'r rhestr gwylio, cliciwch ar \"Stopio gwylio\" 
 'iteminvalidname'      => "Problem gyda'r eitem '$1', enw annilys...",
 'wlnote'               => "Gweler isod y '''$1''' {{PLURAL:$1|newidiad|newidiad|newidiad|newidiad|newidiad|newidiad}} diweddaraf yn ystod y <b>$2</b> {{PLURAL:$1|awr|awr|awr|awr|awr|awr}} ddiwethaf.",
 'wlshowlast'           => "Dangoser newidiadau'r $1 awr ddiwethaf neu'r $2 {{PLURAL:$2|diwrnod|diwrnod|ddiwrnod|diwrnod|diwrnod|diwrnod}} diwethaf neu'r $3 newidiadau.",
-'watchlist-show-bots'  => 'Dangos golygiadau bot',
-'watchlist-hide-bots'  => 'Cuddio golygiadau bot',
-'watchlist-show-own'   => 'Dangos fy ngolygiadau',
-'watchlist-hide-own'   => 'Cuddio fy ngolygiadau',
-'watchlist-show-minor' => 'Dangos golygiadau bychain',
-'watchlist-hide-minor' => 'Cuddio golygiadau bychain',
-'watchlist-show-anons' => 'Dangos golygiadau dienw',
-'watchlist-hide-anons' => 'Cuddio golygiadau dienw',
-'watchlist-show-liu'   => 'Dangos golygiadau gan ddefnyddwyr mewngofnodedig',
-'watchlist-hide-liu'   => 'Cuddio golygiadau gan ddefnyddwyr mewngofnodedig',
 'watchlist-options'    => 'Dewisiadau ar gyfer y rhestr gwylio',
 
 # Displayed when you click the "watch" button and it is in the process of watching

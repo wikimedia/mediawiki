@@ -962,9 +962,6 @@ $messages = array(
 'wlheader-enotif'      => 'د برېښليک له لارې خبرول چارن شوی.*',
 'wlheader-showupdated' => "* هغه مخونه چې وروستی ځل ستاسو د کتلو نه وروسته بدلون موندلی په '''روڼ''' ليک نښه شوي.",
 'wlshowlast'           => 'وروستي $1 ساعتونه $2 ورځې $3 ښکاره کړه',
-'watchlist-hide-bots'  => 'د باټ سمادېدنې پټول',
-'watchlist-hide-own'   => 'زما سمادونه پټول',
-'watchlist-hide-minor' => 'وړې سمادېدنې پټول',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'د کتلو په حال کې...',

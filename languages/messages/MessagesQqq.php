@@ -1482,16 +1482,6 @@ Special:EmailUser appears when you click on the link "E-mail this user" in the s
 'watchlist-details'    => 'Message on Special page: My watchlist. This is paired with the message [[Mediawiki:Nowatchlist]] which appears instead of Watchlist-details when $1 is 0.',
 'wlheader-showupdated' => 'This message shows up near top of users watchlist page.',
 'wlshowlast'           => "Appears on [[Special:Watchlist]]. Variable $1 gives a choice of different numbers of hours, $2 gives a choice of different numbers of days and $3 is 'all' ([[Mediawiki:watchlistall2]]). Clicking on your choice changes the list of changes you see (without changing the default in my preferences).",
-'watchlist-show-bots'  => 'Option in [[Special:Watchlist]].',
-'watchlist-hide-bots'  => 'Option in [[Special:Watchlist]].',
-'watchlist-show-own'   => 'Option in [[Special:Watchlist]].',
-'watchlist-hide-own'   => 'Option in [[Special:Watchlist]].',
-'watchlist-show-minor' => 'Option in [[Special:Watchlist]].',
-'watchlist-hide-minor' => 'Option in [[Special:Watchlist]].',
-'watchlist-show-anons' => 'Option in [[Special:Watchlist]]',
-'watchlist-hide-anons' => 'Option in [[Special:Watchlist]]',
-'watchlist-show-liu'   => 'Option in [[Special:Watchlist]]',
-'watchlist-hide-liu'   => 'Option in [[Special:Watchlist]]',
 'watchlist-options'    => 'Legend of the fieldset of [[Special:Watchlist]]',
 
 # Displayed when you click the "watch" button and it is in the process of watching

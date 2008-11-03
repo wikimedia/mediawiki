@@ -1171,12 +1171,6 @@ ja sul piät umin [[Special:Preferences|säädmiisin]] olõma e-postiaadrõs, et
 'iteminvalidname'      => "Hädä lehega '$1'! Lehe nimen om viga.",
 'wlnote'               => "Tan om '''$1''' {{PLURAL:$1|muutminõ|muutmist}} viimädse '''$2''' tunni ao seen.",
 'wlshowlast'           => 'Näütäq viimädseq $1 tunni $2 päivä $3',
-'watchlist-show-bots'  => 'Näütäq robotidõ toimõnduisi',
-'watchlist-hide-bots'  => 'Näüdäku-i robotidõ toimõnduisi',
-'watchlist-show-own'   => 'Näütäq muq toimõnduisi',
-'watchlist-hide-own'   => 'Näüdäku-i muq toimõnduisi',
-'watchlist-show-minor' => "Näütäq tsill'okõisi muutmiisi",
-'watchlist-hide-minor' => "Näüdäku-i tsill'okõisi muutmiisi",
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Pandas perräkaemisnimekirjä...',

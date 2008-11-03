@@ -1636,12 +1636,6 @@ $2',
 'iteminvalidname'      => "Проблем са ставком '$1', неисправно име...",
 'wlnote'               => "Испод {{PLURAL:$1|је последња измена|су последње '''$1''' измене|последњих '''$1''' измена}} у {{PLURAL:$2|последњем сату|последња '''$2''' сата|последњих '''$2''' сати}}.",
 'wlshowlast'           => 'Прикажи последњих $1 сати $2 дана $3',
-'watchlist-show-bots'  => 'Прикажи измене ботова',
-'watchlist-hide-bots'  => 'Сакриј измене ботова',
-'watchlist-show-own'   => 'Прикажи моје измене',
-'watchlist-hide-own'   => 'Сакриј моје измене',
-'watchlist-show-minor' => 'Прикажи мале измене',
-'watchlist-hide-minor' => 'Сакриј мале измене',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Надгледам...',

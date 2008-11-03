@@ -1149,14 +1149,6 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'watchlistcontains'    => 'አሁን በሙሉ $1 ገጾች እየተከታተሉ ነው።',
 'wlnote'               => 'ባለፉት <b>$2</b> ሰዓቶች የተደረጉት $1 መጨረሻ ለውጦች እታች ይገኛሉ።',
 'wlshowlast'           => 'ያለፉት $1 ሰዓት፤ $2 ቀን፤ $3 ይታዩ።',
-'watchlist-show-bots'  => 'የቦት (BOT) ለውጦች ይታዩ',
-'watchlist-hide-bots'  => 'የቦት (BOT) ለውጦች ይደበቁ',
-'watchlist-show-own'   => 'የራሴ ለውጦች ይታዩ',
-'watchlist-hide-own'   => 'የራሴ ለውጦች ይደበቁ',
-'watchlist-show-minor' => "'ጥ' (ጥቃቅን) ለውጦች ይታዩ",
-'watchlist-hide-minor' => "'ጥ' (ጥቃቅን) ለውጦች ይደበቁ",
-'watchlist-show-anons' => 'የቁ. አድራሻ ለውጦች ይታዩ',
-'watchlist-hide-anons' => 'የቁ. አድራሻ ለውጦች ይደበቁ',
 'watchlist-options'    => 'የዝርዝሩ ምርጫዎች',
 
 # Displayed when you click the "watch" button and it is in the process of watching

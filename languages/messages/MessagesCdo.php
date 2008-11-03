@@ -583,28 +583,23 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 'emailsenttext'   => 'Nṳ̄ gì diêng-piĕ siĕu-sék ī-gĭng gié chók lāu.',
 
 # Watchlist
-'watchlist'            => 'Nguāi gì gáng-sê-dăng',
-'mywatchlist'          => 'Nguāi gì gáng-sê-dăng',
-'watchlistfor'         => "('''$1''' gì)",
-'nowatchlist'          => 'Nṳ̄ gì gáng-sê-dăng gà̤-dēng mò̤ dèu-mĕ̤k.',
-'watchnologin'         => 'Mò̤ láuk diē',
-'addedwatch'           => 'Gă-tiĕng gáu gáng-sê-dăng',
-'addedwatchtext'       => "\"[[:\$1]]\" ī-gĭng gă-tiĕng gáu nṳ̄ gì [[Special:Watchlist|gáng-sê-dăng]] lāu. Â-nĭk, ciā hiĕk gâe̤ng ĭ tō̤-lâung hiĕk gì gāi-biéng cêu â̤ hiēng-sê diŏh hē̤-nē̤; bêng-chiā, nṳ̄ gáng-sê gì hiĕk găk \"[[Special:RecentChanges|Có̤i-gê̤ṳng gì gāi-biéng]]\" dăng-dăng gà̤-dēng gì cê-tā̤ â̤ có̤ '''chŭ-chŭ-nuóh'''.
+'watchlist'         => 'Nguāi gì gáng-sê-dăng',
+'mywatchlist'       => 'Nguāi gì gáng-sê-dăng',
+'watchlistfor'      => "('''$1''' gì)",
+'nowatchlist'       => 'Nṳ̄ gì gáng-sê-dăng gà̤-dēng mò̤ dèu-mĕ̤k.',
+'watchnologin'      => 'Mò̤ láuk diē',
+'addedwatch'        => 'Gă-tiĕng gáu gáng-sê-dăng',
+'addedwatchtext'    => "\"[[:\$1]]\" ī-gĭng gă-tiĕng gáu nṳ̄ gì [[Special:Watchlist|gáng-sê-dăng]] lāu. Â-nĭk, ciā hiĕk gâe̤ng ĭ tō̤-lâung hiĕk gì gāi-biéng cêu â̤ hiēng-sê diŏh hē̤-nē̤; bêng-chiā, nṳ̄ gáng-sê gì hiĕk găk \"[[Special:RecentChanges|Có̤i-gê̤ṳng gì gāi-biéng]]\" dăng-dăng gà̤-dēng gì cê-tā̤ â̤ có̤ '''chŭ-chŭ-nuóh'''.
 
 Iŏk-sṳ̄ nṳ̄ buóh-siōng téng nṳ̄ gáng-sê-dăng gà̤-dēng dṳ̀ lâi ciā hiĕk, áik kóng-cié-dèu (''sidebar'') siông gì \"ng-sāi gáng-sê\", cêu â̤-sāi lāu.",
-'removedwatch'         => 'Téng gáng-sê-dăng dṳ̀ lâi lāu',
-'removedwatchtext'     => '"[[:$1]]" hiĕk ī-gĭng téng nṳ̄ gì gáng-sê-dăng gà̤-dēng chēng lâi gó̤.',
-'watch'                => 'Gáng-sê',
-'watchthispage'        => 'Gáng-sê ciā hiĕk',
-'unwatch'              => 'Ng-sāi gáng-sê',
-'watchnochange'        => 'Nṳ̄ gì gáng-sê hiĕk-miêng cī-bŏng dŭ mò̤ nè̤ng dŭng.',
-'watchlist-details'    => '{{PLURAL:$1|$1|$1}} tiŏng hiĕk ké̤ṳk gáng-sê, mò̤ bău-guăk tō̤-lâung-hiĕk.',
-'wlshowlast'           => 'Hiēng-sê có̤i hâiu $1 dēng-cṳ̆ng $2 gĕ̤ng $3',
-'watchlist-show-bots'  => 'Hiēng-sê gĭ-ké-nè̤ng siŭ-gāi',
-'watchlist-hide-bots'  => 'Káung kī gĭ-ké-nè̤ng siŭ-gāi',
-'watchlist-show-own'   => 'Hiēng-sê nguāi gì siŭ-gāi',
-'watchlist-hide-own'   => 'Káung kī nguāi gì siŭ-gāi',
-'watchlist-hide-minor' => 'Káung kī guó-éu siŭ-gāi',
+'removedwatch'      => 'Téng gáng-sê-dăng dṳ̀ lâi lāu',
+'removedwatchtext'  => '"[[:$1]]" hiĕk ī-gĭng téng nṳ̄ gì gáng-sê-dăng gà̤-dēng chēng lâi gó̤.',
+'watch'             => 'Gáng-sê',
+'watchthispage'     => 'Gáng-sê ciā hiĕk',
+'unwatch'           => 'Ng-sāi gáng-sê',
+'watchnochange'     => 'Nṳ̄ gì gáng-sê hiĕk-miêng cī-bŏng dŭ mò̤ nè̤ng dŭng.',
+'watchlist-details' => '{{PLURAL:$1|$1|$1}} tiŏng hiĕk ké̤ṳk gáng-sê, mò̤ bău-guăk tō̤-lâung-hiĕk.',
+'wlshowlast'        => 'Hiēng-sê có̤i hâiu $1 dēng-cṳ̆ng $2 gĕ̤ng $3',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'Gáng-sê...',

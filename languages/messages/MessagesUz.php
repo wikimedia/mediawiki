@@ -443,24 +443,21 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 'emailuser' => 'Bu foydalanuvchiga e-maktub joʻnat',
 
 # Watchlist
-'watchlist'            => "Mening kuzatuv ro'yxatim",
-'mywatchlist'          => "Mening kuzatuv ro'yxatim",
-'watchlistfor'         => "('''$1''' uchun)",
-'nowatchlist'          => "Kuzatuv ro'yxatingizda hech narsa yo'q.",
-'addedwatch'           => "Kuzatuv ro'yxatiga qo'shildi",
-'addedwatchtext'       => "\"[[:\$1]]\" sahifasi sizning [[Special:Watchlist|kuzatuv ro'yxatingizga]] qo'shildi. Bu sahifada va unga mos munozara sahifasida bo'ladigan kelajakdagi o'zgarishlar bu yerda ro'yxatga olinadi, hamda bu sahifa topish qulay bo'lishi uchun [[Special:RecentChanges|yangi o'zgarishlar ro'yxati]]da '''qalin''' harflar bilan ko'rsatiladi.
+'watchlist'        => "Mening kuzatuv ro'yxatim",
+'mywatchlist'      => "Mening kuzatuv ro'yxatim",
+'watchlistfor'     => "('''$1''' uchun)",
+'nowatchlist'      => "Kuzatuv ro'yxatingizda hech narsa yo'q.",
+'addedwatch'       => "Kuzatuv ro'yxatiga qo'shildi",
+'addedwatchtext'   => "\"[[:\$1]]\" sahifasi sizning [[Special:Watchlist|kuzatuv ro'yxatingizga]] qo'shildi. Bu sahifada va unga mos munozara sahifasida bo'ladigan kelajakdagi o'zgarishlar bu yerda ro'yxatga olinadi, hamda bu sahifa topish qulay bo'lishi uchun [[Special:RecentChanges|yangi o'zgarishlar ro'yxati]]da '''qalin''' harflar bilan ko'rsatiladi.
 
 Agar siz bu sahifani kuzatuv ro'yxatingizdan o'chirmoqchi bo'lsangiz \"Kuzatmaslik\" yozuvini bosing.",
-'removedwatch'         => "Kuzatuv ro'yxatidan o'chirildi",
-'removedwatchtext'     => '"[[:$1]]" sahifasi kuzatuv ro\'yxatingizdan o\'chirildi.',
-'watch'                => 'kuzatish',
-'watchthispage'        => 'Sahifani kuzatish',
-'unwatch'              => 'kuzatmaslik',
-'wlnote'               => "Pastda oxirgi '''$2''' soatda sodir bo'lgan $1 o'zgartirishlar ko'rsatilgan.",
-'wlshowlast'           => "Oxirgi $1 soatdagi $2 kundagi tahrirlarni ko'rsatish. $3 tahrirlarni ko'rsatish",
-'watchlist-hide-bots'  => 'Bot tahrirlarini yashir',
-'watchlist-hide-own'   => 'Tahrirlarimni yashir',
-'watchlist-hide-minor' => 'Kichkina tahrirlarni yashir',
+'removedwatch'     => "Kuzatuv ro'yxatidan o'chirildi",
+'removedwatchtext' => '"[[:$1]]" sahifasi kuzatuv ro\'yxatingizdan o\'chirildi.',
+'watch'            => 'kuzatish',
+'watchthispage'    => 'Sahifani kuzatish',
+'unwatch'          => 'kuzatmaslik',
+'wlnote'           => "Pastda oxirgi '''$2''' soatda sodir bo'lgan $1 o'zgartirishlar ko'rsatilgan.",
+'wlshowlast'       => "Oxirgi $1 soatdagi $2 kundagi tahrirlarni ko'rsatish. $3 tahrirlarni ko'rsatish",
 
 # Delete
 'actioncomplete'        => 'Bajarildi',

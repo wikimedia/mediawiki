@@ -353,14 +353,13 @@ $messages = array(
 'emailuser' => 'Sandjan þo niutand bokom',
 
 # Watchlist
-'watchlist'            => '𐌼𐌴𐌹𐌽𐍉𐍃 𐍅𐌹𐍄𐌰𐌽𐌳𐍃𐌻𐌴𐌹𐍃𐍄𐌰',
-'mywatchlist'          => '𐌼𐌴𐌹𐌽𐍉𐍃 𐍅𐌹𐍄𐌰𐌽𐌳𐍃𐌻𐌴𐌹𐍃𐍄𐌰',
-'watchlistfor'         => "(fáur '''$1''')",
-'watch'                => '𐍅𐌰𐍂𐌰𐌽',
-'watchthispage'        => '𐍅𐌰𐍂𐌰𐌽 𐍃𐌴𐌹𐌳𐍉',
-'unwatch'              => '𐌽𐌹𐍅𐌰𐍂𐌰𐌽',
-'watchlist-details'    => '{{PLURAL:$1|$1 seido|$1 seidona}} witáiþs inu maþleiseidam.',
-'watchlist-hide-minor' => 'Filhan leitila máideins',
+'watchlist'         => '𐌼𐌴𐌹𐌽𐍉𐍃 𐍅𐌹𐍄𐌰𐌽𐌳𐍃𐌻𐌴𐌹𐍃𐍄𐌰',
+'mywatchlist'       => '𐌼𐌴𐌹𐌽𐍉𐍃 𐍅𐌹𐍄𐌰𐌽𐌳𐍃𐌻𐌴𐌹𐍃𐍄𐌰',
+'watchlistfor'      => "(fáur '''$1''')",
+'watch'             => '𐍅𐌰𐍂𐌰𐌽',
+'watchthispage'     => '𐍅𐌰𐍂𐌰𐌽 𐍃𐌴𐌹𐌳𐍉',
+'unwatch'           => '𐌽𐌹𐍅𐌰𐍂𐌰𐌽',
+'watchlist-details' => '{{PLURAL:$1|$1 seido|$1 seidona}} witáiþs inu maþleiseidam.',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Wita...',

@@ -1004,14 +1004,6 @@ Jė bikumet ožsėnuorietomiet liautėis stebietė straipsnė, spostelkat \"Nebs
 'watchlistcontains'    => 'Tamstas kervuojamu sārašė īr $1 {{PLURAL:$1|poslapis|poslapē|poslapiu}}.',
 'wlnote'               => "Ruoduoma '''$1''' paskotėniu pakeitėmu, atlėktū par '''$2''' paskotėniu adīnu.",
 'wlshowlast'           => 'Ruodītė paskotėniu $1 adīnu, $2 dėinū a $3 pakeitėmus',
-'watchlist-show-bots'  => 'Ruodītė robotu keitėmos',
-'watchlist-hide-bots'  => 'Kavuotė robotu keitėmos',
-'watchlist-show-own'   => 'Ruodītė mona keitėmos',
-'watchlist-hide-own'   => 'Kavuotė mona keitėmos',
-'watchlist-show-minor' => 'Ruodītė mažos keitėmos',
-'watchlist-hide-minor' => 'Kavuotė mažos keitėmos',
-'watchlist-show-anons' => 'Ruodītė anuonimėnius keitėmus',
-'watchlist-show-liu'   => 'Ruodītė prisėregėstravosiu nauduotuoju keitėmus',
 'watchlist-options'    => 'Keravuojamu sāroša pasėrinkėmā',
 
 # Displayed when you click the "watch" button and it is in the process of watching

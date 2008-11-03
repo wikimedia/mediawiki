@@ -389,21 +389,18 @@ $messages = array(
 'emailuser' => 'اس ورتن والے نو ای میل کرو',
 
 # Watchlist
-'watchlist'            => 'میریاں اکھاں تھلے وچ',
-'mywatchlist'          => 'میری نظر وچ',
-'watchlistfor'         => "('''$1''' لئی)",
-'addedwatch'           => 'اکھ تھلے آگیا',
-'addedwatchtext'       => 'اے صفحہ "[[:$1]] تواڈیاں اکھاں تھلے آگیا اے۔<br />
+'watchlist'        => 'میریاں اکھاں تھلے وچ',
+'mywatchlist'      => 'میری نظر وچ',
+'watchlistfor'     => "('''$1''' لئی)",
+'addedwatch'       => 'اکھ تھلے آگیا',
+'addedwatchtext'   => 'اے صفحہ "[[:$1]] تواڈیاں اکھاں تھلے آگیا اے۔<br />
 مستقبل وچ اس صفحہ تے ایدے بارے چ گل بات نویاں تبدیلیاں وچ موٹے نظر آن گے تا کہ آسانی نال کھوجیا جا سکے۔',
-'removedwatch'         => 'اکھ تھلیوں ہٹا لیا گیا',
-'removedwatchtext'     => 'اے صفحہ "[[:$1]]" تواڈی اکھ تھلیوں ہٹا لیا گیا اے۔',
-'watch'                => 'نظر رکھو',
-'watchthispage'        => 'اس صفحے تے اکھ رکھو',
-'unwatch'              => 'نظر ھٹاؤ',
-'wlshowlast'           => 'آخری $1 گھنٹے $2 دن $3 وکھاؤ',
-'watchlist-hide-bots'  => 'باٹ دے کم چھپاؤ',
-'watchlist-hide-own'   => 'میرے کم چھپاؤ',
-'watchlist-hide-minor' => 'چھوٹیاں تبدیلیاں چھپاؤ',
+'removedwatch'     => 'اکھ تھلیوں ہٹا لیا گیا',
+'removedwatchtext' => 'اے صفحہ "[[:$1]]" تواڈی اکھ تھلیوں ہٹا لیا گیا اے۔',
+'watch'            => 'نظر رکھو',
+'watchthispage'    => 'اس صفحے تے اکھ رکھو',
+'unwatch'          => 'نظر ھٹاؤ',
+'wlshowlast'       => 'آخری $1 گھنٹے $2 دن $3 وکھاؤ',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'نظر تھلے۔۔۔۔',

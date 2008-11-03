@@ -741,12 +741,6 @@ Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə
 'watchlistcontains'    => 'İzləmə siyahınızda $1 səhifə var.',
 'wlnote'               => "Aşağıdakılar son '''$2''' saatdakı son $1 dəyişiklikdir.",
 'wlshowlast'           => 'Bunları göstər: son $1 saatı $2 günü $3',
-'watchlist-show-bots'  => 'Bot redaktələrini göstər',
-'watchlist-hide-bots'  => 'Bot redaktələrini gizlət',
-'watchlist-show-own'   => 'Mənim redaktələrimi göstər',
-'watchlist-hide-own'   => 'Mənim redaktələrimi gizlət',
-'watchlist-show-minor' => 'Kiçik redaktələri göstər',
-'watchlist-hide-minor' => 'Kiçik redaktələri gizlət',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'İzlənilir...',

@@ -1056,9 +1056,6 @@ taobh istigh den tréimhse atá roghnaithe agat.',
 'iteminvalidname'      => "Fadhb leis an mír '$1', ainm neamhbhailí...",
 'wlnote'               => "Is {{PLURAL:$1|é seo thíos an t-athrú deireanach|iad seo thíos na '''$1''' athruithe deireanacha}} {{PLURAL:$2|san uair deireanach|sna '''$2''' uaire deireanacha}}.",
 'wlshowlast'           => 'Taispeáin an $1 uair $2 lá seo caite$3',
-'watchlist-hide-bots'  => 'Folaigh athruithe róbó',
-'watchlist-hide-own'   => 'Folaigh mo chuid athruithe',
-'watchlist-hide-minor' => 'Folaigh mionathruithe',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Á chur le do liosta faire...',

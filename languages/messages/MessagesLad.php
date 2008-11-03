@@ -297,11 +297,10 @@ $messages = array(
 'special-categories-sort-abc'   => 'ordenar alefbeticamente',
 
 # Watchlist
-'watchlist'            => 'Mi lista de vigilancia',
-'mywatchlist'          => 'Mi lista de vigilancia',
-'watch'                => 'Vigilar',
-'unwatch'              => 'Dexar de vigilar',
-'watchlist-hide-minor' => 'Esconder ediciones chiquiticas',
+'watchlist'   => 'Mi lista de vigilancia',
+'mywatchlist' => 'Mi lista de vigilancia',
+'watch'       => 'Vigilar',
+'unwatch'     => 'Dexar de vigilar',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Vigilando...',

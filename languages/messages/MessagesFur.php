@@ -950,13 +950,6 @@ e la pagjine e sarà '''gruessute''' te [[Special:RecentChanges|liste dai ultins
 'watchlistcontains'    => 'Tu stâs tignint di voli $1 {{PLURAL:$1|pagjine|pagjinis}}.',
 'wlnote'               => "Ca sot {{PLURAL:$1|al è il cambiament plui recent|a son i '''$1''' cambiaments plui recents}} {{PLURAL:$2|inte ultime ore|intes '''$2''' oris passadis}}.",
 'wlshowlast'           => 'Mostre ultimis $1 oris $2 zornadis $3',
-'watchlist-show-bots'  => 'Mostre i cambiaments dai bots',
-'watchlist-hide-bots'  => 'Plate i cambiaments dai bots',
-'watchlist-show-own'   => 'Mostre i miei cambiaments',
-'watchlist-hide-own'   => 'Plate i miei cammbiaments',
-'watchlist-show-minor' => 'Mostre i miei piçui cambiaments',
-'watchlist-hide-minor' => 'Plate i piçui cambiaments',
-'watchlist-show-anons' => 'Mostre cambiaments dai utents anonims',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Daûr a zontâ aes pagjinis tignudis di voli...',

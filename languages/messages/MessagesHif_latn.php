@@ -1137,23 +1137,20 @@ Panna jon [[Special:Watchlist|aap ke dhyan suchi]] me hai '''bold''' karal hai."
 'emailuser' => 'Ii user ke E-mail karo',
 
 # Watchlist
-'watchlist'            => 'Hamaar dhyan suchi',
-'mywatchlist'          => 'Hamaar dhyaan suchi',
-'watchlistfor'         => "('''$1''' ke khatir)",
-'addedwatch'           => 'Dhyan suchi me jorro',
-'addedwatchtext'       => "Panna \"[[:\$1]]\" ke aap ke [[Special:Watchlist|watchlist]] me jorr dewa gais hai.
+'watchlist'         => 'Hamaar dhyan suchi',
+'mywatchlist'       => 'Hamaar dhyaan suchi',
+'watchlistfor'      => "('''$1''' ke khatir)",
+'addedwatch'        => 'Dhyan suchi me jorro',
+'addedwatchtext'    => "Panna \"[[:\$1]]\" ke aap ke [[Special:Watchlist|watchlist]] me jorr dewa gais hai.
 Ii panna ke aage ke badlao
 Future changes to this page and its associated talk page will be listed there, and the page will appear '''bolded''' in the [[Special:RecentChanges|list of recent changes]] to make it easier to pick out.",
-'removedwatch'         => 'Dhyan suchi me se hatao',
-'removedwatchtext'     => 'Panna "[[:$1]]" ke aap ke [[Special:Dhyan suchi|aap ke dhyan suchi]] se hatae dewa gais hai.',
-'watch'                => 'Dekho',
-'watchthispage'        => 'Ii panna par dhyan rakho',
-'unwatch'              => 'Nai dhyaan rakho',
-'watchlist-details'    => '{{PLURAL:$1|$1 panna|$1 panna}} pe dhyan dewa jae hai, baat waala panna ke chhorr ke.',
-'wlshowlast'           => 'Pichhla $1 ghanta $2 din $3 ke dekhao',
-'watchlist-hide-bots'  => 'Bot sampadan ke lukao',
-'watchlist-hide-own'   => 'Hamaar sampadan ke lukao',
-'watchlist-hide-minor' => 'Chhota sampadan ke nai dekhao.',
+'removedwatch'      => 'Dhyan suchi me se hatao',
+'removedwatchtext'  => 'Panna "[[:$1]]" ke aap ke [[Special:Dhyan suchi|aap ke dhyan suchi]] se hatae dewa gais hai.',
+'watch'             => 'Dekho',
+'watchthispage'     => 'Ii panna par dhyan rakho',
+'unwatch'           => 'Nai dhyaan rakho',
+'watchlist-details' => '{{PLURAL:$1|$1 panna|$1 panna}} pe dhyan dewa jae hai, baat waala panna ke chhorr ke.',
+'wlshowlast'        => 'Pichhla $1 ghanta $2 din $3 ke dekhao',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Dekhtaa...',

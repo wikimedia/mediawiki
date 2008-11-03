@@ -1508,12 +1508,6 @@ L\'adreza de correu-e que endicó en as suyas [[Special:Preferences|preferenzias
 'iteminvalidname'      => "Bi ha un problema con l'articlo '$1', o nombre no ye conforme...",
 'wlnote'               => "Contino se i {{PLURAL:$1|amuestra o zaguer cambeo|amuestran os zaguers '''$1''' cambeos}} en {{PLURAL:$2|a zaguer ora|as zagueras '''$2''' oras}}.",
 'wlshowlast'           => 'Amostrar as zagueras $1 horas, $2 días u $3',
-'watchlist-show-bots'  => 'Amostrar as edizions feitas por bots',
-'watchlist-hide-bots'  => 'Amagar as edizions de bots',
-'watchlist-show-own'   => 'Amostrar as mías edizions',
-'watchlist-hide-own'   => 'Amagar as mías edizions',
-'watchlist-show-minor' => 'Amostrar as edizions menors',
-'watchlist-hide-minor' => 'Amagar edizions menors',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Cosirando...',

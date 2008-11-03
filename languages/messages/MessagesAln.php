@@ -489,14 +489,12 @@ Ju lutem kërkoni {{SITENAME}}-n para se me krijue një artikull të ri se munet
 'categories' => 'Kategori',
 
 # Watchlist
-'mywatchlist'          => 'Lista mbikqyrëse',
-'addedwatch'           => 'U shtu te lista mbikqyrëse',
-'removedwatch'         => 'U hjek nga lista mibkqyrëse',
-'removedwatchtext'     => 'Faqja "<nowiki>$1</nowiki>" asht hjek nga lista mbikqyrëse e juej.',
-'watch'                => 'Mbikqyre',
-'unwatch'              => 'Çmbikqyre',
-'watchlist-hide-own'   => 'Mshehi redaktimet e mija',
-'watchlist-hide-minor' => 'Mshehi redaktimet e vogla',
+'mywatchlist'      => 'Lista mbikqyrëse',
+'addedwatch'       => 'U shtu te lista mbikqyrëse',
+'removedwatch'     => 'U hjek nga lista mibkqyrëse',
+'removedwatchtext' => 'Faqja "<nowiki>$1</nowiki>" asht hjek nga lista mbikqyrëse e juej.',
+'watch'            => 'Mbikqyre',
+'unwatch'          => 'Çmbikqyre',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Tuj mbikqyrë...',

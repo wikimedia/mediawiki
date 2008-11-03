@@ -1366,16 +1366,6 @@ Sayfayı izleme listenizden çıkarmak istediğinizde "sayfayı izlemeyi durdur"
 'watchlistcontains'    => 'İzleme listenizde $1 tane sayfa var.',
 'wlnote'               => '{{CURRENTTIME}} {{CURRENTMONTHNAME}} {{CURRENTDAY}} tarihinde son <b>$2</b> saatte yapılan $1 değişiklik aşağıdadır.',
 'wlshowlast'           => 'Son $1 saati $2 günü göster $3',
-'watchlist-show-bots'  => 'Bot değişikliklerini göster',
-'watchlist-hide-bots'  => 'Bot değişikliklerini gizle',
-'watchlist-show-own'   => 'Benim değişikliklerimi göster',
-'watchlist-hide-own'   => 'Benim değişikliklerimi gizle',
-'watchlist-show-minor' => 'Küçük değişiklikleri göster',
-'watchlist-hide-minor' => 'Küçük değişiklikleri gizle',
-'watchlist-show-anons' => 'Anonim değişiklikleri göster',
-'watchlist-hide-anons' => 'Anonim değişiklikleri gizle',
-'watchlist-show-liu'   => 'Kayıtlı kullanıcıların değişikliklerini göster',
-'watchlist-hide-liu'   => 'Kayıtlı kullanıcıların değişikliklerini gizle',
 'watchlist-options'    => 'İzleme listesi seçenekleri',
 
 # Displayed when you click the "watch" button and it is in the process of watching

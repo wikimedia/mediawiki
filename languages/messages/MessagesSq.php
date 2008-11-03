@@ -1412,16 +1412,6 @@ Në qoftë se dëshironi të hiqni një faqe nga lista mbikqyrëse më vonë, sh
 'iteminvalidname'      => "Problem me artikullin '$1', titull jo i saktë...",
 'wlnote'               => "Më poshtë {{PLURAL:$1|është $1 ndryshim i|janë $1 ndryshimet e}} {{PLURAL:$2|orës së fundit|'''$2''' orëve të fundit}}.",
 'wlshowlast'           => 'Trego $1 orët $2 ditët $3',
-'watchlist-show-bots'  => 'Trego redaktimet e robotëve',
-'watchlist-hide-bots'  => 'Fshih redaktimet e robotëve',
-'watchlist-show-own'   => 'Trego redaktimet e mia',
-'watchlist-hide-own'   => 'Fshih redaktimet e mia',
-'watchlist-show-minor' => 'Trego redaktimet e vogla',
-'watchlist-hide-minor' => 'Fshih redaktimet e vogla',
-'watchlist-show-anons' => 'Trego redaktimet anonime',
-'watchlist-hide-anons' => 'Fshih redaktimet anonime',
-'watchlist-show-liu'   => 'Trego përdoruesit e regjistruar',
-'watchlist-hide-liu'   => 'Fshih përdoruesit e regjistruar',
 'watchlist-options'    => 'Mundësit e listës mbikqyrëse',
 
 # Displayed when you click the "watch" button and it is in the process of watching

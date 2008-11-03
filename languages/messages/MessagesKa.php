@@ -1190,12 +1190,6 @@ $1 საათში.',
 'iteminvalidname'      => "'$1' - პრობლემა აქვს, სახელი არასწორია...",
 'wlnote'               => 'ქვემოთ მოყვანილია ბოლო $1 ცვლილება უკანასკნელი <b>$2</b> საათის განმავლობაში.',
 'wlshowlast'           => 'აჩვენე ბოლო $1 საათის $2 დღის $3',
-'watchlist-show-bots'  => 'აჩვენე რობოტის ცვლილებები',
-'watchlist-hide-bots'  => 'რობოტის ცვლილებების დამალვა',
-'watchlist-show-own'   => 'აჩვენე ჩემი ცვლილებები',
-'watchlist-hide-own'   => 'ჩემი რედაქტირების დამალვა',
-'watchlist-show-minor' => 'აჩვენე მცირე ცვლილებები',
-'watchlist-hide-minor' => 'მცირე რედაქტირებების დამალვა',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'კონტროლებადი...',

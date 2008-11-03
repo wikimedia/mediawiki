@@ -1407,12 +1407,6 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'iteminvalidname'      => 'Խնդիր «$1» տարրի հետ, անթույլատրելի անվանում...',
 'wlnote'               => "Ստորև բերված {{PLURAL:$1|է վերջին փոփոխությունը|են վերջին '''$1''' փոփոխությունները}} վերջին <strong>$2</strong> ժամվա ընթացքում։",
 'wlshowlast'           => 'Ցուցադրել վերջին $1 ժամերը $2 օրերը $3',
-'watchlist-show-bots'  => 'Ցույց տալ բոտերի խմբագրումները',
-'watchlist-hide-bots'  => 'Թաքցնել բոտերի խմբագրումները',
-'watchlist-show-own'   => 'Ցույց տալ իմ խմբագրումները',
-'watchlist-hide-own'   => 'Թաքցնել իմ խմբագրումները',
-'watchlist-show-minor' => 'Ցույց տալ չնչին խմբագրումները',
-'watchlist-hide-minor' => 'Թաքցնել չնչին խմբագրումները',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Հսկվում է...',

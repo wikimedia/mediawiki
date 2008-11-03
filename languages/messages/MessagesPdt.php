@@ -367,13 +367,12 @@ Bitte nemm eenen aundren.',
 'allarticles'    => 'Aule Siede',
 
 # Watchlist
-'mywatchlist'          => 'Miene Oppaussied',
-'watchlistfor'         => "(fer '''$1''')",
-'addedwatch'           => "No Oppausssied bieje'done",
-'watch'                => 'Oppausse',
-'watchthispage'        => 'Op dise Sied oppausse',
-'unwatch'              => 'Nijch mea oppausse',
-'watchlist-hide-minor' => 'Kjleene Endanisse nijch wiese',
+'mywatchlist'   => 'Miene Oppaussied',
+'watchlistfor'  => "(fer '''$1''')",
+'addedwatch'    => "No Oppausssied bieje'done",
+'watch'         => 'Oppausse',
+'watchthispage' => 'Op dise Sied oppausse',
+'unwatch'       => 'Nijch mea oppausse',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Oppausse...',

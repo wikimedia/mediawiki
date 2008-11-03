@@ -1541,16 +1541,6 @@ Der findes muligvis [[{{MediaWiki:Listgrouprights-helppage}}|yderligere informat
 'iteminvalidname'      => "Problem med '$1', ugyldigt navn...",
 'wlnote'               => "Nedenfor ses de seneste $1 {{PLURAL:$1|ændring|ændringer}} i {{PLURAL:$2|den sidste time|'''de sidste $2 timer}}'''.",
 'wlshowlast'           => 'Vis de seneste $1 timer $2 dage $3',
-'watchlist-show-bots'  => 'Vise bot-ændringer',
-'watchlist-hide-bots'  => 'Skjule bot-ændringer',
-'watchlist-show-own'   => 'vise egne ændringer',
-'watchlist-hide-own'   => 'skjule egne ændringer',
-'watchlist-show-minor' => 'vise små ændringer',
-'watchlist-hide-minor' => 'skjule små ændringer',
-'watchlist-show-anons' => 'Vis anonyme ændringer',
-'watchlist-hide-anons' => 'Skjul anonyme ændringer',
-'watchlist-show-liu'   => 'Vis registrerede brugers ændringer',
-'watchlist-hide-liu'   => 'Skjul registrerede brugers ændringer',
 'watchlist-options'    => 'Indstillinger for overvågningslisten',
 
 # Displayed when you click the "watch" button and it is in the process of watching

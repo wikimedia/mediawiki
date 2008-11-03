@@ -548,12 +548,6 @@ Czej chcesz remôc starnã z lëste ùzéronëch artiklów, klikni ''Òprzestôj
 'watchlistcontains'    => 'Wielëna artiklów na Twòji lësce ùzérónëch: $1.',
 'wlnote'               => "Niżi môsz wëskrzënioné {{PLURAL:$1|slédną zmianã|'''$1''' slédnëch zmianów}} zrobioné òb {{PLURAL:$2|gòdzënã|'''$2''' gòdzënë/gòdzënów}}.",
 'wlshowlast'           => 'Pòkażë zmianë z $1 gòdzënów $2 dni $3',
-'watchlist-show-bots'  => 'Pòkażë edicëje bòtów',
-'watchlist-hide-bots'  => 'Zatacë edicëje bòtów',
-'watchlist-show-own'   => 'Pòkażë mòjé edicëje',
-'watchlist-hide-own'   => 'Zatacë mòjé edicëje',
-'watchlist-show-minor' => 'Pòkażë môłé edicëje',
-'watchlist-hide-minor' => 'Zatacë môłé edicëje',
 
 'enotif_reset' => 'Òznaczë wszëtczé artiklë jakno òbëzdrzóné',
 'changed'      => 'zmienioné',

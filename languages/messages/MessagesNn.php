@@ -1703,16 +1703,6 @@ Om du seinere vil fjerne sida frå overvakingslista, klikk på «Fjern overvakin
 'iteminvalidname'      => 'Problem med «$1», ugyldig namn...',
 'wlnote'               => 'Nedanfor er {{PLURAL:$1|den siste endringa|dei siste $1 endringane}} {{PLURAL:$2|den siste timen|dei siste $2 timane}}.',
 'wlshowlast'           => 'Vis siste $1 timar $2 dagar $3',
-'watchlist-show-bots'  => 'Vis robotar',
-'watchlist-hide-bots'  => 'Gøym robotar',
-'watchlist-show-own'   => 'Vis endringane mine',
-'watchlist-hide-own'   => 'Gøym endringane mine',
-'watchlist-show-minor' => 'Vis småplukk',
-'watchlist-hide-minor' => 'Gøym småplukk',
-'watchlist-show-anons' => 'Vis anonyme endringar',
-'watchlist-hide-anons' => 'Gøym anonyme endringar',
-'watchlist-show-liu'   => 'Vis endringar av innlogga brukarar',
-'watchlist-hide-liu'   => 'Gøym endringar av innlogga brukarar',
 'watchlist-options'    => 'Alternativ for overvakingslista',
 
 # Displayed when you click the "watch" button and it is in the process of watching

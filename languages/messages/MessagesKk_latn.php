@@ -1814,12 +1814,6 @@ Bul bettiñ jäne baýlanıstı talqılaw betiniñ keleşektegi özgeristeri mı
 'iteminvalidname'      => "'$1' danada aqaw bar — jaramsız ataw…",
 'wlnote'               => "Tömende soñğı {{PLURAL:$2|sağatta|'''$2''' sağatta}} bolğan, {{PLURAL:$1|jwıqtağı özgeris|jwıqtağı '''$1''' özgeris}} körsetiledi.",
 'wlshowlast'           => 'Soñğı $1 sağattağı, $2 kündegi, $3 bolğan özgeristi körsetw',
-'watchlist-show-bots'  => 'Bot öñdemelerin körset',
-'watchlist-hide-bots'  => 'Bot öñdemelerin jasır',
-'watchlist-show-own'   => 'Öñdemelerimdi körset',
-'watchlist-hide-own'   => 'Öñdemelerimdi jasır',
-'watchlist-show-minor' => 'Şağın öñdemelerdi körset',
-'watchlist-hide-minor' => 'Şağın öñdemelerdi jasır',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Baqılawda…',

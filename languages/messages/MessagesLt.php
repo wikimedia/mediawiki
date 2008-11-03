@@ -1621,16 +1621,6 @@ taip pat bus '''paryškinti''' [[Special:RecentChanges|naujausių keitimų sąra
 'iteminvalidname'      => 'Problema su elementu „$1“, neteisingas vardas...',
 'wlnote'               => "{{PLURAL:$1|Rodomas '''$1''' paskutinis pakeitimas, atliktas|Rodomi '''$1''' paskutiniai pakeitimai, atlikti|Rodoma '''$1''' paskutinių pakeitimų, atliktų}} per '''$2''' {{PLURAL:$2|paskutinę valandą|paskutines valandas|paskutinių valandų}}.",
 'wlshowlast'           => 'Rodyti paskutinių $1 valandų, $2 dienų ar $3 pakeitimus',
-'watchlist-show-bots'  => 'Rodyti botų keitimus',
-'watchlist-hide-bots'  => 'Slėpti botų keitimus',
-'watchlist-show-own'   => 'Rodyti mano keitimus',
-'watchlist-hide-own'   => 'Slėpti mano keitimus',
-'watchlist-show-minor' => 'Rodyti smulkius keitimus',
-'watchlist-hide-minor' => 'Slėpti smulkius keitimus',
-'watchlist-show-anons' => 'Rodyti anoniminius keitimus',
-'watchlist-hide-anons' => 'Slėpti anoniminius keitimus',
-'watchlist-show-liu'   => 'Rodyti prisiregistravusių naudotojų keitimus',
-'watchlist-hide-liu'   => 'Slėpti prisiregistravusių naudotojų keitimus',
 'watchlist-options'    => 'Stebimųjų sąrašo parinktys',
 
 # Displayed when you click the "watch" button and it is in the process of watching

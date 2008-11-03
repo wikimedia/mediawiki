@@ -780,27 +780,24 @@ Im Absänder steit dyni eigeti e-Mail-Adrässe us dine [[Special:Preferences|Ist
 'emailsenttext'   => 'Dys e-Mail isch verschickt worde.',
 
 # Watchlist
-'watchlist'            => 'Beobachtigslischte',
-'mywatchlist'          => 'Beobachtigslischte',
-'watchlistfor'         => "(für '''$1''')",
-'nowatchlist'          => 'Du hesch ke Yträg uf dyre Beobachtigslischte.',
-'watchnologintext'     => 'Du musst [[Special:UserLogin|angemeldet]] sein, um deine Beobachtungsliste zu bearbeiten.',
-'addedwatch'           => 'zue de Beobachtigslischte drzue do',
-'addedwatchtext'       => 'D Syte "[[:$1]]" stoht jetz uf Ihre [[Special:Watchlist|Beobachtigslischte]].
+'watchlist'         => 'Beobachtigslischte',
+'mywatchlist'       => 'Beobachtigslischte',
+'watchlistfor'      => "(für '''$1''')",
+'nowatchlist'       => 'Du hesch ke Yträg uf dyre Beobachtigslischte.',
+'watchnologintext'  => 'Du musst [[Special:UserLogin|angemeldet]] sein, um deine Beobachtungsliste zu bearbeiten.',
+'addedwatch'        => 'zue de Beobachtigslischte drzue do',
+'addedwatchtext'    => 'D Syte "[[:$1]]" stoht jetz uf Ihre [[Special:Watchlist|Beobachtigslischte]].
 Neui Änderige an de Syte odr de Diskussionssyte drvo chasch jetz dört seh. Usserdem sin selli Änderige uf de [[Special:RecentChanges|letschte Änderige]] fett gschriibe, dass Si s schneller finde.
 
 Wenn Si d Syte spöter wiedr vo de Lischte striiche wenn, denn drucke Si eifach uf "nümm beobachte".',
-'removedwatch'         => 'Us der Beobachtigsliste glösche',
-'removedwatchtext'     => 'D Syte «[[:$1]]» isch us dyre [[Special:Watchlist|Beobachtigsliste]] glösche worde.',
-'watch'                => 'beobachte',
-'watchthispage'        => 'Die Syte beobachte',
-'unwatch'              => 'nümm beobachte',
-'watchnochange'        => 'Vo den Artikle, wo du beobachtisch, isch im aazeigte Zytruum kene veränderet worde.',
-'watchlist-details'    => '{{PLURAL:$1|1 Syte wird|$1 Sytene wärde}} beobachtet (Diskussionssyte nid zelt, aber ou beobachtet).',
-'wlshowlast'           => 'Zeig di letschte $1 Stunde $2 Tage $3',
-'watchlist-hide-bots'  => 'Bot-Änderige verstecke',
-'watchlist-hide-own'   => 'Eigeti Änderige verstecke',
-'watchlist-hide-minor' => 'Chlyni Änderige verstecke',
+'removedwatch'      => 'Us der Beobachtigsliste glösche',
+'removedwatchtext'  => 'D Syte «[[:$1]]» isch us dyre [[Special:Watchlist|Beobachtigsliste]] glösche worde.',
+'watch'             => 'beobachte',
+'watchthispage'     => 'Die Syte beobachte',
+'unwatch'           => 'nümm beobachte',
+'watchnochange'     => 'Vo den Artikle, wo du beobachtisch, isch im aazeigte Zytruum kene veränderet worde.',
+'watchlist-details' => '{{PLURAL:$1|1 Syte wird|$1 Sytene wärde}} beobachtet (Diskussionssyte nid zelt, aber ou beobachtet).',
+'wlshowlast'        => 'Zeig di letschte $1 Stunde $2 Tage $3',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Am beobachte …',
