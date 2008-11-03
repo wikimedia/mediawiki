@@ -129,7 +129,7 @@ class SpecialNewpages extends SpecialPage {
 			'hideliu' => 'rcshowhideliu',
 			'hidepatrolled' => 'rcshowhidepatr',
 			'hidebots' => 'rcshowhidebots',
-			'hideredirs' => 'newpages-showhideredirs'
+			'hideredirs' => 'whatlinkshere-hideredirs'
 		);
 
 		// Disable some if needed
