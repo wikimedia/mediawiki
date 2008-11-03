@@ -56,6 +56,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added $wgAllowUserSkin to let the wiki's owner disable user selectable skins
   on the wiki. If it's set to true, then the skin used will *always* be
   $wgDefaultSkin.
+* Added $wgEnotifUseRealName, which allows UserMailer to send out e-mails based
+  on the user's real name if one is set. Defaults to false (use the username)
 
 === Migrated extensions ===
 The following extensions are migrated into MediaWiki 1.14:

@@ -32,18 +32,21 @@ class MailAddress {
 	 * @param $address Mixed: string with an email address, or a User object
 	 * @param $name String: human-readable name if a string address is given
 	 */
-	function __construct( $address, $name=null ) {
+	function __construct( $address, $name = null, $realName = null ) {
 		if( is_object( $address ) && $address instanceof User ) {
 			$this->address = $address->getEmail();
 			$this->name = $address->getName();
+			$this->realName = $address->getRealName();
 		} else {
 			$this->address = strval( $address );
 			$this->name = strval( $name );
+			$this->reaName = strval( $realName );
 		}
 	}
 
 	/**
 	 * Return formatted and quoted address to insert into SMTP headers
+	 * @param  bool $useRealName True will use real name instead of username
 	 * @return string
 	 */
 	function toString() {
@@ -51,7 +54,9 @@ class MailAddress {
 		# can't handle "Joe Bloggs <joe@bloggs.com>" format email addresses,
 		# so don't bother generating them
 		if( $this->name != '' && !wfIsWindows() ) {
-			$quoted = wfQuotedPrintable( $this->name );
+			global $wgEnotifUseRealName;
+			$name = ( $wgEnotifUseRealName && $this->realName ) ? $this->realName : $this->name;
+			$quoted = wfQuotedPrintable( $name );
 			if( strpos( $quoted, '.' ) !== false || strpos( $quoted, ',' ) !== false ) {
 				$quoted = '"' . $quoted . '"';
 			}
@@ -427,7 +432,7 @@ class EmailNotification {
 	function composeCommonMailtext() {
 		global $wgPasswordSender, $wgNoReplyAddress;
 		global $wgEnotifFromEditor, $wgEnotifRevealEditorAddress;
-		global $wgEnotifImpersonal;
+		global $wgEnotifImpersonal, $wgEnotifUseRealName;
 
 		$this->composed_common = true;
 
@@ -481,7 +486,7 @@ class EmailNotification {
 		# the user has not opted-out and the option is enabled at the
 		# global configuration level.
 		$editor = $this->editor;
-		$name    = $editor->getName();
+		$name    = $wgEnotifUseRealName ? $editor->getRealName() : $editor->getName();
 		$adminAddress = new MailAddress( $wgPasswordSender, 'WikiAdmin' );
 		$editorAddress = new MailAddress( $editor );
 		if( $wgEnotifRevealEditorAddress
@@ -567,7 +572,8 @@ class EmailNotification {
 		//     Note:  The to parameter cannot be an address in the form of "Something <someone@example.com>".
 		//     The mail command will not parse this properly while talking with the MTA.
 		$to = new MailAddress( $watchingUser );
-		$body = str_replace( '$WATCHINGUSERNAME', $watchingUser->getName() , $this->body );
+		$name = $wgEnotifUseRealName ? $watchingUser->getRealName() : $watchingUser->getName();
+		$body = str_replace( '$WATCHINGUSERNAME', $name , $this->body );
 
 		$timecorrection = $watchingUser->getOption( 'timecorrection' );
 
