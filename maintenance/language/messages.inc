@@ -818,7 +818,6 @@ $wgMessageStructure = array(
 		'qbsettings-floatingright',
 		'changepassword',
 		'skin',
-		'skin-override',
 		'skin-preview',
 		'math',
 		'dateformat',
