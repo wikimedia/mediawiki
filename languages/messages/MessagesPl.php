@@ -1143,7 +1143,6 @@ Jednak informacje o treści {{GRAMMAR:D.lp|{{SITENAME}}}} mogą być w Google ni
 'qbsettings-floatingright' => 'Unoszący się, z prawej',
 'changepassword'           => 'Zmiana hasła',
 'skin'                     => 'Skórka',
-'skin-override'            => 'Formularz został wyłączony, ponieważ na tej wiki administrator ustawił jedną domyślną skórkę.',
 'skin-preview'             => 'podgląd',
 'math'                     => 'Wzory',
 'dateformat'               => 'Format daty',

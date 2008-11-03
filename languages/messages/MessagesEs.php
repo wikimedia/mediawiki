@@ -1060,7 +1060,6 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'qbsettings-floatingright' => 'Flotante a la derecha',
 'changepassword'           => 'Cambiar la contraseña',
 'skin'                     => 'Apariencia',
-'skin-override'            => 'Este formulario ha sido deshabilitado, ya que esta wiki sustituye la selección de apariencia del usuario por la indicada por el administrador.',
 'skin-preview'             => 'Ver cómo queda',
 'math'                     => 'Fórmulas',
 'dateformat'               => 'Formato de fecha',

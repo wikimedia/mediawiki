@@ -1033,7 +1033,6 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'qbsettings-floatingright' => 'Flotante á dereita',
 'changepassword'           => 'Cambiar o meu contrasinal',
 'skin'                     => 'Aparencia',
-'skin-override'            => 'Este formulario foi deshabilitado porque este wiki sobreescribe a apariencia de usuario coa apariencia por defecto fixada polo administrador.',
 'skin-preview'             => 'Probar',
 'math'                     => 'Fórmulas matemáticas',
 'dateformat'               => 'Formato da data',
