@@ -338,7 +338,7 @@ abstract class ApiQueryBase extends ApiBase {
 		$t = Title::newFromText($title);
 		if(!$t)
 			$this->dieUsageMsg(array('invalidtitle', $title));
-		return $t->getDbKey();
+		return $t->getPrefixedDbKey();
 	}
 
 	/**
