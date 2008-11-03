@@ -726,24 +726,20 @@ $messages = array(
 'emailmessage' => 'Μένεμαν:',
 
 # Watchlist
-'watchlist'            => "Σελίδας ντ' ωριάζω",
-'mywatchlist'          => "Σελίδας ντ' ωριάζω",
-'watchlistfor'         => "(για '''$1''')",
-'addedwatch'           => 'Εθέκεν σην λίσταν ωριαγματί',
-'addedwatchtext'       => "Η σελίδαν \"[[:\$1]]\" επήγεν σον [[Special:Watchlist|κατάλογον οριαγματί]] εσούν.
+'watchlist'         => "Σελίδας ντ' ωριάζω",
+'mywatchlist'       => "Σελίδας ντ' ωριάζω",
+'watchlistfor'      => "(για '''$1''')",
+'addedwatch'        => 'Εθέκεν σην λίσταν ωριαγματί',
+'addedwatchtext'    => "Η σελίδαν \"[[:\$1]]\" επήγεν σον [[Special:Watchlist|κατάλογον οριαγματί]] εσούν.
 Μελλούμενα αλλαγάς τ' ατεινές τη σελίδας θα γράφκουνταικεκά, και η σελίδαν θ' ευρίεται με γράμματα '''χοντρά''' σ' [[Special:RecentChanges|υστερνά τ' αλλαγάς]] για να τερείτετα καλίον.",
-'removedwatch'         => 'Αση λίσταν επάρθεν',
-'removedwatchtext'     => 'Η σελίδαν "[[:$1]]" νεβζινέθεν ασ\' [[Special:Watchlist|τ\'εσόν τον κατάλογον]].',
-'watch'                => 'Ωρίαγμαν',
-'watchthispage'        => 'Ωρίαν τη σελίδαν',
-'unwatch'              => "Τέλεμαν τ' ωριαγματί",
-'unwatchthispage'      => 'Τέλεμαν ωριαγματί',
-'watchlist-details'    => '{{PLURAL:$1|$1 σελίδα|$1 σελίδας}} ωριάσκουνταν, θέγα τα σελίδας καλατσεματί.',
-'wlshowlast'           => "Φανέρωμαν τ' υστερναίων $1 ωρίων $2 ημερίων $3",
-'watchlist-hide-bots'  => "Κρύψον τ' αλλαγάς τη bots",
-'watchlist-show-own'   => "Δείξον τ' αλλαγάς 'ιμ",
-'watchlist-hide-own'   => "Κρύψον τ' αλλαγάς 'ιμ",
-'watchlist-hide-minor' => 'Κρύψον τα μικρά αλλαγάς',
+'removedwatch'      => 'Αση λίσταν επάρθεν',
+'removedwatchtext'  => 'Η σελίδαν "[[:$1]]" νεβζινέθεν ασ\' [[Special:Watchlist|τ\'εσόν τον κατάλογον]].',
+'watch'             => 'Ωρίαγμαν',
+'watchthispage'     => 'Ωρίαν τη σελίδαν',
+'unwatch'           => "Τέλεμαν τ' ωριαγματί",
+'unwatchthispage'   => 'Τέλεμαν ωριαγματί',
+'watchlist-details' => '{{PLURAL:$1|$1 σελίδα|$1 σελίδας}} ωριάσκουνταν, θέγα τα σελίδας καλατσεματί.',
+'wlshowlast'        => "Φανέρωμαν τ' υστερναίων $1 ωρίων $2 ημερίων $3",
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Ωριάζω...',

@@ -763,25 +763,19 @@ Pàggene sus 'a [[Special:Watchlist|le Pàggene condrollete]] sonde in '''grasce
 'emailsent'    => 'E-mail mannete',
 
 # Watchlist
-'watchlist'            => 'Pàggene condrollete',
-'mywatchlist'          => 'Pàggene condrollete',
-'watchlistfor'         => "(pe '''$1''')",
-'addedwatch'           => "Mise jndr'à le pàggene condrollete",
-'addedwatchtext'       => "'A pàgene \"[[:\$1]]\" ha state aggiunde jndr'à le [[Special:Watchlist|pàggene condrollete]].
+'watchlist'         => 'Pàggene condrollete',
+'mywatchlist'       => 'Pàggene condrollete',
+'watchlistfor'      => "(pe '''$1''')",
+'addedwatch'        => "Mise jndr'à le pàggene condrollete",
+'addedwatchtext'    => "'A pàgene \"[[:\$1]]\" ha state aggiunde jndr'à le [[Special:Watchlist|pàggene condrollete]].
 Le cangiaminde future a sta pàgene e 'a pàgene de le 'ngazzaminde associete le puè acchià aqquà, e 'a pàgene avène signete cu 'u '''grascette''' jndr'à [[Special:RecentChanges|liste de le cangiaminde recende]] pe facilità l'identificazione.",
-'removedwatch'         => 'Live da le pàggene condrollete',
-'removedwatchtext'     => '\'A pàgene "[[:$1]]" ha state scangillete da [[Special:Watchlist|le pàggene condrollete tue]].',
-'watch'                => 'Condrolle',
-'watchthispage'        => 'Condrolle sta pàgene',
-'unwatch'              => 'No condrollà cchiù',
-'watchlist-details'    => "{{PLURAL:$1|$1 pàgene|$1 pàggene}} jndr'à liste de le pàggene condrollete, scartanne le pàggene de le 'ngazzaminde.",
-'wlshowlast'           => "Vide l'urteme $1 ore $2 sciurne $3",
-'watchlist-show-bots'  => 'Fà vedè le cangiaminde de le bot',
-'watchlist-hide-bots'  => 'Scunne le cangiaminde de le bot',
-'watchlist-show-own'   => 'Fà vedè le cangiaminde mie',
-'watchlist-hide-own'   => 'Scunne le cangiaminde mie',
-'watchlist-show-minor' => 'Fà vedè le cangiaminde stuèdeche',
-'watchlist-hide-minor' => 'Scunne le cangiaminde stuèdeche',
+'removedwatch'      => 'Live da le pàggene condrollete',
+'removedwatchtext'  => '\'A pàgene "[[:$1]]" ha state scangillete da [[Special:Watchlist|le pàggene condrollete tue]].',
+'watch'             => 'Condrolle',
+'watchthispage'     => 'Condrolle sta pàgene',
+'unwatch'           => 'No condrollà cchiù',
+'watchlist-details' => "{{PLURAL:$1|$1 pàgene|$1 pàggene}} jndr'à liste de le pàggene condrollete, scartanne le pàggene de le 'ngazzaminde.",
+'wlshowlast'        => "Vide l'urteme $1 ore $2 sciurne $3",
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Fà vedè...',

@@ -1254,16 +1254,6 @@ Birazdan soñ közetüv cedveliñizden bir de bir saifeni yoq etmege isteseñiz 
 'iteminvalidname'      => '"$1" saifesi munasebetinen problema olıp çıqtı, elverişli olmağan isimdir…',
 'wlnote'               => "Aşağıda soñki {{PLURAL:$2|saat|'''$2''' saat}} içinde yapılğan soñki {{PLURAL:$1|deñişiklik|'''$1''' deñişiklik}} kösterile.",
 'wlshowlast'           => 'Soñki $2 kün $1 saat içün $3 köster',
-'watchlist-show-bots'  => 'Botlar deñişikliklerini köster',
-'watchlist-hide-bots'  => 'Botlar deñişikliklerini gizle',
-'watchlist-show-own'   => 'Menim deñişikliklerimni köster',
-'watchlist-hide-own'   => 'Menim deñişikliklerimni gizle',
-'watchlist-show-minor' => 'Kiçik deñişikliklerni köster',
-'watchlist-hide-minor' => 'Kiçik deñişikliklerni gizle',
-'watchlist-show-anons' => 'Anonim deñişikliklerni köster',
-'watchlist-hide-anons' => 'Anonim deñişikliklerni gizle',
-'watchlist-show-liu'   => 'Qaydlı qullanıcılarnıñ deñişikliklerini köster',
-'watchlist-hide-liu'   => 'Qaydlı qullanıcılarnıñ deñişikliklerini gizle',
 'watchlist-options'    => 'Közetüv cedveli sazlamaları',
 
 # Displayed when you click the "watch" button and it is in the process of watching

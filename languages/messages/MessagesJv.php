@@ -1415,12 +1415,6 @@ Owah-owahan sing dumadi ing tembé ing kaca iku lan kaca dhiskusi sing kagandhè
 'iteminvalidname'      => "Ana masalah karo '$1', jenengé ora absah...",
 'wlnote'               => "Ing ngisor iki kapacak $1 {{PLURAL:$1|owah-owahan|owah-owahan}} pungkasan ing '''$2''' jam kapungkur.",
 'wlshowlast'           => 'Tuduhna $1 jam $2 dina $3 pungkasan',
-'watchlist-show-bots'  => 'Tuduhna suntingan bot',
-'watchlist-hide-bots'  => 'Delikna suntingan bot',
-'watchlist-show-own'   => 'Tuduhna suntinganku',
-'watchlist-hide-own'   => 'Delikna suntinganku',
-'watchlist-show-minor' => 'Tuduhna suntingan cilik',
-'watchlist-hide-minor' => 'Delikna suntingan cilik',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Ngawasi...',

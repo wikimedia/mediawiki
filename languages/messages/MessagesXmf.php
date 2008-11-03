@@ -429,18 +429,15 @@ $messages = array(
 'emailuser' => 'მიდუჯღონით ელ.ფოშტა ათე მახვარებუს',
 
 # Watchlist
-'watchlist'            => 'ჩქიმ კონტროლიშ ხასილეფ',
-'mywatchlist'          => 'ჩქიმ კონტროლიშ ერკებულ',
-'watchlistfor'         => "('''$1'''-შენი)",
-'removedwatchtext'     => 'ასე გვერდ "[[:$1]]" ვარე თქვან კონტროლიშ გვერდეფს.',
-'watch'                => 'კონტროლ',
-'watchthispage'        => 'თე ხასილაშ კონტროლ',
-'unwatch'              => 'კონტროლიშ გაუქვება',
-'watchlist-details'    => '$1 ხასილას კილმაჯინეთ სხუნუაშ ხასილაშ უკოროცხუო.',
-'wlshowlast'           => 'ძირაფა ბოლო $1 საათიშ $2 დღაშ $3',
-'watchlist-hide-bots'  => 'რობოტიშ თირუეფიშ ფულუა',
-'watchlist-hide-own'   => 'ჩქიმ რედაქტირებაშ ფულუა',
-'watchlist-hide-minor' => 'ჭიჭე რედაქტირებებაშ ფულუა',
+'watchlist'         => 'ჩქიმ კონტროლიშ ხასილეფ',
+'mywatchlist'       => 'ჩქიმ კონტროლიშ ერკებულ',
+'watchlistfor'      => "('''$1'''-შენი)",
+'removedwatchtext'  => 'ასე გვერდ "[[:$1]]" ვარე თქვან კონტროლიშ გვერდეფს.',
+'watch'             => 'კონტროლ',
+'watchthispage'     => 'თე ხასილაშ კონტროლ',
+'unwatch'           => 'კონტროლიშ გაუქვება',
+'watchlist-details' => '$1 ხასილას კილმაჯინეთ სხუნუაშ ხასილაშ უკოროცხუო.',
+'wlshowlast'        => 'ძირაფა ბოლო $1 საათიშ $2 დღაშ $3',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'კონტროლირაფონი...',

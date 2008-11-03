@@ -1709,16 +1709,6 @@ Mehr Informatschonen över enkelte Rechten staht ünner [[{{MediaWiki:Listgroupr
 'iteminvalidname'      => "Problem mit den Indrag '$1', ungülligen Naam...",
 'wlnote'               => "Ünnen {{PLURAL:$1|steiht de letzte Ännern|staht de letzten $1 Ännern}} vun de {{PLURAL:$2|letzte Stünn|letzten '''$2''' Stünnen}}.",
 'wlshowlast'           => 'Wies de letzten $1 Stünnen $2 Daag $3',
-'watchlist-show-bots'  => 'Ännern vun Bots wiesen',
-'watchlist-hide-bots'  => 'Ännern vun Bots versteken',
-'watchlist-show-own'   => 'Miene Ännern wiesen',
-'watchlist-hide-own'   => 'Miene Ännern versteken',
-'watchlist-show-minor' => 'Lütte Ännern wiesen',
-'watchlist-hide-minor' => 'Lütte Ännern versteken',
-'watchlist-show-anons' => 'Anonyme Brukers wiesen',
-'watchlist-hide-anons' => 'Anonyme Brukers nich wiesen',
-'watchlist-show-liu'   => 'Anmellt Brukers wiesen',
-'watchlist-hide-liu'   => 'Anmellt Brukers nich wiesen',
 'watchlist-options'    => 'Optionen för de Oppasslist',
 
 # Displayed when you click the "watch" button and it is in the process of watching

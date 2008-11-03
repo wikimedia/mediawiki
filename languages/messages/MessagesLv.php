@@ -1116,16 +1116,6 @@ Ja vēlāk pārdomāsi un nevēlēsies vairs uzraudzīt šo lapu, klikšķini uz
 'wlheader-showupdated' => "* Lapas, kuras ir tikušas izmainītas, kopš tu tās pēdējoreiz apskatījies, te rādās ar '''pustrekniem''' burtiem",
 'watchlistcontains'    => 'Tavā uzraugāmo lapu sarakstā ir $1 {{PLURAL:$1|lapa|lapas}}.',
 'wlshowlast'           => 'Parādīt izmaiņas pēdējo $1 stundu laikā vai $2 dienu laikā, vai arī $3.',
-'watchlist-show-bots'  => 'Parādīt botu izmaiņas',
-'watchlist-hide-bots'  => 'Paslēpt botu izmaiņas',
-'watchlist-show-own'   => 'Parādīt manas izmaiņas',
-'watchlist-hide-own'   => 'Paslēpt manas izmaiņas',
-'watchlist-show-minor' => 'Parādīt maznozīmīgās izmaiņas',
-'watchlist-hide-minor' => 'Paslēpt maznozīmīgās izmaiņas',
-'watchlist-show-anons' => 'Parādīt anonīmo lietotāju izmaiņas',
-'watchlist-hide-anons' => 'Paslēpt anonīmo lietotāju izmaiņas',
-'watchlist-show-liu'   => 'Parādīt reģistrēto lietotāju izmaiņas',
-'watchlist-hide-liu'   => 'Paslēpt reģistrēto lietotāju izmaiņas',
 'watchlist-options'    => 'Uzraugāmo rakstu saraksta opcijas',
 
 # Displayed when you click the "watch" button and it is in the process of watching

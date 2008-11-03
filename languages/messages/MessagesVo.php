@@ -1429,12 +1429,6 @@ If vilol poso moükön padi de galädalised olik, välolös lä on knopi: „neg
 'iteminvalidname'      => "Fikul tefü el '$1': nem no lonöföl...",
 'wlnote'               => "Is palisedons votükam{{PLURAL:$1| lätik|s lätik '''$1'''}} dü düp{{PLURAL:$2| lätik|s lätik '''$2'''}}.",
 'wlshowlast'           => 'Jonolöd: düpis lätik $1, delis lätik $2, $3',
-'watchlist-show-bots'  => 'Jonolöd redakamis elas bots',
-'watchlist-hide-bots'  => 'Klänolöd redakamis elas bots',
-'watchlist-show-own'   => 'Jonolöd redakamis obik',
-'watchlist-hide-own'   => 'Klänolöd redakamis obik',
-'watchlist-show-minor' => 'Jonolöd redakamis pülik',
-'watchlist-hide-minor' => 'Klänolöd redakamis pülik',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Papladon ini galädalised...',

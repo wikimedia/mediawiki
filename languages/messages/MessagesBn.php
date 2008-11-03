@@ -1247,12 +1247,6 @@ $3-এর দেয়া কারণ হল ''$2''",
 'iteminvalidname'      => "'$1'নং আইটেমে সমস্যা, অবৈধ নাম...",
 'wlnote'               => "নিচে বিগত {{PLURAL:$2|১ ঘন্টায়|'''$2''' ঘন্টায়}} সংঘটিত {{PLURAL:$1|শেষ ১টি পরিবর্তন|শেষ '''$1'''টি পরিবর্তন}} দেখানো হল।",
 'wlshowlast'           => 'দেখাও সর্বশেষ  $1 ঘন্টা $2 দিন $3',
-'watchlist-show-bots'  => 'বট দ্বারা সম্পাদনাগুলো দেখাও',
-'watchlist-hide-bots'  => 'বট দ্বারা সম্পাদনাগুলো দেখিও না',
-'watchlist-show-own'   => 'আমার সম্পাদনাগুলো দেখাও',
-'watchlist-hide-own'   => 'আমার সম্পাদনাগুলো দেখিও না',
-'watchlist-show-minor' => 'অনুল্লেখ্য সম্পাদনাগুলো দেখাও',
-'watchlist-hide-minor' => 'অনুল্লেখ্য সম্পাদনাগুলো দেখিও না',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'নজর রাখা হচ্ছে...',

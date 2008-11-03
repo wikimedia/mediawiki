@@ -221,10 +221,9 @@ $messages = array(
 'alphaindexline' => '$1 to $2',
 
 # Watchlist
-'mywatchlist'         => 'हमर साकांक्ष-सूची',
-'watch'               => 'ताकिमे',
-'unwatch'             => 'छोड़ू',
-'watchlist-hide-bots' => 'नुकाऊ संपादित बॉट-नमगर',
+'mywatchlist' => 'हमर साकांक्ष-सूची',
+'watch'       => 'ताकिमे',
+'unwatch'     => 'छोड़ू',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'ताकिमे...',

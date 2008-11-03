@@ -704,23 +704,20 @@ Bákannà ẹ tún ṣèlérí fún wa wípé ẹ̀yin lẹkọ́ fúnra arayín
 'emailsend'    => 'Firánṣẹ́',
 
 # Watchlist
-'watchlist'            => 'Ìmójútó mi',
-'mywatchlist'          => 'Ìmójútó mi',
-'watchlistfor'         => "(fún '''$1''')",
-'addedwatch'           => 'Ti fikún sí ìmójútó',
-'addedwatchtext'       => "A ti ṣ'àfikún \"[[:\$1]]\" sí [[Special:Watchlist|ìmójútó]] yín.
+'watchlist'         => 'Ìmójútó mi',
+'mywatchlist'       => 'Ìmójútó mi',
+'watchlistfor'      => "(fún '''$1''')",
+'addedwatch'        => 'Ti fikún sí ìmójútó',
+'addedwatchtext'    => "A ti ṣ'àfikún \"[[:\$1]]\" sí [[Special:Watchlist|ìmójútó]] yín.
 A óò ṣ'àkójọ àwọn àtúnṣe ọjọ́wajú sí ojúewé yìí àti ojúewé ọ̀rọ̀ rẹ̀ sí bẹ̀. Bákanáà ojúewé náà yíò hàn '''kedere''' nìnú [[Special:RecentChanges|àkójọ àwọn àtúnṣe tuntun]] kó le ba à rọrùn láti rí.",
-'removedwatch'         => 'Ti mú kúrò nínú ìmójútó',
-'removedwatchtext'     => 'A ti yọ ojúewé "[[:$1]]" kúrò nínú [[Special:Watchlist|ìmójútó yín]].',
-'watch'                => "M'ójútó",
-'watchthispage'        => "M'ójútó ojúewé yi",
-'unwatch'              => "Já'wọ́ ìmójútó",
-'unwatchthispage'      => "Já'wọ́ ìmójútó ojúewé yi",
-'watchlist-details'    => '{{PLURAL:$1|Ojúewé $1|Àwọn ojúewé $1}} ló wà nínú ìmójútó yín, tí a kò bá ka àwọn ojúewé ọ̀rọ̀.',
-'wlshowlast'           => 'Áfihàn wákàtí $1 sẹ́yìn ọjọ́ $2 sẹ́yìn $3',
-'watchlist-hide-bots'  => 'Ìbòmọ́lẹ̀ àwọn àtúnṣe bot',
-'watchlist-hide-own'   => 'Ìbòmọ́lẹ̀ àwọn àtúnṣe mi',
-'watchlist-hide-minor' => 'Ìbòmọ́lẹ̀ àwọn àtúnṣe kékéèké',
+'removedwatch'      => 'Ti mú kúrò nínú ìmójútó',
+'removedwatchtext'  => 'A ti yọ ojúewé "[[:$1]]" kúrò nínú [[Special:Watchlist|ìmójútó yín]].',
+'watch'             => "M'ójútó",
+'watchthispage'     => "M'ójútó ojúewé yi",
+'unwatch'           => "Já'wọ́ ìmójútó",
+'unwatchthispage'   => "Já'wọ́ ìmójútó ojúewé yi",
+'watchlist-details' => '{{PLURAL:$1|Ojúewé $1|Àwọn ojúewé $1}} ló wà nínú ìmójútó yín, tí a kò bá ka àwọn ojúewé ọ̀rọ̀.',
+'wlshowlast'        => 'Áfihàn wákàtí $1 sẹ́yìn ọjọ́ $2 sẹ́yìn $3',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Ún mójútó...',

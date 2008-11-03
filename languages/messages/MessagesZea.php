@@ -1040,24 +1040,21 @@ Je kan 't overzicht bepaelen deu 'n soôrte logboek, 'n gebrukersnaem of eên bl
 'emailpage' => 'E-mail gebruker',
 
 # Watchlist
-'watchlist'            => 'Volglieste',
-'mywatchlist'          => 'Mien volglieste',
-'watchlistfor'         => "(vò '''$1''')",
-'watchnologin'         => 'Je bin nie angemolde.',
-'watchnologintext'     => 'Je moe [[Special:UserLogin|angemolde]] weze om je volglieste an te passen.',
-'addedwatch'           => 'An de volglieste toegevoegd',
-'addedwatchtext'       => "De bladzie \"[[:\$1]]\" is an je [[Special:Watchlist|Volglieste]] toegevoegd.
+'watchlist'         => 'Volglieste',
+'mywatchlist'       => 'Mien volglieste',
+'watchlistfor'      => "(vò '''$1''')",
+'watchnologin'      => 'Je bin nie angemolde.',
+'watchnologintext'  => 'Je moe [[Special:UserLogin|angemolde]] weze om je volglieste an te passen.',
+'addedwatch'        => 'An de volglieste toegevoegd',
+'addedwatchtext'    => "De bladzie \"[[:\$1]]\" is an je [[Special:Watchlist|Volglieste]] toegevoegd.
 Veranderiengen an deêze bladzie en de overlegbladzie die-a d'rbie oort zulle ierop zichtbaer ore
 en de bladzie komt '''vet''' te staen in de [[Special:RecentChanges|lieste van wat-a juust veranderd is]], daermee 't makkeliker te vinden is.
 A je de bladzie laeter weêr van je volglieste afaele wil, klik dan op \"nie meêr volge\" bovenan de bladzie.",
-'watch'                => 'Volg',
-'watchthispage'        => 'Bekiek deêze bladzie',
-'unwatch'              => 'Nie meêr volge',
-'watchnochange'        => "D'r is in d'n opgevrogen tied niks op je volglieste veranderd.",
-'watchlistcontains'    => 'Uw volglieste bevat $1 {{PLURAL:$1|bladzie|bladzies}}.',
-'watchlist-hide-bots'  => 'Verberge bot wiezigingen',
-'watchlist-hide-own'   => 'Verberge mien wiezigingen',
-'watchlist-hide-minor' => 'Verberge kleine wiezigingen',
+'watch'             => 'Volg',
+'watchthispage'     => 'Bekiek deêze bladzie',
+'unwatch'           => 'Nie meêr volge',
+'watchnochange'     => "D'r is in d'n opgevrogen tied niks op je volglieste veranderd.",
+'watchlistcontains' => 'Uw volglieste bevat $1 {{PLURAL:$1|bladzie|bladzies}}.',
 
 # Delete
 'actioncomplete' => 'Actie uutgevoerd',

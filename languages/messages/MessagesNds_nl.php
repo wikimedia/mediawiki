@@ -1657,12 +1657,6 @@ Toekomstige wiezigingen op disse pagina en de overlegpagina zullen hier vermeld 
 'watchmethod-list'     => 'Kik joew nao volglieste veur de leste wiezigingen',
 'iteminvalidname'      => "Verkeerde naam '$1'",
 'wlshowlast'           => 'Teun de leste $1 ure $2 dagen $3',
-'watchlist-show-bots'  => 'Teun botgebrukers',
-'watchlist-hide-bots'  => 'Verbarg botgebrukers',
-'watchlist-show-own'   => 'Teun mien bewarkingen',
-'watchlist-hide-own'   => 'Verbarg mien bewarkingen',
-'watchlist-show-minor' => 'Teun kleine wiezigingen',
-'watchlist-hide-minor' => 'Verbarg kleine wiezigingen',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Volg...',

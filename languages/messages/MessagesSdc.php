@@ -1273,12 +1273,6 @@ Si daboi s'à gana d'eliminà la pàgina da la listha di l'abbaidaddi ippiziarii
 'iteminvalidname'      => "Probremi cu' la pàgina '$1', innòmmu nò vàriddu...",
 'wlnote'               => "Inogghi {{PLURAL:$1|è erencadda la mudìfigga più rizzenti arriggadda|so erencaddi li '''$1''' mudìfigghi più rizzenti arriggaddi}} {{PLURAL:$2|i' la ulthima ora|i' li ulthimi '''$2''' ori}}.",
 'wlshowlast'           => 'Musthra li ulthimi $1 ori $2 dì $3',
-'watchlist-show-bots'  => 'Musthra li mudìfigghi di li bot',
-'watchlist-hide-bots'  => 'Cua li mudìfigghi di li bot',
-'watchlist-show-own'   => "Musthra li me' mudìfigghi",
-'watchlist-hide-own'   => "Cua li me' mudìfigghi",
-'watchlist-show-minor' => 'Musthra li mudìfigghi minori',
-'watchlist-hide-minor' => 'Cua li mudìfigghi minori',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => "Aggiunta a l'abbaidaddi ippiziari...",

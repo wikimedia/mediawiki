@@ -1328,12 +1328,6 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'iteminvalidname'      => "விடயம் '$1' தொடர்பில் பிரச்சினை உள்ளது, செல்லுபடியாகாத பெயர்...",
 'wlnote'               => "பின்வருவன கடைசி {{PLURAL:$2|மணித்தியாலத்தில்|'''$2''' மணித்தியாலங்களில்}} செய்யப்பட்ட {{PLURAL:$1|கடைசி ஒரு மாற்றமாகும்|கடைசி $1 மாற்றங்களாகும்}}.",
 'wlshowlast'           => 'கடைசி $1 மணித்தியாலங்கள் $2 நாட்களைக் காட்டு $3',
-'watchlist-show-bots'  => 'தானியங்கி தொகுப்புகளைக் காட்டு',
-'watchlist-hide-bots'  => 'தானியங்கி தொகுப்புக்களை மறை',
-'watchlist-show-own'   => 'என் தொகுப்புகளை காட்டு',
-'watchlist-hide-own'   => 'என் தொகுப்புக்களை மறை',
-'watchlist-show-minor' => 'சிறு தொகுப்புகளைக் காட்டு',
-'watchlist-hide-minor' => 'சிறு தொகுப்புக்களை மறை',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'கவனிக்கப்படுகிறது...',

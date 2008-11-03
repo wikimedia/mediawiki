@@ -1540,12 +1540,6 @@ Jekk f'xi ħin tkun tixtieq tneħħi l-paġna mil-lista ta' osservazzjoni tiegħ
 'iteminvalidname'      => "Problema bil-paġna'$1', l-isem mhux validu...",
 'wlnote'               => "Hawn taħt hawn {{PLURAL:$1|l-aħħar modifika|l-aħħar '''$1''' modifiki}} fl-aħħar {{PLURAL:$2|siegħa|'''$2''' siegħat}}.",
 'wlshowlast'           => 'Uri l-aħħar $1 siegħat $2 ġranet $3',
-'watchlist-show-bots'  => 'Uri l-modifiki tal-bots',
-'watchlist-hide-bots'  => 'Aħbi l-modifiki tal-bots',
-'watchlist-show-own'   => 'Uri l-modifiki tiegħi',
-'watchlist-hide-own'   => 'Aħbi l-modifiki tiegħi',
-'watchlist-show-minor' => 'Uri l-modifiki żgħar',
-'watchlist-hide-minor' => 'Aħbi l-modifiki żgħar',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Imsegwi...',

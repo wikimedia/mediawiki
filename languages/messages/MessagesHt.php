@@ -935,22 +935,19 @@ Mande ou byen si ou ap byen fè kreye li ankò toutbon (gade jounal paj sa a pou
 'emailuser' => 'Voye yon mesaj (imèl) pou itilizatè sa a',
 
 # Watchlist
-'watchlist'            => 'Lis swivi',
-'mywatchlist'          => 'Lis swivi',
-'watchlistfor'         => "(pou itilizatè '''$1''')",
-'addedwatch'           => 'Ajoute nan lis swivi',
-'addedwatchtext'       => 'Paj « <nowiki>$1</nowiki> » an byen ajoute nan [[Special:Watchlist|lis swivi ou an]].
+'watchlist'         => 'Lis swivi',
+'mywatchlist'       => 'Lis swivi',
+'watchlistfor'      => "(pou itilizatè '''$1''')",
+'addedwatch'        => 'Ajoute nan lis swivi',
+'addedwatchtext'    => 'Paj « <nowiki>$1</nowiki> » an byen ajoute nan [[Special:Watchlist|lis swivi ou an]].
 Pwochen modifikasyon nan paj sa a ke make na lis swivi ou an, paj an ke parèt <b>fonse </b> nan [[Special:RecentChanges|chanjman ki fèk fèt]] pou ou kapab wè yo pli fasilman.',
-'removedwatch'         => 'Retire nan lis swivi',
-'removedwatchtext'     => 'Paj "[[:$1]]" byen retire nan [[Special:Watchlist|lis swivi ou an]].',
-'watch'                => 'Swiv',
-'watchthispage'        => 'Swiv paj sa a',
-'unwatch'              => 'Pa swiv ankò',
-'watchlist-details'    => 'Ou ap swiv <b>$1</b> {{PLURAL:$1|paj|paj}}, san konte paj diskisyon yo.',
-'wlshowlast'           => 'Montre dènye $1 zè yo, dènye $2 jou yo, oubyen $3.',
-'watchlist-hide-bots'  => 'Kache kontribisyon wobo yo (Bòt)',
-'watchlist-hide-own'   => 'kache modifikasyon mwen yo',
-'watchlist-hide-minor' => 'Kache modifikasyon ki pa enpòtan yo',
+'removedwatch'      => 'Retire nan lis swivi',
+'removedwatchtext'  => 'Paj "[[:$1]]" byen retire nan [[Special:Watchlist|lis swivi ou an]].',
+'watch'             => 'Swiv',
+'watchthispage'     => 'Swiv paj sa a',
+'unwatch'           => 'Pa swiv ankò',
+'watchlist-details' => 'Ou ap swiv <b>$1</b> {{PLURAL:$1|paj|paj}}, san konte paj diskisyon yo.',
+'wlshowlast'        => 'Montre dènye $1 zè yo, dènye $2 jou yo, oubyen $3.',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Swiv...',

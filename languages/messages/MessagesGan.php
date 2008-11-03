@@ -1133,12 +1133,6 @@ $2',
 'iteminvalidname'      => "頁面'$1'出錯，無效命名...",
 'wlnote'               => "下底係最近'''$2'''鐘頭內嗰最晏'''$1'''道修改:",
 'wlshowlast'           => '顯示近來$1鐘頭$2日$3嗰改動',
-'watchlist-show-bots'  => '顯示機器人嗰編輯',
-'watchlist-hide-bots'  => '弆到機器人嗰編輯',
-'watchlist-show-own'   => '顯示偶嗰編輯',
-'watchlist-hide-own'   => '弆到偶嗰編輯',
-'watchlist-show-minor' => '顯到細編輯',
-'watchlist-hide-minor' => '弆到細編輯',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => '眏到...',

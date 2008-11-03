@@ -1532,12 +1532,6 @@ As u die bladsy later van u dophoulys wil verwyder, kliek "verwyder van dophouly
 'iteminvalidname'      => "Probleem met item '$1', ongeldige naam...",
 'wlnote'               => "Hier volg die laaste {{PLURAL:$1|verandering|'''$1''' veranderings}} binne die laaste {{PLURAL:$2|uur|'''$2''' ure}}.",
 'wlshowlast'           => 'Wys afgelope $1 ure, $2 dae of $3',
-'watchlist-show-bots'  => "Wys 'bot' wysigings",
-'watchlist-hide-bots'  => 'Versteek robotte',
-'watchlist-show-own'   => 'Wys my wysigings',
-'watchlist-hide-own'   => 'Versteek my wysigings',
-'watchlist-show-minor' => 'Wys klein wysigings',
-'watchlist-hide-minor' => 'Versteek klein wysigings',
 'watchlist-options'    => 'Opsies vir dophoulys',
 
 # Displayed when you click the "watch" button and it is in the process of watching

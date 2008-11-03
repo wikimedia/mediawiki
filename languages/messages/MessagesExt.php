@@ -1285,12 +1285,6 @@ Si quieis ehal de vehilal la páhina, pursa sobri \"Ehal de vehilal\".",
 'iteminvalidname'      => "Pobrema con el artículu '$1', nombri nu premitiu...",
 'wlnote'               => "Embahu {{PLURAL:$1|es el úrtimu chambu|son los úrtimus '''$1''' chambus}} enas úrtimas {{PLURAL:$2|oras|'''$2''' oras}}.",
 'wlshowlast'           => 'Muestral úrtimus $1 oras $2 dias $3',
-'watchlist-show-bots'  => 'Muestral eicionis de bots',
-'watchlist-hide-bots'  => 'Açonchal eicionis de bots',
-'watchlist-show-own'   => 'Muestral las mis eicionis',
-'watchlist-hide-own'   => 'Açonchal las mis eicionis',
-'watchlist-show-minor' => 'Muestral eicionis chiqueninas',
-'watchlist-hide-minor' => 'Açonchal eicionis chiqueninas',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Vehilandu...',

@@ -1389,12 +1389,6 @@ click me ing \"Tuknangan ing pamagbante\" (Unwatch) king gilid na ning bulung.",
 'iteminvalidname'      => "Maki prublema king '$1', e maliari ing lagyu...",
 'wlnote'               => "{{PLURAL:$1|Ing makatuki ing tauling|Ding makatuki ring tauling '''$1''' miyalilan}} kilub {{PLURAL:$2|ning tauling metung a oras|ding tauling '''$2''' oras}}.",
 'wlshowlast'           => 'Pakit la reng tauling $1 oras $2 aldo $3',
-'watchlist-show-bots'  => 'Pakit la reng in-edit da reng bot',
-'watchlist-hide-bots'  => 'Isalikut la reng in-edit dang bot',
-'watchlist-show-own'   => 'Pakit la reng in-edit ku',
-'watchlist-hide-own'   => 'Isalikut la reng in-edit ku',
-'watchlist-show-minor' => 'Pakit la reng mangalating edit',
-'watchlist-hide-minor' => 'Isalikut la reng mangalating edit',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Babanten...',

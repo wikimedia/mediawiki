@@ -1589,12 +1589,6 @@ Frekari breytingar á henni eða spallsíðu hennar munu verða sýndar þar, og
 'iteminvalidname'      => 'Vandamál með „$1“, rangt nafn...',
 'wlnote'               => "Að neðan {{PLURAL:$1|er síðasta breyting|eru síðustu '''$1''' breytingar}} {{PLURAL:$2|síðastliðinn klukkutímann|síðastliðna '''$2''' klukkutímana}}.",
 'wlshowlast'           => 'Sýna síðustu $1 klukkutíma, $2 daga, $3',
-'watchlist-show-bots'  => 'Sýna vélmennabreytingar',
-'watchlist-hide-bots'  => 'Fela vélmennabreytingar',
-'watchlist-show-own'   => 'Sýna mínar breytingar',
-'watchlist-hide-own'   => 'Fela mínar breytingar',
-'watchlist-show-minor' => 'Sýna minniháttar breytingar',
-'watchlist-hide-minor' => 'Fela minniháttar breytingar',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Vakta...',

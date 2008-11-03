@@ -467,17 +467,13 @@ $messages = array(
 'emailsend'       => 'Haruka',
 
 # Watchlist
-'watchlist'            => "Ha'u-nia lista hateke",
-'mywatchlist'          => "Ha'u-nia lista hateke",
-'watchlistfor'         => "('''$1''' nian)",
-'addedwatch'           => 'tau tan tiha ba lista hateke',
-'watch'                => 'Hateke',
-'watchthispage'        => "Hateke pájina ne'e",
-'unwatch'              => 'La hateke',
-'watchlist-hide-bots'  => 'Hamsumik edita "bot" sira',
-'watchlist-hide-own'   => "Hamsumik edita ha'u-nia",
-'watchlist-show-minor' => 'Hatudu osan-rahun',
-'watchlist-hide-minor' => 'Subar osan-rahun',
+'watchlist'     => "Ha'u-nia lista hateke",
+'mywatchlist'   => "Ha'u-nia lista hateke",
+'watchlistfor'  => "('''$1''' nian)",
+'addedwatch'    => 'tau tan tiha ba lista hateke',
+'watch'         => 'Hateke',
+'watchthispage' => "Hateke pájina ne'e",
+'unwatch'       => 'La hateke',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Hateke...',

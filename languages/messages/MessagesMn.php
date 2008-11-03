@@ -1338,12 +1338,6 @@ URL нь зөв болон сайт ажиллагаатай байгаа эсэ
 'iteminvalidname'      => "'$1' зүйлд асуудал гарлаа, хүчингүй нэр...",
 'wlnote'               => "Доорх нь сүүлийн {{PLURAL:$2|цагт|'''$2''' цагт}} хийгдсэн {{PLURAL:$1|сүүлийн|сүүлийн '''$1'''}} өөрчлөлт юм.",
 'wlshowlast'           => 'Сүүлийн $1 цагийн $2 өдрийн $3-г харуул',
-'watchlist-show-bots'  => 'Автоматаар хийгдсэн засваруудыг харуул',
-'watchlist-hide-bots'  => 'Роботуудын хийсэн засваруудыг нуух',
-'watchlist-show-own'   => 'Миний хийсэн засваруудыг харуул',
-'watchlist-hide-own'   => 'Миний хийсэн засваруудыг нуух',
-'watchlist-show-minor' => 'Жижиг засваруудыг харуул',
-'watchlist-hide-minor' => 'Бага зэргийн засваруудыг нуух',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Хянаж байна...',

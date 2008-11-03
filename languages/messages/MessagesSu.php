@@ -1444,12 +1444,6 @@ Jaga, parobahan na kaca ieu katut kaca obrolanana bakal dibéréndélkeun di din
 'iteminvalidname'      => "Masalah dina '$1', ngaran teu bener...",
 'wlnote'               => "Di handap ieu mangrupa $1 {{PLURAL:$1|robahan|robahan}} ahir salila '''$2''' jam.",
 'wlshowlast'           => 'Témbongkeun $1 jam $2 poé $3 ahir',
-'watchlist-show-bots'  => 'Témbongkeun éditan bot',
-'watchlist-hide-bots'  => 'Sumputkeun éditan bot',
-'watchlist-show-own'   => 'Témbongkeun éditan kuring',
-'watchlist-hide-own'   => 'Sumputkeun éditan kuring',
-'watchlist-show-minor' => 'Témbongkeun éditan leutik',
-'watchlist-hide-minor' => 'Sumputkeun éditan leutik',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Ngawaskeun...',

@@ -292,17 +292,10 @@ Wòateŋu [[:\$1|adze axa sia gɔme]].",
 'newuserlog-create2-entry' => 'woŋlɔ ŋkɔ na $1',
 
 # Watchlist
-'watchlistfor'         => "(na '''$1''')",
-'watch'                => 'Le ŋku ɖe eŋu',
-'watchthispage'        => 'Le ŋku ɖe axa sia ŋu',
-'wlshowlast'           => 'Fia gaƒoƒo $1 ŋkeke $2 mamleawo. $3',
-'watchlist-hide-own'   => 'Ɣla nyeƒe tɔtrɔwo',
-'watchlist-show-minor' => 'Fia tɔtrɔ suewo',
-'watchlist-hide-minor' => 'Ɣla tɔtrɔ suewo',
-'watchlist-show-anons' => 'Fia ŋkɔmaŋlɔlawo ƒe tɔtrɔwo',
-'watchlist-hide-anons' => 'Ɣla ŋkɔmaŋlɔlawo ƒe tɔtrɔwo',
-'watchlist-show-liu'   => 'Fia ŋkɔŋlɔlawo ƒe tɔtrɔwo',
-'watchlist-hide-liu'   => 'Ɣla ŋkɔŋlɔlawo ƒe tɔtrɔwo',
+'watchlistfor'  => "(na '''$1''')",
+'watch'         => 'Le ŋku ɖe eŋu',
+'watchthispage' => 'Le ŋku ɖe axa sia ŋu',
+'wlshowlast'    => 'Fia gaƒoƒo $1 ŋkeke $2 mamleawo. $3',
 
 # Delete
 'deletepage'     => 'Tutu axa sia',

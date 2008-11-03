@@ -1550,12 +1550,6 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'iteminvalidname'      => "'$1'बाबीस समस्या, अमान्य नाव...",
 'wlnote'               => "खाली  गेल्या {{PLURAL:$2|तासातील|'''$2''' तासातील}} {{PLURAL:$1|शेवटचा बदल आहे|शेवटाचे '''$1'''बदल आहेत }}.",
 'wlshowlast'           => 'मागील $1 तास $2 दिवस $3 पहा',
-'watchlist-show-bots'  => 'सांगकाम्यांची संपादने पहा',
-'watchlist-hide-bots'  => 'सांगकाम्यांची संपादने लपवा',
-'watchlist-show-own'   => 'माझी संपादने पहा',
-'watchlist-hide-own'   => 'माझी संपादने लपवा',
-'watchlist-show-minor' => 'छोटी संपादने पहा',
-'watchlist-hide-minor' => 'छोटी संपादने लपवा',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'पाहताहे...',

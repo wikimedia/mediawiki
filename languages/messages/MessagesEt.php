@@ -1054,16 +1054,6 @@ Kui tahad seda lehte hiljem jälgimisloendist eemaldada, klõpsa päisenupule "L
 'watchlistcontains'    => 'Sinu jälgimisloendis on $1 {{PLURAL:$1|artikkel|artiklit}}.',
 'wlnote'               => "Allpool on {{PLURAL:$1|viimane muudatus|viimased '''$1''' muudatust}} viimase {{PLURAL:$2|tunni|'''$2''' tunni}} jooksul.",
 'wlshowlast'           => 'Näita viimast $1 tundi $2 päeva. $3',
-'watchlist-show-bots'  => 'Näita roboteid',
-'watchlist-hide-bots'  => 'Peida robotite parandused',
-'watchlist-show-own'   => 'Näita minu redaktsioone',
-'watchlist-hide-own'   => 'Peida minu parandused',
-'watchlist-show-minor' => 'Näita pisiparandusi',
-'watchlist-hide-minor' => 'Peida pisiparandused',
-'watchlist-show-anons' => 'Näita anonüümseid muudatusi',
-'watchlist-hide-anons' => 'Peida anonüümsed muudatused',
-'watchlist-show-liu'   => 'Näita sisseloginud kasutajate muudatusi',
-'watchlist-hide-liu'   => 'Peida sisseloginud kasutajate muudatused',
 'watchlist-options'    => 'Jälgimisloendi võimalused',
 
 # Displayed when you click the "watch" button and it is in the process of watching

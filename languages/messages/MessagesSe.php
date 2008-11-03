@@ -864,12 +864,6 @@ $1 | $2',
 'iteminvalidname'      => 'Siidduin $1 ledje váttisvuođat! Siiddu namas lea feaila.',
 'wlnote'               => "Vuolábealde lea '''$1''' {{PLURAL:$1|rievdadus|rievdadusa}} maŋimus {{PLURAL:$2||'''$2'''}} diimma siste.",
 'wlshowlast'           => 'Čájet maŋimus $1 diimmu dahje $2 beaivvi $3',
-'watchlist-show-bots'  => 'Čájet bottaid rievdadusaid',
-'watchlist-hide-bots'  => 'Čiega bottaid rievdadusaid',
-'watchlist-show-own'   => 'Čájet iežas rievdádusaid',
-'watchlist-hide-own'   => 'Čiega iežas rievdádusaid',
-'watchlist-show-minor' => 'Čájet unna rievdádusaid',
-'watchlist-hide-minor' => 'Čiega unna rievdádusaid',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Lasihuvvo čuovvunlistui...',

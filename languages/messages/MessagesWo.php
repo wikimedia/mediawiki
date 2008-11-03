@@ -1131,10 +1131,6 @@ Ab [[Special:WhatLinksHere/$2|lim bu mat]] jàppandi na.',
 'watchlistcontains'    => "Sa limu toppte am na '''$1''' {{PLURAL:$1|xët|xët}}.",
 'wlnote'               => 'Fii ci suuf {{PLURAL:$1| ngay gis coppite yu mujj yi|ngay gis $1 coppite yu mujj}} ci {{PLURAL:$2|waxtu gu mujj gi|<b>$2</b> waxtu yu mujj}}.',
 'wlshowlast'           => 'wone $1 waxtu yu mujj, $2 bess yu mujj, walla $3.',
-'watchlist-show-own'   => 'Wone samay coppite',
-'watchlist-hide-own'   => 'Nëbb samay coppite',
-'watchlist-show-minor' => 'Wone coppite yu tuut yi',
-'watchlist-hide-minor' => 'Nëbb coppite yu tuut yi',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'Topp...',

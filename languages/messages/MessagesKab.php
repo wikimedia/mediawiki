@@ -1041,12 +1041,6 @@ Ma tebɣiḍ ad tekkseḍ asebter seg wumuɣ n uɛessi inek, wekki ɣef \"Fakk a
 'iteminvalidname'      => "Agnu akk d uferdis '$1', isem mačči ṣaḥiḥ...",
 'wlnote'               => "Deg ukessar {{PLURAL:$1|yella yiwen ubeddel aneggaru|llan '''$1''' n yibeddlen ineggura}} deg {{PLURAL:$2|saɛa taneggarut|'''$2''' swayeɛ tineggura}}.",
 'wlshowlast'           => 'Ssken $1 n swayeɛ $2 n wussan neɣ $3 ineggura',
-'watchlist-show-bots'  => 'Ssken ibeddlen n yiboṭiyen (bots)',
-'watchlist-hide-bots'  => 'Ffer ibeddlen n yiboṭiyen (bots)',
-'watchlist-show-own'   => 'Ssken ibeddlen inu',
-'watchlist-hide-own'   => 'Ffer ibeddlen inu',
-'watchlist-show-minor' => 'Ssken ibeddlen ifessasen',
-'watchlist-hide-minor' => 'Ffer ibeddlen ifessasen',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Ad iɛass...',

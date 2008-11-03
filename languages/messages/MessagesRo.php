@@ -1693,16 +1693,6 @@ Dacă doreşti să elimini această pagină din lista ta de pagini urmărite în
 'iteminvalidname'      => "E o problemă cu elementul '$1', numele este invalid...",
 'wlnote'               => "Mai jos se află {{PLURAL:$1|ultima schimbare|ultimele $1 schimbări}} din {{PLURAL:$2|ultima oră|ultimele '''$2''' ore}}.",
 'wlshowlast'           => 'Arată ultimele $1 ore $2 zile $3',
-'watchlist-show-bots'  => 'Arată editările roboţilor',
-'watchlist-hide-bots'  => 'Ascunde editările roboţilor',
-'watchlist-show-own'   => 'Arată editările mele',
-'watchlist-hide-own'   => 'Ascunde editările mele',
-'watchlist-show-minor' => 'Arată editările minore',
-'watchlist-hide-minor' => 'Ascunde editările minore',
-'watchlist-show-anons' => 'Arată modificările utilizatorilor anonimi',
-'watchlist-hide-anons' => 'Ascunde modificările utilizatorilor anonimi',
-'watchlist-show-liu'   => 'Arată modificările utilizatorilor autentificaţi',
-'watchlist-hide-liu'   => 'Ascunde modificările utilizatorilor autentificaţi',
 'watchlist-options'    => 'Opţiunile listei de pagini urmărite',
 
 # Displayed when you click the "watch" button and it is in the process of watching

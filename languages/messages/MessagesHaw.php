@@ -451,14 +451,12 @@ hō‘ike ‘ia i lalo:",
 'emailmessage' => 'Memo',
 
 # Watchlist
-'watchlist'           => "Ka'u papa nānā pono",
-'mywatchlist'         => 'Ka‘u papa nānā pono',
-'watchlistfor'        => "(no '''$1''')",
-'watch'               => 'E kia‘i',
-'watchthispage'       => 'E nānā pono i kēia mea',
-'unwatch'             => 'E wehe kia‘i',
-'watchlist-hide-bots' => 'Hūnā i nā hoʻololi e nā lopako',
-'watchlist-hide-own'  => 'Hūnā i kaʻu mau hoʻololi',
+'watchlist'     => "Ka'u papa nānā pono",
+'mywatchlist'   => 'Ka‘u papa nānā pono',
+'watchlistfor'  => "(no '''$1''')",
+'watch'         => 'E kia‘i',
+'watchthispage' => 'E nānā pono i kēia mea',
+'unwatch'       => 'E wehe kia‘i',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Ke kia‘i nei...',

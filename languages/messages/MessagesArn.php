@@ -312,16 +312,12 @@ $messages = array(
 'emailsend'    => 'Werkün',
 
 # Watchlist
-'watchnologin'         => 'Petu konlaymi',
-'watch'                => 'Llaytun',
-'watchthispage'        => 'Llaytun tüfachi pakina',
-'unwatch'              => 'Llaytuwelan',
-'unwatchthispage'      => 'Llaytuwelan',
-'notanarticle'         => 'Ngelay kiñe pakina',
-'watchlist-show-own'   => 'Nülan ñi wirin',
-'watchlist-hide-own'   => 'Ellkan ñi wirin',
-'watchlist-show-minor' => 'Nülan pichi wirin',
-'watchlist-hide-minor' => 'Ellkan wirin pichi',
+'watchnologin'    => 'Petu konlaymi',
+'watch'           => 'Llaytun',
+'watchthispage'   => 'Llaytun tüfachi pakina',
+'unwatch'         => 'Llaytuwelan',
+'unwatchthispage' => 'Llaytuwelan',
+'notanarticle'    => 'Ngelay kiñe pakina',
 
 'enotif_newpagetext'           => 'Tüfachi ta we pakina',
 'enotif_impersonal_salutation' => '{{SITENAME}} lludüchi',

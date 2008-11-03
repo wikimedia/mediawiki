@@ -1552,12 +1552,6 @@ Modificações futuras em tal página e páginas de discussão a ela associadas 
 'iteminvalidname'      => "Problema com item '$1', nome inválido...",
 'wlnote'               => "A seguir {{PLURAL:$1|está a última alteração ocorrida|estão as últimas '''$1''' alterações ocorridas}} {{PLURAL:$2|na última hora|nas últimas '''$2''' horas}}.",
 'wlshowlast'           => 'Ver últimas $1 horas $2 dias $3',
-'watchlist-show-bots'  => 'Mostrar edições de robôs',
-'watchlist-hide-bots'  => 'Ocultar edições de robôs',
-'watchlist-show-own'   => 'Exibir minhas edições',
-'watchlist-hide-own'   => 'Ocultar minhas edições',
-'watchlist-show-minor' => 'Exibir edições menores',
-'watchlist-hide-minor' => 'Ocultar edições menores',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Vigiando...',

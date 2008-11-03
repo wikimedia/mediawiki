@@ -1045,12 +1045,6 @@ Li rûpela [[Special:RecentChanges|Guherandinên dawî]] jî ji bo hasan dîtina
 'watchlistcontains'    => 'Di lîsteya şopandina te de {{PLURAL:$1|rûpelek heye|$1 rûpel hene}}.',
 'wlnote'               => "Niha {{PLURAL:$1|xeyrandinê|'''$1''' xeyrandinên}} dawî yê {{PLURAL:$2|seetê|'''$2''' seetên}} dawî {{PLURAL:$1|tê|tên}} dîtin.",
 'wlshowlast'           => 'Xeyrandînên berî $1 seetan, $2 rojan, ya $3 (di rojên sîyî paşî)',
-'watchlist-show-bots'  => "Guherandinên bot'an nîşan bide",
-'watchlist-hide-bots'  => "Guherandinên Bot'an veşêre",
-'watchlist-show-own'   => 'Guherandinên min pêşke',
-'watchlist-hide-own'   => 'Guherandinên min veşêre',
-'watchlist-show-minor' => 'Guherandinên biçûk pêşke',
-'watchlist-hide-minor' => 'Guherandinên biçûk veşêre',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Bişopîne...',

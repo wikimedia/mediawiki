@@ -1649,16 +1649,6 @@ Wann dir dës Säit net iwwerwaache wëllt, klickt op \"Net méi iwwerwaachen\" 
 'iteminvalidname'      => "Problem mat dem Objet '$1', ongültege Numm ...",
 'wlnote'               => "Hei {{PLURAL:$1|ass déi lescht Ännerung|sinn déi lescht '''$1''' Ännerunge}} vun {{PLURAL:$2|der leschter Stonn|de leschte(n) '''$2''' Stonnen}}.",
 'wlshowlast'           => "Weis d'Ännerunge vun de leschte(n) $1 Stonnen, $2 Deeg oder $3 (an de leschten 30 Deeg).",
-'watchlist-show-bots'  => 'Bot-Ännerunge weisen',
-'watchlist-hide-bots'  => 'Bot-Ännerunge verstoppen',
-'watchlist-show-own'   => 'Meng Ännerunge weisen',
-'watchlist-hide-own'   => 'Meng Ännerunge verstoppen',
-'watchlist-show-minor' => 'Kleng Ännerunge weisen',
-'watchlist-hide-minor' => 'kleng Ännerunge verstoppen',
-'watchlist-show-anons' => 'ännerunge vun anonyme Benotzer weisen',
-'watchlist-hide-anons' => 'Ännerung vun anonyme Benotzer verstoppen',
-'watchlist-show-liu'   => 'Weis Ännerunge vun ageloggte Benotzer',
-'watchlist-hide-liu'   => 'Ageloggt Benotzer verstoppen',
 'watchlist-options'    => 'Optioune vun der Iwwerwaachungslëscht',
 
 # Displayed when you click the "watch" button and it is in the process of watching

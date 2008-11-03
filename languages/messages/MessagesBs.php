@@ -1285,9 +1285,6 @@ Ako kasnije želite da uklonite stranicu sa vašeg spiska praćenih članaka, kl
 'iteminvalidname'      => "Problem sa '$1', neispravno ime...",
 'wlnote'               => "Ispod je {{PLURAL:$1|najskorija izmjena|'''$1''' najskorije izmjene|'''$1''' najskorijih izmjena}} načinjenih {{PLURAL:$2|posljednjeg sata|u posljednjih '''$2''' sata|u posljednjih '''$2''' sati}}.",
 'wlshowlast'           => 'Prikaži poslednjih $1 sati $2 dana $3',
-'watchlist-hide-bots'  => 'Sakrij botove',
-'watchlist-hide-own'   => 'Sakrij moje izmjene',
-'watchlist-hide-minor' => 'Sakrij male izmjene',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Pratim...',

@@ -1341,12 +1341,6 @@ $1',
 'iteminvalidname'      => "Мушкилӣ бо мавриди '$1', номи номӯътабар аст...",
 'wlnote'               => "Дар зер {{PLURAL:$1|охирин тағйир|'''$1''' охирин тағйирот}} дар $2 соати охир {{PLURAL:омадааст|омадаанд}}.",
 'wlshowlast'           => 'Намоиши охирин $1 соат $2 рӯзҳо $3',
-'watchlist-show-bots'  => 'Намоиши вироишҳои роботҳо',
-'watchlist-hide-bots'  => 'Пинҳон кардани вироишҳои роботҳо',
-'watchlist-show-own'   => 'Намоиши вироишҳои ман',
-'watchlist-hide-own'   => 'Пинҳон кардани вироишҳои ман',
-'watchlist-show-minor' => 'Намоиши вироишҳои ҷузъӣ',
-'watchlist-hide-minor' => 'Пинҳон намудани вироишҳои хурд',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Пайгири...',
