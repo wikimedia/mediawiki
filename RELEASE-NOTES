@@ -311,6 +311,8 @@ The following extensions are migrated into MediaWiki 1.14:
   a warning
 * (bug 16143) Fix redirect loop on special pages starting with lower case letters
 * (bug 15737) Fix notices while expanding using PPCustomFrame
+* (bug 15544) Non-index entry points cause the "Wiki not set up" message to
+  have corrupt URLs
 
 === API changes in 1.14 ===
 
