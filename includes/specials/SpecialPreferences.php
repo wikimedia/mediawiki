@@ -42,7 +42,7 @@ class PreferencesForm {
 		$this->mStubs = $request->getVal( 'wpStubs' );
 		$this->mRows = $request->getVal( 'wpRows' );
 		$this->mCols = $request->getVal( 'wpCols' );
-		$this->mSkin = $request->getVal( 'wpSkin' );
+		$this->mSkin = Skin::normalizeKey( $request->getVal( 'wpSkin' ) );
 		$this->mMath = $request->getVal( 'wpMath' );
 		$this->mDate = $request->getVal( 'wpDate' );
 		$this->mUserEmail = $request->getVal( 'wpUserEmail' );
@@ -268,7 +268,10 @@ class PreferencesForm {
 		$wgUser->setOption( 'variant', $this->mUserVariant );
 		$wgUser->setOption( 'nickname', $this->mNick );
 		$wgUser->setOption( 'quickbar', $this->mQuickbar );
-		$wgUser->setOption( 'skin', $this->mSkin );
+		global $wgAllowUserSkin;
+		if( $wgAllowUserSkin ) {
+			$wgUser->setOption( 'skin', $this->mSkin );
+		}
 		global $wgUseTeX;
 		if( $wgUseTeX ) {
 			$wgUser->setOption( 'math', $this->mMath );
