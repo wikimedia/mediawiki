@@ -1500,6 +1500,9 @@ $wgEnotifMaxRecips = 500;
 # Send mails via the job queue.
 $wgEnotifUseJobQ = false;
 
+# Use real name instead of username in e-mail "from" field
+$wgEnotifUseRealName = false;
+
 /**
  * Array of usernames who will be sent a notification email for every change which occurs on a wiki
  */
