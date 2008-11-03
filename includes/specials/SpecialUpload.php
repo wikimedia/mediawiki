@@ -407,7 +407,7 @@ class UploadForm {
 		list( $partname, $ext ) = $this->splitExtensions( $filtered );
 
 		if( count( $ext ) ) {
-			$finalExt = $ext[count( $ext ) - 1];
+			$finalExt = trim( $ext[count( $ext ) - 1] );
 		} else {
 			$finalExt = '';
 		}
