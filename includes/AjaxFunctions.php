@@ -14,7 +14,8 @@ if( !defined( 'MEDIAWIKI' ) ) {
  * Modified function from http://pure-essence.net/stuff/code/utf8RawUrlDecode.phps
  *
  * @param $source String escaped with Javascript's escape() function
- * @param $iconv_to String destination character set will be used as second paramether in the iconv function. Default is UTF-8.
+ * @param $iconv_to String destination character set will be used as second parameter 
+ * in the iconv function. Default is UTF-8.
  * @return string
  */
 function js_unescape($source, $iconv_to = 'UTF-8') {
