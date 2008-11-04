@@ -2540,11 +2540,11 @@ $1 כבר נחסם. האם ברצונכם לשנות את הגדרות החסי�
 'markedaspatrollederror-noautopatrol' => 'אינכם מורשים לסמן את השינויים של עצמכם כבדוקים.',
 
 # Patrol log
-'patrol-log-page'    => 'יומן שינויים בדוקים',
-'patrol-log-header'  => 'יומן זה מציג גרסאות שנבדקו.',
-'patrol-log-line'    => 'סימן את  $1 בדף $2 כבדוקה $3',
-'patrol-log-auto'    => '(אוטומטית)',
-'patrol-log-diff'    => 'גרסה $1',
+'patrol-log-page'      => 'יומן שינויים בדוקים',
+'patrol-log-header'    => 'יומן זה מציג גרסאות שנבדקו.',
+'patrol-log-line'      => 'סימן את  $1 בדף $2 כבדוקה $3',
+'patrol-log-auto'      => '(אוטומטית)',
+'patrol-log-diff'      => 'גרסה $1',
 'log-show-hide-patrol' => '$1 יומן שינויים בדוקים',
 
 # Image deletion

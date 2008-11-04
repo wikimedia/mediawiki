@@ -2993,11 +2993,11 @@ This is probably caused by a link to a blacklisted external site.',
 'markedaspatrollederror-noautopatrol' => 'You are not allowed to mark your own changes as patrolled.',
 
 # Patrol log
-'patrol-log-page'    => 'Patrol log',
-'patrol-log-header'  => 'This is a log of patrolled revisions.',
-'patrol-log-line'    => 'marked $1 of $2 patrolled $3',
-'patrol-log-auto'    => '(automatic)',
-'patrol-log-diff'    => 'r$1', # only translate this message to other languages if you have to change it
+'patrol-log-page'      => 'Patrol log',
+'patrol-log-header'    => 'This is a log of patrolled revisions.',
+'patrol-log-line'      => 'marked $1 of $2 patrolled $3',
+'patrol-log-auto'      => '(automatic)',
+'patrol-log-diff'      => 'r$1', # only translate this message to other languages if you have to change it
 'log-show-hide-patrol' => '$1 patrol log',
 
 # Image deletion
