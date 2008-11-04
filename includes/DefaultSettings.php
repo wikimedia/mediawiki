@@ -2755,7 +2755,8 @@ $wgLogRestrictions = array(
 );
 
 /**
- * Show/hide links on Special:Log will be shown for these log types.
+ * Show/hide links on Special:Log will be shown for these log types. Intended for 
+ * extensions and core code only, do not configure this in LocalSettings.php.
  *
  * This is associative array of log type => boolean "hide by default"
  *
