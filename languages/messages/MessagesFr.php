@@ -2427,7 +2427,7 @@ Ceci est probablement causé par un lien sur liste noire pointant vers un site e
 'patrol-log-line'    => 'a marqué la version $1 de $2 comme vérifiée $3',
 'patrol-log-auto'    => '(automatique)',
 'patrol-log-diff'    => 'v$1',
-'logshowhide-patrol' => "$1 l'historique des versions patrouillées",
+'log-show-hide-patrol' => "$1 l'historique des versions patrouillées",
 
 # Image deletion
 'deletedrevision'                 => 'L’ancienne version $1 a été supprimée',

@@ -2373,7 +2373,7 @@ Datoj de revizioj kaj nomoj de redaktantoj estos preservitaj.
 'patrol-log-header'  => 'Jen protokolo de patrolitaj revizioj.',
 'patrol-log-line'    => 'markis $1 el $2 patrolitajn $3',
 'patrol-log-auto'    => '(aŭtomata)',
-'logshowhide-patrol' => '$1 protokolo pri patrolado',
+'log-show-hide-patrol' => '$1 protokolo pri patrolado',
 
 # Image deletion
 'deletedrevision'                 => 'Forigita malnova versio $1',

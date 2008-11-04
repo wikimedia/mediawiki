@@ -2425,7 +2425,7 @@ Ini mungkin disebabkan oleh pranala ke situs luar yang termasuk dalam daftar hit
 'patrol-log-header'  => 'Ini adalah log revisi terpatroli.',
 'patrol-log-line'    => 'menandai $1 dari $2 terpatroli $3',
 'patrol-log-auto'    => '(otomatis)',
-'logshowhide-patrol' => '$1 log patroli',
+'log-show-hide-patrol' => '$1 log patroli',
 
 # Image deletion
 'deletedrevision'                 => 'Revisi lama yang dihapus $1',

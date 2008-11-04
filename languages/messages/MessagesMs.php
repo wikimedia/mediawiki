@@ -2343,7 +2343,7 @@ Semua tindakan import transwiki dicatatkan dalam [[Special:Log/import|log import
 'patrol-log-line'    => 'menandakan $1 bagi $2 sebagai telah diperiksa $3',
 'patrol-log-auto'    => '(automatik)',
 'patrol-log-diff'    => 's$1',
-'logshowhide-patrol' => '$1 log rondaan',
+'log-show-hide-patrol' => '$1 log rondaan',
 
 # Image deletion
 'deletedrevision'                 => 'Menghapuskan semakan lama $1.',

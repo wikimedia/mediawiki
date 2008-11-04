@@ -1930,7 +1930,7 @@ See also [[MediaWiki:Lastmodifiedat/{{SUBPAGENAME}}]].', # $1 date, $2 time, $3 
 'patrol-log-auto'    => 'Automated edit summary when patrolling.
 
 {{Identical|Automatic}}',
-'logshowhide-patrol' => '* $1 is one of {{msg|show}} or {{msg|hide}}',
+'log-show-hide-patrol' => '* $1 is one of {{msg|show}} or {{msg|hide}}',
 
 # Browsing diffs
 'previousdiff' => 'Used when viewing the difference between edits. See also {{msg|nextdiff}}.',

@@ -2480,7 +2480,7 @@ Detta orsakades troligen av en länk till en svartlistad webbplats.',
 'patrol-log-line'    => 'markerade $1 av $2 som patrullerad $3',
 'patrol-log-auto'    => '(automatiskt)',
 'patrol-log-diff'    => 'version $1',
-'logshowhide-patrol' => '$1 patrulleringslogg',
+'log-show-hide-patrol' => '$1 patrulleringslogg',
 
 # Image deletion
 'deletedrevision'                 => 'Raderade gammal sidversion $1',

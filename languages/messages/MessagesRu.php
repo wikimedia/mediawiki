@@ -2460,7 +2460,7 @@ The wiki server can't provide data in a format your client can read.",
 'patrol-log-header'  => 'Это журнал патрулированных версий.',
 'patrol-log-line'    => 'проверена $1 из $2 $3',
 'patrol-log-auto'    => '(автоматически)',
-'logshowhide-patrol' => '$1 журнал патрулирования',
+'log-show-hide-patrol' => '$1 журнал патрулирования',
 
 # Image deletion
 'deletedrevision'                 => 'Удалена старая версия $1',

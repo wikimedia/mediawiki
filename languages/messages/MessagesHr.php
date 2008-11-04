@@ -2480,7 +2480,7 @@ Razlog je vjerojatno vanjska poveznica koja se nalazi na crnom popisu.',
 'patrol-log-header'  => 'Ovo su evidencije patroliranih izmjena.',
 'patrol-log-line'    => 'promjena broj $1 stranice $2 pregledana $3',
 'patrol-log-auto'    => '(automatski pregledano)',
-'logshowhide-patrol' => '$1 evidenciju patroliranja',
+'log-show-hide-patrol' => '$1 evidenciju patroliranja',
 
 # Image deletion
 'deletedrevision'                 => 'Izbrisana stara inačica $1',

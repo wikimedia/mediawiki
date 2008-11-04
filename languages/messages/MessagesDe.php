@@ -2416,7 +2416,7 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'patrol-log-line'    => 'hat $1 von „$2“ als kontrolliert markiert $3',
 'patrol-log-auto'    => '(automatisch)',
 'patrol-log-diff'    => 'Version $1',
-'logshowhide-patrol' => 'Kontroll-Logbuch $1',
+'log-show-hide-patrol' => 'Kontroll-Logbuch $1',
 
 # Image deletion
 'deletedrevision'                 => 'alte Version: $1',

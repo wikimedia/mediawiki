@@ -2354,7 +2354,7 @@ Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está n
 'patrol-log-header'  => 'Este é un rexistro das revisións patrulladas.',
 'patrol-log-line'    => 'marcou a $1 de "$2" como revisada $3',
 'patrol-log-auto'    => '(automático)',
-'logshowhide-patrol' => '$1 o rexistro de patrullas',
+'log-show-hide-patrol' => '$1 o rexistro de patrullas',
 
 # Image deletion
 'deletedrevision'                 => 'A revisión vella $1 foi borrada.',

@@ -2616,7 +2616,7 @@ Meestal wordt dit door een externe verwijzing op een zwarte lijst veroorzaakt.',
 'patrol-log-line'    => 'markeerde versie $1 van $2 als gecontroleerd $3',
 'patrol-log-auto'    => '(automatisch)',
 'patrol-log-diff'    => '$1',
-'logshowhide-patrol' => 'Markeerlogboek $1',
+'log-show-hide-patrol' => 'Markeerlogboek $1',
 
 # Image deletion
 'deletedrevision'                 => 'Oude versie $1 verwijderd.',

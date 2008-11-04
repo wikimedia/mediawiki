@@ -2755,8 +2755,25 @@ $wgLogRestrictions = array(
 );
 
 /**
- * Show/hide links on Special:Log will be shown for these log types
- * This is associative array of log => (hidden by default)
+ * Show/hide links on Special:Log will be shown for these log types. Intended 
+ * for extensions only.
+ *
+ * This is associative array of log type => boolean "hide by default"
+ *
+ * See $wgLogTypes for a list of available log types. 
+ *
+ * For example:
+ *   $wgFilterLogTypes => array(
+ *      'move' => true,
+ *      'import' => false,
+ *   );
+ *
+ * Will display show/hide links for the move and import logs. Move logs will be
+ * hidden by default unless the link is clicked. Import logs will be shown by 
+ * default, and hidden when the link is clicked.
+ *
+ * A message of the form log-show-hide-<type> should be added, and will be used
+ * for the link text.
  */
 $wgFilterLogTypes = array(
 	'patrol' => true

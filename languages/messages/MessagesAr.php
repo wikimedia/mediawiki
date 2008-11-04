@@ -2689,7 +2689,7 @@ $1 ممنوع بالفعل. هل تريد تغيير الإعدادات؟',
 'patrol-log-line'    => 'علم على $1 من $2 كمراجعة $3',
 'patrol-log-auto'    => '(تلقائيا)',
 'patrol-log-diff'    => 'ن$1',
-'logshowhide-patrol' => '$1 سجل المراجعة',
+'log-show-hide-patrol' => '$1 سجل المراجعة',
 
 # Image deletion
 'deletedrevision'                 => 'حذف المراجعة القديمة $1',

@@ -2247,7 +2247,7 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'patrol-log-header'  => 'Tämä on loki tarkistetuista muutoksista.',
 'patrol-log-line'    => 'merkitsi sivun $2 muutoksen $1 tarkastetuksi $3',
 'patrol-log-auto'    => '(automaattinen)',
-'logshowhide-patrol' => '$1 muutostentarkastusloki',
+'log-show-hide-patrol' => '$1 muutostentarkastusloki',
 
 # Image deletion
 'deletedrevision'                 => 'Poistettiin vanha versio $1',

@@ -2570,7 +2570,7 @@ $1',
 'patrol-log-line'    => 'به $1 از $2 برچسب گشت زد $3',
 'patrol-log-auto'    => '(خودکار)',
 'patrol-log-diff'    => 'نسخه $1',
-'logshowhide-patrol' => 'سیاههٔ گشت $1',
+'log-show-hide-patrol' => 'سیاههٔ گشت $1',
 
 # Image deletion
 'deletedrevision'                 => '$1 نسخهٔ حذف شدهٔ قدیمی',
