@@ -57,7 +57,7 @@ class SkinNostalgia extends Skin {
 		$sep = " |\n";
 
 		$s = $this->mainPageLink() . $sep
-		  . $this->specialLink( "recentchanges" );
+		  . $this->specialLink( 'recentchanges' );
 
 		if ( $wgOut->isArticle() ) {
 			$s .=  $sep . $this->editThisPage()
@@ -67,14 +67,30 @@ class SkinNostalgia extends Skin {
 		/* show links to different language variants */
 		$s .= $this->variantLinks();
 		$s .= $this->extensionTabLinks();
-
 		if ( $wgUser->isAnon() ) {
-			$s .= $sep . $this->specialLink( "userlogin" );
+			$s .= $sep . $this->specialLink( 'userlogin' );
 		} else {
-			if ( $wgEnableUploads ) {
-				$s .= $sep . $this->specialLink( "upload" );
+			$name = $wgUser->getName();
+			/* show user page and user talk links */
+			$s .= $sep . $this->link( $wgUser->getUserPage(), wfMsgHtml( 'mypage' ) );
+			$s .= $sep . $this->link( $wgUser->getTalkPage(), wfMsgHtml( 'mytalk' ) );
+			if ( $wgUser->getNewtalk() ) {
+				$s .= ' *';
 			}
-			$s .= $sep . $this->specialLink( "userlogout" );
+			/* show watchlist link */
+			$s .= $sep . $this->specialLink( 'watchlist' );
+			/* show my contributions link */
+			$s .= $sep . $this->link(
+				SpecialPage::getSafeTitleFor( "Contributions", $wgUser->getName() ),
+				wfMsgHtml( 'mycontris' ) );
+			/* show my preferences link */
+			$s .= $sep . $this->specialLink( 'preferences' );
+			/* show upload file link */
+			if ( $wgEnableUploads ) {
+				$s .= $sep . $this->specialLink( 'upload' );
+			}
+			/* show log out link */
+			$s .= $sep . $this->specialLink( 'userlogout' );
 		}
 
 		$s .= $sep . $this->specialPagesList();
