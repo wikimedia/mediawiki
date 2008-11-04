@@ -2144,7 +2144,7 @@ $wgMessageStructure = array(
 		'patrol-log-line',
 		'patrol-log-auto',
 		'patrol-log-diff',
-		'logshowhide-patrol'
+		'log-show-hide-patrol',
 	),
 	'imagedeletion' => array(
 		'deletedrevision',
