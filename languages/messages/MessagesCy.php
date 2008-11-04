@@ -551,6 +551,8 @@ Er mwyn rhwystro camddefnydd, dim ond un e-bost i'ch atgoffa o'ch cyfrinair gaif
 'createaccount-text'         => 'Creodd rhywun gyfrif o\'r enw $2 ar {{SITENAME}} ($4) ar gyfer y cyfeiriad e-bost hwn. "$3" yw\'r cyfrinair ar gyfer "$2". Dylech fewngofnodi a newid eich cyfrinair yn syth.
 
 Rhydd ichi anwybyddu\'r neges hon os mai camgymeriad oedd creu\'r cyfrif.',
+'login-throttled'            => 'Rydych wedi ceisio defnyddio cyfrinair y cyfrif hwn gormod o weithiau ar unwaith.
+Oedwch ychydig cyn mentro eto.',
 'loginlanguagelabel'         => 'Iaith: $1',
 
 # Password reset dialog
@@ -634,6 +636,7 @@ Sylwch mai dim ond y rhai sydd wedi gosod cyfeiriad e-bost yn eu [[Special:Prefe
 Eich cyfeiriad IP presennol yw $3. Cyfeirnod y bloc yw $5. Nodwch y manylion hyn wrth drafod y bloc.",
 'blockednoreason'                  => 'dim rheswm wedi ei roi',
 'blockedoriginalsource'            => "Dangosir côd '''$1''' isod:",
+'blockededitsource'                => "Dangosir testun '''eich golygiadau''' ar '''$1''' isod:",
 'whitelistedittitle'               => 'Rhaid mewngofnodi i golygu',
 'whitelistedittext'                => 'Rhaid $1 i olygu tudalennau.',
 'confirmedittitle'                 => 'Cadarnhad trwy e-bost cyn dechrau golygu.',
@@ -752,6 +755,7 @@ Y rheswm a roddwyd dros y bloc gan $3 yw ''$2''.",
 'viewpagelogs'           => "Dangos logiau'r dudalen hon",
 'nohistory'              => "Does dim hanes golygu i'r dudalen hon.",
 'currentrev'             => 'Diwygiad cyfoes',
+'currentrev-asof'        => 'Y diwygiad cyfredol, am $1',
 'revisionasof'           => 'Diwygiad $1',
 'revision-info'          => 'Y fersiwn a roddwyd ar gadw am $1 gan $2', # Additionally available: $3: revision id
 'previousrevision'       => '← at y diwygiad blaenorol',
@@ -865,9 +869,13 @@ Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddi
 'diff-h3'                 => "'''pennawd (lefel 3)'''",
 'diff-h4'                 => "'''pennawd (lefel 4)'''",
 'diff-h5'                 => "'''pennawd (lefel 5)'''",
+'diff-table'              => "'''tabl'''",
+'diff-tr'                 => "'''rhes'''",
 'diff-td'                 => "'''cell'''",
+'diff-br'                 => "'''toriad'''",
 'diff-dl'                 => "'''rhestr diffiniadau'''",
 'diff-dd'                 => "'''diffiniad'''",
+'diff-input'              => "'''mewnbwn'''",
 'diff-form'               => "'''ffurflen'''",
 'diff-img'                => "'''delwedd'''",
 'diff-a'                  => "'''cyswllt'''",
@@ -1764,6 +1772,7 @@ $1',
 'nolinkshere-ns'           => "Nid oes cyswllt ar unrhyw dudalen yn y parth dewisedig yn arwain at '''[[:$1]]'''.",
 'isredirect'               => 'tudalen ail-gyfeirio',
 'istemplate'               => 'cynhwysiad',
+'isimage'                  => 'cyswllt at ddelwedd',
 'whatlinkshere-prev'       => '{{PLURAL:$1|cynt|cynt|$1 cynt|$1 cynt|$1 cynt|$1 cynt}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|nesaf|nesaf|$1 nesaf|$1 nesaf|$1 nesaf|$1 nesaf}}',
 'whatlinkshere-links'      => '← cysylltiadau',
@@ -1850,6 +1859,8 @@ $1',
 'ipb_expiry_invalid'           => 'Amser terfynu yn annilys.',
 'ipb_expiry_temp'              => "Rhaid i floc ar ddefnyddiwr fod yn barhaus os am guddio'r enw.",
 'ipb_already_blocked'          => 'Mae "$1" eisoes wedi ei flocio',
+'ipb-needreblock'              => "== Wedi blocio'n barod ==
+Mae $1 wedi ei flocio'n barod. Ydych chi am newid y gosodiadau?",
 'ipb_cant_unblock'             => "Gwall: Ni chafwyd hyd i'r bloc a'r ID $1.
 Hwyrach ei fod wedi ei ddad-flocio'n barod.",
 'ipb_blocked_as_range'         => "Gwall: Nid yw'r IP $1 wedi ei blocio'n uniongyrchol ac felly ni ellir ei datflocio. Wedi dweud hynny, y mae'n rhan o'r amrediad $2 sydd wedi ei blocio; gellir datflocio'r amrediad.",
@@ -2253,13 +2264,20 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-gpsmeasuremode'              => 'Modd mesur',
 'exif-gpsdop'                      => 'Manylder mesur',
 'exif-gpstrack'                    => 'Cyfeiriad symud',
+'exif-gpsimgdirection'             => 'Cyfeiriad y ddelwedd',
 'exif-gpsdestdistance'             => 'Pellter i ben y daith',
 'exif-gpsdatestamp'                => 'Dyddiad GPS',
 
 'exif-unknowndate' => 'Dyddiad anhysbys',
 
 'exif-orientation-1' => 'Normal', # 0th row: top; 0th column: left
+'exif-orientation-2' => 'Wedi troi tu chwith ar lorwedd', # 0th row: top; 0th column: right
 'exif-orientation-3' => 'Wedi ei droi 180°', # 0th row: bottom; 0th column: right
+'exif-orientation-4' => 'Wedi troi wyneb i waered', # 0th row: bottom; 0th column: left
+'exif-orientation-5' => 'Wedi troi 90° yn erbyn y cloc a thu chwith yn fertigol', # 0th row: left; 0th column: top
+'exif-orientation-6' => "Wedi troi 90° gyda'r cloc", # 0th row: right; 0th column: top
+'exif-orientation-7' => "Wedi troi 90° gyda'r cloc a thu chwith yn fertigol", # 0th row: right; 0th column: bottom
+'exif-orientation-8' => "Wedi troi 90° yn groes i'r cloc", # 0th row: left; 0th column: bottom
 
 'exif-componentsconfiguration-0' => "ddim i'w gael",
 

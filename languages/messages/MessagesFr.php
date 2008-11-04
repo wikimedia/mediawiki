@@ -168,6 +168,8 @@ $specialPageAliases = array(
 	'Unusedimages'              => array( 'Images inutilisées', 'Images inutilisees', 'Images non utilisées', 'Images non utilisees', 'Images orphelines' ),
 	'Wantedpages'               => array( 'Pages demandées', 'Pages demandees' ),
 	'Wantedcategories'          => array( 'Catégories demandées', 'Categories demandees' ),
+	'Wantedfiles'               => array( 'Fichiers demandés', 'Fichiers demandes' ),
+	'Wantedtemplates'           => array( 'Modèles demandés', 'Modeles demandes' ),
 	'Mostlinked'                => array( 'Pages les plus liées', 'Pages les plus liees', 'Pages plus liées', 'Pages plus liees', 'Plus liées', 'Plus liees' ),
 	'Mostlinkedcategories'      => array( 'Catégories les plus utilisées', 'Categories les plus utilisees' ),
 	'Mostlinkedtemplates'       => array( 'Modèles les plus utilisés', 'Modeles les plus utilises' ),
@@ -274,6 +276,7 @@ $messages = array(
 'tog-diffonly'                => 'Ne pas montrer le contenu des pages sous les diffs',
 'tog-showhiddencats'          => 'Afficher les catégories cachées',
 'tog-noconvertlink'           => 'Désactiver la conversion des titres',
+'tog-norollbackdiff'          => 'Omettre le diff après l’utilisation d’un revert',
 
 'underline-always'  => 'Toujours',
 'underline-never'   => 'Jamais',
@@ -2894,6 +2897,7 @@ Vous pouvez aussi [[Special:Watchlist/raw|la modifier en mode brut]].',
 
 # Core parser functions
 'unknown_extension_tag' => 'Balise d’extension « $1 » inconnue',
+'duplicate-defaultsort' => 'Attention : La clé de tri par défaut « $2 » écrase la plus récente « $1 ».',
 
 # Special:Version
 'version'                          => 'Version', # Not used as normal message but as header for the special page itself

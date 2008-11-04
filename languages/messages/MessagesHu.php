@@ -1339,6 +1339,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'action-minoredit'            => 'szerkesztés aprónak jelölése',
 'action-move'                 => 'lap átnevezése',
 'action-move-subpages'        => 'lap és allapjainak átnevezése',
+'action-move-rootuserpages'   => 'szerkesztői lapok átnevezése',
 'action-upload'               => 'fájl feltöltése',
 'action-reupload'             => 'már létező fájl felülírása',
 'action-reupload-shared'      => 'közös megosztón található fájl felülírása',
@@ -2137,6 +2138,7 @@ $1',
 'ipbhidename'                     => 'A felhasználónév/IP elrejtése a blokkolási naplóból, az aktív blokkolási listából és a felhasználólistából',
 'ipbwatchuser'                    => 'A felhasználó lapjának és vitalapjának figyelése',
 'ipballowusertalk'                => 'A szerkesztő módosíthatja a saját vitalapján a blokkolás ideje alatt',
+'ipb-change-block'                => 'Szerkesztő blokkolása ugyanezekkel a beállításokkal',
 'badipaddress'                    => 'Érvénytelen IP-cím',
 'blockipsuccesssub'               => 'Sikeres blokkolás',
 'blockipsuccesstext'              => '„[[Special:Contributions/$1|$1]]” felhasználót blokkoltad.
@@ -2188,6 +2190,8 @@ $1',
 'ipb_expiry_invalid'              => 'Hibás lejárati dátum.',
 'ipb_expiry_temp'                 => 'A láthatatlan felhasználóinév-blokkok lehetnek állandóak.',
 'ipb_already_blocked'             => '"$1" már blokkolva',
+'ipb-needreblock'                 => '== Már blokkolva ==
+$1 már blokkolva van. Meg szeretnéd változtatni a beállításokat?',
 'ipb_cant_unblock'                => 'Hiba: A(z) $1 blokkoéási azonosító nem található. Lehet, hogy már feloldották a blokkolását.',
 'ipb_blocked_as_range'            => 'Hiba: a(z) $1 IP-cím nem blokkolható közvetlenül, és nem lehet feloldani. A(z) $2 tartomány részeként van blokkolva, amely feloldható.',
 'ip_range_invalid'                => 'Érvénytelen IP-tartomány.',
@@ -2960,6 +2964,7 @@ minden egyes sor egy figyelt lap címe. Ha kész vagy, kattints a lista alatt ta
 
 # Core parser functions
 'unknown_extension_tag' => 'Ismeretlen tag kiterjesztés: $1',
+'duplicate-defaultsort' => 'Figyelem: a(z) „$2” rendezőkulcs felülírja a korábbit („$1”).',
 
 # Special:Version
 'version'                          => 'Névjegy', # Not used as normal message but as header for the special page itself

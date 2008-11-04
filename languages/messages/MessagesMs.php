@@ -195,6 +195,7 @@ $messages = array(
 'tog-diffonly'                => 'Jangan tunjukkan kandungan laman di bawah perbezaan',
 'tog-showhiddencats'          => 'Tunjukkan kategori tersembunyi',
 'tog-noconvertlink'           => 'Lumpuhkan penukaran tajuk pautan',
+'tog-norollbackdiff'          => 'Abaikan perbezaan selepas melakukan pengunduran suntingan.',
 
 'underline-always'  => 'Sentiasa',
 'underline-never'   => 'Jangan',
@@ -1150,6 +1151,7 @@ daripada satu kata kunci (hanya laman yang mengandungi kesemua kata kunci akan d
 'right-minoredit'            => 'Menanda suntingan kecil',
 'right-move'                 => 'Memindah laman',
 'right-move-subpages'        => 'Memindahkan laman berserta sublaman',
+'right-move-rootuserpages'   => 'Memindahkan laman induk pengguna',
 'right-suppressredirect'     => 'Memindahkan sesebuah laman tanpa mencipta lencongan',
 'right-upload'               => 'Memuat naik fail',
 'right-reupload'             => 'Menulis ganti fail sedia ada',
@@ -1209,6 +1211,7 @@ daripada satu kata kunci (hanya laman yang mengandungi kesemua kata kunci akan d
 'action-minoredit'            => 'menanda suntingan ini sebagai suntingan kecil',
 'action-move'                 => 'memindahkan laman ini',
 'action-move-subpages'        => 'memindahkan laman ini dan sublaman-sublamannya',
+'action-move-rootuserpages'   => 'memindahkan laman induk pengguna',
 'action-upload'               => 'memuat naik fail ini',
 'action-reupload'             => 'menulis ganti fail ini',
 'action-reupload-shared'      => 'mengatasi fail dari gedung kongsi ini',
@@ -1949,7 +1952,7 @@ $1',
 'whatlinkshere-next'       => '{{PLURAL:$1|berikutnya|$1 berikutnya}}',
 'whatlinkshere-links'      => '← pautan',
 'whatlinkshere-hideredirs' => '$1 pelencongan',
-'whatlinkshere-hidetrans'  => '$1 kemasukan',
+'whatlinkshere-hidetrans'  => '$1 penyertaan',
 'whatlinkshere-hidelinks'  => '$1 pautan',
 'whatlinkshere-hideimages' => '$1 pautan imej',
 'whatlinkshere-filters'    => 'Tapis',
@@ -2822,6 +2825,7 @@ Anda juga boleh [[Special:Watchlist/edit|menggunakan penyunting standard]].',
 
 # Core parser functions
 'unknown_extension_tag' => 'Tag penyambung "$1" tidak dikenali',
+'duplicate-defaultsort' => 'Amaran: Kunci susunan lalai "$2" mengatasi kunci susunan lalai "$1" sebelumnya.',
 
 # Special:Version
 'version'                          => 'Versi', # Not used as normal message but as header for the special page itself

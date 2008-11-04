@@ -451,6 +451,8 @@ $messages = array(
 'editsection'             => 'уреди',
 'editold'                 => 'уреди',
 'viewsourceold'           => 'погледај код',
+'editlink'                => 'уреди',
+'viewsourcelink'          => 'погледај код',
 'editsectionhint'         => 'Уреди део: $1',
 'toc'                     => 'Садржај',
 'showtoc'                 => 'прикажи',
@@ -978,6 +980,9 @@ $2',
 'compareselectedversions' => 'Упореди означене верзије',
 'editundo'                => 'врати',
 'diff-multi'              => '({{PLURAL:$1|Једна ревизија није приказана|$1 ревизије нису приказане|$1 ревизија није приказано}}.)',
+'diff-src'                => 'код',
+'diff-width'              => 'ширина',
+'diff-height'             => 'висина',
 'diff-i'                  => "'''курзив'''",
 
 # Search results

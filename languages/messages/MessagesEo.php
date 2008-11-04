@@ -210,6 +210,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Sendi al mi kopiojn de retpoŝtaĵoj, kiujn mi sendis al aliaj uzuloj.',
 'tog-diffonly'                => 'Ne montri paĝan enhavon sub la ŝanĝoj',
 'tog-showhiddencats'          => 'Montri kaŝitajn kategoriojn',
+'tog-norollbackdiff'          => 'Mankigi ŝanĝojn post farante malfaron',
 
 'underline-always'  => 'Ĉiam',
 'underline-never'   => 'Neniam',
@@ -2835,6 +2836,7 @@ Vi povas ankaŭ [[Special:Watchlist/edit|uzu la norman redaktilon]].',
 
 # Core parser functions
 'unknown_extension_tag' => 'Nekonata etend-etikedo "$1"',
+'duplicate-defaultsort' => 'Averto: Defauxlta ordiga ŝlosilo "$2" anstataŭigas pli fruan defaŭlta ordiga ŝlosilo "$1".',
 
 # Special:Version
 'version'                          => 'Versio', # Not used as normal message but as header for the special page itself

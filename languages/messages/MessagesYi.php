@@ -116,18 +116,22 @@ $defaultUserOptionOverrides = array(
 );
 
 $magicWords = array(
-	'redirect'            => array( '0', '#ווייטערפירן', '#REDIRECT' ),
-	'toc'                 => array( '0', '__אינהאלט__', '__תוכן__', '__TOC__' ),
-	'pagename'            => array( '1', 'בלאטנאמען', 'PAGENAME' ),
-	'namespace'           => array( '1', 'נאמענטייל', 'NAMESPACE' ),
-	'subst'               => array( '0', 'ס:', 'SUBST:' ),
-	'img_thumbnail'       => array( '1', 'קליין', 'ממוזער', 'thumbnail', 'thumb' ),
-	'img_manualthumb'     => array( '1', 'קליין=$1', 'ממוזער=$1', 'thumbnail=$1', 'thumb=$1' ),
-	'img_right'           => array( '1', 'רעכטס', 'right' ),
-	'img_left'            => array( '1', 'לינקס', 'left' ),
-	'img_center'          => array( '1', 'צענטער', 'center', 'centre' ),
-	'plural'              => array( '0', 'מערצאל:', 'PLURAL:' ),
-	'defaultsort'         => array( '1', 'גרונטסארטיר:', 'DEFAULTSORT:' ),
+	'redirect'              => array( '0', '#ווייטערפירן', '#הפניה', '#REDIRECT' ),
+	'toc'                   => array( '0', '__אינהאלט__', '__תוכן__', '__תוכן_עניינים__', '__תוכן__', '__TOC__' ),
+	'pagename'              => array( '1', 'בלאטנאמען', 'שם הדף', 'PAGENAME' ),
+	'namespace'             => array( '1', 'נאמענטייל', 'מרחב השם', 'NAMESPACE' ),
+	'fullpagename'          => array( '1', 'פולבלאטנאמען', 'שם הדף המלא', 'FULLPAGENAME' ),
+	'subpagename'           => array( '1', 'אונטערבלאטנאמען', 'שם דף המשנה', 'SUBPAGENAME' ),
+	'subst'                 => array( '0', 'ס:', 'ס:', 'SUBST:' ),
+	'img_thumbnail'         => array( '1', 'קליין', 'ממוזער', 'thumbnail', 'thumb' ),
+	'img_manualthumb'       => array( '1', 'קליין=$1', 'ממוזער=$1', 'ממוזער=$1', 'thumbnail=$1', 'thumb=$1' ),
+	'img_right'             => array( '1', 'רעכטס', 'ימין', 'right' ),
+	'img_left'              => array( '1', 'לינקס', 'שמאל', 'left' ),
+	'img_center'            => array( '1', 'צענטער', 'מרכז', 'center', 'centre' ),
+	'plural'                => array( '0', 'מערצאל:', 'רבים:', 'PLURAL:' ),
+	'displaytitle'          => array( '1', 'ווייזן קעפל', 'כותרת תצוגה', 'כותרת תצוגה', 'DISPLAYTITLE' ),
+	'language'              => array( '0', '#שפראך:', '#שפה:', '#שפה:', '#LANGUAGE:' ),
+	'defaultsort'           => array( '1', 'גרונטסארטיר:', 'מיון רגיל:', 'DEFAULTSORT:', 'DEFAULTSORTKEY:', 'DEFAULTCATEGORYSORT:' ),
 );
 
 $messages = array(

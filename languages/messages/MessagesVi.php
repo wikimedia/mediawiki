@@ -229,6 +229,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Gửi bản sao cho tôi khi gửi thư điện tử cho người khác',
 'tog-diffonly'                => 'Không hiển thị nội dung trang dưới phần so sánh phiên bản',
 'tog-showhiddencats'          => 'Hiển thị thể loại ẩn',
+'tog-norollbackdiff'          => 'Không so sánh sau khi lùi sửa',
 
 'underline-always'  => 'Luôn luôn',
 'underline-never'   => 'Không bao giờ',
@@ -2853,6 +2854,7 @@ Bạn cũng có thể [[Special:Watchlist/edit|dùng trình soạn thảo chuẩ
 
 # Core parser functions
 'unknown_extension_tag' => 'Không hiểu thẻ mở rộng “$1”',
+'duplicate-defaultsort' => 'Cảnh báo: Từ khóa xếp mặc định “$2” ghi đè từ khóa trước, “$1”.',
 
 # Special:Version
 'version'                          => 'Phiên bản', # Not used as normal message but as header for the special page itself
