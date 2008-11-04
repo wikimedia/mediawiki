@@ -483,11 +483,15 @@ class SearchResultTooMany {
  */
 class SearchResult {
 	var $mRevision = null;
+	var $mImage = null;
 
 	function SearchResult( $row ) {
 		$this->mTitle = Title::makeTitle( $row->page_namespace, $row->page_title );
-		if( !is_null($this->mTitle) )
+		if( !is_null($this->mTitle) ){
 			$this->mRevision = Revision::newFromTitle( $this->mTitle );
+			if($this->mTitle->getNamespace() == NS_IMAGE)
+				$this->mImage = wfFindFile( $this->mTitle );
+		}
 	}
 	
 	/**
@@ -509,9 +513,7 @@ class SearchResult {
 	 * @access public
 	 */
 	function isMissingRevision(){
-		if( !$this->mRevision )
-			return true;
-		return false;
+		return !$this->mRevision && !$this->mImage;
 	}
 
 	/**
@@ -534,7 +536,11 @@ class SearchResult {
 	 */
 	protected function initText(){
 		if( !isset($this->mText) ){
-			$this->mText = $this->mRevision->getText();
+			if($this->mRevision != null)
+				$this->mText = $this->mRevision->getText();
+			else // TODO: can we fetch raw wikitext for commons images?
+				$this->mText = '';
+			
 		}
 	}
 	
@@ -594,7 +600,11 @@ class SearchResult {
 	 * @return string timestamp
 	 */
 	function getTimestamp(){
-		return $this->mRevision->getTimestamp();
+		if( $this->mRevision )
+			return $this->mRevision->getTimestamp();
+		else if( $this->mImage )
+			return $this->mImage->getTimestamp();
+		return '';			
 	}
 
 	/**
