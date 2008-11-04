@@ -1259,7 +1259,7 @@ $wgImplicitGroups = array( '*', 'user', 'autoconfirmed' );
  *
  * Setting the list of groups to add or revoke to true is equivalent to "any group".
  * 
- * For example to allow sysops to add themselves to the "bot" group:
+ * For example, to allow sysops to add themselves to the "bot" group:
  *
  *    $wgGroupsAddToSelf = array( 'sysop' => array( 'bot' ) );
  *
