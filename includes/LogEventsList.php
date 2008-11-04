@@ -510,7 +510,7 @@ class LogPager extends ReverseChronologicalPager {
 				$hide = $wgRequest->getInt( "hide_{$type}_log", $default );
 				$filters[$type] = $hide;
 				if( $hide )
-					$this->mConds[] = 'log_type != '.$this->mDb->addQuotes( $this->mDb->strencode($type) );
+					$this->mConds[] = 'log_type != ' . $this->mDb->addQuotes( $type );
 			}
 		}
 		return $filters;
