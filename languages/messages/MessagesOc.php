@@ -266,6 +266,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Me mandar una còpia dels corrièrs electronics que mandi als autres utilizaires',
 'tog-diffonly'                => 'Mostrar pas lo contengut de las paginas jos las difs',
 'tog-showhiddencats'          => 'Afichar las categorias amagadas',
+'tog-norollbackdiff'          => 'Ometre lo diff aprèp l’utilizacion d’un revert',
 
 'underline-always'  => 'Totjorn',
 'underline-never'   => 'Pas jamai',
@@ -1213,6 +1214,7 @@ Atencion, lor indexacion de contengut {{SITENAME}} benlèu es pas a jorn.',
 'right-minoredit'            => 'Marcar de cambiaments coma menors',
 'right-move'                 => 'Tornar nomenar de paginas',
 'right-move-subpages'        => 'Desplaçar de paginas amb lor sospaginas',
+'right-move-rootuserpages'   => 'Tornar nomenar las paginas de l’utilizaire de banca.',
 'right-suppressredirect'     => 'Crear pas de redireccion dempuèi la pagina anciana en renomenant la pagina',
 'right-upload'               => 'Telecargar de fichièrs',
 'right-reupload'             => 'Espotir un fichièr existent',
@@ -1272,6 +1274,7 @@ Atencion, lor indexacion de contengut {{SITENAME}} benlèu es pas a jorn.',
 'action-minoredit'            => 'marcar aqueste cambiament coma menor',
 'action-move'                 => 'tornar nomenar aquesta pagina',
 'action-move-subpages'        => 'tornar nomenar aquesta pagina e sas sospaginas',
+'action-move-rootuserpages'   => 'tornar nomenar las paginas de l’utilizaire de banca.',
 'action-upload'               => 'importar aqueste fichièr',
 'action-reupload'             => 'espotir aqueste fichièr existent',
 'action-reupload-shared'      => 'passar otra aqueste fichièr sus un depaus partejat',
@@ -2061,6 +2064,7 @@ Donatz çaijós una rason precisa (per exemple en indicant las paginas que son e
 'ipbhidename'                     => "Amagar lo nom d’utilizaire de l'istoric de blocatge, de la lista dels blocatges actius e de la lista dels utilizaires",
 'ipbwatchuser'                    => "Seguir las paginas d'utilizaire e de discussion d'aqueste utilizaire",
 'ipballowusertalk'                => 'Permet a aqueste utilizaire de modificar sa pròpria pagina de discussion pendent son periòde de blocatge',
+'ipb-change-block'                => 'Tronar blocar aqueste utilizaire amb aquestes paramètres',
 'badipaddress'                    => "L'adreça IP es incorrècta",
 'blockipsuccesssub'               => 'Blocatge capitat',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] es estat blocat.<br />
@@ -2102,6 +2106,7 @@ La rason balhada per $1 es : « $2 ».',
 'blocklogpage'                    => 'Istoric dels blocatges',
 'blocklog-fulllog'                => 'Jornal complet dels blocatges',
 'blocklogentry'                   => 'a blocat « [[$1]] » - durada : $2 $3',
+'reblock-logentry'                => 'a modificat los parametratge de blocatge per [[$1]] amb una durada d’expiracion de $2 $3',
 'blocklogtext'                    => "Aquò es l'istoric dels blocatges e desblocatges dels utilizaires. Las adreças IP automaticament blocadas son pas listadas. Consultatz la [[Special:IPBlockList|lista dels utilizaires blocats]] per veire qui es actualament efectivament blocat.",
 'unblocklogentry'                 => 'a desblocat « $1 »',
 'block-log-flags-anononly'        => 'utilizaires anonims solament',
@@ -2114,6 +2119,8 @@ La rason balhada per $1 es : « $2 ».',
 'ipb_expiry_invalid'              => 'Temps d’expiracion invalid.',
 'ipb_expiry_temp'                 => 'Las plajas dels utilizaires amagats deurián èsser permanentas.',
 'ipb_already_blocked'             => '« $1 » ja es blocat',
+'ipb-needreblock'                 => '== Ja blocat ==
+$1 ja es blocat. Volètz modificar los paramètres ?',
 'ipb_cant_unblock'                => 'Error : Lo blocatge d’ID $1 existís pas. Es possible qu’un desblocatge ja siá estat efectuat.',
 'ipb_blocked_as_range'            => "Error : L'adreça IP $1 es pas estada blocada dirèctament e doncas pòt pas èsser deblocada. Çaquelà, es estada blocada per la plaja $2 laquina pòt èsser deblocada.",
 'ip_range_invalid'                => 'Plaja IP incorrècta.',
@@ -2416,11 +2423,12 @@ Aquò es probablament causat per un ligam sus lista negra que punta cap a un sit
 'markedaspatrollederror-noautopatrol' => 'Avètz pas lo drech de marcar vòstras pròprias modificacions coma susvelhadas.',
 
 # Patrol log
-'patrol-log-page'   => 'Istoric de las versions patrolhadas',
-'patrol-log-header' => 'Vaquí un jornal de las versions patrolhadas.',
-'patrol-log-line'   => 'a marcat la version $1 de $2 coma verificada $3',
-'patrol-log-auto'   => '(automatic)',
-'patrol-log-diff'   => 'v$1',
+'patrol-log-page'    => 'Istoric de las versions patrolhadas',
+'patrol-log-header'  => 'Vaquí un jornal de las versions patrolhadas.',
+'patrol-log-line'    => 'a marcat la version $1 de $2 coma verificada $3',
+'patrol-log-auto'    => '(automatic)',
+'patrol-log-diff'    => 'v$1',
+'logshowhide-patrol' => "$1 l'istoric de las versions patrolhadas",
 
 # Image deletion
 'deletedrevision'                 => 'La version anciana $1 es estada suprimida.',
@@ -2893,6 +2901,7 @@ Ensajatz la previsualizacion normala.',
 
 # Core parser functions
 'unknown_extension_tag' => "Balisa d'extension « $1 » desconeguda",
+'duplicate-defaultsort' => 'Atencion : La clau de triada per defaut « $2 » espotís la mai recenta « $1 ».',
 
 # Special:Version
 'version'                          => 'Version', # Not used as normal message but as header for the special page itself

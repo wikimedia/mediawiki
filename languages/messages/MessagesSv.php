@@ -312,6 +312,7 @@ $messages = array(
 'tog-diffonly'                => 'Visa inte sidinnehåll under diffar',
 'tog-showhiddencats'          => 'Visa dolda kategorier',
 'tog-noconvertlink'           => 'Stäng av konvertering av sidtitlar',
+'tog-norollbackdiff'          => 'Ta bort diff efter utförande av tillbakarullning',
 
 'underline-always'  => 'Alltid',
 'underline-never'   => 'Aldrig',
@@ -1265,6 +1266,7 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'right-minoredit'            => 'Markera mindre ändringar',
 'right-move'                 => 'Flytta sidor',
 'right-move-subpages'        => 'Flytta sidor med deras undersidor',
+'right-move-rootuserpages'   => 'Flytta root-användarsidor',
 'right-suppressredirect'     => 'Behöver inte skapa omdirigeringar vid sidflyttning',
 'right-upload'               => 'Ladda upp filer',
 'right-reupload'             => 'Skriva över existerande filer',
@@ -1324,6 +1326,7 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'action-minoredit'            => 'markera denna redigering som mindre',
 'action-move'                 => 'flytta denna sida',
 'action-move-subpages'        => 'flytta denna sida, och dess undersidor',
+'action-move-rootuserpages'   => 'flytta root-användarsidor',
 'action-upload'               => 'ladda upp denna fil',
 'action-reupload'             => 'skriva över denna existerade fil',
 'action-reupload-shared'      => 'skriva över denna fil i gemensam databas',
@@ -2942,6 +2945,7 @@ Du kan också [[Special:Watchlist/edit|använda standardeditorn]].',
 
 # Core parser functions
 'unknown_extension_tag' => 'Okänd tagg "$1"',
+'duplicate-defaultsort' => 'Varning: Standardsorteringsnyckeln "$2" tar över från den tidigare standardsorteringsnyckeln "$1".',
 
 # Special:Version
 'version'                          => 'Version', # Not used as normal message but as header for the special page itself

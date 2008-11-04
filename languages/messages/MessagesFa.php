@@ -3108,6 +3108,7 @@ $1
 
 # Core parser functions
 'unknown_extension_tag' => 'برچسب ناشناختهٔ افزونه «$1»',
+'duplicate-defaultsort' => 'هشدار: ترتیب پیش فرض «$2» ترتیب پیش فرض قبلی «$1» را باطل می‌سازد.',
 
 # Special:Version
 'version'                          => 'نسخه', # Not used as normal message but as header for the special page itself

@@ -264,6 +264,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Przesyłaj mi kopie wiadomości wysłanych przez mnie do innych użytkowników',
 'tog-diffonly'                => 'Nie pokazuj treści stron pod porównaniami zmian',
 'tog-showhiddencats'          => 'Pokaż ukryte kategorie',
+'tog-norollbackdiff'          => 'Pomiń pokazywanie zmian po użyciu funkcji „cofnij”',
 
 'underline-always'  => 'zawsze',
 'underline-never'   => 'nigdy',
@@ -2981,6 +2982,7 @@ Możesz również [[Special:Watchlist/edit|użyć standardowego edytora]].',
 
 # Core parser functions
 'unknown_extension_tag' => 'Nieznany znacznik rozszerzenia „$1”',
+'duplicate-defaultsort' => 'Uwaga: Domyślnym kluczem sortowania będzie „$2” i zastąpi on wcześniej występujący klucz „$1”.',
 
 # Special:Version
 'version'                          => 'Wersja oprogramowania', # Not used as normal message but as header for the special page itself

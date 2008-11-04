@@ -2055,8 +2055,8 @@ Masukkan alasan Anda di bawah (contoh, menuliskan nama halaman yang telah divand
 'ipbexpiry'                       => 'Kadaluwarsa:',
 'ipbreason'                       => 'Alasan:',
 'ipbreasonotherlist'              => 'Alasan lain',
-'ipbreason-dropdown'              => '
-*Alasan umum
+'ipbreason-dropdown'              => '*Alasan umum
+** Vandalisme
 ** Memberikan informasi palsu
 ** Menghilangkan isi halaman
 ** Spam pranala ke situs luar

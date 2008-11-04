@@ -194,6 +194,7 @@ $messages = array(
 'newmessagesdifflink' => 'послѣ́дьнꙗ мѣ́на',
 'editsection'         => 'испра́ви',
 'editold'             => 'испра́ви',
+'editlink'            => 'испра́ви',
 'hidetoc'             => 'съкрꙑи',
 'viewdeleted'         => '$1 ви́дєти хо́щєши ;',
 'red-link-title'      => '$1 (ѥщє нє напь́сано ѥ́стъ)',

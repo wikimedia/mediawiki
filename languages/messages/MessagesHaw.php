@@ -407,6 +407,9 @@ hō‘ike ‘ia i lalo:",
 # Random page
 'randompage' => 'He akikala kaulele',
 
+# Statistics
+'statistics' => 'Papa helu',
+
 'brokenredirects-edit'   => '(e ho‘opololei)',
 'brokenredirects-delete' => '(e kāpae)',
 
@@ -414,6 +417,7 @@ hō‘ike ‘ia i lalo:",
 
 # Miscellaneous special pages
 'nbytes'            => '$1 {{PLURAL:$1|‘ai|‘ai}}',
+'nlinks'            => '$1 {{PLURAL:$1|loulou|loulou}}',
 'nmembers'          => '$1 {{PLURAL:$1|lālā|lālā}}',
 'shortpages'        => 'Nā ʻaoʻao pōkole',
 'longpages'         => 'Nā ʻaoʻao lōʻihi',
@@ -493,6 +497,8 @@ hō‘ike ‘ia i lalo:",
 'mycontris'     => "He aha ka'u i lūlū ai",
 'contribsub2'   => 'No $1 ($2)',
 'uctop'         => '(wēkiu)',
+'month'         => 'Mai mahina (ame mamua):',
+'year'          => 'Mai makahiki (ame mamua):',
 
 # What links here
 'whatlinkshere'       => 'He aha e loulou iho ai',
@@ -548,11 +554,13 @@ hō‘ike ‘ia i lalo:",
 'tooltip-ca-edit'          => 'Hiki iā‘oe ke ho‘opololei i kēia ‘ao‘ao. Imua o ka mālama, ho‘ohana i ka nāmua, ke ‘olu‘olu.',
 'tooltip-ca-viewsource'    => 'Pale ʻia kēia ʻaoʻao.
 Hiki iā ʻoe ke ʻikena i kāna molekumu.',
+'tooltip-ca-protect'       => 'Ho‘omalu i keia ‘ao‘ao',
 'tooltip-ca-delete'        => 'E kāpae i kēia mo‘olelo',
 'tooltip-ca-move'          => 'E ne‘e i kēia mo‘olelo',
 'tooltip-search'           => 'Huli iā {{SITENAME}}',
 'tooltip-n-mainpage'       => 'Hele i ka papa kinohi',
 'tooltip-n-portal'         => 'E pili ana i ka pelokeka, he aha e hana',
+'tooltip-n-currentevents'  => 'ʻIke i nā nū hou',
 'tooltip-n-recentchanges'  => 'Nā loli hou ma ka wiki.',
 'tooltip-n-randompage'     => 'Ho‘ouka i he akikala kaulele',
 'tooltip-n-help'           => 'Ka wahi e kōkua ai iā‘oe.',

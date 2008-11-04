@@ -1452,7 +1452,8 @@ Klikken op een kelomkop veraandert de sortering.',
 
 # Unused templates
 'unusedtemplates'     => 'Ongebruken sjablonen',
-'unusedtemplatestext' => "Hieronder steet een lieste van ongebruken sjablonen. Vergeet neet de verwiezingen te controleren veurda-j 't sjabloon vortdoon.",
+'unusedtemplatestext' => "Hieronder staon alle pagina in de naamruumte {{ns:template}} dee op gien enkele pagina gebruuk wonnen.
+Vergeet neet de verwiezingen te contreleren veurda-j 't sjabloon vortdoon.",
 'unusedtemplateswlh'  => 'aandere verwiezingen',
 
 # Random page
@@ -1655,7 +1656,9 @@ Toekomstige wiezigingen op disse pagina en de overlegpagina zullen hier vermeld 
 'wlheader-showupdated' => "* Pagina's dee ewiezig sinds je ze 't veur 't les bie-ewark hemmen, wonnen '''vet''' weer-egeven.",
 'watchmethod-recent'   => "Bie de pagina's dee kortens ewiezig bin, ezoch naor pagina's dee evolg wonnen",
 'watchmethod-list'     => 'Kik joew nao volglieste veur de leste wiezigingen',
+'watchlistcontains'    => "Der {{PLURAL:$1|steet 1 pagina|staon $1 pagina's}} op joew volglieste.",
 'iteminvalidname'      => "Verkeerde naam '$1'",
+'wlnote'               => "Hieronder {{PLURAL:$1|steet de leste wieziging|staon de leste $1 wiezigingen}} in {{PLURAL:$2|'t of-eleupen ure|de leste $2 uren}}.",
 'wlshowlast'           => 'Teun de leste $1 ure $2 dagen $3',
 
 # Displayed when you click the "watch" button and it is in the process of watching
@@ -1674,29 +1677,32 @@ Toekomstige wiezigingen op disse pagina en de overlegpagina zullen hier vermeld 
 'enotif_anon_editor'           => 'annenieme gebruker $1',
 
 # Delete
-'deletepage'            => 'Vortdoon',
-'confirm'               => 'Bevestigen',
-'excontent'             => "De tekse was: '$1'",
-'excontentauthor'       => "De tekse was: '$1' (pagina an-emaak deur: [[Special:Contributions/$2|$2]])",
-'exbeforeblank'         => "veurdat disse pagina leeg-emaak wönnen stung hier: '$1'",
-'exblank'               => 'Pagina was leeg',
-'delete-confirm'        => '"$1" vortdoon',
-'delete-legend'         => 'Vortdoon',
-'historywarning'        => 'Waorschuwing: disse pagina hef een veurgeschiedenisse. Kiek effen nao of je neet een ouwere versie van disse pagina herstellen kunnen.',
-'confirmdeletetext'     => 'Disse actie wis alle inhoud en geschiedenisse uut de databanke. Bevestig hieronder dat dit de bedoeling is en da-j de gevolgen dervan begriepen.',
-'actioncomplete'        => 'Uut-evoerd',
-'deletedtext'           => '\'t Artikel "$1" is vort-edaon. Zie de "$2" veur een lieste van pagina\'s dee as les vort-edaon bin.',
-'deletedarticle'        => '"$1" vort-edaon',
-'dellogpage'            => "Vort-edaone pagina's",
-'dellogpagetext'        => "Hieronder een lieste van pagina's en ofbeeldingen dee 't les vort-edaon bin.",
-'deletionlog'           => "Vort-edaone pagina's",
-'deletecomment'         => 'Rejen',
-'deleteotherreason'     => 'Aandere/extra rejen:',
-'deletereasonotherlist' => 'Aandere rejen',
-'deletereason-dropdown' => '*Veulveurkoemende rejens
+'deletepage'             => 'Vortdoon',
+'confirm'                => 'Bevestigen',
+'excontent'              => "De tekse was: '$1'",
+'excontentauthor'        => "De tekse was: '$1' (pagina an-emaak deur: [[Special:Contributions/$2|$2]])",
+'exbeforeblank'          => "veurdat disse pagina leeg-emaak wönnen stung hier: '$1'",
+'exblank'                => 'Pagina was leeg',
+'delete-confirm'         => '"$1" vortdoon',
+'delete-legend'          => 'Vortdoon',
+'historywarning'         => 'Waorschuwing: disse pagina hef een veurgeschiedenisse. Kiek effen nao of je neet een ouwere versie van disse pagina herstellen kunnen.',
+'confirmdeletetext'      => 'Disse actie wis alle inhoud en geschiedenisse uut de databanke. Bevestig hieronder dat dit de bedoeling is en da-j de gevolgen dervan begriepen.',
+'actioncomplete'         => 'Uut-evoerd',
+'deletedtext'            => '\'t Artikel "$1" is vort-edaon. Zie de "$2" veur een lieste van pagina\'s dee as les vort-edaon bin.',
+'deletedarticle'         => '"$1" vort-edaon',
+'suppressedarticle'      => 'hef "[[$1]]" verbörgen',
+'dellogpage'             => "Vort-edaone pagina's",
+'dellogpagetext'         => "Hieronder een lieste van pagina's en ofbeeldingen dee 't les vort-edaon bin.",
+'deletionlog'            => "Vort-edaone pagina's",
+'reverted'               => 'Eerdere versie hersteld',
+'deletecomment'          => 'Rejen',
+'deleteotherreason'      => 'Aandere/extra rejen:',
+'deletereasonotherlist'  => 'Aandere rejen',
+'deletereason-dropdown'  => '*Veulveurkoemende rejens
 ** Op anvrage van de auteur
 ** Schending van de auteursrechen
 ** Vandelisme',
+'delete-edit-reasonlist' => "Rejens veur 't vortdoon bewarken",
 
 # Rollback
 'rollback'         => 'Wiezigingen herstellen',
@@ -2442,6 +2448,7 @@ Trackbacks veur disse pagina:<br />
 $1
 </div>",
 'trackbackremove'   => ' ([$1 vortdoon])',
+'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'De trackback is vort-edaon.',
 
 # Delete conflict
@@ -2457,12 +2464,14 @@ $1
 'imgmultipageprev' => '&larr; veurige',
 'imgmultipagenext' => 'volgende &rarr;',
 'imgmultigo'       => 'Oké',
+'imgmultigoto'     => 'Gao naor de pagina $1',
 
 # Table pager
 'ascending_abbrev'         => 'daol',
 'descending_abbrev'        => 'stieg',
 'table_pager_next'         => 'Volgende',
 'table_pager_prev'         => 'Veurige',
+'table_pager_first'        => 'Eerste pagina',
 'table_pager_last'         => 'Leste pagina',
 'table_pager_limit'        => 'Teun $1 onderwarpen per pagina',
 'table_pager_limit_submit' => 'Zeuk',
@@ -2487,6 +2496,7 @@ Kiek de pagina op de normale meniere nao.',
 'lag-warn-high'   => 'De databanke is aorig zwaor belas. Wiezigingen dee niejer bin as $1 {{PLURAL:$1|seconde|seconden}} staon daorumme meschien nog neet in de lieste.',
 
 # Watchlist editor
+'watchlistedit-numitems'       => "Der {{PLURAL:$1|steet 1 pagina|staon $1 pagina's}} op joew volglieste, zonder overlegpagina's.",
 'watchlistedit-noitems'        => 'Joew volglieste is leeg.',
 'watchlistedit-normal-title'   => 'Volglieste bewarken',
 'watchlistedit-normal-legend'  => "Disse pagina's van mien volglieste ofhaolen.",

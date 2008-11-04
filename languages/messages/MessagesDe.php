@@ -237,6 +237,7 @@ $messages = array(
 'tog-diffonly'                => 'Zeige beim Versionsvergleich nur die Unterschiede, nicht die vollständige Seite',
 'tog-showhiddencats'          => 'Zeige versteckte Kategorien',
 'tog-noconvertlink'           => 'Konvertierung des Titels deaktivieren',
+'tog-norollbackdiff'          => 'Unterschied nach dem Zurücksetzen unterdrücken',
 
 'underline-always'  => 'immer',
 'underline-never'   => 'nie',
@@ -2882,6 +2883,7 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 
 # Core parser functions
 'unknown_extension_tag' => 'Unbekannter Extension-Tag „$1“',
+'duplicate-defaultsort' => 'Achtung: Der DEFAULTSORTKEY „$2“ überschreibt den vorher verwendeten Schlüssel „$1“.',
 
 # Special:Version
 'version'                          => 'Version', # Not used as normal message but as header for the special page itself

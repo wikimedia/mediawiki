@@ -1097,6 +1097,7 @@ iwwerpréift déi korrekt Installatioun vu LaTeX, dvips, gs a convert",
 'right-minoredit'            => 'Ännerungen als kleng markéieren',
 'right-move'                 => 'Säite réckelen',
 'right-move-subpages'        => 'Säiten zesumme mat hiren Ënnersäite réckelen',
+'right-move-rootuserpages'   => 'Haapt-Benotzersäite réckelen',
 'right-suppressredirect'     => 'Kee Redirect vum ale Numm aus uleeë wann eng Säit eréckelt gëtt',
 'right-upload'               => 'Fichieren eroplueden',
 'right-reupload'             => 'E Fichier iwwerschreiwen',
@@ -2250,6 +2251,7 @@ Dëst warscheinlech duerch en externe Link den op der schwaarzer Lëscht (blackl
 # Patrol log
 'patrol-log-page' => 'Kontroll-Logbuch',
 'patrol-log-auto' => '(automatesch)',
+'patrol-log-diff' => 'Versioun $1',
 
 # Image deletion
 'deletedrevision'                 => 'Al, geläschte Versioun $1',

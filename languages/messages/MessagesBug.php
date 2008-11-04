@@ -90,6 +90,9 @@ $messages = array(
 'create-this-page' => 'Ebbuiki leppa iyé',
 'delete'           => 'peddé',
 'deletethispage'   => 'Peddé iyé leppa',
+'protect'          => 'Ampi',
+'protect_change'   => 'pinra',
+'protectthispage'  => 'Ampi leppa iyyé',
 'newpage'          => 'Leppa baru',
 'talkpage'         => 'Bicara iyé leppa',
 'talkpagelinktext' => 'Bicara',
@@ -108,6 +111,7 @@ $messages = array(
 'viewtalkpage'     => 'Ita leppa bicara',
 'redirectedfrom'   => '(Riredirect polé $1)',
 'redirectpagesub'  => 'Leppa redirect',
+'jumpto'           => 'Luppe lao:',
 'jumptosearch'     => 'sappa',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -187,7 +191,7 @@ $messages = array(
 'extlink_tip' => 'Link risaliweŋ (jangan lupa awalan http:// )',
 
 # Edit pages
-'savearticle'      => 'Save leppa',
+'savearticle'      => 'Taro leppa',
 'preview'          => 'Pribiu',
 'showpreview'      => 'Ita pribiu',
 'showlivepreview'  => 'Pribiu live',
@@ -267,12 +271,13 @@ $messages = array(
 'download'   => 'unduh',
 
 # Random page
-'randompage' => 'Halamang rawak',
+'randompage'         => 'Leppa random',
+'randompage-nopages' => 'Degaga leppa rilaleŋ iyyé namespaceë.',
 
 # Miscellaneous special pages
-'ancientpages' => 'Artikel talloa',
+'ancientpages' => 'Leppa talloa',
 'move'         => 'ᨙᨕᨔᨘ',
-'movethispage' => 'ᨙᨕᨔᨘᨀᨗ ᨕᨗᨙᨐᨙᨉ ᨒᨛᨄ',
+'movethispage' => 'Paleccé leppa iyyé',
 
 # Special:Log
 'specialloguserlabel' => 'Papaké:',
@@ -320,9 +325,14 @@ Apak ida ronnak mappedde halamang édé ri daftar jagaan, klik \"Mangedda jaga\"
 'contribslink'       => 'kontrib',
 
 # Move page
-'articleexists' => 'Halamang béla ida pile ni ujuk, a dek essa.
+'articleexists'           => 'Halamang béla ida pile ni ujuk, a dek essa.
 Silakan pile aseng laing.',
-'1movedto2'     => '[[$1]] ésuk ri [[$2]]',
+'1movedto2'               => '[[$1]] ésuk ri [[$2]]',
+'1movedto2_redir'         => 'maleccé [[$1]] lao ri [[$2]] paké redirect',
+'movelogpage'             => 'Log leccé',
+'movereason'              => 'Saba:',
+'delete_and_move'         => 'Peddé nappa paleccé',
+'delete_and_move_confirm' => "Iyé', peddé iyaro leppa",
 
 # Namespace 8 related
 'allmessages'        => 'Maneng pappaseng',

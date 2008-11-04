@@ -165,6 +165,8 @@ $messages = array(
 اگر تسی اینو دے دیو گۓ تے اے تواڈا کم اس ناں نال لکھیا جاۓ گا۔',
 'loginsuccesstitle'       => 'تسی لاگن ہوگۓ او',
 'loginsuccess'            => "'''ہن تسی {{SITENAME}} تے \"\$1\" دے ناں توں لاگ ان او'''",
+'nosuchuser'              => 'اس $1 ناں نال کوئی ورتن آلا نہیں۔
+اپنی لکھائی درست کرو یا نیا [[Special:UserLogin/signup|کھاتہ بناؤ]]۔',
 'nosuchusershort'         => 'اس "<nowiki>$1</nowiki>" ناں دا کوئی ورتن آلا نہيں اے۔ 
 
 اپنی الف، بے چیک کرو۔',
@@ -173,6 +175,8 @@ $messages = array(
 فیر سہی ٹرائی مارو۔',
 'wrongpasswordempty'      => 'تواڈی کنجی کم نہیں کر رہی۔<br />
 فیر ٹرائی مارو۔',
+'passwordtooshort'        => 'تواڈی کنجی ٹھیک نہیں یا بہت جھوٹی اے۔
+ایدے چ کم از کم {{PLURAL:$1|$1|اک ھندسہ}} تے کنجی تواڈے ورتن آلے ناں تو مختلف ہونی چائیدی اے۔',
 'mailmypassword'          => 'نئی کنجی ای میل کرو',
 'passwordremindertitle'   => '{{SITENAME}} لئی نوی عارضی کنجی',
 'noemail'                 => 'اس ورتن والے دا کوئی ای میل پتہ موجود نہیں۔',
@@ -213,6 +217,9 @@ $messages = array(
 تواڈا ''آئی پی'' پتہ فائل فائل وچ لکھیا جاۓ گا۔",
 'summary-preview'        => 'کچے کم دا خلاصہ',
 'newarticle'             => '(نواں)',
+'newarticletext'         => 'تسی ایسے صفحے دے جوڑ توں ایتھے پہنچے او جیڑا ھلے تک نہیں بنیا۔<br />
+اس صفحہ بنانے آسطے تھلے دتے گۓ ڈبے وچ لکھنا شروع کر دیو(زیادہ رہنمائی آستے اے ویکھو [[{{MediaWiki:Helppage}}|<br />مدد دا صفحہ]])۔
+اگر تسی ایتھے غلطی نال پہنچے او تے اپنے کھوجی توں "بیک" دا بٹن دبا دیو۔',
 'previewnote'            => '<strong>اے ہلے کچا کم اے؛ تبدیلیاں بچائیاں نہیں گئیاں</strong>',
 'editing'                => 'تسی "$1" لکھ رہے او',
 'longpagewarning'        => '<strong>ہوشیار: اے صفحہ $1 کلوبائیٹ لمبا اے؛ کچھ کھوجیاں نو 32 کلوبائیٹ توں لمبے صفحے لکھنا یا پہنچنا مسئلہ ہوندا اے۔ <br />
@@ -248,6 +255,8 @@ $messages = array(
 'editundo'                => 'واپس',
 
 # Search results
+'noexactmatch' => "'''اس \"\$1\" ناں دا کوئی صفحہ نہیں۔'''
+تسی اے [[:\$1|صفحہ لکھ سکدے او]]۔",
 'prevn'        => 'پہلا $1',
 'nextn'        => 'اگلا $1',
 'viewprevnext' => 'ویکھو ($1) ($2) ($3)',
@@ -264,12 +273,14 @@ $messages = array(
 # Recent changes
 'recentchanges'                  => 'نویاں تبدیلیاں',
 'recentchanges-feed-description' => 'اس فیڈ وچ وکی تے ہوئیاں نویاں تبدیلیاں نو ویکھو۔',
+'rcnote'                         => 'تھلے دتیاں ہوئیاں تبدیلیاں گذ شتہ <strong>$2</strong> دناں وچ ہوئیاں <strong>$1</strong> نے',
 'rclistfrom'                     => '$1 توں ہونے آلیاں نویاں تبدیلیاں وکھاؤ',
 'rcshowhideminor'                => '$1 معمولی تبدیلیاں',
 'rcshowhidebots'                 => '$1 بوٹ',
 'rcshowhideliu'                  => '$1 ورتن آلے اندر نیں',
 'rcshowhideanons'                => '$1 گمنام ورتن والے',
 'rcshowhidemine'                 => '$1 میرے کم',
+'rclinks'                        => 'آخری $2 دناں دیاں $1 تبدیلیاں وکھاؤ<br />$3',
 'diff'                           => 'فرق',
 'hist'                           => 'پچھلا کم',
 'hide'                           => 'چھپاؤ',
@@ -302,7 +313,7 @@ $messages = array(
 'filehist-filesize'         => 'فائل دا ناپ',
 'filehist-comment'          => 'راۓ',
 'imagelinks'                => 'کتھے کتھے تعلق اے',
-'linkstoimage'              => 'اس فائل دا تھلے لکھے ہوۓ صفحات نال تعلق اے:',
+'linkstoimage'              => 'تھلے دتے گۓ {{PLURAL:$1|$1 صفحے}} اس فائل نال جڑدے نے',
 'nolinkstoimage'            => 'اس فائل نال جڑیا کوئی صفحہ نہیں۔',
 'sharedupload'              => 'اے فائل مشترکہ اپلوڈ اے تے اے دوجے منصوبے وی استعمال کر سکدے نے۔',
 'noimage'                   => 'اس ناں دی کوئی فائل نہيں، مگر تسی $1 بنا سکدے او۔',
@@ -375,6 +386,7 @@ $messages = array(
 
 # Special:AllPages
 'allpages'       => 'سارے صفحے',
+'alphaindexline' => '$1 توں $2',
 'nextpage'       => 'اگلا صفحہ ($1)',
 'prevpage'       => 'پچھلا صفحہ ($1)',
 'allpagesfrom'   => 'اس جگہ توں شروع ہونے آلے صفحے وکھاؤ:',
@@ -389,18 +401,19 @@ $messages = array(
 'emailuser' => 'اس ورتن والے نو ای میل کرو',
 
 # Watchlist
-'watchlist'        => 'میریاں اکھاں تھلے وچ',
-'mywatchlist'      => 'میری نظر وچ',
-'watchlistfor'     => "('''$1''' لئی)",
-'addedwatch'       => 'اکھ تھلے آگیا',
-'addedwatchtext'   => 'اے صفحہ "[[:$1]] تواڈیاں اکھاں تھلے آگیا اے۔<br />
+'watchlist'         => 'میریاں اکھاں تھلے وچ',
+'mywatchlist'       => 'میری نظر وچ',
+'watchlistfor'      => "('''$1''' لئی)",
+'addedwatch'        => 'اکھ تھلے آگیا',
+'addedwatchtext'    => 'اے صفحہ "[[:$1]] تواڈیاں اکھاں تھلے آگیا اے۔<br />
 مستقبل وچ اس صفحہ تے ایدے بارے چ گل بات نویاں تبدیلیاں وچ موٹے نظر آن گے تا کہ آسانی نال کھوجیا جا سکے۔',
-'removedwatch'     => 'اکھ تھلیوں ہٹا لیا گیا',
-'removedwatchtext' => 'اے صفحہ "[[:$1]]" تواڈی اکھ تھلیوں ہٹا لیا گیا اے۔',
-'watch'            => 'نظر رکھو',
-'watchthispage'    => 'اس صفحے تے اکھ رکھو',
-'unwatch'          => 'نظر ھٹاؤ',
-'wlshowlast'       => 'آخری $1 گھنٹے $2 دن $3 وکھاؤ',
+'removedwatch'      => 'اکھ تھلیوں ہٹا لیا گیا',
+'removedwatchtext'  => 'اے صفحہ "[[:$1]]" تواڈی اکھ تھلیوں ہٹا لیا گیا اے۔',
+'watch'             => 'نظر رکھو',
+'watchthispage'     => 'اس صفحے تے اکھ رکھو',
+'unwatch'           => 'نظر ھٹاؤ',
+'watchlist-details' => '{{PLURAL:$1|$1 صفحہ|$1 صفحہ}} تواڈی اکھ تھلے گلاں باتاں شامل نہیں۔',
+'wlshowlast'        => 'آخری $1 گھنٹے $2 دن $3 وکھاؤ',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'نظر تھلے۔۔۔۔',
@@ -467,6 +480,8 @@ $messages = array(
 'nolinkshere'         => "'''[[:$1]]''' دے نال کسے دا جوڑ نہیں",
 'isredirect'          => 'ریڈائرکٹ صفحہ',
 'istemplate'          => 'ملن',
+'whatlinkshere-prev'  => '{{PLURAL:$1|پچھل $1ا|پچھلا}}',
+'whatlinkshere-next'  => '{{PLURAL:$1|اگلا $1|اگلا}}',
 'whatlinkshere-links' => '← تعلق',
 
 # Block/unblock

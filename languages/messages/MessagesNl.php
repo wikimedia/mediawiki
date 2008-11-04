@@ -329,6 +329,7 @@ $messages = array(
 'tog-diffonly'                => 'Pagina-inhoud onder wijzigingen niet weergeven',
 'tog-showhiddencats'          => 'Verborgen categorieën weergeven',
 'tog-noconvertlink'           => 'Paginanaamconversie uitschakelen',
+'tog-norollbackdiff'          => 'Wijzigingen weglaten na terugdraaien',
 
 'underline-always'  => 'Altijd',
 'underline-never'   => 'Nooit',

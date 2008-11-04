@@ -189,6 +189,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Mitte mihi transcriptiones litterarum quas ad alios usores mitto',
 'tog-diffonly'                => 'Noli monstrare contenta paginae infra dissimilitudinem',
 'tog-showhiddencats'          => 'Categorias celatas monstrare',
+'tog-norollbackdiff'          => 'Noli monstrare dissimilitudinem post reversionem paginae',
 
 'underline-always'  => 'Semper',
 'underline-never'   => 'Numquam',

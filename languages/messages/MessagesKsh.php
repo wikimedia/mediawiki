@@ -241,6 +241,7 @@ $messages = array(
 'tog-diffonly'                => 'Zeich beim Versione Verjliche nur de Ungerscheed aan (ävver pack nit noch de janze Sigg dodronger)',
 'tog-showhiddencats'          => 'Verstoche Saachjroppe aanzeije',
 'tog-noconvertlink'           => 'Don de Tittele nit ümwandelle',
+'tog-norollbackdiff'          => 'Donn noh „{{int:Rollback}}“ de Ungerscheede nit aanzeije',
 
 'underline-always'  => 'jo, ongershtriishe',
 'underline-never'   => 'nä',
@@ -1306,6 +1307,7 @@ Wiki-Köbes, enem Sörver-Minsch, oder luur ens en de
 'right-minoredit'            => 'Eije Änderung als klein Mini-Änderung makeere',
 'right-move'                 => 'Sigge ömnenne',
 'right-move-subpages'        => 'Donn de Sigge met ier Ungersigge ömnenne',
+'right-move-rootuserpages'   => '(Houp)-Metmaacher-Sigg Ömnänne',
 'right-suppressredirect'     => 'Kein automatesche Ömleidung aanlääje beim Ömnenne',
 'right-upload'               => 'Dateie huhlade',
 'right-reupload'             => 'En Datei ußtuusche, di ussem Wiki kütt',
@@ -1365,6 +1367,7 @@ Wiki-Köbes, enem Sörver-Minsch, oder luur ens en de
 'action-minoredit'            => 'hee di Änderung als klein „mini“ ze makkeere',
 'action-move'                 => 'di Sigg ömzebenänne',
 'action-move-subpages'        => 'hee di Sigg un ier Ongersigge ömzebenänne',
+'action-move-rootuserpages'   => 'enem Metmaacher sing (Houp)-Metmaacher-Sigg ömzenänne',
 'action-upload'               => 'hee di Datei huhzelade',
 'action-reupload'             => 'hee di Datei, di et ald jitt, ußzetuusche',
 'action-reupload-shared'      => 'hee di Datei „för“ di ze säze, di et en de jemeinsame Biblijoteek ald jitt',
@@ -1403,7 +1406,7 @@ Wiki-Köbes, enem Sörver-Minsch, oder luur ens en de
 'rcshowhidebots'                    => '$1 de Bots ehr Änderunge',
 'rcshowhideliu'                     => '$1 de aanjemeldte Metmaacher ehr Änderunge',
 'rcshowhideanons'                   => '$1 de namenlose Metmaacher ehr Änderunge',
-'rcshowhidepatr'                    => '$1 de aanjeluurte Änderunge',
+'rcshowhidepatr'                    => '$1 de nohjeluurte Änderunge',
 'rcshowhidemine'                    => '$1 ming eije Änderunge',
 'rclinks'                           => 'Zeich de letzte | $1 | Änderunge us de letzte | $2 | Dage, un dun | $3 |',
 'diff'                              => 'Ungerscheed',
@@ -1593,7 +1596,7 @@ Velleich probees De et och zo en Zick, wo winnijer loss es.',
 'filehist-filesize'              => 'Dateiömfang',
 'filehist-comment'               => 'Aanmerkung',
 'imagelinks'                     => 'Jebruch en',
-'linkstoimage'                   => 'Hee {{PLURAL:$1|kütt di Sigg|kumme de Sigge|sin keij Sigge}}, die op die Datei linke dun:',
+'linkstoimage'                   => 'Hee {{PLURAL:$1|kütt di Sigg|kumme de $1 Sigge|sin keij Sigge}}, die op die Datei linke {{PLURAL:$1|deiht|dun|dun}}:',
 'linkstoimage-more'              => 'Mieh wie {{PLURAL:$1|ein Sigg link|$1 Sigge linke|kein Sigg link}} op di Datei.
 De Liß hee dronger zeisch nur {{PLURAL:$1|der eetse Link|de eetste $1 Links|keine Link}} op di Datei.
 Mer ävver han och en [[Special:WhatLinksHere/$2|Komplätte Leß]].',
@@ -3106,6 +3109,8 @@ De könnts Ding Oppassliss ävver och [[Special:Watchlist/edit|övver e Fomulaa 
 
 # Core parser functions
 'unknown_extension_tag' => '„<code>$1</code>“ es en zosäzlejje Kennzeichnung, die kenne mer nit.',
+'duplicate-defaultsort' => "'''Opjepaß:'''
+Dä Shtanndat-Zoot-Schlößel „$1“ övverschriif dä älldere Zoot-Schlößel „$2“.",
 
 # Special:Version
 'version'                          => 'Version vun de Wiki Soffwär zeije', # Not used as normal message but as header for the special page itself

@@ -160,6 +160,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Kopije mejlkow dóstać, kiž druhim wužiwarjam pósćelu',
 'tog-diffonly'                => 'Jenož rozdźěle pokazać (nic pak zbytny wobsah)',
 'tog-showhiddencats'          => 'Schowane kategorije pokazać',
+'tog-norollbackdiff'          => 'Rozdźěl po wróćostajenju zanjechać',
 
 'underline-always'  => 'přeco',
 'underline-never'   => 'ženje',
@@ -1078,6 +1079,7 @@ Móžeš [[:\$1|tutu stronu wutworić]].",
 'right-minoredit'            => 'Změny jako snadne markěrować',
 'right-move'                 => 'Strony přesunyć',
 'right-move-subpages'        => 'Strony z jich podstronami přesunyć',
+'right-move-rootuserpages'   => 'Hłowne wužiwarske strony přesunyć',
 'right-suppressredirect'     => 'Při přesunjenju strony ze stareho mjena žane daleposrědkowanje wutworić',
 'right-upload'               => 'Dataje nahrać',
 'right-reupload'             => 'Eksistowacu dataju přepisać',
@@ -1137,6 +1139,7 @@ Móžeš [[:\$1|tutu stronu wutworić]].",
 'action-minoredit'            => 'tutu změnu jako snadnu markěrować',
 'action-move'                 => 'tutu stronu přesunyć',
 'action-move-subpages'        => 'tutu stronu a jeje podstrony přesunyć',
+'action-move-rootuserpages'   => 'hłowne wužiwarske strony přesunyć',
 'action-upload'               => 'tutu dataju nahrać',
 'action-reupload'             => 'eksistowacu dataju přepisać',
 'action-reupload-shared'      => 'tutu dataju na zhromadnym repozitoriju přepisać',
@@ -2712,6 +2715,7 @@ Móžeš tež [[Special:Watchlist/edit|standardnu wobdźěłowansku stronu]] wu�
 
 # Core parser functions
 'unknown_extension_tag' => 'Njeznata taflička rozšěrjenja "$1"',
+'duplicate-defaultsort' => 'Warnowanje: Standardny sortěrowonski kluč (DEFAULTSORTKEY) "$2" přepisa prjedawšu sortěrowanski kluč "$1".',
 
 # Special:Version
 'version'                          => 'Wersija', # Not used as normal message but as header for the special page itself
