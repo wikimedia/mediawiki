@@ -606,7 +606,7 @@ class RevisionDeleteForm {
 	 * @returns string
 	 */
 	private function archivedfileLine( $file ) {
-		global $wgLang, $wgTitle;
+		global $wgLang;
 
 		$target = $this->page->getPrefixedText();
 		$date = $wgLang->timeanddate( $file->getTimestamp(), true  );
