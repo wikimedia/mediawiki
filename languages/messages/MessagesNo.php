@@ -2328,7 +2328,7 @@ Dette er sannsynligvis forårsaket av en lenke til et svartelistet eksternt nett
 'patrol-log-header'  => 'Dette er en logg over patruljerte sideversjoner.',
 'patrol-log-line'    => 'merket $1 av $2 godkjent $3',
 'patrol-log-auto'    => '(automatisk)',
-'logshowhide-patrol' => '$1 patruljeringslogg',
+'log-show-hide-patrol' => '$1 patruljeringslogg',
 
 # Image deletion
 'deletedrevision'                 => 'Slettet gammel revisjon $1.',

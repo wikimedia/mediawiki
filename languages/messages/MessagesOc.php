@@ -2428,7 +2428,7 @@ Aquò es probablament causat per un ligam sus lista negra que punta cap a un sit
 'patrol-log-line'    => 'a marcat la version $1 de $2 coma verificada $3',
 'patrol-log-auto'    => '(automatic)',
 'patrol-log-diff'    => 'v$1',
-'logshowhide-patrol' => "$1 l'istoric de las versions patrolhadas",
+'log-show-hide-patrol' => "$1 l'istoric de las versions patrolhadas",
 
 # Image deletion
 'deletedrevision'                 => 'La version anciana $1 es estada suprimida.',

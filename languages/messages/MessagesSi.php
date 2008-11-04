@@ -2460,7 +2460,7 @@ $1 දැනටමත් වාරණය කොට ඇත. පරිස්ථි
 'patrol-log-line'    => '$2 හි $1 පරික්ෂා කර බැලූ බව $3 හි ලකුණු කෙරිණි',
 'patrol-log-auto'    => '(ස්වයංක්‍රීය)',
 'patrol-log-diff'    => 'r$1',
-'logshowhide-patrol' => 'පරික්‍ෂාකිරීම් ලඝු-සටහන් $1',
+'log-show-hide-patrol' => 'පරික්‍ෂාකිරීම් ලඝු-සටහන් $1',
 
 # Image deletion
 'deletedrevision'                 => 'පැරැණි සංශෝධනය $1 මකාදමන ලදි',

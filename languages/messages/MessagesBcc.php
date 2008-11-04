@@ -2362,7 +2362,7 @@ $1',
 'patrol-log-line'    => 'نشان هلگ بیتن $1 چه $2 نظارت $3',
 'patrol-log-auto'    => '(اتوماتیک)',
 'patrol-log-diff'    => 'ر$1',
-'logshowhide-patrol' => '$1  آمار گشت',
+'log-show-hide-patrol' => '$1  آمار گشت',
 
 # Image deletion
 'deletedrevision'                 => 'قدیمی بازبینی $1 حذف بوت',

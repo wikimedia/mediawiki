@@ -2240,7 +2240,7 @@ Probablemente tea causao por un enllaz a un sitiu esternu de la llista prieta.',
 'patrol-log-header'  => 'Esti ye un rexistru de les revisiones supervisaes.',
 'patrol-log-line'    => 'marcó la versión $1 de $2 como supervisada $3',
 'patrol-log-auto'    => '(automática)',
-'logshowhide-patrol' => '$1 rexistru de supervisión',
+'log-show-hide-patrol' => '$1 rexistru de supervisión',
 
 # Image deletion
 'deletedrevision'                 => 'Esborrada la reversión vieya $1',

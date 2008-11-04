@@ -2501,7 +2501,7 @@ Ez valószínűleg egy olyan link miatt van, ami egy feketelistán lévő oldalr
 'patrol-log-header'  => 'Ez az ellenőrzött változatok naplója.',
 'patrol-log-line'    => 'megjelölve $1 / $2 ellenőrizve $3',
 'patrol-log-auto'    => '(automatikus)',
-'logshowhide-patrol' => 'járőrnapló $1',
+'log-show-hide-patrol' => 'járőrnapló $1',
 
 # Image deletion
 'deletedrevision'                 => 'Régebbi változat törölve: $1',

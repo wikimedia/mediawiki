@@ -2364,7 +2364,7 @@ Tal bloqueio foi provavelmente causado por uma ligação para um website externo
 'patrol-log-header'  => 'Este é um registo de edições patrulhadas.',
 'patrol-log-line'    => 'marcou a edição $1 de $2 como uma edição patrulhada $3',
 'patrol-log-auto'    => 'automaticamente',
-'logshowhide-patrol' => '$1 registo de edições patrulhadas',
+'log-show-hide-patrol' => '$1 registo de edições patrulhadas',
 
 # Image deletion
 'deletedrevision'                 => 'Apagada a versão antiga $1',

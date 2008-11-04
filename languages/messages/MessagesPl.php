@@ -2483,7 +2483,7 @@ Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony int
 'patrol-log-header'  => 'Poniżej znajduje się dziennik patrolowania stron.',
 'patrol-log-line'    => 'oznaczył wersję $1 hasła $2 jako sprawdzoną $3',
 'patrol-log-auto'    => '(automatycznie)',
-'logshowhide-patrol' => '$1 rejestr sprawdzania',
+'log-show-hide-patrol' => '$1 rejestr sprawdzania',
 
 # Image deletion
 'deletedrevision'                 => 'Usunięto poprzednie wersje $1',

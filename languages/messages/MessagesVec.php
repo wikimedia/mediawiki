@@ -2272,7 +2272,7 @@ Questo xe probabilmente dovùo a la presenza de un colegamento a un sito foresto
 'patrol-log-header'  => 'Qua de sèvito xe elencàe le verifiche de le modifiche.',
 'patrol-log-line'    => 'gà segnà la $1 a la pagina $2 come verificà $3',
 'patrol-log-auto'    => '(verifica automatica)',
-'logshowhide-patrol' => '$1 el registro dei canbiamenti verificài',
+'log-show-hide-patrol' => '$1 el registro dei canbiamenti verificài',
 
 # Image deletion
 'deletedrevision'                 => 'Vecia version scancełà $1',

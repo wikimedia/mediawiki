@@ -2328,7 +2328,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'patrol-log-line'    => 'ha segnato la $1 alla pagina $2 come verificata $3',
 'patrol-log-auto'    => '(verifica automatica)',
 'patrol-log-diff'    => 'modifica $1',
-'logshowhide-patrol' => '$1 log delle modifiche verificate',
+'log-show-hide-patrol' => '$1 log delle modifiche verificate',
 
 # Image deletion
 'deletedrevision'                 => 'Cancellata la vecchia revisione di $1.',

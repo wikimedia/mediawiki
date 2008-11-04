@@ -2446,7 +2446,7 @@ Le causa es probabilemente un ligamine verso un sito externe que es presente in 
 'patrol-log-header'  => 'Isto es un registro de revisiones patruliate.',
 'patrol-log-line'    => 'marcava $1 de $2 como patruliate $3',
 'patrol-log-auto'    => '(automaticamente)',
-'logshowhide-patrol' => '$1 le registro de versiones patruliate',
+'log-show-hide-patrol' => '$1 le registro de versiones patruliate',
 
 # Image deletion
 'deletedrevision'                 => 'Deleva le ancian revision $1',

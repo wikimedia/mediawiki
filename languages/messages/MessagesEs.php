@@ -2361,7 +2361,7 @@ Esto podría estar causado por un enlace a un sitio externo incluido en la lista
 'patrol-log-header'  => 'Este es un registro de revisiones patrulladas.',
 'patrol-log-line'    => 'revisado $1 de $2 $3',
 'patrol-log-auto'    => '(automático)',
-'logshowhide-patrol' => '$1 registro de patrullaje',
+'log-show-hide-patrol' => '$1 registro de patrullaje',
 
 # Image deletion
 'deletedrevision'                 => 'Borrada revisión antigua $1',

@@ -2479,7 +2479,7 @@ V druhém případě můžete také používat přímý odkaz, např. pomocí [[
 'patrol-log-header'  => 'Toto je kniha prověřených verzí.',
 'patrol-log-line'    => 'označuje revizi $1 stránky $2 za prověřenou $3',
 'patrol-log-auto'    => '(automaticky)',
-'logshowhide-patrol' => '$1 knihu záznamů patroly',
+'log-show-hide-patrol' => '$1 knihu záznamů patroly',
 
 # Image deletion
 'deletedrevision'                 => 'Smazána stará revize $1',

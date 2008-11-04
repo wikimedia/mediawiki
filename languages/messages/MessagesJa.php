@@ -2286,7 +2286,7 @@ $1 は、すでにブロックされています。あなたは設定を変え�
 'patrol-log-line'    => '$2 の $1 をパトロール済みにマーク$3',
 'patrol-log-auto'    => '（自動）',
 'patrol-log-diff'    => '第$1版',
-'logshowhide-patrol' => 'パトロール・ログを$1',
+'log-show-hide-patrol' => 'パトロール・ログを$1',
 
 # Image deletion
 'deletedrevision'                 => '古い版 $1 を削除しました',

@@ -2386,7 +2386,7 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'patrol-log-line'    => 'đánh dấu tuần tra vào phiên bản $1 của $2 $3',
 'patrol-log-auto'    => '(tự động)',
 'patrol-log-diff'    => 'bản $1',
-'logshowhide-patrol' => '$1 nhật trình tuần tra',
+'log-show-hide-patrol' => '$1 nhật trình tuần tra',
 
 # Image deletion
 'deletedrevision'                 => 'Đã xóa phiên bản cũ $1',

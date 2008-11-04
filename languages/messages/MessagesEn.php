@@ -2998,7 +2998,7 @@ This is probably caused by a link to a blacklisted external site.',
 'patrol-log-line'    => 'marked $1 of $2 patrolled $3',
 'patrol-log-auto'    => '(automatic)',
 'patrol-log-diff'    => 'r$1', # only translate this message to other languages if you have to change it
-'logshowhide-patrol' => '$1 patrol log',
+'log-show-hide-patrol' => '$1 patrol log',
 
 # Image deletion
 'deletedrevision'                 => 'Deleted old revision $1',

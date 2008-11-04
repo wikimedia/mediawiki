@@ -2597,7 +2597,7 @@ Esu kam_mer noch en Aanmerkung en „{{int:summary}}“ maache.',
 'patrol-log-line'    => 'hät $1 von „$2“ $3 nohjeloort.',
 'patrol-log-auto'    => '(automatisch)',
 'patrol-log-diff'    => 'de Version $1',
-'logshowhide-patrol' => '$1 et Logbuch vum Sigge nohlooere',
+'log-show-hide-patrol' => '$1 et Logbuch vum Sigge nohlooere',
 
 # Image deletion
 'deletedrevision'                 => 'De ahl Version „$1“ es fottjeschmesse',

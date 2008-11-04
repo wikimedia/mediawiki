@@ -2554,7 +2554,7 @@ $1 ممنوع بالفعل. هل تريد تغيير الإعدادات؟',
 'patrol-log-line'    => 'علم على $1 من $2 كأنها متراجعة $3',
 'patrol-log-auto'    => '(اوتوماتيكي)',
 'patrol-log-diff'    => 'ن$1',
-'logshowhide-patrol' => '$1 سجل المراجعة',
+'log-show-hide-patrol' => '$1 سجل المراجعة',
 
 # Image deletion
 'deletedrevision'                 => 'مسح النسخة القديمة $1',
