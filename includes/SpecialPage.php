@@ -139,7 +139,7 @@ class SpecialPage
 		'Booksources'               => 'SpecialBookSources',
 		'Categories'                => array( 'SpecialPage', 'Categories' ),
 		'Export'                    => array( 'SpecialPage', 'Export' ),
-		'Version'                   => array( 'SpecialPage', 'Version' ),
+		'Version'                   => 'SpecialVersion',
 		'Blankpage'                 => array( 'UnlistedSpecialPage', 'Blankpage' ),
 		'Allmessages'               => array( 'SpecialPage', 'Allmessages' ),
 		'Log'                       => array( 'SpecialPage', 'Log' ),
