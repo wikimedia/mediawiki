@@ -1,42 +1,37 @@
 <?php
-/**#@+
+
+/**
  * Give information about the version of MediaWiki, PHP, the DB and extensions
  *
- * @file
  * @ingroup SpecialPage
  *
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
-
-/**
- * constructor
- */
-function wfSpecialVersion() {
-	$version = new SpecialVersion;
-	$version->execute();
-}
-
-/**
- * @ingroup SpecialPage
- */
-class SpecialVersion {
+class SpecialVersion extends SpecialPage {
 	private $firstExtOpened = true;
+
+	function __construct(){
+		parent::__construct( 'Version' );	
+	}
 
 	/**
 	 * main()
 	 */
-	function execute() {
+	function execute( $par ) {
 		global $wgOut, $wgMessageCache, $wgSpecialVersionShowHooks;
 		$wgMessageCache->loadAllMessages();
+
+		$this->setHeaders();
+		$this->outputHeader();
 
 		$wgOut->addHTML( '<div dir="ltr">' );
 		$text = 
 			$this->MediaWikiCredits() .
 			$this->softwareInformation() .
 			$this->extensionCredits();
-		if  ( $wgSpecialVersionShowHooks ) {
+		if ( $wgSpecialVersionShowHooks ) {
 			$text .= $this->wgHooks();
 		}
 		$wgOut->addWikiText( $text );
@@ -287,8 +282,6 @@ class SpecialVersion {
 	}
 
 	/**
-	 * @static
-	 *
 	 * @return string
 	 */
 	function IPInfo() {
@@ -306,35 +299,34 @@ class SpecialVersion {
 
 		if ( $cnt == 1 ) {
 			// Enforce always returning a string
-			return (string)$this->arrayToString( $list[0] );
+			return (string)self::arrayToString( $list[0] );
 		} elseif ( $cnt == 0 ) {
 			return '';
 		} else {
+			global $wgLang;
 			sort( $list );
-			$t = array_slice( $list, 0, $cnt - 1 );
-			$one = array_map( array( &$this, 'arrayToString' ), $t );
-			$two = $this->arrayToString( $list[$cnt - 1] );
-			$and = wfMsg( 'and' );
-
-			return implode( ', ', $one ) . " $and $two";
+			return $wgLang->listToText( array_map( array( __CLASS__, 'arrayToString' ), $list ) );
 		}
 	}
 
 	/**
-	 * @static
-	 *
 	 * @param mixed $list Will convert an array to string if given and return
 	 *                    the paramater unaltered otherwise
 	 * @return mixed
 	 */
-	function arrayToString( $list ) {
+	static function arrayToString( $list ) {
+		if( is_array( $list ) && count( $list ) == 1 )
+			$list = $list[0];
 		if( is_object( $list ) ) {
 			$class = get_class( $list );
 			return "($class)";
-		} elseif ( ! is_array( $list ) ) {
+		} elseif ( !is_array( $list ) ) {
 			return $list;
 		} else {
-			$class = get_class( $list[0] );
+			if( is_object( $list[0] ) )
+				$class = get_class( $list[0] );
+			else 
+				$class = $list[0];
 			return "($class, {$list[1]})";
 		}
 	}
@@ -387,5 +379,3 @@ class SpecialVersion {
 
 	/**#@-*/
 }
-
-/**#@-*/
