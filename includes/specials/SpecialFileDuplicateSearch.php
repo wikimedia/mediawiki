@@ -73,7 +73,7 @@ function wfSpecialFileDuplicateSearch( $par = null ) {
 	if( $title && $title->getText() != '' ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		$image = $dbr->tableName( 'image' );
-		$encFilename = $dbr->addQuotes( htmlspecialchars( $title->getDbKey() ) );
+		$encFilename = $dbr->addQuotes( htmlspecialchars( $title->getDBKey() ) );
 		$sql = "SELECT img_sha1 from $image where img_name = $encFilename";
 		$res = $dbr->query( $sql );
 		$row = $dbr->fetchRow( $res );

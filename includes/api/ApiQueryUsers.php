@@ -71,7 +71,7 @@ if (!defined('MEDIAWIKI')) {
 		if(!count($goodNames))
 			return $retval;
 
-		$db = $this->getDb();
+		$db = $this->getDB();
 		$this->addTables('user', 'u1');
 		$this->addFields('u1.user_name');
 		$this->addWhereFld('u1.user_name', $goodNames);

@@ -72,7 +72,7 @@ class SpecialListUserRestrictionsForm {
 		$title = Title::newFromText( $page );
 		if( $title ) {
 			$conds['ur_page_namespace'] = $title->getNamespace();
-			$conds['ur_page_title'] = $title->getDbKey();
+			$conds['ur_page_title'] = $title->getDBKey();
 		}
 
 		return $conds;

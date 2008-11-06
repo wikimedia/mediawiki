@@ -2461,7 +2461,7 @@ class Title {
 				if( $nt->getText() != wfStripIllegalFilenameChars( $nt->getText() ) ) {
 					$errors[] = array('imageinvalidfilename');
 				}
-				if( !File::checkExtensionCompatibility( $file, $nt->getDbKey() ) ) {
+				if( !File::checkExtensionCompatibility( $file, $nt->getDBKey() ) ) {
 					$errors[] = array('imagetypemismatch');
 				}
 			}

@@ -94,7 +94,7 @@ class LocalRepo extends FSRepo {
 			'page_id',	//Field
 			array(	//Conditions
 				'page_namespace' => $title->getNamespace(),
-				'page_title' => $title->getDbKey(),
+				'page_title' => $title->getDBKey(),
 			),
 			__METHOD__	//Function name
 		);

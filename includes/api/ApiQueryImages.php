@@ -66,7 +66,7 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 				$this->dieUsage("Invalid continue param. You should pass the " .
 					"original value returned by the previous query", "_badcontinue");
 			$ilfrom = intval($cont[0]);
-			$ilto = $this->getDb()->strencode($this->titleToKey($cont[1]));
+			$ilto = $this->getDB()->strencode($this->titleToKey($cont[1]));
 			$this->addWhere("il_from > $ilfrom OR ".
 					"(il_from = $ilfrom AND ".
 					"il_to >= '$ilto')");

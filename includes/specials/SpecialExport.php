@@ -93,7 +93,7 @@ function wfExportGetLinks( $inputPages, $pageSet, $table, $fields, $join ) {
 				array_merge( $join,
 					array(
 						'page_namespace' => $title->getNamespace(),
-						'page_title' => $title->getDbKey() ) ),
+						'page_title' => $title->getDBKey() ) ),
 				__METHOD__ );
 			foreach( $result as $row ) {
 				$template = Title::makeTitle( $row->namespace, $row->title );

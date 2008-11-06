@@ -191,7 +191,7 @@ class Linker {
 		wfProfileIn( __METHOD__ . '-checkPageExistence' );
 		if( !in_array( 'known', $options ) and !in_array( 'broken', $options ) ) {
 			if( $target->getNamespace() == NS_SPECIAL ) {
-				if( SpecialPage::exists( $target->getDbKey() ) ) {
+				if( SpecialPage::exists( $target->getDBKey() ) ) {
 					$options []= 'known';
 				} else {
 					$options []= 'broken';

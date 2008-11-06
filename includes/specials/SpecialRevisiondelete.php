@@ -326,11 +326,11 @@ class RevisionDeleteForm {
 		if( $this->deleteKey=='oldimage' ) {
 			// Run through and pull all our data in one query
 			foreach( $this->ofiles as $timestamp ) {
-				$where[] = $dbr->addQuotes( $timestamp.'!'.$this->page->getDbKey() );
+				$where[] = $dbr->addQuotes( $timestamp.'!'.$this->page->getDBKey() );
 			}
 			$whereClause = 'oi_archive_name IN(' . implode(',',$where) . ')';
 			$result = $dbr->select( 'oldimage', '*',
-				array( 'oi_name' => $this->page->getDbKey(),
+				array( 'oi_name' => $this->page->getDBKey(),
 					$whereClause ),
 				__METHOD__ );
 			while( $row = $dbr->fetchObject( $result ) ) {
@@ -340,7 +340,7 @@ class RevisionDeleteForm {
 			}
 			// Check through our images
 			foreach( $this->ofiles as $timestamp ) {
-				$archivename = $timestamp.'!'.$this->page->getDbKey();
+				$archivename = $timestamp.'!'.$this->page->getDBKey();
 				if( !isset($filesObjs[$archivename]) ) {
 					continue;
 				} else if( !$filesObjs[$archivename]->userCan(File::DELETED_RESTRICTED) ) {
@@ -364,7 +364,7 @@ class RevisionDeleteForm {
 			}
 			$whereClause = 'fa_id IN(' . implode(',',$where) . ')';
 			$result = $dbr->select( 'filearchive', '*',
-				array( 'fa_name' => $this->page->getDbKey(),
+				array( 'fa_name' => $this->page->getDBKey(),
 					$whereClause ),
 				__METHOD__ );
 			while( $row = $dbr->fetchObject( $result ) ) {
@@ -939,11 +939,11 @@ class RevisionDeleter {
 		$set = array();
 		// Run through and pull all our data in one query
 		foreach( $items as $timestamp ) {
-			$where[] = $this->dbw->addQuotes( $timestamp.'!'.$title->getDbKey() );
+			$where[] = $this->dbw->addQuotes( $timestamp.'!'.$title->getDBKey() );
 		}
 		$whereClause = 'oi_archive_name IN(' . implode(',',$where) . ')';
 		$result = $this->dbw->select( 'oldimage', '*',
-			array( 'oi_name' => $title->getDbKey(),
+			array( 'oi_name' => $title->getDBKey(),
 				$whereClause ),
 			__METHOD__ );
 		while( $row = $this->dbw->fetchObject( $result ) ) {
@@ -953,7 +953,7 @@ class RevisionDeleter {
 		}
 		// To work!
 		foreach( $items as $timestamp ) {
-			$archivename = $timestamp.'!'.$title->getDbKey();
+			$archivename = $timestamp.'!'.$title->getDBKey();
 			if( !isset($filesObjs[$archivename]) ) {
 				$success = false;
 				continue; // Must exist
@@ -1036,7 +1036,7 @@ class RevisionDeleter {
 		}
 		$whereClause = 'fa_id IN(' . implode(',',$where) . ')';
 		$result = $this->dbw->select( 'filearchive', '*',
-			array( 'fa_name' => $title->getDbKey(),
+			array( 'fa_name' => $title->getDBKey(),
 				$whereClause ),
 			__METHOD__ );
 		while( $row = $this->dbw->fetchObject( $result ) ) {
