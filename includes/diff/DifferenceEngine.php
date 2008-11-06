@@ -546,7 +546,9 @@ CONTROL;
 		$difftext = $this->generateDiffBody( $this->mOldtext, $this->mNewtext );
 
 		// Save to cache for 7 days
-		if ( $key !== false && $difftext !== false ) {
+		if ( !wfRunHooks( 'AbortDiffCache', array( &$this ) ) ) {
+			wfIncrStats( 'diff_uncacheable' );
+		} else if ( $key !== false && $difftext !== false ) {
 			wfIncrStats( 'diff_cache_miss' );
 			$wgMemc->set( $key, $difftext, 7*86400 );
 		} else {
