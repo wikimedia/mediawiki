@@ -112,10 +112,10 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 					// LinkBatch refuses these, but we need them anyway
 					if(!array_key_exists($obj->getNamespace(), $lb->data))
 						$lb->data[$obj->getNamespace()] = array();
-					$lb->data[$obj->getNamespace()][$obj->getDbKey()] = 1;
+					$lb->data[$obj->getNamespace()][$obj->getDBKey()] = 1;
 				}
 			}
-			$where = $lb->constructSet('rc', $this->getDb());
+			$where = $lb->constructSet('rc', $this->getDB());
 			if($where != '')
 				$this->addWhere($where);
 		}

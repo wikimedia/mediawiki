@@ -100,7 +100,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		 * AND pl_title='Foo' AND pl_namespace=0
 		 * LIMIT 11 ORDER BY pl_from
 		 */
-		$db = $this->getDb();
+		$db = $this->getDB();
 		$this->addTables(array('page', $this->bl_table));
 		$this->addWhere("{$this->bl_from}=page_id");
 		if(is_null($resultPageSet))
@@ -108,7 +108,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		else
 			$this->addFields($resultPageSet->getPageTableFields());
 		$this->addFields('page_is_redirect');
-		$this->addWhereFld($this->bl_title, $this->rootTitle->getDbKey());
+		$this->addWhereFld($this->bl_title, $this->rootTitle->getDBKey());
 		if($this->hasNS)
 			$this->addWhereFld($this->bl_ns, $this->rootTitle->getNamespace());
 		$this->addWhereFld('page_namespace', $this->params['namespace']);
@@ -128,7 +128,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		 * AND (pl_title='Foo' AND pl_namespace=0) OR (pl_title='Bar' AND pl_namespace=1)
 		 * LIMIT 11 ORDER BY pl_namespace, pl_title, pl_from
 		 */
-		$db = $this->getDb();
+		$db = $this->getDB();
 		$this->addTables(array('page', $this->bl_table));
 		$this->addWhere("{$this->bl_from}=page_id");
 		if(is_null($resultPageSet))

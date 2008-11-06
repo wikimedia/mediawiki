@@ -296,7 +296,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$others = array();
 			foreach ($missing as $title)
 				if ($title->getNamespace() == NS_IMAGE)
-					$images[] = $title->getDbKey();
+					$images[] = $title->getDBKey();
 				else
 					$others[] = $title;					
 			
@@ -449,10 +449,10 @@ class ApiQueryInfo extends ApiQueryBase {
 					$result->setIndexedTagName($pageInfo['protection'], 'pr');
 				}
 			}
-			if($fld_talkid && isset($talkids[$title->getNamespace()][$title->getDbKey()]))
-				$pageInfo['talkid'] = $talkids[$title->getNamespace()][$title->getDbKey()];
-			if($fld_subjectid && isset($subjectids[$title->getNamespace()][$title->getDbKey()]))
-				$pageInfo['subjectid'] = $subjectids[$title->getNamespace()][$title->getDbKey()];
+			if($fld_talkid && isset($talkids[$title->getNamespace()][$title->getDBKey()]))
+				$pageInfo['talkid'] = $talkids[$title->getNamespace()][$title->getDBKey()];
+			if($fld_subjectid && isset($subjectids[$title->getNamespace()][$title->getDBKey()]))
+				$pageInfo['subjectid'] = $subjectids[$title->getNamespace()][$title->getDBKey()];
 			if($fld_url) {
 				$pageInfo['fullurl'] = $title->getFullURL();
 				$pageInfo['editurl'] = $title->getFullURL('action=edit');
@@ -496,10 +496,10 @@ class ApiQueryInfo extends ApiQueryBase {
 						$res['query']['pages'][$pageid]['protection'] = array();
 					$result->setIndexedTagName($res['query']['pages'][$pageid]['protection'], 'pr');
 				}
-				if($fld_talkid && isset($talkids[$title->getNamespace()][$title->getDbKey()]))
-					$res['query']['pages'][$pageid]['talkid'] = $talkids[$title->getNamespace()][$title->getDbKey()];
-				if($fld_subjectid && isset($subjectids[$title->getNamespace()][$title->getDbKey()]))
-					$res['query']['pages'][$pageid]['subjectid'] = $subjectids[$title->getNamespace()][$title->getDbKey()];
+				if($fld_talkid && isset($talkids[$title->getNamespace()][$title->getDBKey()]))
+					$res['query']['pages'][$pageid]['talkid'] = $talkids[$title->getNamespace()][$title->getDBKey()];
+				if($fld_subjectid && isset($subjectids[$title->getNamespace()][$title->getDBKey()]))
+					$res['query']['pages'][$pageid]['subjectid'] = $subjectids[$title->getNamespace()][$title->getDBKey()];
 				if($fld_url) {
 					$res['query']['pages'][$pageid]['fullurl'] = $title->getFullURL();
 					$res['query']['pages'][$pageid]['editurl'] = $title->getFullURL('action=edit');

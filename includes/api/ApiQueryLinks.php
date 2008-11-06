@@ -92,7 +92,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 					"original value returned by the previous query", "_badcontinue");
 			$plfrom = intval($cont[0]);
 			$plns = intval($cont[1]);
-			$pltitle = $this->getDb()->strencode($this->titleToKey($cont[2]));
+			$pltitle = $this->getDB()->strencode($this->titleToKey($cont[2]));
 			$this->addWhere("{$this->prefix}_from > $plfrom OR ".
 					"({$this->prefix}_from = $plfrom AND ".
 					"({$this->prefix}_namespace > $plns OR ".

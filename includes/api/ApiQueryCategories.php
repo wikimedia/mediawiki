@@ -87,7 +87,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 				$this->dieUsage("Invalid continue param. You should pass the " .
 					"original value returned by the previous query", "_badcontinue");
 			$clfrom = intval($cont[0]);
-			$clto = $this->getDb()->strencode($this->titleToKey($cont[1]));
+			$clto = $this->getDB()->strencode($this->titleToKey($cont[1]));
 			$this->addWhere("cl_from > $clfrom OR ".
 					"(cl_from = $clfrom AND ".
 					"cl_to >= '$clto')");

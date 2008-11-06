@@ -52,7 +52,7 @@ class ApiQueryCategoryInfo extends ApiQueryBase {
 		foreach($categories as $c)
 		{
 			$t = $titles[$c];
-			$cattitles[$c] = $t->getDbKey();
+			$cattitles[$c] = $t->getDBKey();
 		}
 
 		$this->addTables('category');

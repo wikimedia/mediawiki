@@ -66,7 +66,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		else
 			$protocol = null;
 
-		$db = $this->getDb();
+		$db = $this->getDB();
 		$this->addTables(array('page','externallinks'));	// must be in this order for 'USE INDEX'
 		$this->addOption('USE INDEX', 'el_index');
 		$this->addWhere('page_id=el_from');
