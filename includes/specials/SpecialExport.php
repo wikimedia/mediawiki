@@ -273,7 +273,7 @@ function wfSpecialExport( $page = '' ) {
 	}
 
 	$self = SpecialPage::getTitleFor( 'Export' );
-	$wgOut->addHtml( wfMsgExt( 'exporttext', 'parse' ) );
+	$wgOut->addHTML( wfMsgExt( 'exporttext', 'parse' ) );
 
 	$form = Xml::openElement( 'form', array( 'method' => 'post',
 		'action' => $self->getLocalUrl( 'action=submit' ) ) );
@@ -289,7 +289,7 @@ function wfSpecialExport( $page = '' ) {
 	if( $wgExportAllowHistory ) {
 		$form .= Xml::checkLabel( wfMsg( 'exportcuronly' ), 'curonly', 'curonly', true ) . '<br />';
 	} else {
-		$wgOut->addHtml( wfMsgExt( 'exportnohistory', 'parse' ) );
+		$wgOut->addHTML( wfMsgExt( 'exportnohistory', 'parse' ) );
 	}
 	$form .= Xml::checkLabel( wfMsg( 'export-templates' ), 'templates', 'wpExportTemplates', false ) . '<br />';
 	// Enable this when we can do something useful exporting/importing image information. :)
@@ -298,5 +298,5 @@ function wfSpecialExport( $page = '' ) {
 
 	$form .= Xml::submitButton( wfMsg( 'export-submit' ), array( 'accesskey' => 's' ) );
 	$form .= Xml::closeElement( 'form' );
-	$wgOut->addHtml( $form );
+	$wgOut->addHTML( $form );
 }

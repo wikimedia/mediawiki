@@ -71,7 +71,7 @@ class PasswordResetForm extends SpecialPage {
 
 	function error( $msg ) {
 		global $wgOut;
-		$wgOut->addHtml( '<div class="errorbox">' .
+		$wgOut->addHTML( '<div class="errorbox">' .
 			htmlspecialchars( $msg ) .
 			'</div>' );
 	}
@@ -119,7 +119,7 @@ class PasswordResetForm extends SpecialPage {
 			'</table>' .
 			wfCloseElement( 'form' ) .
 			'</div>';
-		$wgOut->addHtml( $form );
+		$wgOut->addHTML( $form );
 	}
 
 	function pretty( $fields ) {

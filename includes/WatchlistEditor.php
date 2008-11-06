@@ -46,19 +46,19 @@ class WatchlistEditor {
 						$this->unwatchTitles( $toUnwatch, $user );
 						$user->invalidateCache();
 						if( count( $toWatch ) > 0 || count( $toUnwatch ) > 0 )
-							$output->addHtml( wfMsgExt( 'watchlistedit-raw-done', 'parse' ) );
+							$output->addHTML( wfMsgExt( 'watchlistedit-raw-done', 'parse' ) );
 						if( ( $count = count( $toWatch ) ) > 0 ) {
-							$output->addHtml( wfMsgExt( 'watchlistedit-raw-added', 'parse', $count ) );
+							$output->addHTML( wfMsgExt( 'watchlistedit-raw-added', 'parse', $count ) );
 							$this->showTitles( $toWatch, $output, $wgUser->getSkin() );
 						}
 						if( ( $count = count( $toUnwatch ) ) > 0 ) {
-							$output->addHtml( wfMsgExt( 'watchlistedit-raw-removed', 'parse', $count ) );
+							$output->addHTML( wfMsgExt( 'watchlistedit-raw-removed', 'parse', $count ) );
 							$this->showTitles( $toUnwatch, $output, $wgUser->getSkin() );
 						}
 					} else {
 						$this->clearWatchlist( $user );
 						$user->invalidateCache();
-						$output->addHtml( wfMsgExt( 'watchlistedit-raw-removed', 'parse', count( $current ) ) );
+						$output->addHTML( wfMsgExt( 'watchlistedit-raw-removed', 'parse', count( $current ) ) );
 						$this->showTitles( $current, $output, $wgUser->getSkin() );
 					}
 				}
@@ -70,7 +70,7 @@ class WatchlistEditor {
 					$titles = $this->extractTitles( $request->getArray( 'titles' ) );
 					$this->unwatchTitles( $titles, $user );
 					$user->invalidateCache();
-					$output->addHtml( wfMsgExt( 'watchlistedit-normal-done', 'parse',
+					$output->addHTML( wfMsgExt( 'watchlistedit-normal-done', 'parse',
 						$GLOBALS['wgLang']->formatNum( count( $titles ) ) ) );
 					$this->showTitles( $titles, $output, $wgUser->getSkin() );
 				}
@@ -138,16 +138,16 @@ class WatchlistEditor {
 		}
 		$batch->execute();
 		// Print out the list
-		$output->addHtml( "<ul>\n" );
+		$output->addHTML( "<ul>\n" );
 		foreach( $titles as $title ) {
 			if( !$title instanceof Title )
 				$title = Title::newFromText( $title );
 			if( $title instanceof Title ) {
-				$output->addHtml( "<li>" . $skin->makeLinkObj( $title )
+				$output->addHTML( "<li>" . $skin->makeLinkObj( $title )
 				. ' (' . $skin->makeLinkObj( $title->getTalkPage(), $talk ) . ")</li>\n" );
 			}
 		}
-		$output->addHtml( "</ul>\n" );
+		$output->addHTML( "</ul>\n" );
 	}
 
 	/**
@@ -239,10 +239,10 @@ class WatchlistEditor {
 	 */
 	private function showItemCount( $output, $user ) {
 		if( ( $count = $this->countWatchlist( $user ) ) > 0 ) {
-			$output->addHtml( wfMsgExt( 'watchlistedit-numitems', 'parse',
+			$output->addHTML( wfMsgExt( 'watchlistedit-numitems', 'parse',
 				$GLOBALS['wgLang']->formatNum( $count ) ) );
 		} else {
-			$output->addHtml( wfMsgExt( 'watchlistedit-noitems', 'parse' ) );
+			$output->addHTML( wfMsgExt( 'watchlistedit-noitems', 'parse' ) );
 		}
 		return $count;
 	}
@@ -355,7 +355,7 @@ class WatchlistEditor {
 			}
 			$form .= '<p>' . Xml::submitButton( wfMsg( 'watchlistedit-normal-submit' ) ) . '</p>';
 			$form .= '</fieldset></form>';
-			$output->addHtml( $form );
+			$output->addHTML( $form );
 		}
 	}
 
@@ -421,7 +421,7 @@ class WatchlistEditor {
 		$form .= '</textarea>';
 		$form .= '<p>' . Xml::submitButton( wfMsg( 'watchlistedit-raw-submit' ) ) . '</p>';
 		$form .= '</fieldset></form>';
-		$output->addHtml( $form );
+		$output->addHTML( $form );
 	}
 
 	/**

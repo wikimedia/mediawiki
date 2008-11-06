@@ -115,7 +115,7 @@ class MergehistoryForm {
 
 		$wgOut->addWikiMsg( 'mergehistory-header' );
 
-		$wgOut->addHtml(
+		$wgOut->addHTML(
 			Xml::openElement( 'form', array(
 				'method' => 'get',
 				'action' => $wgScript ) ) .
@@ -158,7 +158,7 @@ class MergehistoryForm {
 		$action = $titleObj->getLocalURL( "action=submit" );
 		# Start the form here
 		$top = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $action, 'id' => 'merge' ) );
-		$wgOut->addHtml( $top );
+		$wgOut->addHTML( $top );
 
 		if( $haveRevisions ) {
 			# Format the user-visible controls (comment field, submission button)
@@ -190,7 +190,7 @@ class MergehistoryForm {
 				Xml::closeElement( 'table' ) .
 				Xml::closeElement( 'fieldset' );
 
-			$wgOut->addHtml( $table );
+			$wgOut->addHTML( $table );
 		}
 
 		$wgOut->addHTML( "<h2 id=\"mw-mergehistory\">" . wfMsgHtml( "mergehistory-list" ) . "</h2>\n" );
@@ -217,7 +217,7 @@ class MergehistoryForm {
 		$misc .= Xml::hidden( 'dest', $this->mDest );
 		$misc .= Xml::hidden( 'wpEditToken', $wgUser->editToken() );
 		$misc .= Xml::closeElement( 'form' );
-		$wgOut->addHtml( $misc );
+		$wgOut->addHTML( $misc );
 
 		return true;
 	}
@@ -372,7 +372,7 @@ class MergehistoryForm {
 		$log->addEntry( 'merge', $targetTitle, $this->mComment,
 			array($destTitle->getPrefixedText(),$TimestampLimit) );
 
-		$wgOut->addHtml( wfMsgExt( 'mergehistory-success', array('parseinline'),
+		$wgOut->addHTML( wfMsgExt( 'mergehistory-success', array('parseinline'),
 			$targetTitle->getPrefixedText(), $destTitle->getPrefixedText(), $count ) );
 
 		wfRunHooks( 'ArticleMergeComplete', array( $targetTitle, $destTitle ) );

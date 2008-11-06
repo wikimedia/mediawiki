@@ -255,7 +255,7 @@ class SpecialSearch {
 			}
 			// show interwiki results if any
 			if( $textMatches->hasInterwikiResults() )
-				$wgOut->addHtml( $this->showInterwiki( $textMatches->getInterwikiResults(), $term ));
+				$wgOut->addHTML( $this->showInterwiki( $textMatches->getInterwikiResults(), $term ));
 			// show results
 			if( $textMatches->numRows() )
 				$wgOut->addHTML( $this->showMatches( $textMatches ) );

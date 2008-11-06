@@ -52,7 +52,7 @@ class LogEventsList {
 	public function showHeader( $type ) {
 		if( LogPage::isLogType( $type ) ) {
 			$this->out->setPageTitle( LogPage::logName( $type ) );
-			$this->out->addHtml( LogPage::logHeader( $type ) );
+			$this->out->addHTML( LogPage::logHeader( $type ) );
 		}
 	}
 

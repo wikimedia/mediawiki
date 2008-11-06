@@ -34,7 +34,7 @@ class ImageQueryPage extends QueryPage {
 				}
 			}
 
-			$out->addHtml( $gallery->toHtml() );
+			$out->addHTML( $gallery->toHtml() );
 		}
 	}
 

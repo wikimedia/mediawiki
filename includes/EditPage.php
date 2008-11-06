@@ -1598,9 +1598,9 @@ END
 
 	protected function showEditTools() {
 		global $wgOut;
-		$wgOut->addHtml( '<div class="mw-editTools">' );
+		$wgOut->addHTML( '<div class="mw-editTools">' );
 		$wgOut->addWikiMsgArray( 'edittools', array(), array( 'content' ) );
-		$wgOut->addHtml( '</div>' );
+		$wgOut->addHTML( '</div>' );
 	}
 
 	function getLastDelete() {
@@ -1760,11 +1760,11 @@ END
 			$rows = $wgUser->getIntOption( 'rows' );
 			$cols = $wgUser->getIntOption( 'cols' );
 			$attribs = array( 'id' => 'wpTextbox1', 'name' => 'wpTextbox1', 'cols' => $cols, 'rows' => $rows, 'readonly' => 'readonly' );
-			$wgOut->addHtml( '<hr />' );
+			$wgOut->addHTML( '<hr />' );
 			$wgOut->addWikiMsg( $first ? 'blockedoriginalsource' : 'blockededitsource', $this->mTitle->getPrefixedText() );
 			# Why we don't use Xml::element here?
 			# Is it because if $source is '', it returns <textarea />?
-			$wgOut->addHtml( Xml::openElement( 'textarea', $attribs ) . htmlspecialchars( $source ) . Xml::closeElement( 'textarea' ) );
+			$wgOut->addHTML( Xml::openElement( 'textarea', $attribs ) . htmlspecialchars( $source ) . Xml::closeElement( 'textarea' ) );
 		}
 	}
 
@@ -1782,7 +1782,7 @@ END
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->setArticleRelated( false );
 
-		$wgOut->addHtml( wfMsgWikiHtml( 'whitelistedittext', $loginLink ) );
+		$wgOut->addHTML( wfMsgWikiHtml( 'whitelistedittext', $loginLink ) );
 		$wgOut->returnToMain( false, $wgTitle );
 	}
 
@@ -1813,11 +1813,11 @@ END
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->setArticleRelated( false );
 
-		$wgOut->addHtml( '<div id="spamprotected">' );
+		$wgOut->addHTML( '<div id="spamprotected">' );
 		$wgOut->addWikiMsg( 'spamprotectiontext' );
 		if ( $match )
 			$wgOut->addWikiMsg( 'spamprotectionmatch', wfEscapeWikiText( $match ) );
-		$wgOut->addHtml( '</div>' );
+		$wgOut->addHTML( '</div>' );
 
 		$wgOut->returnToMain( false, $wgTitle );
 	}
@@ -2227,7 +2227,7 @@ END
 		}
 
 		global $wgOut;
-		$wgOut->addHtml( '<div id="wikiDiff">' . $difftext . '</div>' );
+		$wgOut->addHTML( '<div id="wikiDiff">' . $difftext . '</div>' );
 	}
 
 	/**
@@ -2364,7 +2364,7 @@ END
 		$count = $pager->getNumRows();
 		if ( $count > 0 ) {
 			$pager->mLimit = 10;
-			$out->addHtml( '<div class="mw-warning-with-logexcerpt">' );
+			$out->addHTML( '<div class="mw-warning-with-logexcerpt">' );
 			$out->addWikiMsg( 'recreate-deleted-warn' );
 			$out->addHTML(
 				$loglist->beginLogEventsList() .
@@ -2372,7 +2372,7 @@ END
 				$loglist->endLogEventsList()
 			);
 			if($count > 10){
-				$out->addHtml( $wgUser->getSkin()->link(
+				$out->addHTML( $wgUser->getSkin()->link(
 					SpecialPage::getTitleFor( 'Log' ),
 					wfMsgHtml( 'deletelog-fulllog' ),
 					array(),
@@ -2380,7 +2380,7 @@ END
 						'type' => 'delete',
 						'page' => $this->mTitle->getPrefixedText() ) ) );
 			}
-			$out->addHtml( '</div>' );
+			$out->addHTML( '</div>' );
 			return true;
 		}
 		

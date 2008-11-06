@@ -24,7 +24,7 @@ function wfSpecialWatchlist( $par ) {
 		$wgOut->setPageTitle( wfMsg( 'watchnologin' ) );
 		$llink = $skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Userlogin' ), 
 			wfMsgHtml( 'loginreqlink' ), 'returnto=' . $specialTitle->getPrefixedUrl() );
-		$wgOut->addHtml( wfMsgWikiHtml( 'watchlistanontext', $llink ) );
+		$wgOut->addHTML( wfMsgWikiHtml( 'watchlistanontext', $llink ) );
 		return;
 	}
 
@@ -307,7 +307,7 @@ function wfSpecialWatchlist( $par ) {
 		$form .= Xml::hidden( 'hideOwn', 1 );
 	$form .= Xml::closeElement( 'form' );
 	$form .= Xml::closeElement( 'fieldset' );
-	$wgOut->addHtml( $form );
+	$wgOut->addHTML( $form );
 
 	# If there's nothing to show, stop here
 	if( $numRows == 0 ) {

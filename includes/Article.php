@@ -816,7 +816,7 @@ class Article {
 				$count = $pager->getNumRows();
 				if( $count > 0 ) {
 					$pager->mLimit = 10;
-					$wgOut->addHtml( '<div class="mw-warning-with-logexcerpt">' );
+					$wgOut->addHTML( '<div class="mw-warning-with-logexcerpt">' );
 					$wgOut->addWikiMsg( 'deleted-notice' );
 					$wgOut->addHTML(
 						$loglist->beginLogEventsList() .
@@ -824,7 +824,7 @@ class Article {
 						$loglist->endLogEventsList()
 					);
 					if($count > 10){
-						$wgOut->addHtml( $wgUser->getSkin()->link(
+						$wgOut->addHTML( $wgUser->getSkin()->link(
 							SpecialPage::getTitleFor( 'Log' ),
 							wfMsgHtml( 'deletelog-fulllog' ),
 							array(),
@@ -832,7 +832,7 @@ class Article {
 								'type' => 'delete',
 								'page' => $this->mTitle->getPrefixedText() ) ) );
 					}
-					$wgOut->addHtml( '</div>' );
+					$wgOut->addHTML( '</div>' );
 				}
 			}
 			$text = $this->getContent();
@@ -880,15 +880,15 @@ class Article {
 
 			 // Pages containing custom CSS or JavaScript get special treatment
 			if( $this->mTitle->isCssOrJsPage() || $this->mTitle->isCssJsSubpage() ) {
-				$wgOut->addHtml( wfMsgExt( 'clearyourcache', 'parse' ) );
+				$wgOut->addHTML( wfMsgExt( 'clearyourcache', 'parse' ) );
 				// Give hooks a chance to customise the output
 				if( wfRunHooks( 'ShowRawCssJs', array( $this->mContent, $this->mTitle, $wgOut ) ) ) {
 					// Wrap the whole lot in a <pre> and don't parse
 					$m = array();
 					preg_match( '!\.(css|js)$!u', $this->mTitle->getText(), $m );
-					$wgOut->addHtml( "<pre class=\"mw-code mw-{$m[1]}\" dir=\"ltr\">\n" );
-					$wgOut->addHtml( htmlspecialchars( $this->mContent ) );
-					$wgOut->addHtml( "\n</pre>\n" );
+					$wgOut->addHTML( "<pre class=\"mw-code mw-{$m[1]}\" dir=\"ltr\">\n" );
+					$wgOut->addHTML( htmlspecialchars( $this->mContent ) );
+					$wgOut->addHTML( "\n</pre>\n" );
 				}
 			} else if ( $rt = Title::newFromRedirect( $text ) ) {
 				# Don't append the subtitle if this was an old revision
@@ -2336,7 +2336,7 @@ class Article {
 	 * Show relevant lines from the deletion log
 	 */
 	function showLogExtract( $out ) {
-		$out->addHtml( Xml::element( 'h2', null, LogPage::logName( 'delete' ) ) );
+		$out->addHTML( Xml::element( 'h2', null, LogPage::logName( 'delete' ) ) );
 		LogEventsList::showLogExtract( $out, 'delete', $this->mTitle->getPrefixedText() );
 	}
 
@@ -2730,7 +2730,7 @@ class Article {
 			. $wgUser->getSkin()->userToolLinks( $current->getUser(), $current->getUserText() );
 		$new = $wgUser->getSkin()->userLink( $target->getUser(), $target->getUserText() )
 			. $wgUser->getSkin()->userToolLinks( $target->getUser(), $target->getUserText() );
-		$wgOut->addHtml( wfMsgExt( 'rollback-success', array( 'parse', 'replaceafter' ), $old, $new ) );
+		$wgOut->addHTML( wfMsgExt( 'rollback-success', array( 'parse', 'replaceafter' ), $old, $new ) );
 		$wgOut->returnToMain( false, $this->mTitle );
 
 		if( !$wgRequest->getBool( 'hidediff', false ) && !$wgUser->getBoolOption( 'norollbackdiff', false ) ) {
@@ -3290,18 +3290,18 @@ class Article {
 		$wgOut->setSubtitle( wfMsg( 'infosubtitle' ) );
 
 		if( !$this->mTitle->exists() ) {
-			$wgOut->addHtml( '<div class="noarticletext">' );
+			$wgOut->addHTML( '<div class="noarticletext">' );
 			if( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 				// This doesn't quite make sense; the user is asking for
 				// information about the _page_, not the message... -- RC
-				$wgOut->addHtml( htmlspecialchars( wfMsgWeirdKey( $this->mTitle->getText() ) ) );
+				$wgOut->addHTML( htmlspecialchars( wfMsgWeirdKey( $this->mTitle->getText() ) ) );
 			} else {
 				$msg = $wgUser->isLoggedIn()
 					? 'noarticletext'
 					: 'noarticletextanon';
-				$wgOut->addHtml( wfMsgExt( $msg, 'parse' ) );
+				$wgOut->addHTML( wfMsgExt( $msg, 'parse' ) );
 			}
-			$wgOut->addHtml( '</div>' );
+			$wgOut->addHTML( '</div>' );
 		} else {
 			$dbr = wfGetDB( DB_SLAVE );
 			$wl_clause = array(

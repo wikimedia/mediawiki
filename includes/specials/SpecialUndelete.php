@@ -679,7 +679,7 @@ class UndeleteForm {
 		global $wgOut, $wgScript;
 		$wgOut->addWikiMsg( 'undelete-header' );
 
-		$wgOut->addHtml(
+		$wgOut->addHTML(
 			Xml::openElement( 'form', array(
 				'method' => 'get',
 				'action' => $wgScript ) ) .
@@ -718,7 +718,7 @@ class UndeleteForm {
 			$revs = wfMsgExt( 'undeleterevisions',
 				array( 'parseinline' ),
 				$wgLang->formatNum( $row->count ) );
-			$wgOut->addHtml( "<li>{$link} ({$revs})</li>\n" );
+			$wgOut->addHTML( "<li>{$link} ({$revs})</li>\n" );
 		}
 		$result->free();
 		$wgOut->addHTML( "</ul>\n" );
@@ -766,10 +766,10 @@ class UndeleteForm {
 				if( $wgUser->getOption( 'diffonly' ) ) {
 					return;
 				} else {
-					$wgOut->addHtml( '<hr />' );
+					$wgOut->addHTML( '<hr />' );
 				}
 			} else {
-				$wgOut->addHtml( wfMsgHtml( 'undelete-nodiff' ) );
+				$wgOut->addHTML( wfMsgHtml( 'undelete-nodiff' ) );
 			}
 		}
 
@@ -780,12 +780,12 @@ class UndeleteForm {
 		$t = htmlspecialchars( $wgLang->time( $timestamp, true ) );
 		$user = $skin->revUserTools( $rev );
 
-		$wgOut->addHtml( '<p>' . wfMsgHtml( 'undelete-revision', $link, $time, $user, $d, $t ) . '</p>' );
+		$wgOut->addHTML( '<p>' . wfMsgHtml( 'undelete-revision', $link, $time, $user, $d, $t ) . '</p>' );
 
 		wfRunHooks( 'UndeleteShowRevision', array( $this->mTargetObj, $rev ) );
 
 		if( $this->mPreview ) {
-			$wgOut->addHtml( "<hr />\n" );
+			$wgOut->addHTML( "<hr />\n" );
 
 			//Hide [edit]s
 			$popts = $wgOut->parserOptions();
@@ -794,7 +794,7 @@ class UndeleteForm {
 			$wgOut->addWikiTextTitleTidy( $rev->getText( Revision::FOR_THIS_USER ), $this->mTargetObj, true );
 		}
 
-		$wgOut->addHtml(
+		$wgOut->addHTML(
 			wfElement( 'textarea', array(
 					'readonly' => 'readonly',
 					'cols' => intval( $wgUser->getOption( 'cols' ) ),
@@ -840,7 +840,7 @@ class UndeleteForm {
 
 		$diffEngine = new DifferenceEngine();
 		$diffEngine->showDiffStyle();
-		$wgOut->addHtml(
+		$wgOut->addHTML(
 			"<div>" .
 			"<table border='0' width='98%' cellpadding='0' cellspacing='4' class='diff'>" .
 			"<col class='diff-marker' />" .
@@ -972,7 +972,7 @@ class UndeleteForm {
 			$action = $titleObj->getLocalURL( "action=submit" );
 			# Start the form here
 			$top = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $action, 'id' => 'undelete' ) );
-			$wgOut->addHtml( $top );
+			$wgOut->addHTML( $top );
 		}
 
 		# Show relevant lines from the deletion log:
@@ -1023,7 +1023,7 @@ class UndeleteForm {
 				Xml::closeElement( 'table' ) .
 				Xml::closeElement( 'fieldset' );
 
-			$wgOut->addHtml( $table );
+			$wgOut->addHTML( $table );
 		}
 
 		$wgOut->addHTML( Xml::element( 'h2', null, wfMsg( 'history' ) ) . "\n" );
@@ -1046,8 +1046,8 @@ class UndeleteForm {
 		}
 
 		if( $haveFiles ) {
-			$wgOut->addHtml( Xml::element( 'h2', null, wfMsg( 'filehist' ) ) . "\n" );
-			$wgOut->addHtml( "<ul>" );
+			$wgOut->addHTML( Xml::element( 'h2', null, wfMsg( 'filehist' ) ) . "\n" );
+			$wgOut->addHTML( "<ul>" );
 			while( $row = $files->fetchObject() ) {
 				$wgOut->addHTML( $this->formatFileRow( $row, $sk ) );
 			}
@@ -1060,7 +1060,7 @@ class UndeleteForm {
 			$misc  = Xml::hidden( 'target', $this->mTarget );
 			$misc .= Xml::hidden( 'wpEditToken', $wgUser->editToken() );
 			$misc .= Xml::closeElement( 'form' );
-			$wgOut->addHtml( $misc );
+			$wgOut->addHTML( $misc );
 		}
 
 		return true;
@@ -1268,10 +1268,10 @@ class UndeleteForm {
 
 				$skin = $wgUser->getSkin();
 				$link = $skin->makeKnownLinkObj( $this->mTargetObj );
-				$wgOut->addHtml( wfMsgWikiHtml( 'undeletedpage', $link ) );
+				$wgOut->addHTML( wfMsgWikiHtml( 'undeletedpage', $link ) );
 			} else {
 				$wgOut->showFatalError( wfMsg( "cannotundelete" ) );
-				$wgOut->addHtml( '<p>' . wfMsgHtml( "undeleterevdel" ) . '</p>' );
+				$wgOut->addHTML( '<p>' . wfMsgHtml( "undeleterevdel" ) . '</p>' );
 			}
 
 			// Show file deletion warnings and errors

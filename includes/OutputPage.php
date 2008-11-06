@@ -1075,7 +1075,7 @@ class OutputPage {
 
 		array_unshift( $params, 'parse' );
 		array_unshift( $params, $msg );
-		$this->addHtml( call_user_func_array( 'wfMsgExt', $params ) );
+		$this->addHTML( call_user_func_array( 'wfMsgExt', $params ) );
 
 		$this->returnToMain();
 	}
@@ -1186,8 +1186,8 @@ class OutputPage {
 
 		$loginTitle = SpecialPage::getTitleFor( 'Userlogin' );
 		$loginLink = $skin->makeKnownLinkObj( $loginTitle, wfMsgHtml( 'loginreqlink' ), 'returnto=' . $wgTitle->getPrefixedUrl() );
-		$this->addHtml( wfMsgWikiHtml( 'loginreqpagetext', $loginLink ) );
-		$this->addHtml( "\n<!--" . $wgTitle->getPrefixedUrl() . "-->" );
+		$this->addHTML( wfMsgWikiHtml( 'loginreqpagetext', $loginLink ) );
+		$this->addHTML( "\n<!--" . $wgTitle->getPrefixedUrl() . "-->" );
 
 		# Don't return to the main page if the user can't read it
 		# otherwise we'll end up in a pointless loop
@@ -1382,7 +1382,7 @@ class OutputPage {
 	public function addReturnTo( $title ) {
 		global $wgUser;
 		$link = wfMsg( 'returnto', $wgUser->getSkin()->makeLinkObj( $title ) );
-		$this->addHtml( "<p>{$link}</p>\n" );
+		$this->addHTML( "<p>{$link}</p>\n" );
 	}
 
 	/**
@@ -1770,7 +1770,7 @@ class OutputPage {
 				? 'lag-warn-normal'
 				: 'lag-warn-high';
 			$warning = wfMsgExt( $message, 'parse', $lag );
-			$this->addHtml( "<div class=\"mw-{$message}\">\n{$warning}\n</div>\n" );
+			$this->addHTML( "<div class=\"mw-{$message}\">\n{$warning}\n</div>\n" );
 		}
 	}
 

@@ -171,7 +171,7 @@ class RevisionDeleteForm {
 		$wgOut->addWikiMsg( 'revdelete-selected', $this->page->getPrefixedText(), $count );
 
 		$bitfields = 0;
-		$wgOut->addHtml( "<ul>" );
+		$wgOut->addHTML( "<ul>" );
 
 		$where = $revObjs = array();
 		$dbr = wfGetDB( DB_SLAVE );
@@ -204,7 +204,7 @@ class RevisionDeleteForm {
 					$UserAllowed = false;
 				}
 				$revisions++;
-				$wgOut->addHtml( $this->historyLine( $revObjs[$revid] ) );
+				$wgOut->addHTML( $this->historyLine( $revObjs[$revid] ) );
 				$bitfields |= $revObjs[$revid]->mDeleted;
 			}
 		// The archives...
@@ -245,7 +245,7 @@ class RevisionDeleteForm {
 					$UserAllowed = false;
 				}
 				$revisions++;
-				$wgOut->addHtml( $this->historyLine( $revObjs[$timestamp] ) );
+				$wgOut->addHTML( $this->historyLine( $revObjs[$timestamp] ) );
 				$bitfields |= $revObjs[$timestamp]->mDeleted;
 			}
 		}
@@ -254,7 +254,7 @@ class RevisionDeleteForm {
 			return;
 		}
 		
-		$wgOut->addHtml( "</ul>" );
+		$wgOut->addHTML( "</ul>" );
 
 		$wgOut->addWikiMsg( 'revdelete-text' );
 
@@ -278,7 +278,7 @@ class RevisionDeleteForm {
 				$hidden[] = Xml::hidden( 'artimestamp[]', $rev->getTimestamp() );
 		}
 		$special = SpecialPage::getTitleFor( 'Revisiondelete' );
-		$wgOut->addHtml(
+		$wgOut->addHTML(
 			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $special->getLocalUrl( 'action=submit' ), 
 				'id' => 'mw-revdel-form-revisions' ) ) .
 			Xml::openElement( 'fieldset' ) .
@@ -287,15 +287,15 @@ class RevisionDeleteForm {
 		// FIXME: all items checked for just one rev are checked, even if not set for the others
 		foreach( $this->checks as $item ) {
 			list( $message, $name, $field ) = $item;
-			$wgOut->addHtml( Xml::tags( 'div', null, Xml::checkLabel( wfMsg( $message ), $name, $name, $bitfields & $field ) ) );
+			$wgOut->addHTML( Xml::tags( 'div', null, Xml::checkLabel( wfMsg( $message ), $name, $name, $bitfields & $field ) ) );
 		}
 		foreach( $items as $item ) {
-			$wgOut->addHtml( Xml::tags( 'p', null, $item ) );
+			$wgOut->addHTML( Xml::tags( 'p', null, $item ) );
 		}
 		foreach( $hidden as $item ) {
-			$wgOut->addHtml( $item );
+			$wgOut->addHTML( $item );
 		}
-		$wgOut->addHtml(
+		$wgOut->addHTML(
 			Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'form' ) . "\n"
 		);
@@ -317,7 +317,7 @@ class RevisionDeleteForm {
 			$wgLang->formatNum($count) );
 
 		$bitfields = 0;
-		$wgOut->addHtml( "<ul>" );
+		$wgOut->addHTML( "<ul>" );
 
 		$where = $filesObjs = array();
 		$dbr = wfGetDB( DB_SLAVE );
@@ -353,7 +353,7 @@ class RevisionDeleteForm {
 				}
 				$revisions++;
 				// Inject history info
-				$wgOut->addHtml( $this->fileLine( $filesObjs[$archivename] ) );
+				$wgOut->addHTML( $this->fileLine( $filesObjs[$archivename] ) );
 				$bitfields |= $filesObjs[$archivename]->deleted;
 			}
 		// Archived files...
@@ -384,7 +384,7 @@ class RevisionDeleteForm {
 				}
 				$revisions++;
 				// Inject history info
-				$wgOut->addHtml( $this->archivedfileLine( $filesObjs[$fileid] ) );
+				$wgOut->addHTML( $this->archivedfileLine( $filesObjs[$fileid] ) );
 				$bitfields |= $filesObjs[$fileid]->deleted;
 			}
 		}
@@ -393,7 +393,7 @@ class RevisionDeleteForm {
 			return;
 		}
 		
-		$wgOut->addHtml( "</ul>" );
+		$wgOut->addHTML( "</ul>" );
 
 		$wgOut->addWikiMsg('revdelete-text' );
 		//Normal sysops can always see what they did, but can't always change it
@@ -416,7 +416,7 @@ class RevisionDeleteForm {
 				$hidden[] = Xml::hidden( 'fileid[]', $fileid );
 		}
 		$special = SpecialPage::getTitleFor( 'Revisiondelete' );
-		$wgOut->addHtml(
+		$wgOut->addHTML(
 			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $special->getLocalUrl( 'action=submit' ), 
 				'id' => 'mw-revdel-form-filerevisions' ) ) .
 			Xml::fieldset( wfMsg( 'revdelete-legend' ) )
@@ -424,16 +424,16 @@ class RevisionDeleteForm {
 		// FIXME: all items checked for just one file are checked, even if not set for the others
 		foreach( $this->checks as $item ) {
 			list( $message, $name, $field ) = $item;
-			$wgOut->addHtml( Xml::tags( 'div', null, Xml::checkLabel( wfMsg( $message ), $name, $name, $bitfields & $field ) ) );
+			$wgOut->addHTML( Xml::tags( 'div', null, Xml::checkLabel( wfMsg( $message ), $name, $name, $bitfields & $field ) ) );
 		}
 		foreach( $items as $item ) {
-			$wgOut->addHtml( "<p>$item</p>" );
+			$wgOut->addHTML( "<p>$item</p>" );
 		}
 		foreach( $hidden as $item ) {
-			$wgOut->addHtml( $item );
+			$wgOut->addHTML( $item );
 		}
 
-		$wgOut->addHtml(
+		$wgOut->addHTML(
 			Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'form' ) . "\n"
 		);
@@ -449,7 +449,7 @@ class RevisionDeleteForm {
 		$wgOut->addWikiMsg( 'logdelete-selected', $wgLang->formatNum( count($this->events) ) );
 
 		$bitfields = 0;
-		$wgOut->addHtml( "<ul>" );
+		$wgOut->addHTML( "<ul>" );
 
 		$where = $logRows = array();
 		$dbr = wfGetDB( DB_SLAVE );
@@ -480,7 +480,7 @@ class RevisionDeleteForm {
 				$UserAllowed = false;
 			}
 			$logItems++;
-			$wgOut->addHtml( $this->logLine( $logRows[$logid] ) );
+			$wgOut->addHTML( $this->logLine( $logRows[$logid] ) );
 			$bitfields |= $logRows[$logid]->log_deleted;
 		}
 		if( !$logItems ) {
@@ -488,7 +488,7 @@ class RevisionDeleteForm {
 			return;
 		}
 		
-		$wgOut->addHtml( "</ul>" );
+		$wgOut->addHTML( "</ul>" );
 
 		$wgOut->addWikiMsg( 'revdelete-text' );
 		// Normal sysops can always see what they did, but can't always change it
@@ -506,7 +506,7 @@ class RevisionDeleteForm {
 		}
 
 		$special = SpecialPage::getTitleFor( 'Revisiondelete' );
-		$wgOut->addHtml(
+		$wgOut->addHTML(
 			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $special->getLocalUrl( 'action=submit' ), 
 				'id' => 'mw-revdel-form-logs' ) ) .
 			Xml::fieldset( wfMsg( 'revdelete-legend' ) )
@@ -514,16 +514,16 @@ class RevisionDeleteForm {
 		// FIXME: all items checked for just on event are checked, even if not set for the others
 		foreach( $this->checks as $item ) {
 			list( $message, $name, $field ) = $item;
-			$wgOut->addHtml( Xml::tags( 'div', null, Xml::checkLabel( wfMsg( $message ), $name, $name, $bitfields & $field ) ) );
+			$wgOut->addHTML( Xml::tags( 'div', null, Xml::checkLabel( wfMsg( $message ), $name, $name, $bitfields & $field ) ) );
 		}
 		foreach( $items as $item ) {
-			$wgOut->addHtml( "<p>$item</p>" );
+			$wgOut->addHTML( "<p>$item</p>" );
 		}
 		foreach( $hidden as $item ) {
-			$wgOut->addHtml( $item );
+			$wgOut->addHTML( $item );
 		}
 
-		$wgOut->addHtml(
+		$wgOut->addHTML(
 			Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'form' ) . "\n"
 		);

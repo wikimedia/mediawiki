@@ -165,7 +165,7 @@ function wfSpecialStatistics( $par = '' ) {
 		$text .= "\n" . $footer;
 	}
 
-	$wgOut->addHtml( $text );
+	$wgOut->addHTML( $text );
 }
 
 /**

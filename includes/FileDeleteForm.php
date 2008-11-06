@@ -55,7 +55,7 @@ class FileDeleteForm {
 			$this->oldfile = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName( $this->title, $this->oldimage );
 
 		if( !self::haveDeletableFile($this->file, $this->oldfile, $this->oldimage) ) {
-			$wgOut->addHtml( $this->prepareMessage( 'filedelete-nofile' ) );
+			$wgOut->addHTML( $this->prepareMessage( 'filedelete-nofile' ) );
 			$wgOut->addReturnTo( $this->title );
 			return;
 		}
@@ -78,7 +78,7 @@ class FileDeleteForm {
 				$wgOut->addWikiText( $status->getWikiText( 'filedeleteerror-short', 'filedeleteerror-long' ) );
 			if( $status->ok ) {
 				$wgOut->setPagetitle( wfMsg( 'actioncomplete' ) );
-				$wgOut->addHtml( $this->prepareMessage( 'filedelete-success' ) );
+				$wgOut->addHTML( $this->prepareMessage( 'filedelete-success' ) );
 				// Return to the main page if we just deleted all versions of the
 				// file, otherwise go back to the description page
 				$wgOut->addReturnTo( $this->oldimage ? $this->title : Title::newMainPage() );
@@ -181,7 +181,7 @@ class FileDeleteForm {
 				$form .= '<p class="mw-filedelete-editreasons">' . $link . '</p>';
 			}
 
-		$wgOut->addHtml( $form );
+		$wgOut->addHTML( $form );
 	}
 
 	/**
@@ -189,7 +189,7 @@ class FileDeleteForm {
 	 */
 	private function showLogEntries() {
 		global $wgOut;
-		$wgOut->addHtml( '<h2>' . htmlspecialchars( LogPage::logName( 'delete' ) ) . "</h2>\n" );
+		$wgOut->addHTML( '<h2>' . htmlspecialchars( LogPage::logName( 'delete' ) ) . "</h2>\n" );
 		LogEventsList::showLogExtract( $wgOut, 'delete', $this->title->getPrefixedText() );
 	}
 

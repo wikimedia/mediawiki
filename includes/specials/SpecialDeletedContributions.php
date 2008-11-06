@@ -263,9 +263,9 @@ class DeletedContributionsPage extends SpecialPage {
 
 			$text = wfMsgNoTrans( $message, $target );
 			if( !wfEmptyMsg( $message, $text ) && $text != '-' ) {
-				$wgOut->addHtml( '<div class="mw-contributions-footer">' );
+				$wgOut->addHTML( '<div class="mw-contributions-footer">' );
 				$wgOut->addWikiText( $text );
-				$wgOut->addHtml( '</div>' );
+				$wgOut->addHTML( '</div>' );
 			}
 		}
 	}

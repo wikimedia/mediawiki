@@ -966,7 +966,7 @@ wgUploadAutoFill = {$autofill};
 						wfMsgExt( 'restorelink', array( 'parsemag', 'escape' ), $count )
 					)
 				);
-				$wgOut->addHtml( "<div id=\"contentSub2\">{$link}</div>" );
+				$wgOut->addHTML( "<div id=\"contentSub2\">{$link}</div>" );
 			}
 
 			// Show the relevant lines from deletion log (for still deleted files only)
@@ -1162,7 +1162,7 @@ wgUploadAutoFill = {$autofill};
 				<tr>"
 			);
 			if( $useAjaxLicensePreview ) {
-				$wgOut->addHtml( "
+				$wgOut->addHTML( "
 						<td></td>
 						<td id=\"mw-license-preview\"></td>
 					</tr>
@@ -1198,7 +1198,7 @@ wgUploadAutoFill = {$autofill};
 			);
 		}
 
-		$wgOut->addHtml( "
+		$wgOut->addHTML( "
 				<td></td>
 				<td>
 					<input tabindex='7' type='checkbox' name='wpWatchthis' id='wpWatchthis' $watchChecked value='true' />
@@ -1735,14 +1735,14 @@ wgUploadAutoFill = {$autofill};
 		$loglist = new LogEventsList( $wgUser->getSkin(), $out );
 		$pager = new LogPager( $loglist, 'delete', false, $filename );
 		if( $pager->getNumRows() > 0 ) {
-			$out->addHtml( '<div class="mw-warning-with-logexcerpt">' );
+			$out->addHTML( '<div class="mw-warning-with-logexcerpt">' );
 			$out->addWikiMsg( 'upload-wasdeleted' );
 			$out->addHTML(
 				$loglist->beginLogEventsList() .
 				$pager->getBody() .
 				$loglist->endLogEventsList()
 			);
-			$out->addHtml( '</div>' );
+			$out->addHTML( '</div>' );
 		}
 	}
 }
