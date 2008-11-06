@@ -238,6 +238,9 @@ to add events to the MediaWiki code.
 $autoblockip: The IP going to be autoblocked.
 $block: The block from which the autoblock is coming.
 
+'AbortDiffCache': Can be used to cancel the caching of a diff
+&$diffEngine: DifferenceEngine object
+
 'AbortLogin': Return false to cancel account login.
 $user: the User object being authenticated against
 $password: the password being submitted, not yet checked for validity

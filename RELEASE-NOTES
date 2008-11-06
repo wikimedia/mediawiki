@@ -196,6 +196,7 @@ The following extensions are migrated into MediaWiki 1.14:
 * Added the BitmapHandler_ClientOnly media handler, which allows server-side 
   image scaling to be completely disabled for specific media types, via the 
   $wgMediaHandlers configuration variable.
+* New 'AbortDiffCache' hook can be used to cancel the caching of a diff
 
 === Bug fixes in 1.14 ===
 
