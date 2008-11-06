@@ -1235,7 +1235,7 @@ Pi nziriri nu file nta na pàggina, fai nu lijami accussì:
 'filetype-badmime'            => 'Nun è cunzintitu carricari file di tipu MIME "$1".',
 'filetype-unwanted-type'      => "Caricari file di tipu '''\".\$1\"''' è scunsigghiatu. {{PLURAL:\$3|Lu tipu di file cunsigghiatu è|Li tipi di file cunsigghiati sunnu}} \$2.",
 'filetype-banned-type'        => "Caricari file di tipu '''\".\$1\"''' non è cunzintitu. {{PLURAL:\$3|Lu tipu di file cunzintitu è|Li tipi di file cunzintiti sunnu}} \$2.",
-'filetype-missing'            => 'Lu file è privu d\'estinzioni (p\'asempiu ".jpg").',
+'filetype-missing'            => 'Lu file è privu d\'estinzioni (p\'asèmpiu ".jpg").',
 'large-file'                  => 'Si raccumanna di nun supirari li diminzioni di $1 pi ognunu file; stu file è granni $2.',
 'largefileserver'             => 'Lu file sùpira li diminzioni cunzintiti dâ cunfigurazzioni dû server.',
 'emptyfile'                   => "Lu file appena carricatu pari èssiri vacanti. Chistu putissi èssiri duvutu a n'erruri ntô nomu dû file. Virificari ca si ntenni riarmenti carricari stu file.",
@@ -2023,12 +2023,14 @@ Nta sti casi, tu hai a spustari o agghiùnciri manuarmenti la pàggina di discus
 'movepage-page-exists'    => 'La pàggina $1 esisti ggià e nun pò èssiri autumaticamenti suprascrivuta.',
 'movepage-page-moved'     => 'La pàggina $1 fu spustata a $2.',
 'movepage-page-unmoved'   => 'La pàggina $1 nun pò èssiri spustata a $2.',
+'movepage-max-pages'      => 'Vinni spustatu lu nùmmuru màssimu di $1 {{PLURAL:$1|pàggina|pàggini}} e non si ponnu cchiù spustari àutri pàggini autumàticamenti.',
 '1movedto2'               => '[[$1]] spustatu a [[$2]]',
 '1movedto2_redir'         => '[[$1]] spustatu a [[$2]] supra rinnirizzamentu',
 'movelogpage'             => 'Spustamenti',
 'movelogpagetext'         => "Chistu è l'alencu dî pàggini spustati.",
 'movereason'              => 'Pi stu mutivu',
 'revertmove'              => 'riprìstina',
+'delete_and_move'         => 'Scancella e sposta',
 'delete_and_move_text'    => '==Richiesta di cancillazzioni==
 
 La pàggina di distinazzioni "[[:$1]]" asisti già. S\'addisìa cancillàrila pi rènniri pussìbbili lu spustamentu?',
@@ -2049,6 +2051,7 @@ Nta st'ùrtimu casu si pò macari utilizzari un culligamentu, p'asempiu [[{{ns:s
 'export-addcattext' => 'Agghiunci pàggini dâ catigurìa:',
 'export-addcat'     => 'Agghiunci',
 'export-download'   => 'Offri di sarvari comu file',
+'export-templates'  => 'Ncludi li template',
 
 # Namespace 8 related
 'allmessages'               => 'Missaggi di sistema',
@@ -2089,6 +2092,13 @@ Nta st'ùrtimu casu si pò macari utilizzari un culligamentu, p'asempiu [[{{ns:s
 'importhistoryconflict'      => 'Asìstinu rivisioni dâ cronoluggìa n cunflittu (sta pàggina putissi aviri già statu mpurtata)',
 'importnosources'            => 'Nun hà statu difinita na fonti pi la mpurtazzioni transwiki; la mpurtazzioni diretta dâ cronoluggìa nun è attiva.',
 'importnofile'               => 'Nun hà statu carrcatu nuddu file pi la mpurtazzioni.',
+'importuploaderrorsize'      => "Caricamentu dû file pi la mpurtazzioni non arrinisciutu. Lu file è cchiù granni di li diminzioni màssimi cunzentiti pi l'upload.",
+'importuploaderrorpartial'   => 'Caricamentu dû file pi la mpurtazzioni non arrinisciutu. Sulamenti na parti dû file vinni caricatu.',
+'importuploaderrortemp'      => 'Caricamentu dû file pi la mpurtazzioni non arrinisciutu. Manca na cartedda timpurània.',
+'import-parse-failure'       => "Sbagghiu d'anàlisi ntâ mpurtazzioni XML",
+'import-noarticle'           => 'Nudda pàggina di mpurtari.',
+'import-nonewrevisions'      => 'Tutti li rivisioni già foru mpurtati apprima.',
+'xml-error-string'           => '$1 a riga $2, culonna $3 (byte $4): $5',
 
 # Import log
 'importlogpage'                    => 'Mpurtazzioni',
@@ -2324,6 +2334,7 @@ Li lijami succissivi, supra la stissa riga, sunnu cunzidirati comu eccizzioni (p
 'exif-subsectimeoriginal'          => 'Data e ura di criazzioni, frazzioni di secunnu',
 'exif-subsectimedigitized'         => 'Data e ura di diggitalizzazzioni, frazzioni di secunnu',
 'exif-exposuretime'                => "Tempu d'espusizzioni",
+'exif-exposuretime-format'         => '$1 s ($2)',
 'exif-fnumber'                     => 'Rapportu fucali',
 'exif-exposureprogram'             => "Prugramma d'espusizzioni",
 'exif-spectralsensitivity'         => 'Sinzibbilitati spittrali',
@@ -2393,6 +2404,7 @@ Li lijami succissivi, supra la stissa riga, sunnu cunzidirati comu eccizzioni (p
 'exif-gpsdestdistance'             => 'Distanza dâ distinazzioni',
 'exif-gpsprocessingmethod'         => "Nomu dû mètudu d'elabburazzioni GPS",
 'exif-gpsareainformation'          => 'Nomu dâ zona GPS',
+'exif-gpsdatestamp'                => 'Data GPS',
 'exif-gpsdifferential'             => 'Currezzioni diffirinziali GPS',
 
 # EXIF attributes
@@ -2409,6 +2421,7 @@ Li lijami succissivi, supra la stissa riga, sunnu cunzidirati comu eccizzioni (p
 'exif-orientation-7' => "Rotatu 90° 'n sensu urariu e capuvortu virticarmenti", # 0th row: right; 0th column: bottom
 'exif-orientation-8' => "Rutatu 90° 'n senzu antiorariu", # 0th row: left; 0th column: bottom
 
+'exif-planarconfiguration-1' => 'a blocchi (chunky)',
 'exif-planarconfiguration-2' => 'liniari (planar)',
 
 'exif-xyresolution-i' => '$1 punti pi puseri (dpi)',
@@ -2420,6 +2433,7 @@ Li lijami succissivi, supra la stissa riga, sunnu cunzidirati comu eccizzioni (p
 
 'exif-exposureprogram-0' => 'Nun difinitu',
 'exif-exposureprogram-1' => 'Manuali',
+'exif-exposureprogram-2' => 'Standard',
 'exif-exposureprogram-3' => 'Priuritati a lu diaframma',
 'exif-exposureprogram-4' => "Priuritati a l'espusizzioni",
 'exif-exposureprogram-5' => 'Artìsticu (urientatu â prufunnitati di campu)',
@@ -2427,8 +2441,13 @@ Li lijami succissivi, supra la stissa riga, sunnu cunzidirati comu eccizzioni (p
 'exif-exposureprogram-7' => 'Ritrattu (suggetti vicini cu sfunnu fora focu)',
 'exif-exposureprogram-8' => 'Panurama (suggetti luntani cu sfunnu a focu)',
 
+'exif-subjectdistance-value' => '$1 metri',
+
 'exif-meteringmode-0'   => 'Scanusciutu',
+'exif-meteringmode-1'   => 'Mèdia',
 'exif-meteringmode-2'   => 'Media pisata cintrata',
+'exif-meteringmode-3'   => 'Spot',
+'exif-meteringmode-4'   => 'MultiSpot',
 'exif-meteringmode-5'   => 'Pattern',
 'exif-meteringmode-6'   => 'Parziali',
 'exif-meteringmode-255' => 'Àutru',
@@ -2441,6 +2460,10 @@ Li lijami succissivi, supra la stissa riga, sunnu cunzidirati comu eccizzioni (p
 'exif-lightsource-9'   => 'Bonu tempu',
 'exif-lightsource-10'  => 'Nigghiusu',
 'exif-lightsource-11'  => "'N ùmmira",
+'exif-lightsource-12'  => 'Daylight fluorescent (D 5700 - 7100K)',
+'exif-lightsource-13'  => 'Day white fluorescent (N 4600 - 5400K)',
+'exif-lightsource-14'  => 'Cool white fluorescent (W 3900 - 4500K)',
+'exif-lightsource-15'  => 'White fluorescent (WW 3200 - 3700K)',
 'exif-lightsource-17'  => 'Luci standard A',
 'exif-lightsource-18'  => 'Luci standard B',
 'exif-lightsource-19'  => 'Luci standard C',
@@ -2572,15 +2595,27 @@ Stu còdici di cunferma scadi automaticamenti a li $4.',
 # Trackbacks
 'trackbackbox'      => "<div id='mw_trackbacks'> Trackback pi sta pàggina:<br /> $1 </div>",
 'trackbackremove'   => '([$1 Elìmina])',
+'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'Nfurmazzioni di trackback eliminati currettamenti.',
 
 # Delete conflict
-'deletedwhileediting' => "'''Accura''': Sta pàggina hà statu cancillata doppu c'hai accuminzatu a canciàrila!",
-'confirmrecreate'     => "L'utenti [[User:$1|$1]] ([[User talk:$1|discussioni]]) hà cancillatu sta pàggina doppu ca hai nizziatu a canciàrila, pi lu siquenti mutivu: ''$2'' Pi favuri, cunferma ca addisìi veramenti criari n'àutra vota sta pàggina.",
+'deletedwhileediting' => "'''Accura''': Sta pàggina vinni scancillata doppu c'hai accuminzatu a scanciàrila!",
+'confirmrecreate'     => "L'utenti [[User:$1|$1]] ([[User talk:$1|discussioni]]) scancillau sta pàggina doppu ca hai accuminciatu a scanciàrila, pi stu mutivu: ''$2'' Pi favuri, cunferma ca addisìi pi daveru criari n'àutra vota sta pàggina.",
+'recreate'            => 'Ricrìa',
+
+'unit-pixel' => 'px',
 
 # action=purge
 'confirm_purge_button' => 'Cunferma',
 'confirm-purge-top'    => "S'addisìa puliri la cache di sta pàggina?",
+
+# Separators for various lists, etc.
+'catseparator'        => '|',
+'semicolon-separator' => ';&#32;',
+'comma-separator'     => ',&#32;',
+'colon-separator'     => ':&#32;',
+'autocomment-prefix'  => '-&#32;',
+'pipe-separator'      => '|',
 
 # Multipage image navigation
 'imgmultipageprev' => '← pàggina pricidenti',
@@ -2627,28 +2662,52 @@ Stu còdici di cunferma scadi automaticamenti a li $4.',
 'watchlistedit-raw-legend'     => 'Canciamentu testuali pàggini taliati',
 'watchlistedit-raw-explain'    => "Ccà sutta sugnu alincati tutti li pàggine taliati. Pi canciari la lista agghiunciri o rimòviri li rispettivi tituli, unu pi riga. Quannu funisci, fà clic supra 'Aggiorna la lista' 'n fundu all'alencu. Accura ca è puru possibbili [[Special:Watchlist/edit|canciari la lista câ 'nterfaccia standard]].",
 'watchlistedit-raw-titles'     => 'Pàggini:',
-'watchlistedit-raw-done'       => 'La tò lista dê pàggini taliati hà stata aggiornata.',
-'watchlistedit-raw-added'      => 'Hà{{PLURAL:$1|&nbsp;stata agghiunciuta na pàggina|nnu stati agghiunciuti $1 pàggini}}:',
-'watchlistedit-raw-removed'    => 'Hà{{PLURAL:$1|&nbsp;stata eliminata na pàggina|nnu stati eliminati $1 pàggini}}:',
+'watchlistedit-raw-submit'     => 'Aggiorna la lista',
+'watchlistedit-raw-done'       => 'La tò lista dê pàggini taliati vinni aggiurnata.',
+'watchlistedit-raw-added'      => '{{PLURAL:$1|Fu junciuta na pàggina|Foru junciuti $1 pàggini}}:',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|&nbsp;Vinni scancillata na pàggina|Foru scancillati $1 pàggini}}:',
 
 # Watchlist editing tools
-'watchlisttools-view' => 'Vidi li canciamenti rilivanti',
-'watchlisttools-edit' => 'Vidi e cancia la lista',
+'watchlisttools-view' => 'Talìa li canciamenti rilivanti',
+'watchlisttools-edit' => 'Talìa e cancia la lista',
 'watchlisttools-raw'  => "Cancia la lista 'n forma testuali",
 
+# Iranian month names
+'iranian-calendar-m1' => 'Farvardin',
+'iranian-calendar-m2' => 'Ordibehesht',
+'iranian-calendar-m3' => 'Khordad',
+
+# Core parser functions
+'unknown_extension_tag' => 'Tag estensioni scanusciutu: "$1"',
+
 # Special:Version
-'version'                  => 'virsioni', # Not used as normal message but as header for the special page itself
-'version-specialpages'     => 'Pàggini spiciali',
-'version-variables'        => 'Variabili',
-'version-license'          => 'Licenza',
-'version-software'         => 'Software nstallatu',
-'version-software-product' => 'Prodottu',
-'version-software-version' => 'Virsioni',
+'version'                          => 'virsioni', # Not used as normal message but as header for the special page itself
+'version-extensions'               => 'Estenzioni nstallati',
+'version-specialpages'             => 'Pàggini spiciali',
+'version-parserhooks'              => 'Hook dû parser',
+'version-variables'                => 'Variabili',
+'version-other'                    => 'Àutru',
+'version-mediahandlers'            => 'Gistori di cuntinuti multimediali',
+'version-hooks'                    => 'Hook',
+'version-extension-functions'      => 'Funzioni ntrudotti di estenzioni',
+'version-parser-extensiontags'     => 'Tag canusciuti dô parser ntrudotti di estenzioni',
+'version-parser-function-hooks'    => 'Hook pi funzioni dû parser',
+'version-skin-extension-functions' => 'Funzioni lijati a la furma gràfica (skin) ntrudotti di estenzioni',
+'version-hook-name'                => "Nomu di l'hook",
+'version-hook-subscribedby'        => 'Suttascrizzioni',
+'version-version'                  => 'Virsioni',
+'version-license'                  => 'Licenza',
+'version-software'                 => 'Software nstallatu',
+'version-software-product'         => 'Prodottu',
+'version-software-version'         => 'Virsioni',
 
 # Special:FilePath
-'filepath'        => 'Pircorsu di nu file',
-'filepath-page'   => 'Nnomu dô file:',
-'filepath-submit' => 'Pircorsu',
+'filepath'         => 'Pircorsu di nu file',
+'filepath-page'    => 'Nnomu dô file:',
+'filepath-submit'  => 'Pircorsu',
+'filepath-summary' => 'Sta pàggina spiciali rimanna arredi lu traggittu cumpretu di nu file. Li mmàggini sù ammustrati cu la cchiù àuta risoluzzioni dispunìbbili, pi l\'àutri tipi di file parti direttamenti lu prugramma assuciatu.
+
+Mèttiri lu nomu dû file senza lu prifissu "{{ns:image}}:"',
 
 # Special:SpecialPages
 'specialpages'                   => 'Pàggini spiciali',

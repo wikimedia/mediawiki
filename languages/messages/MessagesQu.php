@@ -129,6 +129,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Huk ruraqkunaman kachasqay e-chaskikunamanta iskaychasqakunata kachamuway',
 'tog-diffonly'                => "Huk kaykunap uranpi kaq p'anqap samiqninta ama rikuchiychu",
 'tog-showhiddencats'          => 'Pakasqa katiguriyakunata rikuchiy',
+'tog-norollbackdiff'          => 'Ruraqpa hukchasqankunata kutichispa ama wakin kayta willaychu',
 
 'underline-always'  => "Hayk'appas",
 'underline-never'   => "Mana hayk'appas",
@@ -2223,10 +2224,10 @@ Tukuy hawa wikimanta chaskisqakunaqa [[Special:Log/import|hawamanta chaskiy hall
 'markedaspatrollederror-noautopatrol' => "Manam saqillasunkichu qampa llamk'apusqaykikunata qhawakipasqaman sananchayta.",
 
 # Patrol log
-'patrol-log-page'    => "Qhawakipay hallch'a",
-'patrol-log-header'  => "Kayqa patrullasqa musuqchasqakunamanta hallch'asqam.",
-'patrol-log-line'    => '$1 sananchasqa $2-manta qhawakipasqa $3',
-'patrol-log-auto'    => '(kikinmanta)',
+'patrol-log-page'      => "Qhawakipay hallch'a",
+'patrol-log-header'    => "Kayqa patrullasqa musuqchasqakunamanta hallch'asqam.",
+'patrol-log-line'      => '$1 sananchasqa $2-manta qhawakipasqa $3',
+'patrol-log-auto'      => '(kikinmanta)',
 'log-show-hide-patrol' => "$1 patrullay hallch'a",
 
 # Image deletion
@@ -2683,6 +2684,7 @@ Sapsilla ñawpaq qhawariyta tukuykachay.',
 
 # Core parser functions
 'unknown_extension_tag' => 'Mana riqsisqa "$1" mast\'arina k\'askana',
+'duplicate-defaultsort' => 'Paqtataq: Kikinmanta allinchana llawi «$2» ñawpaq kikinmanta allinchana llawitam «$1» huknachan.',
 
 # Special:Version
 'version'                          => 'Musuqchasqa', # Not used as normal message but as header for the special page itself

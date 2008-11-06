@@ -2476,10 +2476,10 @@ Razlog je vjerojatno vanjska poveznica koja se nalazi na crnom popisu.',
 'markedaspatrollederror-noautopatrol' => 'Ne možete vlastite promjene označiti patroliranima.',
 
 # Patrol log
-'patrol-log-page'    => 'Evidencija pregledavanja promjena',
-'patrol-log-header'  => 'Ovo su evidencije patroliranih izmjena.',
-'patrol-log-line'    => 'promjena broj $1 stranice $2 pregledana $3',
-'patrol-log-auto'    => '(automatski pregledano)',
+'patrol-log-page'      => 'Evidencija pregledavanja promjena',
+'patrol-log-header'    => 'Ovo su evidencije patroliranih izmjena.',
+'patrol-log-line'      => 'promjena broj $1 stranice $2 pregledana $3',
+'patrol-log-auto'      => '(automatski pregledano)',
 'log-show-hide-patrol' => '$1 evidenciju patroliranja',
 
 # Image deletion

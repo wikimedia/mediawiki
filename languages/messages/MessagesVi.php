@@ -2381,11 +2381,11 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'markedaspatrollederror-noautopatrol' => 'Bạn không được đánh dấu tuần tra vào sửa đổi của bạn.',
 
 # Patrol log
-'patrol-log-page'    => 'Nhật ký tuần tra',
-'patrol-log-header'  => 'Đây là nhật trình tuần tra phiên bản.',
-'patrol-log-line'    => 'đánh dấu tuần tra vào phiên bản $1 của $2 $3',
-'patrol-log-auto'    => '(tự động)',
-'patrol-log-diff'    => 'bản $1',
+'patrol-log-page'      => 'Nhật ký tuần tra',
+'patrol-log-header'    => 'Đây là nhật trình tuần tra phiên bản.',
+'patrol-log-line'      => 'đánh dấu tuần tra vào phiên bản $1 của $2 $3',
+'patrol-log-auto'      => '(tự động)',
+'patrol-log-diff'      => 'bản $1',
 'log-show-hide-patrol' => '$1 nhật trình tuần tra',
 
 # Image deletion

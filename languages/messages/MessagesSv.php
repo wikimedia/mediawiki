@@ -2475,11 +2475,11 @@ Detta orsakades troligen av en länk till en svartlistad webbplats.',
 'markedaspatrollederror-noautopatrol' => 'Du har inte tillåtelse att markera dina egna redigeringar som patrullerade.',
 
 # Patrol log
-'patrol-log-page'    => 'Patrulleringslogg',
-'patrol-log-header'  => 'Detta är en logg över patrullerade sidversioner.',
-'patrol-log-line'    => 'markerade $1 av $2 som patrullerad $3',
-'patrol-log-auto'    => '(automatiskt)',
-'patrol-log-diff'    => 'version $1',
+'patrol-log-page'      => 'Patrulleringslogg',
+'patrol-log-header'    => 'Detta är en logg över patrullerade sidversioner.',
+'patrol-log-line'      => 'markerade $1 av $2 som patrullerad $3',
+'patrol-log-auto'      => '(automatiskt)',
+'patrol-log-diff'      => 'version $1',
 'log-show-hide-patrol' => '$1 patrulleringslogg',
 
 # Image deletion

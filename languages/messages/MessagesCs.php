@@ -1298,6 +1298,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'right-minoredit'            => 'Označování editací jako malé',
 'right-move'                 => 'Přesun stránek',
 'right-move-subpages'        => 'Přesunování stránek i s jejich podstránkami',
+'right-move-rootuserpages'   => 'Přesouvání kořenových uživatelských stránek',
 'right-suppressredirect'     => 'Nevytváření přesměrování po přesunu stránky',
 'right-upload'               => 'Nahrávání souborů',
 'right-reupload'             => 'Přepisování existujících souborů',
@@ -1357,6 +1358,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'action-minoredit'            => 'označit tuto editaci jako malou',
 'action-move'                 => 'přesunout tuto stránku',
 'action-move-subpages'        => 'přesunout tuto stránku a její podstránky',
+'action-move-rootuserpages'   => 'přesouvat kořenové uživatelské stránky',
 'action-upload'               => 'nahrát tento soubor',
 'action-reupload'             => 'přepsat tento existující soubor',
 'action-reupload-shared'      => 'upřednostnit tento soubor před souborem ze sdíleného úložiště',
@@ -2475,10 +2477,10 @@ V druhém případě můžete také používat přímý odkaz, např. pomocí [[
 'markedaspatrollederror-noautopatrol' => 'Nemáte dovoleno označovat vlastní editace jako prověřené.',
 
 # Patrol log
-'patrol-log-page'    => 'Kniha prověřených editací',
-'patrol-log-header'  => 'Toto je kniha prověřených verzí.',
-'patrol-log-line'    => 'označuje revizi $1 stránky $2 za prověřenou $3',
-'patrol-log-auto'    => '(automaticky)',
+'patrol-log-page'      => 'Kniha prověřených editací',
+'patrol-log-header'    => 'Toto je kniha prověřených verzí.',
+'patrol-log-line'      => 'označuje revizi $1 stránky $2 za prověřenou $3',
+'patrol-log-auto'      => '(automaticky)',
 'log-show-hide-patrol' => '$1 knihu záznamů patroly',
 
 # Image deletion

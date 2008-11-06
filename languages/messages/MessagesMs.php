@@ -2338,11 +2338,11 @@ Semua tindakan import transwiki dicatatkan dalam [[Special:Log/import|log import
 'markedaspatrollederror-noautopatrol' => 'Anda tidak dibenarkan menanda ronda perubahan anda sendiri.',
 
 # Patrol log
-'patrol-log-page'    => 'Log pemeriksaan',
-'patrol-log-header'  => 'Berikut ialah log rondaan bagi semakan.',
-'patrol-log-line'    => 'menandakan $1 bagi $2 sebagai telah diperiksa $3',
-'patrol-log-auto'    => '(automatik)',
-'patrol-log-diff'    => 's$1',
+'patrol-log-page'      => 'Log pemeriksaan',
+'patrol-log-header'    => 'Berikut ialah log rondaan bagi semakan.',
+'patrol-log-line'      => 'menandakan $1 bagi $2 sebagai telah diperiksa $3',
+'patrol-log-auto'      => '(automatik)',
+'patrol-log-diff'      => 's$1',
 'log-show-hide-patrol' => '$1 log rondaan',
 
 # Image deletion

@@ -194,6 +194,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Posielať mi kópie mojich emailov, ktoré pošlem ostatným používateľom',
 'tog-diffonly'                => 'Nezobrazovať obsah stránky pod rozdielmi',
 'tog-showhiddencats'          => 'Zobraziť skryté kategórie',
+'tog-norollbackdiff'          => 'Vynechať rozdiel po vykonaní rollbacku',
 
 'underline-always'  => 'Vždy',
 'underline-never'   => 'Nikdy',
@@ -1163,6 +1164,7 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 'right-minoredit'            => 'Označovať úpravy ako drobné',
 'right-move'                 => 'Presúvať stránky',
 'right-move-subpages'        => 'Presunúť stránky aj s podstránkami',
+'right-move-rootuserpages'   => 'Presunúť koreňové stránky používateľa',
 'right-suppressredirect'     => 'Nevytvoriť presmerovanie zo starého názvu pri presúvaní stránky',
 'right-upload'               => 'Nahrávať súbory',
 'right-reupload'             => 'Prepísať existujúci súbor',
@@ -1222,6 +1224,7 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 'action-minoredit'            => 'označiť túto úpravu ako drobnú',
 'action-move'                 => 'presunúť túto stránku',
 'action-move-subpages'        => 'presunúť túto stránku a jej podtránky',
+'action-move-rootuserpages'   => 'presunúť koreňové stránky používateľa',
 'action-upload'               => 'nahrať tento súbor',
 'action-reupload'             => 'prepísať tento existujúci súbor',
 'action-reupload-shared'      => 'uprednostniť tento súbor pred súborom zo zdieľaného úložiska',
@@ -2378,10 +2381,10 @@ Pravdepodobne to spôsobil odkaz na externú internetovú lokalitu, ktorá sa na
 'markedaspatrollederror-noautopatrol' => 'Nie je vám umožnené označiť vlastné zmeny za strážené.',
 
 # Patrol log
-'patrol-log-page'    => 'Záznam strážení',
-'patrol-log-header'  => 'Toto je záznam strážených revízií.',
-'patrol-log-line'    => '$1 z $2 označených ako sledované $3',
-'patrol-log-auto'    => '(automaticky)',
+'patrol-log-page'      => 'Záznam strážení',
+'patrol-log-header'    => 'Toto je záznam strážených revízií.',
+'patrol-log-line'      => '$1 z $2 označených ako sledované $3',
+'patrol-log-auto'      => '(automaticky)',
 'log-show-hide-patrol' => 'záznam stráženia $1',
 
 # Image deletion
@@ -2852,6 +2855,7 @@ Skúste obyčajný náhľad.',
 
 # Core parser functions
 'unknown_extension_tag' => 'Neznáma značka rozšírenia „$1“',
+'duplicate-defaultsort' => 'Upozornenie: Štandardný kláves na zoraďovanie „$2“ nahrádza starý kláves „$1“.',
 
 # Special:Version
 'version'                          => 'Verzia', # Not used as normal message but as header for the special page itself

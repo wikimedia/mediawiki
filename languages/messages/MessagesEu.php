@@ -104,6 +104,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Beste erabiltzaileei bidaltzen dizkiedan mezuen kopiak niri ere bidali',
 'tog-diffonly'                => "''Diff''-ak agertzen direnean, orrialdearen edukiera ezkutatu",
 'tog-showhiddencats'          => 'Ikusi kategoria ezkutuak',
+'tog-norollbackdiff'          => 'Rollback bat egin ondoren ezberdintasunak ez hartu aintzat',
 
 'underline-always'  => 'Beti',
 'underline-never'   => 'Inoiz ez',

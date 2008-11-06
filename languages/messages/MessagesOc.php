@@ -2423,11 +2423,11 @@ Aquò es probablament causat per un ligam sus lista negra que punta cap a un sit
 'markedaspatrollederror-noautopatrol' => 'Avètz pas lo drech de marcar vòstras pròprias modificacions coma susvelhadas.',
 
 # Patrol log
-'patrol-log-page'    => 'Istoric de las versions patrolhadas',
-'patrol-log-header'  => 'Vaquí un jornal de las versions patrolhadas.',
-'patrol-log-line'    => 'a marcat la version $1 de $2 coma verificada $3',
-'patrol-log-auto'    => '(automatic)',
-'patrol-log-diff'    => 'v$1',
+'patrol-log-page'      => 'Istoric de las versions patrolhadas',
+'patrol-log-header'    => 'Vaquí un jornal de las versions patrolhadas.',
+'patrol-log-line'      => 'a marcat la version $1 de $2 coma verificada $3',
+'patrol-log-auto'      => '(automatic)',
+'patrol-log-diff'      => 'v$1',
 'log-show-hide-patrol' => "$1 l'istoric de las versions patrolhadas",
 
 # Image deletion
