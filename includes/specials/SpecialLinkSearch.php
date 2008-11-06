@@ -61,7 +61,7 @@ function wfSpecialLinkSearch( $par ) {
 	$s .=	Xml::submitButton( wfMsg( 'linksearch-ok' ) ) .
 		'</fieldset>' .
 		Xml::closeElement( 'form' );
-	$wgOut->addHtml( $s );
+	$wgOut->addHTML( $s );
 
 	if( $target != '' ) {
 		$searcher = new LinkSearchPage;
@@ -168,7 +168,7 @@ class LinkSearchPage extends QueryPage {
 		} else {
 			// For debugging
 			// Generates invalid xhtml with patterns that contain --
-			//$wgOut->addHtml( "\n<!-- " . htmlspecialchars( $this->mMungedQuery ) . " -->\n" );
+			//$wgOut->addHTML( "\n<!-- " . htmlspecialchars( $this->mMungedQuery ) . " -->\n" );
 			parent::doQuery( $offset, $limit, $shownavigation );
 		}
 	}

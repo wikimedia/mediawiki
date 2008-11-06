@@ -569,23 +569,23 @@ EOT
 
 		$sk = $wgUser->getSkin();
 
-		$wgOut->addHtml( '<br /><ul>' );
+		$wgOut->addHTML( '<br /><ul>' );
 
 		# "Upload a new version of this file" link
 		if( UploadForm::userCanReUpload($wgUser,$this->img->name) ) {
 			$ulink = $sk->makeExternalLink( $this->getUploadUrl(), wfMsg( 'uploadnewversion-linktext' ) );
-			$wgOut->addHtml( "<li><div class='plainlinks'>{$ulink}</div></li>" );
+			$wgOut->addHTML( "<li><div class='plainlinks'>{$ulink}</div></li>" );
 		}
 
 		# Link to Special:FileDuplicateSearch
 		$dupeLink = $sk->makeKnownLinkObj( SpecialPage::getTitleFor( 'FileDuplicateSearch', $this->mTitle->getDBkey() ), wfMsgHtml( 'imagepage-searchdupe' ) );
-		$wgOut->addHtml( "<li>{$dupeLink}</li>" );
+		$wgOut->addHTML( "<li>{$dupeLink}</li>" );
 
 		# External editing link
 		$elink = $sk->makeKnownLinkObj( $this->mTitle, wfMsgHtml( 'edit-externally' ), 'action=edit&externaledit=true&mode=file' );
-		$wgOut->addHtml( '<li>' . $elink . '<div>' . wfMsgWikiHtml( 'edit-externally-help' ) . '</div></li>' );
+		$wgOut->addHTML( '<li>' . $elink . '<div>' . wfMsgWikiHtml( 'edit-externally-help' ) . '</div></li>' );
 
-		$wgOut->addHtml( '</ul>' );
+		$wgOut->addHTML( '</ul>' );
 	}
 
 	function closeShowImage()

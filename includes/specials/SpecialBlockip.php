@@ -298,7 +298,7 @@ class IPBlockForm {
 			Xml::tags( 'script', array( 'type' => 'text/javascript' ), 'updateBlockOptions()' ) . "\n"
 		);
 
-		$wgOut->addHtml( $this->getConvenienceLinks() );
+		$wgOut->addHTML( $this->getConvenienceLinks() );
 
 		if( is_object( $user ) ) {
 			$this->showLogFragment( $wgOut, $user->getUserPage() );
@@ -466,15 +466,15 @@ class IPBlockForm {
 		$wgOut->setPagetitle( wfMsg( 'blockip' ) );
 		$wgOut->setSubtitle( wfMsg( 'blockipsuccesssub' ) );
 		$text = wfMsgExt( 'blockipsuccesstext', array( 'parse' ), $this->BlockAddress );
-		$wgOut->addHtml( $text );
+		$wgOut->addHTML( $text );
 	}
 
 	function showLogFragment( $out, $title ) {
 		global $wgUser;
-		$out->addHtml( Xml::element( 'h2', NULL, LogPage::logName( 'block' ) ) );
+		$out->addHTML( Xml::element( 'h2', NULL, LogPage::logName( 'block' ) ) );
 		$count = LogEventsList::showLogExtract( $out, 'block', $title->getPrefixedText(), '', 10 );
 		if($count > 10){
-			$out->addHtml( $wgUser->getSkin()->link(
+			$out->addHTML( $wgUser->getSkin()->link(
 				SpecialPage::getTitleFor( 'Log' ),
 				wfMsgHtml( 'blocklog-fulllog' ),
 				array(),

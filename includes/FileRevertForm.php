@@ -57,7 +57,7 @@ class FileRevertForm {
 		}
 
 		if( !$this->haveOldVersion() ) {
-			$wgOut->addHtml( wfMsgExt( 'filerevert-badversion', 'parse' ) );
+			$wgOut->addHTML( wfMsgExt( 'filerevert-badversion', 'parse' ) );
 			$wgOut->returnToMain( false, $this->title );
 			return;
 		}
@@ -69,7 +69,7 @@ class FileRevertForm {
 			// TODO: Preserve file properties from database instead of reloading from file
 			$status = $this->file->upload( $source, $comment, $comment );
 			if( $status->isGood() ) {
-				$wgOut->addHtml( wfMsgExt( 'filerevert-success', 'parse', $this->title->getText(),
+				$wgOut->addHTML( wfMsgExt( 'filerevert-success', 'parse', $this->title->getText(),
 					$wgLang->date( $this->getTimestamp(), true ),
 					$wgLang->time( $this->getTimestamp(), true ),
 					wfExpandUrl( $this->file->getArchiveUrl( $this->archiveName ) ) ) );
@@ -104,7 +104,7 @@ class FileRevertForm {
 		$form .= '</fieldset>';
 		$form .= '</form>';
 
-		$wgOut->addHtml( $form );
+		$wgOut->addHTML( $form );
 	}
 
 	/**

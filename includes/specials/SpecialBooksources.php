@@ -32,7 +32,7 @@ class SpecialBookSources extends SpecialPage {
 		$this->setHeaders();
 		$this->isbn = $this->cleanIsbn( $isbn ? $isbn : $wgRequest->getText( 'isbn' ) );
 		$wgOut->addWikiMsg( 'booksources-summary' );
-		$wgOut->addHtml( $this->makeForm() );
+		$wgOut->addHTML( $this->makeForm() );
 		if( strlen( $this->isbn ) > 0 )
 			$this->showList();
 	}
@@ -88,11 +88,11 @@ class SpecialBookSources extends SpecialPage {
 
 		# Fall back to the defaults given in the language file
 		$wgOut->addWikiMsg( 'booksources-text' );
-		$wgOut->addHtml( '<ul>' );
+		$wgOut->addHTML( '<ul>' );
 		$items = $wgContLang->getBookstoreList();
 		foreach( $items as $label => $url )
-			$wgOut->addHtml( $this->makeListItem( $label, $url ) );
-		$wgOut->addHtml( '</ul>' );
+			$wgOut->addHTML( $this->makeListItem( $label, $url ) );
+		$wgOut->addHTML( '</ul>' );
 		return true;
 	}
 

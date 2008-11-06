@@ -192,7 +192,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 			if( !empty($lines) ) {
 				$this->showChunk( $namespace, $lines[0], $lines[count($lines)-1] );
 			} else {
-				$wgOut->addHtml( $this->namespaceForm( $namespace, $from, $to ) );
+				$wgOut->addHTML( $this->namespaceForm( $namespace, $from, $to ) );
 			}
 			return;
 		}
@@ -222,7 +222,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 				$out2 = $nsForm . '<hr />';
 			}
 		}
-		$wgOut->addHtml( $out2 . $out );
+		$wgOut->addHTML( $out2 . $out );
 	}
 
 	/**
@@ -397,9 +397,9 @@ class SpecialAllpages extends IncludableSpecialPage {
 			$out2 .= "</td></tr></table><hr />";
 		}
 
-		$wgOut->addHtml( $out2 . $out );
+		$wgOut->addHTML( $out2 . $out );
 		if( isset($prevLink) or isset($nextLink) ) {
-			$wgOut->addHtml( '<hr /><p style="font-size: smaller; float: ' . $align . '">' );
+			$wgOut->addHTML( '<hr /><p style="font-size: smaller; float: ' . $align . '">' );
 			if( isset( $prevLink ) ) {
 				$wgOut->addHTML( $prevLink );
 			}

@@ -42,7 +42,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 		} elseif( isset( $from ) ){
 			$this->showPrefixChunk( $namespace, $from, $from );
 		} else {
-			$wgOut->addHtml( $this->namespacePrefixForm( $namespace, null ) );
+			$wgOut->addHTML( $this->namespacePrefixForm( $namespace, null ) );
 		}
 	}
 	
@@ -184,6 +184,6 @@ class SpecialPrefixindex extends SpecialAllpages {
 			$out2 .= "</td></tr></table><hr />";
 		}
 
-		$wgOut->addHtml( $out2 . $out );
+		$wgOut->addHTML( $out2 . $out );
 	}
 }

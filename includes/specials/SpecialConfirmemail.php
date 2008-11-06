@@ -37,7 +37,7 @@ class EmailConfirmation extends UnlistedSpecialPage {
 				$self = SpecialPage::getTitleFor( 'Confirmemail' );
 				$skin = $wgUser->getSkin();
 				$llink = $skin->makeKnownLinkObj( $title, wfMsgHtml( 'loginreqlink' ), 'returnto=' . $self->getPrefixedUrl() );
-				$wgOut->addHtml( wfMsgWikiHtml( 'confirmemail_needlogin', $llink ) );
+				$wgOut->addHTML( wfMsgWikiHtml( 'confirmemail_needlogin', $llink ) );
 			}
 		} else {
 			$this->attemptConfirm( $code );
@@ -75,7 +75,7 @@ class EmailConfirmation extends UnlistedSpecialPage {
 			$form .= wfHidden( 'token', $wgUser->editToken() );
 			$form .= wfSubmitButton( wfMsgHtml( 'confirmemail_send' ) );
 			$form .= wfCloseElement( 'form' );
-			$wgOut->addHtml( $form );
+			$wgOut->addHTML( $form );
 		}
 	}
 
