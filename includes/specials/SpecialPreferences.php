@@ -1004,9 +1004,6 @@ class PreferencesForm {
 				'forceeditsummary',
 			) ) );
 		
-                if( $wgUser->isAllowed( 'rollback' ) )
-			$wgOut->addHtml( $this->getToggle( 'norollbackdiff' ) );
-
 		$wgOut->addHtml( '</fieldset>' );
 
 		# Recent changes
@@ -1118,9 +1115,13 @@ class PreferencesForm {
 
 		foreach ( $togs as $tname ) {
 			if( !array_key_exists( $tname, $this->mUsedToggles ) ) {
-				$wgOut->addHTML( $this->getToggle( $tname ) );
+				if( $tname == 'norollbackdiff' && $wgUser->isAllowed( 'rollback' ) )
+					$wgOut->addHTML( $this->getToggle( $tname ) );
+				else
+					$wgOut->addHTML( $this->getToggle( $tname ) );
 			}
 		}
+
 		$wgOut->addHTML( '</fieldset>' );
 
 		wfRunHooks( 'RenderPreferencesForm', array( $this, $wgOut ) );
