@@ -634,7 +634,7 @@ class ChangeTextGenerator {
 		$txt = new ChangeText;
 		$rootlistopened = false;
 		if (count($differences) > 1) {
-			$txt->addHTML('<ul class="changelist">');
+			$txt->addHtml('<ul class="changelist">');
 			$rootlistopened = true;
 		}
 		$nbDifferences = count($differences);
@@ -642,44 +642,44 @@ class ChangeTextGenerator {
 			$d = $differences[$j];
 			$lvl1listopened = false;
 			if ($rootlistopened) {
-				$txt->addHTML('<li>');
+				$txt->addHtml('<li>');
 			}
 			if ($d->leftlength + $d->rightlength > 1) {
-				$txt->addHTML('<ul class="changelist">');
+				$txt->addHtml('<ul class="changelist">');
 				$lvl1listopened = true;
 			}
 			// left are the old ones
 			for ($i = $d->leftstart; $i < $d->leftend; ++$i) {
 				if ($lvl1listopened){
-					$txt->addHTML('<li>');
+					$txt->addHtml('<li>');
 				}
 				// add a bullet for a old tag
 				$this->addTagOld($txt, $this->other->ancestors[$i]);
 				if ($lvl1listopened){
-					$txt->addHTML('</li>');
+					$txt->addHtml('</li>');
 				}
 			}
 			// right are the new ones
 			for ($i = $d->rightstart; $i < $d->rightend; ++$i) {
 				if ($lvl1listopened){
-					$txt->addHTML('<li>');
+					$txt->addHtml('<li>');
 				}
 				// add a bullet for a new tag
 				$this->addTagNew($txt, $this->ancestorComparator->ancestors[$i]);
 
 				if ($lvl1listopened){
-					$txt->addHTML('</li>');
+					$txt->addHtml('</li>');
 				}
 			}
 			if ($lvl1listopened) {
-				$txt->addHTML('</ul>');
+				$txt->addHtml('</ul>');
 			}
 			if ($rootlistopened) {
-				$txt->addHTML('</li>');
+				$txt->addHtml('</li>');
 			}
 		}
 		if ($rootlistopened) {
-			$txt->addHTML('</ul>');
+			$txt->addHtml('</ul>');
 		}
 		return $txt;
 	}
@@ -697,7 +697,7 @@ class ChangeText {
 
 	private $txt = "";
 
-	public function addHTML($s) {
+	public function addHtml($s) {
 		$this->txt .= $s;
 	}
 
@@ -759,14 +759,14 @@ class TagToString {
 			$tagDescription = "&lt;" . $this->node->qName . "&gt;";
 		}
 		if ($this->sem == TagToStringFactory::MOVED) {
-			$txt->addHTML( wfMsgExt( 'diff-movedoutof', 'parseinline', $tagDescription ) );
+			$txt->addHtml( wfMsgExt( 'diff-movedoutof', 'parseinline', $tagDescription ) );
 		} else if ($this->sem == TagToStringFactory::STYLE) {
-			$txt->addHTML( wfMsgExt( 'diff-styleremoved' , 'parseinline', $tagDescription ) );
+			$txt->addHtml( wfMsgExt( 'diff-styleremoved' , 'parseinline', $tagDescription ) );
 		} else {
-			$txt->addHTML( wfMsgExt( 'diff-removed' , 'parseinline', $tagDescription ) );
+			$txt->addHtml( wfMsgExt( 'diff-removed' , 'parseinline', $tagDescription ) );
 		}
 		$this->addAttributes($txt, $this->node->attributes);
-		$txt->addHTML('.');
+		$txt->addHtml('.');
 	}
 
 	public function getAddedDescription(ChangeText $txt) {
@@ -775,14 +775,14 @@ class TagToString {
 			$tagDescription = "&lt;" . $this->node->qName . "&gt;";
 		}
 		if ($this->sem == TagToStringFactory::MOVED) {
-			$txt->addHTML( wfMsgExt( 'diff-movedto' , 'parseinline', $tagDescription) );
+			$txt->addHtml( wfMsgExt( 'diff-movedto' , 'parseinline', $tagDescription) );
 		} else if ($this->sem == TagToStringFactory::STYLE) {
-			$txt->addHTML( wfMsgExt( 'diff-styleadded', 'parseinline', $tagDescription ) );
+			$txt->addHtml( wfMsgExt( 'diff-styleadded', 'parseinline', $tagDescription ) );
 		} else {
-			$txt->addHTML( wfMsgExt( 'diff-added', 'parseinline', $tagDescription ) );
+			$txt->addHtml( wfMsgExt( 'diff-added', 'parseinline', $tagDescription ) );
 		}
 		$this->addAttributes($txt, $this->node->attributes);
-		$txt->addHTML('.');
+		$txt->addHtml('.');
 	}
 
 	protected function addAttributes(ChangeText $txt, array $attributes) {
@@ -797,17 +797,17 @@ class TagToString {
 			$attr = $attributes[$key];
 			if($firstOne) {
 				$firstOne = false;
-				$txt->addHTML( wfMsgExt('diff-with', 'escapenoentities', $this->translateArgument($key), htmlspecialchars($attr) ) );
+				$txt->addHtml( wfMsgExt('diff-with', 'escapenoentities', $this->translateArgument($key), htmlspecialchars($attr) ) );
 				continue;
 			}
-			$txt->addHTML( wfMsgExt( 'comma-separator', 'escapenoentities' ) .
+			$txt->addHtml( wfMsgExt( 'comma-separator', 'escapenoentities' ) .
 				wfMsgExt( 'diff-with-additional', 'escapenoentities',
 				$this->translateArgument( $key ), htmlspecialchars( $attr ) )
 			);
 		}
 
 		if ($nbAttributes_min_1 > 0) {
-			$txt->addHTML( wfMsgExt( 'diff-with-final', 'escapenoentities',
+			$txt->addHtml( wfMsgExt( 'diff-with-final', 'escapenoentities',
 			$this->translateArgument($keys[$nbAttributes_min_1]),
 			htmlspecialchars($attributes[$keys[$nbAttributes_min_1]]) ) );
 		}
@@ -833,15 +833,15 @@ class NoContentTagToString extends TagToString {
 		if( wfEmptyMsg( 'diff-' . $this->node->qName, $tagDescription ) ){
 			$tagDescription = "&lt;" . $this->node->qName . "&gt;";
 		}
-		$txt->addHTML( wfMsgExt('diff-changedto', 'parseinline', $tagDescription ) );
+		$txt->addHtml( wfMsgExt('diff-changedto', 'parseinline', $tagDescription ) );
 		$this->addAttributes($txt, $this->node->attributes);
-		$txt->addHTML('.');
+		$txt->addHtml('.');
 	}
 
 	public function getRemovedDescription(ChangeText $txt) {
-		$txt->addHTML( wfMsgExt('diff-changedfrom', 'parseinline', $tagDescription ) );
+		$txt->addHtml( wfMsgExt('diff-changedfrom', 'parseinline', $tagDescription ) );
 		$this->addAttributes($txt, $this->node->attributes);
-		$txt->addHTML('.');
+		$txt->addHtml('.');
 	}
 }
 
@@ -853,7 +853,7 @@ class AnchorToString extends TagToString {
 
 	protected function addAttributes(ChangeText $txt, array $attributes) {
 		if (array_key_exists('href', $attributes)) {
-			$txt->addHTML(' ' . wfMsgExt( 'diff-withdestination', 'parseinline', htmlspecialchars($attributes['href']) ) );
+			$txt->addHtml(' ' . wfMsgExt( 'diff-withdestination', 'parseinline', htmlspecialchars($attributes['href']) ) );
 			unset($attributes['href']);
 		}
 		parent::addAttributes($txt, $attributes);
@@ -988,18 +988,18 @@ class DelegatingContentHandler {
 	}
 
 	function startElement($qname, /*array*/ $arguments) {
-		$this->delegate->addHTML(Xml::openElement($qname, $arguments));
+		$this->delegate->addHtml(Xml::openElement($qname, $arguments));
 	}
 
 	function endElement($qname){
-		$this->delegate->addHTML(Xml::closeElement($qname));
+		$this->delegate->addHtml(Xml::closeElement($qname));
 	}
 
 	function characters($chars){
-		$this->delegate->addHTML(htmlspecialchars($chars));
+		$this->delegate->addHtml(htmlspecialchars($chars));
 	}
 
 	function html($html){
-		$this->delegate->addHTML($html);
+		$this->delegate->addHtml($html);
 	}
 }
