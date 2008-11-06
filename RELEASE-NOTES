@@ -193,6 +193,9 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 16113) Show/hide for redirects in Special:NewPages
 * (bug 15903) Upload link was added to Nostalgia skin
 * (bug 15761) Add user toggle to omit diff after rollback
+* Added the BitmapHandler_ClientOnly media handler, which allows server-side 
+  image scaling to be completely disabled for specific media types, via the 
+  $wgMediaHandlers configuration variable.
 
 === Bug fixes in 1.14 ===
 
