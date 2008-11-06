@@ -2236,10 +2236,10 @@ Probablemente tea causao por un enllaz a un sitiu esternu de la llista prieta.',
 'markedaspatrollederror-noautopatrol' => 'Nun pues marcar los tos propios cambeos como supervisaos.',
 
 # Patrol log
-'patrol-log-page'    => 'Rexistru de supervisión',
-'patrol-log-header'  => 'Esti ye un rexistru de les revisiones supervisaes.',
-'patrol-log-line'    => 'marcó la versión $1 de $2 como supervisada $3',
-'patrol-log-auto'    => '(automática)',
+'patrol-log-page'      => 'Rexistru de supervisión',
+'patrol-log-header'    => 'Esti ye un rexistru de les revisiones supervisaes.',
+'patrol-log-line'      => 'marcó la versión $1 de $2 como supervisada $3',
+'patrol-log-auto'      => '(automática)',
 'log-show-hide-patrol' => '$1 rexistru de supervisión',
 
 # Image deletion

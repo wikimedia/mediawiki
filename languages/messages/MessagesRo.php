@@ -1232,6 +1232,7 @@ $3',
 'rc_categories'                     => 'Limitează la categoriile (separate prin "|")',
 'rc_categories_any'                 => 'Oricare',
 'newsectionsummary'                 => '/* $1 */ secţiune nouă',
+'rc-enhanced-hide'                  => 'Ascunde detaliile',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Modificări corelate',

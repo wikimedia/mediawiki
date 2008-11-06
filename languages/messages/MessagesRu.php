@@ -290,6 +290,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Отправлять мне копии писем, которые я посылаю другим участникам.',
 'tog-diffonly'                => 'Не показывать содержание страницы под сравнением двух версий',
 'tog-showhiddencats'          => 'Показывать скрытые категории',
+'tog-norollbackdiff'          => 'Не показывать разницу версий после выполнения отката',
 
 'underline-always'  => 'Всегда',
 'underline-never'   => 'Никогда',
@@ -2456,10 +2457,10 @@ The wiki server can't provide data in a format your client can read.",
 'markedaspatrollederror-noautopatrol' => 'Вам не разрешено отмечать собственные правки как проверенные.',
 
 # Patrol log
-'patrol-log-page'    => 'Журнал патрулирования',
-'patrol-log-header'  => 'Это журнал патрулированных версий.',
-'patrol-log-line'    => 'проверена $1 из $2 $3',
-'patrol-log-auto'    => '(автоматически)',
+'patrol-log-page'      => 'Журнал патрулирования',
+'patrol-log-header'    => 'Это журнал патрулированных версий.',
+'patrol-log-line'      => 'проверена $1 из $2 $3',
+'patrol-log-auto'      => '(автоматически)',
 'log-show-hide-patrol' => '$1 журнал патрулирования',
 
 # Image deletion
@@ -2993,6 +2994,7 @@ $1
 
 # Core parser functions
 'unknown_extension_tag' => 'Неизвестный тег дополнения «$1»',
+'duplicate-defaultsort' => 'Внимание. Ключ сортировки по умолчанию «$2» переопределяет прежний ключ сортировки по умолчанию «$1».',
 
 # Special:Version
 'version'                          => 'Версия MediaWiki', # Not used as normal message but as header for the special page itself

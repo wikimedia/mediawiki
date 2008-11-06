@@ -2569,6 +2569,7 @@ Wklepej mjano plika s půmińjyńćym prefiksu „{{ns:image}}:”.',
 'specialpages-group-spam'        => 'Nořyńdźa do wyćepywanio spamu',
 
 # Special:BlankPage
-'blankpage' => 'Pusto zajta',
+'blankpage'              => 'Pusto zajta',
+'intentionallyblankpage' => 'Ta zajta nauůmyślńy uostoua śe pusto',
 
 );

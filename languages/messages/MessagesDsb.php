@@ -190,6 +190,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Kopije e-mailow dostaś, kótarež drugim wužywarjam pósćelom',
 'tog-diffonly'                => 'Pśi pśirownowanju wersijow jano rozdźěle pokazaś',
 'tog-showhiddencats'          => 'Schowane kategorije pokazaś',
+'tog-norollbackdiff'          => 'Rozdźěl pó slědkstajenju zanjechaś',
 
 'underline-always'  => 'pśecej',
 'underline-never'   => 'žednje',
@@ -1111,6 +1112,7 @@ Móžoš bok ale teke [[:$1|sam załožyś]].",
 'right-minoredit'            => 'Změny ako snadne markěrowaś',
 'right-move'                 => 'pśesunuś boki',
 'right-move-subpages'        => 'Boki ze swójimi pódbokami pśesunuś',
+'right-move-rootuserpages'   => 'Głowne wužywarske boki pśesunuś',
 'right-suppressredirect'     => 'Pśi pśesunjenju žedne dalejpósrědnjenje ze starego mjenja napóraś',
 'right-upload'               => 'lódowaś dataje',
 'right-reupload'             => 'Eksistujucu dataju pśepisaś',
@@ -1170,6 +1172,7 @@ Móžoš bok ale teke [[:$1|sam załožyś]].",
 'action-minoredit'            => 'toś tu změnu ako snadnu markěrowaś',
 'action-move'                 => 'toś ten bok pśesunuś',
 'action-move-subpages'        => 'toś ten bok a jogo pódboki pśesunuś',
+'action-move-rootuserpages'   => 'głowne wužywarske boki pśesunuś',
 'action-upload'               => 'toś tu dataju nagraś',
 'action-reupload'             => 'toś tu eksistujucu dataju pśepisaś',
 'action-reupload-shared'      => 'toś tu dataju w zgroamdnem repozitoriumje pśepisaś',
@@ -2290,10 +2293,10 @@ W zespominanju dajo se pśicyna pódaś.',
 'markedaspatrollederror-noautopatrol' => 'Njesmějoš swóje změny ako kontrolěrowane markěrowaś.',
 
 # Patrol log
-'patrol-log-page'    => 'Log-lisćina kontrolow',
-'patrol-log-header'  => 'To jo protokol pśekontrolowanych wersijow.',
-'patrol-log-line'    => 'markěrował $1 wót $2 ako kontrolěrowane $3.',
-'patrol-log-auto'    => '(awtomatiski)',
+'patrol-log-page'      => 'Log-lisćina kontrolow',
+'patrol-log-header'    => 'To jo protokol pśekontrolowanych wersijow.',
+'patrol-log-line'      => 'markěrował $1 wót $2 ako kontrolěrowane $3.',
+'patrol-log-auto'      => '(awtomatiski)',
 'log-show-hide-patrol' => 'Protokol doglědowanja $1',
 
 # Image deletion
@@ -2759,6 +2762,7 @@ Móžoš teke [[Special:Watchlist/edit|standardny editor wužywaś]].',
 
 # Core parser functions
 'unknown_extension_tag' => 'Njeznaty tag rozšyrjenja „$1“',
+'duplicate-defaultsort' => 'Glědaj: Standardny sortěrowański kluc (DEFAULT SORT KEY) "$2" pśepišo pjerwjej wužyty kluc "$1".',
 
 # Special:Version
 'version'                          => 'Wersija', # Not used as normal message but as header for the special page itself

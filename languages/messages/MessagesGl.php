@@ -2350,10 +2350,10 @@ Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está n
 'markedaspatrollederror-noautopatrol' => 'Non está permitido que un mesmo marque as propias edicións como revisadas.',
 
 # Patrol log
-'patrol-log-page'    => 'Rexistro de revisións',
-'patrol-log-header'  => 'Este é un rexistro das revisións patrulladas.',
-'patrol-log-line'    => 'marcou a $1 de "$2" como revisada $3',
-'patrol-log-auto'    => '(automático)',
+'patrol-log-page'      => 'Rexistro de revisións',
+'patrol-log-header'    => 'Este é un rexistro das revisións patrulladas.',
+'patrol-log-line'      => 'marcou a $1 de "$2" como revisada $3',
+'patrol-log-auto'      => '(automático)',
 'log-show-hide-patrol' => '$1 o rexistro de patrullas',
 
 # Image deletion

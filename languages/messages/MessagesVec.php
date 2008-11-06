@@ -2268,10 +2268,10 @@ Questo xe probabilmente dovùo a la presenza de un colegamento a un sito foresto
 'markedaspatrollederror-noautopatrol' => 'No te ghè i parmessi necessari par segnar le to stesse modifiche come verificàe.',
 
 # Patrol log
-'patrol-log-page'    => 'Modifiche verificàe',
-'patrol-log-header'  => 'Qua de sèvito xe elencàe le verifiche de le modifiche.',
-'patrol-log-line'    => 'gà segnà la $1 a la pagina $2 come verificà $3',
-'patrol-log-auto'    => '(verifica automatica)',
+'patrol-log-page'      => 'Modifiche verificàe',
+'patrol-log-header'    => 'Qua de sèvito xe elencàe le verifiche de le modifiche.',
+'patrol-log-line'      => 'gà segnà la $1 a la pagina $2 come verificà $3',
+'patrol-log-auto'      => '(verifica automatica)',
 'log-show-hide-patrol' => '$1 el registro dei canbiamenti verificài',
 
 # Image deletion

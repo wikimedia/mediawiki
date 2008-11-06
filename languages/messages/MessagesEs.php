@@ -1235,7 +1235,7 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'action-browsearchive'        => 'buscar páginas borradas',
 'action-undelete'             => 'recuperar esta página',
 'action-suppressrevision'     => 'revisar y restaurar esta revisión escondida',
-'action-suppressionlog'       => 'ver este log privado',
+'action-suppressionlog'       => 'ver este registro privado',
 'action-block'                => 'bloquear a este usuario para que no modifique',
 'action-protect'              => 'cambiar los niveles de protección para esta página',
 'action-import'               => 'importar esta página desde otro wiki',
@@ -2149,7 +2149,7 @@ La página de destino ("[[:$1]]") ya existe. ¿Quiere borrarla para permitir al 
 'selfmove'                  => 'Los títulos de origen y destino son los mismos. No se puede trasladar un página sobre sí misma.',
 'immobile-source-namespace' => 'No se pueden trasladar páginas en el espacio de nombres «$1»',
 'immobile-target-namespace' => 'No se puede trasladar páginas al espacio de nombres «$1»',
-'immobile-source-page'      => 'Esta página no se puede renombrar',
+'immobile-source-page'      => 'Esta página no se puede renombrar.',
 'immobile-target-page'      => 'No se puede trasladar a tal título.',
 'imagenocrossnamespace'     => 'No se puede trasladar el fichero a otro espacio de nombres',
 'imagetypemismatch'         => 'La nueva extensión de archivo no corresponde con su tipo',
@@ -2357,10 +2357,10 @@ Esto podría estar causado por un enlace a un sitio externo incluido en la lista
 'markedaspatrollederror-noautopatrol' => 'No tienes permisos para marcar tus propios cambios como revisados.',
 
 # Patrol log
-'patrol-log-page'    => 'Registro de revisiones',
-'patrol-log-header'  => 'Este es un registro de revisiones patrulladas.',
-'patrol-log-line'    => 'revisado $1 de $2 $3',
-'patrol-log-auto'    => '(automático)',
+'patrol-log-page'      => 'Registro de revisiones',
+'patrol-log-header'    => 'Este es un registro de revisiones patrulladas.',
+'patrol-log-line'      => 'revisado $1 de $2 $3',
+'patrol-log-auto'      => '(automático)',
 'log-show-hide-patrol' => '$1 registro de patrullaje',
 
 # Image deletion

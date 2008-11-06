@@ -2360,10 +2360,10 @@ Tal bloqueio foi provavelmente causado por uma ligação para um website externo
 'markedaspatrollederror-noautopatrol' => 'Você não está autorizado a marcar suas próprias edições como edições patrulhadas.',
 
 # Patrol log
-'patrol-log-page'    => 'Registo de edições patrulhadas',
-'patrol-log-header'  => 'Este é um registo de edições patrulhadas.',
-'patrol-log-line'    => 'marcou a edição $1 de $2 como uma edição patrulhada $3',
-'patrol-log-auto'    => 'automaticamente',
+'patrol-log-page'      => 'Registo de edições patrulhadas',
+'patrol-log-header'    => 'Este é um registo de edições patrulhadas.',
+'patrol-log-line'      => 'marcou a edição $1 de $2 como uma edição patrulhada $3',
+'patrol-log-auto'      => 'automaticamente',
 'log-show-hide-patrol' => '$1 registo de edições patrulhadas',
 
 # Image deletion

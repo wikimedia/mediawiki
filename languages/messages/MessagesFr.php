@@ -2422,11 +2422,11 @@ Ceci est probablement causé par un lien sur liste noire pointant vers un site e
 'markedaspatrollederror-noautopatrol' => 'Vous n’avez pas le droit de marquer vos propres modifications comme surveillées.',
 
 # Patrol log
-'patrol-log-page'    => 'Historique des versions patrouillées',
-'patrol-log-header'  => 'Voici un journal des versions patrouillées.',
-'patrol-log-line'    => 'a marqué la version $1 de $2 comme vérifiée $3',
-'patrol-log-auto'    => '(automatique)',
-'patrol-log-diff'    => 'v$1',
+'patrol-log-page'      => 'Historique des versions patrouillées',
+'patrol-log-header'    => 'Voici un journal des versions patrouillées.',
+'patrol-log-line'      => 'a marqué la version $1 de $2 comme vérifiée $3',
+'patrol-log-auto'      => '(automatique)',
+'patrol-log-diff'      => 'v$1',
 'log-show-hide-patrol' => "$1 l'historique des versions patrouillées",
 
 # Image deletion

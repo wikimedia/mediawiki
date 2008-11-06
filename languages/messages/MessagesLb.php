@@ -177,6 +177,7 @@ $messages = array(
 'tog-diffonly'                => "Weis bei Versiounevergläicher just d'Ënnerscheeder an net déi ganz Säit",
 'tog-showhiddencats'          => 'Verstoppte Kategorie weisen',
 'tog-noconvertlink'           => 'Ëmwandlung vum Titel desaktivéieren',
+'tog-norollbackdiff'          => 'Ënnerscheed nom Zrécksetzen ënnerdrécken',
 
 'underline-always'  => 'ëmmer',
 'underline-never'   => 'Ni',
@@ -1849,7 +1850,7 @@ $1',
 'blanknamespace' => '(Haapt)',
 
 # Contributions
-'contributions'       => 'Kontributiounen vum Benotzer',
+'contributions'       => 'Kontributioune vum Benotzer',
 'contributions-title' => 'Kontributioune vum $1',
 'mycontris'           => 'Meng Kontributiounen',
 'contribsub2'         => 'Fir $1 ($2)',
@@ -2174,7 +2175,7 @@ Späichert en op ärem Computer of a lued en hei nees erop.',
 'tooltip-t-recentchangeslinked'   => 'Rezent Ännerungen op Säiten, déi von hei verlinkt sinn',
 'tooltip-feed-rss'                => 'RSS-Feed fir dës Säit',
 'tooltip-feed-atom'               => 'Atom-Feed fir dës Säit',
-'tooltip-t-contributions'         => 'Lëscht vun de Kontributiounen vun dësem Benotzer',
+'tooltip-t-contributions'         => 'Lëscht vun de Kontributioune vun dësem Benotzer',
 'tooltip-t-emailuser'             => 'Dësem Benotzer eng E-Mail schécken',
 'tooltip-t-upload'                => 'Biller oder Mediefichieren eroplueden',
 'tooltip-t-specialpages'          => 'Lëscht vun alle Spezialsäiten',
@@ -2660,6 +2661,7 @@ Dir kënnt och [[Special:Watchlist/raw|déi net formatéiert Iwwerwaachungslësc
 
 # Core parser functions
 'unknown_extension_tag' => 'Onbekannten Erweiderungs-Tag "$1"',
+'duplicate-defaultsort' => 'Opgepasst: De Sortéierschlëssel "$2" iwwerschreiwt de virege Sortéierschlëssel "$1".',
 
 # Special:Version
 'version'                          => 'Versioun', # Not used as normal message but as header for the special page itself

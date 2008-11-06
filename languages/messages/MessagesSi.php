@@ -2455,11 +2455,11 @@ $1 දැනටමත් වාරණය කොට ඇත. පරිස්ථි
 'markedaspatrollederror-noautopatrol' => 'ඔබගේ ස්වීය වෙනස්වීම් පරික්‍ෂාකර බැලූ ලෙස සලකුණු කිරීමට ඔබ හට ඉඩ දෙනු නොලැබේ.',
 
 # Patrol log
-'patrol-log-page'    => 'පරික්ෂාකිරීම් ලඝු-සටහන',
-'patrol-log-header'  => 'මෙය පරික්‍ෂාකර බැලූ සංශෝධනයන්ගේ ලඝු-සටහනකි.',
-'patrol-log-line'    => '$2 හි $1 පරික්ෂා කර බැලූ බව $3 හි ලකුණු කෙරිණි',
-'patrol-log-auto'    => '(ස්වයංක්‍රීය)',
-'patrol-log-diff'    => 'r$1',
+'patrol-log-page'      => 'පරික්ෂාකිරීම් ලඝු-සටහන',
+'patrol-log-header'    => 'මෙය පරික්‍ෂාකර බැලූ සංශෝධනයන්ගේ ලඝු-සටහනකි.',
+'patrol-log-line'      => '$2 හි $1 පරික්ෂා කර බැලූ බව $3 හි ලකුණු කෙරිණි',
+'patrol-log-auto'      => '(ස්වයංක්‍රීය)',
+'patrol-log-diff'      => 'r$1',
 'log-show-hide-patrol' => 'පරික්‍ෂාකිරීම් ලඝු-සටහන් $1',
 
 # Image deletion

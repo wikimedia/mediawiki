@@ -322,6 +322,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'A másoknak küldött e-mailekről kapjak én is egy másolatot',
 'tog-diffonly'                => 'Ne mutassa a lap tartalmát lapváltozatok közötti eltérések megtekintésekor',
 'tog-showhiddencats'          => 'Rejtett kategóriák megjelenítése',
+'tog-norollbackdiff'          => 'Ne jelenjen meg a diff visszaállítás során',
 
 'underline-always'  => 'Mindig',
 'underline-never'   => 'Soha',
@@ -2497,10 +2498,10 @@ Ez valószínűleg egy olyan link miatt van, ami egy feketelistán lévő oldalr
 'markedaspatrollederror-noautopatrol' => 'A saját változtatásaid megjelölése ellenőrzöttként nem engedélyezett.',
 
 # Patrol log
-'patrol-log-page'    => 'Ellenőrzési napló',
-'patrol-log-header'  => 'Ez az ellenőrzött változatok naplója.',
-'patrol-log-line'    => 'megjelölve $1 / $2 ellenőrizve $3',
-'patrol-log-auto'    => '(automatikus)',
+'patrol-log-page'      => 'Ellenőrzési napló',
+'patrol-log-header'    => 'Ez az ellenőrzött változatok naplója.',
+'patrol-log-line'      => 'megjelölve $1 / $2 ellenőrizve $3',
+'patrol-log-auto'      => '(automatikus)',
 'log-show-hide-patrol' => 'járőrnapló $1',
 
 # Image deletion

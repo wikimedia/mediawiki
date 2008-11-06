@@ -2479,10 +2479,10 @@ Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony int
 'markedaspatrollederror-noautopatrol' => 'Nie masz uprawnień wymaganych do oznaczania swoich edycji jako „sprawdzone”.',
 
 # Patrol log
-'patrol-log-page'    => 'Dziennik patrolowania',
-'patrol-log-header'  => 'Poniżej znajduje się dziennik patrolowania stron.',
-'patrol-log-line'    => 'oznaczył wersję $1 hasła $2 jako sprawdzoną $3',
-'patrol-log-auto'    => '(automatycznie)',
+'patrol-log-page'      => 'Dziennik patrolowania',
+'patrol-log-header'    => 'Poniżej znajduje się dziennik patrolowania stron.',
+'patrol-log-line'      => 'oznaczył wersję $1 hasła $2 jako sprawdzoną $3',
+'patrol-log-auto'      => '(automatycznie)',
 'log-show-hide-patrol' => '$1 rejestr sprawdzania',
 
 # Image deletion

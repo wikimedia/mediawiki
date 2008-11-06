@@ -15,6 +15,10 @@ $messages = array(
 'tog-hideminor'       => "Scunne le cangiaminde stuédeche jndr'à le cangiaminde recende",
 'tog-extendwatchlist' => 'Spanne le pàggene condrollete pe fa vedè tutte le cangiaminde fatte',
 'tog-showtoolbar'     => "Fà vedè 'a barra de le cangiaminde (JavaScript)",
+'tog-watchcreations'  => "Mitte le pàggene ca je agghje ccrejete jndr'à le pàggene condrollete",
+'tog-watchdefault'    => "Mitte le pàggene ca je agghje cangete jndr'à le pàggene condrolleteAdd pages I edit to my watchlist",
+'tog-watchmoves'      => "Mitte le pàggene ca je agghje spustete jndr'à le pàggene condrollete",
+'tog-watchdeletion'   => "Mitte le pàggene ca je agghje scangillete jndr'à le pàggene condrollete",
 'tog-minordefault'    => 'Pe convenzione signe tutte le cangiaminde cumme a stuédeche',
 'tog-previewonfirst'  => "Fà vedè l'andeprime sus a 'u prime cangiaminde",
 'tog-diffonly'        => 'No fà vedè le pàggene cu le condenute sotte a le differenze',
@@ -76,12 +80,14 @@ $messages = array(
 'dec'           => 'Dec',
 
 # Categories related messages
-'category_header'          => 'Pàggene jndr\'à categorie "$1"',
-'subcategories'            => 'Sotte Categorije',
-'category-media-header'    => 'Media jndr\'à categorie "$1"',
-'category-empty'           => "''Sta categorije pe mò non ge tène manghe 'na pàgene e manghe 'nu media.''",
-'hidden-category-category' => 'Categorije scunnute', # Name of the category where hidden categories will be listed
-'listingcontinuesabbrev'   => 'cond.',
+'pagecategories'                => '{{PLURAL:$1|Categorije|Categorije}}',
+'category_header'               => 'Pàggene jndr\'à categorie "$1"',
+'subcategories'                 => 'Sotte Categorije',
+'category-media-header'         => 'Media jndr\'à categorie "$1"',
+'category-empty'                => "''Sta categorije pe mò non ge tène manghe 'na pàgene e manghe 'nu media.''",
+'hidden-category-category'      => 'Categorije scunnute', # Name of the category where hidden categories will be listed
+'category-subcat-count-limited' => 'Sta categorije tène {{PLURAL:$1|sottecategorije|le seguende $1 sottecategorije}}.',
+'listingcontinuesabbrev'        => 'cond.',
 
 'mainpagedocfooter' => "Vè vide [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] pe l'mbormaziune sus a cumme s'ause 'u softuer wiki.
 
@@ -90,21 +96,22 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Manual:FAQ FAQ de MediaWiki]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Liste d'a poste de MediaWiki]",
 
-'about'         => 'Sus a',
-'article'       => 'Pàgene de le condenute',
-'newwindow'     => "(iapre jndr'à 'na fenestra nova)",
-'cancel'        => 'Scangìlle',
-'qbfind'        => 'Cirche',
-'qbedit'        => 'Cange',
-'qbpageoptions' => 'Pàgene currende',
-'qbpageinfo'    => 'Condeste',
-'qbmyoptions'   => 'Pàggene mije',
-'moredotdotdot' => 'De cchiù...',
-'mypage'        => "'A pàgene meje",
-'mytalk'        => 'Ngazzaminde mie',
-'anontalk'      => "'Ngazzaminde pe quiste IP",
-'navigation'    => 'Naveghesce',
-'and'           => 'e',
+'about'          => 'Sus a',
+'article'        => 'Pàgene de le condenute',
+'newwindow'      => "(iapre jndr'à 'na fenestra nova)",
+'cancel'         => 'Scangìlle',
+'qbfind'         => 'Cirche',
+'qbedit'         => 'Cange',
+'qbpageoptions'  => 'Pàgene currende',
+'qbpageinfo'     => 'Condeste',
+'qbmyoptions'    => 'Pàggene mije',
+'qbspecialpages' => 'Pàggene speciale',
+'moredotdotdot'  => 'De cchiù...',
+'mypage'         => "'A pàgene meje",
+'mytalk'         => 'Ngazzaminde mie',
+'anontalk'       => "'Ngazzaminde pe quiste IP",
+'navigation'     => 'Naveghesce',
+'and'            => 'e',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -183,6 +190,10 @@ $messages = array(
 'portal-url'           => "Project:Portale d'a Comunitate",
 'privacy'              => "Reghele p'a praivasi",
 'privacypage'          => "Project:Regole p'a praivasi",
+
+'badaccess' => 'Errore de permesse',
+
+'versionrequired' => "Jè richieste 'a versione $1 de MediaUicchi",
 
 'ok'                   => 'OK',
 'pagetitle'            => '$1 - {{SITENAME}}',
@@ -312,6 +323,8 @@ Pe piacere, colleghete n'otra vota quanne l'è ricevute.",
 Apprime ca otre e-mail avènene mannete a 'u cunde tue, tu ha seguì le 'struzione ca stonne jndr'à l'e-mail, pe confermà l'iscrizione.",
 'mailerror'               => "Errore mannanne 'a mail: $1",
 'emailauthenticated'      => "L'indirizze e-mail ca ne date ha state autendichete 'u sciurne $2 a le $3.",
+'emailconfirmlink'        => "Conferme l'indirizze e-mail tue",
+'createaccount-title'     => "Ccreazzione de 'u cunde utende pe {{SITENAME}}",
 'loginlanguagelabel'      => 'Lénga: $1',
 
 # Password reset dialog
@@ -401,10 +414,15 @@ Pe piacere considere de cangià 'a pàgene a stuezze stuezze ausanne le sezione.
 'nocreatetext'           => "{{SITENAME}} ha restritte l'abilità de ccrejà pàggene nuéve.
 Tu puè turnà rrete e cangià 'na pàgene ca già esiste, oppure puè [[Special:UserLogin|trasè o ccrejà n'utende nuéve]].",
 'nocreate-loggedin'      => 'Non ge tine le permesse pe ccreja pàggene nuève.',
+'permissionserrors'      => 'Errore de permesse',
 'recreate-deleted-warn'  => "'''Fa Attenziò: Ste ccreje 'na pàgene ca avère state scangillete apprime.'''
 
 Vide bbuene ce l'ha ccrejà sta pàgene, ce non ge sinde sicure vide l'archivie de le scangellaziune:",
+'deletelog-fulllog'      => "Vide l'archivie comblete",
 'edit-conflict'          => 'conflitte de cangiaminde.',
+
+# Account creation failure
+'cantcreateaccounttitle' => "Non ge puè ccrejà 'nu cunde utende",
 
 # History pages
 'viewpagelogs'        => "Vide l'archivie pe sta pàgene",
@@ -433,6 +451,7 @@ Leggenda: (cur) = differenze cu 'a versiona corrende,
 'rev-delundel'           => 'fa vedè/scunne',
 'revdelete-hide-comment' => 'Scunne le commende de le cangiaminde',
 'revdelete-log'          => 'Archivie de le commende:',
+'revdel-restore'         => "Cange 'a visibilità",
 'revdelete-content'      => 'condenute',
 'revdelete-summary'      => "cange 'u riepileghe",
 'revdelete-uname'        => "nome de l'utende",
@@ -521,6 +540,7 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'dateformat'        => "Formete d'a date",
 'datetime'          => 'Date e ore',
 'saveprefs'         => 'Reggistre',
+'resetprefs'        => "Pulizze le cangiaminde ca non g'è reggistrete",
 'oldpassword'       => 'Vécchie passuord:',
 'newpassword'       => 'Nova passuord:',
 'retypenew'         => "Scrive n'otra vota 'a passuord nova:",

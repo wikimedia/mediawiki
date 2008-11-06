@@ -64,7 +64,7 @@ $messages = array(
 'qbmyoptions'    => "Leppana iya'",
 'qbspecialpages' => 'Leppa spésiala',
 'mypage'         => "Leppana iya'",
-'mytalk'         => "bicara iya'",
+'mytalk'         => 'bicara iyya',
 'anontalk'       => 'Bicara IP',
 'navigation'     => 'napigasi',
 'and'            => 'éréngé',
@@ -203,6 +203,30 @@ $messages = array(
 'anontalkpagetext' => "----''Ini adalah halaman diskusi untuk pengguna anonim yang belum membuat rekening atau tidak menggunakannya. Karena tidak membuat rekening, kami terpaksa memakai alamat IP untuk mengenalinya. Alamat IP seperti ini dapat dipakai oleh beberapa pengguna yang berbeda. Jika Anda adalah pengguna anonim dan merasa mendapatkan komentar-komentar yang tidak berkaitan dengan anda, kami anjurkan untuk [[Special:UserLogin|membuat rekening atau masuk log]] untuk menghindari kerancuan dengan pengguna anonim lain.''",
 'editing'          => 'Mapadécéŋ $1',
 
+# History pages
+'previousrevision'    => '←Revisi riolo',
+'currentrevisionlink' => 'Revisi tannapa',
+'deletedrev'          => '[ripeddé]',
+'historysize'         => '($1 {{PLURAL:$1|bita|bita}})',
+
+# Revision feed
+'history-feed-item-nocomment' => '$1 ri $2', # user at time
+
+# Revision deletion
+'rev-deleted-comment'    => '(komentar ripeddé)',
+'rev-deleted-user'       => '(ripeddéni aseŋna papakeë)',
+'rev-deleted-event'      => '(ripeddéni liseë)',
+'rev-delundel'           => "pakitaï/tapo'",
+'revdelete-selected'     => "'''{{PLURAL:$2|Revisi|Revisi-revisi}} ripiléna [[$1]]ë:'''",
+'logdelete-selected'     => "'''{{PLURAL:$1|Log|Log-log}} ripilé:'''",
+'revdelete-hide-text'    => 'Tapoïki text revisië',
+'revdelete-hide-comment' => 'Tapo komentar mapadecéŋ',
+'revdelete-hide-user'    => 'Tapo aseŋ papakéna/IPna papadéceŋë',
+'revdelete-log'          => 'Komentarna logeë:',
+'revdelete-content'      => 'lise',
+'revdelete-uname'        => 'aseŋ papaké',
+'revdelete-hid'          => 'tapo $1',
+
 # Diffs
 'editundo'             => 'undo',
 'diff-movedto'         => 'naésu ri $1',
@@ -228,6 +252,14 @@ $messages = array(
 'searchsubtitleinvalid' => "Massappa iko '''$1'''",
 'viewprevnext'          => 'Ita ($1) ($2) ($3)',
 'search-redirect'       => '(redirect $1)',
+
+# Preferences page
+'prefs-watchlist'   => 'Watchlist',
+'prefs-misc'        => 'Misc',
+'saveprefs'         => 'Taro',
+'oldpassword'       => 'Pasewodo matoa:',
+'textboxsize'       => 'Mapadécéŋ',
+'searchresultshead' => 'Masappa',
 
 # Recent changes
 'recentchanges'   => 'Pappakinra tanappa',
@@ -276,7 +308,7 @@ $messages = array(
 
 # Miscellaneous special pages
 'ancientpages' => 'Leppa talloa',
-'move'         => 'ᨙᨕᨔᨘ',
+'move'         => 'Paleccé',
 'movethispage' => 'Paleccé leppa iyyé',
 
 # Special:Log
@@ -325,14 +357,20 @@ Apak ida ronnak mappedde halamang édé ri daftar jagaan, klik \"Mangedda jaga\"
 'contribslink'       => 'kontrib',
 
 # Move page
-'articleexists'           => 'Halamang béla ida pile ni ujuk, a dek essa.
+'articleexists'             => 'Halamang béla ida pile ni ujuk, a dek essa.
 Silakan pile aseng laing.',
-'1movedto2'               => '[[$1]] ésuk ri [[$2]]',
-'1movedto2_redir'         => 'maleccé [[$1]] lao ri [[$2]] paké redirect',
-'movelogpage'             => 'Log leccé',
-'movereason'              => 'Saba:',
-'delete_and_move'         => 'Peddé nappa paleccé',
-'delete_and_move_confirm' => "Iyé', peddé iyaro leppa",
+'1movedto2'                 => '[[$1]] ésuk ri [[$2]]',
+'1movedto2_redir'           => '[[$1]] rileccé lao ri[[$2]] paké redirect',
+'movelogpage'               => 'Log leccé',
+'movereason'                => 'Saba:',
+'delete_and_move'           => 'Peddé nappa paleccé',
+'delete_and_move_text'      => '==Mapeddé riperelu==
+Leppa destinasi "[[:$1]]" purani eŋka.
+Eloko peddéï supaya weddiŋi mapalecé?',
+'delete_and_move_confirm'   => "Iyé', peddé iyaro leppa",
+'delete_and_move_reason'    => 'Ripeddé supaya weddiŋi mapalecé',
+'immobile-source-namespace' => 'Leppa-leppa rilaleŋna namespace "$1"ë de\'na ullé ripaleccé',
+'immobile-source-page'      => "Iyyedé leppaë de'na ullé ripaleccé.",
 
 # Namespace 8 related
 'allmessages'        => 'Maneng pappaseng',
@@ -367,6 +405,20 @@ Silakan pile aseng laing.',
 'version-specialpages' => 'Leppa spésiala',
 
 # Special:SpecialPages
-'specialpages' => 'Halamang Istimewa',
+'specialpages'                 => 'Leppa spésiala',
+'specialpages-note'            => '----
+* Leppa spésiala normal
+* <span class="mw-specialpagerestricted">Leppa spésiala terbatas</span>',
+'specialpages-group-other'     => 'Leppa spésiala laiŋë',
+'specialpages-group-login'     => 'Log attama / mendaftar',
+'specialpages-group-changes'   => 'Pinrana tanappaë sibawa logeë',
+'specialpages-group-users'     => 'Papaké sibawa hak-hak',
+'specialpages-group-pages'     => 'Sininna leppaë',
+'specialpages-group-pagetools' => 'Tool leppaë',
+'specialpages-group-wiki'      => 'Data sibawa tool wiki',
+'specialpages-group-spam'      => 'Tool spam',
+
+# Special:BlankPage
+'blankpage' => 'Leppa kosoŋë',
 
 );

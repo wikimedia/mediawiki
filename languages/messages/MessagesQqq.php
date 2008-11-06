@@ -911,68 +911,69 @@ Shown as legend of the second fieldset of the tab 'Search' in [[Special:Preferen
 'grouppage-suppress'      => 'Link to project page of this group, displayed on [[Special:ListUsers/suppress]].',
 
 # Rights
-'right-read'             => '{{doc-right}}
+'right-read'               => '{{doc-right}}
 Basic right to read any page.',
-'right-edit'             => '{{doc-right}}
+'right-edit'               => '{{doc-right}}
 Basic right to edit pages that are not protected.',
-'right-createpage'       => '{{doc-right}}
+'right-createpage'         => '{{doc-right}}
 Basic right to create pages. The right to edit discussion/talk pages is {{msg|right-createtalk|pl=yes}}.',
-'right-createtalk'       => '{{doc-right}}
+'right-createtalk'         => '{{doc-right}}
 Basic right to create discussion/talk pages. The right to edit other pages is {{msg|right-createpage|pl=yes}}.',
-'right-createaccount'    => '{{doc-right}}
+'right-createaccount'      => '{{doc-right}}
 The right to [[Special:CreateAccount|create a user account]].',
-'right-minoredit'        => '{{doc-right}}
+'right-minoredit'          => '{{doc-right}}
 The right to use the "This is a minor edit" checkbox. See {{msg|minoredit|pl=yes}} for the message used for that checkbox.',
-'right-move'             => '{{doc-right}}
+'right-move'               => '{{doc-right}}
 The right to move any page that is not protected from moving.',
-'right-upload'           => '{{doc-right}}
+'right-move-rootuserpages' => '{{doc-right}}',
+'right-upload'             => '{{doc-right}}
 The right to [[Special:Upload|upload]] a file (this includes images, media, audio, ...).',
-'right-reupload'         => '{{doc-right}}
+'right-reupload'           => '{{doc-right}}
 The right to upload a file under a file name that already exists. Related messages: {{msg|right-upload|pl=yes}}, {{msg|right-reupload-own|pl=yes}} and {{msg|right-reupload-shared|pl=yes}}.',
-'right-reupload-own'     => '{{doc-right}}
+'right-reupload-own'       => '{{doc-right}}
 Right to upload a file under a file name that already exists, and that the same user has uploaded. Related messages: {{msg|right-upload|pl=yes}} and {{msg|right-reupload|pl=yes}}.',
-'right-reupload-shared'  => '{{doc-right}}
+'right-reupload-shared'    => '{{doc-right}}
 The right to upload a file locally under a file name that already exists in a shared database (for example Commons). Related messages: {{msg|right-upload|pl=yes}} and {{msg|right-reupload|pl=yes}}.',
-'right-purge'            => '{{doc-right}}
+'right-purge'              => '{{doc-right}}
 The right to use <tt>&action=purge</tt> in the URL, without needing to confirm it (by default, anonymous users need to confirm it).',
-'right-autoconfirmed'    => "{{doc-right}}
+'right-autoconfirmed'      => "{{doc-right}}
 If your account is older than [[mw:Manual:\$wgAutoConfirmAge|wgAutoConfirmAge]] and if you have at least [[mw:Manual:\$wgAutoConfirmCount|\$wgAutoConfirmCount]] edits, you are in the '''group \"autoconfirmed\"''' (note that you can't see this group at [[Special:ListUsers]]).
 If you are in that group, you have (by default) the '''right \"autoconfirmed\"'''. With this right, you can for example <!-- I think this right includes more things --> edit semi-protected pages.",
-'right-nominornewtalk'   => '{{doc-right}}
+'right-nominornewtalk'     => '{{doc-right}}
 If someone with this right (bots by default) edits a user talk page and marks it as minor (requires {{msg|right-minoredit|pl=yes}}), the user will not get a notification "You have new messages".',
-'right-deleterevision'   => 'This is a user right that is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
+'right-deleterevision'     => 'This is a user right that is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
 It can be given to the group {{msg|group-sysop|pl=yes}}, although this right is disabled by default.
 
 See also
 * {{msg|right-suppressionlog|pl=yes}}
 * {{msg|right-hideuser|pl=yes}}
 * {{msg|right-suppressrevision|pl=yes}}',
-'right-suppressrevision' => 'This is a user right that is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
+'right-suppressrevision'   => 'This is a user right that is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
 It can be given to the group {{msg|group-suppress|pl=yes}}, although that group is disabled by default.
 
 See also
 * {{msg|right-suppressionlog|pl=yes}}
 * {{msg|right-hideuser|pl=yes}}
 * {{msg|right-deleterevision|pl=yes}}',
-'right-suppressionlog'   => 'This is a user right that is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
+'right-suppressionlog'     => 'This is a user right that is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
 It can be given to the group {{msg|group-suppress|pl=yes}}, although that group is disabled by default.
 
 See also
 * {{msg|right-suppressrevision|pl=yes}}
 * {{msg|right-hideuser|pl=yes}}
 * {{msg|right-deleterevision|pl=yes}}',
-'right-hideuser'         => 'This is a user right that is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
+'right-hideuser'           => 'This is a user right that is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
 It can be given to the group {{msg|group-suppress|pl=yes}}, although that group is disabled by default.
 
 See also
 * {{msg|right-suppressionlog|pl=yes}}
 * {{msg|right-suppressrevision|pl=yes}}
 * {{msg|right-deleterevision|pl=yes}}',
-'right-ipblock-exempt'   => 'This user automatically 
+'right-ipblock-exempt'     => 'This user automatically 
 bypasses IP blocks, auto-blocks and range blocks - so I presume - but I am uncertain',
-'right-markbotedits'     => '{{doc-right}}
+'right-markbotedits'       => '{{doc-right}}
 A user with this right can mark a roll-back edit as a bot edit by adding <tt>&bot=1</tt> to the URL (not by default).',
-'right-noratelimit'      => '{{doc-right}}
+'right-noratelimit'        => '{{doc-right}}
 The rate limits have no effect on the groups that have this right. Rate limits is a restriction that you can only do X actions (edits, moves, etc.) in Y number of seconds (set by [[mw:Manual:$wgRateLimits|$wgRateLimits]]).',
 
 # User rights log
@@ -1925,9 +1926,9 @@ See also [[MediaWiki:Lastmodifiedat/{{SUBPAGENAME}}]].', # $1 date, $2 time, $3 
 'mw_math_mathml' => 'In user preferences.',
 
 # Patrol log
-'patrol-log-page'    => 'Name of log.',
-'patrol-log-line'    => 'Text of notes on entries in the [[Special:Log|patrol log]]. $1 is the reference number of the revision in [[Mediawiki:patrol-log-diff]]. $2 is the page title. $3 appears to be [[Mediawiki:Patrol-log-auto]] (at least sometimes).',
-'patrol-log-auto'    => 'Automated edit summary when patrolling.
+'patrol-log-page'      => 'Name of log.',
+'patrol-log-line'      => 'Text of notes on entries in the [[Special:Log|patrol log]]. $1 is the reference number of the revision in [[Mediawiki:patrol-log-diff]]. $2 is the page title. $3 appears to be [[Mediawiki:Patrol-log-auto]] (at least sometimes).',
+'patrol-log-auto'      => 'Automated edit summary when patrolling.
 
 {{Identical|Automatic}}',
 'log-show-hide-patrol' => '* $1 is one of {{msg|show}} or {{msg|hide}}',
