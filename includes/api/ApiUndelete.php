@@ -67,7 +67,7 @@ class ApiUndelete extends ApiBase {
 			$params['timestamps'][$i] = wfTimestamp(TS_MW, $ts);
 
 		$pa = new PageArchive($titleObj);
-		$dbw = wfGetDb(DB_MASTER);
+		$dbw = wfGetDB(DB_MASTER);
 		$dbw->begin();
 		$retval = $pa->undelete((isset($params['timestamps']) ? $params['timestamps'] : array()), $params['reason']);
 		if(!is_array($retval))

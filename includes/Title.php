@@ -1623,7 +1623,7 @@ class Title {
 
 		wfProfileIn( __METHOD__ );
 
-		$dbr = wfGetDb( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 
 		if ( $this->getNamespace() == NS_IMAGE ) {
 			$tables = array ('imagelinks', 'page_restrictions');
