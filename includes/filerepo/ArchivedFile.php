@@ -251,7 +251,7 @@ class ArchivedFile
 	 */
 	public function getTimestamp() {
 		$this->load();
-		return $this->timestamp;
+		return wfTimestamp( TS_MW, $this->timestamp );
 	}
 
 	/**
