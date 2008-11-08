@@ -128,7 +128,6 @@ class ForeignAPIRepo extends FileRepo {
 			// We need the same filename as the remote one :)
 			$fileName = ltrim( substr( $foreignUrl, strrpos( $foreignUrl, '/' ),
 								strlen ( $foreignUrl ) ), '/' );
-			//die( var_dump( $fileName ) );
 			$path = $this->apiThumbCacheDir . '/' .
 						$name . '/';
 			if ( !is_dir($wgUploadDirectory . '/' . $path) ) {
