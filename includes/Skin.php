@@ -1304,8 +1304,8 @@ END;
 
 		if ( $type == 'detect' ) {
 			$diff = $wgRequest->getVal( 'diff' );
-
-			if ( is_null( $diff ) && !$wgArticle->isCurrent() && wfMsgForContent( 'history_copyright' ) !== '-' ) {
+			$isCur = $wgArticle && $wgArticle->isCurrent();
+			if ( is_null( $diff ) && !$isCur && wfMsgForContent( 'history_copyright' ) !== '-' ) {
 				$type = 'history';
 			} else {
 				$type = 'normal';
