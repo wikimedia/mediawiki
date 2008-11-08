@@ -197,6 +197,7 @@ The following extensions are migrated into MediaWiki 1.14:
   image scaling to be completely disabled for specific media types, via the 
   $wgMediaHandlers configuration variable.
 * New 'AbortDiffCache' hook can be used to cancel the caching of a diff
+* (bug 15835) Added Content-Style-Type meta tag
 
 === Bug fixes in 1.14 ===
 
