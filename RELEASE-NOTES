@@ -323,6 +323,8 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 5101) Image from Commons doesn't show up when searched in Wikipedia search box
 * (bug 4362) [[MediaWiki:History copyright]] no more used with most recent
   revision when passing oldid parameter in the url
+* (bug 16265) When caching thumbs with the ForeignApiRepo, we now use the same filename
+  as the remote site.
 
 === API changes in 1.14 ===
 
