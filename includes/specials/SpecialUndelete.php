@@ -461,25 +461,10 @@ class PageArchive {
 				'ar_title'     => $this->title->getDBkey(),
 				$oldones ),
 			__METHOD__,
-			/* options */ array(
-				'ORDER BY' => 'ar_timestamp' )
+			/* options */ array( 'ORDER BY' => 'ar_timestamp' )
 			);
 		$ret = $dbw->resultObject( $result );
-
 		$rev_count = $dbw->numRows( $result );
-		if( $rev_count ) {
-			# We need to seek around as just using DESC in the ORDER BY
-			# would leave the revisions inserted in the wrong order
-			$first = $ret->fetchObject();
-			$ret->seek( $rev_count - 1 );
-			$last = $ret->fetchObject();
-			// We don't handle well changing the top revision's settings
-			if( !$unsuppress && $last->ar_deleted && $last->ar_timestamp > $previousTimestamp ) {
-				wfDebug( __METHOD__.": restoration would result in a deleted top revision\n" );
-				return false;
-			}
-			$ret->seek( 0 );
-		}
 
 		if( $makepage ) {
 			$newid  = $article->insertOn( $dbw );
@@ -541,10 +526,17 @@ class PageArchive {
 		if( $revision ) {
 			// Attach the latest revision to the page...
 			$wasnew = $article->updateIfNewerOn( $dbw, $revision, $previousRevId );
-
 			if( $newid || $wasnew ) {
 				// Update site stats, link tables, etc
 				$article->createUpdates( $revision );
+				// We don't handle well with top revision deleted
+				if( $revision->getVisibility() ) {
+					$dbw->update( 'revision', 
+						array( 'rev_deleted' => 0 ),
+						array( 'rev_id' => $revision->getId() ),
+						__METHOD__
+					);
+				}
 			}
 
 			if( $newid ) {
