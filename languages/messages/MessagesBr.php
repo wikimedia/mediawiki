@@ -1236,7 +1236,7 @@ Kit e darempred gant [[Special:ListUsers/sysop|unan eus merourien ar reizhiad]].
 'upload-misc-error'       => 'Fazi kargañ dianav',
 'upload-misc-error-text'  => "Ur fazi dianav zo bet e-ser kargañ. 
 Gwiriit eo reizh an URL hag e c'hall bezañ tizhet ha klaskit en-dro. 
-Ma talc'h ar gudenn, kit e darempred gant [[Special:ListUsers/sysop|merourien ar reizhiad.",
+Ma talc'h ar gudenn, kit e darempred gant [[Special:ListUsers/sysop|merourien ar reizhiad]].",
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => "N'eus ket bet gallet tizhout an URL",

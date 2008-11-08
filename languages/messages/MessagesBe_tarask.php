@@ -2766,7 +2766,7 @@ $1',
 'exif-gpslongitude-w' => 'заходняй даўгаты',
 
 'exif-gpsstatus-a' => 'Адбываецца вымярэньне',
-'exif-gpsstatus-v' => 'Ацэнка мажлівасьць ўзаемадзеяньня сетак',
+'exif-gpsstatus-v' => 'Ацэнка мажлівасьці ўзаемадзеяньня сетак',
 
 'exif-gpsmeasuremode-2' => 'Вымярэньне двухмерных каардынатаў',
 'exif-gpsmeasuremode-3' => 'Вымярэньне трохмерных каардынатаў',
@@ -2821,17 +2821,17 @@ $5
 'invalidateemail'          => 'Адмяніць пацьверджаньне адрасу электроннай пошты',
 
 # Scary transclusion
-'scarytranscludedisabled' => '[«Interwiki transcluding» быў адключаны]',
-'scarytranscludefailed'   => '[Памылка атрыманьня шаблёна $1]',
-'scarytranscludetoolong'  => '[Занадта даўгі адрас URL]',
+'scarytranscludedisabled' => '[Улучэньне інтэрвікі было адключанае]',
+'scarytranscludefailed'   => '[Памылка атрыманьня шаблёну $1]',
+'scarytranscludetoolong'  => '[Занадта даўгі URL-адрас]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">Трак-бэкі для гэтай старонкі:<br />
+'trackbackbox'      => '<div id="mw_trackbacks">Trackback для гэтай старонкі:<br />
 $1
 </div>',
 'trackbackremove'   => ' ([$1 выдаліць])',
-'trackbacklink'     => 'Трак-бэк',
-'trackbackdeleteok' => 'Трак-бэк быў выдалены.',
+'trackbacklink'     => 'Trackback',
+'trackbackdeleteok' => 'Trackback быў пасьпяхова выдалены.',
 
 # Delete conflict
 'deletedwhileediting' => "'''Увага''': Гэтая старонка была выдаленая пасьля таго, як Вы пачалі яе рэдагаваньне!",
@@ -2845,7 +2845,7 @@ $1
 # action=purge
 'confirm_purge_button' => 'Так',
 'confirm-purge-top'    => 'Ачысьціць кэш гэтай старонкі?',
-'confirm-purge-bottom' => 'Ачыстка кэша старонкі прывядзе да адлюстраваньня яе апошняй вэрсіі.',
+'confirm-purge-bottom' => 'Ачыстка кэшу старонкі прывядзе да адлюстраваньня яе апошняй вэрсіі.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← папярэдняя старонка',
@@ -2877,9 +2877,9 @@ $1
 # Live preview
 'livepreview-loading' => 'Загрузка…',
 'livepreview-ready'   => 'Загрузка… Гатова!',
-'livepreview-failed'  => 'Не атрымалася ўжыць хуткі перадпрагляд! Паспрабуйце ўжыць звычайны перадпрагляд.',
-'livepreview-error'   => 'Не атрымалася далучыцца да: $1 "$2".
-Паспрабуйце ўжыць звычайны перадпрагляд.',
+'livepreview-failed'  => 'Не атрымалася ўжыць хуткі папярэдні прагляд! Паспрабуйце ўжыць звычайны папярэдні прагляд.',
+'livepreview-error'   => 'Не атрымалася далучыцца да: $1 «$2».
+Паспрабуйце ўжыць звычайны папярэдні прагляд.',
 
 # Watchlist editor
 'watchlistedit-normal-title'  => 'Рэдагаваць сьпіс назіраньня',

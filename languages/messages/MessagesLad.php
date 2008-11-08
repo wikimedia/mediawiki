@@ -16,6 +16,7 @@ $fallback = 'es';
 
 $messages = array(
 # User preference toggles
+'tog-underline'            => 'Subrayar linkes',
 'tog-justify'              => 'Atacanar paragrafos',
 'tog-hideminor'            => 'Esconder ediciones chiquiticas de los «trocamientos frescos»',
 'tog-showtoolbar'          => 'Amostrár la barra de edision',

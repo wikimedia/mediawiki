@@ -267,6 +267,8 @@ $messages = array(
 'mypreferences' => 'میریاں تانگاں',
 'retypenew'     => 'نئی کنجی دوبارہ لکھو:',
 
+'grouppage-sysop' => '{{ns:project}}:ایڈمنسٹریٹر',
+
 # User rights log
 'rightslog' => 'ورتن والے دے حقاں دی لاگ',
 
@@ -585,7 +587,8 @@ $messages = array(
 'metadata-collapse' => 'تفصیلات چھپاؤ',
 
 # External editor support
-'edit-externally' => 'بارلا سافٹ ویئر استعال کردے ہوۓ اے فائل لکھو',
+'edit-externally'      => 'بارلا سافٹ ویئر استعال کردے ہوۓ اے فائل لکھو',
+'edit-externally-help' => 'زیادہ معلومات آسطے اے [http://www.mediawiki.org/wiki/Manual:External_editors] ویکھو۔',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'سارے',

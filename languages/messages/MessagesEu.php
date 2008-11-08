@@ -1014,6 +1014,7 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 'right-minoredit'            => 'Aldaketa txiki gisa markatu',
 'right-move'                 => 'Oriak mugitu',
 'right-move-subpages'        => 'Mugitu orrialdeak bere azpiorrialdeekin',
+'right-move-rootuserpages'   => 'Erro-lankidearen orriak mugitu',
 'right-suppressredirect'     => 'Ez sortu birzuzenketa bat antzinako izenetik orrialdea mugitzerakoan',
 'right-upload'               => 'Fitxategia igo',
 'right-reupload'             => 'Jada existitzen den artxibo bat gainidatzi',
@@ -1117,6 +1118,7 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 'rc_categories'                     => 'Kategorietara mugatu ("|" karaktereaz banandu)',
 'rc_categories_any'                 => 'Edozein',
 'newsectionsummary'                 => '/* $1 */ atal berria',
+'rc-enhanced-hide'                  => 'Xehetasunak ezkutatu',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Lotutako orrialdeen aldaketak',

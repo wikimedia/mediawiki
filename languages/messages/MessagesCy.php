@@ -1195,6 +1195,7 @@ Os yw'r ddelwedd ar ei lawn faint gallwch barhau i'w uwchlwytho. Os na, newidiwc
 'fileexists-shared-forbidden' => "Mae ffeil gyda'r enw hwn eisoes yn bodoli yn y storfa ffeiliau cyfrannol.
 Ewch nôl ac uwchlwythwch y ffeil gydag enw gwahanol iddo.
 [[Image:$1|thumb|center|$1]]",
+'file-exists-duplicate'       => "Dyblgeb yw'r ffeil hwn o'r {{PLURAL:$1|ffeil|ffeil|ffeiliau|ffeiliau|ffeiliau|ffeiliau}} sy'n dilyn:",
 'successfulupload'            => 'Wedi llwyddo uwchlwytho',
 'uploadwarning'               => 'Rhybudd uwchlwytho',
 'savefile'                    => "Cadw'r ffeil",
@@ -2266,11 +2267,15 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-gpslongitude'                => 'Hydred',
 'exif-gpsaltituderef'              => 'Cyfeirnod uchder',
 'exif-gpsaltitude'                 => 'Uchder',
+'exif-gpsstatus'                   => 'Statws y derbynnydd',
 'exif-gpsmeasuremode'              => 'Modd mesur',
 'exif-gpsdop'                      => 'Manylder mesur',
+'exif-gpsspeedref'                 => 'Uned cyflymder',
+'exif-gpsspeed'                    => 'Cyflymder y derbynnydd GPS',
 'exif-gpstrack'                    => 'Cyfeiriad symud',
 'exif-gpsimgdirection'             => 'Cyfeiriad y ddelwedd',
 'exif-gpsdestdistance'             => 'Pellter i ben y daith',
+'exif-gpsareainformation'          => "Enw'r parth GPS",
 'exif-gpsdatestamp'                => 'Dyddiad GPS',
 
 'exif-unknowndate' => 'Dyddiad anhysbys',
@@ -2311,6 +2316,10 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-lightsource-18'  => 'Lamp hirgoes B',
 'exif-lightsource-19'  => 'Lamp hirgoes C',
 'exif-lightsource-255' => "Tarddiad arall i'r goleuni",
+
+# Flash modes
+'exif-flash-fired-0' => 'Ni daniodd y fflach',
+'exif-flash-fired-1' => 'Taniodd y fflach',
 
 'exif-focalplaneresolutionunit-2' => 'modfeddi',
 

@@ -542,7 +542,7 @@ L'account hà statu criatu currettamenti. Nun ti scurdari di pirsunalizzari li [
 'throttled-mailpassword'     => 'Na password nova hà già statu mannata di menu di {{PLURAL:$1|1 ura|$1 uri}}. Pi privèniri abbusi, la funzioni "Manna password nova" pò èssiri usata sulu una vota ogni {{PLURAL:$1|1 ura|$1 uri}}.',
 'mailerror'                  => 'Erruri nta lu mannu dû missaggiu: $1',
 'acct_creation_throttle_hit' => 'Semu spiacenti, ma hai già criatu {{PLURAL:$1|1 account|$1 account}}. Nun poi criàrinni àutri.',
-'emailauthenticated'         => 'Lu nnirizzu e-mail hà statu cunfirmatu lu $1.',
+'emailauthenticated'         => 'Lu nnirizzu e-mail fu cunfirmatu lu $2 ê $3.',
 'emailnotauthenticated'      => 'Lu tò ndrizzu imeil nun hà statu ancora autinticatu. Nun vannu a èssiri mannati missaggi imeil pi sti funzioni.',
 'noemailprefs'               => "Innicari un ndirizzu e-mail p'attivari sti funzioni.",
 'emailconfirmlink'           => 'Cunfirmari lu tò ndrizzu imeil',
@@ -622,7 +622,7 @@ Nun poi usari la carattirìstica 'manna n'email a st'utenti' siddu nun è spicif
 Lu tò nnirizzu IP attuali è $3, e lu nùmmiru ID dû bloccu è #$5. 
 
 Spicìfica tutti li dittagghi pricidenti nta quarsiasi addumannata di chiarimenti.",
-'autoblockedtext'                  => "Lu tò nnirizzu IP hà statu bluccatu automaticamenti picchì fu usatu di n'àutru utenti, chi fu bluccatu di $1.
+'autoblockedtext'                  => "Lu tò nnirizzu IP hà statu bluccatu automaticamenti pirchì fu usatu di n'àutru utenti, chi fu bluccatu di $1.
 Lu mutivu è chistu:
 
 :''$2''
@@ -633,9 +633,10 @@ Lu mutivu è chistu:
 
 Poi cuntattari a $1 o a n'àutru [[{{MediaWiki:Grouppage-sysop}}|amministraturi]] pi discùtiri dû bloccu.
 
-Nun poi usari la carattirìstica 'manna n'email a st'utenti' siddu nun è spicificatu nu nnirizzu email vàlidu nta li toi [[Special:Preferences|prifirenzi]] e siddu nun hai statu bluccatu di l'usari.
+Nun poi usari la carattirìstica 'manna n'email a st'utenti' siddu nun è spicificatu nu nnirizzu email vàlidu ntra li tòi [[Special:Preferences|prifirenzi]] e siddu nun fusti bluccatu di l'usari.
 
-L'ID dû bloccu è $5. Pi favuri nclùdilu nta tutti li dumanni.",
+Lu tò nnirizzu IP attuali è $3, e l'ID dû bloccu è $5. 
+Pi favuri nclùdilu nta tutti li dumanni chi fai.",
 'blockednoreason'                  => 'nudda motivazioni ndicata',
 'blockedoriginalsource'            => "Di sèquitu veni ammustratu lu còdici surgenti dâ pàggina '''$1''':",
 'blockededitsource'                => "Di sèquitu vèninu ammustrati li '''canciamenti appurtati''' â pàggina '''$1''':",
@@ -1801,7 +1802,7 @@ Li mpostazzioni correnti pâ pàggina sugnu <strong>$1</strong>:',
 'undeletehistory'              => "Siddu ricùpiri st'artìculu, tutti li sò rivisioni vèninu ricupirati ntâ cronoluggìa rilativa. Siddu doppu la cancillazzioni na pàggina nova cu lu stissu tìtulu fu criata, li rivisioni ricupirati sunnu nziriti ntâ cronoluggìa e la virsioni attuarmenti online dâ pàggina nun veni canciata.",
 'undeleterevdel'               => 'Lu riprìstinu nun è fattu siddu cancella parziarmenti la virsioni currenti dâ pàggina o dû file. Nta stu casu, è nicissariu livari lu signu di spunta o lu scuramentu dê rivisioni cancillati cchiù ricenti.',
 'undeletehistorynoadmin'       => "Sta pàggina hà statu cancillata. Lu mutivu dâ cancillazzioni è ammustratu ccà sutta, nzèmmula a li dittagghi di l'utenti c'hà canciatu sta pàggina prima dâ cancillazzioni. Lu testu cuntinutu ntê rivisioni cancillati è dispunìbbili sulu a li amministratura.",
-'undelete-revision'            => 'Rivisioni scancillata di $1 (scrivuta lu $2 di $3):',
+'undelete-revision'            => 'Rivisioni scancillata di $1, nsiruta lu $4$ ê $5$ di $3$:',
 'undeleterevision-missing'     => "Rivisioni errata o mancanti. Lu culligamentu è erratu oppuru la rivisioni hà statu già ripristinata o eliminata di l'archiviu.",
 'undelete-nodiff'              => "Nun s'havi attruvatu na rivisioni pricidenti.",
 'undeletebtn'                  => 'Riprìstina!',
@@ -1986,9 +1987,9 @@ $1 è già bluccatu. Vòi caciari li mpustazzioni?',
 'databasenotlocked'   => 'Lu database nun è bluccatu.',
 
 # Move page
-'move-page'               => 'Spustamentu di $1',
-'move-page-legend'        => 'Sposta la pàggina',
-'movepagetext'            => "Usannu lu mòdulu ccà sutta vui canciati lu nomu dâ pàggina, e spustati tutta la sò storia versu la pàggina nova. Lu tìtulu vecchiu addiventa na pàggina di ''redirect'' versu lu tìtulu novu.
+'move-page'                 => 'Spustamentu di $1',
+'move-page-legend'          => 'Sposta la pàggina',
+'movepagetext'              => "Usannu lu mòdulu ccà sutta vui canciati lu nomu dâ pàggina, e spustati tutta la sò storia versu la pàggina nova. Lu tìtulu vecchiu addiventa na pàggina di ''redirect'' versu lu tìtulu novu.
 Li liami â pàggina vecchia nun càncianu.
 Assicuràtivi ca lu spustamentu nun havi criatu [[Special:DoubleRedirects|redirect duppi]] o [[Special:BrokenRedirects|redirect rumputi]]. Vui siti rispunzàbbili dî liami chi avìssiru a puntari â pàggina giusta.
 
@@ -1997,46 +1998,49 @@ Chistu signìfica chi vui putiti rinuminari la pàggina cu lu nomu vecchiu si av
 
 '''Accura!'''
 Chistu pò èssiri nu canciamentu dràsticu pi na pàggina pupulari; aviti a èssiri sicuri di capiri li cunziquenzi prima di cuntinuari.",
-'movepagetalktext'        => "La pàggina di discussioni assuciata, siddu esisti, veni spustata automaticamenti nzèmmula, '''a menu chi:'''
+'movepagetalktext'          => "La pàggina di discussioni assuciata, siddu esisti, veni spustata automaticamenti nzèmmula, '''a menu chi:'''
 *Na pàggina nun-vacanti di discussioni già esisti cu lu nomu novu,
 *Hai disilizziunatu lu quatratu ccà sutta.
 
 Nta sti casi, tu hai a spustari o agghiùnciri manuarmenti la pàggina di discussioni.",
-'movearticle'             => 'Sposta la pàggina',
-'movenologin'             => 'Accessu nun effittuatu',
-'movenologintext'         => "Lu spustamentu dî pàggini è cunzintitu sulu a l'utenti riggistrati c'hannu esiquitu l'[[Special:UserLogin|accessu]] a lu situ.",
-'movenotallowed'          => 'Nun hai li pirmessi nicissari a lu spustamentu dê pàggini.',
-'cant-move-user-page'     => 'Nun aviti lu pirmissu nicissàriu pi spustari li pàggini utenti.',
-'cant-move-to-user-page'  => 'Nun aviti li pirmessi nicessàrii pô spustamentu dâ pàggina supra na pàggina utenti (cu eccizzioni di na suttapàggina utenti).',
-'newtitle'                => 'Cu lu tìtulu novu di',
-'move-watch'              => 'Talìa sta pàggina',
-'movepagebtn'             => 'Sposta la pàggina',
-'pagemovedsub'            => 'Lu spustamentu riniscìu.',
-'movepage-moved'          => '<big>\'\'\'"$1" fu spustata a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'           => "Na pàggina cu stu nomu esisti già, oppuru lu nomu scigghiutu nun è vàlidu. Scègghiri n'àutru tìtulu.",
-'cantmove-titleprotected' => 'Nun putiti spustari la pàggina pirchì lu tìtulu novu fu prutiggiutu pi mpidìrini la criazzioni',
-'talkexists'              => "'''La pàggina hà statu spustata currettamenti, ma nun hà statu pussìbbili spustari la pàggina di discussioni pirchì nn'esisti già n'àutra cu lu tìtulu novu. Ntigrari manuarmenti li cuntinuti dî dui pàggini.'''",
-'movedto'                 => 'spustata a',
-'movetalk'                => 'Sposta puru la pàggina di discussioni, eventuarmenti.',
-'move-subpages'           => 'Sposta tutti li suttapàggini, si è pussìbbili',
-'move-talk-subpages'      => 'Sposta tutti li suttapàggini di discussioni, si è pussìbbili',
-'movepage-page-exists'    => 'La pàggina $1 esisti ggià e nun pò èssiri autumaticamenti suprascrivuta.',
-'movepage-page-moved'     => 'La pàggina $1 fu spustata a $2.',
-'movepage-page-unmoved'   => 'La pàggina $1 nun pò èssiri spustata a $2.',
-'movepage-max-pages'      => 'Vinni spustatu lu nùmmuru màssimu di $1 {{PLURAL:$1|pàggina|pàggini}} e non si ponnu cchiù spustari àutri pàggini autumàticamenti.',
-'1movedto2'               => '[[$1]] spustatu a [[$2]]',
-'1movedto2_redir'         => '[[$1]] spustatu a [[$2]] supra rinnirizzamentu',
-'movelogpage'             => 'Spustamenti',
-'movelogpagetext'         => "Chistu è l'alencu dî pàggini spustati.",
-'movereason'              => 'Pi stu mutivu',
-'revertmove'              => 'riprìstina',
-'delete_and_move'         => 'Scancella e sposta',
-'delete_and_move_text'    => '==Richiesta di cancillazzioni==
+'movearticle'               => 'Sposta la pàggina',
+'movenologin'               => 'Accessu nun effittuatu',
+'movenologintext'           => "Lu spustamentu dî pàggini è cunzintitu sulu a l'utenti riggistrati c'hannu esiquitu l'[[Special:UserLogin|accessu]] a lu situ.",
+'movenotallowed'            => 'Nun hai li pirmessi nicissari a lu spustamentu dê pàggini.',
+'cant-move-user-page'       => 'Nun aviti lu pirmissu nicissàriu pi spustari li pàggini utenti.',
+'cant-move-to-user-page'    => 'Nun aviti li pirmessi nicessàrii pô spustamentu dâ pàggina supra na pàggina utenti (cu eccizzioni di na suttapàggina utenti).',
+'newtitle'                  => 'Cu lu tìtulu novu di',
+'move-watch'                => 'Talìa sta pàggina',
+'movepagebtn'               => 'Sposta la pàggina',
+'pagemovedsub'              => 'Lu spustamentu riniscìu.',
+'movepage-moved'            => '<big>\'\'\'"$1" fu spustata a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'             => "Na pàggina cu stu nomu esisti già, oppuru lu nomu scigghiutu nun è vàlidu. Scègghiri n'àutru tìtulu.",
+'cantmove-titleprotected'   => 'Nun putiti spustari la pàggina pirchì lu tìtulu novu fu prutiggiutu pi mpidìrini la criazzioni',
+'talkexists'                => "'''La pàggina hà statu spustata currettamenti, ma nun hà statu pussìbbili spustari la pàggina di discussioni pirchì nn'esisti già n'àutra cu lu tìtulu novu. Ntigrari manuarmenti li cuntinuti dî dui pàggini.'''",
+'movedto'                   => 'spustata a',
+'movetalk'                  => 'Sposta puru la pàggina di discussioni, eventuarmenti.',
+'move-subpages'             => 'Sposta tutti li suttapàggini, si è pussìbbili',
+'move-talk-subpages'        => 'Sposta tutti li suttapàggini di discussioni, si è pussìbbili',
+'movepage-page-exists'      => 'La pàggina $1 esisti ggià e nun pò èssiri autumaticamenti suprascrivuta.',
+'movepage-page-moved'       => 'La pàggina $1 fu spustata a $2.',
+'movepage-page-unmoved'     => 'La pàggina $1 nun pò èssiri spustata a $2.',
+'movepage-max-pages'        => 'Vinni spustatu lu nùmmuru màssimu di $1 {{PLURAL:$1|pàggina|pàggini}} e non si ponnu cchiù spustari àutri pàggini autumàticamenti.',
+'1movedto2'                 => '[[$1]] spustatu a [[$2]]',
+'1movedto2_redir'           => '[[$1]] spustatu a [[$2]] supra rinnirizzamentu',
+'movelogpage'               => 'Spustamenti',
+'movelogpagetext'           => "Chistu è l'alencu dî pàggini spustati.",
+'movereason'                => 'Pi stu mutivu',
+'revertmove'                => 'riprìstina',
+'delete_and_move'           => 'Scancella e sposta',
+'delete_and_move_text'      => '==Richiesta di cancillazzioni==
 
 La pàggina di distinazzioni "[[:$1]]" asisti già. S\'addisìa cancillàrila pi rènniri pussìbbili lu spustamentu?',
-'delete_and_move_confirm' => 'Sì, suvrascrivi la pàggina asistenti',
-'delete_and_move_reason'  => 'Cancillata pi rènniri pussìbbili lu spustamentu',
-'selfmove'                => 'Lu tìtulu di distinazzioni nziritu è agguali a chiddu di pruvinenza; mpossibbili spustari la pàggina su idda stissa.',
+'delete_and_move_confirm'   => 'Sì, suvrascrivi la pàggina asistenti',
+'delete_and_move_reason'    => 'Cancillata pi rènniri pussìbbili lu spustamentu',
+'selfmove'                  => 'Lu tìtulu di distinazzioni nziritu è agguali a chiddu di pruvinenza; mpossibbili spustari la pàggina su idda stissa.',
+'immobile-source-namespace' => 'Non pòi spustari li pàggini nto namespace "$1"',
+'immobile-target-namespace' => 'Nun pòi spustari li pàggini ntô namespace "$1"',
+'immobile-source-page'      => 'Sta pàggina nun pò èssiri spustata.',
 
 # Export
 'export'            => 'Esporta pàggini',

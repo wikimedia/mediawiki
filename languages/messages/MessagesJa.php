@@ -1974,7 +1974,7 @@ $NEWPAGE
 'blocklogpage'                    => '投稿ブロック記録',
 'blocklog-fulllog'                => '投稿ブロック記録全てを見る',
 'blocklogentry'                   => '"$1" を $2 ブロックしました $3',
-'reblock-logentry'                => '[[$1]] のブロックの設定を $2 に変更しました $3',
+'reblock-logentry'                => '"[[$1]]" のブロックの設定を $2 に変更しました $3',
 'blocklogtext'                    => 'このページは投稿ブロックと解除の記録です。自動的に投稿ブロックされたIPアドレスは記録されていません。現時点で有効な投稿ブロックは[[Special:IPBlockList|ブロック中の利用者一覧]]をご覧ください。',
 'unblocklogentry'                 => '"$1" をブロック解除しました',
 'block-log-flags-anononly'        => '匿名のみ',

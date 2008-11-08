@@ -563,6 +563,10 @@ Tu vari atgriezties atpakaļ un izmainīt esošu lapu, vai arī [[Special:UserLo
 
 Tev vajadzētu pārliecināties, vai ir lietderīgi turpināt izmainīt šo lapu.
 Te var apskatīties dzēšanas reģistru, kurā jābūt datiem par to kas, kad un kāpēc šo lapu izdzēsa.",
+'deleted-notice'            => 'Šī lapa ir tikusi izdzēsta.
+Te var apskatīties dzēšanas reģistra fragmentu, lai noskaidrotu kurš, kāpēc un kad to izdzēsa.',
+'edit-already-exists'       => 'Nevar izveidot jaunu lapu.
+Tā jau eksistē.',
 
 # "Undo" feature
 'undo-success' => 'Šo izmaiņu var atcellt.

@@ -2902,7 +2902,7 @@ Kérlek erősítsd meg, hogy tényleg újra akarod-e írni a lapot.",
 # action=purge
 'confirm_purge_button' => 'OK',
 'confirm-purge-top'    => 'Törlöd az oldal gyorsítótárban (cache) található változatát?',
-'confirm-purge-bottom' => 'A lap ürítésével törlődik a gyorsítótárban lévő változat, és a legújabb változat fog megjelenni.',
+'confirm-purge-bottom' => 'A lap ürítésével törlődik annak gyorsítótárazott változata, és a legújabb tartalom fog megjelenni.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← előző oldal',

@@ -1465,7 +1465,7 @@ PICT # misc.
 'filehist-revert'                => 'врати',
 'filehist-current'               => 'моментална',
 'filehist-datetime'              => 'Датум/Време',
-'filehist-thumb'                 => 'мини-слика',
+'filehist-thumb'                 => 'Мини-слика',
 'filehist-thumbtext'             => 'Мини-слика за верзија од $1',
 'filehist-nothumb'               => 'Нема мини-слика',
 'filehist-user'                  => 'Корисник',
@@ -2456,7 +2456,7 @@ $1',
 'show-big-image-thumb' => '<small>Големина на овој приказ: $1 × $2 пиксели</small>',
 
 # Special:NewImages
-'newimages'             => 'Галерија на нови слики',
+'newimages'             => 'Галерија на нови податотеки',
 'imagelisttext'         => "Следи листа на '''$1''' {{PLURAL:$1|податотека|податотеки}} подредени $2.",
 'newimages-summary'     => 'Оваа специјална страница ги покажува скоро подигнатите податотеки.',
 'newimages-legend'      => 'Филтрирај',
