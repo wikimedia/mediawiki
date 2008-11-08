@@ -638,7 +638,6 @@ class Title {
 	public function getSubpageUrlForm() {
 		$text = $this->getSubpageText();
 		$text = wfUrlencode( str_replace( ' ', '_', $text ) );
-		$text = str_replace( '%28', '(', str_replace( '%29', ')', $text ) ); # Clean up the URL; per below, this might not be safe
 		return( $text );
 	}
 
@@ -648,14 +647,7 @@ class Title {
 	 */
 	public function getPrefixedURL() {
 		$s = $this->prefix( $this->mDbkeyform );
-		$s = str_replace( ' ', '_', $s );
-
-		$s = wfUrlencode ( $s ) ;
-
-		# Cleaning up URL to make it look nice -- is this safe?
-		$s = str_replace( '%28', '(', $s );
-		$s = str_replace( '%29', ')', $s );
-
+		$s = wfUrlencode( str_replace( ' ', '_', $s ) );
 		return $s;
 	}
 
