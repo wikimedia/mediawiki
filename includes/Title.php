@@ -68,7 +68,7 @@ class Title {
 	var $mWatched = null;      	  ///< Is $wgUser watching this page? null if unfilled, accessed through userIsWatching()
 	var $mLength = -1;                ///< The page length, 0 for special pages
 	var $mRedirect = null;            ///< Is the article at this title a redirect?
-	var $mNotificationTimestamp = array(); ///< Associative array of ID -> timestamp/NULL
+	var $mNotificationTimestamp = array(); ///< Associative array of user ID -> timestamp/false
 	//@}
 
 
