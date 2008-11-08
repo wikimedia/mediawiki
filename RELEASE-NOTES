@@ -330,6 +330,8 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 8345) Don't autosummarize where a redirect was left unchanged
 * Made thumb caching in ForeignApiFile objects integrated with normal thumb path
   naming (/thumbs/hash/file), retired 'apiThumbCacheDir' as a result. 
+* (bug 5530) Consistency between character encoding in {{PAGENAMEE}},
+  {{SUBPAGENAMEE}} and {{FULLPAGENAMEE}}
 
 === API changes in 1.14 ===
 
