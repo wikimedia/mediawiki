@@ -1490,7 +1490,8 @@ class OutputPage {
 	
 	protected function addDefaultMeta() {
 		global $wgVersion;
-		$this->addMeta( "generator", "MediaWiki $wgVersion" );
+		$this->addMeta( 'http:Content-Style-Type', 'text/css' ); //bug 15835
+		$this->addMeta( 'generator', "MediaWiki $wgVersion" );
 		
 		$p = "{$this->mIndexPolicy},{$this->mFollowPolicy}";
 		if( $p !== 'index,follow' ) {
