@@ -3432,8 +3432,9 @@ class Article {
 		# Decide what kind of autosummary is needed.
 
 		# Redirect autosummaries
+		$ot = Title::newFromRedirect( $oldtext );
 		$rt = Title::newFromRedirect( $newtext );
-		if( is_object( $rt ) ) {
+		if( is_object( $rt ) && ( !is_object( $ot ) || ( !$rt->equals( $ot ) || $ot->getFragment() != $rt->getFragment() ) ) ) {
 			return wfMsgForContent( 'autoredircomment', $rt->getFullText() );
 		}
 
@@ -3443,14 +3444,14 @@ class Article {
 			global $wgContLang;
 			$truncatedtext = $wgContLang->truncate(
 				str_replace("\n", ' ', $newtext),
-				max( 0, 200 - strlen( wfMsgForContent( 'autosumm-new') ) ),
+				max( 0, 200 - strlen( wfMsgForContent( 'autosumm-new' ) ) ),
 				'...' );
 			return wfMsgForContent( 'autosumm-new', $truncatedtext );
 		}
 
 		# Blanking autosummaries
 		if( $oldtext != '' && $newtext == '' ) {
-			return wfMsgForContent('autosumm-blank');
+			return wfMsgForContent( 'autosumm-blank' );
 		} elseif( strlen( $oldtext ) > 10 * strlen( $newtext ) && strlen( $newtext ) < 500) {
 			# Removing more than 90% of the article
 			global $wgContLang;
