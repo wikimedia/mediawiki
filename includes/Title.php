@@ -2866,7 +2866,7 @@ class Title {
 		# Cache some fields we may want
 		$this->mRedirect = $row ? (bool)$row->page_is_redirect : false;
 		$this->mLatestID = $row ? intval($row->page_latest) : false;
-		if( $this->mRedirect ) {
+		if( !$this->mRedirect ) {
 			return false;
 		}
 		# Does the article have a history?
