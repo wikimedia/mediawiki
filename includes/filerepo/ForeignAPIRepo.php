@@ -124,15 +124,21 @@ class ForeignAPIRepo extends FileRepo {
 		}
 		else {
 			$foreignUrl = $this->getThumbUrl( $name, $width, $height );
-			$path = $this->apiThumbCacheDir . '/' . $this->name . '/' .
+			
+			// We need the same filename as the remote one :)
+			$fileName = ltrim( substr( $foreignUrl, strrpos( $foreignUrl, '/' ),
+								strlen ( $foreignUrl ) ), '/' );
+			//die( var_dump( $fileName ) );
+			$path = $this->apiThumbCacheDir . '/' .
 						$name . '/';
 			if ( !is_dir($wgUploadDirectory . '/' . $path) ) {
 				wfMkdirParents($wgUploadDirectory . '/' . $path);
 			}
-			$localUrl =  $wgServer . $wgUploadPath . '/' . $path . $width . 'px-' . $name;
+			
+			$localUrl =  $wgServer . $wgUploadPath . '/' . $path . $fileName;
 			$thumb = Http::get( $foreignUrl );
 			# FIXME: Delete old thumbs that aren't being used. Maintenance script?
-			file_put_contents($wgUploadDirectory . '/' . $path . $width . 'px-' . $name, $thumb );
+			file_put_contents($wgUploadDirectory . '/' . $path . $fileName, $thumb );
 			$wgMemc->set( $key, $localUrl, $this->apiThumbCacheExpiry );
 			wfDebug( __METHOD__ . " got local thumb $localUrl, saving to cache \n" );
 			return $localUrl;
