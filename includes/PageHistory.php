@@ -167,10 +167,10 @@ class PageHistory {
 			$encYear = '';
 		}
 		return Xml::label( wfMsg( 'year' ), 'year' ) . ' '.
-		Xml::input( 'year', 4, $encYear, array('id' => 'year', 'maxlength' => 4) ) .
-			' '.
-		Xml::label( wfMsg( 'month' ), 'month' ) . ' '.
-		Xml::monthSelector( $encMonth, -1 );
+			Xml::input( 'year', 4, $encYear, array('id' => 'year', 'maxlength' => 4) ) .
+				' '.
+			Xml::label( wfMsg( 'month' ), 'month' ) . ' '.
+			Xml::monthSelector( $encMonth, -1 );
 	}
 
 	/**
@@ -542,12 +542,12 @@ class PageHistory {
 	function feedEmpty() {
 		global $wgOut;
 		return new FeedItem(
-		wfMsgForContent( 'nohistory' ),
-		$wgOut->parse( wfMsgForContent( 'history-feed-empty' ) ),
-		$this->mTitle->getFullUrl(),
-		wfTimestamp( TS_MW ),
-			'',
-		$this->mTitle->getTalkPage()->getFullUrl() );
+			wfMsgForContent( 'nohistory' ),
+			$wgOut->parse( wfMsgForContent( 'history-feed-empty' ) ),
+			$this->mTitle->getFullUrl(),
+			wfTimestamp( TS_MW ),
+				'',
+			$this->mTitle->getTalkPage()->getFullUrl() );
 	}
 
 	/**
@@ -577,12 +577,12 @@ class PageHistory {
 		}
 
 		return new FeedItem(
-		$title,
-		$text,
-		$this->mTitle->getFullUrl( 'diff=' . $rev->getId() . '&oldid=prev' ),
-		$rev->getTimestamp(),
-		$rev->getUserText(),
-		$this->mTitle->getTalkPage()->getFullUrl() );
+			$title,
+			$text,
+			$this->mTitle->getFullUrl( 'diff=' . $rev->getId() . '&oldid=prev' ),
+			$rev->getTimestamp(),
+			$rev->getUserText(),
+			$this->mTitle->getTalkPage()->getFullUrl() );
 	}
 
 	/**
