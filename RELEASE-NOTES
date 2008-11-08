@@ -325,6 +325,7 @@ The following extensions are migrated into MediaWiki 1.14:
   revision when passing oldid parameter in the url
 * (bug 16265) When caching thumbs with the ForeignApiRepo, we now use the same filename
   as the remote site.
+* (bug 8345) Don't autosummarize where a redirect was left unchanged
 
 === API changes in 1.14 ===
 
