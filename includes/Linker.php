@@ -227,11 +227,8 @@ class Linker {
 		}
 
 		$ret = null;
-		if( wfRunHooks( 'LinkEnd', array( $this, $target, $options, &$text,
-		&$attribs, &$ret ) ) ) {
-			$ret = Xml::openElement( 'a', $attribs )
-				. $text
-				. Xml::closeElement( 'a' );
+		if( wfRunHooks( 'LinkEnd', array( $this, $target, $options, &$text, &$attribs, &$ret ) ) ) {
+			$ret = Xml::openElement( 'a', $attribs ) . $text . Xml::closeElement( 'a' );
 		}
 
 		wfProfileOut( __METHOD__ );
