@@ -102,10 +102,9 @@ class ForeignAPIFile extends File {
 	 * Only useful if we're locally caching thumbs anyway...
 	 */
 	function getThumbPath( $suffix = '' ) {
-		$ret = null;
 		if ( $this->repo->canCacheThumbs() ) {
 			global $wgUploadDirectory;
-			$path = $wgUploadDirectory . '/' . $this->repo->apiThumbCacheDir . '/' . $this->repo->name . '/';
+			$path = $wgUploadDirectory . '/thumb/' . $this->getHashPath( $this->getName() );
 			if ( $suffix ) {
 				$path = $path . $suffix . '/';
 			}

@@ -15,7 +15,7 @@ abstract class FileRepo {
 	var $thumbScriptUrl, $transformVia404;
 	var $descBaseUrl, $scriptDirUrl, $articleUrl, $fetchDescription, $initialCapital;
 	var $pathDisclosureProtection = 'paranoid';
-	var $descriptionCacheExpiry, $apiThumbCacheExpiry, $apiThumbCacheDir;
+	var $descriptionCacheExpiry, $apiThumbCacheExpiry, $hashLevels;
 
 	/**
 	 * Factory functions for creating new files
@@ -32,7 +32,7 @@ abstract class FileRepo {
 		$this->initialCapital = true; // by default
 		foreach ( array( 'descBaseUrl', 'scriptDirUrl', 'articleUrl', 'fetchDescription',
 			'thumbScriptUrl', 'initialCapital', 'pathDisclosureProtection', 
-			'descriptionCacheExpiry', 'apiThumbCacheExpiry', 'apiThumbCacheDir' ) as $var )
+			'descriptionCacheExpiry', 'apiThumbCacheExpiry', 'hashLevels' ) as $var )
 		{
 			if ( isset( $info[$var] ) ) {
 				$this->$var = $info[$var];
@@ -237,6 +237,14 @@ abstract class FileRepo {
 			}
 			return $path;
 		}
+	}
+	
+	/**
+	 * Get a relative path including trailing slash, e.g. f/fa/
+	 * If the repo is not hashed, returns an empty string
+	 */
+	function getHashPath( $name ) {
+		return self::getHashPathForLevel( $name, $this->hashLevels );
 	}
 
 	/**

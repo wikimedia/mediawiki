@@ -58,6 +58,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   $wgDefaultSkin.
 * Added $wgEnotifUseRealName, which allows UserMailer to send out e-mails based
   on the user's real name if one is set. Defaults to false (use the username)
+* Removed the 'apiThumbCacheDir' option from $wgForeignFileRepos (only used in
+  ForeignAPIRepo)
 
 === Migrated extensions ===
 The following extensions are migrated into MediaWiki 1.14:
@@ -323,9 +325,11 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 5101) Image from Commons doesn't show up when searched in Wikipedia search box
 * (bug 4362) [[MediaWiki:History copyright]] no more used with most recent
   revision when passing oldid parameter in the url
-* (bug 16265) When caching thumbs with the ForeignApiRepo, we now use the same filename
-  as the remote site.
+* (bug 16265) When caching thumbs with the ForeignApiRepo, we now use the same 
+  filename as the remote site.
 * (bug 8345) Don't autosummarize where a redirect was left unchanged
+* Made thumb caching in ForeignApiFile objects integrated with normal thumb path
+  naming (/thumbs/hash/file), retired 'apiThumbCacheDir' as a result. 
 
 === API changes in 1.14 ===
 

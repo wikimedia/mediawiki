@@ -31,10 +31,12 @@ class ForeignAPIRepo extends FileRepo {
 		}
 	}
 
+/**
+ * No-ops
+ */
 	function storeBatch( $triplets, $flags = 0 ) {
 		return false;
 	}
-
 	function storeTemp( $originalName, $srcPath ) {
 		return false;
 	}
@@ -128,8 +130,7 @@ class ForeignAPIRepo extends FileRepo {
 			// We need the same filename as the remote one :)
 			$fileName = ltrim( substr( $foreignUrl, strrpos( $foreignUrl, '/' ),
 								strlen ( $foreignUrl ) ), '/' );
-			$path = $this->apiThumbCacheDir . '/' .
-						$name . '/';
+			$path = 'thumb/' . $this->getHashPath( $this->getName() );
 			if ( !is_dir($wgUploadDirectory . '/' . $path) ) {
 				wfMkdirParents($wgUploadDirectory . '/' . $path);
 			}
@@ -149,6 +150,6 @@ class ForeignAPIRepo extends FileRepo {
 	 * @return bool
 	 */
 	public function canCacheThumbs() {
-		return ( $this->apiThumbCacheExpiry > 0 && $this->apiThumbCacheDir );
+		return ( $this->apiThumbCacheExpiry > 0 );
 	}
 }
