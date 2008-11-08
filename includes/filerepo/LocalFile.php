@@ -1519,7 +1519,8 @@ class LocalFileRestoreBatch {
 		$result = $dbw->select( 'filearchive', '*',
 			$conditions,
 			__METHOD__,
-			array( 'ORDER BY' => 'fa_timestamp DESC' ) );
+			array( 'ORDER BY' => 'fa_timestamp DESC' )
+		);
 
 		$idsPresent = array();
 		$storeBatch = array();
@@ -1564,15 +1565,11 @@ class LocalFileRestoreBatch {
 					'minor_mime' => $row->fa_minor_mime,
 					'major_mime' => $row->fa_major_mime,
 					'media_type' => $row->fa_media_type,
-					'metadata' => $row->fa_metadata );
+					'metadata'   => $row->fa_metadata
+				);
 			}
 
 			if ( $first && !$exists ) {
-				// The live (current) version cannot be hidden!
-				if( !$this->unsuppress && $row->fa_deleted ) {
-					$this->file->unlock();
-					return $status;
-				}
 				// This revision will be published as the new current version
 				$destRel = $this->file->getRel();
 				$insertCurrent = array(
@@ -1589,7 +1586,13 @@ class LocalFileRestoreBatch {
 					'img_user'        => $row->fa_user,
 					'img_user_text'   => $row->fa_user_text,
 					'img_timestamp'   => $row->fa_timestamp,
-					'img_sha1'        => $sha1);
+					'img_sha1'        => $sha1
+				);
+				// The live (current) version cannot be hidden!
+				if( !$this->unsuppress && $row->fa_deleted ) {
+					$storeBatch[] = array( $deletedUrl, 'public', $destRel );
+					$this->cleanupBatch[] = $row->fa_storage_key;
+				}
 			} else {
 				$archiveName = $row->fa_archive_name;
 				if( $archiveName == '' ) {
