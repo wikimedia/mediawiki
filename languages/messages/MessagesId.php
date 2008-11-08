@@ -1568,7 +1568,7 @@ Juga tersedia [[Special:WhatLinksHere/$2|daftar selengkapnya]].',
 
 # Unused templates
 'unusedtemplates'     => 'Templat yang tak digunakan',
-'unusedtemplatestext' => 'Daftar berikut adalah semua halaman pada ruang nama {{ns:template}] yang tidak dipakai di halaman manapun.
+'unusedtemplatestext' => 'Daftar berikut adalah semua halaman pada ruang nama {{ns:template}} yang tidak dipakai di halaman manapun.
 Cek dahulu pranala lain ke templat tersebut sebelum menghapusnya.',
 'unusedtemplateswlh'  => 'pranala lain',
 

@@ -260,7 +260,7 @@ $messages = array(
 'create-this-page'  => 'Oħloq din il-paġna',
 'delete'            => 'Ħassar',
 'deletethispage'    => 'Ħassar din il-paġna',
-'undelete_short'    => 'Irkupra {{PLURAL:$1|modifika waħda|$1 modifika}}',
+'undelete_short'    => 'Irkupra {{PLURAL:$1|modifika waħda|$1 modifiki}}',
 'protect'           => 'Ipproteġi',
 'protect_change'    => 'Biddel',
 'protectthispage'   => 'Ipproteġi din il-paġna',
@@ -432,8 +432,7 @@ Jekk jogħġbok erġa' prova fi ftit minuti oħra.",
 'protectedpagetext'    => "Din il-paġna ġiet magħluqa sabiex twaqqaf kull tip ta' modifika.",
 'viewsourcetext'       => "Inti tista' tara jew tikopja l-kodiċi sorġenti ta' din il-paġna:",
 'protectedinterface'   => "Din il-paġna għanda element li tagħmel parti ''mill-interface'' ta' software, u għaldaqstant ġiet protetta sabiex ma jkunx hemm abbuż.",
-'editinginterface'     => "'''Avviż:''' Qiegħed tagħmel modifiki għal paġna li qegħda tintuża għal ''interface'' tal-messaġġi tas-software.
-Kull modifika f'din il-paġna se taffetwa l-apparenza tal-faċċata ta' l-utenti kollha.",
+'editinginterface'     => "'''Avviż:''' Qiegħed tagħmel modifiki lejn paġna li qegħdha tintuża biex tipprovdi interfaċċa għall-messaġġi tas-software. Kull modifika f'din il-paġna se taffetwa l-apparenza tal-faċċata tal-utenti kollha. Għat-traduzzjonijiet, ikkunsidra l-possibilità li tuża'  [http://translatewiki.net/wiki/Main_Page?setlang=mt Betawiki], il-proġett MediaWiki għal-lokalizzazzjoni.",
 'sqlhidden'            => '(SQL rikjesta moħbija)',
 'cascadeprotected'     => 'Din il-paġna ġiet protetta mill-modifiki, minħabba li tinkludi {{PLURAL:$1|paġni, li huwa|paġni, li huma}} protetti bil-preferenza tal-"kaskata" mixewla:
 $2',
@@ -910,7 +909,7 @@ Inti tista' [[:\$1|toħloq din il-paġna]].",
 'showingresultsnum'         => "Hawnhekk jinstabu {{PLURAL:$3|riżultat '''1'''|'''$3''' riżultati}} li jibdew bin-numru '''$2'''.",
 'showingresultstotal'       => "{{PLURAL:$3|Riżultati minn '''$1''' sa '''$3'''|Riżultati '''$1 - $2''' ta' '''$3'''}} jinstabu hawn taħt",
 'nonefound'                 => "'''Nota''': Awtomatikament, huma ftit spazji tal-isem imfittxija.
-Ipprova għamel prefiss għall-inkjesta tiegħek ma' ''kollha:'' sabiex tfittex il-kontenut kollu (inkluż paġni ta' diskussjoni, templates, etċ), jew uża l-ispazju tal-isem mixtieq bħala prefiss.",
+Ipprova għamel prefiss għall-inkjesta tiegħek ma' ''kollha:'' sabiex tfittex il-kontenut kollu (inkluż paġni ta' diskussjoni, mudelli, etċ), jew uża l-ispazju tal-isem mixtieq bħala prefiss.",
 'powersearch'               => 'Tfittxija avvanzata',
 'powersearch-legend'        => 'Tfittxija avvanzata',
 'powersearch-ns'            => "Fittex fin-''namespace'':",
@@ -1430,7 +1429,7 @@ Paġna tiġi stimata paġna ta' diżambigwazzjoni dawk kollha li jagħmlu użu m
 'booksources-search-legend' => 'Fittex għal sorsi tal-kotba',
 'booksources-isbn'          => 'Kodiċi ISBN:',
 'booksources-go'            => 'Mur',
-'booksources-text'          => "Hawn taħt hawn lista ta' links għal siti oħrajn li jbiegħu kotba ġodda użati, u jistgħu jkollhom aktar informazzjoni dwar il-kotba li qiegħed tfittex:",
+'booksources-text'          => "Hawn taħt hawn lista ta' ħoloq għal siti oħrajn li jbiegħu kotba ġodda u wżati, u jistgħu jkollhom aktar informazzjoni dwar il-kotba li qiegħed tfittex:",
 
 # Special:Log
 'specialloguserlabel'  => 'Utent:',
@@ -1438,7 +1437,7 @@ Paġna tiġi stimata paġna ta' diżambigwazzjoni dawk kollha li jagħmlu użu m
 'log'                  => 'Logs',
 'all-logs-page'        => 'Ir-reġistri kollha',
 'alllogstext'          => "Preżentazzjoni unifikata tar-reġistri relattivi għall-operazzjonijiet tal-upload, tħassir, protezzjoni, blokki u amministrazzjoni tas-sit. Tista' ddejjaq il-kriterji ta' riċerka billi tagħżel it-tip ta' reġistru, isem l-utent jew il-paġna affetwata.",
-'logempty'             => "Il-Log m'għandux elementi korrespondenti mat-tfittxija tiegħek.",
+'logempty'             => "Il-log m'għandu ebda element korrespondenti mat-tfittxija tiegħek.",
 'log-title-wildcard'   => "Tfittxija ta' titli li jibdew b'dan it-test",
 
 # Special:AllPages

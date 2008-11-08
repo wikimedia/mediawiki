@@ -201,6 +201,7 @@ $messages = array(
 'tog-diffonly'                => 'Não mostrar o conteúdo da página ao comparar duas edições',
 'tog-showhiddencats'          => 'Exibir categorias ocultas',
 'tog-noconvertlink'           => 'Desabilitar conversão de títulos de ligações',
+'tog-norollbackdiff'          => 'Omitir diferenças depois de desfazer edições em bloco',
 
 'underline-always'  => 'Sempre',
 'underline-never'   => 'Nunca',
@@ -1163,6 +1164,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'right-minoredit'            => 'Marcar edições como menores',
 'right-move'                 => 'Mover páginas',
 'right-move-subpages'        => 'Mover páginas com as suas subpáginas',
+'right-move-rootuserpages'   => 'Mover páginas raiz de utilizadores',
 'right-suppressredirect'     => 'Não criar um redireccionamento do nome antigo quando uma página é movida',
 'right-upload'               => 'Carregar ficheiros',
 'right-reupload'             => 'Sobrescrever um ficheiro existente',
@@ -1222,6 +1224,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'action-minoredit'            => 'marcar esta edição como uma edição menor',
 'action-move'                 => 'mover esta página',
 'action-move-subpages'        => 'mover esta página e suas subpáginas',
+'action-move-rootuserpages'   => 'mover páginas raiz de utilizadores',
 'action-upload'               => 'enviar este ficheiro',
 'action-reupload'             => 'sobrescrever o ficheiro existente',
 'action-reupload-shared'      => 'sobrescrever este ficheiro disponível em um repositório partilhado',
@@ -2010,6 +2013,7 @@ Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{MediaWik
 'ipbhidename'                     => 'Ocultar utilizador/IP do registo de bloqueios, lista de bloqueios e lista de utilizadores',
 'ipbwatchuser'                    => 'Vigiar as páginas de utilizador e de discussão deste utilizador',
 'ipballowusertalk'                => 'Permitir que este utilizador edite sua própria página de discussão mesmo estando bloqueado',
+'ipb-change-block'                => 'Re-bloquear o utilizador com estes parâmetros',
 'badipaddress'                    => 'Endereço de IP inválido',
 'blockipsuccesssub'               => 'Bloqueio bem sucedido',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] foi bloqueado.<br />
@@ -2049,6 +2053,7 @@ Consulte a [[Special:IPBlockList|lista de IPs bloqueados]] para rever os bloquei
 'blocklogpage'                    => 'Registo de bloqueio',
 'blocklog-fulllog'                => 'Registo completo de bloqueios',
 'blocklogentry'                   => '"[[$1]]" foi bloqueado com um tempo de expiração de $2 $3',
+'reblock-logentry'                => 'modificou parâmetros de bloqueio para [[$1]] com um tempo de expiração de $2 $3',
 'blocklogtext'                    => 'Este é um registo de acções de bloqueio e desbloqueio.
 Endereços IP sujeitos a bloqueio automático não são listados.
 Consulte a [[Special:IPBlockList|lista de IPs bloqueados]] para obter a lista de bloqueios e banimentos actualmente válidos.',
@@ -2829,6 +2834,7 @@ Você também pode [[Special:Watchlist/edit|editar a lista da forma convencional
 
 # Core parser functions
 'unknown_extension_tag' => '"$1" é uma tag de extensão desconhecida',
+'duplicate-defaultsort' => 'Aviso: A chave de ordenação padrão "$2" sobrepõe-se à anterior chave de ordenação padrão "$1".',
 
 # Special:Version
 'version'                          => 'Versão', # Not used as normal message but as header for the special page itself

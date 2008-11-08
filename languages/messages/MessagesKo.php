@@ -1330,7 +1330,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'doubleredirects'            => '이중 넘겨주기 목록',
 'doubleredirectstext'        => '각 열의 첫번째 문서는 두번째 문서로, 두번째 문서는 세번째 문서로 연결됩니다. 첫번째 문서를 마지막 문서로 연결해 주어야 합니다.',
 'double-redirect-fixed-move' => '넘겨주기 수정: [[$1]] 문서가 [[$2]] (으)로 이동되었습니다.',
-'double-redirect-fixer'      => '넘겨주기 수정',
+'double-redirect-fixer'      => '넘겨주기 수정꾼',
 
 'brokenredirects'        => '끊긴 넘겨주기 목록',
 'brokenredirectstext'    => '존재하지 않는 문서로 넘겨주기가 되어 있는 문서의 목록입니다:',

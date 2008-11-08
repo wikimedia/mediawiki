@@ -170,6 +170,7 @@ $messages = array(
 'tog-diffonly'                => 'Non monstrar le contento del pagina sub le comparation de duo versiones',
 'tog-showhiddencats'          => 'Monstrar categorias celate',
 'tog-noconvertlink'           => 'Disactivar conversion del titulo de ligamine',
+'tog-norollbackdiff'          => 'Omitter le diff post le execution de un revocation',
 
 'underline-always'  => 'Sempre',
 'underline-never'   => 'Nunquam',
@@ -2915,6 +2916,7 @@ Tu pote etiam [[Special:Watchlist/edit|usar le editor standard]].',
 
 # Core parser functions
 'unknown_extension_tag' => 'Etiquetta de extension incognite "$1"',
+'duplicate-defaultsort' => 'Attention: Le clave de ordination predefinite "$2" supplanta le anterior clave de ordination predefinite "$1".',
 
 # Special:Version
 'version'                          => 'Version', # Not used as normal message but as header for the special page itself

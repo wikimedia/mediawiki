@@ -263,6 +263,15 @@ $messages = array(
 'category-file-count-limited'    => 'Huic categoriae {{PLURAL:$1|est hic fasciculus|sunt hi $1 fasciculi}}.',
 'listingcontinuesabbrev'         => 'cont.',
 
+'mainpagetext'      => "<big>'''InterventusVici uisse sortis inaugurato exorator'''</big>",
+'mainpagedocfooter' => "Ari dep ab [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] orum oris are retiarius ab 
+Vici libellus.
+
+== Cognitio Cacer ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+
 'about'          => 'De hoc',
 'article'        => 'Pagina contenta continens',
 'newwindow'      => '(in fenestra nova aperietur)',
@@ -294,6 +303,7 @@ $messages = array(
 'searcharticle'     => 'Ire',
 'history'           => 'Historia paginae',
 'history_short'     => 'Historia',
+'updatedmarker'     => 'meliusculus cum ego annotinus adeo',
 'info_short'        => 'Informatio',
 'printableversion'  => 'Forma impressibilis',
 'permalink'         => 'Nexus perpetuus',
@@ -357,6 +367,7 @@ $messages = array(
 'helppage'             => 'Help:Adiutatum',
 'mainpage'             => 'Pagina prima',
 'mainpage-description' => 'Pagina prima',
+'policy-url'           => 'Excurro:Ductor',
 'portal'               => 'Porta communis',
 'portal-url'           => 'Project:Porta communis',
 'privacy'              => 'Consilium de secreto',
@@ -366,13 +377,19 @@ $messages = array(
 'badaccess-group0' => 'Non licet tibi actum quod petivisti agere.',
 'badaccess-groups' => 'Actum quod petivisti solum potest agi ab usoribus ex {{PLURAL:$2|grege|uno gregum}}: $1.',
 
+'versionrequired'     => 'Version $1 ab InternuntiusVici expeto',
+'versionrequiredtext' => 'Version $1 ab InternuntiusVici expeto uti ado paginae.
+Visere [[Special:Version|version paginae]].',
+
 'ok'                      => 'Age',
+'pagetitle'               => '$1 - {{SITENAME}}',
 'retrievedfrom'           => 'Receptum de "$1"',
 'youhavenewmessages'      => 'Habes $1 ($2).',
 'newmessageslink'         => 'nuntia nova',
 'newmessagesdifflink'     => 'dissimilia post mutationem ultimam',
 'youhavenewmessagesmulti' => 'Habes nuntia nova in $1',
 'editsection'             => 'recensere',
+'editsection-brackets'    => '[$1]',
 'editold'                 => 'recensere',
 'viewsourceold'           => 'fontem videre',
 'editlink'                => 'recensere',
@@ -384,6 +401,15 @@ $messages = array(
 'thisisdeleted'           => 'Videre aut restituere $1?',
 'viewdeleted'             => 'Visne conspicere $1?',
 'restorelink'             => '{{PLURAL:$1|unam emendationem deletam|$1 emendationes deletas}}',
+'feedlinks'               => 'Compasco:',
+'feed-invalid'            => 'Invalid subscription feed type.',
+'feed-unavailable'        => 'Syndication feeds are not available',
+'site-rss-feed'           => '$1 RSS Compasco',
+'site-atom-feed'          => '$1 Atomus Compasca',
+'page-rss-feed'           => '"$1" RSS Compasco',
+'page-atom-feed'          => '"$1" Atomus Compasco',
+'feed-atom'               => 'Atomus',
+'feed-rss'                => 'RSS',
 'red-link-title'          => '$1 (pagina nondum scripta est)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -1443,7 +1469,7 @@ Si pagina nova cum ipso nomine post deletionem creata est, emendationes restitut
 'ipblocklist-legend'           => 'Usorem obstructum quaerere',
 'ipblocklist-username'         => 'Nomen usoris vel locus IP:',
 'ipblocklist-sh-userblocks'    => '$1 obstructiones rationum',
-'ipblocklist-sh-tempblocks'    => 'obstructiones temporariae',
+'ipblocklist-sh-tempblocks'    => '$1 obstructiones temporarias',
 'ipblocklist-sh-addressblocks' => '$1 obstructiones locorum IP singulorum',
 'ipblocklist-submit'           => 'Quaerere',
 'blocklistline'                => '$1, $2 obstruxit $3 (exire $4)',

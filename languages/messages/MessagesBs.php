@@ -494,7 +494,7 @@ Molimo Vas da ovo prijavite [[Special:ListUsers/sysop|administratoru]] sa navođ
 'missingarticle-rev'   => '(revizija#: $1)',
 'missingarticle-diff'  => '(Razlika: $1, $2)',
 'readonly_lag'         => 'Baza podataka je zaključana dok se sekundarne baze podataka na serveru ne sastave sa glavnom.',
-'internalerror'        => 'Interna greška',
+'internalerror'        => 'Unutrašnja greška',
 'internalerror_info'   => 'Interna greška: $1',
 'filecopyerror'        => 'Ne može se kopirati "$1" na "$2".',
 'filerenameerror'      => 'Ne može se promjeniti ime fajla "$1" to "$2".',
@@ -679,7 +679,7 @@ Možda ste već promjenili šifru ili ste zatražili novu privremenu šifru.',
 'summary'                          => 'Sažetak',
 'subject'                          => 'Tema/naslov',
 'minoredit'                        => 'Ovo je mala izmjena',
-'watchthis'                        => 'Prati ovaj članak',
+'watchthis'                        => 'Prati ovu stranicu',
 'savearticle'                      => 'Sačuvaj',
 'preview'                          => 'Pregled stranice',
 'showpreview'                      => 'Prikaži izgled',
@@ -1266,36 +1266,39 @@ koje sadrže sve izraze koji se traže će se pojaviti u rezultatima).",
 'rightsnone'     => '(nema)',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-read'               => 'čitate ovu stranicu',
-'action-edit'               => 'uređujete ovu stranicu',
-'action-createpage'         => 'napravite stranicu',
-'action-createtalk'         => 'kreirate stranice za razgovor',
-'action-createaccount'      => 'napravite ovaj korisnički račun',
-'action-minoredit'          => 'da označite ovu izmjenu kao malu',
-'action-move'               => 'premjestite ovu stranicu',
-'action-move-subpages'      => 'premjestite ovu stranicu, i njene podstranice',
-'action-move-rootuserpages' => 'premjestite stranice osnovnog korisnika',
-'action-upload'             => 'postavljate ovu datoteku',
-'action-reupload'           => 'stavite novu verziju postojeće datoteke',
-'action-reupload-shared'    => 'postavite ovu datoteku iz zajedničke ostave',
-'action-upload_by_url'      => 'postavite ovu datoteku putem URL adrese',
-'action-writeapi'           => "koristite ''write API'' opciju",
-'action-delete'             => 'obrišete ovu stranicu',
-'action-deleterevision'     => 'obrišete ovu reviziju',
-'action-deletedhistory'     => 'gledate obrisanu historiju ove stranice',
-'action-browsearchive'      => 'pretražujete obrisane stranice',
-'action-undelete'           => 'vratite ovu stranicu',
-'action-suppressrevision'   => 'pregledate i vratite ovu skrivenu reviziju',
-'action-suppressionlog'     => 'vidite ovaj privatni zapis',
-'action-block'              => 'blokirate uređivanje ovog korisnika',
-'action-protect'            => 'promijeniti nivo zaštite za ovu stranicu',
-'action-import'             => 'uvozite ovu stranicu iz druge wiki',
-'action-importupload'       => 'uvezete ovu stranicu putem postavljanja datoteke',
-'action-patrol'             => 'označite izmjene drugih kao patrolirane',
-'action-autopatrol'         => 'Vaše izmjene budu označene kao patrolirane',
-'action-unwatchedpages'     => 'pregledate spisak nepraćenih stranica',
-'action-mergehistory'       => 'spajate historiju ove stranice',
-'action-siteadmin'          => 'zaključavate ili otključavate bazu podataka',
+'action-read'                 => 'čitate ovu stranicu',
+'action-edit'                 => 'uređujete ovu stranicu',
+'action-createpage'           => 'napravite stranicu',
+'action-createtalk'           => 'kreirate stranice za razgovor',
+'action-createaccount'        => 'napravite ovaj korisnički račun',
+'action-minoredit'            => 'da označite ovu izmjenu kao malu',
+'action-move'                 => 'premjestite ovu stranicu',
+'action-move-subpages'        => 'premjestite ovu stranicu, i njene podstranice',
+'action-move-rootuserpages'   => 'premjestite stranice osnovnog korisnika',
+'action-upload'               => 'postavljate ovu datoteku',
+'action-reupload'             => 'stavite novu verziju postojeće datoteke',
+'action-reupload-shared'      => 'postavite ovu datoteku iz zajedničke ostave',
+'action-upload_by_url'        => 'postavite ovu datoteku putem URL adrese',
+'action-writeapi'             => "koristite ''write API'' opciju",
+'action-delete'               => 'obrišete ovu stranicu',
+'action-deleterevision'       => 'obrišete ovu reviziju',
+'action-deletedhistory'       => 'gledate obrisanu historiju ove stranice',
+'action-browsearchive'        => 'pretražujete obrisane stranice',
+'action-undelete'             => 'vratite ovu stranicu',
+'action-suppressrevision'     => 'pregledate i vratite ovu skrivenu reviziju',
+'action-suppressionlog'       => 'vidite ovaj privatni zapis',
+'action-block'                => 'blokirate uređivanje ovog korisnika',
+'action-protect'              => 'promijeniti nivo zaštite za ovu stranicu',
+'action-import'               => 'uvozite ovu stranicu iz druge wiki',
+'action-importupload'         => 'uvezete ovu stranicu putem postavljanja datoteke',
+'action-patrol'               => 'označite izmjene drugih kao patrolirane',
+'action-autopatrol'           => 'Vaše izmjene budu označene kao patrolirane',
+'action-unwatchedpages'       => 'pregledate spisak nepraćenih stranica',
+'action-trackback'            => "pošaljete ''trackback''",
+'action-mergehistory'         => 'spajate historiju ove stranice',
+'action-userrights'           => 'uređujete sva korisnička prava',
+'action-userrights-interwiki' => 'uređujete korisnička prava korisnika na drugim wikijima',
+'action-siteadmin'            => 'zaključavate ili otključavate bazu podataka',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|promjena|promjene|promjena}}',
@@ -1347,6 +1350,16 @@ da bi ste slali fajlove.',
 'upload_directory_missing'    => 'Folder za postavljanje ($1) nedostaje i webserver ga ne može napraviti.',
 'upload_directory_read_only'  => 'Folder za postavljanje ($1) na webserveru je postavljen samo za čitanje.',
 'uploaderror'                 => 'Greška pri slanju',
+'uploadtext'                  => "Koristite formu ispod za postavljanje datoteka.
+Da bi ste vidjeli ili pretražili ranije postavljene datoteke, pogledajte [[Special:ImageList|spisak postavljenih datoteka]], ponovna postavljanja su također zapisana u [[Special:Log/upload|zapisnik postavljanja]], a brisanja u [[Special:Log/delete|zapisnik brisanja]].
+
+Da bi ste prikazali datoteku na stranici, koristite link na jedan od slijedećih načina:
+* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Datoteka.jpg]]</nowiki></tt>''' da upotrijebite potpunu veziju datoteke
+* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Datoteka.png|200px|thumb|lijevo|opis slike]]</nowiki></tt>''' da upotrijebite smanjeni prikaz širine 200 piksela unutar okvira, s lijevim poravnanjem i ''opisom slike''.
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Datoteka.ogg]]</nowiki></tt>''' za direkno povezivanje datoteke bez njenog prikazivanja",
+'upload-permitted'            => 'Podržane vrste datoteka: $1.',
+'upload-preferred'            => 'Preferirane vrste datoteka: $1.',
+'upload-prohibited'           => 'Zabranjene vrste datoteka: $1.',
 'uploadlog'                   => 'log slanja',
 'uploadlogpage'               => 'Protokol postavljanja',
 'uploadlogpagetext'           => 'Ispod je spisak najskorijih slanja.',
@@ -1356,21 +1369,72 @@ da bi ste slali fajlove.',
 'filestatus'                  => 'Status autorskih prava:',
 'filesource'                  => 'Izvor:',
 'uploadedfiles'               => 'Poslati fajlovi',
+'ignorewarning'               => 'Zanemari upozorenja i sačuvaj datoteku',
+'ignorewarnings'              => 'Zanemari sva upozorenja',
+'minlength1'                  => 'Ime datoteke mora imati barem jedno slovo.',
+'illegalfilename'             => 'Ime datoteke "$1" sadrži simbol koji nije dozvoljen u imenu datoteke.
+Molimo Vas da promijenite ime datoteke i pokušate da je ponovo postavite.',
 'badfilename'                 => 'Ime slike je promjenjeno u "$1".',
+'filetype-badmime'            => 'Datoteke MIME vrste "$1" nije dopušteno postavljati.',
+'filetype-unwanted-type'      => "'''\".\$1\"''' je nepoželjna vrsta datoteke.
+{{PLURAL:\$3|Preporučena vrsta|Preporučene vrste}} datoteke su \$2.",
+'filetype-banned-type'        => "'''\".\$1\"''' nije dopuštena vrsta datoteke.
+{{PLURAL:\$3|Dopuštena vrsta datoteke je|Dopuštene vrste datoteka su}} \$2.",
+'filetype-missing'            => 'Datoteka nema ekstenziju (poput ".jpg").',
+'large-file'                  => 'Preporučeno je da datoteke nisu veće od $1;
+Ova datoteka je velika $2.',
+'largefileserver'             => 'Ova datoteka je veća nego što server dopušta.',
 'emptyfile'                   => 'Fajl koji ste poslali je prazan. Ovo je moguće zbog greške u imenu fajla. Molimo Vas da provjerite da li stvarno želite da pošaljete ovaj fajl.',
 'fileexists'                  => 'Fajl sa ovim imenom već postoji.  Molimo Vas da provjerite <strong><tt>$1</tt></strong> ako niste sigurni da li želite da ga promjenite.',
+'filepageexists'              => 'Opis stranice za ovu datoteku je već napravljen ovdje <strong><tt>$1</tt></strong>, ali datoteka sa ovim nazivom trenutno ne postoji.
+Sažetak koji ste naveli neće se pojaviti na stranici opisa.
+Da bi se Vaš opis ovdje našao, potrebno je da ga ručno uredite',
+'fileexists-extension'        => 'Datoteka sa sličnim nazivom postoji:<br />
+Naziv datoteke koja se postavlja: <strong><tt>$1</tt></strong><br />
+Naziv postojeće datoteke: <strong><tt>$2</tt></strong><br />
+Molimo Vas da izaberete drugačiji naziv.',
+'fileexists-thumb'            => "<center>'''Postojeća datoteka'''</center>",
+'fileexists-thumbnail-yes'    => 'Izgleda da je datoteka slika smanjene veličine <i>("thumbnail")</i>.
+Molimo provjerite datoteku <strong><tt>$1</tt></strong>.<br />
+Ako je provjerena datoteka ista slika originalne veličine, nije potrebno postavljati dodatnu sliku.',
+'file-thumbnail-no'           => 'Naziv datoteke počinje sa <strong><tt>$1</tt></strong>.
+Izgleda da se radi o smanjenoj slici <i>("thumbnail")</i>.
+Ako imate ovu sliku u punoj rezoluciji, postavite nju; ili promijenite naslov ove datoteke.',
 'fileexists-forbidden'        => 'Fajl sa ovim imenom već postoji; molimo Vas da se vratite i pošaljete ovaj fajl pod novim imenom. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Datoteka sa ovim imenom već postoji u zajedničkoj ostavi; molimo Vas da se vratite i pošaljete ovu datoteku pod novim imenom. [[Image:$1|thumb|center|$1]]',
+'file-exists-duplicate'       => 'Ova datoteka je dvojnik {{PLURAL:$1|slijedećoj datoteci|slijedećim datotekama}}:',
 'successfulupload'            => 'Uspješno slanje',
 'uploadwarning'               => 'Upozorenje pri slanju',
 'savefile'                    => 'Sačuvaj fajl',
 'uploadedimage'               => 'poslato "[[$1]]"',
+'overwroteimage'              => 'postavljena nova verzija datoteke "[[$1]]"',
 'uploaddisabled'              => 'Slanje fajlova je isključeno',
 'uploaddisabledtext'          => 'Postavljanje datoteka je onemogućeno.',
 'uploadscripted'              => 'Ova datoteka sadrži HTML ili skriptni kod koji može izazvati grešku kod internet preglednika.',
+'uploadcorrupt'               => 'Datoteka je oštećena ili ima pogrešnu ekstenziju.
+Molimo Vas da provjerite datoteku i ponovno je postavite.',
 'uploadvirus'                 => 'Fajl sadrži virus!  Detalji:  $1',
+'sourcefilename'              => 'Ime izvorišne datoteke:',
+'destfilename'                => 'Ime odredišne datoteke:',
+'upload-maxfilesize'          => 'Najveća veličina datoteke: $1',
+'watchthisupload'             => 'Prati ovu stranicu',
+'filewasdeleted'              => 'Datoteka s ovim nazivom je ranije postavljana i nakon toga obrisana.
+Prije nego što nastavite da je ponovno postavite trebate provjeriti $1.',
+'upload-wasdeleted'           => "'''Upozorenje: Postavljate datoteku koja je ranije obrisana.'''
+
+Potrebno je da razmotrite da li je uredu nastaviti sa postavljanjem ove datoteke.
+Zapis brisanja za ovu datoteku je prikazan ovdje kao referenca:",
+
+'upload-proto-error' => 'Pogrešan protokol',
+'upload-file-error'  => 'Unutrašnja greška',
+
+# Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error6' => 'Ovaj URL nije bilo moguće otvoriti',
+
+'nolicense' => 'Ništa nije odabrano',
 
 # Special:ImageList
+'imgfile'        => 'datoteka',
 'imagelist'      => 'Spisak slika',
 'imagelist_name' => 'Naziv',
 
@@ -1501,10 +1565,14 @@ Možda sadrži jedan ili više znakova koji se ne mogu koristiti u naslovima.',
 Vidi također [[Special:WantedCategories|zatražene kategorije]].',
 'special-categories-sort-abc' => 'sortiraj po abecedi',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Obrisani doprinosi korisnika',
+
 # Special:ListUsers
 'listusers-submit' => 'Pokaži',
 
 # Special:ListGroupRights
+'listgrouprights'         => 'Prava korisničkih grupa',
 'listgrouprights-group'   => 'Grupa',
 'listgrouprights-members' => '(spisak članova)',
 
@@ -1969,8 +2037,9 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 * focallength", # Do not translate list items
 
 # EXIF tags
-'exif-imagewidth'  => 'Širina',
-'exif-imagelength' => 'Visina',
+'exif-imagewidth'            => 'Širina',
+'exif-imagelength'           => 'Visina',
+'exif-primarychromaticities' => 'Hromaticitet primarnih boja',
 
 # External editor support
 'edit-externally'      => 'Izmjeni ovu sliku koristeći vanjski program',

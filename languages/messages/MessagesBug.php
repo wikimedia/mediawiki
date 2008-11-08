@@ -56,6 +56,7 @@ $messages = array(
 
 'about'          => 'Atajangeng',
 'article'        => 'Lontara',
+'cancel'         => 'Rusa',
 'qbfind'         => 'Assapparang',
 'qbbrowse'       => 'Berowoso',
 'qbedit'         => 'Padécéŋ',
@@ -64,10 +65,10 @@ $messages = array(
 'qbmyoptions'    => "Leppana iya'",
 'qbspecialpages' => 'Leppa spésiala',
 'mypage'         => "Leppana iya'",
-'mytalk'         => 'bicara iyya',
-'anontalk'       => 'Bicara IP',
-'navigation'     => 'napigasi',
-'and'            => 'éréngé',
+'mytalk'         => 'Bicarana iyya',
+'anontalk'       => 'Bicarana IP édé',
+'navigation'     => 'Navigasi',
+'and'            => 'na',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -75,8 +76,8 @@ $messages = array(
 'errorpagetitle'   => 'Éro',
 'returnto'         => 'Lisu ri $1.',
 'tagline'          => 'Polé {{SITENAME}}',
-'help'             => 'Panginriŋ',
-'search'           => 'assappa',
+'help'             => 'Paŋinriŋ',
+'search'           => 'Assapparaŋ',
 'searchbutton'     => 'Sappa',
 'go'               => 'Lao',
 'searcharticle'    => 'Lao',
@@ -88,11 +89,12 @@ $messages = array(
 'create'           => 'Ebbu',
 'editthispage'     => 'Padécéŋiki iyé leppa',
 'create-this-page' => 'Ebbuiki leppa iyé',
-'delete'           => 'peddé',
+'delete'           => 'Peddé',
 'deletethispage'   => 'Peddé iyé leppa',
-'protect'          => 'Ampi',
+'protect'          => 'Accalinruŋi',
 'protect_change'   => 'pinra',
-'protectthispage'  => 'Ampi leppa iyyé',
+'protectthispage'  => 'Accalinruŋi leppa iyyé',
+'unprotect'        => 'Téccalinruŋi',
 'newpage'          => 'Leppa baru',
 'talkpage'         => 'Bicara iyé leppa',
 'talkpagelinktext' => 'Bicara',
@@ -123,15 +125,17 @@ $messages = array(
 'edithelppage'         => 'Help:Mapadécéŋ',
 'faq'                  => 'FAQ',
 'faqpage'              => 'Project:FAQ',
+'helppage'             => 'Help:Lise',
 'mainpage'             => 'Leppa Indoë',
 'mainpage-description' => 'Leppa Indoë',
 'portal'               => 'Portal komunitas',
 
-'editsection'    => 'padécéŋ',
-'editold'        => 'padécéŋ',
-'viewsourceold'  => 'ita sumber',
-'editlink'       => 'padécéŋ',
-'viewsourcelink' => 'ita sumber',
+'newmessageslink' => 'pappaseŋ baru',
+'editsection'     => 'padécéŋ',
+'editold'         => 'padécéŋ',
+'viewsourceold'   => 'ita sumber',
+'editlink'        => 'padécéŋ',
+'viewsourcelink'  => 'ita sumber',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Leppa',
@@ -140,7 +144,7 @@ $messages = array(
 'nstab-special'   => 'Spésiala',
 'nstab-project'   => 'Proyek',
 'nstab-image'     => 'Rapang',
-'nstab-mediawiki' => 'Méséje',
+'nstab-mediawiki' => 'Pappaseŋ',
 'nstab-template'  => 'Templata',
 'nstab-help'      => 'Paŋinriŋ',
 'nstab-category'  => 'Kategori',
@@ -206,8 +210,12 @@ $messages = array(
 # History pages
 'previousrevision'    => '←Revisi riolo',
 'currentrevisionlink' => 'Revisi tannapa',
+'page_first'          => 'séuwani',
 'deletedrev'          => '[ripeddé]',
+'histfirst'           => 'Poŋ loa',
+'histlast'            => 'Poŋ nappa',
 'historysize'         => '($1 {{PLURAL:$1|bita|bita}})',
+'historyempty'        => '(kapa)',
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 ri $2', # user at time
@@ -215,7 +223,7 @@ $messages = array(
 # Revision deletion
 'rev-deleted-comment'    => '(komentar ripeddé)',
 'rev-deleted-user'       => '(ripeddéni aseŋna papakeë)',
-'rev-deleted-event'      => '(ripeddéni liseë)',
+'rev-deleted-event'      => '(log gau ripeddéni)',
 'rev-delundel'           => "pakitaï/tapo'",
 'revdelete-selected'     => "'''{{PLURAL:$2|Revisi|Revisi-revisi}} ripiléna [[$1]]ë:'''",
 'logdelete-selected'     => "'''{{PLURAL:$1|Log|Log-log}} ripilé:'''",
@@ -254,12 +262,29 @@ $messages = array(
 'search-redirect'       => '(redirect $1)',
 
 # Preferences page
+'mypreferences'     => 'Bérékkeŋeŋna iyya',
+'prefsnologin'      => "Déppa ma'log attama'",
+'qbsettings-none'   => 'Dégaga',
 'prefs-watchlist'   => 'Watchlist',
 'prefs-misc'        => 'Misc',
 'saveprefs'         => 'Taro',
 'oldpassword'       => 'Pasewodo matoa:',
 'textboxsize'       => 'Mapadécéŋ',
 'searchresultshead' => 'Masappa',
+
+# Groups
+'group-sysop' => 'Puŋgawa',
+'group-all'   => '(sininna)',
+
+'group-user-member'  => 'Pappaké',
+'group-sysop-member' => 'Puŋgawa',
+
+'grouppage-user'  => '{{ns:project}}:Pappaké',
+'grouppage-sysop' => '{{ns:project}}:Puŋgawa',
+
+# Rights
+'right-read' => 'Mabbaca leppa',
+'right-edit' => 'Mappadécéŋi leppa',
 
 # Recent changes
 'recentchanges'   => 'Pappakinra tanappa',
@@ -278,6 +303,9 @@ $messages = array(
 # Upload
 'upload'    => 'Lureng berkas',
 'uploadbtn' => 'Lureng berkas',
+
+# Special:ImageList
+'imagelist_name' => 'Aseŋ',
 
 # Image description page
 'filehist-user'       => 'Papaké',
@@ -305,6 +333,11 @@ $messages = array(
 # Random page
 'randompage'         => 'Leppa random',
 'randompage-nopages' => 'Degaga leppa rilaleŋ iyyé namespaceë.',
+
+# Statistics
+'statistics-articles' => 'Leppa liseë',
+'statistics-pages'    => 'Leppaë',
+'statistics-files'    => 'File-file nalise menré',
 
 # Miscellaneous special pages
 'ancientpages' => 'Leppa talloa',
@@ -340,6 +373,7 @@ Apak ida ronnak mappedde halamang édé ri daftar jagaan, klik \"Mangedda jaga\"
 
 # Delete
 'actioncomplete' => 'Proses makkapo',
+'dellogpage'     => 'Log peddé-peddé',
 
 # Protect
 'prot_1movedto2' => '[[$1]] ésuk ri [[$2]]',
@@ -348,8 +382,10 @@ Apak ida ronnak mappedde halamang édé ri daftar jagaan, klik \"Mangedda jaga\"
 'blanknamespace' => '(Utama)',
 
 # What links here
-'whatlinkshere'       => 'Pranala ri halamang édé',
-'whatlinkshere-links' => '← liŋke',
+'whatlinkshere'          => 'Pranala ri halamang édé',
+'whatlinkshere-page'     => 'Leppa:',
+'whatlinkshere-backlink' => '← $1',
+'whatlinkshere-links'    => '← liŋke',
 
 # Block/unblock
 'ipblocklist-submit' => 'Sappa',
@@ -393,13 +429,37 @@ Eloko peddéï supaya weddiŋi mapalecé?',
 'imagemaxsize' => 'Gangkai rapang pada keterangan rapang ri halamang hingga:',
 
 # Special:NewImages
-'ilsubmit' => 'ᨔᨄ',
+'ilsubmit' => 'Sappa',
 
 # 'all' in various places, this might be different for inflected languages
 'imagelistall'  => 'maneng',
 'watchlistall2' => 'maneŋ',
 'namespacesall' => 'maneŋ',
 'monthsall'     => 'maneŋ',
+
+# Multipage image navigation
+'imgmultigo'   => 'Lao!',
+'imgmultigoto' => 'Lao ri leppa $1',
+
+# Table pager
+'ascending_abbrev'         => 'énré',
+'descending_abbrev'        => 'no',
+'table_pager_first'        => 'Leppa séuwani',
+'table_pager_limit_submit' => 'Lao',
+
+# Auto-summaries
+'autosumm-replace' => "Masullé leppaë lao '$1'",
+'autosumm-new'     => "Leppa baru: '$1'",
+
+# Size units
+'size-bytes'     => '$1 B',
+'size-kilobytes' => '$1 KB',
+'size-megabytes' => '$1 MB',
+'size-gigabytes' => '$1 GB',
+
+# Live preview
+'livepreview-loading' => 'Mallise…',
+'livepreview-ready'   => 'Mallise… Sokkuni!',
 
 # Special:Version
 'version-specialpages' => 'Leppa spésiala',

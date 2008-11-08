@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Anggoro
  * @author Helix84
  * @author Meursault2004
  * @author Rex
@@ -79,6 +80,8 @@ $messages = array(
 'tog-watchlisthideown'        => 'Delikna suntinganku ing daftar pangawasan',
 'tog-watchlisthidebots'       => 'Delikna suntingan ing daftar pangawasan',
 'tog-watchlisthideminor'      => 'Delikna suntingan kecil di daftar pangawasan',
+'tog-watchlisthideliu'        => 'Ngumpetaké suntingan panganggo sing mlebu log seka daftar pangawasan',
+'tog-watchlisthideanons'      => 'Ngumpetaké suntingan panganggo anonim seka daftar pangawasan',
 'tog-nolangconversion'        => 'Patènana konvèrsi varian',
 'tog-ccmeonemails'            => 'Kirimana aku salinan layang e-mail sing tak-kirimaké menyang wong liya',
 'tog-diffonly'                => 'Aja dituduhaké isi kaca ing ngisor bédané suntingan',
@@ -975,17 +978,21 @@ mangga delengen math/README kanggo cara konfigurasi.',
 'rightsnone'     => '(ora ana)',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-read'          => 'maca kaca iki',
-'action-edit'          => 'sunting kaca iki',
-'action-createpage'    => 'nggawé kaca-kaca',
-'action-move'          => 'alihna kaca iki',
-'action-upload'        => 'ngunggahaké berkas iki',
-'action-upload_by_url' => 'unggahna berkas iki saka sawijining alamat URL',
-'action-delete'        => 'busak kaca iki',
+'action-read'                 => 'maca kaca iki',
+'action-edit'                 => 'sunting kaca iki',
+'action-createpage'           => 'nggawé kaca-kaca',
+'action-move'                 => 'alihna kaca iki',
+'action-upload'               => 'ngunggahaké berkas iki',
+'action-upload_by_url'        => 'unggahna berkas iki saka sawijining alamat URL',
+'action-delete'               => 'busak kaca iki',
+'action-userrights'           => 'ngowahi kabèh hak panganggo',
+'action-userrights-interwiki' => 'ngowahi hak aksès seka panganggo ing wiki liya',
+'action-siteadmin'            => 'ngunci utawa mbukak kunci basis data',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|pangowahan|owah-owahan}}',
 'recentchanges'                     => 'Owah-owahan',
+'recentchanges-legend'              => 'Pilihan owah-owahan pungkasan',
 'recentchangestext'                 => 'Runutna owah-owahan pungkasan ing wiki iki ing kaca iki.',
 'recentchanges-feed-description'    => "Urutna owah-owahan anyar ing wiki ing ''feed'' iki.",
 'rcnote'                            => 'Ing ngisor iki kapacak {{PLURAL:$1|pangowahan|owah-owahan}} pungkasan ing  <strong>$2</strong> dina pungkasan ing $5, $4.',

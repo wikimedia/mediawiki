@@ -265,6 +265,7 @@ E koho i kekahi inoa, ke ‘olu‘olu.',
 'yourlanguage'            => "Kou 'ōlelo:",
 'yournick'                => 'Inoa kapakapa:',
 'email'                   => 'Leka uila',
+'loginsuccess'            => "'''ʻEʻe ʻia ʻoe, ʻo \"\$1\", iā {{SITENAME}}.'''",
 'mailmypassword'          => 'Leka uila i ka huaʻōlelo huna',
 'emailauthenticated'      => 'Ua hō‘oia ‘ia kāu leka uila ma ka lā $2 i ka hola $3.',
 'emailconfirmlink'        => 'E hō‘oia i kāu leka uila',
@@ -331,6 +332,9 @@ hō‘ike ‘ia i lalo:",
 'historysize'         => '({{PLURAL:$1|1 ‘ai|$1 ‘ai}})',
 'historyempty'        => '(‘ole)',
 
+# Revision feed
+'history-feed-item-nocomment' => '$1 ma $2', # user at time
+
 # Revision deletion
 'rev-delundel' => 'hō‘ike/hūnā',
 
@@ -396,6 +400,7 @@ hō‘ike ‘ia i lalo:",
 
 # Image description page
 'filehist'            => 'Mo‘olelo o ka waihona',
+'filehist-current'    => 'o kēia manawa',
 'filehist-datetime'   => 'Manawa',
 'filehist-user'       => 'Mea ho‘ohana',
 'filehist-dimensions' => 'Nā nui',
@@ -568,6 +573,7 @@ Hiki iā ʻoe ke ʻikena i kāna molekumu.',
 'tooltip-t-upload'         => 'Ho‘ouka i nā waihona',
 'tooltip-t-specialpages'   => 'Helu o nā papa nui apau',
 'tooltip-ca-nstab-project' => 'Nānā i ka ‘ao‘ao papahana',
+'tooltip-minoredit'        => 'Wae i kēia hoʻopololei me he hoʻopololei iki',
 'tooltip-save'             => 'Mālama i kāu ho‘opololei',
 
 # Media information
