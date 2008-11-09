@@ -2965,3 +2965,38 @@ function wfStripIllegalFilenameChars( $name ) {
 	$name = preg_replace ( "/[^".Title::legalChars()."]|:/", '-', $name );
 	return $name;
 }
+
+/**
+ * Fetches all disambiguation templates from MediaWiki:Disambiguationspage
+ */
+function wfGetDisambiguationTemplates() {
+	static $templates = null;
+	if( $templates )
+		return $templates;
+	$msgText = wfMsgForContent('disambiguationspage');
+	$templates = array();
+
+	# If the text can be treated as a title, use it verbatim.
+	# Otherwise, pull the titles from the links table
+	$dp = Title::newFromText($msgText);
+	if( $dp ) {
+		if($dp->getNamespace() != NS_TEMPLATE) {
+			# FIXME we assume the disambiguation message is a template but
+			# the page can potentially be from another namespace :/
+			wfDebug("Mediawiki:disambiguationspage message does not refer to a template!\n");
+		}
+		$templates [] = $dp;
+	} else {
+			# Get all the templates linked from the Mediawiki:Disambiguationspage
+			# Originally used database, now uses parser
+			global $wgParser;
+			$output = $wgParser->parse( $msgText,
+				Title::makeTitle( NS_MEDIAWIKI, 'Disambiguationspage' ), new ParserOptions() );
+			$links = $output->getLinks();
+			if( isset( $links[NS_TEMPLATE] ) )
+				foreach( $links[NS_TEMPLATE] as $dbk => $id )
+					if( $id )
+						$templates[] = Title::makeTitle( NS_TEMPLATE, $dbk );
+	}
+	return $templates;
+}

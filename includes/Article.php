@@ -574,6 +574,20 @@ class Article {
 		return $titleObj !== NULL;
 	}
 
+	function isDisambig() {
+		global $wgParser;
+		$this->loadContent();
+		$output = $wgParser->parse( $this->fetchContent(), $this->mTitle, new ParserOptions() );
+		$templates = $output->getTemplates();
+		$disambigs = wfGetDisambiguationTemplates();
+		if( isset( $templates[NS_TEMPLATE] ) )
+			foreach( $templates[NS_TEMPLATE] as $dbk => $id )
+				foreach( $disambigs as $disambig )
+					if( $disambig->getDBkey() == $dbk )
+						return true;
+		return false;
+	}
+
 	/**
 	 * Returns true if the currently-referenced revision is the current edit
 	 * to this page (and it exists).
