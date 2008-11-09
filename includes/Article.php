@@ -3434,7 +3434,7 @@ class Article {
 		# Redirect autosummaries
 		$ot = Title::newFromRedirect( $oldtext );
 		$rt = Title::newFromRedirect( $newtext );
-		if( is_object( $rt ) && ( !is_object( $ot ) || ( !$rt->equals( $ot ) || $ot->getFragment() != $rt->getFragment() ) ) ) {
+		if( is_object( $rt ) && ( !is_object( $ot ) || !$rt->equals( $ot ) || $ot->getFragment() != $rt->getFragment() ) ) {
 			return wfMsgForContent( 'autoredircomment', $rt->getFullText() );
 		}
 
