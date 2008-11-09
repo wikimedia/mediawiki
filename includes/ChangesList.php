@@ -186,11 +186,8 @@ class ChangesList {
 		} else {
 			$articlelink = ' '. $this->skin->makeKnownLinkObj( $rc->getTitle(), '', $params );
 		}
-		if( $watched ) {
-			$articlelink = "<strong class=\"mw-watched\">{$articlelink}</strong>";
-		} else {
-			$articlelink = '<span class="mw-rc-unwatched">' . $articlelink . '</span>';
-		}
+		$articlelink = EnhancedChangesList::maybeWatchedLink( $articlelink, $watched );
+
 		global $wgContLang;
 		$articlelink .= $wgContLang->getDirMark();
 
