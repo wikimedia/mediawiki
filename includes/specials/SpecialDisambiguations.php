@@ -24,36 +24,9 @@ class DisambiguationsPage extends PageQueryPage {
 	function getSQL() {
 		$dbr = wfGetDB( DB_SLAVE );
 
-		$dMsgText = wfMsgForContent('disambiguationspage');
-
 		$linkBatch = new LinkBatch;
-
-		# If the text can be treated as a title, use it verbatim.
-		# Otherwise, pull the titles from the links table
-		$dp = Title::newFromText($dMsgText);
-		if( $dp ) {
-			if($dp->getNamespace() != NS_TEMPLATE) {
-				# FIXME we assume the disambiguation message is a template but
-				# the page can potentially be from another namespace :/
-				wfDebug("Mediawiki:disambiguationspage message does not refer to a template!\n");
-			}
-			$linkBatch->addObj( $dp );
-		} else {
-				# Get all the templates linked from the Mediawiki:Disambiguationspage
-				$disPageObj = Title::makeTitleSafe( NS_MEDIAWIKI, 'disambiguationspage' );
-				$res = $dbr->select(
-					array('pagelinks', 'page'),
-					'pl_title',
-					array('page_id = pl_from', 'pl_namespace' => NS_TEMPLATE,
-						'page_namespace' => $disPageObj->getNamespace(), 'page_title' => $disPageObj->getDBkey()),
-					__METHOD__ );
-
-				while ( $row = $dbr->fetchObject( $res ) ) {
-					$linkBatch->addObj( Title::makeTitle( NS_TEMPLATE, $row->pl_title ));
-				}
-
-				$dbr->freeResult( $res );
-		}
+		foreach( wfGetDisambiguationTemplates() as $tl )
+			$linkBatch->addObj( $tl );
 
 		$set = $linkBatch->constructSet( 'lb.tl', $dbr );
 		if( $set === false ) {
