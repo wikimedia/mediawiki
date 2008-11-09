@@ -186,11 +186,8 @@ class ChangesList {
 		} else {
 			$articlelink = ' '. $this->skin->makeKnownLinkObj( $rc->getTitle(), '', $params );
 		}
-		if( $watched ) {
-			$articlelink = "<strong class=\"mw-watched\">{$articlelink}</strong>";
-		} else {
-			$articlelink = '<span class="mw-rc-unwatched">' . $articlelink . '</span>';
-		}
+		$articlelink = $this->maybeWatchedLink( $articlelink, $watched );
+
 		global $wgContLang;
 		$articlelink .= $wgContLang->getDirMark();
 
@@ -299,6 +296,15 @@ class ChangesList {
 			return $wgUser->isAllowed( $permission );
 		} else {
 			return true;
+		}
+	}
+
+	protected function maybeWatchedLink( $link, $watched=false ) {
+		if( $watched ) {
+			// FIXME: css style might be more appropriate
+			return '<strong class="mw-watched">' . $link . '</strong>';
+		} else {
+			return '<span class="mw-rc-unwatched">' . $link . '</span>';
 		}
 	}
 }
@@ -768,15 +774,6 @@ class EnhancedChangesList extends ChangesList {
 
 		$this->rcCacheIndex++;
 		return $r;
-	}
-
-	protected function maybeWatchedLink( $link, $watched=false ) {
-		if( $watched ) {
-			// FIXME: css style might be more appropriate
-			return '<strong class="mw-watched">' . $link . '</strong>';
-		} else {
-			return '<span class="mw-rc-unwatched">' . $link . '</span>';
-		}
 	}
 
 	/**
