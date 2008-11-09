@@ -660,6 +660,7 @@ END;
 	}
 	
 	function getPageClasses( $title ) {
+		global $wgArticle;
 		$numeric = 'ns-'.$title->getNamespace();
 		if( $title->getNamespace() == NS_SPECIAL ) {
 			$type = "ns-special";
@@ -669,7 +670,11 @@ END;
 			$type = "ns-subject";
 		}
 		$name = Sanitizer::escapeClass( 'page-'.$title->getPrefixedText() );
-		return "$numeric $type $name";
+		if( $wgArticle && $wgArticle->isDisambig() )
+			$disambig = ' disambiguationpage';
+		else
+			$disambig = '';
+			return "{$numeric} {$type} {$name}{$disambig}";
 	}
 
 	/**
