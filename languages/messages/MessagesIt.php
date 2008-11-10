@@ -262,7 +262,7 @@ I seguenti collegamenti sono in lingua inglese:
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Impostazioni di configurazione]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Domande frequenti su MediaWiki]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list annunci MediaWiki]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list annunci MediaWiki]",
 
 'about'          => 'Informazioni',
 'article'        => 'Voce',
@@ -545,7 +545,7 @@ L'account è stato creato correttamente. Non dimenticare di personalizzare le pr
 'noname'                     => 'Il nome utente indicato non è valido, non è possibile creare un accesso a questo nome.',
 'loginsuccesstitle'          => 'Accesso effettuato',
 'loginsuccess'               => "'''Sei stato connesso al server di {{SITENAME}} con il nome utente di \"\$1\".'''",
-'nosuchuser'                 => 'Non è registrato alcun utente di nome "$1". Verificare il nome inserito o [[Special:Userlogin/signup|creare un nuovo accesso]].',
+'nosuchuser'                 => 'Non è registrato alcun utente di nome "$1". Verificare il nome inserito o [[Special:UserLogin/signup|creare un nuovo accesso]].',
 'nosuchusershort'            => 'Non è registrato alcun utente di nome "<nowiki>$1</nowiki>". Verificare il nome inserito.',
 'nouserspecified'            => 'È necessario specificare un nome utente.',
 'wrongpassword'              => 'La password inserita non è corretta. Riprovare.',
@@ -656,12 +656,12 @@ La motivazione del blocco è la seguente:
 * Scadenza del blocco: $6
 * Intervallo di blocco: $7
 
-È possibile contattare $1 o un altro [[{{MediaWiki:Grouppage-sysop}}|amministratore]] per discutere del blocco.
+È possibile contattare $1 o un altro [[{{MediaWiki:Grouppage-sysop}}|amministratore]] per richiedere eventuali chiarimenti circa il blocco.
 
-Si noti che la funzione 'Scrivi all'utente' non è attiva se non è stato registrato un indirizzo e-mail valido nelle proprie [[Special:Preferences|preferenze]] e se si è stato bloccati dal suo utilizzo.
+Si noti che la funzione 'Scrivi all'utente' non è attiva se non è stato registrato un indirizzo e-mail valido nelle proprie [[Special:Preferences|preferenze]] e, comunque, se nell'applicare il blocco, tale funzione è stata disabilitata (per la durata del blocco).
 
 L'indirizzo IP attuale è $3, il numero ID del blocco è #$5
-Si prega di specificare tutti i dettagli precedenti in qualsiasi richiesta di chiarimenti.",
+Si prega di specificare tutti i dettagli qui inclusi nel compilare qualsiasi richiesta di chiarimenti.",
 'blockednoreason'                  => 'nessuna motivazione indicata',
 'blockedoriginalsource'            => "Di seguito viene mostrato il codice sorgente della pagina '''$1''':",
 'blockededitsource'                => "Di seguito vengono mostrate le '''modifiche apportate''' alla pagina '''$1''':",
@@ -738,7 +738,7 @@ Con l'invio del testo dichiari inoltre, sotto la tua responsabilità, che il tes
 'nocreate-loggedin'                => 'Non si dispone dei permessi necessari a creare nuove pagine.',
 'permissionserrors'                => 'Errore nei permessi',
 'permissionserrorstext'            => "Non si dispone dei permessi necessari ad eseguire l'azione richiesta, per {{PLURAL:$1|il seguente motivo|i seguenti motivi}}:",
-'permissionserrorstext-withaction' => 'Non hai il permesso di fare $2, per {{PLURAL:$1|il seguente motivo|i seguenti motivi}}:',
+'permissionserrorstext-withaction' => 'Non si dispone dei permessi necessari per $2, per {{PLURAL:$1|il seguente motivo|i seguenti motivi}}:',
 'recreate-deleted-warn'            => "'''Attenzione: si sta per ricreare una pagina già cancellata in passato.'''
 
 Accertarsi che sia davvero opportuno continuare a modificare questa pagina.
@@ -774,8 +774,8 @@ La motivazione del blocco fornita da $3 è la seguente: ''$2''",
 'revnotfoundtext'     => 'La versione richiesta della pagina non è stata trovata.
 Verificare la URL usata per accedere a questa pagina.',
 'currentrev'          => 'Versione corrente',
-'revisionasof'        => 'Versione del $1',
-'revision-info'       => 'Versione del $1, autore: $2',
+'revisionasof'        => 'Versione delle $1',
+'revision-info'       => 'Versione delle $1, autore: $2',
 'previousrevision'    => '← Versione meno recente',
 'nextrevision'        => 'Versione più recente →',
 'currentrevisionlink' => 'Versione corrente',
@@ -816,11 +816,11 @@ Consultare il [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} log di cancella
 'revisiondelete'              => 'Cancella o ripristina versioni',
 'revdelete-nooldid-title'     => 'Versione non specificata',
 'revdelete-nooldid-text'      => 'Non è stata specificata alcuna versione della pagina su cui eseguire questa funzione.',
-'revdelete-selected'          => '{{PLURAL:$2|Versione selezionata|Versioni selezionate}} di [[:$1]]:',
-'logdelete-selected'          => '{{PLURAL:$1|Evento del registro selezionato|Eventi del registro selezionati}}:',
-'revdelete-text'              => 'Le versioni cancellate restano visibili nella cronologia della pagina, mentre il testo contenuto non è accessibile al pubblico.
+'revdelete-selected'          => "'''{{PLURAL:$2|Versione selezionata|Versioni selezionate}} di [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Evento del registro selezionato|Eventi del registro selezionati}}:'''",
+'revdelete-text'              => "'''Le versioni cancellate restano visibili nella cronologia della pagina, mentre il testo contenuto non è accessibile al pubblico.'''
 
-Gli altri amministratori del sito potranno accedere comunque ai contenuti nascosti e ripristinarli attraverso questa stessa interfaccia, se non sono state impostate altre limitazioni in fase di installazione del sito.',
+Gli altri amministratori del sito potranno accedere comunque ai contenuti nascosti e ripristinarli attraverso questa stessa interfaccia, se non sono state impostate altre limitazioni in fase di installazione del sito.",
 'revdelete-legend'            => 'Imposta le seguenti limitazioni sulle versioni cancellate:',
 'revdelete-hide-text'         => 'Nascondi il testo della versione',
 'revdelete-hide-name'         => 'Nascondi azione e oggetto della stessa',
@@ -934,7 +934,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'mypreferences'            => 'preferenze',
 'prefs-edits'              => 'Modifiche effettuate:',
 'prefsnologin'             => 'Accesso non effettuato',
-'prefsnologintext'         => 'Per poter personalizzare le preferenze è necessario effettuare l\'<span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} accesso]</span>.',
+'prefsnologintext'         => 'Per poter personalizzare le preferenze è necessario effettuare l\'<span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} accesso]</span>.',
 'prefsreset'               => 'Le preferenze sono state ripristinate ai valori predefiniti.',
 'qbsettings'               => 'Quickbar',
 'qbsettings-none'          => 'Nessuno',
@@ -1153,7 +1153,7 @@ Per inserire un file all'interno di una pagina, fare un collegamento di questo t
 'uploadlog'                   => 'File caricati',
 'uploadlogpage'               => 'File caricati',
 'uploadlogpagetext'           => "Di seguito sono elencati gli ultimi file caricati.
-Guarda la [[Special:NewImages|galleria dei nuovi file]] per una visione d'insieme",
+Guarda la [[Special:NewImages|galleria dei nuovi file]] per una visione d'insieme.",
 'filename'                    => 'Nome del file',
 'filedesc'                    => 'Dettagli',
 'fileuploadsummary'           => 'Dettagli del file:',
@@ -1289,7 +1289,7 @@ Per modificare l'ordinamento, fare clic sull'intestazione della colonna prescelt
 'filerevert-legend'         => 'Ripristina file',
 'filerevert-intro'          => "Si sta per ripristinare il file '''[[Media:$1|$1]]''' alla [$4 versione del $2, $3].",
 'filerevert-comment'        => 'Oggetto:',
-'filerevert-defaultcomment' => 'Ripristinata la versione del $2, $1',
+'filerevert-defaultcomment' => 'Ripristinata la versione delle $2, $1',
 'filerevert-submit'         => 'Ripristina',
 'filerevert-success'        => "'''Il file [[Media:$1|$1]]''' è stato ripristinato alla [$4 versione del $2, $3].",
 'filerevert-badversion'     => 'Non esistono versioni locali precedenti del file con il timestamp richiesto.',
@@ -1327,7 +1327,7 @@ Per modificare l'ordinamento, fare clic sull'intestazione della colonna prescelt
 
 # Unused templates
 'unusedtemplates'     => 'Template non utilizzati',
-'unusedtemplatestext' => 'In questa pagina vengono elencati tutti i template (pagine del namespace Template) che non sono inclusi in nessuna pagina. Prima di cancellarli è opportuno verificare che i singoli template non abbiano altri collegamenti entranti.',
+'unusedtemplatestext' => 'In questa pagina vengono elencate le pagine del namespace {{ns:template}} che non sono incluse in nessuna pagina. Prima di cancellarli è opportuno verificare che i singoli template non abbiano altri collegamenti entranti.',
 'unusedtemplateswlh'  => 'altri collegamenti',
 
 # Random page
@@ -1384,7 +1384,7 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'nviews'                  => '$1 {{PLURAL:$1|visita|visite}}',
 'specialpage-empty'       => 'Questa pagina speciale è attualmente vuota.',
 'lonelypages'             => 'Pagine orfane',
-'lonelypagestext'         => 'Le pagine indicate di seguito sono prive di collegamenti che provengono da altre pagine del sito.',
+'lonelypagestext'         => 'Le pagine indicate di seguito sono prive di collegamenti provenienti da altre pagine di {{SITENAME}} e non sono incluse in nessuna pagina del sito.',
 'uncategorizedpages'      => 'Pagine prive di categorie',
 'uncategorizedcategories' => 'Categorie non categorizzate',
 'uncategorizedimages'     => 'File privi di categorie',
@@ -1491,7 +1491,7 @@ Potrebbero esserci [[{{MediaWiki:Listgrouprights-helppage}}|ulteriori informazio
 'mailnologintext' => 'Per inviare messaggi e-mail ad altri utenti è necessario [[Special:UserLogin|accedere al sito]] e aver registrato un indirizzo valido nelle proprie [[Special:Preferences|preferenze]].',
 'emailuser'       => "Scrivi all'utente",
 'emailpage'       => "Invia un messaggio e-mail all'utente",
-'emailpagetext'   => 'Se l\'utente ha registrato un indirizzo e-mail valido nelle proprie preferenze, il modulo qui sotto consente di scrivere allo stesso un solo messaggio. L\'indirizzo indicato nelle [[Special:Preferences|preferenze]] del mittente apparirà nel campo "Da:" del messaggio per consentire al destinatario di rispondere direttamente.',
+'emailpagetext'   => 'È possibile utilizzare il modulo seguente per inviare un\'email a questo utente. L\'indirizzo indicato nelle [[Special:Preferences|preferenze]] del mittente apparirà nel campo "Da:" del messaggio per consentire al destinatario di rispondere direttamente.',
 'usermailererror' => "L'oggetto mail ha restituito l'errore:",
 'defemailsubject' => 'Messaggio da {{SITENAME}}',
 'noemailtitle'    => 'Nessun indirizzo e-mail',
@@ -1792,7 +1792,7 @@ Consultare la [[Special:IPBlockList|lista degli IP bloccati]] per vedere i blocc
 'ipb-edit-dropdown'               => 'Modifica i motivi per il blocco',
 'ipb-unblock-addr'                => 'Sblocca $1',
 'ipb-unblock'                     => 'Sblocca un utente o un indirizzo IP',
-'ipb-blocklist-addr'              => 'Elenca i blocchi attivi per $1',
+'ipb-blocklist-addr'              => 'Blocchi attivi per $1',
 'ipb-blocklist'                   => 'Elenca i blocchi attivi',
 'unblockip'                       => "Sblocca l'utente",
 'unblockiptext'                   => "Usare il modulo sottostante per restituire l'accesso in scrittura ad un utente o indirizzo IP bloccato.",

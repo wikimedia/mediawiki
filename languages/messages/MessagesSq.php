@@ -8,6 +8,7 @@
  * @author Dori
  * @author Eagleal
  * @author Ergon
+ * @author Urhixidur
  * @author לערי ריינהארט
  */
 
@@ -623,7 +624,7 @@ Ju duhet të përputhni ndryshimet tuaja me tekstin ekzistues.
 Po na premtoni që ç'ka po jepni këtu e keni kontributin tuaj ose e keni kopjuar nga domeni publik apo nga burime të tjera të lira sipas ligjeve përkatëse (shikoni $1 për hollësirat). 
 <strong>NDALOHET DHËNIA E PUNIMEVE PA PASUR LEJE NGA AUTORI NË MOSPËRPUTHJE ME KËTË LICENSË!</strong>",
 'longpagewarning'                  => 'KUJDES: Kjo faqe është $1 kilobytes e gjatë; disa
-shfletues mund të kenë probleme për të redaktuar faqe që afrohen ose janë akoma më shumë se 32kb.
+shfletues mund të kenë probleme për të redaktuar faqe që afrohen ose janë akoma më shumë se 32 kb.
 Konsideroni ta ndani faqen në disa seksione më të vogla.',
 'longpageerror'                    => '<strong>GABIM: Tesksti që ju po e redaktoni është $1 KB i gjatë dhe është më i gjatë se maksimumi i lejuar prej $2 KB. Ndryshimet nuk mund të ruhen.</strong>',
 'readonlywarning'                  => 'KUJDES: Regjistri është bllokuar për mirëmbajtje,
@@ -720,9 +721,9 @@ Shiko tek [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} regjistri i gri
 'revisiondelete'              => 'Shlyj/Reparo versionet',
 'revdelete-nooldid-title'     => 'Version i dëshiruar i pavfleshëm',
 'revdelete-nooldid-text'      => 'Ose nuk keni përcaktuar një version(e) të dëshiruar për veprimin, ose versioni nuk ekziston, ose po mundoheni të fshihni versionin e tanishëm.',
-'revdelete-selected'          => '{{PLURAL:$2|Versioni i zgjedhur i|Versionet e zgjedhura të}} [[:$1]]:',
-'logdelete-selected'          => '{{PLURAL:$1|Veprimi i zgjedhur në regjistër|Veprimet e zgjedhura në regjistër}}:',
-'revdelete-text'              => 'Përmbajtja dhe pjesët e tjera nuk janë të dukshme për të gjithë, por figurojnë në historikun e versioneve. Administratorët munden përmbajtjen e larguar ta shikojnë dhe restaurojnë, përveç në rastet kur një gjë e tillë është ndaluar ekstra.',
+'revdelete-selected'          => "'''{{PLURAL:$2|Versioni i zgjedhur i|Versionet e zgjedhura të}} [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Veprimi i zgjedhur në regjistër|Veprimet e zgjedhura në regjistër}}:'''",
+'revdelete-text'              => "'''Përmbajtja dhe pjesët e tjera nuk janë të dukshme për të gjithë, por figurojnë në historikun e versioneve.''' Administratorët munden përmbajtjen e larguar ta shikojnë dhe restaurojnë, përveç në rastet kur një gjë e tillë është ndaluar ekstra.",
 'revdelete-legend'            => 'Vendosni kufizimet për versionin:',
 'revdelete-hide-text'         => 'Fshihe tekstin e versionit',
 'revdelete-hide-name'         => 'Fshihe veprimin dhe shënjestrën',
@@ -797,13 +798,11 @@ Kini kujdes se përdorimi i lidhjeve të shfletimit do të ndryshojë përzgjedh
 'searchresulttext'          => 'Për më shumë informacion rreth kërkimit në {{SITENAME}} shikoni [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'            => 'Kërkim për "[[$1]]"',
 'searchsubtitleinvalid'     => 'Kërkim për "$1"',
-'noexactmatch'              => '<span style="font-size: 135%; font-weight: bold; margin-left: .6em">Faqja me atë titull nuk është krijuar akoma</span>
+'noexactmatch'              => 'Faqja me atë titull nuk është krijuar akoma
 
-<span style="display: block; margin: 1.5em 2em">
 Mund të [[$1|filloni një artikull]] me këtë titull.
 
-<span style="display:block; font-size: 89%; margin-left:.2em">Ju lutem kërkoni {{SITENAME}}-n përpara se të krijoni një artikull të ri se mund të jetë nën një titull tjetër.</span>
-</span>',
+Ju lutem kërkoni {{SITENAME}}-n përpara se të krijoni një artikull të ri se mund të jetë nën një titull tjetër.',
 'noexactmatch-nocreate'     => "'''Faqja e titulluar \"\$1\" nuk ekziston'''",
 'toomanymatches'            => 'Ky kërkim ka shumë përfundime, provoni një pyetje tjetër më përcaktuese',
 'titlematches'              => 'Tituj faqesh që përputhen',

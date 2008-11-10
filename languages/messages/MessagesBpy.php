@@ -160,7 +160,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings কনফিগারেশন সেটিংর তালিকাহান]
 * [http://www.mediawiki.org/wiki/Manual:FAQ মিডিয়া উইকি আঙলাক]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce মিডিয়া উইকির ফঙপার বারে মেইলর তালিকাহান]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce মিডিয়া উইকির ফঙপার বারে মেইলর তালিকাহান]',
 
 'about'          => 'বারে',
 'article'        => 'মেথেলর পাতা',

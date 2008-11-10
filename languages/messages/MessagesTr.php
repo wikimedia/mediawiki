@@ -15,6 +15,7 @@
  * @author Runningfridgesrule
  * @author Srhat
  * @author Suelnur
+ * @author Urhixidur
  * @author Uğur Başak
  * @author לערי ריינהארט
  */
@@ -165,7 +166,7 @@ $messages = array(
 == Yeni Başlayanlar ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Yapılandırma ayarlarının listesi]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki SSS]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-posta listesi]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-posta listesi]',
 
 'about'          => 'Hakkında',
 'article'        => 'Madde',
@@ -295,7 +296,7 @@ $messages = array(
 'restorelink'             => '$1 silinmiş değişikliği',
 'feedlinks'               => 'Besleme:',
 'feed-invalid'            => 'Hatalı besleme tipi.',
-'feed-unavailable'        => 'Sendikalaşma beslemeleri {{SITENAME}} üzerinde geçerli değil.',
+'feed-unavailable'        => 'Sendikalaşma özet akışları geçerli değil.',
 'site-rss-feed'           => '$1 RSS Aboneliği',
 'site-atom-feed'          => '$1 Atom Beslemesi',
 'page-rss-feed'           => '"$1" RSS Beslemesi',
@@ -453,7 +454,7 @@ Lütfen çerez kullanımını açınız ve yeni kullanıcı adınız ve şifreni
 'noname'                     => 'Geçerli bir kullanıcı adı girmediniz.',
 'loginsuccesstitle'          => 'Oturum açıldı',
 'loginsuccess'               => '{{SITENAME}} sitesinde "$1" kullanıcı adıyla oturum açmış bulunmaktasınız.',
-'nosuchuser'                 => '"$1" adında bir kullanıcı bulunmamaktadır. Yazılışı kontrol edin veya [[Special:Userlogin/signup|yeni bir hesap açın]].',
+'nosuchuser'                 => '"$1" adında bir kullanıcı bulunmamaktadır. Yazılışı kontrol edin veya [[Special:UserLogin/signup|yeni bir hesap açın]].',
 'nosuchusershort'            => '"<nowiki>$1</nowiki>" adında bir kullanıcı bulunmamaktadır. Yazılışı kontrol edin.',
 'nouserspecified'            => 'Bir kullanıcı adı belirtmek zorundasınız.',
 'wrongpassword'              => 'Parolayı yanlış girdiniz. Lütfen tekrar deneyiniz.',
@@ -498,7 +499,7 @@ Girişi bitirmek için, burada yeni bir parola yazın:',
 'resetpass_submit'        => 'Şifreyi ayarlayın ve oturum açın',
 'resetpass_success'       => 'Parolanız başarıyla değiştirldi! Şimdi oturumunuz açılıyor...',
 'resetpass_bad_temporary' => 'Geçersiz geçisi parola. Zaten başarıyla parolanızı değiştirmiş veya yeni geçici şifre istemiş olabilirsiniz.',
-'resetpass_forbidden'     => 'Parolalar {{SITENAME}} sitesinde değiştirilemiyor',
+'resetpass_forbidden'     => 'Parolalar değiştirilememektedir',
 'resetpass_missing'       => 'Form data yok.',
 
 # Edit page toolbar
@@ -583,19 +584,24 @@ Lütfen yapacağınız herhangi bir sorguda bu ID bulunsun.',
 'accmailtext'                      => '"$1" kullanıcısına ait parola $2 adresine gönderildi.',
 'newarticle'                       => '(Yeni)',
 'newarticletext'                   => "Henüz varolmayan bir sayfaya konulmuş bir bağlantıya tıkladınız. Bu sayfayı yaratmak için aşağıdaki metin kutusunu kullanınız. Bilgi için [[{{MediaWiki:Helppage}}|yardım sayfasına]] bakınız. Buraya yanlışlıkla geldiyseniz, programınızın '''Geri''' tuşuna tıklayınız.",
-'anontalkpagetext'                 => "----
-''Bu kayıtlı olmayan ya da kayıtlı adıyla sisteme giriş yapmamış bir kullanıcının mesaj sayfasıdır. Bu sebeple kimliği IP adresi ile gösterilmektedir. Bu tür IP adresleri diğer kişiler tarafından payşılabilir. Eğer siz de bir anonim kullanıcı iseniz ve yöneltilen yorumlar sizle ilgili değilse, [[Special:UserLogin|kayıt olun ya da sisteme girin ki]] ileride başka yanlış anlaşılma olmasın.''",
+'anontalkpagetext'                 => "----''Bu sayfa henüz bir kullanıcı hesabı oluşturmamış veya hesabını kullanmayan bir anonim kullanıcının mesaj sayfasıdır. Bu nedenle bu kişiyi belirtmek için rakamsal IP adresini kullanmak zorundayız. Bu gibi IP adresleri birçok kullanıcı tarafından paylaşılabilir. Eğer siz de bir anonim kullanıcıysanız ve size sizin ilginiz olmayan mesajlar geliyorsa, lütfen diğer anonim kullanıcılarla olabilecek olan karmaşayı önlemek için [[Special:UserLogin/signup|bir hesap oluşturun]] veya [[Special:UserLogin|oturum açın]].''",
 'noarticletext'                    => 'Bu sayfa boştur. Bu başlığı diğer sayfalarda [[Special:Search/{{PAGENAME}}|arayabilir]] veya bu sayfayı siz  [{{fullurl:{{FULLPAGENAME}}|action=edit}} yazabilirsiniz].',
 'userpage-userdoesnotexist'        => '"$1" kullanıcı hesabı kayıtlı değil. Bu sayfayı oluşturmak/değiştirmek istiyorsanız lütfen kontrol edin.',
 'clearyourcache'                   => "'''Not:''' Ayarlarınızı kaydettikten sonra, tarayıcınızın belleğini de temizlemeniz gerekmektedir: '''Mozilla / Firefox / Safari:''' ''Shift'' e basılıyken safyayı yeniden yükleyerek veya ''Ctrl-Shift-R'' yaparak (Apple Mac için ''Cmd-Shift-R'');, '''IE:''' ''Ctrl-F5'', '''Konqueror:''' Sadece sayfayı yeniden yükle tuşuna basarak.",
-'usercssjsyoucanpreview'           => "<strong>İpucu:</strong> Sayfayı kaydetmeden önce <font style=\"border: 1px solid #0; background: #EEEEEE; padding : 2px\">'''önizlemeyi göster'''</font>'e tıklayarak yaptığınız yeni sayfayı gözden geçirin.",
+'usercssjsyoucanpreview'           => "<strong>İpucu:</strong> Sayfayı kaydetmeden önce '''önizlemeyi göster''''e tıklayarak yaptığınız yeni sayfayı gözden geçirin.",
 'usercsspreview'                   => "'''Sadece kullanıcı CSS dosyanızın önizlemesini görüyorsun.''' '''Kullanıcı CSS dosyası henüz kaydolmadı!'''",
 'userjspreview'                    => "'''Sadece test ediyorsun ya da önizleme görüyorsun - kullanıcı JavaScript'i henüz kaydolmadı.'''",
 'userinvalidcssjstitle'            => "''Uyarı:''' \"\$1\" adıyla bir tema yoktur. tema-adı.css ve .js dosyalarının adları küçük harf ile yazması gerek, yani {{ns:user}}:Temel/'''M'''onobook.css değil, {{ns:user}}:Temel/'''m'''onobook.css.",
 'updated'                          => '(Güncellendi)',
 'note'                             => '<strong>Not: </strong>',
 'previewnote'                      => '<strong>Bu yalnızca bir önizlemedir, ve değişiklikleriniz henüz kaydedilmemiştir!</strong>',
+'previewconflict'                  => 'Bu önizleme metin düzenleme kutucuğunun üstünde, maddenin eğer değişikliklerinizi kaydetmeyi seçerseniz nasıl görüneceğini yansıtır.',
 'session_fail_preview'             => 'Özür dileriz. Oturum açılması ile ilgili veri kaybından kaynaklı değişikliğinizi kaydedemedik. Lütfen tekrar deneyiniz. Eğer bu yöntem işe yaramazsa oturumu kapatıp tekrar sisteme geri giriş yapınız.',
+'session_fail_preview_html'        => "<strong>Üzgünüz! Oturum verisinin kaybolmasından dolayı düzenlemenizi işleme geçiremeyeceğiz.</strong>
+
+''Çünkü {{SITENAME}} sitesinde raw HTML etkindir, önizleme JavaScript saldırılarına önlem olarak gizlenmiştir.''
+
+<strong>Eğer bu haklı bir düzenleme girişimiyse, lütfen yeniden deneyin. Eğer hala çalışmazsa, [[Special:UserLogout|çıkış yapıp]] yeniden oturum açmayı deneyin.</strong>",
 'editing'                          => '"$1" sayfasını değiştirmektesiniz',
 'editingsection'                   => '"$1" sayfasında bölüm değiştirmektesiniz',
 'editingcomment'                   => '$1 sayfasına mesaj eklemektesiniz.',
@@ -615,7 +621,7 @@ Ayrıca, buraya katkıda bulunarak, bu katkının kendiniz tarafından yazıldı
 <strong><center>TELİF HAKKI İLE KORUNAN HİÇBİR ÇALIŞMAYI BURAYA EKLEMEYİNİZ!</center></strong>",
 'copyrightwarning2'                => 'Lütfen, {{SITENAME}} sitesinea bulunacağınız tüm katkıların diğer üyeler tarafından düzenlenebileceğini, değiştirilebileceğini ya da silinebileceğini hatırlayın. Yazılarınızın merhametsizce değiştirilebilmesine rıza göstermiyorsanız buraya katkıda bulunmayın. <br />
 Ayrıca bu ekleyeceğiniz yazıyı sizin yazdığınızı ya da serbest kopyalama izni veren bir kaynaktan kopyaladığınızı bize taahhüt etmektesiniz (ayrıntılar için referans: $1).',
-'longpagewarning'                  => '<strong>UYARI: Bu sayfa $1 kilobayt büyüklüğündedir; bazı tarayıcılar değişiklik yaparken 32kb ve üstü büyüklüklerde sorunlar yaşayabilir. Sayfayı bölümlere ayırmaya çalışın.</strong>',
+'longpagewarning'                  => '<strong>UYARI: Bu sayfa $1 kilobayt büyüklüğündedir; bazı tarayıcılar değişiklik yaparken 32 kb ve üstü büyüklüklerde sorunlar yaşayabilir. Sayfayı bölümlere ayırmaya çalışın.</strong>',
 'longpageerror'                    => '<strong>HATA: Girdiğiniz metnin uzunluğu $1 kilobyte, ve maksimum uzunluktan $2 kilobyte daha fazladır.
 Kaydedilmesi mümkün değildir.</strong>',
 'readonlywarning'                  => '<strong>DİKKAT: Bakım nedeni ile veritabanı şu anda kilitlidir. Bu sebeple değişiklikleriniz şu anda kaydedilememektedir. Yazdıklarınızı başka bir editöre alıp saklayabilir ve daha sonra tekrar buraya getirip kaydedebilirsiniz</strong>',
@@ -700,8 +706,8 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'revisiondelete'              => 'Sürümleri sil/geri getir',
 'revdelete-nooldid-title'     => 'Hedef sürüm geçersiz',
 'revdelete-nooldid-text'      => 'Bu fonksiyonu uygulamak için belirli hedef değişiklik veya değişikileriniz yok. Sunulmuş olan revizyon mevcut değil, veya mevcut revizyonu gizlemeye çalışıyorsunuz.',
-'revdelete-selected'          => '[[:$1]] sayfasının {{PLURAL:$2|seçili değişikliği|seçili değişiklikleri}}:',
-'logdelete-selected'          => '{{PLURAL:$1|Seçili kayıt olayı|Seçili kayıt olayları}}:',
+'revdelete-selected'          => "'''[[:$1]] sayfasının {{PLURAL:$2|seçili değişikliği|seçili değişiklikleri}}:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Seçili kayıt olayı|Seçili kayıt olayları}}:'''",
 'revdelete-legend'            => 'Görünürlük kısıtlamaları ayarla',
 'revdelete-hide-text'         => 'Değişikilik yazısını gizle',
 'revdelete-hide-name'         => 'Olayı ve hedefi gizle',
@@ -792,7 +798,7 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'mypreferences'            => 'Tercihlerim',
 'prefs-edits'              => 'Değişikilik sayısı:',
 'prefsnologin'             => 'Oturum açık değil',
-'prefsnologintext'         => 'Kullanıcı tercihlerinizi ayarlamak için <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} giriş yapmalısınız]</span>.',
+'prefsnologintext'         => 'Kullanıcı tercihlerinizi ayarlamak için <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} giriş yapmalısınız]</span>.',
 'prefsreset'               => 'Tercihler hafızadan sıfırlandı.',
 'qbsettings'               => 'Hızlı erişim sütun ayarları',
 'qbsettings-none'          => 'Hiçbiri',
@@ -909,7 +915,7 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'recentchanges'                     => 'Son değişiklikler',
 'recentchangestext'                 => 'Yapılan en son değişiklikleri bu sayfadan izleyin.',
 'recentchanges-feed-description'    => "Bu beslemedeki viki'de yapılan en son değişiklikleri takip edin.",
-'rcnote'                            => "$4 tarihi ve saat $5 itibariyle, son {{PLURAL:$2|1 günde|'''$2''' günde}} yapılan, {{PLURAL:$1|'''1''' değişiklik|'''$1''' değişiklik}}, aşağıdadır.",
+'rcnote'                            => "$4 tarihi ve saat $5 itibarı ile, son {{PLURAL:$2|1 günde|'''$2''' günde}} yapılan, {{PLURAL:$1|'''1''' değişiklik|'''$1''' değişiklik}}, aşağıdadır.",
 'rcnotefrom'                        => '<b>$2</b> tarihinden itibaren yapılan değişiklikler aşağıdadır (en fazla <b>$1</b> adet madde gösterilmektedir).',
 'rclistfrom'                        => '$1 tarihinden beri yapılan değişiklikleri göster',
 'rcshowhideminor'                   => 'küçük değişiklikleri $1',
@@ -1755,7 +1761,7 @@ Lütfen başka bir isim deneyiniz.',
 'noimages'              => 'Görecek bir şey yok.',
 'ilsubmit'              => 'Ara',
 'bydate'                => 'kronolojik sırayla',
-'sp-newimages-showfrom' => '$1, $2 tarihi itibariyle yeni resimleri göster',
+'sp-newimages-showfrom' => '$1, $2 tarihi itibarı ile yeni resimleri göster',
 
 # Bad image list
 'bad_image_list' => 'Format şöyle:

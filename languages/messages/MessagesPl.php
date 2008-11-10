@@ -338,7 +338,7 @@ $messages = array(
 == Na początek ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista ustawień konfiguracyjnych]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Komunikaty o nowych wersjach MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Komunikaty o nowych wersjach MediaWiki]',
 
 'about'          => 'O {{GRAMMAR:MS.lp|{{SITENAME}}}}',
 'article'        => 'artykuł',
@@ -468,12 +468,12 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|jedną usuniętą wersję|$1 usunięte wersje|$1 usuniętych wersji}}',
 'feedlinks'               => 'Kanały:',
 'feed-invalid'            => 'Niewłaściwy typ kanału informacyjnego.',
-'feed-unavailable'        => 'Kanały informacyjne {{GRAMMAR:D.lp|{{SITENAME}}}} nie są dostępne',
+'feed-unavailable'        => 'Kanały informacyjne nie są dostępne',
 'site-rss-feed'           => 'Kanał RSS {{GRAMMAR:D.lp|$1}}',
 'site-atom-feed'          => 'Kanał Atom {{GRAMMAR:D.lp|$1}}',
 'page-rss-feed'           => 'Kanał RSS „$1”',
 'page-atom-feed'          => 'Kanał Atom „$1”',
-'red-link-title'          => '$1 (jeszcze nie utworzona)',
+'red-link-title'          => '$1 (jeszcze nie napisana)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Strona',
@@ -635,7 +635,7 @@ Spróbuj ponownie po ich odblokowaniu.',
 'loginsuccesstitle'          => 'Zalogowano pomyślnie',
 'loginsuccess'               => "'''Zalogowałeś się do {{GRAMMAR:D.lp|{{SITENAME}}}} jako „$1”.'''",
 'nosuchuser'                 => 'Brak użytkownika o nazwie „$1”.
-Sprawdź pisownię lub [[Special:Userlogin/signup|użyj formularza, by utworzyć nowe konto]].',
+Sprawdź pisownię lub [[Special:UserLogin/signup|użyj formularza, by utworzyć nowe konto]].',
 'nosuchusershort'            => 'Brak użytkownika o nazwie „<nowiki>$1</nowiki>”.
 Sprawdź poprawność pisowni.',
 'nouserspecified'            => 'Musisz podać nazwę użytkownika.',
@@ -688,7 +688,7 @@ Aby zakończyć proces logowania, musisz ustawić nowe hasło:',
 'resetpass_success'       => 'Twoje hasło zostało pomyślnie zmienione! Trwa logowanie...',
 'resetpass_bad_temporary' => 'Nieprawidłowe hasło tymczasowe.
 Być może zakończyłeś już proces zmiany hasła lub poprosiłeś o nowe hasło tymczasowe.',
-'resetpass_forbidden'     => 'Haseł użytkowników w {{GRAMMAR:MS.lp|{{SITENAME}}}} nie można zmieniać.',
+'resetpass_forbidden'     => 'Hasła nie mogą zostać zmienione',
 'resetpass_missing'       => 'Brak danych formularza.',
 
 # Edit page toolbar
@@ -806,7 +806,7 @@ Spróbuj jeszcze raz.
 Jeśli to nie pomoże – [[Special:UserLogout|wyloguj się]] i zaloguj ponownie.</strong>',
 'session_fail_preview_html'        => "<strong>Uwaga! Serwer nie może przetworzyć tej edycji z powodu utraty danych sesji.</strong>
 
-''Ponieważ w {{GRAMMAR:MS.lp|{{SITENAME}}}} włączona została opcja „surowy HTML”, podgląd został ukryty w celu zabezpieczenia przed atakami JavaScript.''
+''Ponieważ w {{GRAMMAR:MS.lp|{{SITENAME}}}} włączona została opcja „surowy HTML”, podgląd został ukryty w celu zabezpieczenia przed atakami z użyciem JavaScriptu.''
 
 <strong>Jeśli jest to uprawniona próba dokonania edycji, spróbuj jeszcze raz.
 Jeśli to nie pomoże – [[Special:UserLogout|wyloguj się]] i zaloguj ponownie.</strong>",
@@ -853,11 +853,11 @@ Zapisując swoją edycję, oświadczasz, że ten tekst jest Twoim dziełem lub p
 'nocreatetitle'                    => 'Ograniczono możliwość tworzenia nowych stron',
 'nocreatetext'                     => 'W {{GRAMMAR:MS.lp|{{SITENAME}}}} ograniczono możliwość tworzenia nowych stron.
 Możesz edytować istniejące strony bądź też [[Special:UserLogin|zalogować się lub utworzyć konto]].',
-'nocreate-loggedin'                => 'Nie masz uprawnień do tworzenia stron w {{GRAMMAR:MS.lp|{{SITENAME}}}}.',
+'nocreate-loggedin'                => 'Nie masz uprawnień do tworzenia nowych stron.',
 'permissionserrors'                => 'Błędy uprawnień',
 'permissionserrorstext'            => 'Nie masz uprawnień do tego działania z {{PLURAL:$1|następującej przyczyny|następujących przyczyn}}:',
-'permissionserrorstext-withaction' => 'Nie możesz $2, z {{PLURAL:$1|następującego powodu|następujących powodów}}:',
-'recreate-deleted-warn'            => "'''Uwaga! Zamierzasz utworzyć stroną, która została wcześniej usunięta.'''
+'permissionserrorstext-withaction' => 'Nie masz uprawnień do $2, z {{PLURAL:$1|następującego powodu|następujących powodów}}:',
+'recreate-deleted-warn'            => "'''Uwaga! Zamierzasz utworzyć stronę, która została wcześniej usunięta.'''
 
 Upewnij się, czy ponowne utworzenie tej strony jest uzasadnione.
 Poniżej znajduje się rejestr usunięć tej strony:",
@@ -935,11 +935,11 @@ Powody usunięcia mogą znajdować się w [{{fullurl:Special:Log/delete|page={{F
 'revdelete-nooldid-title'     => 'Nie wybrano wersji',
 'revdelete-nooldid-text'      => 'Nie wybrano wersji, na których ma zostać wykonana ta operacja,
 wybrana wersja nie istnieje lub próbowano ukryć wersję bieżącą.',
-'revdelete-selected'          => '{{PLURAL:$2|Zaznaczona wersja|Zaznaczone wersje}} strony [[:$1]]:',
-'logdelete-selected'          => 'Zaznaczone {{PLURAL:$1|zdarzenie|zdarzenia}} z rejestru:',
-'revdelete-text'              => 'Usunięte wersje będą nadal widoczne w historii strony, ale ich treść nie będzie publicznie dostępna.
+'revdelete-selected'          => "'''{{PLURAL:$2|Zaznaczona wersja|Zaznaczone wersje}} strony [[:$1]]:'''",
+'logdelete-selected'          => "'''Zaznaczone {{PLURAL:$1|zdarzenie|zdarzenia}} z rejestru:'''",
+'revdelete-text'              => "'''Usunięte wersje będą nadal widoczne w historii strony, ale ich treść nie będzie publicznie dostępna.'''
 
-Inni administratorzy {{GRAMMAR:D.lp|{{SITENAME}}}} nadal będą mieć dostęp do ukrytych wersji i będą mogli je odtworzyć, chyba że operator serwisu nałożył dodatkowe ograniczenia.',
+Inni administratorzy {{GRAMMAR:D.lp|{{SITENAME}}}} nadal będą mieć dostęp do ukrytych wersji i będą mogli je odtworzyć, chyba że operator serwisu nałożył dodatkowe ograniczenia.",
 'revdelete-legend'            => 'Ustaw ograniczenia widoczności dla wersji',
 'revdelete-hide-text'         => 'Ukryj tekst wersji',
 'revdelete-hide-name'         => 'Ukryj akcję i cel',
@@ -1060,7 +1060,7 @@ Jednak informacje o treści {{GRAMMAR:D.lp|{{SITENAME}}}} mogą być w Google ni
 'mypreferences'            => 'preferencje',
 'prefs-edits'              => 'Liczba edycji',
 'prefsnologin'             => 'Nie jesteś zalogowany',
-'prefsnologintext'         => 'Musisz się <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} zalogować]</span> przed zmianą swoich preferencji.',
+'prefsnologintext'         => 'Musisz się <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} zalogować]</span> przed zmianą swoich preferencji.',
 'prefsreset'               => 'Preferencje domyślne zostały odtworzone.',
 'qbsettings'               => 'Pasek szybkiego dostępu',
 'qbsettings-none'          => 'Brak',
@@ -1209,7 +1209,7 @@ Zapoznaj się z math/README w celu konfiguracji.',
 'right-import'               => 'Import stron z innych wiki',
 'right-importupload'         => 'Import stron poprzez przesłanie pliku',
 'right-patrol'               => 'Oznaczanie edycji jako „sprawdzone”',
-'right-autopatrol'           => 'Edycje automatycznie oznaczane jako „sprawdzone”',
+'right-autopatrol'           => 'Własne edycje automatycznie oznaczane jako „sprawdzone”',
 'right-patrolmarks'          => 'Podgląd znaczników patrolowania ostatnich zmian – oznaczania jako „sprawdzone”',
 'right-unwatchedpages'       => 'Podgląd listy stron nieobserwowanych',
 'right-trackback'            => 'Wysyłanie trackback',
@@ -1331,7 +1331,7 @@ Cofnij się i załaduj plik pod inną nazwą. [[Image:$1|thumb|center|$1]]',
 'uploadedimage'               => 'przesłał [[$1]]',
 'overwroteimage'              => 'przesłał nową wersję [[$1]]',
 'uploaddisabled'              => 'Przesyłanie plików wyłączone',
-'uploaddisabledtext'          => 'Funkcjonalność przesyłania plików została wyłączona w {{GRAMMAR:MS.lp|{{SITENAME}}}}.',
+'uploaddisabledtext'          => 'Możliwość przesyłania plików została wyłączona.',
 'uploadscripted'              => 'Plik zawiera kod HTML lub skrypt, który może zostać błędnie zinterpretowany przez przeglądarkę internetową.',
 'uploadcorrupt'               => 'Plik jest uszkodzony lub ma nieprawidłowe rozszerzenie.
 Sprawdź plik i załaduj poprawną wersję.',
@@ -1476,7 +1476,7 @@ Użycie: typ_treści/podtyp, np. <tt>image/jpeg</tt>.',
 
 # Unused templates
 'unusedtemplates'     => 'Nieużywane szablony',
-'unusedtemplatestext' => 'Poniżej znajduje się lista wszystkich stron znajdujących się w przestrzeni nazw przeznaczonej dla szablonów, które nie są używane przez inne strony.
+'unusedtemplatestext' => 'Poniżej znajduje się lista wszystkich stron znajdujących się w przestrzeni nazw {{ns:template}}, które nie są używane przez inne strony.
 Sprawdź inne linki do szablonów, zanim usuniesz tę stronę.',
 'unusedtemplateswlh'  => 'inne linkujące',
 
@@ -1538,7 +1538,7 @@ Strona uznawana jest za ujednoznaczniającą, jeśli zawiera ona szablon linkowa
 'nviews'                  => 'odwiedzono $1 {{PLURAL:$1|raz|razy}}',
 'specialpage-empty'       => 'Ta strona raportu jest pusta.',
 'lonelypages'             => 'Porzucone strony',
-'lonelypagestext'         => 'Do poniższych stron nie odwołuje się żadna inna strona w {{GRAMMAR:MS.lp|{{SITENAME}}}}.',
+'lonelypagestext'         => 'Do poniższych stron nie linkuje żadna inna strona lub nie są one dołączone do innych stron w {{GRAMMAR:MS.lp|{{SITENAME}}}}.',
 'uncategorizedpages'      => 'Nieskategoryzowane strony',
 'uncategorizedcategories' => 'Nieskategoryzowane kategorie',
 'uncategorizedimages'     => 'Nieskategoryzowane pliki',
@@ -1645,7 +1645,7 @@ Sprawdź stronę z [[{{MediaWiki:Listgrouprights-helppage}}|dodatkowymi informac
 'mailnologintext' => 'Musisz się [[Special:UserLogin|zalogować]] i mieć wpisany aktualny adres e-mailowy w swoich [[Special:Preferences|preferencjach]], aby móc wysłać e-mail do innego użytkownika.',
 'emailuser'       => 'Wyślij e-mail do tego użytkownika',
 'emailpage'       => 'Wyślij e-mail do użytkownika',
-'emailpagetext'   => 'Poniższy formularz pozwala na wysłanie jednej wiadomości do użytkownika pod warunkiem, że wpisał on poprawny adres e-mail w swoich preferencjach.
+'emailpagetext'   => 'Możesz użyć poniższego formularza, aby wysłać wiadomość e-mail do tego użytkownika.
 Adres e-mailowy, który został przez Ciebie wprowadzony w [[Special:Preferences|Twoich preferencjach]], pojawi się w polu „Od”, dzięki czemu odbiorca będzie mógł Ci odpowiedzieć.',
 'usermailererror' => 'Moduł obsługi poczty zwrócił błąd:',
 'defemailsubject' => 'Wiadomość z {{GRAMMAR:D.lp|{{SITENAME}}}}',
@@ -1821,7 +1821,7 @@ Obecne ustawienia dla strony <strong>$1</strong> to:',
 # Restrictions (nouns)
 'restriction-edit'   => 'Edytowanie',
 'restriction-move'   => 'Przenoszenie',
-'restriction-create' => 'Utwórz',
+'restriction-create' => 'Utworzenie',
 'restriction-upload' => 'Prześlij',
 
 # Restriction levels
@@ -1948,7 +1948,7 @@ Podaj powód (np. umieszczając nazwy stron, na których dopuszczono się wandal
 'ipbenableautoblock'              => 'Zablokuj ostatni adres IP tego użytkownika i automatycznie wszystkie kolejne, z których będzie próbował edytować',
 'ipbsubmit'                       => 'Zablokuj użytkownika',
 'ipbother'                        => 'Inny okres:',
-'ipboptions'                      => '2 godziny:2 hours,1 dzień:1 day,3 dni:3 days,1 tydzień:1 week,2 tygodnie:2 weeks,1 miesiąc:1 month,3 miesiące:3 months,6 miesięcy:6 months,1 rok:1 year,nieskończony:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 godziny:2 hours,1 dzień:1 day,3 dni:3 days,1 tydzień:1 week,2 tygodnie:2 weeks,1 miesiąc:1 month,3 miesiące:3 months,6 miesięcy:6 months,1 rok:1 year,na zawsze:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'inny',
 'ipbotherreason'                  => 'Inne/dodatkowe uzasadnienie:',
 'ipbhidename'                     => 'Ukryj nazwę użytkownika/adres IP w rejestrze blokad, na liście aktywnych blokad i liście użytkowników',
@@ -1960,7 +1960,7 @@ Przejdź do [[Special:IPBlockList|listy zablokowanych adresów IP]], by przejrze
 'ipb-edit-dropdown'               => 'Edytuj przyczynę blokady',
 'ipb-unblock-addr'                => 'Odblokuj $1',
 'ipb-unblock'                     => 'Odblokuj użytkownika lub adres IP',
-'ipb-blocklist-addr'              => 'Zobacz istniejące blokady $1',
+'ipb-blocklist-addr'              => 'Istniejące blokady dla $1',
 'ipb-blocklist'                   => 'Zobacz istniejące blokady',
 'unblockip'                       => 'Odblokuj użytkownika',
 'unblockiptext'                   => 'Użyj poniższego formularza, by przywrócić możliwość edycji z wcześniej zablokowanego adresu IP lub użytkownikowi.',
@@ -2055,7 +2055,7 @@ Upewnij się co do konsekwencji tej operacji, zanim się na nią zdecydujesz.",
 
 W takich przypadkach treść dyskusji można przenieść tylko ręcznie.',
 'movearticle'             => 'Przeniesienie strony',
-'movenotallowed'          => 'Nie masz uprawnień do przenoszenia stron w {{GRAMMAR:MS.lp|{{SITENAME}}}}.',
+'movenotallowed'          => 'Nie masz uprawnień do przenoszenia stron.',
 'newtitle'                => 'Nowy tytuł',
 'move-watch'              => 'Obserwuj',
 'movepagebtn'             => 'Przenieś stronę',
@@ -2068,7 +2068,7 @@ Wybierz inną nazwę.',
 'movedto'                 => 'przeniesiono do',
 'movetalk'                => 'Przenieś także stronę dyskusji, jeśli to możliwe.',
 'move-subpages'           => 'Jeśli to możliwe przenieś wszystkie podstrony',
-'move-talk-subpages'      => 'Jeśli to możliwe przenieś wszystkie podstrony strony dyskusji',
+'move-talk-subpages'      => 'Jeśli to możliwe przenieś wszystkie strony dyskusji podstron',
 'movepage-page-exists'    => 'Strona $1 istnieje. Automatyczne nadpisanie nie jest możliwe.',
 'movepage-page-moved'     => 'Strona $1 została przeniesiona do $2.',
 'movepage-page-unmoved'   => 'Nazwa strony $1 nie może zostać zmieniona na $2.',

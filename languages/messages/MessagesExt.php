@@ -5,6 +5,7 @@
  * @file
  *
  * @author Better
+ * @author Urhixidur
  */
 
 $messages = array(
@@ -131,7 +132,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
 
 'about'          => 'Al tentu',
 'article'        => 'Artículu',
@@ -576,7 +577,7 @@ Pol otra parti, al pursal el botón "emburacal" mos estás asigurandu que lo esc
 'copyrightwarning2'                => 'Tolas contribucionis a {{SITENAME}} puein sel eitás, chambás, u esborrás pol otrus colabutaoris. Si nu estás dalcuerdu, altonci nu emburaquis ná.<br />
 Pol otra parti, al pursal el botón "emburacal" mos estás asigurandu que lo escrebiu á siu hechu pol tí, u copiau dun domiñu púbricu u recursu semilal (lei $1 pa mas detallis).
 <strong>Cudia: Nu emburaquis labutus con Copyright sin premisu!</strong>',
-'longpagewarning'                  => '<strong>Avisu: Esta páhina tieni un grandol de $1 kilobytes; angunus escrucaoris puein tenel pobremas al eital páhinas con mas de 32KB. Pol favol, consieri la posibiliá e devidil esta páhina en secionis mas chiqueninas.</strong>',
+'longpagewarning'                  => '<strong>Avisu: Esta páhina tieni un grandol de $1 kilobytes; angunus escrucaoris puein tenel pobremas al eital páhinas con mas de 32 kB. Pol favol, consieri la posibiliá e devidil esta páhina en secionis mas chiqueninas.</strong>',
 'longpageerror'                    => "<strong>Marru: El testu qu'as empuntau ocupa $1 kbs (siendu polo tantu mayol de $2 kbs). Nu es posibri emburacal.</strong>",
 'readonlywarning'                  => '<strong>Avisu: La basi e datus s´alcuentra afechá pol mantenimientu nesti momentu,
 razón pola que nu pueis emburacal los tus chambus agora. Pa nu perdel los chambus, pueis copialus i pegalus nel tu ordinaol, i endrentu un ratu, emburacalus ena güiqui.</strong>',
@@ -662,11 +663,11 @@ puei bel detallis nel [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rus
 'revisiondelete'              => 'Esborral/arrecuperal revisionis',
 'revdelete-nooldid-title'     => 'Nu ai una revisión destinu',
 'revdelete-nooldid-text'      => 'Nu as prehisau denguna revisión destinu ondi realizal esta hunción.',
-'revdelete-selected'          => "{{PLURAL:$2|Revisión aseñalá e|Revisionis aseñalás de}} '''[[:$1]]''':",
-'logdelete-selected'          => '{{PLURAL:$1|Eventu el rustrihu aseñalau|Eventus del rustrihu aseñalaus}}:',
-'revdelete-text'              => 'Las revisionis esborrás entovia apaicirán nel estorial la páhina, peru el su continiu nu sedrá acesibri pal púbricu.
+'revdelete-selected'          => "'''{{PLURAL:$2|Revisión aseñalá e|Revisionis aseñalás de}} '''[[:$1]]''':'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Eventu el rustrihu aseñalau|Eventus del rustrihu aseñalaus}}:'''",
+'revdelete-text'              => "'''Las revisionis esborrás entovia apaicirán nel estorial la páhina, peru el su continiu nu sedrá acesibri pal púbricu.'''
 
-El restu e çahorilis desti güiqui sí tendrán premisu pa visoreal el continiu açonchau, i revertil el esborrau si es mestel, a nu sel que los alministraoris del güiqui crein una restrición aicional.',
+El restu e çahorilis desti güiqui sí tendrán premisu pa visoreal el continiu açonchau, i revertil el esborrau si es mestel, a nu sel que los alministraoris del güiqui crein una restrición aicional.",
 'revdelete-legend'            => 'Establecel restricionis de visibiliá',
 'revdelete-hide-text'         => 'Açonchal el testu la revisión',
 'revdelete-hide-name'         => 'Açonchal ación i ohetivu',

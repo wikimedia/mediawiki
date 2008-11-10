@@ -156,7 +156,7 @@ $messages = array(
 == Comezando ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Listaxe de opcións de configuración]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Preguntas frecuentes sobre MediaWiki]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Listaxe de correo das edicións de MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Listaxe de correo das edicións de MediaWiki]',
 
 'about'          => 'Acerca de',
 'article'        => 'Artigo',
@@ -249,7 +249,7 @@ $messages = array(
 'edithelp'             => 'Axuda de edición',
 'edithelppage'         => 'Help:Como editar unha páxina',
 'faq'                  => 'PMF',
-'faqpage'              => 'Project:PMF',
+'faqpage'              => 'Project:FAQ',
 'helppage'             => 'Help:Axuda',
 'mainpage'             => 'Portada',
 'mainpage-description' => 'Portada',
@@ -299,7 +299,7 @@ $messages = array(
 'nstab-media'     => 'Páxina multimedia',
 'nstab-special'   => 'Páxina especial',
 'nstab-project'   => 'Páxina do proxecto',
-'nstab-image'     => 'Imaxe',
+'nstab-image'     => 'Ficheiro',
 'nstab-mediawiki' => 'Mensaxe',
 'nstab-template'  => 'Modelo',
 'nstab-help'      => 'Axuda',
@@ -364,11 +364,11 @@ Se cadra, xa foi borrada por alguén.',
 'perfcached'           => 'A información seguinte é da memoria caché e pode ser que non estea completamente actualizada.',
 'perfcachedts'         => 'Esta información é da memoria caché. Última actualización: $1.',
 'querypage-no-updates' => 'Neste momento están desactivadas as actualizacións nesta páxina. O seu contido non se modificará.',
-'wrong_wfQuery_params' => 'Parámetros Incorrectos para wfQuery()<br />
+'wrong_wfQuery_params' => 'Parámetros incorrectos para wfQuery()<br />
 Función: $1<br />
-Procura: $2',
+Dúbida: $2',
 'viewsource'           => 'Ver o código fonte',
-'viewsourcefor'        => 'de $1',
+'viewsourcefor'        => 'de "$1"',
 'actionthrottled'      => 'Acción ocasional',
 'actionthrottledtext'  => "Como unha medida de loita contra o ''spam'', limítase a realización desta acción a un número determinado de veces nun curto espazo de tempo, e vostede superou este límite. Ténteo de novo nuns minutos.",
 'protectedpagetext'    => 'Esta páxina foi protexida para evitar a edición.',
@@ -392,7 +392,7 @@ A razón dada foi ''$2''.",
 'virus-unknownscanner' => 'antivirus descoñecido:',
 
 # Login and logout pages
-'logouttitle'                => 'Saída de usuario a anónimo',
+'logouttitle'                => 'Saída de usuario ao anonimato',
 'logouttext'                 => '<strong>Agora está fóra do sistema.</strong>
 
 Pode continuar usando {{SITENAME}} de xeito anónimo, ou pode [[Special:UserLogin|acceder de novo]] co mesmo nome de usuario ou con outro.
@@ -447,7 +447,7 @@ Tamén pode deixar que outras persoas se poñan en contacto con vostede desde a 
 'loginsuccesstitle'          => 'Acceso exitoso',
 'loginsuccess'               => "'''Accedeu ao sistema {{SITENAME}} como \"\$1\".'''",
 'nosuchuser'                 => 'non hai ningún usuario chamado "$1".
-Verifique o nome que inseriu ou [[Special:Userlogin/signup|cree unha nova conta]].',
+Verifique o nome que inseriu ou [[Special:UserLogin/signup|cree unha nova conta]].',
 'nosuchusershort'            => 'non hai ningún usuario chamado "<nowiki>$1</nowiki>".
 Verifique o nome que inseriu.',
 'nouserspecified'            => 'Debe especificar un nome de usuario.',
@@ -596,8 +596,10 @@ Se chegou aquí por erro, simplemente prema no botón '''atrás''' do seu navega
 'userpage-userdoesnotexist'        => 'A conta do usuario "$1" non está rexistrada. Comprobe se desexa crear/editar esta páxina.',
 'clearyourcache'                   => "'''Nota: despois de gravar cómpre limpar a memoria caché do seu navegador para ver os cambios.''' '''Mozilla / Firefox / Safari:''' prema ''Maiúsculas'' á vez que en ''Recargar'', ou prema en ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' nos Macintosh); '''Konqueror:''' faga clic en ''Recargar'' ou prema en ''F5''; '''Opera:''' limpe a súa memoria caché en ''Ferramentas → Preferencias''; '''Internet Explorer:''' prema ''Ctrl'' ao tempo que fai clic en ''Refrescar'', ou prema ''Ctrl-F5''.",
 'usercssjsyoucanpreview'           => '<strong>Nota:</strong> use o botón "Mostrar a vista previa" para verificar o novo CSS/JS antes de gardalo.',
-'usercsspreview'                   => "'''Lembre que só está ven do a vista previa do seu CSS de usuario. Aínda non foi gardado!'''",
-'userjspreview'                    => "'''Lembre que só está testando/previsualizando o seu javascript de usuario, non foi aínda gardado!'''",
+'usercsspreview'                   => "'''Lembre que só está vendo a vista previa do seu CSS de usuario.'''
+'''Este aínda non foi gardado!'''",
+'userjspreview'                    => "'''Lembre que só está testando/previsualizando o seu JavaScript de usuario.'''
+'''Este aínda non foi gardado!'''",
 'userinvalidcssjstitle'            => "'''Aviso:''' Non hai ningún tema \"\$1\". Lembre que as páxinas .css e .js utilizan un título en minúsculas, como por exemplo {{ns:user}}:Foo/monobook.css no canto de {{ns:user}}:Foo/Monobook.css.",
 'updated'                          => '(Actualizado)',
 'note'                             => '<strong>Nota:</strong>',
@@ -662,7 +664,7 @@ Pode voltar e editar unha páxina que xa existe ou, se non, [[Special:UserLogin|
 'nocreate-loggedin'                => 'Non dispón dos permisos necesarios para crear páxinas novas.',
 'permissionserrors'                => 'Erros de permisos',
 'permissionserrorstext'            => 'Non dispón de permiso para facelo por {{PLURAL:$1|esta razón|estas razóns}}:',
-'permissionserrorstext-withaction' => 'Non ten permiso para $2, {{PLURAL:$1|pola seguinte razón|polas seguintes razóns}}:',
+'permissionserrorstext-withaction' => 'Non ten os permisos necesarios para $2, {{PLURAL:$1|pola seguinte razón|polas seguintes razóns}}:',
 'recreate-deleted-warn'            => "'''Atención: vai volver crear unha páxina que xa foi eliminada anteriormente.
 
 Debería considerar se é apropiado continuar a editar esta páxina.
@@ -745,11 +747,11 @@ se quere ampliar detalles, visite o [{{fullurl:Special:Log/delete|page={{PAGENAM
 'revdelete-nooldid-title'     => 'Revisión inválida',
 'revdelete-nooldid-text'      => 'Non indicou a revisión ou revisións sobre as que realizar esta
 función, a revisión especificada non existe, ou está intentando agochar a revisión actual.',
-'revdelete-selected'          => '{{PLURAL:$2|Revisión seleccionada|Revisións seleccionadas}} de [[:$1]]:',
-'logdelete-selected'          => '{{PLURAL:$1|Rexistro de evento seleccionado|Rexistro de eventos seleccionados}}:',
-'revdelete-text'              => 'As revisión eliminadas aínda aparecerán no historial da páxina, pero o contido do seu texto será inaccesíbel ao público.
+'revdelete-selected'          => "'''{{PLURAL:$2|Revisión seleccionada|Revisións seleccionadas}} de [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Rexistro de evento seleccionado|Rexistro de eventos seleccionados}}:'''",
+'revdelete-text'              => "'''As revisión eliminadas aínda aparecerán no historial da páxina e nos rexistros, pero parte do seu contido será inaccesíbel ao público.'''
 
-Outros administradores de {{SITENAME}} poderán acceder aínda ao contido oculto e poderán volver atrás esa eliminación a través desta mesma interface, a non ser que os operadores do sitio leven a cabo unha restrición adicional.',
+Outros administradores de {{SITENAME}} poderán acceder ao contido oculto e poderán restaurar a páxina a través desta mesma interface, a non ser que os operadores do sitio leven a cabo unha restrición adicional.",
 'revdelete-legend'            => 'Aplicar restricións de visibilidade',
 'revdelete-hide-text'         => 'Agochar texto da revisión',
 'revdelete-hide-name'         => 'Agochar acción e destino',
@@ -822,7 +824,7 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 'searchresults'             => 'Resultados da procura',
 'searchresulttext'          => 'Para máis información sobre como realizar procuras en {{SITENAME}}, vexa [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'            => 'A súa busca de "\'\'\'[[:$1]]\'\'\'" ([[Special:Prefixindex/$1|todas as páxinas que comezan por "$1"]] | [[Special:WhatLinksHere/$1|todas as páxinas que ligan con "$1"]])',
-'searchsubtitleinvalid'     => "A súa busca de '''$1'''",
+'searchsubtitleinvalid'     => "A súa busca de \"'''\$1'''\"",
 'noexactmatch'              => "'''Non hai ningunha páxina titulada \"\$1\".'''
 Se quere, pode [[:\$1|creala]].",
 'noexactmatch-nocreate'     => "'''Non hai ningunha páxina titulada \"\$1\".'''",
@@ -858,8 +860,9 @@ Se quere, pode [[:\$1|creala]].",
 'powersearch-redir'         => 'Listar as redireccións',
 'powersearch-field'         => 'Procurar por',
 'search-external'           => 'Procura externa',
-'searchdisabled'            => '<p style="margin: 1.5em 2em 1em">As procuras en {{SITENAME}} están deshabilitadas por cuestións de rendemento. Mentres tanto pode procurar usando o Google.
-<span style="font-size: 89%; display: block; margin-left: .2em">Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados.</span></p>',
+'searchdisabled'            => 'As procuras en {{SITENAME}} están deshabilitadas por cuestións de rendemento.
+Mentres tanto pode procurar usando o Google.
+Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados.',
 
 # Preferences page
 'preferences'              => 'Preferencias',
@@ -1016,7 +1019,7 @@ Se quere, pode [[:\$1|creala]].",
 'right-autopatrol'           => 'Ter as edicións marcadas automaticamente como patrulladas',
 'right-patrolmarks'          => 'Ver os cambios que están marcados coma patrullados',
 'right-unwatchedpages'       => 'Ver unha listaxe de páxinas que non están vixiadas',
-'right-trackback'            => 'Enviar un "trackback"',
+'right-trackback'            => 'Enviar un trackback',
 'right-mergehistory'         => 'Fusionar o historial das páxinas',
 'right-userrights'           => 'Editar todos os dereitos de usuario',
 'right-userrights-interwiki' => 'Editar os dereitos de usuario dos usuarios doutros wikis',
@@ -1091,7 +1094,7 @@ Vexa a [[Special:NewImages|galería de imaxes novas]] para unha visión máis xe
 'filename'                    => 'Nome do ficheiro',
 'filedesc'                    => 'Resumo',
 'fileuploadsummary'           => 'Descrición:',
-'filestatus'                  => 'Status do Copyright:',
+'filestatus'                  => 'Status dos dereitos de autor:',
 'filesource'                  => 'Fonte:',
 'uploadedfiles'               => 'Ficheiros cargados en {{SITENAME}}',
 'ignorewarning'               => 'Ignorar a advertencia e gardar o ficheiro de calquera xeito',
@@ -1274,7 +1277,8 @@ Entrada: tipodecontido/subtipo, p.ex. <tt>image/jpeg</tt>.',
 
 # Unused templates
 'unusedtemplates'     => 'Modelos sen uso',
-'unusedtemplatestext' => 'Esta páxina contén unha listaxe de todas as páxinas no espazo de nomes modelo que non están incluídas en ningunha outra páxina. Lembre verificar outros enlaces cara aos modelos antes de borralos.',
+'unusedtemplatestext' => 'Esta páxina contén unha lista de todas as páxinas no espazo de nomes {{ns:template}} que non están incluídas en ningunha outra páxina.
+Lembre verificar outras ligazóns cara aos modelos antes de borralos.',
 'unusedtemplateswlh'  => 'outras ligazóns',
 
 # Random page
@@ -1309,7 +1313,7 @@ No canto de ligar cos homónimos deben apuntar cara á páxina apropiada.<br />
 Unha páxina trátase como páxina de homónimos cando nela se usa un modelo que está ligado desde a [[MediaWiki:Disambiguationspage|páxina de homónimos]].",
 
 'doubleredirects'            => 'Redireccións dobres',
-'doubleredirectstext'        => 'Esta páxina contén as páxinas que redirixen cara a outras páxinas de redirección. Cada ringleira contén ligazóns cara á primeira e segunda redireccións, e tamén á primeira liña da segunda redirección, que é usualmente o artigo "real", á que a primeira redirección debería apuntar.',
+'doubleredirectstext'        => 'Esta lista contén as páxinas que redirixen cara a outras páxinas de redirección. Cada ringleira contén ligazóns cara á primeira e segunda redireccións, e tamén á primeira liña da segunda redirección, que é frecuentemente o artigo "real", á que a primeira redirección debera apuntar.',
 'double-redirect-fixed-move' => 'A páxina "[[$1]]" foi movida, agora é unha redirección cara a "[[$2]]"',
 'double-redirect-fixer'      => 'Amañador de redireccións',
 
@@ -1334,7 +1338,7 @@ Unha páxina trátase como páxina de homónimos cando nela se usa un modelo que
 'nviews'                  => 'vista {{PLURAL:$1|unha vez|$1 veces}}',
 'specialpage-empty'       => 'Non hai resultados para o que solicitou.',
 'lonelypages'             => 'Páxinas orfas',
-'lonelypagestext'         => 'As seguintes páxinas están illadas, non están enlazadas desde outras páxinas de {{SITENAME}}.',
+'lonelypagestext'         => 'As seguintes páxinas non teñen ningunha ligazón que apunte cara a ela noutra páxina de {{SITENAME}}.',
 'uncategorizedpages'      => 'Páxinas sen categorías',
 'uncategorizedcategories' => 'Categorías sen categorías',
 'uncategorizedimages'     => 'Ficheiros sen categorizar',
@@ -1441,7 +1445,7 @@ Se quere máis información acerca dos dereitos individuais, pode atopala [[{{Me
 'mailnologintext' => 'Debe [[Special:UserLogin|acceder ao sistema]] e ter rexistrado un enderezo de correo electrónico válido nas súas [[Special:Preferences|preferencias]] para enviar correos electrónicos a outros usuarios.',
 'emailuser'       => 'Enviar un correo electrónico a este usuario',
 'emailpage'       => 'Enviar un correo electrónico a un usuario',
-'emailpagetext'   => 'Se o usuario introduciu un enderezo de correo electrónico válido nas súas preferencias, este formulario serve para enviarlle unha única mensaxe.
+'emailpagetext'   => 'Pode usar o formulario de embaixo para enviar unha mensaxe de correo electrónico a este usuario.
 O correo electrónico que inseriu [[Special:Preferences|nas súas preferencias]] aparecerá no campo "De:" do correo, polo que o receptor da mensaxe poderalle responder.',
 'usermailererror' => 'O obxecto enviado deu unha mensaxe de erro:',
 'defemailsubject' => 'Correo electrónico de {{SITENAME}}',
@@ -1469,7 +1473,7 @@ O correo electrónico que inseriu [[Special:Preferences|nas súas preferencias]]
 'addedwatch'           => 'Engadido á listaxe de vixilancia',
 'addedwatchtext'       => "A páxina \"[[:\$1]]\" foi engadida á súa [[Special:Watchlist|listaxe de vixilancia]].
 Os cambios futuros nesta páxina e na súa páxina de conversa asociada serán listados alí, e a páxina aparecerá en '''negra''' na [[Special:RecentChanges|listaxe de cambios recentes]] para facer máis sinxela a súa sinalización.",
-'removedwatch'         => 'Quitado da listaxe de vixilancia',
+'removedwatch'         => 'Eliminado da listaxe de vixilancia',
 'removedwatchtext'     => 'A páxina "[[:$1]]" foi eliminada [[Special:Watchlist|da súa listaxe de vixilancia]].',
 'watch'                => 'Vixiar',
 'watchthispage'        => 'Vixiar esta páxina',
@@ -1481,12 +1485,12 @@ Os cambios futuros nesta páxina e na súa páxina de conversa asociada serán l
 'watchlist-details'    => 'Hai {{PLURAL:$1|unha páxina|$1 páxinas}} na súa lista de vixilancia, sen contar as de conversa.',
 'wlheader-enotif'      => '* Está dispoñíbel a notificación por correo electrónico.',
 'wlheader-showupdated' => "* As páxinas que cambiaron desde a súa última visita amósanse en '''negra'''",
-'watchmethod-recent'   => 'buscando edicións recentes das páxinas vixiadas',
-'watchmethod-list'     => 'buscando nas páxinas vixiadas por edicións recentes',
+'watchmethod-recent'   => 'comprobando as edicións recentes na procura de páxinas vixiadas',
+'watchmethod-list'     => 'comprobando as páxinas vixiadas na procura de edicións recentes',
 'watchlistcontains'    => 'A súa listaxe de vixilancia ten $1 {{PLURAL:$1|páxina|páxinas}}.',
 'iteminvalidname'      => "Hai un problema co ítem '$1', nome non válido...",
-'wlnote'               => "Abaixo {{PLURAL:$1|está a última modificación|están as últimas '''$1''' modificacións}} {{PLURAL:$2|na última hora|nas últimas '''$2''' horas}}.",
-'wlshowlast'           => 'Amosar as últimas $1 horas $2 días $3',
+'wlnote'               => "Embaixo {{PLURAL:$1|está a última modificación|están as últimas '''$1''' modificacións}} {{PLURAL:$2|na última hora|nas últimas '''$2''' horas}}.",
+'wlshowlast'           => 'Amosar as últimas $1 horas, os últimos $2 días ou $3',
 'watchlist-show-bots'  => 'Mostrar os bots',
 'watchlist-hide-bots'  => 'Agochar os bots',
 'watchlist-show-own'   => 'Mostrar as edicións propias',
@@ -1750,7 +1754,7 @@ Olle a [[Special:IPBlockList|lista de enderezos IP e usuarios bloqueados]] para 
 'ipb-edit-dropdown'               => 'Editar os motivos de bloqueo',
 'ipb-unblock-addr'                => 'Desbloquear a "$1"',
 'ipb-unblock'                     => 'Desbloquear un usuario ou enderezo IP',
-'ipb-blocklist-addr'              => 'Ver os bloqueos vixentes de "$1"',
+'ipb-blocklist-addr'              => 'Bloqueos vixentes de "$1"',
 'ipb-blocklist'                   => 'Ver bloqueos vixentes',
 'unblockip'                       => 'Desbloquear o usuario',
 'unblockiptext'                   => 'Use o seguinte formulario para dar de novo acceso de escritura a un enderezo IP ou usuario que estea bloqueado.',
@@ -1795,7 +1799,8 @@ Olle a [[Special:IPBlockList|lista de enderezos IP e usuarios bloqueados]] se qu
 'blockme'                         => 'Bloquearme',
 'proxyblocker'                    => 'Bloqueador de proxy',
 'proxyblocker-disabled'           => 'Esta función está desactivada.',
-'proxyblockreason'                => 'O seu enderezo de IP foi bloqueado porque é un proxy aberto. Por favor contacte co seu fornecedor de acceso a internet ou co seu soporte técnico e informe deste grave problema de seguridade.',
+'proxyblockreason'                => 'O seu enderezo IP foi bloqueado porque é un proxy aberto.
+Por favor, contacte co seu fornecedor de acceso á Internet ou co seu soporte técnico e informe deste grave problema de seguridade.',
 'proxyblocksuccess'               => 'Feito.',
 'sorbsreason'                     => 'O seu enderezo IP está rexistrado na listaxe DNSBL usada por {{SITENAME}}.',
 'sorbs_create_account_reason'     => "O seu enderezo IP está rexistrado como un ''proxy'' aberto na listaxe DNSBL usada por {{SITENAME}}. Polo tanto non pode crear unha conta de acceso",
@@ -2069,7 +2074,7 @@ Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está n
 'markaspatrolledtext'                 => 'Marcar este artigo coma revisado',
 'markedaspatrolled'                   => 'Marcar coma revisado',
 'markedaspatrolledtext'               => 'A revisión seleccionada foi marcada como revisada.',
-'rcpatroldisabled'                    => 'Patrulla de Cambios Recentes deshabilitada',
+'rcpatroldisabled'                    => 'Patrulla dos cambios recentes deshabilitada',
 'rcpatroldisabledtext'                => 'A funcionalidade da Patrulla de Cambios Recentes está deshabilitada actualmente.',
 'markedaspatrollederror'              => 'Non se pode marcar coma revisada',
 'markedaspatrollederrortext'          => 'É preciso especificar unha revisión para marcala como revisada.',
@@ -2445,13 +2450,12 @@ Este código de confirmación caducará ás $4.',
 'scarytranscludetoolong'  => '[O enderezo URL é demasiado longo]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">
-Trackbacks para este artigo:<br />
+'trackbackbox'      => '<div id="mw_trackbacks">Trackbacks para esta páxina:<br />
 $1
 </div>',
 'trackbackremove'   => '  ([$1 Borrar])',
 'trackbacklink'     => 'Trackback',
-'trackbackdeleteok' => 'Eliminouse o trackback sen problemas.',
+'trackbackdeleteok' => 'O trackback foi eliminado sen problemas.',
 
 # Delete conflict
 'deletedwhileediting' => "'''Aviso:''' esta páxina foi borrada despois de que comezase a editala!",

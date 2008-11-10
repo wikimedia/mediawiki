@@ -6,6 +6,7 @@
  *
  * @author Chavash
  * @author PCode
+ * @author Александр Сигачёв
  */
 
 $fallback = 'ru';
@@ -158,7 +159,7 @@ $messages = array(
 == Пулăшма пултарĕç ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Ĕнерлевсен списокĕ];
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki тăрăх час-часах ыйтакан ыйтусемпе хуравсем];
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki çĕнĕ верси тухнине пĕлтерекен рассылка].',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki çĕнĕ верси тухнине пĕлтерекен рассылка].',
 
 'about'          => 'Ăнлантаркăч',
 'article'        => 'Статья',

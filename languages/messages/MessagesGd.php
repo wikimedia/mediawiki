@@ -5,7 +5,6 @@
  * @file
  *
  * @author Alison
- * @author Raymond
  * @author Sionnach
  * @author לערי ריינהארט
  */

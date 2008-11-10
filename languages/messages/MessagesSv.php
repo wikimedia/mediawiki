@@ -388,7 +388,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista över konfigurationsinställningar]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mail list]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mail list]',
 
 'about'          => 'Om',
 'article'        => 'Innehållssida',
@@ -674,7 +674,7 @@ Aktivera dem, och logga sen in med ditt nya användarnamn och lösenord.',
 'loginsuccesstitle'          => 'Inloggningen lyckades',
 'loginsuccess'               => "'''Du är nu inloggad på {{SITENAME}} som \"\$1\".'''",
 'nosuchuser'                 => 'Det finns ingen användare med namnet "$1".
-Kontrollera stavningen, eller [[Special:Userlogin/signup|skapa ett nytt konto]].',
+Kontrollera stavningen, eller [[Special:UserLogin/signup|skapa ett nytt konto]].',
 'nosuchusershort'            => 'Det finns ingen användare som heter "<nowiki>$1</nowiki>". Kontrollera att du stavat rätt.',
 'nouserspecified'            => 'Du måste ange ett användarnamn.',
 'wrongpassword'              => 'Lösenordet du angav är felaktigt. Försök igen',
@@ -863,9 +863,8 @@ vissa webbläsare kan ha problem att redigera sidor som närmar sig eller är st
 'longpageerror'                    => '<strong>FEL: Texten som du försöker spara är $1 kilobyte, vilket är mer än det maximalt tillåtna $2 kilobyte. Den kan inte sparas.</strong>',
 'readonlywarning'                  => '<strong>VARNING: Databasen är tillfälligt låst för underhåll. Du kommer inte att kunna spara
 dina ändringar just nu. Det kan vara klokt att kopiera över texten till din egen dator, tills databasen är upplåst igen.</strong>',
-'protectedpagewarning'             => '<strong>VARNING: Den här sidan är låst så att bara administratörer kan redigera den.
-Försäkra dig om att du följer riktlinjerna för redigering av skyddade sidor.</strong>',
-'semiprotectedpagewarning'         => "'''Observera:''' Denna sida har delvis skrivskyddats, så att endast registrerade användare kan redigera den.",
+'protectedpagewarning'             => '<strong>VARNING: Den här sidan är låst så att bara administratörer kan redigera den.</strong>',
+'semiprotectedpagewarning'         => "'''Observera:''' Denna sida har skrivskyddats så att endast registrerade användare kan redigera den.",
 'cascadeprotectedwarning'          => '<strong>VARNING:</strong> Den här sidan är låst så att bara administratörer kan redigera den. Det beror på att sidan inkluderas på följande {{PLURAL:$1|sida|sidor}} som skyddats med "kaskaderande skrivskydd":',
 'titleprotectedwarning'            => '<strong>VARNING: Den här sidan har skyddats så att endast vissa användare kan skapa den.</strong>',
 'templatesused'                    => 'Mallar som används på den här sidan:',
@@ -958,11 +957,11 @@ Det kan finnas mer information i [{{fullurl:Special:Log/delete|page={{FULLPAGENA
 'revdelete-nooldid-text'      => 'Antingen har du inte angivit någon sidversion att utföra funktionen på,
 eller så finns inte den version du angav,
 eller så försöker du gömma den senaste versionen av sidan.',
-'revdelete-selected'          => '{{PLURAL:$2|Vald version|Valda versioner}} av [[:$1]]:',
-'logdelete-selected'          => '{{PLURAL:$1|Vald loggåtgärd|Valda loggåtgärder}}:',
-'revdelete-text'              => 'Borttagna versioner och åtgärder kommer fortfarande att synas i historiken och i loggar, men deras innehåll kommer ej att vara tillgängligt för allmänheten.
+'revdelete-selected'          => "'''{{PLURAL:$2|Vald version|Valda versioner}} av [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Vald loggåtgärd|Valda loggåtgärder}}:'''",
+'revdelete-text'              => "'''Borttagna versioner och åtgärder kommer fortfarande att synas i historiken och i loggar, men deras innehåll kommer ej att vara tillgängligt för allmänheten.'''
 
-Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det dolda innehållet och kan återställa sidan genom samma gränssnitt, om inte en ytterligare begränsningar finns.',
+Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det dolda innehållet och kan återställa sidan genom samma gränssnitt, om inte ytterligare begränsningar finns.",
 'revdelete-legend'            => 'Ändra synlighet',
 'revdelete-hide-text'         => 'Dölj versionstext',
 'revdelete-hide-name'         => 'Dölj åtgärd och sidnamn',
@@ -992,7 +991,7 @@ Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det d
 'logdelete-log-message'       => '$1 för $2 {{PLURAL:$2|åtgärd|åtgärder}}',
 
 # Suppression log
-'suppressionlog'     => 'Versionsraderingslogg',
+'suppressionlog'     => 'Undanhållandelogg',
 'suppressionlogtext' => 'Nedan visas en lista över raderingar och blockeringar som berör innehåll dolt för administratörer.
 Se [[Special:IPBlockList|blockeringslistan]] för listan över gällande blockeringar.',
 
@@ -1079,7 +1078,7 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'mypreferences'            => 'Mina inställningar',
 'prefs-edits'              => 'Antal redigeringar:',
 'prefsnologin'             => 'Inte inloggad',
-'prefsnologintext'         => 'Du måste vara <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} inloggad]</span> för att kunna ändra dina inställningar.',
+'prefsnologintext'         => 'Du måste vara <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} inloggad]</span> för att kunna ändra dina inställningar.',
 'prefsreset'               => 'Inställningarna har återställts till ursprungsvärdena.',
 'qbsettings'               => 'Inställningar för snabbmeny',
 'qbsettings-none'          => 'Ingen',
@@ -1165,7 +1164,7 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'group-bot'           => 'Robotar',
 'group-sysop'         => 'Administratörer',
 'group-bureaucrat'    => 'Byråkrater',
-'group-suppress'      => 'Versionsraderare',
+'group-suppress'      => 'Censorer',
 'group-all'           => '(alla)',
 
 'group-user-member'          => 'användare',
@@ -1173,14 +1172,14 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'group-bot-member'           => 'robot',
 'group-sysop-member'         => 'administratör',
 'group-bureaucrat-member'    => 'byråkrat',
-'group-suppress-member'      => 'versionsraderare',
+'group-suppress-member'      => 'censor',
 
 'grouppage-user'          => '{{ns:project}}:Användare',
 'grouppage-autoconfirmed' => '{{ns:project}}:Bekräftade användare',
 'grouppage-bot'           => '{{ns:project}}:Robotar',
 'grouppage-sysop'         => '{{ns:project}}:Administratörer',
 'grouppage-bureaucrat'    => '{{ns:project}}:Byråkrater',
-'grouppage-suppress'      => '{{ns:project}}:Oversight',
+'grouppage-suppress'      => '{{ns:project}}:Censur',
 
 # Rights
 'right-read'                 => 'Se sidor',
@@ -1199,10 +1198,10 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'right-upload_by_url'        => 'Ladda upp en fil genom en URL',
 'right-purge'                => 'Rensa cachen för sidor utan att behöva bekräfta',
 'right-autoconfirmed'        => 'Redigera halvlåsta sidor',
-'right-bot'                  => 'Bli behandlad som en automatisk process',
+'right-bot'                  => 'Behandlas som en automatisk process',
 'right-nominornewtalk'       => 'Får inte meddelanden om nya ändringar på diskussionssidan vid mindre ändringar.',
 'right-apihighlimits'        => 'Använda högre gränser i API-frågor',
-'right-writeapi'             => 'Redigera via API:t',
+'right-writeapi'             => 'Använda skriv-API:t',
 'right-delete'               => 'Radera sidor',
 'right-bigdelete'            => 'Radera sidor med stor historik',
 'right-deleterevision'       => 'Radera och återställa enskilda sidversioner',
@@ -1213,7 +1212,7 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'right-suppressionlog'       => 'Se privata loggar',
 'right-block'                => 'Blockera andra användare från att redigera',
 'right-blockemail'           => 'Blockera användare från att skicka e-post',
-'right-hideuser'             => 'Dölj ett användarnamn från det offentliga',
+'right-hideuser'             => 'Blockera användarnamn och dölja det från blockeringsloggen',
 'right-ipblock-exempt'       => 'Kan redigera från blockerade IP-adresser',
 'right-proxyunbannable'      => 'Kan redigera från blockerade proxyer',
 'right-protect'              => 'Ändra skyddsnivåer och redigera skyddade sidor',
@@ -1229,7 +1228,7 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'right-autopatrol'           => 'Får automatiskt sina ändringar markerade som patrullerade',
 'right-patrolmarks'          => 'Se markeringar av opatrullerade ändringar i senaste ändringarna',
 'right-unwatchedpages'       => 'Se listan över obevakade sidor',
-'right-trackback'            => 'Ge respons',
+'right-trackback'            => 'Lägga till trackback',
 'right-mergehistory'         => 'Sammanfoga sidhistoriker',
 'right-userrights'           => 'Ändra alla användarrättigheter',
 'right-userrights-interwiki' => 'Ändra rättigheter för användare på andra wikier',
@@ -1483,7 +1482,8 @@ Genom att klicka på rubrikerna för kolumnerna kan man ändra sorteringsordning
 
 # Unused templates
 'unusedtemplates'     => 'Oanvända mallar',
-'unusedtemplatestext' => 'Denna sida listar alla de sidor i mallnamnrymden som inte inkluderas på någon annan sida. Innan mallarna raderas, kontrollera att det inte finns andra länkar till dem.',
+'unusedtemplatestext' => 'Denna sida listar alla sidor i {{ns:template}}-namnrymden som inte inkluderas på någon annan sida.
+Innan mallarna raderas, kontrollera att det inte finns andra länkar till dem.',
 'unusedtemplateswlh'  => 'andra länkar',
 
 # Random page
@@ -1540,7 +1540,7 @@ En sida anses vara en förgreningssida om den inkluderar en mall som länkas til
 'nviews'                  => '$1 {{PLURAL:$1|visning|visningar}}',
 'specialpage-empty'       => 'Den här sidan är tom.',
 'lonelypages'             => 'Föräldralösa sidor',
-'lonelypagestext'         => 'Följande sidor länkas inte till från någon annan sida på den här wikin.',
+'lonelypagestext'         => 'Följande sidor länkas inte till från någon annan sida på {{SITENAME}}.',
 'uncategorizedpages'      => 'Ej kategoriserade sidor',
 'uncategorizedcategories' => 'Ej kategoriserade kategorier',
 'uncategorizedimages'     => 'Filer utan kategori',
@@ -1583,7 +1583,7 @@ En sida anses vara en förgreningssida om den inkluderar en mall som länkas til
 'nopagetext'              => 'Sidan som du vill flytta finns inte.',
 'pager-newer-n'           => '{{PLURAL:$1|1 nyare|$1 nyare}}',
 'pager-older-n'           => '{{PLURAL:$1|1 äldre|$1 äldre}}',
-'suppress'                => 'Oversight',
+'suppress'                => 'Censur',
 
 # Book sources
 'booksources'               => 'Bokkällor',
@@ -1646,7 +1646,7 @@ Det kan finnas [[{{MediaWiki:Listgrouprights-helppage}}|ytterligare information]
 'mailnologintext' => 'För att kunna skicka e-post till andra användare, måste du vara [[Special:UserLogin|inloggad]] och ha angivit en korrekt e-postadress i dina [[Special:Preferences|användarinställningar]].',
 'emailuser'       => 'Skicka e-post till den här användaren',
 'emailpage'       => 'Skicka e-post till annan användare',
-'emailpagetext'   => 'Om den här användaren har skrivit in en giltig e-postadress i sina användarinställningar, kommer formuläret nedan att skicka ett meddelande.
+'emailpagetext'   => 'Du kan använda det här formuläret för att skicka e-post till den här användaren.
 Den e-postadress du har angivit i [[Special:Preferences|dina användarinställningar]] kommer att visas som "Från"-adress i meddelandet, så att mottagaren har möjlighet att svara direkt till dig.',
 'usermailererror' => 'Fel i hanteringen av mail:',
 'defemailsubject' => '{{SITENAME}} e-post',
@@ -1753,7 +1753,7 @@ Bekräfta att du förstår vad du håller på med och vilka konsekvenser detta l
 'deletedtext'                 => '"<nowiki>$1</nowiki>" har tagits bort.
 Se $2 för noteringar om de senaste raderingarna.',
 'deletedarticle'              => 'raderade "[[$1]]"',
-'suppressedarticle'           => 'upphävde "[[$1]]"',
+'suppressedarticle'           => 'undanhöll "[[$1]]"',
 'dellogpage'                  => 'Raderingslogg',
 'dellogpagetext'              => 'Nedan listas de senaste raderingarna och återställningarna.',
 'deletionlog'                 => 'raderingsloggen',
@@ -1880,7 +1880,7 @@ $1',
 'contributions' => 'Användarbidrag',
 'mycontris'     => 'Mina bidrag',
 'contribsub2'   => 'För $1 ($2)',
-'nocontribs'    => 'Inga ändringar hittades, som motsvarar dessa kriterier',
+'nocontribs'    => 'Inga ändringar som motsvarar dessa kriterier hittades.',
 'uctop'         => '(senaste)',
 'month'         => 'Från månad (och tidigare):',
 'year'          => 'Från år (och tidigare):',
@@ -1949,7 +1949,7 @@ Ange orsak nedan (exempelvis genom att nämna sidor som blivit vandaliserade).',
 'ipb-edit-dropdown'               => 'Redigera blockeringsanledningar',
 'ipb-unblock-addr'                => 'Ta bort blockering av $1',
 'ipb-unblock'                     => 'Ta bort blockering av en användare eller IP-adress',
-'ipb-blocklist-addr'              => 'Visa gällande blockeringar av $1',
+'ipb-blocklist-addr'              => 'Gällande blockeringar av $1',
 'ipb-blocklist'                   => 'Visa gällande blockeringar',
 'unblockip'                       => 'Ta bort blockering av användare/IP-adress',
 'unblockiptext'                   => 'Använd formuläret nedan för att ta bort blockeringen av en IP-adress.',
@@ -2393,7 +2393,7 @@ Den första länken på en rad måste vara en länk till en otillåten fil.
 'exif-subsectimedigitized'         => 'Digitaliseringstidpunkt, sekunddelar',
 'exif-exposuretime'                => 'Exponeringstid',
 'exif-exposuretime-format'         => '$1 sek ($2)',
-'exif-fnumber'                     => 'F-nummer',
+'exif-fnumber'                     => 'Bländare',
 'exif-exposureprogram'             => 'Exponeringsprogram',
 'exif-spectralsensitivity'         => 'Spektral känslighet',
 'exif-isospeedratings'             => 'Filmhastighet (ISO)',

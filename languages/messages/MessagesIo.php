@@ -8,6 +8,7 @@
  * @author Artomo
  * @author Lakaoso
  * @author Malafaya
+ * @author Remember the dot
  * @author לערי ריינהארט
  */
 
@@ -230,7 +231,7 @@ $messages = array(
 'nstab-user'      => 'Uzanto-pagino',
 'nstab-special'   => 'Specala',
 'nstab-project'   => 'Projeto pagino',
-'nstab-image'     => 'Imajo',
+'nstab-image'     => 'Arkivo',
 'nstab-mediawiki' => 'Mesajo',
 'nstab-template'  => 'Modelo',
 'nstab-help'      => 'Helpo',

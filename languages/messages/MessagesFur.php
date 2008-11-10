@@ -6,6 +6,7 @@
  *
  * @author Helix84
  * @author Klenje
+ * @author Urhixidur
  * @author לערי ריינהארט
  */
 
@@ -422,7 +423,7 @@ La tô identitât e je stade creade. No stâ dismenteâti di gambiâ lis prefere
 'noname'                    => 'No tu âs inserît un non utent valit.',
 'loginsuccesstitle'         => 'Jentrât cun sucès',
 'loginsuccess'              => 'Cumò tu sês jentrât te {{SITENAME}} sicu "$1".',
-'nosuchuser'                => 'Nissun utent regjistrât cul non "$1". Controle il non inserît o [[Special:Userlogin/signup|cree tu une gnove identitât]].',
+'nosuchuser'                => 'Nissun utent regjistrât cul non "$1". Controle il non inserît o [[Special:UserLogin/signup|cree tu une gnove identitât]].',
 'nosuchusershort'           => 'Nol esist nissun utent cul non "<nowiki>$1</nowiki>". Controle di no vê sbaliât di scrivi.',
 'nouserspecified'           => 'Tu scugnis specificâ un non utent.',
 'wrongpassword'             => 'La peraule clâf zontade no je juste. Torne par plasê a provâ.',
@@ -528,7 +529,7 @@ Tu varâs di inserî di gnûf i tiei cambiaments tal test esistint.
 'copyrightwarning'          => 'Note: ducj i contribûts a {{SITENAME}} a si considerin come dâts fûr sot de licence $2 (cjale $1 pai detais). Se no tu vuelis che i tiei tescj a podedin jessi modificâts e tornâts a dâ fûr di ognidun cence limits, no stâ mandâju a {{SITENAME}}.<br />
 Cun di plui, inviant il test tu declaris che tu âs scrit tu chest o tu lu âs copiât di une sorzint tal domini public o di une sorzint libare.
 <strong>NO STÂ MANDÂ MATERIÂL CUVIERT DAL DIRIT DI AUTÔR CENCE AUTORIZAZION!</strong>',
-'longpagewarning'           => '<strong>ATENZION: cheste pagjine e je grande $1 kilobytes; cualchi sgarfadôr al podarès vê problemis a modificâ pagjinis di 32kb o plui grandis. Considere par plasê la pussibilitât di dividi la pagjine in sezions plui piçulis.</strong>',
+'longpagewarning'           => '<strong>ATENZION: cheste pagjine e je grande $1 kilobytes; cualchi sgarfadôr al podarès vê problemis a modificâ pagjinis di 32 kb o plui grandis. Considere par plasê la pussibilitât di dividi la pagjine in sezions plui piçulis.</strong>',
 'templatesused'             => 'Modei doprâts par cheste pagjine:',
 'templatesusedpreview'      => 'Modei doprâts in cheste anteprime:',
 'templatesusedsection'      => 'Modei doprâts in cheste sezion:',

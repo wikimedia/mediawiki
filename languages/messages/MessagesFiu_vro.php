@@ -164,7 +164,7 @@ $messages = array(
 * [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide MediaWiki pruukmisoppus (inglüse keelen)].
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Säädmiisi oppus (inglüse keelen)]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki kõgõ küsütümbäq küsümiseq (inglüse keelen)]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce E-postilist, minka andas teedäq MediaWiki vahtsist kujõst].',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce E-postilist, minka andas teedäq MediaWiki vahtsist kujõst].',
 
 'about'          => 'Pääteedüs',
 'article'        => 'Sisu',
@@ -666,9 +666,9 @@ Lisateedüst või ollaq [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} k
 'revisiondelete'              => 'Kistudaq/võtaq tagasi lehe kujjõ',
 'revdelete-nooldid-title'     => 'Olõ-i säänest kujjo',
 'revdelete-nooldid-text'      => 'Sa olõ-i valinuq kujjo vai kujjõ.',
-'revdelete-selected'          => "{{PLURAL:$2|Valit kujo|Validuq kujoq}} lehele '''$1:'''",
-'logdelete-selected'          => '{{PLURAL:$1|Valit muutminõ|Validuq muutmisõq}}:',
-'revdelete-text'              => 'Kistudõduq kujoq ommaq olõman lehe aoluun, a näide sissu saa-i avaligult nätäq. Seo viki tõõsõq kõrraldajaq saavaq taad käkitüt teksti lukõq ja taa tagasi avaligult nättäväs tetäq, ku olõ-i säet muid piirdmiisi.',
+'revdelete-selected'          => "'''{{PLURAL:$2|Valit kujo|Validuq kujoq}} lehele '''$1:''''''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Valit muutminõ|Validuq muutmisõq}}:'''",
+'revdelete-text'              => "'''Kistudõduq kujoq ommaq olõman lehe aoluun, a näide sissu saa-i avaligult nätäq.''' Seo viki tõõsõq kõrraldajaq saavaq taad käkitüt teksti lukõq ja taa tagasi avaligult nättäväs tetäq, ku olõ-i säet muid piirdmiisi.",
 'revdelete-legend'            => 'Nättävüse piirdmiseq',
 'revdelete-hide-text'         => 'Käkiq kujo sisu',
 'revdelete-hide-name'         => 'Käkiq kujo nimi',

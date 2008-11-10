@@ -350,6 +350,7 @@ $messages = array(
 'helppage'             => 'Help:Adiutatum',
 'mainpage'             => 'Pagina prima',
 'mainpage-description' => 'Pagina prima',
+'policy-url'           => 'Project:Consilium',
 'portal'               => 'Porta communis',
 'portal-url'           => 'Project:Porta communis',
 'privacy'              => 'Consilium de secreto',
@@ -360,6 +361,10 @@ $messages = array(
 'badaccess-group1' => 'Actum quod petivisti solum potest agi ab usoribus ex grege $1.',
 'badaccess-group2' => 'Actum quod petivisti solum potest agi ab usoribus ex uno gregum $1.',
 'badaccess-groups' => 'Actum quod petivisti solum potest agi ab usoribus ex uno gregum $1.',
+
+'versionrequired'     => 'MediaWiki versio $1 necesse',
+'versionrequiredtext' => 'MediaWiki versio $1 necesse est ad hanc paginam videndum.
+Vide [[Special:Version|paginam versionis]].',
 
 'ok'                      => 'Age',
 'retrievedfrom'           => 'Receptum de "$1"',
@@ -488,7 +493,7 @@ Si vis, sinit etiam aliis tecum loqui per tuam paginam usoris vel disputationis,
 'loginsuccesstitle'          => 'Conventum prospere apertum est',
 'loginsuccess'               => "'''Apud {{grammar:accusative|{{SITENAME}}}} agnosceris ut \"\$1\".'''",
 'nosuchuser'                 => 'Usor "$1" non est.
-Confirma orthographiam, aut [[Special:Userlogin/signup|crea novam rationem]].',
+Confirma orthographiam, aut [[Special:UserLogin/signup|crea novam rationem]].',
 'nosuchusershort'            => 'Usor "<nowiki>$1</nowiki>" non est.
 Confirma orthographiam.',
 'nouserspecified'            => 'Nomen usoris indicare debes.',
@@ -537,21 +542,21 @@ Hunc nuntium ignorare potes, si nolis hac ratione uti.',
 'hr_tip'         => 'Linea horizontalis (noli saepe uti)',
 
 # Edit pages
-'summary'                   => 'Summarium',
-'subject'                   => 'Res/titulus',
-'minoredit'                 => 'Haec est recensio minor',
-'watchthis'                 => 'Custodire hanc paginam',
-'savearticle'               => 'Servare hanc rem',
-'preview'                   => 'Praevidere',
-'showpreview'               => 'Monstrare praevisum',
-'showlivepreview'           => 'Monstrare praevisum viventem',
-'showdiff'                  => 'Mutata ostendere',
-'anoneditwarning'           => "'''Monitio:''' Conventum tuum non apertum. Locus IP tuus in historia huius paginae notabitur.",
-'missingcommenttext'        => 'Sententiam subter inscribe.',
-'summary-preview'           => 'Praevisum summarii',
-'subject-preview'           => 'Praevisum rei/tituli',
-'blockedtitle'              => 'Usor obstructus est',
-'blockedtext'               => '<big>\'\'\'Nomen usoris aut locus IP tuus obstructus est\'\'\'</big> a magistratu $1.
+'summary'                          => 'Summarium',
+'subject'                          => 'Res/titulus',
+'minoredit'                        => 'Haec est recensio minor',
+'watchthis'                        => 'Custodire hanc paginam',
+'savearticle'                      => 'Servare hanc rem',
+'preview'                          => 'Praevidere',
+'showpreview'                      => 'Monstrare praevisum',
+'showlivepreview'                  => 'Monstrare praevisum viventem',
+'showdiff'                         => 'Mutata ostendere',
+'anoneditwarning'                  => "'''Monitio:''' Conventum tuum non apertum. Locus IP tuus in historia huius paginae notabitur.",
+'missingcommenttext'               => 'Sententiam subter inscribe.',
+'summary-preview'                  => 'Praevisum summarii',
+'subject-preview'                  => 'Praevisum rei/tituli',
+'blockedtitle'                     => 'Usor obstructus est',
+'blockedtext'                      => '<big>\'\'\'Nomen usoris aut locus IP tuus obstructus est\'\'\'</big> a magistratu $1.
 
 Ratio data est: \'\'$2\'\'.
 
@@ -562,7 +567,7 @@ Ratio data est: \'\'$2\'\'.
 Potes ad $1 aut [[{{MediaWiki:Grouppage-sysop}}|magistratum]] alium nuntium mittere ad impedimentum disputandum.
 Nota bene te non posse proprietate "Litteras electronicas usori mittere" uti, nisi tibi est inscriptio electronica confirmata apud [[Special:Preferences|praeferentias usoris tuas]] vel si tibi etiam litterae electronicae obstructi sunt.
 Locus IP tuus est $3, et numerus obstructionis est #$5. Quaesumus te eos scripturum si quaestiones ullas roges.',
-'autoblockedtext'           => 'Locus IP tuus automatice obstructus est quia usor alius, qui a magistratu $1 obstructus est, eum adhiberat.
+'autoblockedtext'                  => 'Locus IP tuus automatice obstructus est quia usor alius, qui a magistratu $1 obstructus est, eum adhiberat.
 Ratio data est:
 
 :\'\'$2\'\'
@@ -575,67 +580,68 @@ Potes ad $1 aut [[{{MediaWiki:Grouppage-sysop}}|magistratum]] alium nuntium mitt
 Nota bene te non posse proprietate "Litteras electronicas usori mittere" uti, nisi tibi est inscriptio electronica confirmata apud [[Special:Preferences|praeferentias usoris tuas]].
 
 Numerus obstructionis tuus est #$5. Quaesumus te eum scripturum si quaestiones ullas roges.',
-'blockednoreason'           => 'nulla causa data',
-'blockedoriginalsource'     => "Fons '''$1''' subter monstratur:",
-'blockededitsource'         => "Textus '''tuarum emendationum''' in '''$1''' subter monstratur:",
-'whitelistedittitle'        => 'Conventum aperiendum ut recenseas',
-'whitelistedittext'         => 'Necesse est tibi $1 priusquam paginas recenseas.',
-'confirmedittitle'          => 'Adfirmanda est inscriptio tua electronica prisuquam recenseas',
-'confirmedittext'           => 'Tua inscriptio electronica est adfirmanda priusquam paginas recenseas. Quaesumus eam selige et adfirma per tuas [[Special:Preferences|praeferentias]].',
-'nosuchsectiontitle'        => 'Haec pars non est',
-'nosuchsectiontext'         => 'Partem inexistentem recensere conaris. Quia pars $1 non est, recensio tua servari non potest.',
-'loginreqtitle'             => 'Conventum aperiendum',
-'loginreqlink'              => 'conventum aperire',
-'loginreqpagetext'          => 'Necesse est tibi $1 priusquam paginas alias legas.',
-'accmailtitle'              => 'Tessera missa est.',
-'accmailtext'               => 'Tessera usoris "$1" ad $2 missa est.',
-'newarticle'                => '(Nova)',
-'newarticletext'            => "Per nexum progressus es ad paginam quae nondum exsistit.
+'blockednoreason'                  => 'nulla causa data',
+'blockedoriginalsource'            => "Fons '''$1''' subter monstratur:",
+'blockededitsource'                => "Textus '''tuarum emendationum''' in '''$1''' subter monstratur:",
+'whitelistedittitle'               => 'Conventum aperiendum ut recenseas',
+'whitelistedittext'                => 'Necesse est tibi $1 priusquam paginas recenseas.',
+'confirmedittitle'                 => 'Adfirmanda est inscriptio tua electronica prisuquam recenseas',
+'confirmedittext'                  => 'Tua inscriptio electronica est adfirmanda priusquam paginas recenseas. Quaesumus eam selige et adfirma per tuas [[Special:Preferences|praeferentias]].',
+'nosuchsectiontitle'               => 'Haec pars non est',
+'nosuchsectiontext'                => 'Partem inexistentem recensere conaris. Quia pars $1 non est, recensio tua servari non potest.',
+'loginreqtitle'                    => 'Conventum aperiendum',
+'loginreqlink'                     => 'conventum aperire',
+'loginreqpagetext'                 => 'Necesse est tibi $1 priusquam paginas alias legas.',
+'accmailtitle'                     => 'Tessera missa est.',
+'accmailtext'                      => 'Tessera usoris "$1" ad $2 missa est.',
+'newarticle'                       => '(Nova)',
+'newarticletext'                   => "Per nexum progressus es ad paginam quae nondum exsistit.
 Novam paginam si vis creare, in capsam infra praebitam scribe.
 (Vide [[{{MediaWiki:Helppage}}|paginam auxilii]] si plura cognoscere vis.)
 Si hic es propter errorem, solum '''Retrorsum''' in navigatro tuo preme.",
-'anontalkpagetext'          => "----''Haec est pagina disputationis usoris anonymi, solum a loco IP suo noti. Memento locos IP aliquando mutaturos, et a usoribus multis fortasse adhibitos. Si es usor ignotus, et tibi querulae sine causa datae sunt, conventum [[Special:UserLogin/signup|crea]] vel [[Special:UserLogin|aperi]] ad confusionem futuram evitendam.''",
-'noarticletext'             => 'In hac pagina nondum litterae sunt. Potes etiam [[Special:Search/{{PAGENAME}}|hanc rem in aliis paginis quaerere]] aut [{{fullurl:{{FULLPAGENAME}}|action=edit}} hanc paginam creare].',
-'userpage-userdoesnotexist' => 'Usor "$1" non est. Visne re vera hanc paginam creare vel recensere?',
-'updated'                   => '(Novata)',
-'note'                      => '<strong>Nota:</strong>',
-'previewnote'               => '<strong>Memento hanc paginam solum praevisum esse, neque iam servatam!</strong>',
-'editing'                   => 'Recensio paginae "$1"',
-'editingsection'            => 'Recensens $1 (partem)',
-'editingcomment'            => 'Recensens $1 (adnotum)',
-'editconflict'              => 'Contentio recensionis: $1',
-'explainconflict'           => "Alius hanc paginam mutavit postquam eadem recensere incipiebas.
+'anontalkpagetext'                 => "----''Haec est pagina disputationis usoris anonymi, solum a loco IP suo noti. Memento locos IP aliquando mutaturos, et a usoribus multis fortasse adhibitos. Si es usor ignotus, et tibi querulae sine causa datae sunt, conventum [[Special:UserLogin/signup|crea]] vel [[Special:UserLogin|aperi]] ad confusionem futuram evitendam.''",
+'noarticletext'                    => 'In hac pagina nondum litterae sunt. Potes etiam [[Special:Search/{{PAGENAME}}|hanc rem in aliis paginis quaerere]] aut [{{fullurl:{{FULLPAGENAME}}|action=edit}} hanc paginam creare].',
+'userpage-userdoesnotexist'        => 'Usor "$1" non est. Visne re vera hanc paginam creare vel recensere?',
+'updated'                          => '(Novata)',
+'note'                             => '<strong>Nota:</strong>',
+'previewnote'                      => '<strong>Memento hanc paginam solum praevisum esse, neque iam servatam!</strong>',
+'editing'                          => 'Recensio paginae "$1"',
+'editingsection'                   => 'Recensens $1 (partem)',
+'editingcomment'                   => 'Recensens $1 (adnotum)',
+'editconflict'                     => 'Contentio recensionis: $1',
+'explainconflict'                  => "Alius hanc paginam mutavit postquam eadem recensere incipiebas.
 Capsa superior paginae verba recentissima continet.
 Mutationes tuae in capsa inferiore monstrantur.
 Mutationes tuae in verba superiora adiungare debes.
 '''Solum''' verba capsae superioris servabuntur quando \"Servare hanc rem\" premes.",
-'yourtext'                  => 'Sententia tua',
-'storedversion'             => 'Verba recentissima',
-'nonunicodebrowser'         => '<strong>CAVETO: Navigatorium retiale tuum systemati UNICODE morem non gerit. Modum habemus quo commentationes sine damno recenseas: litterae non-ASCII in capsa sub veste hexadecimali ostendentur.</strong>',
-'editingold'                => '<strong>MONITIO: Formam obsoletam huius paginae mutas.
+'yourtext'                         => 'Sententia tua',
+'storedversion'                    => 'Verba recentissima',
+'nonunicodebrowser'                => '<strong>CAVETO: Navigatorium retiale tuum systemati UNICODE morem non gerit. Modum habemus quo commentationes sine damno recenseas: litterae non-ASCII in capsa sub veste hexadecimali ostendentur.</strong>',
+'editingold'                       => '<strong>MONITIO: Formam obsoletam huius paginae mutas.
 Si eam servaveris, omnes mutationes recentiores obrogatae peribunt!</strong>',
-'yourdiff'                  => 'Dissimilitudo',
-'copyrightwarning'          => 'Nota bene omnia contributa divulgari sub \'\'$2\'\' (vide singula apud $1).
+'yourdiff'                         => 'Dissimilitudo',
+'copyrightwarning'                 => 'Nota bene omnia contributa divulgari sub \'\'$2\'\' (vide singula apud $1).
 Nisi vis verba tua crudelissime recenseri, mutari, et ad libidinem redistribui, noli ea submittere.<br />
 Nobis etiam spondes te esse ipsum horum verborum scriptorem primum, aut ex opere in "dominio publico" exscripsisse.
 <strong>NOLI OPERIBUS SUB IURE DIVULGANDI UTI SINE POTESTATE!</strong>',
-'copyrightwarning2'         => 'Nota bene omnia contributa apud {{grammar:accusative|{{SITENAME}}}} ab aliis recenseri, mutari vel removi posse.
+'copyrightwarning2'                => 'Nota bene omnia contributa apud {{grammar:accusative|{{SITENAME}}}} ab aliis recenseri, mutari vel removi posse.
 Nisi vis verba tua crudelissime recenseri, noli ea submittere.<br />
 Nobis etiam spondes te esse ipsum horum verborum scriptorem primum, aut ex opere in "dominio publico" vel ex  libere fonte simili exscripsisse (vide singula apud $1).
 <strong>NOLI OPERIBUS SUB IURE DIVULGANDI UTI SINE POTESTATE!</strong>',
-'longpagewarning'           => 'MONITIO: Haec pagina est $1 chilioctetis longa;
+'longpagewarning'                  => 'MONITIO: Haec pagina est $1 chilioctetis longa;
 aliquae navigatra paginas longiores quam 32 chiliocteti recensere non possunt.
 Considera paginam in partes minores frangere.',
-'protectedpagewarning'      => '<strong>CAVE: Haec pagina protecta est ut magistratus soli eam recenseant.</strong>',
-'templatesused'             => 'Formulae hac in pagina adhibitae:',
-'templatesusedpreview'      => 'Formulae hoc in praeviso adhibitae:',
-'templatesusedsection'      => 'Formulae hac in parte adhibitae:',
-'template-protected'        => '(protecta)',
-'template-semiprotected'    => '(semi-protecta)',
-'hiddencategories'          => 'Haec pagina ad {{PLURAL:$1|unam categoriam celatam|$1 categorias celatas}} pertinet:',
-'nocreate-loggedin'         => 'Tibi non licet paginas novas creare.',
-'permissionserrors'         => 'Errores permissionis',
-'recreate-deleted-warn'     => "'''Cave: paginam qui antea iam deleta est creas.'''
+'protectedpagewarning'             => '<strong>CAVE: Haec pagina protecta est ut magistratus soli eam recenseant.</strong>',
+'templatesused'                    => 'Formulae hac in pagina adhibitae:',
+'templatesusedpreview'             => 'Formulae hoc in praeviso adhibitae:',
+'templatesusedsection'             => 'Formulae hac in parte adhibitae:',
+'template-protected'               => '(protecta)',
+'template-semiprotected'           => '(semi-protecta)',
+'hiddencategories'                 => 'Haec pagina ad {{PLURAL:$1|unam categoriam celatam|$1 categorias celatas}} pertinet:',
+'nocreate-loggedin'                => 'Tibi non licet paginas novas creare.',
+'permissionserrors'                => 'Errores permissionis',
+'permissionserrorstext-withaction' => 'Tibi non licet $2, quia:',
+'recreate-deleted-warn'            => "'''Cave: paginam qui antea iam deleta est creas.'''
 
 Tibi oportet meditari utrum hanc paginam creare tamen convenit. Commodule notatio paginarum deletarum hic datur:",
 
@@ -734,7 +740,7 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'mypreferences'            => 'Praeferentiae meae',
 'prefs-edits'              => 'Numerus recensionum:',
 'prefsnologin'             => 'Conventum non apertum',
-'prefsnologintext'         => '<span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} Conventum aperire]</span> debes ad praeferentias tuas modificandum.',
+'prefsnologintext'         => '<span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} Conventum aperire]</span> debes ad praeferentias tuas modificandum.',
 'prefsreset'               => 'Praeferentiae tuae reperscriptae sunt.',
 'qbsettings'               => 'Figuratio claustri celeris',
 'qbsettings-none'          => 'Nullus',
@@ -842,6 +848,7 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'right-import'               => 'Paginas ex vicis aliis importare',
 'right-importupload'         => 'Paginas ex fasciculo imponendo importare',
 'right-unwatchedpages'       => 'Indicem paginarum non custoditarum inspicere',
+'right-mergehistory'         => 'Historias paginarum confundere',
 'right-userrights'           => 'Omnes potestates usorum recensere',
 'right-userrights-interwiki' => 'Potestates usorum aliis in vicis recensere',
 'right-siteadmin'            => 'Basem datorum obstruere vel deobstruere',
@@ -855,7 +862,7 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'recentchanges'                     => 'Nuper mutata',
 'recentchangestext'                 => 'Inspice mutationes recentes huic vici in hac pagina.',
 'rcnote'                            => "Subter {{PLURAL:$1|est '''1''' nuper mutatum|sunt '''$1''' nuperrime mutata}} in {{PLURAL:$2|die proximo|'''$2''' diebus proximis}} ex $5, $4.",
-'rcnotefrom'                        => 'Subter sunt <b>$1</b> nuperrime mutata in proxima <b>$2</b> die.',
+'rcnotefrom'                        => "Subter sunt '''$1''' nuperrime mutata in proxima '''$2''' die.",
 'rclistfrom'                        => 'Monstrare mutata nova incipiens ab $1',
 'rcshowhideminor'                   => '$1 recensiones minores',
 'rcshowhidebots'                    => '$1 automata',
@@ -1139,7 +1146,7 @@ Vide etiam [[Special:WantedCategories|categorias desideratas]].',
 # E-mail user
 'emailuser'       => 'Litteras electronicas usori mittere',
 'emailpage'       => 'Mittere litteras electronicas huic usori',
-'emailpagetext'   => 'Si hic usor inscriptionem electronicam ratum in praeferentias usorum eius dedit, forma subter nuntium mittet.
+'emailpagetext'   => 'Forma subter nuntium ad usorem mittet.
 Inscriptio electronica quam in [[Special:Preferences|praeferentiis tuis]] dedis ut "Ab" inscriptione apparebit. Hoc modo usor tibi directe respondere poterit.',
 'defemailsubject' => '{{SITENAME}} - Litterae electronicae',
 'noemailtitle'    => 'Nulla inscriptio electronica',

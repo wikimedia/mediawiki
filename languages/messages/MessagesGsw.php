@@ -8,6 +8,7 @@
  * @author J. 'mach' wust
  * @author MichaelFrey
  * @author Spacebirdy
+ * @author Urhixidur
  * @author לערי ריינהארט
  * @author 80686
  */
@@ -358,7 +359,7 @@ Im Fall dass Si mol Ihr Basswort vergässe hen cha Ihne au e ziitwiiligs Eimol-B
 'loginsuccess'               => "'''Du bisch jetz als \"\$1\" bi {{SITENAME}} aagmäldet.'''",
 'nosuchuser'                 => 'Dr Benutzername "$1" exischtiert nit.
 
-Yberprüf d Schribwis, odr meld dich als [[Special:Userlogin/signup|neijer Benutzer ô]].',
+Yberprüf d Schribwis, odr meld dich als [[Special:UserLogin/signup|neijer Benutzer ô]].',
 'nosuchusershort'            => 'S gibt kei Benutzername „<nowiki>$1</nowiki>“. Bitte yberprüf mol d Schribwis.',
 'nouserspecified'            => 'Bitte gib ä Benutzername ii.',
 'wrongpassword'              => "Sell Basswort isch falsch (odr fählt). Bitte versuech's nomol.",
@@ -476,7 +477,7 @@ Hiemit gisch du zue, das du dä Tekscht <strong>sälber gschribe</strong> hesch,
 'copyrightwarning2'        => 'Dängge Si dra, dass alli Änderige {{GRAMMAR:dativ {{SITENAME}}}} vo andere Benutzer wiedr gänderet odr glöscht wärde chönne. Wenn Si nit wänn, dass ander Lüt an Ihrem tekscht ummedoktere denn schicke Si ihn jetz nit ab.<br />
 Si verspräche uns usserdäm, dass Si des alles selber gschriebe oder vo nere Quälle kopiert hen, wo Public Domain odr sunscht frei isch (lueg $1 für Details).
 <strong>SETZE SI DO OHNI ERLAUBNIS CHEINI URHEBERRÄCHTLICH GSCHÜTZTI WÄRK INE!</strong>',
-'longpagewarning'          => '<span style="color:#ff0000">WARNIG:</span> Die Syten isch $1KB groß; elteri Browser chönnte Problem ha, Sytene z bearbeite wo gröser sy als 32KB. Überleg bitte, öb du Abschnitte vo dere Syte zu eigete Sytene chönntsch usboue.',
+'longpagewarning'          => '<span style="color:#ff0000">WARNIG:</span> Die Syten isch $1 kB groß; elteri Browser chönnte Problem ha, Sytene z bearbeite wo gröser sy als 32 kB. Überleg bitte, öb du Abschnitte vo dere Syte zu eigete Sytene chönntsch usboue.',
 'protectedpagewarning'     => '<strong>WARNIG: Die Syten isch gsperrt worde, so das se nume Benutzer mit Sysop-Rechten chöi verändere.</strong>',
 'semiprotectedpagewarning' => "'''''Halbsperrung''': Diese Seite kann von angemeldeten Benutzern bearbeitet werden. Für nicht angemeldete oder gerade eben erst angemeldete Benutzer ist der Schreibzugang gesperrt.''",
 'templatesused'            => 'Selli Vorlage wärde in sellem Artikel bruucht:',
@@ -538,7 +539,7 @@ Du chasch die [[:$1|Syte nöu schrybe]].",
 'preferences'        => 'Iistellige',
 'mypreferences'      => 'Ystellige',
 'prefsnologin'       => 'Nid aagmäldet',
-'prefsnologintext'   => 'Du muesch <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} aagmäldet]</span> sy, für Benutzerystellige chönne z ändere',
+'prefsnologintext'   => 'Du muesch <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} aagmäldet]</span> sy, für Benutzerystellige chönne z ändere',
 'prefsreset'         => 'Du hesch itz wider Standardystellige',
 'changepassword'     => 'Passwort ändere',
 'datedefault'        => 'kei Aagab',

@@ -7,6 +7,7 @@
  * @author Consta
  * @author Omnipaedista
  * @author Sinopeus
+ * @author Urhixidur
  */
 
 $namespaceNames = array(
@@ -324,7 +325,7 @@ $messages = array(
 'loginsuccesstitle'       => "Έντον τ' εσέβεμαν",
 'loginsuccess'            => "'''Εσήβετεν σο {{SITENAME}} ους \"\$1\".'''",
 'nosuchuser'              => 'Αδά \'κ εχ\' χρήστεν με τ\' όνεμαν "$1".
-Το γράψιμον ωρία γιά [[Special:Userlogin/signup|ποίσον καινούρεον λογαρίαν]].',
+Το γράψιμον ωρία γιά [[Special:UserLogin/signup|ποίσον καινούρεον λογαρίαν]].',
 'nosuchusershort'         => 'Αδά \'κ εχ\' χρήστεν με τ\' όνομα "<nowiki>$1</nowiki>".
 Το γράψιμονις ωρία.',
 'nouserspecified'         => "Πρέπ' να ψιλίζετε έναν όνεμαν.",
@@ -439,7 +440,7 @@ $messages = array(
 Εάν 'κ θέλετε ατό να ίνεται, να μην εφτάτε το αποθήκεμαν.<br />
 Καμμίαν κι ανασπάλλετε: Αδακά 'κ εν ο τόπον για να θέκουμε γράψιμον ντ' έγραψαν αλλ. Βαλέστε άρθρα όνταν κατέχετε τα δικαιώματα πνευματί μαναχόν. 
 <strong>ΚΑΜΜΙΑΝ 'Κ ΘΕΚΕΤΕ ΓΡΑΨΙΜΟΝ ΑΔΑΚΑ ΟΝΤΕΣ 'Κ ΕΧΕΤΕ ΤΑ ΔΙΚΑΙΩΜΑΤΑ ΠΝΕΥΜΑΤΙ!</strong>",
-'longpagewarning'        => "<strong>ΩΡΙΑ: Αβούτεν η σελίδαν έχ' μέγεθος $1kb. Μερικά browser 'κ επορούν ν' επεξεργάσκουνταν σελίδας ντ' έχνε 32kb κιαν. Επορείτε να λύετε το πρόβλημαν αν εφτάτεν ατέναν μικρά κομμάται.</strong>",
+'longpagewarning'        => "<strong>ΩΡΙΑ: Αβούτεν η σελίδαν έχ' μέγεθος $1 kb. Μερικά browser 'κ επορούν ν' επεξεργάσκουνταν σελίδας ντ' έχνε 32 kb κιαν. Επορείτε να λύετε το πρόβλημαν αν εφτάτεν ατέναν μικρά κομμάται.</strong>",
 'templatesused'          => "Πρότυπα το μεταχειρίσκουνταν σ' αβούτεν την σελίδαν:",
 'templatesusedpreview'   => "Πρότυπα σ' αβούτον το πρώτον τέρεμαν:",
 'template-protected'     => '(ασπαλιγμένον)',
@@ -464,9 +465,9 @@ $messages = array(
 'currentrevisionlink' => 'Ατωριζνόν μορφήν',
 'cur'                 => 'ατωριζνόν',
 'next'                => 'επόμενον',
-'last'                => 'υστερνόν',
+'last'                => 'τελευταίον',
 'page_first'          => 'πρώτον',
-'page_last'           => 'υστερνόν',
+'page_last'           => 'τελευταίον',
 'histlegend'          => 'Σύγκριμα διαφορίων: βαλέστεν τα μορφάς το θέλετε και τερέστεν τα διαφοράσατουν. Για να τερείτε τα διαφοράς, ποίστεν έναν κλικ σο πεδίον το λεει "Γαρσουλαεύτε...". <br />
 Πληροφορία: (ατωριζνόν) = διαφοράς με τ\' ατωριζνόν τη μορφήν,
 (υστερνόν) = διαφοράς με τ\' υστερνόν τη μορφήν, μ = μικρά διαφοράς.',
@@ -508,6 +509,7 @@ $messages = array(
 # Preferences page
 'preferences'       => 'Προτιμήσαι',
 'mypreferences'     => "Τ' εμά τα προτιμήσαι",
+'dateformat'        => 'Μορφή ημερομηνίας',
 'prefs-misc'        => 'Διαφ',
 'saveprefs'         => 'Αποθήκεμαν',
 'oldpassword'       => 'Παλαιόν σημάδιν:',
@@ -516,6 +518,8 @@ $messages = array(
 'searchresultshead' => 'Εύρον',
 
 # Groups
+'group-user'  => 'Χρήστες',
+'group-bot'   => 'Bots',
 'group-sysop' => 'Νοματέοι',
 'group-all'   => '(ούλαι)',
 
@@ -526,6 +530,11 @@ $messages = array(
 'grouppage-sysop' => '{{ns:project}}:Νοματέοι',
 
 # Rights
+'right-read'          => 'Δέβασον σελίδας',
+'right-edit'          => 'Άλλαξον σελίδας',
+'right-createpage'    => "Ποίσον σελίδας (ντο 'κ εν σελίδας καλατζεματί)",
+'right-createtalk'    => 'Ποίσον σελίδας καλατζεματί',
+'right-createaccount' => 'Ποίσον καινούρεα λογαρίας χρηστίων',
 'right-delete'        => 'Σβήσον σελίδας',
 'right-bigdelete'     => 'Σβήσον σελίδας με τρανά ιστορίας',
 'right-browsearchive' => 'Αράεμαν σα σβημένα σελίδας',
@@ -560,7 +569,7 @@ $messages = array(
 # Recent changes linked
 'recentchangeslinked'          => 'Σχετικά αλλαγάς',
 'recentchangeslinked-title'    => 'Αλλαγάς τη "$1"',
-'recentchangeslinked-noresult' => "Σ' αβούτα τα σελίδας 'κ εγένταν αλλάγματα.",
+'recentchangeslinked-noresult' => "Σ' αβούτα τα σελίδας 'κ εγένταν αλλαγάς.",
 'recentchangeslinked-summary'  => "Αβούτος εν κατάλογον με τ' υστερνά τ' αλλαγάς σελιδίων με σύνδεσμον ασ' έναν συγκεκριμένον σελίδαν (για σε σελίδας συγκεκριμένου κατηγορίας).
 Τα σελίδας σον [[Special:Watchlist|κατάλογον ωριαγματί]] είν' '''σκηρά'''.",
 'recentchangeslinked-page'     => 'Όνεμαν σελίδας:',
@@ -778,6 +787,9 @@ $messages = array(
 'protect-cantedit'            => "'Κι έχετε δικαίωμαν ν' αλλάζετε τ' επίπεδον ασπάλιγματι τ' ατεινές σελίδας.",
 'restriction-type'            => 'Δικαίωμαν:',
 'restriction-level'           => 'Επίπεδον περιορισμού:',
+
+# Restrictions (nouns)
+'restriction-upload' => "Σκώσ' ατό",
 
 # Undelete
 'undeletebtn'            => 'Ποίσον ξαν',

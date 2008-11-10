@@ -159,7 +159,7 @@ $messages = array(
 == Pirmie soļi ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Konfigurācijas iespēju saraksts]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki J&A]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Parakstīties uz paziņojumiem par jaunām MediaWiki versijām]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Parakstīties uz paziņojumiem par jaunām MediaWiki versijām]',
 
 'about'          => 'Par',
 'article'        => 'Raksts',
@@ -304,6 +304,12 @@ $1',
 'readonly'             => 'Datubāze bloķēta',
 'readonlytext'         => 'Datubāze šobrīd ir bloķēta pret jauniem ierakstiem un citām izmaiņām. Visdrīzāk iemesls ir parasts datubāzes uzturēšanas pasākums, pēc kura tā tiks atjaunota normālā stāvoklī. Administrators, kurš nobloķēja datubāzi, norādīja šādu iemeslu:
 <p>$1',
+'missing-article'      => 'Datubāze neatrada lapas, ar nosaukumu "$1" $2, tekstu.
+
+To parasti izraisa novecojusi izmaiņu vai hronoloģijas saite uz izdzēstu lapu.
+
+Ja tajai lapai tur bija jābūt, tā iespējams ir kļūda programmā.
+Par šo var paziņot [[Special:ListUsers/sysop|kādam administratoram]], norādot arī URL.',
 'internalerror'        => 'Iekšēja kļūda',
 'internalerror_info'   => 'Iekšējā kļūda: $1',
 'filecopyerror'        => 'Nav iespējams nokopēt failu "$1" uz "$2"',
@@ -381,7 +387,7 @@ Ja tu izvēlies to norādīt, šo lietos lai identificētu tavu darbu (ieguldīj
 'noname'                     => 'Tu neesi norādījis derīgu lietotāja vārdu.',
 'loginsuccesstitle'          => 'Ieiešana veiksmīga',
 'loginsuccess'               => 'Tu esi ienācis {{grammar:lokatīvs|{{SITENAME}}}} kā "$1".',
-'nosuchuser'                 => 'Šeit nav lietotāja ar vārdu "$1". Pārbaudi, vai pareizi uzrakstīts, vai arī [[Special:Userlogin/signup|izveido jaunu kontu]].',
+'nosuchuser'                 => 'Šeit nav lietotāja ar vārdu "$1". Pārbaudi, vai pareizi uzrakstīts, vai arī [[Special:UserLogin/signup|izveido jaunu kontu]].',
 'nosuchusershort'            => 'Šeit nav lietotāja ar vārdu "<nowiki>$1</nowiki>". Pārbaudi, vai nav drukas kļūda.',
 'nouserspecified'            => 'Tev jānorāda lietotājvārds.',
 'wrongpassword'              => 'Tu ievadīji nepareizu paroli. Lūdzu, mēģini vēlreiz.',
@@ -390,9 +396,11 @@ Ja tu izvēlies to norādīt, šo lietos lai identificētu tavu darbu (ieguldīj
 'mailmypassword'             => 'Atsūtīt man jaunu paroli',
 'passwordremindertitle'      => 'Jauna pagaidu parole no {{SITENAME}}s',
 'passwordremindertext'       => 'Kads (iespejams, Tu pats, no IP adreses $1)
-ludza, lai nosutam Tev jaunu {{SITENAME}} ({{SERVER}}) ($4) paroli.
-Lietotajam $2 parole tagad ir $3.
-Ludzu, nomaini paroli, kad esi veiksmigi iekluvis ieksa.',
+ludza, lai nosutam Tev jaunu {{SITENAME}} ($4) paroli.
+Lietotajam $2 pagaidu parole tagad ir $3.
+Ludzu, nomaini paroli, kad esi veiksmigi iekluvis ieksa.
+
+Ja paroles pieprasījumu bija nosūtījis kāds cits, vai arī tu atcerējies savu veco paroli, šo var ignorēt. Vecā parole joprojām darbojas.',
 'noemail'                    => 'Lietotājs "$1" nav reģistrējis e-pasta adresi.',
 'passwordsent'               => 'Esam nosūtījuši jaunu paroli uz e-pasta adresi, kuru ir norādījis lietotājs $1. Lūdzu, nāc iekšā ar jauno paroli, kad būsi to saņēmis.',
 'blocked-mailpassword'       => "Tava IP adrese ir bloķēta un tāpēc nevar lietot paroles atjaunošanas (''recovery'') funkciju, lai nevarētu apiet bloku.",
@@ -635,15 +643,16 @@ m = maznozīmīgs labojums.',
 'nonefound'             => "'''Piezīme:''' bieži vien meklēšana ir neveiksmīga, meklējot plaši izplatītus vārdus, piemēram, \"un\" vai \"ir\", jo tie netiek iekļauti meklēšanas datubāzē, vai arī meklējot vairāk par vienu vārdu (jo rezultātos parādīsies tikai lapas, kurās ir visi meklētie vārdi). Vēl, pēc noklusējuma, pārmeklē tikai dažas ''namespaces''. Lai meklētu visās, meklēšanas pieprasījumam priekšā jāieliek ''all:'', vai arī analogā veidā jānorāda pārmeklējamo ''namespaci''.",
 'powersearch'           => 'Izvērstā meklēšana',
 'powersearch-legend'    => 'Izvērstā meklēšana',
-'searchdisabled'        => '<p style="margin: 1.5em 2em 1em">Meklēšana {{grammar:lokatīvs|{{SITENAME}}}} šobrīd ir atslēgta darbības traucējumu dēļ. Pagaidām vari meklēt, izmantojot Google vai Yahoo.
-<span style="font-size: 89%; display: block; margin-left: .2em">Ņem vērā, ka meklētāju indeksētais {{grammar:ģenitīvs|{{SITENAME}}}} saturs var būt novecojis.</span></p>',
+'searchdisabled'        => 'Meklēšana {{grammar:lokatīvs|{{SITENAME}}}} šobrīd ir atslēgta darbības traucējumu dēļ.
+Pagaidām vari meklēt, izmantojot Google vai Yahoo.
+Ņem vērā, ka meklētāju indeksētais {{grammar:ģenitīvs|{{SITENAME}}}} saturs var būt novecojis.',
 
 # Preferences page
 'preferences'           => 'Izvēles',
 'mypreferences'         => 'manas izvēles',
 'prefs-edits'           => 'Izmaiņu skaits:',
 'prefsnologin'          => 'Neesi iegājis',
-'prefsnologintext'      => 'Tev jābūt <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} iegājušam], lai mainītu lietotāja izvēles.',
+'prefsnologintext'      => 'Tev jābūt <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} iegājušam], lai mainītu lietotāja izvēles.',
 'prefsreset'            => 'Sākotnējās izvēles ir atjaunotas.',
 'qbsettings'            => 'Rīku joslas stāvoklis',
 'changepassword'        => 'Mainīt paroli',
@@ -858,7 +867,7 @@ Ja tev ir šis pats attēls pilnā izmērā, augšuplādē to, ja nav, tad nomai
 'uploadedimage'          => 'augšupielādēju "$1"',
 'overwroteimage'         => 'augšupielādēta jauna "[[$1]]" versija',
 'uploaddisabled'         => 'Augšupielāde atslēgta',
-'uploaddisabledtext'     => 'Failu augšupielāde šajā wiki ir atslēgta.',
+'uploaddisabledtext'     => 'Failu augšupielāde ir atslēgta.',
 'uploadscripted'         => 'Šis fails satur HTML vai skriptu kodu, kuru, interneta pārlūks, var kļūdas pēc, mēģināt interpretēt (ar potenciāli sliktām sekām).',
 'uploadcorrupt'          => 'Šis fails ir bojāts, vai arī tam ir nekorekts paplašinājums. Lūdzu pārbaudi failu un augšupielādē vēlreiz.',
 'uploadvirus'            => 'Šis fails satur vīrusu! Sīkāk: $1',
@@ -930,7 +939,7 @@ Uzklikšķinot uz kādas kolonnas virsraksta, var sakārtot pēc kāda cita para
 'filedelete-submit'           => 'Izdzēst',
 'filedelete-success'          => "'''$1''' tika veiksmīgi izdzēsts.",
 'filedelete-success-old'      => "Faila '''[[Media:$1|$1]]''' versija $3, $2 tika izdzēsta.",
-'filedelete-nofile'           => "'''$1''' {{grammar:lokatīvs|{{SITENAME}}}} nav atrodams.",
+'filedelete-nofile'           => "'''$1''' nav atrodams.",
 'filedelete-nofile-old'       => "Failam '''$1''' nav vecas versijas ar norādītajiem parametriem.",
 'filedelete-iscurrent'        => 'Tu mēģini izdzēst šī faila vissvaigāko versiju.
 Lūdzu, vispirms atjauno vecāku versiju.',
@@ -1074,7 +1083,8 @@ Papildu informāciju par katru individuālu piekļuves tiesību veidu, iespējam
 'mailnologintext' => 'Tev jābūt [[Special:UserLogin|iegājušam]], kā arī tev jābūt [[Special:Preferences|norādītai]] derīgai e-pasta adresei, lai sūtītu e-pastu citiem lietotājiem.',
 'emailuser'       => 'Sūtīt e-pastu šim lietotājam',
 'emailpage'       => 'Sūtīt e-pastu lietotājam',
-'emailpagetext'   => 'Ja šis lietotājs ir norādījis reālu e-pasta adresi savu izvēļu lapā, tad ar šo veidni ir iespējams viņam nosūtīt e-pastu. Tā e-pasta adrese, kuru tu esi norādījis [[Special:Preferences|savā izvēļu lapā]], parādīsies e-pasta "From" lauciņā, tādejādi saņēmējs varēs tev atbildēt.',
+'emailpagetext'   => 'Ar šo veidni ir iespējams nosūtīt e-pastu šim lietotājam.
+Tā e-pasta adrese, kuru tu esi norādījis [[Special:Preferences|savā izvēļu lapā]], parādīsies e-pasta "From" lauciņā, tādejādi saņēmējs varēs tev atbildēt.',
 'defemailsubject' => 'E-pasts par {{grammar:akuzatīvs|{{SITENAME}}}}',
 'noemailtitle'    => 'Nav e-pasta adreses',
 'noemailtext'     => 'Šis lietotājs nav norādījis derīgu e-pasta adresi vai arī ir izvēlējies nesaņemt e-pastu no citiem lietotājiem.',
@@ -1370,7 +1380,7 @@ pirms turpināšanas vēlreiz pārdomā, vai tu izproti visas iespējamās sekas
 
 Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvieno pašam.",
 'movearticle'             => 'Pārvietot lapu',
-'movenotallowed'          => 'Tev {{grammar:lokatīvs|{{SITENAME}}}} nav tiesību pārvietot lapas .',
+'movenotallowed'          => 'Tev nav tiesību pārvietot lapas.',
 'newtitle'                => 'Uz šādu lapu',
 'move-watch'              => 'Uzraudzīt šo lapu',
 'movepagebtn'             => 'Pārvietot lapu',

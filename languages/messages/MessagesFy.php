@@ -7,6 +7,7 @@
  * @author Maartenvdbent
  * @author Pyt
  * @author Snakesteuben
+ * @author Urhixidur
  * @author לערי ריינהארט
  */
 
@@ -189,7 +190,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings List mei ynstellings]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Faak stelde fragen (FAQ)]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglist foar oankundigings fan nije ferzjes]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglist foar oankundigings fan nije ferzjes]",
 
 'about'          => 'Ynfo',
 'article'        => 'Ynhâld side',
@@ -473,7 +474,7 @@ Jo kinne ek oaren de mûglikheid jaan kontakt mei jo op te nimmen troch in ferwi
 'loginsuccesstitle'          => 'Oanmelden slagge.',
 'loginsuccess'               => "'''Jo binne no oanmelden op de {{SITENAME}} as: \"\$1.\"'''",
 'nosuchuser'                 => 'Der is gjin meidogger "$1".
-Kontrolearje de stavering, of [[Special:Userlogin/signup|meitsje in nije meidogger oan]].',
+Kontrolearje de stavering, of [[Special:UserLogin/signup|meitsje in nije meidogger oan]].',
 'nosuchusershort'            => 'Der is gjin meidogger mei de namme "$1". It is goed skreaun?',
 'nouserspecified'            => 'Jo moatte in brûkersnamme opjaan.',
 'wrongpassword'              => "Meidochnamme en wachtwurd hearre net by elkoar. Besykje op 'e nij, of fier it wachtwurd twa kear yn en meitsje nije meidoggersynstellings.",
@@ -646,7 +647,7 @@ As jo net wolle dat jo teksten yngeand oanpast wurde troch oaren, set se hjir da
 Jo sizze ek ta dat jo de oarspronklike auteur binne fan dit materiaal, of dat jo it kopiearre hawwe út in boarne yn it publike domein, of in soartgelikense frije boarne (sjuch $1 foar details).
 <strong>BRUK GJIN MATERIAAL DAT BESKERME WURDT TROCH AUTEURSRJOCHT, OF JO MOATTE DER TASTIMMING FOAR HAWWE!</strong>',
 'longpagewarning'                  => "<strong>Warskôging: Dizze side is $1 kilobyte lang;
-der binne blêders dy't problemen hawwe mei siden fan tsjin de 32kb. of langer.
+der binne blêders dy't problemen hawwe mei siden fan tsjin de 32 kb of langer.
 Besykje de side yn lytsere stikken te brekken.</strong>",
 'longpageerror'                    => "<strong>FOUT: de tekst dy't jo tafoege hawwe is $1 kilobyte grut, wat grutter is as it maksimum fan $2 kilobytes.
 Bewarjen is net mûglik.</strong>",
@@ -748,9 +749,9 @@ der kinne details wêze yn it [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE
 'revisiondelete'              => 'Wiskje/weromsette ferzjes',
 'revdelete-nooldid-title'     => 'Gjin doelferzje',
 'revdelete-nooldid-text'      => 'Jo hawwe gjin doelferzje(s) foar dizze hanneling opjûn, de oanjûne ferzje bestiet net, of jo besykje de lêste ferzje te ferskûljen.',
-'revdelete-selected'          => 'Spesifisearre {{PLURAL:$2|ferzje|ferzjes}} fan [[:$1]]:',
-'logdelete-selected'          => '{{PLURAL:$1|keazen lochboekregel|keazen lochboekregels}}:',
-'revdelete-text'              => "Fuorthelle bewurkings binne sichtber yn 'e skiednis, mar de ynhâld is net langer publyk tagonklik.
+'revdelete-selected'          => "'''Spesifisearre {{PLURAL:$2|ferzje|ferzjes}} fan [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|keazen lochboekregel|keazen lochboekregels}}:'''",
+'revdelete-text'              => "'''Fuorthelle bewurkings binne sichtber yn 'e skiednis, mar de ynhâld is net langer publyk tagonklik.'''
 Oare behearders fan {{SITENAME}} kinne de ferburgen ynhâld benaderje en it fuortheljen ûngedien meitsje mei help fan dit skerm, of der moatte oanfoljende beheinings jilde dy't ynsteld binne troch de systeembehearder.",
 'revdelete-legend'            => 'Sichtberensbeheinings ynstelle.',
 'revdelete-hide-text'         => 'De bewurke tekst ferskûlje',
@@ -871,7 +872,7 @@ wurden syke wurde, allinnich siden fûn wurde wêr\'t <b>alle</b> worden op fûn
 'mypreferences'            => 'Myn foarkarynstellings',
 'prefs-edits'              => 'Tal bewurkings:',
 'prefsnologin'             => 'Net oanmeld',
-'prefsnologintext'         => 'Jo moatte <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} oanmeld]</span> wêze om jo foarkar-ynstellings te feroarje te kinnen.',
+'prefsnologintext'         => 'Jo moatte <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} oanmeld]</span> wêze om jo foarkar-ynstellings te feroarje te kinnen.',
 'prefsreset'               => "De ynstellings binne werom set sa't se fêstlein wienen.",
 'qbsettings'               => 'Menu',
 'qbsettings-none'          => 'Ut',

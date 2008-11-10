@@ -6,6 +6,7 @@
  *
  * @author BobChao
  * @author Roc michael
+ * @author Urhixidur
  * @author לערי ריינהארט
  */
 
@@ -164,7 +165,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings MediaWiki 配置設定清單]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki 常見問題解答]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki 發佈郵件清單]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki 發佈郵件清單]',
 
 'about'          => '關於',
 'article'        => '頁面',
@@ -385,7 +386,7 @@ $2',
 'yourpasswordagain'          => '再次輸入密碼:',
 'remembermypassword'         => '下次登入記住密碼。',
 'yourdomainname'             => '您的網域:',
-'externaldberror'            => '這可能是由於外部驗證資料庫錯誤或您被禁止更新您的外部帳號。',
+'externaldberror'            => '這可能是由於驗證資料庫錯誤或您被禁止更新您的外部帳號。',
 'loginproblem'               => '<b>登入有問題。</b><br />再試一次！',
 'login'                      => '登入',
 'nav-login-createaccount'    => '登入／建立新帳號',
@@ -582,7 +583,7 @@ $2',
 如果您不希望您的文字被任意修改和再散佈，請不要提交。<br />
 您同時也要向我們保證您所提交的內容是您自己所作，或得自一個不受版權保護或相似自由的來源（參閱$1的細節）。
 <strong>不要在未獲授權的情況下發表！</strong>',
-'longpagewarning'           => '<strong>警告: 本頁長度達$1KB；一些瀏覽器將無法編輯長過32KB頁面。請考慮將本文切割成幾個小段落。</strong>',
+'longpagewarning'           => '<strong>警告: 本頁長度達$1 kB；一些瀏覽器將無法編輯長過32KB頁面。請考慮將本文切割成幾個小段落。</strong>',
 'longpageerror'             => '<strong>錯誤: 您所提交的文字長度有$1KB，這大於$2KB的最大值。該文本不能被儲存。</strong>',
 'readonlywarning'           => '<strong>警告: 資料庫被鎖以進行維護，所以您目前將無法保存您的修改。您或許希望先將本段文字複製並保存到文字文件，然後等一會兒再修改。</strong>',
 'protectedpagewarning'      => '<strong>警告: 本頁已經被保護，只有擁有管理員許可權的使用者才可修改。</strong>',
@@ -661,11 +662,11 @@ $2',
 'revisiondelete'              => '刪除/復原刪除修訂',
 'revdelete-nooldid-title'     => '沒有目標修訂',
 'revdelete-nooldid-text'      => '您沒有指定此操作的目標修訂。',
-'revdelete-selected'          => "選取'''$1'''的$2次修訂:",
-'logdelete-selected'          => '選取的$1個日誌項目:',
-'revdelete-text'              => '刪除的修訂仍將顯示在修訂記錄中, 但它們的文字內容已不能被公眾訪問。
+'revdelete-selected'          => "'''選取'''$1'''的$2次修訂:'''",
+'logdelete-selected'          => "'''選取的$1個日誌項目:'''",
+'revdelete-text'              => "'''刪除的修訂仍將顯示在修訂記錄中, 但它們的文字內容已不能被公眾訪問。'''
 
-在此網站的其他管理員將仍能訪問隱藏的內容並透過與此相同的介面復原刪除，除非網站工作者進行了一些附加的限制。',
+在此網站的其他管理員將仍能訪問隱藏的內容並透過與此相同的介面復原刪除，除非網站工作者進行了一些附加的限制。",
 'revdelete-legend'            => '設定修訂限制:',
 'revdelete-hide-text'         => '隱藏修訂文字',
 'revdelete-hide-name'         => '隱藏動作和目標',

@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Bïerne
  * @author M.M.S.
  */
 
@@ -32,9 +33,9 @@ $messages = array(
 'thu'           => 'Dåa',
 'fri'           => 'Bea',
 'sat'           => 'Laa',
-'january'       => 'Tsiengele',
-'february'      => 'Goevte',
-'march'         => 'Njoktje',
+'january'       => 'tsiengele',
+'february'      => 'goevte',
+'march'         => 'njoktje',
 'april'         => 'Voerhtje',
 'may_long'      => 'Suehpede',
 'june'          => 'Ruffie',
@@ -95,7 +96,7 @@ $messages = array(
 
 'errorpagetitle'   => 'Båajhtode',
 'returnto'         => 'Bååstide gåajkoe $1.',
-'tagline'          => 'Raejeste {{SITENAME}}',
+'tagline'          => '{{SITENAME}}sta',
 'help'             => 'Viehkie',
 'search'           => 'Ohtsedh',
 'searchbutton'     => 'Ohtsedh',
@@ -119,7 +120,7 @@ $messages = array(
 'personaltools'    => 'Persjovne dïrregeh',
 'articlepage'      => 'Vuesehte artihkle bielie',
 'talk'             => 'Dïjveldeme',
-'views'            => 'Vuesehteh',
+'views'            => 'Vuesehth',
 'toolbox'          => 'Dïrregeborhtje',
 'userpage'         => 'Vuesehte nuhtjienbielie',
 'projectpage'      => 'Vuesehte Wikipedijebielie',
@@ -289,7 +290,7 @@ Gïemhpes logge sïjse vihth männgan datne åtna låhka dïhte.',
 Datne luhpede mijjieh aaj datne tjaala tjaalege jïjtje, jallh kåpieeret raejeste gaaltjie goh ijje vaarjele dejstie bäjjesereaktah, jallh plïerehke.<br />
 <strong>LISSEHTE IJJE OLKESE BÄJJESEREAKTAHVAARJELE ÏEBNE NAMHTAH LUHPIE!</strong>',
 'longpagewarning'        => '<strong>VAAROEHTIDH: Dïhte bielie lea $1 kilobyteh guhkie; såemies
-gaskeviermie-låhkoeh åtna tsagkeseh värrhtoedimmie bielih stoerre jallh guhkies enn 32kb.
+gaskeviermie-låhkoeh åtna tsagkeseh värrhtoedimmie bielih stoerre jallh guhkies enn 32 kb.
 Joekedidh värrhtoedimmie sïjse unnebe sektiovneh.</strong>',
 'templatesused'          => 'Maaleh nuhtjie nille dïhte bielie:',
 'templatesusedpreview'   => 'Maaleh nuhtjie sïjse dïhte åvte-vuesiehtidh:',
@@ -337,7 +338,7 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:UserLogin|logge s�
 'noexactmatch'     => "'''Dïhte gååvnese ijje bielie meatan nommej \"\$1\".''' Dov dorje [[:\$1|skaepede dïhte bielie]].",
 'prevn'            => 'övtebe $1',
 'nextn'            => 'minngeben $1',
-'viewprevnext'     => 'Vuesehte ($1) ($2) ($3)',
+'viewprevnext'     => 'Vuesehth ($1) ($2) ($3)',
 'powersearch'      => 'Ohtsedh',
 
 # Preferences page
@@ -477,7 +478,7 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:UserLogin|logge s�
 'nbytes'                  => '$1 {{PLURAL:$1|byte|byteh}}',
 'ncategories'             => '$1 {{PLURAL:$1|kategorije|kategorijeh}}',
 'nlinks'                  => '$1 {{PLURAL:$1|lïenghke|lïenghkeh}}',
-'nmembers'                => '$1 {{PLURAL:$1|lihtsege|lihtsegeh}}',
+'nmembers'                => '$1 {{PLURAL:$1|lihtsege|lihtsegh}}',
 'nrevisions'              => '$1 {{PLURAL:$1|gïehtjedamme|gïehtjedammeh}}',
 'nviews'                  => '$1 {{PLURAL:$1|vuesehte|vuesehteh}}',
 'lonelypages'             => 'Eejhtegapth bielieh',
@@ -732,7 +733,7 @@ Gïemhpes veeljeme jeatjebh nomme.',
 'tooltip-ca-move'                 => 'Jåhta dïhte bielie',
 'tooltip-ca-watch'                => 'Lissiehtidh dïhte bielie gåajkoe dov sïektjedhlästoe',
 'tooltip-ca-unwatch'              => 'Sirdde dïhte bielie raejeste dov sïektjedhlästoe',
-'tooltip-search'                  => 'Ohtsedh {{SITENAME}}',
+'tooltip-search'                  => 'Ohtsedh {{SITENAME}}sne',
 'tooltip-p-logo'                  => 'Åejjiebielie',
 'tooltip-n-mainpage'              => 'Gåajkoe aalkoebielie vaadtsa',
 'tooltip-n-portal'                => 'Bïjre prosjekte, mij dov dorje, lij dov gaavnedh daeverh',

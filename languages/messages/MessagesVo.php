@@ -221,7 +221,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Parametalised]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki: SSP]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Potalised tefü fomams nulik ela MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Potalised tefü fomams nulik ela MediaWiki]',
 
 'about'          => 'Tefü',
 'article'        => 'Ninädapad',
@@ -351,7 +351,7 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|redakama bal|redakamas $1}}',
 'feedlinks'               => 'Kanad:',
 'feed-invalid'            => 'Kanadabonedam no lonöfon.',
-'feed-unavailable'        => 'Nünamakanads no gebidons in {{SITENAME}}',
+'feed-unavailable'        => 'Nünamakanads no gebidons',
 'site-rss-feed'           => 'Kanad (RSS): $1',
 'site-atom-feed'          => 'Kanad (Atom): $1',
 'page-rss-feed'           => 'Kanad (RSS): "$1"',
@@ -442,8 +442,10 @@ Kod binon: ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Senunädön oki',
-'logouttext'                 => '<strong>Esenunädol oli.</strong><br />
-Kanol laigebön {{SITENAME}} nennemiko, u kanol nunädön oli dönu me gebananem votik. Küpälolös, das pads anik ba nog pojenons äsva no esenunädol oli, jüs uklinükol memi no laidüpik bevüresodanaföma olik.',
+'logouttext'                 => '<strong>Esenunädol oli.</strong>
+
+Kanol laigebön {{SITENAME}} nennemiko, u kanol [[Special:UserLogin|nunädön oli dönu]] me gebananem ot u gebenanem votik.
+Küpälolös, das pads anik ba nog pojenons äsva no esenunädol oli, jüs uklinükol memi no laidüpik bevüresodanaföma olik.',
 'welcomecreation'            => '== Benokömö, o $1! ==
 
 Kal olik pejafon. No glömolöd ad votükön buükamis olik in {{SITENAME}}.',
@@ -491,7 +493,8 @@ yufü gebanapad u gebanabespikapad olik nes sävilupol dientifi olik.',
 'noname'                     => 'No egivol gebananemi lonöföl.',
 'loginsuccesstitle'          => 'Enunädol oli benosekiko',
 'loginsuccess'               => "'''Binol anu in {{SITENAME}} as \"\$1\".'''",
-'nosuchuser'                 => 'No dabinon geban labü nem: "$1". Koräkolös tonatami nema at, u jafolös kali nulik.',
+'nosuchuser'                 => 'No dabinon geban labü nem: "$1".
+Koräkolös tonatami nema at, u [[Special:UserLogin/signup|jafolös kali nulik]].',
 'nosuchusershort'            => 'No dabinon geban labü nem: "<nowiki>$1</nowiki>". Koräkolös tonatami nema at.',
 'nouserspecified'            => 'Mutol välön gebananemi.',
 'wrongpassword'              => 'Letavöd neveräton. Steifülolös dönu.',
@@ -656,7 +659,9 @@ Garanol obes, das ol it epenol atosi, u das ekopiedol atosi se räyun notidik u 
 If no vilol, das vödems olik poredakons nenmisero e poseagivons ma vil alana, tän no pladolös onis isio.<br />
 Garanol obes, das ol it epenol atosi, u das ekopiedol atosi se räyun notidik u se fon libik sümik (logolös $1 pro notets).
 <strong>NO PLADOLÖD ISIO NEN DÄL LAUTANA VÖDEMIS LABÜ KOPIEDAGITÄT!</strong>',
-'longpagewarning'           => '<strong>NUNED: Pad at labon lunoti miljölätas $1; bevüresodatävöms anik ba no fägons ad redakön nendsäkädo padis lunotü miljölats plu 32. Betikolös dilami pada at ad pads smalikum.</strong>',
+'longpagewarning'           => '<strong>NUNED: Pad at labon lunoti miljölätas $1;
+bevüresodatävöms anik ba no fägons ad redakön nendsäkädo padis lunotü miljölats plu 32.
+Betikolös dilami pada at ad pads smalikum.</strong>',
 'longpageerror'             => '<strong>PÖL: Vödem fa ol pesedöl labon lunoti miljölätas $1, kelos pluon leigodü völad muik pedälöl miljölätas $2. No kanon padakipön.</strong>',
 'readonlywarning'           => '<strong>NUNED: Vük pefärmükon kodü kodididazesüd. No kanol dakipön votükamis olik anu. Kopiedolös vödemi nulik ini program votik e dakipolös oni in nünöm olik. Poso okanol dönu steifülön ad pladön oni isio.</strong>',
 'protectedpagewarning'      => '<strong>NUNED: Pad at pejelon, dat te gebans labü guvanagitäts kanons redakön oni.</strong>',
@@ -672,7 +677,7 @@ Garanol obes, das ol it epenol atosi, u das ekopiedol atosi se räyun notidik u 
 'nocreatetitle'             => 'Padijafam pemiedükon',
 'nocreatetext'              => '{{SITENAME}} emiedükon mögi ad jafön padis nulik.
 Kanol redakön padi dabinöl, u [[Special:UserLogin|nunädön oli u jafön kali]].',
-'nocreate-loggedin'         => 'No dalol jafön padis nulik in {{SITENAME}}.',
+'nocreate-loggedin'         => 'No dalol jafön padis nulik.',
 'permissionserrors'         => 'Dälapöls',
 'permissionserrorstext'     => 'No dalol dunön atosi sekü {{PLURAL:$1|kod|kods}} sököl:',
 'recreate-deleted-warn'     => "'''NUNED: Dönujafol padi pemoüköl.'''
@@ -744,11 +749,11 @@ Padafomam at pemoükon se registar notidik. As guvan in {{SITENAME}}, kanol log�
 'revisiondelete'              => 'Moükön/sädunön moükami fomamas',
 'revdelete-nooldid-title'     => 'Zeilafomam no lonöfon',
 'revdelete-nooldid-text'      => 'U no elevälol zeilafomami(s) pro dun at, u fomam pelevälöl no dabinon, u steifülol ad klänedön fomami anuik.',
-'revdelete-selected'          => '{{PLURAL:$2|Fomam|Fomams}} pevalöl pada: [[:$1]]:',
-'logdelete-selected'          => '{{PLURAL:$1|Lisedajenot|Lisedajenots}} pevälöl:',
-'revdelete-text'              => 'Revids pemoüköl nog opubons in padajenotem, ab ninäd (vödem) onsik no gebidons publüge.
+'revdelete-selected'          => "'''{{PLURAL:$2|Fomam|Fomams}} pevalöl pada: [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Lisedajenot|Lisedajenots}} pevälöl:'''",
+'revdelete-text'              => "'''Revids pemoüköl nog opubons in padajenotem, ab ninäd (vödem) onsik no gebidons publüge.'''
 
-Ninäd peklänedöl at binon ye nog lügolovik guvanes votik vüka at: kanons nog geükön oni medü pads patik, üf miedöfükams u neletians pluiks no pepladons.',
+Ninäd peklänedöl at binon ye nog lügolovik guvanes votik vüka at: kanons nog geükön oni medü pads patik, üf miedöfükams u neletians pluiks no pepladons.",
 'revdelete-legend'            => 'Levälön miedükamis logova:',
 'revdelete-hide-text'         => 'Klänedön vödemi revida',
 'revdelete-hide-name'         => 'Klänedön duni e zeili',
@@ -859,7 +864,7 @@ Kontrololös, va votükam at okipon fovöfi padajenotema.',
 'mypreferences'            => 'Buükams obik',
 'prefs-edits'              => 'Num redakamas:',
 'prefsnologin'             => 'No enunädon oki',
-'prefsnologintext'         => 'Nedol [[Special:UserLogin|nunädön oli]] büä kanol votükön gebanabuükamis.',
+'prefsnologintext'         => 'Nedol <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} nunädön oli]</span> büä kanol votükön gebanabuükamis.',
 'prefsreset'               => 'Buükams egekömons ad stad büik peregistaröl.',
 'qbsettings'               => 'Stumem',
 'qbsettings-none'          => 'Nonik',

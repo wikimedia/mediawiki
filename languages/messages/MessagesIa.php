@@ -159,7 +159,7 @@ $messages = array(
 == Pro initiar ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista de configurationes]
 * [http://www.mediawiki.org/wiki/Manual:FAQ FAQ a proposito de MediaWiki]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de diffusion pro annuncios de nove versiones de MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de diffusion pro annuncios de nove versiones de MediaWiki]',
 
 'about'          => 'A proposito',
 'article'        => 'Pagina de contento',
@@ -217,7 +217,7 @@ $messages = array(
 'postcomment'       => 'Publicar un commento',
 'articlepage'       => 'Vider pagina de contento',
 'talk'              => 'Discussion',
-'views'             => 'Visitas',
+'views'             => 'Aspectos',
 'toolbox'           => 'Instrumentario',
 'userpage'          => 'Vider pagina del usator',
 'projectpage'       => 'Vider pagina de projecto',
@@ -459,7 +459,7 @@ Per favor activa lo e reprova.",
 'loginsuccesstitle'          => 'Session aperite con successo',
 'loginsuccess'               => "'''Tu es ora identificate in {{SITENAME}} como \"\$1\".'''",
 'nosuchuser'                 => 'Non existe un usator con le nomine "$1".
-Verifica le orthographia, o [[Special:Userlogin/signup|crea un nove conto]].',
+Verifica le orthographia, o [[Special:UserLogin/signup|crea un nove conto]].',
 'nosuchusershort'            => 'Non existe un usator con le nomine "<nowiki>$1</nowiki>".
 Verifica le orthographia.',
 'nouserspecified'            => 'Tu debe specificar un nomine de usator.',
@@ -770,11 +770,11 @@ es possibile que se trova detalios in le [{{fullurl:Special:Log/delete|page={{FU
 'revdelete-nooldid-title'     => 'Le revision de destination es invalide',
 'revdelete-nooldid-text'      => 'O tu non ha specificate alcun revision(es) de destination pro executar iste 
 function, o le revision specificate non existe, o tu essaya celar le revision actual.',
-'revdelete-selected'          => '{{PLURAL:$2|Revision seligite|Revisiones seligite}} de [[:$1]]:',
-'logdelete-selected'          => '{{PLURAL:$1|Evento|Eventos}} de registro seligite:',
-'revdelete-text'              => 'Le revisiones e eventos delite continuara a apparer in le historia e registro del pagina, sed partes de lor contento essera inaccessibile al publico.
+'revdelete-selected'          => "'''{{PLURAL:$2|Revision seligite|Revisiones seligite}} de [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Evento|Eventos}} de registro seligite:'''",
+'revdelete-text'              => "'''Le revisiones e eventos delite continuara a apparer in le historia e registro del pagina, sed partes de lor contento essera inaccessibile al publico.'''
 
-Altere administratores in {{SITENAME}} continuara a poter acceder al contento celate e pote restaurar lo per medio de iste mesme interfacie, si non se ha definite restrictiones additional.',
+Altere administratores in {{SITENAME}} continuara a poter acceder al contento celate e pote restaurar lo per medio de iste mesme interfacie, si non se ha definite restrictiones additional.",
 'revdelete-legend'            => 'Definir restrictiones de visibilitate',
 'revdelete-hide-text'         => 'Celar texto del revision',
 'revdelete-hide-name'         => 'Celar action e objectivo',
@@ -894,7 +894,7 @@ Nota que lor indices del contento de {{SITENAME}} pote esser obsolete.',
 'mypreferences'            => 'Mi preferentias',
 'prefs-edits'              => 'Numero de modificationes:',
 'prefsnologin'             => 'Tu non te ha identificate',
-'prefsnologintext'         => 'Tu debe <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} aperir un session] pro poter configurar tu preferentias.',
+'prefsnologintext'         => 'Tu debe <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} aperir un session] pro poter configurar tu preferentias.',
 'prefsreset'               => 'Tu preferentias anterior ha essite restaurate.',
 'qbsettings'               => 'Barra rapide',
 'qbsettings-none'          => 'Necun',
@@ -1314,7 +1314,7 @@ Syntaxe: typo/subtypo, p.ex. <tt>image/jpeg</tt>.',
 
 # Unused templates
 'unusedtemplates'     => 'Patronos non usate',
-'unusedtemplatestext' => 'Iste pagina es un lista de tote le paginas in le spatio de nomines "Patrono" que non es includite in un altere pagina.
+'unusedtemplatestext' => 'Iste pagina es un lista de tote le paginas in le spatio de nomines "{{ns:template}}" que non es includite in un altere pagina.
 Memora verificar que non existe altere ligamines al patronos ante que tu los dele.',
 'unusedtemplateswlh'  => 'altere ligamines',
 
@@ -1379,7 +1379,7 @@ Cata linea contine ligamines al prime e al secunde redirection, con le destinati
 'nviews'                  => '$1 {{PLURAL:$1|visita|visitas}}',
 'specialpage-empty'       => 'Il non ha resultatos pro iste reporto.',
 'lonelypages'             => 'Paginas orphanate',
-'lonelypagestext'         => 'Nulle pagina in {{SITENAME}} ha ligamines al paginas sequente.',
+'lonelypagestext'         => 'Le sequente paginas non es ligate ni transcludite in altere paginas in {{SITENAME}}.',
 'uncategorizedpages'      => 'Paginas non classificate',
 'uncategorizedcategories' => 'Categorias non classificate',
 'uncategorizedimages'     => 'Files non categorisate',
@@ -1490,9 +1490,9 @@ e haber un adresse de e-mail valide in tu [[Special:Preferences|preferentias]]
 pro inviar e-mail a altere usatores.',
 'emailuser'       => 'Inviar e-mail a iste usator',
 'emailpage'       => 'Inviar e-mail al usator',
-'emailpagetext'   => 'Si iste usator forniva un adresse de e-mail valide in su preferentias de usator, le formulario infra le/la inviara un singule message.
-Le adresse de e-mail que tu forniva in [[Special:Preferences|tu preferentias de usator]] apparera
-como le adresse del expeditor del e-mail, a fin que le destinatario pote responder directemente a te.',
+'emailpagetext'   => 'Le formulario infra es pro inviar un message de e-mail a iste usator.
+Le adresse de e-mail que tu indicava in [[Special:Preferences|tu preferentias de usator]] apparera
+como le adresse del expeditor del e-mail, de modo que le destinatario pote responder directemente a te.',
 'usermailererror' => 'Le objecto de e-mail retornava le error:',
 'defemailsubject' => 'E-mail de {{SITENAME}}',
 'noemailtitle'    => 'Nulle adresse de e-mail',
@@ -1818,7 +1818,7 @@ specific que ha essite vandalisate).',
 'ipb-edit-dropdown'               => 'Modificar le motivos pro blocar',
 'ipb-unblock-addr'                => 'Disblocar $1',
 'ipb-unblock'                     => 'Disblocar un nomine de usator o un adresse IP',
-'ipb-blocklist-addr'              => 'Vider blocadas existente pro $1',
+'ipb-blocklist-addr'              => 'Blocadas existente pro $1',
 'ipb-blocklist'                   => 'Vider blocadas existente',
 'unblockip'                       => 'Disblocar adresse IP',
 'unblockiptext'                   => 'Usa le formulario infra pro restaurar le accesso de scriptura

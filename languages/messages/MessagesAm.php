@@ -145,7 +145,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
 
 'about'          => 'ስለ',
 'article'        => 'መጣጥፍ',
@@ -619,8 +619,8 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'rev-delundel'            => 'ይታይ/ይደበቅ',
 'revdelete-nooldid-title' => 'የማይሆን ግብ እትም',
 'revdelete-nooldid-text'  => 'ይህ ተግባር የሚፈጸምበት ግብ (አላማ) እትም አልወሰኑም።',
-'revdelete-selected'      => 'ከ [[:$1]] {{PLURAL:$2|የተመረጡ ዝርያዎች|የተመረጡ ዝርያዎች}}:',
-'logdelete-selected'      => '{{PLURAL:$1|የተመረጠ መዝገብ ድርጊት|የተመረጡ መዝገብ ድርጊቶች}}፦',
+'revdelete-selected'      => "'''ከ [[:$1]] {{PLURAL:$2|የተመረጡ ዝርያዎች|የተመረጡ ዝርያዎች}}:'''",
+'logdelete-selected'      => "'''{{PLURAL:$1|የተመረጠ መዝገብ ድርጊት|የተመረጡ መዝገብ ድርጊቶች}}፦'''",
 'revdelete-hide-text'     => 'የእትሙ ጽሕፈት ይደበቅ',
 'revdelete-hide-name'     => 'ድርጊትና ግቡ ይደበቅ',
 'revdelete-hide-comment'  => 'ማጠቃለያ ይደበቅ',
@@ -781,7 +781,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'recentchanges'                     => 'በቅርብ ጊዜ የተለወጡ',
 'recentchangestext'                 => "በዚሁ ገጽ ላይ በቅርብ ጊዜ የወጡ አዳዲስ ለውጦች ለመከታተል ይችላሉ። <br /> ('''ጥ'''፦ ጥቃቅን ለውጥ፤ '''አ'''፦ አዲስ ገጽ)",
 'recentchanges-feed-description'    => 'በዚህ ዊኪ ላይ በቅርብ ግዜ የተለወጠውን በዚሁ feed መከታተል ይችላሉ',
-'rcnote'                            => "ከ$5 $4 እ.ኤ.አ. {{PLURAL:$2|ባለፈው 1 ቀን|ባለፉት '''$2''' ቀኖች}} {{PLURAL:$1|የተደረገው '''1''' ለውት እታች ይገኛል|የተደረጉት '''$1''' መጨረሻ ለውጦች እታች ይገኛሉ}}።",
+'rcnote'                            => "ከ$5 $4 እ.ኤ.አ. {{PLURAL:$2|ባለፈው 1 ቀን|ባለፉት '''$2''' ቀኖች}} {{PLURAL:$1|የተደረገው '''1''' ለውጥ እታች ይገኛል|የተደረጉት '''$1''' መጨረሻ ለውጦች እታች ይገኛሉ}}።",
 'rcnotefrom'                        => "ከ'''$2''' ጀምሮ የተቀየሩትን ገጾች (እስከ '''$1''' ድረስ) ክዚህ በታች ይታያሉ።",
 'rclistfrom'                        => '(ከ $1 ጀምሮ አዲስ ለውጦቹን ለማየት)',
 'rcshowhideminor'                   => 'ጥቃቅን ለውጦች $1',

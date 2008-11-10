@@ -159,6 +159,7 @@ $messages = array(
 'edit'             => 'испра́ви',
 'create'           => 'сътворѥ́ниѥ',
 'editthispage'     => 'си страни́цѧ исправлѥ́ниѥ',
+'create-this-page' => 'си страни́цѧ сътворѥ́ниѥ',
 'delete'           => 'поничьжє́ниѥ',
 'deletethispage'   => 'си страни́цѧ поничьжє́ниѥ',
 'protect'          => 'ꙁабранѥ́ниѥ',
@@ -219,8 +220,8 @@ $messages = array(
 'yourpassword'            => 'Таино слово напиши',
 'yourpasswordagain'       => 'Опакы таиноѥ слово напиши',
 'login'                   => 'Въниди',
-'nav-login-createaccount' => 'въниди / съзи́жди си мѣ́сто',
-'userlogin'               => 'въниди / съзи́жди си мѣ́сто',
+'nav-login-createaccount' => 'въниди / съꙁи́жди си мѣ́сто',
+'userlogin'               => 'въниди / съꙁи́жди си мѣ́сто',
 'logout'                  => 'ис̾хо́дъ',
 'userlogout'              => 'ис̾хо́дъ',
 'createaccount'           => 'Cъзижди си мѣсто',
@@ -303,6 +304,7 @@ $messages = array(
 # Recent changes
 'nchanges'        => '$1 {{PLURAL:$1|мѣ́на|мѣ́нꙑ|мѣ́нъ}}',
 'recentchanges'   => 'послѣ́дьнѩ мѣ́нꙑ',
+'rcnote'          => "нижѣ {{PLURAL:$1|'''1''' послѣ́дьнѭ мѣ́нѫ|'''$1''' послѣ́дьни мѣ́нꙑ|'''$1''' послѣ́дьнъ мѣ́нъ|'''$1''' послѣ́дьнъ мѣ́нъ}} ꙁа {{PLURAL:$2|дьнь|'''$2''' дьнꙗ|'''$2''' дьнъ|'''$2''' дьнъ}} · ꙗко нꙑнѣ $5 · $4 лѣ́та",
 'rcshowhideminor' => '$1 ма́лꙑ мѣ́нꙑ',
 'rcshowhidebots'  => '$1 аѵтома́тъ',
 'rcshowhidemine'  => '$1 моꙗ́ мѣ́нꙑ',
@@ -349,6 +351,9 @@ $messages = array(
 # Random page
 'randompage' => 'страни́ца въ нєꙁаа́пѫ',
 
+# Random redirect
+'randomredirect' => 'прѣнаправлѥ́ниє въ нєꙁаа́пѫ',
+
 # Statistics
 'statistics'    => 'Статїстїка',
 'sitestats'     => '{{SITENAME}} статїстїка',
@@ -371,7 +376,7 @@ $messages = array(
 # Miscellaneous special pages
 'nbytes'            => '$1 {{PLURAL:$1|ба́итъ|ба́ита|ба́итъ}}',
 'nlinks'            => '$1 {{PLURAL:$1|съвѧ́ꙁь|съвѧ́ꙁѧ|съвѧ́ꙁи}}',
-'listusers'         => 'по́льꙃєватєлъ катало́гъ',
+'listusers'         => 'по́льꙃєватєлъ ката́логъ',
 'newpages'          => 'но́ви члѣ́ни',
 'newpages-username' => 'по́льꙃєватєлꙗ и́мѧ :',
 'move'              => 'прѣимєнова́ниѥ',
@@ -493,7 +498,7 @@ $messages = array(
 'tooltip-ca-move'         => 'си страни́цѧ прѣимєнова́ниѥ',
 'tooltip-ca-watch'        => 'си страни́цѧ блюдє́ниѥ',
 'tooltip-p-logo'          => 'гла́вьна страни́ца',
-'tooltip-n-recentchanges' => 'послѣ́дьнъ мѣ́нъ катало́гъ',
+'tooltip-n-recentchanges' => 'послѣ́дьнъ мѣ́нъ ката́логъ',
 'tooltip-t-upload'        => 'положє́ниѥ дѣ́лъ',
 'tooltip-watch'           => 'си страни́цѧ блюдє́ниѥ',
 

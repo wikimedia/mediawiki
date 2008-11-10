@@ -17,6 +17,7 @@
  * @author Olve Utne
  * @author Ranveig
  * @author Shauni
+ * @author Urhixidur
  * @author לערי ריינהארט
  */
 
@@ -377,7 +378,7 @@ $messages = array(
 ==Kome i gang==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Liste over konfigurasjonsinnstillingar]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Spørsmål og svar om MediaWiki]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce E-postliste med informasjon om nye MediaWiki-versjonar]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce E-postliste med informasjon om nye MediaWiki-versjonar]',
 
 'about'          => 'Om',
 'article'        => 'Innhaldsside',
@@ -507,7 +508,7 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|Éin sletta versjon|$1 sletta versjonar}}',
 'feedlinks'               => 'Mating:',
 'feed-invalid'            => 'Ugyldig abonnementstype.',
-'feed-unavailable'        => 'Det er ingen kjelder til abonnement på {{SITENAME}}',
+'feed-unavailable'        => 'Det er ingen kjelder til abonnement',
 'site-rss-feed'           => '$1 RSS-abonnement',
 'site-atom-feed'          => '$1 Atom-abonnement',
 'page-rss-feed'           => '«$1» RSS-abonnement',
@@ -654,7 +655,7 @@ Etter at du har endra innstillingane slik at nettlesaren godtek informasjonskaps
 'loginsuccesstitle'          => 'Du er no innlogga',
 'loginsuccess'               => 'Du er no innlogga som «$1».',
 'nosuchuser'                 => 'Det finst ingen med brukarnamnet «$1». Sjekk at du har skrive det rett eller 
-Sjekk stavemåten eller [[Special:Userlogin/signup|opprett ein ny konto]].',
+Sjekk stavemåten eller [[Special:UserLogin/signup|opprett ein ny konto]].',
 'nosuchusershort'            => 'Det finst ikkje nokon brukar med brukarnamnet «<nowiki>$1</nowiki>». Sjekk at du har skrive rett.',
 'nouserspecified'            => 'Du må oppgje eit brukarnamn.',
 'wrongpassword'              => 'Du har oppgjeve eit ugyldig passord. Prøv om att.',
@@ -663,13 +664,10 @@ Sjekk stavemåten eller [[Special:Userlogin/signup|opprett ein ny konto]].',
 Det må vera minst {{PLURAL:$1|éitt teikn|$1 teikn}} langt og noko anna enn brukarnamnet ditt.',
 'mailmypassword'             => 'Send nytt passord',
 'passwordremindertitle'      => 'Nytt passord til {{SITENAME}}',
-'passwordremindertext'       => 'Nokon (truleg du, frå IP-adressa $1) bad oss sende deg eit nytt passord til {{SITENAME}} ($4).
-Passordet for brukaren «$2» er no «$3».
-Du bør logge inn og endre passordet så snart som råd.
+'passwordremindertext'       => 'Noko (truleg du, frå IP-adressa $1) bad oss sende deg eit nytt passord til {{SITENAME}} ($4). Eit mellombels passord for «$2» er laga og sendt til «$3». Om det var det du ville, må du logge inn
+og velje eit nytt passord no.
 
-Logg inn her: {{SERVER}}
-
-Dersom du ikkje ynskjer å endre passordet ditt kan du sjå bort frå denne meldinga og halde fram med å bruka det gamle passordet ditt.',
+Dersom denne førespurnaden blei utført av nokon andre, eller om du kom på passordet og ikkje lenger ønsker å endre det, kan du ignorere denne meldinga og halde fram med å bruke det gamle passordet.',
 'noemail'                    => 'Det er ikkje registrert noka e-postadresse åt brukaren «$1».',
 'passwordsent'               => 'Eit nytt passord er sendt åt e-postadressa registrert på brukaren «$1».',
 'blocked-mailpassword'       => 'IP-adressa di er blokkert frå å endre sider, og du kan difor heller ikkje få nytt passord. Dette er for å hindre misbruk.',
@@ -698,7 +696,7 @@ Du kan sjå bort frå denne meldinga dersom kontoen vart oppretta med eit uhell.
 'resetpass_submit'        => 'Oppgje passord og logg inn',
 'resetpass_success'       => 'Passordet ditt er no nullstilt! Loggar inn...',
 'resetpass_bad_temporary' => 'Ugyldig mellombels passord. Du kan allereie ha endra det, eller bede om eit nytt.',
-'resetpass_forbidden'     => 'Passord kan ikkje endrast på {{SITENAME}}',
+'resetpass_forbidden'     => 'Passord kan ikkje endrast',
 'resetpass_missing'       => 'Skjemaet er tomt.',
 
 # Edit page toolbar
@@ -822,11 +820,11 @@ Teksten må du ha skrive sjølv, eller kopiert frå ein ressurs som er kompatibe
 Teksten må du ha skrive sjølv eller ha kopiert frå ein ressurs som er kompatibel med vilkåra eller ikkje verna av opphavsrett (sjå $1 for detaljar).
 
 <strong>LEGG ALDRI INN MATERIALE SOM ANDRE HAR OPPHAVSRETT TIL UTAN LØYVE FRÅ DEI!</strong>',
-'longpagewarning'                  => '<strong>ÅTVARING: Denne sida er $1 KB lang; nokre nettlesarar kan ha problem med å handsama endringar av sider som nærmar seg eller er lengre enn 32 KB. Du bør vurdere å dele opp sida i mindre bolkar.</strong><br />',
+'longpagewarning'                  => '<strong>ÅTVARING: Denne sida er $1 kB lang; nokre nettlesarar kan ha problem med å handsama endringar av sider som nærmar seg eller er lengre enn 32 kB. Du bør vurdere å dele opp sida i mindre bolkar.</strong><br />',
 'longpageerror'                    => '<strong>Feil: Teksten du har prøvd å lagre er $1 kilobyte
 lang, altså lenger enn $2 kilobyte som er maksimum. Han kan difor ikkje lagrast.</strong>',
 'readonlywarning'                  => '<strong>ÅTVARING: Databasen er skriveverna på grunn av vedlikehald, difor kan du ikkje lagre endringane dine akkurat no. Det kan vera lurt å  kopiere teksten din åt ei tekstfil, så du kan lagre han her seinare.</strong><br />',
-'protectedpagewarning'             => '<strong>ÅTVARING: Denne sida er verna, slik at berre administratorar kan endre ho.</strong><br />',
+'protectedpagewarning'             => '<strong>ÅTVARING: Denne sida er verna, slik at berre administratorar kan endre ho.</strong>',
 'semiprotectedpagewarning'         => "'''NB:''' Denne sida er verna slik at berre registrerte brukarar kan endre henne.",
 'cascadeprotectedwarning'          => "'''Åtvaring:''' Denne sida er verna så berre brukarar med administratortilgang kan endre henne. Dette er fordi ho er inkludert i {{PLURAL:$1|denne djupverna sida|desse djupverna sidene}}:",
 'titleprotectedwarning'            => '<strong>Åtvaring: Denne sida er verna, så berre nokre brukarar kan opprette henne.</strong>',
@@ -840,7 +838,7 @@ lang, altså lenger enn $2 kilobyte som er maksimum. Han kan difor ikkje lagrast
 'nocreatetitle'                    => 'Avgrensa sideoppretting',
 'nocreatetext'                     => '{{SITENAME}} har avgrensa tilgang til å opprette nye sider.
 Du kan gå attende og endre ei eksisterande side, [[Special:UserLogin|logge inn eller opprette ein brukarkonto]].',
-'nocreate-loggedin'                => 'Du har ikkje tilgang til å opprette nye sider på {{SITENAME}}.',
+'nocreate-loggedin'                => 'Du har ikkje tilgang til å opprette nye sider.',
 'permissionserrors'                => 'Tilgangsfeil',
 'permissionserrorstext'            => 'Du har ikkje tilgang til å gjere dette, {{PLURAL:$1|grunnen|grunnane}} til det finn du her:',
 'permissionserrorstext-withaction' => 'Du har ikke løyve til å $2 {{PLURAL:$1|på grunn av|av desse grunnane}}:',
@@ -912,11 +910,11 @@ Grunnen som vart gjeven av $3 er ''$2''",
 'revisiondelete'              => 'Slett/attopprett versjonar',
 'revdelete-nooldid-title'     => 'Ugyldig målversjon',
 'revdelete-nooldid-text'      => 'Du har ikkje oppgjeve kva for versjon(ar) du vil utføre denne handlinga på, versjonen eksisterer ikkje, eller du prøver å gøyme den noverande versjonen.',
-'revdelete-selected'          => '{{PLURAL:$2|Vald versjon|Valde versjonar}} av [[:$1]]:',
-'logdelete-selected'          => '{{PLURAL:$1|Vald loggoppføring|Valde loggoppføringar}} for [[:$1]]:',
-'revdelete-text'              => 'Sletta versjonar og oppføringar vert framleis synlege i sidehistorikken og loggane, men delar av innhaldet deira vert ikkje lenger offentleggjort.
+'revdelete-selected'          => "'''{{PLURAL:$2|Vald versjon|Valde versjonar}} av [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Vald loggoppføring|Valde loggoppføringar}} for [[:$1]]:'''",
+'revdelete-text'              => "'''Sletta versjonar og oppføringar vert framleis synlege i sidehistorikken og loggane, men delar av innhaldet deira vert ikkje lenger offentleggjort.'''
 
-Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet og attopprette det, med mindre fleire avgrensingar vert lagde inn av sideoperatørane.',
+Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet og attopprette det, med mindre fleire avgrensingar vert lagde inn av sideoperatørane.",
 'revdelete-legend'            => 'Vel avgrensing for synlegdom',
 'revdelete-hide-text'         => 'Gøym endringssamandraga',
 'revdelete-hide-name'         => 'Gøym handling og sidenamn',
@@ -1035,7 +1033,7 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'mypreferences'            => 'Innstillingane mine',
 'prefs-edits'              => 'Tal på endringar:',
 'prefsnologin'             => 'Ikkje innlogga',
-'prefsnologintext'         => 'Du må vere <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} logga inn]</span> for å endre brukarinnstillingane.',
+'prefsnologintext'         => 'Du må vere <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} logga inn]</span> for å endre brukarinnstillingane.',
 'prefsreset'               => 'Innstillingane er tilbakestilte til siste lagra versjon.',
 'qbsettings'               => 'Snøggmeny',
 'qbsettings-none'          => 'Ingen',
@@ -1297,7 +1295,7 @@ Om du framleis ønskjer å laste opp fila, gå tilbake og last ho opp med eit an
 'uploadedimage'               => 'Lasta opp «[[$1]]»',
 'overwroteimage'              => 'lasta opp ein ny versjon av «[[$1]]»',
 'uploaddisabled'              => 'Beklagar, funksjonen for opplasting er deaktivert på denne nettenaren.',
-'uploaddisabledtext'          => 'Filopplasting er slått av på {{SITENAME}}.',
+'uploaddisabledtext'          => 'Filopplasting er slått av.',
 'uploadscripted'              => 'Fila inneheld HTML- eller skriptkode som feilaktig kan bli tolka og køyrd av nettlesarar.',
 'uploadcorrupt'               => 'Fila er øydelagd eller har feil etternamn. Sjekk fila og prøv på nytt.',
 'uploadvirus'                 => 'Fila innheld virus! Detaljar: $1',
@@ -1416,7 +1414,7 @@ Sletteloggen for fila finn du her:",
 
 # Unused templates
 'unusedtemplates'     => 'Ubrukte malar',
-'unusedtemplatestext' => 'Denne sida viser alle sidene i mal-namnerommet som ikkje er brukte på andre sider. Hugs også å sjå etter andre lenkjer til malane før du slettar dei.',
+'unusedtemplatestext' => 'Denne sida viser alle sidene i mal-namnerommet ({{ns:template}}:) som ikkje er brukte på andre sider. Hugs også å sjå etter andre lenkjer til malane før du slettar dei.',
 'unusedtemplateswlh'  => 'andre lenkjer',
 
 # Random page
@@ -1472,7 +1470,7 @@ Alle sidene er vortne viste {{PLURAL:$3|'''éin''' gong|'''$3''' gonger}} og end
 'nviews'                  => '{{PLURAL:$1|Éi vising|$1 visingar}}',
 'specialpage-empty'       => 'Denne sida er tom.',
 'lonelypages'             => 'Foreldrelause sider',
-'lonelypagestext'         => 'Desse sidene er ikkje lenkja til på andre sider på {{SITENAME}}.',
+'lonelypagestext'         => 'Følgjande sider er ikkje lenkja til på andre sider på {{SITENAME}}.',
 'uncategorizedpages'      => 'Ikkje kategoriserte sider',
 'uncategorizedcategories' => 'Ikkje kategoriserte kategoriar',
 'uncategorizedimages'     => 'Ukategoriserte filer',
@@ -1577,7 +1575,8 @@ Sjå òg [[Special:WantedCategories|ønska kategoriar]].',
 'mailnologintext' => 'Du lyt vera [[Special:UserLogin|innlogga]] og ha ei gyldig e-postadresse sett i [[Special:Preferences|brukarinnstillingane]] for å sende e-post åt andre brukarar.',
 'emailuser'       => 'Send e-post åt denne brukaren',
 'emailpage'       => 'Send e-post åt brukar',
-'emailpagetext'   => 'Om denne brukaren har gjeve ei gyldig e-postadresse i brukarinnstillingane sine, vil dette skjemaet sende ei melding. E-postadressa di frå [[Special:Preferences|innstillingane dine]] vil vere synlege i «frå»-feltet i denne e-posten, slik at mottakaren kan svare deg.',
+'emailpagetext'   => 'Du kan nytte skjemaet nedanfor til å sende ein e-post til denne brukaren.
+E-postadressa du har sett i [[Special:Preferences|innstillingane dine]] vil dukke opp i «frå»-feltet på denne e-posten, så mottakaren er i stand til å svare.',
 'usermailererror' => 'E-post systemet gav feilmelding:',
 'defemailsubject' => '{{SITENAME}} e-post',
 'noemailtitle'    => 'Inga e-postadresse',
@@ -1871,7 +1870,7 @@ Sjå [[Special:IPBlockList|blokkeringslista]] for alle blokkeringar.',
 'ipb-edit-dropdown'               => 'Endre grunnane for blokkering',
 'ipb-unblock-addr'                => 'Opphev blokkeringa av $1',
 'ipb-unblock'                     => 'Opphev blokkeringa av eit brukarnamn eller ei IP-adresse',
-'ipb-blocklist-addr'              => 'Vis gjeldande blokkeringar av $1',
+'ipb-blocklist-addr'              => 'Gjeldande blokkeringar av $1',
 'ipb-blocklist'                   => 'Vis gjeldande blokkeringar',
 'unblockip'                       => 'Opphev blokkering',
 'unblockiptext'                   => 'Bruk skjemaet nedanfor for å oppheve blokkeringa av ein tidlegare blokkert brukar.',

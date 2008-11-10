@@ -6,6 +6,7 @@
  *
  * @author Rotem Dan (July 2003)
  * @author Rotem Liss (March 2006 on)
+ * @author YaronSh
  */
 
 $rtl = true;
@@ -424,7 +425,7 @@ $messages = array(
 == קישורים שימושיים ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings רשימת ההגדרות]
 * [http://www.mediawiki.org/wiki/Manual:FAQ שאלות נפוצות]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce רשימת התפוצה על השקת גרסאות]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce רשימת התפוצה על השקת גרסאות]',
 
 'about'          => 'אודות',
 'article'        => 'דף תוכן',
@@ -737,7 +738,7 @@ $2',
 'loginsuccesstitle'          => 'הכניסה הושלמה בהצלחה',
 'loginsuccess'               => "'''נכנסת ל{{grammar:תחילית|{{SITENAME}}}} בשם \"\$1\".'''",
 'nosuchuser'                 => 'אין משתמש בשם "$1".
-אנא ודאו שהאיות נכון, או [[Special:Userlogin/signup|צרו חשבון חדש]].',
+אנא ודאו שהאיות נכון, או [[Special:UserLogin/signup|צרו חשבון חדש]].',
 'nosuchusershort'            => 'אין משתמש בשם "<nowiki>$1</nowiki>". אנא ודאו שהאיות נכון.',
 'nouserspecified'            => 'עליכם לציין שם משתמש.',
 'wrongpassword'              => 'הסיסמה שהקלדתם שגויה, אנא נסו שנית.',
@@ -870,7 +871,7 @@ $2',
 'noarticletext'                    => 'אין עדיין טקסט בדף זה. באפשרותכם [[Special:Search/{{PAGENAME}}|לחפש את {{PAGENAME}} באתר]], או [{{fullurl:{{FULLPAGENAME}}|action=edit}} ליצור דף זה].',
 'userpage-userdoesnotexist'        => 'חשבון המשתמש "$1" אינו רשום. אנא בדקו אם ברצונכם ליצור/לערוך דף זה.',
 'clearyourcache'                   => "'''הערה:''' לאחר השמירה, עליכם לנקות את זכרון המטמון (Cache) של הדפדפן על־מנת להבחין בשינויים.
-* ב'''מוזילה''', '''פיירפוקס''' או '''ספארי''', לחצו על מקש ה־Shift בעת לחיצתכם על '''העלה מחדש''' (Reload), או הקישו Ctrl+Shift+R (או Cmd+Shift+R במקינטוש של אפל).
+* ב'''מוזילה''', ב'''פיירפוקס''' או ב'''ספארי''', לחצו על מקש ה־Shift בעת לחיצתכם על '''העלה מחדש''' (Reload), או הקישו Ctrl+Shift+R (או Cmd+Shift+R במקינטוש של אפל).
 * ב'''אינטרנט אקספלורר''', לחצו על מקש ה־Ctrl בעת לחיצתכם על '''רענן''' (Refresh), או הקישו על Ctrl+F5.
 * ב־'''Konqueror''', לחצו על '''העלה מחדש''' (Reload), או הקישו על F5.
 * ב'''אופרה''', ייתכן שתצטרכו להשתמש ב'''כלים''' (Tools) > '''העדפות''' (Preferences) כדי לנקות לחלוטין את זכרון המטמון.",
@@ -879,18 +880,18 @@ $2',
 '''הוא טרם נשמר!'''",
 'userjspreview'                    => "'''זכרו שזו רק בדיקה/תצוגה מקדימה של סקריפט ה־JavaScript שלכם.'''
 '''הוא טרם נשמר!'''",
-'userinvalidcssjstitle'            => "'''אזהרה''': הרקע \"\$1\" אינו קיים. זכרו שדפי CSS ו־JavaScript מותאמים אישית משתמשים בכותרת עם אותיות קטנות – למשל, {{ns:user}}:דוגמה/monobook.css ולא {{ns:user}}:דוגמה/Monobook.css. כמו כן, יש להקפיד על שימוש ב־/ ולא ב־\\.",
+'userinvalidcssjstitle'            => "'''אזהרה''': העיצוב \"\$1\" אינו קיים. זכרו שדפי CSS ו־JavaScript מותאמים אישית משתמשים בכותרת עם אותיות קטנות – למשל, {{ns:user}}:דוגמה/monobook.css ולא {{ns:user}}:דוגמה/Monobook.css. כמו כן, יש להקפיד על שימוש ב־/ ולא ב־\\.",
 'updated'                          => '(מעודכן)',
 'note'                             => '<strong>הערה:</strong>',
 'previewnote'                      => '<strong>זכרו שזו רק תצוגה מקדימה, והדף עדיין לא נשמר!</strong>',
 'previewconflict'                  => 'תצוגה מקדימה זו מציגה כיצד ייראה הטקסט בחלון העריכה העליון, אם תבחרו לשמור אותו.',
-'session_fail_preview'             => '<strong>לא ניתן לבצע את עריכתכם עקב אובדן קשר עם השרת. אנא נסו שנית. אם זה לא עוזר, אנא [[Special:UserLogout|צאו מהחשבון]] ונסו שנית.</strong>',
-'session_fail_preview_html'        => '<strong>לא ניתן לבצע את עריכתם עקב אובדן קשר עם השרת.</strong>
+'session_fail_preview'             => '<strong>לא ניתן לבצע את עריכתכם עקב אובדן מידע הכניסה. אנא נסו שנית. אם זה לא עוזר, אנא [[Special:UserLogout|צאו מהחשבון]] ונסו שנית.</strong>',
+'session_fail_preview_html'        => '<strong>לא ניתן לבצע את עריכתם עקב אובדן מידע הכניסה.</strong>
 
 כיוון שבאתר זה אפשרות השימוש ב־HTML מאופשרת, התצוגה המקדימה מוסתרת כדי למנוע התקפות JavaScript.
 
 <strong>אם זהו ניסיון עריכה לגיטימי, אנא נסו שנית. אם זה לא עוזר, נסו [[Special:UserLogout|לצאת מהחשבון]] ולהיכנס אליו שנית.</strong>',
-'token_suffix_mismatch'            => '<strong>עריכתכם נדחתה כיוון שהדפדפן שלכם מחק את תווי הניקוד בסימון העריכה. העריכה נדחתה כדי למנוע בעיות כאלה בטקסט של הדף. ייתכן שזה קרה בגלל שירות פרוקסי אנונימי פגום.</strong>',
+'token_suffix_mismatch'            => '<strong>עריכתכם נדחתה כיוון שהדפדפן שלכם מחק את תווי הניקוד באסימון העריכה. העריכה נדחתה כדי למנוע בעיות כאלה בטקסט של הדף. ייתכן שזה קרה בגלל שירות פרוקסי אנונימי פגום.</strong>',
 'editing'                          => 'עריכת $1',
 'editingsection'                   => 'עריכת $1 (פסקה)',
 'editingcomment'                   => 'עריכת $1 (הודעה)',
@@ -922,7 +923,7 @@ $2',
 'nocreate-loggedin'                => 'אינכם מורשים ליצור דפים חדשים.',
 'permissionserrors'                => 'שגיאות הרשאה',
 'permissionserrorstext'            => 'אינכם מורשים לבצע פעולה זו, {{PLURAL:$1|מהסיבה הבאה|מהסיבות הבאות}}:',
-'permissionserrorstext-withaction' => 'אינכם מורשים לבצע $2, {{PLURAL:$1|מהסיבה הבאה|מהסיבות הבאות}}:',
+'permissionserrorstext-withaction' => 'אינכם מורשים $2, {{PLURAL:$1|מהסיבה הבאה|מהסיבות הבאות}}:',
 'recreate-deleted-warn'            => "'''אזהרה: הנכם יוצרים דף חדש שנמחק בעבר.'''
 
 אנא שיקלו אם יהיה זה נכון להמשיך לערוך את הדף.
@@ -996,11 +997,11 @@ $2',
 'revisiondelete'              => 'מחיקת ושחזור גרסאות',
 'revdelete-nooldid-title'     => 'גרסת מטרה בלתי תקינה',
 'revdelete-nooldid-text'      => 'הגרסה או הגרסאות עליהן תבוצע פעולה זו אינן תקינות. ייתכן שלא ציינתם אותן, ייתכן שהגרסה אינה קיימת, וייתכן שאתם מנסים להסתיר את הגרסה הנוכחית.',
-'revdelete-selected'          => '{{PLURAL:$2|הגרסה שנבחרה|הגרסאות שנבחרו}} של [[:$1]]:',
-'logdelete-selected'          => '{{PLURAL:$1|פעולת היומנים שנבחרה|פעולות היומנים שנבחרו}}:',
-'revdelete-text'              => 'גרסאות ופעולות יומנים שנמחקו עדיין יופיעו בהיסטוריית הדף ובדפי היומנים, אך חלקים מתוכנם שלהם לא יהיה זמין לציבור.
+'revdelete-selected'          => "'''{{PLURAL:$2|הגרסה שנבחרה|הגרסאות שנבחרו}} של [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|פעולת היומנים שנבחרה|פעולות היומנים שנבחרו}}:'''",
+'revdelete-text'              => "'''גרסאות ופעולות יומנים שנמחקו עדיין יופיעו בהיסטוריית הדף ובדפי היומנים, אך חלקים מתוכנם שלהם לא יהיה זמין לציבור.'''
 
-מפעילי מערכת אחרים באתר עדיין יוכלו לגשת לתוכן הנסתר ויוכלו לשחזר אותו שוב דרך הממשק הזה, אלא אם כן מוגדרות הגבלות נוספות.',
+מפעילי מערכת אחרים באתר עדיין יוכלו לגשת לתוכן הנסתר ויוכלו לשחזר אותו שוב דרך הממשק הזה, אלא אם כן מוגדרות הגבלות נוספות.",
 'revdelete-legend'            => 'הגדרת הגבלות התצוגה',
 'revdelete-hide-text'         => 'הסתרת תוכן הגרסה',
 'revdelete-hide-name'         => 'הסתרת הפעולה ודף היעד',
@@ -1116,7 +1117,7 @@ $2',
 'mypreferences'            => 'ההעדפות שלי',
 'prefs-edits'              => 'מספר עריכות:',
 'prefsnologin'             => 'לא נרשמת באתר',
-'prefsnologintext'         => 'עליכם <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} להיכנס לחשבון]</span> כדי לשנות העדפות משתמש.',
+'prefsnologintext'         => 'עליכם <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} להיכנס לחשבון]</span> כדי לשנות העדפות משתמש.',
 'prefsreset'               => 'ההעדפות שוחזרו למצבן הקודם.',
 'qbsettings'               => 'הגדרות סרגל כלים',
 'qbsettings-none'          => 'ללא',
@@ -1125,7 +1126,7 @@ $2',
 'qbsettings-floatingleft'  => 'צף משמאל',
 'qbsettings-floatingright' => 'צף מימין',
 'changepassword'           => 'שינוי סיסמה',
-'skin'                     => 'רקע',
+'skin'                     => 'עיצוב',
 'math'                     => 'נוסחאות מתמטיות',
 'dateformat'               => 'מבנה תאריך',
 'datedefault'              => 'ברירת המחדל',
@@ -1266,7 +1267,7 @@ $2',
 'right-autopatrol'           => 'סימון אוטומטי של עריכות של המשתמש כבדוקות',
 'right-patrolmarks'          => 'צפייה בסימוני עריכות בדוקות בשינויים האחרונים',
 'right-unwatchedpages'       => 'הצגת רשימה של דפים שאינם במעקב',
-'right-trackback'            => 'שליחת טראקבק',
+'right-trackback'            => 'שליחת טרקבק',
 'right-mergehistory'         => 'מיזוג היסטוריות של דפים',
 'right-userrights'           => 'עריכת כל הרשאות המשתמש',
 'right-userrights-interwiki' => 'עריכת הרשאות המשתמש של משתמשים באתרי ויקי אחרים',
@@ -1519,7 +1520,7 @@ PICT # שונות
 
 # Unused templates
 'unusedtemplates'     => 'תבניות שאינן בשימוש',
-'unusedtemplatestext' => 'דף זה מכיל רשימה של כל הדפים במרחב השם של התבניות שאינם נכללים בדף אחר. אנא זכרו לבדוק את הקישורים האחרים לתבניות לפני שתמחקו אותן.',
+'unusedtemplatestext' => 'דף זה מכיל רשימה של כל הדפים במרחב השם {{ns:template}} שאינם נכללים בדף אחר. אנא זכרו לבדוק את הקישורים האחרים לתבניות לפני שתמחקו אותן.',
 'unusedtemplateswlh'  => 'קישורים אחרים',
 
 # Random page
@@ -1578,7 +1579,7 @@ PICT # שונות
 'nviews'                  => '{{PLURAL:$1|צפייה אחת|$1 צפיות}}',
 'specialpage-empty'       => 'אין תוצאות.',
 'lonelypages'             => 'דפים יתומים',
-'lonelypagestext'         => 'לדפים הבאים אין קישורים מדפים אחרים באתר זה.',
+'lonelypagestext'         => 'הדפים הבאים אינם מקושרים מדפים אחרים באתר זה ואינם מוכללים בהם.',
 'uncategorizedpages'      => 'דפים חסרי קטגוריה',
 'uncategorizedcategories' => 'קטגוריות חסרות קטגוריה',
 'uncategorizedimages'     => 'תמונות חסרות קטגוריה',
@@ -1626,6 +1627,7 @@ PICT # שונות
 # Book sources
 'booksources'               => 'משאבי ספרות חיצוניים',
 'booksources-search-legend' => 'חיפוש משאבי ספרות חיצוניים',
+'booksources-isbn'          => 'מסת"ב:',
 'booksources-go'            => 'הצגה',
 'booksources-text'          => 'להלן רשימת קישורים לאתרים אחרים המוכרים ספרים חדשים ויד־שנייה, ושבהם עשוי להיות מידע נוסף לגבי ספרים שאתם מחפשים:',
 
@@ -1685,8 +1687,8 @@ PICT # שונות
 'mailnologintext' => 'עליכם [[Special:UserLogin|להיכנס לחשבון]] ולהגדיר לעצמכם כתובת דואר אלקטרוני תקינה ב[[Special:Preferences|העדפות המשתמש]] שלכם כדי לשלוח דואר למשתמש אחר.',
 'emailuser'       => 'שליחת דואר אלקטרוני למשתמש זה',
 'emailpage'       => 'שליחת דואר למשתמש',
-'emailpagetext'   => 'ניתן לשלוח דואר אלקטרוני דרך טופס זה רק למשתמשים שהזינו כתובת דואר אלקטרוני בהעדפותיהם. טופס זה שולח הודעה אחת.
-// כתובת הדואר האלקטרוני שהזנתם ב[[Special:Preferences|העדפות המשתמש שלכם]] תופיע ככתובת ממנה נשלחה ההודעה כדי לאפשר תגובה ישירה למכתב.',
+'emailpagetext'   => 'ניתן להשתמש בטופס כדי לשלוח הודעת דואר אלקטרוני למשתמש זה.
+// כתובת הדואר האלקטרוני שהזנתם ב[[Special:Preferences|העדפות המשתמש שלכם]] תופיע ככתובת ממנה נשלחה ההודעה, כדי לאפשר תגובה ישירה למכתב.',
 'usermailererror' => 'אוביקט הדואר החזיר שגיאה:',
 'defemailsubject' => 'דוא"ל {{SITENAME}}',
 'noemailtitle'    => 'אין כתובת דואר אלקטרוני',
@@ -1993,7 +1995,7 @@ $1',
 'ipb-edit-dropdown'               => 'עריכת סיבות החסימה',
 'ipb-unblock-addr'                => 'הסרת חסימה של $1',
 'ipb-unblock'                     => 'הסרת חסימה של שם משתמש או כתובת IP',
-'ipb-blocklist-addr'              => 'הצגת החסימות הנוכחיות של $1',
+'ipb-blocklist-addr'              => 'החסימות הנוכחיות של $1',
 'ipb-blocklist'                   => 'הצגת החסימות הנוכחיות',
 'unblockip'                       => 'שחרור חסימה',
 'unblockiptext'                   => 'השתמשו בטופס שלהלן כדי להחזיר את הרשאות הכתיבה למשתמש או כתובת IP חסומים.',
@@ -2262,26 +2264,26 @@ $1',
 'tooltip-upload'                  => 'התחלת ההעלאה',
 
 # Stylesheets
-'common.css'      => '/* הסגנונות הנכתבים כאן ישפיעו על כל הרקעים */',
-'standard.css'    => '/* הסגנונות הנכתבים כאן ישפיעו על הרקע Standard בלבד */',
-'nostalgia.css'   => '/* הסגנונות הנכתבים כאן ישפיעו על הרקע Nostalgia בלבד */',
-'cologneblue.css' => '/* הסגנונות הנכתבים כאן ישפיעו על הרקע CologneBlue בלבד */',
-'monobook.css'    => '/* הסגנונות הנכתבים כאן ישפיעו על הרקע Monobook בלבד */',
-'myskin.css'      => '/* הסגנונות הנכתבים כאן ישפיעו על הרקע MySkin בלבד */',
-'chick.css'       => '/* הסגנונות הנכתבים כאן ישפיעו על הרקע Chick בלבד */',
-'simple.css'      => '/* הסגנונות הנכתבים כאן ישפיעו על הרקע Simple בלבד */',
-'modern.css'      => '/* הסגנונות הנכתבים כאן ישפיעו על הרקע Modern בלבד */',
+'common.css'      => '/* הסגנונות הנכתבים כאן ישפיעו על כל העיצובים */',
+'standard.css'    => '/* הסגנונות הנכתבים כאן ישפיעו על העיצוב Standard בלבד */',
+'nostalgia.css'   => '/* הסגנונות הנכתבים כאן ישפיעו על העיצוב Nostalgia בלבד */',
+'cologneblue.css' => '/* הסגנונות הנכתבים כאן ישפיעו על העיצוב CologneBlue בלבד */',
+'monobook.css'    => '/* הסגנונות הנכתבים כאן ישפיעו על העיצוב Monobook בלבד */',
+'myskin.css'      => '/* הסגנונות הנכתבים כאן ישפיעו על העיצוב MySkin בלבד */',
+'chick.css'       => '/* הסגנונות הנכתבים כאן ישפיעו על העיצוב Chick בלבד */',
+'simple.css'      => '/* הסגנונות הנכתבים כאן ישפיעו על העיצוב Simple בלבד */',
+'modern.css'      => '/* הסגנונות הנכתבים כאן ישפיעו על העיצוב Modern בלבד */',
 
 # Scripts
 'common.js'      => '/* כל סקריפט JavaScript שנכתב כאן ירוץ עבור כל המשתמשים בכל טעינת עמוד */',
-'standard.js'    => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים ברקע Standard */',
-'nostalgia.js'   => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים ברקע Nostalgia */',
-'cologneblue.js' => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים ברקע CologneBlue */',
-'monobook.js'    => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים ברקע Monobook */',
-'myskin.js'      => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים ברקע MySkin */',
-'chick.js'       => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים ברקע Chick */',
-'simple.js'      => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים ברקע Simple */',
-'modern.js'      => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים ברקע Modern */',
+'standard.js'    => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים בעיצוב Standard */',
+'nostalgia.js'   => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים בעיצוב Nostalgia */',
+'cologneblue.js' => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים בעיצוב CologneBlue */',
+'monobook.js'    => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים בעיצוב Monobook */',
+'myskin.js'      => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים בעיצוב MySkin */',
+'chick.js'       => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים בעיצוב Chick */',
+'simple.js'      => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים בעיצוב Simple */',
+'modern.js'      => '/* כל סקריפט JavaScript שנכתב כאן ירוץ רק עבור המשתמשים בעיצוב Modern */',
 
 # Metadata
 'nodublincore'      => 'Dublin Core RDF metadata מבוטל בשרת זה.',
@@ -2864,7 +2866,7 @@ $1',
 'version-extension-functions'      => 'פונקציות של הרחבות',
 'version-parser-extensiontags'     => 'תגיות של הרחבות מפענח',
 'version-parser-function-hooks'    => 'משתנים',
-'version-skin-extension-functions' => 'הרחבות רקעים',
+'version-skin-extension-functions' => 'עיצובים',
 'version-hook-name'                => 'שם ה־Hook',
 'version-hook-subscribedby'        => 'הפונקציה הרושמת',
 'version-version'                  => 'גרסה',

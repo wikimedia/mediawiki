@@ -6,6 +6,7 @@
  *
  * @author JeanVoisin
  * @author RoyAlcatraz
+ * @author Urhixidur
  * @author Zetud
  */
 
@@ -123,7 +124,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Réglage]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki: Questions Souvent Posées]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki Liste à Malle]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki Liste à Malle]',
 
 'about'          => 'Info',
 'article'        => 'Page des matières',
@@ -517,7 +518,7 @@ Il foudra que vous mettez vos changements dans le texte qu'est là asteur.
 'yourdiff'                  => 'Différences',
 'copyrightwarning'          => "Notez donc que toutes les contributions à {{SITENAME}} sont considérées d'être libérées sous le $2 (voyez $1 pour les détails).  Si vous voulez pas que votre écriture soye changée sans pitié et redistribuée à volonté, mettez donc pas votre écriture ici.<br />  Vous êtes après nous promettre aussi que vous l'avez écrit vous-même ou que vous l'avez copié du domain public ou un autre ressource libre. <strong> METTEZ PAS DE L'OUVRAGE SOUS COPYRIGHT ICI SANS PERMISSION!</strong>",
 'copyrightwarning2'         => "Notez donc que toutes les contributions à {{SITENAME}} pourriont être changées ou ôtées par des autres useurs.  Si vous voulez pas que votre écriture soye changée sans pitié, mettez donc pas votre écriture ici.<br />  Vous êtes après nous promettre aussi que vous l'avez écrit vous-même ou que vous l'avez copié du domain public ou un autre ressource libre (voyez $1 pour les détails). <strong> METTEZ PAS DE L'OUVRAGE SOUS COPYRIGHT ICI SANS PERMISSION!</strong>",
-'longpagewarning'           => "<strong>ATTENTION: Cette page a une taille de $1 kilobytes; ça pourrait créer des problèmes quand un useur assaye de changer une page qu'a une taille qu'est plus grande que 32kb.  Considérez donc de couper la page en morceaux plus courts.</strong>",
+'longpagewarning'           => "<strong>ATTENTION: Cette page a une taille de $1 kilobytes; ça pourrait créer des problèmes quand un useur assaye de changer une page qu'a une taille qu'est plus grande que 32 kb.  Considérez donc de couper la page en morceaux plus courts.</strong>",
 'longpageerror'             => "<strong>ERREUR: Le texte que vous avec mis a une taille de $1 kilobytes qu'est plus grande que le maximum de $2 kilobytes.  Ça peut pas être sauvé.</strong>",
 'readonlywarning'           => "<strong>ATTENTION: La base d'information a été barrée, ça fait, vous serez pas capable de sauver votres changements asteur.  Vous ferait mieux de copier et coller le texte dans un dossier texte et le sauver pour plus tard.</strong>",
 'protectedpagewarning'      => '<strong>ATTENTION: Cette page a été barrée pour que ça peuve être changée juste par les administrateurs.</strong>',
@@ -588,9 +589,9 @@ Assayez de [[Special:Search|charcher dans le wiki]] pour des nouvelles pages.',
 'revisiondelete'              => 'Ôter/rétablir les changements',
 'revdelete-nooldid-title'     => 'Aucun changement choisi',
 'revdelete-nooldid-text'      => 'Vous avez pas choisi le ou les changement(s) pour user cette fonction.',
-'revdelete-selected'          => "{{PLURAL:$2|Changement choisi|Changements choisis}} de '''$1:'''",
-'logdelete-selected'          => '{{PLURAL:$1|Événement de notes choisi|Événements de notes choisis}}:',
-'revdelete-text'              => "La liste des changements va sauver les versions ôtées, mais le public pourra pas voir certains morceaux de ces versions.  
+'revdelete-selected'          => "'''{{PLURAL:$2|Changement choisi|Changements choisis}} de '''$1:''''''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Événement de notes choisi|Événements de notes choisis}}:'''",
+'revdelete-text'              => "'''La liste des changements va sauver les versions ôtées, mais le public pourra pas voir certains morceaux de ces versions.'''
 
 Des autres administrateurs sus ce wiki ont la permission de voir et de rétablir les morceaux cachés hormis qu'y aye des restrictions.",
 'revdelete-legend'            => 'Mettre des restrictions',

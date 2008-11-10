@@ -5,6 +5,7 @@
  * @file
  *
  * @author Katimawan2005
+ * @author Urhixidur
  * @author Val2397
  */
 
@@ -131,7 +132,7 @@ Pabusten ing pamanaliling dake kapamilatan [alilan] ning suglung',
 == Pamagumpisa ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
 
 'about'          => 'Tungkul',
 'article'        => 'Kalamnan ning bulung',
@@ -600,7 +601,7 @@ Nung e mu buri ing alilan deng alang patugut at alang lunus ing kekang sinulat, 
 Mangaku ka mu naman a ika mismu ing sinulat kaniti, o akopia me ketang metung a pikuanan a mipaintulutan king malda o aliwa pang libring pikukuanan (lon me ing $1 para kareng detalle).
 <strong>E KA MANAMBAG OBRANG MAKI COPYRIGHT NUNG ALANG PAINTULUT!',
 'longpagewarning'           => '<strong>KAPIADIAN: Maki kaba yang $1 kilobyte ining bulung;
-mágkasákit lang mag-edit bulung a maigit 32kb deng aliwang browser.
+mágkasákit lang mag-edit bulung a maigit 32 kb deng aliwang browser.
 Nung maliari, pakipitnan me kareng adua o maigit pang dake.</strong>',
 'longpageerror'             => '<strong>MALI: Miras yang $1 kilobyte ing kekang sinulat; sobra ya ketang $2 a pekamakabang maliaring iyambag. E ya ma-save iti.</strong>',
 'readonlywarning'           => '<strong>BABALA: Makasara ya ing database uling sasamasan de iti, ania e mo a-save ngeni detang kekang in-edit.
@@ -692,11 +693,11 @@ mapaliaring maki detalle king [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE
 'revisiondelete'              => 'Ilako/e-ilako ing pamanalili',
 'revdelete-nooldid-title'     => 'E ustung pamanaliling target',
 'revdelete-nooldid-text'      => 'Mapaliaring ala kang binieng balak a pamanalili (target revision) ba meng daptan ing gamit (function) a iti, ala yu ing mebanggit a pamanaliling iti, o magtangka kang isalikut ya ing kasalungsungan a pamanalili.',
-'revdelete-selected'          => '{{PLURAL:$2|Mepiling bersion|Mepiling bersion}} ning [[:$1]]:',
-'logdelete-selected'          => '{{PLURAL:$1|Mepiling miliari king tala/listaan|Mepiling miliari king tala/listaan}}:',
-'revdelete-text'              => 'Lunto la pa murin king amlat ning bulung deng meburang pamanalili ampong kapaliarian (events), oneng e ra no abusni deng malda ding mapilang dake ning karelang laman.
+'revdelete-selected'          => "'''{{PLURAL:$2|Mepiling bersion|Mepiling bersion}} ning [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Mepiling miliari king tala/listaan|Mepiling miliari king tala/listaan}}:'''",
+'revdelete-text'              => "'''Lunto la pa murin king amlat ning bulung deng meburang pamanalili ampong kapaliarian (events), oneng e ra no abusni deng malda ding mapilang dake ning karelang laman.'''
 
-Abusni da pa murin deng aliwang talapanibala (admin) king {{SITENAME}} itang laman a makasalikut, at aurung da ing pangabura na niti kapamilatan na mismu niting interface, puera namu nung ating bayung pamag-limita o pamanyabat a miyutus.',
+Abusni da pa murin deng aliwang talapanibala (admin) king {{SITENAME}} itang laman a makasalikut, at aurung da ing pangabura na niti kapamilatan na mismu niting interface, puera namu nung ating bayung pamag-limita o pamanyabat a miyutus.",
 'revdelete-legend'            => 'Mitakdang angganan/limitasiun kareng maliaring akit',
 'revdelete-hide-text'         => 'Isalikut ya ing meyaliling kulitan',
 'revdelete-hide-name'         => 'Isalikut ya ing dapat (action) ampo ing balak (target)',

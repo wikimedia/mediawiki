@@ -250,7 +250,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Danh sách các thiết lập cấu hình]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Các câu hỏi thường gặp MediaWiki]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Danh sách gửi thư về việc phát hành MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Danh sách gửi thư về việc phát hành MediaWiki]',
 
 'about'          => 'Giới thiệu',
 'article'        => 'Trang nội dung',
@@ -258,16 +258,16 @@ $messages = array(
 'cancel'         => 'Bãi bỏ',
 'qbfind'         => 'Tìm kiếm',
 'qbbrowse'       => 'Xem qua',
-'qbedit'         => 'Sửa',
+'qbedit'         => 'Sửa đổi',
 'qbpageoptions'  => 'Trang này',
 'qbpageinfo'     => 'Ngữ cảnh',
-'qbmyoptions'    => 'Trang của tôi',
+'qbmyoptions'    => 'Trang cá nhân',
 'qbspecialpages' => 'Trang đặc biệt',
 'moredotdotdot'  => 'Thêm nữa...',
 'mypage'         => 'Trang của tôi',
 'mytalk'         => 'Thảo luận với tôi',
 'anontalk'       => 'Thảo luận với IP này',
-'navigation'     => 'Chuyển hướng',
+'navigation'     => 'Xem nhanh',
 'and'            => 'và',
 
 # Metadata in edit box
@@ -380,7 +380,7 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|một|$1}} sửa đổi đã xóa',
 'feedlinks'               => 'Nạp:',
 'feed-invalid'            => 'Định dạng feed không hợp lệ.',
-'feed-unavailable'        => 'Không có feed tại {{SITENAME}}',
+'feed-unavailable'        => 'Website không cung cấp bản tin',
 'site-rss-feed'           => '$1 mục RSS',
 'site-atom-feed'          => '$1 mục Atom',
 'page-rss-feed'           => 'Mục RSS của “$1”',
@@ -465,7 +465,7 @@ Truy vấn: $2',
 'sqlhidden'            => '(đã giấu truy vấn SQL)',
 'cascadeprotected'     => 'Trang này đã bị khóa không cho sửa đổi, vì nó được nhúng vào {{PLURAL:$1|trang|những trang}} đã bị khóa với tùy chọn “khóa theo tầng” được kích hoạt:
 $2',
-'namespaceprotected'   => "Bạn không được cấp quyền sửa các trang trong không gian '''$1'''.",
+'namespaceprotected'   => "Bạn không có quyền sửa các trang trong không gian tên '''$1'''.",
 'customcssjsprotected' => 'Bạn không có quyền sửa đổi trang này vì nó chứa các tùy chọn cá nhân của một thành viên khác.',
 'ns-specialprotected'  => 'Không thể sửa chữa các trang trong không gian tên {{ns:special}}.',
 'titleprotected'       => "Tựa đề này đã bị [[User:$1|$1]] khóa không cho tạo ra.
@@ -530,8 +530,8 @@ Bạn cũng có thể lựa chọn để cho phép người khác liên lạc v�
 'noname'                     => 'Chưa nhập tên.',
 'loginsuccesstitle'          => 'Đăng nhập thành công',
 'loginsuccess'               => "'''Bạn đã đăng nhập vào {{SITENAME}} với tên “$1”.'''",
-'nosuchuser'                 => 'Thành viên có thành viên nào có tên “$1”.
-Hãy kiểm tra lại chính tả, hoặc [[Special:Userlogin/signup|mở tài khoản mới]].',
+'nosuchuser'                 => 'Không có thành viên nào có tên “$1”.
+Hãy kiểm tra lại chính tả, hoặc [[Special:UserLogin/signup|mở tài khoản mới]].',
 'nosuchusershort'            => 'Không có thành viên nào có tên “<nowiki>$1</nowiki>”. Xin hãy kiểm tra lại chính tả.',
 'nouserspecified'            => 'Bạn phải đưa ra tên đăng ký.',
 'wrongpassword'              => 'Mật khẩu sai. Xin vui lòng nhập lại.',
@@ -572,7 +572,7 @@ Xin hãy bỏ qua thông báo này nếu tài khoản này không phải do bạ
 'resetpass_submit'        => 'Chọn mật khẩu và đăng nhập',
 'resetpass_success'       => 'Đã đổi mật khẩu thành công! Đang đăng nhập…',
 'resetpass_bad_temporary' => 'Mật khẩu tạm sai. Có thể là bạn đã đổi mật khẩu thành công hay đã xin mật khẩu tạm mới.',
-'resetpass_forbidden'     => 'Không được đổi mật khẩu ở {{SITENAME}}',
+'resetpass_forbidden'     => 'Không được đổi mật khẩu',
 'resetpass_missing'       => 'Biểu mẫu đang trống.',
 
 # Edit page toolbar
@@ -724,7 +724,7 @@ Bạn phải đảm bảo với chúng tôi rằng chính bạn là người vi�
 'nocreatetitle'                    => 'Khả năng tạo trang bị hạn chế',
 'nocreatetext'                     => '{{SITENAME}} đã hạn chế khả năng tạo trang mới.
 Bạn có thể quay trở lại và sửa đổi các trang đã có, hoặc [[Special:UserLogin|đăng nhập hoặc tạo tài khoản]].',
-'nocreate-loggedin'                => 'Bạn không có quyền tạo trang mới trên {{SITENAME}}.',
+'nocreate-loggedin'                => 'Bạn không có quyền tạo trang mới.',
 'permissionserrors'                => 'Không có quyền thực hiện',
 'permissionserrorstext'            => 'Bạn không có quyền thực hiện thao tác đó, vì {{PLURAL:$1|lý do|lý do}}:',
 'permissionserrorstext-withaction' => 'Bạn không quyền $2, với {{PLURAL:$1|lý do|lý do}} sau:',
@@ -807,11 +807,11 @@ có thể có thêm chi tiết tại [{{fullurl:Special:Log/delete|page={{FULLPA
 'revdelete-nooldid-text'      => 'Có thể bạn chưa xác định (các) phiên bản đích để thực hiện tác vụ,
 hoặc phiên bản đích không tồn tại,
 hoặc bạn đang tìm cách ẩn phiên bản hiện tại.',
-'revdelete-selected'          => '{{PLURAL:$2|Phiên bản|Các phiên bản}} được chọn của [[:$1]]:',
-'logdelete-selected'          => '{{PLURAL:$1|Nhật trình đã chọn|Các nhật trình đã chọn}}:',
-'revdelete-text'              => 'Các phiên bản và sự kiện bị xóa vẫn còn trong lịch sử trang và nhật trình, nhưng mọi người sẽ không xem được một số phần của các nội dung đó.
+'revdelete-selected'          => "'''{{PLURAL:$2|Phiên bản|Các phiên bản}} được chọn của [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Nhật trình đã chọn|Các nhật trình đã chọn}}:'''",
+'revdelete-text'              => "'''Các phiên bản và sự kiện bị xóa vẫn còn trong lịch sử trang và nhật trình, nhưng mọi người sẽ không xem được một số phần của các nội dung đó.'''
 
-Các quản lý khác ở {{SITENAME}} vẫn có thể truy nhập vào nội dung ẩn và phục hồi lại bằng cách dùng giao diện này, trừ trường hợp thiết lập thêm một số hạn chế.',
+Các quản lý khác ở {{SITENAME}} vẫn có thể truy nhập vào nội dung ẩn và phục hồi lại bằng cách dùng giao diện này, trừ trường hợp thiết lập thêm một số hạn chế.",
 'revdelete-legend'            => 'Thiết lập hạn chế khả kiến',
 'revdelete-hide-text'         => 'Ẩn nội dung phiên bản',
 'revdelete-hide-name'         => 'Ẩn tác vụ và đích của tác vụ',
@@ -926,7 +926,7 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'mypreferences'            => 'Tùy chọn',
 'prefs-edits'              => 'Số lần sửa đổi:',
 'prefsnologin'             => 'Chưa đăng nhập',
-'prefsnologintext'         => 'Bạn phải <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} đăng nhập]</span> để thiết lập tùy chọn cá nhân.',
+'prefsnologintext'         => 'Bạn phải <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} đăng nhập]</span> để thiết lập tùy chọn cá nhân.',
 'prefsreset'               => 'Các tùy chọn cá nhân đã được mặc định lại.',
 'qbsettings'               => 'Thanh công cụ',
 'qbsettings-none'          => 'Không có',
@@ -1191,7 +1191,7 @@ Nếu bạn vẫn muốn tải tập tin của bạn lên, xin hãy quay lại v
 'uploadedimage'               => 'đã tải “[[$1]]” lên',
 'overwroteimage'              => 'đã tải lên một phiên bản mới của “[[$1]]”',
 'uploaddisabled'              => 'Chức năng tải lên đã bị khóa.',
-'uploaddisabledtext'          => 'Chức năng tải tập tin đã bị tắt trên {{SITENAME}}.',
+'uploaddisabledtext'          => 'Chức năng tải tập tin đã bị tắt.',
 'uploadscripted'              => 'Tập tin này có chứa mã HTML hoặc script có thể khiến trình duyệt web thông dịch sai.',
 'uploadcorrupt'               => 'Tập tin bị hỏng hoặc có phần mở rộng không đúng. Xin kiểm tra và tải lại.',
 'uploadvirus'                 => 'Tập tin có virút! Chi tiết: $1',
@@ -1304,7 +1304,7 @@ Hãy nhấn chuột vào tiêu đề cột để thay đổi thứ tự sắp x�
 'filedelete-submit'           => 'Xóa',
 'filedelete-success'          => "'''$1''' đã bị xóa.",
 'filedelete-success-old'      => "Phiên bản của '''[[Media:$1|$1]]''' vào lúc $3, $2 đã bị xóa.",
-'filedelete-nofile'           => "'''$1''' không tồn tại trên {{SITENAME}}.",
+'filedelete-nofile'           => "'''$1''' không tồn tại.",
 'filedelete-nofile-old'       => "Không có phiên bản lưu trữ của '''$1''' với các thuộc tính này.",
 'filedelete-iscurrent'        => 'Bạn đang cố xóa phiên bản mới nhất của tập tin này. Xin hãy lui tập tin về một phiên bản cũ hơn đã.',
 'filedelete-otherreason'      => 'Lý do bổ sung:',
@@ -1328,7 +1328,9 @@ Hãy nhấn chuột vào tiêu đề cột để thay đổi thứ tự sắp x�
 
 # Unused templates
 'unusedtemplates'     => 'Tiêu bản chưa dùng',
-'unusedtemplatestext' => 'Đây là danh sách các trang thuộc tên miền không gian Tiêu bản mà chưa được nhúng vào trang khác. Trước khi xóa tiêu bản, hãy nhớ kiểm tra nó được liên kết từ trang khác hay không.',
+'unusedtemplatestext' => 'Trang này liệt kê tất cả các trang trong không gian tên {{ns:template}} mà chưa được dùng trong trang nào khác.
+
+Hãy nhớ kiểm tra các liên kết khác đến tiêu bản trước khi xóa chúng.',
 'unusedtemplateswlh'  => 'liên kết khác',
 
 # Random page
@@ -1385,7 +1387,7 @@ Có '''$8''' tập tin đã được tải lên.
 'nviews'                  => '$1 {{PLURAL:$1|lượt truy cập|lượt truy cập}}',
 'specialpage-empty'       => 'Trang này đang trống.',
 'lonelypages'             => 'Trang mồ côi',
-'lonelypagestext'         => 'Chưa có trang nào liên kết đến các trang này trong {{SITENAME}}.',
+'lonelypagestext'         => 'Chưa có trang nào liên kết đến hoặc nhúng vào các trang này tại {{SITENAME}}.',
 'uncategorizedpages'      => 'Trang chưa xếp thể loại',
 'uncategorizedcategories' => 'Thể loại chưa phân loại',
 'uncategorizedimages'     => 'Tập tin chưa được phân loại',
@@ -1492,7 +1494,7 @@ Có [[{{MediaWiki:Listgrouprights-helppage}}|thông tin thêm]] về từng nhó
 'mailnologintext' => 'Bạn phải [[Special:UserLogin|đăng nhập]] và khai báo một địa chỉ thư điện tử hợp lệ trong phần [[Special:Preferences|tùy chọn cá nhân]] thì mới gửi được thư cho người khác.',
 'emailuser'       => 'Gửi thư cho người này',
 'emailpage'       => 'Gửi thư',
-'emailpagetext'   => 'Nếu người dùng này đã cung cấp địa chỉ thư điện tử hợp lệ tại tùy chọn cá nhân, mẫu dưới đây sẽ gửi một bức thư điện tử tới người đó.
+'emailpagetext'   => 'Mẫu dưới đây sẽ gửi một bức thư điện tử tới người dùng này.
 Địa chỉ thư điện tử mà bạn đã cung cấp trong [[Special:Preferences|tùy chọn cá nhân của mình]] sẽ xuất hiện trong phần địa chỉ “Người gửi” của bức thư, do đó người nhận sẽ có thể trả lời trực tiếp cho bạn.',
 'usermailererror' => 'Lỗi gửi thư:',
 'defemailsubject' => 'thư gửi từ {{SITENAME}}',
@@ -1727,7 +1729,7 @@ Xem nhật trình xóa và phục hồi các trang gần đây tại [[Special:L
 $1',
 
 # Namespace form on various pages
-'namespace'      => 'Không gian:',
+'namespace'      => 'Không gian tên:',
 'invert'         => 'Đảo ngược lựa chọn',
 'blanknamespace' => '(Chính)',
 
@@ -1808,7 +1810,7 @@ $1',
 'ipb-edit-dropdown'               => 'Sửa đổi lý do cấm',
 'ipb-unblock-addr'                => 'Bỏ cấm $1',
 'ipb-unblock'                     => 'Bỏ cấm thành viên hay địa chỉ IP',
-'ipb-blocklist-addr'              => 'Xem $1 đang bị cấm hay không',
+'ipb-blocklist-addr'              => 'Tình trạng cấm hiện tại của $1',
 'ipb-blocklist'                   => 'Xem danh sách đang bị cấm',
 'unblockip'                       => 'Bỏ cấm thành viên',
 'unblockiptext'                   => 'Sử dụng mẫu sau để phục hồi lại quyền sửa đổi đối với một địa chỉ IP hoặc tên thành viên đã bị cấm trước đó.',
@@ -1849,7 +1851,7 @@ $1',
 'ipb_blocked_as_range'            => 'Lỗi: Địa chỉ IP $1 không bị cấm trực tiếp và do đó không thể bỏ cấm. Tuy nhiên, nó bị cấm do là một bộ phận của dải IP $2, bạn có thể bỏ cấm dải này.',
 'ip_range_invalid'                => 'Dải IP không hợp lệ.',
 'blockme'                         => 'Cấm tôi',
-'proxyblocker'                    => 'Chặn proxy',
+'proxyblocker'                    => 'Cấm proxy',
 'proxyblocker-disabled'           => 'Chức năng này đã bị tắt.',
 'proxyblockreason'                => 'Địa chỉ IP của bạn đã bị cấm vì là proxy mở. Xin hãy liên hệ nhà cung cấp dịch vụ Internet hoặc bộ phận hỗ trợ kỹ thuật của bạn và thông báo với họ về vấn đề an ninh nghiêm trọng này.',
 'proxyblocksuccess'               => 'Xong.',
@@ -1898,7 +1900,7 @@ xin hãy chắc chắn rằng bạn đã nhận thức được những hệ l�
 
 Trong những trường hợp đó, bạn phải di chuyển hoặc hợp nhất trang theo kiểu thủ công nếu muốn.",
 'movearticle'             => 'Di chuyển trang:',
-'movenotallowed'          => 'Bạn không có quyền di chuyển trang trong {{SITENAME}}.',
+'movenotallowed'          => 'Bạn không có quyền di chuyển trang.',
 'newtitle'                => 'Tên mới',
 'move-watch'              => 'Theo dõi trang này',
 'movepagebtn'             => 'Di chuyển trang',

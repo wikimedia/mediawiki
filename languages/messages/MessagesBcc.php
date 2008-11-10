@@ -229,7 +229,7 @@ $messages = array(
 == شروع بیت ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
 
 'about'          => 'باره',
 'article'        => 'محتوا صفحه',
@@ -529,7 +529,7 @@ $2',
 'loginsuccesstitle'          => 'ورود موفقیت آمیز',
 'loginsuccess'               => "''''شما الان وارد {{SITENAME}} په عنوان \"\$1\".'''",
 'nosuchuser'                 => 'هچ کاربری گون نام "$1".
-وتی املايا چک کنیت یا [[Special:Userlogin/signup|نوکین حسابی شرکنیت]]',
+وتی املايا چک کنیت یا [[Special:UserLogin/signup|نوکین حسابی شرکنیت]]',
 'nosuchusershort'            => 'هچ کاربری گون نام  "<nowiki>$1</nowiki>"نیستن.
 وتی املايا کنترل کنیت',
 'nouserspecified'            => 'شما باید یک نام کاربری مشخص کنیت.',
@@ -822,11 +822,11 @@ Legend: (cur) = تفاوتان گون هنوکین نسخه,
 'revdelete-nooldid-title'     => 'نامعتبر بازبینی هدف',
 'revdelete-nooldid-text'      => 'شما یا یک بازبینی هدفی په اجرای ای عمل مشخص نه کتت
 ،بازبینی مشخص موجود نهنت، یا شما تلاش کنیت هنوکین بازبینی پناه کنیت.',
-'revdelete-selected'          => '{{PLURAL:$2|بازبینی انتخابی|بازبینی ان انتخابی}} چه [[:$1]]:',
-'logdelete-selected'          => '{{PLURAL:$1|رویداد آمار انتخابی|رویداد ان آمار انتخابی}}:',
-'revdelete-text'              => 'حذفین بازبینی آن و رویداد ان هنگت ته تاریح و آمار صفحه جاه کاینت، بله لهتی چه محتوا آيان په عام قابل دسترسی نه بنت.
+'revdelete-selected'          => "'''{{PLURAL:$2|بازبینی انتخابی|بازبینی ان انتخابی}} چه [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|رویداد آمار انتخابی|رویداد ان آمار انتخابی}}:'''",
+'revdelete-text'              => "'''حذفین بازبینی آن و رویداد ان هنگت ته تاریح و آمار صفحه جاه کاینت، بله لهتی چه محتوا آيان په عام قابل دسترسی نه بنت.'''
 
-دگه مدیران ته {{SITENAME}} هنگت نوننت په پناهین محتوا دسترسیش بیت و توننت آیء چه طریق همی دستبری آی> تریننت، مگر شی که گیشین محدودیت بلیت.',
+دگه مدیران ته {{SITENAME}} هنگت نوننت په پناهین محتوا دسترسیش بیت و توننت آیء چه طریق همی دستبری آی> تریننت، مگر شی که گیشین محدودیت بلیت.",
 'revdelete-legend'            => 'تنظیم محدودیت آن دیستن',
 'revdelete-hide-text'         => 'پناه کن متن بازبینیء',
 'revdelete-hide-name'         => 'پناه کن کار  و هدفء',
@@ -946,7 +946,7 @@ Legend: (cur) = تفاوتان گون هنوکین نسخه,
 'mypreferences'            => 'منی ترجیحات',
 'prefs-edits'              => 'تعداد اصلاحات:',
 'prefsnologin'             => 'وارد نهیت',
-'prefsnologintext'         => 'شما بایدن  <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} وارد بیت]</span> په تنظیم کتن ترجیحات.',
+'prefsnologintext'         => 'شما بایدن  <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} وارد بیت]</span> په تنظیم کتن ترجیحات.',
 'prefsreset'               => 'ترجیحات چه ذخیره ترینگ بوتنت.',
 'qbsettings'               => 'میله سریع',
 'qbsettings-none'          => 'هچ یک',
@@ -1364,7 +1364,7 @@ PICT # misc.
 
 # Unused templates
 'unusedtemplates'     => 'تمپلتان بی استفاده',
-'unusedtemplatestext' => 'ای صفحه لیست کن کل صفحات ته تمپلت نام فضا که ته دگه صفحه نهنت.
+'unusedtemplatestext' => 'ای صفحه لیست کن کل صفحات ته {{ns:template}} نام فضا که ته دگه صفحه نهنت.
 مه شموش تا کنترل کنیت په دگه لینکان ته تمپلتان پیش چه حذف کتن آیان.',
 'unusedtemplateswlh'  => 'دگر لینکان',
 
@@ -1424,7 +1424,7 @@ PICT # misc.
 'nviews'                  => '$1 {{PLURAL:$1|دیستن|دیستن}}',
 'specialpage-empty'       => 'په ای گزارش هچ نتیجه ای نیست ان.',
 'lonelypages'             => 'صفحات یتیم',
-'lonelypagestext'         => 'جهلیگین صفحات چه دگه صفحات لینک نه بوتگنت ته {{SITENAME}}.',
+'lonelypagestext'         => 'جهلیگین صفحات چه دگه صفحات لینک یا داهل نه بوتگنت ته {{SITENAME}}.',
 'uncategorizedpages'      => 'صفحات بی دسته',
 'uncategorizedcategories' => 'دسته جات دسته بندی نه بوتگین',
 'uncategorizedimages'     => 'فایلان بی دسته',
@@ -1533,7 +1533,7 @@ PICT # misc.
 'mailnologintext' => 'شما بایدن [[Special:UserLogin|وارد بیت]] و یک معتبرین آدرس ایمیلی داشته بیت ته وتی [[Special:Preferences|ترجیحات]] په دیم داتن ایمیل په دگه کاربران',
 'emailuser'       => 'په ای کابر ایمیل دیم دی',
 'emailpage'       => 'ایمیل کاربر',
-'emailpagetext'   => 'اگر ای کاربر یک معتبرین آدرس ایمیلی ته وتی ترجیحات کاربری وارد کتت،جهلگین فرم په آیء یک کوله ای دیم دنت.
+'emailpagetext'   => 'گر ای کاربر یک معتبرین آدرس ایمیلی ته وتی ترجیحات کاربری وارد کتت،جهلگین فرم په آیء یک کوله ای دیم دنت.
 آدرس ایمیلی که شما وارد کتت ته [[Special:Preferences|وتی ترجیحات]] په داب آدرس  "From" پیش دارگ بیت، اچه گروک ایمیل تونیت پسوء دنت.',
 'usermailererror' => 'شی ایمیل حطا پیش داشت',
 'defemailsubject' => '{{SITENAME}} ایمیل',

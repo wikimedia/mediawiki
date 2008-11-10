@@ -271,19 +271,19 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|El següent fitxer és|Els següents $1 fitxers són}} dins la categoria actual.',
 'listingcontinuesabbrev'         => ' cont.',
 
-'mainpagetext'      => "<big>'''El programari del MediaWiki s'ha instal·lat correctament.'''</big>",
+'mainpagetext'      => "<big>'''El programari del MediaWiki s'ha instaŀlat correctament.'''</big>",
 'mainpagedocfooter' => "Consulteu la [http://meta.wikimedia.org/wiki/Help:Contents Guia d'Usuari] per a més informació sobre com utilitzar-lo.
 
 == Per a començar ==
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Llista de característiques configurables]
 * [http://www.mediawiki.org/wiki/Manual:FAQ PMF del MediaWiki]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Llista de correu (''listserv'') per a anuncis del MediaWiki]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Llista de correu (''listserv'') per a anuncis del MediaWiki]",
 
 'about'          => 'Quant a',
 'article'        => 'Contingut de la pàgina',
 'newwindow'      => '(obre en una nova finestra)',
-'cancel'         => 'Anul·la',
+'cancel'         => 'Anuŀla',
 'qbfind'         => 'Cerca',
 'qbbrowse'       => 'Navega',
 'qbedit'         => 'Edita',
@@ -347,7 +347,7 @@ $messages = array(
 'categorypage'      => 'Visualitza la pàgina de la categoria',
 'viewtalkpage'      => 'Visualitza la pàgina de discussió',
 'otherlanguages'    => 'En altres llengües',
-'redirectedfrom'    => "(S'ha redirigit des de $1)",
+'redirectedfrom'    => "(S'ha redirigit des de: $1)",
 'redirectpagesub'   => 'Pàgina de redirecció',
 'lastmodifiedat'    => 'Darrera modificació de la pàgina: $2, $1.', # $1 date, $2 time
 'viewcount'         => 'Aquesta pàgina ha estat visitada {{PLURAL:$1|una vegada|$1 vegades}}.',
@@ -382,10 +382,10 @@ $messages = array(
 'privacypage'          => 'Project:Política de privadesa',
 
 'badaccess'        => 'Error de permisos',
-'badaccess-group0' => "No teniu permisos per a executar l'acció que heu sol·licitat.",
-'badaccess-group1' => "L'acció que heu sol·licitat es limita als usuaris del grup $1.",
-'badaccess-group2' => "L'acció que heu sol·licitat es limita als usuaris d'algun dels grups següents: $1.",
-'badaccess-groups' => "L'acció que heu sol·licitat es limita als usuaris d'un dels grups $1.",
+'badaccess-group0' => "No teniu permisos per a executar l'acció que heu soŀlicitat.",
+'badaccess-group1' => "L'acció que heu soŀlicitat es limita als usuaris del grup $1.",
+'badaccess-group2' => "L'acció que heu soŀlicitat es limita als usuaris d'algun dels grups següents: $1.",
+'badaccess-groups' => "L'acció que heu soŀlicitat es limita als usuaris d'un dels grups $1.",
 
 'versionrequired'     => 'Cal la versió $1 del MediaWiki',
 'versionrequiredtext' => 'Cal la versió $1 del MediaWiki per a utilitzar aquesta pàgina. Vegeu [[Special:Version]]',
@@ -563,8 +563,8 @@ També podeu contactar amb altres usuaris a través de la vostra pàgina d'usuar
 'noname'                     => "No heu especificat un nom vàlid d'usuari.",
 'loginsuccesstitle'          => "S'ha iniciat la sessió amb èxit",
 'loginsuccess'               => 'Heu iniciat la sessió a {{SITENAME}} com a «$1».',
-'nosuchuser'                 => 'No hi ha cap usuari anomenat "$1".
-Reviseu-ne l\'ortografia, o [[Special:Userlogin/signup|creeu un compte d\'usuari nou]].',
+'nosuchuser'                 => "No hi ha cap usuari anomenat «$1».
+Reviseu-ne l'ortografia, o [[Special:UserLogin/signup|creeu un compte d'usuari nou]].",
 'nosuchusershort'            => 'No hi ha cap usuari anomenat «<nowiki>$1</nowiki>». Comproveu que ho hàgiu escrit correctament.',
 'nouserspecified'            => "Heu d'especificar un nom d'usuari.",
 'wrongpassword'              => 'La contrasenya que heu introduït és incorrecta. Torneu-ho a provar.',
@@ -573,10 +573,10 @@ Reviseu-ne l\'ortografia, o [[Special:Userlogin/signup|creeu un compte d\'usuari
 Ha de tenir un mínim {{PLURAL:$1|d'un caràcter|de $1 caràcters}} i ésser diferent del vostre nom d'usuari.",
 'mailmypassword'             => "Envia'm una nova contrasenya per correu electrònic",
 'passwordremindertitle'      => 'Nova contrasenya temporal per al projecte {{SITENAME}}',
-'passwordremindertext'       => "Algú (vós mateix segurament, des de l'adreça l'IP $1) ha sol·licitat que us enviéssim una nova contrasenya per a iniciar la sessió al projecte {{SITENAME}} ($4).
+'passwordremindertext'       => "Algú (vós mateix segurament, des de l'adreça l'IP $1) ha soŀlicitat que us enviéssim una nova contrasenya per a iniciar la sessió al projecte {{SITENAME}} ($4).
 La contrasenya per a l'usuari «$2» és ara «$3». Si aquesta fou la vostra intenció, ara hauríeu d'iniciar la sessió i canviar la vostra contrasenya.
 
-Si algú altre hagués fet aquesta sol·licitud o si ja haguéssiu recordat la vostra contrasenya i
+Si algú altre hagués fet aquesta soŀlicitud o si ja haguéssiu recordat la vostra contrasenya i
 no volguéssiu canviar-la, ignoreu aquest missatge i continueu utilitzant
 la vostra antiga contrasenya.",
 'noemail'                    => "No hi ha cap adreça electrònica registrada de l'usuari «$1».",
@@ -609,7 +609,7 @@ Si no hi teniu cap relació i aquest compte ha estat creat per error, simplement
 'resetpass_header'        => 'Reinicia la contrasenya',
 'resetpass_submit'        => 'Definiu una contrasenya i inicieu una sessió',
 'resetpass_success'       => "S'ha canviat la vostra contrasenya amb èxit! Ara ja podeu iniciar-hi una sessió...",
-'resetpass_bad_temporary' => 'La contrasenya temporal no és vàlida. Potser ja havíeu canviat la vostra contrasenya o heu sol·licitat una nova contrasenya temporal.',
+'resetpass_bad_temporary' => 'La contrasenya temporal no és vàlida. Potser ja havíeu canviat la vostra contrasenya o heu soŀlicitat una nova contrasenya temporal.',
 'resetpass_forbidden'     => 'No poden canviar-se les contrasenyes',
 'resetpass_missing'       => 'No hi ha cap dada de formulari.',
 
@@ -842,11 +842,11 @@ Aquesta versió de la pàgina ha estat eliminada dels arxius públics. Com a adm
 'revdelete-nooldid-title'     => 'La revisió objectiu no és vàlida',
 'revdelete-nooldid-text'      => "No heu especificat unes revisions objectius per a realitzar aquesta
 funció, la revisió especificada no existeix, o bé esteu provant d'amagar l'actual revisió.",
-'revdelete-selected'          => '{{PLURAL:$2|Revisió seleccionada|Revisions seleccionades}} de [[:$1]]:',
-'logdelete-selected'          => '{{PLURAL:$1|Esdeveniment del registre seleccionat|Esdeveniments del registre seleccionats}}:',
-'revdelete-text'              => 'Les versions esborrades es mostraran encara als historial i registres de les pàgines, si bé part del seu contingut serà inaccessible al públic.
+'revdelete-selected'          => "'''{{PLURAL:$2|Revisió seleccionada|Revisions seleccionades}} de [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Esdeveniment del registre seleccionat|Esdeveniments del registre seleccionats}}:'''",
+'revdelete-text'              => "'''Les versions esborrades es mostraran encara als historial i registres de les pàgines, si bé part del seu contingut serà inaccessible al públic.'''
 
-Els altres administradors del projecte {{SITENAME}} encara podrien accedir al contingut amagat i restituir-lo de nou mitjançant aquesta mateixa interfície, si no hi ha cap altra restricció addicional pels operadors del lloc web.',
+Els altres administradors del projecte {{SITENAME}} encara podrien accedir al contingut amagat i restituir-lo de nou mitjançant aquesta mateixa interfície, si no hi ha cap altra restricció addicional pels operadors del lloc web.",
 'revdelete-legend'            => 'Defineix restriccions en la visibilitat',
 'revdelete-hide-text'         => 'Amaga el text de revisió',
 'revdelete-hide-name'         => "Acció d'amagar i objectiu",
@@ -918,8 +918,8 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 # Search results
 'searchresults'             => 'Resultats de la cerca',
 'searchresulttext'          => 'Per a més informació de les cerques del projecte {{SITENAME}}, aneu a [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'            => 'Heu cercat \'\'\'[[:$1]]\'\'\'  ([[Special:Prefixindex/$1|totes les pàgines que comencen amb "$1"]] | [[Special:WhatLinksHere/$1|totes les pàgines que enllacen amb "$1"]])',
-'searchsubtitleinvalid'     => 'Per consulta "$1"',
+'searchsubtitle'            => "Heu cercat '''[[:$1]]'''  ([[Special:Prefixindex/$1|totes les pàgines que comencen amb «$1»]] | [[Special:WhatLinksHere/$1|totes les pàgines que enllacen amb «$1»]])",
+'searchsubtitleinvalid'     => "Heu cercat '''$1'''",
 'noexactmatch'              => "'''No hi ha cap pàgina anomenada «$1».''' Si voleu, podeu ajudar [[:$1|creant-la]].",
 'noexactmatch-nocreate'     => "'''No hi ha cap pàgina amb títol «$1».'''",
 'toomanymatches'            => "S'han retornat masses coincidències. Proveu-ho amb una consulta diferent.",
@@ -961,9 +961,9 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'mypreferences'            => 'Preferències',
 'prefs-edits'              => "Nombre d'edicions:",
 'prefsnologin'             => 'No heu iniciat cap sessió',
-'prefsnologintext'         => 'Heu d\'estar <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} autenticats]</span> per a seleccionar les preferències d\'usuari.',
+'prefsnologintext'         => 'Heu d\'estar <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} autenticats]</span> per a seleccionar les preferències d\'usuari.',
 'prefsreset'               => "Les preferències han estat respostes des d'emmagatzematge.",
-'qbsettings'               => 'Preferències de "Quickbar"',
+'qbsettings'               => 'Quickbar',
 'qbsettings-none'          => 'Cap',
 'qbsettings-fixedleft'     => 'Fixa a la esquerra',
 'qbsettings-fixedright'    => 'Fixa a la dreta',
@@ -980,7 +980,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'math_unknown_function'    => 'funció desconeguda',
 'math_lexing_error'        => 'error de lèxic',
 'math_syntax_error'        => 'error de sintaxi',
-'math_image_error'         => "Hi ha hagut una errada en la conversió cap el format PNG; verifiqueu la instal·lació de ''Latex'', ''dvips'', ''gs'' i ''convert''.",
+'math_image_error'         => "Hi ha hagut una errada en la conversió cap el format PNG; verifiqueu la instaŀlació de ''latex'', ''dvips'', ''gs'' i ''convert''.",
 'math_bad_tmpdir'          => 'No ha estat possible crear el directori temporal de math o escriure-hi dins.',
 'math_bad_output'          => "No ha estat possible crear el directori d'eixida de math o escriure-hi dins.",
 'math_notexvc'             => "No s'ha trobat el fitxer executable ''texvc''; si us plau, vegeu math/README per a configurar-lo.",
@@ -1175,7 +1175,7 @@ Per a visualitzar o cercar fitxers que s'hagen carregat prèviament, aneu a la [
 
 Per a incloure una imatge en una pàgina, feu un enllaç en una de les formes següents:
 * '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Fitxer.jpg]]</nowiki></tt>''' per a usar la versió completa del fitxer;
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Fitxer.png|200px|thumb|esquerra|text alternatiu]]</nowiki></tt>''' per una presentació de 200 píxels d'amplada en un requadre justificat a l'esquerra amb \"text alternatiu\" com a descripció;
+* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Fitxer.png|200px|thumb|esquerra|text alternatiu]]</nowiki></tt>''' per una presentació de 200 píxels d'amplada en un requadre justificat a l'esquerra amb «text alternatiu» com a descripció;
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fitxer.ogg]]</nowiki></tt>''' per a enllaçar directament amb un fitxer de so.",
 'upload-permitted'            => 'Tipus de fitxer permesos: $1.',
 'upload-preferred'            => 'Tipus de fitxer preferits: $1.',
@@ -1194,7 +1194,7 @@ Vegeu la [[Special:NewImages|galeria de nous fitxers]] per a una presentació m�
 'ignorewarnings'              => 'Ignora qualsevol avís',
 'minlength1'                  => "Els noms de fitxer han de ser de com a mínim d'una lletra.",
 'illegalfilename'             => 'El nom del fitxer «$1» conté caràcters que no estan permesos en els títols de pàgines. Si us plau, canvieu el nom al fitxer i torneu a carregar-lo.',
-'badfilename'                 => 'El nom de la imatge s\'ha canviat a "$1".',
+'badfilename'                 => "El nom de la imatge s'ha canviat a «$1».",
 'filetype-badmime'            => 'Els fitxers del tipus MIME «$1» no poden penjar-se.',
 'filetype-unwanted-type'      => "Els fitxers del tipus «'''.$1'''» no són desitjats. {{PLURAL:$3|Es prefereix el tipus de fitxer|Els tipus de fitxer preferits són}} $2.",
 'filetype-banned-type'        => "Els fitxers del tipus «'''.$1'''» no estan permesos. {{PLURAL:$3|Només s'admeten els fitxers del tipus|Els tipus de fitxer permesos són}} $2.",
@@ -1221,7 +1221,7 @@ Si us plau, si encara desitgeu carregar el vostre fitxer, torneu enrera i carreg
 'successfulupload'            => "El fitxer s'ha carregat amb èxit",
 'uploadwarning'               => 'Avís de càrrega',
 'savefile'                    => 'Desa el fitxer',
-'uploadedimage'               => '"[[$1]]" carregat.',
+'uploadedimage'               => '[[$1]] carregat.',
 'overwroteimage'              => "s'ha penjat una nova versió de «[[$1]]»",
 'uploaddisabled'              => "S'ha inhabilitat la càrrega",
 'uploaddisabledtext'          => "S'ha inhabilitat la càrrega de fitxers.",
@@ -1345,7 +1345,7 @@ Clicant al capdamunt de les columnes podeu canviar-ne l'ordenació.",
 
 # Unused templates
 'unusedtemplates'     => 'Plantilles no utilitzades',
-'unusedtemplatestext' => "Aquesta pàgina mostra les pàgines en l'espai de noms de plantilles, que no estan incloses en cap altra pàgina. Recordeu de comprovar les pàgines que hi enllacen abans d'esborrar-les.",
+'unusedtemplatestext' => "Aquesta pàgina mostra les pàgines en l'espai de noms {{ns:template}}, que no estan incloses en cap altra pàgina. Recordeu de comprovar les pàgines que hi enllacen abans d'esborrar-les.",
 'unusedtemplateswlh'  => 'altres enllaços',
 
 # Random page
@@ -1409,7 +1409,7 @@ Cada fila conté enllaços a la segona i tercera redirecció, així com la prime
 'nviews'                  => '$1 {{PLURAL:$1|visita|visites}}',
 'specialpage-empty'       => 'Aquesta pàgina és buida.',
 'lonelypages'             => 'Pàgines òrfenes',
-'lonelypagestext'         => "Les següents pàgines no s'enllacen des d'altres pàgines del projecte {{SITENAME}}.",
+'lonelypagestext'         => "Les següents pàgines no s'enllacen ni s'inclouen en cap altra pàgina del projecte {{SITENAME}}.",
 'uncategorizedpages'      => 'Pàgines sense categoria',
 'uncategorizedcategories' => 'Categories sense categoria',
 'uncategorizedimages'     => 'Fitxers sense categoria',
@@ -1492,7 +1492,7 @@ Podeu reduir l'extensió seleccionant el tipus de registre, el nom del usuari (d
 'categories'                    => 'Categories',
 'categoriespagetext'            => "Les categories següents contenen pàgines, o fitxers multimèdia.
 [[Special:UnusedCategories|Les categories no usades]] no s'hi mostren.
-Vegeu també [[Special:WantedCategories|les categories sol·licitades]].",
+Vegeu també [[Special:WantedCategories|les categories soŀlicitades]].",
 'categoriesfrom'                => 'Mostra les categories que comencen a:',
 'special-categories-sort-count' => 'ordena per recompte',
 'special-categories-sort-abc'   => 'ordena alfabèticament',
@@ -1518,14 +1518,12 @@ i tenir una direcció electrònica vàlida en les vostres [[Special:Preferences|
 per enviar un correu electrònic a altres usuaris.",
 'emailuser'       => 'Envia un missatge de correu electrònic a aquest usuari',
 'emailpage'       => 'Correu electrònic a usuari',
-'emailpagetext'   => "Si aquest usuari ha entrat una adreça electrònica vàlida en les seves preferències d'usuari, el següent formulari enviarà un únic missatge.
-L'adreça electrònica que heu entrat en [[Special:Preferences|les vostres preferències d'usuari]] apareixerà en el remitent del correu electrònic, de manera que el destinatari us podrà respondre directament.",
+'emailpagetext'   => "Podeu usar el següent formulari per a enviar un missatge de correu electrònic a aquest usuari.
+L'adreça electrònica que heu entrat en [[Special:Preferences|les vostres preferències d'usuari]] apareixerà com a remitent del correu electrònic, de manera que el destinatari us podrà respondre directament.",
 'usermailererror' => "L'objecte de correu ha retornat un error:",
 'defemailsubject' => 'Adreça correl de {{SITENAME}}',
 'noemailtitle'    => 'No hi ha cap adreça electrònica',
-'noemailtext'     => "Aquest usuari no ha especificat una adreça electrònica vàlida, o ha escollit no rebre correu electrònic d'altres usuaris
-
-.",
+'noemailtext'     => "Aquest usuari no ha especificat una adreça electrònica vàlida, o ha escollit no rebre correu electrònic d'altres usuaris.",
 'emailfrom'       => 'De:',
 'emailto'         => 'Per a:',
 'emailsubject'    => 'Assumpte:',
@@ -1553,7 +1551,7 @@ Els canvis futurs que tinguin lloc en aquesta pàgina i la seua corresponent dis
 
 Si voleu deixar de vigilar la pàgina, cliqueu sobre l'enllaç de «Desatén» de la barra lateral.",
 'removedwatch'         => "S'ha tret de la llista de seguiment",
-'removedwatchtext'     => 'S\'ha tret la pàgina "[[:$1]]" de la vostra llista de seguiment.',
+'removedwatchtext'     => "S'ha tret la pàgina «[[:$1]]» de la vostra llista de seguiment.",
 'watch'                => 'Vigila',
 'watchthispage'        => 'Vigila aquesta pàgina',
 'unwatch'              => 'Desatén',
@@ -1618,7 +1616,7 @@ Suggeriments i ajuda:
 'deletepage'                  => 'Elimina la pàgina',
 'confirm'                     => 'Confirma',
 'excontent'                   => 'el contingut era: «$1»',
-'excontentauthor'             => "el contingut era: «$1» (i l'única persona qui hi ha editat ha estat «[[Special:Contributions/$2|$2]]»)",
+'excontentauthor'             => "el contingut era: «$1» (i l'únic coŀlaborador era [[Special:Contributions/$2|$2]])",
 'exbeforeblank'               => "el contingut abans d'estar en blanc era: '$1'",
 'exblank'                     => 'la pàgina estava en blanc',
 'delete-confirm'              => 'Elimina «$1»',
@@ -1628,9 +1626,9 @@ Suggeriments i ajuda:
 Confirmeu que realment ho voleu fer, que enteneu les
 conseqüències, i que el que esteu fent està d'acord amb la [[{{MediaWiki:Policy-url}}|política]] del projecte.",
 'actioncomplete'              => "S'ha realitzat l'acció de manera satisfactòria.",
-'deletedtext'                 => '"<nowiki>$1</nowiki>" ha estat esborrat.
-Mostra $2 per a un registre dels esborrats més recents.',
-'deletedarticle'              => 'eliminat "[[$1]]"',
+'deletedtext'                 => '«<nowiki>$1</nowiki>» ha estat esborrat.
+Vegeu $2 per a un registre dels esborrats més recents.',
+'deletedarticle'              => 'eliminat «[[$1]]»',
 'suppressedarticle'           => "s'ha suprimit «[[$1]]»",
 'dellogpage'                  => "Registre d'eliminació",
 'dellogpagetext'              => 'Davall hi ha una llista dels esborraments més recents.',
@@ -1653,15 +1651,15 @@ Mostra $2 per a un registre dels esborrats més recents.',
 'rollback_short'              => 'Revoca',
 'rollbacklink'                => 'Reverteix',
 'rollbackfailed'              => "No s'ha pogut revocar",
-'cantrollback'                => "No s'ha pogut revertir les edicions; el darrer col·laborador és l'únic autor de la pàgina.",
+'cantrollback'                => "No s'ha pogut revertir les edicions; el darrer coŀlaborador és l'únic autor de la pàgina.",
 'alreadyrolled'               => "No es pot revertir a la darrera edició de [[:$1]]
 per l'usuari [[User:$2|$2]] ([[User talk:$2|Discussió]]); algú altre ha editat o revertit la pàgina.
 
 La darrera edició ha estat feta per l'usuari [[User:$3|$3]] ([[User talk:$3|Discussió]] | [[Special:Contributions/$3|{{int:contribslink}}]]).",
-'editcomment'                 => 'El comentari d\'edició ha estat: "<i>$1</i>".', # only shown if there is an edit comment
+'editcomment'                 => "El comentari d'edició ha estat: «<i>$1</i>».", # only shown if there is an edit comment
 'revertpage'                  => "Revertides les edicions de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussió]]). S'ha recuperat la darrera versió de l'usuari [[User:$1|$1]]", # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => "Edicions revertides de $1; s'ha canviat a la darrera versió de $2.",
-'sessionfailure'              => 'Sembla que hi ha problema amb la vostra sessió; aquesta acció ha estat anulada en prevenció de pirateig de sessió. Si us plau, pitgueu "Torna", i recarregueu la pàgina des d\'on veniu, aleshores intenteu-lo de nou.',
+'sessionfailure'              => "Sembla que hi ha problema amb la vostra sessió. Aquesta acció ha estat anuŀlada en prevenció de pirateig de sessió. Si us plau, pitgeu «Torna», i recarregueu la pàgina des d'on veniu, després intenteu-ho de nou.",
 'protectlogpage'              => 'Registre de protecció',
 'protectlogtext'              => 'Aquest és el registre de proteccions i desproteccions. Vegeu la [[Special:ProtectedPages|llista de pàgines protegides]] per a la llista de les pàgines que actualment tenen alguna protecció.',
 'protectedarticle'            => 'protegit «[[$1]]»',
@@ -1735,7 +1733,7 @@ al resum a continuació, juntament amb detalls dels usuaris que l'havien editat 
 'undeletelink'                 => 'restaura',
 'undeletereset'                => 'Reinicia',
 'undeletecomment'              => 'Comentari:',
-'undeletedarticle'             => 'restaurat "$1"',
+'undeletedarticle'             => 'restaurat «[[$1]]»',
 'undeletedrevisions'           => '{{PLURAL:$1|Una revisió restaurada|$1 revisions restaurades}}',
 'undeletedrevisions-files'     => '{{PLURAL:$1|Una revisió|$1 revisions}} i {{PLURAL:$2|un arxiu|$2 arxius}} restaurats',
 'undeletedfiles'               => '$1 {{PLURAL:$1|fitxer restaurat|fitxers restaurats}}',
@@ -1833,12 +1831,12 @@ quines pàgines en concret estan sent vandalitzades).",
 'ipbwatchuser'                    => "Vigila les pàgines d'usuari i de discussió de l'usuari",
 'badipaddress'                    => "L'adreça IP no té el format correcte.",
 'blockipsuccesssub'               => "S'ha blocat amb èxit",
-'blockipsuccesstext'              => 'L\'usuari "[[Special:Contributions/$1|$1]]" ha estat blocat.
-<br />Vegeu la [[Special:IPBlockList|llista d\'IP blocades]] per revisar els bloquejos.',
+'blockipsuccesstext'              => "L'usuari «[[Special:Contributions/$1|$1]]» ha estat blocat.
+<br />Vegeu la [[Special:IPBlockList|llista d'IP blocades]] per revisar els bloquejos.",
 'ipb-edit-dropdown'               => 'Edita les raons per a blocar',
 'ipb-unblock-addr'                => 'Desbloca $1',
 'ipb-unblock'                     => 'Desbloca un usuari o una adreça IP',
-'ipb-blocklist-addr'              => 'Llista els bloquejos existents per $1',
+'ipb-blocklist-addr'              => 'Bloquejos existents per $1',
 'ipb-blocklist'                   => 'Llista els bloquejos existents',
 'unblockip'                       => "Desbloca l'usuari",
 'unblockiptext'                   => "Empreu el següent formulari per restaurar
@@ -1858,7 +1856,7 @@ l'accés a l'escriptura a una adreça IP o un usuari prèviament bloquejat.",
 'createaccountblock'              => "s'ha blocat la creació de nous comptes",
 'emailblock'                      => "s'ha blocat l'enviament de correus electrònics",
 'ipblocklist-empty'               => 'La llista de bloqueig està buida.',
-'ipblocklist-no-results'          => "La adreça IP sol·licitada o nom d'usuari està bloquejada.",
+'ipblocklist-no-results'          => "La adreça IP soŀlicitada o nom d'usuari està bloquejada.",
 'blocklink'                       => 'bloca',
 'unblocklink'                     => 'desbloca',
 'contribslink'                    => 'contribucions',
@@ -2295,7 +2293,7 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'exif-flash'                       => 'Flaix',
 'exif-focallength'                 => 'Longitud focal de la lent',
 'exif-subjectarea'                 => 'Enquadre del subjecte',
-'exif-flashenergy'                 => 'Energia del flash',
+'exif-flashenergy'                 => 'Energia del flaix',
 'exif-spatialfrequencyresponse'    => 'Resposta en freqüència espacial',
 'exif-focalplanexresolution'       => 'Resolució X del pla focal',
 'exif-focalplaneyresolution'       => 'Resolució Y del pla focal',
@@ -2310,7 +2308,7 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'exif-exposuremode'                => "Mode d'exposició",
 'exif-whitebalance'                => 'Balanç de blancs',
 'exif-digitalzoomratio'            => "Escala d'ampliació digital (zoom)",
-'exif-focallengthin35mmfilm'       => 'Distància focal per a pel·lícula de 35 mm',
+'exif-focallengthin35mmfilm'       => 'Distància focal per a peŀlícula de 35 mm',
 'exif-scenecapturetype'            => "Tipus de captura d'escena",
 'exif-gaincontrol'                 => "Control d'escena",
 'exif-contrast'                    => 'Contrast',
@@ -2327,7 +2325,7 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'exif-gpsaltituderef'              => "Referència d'altitud",
 'exif-gpsaltitude'                 => 'Altitud',
 'exif-gpstimestamp'                => 'Hora GPS (rellotge atòmic)',
-'exif-gpssatellites'               => 'Satèl·lits utilitzats en la mesura',
+'exif-gpssatellites'               => 'Satèŀlits utilitzats en la mesura',
 'exif-gpsstatus'                   => 'Estat del receptor',
 'exif-gpsmeasuremode'              => 'Mode de mesura',
 'exif-gpsdop'                      => 'Precisió de la mesura',
@@ -2532,13 +2530,13 @@ i així activar les opcions de correu del programari, seguiu aquest enllaç:
 
 $3
 
-Si *no* heu estat qui ho ha fet, seguiu aquest altre enllaç per a cancel·lar la confirmació demanada:
+Si *no* heu estat qui ho ha fet, seguiu aquest altre enllaç per a canceŀlar la confirmació demanada:
 
 $5
 
 Aquest codi de confirmació caducarà a $4.",
-'confirmemail_invalidated' => "Confirmació d'adreça electrònica cancel·lada",
-'invalidateemail'          => "Cancel·la la confirmació d'adreça electrònica",
+'confirmemail_invalidated' => "Confirmació d'adreça electrònica canceŀlada",
+'invalidateemail'          => "Canceŀlació d'adreça electrònica",
 
 # Scary transclusion
 'scarytranscludedisabled' => "[S'ha inhabilitat la transclusió interwiki]",
@@ -2656,7 +2654,7 @@ També podeu [[Special:Watchlist/edit|utilitzar l'editor estàndard]].",
 'version-hook-subscribedby'        => 'Subscrit per',
 'version-version'                  => 'Versió',
 'version-license'                  => 'Llicència',
-'version-software'                 => 'Programari instal·lat',
+'version-software'                 => 'Programari instaŀlat',
 'version-software-product'         => 'Producte',
 'version-software-version'         => 'Versió',
 

@@ -9,6 +9,7 @@
  * @author Rob Church <robchur@gmail.com>
  * @author Steinbach
  * @author Troefkaart
+ * @author Urhixidur
  */
 
 $fallback = 'nl';
@@ -161,7 +162,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lieste mie instelliengen]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Veehestelde vraehen (FAQ)]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailienglieste voe ankondigiengen van nieuwe versies]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailienglieste voe ankondigiengen van nieuwe versies]",
 
 'about'          => 'Info',
 'article'        => 'Artikel',
@@ -291,7 +292,7 @@ $messages = array(
 'restorelink'             => '$1 verwiederde {{PLURAL:$1|versie|versies}}',
 'feedlinks'               => 'Feed:',
 'feed-invalid'            => 'Feedtype wor nie ondersteund.',
-'feed-unavailable'        => 'Syndicaotiefeeds zien nie beschikbaer op {{SITENAME}}',
+'feed-unavailable'        => 'Syndicaotiefeeds zien nie beschikbaer',
 'site-rss-feed'           => '$1 RSS-feed',
 'site-atom-feed'          => '$1 Atom-feed',
 'page-rss-feed'           => '“$1” RSS-feed',
@@ -389,8 +390,8 @@ De heheven reeën is ''$2''.",
 Je kan {{SITENAME}} noe anoniem gebruken of wee anmelden as dezelven of een aore gebruker.
 Meuhlijk worn nog een antal pagina's weereheven asof a je anemeld bin totda je de cache van je browser leeg.",
 'welcomecreation'            => '== Welkom, $1! ==
-
-Jen account is anemikt. Vergeet nie je vòkeuren voe {{SITENAME}} an te passen.',
+Jen account is anemikt.
+Vergeet nie je [[Special:Preferences|vòkeuren voe {{SITENAME}}]] an te passen.',
 'loginpagetitle'             => 'Gebrukersnaem',
 'yourname'                   => 'Gebrukersnaem',
 'yourpassword'               => 'Wachtwoôrd',
@@ -436,12 +437,14 @@ Schaokel die asjeblieft in en meld dinae an mie je nieuwe gebrukersnaem en wacht
 'noname'                     => 'Je ei hin heldihe gebrukersnaem opeheven.',
 'loginsuccesstitle'          => 'Anmelden geslaegd',
 'loginsuccess'               => "'''Je bin noe anemeld bie {{SITENAME}} as \"\$1\".'''",
-'nosuchuser'                 => 'De gebruker "$1" besti nie. Controleer de schriefwieze of mik een nieuwe gebruker an.',
+'nosuchuser'                 => 'De gebruker "$1" besti nie.
+Controleer de schriefwieze of [[Special:UserLogin/signup|mik een nieuwe gebruker an]].',
 'nosuchusershort'            => 'De gebruker "<nowiki>$1</nowiki>" besti nie. Controleer de schriefwieze.',
 'nouserspecified'            => 'Je dien een gebrukersnaem op te heven.',
 'wrongpassword'              => "Wachtwoôrd onjuust. Probeer 't opnieuw.",
 'wrongpasswordempty'         => "'t Opeheven wachtwoôrd was leeg. Probeer 't opnieuw.",
-'passwordtooshort'           => "Je wachtwoôrd is te kort. 't Mò minstens uut $1 teêkens bestaene.",
+'passwordtooshort'           => "Je wachtwoôrd is te kort.
+'t Mò minstens uut $1 {{PLURAL:$1|teêken|teêkens}} bestaene.",
 'mailmypassword'             => 'E-mail wachtwoôrd',
 'passwordremindertitle'      => 'Nieuw tiedelijk wachtwoôrd voe {{SITENAME}}',
 'passwordremindertext'       => 'Iemand, warschienlijk jie, ei vanof \'t IP-adres $1 een verzoek edaene toet \'t toezen\'n van \'t wachtwoôrd voe {{SITENAME}} ($4).
@@ -623,7 +626,7 @@ Ierbie beloof je ons ok da je deêze tekst zelf eschreven ei, of overenomen uut 
 A je nie wil dan je teksen rihoreus anepast worn deur aore, plek ze ier dan nie.<br />
 Je beloof ok da je de oôrspronkelijke auteur bin van dit materiaol, of da je 't ei ekopieerd uut een bron in 't publieke domein, of een soôrthelieke vrieë bron (zie $1 voor details).
 <strong>GEBRUUK HIN MATERIAOL DAT A BESCHERMD WOR DEUR AUTEURSRECHT, TENZIE A JE DIVOE TOESTEMMIENG EI!</strong>",
-'longpagewarning'           => "<strong>WAERSCHUWIENG: Deêze pagina is $1 kilobyte hroôt; sommihe browsers èn probleemn mie 't bewerken van      pagina's die an hrotter zien dan 32kb. Misschien kan deêze pagina esplitst worn in kleinere deêln.</strong>",
+'longpagewarning'           => "<strong>WAERSCHUWIENG: Deêze pagina is $1 kilobyte hroôt; sommihe browsers èn probleemn mie 't bewerken van pagina's die an hrotter zien dan 32 kb. Misschien kan deêze pagina esplitst worn in kleinere deêln.</strong>",
 'longpageerror'             => "<strong>FOUT: de tekst die a je ei toe'evoegd is $1 kilobyte hroôt, wat a hrotter is dan 't maximum van $2 kilobyte.
 Opslaene is nie meuhlijk.</strong>",
 'readonlywarning'           => "<strong>WAERSCHUWIENG: de database is eblokkeerd voe onderoud, dus je kan dezen noe nie opslaen.
@@ -641,7 +644,7 @@ Opslaene is nie meuhlijk.</strong>",
 'nocreatetitle'             => "'t Anmaeken van pagina's is beperkt",
 'nocreatetext'              => "{{SITENAME}} ei de meuhlijkeid om nieuwe pagina's an te maeken beperkt.
 Je kan a bestaende pagina's wiezigen, of je kan [[Special:UserLogin|jen eihen anmelden of een gebruker  anmaeken]].",
-'nocreate-loggedin'         => "Je kan hin nieuwe pagina's anmaeken op {{SITENAME}}.",
+'nocreate-loggedin'         => "Je kan hin nieuwe pagina's anmaeken.",
 'permissionserrors'         => "Fout'n in rechen",
 'permissionserrorstext'     => "Je ei hin rechen om dit te doene wehens de volhende {{PLURAL:$1|reeën|reden'n}}:",
 'recreate-deleted-warn'     => "'''Waerschuwieng: je bin bezig mie 't anmaeken van een pagina die a in 't verleeën verwiederd is.'''
@@ -713,9 +716,9 @@ der kunn\'n details anwezig zien in \'t [{{fullurl:Special:Log/delete|page={{PAG
 'revisiondelete'              => 'Versies verwiederen/trugplekken',
 'revdelete-nooldid-title'     => 'Hin doelversie',
 'revdelete-nooldid-text'      => 'Je ei hin doelversie(s) voe deêze handelienge opeheven, de aneheven versie besti nie, of je probeer de lèste versie te verberhen.',
-'revdelete-selected'          => 'Hesillecteerde {{PLURAL:$2|bewerkieng|bewerkiengen}} van [[:$1]]:',
-'logdelete-selected'          => '{{PLURAL:$1|Hesillecteerde logboekactie|Hesillecteerde logboekacties}}:',
-'revdelete-text'              => "Verwiederde bewerkiengen zien zichbaer in de heschiedenisse, mè den inoud is nie langer publiek toehankelijk.
+'revdelete-selected'          => "'''Hesillecteerde {{PLURAL:$2|bewerkieng|bewerkiengen}} van [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Hesillecteerde logboekactie|Hesillecteerde logboekacties}}:'''",
+'revdelete-text'              => "'''Verwiederde bewerkiengen zien zichbaer in de heschiedenisse, mè den inoud is nie langer publiek toehankelijk.'''
 
 Aore opzichters van {{SITENAME}} kunn'n de verborhen inoud benadern en de verwiederieng onedaene maeken mie de ulpe van dit scherm, tenzie an der anvull'nde beperkiengen heln die an zien inesteld deur de systeembeheêrder.",
 'revdelete-legend'            => "Zichbaereidsbeperkiengen instell'n",
@@ -822,7 +825,7 @@ De hehevens over {{SITENAME}} zien meuhlijk nie bie'ewerkt.",
 'mypreferences'            => 'Mien vòkeuren',
 'prefs-edits'              => 'Antal bewerkiengen:',
 'prefsnologin'             => 'Nie anemeld',
-'prefsnologintext'         => "Je mò [[Special:UserLogin|anemeld]] zien om je vòkeuren te kunn'n instell'n.",
+'prefsnologintext'         => 'Je mò <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} anemeld]</span> zien om je vòkeuren te kunn\'n instell\'n.',
 'prefsreset'               => 'Standardvòkeuren zien hersteld.',
 'qbsettings'               => 'Menubalke',
 'qbsettings-none'          => 'Uuteschaokeld',

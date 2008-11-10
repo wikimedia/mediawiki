@@ -15,6 +15,7 @@
  * @author Rei-artur
  * @author Rodrigo Calanca Nishino
  * @author Sérgio Ribeiro
+ * @author Urhixidur
  * @author Villate
  * @author Waldir
  * @author Yves Marques Junqueira
@@ -266,7 +267,7 @@ $messages = array(
 'category-subcat-count-limited'  => 'Esta categoria possui {{PLURAL:$1|a seguinte subcategoria|as $1 subcategorias a seguir}}.',
 'category-article-count'         => '{{PLURAL:$2|Esta categoria possui apenas a página a seguir.|Há, nesta categoria, {{PLURAL:$1|a página a seguir|as $1 páginas a seguir}} (dentre um total de $2).}}',
 'category-article-count-limited' => 'Há, nesta categoria, {{PLURAL:$1|a página a seguir|as $1 páginas a seguir}}.',
-'category-file-count'            => '{{PLURAL:$2|Esta categoria possui apenas o ficheiro a seguir.|Há, nesta categoria, {{PLURAL:$1|o ficheiro a seguir|os $1 seguintes ficheiros}} (dentre um total de $2.)}}',
+'category-file-count'            => '{{PLURAL:$2|Esta categoria possui apenas o ficheiro a seguir.|Há, nesta categoria, {{PLURAL:$1|o ficheiro a seguir|os $1 ficheiros a seguir}} (dentre um total de $2).}}',
 'category-file-count-limited'    => 'Nesta categoria há {{PLURAL:$1|um ficheiro|$1 ficheiros}}.',
 'listingcontinuesabbrev'         => 'cont.',
 
@@ -277,7 +278,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista de opções de configuração]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki Perguntas e respostas frequentes]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de correio de anúncios de novas versões do MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de correio de anúncios de novas versões do MediaWiki]',
 
 'about'          => 'Sobre',
 'article'        => 'Página de conteúdo',
@@ -565,7 +566,7 @@ Pode também escolher permitir que outros entrem em contacto consigo através da
 'loginsuccesstitle'          => 'Login bem sucedido',
 'loginsuccess'               => "'''Encontra-se agora ligado à {{SITENAME}} como \"\$1\"'''.",
 'nosuchuser'                 => 'Não existe nenhum utilizador com o nome "$1".
-Verifique o nome que introduziu, ou [[Special:Userlogin/signup|crie uma nova conta]].',
+Verifique o nome que introduziu, ou [[Special:UserLogin/signup|crie uma nova conta]].',
 'nosuchusershort'            => 'Não existe um utilizador com o nome "<nowiki>$1</nowiki>". Verifique o nome que introduziu.',
 'nouserspecified'            => 'Precisa de especificar um nome de utilizador.',
 'wrongpassword'              => 'A palavra-chave que introduziu é inválida. Por favor, tente novamente.',
@@ -756,7 +757,7 @@ Você está, ao mesmo tempo, a garantir-nos que isto é algo escrito por si, ou 
 Você está, ao mesmo tempo, a garantir-nos que isto é algo escrito por si, ou algo copiado de alguma fonte de textos em domínio público ou similarmente de teor livre (veja $1 para detalhes).
 <strong>NÃO ENVIE TRABALHO PROTEGIDO POR DIREITOS DE AUTOR SEM A DEVIDA PERMISSÃO!</strong>',
 'longpagewarning'                  => '<strong>AVISO: Esta página possui $1 kilobytes; alguns
-navegadores possuem problemas em editar páginas maiores que 32kb.
+navegadores possuem problemas em editar páginas maiores que 32 kb.
 Por favor, considere seccionar a página em secções de menor dimensão.</strong>',
 'longpageerror'                    => '<strong>ERRO: O texto de página que você submeteu tem mais de $1 kilobytes em tamanho, que é maior que o máximo de $2 kilobytes. A página não pode ser salva.</strong>',
 'readonlywarning'                  => '<strong>AVISO: A base de dados foi bloqueada para manutenção, pelo que não poderá salvar a sua edição neste momento. Pode, no entanto, copiar o seu texto num editor externo e guardá-lo para posterior submissão.</strong>',
@@ -777,7 +778,7 @@ Pode voltar atrás e editar uma página já existente, ou [[Special:UserLogin|au
 'nocreate-loggedin'                => 'Você não possui permissões de criar novas páginas.',
 'permissionserrors'                => 'Erros de permissões',
 'permissionserrorstext'            => 'Você não possui permissão de fazer isso, {{PLURAL:$1|pelo seguinte motivo|pelos seguintes motivos}}:',
-'permissionserrorstext-withaction' => 'Você não possui permissão para $2 {{PLURAL:$1|pelo seguinte motivo|pelos motivos a seguir}}:',
+'permissionserrorstext-withaction' => 'Você não possui permissão para $2, {{PLURAL:$1|pelo seguinte motivo|pelos motivos a seguir}}:',
 'recreate-deleted-warn'            => "'''Atenção: Você está criando novamente uma página já eliminada em outra ocasião.'''
 
 Certifique-se de que seja adequado prosseguir editando esta página.
@@ -855,9 +856,9 @@ mais detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registo 
 'revisiondelete'              => 'Eliminar/restaurar edições',
 'revdelete-nooldid-title'     => 'Edição de destino inválida',
 'revdelete-nooldid-text'      => 'Você ou não especificou uma(s) edição(ões) de destino, a edição especificada não existe ou, ainda, você está tentando ocultar a edição atual.',
-'revdelete-selected'          => '{{PLURAL:$2|Edição seleccionada|Edições seleccionadas}} de [[:$1]]:',
-'logdelete-selected'          => '{{PLURAL:$1|Evento de registo seleccionado|Eventos de registo seleccionados}}:',
-'revdelete-text'              => "Edições eliminadas continuarão a aparecer no histórico da página, apesar de o seu conteúdo textual estar inacessível ao público.
+'revdelete-selected'          => "'''{{PLURAL:$2|Edição seleccionada|Edições seleccionadas}} de [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Evento de registo seleccionado|Eventos de registo seleccionados}}:'''",
+'revdelete-text'              => "'''Edições eliminadas continuarão a aparecer no histórico da página, apesar de o seu conteúdo textual estar inacessível ao público.'''
 
 Outros administradores nesta wiki continuarão a poder aceder ao conteúdo escondido e restaurá-lo através desta mesma ''interface'', a menos que uma restrição adicional seja definida.",
 'revdelete-legend'            => 'Definir restrições de visualização',
@@ -976,7 +977,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'mypreferences'            => 'Minhas preferências',
 'prefs-edits'              => 'Número de edições:',
 'prefsnologin'             => 'Não autenticado',
-'prefsnologintext'         => 'Precisa de estar <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} autenticado]</span> para definir as suas preferências.',
+'prefsnologintext'         => 'Precisa de estar <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} autenticado]</span> para definir as suas preferências.',
 'prefsreset'               => 'As preferências foram restauradas tal como se encontravam na base de dados.',
 'qbsettings'               => 'Barra Rápida',
 'qbsettings-none'          => 'Nenhuma',
@@ -1121,13 +1122,13 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'right-markbotedits'         => 'Marcar edições revertidas como edições de bot',
 'right-noratelimit'          => 'Não afectado pelos limites de velocidade de operação',
 'right-import'               => 'Importar páginas de outros wikis',
-'right-importupload'         => 'Importar páginas de um ficheiro carregado',
-'right-patrol'               => 'Marcar edições como patrulhadas',
+'right-importupload'         => 'Importar páginas de um ficheiro xml',
+'right-patrol'               => 'Marcar edições de outros utilizadores como patrulhadas',
 'right-autopatrol'           => 'Ter edições automaticamente marcadas como patrulhadas',
 'right-patrolmarks'          => 'Usar funcionalidades de patrulhagem das mudanças recentes',
 'right-unwatchedpages'       => 'Ver uma lista de páginas não vigiadas',
 'right-trackback'            => "Submeter um 'trackback'",
-'right-mergehistory'         => 'Fundir o histórico de páginas',
+'right-mergehistory'         => 'Fundir o histórico de edições de páginas',
 'right-userrights'           => 'Editar todos os privilégios de utilizador',
 'right-userrights-interwiki' => 'Editar privilégios de utilizador de utilizadores noutros sítios wiki',
 'right-siteadmin'            => 'Bloquear e desbloquear a base de dados',
@@ -1150,7 +1151,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'rcshowhidebots'                    => '$1 robôs',
 'rcshowhideliu'                     => '$1 utilizadores registados',
 'rcshowhideanons'                   => '$1 utilizadores anónimos',
-'rcshowhidepatr'                    => '$1 edições verificadas',
+'rcshowhidepatr'                    => '$1 edições patrulhadas',
 'rcshowhidemine'                    => '$1 as minhas edições',
 'rclinks'                           => 'Mostrar as últimas $1 mudanças nos últimos $2 dias<br />$3',
 'diff'                              => 'dif',
@@ -1436,7 +1437,7 @@ Uma página é considerada como de desambiguação se utilizar uma predefiniçã
 'nviews'                  => '$1 {{PLURAL:$1|visita|visitas}}',
 'specialpage-empty'       => 'Actualmente não há dados a serem exibidos nesta página.',
 'lonelypages'             => 'Páginas órfãs',
-'lonelypagestext'         => 'As seguintes páginas não têm hiperligações a apontar para elas a partir de outras páginas nesta wiki.',
+'lonelypagestext'         => 'As seguintes páginas ou não têm hiperligações a apontar para elas ou não são transclusionadas a partir de outras páginas nesta wiki.',
 'uncategorizedpages'      => 'Páginas não categorizadas',
 'uncategorizedcategories' => 'Categorias não categorizadas',
 'uncategorizedimages'     => 'Imagens não categorizadas',
@@ -1497,7 +1498,7 @@ Uma página é considerada como de desambiguação se utilizar uma predefiniçã
 'alllogstext'          => 'Exposição combinada de todos registos disponíveis no wiki {{SITENAME}}.
 Você pode diminuir a lista escolhendo um tipo de registo, um nome de utilizador (sensível a minúsculas), ou uma página afectada (também sensível a minúsculas).',
 'logempty'             => 'Nenhum item idêntico no registo.',
-'log-title-wildcard'   => 'Procurar por títulos que sejam iniciados com o seguinte texto',
+'log-title-wildcard'   => 'Procurar por títulos que sejam iniciados com tal texto',
 
 # Special:AllPages
 'allpages'          => 'Todas as páginas',
@@ -1544,8 +1545,8 @@ Se encontram disponíveis [[{{MediaWiki:Listgrouprights-helppage}}|informações
 'mailnologintext' => 'Necessita de estar [[Special:UserLogin|autenticado]] e de possuir um endereço de e-mail válido nas suas [[Special:Preferences|preferências]] para poder enviar um e-mail a outros utilizadores.',
 'emailuser'       => 'Contactar este utilizador',
 'emailpage'       => 'Contactar utilizador',
-'emailpagetext'   => 'Se o utilizador introduziu um endereço válido de e-mail nas suas preferências, poderá usar o formulário abaixo para lhe enviar uma mensagem.
-O endereço que introduziu nas [[Special:Preferences|suas preferências]] irá aparecer no campo "From" do e-mail, para que o destinatário lhe possa responder directamente.',
+'emailpagetext'   => 'Utilize o formulário abaixo para enviar uma mensagem a este utilizador.
+O endereço que você introduziu nas [[Special:Preferences|suas preferências]] irá aparecer no campo "Remetente" do e-mail, para que o destinatário lhe possa responder directamente.',
 'usermailererror' => 'Objecto de correio retornou um erro:',
 'defemailsubject' => 'E-mail: {{SITENAME}}',
 'noemailtitle'    => 'Sem endereço de e-mail',
@@ -1851,7 +1852,7 @@ Consulte a [[Special:IPBlockList|lista de IPs bloqueados]] para rever os bloquei
 'ipb-edit-dropdown'               => 'Editar motivos de bloqueio',
 'ipb-unblock-addr'                => 'Desbloquear $1',
 'ipb-unblock'                     => 'Desbloquear um utilizador ou endereço de IP',
-'ipb-blocklist-addr'              => 'Ver bloqueios em vigência para $1',
+'ipb-blocklist-addr'              => 'Bloqueios em vigência para $1',
 'ipb-blocklist'                   => 'Ver bloqueios em vigência',
 'unblockip'                       => 'Desbloquear utilizador',
 'unblockiptext'                   => 'Utilize o formulário a seguir para restaurar o acesso à escrita para um endereço de IP ou utilizador previamente bloqueado.',
@@ -1960,7 +1961,7 @@ Por favor, escolha outro nome.',
 'movepage-page-unmoved'   => 'A página $1 não pôde ser movida para $2.',
 'movepage-max-pages'      => 'O limite de $1 {{PLURAL:$1|página movida|páginas movidas}} foi atingido; não será possível mover mais páginas de forma automática.',
 '1movedto2'               => 'moveu [[$1]] para [[$2]]',
-'1movedto2_redir'         => 'moveu [[$1]] para [[$2]] sob redireccionamento',
+'1movedto2_redir'         => 'moveu [[$1]] para [[$2]] sobre redireccionamento',
 'movelogpage'             => 'Registo de movimento',
 'movelogpagetext'         => 'Abaixo encontra-se uma lista de páginas movidas.',
 'movereason'              => 'Motivo:',
@@ -2163,14 +2164,14 @@ Tal bloqueio foi provavelmente causado por uma ligação para um website externo
 'mw_math_mathml' => 'MathML se possível (experimental)',
 
 # Patrolling
-'markaspatrolleddiff'                 => 'Marcar como verificado',
-'markaspatrolledtext'                 => 'Marcar esta página como verificada',
-'markedaspatrolled'                   => 'Marcado como verificado',
-'markedaspatrolledtext'               => 'A edição seleccionada foi marcada como verificada.',
-'rcpatroldisabled'                    => 'Edições verificadas nas Mudanças Recentes desactivadas',
-'rcpatroldisabledtext'                => 'A funcionalidade de Edições verificadas nas Mudanças Recentes está actualmente desactivada.',
-'markedaspatrollederror'              => 'Não é possível marcar como verificado',
-'markedaspatrollederrortext'          => 'É necessário especificar uma edição a ser marcada como verificada.',
+'markaspatrolleddiff'                 => 'Marcar como patrulhada',
+'markaspatrolledtext'                 => 'Marcar esta página como patrulhada',
+'markedaspatrolled'                   => 'Marcado como patrulhado',
+'markedaspatrolledtext'               => 'A edição seleccionada foi marcada como patrulhada.',
+'rcpatroldisabled'                    => 'Edições patrulhadas nas Mudanças Recentes desactivadas',
+'rcpatroldisabledtext'                => 'A funcionalidade de edições patrulhadas nas Mudanças Recentes está actualmente desactivada.',
+'markedaspatrollederror'              => 'Não é possível marcar como patrulhada',
+'markedaspatrollederrortext'          => 'É necessário especificar uma edição a ser marcada como patrulhada.',
 'markedaspatrollederror-noautopatrol' => 'Você não está autorizado a marcar suas próprias edições como edições patrulhadas.',
 
 # Patrol log

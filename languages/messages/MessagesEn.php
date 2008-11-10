@@ -6,7 +6,7 @@
  *
  * Changes in this file will be lost during software upgrades.
  * You can make your customizations on the wiki.
- * While logged in as a sysop user, go to [[Special:AllMessages]]
+ * While logged in as a sysop user, go to [[Special:Allmessages]]
  * and edit the MediaWiki:* pages listed there.
  */
 
@@ -613,7 +613,7 @@ XHTML id names.
 == Getting started ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
 
 'about'          => 'About',
 'article'        => 'Content page',
@@ -659,7 +659,7 @@ XHTML id names.
 'deletethispage'    => 'Delete this page',
 'undelete_short'    => 'Undelete {{PLURAL:$1|one edit|$1 edits}}',
 'protect'           => 'Protect',
-'protect_change'    => 'change protection',
+'protect_change'    => 'change',
 'protectthispage'   => 'Protect this page',
 'unprotect'         => 'Unprotect',
 'unprotectthispage' => 'Unprotect this page',
@@ -750,7 +750,7 @@ See [[Special:Version|version page]].',
 'restorelink'                  => '{{PLURAL:$1|one deleted edit|$1 deleted edits}}',
 'feedlinks'                    => 'Feed:',
 'feed-invalid'                 => 'Invalid subscription feed type.',
-'feed-unavailable'             => 'Syndication feeds are not available on {{SITENAME}}',
+'feed-unavailable'             => 'Syndication feeds are not available',
 'site-rss-feed'                => '$1 RSS Feed',
 'site-atom-feed'               => '$1 Atom Feed',
 'page-rss-feed'                => '"$1" RSS Feed',
@@ -879,7 +879,7 @@ Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 'yourpasswordagain'          => 'Retype password:',
 'remembermypassword'         => 'Remember my login on this computer',
 'yourdomainname'             => 'Your domain:',
-'externaldberror'            => 'There was either an external authentication database error or you are not allowed to update your external account.',
+'externaldberror'            => 'There was either an authentication database error or you are not allowed to update your external account.',
 'loginproblem'               => '<b>There has been a problem with your login.</b><br />Try again!',
 'login'                      => 'Log in',
 'nav-login-createaccount'    => 'Log in / create account',
@@ -888,7 +888,7 @@ Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 'logout'                     => 'Log out',
 'userlogout'                 => 'Log out',
 'notloggedin'                => 'Not logged in',
-'nologin'                    => "Don't have a login? $1.",
+'nologin'                    => "Don't have an account? $1.",
 'nologinlink'                => 'Create an account',
 'createaccount'              => 'Create account',
 'gotaccount'                 => 'Already have an account? $1.',
@@ -905,14 +905,16 @@ Please choose a different name.',
 'yourlanguage'               => 'Language:',
 'yourvariant'                => 'Variant:', # only translate this message to other languages if you have to change it
 'yournick'                   => 'Signature:',
-'badsig'                     => 'Invalid raw signature; check HTML tags.',
+'badsig'                     => 'Invalid raw signature.
+Check HTML tags.',
 'badsiglength'               => 'The signature is too long.
 It must be under $1 {{PLURAL:$1|character|characters}}.',
 'email'                      => 'E-mail',
 'prefs-help-realname'        => 'Real name is optional.
 If you choose to provide it, this will be used for giving you attribution for your work.',
 'loginerror'                 => 'Login error',
-'prefs-help-email'           => 'E-mail address is optional, but it enables others to contact you through your user or user_talk page without needing to reveal your identity.',
+'prefs-help-email'           => 'E-mail address is optional, but allows a new password to be e-mailed to you if you forget your password.
+You can also choose to let others to contact you through your user or user_talk page without needing to reveal your identity.',
 'prefs-help-email-required'  => 'E-mail address is required.',
 'nocookiesnew'               => 'The user account was created, but you are not logged in.
 {{SITENAME}} uses cookies to log in users.
@@ -925,7 +927,7 @@ Please enable them and try again.',
 'loginsuccesstitle'          => 'Login successful',
 'loginsuccess'               => "'''You are now logged in to {{SITENAME}} as \"\$1\".'''",
 'nosuchuser'                 => 'There is no user by the name "$1".
-Check your spelling, or create a new account.',
+Check your spelling, or [[Special:UserLogin/signup|create a new account]].',
 'nosuchusershort'            => 'There is no user by the name "<nowiki>$1</nowiki>".
 Check your spelling.',
 'nouserspecified'            => 'You have to specify a username.',
@@ -935,14 +937,16 @@ Please try again.',
 Please try again.',
 'passwordtooshort'           => 'Your password is invalid or too short.
 It must have at least {{PLURAL:$1|1 character|$1 characters}} and be different from your username.',
-'mailmypassword'             => 'E-mail password',
+'mailmypassword'             => 'E-mail new password',
 'passwordremindertitle'      => 'New temporary password for {{SITENAME}}',
-'passwordremindertext'       => 'Someone (probably you, from IP address $1)
-requested that we send you a new password for {{SITENAME}} ($4).
-The password for user "$2" is now "$3".
-You should log in and change your password now.
+'passwordremindertext'       => 'Someone (probably you, from IP address $1) requested a new
+password for {{SITENAME}} ($4). A temporary password for user
+"$2" has been created and was set to "$3". If this was your
+intent, you will need to log in and choose a new password now.
 
-If someone else made this request or if you have remembered your password and you no longer wish to change it, you may ignore this message and continue using your old password.',
+If someone else made this request, or if you have remembered your password,
+and you no longer wish to change it, you may ignore this message and
+continue using your old password.',
 'noemail'                    => 'There is no e-mail address recorded for user "$1".',
 'passwordsent'               => 'A new password has been sent to the e-mail address registered for "$1".
 Please log in again after you receive it.',
@@ -990,7 +994,7 @@ To finish logging in, you must set a new password here:',
 'resetpass_success'       => 'Your password has been changed successfully! Now logging you in...',
 'resetpass_bad_temporary' => 'Invalid temporary password.
 You may have already successfully changed your password or requested a new temporary password.',
-'resetpass_forbidden'     => 'Passwords cannot be changed on {{SITENAME}}',
+'resetpass_forbidden'     => 'Passwords cannot be changed',
 'resetpass_missing'       => 'No form data.',
 
 # Edit page toolbar
@@ -1093,10 +1097,16 @@ If you are an anonymous user and feel that irrelevant comments have been directe
 'noarticletextanon'                => '{{int:noarticletext}}', # do not translate or duplicate this message to other languages
 'userpage-userdoesnotexist'        => 'User account "$1" is not registered.
 Please check if you want to create/edit this page.',
-'clearyourcache'                   => "'''Note - After saving, you may have to bypass your browser's cache to see the changes.''' '''Mozilla / Firefox / Safari:''' hold ''Shift'' while clicking ''Reload,'' or press either ''Ctrl-F5'' or ''Ctrl-R'' (''Command-R'' on a Macintosh); '''Konqueror: '''click ''Reload'' or press ''F5;'' '''Opera:''' clear the cache in ''Tools → Preferences;'' '''Internet Explorer:''' hold ''Ctrl'' while clicking ''Refresh,'' or press ''Ctrl-F5.''",
+'clearyourcache'                   => "'''Note - After saving, you may have to bypass your browser's cache to see the changes.'''
+'''Mozilla / Firefox / Safari:''' hold ''Shift'' while clicking ''Reload'', or press either ''Ctrl-F5'' or ''Ctrl-R'' (''Command-R'' on a Macintosh);
+'''Konqueror: '''click ''Reload'' or press ''F5'';
+'''Opera:''' clear the cache in ''Tools → Preferences'';
+'''Internet Explorer:''' hold ''Ctrl'' while clicking ''Refresh,'' or press ''Ctrl-F5''.",
 'usercssjsyoucanpreview'           => "<strong>Tip:</strong> Use the 'Show preview' button to test your new CSS/JS before saving.",
-'usercsspreview'                   => "'''Remember that you are only previewing your user CSS, it has not yet been saved!'''",
-'userjspreview'                    => "'''Remember that you are only testing/previewing your user JavaScript, it has not yet been saved!'''",
+'usercsspreview'                   => "'''Remember that you are only previewing your user CSS.'''
+'''It has not yet been saved!'''",
+'userjspreview'                    => "'''Remember that you are only testing/previewing your user JavaScript.'''
+'''It has not yet been saved!'''",
 'userinvalidcssjstitle'            => "'''Warning:''' There is no skin \"\$1\".
 Remember that custom .css and .js pages use a lowercase title, e.g. {{ns:user}}:Foo/monobook.css as opposed to {{ns:user}}:Foo/Monobook.css.",
 'updated'                          => '(Updated)',
@@ -1161,7 +1171,7 @@ You may wish to cut-n-paste the text into a text file and save it for later.</st
 'nocreatetitle'                    => 'Page creation limited',
 'nocreatetext'                     => '{{SITENAME}} has restricted the ability to create new pages.
 You can go back and edit an existing page, or [[Special:UserLogin|log in or create an account]].',
-'nocreate-loggedin'                => 'You do not have permission to create new pages on {{SITENAME}}.',
+'nocreate-loggedin'                => 'You do not have permission to create new pages.',
 'permissionserrors'                => 'Permissions Errors',
 'permissionserrorstext'            => 'You do not have permission to do that, for the following {{PLURAL:$1|reason|reasons}}:',
 'permissionserrorstext-withaction' => 'You do not have permission to $2, for the following {{PLURAL:$1|reason|reasons}}:',
@@ -1249,11 +1259,11 @@ there may be details in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}
 'revdelete-nooldid-title'     => 'Invalid target revision',
 'revdelete-nooldid-text'      => 'You have either not specified a target revision(s) to perform this
 function, the specified revision does not exist, or you are attempting to hide the current revision.',
-'revdelete-selected'          => '{{PLURAL:$2|Selected revision|Selected revisions}} of [[:$1]]:',
-'logdelete-selected'          => '{{PLURAL:$1|Selected log event|Selected log events}}:',
-'revdelete-text'              => 'Deleted revisions and events will still appear in the page history and logs, but parts of their content will be inaccessible to the public.
+'revdelete-selected'          => "'''{{PLURAL:$2|Selected revision|Selected revisions}} of [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Selected log event|Selected log events}}:'''",
+'revdelete-text'              => "'''Deleted revisions and events will still appear in the page history and logs, but parts of their content will be inaccessible to the public.'''
 
-Other admins on {{SITENAME}} will still be able to access the hidden content and can undelete it again through this same interface, unless additional restrictions are set.',
+Other admins on {{SITENAME}} will still be able to access the hidden content and can undelete it again through this same interface, unless additional restrictions are set.",
 'revdelete-legend'            => 'Set visibility restrictions',
 'revdelete-hide-text'         => 'Hide revision text',
 'revdelete-hide-name'         => 'Hide action and target',
@@ -1392,7 +1402,7 @@ Note that their indexes of {{SITENAME}} content may be out of date.',
 'mypreferences'            => 'My preferences',
 'prefs-edits'              => 'Number of edits:',
 'prefsnologin'             => 'Not logged in',
-'prefsnologintext'         => 'You must be [[Special:UserLogin|logged in]] to set user preferences.',
+'prefsnologintext'         => 'You must be <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} logged in]</span> to set user preferences.',
 'prefsreset'               => 'Preferences have been reset from storage.',
 'qbsettings'               => 'Quickbar',
 'qbsettings-none'          => 'None',
@@ -1561,7 +1571,7 @@ please see math/README to configure.',
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|change|changes}}',
 'recentchanges'                     => 'Recent changes',
-'recentchanges-url'                 => 'Special:Recentchanges', # do not translate or duplicate this message to other languages
+'recentchanges-url'                 => 'Special:RecentChanges', # do not translate or duplicate this message to other languages
 'recentchangestext'                 => 'Track the most recent changes to the wiki on this page.',
 'recentchanges-feed-description'    => 'Track the most recent changes to the wiki in this feed.',
 'rcnote'                            => "Below {{PLURAL:$1|is '''1''' change|are the last '''$1''' changes}} in the last {{PLURAL:$2|day|'''$2''' days}}, as of $5, $4.",
@@ -1663,10 +1673,10 @@ If the checked file is the same image of original size it is not necessary to up
 'file-thumbnail-no'           => 'The filename begins with <strong><tt>$1</tt></strong>.
 It seems to be an image of reduced size <i>(thumbnail)</i>.
 If you have this image in full resolution upload this one, otherwise change the file name please.',
-'fileexists-forbidden'        => 'A file with this name exists already;
-please go back and upload this file under a new name. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'A file with this name exists already in the shared file repository;
-please go back and upload this file under a new name. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'A file with this name exists already.
+If you still want to upload your file, please go back and use a new name. [[Image:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'A file with this name exists already in the shared file repository.
+If you still want to upload your file, please go back and use a new name. [[Image:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'This file is a duplicate of the following {{PLURAL:$1|file|files}}:',
 'successfulupload'            => 'Successful upload',
 'uploadwarning'               => 'Upload warning',
@@ -1674,7 +1684,7 @@ please go back and upload this file under a new name. [[Image:$1|thumb|center|$1
 'uploadedimage'               => 'uploaded "[[$1]]"',
 'overwroteimage'              => 'uploaded a new version of "[[$1]]"',
 'uploaddisabled'              => 'Uploads disabled',
-'uploaddisabledtext'          => 'File uploads are disabled on {{SITENAME}}.',
+'uploaddisabledtext'          => 'File uploads are disabled.',
 'uploadscripted'              => 'This file contains HTML or script code that may be erroneously interpreted by a web browser.',
 'uploadcorrupt'               => 'The file is corrupt or has an incorrect extension.
 Please check the file and upload again.',
@@ -1772,8 +1782,8 @@ A click on a column header changes the sorting.',
 'shareduploadduplicate-linktext' => 'another file',
 'shareduploadconflict'           => 'This file has the same name as $1 from the shared repository.',
 'shareduploadconflict-linktext'  => 'another file',
-'noimage'                        => 'No file by this name exists, you can $1.',
-'noimage-linktext'               => 'upload it',
+'noimage'                        => 'No file by this name exists, but you can $1.',
+'noimage-linktext'               => 'upload one',
 'uploadnewversion-linktext'      => 'Upload a new version of this file',
 'imagepage-searchdupe'           => 'Search for duplicate files',
 
@@ -1798,7 +1808,7 @@ A click on a column header changes the sorting.',
 'filedelete-submit'           => 'Delete',
 'filedelete-success'          => "'''$1''' has been deleted.",
 'filedelete-success-old'      => "The version of '''[[Media:$1|$1]]''' as of $3, $2 has been deleted.",
-'filedelete-nofile'           => "'''$1''' does not exist on {{SITENAME}}.",
+'filedelete-nofile'           => "'''$1''' does not exist.",
 'filedelete-nofile-old'       => "There is no archived version of '''$1''' with the specified attributes.",
 'filedelete-iscurrent'        => 'You are attempting to delete the most recent version of this file.
 Please revert to an older version first.',
@@ -1827,7 +1837,7 @@ Input: contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 # Unused templates
 'unusedtemplates'         => 'Unused templates',
 'unusedtemplates-summary' => '', # do not translate or duplicate this message to other languages
-'unusedtemplatestext'     => 'This page lists all pages in the template namespace which are not included in another page.
+'unusedtemplatestext'     => 'This page lists all pages in the {{ns:template}} namespace which are not included in another page.
 Remember to check for other links to the templates before deleting them.',
 'unusedtemplateswlh'      => 'other links',
 
@@ -1896,7 +1906,7 @@ Each row contains links to the first and second redirect, as well as the target 
 'specialpage-empty'               => 'There are no results for this report.',
 'lonelypages'                     => 'Orphaned pages',
 'lonelypages-summary'             => '', # do not translate or duplicate this message to other languages
-'lonelypagestext'                 => 'The following pages are not linked from other pages in {{SITENAME}}.',
+'lonelypagestext'                 => 'The following pages are not linked from or transcluded into other pages in {{SITENAME}}.',
 'uncategorizedpages'              => 'Uncategorized pages',
 'uncategorizedpages-summary'      => '', # do not translate or duplicate this message to other languages
 'uncategorizedcategories'         => 'Uncategorized categories',
@@ -1955,7 +1965,7 @@ Each row contains links to the first and second redirect, as well as the target 
 'move'                            => 'Move',
 'movethispage'                    => 'Move this page',
 'unusedimagestext'                => 'Please note that other web sites may link to a file with a direct URL, and so may still be listed here despite being in active use.',
-'unusedcategoriestext'            => 'The following category pages exist although no other page or category make use of them.',
+'unusedcategoriestext'            => 'The following category pages exist, although no other page or category makes use of them.',
 'notargettitle'                   => 'No target',
 'notargettext'                    => 'You have not specified a target page or user to perform this function on.',
 'nopagetitle'                     => 'No such target page',
@@ -1984,7 +1994,7 @@ Each row contains links to the first and second redirect, as well as the target 
 'log-search-legend'    => 'Search for logs',
 'log-search-submit'    => 'Go',
 'alllogstext'          => 'Combined display of all available logs of {{SITENAME}}.
-You can narrow down the view by selecting a log type, the user name, or the affected page.',
+You can narrow down the view by selecting a log type, the user name (case-sensitive), or the affected page (also case-sensitive).',
 'logempty'             => 'No matching items in log.',
 'log-title-wildcard'   => 'Search titles starting with this text',
 
@@ -2009,7 +2019,9 @@ It may contain one or more characters which cannot be used in titles.',
 # Special:Categories
 'categories'                    => 'Categories',
 'categories-summary'            => '', # do not translate or duplicate this message to other languages
-'categoriespagetext'            => 'The following categories contain pages or media.',
+'categoriespagetext'            => 'The following categories contain pages or media.
+[[Special:UnusedCategories|Unused categories]] are not shown here.
+Also see [[Special:WantedCategories|wanted categories]].',
 'categoriesfrom'                => 'Display categories starting at:',
 'special-categories-sort-count' => 'sort by count',
 'special-categories-sort-abc'   => 'sort alphabetically',
@@ -2034,8 +2046,8 @@ There may be [[{{MediaWiki:Listgrouprights-helppage}}|additional information]] a
 'mailnologintext' => 'You must be [[Special:UserLogin|logged in]] and have a valid e-mail address in your [[Special:Preferences|preferences]] to send e-mail to other users.',
 'emailuser'       => 'E-mail this user',
 'emailpage'       => 'E-mail user',
-'emailpagetext'   => 'If this user has entered a valid e-mail address in his or her user preferences, the form below will send a single message.
-The e-mail address you entered in [[Special:Preferences|your user preferences]] will appear as the "From" address of the e-mail, so the recipient will be able to reply.',
+'emailpagetext'   => 'You can use the form below to send an e-mail message to this user.
+The e-mail address you entered in [[Special:Preferences|your user preferences]] will appear as the "From" address of the e-mail, so the recipient will be able to reply directly to you.',
 'usermailererror' => 'Mail object returned error:',
 'defemailsubject' => '{{SITENAME}} e-mail',
 'noemailtitle'    => 'No e-mail address',
@@ -2234,7 +2246,7 @@ You can change this page's protection level, but it will not affect the cascadin
 'undeletepagetext'             => 'The following pages have been deleted but are still in the archive and can be restored.
 The archive may be periodically cleaned out.',
 'undelete-fieldset-title'      => 'Restore revisions',
-'undeleteextrahelp'            => "To restore the entire page, leave all checkboxes deselected and click '''''Restore'''''.
+'undeleteextrahelp'            => "To restore the page's entire history, leave all checkboxes deselected and click '''''Restore'''''.
 To perform a selective restoration, check the boxes corresponding to the revisions to be restored, and click '''''Restore'''''.
 Clicking '''''Reset''''' will clear the comment field and all checkboxes.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|revision|revisions}} archived',
@@ -2360,7 +2372,7 @@ See [[Special:IPBlockList|IP block list]] to review blocks.',
 'ipb-edit-dropdown'               => 'Edit block reasons',
 'ipb-unblock-addr'                => 'Unblock $1',
 'ipb-unblock'                     => 'Unblock a username or IP address',
-'ipb-blocklist-addr'              => 'View existing blocks for $1',
+'ipb-blocklist-addr'              => 'Existing blocks for $1',
 'ipb-blocklist'                   => 'View existing blocks',
 'unblockip'                       => 'Unblock user',
 'unblockiptext'                   => 'Use the form below to restore write access to a previously blocked IP address or username.',
@@ -2460,7 +2472,7 @@ please be sure you understand the consequences of this before proceeding.",
 
 In those cases, you will have to move or merge the page manually if desired.",
 'movearticle'             => 'Move page:',
-'movenotallowed'          => 'You do not have permission to move pages on {{SITENAME}}.',
+'movenotallowed'          => 'You do not have permission to move pages.',
 'newtitle'                => 'To new title:',
 'move-watch'              => 'Watch this page',
 'movepagebtn'             => 'Move page',
@@ -2700,7 +2712,7 @@ You can view its source.',
 'tooltip-diff'                    => 'Show which changes you made to the text.',
 'tooltip-compareselectedversions' => 'See the differences between the two selected versions of this page.',
 'tooltip-watch'                   => 'Add this page to your watchlist',
-'tooltip-recreate'                => 'Recreate the page despite it having been deleted',
+'tooltip-recreate'                => 'Recreate the page even though it has been deleted',
 'tooltip-upload'                  => 'Start upload',
 
 # Stylesheets
@@ -2796,8 +2808,8 @@ $1',
 'filedelete-archive-read-only'    => 'The archive directory "$1" is not writable by the webserver.',
 
 # Browsing diffs
-'previousdiff' => '← Previous diff',
-'nextdiff'     => 'Next diff →',
+'previousdiff' => '← Older edit',
+'nextdiff'     => 'Newer edit →',
 
 # Media information
 'mediawarning'         => "'''Warning''': This file may contain malicious code, by executing it your system may be compromised.<hr />",
@@ -3194,8 +3206,8 @@ if you recently created your account, you may wish to wait a few minutes for it 
 'confirmemail_sent'        => 'Confirmation e-mail sent.',
 'confirmemail_oncreate'    => 'A confirmation code was sent to your e-mail address.
 This code is not required to log in, but you will need to provide it before enabling any e-mail-based features in the wiki.',
-'confirmemail_sendfailed'  => 'Could not send confirmation mail.
-Check address for invalid characters.
+'confirmemail_sendfailed'  => '{{SITENAME}} could not send your confirmation mail.
+Please check your email address for invalid characters.
 
 Mailer returned: $1',
 'confirmemail_invalid'     => 'Invalid confirmation code.
@@ -3225,8 +3237,8 @@ This confirmation code will expire at $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki transcluding is disabled]',
-'scarytranscludefailed'   => '[Template fetch failed for $1; sorry]',
-'scarytranscludetoolong'  => '[URL is too long; sorry]',
+'scarytranscludefailed'   => '[Template fetch failed for $1]',
+'scarytranscludetoolong'  => '[URL is too long]',
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">Trackbacks for this page:<br />
@@ -3239,7 +3251,7 @@ $1
 'trackbackdeleteok' => 'The trackback was successfully deleted.',
 
 # Delete conflict
-'deletedwhileediting' => 'Warning: This page has been deleted after you started editing!',
+'deletedwhileediting' => "'''Warning''': This page was deleted after you started editing!",
 'confirmrecreate'     => "User [[User:$1|$1]] ([[User talk:$1|talk]]) deleted this page after you started editing with reason:
 : ''$2''
 Please confirm that you really want to recreate this page.",

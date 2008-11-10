@@ -8,6 +8,7 @@
  * @author Kwekubo
  * @author Moilleadóir
  * @author Spacebirdy
+ * @author Urhixidur
  * @author לערי ריינהארט
  */
 
@@ -474,7 +475,7 @@ Cumasaigh iad agus bain triail eile as, le do thoil.',
 'loginsuccesstitle'          => 'Logáladh isteach thú',
 'loginsuccess'               => "'''Tá tú logáilte isteach anois sa {{SITENAME}} mar \"<nowiki>\$1</nowiki>\".'''",
 'nosuchuser'                 => 'Níl aon úsáideoir ann leis an ainm "$1".
-Cinntigh do litriú, nó [[Special:Userlogin/signup|bain úsáid as an foirm thíos]] chun cuntas úsáideora nua a chruthú.',
+Cinntigh do litriú, nó [[Special:UserLogin/signup|bain úsáid as an foirm thíos]] chun cuntas úsáideora nua a chruthú.',
 'nosuchusershort'            => 'Níl aon úsáideoir ann leis an ainm "<nowiki>$1</nowiki>". Cinntigh do litriú.',
 'nouserspecified'            => 'Caithfidh ainm úsáideoir a shonrú.',
 'wrongpassword'              => "D'iontráil tú focal faire mícheart (nó ar iarraidh). Déan iarracht eile le do thoil.",
@@ -576,7 +577,7 @@ Dá dtarlódh an scéal seo duit, cuir ríomhphost chuig riarthóir le seoladh r
 Chun an leathanach a chruthú, tosaigh ag clóscríobh sa bhosca thíos
 (féach ar an [[{{MediaWiki:Helppage}}|leathanach cabhrach]] chun a thuilleadh eolais a fháil).
 Má tháinig tú anseo as dearmad, brúigh an cnaipe '''ar ais''' ar do bhrabhsálaí.",
-'anontalkpagetext'       => "---- ''Leathanach plé é seo a bhaineann le húsáideoir gan ainm nár chruthaigh cuntas fós, nó nach bhfuil ag úsáid an cuntas aige. Dá bhrí sin, caithfimid an seoladh IP a úsáid chun é/í a hionannú. Is féidir le níos mó ná úsáideoir amháin an seoladh IP céanna a úsáid. Má tá tú i d'úsáideoir gan ainm agus má tá sé do thuairim go rinneadh léiriuithe neamhfheidhmeacha fút, [[Special:Userlogin|cruthaigh cuntas]] nó [[Special:UserLogin|logáil isteach]] chun mearbhall le húsáideoirí eile gan ainmneacha a héalú amach anseo.''",
+'anontalkpagetext'       => "---- ''Leathanach plé é seo a bhaineann le húsáideoir gan ainm nár chruthaigh cuntas fós, nó nach bhfuil ag úsáid an cuntas aige. Dá bhrí sin, caithfimid an seoladh IP a úsáid chun é/í a hionannú. Is féidir le níos mó ná úsáideoir amháin an seoladh IP céanna a úsáid. Má tá tú i d'úsáideoir gan ainm agus má tá sé do thuairim go rinneadh léiriuithe neamhfheidhmeacha fút, [[Special:UserLogin|cruthaigh cuntas]] nó [[Special:UserLogin|logáil isteach]] chun mearbhall le húsáideoirí eile gan ainmneacha a héalú amach anseo.''",
 'noarticletext'          => 'Níl aon téacs ar an leathanach seo faoi láthair.  Is féidir [[Special:Search/{{PAGENAME}}|cuardach a dhéanamh le haghaidh an teidil seo]] i leathanaigh eile nó [{{fullurl:{{FULLPAGENAME}}|action=edit}} an leathanach seo a athrú].',
 'clearyourcache'         => "'''Tugtar faoi deara:''' Tar éis duit an t-inneachar a shábháil, caithfear gabháil thar thaisce an bhrabhsálaí chun na hathruithe a fheiceáil.
 '''Mozilla/Safari/Konqueror:''' cliceáil ar ''Athlódáil'', agus ''Iomlaoid'' á bhrú agat (nó brúigh ''Ctrl-Iomlaoid-R''), '''IE:''' brúigh ''Ctrl-F5'', '''Opera:''' brúigh ''F5''.",
@@ -616,7 +617,7 @@ Murar mian leat go gcuirfí do chuid scríbhinne in eagar go héadrócaireach, n
 Ina theannta sin, geallann tú gur scríobh tú féin an dréacht seo, nó gur chóipeáil tú é ó fhoinse san fhearann poiblí nó acmhainn eile saor ó chóipcheart (féach ar $1 le haghaidh tuilleadh eolais). 
 <strong>NÁ CUIR ISTEACH OBAIR LE CÓIPCHEART GAN CHEAD!</strong>',
 'longpagewarning'        => 'AIRE: Tá an leathanach seo $1 cilibheart i bhfad; ní féidir le roinnt brabhsálaithe
-leathanaigh a athrú má tá siad breis agus $1KiB, nó níos fada ná sin.
+leathanaigh a athrú má tá siad breis agus $1 KiB, nó níos fada ná sin.
 Más féidir, giotaigh an leathanach i gcodanna níos bige.',
 'readonlywarning'        => "AIRE: Glasáladh an bunachar sonraí, agus mar sin
 ní féidir leat do chuid athruithe a shábháil díreach anois. B'fhéidir gur mhaith leat an téacs a ghearr is
@@ -629,6 +630,10 @@ ghreamú i gcomhad téacs agus é a úsáid níos déanaí.",
 'template-semiprotected' => '(leath-ghlasáil)',
 'edittools'              => '<!-- Taispeánfar an téacs seo faoi foirmeacha eagarthóireachta agus uaslódála. -->',
 'permissionserrors'      => 'Cead rochtana earráidí',
+'recreate-deleted-warn'  => "'''Rabhadh: Tá tú ag athchruthú leathanach ina bhfuil scriostha roimhe.'''
+
+Bhreithneoidh tú cibé go bhfuil sé oiriúnach chun lean an leathanach seo a cur in eagar.<br />
+Tá an log scriosta ar fáil anseo mar áis:",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Ní féidir cuntas a chruthú',
@@ -700,7 +705,7 @@ taispeáintear sna toraidh ach na leathanaigh ina bhfuil go leoir na téarmaí c
 'preferences'              => 'Sainroghanna',
 'mypreferences'            => 'Mo shainroghanna',
 'prefsnologin'             => 'Níl tú logáilte isteach',
-'prefsnologintext'         => 'Ní mór duit <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} logáil isteach]</span> chun do chuid sainroghanna phearsanta a shocrú.',
+'prefsnologintext'         => 'Ní mór duit <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} logáil isteach]</span> chun do chuid sainroghanna phearsanta a shocrú.',
 'prefsreset'               => "D'athraíodh do chuid sainroghanna ar ais chuig an leagan bunúsach ón stóras.",
 'qbsettings'               => 'Sainroghanna an bosca uirlisí',
 'qbsettings-none'          => 'Faic',
@@ -801,8 +806,9 @@ den am an freastalaí (UTC).',
 'newsectionsummary'                 => '/* $1 */ mír nua',
 
 # Recent changes linked
-'recentchangeslinked'       => 'Athruithe gaolmhara',
-'recentchangeslinked-title' => 'Athruithe gaolmhar le "$1"',
+'recentchangeslinked'          => 'Athruithe gaolmhara',
+'recentchangeslinked-title'    => 'Athruithe gaolmhar le "$1"',
+'recentchangeslinked-noresult' => 'Níl aon athruaithe ar na leathanaigh naiscthe le linn an tréimhse tugtha.',
 
 # Upload
 'upload'            => 'Uaslódáil comhad',
@@ -856,6 +862,7 @@ uaslódáil é arís, le do thoil.',
 
 # Image description page
 'filehist'                  => 'Stair comhad',
+'filehist-help'             => 'Clic ar dáta/am chun an comhad a radharc mar a bhí sé ar an am.',
 'filehist-current'          => 'reatha',
 'filehist-datetime'         => 'Dáta/Am',
 'filehist-user'             => 'Úsáideoir',
@@ -946,7 +953,11 @@ ghnáth tugann sé sin an sprioc-alt "fíor".',
 'popularpages'            => 'Leathanaigh coitianta',
 'wantedcategories'        => 'Catagóirí agus iarraidh ag gabháil leis',
 'wantedpages'             => 'Leathanaigh de dhíth',
+'mostlinked'              => 'Na leathanaigh naiscthe is mó',
+'mostlinkedcategories'    => 'Na chatagóirí naiscthe is mó',
+'mostlinkedtemplates'     => 'Na teimpléid naiscthe is mó',
 'mostcategories'          => 'Leathanaigh leis na chatagóir is mó',
+'mostimages'              => 'Na comhaid naiscthe is mó',
 'mostrevisions'           => 'Leathanaigh leis na leasaithe is mó',
 'prefixindex'             => 'Innéacs réimír',
 'shortpages'              => 'Leathanaigh gearra',

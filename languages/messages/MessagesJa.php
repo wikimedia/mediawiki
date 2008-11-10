@@ -10,11 +10,14 @@
  * @author Emk
  * @author Fievarsty
  * @author Hatukanezumi
+ * @author Hosiryuhosi
  * @author Iwai.masaharu
  * @author JtFuruhata
  * @author Kahusi
  * @author Kkkdc
+ * @author Koba-chan
  * @author Marine-Blue
+ * @author Mizusumashi
  * @author Muttley
  * @author Mzm5zbC3
  * @author Suisui
@@ -185,7 +188,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings/ja 設定リスト]
 * [http://www.mediawiki.org/wiki/Manual:FAQ/ja MediaWiki FAQ]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki リリース情報メーリングリスト]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki リリース情報メーリングリスト]',
 
 'about'          => '解説',
 'article'        => '本文',
@@ -315,7 +318,7 @@ $messages = array(
 'restorelink'             => '削除された $1 編集',
 'feedlinks'               => 'フィード:',
 'feed-invalid'            => 'フィード形式の指定が間違っています。',
-'feed-unavailable'        => '{{SITENAME}} は、フィードの配信に対応していません。',
+'feed-unavailable'        => 'フィードの配信に対応していません。',
 'site-rss-feed'           => '$1 をRSSフィード',
 'site-atom-feed'          => '$1 をAtomフィード',
 'page-rss-feed'           => '"$1" をRSSフィード',
@@ -469,7 +472,7 @@ $2',
 'noname'                     => '利用者名を正しく指定していません。',
 'loginsuccesstitle'          => 'ログイン成功',
 'loginsuccess'               => "'''{{SITENAME}} に \"\$1\" としてログインしました。'''",
-'nosuchuser'                 => '"$1"という利用者は見当たりません。綴りが正しいことを再度確認するか、[[Special:Userlogin/signup|アカウントを作成してください]]。',
+'nosuchuser'                 => '"$1"という利用者は見当たりません。綴りが正しいことを再度確認するか、[[Special:UserLogin/signup|アカウントを作成してください]]。',
 'nosuchusershort'            => '"<nowiki>$1</nowiki>" という利用者は見当たりません。綴りが正しいことを再度確認してください。',
 'nouserspecified'            => '利用者名を指定してください。',
 'wrongpassword'              => 'パスワードが間違っています。再度入力してください。',
@@ -515,7 +518,7 @@ $2',
 'resetpass_submit'        => '再設定してログイン',
 'resetpass_success'       => 'あなたのパスワードは変更されました。ログインしています...',
 'resetpass_bad_temporary' => '無効な臨時パスワードです。パスワードは既に再設定されているか、再びパスワード通知メールが送信されています。',
-'resetpass_forbidden'     => 'このウィキでは、パスワードの変更は許可されていません。',
+'resetpass_forbidden'     => 'このウィキでのパスワードの変更は許可されていません。',
 'resetpass_missing'       => 'データがセットされていません。',
 
 # Edit page toolbar
@@ -654,10 +657,10 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'edittools'                        => '<!-- ここに書いたテキストは編集及びアップロードのフォームの下に表示されます。 -->',
 'nocreatetitle'                    => 'ページを作成できません',
 'nocreatetext'                     => '{{SITENAME}} ではページの新規作成を制限しています。元のページに戻って既存のページを編集するか、[[Special:UserLogin|ログインまたはアカウントを作成]]してください。',
-'nocreate-loggedin'                => '{{SITENAME}}で新しいページを作成する権限がありません。',
+'nocreate-loggedin'                => 'あなたは、{{SITENAME}}で新しいページを作成する権限がありません。',
 'permissionserrors'                => '認証エラー',
 'permissionserrorstext'            => 'あなたにはこのページの編集権限がありません。理由は以下の通りです:',
-'permissionserrorstext-withaction' => '以下に示された理由により $2 を行うことができません:',
+'permissionserrorstext-withaction' => '以下に示された理由により$2を行うことができません:',
 'recreate-deleted-warn'            => "'''警告:あなたは以前に削除されたページを再作成しようとしています。'''
 
 このページの編集が適切であるかどうか確認してください。参考として以下にこのページの削除記録を表示しています:",
@@ -726,11 +729,11 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'revisiondelete'              => '版の削除と復帰',
 'revdelete-nooldid-title'     => '対象版がありません',
 'revdelete-nooldid-text'      => '操作の完了に必要な版が指定されていません。',
-'revdelete-selected'          => "'''$1'''の、以下の選択された版に対する操作:",
-'logdelete-selected'          => "'''$1'''の選択されたログに対する操作:",
-'revdelete-text'              => '版の削除ではページの履歴にその版は表示されます。しかしその版に含まれるテキストにはアクセスできなくなります。
+'revdelete-selected'          => "''''''$1'''の、以下の選択された版に対する操作:'''",
+'logdelete-selected'          => "''''''$1'''の選択されたログに対する操作:'''",
+'revdelete-text'              => "'''版の削除ではページの履歴にその版は表示されます。しかしその版に含まれるテキストにはアクセスできなくなります。'''
 
-サーバー管理者にこれ以上の制限をかけられない限り、他の{{int:group-sysop}}は隠れた版を読んだり、元に戻したりできます。',
+サーバー管理者にこれ以上の制限をかけられない限り、他の{{int:group-sysop}}は隠れた版を読んだり、元に戻したりできます。",
 'revdelete-legend'            => '版の削除の適用',
 'revdelete-hide-text'         => '版のテキストを隠す',
 'revdelete-hide-name'         => '操作および対象を隠す',
@@ -845,7 +848,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'mypreferences'            => 'オプション',
 'prefs-edits'              => '編集回数:',
 'prefsnologin'             => 'ログインしていません',
-'prefsnologintext'         => 'オプションを変更するためには<span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} ログイン]</span>している必要があります。',
+'prefsnologintext'         => 'オプションを変更するためには<span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} ログイン]</span>している必要があります。',
 'prefsreset'               => 'オプションは初期化されました。',
 'qbsettings'               => 'クイックバー設定',
 'qbsettings-none'          => 'なし',
@@ -1103,7 +1106,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'uploadedimage'               => '"$1" をアップロードしました。',
 'overwroteimage'              => '"[[$1]]"の新しい版をアップロードしました',
 'uploaddisabled'              => '申し訳ありませんが、アップロードは現在使用できません。',
-'uploaddisabledtext'          => '{{SITENAME}}ではファイルのアップロードが禁止されています。',
+'uploaddisabledtext'          => 'ファイルのアップロードは禁止されています。',
 'uploadscripted'              => 'このファイルはウェブブラウザが誤って解釈してしまうおそれのあるHTMLまたはスクリプトコードを含んでいます。',
 'uploadcorrupt'               => '指定したファイルは壊れているか拡張子が正しくありません。ファイルを確認の上再度アップロードをしてください。',
 'uploadvirus'                 => 'このファイルにはウイルスが含まれています!! &nbsp;詳細: $1',
@@ -1199,7 +1202,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'filedelete-submit'           => '削除する',
 'filedelete-success'          => "'''$1''' は削除されました。",
 'filedelete-success-old'      => "'''[[Media:$1|$1]]''' の $2 $3 版は削除されています。",
-'filedelete-nofile'           => "'''$1''' は{{SITENAME}}上に存在しません。",
+'filedelete-nofile'           => "'''$1''' は存在しません。",
 'filedelete-nofile-old'       => "指定された属性を持つ'''$1'''の古い版は存在しません。",
 'filedelete-iscurrent'        => 'このファイルの最新版を削除しようとしています。直前の版に差し戻してください。',
 'filedelete-otherreason'      => 'その他/理由の付記:',
@@ -1223,7 +1226,8 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 
 # Unused templates
 'unusedtemplates'     => '使われていないテンプレート',
-'unusedtemplatestext' => 'このページでは {{ns:template}} 名前空間にあって他のページから使用されていないものを一覧にしています。削除する前にリンク元を確認してください。',
+'unusedtemplatestext' => 'このページでは{{ns:template}}名前空間にあって他のページに読み込まれていないページを一覧にしています。
+削除する前にリンク元で他のリンクがないか確認してください。',
 'unusedtemplateswlh'  => 'リンク元',
 
 # Random page
@@ -1279,7 +1283,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'nviews'                  => '$1 回表示',
 'specialpage-empty'       => '合致するものがありません。',
 'lonelypages'             => '孤立しているページ',
-'lonelypagestext'         => '以下のページは、どこからもリンクされていない孤立したページです。',
+'lonelypagestext'         => '以下のページは、{{SITENAME}}の他のページからリンクされておらず、また読み込まれてもいないページです。',
 'uncategorizedpages'      => 'カテゴリ未導入のページ',
 'uncategorizedcategories' => 'カテゴリ未導入のカテゴリ',
 'uncategorizedimages'     => 'カテゴリ未分類のファイル',
@@ -1383,8 +1387,8 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'mailnologintext' => '他の利用者宛てにメールを送信するためには、[[Special:UserLogin|ログイン]]し、あなたのメールアドレスを[[Special:Preferences|オプション]]に設定する必要があります。',
 'emailuser'       => 'この利用者にメールを送信',
 'emailpage'       => 'メール送信ページ',
-'emailpagetext'   => 'メールを送る先の利用者が有効なメールアドレスを{{int:preferences}}で登録していれば、下のフォームを通じてメールを送ることができます。
-あなたが [[Special:Preferences|{{int:preferences}}]]で登録したご自分のメールアドレスが送るメールのFrom:の欄に自動的に組み込まれ、受け取った相手が直接あなたに返事を出せるようになっています。',
+'emailpagetext'   => '下のフォームを通じて、この利用者にメールを送ることができます。
+あなたが[[Special:Preferences|{{int:preferences}}]]で登録したご自分のメールアドレスが、送信されるメールのFromアドレスに自動的に組み込まれ、受け取った相手が直接あなたに返事を出せるようになっています。',
 'usermailererror' => 'メール送信時に以下のエラーが発生しました:',
 'defemailsubject' => '{{SITENAME}} 電子メール',
 'noemailtitle'    => '送り先のメールアドレスがありません。',
@@ -1687,7 +1691,7 @@ $NEWPAGE
 'ipb-edit-dropdown'               => 'ブロック理由を編集する',
 'ipb-unblock-addr'                => '$1 のブロックを解除',
 'ipb-unblock'                     => '利用者またはIPアドレスのブロックを解除する',
-'ipb-blocklist-addr'              => '$1 の現在有効なブロックを表示',
+'ipb-blocklist-addr'              => '$1 に対する現在有効なブロック',
 'ipb-blocklist'                   => '現在有効なブロックを表示',
 'unblockip'                       => '投稿ブロックを解除する',
 'unblockiptext'                   => '以下のフォームで利用者またはIPアドレスの投稿ブロックを解除できます。',
@@ -1778,7 +1782,7 @@ $NEWPAGE
 
 これらの場合、ノートページを移動する場合には、別に作業する必要があります。',
 'movearticle'             => '移動するページ',
-'movenotallowed'          => '{{SITENAME}}でページを移動する権限がありません。',
+'movenotallowed'          => 'あなたにはページを移動する権限がありません。',
 'newtitle'                => '新しいページ名',
 'move-watch'              => '移動するページをウォッチ',
 'movepagebtn'             => 'ページを移動',
@@ -1845,7 +1849,7 @@ $NEWPAGE
 'thumbnail_error'          => 'サムネイルの作成中にエラーが発生しました: $1',
 'djvu_page_error'          => '指定ページ数はDjVuページ範囲を越えています',
 'djvu_no_xml'              => 'DjVuファイルのXMLデータを取得できません',
-'thumbnail_invalid_params' => 'サムネイルの指定パラメータが不正です',
+'thumbnail_invalid_params' => 'サムネイルの指定パラメータが適切でないか、画像ファイルの画素数が1,250万ピクセル以上です。',
 'thumbnail_dest_directory' => '出力ディレクトリを作成できません',
 
 # Special:Import
@@ -1952,7 +1956,7 @@ $NEWPAGE
 
 # Scripts
 'common.js'   => '/* ここに書いた JavaScript は全てのページ上で実行されます */',
-'monobook.js' => '/* こちらは廃止されました; [[MediaWiki:Common.js]]をお使いください */',
+'monobook.js' => '/* ここに書かれた JavaScript は MonoBook スキンを使っている全利用者に適用されます */',
 
 # Metadata
 'nodublincore'      => 'このサーバーでは Dublin Core RDF メタデータが許可されていません。',

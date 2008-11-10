@@ -7,9 +7,11 @@
  * @author Garas
  * @author Hugo.arg
  * @author Matasg
+ * @author Meno25
  * @author Pdxx
  * @author Siggis
  * @author Tomasdd
+ * @author Urhixidur
  * @author Vpovilaitis
  * @author לערי ריינהארט
  */
@@ -189,7 +191,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Konfigūracijos nustatymų sąrašas]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki DUK]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki pranešimai paštu apie naujas versijas]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki pranešimai paštu apie naujas versijas]',
 
 'about'          => 'Apie',
 'article'        => 'Turinys',
@@ -480,7 +482,7 @@ Jei jūs jį įvesite, jis bus naudojamas pažymėti jūsų darbą.',
 'noname'                     => 'Jūs nesate nurodęs teisingo naudotojo vardo.',
 'loginsuccesstitle'          => 'Sėkmingai prisijungėte',
 'loginsuccess'               => "'''Dabar jūs prisijungęs prie {{SITENAME}} kaip „$1“.'''",
-'nosuchuser'                 => 'Nėra jokio naudotojo turinčio vardą „$1“. Patikrinkite rašybą, arba [[Special:Userlogin/signup|sukurkite naują paskyrą]].',
+'nosuchuser'                 => 'Nėra jokio naudotojo turinčio vardą „$1“. Patikrinkite rašybą, arba [[Special:UserLogin/signup|sukurkite naują paskyrą]].',
 'nosuchusershort'            => 'Nėra jokio naudotojo, pavadinto „<nowiki>$1</nowiki>“. Patikrinkite rašybą.',
 'nouserspecified'            => 'Jums reikia nurodyti naudotojo vardą.',
 'wrongpassword'              => 'Įvestas neteisingas slaptažodis. Pamėginkite dar kartą.',
@@ -666,7 +668,7 @@ Taip pat jūs pasižadate, kad tai jūsų pačių rašytas tekstas arba kopijuot
 iš viešų ar panašių nemokamų šaltinių (detaliau - $1).
 <strong>NEKOPIJUOKITE AUTORINĖMIS TEISĖMIS APSAUGOTŲ DARBŲ BE LEIDIMO!</strong>',
 'longpagewarning'                  => '<strong>DĖMESIO: Šis puslapis yra $1 kilobaitų ilgio; kai kurios
-naršyklės gali turėti problemų redaguojant puslapius beveik ar virš 32 KB.
+naršyklės gali turėti problemų redaguojant puslapius beveik ar virš 32 kB.
 Prašome pamėginti puslapį padalinti į keletą smulkesnių dalių.</strong>',
 'longpageerror'                    => '<strong>KLAIDA: Tekstas, kurį pateikėte, yra $1 kilobaitų ilgio,
 kuris yra didesnis nei daugiausiai leistini $2 kilobaitai. Jis nebus išsaugotas.</strong>',
@@ -768,11 +770,11 @@ Kaip šios svetainės administratorius, jūs galite jį pamatyti;
 'revisiondelete'              => 'Trinti/atkurti versijas',
 'revdelete-nooldid-title'     => 'Neleistina paskirties versija',
 'revdelete-nooldid-text'      => 'Jūs nenurodėte versijos (-ų), kurioms įvykdyti šią funkciją, nurodyta versija neegzistuoja arba jūs bandote paslėpti esamą versiją.',
-'revdelete-selected'          => '{{PLURAL:$2|Pasirinkta [[:$1]] versija|Pasirinktos [[:$1]] versijos}}:',
-'logdelete-selected'          => '{{PLURAL:$1|Pasirinktas istorijos įvykis|Pasirinkti istorijos įvykiai}}:',
-'revdelete-text'              => 'Ištrintos versijos bei įvykiai vistiek dar bus rodomi puslapio istorijoje ir specialiųjų veiksmų istorijoje, bet jų turinio dalys nebus viešai prieinamos.
+'revdelete-selected'          => "'''{{PLURAL:$2|Pasirinkta [[:$1]] versija|Pasirinktos [[:$1]] versijos}}:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Pasirinktas istorijos įvykis|Pasirinkti istorijos įvykiai}}:'''",
+'revdelete-text'              => "'''Ištrintos versijos bei įvykiai vistiek dar bus rodomi puslapio istorijoje ir specialiųjų veiksmų istorijoje, bet jų turinio dalys nebus viešai prieinamos.'''
 
-Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį ir galės jį atkurti vėl per tą pačią sąsają, nebent yra nustatyti papildomi apribojimai.',
+Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį ir galės jį atkurti vėl per tą pačią sąsają, nebent yra nustatyti papildomi apribojimai.",
 'revdelete-legend'            => 'Nustatyti matomumo apribojimus:',
 'revdelete-hide-text'         => 'Slėpti versijos tekstą',
 'revdelete-hide-name'         => 'Slėpti veiksmą ir paskirtį',
@@ -886,7 +888,7 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'mypreferences'            => 'Mano nustatymai',
 'prefs-edits'              => 'Keitimų skaičius:',
 'prefsnologin'             => 'Neprisijungęs',
-'prefsnologintext'         => 'Jums reikia būti <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} prisijungusiam]</span>, kad galėtumėte keisti savo nustatymus.',
+'prefsnologintext'         => 'Jums reikia būti <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} prisijungusiam]</span>, kad galėtumėte keisti savo nustatymus.',
 'prefsreset'               => 'Nustatymai buvo atstatyti iš saugyklos.',
 'qbsettings'               => 'Greitasis pasirinkimas',
 'qbsettings-none'          => 'Nerodyti',
@@ -1884,7 +1886,7 @@ Pastaruoju atveju, jūs taip pat galite naudoti nuorodą, pvz. [[{{ns:special}}:
 'exportcuronly'     => 'Eksportuoti tik dabartinę versiją, neįtraukiant istorijos',
 'exportnohistory'   => "----
 '''Pastaba:''' Pilnos puslapių istorijos eksportavimas naudojantis šia forma yra išjungtas dėl spartos.",
-'export-submit'     => 'Ekportuoti',
+'export-submit'     => 'Eksportuoti',
 'export-addcattext' => 'Pridėti puslapius iš kategorijos:',
 'export-addcat'     => 'Pridėti',
 'export-download'   => 'Saugoti kaip failą',
@@ -2409,7 +2411,7 @@ Patvirtinimo kodas jau nusiųstas jums; jei neseniai sukūrėte savo paskyrą, j
 'confirmemail_sent'        => 'Patvirtinimo laiškas išsiųstas.',
 'confirmemail_oncreate'    => 'Patvirtinimo kodas buvo išsiųstas jūsų el. pašto adresu.
 Šis kodas nėra būtinas, kad prisijungtumėte, bet jums reikės jį duoti prieš įjungiant el. pašto paslaugas projekte.',
-'confirmemail_sendfailed'  => '{{SITENAME}) neišsiuntė patvirtinamojo laiško. Patikrinkite, ar adrese nėra klaidingų simbolių.
+'confirmemail_sendfailed'  => '{{SITENAME}} neišsiuntė patvirtinamojo laiško. Patikrinkite, ar adrese nėra klaidingų simbolių.
 
 Pašto tarnyba atsakė: $1',
 'confirmemail_invalid'     => 'Neteisingas patvirtinimo kodas. Kodo galiojimas gali būti jau pasibaigęs.',

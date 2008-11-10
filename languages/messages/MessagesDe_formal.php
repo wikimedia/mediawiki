@@ -10,6 +10,7 @@
  * @author Pill
  * @author Raimond Spekking (Raymond) <raimond.spekking@gmail.com> since January 2007
  * @author Tim Bartel (avatar) <wikipedia@computerkultur.org> formal addressing
+ * @author Urhixidur
  */
 
 $fallback = 'de';
@@ -23,10 +24,9 @@ $messages = array(
 'mainpagedocfooter' => 'Hilfe zur Benutzung und Konfiguration der Wiki-Software finden Sie im [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch].
 
 == Starthilfen ==
-
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Liste der Konfigurationsvariablen]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki-FAQ]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailingliste neuer MediaWiki-Versionen]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailingliste neuer MediaWiki-Versionen]',
 
 'badaccess-group0' => 'Sie haben nicht die erforderliche Berechtigung für diese Aktion.',
 
@@ -69,7 +69,7 @@ Mit anderen Benutzer können Sie auch über die Benutzerdiskussionsseiten Kontak
 'noname'                     => 'Sie müssen einen gültigen Benutzernamen angeben.',
 'loginsuccess'               => 'Sie sind jetzt als „$1“ bei {{SITENAME}} angemeldet.',
 'nosuchuser'                 => 'Der Benutzername „$1“ existiert nicht.
-Überprüfen Sie die Schreibweise oder [[Special:Userlogin/signup|melden Sie sich als neuer Benutzer an]].',
+Überprüfen Sie die Schreibweise oder [[Special:UserLogin/signup|melden Sie sich als neuer Benutzer an]].',
 'nosuchusershort'            => 'Der Benutzername „<nowiki>$1</nowiki>“ existiert nicht. Bitte überprüfen Sie die Schreibweise.',
 'nouserspecified'            => 'Bitte geben Sie einen Benutzernamen an.',
 'wrongpassword'              => 'Das Passwort ist falsch (oder fehlt). Bitte versuchen Sie es erneut.',
@@ -189,7 +189,7 @@ Reichen Sie keine Texte ein, falls Sie nicht wollen, dass diese ohne Einschränk
 
 Sie bestätigen hiermit auch, dass Sie diese Texte selbst geschrieben haben oder diese von einer gemeinfreien Quelle kopiert haben
 (siehe $1 für weitere Details). <strong>ÜBERTRAGEN SIE OHNE GENEHMIGUNG KEINE URHEBERRECHTLICH GESCHÜTZTEN INHALTE!</strong>',
-'longpagewarning'                  => '<strong>WARNUNG: Diese Seite ist $1 kB groß; einige Browser könnten Probleme haben, Seiten zu bearbeiten, die größer als 32 KB sind.
+'longpagewarning'                  => '<strong>WARNUNG: Diese Seite ist $1 kB groß; einige Browser könnten Probleme haben, Seiten zu bearbeiten, die größer als 32 kB sind.
 Überlegen Sie bitte, ob eine Aufteilung der Seite in kleinere Abschnitte möglich ist.</strong>',
 'longpageerror'                    => '<strong>FEHLER: Den Text den Sie versucht haben zu speichern ist $1 KB groß. Das ist größer als das erlaubte Maximum von $2 KB – Speicherung nicht möglich.</strong>',
 'readonlywarning'                  => '<strong>WARNUNG: Die Datenbank wurde während der Seitenbearbeitung für Wartungsarbeiten gesperrt, so dass Sie die Seite im Moment nicht
@@ -197,7 +197,8 @@ speichern können. Sichern Sie den Text und versuchen Sie die Änderungen späte
 'nocreatetext'                     => 'Auf {{SITENAME}} wurde das Erstellen neuer Seiten eingeschränkt. Sie können bestehende Seiten ändern oder sich [[Special:UserLogin|anmelden]].',
 'nocreate-loggedin'                => 'Sie haben keine Berechtigung, neue Seiten zu erstellen.',
 'permissionserrorstext'            => 'Sie sind nicht berechtigt, die Aktion auszuführen. {{PLURAL:$1|Grund|Gründe}}:',
-'permissionserrorstext-withaction' => 'Sie sind nicht berechtigt, die Aktion „$2“ auszuführen, {{PLURAL:$1|Grund|Gründe}}:',
+'permissionserrorstext-withaction' => 'Sie sind nicht berechtigt, $2.
+{{PLURAL:$1|Grund|Gründe}}:',
 'recreate-deleted-warn'            => "'''Achtung: Sie erstellen eine Seite, die bereits früher gelöscht wurde.'''
 
 Bitte prüfen Sie sorgfältig, ob die erneute Seitenerstellung den Richtlinien entspricht.
@@ -229,7 +230,7 @@ Wenn Sie sich mit dem Thema auskennen, können Sie selbst die [[:$1|die Seite ve
 'searchdisabled'        => 'Die {{SITENAME}} Suche wurde deaktiviert. Sie können unterdessen mit Google suchen. Bitte bedenken Sie, dass der Suchindex für {{SITENAME}} veraltet sein kann.',
 
 # Preferences page
-'prefsnologintext' => 'Sie müssen <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} angemeldet]</span> sein, um Ihre Einstellungen ändern zu können.',
+'prefsnologintext' => 'Sie müssen <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} angemeldet]</span> sein, um Ihre Einstellungen ändern zu können.',
 'savedprefs'       => 'Ihre Einstellungen wurden gespeichert.',
 'timezonetext'     => 'Geben Sie die Anzahl der Stunden ein, die zwischen Ihrer Zeitzone und UTC liegen.',
 
@@ -322,7 +323,8 @@ Wenn das Problem weiter besteht, informieren Sie einen [[Special:ListUsers/sysop
 'filedelete-iscurrent' => 'Sie versuchen die aktuelle Version dieser Datei zu löschen. Bitte setzen Sie diese vorher auf eine ältere Version zurück.',
 
 # Unused templates
-'unusedtemplatestext' => 'Diese Seite listet alle Vorlagen auf, die nicht in anderen Seiten eingebunden sind. Überprüfen Sie andere Links zu den Vorlagen, bevor Sie diese löschen.',
+'unusedtemplatestext' => 'Diese Seite listet alle Seiten im {{ns:template}}-Namensraum auf, die nicht in anderen Seiten eingebunden sind.
+Überprüfen Sie andere Links zu den Vorlagen, bevor Sie diese löschen.',
 
 # Miscellaneous special pages
 'unusedimagestext' => 'Bitte beachten Sie, dass andere Webseiten diese Datei mit einer direkten URL verlinken können. Diese wird nicht als Verwendung erkannt, so dass die Datei hier aufgeführt wird.',
@@ -330,7 +332,7 @@ Wenn das Problem weiter besteht, informieren Sie einen [[Special:ListUsers/sysop
 
 # E-mail user
 'mailnologintext' => 'Sie müssen [[Special:UserLogin|angemeldet sein]] und eine bestätigte E-Mail-Adresse in Ihren [[Special:Preferences|Einstellungen]] eingetragen haben, um anderen Benutzern E-Mails schicken zu können.',
-'emailpagetext'   => 'Wenn dieser Benutzer eine gültige E-Mail-Adresse in seinen Benutzereinstellungen eingetragen hat, können Sie ihm mit dem untenstehenden Formular eine E-Mail senden.
+'emailpagetext'   => 'Sie könnent dem Benutzer mit dem unten stehenden Formular eine E-Mail senden.
 Als Absender wird die E-Mail-Adresse aus ihren [[Special:Preferences|Einstellungen]] eingetragen, damit der Benutzer Ihnen antworten kann.',
 'emailccsubject'  => 'Kopie Ihrer Nachricht an $1: $2',
 'emailsenttext'   => 'Ihre E-Mail wurde verschickt.',
@@ -498,8 +500,8 @@ Dieser Bestätigungscode ist gültig bis $4.',
 
 # Delete conflict
 'deletedwhileediting' => '<span class="error">Achtung: Diese Seite wurde gelöscht, nachdem Sie angefangen haben, sie zu bearbeiten!
-Sehen Sie im [{{fullurl:Special:Log|type=delete&page=}}{{FULLPAGENAMEE}} Lösch-Logbuch] nach,
-warum die Seite gelöscht wurde. Wenn Sie die Seite speichern, wird sie neu angelegt.</span>',
+Im [{{fullurl:Special:Log|type=delete&page=}}{{FULLPAGENAMEE}} Lösch-Logbuch] finden Sie den Grund für die Löschung.
+Wenn Sie die Seite speichern, wird sie neu angelegt.</span>',
 'confirmrecreate'     => "Benutzer [[User:$1|$1]] ([[User talk:$1|Diskussion]]) hat diese Seite gelöscht, nachdem Sie angefangen haben, sie zu bearbeiten. Die Begründung lautete:
 : ''$2''
 Bitte bestätigen Sie, dass Sie diese Seite wirklich neu erstellen möchten.",

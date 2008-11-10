@@ -342,7 +342,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista dels paramètres de configuracion]
 * [http://www.mediawiki.org/wiki/Manual:FAQ/fr FAQ MediaWiki]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de discussions de las parucions de MediaWiki]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de discussions de las parucions de MediaWiki]",
 
 'about'          => 'A prepaus',
 'article'        => 'Article',
@@ -630,13 +630,13 @@ Tanben podètz causir de permetre a d’autres de vos contactar amb l'ajuda de v
 'loginsuccesstitle'          => 'Identificacion capitada.',
 'loginsuccess'               => 'Sètz actualament connectat(ada) sus {{SITENAME}} en tant que « $1 ».',
 'nosuchuser'                 => "L'utilizaire « $1 » existís pas.
-Verificatz qu'avètz plan ortografiat lo nom, o [[Special:Userlogin/signup|creatz-vos un compte novèl]].",
+Verificatz qu'avètz plan ortografiat lo nom, o [[Special:UserLogin/signup|creatz-vos un compte novèl]].",
 'nosuchusershort'            => 'I a pas de contributor amb lo nom « <nowiki>$1</nowiki> ». Verificatz l’ortografia.',
 'nouserspecified'            => "Vos cal especificar vòstre nom d'utilizaire.",
 'wrongpassword'              => 'Lo senhal es incorrècte. Ensajatz tornarmai.',
 'wrongpasswordempty'         => 'Lo senhal picat èra void. Se vos plai, ensajatz tornarmai.',
 'passwordtooshort'           => 'Vòstre senhal es tròp cort.
-Deu conténer almens $1 caractèr{{PLURAL:$1||s}} e èsser diferent de vòtre nom d’utilizaire.',
+Deu conténer almens $1 caractèr{{PLURAL:$1||s}} e èsser diferent de vòstre nom d’utilizaire.',
 'mailmypassword'             => 'Mandar un senhal novèl per corrièr electronic',
 'passwordremindertitle'      => 'Senhal temporari novèl sus {{SITENAME}}',
 'passwordremindertext'       => "Qualqu'un (probablament vos, amb l'adreça IP $1) a demandat un senhal novèl per {{SITENAME}} ($4).
@@ -763,7 +763,7 @@ Precisatz aquestas indicacions dins totas las requèstas que faretz.',
 'accmailtitle'                     => 'Senhal mandat.',
 'accmailtext'                      => 'Lo senhal de « $1 » es estat mandat a $2.',
 'newarticle'                       => '(Novèl)',
-'newarticletext'                   => "Avètz seguit un ligam vèrs una pagina qu’existís pas encara o qu'es estada [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} escafada].
+'newarticletext'                   => "Avètz seguit un ligam cap a una pagina qu’existís pas encara o qu'es estada [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} escafada].
 Per crear aquesta pagina, picatz vòstre tèxt dins la bóstia çaijós (podètz consultar [[{{MediaWiki:Helppage}}|la pagina d’ajuda]] per mai d’entresenhas).
 Se sètz arribat(ada) aicí per error, clicatz sul boton '''retorn''' de vòstre navigador.",
 'anontalkpagetext'                 => "---- ''Sètz sus la pagina de discussion d'un utilizaire anonim qu'a pas encara creat un compte o que n'utiliza pas.
@@ -903,9 +903,9 @@ I Pòt aver de detalhs dins lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAME
 'revisiondelete'              => 'Suprimir/Restablir de versions',
 'revdelete-nooldid-title'     => 'Cibla per la revision invalida',
 'revdelete-nooldid-text'      => "Avètz pas precisat la o las revision(s) cibla(s) per utilizar aquesta foncion, la revision cibla existís pas, o alara la revision cibla es la qu'es en cors.",
-'revdelete-selected'          => '{{PLURAL:$2|Version seleccionada|Versions seleccionadas}} de [[:$1]] :',
-'logdelete-selected'          => "{{PLURAL:$1|Eveniment d'istoric seleccionat|Eveniments d'istoric seleccionats}} :",
-'revdelete-text'              => "Las versions suprimidas apareisseràn encara dins l’istoric de l’article, mas lor contengut textual serà inaccessible al public.
+'revdelete-selected'          => "'''{{PLURAL:$2|Version seleccionada|Versions seleccionadas}} de [[:$1]] :'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Eveniment d'istoric seleccionat|Eveniments d'istoric seleccionats}} :'''",
+'revdelete-text'              => "'''Las versions suprimidas apareisseràn encara dins l’istoric de l’article, mas lor contengut textual serà inaccessible al public.'''
 
 D’autres administrators sus {{SITENAME}} poiràn totjorn accedir al contengut amagat e lo restablir tornarmai a travèrs d'aquesta meteissa interfàcia, a mens qu’una restriccion suplementària siá mesa en plaça pels operators del sit.",
 'revdelete-legend'            => 'Metre en plaça de restriccions de version :',
@@ -942,7 +942,7 @@ D’autres administrators sus {{SITENAME}} poiràn totjorn accedir al contengut 
 
 # History merging
 'mergehistory'                     => "Fusion dels istorics d'una pagina",
-'mergehistory-header'              => "Aquesta pagina vos permet de fusionar las revisions de l'istoric d'una pagina d'origina vèrs una novèla.
+'mergehistory-header'              => "Aquesta pagina vos permet de fusionar las revisions de l'istoric d'una pagina d'origina cap a una novèla.
 Asseguratz-vos qu'aqueste cambiament pòsca conservar la continuitat de l'istoric.",
 'mergehistory-box'                 => 'Fusionar las versions de doas paginas :',
 'mergehistory-from'                => "Pagina d'origina :",
@@ -993,7 +993,7 @@ Asseguratz-vos qu'aqueste cambiament pòsca conservar la continuitat de l'istori
 'viewprevnext'              => 'Veire ($1) ($2) ($3).',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 mot|$2 mots}})',
 'search-result-score'       => 'Pertinéncia : $1%',
-'search-redirect'           => '(redireccion vèrs $1)',
+'search-redirect'           => '(redireccion cap a $1)',
 'search-section'            => '(seccion $1)',
 'search-suggest'            => 'Avètz volgut dire : $1',
 'search-interwiki-caption'  => 'Projèctes fraires',
@@ -1026,7 +1026,7 @@ Atencion, lor indexacion de contengut {{SITENAME}} benlèu es pas a jorn.',
 'mypreferences'            => 'Mas preferéncias',
 'prefs-edits'              => 'Nombre d’edicions :',
 'prefsnologin'             => 'Vos sètz pas identificat(ada)',
-'prefsnologintext'         => 'Vos cal èsser <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} connectat(ada)]</span> per modificar vòstras preferéncias d’utilizaire.',
+'prefsnologintext'         => 'Vos cal èsser <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} connectat(ada)]</span> per modificar vòstras preferéncias d’utilizaire.',
 'prefsreset'               => 'Las preferéncias son estadas restablidas a partir de la version enregistrada.',
 'qbsettings'               => "Barra d'espleches",
 'qbsettings-none'          => 'Cap',
@@ -1067,7 +1067,7 @@ Atencion, lor indexacion de contengut {{SITENAME}} benlèu es pas a jorn.',
 'resultsperpage'           => 'Nombre de responsas per pagina :',
 'contextlines'             => 'Nombre de linhas per responsa :',
 'contextchars'             => 'Nombre de caractèrs de contèxt per linha :',
-'stub-threshold'           => 'Limita superiora pels <a href="#" class="stub">ligams vèrs los esbòses</a> (octets) :',
+'stub-threshold'           => 'Limita superiora pels <a href="#" class="stub">ligams cap als esbòsses</a> (octets) :',
 'recentchangesdays'        => "Nombre de jorns d'afichar dins los darrièrs cambiaments :",
 'recentchangescount'       => "Nombre de modificacions d'afichar dins los darrièrs cambiaments :",
 'savedprefs'               => 'Las preferéncias son estadas salvadas.',
@@ -1221,7 +1221,7 @@ Atencion, lor indexacion de contengut {{SITENAME}} benlèu es pas a jorn.',
 'recentchangeslinked-noresult' => 'Cap de cambiament sus las paginas ligadas pendent lo periòde causit.',
 'recentchangeslinked-summary'  => "Aquesta pagina especiala mòstra los darrièrs cambiaments sus las paginas que son ligadas. Las paginas de [[Special:Watchlist|vòstra tièra de seguit]] son '''en gras'''.",
 'recentchangeslinked-page'     => 'Nom de la pagina :',
-'recentchangeslinked-to'       => 'Afichar los cambiaments vèrs las paginas ligadas al luòc de la pagina donada',
+'recentchangeslinked-to'       => 'Afichar los cambiaments cap a las paginas ligadas al luòc de la pagina donada',
 
 # Upload
 'upload'                      => 'Importar un fichièr',
@@ -1365,8 +1365,8 @@ Un clic en tèsta de colomna càmbia l’òrdre d’afichatge.',
 'filehist-comment'               => 'Comentari',
 'imagelinks'                     => "Paginas que contenon l'imatge",
 'linkstoimage'                   => '{{PLURAL:$1|La pagina çaijós compòrta|Las paginas çaijós compòrtan}} aqueste imatge :',
-'nolinkstoimage'                 => 'Cap de pagina compòrta pas de ligam vèrs aqueste imatge.',
-'morelinkstoimage'               => 'Vejatz [[Special:WhatLinksHere/$1|mai de ligams]] vèrs aqueste imatge.',
+'nolinkstoimage'                 => 'Cap de pagina compòrta pas de ligam cap a aqueste imatge.',
+'morelinkstoimage'               => 'Vejatz [[Special:WhatLinksHere/$1|mai de ligams]] cap a aqueste imatge.',
 'redirectstofile'                => '{{PLURAL:$1|Lo fichièr seguent redirigís|Los fichièrs seguents redirigisson}} cap a aqueste fichièr :',
 'duplicatesoffile'               => "{{PLURAL:$1|Lo fichièr seguent es un duplicata|Los fichièrs seguents son de duplicatas}} d'aqueste :",
 'sharedupload'                   => 'Aqueste fichièr es partejat e pòt èsser utilizat per d’autres projèctes.',
@@ -1425,7 +1425,8 @@ Un clic en tèsta de colomna càmbia l’òrdre d’afichatge.',
 
 # Unused templates
 'unusedtemplates'     => 'Modèls inutilizats',
-'unusedtemplatestext' => "Aquesta pagina lista totas las paginas de l’espaci de noms « Modèl » que son pas inclusas dins cap d'autra pagina. Doblidetz pas de verificar se i a pas d’autre ligam cap als modèls abans de los suprimir.",
+'unusedtemplatestext' => "Aquesta pagina lista totas las paginas de l’espaci de noms {{ns:template}} que son pas enclusas dins cap d'autra pagina.
+Doblidetz pas de verificar se i a pas d’autre ligam cap als modèls abans de los suprimir.",
 'unusedtemplateswlh'  => 'autres ligams',
 
 # Random page
@@ -1462,7 +1463,7 @@ Deurián puslèu puntar cap a una pagina apropriada.<br />
 Una pagina es tractada coma una pagina d’omonimia s'utiliza un modèl qu'es ligat a partir de [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'            => 'Redireccions doblas',
-'doubleredirectstext'        => 'Cada casa conten de ligams vèrs la primièra e la segonda redireccion, e mai la primièra linha de tèxt de la segonda pagina, costumièrament, aquò provesís la « vertadièra » pagina cibla, vèrs laquala la primièra redireccion deuriá redirigir.',
+'doubleredirectstext'        => 'Cada casa conten de ligams cap a la primièra e la segonda redireccion, e mai la primièra linha de tèxt de la segonda pagina, costumièrament, aquò provesís la « vertadièra » pagina cibla, cap a laquina la primièra redireccion deuriá redirigir.',
 'double-redirect-fixed-move' => '[[$1]] es estat renomenat, aquò es ara una redireccion cap a [[$2]]',
 'double-redirect-fixer'      => 'Corrector de redireccion',
 
@@ -1487,7 +1488,7 @@ Una pagina es tractada coma una pagina d’omonimia s'utiliza un modèl qu'es li
 'nviews'                  => '$1 {{PLURAL:$1|consultacion|consultacions}}',
 'specialpage-empty'       => 'Aquesta pagina es voida.',
 'lonelypages'             => 'Paginas orfanèlas',
-'lonelypagestext'         => 'Las paginas seguentas son pas ligadas a partir d’autras paginas de {{SITENAME}}.',
+'lonelypagestext'         => 'Las paginas seguentas son pas ligadas o enclusas a partir d’autras paginas de {{SITENAME}}.',
 'uncategorizedpages'      => 'Paginas sens categorias',
 'uncategorizedcategories' => 'Categorias sens categorias',
 'uncategorizedimages'     => 'Imatges sens categorias',
@@ -1522,7 +1523,7 @@ Una pagina es tractada coma una pagina d’omonimia s'utiliza un modèl qu'es li
 'ancientpages'            => 'Articles mai ancians',
 'move'                    => 'Tornar nomenar',
 'movethispage'            => 'Tornar nomenar la pagina',
-'unusedimagestext'        => "Doblidetz pas que d'autres sits pòdon conténer un ligam dirèct vèrs aqueste imatge, e qu'aqueste pòt èsser plaçat dins aquesta lista alara qu'es en realitat utilizada.",
+'unusedimagestext'        => "Doblidetz pas que d'autres sits pòdon conténer un ligam dirèct cap a aqueste imatge, e qu'aqueste pòt èsser plaçat dins aquesta lista alara qu'es en realitat utilizada.",
 'unusedcategoriestext'    => "Las categorias seguentas existisson mas cap d'article o de categoria los utilizan pas.",
 'notargettitle'           => 'Pas de cibla',
 'notargettext'            => 'Indicatz una pagina cibla o un utilizaire cibla.',
@@ -1597,7 +1598,7 @@ e aver indicat una adreça electronica valida dins vòstras [[Special:Preference
 per poder mandar un messatge a un autre utilizaire.',
 'emailuser'       => 'Mandar un messatge a aqueste utilizaire',
 'emailpage'       => 'Mandar un corrièr electronic a l’utilizaire',
-'emailpagetext'   => "S'aqueste utilizaire a indicat una adreça electronica valida dins sas preferéncias, lo formulari çaijós li mandarà un messatge.
+'emailpagetext'   => "Podètz utilizar lo formulari çaijós per mandar un corrièr electronic a aqueste utilizaire.
 L'adreça electronica qu'avètz indicada dins [[Special:Preferences|vòstras preferéncias]] apareisserà dins lo camp « Expeditor » de vòstre messatge. E mai, lo destinatari vos poirà respondre dirèctament.",
 'usermailererror' => 'Error dins lo subjècte del corrièr electronic :',
 'defemailsubject' => 'Corrièr electronic mandat dempuèi {{SITENAME}}',
@@ -1732,7 +1733,7 @@ D'efectuar amb prudéncia.",
 
 La darrièra modificacion es estada efectuada per [[User:$3|$3]] ([[User talk:$3|Discussion]]).",
 'editcomment'                 => 'Lo resumit de la modificacion èra: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Anullacion de las modificacions de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]]) vèrs la darrièra version de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => 'Anullacion de las modificacions de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]]) cap a la darrièra version de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Anullacion de las modificacions de $1 ; retorn a la version de $2.',
 'sessionfailure'              => 'Vòstra sesilha de connexion sembla aver de problèmas ;
 aquesta accion es estada anullada en prevencion d’un piratatge de sesilha.
@@ -1760,7 +1761,7 @@ Clicatz sus « Precedent » e tornatz cargar la pagina d’ont venètz, puèi en
 'protect-level-sysop'         => 'Administrators unicament',
 'protect-summary-cascade'     => 'proteccion en cascada',
 'protect-expiring'            => 'expira lo $1',
-'protect-cascade'             => 'Proteccion en cascada - Protegís totas las paginas inclusas dins aquesta.',
+'protect-cascade'             => 'Proteccion en cascada - Protegís totas las paginas enclusas dins aquesta.',
 'protect-cantedit'            => "Podètz pas modificar los nivèls de proteccion d'aquesta pagina perque avètz pas la permission de l'editar.",
 'restriction-type'            => 'Permission :',
 'restriction-level'           => 'Nivèl de restriccion :',
@@ -1794,7 +1795,7 @@ En clicant sul boton '''''Reïnicializar''''', la bóstia de resumit e las casas
 'undeletehistory'              => "Se restablissètz la pagina, totas las revisions seràn plaçadas tornamai dins l'istoric.
 
 S'una pagina novèla amb lo meteis nom es estada creada dempuèi la supression, las revisions restablidas apareisseràn dins l'istoric anterior e la version correnta serà pas automaticament remplaçada.",
-'undeleterevdel'               => 'Lo restabliment serà pas efectuat se, fin finala, la version mai recenta de la pagina es parcialament suprimida. Dins aqueste cas, vos cal deseleccionatz las versions mai recentas (en naut). Las versions dels fichièrs a lasqualas avètz pas accès seràn pas restablidas.',
+'undeleterevdel'               => 'Lo restabliment serà pas efectuat se, fin finala, la version mai recenta de la pagina es parcialament suprimida. Dins aqueste cas, vos cal deseleccionatz las versions mai recentas (en naut). Las versions dels fichièrs a lasquinas avètz pas accès seràn pas restablidas.',
 'undeletehistorynoadmin'       => "Aqueste article es estat suprimit. Lo motiu de la supression es indicat dins lo resumit çaijós, amb los detalhs dels utilizaires que l’an modificat abans sa supression. Lo contengut d'aquestas versions es pas accessible qu’als administrators.",
 'undelete-revision'            => 'Version suprimida de $1, (revision del $2) per $3 :',
 'undeleterevision-missing'     => 'Version invalida o mancanta. Benlèu avètz un ligam marrit, o la version es estada restablida o suprimida de l’archiu.',
@@ -1852,8 +1853,8 @@ $1",
 'whatlinkshere-page'       => 'Pagina :',
 'whatlinkshere-barrow'     => '>',
 'linklistsub'              => '(Lista de ligams)',
-'linkshere'                => "Las paginas çaijós contenon un ligam vèrs '''[[:$1]]''':",
-'nolinkshere'              => "Cap de pagina conten pas de ligam vèrs '''[[:$1]]'''.",
+'linkshere'                => "Las paginas çaijós contenon un ligam cap a '''[[:$1]]''':",
+'nolinkshere'              => "Cap de pagina conten pas de ligam cap a '''[[:$1]]'''.",
 'nolinkshere-ns'           => "Cap de pagina conten pas de ligam cap a '''[[:$1]]''' dins l’espaci de nom causit.",
 'isredirect'               => 'pagina de redireccion',
 'istemplate'               => 'inclusion',
@@ -1905,7 +1906,7 @@ Podètz consultar la [[Special:IPBlockList|lista dels comptes e de las adreças 
 'ipb-edit-dropdown'               => 'Modificar los motius de blocatge per defaut',
 'ipb-unblock-addr'                => 'Desblocar $1',
 'ipb-unblock'                     => "Desblocar un compte d'utilizaire o una adreça IP",
-'ipb-blocklist-addr'              => 'Vejatz los blocatges existents per $1',
+'ipb-blocklist-addr'              => 'Blocatges existents per $1',
 'ipb-blocklist'                   => 'Vejatz los blocatges existents',
 'unblockip'                       => 'Desblocar un utilizaire o una adreça IP',
 'unblockiptext'                   => "Utilizatz lo formulari çaijós per restablir l'accès en escritura
@@ -1945,7 +1946,7 @@ La rason balhada per $1 es : « $2 ».',
 'ipb_expiry_temp'                 => 'Las plajas dels utilizaires amagats deurián èsser permanentas.',
 'ipb_already_blocked'             => '« $1 » ja es blocat',
 'ipb_cant_unblock'                => 'Error : Lo blocatge d’ID $1 existís pas. Es possible qu’un desblocatge ja siá estat efectuat.',
-'ipb_blocked_as_range'            => "Error : L'adreça IP $1 es pas estada blocada dirèctament e doncas pòt pas èsser deblocada. Çaquelà, es estada blocada per la plaja $2 laquala pòt èsser deblocada.",
+'ipb_blocked_as_range'            => "Error : L'adreça IP $1 es pas estada blocada dirèctament e doncas pòt pas èsser deblocada. Çaquelà, es estada blocada per la plaja $2 laquina pòt èsser deblocada.",
 'ip_range_invalid'                => 'Plaja IP incorrècta.',
 'blockme'                         => 'Blocatz-me',
 'proxyblocker'                    => 'Blocaire de mandatari (proxy)',
@@ -1982,11 +1983,11 @@ Doblidetz pas de la desvarrolhar quand auretz acabat vòstra operacion de manten
 'move-page-legend'        => 'Tornar nomenar una pagina',
 'movepagetext'            => "Utilizatz lo formulari çaijós per tornar nomenar una pagina, en desplaçant tot son istoric cap al nom novèl. Lo títol ancian vendrà una pagina de redireccion cap al títol novèl. Los ligams cap al títol de la pagina anciana seràn pas cambiats ; verificatz qu'aqueste desplaçament a pas creat de [[Special:DoubleRedirects|redireccion dobla]] o de [[Special:BrokenRedirects|redireccion copada]].
 
-Avètz la responsabilitat de vos assegurar que los ligams contunhen de puntar cap a lor destinacion supausada. Una pagina serà pas desplaçada se la pagina del títol novèl existís ja, a mens qu'aquesta darrièra siá voida o en redireccion, e qu’aja pas d’istoric. Aquò vòl dire que podètz tornar nomenar una pagina vèrs sa posicion d’origina s'avètz fach una error, mas que podètz pas escafar una pagina qu'existís ja amb aqueste procediment.
+Avètz la responsabilitat de vos assegurar que los ligams contunhen de puntar cap a lor destinacion supausada. Una pagina serà pas desplaçada se la pagina del títol novèl existís ja, a mens qu'aquesta darrièra siá voida o en redireccion, e qu’aja pas d’istoric. Aquò vòl dire que podètz tornar nomenar una pagina cap a sa posicion d’origina s'avètz fach una error, mas que podètz pas escafar una pagina qu'existís ja amb aqueste procediment.
 
 '''ATENCION !''' Aquò pòt provocar un cambiament radical e imprevist per una pagina consultada frequentament. Asseguratz-vos de n'aver comprés las consequéncias abans de contunhar.",
 'movepagetalktext'        => "La pagina de discussion associada, se presenta, serà automaticament desplaçada amb '''en defòra de se:'''
-*Desplaçatz una pagina vèrs un autre espaci,
+*Desplaçatz una pagina cap a un autre espaci,
 *Una pagina de discussion ja existís amb lo nom novèl, o
 *Avètz deseleccionat lo boton çaijós.
 
@@ -2000,7 +2001,7 @@ Dins aqueste cas, deuretz desplaçar o fusionar la pagina manualament se o volè
 'movepage-moved'          => 'La pagina « $1 » es estada renomenada en « $2 ».', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => "Existís ja un article que pòrta aqueste títol, o lo títol qu'avètz causit es pas valid.
 Causissètz-ne un autre.",
-'cantmove-titleprotected' => 'Avètz pas la possibilitat de desplaçar una pagina vèrs aqueste emplaçament perque lo títol es estat protegit a la creacion.',
+'cantmove-titleprotected' => 'Avètz pas la possibilitat de desplaçar una pagina cap a aqueste emplaçament perque lo títol es estat protegit a la creacion.',
 'talkexists'              => "La pagina ela-meteissa es estada desplaçada amb succès, mas
 la pagina de discussion a pas pogut èsser desplaçada perque ja n'existissiá una
 jol nom novèl. Se vos plai, fusionatz-las manualament.",
@@ -2026,7 +2027,7 @@ Lo volètz suprimir per permetre lo cambiament de nom ?',
 'delete_and_move_reason'  => 'Pagina suprimida per permetre un cambiament de nom',
 'selfmove'                => 'Los títols d’origina e de destinacion son los meteisses : impossible de tornar nomenar una pagina sus ela-meteissa.',
 'immobile_namespace'      => 'Lo títol de destinacion es d’un tipe especial ; es impossible de tornar nomenar de paginas cap a aqueste espaci de noms.',
-'imagenocrossnamespace'   => 'Pòt pas desplaçar un imatge vèrs un espaci de nomenatge que siá pas un imatge.',
+'imagenocrossnamespace'   => 'Pòt pas desplaçar un imatge cap a un espaci de nomenatge que siá pas un imatge.',
 'imagetypemismatch'       => "L'extension novèla d'aqueste fichièr reconeis pas aqueste format.",
 'imageinvalidfilename'    => 'Lo nom del fichièr cibla es incorrècte',
 'fix-double-redirects'    => 'Metre a jorn las redireccions que puntant cap al títol ancian',
@@ -2108,7 +2109,7 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => "Ma pagina d'utilizaire",
-'tooltip-pt-anonuserpage'         => "La pagina d'utilizare de l’IP amb laquala contribuissètz",
+'tooltip-pt-anonuserpage'         => "La pagina d'utilizare de l’IP amb laquina contribuissètz",
 'tooltip-pt-mytalk'               => 'Ma pagina de discussion',
 'tooltip-pt-anontalk'             => 'La pagina de discussion per aquesta adreça IP',
 'tooltip-pt-preferences'          => 'Mas preferéncias',
@@ -2129,7 +2130,7 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 'tooltip-ca-watch'                => 'Apondètz aquesta pagina a vòstra lista de seguit',
 'tooltip-ca-unwatch'              => 'Levatz aquesta pagina de vòstra lista de seguit',
 'tooltip-search'                  => 'Cercar dins {{SITENAME}}',
-'tooltip-search-go'               => 'Anar vèrs una pagina portant exactament aqueste nom se existís.',
+'tooltip-search-go'               => 'Anar cap a una pagina que pòrta exactament aqueste nom se existís.',
 'tooltip-search-fulltext'         => 'Recercar las paginas comportant aqueste tèxt.',
 'tooltip-p-logo'                  => 'Pagina principala',
 'tooltip-n-mainpage'              => 'Visitatz la pagina principala',
@@ -2147,7 +2148,7 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 'tooltip-t-upload'                => 'Mandar un imatge o fichièr mèdia sul servidor',
 'tooltip-t-specialpages'          => 'Lista de totas las paginas especialas',
 'tooltip-t-print'                 => "Version imprimibla d'aquesta pagina",
-'tooltip-t-permalink'             => 'Ligam permanent vèrs aquesta version de la pagina',
+'tooltip-t-permalink'             => 'Ligam permanent cap a aquesta version de la pagina',
 'tooltip-ca-nstab-main'           => 'Veire l’article',
 'tooltip-ca-nstab-user'           => "Veire la pagina d'utilizaire",
 'tooltip-ca-nstab-media'          => 'Veire la pagina del mèdia',
@@ -2203,8 +2204,8 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 Aquò es probablament causat per un ligam sus lista negra que punta cap a un sit extèrn.",
 'spamprotectionmatch' => "La cadena de caractèrs « '''$1''' » a desenclavat lo detector de spam.",
 'spambot_username'    => 'Netejatge de spam de MediaWiki',
-'spam_reverting'      => 'Restabliment de la darrièra version que conten pas de ligam vèrs $1',
-'spam_blanking'       => 'Totas las versions que contenon de ligams vèrs $1 son blanquidas',
+'spam_reverting'      => 'Restabliment de la darrièra version que conten pas de ligam cap a $1',
+'spam_blanking'       => 'Totas las versions que contenon de ligams cap a $1 son blanquidas',
 
 # Info page
 'infosubtitle'   => 'Entresenhas per la pagina',
@@ -2319,7 +2320,7 @@ Variants for Chinese language
 'metadata-help'     => "Aqueste fichièr conten d'entresenhas suplementàrias probablament apondudas per l’aparelh de fòto numeric o l'escanèr que las a aquesas. Se lo fichièr es estat modificat dempuèi son estat original, d'unes detalhs pòdon reflectir pas entièrament l’imatge modificat.",
 'metadata-expand'   => 'Mostrar las entresenhas detalhadas',
 'metadata-collapse' => 'Amagar las entresenhas detalhadas',
-'metadata-fields'   => 'Los camps de metadonadas d’EXIF listats dins aqueste message seràn incluses dins la pagina de descripcion de l’imatge quand la taula de metadonadas serà reduccha. Los autres camps seràn amagats per defaut.
+'metadata-fields'   => 'Los camps de metadonadas d’EXIF listats dins aqueste message seràn encluses dins la pagina de descripcion de l’imatge quand la taula de metadonadas serà reduccha. Los autres camps seràn amagats per defaut.
 * make
 * model
 * datetimeoriginal
@@ -2725,7 +2726,7 @@ Ensajatz la previsualizacion normala.',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Una pagina es estada levada|$1 paginas son estadas levadas}} de vòstra lista de seguit :',
 'watchlistedit-raw-title'      => 'Modificacion de la lista de seguit (mòde brut)',
 'watchlistedit-raw-legend'     => 'Modificacion de la lista de seguit en mòde brut',
-'watchlistedit-raw-explain'    => 'La lista de las paginas de vòstra lista de seguit es mostrada çaijós, sens las paginas de discussion (automaticament inclusas) e destriadas per espaci de noms. Podètz modificar la lista : apondètz las paginas que volètz seguir (pauc impòrta ont), una pagina per linha, e levatz las paginas que volètz pas mai seguir. Quand avètz acabat, clicatz sul boton en bas per metre la lista a jorn. Tanben podètz utilizar [[Special:Watchlist/edit|l’editaire normal]].',
+'watchlistedit-raw-explain'    => 'La lista de las paginas de vòstra lista de seguit es mostrada çaijós, sens las paginas de discussion (enclusas automaticament) e destriadas per espaci de noms. Podètz modificar la lista : apondètz las paginas que volètz seguir (pauc impòrta ont), una pagina per linha, e levatz las paginas que volètz pas mai seguir. Quand avètz acabat, clicatz sul boton en bas per metre la lista a jorn. Tanben podètz utilizar [[Special:Watchlist/edit|l’editador normal]].',
 'watchlistedit-raw-titles'     => 'Títols :',
 'watchlistedit-raw-submit'     => 'Metre la lista a jorn',
 'watchlistedit-raw-done'       => 'Vòstra lista de seguit es estada mesa a jorn.',
