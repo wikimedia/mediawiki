@@ -1503,9 +1503,11 @@ Ovdje je dostupan [[Special:WhatLinksHere/$2|potpuni spisak]].',
 'imagepage-searchdupe'           => 'Pretraži datoteke dvojnike',
 
 # File reversion
-'filerevert'         => 'Vrati $1',
-'filerevert-legend'  => 'Vraćanje datoteke',
-'filerevert-comment' => 'Komentar:',
+'filerevert'                => 'Vrati $1',
+'filerevert-legend'         => 'Vraćanje datoteke',
+'filerevert-intro'          => "Vraćate datoteku '''[[Media:$1|$1]]''' na [$4 verziju od $3, $2].",
+'filerevert-comment'        => 'Komentar:',
+'filerevert-defaultcomment' => 'Vraćeno na verziju od $2, $1',
 
 # File deletion
 'filedelete'                  => 'Obriši $1',
@@ -1522,6 +1524,9 @@ Ovdje je dostupan [[Special:WhatLinksHere/$2|potpuni spisak]].',
 'mimesearch' => 'MIME pretraga',
 'mimetype'   => 'MIME tip:',
 'download'   => 'učitaj',
+
+# Unwatched pages
+'unwatchedpages' => 'Nepraćene stranice',
 
 # List redirects
 'listredirects' => 'Spisak preusmjerenja',
@@ -1623,6 +1628,7 @@ na kome bi se izvela ova funkcija.',
 # Book sources
 'booksources'               => 'Štampani izvori',
 'booksources-search-legend' => 'Traži književne izvore',
+'booksources-go'            => 'Idi',
 
 # Special:Log
 'specialloguserlabel'  => 'Korisnik:',
@@ -2174,6 +2180,7 @@ Molimo Vas da potvrdite da stvarno želite da ponovo napravite ovaj članak.",
 
 # Multipage image navigation
 'imgmultipageprev' => '← prethodna stranica',
+'imgmultigo'       => 'Idi!',
 
 # Table pager
 'table_pager_prev' => 'Prethodna stranica',
