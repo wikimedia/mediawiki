@@ -2806,8 +2806,7 @@ $1
 
 # Delete conflict
 'deletedwhileediting' => '<span class="error">Achtung: Diese Seite wurde gelöscht, nachdem du angefangen hast, sie zu bearbeiten!
-Siehe im [{{fullurl:Special:Log|type=delete&page=}}{{FULLPAGENAMEE}} Lösch-Logbuch] nach,
-warum die Seite gelöscht wurde. Wenn du die Seite speicherst, wird sie neu angelegt.</span>',
+Im [{{fullurl:Special:Log|type=delete&page=}}{{FULLPAGENAMEE}} Lösch-Logbuch] findest du den Grund für die Löschung. Wenn du die Seite speicherst, wird sie neu angelegt.</span>',
 'confirmrecreate'     => "Benutzer [[User:$1|$1]] ([[User talk:$1|Diskussion]]) hat diese Seite gelöscht, nachdem du angefangen hast, sie zu bearbeiten. Die Begründung lautete:
 :''$2''
 Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",

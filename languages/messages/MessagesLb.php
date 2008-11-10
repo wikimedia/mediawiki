@@ -1734,7 +1734,7 @@ een Aneren huet dëst entweder scho gemaach oder nei Ännerungen agedroen.
 
 Déi lescht Ännerung vun der Säit ass vum [[User:$3|$3]] ([[User talk:$3|Diskussioun]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => 'Ännerungskommentar: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'       => 'Ännerunge vum [[Special:Contributions/$2|Kontributioune]] ([[User talk:$2|Diskussioun]]) zréckgesat op déi lescht Versioun vum [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Ännerunge vum [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussioun]]) zréckgesat op déi lescht Versioun vum [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => "D'Ännerunge vum $1 goufen zréckgesat op déi lescht Versioun vum $2.",
 'sessionfailure'   => 'Et schéngt e Problem mat ärer Loginséance ze ginn;
 Dës Aktioun gouf aus Sécherheetsgrënn afgebrach, fir ze verhënneren datt är Séance eine piratéiert ka ginn.
@@ -1923,7 +1923,7 @@ $1',
 Kuckt d'[[Special:IPBlockList|IP Spär-Lëscht]] fir all Spären ze gesin.",
 'ipb-edit-dropdown'               => 'Spärgrënn änneren',
 'ipb-unblock-addr'                => 'Spär vum $1 ophiewen',
-'ipb-unblock'                     => 'Spär vun enger IP-Adress oder engem Benotzer annuléieren',
+'ipb-unblock'                     => 'Spär vun enger IP-Adress oder engem Benotzer ophiewen',
 'ipb-blocklist-addr'              => 'Aktuell Späre fir $1',
 'ipb-blocklist'                   => 'Kuckt aktuell Spären',
 'ipb-blocklist-contribs'          => 'Kontributioune fir $1',
@@ -1972,7 +1972,7 @@ Kuckt d'[[Special:IPBlockList|IP Spär-Lëscht]] fir all Spären ze gesin.",
 'ipb-needreblock'                 => "== Scho gespaart ==
 „$1“ ass scho gespaart. Wëllt dir d'Parametere vun der Spär änneren?",
 'ipb_cant_unblock'                => "Feeler: D'Nummer vun der Spär $1 gouf net fonnt. D'Spär gouf waarscheinlech schonn opgehuewen.",
-'ipb_blocked_as_range'            => "Feeler: D'IP-Adress $1 gouf net direkt gespaart an déi Spär kann dofir och net opghuee ginn.
+'ipb_blocked_as_range'            => "Feeler: D'IP-Adress $1 gouf net direkt gespaart an déi Spär kann dofir och net opghuewe ginn.
 Si ass awer als Deel vun der Rei $2 gespaart, an dës Spär kann opgehuewe ginn.",
 'ip_range_invalid'                => 'Ongëltegen IP Block.',
 'blockme'                         => 'Spär mech',
@@ -2283,7 +2283,7 @@ $1',
 'show-big-image-thumb' => '<small>Gréisst vun dem Thumbnail: $1 × $2 Pixel</small>',
 
 # Special:NewImages
-'newimages'             => 'Gallerie vun de neie Biller',
+'newimages'             => 'Gallerie vun den neie Biller',
 'imagelisttext'         => "Hei ass eng Lëscht vu(n) '''$1''' {{PLURAL:$1|Fichier|Fichieren}}, sortéiert $2.",
 'newimages-summary'     => 'Dës Spezialsäit weist eng Lëscht mat de Biller a Fichieren déi als läscht eropgeluede goufen.',
 'newimages-legend'      => 'Filter',

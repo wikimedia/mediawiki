@@ -312,7 +312,7 @@ $messages = array(
 'tog-diffonly'                => 'Visa inte sidinnehåll under diffar',
 'tog-showhiddencats'          => 'Visa dolda kategorier',
 'tog-noconvertlink'           => 'Stäng av konvertering av sidtitlar',
-'tog-norollbackdiff'          => 'Ta bort diff efter utförande av tillbakarullning',
+'tog-norollbackdiff'          => 'Visa inte diff efter tillbakarullning',
 
 'underline-always'  => 'Alltid',
 'underline-never'   => 'Aldrig',

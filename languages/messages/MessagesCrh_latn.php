@@ -1172,7 +1172,7 @@ Eger saifede, [[MediaWiki:Disambiguationspage]] saifesinde adı keçken şablon 
 
 # Special:AllPages
 'allpages'          => 'Bütün saifeler',
-'alphaindexline'    => '$1-den $2-ge',
+'alphaindexline'    => '$1 saifesinden $2 saifesinece',
 'nextpage'          => 'Soñraki saife ($1)',
 'prevpage'          => 'Evelki saife ($1)',
 'allpagesfrom'      => 'Cedvelge çekmege başlanılacaq arifler:',

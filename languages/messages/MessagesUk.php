@@ -265,6 +265,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Відправляти мені копії листів, які я надсилаю іншим користувачам',
 'tog-diffonly'                => 'Не показувати вміст сторінки під різницею версій',
 'tog-showhiddencats'          => 'Показувати приховані категорії',
+'tog-norollbackdiff'          => 'Не показувати різницю версій після виконання відкоту',
 
 'underline-always'  => 'Завжди',
 'underline-never'   => 'Ніколи',
@@ -790,7 +791,8 @@ $1",
 'usercsspreview'                   => "'''Пам'ятайте, що це лише попередній перегляд вашого css-файлу.'''
 '''Його ще не збережено!'''",
 'userjspreview'                    => "'''Пам'ятайте, що це тільки попередній перегляд вашого JavaScript-файлу і поки він ще не збережений!'''",
-'userinvalidcssjstitle'            => "'''Увага:''' теми оформлення «$1» не знайдено. Пам'ятайте, що користувацькі .css та .js сторінки повинні мати назву, що складається лише з малих букв, наприклад «{{ns:user}}:Хтось/monobook.css», а не «{{ns:user}}:Хтось/Monobook.css».",
+'userinvalidcssjstitle'            => "'''Увага:''' тема оформлення «$1» не знайдена.
+Пам'ятайте, що користувацькі .css та .js сторінки повинні мати назву, що складається лише з малих літер, наприклад «{{ns:user}}:Хтось/monobook.css», а не «{{ns:user}}:Хтось/Monobook.css».",
 'updated'                          => '(Оновлена)',
 'note'                             => '<strong>Зауваження:</strong>',
 'previewnote'                      => '<strong>Це лише попередній перегляд,
@@ -2923,6 +2925,7 @@ $1
 
 # Core parser functions
 'unknown_extension_tag' => 'Невідомий тег доповнення «$1»',
+'duplicate-defaultsort' => 'Увага. Ключ сортування «$2» перекриває попередній ключ сортування «$1».',
 
 # Special:Version
 'version'                          => 'Версія MediaWiki', # Not used as normal message but as header for the special page itself

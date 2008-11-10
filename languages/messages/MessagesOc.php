@@ -639,7 +639,7 @@ Verificatz qu'avètz plan ortografiat lo nom, o [[Special:UserLogin/signup|creat
 'wrongpassword'              => 'Lo senhal es incorrècte. Ensajatz tornarmai.',
 'wrongpasswordempty'         => 'Lo senhal picat èra void. Se vos plai, ensajatz tornarmai.',
 'passwordtooshort'           => 'Vòstre senhal es tròp cort.
-Deu conténer almens $1 caractèr{{PLURAL:$1||s}} e èsser diferent de vòtre nom d’utilizaire.',
+Deu conténer almens $1 caractèr{{PLURAL:$1||s}} e èsser diferent de vòstre nom d’utilizaire.',
 'mailmypassword'             => 'Mandar un senhal novèl per corrièr electronic',
 'passwordremindertitle'      => 'Senhal temporari novèl sus {{SITENAME}}',
 'passwordremindertext'       => "Qualqu'un (probablament vos, amb l'adreça IP $1) a demandat un senhal novèl per {{SITENAME}} ($4).

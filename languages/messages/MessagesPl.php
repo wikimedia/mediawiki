@@ -479,7 +479,7 @@ $messages = array(
 'site-atom-feed'          => 'Kanał Atom {{GRAMMAR:D.lp|$1}}',
 'page-rss-feed'           => 'Kanał RSS „$1”',
 'page-atom-feed'          => 'Kanał Atom „$1”',
-'red-link-title'          => '$1 (jeszcze nie utworzona)',
+'red-link-title'          => '$1 (jeszcze nie napisana)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Strona',
@@ -864,7 +864,7 @@ Możesz edytować istniejące strony bądź też [[Special:UserLogin|zalogować 
 'permissionserrors'                => 'Błędy uprawnień',
 'permissionserrorstext'            => 'Nie masz uprawnień do tego działania z {{PLURAL:$1|następującej przyczyny|następujących przyczyn}}:',
 'permissionserrorstext-withaction' => 'Nie masz uprawnień do $2, z {{PLURAL:$1|następującego powodu|następujących powodów}}:',
-'recreate-deleted-warn'            => "'''Uwaga! Zamierzasz utworzyć stroną, która została wcześniej usunięta.'''
+'recreate-deleted-warn'            => "'''Uwaga! Zamierzasz utworzyć stronę, która została wcześniej usunięta.'''
 
 Upewnij się, czy ponowne utworzenie tej strony jest uzasadnione.
 Poniżej znajduje się rejestr usunięć tej strony:",
@@ -1984,7 +1984,7 @@ Obecne ustawienia dla strony <strong>$1</strong> to:',
 # Restrictions (nouns)
 'restriction-edit'   => 'Edytowanie',
 'restriction-move'   => 'Przenoszenie',
-'restriction-create' => 'Utwórz',
+'restriction-create' => 'Utworzenie',
 'restriction-upload' => 'Prześlij',
 
 # Restriction levels

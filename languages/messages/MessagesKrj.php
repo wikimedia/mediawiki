@@ -151,18 +151,18 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Tunggəd sa {{SITENAME}}',
-'aboutpage'            => 'Proyekto:Tunggəd',
+'aboutpage'            => 'Project:Tunggəd',
 'bugreports'           => "Mga report kang ''bug''",
 'disclaimers'          => 'Mga Panginwala',
-'disclaimerpage'       => 'Proyekto:Panginwala nga Pangtanan',
+'disclaimerpage'       => 'Project:Panginwala nga Pangtanan',
 'edithelp'             => 'Panoytoy sa Pag-ilis',
-'edithelppage'         => 'Bulig:Pag-ilis',
+'edithelppage'         => 'Help:Pag-ilis',
 'faq'                  => 'FAQ',
-'faqpage'              => 'Proyekto:FAQ',
+'faqpage'              => 'Project:FAQ',
 'mainpage'             => 'Pono nga Pahina',
 'mainpage-description' => 'Pono nga Pahina',
 'privacy'              => 'Surundun sa Privacy',
-'privacypage'          => 'Proyekto:Surundun sa Privacy',
+'privacypage'          => 'Project:Surundun sa Privacy',
 
 'badaccess'        => 'Sayup sa lisensya',
 'badaccess-group0' => 'Indi kaw ginpasogtan nga himoon ang lihuk nga ginalaum mo.',

@@ -2854,6 +2854,8 @@ $1
 'imgmultigoto'     => 'Перайсьці на старонку $1',
 
 # Table pager
+'ascending_abbrev'         => 'узраст.',
+'descending_abbrev'        => 'зьмяньш.',
 'table_pager_next'         => 'Наступная старонка',
 'table_pager_prev'         => 'Папярэдняя старонка',
 'table_pager_first'        => 'Першая старонка',
@@ -2882,6 +2884,7 @@ $1
 Паспрабуйце ўжыць звычайны папярэдні прагляд.',
 
 # Watchlist editor
+'watchlistedit-noitems'       => 'Ваш сьпіс назіраньня пусты.',
 'watchlistedit-normal-title'  => 'Рэдагаваць сьпіс назіраньня',
 'watchlistedit-normal-legend' => 'Выдаленьне старонак са сьпісу назіраньня',
 'watchlistedit-normal-submit' => 'Выдаліць са сьпісу',

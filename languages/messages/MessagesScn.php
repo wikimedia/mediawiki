@@ -2041,6 +2041,12 @@ La pàggina di distinazzioni "[[:$1]]" asisti già. S\'addisìa cancillàrila pi
 'immobile-source-namespace' => 'Non pòi spustari li pàggini nto namespace "$1"',
 'immobile-target-namespace' => 'Nun pòi spustari li pàggini ntô namespace "$1"',
 'immobile-source-page'      => 'Sta pàggina nun pò èssiri spustata.',
+'immobile-target-page'      => 'Nun pòi spustari nti stu tìtulu.',
+'imagenocrossnamespace'     => 'Nun pòi spustari na mmàggini fora dû namespace Mmàggini.',
+'imagetypemismatch'         => 'La estensioni nova dû file cun currispunni â sò estensioni riali',
+'imageinvalidfilename'      => 'Lu nomu dû file di distinazzioni nun è validu',
+'fix-double-redirects'      => 'Aggiorna tutti li redirect chi puntanu ô titulu urigginali',
+'move-leave-redirect'       => 'Lassa darreri nu redirect',
 
 # Export
 'export'            => 'Esporta pàggini',
@@ -2103,6 +2109,7 @@ Nta st'ùrtimu casu si pò macari utilizzari un culligamentu, p'asempiu [[{{ns:s
 'import-noarticle'           => 'Nudda pàggina di mpurtari.',
 'import-nonewrevisions'      => 'Tutti li rivisioni già foru mpurtati apprima.',
 'xml-error-string'           => '$1 a riga $2, culonna $3 (byte $4): $5',
+'import-upload'              => 'Càrrica dati XML',
 
 # Import log
 'importlogpage'                    => 'Mpurtazzioni',
@@ -2172,6 +2179,8 @@ Nta st'ùrtimu casu si pò macari utilizzari un culligamentu, p'asempiu [[{{ns:s
 'tooltip-watch'                   => "Agghiunci sta pàggina â lista di l'ossirvati spiciali",
 'tooltip-recreate'                => 'Ricrea la pàggina puru siddu hà statu cancillata',
 'tooltip-upload'                  => 'Ncigna carricamentu',
+'tooltip-rollback'                => '"Rollback" annulla li canci di l\'ùrtinu cuntribbuturi â sta pâggina cu nu sulu clic.',
+'tooltip-undo'                    => '"Annulla" pirmetti di annullari sta mudìfica e grapi lu mòdulu di mudifica ntâ mudalità di antiprima. Pirmetti di nsiriri na mutivazziopni nti l\'uggettu dâ mudifica.',
 
 # Stylesheets
 'common.css'   => "/* Li stili CSS nziriti ccà s'àpplicanu a tutti li skin */",

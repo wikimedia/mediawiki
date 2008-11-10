@@ -439,6 +439,8 @@ Palun valige uus nimi.',
 'yourrealname'               => 'Teie tegelik nimi*',
 'yourlanguage'               => 'Keel:',
 'yournick'                   => 'Teie hüüdnimi (allakirjutamiseks)',
+'badsig'                     => 'Sobimatu allkiri.
+Palun kontrolli HTML koodi.',
 'email'                      => 'E-post',
 'prefs-help-realname'        => '* <strong>Tegelik nimi</strong> (pole kohustuslik): kui otsustate selle avaldada, kasutatakse seda Teie kaastöö seostamiseks Teiega.<br />',
 'loginerror'                 => 'Viga sisselogimisel',
@@ -596,6 +598,7 @@ Te kinnitate ka, et kirjutasite selle ise või võtsite selle kopeerimiskitsendu
 'template-protected'       => '(kaitstud)',
 'template-semiprotected'   => '(osaliselt kaitstud)',
 'hiddencategories'         => 'See lehekülg kuulub {{PLURAL:$1|1 peidetud kategooriasse|$1 peidetud kategooriasse}}:',
+'permissionserrorstext'    => 'Teil ei ole õigusi seda teha {{PLURAL:$1|põhjusel|järgmistel põhjustel}}:',
 'recreate-deleted-warn'    => "'''Hoiatus: Te loote uuesti lehte, mis on varem kustutatud.'''
 
 Kaaluge, kas lehe uuesti loomine on kohane.

@@ -63,7 +63,7 @@ $messages = array(
 'tog-hideminor'               => "[[Special:Preferences]], tab 'Recent changes'. Offers user to hide minor edits in recent changes or not.",
 'tog-extendwatchlist'         => "[[Special:Preferences]], tab 'Watchlist'. Offers user to show all applicable changes in watchlist (by default only the last change to a page on the watchlist is shown).",
 'tog-usenewrc'                => "[[Special:Preferences]], tab 'Recent changes'. Offers user to use alternative reprsentation of [[Special:RecentChanges]].",
-'tog-numberheadings'          => "[[Special:Preferences]], tab 'Misc'. Offers user to numbered headings on content pages.",
+'tog-numberheadings'          => "[[Special:Preferences]], tab 'Misc'. Offers numbered headings on content pages to user.",
 'tog-showtoolbar'             => "[[Special:Preferences]], tab 'Edit'. Offers user to show edit toolbar in page edit screen.
 
 This is the toolbar: [[Image:Toolbar.png]]",
@@ -103,6 +103,7 @@ This is the toolbar: [[Image:Toolbar.png]]",
 'tog-ccmeonemails'            => 'In user preferences',
 'tog-diffonly'                => 'Toggle option used in [[Special:Preferences]].',
 'tog-showhiddencats'          => 'Toggle option used in [[Special:Preferences]].',
+'tog-norollbackdiff'          => "Option in [[Special:Preferences]], 'Misc' tab. Only shown for users with the rollback right. By default a diff is shown below the return screen of a rollback. Checking this preference toggle will suppress that.",
 
 'underline-always'  => 'Used in [[Special:Preferences]] (under "Misc"). This option means "always underline links", there are also options "never" and "browser default".',
 'underline-never'   => 'Used in [[Special:Preferences]] (under "Misc"). This option means "never underline links", there are also options "always" and "browser default".
@@ -263,7 +264,9 @@ See also [[MediaWiki:Helppage/{{SUBPAGENAME}}|{{int:helppage}}]] and [[MediaWiki
 'talk'             => 'Used as display name for the tab to all talk pages. These pages accompany all content pages and can be used for discussing the content page. Example: [[Talk:Example]].
 
 {{Identical|Discussion}}',
-'views'            => 'Subtitle for the list of available views, for the current page. In "monobook" skin the list of views are shown as tabs, so this sub-title is not shown.  To check when and where this message is displayed switch to "simple" skin.',
+'views'            => 'Subtitle for the list of available views, for the current page. In "monobook" skin the list of views are shown as tabs, so this sub-title is not shown.  To check when and where this message is displayed switch to "simple" skin.
+
+\'\'\'Note:\'\'\' This is "views" as in "appearances"/"representations", \'\'\'not\'\'\' as in "visits"/"accesses".',
 'toolbox'          => 'The title of the toolbox below the search menu.',
 'otherlanguages'   => 'This message is shown under the toolbox. It is used if there are interwiki links added to the page, like <tt><nowiki>[[</nowiki>en:Interwiki article]]</tt>.',
 'redirectedfrom'   => 'The text displayed when a certain page is redirected to another page. Variable <tt>$1</tt> contains the name of the page user came from.',
