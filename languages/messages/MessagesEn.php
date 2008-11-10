@@ -1970,12 +1970,12 @@ Remember to check for other links to the templates before deleting them.',
 
 # Random page
 'randompage'         => 'Random page',
-'randompage-nopages' => 'There are no pages in this namespace.',
+'randompage-nopages' => 'There are no pages in the namespace "$1".',
 'randompage-url'     => 'Special:Random', # do not translate or duplicate this message to other languages
 
 # Random redirect
 'randomredirect'         => 'Random redirect',
-'randomredirect-nopages' => 'There are no redirects in this namespace.',
+'randomredirect-nopages' => 'There are no redirects in the namespace "$1".',
 
 # Statistics
 'statistics'                      => 'Statistics',
