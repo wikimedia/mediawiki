@@ -8,6 +8,7 @@
  * @author Jordi
  * @author Ooswesthoesbes
  * @author Stretsh
+ * @author Urhixidur
  */
 
 $fallback = 'nl';
@@ -125,7 +126,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Den seti]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Sani di ben aksi furu (FAQ)]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Boskopu grupu gi nyun meki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Boskopu grupu gi nyun meki]',
 
 'about'          => 'Abra',
 'article'        => 'Papira',
@@ -463,7 +464,7 @@ Efu yu no wani dati trawan e kenki noso panya san yu skrifi, no skrifi noti dyas
 Yu e pramisi unu dati na yu skrifi disi yusrefi, noso yu teki en puru fu wan fri, opo presi.<br />
 <strong>NO KEBROIKI SANI DI KIBRI BAKA SKRIFIMAN-LETI, SONDRO FU ABI PRIMISI FU DU SO!</strong>",
 'longpagewarning'        => '<strong>WARSKOW: A papira disi de $1 kilobyte bigi;
-Son browser abi problema fu kenki papira di bigi moro leki 32kb.
+Son browser abi problema fu kenki papira di bigi moro leki 32 kb.
 Kande yu kan prati a papira disi ini moro pikin pisi.</strong>',
 'templatesused'          => 'Template di ben kebroiki tapu a papira disi:',
 'templatesusedpreview'   => 'Template di ben kebroiki ini a Luku-na-fesi disi:',
@@ -729,7 +730,7 @@ Yu kan [[:\$1|meki a papira disi]].",
 'filedelete-submit'      => 'Trowe',
 'filedelete-success'     => "'''$1''' ben e trowe.",
 'filedelete-success-old' => '<span class="plainlinks">A si fu \'\'\'[[Media:$1|$1]]\'\'\' fu $3, $2 ben e trowen.</span>',
-'filedelete-nofile'      => "'''$1''' ben no da ini {{SITENAME}}.",
+'filedelete-nofile'      => "'''$1''' ben no da.",
 
 # MIME search
 'mimesearch' => 'Suku MIME-type',

@@ -282,7 +282,7 @@ $messages = array(
 'editingcomment'    => 'Edita $1 (komentáriu)',
 'yourtext'          => 'Ó-nia testu',
 'yourdiff'          => 'Diferensa sira',
-'nocreate-loggedin' => 'Ó la iha kuana kria pájina foun iha {{SITENAME}}.',
+'nocreate-loggedin' => 'Ó la bele kria pájina foun.',
 
 # Account creation failure
 'cantcreateaccounttitle' => "La bele registrar uza-na'in",
@@ -545,7 +545,7 @@ $messages = array(
 # Move page
 'movepage'                => 'Book pájina',
 'movearticle'             => 'Book pájina:',
-'movenotallowed'          => 'Ó la bele book pájina iha {{SITENAME}}.',
+'movenotallowed'          => 'Ó la bele book pájina sira.',
 'newtitle'                => 'Naran foun:',
 'move-watch'              => "Hateke pájina ne'e",
 'movepagebtn'             => 'Book pájina',
@@ -599,8 +599,8 @@ $messages = array(
 'listingcontinuesabbrev' => 'kont.',
 
 # Browsing diffs
-'previousdiff' => '←Diferensa molok',
-'nextdiff'     => 'Diferensa oinmai→',
+'previousdiff' => '←Versaun molok',
+'nextdiff'     => 'Versaun oinmai→',
 
 # Special:Newimages
 'showhidebots' => '($1 bot sira)',

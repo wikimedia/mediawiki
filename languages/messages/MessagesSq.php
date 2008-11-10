@@ -6,7 +6,9 @@
  *
  * @author Cradel
  * @author Dori
+ * @author Eagleal
  * @author Ergon
+ * @author Urhixidur
  * @author לערי ריינהארט
  */
 
@@ -110,7 +112,7 @@ $messages = array(
 'thursday'      => 'E enjte',
 'friday'        => 'E premte',
 'saturday'      => 'E shtunë',
-'sun'           => 'Diel',
+'sun'           => 'Dje',
 'mon'           => 'Hën',
 'tue'           => 'Mar',
 'wed'           => 'Mër',
@@ -619,7 +621,7 @@ Ju duhet të përputhni ndryshimet tuaja me tekstin ekzistues.
 Po na premtoni që ç'ka po jepni këtu e keni kontributin tuaj ose e keni kopjuar nga domeni publik apo nga burime të tjera të lira sipas ligjeve përkatëse (shikoni $1 për hollësirat). 
 <strong>NDALOHET DHËNIA E PUNIMEVE PA PASUR LEJE NGA AUTORI NË MOSPËRPUTHJE ME KËTË LICENSË!</strong>",
 'longpagewarning'           => 'KUJDES: Kjo faqe është $1 kilobytes e gjatë; disa
-shfletues mund të kenë probleme për të redaktuar faqe që afrohen ose janë akoma më shumë se 32kb.
+shfletues mund të kenë probleme për të redaktuar faqe që afrohen ose janë akoma më shumë se 32 kb.
 Konsideroni ta ndani faqen në disa seksione më të vogla.',
 'longpageerror'             => '<strong>GABIM: Tesksti që ju po e redaktoni është $1 KB i gjatë dhe është më i gjatë se maksimumi i lejuar prej $2 KB. Ndryshimet nuk mund të ruhen.</strong>',
 'readonlywarning'           => 'KUJDES: Regjistri është bllokuar për mirëmbajtje,
@@ -702,8 +704,8 @@ Shiko tek [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} regjistri i gri
 'rev-delundel'                => 'trego/fshih',
 'revisiondelete'              => 'Shlyj/Reparo versionet',
 'revdelete-nooldid-title'     => 'Version i dëshiruar i pavfleshëm',
-'revdelete-selected'          => '{{PLURAL:$2|Versioni i zgjedhur i|Versionet e zgjedhura të}} [[:$1]]:',
-'revdelete-text'              => 'Përmbajtja dhe pjesët e tjera nuk janë të dukshme për të gjithë, por figurojnë në historikun e versioneve. Administratorët munden përmbajtjen e larguar ta shikojnë dhe restaurojnë, përveç në rastet kur një gjë e tillë është ndaluar ekstra.',
+'revdelete-selected'          => "'''{{PLURAL:$2|Versioni i zgjedhur i|Versionet e zgjedhura të}} [[:$1]]:'''",
+'revdelete-text'              => "'''Përmbajtja dhe pjesët e tjera nuk janë të dukshme për të gjithë, por figurojnë në historikun e versioneve.''' Administratorët munden përmbajtjen e larguar ta shikojnë dhe restaurojnë, përveç në rastet kur një gjë e tillë është ndaluar ekstra.",
 'revdelete-legend'            => 'Vendosni kufizimet për versionin:',
 'revdelete-hide-text'         => 'Fshihe tekstin e versionit',
 'revdelete-hide-name'         => 'Fshihe veprimin dhe shënjestrën',
@@ -758,13 +760,11 @@ Kini kujdes se përdorimi i lidhjeve të shfletimit do të ndryshojë përzgjedh
 'searchresulttext'      => 'Për më shumë informacion rreth kërkimit në {{SITENAME}} shikoni [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'        => 'Kërkim për "[[$1]]"',
 'searchsubtitleinvalid' => 'Kërkim për "$1"',
-'noexactmatch'          => '<span style="font-size: 135%; font-weight: bold; margin-left: .6em">Faqja me atë titull nuk është krijuar akoma</span>
+'noexactmatch'          => 'Faqja me atë titull nuk është krijuar akoma
 
-<span style="display: block; margin: 1.5em 2em">
 Mund të [[$1|filloni një artikull]] me këtë titull.
 
-<span style="display:block; font-size: 89%; margin-left:.2em">Ju lutem kërkoni {{SITENAME}}-n përpara se të krijoni një artikull të ri se mund të jetë nën një titull tjetër.</span>
-</span>',
+Ju lutem kërkoni {{SITENAME}}-n përpara se të krijoni një artikull të ri se mund të jetë nën një titull tjetër.',
 'noexactmatch-nocreate' => "'''Faqja e titulluar \"\$1\" nuk ekziston'''",
 'toomanymatches'        => 'Ky kërkim ka shumë përfundime, provoni një pyetje tjetër më përcaktuese',
 'titlematches'          => 'Tituj faqesh që përputhen',
@@ -878,7 +878,7 @@ $2 Lidhje përcjellëse &nbsp; Kërko për $3 $9',
 
 'grouppage-autoconfirmed' => '{{ns:project}}:Përdorues të vërtetuar automatikisht',
 'grouppage-bot'           => '{{ns:project}}:Robotë',
-'grouppage-sysop'         => '{{ns:project}}:Administrues',
+'grouppage-sysop'         => '{{ns:project}}:Administruesit',
 'grouppage-bureaucrat'    => '{{ns:project}}:Burokratë',
 
 # User rights log
@@ -941,7 +941,7 @@ Për të përdorur një skedë në një faqe përdorni lidhje të llojit:
 'uploadlog'                   => 'regjistër dhënjesh',
 'uploadlogpage'               => 'Regjistri i ngarkimeve',
 'uploadlogpagetext'           => 'Më poshtë është një listë e skedave më të reja që janë ngarkuar.
-Të gjithë orët janë me orën e shërbyesit (UTC).',
+Të gjithë orët janë me orën e shërbyesit.',
 'filename'                    => 'Emri i skedës',
 'filedesc'                    => 'Përmbledhje',
 'fileuploadsummary'           => 'Përshkrimi:',
@@ -1081,7 +1081,7 @@ Shtypni kolonat e tjera për të ndryshuar radhitjen.',
 'filedelete-submit'           => 'Grise',
 'filedelete-success'          => "'''$1''' është grisur.",
 'filedelete-success-old'      => '<span class="plainlinks">Versioni i \'\'\'[[Media:$1|$1]]\'\'\' së $3, $2 është grisur.</span>',
-'filedelete-nofile'           => "'''$1''' nuk ekziston tek {{SITENAME}}.",
+'filedelete-nofile'           => "'''$1''' nuk ekziston.",
 'filedelete-nofile-old'       => "Nuk ka version të arkivuar të '''$1''' me të dhënat e kërkuara.",
 'filedelete-iscurrent'        => 'Jeni duke grisur versionin e tanishëm të kësaj skede. Ju lutem më parë rikthejeni tek një version më të vjetër.',
 'filedelete-otherreason'      => 'Arsye tjetër / shtesë:',
@@ -1290,11 +1290,11 @@ Në qoftë se dëshironi të hiqni një faqe nga lista mbikqyrëse më vonë, sh
 'watchlist-details'    => "{{PLURAL:$1|'''$1''' faqe|'''$1''' faqe}} nën mbikqyrje duke mos numëruar faqet e diskutimit.",
 'wlheader-enotif'      => '* Njoftimi me email është lejuar.',
 'wlheader-showupdated' => "* Faqet që kanë ndryshuar nga vizita juaj e fundit do të tregohen të '''trasha'''",
-'watchmethod-recent'   => 'duke parë ndryshime së fundmi për faqe nën mbikqyrje',
-'watchmethod-list'     => 'duke parë faqet nën mbikqyrje për ndryshime së fundmi',
+'watchmethod-recent'   => 'duke parë ndryshimet e fundit për faqet nën mbikqyrje',
+'watchmethod-list'     => 'duke parë faqet nën mbikqyrje për ndryshimet e fundit',
 'watchlistcontains'    => 'Lista mbikqyrëse e juaj ka $1 {{PLURAL:$1|faqe|faqe}}.',
 'iteminvalidname'      => "Problem me artikullin '$1', titull jo i saktë...",
-'wlnote'               => "Më poshtë {{PLURAL:$1|është $1 ndryshim i|janë $1 ndryshimet e}} {{PLURAL:$2|orës së kaluar|'''$2''' orëve të kaluara}}.",
+'wlnote'               => "Më poshtë {{PLURAL:$1|është $1 ndryshim i|janë $1 ndryshimet e}} {{PLURAL:$2|orës së fundit|'''$2''' orëve të fundit}}.",
 'wlshowlast'           => 'Trego $1 orët $2 ditët $3',
 'watchlist-show-bots'  => 'Trego redaktimet e robotëve',
 'watchlist-hide-bots'  => 'Fshih redaktimet e robotëve',
@@ -1307,8 +1307,8 @@ Në qoftë se dëshironi të hiqni një faqe nga lista mbikqyrëse më vonë, sh
 'watching'   => 'Duke mbikqyrur...',
 'unwatching' => 'Duke çmbikqyrur...',
 
-'enotif_mailer'                => 'Postieri njoftues i {{SITENAME}}',
-'enotif_reset'                 => 'Markoi të gjitha faqet e vizituara',
+'enotif_mailer'                => 'Postieri Njoftues i {{SITENAME}}',
+'enotif_reset'                 => 'Shëno të gjitha faqet e vizituara',
 'enotif_newpagetext'           => 'Kjo është një faqe e re.',
 'enotif_impersonal_salutation' => 'Përdorues i {{SITENAME}}',
 'changed'                      => 'ndryshuar',
@@ -1353,7 +1353,7 @@ Për të na dhënë përshtypjet tuaja ose për ndihmë të mëtejshme:
 'deletedarticle'              => 'grisi "$1"',
 'dellogpage'                  => 'Regjistri i grisjeve',
 'dellogpagetext'              => 'Më poshtë është një listë e grisjeve më të fundit.
-Të gjitha kohët janë sipas orës së shërbyesit (UTC).',
+Të gjitha kohët janë sipas orës së shërbyesit.',
 'deletionlog'                 => 'regjistrin e grisjeve',
 'reverted'                    => 'Kthehu tek një version i vjetër',
 'deletecomment'               => 'Arsyeja',
@@ -1600,7 +1600,7 @@ Në ato raste, duhet ta zhvendosni ose përpuqni faqen vetë n.q.s. dëshironi."
 'movearticle'             => 'Zhvendose faqen',
 'movenologin'             => 'Nuk keni hyrë brenda',
 'movenologintext'         => 'Duhet të keni hapur një llogari dhe të keni [[Special:UserLogin|hyrë brenda]] për të zhvendosur një faqe.',
-'movenotallowed'          => 'Nuk ju lejohet të zhvendosni faqe në {{SITENAME}}.',
+'movenotallowed'          => 'Nuk ju lejohet të zhvendosni faqe.',
 'newtitle'                => 'Tek titulli i ri',
 'move-watch'              => 'Mbikqyre këtë faqe',
 'movepagebtn'             => 'Zhvendose faqen',

@@ -10,10 +10,13 @@
  * @author Jon Harald Søby
  * @author Lars J. Helbo <lars.helbo@gmail.com>
  * @author Max sonnelid
+ * @author MinuteElectron
  * @author Morten LJ
  * @author Peter Andersen
  * @author Ranveig
+ * @author Remember the dot
  * @author S.Örvarr.S
+ * @author Urhixidur
  */
 
 $namespaceNames = array(
@@ -396,12 +399,12 @@ $messages = array(
 'red-link-title'          => '$1 (uoprettet)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'artikel',
+'nstab-main'      => 'Side',
 'nstab-user'      => 'brugerside',
 'nstab-media'     => 'medie',
 'nstab-special'   => 'speciel',
 'nstab-project'   => 'om',
-'nstab-image'     => 'billede',
+'nstab-image'     => 'Fil',
 'nstab-mediawiki' => 'besked',
 'nstab-template'  => 'skabelon',
 'nstab-help'      => 'hjælp',
@@ -571,7 +574,7 @@ Denne besked kan ignorewres, hvis denne konto er oprettet som følge af en fejl.
 'resetpass_submit'        => 'Send password og log på',
 'resetpass_success'       => 'Dit password er nu ændret. Nu følger tilmelding …',
 'resetpass_bad_temporary' => 'Ugyldigt foreløbigt password. Du har allerede ændret dit password eller bestilt et nyt foreløbigt password.',
-'resetpass_forbidden'     => 'Dette password kan ikke ændres på {{SITENAME}}.',
+'resetpass_forbidden'     => 'Dette password kan ikke ændres.',
 'resetpass_missing'       => 'Tom formular.',
 
 # Edit page toolbar
@@ -701,7 +704,7 @@ Læg ingen tekster ind, hvis du ikke kan acceptere at disse kan ændres.
 
 Du bekræfter hermed også, at du selv har skrevet denne tekst eller kopieret den fra en offentlig kilde
 (se $1 for detaljer). <strong>OVERFØR IKKE OPHAVSRETSLIGT BESKYTTET INDHOLD!</strong>',
-'longpagewarning'           => '<strong>ADVARSEL: Denne side er $1 kilobyte stor; nogle browsere kan have problemer med at redigere sider der nærmer sig eller er større end 32 Kb. 
+'longpagewarning'           => '<strong>ADVARSEL: Denne side er $1 kilobyte stor; nogle browsere kan have problemer med at redigere sider der nærmer sig eller er større end 32 kb. 
 Overvej om siden kan opdeles i mindre dele.</strong>',
 'longpageerror'             => '<strong>FEJL: Teksten, som du ville gemme, er $1 kB stor. Det er større end det tilladet maksimum på $2 kB. Det er ikke muligt at gemme.</strong>',
 'readonlywarning'           => '<strong>ADVARSEL: Databasen er låst på grund af vedligeholdelse,
@@ -781,11 +784,11 @@ Nærmere oplysninger om sletningen samt en begrundelse for den findes i [{{fullu
 'revisiondelete'              => 'Slette/gendanne versioner',
 'revdelete-nooldid-title'     => 'Ingen version angivet',
 'revdelete-nooldid-text'      => 'Du har ikke angivet en version, som denne handling kan udføres på.',
-'revdelete-selected'          => "{{PLURAL:$2|Valgte version|Valgte versioner}} af '''$1:'''",
+'revdelete-selected'          => "'''{{PLURAL:$2|Valgte version|Valgte versioner}} af '''$1:''''''",
 'logdelete-selected'          => "{{PLURAL:$2|Valgte logbogsindførsel|Valgte logbogsindførsler}} for '''$1:'''",
-'revdelete-text'              => 'Indholdet eller andre bestanddele er ikke mere offentligt tilgængelige, vises dog fortsat i versionshistorikken. 
+'revdelete-text'              => "'''Indholdet eller andre bestanddele er ikke mere offentligt tilgængelige, vises dog fortsat i versionshistorikken.'''
 
-Administratorer kan dog fortsat se og gendanne det fjernede indhold, medmindre det er bestemt, at adgangsbegrænsningen også skal gælde for administratorer.',
+Administratorer kan dog fortsat se og gendanne det fjernede indhold, medmindre det er bestemt, at adgangsbegrænsningen også skal gælde for administratorer.",
 'revdelete-legend'            => 'Fastlægge begrænsninger for versionerne:',
 'revdelete-hide-text'         => 'Skjul versionens tekst',
 'revdelete-hide-name'         => 'Skjul logbogsaktionen',
@@ -841,7 +844,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'lineno'                  => 'Linje $1:',
 'compareselectedversions' => 'Sammenlign valgte versioner',
 'editundo'                => 'annuller',
-'diff-multi'              => "<span style='font-size: smaller'>(Versionssammenligningen medtager {{plural:$1|en mellemliggende version|$1 mellemliggende versioner}}.)</span>",
+'diff-multi'              => '(Versionssammenligningen medtager {{plural:$1|en mellemliggende version|$1 mellemliggende versioner}}.)',
 
 # Search results
 'searchresults'         => 'Søgeresultater',
@@ -1037,7 +1040,7 @@ Læg mærke til at præcis som med alle andre sider, så kan og må andre gerne 
 'upload-prohibited'           => 'Uønskede filtyper: $1.',
 'uploadlog'                   => 'oplægningslog',
 'uploadlogpage'               => 'Oplægningslog',
-'uploadlogpagetext'           => 'Herunder vises de senest oplagte filer. Alle de viste tider er serverens tid (UTC).',
+'uploadlogpagetext'           => 'Herunder vises de senest oplagte filer. Alle de viste tider er serverens tid.',
 'filename'                    => 'Filnavn',
 'filedesc'                    => 'Beskrivelse',
 'fileuploadsummary'           => 'Beskrivelse/kilde:',
@@ -1074,7 +1077,7 @@ Kontroller om du har billedet i fuld størrelse og upload det under det original
 'uploadedimage'               => 'Lagde "[[$1]]" op',
 'overwroteimage'              => 'Lagde en ny version af "[[$1]]" op',
 'uploaddisabled'              => 'Desværre er funktionen til at lægge billeder op afbrudt på denne server.',
-'uploaddisabledtext'          => 'Upload af filer er deaktiveret på {{SITENAME}}.',
+'uploaddisabledtext'          => 'Upload af filer er deaktiveret.',
 'uploadscripted'              => 'Denne fil indeholder HTML eller script-kode, der i visse tilfælde can fejlfortolkes af en browser.',
 'uploadcorrupt'               => 'Denne fil er beskadiget eller forsynet med en forkert endelse. Kontroller venligst filen og prøv at lægge den op igen.',
 'uploadvirus'                 => 'Denne fil indeholder en virus! Virusnavn: $1',
@@ -1472,7 +1475,7 @@ eller et billede sammen med hele den tilhørende historie fra databasen. Bekræf
 'deletedtext'                 => '"$1" er slettet. Se $2 for en fortegnelse over de nyeste sletninger.',
 'deletedarticle'              => 'slettede "$1"',
 'dellogpage'                  => 'Sletningslog',
-'dellogpagetext'              => 'Herunder vises de nyeste sletninger. Alle tider er serverens tid (UTC).',
+'dellogpagetext'              => 'Herunder vises de nyeste sletninger. Alle tider er serverens tid.',
 'deletionlog'                 => 'sletningslog',
 'reverted'                    => 'Gendannet en tidligere version',
 'deletecomment'               => 'Begrundelse for sletning',
@@ -1736,7 +1739,7 @@ $1',
 I disse tilfælde er du nødt til at flytte eller sammenflette siden manuelt.",
 'movearticle'             => 'Flyt side',
 'movenologin'             => 'Ikke logget på',
-'movenologintext'         => 'Du skal være registreret bruger og være [[Special:Userlogin|logget på]]
+'movenologintext'         => 'Du skal være registreret bruger og være [[Special:UserLogin|logget på]]
 
 for at flytte en side.',
 'movenotallowed'          => 'Du har ikke rettigheder til at flytte sider.',

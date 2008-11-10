@@ -5,6 +5,7 @@
  * @file
  *
  * @author Hakka
+ * @author Urhixidur
  */
 
 $messages = array(
@@ -121,7 +122,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings MediaWiki Phi-chṳ sat-thin chhîn-tân]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki Phìn-sòng mun-thì kié-tap]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki fat-phu email chhîn-tân]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki fat-phu email chhîn-tân]',
 
 'about'          => 'Kôan-yî',
 'article'        => 'Vùn-chông',
@@ -490,7 +491,7 @@ Ngì yin-tông chiông ngì só-cho ke siù-chho kâ-ngi̍p hien-yû ke nui-yùn
 Kó-yèn ngì chhin-mò hî-mong ngì-ke ngì-ke vùn-sṳ pûn-ngìn ngim-yi chhùng-siû lâu chai san-pu, chhiáng mò-yeu thì-kâu.<br /> 
 Ngì thùng-sṳ̀ ya-yeu hiong Wikimedia pó-chṳn ngì só thì-kâu ke nui-yùng he chhṳ-kí só chok，fe̍t-chá lòi-chhṳ yit-ke mò-su pán-khièn pó-fu fe̍t-he he siông-thùng chhṳ-yù ke lòi-ngièn (Chhâm-siòng $1 ke se-chiet).
 <strong> Mò-yeu chhai hàn-mò su-khièn ke chhìn-khóng-hâ fat-péu！</strong>',
-'longpagewarning'           => '<strong>Kín-ko: Pún-chông chhòng-thu tha̍t-tó $1KB；mêu-chúng hi-khí chiông-voi mò-fap phiên-chhut chhòng-ko 32KB ke vùn-chông. Chhiáng kháu-li chiông pún-chông chhiet kot-sṳ̀n kí-ke séu thon-lo̍k.</strong>',
+'longpagewarning'           => '<strong>Kín-ko: Pún-chông chhòng-thu tha̍t-tó $1 kB；mêu-chúng hi-khí chiông-voi mò-fap phiên-chhut chhòng-ko 32 kB ke vùn-chông. Chhiáng kháu-li chiông pún-chông chhiet kot-sṳ̀n kí-ke séu thon-lo̍k.</strong>',
 'longpageerror'             => '<strong>Chho-ngu: Ngì só thì-kâu ke vùn-sṳ chhòng-thu yû $1KB, liá thai-yî $2KB ke chui-thai chhṳ̍t, ke-vùn-chông put-nèn pûn tú-chhùn.</strong>',
 'readonlywarning'           => '<strong>Kín-ko: chṳ̂-liau-khu pûn-ngìn fûng-só yîn-vi chin-hàng vì-fu, só-yî muk-chhièn mò-fap pó-chhùn ngì-ke siù-chho. Ngì fe̍t-hí hî-mong chhai-siên chiông pún-thon vùn-sṳ fu̍k-chṳ pin pó-chhùn to vùn-sṳ vùn-khien, yèn-heu tén-yit-ha chai siù-chho.</strong>',
 'protectedpagewarning'      => '<strong>Kín-ko: Pún-chông yí-kîn pûn pó-fu, chṳ́-yû yúng-yû Kón-lî-yèn hí-khó-khièn ke yung-fu chhòi-nèn siù-chho.</strong>',
@@ -554,9 +555,9 @@ Ngì thùng-sṳ̀ ya-yeu hiong Wikimedia pó-chṳn ngì só thì-kâu ke nui-y
 'revisiondelete'              => 'Chhù-thet/fî-fu̍k chhù-hi ke siû-thin',
 'revdelete-nooldid-title'     => 'Mò-yû muk-phêu siû-thin',
 'revdelete-nooldid-text'      => 'Mò-yû chṳ́-thin chhṳ́chhâu-chok ke muk-phêu siû-thin.',
-'revdelete-selected'          => "Sién-chhí '''$1''' ke  $2-chhṳ siû-thin:",
+'revdelete-selected'          => "'''Sién-chhí '''$1''' ke  $2-chhṳ siû-thin:'''",
 'logdelete-selected'          => "Chhí-chhṳ '''$1''' ke $2-ke ngit-ki hong-muk:",
-'revdelete-text'              => 'Chhù-thet ke siû-thin yìn-yèn chiông-voi hién-sṳ chhai vùn-chông li̍t-sṳ́ chûng, than vùn-sṳ nui-yùng yí-kîn put-nèn pûn chung-ngìn fóng-mun. Chhai chhṳ́ miong-chham ke khì-thâ kón-lî-yèn chiông chhòi-nèn fóng-mun yún-chhòng ke nui-yùng pin theu-ko siông-thùng ke kie-mien fî-fu̍k chhù-hi, chhù-fî miong-chham kûng-chok-chá chin-hàng han-chṳ.',
+'revdelete-text'              => "'''Chhù-thet ke siû-thin yìn-yèn chiông-voi hién-sṳ chhai vùn-chông li̍t-sṳ́ chûng, than vùn-sṳ nui-yùng yí-kîn put-nèn pûn chung-ngìn fóng-mun.''' Chhai chhṳ́ miong-chham ke khì-thâ kón-lî-yèn chiông chhòi-nèn fóng-mun yún-chhòng ke nui-yùng pin theu-ko siông-thùng ke kie-mien fî-fu̍k chhù-hi, chhù-fî miong-chham kûng-chok-chá chin-hàng han-chṳ.",
 'revdelete-legend'            => 'Sat-thin siû-thin han-chṳ:',
 'revdelete-hide-text'         => 'Yún-chhòng siû-thin vùn-sṳ',
 'revdelete-hide-name'         => 'Yún-chhòng thung-chok khi̍p muk-phêu',

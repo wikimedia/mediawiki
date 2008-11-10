@@ -4,8 +4,11 @@
  * @ingroup Language
  * @file
  *
+ * @author Bani
+ * @author Carla404
  * @author Lijealso
  * @author Rodrigo Calanca Nishino
+ * @author Urhixidur
  * @author Yves Marques Junqueira
  * @author לערי ריינהארט
  * @author 555
@@ -266,7 +269,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista de opções de configuração]
 * [http://www.mediawiki.org/wiki/Manual:FAQ FAQ do MediaWiki]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de discussão com avisos de novas versões do MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de discussão com avisos de novas versões do MediaWiki]',
 
 'about'          => 'Sobre',
 'article'        => 'Página de conteúdo',
@@ -310,7 +313,7 @@ $messages = array(
 'deletethispage'    => 'Eliminar esta página',
 'undelete_short'    => 'Restaurar {{PLURAL:$1|uma edição|$1 edições}}',
 'protect'           => 'Proteger',
-'protect_change'    => 'alterar proteção',
+'protect_change'    => 'alterar',
 'protectthispage'   => 'Proteger esta página',
 'unprotect'         => 'Desproteger',
 'unprotectthispage' => 'Desproteger esta página',
@@ -537,15 +540,15 @@ Não se esqueça de personalizar as suas preferências na {{SITENAME}}.',
 'noname'                     => 'Você não colocou um nome de usuário válido.',
 'loginsuccesstitle'          => 'Login bem sucedido',
 'loginsuccess'               => "'''Encontra-se agora ligado à {{SITENAME}} como \"\$1\"'''.",
-'nosuchuser'                 => 'Não existe nenhum usuário com o nome "$1".
-Verifique o nome que introduziu, ou crie uma nova conta de usuário.',
+'nosuchuser'                 => 'O usuário de nome "$1" não existe.
+Verifique se digitou corretamente, ou [[Special:UserLogin/signup|crie uma nova conta de usuário]].',
 'nosuchusershort'            => 'Não existe um usuário com o nome "<nowiki>$1</nowiki>". Verifique o nome que introduziu.',
 'nouserspecified'            => 'Precisa de especificar um nome de usuário.',
 'wrongpassword'              => 'A senha que introduziu é inválida. Por favor, tente novamente.',
 'wrongpasswordempty'         => 'A senha introduzida está em branco. Por favor, tente novamente.',
 'passwordtooshort'           => 'A sua senha é inválida ou curta demais. É necessário ter no mínimo $1 caracteres e de ser diferente de seu nome de usuário.',
 'mailmypassword'             => 'Enviar uma nova senha por e-mail',
-'passwordremindertitle'      => 'Lembrador de senhas da {{SITENAME}}',
+'passwordremindertitle'      => 'Nova senha temporária em {{SITENAME}}',
 'passwordremindertext'       => 'Alguém (provavelmente você, a partir do endereço de IP $1) solicitou que fosse lhe enviada uma nova senha para {{SITENAME}} ($4).
 A senha do usuário "$2" é, a partir de agora, "$3". Você pode entrar na sua conta e alterar a senha, caso prefira.
 
@@ -719,7 +722,7 @@ Você está, ao mesmo tempo, garantindo-nos que isto é algo escrito por você m
 'copyrightwarning2'         => 'Por favor, note que todas as suas contribuições em {{SITENAME}} podem ser editadas, alteradas ou removidas por outros contribuidores. Se você não deseja que o seu texto seja inexoravelmente editado, não o envie.<br />
 Você está, ao mesmo tempo, a garantir-nos que isto é algo escrito por si, ou algo copiado de alguma fonte de textos em domínio público ou similarmente de teor livre (veja $1 para detalhes).
 <strong>NÃO ENVIE TRABALHO PROTEGIDO POR DIREITOS DE AUTOR SEM A DEVIDA PERMISSÃO!</strong>',
-'longpagewarning'           => '<strong>CUIDADO: Esta página tem $1 kilobytes; alguns browsers podem ter problemas ao editar páginas maiores que 32kb.
+'longpagewarning'           => '<strong>CUIDADO: Esta página tem $1 kilobytes; alguns browsers podem ter problemas ao editar páginas maiores que 32 kb.
 Por gentileza, considere quebrar a página em sessões menores.</strong>',
 'longpageerror'             => '<strong>ERRO: O texto de página que você submeteu tem mais de $1 kilobytes em tamanho, que é maior que o máximo de $2 kilobytes. A página não pode ser salva.</strong>',
 'readonlywarning'           => '<strong>CUIDADO: O banco de dados está sendo bloqueado para manutenção.
@@ -807,9 +810,10 @@ mais detalhes no [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registro de 
 'rev-delundel'                => 'mostrar/esconder',
 'revisiondelete'              => 'Eliminar/restaurar edições',
 'revdelete-nooldid-title'     => 'Nenhuma revisão selecionada',
-'revdelete-selected'          => '{{PLURAL:$2|Edição selecionada|Edições selecionadas}} de [[:$1]]:',
+'revdelete-nooldid-text'      => 'Você não especificou uma ou mais revisões para realizar esta função.',
+'revdelete-selected'          => "'''{{PLURAL:$2|Edição selecionada|Edições selecionadas}} de [[:$1]]:'''",
 'logdelete-selected'          => "{{PLURAL:$2|Evento de registro selecionado|Eventos de registro selecionados}} para '''$1:'''",
-'revdelete-text'              => "Revisões eliminadas continuarão aparecendo no histórico da página, apesar de o seu conteúdo textual estar inacessível ao público.
+'revdelete-text'              => "'''Revisões eliminadas continuarão aparecendo no histórico da página, apesar de o seu conteúdo textual estar inacessível ao público.'''
 
 Outros administradores nesta wiki continuarão podendo acessar ao conteúdo escondido e restaurá-lo através desta mesma ''interface'', a menos que uma restrição adicional seja definida.",
 'revdelete-legend'            => 'Definir restrições de visualização',
@@ -1195,7 +1199,7 @@ Um clique sobre um cabeçalho de coluna altera a ordenação.',
 'filedelete-submit'           => 'Eliminar',
 'filedelete-success'          => "'''$1''' foi eliminado.",
 'filedelete-success-old'      => "A versão de '''[[Media:$1|$1]]''' tal como $3, $2 foi eliminada.",
-'filedelete-nofile'           => "'''$1''' não existe em {{SITENAME}}.",
+'filedelete-nofile'           => "'''$1''' não existe.",
 'filedelete-nofile-old'       => "Não há uma versão de '''$1''' em arquivo com os parâmetros especificados.",
 'filedelete-iscurrent'        => 'Você está tentando eliminar a versão mais recente deste arquivo. Por gentileza, reverta para uma edição anterior antes de tentar novamente.',
 'filedelete-otherreason'      => 'Outro/motivo adicional:',
@@ -1738,7 +1742,7 @@ Isto pode ser uma mudança drástica e inesperada para uma página popular; por 
 
 Nestes casos, você terá que mover ou mesclar a página manualmente, se assim desejar.",
 'movearticle'             => 'Mover página',
-'movenologin'             => 'Não Autenticado',
+'movenologin'             => 'Não autenticado',
 'movenologintext'         => 'Você precisa ser um usuário registrado e [[Special:UserLogin|autenticado]] para poder mover uma página.',
 'movenotallowed'          => 'Você não possui permissão de mover páginas neste wiki.',
 'newtitle'                => 'Para novo título',
@@ -2372,6 +2376,9 @@ $1',
 Tente a previsão comum.',
 'livepreview-error'   => 'Falha ao conectar: $1 "$2"
 Tente a previsão comum.',
+
+# Friendlier slave lag warnings
+'lag-warn-high' => 'Devido ao longo período de latência no servidor do banco de dados, alterações feitas há menos de $1 segundos poderão não aparecer nesta lista.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'A sua lista de vigiados possui {{PLURAL:$1|um título|$1 títulos}}, além das respectivas páginas de discussão.',

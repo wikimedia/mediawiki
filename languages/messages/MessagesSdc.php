@@ -126,7 +126,7 @@ Li sighenti cullegamenti so in linga ingrese:
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Impusthazioni di cunfigurazioni]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Prigonti friquenti i MediaWiki]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list annùnzii MediaWiki]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list annùnzii MediaWiki]",
 
 'about'          => 'Infuimmazioni',
 'article'        => 'Pagina',
@@ -657,7 +657,7 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di ca
 'revisiondelete'              => 'Canzella o ricùpara versioni',
 'revdelete-nooldid-title'     => 'Versioni nò ippizzificadda',
 'revdelete-nooldid-text'      => "No hai ippizzificaddu la o li versioni di la pàgina i' la quari eseguì chistha funzioni.",
-'revdelete-selected'          => '{{PLURAL:$2|Versioni sciubaradda|Versioni sciubaraddi}} di [[:$1]]:',
+'revdelete-selected'          => "'''{{PLURAL:$2|Versioni sciubaradda|Versioni sciubaraddi}} di [[:$1]]:'''",
 'logdelete-selected'          => "{{PLURAL:$2|Eventu di lu rigisthru sciubaraddu|Eventi di li rigisthri sciubaraddi}} pa '''$1:'''",
 'revdelete-legend'            => "Impustha li sighenti limitazioni i'li versioni canzilladdi:",
 'revdelete-hide-text'         => 'Cua lu testhu di la versioni',
@@ -1018,7 +1018,7 @@ Pa piazeri verifigga si vói carriggà avveru chisthu file; inogghi v'è lu rigi
 'filedelete-submit'      => 'Canzella',
 'filedelete-success'     => "Lu file '''$1''' è isthaddu canzilladdu.",
 'filedelete-success-old' => '<span class="plainlinks">La versioni di lu $3, $2 di lu file \'\'\'[[Media:$1|$1]]\'\'\' è isthadda canzilladda.</span>',
-'filedelete-nofile'      => "I' {{SITENAME}} nò esisthi un file $1.",
+'filedelete-nofile'      => 'Nò esisthi un file $1.',
 'filedelete-nofile-old'  => "In archìbiu nò vi so versioni di '''$1''' cu' li caratterìsthighi indicaddi.",
 'filedelete-iscurrent'   => 'Sei prubendi a canzillà la versioni più rizzenti di chisthu file. Pa piazeri, primma fallu turrà a una versioni prizzidenti.',
 
@@ -1407,7 +1407,7 @@ $1",
 
 # What links here
 'whatlinkshere'       => 'Pùntani inogghi',
-'whatlinkshere-title' => 'Pàgini chi pùntani a $1',
+'whatlinkshere-title' => 'Pàgini chi pùntani a "$1"',
 'whatlinkshere-page'  => 'Pàgina:',
 'linklistsub'         => '(Listha di li cullegamenti)',
 'linkshere'           => "Le sighenti pàgini cuntenani dei cullegamenti a '''[[:$1]]''':",
@@ -1450,7 +1450,7 @@ $1",
 'ipusubmit'                   => "Ibbrucca chisth'indirizzu",
 'unblocked'                   => "L'utenti [[User:$1|$1]] è isthaddu ibbruccaddu",
 'unblocked-id'                => 'Lu broccu $1 è isthaddu buggaddu',
-'ipblocklist'                 => 'Listha di li utenti e indirizzi IP broccaddi',
+'ipblocklist'                 => 'Utenti e indirizzi IP broccaddi',
 'ipblocklist-legend'          => "Acciappa un'utenti broccaddu",
 'ipblocklist-username'        => 'Innòmmu utenti o indirizzu IP:',
 'ipblocklist-submit'          => 'Zercha',
@@ -1525,7 +1525,7 @@ In chisthi casi, si lu vói avveru, débi ippusthà o aggiugnì a manu le infuim
 'movearticle'             => 'Ippustha la pàgina',
 'movenologin'             => 'Intradda nò effettuadda',
 'movenologintext'         => "L'ippusthamentu di li pàgini è cunsintiddu soru a l'utenti registhraddi chi so [[Special:UserLogin|intraddi]] i' lu situ.",
-'movenotallowed'          => "Nò si diponi di li primmissi nezzessàri a l'ippusthamentu di pàgini i' {{SITENAME}}.",
+'movenotallowed'          => "Nò si diponi di li primmissi nezzessàri a l'ippusthamentu di pàgini.",
 'newtitle'                => 'Nobu tìturu:',
 'move-watch'              => "Aggiungi a l'abbaidaddi ippiziari",
 'movepagebtn'             => 'Ippustha la pàgina',

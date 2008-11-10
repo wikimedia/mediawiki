@@ -158,7 +158,7 @@ $messages = array(
 == शुरुवात करें ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings कॉन्फिगरेशन सेटींगकी सूची]
 * [http://www.mediawiki.org/wiki/Manual:FAQ मीडियाविकिके बारे में प्राय: पूछे जाने वाले सवाल]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce मीडियाविकि मेलिंग लिस्ट]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce मीडियाविकि मेलिंग लिस्ट]',
 
 'about'          => 'अबाउट',
 'article'        => 'लेख',
@@ -717,10 +717,10 @@ Don't forget to personalize your {{SITENAME}} preferences.",
 'rev-delundel'                => 'दिखायें/छुपायें',
 'revisiondelete'              => 'अवतरण हटायें/पुनर्स्थापित करें',
 'revdelete-nooldid-title'     => 'लक्ष्य अवतरण गलत',
-'revdelete-selected'          => '[[:$1]] {{PLURAL:$2|का चुना हुआ अवतरण|के चुने हुए अवतरण}}:',
-'revdelete-text'              => 'हटायें गयें अवतरण और घटनायें अभी भी पन्ने के इतिहास और लॉग सूचीमें नजर आयेंगे, पर इसके पाठ सामान्य सदस्य देख नहीं पायेंगे।
+'revdelete-selected'          => "'''[[:$1]] {{PLURAL:$2|का चुना हुआ अवतरण|के चुने हुए अवतरण}}:'''",
+'revdelete-text'              => "'''हटायें गयें अवतरण और घटनायें अभी भी पन्ने के इतिहास और लॉग सूचीमें नजर आयेंगे, पर इसके पाठ सामान्य सदस्य देख नहीं पायेंगे।'''
 
-{{SITENAME}} अन्य प्रबंधक अभी भी इसे देख सकते हैं और पुनर्स्थापित भी कर सकतें हैं, जब तक इससे ज्यादा प्रतिबंध ना लगायें जायें।',
+{{SITENAME}} अन्य प्रबंधक अभी भी इसे देख सकते हैं और पुनर्स्थापित भी कर सकतें हैं, जब तक इससे ज्यादा प्रतिबंध ना लगायें जायें।",
 'revdelete-legend'            => 'दृश्य प्रतिबंध निश्चित करें',
 'revdelete-hide-text'         => 'अवरतणका पाठ छुपायें',
 'revdelete-hide-name'         => 'क्रिया और लक्ष्य को छुपायें',

@@ -5,6 +5,7 @@
  * @file
  *
  * @author Bangin
+ * @author Erdal Ronahi
  */
 
 $namespaceNames = array(
@@ -143,7 +144,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lîsteya varîyablên konfîgûrasîyonê]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lîsteya e-nameyên versyonên nuh yê MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lîsteya e-nameyên versyonên nuh yê MediaWiki]',
 
 'about'          => 'Der barê',
 'article'        => 'Gotar',
@@ -187,7 +188,7 @@ $messages = array(
 'deletethispage'    => 'Vê rûpelê jê bibe',
 'undelete_short'    => 'Dîsa {{PLURAL:$1|guherandinekî|$1 guherandinan}} çêke',
 'protect'           => 'Biparêze',
-'protect_change'    => 'parastinê biguherîne',
+'protect_change'    => 'biguherîne',
 'protectthispage'   => 'Vê rûpelê biparêze',
 'unprotect'         => 'Parastinê rake',
 'unprotectthispage' => 'Parastina vê rûpelê rake',
@@ -249,7 +250,7 @@ $messages = array(
 'badaccess-group0' => 'Tu nikanî vê tiştî bikê.',
 'badaccess-group1' => 'Ev tişta yê tu dixazê bikê bes ji bikarhênerên yê grupê $1 tê qebûlkirin.',
 'badaccess-group2' => 'Ev tişta yê tu dixazê bikê bes ji bikarhênerên ra ye, yê bi kêmani di grupê $1 da ne.',
-'badaccess-groups' => 'Ev tişta yê tu dixazê bikê bes ji bikarhênerên ra ye, yê bi kêmani di grupê $1 da ne.',
+'badaccess-groups' => 'Ev tişta yê tu dixazê bikê bes ji bikarhênerên ra ye, yê bi kêmani di {{PLURAL:$2|van grûpan|vê grupê}} da {{PLURAL:$2|ne|ye}}: $1.',
 
 'versionrequired'     => 'Verzîyonê $1 ji MediaWiki pêwîste',
 'versionrequiredtext' => 'Verzîyonê $1 ji MediaWiki pêwîste ji bo bikaranîna vê rûpelê. Li [[Special:Version|versyon]] seke.',
@@ -271,7 +272,7 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|guherandinekî|$1 guherandinên}} jêbirî',
 'feedlinks'               => 'Feed:',
 'feed-invalid'            => "Feed'ekî neserrast.",
-'feed-unavailable'        => 'Feed ji {{SITENAME}} ra tune ne.',
+'feed-unavailable'        => 'Feed tune ne.',
 'site-rss-feed'           => '$1 RSS Feed',
 'site-atom-feed'          => '$1 Atom Feed',
 'page-rss-feed'           => '"$1" RSS Feed',
@@ -341,7 +342,7 @@ Sedemê girtinê ev e: $1",
 'wrong_wfQuery_params' => "Parameter'ên şaş ji bo wfQuery()<br />
 Fonksîyon: $1<br />
 Jêpirskirin: $2",
-'viewsource'           => 'Çavkanî',
+'viewsource'           => 'Çavkanî bibîne',
 'viewsourcefor'        => 'ji $1 ra',
 'actionthrottled'      => 'Hejmarê guherandinan hatîye hesibandin',
 'actionthrottledtext'  => 'Te vê tiştî zêde pir di demekê biçûk da kir. Xêra xwe çend deqa biskine û carekî din bicerbîne.',
@@ -365,7 +366,7 @@ $2
 Tu dikarî {{SITENAME}} niha weke bikarhênerekî nediyarkirî bikarbînî, yan jî tu dikarî dîsa bi vî navê xwe yan navekî din wek bikarhêner têkevî. Bila di bîra te de be ku gengaz e hin rûpel mîna ku tu hîn bi navê xwe qeyd kiriyî werin nîşandan, heta ku tu nîşanên çavlêgerandina (browser) xwe jênebî.',
 'welcomecreation'            => '== Bi xêr hatî, $1! ==
 
-Hesaba te hat afirandin. Tu dikarî niha tercîhên xwe eyar bikî.',
+Hesaba te hat afirandin. Tu dikarî niha [[Special:Preferences|tercîhên xwe di {{SITENAME}}]] da eyar bikî.',
 'loginpagetitle'             => 'Qeyda bikarhêner (User login)',
 'yourname'                   => 'Navê te wek bikarhêner (user name)',
 'yourpassword'               => 'Şîfreya te (password)',
@@ -447,7 +448,7 @@ Eger account\'a bikarhêneran şaşî hate çêkirin, guhdare vê peyamê meke.'
 'resetpass_submit'        => 'Şîfrê bişîne û xwe qedybike',
 'resetpass_success'       => 'Şîfreya te hate guherandin! Niha tu tê qeydkirin...',
 'resetpass_bad_temporary' => 'Şîfreya te niha netê qebûlkirin. Te berê şîfreyekî nuh tomarkir ya şîfreyekî nuh xast.',
-'resetpass_forbidden'     => 'Şîfre nikanin werin guhartin di {{SITENAME}} da',
+'resetpass_forbidden'     => 'Şîfre nikanin werin guhartin',
 'resetpass_missing'       => 'Tablo vala ye.',
 
 # Edit page toolbar
@@ -648,7 +649,7 @@ hidden from Sysops. See the [[Special:Ipblocklist|IP block list]] for the list o
 'history-title'           => 'Dîroka versyonên "$1"',
 'difference'              => '(Ciyawaziya nav revîzyonan)',
 'lineno'                  => 'Dêrra $1:',
-'compareselectedversions' => 'Guhartoyan Helsengêne',
+'compareselectedversions' => 'Guhartoyan bide ber hev',
 'editundo'                => 'Betalbike',
 'diff-multi'              => '({{PLURAL:$1|Verzyonekî navberê netê|$1 verzyonên navberê netên}} dîtin.)',
 
@@ -1417,14 +1418,14 @@ Rûpela "[[:$1]]" berê heye. Tu rast dixazê wê jêbibê ji bo navguherandinê
  {
   dir:rtl;
   text-align:right;
-  font-family: "Tahoma", "Unikurd Web", "Arial Unicode MS", "DejaVu Sans", "Lateef", "Scheherazade", "ae_Rasheeq", sans-serif, sans;
+  font-family: "DejaVu Sans", "Tahoma", "Unikurd Web", "Arial Unicode MS", "Lateef", "Scheherazade", "ae_Rasheeq", sans-serif, sans;
  }
 
  /*Make the site more suitable for Soranî users */
- h1 {font-family: "Tahoma", "Arial Unicode MS", sans-serif, sans, "Unikurd Web", "Scheherazade";}
- h2 {font-family: "Tahoma", "Arial Unicode MS", sans-serif, sans, "Unikurd Web", "Scheherazade";}
- h3 {font-family: "Tahoma", "Arial Unicode MS", sans-serif, sans, "Unikurd Web", "Scheherazade";}
- body {font-family: "Tahoma", "Arial Unicode MS", sans-serif, sans, "Unikurd Web", "Scheherazade";}
+ h1 {font-family: "Tahoma", "DejaVu Sans", "Arial Unicode MS", sans-serif, sans, "Unikurd Web", "Scheherazade";}
+ h2 {font-family: "Tahoma", "DejaVu Sans", "Arial Unicode MS", sans-serif, sans, "Unikurd Web",  "Scheherazade";}
+ h3 {font-family: "Tahoma", "DejaVu Sans", "Arial Unicode MS", sans-serif, sans, "Unikurd Web", "Scheherazade";}
+ body {font-family: "Tahoma", "DejaVu Sans", "Arial Unicode MS", sans-serif, sans, "Unikurd Web", "Scheherazade";}
  textarea {font-family: Lucida Console, Tahoma;}
  pre {font-family: Lucida Console, Tahoma;}',
 
@@ -1461,7 +1462,7 @@ if (wgUserLanguage == "ku-arab")
 {
   document.direction="rtl";
   document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/common/common_rtl.css">\');
-  document.write(\'<style type="text/css">html {direction:rtl;} body {direction:rtl; unicode-bidi:embed; lang:ku-Arab; font-family:"Arial Unicode MS",Arial,Tahoma; font-size: 75%; letter-spacing: 0.001em;} html > body div#content ol {clear: left;} ol {margin-left:2.4em; margin-right:2.4em;} ul {margin-left:1.5em; margin-right:1.5em;} h1.firstHeading {background-position: bottom right; background-repeat: no-repeat;} h3 {font-size:110%;} h4 {font-size:100%;} h5 {font-size:90%;} #catlinks {width:100%;} #userloginForm {float: right !important;}</style>\');
+  document.write(\'<style type="text/css">html {direction:rtl;} body {direction:rtl; unicode-bidi:embed; lang:ku-Arab; font-family: "DejaVu Sans", Tahoma, "Unikurd Web", "Arial Unicode MS", Lateef, Scheherazade, "ae_Rasheeq", "sans-serif", sans; font-size: 75%; letter-spacing: 0.001em;} html > body div#content ol {clear: left;} ol {margin-left:2.4em; margin-right:2.4em;} ul {margin-left:1.5em; margin-right:1.5em;} h1.firstHeading {background-position: bottom right; background-repeat: no-repeat;} h3 {font-size:110%;} h4 {font-size:100%;} h5 {font-size:90%;} #catlinks {width:100%;} #userloginForm {float: right !important;}</style>\');
 
   if (skin == "monobook"){
      document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/monobook/rtl.css">\');

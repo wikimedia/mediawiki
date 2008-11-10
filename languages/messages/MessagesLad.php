@@ -5,6 +5,7 @@
  * @file
  *
  * @author ILVI
+ * @author Remember the dot
  * @author Runningfridgesrule
  * @author Taichi
  * @author Universal Life
@@ -13,6 +14,7 @@
 
 $messages = array(
 # User preference toggles
+'tog-underline'            => 'Subrayar linkes',
 'tog-justify'              => 'Atacanar paragrafos',
 'tog-hideminor'            => 'Esconder ediciones chiquiticas de los «trocamientos frescos»',
 'tog-showtoolbar'          => 'Amostrár la barra de edision',
@@ -181,10 +183,10 @@ $messages = array(
 'site-atom-feed'  => 'Fuente de Atom de $1',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'Artikolo',
+'nstab-main'      => 'Página',
 'nstab-user'      => 'Página de usuario',
 'nstab-special'   => 'Espesial',
-'nstab-image'     => 'Imagen',
+'nstab-image'     => 'Archivo',
 'nstab-mediawiki' => 'Mesaje',
 'nstab-help'      => 'Ayudo',
 'nstab-category'  => 'Kategoría',

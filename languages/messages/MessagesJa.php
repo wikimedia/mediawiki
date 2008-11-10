@@ -8,13 +8,17 @@
  * @author Aotake
  * @author Broad-Sky
  * @author Emk
+ * @author Fievarsty
  * @author Hatukanezumi
+ * @author Hosiryuhosi
  * @author Iwai.masaharu
  * @author JtFuruhata
  * @author Kahusi
  * @author Kkkdc
+ * @author Koba-chan
  * @author Marine-Blue
  * @author Meno25
+ * @author Mizusumashi
  * @author Muttley
  * @author Mzm5zbC3
  * @author Suisui
@@ -176,7 +180,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings/ja 設定リスト]
 * [http://www.mediawiki.org/wiki/Manual:FAQ/ja MediaWiki FAQ]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki リリース情報メーリングリスト]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki リリース情報メーリングリスト]',
 
 'about'          => '解説',
 'article'        => '本文',
@@ -282,7 +286,7 @@ $messages = array(
 'badaccess-group0' => 'あなたはこの処理を行う権限を持っていません。',
 'badaccess-group1' => 'この処理は $1 の権限を持った利用者のみが実行できます。',
 'badaccess-group2' => 'この処理は $1 のうちどちらかの権限を持った利用者のみが実行できます。',
-'badaccess-groups' => 'この処理は $1 {{PLURAL:$2|の|のいずれか}} のグループに属する利用者のみが実行できます。',
+'badaccess-groups' => 'この処理は $1 のグループに属する利用者のみが実行できます。',
 
 'versionrequired'     => 'MediaWiki バージョン $1 が必要',
 'versionrequiredtext' => 'このページの利用には MediaWiki バージョン $1 が必要です。[[Special:Version|バージョン情報]]を確認してください。',
@@ -304,7 +308,7 @@ $messages = array(
 'restorelink'             => '削除された $1 編集',
 'feedlinks'               => 'フィード:',
 'feed-invalid'            => 'フィード形式の指定が間違っています。',
-'feed-unavailable'        => '{{SITENAME}} は、フィードの配信に対応していません。',
+'feed-unavailable'        => 'フィードの配信に対応していません。',
 'site-rss-feed'           => '$1 をRSSフィード',
 'site-atom-feed'          => '$1 をAtomフィード',
 'page-rss-feed'           => '"$1" をRSSフィード',
@@ -346,7 +350,7 @@ The last attempted database query was:
 "$1"
 from within function "$2".
 MySQL returned error "$3: $4"',
-'noconnect'            => '申し訳ありません。何らかの問題によりデータベースに接続できません。<br />$1',
+'noconnect'            => '申し訳ありません。技術的な問題が発生しており、データベースサーバーに接続できません。<br />$1',
 'nodb'                 => 'データベース $1 を選択できません。',
 'cachederror'          => 'あなたがアクセスしたページのコピーを保存したものを表示しています。また、コピーは更新されません。',
 'laggedslavemode'      => '警告: ページに最新の編集が反映されていない可能性があります。反映されるまでしばらくお待ちください。',
@@ -416,14 +420,14 @@ $2',
 'logout'                     => 'ログアウト',
 'userlogout'                 => 'ログアウト',
 'notloggedin'                => 'ログインしていません',
-'nologin'                    => 'アカウントはお持ちですか? $1',
+'nologin'                    => 'アカウントをお持ちではありませんか? $1',
 'nologinlink'                => 'アカウントを作成',
 'createaccount'              => 'アカウント作成',
 'gotaccount'                 => 'すでにアカウントをお持ちの場合: $1',
 'gotaccountlink'             => 'ログイン',
 'createaccountmail'          => 'メールで送信',
 'badretype'                  => '両方のパスワードが一致しません。',
-'userexists'                 => 'その利用者名はすでに使われています。ほかの名前をお選びください。',
+'userexists'                 => '入力された利用者名はすでに使われています。ほかの名前をお選びください。',
 'youremail'                  => 'メールアドレス*:',
 'username'                   => '利用者名:',
 'uid'                        => '利用者ID:',
@@ -436,14 +440,15 @@ $2',
 'email'                      => 'メールアドレス',
 'prefs-help-realname'        => '* 本名 (任意): 本名を入力すると、ページ・クレジットに利用者名（アカウント名）の代わりに本名が表示されます。',
 'loginerror'                 => 'ログイン失敗',
-'prefs-help-email'           => '* メールアドレス (任意): メールアドレスを入力すると、他の利用者からのウィキメールを受け取ることができるようになります。この時点ではあなたのメールアドレスはその利用者に知られることはありません。ただし、あなたから送信すれば、あなたのメールアドレスは先方に通知されます。',
+'prefs-help-email'           => 'メールアドレスの設定は任意ですが、設定しておけばパスワードを忘れた際に新しいパスワードを電子メールで受け取ることができます。
+また、他の利用者からのウィキメールを受け取ることができるようになります。この時点ではあなたのメールアドレスはその利用者に知られることはありません。ただし、あなたから送信すれば、あなたのメールアドレスは先方に通知されます。',
 'prefs-help-email-required'  => 'メールアドレスが必要です。',
 'nocookiesnew'               => '利用者のアカウントは作成されましたが、ログインしていません。{{SITENAME}}ではログインにクッキーを使います。あなたはクッキーを無効な設定にしているようです。クッキーを有効にしてから作成した利用者名とパスワードでログインしてください。',
 'nocookieslogin'             => '{{SITENAME}}ではログインにクッキーを使います。あなたはクッキーを無効な設定にしているようです。クッキーを有効にして、もう一度試してください。',
 'noname'                     => '利用者名を正しく指定していません。',
 'loginsuccesstitle'          => 'ログイン成功',
 'loginsuccess'               => "'''{{SITENAME}} に \"\$1\" としてログインしました。'''",
-'nosuchuser'                 => '"$1" という利用者は見当たりません。綴りが正しいことを再度確認するか、下記のフォームを使ってアカウントを作成してください。',
+'nosuchuser'                 => '"$1"という利用者は見当たりません。綴りが正しいことを再度確認するか、[[Special:UserLogin/signup|アカウントを作成してください]]。',
 'nosuchusershort'            => '"<nowiki>$1</nowiki>" という利用者は見当たりません。綴りが正しいことを再度確認してください。',
 'nouserspecified'            => '利用者名を指定してください。',
 'wrongpassword'              => 'パスワードが間違っています。再度入力してください。',
@@ -451,10 +456,9 @@ $2',
 'passwordtooshort'           => 'パスワードが短すぎます。$1文字以上の文字列にしてください。',
 'mailmypassword'             => '新しいパスワードをメールで送る',
 'passwordremindertitle'      => '{{SITENAME}} パスワード再送通知',
-'passwordremindertext'       => 'どなたか（$1 のIPアドレスの使用者）が{{SITENAME}} ($4) のログイン用パスワードの再発行を依頼しました。
+'passwordremindertext'       => 'どなたか（$1のIPアドレスの使用者）が{{SITENAME}} ($4) のログイン用パスワードの再発行を依頼しました。利用者"$2"の仮パスワードは "$3" です。もしあなたがパスワードの発行を依頼したのであれば、ログインして別のパスワードに変更してください。
 
-利用者 "$2" のパスワードを "$3" に変更しました。
-ログインして別のパスワードに変更してください。',
+パスワード再発行の依頼に覚えがない、またはログイン用パスワードを思い出されパスワード変更の必要がないのであるならば、このメッセージは無視してください。引き続き以前のパスワードを使用し続けることができます。',
 'noemail'                    => '利用者 "$1" のメールアドレスは登録されていません。',
 'passwordsent'               => '新しいパスワードを "$1" さんの登録済みメールアドレスに送信しました。メールを受け取ったら、再度ログインしてください。',
 'blocked-mailpassword'       => 'あなたの使用しているIPアドレスからの編集はブロックされています。悪用防止のため、パスワードの再発行は無効化されています。',
@@ -462,7 +466,7 @@ $2',
 'throttled-mailpassword'     => '新しいパスワードは $1 時間以内に送信済みです。悪用防止のため、パスワードは $1 時間間隔で再発行可能となります。',
 'mailerror'                  => 'メールの送信中にエラーが発生しました: $1',
 'acct_creation_throttle_hit' => 'あなたは既に $1 アカウントを作成しています。これ以上作成できません。',
-'emailauthenticated'         => 'あなたのメールアドレスは $1 に確認されています。',
+'emailauthenticated'         => 'あなたのメールアドレスは $2 の $3 に確認されています。',
 'emailnotauthenticated'      => 'あなたのメールアドレスは<strong>確認されていません</strong>。確認されるまで以下のいかなるメールも送られません。',
 'noemailprefs'               => '<strong>これらの機能を有効にするにはメールアドレスを登録してください。</strong>',
 'emailconfirmlink'           => 'メールアドレスを確認する',
@@ -490,7 +494,7 @@ $2',
 'resetpass_submit'        => '再設定してログイン',
 'resetpass_success'       => 'あなたのパスワードは変更されました。ログインしています...',
 'resetpass_bad_temporary' => '無効な臨時パスワードです。パスワードは既に再設定されているか、再びパスワード通知メールが送信されています。',
-'resetpass_forbidden'     => 'このウィキでは、パスワードの変更は許可されていません。',
+'resetpass_forbidden'     => 'このウィキでのパスワードの変更は許可されていません。',
 'resetpass_missing'       => 'データがセットされていません。',
 
 # Edit page toolbar
@@ -635,7 +639,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'edittools'                 => '<!-- ここに書いたテキストは編集及びアップロードのフォームの下に表示されます。 -->',
 'nocreatetitle'             => 'ページを作成できません',
 'nocreatetext'              => '{{SITENAME}} ではページの新規作成を制限しています。元のページに戻って既存のページを編集するか、[[Special:UserLogin|ログインまたはアカウントを作成]]してください。',
-'nocreate-loggedin'         => '{{SITENAME}}で新しいページを作成する権限がありません。',
+'nocreate-loggedin'         => 'あなたは、{{SITENAME}}で新しいページを作成する権限がありません。',
 'permissionserrors'         => '認証エラー',
 'permissionserrorstext'     => 'あなたにはこのページの編集権限がありません。理由は以下の通りです:',
 'recreate-deleted-warn'     => "'''警告:あなたは以前に削除されたページを再作成しようとしています。'''
@@ -697,11 +701,11 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'revisiondelete'              => '版の削除と復帰',
 'revdelete-nooldid-title'     => '対象版がありません',
 'revdelete-nooldid-text'      => '操作の完了に必要な版が指定されていません。',
-'revdelete-selected'          => "'''$1'''の、以下の選択された版に対する操作:",
+'revdelete-selected'          => "''''''$1'''の、以下の選択された版に対する操作:'''",
 'logdelete-selected'          => '[[:$1]]の、以下の選択されたログに対する操作:',
-'revdelete-text'              => '版の削除ではページの履歴にその版は表示されます。しかしその版に含まれるテキストにはアクセスできなくなります。
+'revdelete-text'              => "'''版の削除ではページの履歴にその版は表示されます。しかしその版に含まれるテキストにはアクセスできなくなります。'''
 
-サーバー管理者にこれ以上の制限をかけられない限り、他の{{int:group-sysop}}は隠れた版を読んだり、元に戻したりできます。',
+サーバー管理者にこれ以上の制限をかけられない限り、他の{{int:group-sysop}}は隠れた版を読んだり、元に戻したりできます。",
 'revdelete-legend'            => '版の削除の適用',
 'revdelete-hide-text'         => '版のテキストを隠す',
 'revdelete-hide-name'         => '操作および対象を隠す',
@@ -788,7 +792,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'mypreferences'            => 'オプション',
 'prefs-edits'              => '編集回数:',
 'prefsnologin'             => 'ログインしていません',
-'prefsnologintext'         => 'オプションを変更するためには、[[Special:UserLogin|ログイン]]する必要があります。',
+'prefsnologintext'         => 'オプションを変更するためには<span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} ログイン]</span>している必要があります。',
 'prefsreset'               => 'オプションは初期化されました。',
 'qbsettings'               => 'クイックバー設定',
 'qbsettings-none'          => 'なし',
@@ -931,7 +935,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'uploadnologintext'           => 'ファイルをアップロードするには[[Special:UserLogin|ログイン]]する必要があります。',
 'upload_directory_read_only'  => 'アップロード先のディレクトリ ($1) にウェブサーバーが書き込めません。',
 'uploaderror'                 => 'アップロード エラー',
-'uploadtext'                  => "ファイルを新しくアップロードする場合には、以下のフォームを利用してください。過去にアップロードされたファイルの閲覧・検索には[[Special:ImageList|{{int:imagelist}}]]をご利用ください。アップロードの記録は[[Special:Log/upload|アップロードログ]]、削除の記録は[[Special:Log/delete|削除ログ]]にも記録されます。
+'uploadtext'                  => "ファイルを新しくアップロードする場合には、以下のフォームを利用してください。過去にアップロードされたファイルの閲覧・検索には[[Special:ImageList|{{int:imagelist}}]]をご利用ください。アップロードの記録は[[Special:Log/upload|アップロード記録]]、削除の記録は[[Special:Log/delete|削除記録]]にも記録されます。
 
 ページにファイルを挿入するには以下の書式のリンクを使います。
 * '''<tt><nowiki>[[</nowiki>{{ns:image}}:<nowiki>File.jpg]]</nowiki></tt>''' とするとファイルをもとのサイズのまま表示します
@@ -940,9 +944,9 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'upload-permitted'            => '許可されているファイル形式： $1',
 'upload-preferred'            => '推奨されているファイル形式： $1',
 'upload-prohibited'           => '禁止されているファイル形式： $1',
-'uploadlog'                   => 'アップロードログ',
+'uploadlog'                   => 'アップロード記録',
 'uploadlogpage'               => 'アップロード記録',
-'uploadlogpagetext'           => '以下は最近のファイルのアップロードのログです。',
+'uploadlogpagetext'           => '以下はファイルアップロードの最近の記録です。画像付きで見るには[[Special:NewImages|新規画像ギャラリー]]をご覧ください。',
 'filename'                    => 'ファイル名',
 'filedesc'                    => 'ファイルの概要',
 'fileuploadsummary'           => 'ファイルの概要:',
@@ -970,19 +974,18 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'fileexists-thumb'            => "<center>'''既存のファイル'''</center>",
 'fileexists-thumbnail-yes'    => 'このファイルはサムネイル（縮小版画像）である可能性があります。以下のファイルを確認してください: <strong><tt>$1</tt></strong><br />
 確認したファイルが通常サイズの元画像である場合、追加でサムネイルを登録する必要はありません。',
-'file-thumbnail-no'           => 'ファイル名が <strong><tt>$1</tt></strong> から始まっており、サムネイル（縮小う版画像）である可能性が高いです。
+'file-thumbnail-no'           => 'ファイル名が <strong><tt>$1</tt></strong> から始まっており、サムネイル（縮小版画像）である可能性が高いです。
 より高精細な画像をお持ちの場合は、フルサイズ版をアップロードしてください。そうでない場合はファイル名を変更してください。',
 'fileexists-forbidden'        => 'この名前のファイルは既に存在しています。前のページに戻り、別のファイル名でアップロードし直してください。
 [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'この名前のファイルは共有リポジトリに既に存在しています。前のページに戻り、別のファイル名でアップロードし直してください。
-[[Image:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'この名前のファイルは共有ファイルリポジトリに既に存在しています。アップロードを継続したい場合は、前のページに戻り、別のファイル名を選択してください。[[Image:$1|thumb|center|$1]]',
 'successfulupload'            => 'アップロード成功',
 'uploadwarning'               => 'アップロード 警告',
 'savefile'                    => 'ファイルを保存',
 'uploadedimage'               => '"$1" をアップロードしました。',
 'overwroteimage'              => '"[[$1]]"の新しい版をアップロードしました',
 'uploaddisabled'              => '申し訳ありませんが、アップロードは現在使用できません。',
-'uploaddisabledtext'          => '{{SITENAME}}ではファイルのアップロードが禁止されています。',
+'uploaddisabledtext'          => 'ファイルのアップロードは禁止されています。',
 'uploadscripted'              => 'このファイルはウェブブラウザが誤って解釈してしまうおそれのあるHTMLまたはスクリプトコードを含んでいます。',
 'uploadcorrupt'               => '指定したファイルは壊れているか拡張子が正しくありません。ファイルを確認の上再度アップロードをしてください。',
 'uploadvirus'                 => 'このファイルにはウイルスが含まれています!! &nbsp;詳細: $1',
@@ -992,7 +995,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'filewasdeleted'              => 'この名前のファイルは一度アップロードされその後削除されています。アップロードの前に$1を確認してみてください。',
 'upload-wasdeleted'           => "'''警告:あなたは過去に削除されたファイルをアップロードしようとしています。'''
 
-このままアップロードを行うことが適切かどうか確認してください。参考として以下にこのファイルの削除ログを表示しています:",
+このままアップロードを行うことが適切かどうか確認してください。参考として以下にこのファイルの削除記録を表示しています:",
 'filename-bad-prefix'         => 'アップロードしようとしている <strong>"$1"</strong> のファイル名が、デジタルカメラによって自動的に付与されるような名称となっています。どのようなファイルであるのか、ファイル名を見ただけでも分かるような名称にしてください。',
 
 'upload-proto-error'      => '不正なプロトコル',
@@ -1076,7 +1079,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'filedelete-submit'           => '削除する',
 'filedelete-success'          => "'''$1''' は削除されました。",
 'filedelete-success-old'      => "'''[[Media:$1|$1]]''' の $2 $3 版は削除されています。",
-'filedelete-nofile'           => "'''$1''' は{{SITENAME}}上に存在しません。",
+'filedelete-nofile'           => "'''$1''' は存在しません。",
 'filedelete-nofile-old'       => "指定された属性を持つ'''$1'''の古い版は存在しません。",
 'filedelete-iscurrent'        => 'このファイルの最新版を削除しようとしています。直前の版に差し戻してください。',
 'filedelete-otherreason'      => 'その他/理由の付記:',
@@ -1099,7 +1102,8 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 
 # Unused templates
 'unusedtemplates'     => '使われていないテンプレート',
-'unusedtemplatestext' => 'このページでは {{ns:template}} 名前空間にあって他のページから使用されていないものを一覧にしています。削除する前にリンク元を確認してください。',
+'unusedtemplatestext' => 'このページでは{{ns:template}}名前空間にあって他のページに読み込まれていないページを一覧にしています。
+削除する前にリンク元で他のリンクがないか確認してください。',
 'unusedtemplateswlh'  => 'リンク元',
 
 # Random page
@@ -1121,7 +1125,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 ページの総閲覧回数は'''$3'''回です。また、'''$4'''回の編集が行われました。平均すると、1ページあたり'''$5'''回の編集が行われ、1編集あたり'''$6'''回閲覧されています。
 
 [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] の長さは '''$7''' です。",
-'userstatstext'          => "登録済みの利用者は'''$1'''人で、内'''$2'''人 ('''$4%''') が$5権限を持っています。($3を参照)",
+'userstatstext'          => "[[Special:ListUsers|登録利用者]]は'''$1人'''で、その内'''$2人''' ('''$4%''') が$5権限を持っています。現在活動中の登録利用者は約'''$6人'''です。",
 'statistics-mostpopular' => '最も閲覧されているページ',
 
 'disambiguations'      => '曖昧さ回避ページ',
@@ -1153,7 +1157,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'nviews'                  => '$1 回表示',
 'specialpage-empty'       => '合致するものがありません。',
 'lonelypages'             => '孤立しているページ',
-'lonelypagestext'         => '以下のページは、どこからもリンクされていない孤立したページです。',
+'lonelypagestext'         => '以下のページは、{{SITENAME}}の他のページからリンクされておらず、また読み込まれてもいないページです。',
 'uncategorizedpages'      => 'カテゴリ未導入のページ',
 'uncategorizedcategories' => 'カテゴリ未導入のカテゴリ',
 'uncategorizedimages'     => 'カテゴリ未分類のファイル',
@@ -1215,10 +1219,10 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'specialloguserlabel'  => '利用者名:',
 'speciallogtitlelabel' => 'タイトル:',
 'log'                  => 'ログ',
-'all-logs-page'        => '全てのログ',
+'all-logs-page'        => '全ての記録',
 'log-search-legend'    => 'ログの検索',
 'log-search-submit'    => '検索',
-'alllogstext'          => 'アップロード、削除、保護、投稿ブロック、権限変更のログがまとめて表示されています。ログの種類、実行した利用者、影響を受けたページ（利用者）による絞り込みができます。',
+'alllogstext'          => '{{SITENAME}}の取得可能なログがまとめて表示されています。ログの種類、実行した利用者、影響を受けたページ（利用者）による絞り込みができます。',
 'logempty'             => '条件にマッチする記録はありません。',
 'log-title-wildcard'   => 'この文字列で始まるタイトルを検索する',
 
@@ -1246,8 +1250,8 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'mailnologintext' => '他の利用者宛てにメールを送信するためには、[[Special:UserLogin|ログイン]]し、あなたのメールアドレスを[[Special:Preferences|オプション]]に設定する必要があります。',
 'emailuser'       => 'この利用者にメールを送信',
 'emailpage'       => 'メール送信ページ',
-'emailpagetext'   => 'メールを送る先の利用者が有効なメールアドレスを{{int:preferences}}で登録していれば、下のフォームを通じてメールを送ることができます。
-あなたが [[Special:Preferences|{{int:preferences}}]]で登録したご自分のメールアドレスは送るメールのFrom:の欄に自動的に組み込まれ、受け取った相手が返事を出せるようになっています。',
+'emailpagetext'   => '下のフォームを通じて、この利用者にメールを送ることができます。
+あなたが[[Special:Preferences|{{int:preferences}}]]で登録したご自分のメールアドレスが、送信されるメールのFromアドレスに自動的に組み込まれ、受け取った相手が直接あなたに返事を出せるようになっています。',
 'usermailererror' => 'メール送信時に以下のエラーが発生しました:',
 'defemailsubject' => '{{SITENAME}} 電子メール',
 'noemailtitle'    => '送り先のメールアドレスがありません。',
@@ -1284,7 +1288,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'unwatchthispage'      => 'ウォッチリストから削除',
 'notanarticle'         => 'これは記事ではありません。',
 'watchnochange'        => 'その期間内にウォッチリストにあるページはどれも編集されていません。',
-'watchlist-details'    => '* ウォッチリストに入っているページ数（ノート除く）: $1.',
+'watchlist-details'    => 'あなたのウォッチリストには $1 のページが入っています（ノートページは数えません）。',
 'wlheader-enotif'      => '* メール通知が有効になっています',
 'wlheader-showupdated' => "* あなたが最後に訪問したあとに変更されたページは'''ボールド体'''で表示されます",
 'watchmethod-recent'   => 'ウォッチリストの中から最近編集されたものを抽出',
@@ -1442,7 +1446,7 @@ $NEWPAGE
 'undeleterevdel'               => 'トップページの版が一時的に削除されているものに対しては、復帰処理を実行できません。このような場合、まずは最新の削除履歴に対するチェックまたは隠蔽を解除する必要があります。
 ファイル履歴を表示する権限がない場合も、復帰させることはできません。',
 'undeletehistorynoadmin'       => '過去にこのページの全てもしくは一部が削除されています。以下に示すのは削除記録と削除された版の履歴です。削除された各版の内容は{{int:group-sysop}}のみが閲覧できます。',
-'undelete-revision'            => '$1 の削除された $2 の版 投稿者 $3 :',
+'undelete-revision'            => '$1 の削除された版 ($4 $5時点、投稿者$3) :',
 'undeleterevision-missing'     => '無効、あるいは誤った版です。当該版は既に復帰されたか、アーカイブから削除された可能性があります。',
 'undelete-nodiff'              => 'これより前の版はありません。',
 'undeletebtn'                  => '復帰',
@@ -1541,7 +1545,7 @@ $NEWPAGE
 'ipb-edit-dropdown'           => 'ブロック理由を編集する',
 'ipb-unblock-addr'            => '$1 のブロックを解除',
 'ipb-unblock'                 => '利用者またはIPアドレスのブロックを解除する',
-'ipb-blocklist-addr'          => '$1 の現在有効なブロックを表示',
+'ipb-blocklist-addr'          => '$1 に対する現在有効なブロック',
 'ipb-blocklist'               => '現在有効なブロックを表示',
 'unblockip'                   => '投稿ブロックを解除する',
 'unblockiptext'               => '以下のフォームで利用者またはIPアドレスの投稿ブロックを解除できます。',
@@ -1567,7 +1571,7 @@ $NEWPAGE
 'autoblocker'                 => '投稿ブロックされている利用者 "$1" と同じIPアドレスのため、自動的にブロックされています。ブロックの理由は "$2" です。',
 'blocklogpage'                => '投稿ブロック記録',
 'blocklogentry'               => '"$1" を $2 ブロックしました $3',
-'blocklogtext'                => 'このページは投稿ブロックと解除の記録です。自動的に投稿ブロックされたIPアドレスは記録されていません。現時点で有効な投稿ブロックは[[Special:IPBlockList|{{int:ipblocklist}}]]をご覧ください。',
+'blocklogtext'                => 'このページは投稿ブロックと解除の記録です。自動的に投稿ブロックされたIPアドレスは記録されていません。現時点で有効な投稿ブロックは[[Special:IPBlockList|ブロック中の利用者一覧]]をご覧ください。',
 'unblocklogentry'             => '"$1" をブロック解除しました',
 'block-log-flags-anononly'    => '匿名のみ',
 'block-log-flags-nocreate'    => 'アカウント作成のブロック',
@@ -1631,7 +1635,7 @@ $NEWPAGE
 'movearticle'             => '移動するページ',
 'movenologin'             => 'ログインしていません',
 'movenologintext'         => 'ページを移動するためには、アカウント作成の上、[[Special:UserLogin|ログイン]]している必要があります。',
-'movenotallowed'          => '{{SITENAME}}でページを移動する権限がありません。',
+'movenotallowed'          => 'あなたにはページを移動する権限がありません。',
 'newtitle'                => '新しいページ名',
 'move-watch'              => '移動するページをウォッチ',
 'movepagebtn'             => 'ページを移動',
@@ -1690,7 +1694,7 @@ $NEWPAGE
 'thumbnail_error'          => 'サムネイルの作成中にエラーが発生しました: $1',
 'djvu_page_error'          => '指定ページ数はDjVuページ範囲を越えています',
 'djvu_no_xml'              => 'DjVuファイルのXMLデータを取得できません',
-'thumbnail_invalid_params' => 'サムネイルの指定パラメータが不正です',
+'thumbnail_invalid_params' => 'サムネイルの指定パラメータが適切でないか、画像ファイルの画素数が1,250万ピクセル以上です。',
 'thumbnail_dest_directory' => '出力ディレクトリを作成できません',
 
 # Special:Import
@@ -1797,7 +1801,7 @@ $NEWPAGE
 
 # Scripts
 'common.js'   => '/* ここに書いた JavaScript は全てのページ上で実行されます */',
-'monobook.js' => '/* こちらは廃止されました; [[MediaWiki:Common.js]]をお使いください */',
+'monobook.js' => '/* ここに書かれた JavaScript は MonoBook スキンを使っている全利用者に適用されます */',
 
 # Metadata
 'nodublincore'      => 'このサーバーでは Dublin Core RDF メタデータが許可されていません。',
@@ -2200,7 +2204,7 @@ Variants for Chinese language
 'confirmemail_send'       => '確認用コードを送信する',
 'confirmemail_sent'       => '確認メールを送信しました。',
 'confirmemail_oncreate'   => 'メールアドレスの正当性を確認するためのコードを含んだメールを送信しました。この確認を行わなくてもログインはできますが、確認するまでメール通知の機能は無効化されます。',
-'confirmemail_sendfailed' => '確認メールを送信できませんでした。メールアドレスに不正な文字が含まれていないかどうか確認してください。
+'confirmemail_sendfailed' => '{{SITENAME}}からの確認メールを送信できませんでした。メールアドレスに不正な文字が含まれていないかどうか確認してください。
 
 メールサーバーからの返答: $1',
 'confirmemail_invalid'    => '確認用コードが正しくありません。このコードは期限切れです。',
@@ -2249,7 +2253,7 @@ $1
 'trackbackdeleteok' => 'トラックバックを削除しました。',
 
 # Delete conflict
-'deletedwhileediting' => "'''警告:''' このページはあなたが編集し始めた後、削除されました!!",
+'deletedwhileediting' => "'''警告:''' このページはあなたが編集し始めた後、削除されました!",
 'confirmrecreate'     => "あなたがこのページを編集し始めた後に、このページは[[User:$1|$1]] ([[User talk:$1|会話]]) によって削除されました。その理由は次の通りです:
 : ''$2''
 このままこのページを新規作成して良いか確認してください。",

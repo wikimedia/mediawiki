@@ -6,6 +6,7 @@
  *
  * @author Malafaya
  * @author OchAyeTheNoo
+ * @author Urhixidur
  * @author sco.wikipedia.org editors
  * @author לערי ריינהארט
  */
@@ -124,7 +125,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settins leet]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki releese mailin leet]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki releese mailin leet]",
 
 'about'          => 'Aboot',
 'article'        => 'Content page',
@@ -558,7 +559,7 @@ Gin ye dinna want yer writin tae be editit athoot mercy and redistribute at will
 YYe'r promisin us forbye that ye wrat this yersel, or copied it frae a
 public domain or siclike free resoorce (see $1 for details).
 <strong>DINNA SUBMIT COPYRICHTIT WARK ATHOOT PERMEISSION!</strong>",
-'longpagewarning'           => "WARNIN: This page is $1 kilobytes lang; some brousers micht hae trouble editin pages approachin or langer nor 32kb. Please conseider brakkin the page intae smaa'er sections.",
+'longpagewarning'           => "WARNIN: This page is $1 kilobytes lang; some brousers micht hae trouble editin pages approachin or langer nor 32 kb. Please conseider brakkin the page intae smaa'er sections.",
 'longpageerror'             => "<strong>ERROR: The text ye hae submitted is $1 kilobytes 
 lang, an that's langer than the maximum of $2 kilobytes. It canna be hained.</strong>",
 'readonlywarning'           => "WARNIN: The database haes been lockit for maintenance, sae ye'll no can hain yer edits richt nou. Ye micht wish tae cut-n-paste the text intil a text file an hain it for later.",
@@ -965,7 +966,7 @@ afore it wis delete. The actual text o thir deletit reveisions is available tae 
 'ipbreason'                   => 'Raeson',
 'ipbsubmit'                   => 'Block this uiser',
 'ipbother'                    => 'Ither time',
-'ipboptions'                  => '2 oor:2 oor,1 day:1 day,3 days:3 days,1 week:1 week,2 week:2 week,1 month:1 month,3 month:3 month,6 month:6 month,1 year:1 year,infinite:infinite', # display1:time1,display2:time2,...
+'ipboptions'                  => '2 oor:2 hours,1 day:1 day,3 days:3 days,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,infinite:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'ither',
 'badipaddress'                => 'That IP address is nae guid',
 'blockipsuccesssub'           => 'Block succeedit',

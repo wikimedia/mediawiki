@@ -7,6 +7,7 @@
  * @author Clerc
  * @author Lin linao
  * @author Poquil
+ * @author Remember the dot
  */
 
 $fallback = 'es';
@@ -132,7 +133,7 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|kiñe wirin ñamümgün|$1 wirin ñamümün}}',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'pakina',
+'nstab-main'      => 'Pakina',
 'nstab-user'      => 'Lludüchi',
 'nstab-special'   => 'Kangelu',
 'nstab-mediawiki' => 'Dungu',
@@ -373,6 +374,8 @@ $messages = array(
 
 # EXIF tags
 'exif-exposuretime-format' => '$1 sek ($2)',
+
+'exif-exposureprogram-1' => 'Chillka kellu',
 
 'exif-meteringmode-0'   => 'Kimnoelchi',
 'exif-meteringmode-255' => 'Kakelu',

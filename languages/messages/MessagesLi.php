@@ -7,6 +7,7 @@
  * @author Cicero
  * @author Matthias
  * @author Ooswesthoesbes
+ * @author Pahles
  * @author Tibor
  * @author לערי ריינהארט
  */
@@ -103,30 +104,30 @@ $messages = array(
 'tog-ccmeonemails'            => "'ne Kopie nao mich verzende van de e-mail dae ich nao anger gebroekers sjtuur",
 'tog-diffonly'                => 'Pazjena-inhawd zonger verangeringe neet tune',
 
-'underline-always'  => 'Altiejd',
-'underline-never'   => 'Nooits',
-'underline-default' => 'Standaard vanne browser',
+'underline-always'  => 'Altied',
+'underline-never'   => 'Noets',
+'underline-default' => 'Standaard van de browser',
 
 'skinpreview' => '(Veurbesjouwing)',
 
 # Dates
-'sunday'        => 'zondig',
+'sunday'        => 'zóndig',
 'monday'        => 'maondig',
 'tuesday'       => 'dinsdig',
-'wednesday'     => 'goonsdag',
+'wednesday'     => 'goonsdig',
 'thursday'      => 'donderdig',
 'friday'        => 'vriedig',
 'saturday'      => 'zaoterdig',
-'sun'           => 'zön',
+'sun'           => 'zón',
 'mon'           => 'mao',
 'tue'           => 'din',
 'wed'           => 'woo',
-'thu'           => 'dön',
+'thu'           => 'dón',
 'fri'           => 'vri',
 'sat'           => 'zao',
 'january'       => 'jannewarie',
-'february'      => 'fibberwari',
-'march'         => 'meert',
+'february'      => 'fibberwarie',
+'march'         => 'miert',
 'april'         => 'april',
 'may_long'      => 'mei',
 'june'          => 'juni',
@@ -137,8 +138,8 @@ $messages = array(
 'november'      => 'november',
 'december'      => 'december',
 'january-gen'   => 'jannewarie',
-'february-gen'  => 'fibberwari',
-'march-gen'     => 'meert',
+'february-gen'  => 'fibberwarie',
+'march-gen'     => 'miert',
 'april-gen'     => 'april',
 'may-gen'       => 'mei',
 'june-gen'      => 'juni',
@@ -150,7 +151,7 @@ $messages = array(
 'december-gen'  => 'december',
 'jan'           => 'jan',
 'feb'           => 'fib',
-'mar'           => 'maa',
+'mar'           => 'mie',
 'apr'           => 'apr',
 'may'           => 'mei',
 'jun'           => 'jun',
@@ -165,9 +166,9 @@ $messages = array(
 'categories'            => 'Categorieë',
 'pagecategories'        => '{{PLURAL:$1|Categorie|Categorieë}}',
 'category_header'       => 'Artikele in categorie "$1"',
-'subcategories'         => 'Subkattegorië',
+'subcategories'         => 'Subcategorieë',
 'category-media-header' => 'Media in de categorie "$1"',
-'category-empty'        => "''Deze categorie is laeg, hae bevat op 't memènt gén artiekele of media.''",
+'category-empty'        => "''Dees categorie bevat op 't memènt gein artikele of media.''",
 
 'mainpagetext'      => 'Wiki software succesvol geïnsjtalleerd.',
 'mainpagedocfooter' => "Raodpleeg de [http://meta.wikimedia.org/wiki/NL_Help:Inhoudsopgave handjleiding] veur informatie euver 't gebroek van de wikisoftware.
@@ -176,7 +177,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lies mit instellinge]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki VGV (FAQ)]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki mailinglies veur nuuj versies]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki mailinglies veur nuuj versies]",
 
 'about'          => 'Informatie',
 'article'        => 'Contentpazjena',
@@ -220,7 +221,7 @@ $messages = array(
 'deletethispage'    => 'Wisse',
 'undelete_short'    => '$1 {{PLURAL:$1|bewèrking|bewèrkinge}} trökplaatse',
 'protect'           => 'Besjerm',
-'protect_change'    => 'beveiligingsstatus verangere',
+'protect_change'    => 'beveiligingssjtatus verangere',
 'protectthispage'   => 'Beveilige',
 'unprotect'         => 'vriegaeve',
 'unprotectthispage' => 'Besjerming opheffe',
@@ -282,7 +283,7 @@ $messages = array(
 'badaccess-group0' => 'Doe höbs gén rechte om de gevräögde hanjeling oet te veure.',
 'badaccess-group1' => 'De gevräögde hanjeling is veurbehaoje aan gebroekers in de groep $1.',
 'badaccess-group2' => 'De gevraogde hanjeling is veurbehauwe aan gebroekers in ein van de gróppe $1.',
-'badaccess-groups' => 'De gevraogde hanjeling is veurbehauwe aan gebroekers in ein van de gróppe $1.',
+'badaccess-groups' => 'De gevraogde hanjeling is veurbehauwe aan gebroekers in {{PLURAL:$2|de gróp|ein van de gróppe}}: $1.',
 
 'versionrequired'     => 'Versie $1 van MediaWiki is vereis',
 'versionrequiredtext' => 'Versie $1 van MediaWiki is vereis om deze pazjena te gebroeke. Zee [[Special:Version|Softwareversie]]',
@@ -343,7 +344,8 @@ De lèste opgevraogde zeukactie waor:
 "$1"
 vanoet de functie "$2".
 MySQL brach fout "$3" nao veure: "$4"',
-'noconnect'            => 'Verbinden met de database op $1 was neet mogelijk',
+'noconnect'            => 'De wiki óngervènjt technische meujelikhede en kan de database neet bereike.<br />
+$1',
 'nodb'                 => 'Selectie van database $1 neet mogelijk',
 'cachederror'          => "Dit is 'n gearsjiveerde kopie van de gevraogde pazjena, en is mesjien neet gans actueel.",
 'laggedslavemode'      => 'Waorsjuwing: De pazjena kin veraajerd zeen.',
@@ -556,7 +558,7 @@ Veur dien e-mailadres in en bevestig 'm bie [[Special:Preferences|dien veurkäö
 'nosuchsectiontext'         => "Doe probeers 'n subkop te bewerke dae neet bestuit. Omdet subkop $1 neet bestuit, kin diene bewerking ouch neet waere opgeslage.",
 'loginreqtitle'             => 'Aanmelje verplich',
 'loginreqlink'              => 'inglogge',
-'loginreqpagetext'          => 'De mos $1 om anger pazjenas te bekieke.',
+'loginreqpagetext'          => "De mos $1 om anger pazjena's te bekieke.",
 'accmailtitle'              => 'Wachwaord versjtuurd.',
 'accmailtext'               => "'t Wachwaord veur '$1' is nao $2 versjtuurd.",
 'newarticle'                => '(Nuuj)',
@@ -653,7 +655,7 @@ De door $3 opgegaeve reje is ''$2''",
 'last'                => 'vörrige',
 'orig'                => 'orzj',
 'page_first'          => 'ierste',
-'page_last'           => 'litste',
+'page_last'           => 'lèste',
 'histlegend'          => 'Verklaoring aafkortinge: (wijz) = versjil mit actueile versie, (vörrige) = versjil mit vörrige versie, K = kleine verangering',
 'deletedrev'          => '[gewis]',
 'histfirst'           => 'Aajste',
@@ -686,9 +688,9 @@ dao kónne details aanwezig zeen in \'t [{{fullurl:Special:Log/delete|page={{PAG
 'revisiondelete'              => 'Verwijder/herstel bewerkinge',
 'revdelete-nooldid-title'     => 'Geine doelverzie',
 'revdelete-nooldid-text'      => 'Doe höbs gein(e) doelverzie(s) veur deze hanjeling opgegaeve.',
-'revdelete-selected'          => "Geselecteerde {{PLURAL:$2|bewerking|bewerkinge}} van '''[[:$1]]''':",
+'revdelete-selected'          => "'''Geselecteerde {{PLURAL:$2|bewerking|bewerkinge}} van '''[[:$1]]''':'''",
 'logdelete-selected'          => "{{PLURAL:$2|Geselecteerde log gebeurtenis|Geselecteerde log gebeurtenisse}} veur '''$1:'''",
-'revdelete-text'              => "Gewisjde bewerkinge zeen zichbaar in de gesjiedenis, maar de inhoud is neet langer publiek toegankelik.
+'revdelete-text'              => "'''Gewisjde bewerkinge zeen zichbaar in de gesjiedenis, maar de inhoud is neet langer publiek toegankelik.'''
 
 Anger beheerders van {{SITENAME}} kinne de verborge inhoud benäöjere en de verwiedering ongedaon make mit behölp van dit sjerm, tenzij d'r additionele restricties gelje die zeen ingesteld door de systeembeheerder.",
 'revdelete-legend'            => 'Stel zichbaarheidsbeperkinge in',
@@ -768,8 +770,9 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 'nonefound'             => '<strong>Lèt op:</strong> \'n zeukopdrach kan mislökke door \'t gebroek van (in \'t Ingelsj) väöl veurkómmende wäörd wie "of" en "be", die neet geïndexeerd zint, of door versjillende zeukterme tegeliek op te gaeve (de kries dan allein pazjena\'s te zeen woerin alle opgegaeve terme veurkómme).',
 'powersearch'           => 'Zeuke',
 'powersearchtext'       => 'Zeuk in naamruumdes:<br />$1<br />$2 Tuin redirects<br />Zeuk nao $3 $9',
-'searchdisabled'        => '<p style="margin: 1.5em 2em 1em">Zeuke op {{SITENAME}} is oetgesjakeld vanweige gebrek aan servercapaciteit. Zoelang as de servers nog neet sjterk genog zunt kins e zeuke bie Google.
-<span style="font-size: 89%; display: block; margin-left: .2em">Mèrk op dat hun indexe van {{SITENAME}} content e bietje gedatierd kint zien.</span></p>',
+'searchdisabled'        => 'Zeuke op {{SITENAME}} is oetgesjakeld vanweige gebrek aan servercapaciteit.
+Zoelang as de servers nog neet sjterk genog zunt kins e zeuke bie Google.
+Mèrk op dat hun indexe van {{SITENAME}} content e bietje gedatierd kint zien.',
 
 # Preferences page
 'preferences'              => 'Veurkäöre',
@@ -892,7 +895,7 @@ Neet geselecteerde gruup waere neet gewiezig. Deselecteer \'ne groep mit "Ctrl +
 'rcshowhideanons'                   => '$1 anonieme gebroekers',
 'rcshowhidepatr'                    => '$1 gecontroleerde bewerkinge',
 'rcshowhidemine'                    => '$1 mien bewerkinge',
-'rclinks'                           => 'Bekiek de $1 litste verangeringe van de aafgelaupe $2 daag.<br />$3',
+'rclinks'                           => 'Bekiek de $1 lèste verangeringe van de aafgeloupe $2 daag.<br />$3',
 'diff'                              => 'vers',
 'hist'                              => 'gesj',
 'hide'                              => 'Versjtaek',
@@ -936,7 +939,7 @@ De letste link is bedoeld veur mediabestenj die gein aafbeilding zeen.",
 'upload-prohibited'           => 'Verbaoje bestandstypes: $1.',
 'uploadlog'                   => 'uploadlogbook',
 'uploadlogpage'               => 'Uploadlogbook',
-'uploadlogpagetext'           => 'Hieonger de lies mit de meist recent ge-uploade besjtande. Alle tiede zunt servertiede (UTC).',
+'uploadlogpagetext'           => 'Hieonger de lies mit de meist recent ge-uploade besjtande. Alle tiede zunt servertiede.',
 'filename'                    => 'Besjtandsnaom',
 'filedesc'                    => 'Besjrieving',
 'fileuploadsummary'           => 'Samevatting:',
@@ -1085,7 +1088,7 @@ Klikke op 'ne kolomkop verangert de sortering.",
 'download'           => 'Downloade',
 
 # Unwatched pages
-'unwatchedpages' => 'Neet-gevolgde pazjenas',
+'unwatchedpages' => "Neet-gevolgde pazjena's",
 
 # List redirects
 'listredirects' => 'Lies van redirects',
@@ -1116,7 +1119,7 @@ D'r is in totaal '''\$3''' {{PLURAL:\$3|kieër|kieër}} 'n pazjena bekeke en '''
 
 De lengde van de [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] is '''\$7'''.",
 'userstatstext'          => "D'r {{PLURAL:$1|is eine geregistreerde gebroeker|zeen '''$1''' geregistreerde gebroekers}}; '''$2''' (of '''$4''') hievan {{PLURAL:$2|is syteemwèrker|zeen systeemwèrkers}} ($5rech).",
-'statistics-mostpopular' => 'Meisbekeke pazjenas',
+'statistics-mostpopular' => "Meisbekeke pazjena's",
 
 'disambiguations'      => "Verdudelikingspazjena's",
 'disambiguationspage'  => 'Template:Verdudeliking',
@@ -1133,7 +1136,7 @@ Op eder raegel vings te de ierste redirectpazjena, de twiede redirectpazjena en 
 'brokenredirects-edit'   => '(bewerke)',
 'brokenredirects-delete' => '(wisse)',
 
-'withoutinterwiki'         => 'Interwikiloze pazjenas',
+'withoutinterwiki'         => "Pazjena's zónger interwiki's",
 'withoutinterwiki-header'  => "De volgende pagina's linke neet nao versies in 'n anger taal:",
 'withoutinterwiki-summary' => "De volgende pagina's linke neet nao versies in 'n anger taal:",
 'withoutinterwiki-submit'  => 'Toean',
@@ -1144,7 +1147,7 @@ Op eder raegel vings te de ierste redirectpazjena, de twiede redirectpazjena en 
 'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
 'ncategories'             => '$1 {{PLURAL:$1|categorie|categorië}}',
 'nlinks'                  => '$1 {{PLURAL:$1|verwiezing|verwiezinge}}',
-'nmembers'                => '$1 {{PLURAL:$1|leed|lèjjer}}',
+'nmembers'                => '$1 {{PLURAL:$1|lid|lede}}',
 'nrevisions'              => '$1 {{PLURAL:$1|herzening|herzeninge}}',
 'nviews'                  => '{{PLURAL:$1|eine kieër|$1 kieër}} bekeke',
 'specialpage-empty'       => 'Deze pagina is laeg.',
@@ -1166,7 +1169,7 @@ Op eder raegel vings te de ierste redirectpazjena, de twiede redirectpazjena en 
 'mostimages'              => 'Meis gelinkde aafbeildinge',
 'mostrevisions'           => 'Artikele mit de meiste bewirkinge',
 'allpages'                => "Alle pazjena's",
-'prefixindex'             => 'Indèks dèr veurveugsele',
+'prefixindex'             => 'Prefixindex',
 'shortpages'              => 'Korte artikele',
 'longpages'               => 'Lang artikele',
 'deadendpages'            => "Doedloupende pazjena's",
@@ -1469,7 +1472,7 @@ $1",
 'nocontribs'    => 'Gein wijzigingen gevonden die aan de gestelde criteria voldoen.',
 'ucnote'        => 'Hieonger sjtont de litste <b>$1</b> verangeringe van deze gebroeker in de litste <b>$2</b> daag.',
 'uclinks'       => 'Bekiek de litste <b>$1</b> verangeringe; bekiek de litste <b>$2</b> daag.',
-'uctop'         => ' (litste verangering)',
+'uctop'         => ' (lèste verangering)',
 'month'         => 'Van maondj (en irder):',
 'year'          => 'Van jaor (en irder):',
 
@@ -1603,7 +1606,7 @@ Vergaet neet de database opnuuj te [[Special:UnlockDB|deblokkere]] wens te klaor
 'movearticle'             => 'Verplaats pazjena',
 'movenologin'             => 'Neet aangemèld',
 'movenologintext'         => "Veur 't verplaatsje van 'n pazjena mos e zien [[Special:UserLogin|aangemèld]].",
-'movenotallowed'          => "De kèns gein pazjena's verplaatse op {{SITENAME}}.",
+'movenotallowed'          => "De kèns gein pazjena's verplaatse.",
 'newtitle'                => 'Nao de nuje titel',
 'move-watch'              => 'Volg deze pazjena',
 'movepagebtn'             => 'Verplaats pazjena',
@@ -1710,7 +1713,7 @@ Alle transwiki-importhanjelinge waere opgeslage in 't [[Special:Log/import|impor
 'tooltip-pt-mytalk'               => 'Mien euverlikpazjena',
 'tooltip-pt-anontalk'             => 'Euverlèk euver verangeringe doer dit IP addres',
 'tooltip-pt-preferences'          => 'Mien veurkäöre',
-'tooltip-pt-watchlist'            => 'De liest van gevolgde pazjenas.',
+'tooltip-pt-watchlist'            => "De lies van gevolgde pazjena's.",
 'tooltip-pt-mycontris'            => 'Liest van mien biedraag',
 'tooltip-pt-login'                => 'De weurs aangemodigd om in te logge, meh t is neet verplich.',
 'tooltip-pt-anonlogin'            => 'De weurs aangemodigd om in te logge, meh t is neet verplich.',
@@ -1728,7 +1731,7 @@ Alle transwiki-importhanjelinge waere opgeslage in 't [[Special:Log/import|impor
 'tooltip-ca-unwatch'              => 'Dees pazjena van volgliest aafhaole',
 'tooltip-search'                  => 'Doorzeuk {{SITENAME}}',
 'tooltip-search-go'               => "Gao nao 'ne pazjena mit dezelfde naam es d'r bestuit",
-'tooltip-search-fulltext'         => 'Zeuk de pazjenas veur deze teks',
+'tooltip-search-fulltext'         => "Zeuk de pazjena's veur dees teks",
 'tooltip-p-logo'                  => 'Veurblaad',
 'tooltip-n-mainpage'              => "Bezeuk 't veurblaad",
 'tooltip-n-portal'                => 'Euver t projèk, was e kins doon, woe se dinger kins vinge',
@@ -1737,14 +1740,14 @@ Alle transwiki-importhanjelinge waere opgeslage in 't [[Special:Log/import|impor
 'tooltip-n-randompage'            => 'Laadt n willekäörige pazjena',
 'tooltip-n-help'                  => 'De plek om informatie euver dit projèk te vinge.',
 'tooltip-n-sitesupport'           => 'Ongersteun os financieel',
-'tooltip-t-whatlinkshere'         => 'Liest van alle wiki pazjenas die hieheen linke',
-'tooltip-t-recentchangeslinked'   => 'Recènte verangeringe in pazjenas woeheen gelinkt weurd',
+'tooltip-t-whatlinkshere'         => "Lies van alle wikipazjena's die hieheen linke",
+'tooltip-t-recentchangeslinked'   => "Recènte verangeringe in pazjena's woeheen gelink weurd",
 'tooltip-feed-rss'                => 'RSS feed veur dees pazjena',
 'tooltip-feed-atom'               => 'Atom feed veur dees pazjena',
 'tooltip-t-contributions'         => 'Bekiek de liest van contributies van dizze gebroeker',
 'tooltip-t-emailuser'             => 'Sjtuur inne mail noa dizze gebroeker',
 'tooltip-t-upload'                => 'Upload plaetsjes of media besjtande',
-'tooltip-t-specialpages'          => 'Liest van alle speciale pazjenas',
+'tooltip-t-specialpages'          => "Lies van alle speciaal pazjena's",
 'tooltip-t-print'                 => 'Printvruntjelike versie van deze pagina',
 'tooltip-t-permalink'             => 'Permanente link nao deze versie van de pagina',
 'tooltip-ca-nstab-main'           => 'Bekiek de pazjena',
@@ -2232,7 +2235,7 @@ $1',
 # Live preview
 'livepreview-loading' => 'Laje…',
 'livepreview-ready'   => 'Laje… Vaerdig!',
-'livepreview-failed'  => 'Live veurvertuun mislök!
+'livepreview-failed'  => 'Live veurvertuin mislök!
 Probeer normaal veurvertuin.',
 'livepreview-error'   => 'Verbènje mislök: $1 "$2"
 Probeer normaal veurvertuin.',

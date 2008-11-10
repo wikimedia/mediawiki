@@ -5,6 +5,7 @@
  * @file
  *
  * @author Gion-andri
+ * @author Urhixidur
  * @author לערי ריינהארט
  */
 
@@ -273,7 +274,7 @@ Perquei è anc nagin retschaiver e trametter dad emails per las suandantas funcz
 You are also promising us that you wrote this yourself, or copied it from a public domain or similar free resource.
 <strong>DO NOT SUBMIT COPYRIGHTED WORK WITHOUT PERMISSION!</strong>",
 'longpagewarning'      => '<strong>ADATG: Questa artitgel è $1 kilobytes gronda. Insaquants browsers 
-han forsa problems cun editar artitgels da la grondezza 32kb u pli grond. 
+han forsa problems cun editar artitgels da la grondezza 32 kb u pli grond. 
 Ponderai per plaschair da divider quest artitgel en pli pitschnas parts. </strong>',
 'longpageerror'        => "<strong>ERRUR: Il text che ti has tramess è $1 kilobytes gronds. Quei ei pli grond ch'il maximum da $2 kilobytes. Il text na sa betg vegnir arcunà. </strong>",
 'protectedpagewarning' => '<strong>ATTENZIUN: Questa pagina è vegnida bloccada, uschè che be utilisaders cun dretgs dad administraturs pon editar ella. </strong>',
@@ -558,7 +559,7 @@ Quest calöri è  [[User:$3|$3]] ([[User talk:$3|discussiun]]).",
 'databasenotlocked' => 'Questa banca da datas è betg bloccada.',
 
 # Move page
-'movenologintext'         => "Ti stos [[Special:Userlogin|t'annunziar]] per spustar in artitgel.",
+'movenologintext'         => "Ti stos [[Special:UserLogin|t'annunziar]] per spustar in artitgel.",
 'pagemovedsub'            => 'Spustà cun success',
 'articleexists'           => 'I exista gia in artitgel cun quai num. Tscherni per plaschair in auter.',
 '1movedto2'               => 'Spustà [[$1]] tar [[$2]]',

@@ -6,6 +6,7 @@
  *
  * @author Chavash
  * @author PCode
+ * @author Александр Сигачёв
  */
 
 $fallback = 'ru';
@@ -79,6 +80,8 @@ $messages = array(
 'underline-never'   => 'Нихăçан та',
 'underline-default' => 'Браузер ĕнерлевĕсене усă курмалла',
 
+'skinpreview' => '(Малтанхи курăну)',
+
 # Dates
 'sunday'        => 'вырсарникун',
 'monday'        => 'Тунтикун',
@@ -146,7 +149,7 @@ $messages = array(
 == Пулăшма пултарĕç ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Ĕнерлевсен списокĕ];
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki тăрăх час-часах ыйтакан ыйтусемпе хуравсем];
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki çĕнĕ верси тухнине пĕлтерекен рассылка].',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki çĕнĕ верси тухнине пĕлтерекен рассылка].',
 
 'about'          => 'Ăнлантаркăч',
 'article'        => 'Статья',
@@ -250,6 +253,8 @@ $messages = array(
 
 'badaccess'        => 'Доступ йăнăшĕ',
 'badaccess-group0' => 'Эсир ыйтакан ĕçе тăваймастăр',
+'badaccess-group1' => 'Ку ĕçе $1 шутне кĕрекен хутшăнакан кăна тума пултарать.',
+'badaccess-group2' => 'Ку ĕçе $1 шутне кĕрекен хутшăнакан кăна тума пултарать.',
 'badaccess-groups' => 'Ку ĕçе $1 шутне кĕрекен хутшăнакан кăна тума пултарать.',
 
 'versionrequired'     => 'MediaWiki-н $1 версийĕ кирлĕ',
@@ -722,6 +727,7 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'filedelete-submit'           => 'Кăларса пăрах',
 'filedelete-success'          => "'''$1''' кăларса пăрахрăмăр.",
 'filedelete-success-old'      => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'-ăн $3, $2 вăхăтри версине кăларса пăрахнă.</span>',
+'filedelete-iscurrent'        => 'Эсир ку файлăн юлашки версине кăларса пăрахасшăн. Тархасшăн, файла малтан кивĕ версинчен пĕрин патне те пулин тавăрăр.',
 'filedelete-otherreason'      => 'Урăх сăлтав:',
 'filedelete-reason-otherlist' => 'Урăх сăлтав',
 
@@ -965,6 +971,7 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 # Move page
 'movepage'                => 'Страницăна куçарнă',
 'movearticle'             => 'Страницăн ятне улăштар',
+'movenologin'             => 'Система сирĕн ята пĕлмест',
 'newtitle'                => 'Çĕнĕ ят',
 'move-watch'              => 'Ку страницăна сăнамаллисем шутне хуш',
 'movepagebtn'             => 'Страницăн ятне улăштар',

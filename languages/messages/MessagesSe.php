@@ -456,11 +456,11 @@ Du geavaheaddjidovddaldat lea dál anus.
 'rev-delundel'            => 'čájet dahje čiega',
 'revisiondelete'          => 'Sihko dahje máhcat veršuvnnaid',
 'revdelete-nooldid-title' => 'Ii veršuvdna',
-'revdelete-selected'      => "{{PLURAL:$2|Válljejuvvon veršuvdna|Válljejuvvon veršuvnnat}} siiddus '''$1:'''",
+'revdelete-selected'      => "'''{{PLURAL:$2|Válljejuvvon veršuvdna|Válljejuvvon veršuvnnat}} siiddus '''$1:''''''",
 'logdelete-selected'      => "{{PLURAL:$2|Válljejuvvon logmearkkastat|Válljejuvvon logmearkkastagat}} siidui '''$1:'''",
-'revdelete-text'          => 'Sihkojuvvon veršuvnnat oidnojit siiddu siidohistorjjás, muhto daid sisdoallu ii leat álmmolaš.
+'revdelete-text'          => "'''Sihkojuvvon veršuvnnat oidnojit siiddu siidohistorjjás, muhto daid sisdoallu ii leat álmmolaš.'''
 
-Eará bajasdoallit sáhtet lohkat čihkojuvvon sisdoalu ja máhcahit dan.',
+Eará bajasdoallit sáhtet lohkat čihkojuvvon sisdoalu ja máhcahit dan.",
 'revdelete-legend'        => 'Veršuvnna rádjehusat',
 'revdelete-hide-text'     => 'Čiega veršuvnna sisdoalu',
 'revdelete-hide-name'     => 'Čiega doaibma ja mearri',

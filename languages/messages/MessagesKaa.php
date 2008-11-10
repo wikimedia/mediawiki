@@ -7,6 +7,7 @@
  * @author AlefZet
  * @author Atabek
  * @author Jiemurat
+ * @author Urhixidur
  */
 
 $fallback = 'kk-latn';
@@ -197,7 +198,7 @@ $messages = array(
 == Baslaw ushın ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Konfiguratsiya sazlaw dizimi]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWikidin' Ko'p Soralatug'ın Sorawları]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki haqqında xat tarqatıw dizimi]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki haqqında xat tarqatıw dizimi]",
 
 'about'          => 'Proyekt haqqında',
 'article'        => "Mag'lıwmat beti",
@@ -605,7 +606,7 @@ Eger bul jerge aljasıp o'tken bolsan'ız, brauzerin'izdin' «Arqag'a» knopkas�
 Qosqan u'lesin'iz o'zin'izdin' jazg'anın'ız yamasa ashıq tu'rdegi derekten alıng'anlig'ına wa'de berin'.
 <strong>AVTORLIQ HUQUQI MENEN QORG'ALG'AN MAG'LIWMATLARDI RUXSATSIZ JAYLASTIRMAN'!</strong>",
 'copyrightwarning2'         => "Este tutın', {{SITENAME}} proyektindegi barlıq u'lesler basqa paydalanıwshılar arqalı o'zgertiliwi yamasa o'shiriliwi mu'mkin. Eger siz tekstin'izdin' erkin tarqatılıwın ha'mde qa'legen paydalanıwshı o'zgertiwin qa'lemesen'iz, bul jerge jaylastırmag'anın'ız maqul.<br /> Qosqan u'lesin'iz o'zin'izdin' jazg'anın'ız yamasa ashıq tu'rdegi derekten alıng'anlig'ına wa'de berin' (qosımsha mag'lıwmat ushın $1 hu'jjetin qaran'). <strong>AVTORLIQ HUQUQI MENEN QORG'ALG'AN MAG'LIWMATLARDI RUXSATSIZ JAYLASTIRMAN'!</strong>",
-'longpagewarning'           => "<strong>ESLETPE: Bul bettin' ha'jmi $1 kilobayt, geybir brauzerler 32 KBqa jaqın yamasa onnan u'lken bolg'an betlerdi o'zgertiwde qıyınshılıqlarg'a tuwra keliwi mu'mkin. Betti kishi bo'leklerge bo'liw haqqında oylap ko'rin'.</strong>",
+'longpagewarning'           => "<strong>ESLETPE: Bul bettin' ha'jmi $1 kilobayt, geybir brauzerler 32 kBqa jaqın yamasa onnan u'lken bolg'an betlerdi o'zgertiwde qıyınshılıqlarg'a tuwra keliwi mu'mkin. Betti kishi bo'leklerge bo'liw haqqında oylap ko'rin'.</strong>",
 'semiprotectedpagewarning'  => "'''Eskertiw:''' Bet qulplang'an, tek registratsiyadan o'tken paydalanıwshılar g'ana o'zgerte aladı.",
 'templatesused'             => "Bul bette qollanılg'an shablonlar:",
 'templatesusedpreview'      => "Bul aldınnan ko'riw betinde qollanılg'an shablonlar:",
@@ -663,7 +664,7 @@ Sha'rtli belgiler: (ha'z.) = ha'zirgi nusqasi menen parqı,
 'rev-deleted-comment'    => "(kommentariy o'shirildi)",
 'rev-deleted-user'       => "(paydalanıwshı atı o'shirildi)",
 'rev-delundel'           => "ko'rsetiw/jasırıw",
-'revdelete-selected'     => "[[:$1]] {{PLURAL:$2|saylang'an nusqası|saylang'an nusqaları}}:",
+'revdelete-selected'     => "'''[[:$1]] {{PLURAL:$2|saylang'an nusqası|saylang'an nusqaları}}:'''",
 'revdelete-legend'       => "Ko'rinis sheklewlerin belgilew",
 'revdelete-hide-text'    => 'Nusqa tekstin jasır',
 'revdelete-hide-name'    => "Ha'reket ha'm onın' obyektin jasır",

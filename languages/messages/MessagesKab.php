@@ -7,6 +7,7 @@
  * @author Agurzil
  * @author Agzennay
  * @author Teak
+ * @author Urhixidur
  */
 
 $namespaceNames = array(
@@ -537,7 +538,7 @@ Aqlak teggaleḍ belli tureḍ wagi d kečč, neɣ teddmiḍ-t seg taɣult azaye
 'copyrightwarning2'         => 'Ssen belli akk tikkin deg {{SITENAME}} zemren ad ttubeddlen neɣ ttumḥan sɣur imdanen wiyaḍ. Lukan ur tebɣiḍ ara aru inek yettubeddel neɣ yettwazen u yettwaru deg imkanen nniḍen, ihi ur t-tazneḍ ara dagi.<br />
 Aqlak teggaleḍ belli tureḍ wagi d kečč, neɣ teddmiḍ-t seg taɣult azayez neɣ iɣbula tilelliyin (ẓer $1 akken ad tessneḍ kter).
 <strong>UR TEFKIḌ ARA AXDAM S COPYRIGHT MEBLA TURAGT!</strong>',
-'longpagewarning'           => '<strong>AƔTAL: Asebter-agi yesɛa $1 kilobytes/kilooctets; kra n browsers/explorateur ur zemren ara ad beddlen isebtar i yesɛan 32kB/ko neɣ kter.
+'longpagewarning'           => '<strong>AƔTAL: Asebter-agi yesɛa $1 kilobytes/kilooctets; kra n browsers/explorateur ur zemren ara ad beddlen isebtar i yesɛan 32 kB/ko neɣ kter.
 G leɛnayek frec asebter-nni.</strong>',
 'longpageerror'             => '<strong>AGUL: Aḍris i tefkiḍ yesɛa $1 kB/ko, tiddi-yagi kter n $2 kB/ko, ur yezmir ara ad yesmekti.</strong>',
 'readonlywarning'           => '<strong>AƔTAL: Database d tamsekker akken ad teddwaxdem,
@@ -617,12 +618,12 @@ Waqila yella kter n talɣut [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}
 'revisiondelete'              => 'Mḥu/kkes amḥay tisiwal',
 'revdelete-nooldid-title'     => 'Ulac nnican i tasiwelt',
 'revdelete-nooldid-text'      => 'Ur textareḍ ara tasiwelt nnican akken ad txedmeḍ tawuri fell-as.',
-'revdelete-selected'          => "{{PLURAL:$2|Tasiwelt tettwafren|Tisiwal ttwafernen}} n '''$1:'''",
+'revdelete-selected'          => "'''{{PLURAL:$2|Tasiwelt tettwafren|Tisiwal ttwafernen}} n '''$1:''''''",
 'logdelete-selected'          => "{{PLURAL:$2|Tamirt n uɣmis tettwafren|Isallen n uɣmis ttwafernen}} n '''$1:'''",
-'revdelete-text'              => 'Tisiwal i yettumḥan ad baben deg umezruy n usebter d weɣmis,
-meɛna imuren seg-sen zemren imdanen a ten-ẓren.
+'revdelete-text'              => "'''Tisiwal i yettumḥan ad baben deg umezruy n usebter d weɣmis,
+meɛna imuren seg-sen zemren imdanen a ten-ẓren.'''
 
-Inedbalen wiyaḍ deg wiki-yagi zemren ad ẓren imuren i yettwafren u zemren a ten-mḥan, ḥaca ma llan icekkilen.',
+Inedbalen wiyaḍ deg wiki-yagi zemren ad ẓren imuren i yettwafren u zemren a ten-mḥan, ḥaca ma llan icekkilen.",
 'revdelete-legend'            => 'Eg icekkilen',
 'revdelete-hide-text'         => 'Ffer aḍris n tsiwelt',
 'revdelete-hide-name'         => 'Ffer tigawt d nnican',

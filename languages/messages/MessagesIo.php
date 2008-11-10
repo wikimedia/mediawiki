@@ -8,6 +8,7 @@
  * @author Artomo
  * @author Lakaoso
  * @author Malafaya
+ * @author Remember the dot
  * @author לערי ריינהארט
  */
 
@@ -206,7 +207,7 @@ $messages = array(
 'badaccess-group0' => 'Vu ne permisesas agar quale vu demandas.',
 'badaccess-group1' => "L' ago quan vu demandabas es limitizita al uzeri en grupo $1.",
 'badaccess-group2' => "L' ago quan vu demandabas es limitizita al uzeri en un ek la grupi $1.",
-'badaccess-groups' => "L' ago quan vu demandabas es limitizita al uzeri en un ek la grupi $1.",
+'badaccess-groups' => "L'ago quan vu demandabas es limitizita al uzanti en {{PLURAL:$2|la grupo|un ek la grupi}}: $1.",
 
 'retrievedfrom'           => 'Obtenita de "$1"',
 'youhavenewmessages'      => 'Vu havas $1 ($2).',
@@ -228,7 +229,7 @@ $messages = array(
 'nstab-user'      => 'Uzanto-pagino',
 'nstab-special'   => 'Specala',
 'nstab-project'   => 'Projeto pagino',
-'nstab-image'     => 'Imajo',
+'nstab-image'     => 'Arkivo',
 'nstab-mediawiki' => 'Mesajo',
 'nstab-template'  => 'Modelo',
 'nstab-help'      => 'Helpo',
@@ -303,7 +304,7 @@ Voluntez, elektez ula diferanta uzantonomo.',
 'uid'                        => 'ID dil uzanto:',
 'yourrealname'               => 'Vua reala nomo:',
 'yourlanguage'               => 'Linguo:',
-'yournick'                   => 'Vua uzantonomo (por signati):',
+'yournick'                   => 'Signaturo:',
 'email'                      => 'Elek-posto',
 'loginerror'                 => 'Eroro enirante',
 'nocookieslogin'             => "{{SITENAME}} uzas ''cookies'' por la registrago dil uzanti. Vu havas la ''cookies'' desaktivigita. Voluntez aktivigar oli e probez altrafoye.",
@@ -699,10 +700,10 @@ Voluntez kontrolar la URL quan vu uzis por acesar a ca pagino.",
 'emailpage'       => 'E-posto ad uzanto',
 'defemailsubject' => 'E-posto di {{SITENAME}}',
 'noemailtitle'    => 'Ne esas e-adreso',
-'emailfrom'       => 'De',
-'emailto'         => 'Ad',
-'emailsubject'    => 'Temo',
-'emailmessage'    => 'Sendajo',
+'emailfrom'       => 'De:',
+'emailto'         => 'Ad:',
+'emailsubject'    => 'Temo:',
+'emailmessage'    => 'Sendajo:',
 'emailsend'       => 'Sendar',
 'emailsent'       => 'E-posto sendita',
 'emailsenttext'   => 'Vua e-posto sendesis',
@@ -807,7 +808,7 @@ Lasta edito esis da [[User:$3|$3]] ([[User talk:$3|Talk]]).',
 
 # What links here
 'whatlinkshere'       => 'Quo ligas hike',
-'whatlinkshere-title' => 'Pagini qui ligas ad $1',
+'whatlinkshere-title' => 'Pagini qui ligas ad "$1"',
 'whatlinkshere-page'  => 'Pagino:',
 'linklistsub'         => '(Listo di ligili)',
 'linkshere'           => "Ca pagini esas ligilizita ad '''[[:$1]]''':",
@@ -835,7 +836,7 @@ Videz [[Special:IPBlockList|IP-blokuslisto]] por revizor blokusadi.',
 'unblockip'          => 'Desblokusar uzanto',
 'unblockiptext'      => 'Uzez la sequanta formularo por restaurar la skribo-aceso ad IP-adreso qua blokusesis antee.',
 'ipusubmit'          => 'Desblokusar ica IP-adreso',
-'ipblocklist'        => 'Listo di blokusita IP-adresi ed uzantonomi',
+'ipblocklist'        => 'Blokusita IP-adresi ed uzantonomi',
 'ipblocklist-submit' => 'Serchar',
 'blocklistline'      => '$1, $2 blokusas $3 (expiras $4)',
 'blocklink'          => 'blokusar',
@@ -867,18 +868,18 @@ Memorez [[Special:UnlockDB|efacar la blokuso]] kande vua mantenado finos.',
 'movepagetext'            => "Uzante ica formularo onu povas rinomizar pagino, movante olua omna versionaro ad la nova titulo.
 La antea titulo konvertesos a ridirektilo a la nova titulo.
 La ligili a la antea titulo dil pagino ne chanjesos.
-Voluntez certigar ke ne esas duopla o ruptota ridirektili.
+Voluntez certigar ke ne esas [[Special:DoubleRedirects|duopla]] o [[Special:BrokenRedirects|ruptota ridirektili]].
 Vu responsas ke la ligili duros direktante a la pagino korespondanta.
 
 Memorez ke la pagino '''ne''' rinomizesos se ja existus pagino kun la nova titulo, eceptuante ke la pagino esas vakua o ridirektilo sen versionaro.
 Ico signifikas ke vu povos rinomizar pagino a olua originala titulo se eroras skribante la nova titulo, ma ne povos riskribar existanta pagino.
 
 '''EGARDEZ!'''
-Ica povas esar drastika chanjo e ne-esperinda por populara pagino.
-Voluntez certigar ke vu komprenas la konsequi qui eventos ante durar adavane.",
+Ica povas esar drastika chanjo e ne-esperinda por populara pagino;
+voluntez certigar ke vu komprenas la konsequi qui eventos ante durar adavane.",
 'movearticle'             => 'Movar pagino',
 'movenologin'             => 'Sesiono ne iniciata',
-'movenologintext'         => 'Vu mustas esar registragita uzanto ed [[Special:Userlogin|enirir]] por rinomizar pagino.',
+'movenologintext'         => 'Vu mustas esar registragita uzanto ed [[Special:UserLogin|enirir]] por rinomizar pagino.',
 'newtitle'                => 'a nova titulo',
 'movepagebtn'             => 'Movar pagino',
 'pagemovedsub'            => 'Rinomizita sucese',
@@ -963,12 +964,12 @@ Voluntez selektar altra nomo.',
 'notacceptable' => 'La servanto di {{SITENAME}} ne povas provizar datumi en formato quan vua kliento povas komprenar.',
 
 # Attribution
-'anonymous'        => 'Anonima uzanti di {{SITENAME}}',
+'anonymous'        => 'Anonima {{PLURAL:$1|uzanto|uzanti}} di {{SITENAME}}',
 'siteuser'         => 'Uzanto che {{SITENAME}} $1',
 'lastmodifiedatby' => 'Ica pagino modifikesis ye $2, $1 da $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Bazizita en la laboro da $1.',
 'others'           => 'altra',
-'siteusers'        => 'Uzanti che {{SITENAME}} $1',
+'siteusers'        => '{{PLURAL:$2|Uzanto|Uzanti}} che {{SITENAME}} $1',
 
 # Spam protection
 'spamprotectiontitle'    => 'Filtrilo kontre spamo',

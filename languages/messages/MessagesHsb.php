@@ -206,7 +206,7 @@ $messages = array(
 'dec'           => 'dec',
 
 # Bits of text used by many pages
-'categories'            => 'Kategoriji',
+'categories'            => 'Kategorije',
 'pagecategories'        => '{{PLURAL:$1|Kategorija|Kategoriji|Kategorije|Kategorije}}',
 'category_header'       => 'Nastawki w kategoriji „$1”',
 'subcategories'         => 'Podkategorije',
@@ -220,7 +220,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Wo nastajenjach]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]',
 
 'about'          => 'Wo',
 'article'        => 'Nastawk',
@@ -264,7 +264,7 @@ $messages = array(
 'deletethispage'    => 'Stronu wušmórnyć',
 'undelete_short'    => '{{PLURAL:$1|jednu wersiju|$1 wersiji|$1 wersije|$1 wersijow}} wobnowić',
 'protect'           => 'Škitać',
-'protect_change'    => 'Škit změnić',
+'protect_change'    => 'změnić',
 'protectthispage'   => 'Stronu škitać',
 'unprotect'         => 'Škit zběhnyć',
 'unprotectthispage' => 'Škit strony zběhnyć',
@@ -326,7 +326,7 @@ $messages = array(
 'badaccess-group0' => 'Nimaš wotpowědne dowolnosće za tutu akciju.',
 'badaccess-group1' => 'Tuta akcija da so jenož wot wužiwarjow skupiny $1 wuwjesć.',
 'badaccess-group2' => 'Tuta akcija da so jenož wot wužiwarjow skupin $1 wuwjesć.',
-'badaccess-groups' => 'Tuta akcija da so jenož wot wužiwarjow skupin $1 wuwjesć.',
+'badaccess-groups' => 'Akcija, kotruž sy požadał, wobmjezuje so na wužiwarjow w {{PLURAL:$2|skupinje|jednej ze skupinow}}: $1.',
 
 'versionrequired'     => 'Wersija $1 softwary MediaWiki trěbna',
 'versionrequiredtext' => 'Wersija $1 MediaWiki je trěbna, zo by so tuta strona wužiwać móhła. Hlej [[Special:Version|wersijowu stronu]]',
@@ -348,7 +348,7 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|1 wušmórnjenu wersiju|$1 wušmórnjenej wersiji|$1 wušmórnjene wersije|$1 wušmórnjenych wersijow}}',
 'feedlinks'               => 'Kanal:',
 'feed-invalid'            => 'Njepłaćiwy typ abonementa.',
-'feed-unavailable'        => 'Syndikaciske kanale na {{GRAMMAR:lokatiw|{{SITENAME}}}} k dispoziciji njesteja',
+'feed-unavailable'        => 'Syndikaciske kanale k dispoziciji njesteja',
 'site-rss-feed'           => '$1 RSS kanal',
 'site-atom-feed'          => 'Atom-kanal za $1',
 'page-rss-feed'           => 'RSS-kanal za „$1“',
@@ -388,8 +388,7 @@ Poslednje wotprašenje w datowej bance běše:
 „$1”
 z funkcije „$2”.
 MySQL wróći zmylk „$3: $4”.',
-'noconnect'            => 'Wodaj! Wiki ma techniske problemy a njemóže ze serwerom datoweje banki zwjazać.
-<br />
+'noconnect'            => 'Wiki ma techniske problemy a njemóže ze serwerom datoweje banki zwjazać.<br />
 $1',
 'nodb'                 => 'Datowa banka $1 njeda so wubrać',
 'cachederror'          => 'Naslědne je kopija z pufrowaka a njemóhło hižo aktualne być.',
@@ -475,7 +474,7 @@ Prošu spytaj hišće raz!',
 'gotaccountlink'             => 'Přizjewić',
 'createaccountmail'          => 'z mejlku',
 'badretype'                  => 'Hesle, kotrejž sy zapodał, so njekryjetej.',
-'userexists'                 => 'Wužiwarske mjeno, kotrež sy wubrał, so hižo wužiwa. Prošu wubjer druhe mjeno.',
+'userexists'                 => 'Wužiwarske mjeno, kotrež sy zapodał, so hižo wužiwa. Wubjer druhe mjeno.',
 'youremail'                  => 'E-mejl *:',
 'username'                   => 'Wužiwarske mjeno:',
 'uid'                        => 'ID wužiwarja:',
@@ -488,25 +487,24 @@ Prošu spytaj hišće raz!',
 'email'                      => 'E-mejl',
 'prefs-help-realname'        => '* Woprawdźite mjeno (opcionalne): jeli so rozsudźiš to zapodać, budźe to so wužiwać, zo by tebi woprawnjenje za twoje dźěło dało.',
 'loginerror'                 => 'Zmylk při přizjewjenju',
-'prefs-help-email'           => '* E-mejl (opcionalny): Zmóžnja druhim će přez twoju wužiwarsku abo diskusijnu stronu kontaktować, bjeztoho zo by swoju identitu wotkryć dyrbjał. Jeli sy swoje hesło zabył, budźe móžno, ći nowe hesło připósłać.',
+'prefs-help-email'           => 'E-mejlowa adresa je opcionalna, ale zmóžnja ći nowe hesło emejlować, jeli sy swoje hesło zabył. Móžeš tež druhim dowolić, će přez swoju wužiwarsku abo diskusijnu stronu skontaktować, bjeztoho zo by dyrbjał swoju identitu wotkrył.',
 'prefs-help-email-required'  => 'Je płaćiwa emejlowa adresa trjeba.',
 'nocookiesnew'               => 'Wužiwarske konto bu wutworjene, njejsy pak přizjewjeny. {{SITENAME}} wužiwa placki (cookies), zo bychu so wužiwarjo přizjewili. Sy placki znjemóžnił. Prošu zmóžń je a přizjew so potom ze swojim nowym wužiwarskim mjenom a hesłom.',
 'nocookieslogin'             => '{{SITENAME}} wužiwa placki (cookies) za přizjewjenje wužiwarjow wužiwa. Sy placki znjemóžnił. Prošu zmóžń je a spytaj hišće raz.',
 'noname'                     => 'Njejsy płaćiwe wužiwarske mjeno podał.',
 'loginsuccesstitle'          => 'Přizjewjenje wuspěšne',
 'loginsuccess'               => '<b>Sy nětko jako „$1” w {{GRAMMAR:lokatiw|{{SITENAME}}}} přizjewjeny.</b>',
-'nosuchuser'                 => 'Njeje wužiwar z mjenom „$1”. Přepruwuj prawopis abo wutwor nowe konto.',
+'nosuchuser'                 => 'Njeje wužiwar z mjenom "$1". Přepruwuj swój prawopis abo [[Special:UserLogin/signup|wutwor nowe konto]].',
 'nosuchusershort'            => 'Wužiwarske mjeno „<nowiki>$1</nowiki>” njeeksistuje. Prošu přepruwuj prawopis.',
 'nouserspecified'            => 'Dyrbiš wužiwarske mjeno podać',
 'wrongpassword'              => 'Hesło, kotrež sy zapodał, je wopačne. Prošu spytaj hišće raz.',
 'wrongpasswordempty'         => 'Hesło, kotrež sy zapodał, běše prózdne. Prošu spytaj hišće raz.',
 'passwordtooshort'           => 'Hesło je překrótke. Dyrbi znajmjeńša $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} měć.',
-'mailmypassword'             => 'Pósćelće mi nowe hesło',
+'mailmypassword'             => 'Nowe hesło e-mejlować',
 'passwordremindertitle'      => 'Skedźbnjenje na hesło z {{GRAMMAR:genitiw|{{SITENAME}}}}',
-'passwordremindertext'       => 'Něchtó (najskerje ty, z IP-adresu $1) je wo nowe hesło za přizjewjenje pola {{GRAMMAR:genitiw|{{SITENAME}}}} ($4) prosył. Hesło za wužiwarja „$2” je nětko $3.
-Ty měł so nětko přizjewić a swoje hesło změnić.
+'passwordremindertext'       => 'Něchtó z IP-adresu $1 (najskerje ty) je wo nowe hesło za přizjewjenje za {{GRAMMAR:Akuzatiw|{{SITENAME}}}} ($4) prosył. Nachwilne hesło za wužiwarja "$2" je so wutworiło a je nětko "$3". Jeli je to twój wotpohlad było dyrbiš so nětko přizjewić a now hesło wubrać.
 
-Jeli něchto druhi hač ty wo nowe hesło prosył, abo sy so zaso na njo dopomnił a hižo nochceš je změnić, móžeš tutu powěsć ignorować a swoje stare hesło dale wužiwać.',
+Jeli něchtó druhi wo nowe hesło prosył abo ty sy so zaso na swoje hesło dopomnił a hižo nochceš je změnić, móžeš tutu powěsć ignorować a swoje stare hesło dale wužiwać.',
 'noemail'                    => 'Za wužiwarja $1 žana e-mejlowa adresa podata njeje.',
 'passwordsent'               => 'Nowe hesło bu na e-mejlowu adresu zregistrowanu za wužiwarja „$1” pósłane.
 Prošu přizjew so znowa, po tym zo sy je přijał.',
@@ -515,13 +513,12 @@ Prošu přizjew so znowa, po tym zo sy je přijał.',
 Prjedy hač so druha mejlka ke kontu pósćele, dyrbiš so po instrukcijach w mejlce měć, zo by wobkrućił, zo konto je woprawdźe twoje.',
 'throttled-mailpassword'     => 'Bu hižo nowe hesło znutřka {{Plural:$1|poslednjeje hodźiny|poslednjeju hodźinow|poslednich hodźin|poslednich hodźin}} pósłane. Zo by znjewužiwanju zadźěwało, so jenož jedne hesło na {{Plural:$1|hodźinu|hodźinje|hodźiny|hodźinow}} pósćele.',
 'mailerror'                  => 'Zmylk při słanju mejlki: $1',
-'acct_creation_throttle_hit' => 'Wodaj, sy hižo $1 {{PLURAL:$1|konto|kontaj|konty|kontow}} wutworił. Njemóžeš dalše wutworić.',
-'emailauthenticated'         => 'Twoja e-mejlowa adresa bu $1 wobkrućena.',
+'acct_creation_throttle_hit' => 'Sy hižo {{PLURAL:$1|1 konto|$1 kontaj|$1 konty|$1 kontow}} wutworił. Njemóžeš dalše wutworić.',
+'emailauthenticated'         => 'Twoja e-mejlowa adresa bu $2 $3 hodź. wobkrućena.',
 'emailnotauthenticated'      => 'Twoja e-mejlowa adresa hišće wobkrućena <strong>njeje</strong>. Žane mejlki za jednu z sćěhowacych funkcijow pósłane njebudu.',
 'noemailprefs'               => 'Podaj e-mejlowu adresu za tute funkcije, zo bychu fungowali.',
 'emailconfirmlink'           => 'Wobkruć swoju e-mejlowu adresu',
-'invalidemailaddress'        => 'E-mejlowa adresa njeda so akceptować, dokelž ma po zdaću njepłaćiwy
-format. Prošu zapodaj płaćiwu adresu abo wuprózdń polo.',
+'invalidemailaddress'        => 'E-mejlowa adresa so njeakceptuje, dokelž ma po zdaću njepłaćiwy format. Prošu zapodaj płaćiwu adresu abo wuprózdń te polo.',
 'accountcreated'             => 'Wužiwarske konto wutworjene',
 'accountcreatedtext'         => 'Wužiwarske konto za $1 bu wutworjene.',
 'createaccount-title'        => 'Wutworjenje wužiwarskeho konta za {{SITENAME}}',
@@ -538,7 +535,7 @@ Móžeš tutu zdźělenku ignorować, jeli so wužiwarske konto zmylnje wutwori�
 'resetpass_submit'        => 'Hesło posrědkować a so přizjewić',
 'resetpass_success'       => 'Twoje hesło bu wuspěšnje změnjene! Nětko přizjewjenje běži...',
 'resetpass_bad_temporary' => 'Njepłaćiwe nachwilne hesło. Snano sy swoje hesło hižo wuspěšnje změnił abo nowe nachwilne hesło požadał.',
-'resetpass_forbidden'     => 'Hesła njehodźa so we {{SITENAME}} změnić.',
+'resetpass_forbidden'     => 'Hesła njedadźa so změnić.',
 'resetpass_missing'       => 'Prózdny formular.',
 
 # Edit page toolbar
@@ -627,14 +624,12 @@ Prošu podaj wšě horjeka naspomnjene podrobnosće w naprašowanjach, kotrež �
 'accmailtext'               => 'Hesło za wužiwarja "$1" bu na adresu $2 pósłane.',
 'newarticle'                => '(Nowy nastawk)',
 'newarticletext'            => 'Sy wotkaz k stronje slědował, kotraž hišće njeeksistuje. Zo by stronu wutworił, wupjelń slědowace tekstowe polo (hlej [[{{MediaWiki:Helppage}}|stronu pomocy]] za dalše informacije). Jeli sy zmylnje tu, klikń prosće na tłóčatko <b>Wróćo</b> we swojim wobhladowaku.',
-'anontalkpagetext'          => "---- ''To je diskusijna strona za anonymneho wužiwarja, kiž hišće konto wutworił njeje abo je njewužiwa. Dyrbimy tohodla numerisku IP-adresu wužiwać, zo bychmy jeho/ju identifikowali. Tajka IP-adresa hodźi so wot wjacorych wužiwarjow zhromadnje wužiwać. Jeli sy anonymny wužiwar a měniš, zo buchu irelewantne komentary k tebi pósłane, [[Special:UserLogin|wutwor konto abo přizjew so]], zo by přichodnu šmjatańcu wobešoł.''",
+'anontalkpagetext'          => "---- ''To je diskusijna strona za anonymneho wužiwarja, kiž hišće konto wutworił njeje abo je njewužiwa. Dyrbimy tohodla numerisku IP-adresu wužiwać, zo bychmy jeho/ju identifikowali. Tajka IP-adresa hodźi so wot wjacorych wužiwarjow zhromadnje wužiwać. Jeli sy anonymny wužiwar a měniš, zo buchu irelewantne komentary k tebi pósłane, [[Special:UserLogin/signup|wutwor prošu konto]] abo [[Special:UserLogin|přizjew so]], zo by přichodnu šmjatańcu z anonymnymi wužiwarjemi wobešoł.''",
 'noarticletext'             => 'Tuchwilu tuta strona žadyn tekst njewobsahuje, móžeš jeje titul w druhich stronach [[Special:Search/{{PAGENAME}}|pytać]] abo [{{fullurl:{{FULLPAGENAME}}|action=edit}} stronu wobdźěłać].',
 'userpage-userdoesnotexist' => 'Wužiwarske konto „$1“ njeje zregistrowane. Prošu pruwuj, hač chceš tutu stronu woprawdźe wutworić/wobdźěłać.',
 'clearyourcache'            => '<b>Kedźbu:</b> Po składowanju dyrbiš snano pufrowak swojeho wobhladowaka wuprózdnić, <b>Mozilla/Firefox/Safari:</b> tłóč na <i>Umsch</i> kliknjo na <i>Znowa</i> abo tłóč <i>Strg-Umsch-R</i> (<i>Cmd-Shift-R</i> na Apple Mac); <b>IE:</b> tłóč <i>Strg</i> kliknjo na symbol <i>Aktualisieren</i> abo tłóč <i>Strg-F5</i>; <b>Konqueror:</b>: Klikń jenož na tłóčatko <i>Erneut laden</i> abo tłoč  <i>F5</i>; Wužiwarjo <b>Opery</b> móža swój pufrowak dospołnje  w <i>Tools→Preferences</i> wuprózdnić.',
 'usercssjsyoucanpreview'    => '<strong>Pokiw:</strong> Wužij tłóčku „Přehlad”, zo by swój nowy css/js do składowanja testował.',
-'usercsspreview'            => "== Přehlad twojeho wosobinskeho CSS ==
-
-'''Kedźbu:''' Po składowanju dyrbiš pufrowak swojeho wobhladowaka wuprózdnić '''Mozilla/Firefox:''' ''Strg-Shift-R'', '''Internet Explorer:''' ''Strg-F5'', '''Opera:''' ''F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
+'usercsspreview'            => "'''Wobkedźbujće, zo sej jenož přehlad swojeho wužiwarskeho CSS wobhladuješ. Hišće njeje składowany!'''",
 'userjspreview'             => "== Přehlad twojeho wosobinskeho JavaScript ==
 
 '''Kedźbu:''' Po składowanju dyrbiš pufrowak swojeho wobhladowaka wuprózdnić '''Mozilla/Firefox:''' ''Strg-Shift-R'', '''Internet Explorer:''' ''Strg-F5'', '''Opera:''' ''F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
@@ -643,12 +638,13 @@ Prošu podaj wšě horjeka naspomnjene podrobnosće w naprašowanjach, kotrež �
 'note'                      => '<strong>Kedźbu:</strong>',
 'previewnote'               => '<strong>Kedźbu, to je jenož přehlad, změny hišće składowane njejsu!</strong>',
 'previewconflict'           => 'Tutón přehlad tekst w hornim tekstowym polu zwobrazni kaž so zjewi, jeli jón składuješ.',
-'session_fail_preview'      => '<strong>Zda so, zo je problem z twojim přizjewjenjom; tuta akcija bu wěstosće dla přećiwo zadobywanju do posedźenja znjemóžnjena. Prošu spytaj hišće raz. Wostanje-li tutón problem, spytaj so wotzjewić a so zaso přizjewić.</strong>',
-'session_fail_preview_html' => "<strong>Wodaj! Straty posedźenskich datow dla njemóžachmy twoju změnu předźěłać.</strong>
+'session_fail_preview'      => '<strong>Njemóžachmy twoju změnu předźěłać, dokelž su so posedźenske daty zhubili. Spytaj prošu hišće raz.
+Jeli to hišće njefunguje, [[Special:UserLogout|wotzjew so]] a přizjew so zaso.</strong>',
+'session_fail_preview_html' => "<strong>Njemóžachmy twoje změnu předźěłać, dokelž su so posedźenske daty zhubili.</strong>
 
-''Dokelž we {{SITENAME}} je luty HTML zmóžnił, je přehlad jako wěstotna naprawa přećiwo atakam přez JavaScript schowany.''
+''Dokelž we {{GRAMMAR:lokatiw|{{SITENAME}}}} je luty HTML zmóžnił, je přehlad jako wěstotna naprawa přećiwo atakam přez JavaScript schowany.''
 
-<strong>Jeli to je legitimny wobdźěłowanski pospyt, spytaj prošu hišće raz. Jeli to hišće njefunguje, wotzjew so a přizjew so znowa.</strong>",
+<strong>Jeli to je legitimny wobdźěłowanski pospyt, spytaj prošu hišće raz. Jeli to hišće njefunguje, [[Special:UserLogout|wotzjew so]] a přizjew so znowa.</strong>",
 'token_suffix_mismatch'     => '<strong>Twoja změna je so wotpokazała, dokelž twój wobhladowak je znamješka skepsał.
 Składowanje móže wobsah strony zničić. Móže so to na přikład přez wopačnje dźěłowacy proksy stać.</strong>',
 'editing'                   => 'Wobdźěłanje strony $1',
@@ -687,7 +683,7 @@ Administrator, kiž je ju zawrjena, je tutu přičinu podał: $1',
 'edittools'                 => '<!-- Tutón tekst so spody wobdźěłowanskich a nahrawanskich formularow pokazuje. -->',
 'nocreatetitle'             => 'Wutworjenje stron je wobmjezowane.',
 'nocreatetext'              => 'Na {{GRAMMAR:Lokatiw|{{SITENAME}}}} bu wutworjenje nowych stronow wobmjezowane. Móžeš wobstejace strony wobdźěłać abo [[Special:UserLogin|so přizjewić abo wužiwarske konto wutworić]].',
-'nocreate-loggedin'         => 'Nimaš prawo, zo by nowe strony w tutym wikiju wutworił.',
+'nocreate-loggedin'         => 'Nimaš prawo, zo by nowe strony wutworił.',
 'permissionserrors'         => 'Woprawnjenske zmylki',
 'permissionserrorstext'     => 'Nimaš prawo, zo by tutu akciju wuwjedł. {{PLURAL:$1|Přičina|Přičiny}}:',
 'recreate-deleted-warn'     => "'''Kedźbu: Wutworiš stronu, kiž bu prjedy wušmórnjena.'''
@@ -749,11 +745,11 @@ Legenda: (akt) = rozdźěl k tuchwilnej wersiji, (posl) = rozdźěl k předchadn
 'revisiondelete'              => 'Wersije wušmórnyć/wobnowić',
 'revdelete-nooldid-title'     => 'Njepłaćiwa cilowa wersija',
 'revdelete-nooldid-text'      => 'Njejsy cilowu wersiju abo cilowe wersije podał, zo by tutu funkciju wužił.',
-'revdelete-selected'          => '{{PLURAL:$2|Wubrana wersija|Wubranej wersiji|Wubrane wersije|Wubranych wersijow}} wot [[:$1]]:',
+'revdelete-selected'          => "'''{{PLURAL:$2|Wubrana wersija|Wubranej wersiji|Wubrane wersije|Wubranych wersijow}} wot [[:$1]]:'''",
 'logdelete-selected'          => "{{PLURAL:$2|Wubrany zapisk z protokola|Wubranej zapiskaj z protokola|Wubrane zapiski z protokola|Wubrane zapiski z protokola}} za '''$1:'''",
-'revdelete-text'              => 'Wušmórnjene wersije so w stawiznach dale jewja, jich wobsah pak za wužiwarjow čitajomne njeje.
+'revdelete-text'              => "'''Wušmórnjene wersije so w stawiznach dale jewja, jich wobsah pak za wužiwarjow čitajomne njeje.'''
 
-Druzy administratorojo we {{SITENAME}} móža schowany tekst dale čitać a jón wobnowić, chibazo su tež jich prawa wobmjezowane.',
+Druzy administratorojo we {{SITENAME}} móža schowany tekst dale čitać a jón wobnowić, chibazo su tež jich prawa wobmjezowane.",
 'revdelete-legend'            => 'Wobmjezowanja za widźomnosć nastajić',
 'revdelete-hide-text'         => 'Tekst tuteje wersije schować',
 'revdelete-hide-name'         => 'Akciju w protokolach schować',
@@ -840,7 +836,7 @@ Móžeš [[:\$1|tutu stronu wutworić]].",
 'mypreferences'            => 'moje nastajenja',
 'prefs-edits'              => 'Ličba změnow:',
 'prefsnologin'             => 'Njepřizjewjeny',
-'prefsnologintext'         => 'Dyrbiš [[Special:UserLogin|přizjewjeny]] być, zo by nastajenja postajić móhł.',
+'prefsnologintext'         => 'Dyrbiš <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} přizjewjeny]</span>  być, zo by móhł nastajenja postajić.',
 'prefsreset'               => 'Nastajenja su so ze składa wróćo stajili. Twoje změnjenja njejsu so składowali.',
 'qbsettings'               => 'Pobóčna lajsta',
 'qbsettings-none'          => 'Žane',
@@ -1024,17 +1020,17 @@ Jenož kóncowce rozeznawatej so we wulko- a małopisanju. Prošu wuzwol hinaše
 'fileexists-thumb'            => "<center>'''Eksistowacy wobraz'''</center>",
 'fileexists-thumbnail-yes'    => 'Dataja zda so minaturka <i>(thumbnail)</i> być. Prošu přepruwuj dataju <strong><tt>$1</tt></strong>.<br />
 Jeli je to wobraz w originalnej wulkosći, njetrjebaš minaturku nahrać.',
-'file-thumbnail-no'           => 'Mjeno dataje započa so z <strong><tt>$1</tt></strong>. Móže to na wobraz pomjeńšeneje wulkosće <i>(thumbnail, miniaturka)</i> pokazać.
-Prošu přepruwuj, hač maš dataju w połnym rozeznaću a nahraj ju, hewak wuzwol druhe mjeno.',
+'file-thumbnail-no'           => 'Mjeno dataje započina so z <strong><tt>$1</tt></strong>. Zda so, zo to je wobraz z redukowanej wulkosću <i>(thumbnail)</i> pokazać.
+Jeli maš tutón wobraz z połnym rozeznaćom, nahraj tutón, hewak změń prošu datajowe mjeno.',
 'fileexists-forbidden'        => 'Dataja z tutym mjenom hižo eksistuje; prošu dźi wróćo a nahraj tutu dataju z druhim mjenom. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Dataja z tutym mjenom w zhromadnej chowarni datajow hižo eksistuje; prošu dźi wróćo a nahraj tutu dataju z druhim mjenom. [[Image:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Dataja z tutym mjenom hižo eksistuje w zhromadnej chowarni. Jeli hišće chceš swoju dataju nahrać,  dźi prošu wróćo a wužij nowe mjeno. [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => 'Dataja bu wuspěšnje nahrata',
 'uploadwarning'               => 'Warnowanje',
 'savefile'                    => 'Dataju składować',
 'uploadedimage'               => 'je dataju „[[$1]]” nahrał',
 'overwroteimage'              => 'je nowu wersiju dataje „[[$1]]“ nahrał',
 'uploaddisabled'              => 'Wodaj, nahraće je znjemóžnjene.',
-'uploaddisabledtext'          => 'Nahraće datajow je we {{SITENAME}} znjemóžnjene.',
+'uploaddisabledtext'          => 'Nahraće datajow je znjemóžnjene.',
 'uploadscripted'              => 'Dataja wobsahuje HTML- abo skriptowy kod, kotryž móhł so mylnje přez wobhladowak wuwjesć.',
 'uploadcorrupt'               => 'Dataja je wobškodźena abo ma wopačnu kóncowku. Prošu přepruwuj dataju a nahraj ju hišće raz.',
 'uploadvirus'                 => 'Dataja wirus wobsahuje! Podrobnosće: $1',
@@ -1113,8 +1109,8 @@ PICT # misc.
 'shareduploadwiki'          => 'Za dalše informacije hlej $1.',
 'shareduploadwiki-desc'     => 'Wopisanje na $1 so deleka w zhromadnym składźišću pokazuje.',
 'shareduploadwiki-linktext' => 'stronu datajoweho wopisanja',
-'noimage'                   => 'Žana dataja z tutym mjenom njeeksistuje. Móžeš $1.',
-'noimage-linktext'          => 'ju nahrać',
+'noimage'                   => 'Dataja z tutym mjenom njeeksistuje, ale móžeš $1.',
+'noimage-linktext'          => 'nahrać',
 'uploadnewversion-linktext' => 'nowu wersiju tuteje dataje nahrać',
 'imagelist_date'            => 'datum',
 'imagelist_name'            => 'mjeno dataje',
@@ -1142,7 +1138,7 @@ PICT # misc.
 'filedelete-submit'           => 'Wušmórnyć',
 'filedelete-success'          => "Strona '''„$1“''' bu wušmórnjena.",
 'filedelete-success-old'      => "Wersija '''[[Media:$1|$1]]''' wot $2, $3 hodź. bu zničena.",
-'filedelete-nofile'           => "'''„$1“''' njeeksistuje na tutym webowym sydle.",
+'filedelete-nofile'           => "'''„$1“''' njeeksistuje.",
 'filedelete-nofile-old'       => "Njeje žana archiwowana wersija '''$1''' z podatymi atributami.",
 'filedelete-iscurrent'        => 'Spytaš najnowšu wersiju dataje wušmórnyć. Prošu cofń do toho na staršu wersiju.',
 'filedelete-otherreason'      => 'Druha/přidatna přičina:',
@@ -1168,7 +1164,7 @@ PICT # misc.
 # Unused templates
 'unusedtemplates'         => 'Njewužiwane předłohi',
 'unusedtemplates-summary' => 'Tuta specialna strona naliči wšě předłohi, kiž so w druhich stronach njewužiwaja. Přepruwuj druhe wotkazy na předłohi, prjedy hač je wušmórnješ.',
-'unusedtemplatestext'     => 'Tuta specialna strona naliči wšě předłohi, kiž so w druhich stronach njewužiwaja. Prošu přepruwuj tež druhe móžne wotkazy na předłohi, prjedy hač je wušmórnješ.',
+'unusedtemplatestext'     => 'Tuta strona nalistuje wšě strony w mjenowym rumje {{ns:template}}, kotrež so w druhich stronach njewužiwaja. Prošu přepruwuj druhe wotkazy k předłoham, prjedy hač je wušmórnješ.',
 'unusedtemplateswlh'      => 'Druhe wotkazy',
 
 # Random page
@@ -1192,7 +1188,7 @@ PICT # misc.
 Běše dohromady '''$3''' {{PLURAL:$3|wobhladanje|wobhladani|wobhladanja|wobhladanjow}} stronow a '''$4''' {{PLURAL:$4|změna|změnje|změny|změnow}} stronow, wot toho zo bu {{SITENAME}} připrawjeny. Bě to přerěznje '''$5''' {{PLURAL:$5|změna|změnje|změny|změnow}} na stronu a '''$6''' {{PLURAL:$6|wobhladanje|wobhladani|wobhladanja|wobhladanjow}} na změnu.
 
 Dołhosć [http://www.mediawiki.org/wiki/Manual:Job_queue rynka nadawkow] je '''$7'''.",
-'userstatstext'          => "{{PLURAL:$1|Je '''1''' [[Special:ListUsers|wužiwar]] zregistrowany|Staj '''$1''' [[Special:ListUsers|wužiwarjej]] zregistrowanej|Su '''$1''' [[Special:ListUsers|wužiwarjo]] zregistrowani|Je '''$1''' [[Special:ListUsers|wužiwarjow]] zregistrowanych}}, '''$2''' (abo '''$4%''') z nich {{PLURAL:$2|je|staj|su|je}} $5.",
+'userstatstext'          => "{{PLURAL:$1|Je '''1''' [[Special:ListUsers|zregistrowany wužiwar]]|Staj '''$1''' [[Special:ListUsers|zregistrowanej wužiwarjej]]|Su '''$1''' [[Special:ListUsers|zregistrowani wužiwarjo]]|Je '''$1''' [[Special:ListUsers|zregistrowanych wužiwarjow]]}}, '''$2''' (abo '''$4%''') z nich {{PLURAL:$2|ma|mataj|maja|ma}} prawa $5. {{PLURAL:$6|Je tuchwilu něhdźe '''$6''' konto aktiwnych wužiwarjow|Stej tuchwilu něhdźe '''$6''' konće aktiwnych wužiwarjow|Su tuchwilu něhdźe '''$6''' konta aktiwnych wužiwarjow|Je tuchwilu něhdźe '''$6''' kontow aktiwnych wužiwarjow}}.",
 'statistics-mostpopular' => 'Najhusćišo wopytowane strony',
 
 'disambiguations'         => 'Rozjasnjenja wjacezmyslnosće',
@@ -1228,7 +1224,7 @@ Dołhosć [http://www.mediawiki.org/wiki/Manual:Job_queue rynka nadawkow] je '''
 'specialpage-empty'               => 'Tuchwilu žane zapiski.',
 'lonelypages'                     => 'Wosyroćene strony',
 'lonelypages-summary'             => 'Tuta specialna strona naliči strony, na kotrež so ze žaneje druheje strony njewotkazuje. Tute wosyroćene strony njejsu wupřate, dokelž njehodźa so přez normalnu nawigaciju {{GRAMMAR:genitiw|{{SITENAME}}}} namakać.',
-'lonelypagestext'                 => 'Na slědowace strony druhe strony w tutym wikiju njewotkazuja:',
+'lonelypagestext'                 => 'Slědowace strony njejsu wotkazowe cile druhich stronow abo njezapřijimaja so do druhich stronow w {{SITENAME}}.',
 'uncategorizedpages'              => 'Njekategorizowane strony',
 'uncategorizedpages-summary'      => 'Tuta specialna strona naliči wšě strony, kotrež dotal njejsu někajkej kategoriji přirjadowane.',
 'uncategorizedcategories'         => 'Njekategorizowane kategorije',
@@ -1319,7 +1315,7 @@ Hlej tež [[Special:WantedCategories|požadane kategorije]].',
 'all-logs-page'        => 'Wšě protokole',
 'log-search-legend'    => 'Protokole přepytować',
 'log-search-submit'    => 'OK',
-'alllogstext'          => 'To je kombinowany pohlad wšěch w {{GRAMMAR:lokatiw|{{SITENAME}}}} wjedźenych protokolow. Móžeš pohlad wobmjezować, wuběrajo typ protokola, wužiwarske mjeno abo potrjechenu stronu.',
+'alllogstext'          => 'Kombinowane zwobraznjenje wšěch k dispozicij stejacych protokolow w {{GRAMMAR:lokatiw|{{SITENAME}}}}. Móžeš napohlad wobmjezować, wuběrajo typ protokola, wužiwarske mjeno (dźiwajo na wulkopisanje) abo potrjechu stronu (tež dźiwajo na wulkopisanje).',
 'logempty'             => 'Žane wotpowědowace zapiski w protokolu.',
 'log-title-wildcard'   => 'Titul započina so z …',
 
@@ -1347,16 +1343,16 @@ Hlej tež [[Special:WantedCategories|požadane kategorije]].',
 'mailnologintext' => 'Dyrbiš [[Special:UserLogin|přizjewjeny]] być a płaćiwu e-mejlowu adresu w swojich [[Special:Preferences|nastajenjach]] měć, zo by druhim wužiwarjam mejlki pósłać móhł.',
 'emailuser'       => 'Wužiwarjej mejlku pósłać',
 'emailpage'       => 'Wužiwarjej mejlku pósłać',
-'emailpagetext'   => 'Jeli tutón wužiwar je płaćiwu e-mejlowu adresu w swojich nastajenjach zapodał, budźe formular deleka mejlku słać.
-E-mejlowa adresa, kotruž sy w swojich nastajenjach zapodał, jewi so jako adresa w polu „Wot” mejlki, zo by přijimowar móhł wotmołwić.',
+'emailpagetext'   => 'Móžeš slědowacy formular wužiwać, zo by tutomu wužiwarjej e-mejlku pósłał.
+E-mejlowa adresa, kotruž sy w [[Special:Preferences|swojich wužiwarskich nastajenjach]] zapodał, zjewi so jako adresa "Wot" e-mejlki, tak zo přijimowar móže ći direktnje wotmołwić.',
 'usermailererror' => 'E-mejlowy objekt je zmylk wróćił:',
 'defemailsubject' => 'Powěsć z {{grammar:genitiw|{{SITENAME}}}}',
 'noemailtitle'    => 'Žana e-mejlowa adresa podata',
 'noemailtext'     => 'Tutón wužiwar njeje płaćiwu e-mejlowu adresu podał abo je so rozsudźił, zo nochce mejlki druhich wužiwarjow dóstać.',
-'emailfrom'       => 'Wot',
-'emailto'         => 'Komu',
-'emailsubject'    => 'Předmjet',
-'emailmessage'    => 'Powěsć',
+'emailfrom'       => 'Wot:',
+'emailto'         => 'Komu:',
+'emailsubject'    => 'Tema:',
+'emailmessage'    => 'Powěsć:',
 'emailsend'       => 'Wotesłać',
 'emailccme'       => 'E-mejluj mi kopiju mojeje powěsće.',
 'emailccsubject'  => 'Kopija twojeje powěsće wužiwarjej $1: $2',
@@ -1527,12 +1523,13 @@ Hlej [[Special:ProtectedPages|tutu specialnu stronu]] za lisćinu škitanych str
 'undeletepage'                 => 'Wušmórnjene strony wobnowić',
 'viewdeletedpage'              => 'Wušmórnjene strony wobhladać',
 'undeletepagetext'             => 'Tute strony buchu wušmórnjene, su pak hišće w datowej bance składowane a móža so wobnowić.',
-'undeleteextrahelp'            => 'Zo by stronu z wšěmi wersijemi wobnowił zapodaj prošu přičinu a klikń na „Wobnowić”. Chceš-li jenož jednotliwe wersije wobnowić, wuběr prošu jich markěrowanske kašćiki, zapodaj přičinu a klikń na „Wobnowić”. Kliknjenje na „Cofnyć” wuprózdni komentarowe polo a wšě kašćiki.',
+'undeleteextrahelp'            => "Zo by wšě stawizny strony wobnowił, wostaj prošu wšě kontrolowe kašćiki njewubrane a klikń na '''''Wobnowić'''''. Zo by selektiwne wobnowjenje přewjedł, wubjer kašćiki, kotrež wersijam wotpowěduja, kotrež maja so wobnowić a klikń na '''''Wobnowić'''''.
+Kliknjenje na '''''Wróćo stajić''''' komentarne polo a wšě kontrolowe kašćiki wuprózdni.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|wersija|wersiji|wersije|wersijow}} {{PLURAL:$1|archiwowana|archiwowanej|archiwowane|archiwowane}}',
-'undeletehistory'              => 'Jeli tutu stronu wobnowiš, so wšě (tež prjedy wušmórnjene) wersije zaso do stawiznow wobnowja. Jeli bu po wušmórnjenju nowa strona ze samsnym mjenom wutworjena, budu so wobnowjene wersije w prjedawšich stawiznach jewić. Wobkedźbuj tež, zo wobmjezowanja za datajowe wersije so po wobnowjenju zhubja.',
+'undeletehistory'              => 'Jeli tutu stronu wobnowiš, so wšě (tež prjedy wušmórnjene) wersije zaso do stawiznow wobnowja. Jeli bu po wušmórnjenju nowa strona ze samsnym mjenom wutworjena, budu so wobnowjene wersije w prjedawšich stawiznach jewić.',
 'undeleterevdel'               => 'Wobnowjenje so přewjedźe, hdyž je najaktualniša wersija schowana abo wobsahuje schowane dźěle. W tutym padźe njesměš najaktualnišu wersiju wubrać abo dyrbiš jeje status na normalnu widźomnosć změnić. Wersije, kotrychž widźomnosć su za tebje schowane, so njewobnowjeja.',
 'undeletehistorynoadmin'       => 'Strona bu wušmórnjena. Přičina za wušmórnjenje so deleka w zjeću pokazuje, zhromadnje z podrobnosćemi wužiwarjow, kotřiž běchu tutu stronu do zničenja wobdźěłali. Tuchwilny wobsah strony je jenož administratoram přistupny.',
-'undelete-revision'            => 'Wušmórnjena wersija strony $1 - $2, $3:',
+'undelete-revision'            => 'Wušmórnjena wersija strony $1 (wot $4, $5 hodź.) wot $3:',
 'undeleterevision-missing'     => 'Njepłaćiwa abo pobrachowaca wersija. Pak je wotkaz wopačny, pak bu wotpowědna wersija z archiwa wobnowjena abo wotstronjena.',
 'undelete-nodiff'              => 'Předchadna wersija njeeksistuje.',
 'undeletebtn'                  => 'Wobnowić',
@@ -1635,7 +1632,7 @@ $1',
 'ipb-edit-dropdown'           => 'přičiny zablokowanjow wobdźěłać',
 'ipb-unblock-addr'            => 'zablokowanje wužiwarja „$1“ zběhnyć',
 'ipb-unblock'                 => 'zablokowanje wužiwarja abo IP-adresy zběhnyć',
-'ipb-blocklist-addr'          => 'aktualne zablokowanja za wužiwarja „$1“ zwobraznić',
+'ipb-blocklist-addr'          => 'Eksistowace zablokowanja za "$1"',
 'ipb-blocklist'               => 'tuchwilne blokowanja zwobraznić',
 'unblockip'                   => 'Zablokowanje zběhnyć',
 'unblockiptext'               => 'Wužij formular deleka, zo by blokowanje IP-adresy abo wužiwarskeho mjena zběhnył.',
@@ -1716,7 +1713,7 @@ W tutych padach dyrbiš stronu manuelnje přesunyć abo zaměšeć, jeli sej to 
 'movearticle'             => 'Stronu přesunyć',
 'movenologin'             => 'Njejsy přizjewjeny.',
 'movenologintext'         => 'Dyrbiš zregistrowany wužiwar a [[Special:UserLogin|přizjewjeny]] być, zo by stronu přesunyć móhł.',
-'movenotallowed'          => 'Nimaš w tutym wikiju prawo, zo by strony přesunył.',
+'movenotallowed'          => 'Nimaš prawo, zo by strony přesunył.',
 'newtitle'                => 'pod nowe hesło',
 'move-watch'              => 'Stronu wobkedźbować',
 'movepagebtn'             => 'Stronu přesunyć',
@@ -1902,7 +1899,7 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{ns:special}}:E
 
 # Spam protection
 'spamprotectiontitle'    => 'Spamowy filter',
-'spamprotectiontext'     => 'Strona, kotruž sy spytał składować, bu přez spamowy filter zablokowana. Přičina je najskerje wotkaz na eksterne sydło.',
+'spamprotectiontext'     => 'Strona, kotruž sy spytał składować, bu přez spamowy filter zablokowana. To so najskerje přez wotkaz na  eksterne sydło w čornej lisćinje zawinuje.',
 'spamprotectionmatch'    => 'Sćěhowacy tekst je naš spamowy filter wotpokazał: $1',
 'subcategorycount'       => 'Tuta kategorija wobsahuje $1 {{PLURAL:$1|podkategoriju|podkategoriji|podkategorije|podkategorijow}}.',
 'categoryarticlecount'   => 'Tuta kategorija wobsahuje $1 {{PLURAL:$1|nastawk|nastawkaj|nastawki|nastawkow}}.',
@@ -1957,8 +1954,8 @@ $1',
 'filedelete-archive-read-only'    => 'Do archiwoweho zapisa "$1" njeda so z webowym serwerom pisać.',
 
 # Browsing diffs
-'previousdiff' => '← předchadna wersija',
-'nextdiff'     => 'přichodna wersija →',
+'previousdiff' => '← Předchadna změna',
+'nextdiff'     => 'Přichodna změna →',
 
 # Media information
 'mediawarning'         => '<b>KEDŹBU:</b> Dataja móhła złowólny kod wobsahować, kotrehož wuwjedźenje móhło twój system wobškodźić.<hr />',
@@ -2266,7 +2263,9 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'confirmemail_send'       => 'Wobkrućenski kod pósłać',
 'confirmemail_sent'       => 'Wobkrućenska mejlka bu wotesłana.',
 'confirmemail_oncreate'   => 'Wobkrućenski kod bu na twoju e-mejlowu adresu pósłany. Tutón kod za přizjewjenje trěbne njeje, trjebaš jón pak, zo by e-mejlowe funkcije we wikiju aktiwizował.',
-'confirmemail_sendfailed' => 'Wobkrućenska mejlka njeda so wotesłać. Přepruwuj adresu za njepłaćiwymi znamješkami. E-mejlowy program wotmołwi: $1',
+'confirmemail_sendfailed' => '{{SITENAME}} njemóžeše twoje potwjerdźensku e-mejlku pósłać. Přepytaj prošu swoju e-mejlowu adresu za njepłaćiwymi znamješkami.
+
+E-mejlowy program je wróćił: $1',
 'confirmemail_invalid'    => 'Njepłaćiwy wobkrućacy kod. Kod je snano spadnył.',
 'confirmemail_needlogin'  => 'Dyrbiš so $1, zo by e-mejlowu adresu wobkrućić móhł.',
 'confirmemail_success'    => 'Twoja e-mejlowa adresa bu wobkrućena. Móžeš so nětko přizjewić.',
@@ -2284,8 +2283,8 @@ Jeli to *njejsy*, njeslěduj wotkaz. Tutón wobkrućenski kod spadnje dnja $4.
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Zapřijeće mjezyrěčnych wotkazow je znjemóžnjene]',
-'scarytranscludefailed'   => '[Zapřijeće předłohi za stronu $1 njebě mózno]',
-'scarytranscludetoolong'  => '[Bohužel běše URL předołhi]',
+'scarytranscludefailed'   => '[Zapřijimanje předłohi za $1 je so njeporadźiło]',
+'scarytranscludetoolong'  => '[URL je předołhi]',
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">Trackbacks za tutón nastawk:<br />
@@ -2294,7 +2293,7 @@ $1</div>',
 'trackbackdeleteok' => 'Trackback bu wuspěšnje wušmórnjeny.',
 
 # Delete conflict
-'deletedwhileediting' => '<b>Kedźbu:</b> Strona bu wušmórnjena po tym zo sy započał ju wobdźěłać!',
+'deletedwhileediting' => "'''Kedźbu''': Tuta strona bu wušmórnjena, po tym zo sy započał ju wobdźěłać!",
 'confirmrecreate'     => "Wužiwar [[User:$1|$1]] ([[User talk:$1|diskusija]]) je stronu wušmórnył, po tym zo sy započał ju wobdźěłać. Přičina:
 : ''$2''
 Prošu potwjerdź, zo chceš tutu stronu woprawdźe znowa wutworić.",

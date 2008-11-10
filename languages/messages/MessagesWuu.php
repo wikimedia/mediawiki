@@ -106,7 +106,7 @@ $messages = array(
 == 入门 ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings MediaWiki 配置设置列表]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki 常见问题解答]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki 发布邮件列表]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki 发布邮件列表]',
 
 'about'          => '关于',
 'article'        => '文章',
@@ -688,7 +688,7 @@ $messages = array(
 来操作前头请倷确定倷已经充分了解个能做法个后果。",
 'movearticle'             => '页面捅荡:',
 'movenologin'             => '朆登录',
-'movenologintext'         => '倷板定要是已登记用户且勒拉[[Special:Userlogin|登录]]状态下头再好拿页面捅荡。',
+'movenologintext'         => '倷板定要是已登记用户且勒拉[[Special:UserLogin|登录]]状态下头再好拿页面捅荡。',
 'newtitle'                => '新个题目:',
 'movepagebtn'             => '页面捅荡',
 'pagemovedsub'            => '捅荡成功哉',

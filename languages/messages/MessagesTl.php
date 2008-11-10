@@ -119,7 +119,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
 
 'about'          => 'Patungkol',
 'article'        => 'Pahina ng nilalaman',
@@ -381,7 +381,8 @@ Nilikha na ang iyong kuwenta. Huwag kalimutang baguhin ang iyong mga kagustuhan 
 'recentchangestext' => 'Subaybayan ang mga pinakahuling pagbabago sa wiki sa pahinang ito.',
 
 # Recent changes linked
-'recentchangeslinked' => 'Mga kaugnay na binago',
+'recentchangeslinked'       => 'Mga kaugnay na binago',
+'recentchangeslinked-title' => 'Mga pagbabagong magkaugnay sa "$1"',
 
 # Upload
 'upload'            => 'Magkarga ng talaksan',
@@ -395,7 +396,11 @@ upang makapagkarga ng talaksan.',
 'watchthisupload'   => 'Bantayan itong pahina',
 
 # Image list
+'filehist'          => 'Kasaysayan ng talaksan',
+'filehist-datetime' => 'Petsa/Oras',
+'filehist-user'     => 'Tagagamit',
 'filehist-filesize' => 'Laki ng talaksan',
+'filehist-comment'  => 'Komento',
 'nolinkstoimage'    => 'Walang pahing tumuturo sa talaksang ito.',
 
 # File reversion
@@ -405,10 +410,10 @@ upang makapagkarga ng talaksan.',
 'filedelete'         => 'Burahin ang $1',
 'filedelete-legend'  => 'Burahin ang talaksan',
 'filedelete-intro'   => "Binubura mo ang '''[[Media:$1|$1]]'''.",
-'filedelete-comment' => 'Komento:',
+'filedelete-comment' => 'Dahilan sa pagkabura:',
 'filedelete-submit'  => 'Burahin',
 'filedelete-success' => "Binura na ang '''$1'''.",
-'filedelete-nofile'  => "Hindi umiiral ang '''$1''' sa {{SITENAME}}.",
+'filedelete-nofile'  => "Hindi umiiral ang '''$1'''.",
 
 # Random page
 'randompage'         => 'Pahinang walang-pili',
@@ -461,6 +466,8 @@ upang makapagkarga ng talaksan.',
 
 # Delete/protect/revert
 'deletepage'                  => 'Burahin ang pahina',
+'deletedarticle'              => 'ibinura ang "[[$1]]"',
+'deletecomment'               => 'Dahilan sa pagkabura:',
 'protect-default'             => '(tinakda)',
 'protect-level-autoconfirmed' => "Harangin ang mga 'di-rehistradong manggagamit",
 'protect-summary-cascade'     => 'kaskada',
@@ -530,14 +537,15 @@ $1',
 'unlockdb' => 'Buksan ang kalipunan ng datos',
 
 # Move page
+'movearticle'             => 'Ilipat ang pahina:',
 'movenologin'             => 'Hindi nakalagda',
 'movenologintext'         => 'Kailangang ikaw ay isang naka-rehistrong manggagamit at ay [[Special:UserLogin|nakalagda]] upang makapaglipat ng pahina.',
-'movenotallowed'          => 'Wala kang permisong maglipat ng pahina sa {{SITENAME}}.',
+'movenotallowed'          => 'Wala kang permisong maglipat ng pahina.',
 'newtitle'                => 'Sa bagong pamagat:',
 'move-watch'              => 'Bantayan itong pahina',
 'movepagebtn'             => 'Ilipat ang pahina',
 'pagemovedsub'            => 'Matagumpay ang paglipat',
-'movepage-moved'          => '<big>\'\'\'Ang "$1" ay inilipat sa "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>\'\'\'Inilipat ang "$1" sa "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'May umiiral nang pahinang may ganitong pangalan, o ang
 pangalang pinili mo ay hindi mabisa.
 Pumili muli ng ibang pangalan.',
@@ -641,6 +649,9 @@ $1',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Maaaring hindi mapakita sa talang ito ang mga pagbabagong mas bago sa $1 segundo.',
+
+# Watchlist editing tools
+'watchlisttools-view' => 'Tingnan ang mga magkaugnay na pagbabago',
 
 # Special:Version
 'version-hook-subscribedby' => 'Sinuskribi ng/ni/nina',

@@ -312,7 +312,7 @@ $messages = array(
 == Za početak ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Pomoć u vezi sa podešavanjima]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Najčešće postavljena pitanja]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mejling lista o izdanjima MedijaVikija]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mejling lista o izdanjima MedijaVikija]',
 
 'about'          => 'O...',
 'article'        => 'Članak',
@@ -766,11 +766,11 @@ Moguće da ima više detalja u [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}
 'revisiondelete'              => 'Obriši/vrati reviziju',
 'revdelete-nooldid-title'     => 'Nema odabrane revizije',
 'revdelete-nooldid-text'      => 'Niste odabrali željenu reviziju ili revizije kako biste uključili ove funkcije.',
-'revdelete-selected'          => 'Izabrano revizija od [[:$1]]:',
-'revdelete-text'              => 'Obrisane revizije će se i dalje pojavljivati na istoriji stranice,
-ali će njihov sadržaj biti skriven javnosti.
+'revdelete-selected'          => "'''Izabrano revizija od [[:$1]]:'''",
+'revdelete-text'              => "'''Obrisane revizije će se i dalje pojavljivati na istoriji stranice,
+ali će njihov sadržaj biti skriven javnosti.'''
 
-Ostali administratori na ovoj Vikipediji će i dalje imati mogućnost da vide skriveni sadržaj i moći će da ga vrate ponovo putem ove iste komande, sve ukoliko nisu primenjene dodatne restrikcije operatora sajta.',
+Ostali administratori na ovoj Vikipediji će i dalje imati mogućnost da vide skriveni sadržaj i moći će da ga vrate ponovo putem ove iste komande, sve ukoliko nisu primenjene dodatne restrikcije operatora sajta.",
 'revdelete-legend'            => 'Postavi restrikcije revizija',
 'revdelete-hide-text'         => 'Sakrij tekst revizije',
 'revdelete-hide-comment'      => 'Sakrij opis izmene',
@@ -1443,7 +1443,7 @@ nastavite.",
 U tim slučajevima, moraćete ručno da premestite ili spojite stranicu ukoliko to želite.",
 'movearticle'             => 'Premesti stranicu',
 'movenologin'             => 'Niste prijavljeni',
-'movenologintext'         => 'Morate biti registrovani korisnik i [[Special:Userlogin|prijavljeni]]
+'movenologintext'         => 'Morate biti registrovani korisnik i [[Special:UserLogin|prijavljeni]]
 da biste premestili stranicu.',
 'newtitle'                => 'Novi naslov',
 'movepagebtn'             => 'premesti stranicu',

@@ -7,6 +7,8 @@
  * @author Helix84
  * @author Meursault2004
  * @author Niklas Laxström
+ * @author Pras
+ * @author Rex
  * @author לערי ריינהארט
  */
 
@@ -259,7 +261,7 @@ $messages = array(
 'badaccess-group0' => 'Panjenengan ora pareng nglakokaké tindhakan sing panjenengan gayuh.',
 'badaccess-group1' => 'Pratingkah ingkang panjenengan suwun namung saged kangge pangguna kelompok $1.',
 'badaccess-group2' => 'Pratingkah ingkang panjenengan suwun dipun-watesi kanggé pangguna ing kelompok $1.',
-'badaccess-groups' => 'Pratingkah panjenengan diwatesi tumrap panganggo ing klompoké $1.',
+'badaccess-groups' => 'Pratingkah panjenengan diwatesi tumrap panganggo ing {{PLURAL:$2|klompoké|klompoké}}: $1.',
 
 'versionrequired'     => 'Dibutuhaké MediaWiki vèrsi $1',
 'versionrequiredtext' => 'MediaWiki vèrsi $1 dibutuhaké kanggo nggunakaké kaca iki. Mangga mirsani [[Special:Version|kaca iki]]',
@@ -281,7 +283,7 @@ $messages = array(
 'restorelink'             => '$1 {{PLURAL:$1|suntingan|suntingan}} sing wis kabusak',
 'feedlinks'               => 'Asupan:',
 'feed-invalid'            => 'Tipe permintaan asupan ora bener.',
-'feed-unavailable'        => "Umpan sindikasi (''syndication feeds'') ora ana ing {{SITENAME}}",
+'feed-unavailable'        => "Umpan sindikasi (''syndication feeds'') ora kasedyakaké",
 'site-rss-feed'           => "$1 ''RSS Feed''",
 'site-atom-feed'          => "$1 ''Atom Feed''",
 'page-rss-feed'           => "\"\$1\" ''RSS Feed''",
@@ -311,7 +313,8 @@ $messages = array(
 'databaseerror'        => 'Kasalahan database',
 'dberrortext'          => 'Ana kasalahan sintaks ing panyuwunan database. Kasalah ini mbokmenawa nuduhi anané \'\'bug\'\' ing software. Panyuwunan database sing pungkasan iku: <blockquote><tt>$1</tt></blockquote> saka jeroning fungsi "<tt>$2</tt>". Kasalahan MySQL "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Ana kasalahan sintaks ing panyuwunan database. Panyuwunan database sing pungkasan iku: "$1" saka jeroning fungsi "$2". Kasalahan MySQL "$3: $4".',
-'noconnect'            => 'Nuwun séwu! Wiki ngalami masalah tèknis lan ora bisa ngubungi database.<br />$1',
+'noconnect'            => 'Nuwun séwu! Wiki ngalami masalah tèknis lan ora bisa ngubungi database.<br />
+$1',
 'nodb'                 => 'Ora bisa milih database $1',
 'cachederror'          => 'Ing ngisor iki tuladan <em>cache</em> saka kaca sing disuwun, dadi mbokmenawa ora up-to-date.',
 'laggedslavemode'      => 'Pènget: Kaca iki mbokmenawa isiné dudu pangowahan pungkasan.',
@@ -384,7 +387,8 @@ Akun panjenengan wis kacipta. Aja lali nata konfigurasi {{SITENAME}} panjenengan
 'gotaccountlink'             => 'Mlebu',
 'createaccountmail'          => 'liwat layang e-mail',
 'badretype'                  => 'Sandhi panjenengan ora gathuk',
-'userexists'                 => 'Asma panganggo sing panjenengan pilih wis kanggo. Mangga pilih asma liyané.',
+'userexists'                 => 'Asma panganggo sing panjenengan pilih wis kanggo.
+Mangga pilih asma liyané.',
 'youremail'                  => 'Layang élèktronik (E-mail):',
 'username'                   => 'Asma panganggo:',
 'uid'                        => 'ID panganggo:',
@@ -404,7 +408,7 @@ Akun panjenengan wis kacipta. Aja lali nata konfigurasi {{SITENAME}} panjenengan
 'noname'                     => 'Asma panganggo sing panjenengan pilih ora sah.',
 'loginsuccesstitle'          => 'Bisa suksès mlebu log',
 'loginsuccess'               => "'''Panjenengan saiki mlebu ing {{SITENAME}} kanthi asma \"\$1\".'''",
-'nosuchuser'                 => 'Ora ana panganggo mawa asma "$1". Coba dipriksa manèh pasang aksarané (éjaané), utawa mangga ngagem formulir ing ngisor iki kanggo mbukak akun/rékening anyar.',
+'nosuchuser'                 => 'Ora ana panganggo mawa asma "$1". Coba dipriksa manèh pasang aksarané (éjaané), utawa mangga ngagem formulir ing ngisor iki kanggo [[Special:UserLogin/signup|mbukak akun/rékening anyar]].',
 'nosuchusershort'            => 'Ora ana panganggo mawa asma "$1". Coba dipriksa manèh pasang aksarané (éjaané).',
 'nouserspecified'            => 'Panjenengan kudu milih asma panganggo.',
 'wrongpassword'              => 'Tembung sandhi sing dipilih salah. Mangga coba manèh.',
@@ -412,14 +416,19 @@ Akun panjenengan wis kacipta. Aja lali nata konfigurasi {{SITENAME}} panjenengan
 'passwordtooshort'           => 'Tembung sandi panjenengan ora sah utawa kecendhaken. Tembung sandi kudu katulis saka paling ora $1 aksara lan kudu béda saka jeneng panganggo panjenengan.',
 'mailmypassword'             => 'Kirim tembung sandhi anyar',
 'passwordremindertitle'      => 'Pèngetan tembung sandhi saka {{SITENAME}}',
-'passwordremindertext'       => 'Ana wong (mbokmenawa panjenengan dhéwé, saka alamat IP $1) nyuwun supaya dikirimi tembung sandhi anyar kanggo {{SITENAME}} ($4). Tembung sandhi kanggo panganggo "$2" saiki "$3". Panjenengan disaranaké sigra mlebu log lan ngganti tembung sandhi.',
+'passwordremindertext'       => 'Ana wong (mbokmenawa panjenengan dhéwé, saka alamat IP $1) nyuwun supaya dikirimi tembung sandhi anyar kanggo {{SITENAME}} ($4). Tembung sandhi kanggo panganggo "$2" wis digawé lan saiki "$3". Yèn panjenengan pancèn nggayuh iki, mangga sigra mlebu lan ngganti tembung sandhi.
+
+Yèn wong liya sing nglakoni panyuwunan iki, utawa panjenengan éling tembung sandhiné, lan ora nggayuh ngowahi, panjenengan ora usah nggubris pesen iki lan bisa tetep nganggo tembung sandhi sing lawas.
+
+
+Panjenengan disaranaké sigra mlebu log lan ngganti tembung sandhi.',
 'noemail'                    => 'Ora ana alamat layang e-mail sing kacathet kanggo panganggo "$1".',
 'passwordsent'               => 'Tembung sandhi anyar wis dikirim menyang alamat layang e-mail panjenengan sing wis didaftar kanggo "$1". Mangga mlebu log manèh sawisé nampa e-mail iku.',
 'blocked-mailpassword'       => "Alamat IP panjenengan diblokir saka panyuntingan, mulané panjenengan ora olèh nganggo fungsi pèngetan tembung sandhi kanggo ''mencegah penyalahgunaan''.",
 'eauthentsent'               => 'Sawijining layang élèktronik (e-mail) kanggo ndhedhes (konfirmasi) wis dikirim menyang alamat layang élèktronik panjenengan. Panjenengan kudu nuruti instruksi sajroning layang iku kanggo ndhedhes yèn alamat iku bener kagungané panjenengan. {{SITENAME}} ora bakal ngaktifaké fitur layang élèktronik yèn langkah iki durung dilakoni.',
 'mailerror'                  => 'Kasalahan ing ngirimaké layang e-mail: $1',
-'acct_creation_throttle_hit' => 'Nuwun sèwu, panjenengan wis nggawé akun $1. Panjenengan ora bisa nggawé manèh.',
-'emailauthenticated'         => 'Alamat layang élèktronik (e-mail) panjenengan wis didhedhes (dikonfirmasi) ing $1.',
+'acct_creation_throttle_hit' => 'Nuwun sèwu, panjenengan wis nggawé {{PLURAL:$1|1 akun|$1 akun}}. Panjenengan ora bisa nggawé manèh.',
+'emailauthenticated'         => 'Alamat layang élèktronik (e-mail) panjenengan wis didhedhes (dikonfirmasi) ing $3, $2.',
 'emailnotauthenticated'      => 'Alamat layang élèktronik panjenengan durung didhedhes (dikonfirmasi). Sadurungé didhedhes, panjenengan ora bisa nganggo fitur layang élèktronik (e-mail).',
 'noemailprefs'               => 'Panjenengan kudu milih alamat e-mail supaya bisa nganggo fitur iki.',
 'emailconfirmlink'           => 'Ndhedhes (konfirmasi) alamat e-mail panjenengan',
@@ -440,7 +449,7 @@ Panjenengan bisa nglirwakaké pesen iki yèn akun utawa rékening iki digawé d�
 'resetpass_submit'        => 'Nata tembung sandhi lan mlebu log',
 'resetpass_success'       => 'Tembung sandhi panjenengan wis suksès diowahi! Saiki mrosès mlebu log panjenengan...',
 'resetpass_bad_temporary' => 'Tembung sandhi sementara salah. Panjenengan mbokmenawa tau ngganti tembung sandhi panjenengan utawa tau nyuwun tembung sandhi anyar.',
-'resetpass_forbidden'     => 'Tembung sandhi ora bisa diowahi ing wiki iki',
+'resetpass_forbidden'     => 'Tembung sandhi ora bisa diganti',
 'resetpass_missing'       => 'Data formulir ora ditepangi.',
 
 # Edit page toolbar
@@ -484,7 +493,8 @@ Panjenengan bisa nglirwakaké pesen iki yèn akun utawa rékening iki digawé d�
 'blockedtitle'              => 'Panganggo diblokir',
 'blockedtext'               => "<big>'''Asma panganggo utawa alamat IP panjenengan diblokir.'''</big>
 
-Blokir iki sing nglakoni $1. Alesané ''$2''.
+Blokir iki sing nglakoni $1. 
+Alesané ''$2''.
 
 * Diblokir wiwit: $8
 * Kadaluwarsa pemblokiran ing: $6
@@ -494,19 +504,21 @@ Panjenengan bisa ngubungi $1 utawa [[{{MediaWiki:Grouppage-sysop}}|pangurus liya
 
 Panjenengan ora bisa nggunakaké fitur 'Kirim layang e-mail panganggo iki' kejaba panjenengan wis nglebokaké alamat e-mail sing sah ing [[Special:Preferences|préferènsi]] panjenengan.
 
-Alamat IP panjenengan iku $3, lan ID pamblokiran iku $5. Tulung salah siji saka rong informasi iki disertakaké ing saben pitakon panjenengan",
+Alamat IP panjenengan iku $3, lan ID pamblokiran iku #$5. 
+Tulung kabèh informasi ing ndhuwur iki disertakaké ing saben pitakon panjenengan.",
 'autoblockedtext'           => 'Alamat IP panjenangan wis diblokir minangka otomatis amerga dienggo déning panganggo liyané. Pamblokiran dilakoni déning $1 mawa alesan:
 
 :\'\'$2\'\'
 
 * Diblokir wiwit: $8
 * Blokir kadaluwarsa ing: $6
+* Sing dikarepaké diblokir: $7
 
 Panjenengan bisa ngubungi $1 utawa [[{{MediaWiki:Grouppage-sysop}}|pangurus liyané]] kanggo ngomongaké perkara iki.
 
 Panjenengan ora bisa nganggo fitur "kirim e-mail panganggo iki" kejaba panjenengan wis nglebokaké alamat e-mail sing sah ing [[Special:Preferences|préferènsi]] panjenengan lan panjenengan wis diblokir kanggo nggunakaké.
 
-ID pamblokiran panjenengan iku $5. Tulung sertakna ID iki saben ngajokaké pitakonan panjenengan. Matur nuwun.',
+ID pamblokiran panjenengan iku #$5 lan alamat IP panjenengan iku $3. Tulung sertakna informasi ing dhuwur kabèh iki saben ngajokaké pitakonan panjenengan. Matur nuwun.',
 'blockednoreason'           => 'ora ana alesan sing diwènèhaké',
 'blockedoriginalsource'     => "Isi sumber '''$1''' dituduhaké ing ngisor iki:",
 'blockededitsource'         => "Tèks '''suntingan panjenengan''' tumrap ing '''$1''' dituduhaké ing ngisor iki:",
@@ -531,7 +543,8 @@ Yèn ora sengaja tekan kéné, bisa ngeklik pencètan '''back''' waé ing panjla
 'userpage-userdoesnotexist' => 'Akun utawa rékening panganggo "$1" ora kadaftar.',
 'clearyourcache'            => "'''Cathetan:''' Sawisé nyimpen préférènsi, panjenengan prelu ngresiki <em>cache</em> panjlajah wèb panjenengan kanggo mirsani pangowahan. '''Mozilla / Firefox / Safari:''' pencèt ''Ctrl-Shift-R'' (''Cmd-Shift-R'' pada Apple Mac); '''IE:''' tekan ''Ctrl-F5''; '''Konqueror:''': pencèt ''F5''; '''Opera''' resikana <em>cache</em> miturut menu ''Tools→Preferences''.",
 'usercssjsyoucanpreview'    => "<strong>Tips:</strong> Gunakna tombol 'Deleng pratilik' kanggo ngetès CSS/JS anyar panjenengan sadurungé disimpen.",
-'usercsspreview'            => "'''Pèngeten yèn panjenengan namun mirsani pratilik CSS panjenengan, lan menawa pratilik iku durung kasimpen!'''",
+'usercsspreview'            => "'''Pèngeten yèn panjenengan namung mirsani pratilik CSS panjenengan.'''' 
+'''Pratilik iku durung kasimpen!'''",
 'userjspreview'             => "'''Pèngeten yèn sing panjenengan pirsani namung pratilik JavaScript panjenengan, lan menawa pratilik iku dèrèng kasimpen!'''",
 'userinvalidcssjstitle'     => "'''Pènget:''' Kulit \"\$1\" ora ditemokaké. Muga dipèngeti yèn kaca .css lan .js nggunakaké huruf cilik, conto {{ns:user}}:Foo/monobook.css lan dudu {{ns:user}}:Foo/Monobook.css.",
 'updated'                   => '(Dianyari)',
@@ -565,7 +578,9 @@ Panjenengan uga janji menawa apa-apa sing katulis ing kéné, iku karyané panje
 'copyrightwarning2'         => 'Mangga digatèkaké yèn kabèh kontribusi marang  {{SITENAME}} bisa disunting, diowahi, utawa dibusak déning penyumbang liyané. Yèn panjenengan ora kersa yèn tulisan panjenengan bisa disunting wong liya, aja ngirim artikel panjenengan ing kéné.<br />Panjenengan uga janji yèn tulisan panjenengan iku kasil karya panjenengan dhéwé, utawa disalin saka sumber umum utawa sumber bébas liyané (mangga delengen $1 kanggo informasi sabanjuré). <strong>AJA NGIRIM KARYA SING DIREKSA DÉNING UNDHANG-UNDHANG HAK CIPTA TANPA IDIN!</strong>',
 'longpagewarning'           => "'''PÈNGET: Kaca iki dawané $1 kilobita; sawetara panjlajah wèb mbokmenawa ngalami masalah kanggo nyunting kaca sing dawané 32 kb utawa luwih. Muga digalih dhisik mbokmenawa kaca iki bisa dipérang dadi pirang-pirang kaca sing luwih cilik.'''",
 'longpageerror'             => '<strong>KALUPUTAN: Tèks sing panjenengan kirim gedhéné $1 kilobita, sing tegesé luwih gedhé tinimbang cacah maksimum $2 kilobita. Tèks iki ora bisa disimpen.</strong>',
-'readonlywarning'           => '<strong>PÈNGET: Basis data lagi dikunci amerga ana pangopènan, dadi saiki panjenengan ora bisa nyimpen kasil panyuntingan panjenengan. Panjenengan mbokmenawa prelu mindhahaké kasil panyuntingan panjenengan iki menyang panggonan liya kanggo disimpen bésuk.</strong>',
+'readonlywarning'           => '<strong>PÈNGET: Basis data lagi dikunci amerga ana pangopènan, dadi saiki panjenengan ora bisa nyimpen kasil panyuntingan panjenengan. Panjenengan mbokmenawa prelu mindhahaké kasil panyuntingan panjenengan iki menyang panggonan liya kanggo disimpen bésuk.</strong>
+
+Pangurus sing ngunci basis data mènèhi katrangan kaya mengkéné: $1',
 'protectedpagewarning'      => '<strong>PÈNGET:  Kaca iki wis dikunci dadi namung panganggo sing nduwé hak aksès pangurus baé sing bisa nyunting.</strong>',
 'semiprotectedpagewarning'  => "'''Cathetan:''' Kaca iki lagi direksa, dadi namung panganggo kadaftar sing bisa nyunting.",
 'cascadeprotectedwarning'   => "'''PÈNGET:''' Kaca iki wis dikunci dadi namung panganggo mawa hak aksès pangurus waé sing bisa nyunting, amerga kalebu {{PLURAL:$1|kaca|kaca-kaca}} ing ngisor iki sing wis direksa mawa opsi 'pangreksan runtun' diaktifaké:",
@@ -578,7 +593,7 @@ Panjenengan uga janji menawa apa-apa sing katulis ing kéné, iku karyané panje
 'edittools'                 => '<!-- Tèks ing ngisor iki bakal ditudhuhaké ing ngisoring isènan suntingan lan pangemotan.-->',
 'nocreatetitle'             => 'Panggawéan kaca anyar diwatesi',
 'nocreatetext'              => 'Situs iki ngwatesi kemampuan kanggo nggawé kaca anyar. Panjenengan bisa bali lan nyunting kaca sing wis ana, utawa mangga [[Special:UserLogin|mlebua log utawa ndaftar]]',
-'nocreate-loggedin'         => 'Panjenengan ora kagungan idin kanggo nggawé kaca anyar ing wiki iki.',
+'nocreate-loggedin'         => 'Panjenengan ora kagungan idin kanggo nggawé kaca anyar.',
 'permissionserrors'         => 'Kaluputan Idin Aksès',
 'permissionserrorstext'     => 'Panjengan ora kagungan idin kanggo nglakoni sing panjenengan gayuh amerga {{PLURAL:$1|alesan|alesan-alesan}} iki:',
 'recreate-deleted-warn'     => "'''Pènget: Panjenengan nggawé manèh sawijining kaca sing wis tau dibusak.''',
@@ -637,10 +652,10 @@ Minangka sawijning pangurus situs, panjenengan bisa mirsani; detil mbokmenawa ka
 'rev-delundel'                => 'tuduhna/delikna',
 'revisiondelete'              => 'Busak/batal busak revisi',
 'revdelete-nooldid-title'     => 'Target revisi ora ditemokaké',
-'revdelete-selected'          => "{{PLURAL:$2|Revisi kapilih|Revisi kapilih}} dari '''$1'''",
-'revdelete-text'              => 'Revisi lan tindhakan sing wis kabusak bakal tetep muncul ing kaca versi sadurungé, nanging tèks iki ora bisa diaksès minangka umum.
+'revdelete-selected'          => "'''{{PLURAL:$2|Revisi kapilih|Revisi kapilih}} dari '''$1''''''",
+'revdelete-text'              => "'''Revisi lan tindhakan sing wis kabusak bakal tetep muncul ing kaca versi sadurungé, nanging tèks iki ora bisa diaksès minangka umum.'''
 
-Pengurus liyané bakal tetep bisa ngaksès isi sing kadhelikaké iku lan bisa mbatalaké pambusakan ngliwati antarmuka sing padha, kejaba yèn ana pawatesan liyané sing digawé déning operator situs',
+Pengurus liyané bakal tetep bisa ngaksès isi sing kadhelikaké iku lan bisa mbatalaké pambusakan ngliwati antarmuka sing padha, kejaba yèn ana pawatesan liyané sing digawé déning operator situs",
 'revdelete-legend'            => 'Atur watesan:',
 'revdelete-hide-text'         => 'Dhelikna tèks revisi',
 'revdelete-hide-name'         => 'Dhelikna tindhakan lan targèt',
@@ -715,7 +730,7 @@ Gunakna tombol radio kanggo nggabungaké révisi-révisi sing digawé sadurungé
 'mypreferences'            => 'Préferènsiku',
 'prefs-edits'              => 'Gunggungé suntingan:',
 'prefsnologin'             => 'Durung mlebu log',
-'prefsnologintext'         => 'Panjenengan kudu [[Special:UserLogin|mlebu log]] kanggo nyimpen préferènsi njenengan.',
+'prefsnologintext'         => 'Panjenengan kudu <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}}|mlebu log]</span> kanggo ngowahin préferènsi njenengan.',
 'prefsreset'               => 'Préferènsi wis dibalèkaké menyang konfigurasi baku.',
 'qbsettings'               => 'Pengaturan bar sidhatan',
 'qbsettings-none'          => 'Ora ana',
@@ -865,7 +880,8 @@ Kanggo nuduhaké utawa nyertakaké berkas utawa gambar ing sawijining kaca, guna
 'upload-prohibited'           => 'Jenis berkas sing dilarang: $1.',
 'uploadlog'                   => 'log pangunggahan',
 'uploadlogpage'               => 'Log pangunggahan',
-'uploadlogpagetext'           => 'Ing ngisor iki kapacak log pangunggahan berkas sing anyar dhéwé.',
+'uploadlogpagetext'           => 'Ing ngisor iki kapacak log pangunggahan berkas sing anyar dhéwé.
+Mangga mirsani [[Special:NewImages|galeri berkas-berkas anyar]] kanggo pratélan visual.',
 'filename'                    => 'Jeneng berkas',
 'filedesc'                    => 'Ringkesan',
 'fileuploadsummary'           => 'Ringkesan:',
@@ -905,7 +921,7 @@ mangga berkas diunggahaké ulang mawa jeneng liya. [[Image:$1|thumb|center|$1]]'
 'uploadedimage'               => 'gambar "[[$1]]" kaunggahaké',
 'overwroteimage'              => 'ngunggahaké vèrsi anyar saka "[[$1]]"',
 'uploaddisabled'              => 'Nuwun sèwu, fasilitas pangunggahan dipatèni.',
-'uploaddisabledtext'          => 'Pangunggahan berkas ora diidinaké ing {{SITENAME}}.',
+'uploaddisabledtext'          => 'Pangunggahan berkas ora diidinaké.',
 'uploadscripted'              => 'Berkas iki ngandhut HTML utawa kode sing bisa diinterpretasi salah déning panjlajah wèb.',
 'uploadcorrupt'               => 'Berkasé rusak utawa èkstènsiné salah. Mangga dipriksa dhisik berkas iki lan diunggahaké manèh.',
 'uploadvirus'                 => 'Berkas iki ngamot virus! Détil: $1',
@@ -971,8 +987,8 @@ Klik sirahé kolom kanggo ngowahi urutan.',
 'shareduploadwiki'          => 'Mangga mirsani $1 kanggo informasi sabanjuré.',
 'shareduploadwiki-desc'     => 'Dèskripsi ing $1 sajroning khazanah binagi dituduhaké ing ngisor iki.',
 'shareduploadwiki-linktext' => 'kaca dèskripsi berkas',
-'noimage'                   => 'Ora ana berkas mawa jeneng iku, panjenengan bisa $1.',
-'noimage-linktext'          => 'ngunggah gambar',
+'noimage'                   => 'Ora ana berkas mawa jeneng iku, nanging panjenengan bisa $1.',
+'noimage-linktext'          => 'ngunggahaké sawiji',
 'uploadnewversion-linktext' => 'Unggahna vèrsi sing luwih anyar tinimbang gambar iki',
 'imagelist_date'            => 'Tanggal',
 'imagelist_name'            => 'Jeneng',
@@ -1000,7 +1016,7 @@ Klik sirahé kolom kanggo ngowahi urutan.',
 'filedelete-submit'           => 'Busak',
 'filedelete-success'          => "'''$1''' wis dibusak.",
 'filedelete-success-old'      => '<span class="plainlinks">Vèrsi \'\'\'[[Media:$1|$1]]\'\'\' ing $3, $2 wis dibusak.</span>',
-'filedelete-nofile'           => "'''$1''' ora ana ing {{SITENAME}}.",
+'filedelete-nofile'           => "'''$1''' ora ana.",
 'filedelete-nofile-old'       => "Ora ditemokaké arsip vèrsi saka '''$1''' mawa atribut sing diwènèhaké.",
 'filedelete-iscurrent'        => 'Panjenengan nyoba mbusak vèrsi pungkasan berkas iki.
 Mangga bali ing vèrsi sing luwih lawas dhisik.',
@@ -1024,7 +1040,8 @@ Mangga bali ing vèrsi sing luwih lawas dhisik.',
 
 # Unused templates
 'unusedtemplates'     => 'Cithakan sing ora dienggo',
-'unusedtemplatestext' => 'Daftar iki ngandhut kaca-kaca ing bilik nama cithakan sing ora dienggo ing kaca ngendi waé. Priksanen dhisik pranala-pranala menyang cithakan iki sadurungé mbusak.',
+'unusedtemplatestext' => 'Kaca iki ngamot kabèh kaca ing bilik jeneng {{ns:template}} sing ora dianggo ing kaca ngendi waé. 
+Priksanen dhisik pranala-pranala menyang cithakan iki sadurungé mbusak.',
 'unusedtemplateswlh'  => 'pranala liya-liyané',
 
 # Random page
@@ -1176,10 +1193,10 @@ Panjenengan bisa ngwatesi panuduhan mawa milih jenis log, jeneng panganggo, utaw
 'defemailsubject' => 'Layang e-mail {{SITENAME}}',
 'noemailtitle'    => 'Ora ana alamat layang e-mail',
 'noemailtext'     => 'Panganggo iki ora nglebokaké alamat layang e-mail sing absah, utawa milih ora gelem nampa layang e-mail saka panganggo liyané.',
-'emailfrom'       => 'Saka',
-'emailto'         => 'Kanggo',
-'emailsubject'    => 'Prekara',
-'emailmessage'    => 'Pesen',
+'emailfrom'       => 'Saka:',
+'emailto'         => 'Kanggo:',
+'emailsubject'    => 'Prekara:',
+'emailmessage'    => 'Pesen:',
 'emailsend'       => 'Kirim',
 'emailccme'       => 'Kirimana aku salinan pesenku.',
 'emailccsubject'  => 'Salinan pesen panjenengan kanggo $1: $2',
@@ -1198,7 +1215,7 @@ Panjenengan bisa ngwatesi panuduhan mawa milih jenis log, jeneng panganggo, utaw
 'addedwatchtext'       => "Kaca \"[[:\$1]]\" wis ditambahaké menyang [[Special:Watchlist|daftar pangawasan]].
 Owah-owahan sing dumadi ing tembé ing kaca iku lan kaca dhiskusi sing kagandhèng, bakal dipacak ing kéné, lan kaca iku bakal dituduhaké '''kandel''' ing [[Special:RecentChanges|daftar owah-owahan iku]] supados luwih gampang katon.",
 'removedwatch'         => 'Wis dibusak saka daftar pangawasan',
-'removedwatchtext'     => 'Kaca "<nowiki>$1</nowiki>" wis dibusak saka daftar pangawasan.',
+'removedwatchtext'     => 'Kaca "[[:$1]]" wis dibusak saka [[Special:Watchlist|daftar pangawasan]].',
 'watch'                => 'tutana',
 'watchthispage'        => 'Periksa kaca iki',
 'unwatch'              => 'Ora usah ngawasaké manèh',
@@ -1412,7 +1429,7 @@ $1',
 
 # What links here
 'whatlinkshere'       => 'Pranala balik',
-'whatlinkshere-title' => 'Kaca-kaca sing duwé pranala menyang $1',
+'whatlinkshere-title' => 'Kaca-kaca sing duwé pranala menyang "$1"',
 'whatlinkshere-page'  => 'Kaca:',
 'linklistsub'         => '(Daftar pranala)',
 'linkshere'           => "Kaca-kaca iki nduwé pranala menyang '''[[:$1]]''':",
@@ -1465,7 +1482,7 @@ Lebokna alesan panjenengan ing ngisor iki (contoné njupuk conto kaca sing wis t
 'ipusubmit'                   => 'Ilangna blokir ing alamat iki',
 'unblocked'                   => 'Blokir marang [[User:$1|$1]] wis dijabel',
 'unblocked-id'                => 'Blokir $1 wis dijabel',
-'ipblocklist'                 => 'Daftar pemblokiran',
+'ipblocklist'                 => 'Daftar alamat-alamat IP lan para panganggo sing diblokir',
 'ipblocklist-legend'          => 'Golèk panganggo sing diblokir',
 'ipblocklist-username'        => 'Jeneng panganggo utawa alamat IP:',
 'ipblocklist-submit'          => 'Golèk',
@@ -1528,11 +1545,13 @@ Tulung pastèkna yèn iki pancèn sing panjenengan gayuh.',
 
 # Move page
 'movepage'                => 'Mindhah kaca',
-'movepagetext'            => "Formulir ing ngisor iki bakal ngowahi jeneng sawijining kaca, mindhah kabèh sajarahé menyang kaca sing anyar. Irah-irahan utawa judhul sing lawas bakal dadi kaca pangalihan menyang irah-irahan sing anyar. Pranala menyang kaca sing lawas ora bakal diowahi; dadi pastèkna dhisik mriksa pangalihan dobel utawa pangalihan sing rusak sawisé pamindhahan. Panjenengan sing tanggung jawab mastèkaké menawa kabèh pranala-pranala tetep nyambung ing kaca panujon kaya samesthiné.
+'movepagetext'            => "Formulir ing ngisor iki bakal ngowahi jeneng sawijining kaca, mindhah kabèh sajarahé menyang kaca sing anyar. Irah-irahan utawa judhul sing lawas bakal dadi kaca pangalihan menyang irah-irahan sing anyar. Pranala menyang kaca sing lawas ora bakal diowahi; dadi pastèkna dhisik mriksa pangalihan [[Special:DoubleRedirects|dobel]] utawa [[Special:BrokenRedirects|pangalihan sing rusak]] sawisé pamindhahan. Panjenengan sing tanggung jawab mastèkaké menawa kabèh pranala-pranala tetep nyambung ing kaca panujon kaya samesthiné.
 
 Gatèkna yèn kaca iki '''ora''' bakal dipindhah yèn wis ana kaca liyané sing nganggo irah-irahan sing anyar, kejaba kaca iku kosong utawa ora nduwé sajarah panyuntingan. Dadi tegesé panjenengan bisa ngowahi jeneng kaca iku manèh kaya sedyakala menawa panjenengan luput, lan panjenengan ora bisa nimpani kaca sing wis ana.
 
-'''PÈNGET:''' Perkara iki bisa ngakibataké owah-owahan sing drastis lan ora kaduga kanggo kaca-kaca sing populèr. Pastekaké dhisik panjenengan ngerti konsekwènsi saka panggayuh panjenengan sadurungé dibanjuraké.",
+'''PÈNGET!''' 
+Perkara iki bisa ngakibataké owah-owahan sing drastis lan ora kaduga kanggo kaca-kaca sing populèr;
+pastekaké dhisik panjenengan ngerti konsekwènsi saka panggayuh panjenengan sadurungé dibanjuraké.",
 'movepagetalktext'        => "Kaca dhiskusi sing kagandhèng uga bakal dipindhahaké sacara otomatis '''kejaba yèn:'''
 
 *Sawijining kaca dhiskusi sing ora kosong wis ana sangisoring irah-irahan (judhul) anyar, utawa
@@ -1541,8 +1560,8 @@ Gatèkna yèn kaca iki '''ora''' bakal dipindhah yèn wis ana kaca liyané sing 
 Ing kasus-kasus iku, yèn panjenengan gayuh, panjenengan bisa mindhahaké utawa nggabung kaca iku sacara manual.",
 'movearticle'             => 'Pindhah kaca',
 'movenologin'             => 'Durung mlebu log',
-'movenologintext'         => 'Panjenengan kudu dadi panganggo sing wis ndaftar lan wis [[{{ns:special}}:Userlogin|mlebu log]] kanggo mindhah kaca.',
-'movenotallowed'          => 'Panjenengan ora pareng ngalihaké kaca ing {{SITENAME}}.',
+'movenologintext'         => 'Panjenengan kudu dadi panganggo sing wis ndaftar lan wis [[Special:UserLogin|mlebu log]] kanggo mindhah kaca.',
+'movenotallowed'          => 'Panjenengan ora pareng ngalihaké kaca.',
 'newtitle'                => 'Menyang irah-irahan utawa judhul anyar:',
 'move-watch'              => 'Awasna kaca iki',
 'movepagebtn'             => 'Pindhahna kaca',
@@ -1775,8 +1794,8 @@ Mbok-menawa iki disebabaké anané pranala jaba tartamtu.',
 'filedelete-archive-read-only'    => 'Dirèktori arsip "$1" ora bisa ditulis déning server wèb.',
 
 # Browsing diffs
-'previousdiff' => '←Prabédan sadurungé',
-'nextdiff'     => 'Prabédan sawisé→',
+'previousdiff' => '← Panyuntingan sadurungé',
+'nextdiff'     => 'Panyuntingan sing luwih anyar →',
 
 # Media information
 'mediawarning'         => "'''Pènget:''' Berkas iki mbokmenawa ngandhut kode sing bebayani, yèn dilakokaké sistém panjenengan bisa kena pangaruh ala.<hr />",
@@ -2087,7 +2106,7 @@ yèn panjenengan lagi waé nggawé akun utawa rékening panjenengan, mangga nung
 'confirmemail_sent'       => 'E-mail mawa kode konfirmasi wis dikirim.',
 'confirmemail_oncreate'   => 'Sawijining kode pandhedhesan (konfirmasi) wis dikirim menyang alamat e-mail panjenengan.
 Kode iki ora dibutuhaké kanggo log mlebu, nanging dibutuhaké sadurungé nganggo kabèh fitur sing nganggo e-mail ing wiki iki.',
-'confirmemail_sendfailed' => 'Layang e-mail konfirmasi ora kasil dikirim. 
+'confirmemail_sendfailed' => '{{SITENAME}} ora bisa ngirim layang e-mail konfirmaside. 
 Mangga dipriksa mbok-menawa ana aksara ilegal ing alamat e-mail panjenengan. 
 
 Pangirim mènèhi informasi: $1',
@@ -2101,8 +2120,8 @@ Saiki panjenengan bisa log mlebu lan wiwit nganggo wiki.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Transklusi cithakan interwiki dipatèni]',
-'scarytranscludefailed'   => '[Olèhé njupuk cithakan $1 gagal; nuwun sèwu]',
-'scarytranscludetoolong'  => '[URL-é kedawan; nuwun sèwu]',
+'scarytranscludefailed'   => '[Olèhé njupuk cithakan $1 gagal]',
+'scarytranscludetoolong'  => '[URL-é kedawan]',
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">
@@ -2114,7 +2133,7 @@ $1
 'trackbackdeleteok' => 'Pelacakan balik bisa dibusak.',
 
 # Delete conflict
-'deletedwhileediting' => 'Wara-wara: Kaca punika sampun kabusak sasampunipun panjenengan miwiti nyunting!',
+'deletedwhileediting' => "'''Pènget''': Kaca iki wis kabusak sawisé panjenengan miwiti nyunting!",
 'confirmrecreate'     => "Panganggo [[User:$1|$1]] ([[User talk:$1|Wicara]]) wis mbusak kaca iki nalika panjenengan miwiti panyuntingan mawa alesan:
 : ''$2''
 Mangga didhedhes (dikonfirmasi) menawa panjenengan kersa nggawé ulang kaca iki.",

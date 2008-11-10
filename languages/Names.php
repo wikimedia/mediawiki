@@ -14,7 +14,7 @@
 	'als' => 'Alemannisch',	# Alemannic -- not a valid code, for compatibility. See gsw.
 	'am' => 'አማርኛ',	# Amharic
 	'an' => 'Aragonés',	# Aragonese
-	'ang' => 'Anglo Saxon',	# Old English
+	'ang' => 'Anglo-Saxon',	# Old English
 	'ar' => 'العربية',	# Arabic
 	'arc' => 'ܐܪܡܝܐ',	# Aramaic
 	'arn' => 'Mapudungun',	# Mapuche, Mapudungu, Araucanian (Araucano)
@@ -22,7 +22,7 @@
 	'ast' => 'Asturianu',	# Asturian
 	'av' => 'Авар',	# Avar
 	'avk' => 'Kotava', # Kotava
-	'ay' => 'Aymar',		# Aymara, should possibly be Aymará
+	'ay' => 'Aymar aru',	# Aymara
 	'az' => 'Azərbaycan',	# Azerbaijani
 	'ba' => 'Башҡорт',	# Bashkir
 	'bar' => 'Boarisch',	# Bavarian (Austro-Bavarian and South Tyrolean)
@@ -59,14 +59,14 @@
 	'crh-cyrl' => "\xE2\x80\xAAКъырымтатарджа (Кирилл)\xE2\x80\xAC",       # Crimean Tatar (Cyrillic)
 	'cs' => 'Česky',	# Czech
 	'csb' => 'Kaszëbsczi',	# Cassubian
-	'cu' => 'Словѣньскъ', 	# Old Church Slavonic (ancient language)
+	'cu' => 'Словѣ́ньскъ / ⰔⰎⰑⰂⰡⰐⰠⰔⰍⰟ', 	# Old Church Slavonic (ancient language)
 	'cv' => 'Чăвашла',	# Chuvash
 	'cy' => 'Cymraeg',		# Welsh
 	'da' => 'Dansk',		# Danish
 	'de' => 'Deutsch',		# German ("Du")
 	'de-formal' => 'Deutsch (Sie-Form)',		# German - formal address ("Sie")
 	'diq' => 'Zazaki',		# Zazaki
-	'dk' => 'Dansk (deprecated:da)', 		# Unused code currently redirecting to Danish, 'da' is correct for the language
+	'dk' => 'Dansk (deprecated:da)', 		# Unused code currently falls back to Danish, 'da' is correct for the language
 	'dsb' => 'Dolnoserbski', # Lower Sorbian
 	'dum' => 'Middelnederlands', # Middle Dutch
 	'dv' => 'ދިވެހިބަސް',		# Dhivehi
@@ -98,7 +98,7 @@
 	'gl' => 'Galego',		# Galician
 	'glk' => 'گیلکی',	# Gilaki
 	'gn' => 'Avañe\'ẽ',	# Guaraní, Paraguayan
-	'got' => '𐌲𐌿𐍄𐌹𐍃𐌺',	# Gothic
+	'got' => '������������������������������������',	# Gothic
 	'grc' => 'Ἀρχαία ἑλληνικὴ', # Ancient Greece
 	'gsw' => 'Alemannisch',	# Alemannic
 	'gu' => 'ગુજરાતી',	# Gujarati
@@ -181,23 +181,23 @@
 	'lzz' => 'Lazuri Nena',	#Laz
 	'mai' => 'मैथिली', # Maithili
 	'map-bms' => 'Basa Banyumasan', # Banyumasan 
-	'mdf' => 'мокшень кяль',		# Moksha
+	'mdf' => 'Мокшень',		# Moksha
 	'mg' => 'Malagasy',		# Malagasy
 	'mh' => 'Ebon',			# Marshallese
 	'mi' => 'Māori',	# Maori
 	'mk' => 'Македонски',	# Macedonian
 	'ml' => 'മലയാളം',	# Malayalam
-	'mn' => 'Монгол',	# Mongolian, Peripheral
+	'mn' => 'Монгол',	# Halh Mongolian (Cyrillic) (ISO 639-3: khk)
 	'mo' => 'Молдовеняскэ',	# Moldovan
 	'mr' => 'मराठी',	# Marathi
 	'ms' => 'Bahasa Melayu',	# Malay
 	'mt' => 'Malti',	# Maltese
 	'mus' => 'Mvskoke',	# Muskogee/Creek
 	'my' => 'Myanmasa',		# Burmese
-	'myv' => 'эрзянь кель',         # Erzya
+	'myv' => 'Эрзянь',         # Erzya
 	'mzn' => 'مَزِروني',		# Mazanderani
-	'na' => 'Ekakairũ Naoero',		# Nauruan
-	'nah' => 'Nahuatl',		# Nahuatl, en:Wikipedia writes Nahuatlahtolli, while another form is Náhuatl
+	'na' => 'Dorerin Naoero',		# Nauruan
+	'nah' => 'Nāhuatl',		# Nahuatl, en:Wikipedia writes Nahuatlahtolli, while another form is Náhuatl
 	'nan' => 'Bân-lâm-gú', # Min-nan -- (bug 8217) nan instead of zh-min-nan, http://www.sil.org/iso639-3/codes.asp?order=639_3&letter=n
 	'nap' => 'Nnapulitano',	# Neapolitan
 	'nb' => "\xE2\x80\xAANorsk (bokmål)\xE2\x80\xAC",		# Norwegian (Bokmal)
@@ -220,7 +220,7 @@
 	'om' => 'Oromoo', 		# Oromo
 	'or' => 'ଓଡ଼ିଆ',		# Oriya
 	'os' => 'Иронау', # Ossetic
-	'pa' => 'ਪੰਜਾਬੀ', # Punjabi
+	'pa' => 'ਪੰਜਾਬੀ', # Eastern Punjabi (pan)
 	'pag' => 'Pangasinan',	# Pangasinan
 	'pam' => 'Kapampangan',   # Pampanga
 	'pap' => 'Papiamentu',	# Papiamentu
@@ -244,7 +244,7 @@
 	'roa-rup' => 'Armãneashce', # Aromanian
 	'roa-tara' => 'Tarandíne',	# Tarantino
 	'ru' => 'Русский',	# Russian
-	'ruq' => 'Vlăheşte',	# Megleno-Romanian (redirects to ruq-latn)
+	'ruq' => 'Vlăheşte',	# Megleno-Romanian (falls back to ruq-latn)
 	'ruq-cyrl' => 'Влахесте',	# Megleno-Romanian (Cyrillic script)
 	'ruq-grek' => 'Βλαεστε',	# Megleno-Romanian (Greek script)
 	'ruq-latn' => 'Vlăheşte',	# Megleno-Romanian (Latin script)
@@ -266,7 +266,7 @@
 	'sk' => 'Slovenčina',	# Slovak
 	'sl' => 'Slovenščina',	# Slovenian
 	'sm' => 'Gagana Samoa',	# Samoan
-	'sma' => 'Åarjelsaemien gïele',	# Southern Sami
+	'sma' => 'Åarjelsaemien',	# Southern Sami
 	'sn' => 'chiShona',		# Shona
 	'so' => 'Soomaaliga',	# Somali
 	'sq' => 'Shqip',		# Albanian
@@ -289,7 +289,7 @@
 	'th' => 'ไทย',	# Thai
 	'ti' => 'ትግርኛ',		# Tigrinya
 	'tk' => 'Türkmen',	# Turkmen
-	'tl' => 'Tagalog',		# Tagalog (Filipino)
+	'tl' => 'Tagalog',		# Tagalog
 	#'tlh' => 'tlhIngan-Hol',	# Klingon - no interlanguage links allowed
 	'tn' => 'Setswana',		# Setswana
 	'to' => 'faka-Tonga',		# Tonga (Tonga Islands)
@@ -328,14 +328,14 @@
 	'za' => '(Cuengh)',		# Zhuang
 	'zea' => 'Zeêuws',	# Zeeuws/Zeaws
 	'zh' => '中文',						# (Zhōng Wén) - Chinese
-	'zh-classical' => '古文 / 文言文',			# Classical Chinese/Literary Chinese
+	'zh-classical' => '文言',			# Classical Chinese/Literary Chinese
 	'zh-cn' => "\xE2\x80\xAA中文(中国大陆)\xE2\x80\xAC",	# Chinese (PRC)
 	'zh-hans' => "\xE2\x80\xAA中文(简体)\xE2\x80\xAC",	# Chinese written using the Simplified Chinese script
 	'zh-hant' => "\xE2\x80\xAA中文(繁體)\xE2\x80\xAC",	# Chinese written using the Traditional Chinese script
-	'zh-hk' => "\xE2\x80\xAA中文(香港)\xE2\x80\xAC",		# Chinese (Hong Kong)
+	'zh-hk' => "\xE2\x80\xAA中文(香港)\xE2\x80\xAC",	# Chinese (Hong Kong)
 	'zh-min-nan' => 'Bân-lâm-gú', 				# Min-nan -- (see bug 8217)
 	'zh-sg' => "\xE2\x80\xAA中文(新加坡)\xE2\x80\xAC", 	# Chinese (Singapore)
-	'zh-tw' => "\xE2\x80\xAA中文(台灣)\xE2\x80\xAC",		# Chinese (Taiwan)
+	'zh-tw' => "\xE2\x80\xAA中文(台灣)\xE2\x80\xAC",	# Chinese (Taiwan)
 	'zh-yue' => '粵語',					# Cantonese -- (see bug 8217)
 	'zu' => 'isiZulu'		# Zulu
 );

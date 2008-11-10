@@ -150,7 +150,7 @@ dj'artìcol ancó pa scrit",
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
 
 'about'          => 'A propòsit ëd',
 'article'        => 'Pàgina ëd contnù',
@@ -684,10 +684,10 @@ a peul esse che a sio restajne chèich marca ant ël [{{fullurl:Special:Log/dele
 'revisiondelete'              => 'Scancela/disdëscancela revision',
 'revdelete-nooldid-title'     => 'Version nen specificà',
 'revdelete-nooldid-text'      => "A l'ha pa visasse dë dì ansima a che version dla pàgina che a venta fé sossì.",
-'revdelete-selected'          => '{{PLURAL:$2|Revision|Revision}} selessionà për [[:$1]]:',
+'revdelete-selected'          => "'''{{PLURAL:$2|Revision|Revision}} selessionà për [[:$1]]:'''",
 'logdelete-selected'          => "{{PLURAL:$2|Event|Event}} dël registr selessionà për '''$1:'''",
-'revdelete-text'              => "Le version scancelà a së s-ciaireran sempe ant la stòria dla pàgina,
-ma sò test al pùblich a-j andran pì nen.
+'revdelete-text'              => "'''Le version scancelà a së s-ciaireran sempe ant la stòria dla pàgina,
+ma sò test al pùblich a-j andran pì nen.'''
 
 J'àutri aministrator ëd sta wiki-sì a saran ancó sempe bon a s-ciairé ël contnù stërmà
 e a podran disdëscancelelo andré con la midema antërfacia, sempe che a sia nen staita butà
@@ -1104,7 +1104,7 @@ Ch'a-i bata 'n colp col rat ansima a j'antestassion dle colòne për cangé órd
 'filedelete-submit'           => 'Dëscancelé',
 'filedelete-success'          => "A l'é dëscancelasse l'archivi '''$1'''.",
 'filedelete-success-old'      => "<span class=\"plainlinks\">A l'é dëscancelasse la version dël \$3, \$2 ëd l'archivi '''[[Media:\$1|\$1]]'''.</span>",
-'filedelete-nofile'           => "An {{SITENAME}} a-i é pa gnun archivi ch'as ciama: $1",
+'filedelete-nofile'           => "A-i é pa gnun archivi ch'as ciama: $1",
 'filedelete-nofile-old'       => "A-i é pa gnun-a version parej ëd l'archivi '''$1'''",
 'filedelete-iscurrent'        => "A l'é antramentr ch'as preuva a scancelé la version pì giovna dl'archivi. Për piasì, anans dë fé sòn, ch'a arpija andaré na version pì veja, an manera che costa-sì a la resta pì nen corenta.",
 'filedelete-otherreason'      => 'Rason àutra/adissional:',
@@ -1392,7 +1392,7 @@ Che a varda $2 për na lista dle pàgine scancelà ant j\'ùltim temp.',
 'deletedarticle'              => 'Scancelà "$1"',
 'dellogpage'                  => 'Registr djë scancelament',
 'dellogpagetext'              => "Ambelessì sota na lista dle pàgine scancelà ant j'ùltim temp.
-Ij temp a son conforma a l'ora dël server (UTC).",
+Ij temp a son conforma a l'ora dël server.",
 'deletionlog'                 => 'Registr djë scancelament',
 'reverted'                    => 'Version prima butà torna sù',
 'deletecomment'               => 'Rason dlë scancelament:',
@@ -1675,9 +1675,9 @@ Se a l'ha dij dùbit, che a contata pura n'aministrator për ciameje 'd consej."
 Ant costi cas-sì, se a chërd dë felo, a-j farà da manca dë tramudesse la pàgina ëd discussion daspërchiel, a man.",
 'movearticle'             => "Cang-je nòm a l'artìcol",
 'movenologin'             => "Che a varda che chiel (chila) a l'è pa rintrà ant ël sistema",
-'movenologintext'         => "A venta esse n'Utent registrà e esse [[Special:Userlogin|rintrà ant ël sistema]]
+'movenologintext'         => "A venta esse n'Utent registrà e esse [[Special:UserLogin|rintrà ant ël sistema]]
 për podej tramudé na pàgina.",
-'movenotallowed'          => "A l'ha pa ij përmess dont a fa da manca për tramudé pàgine an {{SITENAME}}.",
+'movenotallowed'          => "A l'ha pa ij përmess dont a fa da manca për tramudé pàgine.",
 'newtitle'                => 'Neuv tìtol ëd',
 'move-watch'              => 'Ten sot euj sta pàgina-sì',
 'movepagebtn'             => 'Tramuda sta pàgina-sì',

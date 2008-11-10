@@ -7,6 +7,7 @@
  * @author Dario vet
  * @author Dedee
  * @author Malafaya
+ * @author Urhixidur
  * @author ZeneizeForesto
  */
 
@@ -382,7 +383,7 @@ Se o s'ha intròu inte 'sto collegamento pe sbàllio, o basta sciaccâ '''Inderr
 Se no ti veu che i testi teu pêuan esse modificæ da quarchedùn sensa limitaçioìn, no mandâli a {{SITENAME}}.<br />
 Inviando o testo ti diciâri, sott'a teu responsabilitæ, ch'o l'é stæto scrîto da ti personalmente oppure ch'o l'é stæto piggiòu da 'na fonte de pùbrico domìnio òu anàlogamente lìbea.<br />
 <strong>NO INVIÂ MATERIÂLE COVERTO DA DRÎTI D'AUTÔ SENSA OUTORIZAÇION!</strong>",
-'longpagewarning'        => "<strong>ATTENSION: 'Sta paggina chì a g'ha $1 kilobyte; çerti browser porieivan avei di problemmi inta modiffica de-e paggine che s'avvixinn-an o che ecceddan i 32 KB.
+'longpagewarning'        => "<strong>ATTENSION: 'Sta paggina chì a g'ha $1 kilobyte; çerti browser porieivan avei di problemmi inta modiffica de-e paggine che s'avvixinn-an o che ecceddan i 32 kB.
 Pe piaxei conscidera l'opportûnitæ de soddividde a paggina in sessioîn ciû piccinn-e.</strong>",
 'templatesused'          => "Template dêuviæ inte 'sta paggina:",
 'templatesusedpreview'   => "Template dêuviæ inte 'st'anteprimma:",

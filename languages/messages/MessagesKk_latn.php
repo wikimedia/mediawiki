@@ -7,6 +7,7 @@
  * @author AlefZet
  * @author Atabek
  * @author GaiJin
+ * @author Urhixidur
  */
 
 $fallback = 'kk-cyrl';
@@ -488,7 +489,7 @@ $messages = array(
 == Bastaw üşin ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Baptalım qalawlarınıñ tizimi]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MedïaWïkïdiñ Jïı Qoýılğan Sawaldarı]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MedïaWïkï şığw twralı xat taratw tizimi]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MedïaWïkï şığw twralı xat taratw tizimi]',
 
 'about'          => 'Joba twralı',
 'article'        => 'Mağlumat beti',
@@ -972,8 +973,8 @@ Tağı da, bul mağlumat öziñiz jazğanıñızğa, ne qoğam qazınasınan nem
 Eger jazwıñızdıñ erkin öñdelwin qalamasañız, mında jarïyalamawıñız jön.<br />
 Tağı da, bul mağlumat öziñiz jazğanıñızğa, ne qoğam qazınasınan nemese sondaý aşıq qorlardan köşirilgenine bizge wäde beresiz (köbirek aqparat üşin $1 qwjatın qarañız).
 <strong>AWTORLIQ QUQIQPEN QORĞAWLI MAĞLUMATTI RUQSATSIZ JARÏYALAMAÑIZ!</strong>',
-'longpagewarning'           => '<strong>QULAQTANDIRW: Bul bettiñ mölşeri — $1 KB;
-keýbir şolğıştarda bet mölşeri 32 KB jetse ne onı assa öñdew kürdeli bolwı mümkin.
+'longpagewarning'           => '<strong>QULAQTANDIRW: Bul bettiñ mölşeri — $1 kB;
+keýbir şolğıştarda bet mölşeri 32 kB jetse ne onı assa öñdew kürdeli bolwı mümkin.
 Betti birneşe kişkin bölimderge bölip köriñiz.</strong>',
 'longpageerror'             => '<strong>QATELİK: Jöneltpek mätiniñizdin mölşeri — $1 KB, eñ köbi $2 KB ruqsat etilgen mölşerinen asqan.
 Bul saqtaý alınbaýdı.</strong>',
@@ -1060,11 +1061,11 @@ Osı bettiñ tüzetwi barşa murağattarınan alastalğan.
 'revisiondelete'              => 'Tüzetwlerdi joyw/joywdı boldırmaw',
 'revdelete-nooldid-title'     => 'Nısana tüzetw jaramsız',
 'revdelete-nooldid-text'      => 'Osı äreketti orındaw üşin aqırğı nusqasınne nusqaların engizbepsiz.',
-'revdelete-selected'          => '[[:$1]] degenniñ bölektengen {{PLURAL:$2|tüzetwi|tüzetwleri}}:',
+'revdelete-selected'          => "'''[[:$1]] degenniñ bölektengen {{PLURAL:$2|tüzetwi|tüzetwleri}}:'''",
 'logdelete-selected'          => "'''$1:''' degenniñ bölektengen jwrnal {{PLURAL:$2|oqïğası|oqïğaları}}:",
-'revdelete-text'              => 'Joýılğan tüzetwler men oqïğalardı äli de bet tarïxında jäne jwrnaldarda tabwğa boladı, biraq olardıñ mağlumat bölşekteri barşağa qatınalmaýdı.
+'revdelete-text'              => "'''Joýılğan tüzetwler men oqïğalardı äli de bet tarïxında jäne jwrnaldarda tabwğa boladı, biraq olardıñ mağlumat bölşekteri barşağa qatınalmaýdı.'''
 
-{{SITENAME}} jobasınıñ basqa äkimşileri jasırın mağlumatqa qatınaý aladı, jäne qosımşa tïımdar qoýılğanşa deýin, osı tildesw arqılı joywdı boldırmawı mümkin.',
+{{SITENAME}} jobasınıñ basqa äkimşileri jasırın mağlumatqa qatınaý aladı, jäne qosımşa tïımdar qoýılğanşa deýin, osı tildesw arqılı joywdı boldırmawı mümkin.",
 'revdelete-legend'            => 'Körinis tïımdarın qoyw:',
 'revdelete-hide-text'         => 'Tüzetw mätinin jasır',
 'revdelete-hide-name'         => 'Äreket pen nısanasın jasır',
@@ -2039,7 +2040,7 @@ osınıñ saldarın baýımdawıñızdı ärekettiñ aldınan batıl bolıñız.
 Osı oraýda, qalawıñız bolsa, betti qoldan jıljıta ne qosa alasız.",
 'movearticle'             => 'Jıljıtpaq bet:',
 'movenologin'             => 'Jüýege kirmegensiz',
-'movenologintext'         => 'Betti jıljıtw üşin tirkelgen bolwıñız jäne [[{{ns:special}}:Userlogin|kirwiñiz]] kerek.',
+'movenologintext'         => 'Betti jıljıtw üşin tirkelgen bolwıñız jäne [[{{#special:Userlogin}}|kirwiñiz]] jön.',
 'movenotallowed'          => '{{SITENAME}} jobasında betterdi jıljıtw rwqsatıñız joq.',
 'newtitle'                => 'Jaña taqırıp atına:',
 'move-watch'              => 'Bul betti baqılaw',

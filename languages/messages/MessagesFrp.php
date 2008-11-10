@@ -179,7 +179,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista des paramètres de configuracion]
 * [http://www.mediawiki.org/wiki/Manual:FAQ/fr FdeQ sur MediaWiki]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de discussion de les parucions de MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de discussion de les parucions de MediaWiki]',
 
 'about'          => 'A propôs',
 'article'        => 'Articllo',
@@ -710,13 +710,13 @@ pôt y avêr des dètalys dens lo [{{fullurl:Special:Log/delete|page={{PAGENAMEE
 'revisiondelete'              => 'Suprimar/rèstorar des vèrsions',
 'revdelete-nooldid-title'     => 'Pas de ciba por la vèrsion',
 'revdelete-nooldid-text'      => 'Vos éd pas spècefiâ la vèrsion ciba ou ben les vèrsions cibes por utilisar cela fonccion.',
-'revdelete-selected'          => "{{PLURAL:$2|Vèrsion sèlèccionâ|Vèrsions sèlèccionâs}} de '''$1''' :",
+'revdelete-selected'          => "'''{{PLURAL:$2|Vèrsion sèlèccionâ|Vèrsions sèlèccionâs}} de '''$1''' :'''",
 'logdelete-selected'          => "{{PLURAL:$2|Èvènement de jornal sèlèccionâ|Èvènements de jornal sèlèccionâs}} por '''$1''' :",
-'revdelete-text'              => 'Les vèrsions et los èvènements suprimâs aparètront adés dens l’historico de l’articllo et los jornals,
-mas lor contegnu tèxtuèl serat pas accèssiblo u publico.
+'revdelete-text'              => "'''Les vèrsions et los èvènements suprimâs aparètront adés dens l’historico de l’articllo et los jornals,
+mas lor contegnu tèxtuèl serat pas accèssiblo u publico.'''
 
 D’ôtros administrators de {{SITENAME}} porront tojorn arrevar u contegnu cachiê et lo tornar rèstorar
-a travèrs de cela méma entèrface, a muens qu’una rèstriccion suplèmentèra seye betâ en place per los opèrators du seto.',
+a travèrs de cela méma entèrface, a muens qu’una rèstriccion suplèmentèra seye betâ en place per los opèrators du seto.",
 'revdelete-legend'            => 'Betar en place des rèstriccions de vèrsion',
 'revdelete-hide-text'         => 'Mâscar lo tèxte de la vèrsion',
 'revdelete-hide-name'         => 'Mâscar l’accion et la ciba',
@@ -1394,7 +1394,7 @@ Vêde l’$2 por una lista de les novèles suprèssions.',
 'deletedarticle'              => 'at èfaciê « [[$1]] »',
 'dellogpage'                  => 'Historico de les suprèssions',
 'dellogpagetext'              => 'Vê-que la lista de les novèles suprèssions.
-L’hora endicâ est cela du sèrvior (UTC).',
+L’hora endicâ est cela du sèrvior.',
 'deletionlog'                 => 'historico des èfacements',
 'reverted'                    => 'Rètablissement de la vèrsion prècèdenta',
 'deletecomment'               => 'Rêson de la suprèssion :',
@@ -1677,7 +1677,7 @@ Dens cél câs, vos devréd renomar ou fusionar la pâge manuèlament se vos lo 
 'movearticle'             => 'Renomar l’articllo :',
 'movenologin'             => 'Pas conèctâ',
 'movenologintext'         => 'Por povêr renomar una pâge, vos dête étre [[Special:UserLogin|conèctâ]] a titro d’utilisator enregistrâ et voutron compto dêt avêr una ancianatât sufisenta.',
-'movenotallowed'          => 'Vos avéd pas la pèrmission de renomar des pâges dessus {{SITENAME}}.',
+'movenotallowed'          => 'Vos avéd pas la pèrmission de renomar des pâges.',
 'newtitle'                => 'Novél titro :',
 'move-watch'              => 'Siuvre ceta pâge',
 'movepagebtn'             => 'Renomar l’articllo',

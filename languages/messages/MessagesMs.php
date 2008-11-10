@@ -6,7 +6,11 @@
  *
  * @author Aurora
  * @author Aviator
+ * @author Izzudin
+ * @author Kurniasan
+ * @author Putera Luqman Tunku Andre
  * @author Rewritten by the folks at ms.wikipedia.org
+ * @author Urhixidur
  * @author לערי ריינהארט
  */
 
@@ -139,16 +143,16 @@ $messages = array(
 # User preference toggles
 'tog-underline'               => 'Gariskan pautan:',
 'tog-highlightbroken'         => 'Formatkan pautan rosak <a href="" class="new">seperti ini</a> (ataupun seperti ini<a href="" class="internal">?</a>)',
-'tog-justify'                 => 'Laraskan teks perenggan',
+'tog-justify'                 => 'Laraskan perenggan',
 'tog-hideminor'               => 'Sembunyikan suntingan kecil dalam laman perubahan terkini',
-'tog-extendwatchlist'         => 'Kembangkan senarai pantau',
+'tog-extendwatchlist'         => 'Kembangkan senarai pantau untuk memaparkan semua perubahan yang berlaku',
 'tog-usenewrc'                => 'Pertingkatkan laman perubahan terkini (JavaScript)',
 'tog-numberheadings'          => 'Nomborkan tajuk secara automatik',
 'tog-showtoolbar'             => 'Tunjukkan bar sunting (JavaScript)',
 'tog-editondblclick'          => 'Sunting laman ketika dwiklik (JavaScript)',
-'tog-editsection'             => 'Aktifkan penyuntingan bahagian melalui pautan [sunting]',
-'tog-editsectiononrightclick' => 'Aktifkan penyuntingan bahagian melalui klik kanan pada tajuk bahagian (JavaScript)',
-'tog-showtoc'                 => 'Tunjukkan senarai kandungan bagi rencana melebihi 3 tajuk',
+'tog-editsection'             => 'Bolehkan penyuntingan bahagian melalui pautan [sunting]',
+'tog-editsectiononrightclick' => 'Bolehkan penyuntingan bahagian dengan mengklik kanan pada tajuk bahagian (JavaScript)',
+'tog-showtoc'                 => 'Tunjukkan isi kandungan (bagi rencana yang melebihi 3 tajuk)',
 'tog-rememberpassword'        => 'Ingat status log masuk saya pada komputer ini',
 'tog-editwidth'               => 'Kotak sunting mencapai lebar penuh',
 'tog-watchcreations'          => 'Tambahkan laman yang saya cipta ke dalam senarai pantau',
@@ -157,8 +161,8 @@ $messages = array(
 'tog-watchdeletion'           => 'Tambahkan laman yang saya hapuskan ke dalam senarai pantau',
 'tog-minordefault'            => 'Tandakan suntingan kecil secara lalai',
 'tog-previewontop'            => 'Tunjukkan pratonton di atas kotak sunting',
-'tog-previewonfirst'          => 'Tunjukkan pratonton ketika penyuntingan pertama',
-'tog-nocache'                 => 'Matikan penyimpanan sementara bagi laman',
+'tog-previewonfirst'          => 'Tunjukkan pratonton pada suntingan pertama',
+'tog-nocache'                 => 'Lumpuhkan pengagregatan laman',
 'tog-enotifwatchlistpages'    => 'E-melkan saya apabila berlaku perubahan pada laman yang dipantau',
 'tog-enotifusertalkpages'     => 'E-melkan saya apabila berlaku perubahan pada laman perbincangan saya',
 'tog-enotifminoredits'        => 'Juga e-melkan saya apabila berlaku penyuntingan kecil',
@@ -166,15 +170,15 @@ $messages = array(
 'tog-shownumberswatching'     => 'Tunjukkan bilangan pemantau',
 'tog-fancysig'                => 'Tandatangan mentah (tanpa pautan automatik)',
 'tog-externaleditor'          => 'Gunakan penyunting luar secara lalai',
-'tog-externaldiff'            => 'Gunakan pembeza luar secara lalai',
-'tog-showjumplinks'           => 'Aktifkan pautan boleh capai "lompat kepada"',
+'tog-externaldiff'            => 'Gunakan pembeza luar secara lalai (untuk pakar sahaja, perlu penetapan khas pada komputer anda)',
+'tog-showjumplinks'           => 'Bolehkan pautan ketercapaian "lompat ke"',
 'tog-uselivepreview'          => 'Gunakan pratonton langsung (JavaScript) (masih dalam uji kaji)',
 'tog-forceeditsummary'        => 'Tanya saya jika ringkasan suntingan kosong',
 'tog-watchlisthideown'        => 'Sembunyikan suntingan saya daripada senarai pantau',
 'tog-watchlisthidebots'       => 'Sembunyikan suntingan bot daripada senarai pantau',
 'tog-watchlisthideminor'      => 'Sembunyikan suntingan kecil daripada senarai pantau',
-'tog-nolangconversion'        => 'Matikan penukaran kelainan',
-'tog-ccmeonemails'            => 'Kirim kepada saya salinan bagi e-mel yang saya hantar kepada orang lain',
+'tog-nolangconversion'        => 'Lumpuhkan penukaran kelainan',
+'tog-ccmeonemails'            => 'Kirimkan saya salinan e-mel yang saya hantar kepada pengguna lain',
 'tog-diffonly'                => 'Jangan tunjukkan kandungan laman di bawah perbezaan',
 
 'underline-always'  => 'Sentiasa',
@@ -243,14 +247,14 @@ $messages = array(
 'category-media-header' => 'Media-media dalam kategori "$1"',
 'category-empty'        => "''Kategori ini tidak mengandungi sebarang laman atau media.''",
 
-'mainpagetext'      => "<big>'''MediaWiki telah dipasang.'''</big>",
+'mainpagetext'      => "<big>'''MediaWiki telah berjaya dipasang.'''</big>",
 'mainpagedocfooter' => 'Sila rujuk [http://meta.wikimedia.org/wiki/Help:Contents Panduan Penggunaan] untuk maklumat mengenai penggunaan perisian wiki ini.
 
 == Untuk bermula ==
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Senarai tetapan konfigurasi]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Soalan Lazim MediaWiki]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Senarai mel bagi keluaran MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Senarai mel bagi keluaran MediaWiki]',
 
 'about'          => 'Perihal',
 'article'        => 'Laman kandungan',
@@ -265,9 +269,9 @@ $messages = array(
 'qbspecialpages' => 'Laman khas',
 'moredotdotdot'  => 'Lagi...',
 'mypage'         => 'Laman saya',
-'mytalk'         => 'Perbincangan saya',
-'anontalk'       => 'Perbincangan bagi IP ini',
-'navigation'     => 'Navigasi',
+'mytalk'         => 'Perbualan saya',
+'anontalk'       => 'Perbualan bagi IP ini',
+'navigation'     => 'Pandu arah',
 'and'            => 'dan',
 
 # Metadata in edit box
@@ -294,13 +298,13 @@ $messages = array(
 'deletethispage'    => 'Hapuskan laman ini',
 'undelete_short'    => 'Nyahhapus {{PLURAL:$1|satu suntingan|$1 suntingan}}',
 'protect'           => 'Lindung',
-'protect_change'    => 'ubah perlindungan',
+'protect_change'    => 'ubah',
 'protectthispage'   => 'Lindungi laman ini',
 'unprotect'         => 'Nyahlindung',
 'unprotectthispage' => 'Nyahlindung laman ini',
 'newpage'           => 'Laman baru',
 'talkpage'          => 'Bincangkan laman ini',
-'talkpagelinktext'  => 'Perbincangan',
+'talkpagelinktext'  => 'Perbualan',
 'specialpage'       => 'Laman Khas',
 'personaltools'     => 'Alatan peribadi',
 'postcomment'       => 'Kirim komen',
@@ -310,7 +314,7 @@ $messages = array(
 'toolbox'           => 'Alatan',
 'userpage'          => 'Lihat laman pengguna',
 'projectpage'       => 'Lihat laman projek',
-'imagepage'         => 'Lihat laman imej',
+'imagepage'         => 'Lihat laman media',
 'mediawikipage'     => 'Lihat laman pesanan',
 'templatepage'      => 'Lihat laman templat',
 'viewhelppage'      => 'Lihat laman bantuan',
@@ -323,7 +327,7 @@ $messages = array(
 'viewcount'         => 'Laman ini telah dilihat {{PLURAL:$1|sekali|sebanyak $1 kali}}.',
 'protectedpage'     => 'Laman dilindungi',
 'jumpto'            => 'Lompat ke:',
-'jumptonavigation'  => 'navigasi',
+'jumptonavigation'  => 'pandu arah',
 'jumptosearch'      => 'gelintar',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -337,7 +341,7 @@ $messages = array(
 'currentevents'     => 'Peristiwa semasa',
 'currentevents-url' => 'Project:Peristiwa semasa',
 'disclaimers'       => 'Penolak tuntutan',
-'disclaimerpage'    => 'Project:Penolak tuntutan',
+'disclaimerpage'    => 'Project:Penolak tuntutan umum',
 'edithelp'          => 'Bantuan menyunting',
 'edithelppage'      => 'Help:Menyunting',
 'faq'               => 'Soalan Lazim',
@@ -345,8 +349,8 @@ $messages = array(
 'helppage'          => 'Help:Kandungan',
 'mainpage'          => 'Laman Utama',
 'policy-url'        => 'Project:Dasar',
-'portal'            => 'Portal komuniti',
-'portal-url'        => 'Project:Portal Komuniti',
+'portal'            => 'Portal masyarakat',
+'portal-url'        => 'Project:Portal Masyarakat',
 'privacy'           => 'Dasar privasi',
 'privacypage'       => 'Project:Dasar privasi',
 'sitesupport'       => 'Derma',
@@ -356,12 +360,12 @@ $messages = array(
 'badaccess-group0' => 'Anda tidak dibenarkan melaksanakan tindakan ini.',
 'badaccess-group1' => 'Tindakan ini hanya boleh dilakukan oleh pengguna dalam kumpulan $1.',
 'badaccess-group2' => 'Tindakan ini hanya boleh dilakukan oleh pengguna dalam kumpulan $1.',
-'badaccess-groups' => 'Tindakan ini hanya boleh dilakukan oleh pengguna dalam kumpulan $1.',
+'badaccess-groups' => 'Tindakan ini hanya boleh dilakukan oleh pengguna dari {{PLURAL:$2|kumpulan|kumpulan-kumpulan}} berikut: $1.',
 
 'versionrequired'     => 'MediaWiki versi $1 diperlukan',
 'versionrequiredtext' => 'MediaWiki versi $1 diperlukan untuk menggunakan laman ini. Sila lihat [[Special:Version|laman versi]].',
 
-'ok'                      => 'OK',
+'ok'                      => 'Baik',
 'retrievedfrom'           => 'Diambil daripada "$1"',
 'youhavenewmessages'      => 'Anda mempunyai $1 ($2).',
 'newmessageslink'         => 'pesanan baru',
@@ -370,15 +374,15 @@ $messages = array(
 'editsection'             => 'sunting',
 'editold'                 => 'sunting',
 'editsectionhint'         => 'Sunting bahagian: $1',
-'toc'                     => 'Senarai kandungan',
-'showtoc'                 => 'bentang',
-'hidetoc'                 => 'lipat',
+'toc'                     => 'Isi kandungan',
+'showtoc'                 => 'tunjuk',
+'hidetoc'                 => 'sorok',
 'thisisdeleted'           => 'Lihat atau pulihkan $1?',
 'viewdeleted'             => 'Lihat $1?',
 'restorelink'             => '{{PLURAL:$1|satu|$1}} suntingan dihapuskan',
 'feedlinks'               => 'Suapan:',
 'feed-invalid'            => 'Jenis suapan langganan tidak sah.',
-'feed-unavailable'        => 'Tiada suapan pensindiketan di {{SITENAME}}',
+'feed-unavailable'        => 'Tiada suapan pensindiketan',
 'site-rss-feed'           => 'Suapan RSS $1',
 'site-atom-feed'          => 'Suapan Atom $1',
 'page-rss-feed'           => 'Suapan RSS "$1"',
@@ -400,7 +404,7 @@ $messages = array(
 # Main script and global functions
 'nosuchaction'      => 'Tindakan tidak dikenali',
 'nosuchactiontext'  => 'Tindakan yang dinyatakan dalam URL
-ini tidak dikenali oleh perisian wiki ini',
+ini tidak dikenali oleh wiki ini',
 'nosuchspecialpage' => 'Laman khas tidak wujud',
 'nospecialpagetext' => "<big>'''Anda telah meminta laman khas yang tidak sah.'''</big>
 
@@ -416,7 +420,7 @@ Pertanyaan pangkalan data yang terakhir ialah:
 dari dalam fungsi "<tt>$2</tt>".
 MySQL memulangkan ralat "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Terdapat kesalahan sintaks pada pertanyaan pangkalan data. Pertanyaan terakhir ialah: "$1" dari dalam fungsi "$2". MySQL memulangkan ralat "$3: $4".',
-'noconnect'            => 'Maaf! Wiki ini menghadapi masalah teknikal dan tidak dapat menghubungi pelayan pangkalan data. <br />$1',
+'noconnect'            => 'Maaf! Wiki ini sedang menghadapi masalah teknikal dan tidak dapat menghubungi pelayan pangkalan data.<br />$1',
 'nodb'                 => 'Tidak dapat memilih pangkalan data $1',
 'cachederror'          => 'Berikut ialah salinan simpanan bagi laman yang diminta, dan barangkali bukan yang terkini.',
 'laggedslavemode'      => 'Amaran: Laman ini mungkin bukan yang terkini.',
@@ -439,55 +443,56 @@ ini. Sila laporkan masalah ini berserta URL yang anda buka kepada seorang pentad
 'filecopyerror'        => 'Fail "$1" tidak dapat disalin kepada "$2".',
 'filerenameerror'      => 'Nama fail "$1" tidak dapat ditukarkan kepada "$2".',
 'filedeleteerror'      => 'Fail "$1" tidak dapat dihapuskan.',
-'directorycreateerror' => 'Directory "$1" gagal diciptakan.',
+'directorycreateerror' => 'Direktori "$1" gagal diciptakan.',
 'filenotfound'         => 'Fail "$1" tidak dijumpai.',
 'fileexistserror'      => 'File "$1" tidak dapat ditulis: fail telah pun wujud',
 'unexpected'           => 'Nilai tanpa diduga: "$1"="$2".',
 'formerror'            => 'Ralat: borang tidak dapat dikirim.',
 'badarticleerror'      => 'Tindakan ini tidak boleh dilaksanakan pada laman ini.',
-'cannotdelete'         => 'Laman atau imej yang dinyatakan tidak dapat dihapuskan. (Ia mungkin telah pun dihapuskan oleh orang yang lain.)',
+'cannotdelete'         => 'Laman atau imej yang dinyatakan tidak dapat dihapuskan. Ia mungkin telah pun dihapuskan oleh orang yang lain.',
 'badtitle'             => 'Tajuk tidak sah',
 'badtitletext'         => 'Tajuk laman yang diminta tidak sah, kosong, ataupun tajuk antara bahasa atau tajuk antara wiki yang salah dipaut. Ia mungkin mengandungi aksara yang tidak dibenarkan.',
 'perfdisabled'         => 'Harap maaf! Ciri ini telah dipadamkan buat sementara kerana ia melambatkan pangkalan data sehingga wiki ini tidak dapat digunakan.',
-'perfcached'           => 'Data berikut diambil daripada simpanan sementara dan mungkin bukan yang terkini.',
-'perfcachedts'         => 'Data berikut berada dalam simpanan sementara dan dikemaskinikan buat kali terakhir pada $1.',
-'querypage-no-updates' => 'Pengkemaskinian bagi laman ini dimatikan. Data yang ditunjukkan di sini tidak disegarkan semula.',
+'perfcached'           => 'Data berikut adalah teragregat dan mungkin bukan yang terkini.',
+'perfcachedts'         => 'Data berikut adalah teragregat dan dikemaskinikan buat kali terakhir pada $1.',
+'querypage-no-updates' => 'Buat masa ini, pengkemaskinian laman ini telah dilumpuhkan.
+Data yang ada di sini tidak akan disegarkan semula sekarang.',
 'wrong_wfQuery_params' => 'Parameter salah bagi wfQuery()<br />
 Fungsi: $1<br />
 Pertanyaan: $2',
 'viewsource'           => 'Lihat sumber',
 'viewsourcefor'        => 'bagi $1',
-'actionthrottled'      => 'Tindakan dikawal',
+'actionthrottled'      => 'Tindakan didikitkan',
 'actionthrottledtext'  => 'Untuk mencegah spam, anda dihadkan daripada melakukan tindakan ini berulang kali dalam ruang waktu yang singkat, dan anda telah melebihi had tersebut. Sila cuba lagi selepas beberapa minit.',
 'protectedpagetext'    => 'Laman ini telah dikunci untuk menghalang penyuntingan.',
 'viewsourcetext'       => 'Anda boleh melihat dan menyalin sumber bagi laman ini:',
 'protectedinterface'   => 'Laman ini menyediakan teks antara muka bagi perisian ini, akan tetapi dikunci untuk menghalang penyalahgunaan.',
 'editinginterface'     => "'''Amaran:''' Anda sedang menyunting laman yang digunakan untuk menghasilkan teks antara muka bagi perisian ini. Sebarang perubahan terhadap laman ini akan menjejaskan rupa antara muka bagi pengguna-pengguna lain. Untuk melakukan penterjemahan, anda boleh menggunakan [http://translatewiki.net/wiki/Main_Page?setlang=ms Betawiki], sebuah projek penyetempatan MediaWiki.",
-'sqlhidden'            => '(Pertanyaan SQL tidak ditunjukkan)',
+'sqlhidden'            => '(Pertanyaan SQL disorokkan)',
 'cascadeprotected'     => 'Laman ini telah dilindungi daripada penyuntingan oleh pengguna selain penyelia, kerana ia termasuk dalam {{PLURAL:$1|laman|laman-laman}} berikut, yang dilindungi dengan secara "melata": $2',
 'namespaceprotected'   => "Anda tidak mempunyai keizinan untuk menyunting laman dalam ruang nama '''$1'''.",
 'customcssjsprotected' => 'Anda tidak mempunyai keizinan untuk menyunting laman ini kerana ia mengandungi tetapan peribadi pengguna lain.',
-'ns-specialprotected'  => 'Laman dalam ruang nama {{ns:special}} tidak boleh disunting.',
-'titleprotected'       => 'Tajuk ini telah dilindungi oleh [[User:$1|$1]]. Sebab yang diberikan ialah <i>$2</i>.',
+'ns-specialprotected'  => 'Laman khas tidak boleh disunting.',
+'titleprotected'       => 'Tajuk ini telah dilindungi oleh [[User:$1|$1]] daripada dicipta. Sebab yang diberikan ialah <i>$2</i>.',
 
 # Login and logout pages
 'logouttitle'                => 'Log keluar',
-'logouttext'                 => "<strong>Anda telah log keluar.</strong>
+'logouttext'                 => '<strong>Anda telah log keluar.</strong>
 
-Anda boleh terus menggunakan {{SITENAME}} sebagai pengguna tanpa nama, atau anda boleh [[Special:UserLogin|log masuk sekali lagi]] sebagai pengguna lain. Sila ambil perhatian bahawa sesetengah laman mungkin dipaparkan seolah-olah anda masih log masuk. Anda boleh menyelesaikan masalah tersebut dengan hanya mengosongkan data simpanan (''cache'') pelayar anda.",
+Anda boleh terus menggunakan {{SITENAME}} sebagai pengguna tanpa nama, atau anda boleh [[Special:UserLogin|log masuk sekali lagi]] sebagai pengguna lain. Anda boleh membersihkan cache pelayar web anda sekiranya terdapat laman yang memaparkan seolah-olah anda masih log masuk.',
 'welcomecreation'            => '== Selamat datang, $1! ==
 
-Akaun anda telah dibuka. Jangan lupa untuk mengubah keutamaan {{SITENAME}} anda.',
+Akaun anda telah dibuka. Jangan lupa untuk mengubah [[Special:Preferences|keutamaan {{SITENAME}}]] anda.',
 'loginpagetitle'             => 'Log masuk',
 'yourname'                   => 'Nama pengguna:',
 'yourpassword'               => 'Kata laluan:',
 'yourpasswordagain'          => 'Ulangi kata laluan:',
-'remembermypassword'         => 'Ingat saya dari komputer ini',
+'remembermypassword'         => 'Ingat log masuk saya di komputer ini',
 'yourdomainname'             => 'Domain anda:',
 'externaldberror'            => 'Berlaku ralat pangkalan data bagi pengesahan luar atau anda tidak dibenarkan mengemaskinikan akaun luar anda.',
 'loginproblem'               => '<b>Berlaku sedikit masalah ketika log masuk.</b><br />Sila cuba lagi!',
 'login'                      => 'Log masuk',
-'loginprompt'                => "Anda mesti membenarkan ''cookies'' untuk log masuk ke dalam {{SITENAME}}.",
+'loginprompt'                => 'Anda mesti membenarkan kuki untuk log masuk ke dalam {{SITENAME}}.',
 'userlogin'                  => 'Log masuk / buka akaun',
 'logout'                     => 'Log keluar',
 'userlogout'                 => 'Log keluar',
@@ -512,14 +517,14 @@ Akaun anda telah dibuka. Jangan lupa untuk mengubah keutamaan {{SITENAME}} anda.
 'email'                      => 'E-mel',
 'prefs-help-realname'        => 'Nama sebenar adalah tidak wajib. Jika dinyatakan, ia akan digunakan untuk mengiktiraf karya anda.',
 'loginerror'                 => 'Ralat log masuk',
-'prefs-help-email'           => 'Alamat e-mel adalah tidak wajib, akan tetapi ia membolehkan orang lain menghubungi anda melalui laman pengguna atau laman perbincangan tanpa mendedahkan identiti anda.',
+'prefs-help-email'           => 'Alamat e-mel adalah tidak wajib. Akan tetapi, jika anda terlupa kata laluan, anda boleh meminta kata laluan yang baru dikirim kepada e-mel anda. Anda juga boleh membenarkan orang lain menghubungi anda melalui laman pengguna atau laman perbualan anda tanpa mendedahkan identiti anda.',
 'prefs-help-email-required'  => 'Alamat e-mel adalah wajib.',
-'nocookiesnew'               => "Akaun anda telah dibuka, tetapi anda belum log masuk. {{SITENAME}} menggunakan ''cookies'' untuk mencatat status log masuk pengguna. Sila aktifkan sokongan ''cookies'' pada pelayar anda, kemudian log masuk dengan nama pengguna dan kata laluan baru anda.",
+'nocookiesnew'               => 'Akaun anda telah dibuka, tetapi anda belum log masuk. {{SITENAME}} menggunakan kuki untuk mencatat status log masuk pengguna. Sila aktifkan sokongan kuki pada pelayar anda, kemudian log masuk dengan nama pengguna dan kata laluan baru anda.',
 'nocookieslogin'             => "{{SITENAME}} menggunakan ''cookies'' untuk mencatat status log masuk pengguna. Sila aktifkan sokongan ''cookies'' pada pelayar anda dan cuba lagi.",
 'noname'                     => 'Nama pengguna tidak sah.',
 'loginsuccesstitle'          => 'Berjaya log masuk',
 'loginsuccess'               => "'''Anda telah log masuk ke dalam {{SITENAME}} sebagai \"\$1\".'''",
-'nosuchuser'                 => 'Pengguna "$1" tidak wujud. Sila semak ejaan anda atau buka akaun baru.',
+'nosuchuser'                 => 'Pengguna "$1" tidak wujud. Sila semak ejaan anda atau [[Special:UserLogin/signup|buka akaun baru]].',
 'nosuchusershort'            => 'Pengguna "<nowiki>$1</nowiki>" tidak wujud. Sila semak ejaan anda.',
 'nouserspecified'            => 'Sila nyatakan nama pengguna.',
 'wrongpassword'              => 'Kata laluan yang dimasukkan adalah salah. Sila cuba lagi.',
@@ -527,7 +532,9 @@ Akaun anda telah dibuka. Jangan lupa untuk mengubah keutamaan {{SITENAME}} anda.
 'passwordtooshort'           => 'Kata laluan anda tidak sah atau terlalu pendek. Panjangnya mestilah sekurang-kurangnya $1 aksara dan berbeza daripada nama pengguna anda.',
 'mailmypassword'             => 'E-melkan kata laluan baru',
 'passwordremindertitle'      => 'Pengingat kata laluan daripada {{SITENAME}}',
-'passwordremindertext'       => 'Seseorang (mungkin anda, dari alamat IP $1) meminta kami menghantar kata laluan baru untuk {{SITENAME}} ($4). Kata laluan untuk pengguna "$2" ialah "$3". Anda disarankan untuk log masuk dan tukar kata laluan segera.',
+'passwordremindertext'       => 'Seseorang (mungkin anda, dari alamat IP $1) meminta kami menghantar kata laluan baru untuk {{SITENAME}} ($4). Kata laluan sementara baru untuk pengguna "$2" ialah "$3". Untuk menamatkan prosedur ini, anda perlu log masuk dan tetapkan kata laluan yang baru dengan segera.
+
+Jika anda tidak membuat permintaan ini, atau anda telah pun mengingati semula kata laluan anda dan tidak mahu menukarnya, anda boleh mengabaikan pesanan ini dan terus menggunakan kata laluan yang sedia ada.',
 'noemail'                    => 'Tiada alamat e-mel direkodkan bagi pengguna "$1".',
 'passwordsent'               => 'Kata laluan baru telah dikirim kepada alamat
 e-mel yang didaftarkan oleh "$1".
@@ -541,14 +548,13 @@ untuk membuktikan bahawa alamat tersebut memang milik anda.',
 dikirim dalam $1 jam yang lalu. Untuk mengelak penyalahgunaan, hanya satu
 pengingat kata laluan akan dikirim pada setiap $1 jam.',
 'mailerror'                  => 'Ralat ketika mengirim e-mel: $1',
-'acct_creation_throttle_hit' => 'Harap maaf, anda telah pun membuka sebanyak $1 akaun. Anda tidak boleh membuka akaun lagi.',
-'emailauthenticated'         => 'Alamat e-mel anda telah disahkan pada $1.',
+'acct_creation_throttle_hit' => 'Anda telah pun membuka sebanyak $1 akaun. Anda tidak boleh membuka akaun lagi.',
+'emailauthenticated'         => 'Alamat e-mel anda telah disahkan pada $2, $3.',
 'emailnotauthenticated'      => 'Alamat e-mel anda belum disahkan. Oleh itu,
 e-mel bagi ciri-ciri berikut tidak boleh dikirim.',
 'noemailprefs'               => 'Anda perlu menetapkan alamat e-mel terlebih dahulu untuk menggunakan ciri-ciri ini.',
 'emailconfirmlink'           => 'Sahkan alamat e-mel anda.',
-'invalidemailaddress'        => 'Alamat e-mel tersebut tidak boleh diterima kerana ia tidak sah.
-Sila masukkan alamat e-mel yang betul atau kosongkan sahaja ruangan tersebut.',
+'invalidemailaddress'        => 'Alamat e-mel tersebut tidak boleh diterima kerana ia tidak sah. Sila masukkan alamat e-mel yang betul atau kosongkan sahaja ruangan tersebut.',
 'accountcreated'             => 'Akaun dibuka',
 'accountcreatedtext'         => 'Akaun pengguna bagi $1 telah dibuka.',
 'createaccount-title'        => 'Pembukaan akaun {{SITENAME}}',
@@ -562,11 +568,12 @@ Sila abaikan mesej ini jika anda tidak meminta untuk membuka akaun tersebut.',
 # Password reset dialog
 'resetpass'               => 'Set semula kata laluan',
 'resetpass_announce'      => 'Anda sedang log masuk dengan kata laluan sementara. Untuk log masuk dengan sempurna, sila tetapkan kata laluan baru di sini:',
+'resetpass_text'          => '<!-- Tambah teks di sini -->',
 'resetpass_header'        => 'Set semula kata laluan',
 'resetpass_submit'        => 'Tetapkan kata laluan dan log masuk',
 'resetpass_success'       => 'Kata laluan anda ditukar dengan jayanya! Sila tunggu...',
 'resetpass_bad_temporary' => 'Kata laluan sementara tidak sah. Anda mungkin telah pun menukar kata laluan atau meminta kata laluan sementara yang baru.',
-'resetpass_forbidden'     => 'Anda tidak boleh mengubah kata laluan di {{SITENAME}}.',
+'resetpass_forbidden'     => 'Kata laluan tidak boleh ditukar',
 'resetpass_missing'       => 'Tiada data borang.',
 
 # Edit page toolbar
@@ -662,22 +669,25 @@ Jika anda tiba di sini secara tak sengaja, hanya klik butang '''back''' pada pel
 'anontalkpagetext'          => "----''Ini ialah laman perbincangan bagi pengguna tanpa nama yang belum membuka akaun atau tidak log masuk. Kami terpaksa menggunakan alamat IP untuk mengenal pasti pengguna tersebut. Alamat IP ini boleh dikongsi oleh ramai pengguna. Sekiranya anda adalah seorang pengguna tanpa nama dan berasa bahawa komen yang tidak kena mengena telah ditujui kepada anda, sila [[Special:UserLogin|buka akaun baru atau log masuk]] untuk mengelakkan sebarang kekeliruan dengan pengguna tanpa nama yang lain.''",
 'noarticletext'             => 'Tiada teks dalam laman ini pada masa sekarang. Anda boleh [[Special:Search/{{PAGENAME}}|mencari tajuk bagi laman ini]] dalam laman-laman lain atau [{{fullurl:{{FULLPAGENAME}}|action=edit}} menyunting laman ini].',
 'userpage-userdoesnotexist' => 'Akaun pengguna "$1" tidak berdaftar. Sila pastikan sama ada anda mahu mencipta/menyunting laman ini.',
-'clearyourcache'            => "'''Nota:''' Selepas menyimpan, anda mungkin perlu mengosongkan fail simpanan (''cache'') pelayar anda terlebih dahulu untuk melihat perubahan. '''Mozilla /Firefox/Safari:''' tahan kekunci ''Shift'' ketika mengklik ''Reload'', atau tekan ''Ctrl-Shift-R'' (''Cmd-Shift-R'' pada Apple Mac); '''IE:''' tahan kekunci ''Ctrl'' ketika mengklik ''Refresh'', atau tekan ''Ctrl-F5''; '''Konqueror:''' klik butang ''Reload'', atau tekan ''F5''; pengguna '''Opera''' perlu mengosongkan fail simpanan melalui ''Tools→Preferences''.",
+'clearyourcache'            => "'''Catatan: Selepas menyimpan laman ini, anda mungkin perlu membersihkan cache pelayar web anda terlebih dahulu untuk mengenakan perubahan.'''
+'''Mozilla/Firefox/Safari:''' tahan ''Shift'' ketika mengklik ''Reload'' atau tekan ''Ctrl+F5'' atau tekan ''Ctrl+R'' (''Command+R'' dalam komputer Macintosh).
+'''Konqueror:''' klik butang ''Reload'' atau tekan ''F5''.
+'''Opera:''' bersihkan cache melalui menu ''Tools → Preferences''.
+'''Internet Explorer:''' tahan ''Ctrl'' ketika mengklik ''Refresh'' atau tekan ''Ctrl+F5''.",
 'usercssjsyoucanpreview'    => "<strong>Petua:</strong> Gunakan butang 'Pratonton' untuk menguji CSS/JS baru anda sebelum menyimpan.",
-'usercsspreview'            => "'''Ingat bahawa anda hanya melihat pratonton CSS anda, ia belum lagi disimpan!'''",
+'usercsspreview'            => "'''Ingat bahawa anda hanya sedang melihat pratonton CSS peribadi anda. Laman ini belum lagi disimpan!'''",
 'userjspreview'             => "'''Ingat bahawa anda hanya menguji/melihat pratonton JavaScript anda, ia belum lagi disimpan!'''",
 'userinvalidcssjstitle'     => "'''Amaran:''' Rupa \"\$1\" tidak wujud. Ingat bahawa laman tempahan .css dan .js menggunakan tajuk berhuruf kecil, contohnya {{ns:user}}:Anu/monobook.css tidak sama dengan {{ns:user}}:Anu/Monobook.css.",
 'updated'                   => '(Dikemaskinikan)',
 'note'                      => '<strong>Catatan:</strong>',
 'previewnote'               => '<strong>Ini hanyalah pratonton. Perubahan masih belum disimpan!</strong>',
 'previewconflict'           => 'Paparan ini merupakan teks di bahagian atas dalam kotak sunting teks. Teks ini akan disimpan sekiranya anda memilih berbuat demikian.',
-'session_fail_preview'      => '<strong>Harap maaf! Kami tidak dapat memproses suntingan anda kerana kehilangan data sesi.
-Sila cuba lagi. Jika masalah ini berlanjutan, log keluar dahulu, kemudian log masuk sekali lagi.</strong>',
-'session_fail_preview_html' => "<strong>Harap maaf! Kami tidak dapat memproses suntingan anda kerana kehilangan data sesi.</strong>
+'session_fail_preview'      => '<strong>Kami tidak dapat memproses suntingan anda kerana kehilangan data sesi. Sila cuba lagi. Jika masalah ini berlanjutan, [[Special:UserLogout|log keluar]] dahulu, kemudian log masuk sekali lagi.</strong>',
+'session_fail_preview_html' => "<strong>Kami tidak dapat memproses suntingan anda kerana kehilangan data sesi.</strong>
 
 ''Kerana {{SITENAME}} membenarkan HTML mentah, pratonton dimatikan sebagai perlindungan daripada serangan JavaScript.''
 
-<strong>Jika ini adalah penyuntingan yang sah, sila cuba lagi. Jika masalah ini berlanjutan, log keluar dahulu, kemudian log masuk sekali lagi.</strong>",
+<strong>Jika ini adalah penyuntingan yang sah, sila cuba lagi. Jika masalah ini berlanjutan, [[Special:UserLogout|log keluar]] dahulu, kemudian log masuk sekali lagi.</strong>",
 'token_suffix_mismatch'     => '<strong>Suntingan anda telah ditolak kerana pelanggan anda memusnahkan aksara tanda baca
 dalam token suntingan. Suntingan tersebut telah ditolak untuk menghalang kerosakan teks laman.
 Hal ini kadangkala berlaku apabila anda menggunakan khidmat proksi tanpa nama berdasarkan web yang bermasalah.</strong>',
@@ -707,7 +717,7 @@ Anda juga berjanji bahawa ini adalah hasil kerja tangan anda sendiri, atau
 disalin daripada domain awam atau mana-mana sumber bebas lain (lihat $1 untuk butiran lanjut).
 <strong>JANGAN KIRIM KARYA HAK CIPTA ORANG LAIN TANPA KEBENARAN!</strong>',
 'longpagewarning'           => '<strong>AMARAN: Panjang laman ini ialah $1 kilobait.
-Terdapat beberapa pelayar web yang mempunyai masalah jika digunakan untuk menyunting laman yang menghampiri ataupun melebihi 32kB.
+Terdapat beberapa pelayar web yang mempunyai masalah jika digunakan untuk menyunting laman yang menghampiri ataupun melebihi 32 kB.
 Sila bahagikan rencana ini, jika boleh.</strong>',
 'longpageerror'             => '<strong>RALAT: Panjang teks yang dikirim ialah $1 kilobait,
 melebihi had maksimum $2 kilobait. Ia tidak boleh disimpan.</strong>',
@@ -724,10 +734,11 @@ Berikut ialah penjelasan yang diberikan: $1',
 'templatesusedsection'      => 'Templat yang digunakan dalam bahagian ini:',
 'template-protected'        => '(dilindungi)',
 'template-semiprotected'    => '(dilindungi separa)',
+'edittools'                 => '<!-- Teks di sini akan ditunjukkan bawah borang sunting dan muat naik. -->',
 'nocreatetitle'             => 'Penciptaan laman dihadkan',
 'nocreatetext'              => 'Penciptaan laman baru dihadkan pada {{SITENAME}}.
 Anda boleh berundur dan menyunting laman yang sedia ada, atau [[Special:UserLogin|log masuk]].',
-'nocreate-loggedin'         => 'Anda tidak mempunyai keizinan untuk mencipta laman baru dalam {{SITENAME}}.',
+'nocreate-loggedin'         => 'Anda tidak mempunyai keizinan untuk mencipta laman baru.',
 'permissionserrors'         => 'Tidak Dibenarkan',
 'permissionserrorstext'     => 'Anda tidak mempunyai keizinan untuk berbuat demikian atas {{PLURAL:$1|sebab|sebab-sebab}} berikut:',
 'recreate-deleted-warn'     => "'''Amaran: Anda sedang mencipta semula sebuah laman yang pernah dihapuskan.''',
@@ -798,13 +809,13 @@ Butiran lanjut boleh didapati dalam [{{fullurl:Special:Log/delete|page={{FULLPAG
 'revisiondelete'              => 'Hapus/nyahhapus semakan',
 'revdelete-nooldid-title'     => 'Tiada semakan sasaran',
 'revdelete-nooldid-text'      => 'Anda tidak menyatakan semakan sasaran.',
-'revdelete-selected'          => "{{PLURAL:$2|Versi|Versi-versi}} '''$1''' yang dipilih:",
+'revdelete-selected'          => "'''{{PLURAL:$2|Versi|Versi-versi}} '''$1''' yang dipilih:'''",
 'logdelete-selected'          => "{{PLURAL:$2|Peristiwa|Peristiwa-peristiwa}} log yang dipilih bagi '''$1:'''",
-'revdelete-text'              => 'Semakan dan peristiwa yang dihapuskan masih muncul dalam sejarah laman dan log,
-akan tetapi kandungannya tidak boleh dilihat oleh orang awam.
+'revdelete-text'              => "'''Semakan dan peristiwa yang dihapuskan masih muncul dalam sejarah laman dan log,
+akan tetapi kandungannya tidak boleh dilihat oleh orang awam.'''
 
 Pentadbir {{SITENAME}} boleh melihat kandungan tersebut dan menyahhapuskannya
-semula melalui laman ini melainkan mempunyai batasan.',
+semula melalui laman ini melainkan mempunyai batasan.",
 'revdelete-legend'            => 'Tetapkan batasan:',
 'revdelete-hide-text'         => 'Sembunyikan teks semakan',
 'revdelete-hide-name'         => 'Sembunyikan tindakan dan sasaran',
@@ -893,7 +904,7 @@ daripada satu kata kunci (hanya laman yang mengandungi kesemua kata kunci akan d
 'mypreferences'            => 'Keutamaan saya',
 'prefs-edits'              => 'Jumlah suntingan:',
 'prefsnologin'             => 'Belum log masuk',
-'prefsnologintext'         => 'Anda mesti [[Special:UserLogin|log masuk]] terlebih dahulu untuk menetapkan keutamaan.',
+'prefsnologintext'         => 'Anda hendaklah <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} log masuk]</span> terlebih dahulu untuk menetapkan keutamaan.',
 'prefsreset'               => 'Keutamaan anda telah diset semula dari storan.',
 'qbsettings'               => 'Bar pantas',
 'qbsettings-none'          => 'Tiada',
@@ -1002,7 +1013,7 @@ Kumpulan yang tidak dipilih tidak akan diubah. Anda boleh mengecualikan sebarang
 'recentchanges-feed-description'    => 'Jejaki perubahan terkini dalam {{SITENAME}} pada suapan ini.',
 'rcnote'                            => "Berikut ialah '''$1''' perubahan terakhir sejak '''$2''' hari yang lalu sehingga $3.",
 'rcnotefrom'                        => 'Berikut ialah semua perubahan sejak <b>$2</b> (sehingga <b>$1</b>).',
-'rclistfrom'                        => 'Tunjukkan perubahan terbaru bermula dari $1',
+'rclistfrom'                        => 'Papar perubahan sejak $1',
 'rcshowhideminor'                   => '$1 suntingan kecil',
 'rcshowhidebots'                    => '$1 bot',
 'rcshowhideliu'                     => '$1 pengguna log masuk',
@@ -1078,16 +1089,16 @@ Sila pilih nama lain.',
 'fileexists-thumbnail-yes'    => 'Fail ini kelihatan seperti sebuah imej yang telah dikecilkan <i>(imej ringkas)</i>. Sila semak fail <strong><tt>$1</tt></strong>.<br />
 Jika fail yang disemak itu adalah sama dengan yang saiz asal, maka anda tidak perlu memuat naik imej ringkas tambahan.',
 'file-thumbnail-no'           => 'Nama fail ini bermula dengan <strong><tt>$1</tt></strong>. Barangkali ia adalah sebuah imej yang telah dikecilkan <i>(imej ringkas)</i>.
-Jika anda memiliki imej ini dalam leraian penuh, sila muat naik fail tersebut, sebaliknya sila tukar nama fail ini.',
+Jika anda memiliki imej ini dalam leraian penuh, sila muat naik fail tersebut. Sebaliknya, sila tukar nama fail ini.',
 'fileexists-forbidden'        => 'Sebuah fail dengan nama ini telah pun wujud. Sila berundur dan muat naik fail ini dengan nama lain. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Sebuah dail dengan nama ini telah pun wujud dalam simpanan fail kongsi. Sila berundur dan muat naik fail ini dengan nama lain. [[Image:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Sebuah fail dengan nama ini telah pun wujud dalam gedung fail kongsi. Jika anda masih mahu memuat naik fail ini, sila kembali ke borang muat naik dan gunakan nama lain. [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => 'Muat naik berjaya',
 'uploadwarning'               => 'Amaran muat naik',
 'savefile'                    => 'Simpan fail',
 'uploadedimage'               => 'memuat naik "[[$1]]"',
 'overwroteimage'              => 'memuat naik versi baru bagi "[[$1]]"',
 'uploaddisabled'              => 'Ciri muat naik dimatikan',
-'uploaddisabledtext'          => 'Ciri muat naik fail dimatikan di {{SITENAME}}.',
+'uploaddisabledtext'          => 'Ciri muat naik fail dimatikan.',
 'uploadscripted'              => 'Fail ini mengandungi kod HTML atau skrip yang boleh disalahtafsirkan oleh pelayar web.',
 'uploadcorrupt'               => 'Fail tersebut rosak atau mempunyai sambungan yang salah. Sila periksa fail tersebut dan cuba lagi.',
 'uploadvirus'                 => 'Fail tersebut mengandungi virus! Butiran: $1',
@@ -1152,7 +1163,7 @@ Klik di atas mana-mana lajur yang berkenaan untuk menukar tertib susunan.',
 'shareduploadwiki'          => 'Sila lihat $1 untuk maklumat lanjut.',
 'shareduploadwiki-desc'     => 'Berikut ialah keterangan yang diambil daripada $1nya di gedung kongsi.',
 'shareduploadwiki-linktext' => 'laman keterangan fail',
-'noimage'                   => 'Tiada fail dengan nama ini. Anda boleh $1.',
+'noimage'                   => 'Fail ini tidak wujud. Anda boleh $1.',
 'noimage-linktext'          => 'memuat naik fail baru',
 'uploadnewversion-linktext' => 'Muat naik versi baru bagi fail ini',
 'imagelist_date'            => 'Tarikh',
@@ -1181,7 +1192,7 @@ Klik di atas mana-mana lajur yang berkenaan untuk menukar tertib susunan.',
 'filedelete-submit'           => 'Hapus',
 'filedelete-success'          => "'''$1''' telah dihapuskan.",
 'filedelete-success-old'      => "Versi '''[[Media:$1|$1]]''' pada $3, $2 telah dihapuskan.",
-'filedelete-nofile'           => "'''$1''' tidak wujud di {{SITENAME}}.",
+'filedelete-nofile'           => "'''$1''' tidak wujud.",
 'filedelete-nofile-old'       => "Tiada versi arkib bagi '''$1''' dengan sifat-sifat yang dinyatakan.",
 'filedelete-iscurrent'        => 'Anda telah mencuba untuk menghapuskan versi terkini bagi fail ini. Sila balikkannya kepada versi yang lama terlebih dahulu.',
 'filedelete-otherreason'      => 'Sebab lain/tambahan:',
@@ -1205,7 +1216,7 @@ Klik di atas mana-mana lajur yang berkenaan untuk menukar tertib susunan.',
 
 # Unused templates
 'unusedtemplates'     => 'Templat tidak digunakan',
-'unusedtemplatestext' => 'Berikut ialah senarai templat yang tidak disertakan dalam laman lain. Sila pastikan bahawa anda menyemak pautan lain ke templat-templat tersebut sebelum menghapuskannya.',
+'unusedtemplatestext' => 'Berikut ialah senarai laman dalam ruang nama {{ns:template}} yang tidak disertakan dalam laman lain. Sila pastikan bahawa anda menyemak pautan lain ke templat-templat tersebut sebelum menghapuskannya.',
 'unusedtemplateswlh'  => 'pautan-pautan lain',
 
 # Random page
@@ -1228,7 +1239,8 @@ lencongan, dan lain-lain yang tidak dikira sebagai laman kandungan. Dengan menge
 Terdapat sejumlah '''\$3''' paparan laman dan '''\$4''' penyuntingan dilakukan sejak {{SITENAME}} dibuka. Secara purata, terdapat '''\$5''' suntingan bagi setiap laman, dan '''\$6''' paparan bagi setiap suntingan.
 
 Jumlah [http://www.mediawiki.org/wiki/Manual:Job_queue tugas yang tertunggak] ialah '''\$7'''.",
-'userstatstext'          => "Terdapat '''$1''' pengguna berdaftar. '''$2''' (atau '''$4''') daripadanya mempunyai hak $5.",
+'userstatstext'          => "Terdapat '''$1''' [[Special:Listusers|pengguna]] berdaftar. '''$2''' (atau '''$4''') daripadanya mempunyai hak $5.
+Terdapat lebih kurang '''$6''' akaun pengguna berdaftar yang aktif.",
 'statistics-mostpopular' => 'Laman dilihat terbanyak',
 
 'disambiguations'      => 'Laman penyahtaksaan',
@@ -1259,7 +1271,7 @@ Jumlah [http://www.mediawiki.org/wiki/Manual:Job_queue tugas yang tertunggak] ia
 'nviews'                  => 'Dilihat $1 kali',
 'specialpage-empty'       => 'Tiada keputusan bagi laporan ini.',
 'lonelypages'             => 'Laman yatim',
-'lonelypagestext'         => 'Laman-laman berikut tidak dipaut dari laman lain dalam {{SITENAME}}.',
+'lonelypagestext'         => 'Laman-laman berikut tidak dipaut atau disertakan dari laman lain dalam {{SITENAME}}.',
 'uncategorizedpages'      => 'Laman tanpa kategori',
 'uncategorizedcategories' => 'Kategori tanpa kategori',
 'uncategorizedimages'     => 'Imej tanpa kategori',
@@ -1329,8 +1341,7 @@ Lihat juga [[Special:WantedCategories|senarai kategori dikehendaki]].',
 'all-logs-page'        => 'Semua log',
 'log-search-legend'    => 'Cari log',
 'log-search-submit'    => 'Pergi',
-'alllogstext'          => 'Berikut ialah gabungan bagi semua log yang ada bagi {{SITENAME}}.
-Anda boleh menapis senarai ini dengan memilih jenis log, nama pengguna atau nama laman yang terjejas.',
+'alllogstext'          => 'Berikut ialah gabungan bagi semua log yang ada bagi {{SITENAME}}. Anda boleh menapis senarai ini dengan memilih jenis log, nama pengguna (peka huruf besar), atau nama laman yang terjejas (juga peka huruf besar).',
 'logempty'             => 'Tiada item yang sepadan dalam log.',
 'log-title-wildcard'   => 'Cari semua tajuk yang bermula dengan teks ini',
 
@@ -1360,11 +1371,9 @@ terlebih dahulu dan mempunyai alamat e-mel yang sah dalam
 [[Special:Preferences|laman keutamaan]] untuk mengirim e-mel kepada pengguna lain.',
 'emailuser'       => 'Kirim e-mel kepada pengguna ini',
 'emailpage'       => 'E-mel pengguna',
-'emailpagetext'   => 'Jika pengguna ini telah memasukkan
-alamat e-mel yang sah dalam laman keutamaan, beliau akan menerima sebuah e-mel
-yang mengandungi mesej yang diisi dalam borang di bawah. Alamat e-mel yang
-ditetapkan dalam keutamaan anda akan muncul dalam e-mel tersebut sebagai
-alamat "Daripada" supaya si penerima boleh membalasnya.',
+'emailpagetext'   => 'Gunakan borang berikut untuk mengirim pesanan e-mel kepada pengguna ini.
+
+Alamat e-mel yang ditetapkan dalam [[Special:Preferences|keutamaan anda]] akan digunakan sebagai alamat "Daripada" dalam e-mel tersebut supaya si penerima boleh membalasnya.',
 'usermailererror' => 'Objek Mail memulangkan ralat:',
 'defemailsubject' => 'E-mel {{SITENAME}}',
 'noemailtitle'    => 'Tiada alamat e-mel',
@@ -1511,7 +1520,7 @@ Sila tekan butang "back" dan muatkan semula laman yang telah anda kunjungi sebel
 'protectsub'                  => '(Menetapkan peringkat perlindungan bagi "$1")',
 'confirmprotect'              => 'Sahkan perlindungan',
 'protectcomment'              => 'Komen:',
-'protectexpiry'               => 'Tamat pada:',
+'protectexpiry'               => 'Sehingga:',
 'protect_expiry_invalid'      => 'Waktu tamat tidak sah.',
 'protect_expiry_old'          => 'Waktu tamat telah berlalu.',
 'unprotectsub'                => '(Menyahlindung "$1")',
@@ -1529,7 +1538,7 @@ Ini adalah tetapan semasa bagi laman <strong>$1</strong>:',
 'protect-level-autoconfirmed' => 'Sekat pengguna-pengguna tidak berdaftar',
 'protect-level-sysop'         => 'Penyelia sahaja',
 'protect-summary-cascade'     => 'melata',
-'protect-expiring'            => 'tamat pada $1 (UTC)',
+'protect-expiring'            => 'sehingga $1 (UTC)',
 'protect-cascade'             => 'Lindungi semua laman yang terkandung dalam laman ini (perlindungan melata)',
 'protect-cantedit'            => 'Anda tidak dibenarkan menukar peringkat perlindungan bagi laman ini.',
 'restriction-type'            => 'Keizinan:',
@@ -1554,10 +1563,7 @@ Ini adalah tetapan semasa bagi laman <strong>$1</strong>:',
 'viewdeletedpage'              => 'Lihat laman-laman yang dihapuskan',
 'undeletepagetext'             => 'Laman-laman berikut telah dihapuskan tetapi masih disimpan dalam arkib dan
 masih boleh dipulihkan. Arkib tersebut akan dibersihkan dari semasa ke semasa.',
-'undeleteextrahelp'            => "Untuk memulihkan keseluruhan laman, biarkan semua kotak semak dan
-klik '''''Pulih'''''. Untuk melaksanakan pemulihan tertentu, semak kotak yang berkaitan dengan
-semakan untuk dipulihkan dan klik '''''Pulih'''''. Klik '''''Set semula''''' untuk mengosongkan
-borang ini.",
+'undeleteextrahelp'            => "Untuk memulihkan keseluruhan laman, biarkan semua kotak semak dan klik '''''Pulih'''''. Untuk melaksanakan pemulihan tertentu, tanda di setiap kotak yang bersebelahan dengan semakan untuk dipulihkan dan klik '''''Pulih'''''. Klik '''''Set semula''''' untuk mengosongkan ruangan komen dan membuang tanda semua kotak.",
 'undeleterevisions'            => '$1 semakan telah diarkibkan.',
 'undeletehistory'              => 'Jika anda memulihkan laman tersebut, semua semakan akan dipulihkan kepada sejarahnya. Jika sebuah laman baru yang mempunyai nama yang sama telah dicipta sejak penghapusan, semakan yang dipulihkan akan muncul dalam sejarah terdahulu.',
 'undeleterevdel'               => 'Penyahhapusan tidak akan dilaksanakan sekiranya ia menyebabkan sebahagian semakan puncak dihapuskan.
@@ -1566,7 +1572,7 @@ yang anda tidak dibenarkan melihatnya tidak akan dipulihkan.',
 'undeletehistorynoadmin'       => 'Rencana ini telah dihapuskan. Sebab penghapusan
 ditunjukkan dalam ringkasan di bawah, berserta butiran bagi pengguna-pengguna yang telah menyunting laman ini
 sebelum penghapusan. Teks sebenar bagi semua semakan yang dihapuskan hanya boleh dilihat oleh para pentadbir.',
-'undelete-revision'            => 'Menghapuskan semakan bagi $1 (pada $2) oleh $3:',
+'undelete-revision'            => 'Menghapuskan semakan bagi $1 (pada $4, $5) oleh $3:',
 'undeleterevision-missing'     => 'Semakan tersebut tidak sah atau tidak dijumpai. Mungkin anda telah mengikuti pautan yang rosak
 atau semakan tersebut telah dipulihkan atau dibuang daripada arkib.',
 'undelete-nodiff'              => 'Tiada semakan sebelumnya.',
@@ -1598,7 +1604,7 @@ $1',
 
 # Namespace form on various pages
 'namespace'      => 'Ruang nama:',
-'invert'         => 'Terbalikkan pilihan',
+'invert'         => 'Kecualikan pilihan',
 'blanknamespace' => '(Utama)',
 
 # Contributions
@@ -1645,7 +1651,7 @@ Sila masukkan sebab sekatan di bawah (umpamannya, sebutkan laman yang telah
 dirosakkan).',
 'ipaddress'                   => 'Alamat IP:',
 'ipadressorusername'          => 'Alamat IP atau nama pengguna:',
-'ipbexpiry'                   => 'Tamat:',
+'ipbexpiry'                   => 'Tempoh:',
 'ipbreason'                   => 'Sebab:',
 'ipbreasonotherlist'          => 'Lain-lain',
 'ipbreason-dropdown'          => '
@@ -1658,7 +1664,7 @@ dirosakkan).',
 ** Menyalahgunakan berbilang akaun
 ** Nama pengguna yang tidak sesuai',
 'ipbanononly'                 => 'Sekat pengguna tanpa nama sahaja',
-'ipbcreateaccount'            => 'Halang pengguna tersebut daripada membuka akaun baru',
+'ipbcreateaccount'            => 'Tegah pembukaan akaun',
 'ipbemailban'                 => 'Halang pengguna tersebut daripada mengirim e-mel',
 'ipbenableautoblock'          => 'Sekat alamat IP terakhir dan mana-mana alamat berikutnya yang digunakan oleh pengguna ini secara automatik',
 'ipbsubmit'                   => 'Sekat pengguna ini',
@@ -1674,7 +1680,7 @@ dirosakkan).',
 'ipb-edit-dropdown'           => 'Sunting sebab sekatan',
 'ipb-unblock-addr'            => 'Nyahsekat $1',
 'ipb-unblock'                 => 'Nyahsekat nama pengguna atau alamat IP',
-'ipb-blocklist-addr'          => 'Lihat sekatan sedia ada bagi $1',
+'ipb-blocklist-addr'          => 'Sekatan sedia ada bagi $1',
 'ipb-blocklist'               => 'Lihat sekatan sedia ada',
 'unblockip'                   => 'Nyahsekat pengguna',
 'unblockiptext'               => 'Gunakan borang di bawah untuk membuang sekatan bagialamat IP atau nama pengguna yang telah disekat.',
@@ -1687,7 +1693,7 @@ dirosakkan).',
 'ipblocklist-submit'          => 'Cari',
 'blocklistline'               => '$1, $2 menyekat $3 ($4)',
 'infiniteblock'               => 'selama-lamanya',
-'expiringblock'               => 'luput pada $1',
+'expiringblock'               => 'sehingga $1',
 'anononlyblock'               => 'pengguna tanpa nama sahaja',
 'noautoblockblock'            => 'sekatan automatik dipadamkan',
 'createaccountblock'          => 'pembukaan akaun baru disekat',
@@ -1701,8 +1707,8 @@ dirosakkan).',
 'blocklogpage'                => 'Log sekatan',
 'blocklogentry'               => 'menyekat [[$1]] sehingga $2 $3',
 'blocklogtext'                => 'Ini adalah log bagi sekatan dan penyahsekatan.
-Alamat IP yang disekat secara automatik tidak disenaraikan di sini. Sila lihat
-[[Special:IPBlockList|senarai sekatan IP]] untuk mengetahui sekatan-sekatan yang sedang dijalankan.',
+Alamat IP yang disekat secara automatik tidak disenaraikan di sini.
+Sila lihat juga [[Special:IPBlockList|senarai sekatan IP]] yang sedang berkuatkuasa.',
 'unblocklogentry'             => 'menyahsekat $1',
 'block-log-flags-anononly'    => 'pengguna tanpa nama sahaja',
 'block-log-flags-nocreate'    => 'pembukaan akaun dimatikan',
@@ -1763,8 +1769,8 @@ laman kepada nama yang asal jika anda telah melakukan kesilapan, dan anda tidak 
 Dalam kes tersebut, anda terpaksa melencongkan atau menggabungkan laman secara manual, jika perlu.",
 'movearticle'             => 'Pindah laman:',
 'movenologin'             => 'Belum log masuk.',
-'movenologintext'         => 'Anda mesti [[Special:Userlogin|log masuk]] terlebih dahulu untuk memindahkan laman.',
-'movenotallowed'          => 'Anda tidak mempunyai keizinan untuk memindahkan laman dalam {{SITENAME}}.',
+'movenologintext'         => 'Anda mesti [[Special:UserLogin|log masuk]] terlebih dahulu untuk memindahkan laman.',
+'movenotallowed'          => 'Anda tidak mempunyai keizinan untuk memindahkan laman.',
 'newtitle'                => 'Kepada tajuk baru:',
 'move-watch'              => 'Pantau laman ini',
 'movepagebtn'             => 'Pindah laman',
@@ -1872,7 +1878,7 @@ Semua tindakan import transwiki dicatatkan dalam [[Special:Log/import|log import
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Laman pengguna saya',
 'tooltip-pt-anonuserpage'         => 'Laman pengguna bagi alamat IP anda',
-'tooltip-pt-mytalk'               => 'Laman perbincangan saya',
+'tooltip-pt-mytalk'               => 'Laman perbualan saya',
 'tooltip-pt-anontalk'             => 'Perbincangan mengenai penyuntingan daripada alamat IP anda',
 'tooltip-pt-preferences'          => 'Keutamaan saya',
 'tooltip-pt-watchlist'            => 'Senarai laman yang anda pantau',
@@ -1948,7 +1954,7 @@ Semua tindakan import transwiki dicatatkan dalam [[Special:Log/import|log import
 
 # Spam protection
 'spamprotectiontitle'    => 'Penapis spam',
-'spamprotectiontext'     => 'Laman yang anda ingin simpan dihalang oleh penapis spam. Hal ini mungkin disebabkan oleh pautan ke tapak web luar.',
+'spamprotectiontext'     => 'Laman yang anda ingin simpan telah dihalang oleh penapis spam. Hal ini mungkin disebabkan oleh pautan ke tapak web luar yang telah disenaraihitamkan.',
 'spamprotectionmatch'    => 'Teks berikut dikesan oleh penapis spam kami: $1',
 'subcategorycount'       => 'Terdapat $1 subkategori bagi kategori ini.',
 'categoryarticlecount'   => 'Terdapat $1 laman dalam kategori ini.',
@@ -1975,15 +1981,15 @@ Semua tindakan import transwiki dicatatkan dalam [[Special:Log/import|log import
 'mw_math_mathml' => 'MathML jika boleh (sedang dalam uji kaji)',
 
 # Patrolling
-'markaspatrolleddiff'                 => 'Tandakan sebagai telah diperiksa',
-'markaspatrolledtext'                 => 'Tandakan laman ini sebagai telah diperiksa',
-'markedaspatrolled'                   => 'Tandakan sebagai telah diperiksa',
-'markedaspatrolledtext'               => 'Semakan tersebut telah ditandakan sebagai telah diperiksa.',
-'rcpatroldisabled'                    => 'Pemeriksaan Perubahan Terkini dimatikan',
-'rcpatroldisabledtext'                => 'Ciri Pemeriksaan Perubahan Terkini dimatikan.',
-'markedaspatrollederror'              => 'Tidak boleh menandakan sebagai telah diperiksa',
-'markedaspatrollederrortext'          => 'Anda perlu menyatakan semakan untuk ditandakan sebagai telah diperiksa.',
-'markedaspatrollederror-noautopatrol' => 'Anda tidak dibenarkan menandakan perubahan anda sendiri sebagai telah diperiksa.',
+'markaspatrolleddiff'                 => 'Tanda ronda',
+'markaspatrolledtext'                 => 'Tanda ronda laman ini',
+'markedaspatrolled'                   => 'Tanda ronda',
+'markedaspatrolledtext'               => 'Semakan tersebut telah ditanda ronda.',
+'rcpatroldisabled'                    => 'Rondaan Perubahan Terkini dimatikan',
+'rcpatroldisabledtext'                => 'Ciri Rondaan Perubahan Terkini dimatikan.',
+'markedaspatrollederror'              => 'Tidak boleh menanda ronda',
+'markedaspatrollederrortext'          => 'Anda perlu menyatakan semakan untuk ditanda ronda.',
+'markedaspatrollederror-noautopatrol' => 'Anda tidak dibenarkan menanda ronda perubahan anda sendiri.',
 
 # Patrol log
 'patrol-log-page' => 'Log pemeriksaan',
@@ -2003,8 +2009,8 @@ $1',
 'filedelete-archive-read-only'    => 'Direktori arkib "$1" tidak boleh ditulis oleh pelayan web.',
 
 # Browsing diffs
-'previousdiff' => '← Beza sebelumnya',
-'nextdiff'     => 'Perbezaan berikutnya →',
+'previousdiff' => '← Suntingan sebelumnya',
+'nextdiff'     => 'Suntingan berikutnya →',
 
 # Media information
 'mediawarning'         => "'''Amaran''': Fail ini boleh mengandungi kod yang berbahaya dan merosakkan komputer anda.<hr />",
@@ -2323,10 +2329,10 @@ sebelum meminta kod baru.
 </div>',
 'confirmemail_send'       => 'E-melkan kod pengesahan',
 'confirmemail_sent'       => 'E-mel pengesahan dikirim.',
-'confirmemail_oncreate'   => 'Sebuah kod pengesahan telah dikirm kepada alamat e-mel anda.
+'confirmemail_oncreate'   => 'Sebuah kod pengesahan telah dikirim kepada alamat e-mel anda.
 Kod ini tidak diperlukan untuk log masuk, akan tetapi anda perlu menyediakannya untuk
 mengaktifkan ciri-ciri e-mel yang terdapat dalam wiki ini.',
-'confirmemail_sendfailed' => 'E-mel pengesahan tidak dapat dikirim. Sila semak alamat e-mel tersebut.
+'confirmemail_sendfailed' => '{{SITENAME}} tidak dapat menghantar e-mel pengesahan anda. Sila semak alamat e-mel tersebut.
 
 Pelayan mel memulangkan: $1',
 'confirmemail_invalid'    => 'Kod pengesahan tidak sah. Kod tersebut mungkin sudah luput.',
@@ -2348,8 +2354,8 @@ akan luput pada $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Kemasukan pautan interwiki dimatikan]',
-'scarytranscludefailed'   => '[Gagal mendapatkan templat $1; harap maaf]',
-'scarytranscludetoolong'  => '[URL terlalu panjang; harap maaf]',
+'scarytranscludefailed'   => '[Gagal mendapatkan templat $1]',
+'scarytranscludetoolong'  => '[URL terlalu panjang]',
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">
@@ -2361,7 +2367,7 @@ $1
 'trackbackdeleteok' => 'Jejak balik dihapuskan.',
 
 # Delete conflict
-'deletedwhileediting' => 'Amaran: Laman ini dihapuskan ketika anda sedang menyuntingnya!',
+'deletedwhileediting' => "'''Amaran''': Laman ini dihapuskan ketika anda sedang menyuntingnya!",
 'confirmrecreate'     => "Pengguna [[User:$1|$1]] ([[User talk:$1|perbincangan]]) telah menghapuskan laman ini ketika anda sedang menyunting atas sebab berikut:
 : ''$2''
 Sila sahkan bahawa anda mahu mencipta semula laman ini.",
@@ -2421,7 +2427,7 @@ $1',
 'watchlistedit-noitems'        => 'Tiada tajuk dalam senarai pantau anda.',
 'watchlistedit-normal-title'   => 'Sunting senarai pantau',
 'watchlistedit-normal-legend'  => 'Buang tajuk daripada senarai pantau',
-'watchlistedit-normal-explain' => 'Berikut ialah tajuk-tajuk dalam senarai pantau anda. Untuk membuang mana-mana tajuk, semak
+'watchlistedit-normal-explain' => 'Berikut ialah tajuk-tajuk dalam senarai pantau anda. Untuk membuang mana-mana tajuk, tanda
 kotak yang terletak di sebelahnya, dan klik Buang Tajuk. Anda juga boleh [[Special:Watchlist/raw|menyunting senarai mentah]].',
 'watchlistedit-normal-submit'  => 'Buang Tajuk',
 'watchlistedit-normal-done'    => '$1 tajuk dibuang daripada senarai pantau anda:',
