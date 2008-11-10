@@ -312,7 +312,7 @@ $messages = array(
 'cancel'         => 'Poništite',
 'qbfind'         => 'Pronađite',
 'qbbrowse'       => 'Prelistajte',
-'qbedit'         => 'Izmjenite',
+'qbedit'         => 'Uredi',
 'qbpageoptions'  => 'Opcije stranice',
 'qbpageinfo'     => 'Informacije o stranici',
 'qbmyoptions'    => 'Moje opcije',
@@ -801,9 +801,9 @@ Ukoliko ne želite da vaši članci budu podložni izmjenama i slobodnom rastura
 nemojte ih slati ovdje. Takođe, slanje članka podrazumijeva i vašu izjavu da ste ga napisali sami, ili da ste ga kopirali iz izvora u javnom domenu ili sličnog slobodnog izvora.
 
 <strong>NEMOJTE SLATI RAD ZAŠTIĆEN AUTORSKIM PRAVIMA BEZ DOZVOLE AUTORA!</strong>',
-'copyrightwarning2'                => 'Zapamtite da svaki doprinos na stranici {{SITENAME}} može biti izmijenjen, promijenjen ili uklonjen od strane ostalih korisnika. Ako ne želite da ovo desi sa Vašim tesktom, onda ga nemojte slati ovdje.<br />
-Takođe nam garantujete da ste ovo Vi napisali, ili da ste ga kopirali iz javne domene ili sličnog besplatnog izvora informacija (pogledajte $1 za više detalja).
-<strong>NE ŠALJITE AUTORSKIM PRAVOM ZAŠTIĆENE TESKTOVE BEZ DOZVOLE!</strong>',
+'copyrightwarning2'                => 'Zapamtite da svaki doprinos na stranici {{SITENAME}} može biti izmijenjen, promijenjen ili uklonjen od strane ostalih korisnika. Ako ne želite da ovo desi sa Vašim tekstom, onda ga nemojte slati ovdje.<br />
+Takođe nam garantujete da ste ovo Vi napisali, ili da ste ga kopirali iz javne domene ili sličnog slobodnog izvora informacija (pogledajte $1 za više detalja).
+<strong>NE ŠALJITE AUTORSKIM PRAVOM ZAŠTIĆENE TEKSTOVE BEZ DOZVOLE!</strong>',
 'longpagewarning'                  => '<strong>PAŽNJA: Ova stranica ima $1 kilobajta; neki
 preglednici mogu imati problema kad uređujete stranice skoro ili veće od 32 kilobajta.
 Molimo Vas da razmotrite razbijanje stranice na manje dijelove.</strong>',
@@ -1424,44 +1424,104 @@ Prije nego što nastavite da je ponovno postavite trebate provjeriti $1.',
 
 Potrebno je da razmotrite da li je uredu nastaviti sa postavljanjem ove datoteke.
 Zapis brisanja za ovu datoteku je prikazan ovdje kao referenca:",
+'filename-bad-prefix'         => 'Naziv datoteke koju postavljate počinje sa <strong>"$1"</strong>, što je naziv koji obično automatski dodjeljuju digitalni fotoaparati i kamere.
+Molimo Vas da odaberete naziv datoteke koji opisuje njen sadržaj.',
 
-'upload-proto-error' => 'Pogrešan protokol',
-'upload-file-error'  => 'Unutrašnja greška',
+'upload-proto-error'      => 'Pogrešan protokol',
+'upload-proto-error-text' => 'Postavljanje sa vanjske lokacije zahtjeva URL-ove koji počinju sa <code>http://</code> ili <code>ftp://</code>.',
+'upload-file-error'       => 'Unutrašnja greška',
+'upload-file-error-text'  => 'Desila se interna greška pri pokušaju kreiranja privremene datoteke na serveru.
+Molimo kontaktirajte [[Special:ListUsers/sysop|administratora]].',
+'upload-misc-error'       => 'Nepoznata greška pri postavljanju',
+'upload-misc-error-text'  => 'Desila se nepoznata greška pri postavljanju.
+Molimo Vas provjerite da li je URL tačan i dostupan pa pokušajte ponovo.
+Ako se problem ne riješi, kontaktirajte [[Special:ListUsers/sysop|administratora]].',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
-'upload-curl-error6' => 'Ovaj URL nije bilo moguće otvoriti',
+'upload-curl-error6'       => 'Ovaj URL nije bilo moguće otvoriti',
+'upload-curl-error6-text'  => 'URL koji je naveden nije dostupan.
+Molimo ponovno provjerite da li je URL ispravan i da li stranica radi.',
+'upload-curl-error28'      => 'Vrijeme postavljanja isteklo',
+'upload-curl-error28-text' => 'Stranici je potrebno previše vremena za odgovor.
+Molimo provjerite da li je stranica postavljena, malo pričekajte i pokušajte ponovno.
+Možda možete pokušati kada bude manje opterećenje.',
 
-'nolicense' => 'Ništa nije odabrano',
+'license'            => 'Licenca:',
+'nolicense'          => 'Ništa nije odabrano',
+'license-nopreview'  => '(Pregled nije dostupan)',
+'upload_source_url'  => ' (validni, javno dostupni URL)',
+'upload_source_file' => ' (datoteka na Vašem računaru)',
 
 # Special:ImageList
-'imgfile'        => 'datoteka',
-'imagelist'      => 'Spisak slika',
-'imagelist_name' => 'Naziv',
+'imagelist-summary'     => 'Ova specijalna stranica prikazuje sve postavljene datoteke.
+Uobičajeno je da posljednja postavljena datoteka bude prikazana na vrhu spiska.
+Klikom na zaglavlje kolone možete promjeniti način sortiranja.',
+'imagelist_search_for'  => 'Traži medije po imenu:',
+'imgfile'               => 'datoteka',
+'imagelist'             => 'Spisak slika',
+'imagelist_date'        => 'Datum',
+'imagelist_name'        => 'Naziv',
+'imagelist_user'        => 'Korisnik',
+'imagelist_size'        => 'Veličina',
+'imagelist_description' => 'Opis',
 
 # Image description page
-'filehist'                  => 'Historija datoteke',
-'filehist-help'             => 'Kliknite na datum/vrijeme da vidite verziju datoteke iz tog vremena.',
-'filehist-current'          => 'trenutno',
-'filehist-datetime'         => 'Datum/Vrijeme',
-'filehist-user'             => 'Korisnik',
-'filehist-dimensions'       => 'Dimenzije',
-'filehist-filesize'         => 'Veličina datoteke',
-'filehist-comment'          => 'Komentar',
-'imagelinks'                => 'Upotreba slike',
-'linkstoimage'              => '{{PLURAL:$1|Slijedeća stranica koristi|Slijedećih $1 stranica koriste}} ovu sliku:',
-'nolinkstoimage'            => 'Nema stranica koje koriste ovu sliku.',
-'sharedupload'              => 'Ova datoteka se nalazi na [[Commons:Početna strana|Wikimedia Commons]] i može se koristiti i na drugim projektima.',
-'noimage'                   => 'Slika sa ovim imenom ne postoji, ali je možete $1.',
-'noimage-linktext'          => 'postaviti',
-'uploadnewversion-linktext' => 'Postavite noviju verziju ove datoteke',
+'filehist'                       => 'Historija datoteke',
+'filehist-help'                  => 'Kliknite na datum/vrijeme da vidite verziju datoteke iz tog vremena.',
+'filehist-deleteall'             => 'izbriši sve',
+'filehist-deleteone'             => 'obriši',
+'filehist-revert'                => 'vrati',
+'filehist-current'               => 'trenutno',
+'filehist-datetime'              => 'Datum/Vrijeme',
+'filehist-thumb'                 => 'Smanjeni pregled',
+'filehist-thumbtext'             => 'Smanjeni pregled verzije na dan $1',
+'filehist-nothumb'               => 'Bez smanjenog pregleda',
+'filehist-user'                  => 'Korisnik',
+'filehist-dimensions'            => 'Dimenzije',
+'filehist-filesize'              => 'Veličina datoteke',
+'filehist-comment'               => 'Komentar',
+'imagelinks'                     => 'Upotreba slike',
+'linkstoimage'                   => '{{PLURAL:$1|Slijedeća stranica koristi|Slijedećih $1 stranica koriste}} ovu sliku:',
+'linkstoimage-more'              => 'Više od $1 {{PLURAL:$1|datoteke|datoteka}} je povezano s ovom datotekom.
+Slijedeći spisak pokazuje samo {{PLURAL:$1|prvu stranicu povezanu|prve $1 stranice povezane|prvih $1 stranica povezanih}} s ovom datotekom.
+Ovdje je dostupan [[Special:WhatLinksHere/$2|potpuni spisak]].',
+'nolinkstoimage'                 => 'Nema stranica koje koriste ovu sliku.',
+'morelinkstoimage'               => 'Vidi [[Special:WhatLinksHere/$1|ostale linkove]] prema ovoj datoteci.',
+'redirectstofile'                => '{{PLURAL:$1|Slijedeća datoteka|Slijedeće $1 datoteke|Slijedećih $1 datoteka}} preusmjerava prema ovoj datoteci:',
+'duplicatesoffile'               => '{{PLURAL:$1|Slijedeća datoteka je dvojnik|Slijedeće $1 datoteke su dvojnici}} ove datoteke:',
+'sharedupload'                   => 'Ova datoteka se nalazi na [[Commons:Početna strana|Wikimedia Commons]] i može se koristiti i na drugim projektima.',
+'shareduploadwiki'               => 'Molimo pogledajte $1 za više informacija.',
+'shareduploadwiki-desc'          => 'Opis njene $1 na zajedničkom repozitoriju je prikazan ispod.',
+'shareduploadwiki-linktext'      => 'stranice opisa datoteke',
+'shareduploadduplicate'          => 'Ova datoteka je dvojnik $1 iz zajedničkog repozitorija.',
+'shareduploadduplicate-linktext' => 'drugoj datoteci',
+'shareduploadconflict'           => 'Ova datoteka ima isti naziv kao i $1 iz zajedničkog repozitorija.',
+'shareduploadconflict-linktext'  => 'druga datoteka',
+'noimage'                        => 'Slika sa ovim imenom ne postoji, ali je možete $1.',
+'noimage-linktext'               => 'postaviti',
+'uploadnewversion-linktext'      => 'Postavite noviju verziju ove datoteke',
+'imagepage-searchdupe'           => 'Pretraži datoteke dvojnike',
+
+# File reversion
+'filerevert'         => 'Vrati $1',
+'filerevert-legend'  => 'Vraćanje datoteke',
+'filerevert-comment' => 'Komentar:',
 
 # File deletion
+'filedelete'                  => 'Obriši $1',
+'filedelete-legend'           => 'Obriši datoteku',
+'filedelete-comment'          => 'Razlog brisanja:',
+'filedelete-submit'           => 'Obriši',
 'filedelete-otherreason'      => 'Ostali/dodatni razlozi:',
 'filedelete-reason-otherlist' => 'Ostali razlozi',
+'filedelete-reason-dropdown'  => '*Uobičajeni razlozi brisanja
+** Kršenje autorskih prava
+** Datoteka dvojnik',
 
 # MIME search
 'mimesearch' => 'MIME pretraga',
 'mimetype'   => 'MIME tip:',
+'download'   => 'učitaj',
 
 # List redirects
 'listredirects' => 'Spisak preusmjerenja',
@@ -1476,17 +1536,37 @@ Zapis brisanja za ovu datoteku je prikazan ovdje kao referenca:",
 'randomredirect' => 'Slučajno preusmjerenje',
 
 # Statistics
-'statistics'              => 'Statistike',
-'statistics-header-users' => 'Statistike korisnika',
+'statistics'               => 'Statistike',
+'statistics-header-pages'  => 'Statistike stranice',
+'statistics-header-edits'  => 'Statistike izmjena',
+'statistics-header-views'  => 'Statistike pregleda',
+'statistics-header-users'  => 'Statistike korisnika',
+'statistics-articles'      => 'Stranice sadržaja',
+'statistics-pages'         => 'Stranice',
+'statistics-pages-tooltip' => 'Sve stranice na wikiju, uključujući stranice za razgovor, preusmjerenja itd.',
+'statistics-files'         => 'Broj postavljenih datoteka',
+'statistics-edits'         => 'Broj izmjena od kako je instalirana {{SITENAME}}',
+'statistics-edits-average' => 'Prosječno izmjena po stranici',
+'statistics-views-total'   => 'Ukupno pregleda',
+'statistics-views-peredit' => 'Pogleda po izmjeni',
+'statistics-jobqueue'      => 'Dužina [http://www.mediawiki.org/wiki/Manual:Job_queue akcija na čekanju]',
+'statistics-users'         => 'Registrovani [[Special:ListUsers|korisnici]]',
+'statistics-users-active'  => 'Aktivni korisnici',
+'statistics-mostpopular'   => 'Najviše pregledane stranice',
 
-'disambiguations'     => 'Stranice za višeznačne odrednice',
-'disambiguationspage' => '{{ns:template}}:Višeznačna odrednica',
+'disambiguations'      => 'Stranice za višeznačne odrednice',
+'disambiguationspage'  => '{{ns:template}}:Višeznačna odrednica',
+'disambiguations-text' => "Slijedeće stranice su povezane sa '''čvor stranicom'''.
+Po pravilu, one se trebaju povezati sa konkretnim člankom.<br />
+Stranica se smatra čvorom, ukoliko koristi šablon koji je povezan sa spiskom [[MediaWiki:Disambiguationspage|čvor stranica]]",
 
 'doubleredirects'     => 'Dvostruka preusmjerenja',
 'doubleredirectstext' => 'Svaki red sadrži veze na prvo i drugo preusmjerenje, kao i na prvu liniju teksta drugog preusmjerenja, što obično daje "pravi" ciljni članak, na koji bi prvo preusmjerenje i trebalo da pokazuje.',
 
-'brokenredirects'     => 'Pokvarena preusmjerenja',
-'brokenredirectstext' => 'Sledeća preusmjerenja su povezana na nepostojeći članak:',
+'brokenredirects'        => 'Pokvarena preusmjerenja',
+'brokenredirectstext'    => 'Sledeća preusmjerenja su povezana na nepostojeći članak:',
+'brokenredirects-edit'   => '(uredi)',
+'brokenredirects-delete' => '(obriši)',
 
 'withoutinterwiki'        => 'Članci bez interwiki linkova',
 'withoutinterwiki-submit' => 'Pokaži',
@@ -1511,6 +1591,7 @@ Zapis brisanja za ovu datoteku je prikazan ovdje kao referenca:",
 'popularpages'            => 'Popularne stranice',
 'wantedcategories'        => 'Tražene kategorije',
 'wantedpages'             => 'Tražene stranice',
+'wantedfiles'             => 'Tražene datoteke',
 'mostlinked'              => 'Članci sa najviše linkova',
 'mostlinkedcategories'    => 'Kategorije sa najviše linkova',
 'mostlinkedtemplates'     => 'Najviše upotrebljavani šabloni',
@@ -1522,7 +1603,9 @@ Zapis brisanja za ovu datoteku je prikazan ovdje kao referenca:",
 'longpages'               => 'Dugačke stranice',
 'deadendpages'            => 'Stranice bez internih veza',
 'protectedpages'          => 'Zaštićene stranice',
+'protectedtitles'         => 'Zaštićeni naslovi',
 'listusers'               => 'Spisak korisnika',
+'listusers-editsonly'     => 'Pokaži samo korisnike koji su uređivali',
 'newpages'                => 'Nove stranice',
 'newpages-username'       => 'Korisničko ime:',
 'ancientpages'            => 'Najstarije stranice',
@@ -1538,7 +1621,8 @@ aktivnoj upotrebi.</p>',
 na kome bi se izvela ova funkcija.',
 
 # Book sources
-'booksources' => 'Štampani izvori',
+'booksources'               => 'Štampani izvori',
+'booksources-search-legend' => 'Traži književne izvore',
 
 # Special:Log
 'specialloguserlabel'  => 'Korisnik:',
@@ -1552,6 +1636,7 @@ na kome bi se izvela ova funkcija.',
 'nextpage'         => 'Sljedeća strana ($1)',
 'prevpage'         => 'Prethodna stranica ($1)',
 'allpagesfrom'     => 'Prikaži stranice počev od:',
+'allpagesto'       => 'Prikaži stranice koje završavaju na:',
 'allarticles'      => 'Svi članci',
 'allpagessubmit'   => 'Idi',
 'allpagesprefix'   => 'Prikaži stranice sa prefiksom:',
@@ -1590,11 +1675,12 @@ E-mail adresa koju ste unijeli u [[Special:Preferences|Vašim korisničkim posta
 'noemailtitle'    => 'Nema adrese e-pošte',
 'noemailtext'     => 'Ovaj korisnik nije naveo ispravnu adresu e-pošte,
 ili je izabrao da ne prima e-poštu od drugih korisnika.',
-'emailfrom'       => 'Od',
-'emailto'         => 'Za',
-'emailsubject'    => 'Tema',
-'emailmessage'    => 'Poruka',
+'emailfrom'       => 'Od:',
+'emailto'         => 'Za:',
+'emailsubject'    => 'Tema:',
+'emailmessage'    => 'Poruka:',
 'emailsend'       => 'Pošalji',
+'emailccme'       => 'Pošalji mi kopiju moje poruke.',
 'emailsent'       => 'Poruka poslata',
 'emailsenttext'   => 'Vaša poruka je poslata e-poštom.',
 
@@ -1635,7 +1721,7 @@ Ako kasnije želite da uklonite stranicu sa vašeg spiska praćenih članaka, kl
 'enotif_reset'       => 'Označi sve strane kao posjećene',
 'enotif_newpagetext' => 'Ovo je novi članak.',
 'enotif_subject'     => '{{SITENAME}} strana $PAGETITLE je bila $CHANGEDORCREATED od strane $PAGEEDITOR',
-'enotif_lastvisited' => 'Pogledajte $1 za sve izmjene od vaše poslednje posjete.',
+'enotif_lastvisited' => 'Pogledajte $1 za sve izmjene od vaše posljednje posjete.',
 'enotif_body'        => 'Dragi $WATCHINGUSERNAME,
 
 {{SITENAME}} strana $PAGETITLE je bila $CHANGEDORCREATED $PAGEEDITDATE od strane $PAGEEDITOR,
@@ -1667,6 +1753,7 @@ Fidbek i dalja pomoć:
 'excontent'             => "sadržaj je bio: '$1'",
 'exbeforeblank'         => "sadržaj prije brisanja je bio: '$1'",
 'exblank'               => 'stranica je bila prazna',
+'delete-legend'         => 'Obriši',
 'historywarning'        => 'Upozorenje:  Stranica koju želite da obrišete ima historiju:',
 'confirmdeletetext'     => 'Brisanjem ćete obrisati stranicu ili sliku zajedno sa historijom iz baze podataka, ali će se iste moći vratiti kasnije. 
 Molim potvrdite svoju namjeru, da razumijete posljedice i da ovo radite u skladu sa [[{{MediaWiki:Policy-url}}|pravilima]].',
@@ -1678,7 +1765,7 @@ Pogledajte $2 za zapis o skorašnjim brisanjima.',
 'dellogpagetext'        => 'Ispod je spisak najskorijih brisanja.',
 'deletionlog'           => 'istorija brisanja',
 'reverted'              => 'Vraćeno na prijašnju reviziju',
-'deletecomment'         => 'Razlog za brisanje',
+'deletecomment'         => 'Razlog brisanja:',
 'deleteotherreason'     => 'Ostali/dodatni razlozi:',
 'deletereasonotherlist' => 'Ostali razlozi',
 
@@ -1725,6 +1812,9 @@ Možete promijeniti stepen zaštite ove stranice, ali to neće uticati na prenos
 'protect-expiry-options'      => '15 minuta:15 min,1 sat:1 hour,2 sata:2 hours,6 sati:6 hours,12 sati:12 hours,1 dan:1 day,3 dana:3 days,1 sedmica:1 week,2 sedmice:2 weeks,1 mjesec:1 month,3 mjeseca:3 months,6 mjeseci:6 months,1 godine:1 year,zauvijek:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Dopuštenje:',
 'restriction-level'           => 'Stepen ograničenja:',
+
+# Restrictions (nouns)
+'restriction-edit' => 'Uredi',
 
 # Undelete
 'undelete'               => 'Pogledaj izbrisane stranice',

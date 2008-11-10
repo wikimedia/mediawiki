@@ -1033,7 +1033,7 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'qbsettings-floatingright' => 'Flotante á dereita',
 'changepassword'           => 'Cambiar o meu contrasinal',
 'skin'                     => 'Aparencia',
-'skin-preview'             => 'Probar',
+'skin-preview'             => 'Vista previa',
 'math'                     => 'Fórmulas matemáticas',
 'dateformat'               => 'Formato da data',
 'datedefault'              => 'Ningunha preferencia',

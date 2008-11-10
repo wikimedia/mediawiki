@@ -416,6 +416,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'فرستادن رونوشت نامه‌های الکترونیکی که به دیگران ارسال می‌کنم به خودم.',
 'tog-diffonly'                => 'محتوای صفحه، زیر تفاوت نمایش داده نشود',
 'tog-showhiddencats'          => 'رده‌های پنهان را نمایش بده',
+'tog-norollbackdiff'          => 'بعد از واگردانی تفاوت را نشان نده',
 
 'underline-always'  => 'همیشه',
 'underline-never'   => 'هرگز',

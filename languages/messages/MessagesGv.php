@@ -147,6 +147,7 @@ $messages = array(
 'userpage'         => 'Jeeagh er duillag yn ymmydeyr',
 'projectpage'      => 'Jeeagh er duillag y halee',
 'mediawikipage'    => 'Jeeagh er duillag y haghteraght',
+'templatepage'     => 'Jeeagh er duillag y chlowan',
 'viewhelppage'     => 'Jeeagh er duillag y chooney',
 'categorypage'     => 'Jeeagh er duillag ny ronnaghyn',
 'viewtalkpage'     => 'Jeeagh er resoonaght',
