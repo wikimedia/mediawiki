@@ -23,7 +23,7 @@
  */
 
 /* Private */
-function _wfInternalFancyCallbackGoop($hook) {
+function _wfInvokeInternalGoop($hook) {
 	$object = NULL;
 	$method = NULL;
 	$func = NULL;
@@ -76,8 +76,8 @@ function _wfInternalFancyCallbackGoop($hook) {
 }
 
 /* Return a string describing the hook for debugging purposes. */
-function wfFormatFancyCallback($hook) {
-	list($callback, $func, $data) = _wfInternalFancyCallbackGoop($hook, $args);
+function wfFormatInvocation($hook) {
+	list($callback, $func, $data) = _wfInvokeInternalGoop($hook, $args);
 	
 	if( is_array( $callback ) ) {
 		if( is_object( $callback[0] ) ) {
@@ -101,8 +101,8 @@ function wfFormatFancyCallback($hook) {
  * If arguments are provided both as part of the hook itself, and when
  * calling wfCallFancyCallback, the two arrays are merged.
  */
-function wfInvokeFancyCallback($hook, $args = array()) {
-	list($callback, $func, $data) = _wfInternalFancyCallbackGoop($hook, $args);
+function wfInvoke($hook, $args = array()) {
+	list($callback, $func, $data) = _wfInvokeInternalGoop($hook, $args);
 	
 	/* We put the first data element on, if needed. */
 	if ($data) {
@@ -147,7 +147,7 @@ function wfRunHooks($event, $args = array()) {
 
 	foreach ($wgHooks[$event] as $index => $hook) {
 
-		$retval = wfInvokeFancyCallback($hook, $args);
+		$retval = wfInvoke($hook, $args);
 
 		/* String return is an error; false return means stop processing. */
 
@@ -156,7 +156,7 @@ function wfRunHooks($event, $args = array()) {
 			$wgOut->showFatalError($retval);
 			return false;
 		} elseif( $retval === null ) {
-			$prettyFunc = wfFormatFancyCallback($hook);
+			$prettyFunc = wfFormatInvocation($hook);
 			throw new MWException( "Detected bug in an extension! " .
 				"Hook $prettyFunc failed to return a value; " .
 				"should return true to continue hook processing or false to abort." );
