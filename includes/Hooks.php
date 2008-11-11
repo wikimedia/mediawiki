@@ -22,6 +22,105 @@
  * @file
  */
 
+/* Private */
+function _wfInternalFancyCallbackGoop($hook) {
+	$object = NULL;
+	$method = NULL;
+	$func = NULL;
+	$data = NULL;
+	$have_data = false;
+
+	if (is_array($hook)) {
+		if (count($hook) < 1) {
+			throw new MWException("Empty array in hooks for " . $event . "\n");
+		} else if (is_object($hook[0])) {
+			$object = $hook[0];
+			if (count($hook) < 2) {
+				$method = "on" . $event;
+			} else {
+				$method = $hook[1];
+				if (count($hook) > 2) {
+					$data = $hook[2];
+					$have_data = true;
+				}
+			}
+		} else if (is_string($hook[0])) {
+			$func = $hook[0];
+			if (count($hook) > 1) {
+				$data = $hook[1];
+				$have_data = true;
+			}
+		} else {
+			var_dump( $wgHooks );
+			throw new MWException("Unknown datatype in hooks for " . $event . "\n");
+		}
+	} else if (is_string($hook)) { # functions look like strings, too
+		$func = $hook;
+	} else if (is_object($hook)) {
+		$object = $hook;
+		$method = "on" . $event;
+	} else {
+		throw new MWException("Unknown datatype in hooks for " . $event . "\n");
+	}
+
+	if ( isset( $object ) ) {
+		$func = get_class( $object ) . '::' . $method;
+		$callback = array( $object, $method );
+	} elseif ( false !== ( $pos = strpos( $func, '::' ) ) ) {
+		$callback = array( substr( $func, 0, $pos ), substr( $func, $pos + 2 ) );
+	} else {
+		$callback = $func;
+	}
+	
+	return array($callback, $func, $data);
+}
+
+/* Return a string describing the hook for debugging purposes. */
+function wfFormatFancyCallback($hook) {
+	list($callback, $func, $data) = _wfInternalFancyCallbackGoop($hook, $args);
+	
+	if( is_array( $callback ) ) {
+		if( is_object( $callback[0] ) ) {
+			$prettyClass = get_class( $callback[0] );
+		} else {
+			$prettyClass = strval( $callback[0] );
+		}
+		$prettyFunc = $prettyClass . '::' . strval( $callback[1] );
+	} else {
+		$prettyFunc = strval( $callback );
+	}
+	return $prettyFunc;
+}
+
+
+/*
+ * Invoke a function dynamically.
+ * $hook can be: a function, an object, an array of $function and $data,
+ * an array of just a function, an array of object and method, or an
+ * array of object, method, and data.
+ * If arguments are provided both as part of the hook itself, and when
+ * calling wfCallFancyCallback, the two arrays are merged.
+ */
+function wfInvokeFancyCallback($hook, $args = array()) {
+	list($callback, $func, $data) = _wfInternalFancyCallbackGoop($hook, $args);
+	
+	/* We put the first data element on, if needed. */
+	if ($data) {
+		$hook_args = array_merge(array($data), $args);
+	} else {
+		$hook_args = $args;
+	}
+
+	// Run autoloader (workaround for call_user_func_array bug)
+	is_callable( $callback );
+
+	/* Call the hook. */
+	wfProfileIn( $func );
+	$retval = call_user_func_array( $callback, $hook_args );
+	wfProfileOut( $func );
+	return $retval;
+}
+
 
 /**
  * Because programmers assign to $wgHooks, we need to be very
@@ -48,74 +147,7 @@ function wfRunHooks($event, $args = array()) {
 
 	foreach ($wgHooks[$event] as $index => $hook) {
 
-		$object = NULL;
-		$method = NULL;
-		$func = NULL;
-		$data = NULL;
-		$have_data = false;
-
-		/* $hook can be: a function, an object, an array of $function and $data,
-		 * an array of just a function, an array of object and method, or an
-		 * array of object, method, and data.
-		 */
-
-		if (is_array($hook)) {
-			if (count($hook) < 1) {
-				throw new MWException("Empty array in hooks for " . $event . "\n");
-			} else if (is_object($hook[0])) {
-				$object = $wgHooks[$event][$index][0];
-				if (count($hook) < 2) {
-					$method = "on" . $event;
-				} else {
-					$method = $hook[1];
-					if (count($hook) > 2) {
-						$data = $hook[2];
-						$have_data = true;
-					}
-				}
-			} else if (is_string($hook[0])) {
-				$func = $hook[0];
-				if (count($hook) > 1) {
-					$data = $hook[1];
-					$have_data = true;
-				}
-			} else {
-				var_dump( $wgHooks );
-				throw new MWException("Unknown datatype in hooks for " . $event . "\n");
-			}
-		} else if (is_string($hook)) { # functions look like strings, too
-			$func = $hook;
-		} else if (is_object($hook)) {
-			$object = $wgHooks[$event][$index];
-			$method = "on" . $event;
-		} else {
-			throw new MWException("Unknown datatype in hooks for " . $event . "\n");
-		}
-
-		/* We put the first data element on, if needed. */
-
-		if ($have_data) {
-			$hook_args = array_merge(array($data), $args);
-		} else {
-			$hook_args = $args;
-		}
-
-		if ( isset( $object ) ) {
-			$func = get_class( $object ) . '::' . $method;
-			$callback = array( $object, $method );
-		} elseif ( false !== ( $pos = strpos( $func, '::' ) ) ) {
-			$callback = array( substr( $func, 0, $pos ), substr( $func, $pos + 2 ) );
-		} else {
-			$callback = $func;
-		}
-
-		// Run autoloader (workaround for call_user_func_array bug)
-		is_callable( $callback );
-
-		/* Call the hook. */
-		wfProfileIn( $func );
-		$retval = call_user_func_array( $callback, $hook_args );
-		wfProfileOut( $func );
+		$retval = wfInvokeFancyCallback($hook, $args);
 
 		/* String return is an error; false return means stop processing. */
 
@@ -124,16 +156,7 @@ function wfRunHooks($event, $args = array()) {
 			$wgOut->showFatalError($retval);
 			return false;
 		} elseif( $retval === null ) {
-			if( is_array( $callback ) ) {
-				if( is_object( $callback[0] ) ) {
-					$prettyClass = get_class( $callback[0] );
-				} else {
-					$prettyClass = strval( $callback[0] );
-				}
-				$prettyFunc = $prettyClass . '::' . strval( $callback[1] );
-			} else {
-				$prettyFunc = strval( $callback );
-			}
+			$prettyFunc = wfFormatFancyCallback($hook);
 			throw new MWException( "Detected bug in an extension! " .
 				"Hook $prettyFunc failed to return a value; " .
 				"should return true to continue hook processing or false to abort." );
