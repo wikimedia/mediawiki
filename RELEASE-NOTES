@@ -202,6 +202,7 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 15835) Added Content-Style-Type meta tag
 * Add class="disambiguationpage" to <body> tag for disambiguations
 * (bug 11027)  Add parameter to MW:Randompage-nopages so that user can see the namespace.
+* Add id="userDomainSection" to <tr> tag in Userlogin.php template so that admins with a single domain can hide the domain section using CSS
 
 === Bug fixes in 1.14 ===
 
