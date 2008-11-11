@@ -1431,7 +1431,7 @@ Note that using the navigation links will reset this column.',
 'searchmenu-new'                   => "'''[[\$1|Create]] the page \"[[\$1]]\" on this wiki!'''",
 'searchhelp-url'                   => 'Project:Searching',
 'searchmenu-prefix'                => '[[Special:AllPages/$1|Browse pages with this prefix]]',
-'searchmenu-help'                  => '[[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]?',
+'searchmenu-help'                  => '[[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]?', # do not translate or duplicate this message to other languages
 'searchprofile-articles'           => 'Pages',
 'searchprofile-articles-and-proj'  => 'Pages & Project',
 'searchprofile-project'            => 'Project',
