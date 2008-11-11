@@ -1436,7 +1436,7 @@ $wgCacheEpoch = '20030516000000';
  * to ensure that client-side caches don't keep obsolete copies of global
  * styles.
  */
-$wgStyleVersion = '183';
+$wgStyleVersion = '184';
 
 
 # Server-side caching:
@@ -1922,6 +1922,20 @@ $wgNamespacesWithSubpages = array(
 $wgNamespacesToBeSearchedDefault = array(
 	NS_MAIN           => true,
 );
+
+/**
+ * Additional namespaces to those in $wgNamespacesToBeSearchedDefault that
+ * will be added to default search for "project" page inclusive searches
+ * 
+ * Same format as $wgNamespacesToBeSearchedDefault
+ */  
+$wgNamespacesToBeSearchedProject = array(
+	NS_USER           => true,
+	NS_PROJECT        => true,	
+	NS_HELP           => true,
+	NS_CATEGORY       => true,
+);
+
 
 /**
  * Site notice shown at the top of each page
