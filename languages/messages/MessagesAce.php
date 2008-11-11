@@ -276,7 +276,6 @@ Nyoë pat nakeuh log seunampôh nibak ôn nyoë:",
 'diff-multi'              => '({{PLURAL:$1|Sa|$1}} geunantoë antara hana geupeuleumah.)',
 
 # Search results
-'noexactmatch' => "'''Hana ôn nyang nanjih ''$1''. ''' Droëneuh   jeuët [[:$1|peugèt ôn nyoë]].",
 'prevn'        => '$1 sigohlomjih',
 'nextn'        => '$1 lheuëh nyan',
 'viewprevnext' => 'Eu ($1)($2)($3)',

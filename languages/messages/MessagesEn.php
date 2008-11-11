@@ -1426,14 +1426,14 @@ Note that using the navigation links will reset this column.',
 'prevn'                            => 'previous $1',
 'nextn'                            => 'next $1',
 'viewprevnext'                     => 'View ($1) ($2) ($3)',
-'searchmenu-exists'                => "'''There is page named \"[[$1]]\" on this wiki'''",
-'searchmenu-new'                   => "'''[[$1|Create]] the page \"[[$1]]\" on this wiki!'''",
+'searchmenu-exists'                => "'''There is page named \"[[\$1]]\" on this wiki'''",
+'searchmenu-new'                   => "'''[[\$1|Create]] the page \"[[\$1]]\" on this wiki!'''",
 'searchhelp-url'                   => 'Project:Searching',
-'searchmenu-prefix'                => "[[Special:AllPages/$1|Browse pages with this prefix]]",
-'searchmenu-help'                  => "[[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]?",
+'searchmenu-prefix'                => '[[Special:AllPages/$1|Browse pages with this prefix]]',
+'searchmenu-help'                  => '[[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]?',
 'searchprofile-articles'           => 'Pages',
-'searchprofile-project'            => 'Project',
 'searchprofile-articles-and-proj'  => 'Pages & Project',
+'searchprofile-project'            => 'Project',
 'searchprofile-images'             => 'Files',
 'searchprofile-everything'         => 'Everything',
 'searchprofile-advanced'           => 'Advanced',
@@ -1472,7 +1472,7 @@ Note that using the navigation links will reset this column.',
 'searchdisabled'                   => '{{SITENAME}} search is disabled.
 You can search via Google in the meantime.
 Note that their indexes of {{SITENAME}} content may be out of date.',
-'googlesearch'              => '<form method="get" action="http://www.google.com/search" id="googlesearch">
+'googlesearch'                     => '<form method="get" action="http://www.google.com/search" id="googlesearch">
     <input type="hidden" name="domains" value="{{SERVER}}" />
     <input type="hidden" name="num" value="50" />
     <input type="hidden" name="ie" value="$2" />
@@ -1552,7 +1552,6 @@ please see math/README to configure.',
 'allowemail'               => 'Enable e-mail from other users',
 'prefs-searchoptions'      => 'Search options',
 'prefs-namespaces'         => 'Namespaces',
-'defaultns'                => 'Search in these namespaces by default:',
 'default'                  => 'default',
 'files'                    => 'Files',
 

@@ -1153,12 +1153,6 @@ Añğartpa: bağıttaw siltemelerin qoldanğanda bul bağan qaýta qoýıladı.'
 
 # Search results
 'searchresults'             => 'İzdew nätïjeleri',
-'searchresulttext'          => "{{SITENAME}} saytında izlew haqqında ko'birek mag'lıwmat alg'ın'ız kelse, [[{{Mediawiki:helppage}}|{{int:help}} betine]] o'tip qarap ko'rin'.",
-'searchsubtitle'            => "İzdegeniñiz: '''[[:$1]]'''",
-'searchsubtitleinvalid'     => "İzdegeniñiz: '''$1'''",
-'noexactmatch'              => "'''Osı arada bettiñ «$1» taqırıp atı joq.'''
-[[:$1|Bul betti bastaý]] alasız.",
-'noexactmatch-nocreate'     => "'''Osı arada bettiñ «$1» taqırıp atı joq.'''",
 'toomanymatches'            => 'Tım köp säýkes qaýtarıldı, özge suranımdı baýqap köriñiz',
 'titlematches'              => 'Bet taqırıbın atı säýkes keledi',
 'notitlematches'            => 'Eş bet taqırıbın atı säýkes emes',
@@ -1184,7 +1178,6 @@ Añğartpa: bağıttaw siltemelerin qoldanğanda bul bağan qaýta qoýıladı.'
 'showingresults'            => "Tömende nömir '''$2''' ornınan bastap barınşa '''$1''' nätïje körsetiledi.",
 'showingresultsnum'         => "Tömende nömir '''$2''' ornınan bastap '''$3''' nätïje körsetiledi.",
 'showingresultstotal'       => "Tömende {{PLURAL:$3|'''$3''' arasınan '''$1''' nätïje körsetiledi|'''$3''' arasınan '''$1 — $2''' nätïje awqımı körsetiledi}}",
-'nonefound'                 => "'''Esletpe''': Defolt boyınsha tek g'ana sheklengen isimler ko'pliginen izlenedi. Barlıq mag'lıwmat tu'rin (sonın' ishinde sa'wbet betlerdi, shablonlardı h.t.b.) izlew ushın izlewin'izdi ''barlıq:'' prefiksi menen baslan', yamasa qa'legen isimler ko'pligin prefiks esabında qollanın'.",
 'powersearch'               => 'Keñeýtilgen izdew',
 'powersearch-legend'        => 'Keñeýtilgen izdew',
 'powersearch-ns'            => "Usı isimler ko'pliginen izlew:",
@@ -1257,7 +1250,6 @@ baptaw üşin math/README qujatın qarañız.',
 'allowemail'               => 'Basqadan xat qabıldawın qos',
 'prefs-searchoptions'      => 'İzdew baptalımdarı',
 'prefs-namespaces'         => 'Esim ayaları',
-'defaultns'                => 'Mına esim ayalarda ädepkiden izdew:',
 'default'                  => 'ädepki',
 'files'                    => 'Faýldar',
 

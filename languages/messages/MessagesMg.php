@@ -422,7 +422,6 @@ Tadidio: (ank) = fampitahana amin'ny votoatin'ny pejy ankehitriny,
 
 # Search results
 'searchresults'     => 'Valim-pikarohana',
-'searchresulttext'  => "Jereo ny [[{{MediaWiki:Helppage}}|fanazavana fanampiny momba ny fikarohana eto amin'ny {{SITENAME}}]].",
 'titlematches'      => "Mifanitsy amin'ny lohatenin'ny lahatsoratra",
 'notitlematches'    => 'Tsy nahitana lohateny mifanaraka',
 'textmatches'       => "Mifanitsy amin'ny votoatin'ny pejy",
@@ -432,11 +431,6 @@ Tadidio: (ank) = fampitahana amin'ny votoatin'ny pejy ankehitriny,
 'viewprevnext'      => 'Hijery ($1) ($2) ($3).',
 'showingresults'    => "Omeo ny valiny miisa hatramin'ny <b>$1</b> manomboka ny #<b>$2</b>.",
 'showingresultsnum' => 'Omeo ny valiny miisa <b>$3</b> manomboka ny #<b>$2</b>.',
-'nonefound'         => "
-'''Fanamarihana''': ny mahatonga ny fikarohana tsy hahita vokany matetika dia ny 
-fampiasanao teny miasa matetika toy ny \"izay\" sy ny \"tsy\",
-na ny fanomezanao teny mihoatra ny iray (ny pejy ahitana ny teny rehetra hokarohina
-ihany no miseho amin'ny vokatry ny karoka).",
 'powersearch'       => 'Fitadiavana',
 'searchdisabled'    => "Tsy nalefa ny karoka eto amin'i {{SITENAME}}. Afaka mampiasa an'i Google aloha ianao mandra-paha. Nefa fantaro fa mety ho efa lany daty ny valiny omeny.",
 

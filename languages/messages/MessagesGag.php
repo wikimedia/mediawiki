@@ -492,7 +492,6 @@ Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 'diff-multi'              => '({{PLURAL:$1|Ara versiya|$1 ara versiyalar}} gösterilmedi.)',
 
 # Search results
-'noexactmatch' => " Başlaa bu olan bir yazı bulunamadı. Bu yazını var nicä [[:$1|'''siz çeketmää''']].",
 'prevn'        => 'ilerki $1',
 'nextn'        => 'geeriki $1',
 'viewprevnext' => '($1) ($2) ($3).',

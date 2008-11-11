@@ -197,16 +197,13 @@ Proba [[Special:Search|sercho sur li wiki]] por relatet pagines.',
 'compareselectedversions' => 'Kompara selektet versiones',
 
 # Search results
-'searchresults'         => 'Resultes de sercho',
-'searchresulttext'      => 'Por plu multi informatione pri sercho {{SITENAME}}, vida [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'        => "Vu serchad '''[[:$1]]'''",
-'searchsubtitleinvalid' => "Vu serchad '''$1'''",
-'prevn'                 => 'lasti $1',
-'nextn'                 => 'sekuenti $1',
-'viewprevnext'          => 'Vida ($1) ($2) ($3).',
-'showingresults'        => "Montrant subu {{PLURAL:$1|'''1''' resulte|'''$1''' resultes}} amaxim komensant fro #'''$2'''.",
-'showingresultsnum'     => "Montrant subu {{PLURAL:$3|'''1''' result|'''$3''' results}} komensant fro #'''$2'''.",
-'powersearch'           => 'Sercha',
+'searchresults'     => 'Resultes de sercho',
+'prevn'             => 'lasti $1',
+'nextn'             => 'sekuenti $1',
+'viewprevnext'      => 'Vida ($1) ($2) ($3).',
+'showingresults'    => "Montrant subu {{PLURAL:$1|'''1''' resulte|'''$1''' resultes}} amaxim komensant fro #'''$2'''.",
+'showingresultsnum' => "Montrant subu {{PLURAL:$3|'''1''' result|'''$3''' results}} komensant fro #'''$2'''.",
+'powersearch'       => 'Sercha',
 
 # Preferences page
 'preferences'       => 'Preferos',

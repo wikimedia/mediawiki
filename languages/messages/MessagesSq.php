@@ -821,15 +821,6 @@ Kini kujdes se përdorimi i lidhjeve të shfletimit do të ndryshojë përzgjedh
 
 # Search results
 'searchresults'             => 'Rezultatet e kërkimit',
-'searchresulttext'          => 'Për më shumë informacion rreth kërkimit në {{SITENAME}} shikoni [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'            => 'Kërkim për "[[$1]]"',
-'searchsubtitleinvalid'     => 'Kërkim për "$1"',
-'noexactmatch'              => 'Faqja me atë titull nuk është krijuar akoma
-
-Mund të [[$1|filloni një artikull]] me këtë titull.
-
-Ju lutem kërkoni {{SITENAME}}-n përpara se të krijoni një artikull të ri se mund të jetë nën një titull tjetër.',
-'noexactmatch-nocreate'     => "'''Faqja e titulluar \"\$1\" nuk ekziston'''",
 'toomanymatches'            => 'Ky kërkim ka shumë përfundime, provoni një pyetje tjetër më përcaktuese',
 'titlematches'              => 'Tituj faqesh që përputhen',
 'notitlematches'            => 'Nuk ka asnjë titull faqeje që përputhet',
@@ -855,7 +846,6 @@ Ju lutem kërkoni {{SITENAME}}-n përpara se të krijoni një artikull të ri se
 'showingresults'            => "Më poshtë tregohen {{PLURAL:$1|'''1''' përfundim|'''$1''' përfundime}} duke filluar nga #'''$2'''.",
 'showingresultsnum'         => "Më poshtë tregohen {{PLURAL:$3|'''1''' përfundim|'''$3''' përfundime}} duke filluar nga #'''$2'''.",
 'showingresultstotal'       => "Më poshtë {{PLURAL:$3|tregohet 1 përfundim|tregohen '''$1 - $2''' nga '''$3''' përfundime}}",
-'nonefound'                 => '<strong>Shënim</strong>: Kërkimet pa rezultate ndodhin kur kërkoni për fjalë që rastisen shpesh si "ke" dhe "nga", të cilat nuk janë të futura në regjistër, ose duke dhënë më shumë se një fjalë (vetëm faqet që i kanë të gjitha ato fjalë do të tregohen si rezultate).',
 'powersearch'               => 'Kërko',
 'powersearch-legend'        => 'Kërkim i përparuar',
 'powersearch-ns'            => 'Kërkim në hapësira:',
@@ -924,7 +914,6 @@ Ju lutem kërkoni {{SITENAME}}-n përpara se të krijoni një artikull të ri se
 'allowemail'               => 'Lejo përdoruesit të më dërgojnë email',
 'prefs-searchoptions'      => 'Mundësi kërkimi',
 'prefs-namespaces'         => 'Hapësirat',
-'defaultns'                => 'Kërko automatikisht vetëm në këto hapësira:',
 'default'                  => 'parazgjedhje',
 'files'                    => 'Figura',
 

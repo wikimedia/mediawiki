@@ -448,13 +448,10 @@ $messages = array(
 'editundo'                => 'ກັບຄືນ',
 
 # Search results
-'searchresulttext' => 'ສຳຫຼັບ ຂໍ້ມູນເພີ່ມເຕີມ ກ່ຽວກັບ ການຊອກຫາ ຢູ່ {{SITENAME}}, ກະລຸນາເບິ່ງ [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'   => "ທ່ານ ຊອກຫາ '''[[:$1]]'''",
-'noexactmatch'     => "'''ຍັງບໍ່ມີໜ້າ ຊື່ວ່າ  \"\$1\".''' ທ່ານ ສາມາດ [[:\$1|ສ້າງໜ້ານີ້ໄດ້]].",
-'prevn'            => '$1 ກ່ອນໜ້າ',
-'nextn'            => '$1 ຕໍ່ໄປ',
-'viewprevnext'     => 'ເບິ່ງ ($1) ($2) ($3).',
-'powersearch'      => 'ຊອກຫາ',
+'prevn'        => '$1 ກ່ອນໜ້າ',
+'nextn'        => '$1 ຕໍ່ໄປ',
+'viewprevnext' => 'ເບິ່ງ ($1) ($2) ($3).',
+'powersearch'  => 'ຊອກຫາ',
 
 # Preferences page
 'preferences'           => 'ການຕັ້ງຄ່າ',
@@ -495,7 +492,6 @@ $messages = array(
 'servertime'            => 'ເວລາເຊີເວີ',
 'guesstimezone'         => 'ເອົາເວລາຈາກໂປຣແກຣມທ່ອງເວັບ',
 'allowemail'            => 'ອະນຸຍາດ ໃຫ້ຜູ້ໃຊ້ອື່ນ ສົ່ງອີເມລຫາຂ້ອຍ',
-'defaultns'             => 'ຄົ້ນຫາ ໃນ ຂອບເຂດຊື່ ນີ້ ເວລາບໍ່ມີການລະບຸ:',
 'files'                 => 'ໄຟລ໌',
 
 # User rights
