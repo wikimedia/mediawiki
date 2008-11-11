@@ -255,8 +255,6 @@ $messages = array(
 'editundo'                => 'واپس',
 
 # Search results
-'noexactmatch' => "'''اس \"\$1\" ناں دا کوئی صفحہ نہیں۔'''
-تسی اے [[:\$1|صفحہ لکھ سکدے او]]۔",
 'prevn'        => 'پہلا $1',
 'nextn'        => 'اگلا $1',
 'viewprevnext' => 'ویکھو ($1) ($2) ($3)',

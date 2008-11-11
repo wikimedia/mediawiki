@@ -509,14 +509,11 @@ Leggenda: (corr) = differense co-a verscion corrente, (prec) = differense co-a v
 'diff-multi'              => '({{PLURAL:$1|Ûnn-a revixon intermedia no vista|$1 reviscioîn intermedie no viste}}.)',
 
 # Search results
-'searchresults'         => 'Resultati da reçerca',
-'searchsubtitle'        => "Ti t'è çercoö '''[[:$1]]'''",
-'searchsubtitleinvalid' => "Ti t'è çercoö '''$1'''",
-'noexactmatch'          => "'''No gh'è nisciûnn-a paggina c'a se ciamme \"\$1\".''' O se pêu [[:\$1|creâla òua]].",
-'prevn'                 => 'Preçedenti $1',
-'nextn'                 => 'Proscima $1',
-'viewprevnext'          => 'Veddi ($1) ($2) ($3).',
-'powersearch'           => 'Çerca',
+'searchresults' => 'Resultati da reçerca',
+'prevn'         => 'Preçedenti $1',
+'nextn'         => 'Proscima $1',
+'viewprevnext'  => 'Veddi ($1) ($2) ($3).',
+'powersearch'   => 'Çerca',
 
 # Preferences page
 'preferences'       => 'Preferençe',

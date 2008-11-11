@@ -534,8 +534,6 @@ Leggenda: (cur) = differenze cu 'a versiona corrende,
 # Search results
 'searchresults'         => "Resultete d'a ricerche",
 'searchresults-title'   => "Resultete d'a ricerche pe $1",
-'noexactmatch'          => "'''Non g'esiste 'na pàgene ca se chiama \"\$1\".'''
-Tu puè [[:\$1|ccrejà sta pàgene]].",
 'prevn'                 => 'rrede $1',
 'nextn'                 => 'nnande $1',
 'viewprevnext'          => 'Vide ($1) ($2) ($3)',

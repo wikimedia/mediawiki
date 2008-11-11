@@ -316,14 +316,12 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 'editundo'                => 'qaytar',
 
 # Search results
-'searchresults'    => 'Qidiruv natijalari',
-'searchresulttext' => "{{SITENAME}}da qidirish haqida qo'shimcha ma'lumotga ega bo'lishini xoxlasangiz, [[{{MediaWiki:Helppage}}|{{SITENAME}}da qidiruv]] sahifasini o'qing.",
-'noexactmatch'     => "'''\"\$1\" nomli birorta ham sahifa yo'q.''' Bu sahifani [[:\$1|yaratishingiz]] mumkin.",
-'prevn'            => 'oldingi $1',
-'nextn'            => 'keyingi $1',
-'viewprevnext'     => "Ko'rish ($1) ($2) ($3).",
-'showingresults'   => "#<b>$2</b> boshlanayotgan <b>$1</b> natijalar ko'rsatilyapti.",
-'powersearch'      => 'Qidiruv',
+'searchresults'  => 'Qidiruv natijalari',
+'prevn'          => 'oldingi $1',
+'nextn'          => 'keyingi $1',
+'viewprevnext'   => "Ko'rish ($1) ($2) ($3).",
+'showingresults' => "#<b>$2</b> boshlanayotgan <b>$1</b> natijalar ko'rsatilyapti.",
+'powersearch'    => 'Qidiruv',
 
 # Preferences page
 'preferences'       => 'Moslamalar',

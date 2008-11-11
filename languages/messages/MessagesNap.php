@@ -262,12 +262,10 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'rev-delundel' => 'faje vedé/annascunne',
 
 # Search results
-'searchresults'    => 'Risultato d&#39;&#39;a recerca',
-'searchresulttext' => "Pe sapé de cchiù ncopp'â comme ascia 'a {{SITENAME}}, vere [[{{MediaWiki:Helppage}}|Ricerca in {{SITENAME}}]].",
-'noexactmatch'     => "''''A paggena \"\$1\" nun asiste.''' Se pô [[:\$1|criala mmo]].",
-'notitlematches'   => "Voce addemannata nun truvata dint' 'e titule 'e articulo",
-'notextmatches'    => "Voce addemannata nun truvata dint' 'e teste 'e articulo",
-'powersearch'      => 'Truova',
+'searchresults'  => 'Risultato d&#39;&#39;a recerca',
+'notitlematches' => "Voce addemannata nun truvata dint' 'e titule 'e articulo",
+'notextmatches'  => "Voce addemannata nun truvata dint' 'e teste 'e articulo",
+'powersearch'    => 'Truova',
 
 # Preferences page
 'mypreferences'   => "Preferenze d''e mie",

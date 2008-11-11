@@ -143,9 +143,7 @@ $messages = array(
 'difference' => '(Say niduma diad saray revision)',
 
 # Search results
-'searchsubtitle'        => "'''[[:$1]]''' so inanap mo.",
-'searchsubtitleinvalid' => "'''$1''' so inanap mo.",
-'powersearch'           => 'Anapen',
+'powersearch' => 'Anapen',
 
 # Preferences page
 'mypreferences'      => 'Saray preference ko',

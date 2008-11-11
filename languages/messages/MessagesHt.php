@@ -769,7 +769,6 @@ Mande ou byen si ou ap byen fè kreye li ankò toutbon (gade jounal paj sa a pou
 'diff-multi'              => '({{PLURAL:$1|Yon revizyon nan mitan evolisyon ki kache|$1 revizyon yo nan mitan evolisyon ki kache}})',
 
 # Search results
-'noexactmatch' => "'''Pa genyen pyès paj ki genyen non sa a « $1 ».''' Ou mèt [[:$1|kreye atik sa a]].",
 'prevn'        => '$1 anvan yo',
 'nextn'        => '$1 swivan yo',
 'viewprevnext' => 'Wè ($1) ($2) ($3).',

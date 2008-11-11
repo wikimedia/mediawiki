@@ -1050,15 +1050,6 @@ Korištenje navigacionih linkova će resetovati ovaj stupac.',
 # Search results
 'searchresults'             => 'Rezultati pretrage',
 'searchresults-title'       => 'Rezultati pretrage za $1',
-'searchresulttext'          => 'Za više informacija o pretraživanju {{SITENAME}}, pogledajte [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'            => 'Tražili ste \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|sve stranice koje počinju sa "$1"]] | [[Special:WhatLinksHere/$1|sve stranice koje vode do "$1"]])',
-'searchsubtitleinvalid'     => 'Tražili ste $1',
-'noexactmatch'              => "'''Nema stranice sa imenom \"\$1\".'''
-
-Možete [[:\$1|da napravite članak sa tim naslovom]].
-
-::*'''''<u>Opomena: Nemojte kopirati materijale za koje nemate dozvolu!</u>'''''",
-'noexactmatch-nocreate'     => "'''Ne postoji stranica sa naslovom \"\$1\".'''",
 'toomanymatches'            => 'Pronađeno je previše rezultata, molimo pokušajte unijeti konkretniji izraz',
 'titlematches'              => 'Naslov članka odgovara',
 'notitlematches'            => 'Naslov članka ne odgovara.',
@@ -1084,10 +1075,6 @@ Možete [[:\$1|da napravite članak sa tim naslovom]].
 'showingresults'            => "Dole {{PLURAL:$1|je prikazan '''1''' rezultat|su prikazana '''$1''' rezultata|je prikazano '''$1''' rezultata}} počev od '''$2'''.",
 'showingresultsnum'         => "Dole {{PLURAL:$3|je prikazan '''1''' rezultat|su prikazana '''$3''' rezultata|je prikazano '''$3''' rezultata}} počev od '''$2'''.",
 'showingresultstotal'       => "Ispod {{PLURAL:$4|je prikazan rezultat '''$1''' od '''$3'''|su prikazani rezultati '''$1 - $2''' od ukupno '''$3'''}}",
-'nonefound'                 => "'''Pažnja''': neuspješne pretrage su
-često izazvane traženjem čestih riječi kao \"je\" ili \"od\",
-koje nisu indeksirane, ili navođenjem više od jednog izraza za traženje (samo stranice
-koje sadrže sve izraze koji se traže će se pojaviti u rezultatima).",
 'powersearch'               => 'Traži',
 'powersearch-legend'        => 'Napredna pretraga',
 'powersearch-ns'            => 'Pretraga u imenskim prostorima:',
@@ -1156,7 +1143,6 @@ koje sadrže sve izraze koji se traže će se pojaviti u rezultatima).",
 'allowemail'               => 'Dozvoli e-poštu od ostalih korisnika',
 'prefs-searchoptions'      => 'Opcije pretrage',
 'prefs-namespaces'         => 'Imenski prostori',
-'defaultns'                => 'Uobičajeno tražite u ovim imenskim prostorima:',
 'default'                  => 'standardno',
 'files'                    => 'Datoteke',
 

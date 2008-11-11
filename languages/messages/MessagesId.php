@@ -1091,11 +1091,6 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 # Search results
 'searchresults'             => 'Hasil pencarian',
 'searchresults-title'       => 'Hasil pencarian untuk $1',
-'searchresulttext'          => 'Untuk informasi lebih lanjut tentang pencarian di {{SITENAME}}, lihat [[{{MediaWiki:Helppage}}|halaman bantuan]].',
-'searchsubtitle'            => "Anda mencari '''[[:$1]]'''",
-'searchsubtitleinvalid'     => "Anda mencari '''$1'''",
-'noexactmatch'              => "'''Tidak ada halaman yang berjudul \"\$1\".''' Anda dapat [[:\$1|membuat halaman ini]].",
-'noexactmatch-nocreate'     => "'''Tidak ada halaman berjudul \"\$1\".'''",
 'toomanymatches'            => 'Pencarian menghasilkan terlalu banyak hasil, silakan masukkan kueri lain',
 'titlematches'              => 'Judul artikel yang sama',
 'notitlematches'            => 'Tidak ada judul halaman yang cocok',
@@ -1121,7 +1116,6 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 'showingresults'            => "Di bawah ini ditampilkan hingga {{PLURAL:$1|'''1''' hasil|'''$1''' hasil}}, dimulai dari #'''$2'''.",
 'showingresultsnum'         => "Di bawah ini ditampilkan{{PLURAL:$3|'''1''' hasil|'''$3''' hasil}}, dimulai dari #'''$2'''.",
 'showingresultstotal'       => "Hasil pencarian {{PLURAL:$4|'''$1'''|'''$1 - $2'''}} dari '''$3'''",
-'nonefound'                 => "'''Catatan''': Kegagalan pencarian biasanya disebabkan oleh pencarian kata-kata umum dalam bahasa Inggris, seperti \"have\" dan \"from\", yang biasanya tidak diindeks, atau dengan menentukan lebih dari satu kriteria pencarian (hanya halaman yang mengandung semua kriteria pencarianlah yang akan ditampilkan dalam hasil pencarian)",
 'powersearch'               => 'Pencarian lanjut',
 'powersearch-legend'        => 'Pencarian lanjut',
 'powersearch-ns'            => 'Mencari di ruang nama:',
@@ -1192,7 +1186,6 @@ Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencak
 'allowemail'               => 'Ijinkan pengguna lain mengirim surat-e',
 'prefs-searchoptions'      => 'Opsi pencarian',
 'prefs-namespaces'         => 'Ruang nama',
-'defaultns'                => 'Cari dalam ruang nama berikut ini secara baku:',
 'default'                  => 'baku',
 'files'                    => 'Berkas',
 

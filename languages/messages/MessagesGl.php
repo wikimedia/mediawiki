@@ -976,12 +976,6 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 # Search results
 'searchresults'             => 'Resultados da procura',
 'searchresults-title'       => 'Resultados da procura de "$1"',
-'searchresulttext'          => 'Para máis información sobre como realizar procuras en {{SITENAME}}, vexa [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'            => 'A súa busca de "\'\'\'[[:$1]]\'\'\'" ([[Special:Prefixindex/$1|todas as páxinas que comezan por "$1"]] | [[Special:WhatLinksHere/$1|todas as páxinas que ligan con "$1"]])',
-'searchsubtitleinvalid'     => "A súa busca de \"'''\$1'''\"",
-'noexactmatch'              => "'''Non hai ningunha páxina titulada \"\$1\".'''
-Se quere, pode [[:\$1|creala]].",
-'noexactmatch-nocreate'     => "'''Non hai ningunha páxina titulada \"\$1\".'''",
 'toomanymatches'            => 'Demasiadas coincidencias foron devoltas, por favor tente unha consulta diferente',
 'titlematches'              => 'O título do artigo coincide',
 'notitlematches'            => 'Non coincide ningún título de páxina',
@@ -1007,7 +1001,6 @@ Se quere, pode [[:\$1|creala]].",
 'showingresults'            => "Amósanse {{PLURAL:$1|'''1''' resultado|'''$1''' resultados}} comezando polo número '''$2'''.",
 'showingresultsnum'         => "Embaixo {{PLURAL:$3|amósase '''1''' resultado|amósanse '''$3''' resultados}}, comezando polo número '''$2'''.",
 'showingresultstotal'       => "Embaixo {{PLURAL:$4|amósase o resultado '''$1''', dun total de '''$3'''|amósanse os resultados do '''$1''' ao '''$2''', dun total de '''$3'''}}",
-'nonefound'                 => "'''Nota:''' só algúns espazos de nomes son procurados por omisión. Probe a fixar a súa petición con ''(Principal)'' para procurar en todo o contido (incluíndo páxinas de conversa, modelos, etc.) ou use como prefixo o espazo de nomes desexado.",
 'powersearch'               => 'Procurar',
 'powersearch-legend'        => 'Busca avanzada',
 'powersearch-ns'            => 'Procurar nos espazos de nomes:',
@@ -1078,7 +1071,6 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'allowemail'               => 'Admitir mensaxes de correo electrónico doutros usuarios',
 'prefs-searchoptions'      => 'Opcións na procura',
 'prefs-namespaces'         => 'Espazos de nomes',
-'defaultns'                => 'Procurar por omisión nestes espazos de nomes:',
 'default'                  => 'predeterminado',
 'files'                    => 'Ficheiros',
 
