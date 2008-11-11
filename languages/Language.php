@@ -74,6 +74,7 @@ class Language {
 	static public $mMergeableAliasListKeys = array( 'specialPageAliases' );
 
 	static public $mLocalisationCache = array();
+	static public $mLangObjCache = array();
 
 	static public $mWeekdayMsgs = array(
 		'sunday', 'monday', 'tuesday', 'wednesday', 'thursday',
@@ -130,11 +131,15 @@ class Language {
 	);
 
 	/**
-	 * Create a language object for a given language code
+	 * Get a language object for a given language code
 	 */
 	static function factory( $code ) {
 		global $IP;
 		static $recursionLevel = 0;
+
+		if ( isset( self::$mLangObjCache[$code] ) ) {
+			return self::$mLangObjCache[$code];
+		}
 
 		if ( $code == 'en' ) {
 			$class = 'Language';
@@ -163,6 +168,7 @@ class Language {
 			$lang = new $class;
 		}
 
+		self::$mLangObjCache[$code] = $lang;
 		return $lang;
 	}
 
