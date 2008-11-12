@@ -472,7 +472,7 @@ class SpecialSearch {
 					return "<li>" .
 						'<table class="searchResultImage">' .
 						'<tr>' .
-						'<td width="120" align="center">' .
+						'<td width="120" align="center" valign="top">' .
 						$thumb->toHtml( array( 'desc-link' => true ) ) .
 						'</td>' .
 						'<td valign="top">' .
