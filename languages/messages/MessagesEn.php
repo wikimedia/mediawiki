@@ -1216,6 +1216,8 @@ Some templates will not be included.',
 'post-expand-template-argument-warning'   => 'Warning: This page contains at least one template argument which has a too large expansion size.
 These arguments have been omitted.',
 'post-expand-template-argument-category'  => 'Pages containing omitted template arguments',
+'parser-template-loop-warning'            => 'Template loop detected: [[$1]]',
+'parser-template-recursion-depth-warning' => 'Template recursion depth limit exceeded ($1)',
 
 # "Undo" feature
 'undo-success' => 'The edit can be undone.
