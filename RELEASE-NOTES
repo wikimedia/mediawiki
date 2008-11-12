@@ -26,11 +26,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * $wgForwardSearchUrl has been removed entirely. Documented setting since 1.4
   has been $wgSearchForwardUrl.
 * (bug 15080) $wgOverrideSiteFeed has been added. Setting either
-  $wgSiteFeed['rss'] or 'atom' to a URL will override the default Recent Changes
-  feed that appears on all pages.
+  $wgSiteFeed['rss'] or 'atom' to a URL will override the default Recent
+  Changes feed that appears on all pages.
 * $wgSQLiteDataDirMode has been introduced as the default directory mode for
-  SQLite data directories on creation. Note this setting is separate from
-  $wgDirectoryMode, which applies to all normal directories created by MediaWiki.
+  SQLite data directories on creation. Note that this setting is separate from
+  $wgDirectoryMode, which applies to all normal dirs created by MediaWiki.
 * $wgGroupsAddToSelf and $wgGroupsRemoveFromSelf now work more like
   $wgAddGroups and $wgRemoveGroups, where the user must belong to a specified
   group in order to add or remove those groups from themselves.
@@ -64,8 +64,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 === Migrated extensions ===
 The following extensions are migrated into MediaWiki 1.14:
 
-* Special:DeletedContributions to show deleted user contributions (was extension
-  DeletedContributions)
+* Special:DeletedContributions to show deleted user contributions (was
+  extension DeletedContributions)
 * Special:Log/newusers recording new users (was extension Newuserlog)
 * Special:LinkSearch to search for external links (was extension LinkSearch)
 * RenderHash
@@ -151,22 +151,22 @@ The following extensions are migrated into MediaWiki 1.14:
   deleted page, even if they are unable to edit it.
 * Added Wantedfiles special pages, allowing users to find image links with no
   image.
-* (bug 12650) It is now possible to set different expiration times for different
-  restriction types on the protection form.
+* (bug 12650) It is now possible to set different expiration times for
+  different restriction types on the protection form.
 * (bug 8440) Allow preventing blocked users from editing their talk pages
 * Improved upload file type detection for OpenDocument formats
 * Added the ability to set the target attribute on external links with
   $wgExternalLinkTarget
-* api.php now sends "Retry-After" and "X-Database-Lag" HTTP headers if the maxlag
-  check fails, just like index.php does
+* api.php now sends "Retry-After" and "X-Database-Lag" HTTP headers if the
+  maxlag check fails, just like index.php does
 * Added "link" parameter to image links, to allow images to link to an
   arbitrary title or URL. This should replace inaccessible and incomplete
   solutions such as CSS-based overlays and ImageMap.
 * (bug 368) Don't use caption for alt attribute; allow manual specification
   using new "alt=" parameter for images
-* (bug 44) The {{ns:}} core parser function now also accepts localized namespace
-  names and aliases; also, its output now uses spaces instead of underscores to
-  match the behavior of the {{NAMESPACE}} magic word
+* (bug 44) The {{ns:}} core parser function now also accepts localized
+  namespace names and aliases; also, its output now uses spaces instead of
+  underscores to match the behavior of the {{NAMESPACE}} magic word
 * Added the ability to display user edit counts in Special:ListUsers. Off by
   default, enabled with $wgEdititis = true (named after the medical condition
   marked by unhealthy obsession with edit counts).
@@ -174,9 +174,10 @@ The following extensions are migrated into MediaWiki 1.14:
   several uses of the same image.
 * (bug 1250) Users can still use "show preview" and "show changes" even if the
   wiki is set to read-only mode.
-* Added a call to the 'UnwatchArticleComplete' hook to the watchlist editor.  This
-  should make it so that ALL user-accessible methods of removing a page from a watchlist
-  lead to this hook being called (it was previously only called from within Article.php
+* Added a call to the 'UnwatchArticleComplete' hook to the watchlist editor.
+  This should make it so that ALL user-accessible methods of removing a page
+  from a watchlist lead to this hook being called (it was previously only
+  called from within Article.php
 * Maximum execution time for shell processes on linux is now configured with
   $wgMaxShellTime (180 seconds by default)
 * (bug 1306) 'Email user' link no longer shown on user page when emailing
@@ -185,12 +186,14 @@ The following extensions are migrated into MediaWiki 1.14:
   linked from articles
 * Make search matches bold only, not red as well
 * Added 'UserRights::showEditUserGroupsForm' hook to allow extensions to alter
-  the groups that the user can be added to or removed from in Special:UserRights
+  the groups that the user can be added to/removed from in Special:UserRights
 * (bug 10080) Blocks can be modified without unblocking first
-* (bug 15820) Special:BlockIP shows a notice if the user being blocked is already
-  directly blocked
-* (bug 13710) Allow to force "watch this" checkbox via URL using para "watchthis"
-* (bug 15125) Add Public Domain to default options when installing. Patch by Nathan Larson.
+* (bug 15820) Special:BlockIP shows a notice if the user being blocked is
+  already directly blocked
+* (bug 13710) Allow to force "watch this" checkbox via URL using parameter
+  "watchthis"
+* (bug 15125) Add Public Domain to default options when installing. Patch by
+  Nathan Larson.
 * Set a special temporary directory for ImageMagick with $wgImageMagickTempDir
 * (bug 16113) Show/hide for redirects in Special:NewPages
 * (bug 15903) Upload link was added to Nostalgia skin
@@ -201,7 +204,8 @@ The following extensions are migrated into MediaWiki 1.14:
 * New 'AbortDiffCache' hook can be used to cancel the caching of a diff
 * (bug 15835) Added Content-Style-Type meta tag
 * Add class="disambiguationpage" to <body> tag for disambiguations
-* (bug 11027)  Add parameter to MW:Randompage-nopages so that user can see the namespace.
+* (bug 11027)  Add parameter to MW:Randompage-nopages so that user can see the
+  namespace.
 * Add id="mw-user-domain-section" to <tr> tag in Userlogin.php template so that
   admins with a single domain can hide the domain section using CSS
 
@@ -225,12 +229,12 @@ The following extensions are migrated into MediaWiki 1.14:
   Patch by Max Semenik.
 * (bug 15055) Talk page notifications no longer attempt to send mail when
   user's e-mail address is invalid or unconfirmed
-* (bug 12370) Add throttle on password attempts. Defaults to max 5 attempts in 5
-  minutes.
+* (bug 12370) Add throttle on password attempts. Defaults to max 5 attempts in
+  5 minutes.
 * (bug 15016) 'Templates used on this page' list in view source should be
   wrapped in a div with class "templatesUsed"
-* (bug 14868) Setting $wgFeedDiffCutoff to 0 now disables generation of the diff
-  entirely, not just the display of it.
+* (bug 14868) Setting $wgFeedDiffCutoff to 0 now disables generation of the
+  diff entirely, not just the display of it.
 * (bug 6387) Introduced new setting $wgCategoryPrefixedDefaultSortkey which
   allows having the unprefixed page title as the default category sortkey
 * (bug 15079) Add class="ns-talk" / "ns-subject" to <body>. Also added
@@ -273,13 +277,14 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 15543) Only include user touched timestamp to generated CSS
 * (bug 15497) Removed encoding attribute from <?xml ?> tag
 * (bug 12284) Special:Preferences now sets a returnto parameter on the link to
-  Special:Userlogin. Patch by Marooned.
+  Special:UserLogin. Patch by Marooned.
 * Fixed the HTTP accept language string detection length in
   LanguageConverter.php, instead of the fixed length language codes.
-* Special:Recentchangeslinked no longer shows outgoing links for nonexistent pages
-  even if there are broken link records with source article id 0 in the database
-* (bug 15598) Special:Newpages default limit uses user preference for recentchanges
-  limit instead of hardcoded 50.
+* Special:RecentChangesLinked no longer shows outgoing links for nonexistent
+  pages even if there are broken link records with source article id 0 in the
+  database
+* (bug 15598) Special:Newpages default limit uses user preference for
+  recentchanges limit instead of hardcoded 50.
 * (bug 15617) $wgFeedClassesOutputPage::getHeadLinks() respects $wgFeedClasses,
   instead of hardcoding rss and atom. Patch by Juliano F. Ravasi.
 * (bug 14638) Special:Blockip now provides a link to the block log if the user
@@ -300,40 +305,44 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 15846) Categories "leak" from older revisions in certain circumstances
 * (bug 15928) Special pages dropdown should be inline in non-MonoBook skins
 * (bug 14178) Some uses of UserLoadFromSession hook cause segfault
-* (bug 15925) Postitive bytes added on recentchanges and watchlists are now bolded
-  if above the threshold, previously it only worked for negatives
-* Specify apple-touch-icon before favicon in HTML head section to make the Konqueror
-  browser correctly use the latter
+* (bug 15925) Postitive bytes added on recentchanges and watchlists are now
+  bolded if above the threshold, previously it only worked for negatives
+* Specify apple-touch-icon before favicon in HTML head section to make the
+  Konqueror browser correctly use the latter
 * (bug 15717) Set $separatorTransformTable for language 'eu'
 * (bug 15605) Enabled $datePreferences for language 'hr'. Added standard date
   preferences.
 * (bug 13701) {{NUMBEROFVIEWS}} magic word to show number of total views.
-* (bug 5101) Image from Commons doesn't show up when searched in Wikipedia search box
-* (bug 14609) User's namespaces to be searched default not updated after adding new namespace
-* Purge form uses valid XHTML and (bug 8992) uses $wgRequest instead of $_SERVER
+* (bug 5101) Image from Commons doesn't show up when searched in Wikipedia
+  search box
+* (bug 14609) User's namespaces to be searched default not updated after adding
+  new namespace
+* Purge form uses valid XHTML
 * (bug 12764) Special:LonelyPages shows transcluded pages
-* (bug 16073) Enhanced RecentChanges uses onclick handler with better fallback if
-  JavaScript is disabled.
+* (bug 16073) Enhanced RecentChanges uses onclick handler with better fallback
+  if JavaScript is disabled
 * (bug 4253) Recentchanges IRC messages no longer include title in diff URLs
 * Allow '0' to be an accesskey.
 * (bug 8063) Use language-dependent sorting in client-side sortable tables
 * (bug 16160) Suggestions box should be resized from left for RTL wikis
 * (bug 11533) Fixed insane slowdown when in read-only mode for long periods
   of time with CACHE_NONE (default objectcache table configuration).
-* Trying to set two different default category sort keys for one page now produces
-  a warning
-* (bug 16143) Fix redirect loop on special pages starting with lower case letters
+* Trying to set two different default category sort keys for one page now
+  produces a warning
+* (bug 16143) Fix redirect loop on special pages starting with lower case
+  letters
 * (bug 15737) Fix notices while expanding using PPCustomFrame
 * (bug 15544) Non-index entry points cause the "Wiki not set up" message to
   have corrupt URLs
-* (bug 5101) Image from Commons doesn't show up when searched in Wikipedia search box
+* (bug 5101) Image from Commons doesn't show up when searched in Wikipedia
+  search box
 * (bug 4362) [[MediaWiki:History copyright]] no more used with most recent
   revision when passing oldid parameter in the url
 * (bug 16265) When caching thumbs with the ForeignApiRepo, we now use the same 
   filename as the remote site.
 * (bug 8345) Don't autosummarize where a redirect was left unchanged
-* Made thumb caching in ForeignApiFile objects integrated with normal thumb path
-  naming (/thumbs/hash/file), retired 'apiThumbCacheDir' as a result. 
+* Made thumb caching in ForeignApiFile objects integrated with normal thumb
+  path naming (/thumbs/hash/file), retired 'apiThumbCacheDir' as a result. 
 * (bug 5530) Consistency between character encoding in {{PAGENAMEE}},
   {{SUBPAGENAMEE}} and {{FULLPAGENAMEE}}
 
@@ -356,15 +365,15 @@ The following extensions are migrated into MediaWiki 1.14:
 * list=search doesn't list missing pages any more
 * (bug 15178) Added clshow to prop=categories to allow filtering for hidden/
   non-hidden categories
-* (bug 15228) Combining revids= and redirects now throws a warning instead of an
-  error, and still resolves redirects generated by the generator.
+* (bug 15228) Combining revids= and redirects now throws a warning instead of
+  an error, and still resolves redirects generated by the generator.
 * list={backlinks,embeddedin,imageusage} now return arrays with keys 0, 1, 2,
   etc. (AKA lists) instead of arrays with pageIDs as keys (AKA hash tables)
   for consistency with other list modules.
 * Added action=watch
 * (bug 15275) apprefix and related parameters ignore spaces at the end
-* action=edit no longer throws unknown error 228  when trying to create an empty
-  section with section=new
+* action=edit no longer throws unknown error 228  when trying to create an
+  empty section with section=new
 * Database replication lag doesn't cause all action=edit requests to return the
   nochange flag any more
 * (bug 15392) ApiFormatBase::formatHTML now uses $wgUrlProtocols.
@@ -458,8 +467,8 @@ At this time we still recommend 4.0, but 4.1/5.0 will work fine in most cases.
 1.14 has several database changes since 1.13, and will not work without schema
 updates.
 
-If upgrading from before 1.11, and you are using a wiki as a commons repository,
-make sure that it is updated as well. Otherwise, errors may arise due to
+If upgrading from before 1.11, and you are using a wiki as a commons reposito-
+ry, make sure that it is updated as well. Otherwise, errors may arise due to
 database schema changes.
 
 If upgrading from before 1.7, you may want to run refreshLinks.php to ensure
