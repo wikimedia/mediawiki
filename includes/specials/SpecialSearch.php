@@ -643,7 +643,8 @@ class SpecialSearch {
 			$searchButton .
 			' (' . wfMsgExt('searchmenu-help',array('parseinline') ) . ')' .
 			"</form>";
-		$out .= wfMsgExt( 'searchmenu-prefix', array('parseinline'), $term );
+		if( $term )
+			$out .= wfMsgExt( 'searchmenu-prefix', array('parseinline'), $term );
 
 		return Xml::openElement( 'fieldset', array('id' => 'mw-searchoptions','style' => 'margin:0em;') ) .
 			Xml::element( 'legend', null, wfMsg('searchmenu-legend') ) .
@@ -790,7 +791,8 @@ class SpecialSearch {
 		$out .= Xml::submitButton( wfMsg( 'searchbutton' ), array( 'name' => 'fulltext' ) );
 		$out .= ' (' . wfMsgExt('searchmenu-help',array('parseinline') ) . ')';
 		$out .= Xml::closeElement( 'form' );
-		$out .= wfMsgExt( 'searchmenu-prefix', array('parseinline'), $term );
+		if( $term )
+			$out .= wfMsgExt( 'searchmenu-prefix', array('parseinline'), $term );
 		return Xml::openElement( 'fieldset', array('id' => 'mw-searchoptions','style' => 'margin:0em;') ) .
 			Xml::element( 'legend', null, wfMsg('searchmenu-legend') ) .
 			$this->formHeader($term) . $out .
