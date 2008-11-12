@@ -131,16 +131,21 @@ class Language {
 	);
 
 	/**
-	 * Get a language object for a given language code
+	 * Get a cached language object for a given language code
 	 */
 	static function factory( $code ) {
+		if ( !isset( self::$mLangObjCache[$code] ) ) {
+			self::$mLangObjCache[$code] = self::newFromCode( $code );
+		}
+		return self::$mLangObjCache[$code];
+	}
+
+	/**
+	 * Create a language object for a given language code
+	 */
+	protected static function newFromCode( $code ) {
 		global $IP;
 		static $recursionLevel = 0;
-
-		if ( isset( self::$mLangObjCache[$code] ) ) {
-			return self::$mLangObjCache[$code];
-		}
-
 		if ( $code == 'en' ) {
 			$class = 'Language';
 		} else {
@@ -161,14 +166,12 @@ class Language {
 		if( ! class_exists( $class ) ) {
 			$fallback = Language::getFallbackFor( $code );
 			++$recursionLevel;
-			$lang = Language::factory( $fallback );
+			$lang = Language::newFromCode( $fallback );
 			--$recursionLevel;
 			$lang->setCode( $code );
 		} else {
 			$lang = new $class;
 		}
-
-		self::$mLangObjCache[$code] = $lang;
 		return $lang;
 	}
 
