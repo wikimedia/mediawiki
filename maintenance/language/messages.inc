@@ -573,6 +573,8 @@ $wgMessageStructure = array(
 		'post-expand-template-inclusion-category',
 		'post-expand-template-argument-warning',
 		'post-expand-template-argument-category',
+		'parser-template-loop-warning',
+		'parser-template-recursion-depth-warning',
 	),
 	'undo' => array(
 		'undo-success',

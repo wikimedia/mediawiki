@@ -2943,14 +2943,14 @@ class Parser
 				# Do infinite loop check
 				if ( !$frame->loopCheck( $title ) ) {
 					$found = true;
-					$text = "<span class=\"error\">Template loop detected: [[$titleText]]</span>";
+					$text = '<span class="error">' . wfMsgForContent( 'parser-template-loop-warning', $titleText ) . '</span>';
 					wfDebug( __METHOD__.": template loop broken at '$titleText'\n" );
 				}
 				# Do recursion depth check
 				$limit = $this->mOptions->getMaxTemplateDepth();
 				if ( $frame->depth >= $limit ) {
 					$found = true;
-					$text = "<span class=\"error\">Template recursion depth limit exceeded ($limit)</span>";
+					$text = '<span class="error">' . wfMsgForContent( 'parser-template-recursion-depth-warning', $limit ) . '</span>';
 				}
 			}
 		}
