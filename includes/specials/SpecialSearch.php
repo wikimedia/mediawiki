@@ -732,7 +732,8 @@ class SpecialSearch {
 		if( $active == 'images' ) {
 			$out .= Xml::element( 'strong', array( 'title'=>$tt ), $m );	
 		} else {
-			$out .= $this->makeSearchLink( $wgContLang->getFormattedNsText(NS_IMAGE).':'.$bareterm, array() , $m, $tt );
+			$imageTextForm = $wgContLang->getFormattedNsText(NS_IMAGE).':'.$bareterm;
+			$out .= $this->makeSearchLink( $imageTextForm, array( NS_IMAGE ) , $m, $tt );
 		}
 		$out .= $sep;
 			
