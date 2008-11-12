@@ -1428,7 +1428,7 @@ Note that using the navigation links will reset this column.',
 'viewprevnext'                     => 'View ($1) ($2) ($3)',
 'searchmenu-legend'                => 'Search options',
 'searchmenu-exists'                => "'''There is page named \"[[\$1]]\" on this wiki'''",
-'searchmenu-new'                   => "'''[[\$1|Create]] the page \"[[\$1]]\" on this wiki!'''",
+'searchmenu-new'                   => "'''[[:\$1|Create]] the page \"[[\$1]]\" on this wiki!'''",
 'searchhelp-url'                   => 'Project:Searching',
 'searchmenu-prefix'                => '[[Special:AllPages/$1|Browse pages with this prefix]]',
 'searchmenu-help'                  => '[[{{MediaWiki:Searchhelp-url}}|{{int:help}}]]?', # do not translate or duplicate this message to other languages
