@@ -641,9 +641,16 @@ class RecentChange
 			$comment = self::cleanupForIRC( $rc_comment );
 			$flag = ($rc_new ? "N" : "") . ($rc_minor ? "M" : "") . ($rc_bot ? "B" : "");
 		}
-		
-		if( $wgRC2UDPInterwikiPrefix && isset( $wgLocalInterwiki ) ) {
-			$titleString = "\00314[[\00303$wgLocalInterwiki:\00307$title\00314]]";
+
+		if ( $wgRC2UDPInterwikiPrefix === true ) {
+			$prefix = $wgLocalInterwiki;
+		} elseif ( $wgRC2UDPInterwikiPrefix ) {
+			$prefix = $wgRC2UDPInterwikiPrefix;
+		} else {
+			$prefix = false;
+		}
+		if ( $prefix !== false ) {
+			$titleString = "\00314[[\00303$prefix:\00307$title\00314]]";
 		} else {
 			$titleString = "\00314[[\00307$title\00314]]";
 		}
