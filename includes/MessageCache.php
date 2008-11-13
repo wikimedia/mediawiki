@@ -647,7 +647,7 @@ class MessageCache {
 		return $message;
 	}
 
-	function transform( $message, $interface = false ) {
+	function transform( $message, $interface = false, $language = null ) {
 		// Avoid creating parser if nothing to transfrom
 		if( strpos( $message, '{{' ) === false ) {
 			return $message;
@@ -670,6 +670,7 @@ class MessageCache {
 		if ( $this->mParser ) {
 			$popts = $this->getParserOptions();
 			$popts->setInterfaceMessage( $interface );
+			$popts->setTargetLanguage( $language );
 			$message = $this->mParser->transformMsg( $message, $popts );
 		}
 		return $message;
