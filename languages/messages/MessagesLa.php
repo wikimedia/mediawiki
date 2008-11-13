@@ -726,6 +726,8 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'prevn'                 => '$1 superiores',
 'nextn'                 => '$1 proxima',
 'viewprevnext'          => 'Videre ($1) ($2) ($3).',
+'searchmenu-exists'     => "* Pagina '''[[$1]]'''",
+'searchmenu-new'        => "* Paginam '''[[$1]]''' creare",
 'search-result-size'    => '$1 ({{PLURAL:$2|1 verbum|$2 verba}})',
 'search-result-score'   => 'Gravitas: $1%',
 'search-redirect'       => '(redirectio $1)',
@@ -1047,11 +1049,11 @@ Commodule notatio fasciculorum deletorum hic datur:",
 
 # Random page
 'randompage'         => 'Pagina fortuita',
-'randompage-nopages' => 'Non est ulla pagina hoc in spatio nominali.',
+'randompage-nopages' => 'Non est ulla pagina in spatio nominali "$1".',
 
 # Random redirect
 'randomredirect'         => 'Redirectio fortuita',
-'randomredirect-nopages' => 'Non est ulla redirectio hoc in spatio nominali.',
+'randomredirect-nopages' => 'Non est ulla redirectio in spatio nominali "$1".',
 
 # Statistics
 'statistics'                      => 'Census',

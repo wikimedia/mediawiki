@@ -1077,11 +1077,11 @@ Sutun serlevasına bir basuv sortirlemeniñ tertibini deñiştirir.',
 
 # Random page
 'randompage'         => 'Tesadüfiy saife',
-'randompage-nopages' => 'Bu isim fezasında iç bir saife yoq.',
+'randompage-nopages' => '"$1" isim fezasında iç bir saife yoq.',
 
 # Random redirect
 'randomredirect'         => 'Tesadüfiy yollama saifesi',
-'randomredirect-nopages' => 'Bu isim fezasında iç bir yollama saifesi yoq.',
+'randomredirect-nopages' => '"$1" isim fezasında iç bir yollama saifesi yoq.',
 
 # Statistics
 'statistics'              => 'Statistika',

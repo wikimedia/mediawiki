@@ -18,6 +18,8 @@ $messages = array(
 'tog-hideminor'       => 'Jichha kutikiptatanakana «Janiw taqpachäkiti» imantaña',
 'tog-extendwatchlist' => "Sarayawi jaqukipaw uñachayasuñatakiw unch'ukit waruch aqatatayaña",
 'tog-usenewrc'        => "Jichhnaki jaqukipawi waliptäta (''JavaScript'')",
+'tog-numberheadings'  => 'Titulun chinu achuraña',
+'tog-showtoolbar'     => "Turkawit irnaqañ täta tisi uñachayaña (''JavaScript'')",
 
 'underline-always' => 'Wiñaya',
 'underline-never'  => 'Janipini',
