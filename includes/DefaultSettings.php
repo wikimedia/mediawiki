@@ -2104,11 +2104,35 @@ $wgRCFilterByAge = false;
 $wgRCLinkLimits = array( 50, 100, 250, 500 );
 $wgRCLinkDays   = array( 1, 3, 7, 14, 30 );
 
-# Send RC updates via UDP
+/**
+ * Send recent changes updates via UDP. The updates will be formatted for IRC.
+ * Set this to the IP address of the receiver.
+ */
 $wgRC2UDPAddress = false;
+
+/**
+ * Port number for RC updates
+ */
 $wgRC2UDPPort = false;
+
+/**
+ * Prefix to prepend to each UDP packet.
+ * This can be used to identify the wiki. A script is available called
+ * mxircecho.py which listens on a UDP port, and uses a prefix ending in a 
+ * tab to identify the IRC channel to send the log line to.
+ */
 $wgRC2UDPPrefix = '';
+
+/**
+ * If this is set to true, $wgLocalInterwiki will be prepended to links in the 
+ * IRC feed. If this is set to a string, that string will be used as the prefix.
+ */
 $wgRC2UDPInterwikiPrefix = false;
+
+/**
+ * Set to true to omit "bot" edits (by users with the bot permission) from the 
+ * UDP feed.
+ */
 $wgRC2UDPOmitBots = false;
 
 /**
