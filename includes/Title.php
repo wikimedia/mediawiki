@@ -337,7 +337,10 @@ class Title {
 	public static function nameOf( $id ) {
 		$dbr = wfGetDB( DB_SLAVE );
 
-		$s = $dbr->selectRow( 'page', array( 'page_namespace','page_title' ),  array( 'page_id' => $id ), __METHOD__ );
+		$s = $dbr->selectRow( 'page',
+			array( 'page_namespace','page_title' ),
+			array( 'page_id' => $id ), 
+			__METHOD__ );
 		if ( $s === false ) { return NULL; }
 
 		$n = self::makeName( $s->page_namespace, $s->page_title );
@@ -1285,7 +1288,8 @@ class Title {
 
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'protected_titles', '*',
-			array ('pt_namespace' => $this->getNamespace(), 'pt_title' => $this->getDBkey()) );
+			array( 'pt_namespace' => $this->getNamespace(), 'pt_title' => $this->getDBkey() ),
+			__METHOD__ );
 
 		if ($row = $dbr->fetchRow( $res )) {
 			return $row;
@@ -1355,7 +1359,8 @@ class Title {
 		$dbw = wfGetDB( DB_MASTER );
 
 		$dbw->delete( 'protected_titles',
-			array ('pt_namespace' => $this->getNamespace(), 'pt_title' => $this->getDBkey()), __METHOD__ );
+			array( 'pt_namespace' => $this->getNamespace(), 'pt_title' => $this->getDBkey() ), 
+			__METHOD__ );
 	}
 
 	/**
@@ -1392,8 +1397,7 @@ class Title {
 	 * @return \type{\bool} TRUE or FALSE
 	 */
 	public function isMovable() {
-		return MWNamespace::isMovable( $this->getNamespace() )
-			&& $this->getInterwiki() == '';
+		return MWNamespace::isMovable( $this->getNamespace() ) && $this->getInterwiki() == '';
 	}
 
 	/**
@@ -1871,6 +1875,9 @@ class Title {
 	 * @return \type{\int} the ID
 	 */
 	public function getArticleID( $flags = 0 ) {
+		if( $this->getNamespace() < 0 ) {
+			return $this->mArticleID = 0;
+		}
 		$linkCache = LinkCache::singleton();
 		if( $flags & GAID_FOR_UPDATE ) {
 			$oldUpdate = $linkCache->forUpdate( true );
@@ -1894,10 +1901,9 @@ class Title {
 	public function isRedirect( $flags = 0 ) {
 		if( !is_null($this->mRedirect) )
 			return $this->mRedirect;
-		# Zero for special pages.
-		# Also, calling getArticleID() loads the field from cache!
-		if( !$this->getArticleID($flags) || $this->getNamespace() == NS_SPECIAL ) {
-			return false;
+		# Calling getArticleID() loads the field from cache as needed
+		if( !$this->getArticleID($flags) ) {
+			return $this->mRedirect = false;
 		}
 		$linkCache = LinkCache::singleton();
 		$this->mRedirect = (bool)$linkCache->getGoodLinkFieldObj( $this, 'redirect' );
@@ -1914,10 +1920,9 @@ class Title {
 	public function getLength( $flags = 0 ) {
 		if( $this->mLength != -1 )
 			return $this->mLength;
-		# Zero for special pages.
-		# Also, calling getArticleID() loads the field from cache!
-		if( !$this->getArticleID($flags) || $this->getNamespace() == NS_SPECIAL ) {
-			return 0;
+		# Calling getArticleID() loads the field from cache as needed
+		if( !$this->getArticleID($flags) ) {
+			return $this->mLength = 0;
 		}
 		$linkCache = LinkCache::singleton();
 		$this->mLength = intval( $linkCache->getGoodLinkFieldObj( $this, 'length' ) );
@@ -1935,9 +1940,7 @@ class Title {
 			return $this->mLatestID;
 
 		$db = ($flags & GAID_FOR_UPDATE) ? wfGetDB(DB_MASTER) : wfGetDB(DB_SLAVE);
-		$this->mLatestID = $db->selectField( 'page', 'page_latest',
-			array( 'page_namespace' => $this->getNamespace(), 'page_title' => $this->getDBKey() ),
-			__METHOD__ );
+		$this->mLatestID = $db->selectField( 'page', 'page_latest', $this->pageCond(), __METHOD__ );
 		return $this->mLatestID;
 	}
 
@@ -1967,26 +1970,19 @@ class Title {
 	 */
 	public function invalidateCache() {
 		global $wgUseFileCache;
-
-		if ( wfReadOnly() ) {
+		if( wfReadOnly() ) {
 			return;
 		}
-
 		$dbw = wfGetDB( DB_MASTER );
 		$success = $dbw->update( 'page',
-			array( /* SET */
-				'page_touched' => $dbw->timestamp()
-			), array( /* WHERE */
-				'page_namespace' => $this->getNamespace() ,
-				'page_title' => $this->getDBkey()
-			), 'Title::invalidateCache'
+			array( 'page_touched' => $dbw->timestamp() ), 
+			$this->pageCond(), 
+			__METHOD__
 		);
-
-		if ($wgUseFileCache) {
-			$cache = new HTMLFileCache($this);
-			@unlink($cache->fileCacheName());
+		if( $wgUseFileCache) {
+			$cache = new HTMLFileCache( $this );
+			@unlink( $cache->fileCacheName() );
 		}
-
 		return $success;
 	}
 
@@ -2838,24 +2834,19 @@ class Title {
 	 * Checks if this page is just a one-rev redirect.
 	 * Adds lock, so don't use just for light purposes.
 	 *
-	 * @param $curId \type{int} page ID, optional
 	 * @return \type{\bool} TRUE or FALSE
 	 */
-	public function isSingleRevRedirect( $curId = 0 ) {
+	public function isSingleRevRedirect() {
 		$dbw = wfGetDB( DB_MASTER );
-		$curId = $curId ? $curId : $this->getArticleId();
-		# Nothing here?
-		if( !$curId ) {
-			return true;
-		}
 		# Is it a redirect?
 		$row = $dbw->selectRow( 'page',
-			array( 'page_is_redirect', 'page_latest' ),
-			array( 'page_id' => $curId ),
+			array( 'page_is_redirect', 'page_latest', 'page_id' ),
+			$this->pageCond(),
 			__METHOD__,
 			'FOR UPDATE'
 		);
 		# Cache some fields we may want
+		$this->mArticleID = $row ? intval($row->page_id) : 0;
 		$this->mRedirect = $row ? (bool)$row->page_is_redirect : false;
 		$this->mLatestID = $row ? intval($row->page_latest) : false;
 		if( !$this->mRedirect ) {
@@ -2926,8 +2917,7 @@ class Title {
 	 * @return \type{\bool} TRUE or FALSE
 	 */
 	public function isWatchable() {
-		return !$this->isExternal()
-			&& MWNamespace::isWatchable( $this->getNamespace() );
+		return !$this->isExternal() && MWNamespace::isWatchable( $this->getNamespace() );
 	}
 
 	/**
@@ -3155,12 +3145,7 @@ class Title {
 	 */
 	public function getTouched( $db = NULL ) {
 		$db = isset($db) ? $db : wfGetDB( DB_SLAVE );
-		$touched = $db->selectField( 'page', 'page_touched',
-			array(
-				'page_namespace' => $this->getNamespace(),
-				'page_title' => $this->getDBkey()
-			), __METHOD__
-		);
+		$touched = $db->selectField( 'page', 'page_touched', $this->pageCond(), __METHOD__ );
 		return $touched;
 	}
 
