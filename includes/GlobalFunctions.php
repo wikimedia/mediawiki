@@ -731,7 +731,9 @@ function wfMsgExt( $key, $options ) {
 	} elseif ( in_array('parsemag', $options) ) {
 		global $wgMessageCache;
 		if ( isset( $wgMessageCache ) ) {
-			$string = $wgMessageCache->transform( $string, !$forContent );
+			$string = $wgMessageCache->transform( $string,
+				!$forContent,
+				is_object( $langCode ) ? $langCode : null );
 		}
 	}
 
