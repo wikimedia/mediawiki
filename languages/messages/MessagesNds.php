@@ -996,7 +996,7 @@ Seh to, dat de Versionsgeschicht vun’n Artikel vun de Historie her bi de Reeg 
 
 # Search results
 'searchresults'             => 'Söökresultaten',
-'searchresults-title'       => 'Söökresultaten för $1',
+'searchresults-title'       => 'Söökresultaten för „$1“',
 'toomanymatches'            => 'To veel Sieden funnen för de Söök, versöök en annere Affraag.',
 'titlematches'              => 'Övereenstimmen mit Överschriften',
 'notitlematches'            => 'Kene Övereenstimmen',
@@ -1235,8 +1235,7 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 'nchanges'                          => '{{PLURAL:$1|Een Ännern|$1 Ännern}}',
 'recentchanges'                     => 'Toletzt ännert',
 'recentchanges-legend'              => 'Optionen för toletzt ännert',
-'recentchangestext'                 => '
-Disse Siet warrt wiel dat Laden automatsch aktualiseert. Wiest warrn Sieten, de toletzt bearbeid worrn sünd, dorto de Tied un de Naam vun de Autor.',
+'recentchangestext'                 => 'Op disse Sied warrt de Sieden wiest, de toletzt ännert worrn sünd.',
 'recentchanges-feed-description'    => 'Behool mit dissen Feed de ne’esten Ännern op dit Wiki in’t Oog.',
 'rcnote'                            => "Hier sünd de letzten '''$1''' Ännern vun {{PLURAL:$2|den letzten Dag|de letzten '''$2''' Daag}} (Stand $5, $4). ('''N''' - Ne’e Sieden; '''L''' - Lütte Ännern)",
 'rcnotefrom'                        => 'Dit sünd de Ännern siet <b>$2</b> (bet to <b>$1</b> wiest).',

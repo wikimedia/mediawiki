@@ -6,6 +6,7 @@
  *
  * @author Chavash
  * @author PCode
+ * @author Александр Сигачёв
  */
 
 $fallback = 'ru';

@@ -339,6 +339,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Pošalji mi kopiju e-maila kojeg pošaljem drugim suradnicima',
 'tog-diffonly'                => 'Ne prikazuj sadržaj stranice prilikom usporedbe inačica',
 'tog-showhiddencats'          => 'Prikaži skrivene kategorije',
+'tog-norollbackdiff'          => 'Izostavi razliku nakon upotrebe ukloni',
 
 'underline-always'  => 'Uvijek',
 'underline-never'   => 'Nikad',
@@ -1135,6 +1136,7 @@ Primijetite da uporaba navigacijskih poveznica resetira vaše izbore u koloni.',
 'prevn'                     => 'prethodnih $1',
 'nextn'                     => 'sljedećih $1',
 'viewprevnext'              => 'Vidi ($1) ($2) ($3).',
+'searchmenu-exists'         => "* Stranica '''[[$1]]'''",
 'search-result-size'        => '$1 ({{PLURAL:$2|1 riječ|$2 riječi}})',
 'search-result-score'       => 'Povezanost: $1%',
 'search-redirect'           => '(preusmjeravanje $1)',
@@ -1599,11 +1601,11 @@ A [[Special:WhatLinksHere/$2|Ovdje se nalazi]] kompletan popis.',
 
 # Random page
 'randompage'         => 'Slučajna stranica',
-'randompage-nopages' => 'Nema stranica u ovom imenskom prostoru.',
+'randompage-nopages' => 'Nema stranica u imenskom prostoru "$1".',
 
 # Random redirect
 'randomredirect'         => 'Slučajno preusmjeravanje',
-'randomredirect-nopages' => 'Nema preusmjeravanja u ovom imenskom prostoru.',
+'randomredirect-nopages' => 'Nema preusmjeravanja u imenskom prostoru "$1".',
 
 # Statistics
 'statistics'                      => 'Statistika',

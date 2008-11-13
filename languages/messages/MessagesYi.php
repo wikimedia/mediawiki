@@ -1093,10 +1093,13 @@ $2',
 
 # Random redirect
 'randomredirect'         => ' צופֿעליק ווײַטערפֿירן',
-'randomredirect-nopages' => 'נישטא קיין ווײַטערפֿירונגען אין דעם נאמענטייל.',
+'randomredirect-nopages' => 'נישטא קיין ווײַטערפֿירונגען אין דעם נאמענטייל $1.',
 
 # Statistics
-'statistics' => 'סטאַטיסטיק',
+'statistics'              => 'סטאַטיסטיק',
+'statistics-header-pages' => 'בלעטער סטאטיסטיק',
+'statistics-header-users' => 'באניצער סטאטיסטיק',
+'statistics-pages'        => ' בלעטער',
 
 'disambiguations'      => 'באדייטן בלעטער',
 'disambiguationspage'  => 'Template:באדייטן',

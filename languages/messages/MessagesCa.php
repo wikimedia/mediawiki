@@ -71,10 +71,20 @@ $dateFormats = array(
 );
 
 $magicWords = array(
-	'img_right'           => array( '1', 'right', 'dreta' ),
-	'img_left'            => array( '1', 'left', 'esquerra' ),
-	'displaytitle'        => array( '1', 'DISPLAYTITLE', 'TÍTOL' ),
-	'defaultsort'         => array( '1', 'DEFAULTSORT:', 'DEFAULTSORTKEY:', 'DEFAULTCATEGORYSORT:', 'ORDENA:' ),
+	'numberofarticles'      => array( '1', 'NOMBRED\'ARTICLES', 'NUMBEROFARTICLES' ),
+	'numberoffiles'         => array( '1', 'NOMBRED\'ARXIUS', 'NUMBEROFFILES' ),
+	'numberofusers'         => array( '1', 'NOMBRED\'USUARIS', 'NUMBEROFUSERS' ),
+	'numberofedits'         => array( '1', 'NOMBRED\'EDICIONS', 'NUMBEROFEDITS' ),
+	'pagename'              => array( '1', 'NOMDELAPLANA', 'PAGENAME' ),
+	'img_right'             => array( '1', 'dreta', 'right' ),
+	'img_left'              => array( '1', 'esquerra', 'left' ),
+	'img_border'            => array( '1', 'vora', 'border' ),
+	'img_link'              => array( '1', 'enllaç=$1', 'link=$1' ),
+	'displaytitle'          => array( '1', 'TÍTOL', 'DISPLAYTITLE' ),
+	'language'              => array( '0', '#IDIOMA:', '#LANGUAGE:' ),
+	'special'               => array( '0', 'especial', 'special' ),
+	'defaultsort'           => array( '1', 'ORDENA:', 'DEFAULTSORT:', 'DEFAULTSORTKEY:', 'DEFAULTCATEGORYSORT:' ),
+	'pagesize'              => array( '1', 'MIDADELAPLANA', 'PAGESIZE' ),
 );
 
 $specialPageAliases = array(

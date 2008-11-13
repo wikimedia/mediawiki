@@ -1079,11 +1079,11 @@ $3 мына бойле бир себеп бельгиледи: ''$2''",
 
 # Random page
 'randompage'         => 'Тесадюфий саифе',
-'randompage-nopages' => 'Бу исим фезасында ич бир саифе ёкъ.',
+'randompage-nopages' => '"$1" исим фезасында ич бир саифе ёкъ.',
 
 # Random redirect
 'randomredirect'         => 'Тесадюфий ёллама саифеси',
-'randomredirect-nopages' => 'Бу исим фезасында ич бир ёллама саифеси ёкъ.',
+'randomredirect-nopages' => '"$1" исим фезасында ич бир ёллама саифеси ёкъ.',
 
 # Statistics
 'statistics'              => 'Статистика',

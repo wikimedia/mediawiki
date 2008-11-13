@@ -916,40 +916,58 @@ S'havi accirtari ca la cuntinuità storica di la pàggina nun veni altirata.",
 'diff-strike'             => "'''sbarratu'''",
 
 # Search results
-'searchresults'             => 'Risurtati dâ circata',
-'searchresults-title'       => 'Risurtati dâ circata di $1',
-'toomanymatches'            => 'Troppi currispunnenzi. Cancia la richiesta.',
-'titlematches'              => "Ntê tìtuli di l'artìculi",
-'notitlematches'            => 'Nudda currispunnenza ntê tìtuli dî pàggini',
-'textmatches'               => "Ntô testu di l'artìculi",
-'notextmatches'             => 'Nudda currispunnenza ntô testu dî pàggini',
-'prevn'                     => 'li pricidenti $1',
-'nextn'                     => 'li pròssimi $1',
-'viewprevnext'              => 'Talìa ($1) ($2) ($3).',
-'search-result-size'        => '$1 ({{PLURAL:$2|na parola|$2 paroli}})',
-'search-result-score'       => 'Rilivanza: $1%',
-'search-redirect'           => '(redirect $1)',
-'search-section'            => '(sizzioni $1)',
-'search-suggest'            => 'Forsi circavutu: $1',
-'search-interwiki-caption'  => 'Pruggetti frati',
-'search-interwiki-default'  => 'Risultati da $1:',
-'search-interwiki-more'     => '(cchiù)',
-'search-mwsuggest-enabled'  => 'cu suggirimenti',
-'search-mwsuggest-disabled' => 'senza suggirimenti',
-'search-relatedarticle'     => 'Risultati currilati',
-'mwsuggest-disable'         => 'Astuta suggirimenti AJAX',
-'searchrelated'             => 'currilati',
-'searchall'                 => 'tutti',
-'showingresults'            => "Ammustra nzinu a {{PLURAL:$1|'''1''' risurtatu|'''$1''' risurtati}} a pàrtiri dô nùmmuru '''$2'''.",
-'showingresultsnum'         => "L'alencu cunteni {{PLURAL:$3|'''1''' risurtatu|'''$3''' risurtati}} a pàrtiri dû nùmmuru '''$2'''.",
-'showingresultstotal'       => "Appressu {{PLURAL:$4|veni ammustratu lu risurtatu '''$1''' di '''$3'''|vèninu ammustrati li risurtati '''$1 - $2''' di '''$3'''}}",
-'powersearch'               => 'Arriscedi',
-'powersearch-legend'        => 'Ricerca avanzata',
-'powersearch-ns'            => 'Cerca ntê namespace:',
-'powersearch-redir'         => 'Elenca redirect',
-'powersearch-field'         => 'Cerca',
-'search-external'           => 'Ricerca sterna',
-'searchdisabled'            => 'La circata nterna di {{SITENAME}} hà statu disabbilitata. Nta stu mentri, poi usari la circata supra Google o supra àutri muturi di circata. Accura ca li sò ìnnici dê cuntinuti di {{SITENAME}} ponnu nun èssiri aggiurnati.',
+'searchresults'                    => 'Risurtati dâ circata',
+'searchresults-title'              => 'Risurtati dâ circata di $1',
+'toomanymatches'                   => 'Troppi currispunnenzi. Cancia la richiesta.',
+'titlematches'                     => "Ntê tìtuli di l'artìculi",
+'notitlematches'                   => 'Nudda currispunnenza ntê tìtuli dî pàggini',
+'textmatches'                      => "Ntô testu di l'artìculi",
+'notextmatches'                    => 'Nudda currispunnenza ntô testu dî pàggini',
+'prevn'                            => 'li pricidenti $1',
+'nextn'                            => 'li pròssimi $1',
+'viewprevnext'                     => 'Talìa ($1) ($2) ($3).',
+'searchmenu-legend'                => 'Opzioni di circata',
+'searchmenu-exists'                => "* Pàggina '''[[$1]]'''",
+'searchmenu-new'                   => "Crea la pàggina '''[[$1]]'''",
+'searchhelp-url'                   => 'Project:Circata',
+'searchprofile-articles'           => 'Pàggini',
+'searchprofile-articles-and-proj'  => 'Pàggina/Pruggettu',
+'searchprofile-project'            => 'Pàggini/Pruggettu',
+'searchprofile-images'             => 'File',
+'searchprofile-everything'         => 'Tuttu',
+'searchprofile-advanced'           => 'Avanzata',
+'searchprofile-articles-tooltip'   => 'Cerca nti $1',
+'searchprofile-project-tooltip'    => 'Cerca nti $1',
+'searchprofile-images-tooltip'     => 'Cerca file',
+'searchprofile-everything-tooltip' => 'Cerca unnegghiè (puru ntî pàggini di discussioni)',
+'searchprofile-advanced-tooltip'   => 'Cerca ntê namespace pirsunalizzati',
+'prefs-search-nsdefault'           => 'Cerca utilizzannu li pridgifinit:',
+'prefs-search-nscustom'            => 'Cerca ntê namespace pirsunalizzati:',
+'search-result-size'               => '$1 ({{PLURAL:$2|na parola|$2 paroli}})',
+'search-result-score'              => 'Rilivanza: $1%',
+'search-redirect'                  => '(redirect $1)',
+'search-section'                   => '(sizzioni $1)',
+'search-suggest'                   => 'Forsi circavutu: $1',
+'search-interwiki-caption'         => 'Pruggetti frati',
+'search-interwiki-default'         => 'Risultati da $1:',
+'search-interwiki-more'            => '(cchiù)',
+'search-mwsuggest-enabled'         => 'cu suggirimenti',
+'search-mwsuggest-disabled'        => 'senza suggirimenti',
+'search-relatedarticle'            => 'Risultati currilati',
+'mwsuggest-disable'                => 'Astuta suggirimenti AJAX',
+'searchrelated'                    => 'currilati',
+'searchall'                        => 'tutti',
+'showingresults'                   => "Ammustra nzinu a {{PLURAL:$1|'''1''' risurtatu|'''$1''' risurtati}} a pàrtiri dô nùmmuru '''$2'''.",
+'showingresultsnum'                => "L'alencu cunteni {{PLURAL:$3|'''1''' risurtatu|'''$3''' risurtati}} a pàrtiri dû nùmmuru '''$2'''.",
+'showingresultstotal'              => "Appressu {{PLURAL:$4|veni ammustratu lu risurtatu '''$1''' di '''$3'''|vèninu ammustrati li risurtati '''$1 - $2''' di '''$3'''}}",
+'search-nonefound'                 => 'La circata nun desi nuddu risurtatu.',
+'powersearch'                      => 'Arriscedi',
+'powersearch-legend'               => 'Ricerca avanzata',
+'powersearch-ns'                   => 'Cerca ntê namespace:',
+'powersearch-redir'                => 'Elenca redirect',
+'powersearch-field'                => 'Cerca',
+'search-external'                  => 'Ricerca sterna',
+'searchdisabled'                   => 'La circata nterna di {{SITENAME}} hà statu disabbilitata. Nta stu mentri, poi usari la circata supra Google o supra àutri muturi di circata. Accura ca li sò ìnnici dê cuntinuti di {{SITENAME}} ponnu nun èssiri aggiurnati.',
 
 # Preferences page
 'preferences'              => 'prifirenzi',
@@ -1399,11 +1417,11 @@ Di sècutu sunnu alincati sulu {{PLURAL:$1|la prima pàggina ca punta|li primi $
 
 # Random page
 'randompage'         => 'Na pàggina ammuzzu',
-'randompage-nopages' => 'Nudda pàggina ntô namespace silizziunatu.',
+'randompage-nopages' => 'Nudda pàggina ntô namespace "$1".',
 
 # Random redirect
 'randomredirect'         => 'Un redirect a muzzu',
-'randomredirect-nopages' => 'Nuddu rinnirizzamentu ntô namespace silizziunatu.',
+'randomredirect-nopages' => 'Nuddu rinnirizzamentu ntô namespace "$1".',
 
 # Statistics
 'statistics'                      => 'Statìstichi',
@@ -2194,6 +2212,7 @@ Nta st'ùrtimu casu si pò macari utilizzari un culligamentu, p'asempiu [[{{ns:s
 'lastmodifiedatby' => "Sta pàggina hà statu canciata pi l'ùrtima vota lu $2, $1 di $3.", # $1 date, $2 time, $3 user
 'othercontribs'    => 'Basatu supra lu travagghiu di $1.',
 'others'           => 'àutri',
+'siteusers'        => '$1, {{PLURAL:$2|utenti|utenti}} di {{SITENAME}}',
 'creditspage'      => 'Li autura dâ pàggina',
 'nocredits'        => 'Nudda nfurmazzioni supra li crèditi dispunìbbili pi sta pàggina.',
 
@@ -2233,10 +2252,12 @@ Nta st'ùrtimu casu si pò macari utilizzari un culligamentu, p'asempiu [[{{ns:s
 'markedaspatrollederror-noautopatrol' => 'Nun si disponi dî pirmissi nicissari pi signari li propi canciamenti comu virificati.',
 
 # Patrol log
-'patrol-log-page' => 'Canciamenti virificati',
-'patrol-log-line' => 'hà signatu la $1 di $2 comu virificata $3',
-'patrol-log-auto' => '(virìfica automàtica)',
-'patrol-log-diff' => 'virsioni $1',
+'patrol-log-page'      => 'Canciamenti virificati',
+'patrol-log-header'    => 'Ccassutta sunnu elencati li virìfichi dî canci.',
+'patrol-log-line'      => 'hà signatu la $1 di $2 comu virificata $3',
+'patrol-log-auto'      => '(virìfica automàtica)',
+'patrol-log-diff'      => 'virsioni $1',
+'log-show-hide-patrol' => '$1 log di li canciamenti virificati',
 
 # Image deletion
 'deletedrevision'                 => 'Rivisioni pricidenti, cancillata: $1.',
@@ -2253,6 +2274,9 @@ $1',
 'previousdiff' => '← Diffirenza pricidenti',
 'nextdiff'     => 'Diffirenza siquenti →',
 
+# Visual comparison
+'visual-comparison' => 'Cunfrontu visuali',
+
 # Media information
 'mediawarning'         => "'''Accura''': Stu file pò cuntèniri còdici malignu, esiquènnulu lu vostru sistema putisi vèniri cumprumissu. <hr />",
 'imagemaxsize'         => 'Diminzioni màssima dî mmàggini supra li rilativi pàggini di o:',
@@ -2268,6 +2292,9 @@ $1',
 # Special:NewImages
 'newimages'             => 'Gallarìa dî file novi',
 'imagelisttext'         => "Di sèquitu veni prisintata na lista di '''$1''' file urdinat{{PLURAL:$1|u|i}} pi $2.",
+'newimages-summary'     => 'Sta pàggina spiciali ammustra li file caricati di cchiù picca tempu.',
+'newimages-legend'      => 'Nomu file',
+'newimages-label'       => "Nomu file (o nu pezzu d'iddu):",
 'showhidebots'          => '($1 li bot)',
 'noimages'              => 'Nenti a vìdiri.',
 'ilsubmit'              => "Va' cerca",
@@ -2480,6 +2507,18 @@ Li lijami succissivi, supra la stissa riga, sunnu cunzidirati comu eccizzioni (p
 'exif-lightsource-24'  => 'Làmpara di studiu ISO a lu tungstenu',
 'exif-lightsource-255' => 'Àutra surgenti luminusa',
 
+# Flash modes
+'exif-flash-fired-0'    => 'Lu flash non scattau',
+'exif-flash-fired-1'    => 'Flash scattatu',
+'exif-flash-return-0'   => 'nudda funzioni di ndividuazzioni dâ turnata dâ luci strobboscòpica',
+'exif-flash-return-2'   => 'luci strobboscòpica di riturnata non ndividuata',
+'exif-flash-return-3'   => 'luci strobboscòpica di riturnata ndividuata',
+'exif-flash-mode-1'     => 'attivazzioni flash fattu câ forza',
+'exif-flash-mode-2'     => 'rimuzzioni flash fattu câ forza',
+'exif-flash-mode-3'     => 'modu automàticu',
+'exif-flash-function-1' => 'Astuta flash',
+'exif-flash-redeye-1'   => 'modu menu occhi russi',
+
 'exif-focalplaneresolutionunit-2' => 'puseri',
 
 'exif-sensingmethod-1' => 'Nun difinitu',
@@ -2565,23 +2604,23 @@ Li lijami succissivi, supra la stissa riga, sunnu cunzidirati comu eccizzioni (p
 'monthsall'        => 'tutti',
 
 # E-mail address confirmation
-'confirmemail'            => 'Cunferma ndirizzu e-mail',
-'confirmemail_noemail'    => 'Nun hà statu ndicatu un ndirizzu e-mail vàlidu ntê propi [[Special:Preferences|prifirenzi]].',
-'confirmemail_text'       => "Stu situ richiedi la virìfica di l ndirizzu e-mail prima di putiri usari li funzioni cunnessi a l'email. Prèmiri lu pulsanti ccà sutta pi mannari na richiesta di cunferma a lu propiu ndirizzu; ntô missaggiu è prisenti un culligamenti ca cunteni un còdici. Visitari lu culligamentu cu lu propiu browser pi cunfirmari ca lu ndirizzu e-mail è vàlidu.",
-'confirmemail_pending'    => "<div class=\"error\"> Lu còdici di cunferma hà già statu spiditu via posta alittrònica; siddu l'account hà statu criatu di ricenti, si preja d'attènniri l'arrivu dû còdici pi quarchi minutu prima di tintari d'addumannàrinni unu novu. </div>",
-'confirmemail_send'       => 'Manna un còdici di cunferma via e-mail.',
-'confirmemail_sent'       => 'Missaggiu e-mail di cunferma mannatu.',
-'confirmemail_oncreate'   => 'Un còdici di cunferma hà statu spiditu a lu ndirizzu di posta alittrònica ndicatu. Lu còdici nun è nicissariu pi tràsiri lu situ, ma è nicissariu furnirilu pi putiri abbilitari tutti li funzioni dû situ ca fannu usu dâ posta alittrònica.',
-'confirmemail_sendfailed' => "{{SITENAME}} nun pò mannari lu missaggiu e-mail di cunferma. Virificari ca lu nnirizzu nun cunteni caràttiri nun vàlidi.
+'confirmemail'             => 'Cunferma ndirizzu e-mail',
+'confirmemail_noemail'     => 'Nun hà statu ndicatu un ndirizzu e-mail vàlidu ntê propi [[Special:Preferences|prifirenzi]].',
+'confirmemail_text'        => "Stu situ richiedi la virìfica di l ndirizzu e-mail prima di putiri usari li funzioni cunnessi a l'email. Prèmiri lu pulsanti ccà sutta pi mannari na richiesta di cunferma a lu propiu ndirizzu; ntô missaggiu è prisenti un culligamenti ca cunteni un còdici. Visitari lu culligamentu cu lu propiu browser pi cunfirmari ca lu ndirizzu e-mail è vàlidu.",
+'confirmemail_pending'     => "<div class=\"error\"> Lu còdici di cunferma hà già statu spiditu via posta alittrònica; siddu l'account hà statu criatu di ricenti, si preja d'attènniri l'arrivu dû còdici pi quarchi minutu prima di tintari d'addumannàrinni unu novu. </div>",
+'confirmemail_send'        => 'Manna un còdici di cunferma via e-mail.',
+'confirmemail_sent'        => 'Missaggiu e-mail di cunferma mannatu.',
+'confirmemail_oncreate'    => 'Un còdici di cunferma hà statu spiditu a lu ndirizzu di posta alittrònica ndicatu. Lu còdici nun è nicissariu pi tràsiri lu situ, ma è nicissariu furnirilu pi putiri abbilitari tutti li funzioni dû situ ca fannu usu dâ posta alittrònica.',
+'confirmemail_sendfailed'  => "{{SITENAME}} nun pò mannari lu missaggiu e-mail di cunferma. Virificari ca lu nnirizzu nun cunteni caràttiri nun vàlidi.
 
 Missaggiu d'erruri dû mailer: $1",
-'confirmemail_invalid'    => 'Còdici di cunferma nun vàlidu. Lu còdici putissi èssiri scadutu.',
-'confirmemail_needlogin'  => 'È nicissariu $1 pi cunfirmari lu propiu ndirizzu e-mail.',
-'confirmemail_success'    => "Lu ndirizzu e-mail è cunfirmatu. Ora è pussìbbili esèquiri l'accessu e fari chinu usu dû situ.",
-'confirmemail_loggedin'   => 'Lu tò nnirizzu email fu ora cunfirmatu.',
-'confirmemail_error'      => 'Erruri ntô sarvataggiu dâ cunferma.',
-'confirmemail_subject'    => '{{SITENAME}}: richiesta di cunferma di lu ndirizzu',
-'confirmemail_body'       => 'Quarcunu, prubbabbirmenti tu stissu di lu ndirizzu IP $1, hà riggistratu l\'account "$2" supra {{SITENAME}} ndicannu stu ndirizzu e-mail. 
+'confirmemail_invalid'     => 'Còdici di cunferma nun vàlidu. Lu còdici putissi èssiri scadutu.',
+'confirmemail_needlogin'   => 'È nicissariu $1 pi cunfirmari lu propiu ndirizzu e-mail.',
+'confirmemail_success'     => "Lu ndirizzu e-mail è cunfirmatu. Ora è pussìbbili esèquiri l'accessu e fari chinu usu dû situ.",
+'confirmemail_loggedin'    => 'Lu tò nnirizzu email fu ora cunfirmatu.',
+'confirmemail_error'       => 'Erruri ntô sarvataggiu dâ cunferma.',
+'confirmemail_subject'     => '{{SITENAME}}: richiesta di cunferma di lu ndirizzu',
+'confirmemail_body'        => 'Quarcunu, prubbabbirmenti tu stissu di lu ndirizzu IP $1, hà riggistratu l\'account "$2" supra {{SITENAME}} ndicannu stu ndirizzu e-mail. 
 
 Pi cunfirmari ca l\'account t\'apparteni e attivari li funzioni rilativi a lu nvìu di e-mail supra {{SITENAME}}, grapi lu culligamentu siquenti cu lu tò browser: 
 
@@ -2592,6 +2631,8 @@ Siddu l\'account *nun* t\'apparteni, grapi lu siguenti culligamentu:
 $5
 
 Stu còdici di cunferma scadi automaticamenti a li $4.',
+'confirmemail_invalidated' => 'Addumannata di cunferma ndirizzu e-mail scancillata',
+'invalidateemail'          => 'Scancella la dumanna di cunferma e-mail',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[La nchiusioni di pàggini tra siti wiki nun è attiva]',
@@ -2614,6 +2655,7 @@ Stu còdici di cunferma scadi automaticamenti a li $4.',
 # action=purge
 'confirm_purge_button' => 'Cunferma',
 'confirm-purge-top'    => "S'addisìa puliri la cache di sta pàggina?",
+'confirm-purge-bottom' => "Pulizziari la cache di na pàggina pirmetti d'ammustrari la sô virsioni cchiù nova.",
 
 # Separators for various lists, etc.
 'catseparator'        => '|',
@@ -2715,13 +2757,47 @@ Stu còdici di cunferma scadi automaticamenti a li $4.',
 
 Mèttiri lu nomu dû file senza lu prifissu "{{ns:image}}:"',
 
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Circata dê file duppiuni',
+'fileduplicatesearch-summary'  => "Circata di pussìbbili dupppiuni dû file 'n basi ô valuri di ''hash''.
+
+Nziriri lu nomu di lu file senza lu prifissu \"{{ns:image}}:\"",
+'fileduplicatesearch-legend'   => 'Circata di nu duppiuni',
+'fileduplicatesearch-filename' => 'Nomu dû file:',
+'fileduplicatesearch-submit'   => 'Circata',
+'fileduplicatesearch-info'     => '$1 × $2 pixel<br />Diminzioni: $3<br />Tipu MIME: $4',
+'fileduplicatesearch-result-1' => 'Non ci sunnu duppiuni li stissi dû file "$1".',
+'fileduplicatesearch-result-n' => '{{PLURAL:$2|C\'è ggià nu duppiuni lu stissu|Ci sunnu ggià $2 duppiuni li stissi}} dû file "$1".',
+
 # Special:SpecialPages
 'specialpages'                   => 'Pàggini spiciali',
+'specialpages-note'              => '----
+* Pàggini spiciali non risirvati.
+* <span class="mw-specialpagerestricted">Pàggini spiciali risirvati sulu a quarchi catigurìa d\'utenti.</span>',
 'specialpages-group-maintenance' => 'Resocunti di manutinzioni',
 'specialpages-group-other'       => 'Autri pàggini spiciali',
 'specialpages-group-login'       => 'Trasi / riggìstrazzioni',
 'specialpages-group-changes'     => 'Ùrtimi canciamenti e riggistri',
+'specialpages-group-media'       => 'File multimidiali - caricamentu e rennicunti',
 'specialpages-group-users'       => 'Utenti e diritti',
 'specialpages-group-highuse'     => 'Pàggini cchiù usati',
+'specialpages-group-pages'       => 'Listi di pàggini',
+'specialpages-group-pagetools'   => 'Strumenti ùtili pi li pàggini',
+'specialpages-group-wiki'        => 'Strumenti e nfurmazzioni supra lu pruggettu',
+'specialpages-group-redirects'   => 'Pàggini spiciali di redirect',
+'specialpages-group-spam'        => "Strumenti contr'a lu spam",
+
+# Special:BlankPage
+'blankpage'              => 'Pàggina vacanti',
+'intentionallyblankpage' => 'Sta pàggina è lassata vacanti apposta e è usata pi benchmark, ecc.',
+
+# External image whitelist
+'external_image_whitelist' => "#lassa sta riga cum'è ora, senza tuccàrila<pre>
+#Nzirisci li frammenti dî sprissioni rigulari (solu la parti ca và tra //) di sècutu
+#Chisti hann'a currispùnniri cu li URL di mmàggini esterni (hotlinked)
+#Chiddi ca currispùnnunu vènunu appoi ammustrati comu mmàggini, casu cuntràriu s'ammustra sulu nu culligamentu a la mmàggini
+#Li lìnii ca accumincianu cu # sunnu di cummentu
+
+#Nzirisci supr'a sta riga tutti li frammenti di regex. Lassa sta riga cum'è ora, senza tuccàrila</pre>",
 
 );

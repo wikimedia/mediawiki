@@ -250,7 +250,7 @@ $messages = array(
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|Lludüchi|Lludüchi}} wiñamüy]',
 
 # Recent changes linked
-'recentchangeslinked-page' => 'Güy pakina:',
+'recentchangeslinked-page' => 'Pakina ñi üy:',
 
 # Upload
 'uploadnologin'   => 'Petu konlaymi',

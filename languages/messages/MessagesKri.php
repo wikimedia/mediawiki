@@ -73,6 +73,7 @@ $messages = array(
 
 'returnto'         => 'Go bak tu $1.',
 'tagline'          => 'Dis kohmoh {{SITENAME}}',
+'help'             => 'Ehp mi',
 'search'           => 'Luk foh am',
 'searchbutton'     => 'Luk foh am',
 'go'               => 'Go to am',
@@ -97,6 +98,7 @@ $messages = array(
 'postcomment'      => 'Lef yu-yon opinyon',
 'articlepage'      => 'Luk wetin de insai',
 'talk'             => 'Diskohshohn',
+'views'            => 'We-dehm foh luk dis pej-ya',
 'toolbox'          => 'Tulbohks',
 'userpage'         => 'Luk dis pohsin-im yuza-pej',
 'jumpto'           => 'Jomp go:',
@@ -186,16 +188,30 @@ Yu go geht foh pik ohda wan.',
 'username'                => 'Yuzanem:',
 
 # Edit pages
-'watchthis'          => 'Wach dis pej-ya',
-'savearticle'        => 'Sev dis pej-ya',
-'showpreview'        => 'Luk di privyu',
-'showlivepreview'    => 'Luk di laiv privyu',
-'showdiff'           => 'Sho wetin dohn chenj',
-'anoneditwarning'    => "'''Wet O:''' Yu noh log-in yet.
+'watchthis'                        => 'Wach dis pej-ya',
+'savearticle'                      => 'Sev dis pej-ya',
+'showpreview'                      => 'Luk di privyu',
+'showlivepreview'                  => 'Luk di laiv privyu',
+'showdiff'                         => 'Sho wetin dohn chenj',
+'anoneditwarning'                  => "'''Wet O:''' Yu noh log-in yet.
 So dehm go sev yu IP address na di pej-im chenj istri",
-'missingsummary'     => "'''Mehmba se:''' yu noh mek chenj sohmari.
+'missingsummary'                   => "'''Mehmba se:''' yu noh mek chenj sohmari.
 If yu pres Sev bak, dehm go sev yu chenj lehk so.",
-'missingcommenttext' => 'Rait yu opinyohn ohnda yah.',
+'missingcommenttext'               => 'Rait yu opinyohn ohnda yah.',
+'permissionserrorstext-withaction' => 'Yu noh go ebul fo $2, bicoh {{PLURAL:$1|reason|reasons}}:',
+'recreate-deleted-warn'            => "'''Ebo!!: Yu de mek bak wan pej we dehm bin dohn ires.'''
+
+Yu sabi if yu foh wok pan dis pej-ya.
+Di log we dehm kip foh dis pej-in dilishohn de ya:",
+'deleted-notice'                   => 'Dehm dohn ires dis pej-ya.
+Di log we dehm kip foh dis pej-in dilishohn de ya:',
+'deletelog-fulllog'                => 'Luk di wan-ol lohg',
+'edit-hook-aborted'                => 'Wan Hook dohn pul wetin yu chenj.
+I noh eksplen wetin-mek.',
+'edit-gone-missing'                => 'Wi noh ebul updet dis pej-ya.
+Sohmtehm dehm dohn ires am.',
+'edit-conflict'                    => 'Chenj dehm tin-dehm ya we noh gri wit dehm kohmpin.',
+'edit-no-change'                   => 'Wi no luk wetin yu chenj, bicoh yu no chenj wetin rait de.',
 
 # History pages
 'last'       => 'las',
