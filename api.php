@@ -64,7 +64,7 @@ if( strcmp( "$wgScriptPath/api$wgScriptExtension", $url ) ) {
 if (!$wgEnableAPI) {
 	echo 'MediaWiki API is not enabled for this site. Add the following line to your LocalSettings.php';
 	echo '<pre><b>$wgEnableAPI=true;</b></pre>';
-	die(-1);
+	die(1);
 }
 
 /* Construct an ApiMain with the arguments passed via the URL. What we get back
