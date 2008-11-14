@@ -785,6 +785,7 @@ Alcuni template non verranno inclusi.',
 'post-expand-template-inclusion-category' => 'Pagine dove la dimensione dei template inclusi supera il limite consentito',
 'post-expand-template-argument-warning'   => 'Attenzione: questa pagina contiene almeno un argomento di un template che ha una dimensione troppo grande per essere espanso. Questi argomenti verranno omessi.',
 'post-expand-template-argument-category'  => 'Pagine contenenti template con argomenti mancanti',
+'parser-template-loop-warning'            => 'Rilevato loop del template: [[$1]]',
 
 # "Undo" feature
 'undo-success' => 'Questa modifica può essere annullata. Verificare il confronto presentato di seguito per accertarsi che il contenuto corrisponda a quanto desiderato e quindi salvare le modifiche per completare la procedura di annullamento.',
@@ -1146,6 +1147,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'right-minoredit'            => 'Segna le modifiche come minori',
 'right-move'                 => 'Sposta pagine',
 'right-move-subpages'        => 'Sposta le pagine insieme alle relative sottopagine',
+'right-move-rootuserpages'   => 'Sposta le pagine principali degli utenti',
 'right-suppressredirect'     => 'Evita la creazione automatica del redirect quando sposta una pagina da quel titolo',
 'right-upload'               => 'Carica file',
 'right-reupload'             => 'Sovrascrive un file esistente',
@@ -1205,6 +1207,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'action-minoredit'            => 'segnare questa modifica come minore',
 'action-move'                 => 'spostare questa pagina',
 'action-move-subpages'        => 'spostare questa pagina e le relative sottopagine',
+'action-move-rootuserpages'   => 'spostare le pagine principali degli utenti',
 'action-upload'               => 'caricare questo file',
 'action-reupload'             => 'sovrascrivere questo file esistente',
 'action-reupload-shared'      => "sovrascrivere questo file presente nell'archivio condiviso",

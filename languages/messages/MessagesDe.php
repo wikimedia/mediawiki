@@ -838,6 +838,8 @@ Es {{PLURAL:$2|darf nicht mehr als 1 Aufruf|dürfen nicht mehr als $1 Aufrufe}} 
 'post-expand-template-inclusion-category' => 'Seiten, in denen die maximale Größe eingebundener Vorlagen überschritten ist',
 'post-expand-template-argument-warning'   => 'Warnung: Diese Seite enthält mindestens ein Argument in einer Vorlage, das expandiert zu groß ist. Diese Argumente werden ignoriert.',
 'post-expand-template-argument-category'  => 'Seiten, die ignorierte Vorlagenargumente enthalten',
+'parser-template-loop-warning'            => 'Vorlagenschleife entdeckt: [[$1]]',
+'parser-template-recursion-depth-warning' => 'Vorlagenrekursionstiefengrenze überschritten ($1)',
 
 # "Undo" feature
 'undo-success' => 'Um die Änderung rückgängig zu machen, bitte die Bearbeitung in der Vergleichsansicht kontrollieren und dann auf „Seite speichern“ klicken.',
@@ -1050,6 +1052,7 @@ Stelle sicher, dass die Versionsgeschichte eines Artikels historisch korrekt ist
 'searchprofile-images-tooltip'     => 'Nach Bildern suchen',
 'searchprofile-everything-tooltip' => 'Gesamten Inhalt durchsuchen (inklusive Diskussionsseiten)',
 'searchprofile-advanced-tooltip'   => 'Suche in weiteren Namensräumen',
+'prefs-search-nsdefault'           => 'Standard-Namensräume:',
 'prefs-search-nscustom'            => 'Suche in weiteren Namensräumen:',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 Wort|$2 Wörter}})',
 'search-result-score'              => 'Relevanz: $1 %',

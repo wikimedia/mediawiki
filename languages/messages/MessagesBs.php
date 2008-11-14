@@ -857,6 +857,8 @@ Neki šabloni neće biti uključeni.',
 'post-expand-template-argument-warning'   => 'Upozorenje: Ova stranica sadrži najmanje jedan argument u šablonu koji ima preveliku veličinu.
 Ovakvi argumenti se trebaju izbjegavati.',
 'post-expand-template-argument-category'  => 'Stranice koje sadrže nedostajuće argumente u šablonu',
+'parser-template-loop-warning'            => 'Otkrivena kružna greška u šablonu: [[$1]]',
+'parser-template-recursion-depth-warning' => 'Dubina uključivanja šablona prekoračena ($1)',
 
 # "Undo" feature
 'undo-success' => 'Izmjena se može vratiti.
@@ -1939,7 +1941,7 @@ Možete promijeniti stepen zaštite ove stranice, ali to neće uticati na prenos
 ** Prekomjerno spamovanje
 ** Ne produktivni rat izmjena
 ** Stranica velikog prometa',
-'protect-edit-reasonlist'     => 'Uredi razloge brisanja',
+'protect-edit-reasonlist'     => 'Uredi razloge zaštićavanja',
 'protect-expiry-options'      => '15 minuta:15 min,1 sat:1 hour,2 sata:2 hours,6 sati:6 hours,12 sati:12 hours,1 dan:1 day,3 dana:3 days,1 sedmica:1 week,2 sedmice:2 weeks,1 mjesec:1 month,3 mjeseca:3 months,6 mjeseci:6 months,1 godine:1 year,zauvijek:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Dopuštenje:',
 'restriction-level'           => 'Stepen ograničenja:',
@@ -1959,40 +1961,53 @@ Možete promijeniti stepen zaštite ove stranice, ali to neće uticati na prenos
 'restriction-level-all'           => 'svi nivoi',
 
 # Undelete
-'undelete'                 => 'Pogledaj izbrisane stranice',
-'undeletepage'             => 'Pogledaj i vrati izbrisane stranice',
-'undeletepagetitle'        => "'''Slijedeći sadržaj prikazuje obrisane revizije od [[:$1|$1]]'''.",
-'viewdeletedpage'          => 'Pogledaj izbrisane stranice',
-'undeletepagetext'         => 'Sledeće stranice su izbrisane ali su još uvijek u arhivi i
+'undelete'                     => 'Pogledaj izbrisane stranice',
+'undeletepage'                 => 'Pogledaj i vrati izbrisane stranice',
+'undeletepagetitle'            => "'''Slijedeći sadržaj prikazuje obrisane revizije od [[:$1|$1]]'''.",
+'viewdeletedpage'              => 'Pogledaj izbrisane stranice',
+'undeletepagetext'             => 'Sledeće stranice su izbrisane ali su još uvijek u arhivi i
 mogu biti vraćene.  Arhiva moše biti periodično čišćena.',
-'undelete-fieldset-title'  => 'Vraćanje revizija',
-'undeleteextrahelp'        => "Da vratite cijeli članak, ostavite sve kutijice neoznačene i kliknite '''''Vrati'''''.
+'undelete-fieldset-title'      => 'Vraćanje revizija',
+'undeleteextrahelp'            => "Da vratite cijeli članak, ostavite sve kutijice neoznačene i kliknite '''''Vrati'''''.
 Da bi izvršili selektivno vraćanje članaka, odaberite kutijice koje odgovaraju revizijama koje želite vratiti, i kliknite '''''Vrati'''''.
 Klikom na '''''Očisti''''' ćete očistiti polje za komentar i sve kutijice.",
-'undeleterevisions'        => '{{PLURAL:$1|$1 revizija arhivirana|$1 revizije arhivirane|$1 revizija arhivirano}}',
-'undeletehistory'          => 'Ako vratite stranicu, sve revizije će biti vraćene njenoj historiji.
+'undeleterevisions'            => '{{PLURAL:$1|$1 revizija arhivirana|$1 revizije arhivirane|$1 revizija arhivirano}}',
+'undeletehistory'              => 'Ako vratite stranicu, sve revizije će biti vraćene njenoj historiji.
 Ako je nova stranica istog imena napravljena od brisanja, vraćene revizije će se pojaviti u njenoj ranijoj historiji.',
-'undeleterevdel'           => 'Vraćanje obrisanog se neće izvršiti ako bi rezultiralo da zaglavlje stranice ili revizija datoteke bude djelomično obrisano.
+'undeleterevdel'               => 'Vraćanje obrisanog se neće izvršiti ako bi rezultiralo da zaglavlje stranice ili revizija datoteke bude djelomično obrisano.
 U takvim slučajevima, morate ukloniti označene ili otkriti sakrivene najskorije obrisane revizije.',
-'undeletehistorynoadmin'   => 'Ova stranica je izbrisana.  Ispod se nalazi dio istorije brisanja i istorija revizija izbrisane stranice.  Tekst izbrisane stranice je vidljiv samo korisnicima koji su administratori.',
-'undelete-revision'        => 'Obrisana revizija stranice $1 (dana $4, u $5) od strane $3:',
-'undeleterevision-missing' => 'Nepoznata ili nedostajuća revizija.
+'undeletehistorynoadmin'       => 'Ova stranica je izbrisana.  Ispod se nalazi dio istorije brisanja i istorija revizija izbrisane stranice.  Tekst izbrisane stranice je vidljiv samo korisnicima koji su administratori.',
+'undelete-revision'            => 'Obrisana revizija stranice $1 (dana $4, u $5) od strane $3:',
+'undeleterevision-missing'     => 'Nepoznata ili nedostajuća revizija.
 Možda ste unijeli pogrešan link, ili je revizija vraćena ili uklonjena iz arhive.',
-'undelete-nodiff'          => 'Nije pronađena ranija revizija.',
-'undeletebtn'              => 'Vrati',
-'undeletelink'             => 'vrati',
-'undeletereset'            => 'Očisti',
-'undeleteinvert'           => 'Izmijeni odabir',
-'undeletecomment'          => 'Komentar:',
-'undeletedarticle'         => 'vraćeno "$1"',
-'undeletedrevisions'       => '{{PLURAL:$1|$1 revizija vraćena|$1 revizije vraćene|$1 revizija vraćeno}}',
-'undeletedrevisions-files' => '{{PLURAL:$1|1 revizija|$1 revizije|$1 revizija}} i {{PLURAL:$2|1 datoteka|$2 datoteke|$2 datoteka}} vraćeno',
-'undeletedfiles'           => '{{PLURAL:$1|1 datoteka vraćena|$1 datoteke vraćene|$1 datoteka vraćeno}}',
-'undeletedpage'            => "<big>'''$1 je vraćena'''</big>
+'undelete-nodiff'              => 'Nije pronađena ranija revizija.',
+'undeletebtn'                  => 'Vrati',
+'undeletelink'                 => 'vrati',
+'undeletereset'                => 'Očisti',
+'undeleteinvert'               => 'Izmijeni odabir',
+'undeletecomment'              => 'Komentar:',
+'undeletedarticle'             => 'vraćeno "$1"',
+'undeletedrevisions'           => '{{PLURAL:$1|$1 revizija vraćena|$1 revizije vraćene|$1 revizija vraćeno}}',
+'undeletedrevisions-files'     => '{{PLURAL:$1|1 revizija|$1 revizije|$1 revizija}} i {{PLURAL:$2|1 datoteka|$2 datoteke|$2 datoteka}} vraćeno',
+'undeletedfiles'               => '{{PLURAL:$1|1 datoteka vraćena|$1 datoteke vraćene|$1 datoteka vraćeno}}',
+'cannotundelete'               => 'Vraćanje nije uspjelo;
+neko drugi je već vratio ovu stranicu.',
+'undeletedpage'                => "<big>'''$1 je vraćena'''</big>
 
 Provjerite [[Special:Log/delete|zapis brisanja]] za zapise najskorijih brisanja i vraćanja.",
-'undelete-search-submit'   => 'Traži',
-'undelete-error-short'     => 'Greška pri vraćanju datoteke: $1',
+'undelete-header'              => 'Pogledajte [[Special:Log/delete|zapisnik brisanja]] za nedavno obrisane stranice.',
+'undelete-search-box'          => 'Pretraga obrisanih stranica',
+'undelete-search-prefix'       => 'Prikaži stranice koje počinju sa:',
+'undelete-search-submit'       => 'Traži',
+'undelete-no-results'          => 'Nije pronađena odgovarajuća stranica u arhivi brisanja.',
+'undelete-filename-mismatch'   => 'Ne može se vratiti revizija datoteke od $1: pogrešno ime datoteke',
+'undelete-cleanup-error'       => 'Greške pri brisanju nekorištene arhivske datoteke "$1".',
+'undelete-missing-filearchive' => 'Ne može se vratiti arhivska datoteka sa ID oznakom $1 jer nije u bazi podataka.
+Možda je već ranije vraćena.',
+'undelete-error-short'         => 'Greška pri vraćanju datoteke: $1',
+'undelete-error-long'          => 'Desile su se pogreške pri vraćanju datoteke:
+
+$1',
 
 # Namespace form on various pages
 'namespace'      => 'Vrsta članka:',
@@ -2000,69 +2015,136 @@ Provjerite [[Special:Log/delete|zapis brisanja]] za zapise najskorijih brisanja 
 'blanknamespace' => '(Glavno)',
 
 # Contributions
-'contributions' => 'Doprinos korisnika',
-'mycontris'     => 'Moj doprinos',
-'contribsub2'   => 'Za $1 ($2)',
-'nocontribs'    => 'Nisu nađene promjene koje zadovoljavaju ove uslove.',
-'uctop'         => ' (vrh)',
-'month'         => 'Od mjeseca (i ranije):',
-'year'          => 'Od godine (i ranije):',
+'contributions'       => 'Doprinos korisnika',
+'contributions-title' => 'Doprinosi korisnika $1',
+'mycontris'           => 'Moj doprinos',
+'contribsub2'         => 'Za $1 ($2)',
+'nocontribs'          => 'Nisu nađene promjene koje zadovoljavaju ove uslove.',
+'uctop'               => ' (vrh)',
+'month'               => 'Od mjeseca (i ranije):',
+'year'                => 'Od godine (i ranije):',
 
-'sp-contributions-newbies-sub' => 'Za nove korisnike',
-'sp-contributions-blocklog'    => 'Evidencija blokiranja',
-'sp-contributions-submit'      => 'Traži',
+'sp-contributions-newbies'       => 'Prikaži samo doprinose novih korisnika',
+'sp-contributions-newbies-sub'   => 'Za nove korisnike',
+'sp-contributions-newbies-title' => 'Doprinosi novih korisnika',
+'sp-contributions-blocklog'      => 'Evidencija blokiranja',
+'sp-contributions-search'        => 'Pretraga doprinosa',
+'sp-contributions-username'      => 'IP adresa ili korisničko ime:',
+'sp-contributions-submit'        => 'Traži',
 
 # What links here
-'whatlinkshere'         => 'Šta je povezano ovdje',
-'whatlinkshere-title'   => 'Stranice koje vode na "$1"',
-'linkshere'             => "Sljedeći članci vode na '''[[:$1]]''':",
-'nolinkshere'           => "Nema linkova na '''[[:$1]]'''.",
-'isredirect'            => 'preusmjerivač',
-'istemplate'            => 'kao šablon',
-'whatlinkshere-prev'    => '{{PLURAL:$1|prethodni|prethodna|prethodnih}} $1',
-'whatlinkshere-next'    => '{{PLURAL:$1|sljedeći|sljedeća|sljedećih}} $1',
-'whatlinkshere-links'   => '← linkovi',
-'whatlinkshere-filters' => 'Filteri',
+'whatlinkshere'            => 'Šta je povezano ovdje',
+'whatlinkshere-title'      => 'Stranice koje vode na "$1"',
+'whatlinkshere-page'       => 'Stranica:',
+'linkshere'                => "Sljedeći članci vode na '''[[:$1]]''':",
+'nolinkshere'              => "Nema linkova na '''[[:$1]]'''.",
+'nolinkshere-ns'           => "Nijedna stranica nije povezana sa '''[[:$1]]''' u odabranom imenskom prostoru.",
+'isredirect'               => 'preusmjerivač',
+'istemplate'               => 'kao šablon',
+'isimage'                  => 'link datoteke',
+'whatlinkshere-prev'       => '{{PLURAL:$1|prethodni|prethodna|prethodnih}} $1',
+'whatlinkshere-next'       => '{{PLURAL:$1|sljedeći|sljedeća|sljedećih}} $1',
+'whatlinkshere-links'      => '← linkovi',
+'whatlinkshere-hideredirs' => '$1 preusmjerenja',
+'whatlinkshere-hidetrans'  => '$1 uključenja',
+'whatlinkshere-hidelinks'  => '$1 linkove',
+'whatlinkshere-hideimages' => '$1 linkove slika',
+'whatlinkshere-filters'    => 'Filteri',
 
 # Block/unblock
-'blockip'              => 'Blokiraj korisnika',
-'blockiptext'          => 'Upotrebite donji upitnik da biste uklonili prava pisanja sa određene IP adrese ili korisničkog imena.  Ovo bi trebalo da bude urađeno samo da bi se spriječio vandalizam, i u skladu sa [[{{MediaWiki:Policy-url}}|smjernicama]]. Unesite konkretan razlog ispod (na primjer, navodeći koje stranice su vandalizovane).',
-'ipaddress'            => 'IP adresa:',
-'ipbexpiry'            => 'Trajanje',
-'ipbreason'            => 'Razlog',
-'ipbreasonotherlist'   => 'Ostali razlozi',
-'ipbsubmit'            => 'Blokirajte ovog korisnika',
-'ipbother'             => 'Ostali period:',
-'ipboptions'           => '15 minuta:15 min,1 sat:1 hour,2 sata:2 hours,6 sati:6 hours,12 sati:12 hours,1 dan:1 day,3 dana:3 days,1 sedmica:1 week,2 sedmice:2 weeks,1 mjesec:1 month,3 mjeseca:3 months,6 mjeseci:6 months,1 godine:1 year,zauvijek:infinite', # display1:time1,display2:time2,...
-'ipbotherreason'       => 'Ostali/dodatni razlozi:',
-'badipaddress'         => 'Pogrešna IP adresa',
-'blockipsuccesssub'    => 'Blokiranje je uspjelo',
-'blockipsuccesstext'   => '[[Special:Contributions/$1|$1]] je blokiran.
+'blockip'                         => 'Blokiraj korisnika',
+'blockip-legend'                  => 'Blokiranje korisnika',
+'blockiptext'                     => 'Upotrebite donji upitnik da biste uklonili prava pisanja sa određene IP adrese ili korisničkog imena.  Ovo bi trebalo da bude urađeno samo da bi se spriječio vandalizam, i u skladu sa [[{{MediaWiki:Policy-url}}|smjernicama]]. Unesite konkretan razlog ispod (na primjer, navodeći koje stranice su vandalizovane).',
+'ipaddress'                       => 'IP adresa:',
+'ipadressorusername'              => 'IP adresa ili korisničko ime:',
+'ipbexpiry'                       => 'Trajanje',
+'ipbreason'                       => 'Razlog',
+'ipbreasonotherlist'              => 'Ostali razlozi',
+'ipbreason-dropdown'              => '*Najčešći razlozi blokiranja
+**Netačne informacije
+**Uklanjanje sadržaja stranica
+**Postavljanje spam vanjskih linkova
+**Ubacivanje gluposti/grafita
+**Osobni napadi (ili napadačko ponašanje)
+**Čarapare (zloupotreba više korisničkih računa)
+**Neprihvatljivo korisničko ime',
+'ipbanononly'                     => 'Blokiraj samo anonimne korisnike',
+'ipbcreateaccount'                => 'Onemogući pravljenje računa',
+'ipbemailban'                     => 'Onemogući korisnika da šalje e-mail',
+'ipbsubmit'                       => 'Blokirajte ovog korisnika',
+'ipbother'                        => 'Ostali period:',
+'ipboptions'                      => '15 minuta:15 min,1 sat:1 hour,2 sata:2 hours,6 sati:6 hours,12 sati:12 hours,1 dan:1 day,3 dana:3 days,1 sedmica:1 week,2 sedmice:2 weeks,1 mjesec:1 month,3 mjeseca:3 months,6 mjeseci:6 months,1 godine:1 year,zauvijek:infinite', # display1:time1,display2:time2,...
+'ipbotheroption'                  => 'ostalo',
+'ipbotherreason'                  => 'Ostali/dodatni razlozi:',
+'ipbhidename'                     => 'Sakrij korisničko ime iz zapisa blokiranja, spiska aktivnih blokiranja i spisak korisnika',
+'ipbwatchuser'                    => 'Prati korisničku stranicu i stranicu za razgovor ovog korisnika',
+'ipballowusertalk'                => 'Dopusti ovom korisniku da mijenja vlastitu stranicu za razgovor dok je blokiran',
+'ipb-change-block'                => 'Ponovno blokiraj korisnika sa novim postavkama',
+'badipaddress'                    => 'Pogrešna IP adresa',
+'blockipsuccesssub'               => 'Blokiranje je uspjelo',
+'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] je blokiran.
 <br />Pogledajte [[Special:IPBlockList|IP spisak blokiranih korisnika]] za pregled blokiranja.',
-'ipb-blocklist-addr'   => 'Postojeće blokade za $1',
-'unblockip'            => 'Odblokiraj korisnika',
-'unblockiptext'        => 'Upotrebite donji upitnik da bi ste vratili
+'ipb-edit-dropdown'               => 'Uredi razloge blokiranja',
+'ipb-unblock-addr'                => 'Deblokiraj $1',
+'ipb-unblock'                     => 'Deblokiraj korisničko ime ili IP adresu',
+'ipb-blocklist-addr'              => 'Postojeće blokade za $1',
+'ipb-blocklist'                   => 'Vidi postojeće blokade',
+'ipb-blocklist-contribs'          => 'Doprinosi za $1',
+'unblockip'                       => 'Odblokiraj korisnika',
+'unblockiptext'                   => 'Upotrebite donji upitnik da bi ste vratili
 pravo pisanja ranije blokiranoj IP adresi
 ili korisničkom imenu.',
-'ipusubmit'            => 'Deblokirajte ovog korisnika',
-'ipblocklist'          => 'Spisak blokiranih IP adresa i korisničkih imena',
-'ipblocklist-submit'   => 'Traži',
-'blocklistline'        => '$1, $2 blokirao korisnika $3 ($4)',
-'anononlyblock'        => 'samo anonimni korisnici',
-'blocklink'            => 'blokirajte',
-'unblocklink'          => 'deblokiraj',
-'contribslink'         => 'doprinosi',
-'autoblocker'          => 'Automatski ste blokirani jer dijelite IP adresu sa "$1".  Razlog za blokiranje je: "\'\'\'$2\'\'\'"',
-'blocklogpage'         => 'Evidencija blokiranja',
-'blocklogentry'        => 'je blokirao [[$1]] sa vremenom isticanja blokade od $2 $3',
-'blocklogtext'         => 'Ovo je istorija blokiranja i deblokiranja korisnika.  Automatsko blokirane IP adrese nisu uspisane ovde.  Pogledajte [[Special:IPBlockList|blokirane IP adrese]] za spisak trenutnih zabrana i blokiranja.',
-'unblocklogentry'      => 'deblokiran $1',
-'range_block_disabled' => 'Administratorska mogućnost da blokira grupe je isključena.',
-'ipb_expiry_invalid'   => 'Pogrešno vrijeme trajanja.',
-'ip_range_invalid'     => 'Netačan raspon IP adresa.',
-'proxyblocker'         => 'Bloker proksija',
-'proxyblockreason'     => 'Vaša IP adresa je blokirana jer je ona otvoreni proksi.  Molimo vas da kontaktirate vašeg davatelja internetskih usluga (Internet Service Provider-a) ili tehničku podršku i obavijestite ih o ovom ozbiljnom sigurnosnom problemu.',
-'proxyblocksuccess'    => 'Proksi uspješno blokiran.',
+'ipusubmit'                       => 'Deblokirajte ovog korisnika',
+'unblocked'                       => '[[User:$1|$1]] je deblokiran',
+'unblocked-id'                    => 'Blokada ID oznake $1 je uklonjena',
+'ipblocklist'                     => 'Spisak blokiranih IP adresa i korisničkih imena',
+'ipblocklist-legend'              => 'Traži blokiranog korisnika',
+'ipblocklist-username'            => 'Korisničko ime ili IP adresa:',
+'ipblocklist-sh-userblocks'       => '$1 blokade računa',
+'ipblocklist-sh-tempblocks'       => '$1 privremene blokade',
+'ipblocklist-sh-addressblocks'    => '$1 pojedinačne IP blokade',
+'ipblocklist-submit'              => 'Traži',
+'blocklistline'                   => '$1, $2 blokirao korisnika $3 ($4)',
+'infiniteblock'                   => 'neograničeno',
+'expiringblock'                   => 'ističe $1',
+'anononlyblock'                   => 'samo anonimni korisnici',
+'noautoblockblock'                => 'automatsko blokiranje onemogućeno',
+'createaccountblock'              => 'blokirano pravljenje računa',
+'emailblock'                      => 'e-mail blokiran',
+'blocklist-nousertalk'            => 'ne može uređivati vlastitu stranicu za razgovor',
+'ipblocklist-empty'               => 'Spisak blokiranja je prazan.',
+'ipblocklist-no-results'          => 'Tražena IP adresa ili korisničko ime nisu blokirani.',
+'blocklink'                       => 'blokirajte',
+'unblocklink'                     => 'deblokiraj',
+'contribslink'                    => 'doprinosi',
+'autoblocker'                     => 'Automatski ste blokirani jer dijelite IP adresu sa "$1".  Razlog za blokiranje je: "\'\'\'$2\'\'\'"',
+'blocklogpage'                    => 'Evidencija blokiranja',
+'blocklog-fulllog'                => 'Potpuni spisak zapisa blokiranja',
+'blocklogentry'                   => 'je blokirao [[$1]] sa vremenom isticanja blokade od $2 $3',
+'reblock-logentry'                => 'promjena postavki blokiranja za [[$1]] sa vremenom isteka u $2 $3',
+'blocklogtext'                    => 'Ovo je istorija blokiranja i deblokiranja korisnika.  Automatsko blokirane IP adrese nisu uspisane ovde.  Pogledajte [[Special:IPBlockList|blokirane IP adrese]] za spisak trenutnih zabrana i blokiranja.',
+'unblocklogentry'                 => 'deblokiran $1',
+'block-log-flags-anononly'        => 'samo anonimni korisnici',
+'block-log-flags-nocreate'        => 'pravljenje računa onemogućeno',
+'block-log-flags-noautoblock'     => 'automatsko blokiranje onemogućeno',
+'block-log-flags-noemail'         => 'e-mail je blokiran',
+'block-log-flags-nousertalk'      => 'ne može uređivati vlastitu stranicu za razgovor',
+'block-log-flags-angry-autoblock' => 'omogućeno napredno autoblokiranje',
+'range_block_disabled'            => 'Administratorska mogućnost da blokira grupe je isključena.',
+'ipb_expiry_invalid'              => 'Pogrešno vrijeme trajanja.',
+'ipb_expiry_temp'                 => 'Sakrivene blokade korisničkih imena moraju biti stalne.',
+'ipb_already_blocked'             => '"$1" je već blokiran',
+'ipb-needreblock'                 => '== Već blokirano ==
+$1 je već blokiran. Da li želite promijeniti postavke?',
+'ipb_cant_unblock'                => 'Greška: Blokada sa ID oznakom $1 nije pronađena.
+Možda je već deblokirana.',
+'ip_range_invalid'                => 'Netačan raspon IP adresa.',
+'blockme'                         => 'Blokiraj me',
+'proxyblocker'                    => 'Bloker proksija',
+'proxyblocker-disabled'           => 'Ova funkcija je onemogućena.',
+'proxyblockreason'                => 'Vaša IP adresa je blokirana jer je ona otvoreni proksi.  Molimo vas da kontaktirate vašeg davatelja internetskih usluga (Internet Service Provider-a) ili tehničku podršku i obavijestite ih o ovom ozbiljnom sigurnosnom problemu.',
+'proxyblocksuccess'               => 'Proksi uspješno blokiran.',
+'sorbsreason'                     => 'Vaša IP adresa je prikazana kao otvoreni proxy u DNSBL koji koristi {{SITENAME}}.',
 
 # Developer tools
 'lockdb'              => 'Zaključajte bazu',
@@ -2085,10 +2167,14 @@ Molimo Vas da potvrdite da je ovo zaista ono što namijeravate da uradite.',
 'unlockdbsuccesssub'  => 'Baza je otključana',
 'lockdbsuccesstext'   => '{{SITENAME}} baza podataka je zaključana. <br /> Sjetite se da je otključate kad završite sa održavanjem.',
 'unlockdbsuccesstext' => '{{SITENAME}} baza podataka je otključana.',
+'lockfilenotwritable' => 'Datoteka zaključavanja baze je zaštićena za pisanje.
+Ako želite otključati ili zaključati bazu, ova datoteka mora biti omogućena za pisanje od strane web servera.',
+'databasenotlocked'   => 'Baza podataka je zaključana.',
 
 # Move page
-'move-page-legend' => 'Premjestite stranicu',
-'movepagetext'     => "Korištenjem ovog formulara možete preusmjeriti članak 
+'move-page'               => 'Preusmjeravanje $1',
+'move-page-legend'        => 'Premjestite stranicu',
+'movepagetext'            => "Korištenjem ovog formulara možete preusmjeriti članak 
 zajedno sa stranicom za diskusiju tog članka.
 
 Članak pod starim imenom će postati stranica koja preusmjerava 
@@ -2105,46 +2191,59 @@ preusmjerite.
 '''Pažnja!'''
 Imajte na umu da preusmjeravanje popularnog članka može biti 
 drastična i neočekivana promjena za korisnike.",
-'movepagetalktext' => "Odgovarajuća stranica za razgovor, ako postoji, će automatski biti premještena istovremeno '''osim:'''
+'movepagetalktext'        => "Odgovarajuća stranica za razgovor, ako postoji, će automatski biti premještena istovremeno '''osim:'''
 *Ako premještate stranicu preko imenskih prostora,
 *Neprazna stranica za razgovor već postoji pod novim imenom, ili
 *Odčekirajte donju kutiju.
 
 U tim slučajevima, moraćete ručno da premjestite stranicu ukoliko to želite.",
-'movearticle'      => 'Premjestite stranicu',
-'movenologin'      => 'Niste prijavljeni',
-'movenologintext'  => 'Morate biti registrovani korisnik i [[Special:UserLogin|prijavljeni]] da biste premjestili stranicu.',
-'newtitle'         => 'Novi naslov',
-'move-watch'       => 'Prati ovu stranicu',
-'movepagebtn'      => 'premjestite stranicu',
-'pagemovedsub'     => 'Premještanje uspjelo',
-'movepage-moved'   => '<big>\'\'\'"$1" je premještena na "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'    => 'Stranica pod tim imenom već postoji, ili je ime koje ste izabrali neispravno.  Molimo Vas da izaberete drugo ime.',
-'talkexists'       => 'Sama stranica je uspješno premještena, ali
+'movearticle'             => 'Premjestite stranicu',
+'movenologin'             => 'Niste prijavljeni',
+'movenologintext'         => 'Morate biti registrovani korisnik i [[Special:UserLogin|prijavljeni]] da biste premjestili stranicu.',
+'movenotallowed'          => 'Nemate dopuštenje za premještanje stranica.',
+'newtitle'                => 'Novi naslov',
+'move-watch'              => 'Prati ovu stranicu',
+'movepagebtn'             => 'premjestite stranicu',
+'pagemovedsub'            => 'Premještanje uspjelo',
+'movepage-moved'          => '<big>\'\'\'"$1" je premještena na "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'           => 'Stranica pod tim imenom već postoji, ili je ime koje ste izabrali neispravno.  Molimo Vas da izaberete drugo ime.',
+'talkexists'              => 'Sama stranica je uspješno premještena, ali
 stranica za razgovor nije mogla biti premještena jer takva već postoji na novom naslovu.  Molimo Vas da ih spojite ručno.',
-'movedto'          => 'premještena na',
-'movetalk'         => 'Premjestite "stranicu za razgovor" takođe, ako je moguće.',
-'1movedto2'        => 'članak [[$1]] premješten na [[$2]]',
-'1movedto2_redir'  => 'stranica [[$1]] premještena u stranicu [[$2]] putem preusmjerenja',
-'movelogpage'      => 'Protokol premještanja',
-'movereason'       => 'Razlog:',
-'revertmove'       => 'vrati',
-'selfmove'         => 'Izvorni i ciljani naziv su isti; strana ne može da se premjesti preko same sebe.',
+'movedto'                 => 'premještena na',
+'movetalk'                => 'Premjestite "stranicu za razgovor" takođe, ako je moguće.',
+'move-subpages'           => 'Premjesti sve podstranice, ako je moguće',
+'movepage-page-moved'     => 'Stranica $1 je premještena na $2.',
+'1movedto2'               => 'članak [[$1]] premješten na [[$2]]',
+'1movedto2_redir'         => 'stranica [[$1]] premještena u stranicu [[$2]] putem preusmjerenja',
+'movelogpage'             => 'Protokol premještanja',
+'movelogpagetext'         => 'Ispod je spisak stranica koje su premještene.',
+'movereason'              => 'Razlog:',
+'revertmove'              => 'vrati',
+'delete_and_move'         => 'Brisanje i premještanje',
+'delete_and_move_confirm' => 'Da, obriši stranicu',
+'delete_and_move_reason'  => 'Obrisano da bi se napravio prostor za premještanje',
+'selfmove'                => 'Izvorni i ciljani naziv su isti; strana ne može da se premjesti preko same sebe.',
+'imagetypemismatch'       => 'Ekstenzija nove datoteke ne odgovara njenom tipu',
+'imageinvalidfilename'    => 'Ciljno ime datoteke nije valjano',
 
 # Export
-'export'        => 'Izvezite stranice',
-'exporttext'    => 'Možete izvesti tekst i historiju jedne ili više stranica uklopljene u XML kod. U budućim verzijama MediaWiki programa bit će moguće uvesti ovakvu stranicu u neki drugi wiki. Trenutna verzija to još ne podržava.
+'export'          => 'Izvezite stranice',
+'exporttext'      => 'Možete izvesti tekst i historiju jedne ili više stranica uklopljene u XML kod. U budućim verzijama MediaWiki programa bit će moguće uvesti ovakvu stranicu u neki drugi wiki. Trenutna verzija to još ne podržava.
 
 Za izvoz stranica unesite njihove naslove u polje ispod, jedan naslov po retku, i označite želite li trenutačnu verziju zajedno sa svim prijašnjima, ili samo trenutnu verziju sa informacijom o zadnjoj promjeni.
 
 U drugom slučaju možete koristiti i vezu, npr. [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] za članak [[{{MediaWiki:Mainpage}}]].',
-'exportcuronly' => 'Uključite samo trenutnu reviziju, ne cijelu istoriju',
+'exportcuronly'   => 'Uključite samo trenutnu reviziju, ne cijelu istoriju',
+'export-submit'   => 'Izvezi',
+'export-addcat'   => 'Dodaj',
+'export-download' => 'Spremi kao datoteku',
 
 # Namespace 8 related
 'allmessages'               => 'Sve sistemske poruke',
 'allmessagesname'           => 'Naziv',
 'allmessagestext'           => 'Ovo je spisak svih sistemskih poruka u {{ns:mediawiki}} imenskom prostoru.',
 'allmessagesnotsupportedDB' => 'Ova stranica ne može biti korištena jer je <i>wgUseDatabaseMessages</i> isključen.',
+'allmessagesfilter'         => 'Filter naziva poruka:',
 
 # Thumbnails
 'thumbnail-more'  => 'uvećajte',
@@ -2153,7 +2252,9 @@ U drugom slučaju možete koristiti i vezu, npr. [[{{ns:special}}:Export/{{Media
 
 # Special:Import
 'import'                => 'Ivoz stranica',
-'importtext'            => 'Molimo Vas da izvezete fajl iz izvornog vikija koristeći [[Special:Export|izvoz]], sačuvajte ga kod sebe i pošaljite ovde.',
+'importtext'            => 'Molimo Vas da izvezete datoteku iz izvornog wikija koristeći [[Special:Export|izvoz]], sačuvajte ga kod sebe i pošaljite ovdje.',
+'importstart'           => 'Uvoz stranica...',
+'importnopages'         => 'Nema stranica za uvoz.',
 'importfailed'          => 'Uvoz nije uspjeo: $1',
 'importnotext'          => 'Stranica je prazna, ili bez teksta',
 'importsuccess'         => 'Uspješno ste uvezli stranicu!',
@@ -2297,6 +2398,11 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'exif-imagewidth'            => 'Širina',
 'exif-imagelength'           => 'Visina',
 'exif-primarychromaticities' => 'Hromaticitet primarnih boja',
+'exif-gpsdatestamp'          => 'GPS datum',
+
+'exif-unknowndate' => 'Nepoznat datum',
+
+'exif-meteringmode-255' => 'Ostalo',
 
 # External editor support
 'edit-externally'      => 'Izmjeni ovu sliku koristeći vanjski program',
@@ -2356,7 +2462,8 @@ Molimo Vas da potvrdite da stvarno želite da ponovo napravite ovaj članak.",
 'iranian-calendar-m1' => 'Farvardin (Iranski kalendar)',
 
 # Special:Version
-'version' => 'Verzija', # Not used as normal message but as header for the special page itself
+'version'       => 'Verzija', # Not used as normal message but as header for the special page itself
+'version-other' => 'Ostalo',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'Traži',

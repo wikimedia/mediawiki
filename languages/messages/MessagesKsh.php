@@ -942,6 +942,7 @@ Ene Jrond weße mer nit.',
 'post-expand-template-argument-warning'   => 'Opjepaß: Di Sigg hee hät winnischßdens eine Parrammeeter en ennem Schablone-Oprof wat ze jroß weed beim Enfölle. Esu en Parrameetere möße mer övverjonn.',
 'post-expand-template-argument-category'  => 'Sigge met övverjange Parrammeeter fun Schablone',
 'parser-template-loop-warning'            => 'Schablon roofe sesch em Kringel op: [[$1]]',
+'parser-template-recursion-depth-warning' => 'Schablone refe sesch zo öff sellver op ($1)',
 
 # "Undo" feature
 'undo-success' => 'De Änderung könnte mer zeröck nämme. Beloor Der de Ungerscheed un dann donn di Sigg avspeichere, wann De dengks, et es en Oodenung esu.',

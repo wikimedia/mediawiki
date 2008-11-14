@@ -2258,6 +2258,8 @@ Dëst warscheinlech duerch en externe Link den op der schwaarzer Lëscht (blackl
 'markaspatrolledtext'        => 'Dës Säit als kontrolléiert markéieren',
 'markedaspatrolled'          => 'ass als kontrolléiert markéiert',
 'markedaspatrolledtext'      => 'Déi gewielte Versioun gouf als kontrolléiert markéiert.',
+'rcpatroldisabled'           => 'Rezent Ännerungskontroll ausgeschalt.',
+'rcpatroldisabledtext'       => "D'Kontrolle vun de leschten Ännerungen ass elo ausgeschalt.",
 'markedaspatrollederror'     => 'Kann net als "kontrolléiert" markéiert ginn.',
 'markedaspatrollederrortext' => 'Dir musst eng Säitenännerung auswielen.',
 

@@ -807,6 +807,8 @@ Algunas plantillas no serán incluidas',
 'post-expand-template-argument-warning'   => 'Aviso: Esta página contiene al menos un parámetro de plantilla que tiene un tamaño de expansión demasiado grande. 
 Ese o esos parámetros han sido omitidos.',
 'post-expand-template-argument-category'  => 'Páginas que contienen plantillas con parámetros descartados',
+'parser-template-loop-warning'            => 'Detectado bucle de plantilla: [[$1]]',
+'parser-template-recursion-depth-warning' => 'Se ha excedido el límite de recursión de plantillas ($1)',
 
 # "Undo" feature
 'undo-success' => 'La edición puede deshacerse. Antes de deshacer la edición, comprueba la siguiente comparación para verificar que realmente es lo que quiere hacer, y entonces guarde los cambios para así deshacer la edición.',
@@ -1014,7 +1016,7 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'viewprevnext'                     => 'Ver ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Opciones de búsqueda',
 'searchmenu-exists'                => "'''Hay una página llamada «[[$1]]» en esta wiki'''",
-'searchmenu-new'                   => "'''¡[[$1|Crear]] la página «[[$1]]» en esta wiki!'''",
+'searchmenu-new'                   => "'''¡[[:$1|Crear]] la página «[[:$1]]» en esta wiki!'''",
 'searchhelp-url'                   => 'Project:Búsqueda',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Otras páginas con este prefijo]]',
 'searchprofile-articles'           => 'Páginas',

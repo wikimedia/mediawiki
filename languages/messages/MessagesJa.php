@@ -974,7 +974,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'viewprevnext'                     => '（$1）（$2）（$3）を見る',
 'searchmenu-legend'                => '検索オプション',
 'searchmenu-exists'                => "* ページ '''[[$1]]'''",
-'searchmenu-new'                   => "* ページの新規作成 '''[[$1]]'''",
+'searchmenu-new'                   => "'''このウィキでページ\"[[\$1]]\"を[[:\$1|新規作成]]する'''",
 'searchhelp-url'                   => 'Project:検索',
 'searchprofile-articles'           => 'ページ',
 'searchprofile-articles-and-proj'  => 'ページとプロジェクト',

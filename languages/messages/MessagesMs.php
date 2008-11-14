@@ -786,12 +786,14 @@ Untuk rujukan, berikut ialah log penghapusan bagi laman ini:",
 
 Had panggilan ialah $2, sekarang terdapat $1 panggilan.',
 'expensive-parserfunction-category'       => 'Laman yang mengandungi terlalu banyak panggilan fungsi penghurai yang intensif',
-'post-expand-template-inclusion-warning'  => 'Amaran: Saiz kemasukan templat terlalu besar.
-Sesetengah templat tidak akan dimasukkan.',
-'post-expand-template-inclusion-category' => 'Laman-laman yang melebihi had saiz kemasukan templat',
+'post-expand-template-inclusion-warning'  => 'Amaran: Saiz penyertaan templat terlalu besar.
+Sesetengah templat tidak akan disertakan.',
+'post-expand-template-inclusion-category' => 'Laman-laman yang melebihi had saiz penyertaan templat',
 'post-expand-template-argument-warning'   => 'Amaran: Laman ini mengandungi sekurang-kurangnya satu argumen templat yang mempunyai saiz pengembangan yang terlalu besar.
 Argumen-argumen ini telah ditinggalkan.',
 'post-expand-template-argument-category'  => 'Laman yang mengandungi templat dengan argumen yang tidak lengkap',
+'parser-template-loop-warning'            => 'Gelung templat dikesan: [[$1]]',
+'parser-template-recursion-depth-warning' => 'Had pengulangan templat dilebihi ($1)',
 
 # "Undo" feature
 'undo-success' => 'Suntingan ini boleh dibatalkan. Sila semak perbandingan di bawah untuk mengesahkan bahawa anda betul-betul mahu melakukan tindakan ini, kemudian simpan perubahan tersebut.',
@@ -990,7 +992,7 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 
 # Search results
 'searchresults'                    => 'Keputusan carian',
-'searchresults-title'              => 'Keputusan carian $1',
+'searchresults-title'              => 'Keputusan carian "$1"',
 'toomanymatches'                   => 'Terlalu banyak padanan dipulangkan, sila cuba pertanyaan lain',
 'titlematches'                     => 'Padanan tajuk laman',
 'notitlematches'                   => 'Tiada tajuk laman yang sepadan',
@@ -999,11 +1001,14 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 'prevn'                            => '$1 sebelumnya',
 'nextn'                            => '$1 berikutnya',
 'viewprevnext'                     => 'Lihat ($1) ($2) ($3)',
+'searchmenu-legend'                => 'Pilihan gelintar',
 'searchmenu-exists'                => "* Laman '''[[$1]]'''",
-'searchmenu-new'                   => "* Cipta laman '''[[$1]]'''",
+'searchmenu-new'                   => "'''[[:\$1|Cipta]] laman \"[[\$1]]\" di wiki ini!'''",
 'searchhelp-url'                   => 'Project:Gelintar',
+'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Senarai laman dengan awalan ini]]',
 'searchprofile-articles'           => 'Laman',
-'searchprofile-project'            => 'Laman/Projek',
+'searchprofile-articles-and-proj'  => 'Laman & Projek',
+'searchprofile-project'            => 'Projek',
 'searchprofile-images'             => 'Fail',
 'searchprofile-everything'         => 'Semua',
 'searchprofile-advanced'           => 'Maju',
@@ -2732,7 +2737,7 @@ Kod pengesahan ini akan luput pada $4.',
 'invalidateemail'          => 'Batalkan pengesahan e-mel',
 
 # Scary transclusion
-'scarytranscludedisabled' => '[Kemasukan pautan interwiki dimatikan]',
+'scarytranscludedisabled' => '[Penyertaan pautan interwiki dilumpuhkan]',
 'scarytranscludefailed'   => '[Gagal mendapatkan templat $1]',
 'scarytranscludetoolong'  => '[URL terlalu panjang]',
 

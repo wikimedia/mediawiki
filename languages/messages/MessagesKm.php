@@ -1034,7 +1034,7 @@ $2',
 
 # Search results
 'searchresults'             => 'លទ្ធផលស្វែងរក',
-'searchresults-title'       => 'លទ្ធផលស្វែងរកសំរាប់$1',
+'searchresults-title'       => 'លទ្ធផល​ស្វែងរក​សំរាប់ "$1"',
 'toomanymatches'            => 'មានតំនភ្ជាប់ច្រើនណាស់ត្រូវបានបង្ហាញ ចូរព្យាយាមប្រើសំនួរផ្សេងមួយទៀត',
 'titlematches'              => 'ភាពត្រូវគ្នានៃចំនងជើងទំព័រ',
 'notitlematches'            => 'ពុំមានចំនងជើងទំព័រណាផ្គួរផ្គងទេ',
@@ -1044,7 +1044,7 @@ $2',
 'nextn'                     => 'បន្ទាប់ $1',
 'viewprevnext'              => 'មើល ($1) ($2) ($3)',
 'searchmenu-exists'         => "* ទំព័រ '''[[$1]]'''",
-'searchmenu-new'            => "* បង្កើតទំព័រ '''[[$1]]'''",
+'searchmenu-new'            => "'''[[:\$1|បង្កើត]]ទំព័រ \"[[\$1]]\" នៅ​លើ​វិគី​នេះ!'''",
 'searchprofile-articles'    => 'ទំព័រ',
 'searchprofile-images'      => 'ឯកសារ',
 'searchprofile-everything'  => 'ទាំងអស់',
@@ -1466,11 +1466,11 @@ $2',
 
 # Random page
 'randompage'         => 'ទំព័រចៃដន្យ',
-'randompage-nopages' => 'គ្មានទំព័រណាមួយក្នុងលំហឈ្មោះនេះទេ។',
+'randompage-nopages' => 'គ្មាន​ទំព័រ​ណាមួយ​ក្នុង​លំហឈ្មោះ "$1" ទេ។',
 
 # Random redirect
 'randomredirect'         => 'ទំព័របញ្ជូនបន្តចៃដន្យ',
-'randomredirect-nopages' => 'គ្មានទំព័របញ្ជូនបន្តណាមួយនៅក្នុងលំហឈ្មោះនេះទេ។',
+'randomredirect-nopages' => 'គ្មានទំព័របញ្ជូនបន្តណាមួយនៅក្នុងលំហឈ្មោះ "$1" ទេ។',
 
 # Statistics
 'statistics'               => 'ស្ថិតិ',
