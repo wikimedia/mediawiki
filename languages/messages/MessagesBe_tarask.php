@@ -2903,11 +2903,12 @@ $1
 'lag-warn-normal' => 'Зьмены, зробленыя меней чым $1 {{PLURAL:$1|сэкунду|сэкунды|сэкундаў}} таму, могуць ня трапіць у гэты сьпіс.',
 
 # Watchlist editor
-'watchlistedit-numitems'      => 'Ваш сьпіс назіраньня ўтрымлівае {{PLURAL:$1|1 запіс|$1 запіса|$1 запісаў}}, бяз уліку старонак абмеркаваньня.',
+'watchlistedit-numitems'      => 'Ваш сьпіс назіраньня ўтрымлівае $1 {{PLURAL:$1|запіс|запісы|запісаў}}, без уліку старонак абмеркаваньня.',
 'watchlistedit-noitems'       => 'Ваш сьпіс назіраньня пусты.',
 'watchlistedit-normal-title'  => 'Рэдагаваць сьпіс назіраньня',
 'watchlistedit-normal-legend' => 'Выдаленьне старонак са сьпісу назіраньня',
 'watchlistedit-normal-submit' => 'Выдаліць са сьпісу',
+'watchlistedit-normal-done'   => '{{PLURAL:$1|1 запіс быў выдалены|$1 запіса было выдалена|$1 запісаў было выдалена}} з Вашага сьпісу назіраньня:',
 'watchlistedit-raw-title'     => 'Рэдагаваць нефарматаваны сьпіс назіраньня',
 'watchlistedit-raw-legend'    => 'Рэдагаваць нефарматаваны сьпіс назіраньня',
 'watchlistedit-raw-titles'    => 'Назвы:',
@@ -2921,16 +2922,20 @@ $1
 
 # Core parser functions
 'unknown_extension_tag' => 'Невядомы тэг пашырэньня «$1»',
+'duplicate-defaultsort' => 'Папярэджаньне: Ключ сартыроўкі па змоўчваньні «$2» замяняе папярэдні ключ сартыроўкі па змоўчваньні «$1».',
 
 # Special:Version
 'version'                          => 'Вэрсія', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Усталяваныя пашырэньні',
 'version-specialpages'             => 'Спэцыяльныя старонкі',
+'version-parserhooks'              => 'Працэдцры-перахопнікі аналізатара складу',
 'version-variables'                => 'Зьменныя',
 'version-other'                    => 'Іншыя',
 'version-mediahandlers'            => 'Апрацоўшчыкі мэдыя',
+'version-hooks'                    => 'Працэдуры-перахопнікі',
 'version-extension-functions'      => 'Функцыі пашырэньняў',
 'version-skin-extension-functions' => 'Функцыі пашырэньня афармленьняў',
+'version-hook-name'                => 'Назва працэдуры-перахопніка',
 'version-hook-subscribedby'        => 'Падпісаны на',
 'version-version'                  => 'Вэрсія',
 'version-license'                  => 'Ліцэнзія',

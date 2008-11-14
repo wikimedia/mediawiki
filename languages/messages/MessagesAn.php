@@ -744,6 +744,8 @@ Bellas plantillas no se bi encluyen.",
 'post-expand-template-inclusion-category' => "Pachinas an que se brinca a mida d'enclusión d'as plantillas",
 'post-expand-template-argument-warning'   => "Pare cuenta: Ista pachina contiene á lo menos un argumento de plantilla con una mida d'espansión masiau gran. S'han omeso estos argumentos.",
 'post-expand-template-argument-category'  => 'Pachinas con argumentos de plantilla omesos',
+'parser-template-loop-warning'            => "S'ha deteutato un bucle de plantillas: [[$1]]",
+'parser-template-recursion-depth-warning' => "S'ha brincato o limite de recursión de plantillas ($1)",
 
 # "Undo" feature
 'undo-success' => "A edizión puede esfer-se. Antis d'esfer a edizión, mire-se a siguient comparanza ta comprebar que ye ixo o que quiere fer reyalment. Alabez, puede alzar os cambeos ta esfer a edizión.",
@@ -934,7 +936,7 @@ Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.",
 
 # Search results
 'searchresults'             => 'Resultau de mirar',
-'searchresults-title'       => 'Resultaus de mirar $1',
+'searchresults-title'       => 'Resultaus de mirar "$1"',
 'toomanymatches'            => "S'ha retornato masiadas coinzidenzias, por fabor, torne á prebar con una consulta diferent",
 'titlematches'              => 'Consonanzias de títols de pachina',
 'notitlematches'            => "No bi ha garra consonanzia en os títols d'as pachinas",
@@ -1339,6 +1341,9 @@ Fendo click en un encabezau de colunna se cambia o criterio d'ordenazión.",
 'filehist-revert'                => 'esfer',
 'filehist-current'               => 'autual',
 'filehist-datetime'              => 'Calendata/Ora',
+'filehist-thumb'                 => 'Miniatura',
+'filehist-thumbtext'             => "Miniatura d'a bersión de $1",
+'filehist-nothumb'               => 'Sin de miniatura',
 'filehist-user'                  => 'Usuario',
 'filehist-dimensions'            => 'Dimensions',
 'filehist-filesize'              => "Grandaria d'o fichero",
@@ -1413,11 +1418,11 @@ Tamién puez consultar a [[Special:WhatLinksHere/$2|lista completa]].',
 
 # Random page
 'randompage'         => "Una pachina á l'azar",
-'randompage-nopages' => 'No bi ha garra pachina en iste espazio de nombres.',
+'randompage-nopages' => 'No bi ha garra pachina en o espazio de nombres "$1".',
 
 # Random redirect
 'randomredirect'         => 'Ir-ie á una adreza cualsiquiera',
-'randomredirect-nopages' => 'No bi ha garra reendrezera en iste espazio de nombres.',
+'randomredirect-nopages' => 'No bi ha garra reendrezera en o espazio de nombres "$1".',
 
 # Statistics
 'statistics'              => 'Estadisticas',
@@ -1466,6 +1471,8 @@ Una pachina se considera pachina de desambigazión si fa serbir una plantilla pr
 'popularpages'            => 'Pachinas populars',
 'wantedcategories'        => 'Categorías requiestas',
 'wantedpages'             => 'Pachinas requiestas',
+'wantedfiles'             => 'Archibos requiestos',
+'wantedtemplates'         => 'Plantillas requiestas',
 'mostlinked'              => 'Pachinas más enlazadas',
 'mostlinkedcategories'    => 'Categorías más enlazadas',
 'mostlinkedtemplates'     => 'Plantillas más binculatas',
@@ -1479,12 +1486,15 @@ Una pachina se considera pachina de desambigazión si fa serbir una plantilla pr
 'deadendpagestext'        => 'As siguients pachinas no tienen binclos ta denguna atra pachina de {{SITENAME}}.',
 'protectedpages'          => 'Pachinas protechitas',
 'protectedpages-indef'    => 'Nomás protezions indefinitas',
+'protectedpages-cascade'  => 'Nomás protezions en cascada',
 'protectedpagestext'      => 'As siguients pachinas son protechitas contra edizions u treslaus',
 'protectedpagesempty'     => 'En iste inte no bi ha garra pachina protechita con ixos parametros.',
 'protectedtitles'         => 'Títols protechitos',
 'protectedtitlestext'     => 'Os siguients títols son protechitos ta pribar a suya creyazión',
 'protectedtitlesempty'    => 'En iste inte no bi ha garra títol protechito con ixos parametros.',
 'listusers'               => "Lista d'usuarios",
+'listusers-editsonly'     => 'Amostrar nomás usuarios con edizions',
+'usereditcount'           => '$1 {{PLURAL:$1|edizión|edizions}}',
 'newpages'                => 'Pachinas nuebas',
 'newpages-username'       => "Nombre d'usuario",
 'ancientpages'            => 'Pachinas más biellas',
@@ -1790,6 +1800,7 @@ Si s'ha creyato una nueba pachina con o mesmo nombre dende que se borró a orich
 'undeletebtn'                  => 'Restaurar!',
 'undeletelink'                 => 'restaurar',
 'undeletereset'                => 'Prenzipiar',
+'undeleteinvert'               => 'Contornar selezión',
 'undeletecomment'              => 'Razón ta restaurar:',
 'undeletedarticle'             => 'restaurata "$1"',
 'undeletedrevisions'           => '{{PLURAL:$1|Una edizión restaurata|$1 edizions restauratas}}',
@@ -1819,20 +1830,22 @@ $1',
 'blanknamespace' => '(Prenzipal)',
 
 # Contributions
-'contributions' => "Contrebuzions de l'usuario",
-'mycontris'     => 'Contrebuzions',
-'contribsub2'   => 'De $1 ($2)',
-'nocontribs'    => "No s'han trobato cambeos que concordasen con ixos criterios",
-'uctop'         => '(zaguer cambeo)',
-'month'         => 'Dende o mes (y anteriors):',
-'year'          => "Dende l'año (y anteriors):",
+'contributions'       => "Contrebuzions de l'usuario",
+'contributions-title' => "Contrebuzions de l'usuario $1",
+'mycontris'           => 'Contrebuzions',
+'contribsub2'         => 'De $1 ($2)',
+'nocontribs'          => "No s'han trobato cambeos que concordasen con ixos criterios",
+'uctop'               => '(zaguer cambeo)',
+'month'               => 'Dende o mes (y anteriors):',
+'year'                => "Dende l'año (y anteriors):",
 
-'sp-contributions-newbies'     => "Amostrar nomás as contrebuzions d'os usuarios nuebos",
-'sp-contributions-newbies-sub' => 'Por usuarios nuebos',
-'sp-contributions-blocklog'    => 'Rechistro de bloqueyos',
-'sp-contributions-search'      => 'Mirar contrebuzions',
-'sp-contributions-username'    => "Adreza IP u nombre d'usuario:",
-'sp-contributions-submit'      => 'Mirar',
+'sp-contributions-newbies'       => "Amostrar nomás as contrebuzions d'os usuarios nuebos",
+'sp-contributions-newbies-sub'   => 'Por usuarios nuebos',
+'sp-contributions-newbies-title' => "Contrebuzions d'os nuebos usuarios",
+'sp-contributions-blocklog'      => 'Rechistro de bloqueyos',
+'sp-contributions-search'        => 'Mirar contrebuzions',
+'sp-contributions-username'      => "Adreza IP u nombre d'usuario:",
+'sp-contributions-submit'        => 'Mirar',
 
 # What links here
 'whatlinkshere'            => 'Pachinas que enlazan con ista',
@@ -2206,10 +2219,11 @@ Todas as importazions interwiki se rechistran en o [[Special:Log/import|rechistr
 'markedaspatrollederror-noautopatrol' => 'No tiene premisos ta siñalar os suyos propios cambios como controlatos.',
 
 # Patrol log
-'patrol-log-page'   => 'Rechistro de control de bersions',
-'patrol-log-header' => 'Iste ye un rechistro de rebisions patrullatas.',
-'patrol-log-line'   => "s'ha siñalato a bersión $1 de $2 como controlata $3",
-'patrol-log-auto'   => '(automatico)',
+'patrol-log-page'      => 'Rechistro de control de bersions',
+'patrol-log-header'    => 'Iste ye un rechistro de rebisions patrullatas.',
+'patrol-log-line'      => "s'ha siñalato a bersión $1 de $2 como controlata $3",
+'patrol-log-auto'      => '(automatico)',
+'log-show-hide-patrol' => '$1 o rechistro de patrullache',
 
 # Image deletion
 'deletedrevision'                 => "S'ha borrato a bersión antiga $1",
@@ -2225,6 +2239,9 @@ $1",
 # Browsing diffs
 'previousdiff' => "← Ir t'a edizión anterior",
 'nextdiff'     => "Ir t'a edizión siguient →",
+
+# Visual comparison
+'visual-comparison' => 'Comparanza bisual',
 
 # Media information
 'mediawarning'         => "'''Pare cuenta''': Iste archibo puede contener codigo endino; si l'executa, podría meter en un contornillo a seguridat d'o suyo sistema.<hr />",
@@ -2456,6 +2473,7 @@ Se consideran nomás os elementos d'una lista (linias que escomienzan por *). O 
 'exif-flash-mode-2'     => 'supresión de flash forzato',
 'exif-flash-mode-3'     => 'modo automatico',
 'exif-flash-function-1' => 'Modo sin de flash',
+'exif-flash-redeye-1'   => 'modo de reduzión de güellos royos',
 
 'exif-focalplaneresolutionunit-2' => 'pulgadas',
 
@@ -2599,6 +2617,7 @@ Por fabor, confirme que reyalment deseya creyar l'articlo nuebament.",
 # action=purge
 'confirm_purge_button' => 'Confirmar',
 'confirm-purge-top'    => "Limpiar a caché d'ista pachina?",
+'confirm-purge-bottom' => 'Si porga una pachina, se limpia a caché y fa que amaneixca a bersión más autual.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← pachina anterior',
@@ -2661,6 +2680,7 @@ Tamién puede fer serbir o [[Special:Watchlist/edit|editor estándar]].",
 
 # Core parser functions
 'unknown_extension_tag' => 'Etiqueta d\'estensión "$1" esconoixita',
+'duplicate-defaultsort' => "Pare cuenta: A clau d'ordenazión por defeuto «$2» anula l'anterior clau d'ordenazión por defeuto «$1».",
 
 # Special:Version
 'version'                          => 'Bersión', # Not used as normal message but as header for the special page itself

@@ -22,10 +22,12 @@ $messages = array(
 'tog-watchmoves'           => "Mitte le pàggene ca je agghje spustete jndr'à le pàggene condrollete",
 'tog-watchdeletion'        => "Mitte le pàggene ca je agghje scangillete jndr'à le pàggene condrollete",
 'tog-minordefault'         => 'Pe convenzione signe tutte le cangiaminde cumme a stuédeche',
+'tog-previewontop'         => "Fa vedè l'andeprime apprime de 'a scatole de le cangiaminde",
 'tog-previewonfirst'       => "Fà vedè l'andeprime sus a 'u prime cangiaminde",
 'tog-enotifwatchlistpages' => "Manneme 'na mail quanne 'a pàgene ca stoche a condrolle ha cangete",
 'tog-enotifusertalkpages'  => "Manneme 'na mail quanne 'a pàgene de le 'ngazzaminde ha cangete",
 'tog-enotifminoredits'     => "Manneme 'na mail quanne onne state fatte cangiaminde stuèdeche sus 'a pàgene",
+'tog-externaleditor'       => "Ause n'editore esterne pe default (sulamende pe l'esperte, abbesogne de 'na configurazione speciele sus a 'u combiuter tue)",
 'tog-watchlisthideown'     => "Scunne le cangiaminde mie da 'a liste de le pàgene condrollete",
 'tog-watchlisthidebots'    => "Scunne le cangiaminde de le not da 'a liste de le pàgene condrollete",
 'tog-watchlisthideminor'   => "Scunne le cangiaminde stuèdeche da 'a liste de le pàgene condrollete",
@@ -99,6 +101,7 @@ $messages = array(
 'hidden-categories'             => '{{PLURAL:$1|categorije scunnute|categorije scunnute}}',
 'hidden-category-category'      => 'Categorije scunnute', # Name of the category where hidden categories will be listed
 'category-subcat-count-limited' => 'Sta categorije tène {{PLURAL:$1|sottecategorije|le seguende $1 sottecategorije}}.',
+'category-file-count-limited'   => "{{PLURAL:$1|'U seguende file jè|$1 Le seguende file sonde}} jndr'à categorije corrende.",
 'listingcontinuesabbrev'        => 'cond.',
 
 'mainpagedocfooter' => "Vè vide [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] pe l'mbormaziune sus a cumme s'ause 'u softuer wiki.
@@ -208,7 +211,9 @@ $messages = array(
 
 'badaccess' => 'Errore de permesse',
 
-'versionrequired' => "Jè richieste 'a versione $1 de MediaUicchi",
+'versionrequired'     => "Jè richieste 'a versione $1 de MediaUicchi",
+'versionrequiredtext' => "Ha ausà 'a versione $1 de MediaUicchi pe ausà sta pàgene.
+Vide [[Special:Version|Versione d'a pàgene]].",
 
 'ok'                      => 'OK',
 'pagetitle'               => '$1 - {{SITENAME}}',
@@ -287,6 +292,7 @@ Query: $2",
 'ns-specialprotected'  => 'Le pàgene speciale no ponne essere cangete.',
 
 # Virus scanner
+'virus-scanfailed'     => 'condrolle fallite (codece $1)',
 'virus-unknownscanner' => 'antivirus scanusciute:',
 
 # Login and logout pages
@@ -329,6 +335,7 @@ Addà essere assaje assaje sotte a $1 {{PLURAL:$1|carattere|carattere}}.",
 'email'                     => 'Poste',
 'prefs-help-realname'       => "'U nome vere (quidde d'u munne reale) jè facoltative.
 Ce tu 'u mitte, a fatje ca è fatte t'avène ricanusciute.",
+'loginerror'                => 'Errore de collegamende',
 'prefs-help-email-required' => "L'indirizze e-mail jè obbligatorie.",
 'noname'                    => "Non gìè specifichete 'nu nome utende valide.",
 'loginsuccesstitle'         => 'Tutte a poste, è trasute!',
@@ -360,6 +367,7 @@ Apprime ca otre e-mail avènene mannete a 'u cunde tue, tu ha seguì le 'struzio
 'emailauthenticated'        => "L'indirizze e-mail ca ne date ha state autendichete 'u sciurne $2 a le $3.",
 'emailconfirmlink'          => "Conferme l'indirizze e-mail tue",
 'accountcreated'            => 'cunde utende ccrejete',
+'accountcreatedtext'        => "'U cunde utende pe $1 ha state ccrejete.",
 'createaccount-title'       => "Ccreazzione de 'u cunde utende pe {{SITENAME}}",
 'loginlanguagelabel'        => 'Lénga: $1',
 
@@ -997,8 +1005,8 @@ Tu puè cangià 'u levèlle de protezione de sta pàgene ma stu cangiamende non 
 'unlockbtn' => 'Sblocche databeise',
 
 # Move page
-'move-page-backlink' => '← $1',
-'movepagetext'       => "Ausanne 'u form aqquà sotte ste cange 'u nome d'a pàgene, spustanne tutte a storia soje sus a 'u nome néve.
+'move-page-backlink'        => '← $1',
+'movepagetext'              => "Ausanne 'u form aqquà sotte ste cange 'u nome d'a pàgene, spustanne tutte a storia soje sus a 'u nome néve.
 U' vecchie titele devènde 'nu ridirezionamende sus 'a pàgena nove.
 Tu puè aggiornà 'u ridirezionamende ca apponde da 'u titele automaticamende.
 Ce tu no fece ninde condrolle ca non ccreje [[Special:DoubleRedirects|doppie ridirezionaminde ]] o [[Special:BrokenRedirects|ridirezionaminde scuasciete]].
@@ -1010,28 +1018,31 @@ Quieste significhe ca tu puè fà turnà 'u vecchie nome 'a pàgene ce jedde ha 
 '''ATTENZIONE!'''
 Quiste pò essere 'nu cangiamende drastiche e inaspettete de 'na pàgene famose assaje;
 pe piacere a essere secure-secure de le conseguenze prime de procedere.",
-'movepagetalktext'   => "'A pagene de le 'ngazzaminde associete avène spustete automaticamende ce però:
+'movepagetalktext'          => "'A pagene de le 'ngazzaminde associete avène spustete automaticamende ce però:
 
 * Ste 'na pàgene de 'ngazzaminde chiena sotte 'a vôsce nova, o
 * Non ge signe 'u cieck box de sotte.
 
 Jndr'à ste case, 'a pàgene non g'avène spustete e pò t'a cupià a màne 'u codenute sue.",
-'movearticle'        => 'Spuèste:',
-'newtitle'           => "A 'u titele nuève:",
-'move-watch'         => 'condrolle sta pàgene',
-'movepagebtn'        => "Spueste 'a pàgene",
-'pagemovedsub'       => 'Spustaminde eseguite',
-'movepage-moved'     => "<big>'''\"\$1\" ha state spustate jndr'à \"\$2\"'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'      => "'Na pàgene cu stu nome già esiste, o 'u nome ca tu è scacchiete non g'è valide.
+'movearticle'               => 'Spuèste:',
+'newtitle'                  => "A 'u titele nuève:",
+'move-watch'                => 'condrolle sta pàgene',
+'movepagebtn'               => "Spueste 'a pàgene",
+'pagemovedsub'              => 'Spustaminde eseguite',
+'movepage-moved'            => "<big>'''\"\$1\" ha state spustate jndr'à \"\$2\"'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'             => "'Na pàgene cu stu nome già esiste, o 'u nome ca tu è scacchiete non g'è valide.
 Pe piacere scacchie n'otre nome.",
-'talkexists'         => "''''A pàgene ha state spustete, però 'a pàgene de le 'ngazzaminde pò essere ca non g'à state spustete purcè ne ste n'otre già cu 'u titele nuéve.
+'talkexists'                => "''''A pàgene ha state spustete, però 'a pàgene de le 'ngazzaminde pò essere ca non g'à state spustete purcè ne ste n'otre già cu 'u titele nuéve.
 Videta tu 'a màne a 'ngollà 'a pàgena vecchie cu quedda nova.'''",
-'movedto'            => 'spustete a',
-'movetalk'           => "Spuéste 'a pàgene de le 'ngazzaminde associete",
-'1movedto2'          => "[[$1]] spustete jndr'à [[$2]]",
-'movelogpage'        => 'Archivije de le spustaminde',
-'movereason'         => 'Raggione:',
-'revertmove'         => 'a smerse',
+'movedto'                   => 'spustete a',
+'movetalk'                  => "Spuéste 'a pàgene de le 'ngazzaminde associete",
+'1movedto2'                 => "[[$1]] spustete jndr'à [[$2]]",
+'movelogpage'               => 'Archivije de le spustaminde',
+'movereason'                => 'Raggione:',
+'revertmove'                => 'a smerse',
+'immobile-source-namespace' => 'Non ge pozze spustà le pàggene da \'u namespace "$1"',
+'immobile-target-namespace' => 'Non ge pozze spustà le pàggene jndr\'à \'u namespace "$1"',
+'immobile-source-page'      => 'Sta pàgene non ge se pò spustà.',
 
 # Export
 'export' => 'Pàggene esportete',
@@ -1047,6 +1058,7 @@ Videta tu 'a màne a 'ngollà 'a pàgena vecchie cu quedda nova.'''",
 'import'           => "Pàggene 'mbortete",
 'importinterwiki'  => "'Mborte da Transuicchi",
 'xml-error-string' => "$1 a 'a linea $2, colonne $3 (byte $4): $5",
+'import-upload'    => 'Careche le date in XML',
 
 # Import log
 'importlogpage'             => "Archivie de le 'mbortaziune",
@@ -1081,6 +1093,8 @@ Puè vedè sulamende 'u sorgende.",
 'tooltip-n-randompage'            => "Careche 'na pàgene a uecchje",
 'tooltip-n-help'                  => "'Nu poste da scuprì",
 'tooltip-t-whatlinkshere'         => 'Liste de tutte le pàggene de Uicchi ca appondene aqquà',
+'tooltip-feed-rss'                => 'RSS feed pe sta pàgene',
+'tooltip-feed-atom'               => 'Atom feed pe sta pàgene',
 'tooltip-t-contributions'         => "Vide 'a liste de le condrebbute de quiste utende",
 'tooltip-t-emailuser'             => "Manne n'e-mail a stu utende",
 'tooltip-t-upload'                => 'Careche le file',
@@ -1217,7 +1231,8 @@ Otre avènene scunnute pe defolt.
 'livepreview-ready'   => 'Stoche a careche… Agghje fenìte!',
 
 # Watchlist editor
-'watchlistedit-raw-titles' => 'Titele:',
+'watchlistedit-normal-title' => 'Vide le pàggene condrollete',
+'watchlistedit-raw-titles'   => 'Titele:',
 
 # Watchlist editing tools
 'watchlisttools-view' => "Vide le cangiaminde 'mbortande",

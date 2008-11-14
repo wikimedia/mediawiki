@@ -736,10 +736,13 @@ Arcuni template non vènunu nziriti.',
 'post-expand-template-inclusion-category' => 'Pàggini unni la diminsioni dê template nclusi supira lu limiti cunsintutu',
 'post-expand-template-argument-warning'   => "Attenzioni: Sta pàggina cunteni almenu n'argomentu di nu template ca havi na diminsioni troppu rossa pi essiri espansu. St'argomenti verrannu omessi.",
 'post-expand-template-argument-category'  => 'Pàggini ca cuntèninu template cu argumenti mancanti',
+'parser-template-loop-warning'            => 'Fu truvatu nu loop di Template : [[$1]]',
+'parser-template-recursion-depth-warning' => 'Limiti di ricursioni funnuti di Template surpassatu ($1)',
 
 # "Undo" feature
-'undo-success' => "Lu canciamentu hà statu annullatu cu successu. Virificati lu cunfruntu prisintatu ccà sutta p'accuràrivi ca lu cuntinutu è chiddu addisiatu e doppu sarvati la pàggina pi cumplitari l'annullamentu.",
-'undo-failure' => "Lu canciamentu nun pò èssiri annullatu a càusa d'un cunflittu cu li canciamenti ntermedi.",
+'undo-success' => "Lu canciamentu pò essiri annullatu. 
+Virificati lu paraguni ccà sutta p'accuràrivi ca lu cuntinutu è chiddu addisiatu e doppu sarvati la pàggina pi cumplitari l'annullamentu.",
+'undo-failure' => "Lu canciamentu nun pò èssiri annullatu a càusa d'un cunflittu cu li canciamenti ntirmedi.",
 'undo-norev'   => 'Lu canciamentu nun pò essiri annullatu pirchì nun esisti o fù cancillato.',
 'undo-summary' => 'Annullatu lu canciamentu $1 di [[Special:Contributions/$2|$2]] ([[User talk:$2|discussioni]])',
 
@@ -930,6 +933,7 @@ S'havi accirtari ca la cuntinuità storica di la pàggina nun veni altirata.",
 'searchmenu-exists'                => "* Pàggina '''[[$1]]'''",
 'searchmenu-new'                   => "Crea la pàggina '''[[$1]]'''",
 'searchhelp-url'                   => 'Project:Circata',
+'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Visualizza li pàggini cu stu prifissu]]',
 'searchprofile-articles'           => 'Pàggini',
 'searchprofile-articles-and-proj'  => 'Pàggina/Pruggettu',
 'searchprofile-project'            => 'Pàggini/Pruggettu',
@@ -2727,6 +2731,7 @@ Stu còdici di cunferma scadi automaticamenti a li $4.',
 
 # Core parser functions
 'unknown_extension_tag' => 'Tag estensioni scanusciutu: "$1"',
+'duplicate-defaultsort' => 'Accura: la chiavi priddifinuta d\'urdinamentu "$2" si sciarrìa cu chidda d\'antura "$1".',
 
 # Special:Version
 'version'                          => 'virsioni', # Not used as normal message but as header for the special page itself

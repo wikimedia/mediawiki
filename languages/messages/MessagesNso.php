@@ -281,6 +281,7 @@ Tšhupaleloko (''account'') ya gago e tlhodilwe. O seke wa lebala go fetola [[Sp
 'badretype'                  => 'Ditlhaka-tša-siphiri tše o di šomišitšego ga di swane.',
 'username'                   => 'Mošomiši:',
 'uid'                        => 'Nomoro ya mošomiši:',
+'prefs-memberingroups'       => 'Leloko la {{PLURAL:$1|ya sehlopha|ya dihlopha}}:',
 'yourrealname'               => 'Leina la mmakgonthe:',
 'yourlanguage'               => 'Polelo:',
 'yournick'                   => 'Tshaeno:',

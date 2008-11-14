@@ -980,6 +980,7 @@ Sommige sjablonen worden niet getranscludeerd.',
 'post-expand-template-argument-warning'   => 'Waarschuwing: deze pagina bevat tenminste een sjabloonparameter met een te grote transclusiegrootte.
 Deze parameters zijn weggelaten.',
 'post-expand-template-argument-category'  => "Pagina's die missende sjabloonelementen bevatten",
+'parser-template-loop-warning'            => 'Er is een kringloop in sjablonen geconstateerd: [[$1]]',
 'parser-template-recursion-depth-warning' => 'De recursiediepte voor sjablonen is overschreden ($1)',
 
 # "Undo" feature

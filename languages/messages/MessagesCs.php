@@ -948,6 +948,8 @@ Některé šablony nebudou vloženy.',
 'post-expand-template-argument-warning'   => 'Varování: Tato stránka obsahuje alespoň jeden argument šablony, který je po rozbalení příliš velký.
 Tyto argumenty byly vynechány.',
 'post-expand-template-argument-category'  => 'Stránky obsahující vynechané argumenty šablon',
+'parser-template-loop-warning'            => 'Nalezena smyčka šablon: [[$1]]',
+'parser-template-recursion-depth-warning' => 'Překročen limit hloubky rekurzivního vkládání šablon ($1)',
 
 # "Undo" feature
 'undo-success' => 'Editace může být zrušena. Zkontrolujte a pak potvrďte změny zobrazené níže.',
@@ -1153,7 +1155,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'searchmenu-exists'                => "*Stránka '''[[$1]]'''",
 'searchmenu-new'                   => "'''[[:$1|Vytvořit]] na této wiki stránku „[[$1]]“'''",
 'searchhelp-url'                   => 'Project:Hledání',
-'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Zobrazit stránky počínaje od „$1“]]',
+'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Zobrazit stránky, jejichž název začíná „$1“]]',
 'searchprofile-articles'           => 'Články',
 'searchprofile-articles-and-proj'  => 'Články a projekt',
 'searchprofile-project'            => 'Projekt',

@@ -609,6 +609,8 @@ Te kinnitate ka, et kirjutasite selle ise või võtsite selle kopeerimiskitsendu
 Kaaluge, kas lehe uuesti loomine on kohane.
 Lehe eelnevad kustutamised:",
 'deletelog-fulllog'        => 'Vaata täielikku logi',
+'edit-gone-missing'        => 'Polnud võimalik lehekülge uuendada.
+Tundub, et see on kustutatud.',
 'edit-conflict'            => 'Redigeerimiskonflikt.',
 
 # "Undo" feature

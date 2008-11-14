@@ -863,6 +863,8 @@ D'unas inclusions seràn pas efectuadas.",
 'post-expand-template-inclusion-category' => "Paginas que contenon tròp d'inclusions de modèls",
 'post-expand-template-argument-warning'   => "Atencion : Aquesta pagina conten al mens un paramètre de modèl que l'inclusion es renduda impossibla. Aprèp extension, aqueste auriá produch un resultat tròp long, doncas, es pas estat inclut.",
 'post-expand-template-argument-category'  => 'Paginas que contenon al mens un paramètre de modèl pas evaluat',
+'parser-template-loop-warning'            => 'Modèl en bocla detectat : [[$1]]',
+'parser-template-recursion-depth-warning' => 'Limit de longor de la recursion del modèl despassat ($1)',
 
 # "Undo" feature
 'undo-success' => "Aquesta modificacion va èsser desfacha. Confirmatz los cambiaments (visibles en bas d'aquesta pagina), puèi salvatz se sètz d’acòrdi. Mercés de motivar l’anullacion dins la bóstia de resumit.",
@@ -1051,20 +1053,23 @@ Asseguratz-vos qu'aqueste cambiament pòsca conservar la continuitat de l'istori
 
 # Search results
 'searchresults'                    => 'Resultats de la recèrca',
-'searchresults-title'              => 'Resultats de la recèrca per $1',
+'searchresults-title'              => 'Resultats de la recèrca per « $1 »',
 'toomanymatches'                   => 'Tròp d’ocuréncias son estadas trobadas, sètz pregat de sometre una requèsta diferenta.',
 'titlematches'                     => "Correspondéncias dins los títols d'articles",
-'notitlematches'                   => "Cap de títol d'article correspon pas a la recèrca.",
+'notitlematches'                   => "Cap de títol d'article correspond pas a la recèrca.",
 'textmatches'                      => "Correspondéncias dins los tèxtes d'articles",
-'notextmatches'                    => "Cap de tèxt d'article correspon pas a la recèrca",
+'notextmatches'                    => "Cap de tèxt d'article correspond pas a la recèrca",
 'prevn'                            => '$1 precedents',
 'nextn'                            => '$1 seguents',
 'viewprevnext'                     => 'Veire ($1) ($2) ($3).',
+'searchmenu-legend'                => 'Opcions de recèrca',
 'searchmenu-exists'                => "* Pagina '''[[$1]]'''",
-'searchmenu-new'                   => "*Crear la pagina '''[[$1]]'''",
+'searchmenu-new'                   => "'''[[:$1|Crèa]] la pagina « [[$1]] » sus aqueste wiki !'''",
 'searchhelp-url'                   => 'Project:Recèrca',
+'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Recercar las paginas amb aqueste prefix]]',
 'searchprofile-articles'           => 'Paginas',
-'searchprofile-project'            => 'Paginas/Projècte',
+'searchprofile-articles-and-proj'  => 'Paginas e projècte',
+'searchprofile-project'            => 'Projècte',
 'searchprofile-images'             => 'Fichièrs',
 'searchprofile-everything'         => 'Tot',
 'searchprofile-advanced'           => 'Avançat',
@@ -1557,11 +1562,11 @@ Doblidetz pas de verificar se i a pas d’autre ligam cap als modèls abans de l
 
 # Random page
 'randompage'         => "Una pagina a l'azard",
-'randompage-nopages' => 'I a pas cap de pagina dins aqueste espaci de nom.',
+'randompage-nopages' => "I a pas cap de pagina dins l'espaci de nom « $1 ».",
 
 # Random redirect
 'randomredirect'         => "Una pagina de redireccion a l'azard",
-'randomredirect-nopages' => 'I a pas cap de redireccion dins aqueste espaci de nom.',
+'randomredirect-nopages' => "I a pas cap de redireccion dins l'espaci de nom « $1 ».",
 
 # Statistics
 'statistics'                      => 'Estatisticas',
@@ -1590,7 +1595,7 @@ Deurián puslèu puntar cap a una pagina apropriada.<br />
 Una pagina es tractada coma una pagina d’omonimia s'utiliza un modèl qu'es ligat a partir de [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'            => 'Redireccions doblas',
-'doubleredirectstext'        => 'Cada casa conten de ligams cap a la primièra e la segonda redireccion, e mai la primièra linha de tèxt de la segonda pagina, costumièrament, aquò provesís la « vertadièra » pagina cibla, cap a laquina la primièra redireccion deuriá redirigir.',
+'doubleredirectstext'        => 'Cada casa conten de ligams cap a la primièra e la segonda redireccion, e mai la primièra linha de tèxt de la segonda pagina, costumièrament, aquò provesís la « vertadièra » pagina cibla, cap a la quala la primièra redireccion deuriá redirigir.',
 'double-redirect-fixed-move' => '[[$1]] es estat renomenat, aquò es ara una redireccion cap a [[$2]]',
 'double-redirect-fixer'      => 'Corrector de redireccion',
 
@@ -1964,7 +1969,7 @@ En clicant sul boton '''''Reïnicializar''''', la bóstia de resumit e las casas
 'undeletehistory'              => "Se restablissètz la pagina, totas las revisions seràn plaçadas tornamai dins l'istoric.
 
 S'una pagina novèla amb lo meteis nom es estada creada dempuèi la supression, las revisions restablidas apareisseràn dins l'istoric anterior e la version correnta serà pas automaticament remplaçada.",
-'undeleterevdel'               => 'Lo restabliment serà pas efectuat se, fin finala, la version mai recenta de la pagina es parcialament suprimida. Dins aqueste cas, vos cal deseleccionatz las versions mai recentas (en naut). Las versions dels fichièrs a lasquinas avètz pas accès seràn pas restablidas.',
+'undeleterevdel'               => 'Lo restabliment serà pas efectuat se, fin finala, la version mai recenta de la pagina es parcialament suprimida. Dins aqueste cas, vos cal deseleccionatz las versions mai recentas (en naut). Las versions dels fichièrs a las qualas avètz pas accès seràn pas restablidas.',
 'undeletehistorynoadmin'       => "Aqueste article es estat suprimit. Lo motiu de la supression es indicat dins lo resumit çaijós, amb los detalhs dels utilizaires que l’an modificat abans sa supression. Lo contengut d'aquestas versions es pas accessible qu’als administrators.",
 'undelete-revision'            => 'Version suprimida de $1, (revision del $4 a $5) per $3 :',
 'undeleterevision-missing'     => 'Version invalida o mancanta. Benlèu avètz un ligam marrit, o la version es estada restablida o suprimida de l’archiu.',
@@ -2128,7 +2133,7 @@ La rason balhada per $1 es : « $2 ».',
 'ipb-needreblock'                 => '== Ja blocat ==
 $1 ja es blocat. Volètz modificar los paramètres ?',
 'ipb_cant_unblock'                => 'Error : Lo blocatge d’ID $1 existís pas. Es possible qu’un desblocatge ja siá estat efectuat.',
-'ipb_blocked_as_range'            => "Error : L'adreça IP $1 es pas estada blocada dirèctament e doncas pòt pas èsser deblocada. Çaquelà, es estada blocada per la plaja $2 laquina pòt èsser deblocada.",
+'ipb_blocked_as_range'            => "Error : L'adreça IP $1 es pas estada blocada dirèctament e doncas pòt pas èsser deblocada. Çaquelà, es estada blocada per la plaja $2 la quala pòt èsser deblocada.",
 'ip_range_invalid'                => 'Plaja IP incorrècta.',
 'blockme'                         => 'Blocatz-me',
 'proxyblocker'                    => 'Blocaire de mandatari (proxy)',
@@ -2301,7 +2306,7 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => "Ma pagina d'utilizaire",
-'tooltip-pt-anonuserpage'         => "La pagina d'utilizare de l’IP amb laquina contribuissètz",
+'tooltip-pt-anonuserpage'         => "La pagina d'utilizare de l’IP amb la quala contribuissètz",
 'tooltip-pt-mytalk'               => 'Ma pagina de discussion',
 'tooltip-pt-anontalk'             => 'La pagina de discussion per aquesta adreça IP',
 'tooltip-pt-preferences'          => 'Mas preferéncias',
