@@ -703,7 +703,7 @@ function wfMsgExt( $key, $options ) {
 		}
 	}
 
-	if( in_array('content', $options) ) {
+	if( in_array('content', $options, true ) ) {
 		$forContent = true;
 		$langCode = true;
 	} elseif( array_key_exists('language', $options) ) {
@@ -716,19 +716,19 @@ function wfMsgExt( $key, $options ) {
 
 	$string = wfMsgGetKey( $key, /*DB*/true, $langCode, /*Transform*/false );
 
-	if( !in_array('replaceafter', $options) ) {
+	if( !in_array('replaceafter', $options, true ) ) {
 		$string = wfMsgReplaceArgs( $string, $args );
 	}
 
-	if( in_array('parse', $options) ) {
+	if( in_array('parse', $options, true ) ) {
 		$string = $wgOut->parse( $string, true, !$forContent );
-	} elseif ( in_array('parseinline', $options) ) {
+	} elseif ( in_array('parseinline', $options, true ) ) {
 		$string = $wgOut->parse( $string, true, !$forContent );
 		$m = array();
 		if( preg_match( '/^<p>(.*)\n?<\/p>\n?$/sU', $string, $m ) ) {
 			$string = $m[1];
 		}
-	} elseif ( in_array('parsemag', $options) ) {
+	} elseif ( in_array('parsemag', $options, true ) ) {
 		global $wgMessageCache;
 		if ( isset( $wgMessageCache ) ) {
 			$string = $wgMessageCache->transform( $string,
@@ -737,13 +737,13 @@ function wfMsgExt( $key, $options ) {
 		}
 	}
 
-	if ( in_array('escape', $options) ) {
+	if ( in_array('escape', $options, true ) ) {
 		$string = htmlspecialchars ( $string );
-	} elseif ( in_array( 'escapenoentities', $options ) ) {
+	} elseif ( in_array( 'escapenoentities', $options, true  ) ) {
 		$string = Sanitizer::escapeHtmlAllowEntities( $string );
 	}
 
-	if( in_array('replaceafter', $options) ) {
+	if( in_array('replaceafter', $options, true ) ) {
 		$string = wfMsgReplaceArgs( $string, $args );
 	}
 
