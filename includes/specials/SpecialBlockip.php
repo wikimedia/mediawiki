@@ -575,10 +575,11 @@ class IPBlockForm {
 	* Block a list of selected users
 	* @param array $users
 	* @param string $reason
-	* @param string $tag
+	* @param string $tag replaces user pages
+	* @param string $talkTag replaces user talk pages
 	* @returns array, list of html-safe usernames
 	*/
-	public static function doMassUserBlock( $users, $reason = '', $tag = '' ) {
+	public static function doMassUserBlock( $users, $reason = '', $tag = '', $talkTag = '' ) {
 		global $wgUser;
 		$counter = $blockSize = 0;
 		$safeUsers = array();
@@ -597,9 +598,11 @@ class IPBlockForm {
 			if( is_null($u) || (!$u->getId() && !IP::isIPAddress( $u->getName() )) ) {
 				continue;
 			}
-			$usertitle = Title::makeTitle( NS_USER, $u->getName() );
-			$userpage = new Article( $usertitle );
-			$safeUsers[] = '[[' . $usertitle->getPrefixedText() . '|' . $usertitle->getText() . ']]';
+			$userTitle = $u->getUserPage();
+			$userTalkTitle = $u->getTalkPage();
+			$userpage = new Article( $userTitle );
+			$usertalk = new Article( $userTalkTitle );
+			$safeUsers[] = '[[' . $userTitle->getPrefixedText() . '|' . $userTitle->getText() . ']]';
 			$expirestr = $u->getId() ? 'indefinite' : '1 week';
 			$expiry = Block::parseExpiryInput( $expirestr );
 			$anonOnly = IP::isIPAddress( $u->getName() ) ? 1 : 0;
@@ -628,11 +631,14 @@ class IPBlockForm {
 				}
 				$logParams[] = 'nocreate';
 				# Add log entry
-				$log->addEntry( 'block', $usertitle, $reason, $logParams );
+				$log->addEntry( 'block', $userTitle, $reason, $logParams );
 			}
 			# Tag userpage! (check length to avoid mistakes)
 			if( strlen($tag) > 2 ) {
 				$userpage->doEdit( $tag, $reason, EDIT_MINOR );
+			}
+			if( strlen($talkTag) > 2 ) {
+				$usertalk->doEdit( $talkTag, $reason, EDIT_MINOR );
 			}
 		}
 		return $safeUsers;
