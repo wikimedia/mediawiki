@@ -32,7 +32,10 @@ class FakeMemCachedClient {
 global $wgCaches;
 $wgCaches = array();
 
-/** @todo document */
+/**
+ * Get a cache object.
+ * @param int $inputType cache type, one the the CACHE_* constants. 
+ */
 function &wfGetCache( $inputType ) {
 	global $wgCaches, $wgMemCachedServers, $wgMemCachedDebug, $wgMemCachedPersistent;
 	$cache = false;
@@ -49,8 +52,7 @@ function &wfGetCache( $inputType ) {
 
 	if ( $type == CACHE_MEMCACHED ) {
 		if ( !array_key_exists( CACHE_MEMCACHED, $wgCaches ) ) {
-			require_once( 'memcached-client.php' );
-			if ( !class_exists("MemcachedClientforWiki") ) {
+			if ( !class_exists( 'MemcachedClientforWiki' ) ) {
 				class MemCachedClientforWiki extends memcached {
 					function _debugprint( $text ) {
 						wfDebug( "memcached: $text" );
@@ -104,18 +106,21 @@ function &wfGetCache( $inputType ) {
 	return $cache;
 }
 
+/** Get the main cache object */
 function &wfGetMainCache() {
 	global $wgMainCacheType;
 	$ret =& wfGetCache( $wgMainCacheType );
 	return $ret;
 }
 
+/** Get the cache object used by the message cache */
 function &wfGetMessageCacheStorage() {
 	global $wgMessageCacheType;
 	$ret =& wfGetCache( $wgMessageCacheType );
 	return $ret;
 }
 
+/** Get the cache object used by the parser cache */
 function &wfGetParserCacheStorage() {
 	global $wgParserCacheType;
 	$ret =& wfGetCache( $wgParserCacheType );
