@@ -1047,7 +1047,7 @@ class Linker {
 		} else {
 			$page = Title::makeTitle( NS_USER, $userText );
 		}
-		return $this->link( $page, htmlspecialchars( $userText ) );
+		return $this->link( $page, htmlspecialchars( $userText ), array( 'class' => 'mw-userlink' ) );
 	}
 
 	/**
@@ -1087,7 +1087,7 @@ class Linker {
 		}
 
 		if( $items ) {
-			return ' (' . implode( ' | ', $items ) . ')';
+			return ' <span class="mw-usertoollinks">(' . implode( ' | ', $items ) . ')</span>';
 		} else {
 			return '';
 		}
