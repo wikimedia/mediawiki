@@ -9,7 +9,7 @@ function wfSpecialFilepath( $par ) {
 
 	$file = isset( $par ) ? $par : $wgRequest->getText( 'file' );
 
-	$title = Title::newFromText( $file, NS_IMAGE );
+	$title = Title::makeTitleSafe( NS_IMAGE, $file );
 
 	if ( ! $title instanceof Title || $title->getNamespace() != NS_IMAGE ) {
 		$cform = new FilepathForm( $title );
