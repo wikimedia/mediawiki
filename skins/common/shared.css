@@ -106,16 +106,10 @@ div.searchresult {
 }
 .mw-search-results li {
 	padding-bottom: 1em;
-	list-style:none;
 }
 .mw-search-result-data {
 	color: green;
 	font-size: 97%;
-}
-
-td#mw-search-menu {
-	padding-left:6em;
-	font-size:85%;
 }
 
 div#mw-search-interwiki {
@@ -148,14 +142,6 @@ div.searchdidyoumean {
 
 .searchmatch {
 	font-weight: bold;
-}
-
-div.searchresults {
-	border:1px solid darkblue;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	padding-left: 15px;
-	padding-right: 15px;
 }
 
 /*
