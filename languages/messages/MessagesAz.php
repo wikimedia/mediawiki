@@ -407,10 +407,12 @@ Açıqlama: (hh) = hal-hazırkı versiya ilə olan fərqlər,
 
 # Search results
 'searchresults'      => 'Axtarış nəticələri',
+'noexactmatch'       => "\"\$1\" başlığı altında məqalə yoxdur. Bu məqaləni özünüz '''[[:\$1|yarada bilərsiniz]]'''.",
 'notextmatches'      => 'Məqalələrdə uyğun məzmun tapılmadı',
 'prevn'              => 'əvvəlki $1',
 'nextn'              => 'sonrakı $1',
 'viewprevnext'       => 'Göstər ($1) ($2) ($3).',
+'nonefound'          => "'''Qeyd''': Əksərən uğursuz axtarışlara indeksləşdirilməyən, geniş işlənən \"var\", \"və\" tipli sözlər və ya axtarışa bir sözdən artıq söz verildikdə (yalnız məzmununda bütün verilmiş sözlər olan səhifələr göstərilir) səbəb olur.",
 'powersearch'        => 'Axtar',
 'powersearch-legend' => 'Təkmil axtarış',
 

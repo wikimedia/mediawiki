@@ -600,6 +600,9 @@ $messages = array(
 
 # Search results
 'searchresults'         => 'د لټون پايلې',
+'searchsubtitle'        => "تاسو د '''[[:$1]]''' لپاره لټون کړی",
+'searchsubtitleinvalid' => "تاسو د '''$1''' لپاره لټون کړی",
+'noexactmatch'          => "'''تر اوسه پورې د \"\$1\" په نوم هېڅ کوم مخ نشته.''' تاسو کولای شی چې [[:\$1|همدا مخ جوړ کړی]].",
 'prevn'                 => 'تېر $1',
 'nextn'                 => 'راتلونکي $1',
 'viewprevnext'          => '($1) ($2) ($3) ښکاره کول',

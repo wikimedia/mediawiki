@@ -194,7 +194,7 @@ $messages = array(
 'tog-editondblclick'          => 'Izmijeni stranice dvostrukim klikom (JavaScript)',
 'tog-editsection'             => 'Omogući da mijenjam pojedinačne odjeljke putem [uredi] linka',
 'tog-editsectiononrightclick' => 'Uključite uređivanje odjeljka sa pritiskom na desno dugme miša u naslovu odjeljka (JavaScript)',
-'tog-showtoc'                 => 'Prikaži sadržaj<br />(u svim stranicama sa više od tri podnaslova)',
+'tog-showtoc'                 => 'Prikaži sadržaj (u svim stranicama sa više od tri podnaslova)',
 'tog-rememberpassword'        => 'Zapamti šifru za iduće posjete',
 'tog-editwidth'               => 'Kutija za uređivanje je dostigla najveću moguću širinu',
 'tog-watchcreations'          => 'Dodaj stranice koje ja napravim u moj spisak praćenih članaka',
@@ -1050,59 +1050,53 @@ Korištenje navigacionih linkova će resetovati ovaj stupac.',
 'diff-strike'             => "'''precrtano'''",
 
 # Search results
-'searchresults'                    => 'Rezultati pretrage',
-'searchresults-title'              => 'Rezultati pretrage za "$1"',
-'toomanymatches'                   => 'Pronađeno je previše rezultata, molimo pokušajte unijeti konkretniji izraz',
-'titlematches'                     => 'Naslov članka odgovara',
-'notitlematches'                   => 'Naslov članka ne odgovara.',
-'textmatches'                      => 'Tekst stranice odgovara',
-'notextmatches'                    => 'Tekst članka ne odgovara',
-'prevn'                            => 'prethodnih $1',
-'nextn'                            => 'sledećih $1',
-'viewprevnext'                     => 'Pogledaj ($1) ($2) ($3).',
-'searchmenu-legend'                => 'Opcije pretrage',
-'searchmenu-exists'                => "'''Postoji stranica pod nazivom \"[[\$1]]\" na ovoj wiki'''",
-'searchmenu-new'                   => "'''[[:\$1|Napravi]] stranicu \"[[\$1]]\" na ovoj wiki!'''",
-'searchhelp-url'                   => 'Project:Pretraga',
-'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Pregledaj stranice sa ovim prefiksom]]',
-'searchprofile-articles'           => 'Stranice',
-'searchprofile-articles-and-proj'  => 'Stranice i projekti',
-'searchprofile-project'            => 'Projekat',
-'searchprofile-images'             => 'Datoteke',
-'searchprofile-everything'         => 'Sve',
-'searchprofile-advanced'           => 'Napredno',
-'searchprofile-articles-tooltip'   => 'Pretraga u $1',
-'searchprofile-project-tooltip'    => 'Pretraga u $1',
-'searchprofile-images-tooltip'     => 'Traži datoteke',
-'searchprofile-everything-tooltip' => 'Pretraži sve sadržaje (ukljujući i stranice za razgovor)',
-'searchprofile-advanced-tooltip'   => 'Traži u ostalim imenskim prostorima',
-'prefs-search-nsdefault'           => 'Pretraga uz pretpostavljeno:',
-'prefs-search-nscustom'            => 'Pretraga u ostalim imenskim prostorima:',
-'search-result-size'               => '$1 ({{PLURAL:$2|1 riječ|$2 riječi}})',
-'search-result-score'              => 'Relevantnost: $1%',
-'search-redirect'                  => '(preusmjeravanje $1)',
-'search-section'                   => '(sekcija $1)',
-'search-suggest'                   => 'Da li ste mislili: $1',
-'search-interwiki-caption'         => 'Srodni projekti',
-'search-interwiki-default'         => '$1 rezultati:',
-'search-interwiki-more'            => '(više)',
-'search-mwsuggest-enabled'         => 'sa sugestijama',
-'search-mwsuggest-disabled'        => 'bez sugestija',
-'search-relatedarticle'            => 'Povezano',
-'mwsuggest-disable'                => 'Onemogući AJAX prijedloge',
-'searchrelated'                    => 'povezano',
-'searchall'                        => 'sve',
-'showingresults'                   => "Dole {{PLURAL:$1|je prikazan '''1''' rezultat|su prikazana '''$1''' rezultata|je prikazano '''$1''' rezultata}} počev od '''$2'''.",
-'showingresultsnum'                => "Dole {{PLURAL:$3|je prikazan '''1''' rezultat|su prikazana '''$3''' rezultata|je prikazano '''$3''' rezultata}} počev od '''$2'''.",
-'showingresultstotal'              => "Ispod {{PLURAL:$4|je prikazan rezultat '''$1''' od '''$3'''|su prikazani rezultati '''$1 - $2''' od ukupno '''$3'''}}",
-'search-nonefound'                 => 'Nisu pronađeni rezultati koji odgovaraju upitu.',
-'powersearch'                      => 'Traži',
-'powersearch-legend'               => 'Napredna pretraga',
-'powersearch-ns'                   => 'Pretraga u imenskim prostorima:',
-'powersearch-redir'                => 'Spisak preusmjerenja',
-'powersearch-field'                => 'Traži',
-'search-external'                  => 'Vanjska pretraga',
-'searchdisabled'                   => '<p>Izvinjavamo se!  Puno pretraga teksta je privremeno onemogućena.  U međuvremenu, možete koristiti Google za pretragu.  Indeks može biti stariji.',
+'searchresults'             => 'Rezultati pretrage',
+'searchresults-title'       => 'Rezultati pretrage za "$1"',
+'searchresulttext'          => 'Za više informacija o pretraživanju {{SITENAME}}, pogledajte [[{{MediaWiki:Helppage}}|{{int:help}}]].',
+'searchsubtitle'            => 'Tražili ste \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|sve stranice koje počinju sa "$1"]] | [[Special:WhatLinksHere/$1|sve stranice koje vode do "$1"]])',
+'searchsubtitleinvalid'     => 'Tražili ste $1',
+'noexactmatch'              => "'''Nema stranice sa imenom \"\$1\".'''
+
+Možete [[:\$1|da napravite članak sa tim naslovom]].
+
+::*'''''<u>Opomena: Nemojte kopirati materijale za koje nemate dozvolu!</u>'''''",
+'noexactmatch-nocreate'     => "'''Ne postoji stranica sa naslovom \"\$1\".'''",
+'toomanymatches'            => 'Pronađeno je previše rezultata, molimo pokušajte unijeti konkretniji izraz',
+'titlematches'              => 'Naslov članka odgovara',
+'notitlematches'            => 'Naslov članka ne odgovara.',
+'textmatches'               => 'Tekst stranice odgovara',
+'notextmatches'             => 'Tekst članka ne odgovara',
+'prevn'                     => 'prethodnih $1',
+'nextn'                     => 'sledećih $1',
+'viewprevnext'              => 'Pogledaj ($1) ($2) ($3).',
+'search-result-size'        => '$1 ({{PLURAL:$2|1 riječ|$2 riječi}})',
+'search-result-score'       => 'Relevantnost: $1%',
+'search-redirect'           => '(preusmjeravanje $1)',
+'search-section'            => '(sekcija $1)',
+'search-suggest'            => 'Da li ste mislili: $1',
+'search-interwiki-caption'  => 'Srodni projekti',
+'search-interwiki-default'  => '$1 rezultati:',
+'search-interwiki-more'     => '(više)',
+'search-mwsuggest-enabled'  => 'sa sugestijama',
+'search-mwsuggest-disabled' => 'bez sugestija',
+'search-relatedarticle'     => 'Povezano',
+'mwsuggest-disable'         => 'Onemogući AJAX prijedloge',
+'searchrelated'             => 'povezano',
+'searchall'                 => 'sve',
+'showingresults'            => "Dole {{PLURAL:$1|je prikazan '''1''' rezultat|su prikazana '''$1''' rezultata|je prikazano '''$1''' rezultata}} počev od '''$2'''.",
+'showingresultsnum'         => "Dole {{PLURAL:$3|je prikazan '''1''' rezultat|su prikazana '''$3''' rezultata|je prikazano '''$3''' rezultata}} počev od '''$2'''.",
+'showingresultstotal'       => "Ispod {{PLURAL:$4|je prikazan rezultat '''$1''' od '''$3'''|su prikazani rezultati '''$1 - $2''' od ukupno '''$3'''}}",
+'nonefound'                 => "'''Pažnja''': neuspješne pretrage su
+često izazvane traženjem čestih riječi kao \"je\" ili \"od\",
+koje nisu indeksirane, ili navođenjem više od jednog izraza za traženje (samo stranice
+koje sadrže sve izraze koji se traže će se pojaviti u rezultatima).",
+'powersearch'               => 'Traži',
+'powersearch-legend'        => 'Napredna pretraga',
+'powersearch-ns'            => 'Pretraga u imenskim prostorima:',
+'powersearch-redir'         => 'Spisak preusmjerenja',
+'powersearch-field'         => 'Traži',
+'search-external'           => 'Vanjska pretraga',
+'searchdisabled'            => '<p>Izvinjavamo se!  Puno pretraga teksta je privremeno onemogućena.  U međuvremenu, možete koristiti Google za pretragu.  Indeks može biti stariji.',
 
 # Preferences page
 'preferences'              => 'Podešavanja',
@@ -2145,6 +2139,9 @@ Možda je već deblokirana.',
 'proxyblockreason'                => 'Vaša IP adresa je blokirana jer je ona otvoreni proksi.  Molimo vas da kontaktirate vašeg davatelja internetskih usluga (Internet Service Provider-a) ili tehničku podršku i obavijestite ih o ovom ozbiljnom sigurnosnom problemu.',
 'proxyblocksuccess'               => 'Proksi uspješno blokiran.',
 'sorbsreason'                     => 'Vaša IP adresa je prikazana kao otvoreni proxy u DNSBL koji koristi {{SITENAME}}.',
+'sorbs_create_account_reason'     => 'Vaša IP adresa je prikazana kao otvoreni proxy u DNSBL korišten od {{SITENAME}}.
+Ne možete napraviti račun',
+'cant-block-while-blocked'        => 'Ne možete blokirati druge korisnike dok ste blokirani.',
 
 # Developer tools
 'lockdb'              => 'Zaključajte bazu',
@@ -2172,9 +2169,9 @@ Ako želite otključati ili zaključati bazu, ova datoteka mora biti omogućena 
 'databasenotlocked'   => 'Baza podataka je zaključana.',
 
 # Move page
-'move-page'               => 'Preusmjeravanje $1',
-'move-page-legend'        => 'Premjestite stranicu',
-'movepagetext'            => "Korištenjem ovog formulara možete preusmjeriti članak 
+'move-page'                 => 'Preusmjeravanje $1',
+'move-page-legend'          => 'Premjestite stranicu',
+'movepagetext'              => "Korištenjem ovog formulara možete preusmjeriti članak 
 zajedno sa stranicom za diskusiju tog članka.
 
 Članak pod starim imenom će postati stranica koja preusmjerava 
@@ -2191,59 +2188,78 @@ preusmjerite.
 '''Pažnja!'''
 Imajte na umu da preusmjeravanje popularnog članka može biti 
 drastična i neočekivana promjena za korisnike.",
-'movepagetalktext'        => "Odgovarajuća stranica za razgovor, ako postoji, će automatski biti premještena istovremeno '''osim:'''
+'movepagetalktext'          => "Odgovarajuća stranica za razgovor, ako postoji, će automatski biti premještena istovremeno '''osim:'''
 *Ako premještate stranicu preko imenskih prostora,
 *Neprazna stranica za razgovor već postoji pod novim imenom, ili
 *Odčekirajte donju kutiju.
 
 U tim slučajevima, moraćete ručno da premjestite stranicu ukoliko to želite.",
-'movearticle'             => 'Premjestite stranicu',
-'movenologin'             => 'Niste prijavljeni',
-'movenologintext'         => 'Morate biti registrovani korisnik i [[Special:UserLogin|prijavljeni]] da biste premjestili stranicu.',
-'movenotallowed'          => 'Nemate dopuštenje za premještanje stranica.',
-'newtitle'                => 'Novi naslov',
-'move-watch'              => 'Prati ovu stranicu',
-'movepagebtn'             => 'premjestite stranicu',
-'pagemovedsub'            => 'Premještanje uspjelo',
-'movepage-moved'          => '<big>\'\'\'"$1" je premještena na "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'           => 'Stranica pod tim imenom već postoji, ili je ime koje ste izabrali neispravno.  Molimo Vas da izaberete drugo ime.',
-'talkexists'              => 'Sama stranica je uspješno premještena, ali
+'movearticle'               => 'Premjestite stranicu',
+'movenologin'               => 'Niste prijavljeni',
+'movenologintext'           => 'Morate biti registrovani korisnik i [[Special:UserLogin|prijavljeni]] da biste premjestili stranicu.',
+'movenotallowed'            => 'Nemate dopuštenje za premještanje stranica.',
+'cant-move-user-page'       => 'Nemate dopuštenje da premještate korisničke stranice (bez podstranica).',
+'newtitle'                  => 'Novi naslov',
+'move-watch'                => 'Prati ovu stranicu',
+'movepagebtn'               => 'premjestite stranicu',
+'pagemovedsub'              => 'Premještanje uspjelo',
+'movepage-moved'            => '<big>\'\'\'"$1" je premještena na "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'             => 'Stranica pod tim imenom već postoji, ili je ime koje ste izabrali neispravno.  Molimo Vas da izaberete drugo ime.',
+'talkexists'                => 'Sama stranica je uspješno premještena, ali
 stranica za razgovor nije mogla biti premještena jer takva već postoji na novom naslovu.  Molimo Vas da ih spojite ručno.',
-'movedto'                 => 'premještena na',
-'movetalk'                => 'Premjestite "stranicu za razgovor" takođe, ako je moguće.',
-'move-subpages'           => 'Premjesti sve podstranice, ako je moguće',
-'movepage-page-moved'     => 'Stranica $1 je premještena na $2.',
-'1movedto2'               => 'članak [[$1]] premješten na [[$2]]',
-'1movedto2_redir'         => 'stranica [[$1]] premještena u stranicu [[$2]] putem preusmjerenja',
-'movelogpage'             => 'Protokol premještanja',
-'movelogpagetext'         => 'Ispod je spisak stranica koje su premještene.',
-'movereason'              => 'Razlog:',
-'revertmove'              => 'vrati',
-'delete_and_move'         => 'Brisanje i premještanje',
-'delete_and_move_confirm' => 'Da, obriši stranicu',
-'delete_and_move_reason'  => 'Obrisano da bi se napravio prostor za premještanje',
-'selfmove'                => 'Izvorni i ciljani naziv su isti; strana ne može da se premjesti preko same sebe.',
-'imagetypemismatch'       => 'Ekstenzija nove datoteke ne odgovara njenom tipu',
-'imageinvalidfilename'    => 'Ciljno ime datoteke nije valjano',
+'movedto'                   => 'premještena na',
+'movetalk'                  => 'Premjestite "stranicu za razgovor" takođe, ako je moguće.',
+'move-subpages'             => 'Premjesti sve podstranice, ako je moguće',
+'move-talk-subpages'        => 'Premjesti sve podstranice stranice za razgovor, ako je moguće',
+'movepage-page-exists'      => 'Stranica $1 već postoji i ne može biti automatski zamijenjena.',
+'movepage-page-moved'       => 'Stranica $1 je premještena na $2.',
+'movepage-page-unmoved'     => 'Stranica $1 ne može biti premještena na $2.',
+'1movedto2'                 => 'članak [[$1]] premješten na [[$2]]',
+'1movedto2_redir'           => 'stranica [[$1]] premještena u stranicu [[$2]] putem preusmjerenja',
+'movelogpage'               => 'Protokol premještanja',
+'movelogpagetext'           => 'Ispod je spisak stranica koje su premještene.',
+'movereason'                => 'Razlog:',
+'revertmove'                => 'vrati',
+'delete_and_move'           => 'Brisanje i premještanje',
+'delete_and_move_text'      => '==Brisanje neophodno==
+Odredišna stranica "[[:$1]]" već postoji.
+Da li je želite obrisati kako bi ste mogli izvršiti premještanje?',
+'delete_and_move_confirm'   => 'Da, obriši stranicu',
+'delete_and_move_reason'    => 'Obrisano da bi se napravio prostor za premještanje',
+'selfmove'                  => 'Izvorni i ciljani naziv su isti; strana ne može da se premjesti preko same sebe.',
+'immobile-source-namespace' => 'Ne mogu premjestiti stranice u imenski prostor "$1"',
+'immobile-target-namespace' => 'Ne mogu se premjestiti stranice u imenski prostor "$1"',
+'immobile-source-page'      => 'Ova stranica se ne može premještati.',
+'immobile-target-page'      => 'Ne može se preusmjeriti na taj odredišni naslov.',
+'imagenocrossnamespace'     => 'Ne može se premjestiti datoteka u nedatotečni imenski prostor',
+'imagetypemismatch'         => 'Ekstenzija nove datoteke ne odgovara njenom tipu',
+'imageinvalidfilename'      => 'Ciljno ime datoteke nije valjano',
 
 # Export
-'export'          => 'Izvezite stranice',
-'exporttext'      => 'Možete izvesti tekst i historiju jedne ili više stranica uklopljene u XML kod. U budućim verzijama MediaWiki programa bit će moguće uvesti ovakvu stranicu u neki drugi wiki. Trenutna verzija to još ne podržava.
+'export'            => 'Izvezite stranice',
+'exporttext'        => 'Možete izvesti tekst i historiju jedne ili više stranica uklopljene u XML kod. U budućim verzijama MediaWiki programa bit će moguće uvesti ovakvu stranicu u neki drugi wiki. Trenutna verzija to još ne podržava.
 
 Za izvoz stranica unesite njihove naslove u polje ispod, jedan naslov po retku, i označite želite li trenutačnu verziju zajedno sa svim prijašnjima, ili samo trenutnu verziju sa informacijom o zadnjoj promjeni.
 
 U drugom slučaju možete koristiti i vezu, npr. [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] za članak [[{{MediaWiki:Mainpage}}]].',
-'exportcuronly'   => 'Uključite samo trenutnu reviziju, ne cijelu istoriju',
-'export-submit'   => 'Izvezi',
-'export-addcat'   => 'Dodaj',
-'export-download' => 'Spremi kao datoteku',
+'exportcuronly'     => 'Uključite samo trenutnu reviziju, ne cijelu istoriju',
+'exportnohistory'   => "----
+'''Pažnja:''' Izvoz cjelokupne historije stranica preko ovog obrasca je onemogućeno iz tehničkih razloga.",
+'export-submit'     => 'Izvezi',
+'export-addcattext' => 'Dodaj stranice iz kategorije:',
+'export-addcat'     => 'Dodaj',
+'export-download'   => 'Spremi kao datoteku',
+'export-templates'  => 'Uključi šablone',
 
 # Namespace 8 related
 'allmessages'               => 'Sve sistemske poruke',
 'allmessagesname'           => 'Naziv',
+'allmessagesdefault'        => 'Pretpostavljeni tekst',
+'allmessagescurrent'        => 'Trenutni tekst',
 'allmessagestext'           => 'Ovo je spisak svih sistemskih poruka u {{ns:mediawiki}} imenskom prostoru.',
 'allmessagesnotsupportedDB' => 'Ova stranica ne može biti korištena jer je <i>wgUseDatabaseMessages</i> isključen.',
 'allmessagesfilter'         => 'Filter naziva poruka:',
+'allmessagesmodified'       => 'Prikaži samo izmijenjeno',
 
 # Thumbnails
 'thumbnail-more'  => 'uvećajte',
@@ -2251,17 +2267,23 @@ U drugom slučaju možete koristiti i vezu, npr. [[{{ns:special}}:Export/{{Media
 'thumbnail_error' => 'Greška pri pravljenju umanjene slike: $1',
 
 # Special:Import
-'import'                => 'Ivoz stranica',
-'importtext'            => 'Molimo Vas da izvezete datoteku iz izvornog wikija koristeći [[Special:Export|izvoz]], sačuvajte ga kod sebe i pošaljite ovdje.',
-'importstart'           => 'Uvoz stranica...',
-'importnopages'         => 'Nema stranica za uvoz.',
-'importfailed'          => 'Uvoz nije uspjeo: $1',
-'importnotext'          => 'Stranica je prazna, ili bez teksta',
-'importsuccess'         => 'Uspješno ste uvezli stranicu!',
-'importhistoryconflict' => 'Postoji konfliktna istorija revizija',
+'import'                   => 'Ivoz stranica',
+'import-interwiki-history' => 'Kopiraj sve verzije historije za ovu stranicu',
+'import-interwiki-submit'  => 'Uvoz',
+'importtext'               => 'Molimo Vas da izvezete datoteku iz izvornog wikija koristeći [[Special:Export|izvoz]], sačuvajte ga kod sebe i pošaljite ovdje.',
+'importstart'              => 'Uvoz stranica...',
+'import-revision-count'    => '$1 {{PLURAL:$1|revizija|revizije|revizija}}',
+'importnopages'            => 'Nema stranica za uvoz.',
+'importfailed'             => 'Uvoz nije uspjeo: $1',
+'importunknownsource'      => 'Nepoznat izvorni tip uvoza',
+'importbadinterwiki'       => 'Loš interwiki link',
+'importnotext'             => 'Stranica je prazna, ili bez teksta',
+'importsuccess'            => 'Uspješno ste uvezli stranicu!',
+'importhistoryconflict'    => 'Postoji konfliktna istorija revizija',
 
 # Import log
-'importlogpage' => 'Zapisnik uvoza',
+'importlogpage'                    => 'Zapisnik uvoza',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revizija|revizije|revizija}} od $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Moja korisnička stranica',
@@ -2317,6 +2339,7 @@ U drugom slučaju možete koristiti i vezu, npr. [[{{ns:special}}:Export/{{Media
 'tooltip-diff'                    => 'Prikaži moje izmjene u tekstu.',
 'tooltip-compareselectedversions' => 'Pogledajte pazlike između dvije selektovane verzije ove stranice.',
 'tooltip-watch'                   => 'Dodajte ovu stranicu na Vaš spisak praćenih članaka',
+'tooltip-upload'                  => 'Započni postavljanje',
 
 # Metadata
 'nodublincore'      => 'Dublin Core RDF metapodaci onemogućeni za ovaj server.',
@@ -2335,6 +2358,10 @@ U drugom slučaju možete koristiti i vezu, npr. [[{{ns:special}}:Export/{{Media
 'spamprotectiontext'  => 'Strana koju želite da sačuvate je blokirana od strane filtera za neželjene poruke.  Ovo je vjerovatno izazvao vezom ka spoljašnjem sajtu.',
 'spamprotectionmatch' => 'Sledeći tekst je izazvao naš filter za neželjene poruke: $1',
 
+# Info page
+'infosubtitle' => 'Informacije za stranicu',
+'numwatchers'  => 'Broj onih koji pregledaju: $1',
+
 # Math options
 'mw_math_png' => 'Uvijek prikaži kao PNG',
 
@@ -2347,6 +2374,8 @@ U drugom slučaju možete koristiti i vezu, npr. [[{{ns:special}}:Export/{{Media
 'markedaspatrollederrortext' => 'Morate naglasiti reviziju koju treba označiti kao patroliranu.',
 
 # Patrol log
+'patrol-log-page'      => 'Zapisnik patroliranja',
+'patrol-log-auto'      => '(automatsko)',
 'log-show-hide-patrol' => '$1 zapis patroliranja',
 
 # Browsing diffs

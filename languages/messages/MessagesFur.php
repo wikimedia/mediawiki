@@ -584,6 +584,11 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 
 # Search results
 'searchresults'         => 'Risultâts de ricercje',
+'searchresulttext'      => 'Par plui informazions su lis ricercjis in {{SITENAME}}, cjale [[{{MediaWiki:Helppage}}|{{int:help}}]].',
+'searchsubtitle'        => 'Pal test "[[:$1]]"',
+'searchsubtitleinvalid' => 'Pal test "$1"',
+'noexactmatch'          => "'''No esist une pagjine cul titul \"\$1\".''' Tu podaressis [[:\$1|creâle tu]].",
+'noexactmatch-nocreate' => "'''La pagjine cun titul \"\$1\" no esist.'''",
 'titlematches'          => 'Corispondencis tai titui des pagjinis',
 'notitlematches'        => 'Nissune corispondence tai titui des pagjinis',
 'textmatches'           => 'Corispondencis tal test des pagjinis',

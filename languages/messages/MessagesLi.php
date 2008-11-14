@@ -531,7 +531,7 @@ De gegaeve ree is ''$2''.",
 'email'                      => 'E-mail',
 'prefs-help-realname'        => '* Echte naam (opsjeneel): esse deze opgufs kin deze naam gebroek waere om dich erkinning te gaeve veur dien wèrk.',
 'loginerror'                 => 'Inlogfout',
-'prefs-help-email'           => '* E-mail (optioneel): Hiedoor kan me contak mit diech opnumme zónger dats te dien identiteit hoofs vrie te gaeve.',
+'prefs-help-email'           => 'E-mail (optioneel): Hiedoor kan me contak mit diech opnumme zónger dats te dien identiteit hoofs vrie te gaeve.',
 'prefs-help-email-required'  => "Hiej veur is 'n e-mailadres neudig.",
 'nocookiesnew'               => "De gebroeker is aangemaak mèr neet aangemeld. {{SITENAME}} gebroek cookies veur 't aanmelje van gebroekers. Sjakel die a.u.b. in en meld dao nao aan mèt diene nuje gebroekersnaam en wachwaord.",
 'nocookieslogin'             => "{{SITENAME}} gebroek cookies veur 't aanmelje van gebroekers. Doe accepteers gén cookies. Sjakel deze optie a.u.b. in en perbeer 't oppernuuj.",
@@ -557,7 +557,7 @@ Iedat anger mail nao dat account versjik kan weure, mós te de insjtructies in d
 'throttled-mailpassword'     => "'n Wachwaordherinnering wörd gedurende de letste {{PLURAL:$1|1 oer|$1 oer}} verzönje. Om misbroek te veurkomme, wörd d'r sjlechs éin herinnering per {{PLURAL:$1|oer|$1 oer}} verzönje.",
 'mailerror'                  => "Fout bie 't versjture van mail: $1",
 'acct_creation_throttle_hit' => "Sorry, de höbs al $1 accounts aangemak. De kins d'r gein mië aanmake.",
-'emailauthenticated'         => 'Dien e-mailadres is op $1 geauthentiserd.',
+'emailauthenticated'         => 'Dien e-mailadres is op $2 um $3 bevestig.',
 'emailnotauthenticated'      => 'Dien e-mailadres is nog neet geauthentiseerd. De zals gein
 e-mail óntvange veur alle volgende toepassinge.',
 'noemailprefs'               => "Gaef 'n e-mailadres op om deze functies te gebroeke.",
@@ -723,7 +723,15 @@ De kèns al besjtaonde pazjena's verangere, of de kèns [[Special:UserLogin|dich
 'recreate-deleted-warn'            => "'''Waorsjuwing: Doe bös bezig mit 't aanmake van 'ne pazjena dae in 't verleje gewis is.'''
 
 Euverwaeg of 't terech is detse wiejer wèrks aan dees pazjena. Veur dien gemaak stuit hiej onger 't logbook verwijderde pazjena's veur dees pazjena:",
+'deleted-notice'                   => "Dees pazjena is eweggesjaf.
+Ter informatie weurt 't verwijderingslogbook van dees pazjena hiejónger weergegeve.",
 'deletelog-fulllog'                => 'Gans logbook betrachte',
+'edit-hook-aborted'                => "De bewèrking is aafgebroke door 'ne 'hook'.
+D'r is gein toelichting besjikbaar.",
+'edit-gone-missing'                => 'De pazjena is neet biegewirk.
+Ze liek eweggesjaf te zien.',
+'edit-conflict'                    => 'Bewirkingsconflik.',
+'edit-no-change'                   => "Dien bewirking is genegeerd, ómdet d'r gein verangering in de teks is gemaak.",
 'edit-already-exists'              => 'De pagina is neet aangemaak.
 Zie besteit al.',
 
@@ -738,6 +746,7 @@ Sommige sjablone waere neet getranscludeerd.',
 'post-expand-template-argument-warning'   => "Waorsjuwing: dees pazjena bevat teminste eine sjabloonparamaeter mit 'n te groeate transclusiegruudje.
 Dees paramaetere zeen eweggelaote.",
 'post-expand-template-argument-category'  => "Pazjena's die missendje sjabloonillemènter bevatte",
+'parser-template-loop-warning'            => "D'r is 'ne krinkloup in sjablone geconstateerd: [[$1]]",
 
 # "Undo" feature
 'undo-success' => "Hiej onger stuit de teks wo in de verangering ongedaon gemaak is. Controleer veur 't opslaon of 't resultaot gewins is.",
@@ -752,25 +761,26 @@ Dees paramaetere zeen eweggelaote.",
 De door $3 opgegaeve reje is ''$2''",
 
 # History pages
-'viewpagelogs'        => 'Logbeuk veur dees pazjena tuine',
-'nohistory'           => 'Dees pazjena is nog neet bewirk.',
-'currentrev'          => 'Hujige versie',
-'revisionasof'        => 'Versie op $1',
-'revision-info'       => 'Versie op $1 door $2', # Additionally available: $3: revision id
-'previousrevision'    => '← Awwer versie',
-'nextrevision'        => 'Nuujere versie→',
-'currentrevisionlink' => 'zuug hujige versie',
-'cur'                 => 'hujig',
-'next'                => 'volgende',
-'last'                => 'vörrige',
-'page_first'          => 'ierste',
-'page_last'           => 'lèste',
-'histlegend'          => 'Verklaoring aafkortinge: (wijz) = versjil mit actueile versie, (vörrige) = versjil mit vörrige versie, K = kleine verangering',
-'deletedrev'          => '[gewis]',
-'histfirst'           => 'Aajste',
-'histlast'            => 'Nuujste',
-'historysize'         => '({{PLURAL:$1|1 byte|$1 bytes}})',
-'historyempty'        => '(laeg)',
+'viewpagelogs'           => 'Logbeuk veur dees pazjena tuine',
+'nohistory'              => 'Dees pazjena is nog neet bewirk.',
+'currentrev'             => 'Hujige versie',
+'revisionasof'           => 'Versie op $1',
+'revision-info'          => 'Versie op $1 door $2', # Additionally available: $3: revision id
+'previousrevision'       => '← Awwer versie',
+'nextrevision'           => 'Nuujere versie→',
+'currentrevisionlink'    => 'zuug hujige versie',
+'cur'                    => 'hujig',
+'next'                   => 'volgende',
+'last'                   => 'vörrige',
+'page_first'             => 'ierste',
+'page_last'              => 'lèste',
+'histlegend'             => 'Verklaoring aafkortinge: (wijz) = versjil mit actueile versie, (vörrige) = versjil mit vörrige versie, K = kleine verangering',
+'history-fieldset-title' => 'Door de historie blajere',
+'deletedrev'             => '[gewis]',
+'histfirst'              => 'Aajste',
+'histlast'               => 'Nuujste',
+'historysize'            => '({{PLURAL:$1|1 byte|$1 bytes}})',
+'historyempty'           => '(laeg)',
 
 # Revision feed
 'history-feed-title'          => 'Bewerkingseuverzich',
@@ -925,6 +935,11 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 
 # Search results
 'searchresults'             => 'Zeukresultate',
+'searchresulttext'          => 'Veur mier informatie euver zeuke op {{SITENAME}}, zuug [[{{MediaWiki:Helppage}}|{{int:help}}]].',
+'searchsubtitle'            => "Doe zòchs veur '''[[:$1]]'''",
+'searchsubtitleinvalid'     => 'Voor zoekopdracht "$1"',
+'noexactmatch'              => "'''Dao besjteit gein pazjena mit de naam $1.''' De kèns 'm [[:$1|aanmake]].",
+'noexactmatch-nocreate'     => "'''Er besteit gein pagina genaamp \"\$1\".'''",
 'toomanymatches'            => "d'r Wore te väöl resultate. Probeer estebleef  'n anger zeukopdrach.",
 'titlematches'              => 'Overeinkoms mèt volgende titels',
 'notitlematches'            => 'Geen enkele paginatitel gevonden met de opgegeven zoekterm',
@@ -950,6 +965,7 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 'showingresults'            => 'Hieonger staon de <b>$1</b> {{PLURAL:$1|resultaat|resultaat}}, vanaaf #<b>$2</b>.',
 'showingresultsnum'         => "Hieonger {{PLURAL:$3|steit '''1''' resultaat|staon '''$3''' resultate}} vanaaf #<b>$2</b>.",
 'showingresultstotal'       => "Hie onger {{PLURAL:$3|wordt resultaat '''$1'''|waere de resultate '''$1 toet $2''' van '''$3'''}} weergegaeve",
+'nonefound'                 => '<strong>Lèt op:</strong> \'n zeukopdrach kan mislökke door \'t gebroek van (in \'t Ingelsj) väöl veurkómmende wäörd wie "of" en "be", die neet geïndexeerd zint, of door versjillende zeukterme tegeliek op te gaeve (de kries dan allein pazjena\'s te zeen woerin alle opgegaeve terme veurkómme).',
 'powersearch'               => 'Zeuke',
 'powersearch-legend'        => 'Oetgebrèd zeuke',
 'powersearch-ns'            => 'Zeuke in naamruumdes:',

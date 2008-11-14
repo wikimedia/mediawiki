@@ -417,6 +417,11 @@ Llogaria juej asht hap. Mos harroni me ndryshu parapëlqimet e {{SITENAME}}-s.',
 'editundo'                => 'ktheje',
 
 # Search results
+'noexactmatch' => 'Faqja me atë titull nuk asht krijue
+
+Muneni me [[$1|fillu një artikull]] me kët titull.
+
+Ju lutem kërkoni {{SITENAME}}-n para se me krijue një artikull të ri se munet me kánë nën një titull tjetër.',
 'viewprevnext' => 'Shikoni ($1) ($2) ($3).',
 'powersearch'  => 'Kërko',
 

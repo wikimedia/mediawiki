@@ -359,6 +359,7 @@ $messages = array(
 
 # Search results
 'searchresults'     => 'Kiám-sek kiat-kó',
+'searchresulttext'  => 'Koan-hē kiám-sek {{SITENAME}} ê siông-sè pō·-sò·, chhiáⁿ chham-khó [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'titlematches'      => 'Phiau-tê ū-tùi ê bûn-chiuⁿ',
 'notitlematches'    => 'Bô sio-tùi ê ia̍h-piau-tê',
 'textmatches'       => 'Lōe-iông ū-tùi ê bûn-chiuⁿ',

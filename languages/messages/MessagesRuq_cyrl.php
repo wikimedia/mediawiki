@@ -189,6 +189,7 @@ $messages = array(
 'editundo'                => 'анулизаје',
 
 # Search results
+'noexactmatch' => "'''Нпажу вец лном \"\$1\" н-ќсистст.''' Путе [[:\$1|креаре це пажу]].",
 'viewprevnext' => 'Ву ($1) ($2) ($3)',
 'powersearch'  => 'каутај авансата',
 

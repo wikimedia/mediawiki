@@ -766,6 +766,7 @@ Used in the final position of a {{msg-mw|comma-separator}} separated list headed
 
 # Search results
 'searchresults-title'      => 'Appears as page title in the html header of the search result special page.',
+'noexactmatch'             => 'This is the message that you get if you follow a link to a page or article that does not exist.',
 'notitlematches'           => 'Header of results page after a search for a title for which no page exists',
 'textmatches'              => 'When displaying search results',
 'notextmatches'            => 'Error message when there are no results',
@@ -804,6 +805,7 @@ $1 is the relevance of this result in per cent.
 * $1–$2 is the range of results shown on the page
 * $3 is the total number of results from the search
 * $4 is the number of results shown on the page (equal to the size of the $1–$2 interval)',
+'nonefound'                => 'This message appears on the search results page if no results are found.',
 'powersearch'              => 'Verb. Text of search button at the bottom of [[Special:Search]], for searching in selected namespaces.
 
 {{Identical|Advanced search}}',
@@ -1066,7 +1068,7 @@ Parameter $2 is a date and time.',
 'newsectionsummary'    => 'Default summary when adding a new section to a page.',
 
 # Recent changes linked
-'recentchangeslinked'         => 'Title of [[Special:RecentChangesLinked]].',
+'recentchangeslinked'         => 'Title of [[Special:RecentChangesLinked]] and display name of page on [[Special:SpecialPages]].',
 'recentchangeslinked-title'   => 'Message used as title and page header on [[Special:RecentChangesLinked]] (needs an argument like "/Main Page"). Related changes are all recent change to pages that are linked from \'\'this page\'\'. "$1" is the name of the page for which related changes as show.',
 'recentchangeslinked-summary' => 'Summary of [[Special:RecentChangesLinked]].',
 'recentchangeslinked-page'    => '{{Identical|Page name}}',
