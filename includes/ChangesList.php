@@ -114,10 +114,10 @@ class ChangesList {
 
 	protected function insertMove( &$s, $rc ) {
 		# Diff
-		$s .= '<span class="mw-rc-move">(' . $this->message['diff'] . ') (';
+		$s .= '(' . $this->message['diff'] . ') (';
 		# Hist
 		$s .= $this->skin->makeKnownLinkObj( $rc->getMovedToTitle(), $this->message['hist'], 'action=history' ) .
-			')</span> . . ';
+			') . . ';
 
 		# "[[x]] moved to [[y]]"
 		$msg = ( $rc->mAttribs['rc_type'] == RC_MOVE ) ? '1movedto2' : '1movedto2_redir';
@@ -142,7 +142,7 @@ class ChangesList {
 
 	protected function insertLog(&$s, $title, $logtype) {
 		$logname = LogPage::logName( $logtype );
-		$s .= '<span class="mw-rc-log">(' . $this->skin->makeKnownLinkObj( $title, $logname ) . ')</span>';
+		$s .= '(' . $this->skin->makeKnownLinkObj($title, $logname ) . ')';
 	}
 
 	protected function insertDiffHist(&$s, &$rc, $unpatrolled) {
@@ -163,14 +163,14 @@ class ChangesList {
 					$rcidparam ),
 				'', '', ' tabindex="'.$rc->counter.'"');
 		}
-		$s .= '<span class="mw-rc-diffhist">('.$diffLink.') (';
+		$s .= '('.$diffLink.') (';
 
 		# History link
 		$s .= $this->skin->makeKnownLinkObj( $rc->getTitle(), $this->message['hist'],
 			wfArrayToCGI( array(
 				'curid' => $rc->mAttribs['rc_cur_id'],
 				'action' => 'history' ) ) );
-		$s .= ')</span> . . ';
+		$s .= ') . . ';
 	}
 
 	protected function insertArticleLink(&$s, &$rc, $unpatrolled, $watched) {
@@ -184,10 +184,10 @@ class ChangesList {
 			$articlelink = $this->skin->makeKnownLinkObj( $rc->getTitle(), '', $params );
 			$articlelink = '<span class="history-deleted">'.$articlelink.'</span>';
 		} else {
-			$articlelink = ' '. $this->skin->makeKnownLinkObj( $rc->getTitle(), '', $params );
+		    $articlelink = ' '. $this->skin->makeKnownLinkObj( $rc->getTitle(), '', $params );
 		}
-		$articlelink = $this->maybeWatchedLink( $articlelink, $watched );
-
+		if( $watched )
+			$articlelink = "<strong class=\"mw-watched\">{$articlelink}</strong>";
 		global $wgContLang;
 		$articlelink .= $wgContLang->getDirMark();
 
@@ -204,15 +204,12 @@ class ChangesList {
 	}
 
 	/** Insert links to user page, user talk page and eventually a blocking link */
-	public function insertUserRelatedLinks( &$s, &$rc ) {
-		if ( $this->isDeleted( $rc,Revision::DELETED_USER ) ) {
-			$s .= ' <span class="history-deleted">' . wfMsgHtml( 'rev-deleted-user' ) . '</span>';
+	public function insertUserRelatedLinks(&$s, &$rc) {
+		if ( $this->isDeleted($rc,Revision::DELETED_USER) ) {
+		   $s .= ' <span class="history-deleted">' . wfMsgHtml('rev-deleted-user') . '</span>';
 		} else {
-			$s .= '<span class="mw-rc-user">' .
-				$this->skin->userLink( $rc->mAttribs['rc_user'], $rc->mAttribs['rc_user_text'] ) .
-		  		'</span><span class="mw-rc-usertoollinks">' .
-				$this->skin->userToolLinks( $rc->mAttribs['rc_user'], $rc->mAttribs['rc_user_text'] ) .
-				'</span>';
+		  $s .= $this->skin->userLink( $rc->mAttribs['rc_user'], $rc->mAttribs['rc_user_text'] );
+		  $s .= $this->skin->userToolLinks( $rc->mAttribs['rc_user'], $rc->mAttribs['rc_user_text'] );
 		}
 	}
 
