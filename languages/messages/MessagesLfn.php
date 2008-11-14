@@ -420,6 +420,7 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 
 # Search results
 'searchresults'            => 'Resultas de xerca',
+'noexactmatch'             => "'''Es no paje clamada \"\$1\".''' Tu pote [[:\$1|crea esta paje]].",
 'prevn'                    => '$1 presedente',
 'nextn'                    => '$1 seguente',
 'viewprevnext'             => 'Vide ($1) ($2) ($3)',

@@ -256,8 +256,10 @@ $messages = array(
 'diff-del'             => "'''ripeddé'''",
 
 # Search results
-'viewprevnext'    => 'Ita ($1) ($2) ($3)',
-'search-redirect' => '(redirect $1)',
+'searchsubtitle'        => "Masappa iko '''[[:$1]]'''",
+'searchsubtitleinvalid' => "Massappa iko '''$1'''",
+'viewprevnext'          => 'Ita ($1) ($2) ($3)',
+'search-redirect'       => '(redirect $1)',
 
 # Preferences page
 'mypreferences'     => 'Bérékkeŋeŋna iyya',

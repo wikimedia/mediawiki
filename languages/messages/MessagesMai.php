@@ -175,7 +175,8 @@ $messages = array(
 'editundo' => 'असंपादन',
 
 # Search results
-'powersearch' => 'त्वरित खोज',
+'noexactmatch' => "'''\"\$1\" नामसँ कोनो लेख नहि अछि।''' अहाँ ई लेख [[:\$1|बना सकैत छी]]।",
+'powersearch'  => 'त्वरित खोज',
 
 # Preferences page
 'preferences'   => 'विकल्प',

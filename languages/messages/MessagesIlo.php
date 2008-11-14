@@ -336,7 +336,7 @@ Mabalinmo nga ituloy ti agaramat iti {{SITENAME}} a kas di am-ammo, wenno makast
 Laglagipem a sumagmamano a pampanid ti mabalin a nakaparang latta a kasla nakaloginka pay laeng, agingga a dim' pay dalusan ti cache ti browsermo.",
 'welcomecreation'            => '== Dumanonka, $1! ==
 Naparnuayen ti accountmo.
-Dimo liplipatan a sukatan dagiti preferenciam iti {{SITENAME}}.',
+Dimo liplipatan a sukatan dagiti preferenciam iti [[Special:Preferences|{{SITENAME}} preferences]].',
 'loginpagetitle'             => 'Pagserkan ti agar-aramat',
 'yourname'                   => 'Nagan:',
 'yourpassword'               => 'Pasesbalikas:',
@@ -350,7 +350,7 @@ Dimo liplipatan a sukatan dagiti preferenciam iti {{SITENAME}}.',
 'logout'                     => 'Rummuar',
 'userlogout'                 => 'Rummuar',
 'notloggedin'                => 'Saan a naka-logged in',
-'nologin'                    => 'Awan pay ti pagserrekmo? $1.',
+'nologin'                    => "Awan kad' pay accountmo? $1.",
 'nologinlink'                => 'Mangaramid iti account',
 'createaccount'              => 'Mangaramid iti baro nga account',
 'gotaccount'                 => 'Addaanka kadin iti account? $1.',
@@ -634,6 +634,11 @@ Legend: (agdama) = paggidiatan iti agdama a version,
 
 # Search results
 'searchresults'             => 'Dagiti resulta ti panagbirok',
+'searchsubtitle'            => "Sinapul mo ti '''[[:$1]]'''",
+'searchsubtitleinvalid'     => "Sinapulmo ti '''$1'''",
+'noexactmatch'              => "'''Awan ti panid nga addaan titulo a \"\$1\".'''
+Mabalinmo a [[:\$1|partuaten daytoy a panid]].",
+'noexactmatch-nocreate'     => "'''Awan panid nga addaan titulo a \"\$1\".'''",
 'notextmatches'             => 'Awan ti page text matches',
 'prevn'                     => 'napalabas $1',
 'nextn'                     => 'sumaruno $1',

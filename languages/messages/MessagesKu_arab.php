@@ -373,6 +373,10 @@ $messages = array(
 'lineno'                  => 'ھێڵی  $1:',
 'compareselectedversions' => 'ھەڵسەنگاندنی وەشانە ھەڵبژاردراوەکان',
 
+# Search results
+'noexactmatch' => "'''ھیچ پەڕەیەک ھەر بەم سەردێڕەوە نیە.''' 
+ئێستە دەتوانی ئەم پەڕە دروست بکەیت",
+
 # Preferences page
 'mypreferences' => 'ھەڵبژاردەکانی من',
 'skin-preview'  => 'پێش بینین',

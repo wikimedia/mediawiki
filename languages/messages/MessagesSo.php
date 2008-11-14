@@ -333,11 +333,13 @@ Iskuday in aad [[Special:Search|karaadiso wikigan]] beyjaj laxiira oo cusub.',
 'rev-delundel' => "i'tus/qari",
 
 # Search results
-'searchresults' => 'Natiijooyinkii ka soo baxay raadinta',
-'prevn'         => 'Ka horeeya $1',
-'nextn'         => 'Ku xiga $1',
-'viewprevnext'  => 'Fiiri ($1) ($2) ($3).',
-'powersearch'   => 'Raadi',
+'searchresults'         => 'Natiijooyinkii ka soo baxay raadinta',
+'searchsubtitle'        => "Waxaad raadisay '''[[:$1]]'''",
+'searchsubtitleinvalid' => "Waxaad raadisay '''$1'''",
+'prevn'                 => 'Ka horeeya $1',
+'nextn'                 => 'Ku xiga $1',
+'viewprevnext'          => 'Fiiri ($1) ($2) ($3).',
+'powersearch'           => 'Raadi',
 
 # Preferences page
 'preferences'          => 'Dooqyada',

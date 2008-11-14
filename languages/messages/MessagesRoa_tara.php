@@ -190,6 +190,7 @@ $messages = array(
 'aboutpage'            => 'Project:Sus a',
 'bugreports'           => 'Liste de le bochere',
 'bugreportspage'       => "Project:Liste de l'errore",
+'copyright'            => "'U condenute jè disponibile sotte a $1.",
 'copyrightpagename'    => '{{SITENAME}} copyright',
 'copyrightpage'        => '{{ns:project}}:Copyrights',
 'currentevents'        => 'Fatte de osce a die',
@@ -260,6 +261,8 @@ Vide [[Special:Version|Versione d'a pàgene]].",
 # General errors
 'error'                => 'Errore',
 'databaseerror'        => "Errore de l'archivije",
+'noconnect'            => "Sime dispiaciute! Sus 'a Uicchipedie stè quacche probbleme tecniche e non ge putime condattà 'u server d'u database.<br />
+$1",
 'nodb'                 => "Non ge pozze scacchià l'archivie $1",
 'cachederror'          => "Quedda ca ste vide jè 'na copie presende in memorie d'a pàgene ca è richieste, vo ccu dice ca non g'à puè cangià.",
 'laggedslavemode'      => "Attenzione: 'A pàgene no ge tène cangiaminde recente.",
@@ -292,6 +295,7 @@ Query: $2",
 'ns-specialprotected'  => 'Le pàgene speciale no ponne essere cangete.',
 
 # Virus scanner
+'virus-badscanner'     => 'Configurazione ca fece schife: Virus scanner scanusciute: <i>$1</i>',
 'virus-scanfailed'     => 'condrolle fallite (codece $1)',
 'virus-unknownscanner' => 'antivirus scanusciute:',
 
@@ -427,9 +431,11 @@ Tu non ge puè ausà 'u strumende 'manne 'na mail a stu utende' senza ca mitte n
 L'IP ca tine mò jè $3 e 'u codece d'u blocche jè #$5.
 Pe piacere mitte ste doje 'mbormaziune ce manne 'na richieste de sblocche.",
 'blockednoreason'           => 'nisciune mutive',
+'whitelistedittitle'        => "Pe fa le cangiaminde t'a collegà",
 'confirmedittitle'          => "Ce vuè cu fece le cangiaminde a confermà cu l'email",
 'loginreqtitle'             => "T'a collegà pe forze",
 'loginreqlink'              => 'trase',
+'loginreqpagetext'          => 'Tu a $1 pe vedè otre pàggene.',
 'accmailtitle'              => 'Passuord mannete.',
 'accmailtext'               => '\'A password pe "$1" ha state mannete sus \'a $2.',
 'newarticle'                => '(Nuève)',
@@ -457,6 +463,7 @@ Tu na promettere pure ca le cose ca scrive tu, sonde 'mbormaziune libbere o copi
 'longpagewarning'           => "<strong>ATTENZIO': Sta pàgene jè longhe $1 kilobyte;
 certe brauser ponne avè probleme quanne vuè cu cange pàggene ca sonde granne cchiù o mene 32 KB.
 Pe piacere considere de cangià 'a pàgene a stuezze stuezze ausanne le sezione.</strong>",
+'semiprotectedpagewarning'  => "'''Fà attenzione:''' Sta pàgene ha state blocchete accussì sulamende l'utinde reggistrete ponne fà cangiaminde.",
 'templatesused'             => "Templeit ausete sus 'a sta pàgene:",
 'templatesusedpreview'      => "Templeit ausete jndr'à sta andeprime:",
 'template-protected'        => '(prutette)',
@@ -469,6 +476,8 @@ Tu puè turnà rrete e cangià 'na pàgene ca già esiste, oppure puè [[Special
 
 Vide bbuene ce l'ha ccrejà sta pàgene, ce non ge sinde sicure vide l'archivie de le scangellaziune:",
 'deletelog-fulllog'         => "Vide l'archivie comblete",
+'edit-gone-missing'         => "Non ge puè cangià sta pàgene.
+Pare proprie ca l'onne scangellete.",
 'edit-conflict'             => 'conflitte de cangiaminde.',
 
 # Account creation failure
@@ -515,6 +524,8 @@ Leggenda: (cur) = differenze cu 'a versiona corrende,
 'revdelete-uname'        => "nome de l'utende",
 
 # History merging
+'mergehistory-from'        => 'Pàgene sorgende:',
+'mergehistory-into'        => 'Pàgene de destinazione:',
 'mergehistory-autocomment' => "Squagghiete [[:$1]] jndr'à [[:$2]]",
 'mergehistory-comment'     => "Squagghiete [[:$1]] jndr'à [[:$2]]: $3",
 
@@ -535,6 +546,7 @@ Leggenda: (cur) = differenze cu 'a versiona corrende,
 'diff-changedfrom'        => 'cangiete da $1',
 'diff-src'                => 'sorgende',
 'diff-withdestination'    => 'cu destinazione $1',
+'diff-with'               => '&#32;cu $1 $2',
 'diff-with-additional'    => '$1 $2',
 'diff-with-final'         => '&#32;e $1 $2',
 'diff-width'              => 'larghezze',
@@ -580,31 +592,29 @@ Leggenda: (cur) = differenze cu 'a versiona corrende,
 'diff-strike'             => "'''strikethrough'''",
 
 # Search results
-'searchresults'                  => "Resultete d'a ricerche",
-'searchresults-title'            => "Resultete d'a ricerche pe $1",
-'prevn'                          => 'rrede $1',
-'nextn'                          => 'nnande $1',
-'viewprevnext'                   => 'Vide ($1) ($2) ($3)',
-'searchprofile-articles'         => 'Pàggene',
-'searchprofile-project'          => 'Pruggette',
-'searchprofile-images'           => 'Le fail',
-'searchprofile-everything'       => 'Tutte',
-'searchprofile-advanced'         => 'Avanzete',
-'searchprofile-articles-tooltip' => "Cirche jndr'à $1",
-'searchprofile-project-tooltip'  => "Cirche jndr'à $1",
-'searchprofile-images-tooltip'   => 'Cirche pe le fail',
-'search-result-score'            => "'Mbortanze: $1%",
-'search-section'                 => '(sezione $1)',
-'search-interwiki-more'          => '(de cchiù)',
-'searchall'                      => 'tutte',
-'powersearch'                    => 'Ricerche avanzete',
-'powersearch-field'              => 'Cirche pe',
+'searchresults'         => "Resultete d'a ricerche",
+'searchresults-title'   => "Resultete d'a ricerche pe $1",
+'noexactmatch'          => "'''Non g'esiste 'na pàgene ca se chiama \"\$1\".'''
+Tu puè [[:\$1|ccrejà sta pàgene]].",
+'prevn'                 => 'rrede $1',
+'nextn'                 => 'nnande $1',
+'viewprevnext'          => 'Vide ($1) ($2) ($3)',
+'search-result-score'   => "'Mbortanze: $1%",
+'search-redirect'       => '(Redirette $1)',
+'search-section'        => '(sezione $1)',
+'search-interwiki-more' => '(de cchiù)',
+'searchall'             => 'tutte',
+'powersearch'           => 'Ricerche avanzete',
+'powersearch-field'     => 'Cirche pe',
 
 # Preferences page
 'preferences'       => 'Me piece accussì',
 'mypreferences'     => 'Me piece accussì',
+'prefs-edits'       => 'Numere de cangiaminde:',
+'prefsnologin'      => 'Non ge sinde colleghete',
 'qbsettings'        => 'Barra veloce',
 'qbsettings-none'   => 'Ninde',
+'changepassword'    => "Cange 'a password",
 'skin'              => 'Skin',
 'skin-preview'      => 'Andeprime',
 'math'              => 'Math',

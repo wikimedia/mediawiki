@@ -298,6 +298,7 @@ oba ku gano agali ku lupapula luno.<br />
 'editundo'                => 'julula enkyukakyuka',
 
 # Search results
+'noexactmatch' => "'''Tewali lupapula lwa \"\$1\".''' Ob'oyagala, [[:\$1|olupapula olwo gwe osobola okulukolawo]].",
 'prevn'        => '$1 ezikulembedde zino',
 'nextn'        => '$1 eziddako',
 'viewprevnext' => 'Laga ($1) ($2) ($3).',
