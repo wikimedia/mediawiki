@@ -586,7 +586,7 @@ class SpecialSearch {
 	 * @return $out string: HTML form
 	 */
 	function powerSearchBox( $term ) {
-		global $wgScript;
+		global $wgScript, $wgContLang;
 
 		$namespaces = SearchEngine::searchableNamespaces();
 
@@ -613,11 +613,16 @@ class SpecialSearch {
 		// be arranged nicely while still accommodating different screen widths
 		$rowsPerTable = 3;  // seems to look nice
 
+		// float to the right on RTL wikis
+		$tableStyle = ( $wgContLang->isRTL() ?
+				'float: right; margin: 0 0 1em 1em' :
+				'float: left; margin: 0 1em 1em 0' );
+
 		$tables = "";
 		for( $i = 0; $i < $numRows; $i += $rowsPerTable ) {
-			$tables .= Xml::openElement( 'table', array( 'style' => 'float: left; margin: 0 1em 1em 0' ) );
+			$tables .= Xml::openElement( 'table', array( 'style' => $tableStyle ) );
 			for( $j = $i; $j < $i + $rowsPerTable && $j < $numRows; $j++ ) {
-				$tables .= Xml::openElement( 'tr' ) . "\n" . $rows[$j] . Xml::closeElement( 'tr' );
+				$tables .= "<tr>\n" . $rows[$j] . "</tr>";
 			}
 			$tables .= Xml::closeElement( 'table' ) . "\n";
 		}
@@ -635,7 +640,7 @@ class SpecialSearch {
 				wfMsgExt( 'powersearch-ns', array( 'parseinline' ) ) .
 				"</p>\n" .
 				$tables .
-				"<hr style=\"clear: left;\" />\n" .
+				"<hr style=\"clear: both\" />\n" .
 				"<p>" .
 				$redirect . " " . $redirectLabel .
 				"</p>\n" .
