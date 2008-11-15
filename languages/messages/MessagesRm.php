@@ -342,6 +342,7 @@ Ponderai per plaschair da divider quest artitgel en pli pitschnas parts. </stron
 'servertime'            => 'temp dal server',
 'guesstimezone'         => 'Emplenescha dal browser',
 'allowemail'            => 'retschaiver emails dad auters utilisaders',
+'defaultns'             => 'En quests tips da pagina duai vegnir tschertga sco standard:',
 
 # User rights
 'userrights-lookup-user'   => "Administrar gruppas d'utilisaders",

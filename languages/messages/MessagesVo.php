@@ -921,6 +921,7 @@ vestigolös stitami verätik ela latex, ela dvips, ela gs, e feajafön',
 'guesstimezone'            => 'Benüpenolös yufü befüresodatävöm',
 'allowemail'               => 'Fägükolös siti ad getön poti leäktronik de gebans votik',
 'prefs-namespaces'         => 'Nemaspads',
+'defaultns'                => 'Sukolös nomiko in nemaspads at:',
 'default'                  => 'stad kösömik',
 'files'                    => 'Ragivs',
 

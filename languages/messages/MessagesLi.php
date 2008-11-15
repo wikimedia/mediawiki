@@ -1036,6 +1036,7 @@ Mèrk op dat hun indexe van {{SITENAME}} content e bietje gedatierd kint zien.',
 'allowemail'               => 'E-mail van anger gebroekers toesjtaon',
 'prefs-searchoptions'      => 'Zeukinstellinge',
 'prefs-namespaces'         => 'Naamruimte',
+'defaultns'                => 'Zeuk sjtandaard in dees naomruumdes:',
 'default'                  => 'sjtandaard',
 'files'                    => 'Bestenj',
 

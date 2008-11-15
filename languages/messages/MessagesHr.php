@@ -929,6 +929,8 @@ Neki predlošci neće biti uključeni.',
 'post-expand-template-inclusion-category' => 'Stranice gdje su uključeni predlošci preveliki',
 'post-expand-template-argument-warning'   => 'Upozorenje: Ova stranica sadrži najmanje jedan argument predložaka koji ima preveliko proširenje. Ovi su argumenti izostavljeni.',
 'post-expand-template-argument-category'  => 'Stranice koje sadrže izostavljene argumente za predloške',
+'parser-template-loop-warning'            => 'Otkrivena petlja predloška: [[$1]]',
+'parser-template-recursion-depth-warning' => 'Dubina rekurzije predloška je izvan granice ($1)',
 
 # "Undo" feature
 'undo-success' => 'Izmjena je uklonjena (tekst u okviru ispod ne sadrži zadnju izmjenu). Molim sačuvajte stranicu (provjerite sažetak).',
@@ -1227,6 +1229,7 @@ Primijetite da uporaba navigacijskih poveznica resetira vaše izbore u koloni.',
 'allowemail'               => 'Omogući primanje e-maila od drugih suradnika',
 'prefs-searchoptions'      => 'Način traženja',
 'prefs-namespaces'         => 'Imenski prostori',
+'defaultns'                => 'Ako ne navedem drugačije, traži u ovim prostorima:',
 'default'                  => 'prvotno',
 'files'                    => 'Datoteke',
 

@@ -1293,6 +1293,7 @@ latex, dvips, gs جانە convert باعدارلامالارىنىڭ دۇرىس 
 'allowemail'               => 'باسقادان حات قابىلداۋىن قوس',
 'prefs-searchoptions'      => 'ىزدەۋ باپتالىمدارى',
 'prefs-namespaces'         => 'ەسىم ايالارى',
+'defaultns'                => 'مىنا ەسىم ايالاردا ادەپكىدەن ىزدەۋ:',
 'default'                  => 'ادەپكى',
 'files'                    => 'فايلدار',
 

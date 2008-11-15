@@ -658,6 +658,7 @@ Informacion: (curt) = quiíxde vercion currentua,
 'servertime'            => 'Xepede server',
 'guesstimezone'         => "Xuniimyabuatlecaún dai'browser",
 'allowemail'            => 'Pos-coccebj e-iitomde diijömde caitóm',
+'defaultns'             => 'Yahöx jan ipartuatl iti auto:',
 'default'               => 'auto',
 'files'                 => 'Ciúchán',
 

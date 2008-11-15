@@ -679,6 +679,7 @@ there micht be parteeculars in the [{{fullurl:Special:Log/delete|page={{FULLPAGE
 'servertime'         => 'Server time is nou',
 'guesstimezone'      => 'Fill in frae brouser',
 'allowemail'         => 'Allou email frae ither uisers',
+'defaultns'          => 'Rake in thir namespaces bi defaut:',
 'default'            => 'defaut',
 
 # User rights

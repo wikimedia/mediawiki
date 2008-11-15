@@ -1078,6 +1078,7 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'allowemail'               => 'Admitir mensaxes de correo electrónico doutros usuarios',
 'prefs-searchoptions'      => 'Opcións na procura',
 'prefs-namespaces'         => 'Espazos de nomes',
+'defaultns'                => 'Procurar por omisión nestes espazos de nomes:',
 'default'                  => 'predeterminado',
 'files'                    => 'Ficheiros',
 

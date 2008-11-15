@@ -1015,6 +1015,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desat
 'allowemail'               => 'Permitir email de outros usuários',
 'prefs-searchoptions'      => 'Opções de busca',
 'prefs-namespaces'         => 'Espaços nominais',
+'defaultns'                => 'Pesquisar por padrão nestes espaços nominais:',
 'default'                  => 'padrão',
 'files'                    => 'Arquivos',
 

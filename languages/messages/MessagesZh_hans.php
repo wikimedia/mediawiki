@@ -1008,6 +1008,7 @@ $2',
 'allowemail'               => '接受来自其他用户的邮件',
 'prefs-searchoptions'      => '搜索选项',
 'prefs-namespaces'         => '名字空间',
+'defaultns'                => '默认搜索的名字空间',
 'default'                  => '默认',
 'files'                    => '文件',
 

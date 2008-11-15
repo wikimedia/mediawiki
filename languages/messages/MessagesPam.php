@@ -859,6 +859,7 @@ pakilawe me ing math/README ba meng i-configure.',
 'servertime'               => 'Oras king server (server time)',
 'guesstimezone'            => 'Pakibatan ya manibat king browser',
 'allowemail'               => 'Pabustan ya ing e-mail ibat karing aliwang talagamit',
+'defaultns'                => 'Paintunan ya karening pirinan lagyu (namespaces) nung alang mepili:',
 'default'                  => 'alang mepili',
 'files'                    => 'Simpan (files)',
 

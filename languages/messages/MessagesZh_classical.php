@@ -907,6 +907,7 @@ $2',
 'allowemail'            => '予收信',
 'prefs-searchoptions'   => '尋項',
 'prefs-namespaces'      => '名集',
+'defaultns'             => '定尋之名集：',
 'default'               => '予定',
 'files'                 => '檔',
 

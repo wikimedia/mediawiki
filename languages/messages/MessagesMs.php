@@ -1095,6 +1095,7 @@ daripada satu kata kunci (hanya laman yang mengandungi kesemua kata kunci akan d
 'allowemail'               => 'Benarkan e-mel daripada pengguna lain',
 'prefs-searchoptions'      => 'Pilihan gelintar',
 'prefs-namespaces'         => 'Ruang nama',
+'defaultns'                => 'Cari dalam ruang nama ini secara lalai:',
 'default'                  => 'lalai',
 'files'                    => 'Fail',
 

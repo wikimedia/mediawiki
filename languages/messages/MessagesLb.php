@@ -1040,6 +1040,7 @@ iwwerpréift déi korrekt Installatioun vu LaTeX, dvips, gs a convert",
 'allowemail'               => 'E-Maile vun anere Benotzer kréien.',
 'prefs-searchoptions'      => 'Sichoptiounen',
 'prefs-namespaces'         => 'Nummraim',
+'defaultns'                => 'Dës Nimmraim duerchsichen:',
 'default'                  => 'Standard',
 'files'                    => 'Fichieren',
 

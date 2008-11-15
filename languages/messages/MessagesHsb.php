@@ -1023,6 +1023,7 @@ Móžeš [[:\$1|tutu stronu wutworić]].",
 'allowemail'               => 'Mejlki wot druhich wužiwarjow přijimować',
 'prefs-searchoptions'      => 'Pytanske opcije',
 'prefs-namespaces'         => 'Mjenowe rumy',
+'defaultns'                => 'W tutych mjenowych rumach awtomatisce pytać:',
 'default'                  => 'standard',
 'files'                    => 'Dataje',
 

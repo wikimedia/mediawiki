@@ -572,6 +572,7 @@ Du chasch die [[:$1|Syte nöu schrybe]].",
 'servertime'         => 'Aktuelli Serverzyt',
 'guesstimezone'      => 'Vom Browser la ysetze',
 'allowemail'         => 'andere Benutzer erlaube, dass si Ihne E-Bost schicke chönne',
+'defaultns'          => 'Namensrüüm wo standardmäässig söll gsuecht wärde:',
 'files'              => 'Bilder',
 
 # User rights

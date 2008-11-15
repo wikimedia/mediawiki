@@ -1228,6 +1228,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'allowemail'               => 'E-mail engedélyezése más szerkesztőktől',
 'prefs-searchoptions'      => 'A keresés beállításai',
 'prefs-namespaces'         => 'Névterek',
+'defaultns'                => 'Alapértelmezett keresés az alábbi névterekben:',
 'default'                  => 'alapértelmezés',
 'files'                    => 'Fájlok',
 

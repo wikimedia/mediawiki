@@ -1002,6 +1002,7 @@ bevat, word gewys).",
 'allowemail'               => 'Laat e-pos van ander toe',
 'prefs-searchoptions'      => 'Soekopsies',
 'prefs-namespaces'         => 'Naamruimtes',
+'defaultns'                => 'Verstek naamruimtes vir soektog:',
 'default'                  => 'verstek',
 'files'                    => 'Lêers',
 

@@ -823,6 +823,7 @@ Iuj ŝablonoj ne estos inkluzivitaj.',
 Ĉi tiuj argumentoj estis forlasitaj.',
 'post-expand-template-argument-category'  => 'Paĝoj enhavantaj forlasitajn argumentojn de ŝablonoj',
 'parser-template-loop-warning'            => 'Rekursiva ŝablono estis trovita: [[$1]]',
+'parser-template-recursion-depth-warning' => 'Limo de ŝablona profundeco pligrandiĝis ($1)',
 
 # "Undo" feature
 'undo-success' => 'La redakto estas malfarebla.
@@ -1123,6 +1124,7 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'allowemail'               => 'Rajtigi retmesaĝojn de aliaj uzantoj',
 'prefs-searchoptions'      => 'Serĉi opciojn',
 'prefs-namespaces'         => 'Nomspacoj',
+'defaultns'                => 'Traserĉi la jenajn nomspacojn:',
 'default'                  => 'defaŭlte',
 'files'                    => 'Dosieroj',
 

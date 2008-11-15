@@ -924,6 +924,7 @@ Ju lutem kërkoni {{SITENAME}}-n përpara se të krijoni një artikull të ri se
 'allowemail'               => 'Lejo përdoruesit të më dërgojnë email',
 'prefs-searchoptions'      => 'Mundësi kërkimi',
 'prefs-namespaces'         => 'Hapësirat',
+'defaultns'                => 'Kërko automatikisht vetëm në këto hapësira:',
 'default'                  => 'parazgjedhje',
 'files'                    => 'Figura',
 

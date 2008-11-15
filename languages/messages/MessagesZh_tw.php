@@ -757,6 +757,7 @@ $2',
 'servertime'               => '伺服器時間',
 'guesstimezone'            => '從瀏覽器填寫',
 'allowemail'               => '接受來自其他使用者的郵件',
+'defaultns'                => '預設搜尋的名字空間',
 'default'                  => '預設',
 'files'                    => '檔案',
 

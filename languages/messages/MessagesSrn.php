@@ -652,6 +652,7 @@ Yu kan [[:\$1|meki a papira disi]].",
 'servertime'               => 'Serverten',
 'guesstimezone'            => 'Fu a browser presi',
 'allowemail'               => 'E-mail fu trawan masyin adu',
+'defaultns'                => 'Soma ini disi nenpreki suku:',
 'default'                  => 'soma',
 'files'                    => 'Gefre',
 

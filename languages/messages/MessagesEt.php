@@ -730,6 +730,7 @@ sisse logida.',
 'servertime'              => 'Serveri aeg',
 'guesstimezone'           => 'Loe aeg brauserist',
 'allowemail'              => 'Luba teistel kasutajatel mulle e-posti saata',
+'defaultns'               => 'Vaikimisi otsi järgmistest nimeruumidest:',
 'default'                 => 'vaikeväärtus',
 'files'                   => 'Failid',
 

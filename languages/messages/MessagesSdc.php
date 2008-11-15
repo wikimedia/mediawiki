@@ -857,6 +857,7 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di ca
 'servertime'               => "Ora di l'elaburaddori sivvidori",
 'guesstimezone'            => "Usa l'ora di lu tóiu nabiggadori",
 'allowemail'               => "Cunsenti lu rizzibimentu di postha erettrònica d'althri utenti (1)",
+'defaultns'                => 'Namespace pridifiniddi pa zirchà:',
 'default'                  => 'pridifiniddu',
 'files'                    => 'File',
 

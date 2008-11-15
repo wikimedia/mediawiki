@@ -631,6 +631,7 @@ Do skrite vsebine bodo še vedno lahko dostopali drugi administratorji in jo z u
 'servertime'               => 'Strežniški čas:',
 'guesstimezone'            => 'Izpolni iz brskalnika',
 'allowemail'               => 'Drugim uporabnikom omogoči pošiljanje e-pošte',
+'defaultns'                => 'Navadno išči v naslednjih imenskih prostorih:',
 'default'                  => 'privzeto',
 'files'                    => 'Datoteke',
 

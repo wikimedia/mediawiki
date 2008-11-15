@@ -918,6 +918,7 @@ Možeš [[:\$1|tako utwořyć]], abo sprůbować pounygo šnupańo.",
 'allowemail'               => 'Inkśi užytkowńicy můgům přesyuać mje e-brify',
 'prefs-searchoptions'      => 'Uopcyje šnupańo',
 'prefs-namespaces'         => 'Přystřyńe mjan',
+'defaultns'                => 'Důmyślńy šnupej we nastympujůncych přystřyńach mjan:',
 'default'                  => 'důmyślńy',
 'files'                    => 'Pliki',
 

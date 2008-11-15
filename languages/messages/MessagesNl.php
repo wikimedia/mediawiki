@@ -1282,6 +1282,7 @@ Ga na of latex, dvips en gs correct geïnstalleerd zijn en zet om',
 'allowemail'               => 'E-mail van andere gebruikers toestaan',
 'prefs-searchoptions'      => 'Zoekinstellingen',
 'prefs-namespaces'         => 'Naamruimten',
+'defaultns'                => 'Standaard in deze naamruimten zoeken:',
 'default'                  => 'standaard',
 'files'                    => 'Bestanden',
 

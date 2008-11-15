@@ -861,6 +861,7 @@ $1 is the relevance of this result in per cent.
 'prefs-searchoptions'   => "Shown at the top of the tab 'Search' in [[Special:Preferences]]",
 'prefs-namespaces'      => "{{Identical|Namespaces}}
 Shown as legend of the second fieldset of the tab 'Search' in [[Special:Preferences]]",
+'defaultns'             => 'Used in [[Special:Preferences]], tab "Search".',
 'default'               => '{{Identical|Default}}',
 'files'                 => 'Title of a tab in [[Special:Preferences]].',
 

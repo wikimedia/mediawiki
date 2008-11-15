@@ -782,6 +782,7 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 'servertime'               => "Oras kan ''server''",
 'guesstimezone'            => "Bugtakan an ''browser''",
 'allowemail'               => "Togotan an mga ''e''-surat halî sa ibang mga parágamit",
+'defaultns'                => 'Maghilíng mûna sa ining mga ngaran-espacio:',
 'default'                  => 'pwestong normal',
 'files'                    => 'Mga dokumento',
 

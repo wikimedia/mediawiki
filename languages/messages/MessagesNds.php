@@ -1098,6 +1098,7 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 'allowemail'               => 'Nettbreven vun annere Brukers annehmen',
 'prefs-searchoptions'      => 'Söökopschonen',
 'prefs-namespaces'         => 'Naamrüüm',
+'defaultns'                => 'In disse Naamrüüm schall standardmatig söökt warrn:',
 'default'                  => 'Standard',
 'files'                    => 'Datein',
 

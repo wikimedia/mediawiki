@@ -1076,6 +1076,7 @@ se math/README for oppsett.',
 'allowemail'               => 'Tillat andre å sende meg e-post',
 'prefs-searchoptions'      => 'Søkealternativ',
 'prefs-namespaces'         => 'Navnerom',
+'defaultns'                => 'Søk i disse navnerommene som standard:',
 'default'                  => 'standard',
 'files'                    => 'Filer',
 

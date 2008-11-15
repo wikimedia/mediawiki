@@ -785,6 +785,7 @@ mitmõ otsmissõna pruukminõ (sis ilmusõq õnnõ leheküleq, kon ommaq kõik o
 'servertime'               => 'Serveri aig',
 'guesstimezone'            => 'Võtaq aig võrgokaejast',
 'allowemail'               => 'Lupaq tõisil pruukjil mullõ e-posti saataq',
+'defaultns'                => 'Otsiq vaikimiisi naist nimeruumõst:',
 'default'                  => 'vaikimiisi',
 'files'                    => 'Teedüstüq',
 

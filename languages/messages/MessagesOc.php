@@ -1158,6 +1158,7 @@ Atencion, lor indexacion de contengut {{SITENAME}} benlèu es pas a jorn.',
 'allowemail'               => 'Autorizar lo mandadís de corrièr electronic venent d’autres utilizaires',
 'prefs-searchoptions'      => 'Opcions de recèrca',
 'prefs-namespaces'         => 'Noms d’espacis',
+'defaultns'                => 'Per defaut, recercar dins aquestes espacis :',
 'default'                  => 'defaut',
 'files'                    => 'Fichièrs',
 

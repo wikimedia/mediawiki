@@ -943,6 +943,7 @@ Pastikeun yén ieu parobahan bisa miara jujutan kaca sagemblengna.',
 'allowemail'               => 'Buka koropak pikeun nampa surélék ti nu séjén',
 'prefs-searchoptions'      => 'Piliheun Panéangan',
 'prefs-namespaces'         => 'Ngaranspasi',
+'defaultns'                => 'Téang ti antara spasingaran ieu luyu jeung ti dituna:',
 'default'                  => 'ti dituna',
 'files'                    => 'Koropak',
 

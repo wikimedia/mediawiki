@@ -458,6 +458,7 @@ Açıqlama: (hh) = hal-hazırkı versiya ilə olan fərqlər,
 'servertime'            => 'Server vaxtı',
 'guesstimezone'         => 'Brouzerdən götür',
 'allowemail'            => 'Digər istifadəçilər mənə e-məktub göndərəbilir',
+'defaultns'             => 'Susmaya görə bu ad fəzalarında axtar:',
 'files'                 => 'Fayllar',
 
 # User rights

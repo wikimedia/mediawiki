@@ -1110,6 +1110,7 @@ per favor vide math/README pro configurar lo.",
 'allowemail'               => 'Activar reception de e-mail de altere usatores',
 'prefs-searchoptions'      => 'Optiones de recerca',
 'prefs-namespaces'         => 'Spatios de nomines',
+'defaultns'                => 'Cercar initialmente in iste spatios de nomines:',
 'default'                  => 'predefinition',
 'files'                    => 'Files',
 

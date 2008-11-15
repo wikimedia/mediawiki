@@ -1158,6 +1158,7 @@ koje sadrže sve izraze koji se traže će se pojaviti u rezultatima).",
 'allowemail'               => 'Dozvoli e-poštu od ostalih korisnika',
 'prefs-searchoptions'      => 'Opcije pretrage',
 'prefs-namespaces'         => 'Imenski prostori',
+'defaultns'                => 'Uobičajeno tražite u ovim imenskim prostorima:',
 'default'                  => 'standardno',
 'files'                    => 'Datoteke',
 

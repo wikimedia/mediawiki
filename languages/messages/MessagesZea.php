@@ -869,6 +869,7 @@ De hehevens over {{SITENAME}} zien meuhlijk nie bie'ewerkt.",
 'servertime'               => 'Servertied',
 'guesstimezone'            => 'Vanuut de browser toevoehen',
 'allowemail'               => 'Laet e-mail van aore gebrukers toe.',
+'defaultns'                => "Standard in deêze naemruum'n zoeken:",
 'default'                  => 'standard',
 'files'                    => "Bestan'n",
 

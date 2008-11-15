@@ -961,6 +961,7 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 'allowemail'               => 'Beste erabiltzaileengandik e-posta mezuak jasotzea gaitu',
 'prefs-searchoptions'      => 'Bilaketa aukerak',
 'prefs-namespaces'         => 'Izen-tarteak',
+'defaultns'                => 'Izen-tarte hauetan bilatu lehenetsitzat:',
 'default'                  => 'lehenetsia',
 'files'                    => 'Fitxategiak',
 

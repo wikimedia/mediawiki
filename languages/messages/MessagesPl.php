@@ -1193,6 +1193,7 @@ Zapoznaj się z math/README w celu konfiguracji.',
 'allowemail'               => 'Zgadzam się, by inni użytkownicy mogli przesyłać mi e-maile',
 'prefs-searchoptions'      => 'Opcje wyszukiwania',
 'prefs-namespaces'         => 'Przestrzenie nazw',
+'defaultns'                => 'Domyślnie przeszukuj przestrzenie nazw',
 'default'                  => 'domyślnie',
 'files'                    => 'Pliki',
 

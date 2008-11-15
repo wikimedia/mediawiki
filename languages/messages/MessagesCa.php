@@ -1106,6 +1106,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'allowemail'               => "Habilita el correu electrònic des d'altres usuaris",
 'prefs-searchoptions'      => 'Preferències de la cerca',
 'prefs-namespaces'         => 'Espais de noms',
+'defaultns'                => 'Busca per defecte en els següents espais de noms:',
 'default'                  => 'per defecte',
 'files'                    => 'Fitxers',
 

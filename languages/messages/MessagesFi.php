@@ -1048,6 +1048,7 @@ $1 | $2',
 'allowemail'               => 'Salli sähköpostin lähetys osoitteeseen',
 'prefs-searchoptions'      => 'Hakuasetukset',
 'prefs-namespaces'         => 'Nimiavaruudet',
+'defaultns'                => 'Etsi oletusarvoisesti näistä nimiavaruuksista',
 'default'                  => 'oletus',
 'files'                    => 'Tiedostot',
 

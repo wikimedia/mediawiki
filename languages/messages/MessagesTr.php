@@ -925,6 +925,7 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'allowemail'               => 'Diğer kullanıcılar size e-posta atabilsin',
 'prefs-searchoptions'      => 'Arama seçenekleri',
 'prefs-namespaces'         => 'İsim alanları',
+'defaultns'                => 'Aramayı aşağıdaki seçili alanlarda yap.',
 'default'                  => 'orijinal',
 'files'                    => 'Dosyalar',
 

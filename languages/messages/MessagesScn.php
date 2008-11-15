@@ -1020,6 +1020,7 @@ S'havi accirtari ca la cuntinuità storica di la pàggina nun veni altirata.",
 'allowemail'               => 'Cunzenti la ricezzioni di e-mail di àutri utenti',
 'prefs-searchoptions'      => 'Opzioni di circata',
 'prefs-namespaces'         => 'Namespace',
+'defaultns'                => 'Namespace pridifiniti pi la ricerca:',
 'default'                  => 'pridifinitu',
 'files'                    => 'Mmàggini',
 

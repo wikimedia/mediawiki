@@ -830,6 +830,7 @@ contenant tous les termes apparaissent dans les résultats).",
 'allowemail'               => 'Tutegirara va e-mail staksara mal ar favesik',
 'prefs-searchoptions'      => 'Aneyarikatcura',
 'prefs-namespaces'         => 'Yoltxo',
+'defaultns'                => 'Omavon, aneyara ko bato yoltxo se :',
 'default'                  => 'omava',
 'files'                    => 'Iyeltak se',
 

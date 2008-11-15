@@ -1118,6 +1118,7 @@ Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't w
 'allowemail'               => 'Berichen van aandere gebrukers toelaoten',
 'prefs-searchoptions'      => 'Zeukinstellingen',
 'prefs-namespaces'         => 'Naamruumtes',
+'defaultns'                => 'Naamruumtes um in te zeuken:',
 'default'                  => 'standard',
 'files'                    => 'Bestanden',
 

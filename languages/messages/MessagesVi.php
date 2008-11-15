@@ -1113,6 +1113,7 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'allowemail'               => 'Nhận thư điện tử từ các thành viên khác',
 'prefs-searchoptions'      => 'Lựa chọn tìm kiếm',
 'prefs-namespaces'         => 'Không gian tên',
+'defaultns'                => 'Mặc định tìm kiếm trong không gian tên:',
 'default'                  => 'mặc định',
 'files'                    => 'Tập tin',
 

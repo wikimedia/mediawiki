@@ -459,6 +459,7 @@ Ko e konga ʻi olunga, ko e '''konga pē ʻe taha''' ʻe haofaki ʻi he lomiʻi 
 'timezoneoffset'        => 'Ngaahi houa ʻo e faikehekehe',
 'servertime'            => 'Taimi ʻo e tauhia',
 'allowemail'            => 'Fakamafeiaʻi ʻa e tohila mei he kau ʻetita ʻe taha',
+'defaultns'             => 'Kumi ʻi he vā hingoa fakatuʻunga:',
 'default'               => 'tuʻunga',
 'files'                 => 'Ngaahi faile',
 

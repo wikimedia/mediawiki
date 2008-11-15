@@ -1108,6 +1108,7 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'allowemail'               => 'Habilitar la recepción de correo de otros usuarios',
 'prefs-searchoptions'      => 'Opciones de búsqueda',
 'prefs-namespaces'         => 'Espacios de nombres',
+'defaultns'                => 'Buscar en estos espacios de nombres por defecto:',
 'default'                  => 'por defecto',
 'files'                    => 'Archivos',
 

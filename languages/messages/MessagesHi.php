@@ -914,6 +914,7 @@ latex, dvips, gs, और convert के इन्स्टॉलेशन की
 'allowemail'               => 'अन्य उपयोगकर्ताओं से ई-मेल समर्थ करें',
 'prefs-searchoptions'      => 'खोज ऑप्शन्स',
 'prefs-namespaces'         => 'नामस्थान',
+'defaultns'                => 'इन नामस्थानोंमें हमेशा खोजें:',
 'default'                  => 'अविचल',
 'files'                    => 'फ़ाईलें',
 

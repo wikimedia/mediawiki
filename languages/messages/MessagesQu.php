@@ -998,6 +998,7 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'allowemail'               => 'Huk ruraqkunamanta e-chaskita saqillay',
 'prefs-searchoptions'      => 'Akllanakunata maskay',
 'prefs-namespaces'         => "Suti k'itikuna",
+'defaultns'                => "Kay suti k'itikunapi kikinmanta maskay:",
 'default'                  => 'kikinmanta',
 'files'                    => 'Willañiqikuna',
 

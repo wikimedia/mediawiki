@@ -1077,6 +1077,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'allowemail'               => 'Abilita la ricezione di email da altri utenti¹',
 'prefs-searchoptions'      => 'Opzioni di ricerca',
 'prefs-namespaces'         => 'Namespace',
+'defaultns'                => 'Cerca in questi namespace se non diversamente specificato:',
 'default'                  => 'predefinito',
 'files'                    => 'File',
 

@@ -407,6 +407,7 @@ Eżlë klëczi na ti starnie nie są sczérowóne do ce, tedë [[Special:UserLog
 'servertime'            => 'Aktualny czas serwera',
 'guesstimezone'         => 'Wezmi z przezérnika',
 'allowemail'            => 'Włączë mòżlewòtã sélaniô e-mailów òd jinëch brëkòwników',
+'defaultns'             => 'Domëslno przeszëkùjë nôslédné rëmnotë mionów:',
 'files'                 => 'Lopczi',
 
 # User rights
