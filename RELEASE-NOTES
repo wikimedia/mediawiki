@@ -70,7 +70,6 @@ The following extensions are migrated into MediaWiki 1.14:
 * Special:LinkSearch to search for external links (was extension LinkSearch)
 * RenderHash
 * NoMoveUserPages
-* Poem (patch by Nathaniel Herman)
 * UniversalEditButton
 
 === New features in 1.14 ===
