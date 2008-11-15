@@ -588,15 +588,38 @@ class SpecialSearch {
 	function powerSearchBox( $term ) {
 		global $wgScript;
 
-		$namespaces = '';
-		foreach( SearchEngine::searchableNamespaces() as $ns => $name ) {
+		$namespaces = SearchEngine::searchableNamespaces();
+
+		// group namespaces into rows according to subject; try not to make too
+		// many assumptions about namespace numbering
+		$rows = array();
+		foreach( $namespaces as $ns => $name ) {
+			$subj = Namespace::getSubject( $ns );
+			if( !array_key_exists( $subj, $rows ) ) {
+				$rows[$subj] = "";
+			}
 			$name = str_replace( '_', ' ', $name );
 			if( '' == $name ) {
 				$name = wfMsg( 'blanknamespace' );
 			}
-			$namespaces .= Xml::openElement( 'span', array( 'style' => 'white-space: nowrap' ) ) .
+			$rows[$subj] .= Xml::openElement( 'td', array( 'style' => 'white-space: nowrap' ) ) .
 					Xml::checkLabel( $name, "ns{$ns}", "mw-search-ns{$ns}", in_array( $ns, $this->namespaces ) ) .
-					Xml::closeElement( 'span' ) . "\n";
+					Xml::closeElement( 'td' ) . "\n";
+		}
+		$rows = array_values( $rows );
+		$numRows = count( $rows );
+
+		// lay out namespaces in multiple floating two-column tables so they'll
+		// be arranged nicely while still accommodating different screen widths
+		$rowsPerTable = 3;  // seems to look nice
+
+		$tables = "";
+		for( $i = 0; $i < $numRows; $i += $rowsPerTable ) {
+			$tables .= Xml::openElement( 'table', array( 'style' => 'float: left; margin: 0 1em 1em 0' ) );
+			for( $j = $i; $j < $i + $rowsPerTable && $j < $numRows; $j++ ) {
+				$tables .= Xml::openElement( 'tr' ) . "\n" . $rows[$j] . Xml::closeElement( 'tr' );
+			}
+			$tables .= Xml::closeElement( 'table' ) . "\n";
 		}
 
 		$redirect = Xml::check( 'redirs', $this->searchRedirects, array( 'value' => '1', 'id' => 'redirs' ) );
@@ -607,15 +630,15 @@ class SpecialSearch {
 		
 		$out = Xml::openElement( 'form', array(	'id' => 'powersearch', 'method' => 'get', 'action' => $wgScript ) ) .
 			Xml::fieldset( wfMsg( 'powersearch-legend' ),
-				Xml::hidden( 'title', $searchTitle->getPrefixedText() ) .
+				Xml::hidden( 'title', $searchTitle->getPrefixedText() ) . "\n" .
 				"<p>" .
 				wfMsgExt( 'powersearch-ns', array( 'parseinline' ) ) .
-				"<br />" .
-				$namespaces .
-				"</p>" .
+				"</p>\n" .
+				$tables .
+				"<hr style=\"clear: left;\" />\n" .
 				"<p>" .
 				$redirect . " " . $redirectLabel .
-				"</p>" .
+				"</p>\n" .
 				wfMsgExt( 'powersearch-field', array( 'parseinline' ) ) .
 				"&nbsp;" .
 				$searchField .
