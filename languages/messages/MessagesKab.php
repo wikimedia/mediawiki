@@ -701,6 +701,7 @@ i yesɛan akk awalen i banen-d).",
 'servertime'               => 'Akud n server',
 'guesstimezone'            => 'Sseqdec azal n browser/explorateur',
 'allowemail'               => 'Eǧǧ imseqdacen wiyaḍ a k-aznen email',
+'defaultns'                => 'Nadi deg yismawen n taɣult s umeslugen:',
 'default'                  => 'ameslugen',
 'files'                    => 'Ifayluwen',
 

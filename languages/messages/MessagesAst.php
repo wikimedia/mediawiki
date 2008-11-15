@@ -989,6 +989,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'allowemail'               => 'Dexar a los otros usuarios mandate correos',
 'prefs-searchoptions'      => 'Opciones de busca',
 'prefs-namespaces'         => 'Espacios de nome',
+'defaultns'                => 'Buscar por defeutu nestos espacios de nome:',
 'default'                  => 'por defeutu',
 'files'                    => 'Archivos',
 

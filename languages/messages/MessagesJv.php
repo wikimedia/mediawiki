@@ -938,6 +938,7 @@ mangga delengen math/README kanggo cara konfigurasi.',
 'allowemail'               => 'Marengaké panganggo liyané ngirim layang èlèktronik (email).',
 'prefs-searchoptions'      => 'Opsi-opsi panggolèkan',
 'prefs-namespaces'         => 'Ruang jeneng / Bilik jeneng',
+'defaultns'                => "Golèk ing bilik jeneng (''namespace'') iki mawa baku:",
 'default'                  => 'baku',
 'files'                    => 'Berkas',
 

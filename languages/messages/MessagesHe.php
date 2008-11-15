@@ -1257,6 +1257,7 @@ $2',
 'allowemail'               => 'קבלת דוא"ל ממשתמשים אחרים',
 'prefs-searchoptions'      => 'אפשרויות חיפוש',
 'prefs-namespaces'         => 'מרחבי שם',
+'defaultns'                => 'מרחבי שם לחיפוש כברירת מחדל:',
 'default'                  => 'ברירת מחדל',
 'files'                    => 'קבצים',
 

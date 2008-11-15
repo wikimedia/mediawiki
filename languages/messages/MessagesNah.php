@@ -555,6 +555,7 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 'localtime'             => 'Cāhuitl nicān',
 'prefs-searchoptions'   => 'Tlatēmoliztli tlaēlēhuiliztli',
 'prefs-namespaces'      => 'Tōcātzin',
+'defaultns'             => 'Tlatēmōz inīn tōcātzimpan ic default:',
 'default'               => 'ic default',
 'files'                 => 'Tlahcuilōlli',
 

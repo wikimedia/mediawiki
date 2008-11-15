@@ -840,6 +840,7 @@ koje sadrže sve izraze koji se traže će se pojaviti u rezultatu).",
 'servertime'               => 'Vreme na serveru',
 'guesstimezone'            => 'Popuni iz brauzera',
 'allowemail'               => 'Omogući e-poštu od drugih korisnika',
+'defaultns'                => 'Po standardu traži u ovim imenskim prostorima:',
 'default'                  => 'standard',
 'files'                    => 'Fajlovi',
 

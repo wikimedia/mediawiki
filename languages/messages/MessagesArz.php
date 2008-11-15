@@ -315,6 +315,7 @@ $messages = array(
 'tog-diffonly'                => 'ما تبين ش محتوى الصفحة تحت الفروقات',
 'tog-showhiddencats'          => 'بين التّصنيفات المستخبية',
 'tog-noconvertlink'           => 'عطل تحويل عناوين الوصلات',
+'tog-norollbackdiff'          => 'الغى الاختلافات بعد ما تعمل الرول باك',
 
 'underline-always'  => 'دايما',
 'underline-never'   => 'ابدا',
@@ -931,6 +932,7 @@ $2',
 'post-expand-template-argument-warning'   => 'تحذير: الصفحة  دى فيها عامل قالب واحد على الأقل ليه حجم تمدد كبير قوي.
 العوامل دى اتمسحت.',
 'post-expand-template-argument-category'  => 'صفحات فيها مناقشات القالب المحذوفة',
+'parser-template-loop-warning'            => 'لووب القالب المحدد: [[$1]]',
 
 # "Undo" feature
 'undo-success' => 'ممكن ترجع فى التعديل.
@@ -1234,6 +1236,7 @@ $2',
 'allowemail'               => 'السماح لليوزرز التانيين يبعتولى ايميل',
 'prefs-searchoptions'      => 'اختيارات التدوير',
 'prefs-namespaces'         => 'أسماء النطاقات',
+'defaultns'                => 'دور فى النطاقات دى اوتوماتيكي:',
 'default'                  => 'اوتوماتيكي',
 'files'                    => 'ملفات',
 
@@ -1646,11 +1649,11 @@ PICT # misc.
 
 # Random page
 'randompage'         => 'صفحة عشوائيه',
-'randompage-nopages' => 'مافيش صفحات فى النطاق دا.',
+'randompage-nopages' => 'مافيش صفحات فى النطاق "$1"..',
 
 # Random redirect
 'randomredirect'         => 'تحويله عشوائيه',
-'randomredirect-nopages' => 'مافيش تحويلات فى النطاق ده.',
+'randomredirect-nopages' => 'مافيش تحويلات فى النطاق"$1".',
 
 # Statistics
 'statistics'                      => 'احصائيات',

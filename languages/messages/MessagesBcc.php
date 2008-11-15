@@ -1070,6 +1070,7 @@ Legend: (cur) = تفاوتان گون هنوکین نسخه,
 'allowemail'               => 'فعال کن ایمیل چه دگه کابران',
 'prefs-searchoptions'      => 'گردگ انتخابان',
 'prefs-namespaces'         => 'نام فصا',
+'defaultns'                => 'گردگ ته ای نام فضا آن په طور پیش فرض:',
 'default'                  => 'پیش فرض',
 'files'                    => 'فایلان',
 

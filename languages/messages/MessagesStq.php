@@ -956,6 +956,7 @@ Wan du die mäd dät Thema uutkoanst, koast du sälwen ju [[:$1|Siede ferfoatje]
 'allowemail'               => 'Emails fon uur Benutsere kriegen',
 'prefs-searchoptions'      => 'Säikoptione',
 'prefs-namespaces'         => 'Noomensruume',
+'defaultns'                => 'In disse Noomensruume schäl standoardmäitich soacht wäide:',
 'default'                  => 'Standoardienstaalenge',
 'files'                    => 'Doatäie',
 

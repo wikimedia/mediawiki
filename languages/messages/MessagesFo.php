@@ -578,6 +578,7 @@ Vinarliga umhugsa at býta síðuna sundur í styttri pettir.</strong>',
 'servertime'              => 'Ambætaraklokkan er nú',
 'guesstimezone'           => 'Fyll út við kagara',
 'allowemail'              => 'Tilset t-post frá øðrum brúkarum',
+'defaultns'               => 'Leita í hesum navnarúminum sum fyrisett mál:',
 'files'                   => 'Fílur',
 
 # User rights

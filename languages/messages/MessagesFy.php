@@ -1068,6 +1068,7 @@ Gean nei oft latex, dvips, en gs goed ynstallearre binne en set om',
 'allowemail'               => 'Lêt my ek e-mail fan oare meidoggers ûntfange',
 'prefs-searchoptions'      => 'Sykje-ynstellings',
 'prefs-namespaces'         => 'Nammeromten',
+'defaultns'                => "Nammeromten dy't normaal trochsocht wurde:",
 'default'                  => 'standert',
 'files'                    => 'Triemen',
 

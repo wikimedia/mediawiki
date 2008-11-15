@@ -1148,6 +1148,7 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'allowemail'               => 'Tillat e-post frå andre brukarar',
 'prefs-searchoptions'      => 'Søkjealternativ',
 'prefs-namespaces'         => 'Namnerom',
+'defaultns'                => 'Søk som standard i desse namneromma:',
 'default'                  => 'standard',
 'files'                    => 'Filer',
 

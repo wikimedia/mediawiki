@@ -805,6 +805,7 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'guesstimezone'            => 'Hora ex navigatro scribere',
 'allowemail'               => 'Sinere litteras electronicas inscriptioni electronicae meae mittere',
 'prefs-namespaces'         => 'Spatia nominalia',
+'defaultns'                => 'Quaerere per haec spatia nominalia a defalta:',
 'default'                  => 'praedeterminatum',
 'files'                    => 'Fasciculi',
 

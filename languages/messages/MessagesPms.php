@@ -825,6 +825,7 @@ për podej specifiché ij sò gust.',
 'servertime'               => 'Ora dël server',
 'guesstimezone'            => "Ciapa sù l'ora da 'nt ël mè programa ëd navigassion (browser)",
 'allowemail'               => "Lassa che j'àutri Utent am mando ëd pòsta eletrònica",
+'defaultns'                => 'Se as dis nen divers, as sërca ant costi spassi nominaj-sì:',
 'default'                  => 'stàndard',
 'files'                    => 'Archivi',
 

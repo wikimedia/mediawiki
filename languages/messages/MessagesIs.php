@@ -1087,6 +1087,7 @@ Athugaðu að skrár þeirra yfir {{SITENAME}}-efni kunna að vera úreltar.',
 'allowemail'               => 'Virkja tölvupóst frá öðrum notendum',
 'prefs-searchoptions'      => 'Leitarvalmöguleikar',
 'prefs-namespaces'         => 'Nafnrými',
+'defaultns'                => 'Leita í þessum nafnrýmum sjálfgefið:',
 'default'                  => 'sjálfgefið',
 'files'                    => 'Skrár',
 

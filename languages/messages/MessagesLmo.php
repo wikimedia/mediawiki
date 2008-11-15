@@ -279,6 +279,7 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 'servertime'         => 'Urari dal sèrver',
 'guesstimezone'      => 'Catá l urari dal sèrver',
 'allowemail'         => 'Permètt ai altar üteent də cuntatamm par email',
+'defaultns'          => 'Tröva sempar in di caamp:',
 'files'              => 'Archivi',
 
 # User rights

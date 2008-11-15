@@ -1048,6 +1048,7 @@ Assicùrete che la continuità storica de la pagina no la vegna alterà.',
 'allowemail'               => 'Consenti la ricezion de e-mail da altri utenti<sup>1</sup>',
 'prefs-searchoptions'      => 'Opsioni de riçerca',
 'prefs-namespaces'         => 'Namespace',
+'defaultns'                => 'Çerca in sti namespace se non diversamente specificà:',
 'default'                  => 'predefinìo',
 'files'                    => 'Imagini',
 

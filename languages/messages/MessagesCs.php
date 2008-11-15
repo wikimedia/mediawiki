@@ -1242,6 +1242,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'allowemail'               => 'Povolit e-mail od ostatních uživatelů',
 'prefs-searchoptions'      => 'Možnosti vyhledávání',
 'prefs-namespaces'         => 'Jmenné prostory',
+'defaultns'                => 'Implicitně hledat v těchto jmenných prostorech:',
 'default'                  => 'implicitní',
 'files'                    => 'Soubory',
 

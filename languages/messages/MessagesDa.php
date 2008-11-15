@@ -993,6 +993,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'allowemail'               => 'Tillade E-mails fra andre brugere.',
 'prefs-searchoptions'      => 'Søgeindstillinger',
 'prefs-namespaces'         => 'Navnerum',
+'defaultns'                => 'Søg som standard i disse navnerum:',
 'default'                  => 'standard',
 'files'                    => 'Filer',
 

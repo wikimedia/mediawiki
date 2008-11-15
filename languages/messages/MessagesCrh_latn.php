@@ -856,6 +856,7 @@ Vikide bu saifege oşağan saifelerni [[Special:Search|tapıp baqıñız]].',
 'allowemail'            => 'Diger qullanıcılar maña e-mail mektüpleri yollap olsun',
 'prefs-searchoptions'   => 'Qıdıruv sazlamaları',
 'prefs-namespaces'      => 'İsim fezaları',
+'defaultns'             => 'Qıdıruvnı aşağıda saylanğan isim fezalarında yap.',
 'default'               => 'original',
 'files'                 => 'Fayllar',
 

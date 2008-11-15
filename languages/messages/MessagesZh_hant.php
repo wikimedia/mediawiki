@@ -983,6 +983,7 @@ $2',
 'allowemail'               => '接受來自其他用戶的郵件',
 'prefs-searchoptions'      => '搜尋選項',
 'prefs-namespaces'         => '頁面名稱空間',
+'defaultns'                => '預設搜索的名字空間',
 'default'                  => '預設',
 'files'                    => '檔案',
 

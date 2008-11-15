@@ -978,6 +978,7 @@ Configure kare khatir meharbani kar ke math/README ke dekho.',
 'allowemail'               => 'Aur sadasya se e-mail enable karo',
 'prefs-searchoptions'      => 'Khoje ke option',
 'prefs-namespaces'         => 'Namespaces',
+'defaultns'                => 'Default se ii namespacesme khojo:',
 'default'                  => 'default',
 'files'                    => 'Files',
 

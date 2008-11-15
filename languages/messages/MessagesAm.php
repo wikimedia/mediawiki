@@ -734,6 +734,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'servertime'               => 'የሰርቨሩ ሰዓት',
 'guesstimezone'            => 'ከኮምፒውተርዎ መዝገብ ልዩነቱ ይገኝ',
 'allowemail'               => 'ኢሜል ከሌሎች ተጠቃሚዎች ለመፍቀድ',
+'defaultns'                => 'በመጀመርያው ፍለጋዎ በነዚህ ክፍለ-ዊኪዎች ብቻ ይደረግ:',
 'default'                  => 'ቀዳሚ',
 'files'                    => 'የስዕሎች መጠን',
 

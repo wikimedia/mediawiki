@@ -818,6 +818,7 @@ Asigurati e qu'esti chambu mantenga la continuiá el estorial la páhina.",
 'servertime'               => 'Ora el silviol',
 'guesstimezone'            => 'Estrael la ora el escrucaol',
 'allowemail'               => 'Premitil que m´envíin emails otrus usuárius',
+'defaultns'                => 'Landeal nestus "espacius de nombris" pol defeutu:',
 'default'                  => 'defeutu',
 'files'                    => 'Archivus',
 

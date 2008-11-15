@@ -980,6 +980,7 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'allowemail'               => 'Aotren ar posteloù a-berzh implijerien all',
 'prefs-searchoptions'      => 'Dibarzhioù klask',
 'prefs-namespaces'         => 'Esaouennoù',
+'defaultns'                => 'Klask en esaouennoù-mañ dre ziouer :',
 'default'                  => 'dre ziouer',
 'files'                    => 'Restroù',
 

@@ -998,6 +998,7 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'allowemail'               => 'Galluogi e-bost oddi wrth ddefnyddwyr eraill',
 'prefs-searchoptions'      => 'Dewisiadau chwilio',
 'prefs-namespaces'         => 'Parthau',
+'defaultns'                => 'Chwiliwch y parthau rhagosodedig isod:',
 'default'                  => 'rhagosodyn',
 'files'                    => 'Ffeiliau',
 

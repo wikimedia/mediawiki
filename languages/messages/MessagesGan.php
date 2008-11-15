@@ -733,6 +733,7 @@ $2',
 'servertime'               => '服務器時間',
 'guesstimezone'            => '到瀏覽器上填',
 'allowemail'               => '接受別嗰用戶嗰郵件',
+'defaultns'                => '默認搜索嗰名字空間:',
 'default'                  => '默認',
 'files'                    => '檔案',
 

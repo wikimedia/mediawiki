@@ -979,6 +979,7 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'allowemail'               => 'Ħalli li jaslulek emails mingħand utenti oħrajn',
 'prefs-searchoptions'      => 'Preferenzi għat-tfittxija',
 'prefs-namespaces'         => 'Namespace',
+'defaultns'                => 'Namespace predefinit għat-tfittxija:',
 'default'                  => 'predefinit',
 'files'                    => 'Fajls',
 

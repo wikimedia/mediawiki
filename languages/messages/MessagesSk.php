@@ -1106,6 +1106,7 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 'allowemail'               => 'Povoliť prijímanie e-mailov od iných používateľov',
 'prefs-searchoptions'      => 'Voľby hľadania',
 'prefs-namespaces'         => 'Menné priestory',
+'defaultns'                => 'Štandardne vyhľadávať v týchto menných priestoroch:',
 'default'                  => 'predvolený',
 'files'                    => 'Súbory',
 

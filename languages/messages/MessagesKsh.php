@@ -1252,6 +1252,7 @@ Wiki-Köbes, enem Sörver-Minsch, oder luur ens en de
 'allowemail'               => 'E-Mail vun andere Metmaacher zolooße',
 'prefs-searchoptions'      => 'Enstellunge för et Sööke',
 'prefs-namespaces'         => 'Appachtemangs',
+'defaultns'                => 'Dun standaadmäßich en hee dä Appachtemengs söke:',
 'default'                  => 'Standaad',
 'files'                    => 'Dateie',
 

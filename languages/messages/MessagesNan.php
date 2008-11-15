@@ -413,6 +413,7 @@ $messages = array(
 'servertime'            => 'Server sî-kan hiān-chāi sī',
 'guesstimezone'         => 'Tùi liû-lám-khì chhau--lâi',
 'allowemail'            => 'Ún-chún pa̍t-ê iōng-chiá kià email kòe-lâi',
+'defaultns'             => 'Tī chiah ê miâ-khong-kan chhiau-chhōe:',
 'files'                 => 'Tóng-àn',
 
 'grouppage-sysop' => '{{ns:project}}:Hêng-chèng jîn-oân',

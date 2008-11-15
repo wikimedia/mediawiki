@@ -953,6 +953,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'allowemail'               => 'Атын кыттааччылартан сурук тутары көҥүллүүргэ',
 'prefs-searchoptions'      => 'Көрдөөһүн туруоруулара',
 'prefs-namespaces'         => 'Аат дала',
+'defaultns'                => 'Чопчу ыйыллыбатаҕына бу ааттар быыстарыгар көрдүүргэ:',
 'default'                  => 'чопчу ыйыллыбатаҕына маннык',
 'files'                    => 'Билэлэр',
 

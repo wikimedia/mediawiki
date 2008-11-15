@@ -1064,6 +1064,7 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'allowemail'               => 'Leisti siųsti el. laiškus iš kitų naudotojų',
 'prefs-searchoptions'      => 'Paieškos nuostatos',
 'prefs-namespaces'         => 'Vardų sritys',
+'defaultns'                => 'Pagal nutylėjimą ieškoti šiose vardų srityse:',
 'default'                  => 'pagal nutylėjimą',
 'files'                    => 'Failai',
 

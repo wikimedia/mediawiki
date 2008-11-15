@@ -1256,6 +1256,7 @@ latex, dvips, gs және convert бағдарламаларының дұрыс 
 'allowemail'               => 'Басқадан хат қабылдауын қос',
 'prefs-searchoptions'      => 'Іздеу бапталымдары',
 'prefs-namespaces'         => 'Есім аялары',
+'defaultns'                => 'Мына есім аяларда әдепкіден іздеу:',
 'default'                  => 'әдепкі',
 'files'                    => 'Файлдар',
 

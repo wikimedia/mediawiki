@@ -641,6 +641,7 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'servertime'            => 'Serverė čiesos',
 'guesstimezone'         => 'Paimtė ėš naršīklės',
 'allowemail'            => 'Lēstė siūstė el. gramuotelės ėš kėtū nauduotuoju',
+'defaultns'             => 'Palē nutīliejėma ėiškuotė šėtuosė vardū srėtīsė:',
 'default'               => 'palē nūtīliejėma',
 'files'                 => 'Failā',
 

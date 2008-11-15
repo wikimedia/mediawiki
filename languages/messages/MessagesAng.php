@@ -326,6 +326,7 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'savedprefs'         => 'Þīna foreberunga wurdon gesparod.',
 'timezonelegend'     => 'Tīdgyrtel',
 'servertime'         => 'Bryttantīma is nū',
+'defaultns'          => 'Sēcan in þissum namstedum be frambyge:',
 'default'            => 'gewunelic',
 
 # User rights

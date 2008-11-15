@@ -1064,6 +1064,7 @@ $1',
 'allowemail'               => '由其它用戶啟用電子郵件',
 'prefs-searchoptions'      => '搵嘢選項',
 'prefs-namespaces'         => '空間名',
+'defaultns'                => '預設喺呢啲空間名搵嘢：',
 'default'                  => '預設',
 'files'                    => '檔案',
 

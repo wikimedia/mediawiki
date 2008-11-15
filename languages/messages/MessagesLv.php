@@ -697,6 +697,7 @@ Pagaidām vari meklēt, izmantojot Google vai Yahoo.
 'guesstimezone'         => 'Izmantot datora sistēmas laiku',
 'allowemail'            => 'Atļaut saņemt e-pastus no citiem lietotājiem.',
 'prefs-searchoptions'   => 'Meklēšanas opcijas',
+'defaultns'             => 'Meklēt šajās palīglapās pēc noklusējuma:',
 'default'               => 'pēc noklusējuma',
 'files'                 => 'Attēli',
 

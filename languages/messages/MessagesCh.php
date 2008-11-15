@@ -723,6 +723,7 @@ Fanapunta na fana'an ti gus nuebu i listan-ñiha i guinahan {{SITENAME}}.",
 'allowemail'               => "Na'sedi e-mail ginen otru na muna'sesetbi siha",
 'prefs-searchoptions'      => 'Inayek manaligao siha',
 'prefs-namespaces'         => "Sågan nå'an",
+'defaultns'                => "Fanaligao hålom este na sågan nå'an fine'nena:",
 'default'                  => 'default',
 'files'                    => 'Atkibu siha',
 

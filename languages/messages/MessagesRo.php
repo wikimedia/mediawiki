@@ -1067,6 +1067,7 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'allowemail'               => 'Activează email de la alţi utilizatori',
 'prefs-searchoptions'      => 'Opţiuni de căutare',
 'prefs-namespaces'         => 'Spaţii de nume',
+'defaultns'                => 'Caută în aceste secţiuni implicit:',
 'default'                  => 'standard',
 'files'                    => 'Fişiere',
 

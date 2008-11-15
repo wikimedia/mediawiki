@@ -697,6 +697,7 @@ Tông-tsûng pûn $3 fûng-só ke ngièn-yîn he ''$2''",
 'servertime'               => 'Fu̍k-vu hi-khí sṳ̀-kiên',
 'guesstimezone'            => 'Chhiùng hi-khí thiàm-mân',
 'allowemail'               => 'Chiap-su lòi-chhṳ̀ khì-thâ yung-fu ke email',
+'defaultns'                => 'Yi-sat sêu-sok ke miàng-sṳ khûng-kiên:',
 'default'                  => 'Yi-sat',
 'files'                    => 'Tóng-on',
 

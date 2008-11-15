@@ -1056,6 +1056,7 @@ Móžoš bok ale teke [[:$1|sam załožyś]].",
 'allowemail'               => 'Dostawanje e-mailow drugich wužywarjow zmóžniś.',
 'prefs-searchoptions'      => 'Pytańske opcije',
 'prefs-namespaces'         => 'Mjenjowe rumy',
+'defaultns'                => 'Standardnje ma se w toś tych mjenjowych rumach pytaś:',
 'default'                  => 'Standard',
 'files'                    => 'Dataje',
 

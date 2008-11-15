@@ -844,6 +844,7 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'servertime'               => 'Hora du sèrvior :',
 'guesstimezone'            => 'Utilisar la valor du navigator',
 'allowemail'               => 'Ôtorisar l’èxpèdicion de mèl vegnent d’ôtros utilisators',
+'defaultns'                => 'Rechèrchiér per dèfôt dens cetos èspâços de nom :',
 'default'                  => 'dèfôt',
 'files'                    => 'Fichiérs',
 

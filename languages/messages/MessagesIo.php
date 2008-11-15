@@ -498,6 +498,7 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'timezoneoffset'     => 'Difero',
 'servertime'         => 'La kloko en la servanto esas',
 'guesstimezone'      => 'Obtenar la kloko dil "browser"',
+'defaultns'          => 'Serchar en la spaco-nomi omise:',
 'files'              => 'Arkivi',
 
 # User rights

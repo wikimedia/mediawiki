@@ -1257,6 +1257,7 @@ baptaw üşin math/README qujatın qarañız.',
 'allowemail'               => 'Basqadan xat qabıldawın qos',
 'prefs-searchoptions'      => 'İzdew baptalımdarı',
 'prefs-namespaces'         => 'Esim ayaları',
+'defaultns'                => 'Mına esim ayalarda ädepkiden izdew:',
 'default'                  => 'ädepki',
 'files'                    => 'Faýldar',
 

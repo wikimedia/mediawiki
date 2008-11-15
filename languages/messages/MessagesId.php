@@ -1192,6 +1192,7 @@ Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencak
 'allowemail'               => 'Ijinkan pengguna lain mengirim surat-e',
 'prefs-searchoptions'      => 'Opsi pencarian',
 'prefs-namespaces'         => 'Ruang nama',
+'defaultns'                => 'Cari dalam ruang nama berikut ini secara baku:',
 'default'                  => 'baku',
 'files'                    => 'Berkas',
 

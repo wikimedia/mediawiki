@@ -753,6 +753,7 @@ den am an freastalaí (UTC).',
 'servertime'               => 'Am an freastalaí anois',
 'guesstimezone'            => 'Líon ón líonléitheoir',
 'allowemail'               => "Tabhair cead d'úsáideoirí eile ríomhphost a sheoladh chugat.",
+'defaultns'                => 'Cuardaigh sna ranna seo a los éagmaise:',
 'default'                  => 'réamhshocrú',
 'files'                    => 'Comhaid',
 

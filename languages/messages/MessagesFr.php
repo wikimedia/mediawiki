@@ -1151,6 +1151,7 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 'allowemail'               => 'Autoriser l’envoi de courriel venant d’autres utilisateurs',
 'prefs-searchoptions'      => 'Options de recherche',
 'prefs-namespaces'         => 'Espaces de noms',
+'defaultns'                => 'Rechercher par défaut dans ces espaces de noms',
 'default'                  => 'défaut',
 'files'                    => 'Fichiers',
 

@@ -670,6 +670,7 @@ Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' 
 'servertime'               => "L' eure sol sierveu",
 'guesstimezone'            => "Prinde d' après l' betchteu",
 'allowemail'               => "Permete di rçure des emiles d' ôtes uzeus",
+'defaultns'                => 'Prémetous spåces di nos pol cweraedje:',
 'default'                  => 'prémetou',
 'files'                    => 'Fitchîs',
 

@@ -1210,6 +1210,7 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'allowemail'               => 'Tillåt e-post från andra användare',
 'prefs-searchoptions'      => 'Sökalternativ',
 'prefs-namespaces'         => 'Namnrymder',
+'defaultns'                => 'Sök i följande namnrymder som förval:',
 'default'                  => 'ursprungsinställning',
 'files'                    => 'Filer',
 

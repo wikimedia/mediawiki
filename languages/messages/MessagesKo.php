@@ -990,6 +990,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'allowemail'               => '다른 사용자로부터의 이메일 허용',
 'prefs-searchoptions'      => '검색 설정',
 'prefs-namespaces'         => '네임스페이스',
+'defaultns'                => '기본으로 다음의 이름공간에서 찾기:',
 'default'                  => '기본값',
 'files'                    => '파일',
 
