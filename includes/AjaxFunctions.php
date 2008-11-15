@@ -126,3 +126,18 @@ function wfAjaxWatch($pagename = "", $watch = "") {
 		return '<u#>'.wfMsgExt( 'removedwatchtext', array( 'parse' ), $title->getPrefixedText() );
 	}
 }
+
+/**
+ * Called in some places (currently just extensions)
+ * to get the thumnail URL for a given file at a given resolution.
+ */
+function wfAjaxGetThumbnailUrl( $file, $width, $height ) {
+	$file = wfFindFile( $file );
+	
+	if ( !$file || !$file->exists() )
+		return null;
+		
+	$url = $file->getThumbnail( $width, $height )->url;
+	
+	return $url;
+}
