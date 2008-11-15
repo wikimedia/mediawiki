@@ -867,6 +867,7 @@ $wgMessageStructure = array(
 		'prefs-namespaces',
 		'defaultns',
 		'default',
+		'defaultns',
 		'files',
 	),
 	'userrights' => array(
