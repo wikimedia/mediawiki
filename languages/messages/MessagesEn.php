@@ -1543,6 +1543,7 @@ please see math/README to configure.',
 'allowemail'               => 'Enable e-mail from other users',
 'prefs-searchoptions'      => 'Search options',
 'prefs-namespaces'         => 'Namespaces',
+'defaultns'                => 'Search in these namespaces by default:',
 'default'                  => 'default',
 'files'                    => 'Files',
 
