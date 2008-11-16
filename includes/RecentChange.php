@@ -668,37 +668,15 @@ class RecentChange
 	 * The lengths can be given optionally.
 	 */
 	public function getCharacterDifference( $old = 0, $new = 0 ) {
-		global $wgRCChangedSizeThreshold, $wgLang;
-
 		if( $old === 0 ) {
 			$old = $this->mAttribs['rc_old_len'];
 		}
 		if( $new === 0 ) {
 			$new = $this->mAttribs['rc_new_len'];
 		}
-
 		if( $old === NULL || $new === NULL ) {
 			return '';
 		}
-
-		$szdiff = $new - $old;
-		$formatedSize = wfMsgExt( 'rc-change-size', array( 'parsemag', 'escape'),
-			$wgLang->formatNum($szdiff) );
-
-		
-		if( abs( $szdiff ) > abs( $wgRCChangedSizeThreshold ) ) {
-			$tag = 'strong';
-		} 
-		else{
-		    $tag = 'span';
-		}
-
-		if( $szdiff === 0 ) {
-			return "<$tag class='mw-plusminus-null'>($formatedSize)</$tag>";
-		} elseif( $szdiff > 0 ) {
-			return "<$tag class='mw-plusminus-pos'>(+$formatedSize)</$tag>";
-	    } else {
-			return "<$tag class='mw-plusminus-neg'>($formatedSize)</$tag>";
-		}
+		return ChangesList::showCharacterDifference( $old, $new );
 	}
 }
