@@ -1073,6 +1073,7 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'right-markbotedits'     => 'Marcio golygiadau wedi eu gwrthdroi yn olygiadau bot',
 'right-import'           => 'Mewnforio tudalennau o wicïau eraill',
 'right-importupload'     => 'Mewnforio tudalennau drwy uwchlwytho ffeil XML',
+'right-unwatchedpages'   => 'Gweld rhestr y tudalennau heb neb yn eu gwylio',
 'right-mergehistory'     => 'Cyfuno hanes y tudalennau',
 'right-userrights'       => 'Golygu holl alluoedd defnyddwyr',
 'right-siteadmin'        => "Cloi a datgloi'r databas",
@@ -1103,6 +1104,8 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'action-block'                => 'atal y defnyddiwr hwn rhag golygu',
 'action-import'               => "mewnforio'r dudalen hon o wici arall",
 'action-importupload'         => "mewnforio'r dudalen hon drwy uwchlwytho ffeil XML",
+'action-unwatchedpages'       => 'gweld rhestr y tudalennau heb neb yn eu gwylio',
+'action-mergehistory'         => 'cyfuno hanes y dudalen hon',
 'action-userrights'           => 'golygu holl alluoedd y defnyddwyr',
 'action-userrights-interwiki' => 'golygu galluoedd y defnyddwyr ar wicïau eraill',
 'action-siteadmin'            => "cloi neu ddatgloi'r databas",
@@ -1114,7 +1117,7 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'recentchangestext'                 => "Dilynwch y newidiadau diweddaraf i'r wici ar y dudalen hon.",
 'recentchanges-feed-description'    => "Dilynwch y newidiadau diweddaraf i'r wici gyda'r porthiant hwn.",
 'rcnote'                            => "Isod mae'r '''$1''' newid diweddaraf yn ystod y {{PLURAL:$2|diwrnod|diwrnod|deuddydd|tridiau|'''$2''' diwrnod|'''$2''' diwrnod}} diwethaf, hyd at $5, $4.",
-'rcnotefrom'                        => "Isod mae pob newidiad ers '''$2''' (hyd at '''$1''' ohonynt).",
+'rcnotefrom'                        => "Isod rhestrir pob newid ers '''$2''' (hyd at '''$1''' ohonynt).",
 'rclistfrom'                        => 'Dangos newidiadau newydd gan ddechrau o $1',
 'rcshowhideminor'                   => '$1 golygiadau bychain',
 'rcshowhidebots'                    => '$1 botiau',
@@ -1134,6 +1137,8 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'rc_categories'                     => 'Cyfyngu i gategorïau (gwahanwch gyda "|")',
 'rc_categories_any'                 => 'Unrhyw un',
 'newsectionsummary'                 => '/* $1 */ adran newydd',
+'rc-enhanced-expand'                => 'Dangos y manylion (angen JavaScript)',
+'rc-enhanced-hide'                  => "Cuddio'r manylion",
 
 # Recent changes linked
 'recentchangeslinked'          => 'Newidiadau perthnasol',
@@ -1557,7 +1562,7 @@ Os ydych am ddiddymu'r dudalen o'r rhestr gwylio, cliciwch ar \"Stopio gwylio\" 
 'watchmethod-list'     => "yn chwilio'r rhestr gwylio am ddiwygiadau diweddar",
 'watchlistcontains'    => '{{PLURAL:$1|Nid oes $1 tudalen|Mae $1 dudalen|Mae $1 dudalen|Mae $1 tudalen|Mae $1 thudalen|Mae $1 o dudalennau}} ar eich rhestr gwylio.',
 'iteminvalidname'      => "Problem gyda'r eitem '$1', enw annilys...",
-'wlnote'               => "Gweler isod y(r) '''$1''' {{PLURAL:$#|newid}} diweddaraf yn ystod y(r) <b>$2</b> {{PLURAL:$#|awr}} ddiwethaf.",
+'wlnote'               => "{{PLURAL:$1|Ni fu unrhyw newid|Isod mae'r '''$1''' newid diweddaraf|Isod mae'r '''$1''' newid diweddaraf|Isod mae'r '''$1''' newid diweddaraf|Isod mae'r '''$1''' newid diweddaraf|Isod mae'r '''$1''' newid diweddaraf}} yn ystod {{PLURAL:$2||yr awr|y ddwyawr|y teirawr|y <b>$2</b> awr|y(r) <b>$2</b> awr}} ddiwethaf.",
 'wlshowlast'           => "Dangoser newidiadau'r $1 awr ddiwethaf neu'r $2 {{PLURAL:$2|diwrnod|diwrnod|ddiwrnod|diwrnod|diwrnod|diwrnod}} diwethaf neu'r $3 newidiadau.",
 'watchlist-options'    => 'Dewisiadau ar gyfer y rhestr gwylio',
 
@@ -2276,6 +2281,8 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-gpslongitude'                => 'Hydred',
 'exif-gpsaltituderef'              => 'Cyfeirnod uchder',
 'exif-gpsaltitude'                 => 'Uchder',
+'exif-gpstimestamp'                => 'Amser GPS (cloc atomig)',
+'exif-gpssatellites'               => 'Defnyddir lloerennau i fesur',
 'exif-gpsstatus'                   => 'Statws y derbynnydd',
 'exif-gpsmeasuremode'              => 'Modd mesur',
 'exif-gpsdop'                      => 'Manylder mesur',
@@ -2370,6 +2377,9 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-gpslongitude-w' => "Hydred i'r Gorllewin",
 
 'exif-gpsstatus-a' => "Wrthi'n mesur",
+
+'exif-gpsmeasuremode-2' => 'mesuriad 2 ddimensiwn',
+'exif-gpsmeasuremode-3' => 'mesuriad 3 dimensiwn',
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-k' => 'Cilomedr yr awr',
@@ -2508,6 +2518,7 @@ Gallwch hefyd [[Special:Watchlist/edit|ddefnyddio'r rhestr arferol]].",
 
 # Core parser functions
 'unknown_extension_tag' => 'Tag estyniad anhysbys "$1"',
+'duplicate-defaultsort' => 'Rhybudd: Mae\'r allwedd trefnu diofyn "$2" yn gwrthwneud yr allwedd trefnu diofyn blaenorol "$1".',
 
 # Special:Version
 'version'                       => 'Fersiwn', # Not used as normal message but as header for the special page itself

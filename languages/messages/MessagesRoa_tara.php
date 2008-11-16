@@ -15,6 +15,7 @@ $messages = array(
 'tog-hideminor'            => "Scunne le cangiaminde stuédeche jndr'à le cangiaminde recende",
 'tog-extendwatchlist'      => 'Spanne le pàggene condrollete pe fa vedè tutte le cangiaminde fatte',
 'tog-usenewrc'             => 'Cangiaminde recende migliorete (JavaScript)',
+'tog-numberheadings'       => 'Testete auto-numerete',
 'tog-showtoolbar'          => "Fà vedè 'a barra de le cangiaminde (JavaScript)",
 'tog-editondblclick'       => "Cange le pàggene cu 'nu doppie clic (JavaScript)",
 'tog-watchcreations'       => "Mitte le pàggene ca je agghje ccrejete jndr'à le pàggene condrollete",
@@ -93,16 +94,17 @@ $messages = array(
 'dec'           => 'Dec',
 
 # Categories related messages
-'pagecategories'                => '{{PLURAL:$1|Categorije|Categorije}}',
-'category_header'               => 'Pàggene jndr\'à categorie "$1"',
-'subcategories'                 => 'Sotte Categorije',
-'category-media-header'         => 'Media jndr\'à categorie "$1"',
-'category-empty'                => "''Sta categorije pe mò non ge tène manghe 'na pàgene e manghe 'nu media.''",
-'hidden-categories'             => '{{PLURAL:$1|categorije scunnute|categorije scunnute}}',
-'hidden-category-category'      => 'Categorije scunnute', # Name of the category where hidden categories will be listed
-'category-subcat-count-limited' => 'Sta categorije tène {{PLURAL:$1|sottecategorije|le seguende $1 sottecategorije}}.',
-'category-file-count-limited'   => "{{PLURAL:$1|'U seguende file jè|$1 Le seguende file sonde}} jndr'à categorije corrende.",
-'listingcontinuesabbrev'        => 'cond.',
+'pagecategories'                 => '{{PLURAL:$1|Categorije|Categorije}}',
+'category_header'                => 'Pàggene jndr\'à categorie "$1"',
+'subcategories'                  => 'Sotte Categorije',
+'category-media-header'          => 'Media jndr\'à categorie "$1"',
+'category-empty'                 => "''Sta categorije pe mò non ge tène manghe 'na pàgene e manghe 'nu media.''",
+'hidden-categories'              => '{{PLURAL:$1|categorije scunnute|categorije scunnute}}',
+'hidden-category-category'       => 'Categorije scunnute', # Name of the category where hidden categories will be listed
+'category-subcat-count-limited'  => 'Sta categorije tène {{PLURAL:$1|sottecategorije|le seguende $1 sottecategorije}}.',
+'category-article-count-limited' => "{{PLURAL:$1|'A pàgene seguente ste|Le $1 pàggene seguende stonne}} jndr'à categorija corrende",
+'category-file-count-limited'    => "{{PLURAL:$1|'U seguende file jè|$1 Le seguende file sonde}} jndr'à categorije corrende.",
+'listingcontinuesabbrev'         => 'cond.',
 
 'mainpagedocfooter' => "Vè vide [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] pe l'mbormaziune sus a cumme s'ause 'u softuer wiki.
 
@@ -210,7 +212,8 @@ $messages = array(
 'privacy'              => "Reghele p'a privacy",
 'privacypage'          => "Project:Regole p'a privacy",
 
-'badaccess' => 'Errore de permesse',
+'badaccess'        => 'Errore de permesse',
+'badaccess-group0' => "Tu non ge puè fa l'azione ca è richieste.",
 
 'versionrequired'     => "Jè richieste 'a versione $1 de MediaUicchi",
 'versionrequiredtext' => "Ha ausà 'a versione $1 de MediaUicchi pe ausà sta pàgene.
@@ -235,6 +238,7 @@ Vide [[Special:Version|Versione d'a pàgene]].",
 'hidetoc'                 => 'scunne',
 'viewdeleted'             => 'Vue ccu vide $1?',
 'feedlinks'               => 'Feed:',
+'feed-unavailable'        => 'Syndication feeds non ge sonde disponibbele',
 'site-rss-feed'           => '$1 RSS Feed',
 'site-atom-feed'          => '$1 Atom Feed',
 'page-rss-feed'           => '"$1" RSS Feed',
@@ -289,6 +293,7 @@ Function: $1<br />
 Query: $2",
 'viewsource'           => "Vide 'u sorgende",
 'viewsourcefor'        => 'pe $1',
+'protectedpagetext'    => 'Sta pàgene ha state prutette pe no fa fà cangiaminde a uecchje.',
 'viewsourcetext'       => "Tu puè vedè e cupià 'a sorgente de sta pàgene:",
 'sqlhidden'            => '(query SQL ascunnute)',
 'namespaceprotected'   => "Non ge tine 'u permesse pe cangià pàggene d'u neimspeise '''$1'''.",
@@ -329,6 +334,7 @@ Mittene n'otre.",
 'youremail'                 => 'Poste:',
 'username'                  => "Nome de l'utende:",
 'uid'                       => 'ID Utende:',
+'prefs-memberingroups'      => "Membre {{PLURAL:$1|d'u gruppe|de le gruppe}}:",
 'yourrealname'              => 'Nome vere:',
 'yourlanguage'              => 'Lènga:',
 'yournick'                  => 'Firma toje:',
@@ -466,6 +472,7 @@ Pe piacere considere de cangià 'a pàgene a stuezze stuezze ausanne le sezione.
 'semiprotectedpagewarning'  => "'''Fà attenzione:''' Sta pàgene ha state blocchete accussì sulamende l'utinde reggistrete ponne fà cangiaminde.",
 'templatesused'             => "Templeit ausete sus 'a sta pàgene:",
 'templatesusedpreview'      => "Templeit ausete jndr'à sta andeprime:",
+'templatesusedsection'      => "Jndr'à sta sezione sonde ausete chiste template:",
 'template-protected'        => '(prutette)',
 'template-semiprotected'    => '(mmienze protette)',
 'nocreatetext'              => "{{SITENAME}} ha restritte l'abilità de ccrejà pàggene nuéve.
@@ -479,29 +486,31 @@ Vide bbuene ce l'ha ccrejà sta pàgene, ce non ge sinde sicure vide l'archivie 
 'edit-gone-missing'         => "Non ge puè cangià sta pàgene.
 Pare proprie ca l'onne scangellete.",
 'edit-conflict'             => 'conflitte de cangiaminde.',
+'edit-no-change'            => "'U cangiamende ca p fatte, avène scettate purcè 'u teste non g'à cangete manghe de 'na virgola.",
 
 # Account creation failure
 'cantcreateaccounttitle' => "Non ge puè ccrejà 'nu cunde utende",
 
 # History pages
-'viewpagelogs'        => "Vide l'archivie pe sta pàgene",
-'currentrev'          => 'Versione de osce a die',
-'revisionasof'        => 'Versione de $1',
-'revision-info'       => "Versione scritte jndr'à $1 da $2", # Additionally available: $3: revision id
-'previousrevision'    => '← Versione Vecchje',
-'nextrevision'        => 'Versione cchiù nova →',
-'currentrevisionlink' => 'Versione de mò',
-'cur'                 => 'cur',
-'last'                => 'urteme',
-'page_first'          => 'prime',
-'page_last'           => 'urteme',
-'histlegend'          => "Differenze de selezione: signe le radio box de le versiune ca vuè cu combronde e cazze ''invio'' o 'u buttone ca ste sotte.<br />
+'viewpagelogs'           => "Vide l'archivie pe sta pàgene",
+'currentrev'             => 'Versione de osce a die',
+'revisionasof'           => 'Versione de $1',
+'revision-info'          => "Versione scritte jndr'à $1 da $2", # Additionally available: $3: revision id
+'previousrevision'       => '← Versione Vecchje',
+'nextrevision'           => 'Versione cchiù nova →',
+'currentrevisionlink'    => 'Versione de mò',
+'cur'                    => 'cur',
+'last'                   => 'urteme',
+'page_first'             => 'prime',
+'page_last'              => 'urteme',
+'histlegend'             => "Differenze de selezione: signe le radio box de le versiune ca vuè cu combronde e cazze ''invio'' o 'u buttone ca ste sotte.<br />
 Leggenda: (cur) = differenze cu 'a versiona corrende,
 (last) = differenze ca 'a versione precedende, M = cangiaminde stuédeche.",
-'deletedrev'          => '[scangellete]',
-'histfirst'           => 'Prime',
-'histlast'            => 'Urteme',
-'historyempty'        => '(vacande)',
+'history-fieldset-title' => "Sfogghje 'a storie",
+'deletedrev'             => '[scangellete]',
+'histfirst'              => 'Prime',
+'histlast'               => 'Urteme',
+'historyempty'           => '(vacande)',
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 a $2', # user at time
@@ -522,6 +531,8 @@ Leggenda: (cur) = differenze cu 'a versiona corrende,
 'revdelete-content'      => 'condenute',
 'revdelete-summary'      => "cange 'u riepileghe",
 'revdelete-uname'        => "nome de l'utende",
+'revdelete-restricted'   => 'appliche le restriziune a le SysOps',
+'revdelete-unrestricted' => 'live le restriziune a le SysOps',
 
 # History merging
 'mergehistory-from'        => 'Pàgene sorgende:',
@@ -592,20 +603,23 @@ Leggenda: (cur) = differenze cu 'a versiona corrende,
 'diff-strike'             => "'''strikethrough'''",
 
 # Search results
-'searchresults'         => "Resultete d'a ricerche",
-'searchresults-title'   => "Resultete d'a ricerche pe $1",
-'noexactmatch'          => "'''Non g'esiste 'na pàgene ca se chiama \"\$1\".'''
+'searchresults'            => "Resultete d'a ricerche",
+'searchresults-title'      => "Resultete d'a ricerche pe $1",
+'searchsubtitleinvalid'    => "Tu è cerchete pe '''$1'''",
+'noexactmatch'             => "'''Non g'esiste 'na pàgene ca se chiama \"\$1\".'''
 Tu puè [[:\$1|ccrejà sta pàgene]].",
-'prevn'                 => 'rrede $1',
-'nextn'                 => 'nnande $1',
-'viewprevnext'          => 'Vide ($1) ($2) ($3)',
-'search-result-score'   => "'Mbortanze: $1%",
-'search-redirect'       => '(Redirette $1)',
-'search-section'        => '(sezione $1)',
-'search-interwiki-more' => '(de cchiù)',
-'searchall'             => 'tutte',
-'powersearch'           => 'Ricerche avanzete',
-'powersearch-field'     => 'Cirche pe',
+'prevn'                    => 'rrede $1',
+'nextn'                    => 'nnande $1',
+'viewprevnext'             => 'Vide ($1) ($2) ($3)',
+'search-result-score'      => "'Mbortanze: $1%",
+'search-redirect'          => '(Redirette $1)',
+'search-section'           => '(sezione $1)',
+'search-interwiki-caption' => 'Pruggette sorelle',
+'search-interwiki-more'    => '(de cchiù)',
+'searchall'                => 'tutte',
+'powersearch'              => 'Ricerche avanzete',
+'powersearch-ns'           => "Cirche jndr'à le namespace:",
+'powersearch-field'        => 'Cirche pe',
 
 # Preferences page
 'preferences'       => 'Me piece accussì',
@@ -621,6 +635,7 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'dateformat'        => "Formete d'a date",
 'datetime'          => 'Date e ore',
 'prefs-personal'    => "Profile de l'utende",
+'prefs-watchlist'   => 'Pàggene condrollete',
 'saveprefs'         => 'Reggistre',
 'resetprefs'        => "Pulizze le cangiaminde ca non g'è reggistrete",
 'oldpassword'       => 'Vécchie passuord:',
@@ -628,12 +643,15 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'retypenew'         => "Scrive n'otra vota 'a passuord nova:",
 'searchresultshead' => 'Cirche',
 'timezonelegend'    => "Orarie d'a zone",
+'localtime'         => 'Orarie lochele',
 'servertime'        => "Orarie d'u server",
+'prefs-namespaces'  => 'Namespaces',
 'default'           => 'defolt',
 'files'             => 'Fails',
 
 # User rights
 'userrights-user-editname'       => "Mitte 'nu nome utende:",
+'userrights-groupsmember'        => 'Membre de:',
 'userrights-reason'              => "Mutive d'u cangiamende:",
 'userrights-changeable-col'      => 'Gruppe ca tu puè cangià',
 'userrights-unchangeable-col'    => 'Gruppe ca tu non ge puè cangià',
@@ -672,6 +690,7 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'           => 'ligge sta pàgene',
 'action-edit'           => 'cange sta pàgene',
+'action-createtalk'     => "ccreje le pàggene de le 'ngazzaminde",
 'action-move'           => 'spuéste sta pàgene',
 'action-move-subpages'  => 'spuéste sta pàgene e tutte chidde ca stonne sotte a jedde',
 'action-upload'         => 'careche stu fail',
@@ -724,6 +743,8 @@ Pàggene sus 'a [[Special:Watchlist|le Pàggene condrollete]] sonde in '''grasce
 'fileuploadsummary' => 'Riepileghe:',
 'filestatus'        => "State d'u Copyright:",
 'filesource'        => 'Sorgende:',
+'successfulupload'  => 'Carecamende sciute apposte',
+'savefile'          => "Reggistre 'u file",
 'uploadedimage'     => 'carechete "[[$1]]"',
 'uploadscripted'    => "Stu file condene HTML o codece de script ca ponne essere inderpretete jndr'à 'nu mode sbagliete da le browser.",
 'sourcefilename'    => "Nome d'u fail d'origgine:",
@@ -796,7 +817,11 @@ Pàggene sus 'a [[Special:Watchlist|le Pàggene condrollete]] sonde in '''grasce
 'statistics-header-pages'  => 'Pàgene de le statisteche',
 'statistics-header-edits'  => 'Cange le statisteche',
 'statistics-header-views'  => 'Vide le statisteche',
+'statistics-header-users'  => "Statisteche de l'utende",
+'statistics-articles'      => 'Pàggene de le condenute',
+'statistics-pages'         => 'Pàggene',
 'statistics-pages-tooltip' => "Tutte le pàggene jndr'à Uicchi, mettènne le pàggene de le 'ngazzaminde, ridirezionaminde, ecc.",
+'statistics-users'         => '[[Special:ListUsers|Utinde reggistrete]]',
 
 'disambiguations' => 'Pàggene de disambiguazione',
 
@@ -842,6 +867,8 @@ Pàggene sus 'a [[Special:Watchlist|le Pàggene condrollete]] sonde in '''grasce
 'ancientpages'            => 'Pàggene vìcchje',
 'move'                    => 'Spuèste',
 'movethispage'            => 'Spueste sta pàgene',
+'pager-newer-n'           => '{{PLURAL:$1|cchiù nueve 1|cchiù nueve $1}}',
+'pager-older-n'           => '{{PLURAL:$1|cchiù vecchie 1|cchiù vicchie $1}}',
 
 # Book sources
 'booksources'      => 'Sorgende de le libbre',
@@ -883,6 +910,7 @@ Pàggene sus 'a [[Special:Watchlist|le Pàggene condrollete]] sonde in '''grasce
 
 # E-mail user
 'emailuser'    => "Manne n'email a stu utende",
+'email-legend' => "Manne 'na mail a n'otre utende de {{SITENAME}}",
 'emailfrom'    => 'Da:',
 'emailto'      => 'A:',
 'emailsubject' => 'Oggette:',
@@ -980,8 +1008,11 @@ Tu puè cangià 'u levèlle de protezione de sta pàgene ma stu cangiamende non 
 'month'         => "Da 'u mese (e cchiù recende):",
 'year'          => "Da l'anne (e cchiù recende):",
 
+'sp-contributions-newbies'     => 'Fà vedè sulamende le condrebbute de le utinde nueve',
 'sp-contributions-newbies-sub' => "Pe l'utinde nuève",
 'sp-contributions-blocklog'    => 'Archivije de le Bloccaminde',
+'sp-contributions-search'      => 'Ricerche pe condrebbute',
+'sp-contributions-username'    => "Indirizze IP o nome de l'utende:",
 'sp-contributions-submit'      => 'Cirche',
 
 # What links here

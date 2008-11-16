@@ -10,6 +10,31 @@
  * @author Urhixidur
  */
 
+$skinNames = array(
+	'standard'      => 'Классика',
+	'nostalgia'     => 'Мунчаарыы',
+	'myskin'        => 'Миэнэ',
+	'chick'         => 'Чуппууска',
+	'simple'        => 'Судургу',
+	'modern'        => 'Билиҥҥи',
+);
+
+$namespaceNames = array(
+	NS_SPECIAL          => 'Аналлаах',
+	NS_TALK             => 'Ырытыы',
+	NS_USER             => 'Кыттааччы',
+	NS_USER_TALK        => 'Кыттааччы ырытыыта',
+	NS_PROJECT_TALK     => '$1_ырытыыта',
+	NS_IMAGE            => 'Ойуу',
+	NS_IMAGE_TALK       => 'Ойуу ырытыыта',
+	NS_TEMPLATE         => 'Халыып',
+	NS_TEMPLATE_TALK    => 'Халыып ырытыыта',
+	NS_HELP             => 'Көмө',
+	NS_HELP_TALK        => 'Көмө ырытыыта',
+	NS_CATEGORY         => 'Категория',
+	NS_CATEGORY_TALK    => 'Категория ырытыыта',
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Бу ыйынньыктары бэлиэтээ:',

@@ -14,6 +14,7 @@
  * @author Morten LJ
  * @author Peter Andersen
  * @author Remember the dot
+ * @author Svip
  * @author Urhixidur
  */
 
@@ -401,6 +402,8 @@ $messages = array(
 'editsection'             => 'redigér',
 'editold'                 => 'redigér',
 'viewsourceold'           => 'vis kildekode',
+'editlink'                => 'redigér',
+'viewsourcelink'          => 'vis kildekode',
 'editsectionhint'         => 'Rediger afsnit: $1',
 'toc'                     => 'Indholdsfortegnelse',
 'showtoc'                 => 'vis',

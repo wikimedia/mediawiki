@@ -162,6 +162,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Màndeme na copia dei messagi spedìi ai altri utenti',
 'tog-diffonly'                => 'No stà mostrar el contenuto de la pagina dopo el confronto tra version',
 'tog-showhiddencats'          => 'Mostra łe categorie sconte',
+'tog-norollbackdiff'          => 'No stà far védar el riepilogo de le difarense dopo ver fato un ripristino',
 
 'underline-always'  => 'Senpre',
 'underline-never'   => 'Mai',
@@ -758,6 +759,8 @@ Alcuni template no i sarà mia inclusi.',
 'post-expand-template-argument-warning'   => 'Ocio: Sta pagina la contien almanco un argomento de template che el gà na dimension de espansion massa granda.
 Sti argomenti i xe stà omessi.',
 'post-expand-template-argument-category'  => 'Pagine che contien template con argomenti mancanti',
+'parser-template-loop-warning'            => 'Xe stà catà un ciclo in tel modèl: [[$1]]',
+'parser-template-recursion-depth-warning' => 'Xe stà rajunto el limite màssimo de ricorsion in tel modèl ($1)',
 
 # "Undo" feature
 'undo-success' => 'Sta modifica la pode èssar anulà. Verifica el confronto presentà de seguito par èssar sicuro che el contenuto el sia come te lo voli e quindi salva le modifiche par conpletar la procedura de anulamento.',
@@ -948,7 +951,7 @@ Assicùrete che la continuità storica de la pagina no la vegna alterà.',
 
 # Search results
 'searchresults'             => 'Risultato de la riçerca',
-'searchresults-title'       => 'Risultati de la riçerca de $1',
+'searchresults-title'       => 'Risultati de la riçerca de "$1"',
 'searchresulttext'          => 'Par verghe piassè informassion su la riçerca interna de {{SITENAME}}, varda [[{{MediaWiki:Helppage}}|Riçerca in {{SITENAME}}]].',
 'searchsubtitle'            => 'Te ghè çercà \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|tute le pàxene che taca con "$1"]] | [[Special:WhatLinksHere/$1|tute le pàxene che punta a "$1"]])',
 'searchsubtitleinvalid'     => "Te ghè çercà '''$1'''",
@@ -1106,6 +1109,7 @@ Assicùrete che la continuità storica de la pagina no la vegna alterà.',
 'right-minoredit'            => 'Segna le modifiche come picenine',
 'right-move'                 => 'Sposta pagine',
 'right-move-subpages'        => 'Sposta le pagine insieme co le so sotopagine',
+'right-move-rootuserpages'   => 'Sposta le pàxene prinsipài dei utenti',
 'right-suppressredirect'     => 'Scancela un redirect co te sposti na pagina a quel titolo lì',
 'right-upload'               => 'Carga file',
 'right-reupload'             => 'Sorascrivi un file esistente',
@@ -1165,6 +1169,7 @@ Assicùrete che la continuità storica de la pagina no la vegna alterà.',
 'action-minoredit'            => 'segnar sta modìfega come picenina',
 'action-move'                 => 'spostar sta pàxena',
 'action-move-subpages'        => 'spostar sta pàxena e le so sotopàxene',
+'action-move-rootuserpages'   => 'spostar le pàxene prinsipài dei utenti',
 'action-upload'               => 'cargar sto file',
 'action-reupload'             => 'sorascrìvar sto file zà esistente',
 'action-reupload-shared'      => 'sorascrìvar sto file su un archivio condiviso',
@@ -1428,11 +1433,11 @@ Se pode védar un [[Special:WhatLinksHere/$2|elenco par intiero]].',
 
 # Random page
 'randompage'         => 'Pàxena a caso',
-'randompage-nopages' => 'Nissuna pagina nel namespace selezionà.',
+'randompage-nopages' => 'Nissuna pàxena in tel namespace "$1".',
 
 # Random redirect
 'randomredirect'         => 'Un redirect a caso',
-'randomredirect-nopages' => 'Nissun redirect nel namespace selezionà.',
+'randomredirect-nopages' => 'No ghe xe nissun rimando in tel namespace "$1".',
 
 # Statistics
 'statistics'                      => 'Statistiche',
@@ -2742,6 +2747,7 @@ Doparar l\'anteprima standard.',
 
 # Core parser functions
 'unknown_extension_tag' => 'Tag estension sconossiùo: "$1"',
+'duplicate-defaultsort' => 'Ocio: la ciave de ordinamento predefinìa "$2" la va in conflito co\' quela de prima "$1".',
 
 # Special:Version
 'version'                          => 'Version', # Not used as normal message but as header for the special page itself

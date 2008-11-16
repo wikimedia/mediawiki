@@ -6,6 +6,7 @@
  *
  * @author Alexsh
  * @author Shinjiman
+ * @author Skjackey tse
  */
 
 $fallback = 'zh-hans';
@@ -2260,8 +2261,8 @@ $1',
 'filedelete-archive-read-only'    => '存檔目錄 "$1" 在網頁伺服器中不可寫。',
 
 # Browsing diffs
-'previousdiff' => '←上一個',
-'nextdiff'     => '下一個→',
+'previousdiff' => '←上一版本',
+'nextdiff'     => '下一版本→',
 
 # Visual comparison
 'visual-comparison' => '可見比較',

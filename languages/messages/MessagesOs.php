@@ -180,6 +180,8 @@ $messages = array(
 'categorypage'     => 'Категорийы фарс фен',
 'viewtalkpage'     => 'Дискусси фен',
 'otherlanguages'   => 'Æндæр æвзæгтыл',
+'redirectedfrom'   => '(Рарвыстæуыд ацы статьяйæ: «$1»)',
+'redirectpagesub'  => 'Рарвитыны фарс',
 'lastmodifiedat'   => 'Ацы фарс фæстаг хатт ивд æрцыд: $1, $2.', # $1 date, $2 time
 'protectedpage'    => 'Æхгæд фарс',
 

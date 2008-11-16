@@ -1463,7 +1463,7 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'searchdisabled'            => '{{SITENAME}} search is disabled.
 You can search via Google in the meantime.
 Note that their indexes of {{SITENAME}} content may be out of date.',
-'googlesearch'                     => '<form method="get" action="http://www.google.com/search" id="googlesearch">
+'googlesearch'              => '<form method="get" action="http://www.google.com/search" id="googlesearch">
     <input type="hidden" name="domains" value="{{SERVER}}" />
     <input type="hidden" name="num" value="50" />
     <input type="hidden" name="ie" value="$2" />
