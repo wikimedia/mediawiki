@@ -105,6 +105,7 @@ $wgIgnoredMessages = array(
 	'sitetitle',
 	'sp-contributions-footer',
 	'sp-contributions-footer-anon',
+	'statistics-summary',
 	'statistics-footer',
 	'talkpagetext',
 	'trackback',
