@@ -1247,6 +1247,7 @@ $wgMessageStructure = array(
 	),
 	'statistics' => array(
 		'statistics',
+		'statistics-summary',
 		'statistics-header-pages',
 		'statistics-header-edits',
 		'statistics-header-views',

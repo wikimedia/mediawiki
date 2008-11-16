@@ -1981,6 +1981,7 @@ Remember to check for other links to the templates before deleting them.',
 
 # Statistics
 'statistics'                      => 'Statistics',
+'statistics-summary'              => '', # do not translate or duplicate this message to other languages
 'statistics-header-pages'         => 'Page statistics',
 'statistics-header-edits'         => 'Edit statistics',
 'statistics-header-views'         => 'View statistics',
