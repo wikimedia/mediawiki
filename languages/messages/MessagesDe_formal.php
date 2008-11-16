@@ -83,6 +83,9 @@ Bitte ignorieren Sie diese E-Mail, falls Sie sie nicht selbst angefordert haben.
 'passwordsent'               => 'Ein neues, temporäres Passwort wurde an die E-Mail-Adresse von Benutzer „$1“ gesandt.
 Bitte melden Sie sich damit an, sobald sie es erhalten haben. Das alte Passwort bleibt weiterhin gültig.',
 'blocked-mailpassword'       => 'Die von Ihnen verwendete IP-Adresse ist für das Ändern von Seiten gesperrt. Um einen Missbrauch zu verhindern, wurde die Möglichkeit zur Anforderung eines neuen Passwortes ebenfalls gesperrt.',
+'eauthentsent'               => 'Eine Bestätigungs-E-Mail wurde an die angegebene Adresse verschickt.
+
+Bevor eine E-Mail von anderen Benutzern über die E-Mail-Funktion empfangen werden kann, muss die Adresse und ihre tatsächliche Zugehörigkeit zu diesem Benutzerkonto erst bestätigt werden. Bitte befolgen Sie die Hinweise in der Bestätigungs-E-Mail.',
 'acct_creation_throttle_hit' => 'Sie haben schon {{PLURAL:$1|1 Benutzerkonto|$1 Benutzerkonten}} angelegt.
 Weitere Benutzerkonten können nicht angelegt werden.',
 'emailauthenticated'         => 'Ihre E-Mail-Adresse wurde am $2 um $3 Uhr bestätigt.',
@@ -405,14 +408,15 @@ Versionen von Dateien, auf die Sie keinen Zugriff haben, werden nicht wiederherg
 Im [[Special:Log/delete|Lösch-Logbuch]] finden Sie eine Übersicht der gelöschten und wiederhergestellten Seiten.",
 
 # Block/unblock
-'blockiptext'      => 'Mit diesem Formular sperren Sie eine IP-Adresse oder einen Benutzernamen, so dass von dort keine Änderungen mehr vorgenommen werden können.
+'blockiptext'              => 'Mit diesem Formular sperren Sie eine IP-Adresse oder einen Benutzernamen, so dass von dort keine Änderungen mehr vorgenommen werden können.
 Dies sollte nur erfolgen, um Vandalismus zu verhindern und in Übereinstimmung mit den [[{{MediaWiki:Policy-url}}|Richtlinien]].
 Bitte geben Sie den Grund für die Sperre an.',
-'unblockiptext'    => 'Mit diesem Formular können Sie eine IP-Adresse oder einen Benutzer freigeben.',
-'autoblocker'      => 'Automatische Sperre, da Sie eine gemeinsame IP-Adresse mit [[User:$1|Benutzer:$1]] benutzen. Grund: „$2“.',
-'ipb-needreblock'  => '== Sperre vorhanden ==
+'unblockiptext'            => 'Mit diesem Formular können Sie eine IP-Adresse oder einen Benutzer freigeben.',
+'autoblocker'              => 'Automatische Sperre, da Sie eine gemeinsame IP-Adresse mit [[User:$1|Benutzer:$1]] benutzen. Grund: „$2“.',
+'ipb-needreblock'          => '== Sperre vorhanden ==
 „$1“ ist bereits gesperrt. Möchten Sie die Sperrparameter ändern?',
-'proxyblockreason' => 'Ihre IP-Adresse wurde gesperrt, da sie ein offener Proxy ist. Bitte kontaktieren Sie Ihren Internet-Provider oder Ihre Systemadministratoren und informieren Sie sie über dieses mögliche Sicherheitsproblem.',
+'proxyblockreason'         => 'Ihre IP-Adresse wurde gesperrt, da sie ein offener Proxy ist. Bitte kontaktieren Sie Ihren Internet-Provider oder Ihre Systemadministratoren und informieren Sie sie über dieses mögliche Sicherheitsproblem.',
+'cant-block-while-blocked' => 'Sie dürfen keine anderen Benutzer sperren, während Sie selbst gesperrt sind.',
 
 # Developer tools
 'locknoconfirm'     => 'Sie haben das Bestätigungsfeld nicht markiert.',

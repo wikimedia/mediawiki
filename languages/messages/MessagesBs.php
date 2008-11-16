@@ -47,6 +47,7 @@ $specialPageAliases = array(
 	'Preferences'               => array( 'Postavke' ),
 	'Watchlist'                 => array( 'ListaPracenja' ),
 	'Recentchanges'             => array( 'NedavneIzmjene' ),
+	'Upload'                    => array( 'Postavljanje' ),
 	'Imagelist'                 => array( 'ListaSlika' ),
 	'Newimages'                 => array( 'NoveSlike' ),
 	'Listusers'                 => array( 'ListaKorisnika' ),
@@ -86,9 +87,10 @@ $specialPageAliases = array(
 	'Emailuser'                 => array( 'EmailKorisnika' ),
 	'Confirmemail'              => array( 'PotvrdiEmail' ),
 	'Whatlinkshere'             => array( 'StaJeLinkovanoOvdje' ),
+	'Recentchangeslinked'       => array( 'PovezaneNedavneIzmjene' ),
 	'Movepage'                  => array( 'PreusmjeriStranicu' ),
 	'Blockme'                   => array( 'BlokirajMe' ),
-	'Booksources'               => array( 'KnizniIzvori' ),
+	'Booksources'               => array( 'KnjizniIzvori' ),
 	'Categories'                => array( 'Kategorije' ),
 	'Export'                    => array( 'Izvoz' ),
 	'Version'                   => array( 'Verzija' ),
@@ -2066,6 +2068,7 @@ $1',
 'ipbanononly'                     => 'Blokiraj samo anonimne korisnike',
 'ipbcreateaccount'                => 'Onemogući pravljenje računa',
 'ipbemailban'                     => 'Onemogući korisnika da šalje e-mail',
+'ipbenableautoblock'              => 'Automatski blokiraj zadnju IP adresu koju je koristio ovaj korisnik i sve druge IP adrese s kojih je on pokušao uređivati',
 'ipbsubmit'                       => 'Blokirajte ovog korisnika',
 'ipbother'                        => 'Ostali period:',
 'ipboptions'                      => '15 minuta:15 min,1 sat:1 hour,2 sata:2 hours,6 sati:6 hours,12 sati:12 hours,1 dan:1 day,3 dana:3 days,1 sedmica:1 week,2 sedmice:2 weeks,1 mjesec:1 month,3 mjeseca:3 months,6 mjeseci:6 months,1 godine:1 year,zauvijek:infinite', # display1:time1,display2:time2,...
@@ -2133,6 +2136,8 @@ ili korisničkom imenu.',
 $1 je već blokiran. Da li želite promijeniti postavke?',
 'ipb_cant_unblock'                => 'Greška: Blokada sa ID oznakom $1 nije pronađena.
 Možda je već deblokirana.',
+'ipb_blocked_as_range'            => 'Greška: IP adresa $1 nije direktno blokirana i ne može se deblokirati.
+Međutim, možda je blokirana kao dio bloka $2, koji se ne može deblokirati.',
 'ip_range_invalid'                => 'Netačan raspon IP adresa.',
 'blockme'                         => 'Blokiraj me',
 'proxyblocker'                    => 'Bloker proksija',
@@ -2200,12 +2205,14 @@ U tim slučajevima, moraćete ručno da premjestite stranicu ukoliko to želite.
 'movenologintext'           => 'Morate biti registrovani korisnik i [[Special:UserLogin|prijavljeni]] da biste premjestili stranicu.',
 'movenotallowed'            => 'Nemate dopuštenje za premještanje stranica.',
 'cant-move-user-page'       => 'Nemate dopuštenje da premještate korisničke stranice (bez podstranica).',
+'cant-move-to-user-page'    => 'Nemate dopuštenje da premjestite stranicu na korisničku stranicu (osim na korisničku podstranicu).',
 'newtitle'                  => 'Novi naslov',
 'move-watch'                => 'Prati ovu stranicu',
 'movepagebtn'               => 'premjestite stranicu',
 'pagemovedsub'              => 'Premještanje uspjelo',
 'movepage-moved'            => '<big>\'\'\'"$1" je premještena na "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'             => 'Stranica pod tim imenom već postoji, ili je ime koje ste izabrali neispravno.  Molimo Vas da izaberete drugo ime.',
+'cantmove-titleprotected'   => 'Ne možete premjestiti stranicu na ovu lokaciju, jer je novi naslov zaštićen od pravljenja',
 'talkexists'                => 'Sama stranica je uspješno premještena, ali
 stranica za razgovor nije mogla biti premještena jer takva već postoji na novom naslovu.  Molimo Vas da ih spojite ručno.',
 'movedto'                   => 'premještena na',
@@ -2215,6 +2222,7 @@ stranica za razgovor nije mogla biti premještena jer takva već postoji na novo
 'movepage-page-exists'      => 'Stranica $1 već postoji i ne može biti automatski zamijenjena.',
 'movepage-page-moved'       => 'Stranica $1 je premještena na $2.',
 'movepage-page-unmoved'     => 'Stranica $1 ne može biti premještena na $2.',
+'movepage-max-pages'        => 'Maksimum od $1 {{PLURAL:$1|stranice|stranice|stranica}} je premješteno i više nije moguće premjestiti automatski.',
 '1movedto2'                 => 'članak [[$1]] premješten na [[$2]]',
 '1movedto2_redir'           => 'stranica [[$1]] premještena u stranicu [[$2]] putem preusmjerenja',
 'movelogpage'               => 'Protokol premještanja',
@@ -2235,6 +2243,8 @@ Da li je želite obrisati kako bi ste mogli izvršiti premještanje?',
 'imagenocrossnamespace'     => 'Ne može se premjestiti datoteka u nedatotečni imenski prostor',
 'imagetypemismatch'         => 'Ekstenzija nove datoteke ne odgovara njenom tipu',
 'imageinvalidfilename'      => 'Ciljno ime datoteke nije valjano',
+'fix-double-redirects'      => 'Ažuriraj sva preusmjerenja koja vode ka originalnom naslovu',
+'move-leave-redirect'       => 'Ostavi preusmjerenje',
 
 # Export
 'export'            => 'Izvezite stranice',
@@ -2263,27 +2273,53 @@ U drugom slučaju možete koristiti i vezu, npr. [[{{ns:special}}:Export/{{Media
 'allmessagesmodified'       => 'Prikaži samo izmijenjeno',
 
 # Thumbnails
-'thumbnail-more'  => 'uvećajte',
-'filemissing'     => 'Nedostaje fajl',
-'thumbnail_error' => 'Greška pri pravljenju umanjene slike: $1',
+'thumbnail-more'           => 'uvećajte',
+'filemissing'              => 'Nedostaje fajl',
+'thumbnail_error'          => 'Greška pri pravljenju umanjene slike: $1',
+'djvu_page_error'          => 'DjVu stranica je van opsega',
+'djvu_no_xml'              => 'Za XML-datoteku se ne može pozvati DjVu datoteka',
+'thumbnail_invalid_params' => 'Pogrešne postavke smanjenog prikaza',
+'thumbnail_dest_directory' => 'Ne može se napraviti odredišni folder',
 
 # Special:Import
-'import'                   => 'Ivoz stranica',
-'import-interwiki-history' => 'Kopiraj sve verzije historije za ovu stranicu',
-'import-interwiki-submit'  => 'Uvoz',
-'importtext'               => 'Molimo Vas da izvezete datoteku iz izvornog wikija koristeći [[Special:Export|izvoz]], sačuvajte ga kod sebe i pošaljite ovdje.',
-'importstart'              => 'Uvoz stranica...',
-'import-revision-count'    => '$1 {{PLURAL:$1|revizija|revizije|revizija}}',
-'importnopages'            => 'Nema stranica za uvoz.',
-'importfailed'             => 'Uvoz nije uspjeo: $1',
-'importunknownsource'      => 'Nepoznat izvorni tip uvoza',
-'importbadinterwiki'       => 'Loš interwiki link',
-'importnotext'             => 'Stranica je prazna, ili bez teksta',
-'importsuccess'            => 'Uspješno ste uvezli stranicu!',
-'importhistoryconflict'    => 'Postoji konfliktna istorija revizija',
+'import'                     => 'Ivoz stranica',
+'importinterwiki'            => 'Međuwiki uvoz',
+'import-interwiki-text'      => 'Izaberi wiki i naslov stranice za uvoz.
+Datumi revizija i imena autora će biti sačuvani.
+Sve akcije pri međuwiki uvozu će biti zapisane u [[Special:Log/import|zapisu uvoza]].',
+'import-interwiki-history'   => 'Kopiraj sve verzije historije za ovu stranicu',
+'import-interwiki-submit'    => 'Uvoz',
+'import-interwiki-namespace' => 'Uvoz stranica u imenski prostor:',
+'importtext'                 => 'Molimo Vas da izvezete datoteku iz izvornog wikija koristeći [[Special:Export|izvoz]], sačuvajte ga kod sebe i pošaljite ovdje.',
+'importstart'                => 'Uvoz stranica...',
+'import-revision-count'      => '$1 {{PLURAL:$1|revizija|revizije|revizija}}',
+'importnopages'              => 'Nema stranica za uvoz.',
+'importfailed'               => 'Uvoz nije uspjeo: $1',
+'importunknownsource'        => 'Nepoznat izvorni tip uvoza',
+'importcantopen'             => 'Ne može se otvoriti uvozna datoteka',
+'importbadinterwiki'         => 'Loš interwiki link',
+'importnotext'               => 'Stranica je prazna, ili bez teksta',
+'importsuccess'              => 'Uspješno ste uvezli stranicu!',
+'importhistoryconflict'      => 'Postoji konfliktna istorija revizija',
+'importnosources'            => 'Nije definisan međuwiki izvor za uvoz i direktna postavljanja historije su onemogućena.',
+'importnofile'               => 'Uvozna datoteka nije postavljena.',
+'importuploaderrorsize'      => 'Postavljanje uvozne datoteke nije uspjelo.
+Datoteka je veća nego što je dopušteno.',
+'importuploaderrorpartial'   => 'Postavljanje uvozne datoteke nije uspjelo.
+Datoteka je samo djelimično postavljena.',
+'importuploaderrortemp'      => 'Postavljanje uvozne datoteke nije uspjelo.
+Nedostaje privremeni folder.',
+'import-parse-failure'       => 'Greška pri parsiranju XML uvoza',
+'import-noarticle'           => 'Nema stranica za uvoz!',
+'import-nonewrevisions'      => 'Sve revizije su prethodno uvežene.',
+'xml-error-string'           => '$1 na liniji $2, kolona $3 (bajt $4): $5',
+'import-upload'              => 'Postavljanje XML podataka',
 
 # Import log
 'importlogpage'                    => 'Zapisnik uvoza',
+'importlogpagetext'                => 'Administrativni uvozi stranica sa historijom izmjena sa drugih wikija.',
+'import-logentry-upload'           => 'uveženo [[$1]] putem postavljanja datoteke',
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|revizija|revizije|revizija}}',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revizija|revizije|revizija}} od $2',
 
 # Tooltip help for the actions
@@ -2309,6 +2345,8 @@ U drugom slučaju možete koristiti i vezu, npr. [[{{ns:special}}:Export/{{Media
 'tooltip-ca-watch'                => 'Dodajte stranicu u listu praćnih članaka',
 'tooltip-ca-unwatch'              => 'Izbrišite stranicu sa liste praćnih članaka',
 'tooltip-search'                  => 'Pretraži projekat {{SITENAME}}',
+'tooltip-search-go'               => 'Idi na stranicu sa tačno ovim imenom ako postoji',
+'tooltip-search-fulltext'         => 'Pretraga stranica sa ovim tekstom',
 'tooltip-p-logo'                  => 'Glavna stranica',
 'tooltip-n-mainpage'              => 'Posjetite početnu stranicu',
 'tooltip-n-portal'                => 'O projektu, šta možete da uradite, gdje se šta nalazi',
@@ -2324,6 +2362,7 @@ U drugom slučaju možete koristiti i vezu, npr. [[{{ns:special}}:Export/{{Media
 'tooltip-t-emailuser'             => 'Pošaljite pismo ovom korisniku',
 'tooltip-t-upload'                => 'Postavi slike i druge medije',
 'tooltip-t-specialpages'          => 'Spisak svih posebnih stranica',
+'tooltip-t-print'                 => 'Verzija ove stranice za štampanje',
 'tooltip-ca-nstab-main'           => 'Pogledajte sadržaj članka',
 'tooltip-ca-nstab-user'           => 'Pogledajte korisničku stranicu',
 'tooltip-ca-nstab-media'          => 'Pogledajte medija fajl',
@@ -2352,15 +2391,19 @@ U drugom slučaju možete koristiti i vezu, npr. [[{{ns:special}}:Export/{{Media
 'siteuser'         => '{{SITENAME}} korisnik $1',
 'lastmodifiedatby' => 'Ovu stranicu je posljednji put promjenio $3, u $2, $1', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Bazirano na radu od strane korisnika $1.',
+'others'           => 'ostali',
 'siteusers'        => '{{SITENAME}} {{PLURAL:$2|korisnik|korisnika}} $1',
+'creditspage'      => 'Autori stranice',
 
 # Spam protection
 'spamprotectiontitle' => 'Filter za zaštitu od neželjenih poruka',
-'spamprotectiontext'  => 'Strana koju želite da sačuvate je blokirana od strane filtera za neželjene poruke.  Ovo je vjerovatno izazvao vezom ka spoljašnjem sajtu.',
+'spamprotectiontext'  => 'Strana koju želite da sačuvate je blokirana od strane filtera za neželjene poruke. 
+Ovo je vjerovatno izazvao vezom ka vanjskoj nepoželjnoj stranici.',
 'spamprotectionmatch' => 'Sledeći tekst je izazvao naš filter za neželjene poruke: $1',
 
 # Info page
 'infosubtitle' => 'Informacije za stranicu',
+'numedits'     => 'Broj izmjena (stranica): $1',
 'numwatchers'  => 'Broj onih koji pregledaju: $1',
 
 # Math options
@@ -2378,6 +2421,9 @@ U drugom slučaju možete koristiti i vezu, npr. [[{{ns:special}}:Export/{{Media
 'patrol-log-page'      => 'Zapisnik patroliranja',
 'patrol-log-auto'      => '(automatsko)',
 'log-show-hide-patrol' => '$1 zapis patroliranja',
+
+# Image deletion
+'deletedrevision' => 'Obrisana stara revizija $1',
 
 # Browsing diffs
 'previousdiff' => '← Starija izmjena',
@@ -2400,6 +2446,7 @@ U drugom slučaju možete koristiti i vezu, npr. [[{{ns:special}}:Export/{{Media
 'newimages'         => 'Galerija novih slika',
 'imagelisttext'     => "Ispod je spisak od '''$1''' {{PLURAL:$1|datoteke|datoteke|datoteka}} poređanih $2.",
 'newimages-summary' => 'Ova specijalna stranica prikazuje posljednje postavljene datoteke.',
+'newimages-legend'  => 'Filter',
 'showhidebots'      => '($1 botove)',
 'ilsubmit'          => 'Traži',
 'bydate'            => 'po datumu',
@@ -2450,7 +2497,7 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'confirmemail_text'       => 'Ova viki zahtjeva da potvrdite adresu Vaše e-pošte prije nego što koristite mogućnosti e-pošte. Aktivirajte dugme ispod kako bi ste poslali poštu za potvrdu na Vašu adresu. Pošta uključuje poveznicu koja sadrži kod; učitajte poveznicu u Vaš brauzer da bi ste potvrdili da je adresa Vaše e-pošte validna.',
 'confirmemail_send'       => 'Pošaljite kod za potvrdu',
 'confirmemail_sent'       => 'E-pošta za potvrđivanje poslata.',
-'confirmemail_sendfailed' => 'Pošta za potvrđivanje nije poslata. Provjerite adresu zbog nepravilnih karaktera.
+'confirmemail_sendfailed' => '{{SITENAME}} Vam ne može poslati poštu za potvrđivanje. Provjerite adresu zbog nepravilnih karaktera.
 
 Povratna pošta: $1',
 'confirmemail_invalid'    => 'Netačan kod za potvrdu. Moguće je da je kod istekao.',

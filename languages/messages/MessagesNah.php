@@ -699,6 +699,7 @@ Tlahcuilōlli iuhcāyōtl {{PLURAL:\$3|moēlēhuia cah|moēlēhuiah cateh}} \$2.
 'sharedupload'                   => 'Inīn īxiptli huelīti motequitiltia zāzocāmpa',
 'shareduploadduplicate-linktext' => 'occē tlahcuilōlli',
 'shareduploadconflict-linktext'  => 'occē tlahcuilōlli',
+'noimage'                        => 'Ahmo ia inōn tlahcuilōlli; $1',
 'noimage-linktext'               => 'ticquetzāz cē',
 'uploadnewversion-linktext'      => 'Ticquetzāz yancuīc tlahcuilōlli',
 

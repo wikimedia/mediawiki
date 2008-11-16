@@ -786,6 +786,7 @@ Alcuni template non verranno inclusi.',
 'post-expand-template-argument-warning'   => 'Attenzione: questa pagina contiene almeno un argomento di un template che ha una dimensione troppo grande per essere espanso. Questi argomenti verranno omessi.',
 'post-expand-template-argument-category'  => 'Pagine contenenti template con argomenti mancanti',
 'parser-template-loop-warning'            => 'Rilevato loop del template: [[$1]]',
+'parser-template-recursion-depth-warning' => 'È stato raggiunto il limite di ricorsione nel template ($1)',
 
 # "Undo" feature
 'undo-success' => 'Questa modifica può essere annullata. Verificare il confronto presentato di seguito per accertarsi che il contenuto corrisponda a quanto desiderato e quindi salvare le modifiche per completare la procedura di annullamento.',
