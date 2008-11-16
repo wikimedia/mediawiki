@@ -129,7 +129,7 @@ function wfAjaxWatch($pagename = "", $watch = "") {
 
 /**
  * Called in some places (currently just extensions)
- * to get the thumnail URL for a given file at a given resolution.
+ * to get the thumbnail URL for a given file at a given resolution.
  */
 function wfAjaxGetThumbnailUrl( $file, $width, $height ) {
 	$file = wfFindFile( $file );
