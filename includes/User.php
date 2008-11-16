@@ -2109,7 +2109,7 @@ class User {
 		if ( ! isset( $this->mSkin ) ) {
 			wfProfileIn( __METHOD__ );
 
-			if( $wgAllowUserSkin ) {
+			if( $wgAllowUserSkin || $this->isAllowed( 'alwaysuseskin' ) ) {
 				# get the user skin
 				$userSkin = $this->getOption( 'skin' );
 				$userSkin = $wgRequest->getVal('useskin', $userSkin);
