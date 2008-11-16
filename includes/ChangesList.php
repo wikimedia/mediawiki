@@ -99,6 +99,30 @@ class ChangesList {
 		$this->rclistOpen = false;
 		return '';
 	}
+	
+	/**
+	 * Show formatted char difference
+	 * @param int $old bytes
+	 * @param int $new bytes
+	 * @returns string
+	 */
+	public static function showCharacterDifference( $old, $new ) {
+		global $wgRCChangedSizeThreshold, $wgLang;
+		$szdiff = $new - $old;
+		$formatedSize = wfMsgExt( 'rc-change-size', array( 'parsemag', 'escape'), $wgLang->formatNum($szdiff) );
+		if( abs( $szdiff ) > abs( $wgRCChangedSizeThreshold ) ) {
+			$tag = 'strong';
+		} else {
+		    $tag = 'span';
+		}
+		if( $szdiff === 0 ) {
+			return "<$tag class='mw-plusminus-null'>($formatedSize)</$tag>";
+		} elseif( $szdiff > 0 ) {
+			return "<$tag class='mw-plusminus-pos'>(+$formatedSize)</$tag>";
+	    } else {
+			return "<$tag class='mw-plusminus-neg'>($formatedSize)</$tag>";
+		}
+	}
 
 	/**
  	 * Returns text for the end of RC
