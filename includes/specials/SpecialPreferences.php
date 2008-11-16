@@ -269,7 +269,7 @@ class PreferencesForm {
 		$wgUser->setOption( 'nickname', $this->mNick );
 		$wgUser->setOption( 'quickbar', $this->mQuickbar );
 		global $wgAllowUserSkin;
-		if( $wgAllowUserSkin ) {
+		if( $wgAllowUserSkin || $wgUser->isAllowed( 'alwaysuseskin' ) ) {
 			$wgUser->setOption( 'skin', $this->mSkin );
 		}
 		global $wgUseTeX;
