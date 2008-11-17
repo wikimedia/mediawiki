@@ -349,7 +349,9 @@ The following extensions are migrated into MediaWiki 1.14:
 * Less verbose errors from profileinfo.php when not configured
 * Blacklist redirects via Special:Filepath, hard to use.
 * Improved input validation on Special:Import form
-
+* Add a .htaccess to deleted images directory for additional protection
+  against exposure of deleted files with known SHA-1 hashes on default
+  installations.
 
 === API changes in 1.14 ===
 
