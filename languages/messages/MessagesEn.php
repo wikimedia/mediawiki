@@ -86,8 +86,8 @@ $namespaceNames = array(
 	NS_USER_TALK        => 'User_talk',
 	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => '$1_talk',
-	NS_IMAGE            => 'Image',
-	NS_IMAGE_TALK       => 'Image_talk',
+	NS_IMAGE            => 'File',
+	NS_IMAGE_TALK       => 'File_talk',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'MediaWiki_talk',
 	NS_TEMPLATE         => 'Template',
@@ -101,7 +101,10 @@ $namespaceNames = array(
 /**
  * Array of namespace aliases, mapping from name to NS_xxx index
  */
-$namespaceAliases = array();
+$namespaceAliases = array(
+	'Image'      => NS_IMAGE,
+	'Image_talk' => NS_IMAGE_TALK,
+);
 
 /**
  * Skin names. If any key is not specified, the English one will be used.
