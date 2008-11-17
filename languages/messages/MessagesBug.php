@@ -259,6 +259,7 @@ $messages = array(
 'searchsubtitle'        => "Masappa iko '''[[:$1]]'''",
 'searchsubtitleinvalid' => "Massappa iko '''$1'''",
 'viewprevnext'          => 'Ita ($1) ($2) ($3)',
+'searchhelp-url'        => 'Help:Lise',
 'search-redirect'       => '(redirect $1)',
 
 # Preferences page

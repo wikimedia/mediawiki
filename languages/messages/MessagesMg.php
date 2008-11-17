@@ -430,6 +430,7 @@ Tadidio: (ank) = fampitahana amin'ny votoatin'ny pejy ankehitriny,
 'prevn'             => '$1 taloha',
 'nextn'             => '$1 manaraka',
 'viewprevnext'      => 'Hijery ($1) ($2) ($3).',
+'searchhelp-url'    => 'Help:Fanoroana',
 'showingresults'    => "Omeo ny valiny miisa hatramin'ny <b>$1</b> manomboka ny #<b>$2</b>.",
 'showingresultsnum' => 'Omeo ny valiny miisa <b>$3</b> manomboka ny #<b>$2</b>.',
 'nonefound'         => "

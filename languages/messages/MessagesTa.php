@@ -770,6 +770,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'prevn'                     => 'முன் $1',
 'nextn'                     => 'அடுத்த $1',
 'viewprevnext'              => '($1) ($2) ($3) பக்கங்களைப் பார்.',
+'searchhelp-url'            => 'Help:உதவி',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 சொல்|$2 சொற்கள்}})',
 'search-result-score'       => 'பொருத்தம்: $1%',
 'search-redirect'           => '(பக்க வழிமாற்றம் $1)',

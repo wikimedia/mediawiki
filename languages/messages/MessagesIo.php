@@ -447,6 +447,7 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'prevn'                 => 'antea $1',
 'nextn'                 => 'sequanta $1',
 'viewprevnext'          => 'Vidar ($1) ($2) ($3).',
+'searchhelp-url'        => 'Help:Helpo',
 'search-result-size'    => '$1 ({{PLURAL:$2|1 vorto|$2 vorti}})',
 'search-result-score'   => 'Importo: $1%',
 'search-section'        => '(seciono $1)',

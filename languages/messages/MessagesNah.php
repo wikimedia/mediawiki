@@ -514,6 +514,7 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 'prevn'                    => '$1 achtopa',
 'nextn'                    => 'niman $1',
 'viewprevnext'             => 'Xiquintta ($1) ($2) ($3).',
+'searchhelp-url'           => 'Help:Tlapiyaliztli',
 'search-result-size'       => '$1 ({{PLURAL:$2|1 tlahtōl|$2 tlahtōltin}})',
 'search-redirect'          => '(tlacuepaliztli $1)',
 'search-suggest'           => 'Mohtoa ahnozo: $1',

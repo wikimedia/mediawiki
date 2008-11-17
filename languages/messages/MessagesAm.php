@@ -673,6 +673,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'prevn'                 => 'ፊተኛ $1',
 'nextn'                 => 'ቀጥሎ $1',
 'viewprevnext'          => 'በቁጥር ለማየት፡ ($1) ($2) ($3).',
+'searchhelp-url'        => 'Help:ይዞታ',
 'search-result-size'    => '$1 ({{PLURAL:$2|1 ቃል|$2 ቃላት}})',
 'search-result-score'   => 'ተገቢነት፦ $1%',
 'showingresults'        => 'ከ ቁ.#<b>$2</b> ጀምሮ እስከ <b>$1</b> ውጤቶች ድረስ ከዚህ በታች ይታያሉ።',

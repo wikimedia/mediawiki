@@ -212,7 +212,8 @@ $messages = array(
 'compareselectedversions' => 'އިހުތިޔާރު ކުރެވިފައިވާ ނުސްހާތައް އަޅައިކިޔުއްވާ',
 
 # Search results
-'viewprevnext' => 'ބައްލަވާ($1) ($2) ($3).',
+'viewprevnext'   => 'ބައްލަވާ($1) ($2) ($3).',
+'searchhelp-url' => 'Help:ފިހުރިސްތު',
 
 # Preferences page
 'preferences'    => 'ތަރުޖީހުތައް',

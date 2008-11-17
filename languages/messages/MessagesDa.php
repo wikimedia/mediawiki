@@ -896,7 +896,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 
 # Search results
 'searchresults'             => 'Søgeresultater',
-'searchresults-title'       => 'Søgeresultater for $1',
+'searchresults-title'       => 'Søgeresultater for "$1"',
 'searchresulttext'          => 'For mere information om søgning på {{SITENAME}}, se [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'            => 'Til din søgning „[[:$1]]“.',
 'searchsubtitleinvalid'     => 'Til din søgning „$1“.',
@@ -910,6 +910,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'prevn'                     => 'forrige $1',
 'nextn'                     => 'næste $1',
 'viewprevnext'              => 'Vis ($1) ($2) ($3).',
+'searchhelp-url'            => 'Help:Hjælp',
 'search-result-size'        => '$1 ({{PLURAL:$2|et ord|$2 ord}})',
 'search-result-score'       => 'Relevans: $1%',
 'search-redirect'           => '(omdirriger $1)',

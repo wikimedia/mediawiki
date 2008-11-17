@@ -309,6 +309,9 @@ It must have at least $1 characters and be different from your username.',
 # Revision deletion
 'rev-delundel' => 'bımocne/bınımne',
 
+# Search results
+'searchhelp-url' => 'Help:Tedeestey',
+
 # Preferences page
 'mypreferences'   => 'tercihê mı',
 'qbsettings-none' => 'çino',

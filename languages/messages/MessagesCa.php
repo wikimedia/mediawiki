@@ -1006,7 +1006,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 
 # Search results
 'searchresults'             => 'Resultats de la cerca',
-'searchresults-title'       => 'Resultats de la cerca per $1',
+'searchresults-title'       => 'Resultats de la cerca per "$1"',
 'searchresulttext'          => 'Per a més informació de les cerques del projecte {{SITENAME}}, aneu a [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'            => "Heu cercat '''[[:$1]]'''  ([[Special:Prefixindex/$1|totes les pàgines que comencen amb «$1»]] | [[Special:WhatLinksHere/$1|totes les pàgines que enllacen amb «$1»]])",
 'searchsubtitleinvalid'     => "Heu cercat '''$1'''",
@@ -1020,6 +1020,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'prevn'                     => '$1 anteriors',
 'nextn'                     => '$1 següents',
 'viewprevnext'              => 'Vés a ($1) ($2) ($3).',
+'searchhelp-url'            => 'Help:Ajuda',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 paraula|$2 paraules}})',
 'search-result-score'       => 'Rellevància: $1%',
 'search-redirect'           => '(redirigeix a $1)',

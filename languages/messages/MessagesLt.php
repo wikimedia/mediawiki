@@ -964,7 +964,7 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 
 # Search results
 'searchresults'             => 'Paieškos rezultatai',
-'searchresults-title'       => 'Paieškos rezultatai $1',
+'searchresults-title'       => 'Paieškos rezultatai "$1"',
 'searchresulttext'          => 'Daugiau informacijos apie paiešką projekte {{SITENAME}} rasite [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'            => 'Ieškoma „[[:$1]]“',
 'searchsubtitleinvalid'     => "Ieškoma '''$1'''",
@@ -978,6 +978,7 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'prevn'                     => 'ankstesnius $1',
 'nextn'                     => 'tolimesnius $1',
 'viewprevnext'              => 'Žiūrėti ($1) ($2) ($3)',
+'searchhelp-url'            => 'Help:Turinys',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 žodis|$2 žodžiai|$2 žodžių}})',
 'search-result-score'       => 'Tinkamumas: $1%',
 'search-redirect'           => '(peradresavimas $1)',

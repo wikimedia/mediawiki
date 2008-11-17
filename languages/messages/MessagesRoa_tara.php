@@ -101,11 +101,13 @@ $messages = array(
 'category-empty'                 => "''Sta categorije pe mò non ge tène manghe 'na pàgene e manghe 'nu media.''",
 'hidden-categories'              => '{{PLURAL:$1|categorije scunnute|categorije scunnute}}',
 'hidden-category-category'       => 'Categorije scunnute', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => "{{PLURAL:$2|Sta categorije tène sulamende 'na sottecategorije.|Sta categorije tène {{PLURAL:$1|'na sottecategorije|$1 sottecategorije}}, sus a 'nu totele de $2.}}",
 'category-subcat-count-limited'  => 'Sta categorije tène {{PLURAL:$1|sottecategorije|le seguende $1 sottecategorije}}.',
 'category-article-count-limited' => "{{PLURAL:$1|'A pàgene seguente ste|Le $1 pàggene seguende stonne}} jndr'à categorija corrende",
 'category-file-count-limited'    => "{{PLURAL:$1|'U seguende file jè|$1 Le seguende file sonde}} jndr'à categorije corrende.",
 'listingcontinuesabbrev'         => 'cond.',
 
+'mainpagetext'      => "<big>'''MediaUicchi ha state 'nstallete.'''</big>",
 'mainpagedocfooter' => "Vè vide [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] pe l'mbormaziune sus a cumme s'ause 'u softuer wiki.
 
 == Pe accumenzà ==
@@ -182,6 +184,7 @@ $messages = array(
 'redirectedfrom'    => '(Riderette da $1)',
 'redirectpagesub'   => 'Pàgene de redirezione',
 'lastmodifiedat'    => "Sta pàgene a state cangete l'urtema vote da $1, alle $2.", # $1 date, $2 time
+'viewcount'         => "Sta pàggene ha state viste {{PLURAL:$1|'na vote|$1 vote}}.",
 'protectedpage'     => 'Pàgene prutette',
 'jumpto'            => 'Zumbe a:',
 'jumptonavigation'  => 'navighesce',
@@ -385,7 +388,7 @@ Apprime ca otre e-mail avènene mannete a 'u cunde tue, tu ha seguì le 'struzio
 'resetpass_text'      => "<!-- Mitte 'u teste aqquà -->",
 'resetpass_header'    => "Azzere 'a passuord",
 'resetpass_submit'    => "'Mboste 'a passuord e colleghete",
-'resetpass_forbidden' => "Le Passuord non ge ponne cangià sus 'a {{SITENAME}}",
+'resetpass_forbidden' => "Le Password non ge ponne cangià sus 'a {{SITENAME}}",
 
 # Edit page toolbar
 'bold_sample'     => 'Teste grascette',
@@ -410,19 +413,20 @@ Apprime ca otre e-mail avènene mannete a 'u cunde tue, tu ha seguì le 'struzio
 'hr_tip'          => 'Linee orizzondele (ausele picche)',
 
 # Edit pages
-'summary'                   => 'Riepileghe',
-'subject'                   => 'Oggette/Testete',
-'minoredit'                 => 'Cangiaminde stuèdeche',
-'watchthis'                 => 'Condrolle sta pàgene',
-'savearticle'               => "Registre 'a vôsce",
-'preview'                   => 'Andeprime',
-'showpreview'               => "Vide l'andeprime",
-'showdiff'                  => 'Fa vedè le cangiaminde',
-'anoneditwarning'           => "'''Attenziò:''' Tu non ge sinde colleghete..
+'summary'                          => 'Riepileghe',
+'subject'                          => 'Oggette/Testete',
+'minoredit'                        => 'Cangiaminde stuèdeche',
+'watchthis'                        => 'Condrolle sta pàgene',
+'savearticle'                      => "Registre 'a vôsce",
+'preview'                          => 'Andeprime',
+'showpreview'                      => "Vide l'andeprime",
+'showdiff'                         => 'Fa vedè le cangiaminde',
+'anoneditwarning'                  => "'''Attenziò:''' Tu non ge sinde colleghete..
 L'indirizze IP tue avène reggistrete jndr'à le cangiaminde de sta pàgene.",
-'summary-preview'           => "Andeprime d'u riepileghe",
-'blockedtitle'              => "L'utende è blocchete",
-'blockedtext'               => "<big>''''U nome de l'utende o l'indirizze IP ha state blocchete.'''</big>
+'missingcommenttext'               => "Pe piacere mitte 'nu commende aqquà sotte.",
+'summary-preview'                  => "Andeprime d'u riepileghe",
+'blockedtitle'                     => "L'utende è blocchete",
+'blockedtext'                      => "<big>''''U nome de l'utende o l'indirizze IP ha state blocchete.'''</big>
 
 'U blocche ha state fatte da $1.
 'U mutive date jè ''$2''.
@@ -436,57 +440,60 @@ Tu non ge puè ausà 'u strumende 'manne 'na mail a stu utende' senza ca mitte n
 [[Special:Preferences|preferenze tue]] e ce è state blocchete sus 'a l'use sue.
 L'IP ca tine mò jè $3 e 'u codece d'u blocche jè #$5.
 Pe piacere mitte ste doje 'mbormaziune ce manne 'na richieste de sblocche.",
-'blockednoreason'           => 'nisciune mutive',
-'whitelistedittitle'        => "Pe fa le cangiaminde t'a collegà",
-'confirmedittitle'          => "Ce vuè cu fece le cangiaminde a confermà cu l'email",
-'loginreqtitle'             => "T'a collegà pe forze",
-'loginreqlink'              => 'trase',
-'loginreqpagetext'          => 'Tu a $1 pe vedè otre pàggene.',
-'accmailtitle'              => 'Passuord mannete.',
-'accmailtext'               => '\'A password pe "$1" ha state mannete sus \'a $2.',
-'newarticle'                => '(Nuève)',
-'newarticletext'            => "Tu ste segue 'nu collegamende a pàgene ca angore non g'esiste.
+'blockednoreason'                  => 'nisciune mutive',
+'blockedoriginalsource'            => "'A sorgende de '''$1''' jè mostreta aqquà sotte:",
+'whitelistedittitle'               => "Pe fa le cangiaminde t'a collegà",
+'confirmedittitle'                 => "Ce vuè cu fece le cangiaminde a confermà cu l'email",
+'loginreqtitle'                    => "T'a collegà pe forze",
+'loginreqlink'                     => 'trase',
+'loginreqpagetext'                 => 'Tu a $1 pe vedè otre pàggene.',
+'accmailtitle'                     => 'Passuord mannete.',
+'accmailtext'                      => '\'A password pe "$1" ha state mannete sus \'a $2.',
+'newarticle'                       => '(Nuève)',
+'newarticletext'                   => "Tu ste segue 'nu collegamende a pàgene ca angore non g'esiste.
 Pe ccrejà 'a pàgene, accuminze a scrivere jndr'à 'u scatole de sotte (vide 'a [[{{MediaWiki:Helppage}}|pàggene d'ajute]] pe avè cchiù 'mbormaziune).
 Ce tu te iacche aqquà e manghe tu 'u se purcè, allore cazze 'u buttone '''back''' d'u brauser.",
-'noarticletext'             => "Non ge stè scritte ninde jndr'à sta pàgene, tu puè [[Special:Search/{{PAGENAME}}|cercà pe quiste titele]] jndr'à otre pàggene oppure [{{fullurl:{{FULLPAGENAME}}|action=edit}} cange sta pàgene].",
-'userpage-userdoesnotexist' => '\'U cunde utende "$1" non g\'è reggistrete.
+'noarticletext'                    => "Non ge stè scritte ninde jndr'à sta pàgene, tu puè [[Special:Search/{{PAGENAME}}|cercà pe quiste titele]] jndr'à otre pàggene oppure [{{fullurl:{{FULLPAGENAME}}|action=edit}} cange sta pàgene].",
+'userpage-userdoesnotexist'        => '\'U cunde utende "$1" non g\'è reggistrete.
 Pe piacere, condrolle ce tu vuè cu ccreje/cange sta pàgene.',
-'updated'                   => '(Cangiete)',
-'note'                      => '<strong>Vide Bbuene:</strong>',
-'previewnote'               => "<strong>Queste è sole 'n'andeprime;
+'updated'                          => '(Cangiete)',
+'note'                             => '<strong>Vide Bbuene:</strong>',
+'previewnote'                      => "<strong>Queste è sole 'n'andeprime;
 le cangiaminde non g'onne state angore reggistrete!</strong>",
-'editing'                   => 'Cangiaminde de $1',
-'editingsection'            => 'Cangiaminde de $1 (sezione)',
-'editingcomment'            => 'Cangiaminde de $1 (commende)',
-'editconflict'              => 'Conflitte de cangiaminde: $1',
-'yourtext'                  => "'U teste tue",
-'storedversion'             => 'Versione archivijete',
-'yourdiff'                  => 'Differenze',
-'copyrightwarning'          => "Pe piacere vide ca tutte le condrebbute de {{SITENAME}} sonde considerete de essere rilasciete sotte 'a $2 (vide $1 pe le dettaglie).
+'editing'                          => 'Cangiaminde de $1',
+'editingsection'                   => 'Cangiaminde de $1 (sezione)',
+'editingcomment'                   => 'Cangiaminde de $1 (commende)',
+'editconflict'                     => 'Conflitte de cangiaminde: $1',
+'yourtext'                         => "'U teste tue",
+'storedversion'                    => 'Versione archivijete',
+'yourdiff'                         => 'Differenze',
+'copyrightwarning'                 => "Pe piacere vide ca tutte le condrebbute de {{SITENAME}} sonde considerete de essere rilasciete sotte 'a $2 (vide $1 pe le dettaglie).
 Ce tu non ge vuè ca le condrebbute tue avènene ausete da otre o avènene cangete, non le scè mettènne proprie.<br />
 Tu na promettere pure ca le cose ca scrive tu, sonde 'mbormaziune libbere o copiete da 'nu pubbleche dominie.<br />
 <strong>NON METTE' NISCIUNA FATJE CA JE' PROTETTE DA DERITTE SENZA PERMESSE!</strong>",
-'longpagewarning'           => "<strong>ATTENZIO': Sta pàgene jè longhe $1 kilobyte;
+'longpagewarning'                  => "<strong>ATTENZIO': Sta pàgene jè longhe $1 kilobyte;
 certe brauser ponne avè probleme quanne vuè cu cange pàggene ca sonde granne cchiù o mene 32 KB.
 Pe piacere considere de cangià 'a pàgene a stuezze stuezze ausanne le sezione.</strong>",
-'semiprotectedpagewarning'  => "'''Fà attenzione:''' Sta pàgene ha state blocchete accussì sulamende l'utinde reggistrete ponne fà cangiaminde.",
-'templatesused'             => "Templeit ausete sus 'a sta pàgene:",
-'templatesusedpreview'      => "Templeit ausete jndr'à sta andeprime:",
-'templatesusedsection'      => "Jndr'à sta sezione sonde ausete chiste template:",
-'template-protected'        => '(prutette)',
-'template-semiprotected'    => '(mmienze protette)',
-'nocreatetext'              => "{{SITENAME}} ha restritte l'abilità de ccrejà pàggene nuéve.
+'semiprotectedpagewarning'         => "'''Fà attenzione:''' Sta pàgene ha state blocchete accussì sulamende l'utinde reggistrete ponne fà cangiaminde.",
+'templatesused'                    => "Templeit ausete sus 'a sta pàgene:",
+'templatesusedpreview'             => "Templeit ausete jndr'à sta andeprime:",
+'templatesusedsection'             => "Jndr'à sta sezione sonde ausete chiste template:",
+'template-protected'               => '(prutette)',
+'template-semiprotected'           => '(mmienze protette)',
+'nocreatetext'                     => "{{SITENAME}} ha restritte l'abilità de ccrejà pàggene nuéve.
 Tu puè turnà rrete e cangià 'na pàgene ca già esiste, oppure puè [[Special:UserLogin|trasè o ccrejà n'utende nuéve]].",
-'nocreate-loggedin'         => 'Non ge tine le permesse pe ccreja pàggene nuève.',
-'permissionserrors'         => 'Errore de permesse',
-'recreate-deleted-warn'     => "'''Fa Attenziò: Ste ccreje 'na pàgene ca avère state scangillete apprime.'''
+'nocreate-loggedin'                => 'Non ge tine le permesse pe ccreja pàggene nuève.',
+'permissionserrors'                => 'Errore de permesse',
+'permissionserrorstext'            => "Tu non ge tine 'u permesse pe fà ste cose, pe {{PLURAL:$1|stu mutive|ste mutive}}:",
+'permissionserrorstext-withaction' => "Tu non ge tine 'u permesse pe $2, pe {{PLURAL:$1|stu mutive|ste mutive}}:",
+'recreate-deleted-warn'            => "'''Fa Attenziò: Ste ccreje 'na pàgene ca avère state scangillete apprime.'''
 
 Vide bbuene ce l'ha ccrejà sta pàgene, ce non ge sinde sicure vide l'archivie de le scangellaziune:",
-'deletelog-fulllog'         => "Vide l'archivie comblete",
-'edit-gone-missing'         => "Non ge puè cangià sta pàgene.
+'deletelog-fulllog'                => "Vide l'archivie comblete",
+'edit-gone-missing'                => "Non ge puè cangià sta pàgene.
 Pare proprie ca l'onne scangellete.",
-'edit-conflict'             => 'conflitte de cangiaminde.',
-'edit-no-change'            => "'U cangiamende ca p fatte, avène scettate purcè 'u teste non g'à cangete manghe de 'na virgola.",
+'edit-conflict'                    => 'conflitte de cangiaminde.',
+'edit-no-change'                   => "'U cangiamende ca p fatte, avène scettate purcè 'u teste non g'à cangete manghe de 'na virgola.",
 
 # Account creation failure
 'cantcreateaccounttitle' => "Non ge puè ccrejà 'nu cunde utende",
@@ -603,23 +610,33 @@ Leggenda: (cur) = differenze cu 'a versiona corrende,
 'diff-strike'             => "'''strikethrough'''",
 
 # Search results
-'searchresults'            => "Resultete d'a ricerche",
-'searchresults-title'      => "Resultete d'a ricerche pe $1",
-'searchsubtitleinvalid'    => "Tu è cerchete pe '''$1'''",
-'noexactmatch'             => "'''Non g'esiste 'na pàgene ca se chiama \"\$1\".'''
+'searchresults'                  => "Resultete d'a ricerche",
+'searchresults-title'            => 'Resultete d\'a ricerche pe "$1"',
+'searchsubtitleinvalid'          => "Tu è cerchete pe '''$1'''",
+'noexactmatch'                   => "'''Non g'esiste 'na pàgene ca se chiama \"\$1\".'''
 Tu puè [[:\$1|ccrejà sta pàgene]].",
-'prevn'                    => 'rrede $1',
-'nextn'                    => 'nnande $1',
-'viewprevnext'             => 'Vide ($1) ($2) ($3)',
-'search-result-score'      => "'Mbortanze: $1%",
-'search-redirect'          => '(Redirette $1)',
-'search-section'           => '(sezione $1)',
-'search-interwiki-caption' => 'Pruggette sorelle',
-'search-interwiki-more'    => '(de cchiù)',
-'searchall'                => 'tutte',
-'powersearch'              => 'Ricerche avanzete',
-'powersearch-ns'           => "Cirche jndr'à le namespace:",
-'powersearch-field'        => 'Cirche pe',
+'prevn'                          => 'rrede $1',
+'nextn'                          => 'nnande $1',
+'viewprevnext'                   => 'Vide ($1) ($2) ($3)',
+'searchmenu-legend'              => 'Opzione de ricerche',
+'searchhelp-url'                 => 'Help:Condenute',
+'searchprofile-articles'         => 'Pàggene',
+'searchprofile-project'          => 'Pruggette',
+'searchprofile-images'           => 'Le fail',
+'searchprofile-everything'       => 'Tutte',
+'searchprofile-advanced'         => 'Avanzete',
+'searchprofile-articles-tooltip' => "Cirche jndr'à $1",
+'searchprofile-project-tooltip'  => "Cirche jndr'à $1",
+'searchprofile-images-tooltip'   => 'Cirche pe le fail',
+'search-result-score'            => "'Mbortanze: $1%",
+'search-redirect'                => '(Redirette $1)',
+'search-section'                 => '(sezione $1)',
+'search-interwiki-caption'       => 'Pruggette sorelle',
+'search-interwiki-more'          => '(de cchiù)',
+'searchall'                      => 'tutte',
+'powersearch'                    => 'Ricerche avanzete',
+'powersearch-ns'                 => "Cirche jndr'à le namespace:",
+'powersearch-field'              => 'Cirche pe',
 
 # Preferences page
 'preferences'       => 'Me piece accussì',

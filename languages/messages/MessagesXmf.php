@@ -308,11 +308,12 @@ $messages = array(
 'editundo'                => 'გაუქვება',
 
 # Search results
-'noexactmatch' => "'''ხასილა თე სახელით \"\$1\" ვაარსეენს.''' თქვა შეილებნა [[:\$1|თე გვერდიშ ღოლამა]].",
-'prevn'        => 'წოხლენ $1',
-'nextn'        => 'უკულ $1',
-'viewprevnext' => 'ქოძირ  ($1) ($2) ($3).',
-'powersearch'  => 'გორუა',
+'noexactmatch'   => "'''ხასილა თე სახელით \"\$1\" ვაარსეენს.''' თქვა შეილებნა [[:\$1|თე გვერდიშ ღოლამა]].",
+'prevn'          => 'წოხლენ $1',
+'nextn'          => 'უკულ $1',
+'viewprevnext'   => 'ქოძირ  ($1) ($2) ($3).',
+'searchhelp-url' => 'Help:მოხვარა',
+'powersearch'    => 'გორუა',
 
 # Preferences page
 'preferences'   => 'კონფიგურაცია',

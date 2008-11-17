@@ -710,6 +710,7 @@ Lisateedüst või ollaq [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} k
 'prevn'                     => 'minevädseq $1',
 'nextn'                     => 'järgmädseq $1',
 'viewprevnext'              => 'Näütäq ($1) ($2) ($3).',
+'searchhelp-url'            => 'Help:Oppus',
 'search-interwiki-more'     => '(viil)',
 'search-mwsuggest-enabled'  => 'näütäq soovituisi',
 'search-mwsuggest-disabled' => 'ilma soovituisilda',

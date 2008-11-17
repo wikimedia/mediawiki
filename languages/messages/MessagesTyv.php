@@ -347,11 +347,12 @@ $1',
 'compareselectedversions' => 'Шилип алган хевирлери деңнээр',
 
 # Search results
-'searchresults' => 'Түңнелдер',
-'prevn'         => 'бүрүнгү $1',
-'nextn'         => 'соонда $1',
-'viewprevnext'  => '($1) ($2) ($3) көөр',
-'powersearch'   => 'Дилээр',
+'searchresults'  => 'Түңнелдер',
+'prevn'          => 'бүрүнгү $1',
+'nextn'          => 'соонда $1',
+'viewprevnext'   => '($1) ($2) ($3) көөр',
+'searchhelp-url' => 'Help:Допчузу',
+'powersearch'    => 'Дилээр',
 
 # Preferences page
 'preferences'        => 'Дээре деп санаарылар',

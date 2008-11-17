@@ -395,12 +395,13 @@ $1',
 'diff-multi'              => '({{PLURAL:$1|یه اصلاح میانی|$1 اصلاحات میانی}} نشو داده نوابیده.)',
 
 # Search results
-'noexactmatch' => "'''صفحه ای باای عنوان نه  \"\$1\".'''
+'noexactmatch'   => "'''صفحه ای باای عنوان نه  \"\$1\".'''
 ایسا ترین [[:\$1| ای صفحه را ایجاد کنین]].",
-'prevn'        => 'قبلی $1',
-'nextn'        => 'بعدی $1',
-'viewprevnext' => 'مشاهده ($1) ($2) ($3)',
-'powersearch'  => 'جستجوی کاملتر',
+'prevn'          => 'قبلی $1',
+'nextn'          => 'بعدی $1',
+'viewprevnext'   => 'مشاهده ($1) ($2) ($3)',
+'searchhelp-url' => 'Help:محتوا',
+'powersearch'    => 'جستجوی کاملتر',
 
 # Preferences page
 'preferences'   => 'اولویتها',

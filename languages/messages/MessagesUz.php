@@ -322,6 +322,7 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 'prevn'            => 'oldingi $1',
 'nextn'            => 'keyingi $1',
 'viewprevnext'     => "Ko'rish ($1) ($2) ($3).",
+'searchhelp-url'   => 'Help:Mundarija',
 'showingresults'   => "#<b>$2</b> boshlanayotgan <b>$1</b> natijalar ko'rsatilyapti.",
 'powersearch'      => 'Qidiruv',
 

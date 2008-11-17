@@ -346,12 +346,13 @@ hō‘ike ‘ia i lalo:",
 'editundo' => 'wehe',
 
 # Search results
-'noexactmatch' => "'''‘A‘ohe mo‘olelo me ka inoa \"\$1\".''' Hiki iā‘oe ke [[:\$1|hana i keia ‘ao‘ao]].",
-'prevn'        => 'mua $1',
-'nextn'        => 'hope $1',
-'viewprevnext' => 'Nānā i nā ($1) ($2) ($3)',
-'searchall'    => 'apau',
-'powersearch'  => 'Huli',
+'noexactmatch'   => "'''‘A‘ohe mo‘olelo me ka inoa \"\$1\".''' Hiki iā‘oe ke [[:\$1|hana i keia ‘ao‘ao]].",
+'prevn'          => 'mua $1',
+'nextn'          => 'hope $1',
+'viewprevnext'   => 'Nānā i nā ($1) ($2) ($3)',
+'searchhelp-url' => 'Help:Papa kuhikuhi',
+'searchall'      => 'apau',
+'powersearch'    => 'Huli',
 
 # Preferences page
 'preferences'       => "Ka'u makemake",

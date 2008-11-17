@@ -670,6 +670,7 @@ Legend: (viim) = erinevused võrreldes viimase redaktsiooniga,
 'prevn'                 => 'eelmised $1',
 'nextn'                 => 'järgmised $1',
 'viewprevnext'          => 'Näita ($1) ($2) ($3).',
+'searchhelp-url'        => 'Help:Juhend',
 'showingresults'        => "Allpool näitame {{PLURAL:$1|'''ühte''' tulemit|'''$1''' tulemit}} alates tulemist #'''$2'''.",
 'nonefound'             => '<strong>Märkus</strong>: otsingute ebaõnnestumise sagedaseks põhjuseks on asjaolu,
 et väga sageli esinevaid sõnu ei võta süsteem otsimisel arvesse. Teine põhjus võib olla

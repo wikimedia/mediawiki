@@ -300,9 +300,10 @@ $messages = array(
 'diff-strong' => "'''कडा'''",
 
 # Search results
-'searchrelated' => 'स्वापू दुःगु',
-'searchall'     => 'सकल',
-'powersearch'   => 'मालादिसँ',
+'searchhelp-url' => 'Help:धलःपौ',
+'searchrelated'  => 'स्वापू दुःगु',
+'searchall'      => 'सकल',
+'powersearch'    => 'मालादिसँ',
 
 # Preferences page
 'mypreferences'  => 'जिगु प्राथमिकता',

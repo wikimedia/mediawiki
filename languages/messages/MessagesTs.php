@@ -235,6 +235,7 @@ U hi tshembisa nakambe leswaku hi wena mutsari wa leswi nyikeriwaka laha, kumbe 
 'deletedhist'  => 'Matimu lamasuriweke',
 
 # Search results
+'searchhelp-url'        => 'Help:Leswinga ndzeni',
 'search-interwiki-more' => '(Leswi engetelekeke)',
 'search-relatedarticle' => 'Leswi yelanaka',
 'searchrelated'         => 'Yelanaka',

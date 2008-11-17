@@ -239,10 +239,11 @@ $messages = array(
 'editundo'      => 'niuskapjan',
 
 # Search results
-'prevn'        => 'aftuma $1',
-'nextn'        => 'iftuma $1',
-'viewprevnext' => 'Siuneis ($1) ($2) ($3)',
-'powersearch'  => 'Sokeiþ',
+'prevn'          => 'aftuma $1',
+'nextn'          => 'iftuma $1',
+'viewprevnext'   => 'Siuneis ($1) ($2) ($3)',
+'searchhelp-url' => 'Hilpa:Háubidaseido',
+'powersearch'    => 'Sokeiþ',
 
 # Preferences page
 'preferences'       => 'Meinos brukjamaideineis',

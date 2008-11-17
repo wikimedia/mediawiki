@@ -447,6 +447,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'prevn'             => 'پويان $1',
 'nextn'             => 'اڳيان $1',
 'viewprevnext'      => 'ڏسو ($1) ($2) ($3)',
+'searchhelp-url'    => 'Help:فهرست',
 'powersearch'       => 'نفيس ڳولا',
 'powersearch-redir' => 'چورڻن جي فهرست ڏيکاريو',
 

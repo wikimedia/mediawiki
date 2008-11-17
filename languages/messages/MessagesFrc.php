@@ -612,6 +612,7 @@ Des autres administrateurs sus ce wiki ont la permission de voir et de rétablir
 # Search results
 'searchresults'    => 'Résultats de la charche',
 'searchresulttext' => "Pour plus d'information pour vous aider à charcher dans {{SITENAME}}, voyez [[{{MediaWiki:Helppage}}|{{int:help}}]].",
+'searchhelp-url'   => 'Help:Aide',
 
 # Preferences page
 'preferences'   => 'Réglage',

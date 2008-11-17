@@ -178,6 +178,9 @@ $messages = array(
 # Diffs
 'editundo' => 'саца',
 
+# Search results
+'searchhelp-url' => 'Help:ГIo',
+
 # Preferences page
 'mypreferences'   => 'сан настройки',
 'changepassword'  => 'Тешаман дош хийцар хьам',

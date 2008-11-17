@@ -1167,6 +1167,7 @@ Añğartpa: bağıttaw siltemelerin qoldanğanda bul bağan qaýta qoýıladı.'
 'prevn'                     => 'aldıñğı $1',
 'nextn'                     => 'kelesi $1',
 'viewprevnext'              => 'Körsetilwi: ($1) ($2) ($3) jazba',
+'searchhelp-url'            => 'Help:Mazmunı',
 'search-result-size'        => '$1 ($2 söz)',
 'search-result-score'       => 'Araqatınastılığı: $1 %',
 'search-redirect'           => '(aýdağış $1)',

@@ -304,6 +304,7 @@ Ponderai per plaschair da divider quest artitgel en pli pitschnas parts. </stron
 'prevn'             => 'davos $1',
 'nextn'             => 'proxims $1',
 'viewprevnext'      => 'Mussar ($1) ($2) ($3).',
+'searchhelp-url'    => 'Help:Cuntegn',
 'showingresults'    => "Qua èn '''$1''' resultats, cumenzond cun il number '''$2'''.",
 'showingresultsnum' => "Qua èn '''$3''' resultats, cumenzond cun il number '''$2'''.",
 'powersearch'       => 'retschertgar',

@@ -224,6 +224,7 @@ Sohmtehm dehm dohn ires am.',
 # Search results
 'prevn'              => 'Go bak $1',
 'nextn'              => 'nehks wan $1',
+'searchhelp-url'     => 'Help:Kohntehnt-dehm',
 'powersearch'        => 'Luk foh sohmtin fain-wan',
 'powersearch-legend' => 'Luk foh sohmtin fain-wan',
 'powersearch-ns'     => 'Luk foh sohmtin na namespaces:',

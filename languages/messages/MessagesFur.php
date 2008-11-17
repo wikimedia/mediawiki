@@ -596,6 +596,7 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'prevn'                 => 'precedents $1',
 'nextn'                 => 'prossims $1',
 'viewprevnext'          => 'Cjale ($1) ($2) ($3).',
+'searchhelp-url'        => 'Help:Contignûts',
 'search-result-size'    => '$1 ({{PLURAL:$2|une peraule|$2 peraulis}})',
 'search-suggest'        => 'Forsit tu cirivis: $1',
 'search-interwiki-more' => '(altri)',

@@ -989,7 +989,7 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 
 # Search results
 'searchresults'             => 'Leitarniðurstöður',
-'searchresults-title'       => 'Leitarniðurstöður fyrir $1',
+'searchresults-title'       => 'Leitarniðurstöður fyrir "$1"',
 'searchresulttext'          => 'Fyrir frekari upplýsingar um leit á {{SITENAME}} farið á [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'            => "Þú leitaðir að '''[[:$1]]''' ([[Special:Prefixindex/$1|öllum síðum sem hefjast á „$1“]] | [[Special:WhatLinksHere/$1|öllum síðum sem tengja í „$1“]])",
 'searchsubtitleinvalid'     => "Þú leitaðir að '''$1'''",
@@ -1003,6 +1003,7 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'prevn'                     => 'síðustu $1',
 'nextn'                     => 'næstu $1',
 'viewprevnext'              => 'Skoða ($1) ($2) ($3).',
+'searchhelp-url'            => 'Help:Efnisyfirlit',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 orð|$2 orð}})',
 'search-result-score'       => 'Gildi: $1%',
 'search-redirect'           => '(tilvísun $1)',

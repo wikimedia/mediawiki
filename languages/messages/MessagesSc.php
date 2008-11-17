@@ -255,6 +255,7 @@ Se la salvi così, tutti i cambiamenti apportati dopo questa revisione verranno 
 'prevn'                 => 'precedenti $1',
 'nextn'                 => 'successivi $1',
 'viewprevnext'          => 'Vedi ($1) ($2) ($3).',
+'searchhelp-url'        => 'Help:Aiuto',
 'showingresults'        => 'Qui di seguito <b>$1</b> risultati, partendo dal numero #<b>$2</b>.',
 'nonefound'             => '<strong>Nota</strong>: la ricerca di parole troppo comuni, come "avere" o "essere", che non sono indicizzate, può causare un esito negativo, così come indicare più di un termine da ricercare (solo le pagine che contengano tutti i termini ricercati verrebbero infatti visualizzate fra i risultati).',
 'powersearch'           => 'Ricerca',

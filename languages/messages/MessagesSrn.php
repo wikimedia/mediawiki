@@ -601,6 +601,7 @@ Yu kan [[:\$1|meki a papira disi]].",
 'prevn'                 => '$1 di psa',
 'nextn'                 => '$1 trawan',
 'viewprevnext'          => 'Luku ($1) ($2) ($3).',
+'searchhelp-url'        => 'Help:San de',
 'powersearch'           => 'Suku moro dipi',
 
 # Preferences page

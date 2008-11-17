@@ -774,6 +774,7 @@ Assurâd-vos que cél changement pouesse consèrvar la continuitât de l’histo
 'prevn'                 => '$1 prècèdents',
 'nextn'                 => '$1 siuvents',
 'viewprevnext'          => 'Vêre ($1) ($2) ($3).',
+'searchhelp-url'        => 'Help:Somèro',
 'search-result-size'    => '$1 ({{PLURAL:$2|1 mot|$2 mots}})',
 'search-result-score'   => 'Rapôrt : $1%',
 'searchall'             => 'Tôs',

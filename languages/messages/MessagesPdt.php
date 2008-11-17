@@ -286,9 +286,10 @@ Bitte nemm eenen aundren.',
 'editundo' => 'trigjsate',
 
 # Search results
-'prevn'       => '$1 ferhäa',
-'nextn'       => 'näakjste $1',
-'powersearch' => 'Bätre Sääk',
+'prevn'          => '$1 ferhäa',
+'nextn'          => 'näakjste $1',
+'searchhelp-url' => 'Help:Enhault',
+'powersearch'    => 'Bätre Sääk',
 
 # Preferences page
 'preferences'   => 'Ennstalinje',

@@ -898,7 +898,7 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 
 # Search results
 'searchresults'             => 'Maskaymanta tarisqakuna',
-'searchresults-title'       => '$1 nisqapaq maskaspa taripasqakuna',
+'searchresults-title'       => '"$1" nisqapaq maskaspa taripasqakuna',
 'searchresulttext'          => '{{SITENAME}}pi maskaymanta astawan ñawirinaykipaqqa, [[{{MediaWiki:Helppage}}|{{int:help}}]] nisqapi qhaway.',
 'searchsubtitle'            => '\'\'\'[[:$1]]\'\'\' nisqatam maskanki ([[Special:Prefixindex/$1|tukuy "$1" nisqawan qallariq p\'anqakuna]] | [[Special:WhatLinksHere/$1|tukuy "$1" nisqaman t\'inkimuq p\'anqakuna]])',
 'searchsubtitleinvalid'     => '"$1" nisqatam maskanki',
@@ -912,6 +912,7 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'prevn'                     => '$1 ñawpaq',
 'nextn'                     => '$1 qatiq',
 'viewprevnext'              => 'Qhaway ($1) ($2) ($3).',
+'searchhelp-url'            => 'Help:Yanapana',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 rima|$2 rimakuna}})',
 'search-result-score'       => 'Chaniyuq kaynin: $1%',
 'search-redirect'           => '(pusapuna $1)',

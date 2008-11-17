@@ -848,6 +848,7 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'prevn'                     => 'önceki $1',
 'nextn'                     => 'sonraki $1',
 'viewprevnext'              => '($1) ($2) ($3).',
+'searchhelp-url'            => 'Help:İçindekiler',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 kelime|$2 kelime}})',
 'search-result-score'       => 'Uygunluk: $1%',
 'search-redirect'           => '(yönlendirme $1)',

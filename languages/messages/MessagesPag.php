@@ -145,6 +145,7 @@ $messages = array(
 # Search results
 'searchsubtitle'        => "'''[[:$1]]''' so inanap mo.",
 'searchsubtitleinvalid' => "'''$1''' so inanap mo.",
+'searchhelp-url'        => 'Help:Saray Laman',
 'powersearch'           => 'Anapen',
 
 # Preferences page

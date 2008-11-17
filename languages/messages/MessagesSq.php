@@ -838,6 +838,7 @@ Ju lutem kërkoni {{SITENAME}}-n përpara se të krijoni një artikull të ri se
 'prevn'                     => '$1 më para',
 'nextn'                     => '$1 më pas',
 'viewprevnext'              => 'Shikoni ($1) ($2) ($3).',
+'searchhelp-url'            => 'Help:Ndihmë',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 fjalë|$2 fjalë}})',
 'search-result-score'       => 'Përkatësia: $1%',
 'search-redirect'           => '(përcjellim $1)',

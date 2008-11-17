@@ -1010,6 +1010,7 @@ Seh to, dat de Versionsgeschicht vun’n Artikel vun de Historie her bi de Reeg 
 'prevn'                     => 'vörige $1',
 'nextn'                     => 'tokamen $1',
 'viewprevnext'              => 'Wies ($1) ($2) ($3).',
+'searchhelp-url'            => 'Help:Hülp',
 'search-result-size'        => '$1 ({{PLURAL:$2|een Woort|$2 Wöör}})',
 'search-result-score'       => 'Relevanz: $1 %',
 'search-redirect'           => '(Redirect $1)',

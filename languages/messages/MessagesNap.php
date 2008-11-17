@@ -267,6 +267,7 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'noexactmatch'     => "''''A paggena \"\$1\" nun asiste.''' Se pô [[:\$1|criala mmo]].",
 'notitlematches'   => "Voce addemannata nun truvata dint' 'e titule 'e articulo",
 'notextmatches'    => "Voce addemannata nun truvata dint' 'e teste 'e articulo",
+'searchhelp-url'   => 'Help:Ajùto',
 'powersearch'      => 'Truova',
 
 # Preferences page

@@ -606,6 +606,7 @@ $messages = array(
 'prevn'                 => 'تېر $1',
 'nextn'                 => 'راتلونکي $1',
 'viewprevnext'          => '($1) ($2) ($3) ښکاره کول',
+'searchhelp-url'        => 'Help:لړليک',
 'search-suggest'        => 'آيا همدا ستاسو موخه ده: $1',
 'search-relatedarticle' => 'اړونده',
 'searchall'             => 'ټول',

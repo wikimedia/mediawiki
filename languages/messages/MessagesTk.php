@@ -117,7 +117,8 @@ $messages = array(
 'last' => 'soň',
 
 # Search results
-'powersearch' => 'Giňişleýin Gözleg',
+'searchhelp-url' => 'Help:Içindäkiler',
+'powersearch'    => 'Giňişleýin Gözleg',
 
 # Recent changes
 'recentchanges'   => 'Ahyrky özgertişler',

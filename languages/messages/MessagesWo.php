@@ -801,7 +801,7 @@ Soo jëfandikoo lëkkalekaayu joow yi day neenal boyot yi nga jotoon a fal.',
 
 # Search results
 'searchresults'             => 'Ngértey ceet gi',
-'searchresults-title'       => 'Ngértey ceet gu $1',
+'searchresults-title'       => 'Ngértey ceet gu "$1"',
 'searchresulttext'          => 'Ngir yeneeni xibaar ci ceet gi ci {{SITENAME}}, xoolal [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'            => 'Yaa ngi seet « \'\'\'[[:$1]]\'\'\' » ([[Special:Prefixindex/$1|wépp wu tambalee "$1"]] | 
 [[Special:WhatLinksHere/$1|wépp xët wu ñu lëkkale ak wii "$1"]])',
@@ -816,6 +816,7 @@ Soo jëfandikoo lëkkalekaayu joow yi day neenal boyot yi nga jotoon a fal.',
 'prevn'                     => '$1 yi jiitu',
 'nextn'                     => '$1 yi toftal',
 'viewprevnext'              => 'Xool ($1) ($2) ($3).',
+'searchhelp-url'            => 'Help:Ndimbal',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 baat|$2 baat}})',
 'search-result-score'       => 'Baaxaay: $1%',
 'search-redirect'           => '(jubluwaat bu jëm $1)',

@@ -86,6 +86,9 @@ Putiv cuntinuèr ad usèr {{SITENAME}} anonimamèint, o putiv cunnètterv dòp c
 'yourdiff'         => 'Differèinzi',
 'templatesused'    => 'Modêl usèdi in sta pàgina:',
 
+# Search results
+'searchhelp-url' => 'Help:Introduzione',
+
 # Preferences page
 'mypreferences' => 'AL mê preferèinzi',
 
