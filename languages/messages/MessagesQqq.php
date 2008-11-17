@@ -312,7 +312,8 @@ See also [[MediaWiki:Lastmodifiedatby/{{SUBPAGENAME}}]].', # $1 date, $2 time
 
 {{doc-important|Do not translate <tt>Project:</tt> part.}}",
 'helppage'             => 'The link destination used by default in the sidebar, and in {{msg|noarticletext}}. 
-{{doc-important|Do not change <tt>Help:</tt> part.}}',
+{{doc-important|Do not change <tt>Help:</tt> part.}}
+{{Identical|HelpContent}}',
 'mainpage'             => 'Defines the link and display name of the main page of the wiki. Shown as the top link in the navigation part of the interface. Please do not change it too often, that could break things!
 
 {{Identical|Main page}}',
@@ -765,58 +766,66 @@ Used in the final position of a {{msg-mw|comma-separator}} separated list headed
 'diff-height'             => '{{Identical|Height}}',
 
 # Search results
-'searchresults-title'      => 'Appears as page title in the html header of the search result special page.',
-'noexactmatch'             => 'This is the message that you get if you follow a link to a page or article that does not exist.',
-'notitlematches'           => 'Header of results page after a search for a title for which no page exists',
-'textmatches'              => 'When displaying search results',
-'notextmatches'            => 'Error message when there are no results',
-'prevn'                    => "This is part of the navigation message on the top and bottom of Special pages (lists of things in alphabetical order, i.e. the 'Special:Categories' page), where it is used as the first argument of [[MediaWiki:Viewprevnext]].
+'searchresults-title'            => 'Appears as page title in the html header of the search result special page.',
+'noexactmatch'                   => 'This is the message that you get if you follow a link to a page or article that does not exist.',
+'notitlematches'                 => 'Header of results page after a search for a title for which no page exists',
+'textmatches'                    => 'When displaying search results',
+'notextmatches'                  => 'Error message when there are no results',
+'prevn'                          => "This is part of the navigation message on the top and bottom of Special pages (lists of things in alphabetical order, i.e. the 'Special:Categories' page), where it is used as the first argument of [[MediaWiki:Viewprevnext]].
 It is also used by Category pages (which do ''not'' use [[MediaWiki:Viewprevnext]]).
 $1 is the number of items shown per page. It is not used when $1 is zero; not sure what happens when $1 is one.
 Whatlinkshere pages use [[MediaWiki:Whatlinkshere-prev]] instead (still as an argument to [[MediaWiki:Viewprevnext]]).
 
 {{Identical|Previous}}",
-'nextn'                    => "This is part of the navigation message on the top and bottom of Special pages (lists of things in alphabetical order, i.e. the 'Special:Categories' page), where it is used as the second argument of [[MediaWiki:Viewprevnext]].
+'nextn'                          => "This is part of the navigation message on the top and bottom of Special pages (lists of things in alphabetical order, i.e. the 'Special:Categories' page), where it is used as the second argument of [[MediaWiki:Viewprevnext]].
 It is also used by Category pages (which do ''not'' use [[MediaWiki:Viewprevnext]]).
 $1 is the number of items shown per page. It is not used when $1 is zero; not sure what happens when $1 is one.
 Whatlinkshere pages use [[MediaWiki:Whatlinkshere-next]] instead (still as an argument to [[MediaWiki:Viewprevnext]]).
 
 {{Identical|Next $1}}",
-'viewprevnext'             => 'This is part of the navigation message on the top and bottom of Special pages which are lists of things, e.g. the User\'s contributions page (in date order) or the list of all categories (in alphabetical order). ($1) and ($2) are either [[MediaWiki:Pager-older-n]] and [[MediaWiki:Pager-newer-n]] (for date order) or [[MediaWiki:Prevn]] and [[MediaWiki:Nextn]] (for alphabetical order).
+'viewprevnext'                   => 'This is part of the navigation message on the top and bottom of Special pages which are lists of things, e.g. the User\'s contributions page (in date order) or the list of all categories (in alphabetical order). ($1) and ($2) are either [[MediaWiki:Pager-older-n]] and [[MediaWiki:Pager-newer-n]] (for date order) or [[MediaWiki:Prevn]] and [[MediaWiki:Nextn]] (for alphabetical order).
 It is also used by Whatlinkshere pages, where ($1) and ($2) are [[MediaWiki:Whatlinkshere-prev]] and [[MediaWiki:Whatlinkshere-next]].
 ($3) is made up in all cases of the various proposed numbers of results per page, e.g. "(20 | 50 | 100 | 250 | 500)".
 For Special pages, the navigation bar is prefixed by "([[MediaWiki:Page_first]] | [[MediaWiki:Page_last]])" (alphabetical order) or "([[MediaWiki:Histfirst]] | [[MediaWiki:Histlast]])" (date order).
 Viewprevnext is sometimes preceded by the [[MediaWiki:Showingresults]] or [[MediaWiki:Showingresultsnum]] message (for Special pages) or by the [[MediaWiki:Linkshere]] message (for Whatlinkshere pages).',
-'search-result-size'       => 'Shown per line of a [[Special:Search|search result]]
+'searchmenu-exists'              => 'An option shown in a menu beside search form offering a link to the existing page having the specified title (when using the default MediaWiki search engine).',
+'searchmenu-new'                 => 'An option shown in a menu beside search form offering a red link to the not yet existing page having the specified title (when using the default MediaWiki search engine).',
+'searchhelp-url'                 => '{{Identical|HelpContent}}
+Description: The URL of the search help page.
+{{doc-important|Do not change "Help:" part.}}',
+'searchprofile-articles-tooltip' => '{{Identical|Search in $1}}',
+'searchprofile-project-tooltip'  => '{{Identical|Search in $1}}',
+'search-result-size'             => 'Shown per line of a [[Special:Search|search result]]
 * $1 is the size of the page in bytes, but no need to add "byte" or similar as the unit is added by special function.
 * $2 is the sum of all words in this page.',
-'search-result-score'      => 'Shown per line of a [[Special:Search|search result]].
+'search-result-score'            => 'Shown per line of a [[Special:Search|search result]].
 
 $1 is the relevance of this result in per cent.
 
 {{Identical|Relevance: $1%}}',
-'search-interwiki-default' => '* $1 is the hostname of the remote wiki from where the additional results listed below are returned',
-'search-relatedarticle'    => '{{Identical|Related}}',
-'searchrelated'            => '{{Identical|Related}}',
-'searchall'                => '{{Identical|All}}',
-'showingresults'           => "This message is used on some special pages such as 'Wanted categories'. $1 is the total number of results in the batch shown and $2 is the number of the first item listed.",
-'showingresultsnum'        => '$3 is the number of results on the page and $2 is the first number in the batch of results.',
-'showingresultstotal'      => 'Text above list of search results on special page of search results. 
+'search-interwiki-default'       => '* $1 is the hostname of the remote wiki from where the additional results listed below are returned',
+'search-relatedarticle'          => '{{Identical|Related}}',
+'searchrelated'                  => '{{Identical|Related}}',
+'searchall'                      => '{{Identical|All}}',
+'showingresults'                 => "This message is used on some special pages such as 'Wanted categories'. $1 is the total number of results in the batch shown and $2 is the number of the first item listed.",
+'showingresultsnum'              => '$3 is the number of results on the page and $2 is the first number in the batch of results.',
+'showingresultstotal'            => 'Text above list of search results on special page of search results. 
 * $1–$2 is the range of results shown on the page
 * $3 is the total number of results from the search
 * $4 is the number of results shown on the page (equal to the size of the $1–$2 interval)',
-'nonefound'                => 'This message appears on the search results page if no results are found.',
-'powersearch'              => 'Verb. Text of search button at the bottom of [[Special:Search]], for searching in selected namespaces.
+'nonefound'                      => 'This message appears on the search results page if no results are found.',
+'search-nonefound'               => 'Message shown when a search returned no results (when using the default MediaWiki search engine).',
+'powersearch'                    => 'Verb. Text of search button at the bottom of [[Special:Search]], for searching in selected namespaces.
 
 {{Identical|Advanced search}}',
-'powersearch-legend'       => 'Advanced search
+'powersearch-legend'             => 'Advanced search
 
 {{Identical|Advanced search}}',
-'powersearch-ns'           => 'Used in the extended search form at [[Special:Search]]',
-'powersearch-redir'        => 'Used in the extended search form at [[Special:Search]]',
-'powersearch-field'        => 'Used in the extended search form at [[Special:Search]]',
-'search-external'          => 'Legend of the fieldset for the input form when the internal search is disabled. Inside the fieldset [[MediaWiki:Searchdisabled]] and [[MediaWiki:Googlesearch]] is shown.',
-'searchdisabled'           => 'Shown on [[Special:Search]] when the internal search is disabled.',
+'powersearch-ns'                 => 'Used in the extended search form at [[Special:Search]]',
+'powersearch-redir'              => 'Used in the extended search form at [[Special:Search]]',
+'powersearch-field'              => 'Used in the extended search form at [[Special:Search]]',
+'search-external'                => 'Legend of the fieldset for the input form when the internal search is disabled. Inside the fieldset [[MediaWiki:Searchdisabled]] and [[MediaWiki:Googlesearch]] is shown.',
+'searchdisabled'                 => 'Shown on [[Special:Search]] when the internal search is disabled.',
 
 # Preferences page
 'preferences'           => '{{Identical|Preferences}}',

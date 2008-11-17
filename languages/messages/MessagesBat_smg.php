@@ -590,6 +590,7 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'prevn'                 => 'onkstesnius $1',
 'nextn'                 => 'paskesnius $1',
 'viewprevnext'          => 'Veizėtė ($1) ($2) ($3).',
+'searchhelp-url'        => 'Help:Torėnīs',
 'showingresults'        => "Žemiau ruodoma lėgė '''$1''' rezoltatu pradedant #'''$2'''.",
 'showingresultsnum'     => "Žemiau ruodoma '''$3''' {{PLURAL:$3|rezoltata|rezoltatu|rezoltatu}} pradedant #'''$2'''.",
 'powersearch'           => 'Ėiškuotė',

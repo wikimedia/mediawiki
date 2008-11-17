@@ -367,6 +367,7 @@ $messages = array(
 'prevn'             => 'chêng $1 hāng',
 'nextn'             => 'āu $1 hāng',
 'viewprevnext'      => 'Khoàⁿ ($1) ($2) ($3)',
+'searchhelp-url'    => 'Help:Bo̍k-lio̍k',
 'showingresults'    => 'Ē-kha tùi #<b>$2</b> khai-sí hián-sī <b>$1</b> hāng kiat-kó.',
 'showingresultsnum' => 'Ē-kha tùi #<b>$2</b> khai-sí hián-sī <b>$3</b> hāng kiat-kó.',
 'powersearch'       => 'Kiám-sek',

@@ -70,7 +70,8 @@ $messages = array(
 'editingsection' => 'Oomo/edar $1 (itubwang)',
 
 # Search results
-'powersearch' => 'Anani ko',
+'searchhelp-url' => 'Help:Oangan',
+'powersearch'    => 'Anani ko',
 
 # Preferences page
 'skin'              => 'Witsin',

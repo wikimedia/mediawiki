@@ -500,6 +500,7 @@ $messages = array(
 'prevn'                    => '$1 προηγουμένων',
 'nextn'                    => '$1 επομένων',
 'viewprevnext'             => 'Τέρεν ($1) ($2) ($3)',
+'searchhelp-url'           => 'Help:Περιεχόμενα',
 'search-suggest'           => 'Γιαμ αραεύετε: $1',
 'search-interwiki-caption' => 'Αδερφικά έργα',
 'search-interwiki-more'    => '(πλέα)',

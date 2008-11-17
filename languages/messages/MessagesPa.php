@@ -486,6 +486,7 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'prevn'                 => 'ਪਿੱਛੇ $1',
 'nextn'                 => 'ਅੱਗੇ $1',
 'viewprevnext'          => 'ਵੇਖੋ ($1) ($2) ($3)',
+'searchhelp-url'        => 'Help:ਸਮੱਗਰੀ',
 'searchall'             => 'ਸਭ',
 'powersearch'           => 'ਖੋਜ',
 

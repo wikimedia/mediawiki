@@ -601,6 +601,7 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'textmatches'        => 'Статьясенчи текст пĕрпеклĕхĕ',
 'prevn'              => 'малтанхи $1',
 'nextn'              => 'малалли $1',
+'searchhelp-url'     => 'Help:Пулăшу',
 'showingresults'     => 'Аяларах эсир <b>#$2</b> пуçласа кăтартнă <b>$1</b> йĕркене куратăр.',
 'powersearch'        => 'Анлă шырав',
 'powersearch-legend' => 'Анлă шырав',

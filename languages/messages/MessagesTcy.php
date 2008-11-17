@@ -388,12 +388,13 @@ $1',
 'editundo'                => 'ದುಂಬುದಲೆಕ',
 
 # Search results
-'noexactmatch' => "'''\"\$1\". ಅ೦ಚಿನ ವಾ ಪುಟಲಾ ಇಜ್ಜಿ. '''
+'noexactmatch'   => "'''\"\$1\". ಅ೦ಚಿನ ವಾ ಪುಟಲಾ ಇಜ್ಜಿ. '''
 ಈರ್ [[:\$1| ಐನ್ ಸುರು ಮಲ್ಪೊಲಿ]].",
-'prevn'        => 'ದುಂಬುದ $1',
-'nextn'        => 'ಬೊಕ್ಕದ $1',
-'viewprevnext' => 'ತೂಲೆ ($1) ($2) ($3)',
-'powersearch'  => 'ನಾಡ್’ಲೆ',
+'prevn'          => 'ದುಂಬುದ $1',
+'nextn'          => 'ಬೊಕ್ಕದ $1',
+'viewprevnext'   => 'ತೂಲೆ ($1) ($2) ($3)',
+'searchhelp-url' => 'Help:ಪರಿವಿಡಿ',
+'powersearch'    => 'ನಾಡ್’ಲೆ',
 
 # Preferences page
 'mypreferences' => 'ಎನ್ನ ಪ್ರಾಶಸ್ತ್ಯಲು',

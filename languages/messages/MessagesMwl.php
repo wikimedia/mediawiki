@@ -288,11 +288,12 @@ Legenda: (actu) = diferenças da versão actual,
 'editundo'                => 'desfazer',
 
 # Search results
-'noexactmatch' => "'''Num eisiste ua página com l títalo \"\$1\".''' Você puode [[:\$1|criar tal página]].",
-'prevn'        => 'anteriores $1',
-'nextn'        => 'próximos $1',
-'viewprevnext' => 'Ber ($1) ($2) ($3)',
-'powersearch'  => 'Pesquisa avançada',
+'noexactmatch'   => "'''Num eisiste ua página com l títalo \"\$1\".''' Você puode [[:\$1|criar tal página]].",
+'prevn'          => 'anteriores $1',
+'nextn'          => 'próximos $1',
+'viewprevnext'   => 'Ber ($1) ($2) ($3)',
+'searchhelp-url' => 'Help:Conteúdos',
+'powersearch'    => 'Pesquisa avançada',
 
 # Preferences page
 'preferences'   => 'Preferencies',

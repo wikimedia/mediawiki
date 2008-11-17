@@ -338,6 +338,7 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:UserLogin|logge s�
 'prevn'            => 'övtebe $1',
 'nextn'            => 'minngeben $1',
 'viewprevnext'     => 'Vuesehth ($1) ($2) ($3)',
+'searchhelp-url'   => 'Help:Sisvege',
 'powersearch'      => 'Ohtsedh',
 
 # Preferences page

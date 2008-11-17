@@ -954,6 +954,8 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 'prevn'                     => 'vörrige $1',
 'nextn'                     => 'volgende $1',
 'viewprevnext'              => '($1) ($2) ($3) bekieke.',
+'searchhelp-url'            => 'Help:Help',
+'searchprofile-articles'    => "Pazjena's",
 'search-result-size'        => '$1 ({{PLURAL:$2|1 waord|$2 wäörd}})',
 'search-result-score'       => 'Relevantie: $1%',
 'search-redirect'           => '(doorverwiezing $1)',

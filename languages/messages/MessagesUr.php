@@ -306,6 +306,7 @@ $messages = array(
 'prevn'                 => 'پچھلے $1',
 'nextn'                 => 'اگلے $1',
 'viewprevnext'          => 'دیکھیں($1) ($2) ($3)۔',
+'searchhelp-url'        => 'Help:فہرست',
 'powersearch'           => 'تلاش کریں',
 
 # Preferences page

@@ -734,7 +734,7 @@ $1',
 
 # Search results
 'searchresults'             => 'Ἀποτελέσματα ἀναζητήσεως',
-'searchresults-title'       => 'Ἀποτελέσματα ζητήσεως διὰ $1',
+'searchresults-title'       => 'Ἀποτελέσματα ζητήσεως διὰ "$1"',
 'searchresulttext'          => 'Διὰ πλείονας πύστεις ἐπὶ τοῦ ζητεῖν ἐν τῷ {{SITENAME}}, ἴδε [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitleinvalid'     => "Τὸ '''$1''' ἐζήτησας",
 'noexactmatch'              => "'''Οὐκ ἐστὶ δέλτος ὀνόματι \"\$1\".'''
@@ -748,6 +748,7 @@ $1',
 'prevn'                     => 'προτέραι $1',
 'nextn'                     => 'ἐπομέναι $1',
 'viewprevnext'              => 'Ἐπισκοπεῖν ($1) ($2) ($3)',
+'searchhelp-url'            => 'Help:Περιεχόμενα',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 λέξις|$2 λέξεις}})',
 'search-result-score'       => 'Σχετικότης: $1%',
 'search-redirect'           => '(ἀναδιευθύνειν $1)',

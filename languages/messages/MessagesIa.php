@@ -1005,7 +1005,7 @@ Nota que le uso del ligamines de navigation causara le perdita de tote cambios i
 
 # Search results
 'searchresults'             => 'Resultatos del recerca',
-'searchresults-title'       => 'Resultatos del recerca de $1',
+'searchresults-title'       => 'Resultatos del recerca de "$1"',
 'searchresulttext'          => 'Pro plus informationes super le recerca in {{SITENAME}}, vide [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'            => 'Tu cercava \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|tote le paginas que comencia con "$1"]] | [[Special:WhatLinksHere/$1|tote le paginas con ligamines a "$1"]])',
 'searchsubtitleinvalid'     => "Tu cercava '''$1'''",
@@ -1020,6 +1020,7 @@ Tu pote [[:\$1|crear iste pagina]].",
 'prevn'                     => '$1 {{PLURAL:$1|precedente|precedentes}}',
 'nextn'                     => '$1 {{PLURAL:$1|sequente|sequentes}}',
 'viewprevnext'              => 'Vider ($1) ($2) ($3).',
+'searchhelp-url'            => 'Help:Contento',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 parola|$2 parolas}})',
 'search-result-score'       => 'Relevantia: $1%',
 'search-redirect'           => '(redirection verso $1)',

@@ -288,12 +288,13 @@ $messages = array(
 'diff-multi'              => '({{PLURAL:$1|One intermediate revision|$1 درمیانی تبدیلی}} نئیں وکھائی گئی۔)',
 
 # Search results
-'noexactmatch' => "'''اس \"\$1\" ناں دا کوئی صفحہ نہیں۔'''
+'noexactmatch'   => "'''اس \"\$1\" ناں دا کوئی صفحہ نہیں۔'''
 تسی اے [[:\$1|صفحہ لکھ سکدے او]]۔",
-'prevn'        => 'پہلا $1',
-'nextn'        => 'اگلا $1',
-'viewprevnext' => 'ویکھو ($1) ($2) ($3)',
-'powersearch'  => 'ودیا کھوج',
+'prevn'          => 'پہلا $1',
+'nextn'          => 'اگلا $1',
+'viewprevnext'   => 'ویکھو ($1) ($2) ($3)',
+'searchhelp-url' => 'Help:فہرست',
+'powersearch'    => 'ودیا کھوج',
 
 # Preferences page
 'preferences'   => 'تانگاں',

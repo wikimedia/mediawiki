@@ -343,6 +343,7 @@ Zínhar, bu bitneñ wağraq kisäklärgä bülü turında uylap qara.",
 'prevn'          => 'uzğan $1',
 'nextn'          => 'kiläse $1',
 'viewprevnext'   => 'Körsetesi: ($1) ($2) ($3)',
+'searchhelp-url' => 'Help:Eçtälek',
 'powersearch'    => 'Ezläw',
 
 # Preferences page

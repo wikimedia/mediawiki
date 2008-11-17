@@ -212,6 +212,9 @@ $messages = array(
 
 'ok' => 'ОК',
 
+# Search results
+'searchhelp-url' => 'Help:Хьехар',
+
 # Preferences page
 'skin-preview' => 'Хьажа',
 

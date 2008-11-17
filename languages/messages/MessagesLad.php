@@ -243,7 +243,8 @@ $messages = array(
 'editundo' => 'deshazer',
 
 # Search results
-'powersearch' => 'Búsqueda adelantado',
+'searchhelp-url' => 'Help:Ayudo',
+'powersearch'    => 'Búsqueda adelantado',
 
 # Preferences page
 'preferences'   => 'Preferensias',

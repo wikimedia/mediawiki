@@ -13,4 +13,7 @@ $messages = array(
 'mainpage-description' => 'Makpibaaq Kanna',
 'portal-url'           => 'Project:qargi',
 
+# Search results
+'searchhelp-url' => 'Help:anniqsuiruq',
+
 );

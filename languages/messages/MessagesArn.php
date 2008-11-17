@@ -205,6 +205,7 @@ $messages = array(
 
 # Search results
 'viewprevnext'          => 'Pen ($1) ($2) ($3).',
+'searchhelp-url'        => 'Help:Kellu',
 'search-interwiki-more' => '(Doy)',
 'searchall'             => 'Fill',
 'powersearch'           => 'Kintun',

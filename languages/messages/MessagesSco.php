@@ -645,6 +645,7 @@ there micht be parteeculars in the [{{fullurl:Special:Log/delete|page={{FULLPAGE
 'notextmatches'         => 'Nae page text matches',
 'prevn'                 => 'foregaun $1',
 'nextn'                 => 'neist $1',
+'searchhelp-url'        => 'Help:Contents',
 'searchall'             => 'aw',
 'showingresults'        => "Shawin ablo up tae {{PLURAL:$1|'''1''' result|'''$1''' results}} stertin wi #'''$2'''.",
 'showingresultsnum'     => "Shawin ablo {{PLURAL:$3|'''1''' result|'''$3''' results}} stertin wi #'''$2'''.",

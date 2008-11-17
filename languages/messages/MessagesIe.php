@@ -206,7 +206,8 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'lineno' => 'Linea $1:',
 
 # Search results
-'viewprevnext' => 'Vider ($1) ($2) ($3)',
+'viewprevnext'   => 'Vider ($1) ($2) ($3)',
+'searchhelp-url' => 'Help:Auxilie',
 
 # Preferences page
 'preferences'    => 'Preferenties',

@@ -776,6 +776,7 @@ Ostali administratori na ovoj Vikipediji će i dalje imati mogućnost da vide sk
 'prevn'                 => 'prethodnih $1',
 'nextn'                 => 'sledećih $1',
 'viewprevnext'          => 'Pogledaj ($1) ($2) ($3).',
+'searchhelp-url'        => 'Help:Sadržaj',
 'showingresults'        => "Prikazujem ispod '''$1''' rezultata počev od #'''$2'''.",
 'showingresultsnum'     => "Prikazujem ispod '''$3''' rezultate počev od #'''$2'''.",
 'nonefound'             => "'''Napomena''': neuspešne pretrage su

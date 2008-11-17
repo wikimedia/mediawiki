@@ -516,6 +516,7 @@ Leggenda: (corr) = differense co-a verscion corrente, (prec) = differense co-a v
 'prevn'                 => 'Preçedenti $1',
 'nextn'                 => 'Proscima $1',
 'viewprevnext'          => 'Veddi ($1) ($2) ($3).',
+'searchhelp-url'        => 'Help:Contegnûi',
 'powersearch'           => 'Çerca',
 
 # Preferences page

@@ -863,7 +863,7 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 
 # Search results
 'searchresults'             => 'Bilaketaren emaitzak',
-'searchresults-title'       => '$1(e)rako emaitzak bilatu',
+'searchresults-title'       => '"$1"(e)rako emaitzak bilatu',
 'searchresulttext'          => '{{SITENAME}}(e)n bilaketak egiteko informazio gehiagorako, ikus [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'            => "'''[[:$1]]''' bilatu duzu",
 'searchsubtitleinvalid'     => "'''$1''' bilatu duzu",
@@ -876,6 +876,7 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 'prevn'                     => 'aurreko $1ak',
 'nextn'                     => 'hurrengo $1ak',
 'viewprevnext'              => 'Ikusi ($1) ($2) ($3).',
+'searchhelp-url'            => 'Help:Laguntza',
 'search-result-size'        => '$1 ({{PLURAL:$2|hitz bat|$2 hitz}})',
 'search-result-score'       => 'Garrantzia: %$1',
 'search-redirect'           => '($1 birzuzenketa)',

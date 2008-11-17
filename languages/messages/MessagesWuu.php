@@ -359,6 +359,7 @@ $messages = array(
 'prevn'                 => '上个 $1',
 'nextn'                 => '下个 $1',
 'viewprevnext'          => '查看 ($1) ($2) ($3)',
+'searchhelp-url'        => 'Help:目录',
 'powersearch'           => '搜寻',
 
 # Preferences page

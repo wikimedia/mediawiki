@@ -616,6 +616,7 @@ Informacion: (curt) = quiíxde vercion currentua,
 'prevn'                 => 'jan $1',
 'nextn'                 => 'hun $1',
 'viewprevnext'          => 'Cohuatlöx ($1) ($2) ($3)',
+'searchhelp-url'        => 'Help:Caálixötöj',
 'powersearch'           => 'Yahöx',
 
 # Preferences page

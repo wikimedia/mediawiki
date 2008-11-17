@@ -193,10 +193,11 @@ $messages = array(
 'page_last'    => 'kataposan',
 
 # Search results
-'prevn'        => 'naha-una nga $1',
-'nextn'        => 'sunod nga $1',
-'viewprevnext' => 'Kitaa an ($1) ($2) ($3)',
-'powersearch'  => 'Bilnga',
+'prevn'          => 'naha-una nga $1',
+'nextn'          => 'sunod nga $1',
+'viewprevnext'   => 'Kitaa an ($1) ($2) ($3)',
+'searchhelp-url' => 'Help:Sulod',
+'powersearch'    => 'Bilnga',
 
 # Preferences page
 'preferences'       => 'Mga karuyag',

@@ -157,8 +157,9 @@ ikhawundi lakho liyadalwa. musa ukukhohlwa ukuguqula amakhethelo a-{{SITENAME}} 
 'rev-delundel' => 'bukisa/fihla',
 
 # Search results
-'searchresults' => 'Umphumela wokusesha',
-'powersearch'   => 'Sesha',
+'searchresults'  => 'Umphumela wokusesha',
+'searchhelp-url' => 'Help:Isiqikili',
+'powersearch'    => 'Sesha',
 
 # Preferences page
 'preferences'       => 'Amakhethelo',

@@ -339,6 +339,7 @@ Iskuday in aad [[Special:Search|karaadiso wikigan]] beyjaj laxiira oo cusub.',
 'prevn'                 => 'Ka horeeya $1',
 'nextn'                 => 'Ku xiga $1',
 'viewprevnext'          => 'Fiiri ($1) ($2) ($3).',
+'searchhelp-url'        => 'Help:Caawinaad',
 'powersearch'           => 'Raadi',
 
 # Preferences page

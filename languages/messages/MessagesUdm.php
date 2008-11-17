@@ -73,6 +73,9 @@ $messages = array(
 'userlogout'    => 'Кошкыны',
 'createaccount' => 'выль вики-авторлэн регистрациез',
 
+# Search results
+'searchhelp-url' => 'Help:Валэктон',
+
 # Preferences page
 'preferences' => 'настройкаос',
 

@@ -244,6 +244,7 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 'prevn'                 => 'preçedeent $1',
 'nextn'                 => 'pròssim $1',
 'viewprevnext'          => 'Vidé ($1) ($2) ($3).',
+'searchhelp-url'        => 'Help:Contegnüü',
 'powersearch'           => 'Truvá',
 
 # Preferences page

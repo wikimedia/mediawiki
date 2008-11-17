@@ -534,6 +534,7 @@ Du chasch die [[:$1|Syte nöu schrybe]].",
 'prevn'                 => 'vorderi $1',
 'nextn'                 => 'nächschti $1',
 'viewprevnext'          => '($1) ($2) aazeige; ($3) uf ds Mal',
+'searchhelp-url'        => 'Help:Hilf',
 'powersearch'           => 'Erwytereti Suechi',
 'searchdisabled'        => '<p>Die Volltextsuche wurde wegen Überlastung temporär deaktiviert. Derweil können Sie entweder folgende Google- oder Yahoo-Suche verwenden, die allerdings nicht den aktuellen Stand widerspiegeln.</p>',
 

@@ -1032,6 +1032,7 @@ Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't w
 'prevn'                     => 'veurige $1',
 'nextn'                     => 'volgende $1',
 'viewprevnext'              => '($1) ($2) ($3)',
+'searchhelp-url'            => 'Help:Inhold',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 woord|$2 woorden}})',
 'search-result-score'       => 'Relevantie: $1%',
 'search-redirect'           => '(deurverwiezing $1)',

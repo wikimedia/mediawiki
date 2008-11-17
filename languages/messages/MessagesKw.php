@@ -80,6 +80,9 @@ $messages = array(
 'userlogin'  => 'Entra / kreatya akont',
 'userlogout' => 'Omdenna',
 
+# Search results
+'searchhelp-url' => 'Help:Gweres',
+
 # Preferences page
 'preferences'   => 'Teythi ow akont',
 'mypreferences' => 'Teythi ow akont',

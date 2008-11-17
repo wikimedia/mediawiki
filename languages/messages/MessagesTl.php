@@ -394,6 +394,9 @@ Nilikha na ang iyong kuwenta. Huwag kalimutang baguhin ang iyong mga kagustuhan 
 'template-protected'     => '(nakasanggalang)',
 'template-semiprotected' => '(bahagyang nakasanggalang)',
 
+# Search results
+'searchhelp-url' => 'Help:Nilalaman',
+
 # Preferences page
 'preferences'   => 'Mga kagustuhan',
 'mypreferences' => 'Aking mga kagustuhan',

@@ -773,6 +773,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'prevn'                     => 'седе икелень $1',
 'nextn'                     => 'сы $1',
 'viewprevnext'              => 'Ванномс ($1) ($2) ($3)',
+'searchhelp-url'            => 'Help:Лопась мезе кирди',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 вал|$2 валт}})',
 'search-redirect'           => '(йутавтт $1-с)',
 'search-section'            => '(пелькс $1)',

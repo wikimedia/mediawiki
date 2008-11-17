@@ -455,6 +455,7 @@ $messages = array(
 'prevn'            => '$1 ກ່ອນໜ້າ',
 'nextn'            => '$1 ຕໍ່ໄປ',
 'viewprevnext'     => 'ເບິ່ງ ($1) ($2) ($3).',
+'searchhelp-url'   => 'Help:ເນື້ອໃນ',
 'powersearch'      => 'ຊອກຫາ',
 
 # Preferences page

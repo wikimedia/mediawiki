@@ -353,13 +353,14 @@ $messages = array(
 'diff-multi'              => '({{PLURAL:$1|વચગાળાનું એક પુનરાવર્તન|વચગાળાનાં $1 પુનરાવર્તનો}} દર્શાવેલ નથી.)',
 
 # Search results
-'searchresults' => 'પરિણામોમાં શોધો',
-'noexactmatch'  => "'''\"\$1\" શિર્ષક વાળું કોઇ પાનું નથી.'''
+'searchresults'  => 'પરિણામોમાં શોધો',
+'noexactmatch'   => "'''\"\$1\" શિર્ષક વાળું કોઇ પાનું નથી.'''
 <br />તમે [[:\$1|આ પાનું બનાવી શકો છો]].",
-'prevn'         => 'પાછળનાં $1',
-'nextn'         => 'આગળનાં $1',
-'viewprevnext'  => 'જુઓ: ($1) ($2) ($3)',
-'powersearch'   => 'શોધો (વધુ પર્યાય સાથે)',
+'prevn'          => 'પાછળનાં $1',
+'nextn'          => 'આગળનાં $1',
+'viewprevnext'   => 'જુઓ: ($1) ($2) ($3)',
+'searchhelp-url' => 'Help:સૂચિ',
+'powersearch'    => 'શોધો (વધુ પર્યાય સાથે)',
 
 # Preferences page
 'preferences'       => 'પસંદ',

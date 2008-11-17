@@ -908,7 +908,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 
 # Search results
 'searchresults'            => '검색 결과',
-'searchresults-title'      => '$1에 대한 검색 결과',
+'searchresults-title'      => '"$1"에 대한 검색 결과',
 'searchresulttext'         => '{{SITENAME}}의 찾기 기능에 대한 자세한 정보는 [[{{MediaWiki:Helppage}}|{{int:help}}]] 문서를 참고해주세요.',
 'searchsubtitle'           => "'''[[:$1]]''' 문서를 검색하고 있습니다. ([[Special:Prefixindex/$1|이름이 ‘$1’(으)로 시작하는 문서 목록]] | [[Special:WhatLinksHere/$1|‘$1’ 문서를 가리키는 문서 목록]])",
 'searchsubtitleinvalid'    => "검색 단어 '''$1'''",
@@ -921,6 +921,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'prevn'                    => '이전 $1개',
 'nextn'                    => '다음 $1개',
 'viewprevnext'             => '보기: ($1) ($2) ($3).',
+'searchhelp-url'           => 'Help:목차',
 'search-result-size'       => '$1 ($2개 단어)',
 'search-result-score'      => '유사도: $1%',
 'search-interwiki-caption' => '자매 프로젝트',

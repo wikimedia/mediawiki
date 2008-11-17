@@ -789,6 +789,7 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di ca
 'prevn'                 => 'prizzidenti $1',
 'nextn'                 => 'sighenti $1',
 'viewprevnext'          => 'Vèdi ($1) ($2) ($3).',
+'searchhelp-url'        => 'Help:Indizi',
 'searchrelated'         => 'curriraddi',
 'searchall'             => 'tutti',
 'showingresults'        => "Accó {{PLURAL:$1|màssimu '''1''' risulthaddu|màssimu li '''$1''' risulthaddi}} à partì da lu nùmaru #'''$2'''.",
