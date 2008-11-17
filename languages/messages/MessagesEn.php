@@ -2803,6 +2803,8 @@ A temporary folder is missing.',
 'import-nonewrevisions'      => 'All revisions were previously imported.',
 'xml-error-string'           => '$1 at line $2, col $3 (byte $4): $5',
 'import-upload'              => 'Upload XML data',
+'import-token-mismatch'      => 'Loss of session data. Please try again.',
+'import-invalid-interwiki'   => 'Cannot import from the specified wiki.',
 
 # Import log
 'importlogpage'                    => 'Import log',
