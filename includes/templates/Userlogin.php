@@ -25,7 +25,7 @@ class UserloginTemplate extends QuickTemplate {
 
 <div id="loginstart"><?php $this->msgWiki( 'loginstart' ); ?></div>
 <div id="userloginForm">
-<form name="userlogin" method="post" action="<?php $this->text('action') ?>">
+<form name="userlogin" method="post" action="<?php $this->text('action') ?>" <?PHP if( !$this->data['autocomplete'] ) echo 'autocomplete="off"'; ?>>
 	<h2><?php $this->msg('login') ?></h2>
 	<p id="userloginlink"><?php $this->html('link') ?></p>
 	<?php $this->html('header'); /* pre-table point for form plugins... */ ?>

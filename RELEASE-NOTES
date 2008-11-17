@@ -63,6 +63,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Image namespace and accompanying talk namespace renamed to File. For backward
   compatibility purposes, Image still works. External tools may need to be
   updated.
+* Added $wgLoginAutocomplete to let wiki owner disable password autocompletion
+  in Special:Userlogin by setting it to false. Defaults to true.
 
 === Migrated extensions ===
 The following extensions are migrated into MediaWiki 1.14:
