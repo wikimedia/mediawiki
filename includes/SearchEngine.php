@@ -43,6 +43,11 @@ class SearchEngine {
 		return null;
 	}
 	
+	/** If this search backend can list/unlist redirects */
+	function acceptListRedirects() {
+		return true;
+	}
+	
 	/**
 	 * If an exact title match can be find, or a very slightly close match,
 	 * return the title. If no match, returns NULL.
@@ -262,7 +267,51 @@ class SearchEngine {
 		
 		return array_keys($wgNamespacesToBeSearchedDefault, true);
 	}
-
+	
+	/**
+	 * Get a list of namespace names useful for showing in tooltips
+	 * and preferences
+	 *
+	 * @param unknown_type $namespaces
+	 */
+	public static function namespacesAsText( $namespaces ){
+		global $wgContLang;
+		
+		$formatted = array_map( array($wgContLang,'getFormattedNsText'), $namespaces );
+		foreach( $formatted as $key => $ns ){
+			if ( empty($ns) )
+				$formatted[$key] = wfMsg( 'blanknamespace' );
+		}
+		return $formatted;
+	}
+	
+	/**
+	 * An array of "project" namespaces indexes typically searched
+	 * by logged-in users
+	 * 
+	 * @return array 
+	 * @static
+	 */
+	public static function projectNamespaces() {
+		global $wgNamespacesToBeSearchedDefault, $wgNamespacesToBeSearchedProject;
+		
+		return array_keys( $wgNamespacesToBeSearchedProject, true );
+	}
+	
+	/**
+	 * An array of "project" namespaces indexes typically searched
+	 * by logged-in users in addition to the default namespaces
+	 * 
+	 * @return array 
+	 * @static
+	 */
+	public static function defaultAndProjectNamespaces() {
+		global $wgNamespacesToBeSearchedDefault, $wgNamespacesToBeSearchedProject;
+		
+		return array_keys( $wgNamespacesToBeSearchedDefault + 
+			$wgNamespacesToBeSearchedProject, true);
+	}
+	
 	/**
 	 * Return a 'cleaned up' search string
 	 *
@@ -485,11 +534,11 @@ class SearchResult {
 	var $mRevision = null;
 	var $mImage = null;
 
-	function SearchResult( $row ) {
+	function __construct( $row ) {
 		$this->mTitle = Title::makeTitle( $row->page_namespace, $row->page_title );
 		if( !is_null($this->mTitle) ){
 			$this->mRevision = Revision::newFromTitle( $this->mTitle );
-			if($this->mTitle->getNamespace() == NS_IMAGE)
+			if( $this->mTitle->getNamespace() === NS_IMAGE )
 				$this->mImage = wfFindFile( $this->mTitle );
 		}
 	}
