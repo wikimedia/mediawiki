@@ -2413,6 +2413,8 @@ $1 כבר נחסם. האם ברצונכם לשנות את הגדרות החסי�
 'import-nonewrevisions'      => 'כל הגרסאות יובאו בעבר.',
 'xml-error-string'           => '$1 בשורה $2, עמודה $3 (בייט מספר $4): $5',
 'import-upload'              => 'העלאת קובץ XML',
+'import-token-mismatch'      => 'מידע הכניסה אבד. אנא נסו שנית.',
+'import-invalid-interwiki'   => 'לא ניתן לייבא מאתר הוויקי שציינתם.',
 
 # Import log
 'importlogpage'                    => 'יומן ייבוא',
