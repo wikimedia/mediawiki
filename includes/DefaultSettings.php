@@ -484,6 +484,12 @@ $wgEmergencyContact = 'wikiadmin@' . $wgServerName;
 $wgPasswordSender	= 'MediaWiki Mail <apache@' . $wgServerName . '>';
 
 /**
+ * Determines if password autocompletion should be enabled in Special:Userlogin
+ * Defaults to true. If false, autocomplete="off" will be injected in the form tag.
+ */
+$wgLoginAutocomplete = true;
+
+/**
  * dummy address which should be accepted during mail send action
  * It might be necessay to adapt the address or to set it equal
  * to the $wgEmergencyContact address
