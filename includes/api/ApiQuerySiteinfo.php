@@ -194,7 +194,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$this->addWhere( 'iw_local = 1' );
 		elseif( $filter === '!local' )
 			$this->addWhere( 'iw_local = 0' );
-		elseif( $filter !== false )
+		elseif( $filter )
 			ApiBase :: dieDebug( __METHOD__, "Unknown filter=$filter" );
 
 		$this->addOption( 'ORDER BY', 'iw_prefix' );
