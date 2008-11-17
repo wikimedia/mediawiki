@@ -352,6 +352,8 @@ The following extensions are migrated into MediaWiki 1.14:
 * Add a .htaccess to deleted images directory for additional protection
   against exposure of deleted files with known SHA-1 hashes on default
   installations.
+* Improved scripting safety heuristics for IE 5/6 content-type detection.
+* Improved scripting safety heuristics on SVG uploads.
 
 === API changes in 1.14 ===
 

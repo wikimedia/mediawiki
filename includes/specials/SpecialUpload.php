@@ -1341,6 +1341,11 @@ wgUploadAutoFill = {$autofill};
 		if( $this->detectScript ( $tmpfile, $mime, $extension ) ) {
 			return new WikiErrorMsg( 'uploadscripted' );
 		}
+		if( $extension == 'svg' || $mime == 'image/svg+xml' ) {
+			if( $this->detectScriptInSvg( $tmpfile ) ) {
+				return new WikiErrorMsg( 'uploadscripted' );
+			}
+		}
 
 		/**
 		* Scan the uploaded file for viruses
@@ -1452,6 +1457,7 @@ wgUploadAutoFill = {$autofill};
 		*/
 
 		$tags = array(
+			'<a href',
 			'<body',
 			'<head',
 			'<html',   #also in safari
@@ -1490,6 +1496,41 @@ wgUploadAutoFill = {$autofill};
 		return false;
 	}
 
+	function detectScriptInSvg( $filename ) {
+		$check = new XmlTypeCheck( $filename, array( $this, 'checkSvgScriptCallback' ) );
+		return $check->filterMatch;
+	}
+	
+	/**
+	 * @todo Replace this with a whitelist filter!
+	 */
+	function checkSvgScriptCallback( $element, $attribs ) {
+		$stripped = $this->stripXmlNamespace( $element );
+		
+		if( $stripped == 'script' ) {
+			wfDebug( __METHOD__ . ": Found script element '$element' in uploaded file.\n" );
+			return true;
+		}
+		
+		foreach( $attribs as $attrib => $value ) {
+			$stripped = $this->stripXmlNamespace( $attrib );
+			if( substr( $stripped, 0, 2 ) == 'on' ) {
+				wfDebug( __METHOD__ . ": Found script attribute '$attrib'='value' in uploaded file.\n" );
+				return true;
+			}
+			if( $stripped == 'href' && strpos( strtolower( $value ), 'javascript:' ) !== false ) {
+				wfDebug( __METHOD__ . ": Found script href attribute '$attrib'='$value' in uploaded file.\n" );
+				return true;
+			}
+		}
+	}
+	
+	private function stripXmlNamespace( $name ) {
+		// 'http://www.w3.org/2000/svg:script' -> 'script'
+		$parts = explode( ':', strtolower( $name ) );
+		return array_pop( $parts );
+	}
+	
 	/**
 	 * Generic wrapper function for a virus scanner program.
 	 * This relies on the $wgAntivirus and $wgAntivirusSetup variables.
