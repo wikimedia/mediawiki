@@ -994,7 +994,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'viewprevnext'                     => 'Vedi ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Opzioni di ricerca',
 'searchmenu-exists'                => "* Pagina '''[[$1]]'''",
-'searchmenu-new'                   => "'''[[:\$1|Crea]] la pagina \"[[\$1]]\" su questa wiki!'''",
+'searchmenu-new'                   => "'''[[:$1|Crea]] la pagina ''[[$1]]'' su questa wiki!'''",
 'searchhelp-url'                   => 'Help:Indice',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Visualizza le pagine con questo prefisso]]',
 'searchprofile-articles'           => 'Pagine',

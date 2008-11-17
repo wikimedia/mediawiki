@@ -5,6 +5,7 @@
  * @file
  *
  * @author Avjoska
+ * @author Hendrix
  * @author Jaan513
  * @author Võrok
  * @author WikedKentaur
@@ -119,6 +120,7 @@ $messages = array(
 'tog-enotifwatchlistpages'    => 'Teata meili teel, kui minu jälgitavat artiklit muudetakse',
 'tog-enotifusertalkpages'     => 'Teata meili teel, kui minu arutelu lehte muudetakse',
 'tog-enotifminoredits'        => 'Teata meili teel ka pisiparandustest',
+'tog-enotifrevealaddr'        => 'Näita minu e-posti aadressi teatavakstegemiste e-kirjades.',
 'tog-shownumberswatching'     => 'Näita jälgivate kasutajate hulka',
 'tog-fancysig'                => 'Kasuta lihtsaid allkirju (ilma linkideta kasutajalehele)',
 'tog-externaleditor'          => 'Kasuta vaikimisi välist redaktorit',
@@ -204,7 +206,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|Järgmine fail|Järgmised $1 faili}} on selles kategoorias.',
 'listingcontinuesabbrev'         => 'jätk',
 
-'mainpagetext'      => "<big>'''Wiki tarkvara installeeritud.'''</big>",
+'mainpagetext'      => "<big>'''MediaWiki tarkvara on edukalt paigaldatud.'''</big>",
 'mainpagedocfooter' => 'Juhiste saamiseks kasutamise ning konfigureerimise kohta vaata palun inglisekeelset [http://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentatsiooni liidese kohaldamisest]
 ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].',
 
@@ -300,7 +302,7 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].'
 'helppage'             => 'Help:Juhend',
 'mainpage'             => 'Esileht',
 'mainpage-description' => 'Esileht',
-'policy-url'           => 'Project:policy',
+'policy-url'           => 'Project:Reeglid',
 'portal'               => 'Kogukonnavärav',
 'portal-url'           => 'Project:Kogukonnavärav',
 'privacy'              => 'Privaatsus',
@@ -359,20 +361,21 @@ Vaata [[Special:Version|versiooni lehekülge]].',
 # General errors
 'error'                => 'Viga',
 'databaseerror'        => 'Andmebaasi viga',
-'dberrortext'          => 'Andmebaasipäringus oli süntaksiviga.
+'dberrortext'          => 'Andmebaasipäringus oli õigekirjaviga.
 Otsingupäring oli ebakorrektne või on tarkvaras viga.
 Viimane andmebaasipäring oli:
 <blockquote><tt>$1</tt></blockquote>
 ja see kutsuti funktsioonist "<tt>$2</tt>".
-MySQL andis vea "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Andmebaasipäringus oli süntaksiviga.
+MySQL tagastas veateate "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'Andmebaasipäringus oli õigekirjaviga.
 Viimane andmebaasipäring oli:
 "$1"
 ja see kutsuti funktsioonist "$2".
-MySQL andis vea "$3: $4".',
+MySQL tagastas veateate "$3: $4".',
 'noconnect'            => 'Vabandame! Vikil on tehnilisi probleeme ning ei saa andmebaasiserveriga $1 ühendust.',
 'nodb'                 => 'Andmebaasi $1 ei õnnestunud kätte saada',
 'cachederror'          => 'Järgnev tekst pärineb serveri vahemälust ega pruugi olla lehekülje viimane versioon.',
+'laggedslavemode'      => 'Hoiatus: Leheküljel võivad puududa viimased uuendused.',
 'readonly'             => 'Andmebaas on hetkel kirjutuskaitse all',
 'enterlockreason'      => 'Sisesta lukustamise põhjus ning juurdepääsu taastamise ligikaudne aeg',
 'readonlytext'         => 'Andmebaas on praegu kirjutuskaitse all, tõenäoliselt andmebaasi rutiinseks hoolduseks, mille lõppedes normaalne olukord taastub.
@@ -383,6 +386,7 @@ Administraator, kes selle kaitse alla võttis, andis järgmise selgituse:
 'filecopyerror'        => 'Ei saanud faili "$1" kopeerida nimega "$2".',
 'filerenameerror'      => 'Ei saanud faili "$1" failiks "$2" ümber nimetada.',
 'filedeleteerror'      => 'Faili nimega "$1" ei ole võimalik kustutada.',
+'directorycreateerror' => 'Ei suuda luua kausta "$1".',
 'filenotfound'         => 'Faili nimega "$1" ei leitud.',
 'unexpected'           => 'Ootamatu väärtus: "$1"="$2".',
 'formerror'            => 'Viga: vormi ei saanud salvestada',
@@ -618,27 +622,28 @@ Tundub, et see on kustutatud.',
 'undo-summary' => 'Tühistati muudatus $1, mille tegi [[Special:Contributions/$2|$2]] ([[User talk:$2|arutelu]])',
 
 # History pages
-'viewpagelogs'        => 'Vaata selle lehe logisid',
-'nohistory'           => 'Sellel leheküljel ei ole eelmisi redaktsioone.',
-'currentrev'          => 'Viimane redaktsioon',
-'currentrev-asof'     => 'Viimane redaktsioon ($1)',
-'revisionasof'        => 'Redaktsioon: $1',
-'previousrevision'    => '←Vanem redaktsioon',
-'nextrevision'        => 'Uuem redaktsioon→',
-'currentrevisionlink' => 'vaata viimast redaktsiooni',
-'cur'                 => 'viim',
-'next'                => 'järg',
-'last'                => 'eel',
-'page_first'          => 'esimene',
-'page_last'           => 'viimane',
-'histlegend'          => 'Märgi versioonid, mida tahad võrrelda ja vajuta võrdlemisnupule.
+'viewpagelogs'           => 'Vaata selle lehe logisid',
+'nohistory'              => 'Sellel leheküljel ei ole eelmisi redaktsioone.',
+'currentrev'             => 'Viimane redaktsioon',
+'currentrev-asof'        => 'Viimane redaktsioon ($1)',
+'revisionasof'           => 'Redaktsioon: $1',
+'previousrevision'       => '←Vanem redaktsioon',
+'nextrevision'           => 'Uuem redaktsioon→',
+'currentrevisionlink'    => 'vaata viimast redaktsiooni',
+'cur'                    => 'viim',
+'next'                   => 'järg',
+'last'                   => 'eel',
+'page_first'             => 'esimene',
+'page_last'              => 'viimane',
+'histlegend'             => 'Märgi versioonid, mida tahad võrrelda ja vajuta võrdlemisnupule.
 Legend: (viim) = erinevused võrreldes viimase redaktsiooniga,
 (eel) = erinevused võrreldes eelmise redaktsiooniga, P = pisimuudatus',
-'deletedrev'          => '[kustutatud]',
-'histfirst'           => 'Esimesed',
-'histlast'            => 'Viimased',
-'historysize'         => '({{PLURAL:$1|1 bait|$1 baiti}})',
-'historyempty'        => '(tühi)',
+'history-fieldset-title' => 'Lehitse ajalugu.',
+'deletedrev'             => '[kustutatud]',
+'histfirst'              => 'Esimesed',
+'histlast'               => 'Viimased',
+'historysize'            => '({{PLURAL:$1|1 bait|$1 baiti}})',
+'historyempty'           => '(tühi)',
 
 # Revision deletion
 'rev-delundel'      => 'näita/peida',
@@ -784,7 +789,9 @@ sisse logida.',
 'newsectionsummary'                 => '/* $1 */ uus alajaotus',
 
 # Recent changes linked
-'recentchangeslinked' => 'Seotud muudatused',
+'recentchangeslinked'          => 'Seotud muudatused',
+'recentchangeslinked-title'    => 'Muudatused, mis on seotud "$1"-ga.',
+'recentchangeslinked-noresult' => 'Antud ajavahemiku jooksul ei ole lingitud lehekülgedel muudatusi tehtud.',
 
 # Upload
 'upload'               => 'Faili üleslaadimine',
@@ -840,6 +847,9 @@ võidakse sinu ligipääs sulgeda.',
 'filetype-banned-type' => "'''\".\$1\"''' ei ole lubatud failitüüp.  Lubatud failitüübid on \$2.",
 'large-file'           => 'On soovitatav, et üleslaetavad failid ei oleks suuremad kui $1; selle faili suurus on $2.',
 'largefileserver'      => 'Antud fail on suurem serverikonfiguratsiooni poolt lubatavast failisuurusest.',
+'emptyfile'            => 'Fail, mille Te üles laadisite, paistab olevat tühi.
+See võib olla tingitud vigasest failinimest.
+Palun kaalutlege, kas Te tõesti soovite seda faili üles laadida.',
 'fileexists'           => 'Sellise nimega fail on juba olemas. Palun kontrollige <strong><tt>$1</tt></strong>, kui te ei ole kindel, kas tahate seda muuta.',
 'fileexists-forbidden' => 'Sellise nimega fail on juba olemas, palun pöörduge tagasi ja laadige fail üles mõne teise nime all. [[Image:$1|thumb|center|$1]]',
 'successfulupload'     => 'Üleslaadimine õnnestus',
@@ -866,6 +876,7 @@ võidakse sinu ligipääs sulgeda.',
 
 # Image description page
 'filehist'                  => 'Faili ajalugu',
+'filehist-help'             => 'Klõpsa Kuupäev/kellaaeg, et näha faili sel ajahetkel.',
 'filehist-deleteall'        => 'kustuta kõik',
 'filehist-deleteone'        => 'kustuta see',
 'filehist-current'          => 'viimane',
@@ -999,6 +1010,7 @@ võidakse sinu ligipääs sulgeda.',
 'allpages'          => 'Kõik artiklid',
 'alphaindexline'    => '$1 kuni $2',
 'nextpage'          => 'Järgmine lehekülg ($1)',
+'prevpage'          => 'Eelmine lehekülg ($1)',
 'allpagesfrom'      => 'Näita alates:',
 'allarticles'       => 'Kõik artiklid',
 'allinnamespace'    => 'Kõik artiklid ($1 nimeruum)',
@@ -1180,9 +1192,11 @@ versioonid varasema ajaloona. Kehtivat versiooni automaatselt välja ei vahetata
 'month'         => 'Alates kuust (ja varasemad):',
 'year'          => 'Alates aastast (ja varasemad):',
 
-'sp-contributions-blocklog' => 'Blokeerimise logi',
-'sp-contributions-search'   => 'Otsi kaastöid',
-'sp-contributions-username' => 'IP aadress või kasutajanimi:',
+'sp-contributions-newbies'     => 'Näita ainult uute kasutajate kaastööd.',
+'sp-contributions-newbies-sub' => 'Uued kasutajad',
+'sp-contributions-blocklog'    => 'Blokeerimise logi',
+'sp-contributions-search'      => 'Otsi kaastöid',
+'sp-contributions-username'    => 'IP aadress või kasutajanimi:',
 
 # What links here
 'whatlinkshere'            => 'Lingid siia',

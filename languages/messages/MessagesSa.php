@@ -5,6 +5,7 @@
  * @file
  *
  * @author Kaustubh
+ * @author Mahitgar
  */
 
 $fallback = 'hi';
@@ -85,12 +86,23 @@ $messages = array(
 
 'and' => 'एवम्',
 
-'help' => 'सहायता',
+'help'             => 'सहायता',
+'search'           => 'शोध',
+'printableversion' => 'मुद्रणस्य पाठ',
+'talkpagelinktext' => 'संवाद',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'aboutsite'            => '{{SITENAME}}विषये',
+'disclaimers'          => 'स्वाम्यत्यागं',
 'edithelp'             => 'संपादनार्थं सहायता',
 'mainpage'             => 'मुखपृष्ठं',
 'mainpage-description' => 'मुखपृष्ठं',
+'privacy'              => 'गोपनीयविषये नीति',
+
+'editsection' => 'संपादयति',
+
+# Search results
+'powersearch' => 'परिणत शोध',
 
 # Miscellaneous special pages
 'ancientpages' => 'प्राचीनतम् पृष्ठा',
@@ -114,6 +126,9 @@ $messages = array(
 # Namespace 8 related
 'allmessages'     => 'व्यवस्था सन्देशानि',
 'allmessagesname' => 'नाम',
+
+# Tooltip help for the actions
+'tooltip-n-mainpage' => 'मुखपृष्ठ अभ्यागम',
 
 # Auto-summaries
 'autosumm-new' => 'नवीन पृष्ठं: $1',

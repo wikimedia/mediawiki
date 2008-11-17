@@ -1067,7 +1067,7 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 'viewprevnext'                     => 'Voir ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Options de recherche',
 'searchmenu-exists'                => "*Page '''[[$1]]'''",
-'searchmenu-new'                   => "'''[[:$1|Crée]] la page « [[$1]] » sur ce wiki !'''",
+'searchmenu-new'                   => "'''[[:$1|Créer]] la page ''[[$1]]'' sur ce wiki !'''",
 'searchhelp-url'                   => 'Help:Accueil',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Rechercher les pages avec ce préfixe]]',
 'searchprofile-articles'           => 'Pages',
@@ -2295,6 +2295,8 @@ Toutes les actions d’importation interwiki sont consignées dans l’[[Special
 'import-nonewrevisions'      => 'Toute les révisions ont été importées auparavant.',
 'xml-error-string'           => '$1 à la ligne $2, col $3 (octet $4) : $5',
 'import-upload'              => 'Import de données XML',
+'import-token-mismatch'      => 'Perte des données de session. Ressayez.',
+'import-invalid-interwiki'   => "Impossible d'importer depuis le wiki spécifié.",
 
 # Import log
 'importlogpage'                    => 'Historique des importations de pages',

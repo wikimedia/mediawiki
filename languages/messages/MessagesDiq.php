@@ -224,14 +224,15 @@ href="" class="internal"}?{/a}) bımocne.',
 'youhavenewmessagesmulti' => 'To rê $1 de mesajê newey estê',
 'editsection'             => 'bıvurne',
 'editold'                 => 'bıvurne',
+'editsectionhint'         => 'Qısımê vurnayışi: $1',
 'toc'                     => 'Tedeestey',
 'showtoc'                 => 'bımocne',
 'hidetoc'                 => 'bınımne',
 'thisisdeleted'           => 'Bıvêne ya ki restore ke $1?',
 'viewdeleted'             => '$1 bıvêne?',
 'restorelink'             => '{{PLURAL:$1|yew vurnayışo esterıte (pakbiyae)|$1 vurnayışê esterıtey (pakbiyaey)}}',
-'feedlinks'               => 'Weyikerdış (feed):',
-'feed-invalid'            => 'Invalid subscription feed type (Beğşo nêvêrde).',
+'feedlinks'               => 'Weyikerdış:',
+'feed-invalid'            => 'Tipê weyikerdışê beğşê nêvêrdey.',
 'red-link-title'          => '$1 (heta nıka nênusiyao)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -419,8 +420,13 @@ It must have at least $1 characters and be different from your username.',
 'whatlinkshere' => 'Gırey be pele',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage' => 'Pela mına karberi',
-'tooltip-pt-mytalk'   => 'Pela mına werênayışi',
+'tooltip-pt-userpage'     => 'Pela mına karberi',
+'tooltip-pt-mytalk'       => 'Pela mına werênayışi',
+'tooltip-n-mainpage'      => 'Pela Seri bıvêne',
+'tooltip-n-portal'        => 'Heqa projey de, tı çı eşkenay bıkerê, koti çiy vêniyenê',
+'tooltip-n-currentevents' => 'Vurnayışanê peyênan de melumatê pey bıvêne',
+'tooltip-n-recentchanges' => 'Wiki de lista vurnayışanê peyênan.',
+'tooltip-n-randompage'    => 'Kamci pele ke raşt amey bar ke',
 
 # Attribution
 'lastmodifiedatby' => 'Ena pele tewr peyên roca $2, $1 by $3. de biya rocaniye', # $1 date, $2 time, $3 user

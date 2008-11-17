@@ -293,13 +293,13 @@ Tasarut: (cur) = imṣebḍiyen ag tunɣilt n ruxa,
 'diff-multi'              => '({{PLURAL:$1|ijj n ufegged|$1 ifeggiden}} war ad twamlen ca.)',
 
 # Search results
-'noexactmatch'   => "'''war telli ca n Tasna qarn-as \"\$1\".'''
+'noexactmatch' => "'''war telli ca n Tasna qarn-as \"\$1\".'''
 tzemred ad [[:\$1|tarnid cek]].",
-'prevn'          => 'zzat $1',
-'nextn'          => 'deffar $1',
-'viewprevnext'   => 'Ẓar ($1) ($2) ($3)',
-'searchall'      => 'maṛṛa',
-'powersearch'    => 'Tarezzut cwa-cway',
+'prevn'        => 'zzat $1',
+'nextn'        => 'deffar $1',
+'viewprevnext' => 'Ẓar ($1) ($2) ($3)',
+'searchall'    => 'maṛṛa',
+'powersearch'  => 'Tarezzut cwa-cway',
 
 # Preferences page
 'preferences'       => 'Isemyifiyen',

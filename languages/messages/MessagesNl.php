@@ -2480,6 +2480,8 @@ De tijdelijke map is niet aanwezig.',
 'import-nonewrevisions'      => 'Alle versies zijn al eerder geïmporteerd.',
 'xml-error-string'           => '$1 op regel $2, kolom $3 (byte $4): $5',
 'import-upload'              => 'XML-gegevens uploaden',
+'import-token-mismatch'      => 'De sessiegegevens zijn verloren gegaan. Probeer het opnieuw.',
+'import-invalid-interwiki'   => 'Het is niet mogelijk van de aangegeven wiki te importeren.',
 
 # Import log
 'importlogpage'                    => 'Importlogboek',

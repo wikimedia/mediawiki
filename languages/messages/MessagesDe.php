@@ -1139,7 +1139,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen
 'viewprevnext'                     => 'Zeige ($1) ($2) ($3)',
 'searchmenu-legend'                => 'Suchoptionen',
 'searchmenu-exists'                => "* Seite '''[[$1]]'''",
-'searchmenu-new'                   => "'''[[:$1|Erstelle]] die Seite „[[$1]]“ in diesem Wiki!'''",
+'searchmenu-new'                   => "'''[[:$1|Erstelle]] die Seite ''$1'' in diesem Wiki!'''",
 'searchhelp-url'                   => 'Help:Hilfe',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Zeige alle Seiten, die mit dem Suchbegriff anfangen]]',
 'searchprofile-articles'           => 'Seiten',
@@ -2374,6 +2374,8 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'import-nonewrevisions'      => 'Es sind keine neuen Versionen zum Import vorhanden, alle Versionen wurden bereits früher importiert.',
 'xml-error-string'           => '$1 Zeile $2, Spalte $3, (Byte $4): $5',
 'import-upload'              => 'XML-Daten importieren',
+'import-token-mismatch'      => 'Verlust der Sessiondaten. Bitte versuche es erneut.',
+'import-invalid-interwiki'   => 'Aus dem angegebenen Wiki ist kein Import möglich.',
 
 # Import log
 'importlogpage'                    => 'Import-Logbuch',
