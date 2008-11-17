@@ -346,6 +346,7 @@ The following extensions are migrated into MediaWiki 1.14:
 * API siteinfo query no longer throws an exception for empty sifilter parameter.
 * Safer handling of non-MediaWiki exceptions -- now obeys our settings for
   formatting and path exposure.
+* Less verbose errors from profileinfo.php when not configured
 
 
 === API changes in 1.14 ===
