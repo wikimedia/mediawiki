@@ -409,7 +409,7 @@ class Skin extends Linker {
 			$vars['wgAjaxWatch'] = $msgs;
 		}
 
-		wfRunHooks('MakeGlobalVariablesScript', array( &$vars, &$wgUser ) );
+		wfRunHooks('MakeGlobalVariablesScript', array(&$vars));
 
 		return self::makeVariablesScript( $vars );
 	}
