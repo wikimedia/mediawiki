@@ -474,17 +474,17 @@ $2',
 
 # Login and logout pages
 'logouttitle'                => 'Benotzer-Ofmeldung',
-'logouttext'                 => '<strong>Dir sidd elo ofgemeld.</strong>
+'logouttext'                 => '<strong>Dir sidd elo ofgemellt.</strong>
 
-Dir kënnt {{SITENAME}} elo anonym benotzen, oder Iech [[Special:UserLogin|nacheemol umellen]] als deeselwechten oder en anere Benotzer.
-Opgepasst: Op verschiddene Säite gesäit et nach esou aus, wéi wann Dir nach ugemeld wiert, bis Dir ärem Browser seng Cache eidelmaacht.',
+Dir kënnt {{SITENAME}} elo anonym benotzen, oder Iech [[Special:UserLogin|nach eemol umellen]] als deeselwechten oder en anere Benotzer.
+Opgepasst: Op verschiddene Säite gesäit et nach esou aus, wéi wann Dir nach ugemellt wiert, bis Dir ärem Browser seng Cache eidel maacht.',
 'welcomecreation'            => '== Wëllkomm, $1! ==
 Äre Kont gouf kreéiert. 
 Denkt drun, Är [[Special:Preferences|{{SITENAME}}-Astellungen]] unzepassen.',
 'loginpagetitle'             => 'Benotzer-Umeldung',
 'yourname'                   => 'Benotzernumm:',
 'yourpassword'               => 'Passwuert:',
-'yourpasswordagain'          => 'Passwuert nacheemol antippen:',
+'yourpasswordagain'          => 'Passwuert nach eemol antippen:',
 'remembermypassword'         => 'Meng Umeldung op dësem Computer verhalen',
 'yourdomainname'             => 'Ären Domain',
 'externaldberror'            => 'Entweder ass e Feeler bäi der externer Authentifizéierung geschitt, oder Dir däerft ären externe Benotzerkont net aktualiséieren.',
@@ -496,7 +496,7 @@ Denkt drun, Är [[Special:Preferences|{{SITENAME}}-Astellungen]] unzepassen.',
 'userlogout'                 => 'Ausloggen',
 'notloggedin'                => 'Net ageloggt',
 'nologin'                    => 'Hutt Dir kee Benotzerkont? $1.',
-'nologinlink'                => 'Neie Benotzerkonto maachen',
+'nologinlink'                => 'Neie Benotzerkont maachen',
 'createaccount'              => 'Neie Kont opmaachen',
 'gotaccount'                 => 'Dier hutt schonn e Kont? $1.',
 'gotaccountlink'             => 'Umellen',
@@ -537,7 +537,7 @@ Kuckt w.e.g. op d\'Schreifweis richteg ass, oder [[Special:UserLogin/signup|meld
 'wrongpasswordempty'         => "D'Passwuert dat Dir aginn huet war eidel. Probéiert w.e.g. nach eng Kéier.",
 'passwordtooshort'           => 'Ärt Passwuert ass ongülteg oder ze kuerz: Et muss mindestens {{PLURAL:$1|1 Zeeche|$1 Zeeche}} laang sinn an et däerf net matt dem Benotzernumm identesch sinn.',
 'mailmypassword'             => 'Neit Passwuert per E-Mail kréien',
-'passwordremindertitle'      => 'Neit Passwuert fir ee {{SITENAME}}-Benotzerkonto',
+'passwordremindertitle'      => 'Neit Passwuert fir ee {{SITENAME}}-Benotzerkont',
 'passwordremindertext'       => 'Iergend een (waarscheinlech Dir selwer, matt der IP-Adress $1) huet een neit Passwuert fir {{SITENAME}} ($4) gefrot. Een temporärt Passwuert fir de Benotzer $2 gouf ugeluecht an et ass: $3. Wann et dëst ass wat Dir wollt, da sollt Dir iech elo aloggen an en neit Passwuert eraussichen.
 
 Wann een aneren dës Ufro sollt gemaach hunn oder wann Dir iech an der Zwëschenzäit nees un ärt Passwuert erënnere kënnt an Dir ärt Passwuert net ännere wëllt da kënnt dir weider ärt aalt Passwuert benotzen.',
@@ -565,7 +565,7 @@ Gitt eng valabel E-Mailadress an oder loosst dëst Feld eidel.',
 'createaccount-text'         => 'Et gouf e Benotzerkont "$2" fir iech op {{SITENAME}} ($4) ugeluecht mat dem Passwuert "$3".
 Dir sollt iech aloggen an ärt Passwuert elo änneren.
 
-Falls dëse Benotzerkonto ongewollt ugeluecht ginn ass kënnt Dir dës Noriicht einfach ignoréieren.',
+Falls dëse Benotzerkont ongewollt ugeluecht ginn ass kënnt Dir dës Noriicht einfach ignoréieren.',
 'login-throttled'            => "dir hutt zevill dacks versicht d'Passwuert vun dësem Benotzerkont anzeginn. Waart w.e.g. ier Dir et nach eng Kéier versicht.",
 'loginlanguagelabel'         => 'Sprooch: $1',
 
@@ -1020,7 +1020,7 @@ iwwerpréift déi korrekt Installatioun vu LaTeX, dvips, gs a convert",
 'resetprefs'               => 'Net gespäichert Ännerungen zrécksetzen',
 'oldpassword'              => 'Aalt Passwuert:',
 'newpassword'              => 'Neit Passwuert:',
-'retypenew'                => 'Neit Passwuert (nachemol):',
+'retypenew'                => 'Neit Passwuert nach eemol antippen:',
 'textboxsize'              => 'Änneren',
 'rows'                     => 'Zeilen',
 'columns'                  => 'Kolonnen',
@@ -1105,7 +1105,7 @@ iwwerpréift déi korrekt Installatioun vu LaTeX, dvips, gs a convert",
 'right-reupload'             => 'E Fichier iwwerschreiwen',
 'right-reupload-own'         => 'E Fichier iwwerschreiwen dee vum selweschte Benotzer eropgeluede gouf',
 'right-upload_by_url'        => 'E Fichier vun enger URL-Adress eroplueden',
-'right-purge'                => 'De Säitecache eidelmaachen ouni nozefroen',
+'right-purge'                => 'De Säitecache eidel maachen ouni nozefroen',
 'right-autoconfirmed'        => 'Hallef-protegéiert Säiten änneren',
 'right-bot'                  => 'Als automatesche Prozess behandelen (Bot)',
 'right-nominornewtalk'       => 'Kleng Ännerungen op Diskussiounssäite léisen de Banner vun de neie Messagen net aus',
@@ -1219,7 +1219,7 @@ Säite vun [[Special:Watchlist|ärer Iwwerwaachungslëscht]] si '''fett''' gesch
 # Upload
 'upload'                      => 'Eroplueden',
 'uploadbtn'                   => 'Fichier eroplueden',
-'reupload'                    => 'Nacheemol eroplueden',
+'reupload'                    => 'Nach eemol eroplueden',
 'reuploaddesc'                => 'Eroplueden ofbriechen an zréck op de Formulaire fir Eropzelueden',
 'uploadnologin'               => 'Net ageloggt',
 'uploadnologintext'           => 'Dir musst [[Special:UserLogin|agelogged sinn]], fir Fichieren eroplueden zu kënnen.',
@@ -1589,7 +1589,7 @@ Kuckt och [[Special:WantedCategories|Gewënschte Kategorien]].',
 'newuserlogpagetext'          => "Dëst ass d'Lescht vun de Benotzernimm déi ugeluecht goufen.",
 'newuserlog-byemail'          => "d'Passwuert gouf per E-Mail geschéckt",
 'newuserlog-create-entry'     => 'Neie Benotzer',
-'newuserlog-create2-entry'    => "Benotzerkonto fir den/d' $1 gemaach",
+'newuserlog-create2-entry'    => "Benotzerkont fir den/d' $1 gemaach",
 'newuserlog-autocreate-entry' => 'Benotzerkont gouf automatesch gemaach',
 
 # Special:ListGroupRights

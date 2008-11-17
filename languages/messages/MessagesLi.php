@@ -277,7 +277,7 @@ $messages = array(
 'qbspecialpages' => "Speciaal pazjena's",
 'moredotdotdot'  => 'Miè...',
 'mypage'         => 'Mien gebroekerspazjena',
-'mytalk'         => 'Mien euverlikpazjena',
+'mytalk'         => 'Mien euverlèkpazjena',
 'anontalk'       => 'Euverlèk veur dit IP adres',
 'navigation'     => 'Navegatie',
 'and'            => 'en',
@@ -313,7 +313,7 @@ $messages = array(
 'unprotect'         => 'vriegaeve',
 'unprotectthispage' => 'Besjerming opheffe',
 'newpage'           => 'Nuuj pazjena',
-'talkpage'          => 'euverlikpazjena',
+'talkpage'          => 'euverlèkpazjena',
 'talkpagelinktext'  => 'Euverlèk',
 'specialpage'       => 'Speciaal Pazjena',
 'personaltools'     => 'Persoenlike hulpmiddele',
@@ -747,12 +747,13 @@ Sommige sjablone waere neet getranscludeerd.',
 Dees paramaetere zeen eweggelaote.",
 'post-expand-template-argument-category'  => "Pazjena's die missendje sjabloonillemènter bevatte",
 'parser-template-loop-warning'            => "D'r is 'ne krinkloup in sjablone geconstateerd: [[$1]]",
+'parser-template-recursion-depth-warning' => 'De recursiedeepte veur sjablone is euversjrede ($1)',
 
 # "Undo" feature
 'undo-success' => "Hiej onger stuit de teks wo in de verangering ongedaon gemaak is. Controleer veur 't opslaon of 't resultaot gewins is.",
 'undo-failure' => 'De verangering kòs neet ongedaon gemaak waere waeges angere striedige verangeringe.',
 'undo-norev'   => 'De bewerking kon neet ongedaan gemaak waere, omdat die neet besteet of is verwijderd.',
-'undo-summary' => 'Versie $1 van [[Special:Contributions/$2|$2]] ([[User talk:$2|euverlèk]]) ongedaon gemaak',
+'undo-summary' => 'Versie $1 van [[Special:Contributions/$2|$2]] ([[User talk:$2|euverlèk]]) óngedaon gemaak.',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Aanmake gebroeker misluk.',
@@ -764,6 +765,7 @@ De door $3 opgegaeve reje is ''$2''",
 'viewpagelogs'           => 'Logbeuk veur dees pazjena tuine',
 'nohistory'              => 'Dees pazjena is nog neet bewirk.',
 'currentrev'             => 'Hujige versie',
+'currentrev-asof'        => 'Hujige versie per $1',
 'revisionasof'           => 'Versie op $1',
 'revision-info'          => 'Versie op $1 door $2', # Additionally available: $3: revision id
 'previousrevision'       => '← Awwer versie',
@@ -865,6 +867,7 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 'mergehistory-invalid-destination' => "De bestömmingspagina mot 'ne geldige titel zeen.",
 'mergehistory-autocomment'         => '[[:$1]] samegevoeg nao [[:$2]]',
 'mergehistory-comment'             => '[[:$1]] samegevoeg nao [[:$2]]: $3',
+'mergehistory-same-destination'    => 'De bronpazjena en doelpazjena kinne neet dezelfde zien',
 
 # Merge log
 'mergelog'           => 'Samevoegingslogbook',
@@ -877,6 +880,8 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 'difference'              => '(Versjil tösje bewirkinge)',
 'lineno'                  => 'Tekslien $1:',
 'compareselectedversions' => 'Vergeliek geselecteerde versies',
+'visualcomparison'        => 'Visueel vergelieking',
+'wikicodecomparison'      => 'Wikiteksvergelieking',
 'editundo'                => 'ongedaon make',
 'diff-multi'              => '({{PLURAL:$1|éin tusseligkede versie wörd|$1 tusseligkede versies waere}} neet getuund)',
 'diff-movedto'            => 'Verplaats nao $1',
@@ -935,6 +940,7 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 
 # Search results
 'searchresults'             => 'Zeukresultate',
+'searchresults-title'       => 'Zeukresultate veur "$1"',
 'searchresulttext'          => 'Veur mier informatie euver zeuke op {{SITENAME}}, zuug [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'            => "Doe zòchs veur '''[[:$1]]'''",
 'searchsubtitleinvalid'     => 'Voor zoekopdracht "$1"',
@@ -1094,6 +1100,7 @@ Mèrk op dat hun indexe van {{SITENAME}} content e bietje gedatierd kint zien.',
 'right-minoredit'            => 'Bewerkinge markere as klein',
 'right-move'                 => "Pagina's hernaome",
 'right-move-subpages'        => "Pagina's inclusief subpagina's verplaatse",
+'right-move-rootuserpages'   => "Gebroekerspazjena's van 't hoegste niveau herneume",
 'right-suppressredirect'     => "Een doorverwijzing op de doelpagina verwijdere bie 't hernaome van 'n pagina",
 'right-upload'               => 'Bestande uploade',
 'right-reupload'             => "'n bestaond bestand euversjrieve",
@@ -1143,6 +1150,26 @@ Mèrk op dat hun indexe van {{SITENAME}} content e bietje gedatierd kint zien.',
 'rightslogtext'  => 'Hiej onger staon de wieziginge in gebroekersrechte.',
 'rightslogentry' => 'wiezigde de gebroekersrechte veur $1 van $2 nao $3',
 'rightsnone'     => '(gein)',
+
+# Associated actions - in the sentence "You do not have permission to X"
+'action-read'               => 'dees pazjena te bekieke',
+'action-edit'               => 'dees pazjena te bewirke',
+'action-createpage'         => "pazjena's aan te make",
+'action-createtalk'         => "euverlèkpazjena's aan te make",
+'action-createaccount'      => 'deze gebroeker aan te make',
+'action-minoredit'          => 'deze bewirking es klein te markere',
+'action-move'               => 'deze pazjena te herneume',
+'action-move-subpages'      => "deze pazjena en biebehurende subpazjena's te herneume",
+'action-move-rootuserpages' => "gebroekerspazjena's van 't hoegste niveau te herneume",
+'action-upload'             => 'dit besjtandj te uploade',
+'action-reupload'           => 'dit besjtaond besjtandj te euversjrieve',
+'action-reupload-shared'    => "dit besjtandj te uploade, terwiel d'r al 'n besjtandj mèt dezelfde naam in de gedeilde repository sjteit",
+'action-upload_by_url'      => "dit besjtandj vanaaf 'ne URL te uploade",
+'action-writeapi'           => 'via de API te bewirke',
+'action-delete'             => 'dees pazjena eweg te sjaffe',
+'action-deleterevision'     => 'dees versie eweg te sjaffe',
+'action-deletedhistory'     => 'de eweggesjafte versies van dees pazjena te betrachte',
+'action-browsearchive'      => "eweggesjafte pazjena's te zeuke",
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|bewerking|bewerkinge}}',
@@ -1558,8 +1585,8 @@ Infermasie daoreuver vunds te [[{{MediaWiki:Listgrouprights-helppage}}|hie]].',
 'watchnologintext'     => "De mós [[Special:UserLogin|aangemèld]] zeen veur 't verangere van dien volglies.",
 'addedwatch'           => 'Aan volglies toegeveug',
 'addedwatchtext'       => 'De pazjena "<nowiki>$1</nowiki>" is aan dien [[Special:Watchlist|volglies]] toegeveug.
-Toekomstige verangeringe aan deze pazjena en de biebehurende euverlikpazjena weure hie vermèld.
-Ouch versjiene gevolgde pazjena\'s in \'t <b>vet</b> in de [[Special:RecentChanges|liest van recènte verangeringe]]. <!-- zodat u ze eenvoudiger kan opmerken.-->
+Toekomstige verangeringe aan dees pazjena en de biebehurende euverlèkpazjena weure hie vermèld.
+Ouch versjiene gevolgde pazjena\'s in \'t <b>vèt</b> in de [[Special:RecentChanges|lies van recènte verangeringe]]. <!-- zodat u ze eenvoudiger kan opmerken.-->
 
 <!-- huh? Wen se ein pazjena van dien volgliest wils haole mos e op "sjtop volge"  -- pagina wenst te verwijderen van uw volgliest klik dan op "Van volgliest verwijderen" in de menubalk. -->',
 'removedwatch'         => 'Van volglies aafhoale',
@@ -1571,7 +1598,7 @@ Ouch versjiene gevolgde pazjena\'s in \'t <b>vet</b> in de [[Special:RecentChang
 'notanarticle'         => 'Is gein artikel',
 'notvisiblerev'        => 'Bewèrking is verwiederd',
 'watchnochange'        => 'Gein van dien gevolgde items is aangepas in dees periode.',
-'watchlist-details'    => "Dao {{PLURAL:$1|steit eine pazjena|sjtaon $1 pazjena's}} op dien volglies mèt oetzunjering van de euverlikpazjena's.",
+'watchlist-details'    => "D'r {{PLURAL:$1|sjteit ein pazjena|sjtaon $1 pazjena's}} op dien volglies mèt oetzunjering van de euverlèkpazjena's.",
 'wlheader-enotif'      => '* Doe wörs per e-mail gewaarsjuwd',
 'wlheader-showupdated' => "* Pazjena's die verangerd zeen saers doe ze veur 't lètste bezaogs sjtaon '''vet'''",
 'watchmethod-recent'   => "Controleer recènte verangere veur gevolgde pazjena's",
@@ -1760,7 +1787,7 @@ $1",
 
 # Contributions
 'contributions' => 'Biedrages per gebroeker',
-'mycontris'     => 'Mien biedraag',
+'mycontris'     => 'Mien biedrages',
 'contribsub2'   => 'Veur $1 ($2)',
 'nocontribs'    => 'Gein wijzigingen gevonden die aan de gestelde criteria voldoen.',
 'uctop'         => ' (lèste verangering)',
@@ -1898,8 +1925,8 @@ Vergaet neet de database opnuuj te [[Special:UnlockDB|deblokkere]] wens te klaor
 'move-page'               => '"$1" hernömme',
 'move-page-legend'        => 'Verplaats pazjena',
 'movepagetext'            => "Mit 't óngersjtaond formuleer kans te 'n pazjena verplaatse. De historie van de ouw pazjena zal nao de nuuj mitgaon. De ouwe titel zal automatisch 'ne redirect nao de nuuj pazjena waere. Doe kans 'n pazjena allein verplaatse, es gein pazjena besjteit mit de nuje naam, of es op die pazjena allein 'ne redirect zónger historie sjteit.",
-'movepagetalktext'        => "De biebehurende euverlikpazjena weurt ouch verplaats, mer '''neet''' in de volgende gevalle:
-* es al 'n euverlikpazjena besjteit ónger de angere naam
+'movepagetalktext'        => "De biebehurende euverlèkpazjena weurt ouch verplaats, mer '''neet''' in de volgende gevalle:
+* es al 'n euverlèkpazjena besjteit ónger de angere naam
 * es doe 't óngersjtaond vekske neet aanvinks",
 'movearticle'             => 'Verplaats pazjena',
 'movenologin'             => 'Neet aangemèld',
