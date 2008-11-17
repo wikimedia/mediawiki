@@ -772,11 +772,7 @@ class PreferencesForm {
 			);
 			if( $wgCookieExpiration > 0 ){
 				$wgOut->addHTML(
-					Xml::tags( 'tr', null,
-						Xml::tags( 'td', array( 'colspan' => '2' ),
-							$this->getToggle( "rememberpassword" )
-						)
-					)
+					$this->tableRow( $this->getToggle( "rememberpassword" ) )				
 				);
 			} else {
 				$this->mUsedToggles['rememberpassword'] = true;
