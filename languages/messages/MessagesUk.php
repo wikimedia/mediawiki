@@ -886,6 +886,8 @@ $1",
 'post-expand-template-argument-warning'   => 'Увага: Ця сторінка містить принаймні один аргумент шаблону, який має надто великий розмір для розгортання.
 Такі аргументи були опущені.',
 'post-expand-template-argument-category'  => 'Сторінки, які містять пропущені аргументи шаблонів',
+'parser-template-loop-warning'            => 'Виявлена петля у шаблонах: [[$1]]',
+'parser-template-recursion-depth-warning' => 'Перевищена границя глибини рекурсії шаблону ($1)',
 
 # "Undo" feature
 'undo-success' => 'Редагування відмінено. Будь-ласка, натисніть «Зберегти», щоб зберегти зміни.',
@@ -1082,7 +1084,7 @@ $3 зазначив таку причину: ''$2''",
 
 # Search results
 'searchresults'             => 'Результати пошуку',
-'searchresults-title'       => 'Результати пошуку для $1',
+'searchresults-title'       => 'Результати пошуку для «$1»',
 'searchresulttext'          => 'Для отримання детальнішої інформації про пошук у проекті, див. [[{{ns:project}}:Пошук]].',
 'searchsubtitle'            => 'Ви шукали «[[:$1]]» ([[Special:Prefixindex/$1|усі сторінки, що починаються на «$1»]] | [[Special:WhatLinksHere/$1|усі сторінки, що мають посилання на «$1»]])',
 'searchsubtitleinvalid'     => 'На запит «$1»',
@@ -1573,11 +1575,11 @@ $3 зазначив таку причину: ''$2''",
 
 # Random page
 'randompage'         => 'Випадкова стаття',
-'randompage-nopages' => 'У цьому просторі назв нема сторінок.',
+'randompage-nopages' => 'У просторі назв «$1» нема сторінок.',
 
 # Random redirect
 'randomredirect'         => 'Випадкове перенаправлення',
-'randomredirect-nopages' => 'Цей простір назв не містить перенаправлень.',
+'randomredirect-nopages' => 'Простір назв «$1» не містить перенаправлень.',
 
 # Statistics
 'statistics'                      => 'Статистика',

@@ -2953,6 +2953,7 @@ Također možete koristiti [[Special:Watchlist/edit|uređivanje popisa putem ''k
 
 # Core parser functions
 'unknown_extension_tag' => "Nepoznat ''tag'' ekstenzije \"\$1\"",
+'duplicate-defaultsort' => 'Upozorenje: Glavni raspored "$2" poništava raniji glavni raspored "$1".',
 
 # Special:Version
 'version'                          => 'Verzija softvera', # Not used as normal message but as header for the special page itself

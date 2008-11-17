@@ -886,6 +886,7 @@ Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddi
 'diff-a'                  => "'''cyswllt'''",
 'diff-i'                  => "'''italig'''",
 'diff-b'                  => "'''print trwm'''",
+'diff-strong'             => "'''cryf'''",
 'diff-em'                 => "'''pwyslais'''",
 'diff-font'               => "'''ffont'''",
 'diff-big'                => "'''mawr'''",

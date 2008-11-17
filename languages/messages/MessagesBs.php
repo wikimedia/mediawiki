@@ -1998,6 +1998,7 @@ Provjerite [[Special:Log/delete|zapis brisanja]] za zapise najskorijih brisanja 
 'undelete-search-submit'       => 'Traži',
 'undelete-no-results'          => 'Nije pronađena odgovarajuća stranica u arhivi brisanja.',
 'undelete-filename-mismatch'   => 'Ne može se vratiti revizija datoteke od $1: pogrešno ime datoteke',
+'undelete-bad-store-key'       => 'Ne može se vratiti revizija datoteke sa vremenskom oznakom $1: datoteka je nestala prije brisanja.',
 'undelete-cleanup-error'       => 'Greške pri brisanju nekorištene arhivske datoteke "$1".',
 'undelete-missing-filearchive' => 'Ne može se vratiti arhivska datoteka sa ID oznakom $1 jer nije u bazi podataka.
 Možda je već ranije vraćena.',
@@ -2320,6 +2321,7 @@ Nedostaje privremeni folder.',
 'importlogpagetext'                => 'Administrativni uvozi stranica sa historijom izmjena sa drugih wikija.',
 'import-logentry-upload'           => 'uveženo [[$1]] putem postavljanja datoteke',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|revizija|revizije|revizija}}',
+'import-logentry-interwiki'        => "uveženo (''transwikied'') $1",
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revizija|revizije|revizija}} od $2',
 
 # Tooltip help for the actions
@@ -2363,6 +2365,7 @@ Nedostaje privremeni folder.',
 'tooltip-t-upload'                => 'Postavi slike i druge medije',
 'tooltip-t-specialpages'          => 'Spisak svih posebnih stranica',
 'tooltip-t-print'                 => 'Verzija ove stranice za štampanje',
+'tooltip-t-permalink'             => 'Stalni link ove verzije stranice',
 'tooltip-ca-nstab-main'           => 'Pogledajte sadržaj članka',
 'tooltip-ca-nstab-user'           => 'Pogledajte korisničku stranicu',
 'tooltip-ca-nstab-media'          => 'Pogledajte medija fajl',
@@ -2379,7 +2382,11 @@ Nedostaje privremeni folder.',
 'tooltip-diff'                    => 'Prikaži moje izmjene u tekstu.',
 'tooltip-compareselectedversions' => 'Pogledajte pazlike između dvije selektovane verzije ove stranice.',
 'tooltip-watch'                   => 'Dodajte ovu stranicu na Vaš spisak praćenih članaka',
+'tooltip-recreate'                => 'Ponovno pravljenje stranice iako je već brisana',
 'tooltip-upload'                  => 'Započni postavljanje',
+'tooltip-rollback'                => 'Brzo vraćanje izmjene(izmjena) ove stranice posljednjeg uređivača jednim klikom.',
+'tooltip-undo'                    => 'Vraća posljednju izmjenu i otvara formu za uređivanje u modu pregleda.
+Dopušta unos razloga u sažetak.',
 
 # Metadata
 'nodublincore'      => 'Dublin Core RDF metapodaci onemogućeni za ovaj server.',
@@ -2394,36 +2401,61 @@ Nedostaje privremeni folder.',
 'others'           => 'ostali',
 'siteusers'        => '{{SITENAME}} {{PLURAL:$2|korisnik|korisnika}} $1',
 'creditspage'      => 'Autori stranice',
+'nocredits'        => 'Autori ove stranice nisu navedeni.',
 
 # Spam protection
 'spamprotectiontitle' => 'Filter za zaštitu od neželjenih poruka',
 'spamprotectiontext'  => 'Strana koju želite da sačuvate je blokirana od strane filtera za neželjene poruke. 
 Ovo je vjerovatno izazvao vezom ka vanjskoj nepoželjnoj stranici.',
 'spamprotectionmatch' => 'Sledeći tekst je izazvao naš filter za neželjene poruke: $1',
+'spambot_username'    => 'MediaWiki čišćenje spama',
+'spam_reverting'      => 'Vraćanje na zadnju verziju koja ne sadrži linkove ka $1',
+'spam_blanking'       => 'Sve revizije koje sadrže linkove ka $1, očisti',
 
 # Info page
-'infosubtitle' => 'Informacije za stranicu',
-'numedits'     => 'Broj izmjena (stranica): $1',
-'numwatchers'  => 'Broj onih koji pregledaju: $1',
+'infosubtitle'   => 'Informacije za stranicu',
+'numedits'       => 'Broj izmjena (stranica): $1',
+'numtalkedits'   => 'Broj izmjena (stranice za razgovor): $1',
+'numwatchers'    => 'Broj onih koji pregledaju: $1',
+'numauthors'     => 'Broj različitih autora (stranice): $1',
+'numtalkauthors' => 'Broj različitih autora (stranice za razgovor): $1',
 
 # Math options
-'mw_math_png' => 'Uvijek prikaži kao PNG',
+'mw_math_png'    => 'Uvijek prikaži kao PNG',
+'mw_math_simple' => 'HTML ako je jednostavno, inače PNG',
+'mw_math_html'   => 'HTML ako je moguće, inače PNG',
+'mw_math_source' => 'Ostavi kao TeX (za tekstualne preglednike)',
+'mw_math_modern' => 'Preporučeno za moderne preglednike',
+'mw_math_mathml' => 'MathML ako je moguće (eksperimentalno)',
 
 # Patrolling
-'markaspatrolleddiff'        => 'Označi kao patrolirano',
-'markaspatrolledtext'        => 'Označi ovaj članak kao patroliran',
-'markedaspatrolled'          => 'Označeno kao patrolirano',
-'markedaspatrolledtext'      => 'Izabrana revizija je označena kao patrolirana.',
-'markedaspatrollederror'     => 'Ne može se označiti kao patrolirano',
-'markedaspatrollederrortext' => 'Morate naglasiti reviziju koju treba označiti kao patroliranu.',
+'markaspatrolleddiff'                 => 'Označi kao patrolirano',
+'markaspatrolledtext'                 => 'Označi ovaj članak kao patroliran',
+'markedaspatrolled'                   => 'Označeno kao patrolirano',
+'markedaspatrolledtext'               => 'Izabrana revizija je označena kao patrolirana.',
+'rcpatroldisabled'                    => 'Patroliranje nedavnih izmjena onemogućeno',
+'rcpatroldisabledtext'                => 'Funkcija patroliranja nedavnih izmjena je trenutno isključena.',
+'markedaspatrollederror'              => 'Ne može se označiti kao patrolirano',
+'markedaspatrollederrortext'          => 'Morate naglasiti reviziju koju treba označiti kao patroliranu.',
+'markedaspatrollederror-noautopatrol' => 'Nije Vam dopušteno da vlastite izmjene označavate patroliranim.',
 
 # Patrol log
 'patrol-log-page'      => 'Zapisnik patroliranja',
+'patrol-log-header'    => 'Ovdje se nalazi zapis patroliranih revizija.',
+'patrol-log-line'      => 'označeno $1 od $2 patrolirano $3',
 'patrol-log-auto'      => '(automatsko)',
 'log-show-hide-patrol' => '$1 zapis patroliranja',
 
 # Image deletion
-'deletedrevision' => 'Obrisana stara revizija $1',
+'deletedrevision'                 => 'Obrisana stara revizija $1',
+'filedeleteerror-short'           => 'Greška pri brisanju datoteke: $1',
+'filedeleteerror-long'            => 'Desile su se greške pri brisanju datoteke:
+
+$1',
+'filedelete-missing'              => 'Datoteka "$1" ne može biti obrisana, jer ne postoji.',
+'filedelete-old-unregistered'     => 'Određena revizija datoteke "$1" se ne nalazi u bazi podataka.',
+'filedelete-current-unregistered' => 'Određena datoteka "$1" se ne nalazi u bazi podataka.',
+'filedelete-archive-read-only'    => 'Arhivski folder "$1" se postavljen samo za čitanje na serveru.',
 
 # Browsing diffs
 'previousdiff' => '← Starija izmjena',
@@ -2435,7 +2467,10 @@ Ovo je vjerovatno izazvao vezom ka vanjskoj nepoželjnoj stranici.',
 # Media information
 'mediawarning'         => "'''Upozorenje''': Ovaj fajl sadrži loš kod, njegovim izvršavanjem možete da ugrozite Vaš sistem.
 <hr />",
+'imagemaxsize'         => 'Ograniči slike na stranicama opisa datoteke na:',
 'thumbsize'            => 'Veličina umanjenog prikaza:',
+'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|stranica|stranice|stranica}}',
+'file-info'            => '(veličina datoteke: $1, MIME tip: $2)',
 'file-info-size'       => '($1 × $2 piksela, veličina datoteke: $3, MIME tip: $4)',
 'file-nohires'         => '<small>Veća rezolucija nije dostupna.</small>',
 'svg-long-desc'        => '(SVG fajl, dozvoljeno $1 × $2 piksela, veličina fajla: $3)',
@@ -2443,13 +2478,16 @@ Ovo je vjerovatno izazvao vezom ka vanjskoj nepoželjnoj stranici.',
 'show-big-image-thumb' => '<small>Veličina ovoga prikaza: $1 × $2 piksela</small>',
 
 # Special:NewImages
-'newimages'         => 'Galerija novih slika',
-'imagelisttext'     => "Ispod je spisak od '''$1''' {{PLURAL:$1|datoteke|datoteke|datoteka}} poređanih $2.",
-'newimages-summary' => 'Ova specijalna stranica prikazuje posljednje postavljene datoteke.',
-'newimages-legend'  => 'Filter',
-'showhidebots'      => '($1 botove)',
-'ilsubmit'          => 'Traži',
-'bydate'            => 'po datumu',
+'newimages'             => 'Galerija novih slika',
+'imagelisttext'         => "Ispod je spisak od '''$1''' {{PLURAL:$1|datoteke|datoteke|datoteka}} poređanih $2.",
+'newimages-summary'     => 'Ova specijalna stranica prikazuje posljednje postavljene datoteke.',
+'newimages-legend'      => 'Filter',
+'newimages-label'       => 'Ime datoteke (ili dio imena):',
+'showhidebots'          => '($1 botove)',
+'noimages'              => 'Ništa za prikazati.',
+'ilsubmit'              => 'Traži',
+'bydate'                => 'po datumu',
+'sp-newimages-showfrom' => 'Prikaz novih datoteka počev od $2, $1',
 
 # Bad image list
 'bad_image_list' => "Koristi se sljedeći format:
@@ -2472,14 +2510,80 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 * focallength", # Do not translate list items
 
 # EXIF tags
-'exif-imagewidth'            => 'Širina',
-'exif-imagelength'           => 'Visina',
-'exif-primarychromaticities' => 'Hromaticitet primarnih boja',
-'exif-gpsdatestamp'          => 'GPS datum',
+'exif-imagewidth'                  => 'Širina',
+'exif-imagelength'                 => 'Visina',
+'exif-bitspersample'               => 'Bita po komponenti',
+'exif-compression'                 => 'Šema kompresije',
+'exif-photometricinterpretation'   => 'Sastav piksela',
+'exif-orientation'                 => 'Orjentacija',
+'exif-samplesperpixel'             => 'Broj komponenti',
+'exif-planarconfiguration'         => 'Aranžiranje podataka',
+'exif-ycbcrsubsampling'            => 'Odnos subsampling od Y do C',
+'exif-ycbcrpositioning'            => 'Pozicioniranje Y i C',
+'exif-xresolution'                 => 'Horizontalna rezolucija',
+'exif-yresolution'                 => 'Vertikalna rezolucija',
+'exif-resolutionunit'              => 'Jedinice X i Y rezolucije',
+'exif-stripoffsets'                => 'Lokacija podataka slike',
+'exif-rowsperstrip'                => 'Broj redaka po liniji',
+'exif-stripbytecounts'             => 'Bita po kompresovanoj liniji',
+'exif-jpeginterchangeformat'       => 'Presijek do JPEG SOI',
+'exif-jpeginterchangeformatlength' => 'Bita JPEG podataka',
+'exif-transferfunction'            => 'Transferna funkcija',
+'exif-whitepoint'                  => 'Hromiranost bijele tačke',
+'exif-primarychromaticities'       => 'Hromaticitet primarnih boja',
+'exif-ycbcrcoefficients'           => 'Koeficijenti transformacije matrice prostora boja',
+'exif-referenceblackwhite'         => 'Par crnih i bijelih referentnih vrijednosti',
+'exif-datetime'                    => 'Vrijeme i datum promjene datoteke',
+'exif-imagedescription'            => 'Naslov slike',
+'exif-make'                        => 'Proizvođač kamere',
+'exif-model'                       => 'Model kamere',
+'exif-software'                    => 'Korišteni softver',
+'exif-artist'                      => 'Autor',
+'exif-copyright'                   => 'Vlasnik autorskih prava',
+'exif-exifversion'                 => 'Exif verzija',
+'exif-flashpixversion'             => 'Podržana verzija Flashpix',
+'exif-colorspace'                  => 'Prostor boje',
+'exif-componentsconfiguration'     => 'Značenje svake komponente',
+'exif-compressedbitsperpixel'      => 'Način kompresije slike',
+'exif-pixelydimension'             => 'Određena širina slike',
+'exif-pixelxdimension'             => 'Određena visina slike',
+'exif-makernote'                   => 'Bilješke proizvođača',
+'exif-usercomment'                 => 'Korisnički komentari',
+'exif-relatedsoundfile'            => 'Povezana zvučna datoteka',
+'exif-datetimeoriginal'            => 'Datum i vrijeme generisanja podataka',
+'exif-datetimedigitized'           => 'Datum i vrijeme digitalizacije',
+'exif-exposuretime'                => 'Vrijeme izlaganja (ekspozicije)',
+'exif-exposuretime-format'         => '$1 sekundi ($2)',
+'exif-fnumber'                     => 'F broj',
+'exif-exposureprogram'             => 'Program ekspozicije',
+'exif-spectralsensitivity'         => 'Spektralna osjetljivost',
+'exif-brightnessvalue'             => 'Osvijetljenost',
+'exif-subjectdistance'             => 'Udaljenost objekta',
+'exif-lightsource'                 => 'Izvor svjetlosti',
+'exif-flash'                       => 'Blijesak',
+'exif-filesource'                  => 'Izvor datoteke',
+'exif-scenetype'                   => 'Vrsta scene',
+'exif-saturation'                  => 'Saturacija',
+'exif-sharpness'                   => 'Izoštrenost',
+'exif-imageuniqueid'               => 'Jedinstveni ID slike',
+'exif-gpsversionid'                => 'Verzija GPS bloka informacija',
+'exif-gpstimestamp'                => 'GPS vrijeme (atomski sat)',
+'exif-gpstrack'                    => 'Smijer kretanja',
+'exif-gpsdatestamp'                => 'GPS datum',
 
 'exif-unknowndate' => 'Nepoznat datum',
 
+'exif-orientation-1' => 'Normalna', # 0th row: top; 0th column: left
+
+'exif-exposureprogram-0' => 'Nije određen',
+
+'exif-subjectdistance-value' => '$1 metara',
+
+'exif-meteringmode-0'   => 'Nepoznat',
+'exif-meteringmode-1'   => 'Prosječan',
 'exif-meteringmode-255' => 'Ostalo',
+
+'exif-lightsource-4' => 'Blijesak',
 
 # External editor support
 'edit-externally'      => 'Izmjeni ovu sliku koristeći vanjski program',
@@ -2494,6 +2598,7 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 
 # E-mail address confirmation
 'confirmemail'            => 'Potvrdite adresu e-pošte',
+'confirmemail_noemail'    => 'Niste unijeli tačnu e-mail adresu u Vaše [[Special:Preferences|korisničke postavke]].',
 'confirmemail_text'       => 'Ova viki zahtjeva da potvrdite adresu Vaše e-pošte prije nego što koristite mogućnosti e-pošte. Aktivirajte dugme ispod kako bi ste poslali poštu za potvrdu na Vašu adresu. Pošta uključuje poveznicu koja sadrži kod; učitajte poveznicu u Vaš brauzer da bi ste potvrdili da je adresa Vaše e-pošte validna.',
 'confirmemail_send'       => 'Pošaljite kod za potvrdu',
 'confirmemail_sent'       => 'E-pošta za potvrđivanje poslata.',
@@ -2543,7 +2648,8 @@ Molimo Vas da potvrdite da stvarno želite da ponovo napravite ovaj članak.",
 'version-other' => 'Ostalo',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch-submit' => 'Traži',
+'fileduplicatesearch-filename' => 'Ime datoteke:',
+'fileduplicatesearch-submit'   => 'Traži',
 
 # Special:SpecialPages
 'specialpages'                   => 'Posebne stranice',
@@ -2555,5 +2661,17 @@ Molimo Vas da potvrdite da stvarno želite da ponovo napravite ovaj članak.",
 'specialpages-group-users'       => 'Korisnici i korisnička prava',
 'specialpages-group-highuse'     => 'Najčešće korištene stranice',
 'specialpages-group-pages'       => 'Spisak stranica',
+
+# Special:BlankPage
+'blankpage' => 'Prazna stranica',
+
+# External image whitelist
+'external_image_whitelist' => ' #Ostavite ovu liniju onakva kakva je<pre>
+#Stavite obične fragmente opisa (samo dio koji ide između //) ispod
+#Ovi će biti spojeni sa URLovima sa vanjskih (eksternih) slika
+#One koji se spoje biće prikazane kao slike, u suprotnom će se prikazati samo link
+#Linije koje počinju sa # se tretiraju kao komentari
+
+#Stavite sve regex fragmente iznad ove linije. Ostavite ovu liniju onakvu kakva je</pre>',
 
 );

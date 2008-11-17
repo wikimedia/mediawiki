@@ -1953,6 +1953,10 @@ $5
 # Special:FilePath
 'filepath-page' => 'טעקע:',
 
+# Special:FileDuplicateSearch
+'fileduplicatesearch-filename' => 'טעקע:',
+'fileduplicatesearch-submit'   => 'זוכן',
+
 # Special:SpecialPages
 'specialpages'                   => 'ספּעציעלע זײטן',
 'specialpages-note'              => '----
