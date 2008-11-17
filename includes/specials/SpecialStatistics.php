@@ -117,9 +117,16 @@ function wfSpecialStatistics( $par = '' ) {
 				array(),
 				array( 'group' => $group ),
 				'known' );
+
+			# Add a class when a usergroup contains no members to allow hiding these rows
+			$classZero = '';
+			$countUsers = SiteStats::numberingroup( $groupname );
+			if( $countUsers == 0 ) {
+				$classZero = ' statistics-group-zero';
+			}
 			$text .= formatRow( $grouppage . ' ' . $grouplink,
-				$wgLang->formatNum( SiteStats::numberingroup( $groupname ) ),
-				' class="statistics-group-' . Sanitizer::escapeClass( $group ) . '"' );
+				$wgLang->formatNum( $countUsers ),
+				' class="statistics-group-' . Sanitizer::escapeClass( $group ) . $classZero . '"' );
 		}
 	}
 	$text .= $viewsStats;
