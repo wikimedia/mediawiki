@@ -1124,7 +1124,7 @@ Se till att sidhistorikens kontinuitet behålls när du sammanfogar historik.',
 'viewprevnext'                     => 'Visa ($1) ($2) ($3)',
 'searchmenu-legend'                => 'Sökalternativ',
 'searchmenu-exists'                => "*Sidan '''[[$1]]'''",
-'searchmenu-new'                   => "'''[[:\$1|Skapa]] sidan \"[[\$1]]\" på den här wikin!'''",
+'searchmenu-new'                   => "'''[[:$1|Skapa]] sidan ''$1'' på den här wikin!'''",
 'searchhelp-url'                   => 'Help:Innehåll',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Bläddra igenom sidor med detta prefix]]',
 'searchprofile-articles'           => 'Sidor',
@@ -2357,6 +2357,8 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'import-nonewrevisions'      => 'Alla sidversioner hade importerats tidigare.',
 'xml-error-string'           => '$1 på rad $2, kolumn $3 (byte $4): $5',
 'import-upload'              => 'Ladda upp XML-data',
+'import-token-mismatch'      => 'Sessionsdata har förlorats. Var god pröva igen.',
+'import-invalid-interwiki'   => 'Kan inte importera från den angivna wikin.',
 
 # Import log
 'importlogpage'                    => 'Importlogg',

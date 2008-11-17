@@ -540,6 +540,10 @@ Leggenda: (cur) = differenze cu 'a versiona corrende,
 'revdelete-uname'        => "nome de l'utende",
 'revdelete-restricted'   => 'appliche le restriziune a le SysOps',
 'revdelete-unrestricted' => 'live le restriziune a le SysOps',
+'revdelete-hid'          => 'scunne $1',
+'revdelete-unhid'        => 'fa vedè $1',
+'revdelete-log-message'  => '$1 pe $2 {{PLURAL:$2|revisione|revisione}}',
+'logdelete-log-message'  => '$1 pe $2 {{PLURAL:$2|fatte|fatte}}',
 
 # History merging
 'mergehistory-from'        => 'Pàgene sorgende:',
@@ -637,6 +641,7 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'powersearch'                    => 'Ricerche avanzete',
 'powersearch-ns'                 => "Cirche jndr'à le namespace:",
 'powersearch-field'              => 'Cirche pe',
+'search-external'                => 'Ricerche esterne',
 
 # Preferences page
 'preferences'       => 'Me piece accussì',
@@ -682,15 +687,17 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'group-bureaucrat' => 'Burocrate',
 'group-all'        => '(tutte)',
 
-'group-user-member'       => 'Utende',
-'group-bot-member'        => 'Bot',
-'group-sysop-member'      => 'Sysop',
-'group-bureaucrat-member' => 'Burocrate',
+'group-user-member'          => 'Utende',
+'group-autoconfirmed-member' => 'Utende Autoconfermete',
+'group-bot-member'           => 'Bot',
+'group-sysop-member'         => 'Sysop',
+'group-bureaucrat-member'    => 'Burocrate',
 
-'grouppage-user'       => '{{ns:project}}:Utinde',
-'grouppage-bot'        => '{{ns:project}}:Bot',
-'grouppage-sysop'      => '{{ns:project}}:Amministratore',
-'grouppage-bureaucrat' => '{{ns:project}}:Burocrate',
+'grouppage-user'          => '{{ns:project}}:Utinde',
+'grouppage-autoconfirmed' => '{{ns:project}}:Utinde Autoconfermete',
+'grouppage-bot'           => '{{ns:project}}:Bot',
+'grouppage-sysop'         => '{{ns:project}}:Amministratore',
+'grouppage-bureaucrat'    => '{{ns:project}}:Burocrate',
 
 # Rights
 'right-minoredit' => 'Signe le cangiaminde cumme stuedéche',
@@ -814,6 +821,7 @@ Pàggene sus 'a [[Special:Watchlist|le Pàggene condrollete]] sonde in '''grasce
 
 # MIME search
 'mimesearch' => "Ricerca jndr'à 'u MIME",
+'mimetype'   => 'Tipe de MIME:',
 'download'   => 'scareche',
 
 # List redirects
@@ -838,6 +846,7 @@ Pàggene sus 'a [[Special:Watchlist|le Pàggene condrollete]] sonde in '''grasce
 'statistics-articles'      => 'Pàggene de le condenute',
 'statistics-pages'         => 'Pàggene',
 'statistics-pages-tooltip' => "Tutte le pàggene jndr'à Uicchi, mettènne le pàggene de le 'ngazzaminde, ridirezionaminde, ecc.",
+'statistics-files'         => 'File carechete',
 'statistics-users'         => '[[Special:ListUsers|Utinde reggistrete]]',
 
 'disambiguations' => 'Pàggene de disambiguazione',
@@ -907,6 +916,8 @@ Pàggene sus 'a [[Special:Watchlist|le Pàggene condrollete]] sonde in '''grasce
 'allarticles'       => 'Tutte le pàggene',
 'allinnamespace'    => 'Tutte le pàggene (neimspeise $1)',
 'allnotinnamespace' => "Tutte le pàggene (ca non ge stonne jndr'à 'u namespace $1)",
+'allpagesprev'      => 'Precedende',
+'allpagesnext'      => 'Prossime',
 'allpagessubmit'    => 'Veje',
 'allpagesprefix'    => "Fa vedè le pàggene cu 'u prefisse:",
 
@@ -1215,17 +1226,19 @@ Otre avènene scunnute pe defolt.
 * focallength", # Do not translate list items
 
 # EXIF tags
-'exif-orientation'      => 'Oriendamende',
-'exif-imagedescription' => "Titele de l'immaggine",
-'exif-software'         => 'Softuer ausete',
-'exif-artist'           => 'Autore',
-'exif-usercomment'      => "Commende de l'utende",
-'exif-fnumber'          => 'Numere de F',
-'exif-contrast'         => 'Condraste',
-'exif-saturation'       => 'Saturazione',
-'exif-gpslatitude'      => 'Latitudene',
-'exif-gpslongitude'     => 'Longitudene',
-'exif-gpsaltitude'      => 'Altitudene',
+'exif-orientation'         => 'Oriendamende',
+'exif-imagedescription'    => "Titele de l'immaggine",
+'exif-software'            => 'Softuer ausete',
+'exif-artist'              => 'Autore',
+'exif-usercomment'         => "Commende de l'utende",
+'exif-exposuretime-format' => '$1 sec ($2)',
+'exif-fnumber'             => 'Numere de F',
+'exif-flash'               => 'Flash',
+'exif-contrast'            => 'Condraste',
+'exif-saturation'          => 'Saturazione',
+'exif-gpslatitude'         => 'Latitudene',
+'exif-gpslongitude'        => 'Longitudene',
+'exif-gpsaltitude'         => 'Altitudene',
 
 'exif-orientation-1' => 'Normale', # 0th row: top; 0th column: left
 
@@ -1253,6 +1266,7 @@ Otre avènene scunnute pe defolt.
 'exif-subjectdistancerange-0' => 'Scanusciute',
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+'exif-gpsspeed-k' => "Chilometre a l'ore",
 'exif-gpsspeed-m' => 'Miglie pe ore',
 'exif-gpsspeed-n' => 'Knots',
 
@@ -1275,6 +1289,9 @@ Otre avènene scunnute pe defolt.
 # Scary transclusion
 'scarytranscludetoolong' => '[URL jè troppe longhe]',
 
+# Trackbacks
+'trackbackremove' => ' ([$1 Scangille])',
+
 # action=purge
 'confirm_purge_button' => 'OK',
 
@@ -1282,6 +1299,8 @@ Otre avènene scunnute pe defolt.
 'imgmultigo' => 'Veje!',
 
 # Table pager
+'table_pager_first'        => 'Prima pàgene',
+'table_pager_last'         => 'Urtema pàgene',
 'table_pager_limit_submit' => 'Veje',
 
 # Live preview

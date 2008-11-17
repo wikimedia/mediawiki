@@ -2149,11 +2149,14 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'exif-exposuretime-format' => '$1초 ($2)',
 'exif-fnumber'             => 'F 번호',
 'exif-shutterspeedvalue'   => '셔터 속도',
+'exif-focallength'         => '렌즈 초점 거리',
 'exif-gpslatitude'         => '위도',
 'exif-gpslongitude'        => '경도',
 'exif-gpsaltitude'         => '고도',
 'exif-gpstimestamp'        => 'GPS 시간 (원자 시계)',
 'exif-gpsdatestamp'        => 'GPS 날짜',
+
+'exif-orientation-3' => '180° 회전됨', # 0th row: bottom; 0th column: right
 
 # External editor support
 'edit-externally'      => '이 파일을 외부 프로그램을 사용해서 편집하기',

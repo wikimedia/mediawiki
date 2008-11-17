@@ -449,7 +449,7 @@ $messages = array(
 'nstab-media'     => 'Mediji',
 'nstab-special'   => 'Posebna',
 'nstab-project'   => 'Članak',
-'nstab-image'     => 'Slika',
+'nstab-image'     => 'Datoteka',
 'nstab-mediawiki' => 'Poruka',
 'nstab-template'  => 'Šablon',
 'nstab-help'      => 'Pomoć',
@@ -510,7 +510,7 @@ Molimo Vas da ovo prijavite [[Special:ListUsers/sysop|administratoru]] sa navođ
 'cannotdelete'         => 'Ne može se obrisati navedena stranica ili slika.  (Moguće je da ju je neko drugi već obrisao.)',
 'badtitle'             => 'Loš naslov',
 'badtitletext'         => 'Zahtjevani naslov stranice je bio neispravan, prazan ili neispravno povezan međujezički ili interviki naslov.',
-'perfcached'           => 'Sledeći podaci su keširani i možda neće biti u potpunosti ažurirani:',
+'perfcached'           => 'Slijedeći podaci su keširani i možda neće biti u potpunosti ažurirani.',
 'perfcachedts'         => 'Sljedeći podaci se nalaze u memoriji i zadnji put su ažurirani $1.',
 'querypage-no-updates' => 'Ažuriranje ove stranice je isključeno.
 Podaci koji se ovdje nalaze ne moraju biti aktualni.',
@@ -890,8 +890,9 @@ Razlog koji je naveo $3 je ''$2''",
 'last'                   => 'posl',
 'page_first'             => 'prva',
 'page_last'              => 'zadnja',
-'histlegend'             => 'Objašnjenje: (tren) = razlika sa trenutnom verziom,
-(posl) = razlika sa prethodnom verziom, M = mala izmjena',
+'histlegend'             => 'Odabir razlika: označite radio dugme verzija koje uspoređujete i pritistnite enter ili dugme na dnu. <br />
+Objašnjenje: (tren) = razlika sa trenutnom verzijom,
+(posl) = razlika sa prethodnom verzijom, M = mala izmjena.',
 'history-fieldset-title' => 'Pretraga historije',
 'deletedrev'             => '[izbrisano]',
 'histfirst'              => 'Najstarije',
@@ -1069,7 +1070,7 @@ Možete [[:\$1|da napravite članak sa tim naslovom]].
 'textmatches'                      => 'Tekst stranice odgovara',
 'notextmatches'                    => 'Tekst članka ne odgovara',
 'prevn'                            => 'prethodnih $1',
-'nextn'                            => 'sledećih $1',
+'nextn'                            => 'slijedećih $1',
 'viewprevnext'                     => 'Pogledaj ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Opcije pretrage',
 'searchmenu-exists'                => "'''Postoji stranica pod nazivom \"[[\$1]]\" na ovoj wiki'''",
@@ -2634,11 +2635,19 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'exif-gpstrack'                    => 'Smijer kretanja',
 'exif-gpsimgdirectionref'          => 'Referenca za smijer slike',
 'exif-gpsimgdirection'             => 'Smijer slike',
+'exif-gpsmapdatum'                 => 'Upotrijebljeni podaci geoloških mjerenja',
+'exif-gpsdestlatituderef'          => 'Referenca za širinu odredišta',
 'exif-gpsdestlatitude'             => 'Širina odredišta',
+'exif-gpsdestlongituderef'         => 'Referenca za dužinu odredišta',
 'exif-gpsdestlongitude'            => 'Dužina odredišta',
+'exif-gpsdestbearingref'           => 'Indeks azimuta odredišta',
+'exif-gpsdestbearing'              => 'Azimut odredišta',
+'exif-gpsdestdistanceref'          => 'Referenca za udaljenost od odredišta',
 'exif-gpsdestdistance'             => 'Udaljenost do odredišta',
+'exif-gpsprocessingmethod'         => 'Naziv GPS metoda procesiranja',
 'exif-gpsareainformation'          => 'Naziv GPS područja',
 'exif-gpsdatestamp'                => 'GPS datum',
+'exif-gpsdifferential'             => 'GPS diferencijalna korekcija',
 
 # EXIF attributes
 'exif-compression-1' => 'Nekompresovano',
@@ -2649,42 +2658,109 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'exif-orientation-2' => 'Horizontalno preokrenuto', # 0th row: top; 0th column: right
 'exif-orientation-3' => 'Rotirano 180°', # 0th row: bottom; 0th column: right
 'exif-orientation-4' => 'Vertikalno preokrenuto', # 0th row: bottom; 0th column: left
+'exif-orientation-5' => 'Rotirano 90° suprotno kazaljke i vertikalno obrnuto', # 0th row: left; 0th column: top
 'exif-orientation-6' => 'Rotirano 90° u smijeru kazaljke', # 0th row: right; 0th column: top
 'exif-orientation-7' => 'Rotirano 90° u smijeru kazaljke i preokrenuto vertikalno', # 0th row: right; 0th column: bottom
+'exif-orientation-8' => 'Rotirano 90° suprotno kazaljke', # 0th row: left; 0th column: bottom
+
+'exif-planarconfiguration-1' => 'grubi format',
+'exif-planarconfiguration-2' => 'format u ravni',
 
 'exif-componentsconfiguration-0' => 'ne postoji',
 
 'exif-exposureprogram-0' => 'Nije određen',
 'exif-exposureprogram-1' => 'Ručno',
 'exif-exposureprogram-2' => 'Normalni program',
+'exif-exposureprogram-3' => 'Prioritet otvora blende',
 'exif-exposureprogram-4' => 'Prioritet okidača',
+'exif-exposureprogram-5' => 'Kreativni program (usmjeren ka dubini polja)',
+'exif-exposureprogram-6' => 'Program akcije (usmjereno na veću brzinu okidača)',
+'exif-exposureprogram-7' => 'Način portreta (za fotografije iz blizine sa pozadinom van fokusa)',
+'exif-exposureprogram-8' => 'Način pejsaža (za pejsažne fotografije sa pozadinom u fokusu)',
 
 'exif-subjectdistance-value' => '$1 metara',
 
 'exif-meteringmode-0'   => 'Nepoznat',
 'exif-meteringmode-1'   => 'Prosječan',
+'exif-meteringmode-3'   => 'Tačka',
+'exif-meteringmode-4'   => 'Višestruka tačka',
+'exif-meteringmode-5'   => 'Šema',
+'exif-meteringmode-6'   => 'Djelimični',
 'exif-meteringmode-255' => 'Ostalo',
 
-'exif-lightsource-0'  => 'Nepoznat',
-'exif-lightsource-1'  => 'Dnevno svjetlo',
-'exif-lightsource-4'  => 'Blijesak',
-'exif-lightsource-9'  => 'Lijepo vrijeme',
-'exif-lightsource-10' => 'Oblačno vrijeme',
+'exif-lightsource-0'   => 'Nepoznat',
+'exif-lightsource-1'   => 'Dnevno svjetlo',
+'exif-lightsource-2'   => 'Fluorescentni',
+'exif-lightsource-3'   => 'Volfram (svjetlo)',
+'exif-lightsource-4'   => 'Blijesak',
+'exif-lightsource-9'   => 'Lijepo vrijeme',
+'exif-lightsource-10'  => 'Oblačno vrijeme',
+'exif-lightsource-11'  => 'Osjenčeno',
+'exif-lightsource-12'  => 'Dnevna fluorescencija (D 5700 – 7100K)',
+'exif-lightsource-13'  => 'Dnevna bijela fluorescencija (N 4600 – 5400K)',
+'exif-lightsource-14'  => 'Hladno bijela fluorescencija (W 3900 – 4500K)',
+'exif-lightsource-15'  => 'Bijela fluorescencija (WW 3200 – 3700K)',
+'exif-lightsource-17'  => 'Standardno svjetlo A',
+'exif-lightsource-18'  => 'Standardno svjetlo B',
+'exif-lightsource-19'  => 'Standardno svjetlo C',
+'exif-lightsource-255' => 'Ostali izvori svjetlosti',
+
+# Flash modes
+'exif-flash-fired-0'    => 'Blijesak nije radio',
+'exif-flash-fired-1'    => 'Blijesak radio',
+'exif-flash-mode-1'     => 'obavezan rad blijeska',
+'exif-flash-mode-2'     => 'obavezno izbjegavanje blijeska',
+'exif-flash-mode-3'     => 'automatski način',
+'exif-flash-function-1' => 'Bez funkcije blijeska',
+'exif-flash-redeye-1'   => 'način redukcije "crvenila očiju"',
 
 'exif-focalplaneresolutionunit-2' => 'inči',
 
+'exif-sensingmethod-1' => 'Nedefinisan',
+'exif-sensingmethod-2' => 'Senzor boje površine sa jednim čipom',
+'exif-sensingmethod-3' => 'Senzor boje površine sa dva čipa',
+'exif-sensingmethod-4' => 'Senzor boje površine sa tri čipa',
+'exif-sensingmethod-5' => 'Sekvencijalni senzor boje površine',
+'exif-sensingmethod-7' => 'Trilinearni senzor',
+'exif-sensingmethod-8' => 'Sekvencijalni senzor boje linija',
+
+'exif-scenetype-1' => 'Direktno fotografisana slika',
+
+'exif-customrendered-0' => 'Normalni proces',
+'exif-customrendered-1' => 'Podešeni proces',
+
+'exif-exposuremode-0' => 'Automatska ekpozicija',
+'exif-exposuremode-1' => 'Ručna ekspozicija',
+'exif-exposuremode-2' => 'Automatski određen raspon',
+
+'exif-whitebalance-0' => 'Automatski bijeli balans',
+'exif-whitebalance-1' => 'Ručno podešeni bijeli balans',
+
 'exif-scenecapturetype-0' => 'Standardna',
+'exif-scenecapturetype-1' => 'Pejsaž',
+'exif-scenecapturetype-2' => 'Portret',
+'exif-scenecapturetype-3' => 'Noćna scena',
 
 'exif-gaincontrol-0' => 'Ništa',
+'exif-gaincontrol-1' => 'Malo povećanje',
+'exif-gaincontrol-2' => 'Veće povećanje',
+'exif-gaincontrol-3' => 'Manje smanjenje',
+'exif-gaincontrol-4' => 'Veće smanjenje',
 
 'exif-contrast-0' => 'Normalni',
+'exif-contrast-1' => 'Mehki',
+'exif-contrast-2' => 'Snažni',
 
 'exif-saturation-0' => 'Normalna',
 'exif-saturation-1' => 'Niska zasićenost',
+'exif-saturation-2' => 'Jako zasićenje',
 
 'exif-sharpness-0' => 'Normalna',
+'exif-sharpness-1' => 'Blago',
+'exif-sharpness-2' => 'Oštro',
 
 'exif-subjectdistancerange-0' => 'Nepoznat',
+'exif-subjectdistancerange-1' => 'Makro',
 'exif-subjectdistancerange-2' => 'Pogled izbliza',
 'exif-subjectdistancerange-3' => 'Pogled iz daljine',
 
@@ -2697,12 +2773,19 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'exif-gpslongitude-w' => 'Zapadna dužina',
 
 'exif-gpsstatus-a' => 'Mjerenje u toku',
+'exif-gpsstatus-v' => 'Mjerenje van funkcije',
+
+'exif-gpsmeasuremode-2' => 'dvodimenzionalno mjerenje',
+'exif-gpsmeasuremode-3' => 'trodimenzionalno mjerenje',
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-k' => 'Kilometara na sat',
+'exif-gpsspeed-m' => 'Milja na sat',
+'exif-gpsspeed-n' => 'Čvorova',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Stvarni pravac',
+'exif-gpsdirection-m' => 'Magnetski smijer',
 
 # External editor support
 'edit-externally'      => 'Izmjeni ovu sliku koristeći vanjski program',
@@ -2716,20 +2799,23 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'monthsall'        => 'sve',
 
 # E-mail address confirmation
-'confirmemail'            => 'Potvrdite adresu e-pošte',
-'confirmemail_noemail'    => 'Niste unijeli tačnu e-mail adresu u Vaše [[Special:Preferences|korisničke postavke]].',
-'confirmemail_text'       => 'Ova viki zahtjeva da potvrdite adresu Vaše e-pošte prije nego što koristite mogućnosti e-pošte. Aktivirajte dugme ispod kako bi ste poslali poštu za potvrdu na Vašu adresu. Pošta uključuje poveznicu koja sadrži kod; učitajte poveznicu u Vaš brauzer da bi ste potvrdili da je adresa Vaše e-pošte validna.',
-'confirmemail_send'       => 'Pošaljite kod za potvrdu',
-'confirmemail_sent'       => 'E-pošta za potvrđivanje poslata.',
-'confirmemail_sendfailed' => '{{SITENAME}} Vam ne može poslati poštu za potvrđivanje. Provjerite adresu zbog nepravilnih karaktera.
+'confirmemail'             => 'Potvrdite adresu e-pošte',
+'confirmemail_noemail'     => 'Niste unijeli tačnu e-mail adresu u Vaše [[Special:Preferences|korisničke postavke]].',
+'confirmemail_text'        => 'Ova viki zahtjeva da potvrdite adresu Vaše e-pošte prije nego što koristite mogućnosti e-pošte. Aktivirajte dugme ispod kako bi ste poslali poštu za potvrdu na Vašu adresu. Pošta uključuje poveznicu koja sadrži kod; učitajte poveznicu u Vaš brauzer da bi ste potvrdili da je adresa Vaše e-pošte validna.',
+'confirmemail_pending'     => '<div class="error">Konfirmacioni kod Vam je već poslan putem e-maila;
+ako ste nedavno otvorili Vaš račun, trebali bi pričekati par minuta da poslana pošta stigne, prije nego što ponovno zahtijevate novi kod.</div>',
+'confirmemail_send'        => 'Pošaljite kod za potvrdu',
+'confirmemail_sent'        => 'E-pošta za potvrđivanje poslata.',
+'confirmemail_sendfailed'  => '{{SITENAME}} Vam ne može poslati poštu za potvrđivanje. Provjerite adresu zbog nepravilnih karaktera.
 
 Povratna pošta: $1',
-'confirmemail_invalid'    => 'Netačan kod za potvrdu. Moguće je da je kod istekao.',
-'confirmemail_success'    => 'Adresa vaše e-pošte je potvrđena. Možete sad da se prijavite i uživate u viki.',
-'confirmemail_loggedin'   => 'Adresa Vaše e-pošte je potvrđena.',
-'confirmemail_error'      => 'Nešto je pošlo po zlu prilikom sačuvavanja vaše potvrde.',
-'confirmemail_subject'    => 'Vikiriječnik adresa e-pošte za potvrđivanje',
-'confirmemail_body'       => 'Neko, vjerovatno Vi, je sa IP adrese $1 registrovao nalog "$2" sa ovom adresom e-pošte na {{SITENAME}}.
+'confirmemail_invalid'     => 'Netačan kod za potvrdu. Moguće je da je kod istekao.',
+'confirmemail_needlogin'   => 'Morate $1 da bi ste potvrdili Vašu e-mail adresu.',
+'confirmemail_success'     => 'Adresa vaše e-pošte je potvrđena. Možete sad da se prijavite i uživate u viki.',
+'confirmemail_loggedin'    => 'Adresa Vaše e-pošte je potvrđena.',
+'confirmemail_error'       => 'Nešto je pošlo po zlu prilikom sačuvavanja vaše potvrde.',
+'confirmemail_subject'     => 'Vikiriječnik adresa e-pošte za potvrđivanje',
+'confirmemail_body'        => 'Neko, vjerovatno Vi, je sa IP adrese $1 registrovao nalog "$2" sa ovom adresom e-pošte na {{SITENAME}}.
 
 Da potvrdite da ovaj nalog stvarno pripada vama i da aktivirate mogućnost e-pošte na {{SITENAME}}, otvorite ovu poveznicu u vašem pretraživaču:
 
@@ -2739,20 +2825,60 @@ Ako ovo niste vi, pratite ovaj link da prekinete prijavu:
 $5
 
 Ovaj kod za potvrdu će isteći u $4.',
+'confirmemail_invalidated' => 'Potvrda e-mail adrese otkazana',
+'invalidateemail'          => 'Odustani od e-mail potvrde',
+
+# Scary transclusion
+'scarytranscludetoolong' => '[URL je predugačak]',
+
+# Trackbacks
+'trackbackbox'      => '<div id="mw_trackbacks">Trackbacks za ovu stranicu:<br />
+$1
+</div>',
+'trackbackremove'   => ' ([$1 Brisanje])',
+'trackbacklink'     => 'Vraćanje',
+'trackbackdeleteok' => 'Trackback je uspješno obrisan.',
 
 # Delete conflict
-'confirmrecreate' => "Korisnik [[User:$1|$1]] ([[User talk:$1|razgovor]]) je obrisao ovaj članak pošto ste počeli uređivanje sa razlogom:
+'deletedwhileediting' => "'''Upozorenje''': Ova stranica je obrisana prije nego što ste počeli uređivati!",
+'confirmrecreate'     => "Korisnik [[User:$1|$1]] ([[User talk:$1|razgovor]]) je obrisao ovaj članak pošto ste počeli uređivanje sa razlogom:
 : ''$2''
 
 Molimo Vas da potvrdite da stvarno želite da ponovo napravite ovaj članak.",
 
+# action=purge
+'confirm_purge_button' => 'U redu',
+'confirm-purge-top'    => 'Da li želite obrisati keš ove stranice?',
+
 # Multipage image navigation
 'imgmultipageprev' => '← prethodna stranica',
+'imgmultipagenext' => 'slijedeća stranica →',
 'imgmultigo'       => 'Idi!',
+'imgmultigoto'     => 'Idi na stranicu $1',
 
 # Table pager
+'ascending_abbrev'         => 'rast',
+'descending_abbrev'        => 'opad',
+'table_pager_next'         => 'Slijedeća stranica',
 'table_pager_prev'         => 'Prethodna stranica',
+'table_pager_first'        => 'Prva stranica',
+'table_pager_last'         => 'Zadnja stranica',
 'table_pager_limit_submit' => 'Idi',
+
+# Auto-summaries
+'autosumm-blank' => 'Uklanjanje cjelokupnog sadržaja stranice',
+'autosumm-new'   => 'Nova stranica: $1',
+
+# Live preview
+'livepreview-loading' => 'Punjenje…',
+'livepreview-ready'   => 'Punjenje… Spreman!',
+
+# Watchlist editor
+'watchlistedit-normal-title'  => 'Uredi spisak praćenja',
+'watchlistedit-normal-legend' => 'Ukloni naslove iz spiska praćenja',
+'watchlistedit-raw-title'     => 'Napredno uređivanje spiska praćenja',
+'watchlistedit-raw-legend'    => 'Napredno uređivanje spiska praćenja',
+'watchlistedit-raw-titles'    => 'Naslovi:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Pregled promjena praćenih stranica',
@@ -2762,11 +2888,23 @@ Molimo Vas da potvrdite da stvarno želite da ponovo napravite ovaj članak.",
 # Iranian month names
 'iranian-calendar-m1' => 'Farvardin (Iranski kalendar)',
 
+# Core parser functions
+'unknown_extension_tag' => 'Nepoznata oznaka ekstenzije "$1"',
+
 # Special:Version
-'version'       => 'Verzija', # Not used as normal message but as header for the special page itself
-'version-other' => 'Ostalo',
+'version'                  => 'Verzija', # Not used as normal message but as header for the special page itself
+'version-variables'        => 'Promjenjive',
+'version-other'            => 'Ostalo',
+'version-version'          => 'Verzija',
+'version-software-version' => 'Verzija',
+
+# Special:FilePath
+'filepath'      => 'Putanja datoteke',
+'filepath-page' => 'Datoteka:',
 
 # Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Pretraga za duplim datotekama',
+'fileduplicatesearch-legend'   => 'Pretraga za dvojnicima',
 'fileduplicatesearch-filename' => 'Ime datoteke:',
 'fileduplicatesearch-submit'   => 'Traži',
 

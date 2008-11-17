@@ -1106,7 +1106,7 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 'viewprevnext'                     => 'Lihat ($1) ($2) ($3)',
 'searchmenu-legend'                => 'Opsi pencarian',
 'searchmenu-exists'                => "* Halaman '''[[$1]]'''",
-'searchmenu-new'                   => "'''[[:\$1|Buat]] halaman \"[[\$1]]\" di wiki ini!'''",
+'searchmenu-new'                   => "'''[[:\$1|Buat]] halaman \"\$1\" di wiki ini!'''",
 'searchhelp-url'                   => 'Help:Isi',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Lihat daftar halaman dengan awalan ini]]',
 'searchprofile-articles'           => 'Halaman-halaman',

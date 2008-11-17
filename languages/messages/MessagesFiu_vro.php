@@ -619,27 +619,28 @@ Kas tahat taad lehte tõtõstõ toimõndaq? Kaeq ka sissekirotust seo lehe ärqk
 $3 kirjäpant põhjus: ''$2''",
 
 # History pages
-'viewpagelogs'        => 'Kaeq seo lehe muutmisnimekirjä.',
-'nohistory'           => 'Seo leheküle pääl ei olõq vanõmbit kujjõ.',
-'currentrev'          => 'Viimäne kujo',
-'revisionasof'        => 'Kujo $1',
-'revision-info'       => 'Kujo aost $1 - tennüq $2', # Additionally available: $3: revision id
-'previousrevision'    => '←Vanõmb kujo',
-'nextrevision'        => 'Vahtsõmb kujo→',
-'currentrevisionlink' => 'Viimäne kujo',
-'cur'                 => 'viim',
-'next'                => 'järgm',
-'last'                => 'minev',
-'page_first'          => 'edimäne leht',
-'page_last'           => 'viimäne leht',
-'histlegend'          => "Märgiq ärq kujoq, midä tahat kõrvo säädiq ja vaodaq võrdõlõmisnuppi.
+'viewpagelogs'           => 'Kaeq seo lehe muutmisnimekirjä.',
+'nohistory'              => 'Seo leheküle pääl ei olõq vanõmbit kujjõ.',
+'currentrev'             => 'Viimäne kujo',
+'revisionasof'           => 'Kujo $1',
+'revision-info'          => 'Kujo aost $1 - tennüq $2', # Additionally available: $3: revision id
+'previousrevision'       => '←Vanõmb kujo',
+'nextrevision'           => 'Vahtsõmb kujo→',
+'currentrevisionlink'    => 'Viimäne kujo',
+'cur'                    => 'viim',
+'next'                   => 'järgm',
+'last'                   => 'minev',
+'page_first'             => 'edimäne leht',
+'page_last'              => 'viimäne leht',
+'histlegend'             => "Märgiq ärq kujoq, midä tahat kõrvo säädiq ja vaodaq võrdõlõmisnuppi.
 Seletüs: (viim) = lahkominegiq viimätsest kujost,
 (minev) = lahkominegiq minevädsest kujost, ts = väiku (tsill'okõnõ) muutminõ",
-'deletedrev'          => '[kistutõt]',
-'histfirst'           => 'Edimädseq',
-'histlast'            => 'Viimädseq',
-'historysize'         => '({{PLURAL:$1|1 bait|$1 baiti}})',
-'historyempty'        => '(tühi)',
+'history-fieldset-title' => 'Kaeq muutmiisi aoluku',
+'deletedrev'             => '[kistutõt]',
+'histfirst'              => 'Edimädseq',
+'histlast'               => 'Viimädseq',
+'historysize'            => '({{PLURAL:$1|1 bait|$1 baiti}})',
+'historyempty'           => '(tühi)',
 
 # Revision feed
 'history-feed-title'          => 'Muutmislugu',
@@ -1081,6 +1082,8 @@ Lehte peetäs täpsüstüslehes, ku timän om pruugit näüdüst, kohe näütäs
 'notargettitle'           => 'Otsitut lehte olõ-i',
 'notargettext'            => 'Sa olõ-i andnuq lehte ega pruukjat, minka taad tallitust tetäq.',
 'nopagetext'              => 'Säänest lehte olõ-i olõman.',
+'pager-newer-n'           => '{{PLURAL:$1|vahtsõmb 1|vahtsõmbaq $1}}',
+'pager-older-n'           => '{{PLURAL:$1|vanõmb 1|vanõmbaq $1}}',
 
 # Book sources
 'booksources'               => 'Raamaduq',

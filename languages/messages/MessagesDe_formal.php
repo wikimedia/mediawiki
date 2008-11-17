@@ -463,6 +463,7 @@ Alternativ ist der Export auch mit der Syntax [[{{ns:special}}:Export/{{MediaWik
 'import-interwiki-text' => 'Wählen Sie ein Wiki und eine Seite zum Importieren aus.
 Die Versionsdaten und Benutzernamen bleiben dabei erhalten.
 Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] protokolliert.',
+'import-token-mismatch' => 'Verlust der Sessiondaten. Bitte versuchen Sie es erneut.',
 
 # Tooltip help for the actions
 'tooltip-pt-anonuserpage' => 'Benutzerseite der IP-Adresse, von der aus Sie Änderungen durchführen',

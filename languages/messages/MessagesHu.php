@@ -49,13 +49,14 @@ $namespaceAliases = array(
 );
 
 $skinNames = array(
-	'standard'    => 'Klasszikus',
-	'nostalgia'   => 'Nosztalgia',
-	'cologneblue' => 'Kölni kék',
-	'monobook'    => 'MonoBook',
-	'myskin'      => 'MySkin',
-	'chick'       => 'Chick',
-	'simple'      => 'Egyszerű',
+	'standard'      => 'Klasszikus',
+	'nostalgia'     => 'Nosztalgia',
+	'cologneblue'   => 'Kölni kék',
+	'monobook'      => 'MonoBook',
+	'myskin'        => 'MySkin',
+	'chick'         => 'Csirke',
+	'simple'        => 'Egyszerű',
+	'modern'        => 'Modern',
 );
 
 $fallback8bitEncoding = "iso8859-2";
@@ -935,6 +936,7 @@ Néhány sablon nem fog megjelenni.',
 'post-expand-template-inclusion-category' => 'Lapok, melyeken a beillesztett sablon mérete meghaladja a megengedett méretet',
 'post-expand-template-argument-warning'   => 'Figyelem: Ez a lap legalább egy olyan sablonparamétert tartalmaz, amely kibontva túl nagy, így el lett(ek) hagyva.',
 'post-expand-template-argument-category'  => 'Elhagyott sablonparaméterekkel rendelkező lapok',
+'parser-template-loop-warning'            => 'Sablonhurok észlelve: [[$1]]',
 
 # "Undo" feature
 'undo-success' => 'A szerkesztés visszavonható. Kérlek ellenőrizd alább a változásokat, hogy valóban ezt szeretnéd-e tenni, majd kattints a lap mentése gombra a visszavonás véglegesítéséhez.',
@@ -1624,11 +1626,11 @@ Ellenőrizd a meglévő hivatkozásokat, mielőtt törölnéd őket.',
 
 # Random page
 'randompage'         => 'Lap találomra',
-'randompage-nopages' => 'Ebben a névtérben nincsenek lapok.',
+'randompage-nopages' => 'A(z) "$1" névtérben nincsenek lapok.',
 
 # Random redirect
 'randomredirect'         => 'Átirányítás találomra',
-'randomredirect-nopages' => 'Ebben a névtérben nincsenek átirányítások.',
+'randomredirect-nopages' => 'A(z) "$1" névtérben nincsenek átirányítások.',
 
 # Statistics
 'statistics'                      => 'Statisztikák',
