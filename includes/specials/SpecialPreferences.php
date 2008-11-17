@@ -838,7 +838,7 @@ class PreferencesForm {
 		# Skin
 		#
 		global $wgAllowUserSkin;
-		if( $wgAllowUserSkin || $wgUser->isAllowed( 'alwaysuseskin' ) ) {
+		if( $wgAllowUserSkin ) {
 			$wgOut->addHTML( "<fieldset>\n<legend>\n" . wfMsg('skin') . "</legend>\n" );
 			$mptitle = Title::newMainPage();
 			$previewtext = wfMsg('skin-preview');
@@ -856,7 +856,7 @@ class PreferencesForm {
 			foreach ($validSkinNames as $skinkey => $sn ) {
 				$checked = $skinkey == $this->mSkin ? ' checked="checked"' : '';
 				$mplink = htmlspecialchars($mptitle->getLocalURL("useskin=$skinkey"));
-				$previewlink = "(<a target='_blank' href=\"$mplink\">$previewtext</a>)";
+				$previewlink = $wgAllowUserSkin ? "(<a target='_blank' href=\"$mplink\">$previewtext</a>)" : '';
 				if( $skinkey == $wgDefaultSkin )
 					$sn .= ' (' . wfMsg( 'default' ) . ')';
 				$wgOut->addHTML( "<input type='radio' name='wpSkin' id=\"wpSkin$skinkey\" value=\"$skinkey\"$checked /> <label for=\"wpSkin$skinkey\">{$sn}</label> $previewlink<br />\n" );
