@@ -759,20 +759,20 @@ class PreferencesForm {
 				$this->tableRow( Xml::element( 'h2', null, wfMsg( 'changepassword' ) ) ) .
 				$this->tableRow(
 					Xml::label( wfMsg( 'oldpassword' ), 'wpOldpass' ),
-					Xml::password( 'wpOldpass', 25, $this->mOldpass, array( 'id' => 'wpOldpass' ) )
+					Xml::password( 'wpOldpass', 25, $this->mOldpass, array( 'id' => 'wpOldpass', 'autocomplete' => 'off' ) )
 				) .
 				$this->tableRow(
 					Xml::label( wfMsg( 'newpassword' ), 'wpNewpass' ),
-					Xml::password( 'wpNewpass', 25, $this->mNewpass, array( 'id' => 'wpNewpass' ) )
+					Xml::password( 'wpNewpass', 25, $this->mNewpass, array( 'id' => 'wpNewpass', 'autocomplete' => 'off' ) )
 				) .
 				$this->tableRow(
 					Xml::label( wfMsg( 'retypenew' ), 'wpRetypePass' ),
-					Xml::password( 'wpRetypePass', 25, $this->mRetypePass, array( 'id' => 'wpRetypePass' ) )
+					Xml::password( 'wpRetypePass', 25, $this->mRetypePass, array( 'id' => 'wpRetypePass', 'autocomplete' => 'off' ) )
 				)
 			);
 			if( $wgCookieExpiration > 0 ){
 				$wgOut->addHTML(
-					$this->tableRow( $this->getToggle( "rememberpassword" ) )				
+					$this->tableRow( $this->getToggle( "rememberpassword" ) )	
 				);
 			} else {
 				$this->mUsedToggles['rememberpassword'] = true;
