@@ -348,7 +348,6 @@ The following extensions are migrated into MediaWiki 1.14:
   path naming (/thumbs/hash/file), retired 'apiThumbCacheDir' as a result.
 * (bug 5530) Consistency between character encoding in {{PAGENAMEE}},
   {{SUBPAGENAMEE}} and {{FULLPAGENAMEE}}
-* API siteinfo query no longer throws an exception for empty sifilter parameter.
 * Safer handling of non-MediaWiki exceptions -- now obeys our settings for
   formatting and path exposure.
 * Less verbose errors from profileinfo.php when not configured
@@ -444,6 +443,8 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 16126) Added siprop=magicwords to meta=siteinfo
 * (bug 16159) Added wlshow=patrolled|!patrolled to list=watchlist
 * (bug 16225) Titles like Talk:Talk:Foo broke apfrom and friends
+* meta=siteinfo&siprop=interwikimap no longer throws an exception for empty
+  sifilter parameter.
 
 === Languages updated in 1.14 ===
 
