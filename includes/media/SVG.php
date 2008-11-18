@@ -77,7 +77,7 @@ class SvgHandler extends ImageHandler {
 	* @param string $height
 	* @returns TRUE/MediaTransformError
 	*/
-	public function transformSvgToPng( $srcPath, $dstPath, $width, $height ) {
+	public function rasterize( $srcPath, $dstPath, $width, $height ) {
 		global $wgSVGConverters, $wgSVGConverter, $wgSVGConverterPath;
 		$err = false;
 		if ( isset( $wgSVGConverters[$wgSVGConverter] ) ) {
