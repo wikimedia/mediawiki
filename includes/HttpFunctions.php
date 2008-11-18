@@ -16,7 +16,7 @@ class Http {
 	 * Simple wrapper for Http::request( 'GET' )
 	 * @see Http::request()
 	 */
-	static function get( $url, $timeout = 'default', $opts = array() ) {
+	public static function get( $url, $timeout = 'default', $opts = array() ) {
 		return Http::request( "GET", $url, $timeout, $opts );
 	}
 
@@ -24,7 +24,7 @@ class Http {
 	 * Simple wrapper for Http::request( 'POST' )
 	 * @see Http::request()
 	 */
-	static function post( $url, $timeout = 'default', $opts = array() ) {
+	public static function post( $url, $timeout = 'default', $opts = array() ) {
 		return Http::request( "POST", $url, $timeout, $opts );
 	}
 
@@ -36,8 +36,8 @@ class Http {
 	 * @param $curlOptions array Optional array of extra params to pass 
 	 * to curl_setopt()
 	 */
-	static function request( $method, $url, $timeout = 'default', $curlOptions = array() ) {
-		global $wgHTTPTimeout, $wgHTTPProxy, $wgVersion, $wgTitle;
+	public static function request( $method, $url, $timeout = 'default', $curlOptions = array() ) {
+		global $wgHTTPTimeout, $wgHTTPProxy, $wgTitle;
 
 		// Go ahead and set the timeout if not otherwise specified
 		if ( $timeout == 'default' ) {
@@ -55,7 +55,7 @@ class Http {
 			}
 
 			curl_setopt( $c, CURLOPT_TIMEOUT, $timeout );
-			curl_setopt( $c, CURLOPT_USERAGENT, "MediaWiki/$wgVersion" );
+			curl_setopt( $c, CURLOPT_USERAGENT, self :: userAgent() );
 			if ( $method == 'POST' )
 				curl_setopt( $c, CURLOPT_POST, true );
 			else
@@ -99,7 +99,7 @@ class Http {
 			# Otherwise use file_get_contents...
 			# This doesn't have local fetch capabilities...
 
-			$headers = array( "User-Agent: MediaWiki/$wgVersion" );
+			$headers = array( "User-Agent: " . self :: userAgent() );
 			if( strcasecmp( $method, 'post' ) == 0 ) {
 				// Required for HTTP 1.0 POSTs
 				$headers[] = "Content-Length: 0";
@@ -121,7 +121,7 @@ class Http {
 	 * @param $url string Full url to check
 	 * @return bool
 	 */
-	static function isLocalURL( $url ) {
+	public static function isLocalURL( $url ) {
 		global $wgCommandLineMode, $wgConf;
 		if ( $wgCommandLineMode ) {
 			return false;
@@ -148,5 +148,13 @@ class Http {
 			}
 		}
 		return false;
+	}
+	
+	/**
+	 * Return a standard user-agent we can use for external requests.
+	 */
+	public static function userAgent() {
+		global $wgVersion;
+		return "MediaWiki/$wgVersion";
 	}
 }
