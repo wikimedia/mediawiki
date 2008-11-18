@@ -41,7 +41,7 @@ $namespaceAliases = array(
 	'సభ్యునిపై_చర్చ' => NS_USER_TALK,
 	'బొమ్మ' => NS_IMAGE,
 	'బొమ్మపై_చర్చ' => NS_IMAGE_TALK,
-	'బొమ్మపై_చర్చ' => NS_IMAGE_TALK
+	'బొమ్మపై_చర్చ' => NS_IMAGE_TALK,
 	'సహాయము' => NS_HELP,
 	'సహాయము_చర్చ' => NS_HELP_TALK,
 );
