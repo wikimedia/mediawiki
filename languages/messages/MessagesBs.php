@@ -15,14 +15,12 @@
 $namespaceNames = array(
 	NS_MEDIA            => 'Medija',
 	NS_SPECIAL          => 'Posebno',
-	NS_MAIN             => '',
 	NS_TALK             => 'Razgovor',
 	NS_USER             => 'Korisnik',
 	NS_USER_TALK        => 'Razgovor_sa_korisnikom',
-	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => 'Razgovor_{{grammar:instrumental|$1}}',
-	NS_IMAGE            => 'Slika',
-	NS_IMAGE_TALK       => 'Razgovor_o_slici',
+	NS_IMAGE            => 'Datoteka',
+	NS_IMAGE_TALK       => 'Razgovor_o_datoteci',
 	NS_MEDIAWIKI        => 'MedijaViki',
 	NS_MEDIAWIKI_TALK   => 'Razgovor_o_MedijaVikiju',
 	NS_TEMPLATE         => 'Šablon',
@@ -31,6 +29,11 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Razgovor_o_pomoći',
 	NS_CATEGORY         => 'Kategorija',
 	NS_CATEGORY_TALK    => 'Razgovor_o_kategoriji',
+);
+
+$namespaceAliases = array(
+	'Slika' => NS_IMAGE,
+	'Razgovor_o_datoteci' => NS_IMAGE_TALK,
 );
 
 $skinNames = array(

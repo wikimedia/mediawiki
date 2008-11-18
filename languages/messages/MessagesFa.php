@@ -24,24 +24,27 @@ $skinNames = array(
 	'modern'      => 'مدرن',
 );
 $namespaceNames = array(
-	NS_MEDIA          => 'مدیا',
-	NS_SPECIAL        => 'ویژه',
-	NS_MAIN	          => '',
-	NS_TALK	          => 'بحث',
-	NS_USER           => 'کاربر',
-	NS_USER_TALK      => 'بحث_کاربر',
-	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK   => 'بحث_$1',
-	NS_IMAGE          => 'تصویر',
-	NS_IMAGE_TALK     => 'بحث_تصویر',
-	NS_MEDIAWIKI      => 'مدیاویکی',
-	NS_MEDIAWIKI_TALK	=> 'بحث_مدیاویکی',
-	NS_TEMPLATE       => 'الگو',
-	NS_TEMPLATE_TALK  => 'بحث_الگو',
-	NS_HELP           => 'راهنما',
-	NS_HELP_TALK      => 'بحث_راهنما',
-	NS_CATEGORY       => 'رده',
-	NS_CATEGORY_TALK  => 'بحث_رده'
+	NS_MEDIA            => 'مدیا',
+	NS_SPECIAL          => 'ویژه',
+	NS_TALK             => 'بحث',
+	NS_USER             => 'کاربر',
+	NS_USER_TALK        => 'بحث_کاربر',
+	NS_PROJECT_TALK     => 'بحث_$1',
+	NS_IMAGE            => 'پرونده',
+	NS_IMAGE_TALK       => 'بحث_پرونده',
+	NS_MEDIAWIKI        => 'مدیاویکی',
+	NS_MEDIAWIKI_TALK   => 'بحث_مدیاویکی',
+	NS_TEMPLATE         => 'الگو',
+	NS_TEMPLATE_TALK    => 'بحث_الگو',
+	NS_HELP             => 'راهنما',
+	NS_HELP_TALK        => 'بحث_راهنما',
+	NS_CATEGORY         => 'رده',
+	NS_CATEGORY_TALK    => 'بحث_رده',
+);
+
+$namespaceAliases = array(
+	'تصویر' => NS_IMAGE,
+	'بحث_تصویر' => NS_IMAGE_TALK,
 );
 
 $specialPageAliases = array(

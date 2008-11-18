@@ -29,11 +29,9 @@ $bookstoreList = array(
 $namespaceNames = array(
 	NS_MEDIA          => 'Mèdia',
 	NS_SPECIAL        => 'Especial',
-	NS_MAIN           => '',
 	NS_TALK           => 'Discutir',
 	NS_USER           => 'Utilizaire',
 	NS_USER_TALK      => 'Discussion_Utilizaire',
-	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK   => 'Discussion_$1',
 	NS_IMAGE          => 'Imatge',
 	NS_IMAGE_TALK     => 'Discussion_Imatge',

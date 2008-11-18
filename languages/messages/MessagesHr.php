@@ -28,24 +28,27 @@ $skinNames = array(
 );
 
 $namespaceNames = array(
-	NS_MEDIA           => 'Mediji',
-	NS_SPECIAL         => 'Posebno',
-	NS_MAIN            => '',
-	NS_TALK            => 'Razgovor',
-	NS_USER            => 'Suradnik',
-	NS_USER_TALK       => 'Razgovor_sa_suradnikom',
-	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK    => 'Razgovor_$1',
-	NS_IMAGE           => 'Slika',
-	NS_IMAGE_TALK      => 'Razgovor_o_slici',
-	NS_MEDIAWIKI       => 'MediaWiki',
-	NS_MEDIAWIKI_TALK  => 'MediaWiki_razgovor',
-	NS_TEMPLATE        => 'Predložak',
-	NS_TEMPLATE_TALK   => 'Razgovor_o_predlošku',
-	NS_HELP            => 'Pomoć',
-	NS_HELP_TALK       => 'Razgovor_o_pomoći',
-	NS_CATEGORY        => 'Kategorija',
-	NS_CATEGORY_TALK   => 'Razgovor_o_kategoriji'
+	NS_MEDIA            => 'Mediji',
+	NS_SPECIAL          => 'Posebno',
+	NS_TALK             => 'Razgovor',
+	NS_USER             => 'Suradnik',
+	NS_USER_TALK        => 'Razgovor_sa_suradnikom',
+	NS_PROJECT_TALK     => 'Razgovor_$1',
+	NS_IMAGE            => 'Datoteka',
+	NS_IMAGE_TALK       => 'Razgovor_o_datoteci',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_razgovor',
+	NS_TEMPLATE         => 'Predložak',
+	NS_TEMPLATE_TALK    => 'Razgovor_o_predlošku',
+	NS_HELP             => 'Pomoć',
+	NS_HELP_TALK        => 'Razgovor_o_pomoći',
+	NS_CATEGORY         => 'Kategorija',
+	NS_CATEGORY_TALK    => 'Razgovor_o_kategoriji',
+);
+
+$namespaceAliases = array(
+	'Slika' => NS_IMAGE,
+	'Razgovor_o_slici' => NS_IMAGE_TALK,
 );
 
 $specialPageAliases = array(

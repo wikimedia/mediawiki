@@ -11,6 +11,24 @@
 
 $fallback = 'fr';
 
+$namespaceNames = array(
+	NS_SPECIAL          => 'Manokana',
+	NS_TALK             => 'Dinika',
+	NS_USER             => 'Mpikambana',
+	NS_USER_TALK        => 'Dinika_amin\'ny_mpikambana',
+	NS_PROJECT_TALK     => 'Dinika_amin\'ny_$1',
+	NS_IMAGE            => 'Sary',
+	NS_IMAGE_TALK       => 'Dinika_amin\'ny_sary',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Dinika_amin\'ny_MediaWiki',
+	NS_TEMPLATE         => 'Endrika',
+	NS_TEMPLATE_TALK    => 'Dinika_amin\'ny_endrika',
+	NS_HELP             => 'Fanampiana',
+	NS_HELP_TALK        => 'Dinika_amin\'ny_fanampiana',
+	NS_CATEGORY         => 'Sokajy',
+	NS_CATEGORY_TALK    => 'Dinika_amin\'ny_sokajy',
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Tsipiho ny rohy:',

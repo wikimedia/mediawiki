@@ -26,14 +26,12 @@ $skinNames = array(
 $namespaceNames = array(
 	NS_MEDIA            => 'สื่อ',
 	NS_SPECIAL          => 'พิเศษ',
-	NS_MAIN	            => '',
-	NS_TALK	            => 'พูดคุย',
+	NS_TALK             => 'พูดคุย',
 	NS_USER             => 'ผู้ใช้',
 	NS_USER_TALK        => 'คุยกับผู้ใช้',
-	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => 'คุยเรื่อง$1',
-	NS_IMAGE            => 'ภาพ',
-	NS_IMAGE_TALK       => 'คุยเรื่องภาพ',
+	NS_IMAGE            => 'ไฟล์',
+	NS_IMAGE_TALK       => 'คุยเรื่องไฟล์',
 	NS_MEDIAWIKI        => 'มีเดียวิกิ',
 	NS_MEDIAWIKI_TALK   => 'คุยเรื่องมีเดียวิกิ',
 	NS_TEMPLATE         => 'แม่แบบ',
@@ -42,6 +40,11 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'คุยเรื่องวิธีใช้',
 	NS_CATEGORY         => 'หมวดหมู่',
 	NS_CATEGORY_TALK    => 'คุยเรื่องหมวดหมู่',
+);
+
+$namespaceAliases = array(
+	'ภาพ' => NS_IMAGE,
+	'คุยเรื่องภาพ' => NS_IMAGE_TALK,
 );
 
 $specialPageAliases = array(

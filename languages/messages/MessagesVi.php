@@ -22,24 +22,27 @@
  */
 
 $namespaceNames = array(
-	NS_MEDIA			=> 'Phương_tiện',
-	NS_SPECIAL			=> 'Đặc_biệt',
-	NS_MAIN				=> '',
-	NS_TALK				=> 'Thảo_luận',
-	NS_USER				=> 'Thành_viên',
-	NS_USER_TALK		=> 'Thảo_luận_Thành_viên',
-	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK		=> 'Thảo_luận_$1',
-	NS_IMAGE			=> 'Hình',
-	NS_IMAGE_TALK		=> 'Thảo_luận_Hình',
-	NS_MEDIAWIKI		=> 'MediaWiki',
-	NS_MEDIAWIKI_TALK	=> 'Thảo_luận_MediaWiki',
-	NS_TEMPLATE			=> 'Tiêu_bản',
-	NS_TEMPLATE_TALK	=> 'Thảo_luận_Tiêu_bản',
-	NS_HELP				=> 'Trợ_giúp',
-	NS_HELP_TALK		=> 'Thảo_luận_Trợ_giúp',
-	NS_CATEGORY			=> 'Thể_loại',
-	NS_CATEGORY_TALK	=> 'Thảo_luận_Thể_loại'
+	NS_MEDIA            => 'Phương_tiện',
+	NS_SPECIAL          => 'Đặc_biệt',
+	NS_TALK             => 'Thảo_luận',
+	NS_USER             => 'Thành_viên',
+	NS_USER_TALK        => 'Thảo_luận_Thành_viên',
+	NS_PROJECT_TALK     => 'Thảo_luận_$1',
+	NS_IMAGE            => 'Tập_tin',
+	NS_IMAGE_TALK       => 'Thảo_luận_Tập_tin',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Thảo_luận_MediaWiki',
+	NS_TEMPLATE         => 'Tiêu_bản',
+	NS_TEMPLATE_TALK    => 'Thảo_luận_Tiêu_bản',
+	NS_HELP             => 'Trợ_giúp',
+	NS_HELP_TALK        => 'Thảo_luận_Trợ_giúp',
+	NS_CATEGORY         => 'Thể_loại',
+	NS_CATEGORY_TALK    => 'Thảo_luận_Thể_loại',
+);
+
+$namespaceAliases = array(
+	'Hình' => NS_IMAGE,
+	'Thảo_luận_Hình' => NS_IMAGE_TALK,
 );
 
 $skinNames = array(

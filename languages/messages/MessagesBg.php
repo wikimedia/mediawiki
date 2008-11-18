@@ -17,24 +17,27 @@
 $fallback8bitEncoding = 'windows-1251';
 
 $namespaceNames = array(
-	NS_MEDIA          => 'Медия',
-	NS_SPECIAL        => 'Специални',
-	NS_MAIN           => '',
-	NS_TALK           => 'Беседа',
-	NS_USER           => 'Потребител',
-	NS_USER_TALK      => 'Потребител_беседа',
-	# NS_PROJECT set by \$wgMetaNamespace
-	NS_PROJECT_TALK   => '$1_беседа',
-	NS_IMAGE          => 'Картинка',
-	NS_IMAGE_TALK     => 'Картинка_беседа',
-	NS_MEDIAWIKI      => 'МедияУики',
-	NS_MEDIAWIKI_TALK => 'МедияУики_беседа',
-	NS_TEMPLATE       => 'Шаблон',
-	NS_TEMPLATE_TALK  => 'Шаблон_беседа',
-	NS_HELP           => 'Помощ',
-	NS_HELP_TALK      => 'Помощ_беседа',
-	NS_CATEGORY       => 'Категория',
-	NS_CATEGORY_TALK  => 'Категория_беседа',
+	NS_MEDIA            => 'Медия',
+	NS_SPECIAL          => 'Специални',
+	NS_TALK             => 'Беседа',
+	NS_USER             => 'Потребител',
+	NS_USER_TALK        => 'Потребител_беседа',
+	NS_PROJECT_TALK     => '$1_беседа',
+	NS_IMAGE            => 'Файл',
+	NS_IMAGE_TALK       => 'Файл_беседа',
+	NS_MEDIAWIKI        => 'МедияУики',
+	NS_MEDIAWIKI_TALK   => 'МедияУики_беседа',
+	NS_TEMPLATE         => 'Шаблон',
+	NS_TEMPLATE_TALK    => 'Шаблон_беседа',
+	NS_HELP             => 'Помощ',
+	NS_HELP_TALK        => 'Помощ_беседа',
+	NS_CATEGORY         => 'Категория',
+	NS_CATEGORY_TALK    => 'Категория_беседа',
+);
+
+$namespaceAliases = array(
+	'Картинка' => NS_IMAGE,
+	'Картинка беседа' => NS_IMAGE_TALK,
 );
 
 $skinNames = array(

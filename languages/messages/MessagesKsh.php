@@ -29,9 +29,6 @@
  * and not from the Akademie (for example: Gedöns, geeße, gegovve, aadig, iggelig, nüdig)
  * Otherwise most part of the following expressions are taken from the Akademie.
  *
- * @ingroup Language
- *
- * @author Caesius noh en Idee vum Manes
  */
 /** 
  * Hints for editing
@@ -44,52 +41,49 @@
 $fallback = 'de';
 
 $namespaceNames = array(
-        NS_MEDIA            => 'Medie',
-        NS_SPECIAL          => 'Spezial',
-        NS_MAIN             => '',
-        NS_TALK             => 'Klaaf',
-        NS_USER             => 'Metmaacher',
-        NS_USER_TALK        => 'Metmaacher_Klaaf',
-        # NS_PROJECT set by $wgMetaNamespace
-        NS_PROJECT_TALK     => '$1_Klaaf',
-        NS_IMAGE            => 'Beld',
-        NS_IMAGE_TALK       => 'Belder_Klaaf',
-        NS_MEDIAWIKI        => 'MediaWiki',
-        NS_MEDIAWIKI_TALK   => 'MediaWiki_Klaaf',
-        NS_TEMPLATE         => 'Schablon',
-        NS_TEMPLATE_TALK    => 'Schablone_Klaaf',
-        NS_HELP             => 'Hölp',
-        NS_HELP_TALK        => 'Hölp_Klaaf',
-        NS_CATEGORY         => 'Saachjrupp',
-        NS_CATEGORY_TALK    => 'Saachjruppe_Klaaf',
+	NS_MEDIA            => 'Medie',
+	NS_SPECIAL          => 'Spezial',
+	NS_TALK             => 'Klaaf',
+	NS_USER             => 'Metmaacher',
+	NS_USER_TALK        => 'Metmaacher_Klaaf',
+	NS_PROJECT_TALK     => '$1_Klaaf',
+	NS_IMAGE            => 'Datei',
+	NS_IMAGE_TALK       => 'Dateie_Klaaf',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_Klaaf',
+	NS_TEMPLATE         => 'Schablon',
+	NS_TEMPLATE_TALK    => 'Schablone_Klaaf',
+	NS_HELP             => 'Hölp',
+	NS_HELP_TALK        => 'Hölp_Klaaf',
+	NS_CATEGORY         => 'Saachjrupp',
+	NS_CATEGORY_TALK    => 'Saachjruppe_Klaaf',
 );
 
-/**
- * Array of namespace aliases, mapping from name to NS_xxx index
- */
 $namespaceAliases = array(
 	'Meedije'           => NS_MEDIA,
 	'Shpezjal'          => NS_SPECIAL,
 	'Medmaacher'        => NS_USER,
 	'Medmaacher_Klaaf'  => NS_USER_TALK,
+	'Beld'              => NS_IMAGE,
 	'Belld'             => NS_IMAGE,
+	'Belder_Klaaf'      => NS_IMAGE_TALK,
 	'Bellder_Klaaf'     => NS_IMAGE_TALK,
 	'MedijaWikki'       => NS_MEDIAWIKI,
 	'MedijaWikki_Klaaf' => NS_MEDIAWIKI_TALK,
 	'Hülp'              => NS_HELP,
 	'Hülp_Klaaf'        => NS_HELP_TALK,
 	'Sachjrop'          => NS_CATEGORY,
-	'Sachjrop_Klaaf'    => NS_CATEGORY_TALK,
 	'Saachjrop'         => NS_CATEGORY,
 	'Saachjropp'        => NS_CATEGORY,
+	'Kattejori'         => NS_CATEGORY,
+	'Kategorie'         => NS_CATEGORY,
+	'Katejori'          => NS_CATEGORY,
+	'Sachjrop_Klaaf'    => NS_CATEGORY_TALK,
 	'Saachjroppe_Klaaf' => NS_CATEGORY_TALK,
         'Saachjrupp_Klaaf'  => NS_CATEGORY_TALK,
-	'Kattejori'         => NS_CATEGORY,
 	'Kattejori_Klaaf'   => NS_CATEGORY_TALK,
 	'Kattejorije_Klaaf' => NS_CATEGORY_TALK,
-	'Kategorie'         => NS_CATEGORY,
 	'Kategorie_Klaaf'   => NS_CATEGORY_TALK,
-	'Katejori'          => NS_CATEGORY,
 	'Katejorije_Klaaf'  => NS_CATEGORY_TALK,
 );
 

@@ -28,23 +28,27 @@ $skinNames = array(
 );
 
 $namespaceNames = array(
-	NS_MEDIA          => 'Medija',
-	NS_SPECIAL        => 'Specialne',
-	NS_TALK           => 'Diskusija',
-	NS_USER           => 'Wužywaŕ',
-	NS_USER_TALK      => 'Diskusija_wužywarja',
-	# NS_PROJECT set by \$wgMetaNamespace
-	NS_PROJECT_TALK   => '$1_diskusija',
-	NS_IMAGE          => 'Wobraz',
-	NS_IMAGE_TALK     => 'Diskusija_wó_wobrazu',
-	NS_MEDIAWIKI      => 'MediaWiki',
-	NS_MEDIAWIKI_TALK => 'MediaWiki_diskusija',
-	NS_TEMPLATE       => 'Pśedłoga',
-	NS_TEMPLATE_TALK  => 'Diskusija_wó_pśedłoze',
-	NS_HELP           => 'Pomoc',
-	NS_HELP_TALK      => 'Diskusija_wó_pomocy',
-	NS_CATEGORY       => 'Kategorija',
-	NS_CATEGORY_TALK  => 'Diskusija_wó_kategoriji',
+	NS_MEDIA            => 'Medija',
+	NS_SPECIAL          => 'Specialne',
+	NS_TALK             => 'Diskusija',
+	NS_USER             => 'Wužywaŕ',
+	NS_USER_TALK        => 'Diskusija_wužywarja',
+	NS_PROJECT_TALK     => '$1 diskusija',
+	NS_IMAGE            => 'Dataja',
+	NS_IMAGE_TALK       => 'Diskusija wó dataji',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_diskusija',
+	NS_TEMPLATE         => 'Pśedłoga',
+	NS_TEMPLATE_TALK    => 'Diskusija_wó_pśedłoze',
+	NS_HELP             => 'Pomoc',
+	NS_HELP_TALK        => 'Diskusija_wó_pomocy',
+	NS_CATEGORY         => 'Kategorija',
+	NS_CATEGORY_TALK    => 'Diskusija_wó_kategoriji',
+);
+
+$namespaceAliases = array(
+	'Wobraz' => NS_IMAGE,
+	'Diskusija_wó_wobrazu' => NS_IMAGE_TALK,
 );
 
 $datePreferences = array(

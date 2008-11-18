@@ -13,13 +13,11 @@
 $fallback = 'lt';
 
 $namespaceNames = array(
-//	NS_MEDIA            => '',
+	NS_MEDIA            => 'Medėjė',
 	NS_SPECIAL          => 'Specēlos',
-	NS_MAIN             => '',
 	NS_TALK             => 'Aptarėms',
 	NS_USER             => 'Nauduotuos',
 	NS_USER_TALK        => 'Nauduotuojė_aptarėms',
-	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => '$1_aptarėms',
 	NS_IMAGE            => 'Abruozdielis',
 	NS_IMAGE_TALK       => 'Abruozdielė_aptarėms',
@@ -30,7 +28,7 @@ $namespaceNames = array(
 	NS_HELP             => 'Pagelba',
 	NS_HELP_TALK        => 'Pagelbas_aptarėms',
 	NS_CATEGORY         => 'Kateguorėjė',
-	NS_CATEGORY_TALK    => 'Kateguorėjės_aptarėms'
+	NS_CATEGORY_TALK    => 'Kateguorėjės_aptarėms',
 );
 
 /**

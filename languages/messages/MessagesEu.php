@@ -21,28 +21,28 @@ $skinNames = array(
 );
 
 $namespaceNames = array(
-	NS_MEDIA          => 'Media',
-	NS_SPECIAL        => 'Berezi',
-	NS_MAIN           => '',
-	NS_TALK           => 'Eztabaida',
-	NS_USER           => 'Lankide',
-	NS_USER_TALK      => 'Lankide_eztabaida',
-	# NS_PROJECT set by \$wgMetaNamespace
-	NS_PROJECT_TALK   => '$1_eztabaida',
-	NS_IMAGE          => 'Irudi',
-	NS_IMAGE_TALK     => 'Irudi_eztabaida',
-	NS_MEDIAWIKI      => 'MediaWiki',
-	NS_MEDIAWIKI_TALK => 'MediaWiki_eztabaida',
-	NS_TEMPLATE       => 'Txantiloi',
-	NS_TEMPLATE_TALK  => 'Txantiloi_eztabaida',
-	NS_HELP           => 'Laguntza',
-	NS_HELP_TALK      => 'Laguntza_eztabaida',
-	NS_CATEGORY       => 'Kategoria',
-	NS_CATEGORY_TALK  => 'Kategoria_eztabaida',
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Berezi',
+	NS_TALK             => 'Eztabaida',
+	NS_USER             => 'Lankide',
+	NS_USER_TALK        => 'Lankide_eztabaida',
+	NS_PROJECT_TALK     => '$1_eztabaida',
+	NS_IMAGE            => 'Fitxategi',
+	NS_IMAGE_TALK       => 'Fitxategi_eztabaida',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_eztabaida',
+	NS_TEMPLATE         => 'Txantiloi',
+	NS_TEMPLATE_TALK    => 'Txantiloi_eztabaida',
+	NS_HELP             => 'Laguntza',
+	NS_HELP_TALK        => 'Laguntza_eztabaida',
+	NS_CATEGORY         => 'Kategoria',
+	NS_CATEGORY_TALK    => 'Kategoria_eztabaida',
 );
 
 $namespaceAliases = array(
-	'Aparteko'          => NS_SPECIAL,
+	'Aparteko' => NS_SPECIAL,
+	'Irudi' => NS_IMAGE,
+	'Irudi_eztabaida' => NS_IMAGE_TALK,
 );
 
 $specialPageAliases = array(

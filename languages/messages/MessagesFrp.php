@@ -26,24 +26,22 @@ $bookstoreList = array(
 );
 
 $namespaceNames = array(
-    NS_MEDIA          => 'Mèdia',
-    NS_SPECIAL        => 'Spèciâl',
-    NS_MAIN           => '',
-    NS_TALK           => 'Discutar',
-    NS_USER           => 'Utilisator',
-    NS_USER_TALK      => 'Discussion_Utilisator',
-    # NS_PROJECT set by $wgMetaNamespace
-    NS_PROJECT_TALK   => 'Discussion_$1',
-    NS_IMAGE          => 'Émâge',
-    NS_IMAGE_TALK     => 'Discussion_Émâge',
-    NS_MEDIAWIKI      => 'MediaWiki',
-    NS_MEDIAWIKI_TALK => 'Discussion_MediaWiki',
-    NS_TEMPLATE       => 'Modèlo',
-    NS_TEMPLATE_TALK  => 'Discussion_Modèlo',
-    NS_HELP           => 'Éde',
-    NS_HELP_TALK      => 'Discussion_Éde',
-    NS_CATEGORY       => 'Catègorie',
-    NS_CATEGORY_TALK  => 'Discussion_Catègorie'
+	NS_MEDIA            => 'Mèdia',
+	NS_SPECIAL          => 'Spèciâl',
+	NS_TALK             => 'Discutar',
+	NS_USER             => 'Utilisator',
+	NS_USER_TALK        => 'Discussion_Utilisator',
+	NS_PROJECT_TALK     => 'Discussion_$1',
+	NS_IMAGE            => 'Émâge',
+	NS_IMAGE_TALK       => 'Discussion_Émâge',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Discussion_MediaWiki',
+	NS_TEMPLATE         => 'Modèlo',
+	NS_TEMPLATE_TALK    => 'Discussion_Modèlo',
+	NS_HELP             => 'Éde',
+	NS_HELP_TALK        => 'Discussion_Éde',
+	NS_CATEGORY         => 'Catègorie',
+	NS_CATEGORY_TALK    => 'Discussion_Catègorie',
 );
 
 $linkTrail = '/^([a-zàâçéèêîœôû·’æäåāăëēïīòöōùü‘]+)(.*)$/sDu';

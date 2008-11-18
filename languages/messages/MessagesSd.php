@@ -9,6 +9,25 @@
 
 $rtl = true;
 
+$namespaceNames = array(
+	NS_MEDIA            => 'ذريعات',
+	NS_SPECIAL          => 'خاص',
+	NS_TALK             => 'بحث',
+	NS_USER             => 'يوزر',
+	NS_USER_TALK        => 'يوزر_بحث',
+	NS_PROJECT_TALK     => '$1_بحث',
+	NS_IMAGE            => 'عڪس',
+	NS_IMAGE_TALK       => 'عڪس_بحث',
+	NS_MEDIAWIKI        => 'ذريعات_وڪي',
+	NS_MEDIAWIKI_TALK   => 'ذريعات_وڪي_بحث',
+	NS_TEMPLATE         => 'سانچو',
+	NS_TEMPLATE_TALK    => 'سنچو_بحث',
+	NS_HELP             => 'مدد',
+	NS_HELP_TALK        => 'مدد_بحث',
+	NS_CATEGORY         => 'زمرو',
+	NS_CATEGORY_TALK    => 'زمرو_بحث',
+);
+
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'ٻٽا چورڻا' ),
 	'BrokenRedirects'           => array( 'ٽٽل چورڻا' ),

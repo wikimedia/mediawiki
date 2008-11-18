@@ -13,6 +13,38 @@
 
 $fallback = 'it';
 
+$namespaceNames = array(
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Speçiale',
+	NS_TALK             => 'Discûscion',
+	NS_USER             => 'Utente',
+	NS_USER_TALK        => 'Discûscioîn_ûtente',
+	NS_PROJECT_TALK     => 'Discûscioîn_$1',
+	NS_IMAGE            => 'Immaggine',
+	NS_IMAGE_TALK       => 'Discûscioîn_immaggine',
+	NS_MEDIAWIKI_TALK   => 'Discûscioîn_MediaWiki',
+	NS_TEMPLATE_TALK    => 'Discûscioîn_template',
+	NS_HELP             => 'Agiûtto',
+	NS_HELP_TALK        => 'Discûscioîn_ûtente',
+	NS_CATEGORY         => 'Categorîa',
+	NS_CATEGORY_TALK    => 'Discûscioîn_ûtente',
+);
+
+$namespaceAliases = array(
+	'Speciale' => NS_SPECIAL,
+	'Discussione' => NS_TALK,
+	'Discussioni_utente' => NS_USER_TALK,
+	'Discussioni_$1' => NS_PROJECT_TALK,
+	'Immagine' => NS_IMAGE,
+	'Discussioni_immagine' => NS_IMAGE_TALK,
+	'Discussioni_MediaWiki' => NS_MEDIAWIKI_TALK,
+	'Discussioni_template' => NS_TEMPLATE_TALK,
+	'Aiuto' => NS_HELP,
+	'Discussioni_aiuto' => NS_HELP_TALK,
+	'Categoria' => NS_CATEGORY,
+	'Discussioni_categoria' => NS_CATEGORY_TALK,
+);
+
 $specialPageAliases = array(
 	'Userlogin'                 => array( 'Intra', 'Registrate' ),
 	'Userlogout'                => array( 'Sciorti' ),

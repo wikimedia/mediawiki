@@ -26,14 +26,12 @@
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Spezial',
-	NS_MAIN             => '',
 	NS_TALK             => 'Diskussion',
 	NS_USER             => 'Benutzer',
 	NS_USER_TALK        => 'Benutzer_Diskussion',
-	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => '$1_Diskussion',
-	NS_IMAGE            => 'Bild',
-	NS_IMAGE_TALK       => 'Bild_Diskussion',
+	NS_IMAGE            => 'Datei',
+	NS_IMAGE_TALK       => 'Datei_Diskussion',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'MediaWiki_Diskussion',
 	NS_TEMPLATE         => 'Vorlage',
@@ -41,7 +39,12 @@ $namespaceNames = array(
 	NS_HELP             => 'Hilfe',
 	NS_HELP_TALK        => 'Hilfe_Diskussion',
 	NS_CATEGORY         => 'Kategorie',
-	NS_CATEGORY_TALK    => 'Kategorie_Diskussion'
+	NS_CATEGORY_TALK    => 'Kategorie_Diskussion',
+);
+
+$namespaceAliases = array(
+	'Bild' => NS_IMAGE,
+	'Bild_Diskussion' => NS_IMAGE_TALK,
 );
 
 $skinNames = array(

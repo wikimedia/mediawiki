@@ -26,24 +26,27 @@
  */
 
 $namespaceNames = array(
-	NS_MEDIA          => 'Media',
-	NS_SPECIAL        => 'Specjalna',
-	NS_MAIN           => '',
-	NS_TALK           => 'Dyskusja',
-	NS_USER           => 'Użytkownik',
-	NS_USER_TALK      => 'Dyskusja_użytkownika',
-	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK   => 'Dyskusja_$1',
-	NS_IMAGE          => 'Grafika',
-	NS_IMAGE_TALK     => 'Dyskusja_grafiki',
-	NS_MEDIAWIKI      => 'MediaWiki',
-	NS_MEDIAWIKI_TALK => 'Dyskusja_MediaWiki',
-	NS_TEMPLATE       => 'Szablon',
-	NS_TEMPLATE_TALK  => 'Dyskusja_szablonu',
-	NS_HELP           => 'Pomoc',
-	NS_HELP_TALK      => 'Dyskusja_pomocy',
-	NS_CATEGORY       => 'Kategoria',
-	NS_CATEGORY_TALK  => 'Dyskusja_kategorii',
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Specjalna',
+	NS_TALK             => 'Dyskusja',
+	NS_USER             => 'Użytkownik',
+	NS_USER_TALK        => 'Dyskusja_użytkownika',
+	NS_PROJECT_TALK     => 'Dyskusja_$1',
+	NS_IMAGE            => 'Plik',
+	NS_IMAGE_TALK       => 'Dyskusja_pliku',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Dyskusja_MediaWiki',
+	NS_TEMPLATE         => 'Szablon',
+	NS_TEMPLATE_TALK    => 'Dyskusja_szablonu',
+	NS_HELP             => 'Pomoc',
+	NS_HELP_TALK        => 'Dyskusja_pomocy',
+	NS_CATEGORY         => 'Kategoria',
+	NS_CATEGORY_TALK    => 'Dyskusja_kategorii',
+);
+
+$namespaceAliases = array(
+	'Grafika' => NS_IMAGE,
+	'Dyskusja_grafiki' => NS_IMAGE_TALK,
 );
 
 $skinNames = array(

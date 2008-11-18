@@ -26,6 +26,25 @@ $skinNames = array(
 	'modern'      => 'Nútímalegt',
 );
 
+$namespaceNames = array(
+	NS_MEDIA            => 'Miðill',
+	NS_SPECIAL          => 'Kerfissíða',
+	NS_TALK             => 'Spjall',
+	NS_USER             => 'Notandi',
+	NS_USER_TALK        => 'Notandaspjall',
+	NS_PROJECT_TALK     => '$1spjall',
+	NS_IMAGE            => 'Mynd',
+	NS_IMAGE_TALK       => 'Myndaspjall',
+	NS_MEDIAWIKI        => 'Melding',
+	NS_MEDIAWIKI_TALK   => 'Meldingarspjall',
+	NS_TEMPLATE         => 'Snið',
+	NS_TEMPLATE_TALK    => 'Sniðaspjall',
+	NS_HELP             => 'Hjálp',
+	NS_HELP_TALK        => 'Hjálparspjall',
+	NS_CATEGORY         => 'Flokkur',
+	NS_CATEGORY_TALK    => 'Flokkaspjall',
+);
+
 $datePreferences = array(
 	'default',
 	'dmyt',

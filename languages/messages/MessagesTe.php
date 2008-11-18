@@ -18,28 +18,32 @@
 $namespaceNames = array(
 	NS_MEDIA            => 'మీడియా',
 	NS_SPECIAL          => 'ప్రత్యేక',
-	NS_MAIN             => '',
 	NS_TALK             => 'చర్చ',
-	NS_USER             => 'సభ్యులు',
-	NS_USER_TALK        => 'సభ్యులపై_చర్చ',
-	# NS_PROJECT set by $wgMetaNamespace
+	NS_USER             => 'వాడుకరి',
+	NS_USER_TALK        => 'వాడుకరి_చర్చ',
 	NS_PROJECT_TALK     => '$1_చర్చ',
-	NS_IMAGE            => 'బొమ్మ',
-	NS_IMAGE_TALK       => 'బొమ్మపై_చర్చ',
+	NS_IMAGE            => 'ఫైలు',
+	NS_IMAGE_TALK       => 'ఫైలుపై_చర్చ',
 	NS_MEDIAWIKI        => 'మీడియావికీ',
 	NS_MEDIAWIKI_TALK   => 'మీడియావికీ_చర్చ',
 	NS_TEMPLATE         => 'మూస',
 	NS_TEMPLATE_TALK    => 'మూస_చర్చ',
-	NS_HELP             => 'సహాయము',
-	NS_HELP_TALK        => 'సహాయము_చర్చ',
+	NS_HELP             => 'సహాయం',
+	NS_HELP_TALK        => 'సహాయం_చర్చ',
 	NS_CATEGORY         => 'వర్గం',
-	NS_CATEGORY_TALK    => 'వర్గం_చర్చ'
+	NS_CATEGORY_TALK    => 'వర్గం_చర్చ',
 );
 
 $namespaceAliases = array(
-	'సభ్యుడు'          => NS_USER, # set for bug 11615
-	'సభ్యునిపై_చర్చ'         => NS_USER_TALK,
-	'బొమ్మపై_చర్చ'          => NS_IMAGE_TALK
+	'సభ్యులు' => NS_USER,
+	'సభ్యులపై_చర్చ' => NS_USER_TALK,
+	'సభ్యుడు' => NS_USER, # set for bug 11615
+	'సభ్యునిపై_చర్చ' => NS_USER_TALK,
+	'బొమ్మ' => NS_IMAGE,
+	'బొమ్మపై_చర్చ' => NS_IMAGE_TALK,
+	'బొమ్మపై_చర్చ' => NS_IMAGE_TALK
+	'సహాయము' => NS_HELP,
+	'సహాయము_చర్చ' => NS_HELP_TALK,
 );
 
 $specialPageAliases = array(

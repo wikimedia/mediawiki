@@ -11,6 +11,40 @@
 
 $fallback = 'fr';
 
+$namespaceNames = array(
+	NS_MEDIA            => 'Xibaarukaay',
+	NS_SPECIAL          => 'Jagleel',
+	NS_TALK             => 'Waxtaan',
+	NS_USER             => 'Jëfandikukat',
+	NS_USER_TALK        => 'Waxtaani_jëfandikukat',
+	NS_PROJECT_TALK     => '$1_waxtaan',
+	NS_IMAGE            => 'Dencukaay',
+	NS_IMAGE_TALK       => 'Waxtaani_dencukaay',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Waxtaani_MediaWiki',
+	NS_TEMPLATE         => 'Royuwaay',
+	NS_TEMPLATE_TALK    => 'Waxtaani_royuwaay',
+	NS_HELP             => 'Ndimbal',
+	NS_HELP_TALK        => 'Waxtaani_ndimbal',
+	NS_CATEGORY         => 'Wàll',
+	NS_CATEGORY_TALK    => 'Waxtaani_wàll',
+);
+
+$namespaceAliases = array(
+	'Discuter' => NS_TALK,
+	'Utilisateur' => NS_USER,
+	'Discussion_Utilisateur' => NS_USER_TALK,
+	'Discussion_$1' => NS_PROJECT_TALK,
+	'Discussion_Image' => NS_IMAGE_TALK,
+	'Discussion_MediaWiki' => NS_MEDIAWIKI_TALK,
+	'Modèle' => NS_TEMPLATE,
+	'Discussion_Modèle' => NS_TEMPLATE_TALK,
+	'Aide' => NS_HELP,
+	'Discussion_Aide' => NS_HELP_TALK,
+	'Catégorie' => NS_CATEGORY,
+	'Discussion_Catégorie' => NS_CATEGORY_TALK,
+);
+
 $specialPageAliases = array(
 	'Userlogin'                 => array( 'Lonku' ),
 	'Userlogout'                => array( 'Lonkiku' ),

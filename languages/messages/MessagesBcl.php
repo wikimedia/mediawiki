@@ -18,11 +18,9 @@ $skinNames = array(
 $namespaceNames = array(
 	NS_MEDIA          => 'Medio',
 	NS_SPECIAL        => 'Espesyal',
-	NS_MAIN           => '',
 	NS_TALK           => 'Olay',
 	NS_USER           => 'Paragamit',
 	NS_USER_TALK      => 'Olay_kan_paragamit',
-	# NS_PROJECT set by \$wgMetaNamespace
 	NS_PROJECT_TALK   => 'Olay_sa_$1',
 	NS_IMAGE          => 'Ladawan',
 	NS_IMAGE_TALK     => 'Olay_sa_ladawan',

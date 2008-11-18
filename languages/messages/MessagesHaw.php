@@ -9,6 +9,25 @@
  * @author Singularity
  */
 
+$namespaceNames = array(
+	NS_MEDIA            => 'Pāpaho',
+	NS_SPECIAL          => 'Papa_nui',
+	NS_TALK             => 'Kūkākūkā',
+	NS_USER             => 'Mea_hoʻohana',
+	NS_USER_TALK        => 'Kūkākūkā_o_mea_hoʻohana',
+	NS_PROJECT_TALK     => 'Kūkākūkā_o_Wikipikia',
+	NS_IMAGE            => 'Kiʻi',
+	NS_IMAGE_TALK       => 'Kūkākūkā_o_kiʻi',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Kūkākūkā_o_MediaWiki',
+	NS_TEMPLATE         => 'Anakuhi',
+	NS_TEMPLATE_TALK    => 'Kūkākūkā_o_anakuhi',
+	NS_HELP             => 'Kōkua',
+	NS_HELP_TALK        => 'Kūkākūkā_o_kōkua',
+	NS_CATEGORY         => 'Māhele',
+	NS_CATEGORY_TALK    => 'Kūkākūkā_o_māhele',
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'            => 'Kahalalo i nā loulou:',

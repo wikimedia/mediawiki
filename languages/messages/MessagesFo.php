@@ -24,24 +24,34 @@ $bookstoreList = array(
 );
 
 $namespaceNames = array(
-	NS_MEDIA          => 'Miðil',
-	NS_SPECIAL        => 'Serstakur',
-	NS_MAIN           => '',
-	NS_TALK           => 'Kjak',
-	NS_USER           => 'Brúkari',
-	NS_USER_TALK      => 'Brúkari_kjak',
-	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK   => '$1_kjak',
-	NS_IMAGE          => 'Mynd',
-	NS_IMAGE_TALK     => 'Mynd_kjak',
-	NS_MEDIAWIKI      => 'MidiaWiki',
-	NS_MEDIAWIKI_TALK => 'MidiaWiki_kjak',
-	NS_TEMPLATE       => 'Fyrimynd',
-	NS_TEMPLATE_TALK  => 'Fyrimynd_kjak',
-	NS_HELP           => 'Hjálp',
-	NS_HELP_TALK      => 'Hjálp kjak',
-	NS_CATEGORY       => 'Bólkur',
-	NS_CATEGORY_TALK  => 'Bólkur_kjak',
+	NS_MEDIA            => 'Miðil',
+	NS_SPECIAL          => 'Serstakt',
+	NS_TALK             => 'Kjak',
+	NS_USER             => 'Brúkari',
+	NS_USER_TALK        => 'Brúkarakjak',
+	NS_PROJECT_TALK     => '$1-kjak',
+	NS_IMAGE            => 'Mynd',
+	NS_IMAGE_TALK       => 'Myndakjak',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki-kjak',
+	NS_TEMPLATE         => 'Fyrimynd',
+	NS_TEMPLATE_TALK    => 'Fyrimyndakjak',
+	NS_HELP             => 'Hjálp',
+	NS_HELP_TALK        => 'Hjálparkjak',
+	NS_CATEGORY         => 'Bólkur',
+	NS_CATEGORY_TALK    => 'Bólkakjak',
+);
+
+$namespaceAliases = array(
+	'Serstakur' => NS_SPECIAL,
+	'Brúkari_kjak' => NS_USER_TALK,
+	'$1_kjak' => NS_PROJECT_TALK,
+	'Mynd_kjak' => NS_IMAGE_TALK,
+	'MidiaWiki' => NS_MEDIAWIKI,
+	'MidiaWiki_kjak' => NS_MEDIAWIKI_TALK,
+	'Fyrimynd_kjak' => NS_TEMPLATE_TALK,
+	'Hjálp_kjak' => NS_HELP_TALK,
+	'Bólkur_kjak' => NS_CATEGORY_TALK,
 );
 
 $skinNames = array(

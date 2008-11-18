@@ -115,28 +115,28 @@ $digitTransformTable = array(
 );
 
 $namespaceNames = array(
-	NS_MEDIA          => 'ميديا',
-	NS_SPECIAL        => 'خاص',
-	NS_MAIN           => '',
-	NS_TALK           => 'نقاش',
-	NS_USER           => 'مستخدم',
-	NS_USER_TALK      => 'نقاش_المستخدم',
-	# NS_PROJECT set by \$wgMetaNamespace
-	NS_PROJECT_TALK   => 'نقاش_$1',
-	NS_IMAGE          => 'صورة',
-	NS_IMAGE_TALK     => 'نقاش_الصورة',
-	NS_MEDIAWIKI      => 'ميدياويكي',
-	NS_MEDIAWIKI_TALK => 'نقاش_ميدياويكي',
-	NS_TEMPLATE       => 'قالب',
-	NS_TEMPLATE_TALK  => 'نقاش_القالب',
-	NS_HELP           => 'مساعدة',
-	NS_HELP_TALK      => 'نقاش_المساعدة',
-	NS_CATEGORY       => 'تصنيف',
-	NS_CATEGORY_TALK  => 'نقاش_التصنيف',
+	NS_MEDIA            => 'ميديا',
+	NS_SPECIAL          => 'خاص',
+	NS_TALK             => 'نقاش',
+	NS_USER             => 'مستخدم',
+	NS_USER_TALK        => 'نقاش_المستخدم',
+	NS_PROJECT_TALK     => 'نقاش_$1',
+	NS_IMAGE            => 'ملف',
+	NS_IMAGE_TALK       => 'نقاش_الملف',
+	NS_MEDIAWIKI        => 'ميدياويكي',
+	NS_MEDIAWIKI_TALK   => 'نقاش_ميدياويكي',
+	NS_TEMPLATE         => 'قالب',
+	NS_TEMPLATE_TALK    => 'نقاش_القالب',
+	NS_HELP             => 'مساعدة',
+	NS_HELP_TALK        => 'نقاش_المساعدة',
+	NS_CATEGORY         => 'تصنيف',
+	NS_CATEGORY_TALK    => 'نقاش_التصنيف',
 );
 
 $namespaceAliases = array(
-	'وسائط'             => NS_MEDIA,
+	'وسائط' => NS_MEDIA,
+	'صورة' => NS_IMAGE,
+	'نقاش_الصورة' => NS_IMAGE_TALK,
 );
 
 $skinNames = array(

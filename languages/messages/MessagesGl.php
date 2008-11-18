@@ -13,24 +13,31 @@
  */
 
 $namespaceNames = array(
-	NS_MEDIA          => 'Media',
-	NS_SPECIAL        => 'Especial',
-	NS_MAIN           => '',
-	NS_TALK           => 'Conversa',
-	NS_USER           => 'Usuario',
-	NS_USER_TALK      => 'Conversa_Usuario',
-	# NS_PROJECT set by \$wgMetaNamespace
-	NS_PROJECT_TALK   => 'Conversa_$1',
-	NS_IMAGE          => 'Imaxe',
-	NS_IMAGE_TALK     => 'Conversa_Imaxe',
-	NS_MEDIAWIKI      => 'MediaWiki',
-	NS_MEDIAWIKI_TALK => 'Conversa_MediaWiki',
-	NS_TEMPLATE       => 'Modelo',
-	NS_TEMPLATE_TALK  => 'Conversa_Modelo',
-	NS_HELP           => 'Axuda',
-	NS_HELP_TALK      => 'Conversa_Axuda',
-	NS_CATEGORY       => 'Categoría',
-	NS_CATEGORY_TALK  => 'Conversa_Categoría',
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Especial',
+	NS_TALK             => 'Conversa',
+	NS_USER             => 'Usuario',
+	NS_USER_TALK        => 'Conversa_usuario',
+	NS_PROJECT_TALK     => 'Conversa_$1',
+	NS_IMAGE            => 'Ficheiro',
+	NS_IMAGE_TALK       => 'Conversa_ficheiro',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Conversa_MediaWiki',
+	NS_TEMPLATE         => 'Modelo',
+	NS_TEMPLATE_TALK    => 'Conversa_modelo',
+	NS_HELP             => 'Axuda',
+	NS_HELP_TALK        => 'Conversa_axuda',
+	NS_CATEGORY         => 'Categoría',
+	NS_CATEGORY_TALK    => 'Conversa_categoría',
+);
+
+$namespaceAliases = array(
+	'Conversa_Usuario' => NS_USER_TALK,
+	'Imaxe' => NS_IMAGE,
+	'Conversa_Imaxe' => NS_IMAGE_TALK,
+	'Conversa_Modelo' => NS_TEMPLATE_TALK,
+	'Conversa_Axuda' => NS_HELP_TALK,
+	'Conversa_Categoría' => NS_CATEGORY_TALK,
 );
 
 $specialPageAliases = array(

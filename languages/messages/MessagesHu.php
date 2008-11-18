@@ -18,24 +18,27 @@
  */
 
 $namespaceNames = array(
-	NS_MEDIA          => 'Média',
-	NS_SPECIAL        => 'Speciális',
-	NS_MAIN           => '',
-	NS_TALK           => 'Vita',
-	NS_USER           => 'Szerkesztő',
-	NS_USER_TALK      => 'Szerkesztővita',
-	# NS_PROJECT set by \$wgMetaNamespace
-	NS_PROJECT_TALK   => '$1-vita',
-	NS_IMAGE          => 'Kép',
-	NS_IMAGE_TALK     => 'Képvita',
-	NS_MEDIAWIKI      => 'MediaWiki',
-	NS_MEDIAWIKI_TALK => 'MediaWiki-vita',
-	NS_TEMPLATE       => 'Sablon',
-	NS_TEMPLATE_TALK  => 'Sablonvita',
-	NS_HELP           => 'Segítség',
-	NS_HELP_TALK      => 'Segítségvita',
-	NS_CATEGORY       => 'Kategória',
-	NS_CATEGORY_TALK  => 'Kategóriavita',
+	NS_MEDIA            => 'Média',
+	NS_SPECIAL          => 'Speciális',
+	NS_TALK             => 'Vita',
+	NS_USER             => 'Szerkesztő',
+	NS_USER_TALK        => 'Szerkesztővita',
+	NS_PROJECT_TALK     => '$1-vita',
+	NS_IMAGE            => 'Fájl',
+	NS_IMAGE_TALK       => 'Fájlvita',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki-vita',
+	NS_TEMPLATE         => 'Sablon',
+	NS_TEMPLATE_TALK    => 'Sablonvita',
+	NS_HELP             => 'Segítség',
+	NS_HELP_TALK        => 'Segítségvita',
+	NS_CATEGORY         => 'Kategória',
+	NS_CATEGORY_TALK    => 'Kategóriavita',
+);
+
+$namespaceAliases = array(
+	'Kép' => NS_IMAGE,
+	'Képvita' => NS_IMAGE_TALK,
 );
 
 $namespaceAliases = array(

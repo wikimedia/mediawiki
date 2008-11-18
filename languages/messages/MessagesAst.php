@@ -11,24 +11,27 @@
  */
 
 $namespaceNames = array(
-	NS_MEDIA          => 'Media',
-	NS_SPECIAL        => 'Especial',
-	NS_MAIN           => '',
-	NS_TALK           => 'Alderique',
-	NS_USER           => 'Usuariu',
-	NS_USER_TALK      => 'Usuariu_alderique',
-	# NS_PROJECT set by \$wgMetaNamespace
-	NS_PROJECT_TALK   => '$1_alderique',
-	NS_IMAGE          => 'Imaxe',
-	NS_IMAGE_TALK     => 'Imaxe_alderique',
-	NS_MEDIAWIKI      => 'MediaWiki',
-	NS_MEDIAWIKI_TALK => 'MediaWiki_alderique',
-	NS_TEMPLATE       => 'Plantía',
-	NS_TEMPLATE_TALK  => 'Plantía_alderique',
-	NS_HELP           => 'Aida',
-	NS_HELP_TALK      => 'Aida_alderique',
-	NS_CATEGORY       => 'Categoría',
-	NS_CATEGORY_TALK  => 'Categoría_alderique',
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Especial',
+	NS_TALK             => 'Alderique',
+	NS_USER             => 'Usuariu',
+	NS_USER_TALK        => 'Usuariu_alderique',
+	NS_PROJECT_TALK     => '$1_alderique',
+	NS_IMAGE            => 'Archivu',
+	NS_IMAGE_TALK       => 'Archivu_alderique',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_alderique',
+	NS_TEMPLATE         => 'Plantía',
+	NS_TEMPLATE_TALK    => 'Plantía_alderique',
+	NS_HELP             => 'Aida',
+	NS_HELP_TALK        => 'Aida_alderique',
+	NS_CATEGORY         => 'Categoría',
+	NS_CATEGORY_TALK    => 'Categoría_alderique',
+);
+
+$namespaceAliases = array(
+	'Imaxe' => NS_IMAGE,
+	'Imaxe alderique' => NS_IMAGE_TALK,
 );
 
 $namespaceAliases = array(

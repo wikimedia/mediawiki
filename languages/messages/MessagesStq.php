@@ -14,11 +14,9 @@ $fallback = 'de';
 $namespaceNames = array(
 	NS_MEDIA          => 'Media',
 	NS_SPECIAL        => 'Spezial',
-	NS_MAIN           => '',
 	NS_TALK           => 'Diskussion',
 	NS_USER           => 'Benutser',
 	NS_USER_TALK      => 'Benutser_Diskussion',
-	# NS_PROJECT set by \$wgMetaNamespace
 	NS_PROJECT_TALK   => '$1_Diskussion',
 	NS_IMAGE          => 'Bielde',
 	NS_IMAGE_TALK     => 'Bielde_Diskussion',

@@ -10,6 +10,25 @@
  * @author Urhixidur
  */
 
+$namespaceNames = array(
+	NS_MEDIA            => 'Medja',
+	NS_SPECIAL          => 'Speċjali',
+	NS_TALK             => 'Diskuti',
+	NS_USER             => 'Utent',
+	NS_USER_TALK        => 'Diskuti_utent',
+	NS_PROJECT_TALK     => '$1_diskuti',
+	NS_IMAGE            => 'Stampa',
+	NS_IMAGE_TALK       => 'Diskuti_stampa',
+	NS_MEDIAWIKI        => 'MedjaWiki',
+	NS_MEDIAWIKI_TALK   => 'Diskuti_MedjaWiki',
+	NS_TEMPLATE         => 'Template',
+	NS_TEMPLATE_TALK    => 'Diskuti_template',
+	NS_HELP             => 'Għajnuna',
+	NS_HELP_TALK        => 'Diskuti_għajnuna',
+	NS_CATEGORY         => 'Kategorija',
+	NS_CATEGORY_TALK    => 'Diskuti_kategorija',
+);
+
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'RindirizziDoppji' ),
 	'BrokenRedirects'           => array( 'RindirizziMiksura' ),

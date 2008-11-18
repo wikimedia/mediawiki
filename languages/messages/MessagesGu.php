@@ -9,6 +9,25 @@
  * @author לערי ריינהארט
  */
 
+$namespaceNames = array(
+	NS_MEDIA            => 'દ્રશ્ય-શ્રાવ્ય_(મિડિયા)',
+	NS_SPECIAL          => 'વિશેષ',
+	NS_TALK             => 'ચર્ચા',
+	NS_USER             => 'સભ્ય',
+	NS_USER_TALK        => 'સભ્યની_ચર્ચા',
+	NS_PROJECT_TALK     => '$1_ચર્ચા',
+	NS_IMAGE            => 'ચિત્ર',
+	NS_IMAGE_TALK       => 'ચિત્રની_ચર્ચા',
+	NS_MEDIAWIKI        => 'મીડિયાવિકિ',
+	NS_MEDIAWIKI_TALK   => 'મીડિયાવિકિ_ચર્ચા',
+	NS_TEMPLATE         => 'ઢાંચો',
+	NS_TEMPLATE_TALK    => 'ઢાંચાની_ચર્ચા',
+	NS_HELP             => 'મદદ',
+	NS_HELP_TALK        => 'મદદની_ચર્ચા',
+	NS_CATEGORY         => 'શ્રેણી',
+	NS_CATEGORY_TALK    => 'શ્રેણીની_ચર્ચા',
+);
+
 $digitTransformTable = array(
 	'0' => '૦', # &#x0ae6;
 	'1' => '૧', # &#x0ae7;

@@ -20,24 +20,27 @@ $skinNames = array(
 );
 
 $namespaceNames = array(
-	NS_MEDIA          => 'Media',
-	NS_SPECIAL        => 'Spesiaal',
-	NS_MAIN           => '',
-	NS_TALK           => 'Bespreking',
-	NS_USER           => 'Gebruiker',
-	NS_USER_TALK      => 'Gebruikerbespreking',
-	# NS_PROJECT set by $wgMetaNamespace,
-	NS_PROJECT_TALK   => '$1bespreking',
-	NS_IMAGE          => 'Beeld',
-	NS_IMAGE_TALK     => 'Beeldbespreking',
-	NS_MEDIAWIKI      => 'MediaWiki',
-	NS_MEDIAWIKI_TALK => 'MediaWikibespreking',
-	NS_TEMPLATE       => 'Sjabloon',
-	NS_TEMPLATE_TALK  => 'Sjabloonbespreking',
-	NS_HELP           => 'Hulp',
-	NS_HELP_TALK      => 'Hulpbespreking',
-	NS_CATEGORY       => 'Kategorie',
-	NS_CATEGORY_TALK  => 'Kategoriebespreking'
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Spesiaal',
+	NS_TALK             => 'Bespreking',
+	NS_USER             => 'Gebruiker',
+	NS_USER_TALK        => 'Gebruikerbespreking',
+	NS_PROJECT_TALK     => '$1bespreking',
+	NS_IMAGE            => 'Lêer',
+	NS_IMAGE_TALK       => 'Lêerbespreking',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWikibespreking',
+	NS_TEMPLATE         => 'Sjabloon',
+	NS_TEMPLATE_TALK    => 'Sjabloonbespreking',
+	NS_HELP             => 'Hulp',
+	NS_HELP_TALK        => 'Hulpbespreking',
+	NS_CATEGORY         => 'Kategorie',
+	NS_CATEGORY_TALK    => 'Kategoriebespreking',
+);
+
+$namespaceAliases = array(
+	'Beeld' => NS_IMAGE,
+	'Beeldbespreking' => NS_IMAGE_TALK,
 );
 
 $specialPageAliases = array(

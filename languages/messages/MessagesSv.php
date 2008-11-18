@@ -35,28 +35,27 @@ $skinNames = array(
 );
 
 $namespaceNames = array(
-	NS_MEDIA          => 'Media',
-	NS_SPECIAL        => 'Special',
-	NS_MAIN           => '',
-	NS_TALK           => 'Diskussion',
-	NS_USER           => 'Användare',
-	NS_USER_TALK      => 'Användardiskussion',
-	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK   => '$1diskussion',
-	NS_IMAGE          => 'Bild',
-	NS_IMAGE_TALK     => 'Bilddiskussion',
-	NS_MEDIAWIKI      => 'MediaWiki',
-	NS_MEDIAWIKI_TALK => 'MediaWiki-diskussion',
-	NS_TEMPLATE       => 'Mall',
-	NS_TEMPLATE_TALK  => 'Malldiskussion',
-	NS_HELP           => 'Hjälp',
-	NS_HELP_TALK      => 'Hjälpdiskussion',
-	NS_CATEGORY       => 'Kategori',
-	NS_CATEGORY_TALK  => 'Kategoridiskussion',
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Special',
+	NS_TALK             => 'Diskussion',
+	NS_USER             => 'Användare',
+	NS_USER_TALK        => 'Användardiskussion',
+	NS_PROJECT_TALK     => '$1diskussion',
+	NS_IMAGE            => 'Fil',
+	NS_IMAGE_TALK       => 'Fildiskussion',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki-diskussion',
+	NS_TEMPLATE         => 'Mall',
+	NS_TEMPLATE_TALK    => 'Malldiskussion',
+	NS_HELP             => 'Hjälp',
+	NS_HELP_TALK        => 'Hjälpdiskussion',
+	NS_CATEGORY         => 'Kategori',
+	NS_CATEGORY_TALK    => 'Kategoridiskussion',
 );
 
 $namespaceAliases = array(
-	// For compatibility with 1.7 and older
+	'Bild' => NS_IMAGE,
+	'Bilddiskussion' => NS_IMAGE_TALK,
 	'MediaWiki_diskussion' => NS_MEDIAWIKI_TALK,
 	'Hjälp_diskussion'     => NS_HELP_TALK
 );

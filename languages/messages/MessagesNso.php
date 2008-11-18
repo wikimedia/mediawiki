@@ -8,6 +8,25 @@
  * @author Urhixidur
  */
 
+$namespaceNames = array(
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Special',
+	NS_TALK             => 'Bolediša',
+	NS_USER             => 'Mošomi',
+	NS_USER_TALK        => 'Boledišana_le_Mošomi',
+	NS_PROJECT_TALK     => '$1_Poledišano',
+	NS_IMAGE            => 'Seswantšho',
+	NS_IMAGE_TALK       => 'Poledišano_ya_Seswantšho',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Poledišano_ya_MediaWiki',
+	NS_TEMPLATE         => 'Template',
+	NS_TEMPLATE_TALK    => 'Poledišano_ya_Template',
+	NS_HELP             => 'Thušo',
+	NS_HELP_TALK        => 'Poledišano_ya_Thušo',
+	NS_CATEGORY         => 'Setensele',
+	NS_CATEGORY_TALK    => 'Poledišano_ya_Setensele',
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Tsenya mothalafase go dihlomaganyo:',

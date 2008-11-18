@@ -10,6 +10,25 @@
  * @author לערי ריינהארט
  */
 
+$namespaceNames = array(
+	NS_MEDIA            => 'Medya',
+	NS_SPECIAL          => 'Espesyal',
+	NS_TALK             => 'Hisgot',
+	NS_USER             => 'Gumagamit',
+	NS_USER_TALK        => 'Hisgot_sa_Gumagamit',
+	NS_PROJECT_TALK     => 'Hisgot_sa$1',
+	NS_IMAGE            => 'Imahen',
+	NS_IMAGE_TALK       => 'Hisgot_sa_Imahen',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Hisgot_sa_MediaWiki',
+	NS_TEMPLATE         => 'Plantilya',
+	NS_TEMPLATE_TALK    => 'Hisgot_sa_Plantilya',
+	NS_HELP             => 'Tabang',
+	NS_HELP_TALK        => 'Hisgot_sa_Tabang',
+	NS_CATEGORY         => 'Kategoriya',
+	NS_CATEGORY_TALK    => 'Hisgot_sa_Kategoriya',
+);
+
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'DoblengRedirekta' ),
 	'BrokenRedirects'           => array( 'BuakngaRedirekta' ),

@@ -17,14 +17,12 @@ $fallback = 'it';
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Speciale',
-	NS_MAIN             => '',
 	NS_TALK             => 'Discussion',
 	NS_USER             => 'Utente',
 	NS_USER_TALK        => 'Discussion_utente',
-	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => 'Discussion_$1',
-	NS_IMAGE            => 'Imagine',
-	NS_IMAGE_TALK       => 'Discussion_imagine',
+	NS_IMAGE            => 'File',
+	NS_IMAGE_TALK       => 'Discussion_file',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'Discussion_MediaWiki',
 	NS_TEMPLATE         => 'Template',
@@ -32,7 +30,12 @@ $namespaceNames = array(
 	NS_HELP             => 'Aiuto',
 	NS_HELP_TALK        => 'Discussion_aiuto',
 	NS_CATEGORY         => 'Categoria',
-	NS_CATEGORY_TALK    => 'Discussion_categoria'
+	NS_CATEGORY_TALK    => 'Discussion_categoria',
+);
+
+$namespaceAliases = array(
+	'Imagine' => NS_IMAGE,
+	'Discussion_imagine' => NS_IMAGE_TALK,
 );
 
 $specialPageAliases = array(

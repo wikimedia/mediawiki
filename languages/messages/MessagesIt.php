@@ -31,14 +31,12 @@
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Speciale',
-	NS_MAIN             => '',
 	NS_TALK             => 'Discussione',
 	NS_USER             => 'Utente',
 	NS_USER_TALK        => 'Discussioni_utente',
-	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => 'Discussioni_$1',
-	NS_IMAGE            => 'Immagine',
-	NS_IMAGE_TALK       => 'Discussioni_immagine',
+	NS_IMAGE            => 'File',
+	NS_IMAGE_TALK       => 'Discussioni_file',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'Discussioni_MediaWiki',
 	NS_TEMPLATE         => 'Template',
@@ -46,7 +44,12 @@ $namespaceNames = array(
 	NS_HELP             => 'Aiuto',
 	NS_HELP_TALK        => 'Discussioni_aiuto',
 	NS_CATEGORY         => 'Categoria',
-	NS_CATEGORY_TALK    => 'Discussioni_categoria'
+	NS_CATEGORY_TALK    => 'Discussioni_categoria',
+);
+
+$namespaceAliases = array(
+	'Immagine' => NS_IMAGE,
+	'Discussioni_immagine' => NS_IMAGE_TALK,
 );
 
 $separatorTransformTable = array(',' => '.', '.' => ',' );

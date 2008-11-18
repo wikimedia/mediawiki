@@ -25,24 +25,27 @@
 $defaultDateFormat = 'dmy';
 
 $namespaceNames = array(
-	NS_MEDIA          => 'Media',
-	NS_SPECIAL        => 'Khas',
-	NS_MAIN           => '',
-	NS_TALK           => 'Perbincangan',
-	NS_USER           => 'Pengguna',
-	NS_USER_TALK      => 'Perbincangan_Pengguna',
-	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK   => 'Perbincangan_$1',
-	NS_IMAGE          => 'Imej',
-	NS_IMAGE_TALK     => 'Perbincangan_Imej',
-	NS_MEDIAWIKI      => 'MediaWiki',
-	NS_MEDIAWIKI_TALK => 'Perbincangan_MediaWiki',
-	NS_TEMPLATE       => 'Templat',
-	NS_TEMPLATE_TALK  => 'Perbincangan_Templat',
-	NS_HELP           => 'Bantuan',
-	NS_HELP_TALK      => 'Perbincangan_Bantuan',
-	NS_CATEGORY       => 'Kategori',
-	NS_CATEGORY_TALK  => 'Perbincangan_Kategori',
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Khas',
+	NS_TALK             => 'Perbincangan',
+	NS_USER             => 'Pengguna',
+	NS_USER_TALK        => 'Perbincangan_Pengguna',
+	NS_PROJECT_TALK     => 'Perbincangan_$1',
+	NS_IMAGE            => 'Fail',
+	NS_IMAGE_TALK       => 'Perbincangan_Fail',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Perbincangan_MediaWiki',
+	NS_TEMPLATE         => 'Templat',
+	NS_TEMPLATE_TALK    => 'Perbincangan_Templat',
+	NS_HELP             => 'Bantuan',
+	NS_HELP_TALK        => 'Perbincangan_Bantuan',
+	NS_CATEGORY         => 'Kategori',
+	NS_CATEGORY_TALK    => 'Perbincangan_Kategori',
+);
+
+$namespaceAliases = array(
+	'Imej' => NS_IMAGE,
+	'Perbincangan_Imej' => NS_IMAGE_TALK,
 );
 
 $namespaceAliases = array(
