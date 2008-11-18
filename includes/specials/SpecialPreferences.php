@@ -1003,41 +1003,58 @@ class PreferencesForm {
 		$wgOut->addHTML( '</fieldset>' );
 
 		# Recent changes
-		$wgOut->addHTML( '<fieldset><legend>' . wfMsgHtml( 'prefs-rc' ) . '</legend>' );
-
-		$rc  = '<table><tr>';
-		$rc .= '<td>' . Xml::label( wfMsg( 'recentchangesdays' ), 'wpRecentDays' ) . '</td>';
-		$rc .= '<td>' . Xml::input( 'wpRecentDays', 3, $this->mRecentDays, array( 'id' => 'wpRecentDays' ) ) . '</td>';
-		$rc .= '</tr><tr>';
-		$rc .= '<td>' . Xml::label( wfMsg( 'recentchangescount' ), 'wpRecent' ) . '</td>';
-		$rc .= '<td>' . Xml::input( 'wpRecent', 3, $this->mRecent, array( 'id' => 'wpRecent' ) ) . '</td>';
-		$rc .= '</tr></table>';
-		$wgOut->addHTML( $rc );
-
-		$wgOut->addHTML( '<br />' );
+		global $wgRCMaxAge;
+		$wgOut->addHTML(
+			Xml::fieldset( wfMsg( 'prefs-rc' ) ) .
+ 			Xml::openElement( 'table' ) .
+				'<tr>
+					<td class="mw-label">' .
+						Xml::label( wfMsg( 'recentchangesdays' ), 'wpRecentDays' ) .
+					'</td>
+					<td class="mw-input">' .
+						Xml::input( 'wpRecentDays', 3, $this->mRecentDays, array( 'id' => 'wpRecentDays' ) ) . ' ' .
+						wfMsgExt( 'recentchangesdays-max', 'parsemag',
+							$wgLang->formatNum( ceil( $wgRCMaxAge / ( 3600 * 24 ) ) ) ) .
+					'</td>
+				</tr><tr>
+					<td class="mw-label">' .
+						Xml::label( wfMsg( 'recentchangescount' ), 'wpRecent' ) .
+					'</td>
+					<td class="mw-input">' .
+						Xml::input( 'wpRecent', 3, $this->mRecent, array( 'id' => 'wpRecent' ) ) .
+					'</td>
+				</tr>' .
+ 			Xml::closeElement( 'table' ) .
+			'<br />'
+		);
 
 		$toggles[] = 'hideminor';
 		if( $wgRCShowWatchingUsers )
 			$toggles[] = 'shownumberswatching';
 		$toggles[] = 'usenewrc';
-		$wgOut->addHTML( $this->getToggles( $toggles ) );
 
-		$wgOut->addHTML( '</fieldset>' );
+		$wgOut->addHTML(
+			$this->getToggles( $toggles ) .
+			Xml::closeElement( 'fieldset' )
+		);
 
 		# Watchlist
-		$wgOut->addHTML( '<fieldset><legend>' . wfMsgHtml( 'prefs-watchlist' ) . '</legend>' );
+		$wgOut->addHTML( 
+			Xml::fieldset( wfMsg( 'prefs-watchlist' ) ) .
+			Xml::inputLabel( wfMsg( 'prefs-watchlist-days' ), 'wpWatchlistDays', 'wpWatchlistDays', 3, $this->mWatchlistDays ) . ' ' .
+			wfMsgHTML( 'prefs-watchlist-days-max' ) .
+			'<br /><br />' .
+			$this->getToggle( 'extendwatchlist' ) .
+			Xml::inputLabel( wfMsg( 'prefs-watchlist-edits' ), 'wpWatchlistEdits', 'wpWatchlistEdits', 3, $this->mWatchlistEdits ) . ' ' .
+			wfMsgHTML( 'prefs-watchlist-edits-max' ) .
+			'<br /><br />' .
+			$this->getToggles( array( 'watchlisthideminor', 'watchlisthidebots', 'watchlisthideown', 'watchlisthideanons', 'watchlisthideliu' ) )
+		);
 
-		$wgOut->addHTML( wfInputLabel( wfMsg( 'prefs-watchlist-days' ), 'wpWatchlistDays', 'wpWatchlistDays', 3, $this->mWatchlistDays ) );
-		$wgOut->addHTML( '<br /><br />' );
-
-		$wgOut->addHTML( $this->getToggle( 'extendwatchlist' ) );
-		$wgOut->addHTML( wfInputLabel( wfMsg( 'prefs-watchlist-edits' ), 'wpWatchlistEdits', 'wpWatchlistEdits', 3, $this->mWatchlistEdits ) );
-		$wgOut->addHTML( '<br /><br />' );
-
-		$wgOut->addHTML( $this->getToggles( array( 'watchlisthideminor', 'watchlisthidebots', 'watchlisthideown', 'watchlisthideanons', 'watchlisthideliu' ) ) );
-
-		if( $wgUser->isAllowed( 'createpage' ) || $wgUser->isAllowed( 'createtalk' ) )
+		if( $wgUser->isAllowed( 'createpage' ) || $wgUser->isAllowed( 'createtalk' ) ) {
 			$wgOut->addHTML( $this->getToggle( 'watchcreations' ) );
+		}
+
 		foreach( array( 'edit' => 'watchdefault', 'move' => 'watchmoves', 'delete' => 'watchdeletion' ) as $action => $toggle ) {
 			if( $wgUser->isAllowed( $action ) )
 				$wgOut->addHTML( $this->getToggle( $toggle ) );
@@ -1047,7 +1064,7 @@ class PreferencesForm {
 		$this->mUsedToggles['watchmoves'] = true;
 		$this->mUsedToggles['watchdeletion'] = true;
 
-		$wgOut->addHTML( '</fieldset>' );
+		$wgOut->addHTML( Xml::closeElement( 'fieldset' ) );
 
 		# Search
 		$mwsuggest = $wgEnableMWSuggest ?
