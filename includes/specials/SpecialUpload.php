@@ -538,7 +538,7 @@ class UploadForm {
 				$warning .= self::getExistsWarning( $this->mLocalFile );
 			}
 			
-			$warning .= $this->getDupeWarning( $this->mTempPath );
+			$warning .= $this->getDupeWarning( $this->mTempPath, $finalExt );
 			
 			if( $warning != '' ) {
 				/**
@@ -745,9 +745,10 @@ class UploadForm {
 	 * Check for duplicate files and throw up a warning before the upload
 	 * completes.
 	 */
-	function getDupeWarning( $tempfile ) {
+	function getDupeWarning( $tempfile, $extension ) {
 		$hash = File::sha1Base36( $tempfile );
 		$dupes = RepoGroup::singleton()->findBySha1( $hash );
+		$archivedImage = new ArchivedFile( null, 0, $hash.".$extension" );
 		if( $dupes ) {
 			global $wgOut;
 			$msg = "<gallery>";
@@ -761,8 +762,12 @@ class UploadForm {
 				wfMsgExt( "file-exists-duplicate", array( "parse" ), count( $dupes ) ) .
 				$wgOut->parse( $msg ) .
 				"</li>\n";
+		} elseif ( $archivedImage->getID() > 0 ) {
+			global $wgOut;
+			$name = Title::makeTitle( NS_IMAGE, $archivedImage->getName() )->getPrefixedText();
+			return Xml::tags( 'li', null, wfMsgExt( 'file-deleted-duplicate', array( 'parseinline' ), array( $name ) ) );
 		} else {
-			return '';
+			return 'FOOO';
 		}
 	}
 
