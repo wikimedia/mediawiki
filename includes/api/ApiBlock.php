@@ -85,6 +85,7 @@ class ApiBlock extends ApiBase {
 		$form->BlockEmail = $params['noemail'];
 		$form->BlockHideName = $params['hidename'];
 		$form->BlockAllowUsertalk = $params['allowusertalk'] && $wgBlockAllowsUTEdit;
+		$form->BlockReblock = $params['reblock'];
 
 		$userID = $expiry = null;
 		$retval = $form->doBlock($userID, $expiry);
@@ -127,6 +128,7 @@ class ApiBlock extends ApiBase {
 			'noemail' => false,
 			'hidename' => false,
 			'allowusertalk' => false,
+			'reblock' => false,
 		);
 	}
 
@@ -142,7 +144,8 @@ class ApiBlock extends ApiBase {
 			'autoblock' => 'Automatically block the last used IP address, and any subsequent IP addresses they try to login from',
 			'noemail' => 'Prevent user from sending e-mail through the wiki. (Requires the "blockemail" right.)',
 			'hidename' => 'Hide the username from the block log. (Requires the "hideuser" right.)',
-			'allowusertalk' => 'Whether to allow the user to edit their own talk page (Dependent on $wgBlockAllowsUTEdit)'
+			'allowusertalk' => 'Allow the user to edit their own talk page (depends on $wgBlockAllowsUTEdit)',
+			'reblock' => 'If the user is already blocked, overwrite the existing block',
 		);
 	}
 
