@@ -83,7 +83,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 		if($fld_range)
 			$this->addFields(array('ipb_range_start', 'ipb_range_end'));
 		if($fld_flags)
-			$this->addFields(array('ipb_auto', 'ipb_anon_only', 'ipb_create_account', 'ipb_enable_autoblock', 'ipb_block_email', 'ipb_deleted'));
+			$this->addFields(array('ipb_auto', 'ipb_anon_only', 'ipb_create_account', 'ipb_enable_autoblock', 'ipb_block_email', 'ipb_deleted', 'ipb_allow_usertalk'));
 
 		$this->addOption('LIMIT', $params['limit'] + 1);
 		$this->addWhereRange('ipb_timestamp', $params['dir'], $params['start'], $params['end']);
@@ -166,6 +166,8 @@ class ApiQueryBlocks extends ApiQueryBase {
 					$block['noemail'] = '';
 				if($row->ipb_deleted)
 					$block['hidden'] = '';
+				if($row->ipb_allow_usertalk)
+					$block['allowusertalk'] = '';
 			}
 			$data[] = $block;
 		}
