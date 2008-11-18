@@ -1277,7 +1277,7 @@ wgUploadAutoFill = {$autofill};
 	 *
 	 * @return array
 	 */
-	function splitExtensions( $filename ) {
+	public function splitExtensions( $filename ) {
 		$bits = explode( '.', $filename );
 		$basename = array_shift( $bits );
 		return array( $basename, $bits );
@@ -1303,7 +1303,7 @@ wgUploadAutoFill = {$autofill};
 	 * @param array $list
 	 * @return bool
 	 */
-	function checkFileExtensionList( $ext, $list ) {
+	public function checkFileExtensionList( $ext, $list ) {
 		foreach( $ext as $e ) {
 			if( in_array( strtolower( $e ), $list ) ) {
 				return true;
