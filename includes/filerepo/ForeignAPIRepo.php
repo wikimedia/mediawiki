@@ -130,7 +130,7 @@ class ForeignAPIRepo extends FileRepo {
 			// We need the same filename as the remote one :)
 			$fileName = ltrim( substr( $foreignUrl, strrpos( $foreignUrl, '/' ),
 								strlen ( $foreignUrl ) ), '/' );
-			$path = 'thumb/' . $this->getHashPath( $this->getName() );
+			$path = 'thumb/' . $this->getHashPath( $name ) . $name . "/";
 			if ( !is_dir($wgUploadDirectory . '/' . $path) ) {
 				wfMkdirParents($wgUploadDirectory . '/' . $path);
 			}
