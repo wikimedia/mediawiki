@@ -2908,7 +2908,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'ערכו קובץ זה באמצעות יישום חיצוני',
-'edit-externally-help' => 'ראו את [http://www.mediawiki.org/wiki/Manual:External_editors הוראות ההתקנה] למידע נוסף.',
+'edit-externally-help' => '(ראו את [http://www.mediawiki.org/wiki/Manual:External_editors הוראות ההתקנה] למידע נוסף)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'הכול',
