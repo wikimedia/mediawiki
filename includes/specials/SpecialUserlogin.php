@@ -653,7 +653,6 @@ class LoginForm {
 	 * @private
 	 */
 	function mailPasswordInternal( $u, $throttle = true, $emailTitle = 'passwordremindertitle', $emailText = 'passwordremindertext' ) {
-		global $wgCookiePath, $wgCookieDomain, $wgCookiePrefix, $wgCookieSecure;
 		global $wgServer, $wgScript, $wgUser;
 
 		if ( '' == $u->getEmail() ) {
@@ -789,7 +788,7 @@ class LoginForm {
 	 */
 	function mainLoginForm( $msg, $msgtype = 'error' ) {
 		global $wgUser, $wgOut, $wgAllowRealName, $wgEnableEmail;
-		global $wgCookiePrefix, $wgAuth, $wgLoginLanguageSelector;
+		global $wgCookiePrefix, $wgLoginLanguageSelector;
 		global $wgAuth, $wgEmailConfirmToEdit, $wgCookieExpiration;
 		
 		$titleObj = SpecialPage::getTitleFor( 'Userlogin' );
