@@ -699,7 +699,7 @@ class OutputPage {
 	 * If it does, it's very important that we don't allow public caching
 	 */
 	function haveCacheVaryCookies() {
-		global $wgRequest, $wgCookiePrefix;
+		global $wgRequest;
 		$cookieHeader = $wgRequest->getHeader( 'cookie' );
 		if ( $cookieHeader === false ) {
 			return false;
@@ -718,7 +718,6 @@ class OutputPage {
 
 	/** Get a complete X-Vary-Options header */
 	public function getXVO() {
-		global $wgCookiePrefix;
 		$cvCookies = $this->getCacheVaryCookies();
 		$xvo = 'X-Vary-Options: Accept-Encoding;list-contains=gzip,Cookie;';
 		$first = true;
