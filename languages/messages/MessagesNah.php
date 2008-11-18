@@ -11,24 +11,23 @@
 
 $fallback = 'es';
 
-# Mediawiki Core 
 $namespaceNames = array(
 	NS_MEDIA            => 'Mēdiatl',
 	NS_SPECIAL          => 'Nōncuahquīzqui',
 	NS_TALK             => 'Tēixnāmiquiliztli',
 	NS_USER             => 'Tlatequitiltilīlli',
-	NS_USER_TALK        => 'Tlatequitiltilīlli tēixnāmiquiliztli',
-	NS_PROJECT_TALK     => '$1 tēixnāmiquiliztli',
+	NS_USER_TALK        => 'Tlatequitiltilīlli_tēixnāmiquiliztli',
+	NS_PROJECT_TALK     => '$1_tēixnāmiquiliztli',
 	NS_IMAGE            => 'Īxiptli',
-	NS_IMAGE_TALK       => 'Īxiptli tēixnāmiquiliztli',
+	NS_IMAGE_TALK       => 'Īxiptli_tēixnāmiquiliztli',
 	NS_MEDIAWIKI        => 'Huiquimedia',
-	NS_MEDIAWIKI_TALK   => 'Huiquimedia tēixnāmiquiliztli',
+	NS_MEDIAWIKI_TALK   => 'Huiquimedia_tēixnāmiquiliztli',
 	NS_TEMPLATE         => 'Nemachiyōtīlli',
-	NS_TEMPLATE_TALK    => 'Nemachiyōtīlli tēixnāmiquiliztli',
+	NS_TEMPLATE_TALK    => 'Nemachiyōtīlli_tēixnāmiquiliztli',
 	NS_HELP             => 'Tēpalēhuiliztli',
-	NS_HELP_TALK        => 'Tēpalēhuiliztli tēixnāmiquiliztli',
+	NS_HELP_TALK        => 'Tēpalēhuiliztli_tēixnāmiquiliztli',
 	NS_CATEGORY         => 'Neneuhcāyōtl',
-	NS_CATEGORY_TALK    => 'Neneuhcāyōtl tēixnāmiquiliztli',
+	NS_CATEGORY_TALK    => 'Neneuhcāyōtl_tēixnāmiquiliztli',
 );
 
 $namespaceAliases = array(

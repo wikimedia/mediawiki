@@ -28,24 +28,27 @@ $skinNames = array(
 );
 
 $namespaceNames = array(
-	NS_MEDIA          => 'मिडिया',
-	NS_SPECIAL        => 'विशेष',
-	NS_MAIN           => '',
-	NS_TALK           => 'चर्चा',
-	NS_USER           => 'सदस्य',
-	NS_USER_TALK      => 'सदस्य_चर्चा',
-	# NS_PROJECT set by \$wgMetaNamespace
-	NS_PROJECT_TALK   => '$1_चर्चा',
-	NS_IMAGE          => 'चित्र',
-	NS_IMAGE_TALK     => 'चित्र_चर्चा',
-	NS_MEDIAWIKI      => 'मिडियाविकी',
-	NS_MEDIAWIKI_TALK => 'मिडियाविकी_चर्चा',
-	NS_TEMPLATE       => 'साचा',
-	NS_TEMPLATE_TALK  => 'साचा_चर्चा',
-	NS_HELP           => 'साहाय्य',
-	NS_HELP_TALK      => 'साहाय्य_चर्चा',
-	NS_CATEGORY       => 'वर्ग',
-	NS_CATEGORY_TALK  => 'वर्ग_चर्चा',
+	NS_MEDIA            => 'मिडिया',
+	NS_SPECIAL          => 'विशेष',
+	NS_TALK             => 'चर्चा',
+	NS_USER             => 'सदस्य',
+	NS_USER_TALK        => 'सदस्य चर्चा',
+	NS_PROJECT_TALK     => '$1_चर्चा',
+	NS_IMAGE            => 'चित्र',
+	NS_IMAGE_TALK       => 'चित्र_चर्चा',
+	NS_MEDIAWIKI        => 'मिडियाविकी',
+	NS_MEDIAWIKI_TALK   => 'मिडियाविकी_चर्चा',
+	NS_TEMPLATE         => 'साचा',
+	NS_TEMPLATE_TALK    => 'साचा_चर्चा',
+	NS_HELP             => 'सहाय्य',
+	NS_HELP_TALK        => 'सहाय्य_चर्चा',
+	NS_CATEGORY         => 'वर्ग',
+	NS_CATEGORY_TALK    => 'वर्ग_चर्चा',
+);
+
+$namespaceAliases = array(
+	'साहाय्य' => NS_HELP,
+	'साहाय्य_चर्चा' => NS_HELP_TALK,
 );
 
 $specialPageAliases = array(

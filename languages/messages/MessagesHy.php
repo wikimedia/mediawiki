@@ -22,11 +22,9 @@ $linkPrefixExtension = true;
 $namespaceNames = array(
 	NS_MEDIA          => 'Մեդիա',
 	NS_SPECIAL        => 'Սպասարկող',
-	NS_MAIN           => '',
 	NS_TALK           => 'Քննարկում',
 	NS_USER           => 'Մասնակից',
 	NS_USER_TALK      => 'Մասնակցի_քննարկում',
-	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK   => '{{GRAMMAR:genitive|$1}}_քննարկում',
 	NS_IMAGE          => 'Պատկեր',
 	NS_IMAGE_TALK     => 'Պատկերի_քննարկում',

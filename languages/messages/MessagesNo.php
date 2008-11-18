@@ -40,24 +40,27 @@ $bookstoreList = array(
 );
 
 $namespaceNames = array(
-	NS_MEDIA          => 'Medium',
-	NS_SPECIAL        => 'Spesial',
-	NS_MAIN           => '',
-	NS_TALK           => 'Diskusjon',
-	NS_USER           => 'Bruker',
-	NS_USER_TALK      => 'Brukerdiskusjon',
-	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK   => '$1-diskusjon',
-	NS_IMAGE          => 'Bilde',
-	NS_IMAGE_TALK     => 'Bildediskusjon',
-	NS_MEDIAWIKI      => 'MediaWiki',
-	NS_MEDIAWIKI_TALK => 'MediaWiki-diskusjon',
-	NS_TEMPLATE       => 'Mal',
-	NS_TEMPLATE_TALK  => 'Maldiskusjon',
-	NS_HELP           => 'Hjelp',
-	NS_HELP_TALK      => 'Hjelpdiskusjon',
-	NS_CATEGORY       => 'Kategori',
-	NS_CATEGORY_TALK  => 'Kategoridiskusjon',
+	NS_MEDIA            => 'Medium',
+	NS_SPECIAL          => 'Spesial',
+	NS_TALK             => 'Diskusjon',
+	NS_USER             => 'Bruker',
+	NS_USER_TALK        => 'Brukerdiskusjon',
+	NS_PROJECT_TALK     => '$1-diskusjon',
+	NS_IMAGE            => 'Fil',
+	NS_IMAGE_TALK       => 'Fildiskusjon',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki-diskusjon',
+	NS_TEMPLATE         => 'Mal',
+	NS_TEMPLATE_TALK    => 'Maldiskusjon',
+	NS_HELP             => 'Hjelp',
+	NS_HELP_TALK        => 'Hjelpdiskusjon',
+	NS_CATEGORY         => 'Kategori',
+	NS_CATEGORY_TALK    => 'Kategoridiskusjon',
+);
+
+$namespaceAliases = array(
+	'Bilde' => NS_IMAGE,
+	'Bildediskusjon' => NS_IMAGE_TALK,
 );
 
 $separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );

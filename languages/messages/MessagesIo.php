@@ -15,22 +15,25 @@
 $namespaceNames = array(
 	NS_MEDIA          => 'Media',
 	NS_SPECIAL        => 'Specala',
-	NS_MAIN           => '',
 	NS_TALK           => 'Debato',
 	NS_USER           => 'Uzanto',
 	NS_USER_TALK      => 'Uzanto_Debato',
-	# NS_PROJECT set by \$wgMetaNamespace
 	NS_PROJECT_TALK   => '$1_Debato',
 	NS_IMAGE          => 'Imajo',
 	NS_IMAGE_TALK     => 'Imajo_Debato',
 	NS_MEDIAWIKI      => 'MediaWiki',
 	NS_MEDIAWIKI_TALK => 'MediaWiki_Debato',
-	NS_TEMPLATE       => 'Shablono',
-	NS_TEMPLATE_TALK  => 'Shablono_Debato',
+	NS_TEMPLATE       => 'Modelo',
+	NS_TEMPLATE_TALK  => 'Modelo_Debato',
 	NS_HELP           => 'Helpo',
 	NS_HELP_TALK      => 'Helpo_Debato',
 	NS_CATEGORY       => 'Kategorio',
 	NS_CATEGORY_TALK  => 'Kategorio_Debato',
+);
+
+$namespaceAliases = array(
+	'Shablono' => NS_TEMPLATE,
+	'Shablono_Debato' => NS_TEMPLATE_TALK,
 );
 
 $messages = array(

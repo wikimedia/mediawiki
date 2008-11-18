@@ -114,24 +114,22 @@ $magicWords = array(
 );
 
 $namespaceNames = array(
-	NS_MEDIA          => 'Médiá',
-	NS_SPECIAL        => 'Špeciálne',
-	NS_MAIN           => '',
-	NS_TALK           => 'Diskusia',
-	NS_USER           => 'Redaktor',
-	NS_USER_TALK      => 'Diskusia_s_redaktorom',
-	# NS_PROJECT set by \$wgMetaNamespace
-	NS_PROJECT_TALK   => 'Diskusia_k_{{grammar:datív|$1}}',
-	NS_IMAGE          => 'Obrázok',
-	NS_IMAGE_TALK     => 'Diskusia_k_obrázku',
-	NS_MEDIAWIKI      => 'MediaWiki',
-	NS_MEDIAWIKI_TALK => 'Diskusia_k_MediaWiki',
-	NS_TEMPLATE       => 'Šablóna',
-	NS_TEMPLATE_TALK  => 'Diskusia_k_šablóne',
-	NS_HELP           => 'Pomoc',
-	NS_HELP_TALK      => 'Diskusia_k_pomoci',
-	NS_CATEGORY       => 'Kategória',
-	NS_CATEGORY_TALK  => 'Diskusia_ku_kategórii',
+	NS_MEDIA            => 'Médiá',
+	NS_SPECIAL          => 'Špeciálne',
+	NS_TALK             => 'Diskusia',
+	NS_USER             => 'Redaktor',
+	NS_USER_TALK        => 'Diskusia_s_redaktorom',
+	NS_PROJECT_TALK     => 'Diskusia_k_{{GRAMMAR:datív|$1}}',
+	NS_IMAGE            => 'Súbor',
+	NS_IMAGE_TALK       => 'Diskusia_k_súboru',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Diskusia_k_MediaWiki',
+	NS_TEMPLATE         => 'Šablóna',
+	NS_TEMPLATE_TALK    => 'Diskusia_k_šablóne',
+	NS_HELP             => 'Pomoc',
+	NS_HELP_TALK        => 'Diskusia_k_pomoci',
+	NS_CATEGORY         => 'Kategória',
+	NS_CATEGORY_TALK    => 'Diskusia_ku_kategórii',
 );
 
 # Compatbility with old names
@@ -139,6 +137,8 @@ $namespaceAliases = array(
 	"Komentár"               => NS_TALK,
 	"Komentár_k_redaktorovi" => NS_USER_TALK,
 	"Komentár_k_Wikipédii"   => NS_PROJECT_TALK,
+	'Obrázok' => NS_IMAGE,
+	'Diskusia_k_obrázku' => NS_IMAGE_TALK,
 	"Komentár_k_obrázku"     => NS_IMAGE_TALK,
 	"Komentár_k_MediaWiki"   => NS_MEDIAWIKI_TALK,
 );

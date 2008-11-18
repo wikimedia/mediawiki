@@ -20,14 +20,12 @@ $separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Toiminnot',
-	NS_MAIN             => '',
 	NS_TALK             => 'Keskustelu',
 	NS_USER             => 'Käyttäjä',
 	NS_USER_TALK        => 'Keskustelu_käyttäjästä',
-	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK     => 'Keskustelu_{{grammar:elative|$1}}',
-	NS_IMAGE            => 'Kuva',
-	NS_IMAGE_TALK       => 'Keskustelu_kuvasta',
+	NS_PROJECT_TALK     => 'Keskustelu_{{GRAMMAR:elative|$1}}',
+	NS_IMAGE            => 'Tiedosto',
+	NS_IMAGE_TALK       => 'Keskustelu_tiedostosta',
 	NS_MEDIAWIKI        => 'Järjestelmäviesti',
 	NS_MEDIAWIKI_TALK   => 'Keskustelu_järjestelmäviestistä',
 	NS_TEMPLATE         => 'Malline',
@@ -35,7 +33,12 @@ $namespaceNames = array(
 	NS_HELP             => 'Ohje',
 	NS_HELP_TALK        => 'Keskustelu_ohjeesta',
 	NS_CATEGORY         => 'Luokka',
-	NS_CATEGORY_TALK    => 'Keskustelu_luokasta'
+	NS_CATEGORY_TALK    => 'Keskustelu_luokasta',
+);
+
+$namespaceAliases = array(
+	'Kuva' => NS_IMAGE,
+	'Keskustelu_tiedostosta' => NS_IMAGE_TALK,
 );
 
 $skinNames = array(

@@ -153,29 +153,29 @@ $magicWords = array(
 );
 
 $namespaceNames = array(
-	NS_MEDIA          => 'Мэдыя',
-	NS_SPECIAL        => 'Спэцыяльныя',
-	NS_MAIN           => '',
-	NS_TALK           => 'Абмеркаваньне',
-	NS_USER           => 'Удзельнік',
-	NS_USER_TALK      => 'Гутаркі_ўдзельніка',
-	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK   => 'Абмеркаваньне_$1',
-	NS_IMAGE          => 'Выява',
-	NS_IMAGE_TALK     => 'Абмеркаваньне_выявы',
-	NS_MEDIAWIKI      => 'MediaWiki',
-	NS_MEDIAWIKI_TALK => 'Абмеркаваньне_MediaWiki',
-	NS_TEMPLATE       => 'Шаблён',
-	NS_TEMPLATE_TALK  => 'Абмеркаваньне_шаблёну',
-	NS_HELP           => 'Дапамога',
-	NS_HELP_TALK      => 'Абмеркаваньне_дапамогі',
-	NS_CATEGORY       => 'Катэгорыя',
-	NS_CATEGORY_TALK  => 'Абмеркаваньне_катэгорыі'
+	NS_MEDIA            => 'Мэдыя',
+	NS_SPECIAL          => 'Спэцыяльныя',
+	NS_TALK             => 'Абмеркаваньне',
+	NS_USER             => 'Удзельнік',
+	NS_USER_TALK        => 'Гутаркі_ўдзельніка',
+	NS_PROJECT_TALK     => 'Абмеркаваньне_$1',
+	NS_IMAGE            => 'Файл',
+	NS_IMAGE_TALK       => 'Абмеркаваньне_файла',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Абмеркаваньне_MediaWiki',
+	NS_TEMPLATE         => 'Шаблён',
+	NS_TEMPLATE_TALK    => 'Абмеркаваньне_шаблёну',
+	NS_HELP             => 'Дапамога',
+	NS_HELP_TALK        => 'Абмеркаваньне_дапамогі',
+	NS_CATEGORY         => 'Катэгорыя',
+	NS_CATEGORY_TALK    => 'Абмеркаваньне_катэгорыі',
 );
 
 $namespaceAliases = array(
-	'Удзельніца'          => NS_USER,
-	'Гутаркі_ўдзельніцы'  => NS_USER_TALK,
+	'Удзельніца' => NS_USER,
+	'Гутаркі ўдзельніцы' => NS_USER_TALK,
+	'Выява' => NS_IMAGE,
+	'Абмеркаваньне выявы' => NS_IMAGE_TALK,
 );
 
 $specialPageAliases = array(

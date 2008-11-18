@@ -46,24 +46,27 @@ $dateFormats = array(
 );
 
 $namespaceNames = array(
-	NS_MEDIA          => "Media", /* Media */
-	NS_SPECIAL        => "特別", /* Special */
-	NS_MAIN           => "",
-	NS_TALK           => "ノート", /* Talk */
-	NS_USER           => "利用者", /* User */
-	NS_USER_TALK      => "利用者‐会話", /* User_talk */
-	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK   => '$1‐ノート', /* Wikipedia_talk */
-	NS_IMAGE          => "画像", /* Image */
-	NS_IMAGE_TALK     => "画像‐ノート", /* Image_talk */
-	NS_MEDIAWIKI      => "MediaWiki", /* MediaWiki */
-	NS_MEDIAWIKI_TALK => "MediaWiki‐ノート", /* MediaWiki_talk */
-	NS_TEMPLATE       => "Template", /* Template */
-	NS_TEMPLATE_TALK  => "Template‐ノート", /* Template_talk */
-	NS_HELP           => "Help", /* Help */
-	NS_HELP_TALK      => "Help‐ノート", /* Help_talk */
-	NS_CATEGORY       => "Category", /* Category */
-	NS_CATEGORY_TALK  => "Category‐ノート" /* Category_talk */
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => '特別',
+	NS_TALK             => 'ノート',
+	NS_USER             => '利用者',
+	NS_USER_TALK        => '利用者‐会話',
+	NS_PROJECT_TALK     => '$1‐ノート',
+	NS_IMAGE            => 'ファイル',
+	NS_IMAGE_TALK       => 'ファイル‐ノート',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki‐ノート',
+	NS_TEMPLATE         => 'Template',
+	NS_TEMPLATE_TALK    => 'Template‐ノート',
+	NS_HELP             => 'Help',
+	NS_HELP_TALK        => 'Help‐ノート',
+	NS_CATEGORY         => 'Category',
+	NS_CATEGORY_TALK    => 'Category‐ノート',
+);
+
+$namespaceAliases = array(
+	'画像' => NS_IMAGE,
+	'画像‐ノート' => NS_IMAGE_TALK,
 );
 
 $specialPageAliases = array(

@@ -16,24 +16,27 @@
  */
 
 $namespaceNames = array(
-	NS_MEDIA          => 'Медија',
-	NS_SPECIAL        => 'Специјални',
-	NS_MAIN           => '',
-	NS_TALK           => 'Разговор',
-	NS_USER           => 'Корисник',
-	NS_USER_TALK      => 'Разговор_со_корисник',
-	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK   => 'Разговор_за_$1',
-	NS_IMAGE          => 'Слика',
-	NS_IMAGE_TALK     => 'Разговор_за_слика',
-	NS_MEDIAWIKI      => 'МедијаВики',
-	NS_MEDIAWIKI_TALK => 'Разговор_за_МедијаВики',
-	NS_TEMPLATE       => 'Шаблон',
-	NS_TEMPLATE_TALK  => 'Разговор_за_шаблон',
-	NS_HELP           => 'Помош',
-	NS_HELP_TALK      => 'Разговор_за_помош',
-	NS_CATEGORY       => 'Категорија',
-	NS_CATEGORY_TALK  => 'Разговор_за_категорија',
+	NS_MEDIA            => 'Медија',
+	NS_SPECIAL          => 'Специјални',
+	NS_TALK             => 'Разговор',
+	NS_USER             => 'Корисник',
+	NS_USER_TALK        => 'Разговор_со_корисник',
+	NS_PROJECT_TALK     => 'Разговор_за_$1',
+	NS_IMAGE            => 'Податотека',
+	NS_IMAGE_TALK       => 'Разговор_за_податотека',
+	NS_MEDIAWIKI        => 'МедијаВики',
+	NS_MEDIAWIKI_TALK   => 'Разговор_за_МедијаВики',
+	NS_TEMPLATE         => 'Шаблон',
+	NS_TEMPLATE_TALK    => 'Разговор_за_шаблон',
+	NS_HELP             => 'Помош',
+	NS_HELP_TALK        => 'Разговор_за_помош',
+	NS_CATEGORY         => 'Категорија',
+	NS_CATEGORY_TALK    => 'Разговор_за_категорија',
+);
+
+$namespaceAliases = array(
+	'Слика' => NS_IMAGE,
+	'Разговор_за_слика' => NS_IMAGE_TALK,
 );
 
 $skinNames = array(

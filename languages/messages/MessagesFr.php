@@ -50,13 +50,11 @@ $bookstoreList = array(
 );
 
 $namespaceNames = array(
-	NS_MEDIA          => 'Media',
-	NS_SPECIAL        => 'Special',
-	NS_MAIN           => '',
+	NS_MEDIA          => 'Média',
+	NS_SPECIAL        => 'Spécial',
 	NS_TALK           => 'Discuter',
 	NS_USER           => 'Utilisateur',
 	NS_USER_TALK      => 'Discussion_Utilisateur',
-	NS_PROJECT        => '$1',
 	NS_PROJECT_TALK   => 'Discussion_$1',
 	NS_IMAGE          => 'Image',
 	NS_IMAGE_TALK     => 'Discussion_Image',
@@ -67,8 +65,9 @@ $namespaceNames = array(
 	NS_HELP           => 'Aide',
 	NS_HELP_TALK      => 'Discussion_Aide',
 	NS_CATEGORY       => 'Catégorie',
-	NS_CATEGORY_TALK  => 'Discussion_Catégorie'
+	NS_CATEGORY_TALK  => 'Discussion_Catégorie',
 );
+
 $linkTrail = '/^([a-zàâçéèêîôûäëïöüùÇÉÂÊÎÔÛÄËÏÖÜÀÈÙ]+)(.*)$/sDu';
 
 $dateFormats = array(

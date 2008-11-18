@@ -11,6 +11,41 @@
 
 $fallback = 'de';
 
+$namespaceNames = array(
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Spezial',
+	NS_TALK             => 'Diskuschoon',
+	NS_USER             => 'Bruker',
+	NS_USER_TALK        => 'Bruker_Diskuschoon',
+	NS_PROJECT_TALK     => '$1_Diskuschoon',
+	NS_IMAGE            => 'Datei',
+	NS_IMAGE_TALK       => 'Datei_Diskuschoon',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_Diskuschoon',
+	NS_TEMPLATE         => 'Vörlaag',
+	NS_TEMPLATE_TALK    => 'Vörlaag_Diskuschoon',
+	NS_HELP             => 'Hülp',
+	NS_HELP_TALK        => 'Hülp_Diskuschoon',
+	NS_CATEGORY         => 'Kategorie',
+	NS_CATEGORY_TALK    => 'Kategorie_Diskuschoon',
+);
+
+$namespaceAliases = array(
+	'Diskussion' => NS_TALK,
+	'Benutzer' => NS_USER,
+	'Benutzer_Diskussion' => NS_USER_TALK,
+	'$1_Diskussion' => NS_PROJECT_TALK,
+	'Bild' => NS_IMAGE,
+	'Bild_Diskussion' => NS_IMAGE_TALK,
+	'MediaWiki_Diskussion' => NS_MEDIAWIKI_TALK,
+	'Vorlage' => NS_TEMPLATE,
+	'Vorlage_Diskussion' => NS_TEMPLATE_TALK,
+	'Hilfe' => NS_HELP,
+	'Hilfe_Diskussion' => NS_HELP_TALK,
+	'Kategorie' => NS_CATEGORY,
+	'Kategorie_Diskussion' => NS_CATEGORY_TALK,
+);
+
 $magicWords = array(
 	'redirect'            => array( '0', '#redirect', '#wiederleiden' ),
 	'notoc'               => array( '0', '__NOTOC__', '__KEENINHOLTVERTEKEN__' ),

@@ -19,23 +19,26 @@ $skinNames = array(
 );
 
 $namespaceNames = array(
-	NS_SPECIAL        => 'Specialis',
-	NS_MAIN           => '',
-	NS_TALK           => 'Disputatio',
-	NS_USER           => 'Usor',
-	NS_USER_TALK      => 'Disputatio_Usoris',
-	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK   => 'Disputatio_{{grammar:genitive|$1}}',
-	NS_IMAGE          => 'Imago',
-	NS_IMAGE_TALK     => 'Disputatio_Imaginis',
-	NS_MEDIAWIKI      => 'MediaWiki',
-	NS_MEDIAWIKI_TALK => 'Disputatio_MediaWiki',
-	NS_TEMPLATE       => 'Formula',
-	NS_TEMPLATE_TALK  => 'Disputatio_Formulae',
-	NS_HELP           => 'Auxilium',
-	NS_HELP_TALK      => 'Disputatio_Auxilii',
-	NS_CATEGORY       => 'Categoria',
-	NS_CATEGORY_TALK  => 'Disputatio_Categoriae',
+	NS_SPECIAL          => 'Specialis',
+	NS_TALK             => 'Disputatio',
+	NS_USER             => 'Usor',
+	NS_USER_TALK        => 'Disputatio_Usoris',
+	NS_PROJECT_TALK     => 'Disputatio_{{GRAMMAR:genitive|$1}}',
+	NS_IMAGE            => 'Fasciculus',
+	NS_IMAGE_TALK       => 'Disputatio_Fasciculi',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Disputatio_MediaWiki',
+	NS_TEMPLATE         => 'Formula',
+	NS_TEMPLATE_TALK    => 'Disputatio_Formulae',
+	NS_HELP             => 'Auxilium',
+	NS_HELP_TALK        => 'Disputatio_Auxilii',
+	NS_CATEGORY         => 'Categoria',
+	NS_CATEGORY_TALK    => 'Disputatio_Categoriae',
+);
+
+$namespaceAliases = array(
+	'Imago' => NS_IMAGE,
+	'Disputatio_Imaginis' => NS_IMAGE_TALK,
 );
 
 $separatorTransformTable = array( ',' => "\xc2\xa0" );

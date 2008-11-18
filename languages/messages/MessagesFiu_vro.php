@@ -14,11 +14,9 @@ $fallback = 'et';
 $namespaceNames = array(
 	NS_MEDIA            => 'Meediä',
 	NS_SPECIAL          => 'Tallituslehekülg',
-	NS_MAIN             => '',
 	NS_TALK             => 'Arotus',
 	NS_USER             => 'Pruukja',
 	NS_USER_TALK        => 'Pruukja_arotus',
-	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => '$1_arotus',
 	NS_IMAGE            => 'Pilt',
 	NS_IMAGE_TALK       => 'Pildi_arotus',

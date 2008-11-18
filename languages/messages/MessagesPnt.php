@@ -16,7 +16,6 @@ $namespaceNames = array(
 	NS_TALK           => 'Καλάτσεμαν',
 	NS_USER           => 'Χρήστες',
 	NS_USER_TALK      => 'Καλάτσεμαν_χρήστε',
-	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK   => '$1_καλάτσεμαν',
 	NS_IMAGE          => 'Εικόναν',
 	NS_IMAGE_TALK     => 'Καλάτσεμαν_εικόνας',

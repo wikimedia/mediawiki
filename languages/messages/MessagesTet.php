@@ -17,11 +17,9 @@ $skinNames = array(
 $namespaceNames = array(
 	NS_MEDIA          => 'Media',
 	NS_SPECIAL        => 'Espesiál',
-	NS_MAIN           => '',
 	NS_TALK           => 'Diskusaun',
 	NS_USER           => 'Uza-na\'in',
 	NS_USER_TALK      => 'Diskusaun_Uza-na\'in',
-	# NS_PROJECT set by \$wgMetaNamespace
 	NS_PROJECT_TALK   => 'Diskusaun_$1',
 	NS_IMAGE          => 'Imajen',
 	NS_IMAGE_TALK     => 'Diskusaun_Imajen',

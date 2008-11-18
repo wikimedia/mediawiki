@@ -24,7 +24,6 @@ $namespaceNames = array(
 	NS_TALK           => 'خبرې_اترې',
 	NS_USER           => 'کارونکی',
 	NS_USER_TALK      => 'د_کارونکي_خبرې_اترې',
-	# NS_PROJECT set by \$wgMetaNamespace
 	NS_PROJECT_TALK   => 'د_$1_خبرې_اترې',
 	NS_IMAGE          => 'انځور',
 	NS_IMAGE_TALK     => 'د_انځور_خبرې_اترې',

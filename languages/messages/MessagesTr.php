@@ -21,13 +21,11 @@
  */
 
 $namespaceNames = array(
-	NS_MEDIA            => 'Media',
+	NS_MEDIA            => 'Medya',
 	NS_SPECIAL          => 'Özel',
-	NS_MAIN             => '',
 	NS_TALK             => 'Tartışma',
 	NS_USER             => 'Kullanıcı',
 	NS_USER_TALK        => 'Kullanıcı_mesaj',
-	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => '$1_tartışma',
 	NS_IMAGE            => 'Resim',
 	NS_IMAGE_TALK       => 'Resim_tartışma',

@@ -19,22 +19,22 @@ $skinNames = array(
 );
 
 $namespaceNames = array(
-	NS_MEDIA          => 'Media',
-	NS_SPECIAL        => 'Speciale',
-	NS_MAIN           => '',
-	NS_TALK           => 'Diskutim',
-	NS_USER           => 'Përdoruesi',
-	NS_USER_TALK      => 'Përdoruesi_diskutim',
-	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK   => '$1_diskutim',
-	NS_IMAGE          => 'Figura',
-	NS_IMAGE_TALK     => 'Figura_diskutim',
-	NS_MEDIAWIKI      => 'MediaWiki',
-	NS_MEDIAWIKI_TALK => 'MediaWiki_diskutim',
-	NS_TEMPLATE       => 'Stampa',
-	NS_TEMPLATE_TALK  => 'Stampa_diskutim',
-	NS_HELP           => 'Ndihmë',
-	NS_HELP_TALK      => 'Ndihmë_diskutim'
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Speciale',
+	NS_TALK             => 'Diskutim',
+	NS_USER             => 'Përdoruesi',
+	NS_USER_TALK        => 'Përdoruesi_diskutim',
+	NS_PROJECT_TALK     => '$1_diskutim',
+	NS_IMAGE            => 'Figura',
+	NS_IMAGE_TALK       => 'Figura_diskutim',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_diskutim',
+	NS_TEMPLATE         => 'Stampa',
+	NS_TEMPLATE_TALK    => 'Stampa_diskutim',
+	NS_HELP             => 'Ndihmë',
+	NS_HELP_TALK        => 'Ndihmë_diskutim',
+	NS_CATEGORY         => 'Kategori',
+	NS_CATEGORY_TALK    => 'Kategori_Diskutim',
 );
 
 # Compatbility with alt names

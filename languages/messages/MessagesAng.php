@@ -9,6 +9,19 @@
  * @author Wōdenhelm
  */
 
+$namespaceNames = array(
+	NS_SPECIAL          => 'Syndrig',
+	NS_TALK             => 'Gesprec',
+	NS_IMAGE            => 'Biliþ',
+	NS_IMAGE_TALK       => 'Biliþgesprec',
+	NS_TEMPLATE         => 'Bysen',
+	NS_TEMPLATE_TALK    => 'Bysengesprec',
+	NS_HELP             => 'Help',
+	NS_HELP_TALK        => 'Helpgesprec',
+	NS_CATEGORY         => 'Flocc',
+	NS_CATEGORY_TALK    => 'Floccgesprec',
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'          => 'Undermearcian bendas:',

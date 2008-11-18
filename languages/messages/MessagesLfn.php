@@ -9,6 +9,22 @@
  * @author Urhixidur
  */
 
+$namespaceNames = array(
+	NS_SPECIAL          => 'Spesial',
+	NS_TALK             => 'Discute',
+	NS_USER             => 'Usor',
+	NS_USER_TALK        => 'Usor_Discute',
+	NS_PROJECT_TALK     => '$1_Discute',
+	NS_IMAGE            => 'Fix',
+	NS_IMAGE_TALK       => 'Fix_Discute',
+	NS_TEMPLATE         => 'Model',
+	NS_TEMPLATE_TALK    => 'Model_Discute',
+	NS_HELP             => 'Aida',
+	NS_HELP_TALK        => 'Aida_Discute',
+	NS_CATEGORY         => 'Categoria',
+	NS_CATEGORY_TALK    => 'Categoria_Discute',
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Sulinia lias:',

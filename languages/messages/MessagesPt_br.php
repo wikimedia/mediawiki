@@ -19,24 +19,27 @@
 $fallback = 'pt'; 
 
 $namespaceNames = array(
-	NS_MEDIA          => 'Media',
-	NS_SPECIAL        => 'Especial',
-	NS_MAIN           => '',
-	NS_TALK           => 'Discussão',
-	NS_USER           => 'Usuário',
-	NS_USER_TALK      => 'Usuário_Discussão',
-	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK   => '$1_Discussão',
-	NS_IMAGE          => 'Imagem',
-	NS_IMAGE_TALK     => 'Imagem_Discussão',
-	NS_MEDIAWIKI      => 'MediaWiki',
-	NS_MEDIAWIKI_TALK => 'MediaWiki_Discussão',
-	NS_TEMPLATE       => 'Predefinição',
-	NS_TEMPLATE_TALK  => 'Predefinição_Discussão',
-	NS_HELP           => 'Ajuda',
-	NS_HELP_TALK      => 'Ajuda_Discussão',
-	NS_CATEGORY       => 'Categoria',
-	NS_CATEGORY_TALK  => 'Categoria_Discussão',
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Especial',
+	NS_TALK             => 'Discussão',
+	NS_USER             => 'Usuário',
+	NS_USER_TALK        => 'Usuário_Discussão',
+	NS_PROJECT_TALK     => '$1_Discussão',
+	NS_IMAGE            => 'Arquivo',
+	NS_IMAGE_TALK       => 'Arquivo_Discussão',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_Discussão',
+	NS_TEMPLATE         => 'Predefinição',
+	NS_TEMPLATE_TALK    => 'Predefinição_Discussão',
+	NS_HELP             => 'Ajuda',
+	NS_HELP_TALK        => 'Ajuda_Discussão',
+	NS_CATEGORY         => 'Categoria',
+	NS_CATEGORY_TALK    => 'Categoria_Discussão',
+);
+
+$namespaceAliases = array(
+	'Imagem' => NS_IMAGE,
+	'Imagem_Discussão' => NS_IMAGE_TALK,
 );
 
 $skinNames = array(

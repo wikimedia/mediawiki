@@ -13,6 +13,40 @@
 
 $fallback = 'nl';
 
+$namespaceNames = array(
+	NS_SPECIAL          => 'Spesyal',
+	NS_TALK             => 'Taki',
+	NS_USER             => 'Masyin',
+	NS_USER_TALK        => 'Taki_fu_masyin',
+	NS_PROJECT_TALK     => 'Taki_fu_$1',
+	NS_IMAGE            => 'Gefre',
+	NS_IMAGE_TALK       => 'Taki_fu_gefre',
+	NS_MEDIAWIKI_TALK   => 'Taki_fu_MediaWiki',
+	NS_TEMPLATE         => 'Ankra',
+	NS_TEMPLATE_TALK    => 'Taki_fu_ankra',
+	NS_HELP             => 'Yepi',
+	NS_HELP_TALK        => 'Taki_fu_yepi',
+	NS_CATEGORY         => 'Guru',
+	NS_CATEGORY_TALK    => 'Taki_fu_guru',
+);
+
+$namespaceAliases = array(
+	'Speciaal' => NS_SPECIAL,
+	'Overleg' => NS_TALK,
+	'Gebruiker' => NS_USER,
+	'Overleg_gebruiker' => NS_USER_TALK,
+	'Overleg_$1' => NS_PROJECT_TALK,
+	'Afbeelding' => NS_IMAGE,
+	'Overleg_afbeelding' => NS_IMAGE_TALK,
+	'Overleg_MediaWiki' => NS_MEDIAWIKI_TALK,
+	'Sjabloon' => NS_TEMPLATE,
+	'Overleg_sjabloon' => NS_TEMPLATE_TALK,
+	'Help' => NS_HELP,
+	'Overleg_help' => NS_HELP_TALK,
+	'Categorie' => NS_CATEGORY,
+	'Overleg_categorie' => NS_CATEGORY_TALK,
+);
+
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'Tustirpeprewoysi' ),
 	'BrokenRedirects'           => array( 'BrokoStirpeprewoysi' ),

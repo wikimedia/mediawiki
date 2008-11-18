@@ -9,6 +9,25 @@
  * @author Shimmin Beg
  */
 
+$namespaceNames = array(
+	NS_MEDIA            => 'Meanyn',
+	NS_SPECIAL          => 'Er_lheh',
+	NS_TALK             => 'Resooney',
+	NS_USER             => 'Ymmydeyr',
+	NS_USER_TALK        => 'Resooney_ymmydeyr',
+	NS_PROJECT_TALK     => 'Resooney_$1',
+	NS_IMAGE            => 'Coadan',
+	NS_IMAGE_TALK       => 'Resooney_coadan',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Resooney_MediaWiki',
+	NS_TEMPLATE         => 'Clowan',
+	NS_TEMPLATE_TALK    => 'Resooney_clowan',
+	NS_HELP             => 'Cooney',
+	NS_HELP_TALK        => 'Resooney_cooney',
+	NS_CATEGORY         => 'Ronney',
+	NS_CATEGORY_TALK    => 'Resooney_ronney',
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'        => 'Cur linnaghyn fo chianglaghyn:',

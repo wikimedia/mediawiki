@@ -34,24 +34,27 @@ $bookstoreList = array(
 );
 
 $namespaceNames = array(
-	NS_MEDIA          => 'Media',
-	NS_SPECIAL        => 'Especial',
-	NS_MAIN           => '',
-	NS_TALK           => 'Discussió',
-	NS_USER           => 'Usuari',
-	NS_USER_TALK      => 'Usuari_Discussió',
-	# NS_PROJECT set by \$wgMetaNamespace
-	NS_PROJECT_TALK   => '$1_Discussió',
-	NS_IMAGE          => 'Imatge',
-	NS_IMAGE_TALK     => 'Imatge_Discussió',
-	NS_MEDIAWIKI      => 'MediaWiki',
-	NS_MEDIAWIKI_TALK => 'MediaWiki_Discussió',
-	NS_TEMPLATE       => 'Plantilla',
-	NS_TEMPLATE_TALK  => 'Plantilla_Discussió',
-	NS_HELP           => 'Ajuda',
-	NS_HELP_TALK      => 'Ajuda_Discussió',
-	NS_CATEGORY       => 'Categoria',
-	NS_CATEGORY_TALK  => 'Categoria_Discussió',
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Especial',
+	NS_TALK             => 'Discussió',
+	NS_USER             => 'Usuari',
+	NS_USER_TALK        => 'Usuari_Discussió',
+	NS_PROJECT_TALK     => '$1_Discussió',
+	NS_IMAGE            => 'Fitxer',
+	NS_IMAGE_TALK       => 'Fitxer_Discussió',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_Discussió',
+	NS_TEMPLATE         => 'Plantilla',
+	NS_TEMPLATE_TALK    => 'Plantilla_Discussió',
+	NS_HELP             => 'Ajuda',
+	NS_HELP_TALK        => 'Ajuda_Discussió',
+	NS_CATEGORY         => 'Categoria',
+	NS_CATEGORY_TALK    => 'Categoria_Discussió',
+);
+
+$namespaceAliases = array(
+	'Imatge' => NS_IMAGE,
+	'Imatge_Discussió' => NS_IMAGE_TALK,
 );
 
 $separatorTransformTable = array(',' => '.', '.' => ',' );

@@ -20,6 +20,44 @@ $skinNames = array(
 	'modern'      => 'مدرن',
 );
 
+$namespaceNames = array(
+	NS_MEDIA            => 'مدیا',
+	NS_SPECIAL          => 'حاص',
+	NS_TALK             => 'گپ',
+	NS_USER             => 'کاربر',
+	NS_USER_TALK        => 'گپ_کاربر',
+	NS_PROJECT_TALK     => 'گپ_$1',
+	NS_IMAGE            => 'عکس',
+	NS_IMAGE_TALK       => 'گپ_عکس',
+	NS_MEDIAWIKI        => 'مدیاویکی',
+	NS_MEDIAWIKI_TALK   => 'گپ_مدیاویکی',
+	NS_TEMPLATE         => 'تمپلت',
+	NS_TEMPLATE_TALK    => 'گپ_تمپلت',
+	NS_HELP             => 'کمک',
+	NS_HELP_TALK        => 'گپ_راهنما',
+	NS_CATEGORY         => 'دسته',
+	NS_CATEGORY_TALK    => 'گپ_دسته',
+);
+
+$namespaceAliases = array(
+	'مدیا' => NS_MEDIA,
+	'ویژه' => NS_SPECIAL,
+	'بحث' => NS_TALK,
+	'کاربر' => NS_USER,
+	'بحث_کاربر' => NS_USER_TALK,
+	'بحث_$1' => NS_PROJECT_TALK,
+	'تصویر' => NS_IMAGE,
+	'بحث_تصویر' => NS_IMAGE_TALK,
+	'مدیاویکی' => NS_MEDIAWIKI,
+	'بحث_مدیاویکی' => NS_MEDIAWIKI_TALK,
+	'الگو' => NS_TEMPLATE,
+	'بحث_الگو' => NS_TEMPLATE_TALK,
+	'راهنما' => NS_HELP,
+	'بحث_راهنما' => NS_HELP_TALK,
+	'رده' => NS_CATEGORY,
+	'بحث_رده' => NS_CATEGORY_TALK,
+);
+
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'دوبل غیر مستقیم' ),
 	'BrokenRedirects'           => array( 'پرشتگین غیرمستقیم' ),

@@ -13,11 +13,9 @@ $fallback = 'es';
 $namespaceNames = array(
 	NS_MEDIA          => 'Midya',
 	NS_SPECIAL        => 'Sapaq',
-	NS_MAIN           => '',
 	NS_TALK           => 'Rimanakuy',
 	NS_USER           => 'Ruraq',
 	NS_USER_TALK      => 'Ruraq_rimanakuy',
-	# NS_PROJECT set by \$wgMetaNamespace
 	NS_PROJECT_TALK   => '$1_rimanakuy',
 	NS_IMAGE          => 'Rikcha',
 	NS_IMAGE_TALK     => 'Rikcha_rimanakuy',

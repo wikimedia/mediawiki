@@ -9,6 +9,23 @@
  * @author Felis
  */
 
+$namespaceNames = array(
+	NS_SPECIAL          => 'Ippiziari',
+	NS_TALK             => 'Dischussioni',
+	NS_USER             => 'Utenti',
+	NS_USER_TALK        => 'Dischussioni_utenti',
+	NS_PROJECT_TALK     => 'Dischussioni_$1',
+	NS_IMAGE            => 'Immagina',
+	NS_IMAGE_TALK       => 'Dischussioni_immagina',
+	NS_MEDIAWIKI_TALK   => 'Dischussioni_MediaWiki',
+	NS_TEMPLATE         => 'Mudellu',
+	NS_TEMPLATE_TALK    => 'Dischussioni_mudellu',
+	NS_HELP             => 'Aggiuddu',
+	NS_HELP_TALK        => 'Dischussioni_aggiuddu',
+	NS_CATEGORY         => 'Categuria',
+	NS_CATEGORY_TALK    => 'Dischussioni_categuria',
+);
+
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'RinviiDoppi' ),
 	'BrokenRedirects'           => array( 'RinviiIbbagliaddi' ),

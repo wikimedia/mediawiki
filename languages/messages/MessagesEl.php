@@ -49,16 +49,14 @@
 $namespaceNames = array(
 	NS_MEDIA            => 'Μέσον',
 	NS_SPECIAL          => 'Ειδικό',
-	NS_MAIN	            => '',
-	NS_TALK	            => 'Συζήτηση',
+	NS_TALK             => 'Συζήτηση',
 	NS_USER             => 'Χρήστης',
 	NS_USER_TALK        => 'Συζήτηση_χρήστη',
-	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => '$1_συζήτηση',
 	NS_IMAGE            => 'Εικόνα',
 	NS_IMAGE_TALK       => 'Συζήτηση_εικόνας',
 	NS_MEDIAWIKI        => 'MediaWiki',
-	NS_MEDIAWIKI_TALK   => 'MediaWiki_talk',
+	NS_MEDIAWIKI_TALK   => 'Συζήτηση_MediaWiki',
 	NS_TEMPLATE         => 'Πρότυπο',
 	NS_TEMPLATE_TALK    => 'Συζήτηση_προτύπου',
 	NS_HELP             => 'Βοήθεια',

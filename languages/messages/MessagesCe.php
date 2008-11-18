@@ -14,11 +14,9 @@ $fallback = 'ru';
 $namespaceNames = array(
 	NS_MEDIA          => 'Медйа',
 	NS_SPECIAL        => 'Башхо',
-	NS_MAIN           => '',
 	NS_TALK           => 'Дийца',
 	NS_USER           => 'Юзер',
 	NS_USER_TALK      => 'Юзери_дийца',
-	# NS_PROJECT set by \$wgMetaNamespace
 	NS_PROJECT_TALK   => '$1_Дийца',
 	NS_IMAGE          => 'Сурт',
 	NS_IMAGE_TALK     => 'Сурти_дийца',

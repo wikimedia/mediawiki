@@ -11,6 +11,43 @@
 
 $fallbak = 'ru';
 
+$namespaceNames = array(
+	NS_MEDIA            => 'Медиа',
+	NS_SPECIAL          => 'Башка',
+	NS_TALK             => 'Корхнема',
+	NS_USER             => 'Тиись',
+	NS_USER_TALK        => 'Тиись_корхнема',
+	NS_PROJECT_TALK     => '$1_корхнема',
+	NS_IMAGE            => 'Няйф',
+	NS_IMAGE_TALK       => 'Няйф_корхнема',
+	NS_MEDIAWIKI        => 'МедиаВики',
+	NS_MEDIAWIKI_TALK   => 'МедиаВики_корхнема',
+	NS_TEMPLATE         => 'Шаблон',
+	NS_TEMPLATE_TALK    => 'Шаблон_корхнема',
+	NS_HELP             => 'Лезкс',
+	NS_HELP_TALK        => 'Лезкс_корхнема',
+	NS_CATEGORY         => 'Категорие',
+	NS_CATEGORY_TALK    => 'Категорие_корхнема',
+);
+
+$namespaceAliases = array(
+	'Служебная' => NS_SPECIAL,
+	'Обсуждение' => NS_TALK,
+	'Участник' => NS_USER,
+	'Обсуждение_участника' => NS_USER_TALK,
+	'Обсуждение_{{GRAMMAR:genitive|$1}}' => NS_PROJECT_TALK,
+	'Изображение' => NS_IMAGE,
+	'Обсуждение_изображения' => NS_IMAGE_TALK,
+	'MediaWiki' => NS_MEDIAWIKI,
+	'Обсуждение_MediaWiki' => NS_MEDIAWIKI_TALK,
+	'Шаблон' => NS_TEMPLATE,
+	'Обсуждение_шаблона' => NS_TEMPLATE_TALK,
+	'Справка' => NS_HELP,
+	'Обсуждение_справки' => NS_HELP_TALK,
+	'Категория' => NS_CATEGORY,
+	'Обсуждение_категории' => NS_CATEGORY_TALK,
+);
+
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'КафонзафЁтафтфксне' ),
 	'BrokenRedirects'           => array( 'СиньтьфЁтафтфксне' ),

@@ -12,22 +12,22 @@
  */
 
 $namespaceNames = array(
-	NS_MEDIA          => 'Media',
-	NS_SPECIAL        => 'विशेष',
-	NS_MAIN           => '',
-	NS_TALK           => 'वार्ता',
-	NS_USER           => 'सदस्य',
-	NS_USER_TALK      => 'सदस्य_वार्ता',
-	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK   => '$1_वार्ता',
-	NS_IMAGE          => 'चित्र',
-	NS_IMAGE_TALK     => 'चित्र_वार्ता',
-	NS_MEDIAWIKI      => 'MediaWiki',
-	NS_MEDIAWIKI_TALK => 'MediaWiki_talk',
-	NS_TEMPLATE       => 'साँचा',
-	NS_TEMPLATE_TALK  => 'साँचा_वार्ता',
-	NS_CATEGORY       => 'श्रेणी',
-	NS_CATEGORY_TALK  => 'श्रेणी_वार्ता',
+	NS_MEDIA            => 'मीडिया',
+	NS_SPECIAL          => 'विशेष',
+	NS_TALK             => 'वार्ता',
+	NS_USER             => 'सदस्य',
+	NS_USER_TALK        => 'सदस्य_वार्ता',
+	NS_PROJECT_TALK     => '$1_वार्ता',
+	NS_IMAGE            => 'चित्र',
+	NS_IMAGE_TALK       => 'चित्र_वार्ता',
+	NS_MEDIAWIKI        => 'मीडियाविकि',
+	NS_MEDIAWIKI_TALK   => 'मीडियाविकि_वार्ता',
+	NS_TEMPLATE         => 'साँचा',
+	NS_TEMPLATE_TALK    => 'साँचा_वार्ता',
+	NS_HELP             => 'सहायता',
+	NS_HELP_TALK        => 'सहायता_वार्ता',
+	NS_CATEGORY         => 'श्रेणी',
+	NS_CATEGORY_TALK    => 'श्रेणी_वार्ता',
 );
 
 $digitTransformTable = array(

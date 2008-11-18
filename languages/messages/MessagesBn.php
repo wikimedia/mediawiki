@@ -10,17 +10,30 @@
  */
 
 $namespaceNames = array(
-	NS_SPECIAL        => 'বিশেষ',
-	NS_MAIN           => '',
-	NS_TALK           => 'আলাপ',
-	NS_USER           => 'ব্যবহারকারী',
-	NS_USER_TALK      => 'ব্যবহারকারী_আলাপ',
-	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK   => '$1_আলাপ',
-	NS_IMAGE          => 'চিত্র',
-	NS_IMAGE_TALK     => 'চিত্র_আলাপ',
-	NS_MEDIAWIKI_TALK => 'MediaWiki_আলাপ'
+	NS_MEDIA            => 'মিডিয়া',
+	NS_SPECIAL          => 'বিশেষ',
+	NS_TALK             => 'আলাপ',
+	NS_USER             => 'ব্যবহারকারী',
+	NS_USER_TALK        => 'ব্যবহারকারী_আলাপ',
+	NS_PROJECT_TALK     => '$1_আলোচনা',
+	NS_IMAGE            => 'চিত্র',
+	NS_IMAGE_TALK       => 'চিত্র_আলোচনা',
+	NS_MEDIAWIKI        => 'মিডিয়াউইকি',
+	NS_MEDIAWIKI_TALK   => 'মিডিয়াউইকি_আলোচনা',
+	NS_TEMPLATE         => 'টেমপ্লেট',
+	NS_TEMPLATE_TALK    => 'টেমপ্লেট_আলোচনা',
+	NS_HELP             => 'সাহায্য',
+	NS_HELP_TALK        => 'সাহায্য_আলোচনা',
+	NS_CATEGORY         => 'বিষয়শ্রেণী',
+	NS_CATEGORY_TALK    => 'বিষয়শ্রেণী_আলোচনা',
 );
+
+$namespaceAliases = array(
+	'$1_আলাপ' => NS_PROJECT_TALK,
+	'চিত্র_আলাপ' => NS_IMAGE_TALK,
+	'MediaWiki_আলাপ' => NS_IMAGE_TALK,
+);
+
 $datePreferences = false;
 $digitTransformTable = array(
 	'0' => '০',
