@@ -113,6 +113,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			if(!$wgUser->isAnon())
 				$categories[] = 'newbie';
 		}
+		$categories = array_merge($categories, $wgUser->getGroups());
 
 		// Now get the actual limits
 		$retval = array();

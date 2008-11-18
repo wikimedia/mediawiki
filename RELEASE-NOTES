@@ -444,6 +444,8 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 16225) Titles like Talk:Talk:Foo broke apfrom and friends
 * meta=siteinfo&siprop=interwikimap no longer throws an exception for empty
   sifilter parameter.
+* (bug 12760) meta=userinfo&uiprop=ratelimits doesn't list group-specific rate
+  limits
 
 === Languages updated in 1.14 ===
 
