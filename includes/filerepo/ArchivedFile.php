@@ -30,12 +30,9 @@ class ArchivedFile
 	/**#@-*/
 
 	function ArchivedFile( $title, $id=0, $key='' ) {
-		if( !is_object($title) ) {
-			throw new MWException( 'ArchivedFile constructor given bogus title.' );
-		}
 		$this->id = -1;
-		$this->title = $title;
-		$this->name = $title->getDBkey();
+		$this->title = false;
+		$this->name = false;
 		$this->group = '';
 		$this->key = '';
 		$this->size = 0;
@@ -51,6 +48,20 @@ class ArchivedFile
 		$this->timestamp = NULL;
 		$this->deleted = 0;
 		$this->dataLoaded = false;
+		
+		if( is_object($title) ) {
+			$this->title = $title;
+			$this->name = $title->getDBkey();
+		}
+		
+		if ($id)
+			$this->id = $id;
+		
+		if ($key)
+			$this->key = $key;
+		
+		if (!$id && !$key && !is_object($title))
+			throw new MWException( "No specifications provided to ArchivedFile constructor." );
 	}
 
 	/**
@@ -61,8 +72,19 @@ class ArchivedFile
 		if ( $this->dataLoaded ) {
 			return true;
 		}
-		$conds = ($this->id) ? "fa_id = {$this->id}" : "fa_storage_key = '{$this->key}'";
-		if( $this->title->getNamespace() == NS_IMAGE ) {
+		$conds = array();
+		
+		if ($this->id>0)
+			$conds['fa_id'] = $this->id;
+		if ($this->key)
+			$conds['fa_storage_key'] = $this->key;	
+		if ($this->title)
+			$conds['fa_name'] = $this->title->getDBkey();
+			
+		if (!count($conds))
+			throw new MWException( "No specific information for retrieving archived file" );
+		
+		if( !$this->title || $this->title->getNamespace() == NS_IMAGE ) {
 			$dbr = wfGetDB( DB_SLAVE );
 			$res = $dbr->select( 'filearchive',
 				array(
@@ -84,9 +106,7 @@ class ArchivedFile
 					'fa_user_text',
 					'fa_timestamp',
 					'fa_deleted' ),
-				array(
-					'fa_name' => $this->title->getDBkey(),
-					$conds ),
+				$conds,
 				__METHOD__,
 				array( 'ORDER BY' => 'fa_timestamp DESC' ) );
 

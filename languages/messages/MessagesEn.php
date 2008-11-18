@@ -1826,6 +1826,7 @@ If you still want to upload your file, please go back and use a new name. [[Imag
 'fileexists-shared-forbidden' => 'A file with this name exists already in the shared file repository.
 If you still want to upload your file, please go back and use a new name. [[Image:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'This file is a duplicate of the following {{PLURAL:$1|file|files}}:',
+'file-deleted-duplicate'      => "A file identical to this file ([[$1]]) has previously been deleted. You should check that file's deletion history before proceeding to re-upload it.",
 'successfulupload'            => 'Successful upload',
 'uploadwarning'               => 'Upload warning',
 'savefile'                    => 'Save file',
