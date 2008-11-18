@@ -356,6 +356,7 @@ The following extensions are migrated into MediaWiki 1.14:
   installations.
 * Improved scripting safety heuristics for IE 5/6 content-type detection.
 * Improved scripting safety heuristics on SVG uploads.
+* (bug 11728) Unify layout of enhanced watchlist/recent changes
 
 === API changes in 1.14 ===
 

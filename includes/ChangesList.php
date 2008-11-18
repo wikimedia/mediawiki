@@ -692,8 +692,18 @@ class EnhancedChangesList extends ChangesList {
 				$r .= $this->skin->makeKnownLinkObj( $block[0]->getTitle(),
 					$nchanges[$n], $curIdEq."&diff=$currentRevision&oldid=$oldid" );
 			}
-			$r .= ') . . ';
 		}
+
+		# History
+		if( $alllogs ) {
+			// don't show history link for logs
+		} else if( $namehidden || !$block[0]->getTitle()->exists() ) {
+			$r .= $this->message['semicolon-separator'] . $this->message['hist'] . ')';
+		} else {
+			$r .= $this->message['semicolon-separator'] . $this->skin->makeKnownLinkObj( $block[0]->getTitle(),
+				$this->message['hist'], $curIdEq . '&action=history' ) . ')';
+		}
+		$r .= ' . . ';
 
 		# Character difference (does not apply if only log items)
 		if( $wgRCShowChangedSize && !$alllogs ) {
@@ -715,16 +725,6 @@ class EnhancedChangesList extends ChangesList {
 			} else {
 				$r .= ' ' . $chardiff. ' . . ';
 			}
-		}
-
-		# History
-		if( $alllogs ) {
-			// don't show history link for logs
-		} else if( $namehidden || !$block[0]->getTitle()->exists() ) {
-			$r .= '(' . $this->message['history'] . ')';
-		} else {
-			$r .= '(' . $this->skin->makeKnownLinkObj( $block[0]->getTitle(),
-				$this->message['history'], $curIdEq.'&action=history' ) . ')';
 		}
 
 		$r .= $users;
@@ -892,7 +892,7 @@ class EnhancedChangesList extends ChangesList {
 
 		# Character diff
 		if( $wgRCShowChangedSize ) {
-			$r .= ( $rcObj->getCharacterDifference() == '' ? '' : '&nbsp;' . $rcObj->getCharacterDifference() . ' . . ' ) ;
+			$r .= ( $rcObj->getCharacterDifference() == '' ? '' : $rcObj->getCharacterDifference() . ' . . ' ) ;
 		}
 
 		# User/talk
