@@ -569,7 +569,7 @@ class PageArchive {
  */
 class UndeleteForm {
 	var $mAction, $mTarget, $mTimestamp, $mRestore, $mInvert, $mTargetObj;
-	var $mTargetTimestamp, $mAllowed, $mComment;
+	var $mTargetTimestamp, $mAllowed, $mComment, $mToken;
 
 	function UndeleteForm( $request, $par = "" ) {
 		global $wgUser;
@@ -588,6 +588,7 @@ class UndeleteForm {
 		$this->mDiff = $request->getCheck( 'diff' );
 		$this->mComment = $request->getText( 'wpComment' );
 		$this->mUnsuppress = $request->getVal( 'wpUnsuppress' ) && $wgUser->isAllowed( 'suppressrevision' );
+		$this->mToken = $request->getVal( 'token' );
 
 		if( $par != "" ) {
 			$this->mTarget = $par;
@@ -653,6 +654,9 @@ class UndeleteForm {
 			// Check if user is allowed to see this file
 			if( !$file->userCan( File::DELETED_FILE ) ) {
 				$wgOut->permissionRequired( 'suppressrevision' );
+				return false;
+			} elseif ( !$wgUser->matchEditToken( $this->mToken, $this->mFile ) ) {
+				$this->showFileConfirmationForm( $this->mFile );
 				return false;
 			} else {
 				return $this->showFile( $this->mFile );
@@ -884,6 +888,29 @@ class UndeleteForm {
 			'<div id="mw-diff-'.$prefix.'title3">' .
 				$sk->revComment( $rev ) . '<br/>' .
 			'</div>';
+	}
+
+	/**
+	 * Show a form confirming whether a tokenless user really wants to see a file
+	 */
+	private function showFileConfirmationForm( $key ) {
+		global $wgOut, $wgUser, $wgLang;
+		$file = new ArchivedFile( $this->mTargetObj, '', $this->mFile );
+		$wgOut->addWikiMsg( 'undelete-show-file-confirm',
+			$this->mTargetObj->getText(),
+			$wgLang->timeanddate( $file->getTimestamp() ) );
+		$wgOut->addHTML( 
+			Xml::openElement( 'form', array( 
+				'method' => 'POST',
+				'action' => SpecialPage::getTitleFor( 'Undelete' )->getLocalUrl(
+					'target=' . urlencode( $this->mTarget ) .
+					'&file=' . urlencode( $key ) .
+					'&token=' . urlencode( $wgUser->editToken( $key ) ) )
+				)
+			) .
+			Xml::submitButton( wfMsg( 'undelete-show-file-submit' ) ) .
+			'</form>'
+		);
 	}
 
 	/**
@@ -1194,13 +1221,15 @@ class UndeleteForm {
 	 * @return string
 	 */
 	function getFileLink( $file, $titleObj, $ts, $key, $sk ) {
-		global $wgLang;
+		global $wgLang, $wgUser;
 
 		if( !$file->userCan(File::DELETED_FILE) ) {
 			return '<span class="history-deleted">' . $wgLang->timeanddate( $ts, true ) . '</span>';
 		} else {
 			$link = $sk->makeKnownLinkObj( $titleObj, $wgLang->timeanddate( $ts, true ),
-				"target=".$this->mTargetObj->getPrefixedUrl()."&file=$key" );
+				"target=".$this->mTargetObj->getPrefixedUrl().
+				"&file=$key" .
+				"&token=" . urlencode( $wgUser->editToken( $key ) ) );
 			if( $file->isDeleted(File::DELETED_FILE) )
 				$link = '<span class="history-deleted">' . $link . '</span>';
 			return $link;
