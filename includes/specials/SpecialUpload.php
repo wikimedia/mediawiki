@@ -767,7 +767,7 @@ class UploadForm {
 			$name = Title::makeTitle( NS_IMAGE, $archivedImage->getName() )->getPrefixedText();
 			return Xml::tags( 'li', null, wfMsgExt( 'file-deleted-duplicate', array( 'parseinline' ), array( $name ) ) );
 		} else {
-			return 'FOOO';
+			return '';
 		}
 	}
 
