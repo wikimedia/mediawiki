@@ -320,9 +320,13 @@ class Title {
 					$m[1] = urldecode( ltrim( $m[1], ':' ) );
 				}
 				$title = Title::newFromText( $m[1] );
-				// Redirects to Special:Userlogout are not permitted
-				if( $title instanceof Title && !$title->isSpecial( 'Userlogout' ) )
+				// Redirects to some special pages are not permitted
+				if( $title instanceof Title 
+						&& !$title->isSpecial( 'Userlogout' )
+						&& !$title->isSpecial( 'Filepath' ) ) 
+				{
 					return $title;
+				}
 			}
 		}
 		return null;

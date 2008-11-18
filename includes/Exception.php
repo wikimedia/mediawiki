@@ -274,7 +274,16 @@ function wfReportException( Exception $e ) {
 			 }
 		 }
 	 } else {
-		 echo $e->__toString();
+		 $message = "Unexpected non-MediaWiki exception encountered, of type \"" . get_class( $e ) . "\"\n" .
+			 $e->__toString() . "\n";
+		 if ( $GLOBALS['wgShowExceptionDetails'] ) {
+			 $message .= "\n" . $e->getTraceAsString() ."\n";
+		 }
+		 if ( !empty( $GLOBALS['wgCommandLineMode'] ) ) {
+			 wfPrintError( $message );
+		 } else {
+			 echo nl2br( htmlspecialchars( $message ) ). "\n";
+		 }
 	 }
 }
 
