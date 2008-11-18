@@ -31,6 +31,12 @@ function wfStreamFile( $fname, $headers = array() ) {
 		header('Content-type: application/x-wiki');
 	}
 
+	// Don't stream it out as text/html if there was a PHP error
+	if ( headers_sent() ) {
+		echo "Headers already sent, terminating.\n";
+		return;
+	}
+
 	global $wgContLanguageCode;
 	header( "Content-Disposition: inline;filename*=utf-8'$wgContLanguageCode'" . urlencode( basename( $fname ) ) );
 
@@ -53,25 +59,51 @@ function wfStreamFile( $fname, $headers = array() ) {
 }
 
 /** */
-function wfGetType( $filename ) {
+function wfGetType( $filename, $safe = true ) {
 	global $wgTrivialMimeDetection;
+
+	$ext = strrchr($filename, '.');
+	$ext = $ext === false ? '' : strtolower( substr( $ext, 1 ) );
 
 	# trivial detection by file extension,
 	# used for thumbnails (thumb.php)
 	if ($wgTrivialMimeDetection) {
-		$ext= strtolower(strrchr($filename, '.'));
-
 		switch ($ext) {
-			case '.gif': return 'image/gif';
-			case '.png': return 'image/png';
-			case '.jpg': return 'image/jpeg';
-			case '.jpeg': return 'image/jpeg';
+			case 'gif': return 'image/gif';
+			case 'png': return 'image/png';
+			case 'jpg': return 'image/jpeg';
+			case 'jpeg': return 'image/jpeg';
 		}
 
 		return 'unknown/unknown';
 	}
-	else {
-		$magic = MimeMagic::singleton();
-		return $magic->guessMimeType($filename); //full fancy mime detection
+	
+	$magic = MimeMagic::singleton();
+	// Use the extension only, rather than magic numbers, to avoid opening 
+	// up vulnerabilities due to uploads of files with allowed extensions
+	// but disallowed types.
+	$type = $magic->guessTypesForExtension( $ext );
+
+	/**
+	 * Double-check some security settings that were done on upload but might 
+	 * have changed since.
+	 */
+	if ( $safe ) {
+		global $wgFileBlacklist, $wgCheckFileExtensions, $wgStrictFileExtensions, 
+			$wgFileExtensions, $wgVerifyMimeType, $wgMimeTypeBlacklist, $wgRequest;
+		$form = new UploadForm( $wgRequest );
+		list( $partName, $extList ) = $form->splitExtensions( $filename );
+		if ( $form->checkFileExtensionList( $extList, $wgFileBlacklist ) ) {
+			return 'unknown/unknown';
+		}
+		if ( $wgCheckFileExtensions && $wgStrictFileExtensions 
+			&& !$form->checkFileExtensionList( $extList, $wgFileExtensions ) )
+		{
+			return 'unknown/unknown';
+		}
+		if ( $wgVerifyMimeType && in_array( strtolower( $type ), $wgMimeTypeBlacklist ) ) {
+			return 'unknown/unknown';
+		}
 	}
+	return $type;
 }
