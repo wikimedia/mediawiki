@@ -595,46 +595,11 @@ class SpecialSearch {
 	 * @return $out string: HTML form
 	 */
 	protected function powerSearchBox( $term ) {
-		global $wgScript, $wgContLang;
+		global $wgScript;
 
 		$namespaces = SearchEngine::searchableNamespaces();
 
-		// group namespaces into rows according to subject; try not to make too
-		// many assumptions about namespace numbering
-		$rows = array();
-		foreach( $namespaces as $ns => $name ) {
-			$subj = Namespace::getSubject( $ns );
-			if( !array_key_exists( $subj, $rows ) ) {
-				$rows[$subj] = "";
-			}
-			$name = str_replace( '_', ' ', $name );
-			if( '' == $name ) {
-				$name = wfMsg( 'blanknamespace' );
-			}
-			$rows[$subj] .= Xml::openElement( 'td', array( 'style' => 'white-space: nowrap' ) ) .
-					Xml::checkLabel( $name, "ns{$ns}", "mw-search-ns{$ns}", in_array( $ns, $this->namespaces ) ) .
-					Xml::closeElement( 'td' ) . "\n";
-		}
-		$rows = array_values( $rows );
-		$numRows = count( $rows );
-
-		// lay out namespaces in multiple floating two-column tables so they'll
-		// be arranged nicely while still accommodating different screen widths
-		$rowsPerTable = 3;  // seems to look nice
-
-		// float to the right on RTL wikis
-		$tableStyle = ( $wgContLang->isRTL() ?
-				'float: right; margin: 0 0 1em 1em' :
-				'float: left; margin: 0 1em 1em 0' );
-
-		$tables = "";
-		for( $i = 0; $i < $numRows; $i += $rowsPerTable ) {
-			$tables .= Xml::openElement( 'table', array( 'style' => $tableStyle ) );
-			for( $j = $i; $j < $i + $rowsPerTable && $j < $numRows; $j++ ) {
-				$tables .= "<tr>\n" . $rows[$j] . "</tr>";
-			}
-			$tables .= Xml::closeElement( 'table' ) . "\n";
-		}
+		$tables = $this->namespaceTables( $namespaces );
 
 		$redirect = Xml::check( 'redirs', $this->searchRedirects, array( 'value' => '1', 'id' => 'redirs' ) );
 		$redirectLabel = Xml::label( wfMsg( 'powersearch-redir' ), 'redirs' );
@@ -659,7 +624,7 @@ class SpecialSearch {
 			$searchButton .
 			"</form>";
 		$t = Title::newFromText( $term );
-		if( $t != null )
+		if( $t != null && count($this->namespaces) === 1 )
 			$out .= wfMsgExt( 'searchmenu-prefix', array('parseinline'), $term );
 
 		return Xml::openElement( 'fieldset', array('id' => 'mw-searchoptions','style' => 'margin:0em;') ) .
@@ -675,33 +640,6 @@ class SpecialSearch {
 				"document.getElementById('powerSearchText').focus();" .
 			"});" .
 			"</script>";
-	}
-	
-	/** Make a search link with some target namespaces */
-	protected function makeSearchLink( $term, $namespaces, $label, $tooltip, $params=array() ) {
-		$opt = $params;
-		foreach( $namespaces as $n ) {
-			$opt['ns' . $n] = 1;
-		}
-		$opt['redirs'] = $this->searchRedirects ? 1 : 0;
-
-		$st = SpecialPage::getTitleFor( 'Search' );		
-		$stParams = wfArrayToCGI( array( 'search' => $term, 'fulltext' => wfMsg( 'search' ) ), $opt );
-
-		return Xml::element( 'a', 
-			array( 'href'=> $st->getLocalURL( $stParams ), 'title' => $tooltip ), 
-			$label );	
-	}
-	
-	/** Check if query starts with image: prefix */
-	protected function startsWithImage( $term ) {
-		global $wgContLang;
-		
-		$p = explode( ':', $term );
-		if( count( $p ) > 1 ) {
-			return $wgContLang->getNsIndex( $p[0] ) == NS_IMAGE;
-		}
-		return false;
 	}
 
 	protected function formHeader( $term ) {
@@ -730,8 +668,7 @@ class SpecialSearch {
 			$active = 'project';
 		else
 			$active = 'advanced';
-		
-		
+			
 		// search profiles headers
 		$m = wfMsg( 'searchprofile-articles' );
 		$tt = wfMsg( 'searchprofile-articles-tooltip', 
@@ -796,25 +733,94 @@ class SpecialSearch {
 	
 	protected function shortDialog( $term ) {
 		global $wgScript;
-		$out = Xml::openElement( 'form', array( 'id' => 'search', 'method' => 'get', 'action' => $wgScript ) );
 		$searchTitle = SpecialPage::getTitleFor( 'Search' );
+		$searchable = SearchEngine::searchableNamespaces();
+		$out = Xml::openElement( 'form', array( 'id' => 'search', 'method' => 'get', 'action' => $wgScript ) );
 		$out .= Xml::hidden( 'title', $searchTitle->getPrefixedText() ) . "\n";
-		$out .= Xml::input( 'search', 50, $term, array( 'type' => 'text', 'id' => 'searchText' ) ) . "\n";
-		foreach( SearchEngine::searchableNamespaces() as $ns => $name ) {
-			if( in_array( $ns, $this->namespaces ) ) {
-				$out .= Xml::hidden( "ns{$ns}", '1' );
+		// If searching several, but not all namespaces, show what we are searching.
+		if( count($this->namespaces) > 1 && $this->namespaces !== array_keys($searchable) ) {
+			$active = array();
+			foreach( $this->namespaces as $ns ) {
+				$active[$ns] = $searchable[$ns];
 			}
+			$out .= wfMsgExt( 'powersearch-ns', array( 'parseinline' ) ) . "<br/>\n";
+			$out .= $this->namespaceTables( $active, 1 )."<br/>\n";
 		}
+		$out .= Xml::input( 'search', 50, $term, array( 'type' => 'text', 'id' => 'searchText' ) ) . "\n";
 		$out .= Xml::submitButton( wfMsg( 'searchbutton' ), array( 'name' => 'fulltext' ) );
 		$out .= ' (' . wfMsgExt('searchmenu-help',array('parseinline') ) . ')';
 		$out .= Xml::closeElement( 'form' );
 		$t = Title::newFromText( $term );
-		if( $t != null )
+		if( $t != null && count($this->namespaces) === 1 )
 			$out .= wfMsgExt( 'searchmenu-prefix', array('parseinline'), $term );
 		return Xml::openElement( 'fieldset', array('id' => 'mw-searchoptions','style' => 'margin:0em;') ) .
 			Xml::element( 'legend', null, wfMsg('searchmenu-legend') ) .
 			$this->formHeader($term) . $out .
 			Xml::closeElement( 'fieldset' );
+	}
+	
+	/** Make a search link with some target namespaces */
+	protected function makeSearchLink( $term, $namespaces, $label, $tooltip, $params=array() ) {
+		$opt = $params;
+		foreach( $namespaces as $n ) {
+			$opt['ns' . $n] = 1;
+		}
+		$opt['redirs'] = $this->searchRedirects ? 1 : 0;
+
+		$st = SpecialPage::getTitleFor( 'Search' );		
+		$stParams = wfArrayToCGI( array( 'search' => $term, 'fulltext' => wfMsg( 'search' ) ), $opt );
+
+		return Xml::element( 'a', 
+			array( 'href'=> $st->getLocalURL( $stParams ), 'title' => $tooltip ), 
+			$label );	
+	}
+	
+	/** Check if query starts with image: prefix */
+	protected function startsWithImage( $term ) {
+		global $wgContLang;
+		
+		$p = explode( ':', $term );
+		if( count( $p ) > 1 ) {
+			return $wgContLang->getNsIndex( $p[0] ) == NS_IMAGE;
+		}
+		return false;
+	}
+	
+	protected function namespaceTables( $namespaces, $rowsPerTable = 3 ) {
+		global $wgContLang;
+		// Group namespaces into rows according to subject.
+		// Try not to make too many assumptions about namespace numbering.
+		$rows = array();
+		$tables = "";
+		foreach( $namespaces as $ns => $name ) {
+			$subj = Namespace::getSubject( $ns );
+			if( !array_key_exists( $subj, $rows ) ) {
+				$rows[$subj] = "";
+			}
+			$name = str_replace( '_', ' ', $name );
+			if( '' == $name ) {
+				$name = wfMsg( 'blanknamespace' );
+			}
+			$rows[$subj] .= Xml::openElement( 'td', array( 'style' => 'white-space: nowrap' ) ) .
+				Xml::checkLabel( $name, "ns{$ns}", "mw-search-ns{$ns}", in_array( $ns, $this->namespaces ) ) .
+				Xml::closeElement( 'td' ) . "\n";
+		}
+		$rows = array_values( $rows );
+		$numRows = count( $rows );
+		// Lay out namespaces in multiple floating two-column tables so they'll
+		// be arranged nicely while still accommodating different screen widths
+		// Float to the right on RTL wikis
+		$tableStyle = $wgContLang->isRTL() ?
+			'float: right; margin: 0 0 0em 1em' : 'float: left; margin: 0 1em 0em 0';
+		// Build the final HTML table...
+		for( $i = 0; $i < $numRows; $i += $rowsPerTable ) {
+			$tables .= Xml::openElement( 'table', array( 'style' => $tableStyle ) );
+			for( $j = $i; $j < $i + $rowsPerTable && $j < $numRows; $j++ ) {
+				$tables .= "<tr>\n" . $rows[$j] . "</tr>";
+			}
+			$tables .= Xml::closeElement( 'table' ) . "\n";
+		}
+		return $tables;
 	}
 }
 
