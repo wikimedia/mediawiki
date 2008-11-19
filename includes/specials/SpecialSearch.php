@@ -254,7 +254,7 @@ class SpecialSearch {
 		$wgOut->addHtml( "<div class='searchresults'>" );
 
 		if( $titleMatches ) {
-			if( $titleMatches->numRows() ) {
+			if( $numTitleMatches > 0 ) {
 				$wgOut->wrapWikiMsg( "==$1==\n", 'titlematches' );
 				$wgOut->addHTML( $this->showMatches( $titleMatches ) );
 			}
@@ -263,11 +263,9 @@ class SpecialSearch {
 
 		if( $textMatches ) {
 			// output appropriate heading
-			if( $textMatches->numRows() ) {
-				if($titleMatches)
-					$wgOut->wrapWikiMsg( "==$1==\n", 'textmatches' );
-				else // if no title matches the heading is redundant
-					$wgOut->addHTML("<hr/>");								
+			if( $numTextMatches > 0 && $numTitleMatches > 0 ) {
+				// if no title matches the heading is redundant
+				$wgOut->wrapWikiMsg( "==$1==\n", 'textmatches' );					
 			} elseif( $num == 0 ) {
 				# Don't show the 'no text matches' if we received title matches
 				$wgOut->wrapWikiMsg( "==$1==\n", 'notextmatches' );
@@ -276,7 +274,7 @@ class SpecialSearch {
 			if( $textMatches->hasInterwikiResults() )
 				$wgOut->addHTML( $this->showInterwiki( $textMatches->getInterwikiResults(), $term ));
 			// show results
-			if( $textMatches->numRows() )
+			if( $numTextMatches > 0 )
 				$wgOut->addHTML( $this->showMatches( $textMatches ) );
 
 			$textMatches->free();
