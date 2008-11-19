@@ -347,13 +347,6 @@ class SpecialContributions extends SpecialPage {
 		}
 	}
 
-	/**
-	 * Quickie hack... strip out wikilinks to more legible form from the comment.
-	 */
-	protected function stripComment( $text ) {
-		return preg_replace( '/\[\[([^]]*\|)?([^]]+)\]\]/', '\2', $text );
-	}
-
 	protected function feedItemAuthor( $revision ) {
 		return $revision->getUserText();
 	}
@@ -361,7 +354,7 @@ class SpecialContributions extends SpecialPage {
 	protected function feedItemDesc( $revision ) {
 		if( $revision ) {
 			return '<p>' . htmlspecialchars( $revision->getUserText() ) . ': ' .
-				htmlspecialchars( $this->stripComment( $revision->getComment() ) ) . 
+				htmlspecialchars( FeedItem::stripComment( $revision->getComment() ) ) . 
 				"</p>\n<hr />\n<div>" .
 				nl2br( htmlspecialchars( $revision->getText() ) ) . "</div>";
 		}

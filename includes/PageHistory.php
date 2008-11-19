@@ -573,7 +573,7 @@ class PageHistory {
 			$rev->getUserText(),
 			$wgContLang->timeanddate( $rev->getTimestamp() ) );
 		} else {
-			$title = $rev->getUserText() . ": " . $this->stripComment( $rev->getComment() );
+			$title = $rev->getUserText() . ": " . FeedItem::stripComment( $rev->getComment() );
 		}
 
 		return new FeedItem(
@@ -583,13 +583,6 @@ class PageHistory {
 			$rev->getTimestamp(),
 			$rev->getUserText(),
 			$this->mTitle->getTalkPage()->getFullUrl() );
-	}
-
-	/**
-	 * Quickie hack... strip out wikilinks to more legible form from the comment.
-	 */
-	function stripComment( $text ) {
-		return preg_replace( '/\[\[([^]]*\|)?([^]]+)\]\]/', '\2', $text );
 	}
 }
 
