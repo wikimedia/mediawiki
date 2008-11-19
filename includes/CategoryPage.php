@@ -37,19 +37,6 @@ class CategoryPage extends Article {
 		}
 	}
 
-	/**
-	 * This page should not be cached if 'from' or 'until' has been used
-	 * @return bool
-	 */
-	function isFileCacheable() {
-		global $wgRequest;
-
-		return ( ! Article::isFileCacheable()
-				|| $wgRequest->getVal( 'from' )
-				|| $wgRequest->getVal( 'until' )
-		) ? false : true;
-	}
-
 	function openShowCategory() {
 		# For overloading
 	}
