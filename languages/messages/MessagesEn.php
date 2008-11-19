@@ -3727,19 +3727,6 @@ Enter the filename without the "{{ns:image}}:" prefix.',
 'fileduplicatesearch-result-1' => 'The file "$1" has no identical duplication.',
 'fileduplicatesearch-result-n' => 'The file "$1" has {{PLURAL:$2|1 identical duplication|$2 identical duplications}}.',
 
-## Special:PageStatistics
-'pagestatistics' => 'Page statistics',
-'pagestatistics-intro' => 'This page allows you to search page-view statistics for given pages on the wiki.',
-'pagestatistics-search-legend' => 'Search for statistics',
-'pagestatistics-page' => 'Page:',
-'pagestatistics-periodstart' => 'Start of period:',
-'pagestatistics-periodend' => 'End of period:',
-'pagestatistics-search' => 'Search',
-'pagestatistics-datatable-periodstart' => 'Start of period',
-'pagestatistics-datatable-periodend' => 'End of period',
-'pagestatistics-datatable-count' => 'Count',
-'pagestatistics-datatable-total' => 'Total',
-
 # Special:SpecialPages
 'specialpages'                   => 'Special pages',
 'specialpages-summary'           => '', # do not translate or duplicate this message to other languages
