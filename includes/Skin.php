@@ -1269,11 +1269,10 @@ END;
 		if ( 0 == $wgArticle->getID() ) { return ''; }
 
 		$s = '';
-		if ( !$wgDisableCounters ) {
-			$count = $wgLang->formatNum( $wgArticle->getCount() );
-			if ( $count ) {
-				$s = wfMsgExt( 'viewcount', array( 'parseinline' ), $count );
-			}
+		$count = $wgArticle->getCount();
+		if ( $count ) {
+			$count = $wgLang->formatNum( $count );
+			$s = wfMsgExt( 'viewcount', array( 'parseinline' ), $count );
 		}
 
 		if( $wgMaxCredits != 0 ){

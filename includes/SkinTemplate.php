@@ -138,7 +138,7 @@ class SkinTemplate extends Skin {
 		global $wgScript, $wgStylePath, $wgContLanguageCode;
 		global $wgMimeType, $wgJsMimeType, $wgOutputEncoding, $wgRequest;
 		global $wgXhtmlDefaultNamespace, $wgXhtmlNamespaces;
-		global $wgDisableCounters, $wgLogo, $action, $wgFeedClasses, $wgHideInterlanguageLinks;
+		global $wgLogo, $action, $wgFeedClasses, $wgHideInterlanguageLinks;
 		global $wgMaxCredits, $wgShowCreditsIfMax;
 		global $wgPageShowWatchingUsers;
 		global $wgUseTrackbacks, $wgUseSiteJs;
@@ -329,8 +329,10 @@ class SkinTemplate extends Skin {
 		if ( $out->isArticle() and (!isset( $oldid ) or isset( $diff )) and
 			$wgArticle and 0 != $wgArticle->getID() )
 		{
-			if ( !$wgDisableCounters ) {
-				$viewcount = $wgLang->formatNum( $wgArticle->getCount() );
+			$count = $wgArticle->getCount();
+			
+			if ( $count ) {
+				$viewcount = $wgLang->formatNum( $count );
 				if ( $viewcount ) {
 					$tpl->set('viewcount', wfMsgExt( 'viewcount', array( 'parseinline' ), $viewcount ) );
 				} else {

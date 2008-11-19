@@ -49,6 +49,7 @@ $wgQueryPages = array(
 );
 wfRunHooks( 'wgQueryPages', array( &$wgQueryPages ) );
 
+## Maybe this can be re-enabled with the new hit-counting infrastructure??
 global $wgDisableCounters;
 if ( !$wgDisableCounters )
 	$wgQueryPages[] = array( 'PopularPagesPage',		'Popularpages'		);

@@ -31,6 +31,7 @@ function wfSpecialStatistics( $par = '' ) {
 	$numJobs = SiteStats::jobs();
 
 	# Staticic - views
+	## Maybe re-enablable with new hitcounter infrastructure, plus more goodies like newly popular pages.
 	$viewsStats = '';
 	if( !$wgDisableCounters ) {
 		$viewsStats = Xml::tags( 'th', array( 'colspan' => '2' ), wfMsg( 'statistics-header-views' ) ) .
