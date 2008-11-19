@@ -263,7 +263,10 @@ Vide [[Special:Version|Versione d'a pàgene]].",
 'nstab-category'  => 'Categorije',
 
 # Main script and global functions
-'nosuchaction' => 'Non ge stonne otre azione',
+'nosuchaction'      => 'Non ge stonne otre azione',
+'nospecialpagetext' => "<big>'''Tu è richieste 'na pàgena speciele ca non g'esiste.'''</big>
+
+Pe 'na liste de le pàggene speciele cirche aqquà [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Errore',
@@ -300,6 +303,7 @@ Query: $2",
 'viewsourcetext'       => "Tu puè vedè e cupià 'a sorgente de sta pàgene:",
 'sqlhidden'            => '(query SQL ascunnute)',
 'namespaceprotected'   => "Non ge tine 'u permesse pe cangià pàggene d'u neimspeise '''$1'''.",
+'customcssjsprotected' => "Non ge tine 'u permesse pe cangià sta pàgene, purcè tène otre configurazione personele.",
 'ns-specialprotected'  => 'Le pàgene speciale no ponne essere cangete.',
 
 # Virus scanner
@@ -385,6 +389,7 @@ Apprime ca otre e-mail avènene mannete a 'u cunde tue, tu ha seguì le 'struzio
 'loginlanguagelabel'        => 'Lénga: $1',
 
 # Password reset dialog
+'resetpass'           => "Azzere 'a password d'u cunde utende",
 'resetpass_text'      => "<!-- Mitte 'u teste aqquà -->",
 'resetpass_header'    => "Azzere 'a passuord",
 'resetpass_submit'    => "'Mboste 'a passuord e colleghete",
@@ -420,6 +425,7 @@ Apprime ca otre e-mail avènene mannete a 'u cunde tue, tu ha seguì le 'struzio
 'savearticle'                      => "Registre 'a vôsce",
 'preview'                          => 'Andeprime',
 'showpreview'                      => "Vide l'andeprime",
+'showlivepreview'                  => "Andeprime da 'u vive",
 'showdiff'                         => 'Fa vedè le cangiaminde',
 'anoneditwarning'                  => "'''Attenziò:''' Tu non ge sinde colleghete..
 L'indirizze IP tue avène reggistrete jndr'à le cangiaminde de sta pàgene.",
@@ -500,7 +506,9 @@ Pare proprie ca l'onne scangellete.",
 
 # History pages
 'viewpagelogs'           => "Vide l'archivie pe sta pàgene",
+'nohistory'              => "Sta pàgene non ge tène 'a storie de le cangiaminde ca onne state fatte.",
 'currentrev'             => 'Versione de osce a die',
+'currentrev-asof'        => 'Revisiona corrende de $1',
 'revisionasof'           => 'Versione de $1',
 'revision-info'          => "Versione scritte jndr'à $1 da $2", # Additionally available: $3: revision id
 'previousrevision'       => '← Versione Vecchje',

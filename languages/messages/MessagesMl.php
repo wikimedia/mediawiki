@@ -2116,7 +2116,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 
 # External editor support
 'edit-externally'      => 'ഈ പ്രമാണം ഒരു ബാഹ്യ ആപ്ലിക്കേഷന്‍ ഉപയോഗിച്ച് തിരുത്തുക',
-'edit-externally-help' => 'കൂടുതല്‍ വിവരത്തിനു [http://www.mediawiki.org/wiki/Manual:External_editors തിരുത്തല്‍ മാര്‍ഗ്ഗ നിര്‍ദ്ദേശം] കാണുക',
+'edit-externally-help' => '(കൂടുതല്‍ വിവരത്തിനു http://www.mediawiki.org/wiki/Manual:External_editors കാണുക)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'എല്ലാം',

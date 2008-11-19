@@ -311,7 +311,13 @@ It must have at least $1 characters and be different from your username.',
 'rev-delundel' => 'bımocne/bınımne',
 
 # Search results
-'searchhelp-url' => 'Help:Tedeestey',
+'searchhelp-url'     => 'Help:Tedeestey',
+'powersearch'        => 'Cıgeyrayışo hera',
+'powersearch-legend' => 'Cıgeyrayışo hera',
+'powersearch-ns'     => 'Cayanê nameyan de cıgeyrayış:',
+'powersearch-redir'  => 'Raçarnayeyan lista ke',
+'powersearch-field'  => 'Cıgeyre',
+'search-external'    => 'Cıgeyrayışê teberi',
 
 # Preferences page
 'mypreferences'   => 'tercihê mı',

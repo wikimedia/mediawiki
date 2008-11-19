@@ -2839,7 +2839,7 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 
 # External editor support
 'edit-externally'      => 'Editovat tento soubor v externím programu',
-'edit-externally-help' => 'Více informací najdete v [http://www.mediawiki.org/wiki/Manual:External_editors nápovědě pro nastavení].',
+'edit-externally-help' => '(Více informací najdete v [http://www.mediawiki.org/wiki/Manual:External_editors nápovědě pro nastavení].)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'všechny',

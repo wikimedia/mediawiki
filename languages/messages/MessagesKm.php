@@ -2413,7 +2413,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'កែប្រែ​ឯកសារ​នេះដោយប្រើប្រាស់​កម្មវិធី​ខាងក្រៅ',
-'edit-externally-help' => 'សូមមើល[http://www.mediawiki.org/wiki/Manual:External_editors ណែនាំ​ប្រើប្រាស់]សំរាប់​ពត៌មានបន្ថែម ។',
+'edit-externally-help' => '(សូមមើល[http://www.mediawiki.org/wiki/Manual:External_editors ការណែនាំ​អំពី​ការ​ប្រើប្រាស់​]សំរាប់​​ពត៌មាន​បន្ថែម)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'ទាំងអស់',
