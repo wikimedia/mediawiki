@@ -30,11 +30,10 @@
  */
 function wfSpecialSearch( $par = '' ) {
 	global $wgRequest, $wgUser, $wgUseOldSearchUI;
-
 	// Strip underscores from title parameter; most of the time we'll want
 	// text form here. But don't strip underscores from actual text params!
 	$titleParam = str_replace( '_', ' ', $par );
-	
+	// Fetch the search term
 	$search = str_replace( "\n", " ", $wgRequest->getText( 'search', $titleParam ) );
 	$class = $wgUseOldSearchUI ? 'SpecialSearchOld' : 'SpecialSearch';
 	$searchPage = new $class( $wgRequest, $wgUser );
@@ -64,44 +63,40 @@ class SpecialSearch {
 	 */
 	function __construct( &$request, &$user ) {
 		list( $this->limit, $this->offset ) = $request->getLimitOffset( 20, 'searchlimit' );
-
+		# Extract requested namespaces
 		$this->namespaces = $this->powerSearch( $request );
 		if( empty( $this->namespaces ) ) {
 			$this->namespaces = SearchEngine::userNamespaces( $user );
 		}
-
 		$this->searchRedirects = $request->getcheck( 'redirs' ) ? true : false;
-		$this->searchAdvanced = $request->getVal('advanced');
+		$this->searchAdvanced = $request->getVal( 'advanced' );
+		$this->active = 'advanced';
+		$this->sk = $user->getSkin();
 	}
 
 	/**
 	 * If an exact title match can be found, jump straight ahead to it.
 	 * @param string $term
-	 * @public
 	 */
-	function goResult( $term ) {
-		global $wgOut, $wgGoToEdit;
-
+	public function goResult( $term ) {
+		global $wgOut;
 		$this->setupPage( $term );
-
 		# Try to go to page as entered.
 		$t = Title::newFromText( $term );
-
 		# If the string cannot be used to create a title
 		if( is_null( $t ) ) {
 			return $this->showResults( $term );
 		}
-
 		# If there's an exact or very near match, jump right there.
 		$t = SearchEngine::getNearMatch( $term );
 		if( !is_null( $t ) ) {
 			$wgOut->redirect( $t->getFullURL() );
 			return;
 		}
-
 		# No match, generate an edit URL
 		$t = Title::newFromText( $term );
-		if( ! is_null( $t ) ) {
+		if( !is_null( $t ) ) {
+			global $wgGoToEdit;
 			wfRunHooks( 'SpecialSearchNogomatch', array( &$t ) );
 			# If the feature is enabled, go straight to the edit page
 			if( $wgGoToEdit ) {
@@ -109,18 +104,15 @@ class SpecialSearch {
 				return;
 			}
 		}
-
 		return $this->showResults( $term );
 	}
 
 	/**
 	 * @param string $term
-	 * @public
 	 */
-	function showResults( $term ) {
+	public function showResults( $term ) {
+		global $wgOut, $wgDisableTextSearch;
 		wfProfileIn( __METHOD__ );
-		global $wgOut, $wgUser;
-		$sk = $wgUser->getSkin();
 
 		$this->setupPage( $term );
 		$this->searchEngine = SearchEngine::create();
@@ -130,16 +122,8 @@ class SpecialSearch {
 		$wgOut->addHtml( 
 			Xml::openElement( 'table', array( 'border'=>0, 'cellpadding'=>0, 'cellspacing'=>0 ) ) .
 			Xml::openElement( 'tr' ) .
-			Xml::openElement( 'td' ) . "\n"	
-		);
-		if( $this->searchAdvanced ) {
-			$wgOut->addHTML( $this->powerSearchBox( $term ) );
-			$showMenu = false;
-		} else { 			
-			$wgOut->addHTML( $this->shortDialog( $term ) );
-			$showMenu = true;
-		}
-		$wgOut->addHtml(
+			Xml::openElement( 'td' ) . "\n"	.
+			( $this->searchAdvanced ? $this->powerSearchBox( $term ) : $this->shortDialog( $term ) ) .
 			Xml::closeElement('td') .
 			Xml::closeElement('tr') .
 			Xml::closeElement('table')
@@ -151,12 +135,12 @@ class SpecialSearch {
 			return;
 		}
 
-		global $wgDisableTextSearch;
 		if( $wgDisableTextSearch ) {
 			global $wgSearchForwardUrl;
 			if( $wgSearchForwardUrl ) {
 				$url = str_replace( '$1', urlencode( $term ), $wgSearchForwardUrl );
 				$wgOut->redirect( $url );
+				wfProfileOut( __METHOD__ );
 				return;
 			}
 			global $wgInputEncoding;
@@ -189,9 +173,9 @@ class SpecialSearch {
 			wfProfileOut( __METHOD__ );
 			return;
 		}
-		
+
 		$textMatches = $search->searchText( $rewritten );
-		
+
 		// did you mean... suggestions
 		if( $textMatches && $textMatches->hasSuggestion() ) {
 			$st = SpecialPage::getTitleFor( 'Search' );			
@@ -204,7 +188,7 @@ class SpecialSearch {
 
 			$wgOut->addHTML('<div class="searchdidyoumean">'.wfMsg('search-suggest',$suggestLink).'</div>');
 		}
-		
+
 		// show direct page/create link
 		if( !is_null($t) ) {
 			if( !$t->exists() ) {
@@ -213,7 +197,7 @@ class SpecialSearch {
 				$wgOut->addWikiMsg( 'searchmenu-exists', wfEscapeWikiText( $t->getPrefixedText() ) );
 			}
 		}
-	
+
 		// show number of results
 		$numTitleMatches = $titleMatches ? $titleMatches->numRows() : 0;
 		$numTextMatches = $textMatches ? $textMatches->numRows() : 0;
@@ -252,7 +236,6 @@ class SpecialSearch {
 		}
 
 		$wgOut->addHtml( "<div class='searchresults'>" );
-
 		if( $titleMatches ) {
 			if( $numTitleMatches > 0 ) {
 				$wgOut->wrapWikiMsg( "==$1==\n", 'titlematches' );
@@ -260,7 +243,6 @@ class SpecialSearch {
 			}
 			$titleMatches->free();
 		}
-
 		if( $textMatches ) {
 			// output appropriate heading
 			if( $numTextMatches > 0 && $numTitleMatches > 0 ) {
@@ -279,11 +261,9 @@ class SpecialSearch {
 
 			$textMatches->free();
 		}
-
-		if( $num == 0 ) {
+		if( $totalNum == 0 ) {
 			$wgOut->addWikiMsg( 'search-nonefound' );
 		}
-
 		$wgOut->addHtml( "</div>" );
 
 		if( $num || $this->offset ) {
@@ -297,9 +277,27 @@ class SpecialSearch {
 	 */
 	protected function setupPage( $term ) {
 		global $wgOut;
+		// Figure out the active search profile header
+		$nsAllSet = array_keys( SearchEngine::searchableNamespaces() );
+		if( $this->searchAdvanced )
+			$this->active = 'advanced';
+		else if( $this->namespaces === NS_IMAGE || $this->startsWithImage( $term ) )
+			$this->active = 'images';
+		elseif( $this->namespaces === $nsAllSet )
+			$this->active = 'all';
+		elseif( $this->namespaces === SearchEngine::defaultNamespaces() )
+			$this->active = 'default';
+		elseif( $this->namespaces === SearchEngine::defaultAndProjectNamespaces() )
+			$this->active = 'withproject';
+		elseif( $this->namespaces === SearchEngine::projectNamespaces() )
+			$this->active = 'project';
+		else
+			$this->active = 'advanced';
+		# Should advanced UI be used?
+		$this->searchAdvanced = ($this->active === 'advanced');
 		if( !empty( $term ) ) {
 			$wgOut->setPageTitle( wfMsg( 'searchresults') );
-			$wgOut->setHTMLTitle( wfMsg( 'pagetitle', wfMsg( 'searchresults-title', $term) ) );
+			$wgOut->setHTMLTitle( wfMsg( 'pagetitle', wfMsg( 'searchresults-title', $term ) ) );
 		}			
 		$wgOut->setArticleRelated( false );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
@@ -332,8 +330,9 @@ class SpecialSearch {
 			$opt['ns' . $n] = 1;
 		}
 		$opt['redirs'] = $this->searchRedirects ? 1 : 0;
-		if( $this->searchAdvanced )
+		if( $this->searchAdvanced ) {
 			$opt['advanced'] = $this->searchAdvanced;
+		}
 		return $opt;
 	}
 
@@ -349,12 +348,10 @@ class SpecialSearch {
 		$terms = $wgContLang->convertForSearchResult( $matches->termMatches() );
 
 		$out = "";
-		
 		$infoLine = $matches->getInfo();
-		if( !is_null($infoLine) )
+		if( !is_null($infoLine) ) {
 			$out .= "\n<!-- {$infoLine} -->\n";
-			
-		
+		}
 		$off = $this->offset + 1;
 		$out .= "<ul class='mw-search-results'>\n";
 		while( $result = $matches->next() ) {
@@ -374,23 +371,22 @@ class SpecialSearch {
 	 * @param array $terms terms to highlight
 	 */
 	protected function showHit( $result, $terms ) {
+		global $wgContLang, $wgLang;
 		wfProfileIn( __METHOD__ );
-		global $wgUser, $wgContLang, $wgLang;
-		
+
 		if( $result->isBrokenTitle() ) {
 			wfProfileOut( __METHOD__ );
 			return "<!-- Broken link in search result -->\n";
 		}
-		
-		$t = $result->getTitle();
-		$sk = $wgUser->getSkin();
 
-		$link = $sk->makeKnownLinkObj( $t, $result->getTitleSnippet($terms));
+		$t = $result->getTitle();
+
+		$link = $this->sk->makeKnownLinkObj( $t, $result->getTitleSnippet($terms));
 
 		//If page content is not readable, just return the title.
 		//This is not quite safe, but better than showing excerpts from non-readable pages
 		//Note that hiding the entry entirely would screw up paging.
-		if(!$t->userCanRead()) {
+		if( !$t->userCanRead() ) {
 			wfProfileOut( __METHOD__ );
 			return "<li>{$link}</li>\n";
 		}
@@ -400,8 +396,7 @@ class SpecialSearch {
 		// You may get less results, but... oh well. :P
 		if( $result->isMissingRevision() ) {
 			wfProfileOut( __METHOD__ );
-			return "<!-- missing page " .
-				htmlspecialchars( $t->getPrefixedText() ) . "-->\n";
+			return "<!-- missing page " . htmlspecialchars( $t->getPrefixedText() ) . "-->\n";
 		}
 
 		// format redirects / relevant sections
@@ -412,12 +407,12 @@ class SpecialSearch {
 		$redirect = '';
 		if( !is_null($redirectTitle) )
 			$redirect = "<span class='searchalttitle'>"
-				.wfMsg('search-redirect',$sk->makeKnownLinkObj( $redirectTitle, $redirectText))
+				.wfMsg('search-redirect',$this->sk->makeKnownLinkObj( $redirectTitle, $redirectText))
 				."</span>";
 		$section = '';
 		if( !is_null($sectionTitle) )
 			$section = "<span class='searchalttitle'>" 
-				.wfMsg('search-section', $sk->makeKnownLinkObj( $sectionTitle, $sectionText))
+				.wfMsg('search-section', $this->sk->makeKnownLinkObj( $sectionTitle, $sectionText))
 				."</span>";
 
 		// format text extract
@@ -438,8 +433,7 @@ class SpecialSearch {
 		$wordCount = $result->getWordCount();
 		$timestamp = $result->getTimestamp();
 		$size = wfMsgExt( 'search-result-size', array( 'parsemag', 'escape' ),
-			$sk->formatSize( $byteSize ),
-			$wordCount );
+			$this->sk->formatSize( $byteSize ), $wordCount );
 		$date = $wgLang->timeanddate( $timestamp );
 
 		// link to related articles if supported
@@ -453,7 +447,7 @@ class SpecialSearch {
 			$related = ' -- <a href="'.$st->escapeLocalURL($stParams).'">'. 
 				wfMsg('search-relatedarticle').'</a>';
 		}
-				
+
 		// Include a thumbnail for media files...
 		if( $t->getNamespace() == NS_IMAGE ) {
 			$img = wfFindFile( $t );
@@ -496,9 +490,8 @@ class SpecialSearch {
 	 * @param SearchResultSet $matches
 	 */
 	protected function showInterwiki( &$matches, $query ) {
-		wfProfileIn( __METHOD__ );
-
 		global $wgContLang;
+		wfProfileIn( __METHOD__ );
 		$terms = $wgContLang->convertForSearchResult( $matches->termMatches() );
 
 		$out = "<div id='mw-search-interwiki'><div id='mw-search-interwiki-caption'>".
@@ -515,7 +508,6 @@ class SpecialSearch {
 				$customCaptions[$parts[0]] = $parts[1]; 
 		}
 		
-		
 		$prev = null;
 		while( $result = $matches->next() ) {
 			$out .= $this->showInterwikiHit( $result, $prev, $terms, $query, $customCaptions );
@@ -525,7 +517,6 @@ class SpecialSearch {
 		$out .= "</ul></div>\n";
 
 		// convert the whole thing to desired language variant
-		global $wgContLang;
 		$out = $wgContLang->convert( $out );
 		wfProfileOut( __METHOD__ );
 		return $out;
@@ -542,7 +533,7 @@ class SpecialSearch {
 	 */
 	protected function showInterwikiHit( $result, $lastInterwiki, $terms, $query, $customCaptions) {
 		wfProfileIn( __METHOD__ );
-		global $wgUser, $wgContLang, $wgLang;
+		global $wgContLang, $wgLang;
 		
 		if( $result->isBrokenTitle() ) {
 			wfProfileOut( __METHOD__ );
@@ -550,17 +541,16 @@ class SpecialSearch {
 		}
 		
 		$t = $result->getTitle();
-		$sk = $wgUser->getSkin();
-		
-		$link = $sk->makeKnownLinkObj( $t, $result->getTitleSnippet($terms));
-				
+
+		$link = $this->sk->makeKnownLinkObj( $t, $result->getTitleSnippet($terms));
+
 		// format redirect if any
 		$redirectTitle = $result->getRedirectTitle();
 		$redirectText = $result->getRedirectSnippet($terms);
 		$redirect = '';
 		if( !is_null($redirectTitle) )
 			$redirect = "<span class='searchalttitle'>"
-				.wfMsg('search-redirect',$sk->makeKnownLinkObj( $redirectTitle, $redirectText))
+				.wfMsg('search-redirect',$this->sk->makeKnownLinkObj( $redirectTitle, $redirectText))
 				."</span>";
 
 		$out = "";
@@ -577,7 +567,7 @@ class SpecialSearch {
 			}		
 			// "more results" link (special page stuff could be localized, but we might not know target lang)
 			$searchTitle = Title::newFromText($t->getInterwiki().":Special:Search");   			
-			$searchLink = $sk->makeKnownLinkObj( $searchTitle, wfMsg('search-interwiki-more'),
+			$searchLink = $this->sk->makeKnownLinkObj( $searchTitle, wfMsg('search-interwiki-more'),
 				wfArrayToCGI(array('search' => $query, 'fulltext' => 'Search'))); 
 			$out .= "</ul><div class='mw-search-interwiki-project'><span class='mw-search-interwiki-more'>
 				{$searchLink}</span>{$caption}</div>\n<ul>";
@@ -624,9 +614,9 @@ class SpecialSearch {
 			$searchButton .
 			"</form>";
 		$t = Title::newFromText( $term );
-		if( $t != null && count($this->namespaces) === 1 )
+		if( $t != null && count($this->namespaces) === 1 ) {
 			$out .= wfMsgExt( 'searchmenu-prefix', array('parseinline'), $term );
-
+		}
 		return Xml::openElement( 'fieldset', array('id' => 'mw-searchoptions','style' => 'margin:0em;') ) .
 			Xml::element( 'legend', null, wfMsg('powersearch-legend') ) .
 			$this->formHeader($term) . $out . 
@@ -644,36 +634,21 @@ class SpecialSearch {
 
 	protected function formHeader( $term ) {
 		global $wgContLang, $wgCanonicalNamespaceNames;
-		
+
 		$sep = '&nbsp;&nbsp;&nbsp;';
 		$out = Xml::openElement('div', array( 'style' => 'padding-bottom:0.5em;' ) );
-		
+
 		$bareterm = $term;
 		if( $this->startsWithImage( $term ) )
 			$bareterm = substr( $term, strpos( $term, ':' ) + 1 ); // delete all/image prefix
 			
 		$nsAllSet = array_keys( SearchEngine::searchableNamespaces() );
-		// figure out the active search profile header
-		if( $this->searchAdvanced )
-			$active = 'advanced';
-		else if( $this->namespaces === NS_IMAGE || $this->startsWithImage( $term ) )
-			$active = 'images';
-		elseif( $this->namespaces === $nsAllSet )
-			$active = 'all';
-		elseif( $this->namespaces === SearchEngine::defaultNamespaces() )
-			$active = 'default';
-		elseif( $this->namespaces === SearchEngine::defaultAndProjectNamespaces() )
-			$active = 'withproject';
-		elseif( $this->namespaces === SearchEngine::projectNamespaces() )
-			$active = 'project';
-		else
-			$active = 'advanced';
-			
+
 		// search profiles headers
 		$m = wfMsg( 'searchprofile-articles' );
 		$tt = wfMsg( 'searchprofile-articles-tooltip', 
 			implode( ', ', SearchEngine::namespacesAsText( SearchEngine::defaultNamespaces() ) ) );
-		if( $active == 'default' ) {
+		if( $this->active == 'default' ) {
 			$out .= Xml::element( 'strong', array( 'title'=>$tt ), $m );	
 		} else {
 			$out .= $this->makeSearchLink( $bareterm, SearchEngine::defaultNamespaces(), $m, $tt );
@@ -682,7 +657,7 @@ class SpecialSearch {
 		
 		$m = wfMsg( 'searchprofile-images' );
 		$tt = wfMsg( 'searchprofile-images-tooltip' );
-		if( $active == 'images' ) {
+		if( $this->active == 'images' ) {
 			$out .= Xml::element( 'strong', array( 'title'=>$tt ), $m );	
 		} else {
 			$imageTextForm = $wgContLang->getFormattedNsText(NS_IMAGE).':'.$bareterm;
@@ -693,7 +668,7 @@ class SpecialSearch {
 		$m = wfMsg( 'searchprofile-articles-and-proj' );
 		$tt = wfMsg( 'searchprofile-project-tooltip', 
 			implode( ', ', SearchEngine::namespacesAsText( SearchEngine::defaultAndProjectNamespaces() ) ) );
-		if( $active == 'withproject' ) {
+		if( $this->active == 'withproject' ) {
 			$out .= Xml::element( 'strong', array( 'title'=>$tt ), $m );	
 		} else {
 			$out .= $this->makeSearchLink( $bareterm, SearchEngine::defaultAndProjectNamespaces(), $m, $tt );
@@ -703,7 +678,7 @@ class SpecialSearch {
 		$m = wfMsg( 'searchprofile-project' );
 		$tt = wfMsg( 'searchprofile-project-tooltip', 
 			implode( ', ', SearchEngine::namespacesAsText( SearchEngine::projectNamespaces() ) ) );
-		if( $active == 'project' ) {
+		if( $this->active == 'project' ) {
 			$out .= Xml::element( 'strong', array( 'title'=>$tt ), $m );	
 		} else {
 			$out .= $this->makeSearchLink( $bareterm, SearchEngine::projectNamespaces(), $m, $tt );
@@ -712,7 +687,7 @@ class SpecialSearch {
 			
 		$m = wfMsg( 'searchprofile-everything' );
 		$tt = wfMsg( 'searchprofile-everything-tooltip' );
-		if( $active == 'all' ) {
+		if( $this->active == 'all' ) {
 			$out .= Xml::element( 'strong', array( 'title'=>$tt ), $m );	
 		} else {
 			$out .= $this->makeSearchLink( $bareterm, $nsAllSet, $m, $tt );
@@ -721,7 +696,7 @@ class SpecialSearch {
 		
 		$m = wfMsg( 'searchprofile-advanced' );
 		$tt = wfMsg( 'searchprofile-advanced-tooltip' );
-		if( $active == 'advanced' ) {
+		if( $this->active == 'advanced' ) {
 			$out .= Xml::element( 'strong', array( 'title'=>$tt ), $m );	
 		} else {
 			$out .= $this->makeSearchLink( $bareterm, $this->namespaces, $m, $tt, array( 'advanced' => '1' ) );
@@ -751,8 +726,9 @@ class SpecialSearch {
 		$out .= ' (' . wfMsgExt('searchmenu-help',array('parseinline') ) . ')';
 		$out .= Xml::closeElement( 'form' );
 		$t = Title::newFromText( $term );
-		if( $t != null && count($this->namespaces) === 1 )
+		if( $t != null && count($this->namespaces) === 1 ) {
 			$out .= wfMsgExt( 'searchmenu-prefix', array('parseinline'), $term );
+		}
 		return Xml::openElement( 'fieldset', array('id' => 'mw-searchoptions','style' => 'margin:0em;') ) .
 			Xml::element( 'legend', null, wfMsg('searchmenu-legend') ) .
 			$this->formHeader($term) . $out .
@@ -924,6 +900,7 @@ class SpecialSearchOld {
 			if( $wgSearchForwardUrl ) {
 				$url = str_replace( '$1', urlencode( $term ), $wgSearchForwardUrl );
 				$wgOut->redirect( $url );
+				wfProfileOut( __METHOD__ );
 				return;
 			}
 			global $wgInputEncoding;
