@@ -970,6 +970,7 @@ $1 | $2',
 'searchmenu-new'                   => "* Luo sivu '''[[$1]]'''",
 'searchhelp-url'                   => 'Help:Sisällys',
 'searchprofile-articles'           => 'Sivut',
+'searchprofile-articles-and-proj'  => 'Sivut ja projektit',
 'searchprofile-project'            => 'Projektit',
 'searchprofile-images'             => 'Tiedostot',
 'searchprofile-everything'         => 'Kaikki',
@@ -1860,6 +1861,7 @@ Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|k
 'undelete-error-long'          => 'Tiedoston palauttaminen epäonnistui:
 
 $1',
+'undelete-show-file-submit'    => 'Kyllä',
 
 # Namespace form on various pages
 'namespace'      => 'Nimiavaruus',
