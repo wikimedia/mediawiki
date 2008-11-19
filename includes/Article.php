@@ -3125,9 +3125,11 @@ class Article {
 		$acchitsTable = $dbw->tableName( 'acchits' );
 
 		if( $wgHitcounterUpdateFreq <= 1 ) {
-			$dbw->query( "UPDATE $pageTable SET page_counter = page_counter + 1 WHERE page_id = $id" );
+			self::incrementCounterByValue( $id, 1 );
 			return;
 		}
+		
+		## TODO: Will get to making this stuff use the new infrastructure.
 
 		# Not important enough to warrant an error page in case of failure
 		$oldignore = $dbw->ignoreErrors( true );
@@ -3170,6 +3172,47 @@ class Article {
 			wfProfileOut( 'Article::incViewCount-collect' );
 		}
 		$dbw->ignoreErrors( $oldignore );
+	}
+	
+	static function incrementCounterByValue( $article_id, $number ) {
+		$dbw = wfGetDB( DB_MASTER );
+		$dbr = wfGetDB( DB_SLAVE );
+		$oldIgnore = $dbw->ignoreErrors( true );
+		
+		## Does a row already exist?
+		## We really need ON DUPLICATE KEY UPDATE :(
+		$startOfToday = $dbw->timestamp( strtotime( '0:00' ) ); // Hack hack hack
+		$endOfToday = $dbw->timestamp( strtotime( '0:00 tomorrow' ) );
+		$rowExists = $dbr->selectField( 'hit_statistics', '1', array( 'hs_page' => $article_id, "hs_period_start='$startOfToday'", "hs_period_end='$endOfToday'" ), __METHOD__ );
+		
+		if ($rowExists) {
+			$dbw->update( 'hit_statistics', array( 'hs_count=hs_count+'.intval($number) ), array( 'hs_page' => $article_id, 'hs_period_start' => $startOfToday, 'hs_period_end' => $endOfToday ), __METHOD__ );
+		} else {
+			$row = array(
+				'hs_page' => $article_id,
+				'hs_period_start' => $startOfToday,
+				'hs_period_end' => $endOfToday,
+				'hs_period_length' => 86400, // One day.
+				'hs_count' => $number
+			);
+			
+			$dbw->insert( 'hit_statistics', $row, __METHOD__ );
+			
+			## Update with the previous day's hits...
+			Article::updatePageRowCounter( $article_id );
+		}
+		
+		$dbw->ignoreErrors( false );
+	}
+	
+	static function updatePageRowCounter( $article_id ) {
+		$dbw = wfGetDB( DB_MASTER );
+		$oi = $dbw->ignoreErrors( true );
+		
+		$total = $dbw->selectField( 'hit_statistics', 'sum(hs_count)', array( 'hs_page' => $article_id ), __METHOD__ );
+		$dbw->update( 'page', array( 'page_counter' => $total ), array( 'page_id' => $article_id ), __METHOD__ );
+		
+		$dbw->ignoreErrors( $oi );
 	}
 
 	/**#@+
