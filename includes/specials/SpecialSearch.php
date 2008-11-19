@@ -198,36 +198,37 @@ class SpecialSearch {
 			}
 		}
 
-		// show number of results
-		$numTitleMatches = $titleMatches ? $titleMatches->numRows() : 0;
-		$numTextMatches = $textMatches ? $textMatches->numRows() : 0;
-		$highestNum = max( $numTitleMatches, $numTextMatches );
-		// Total query matches (possible false positives)
-		$num = $numTitleMatches + $numTextMatches;
-		// Get total actual results
-		$totalNum = 0;
-		if( $titleMatches && !is_null($titleMatches->getTotalHits()) )
-			$totalNum += $titleMatches->getTotalHits();
-		if( $textMatches && !is_null($textMatches->getTotalHits()) )
-			$totalNum += $textMatches->getTotalHits();
-		if( $num > 0 ) {
-			if( $totalNum > 0 ) {
+		// Get number of results
+		$titleMatchesSQL = $titleMatches ? $titleMatches->numRows() : 0;
+		$textMatchesSQL = $textMatches ? $textMatches->numRows() : 0;
+		// Total initial query matches (possible false positives)
+		$numSQL = $titleMatchesSQL + $textMatchesSQL;
+		// Get total actual results (after second filtering, if any)
+		$numTitleMatches = $titleMatches && !is_null( $titleMatches->getTotalHits() ) ?
+			$titleMatches->getTotalHits() : $titleMatchesSQL;
+		$numTextMatches = $textMatches && !is_null( $textMatches->getTotalHits() ) ?
+			$textMatches->getTotalHits() : $textMatchesSQL;
+		$totalRes = $numTitleMatches + $numTextMatches;
+
+		// show number of results and current offset
+		if( $numSQL > 0 ) {
+			if( $numSQL > 0 ) {
 				$top = wfMsgExt('showingresultstotal', array( 'parseinline' ), 
-					$this->offset+1, $this->offset+$num, $totalNum, $num );
-			} elseif( $num >= $this->limit ) {
+					$this->offset+1, $this->offset+$numSQL, $totalRes, $numSQL );
+			} elseif( $numSQL >= $this->limit ) {
 				$top = wfShowingResults( $this->offset, $this->limit );
 			} else {
-				$top = wfShowingResultsNum( $this->offset, $this->limit, $num );
+				$top = wfShowingResultsNum( $this->offset, $this->limit, $numSQL );
 			}
 			$wgOut->addHTML( "<p class='mw-search-numberresults'>{$top}</p>\n" );
 		}
 
 		// prev/next links
-		if( $num || $this->offset ) {
+		if( $numSQL || $this->offset ) {
 			$prevnext = wfViewPrevNext( $this->offset, $this->limit,
 				SpecialPage::getTitleFor( 'Search' ),
 				wfArrayToCGI( $this->powerSearchOptions(), array( 'search' => $term ) ),
-				($highestNum < $this->limit)
+				max( $titleMatchesSQL, $textMatchesSQL ) < $this->limit
 			);
 			$wgOut->addHTML( "<p class='mw-search-pager-top'>{$prevnext}</p>\n" );
 			wfRunHooks( 'SpecialSearchResults', array( $term, &$titleMatches, &$textMatches ) );
@@ -248,25 +249,27 @@ class SpecialSearch {
 			if( $numTextMatches > 0 && $numTitleMatches > 0 ) {
 				// if no title matches the heading is redundant
 				$wgOut->wrapWikiMsg( "==$1==\n", 'textmatches' );					
-			} elseif( $num == 0 ) {
+			} elseif( $totalRes == 0 ) {
 				# Don't show the 'no text matches' if we received title matches
 				$wgOut->wrapWikiMsg( "==$1==\n", 'notextmatches' );
 			}
 			// show interwiki results if any
-			if( $textMatches->hasInterwikiResults() )
-				$wgOut->addHTML( $this->showInterwiki( $textMatches->getInterwikiResults(), $term ));
+			if( $textMatches->hasInterwikiResults() ) {
+				$wgOut->addHTML( $this->showInterwiki( $textMatches->getInterwikiResults(), $term ) );
+			}
 			// show results
-			if( $numTextMatches > 0 )
+			if( $numTextMatches > 0 ) {
 				$wgOut->addHTML( $this->showMatches( $textMatches ) );
+			}
 
 			$textMatches->free();
 		}
-		if( $totalNum == 0 ) {
+		if( $totalRes === 0 ) {
 			$wgOut->addWikiMsg( 'search-nonefound' );
 		}
 		$wgOut->addHtml( "</div>" );
 
-		if( $num || $this->offset ) {
+		if( $numSQL || $this->offset ) {
 			$wgOut->addHTML( "<p class='mw-search-pager-bottom'>{$prevnext}</p>\n" );
 		}
 		wfProfileOut( __METHOD__ );
@@ -720,11 +723,20 @@ class SpecialSearch {
 			}
 			$out .= wfMsgExt( 'powersearch-ns', array( 'parseinline' ) ) . "<br/>\n";
 			$out .= $this->namespaceTables( $active, 1 )."<br/>\n";
+		// Still keep namespace settings otherwise, but don't show them
+		} else {
+			foreach( $this->namespaces as $ns ) {
+				$out .= Xml::hidden( "ns{$ns}", '1' );
+			}
 		}
+		// Keep redirect setting
+		$out .= Xml::hidden( "redirs", (int)$this->searchRedirects );
+		// Term box
 		$out .= Xml::input( 'search', 50, $term, array( 'type' => 'text', 'id' => 'searchText' ) ) . "\n";
 		$out .= Xml::submitButton( wfMsg( 'searchbutton' ), array( 'name' => 'fulltext' ) );
 		$out .= ' (' . wfMsgExt('searchmenu-help',array('parseinline') ) . ')';
 		$out .= Xml::closeElement( 'form' );
+		// Add prefix link for single-namespace searches
 		$t = Title::newFromText( $term );
 		if( $t != null && count($this->namespaces) === 1 ) {
 			$out .= wfMsgExt( 'searchmenu-prefix', array('parseinline'), $term );
