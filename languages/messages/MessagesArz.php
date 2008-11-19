@@ -502,7 +502,7 @@ $messages = array(
 
 'badaccess'        => 'غلطه فى السماح',
 'badaccess-group0' => 'انت مش مسموح لك تنفذ الطلب بتاعك',
-'badaccess-groups' => 'الفعل الذى طلبته مسموح بيه بس لليوزرز اللى فى {{PLURAL:$2|المجموعة|إحدى المجموعات}}: $1.',
+'badaccess-groups' => 'الفعل اللى طلبته مسموح بيه بس لليوزرز اللى فى {{PLURAL:$2|المجموعة|واحده من المجموعات}}: $1.',
 
 'versionrequired'     => 'لازم نسخة $1 من ميدياويكي',
 'versionrequiredtext' => 'النسخة $1 من ميدياويكى لازم علشان تستعمل الصفحة دى.
@@ -1147,11 +1147,13 @@ $2',
 'prevn'                            => '$1 اللى قبل كده',
 'nextn'                            => '$1 اللى بعد كده',
 'viewprevnext'                     => 'بص ($1) ($2) ($3)',
+'searchmenu-legend'                => 'اختيارات التدوير',
 'searchmenu-exists'                => "*الصفحة '''[[$1]]'''",
-'searchmenu-new'                   => "*أنشئ الصفحة '''[[$1]]'''",
+'searchmenu-new'                   => "'''[[:$1|ابتدي]] الصفحة ''$1'' عا الويكي دا!'''",
 'searchhelp-url'                   => 'Help:محتويات',
 'searchprofile-articles'           => 'الصفحات',
-'searchprofile-project'            => 'الصفحات/المشروع',
+'searchprofile-articles-and-proj'  => 'الصفحات و المشروع',
+'searchprofile-project'            => 'المشروع',
 'searchprofile-images'             => 'الملفات',
 'searchprofile-everything'         => 'كل شىء',
 'searchprofile-advanced'           => 'متقدم',
@@ -1226,6 +1228,7 @@ $2',
 'prefs-rc'                 => 'اخر التغييرات',
 'prefs-watchlist'          => 'لستة المراقبة',
 'prefs-watchlist-days'     => 'عدد الأيام للعرض فى لستة المراقبة:',
+'prefs-watchlist-days-max' => '(الحد الاقصى 7 ايام)',
 'prefs-watchlist-edits'    => 'عدد التعديلات اللى بتتعرض فى لستةالمراقبة المتوسعة:',
 'prefs-misc'               => 'متفرقات',
 'saveprefs'                => 'حفظ',
@@ -2921,7 +2924,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'استعمل تطبيق من بره علشان تعدل الملف دا',
-'edit-externally-help' => 'بص على [http://www.mediawiki.org/wiki/Manual:External_editors  تعليمات الاعداد] علشان معلومات اكتر.',
+'edit-externally-help' => '(بص على [http://www.mediawiki.org/wiki/Manual:External_editors  تعليمات الاعداد] علشان معلومات اكتر.)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'الكل',

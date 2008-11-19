@@ -828,51 +828,54 @@ $1 is the relevance of this result in per cent.
 'searchdisabled'                 => 'Shown on [[Special:Search]] when the internal search is disabled.',
 
 # Preferences page
-'preferences'           => '{{Identical|Preferences}}',
-'mypreferences'         => '{{Identical|My preferences}}',
-'prefs-edits'           => 'In user preferences.',
-'prefsnologin'          => '{{Identical|Not logged in}}',
-'qbsettings'            => 'The title of the section in [[Special:Preferences]], only shown when using the skins "Standard/Classic" or "Cologne Blue". The quicbar is the same as the sidebar.',
-'qbsettings-none'       => '{{Identical|None}}',
-'changepassword'        => "Section heading on [[Special:Preferences]], tab 'User profile'.",
-'skin'                  => 'Used in user preferences.',
-'skin-preview'          => 'The link beside each skin name in [[Special:Preferences|your user preferences]], tab "skin".
+'preferences'               => '{{Identical|Preferences}}',
+'mypreferences'             => '{{Identical|My preferences}}',
+'prefs-edits'               => 'In user preferences.',
+'prefsnologin'              => '{{Identical|Not logged in}}',
+'qbsettings'                => 'The title of the section in [[Special:Preferences]], only shown when using the skins "Standard/Classic" or "Cologne Blue". The quicbar is the same as the sidebar.',
+'qbsettings-none'           => '{{Identical|None}}',
+'changepassword'            => "Section heading on [[Special:Preferences]], tab 'User profile'.",
+'skin'                      => 'Used in user preferences.',
+'skin-preview'              => 'The link beside each skin name in [[Special:Preferences|your user preferences]], tab "skin".
 
 {{Identical|Preview}}',
-'math'                  => 'Used in user preferences.',
-'math_syntax_error'     => '{{Identical|Syntax error}}',
-'prefs-personal'        => 'Title of a tab in [[Special:Preferences]].',
-'prefs-rc'              => 'Used in user preferences.
+'math'                      => 'Used in user preferences.',
+'math_syntax_error'         => '{{Identical|Syntax error}}',
+'prefs-personal'            => 'Title of a tab in [[Special:Preferences]].',
+'prefs-rc'                  => 'Used in user preferences.
 
 {{Identical|Recent changes}}',
-'prefs-watchlist'       => 'Used in user preferences.',
-'prefs-watchlist-days'  => 'Used in [[Special:Preferences]], tab "Watchlist".',
-'prefs-watchlist-edits' => 'Used in [[Special:Preferences]], tab "Watchlist".',
-'prefs-misc'            => 'Used in user preferences.',
-'saveprefs'             => 'Button for saving changes in the preferences page.
+'prefs-watchlist'           => 'Used in user preferences.',
+'prefs-watchlist-days'      => 'Used in [[Special:Preferences]], tab "Watchlist".',
+'prefs-watchlist-days-max'  => 'Shown as hint in [[Special:Preferences]], tab "Watchlist"',
+'prefs-watchlist-edits'     => 'Used in [[Special:Preferences]], tab "Watchlist".',
+'prefs-watchlist-edits-max' => 'Shown as hint in [[Special:Preferences]], tab "Watchlist"',
+'prefs-misc'                => 'Used in user preferences.',
+'saveprefs'                 => 'Button for saving changes in the preferences page.
 
 {{Identical|Save}}',
-'resetprefs'            => 'Button for resetting changes in the preferences page.',
-'oldpassword'           => "Used on the 'User profile' tab of 'my preferences'. This is the text next to an entry box for the old password in the 'change password' section.",
-'newpassword'           => '{{Identical|New password}}',
-'retypenew'             => "Appears on the 'User profile' tab of the 'Preferences' special page in the 'Change password' section. It appears next to the text box for entering the new password a second time.",
-'textboxsize'           => 'Title of a tab in [[Special:Preferences]].',
-'searchresultshead'     => 'This is the label of the tab in [[Special:Preferences|my preferences]] which contains options for searching the wiki.
+'resetprefs'                => 'Button for resetting changes in the preferences page.',
+'oldpassword'               => "Used on the 'User profile' tab of 'my preferences'. This is the text next to an entry box for the old password in the 'change password' section.",
+'newpassword'               => '{{Identical|New password}}',
+'retypenew'                 => "Appears on the 'User profile' tab of the 'Preferences' special page in the 'Change password' section. It appears next to the text box for entering the new password a second time.",
+'textboxsize'               => 'Title of a tab in [[Special:Preferences]].',
+'searchresultshead'         => 'This is the label of the tab in [[Special:Preferences|my preferences]] which contains options for searching the wiki.
 
 {{Identical|Search}}',
-'stub-threshold'        => 'Used in [[Special:Preferences]], tab "Misc".',
-'recentchangesdays'     => 'Used in [[Special:Preferences]], tab "Recent changes".',
-'recentchangescount'    => 'Used in [[Special:Preferences]], tab "Recent changes".',
-'savedprefs'            => 'This message appears after saving changes to your user preferences.',
-'timezonetext'          => "Additional explanation given in [[Special:Preferences]], tab 'date and time' with the preference in message ''timezoneoffset''",
-'timezoneoffset'        => "Text next to input box in [[Special:Preferences]], tab 'date and time', section 'timezone'.",
-'allowemail'            => 'Used in [[Special:Preferences]], tab "User profile".',
-'prefs-searchoptions'   => "Shown at the top of the tab 'Search' in [[Special:Preferences]]",
-'prefs-namespaces'      => "{{Identical|Namespaces}}
+'stub-threshold'            => 'Used in [[Special:Preferences]], tab "Misc".',
+'recentchangesdays'         => 'Used in [[Special:Preferences]], tab "Recent changes".',
+'recentchangesdays-max'     => 'Shown as hint in [[Special:Preferences]], tab "Recent changes"',
+'recentchangescount'        => 'Used in [[Special:Preferences]], tab "Recent changes".',
+'savedprefs'                => 'This message appears after saving changes to your user preferences.',
+'timezonetext'              => "Additional explanation given in [[Special:Preferences]], tab 'date and time' with the preference in message ''timezoneoffset''",
+'timezoneoffset'            => "Text next to input box in [[Special:Preferences]], tab 'date and time', section 'timezone'.",
+'allowemail'                => 'Used in [[Special:Preferences]], tab "User profile".',
+'prefs-searchoptions'       => "Shown at the top of the tab 'Search' in [[Special:Preferences]]",
+'prefs-namespaces'          => "{{Identical|Namespaces}}
 Shown as legend of the second fieldset of the tab 'Search' in [[Special:Preferences]]",
-'defaultns'             => 'Used in [[Special:Preferences]], tab "Search".',
-'default'               => '{{Identical|Default}}',
-'files'                 => 'Title of a tab in [[Special:Preferences]].',
+'defaultns'                 => 'Used in [[Special:Preferences]], tab "Search".',
+'default'                   => '{{Identical|Default}}',
+'files'                     => 'Title of a tab in [[Special:Preferences]].',
 
 # User rights
 'userrights'                  => 'Page title of [[Special:UserRights]].', # Not used as normal message but as header for the special page itself
@@ -1606,13 +1609,13 @@ Shown as subtitle of the protection form. $1 is the title of the page to be (un)
 'restriction-level-all'           => "Used on [[Special:ProtectedPages]] and [[Special:ProtectedTitles]]. An option in the drop-down box 'Restriction level'. See the [http://www.mediawiki.org/wiki/Project:Protected_titles help page on Mediawiki] and on [http://meta.wikimedia.org/wiki/Protect Meta] for more information.",
 
 # Undelete
-'undelete'               => 'Name of special page for admins as displayed in [[Special:SpecialPages]].
+'undelete'                   => 'Name of special page for admins as displayed in [[Special:SpecialPages]].
 
 {{Identical|View deleted pages}}',
-'undeletepage'           => 'Title of special page [[Special:Undelete]]. This special page is only visible to administrators.',
-'viewdeletedpage'        => '{{Identical|View deleted pages}}',
-'undeleteextrahelp'      => "Help message displayed when restoring history of a page. In your language, ''Restore'' is called ''[[MediaWiki:Undeletebtn/{{SUBPAGENAME}}|{{int:Undeletebtn}}]]'' ({{msg|Undeletebtn}}), ''Reset'' button is called ''[[MediaWiki:Undeletereset/{{SUBPAGENAME}}|{{int:Undeletereset}}]]'' ({{msg|Undeletereset}}).",
-'undelete-revision'      => 'Shown in "View and restore deleted pages" ([[Special:Undelete/$1]]).
+'undeletepage'               => 'Title of special page [[Special:Undelete]]. This special page is only visible to administrators.',
+'viewdeletedpage'            => '{{Identical|View deleted pages}}',
+'undeleteextrahelp'          => "Help message displayed when restoring history of a page. In your language, ''Restore'' is called ''[[MediaWiki:Undeletebtn/{{SUBPAGENAME}}|{{int:Undeletebtn}}]]'' ({{msg|Undeletebtn}}), ''Reset'' button is called ''[[MediaWiki:Undeletereset/{{SUBPAGENAME}}|{{int:Undeletereset}}]]'' ({{msg|Undeletereset}}).",
+'undelete-revision'          => 'Shown in "View and restore deleted pages" ([[Special:Undelete/$1]]).
 
 * $1: deleted page name
 * $3: user name (author of revision, not who deleted it)
@@ -1620,17 +1623,20 @@ Shown as subtitle of the protection form. $1 is the title of the page to be (un)
 * $5: time of the revision
 
 \'\'Example:\'\' Deleted revision of [[Main Page]] (as of {{CURRENTDAY}} {{CURRENTMONTHNAME}} {{CURRENTYEAR}}, at {{CURRENTTIME}}) by [[User:Username|Username]]:',
-'undeletebtn'            => 'Shown on [[Special:Undelete]] as button caption and on [[Special:Log/delete|deletion log]] after each entry (for sysops).
+'undeletebtn'                => 'Shown on [[Special:Undelete]] as button caption and on [[Special:Log/delete|deletion log]] after each entry (for sysops).
 
 {{Identical|Restore}}',
-'undeletelink'           => 'Display name of link to undelete a page used on [[Special:Log/delete]]
+'undeletelink'               => 'Display name of link to undelete a page used on [[Special:Log/delete]]
 
 {{Identical|Restore}}',
-'undeletereset'          => 'Shown on [[Special:Undelete]] as button caption.
+'undeletereset'              => 'Shown on [[Special:Undelete]] as button caption.
 {{Identical|Reset}}',
-'undeleteinvert'         => '{{Identical|Invert selection}}',
-'undeletecomment'        => '{{Identical|Comment}}',
-'undelete-search-submit' => '{{Identical|Search}}',
+'undeleteinvert'             => '{{Identical|Invert selection}}',
+'undeletecomment'            => '{{Identical|Comment}}',
+'undelete-search-submit'     => '{{Identical|Search}}',
+'undelete-show-file-confirm' => 'A confirmation message shown on Special:Undelete when the request does not contain a valid [[mw:Manual:Edit token|token]] (e.g. when a user clicks a link received in mail).
+* <code>$1</code> is the name of the file being undeleted.
+* <code>$2</code> is the timestamp of the displayed revision.',
 
 # Namespace form on various pages
 'namespace'      => '{{Identical|Namespace}}',

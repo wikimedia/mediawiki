@@ -1011,7 +1011,7 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 'viewprevnext'                     => 'Lihat ($1) ($2) ($3)',
 'searchmenu-legend'                => 'Pilihan gelintar',
 'searchmenu-exists'                => "* Laman '''[[$1]]'''",
-'searchmenu-new'                   => "'''[[:\$1|Cipta]] laman \"[[\$1]]\" di wiki ini!'''",
+'searchmenu-new'                   => "'''[[:$1|Cipta]] laman ''$1'' di wiki ini!'''",
 'searchhelp-url'                   => 'Help:Kandungan',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Senarai laman dengan awalan ini]]',
 'searchprofile-articles'           => 'Laman',
@@ -2239,6 +2239,8 @@ Semua tindakan import transwiki dicatatkan dalam [[Special:Log/import|log import
 'import-nonewrevisions'      => 'Semua semakan telah pun diimport sebelum ini.',
 'xml-error-string'           => '$1 pada baris $2, lajur $3 (bait $4): $5',
 'import-upload'              => 'Muat naik data XML',
+'import-token-mismatch'      => 'Data sesi telah hilang. Sila cuba lagi.',
+'import-invalid-interwiki'   => 'Wiki yang dinyatakan tidak boleh diimport.',
 
 # Import log
 'importlogpage'                    => 'Log import',

@@ -480,7 +480,8 @@ $2',
 'logouttitle'                => 'Benotzer-Ofmeldung',
 'logouttext'                 => '<strong>Dir sidd elo ofgemellt.</strong>
 
-Dir kënnt {{SITENAME}} elo anonym benotzen, oder Iech [[Special:UserLogin|nach eemol umellen]] als deeselwechten oder en anere Benotzer.
+Dir kënnt {{SITENAME}} elo anonym benotzen, oder Iech [[Special:UserLogin|nach eemol umellen]].
+
 Opgepasst: Op verschiddene Säite gesäit et nach esou aus, wéi wann Dir nach ugemellt wiert, bis Dir ärem Browser seng Cache eidel maacht.',
 'welcomecreation'            => '== Wëllkomm, $1! ==
 Äre Kont gouf kreéiert. 
@@ -964,7 +965,7 @@ Dir kënnt [[:\$1|déi Säit uleeën]].",
 'viewprevnext'                     => 'Weis ($1) ($2) ($3)',
 'searchmenu-legend'                => 'Optioune vun der Sich',
 'searchmenu-exists'                => "* Säit '''[[$1]]'''",
-'searchmenu-new'                   => "'''[[:$1|Opmaache]] vun der Säit ''[[$1]'' op dëser Wiki!'''",
+'searchmenu-new'                   => "'''[[:$1|Opmaache]] vun der Säit ''$1'' op dëser Wiki!'''",
 'searchhelp-url'                   => 'Help:Hëllef',
 'searchprofile-articles'           => 'Säiten',
 'searchprofile-articles-and-proj'  => 'Säiten & Projet',
@@ -2570,7 +2571,7 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 
 # External editor support
 'edit-externally'      => 'Dëse Fichier mat engem externe Programm veränneren',
-'edit-externally-help' => "<small>Fir gewuer ze gi wéi dat genee geet liest d'[http://www.mediawiki.org/wiki/Manual:External_editors Installatiounsinstruktiounen].</small>",
+'edit-externally-help' => "(Fir gewuer ze gi wéi dat genee geet liest d'[http://www.mediawiki.org/wiki/Manual:External_editors Installatiounsinstruktiounen].)",
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'all',
