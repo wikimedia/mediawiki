@@ -52,22 +52,45 @@ class FeedItem {
 		$this->Comments = $Comments;
 	}
 
-	function xmlEncode( $string ) {
+	public function xmlEncode( $string ) {
 		$string = str_replace( "\r\n", "\n", $string );
 		$string = preg_replace( '/[\x00-\x08\x0b\x0c\x0e-\x1f]/', '', $string );
 		return htmlspecialchars( $string );
 	}
 
-	function getTitle() { return $this->xmlEncode( $this->Title ); }
-	function getUrl() { return $this->xmlEncode( $this->Url ); }
-	function getDescription() { return $this->xmlEncode( $this->Description ); }
-	function getLanguage() {
+	public function getTitle() {
+		return $this->xmlEncode( $this->Title );
+	}
+
+	public function getUrl() {
+		return $this->xmlEncode( $this->Url );
+	}
+
+	public function getDescription() {
+		return $this->xmlEncode( $this->Description );
+	}
+
+	public function getLanguage() {
 		global $wgContLanguageCode;
 		return $wgContLanguageCode;
 	}
-	function getDate() { return $this->Date; }
-	function getAuthor() { return $this->xmlEncode( $this->Author ); }
-	function getComments() { return $this->xmlEncode( $this->Comments ); }
+
+	public function getDate() {
+		return $this->Date;
+	}
+	public function getAuthor() {
+		return $this->xmlEncode( $this->Author );
+	}
+	public function getComments() {
+		return $this->xmlEncode( $this->Comments );
+	}
+	
+	/**
+	 * Quickie hack... strip out wikilinks to more legible form from the comment.
+	 */
+	public static function stripComment( $text ) {
+		return preg_replace( '/\[\[([^]]*\|)?([^]]+)\]\]/', '\2', $text );
+	}
 	/**#@-*/
 }
 
