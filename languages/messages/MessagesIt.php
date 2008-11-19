@@ -2204,6 +2204,8 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'import-nonewrevisions'      => 'Tutte le revisioni sono già state importate in precedenza.',
 'xml-error-string'           => '$1 a riga $2, colonna $3 (byte $4): $5',
 'import-upload'              => 'Carica dati XML',
+'import-token-mismatch'      => 'I dati relativi alla sessione sono andati persi. Riprovare.',
+'import-invalid-interwiki'   => 'Impossibile importare dal progetto wiki indicato.',
 
 # Import log
 'importlogpage'                    => 'Importazioni',

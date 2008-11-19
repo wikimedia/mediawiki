@@ -388,7 +388,7 @@ Apprime ca otre e-mail avènene mannete a 'u cunde tue, tu ha seguì le 'struzio
 'resetpass_text'      => "<!-- Mitte 'u teste aqquà -->",
 'resetpass_header'    => "Azzere 'a passuord",
 'resetpass_submit'    => "'Mboste 'a passuord e colleghete",
-'resetpass_forbidden' => "Le Password non ge ponne cangià sus 'a {{SITENAME}}",
+'resetpass_forbidden' => 'Le Password non ge ponne cangià',
 
 # Edit page toolbar
 'bold_sample'     => 'Teste grascette',
@@ -619,6 +619,7 @@ Leggenda: (cur) = differenze cu 'a versiona corrende,
 'searchsubtitleinvalid'          => "Tu è cerchete pe '''$1'''",
 'noexactmatch'                   => "'''Non g'esiste 'na pàgene ca se chiama \"\$1\".'''
 Tu puè [[:\$1|ccrejà sta pàgene]].",
+'textmatches'                    => "'U teste d'a pàgene combacie",
 'prevn'                          => 'rrede $1',
 'nextn'                          => 'nnande $1',
 'viewprevnext'                   => 'Vide ($1) ($2) ($3)',
@@ -1272,7 +1273,7 @@ Otre avènene scunnute pe defolt.
 
 # External editor support
 'edit-externally'      => "Cange stu fail usanne n'applicazione esterne",
-'edit-externally-help' => "Vide le [http://www.mediawiki.org/wiki/Manual:External_editors 'struzione de configurazione] pe avèje cchiù dettaglie.",
+'edit-externally-help' => "(Vide le [http://www.mediawiki.org/wiki/Manual:External_editors 'struzione de configurazione] pe avèje cchiù dettaglie)",
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'tutte',

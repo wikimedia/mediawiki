@@ -1313,7 +1313,7 @@ $1',
 # Watchlist
 'watchlist'          => 'Τὰ ἐφορώμενά μου',
 'mywatchlist'        => 'Τὰ ἐφορώμενά μου',
-'watchlistfor'       => "(πρό '''$1''')",
+'watchlistfor'       => "(διὰ '''$1''')",
 'nowatchlist'        => 'Οὐδὲν τεμάχιον ἐν τῇ ἐφοροδιαλογῇ σου.',
 'watchlistanontext'  => '$1 πρὸ τοῦ ὁρᾶν ἢ τοῦ μεταγράφειν τεμάχια τινὰ ἐν τῇ ἐφοροδιαλογῇ σου.',
 'watchnologin'       => 'Μὴ συνδεδεμένος',
@@ -2229,7 +2229,7 @@ $1
 'watchlistedit-raw-removed'   => '{{PLURAL:$1|1 δέλτος|$1 δέλτοι}} ἀφῃρέθησαν:',
 
 # Watchlist editing tools
-'watchlisttools-view' => 'Ὁρᾶν τὰς πρὸς ταῦτα μεταβολὰς',
+'watchlisttools-view' => 'Ὁρᾶν τὰς συναφεῖς μεταβολὰς',
 'watchlisttools-edit' => 'Ὁρᾶν τε καὶ μεταγράφειν τὰ ἐφορωμένα',
 'watchlisttools-raw'  => 'Μεταγράφειν τὸν πρωτογενῆ κατάλογον ἐφορωμένων',
 

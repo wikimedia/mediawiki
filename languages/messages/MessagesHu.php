@@ -1731,7 +1731,7 @@ hivatkozhatnak egy fájl URL-jére, ezért szerepelhet itt annak
 ellenére, hogy aktívan használják.</p>',
 'unusedcategoriestext'    => 'A következő kategóriákban egyetlen szócikk, illetve alkategória sem szerepel.',
 'notargettitle'           => 'Nincs cél',
-'notargettext'            => 'Nem adtál meg lapot vagy usert keresési célpontnak.',
+'notargettext'            => 'Nem adtad meg annak a lapnak vagy szerkesztőnek a nevét, amin a műveletet végre akartad hajtani.',
 'nopagetitle'             => 'A megadott céllap nem létezik',
 'nopagetext'              => 'A megadott céllap nem létezik.',
 'pager-newer-n'           => '{{PLURAL:$1|1 újabb|$1 újabb}}',

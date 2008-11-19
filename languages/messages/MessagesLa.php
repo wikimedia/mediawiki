@@ -735,7 +735,7 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'nextn'                 => '$1 proxima',
 'viewprevnext'          => 'Videre ($1) ($2) ($3).',
 'searchmenu-exists'     => "'''Iam est pagina \"[[\$1]]\"'''",
-'searchmenu-new'        => "'''[[:\$1|Creare]] paginam \"[[\$1]]\"'''",
+'searchmenu-new'        => "'''[[:$1|Creare]] paginam ''$1'''''",
 'searchhelp-url'        => 'Help:Adiutatum',
 'search-result-size'    => '$1 ({{PLURAL:$2|1 verbum|$2 verba}})',
 'search-result-score'   => 'Gravitas: $1%',
