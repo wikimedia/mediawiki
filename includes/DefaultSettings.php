@@ -1590,6 +1590,9 @@ $wgHTCPMulticastTTL = 1;
 # $wgHTCPMulticastAddress = "224.0.0.85";
 $wgHTCPMulticastAddress = false;
 
+/** Should forwarded Private IPs be accepted? */
+$wgUsePrivateIPs = false;
+
 # Cookie settings:
 #
 /**
