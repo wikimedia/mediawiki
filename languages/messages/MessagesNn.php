@@ -1061,11 +1061,11 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 'nextn'                            => 'neste $1',
 'viewprevnext'                     => 'Vis ($1) ($2) ($3).',
 'searchmenu-exists'                => "* Sida '''[[$1]]'''",
-'searchmenu-new'                   => "* [[$1|Opprett]] sida «'''[[$1]]'''»",
+'searchmenu-new'                   => "'''[[:$1|Opprett]] sida ''[[$1]]'' på denne wikien!'''",
 'searchhelp-url'                   => 'Help:Innhald',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Sjå gjennom alle sider med denne forstavinga]]',
-'searchprofile-articles'           => 'Sider',
-'searchprofile-articles-and-proj'  => 'Sider & prosjekt',
+'searchprofile-articles'           => 'Innhaldssider',
+'searchprofile-articles-and-proj'  => 'Innhaldssider & prosjekt',
 'searchprofile-project'            => 'Prosjekt',
 'searchprofile-images'             => 'Filer',
 'searchprofile-everything'         => 'Alt',
@@ -1980,6 +1980,7 @@ Sjå [[Special:Log/delete|sletteloggen]] for eit oversyn over sider som nyleg er
 'undelete-error-long'          => 'Feil ved attoppretting av fila:
 
 $1',
+'undelete-show-file-submit'    => 'Ja',
 
 # Namespace form on various pages
 'namespace'      => 'Namnerom:',
@@ -2740,7 +2741,7 @@ Dei andre felta er gøymde som standard.
 
 # External editor support
 'edit-externally'      => 'Endre denne fila med eit eksternt program',
-'edit-externally-help' => 'Sjå [http://www.mediawiki.org/wiki/Manual:External_editors eksterne program instruksjonane] for meir informasjon.',
+'edit-externally-help' => '(Sjå [http://www.mediawiki.org/wiki/Manual:External_editors eksterne program instruksjonane] for meir informasjon)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'alle',

@@ -1634,9 +1634,10 @@ Shown as subtitle of the protection form. $1 is the title of the page to be (un)
 'undeleteinvert'             => '{{Identical|Invert selection}}',
 'undeletecomment'            => '{{Identical|Comment}}',
 'undelete-search-submit'     => '{{Identical|Search}}',
-'undelete-show-file-confirm' => 'A confirmation message shown on Special:Undelete when the request does not contain a valid [[mw:Manual:Edit token|token]] (e.g. when a user clicks a link received in mail).
+'undelete-show-file-confirm' => 'A confirmation message shown on Special:Undelete when the request does not contain a valid token (e.g. when a user clicks a link received in mail).
 * <code>$1</code> is the name of the file being undeleted.
-* <code>$2</code> is the timestamp of the displayed revision.',
+* <code>$2</code> is the date of the displayed revision.
+* <code>$3</code> is the time of the displayed revision.',
 
 # Namespace form on various pages
 'namespace'      => '{{Identical|Namespace}}',

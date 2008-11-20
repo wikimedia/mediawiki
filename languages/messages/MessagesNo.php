@@ -14,6 +14,7 @@
  * @author Kph
  * @author Kph-no
  * @author Laaknor
+ * @author Najami
  * @author Samuelsen
  * @author Stigmj
  * @author Teak
@@ -994,11 +995,11 @@ Forsikre deg om at denne endringen vil opprettholde historisk sidekontinuitet.',
 'viewprevnext'                     => 'Vis ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Søkeinnstillinger',
 'searchmenu-exists'                => "* Siden '''[[$1]]'''",
-'searchmenu-new'                   => "'''[[:$1|Opprett]] siden «[[$1]]» på denne wikien.'''",
+'searchmenu-new'                   => "'''[[:$1|Opprett]] siden ''$1'' på denne wikien.'''",
 'searchhelp-url'                   => 'Help:Hjelp',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Vis alle sider som begynner med dette]]',
-'searchprofile-articles'           => 'Sider',
-'searchprofile-articles-and-proj'  => 'Sider & prosjekt',
+'searchprofile-articles'           => 'Innholdssider',
+'searchprofile-articles-and-proj'  => 'Innholdssider & prosjekt',
 'searchprofile-project'            => 'Prosjekt',
 'searchprofile-images'             => 'Filer',
 'searchprofile-everything'         => 'Alt',
@@ -1918,6 +1919,7 @@ Sjekk [[Special:Log/delete|slettingsloggen]] for en liste over nylige slettinger
 'undelete-error-long'          => 'Feil oppsto under filgjenoppretting:
 
 $1',
+'undelete-show-file-submit'    => 'Ja',
 
 # Namespace form on various pages
 'namespace'      => 'Navnerom:',
@@ -2691,7 +2693,7 @@ Rotert 90° mot klokka og vridd vertikalt', # 0th row: left; 0th column: top
 
 # External editor support
 'edit-externally'      => 'Rediger denne fila med et eksternt program',
-'edit-externally-help' => 'Se [http://www.mediawiki.org/wiki/Manual:External_editors oppsettsinstruksjonene] for mer informasjon.',
+'edit-externally-help' => '(Se [http://www.mediawiki.org/wiki/Manual:External_editors oppsettsinstruksjonene] for mer informasjon)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'alle',

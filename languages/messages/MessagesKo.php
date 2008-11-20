@@ -1128,6 +1128,8 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'rc_categories'                     => '다음 분류로 제한 (‘|’로 구분)',
 'rc_categories_any'                 => '모두',
 'newsectionsummary'                 => '새 주제: /* $1 */',
+'rc-enhanced-expand'                => '세부 기록 보기 (자바스크립트 필요)',
+'rc-enhanced-hide'                  => '세부기록 숨기기',
 
 # Recent changes linked
 'recentchangeslinked'          => '가리키는 글의 바뀜',
@@ -1511,6 +1513,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'emailccsubject'  => '$1에게 보낸 메일 사본: $2',
 'emailsent'       => '이메일 보냄',
 'emailsenttext'   => '이메일을 보냈습니다.',
+'emailuserfooter' => '이 이메일은 {{SITENAME}}의 $1 사용자가 $2 사용자에게 "이메일 보내기" 기능을 통해 전송되었습니다.',
 
 # Watchlist
 'watchlist'            => '주시문서 목록',
