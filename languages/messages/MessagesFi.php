@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /** Finnish (Suomi)
  *
  * @ingroup Language
@@ -38,7 +38,7 @@ $namespaceNames = array(
 
 $namespaceAliases = array(
 	'Kuva' => NS_IMAGE,
-	'Keskustelu_tiedostosta' => NS_IMAGE_TALK,
+	'Keskustelu_kuvasta' => NS_IMAGE_TALK,
 );
 
 $skinNames = array(
