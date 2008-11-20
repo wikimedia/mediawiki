@@ -2211,7 +2211,7 @@ class Parser
 								$output .= $paragraphStack;
 								$paragraphStack = false;
 								$this->mLastSection = 'p';
-							} else if ($this->mLastSection !== 'p' and $this->mLastSection !== '') {
+							} else if ($this->mLastSection !== 'p') {
 								$output .= $this->closeParagraph().'<p>';
 								$this->mLastSection = 'p';
 							}
