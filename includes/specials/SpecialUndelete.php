@@ -898,7 +898,8 @@ class UndeleteForm {
 		$file = new ArchivedFile( $this->mTargetObj, '', $this->mFile );
 		$wgOut->addWikiMsg( 'undelete-show-file-confirm',
 			$this->mTargetObj->getText(),
-			$wgLang->timeanddate( $file->getTimestamp() ) );
+			$wgLang->date( $file->getTimestamp() ),
+			$wgLang->time( $file->getTimestamp() ) );
 		$wgOut->addHTML( 
 			Xml::openElement( 'form', array( 
 				'method' => 'POST',
