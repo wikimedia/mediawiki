@@ -2494,7 +2494,7 @@ It may have already been undeleted.',
 'undelete-error-long'          => 'Errors were encountered while undeleting the file:
 
 $1',
-'undelete-show-file-confirm'   => 'Are you sure you want to view a deleted revision of the file "<nowiki>$1</nowiki>" from $2?',
+'undelete-show-file-confirm'   => 'Are you sure you want to view a deleted revision of the file "<nowiki>$1</nowiki>" from $2 at $3?',
 'undelete-show-file-submit'    => 'Yes',
 
 # Namespace form on various pages
