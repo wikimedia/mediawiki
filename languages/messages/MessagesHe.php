@@ -2118,7 +2118,7 @@ $NEWPAGE
 'undelete-error-long'          => 'שגיאות שאירעו בעת שחזור הקובץ:
 
 $1',
-'undelete-show-file-confirm'   => 'האם אתם בטוחים שברצונכם לצפות בגרסה המחוקה של הקובץ "<nowiki>$1</nowiki>" מ־$2?',
+'undelete-show-file-confirm'   => 'האם אתם בטוחים שברצונכם לצפות בגרסה המחוקה של הקובץ "<nowiki>$1</nowiki>" מ־$3, $2?',
 'undelete-show-file-submit'    => 'כן',
 
 # Namespace form on various pages
