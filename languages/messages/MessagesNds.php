@@ -469,7 +469,7 @@ un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artikel',
-'nstab-user'      => 'Siet vun den Bruker',
+'nstab-user'      => 'Brukersied',
 'nstab-media'     => 'Media',
 'nstab-special'   => 'Spezial',
 'nstab-project'   => 'Över',
@@ -2675,7 +2675,7 @@ Wat denn noch an Lenken kummt in de Reeg, dat sünd Utnahmen, bi de dat Bild lie
 
 # External editor support
 'edit-externally'      => 'Änner disse Datei mit en extern Programm',
-'edit-externally-help' => '<span class="plainlinks">Lees de [http://www.mediawiki.org/wiki/Manual:External_editors Installatschoonshelp] wenn du dor mehr to weten wist.</span>',
+'edit-externally-help' => '(Lees de [http://www.mediawiki.org/wiki/Manual:External_editors Installatschoonshelp] wenn du dor mehr to weten wullt)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'all',

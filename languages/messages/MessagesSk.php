@@ -1027,8 +1027,8 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 'searchmenu-new'                   => "'''[[:$1|Vytvoriť stránku]] ''[[$1]]'' na tejto wiki'''",
 'searchhelp-url'                   => 'Help:Obsah',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Prehliadať stránky s touto predponou]]',
-'searchprofile-articles'           => 'Stránky',
-'searchprofile-articles-and-proj'  => 'Stránky & projekt',
+'searchprofile-articles'           => 'Stránky s obsahom',
+'searchprofile-articles-and-proj'  => 'Stránky s obsahom & projekt',
 'searchprofile-project'            => 'Projekt',
 'searchprofile-images'             => 'Súbory',
 'searchprofile-everything'         => 'Všetky',
@@ -1965,7 +1965,7 @@ Zoznam posledných mazaní a obnovení nájdete v [[Special:Log/delete|Zázname 
 'undelete-error-long'          => 'Vyskytli sa chyby pri obnovovaní súboru:
 
 $1',
-'undelete-show-file-confirm'   => 'Ste si istý, že chcete zobraziť zmazanú revíziu súboru „<nowiki>$1</nowiki>“ od $2?',
+'undelete-show-file-confirm'   => 'Ste si istý, že chcete zobraziť zmazanú revíziu súboru „<nowiki>$1</nowiki>“ z $2 $3?',
 'undelete-show-file-submit'    => 'Áno',
 
 # Namespace form on various pages

@@ -176,7 +176,7 @@ $messages = array(
 'tog-enotifrevealaddr'        => "Eskertiw xatlarında e-mail adresimdi ko'rset",
 'tog-shownumberswatching'     => "Baqlag'an paydalanıwshılar sanın ko'rset",
 'tog-fancysig'                => 'Shala imzalar (avtomat siltewsiz)',
-'tog-externaleditor'          => "Defolt boyınsha sırtqı o'zgertiwshini qollan",
+'tog-externaleditor'          => "Defolt boyınsha sırtqı o'zgertiwshini qollan (tek g'ana ta'jiriybeli paydalanıwshılar ushın, kompyuterin'izde qosımsha sazlawlar qılınıwı kerek)",
 'tog-externaldiff'            => 'Defoltta sırtqı parqtı qollan',
 'tog-showjumplinks'           => "«O'tip ketiw» siltewlerin qos",
 'tog-uselivepreview'          => "Janlı ko'rip shıg'ıwdı qollan (JavaScript) (Sınawda)",
@@ -386,6 +386,8 @@ $messages = array(
 'editsection'             => "o'zgertiw",
 'editold'                 => "o'zgertiw",
 'viewsourceold'           => "deregin ko'riw",
+'editlink'                => "o'zgertiw",
+'viewsourcelink'          => "kodın ko'riw",
 'editsectionhint'         => "$1 bo'limin o'zgertiw",
 'toc'                     => 'Mazmunı',
 'showtoc'                 => "ko'rset",
@@ -478,6 +480,9 @@ Audarıw ushın,  MediaWiki programmasın jersindiriw [http://translatewiki.net/
 'ns-specialprotected'  => '"{{ns:special}}:" isimler ko\'pligindegi betler o\'zgertilmeydi',
 'titleprotected'       => "Bul atamanı jaratıw [[User:$1|$1]] ta'repinen qorg'alg'an.
 Keltirilgen sebep: ''$2''.",
+
+# Virus scanner
+'virus-unknownscanner' => 'belgisiz antivirus:',
 
 # Login and logout pages
 'logouttitle'                => "Shıg'ıw",

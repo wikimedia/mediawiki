@@ -12,6 +12,7 @@
  * @author Lars J. Helbo <lars.helbo@gmail.com>
  * @author MinuteElectron
  * @author Morten LJ
+ * @author Najami
  * @author Peter Andersen
  * @author Remember the dot
  * @author Svip
@@ -1747,7 +1748,7 @@ $1',
 
 # What links here
 'whatlinkshere'            => 'Hvad henviser hertil',
-'whatlinkshere-title'      => 'Sider der henviser til $1',
+'whatlinkshere-title'      => 'Sider der linker til "$1"',
 'whatlinkshere-page'       => 'Side:',
 'linkshere'                => "De følgende sider henviser til '''„[[:$1]]“''':",
 'nolinkshere'              => "Ingen sider henviser til '''„[[:$1]]“'''.",
@@ -2423,7 +2424,7 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 
 # External editor support
 'edit-externally'      => 'Rediger denne fil med en ekstern editor',
-'edit-externally-help' => 'Se [http://www.mediawiki.org/wiki/Manual:External_editors setup instruktionerne] for mere information.',
+'edit-externally-help' => '(Se [http://www.mediawiki.org/wiki/Manual:External_editors setup instruktionerne] for mere information)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'alle',

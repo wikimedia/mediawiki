@@ -1109,8 +1109,8 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 'searchmenu-new'                   => "'''[[:\$1|Buat]] halaman \"\$1\" di wiki ini!'''",
 'searchhelp-url'                   => 'Help:Isi',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Lihat daftar halaman dengan awalan ini]]',
-'searchprofile-articles'           => 'Halaman-halaman',
-'searchprofile-articles-and-proj'  => 'Halaman & Proyek',
+'searchprofile-articles'           => 'Halaman isi',
+'searchprofile-articles-and-proj'  => 'Halaman isi dan Proyek',
 'searchprofile-project'            => 'Proyek',
 'searchprofile-images'             => 'Berkas',
 'searchprofile-everything'         => 'Seluruhnya',
@@ -1119,6 +1119,7 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 'searchprofile-project-tooltip'    => 'Pencarian di $1',
 'searchprofile-images-tooltip'     => 'Pencarian berkas',
 'searchprofile-everything-tooltip' => 'Pencarian di seluruh isi (termasuk halaman pembicaraan)',
+'searchprofile-advanced-tooltip'   => 'Pencarian di ruang nama tersuai',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 kata|$2 kata}})',
 'search-result-score'              => 'Relevansi: $1%',
 'search-redirect'                  => '(pengalihan $1)',
@@ -2767,7 +2768,7 @@ Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, 
 
 # External editor support
 'edit-externally'      => 'Sunting berkas ini dengan aplikasi luar',
-'edit-externally-help' => 'Lihat [http://www.mediawiki.org/wiki/Manual:External_editors instruksi pengaturan] untuk informasi lebih lanjut.',
+'edit-externally-help' => '(Lihat [http://www.mediawiki.org/wiki/Manual:External_editors instruksi pengaturan] untuk informasi lebih lanjut)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'semua',

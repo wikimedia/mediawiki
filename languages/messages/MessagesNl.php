@@ -2181,7 +2181,7 @@ Misschien is het al teruggeplaatst.',
 'undelete-error-long'          => 'Er zijn fouten opgetreden bij het herstellen van het bestand:
 
 $1',
-'undelete-show-file-confirm'   => 'Weet u zeker dat u een verwijderde versie van het bestand "<nowiki>$1</nowiki>" van $2 wilt bekijken?',
+'undelete-show-file-confirm'   => 'Weet u zeker dat u een verwijderde versie van het bestand "<nowiki>$1</nowiki>" van $2 om $3 wilt bekijken?',
 'undelete-show-file-submit'    => 'Ja',
 
 # Namespace form on various pages
