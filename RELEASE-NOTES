@@ -446,6 +446,7 @@ The following extensions are migrated into MediaWiki 1.14:
   sifilter parameter.
 * (bug 12760) meta=userinfo&uiprop=ratelimits doesn't list group-specific rate
   limits
+* (bug 16398) meta=userinfo&uiprop=rights lists some rights twice in some cases
 
 === Languages updated in 1.14 ===
 

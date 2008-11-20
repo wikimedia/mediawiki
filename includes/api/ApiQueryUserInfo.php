@@ -76,7 +76,8 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			$result->setIndexedTagName($vals['groups'], 'g');	// even if empty
 		}
 		if (isset($this->prop['rights'])) {
-			$vals['rights'] = $wgUser->getRights();
+			// User::getRights() may return duplicate values, strip them
+			$vals['rights'] = array_unique($wgUser->getRights());
 			$result->setIndexedTagName($vals['rights'], 'r');	// even if empty
 		}
 		if (isset($this->prop['options'])) {
