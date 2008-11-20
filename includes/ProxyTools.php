@@ -67,7 +67,7 @@ function wfGetAgent() {
  * @return string
  */
 function wfGetIP() {
-	global $wgIP;
+	global $wgIP, $wgUsePrivateIPs;
 
 	# Return cached result
 	if ( !empty( $wgIP ) ) {
@@ -97,8 +97,10 @@ function wfGetIP() {
 	foreach ( $ipchain as $i => $curIP ) {
 		$curIP = IP::canonicalize( $curIP );
 		if ( wfIsTrustedProxy( $curIP ) ) {
-			if ( isset( $ipchain[$i + 1] ) && IP::isPublic( $ipchain[$i + 1] ) ) {
-				$ip = $ipchain[$i + 1];
+			if ( isset( $ipchain[$i + 1] ) ) {
+				if( $wgUsePrivateIPs || IP::isPublic( $ipchain[$i + 1 ] ) ) {
+					$ip = $ipchain[$i + 1];
+				}
 			}
 		} else {
 			break;
