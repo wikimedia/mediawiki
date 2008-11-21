@@ -144,7 +144,7 @@ class ImageCleanup extends TableCleanup {
 				__METHOD__ );
 			$dir = dirname( $finalPath );
 			if( !file_exists( $dir ) ) {
-				if( !mkdir( $dir, 0777, true ) ) {
+				if( !wfMkdirParents( $dir ) ) {
 					$this->log( "RENAME FAILED, COULD NOT CREATE $dir" );
 					$db->rollback();
 					return;
