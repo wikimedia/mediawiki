@@ -3004,10 +3004,11 @@ class User {
 		foreach( $groups as $group ) {
 			if( isset( $wgGroupPermissions[$group] ) ) {
 				$rights = array_merge( $rights,
+					// array_filter removes empty items
 					array_keys( array_filter( $wgGroupPermissions[$group] ) ) );
 			}
 		}
-		return $rights;
+		return array_unique($rights);
 	}
 	
 	/**
