@@ -1928,69 +1928,20 @@ function wfTempDir() {
 /**
  * Make directory, and make all parent directories if they don't exist
  * 
- * @param string $fullDir Full path to directory to create
+ * @param string $dir Full path to directory to create
  * @param int $mode Chmod value to use, default is $wgDirectoryMode
  * @return bool
  */
-function wfMkdirParents( $fullDir, $mode = null ) {
+function wfMkdirParents( $dir, $mode = null ) {
 	global $wgDirectoryMode;
-	if( strval( $fullDir ) === '' )
+
+	if( strval( $dir ) === '' || file_exists( $dir ) )
 		return true;
-	if( file_exists( $fullDir ) )
-		return true;
-	// If not defined or isn't an int, set to default
-	if ( is_null( $mode ) ) {
+
+	if ( is_null( $mode ) )
 		$mode = $wgDirectoryMode;
-	}
 
-
-	# Go back through the paths to find the first directory that exists
-	$currentDir = $fullDir;
-	$createList = array();
-	while ( strval( $currentDir ) !== '' && !file_exists( $currentDir ) ) {
-		# Strip trailing slashes
-		$currentDir = rtrim( $currentDir, '/\\' );
-
-		# Add to create list
-		$createList[] = $currentDir;
-
-		# Find next delimiter searching from the end
-		$p = max( strrpos( $currentDir, '/' ), strrpos( $currentDir, '\\' ) );
-		if ( $p === false ) {
-			$currentDir = false;
-		} else {
-			$currentDir = substr( $currentDir, 0, $p );
-		}
-	}
-
-	if ( count( $createList ) == 0 ) {
-		# Directory specified already exists
-		return true;
-	} elseif ( $currentDir === false ) {
-		# Went all the way back to root and it apparently doesn't exist
-		wfDebugLog( 'mkdir', "Root doesn't exist?\n" );
-		return false;
-	}
-	# Now go forward creating directories
-	$createList = array_reverse( $createList );
-
-	# Is the parent directory writable?
-	if ( $currentDir === '' ) {
-		$currentDir = '/';
-	}
-	if ( !is_writable( $currentDir ) ) {
-		wfDebugLog( 'mkdir', "Not writable: $currentDir\n" );
-		return false;
-	}
-
-	foreach ( $createList as $dir ) {
-		# use chmod to override the umask, as suggested by the PHP manual
-		if ( !mkdir( $dir, $mode ) || !chmod( $dir, $mode ) ) {
-			wfDebugLog( 'mkdir', "Unable to create directory $dir\n" );
-			return false;
-		}
-	}
-	return true;
+	return mkdir( $dir, $mode, true );  // PHP5 <3
 }
 
 /**
