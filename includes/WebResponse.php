@@ -57,4 +57,8 @@ class WebResponse {
 				$wgCookieSecure );
 		}
 	}
+
+	public function setSessionData( $key, $data ) {
+		$_SESSION[$key] = $data;
+	}
 }
