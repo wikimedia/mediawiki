@@ -57,7 +57,7 @@ $messages = array(
 'mytalk'        => 'Mi diskushon',
 'anontalk'      => 'Diskushon pa e IP aki',
 'navigation'    => 'Nabegashon',
-'and'           => 'i',
+'and'           => '&#32;i',
 
 'errorpagetitle'    => 'Eror',
 'returnto'          => 'Bai bèk $1.',

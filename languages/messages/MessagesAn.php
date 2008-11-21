@@ -266,7 +266,7 @@ $messages = array(
 'mytalk'         => 'Pachina de descusión',
 'anontalk'       => "Pachina de descusión d'ista IP",
 'navigation'     => 'Nabego',
-'and'            => 'y',
+'and'            => '&#32;y',
 
 # Metadata in edit box
 'metadata_help' => 'Metadatos:',

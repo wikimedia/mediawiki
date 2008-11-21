@@ -91,7 +91,7 @@ $messages = array(
 'mytalk'        => 'Mia pagina da discussiun',
 'anontalk'      => 'Pagina da discussiun da questa IP',
 'navigation'    => 'Navigaziun',
-'and'           => 'e',
+'and'           => '&#32;e',
 
 'returnto'         => 'Enavos tar $1.',
 'help'             => 'Agid',

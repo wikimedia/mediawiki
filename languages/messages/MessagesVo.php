@@ -240,7 +240,7 @@ $messages = array(
 'mytalk'         => 'Bespiks obik',
 'anontalk'       => 'Bespiks ela IP at',
 'navigation'     => 'Nafam',
-'and'            => 'e',
+'and'            => '&#32;e',
 
 # Metadata in edit box
 'metadata_help' => 'Metanünods:',

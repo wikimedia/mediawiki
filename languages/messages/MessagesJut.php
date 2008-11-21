@@ -138,7 +138,7 @@ $messages = array(
 'mytalk'         => 'Min diskusje',
 'anontalk'       => 'Diskusjeside før denne IP-adresse',
 'navigation'     => 'Navigasje',
-'and'            => 'og',
+'and'            => '&#32;og',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',

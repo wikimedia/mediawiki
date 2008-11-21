@@ -190,7 +190,7 @@ $messages = array(
 'moredotdotdot'  => 'اڃا...',
 'mypage'         => 'منهنجو صفحو',
 'mytalk'         => 'مون سان ڳالهه',
-'and'            => '۽',
+'and'            => '&#32;۽',
 
 'errorpagetitle'    => 'چُڪَ',
 'returnto'          => '$1 ڏانهن وَرو.',

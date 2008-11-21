@@ -549,7 +549,7 @@ $messages = array(
 'mytalk'         => 'تالقىلاۋىم',
 'anontalk'       => 'IP تالقىلاۋى',
 'navigation'     => 'شارلاۋ',
-'and'            => 'جانە',
+'and'            => '&#32;جانە',
 
 # Metadata in edit box
 'metadata_help' => 'قوسىمشا دەرەكتەر:',

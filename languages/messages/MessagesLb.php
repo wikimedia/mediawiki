@@ -279,7 +279,7 @@ $messages = array(
 'mytalk'         => 'meng Diskussioun',
 'anontalk'       => 'Diskussioun fir dës IP Adress',
 'navigation'     => 'Navigatioun',
-'and'            => 'an',
+'and'            => '&#32;an',
 
 # Metadata in edit box
 'metadata_help' => 'Metadaten:',
@@ -1874,7 +1874,7 @@ Am [[Special:Log/delete|Läsch-Logbuch]] fannt Dir déi geläscht a restauréier
 'undelete-error-long'          => 'Beim Restauréiere vun engem Fichier goufe Feeler fonnt:
 
 $1',
-'undelete-show-file-confirm'   => 'Sidd Dir sécher, datt dir eng geläschte Versioun vum Fichier „<nowiki>$1</nowiki>“ vum $2 gesi wëllt?',
+'undelete-show-file-confirm'   => '!Sidd Dir sécher, datt dir eng geläschte Versioun vum Fichier „<nowiki>$1</nowiki>“ vum $2 ëm $3 Auer gesi wëllt?',
 'undelete-show-file-submit'    => 'Jo',
 
 # Namespace form on various pages

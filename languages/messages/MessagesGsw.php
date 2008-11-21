@@ -149,7 +149,7 @@ $messages = array(
 'mytalk'         => 'mini Diskussionsyte',
 'anontalk'       => 'Diskussionssyste vo sellere IP',
 'navigation'     => 'Nawigation',
-'and'            => 'un',
+'and'            => '&#32;un',
 
 # Metadata in edit box
 'metadata_help' => 'Metadàda:',

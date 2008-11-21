@@ -394,7 +394,7 @@ $messages = array(
 'mytalk'         => '내 사용자 토론',
 'anontalk'       => '익명 사용자 토론',
 'navigation'     => '둘러보기',
-'and'            => '그리고',
+'and'            => '&#32;그리고',
 
 # Metadata in edit box
 'metadata_help' => '메타데이터:',

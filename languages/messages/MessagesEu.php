@@ -203,7 +203,7 @@ $messages = array(
 'mytalk'         => 'Nire eztabaida',
 'anontalk'       => 'IP honen eztabaida',
 'navigation'     => 'Nabigazioa',
-'and'            => 'eta',
+'and'            => '&#32;eta',
 
 # Metadata in edit box
 'metadata_help' => 'Metadatuak:',

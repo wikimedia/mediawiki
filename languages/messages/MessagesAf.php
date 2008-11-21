@@ -255,7 +255,7 @@ $messages = array(
 'mytalk'         => 'My besprekings',
 'anontalk'       => 'Besprekingsblad vir hierdie IP',
 'navigation'     => 'Navigasie',
-'and'            => 'en',
+'and'            => '&#32;en',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',

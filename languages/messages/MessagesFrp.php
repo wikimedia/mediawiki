@@ -202,7 +202,7 @@ $messages = array(
 'mytalk'         => 'Pâge de discussion',
 'anontalk'       => 'Discussion avouéc ceta adrèce IP',
 'navigation'     => 'Navigacion',
-'and'            => 'et',
+'and'            => '&#32;et',
 
 # Metadata in edit box
 'metadata_help' => 'Mètabalyês :',

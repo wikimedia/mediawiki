@@ -212,7 +212,7 @@ $messages = array(
 'mytalk'         => 'ჩემი განხილვა',
 'anontalk'       => 'ამ IP-ს განხილვა',
 'navigation'     => 'ნავიგაცია',
-'and'            => 'და',
+'and'            => '&#32;და',
 
 # Metadata in edit box
 'metadata_help' => 'მეტამონაცემები (იხ. [[Project:მეტამონაცემები|მეტამონაცემები]] განმარტებისთვის):',

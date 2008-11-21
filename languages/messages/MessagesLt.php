@@ -290,7 +290,7 @@ $messages = array(
 'mytalk'         => 'Mano aptarimas',
 'anontalk'       => 'Šio IP aptarimas',
 'navigation'     => 'Naršymas',
-'and'            => 'ir',
+'and'            => '&#32;ir',
 
 # Metadata in edit box
 'metadata_help' => 'Metaduomenys:',

@@ -214,7 +214,7 @@ $messages = array(
 'mytalk'         => 'মোৰ আলাপ',
 'anontalk'       => 'এই IP-ত যোগাযোগ কৰক',
 'navigation'     => 'দিকদৰ্শন',
-'and'            => 'আৰু',
+'and'            => '&#32;আৰু',
 
 # Metadata in edit box
 'metadata_help' => 'মেটাডাটা:',

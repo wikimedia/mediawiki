@@ -148,7 +148,7 @@ Pabusten ing pamanaliling dake kapamilatan [alilan] ning suglung',
 'mytalk'         => 'Makisabi kaku',
 'anontalk'       => 'Pamakisabi para keng IPing ini',
 'navigation'     => 'Pamaglibut',
-'and'            => 'ampo',
+'and'            => '&#32;ampo',
 
 'errorpagetitle'    => 'Mali',
 'returnto'          => 'Magbalik king $1.',

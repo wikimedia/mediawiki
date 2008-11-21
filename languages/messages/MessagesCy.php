@@ -257,7 +257,7 @@ $messages = array(
 'mytalk'         => 'Fy sgwrs',
 'anontalk'       => 'Sgwrs ar gyfer y cyfeiriad IP hwn',
 'navigation'     => 'Panel llywio',
-'and'            => 'a/ac',
+'and'            => '&#32;a/ac',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',

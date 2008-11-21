@@ -141,7 +141,7 @@ $messages = array(
 'mytalk'         => 'pakitungtongak',
 'anontalk'       => 'Tungtongan iti daytoy nga IP',
 'navigation'     => 'Pagdaliasatan',
-'and'            => 'ken',
+'and'            => '&#32;ken',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',

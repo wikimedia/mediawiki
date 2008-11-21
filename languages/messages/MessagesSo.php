@@ -114,7 +114,7 @@ $messages = array(
 'mypage'         => 'Boggeyga',
 'mytalk'         => 'Wadahadalkeyga',
 'anontalk'       => 'Wadahadalka IP:gan',
-'and'            => 'iyo',
+'and'            => '&#32;iyo',
 
 'errorpagetitle'    => 'Qalad',
 'returnto'          => 'Ku noqo $1.',

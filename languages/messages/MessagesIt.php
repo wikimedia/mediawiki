@@ -303,7 +303,7 @@ I seguenti collegamenti sono in lingua inglese:
 'mytalk'         => 'mie discussioni',
 'anontalk'       => 'Discussioni per questo IP',
 'navigation'     => 'Navigazione',
-'and'            => 'e',
+'and'            => '&#32;e',
 
 # Metadata in edit box
 'metadata_help' => 'Metadati:',

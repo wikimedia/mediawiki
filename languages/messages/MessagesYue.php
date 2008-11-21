@@ -279,7 +279,7 @@ $messages = array(
 'mytalk'         => '我嘅討論',
 'anontalk'       => '同呢個 IP 傾偈',
 'navigation'     => '導航',
-'and'            => '同埋',
+'and'            => '&#32;同埋',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata',

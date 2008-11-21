@@ -396,7 +396,7 @@ $messages = array(
 'mytalk'         => 'ការពិភាក្សា​',
 'anontalk'       => 'ពិភាក្សាចំពោះ IP នេះ',
 'navigation'     => 'ទិសដៅ',
-'and'            => 'និង',
+'and'            => '&#32;និង',
 
 # Metadata in edit box
 'metadata_help' => 'ទិន្នន័យមេតា៖',

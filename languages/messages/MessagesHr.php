@@ -436,7 +436,7 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'mytalk'         => 'Moj razgovor',
 'anontalk'       => 'Razgovor za ovu IP adresu',
 'navigation'     => 'Orijentacija',
-'and'            => 'i',
+'and'            => '&#32;i',
 
 # Metadata in edit box
 'metadata_help' => 'Metapodaci:',

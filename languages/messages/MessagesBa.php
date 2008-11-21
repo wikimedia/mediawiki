@@ -106,7 +106,7 @@ $messages = array(
 'mypage'         => 'Шәхси бит',
 'mytalk'         => 'Минең менән фекер алышыу',
 'navigation'     => 'Төп йүнәлештәр',
-'and'            => 'һәм',
+'and'            => '&#32;һәм',
 
 'errorpagetitle'   => 'Хата',
 'returnto'         => '$1 битенә ҡайтыу.',

@@ -189,7 +189,7 @@ $messages = array(
 'mytalk'         => 'Mi copinaedje',
 'anontalk'       => 'Pådje di copene po ciste adresse IP',
 'navigation'     => 'Naiviaedje',
-'and'            => 'eyet',
+'and'            => '&#32;eyet',
 
 # Metadata in edit box
 'metadata_help' => 'Meta-dnêyes :',

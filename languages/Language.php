@@ -1893,9 +1893,9 @@ class Language {
 			if ($i == $m) {
 				$s = $l[$i];
 			} else if ($i == $m - 1) {
-				$s = $l[$i] . ' ' . $this->getMessageFromDB( 'and' ) . ' ' . $s;
+				$s = $l[$i] . $this->getMessageFromDB( 'and' ) . $this->getMessageFromDB( 'word-separator' ) . $s;
 			} else {
-				$s = $l[$i] . ', ' . $s;
+				$s = $l[$i] . $this->getMessageFromDB( 'comma-separator' ) . $s;
 			}
 		}
 		return $s;

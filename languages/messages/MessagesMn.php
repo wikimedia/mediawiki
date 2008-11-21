@@ -167,7 +167,7 @@ $messages = array(
 'mytalk'         => 'Миний яриа',
 'anontalk'       => 'Энэ IP-н яриа',
 'navigation'     => 'Залуурдлага',
-'and'            => 'ба',
+'and'            => '&#32;ба',
 
 # Metadata in edit box
 'metadata_help' => 'Зургийн тухай мэдээлэл:',

@@ -81,7 +81,7 @@ $messages = array(
 'qbspecialpages' => 'Axa tɔxewo',
 'mypage'         => 'Axa nye',
 'navigation'     => 'Mɔtabiala',
-'and'            => 'kpakple',
+'and'            => '&#32;kpakple',
 
 'errorpagetitle'   => 'Vodada',
 'returnto'         => 'Gbugbɔ yi $1.',

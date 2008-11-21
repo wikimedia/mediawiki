@@ -302,7 +302,7 @@ $messages = array(
 'mytalk'         => 'Min diskussion',
 'anontalk'       => 'Diskussionsside for denne IP-adresse',
 'navigation'     => 'Navigation',
-'and'            => 'og',
+'and'            => '&#32;og',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',

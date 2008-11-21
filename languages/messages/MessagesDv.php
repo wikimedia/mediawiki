@@ -60,7 +60,7 @@ $messages = array(
 'qbmyoptions'   => 'މަގޭ ސަފްހާ ތައް',
 'mytalk'        => 'މަގޭ ވާހަކަ',
 'navigation'    => 'ސަމުގާ',
-'and'           => 'އަދި',
+'and'           => '&#32;އަދި',
 
 'errorpagetitle'    => 'ކުށް',
 'returnto'          => 'އަނބުރާ $1 އަށް ވަޑައިގަންނަވާ!',

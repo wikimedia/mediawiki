@@ -226,7 +226,7 @@ $messages = array(
 'mytalk'         => 'Rimachinay',
 'anontalk'       => 'Kay IP huchhapaq rimanakuy',
 'navigation'     => "Wamp'una",
-'and'            => '-wan',
+'and'            => '&#32;-wan',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',

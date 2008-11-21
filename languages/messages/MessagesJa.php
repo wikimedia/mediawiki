@@ -301,7 +301,7 @@ $messages = array(
 'mytalk'         => 'マイ・トーク',
 'anontalk'       => 'このIP利用者の会話',
 'navigation'     => 'ナビゲーション',
-'and'            => 'および',
+'and'            => '&#32;および',
 
 # Metadata in edit box
 'metadata_help' => 'メタデータ:',

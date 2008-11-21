@@ -141,7 +141,7 @@ $messages = array(
 'mypage'        => 'મારું પાનું',
 'mytalk'        => 'મારી ચર્ચા',
 'navigation'    => 'ભ્રમણ',
-'and'           => 'અને',
+'and'           => '&#32;અને',
 
 'errorpagetitle'   => 'ત્રુટિ',
 'returnto'         => '$1 પર પાછા જાઓ.',

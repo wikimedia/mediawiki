@@ -168,7 +168,7 @@ $messages = array(
 'mytalk'         => 'የኔ ውይይት',
 'anontalk'       => 'ውይይት ለዚሁ ቁ. አድራሻ',
 'navigation'     => 'መቃኘት',
-'and'            => 'እና',
+'and'            => '&#32;እና',
 
 # Metadata in edit box
 'metadata_help' => 'ተጨማሪ መረጃ:',

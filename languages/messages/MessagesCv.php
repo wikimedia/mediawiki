@@ -175,7 +175,7 @@ $messages = array(
 'mytalk'         => 'Ман канашлу страници',
 'anontalk'       => 'Çак IP-адреса сӳтсе явни',
 'navigation'     => 'Меню',
-'and'            => 'тата',
+'and'            => '&#32;тата',
 
 # Metadata in edit box
 'metadata_help' => 'Метаданнăйсем:',

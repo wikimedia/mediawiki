@@ -285,7 +285,7 @@ $messages = array(
 'mytalk'         => 'منی گپ',
 'anontalk'       => 'گپ کن گون ای آی پی',
 'navigation'     => 'گردگ',
-'and'            => 'و',
+'and'            => '&#32;و',
 
 # Metadata in edit box
 'metadata_help' => 'متادیتا',

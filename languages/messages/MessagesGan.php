@@ -145,7 +145,7 @@ $messages = array(
 'mytalk'         => '偶嗰對話框',
 'anontalk'       => '箇隻IP嗰對話框',
 'navigation'     => '導航',
-'and'            => '同到',
+'and'            => '&#32;同到',
 
 # Metadata in edit box
 'metadata_help' => '元數據:',

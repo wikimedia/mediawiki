@@ -90,7 +90,7 @@ $messages = array(
 'moredotdotdot'  => 'uggar...',
 'mypage'         => 'tawriqt niw',
 'mytalk'         => 'assays ino',
-'and'            => 'z',
+'and'            => '&#32;z',
 
 'tagline'          => 'mn {{SITENAME}}',
 'help'             => 'lmɜiwna',

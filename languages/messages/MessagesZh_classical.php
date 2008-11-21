@@ -214,7 +214,7 @@ $messages = array(
 'mytalk'         => '書房',
 'anontalk'       => '與（IP）私議',
 'navigation'     => '導',
-'and'            => '與',
+'and'            => '&#32;與',
 
 # Metadata in edit box
 'metadata_help' => '衍意：',

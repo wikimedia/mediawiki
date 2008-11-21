@@ -63,7 +63,7 @@ $messages = array(
 'qbfind'    => 'Лахар',
 'mytalk'    => 'Сан цІера дийцар',
 'anontalk'  => 'ХІар IP-адреси дийцар',
-'and'       => 'а',
+'and'       => '&#32;а',
 
 'errorpagetitle'    => 'ГІалат',
 'help'              => 'ГIo',

@@ -509,7 +509,7 @@ $messages = array(
 'mytalk'         => 'Талқылауым',
 'anontalk'       => 'IP талқылауы',
 'navigation'     => 'Шарлау',
-'and'            => 'және',
+'and'            => '&#32;және',
 
 # Metadata in edit box
 'metadata_help' => 'Қосымша деректер:',

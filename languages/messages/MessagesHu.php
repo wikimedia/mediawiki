@@ -429,7 +429,7 @@ $messages = array(
 'mytalk'         => 'Vitám',
 'anontalk'       => 'az IP-címhez tartozó vitalap',
 'navigation'     => 'Navigáció',
-'and'            => 'és',
+'and'            => '&#32;és',
 
 # Metadata in edit box
 'metadata_help' => 'Metaadatok:',

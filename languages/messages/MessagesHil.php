@@ -75,7 +75,7 @@ $messages = array(
 'qbspecialpages' => 'Pinasahi nga mga panid',
 'mytalk'         => 'Akon paghisayranay',
 'navigation'     => 'Nabigayson',
-'and'            => 'kag',
+'and'            => '&#32;kag',
 
 'tagline'          => 'Halin sa {{SITENAME}}',
 'help'             => 'Bulig',

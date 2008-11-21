@@ -178,7 +178,7 @@ $messages = array(
 'mytalk'         => 'মর য়্যারি-পরি',
 'anontalk'       => 'অচিনা এগর য়্যারির পাতা',
 'navigation'     => 'দিশা-ধরুনী',
-'and'            => 'বারো',
+'and'            => '&#32;বারো',
 
 # Metadata in edit box
 'metadata_help' => 'মেটাডাটা:',

@@ -139,7 +139,7 @@ $messages = array(
 'mytalk'         => 'Bäxäsem',
 'anontalk'       => 'Bu IP turında bäxäs',
 'navigation'     => 'Küçü',
-'and'            => 'wä',
+'and'            => '&#32;wä',
 
 'errorpagetitle'    => 'Xata',
 'returnto'          => '«$1» bitenä qaytu.',

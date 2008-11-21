@@ -328,7 +328,7 @@ $messages = array(
 'mytalk'         => 'Moj razgovor',
 'anontalk'       => 'Razgovor za ovu IP adresu',
 'navigation'     => 'Navigacija',
-'and'            => 'i',
+'and'            => '&#32;i',
 
 # Metadata in edit box
 'metadata_help' => 'Metapodaci:',

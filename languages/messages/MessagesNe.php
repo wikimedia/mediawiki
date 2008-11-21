@@ -75,7 +75,7 @@ $messages = array(
 'mytalk'        => 'मेरो कुरा',
 'anontalk'      => 'यस् IP को वारेमा वार्तालाप गर्नुहोस्',
 'navigation'    => 'अन्वेषण',
-'and'           => 'र',
+'and'           => '&#32;र',
 
 'help'             => 'सहयोग',
 'search'           => 'खोज',

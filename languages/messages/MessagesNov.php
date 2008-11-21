@@ -64,7 +64,7 @@ $messages = array(
 'mytalk'         => 'Men parla-pagine',
 'anontalk'       => 'Parlo por disi IP',
 'navigation'     => 'Navigatione',
-'and'            => 'e',
+'and'            => '&#32;e',
 
 'returnto'         => 'Rivada a $1.',
 'tagline'          => 'Fro {{SITENAME}}',

@@ -193,7 +193,7 @@ $messages = array(
 'mytalk'         => 'ສົນທະນາ',
 'anontalk'       => 'ສົນທະນາ ສຳຫຼັບ IP ນີ້',
 'navigation'     => 'ນຳທິດ',
-'and'            => 'ແລະ',
+'and'            => '&#32;ແລະ',
 
 'returnto'         => 'ກັບໄປ  $1.',
 'tagline'          => 'ຈາກ {{SITENAME}}',

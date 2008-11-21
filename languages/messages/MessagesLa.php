@@ -282,7 +282,7 @@ $messages = array(
 'mytalk'         => 'Disputatio mea',
 'anontalk'       => 'Disputatio huius IP',
 'navigation'     => 'Navigatio',
-'and'            => 'et',
+'and'            => '&#32;et',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',

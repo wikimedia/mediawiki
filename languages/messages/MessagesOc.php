@@ -363,7 +363,7 @@ $messages = array(
 'mytalk'         => 'Ma pagina de discussion',
 'anontalk'       => 'Discussion amb aquesta adreça IP',
 'navigation'     => 'Navigacion',
-'and'            => 'e',
+'and'            => '&#32;e',
 
 # Metadata in edit box
 'metadata_help' => 'Metadonadas :',

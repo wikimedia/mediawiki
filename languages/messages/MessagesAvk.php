@@ -224,7 +224,7 @@ $messages = array(
 'mytalk'         => 'Jinafo keyaksexo',
 'anontalk'       => 'Prilara kan IP mane',
 'navigation'     => 'Bugrablera',
-'and'            => 'is',
+'and'            => '&#32;is',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',

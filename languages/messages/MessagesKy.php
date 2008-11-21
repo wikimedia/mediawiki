@@ -55,7 +55,7 @@ $messages = array(
 'mypage'        => 'Барагым',
 'mytalk'        => 'Маегим',
 'navigation'    => 'Багыттоо',
-'and'           => 'жана',
+'and'           => '&#32;жана',
 
 'errorpagetitle'   => 'Жаңылыш',
 'tagline'          => '{{SITENAME}} дан',

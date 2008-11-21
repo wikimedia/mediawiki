@@ -155,7 +155,7 @@ $messages = array(
 'mytalk'         => 'Moja godka',
 'anontalk'       => 'Godka tygo IP',
 'navigation'     => 'Nawigacyjo',
-'and'            => 'a',
+'and'            => '&#32;a',
 
 # Metadata in edit box
 'metadata_help' => 'Metadane:',

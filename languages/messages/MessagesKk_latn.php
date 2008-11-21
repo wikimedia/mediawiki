@@ -513,7 +513,7 @@ $messages = array(
 'mytalk'         => 'Talqılawım',
 'anontalk'       => 'IP talqılawı',
 'navigation'     => 'Şarlaw',
-'and'            => 'jäne',
+'and'            => '&#32;jäne',
 
 # Metadata in edit box
 'metadata_help' => 'Qosımşa derekter:',

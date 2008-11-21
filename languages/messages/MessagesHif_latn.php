@@ -150,7 +150,7 @@ $messages = array(
 'mytalk'         => 'Hamaar bichar',
 'anontalk'       => 'Ii IP khatir bichar',
 'navigation'     => 'Navigation',
-'and'            => 'aur',
+'and'            => '&#32;aur',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',

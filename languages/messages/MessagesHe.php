@@ -459,7 +459,7 @@ $messages = array(
 'mytalk'         => 'דף השיחה שלי',
 'anontalk'       => 'השיחה עבור IP זה',
 'navigation'     => 'ניווט',
-'and'            => 'וגם',
+'and'            => '&#32;וגם',
 
 # Metadata in edit box
 'metadata_help' => 'מטא־דטה:',

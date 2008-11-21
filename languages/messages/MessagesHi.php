@@ -183,7 +183,7 @@ $messages = array(
 'mytalk'         => 'मेरी सदस्य वार्ता',
 'anontalk'       => 'इस आई पी के लिये वार्ता',
 'navigation'     => 'नैविगेशन',
-'and'            => 'और',
+'and'            => '&#32;और',
 
 # Metadata in edit box
 'metadata_help' => 'मेटाडाटा:',

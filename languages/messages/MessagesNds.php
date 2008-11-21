@@ -350,7 +350,7 @@ un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'mytalk'         => 'Mien Diskuschoon',
 'anontalk'       => 'Diskuschoonssiet vun disse IP',
 'navigation'     => 'Navigatschoon',
-'and'            => 'un',
+'and'            => '&#32;un',
 
 # Metadata in edit box
 'metadata_help' => 'Metadaten:',

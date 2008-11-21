@@ -175,7 +175,7 @@ $messages = array(
 'mytalk'         => 'Mana diskusija',
 'anontalk'       => 'Šīs IP adreses diskusija',
 'navigation'     => 'Navigācija',
-'and'            => 'un',
+'and'            => '&#32;un',
 
 'errorpagetitle'    => 'Kļūda',
 'returnto'          => 'Atgriezties: $1.',

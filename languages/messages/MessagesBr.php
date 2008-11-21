@@ -240,7 +240,7 @@ $messages = array(
 'mytalk'         => "Ma c'haozeadennoù",
 'anontalk'       => "Kaozeal gant ar chomlec'h IP-mañ",
 'navigation'     => 'Merdeiñ',
-'and'            => 'ha(g)',
+'and'            => '&#32;ha(g)',
 
 # Metadata in edit box
 'metadata_help' => 'Metaroadennoù :',

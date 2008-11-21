@@ -390,7 +390,7 @@ $messages = array(
 'mytalk'         => 'Diskusjonssida mi',
 'anontalk'       => 'Diskusjonside for denne IP-adressa',
 'navigation'     => 'Navigering',
-'and'            => 'og',
+'and'            => '&#32;og',
 
 # Metadata in edit box
 'metadata_help' => 'Utvida informasjon:',

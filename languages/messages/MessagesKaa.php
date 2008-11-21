@@ -285,7 +285,7 @@ $messages = array(
 'mytalk'         => "Menin' sa'wbetim",
 'anontalk'       => "Usı IP sa'wbeti",
 'navigation'     => 'Navigatsiya',
-'and'            => "ha'm",
+'and'            => "&#32;ha'm",
 
 # Metadata in edit box
 'metadata_help' => "Metamag'lıwmat:",

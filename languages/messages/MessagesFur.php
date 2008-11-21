@@ -241,7 +241,7 @@ $messages = array(
 'mytalk'         => 'Mês discussions',
 'anontalk'       => 'Discussion par chest IP',
 'navigation'     => 'somari',
-'and'            => 'e',
+'and'            => '&#32;e',
 
 'errorpagetitle'    => 'Erôr',
 'returnto'          => 'Torne a $1.',

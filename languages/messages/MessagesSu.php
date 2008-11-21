@@ -257,7 +257,7 @@ $messages = array(
 'mytalk'         => 'Obrolan kuring',
 'anontalk'       => 'Obrolan pikeun IP ieu',
 'navigation'     => 'Pituduh',
-'and'            => 'jeung',
+'and'            => '&#32;jeung',
 
 # Metadata in edit box
 'metadata_help' => 'Métadata:',

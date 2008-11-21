@@ -91,7 +91,7 @@ $messages = array(
 'mytalk'         => 'Mov dïjveldidh',
 'anontalk'       => 'Dïjveldidh ihke dïhte IP',
 'navigation'     => 'Navigasjovne',
-'and'            => 'jih',
+'and'            => '&#32;jih',
 
 'errorpagetitle'   => 'Båajhtode',
 'returnto'         => 'Bååstide gåajkoe $1.',

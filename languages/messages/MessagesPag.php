@@ -25,7 +25,7 @@ $messages = array(
 'mypage'         => 'Say bolong ko',
 'mytalk'         => 'Say tongtongan ko',
 'anontalk'       => 'Tongtongan para ed sayan IP',
-'and'            => 'san',
+'and'            => '&#32;san',
 
 'returnto'          => 'Impawel ed $1.',
 'help'              => 'Tolong',

@@ -141,7 +141,7 @@ href="" class="internal"}?{/a}) bımocne.',
 'mytalk'         => 'Perra mına werênayışi',
 'anontalk'       => 'Perra werênayışê nê IPy',
 'navigation'     => 'pusula',
-'and'            => 'u',
+'and'            => '&#32;u',
 
 'errorpagetitle'    => 'Xeta',
 'returnto'          => 'Peyser şo $1.',

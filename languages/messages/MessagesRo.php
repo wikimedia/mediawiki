@@ -296,7 +296,7 @@ pe titlul secţiunii (JavaScript)',
 'mytalk'         => 'Discuţii',
 'anontalk'       => 'Discuţia pentru această adresă IP',
 'navigation'     => 'Navigare',
-'and'            => 'şi',
+'and'            => '&#32;şi',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',

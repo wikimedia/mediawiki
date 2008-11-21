@@ -82,7 +82,7 @@ $messages = array(
 'moredotdotdot'  => 'Plu mult...',
 'mytalk'         => 'Mi discussion',
 'anontalk'       => 'Discussion por ti ci IP',
-'and'            => 'e',
+'and'            => '&#32;e',
 
 'errorpagetitle'   => 'Errore',
 'returnto'         => 'Retornar a $1.',

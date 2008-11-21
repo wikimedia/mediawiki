@@ -152,7 +152,7 @@ $messages = array(
 'mytalk'         => 'ਮੇਰੀ ਗੱਲਬਾਤ',
 'anontalk'       => 'ਇਹ IP ਲਈ ਗੱਲਬਾਤ',
 'navigation'     => 'ਨੇਵੀਗੇਸ਼ਨ',
-'and'            => 'ਅਤੇ',
+'and'            => '&#32;ਅਤੇ',
 
 'errorpagetitle'    => 'ਗਲਤੀ',
 'returnto'          => '$1 ਤੇ ਵਾਪਸ ਜਾਓ',

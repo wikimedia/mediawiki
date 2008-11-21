@@ -203,7 +203,7 @@ $messages = array(
 'mytalk'         => 'నా గురించి చర్చ',
 'anontalk'       => 'ఈ ఐ.పి.కి సంబంధించిన చర్చ',
 'navigation'     => 'మార్గదర్శకం',
-'and'            => 'మరియు',
+'and'            => '&#32;మరియు',
 
 # Metadata in edit box
 'metadata_help' => 'మెటాడేటా:',

@@ -166,7 +166,7 @@ $messages = array(
 'mytalk'         => 'Oaine Diskussion',
 'anontalk'       => 'Diskussionssiede foar dissen IP',
 'navigation'     => 'Navigation',
-'and'            => 'un',
+'and'            => '&#32;un',
 
 # Metadata in edit box
 'metadata_help' => 'Metadoatäie:',

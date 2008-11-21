@@ -177,7 +177,7 @@ $messages = array(
 'mytalk'         => 'Mona aptarėms',
 'anontalk'       => 'Šėta IP aptarėms',
 'navigation'     => 'Navigacėjė',
-'and'            => 'ėr',
+'and'            => '&#32;ėr',
 
 # Metadata in edit box
 'metadata_help' => 'Metadoumenīs:',

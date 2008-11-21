@@ -144,7 +144,7 @@ $messages = array(
 'mypage'         => 'моꙗ́ страни́ца',
 'mytalk'         => 'моꙗ́ бєсѣ́да',
 'navigation'     => 'пла́ваниѥ',
-'and'            => 'и',
+'and'            => '&#32;и',
 
 'errorpagetitle'   => 'блаꙁна',
 'help'             => 'по́мощь',

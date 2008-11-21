@@ -63,7 +63,7 @@ $messages = array(
 'qbspecialpages' => 'Ol spesel pej',
 'mypage'         => 'Pej blong mi',
 'mytalk'         => 'Tingting blong mi',
-'and'            => 'mo',
+'and'            => '&#32;mo',
 
 'edit'             => 'Jenisim hem',
 'newpage'          => 'Mekem niu pej',

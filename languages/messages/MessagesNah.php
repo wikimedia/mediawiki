@@ -179,7 +179,7 @@ $messages = array(
 'mytalk'         => 'Notēixnāmiquiliz',
 'anontalk'       => 'Inīn IP ītēixnāmiquiliz',
 'navigation'     => 'Ācalpapanōliztli',
-'and'            => 'īhuān',
+'and'            => '&#32;īhuān',
 
 'errorpagetitle'    => 'Ahcuallōtl',
 'returnto'          => 'Timocuepāz īhuīc $1.',

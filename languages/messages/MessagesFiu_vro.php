@@ -180,7 +180,7 @@ $messages = array(
 'mytalk'         => 'Mu arotus',
 'anontalk'       => 'Seo puutri võrgoaadrõsi arotus',
 'navigation'     => 'Juhtminõ',
-'and'            => 'ja',
+'and'            => '&#32;ja',
 
 # Metadata in edit box
 'metadata_help' => 'Metateedüs:',

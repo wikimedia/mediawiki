@@ -111,7 +111,7 @@ $messages = array(
 'moredotdotdot'  => 'Tohiny...',
 'mypage'         => 'Pejiko',
 'mytalk'         => 'Ny diniko',
-'and'            => 'sy',
+'and'            => '&#32;sy',
 
 'errorpagetitle'    => 'Tsy fetezana',
 'returnto'          => "Hiverina any amin'ny $1.",

@@ -82,7 +82,7 @@ $messages = array(
 'mypage'         => 'Miri patrin',
 'mytalk'         => 'Mire vakyarimata',
 'navigation'     => 'Phiripen',
-'and'            => 'thai',
+'and'            => '&#32;thai',
 
 'errorpagetitle'   => 'Dosh',
 'returnto'         => 'Ja palpale kai $1.',

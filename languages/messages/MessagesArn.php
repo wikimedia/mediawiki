@@ -81,7 +81,7 @@ $messages = array(
 'mypage'        => 'tañi nütramkawe',
 'mytalk'        => 'Tañi nütramkawe',
 'anontalk'      => 'Tüfachi IP ñi nütramkawe',
-'and'           => 'ka',
+'and'           => '&#32;ka',
 
 'returnto'         => 'Amutun $1 püle.',
 'tagline'          => '{{SITENAME}} mew',

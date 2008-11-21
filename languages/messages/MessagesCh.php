@@ -142,7 +142,7 @@ $messages = array(
 'mytalk'         => 'Kombetsasion-hu',
 'anontalk'       => 'Kuentusiyi i IP este',
 'navigation'     => 'Nabegasion',
-'and'            => 'yan',
+'and'            => '&#32;yan',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',

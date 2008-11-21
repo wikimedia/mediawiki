@@ -123,7 +123,7 @@ $messages = array(
 'mytalk'         => 'Zwa bulelezi',
 'anontalk'       => 'Bulelezi di bye IP',
 'navigation'     => 'Muya',
-'and'            => 'e',
+'and'            => '&#32;e',
 
 # Metadata in edit box
 'metadata_help' => 'Meta ngesi:',

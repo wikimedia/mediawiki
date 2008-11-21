@@ -645,7 +645,7 @@ XHTML id names.
 'mytalk'         => 'My talk',
 'anontalk'       => 'Talk for this IP',
 'navigation'     => 'Navigation',
-'and'            => 'and',
+'and'            => ',&#32;and',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -3526,6 +3526,7 @@ Please confirm that you really want to recreate this page.",
 'colon-separator'     => ':&#32;', # only translate this message to other languages if you have to change it
 'autocomment-prefix'  => '-&#32;', # only translate this message to other languages if you have to change it
 'pipe-separator'      => '|', # only translate this message to other languages if you have to change it
+'word-separator'      => '&#32;', # only translate this message to other languages if you have to change it
 
 # Multipage image navigation
 'imgmultipageprev' => '← previous page',

@@ -452,7 +452,7 @@ $messages = array(
 'mytalk'         => 'Οι συζητήσεις μου',
 'anontalk'       => 'Οι συζητήσεις αυτής της διεύθυνσης IP',
 'navigation'     => 'Πλοήγηση',
-'and'            => 'και',
+'and'            => '&#32;και',
 
 # Metadata in edit box
 'metadata_help' => 'Μεταδεδομένα:',

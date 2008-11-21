@@ -34,7 +34,7 @@ $messages = array(
 'qbspecialpages' => 'Nyɛw kɛrɛnkɛrɛnnen',
 'mypage'         => "N'ka nyɛ",
 'mytalk'         => "N'ka baronyɛ",
-'and'            => 'ani',
+'and'            => '&#32;ani',
 
 'help'           => 'Dɛmɛ',
 'search'         => 'Nyini',

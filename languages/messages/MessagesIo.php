@@ -129,7 +129,7 @@ $messages = array(
 'mytalk'         => 'Mea diskuti',
 'anontalk'       => 'Diskuto relatant ad ica IP',
 'navigation'     => 'Navigado',
-'and'            => 'ed',
+'and'            => '&#32;ed',
 
 # Metadata in edit box
 'metadata_help' => 'Metadonaji:',

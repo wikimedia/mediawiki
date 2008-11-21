@@ -138,7 +138,7 @@ $messages = array(
 'mytalk'         => 'Ngô-ke tui-fa-hong',
 'anontalk'       => 'Ke-IP ke tui-fa hong',
 'navigation'     => 'Thô-hòng',
-'and'            => 'lâu',
+'and'            => '&#32;lâu',
 
 # Metadata in edit box
 'metadata_help' => 'Ngièn sṳ-kí:',

@@ -178,7 +178,7 @@ $messages = array(
 'mytalk'         => 'Кэпсэтэр сирим',
 'anontalk'       => 'Бу IP-га ырытыы',
 'navigation'     => 'Навигация',
-'and'            => 'уонна',
+'and'            => '&#32;уонна',
 
 # Metadata in edit box
 'metadata_help' => 'Мета дааннайдар:',

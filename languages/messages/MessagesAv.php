@@ -22,7 +22,7 @@ $messages = array(
 'saturday'  => 'Шаммат',
 
 'mytalk' => 'Дур бахlс',
-'and'    => 'ва',
+'and'    => '&#32;ва',
 
 'errorpagetitle' => 'Гъалатl',
 'help'           => 'Кумек',

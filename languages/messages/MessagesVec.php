@@ -265,7 +265,7 @@ I seguenti cołegamenti i xe en lengua inglese:
 'mytalk'         => 'le me discussión',
 'anontalk'       => 'Discussion par sto IP',
 'navigation'     => 'Navigazión',
-'and'            => 'e',
+'and'            => '&#32;e',
 
 # Metadata in edit box
 'metadata_help' => 'Metadati:',

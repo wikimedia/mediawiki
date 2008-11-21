@@ -171,7 +171,7 @@ $messages = array(
 'mytalk'         => 'Ἡ διάλεξίς μου',
 'anontalk'       => 'Διάλεκτος πρὸ τοῦδε τοῦ IP',
 'navigation'     => 'Πλοήγησις',
-'and'            => 'καί',
+'and'            => '&#32;καί',
 
 # Metadata in edit box
 'metadata_help' => 'Μεταδεδομένα:',

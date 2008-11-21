@@ -124,7 +124,7 @@ $messages = array(
 'mytalk'         => 'Mu ságastallan',
 'anontalk'       => 'Ságastala dán IP-čujuhusain',
 'navigation'     => 'Navigašuvdna',
-'and'            => 'ja',
+'and'            => '&#32;ja',
 
 # Metadata in edit box
 'metadata_help' => 'Sisdoallogovvádusat:',
