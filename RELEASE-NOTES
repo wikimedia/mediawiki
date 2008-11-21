@@ -450,6 +450,7 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 12760) meta=userinfo&uiprop=ratelimits doesn't list group-specific rate
   limits
 * (bug 16398) meta=userinfo&uiprop=rights lists some rights twice in some cases
+* (bug 16408) Added rvgeneratexml to prop=revisions
 
 === Languages updated in 1.14 ===
 

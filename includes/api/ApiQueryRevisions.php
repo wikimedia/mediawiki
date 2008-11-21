@@ -74,7 +74,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 	}
 
 	public function execute() {
-		$limit = $startid = $endid = $start = $end = $dir = $prop = $user = $excludeuser = $expandtemplates = $section = $token = null;
+		$limit = $startid = $endid = $start = $end = $dir = $prop = $user = $excludeuser = $expandtemplates = $generatexml = $section = $token = null;
 		extract($this->extractRequestParams(false));
 
 		// If any of those parameters are used, work in 'enumeration' mode.
@@ -115,7 +115,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		$this->fld_user = isset ($prop['user']);
 		$this->token = $token;
 
-		if ( !is_null($this->token) || ( $this->fld_content && $this->expandTemplates ) || $pageCount > 0) {
+		if ( !is_null($this->token) || $pageCount > 0) {
 			$this->addFields( Revision::selectPageFields() );
 		}
 
@@ -137,6 +137,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$this->fld_content = true;
 
 			$this->expandTemplates = $expandtemplates;
+			$this->generateXML = $generatexml;
 			if(isset($section))
 				$this->section = $section;
 			else
@@ -319,6 +320,17 @@ class ApiQueryRevisions extends ApiQueryBase {
 				if($text === false)
 					$this->dieUsage("There is no section {$this->section} in r".$revision->getId(), 'nosuchsection');
 			}
+			if ($this->generateXML) {
+				$wgParser->startExternalParse( $title, new ParserOptions(), OT_PREPROCESS );
+				$dom = $wgParser->preprocessToDom( $text );
+				if ( is_callable( array( $dom, 'saveXML' ) ) ) {
+					$xml = $dom->saveXML();
+				} else {
+					$xml = $dom->__toString();
+				}
+				$vals['parsetree'] = $xml;
+				
+			}
 			if ($this->expandTemplates) {
 				$text = $wgParser->preprocess( $text, $title, new ParserOptions() );
 			}
@@ -373,8 +385,8 @@ class ApiQueryRevisions extends ApiQueryBase {
 			'excludeuser' => array(
 				ApiBase :: PARAM_TYPE => 'user'
 			),
-
 			'expandtemplates' => false,
+			'generatexml' => false,
 			'section' => array(
 				ApiBase :: PARAM_TYPE => 'integer'
 			),
@@ -397,6 +409,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			'user' => 'only include revisions made by user',
 			'excludeuser' => 'exclude revisions made by user',
 			'expandtemplates' => 'expand templates in revision content',
+			'generatexml' => 'generate XML parse tree for revision content',
 			'section' => 'only retrieve the content of this section',
 			'token' => 'Which tokens to obtain for each revision',
 		);
