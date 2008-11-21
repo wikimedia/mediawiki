@@ -72,9 +72,8 @@ class ForeignAPIRepo extends FileRepo {
 				array_merge( $query,
 					array(
 						'format' => 'json',
-						'action' => 'query',
-						'prop' => 'imageinfo' ) ) );
-		
+						'action' => 'query' ) ) );
+
 		if( !isset( $this->mQueryCache[$url] ) ) {
 			$key = wfMemcKey( 'ForeignAPIRepo', 'Metadata', md5( $url ) );
 			$data = $wgMemc->get( $key );
@@ -95,8 +94,23 @@ class ForeignAPIRepo extends FileRepo {
 	function getImageInfo( $title, $time = false ) {
 		return $this->queryImage( array(
 			'titles' => MWNamespace::getCanonicalName( NS_IMAGE ) . ':' . $title->getText(),
-			'iiprop' => 'timestamp|user|comment|url|size|sha1|metadata|mime' ) );
+			'iiprop' => 'timestamp|user|comment|url|size|sha1|metadata|mime',
+			'prop'   => 'imageinfo' ) );
 	}
+	
+	function findBySha1( $hash ) {
+		$results = $this->fetchImageQuery( array(
+										'aisha1base36' => $hash,
+										'aiprop'       => 'timestamp|user|comment|url|size|sha1|metadata|mime',
+										'list'         => 'allimages', ) );
+		$ret = array();
+		foreach ( $results['query']['allimages'] as $img ) {
+			$ret[] = new ForeignAPIFile( Title::makeTitle( NS_IMAGE, $img['name'] ), $this, $result );
+		}
+		return $ret;
+	}
+	
+	
 	
 	function getThumbUrl( $name, $width=-1, $height=-1 ) {
 		$info = $this->queryImage( array(
