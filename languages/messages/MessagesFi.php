@@ -966,7 +966,7 @@ Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa men
 
 $1 | $2',
 'searchmenu-legend'                => 'Hakuasetukset',
-'searchmenu-exists'                => "* Sivu '''[[$1]]'''",
+'searchmenu-exists'                => "'''Sivu nimeltään [[$1]] löytyy tästä wikistä.'''",
 'searchmenu-new'                   => "'''[[:$1|Luo sivu]] ''$1'' tähän wikiin.'''",
 'searchhelp-url'                   => 'Help:Sisällys',
 'searchprofile-articles'           => 'Sisältösivut',

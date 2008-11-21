@@ -2064,7 +2064,7 @@ I  [[Special:Log/delete|borttagningsloggen]] kan du hitta information om nyligen
 'undelete-error-long'          => 'Fel inträffade när vid återställning av filen:
 
 $1',
-'undelete-show-file-confirm'   => 'Är du säker på att du vill visa en raderad version av filen "<nowiki>$1</nowiki>" från $2?',
+'undelete-show-file-confirm'   => 'Är du säker på att du vill visa en raderad version av filen "<nowiki>$1</nowiki>" från den $2 kl $3?',
 'undelete-show-file-submit'    => 'Ja',
 
 # Namespace form on various pages
