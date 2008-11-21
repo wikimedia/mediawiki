@@ -658,6 +658,9 @@ class WebRequest {
 			return null;
 		return $_SESSION[$key];
 	}
+	function setSessionData( $key, $data ) {
+		$_SESSION[$key] = $data;
+	}
 }
 
 /**
@@ -721,6 +724,9 @@ class FauxRequest extends WebRequest {
 		if( !isset( $this->session[$key] ) )
 			return null;
 		return $this->session[$key];
+	}
+	function setSessionData( $key, $data ) {
+		$this->notImplemented( __METHOD__ );
 	}
 
 }
