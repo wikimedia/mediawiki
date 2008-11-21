@@ -93,7 +93,7 @@ class ForeignAPIRepo extends FileRepo {
 	
 	function getImageInfo( $title, $time = false ) {
 		return $this->queryImage( array(
-			'titles' => MWNamespace::getCanonicalName( NS_IMAGE ) . ':' . $title->getText(),
+			'titles' => 'Image:' . $title->getText(),
 			'iiprop' => 'timestamp|user|comment|url|size|sha1|metadata|mime',
 			'prop'   => 'imageinfo' ) );
 	}
