@@ -1106,9 +1106,9 @@ $3 зазначив таку причину: ''$2''",
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Показати сторінки з цим префіксом]]',
 'searchprofile-articles'           => 'Статті',
 'searchprofile-articles-and-proj'  => 'Статті і проект',
-'searchprofile-project'            => 'У проекті',
+'searchprofile-project'            => 'Проект',
 'searchprofile-images'             => 'Файли',
-'searchprofile-everything'         => 'Усе',
+'searchprofile-everything'         => 'Усюди',
 'searchprofile-advanced'           => 'Розширений',
 'searchprofile-articles-tooltip'   => 'Пошук у $1',
 'searchprofile-project-tooltip'    => 'Пошук у $1',
@@ -2032,7 +2032,7 @@ $NEWPAGE
 'undelete-error-long'          => 'Під час відновлення файлу виникли помилки:
 
 $1',
-'undelete-show-file-confirm'   => 'Ви впевнені, що хочете переглянути вилучену версію файлу «<nowiki>$1</nowiki>» від $2?',
+'undelete-show-file-confirm'   => 'Ви впевнені, що хочете переглянути вилучену версію файлу «<nowiki>$1</nowiki>» від $3 $2?',
 'undelete-show-file-submit'    => 'Так',
 
 # Namespace form on various pages

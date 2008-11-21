@@ -2184,7 +2184,7 @@ $NEWPAGE
 'undelete-error-long'          => 'در زمان احیای پرونده خطا رخ داد:
 
 $1',
-'undelete-show-file-confirm'   => 'آیا مطمئن هستید که می‌خواهید یک نسخهٔ حذف شده از پرونده "<nowiki>$1</nowiki>" از $2 را ببینید؟',
+'undelete-show-file-confirm'   => 'آیا مطمئن هستید که می‌خواهید یک نسخهٔ حذف شده از پرونده "<nowiki>$1</nowiki>" از $2 ساعت $3 را ببینید؟',
 'undelete-show-file-submit'    => 'آری',
 
 # Namespace form on various pages

@@ -2000,7 +2000,7 @@ Consultez l’[[Special:Log/delete|historique des suppressions]] pour voir la li
 'undelete-error-long'          => 'Des erreurs ont été rencontrées lors de la restauration du fichier :
 
 $1',
-'undelete-show-file-confirm'   => 'Êtes-vous sûr de vouloir voir une version supprimée du fichier « <nowiki>$1</nowiki> » datant du $2 ?',
+'undelete-show-file-confirm'   => 'Êtes-vous sûr de vouloir visionner une version supprimée du fichier « <nowiki>$1</nowiki> » datant du $2 à $3 ?',
 'undelete-show-file-submit'    => 'Oui',
 
 # Namespace form on various pages

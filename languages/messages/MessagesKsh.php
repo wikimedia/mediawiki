@@ -1324,7 +1324,7 @@ Wiki-Köbes, enem Sörver-Minsch, oder luur ens en de
 'right-createaccount'        => 'Ene neue Metmaacher endraage lohße',
 'right-minoredit'            => 'Eije Änderung als klein Mini-Änderung makeere',
 'right-move'                 => 'Sigge ömnenne',
-'right-move-subpages'        => 'Donn de Sigge met ier Ungersigge ömnenne',
+'right-move-subpages'        => 'Sigge, un ier Ungersigge, zosamme ömnenne',
 'right-move-rootuserpages'   => '(Houp)-Metmaacher-Sigg Ömnänne',
 'right-suppressredirect'     => 'Kein automatesche Ömleidung aanlääje beim Ömnenne',
 'right-upload'               => 'Dateie huhlade',
@@ -1899,10 +1899,10 @@ Mieh övver de einzel Rääschte fenkt Er op de [[{{MediaWiki:Listgrouprights-he
 'listgrouprights-rights'          => 'Räächte',
 'listgrouprights-helppage'        => 'Help:Jrupperäächte',
 'listgrouprights-members'         => '(opliste)',
-'listgrouprights-addgroup'        => 'Kann Metmaacher en {{PLURAL:$2|di Metmaacher-Jrupp|di Metmaacher-Jruppe hee|kein Metmaacher-Jrupp}} erin dunn: $1',
-'listgrouprights-removegroup'     => 'Kann Metmaacher us {{PLURAL:$2|dä Metmaacher-Jrupp|de Metmaacher-Jruppe hee|jaa kei Metmaacher-Jrupp}} eruß nämme: $1',
-'listgrouprights-addgroup-all'    => 'Kann Metmaacher en alle Metmaacher-Jruppe erin donn',
-'listgrouprights-removegroup-all' => 'Kann Metmaacher us alle Metmaacher-Jruppe eruß nämme',
+'listgrouprights-addgroup'        => 'Metmaacher en {{PLURAL:$2|de Metmaacher-Jrupp|de Metmaacher-Jruppe|kein Metmaacher-Jrupp}} $1 erin dunn',
+'listgrouprights-removegroup'     => 'Metmaacher us {{PLURAL:$2|dä Metmaacher-Jrupp|de Metmaacher-Jruppe|jaa kei Metmaacher-Jrupp}} $1 eruß nämme',
+'listgrouprights-addgroup-all'    => 'Metmaacher en alle Metmaacher-Jruppe erin donn',
+'listgrouprights-removegroup-all' => 'Metmaacher us alle Metmaacher-Jruppe eruß nämme',
 
 # E-mail user
 'mailnologin'     => 'Keij E-Mail Adress',

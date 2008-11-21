@@ -2033,7 +2033,7 @@ Možda je već ranije vraćena.',
 'undelete-error-long'          => 'Desile su se pogreške pri vraćanju datoteke:
 
 $1',
-'undelete-show-file-confirm'   => 'Da li ste sigurni da želite pogledati obrisanu reviziju datoteke "<nowiki>$1</nowiki>" od $2?',
+'undelete-show-file-confirm'   => 'Da li ste sigurni da želite pogledati obrisanu reviziju datoteke "<nowiki>$1</nowiki>" od $2 u $3?',
 'undelete-show-file-submit'    => 'Da',
 
 # Namespace form on various pages

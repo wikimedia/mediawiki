@@ -1109,7 +1109,7 @@ $3 указал следующую причину: ''$2''",
 'searchmenu-legend'                => 'Настройки поиска',
 'searchmenu-exists'                => "* Страница '''[[$1]]'''",
 'searchmenu-new'                   => "'''[[:$1|Создать]] страницу «[[$1]]» в этой вики!'''",
-'searchhelp-url'                   => 'Help:Справка',
+'searchhelp-url'                   => 'Help:Содержание',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Показать страницы с этим префиксом]]',
 'searchprofile-articles'           => 'По основным страницам',
 'searchprofile-articles-and-proj'  => 'По основным страницам и проекту',
@@ -2049,7 +2049,7 @@ $NEWPAGE
 'undelete-error-long'          => 'Во время восстановления файла возникли ошибки:
 
 $1',
-'undelete-show-file-confirm'   => 'Вы уверены, что желаете просмотреть удалённую версию файла <nowiki>$1</nowiki> от $2?',
+'undelete-show-file-confirm'   => 'Вы уверены, что желаете просмотреть удалённую версию файла <nowiki>$1</nowiki> от $2 $3?',
 'undelete-show-file-submit'    => 'Да',
 
 # Namespace form on various pages

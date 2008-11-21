@@ -207,7 +207,7 @@ See http://test.wikipedia.org/wiki/Category:Test_ko?uselang={{SUBPAGENAME}}, for
 'moredotdotdot'  => '{{Identical|More...}}',
 'mytalk'         => 'In the personal urls page section - right upper corner.',
 'navigation'     => '{{Identical|Navigation}}',
-'and'            => 'The translation for "and" appears in the [[Special:Version]] page, between the last two items of a list.
+'and'            => 'The translation for "and" appears in the [[Special:Version]] page, between the last two items of a list. If a comma is needed, add it.
 
 {{Identical|And}}',
 
