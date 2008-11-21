@@ -25,6 +25,7 @@ function NukePage( $name, $delete = false ) {
 	if( $title ) {
 		$id   = $title->getArticleID();
 		$real = $title->getPrefixedText();
+		$isGoodArticle = $title->isContentPage();
 		echo( "found \"$real\" with ID $id.\n" );
 		
 		# Get corresponding revisions
@@ -56,6 +57,16 @@ function NukePage( $name, $delete = false ) {
 			PurgeRedundantText( true );
 		}
 		
+		# Update stats as appropriate
+		if ( $delete ) {
+			echo( "Updating site stats..." );
+			$ga = $isGoodArticle ? -1 : 0; // if it was good, decrement that too
+			$stats = new SiteStatsUpdate( 0, -$count, $ga, -1 );
+			$stats->doUpdate();
+			echo( "done.\n" );
+		}
+		
+		
 	} else {
 		echo( "not found in database.\n" );
 		$dbw->commit();
@@ -74,14 +85,6 @@ function DeleteRevisions( $ids ) {
 	$dbw->query( "DELETE FROM $tbl_rev WHERE rev_id IN ( $set )" );
 	
 	$dbw->commit();	
-
-	#TODO: see if this is a "good" page, to decrement that as well.
-	$pages = $dbw->selectField('site_stats', 'ss_total_pages');
-	$pages--;
-	$dbw->update( 'site_stats', 
-		      array('ss_total_pages' => $pages ), 
-		      array( 'ss_row_id' => 1),
-		      __METHOD__ );
 	
 }
 
