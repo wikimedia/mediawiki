@@ -54,6 +54,9 @@ class ImageCleanup extends TableCleanup {
 		
 		// About half of old bad image names have percent-codes
 		$cleaned = rawurldecode( $cleaned );
+
+		// We also have some HTML entities there
+		$cleaned = Sanitizer::decodeCharReferences( $cleaned );
 		
 		// Some are old latin-1
 		$cleaned = $wgContLang->checkTitleEncoding( $cleaned );
@@ -66,6 +69,8 @@ class ImageCleanup extends TableCleanup {
 		if( is_null( $title ) ) {
 			$this->log( "page $source ($cleaned) is illegal." );
 			$safe = $this->buildSafeTitle( $cleaned );
+			if( $safe === false )
+				return $this->progress( 0 );
 			$this->pokeFile( $source, $safe );
 			return $this->progress( 1 );
 		}
@@ -110,8 +115,8 @@ class ImageCleanup extends TableCleanup {
 		$version = 0;
 		$final = $new;
 		
-		while( $db->selectField( 'image', 'img_name',
-			array( 'img_name' => $final ), __METHOD__ ) ) {
+		while( $db->selectField( 'image', 'img_name', array( 'img_name' => $final ), __METHOD__ ) ||
+			Title::makeTitle( NS_IMAGE, $final )->exists() ) {
 			$this->log( "Rename conflicts with '$final'..." );
 			$version++;
 			$final = $this->appendTitle( $new, "_$version" );
@@ -123,10 +128,19 @@ class ImageCleanup extends TableCleanup {
 			$this->log( "DRY RUN: would rename $path to $finalPath" );
 		} else {
 			$this->log( "renaming $path to $finalPath" );
+			// XXX: should this use File::move()?  FIXME?
 			$db->begin();
 			$db->update( 'image',
 				array( 'img_name' => $final ),
 				array( 'img_name' => $orig ),
+				__METHOD__ );
+			$db->update( 'oldimage',
+				array( 'oi_name' => $final ),
+				array( 'oi_name' => $orig ),
+				__METHOD__ );
+			$db->update( 'page',
+				array( 'page_title' => $final ),
+				array( 'page_title' => $orig, 'page_namespace' => NS_IMAGE ),
 				__METHOD__ );
 			$dir = dirname( $finalPath );
 			if( !file_exists( $dir ) ) {
