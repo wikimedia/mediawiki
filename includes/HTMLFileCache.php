@@ -24,7 +24,7 @@ class HTMLFileCache {
 
 	function HTMLFileCache( &$title ) {
 		$this->mTitle =& $title;
-		$this->mFileCache = '';
+		$this->mFileCache = $this->fileCacheName();
 	}
 
 	function fileCacheName() {
