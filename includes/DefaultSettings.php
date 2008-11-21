@@ -3520,8 +3520,6 @@ $wgSlaveLagCritical = 30;
  *                    If this parameter is not given, it uses Preprocessor_DOM if the
  *                    DOM module is available, otherwise it uses Preprocessor_Hash.
  *
- *                    Has no effect on Parser_OldPP.
- *
  * The entire associative array will be passed through to the constructor as
  * the first parameter. Note that only Setup.php can use this variable --
  * the configuration will change at runtime via $wgParser member functions, so

@@ -211,6 +211,7 @@ The following extensions are migrated into MediaWiki 1.14:
   namespace.
 * Add id="mw-user-domain-section" to <tr> tag in Userlogin.php template so that
   admins with a single domain can hide the domain section using CSS
+* Dropped old Paser_OldPP class. Only new parser with preprocessor is used.
 
 === Bug fixes in 1.14 ===
 
