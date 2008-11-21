@@ -97,6 +97,7 @@ span.diff-html-removed {
 
 span.diff-html-changed {
   background: url(images/diffunderline.gif) bottom repeat-x;
+  /* Hack for IE5.5, see http://lists.wikimedia.org/pipermail/wikitech-l/2008-November/040273.html */
   *background-color: #c6c6fd; /* light blue */
 }
 
