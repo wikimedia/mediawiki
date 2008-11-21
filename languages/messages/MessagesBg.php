@@ -371,7 +371,7 @@ $messages = array(
 'mytalk'         => 'Моята беседа',
 'anontalk'       => 'Беседа за адреса',
 'navigation'     => 'Навигация',
-'and'            => 'и',
+'and'            => '&#32;и',
 
 # Metadata in edit box
 'metadata_help' => 'Метаданни:',

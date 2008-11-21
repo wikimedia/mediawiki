@@ -97,7 +97,7 @@ $messages = array(
 'mytalk'        => 'میری گفتگو',
 'anontalk'      => 'اس IP کیلیے بات چیت',
 'navigation'    => 'رہنمائی',
-'and'           => 'اور',
+'and'           => '&#32;اور',
 
 'returnto'          => 'واپس $1۔',
 'tagline'           => '{{SITENAME}} سے',

@@ -178,7 +178,7 @@ $messages = array(
 'mytalk'         => 'Mien overleg',
 'anontalk'       => 'Discussie vò dit IP-adres',
 'navigation'     => 'Navigaotie',
-'and'            => 'en',
+'and'            => '&#32;en',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',

@@ -187,7 +187,7 @@ $messages = array(
 'mytalk'         => 'ನನ್ನ ಚರ್ಚೆ',
 'anontalk'       => 'ಈ ಐ.ಪಿ ಗೆ ಮಾತನಾಡಿ',
 'navigation'     => 'ಸಂಚರಣೆ',
-'and'            => 'ಮತ್ತು',
+'and'            => '&#32;ಮತ್ತು',
 
 # Metadata in edit box
 'metadata_help' => 'ಮೂಲಮಾಹಿತಿ:',

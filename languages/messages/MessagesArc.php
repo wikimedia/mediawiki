@@ -68,7 +68,7 @@ $messages = array(
 'mypage'         => 'ܕܦܝ',
 'mytalk'         => 'ܕܘܪܫܝ',
 'navigation'     => 'ܐܠܦܪܘܬܐ',
-'and'            => 'ܘ',
+'and'            => '&#32;ܘ',
 
 'errorpagetitle'    => 'ܛܥܝܘܬܐ',
 'help'              => 'ܥܘܕܪܢܐ',

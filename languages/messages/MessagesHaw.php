@@ -136,7 +136,7 @@ $messages = array(
 'mytalk'         => 'Ka‘u ‘ōlelo',
 'anontalk'       => 'Ke kūkākūkā no kēia IP',
 'navigation'     => 'Ka papa huli mea',
-'and'            => 'a me',
+'and'            => '&#32;a me',
 
 'errorpagetitle'   => 'Hewa',
 'returnto'         => 'Ho‘i iā $1.',

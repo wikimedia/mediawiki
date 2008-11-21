@@ -21,7 +21,7 @@ $messages = array(
 
 'qbedit'        => 'Kiwiwid',
 'moredotdotdot' => 'Iyuw...',
-'and'           => 'me',
+'and'           => '&#32;me',
 
 'errorpagetitle' => 'Dairinaiya',
 'help'           => 'Ipuok',

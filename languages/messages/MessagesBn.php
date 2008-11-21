@@ -187,7 +187,7 @@ $messages = array(
 'mytalk'         => 'আমার আলাপ',
 'anontalk'       => 'এই বেনামী ব্যবহারকারীর আলাপের পাতা',
 'navigation'     => 'পরিভ্রমণ',
-'and'            => 'এবং',
+'and'            => '&#32;এবং',
 
 # Metadata in edit box
 'metadata_help' => 'অধিউপাত্ত (metadata):',

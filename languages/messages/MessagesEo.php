@@ -309,7 +309,7 @@ $messages = array(
 'mytalk'         => 'Mia diskuto',
 'anontalk'       => 'Diskutpaĝo por tiu ĉi IP',
 'navigation'     => 'Navigado',
-'and'            => 'kaj',
+'and'            => '&#32;kaj',
 
 # Metadata in edit box
 'metadata_help' => 'Metadatenoj:',

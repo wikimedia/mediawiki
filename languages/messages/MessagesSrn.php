@@ -245,7 +245,7 @@ $messages = array(
 'mytalk'         => 'Mi kruderi',
 'anontalk'       => 'Taki fu disi IP',
 'navigation'     => 'Fenipresi',
-'and'            => 'nanga',
+'and'            => '&#32;nanga',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',

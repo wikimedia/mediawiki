@@ -236,7 +236,7 @@ Li sighenti cullegamenti so in linga ingrese:
 'mytalk'         => "Li me' dischussioni",
 'anontalk'       => 'Dischussioni pa chisthu IP',
 'navigation'     => 'Nabiggazioni',
-'and'            => 'e',
+'and'            => '&#32;e',
 
 # Metadata in edit box
 'metadata_help' => 'Metadati:',

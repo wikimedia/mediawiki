@@ -86,7 +86,7 @@ $messages = array(
 'moredotdotdot' => 'Yapa...',
 'mypage'        => 'Uñstawija',
 'navigation'    => 'Wampuña',
-'and'           => '-mpi',
+'and'           => '&#32;-mpi',
 
 'errorpagetitle'    => 'Pantja',
 'help'              => 'Yanapaña',

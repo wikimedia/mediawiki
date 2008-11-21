@@ -149,7 +149,7 @@ $messages = array(
 'mytalk'         => 'Фикер алышу битем',
 'anontalk'       => 'Бу IP-адрес өчен фикер алышу',
 'navigation'     => 'Навигация',
-'and'            => 'һәм',
+'and'            => '&#32;һәм',
 
 # Metadata in edit box
 'metadata_help' => 'Мета-мәгълүматлар:',

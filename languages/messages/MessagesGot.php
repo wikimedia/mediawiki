@@ -80,7 +80,7 @@ $messages = array(
 'moredotdotdot'  => 'Máis...',
 'mypage'         => '𐌼𐌴𐌹𐌽 𐍃𐌴𐌹𐌳𐍉',
 'mytalk'         => '𐌼𐌴𐌹𐌽𐌰 𐌼𐌰𐌸𐌻𐌴𐌹',
-'and'            => 'jah',
+'and'            => '&#32;jah',
 
 # Metadata in edit box
 'metadata_help' => 'Ufardata:',

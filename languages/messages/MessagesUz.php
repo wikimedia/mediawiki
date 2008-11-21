@@ -122,7 +122,7 @@ $messages = array(
 'mytalk'         => 'Mening suhbatim',
 'anontalk'       => 'Bu IP uchun suhbat',
 'navigation'     => 'Saytda harakatlanish',
-'and'            => 'va',
+'and'            => '&#32;va',
 
 'errorpagetitle'   => 'Xato',
 'returnto'         => '$1 sahifasiga qaytish.',

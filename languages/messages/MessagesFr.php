@@ -374,7 +374,7 @@ $messages = array(
 'mytalk'         => 'Page de discussion',
 'anontalk'       => 'Discussion avec cette adresse IP',
 'navigation'     => 'Navigation',
-'and'            => 'et',
+'and'            => '&#32;et',
 
 # Metadata in edit box
 'metadata_help' => 'Métadonnées :',

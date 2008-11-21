@@ -205,7 +205,7 @@ $messages = array(
 'mytalk'         => 'Размовы',
 'anontalk'       => 'Размова для гэтага IP',
 'navigation'     => 'Навігацыя',
-'and'            => 'і',
+'and'            => '&#32;і',
 
 # Metadata in edit box
 'metadata_help' => 'Метазвесткі:',

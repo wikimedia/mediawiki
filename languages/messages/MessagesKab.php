@@ -157,7 +157,7 @@ $messages = array(
 'mytalk'         => 'Amyannan inu',
 'anontalk'       => 'Amyannan n IP-yagi',
 'navigation'     => 'Ẓer isebtar',
-'and'            => 'u',
+'and'            => '&#32;u',
 
 'errorpagetitle'    => 'Agul',
 'returnto'          => 'Uɣal ar $1.',

@@ -230,7 +230,7 @@ $messages = array(
 'mytalk'         => 'Mítt kjak',
 'anontalk'       => 'Kjak til hesa ip-adressuna',
 'navigation'     => 'Navigatión',
-'and'            => 'og',
+'and'            => '&#32;og',
 
 'errorpagetitle'    => 'Villa',
 'returnto'          => 'Vend aftur til $1.',

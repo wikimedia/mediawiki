@@ -78,7 +78,7 @@ $messages = array(
 'mytalk'         => 'E mo discussioni',
 'anontalk'       => 'Discussione per istu indirizzu IP',
 'navigation'     => 'Navigazione',
-'and'            => 'è',
+'and'            => '&#32;è',
 
 'errorpagetitle'   => 'Errore',
 'returnto'         => 'Vultà à $1.',

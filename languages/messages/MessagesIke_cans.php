@@ -69,7 +69,7 @@ $messages = array(
 'mypage'         => 'ᐊᒥ ᒪᑉᐱᑕᖅ',
 'mytalk'         => 'ᐊᓪᓚᖁᑎᒃᑲ',
 'navigation'     => 'ᒥᐊᓂᕆᕚ',
-'and'            => 'ᐊᒻᒪ',
+'and'            => '&#32;ᐊᒻᒪ',
 
 'errorpagetitle'    => 'ᑕᒻᒪᓇᖅᑐᖅ',
 'help'              => 'ᖃᔭᓕᑉᐹ',

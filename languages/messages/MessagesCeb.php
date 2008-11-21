@@ -153,7 +153,7 @@ $messages = array(
 'mytalk'         => 'Akong hisgot',
 'anontalk'       => 'Panghisgot-hisgot alang niining IP',
 'navigation'     => 'Tabok-tabok',
-'and'            => 'ug',
+'and'            => '&#32;ug',
 
 'returnto'          => 'Balik sa $1.',
 'tagline'           => 'Gikan sa {{SITENAME}}',

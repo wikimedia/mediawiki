@@ -96,7 +96,7 @@ $messages = array(
 'mypage'         => 'ჩქიმ ხასილა',
 'mytalk'         => 'ჩქიმ სხუნუა',
 'navigation'     => 'ნავიგაცია',
-'and'            => 'დო',
+'and'            => '&#32;დო',
 
 'errorpagetitle'   => 'შეცთომა',
 'returnto'         => 'დირთი $1-შა',

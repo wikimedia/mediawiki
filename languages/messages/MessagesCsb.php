@@ -153,7 +153,7 @@ $messages = array(
 'mytalk'         => 'Diskùsëjô',
 'anontalk'       => 'Diskùsëjô dlô ti IP-adresë',
 'navigation'     => 'Nawigacëjô',
-'and'            => 'ë',
+'and'            => '&#32;ë',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',

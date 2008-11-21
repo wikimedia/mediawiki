@@ -101,7 +101,7 @@ $messages = array(
 'mytalk'         => 'Alea ʻaʻaku',
 'anontalk'       => 'Alea maʻa e IP´ ni',
 'navigation'     => 'ʻai taumuʻa ki he…',
-'and'            => 'mo e',
+'and'            => '&#32;mo e',
 
 'errorpagetitle'    => 'Halaʻi',
 'returnto'          => 'Foki ki he $1',

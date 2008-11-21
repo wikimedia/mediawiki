@@ -190,7 +190,7 @@ $messages = array(
 'mytalk'         => "La mio páxina d'alderique",
 'anontalk'       => 'Alderique pa esta IP',
 'navigation'     => 'Navegación',
-'and'            => 'y',
+'and'            => '&#32;y',
 
 # Metadata in edit box
 'metadata_help' => 'Metadatos:',

@@ -221,7 +221,7 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 'mytalk'         => 'Mo chuid phlé',
 'anontalk'       => 'Plé don seoladh IP seo',
 'navigation'     => 'Nascleanúint',
-'and'            => 'agus',
+'and'            => '&#32;agus',
 
 # Metadata in edit box
 'metadata_help' => 'Meiteasonraí:',

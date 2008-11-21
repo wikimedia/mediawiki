@@ -213,7 +213,7 @@ $messages = array(
 'mytalk'         => 'Mæ discuscioin',
 'anontalk'       => 'Discuscion pe questo indirisso IP',
 'navigation'     => 'Navegaçion',
-'and'            => 'e',
+'and'            => '&#32;e',
 
 'errorpagetitle'    => 'Errô',
 'returnto'          => 'Tornâ a $1.',

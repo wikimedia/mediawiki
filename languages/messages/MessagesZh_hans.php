@@ -224,7 +224,7 @@ $messages = array(
 'mytalk'         => '我的对话页',
 'anontalk'       => '该IP的对话页',
 'navigation'     => '导航',
-'and'            => '和',
+'and'            => '&#32;和',
 
 # Metadata in edit box
 'metadata_help' => '元数据:',

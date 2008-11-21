@@ -68,7 +68,7 @@ $messages = array(
 'mytalk'         => 'Bicarana iyya',
 'anontalk'       => 'Bicarana IP édé',
 'navigation'     => 'Navigasi',
-'and'            => 'na',
+'and'            => '&#32;na',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',

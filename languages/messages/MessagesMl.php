@@ -325,7 +325,7 @@ $messages = array(
 'mytalk'         => 'എന്റെ സംവാദവേദി',
 'anontalk'       => 'ഈ ഐപിയുടെ സം‌വാദം താള്‍',
 'navigation'     => 'ഉള്ളടക്കം',
-'and'            => 'ഉം',
+'and'            => '&#32;ഉം',
 
 # Metadata in edit box
 'metadata_help' => 'മെറ്റാഡാറ്റ:',

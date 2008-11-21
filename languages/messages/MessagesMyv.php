@@ -305,7 +305,7 @@ $messages = array(
 'mytalk'         => 'Монь кортамом',
 'anontalk'       => 'Кортамс те IP-нть марто',
 'navigation'     => 'Навигация',
-'and'            => 'ды',
+'and'            => '&#32;ды',
 
 # Metadata in edit box
 'metadata_help' => 'Метадата:',

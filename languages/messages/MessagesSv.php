@@ -410,7 +410,7 @@ $messages = array(
 'mytalk'         => 'Min diskussionssida',
 'anontalk'       => 'Diskussionssida för denna IP-adress',
 'navigation'     => 'Navigering',
-'and'            => 'och',
+'and'            => '&#32;och',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',

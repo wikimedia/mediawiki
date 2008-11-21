@@ -135,7 +135,7 @@ $messages = array(
 'mytalk'         => 'Ọ̀rọ̀ mi',
 'anontalk'       => 'Ọ̀rọ̀ fún IP yí',
 'navigation'     => 'Atọ́ka',
-'and'            => 'àti',
+'and'            => '&#32;àti',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',

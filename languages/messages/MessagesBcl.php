@@ -176,7 +176,7 @@ $messages = array(
 'mytalk'         => 'An sakóng olay',
 'anontalk'       => 'Olay para sa IP na ini',
 'navigation'     => 'Nabigasyon',
-'and'            => 'asin',
+'and'            => '&#32;asin',
 
 # Metadata in edit box
 'metadata_help' => 'Mga Metadatos:',

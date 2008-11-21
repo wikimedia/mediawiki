@@ -175,7 +175,7 @@ dj'artìcol ancó pa scrit",
 'mytalk'         => 'Mie ciaciarade',
 'anontalk'       => "Ciaciarade për st'adrëssa IP-sì",
 'navigation'     => 'Navigassion',
-'and'            => 'e',
+'and'            => '&#32;e',
 
 # Metadata in edit box
 'metadata_help' => 'Metadat:',

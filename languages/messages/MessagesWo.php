@@ -214,7 +214,7 @@ $messages = array(
 'mytalk'         => 'Xëtu waxtaanuwaay',
 'anontalk'       => 'Waxtaan ak bii IP',
 'navigation'     => 'Joowiin',
-'and'            => 'ak',
+'and'            => '&#32;ak',
 
 # Metadata in edit box
 'metadata_help' => 'Jéeginjoxe :',

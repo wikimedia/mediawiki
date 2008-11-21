@@ -283,7 +283,7 @@ $messages = array(
 'mytalk'         => 'หน้าพูดคุยของฉัน',
 'anontalk'       => 'พูดคุยกับไอพีนี้',
 'navigation'     => 'ป้ายบอกทาง',
-'and'            => 'และ',
+'and'            => '&#32;และ',
 
 # Metadata in edit box
 'metadata_help' => 'เมทาเดทา:',

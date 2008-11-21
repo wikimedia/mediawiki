@@ -134,7 +134,7 @@ $messages = array(
 'mytalk'         => 'Heczaxö',
 'anontalk'       => 'Czaxöde IP',
 'navigation'     => 'Navigacion',
-'and'            => 'ö',
+'and'            => '&#32;ö',
 
 # Metadata in edit box
 'metadata_help' => 'Datade Meta:',

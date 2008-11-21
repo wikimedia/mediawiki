@@ -99,7 +99,7 @@ $messages = array(
 'mytalk'         => 'Nguāi gì tō̤-lâung',
 'anontalk'       => 'Cī ciáh IP gì tō̤-lâung-hiĕk',
 'navigation'     => 'Īng-dô̤',
-'and'            => 'gâe̤ng',
+'and'            => '&#32;gâe̤ng',
 
 'returnto'         => 'Duōng kó̤ $1.',
 'tagline'          => 'Lài-nguòng: {{SITENAME}}',

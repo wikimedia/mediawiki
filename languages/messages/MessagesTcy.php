@@ -150,7 +150,7 @@ $messages = array(
 'mytalk'         => 'ಎನ್ನ ಚರ್ಚೆ',
 'anontalk'       => 'ಈ ಐ.ಪಿ ಗ್ ಪಾತೆರ್’ಲೆ',
 'navigation'     => 'ಸಂಚಾರ',
-'and'            => 'ಬೊಕ್ಕ',
+'and'            => '&#32;ಬೊಕ್ಕ',
 
 # Metadata in edit box
 'metadata_help' => 'ಮೂಲಮಾಹಿತಿ:',

@@ -261,7 +261,7 @@ $messages = array(
 'mytalk'         => 'Mesaj sayfam',
 'anontalk'       => "Bu IP'nin mesajları",
 'navigation'     => 'Sitede yol bulma',
-'and'            => 've',
+'and'            => '&#32;ve',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',

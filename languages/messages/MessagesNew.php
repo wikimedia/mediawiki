@@ -163,7 +163,7 @@ $messages = array(
 'mypage'        => 'जिगु पौ',
 'mytalk'        => 'जिगु खं',
 'navigation'    => 'परिवहन',
-'and'           => 'व',
+'and'           => '&#32;व',
 
 'help'             => 'ग्वहालि',
 'search'           => 'मालादिसं',

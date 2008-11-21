@@ -184,7 +184,7 @@ $messages = array(
 'mytalk'         => 'Gunemanku',
 'anontalk'       => 'Dhiskusi IP puniki',
 'navigation'     => 'Pandhu Arah',
-'and'            => 'Lan',
+'and'            => '&#32;Lan',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',

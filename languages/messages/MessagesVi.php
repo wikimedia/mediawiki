@@ -331,7 +331,7 @@ $messages = array(
 'mytalk'         => 'Thảo luận với tôi',
 'anontalk'       => 'Thảo luận với IP này',
 'navigation'     => 'Xem nhanh',
-'and'            => 'và',
+'and'            => '&#32;và',
 
 # Metadata in edit box
 'metadata_help' => 'Đặc tính hình:',

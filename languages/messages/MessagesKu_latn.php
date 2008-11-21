@@ -171,7 +171,7 @@ $messages = array(
 'mytalk'         => 'Rûpela guftûgo ya min',
 'anontalk'       => 'Guftûgo ji bo vê IPê',
 'navigation'     => 'Navîgasyon',
-'and'            => 'û',
+'and'            => '&#32;û',
 
 # Metadata in edit box
 'metadata_help' => "Data'yên meta:",

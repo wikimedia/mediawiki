@@ -339,7 +339,7 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'mytalk'         => 'Keskustelusivu',
 'anontalk'       => 'Keskustele tämän IP:n kanssa',
 'navigation'     => 'Valikko',
-'and'            => 'ja',
+'and'            => '&#32;ja',
 
 # Metadata in edit box
 'metadata_help' => 'Sisältökuvaukset:',

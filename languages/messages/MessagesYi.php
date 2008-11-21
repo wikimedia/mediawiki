@@ -276,7 +276,7 @@ $messages = array(
 'mytalk'         => 'מײַן שמועס',
 'anontalk'       => 'דאס רעדן פון דעם IP',
 'navigation'     => 'נאַװיגאַציע',
-'and'            => 'און',
+'and'            => '&#32;און',
 
 # Metadata in edit box
 'metadata_help' => 'מעטא־דאטא:',

@@ -528,7 +528,7 @@ $messages = array(
 'mytalk'         => 'بحث من',
 'anontalk'       => 'بحث برای این IP',
 'navigation'     => 'گشتن',
-'and'            => 'و',
+'and'            => '&#32;و',
 
 # Metadata in edit box
 'metadata_help' => 'متاداده:',

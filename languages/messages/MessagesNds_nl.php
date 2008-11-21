@@ -408,7 +408,7 @@ $messages = array(
 'mytalk'         => 'Mien overleg',
 'anontalk'       => 'Overlegpagina veur dit IP-adres',
 'navigation'     => 'Navigasie',
-'and'            => 'en',
+'and'            => '&#32;en',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',

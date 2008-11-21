@@ -148,7 +148,7 @@ $messages = array(
 'mytalk'         => 'La mi caraba',
 'anontalk'       => 'Caraba pa esta IP',
 'navigation'     => 'Güiquipeandu',
-'and'            => 'i',
+'and'            => '&#32;i',
 
 # Metadata in edit box
 'metadata_help' => 'Metadatus:',

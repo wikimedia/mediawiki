@@ -235,7 +235,7 @@ $messages = array(
 'mytalk'         => 'زما خبرې اترې',
 'anontalk'       => 'ددې IP لپاره خبرې اترې',
 'navigation'     => 'ګرځښت',
-'and'            => 'او',
+'and'            => '&#32;او',
 
 # Metadata in edit box
 'metadata_help' => 'مېټاډاټا:',

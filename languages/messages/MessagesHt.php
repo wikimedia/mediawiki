@@ -260,7 +260,7 @@ $messages = array(
 'mytalk'         => 'Paj diskisyon mwen an',
 'anontalk'       => 'Diskite avèk adrès IP sa',
 'navigation'     => 'Navigasyon',
-'and'            => 'epi',
+'and'            => '&#32;epi',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',

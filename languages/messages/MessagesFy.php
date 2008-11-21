@@ -284,7 +284,7 @@ $messages = array(
 'mytalk'         => 'Myn oerlis',
 'anontalk'       => 'Oerlisside foar dit IP-adres',
 'navigation'     => 'Navigaasje',
-'and'            => 'en',
+'and'            => '&#32;en',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',

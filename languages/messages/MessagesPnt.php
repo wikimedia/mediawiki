@@ -135,7 +135,7 @@ $messages = array(
 'mytalk'         => "Τ' εμόν το καλάτσεμαν",
 'anontalk'       => "Καλάτσεμα για τ'ατό το IP",
 'navigation'     => 'Πορπάτεμαν',
-'and'            => 'και',
+'and'            => '&#32;και',
 
 # Metadata in edit box
 'metadata_help' => 'Μεταδογμένα:',

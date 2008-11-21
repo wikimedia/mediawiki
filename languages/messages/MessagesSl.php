@@ -168,7 +168,7 @@ in [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Uporabniški priroč
 'mytalk'         => 'Pogovor',
 'anontalk'       => 'Pogovorna stran IP',
 'navigation'     => 'Navigacija',
-'and'            => 'in',
+'and'            => '&#32;in',
 
 # Metadata in edit box
 'metadata_help' => 'Metapodatki:',

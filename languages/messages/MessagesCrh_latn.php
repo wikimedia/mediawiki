@@ -248,7 +248,7 @@ $messages = array(
 'mytalk'         => 'Muzakere saifem',
 'anontalk'       => 'Bu IP-niñ muzakeresi',
 'navigation'     => 'Saytta yol tapuv',
-'and'            => 've',
+'and'            => '&#32;ve',
 
 # Metadata in edit box
 'metadata_help' => 'Meta malümatı:',

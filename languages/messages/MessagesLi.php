@@ -280,7 +280,7 @@ $messages = array(
 'mytalk'         => 'Mien euverlèkpazjena',
 'anontalk'       => 'Euverlèk veur dit IP adres',
 'navigation'     => 'Navegatie',
-'and'            => 'en',
+'and'            => '&#32;en',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',

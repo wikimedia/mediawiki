@@ -250,7 +250,7 @@ $messages = array(
 'mytalk'         => 'Музакере саифем',
 'anontalk'       => 'Бу IP-нинъ музакереси',
 'navigation'     => 'Сайтта ёл тапув',
-'and'            => 'ве',
+'and'            => '&#32;ве',
 
 # Metadata in edit box
 'metadata_help' => 'Мета малюматы:',

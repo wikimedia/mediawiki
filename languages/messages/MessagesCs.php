@@ -458,7 +458,7 @@ $messages = array(
 'mytalk'         => 'Moje diskuse',
 'anontalk'       => 'Diskuse k této IP adrese',
 'navigation'     => 'Navigace',
-'and'            => 'a',
+'and'            => '&#32;a',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',

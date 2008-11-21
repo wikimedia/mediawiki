@@ -54,7 +54,7 @@ $messages = array(
 'mypage'         => 'ami mappitaq',
 'mytalk'         => 'atlarqutikka',
 'navigation'     => 'mianirivaa',
-'and'            => 'amma',
+'and'            => '&#32;amma',
 
 'help'              => 'qajalippaa',
 'search'            => 'ivaaqpuq',

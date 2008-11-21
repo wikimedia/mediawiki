@@ -184,7 +184,7 @@ $messages = array(
 'mytalk'         => 'என் பேச்சு',
 'anontalk'       => 'இந்த ஐ.பி. முகவரிக்கான பேச்சு',
 'navigation'     => 'வழிசெலுத்தல்',
-'and'            => 'மற்றும்',
+'and'            => '&#32;மற்றும்',
 
 # Metadata in edit box
 'metadata_help' => 'மேல்நிலைத் தரவு:',

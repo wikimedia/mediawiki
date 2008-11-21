@@ -319,7 +319,7 @@ $messages = array(
 'mytalk'         => 'Discussió',
 'anontalk'       => "Discussió d'aquesta IP",
 'navigation'     => 'Navegació',
-'and'            => 'i',
+'and'            => '&#32;i',
 
 # Metadata in edit box
 'metadata_help' => 'Metadades:',

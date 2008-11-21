@@ -231,7 +231,7 @@ $messages = array(
 'mytalk'         => 'Diskutimet e mia',
 'anontalk'       => 'Diskutimet për këtë IP',
 'navigation'     => 'Shfleto',
-'and'            => 'dhe',
+'and'            => '&#32;dhe',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',

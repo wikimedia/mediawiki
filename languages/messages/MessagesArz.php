@@ -415,7 +415,7 @@ $messages = array(
 'mytalk'         => 'مناقشاتى',
 'anontalk'       => 'المناقشة مع عنوان الأيبى دا',
 'navigation'     => 'ابحار',
-'and'            => 'و',
+'and'            => '&#32;و',
 
 # Metadata in edit box
 'metadata_help' => 'ميتا داتا:',

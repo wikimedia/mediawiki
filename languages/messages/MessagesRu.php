@@ -388,7 +388,7 @@ $messages = array(
 'mytalk'         => 'Моя страница обсуждения',
 'anontalk'       => 'Обсуждение для этого IP-адреса',
 'navigation'     => 'Навигация',
-'and'            => 'и',
+'and'            => '&#32;и',
 
 # Metadata in edit box
 'metadata_help' => 'Метаданные:',

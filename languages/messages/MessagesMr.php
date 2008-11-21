@@ -317,7 +317,7 @@ $messages = array(
 'mytalk'         => 'माझ्या चर्चा',
 'anontalk'       => 'या अंकपत्त्याचे चर्चा पान उघडा',
 'navigation'     => 'सुचालन',
-'and'            => 'आणि',
+'and'            => '&#32;आणि',
 
 # Metadata in edit box
 'metadata_help' => 'मेटाडाटा:',

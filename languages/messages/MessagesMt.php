@@ -253,7 +253,7 @@ $messages = array(
 'mytalk'         => 'Id-Diskussjonijiet tiegħi',
 'anontalk'       => 'Diskussjoni għal dan l-IP',
 'navigation'     => 'Navigazzjoni',
-'and'            => 'u',
+'and'            => '&#32;u',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',

@@ -41,7 +41,7 @@ $messages = array(
 'mypage'         => 'Tluka ramina',
 'mytalk'         => 'Mbulavulo namina',
 'anontalk'       => 'Vulavula na IP leyi',
-'and'            => 'nakambe',
+'and'            => '&#32;nakambe',
 
 'errorpagetitle'   => 'Xihoxo',
 'returnto'         => 'Thlelela e $1.',

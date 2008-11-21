@@ -100,7 +100,7 @@ $messages = array(
 'mytalk'         => 'Miene Beredsied',
 'anontalk'       => 'Beredsied fe dise IP',
 'navigation'     => 'Navigatioon',
-'and'            => 'onn',
+'and'            => '&#32;onn',
 
 'errorpagetitle'   => 'Fäla',
 'returnto'         => 'Trigj no $1.',

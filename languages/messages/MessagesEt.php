@@ -226,7 +226,7 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].'
 'mytalk'         => 'Arutelu',
 'anontalk'       => 'Arutelu selle IP jaoks',
 'navigation'     => 'Navigeerimine',
-'and'            => 'ja',
+'and'            => '&#32;ja',
 
 'errorpagetitle'    => 'Viga',
 'returnto'          => 'Naase $1 juurde',

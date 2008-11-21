@@ -296,7 +296,7 @@ $messages = array(
 'mytalk'         => 'Minha discussão',
 'anontalk'       => 'Discussão para este IP',
 'navigation'     => 'Navegação',
-'and'            => 'e',
+'and'            => '&#32;e',
 
 # Metadata in edit box
 'metadata_help' => 'Metadados:',

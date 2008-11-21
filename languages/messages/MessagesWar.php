@@ -115,7 +115,7 @@ $messages = array(
 'mytalk'         => 'Akon paghingay',
 'anontalk'       => 'Paghingay para hini nga IP',
 'navigation'     => 'Paglayag',
-'and'            => 'ngan',
+'and'            => '&#32;ngan',
 
 'errorpagetitle'   => 'Sayop',
 'returnto'         => 'Balik ngadto ha $1.',

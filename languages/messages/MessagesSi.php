@@ -270,7 +270,7 @@ $messages = array(
 'mytalk'         => 'මගේ සාකච්ඡා',
 'anontalk'       => 'මෙම අන්තර්ජාල ලිපිනය සඳහා සාකච්ඡාව',
 'navigation'     => 'සංචලනය',
-'and'            => 'සහ',
+'and'            => '&#32;සහ',
 
 # Metadata in edit box
 'metadata_help' => 'පාරදත්ත:',

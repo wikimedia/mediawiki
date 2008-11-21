@@ -106,7 +106,7 @@ $messages = array(
 'mypage'         => 'Mi pajina',
 'mytalk'         => 'Mi diścuśión',
 'anontalk'       => 'Diskusion para esta IP',
-'and'            => 'e',
+'and'            => '&#32;e',
 
 'errorpagetitle'   => 'Yerro',
 'tagline'          => 'De {{SITENAME}}',

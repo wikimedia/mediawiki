@@ -29,7 +29,7 @@ $messages = array(
 'moredotdotdot'  => 'Barrachd...',
 'mypage'         => 'Mo dhuilleag',
 'anontalk'       => 'Labhairt air an IP seo',
-'and'            => 'agus',
+'and'            => '&#32;agus',
 
 'errorpagetitle'    => 'Mearachd',
 'returnto'          => 'Till gu $1.',

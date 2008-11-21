@@ -385,7 +385,7 @@ $messages = array(
 'mytalk'         => 'Spjall',
 'anontalk'       => 'Spjallsíða þessa vistfangs.',
 'navigation'     => 'Flakk',
-'and'            => 'og',
+'and'            => '&#32;og',
 
 # Metadata in edit box
 'metadata_help' => 'Lýsigögn:',

@@ -125,7 +125,7 @@ $messages = array(
 'mytalk'         => 'My resoonaght',
 'anontalk'       => "Cur loayrtys da'n IP shoh",
 'navigation'     => 'Stiureydys',
-'and'            => 'as',
+'and'            => '&#32;as',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',

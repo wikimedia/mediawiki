@@ -136,7 +136,7 @@ $messages = array(
 'mytalk'         => 'Dipolelo tša ka',
 'anontalk'       => 'Poledišano ya IP ye',
 'navigation'     => 'Tšwelotšo',
-'and'            => 'le',
+'and'            => '&#32;le',
 
 'errorpagetitle'    => 'Phošo',
 'returnto'          => 'Boela go $1.',

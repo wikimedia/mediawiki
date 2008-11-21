@@ -524,7 +524,7 @@ $messages = array(
 'mytalk'         => 'نقاشي',
 'anontalk'       => 'النقاش لعنوان الأيبي هذا',
 'navigation'     => 'إبحار',
-'and'            => 'و',
+'and'            => '&#32;و',
 
 # Metadata in edit box
 'metadata_help' => 'بيانات ميتا:',

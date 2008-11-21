@@ -123,7 +123,7 @@ $messages = array(
 'mytalk'         => '我个讲张',
 'anontalk'       => '该IP个讲张',
 'navigation'     => '导航',
-'and'            => '搭仔',
+'and'            => '&#32;搭仔',
 
 'errorpagetitle'    => '错误',
 'returnto'          => '返回到$1。',

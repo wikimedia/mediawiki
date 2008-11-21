@@ -297,7 +297,7 @@ $messages = array(
 'mytalk'         => 'Perbualan saya',
 'anontalk'       => 'Perbualan bagi IP ini',
 'navigation'     => 'Pandu arah',
-'and'            => 'dan',
+'and'            => '&#32;dan',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',

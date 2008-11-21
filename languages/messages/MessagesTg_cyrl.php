@@ -205,7 +205,7 @@ $messages = array(
 'mytalk'         => 'Гуфтугӯи ман',
 'anontalk'       => 'Баҳс бо ин IP',
 'navigation'     => 'Гаштан',
-'and'            => 'ва',
+'and'            => '&#32;ва',
 
 # Metadata in edit box
 'metadata_help' => 'Метадода:',

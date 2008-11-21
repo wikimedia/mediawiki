@@ -78,7 +78,7 @@ $messages = array(
 'qbspecialpages' => 'Nkásá ya ndéngé isúsu',
 'mytalk'         => 'Ntembe na ngáí',
 'navigation'     => 'Botamboli',
-'and'            => 'mpé',
+'and'            => '&#32;mpé',
 
 'errorpagetitle'   => 'Mbéba',
 'tagline'          => 'Artíclɛ ya {{SITENAME}}.',

@@ -151,7 +151,7 @@ $messages = array(
 'mytalk'         => "Ha'u-nia diskusaun",
 'anontalk'       => "Diskusaun ba IP ne'e",
 'navigation'     => 'Hatudu-dalan',
-'and'            => 'ho',
+'and'            => '&#32;ho',
 
 'errorpagetitle'    => 'Sala',
 'tagline'           => 'Husi {{SITENAME}}',

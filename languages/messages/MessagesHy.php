@@ -403,7 +403,7 @@ $messages = array(
 'mytalk'         => 'Իմ քննարկումները',
 'anontalk'       => 'Քննարկում այս IP-հասցեի համար',
 'navigation'     => 'Շրջել կայքում',
-'and'            => 'և',
+'and'            => '&#32;և',
 
 # Metadata in edit box
 'metadata_help' => 'Մետատվյալներ։',

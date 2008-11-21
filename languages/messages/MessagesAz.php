@@ -147,7 +147,7 @@ $messages = array(
 'mytalk'         => 'Danişiqlarım',
 'anontalk'       => 'Bu IP-yə aid müzakirə',
 'navigation'     => 'Rəhbər',
-'and'            => 'və',
+'and'            => '&#32;və',
 
 'errorpagetitle'    => 'Xəta',
 'returnto'          => '$1 səhifəsinə qayıt.',

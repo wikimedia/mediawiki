@@ -139,7 +139,7 @@ $messages = array(
 'mytalk'         => 'Sözleşmäk sayfam',
 'anontalk'       => 'Bu IP-nin konuşmaları',
 'navigation'     => 'Saytda yol bulmaa',
-'and'            => 'hem',
+'and'            => '&#32;hem',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',

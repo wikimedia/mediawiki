@@ -181,7 +181,7 @@ $messages = array(
 'mytalk'         => '我的對話頁',
 'anontalk'       => '該IP的對話頁',
 'navigation'     => '導航',
-'and'            => '和',
+'and'            => '&#32;和',
 
 # Metadata in edit box
 'metadata_help' => '元數據:',
