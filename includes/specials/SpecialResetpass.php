@@ -126,7 +126,7 @@ class PasswordResetForm extends SpecialPage {
 			'<tr>' .
 				'<td></td>' .
 				'<td>' .
-					wfSubmitButton( wfMsgHtml( $submitMsg ) ) .
+					Xml::submitButton( wfMsg( $submitMsg ) ) .
 				'</td>' .
 			'</tr>' .
 			'</table>' .
