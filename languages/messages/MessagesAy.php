@@ -20,6 +20,7 @@ $messages = array(
 'tog-usenewrc'        => "Jichhnaki jaqukipawi waliptäta (''JavaScript'')",
 'tog-numberheadings'  => 'Titulun chinu achuraña',
 'tog-showtoolbar'     => "Turkawit irnaqañ täta tisi uñachayaña (''JavaScript'')",
+'tog-editondblclick'  => "Uñstawi turkayaña päsuxuqiña (''JavaScript'')",
 
 'underline-always' => 'Wiñaya',
 'underline-never'  => 'Janipini',

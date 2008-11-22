@@ -780,7 +780,7 @@ $2',
 'recentchanges'                     => '最晏嗰改動',
 'recentchangestext'                 => '跟到箇隻wiki上嗰最新改動。',
 'recentchanges-feed-description'    => '跟到箇隻 wiki 上集合嗰最後改動。',
-'rcnote'                            => "下底係到$3，最近'''$2'''日之內嗰最後'''$1'''回改動:",
+'rcnote'                            => "下底係到$4 $5，最近'''$2'''工嗰'''$1'''回改動:",
 'rcnotefrom'                        => "底下係自'''$2'''嗰更改(頂多顯示'''$1'''):",
 'rclistfrom'                        => '顯示自$1後嗰新改動',
 'rcshowhideminor'                   => '$1細編輯',
@@ -806,7 +806,8 @@ $2',
 'recentchangeslinked'          => '連結頁嗰更改',
 'recentchangeslinked-title'    => '連結頁嗰改動到 "$1"',
 'recentchangeslinked-noresult' => '箇段時間嗰連結頁冇更改。',
-'recentchangeslinked-summary'  => "箇隻特殊頁列出箇頁連出去頁面嗰最晏改動。倷監視列表嗰頁面會用'''粗體'''顯到。",
+'recentchangeslinked-summary'  => "箇隻特殊頁列出箇頁連出去頁面嗰最晏改動（或是某隻分類嗰頁面）。
+[[Special:Watchlist|倷嗰監視列表]]頁面會用'''粗體'''顯到。",
 
 # Upload
 'upload'                      => '上傳檔案',

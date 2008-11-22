@@ -1459,11 +1459,11 @@ Vergeet neet de verwiezingen te contreleren veurda-j 't sjabloon vortdoon.",
 
 # Random page
 'randompage'         => 'Willekeurig artikel',
-'randompage-nopages' => "Der staon gien pagina's in disse naamruumte.",
+'randompage-nopages' => 'Der staon gien pagina\'s in de naamruumte "$1".',
 
 # Random redirect
 'randomredirect'         => 'Willekeurige deurverwiezing',
-'randomredirect-nopages' => 'Der staon gien deurverwiezingen in disse naamruumte.',
+'randomredirect-nopages' => 'Der staon gien deurverwiezingen in de naamruumte "$1".',
 
 # Statistics
 'statistics'              => 'Staotestieken',
@@ -1676,6 +1676,28 @@ Toekomstige wiezigingen op disse pagina en de overlegpagina zullen hier vermeld 
 'enotif_lastvisited'           => 'Zie $1 veur alle wiezigingen sinds joew leste bezeuk.',
 'enotif_lastdiff'              => 'Zie $1 um disse wieziging te bekieken.',
 'enotif_anon_editor'           => 'annenieme gebruker $1',
+'enotif_body'                  => 'Beste $WATCHINGUSERNAME,
+
+De pagina $PAGETITLE op {{SITENAME}} is $CHANGEDORCREATED op $PAGEEDITDATE deur $PAGEEDITOR, zie $PAGETITLE_URL veur de leste versie.
+
+$NEWPAGE
+
+Samenvatting van de wieziging: $PAGESUMMARY $PAGEMINOREDIT
+
+Kontakgevevens van de auteur:
+E-mail: $PAGEEDITOR_EMAIL
+Wiki: $PAGEEDITOR_WIKI
+
+Je kriegen veerder gien berichen, behalve a-j disse pagina bezeuken. Op joew volglieste ku-j veur alle pagina\'s dee-j volgen de waorschuwingsinstellingen derof haolen.
+
+             Groeten van \'t {{SITENAME}}-waorschuwingssysteem.
+
+--
+Je kunnen de instellingen van joew volglieste wiezigen op:
+{{fullurl:Special:Watchlist/edit}}
+
+Opmarkingen en veerdere hulpe:
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Vortdoon',
@@ -1704,6 +1726,10 @@ Toekomstige wiezigingen op disse pagina en de overlegpagina zullen hier vermeld 
 ** Schending van de auteursrechen
 ** Vandelisme',
 'delete-edit-reasonlist' => "Rejens veur 't vortdoon bewarken",
+'delete-toobig'          => "Disse pagina hef een lange bewarkingsgeschiedenisse, meer as $1 {{PLURAL:$1|versie|versies}}.
+'t Vortdoon van dit soort pagina's is mit rechen bepark um 't per ongelok versteuren van de warking van {{SITENAME}} te veurkoemen.",
+'delete-warning-toobig'  => "Disse pagina hef een lange bewarkingsgeschiedenisse, meer as $1 versies. Woart je: 't vortdoon van disse pagina kan de warking van de databanke van {{SITENAME}} versteuren. 
+Wees veurzichtig",
 
 # Rollback
 'rollback'         => 'Wiezigingen herstellen',
@@ -1728,7 +1754,9 @@ De leste bewarking is edaon deur [[User:$3|$3]] ([[User talk:$3|Overleeg]]).",
 'protectedarticle'            => '[[$1]] is beveilig',
 'modifiedarticleprotection'   => 'beveiligingsnivo van "[[$1]]"  ewiezig',
 'unprotectedarticle'          => '[[$1]] vrie-egeven',
+'protect-title'               => 'Instellen van beveiligingsnivo veur "$1"',
 'prot_1movedto2'              => '[[$1]] is ewiezig naor [[$2]]',
+'protect-legend'              => 'Beveiliging bevestigen',
 'protectcomment'              => 'Rejen',
 'protectexpiry'               => 'Duur',
 'protect_expiry_invalid'      => 'Verlooptied is ongeldig.',
@@ -1760,6 +1788,7 @@ Hier staon de instellingen zoas ze noen bin veur de pagina <strong>$1</strong>:"
 'restriction-edit'   => 'Bewark',
 'restriction-move'   => 'Herneum',
 'restriction-create' => 'Anmaken',
+'restriction-upload' => 'Bestand toevoegen',
 
 # Restriction levels
 'restriction-level-sysop'         => 'volledige beveiliging',
@@ -1767,32 +1796,50 @@ Hier staon de instellingen zoas ze noen bin veur de pagina <strong>$1</strong>:"
 'restriction-level-all'           => 'alles',
 
 # Undelete
-'undelete'                 => "Vort-edaone pagina's bekieken",
-'undeletepage'             => "Vort-edaone pagina's bekieken en weerummeplaosen",
-'viewdeletedpage'          => "Bekiek vort-edaone pagina's",
-'undeletepagetext'         => 'Disse pagina is vort-edaon, mar steet in de kas en kan nog weerummeplaos wonnen.',
-'undeleteextrahelp'        => "Um de pagina mit alle eerdere versies weerumme te plaosen lao-j alle hokjes leeg en klik op '''''Weerummeplaosen!'''''.
+'undelete'                     => "Vort-edaone pagina's bekieken",
+'undeletepage'                 => "Vort-edaone pagina's bekieken en weerummeplaosen",
+'undeletepagetitle'            => "'''Hieronder staon de vort-edaone bewarkingen van [[:$1]]'''.",
+'viewdeletedpage'              => "Bekiek vort-edaone pagina's",
+'undeletepagetext'             => 'Disse pagina is vort-edaon, mar steet in de kas en kan nog weerummeplaos wonnen.',
+'undelete-fieldset-title'      => 'Versies weerummeplaosen',
+'undeleteextrahelp'            => "Um de pagina mit alle eerdere versies weerumme te plaosen lao-j alle hokjes leeg en klik op '''''Weerummeplaosen!'''''.
 Um een bepaolde versies weerumme te plaosen mu-j de versies dee-j weerummeplaosen willen anvinken en klik op '''''Weerummeplaosen!'''''.
 Um een bulte achter mekaarstaonde versies te kiezen mu-j de eerste in de reeks anvinken en vervolgens mit de schuufknoppe in-edrok de leste anvinken. Hierdeur wonnen oek alle tussenliggende versies mee-eneumen.
 A-j op '''''Herstel''''' klikken wonnen 't infermasieveld en alle hokjes leeg-emaak.",
-'undeletehistory'          => 'A-j een pagina weerummeplaosen, wonnen alle versies as ouwe versies weerummeplaos. 
+'undeleterevisions'            => '$1 {{PLURAL:$1|versie|versies}} earchiveerd',
+'undeletehistory'              => 'A-j een pagina weerummeplaosen, wonnen alle versies as ouwe versies weerummeplaos. 
 As der al een nieje pagina mit dezelfde naam an-emaak is, zullen disse versies as ouwe versies weerummeplaos wonnen, mar de op-esleugen versie zal neet ewiezig wonnen.',
-'undeletehistorynoadmin'   => "Disse pagina is vort-edaon. De rejen hierveur steet hieronder, samen mit de infermasie van de gebrukers dee dit artikel ewiezig hemmen veurdat 't vort-edaon is. De tekse van 't artikel is allinnig zichbaor veur beheerders.",
-'undeleterevision-missing' => "Ongeldige of ontbrekende versie. 't Is meugelijk da-j een verkeerde verwiezing gebruken of dat disse pagina weerummeplaos is of dat 't uut archief ewis is.",
-'undeletebtn'              => 'Weerummeplaosen',
-'undeletelink'             => 'weerummeplaosen',
-'undeletereset'            => 'Herstel',
-'undeletecomment'          => 'Opmarking:',
-'undeletedarticle'         => '"$1" is weerummeplaos',
-'cannotundelete'           => "Weerummeplaosen van 't bestand is mislok; iemand aanders hef disse pagina meschien al weerummeplaos.",
-'undeletedpage'            => "<big>'''$1 is weerummeplaos'''</big>
+'undeleterevdel'               => "Herstellen kan neet as daor de leste versie van de pagina of 't bestand gedeeltelijk mee vort-edaon wonnen.
+In dat geval mu-j de leste versie as zichbaor instellen.",
+'undeletehistorynoadmin'       => "Disse pagina is vort-edaon. De rejen hierveur steet hieronder, samen mit de infermasie van de gebrukers dee dit artikel ewiezig hemmen veurdat 't vort-edaon is. De tekse van 't artikel is allinnig zichbaor veur beheerders.",
+'undeleterevision-missing'     => "Ongeldige of ontbrekende versie. 't Is meugelijk da-j een verkeerde verwiezing gebruken of dat disse pagina weerummeplaos is of dat 't uut archief ewis is.",
+'undelete-nodiff'              => 'Gien eerdere versie evunnen.',
+'undeletebtn'                  => 'Weerummeplaosen',
+'undeletelink'                 => 'weerummeplaosen',
+'undeletereset'                => 'Herstel',
+'undeletecomment'              => 'Opmarking:',
+'undeletedarticle'             => '"$1" is weerummeplaos',
+'undeletedrevisions'           => '$1 {{PLURAL:$1|versie|versies}} weerummeplaos',
+'undeletedrevisions-files'     => '{{PLURAL:$1|1 versie|$1 versies}} en {{PLURAL:$2|1 bestand|$2 bestanden}} bin weerummeplaos',
+'undeletedfiles'               => '{{PLURAL:$1|1 bestand|$1 bestanden}} weerummeplaos',
+'cannotundelete'               => "Weerummeplaosen van 't bestand is mislok; iemand aanders hef disse pagina meschien al weerummeplaos.",
+'undeletedpage'                => "<big>'''$1 is weerummeplaos'''</big>
 
 Bekiek 't [[Special:Log/delete|logboek vort-edaone pagina's]] veur een overzichte van pagina's dee kortens vort-edaon en weerummeplaos bin.",
-'undelete-header'          => "Zie [[Special:Log/delete|'t logboek vort-edaone pagina's]] veur pagina's dee 't les vort-edaon bin.",
-'undelete-search-box'      => "Deurzeuk vort-edaone pagina's",
-'undelete-search-prefix'   => "Teun pagina's vanof:",
-'undelete-search-submit'   => 'Zeuk',
-'undelete-no-results'      => "Gien pagina's evunnen in 't archief mit vort-edaone pagina's.",
+'undelete-header'              => "Zie [[Special:Log/delete|'t logboek vort-edaone pagina's]] veur pagina's dee 't les vort-edaon bin.",
+'undelete-search-box'          => "Deurzeuk vort-edaone pagina's",
+'undelete-search-prefix'       => "Teun pagina's vanof:",
+'undelete-search-submit'       => 'Zeuk',
+'undelete-no-results'          => "Gien pagina's evunnen in 't archief mit vort-edaone pagina's.",
+'undelete-filename-mismatch'   => "Bestansversie van 't tiedstip $1 kon neet hersteld wonnen: bestansnaam kloppen neet",
+'undelete-bad-store-key'       => "Bestansversie van 't tiedstip $1 kon neet hersteld wonnen: 't bestand was der al neet meer veurdat 't vort-edaon wönnen.",
+'undelete-cleanup-error'       => 'Fout bie \'t herstellen van \'t ongebruken archiefbestand "$1".',
+'undelete-missing-filearchive' => "'t Lokken neet um ID $1 weerumme te plaosen umdat 't neet in de databanke is.
+Meschien is 't al weerummeplaos.",
+'undelete-error-short'         => "Fout bie 't herstellen van 't bestand: $1",
+'undelete-error-long'          => "Fouten bie 't herstellen van 't bestand:
+
+$1",
 
 # Namespace form on various pages
 'namespace'      => 'Naamruumte:',
