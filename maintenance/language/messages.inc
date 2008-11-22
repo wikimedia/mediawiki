@@ -449,6 +449,10 @@ $wgMessageStructure = array(
 		'resetpass_bad_temporary',
 		'resetpass_forbidden',
 		'resetpass_missing',
+		'resetpass-no-info',
+		'resetpass-submit-loggedin',
+		'resetpass-wrong-oldpass',
+		'resetpass-temp-password',
 	),
 	'toolbar' => array(
 		'bold_sample',
@@ -862,6 +866,7 @@ $wgMessageStructure = array(
 		'prefs-watchlist-edits',
 		'prefs-watchlist-edits-max',
 		'prefs-misc',
+		'prefs-resetpass',
 		'saveprefs',
 		'resetprefs',
 		'oldpassword',

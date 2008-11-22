@@ -582,7 +582,7 @@ class LoginForm {
 
 	function resetLoginForm( $error ) {
 		global $wgOut;
-		$wgOut->addWikiText( "<div class=\"errorbox\">$error</div>" );
+		$wgOut->addHTML( Xml::element('p', array( 'class' => 'error' ), $error ) );
 		$reset = new PasswordResetForm( $this->mName, $this->mPassword );
 		$reset->execute( null );
 	}

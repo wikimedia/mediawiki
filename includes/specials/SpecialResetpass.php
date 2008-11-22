@@ -18,11 +18,11 @@ class PasswordResetForm extends SpecialPage {
 	function __construct( $name=null, $reset=null ) {
 		if( $name !== null ) {
 			$this->mName = $name;
-			$this->mTemporaryPassword = $reset;
+			$this->mOldpass = $reset;
 		} else {
 			global $wgRequest;
 			$this->mName = $wgRequest->getVal( 'wpName' );
-			$this->mTemporaryPassword = $wgRequest->getVal( 'wpPassword' );
+			$this->mOldpass = $wgRequest->getVal( 'wpPassword' );
 		}
 	}
 
@@ -37,8 +37,8 @@ class PasswordResetForm extends SpecialPage {
 			return;
 		}
 
-		if( $this->mName === null && !$wgRequest->wasPosted() ) {
-			$this->error( wfMsg( 'resetpass_missing' ) );
+		if( !$wgRequest->wasPosted() && !$wgUser->isLoggedIn() ) {
+			$this->error( wfMsg( 'resetpass-no-info' ) );
 			return;
 		}
 
@@ -48,20 +48,24 @@ class PasswordResetForm extends SpecialPage {
 			try {
 				$this->attemptReset( $newpass, $retype );
 				$wgOut->addWikiMsg( 'resetpass_success' );
-
-				$data = array(
-					'action' => 'submitlogin',
-					'wpName' => $this->mName,
-					'wpPassword' => $newpass,
-					'returnto' => $wgRequest->getVal( 'returnto' ),
-				);
-				if( $wgRequest->getCheck( 'wpRemember' ) ) {
-					$data['wpRemember'] = 1;
+				if( !$wgUser->isLoggedIn() ) {
+					$data = array(
+						'action' => 'submitlogin',
+						'wpName' => $this->mName,
+						'wpPassword' => $newpass,
+						'returnto' => $wgRequest->getVal( 'returnto' ),
+					);
+					if( $wgRequest->getCheck( 'wpRemember' ) ) {
+						$data['wpRemember'] = 1;
+					}
+					$login = new LoginForm( new FauxRequest( $data, true ) );
+					$login->execute();
 				}
-				$login = new LoginForm( new FauxRequest( $data, true ) );
-				$login->execute();
-
-				return;
+				$titleObj = Title::newFromText( $wgRequest->getVal( 'returnto' ) );
+				if ( !$titleObj instanceof Title ) {
+					$titleObj = Title::newMainPage();
+				}
+				$wgOut->redirect( $titleObj->getFullURL() );
 			} catch( PasswordError $e ) {
 				$this->error( $e->getMessage() );
 			}
@@ -71,9 +75,7 @@ class PasswordResetForm extends SpecialPage {
 
 	function error( $msg ) {
 		global $wgOut;
-		$wgOut->addHTML( '<div class="errorbox">' .
-			htmlspecialchars( $msg ) .
-			'</div>' );
+		$wgOut->addHTML( Xml::element('p', array( 'class' => 'error' ), $msg ) );
 	}
 
 	function showForm() {
@@ -82,44 +84,54 @@ class PasswordResetForm extends SpecialPage {
 		$wgOut->disallowUserJs();
 
 		$self = SpecialPage::getTitleFor( 'Resetpass' );
-		$form  =
-			'<div id="userloginForm">' .
-			wfOpenElement( 'form',
-				array(
-					'method' => 'post',
-					'action' => $self->getLocalUrl() ) ) .
-			'<h2>' . wfMsgHtml( 'resetpass_header' ) . '</h2>' .
-			'<div id="userloginprompt">' .
-			wfMsgExt( 'resetpass_text', array( 'parse' ) ) .
-			'</div>' .
-			'<table>' .
-			wfHidden( 'token', $wgUser->editToken() ) .
-			wfHidden( 'wpName', $this->mName ) .
-			wfHidden( 'wpPassword', $this->mTemporaryPassword ) .
-			wfHidden( 'returnto', $wgRequest->getVal( 'returnto' ) ) .
-			$this->pretty( array(
-				array( 'wpName', 'username', 'text', $this->mName ),
-				array( 'wpNewPassword', 'newpassword', 'password', '' ),
-				array( 'wpRetype', 'yourpasswordagain', 'password', '' ),
-			) ) .
-			'<tr>' .
+		if ( !$this->mName ) {
+			$this->mName = $wgUser->getName();
+		}
+		$rememberMe = '';
+		if ( !$wgUser->isLoggedIn() ) {
+			$rememberMe = '<tr>' .
 				'<td></td>' .
 				'<td>' .
 					Xml::checkLabel( wfMsg( 'remembermypassword' ),
 						'wpRemember', 'wpRemember',
 						$wgRequest->getCheck( 'wpRemember' ) ) .
 				'</td>' .
-			'</tr>' .
+			'</tr>';
+			$submitMsg = 'resetpass_submit';
+			$oldpassMsg = 'resetpass-temp-password';
+		} else {
+			$oldpassMsg = 'oldpassword';
+			$submitMsg = 'resetpass-submit-loggedin';
+		}
+		$wgOut->addHTML(
+			Xml::openElement( 'fieldset' ) .
+			Xml::element( 'legend', null, wfMsg( 'resetpass_header' ) ) .
+			Xml::openElement( 'form',
+				array(
+					'method' => 'post',
+					'action' => $self->getLocalUrl(),
+					'id' => 'mw-resetpass-form' ) ) .	
+			Xml::hidden( 'token', $wgUser->editToken() ) .
+			Xml::hidden( 'wpName', $this->mName ) .
+			Xml::hidden( 'returnto', $wgRequest->getVal( 'returnto' ) ) .
+			wfMsgExt( 'resetpass_text', array( 'parse' ) ) .
+			'<table>' .
+			$this->pretty( array(
+				array( 'wpName', 'username', 'text', $this->mName ),
+				array( 'wpPassword', $oldpassMsg, 'password', $this->mOldpass ),
+				array( 'wpNewPassword', 'newpassword', 'password', '' ),
+				array( 'wpRetype', 'yourpasswordagain', 'password', '' ),
+			) ) .
+			$rememberMe .
 			'<tr>' .
 				'<td></td>' .
 				'<td>' .
-					wfSubmitButton( wfMsgHtml( 'resetpass_submit' ) ) .
+					wfSubmitButton( wfMsgHtml( $submitMsg ) ) .
 				'</td>' .
 			'</tr>' .
 			'</table>' .
-			wfCloseElement( 'form' ) .
-			'</div>';
-		$wgOut->addHTML( $form );
+			Xml::closeElement( 'form' ) .
+			Xml::closeElement( 'fieldset' ) );
 	}
 
 	function pretty( $fields ) {
@@ -127,16 +139,19 @@ class PasswordResetForm extends SpecialPage {
 		foreach( $fields as $list ) {
 			list( $name, $label, $type, $value ) = $list;
 			if( $type == 'text' ) {
-				$field = '<tt>' . htmlspecialchars( $value ) . '</tt>';
+				$field = htmlspecialchars( $value );
 			} else {
 				$field = Xml::input( $name, 20, $value,
 					array( 'id' => $name, 'type' => $type ) );
 			}
 			$out .= '<tr>';
-			$out .= '<td align="right">';
-			$out .= Xml::label( wfMsg( $label ), $name );
+			$out .= "<td class='mw-label'>";
+			if ( $type != 'text' )
+				$out .= Xml::label( wfMsg( $label ), $name );
+			else 
+				$out .=  wfMsg( $label );
 			$out .= '</td>';
-			$out .= '<td>';
+			$out .= "<td class='mw-input'>";
 			$out .= $field;
 			$out .= '</td>';
 			$out .= '</tr>';
@@ -153,8 +168,8 @@ class PasswordResetForm extends SpecialPage {
 			throw new PasswordError( 'no such user' );
 		}
 
-		if( !$user->checkTemporaryPassword( $this->mTemporaryPassword ) ) {
-			throw new PasswordError( wfMsg( 'resetpass_bad_temporary' ) );
+		if( !$user->checkTemporaryPassword( $this->mOldpass ) && !$user->checkPassword( $this->mOldpass ) ) {
+			throw new PasswordError( wfMsg( 'resetpass-wrong-oldpass' ) );
 		}
 
 		if( $newpass !== $retype ) {
@@ -162,6 +177,7 @@ class PasswordResetForm extends SpecialPage {
 		}
 
 		$user->setPassword( $newpass );
+		$user->setCookies();
 		$user->saveSettings();
 	}
 }
