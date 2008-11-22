@@ -1970,7 +1970,7 @@ Konsultu la [[Special:Log/delete|deletion log]] por protokolo pri la lastatempaj
 'undelete-error-long'          => 'Jen eraroj dum restarigo de dosiero:
 
 $1',
-'undelete-show-file-confirm'   => 'Ĉu vi vere volas vidi forigitan version de la dosiero "<nowiki>$1</nowiki>" de $2?',
+'undelete-show-file-confirm'   => 'Ĉu vi vere volas vidi forigitan version de la dosiero "<nowiki>$1</nowiki>" je $2 $3?',
 'undelete-show-file-submit'    => 'Jes',
 
 # Namespace form on various pages

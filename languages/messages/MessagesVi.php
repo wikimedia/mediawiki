@@ -1035,8 +1035,8 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'searchmenu-new'                   => "'''[[:$1|Tạo]] trang ''[[$1]]'' trên wiki này!'''",
 'searchhelp-url'                   => 'Help:Nội dung',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Duyệt các trang với tiền tố này]]',
-'searchprofile-articles'           => 'Trang',
-'searchprofile-articles-and-proj'  => 'Trang bài & Dự án',
+'searchprofile-articles'           => 'Trang có nội dung',
+'searchprofile-articles-and-proj'  => 'Trang có nội dung & Dự án',
 'searchprofile-project'            => 'Dự án',
 'searchprofile-images'             => 'Tập tin',
 'searchprofile-everything'         => 'Tất cả',
@@ -1977,7 +1977,7 @@ Xem nhật trình xóa và phục hồi các trang gần đây tại [[Special:L
 'undelete-error-long'          => 'Xuất hiện lỗi khi phục hồi tập tin:
 
 $1',
-'undelete-show-file-confirm'   => 'Bạn có chắc mình muốn xem một phiên bản đã xóa của tập tin “<nowiki>$1</nowiki>” vào lúc $2?',
+'undelete-show-file-confirm'   => 'Bạn có chắc mình muốn xem một phiên bản đã xóa của tập tin “<nowiki>$1</nowiki>” vào ngày $2 lúc $3?',
 'undelete-show-file-submit'    => 'Có',
 
 # Namespace form on various pages

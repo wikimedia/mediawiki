@@ -519,7 +519,7 @@ Cheest-chí al pöö vess un canbi dràstegh e inaspetaa par una pàgina pupüla
 'movearticle'     => "Möva l'articul",
 'newtitle'        => 'Titul növ:',
 'move-watch'      => "Gionta quela pagina chì ai paginn che te tegn d'ögg.",
-'pagemovedsub'    => "El San Martin/San Michel l'è bele fat!",
+'pagemovedsub'    => "San Martin l'è bele fat!",
 'movepage-moved'  => "<big>'''\"\$1\" l'è staa muvüü a \"\$2\"'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movedto'         => 'spustaa vers:',
 '1movedto2'       => '[[$1]] spustaa in [[$2]]',

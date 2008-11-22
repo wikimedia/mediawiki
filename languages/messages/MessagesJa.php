@@ -203,6 +203,7 @@ $messages = array(
 'tog-diffonly'                => '差分表示の下に記事本文を表示しない',
 'tog-showhiddencats'          => '隠しカテゴリを表示する',
 'tog-noconvertlink'           => 'リンクタイトル変換を無効化する',
+'tog-norollbackdiff'          => 'ロールバック後の差分を表示しない',
 
 'underline-always'  => '常に付ける',
 'underline-never'   => '常に付けない',
@@ -779,6 +780,8 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'post-expand-template-inclusion-category' => 'テンプレート読み込みサイズが制限値を越えているページ',
 'post-expand-template-argument-warning'   => '警告：このページには展開後のサイズが大きすぎるテンプレートが1つ以上含まれています。これらのテンプレートは展開されませんでした。',
 'post-expand-template-argument-category'  => '展開されなかったテンプレートを含むページ',
+'parser-template-loop-warning'            => 'テンプレートのループが検出されました： [[$1]]',
+'parser-template-recursion-depth-warning' => 'テンプレートの再帰回数が限界を超えました ($1)',
 
 # "Undo" feature
 'undo-success' => '編集の取り消しに成功しました。保存ボタンを押すと変更が確定されます。',
@@ -984,8 +987,8 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'searchmenu-exists'                => "* ページ '''[[$1]]'''",
 'searchmenu-new'                   => "'''このウィキでページ''$1''を[[:$1|新規作成]]する'''",
 'searchhelp-url'                   => 'Help:目次',
-'searchprofile-articles'           => 'ページ',
-'searchprofile-articles-and-proj'  => 'ページとプロジェクト',
+'searchprofile-articles'           => 'コンテンツ・ページ',
+'searchprofile-articles-and-proj'  => 'コンテンツ・ページとプロジェクト',
 'searchprofile-project'            => 'プロジェクト',
 'searchprofile-images'             => 'ファイル',
 'searchprofile-everything'         => '全て',
@@ -1078,7 +1081,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'recentchangescount'        => '最近更新したページの表示件数:',
 'savedprefs'                => 'オプションを保存しました',
 'timezonelegend'            => 'タイムゾーン',
-'timezonetext'              => 'UTCとあなたの地域の標準時間との差を入力してください（日本国内は9:00）。',
+'timezonetext'              => '¹サーバーの時刻（UTC）とあなたの地域の標準時との時差。',
 'localtime'                 => 'あなたの現在時刻',
 'timezoneoffset'            => '時差¹',
 'servertime'                => 'サーバーの現在時刻',

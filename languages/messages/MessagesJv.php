@@ -1785,7 +1785,7 @@ Berkas iku mbok-menawa wis dibusak.',
 'undelete-error-long'          => 'Ana kaluputan nalika mbatalaké pambusakan berkas:
 
 $1',
-'undelete-show-file-confirm'   => 'Panjenengan yakin arep mirsani révisi berkas "<nowiki>$1</nowiki>" sing wis kabusak saka $2?',
+'undelete-show-file-confirm'   => 'Apa panjenengan yakin arep mirsani révisi berkas "<nowiki>$1</nowiki>" sing wis kabusak ing $2 jam $3?',
 'undelete-show-file-submit'    => 'Ya',
 
 # Namespace form on various pages

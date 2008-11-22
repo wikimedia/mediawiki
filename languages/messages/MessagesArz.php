@@ -2122,7 +2122,7 @@ $NEWPAGE
 'undelete-error-long'          => 'حصلت غلطات و الملف بيترجع:
 
 $1',
-'undelete-show-file-confirm'   => 'انتا متأكد من انك عايز تشوف المراجعة الملغية بتاعة الملف "<nowiki>$1</nowiki>" من $2?',
+'undelete-show-file-confirm'   => 'انتا متأكد من انك عايز تشوف المراجعة الملغية بتاعة الملف "<nowiki>$1</nowiki>" من $2 في $3؟',
 'undelete-show-file-submit'    => 'ايوه',
 
 # Namespace form on various pages

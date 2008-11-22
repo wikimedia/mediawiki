@@ -671,6 +671,9 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'math'                     => 'Math',
 'dateformat'               => "Formete d'a date",
 'datetime'                 => 'Date e ore',
+'math_unknown_error'       => 'errore scanusciute',
+'math_lexing_error'        => 'errore de lessiche',
+'math_syntax_error'        => 'errore de sintassi',
 'prefs-personal'           => "Profile de l'utende",
 'prefs-watchlist'          => 'Pàggene condrollete',
 'prefs-watchlist-days-max' => '(massime 7 sciurne)',
@@ -947,6 +950,13 @@ Pàggene sus 'a [[Special:Watchlist|le Pàggene condrollete]] sonde in '''grasce
 'linksearch-ns' => 'Neimspeise:',
 'linksearch-ok' => 'Cirche',
 
+# Special:ListUsers
+'listusers-submit'   => 'Fa vedè',
+'listusers-noresult' => 'Nisciune utende acchiete.',
+
+# Special:Log/newusers
+'newuserlog-create-entry' => 'Utende nuève',
+
 # Special:ListGroupRights
 'listgrouprights-group'           => 'Gruppe',
 'listgrouprights-rights'          => 'Diritte',
@@ -957,6 +967,7 @@ Pàggene sus 'a [[Special:Watchlist|le Pàggene condrollete]] sonde in '''grasce
 
 # E-mail user
 'emailuser'    => "Manne n'email a stu utende",
+'emailpage'    => "E-mail de l'utende",
 'email-legend' => "Manne 'na mail a n'otre utende de {{SITENAME}}",
 'emailfrom'    => 'Da:',
 'emailto'      => 'A:',
@@ -990,6 +1001,7 @@ Le cangiaminde future a sta pàgene e 'a pàgene de le 'ngazzaminde associete le
 # Delete
 'deletepage'            => "Scangille 'a pàgene",
 'confirm'               => 'Conferme',
+'excontent'             => "'u condenute ere: '$1'",
 'delete-confirm'        => 'Scangille "$1"',
 'delete-backlink'       => '← $1',
 'delete-legend'         => 'Scangille',
@@ -1032,14 +1044,23 @@ Tu puè cangià 'u levèlle de protezione de sta pàgene ma stu cangiamende non 
 'protect-expiry-options'      => '2 ore:2 hours,1 giurne:1 day,3 giurne:3 days,1 sumane:1 week,2 sumane:2 weeks,1 mese:1 month,3 mise:3 months,6 mise:6 months,1 anne:1 year,infinite:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Permesse:',
 'restriction-level'           => 'Levèlle de restrizione:',
+'minimum-size'                => 'Dimenzione minime:',
+'maximum-size'                => 'Dimenzione massime:',
 'pagesize'                    => '(bytes)',
 
 # Restrictions (nouns)
-'restriction-edit' => 'Cange',
-'restriction-move' => 'Spuèste',
+'restriction-edit'   => 'Cange',
+'restriction-move'   => 'Spuèste',
+'restriction-create' => 'Ccreje',
+'restriction-upload' => 'Careche',
+
+# Restriction levels
+'restriction-level-sysop'         => 'tutte prutette',
+'restriction-level-autoconfirmed' => "'mmienze prutette",
 
 # Undelete
 'undeletebtn'            => 'Repristine',
+'undeletecomment'        => 'Commende:',
 'undelete-search-submit' => 'Cirche',
 
 # Namespace form on various pages
@@ -1329,6 +1350,9 @@ Otre avènene scunnute pe defolt.
 # Watchlist editor
 'watchlistedit-normal-title' => 'Vide le pàggene condrollete',
 'watchlistedit-raw-titles'   => 'Titele:',
+'watchlistedit-raw-done'     => "'A liste de le pàggene condrollete ha state aggiornete.",
+'watchlistedit-raw-added'    => "{{PLURAL:$1|'nu titele ha|$1 titele onne}} state aggiunde:",
+'watchlistedit-raw-removed'  => "{{PLURAL:$1|'nu titele ha|$1 titele onne}} state scangillete:",
 
 # Watchlist editing tools
 'watchlisttools-view' => "Vide le cangiaminde 'mbortande",
@@ -1337,6 +1361,8 @@ Otre avènene scunnute pe defolt.
 
 # Special:Version
 'version'                  => 'Versione', # Not used as normal message but as header for the special page itself
+'version-extensions'       => 'Estenziune installete',
+'version-variables'        => 'Variabbele',
 'version-other'            => 'Otre',
 'version-version'          => 'Versione',
 'version-license'          => 'Licenze',
@@ -1345,18 +1371,24 @@ Otre avènene scunnute pe defolt.
 'version-software-version' => 'Versione',
 
 # Special:FilePath
-'filepath' => "Percorse d'u fail",
+'filepath'        => "Percorse d'u fail",
+'filepath-page'   => 'File:',
+'filepath-submit' => 'Percorse',
 
 # Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Cirche pe le file duplichete',
 'fileduplicatesearch-filename' => "Nome d'u faile:",
 'fileduplicatesearch-submit'   => 'Cirche',
 
 # Special:SpecialPages
-'specialpages'             => 'Pàggene speciele',
-'specialpages-group-other' => 'Otre pàggene speciele',
-'specialpages-group-login' => 'Tràse / Reggistrete',
-'specialpages-group-pages' => 'Liste de le pàggene',
-'specialpages-group-spam'  => "Struminde p'u spam",
+'specialpages'                 => 'Pàggene speciele',
+'specialpages-group-other'     => 'Otre pàggene speciele',
+'specialpages-group-login'     => 'Tràse / Reggistrete',
+'specialpages-group-changes'   => 'Cangiaminde recende e archivie',
+'specialpages-group-users'     => 'Utinde e deritte',
+'specialpages-group-pages'     => 'Liste de le pàggene',
+'specialpages-group-pagetools' => 'Pàgene de le struminde',
+'specialpages-group-spam'      => "Struminde p'u spam",
 
 # Special:BlankPage
 'blankpage' => 'Pàgene vacande',
