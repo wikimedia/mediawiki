@@ -21,7 +21,7 @@ function wfSpecialPreferences() {
  * @ingroup SpecialPage
  */
 class PreferencesForm {
-	var $mQuickbar, $mOldpass, $mNewpass, $mRetypePass, $mStubs;
+	var $mQuickbar, $mStubs;
 	var $mRows, $mCols, $mSkin, $mMath, $mDate, $mUserEmail, $mEmailFlag, $mNick;
 	var $mUserLanguage, $mUserVariant;
 	var $mSearch, $mRecent, $mRecentDays, $mHourDiff, $mSearchLines, $mSearchChars, $mAction;
@@ -36,9 +36,6 @@ class PreferencesForm {
 		global $wgContLang, $wgUser, $wgAllowRealName;
 
 		$this->mQuickbar = $request->getVal( 'wpQuickbar' );
-		$this->mOldpass = $request->getVal( 'wpOldpass' );
-		$this->mNewpass = $request->getVal( 'wpNewpass' );
-		$this->mRetypePass =$request->getVal( 'wpRetypePass' );
 		$this->mStubs = $request->getVal( 'wpStubs' );
 		$this->mRows = $request->getVal( 'wpRows' );
 		$this->mCols = $request->getVal( 'wpCols' );
@@ -212,30 +209,6 @@ class PreferencesForm {
 		global $wgEmailAuthentication, $wgRCMaxAge;
 		global $wgAuth, $wgEmailConfirmToEdit;
 
-
-		if ( ($this->mNewpass !== '' || $this->mOldpass !== '' ) && $wgAuth->allowPasswordChange() ) {
-			if ( $this->mNewpass != $this->mRetypePass ) {
-				wfRunHooks( 'PrefsPasswordAudit', array( $wgUser, $this->mNewpass, 'badretype' ) );
-				$this->mainPrefsForm( 'error', wfMsg( 'badretype' ) );
-				return;
-			}
-
-			if (!$wgUser->checkPassword( $this->mOldpass )) {
-				wfRunHooks( 'PrefsPasswordAudit', array( $wgUser, $this->mNewpass, 'wrongpassword' ) );
-				$this->mainPrefsForm( 'error', wfMsg( 'wrongpassword' ) );
-				return;
-			}
-
-			try {
-				$wgUser->setPassword( $this->mNewpass );
-				wfRunHooks( 'PrefsPasswordAudit', array( $wgUser, $this->mNewpass, 'success' ) );
-				$this->mNewpass = $this->mOldpass = $this->mRetypePass = '';
-			} catch( PasswordError $e ) {
-				wfRunHooks( 'PrefsPasswordAudit', array( $wgUser, $this->mNewpass, 'error' ) );
-				$this->mainPrefsForm( 'error', $e->getMessage() );
-				return;
-			}
-		}
 		$wgUser->setRealName( $this->mRealName );
 		$oldOptions = $wgUser->mOptions;
 
@@ -373,7 +346,6 @@ class PreferencesForm {
 	function resetPrefs() {
 		global $wgUser, $wgLang, $wgContLang, $wgContLanguageCode, $wgAllowRealName;
 
-		$this->mOldpass = $this->mNewpass = $this->mRetypePass = '';
 		$this->mUserEmail = $wgUser->getEmail();
 		$this->mUserEmailAuthenticationtimestamp = $wgUser->getEmailAuthenticationtimestamp();
 		$this->mRealName = ($wgAllowRealName) ? $wgUser->getRealName() : '';
@@ -755,28 +727,11 @@ class PreferencesForm {
 
 		# Password
 		if( $wgAuth->allowPasswordChange() ) {
+			$link = $wgUser->getSkin()->link( SpecialPage::getTitleFor( 'ResetPass' ), wfMsgHtml( 'prefs-resetpass' ),
+				array() , array('returnto' => SpecialPage::getTitleFor( 'Preferences') ) );
 			$wgOut->addHTML(
 				$this->tableRow( Xml::element( 'h2', null, wfMsg( 'changepassword' ) ) ) .
-				$this->tableRow(
-					Xml::label( wfMsg( 'oldpassword' ), 'wpOldpass' ),
-					Xml::password( 'wpOldpass', 25, $this->mOldpass, array( 'id' => 'wpOldpass', 'autocomplete' => 'off' ) )
-				) .
-				$this->tableRow(
-					Xml::label( wfMsg( 'newpassword' ), 'wpNewpass' ),
-					Xml::password( 'wpNewpass', 25, $this->mNewpass, array( 'id' => 'wpNewpass', 'autocomplete' => 'off' ) )
-				) .
-				$this->tableRow(
-					Xml::label( wfMsg( 'retypenew' ), 'wpRetypePass' ),
-					Xml::password( 'wpRetypePass', 25, $this->mRetypePass, array( 'id' => 'wpRetypePass', 'autocomplete' => 'off' ) )
-				)
-			);
-			if( $wgCookieExpiration > 0 ){
-				$wgOut->addHTML(
-					$this->tableRow( $this->getToggle( "rememberpassword" ) )	
-				);
-			} else {
-				$this->mUsedToggles['rememberpassword'] = true;
-			}
+				$this->tableRow( '<ul><li>' . $link . '</li></ul>' ) );
 		}
 
 		# <FIXME>

@@ -439,7 +439,7 @@ $specialPageAliases = array(
 	'Listbots'                  => array( 'ListBots' ),
 	'Popularpages'              => array( 'PopularPages' ),
 	'Search'                    => array( 'Search' ),
-	'Resetpass'                 => array( 'ResetPass', 'ResetPassword' ),
+	'Resetpass'                 => array( 'ResetPass', 'ResetPassword', 'ChangePassword' ),
 	'Withoutinterwiki'          => array( 'WithoutInterwiki' ),
 	'MergeHistory'              => array( 'MergeHistory' ),
 	'Filepath'                  => array( 'FilePath' ),
@@ -1000,17 +1000,22 @@ Please wait before trying again.",
 * Nederlands|nl', # do not translate or duplicate this message to other languages
 
 # Password reset dialog
-'resetpass'               => 'Reset account password',
-'resetpass_announce'      => 'You logged in with a temporary e-mailed code.
+'resetpass'                 => 'Change or reset account password',
+'resetpass_announce'        => 'You logged in with a temporary e-mailed code.
 To finish logging in, you must set a new password here:',
-'resetpass_text'          => '<!-- Add text here -->', # only translate this message to other languages if you have to change it
-'resetpass_header'        => 'Reset password',
-'resetpass_submit'        => 'Set password and log in',
-'resetpass_success'       => 'Your password has been changed successfully! Now logging you in...',
-'resetpass_bad_temporary' => 'Invalid temporary password.
+'resetpass_text'            => '<!-- Add text here -->', # only translate this message to other languages if you have to change it
+'resetpass_header'          => 'Reset password',
+'resetpass_submit'          => 'Set password and log in',
+'resetpass_success'         => 'Your password has been changed successfully! Now logging you in...',
+'resetpass_bad_temporary'   => 'Invalid temporary password.
 You may have already successfully changed your password or requested a new temporary password.',
-'resetpass_forbidden'     => 'Passwords cannot be changed',
-'resetpass_missing'       => 'No form data.',
+'resetpass_forbidden'       => 'Passwords cannot be changed',
+'resetpass_missing'         => 'No form data.',
+'resetpass-no-info'         => 'You must be logged in to access this page directly.',
+'resetpass-submit-loggedin' => 'Change password',
+'resetpass-wrong-oldpass'   => 'Invalid temporary or current password. 
+You may have already successfully changed your password or requested a new temporary password.',
+'resetpass-temp-password'   => 'Temporary password:',
 
 # Edit page toolbar
 'bold_sample'     => 'Bold text',
@@ -1543,6 +1548,7 @@ please see math/README to configure.',
 'prefs-watchlist-edits'     => 'Maximum number of changes to show in expanded watchlist:',
 'prefs-watchlist-edits-max' => '(maximum number: 1000)',
 'prefs-misc'                => 'Misc',
+'prefs-resetpass'           => 'Change password',
 'saveprefs'                 => 'Save',
 'resetprefs'                => 'Clear unsaved changes',
 'oldpassword'               => 'Old password:',

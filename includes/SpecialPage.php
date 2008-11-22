@@ -89,6 +89,8 @@ class SpecialPage
 		'CreateAccount'             => array( 'SpecialRedirectToSpecial', 'CreateAccount', 'Userlogin', 'signup', array( 'uselang' ) ),
 		'Preferences'               => array( 'SpecialPage', 'Preferences' ),
 		'Watchlist'                 => array( 'SpecialPage', 'Watchlist' ),
+		'Resetpass'                 => array( 'SpecialPage', 'Resetpass' ),
+
 
 		'Recentchanges'             => 'SpecialRecentchanges',
 		'Upload'                    => array( 'SpecialPage', 'Upload' ),
@@ -135,7 +137,6 @@ class SpecialPage
 		'Recentchangeslinked'       => 'SpecialRecentchangeslinked',
 		'Movepage'                  => array( 'UnlistedSpecialPage', 'Movepage' ),
 		'Blockme'                   => array( 'UnlistedSpecialPage', 'Blockme' ),
-		'Resetpass'                 => array( 'UnlistedSpecialPage', 'Resetpass' ),
 		'Booksources'               => 'SpecialBookSources',
 		'Categories'                => array( 'SpecialPage', 'Categories' ),
 		'Export'                    => array( 'SpecialPage', 'Export' ),
