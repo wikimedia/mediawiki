@@ -440,7 +440,7 @@ class User {
 	 * @static
 	 */
 	static function idFromName( $name ) {
-		$nt = Title::newFromText( $name );
+		$nt = Title::makeTitleSafe( NS_USER, $name );
 		if( is_null( $nt ) ) {
 			# Illegal name
 			return null;
