@@ -205,7 +205,7 @@ class DatabasePostgres extends Database {
 		global $wgDBname, $wgDBuser, $wgDBpassword, $wgDBsuperuser, $wgDBmwschema, $wgDBts2schema;
 
 		print "<li>Checking the version of Postgres...";
-		$version = $this->numeric_version = $this->getServerVersion();
+		$version = $this->getServerVersion();
 		$PGMINVER = '8.1';
 		if ($version < $PGMINVER) {
 			print "<b>FAILED</b>. Required version is $PGMINVER. You have $version</li>\n";
@@ -1056,7 +1056,8 @@ class DatabasePostgres extends Database {
 	 */
 	function getServerVersion() {
 		$versionInfo = pg_version( $this->mConn );
-		return $versionInfo['server'];
+		$this->numeric_version = $versionInfo['server'];
+		return $this->numeric_version;
 	}
 
 	/**
