@@ -97,9 +97,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$index = false;
 		$user = $params['user'];
 		if (!is_null($user)) {
-			$userid = $db->selectField('user', 'user_id', array (
-				'user_name' => $user
-			));
+			$userid = User::idFromName($user);
 			if (!$userid)
 				$this->dieUsage("User name $user not found", 'param_user');
 			$this->addWhereFld('log_user', $userid);
