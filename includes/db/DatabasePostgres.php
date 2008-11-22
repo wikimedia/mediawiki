@@ -132,6 +132,9 @@ class DatabasePostgres extends Database {
 
 		global $wgDBport;
 
+		if (!strlen($user)) { ## e.g. the class is being loaded  
+			return;  
+		}
 		$this->close();
 		$this->mServer = $server;
 		$this->mPort = $port = $wgDBport;
