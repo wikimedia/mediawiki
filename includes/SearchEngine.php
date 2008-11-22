@@ -374,11 +374,11 @@ class SearchEngine {
 	 */
 	public static function getOpenSearchTemplate() {
 		global $wgOpenSearchTemplate, $wgServer, $wgScriptPath;
-		if($wgOpenSearchTemplate)		
+		if( $wgOpenSearchTemplate )	{	
 			return $wgOpenSearchTemplate;
-		else{ 
-			$ns = implode(',',SearchEngine::defaultNamespaces());
-			if(!$ns) $ns = "0";
+		} else { 
+			$ns = implode( '|', SearchEngine::defaultNamespaces() );
+			if( !$ns ) $ns = "0";
 			return $wgServer . $wgScriptPath . '/api.php?action=opensearch&search={searchTerms}&namespace='.$ns;
 		}
 	}
