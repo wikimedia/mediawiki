@@ -270,29 +270,18 @@ class IPBlockForm {
 				</tr>"
 			);
 		}
-		if ( $alreadyBlocked ) {
-			$wgOut->addHTML("
-				<tr id='wpChangeBlockRow'>
-					<td>&nbsp;</td>
-					<td class='mw-input'>" .
-						Xml::checkLabel( wfMsg( 'ipb-change-block' ),
-							'wpChangeBlock', 'wpChangeBlock', $this->BlockReblock,
-							array( 'tabindex' => '13' ) ) . "
-					</td>
-				</tr>"
-			);
-		}
 
 		$wgOut->addHTML("
 			<tr>
 				<td style='padding-top: 1em'>&nbsp;</td>
 				<td  class='mw-submit' style='padding-top: 1em'>" .
-					Xml::submitButton( wfMsg( 'ipbsubmit' ),
+					Xml::submitButton( wfMsg( $alreadyBlocked ? 'ipb-change-block' : 'ipbsubmit' ),
 						array( 'name' => 'wpBlock', 'tabindex' => '13', 'accesskey' => 's' ) ) . "
 				</td>
 			</tr>" .
 			Xml::closeElement( 'table' ) .
 			Xml::hidden( 'wpEditToken', $wgUser->editToken() ) .
+			( $alreadyBlocked ? Xml::hidden( 'wpChangeBlock', 1 ) : "" ) .
 			Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'form' ) .
 			Xml::tags( 'script', array( 'type' => 'text/javascript' ), 'updateBlockOptions()' ) . "\n"
@@ -410,8 +399,12 @@ class IPBlockForm {
 				if ( !$this->BlockReblock ) {
 					return array( 'ipb_already_blocked' );
 				} else {
-					# This returns direct blocks before autoblocks/rangeblocks, since we should be sure the user is blocked by now it should work for our purposes
+					# This returns direct blocks before autoblocks/rangeblocks, since we should
+					# be sure the user is blocked by now it should work for our purposes
 					$currentBlock = Block::newFromDB( $this->BlockAddress, $userId );
+					if( $block->equals( $currentBlock ) ) {
+						return array( 'ipb_already_blocked' );
+					}
 					$currentBlock->delete();
 					$block->insert();
 					$log_action = 'reblock';

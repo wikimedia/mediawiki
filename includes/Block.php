@@ -60,7 +60,7 @@ class Block {
 	 * @param $user int User id of user
 	 * @param $killExpired bool Delete expired blocks on load
 	 */
-	static function newFromDB( $address, $user = 0, $killExpired = true ) {
+	public static function newFromDB( $address, $user = 0, $killExpired = true ) {
 		$block = new Block;
 		$block->load( $address, $user, $killExpired );
 		if ( $block->isValid() ) {
@@ -76,7 +76,7 @@ class Block {
 	 * @return Block object
 	 * @param $id int Block id to search for
 	 */
-	static function newFromID( $id ) {
+	public static function newFromID( $id ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->resultObject( $dbr->select( 'ipblocks', '*',
 			array( 'ipb_id' => $id ), __METHOD__ ) );
@@ -87,12 +87,32 @@ class Block {
 			return null;
 		}
 	}
+	
+	/**
+	 * Check if two blocks are effectively equal
+	 *
+	 * @return bool
+	 */
+	public function equals( Block $block ) {
+		return ( 
+			$this->mAddress == $block->mAddress
+			&& $this->mUser == $block->mUser
+			&& $this->mAuto == $block->mAuto
+			&& $this->mAnonOnly == $block->mAnonOnly
+			&& $this->mCreateAccount == $block->mCreateAccount
+			&& $this->mExpiry == $block->mExpiry
+			&& $this->mEnableAutoblock == $block->mEnableAutoblock
+			&& $this->mHideName == $block->mHideName
+			&& $this->mBlockEmail == $block->mBlockEmail
+			&& $this->mAllowUsertalk == $block->mAllowUsertalk
+		);
+	}
 
 	/**
 	 * Clear all member variables in the current object. Does not clear
 	 * the block from the DB.
 	 */
-	function clear() {
+	public function clear() {
 		$this->mAddress = $this->mReason = $this->mTimestamp = '';
 		$this->mId = $this->mAnonOnly = $this->mCreateAccount =
 			$this->mEnableAutoblock = $this->mAuto = $this->mUser =
@@ -132,7 +152,7 @@ class Block {
 	 * @return bool The user is blocked from editing
 	 *
 	 */
-	function load( $address = '', $user = 0, $killExpired = true ) {
+	public function load( $address = '', $user = 0, $killExpired = true ) {
 		wfDebug( "Block::load: '$address', '$user', $killExpired\n" );
 
 		$options = array();
@@ -870,7 +890,6 @@ class Block {
 	 * @return string
 	 */
 	static function formatExpiry( $encoded_expiry ) {
-	
 		static $msg = null;
 		
 		if( is_null( $msg ) ) {
