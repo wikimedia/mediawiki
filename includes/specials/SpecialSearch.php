@@ -290,8 +290,6 @@ class SpecialSearch {
 			$this->active = 'all';
 		elseif( $this->namespaces === SearchEngine::defaultNamespaces() )
 			$this->active = 'default';
-		elseif( $this->namespaces === SearchEngine::defaultAndProjectNamespaces() )
-			$this->active = 'withproject';
 		elseif( $this->namespaces === SearchEngine::projectNamespaces() )
 			$this->active = 'project';
 		else
@@ -667,7 +665,8 @@ class SpecialSearch {
 			$out .= $this->makeSearchLink( $imageTextForm, array( NS_IMAGE ) , $m, $tt );
 		}
 		$out .= $sep;
-			
+		
+		/*
 		$m = wfMsg( 'searchprofile-articles-and-proj' );
 		$tt = wfMsg( 'searchprofile-project-tooltip', 
 			implode( ', ', SearchEngine::namespacesAsText( SearchEngine::defaultAndProjectNamespaces() ) ) );
@@ -677,6 +676,7 @@ class SpecialSearch {
 			$out .= $this->makeSearchLink( $bareterm, SearchEngine::defaultAndProjectNamespaces(), $m, $tt );
 		}
 		$out .= $sep;
+		*/
 		
 		$m = wfMsg( 'searchprofile-project' );
 		$tt = wfMsg( 'searchprofile-project-tooltip', 
