@@ -209,6 +209,10 @@ class WikiRevision {
 			) );
 		$revId = $revision->insertOn( $dbw );
 		$changed = $article->updateIfNewerOn( $dbw, $revision );
+		
+		# To be on the safe side...
+		$tempTitle = $GLOBALS['wgTitle'];
+		$GLOBALS['wgTitle'] = $this->title;
 
 		if( $created ) {
 			wfDebug( __METHOD__ . ": running onArticleCreate\n" );
@@ -229,6 +233,7 @@ class WikiRevision {
 				$this->timestamp,
 				$revId );
 		}
+		$GLOBALS['wgTitle'] = $tempTitle;
 
 		return true;
 	}
