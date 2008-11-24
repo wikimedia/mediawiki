@@ -631,6 +631,9 @@ class OutputPage {
 	 */
 	public function parse( $text, $linestart = true, $interface = false ) {
 		global $wgParser, $wgTitle;
+		if( is_null( $wgTitle ) ) {
+			throw new MWException( 'Empty $wgTitle in ' . __METHOD__ );
+		}
 		$popts = $this->parserOptions();
 		if ( $interface) { $popts->setInterfaceMessage(true); }
 		$parserOutput = $wgParser->parse( $text, $wgTitle, $popts,
