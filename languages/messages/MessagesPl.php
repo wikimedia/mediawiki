@@ -687,17 +687,22 @@ Możesz zignorować tę wiadomość, jeśli konto zostało utworzone przez pomy�
 'loginlanguagelabel'         => 'Język: $1',
 
 # Password reset dialog
-'resetpass'               => 'Resetuj hasło',
-'resetpass_announce'      => 'Zalogowałeś się, wykorzystując tymczasowe hasło otrzymane poprzez e-mail.
+'resetpass'                 => 'Zmień lub zresetuj hasło',
+'resetpass_announce'        => 'Zalogowałeś się, wykorzystując tymczasowe hasło otrzymane poprzez e-mail.
 Aby zakończyć proces logowania, musisz ustawić nowe hasło:',
-'resetpass_text'          => '<!-- Dodaj tekst -->',
-'resetpass_header'        => 'Resetuj hasło',
-'resetpass_submit'        => 'Ustaw hasło i zaloguj się',
-'resetpass_success'       => 'Twoje hasło zostało pomyślnie zmienione! Trwa logowanie...',
-'resetpass_bad_temporary' => 'Nieprawidłowe hasło tymczasowe.
+'resetpass_text'            => '<!-- Dodaj tekst -->',
+'resetpass_header'          => 'Resetuj hasło',
+'resetpass_submit'          => 'Ustaw hasło i zaloguj się',
+'resetpass_success'         => 'Twoje hasło zostało pomyślnie zmienione! Trwa logowanie...',
+'resetpass_bad_temporary'   => 'Nieprawidłowe hasło tymczasowe.
 Być może zakończyłeś już proces zmiany hasła lub poprosiłeś o nowe hasło tymczasowe.',
-'resetpass_forbidden'     => 'Hasła nie mogą zostać zmienione',
-'resetpass_missing'       => 'Brak danych formularza.',
+'resetpass_forbidden'       => 'Hasła nie mogą zostać zmienione',
+'resetpass_missing'         => 'Brak danych formularza.',
+'resetpass-no-info'         => 'Musisz być zalogowany, by uzyskać bezpośredni dostęp do tej strony.',
+'resetpass-submit-loggedin' => 'Zmień hasło',
+'resetpass-wrong-oldpass'   => 'Nieprawidłowe tymczasowe lub aktualne hasło. 
+Być może właśnie zmieniłeś swoje hasło lub poprosiłeś o nowe tymczasowe hasło.',
+'resetpass-temp-password'   => 'Tymczasowe hasło:',
 
 # Edit page toolbar
 'bold_sample'     => 'Tekst tłustą czcionką',
@@ -1192,6 +1197,7 @@ Zapoznaj się z math/README w celu konfiguracji.',
 'prefs-watchlist-edits'     => 'Liczba edycji pokazywanych w rozszerzonej liście obserwowanych',
 'prefs-watchlist-edits-max' => '(maksymalna liczba: 1000)',
 'prefs-misc'                => 'Ustawienia różne',
+'prefs-resetpass'           => 'Zmień hasło',
 'saveprefs'                 => 'Zapisz',
 'resetprefs'                => 'Cofnij niezapisane zmiany',
 'oldpassword'               => 'Stare hasło',

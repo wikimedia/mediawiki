@@ -531,7 +531,11 @@ $1 is the minimum number of characters in the password.',
 'login-throttled'            => 'Error message shown at [[Special:UserLogin]] after 5 wrong passwords. The hardcoded waiting time is 300 seconds.',
 
 # Password reset dialog
-'resetpass_header' => '{{Identical|Reset password}}',
+'resetpass'                 => 'The caption of [[Special:Resetpass]]',
+'resetpass_header'          => '{{Identical|Reset password}}',
+'resetpass-submit-loggedin' => 'Button on [[Special:ResetPass]] to submit new password.',
+'resetpass-wrong-oldpass'   => 'Error message shown on [[Special:Resetpass]] when the old password is not valid.',
+'resetpass-temp-password'   => 'The label of the input box for the temporary password (received by e-mail) on the form displayed after logging in with a temporary password.',
 
 # Edit page toolbar
 'bold_sample'     => 'This is the sample text that you get when you press the first button on the left on the edit toolbar.
@@ -851,6 +855,7 @@ $1 is the relevance of this result in per cent.
 'prefs-watchlist-edits'     => 'Used in [[Special:Preferences]], tab "Watchlist".',
 'prefs-watchlist-edits-max' => 'Shown as hint in [[Special:Preferences]], tab "Watchlist"',
 'prefs-misc'                => 'Used in user preferences.',
+'prefs-resetpass'           => 'Button on user data tab in user preferences. When you click the button you go to the special page [[Special:ResetPass]].',
 'saveprefs'                 => 'Button for saving changes in the preferences page.
 
 {{Identical|Save}}',

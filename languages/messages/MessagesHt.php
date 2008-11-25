@@ -361,6 +361,7 @@ $messages = array(
 'editsection'             => 'modifye',
 'editold'                 => 'modifye',
 'viewsourceold'           => 'Wè kòd paj an',
+'editlink'                => 'modifye',
 'editsectionhint'         => 'Modifye seksyon : $1',
 'toc'                     => 'Kontni yo',
 'showtoc'                 => 'montre',
@@ -370,7 +371,7 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|yon revizion efase|$1 revizion efase yo}}',
 'feedlinks'               => 'Nouri:',
 'feed-invalid'            => 'Souskripsyon tip nouri envalid.',
-'feed-unavailable'        => 'Sendikasyon nouri yo pa avalab nan {{SITENAME}}',
+'feed-unavailable'        => 'Flo sendikasyon yo pa disponib',
 'site-rss-feed'           => 'Flow RSS depi $1',
 'site-atom-feed'          => 'Flow Atom depi $1',
 'page-rss-feed'           => 'Flow RSS pou "$1"',
@@ -520,8 +521,8 @@ Kont ou an kreye. Pa bliye pèsonalize l nan  [[Special:Preferences|preferans ou
 'noname'                     => 'Ou pa bay sistèm an yon non itilizatè ki bon.',
 'loginsuccesstitle'          => 'Ou byen idantifye nan sistèm an',
 'loginsuccess'               => 'Ou konekte kounye a nan {{SITENAME}} epi idantifyan sa a « $1 ».',
-'nosuchuser'                 => 'Itilizatè « $1 » pa egziste.
-Byen gade ke ou byen ekri non ou, oubyen kreye yon nouvo kont.',
+'nosuchuser'                 => 'Itilizatè "$1" sa pa egziste.
+Byen gade ke ou byen ekri non ou, oubyen [[Special:UserLogin/signup|kreye yon nouvo kont sou non ou]].',
 'nosuchusershort'            => 'Pa genyen kontribitè ak non « <nowiki>$1</nowiki> » sa a. Byen gade lòtograf ou an.',
 'nouserspecified'            => 'Ou dwèt mete non itilizatè ou an.',
 'wrongpassword'              => 'Mopas an pa korèk. Eseye ankò.',
@@ -529,10 +530,10 @@ Byen gade ke ou byen ekri non ou, oubyen kreye yon nouvo kont.',
 'passwordtooshort'           => 'Mopas ou an two kout. Li dwèt kontni $1 karaktè{{PLURAL:$1||}} oubyen plis epitou li dwèt diferan de non itilizatè ou an.',
 'mailmypassword'             => 'Voye mwen yon nouvo mopas pa imèl',
 'passwordremindertitle'      => 'Nouvo mopas tanporè, li pap dire (yon kout tan) pou pajwèb sa a {{SITENAME}}',
-'passwordremindertext'       => 'Kèk moun (ou menm?) ki genyen adrès IP sa a $1 mande ke nou voye ou yon nouvo mopas pou {{SITENAME}} ($4).
-Mopas itilizatè « $2 » se kounye a « $3 ».
+'passwordremindertext'       => 'Kèk moun (ou menm oubyen yon moun ki genyen adrès IP sa a $1) mande ke nou voye ou yon nouvo mopas pou {{SITENAME}} ($4).
+Mopas itilizatè "$2" se kounye a "$3".
 
-Nou konseye ou konekte ou epi modifye mopas sa a rapidman.
+Nou konseye ou konekte ou epi modifye mopas sa a rapidman, si posib kounye a.
 
 Si se pa ou menm ki mande modifye mopas ou an oubyen si ou konnen mopas ou an e ke ou pa ta vle modifye li, pa konsidere mesaj sa a epi kontinye ak mopas ou a.',
 'noemail'                    => 'Pa genyen pyès adrès imèl ki anrejistre pou itilizatè sa a « $1 ».',
@@ -705,25 +706,26 @@ Mande ou byen si ou ap byen fè kreye li ankò toutbon (gade jounal paj sa a pou
 'cantcreateaccounttitle' => 'Ou pa kapab kreye yon kont.',
 
 # History pages
-'viewpagelogs'        => 'gade jounal paj sa a',
-'nohistory'           => 'Istorik pou paj sa pa egziste ditou.',
-'currentrev'          => 'Vèsyon kounye a',
-'revisionasof'        => 'Vèsyon jou $1',
-'revision-info'       => 'Vèsyon pou $1 pa $2', # Additionally available: $3: revision id
-'previousrevision'    => '← Vèsyon presedan',
-'nextrevision'        => 'Vèsyon swivan →',
-'currentrevisionlink' => 'Vèsyon kounye a',
-'cur'                 => 'kounye a',
-'next'                => 'pli douvan',
-'last'                => 'dènye',
-'page_first'          => 'premye',
-'page_last'           => 'dènye',
-'histlegend'          => 'Lejand : ({{MediaWiki:Cur}}) = diferans ak vèsyon kounye a, ({{MediaWiki:Last}}) = diferans ak vèsyon anvan, <b>m</b> = modifikasyon ki pa enpòtan',
-'deletedrev'          => '[efase]',
-'histfirst'           => 'Premye kontribisyon yo',
-'histlast'            => 'Dènye kontribisyon yo',
-'historysize'         => '({{PLURAL:$1|$1 okte|$1 okte yo}})',
-'historyempty'        => '(vid, pa gen anyen)',
+'viewpagelogs'           => 'gade jounal paj sa a',
+'nohistory'              => 'Istorik pou paj sa pa egziste ditou.',
+'currentrev'             => 'Vèsyon kounye a',
+'revisionasof'           => 'Vèsyon jou $1',
+'revision-info'          => 'Vèsyon pou $1 pa $2', # Additionally available: $3: revision id
+'previousrevision'       => '← Vèsyon presedan',
+'nextrevision'           => 'Vèsyon swivan →',
+'currentrevisionlink'    => 'Vèsyon kounye a',
+'cur'                    => 'kounye a',
+'next'                   => 'pli douvan',
+'last'                   => 'dènye',
+'page_first'             => 'premye',
+'page_last'              => 'dènye',
+'histlegend'             => 'Lejand : ({{MediaWiki:Cur}}) = diferans ak vèsyon kounye a, ({{MediaWiki:Last}}) = diferans ak vèsyon anvan, <b>m</b> = modifikasyon ki pa enpòtan',
+'history-fieldset-title' => 'Navige nan istorik paj sa',
+'deletedrev'             => '[efase]',
+'histfirst'              => 'Premye kontribisyon yo',
+'histlast'               => 'Dènye kontribisyon yo',
+'historysize'            => '({{PLURAL:$1|$1 okte|$1 okte yo}})',
+'historyempty'           => '(vid, pa gen anyen)',
 
 # Revision feed
 'history-feed-title'          => 'Istorik vèsyon yo',
@@ -898,6 +900,8 @@ Mande ou byen si ou ap byen fè kreye li ankò toutbon (gade jounal paj sa a pou
 'ancientpages'            => 'Atik ki pli vye yo',
 'move'                    => 'Renonmen',
 'movethispage'            => 'Renonmen paj an (bay yon lòt non)',
+'pager-newer-n'           => '{{PLURAL:$1|ki fèk fèt|$1 ki fèk fèt yo}}',
+'pager-older-n'           => '{{PLURAL:$1|pi vye|$1 pi vye yo}}',
 
 # Book sources
 'booksources' => 'Ouvraj referans yo',
@@ -947,7 +951,7 @@ Pwochen modifikasyon nan paj sa a ke make na lis swivi ou an, paj an ke parèt <
 'watch'             => 'Swiv',
 'watchthispage'     => 'Swiv paj sa a',
 'unwatch'           => 'Pa swiv ankò',
-'watchlist-details' => 'Ou ap swiv <b>$1</b> {{PLURAL:$1|paj|paj}}, san konte paj diskisyon yo.',
+'watchlist-details' => 'Ou ap swiv {{PLURAL:$1|paj|paj}}, san konte paj diskisyon yo.',
 'wlshowlast'        => 'Montre dènye $1 zè yo, dènye $2 jou yo, oubyen $3.',
 
 # Displayed when you click the "watch" button and it is in the process of watching
@@ -1011,8 +1015,11 @@ Men reglaj pou paj <strong>$1</strong> an kounye a:',
 'month'         => 'depi mwa (ak mwa anvan yo) :',
 'year'          => 'Depi lane (ak anvan tou) :',
 
+'sp-contributions-newbies'     => 'Montre sèlman kontribisyon nouvo itilizatè yo',
 'sp-contributions-newbies-sub' => 'Lis kontribisyon pou nouvo itilizatè yo. Paj ki efase pe ke ap montre.',
 'sp-contributions-blocklog'    => 'jounal blokaj yo',
+'sp-contributions-search'      => 'Chache kontribisyon yo',
+'sp-contributions-username'    => 'Adrès IP oubyen non itilizatè:',
 
 # What links here
 'whatlinkshere'       => 'Paj ki lye nan paj sa a',
@@ -1158,7 +1165,7 @@ Nenpòt lòt lyen nan menm lign nan konsidere kòm yon eksèpsyon, i.e. paj kote
 
 # External editor support
 'edit-externally'      => 'Modifye fichye sa a epi yon aplikasyon pa ou (ki pa nan sistèm an, sou machin ou pa egzanp).',
-'edit-externally-help' => 'Wè [http://www.mediawiki.org/wiki/Manual:External_editors komannd ak enstriksyon yo] pou plis enfòmasyon oubyen pou konnen plis.',
+'edit-externally-help' => '(Gade [http://www.mediawiki.org/wiki/Manual:External_editors komannd ak enstriksyon yo] pou plis enfòmasyon oubyen pou konnen plis)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tout',

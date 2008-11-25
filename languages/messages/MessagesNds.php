@@ -648,7 +648,7 @@ Wenn du dat Brukerkonto gor nich hebben wullst, denn is disse Naricht egaal för
 'loginlanguagelabel'         => 'Spraak: $1',
 
 # Password reset dialog
-'resetpass'               => 'Passwoort vun dat Brukerkonto trüchsetten',
+'resetpass'               => 'Passwoord vun dat Brukerkonto ännern oder trüchsetten',
 'resetpass_announce'      => 'Du hest di mit en Kood anmellt, de di över E-Mail toschickt worrn is. Dat anmellen aftosluten, söök di nu en neet Passwoord ut:',
 'resetpass_header'        => 'Passwoort trüchsetten',
 'resetpass_submit'        => 'Passwoort instellen un inloggen',

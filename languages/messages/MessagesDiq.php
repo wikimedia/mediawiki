@@ -425,6 +425,14 @@ It must have at least $1 characters and be different from your username.',
 # What links here
 'whatlinkshere' => 'Gırey be pele',
 
+# Block/unblock
+'blocklink'    => 'kılit ke',
+'unblocklink'  => 'ake',
+'contribslink' => 'iştıraki',
+'autoblocker'  => 'Şıma otomatikmen kılit biy, çıke adresa şımawa \'\'IP\'\'y terefê "[[User:$1|$1]]" gureniyena. 
+Sebebê kılit-biyayışê $1\'i: "$2"o',
+'blocklogpage' => 'Protokolê kıliti',
+
 # Tooltip help for the actions
 'tooltip-pt-userpage'     => 'Pela mına karberi',
 'tooltip-pt-mytalk'       => 'Pela mına werênayışi',

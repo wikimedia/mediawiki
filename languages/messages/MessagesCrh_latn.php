@@ -543,7 +543,7 @@ Siz oturım açıp paroliñizni şimdi deñiştirmek kereksiñiz.
 'loginlanguagelabel'         => 'Til: $1',
 
 # Password reset dialog
-'resetpass'               => 'Bu esapnıñ parolini sıfırla',
+'resetpass'               => 'Bu esapnıñ parolini deñiştir ya da sıfırla',
 'resetpass_announce'      => 'Muvaqqat kod vastasınen kirdiñiz. Kirişni tamamlamaq içün yañı parolni mında qoyuñız:',
 'resetpass_header'        => 'Parolni sıfırla',
 'resetpass_submit'        => 'Parol qoyıp kir',
@@ -1502,7 +1502,7 @@ Lütfen, başqa bir ad saylap yazıñız.',
 'allmessages'         => 'Sistema beyanatları',
 'allmessagesname'     => 'İsim',
 'allmessagesdefault'  => 'Original metin',
-'allmessagescurrent'  => 'Qullanımdaki metin',
+'allmessagescurrent'  => 'Şimdi qullanılğan metin',
 'allmessagestext'     => 'İşbu cedvel MediaWikide mevcüt olğan bütün sistema beyanatlarınıñ cedvelidir.
 MediaWiki interfeysiniñ çeşit tillerge tercime etüvde iştirak etmege isteseñiz [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] ve [http://translatewiki.net Betawiki] saifelerine ziyaret etiñiz.',
 'allmessagesfilter'   => 'Metin ayrıştırıcı filtrı:',
