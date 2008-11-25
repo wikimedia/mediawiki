@@ -126,14 +126,14 @@ class LanguageZh extends LanguageZh_hans {
 
 	// word segmentation
 	function stripForSearch( $string ) {
-		$fname="LanguageZh::stripForSearch";
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 
 		// eventually this should be a word segmentation
 		// for now just treat each character as a word
+		// @fixme only do this for Han characters...
 		$t = preg_replace(
-				"/([\\xc0-\\xff][\\x80-\\xbf]*)/e",
-				"' ' .\"$1\"", $string);
+				"/([\\xc0-\\xff][\\x80-\\xbf]*)/",
+				" $1", $string);
 
         //always convert to zh-hans before indexing. it should be
 		//better to use zh-hans for search, since conversion from
@@ -142,7 +142,7 @@ class LanguageZh extends LanguageZh_hans {
 
 		$t = $this->mConverter->autoConvert($t, 'zh-hans');
 		$t = parent::stripForSearch( $t );
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 		return $t;
 
 	}

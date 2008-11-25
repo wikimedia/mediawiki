@@ -1523,24 +1523,60 @@ class Language {
 			return $string;
 		}
 
-		# MySQL fulltext index doesn't grok utf-8, so we
-		# need to fold cases and convert to hex
 
 		wfProfileIn( __METHOD__ );
-		if( function_exists( 'mb_strtolower' ) ) {
+		
+		// MySQL fulltext index doesn't grok utf-8, so we
+		// need to fold cases and convert to hex
+		$out = preg_replace_callback(
+			"/([\\xc0-\\xff][\\x80-\\xbf]*)/",
+			array( $this, 'stripForSearchCallback' ),
+			$this->lc( $string ) );
+		
+		// And to add insult to injury, the default indexing
+		// ignores short words... Pad them so we can pass them
+		// through without reconfiguring the server...
+		$minLength = $this->minSearchLength();
+		if( $minLength > 1 ) {
+			$n = $minLength-1;
 			$out = preg_replace(
-				"/([\\xc0-\\xff][\\x80-\\xbf]*)/e",
-				"'U8' . bin2hex( \"$1\" )",
-				mb_strtolower( $string ) );
-		} else {
-			list( , $wikiLowerChars ) = self::getCaseMaps();
-			$out = preg_replace(
-				"/([\\xc0-\\xff][\\x80-\\xbf]*)/e",
-				"'U8' . bin2hex( strtr( \"\$1\", \$wikiLowerChars ) )",
-				$string );
+				"/\b(\w{1,$n})\b/",
+				"$1U800",
+				$out );
 		}
+		
 		wfProfileOut( __METHOD__ );
 		return $out;
+	}
+	
+	/**
+	 * Armor a case-folded UTF-8 string to get through MySQL's
+	 * fulltext search without being mucked up by funny charset
+	 * settings or anything else of the sort.
+	 */
+	protected function stripForSearchCallback( $matches ) {
+		return 'U8' . bin2hex( $matches[1] );
+	}
+	
+	/**
+	 * Check MySQL server's ft_min_word_len setting so we know
+	 * if we need to pad short words...
+	 */
+	protected function minSearchLength() {
+		if( !isset( $this->minSearchLength ) ) {
+			$sql = "show global variables like 'ft\\_min\\_word\\_len'";
+			$dbr = wfGetDB( DB_SLAVE );
+			$result = $dbr->query( $sql );
+			$row = $result->fetchObject();
+			$result->free();
+			
+			if( $row && $row->Variable_name == 'ft_min_word_len' ) {
+				$this->minSearchLength = intval( $row->Value );
+			} else {
+				$this->minSearchLength = 0;
+			}
+		}
+		return $this->minSearchLength;
 	}
 
 	function convertForSearchResult( $termsArray ) {

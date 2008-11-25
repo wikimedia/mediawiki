@@ -363,6 +363,8 @@ The following extensions are migrated into MediaWiki 1.14:
 * Improved scripting safety heuristics on SVG uploads.
 * (bug 11728) Unify layout of enhanced watchlist/recent changes
 * (bug 8702) Properly update stats when running nukePage maintenance script
+* (bug 5477) Searches for words less than 4 characters now work without
+  requiring customization of MySQL server settings
 
 === API changes in 1.14 ===
 
