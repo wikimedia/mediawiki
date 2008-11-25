@@ -60,7 +60,7 @@ class SvgHandler extends ImageHandler {
 				wfMsg( 'thumbnail_dest_directory' ) );
 		}
 		
-		$status = $this->transformSvgToPng( $srcPath, $dstPath, $physicalWidth, $physicalHeight );
+		$status = $this->rasterize( $srcPath, $dstPath, $physicalWidth, $physicalHeight );
 		if( $status === true ) {
 			return new ThumbnailImage( $image, $dstUrl, $clientWidth, $clientHeight, $dstPath );
 		} else {
@@ -99,7 +99,7 @@ class SvgHandler extends ImageHandler {
 		if ( $retval != 0 || $removed ) {
 			wfDebugLog( 'thumbnail', sprintf( 'thumbnail failed on %s: error %d "%s" from "%s"',
 					wfHostname(), $retval, trim($err), $cmd ) );
-			return new MediaTransformError( 'thumbnail_error', $clientWidth, $clientHeight, $err );
+			return new MediaTransformError( 'thumbnail_error', $width, $height, $err );
 		}
 		return true;
 	}
