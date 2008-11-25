@@ -440,7 +440,7 @@ class MovePageForm {
 				$link = $skin->makeKnownLinkObj( $newSubpage );
 				$extraOutput []= wfMsgHtml( 'movepage-page-exists', $link );
 			} else {
-				$success = $oldSubpage->moveTo( $newSubpage, true, $this->reason );
+				$success = $oldSubpage->moveTo( $newSubpage, true, $this->reason, $createRedirect );
 				if( $success === true ) {
 					if ( $this->fixRedirects ) {
 						DoubleRedirectJob::fixRedirects( 'move', $oldSubpage, $newSubpage );
