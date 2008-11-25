@@ -135,6 +135,10 @@ class Language {
 	 */
 	static function factory( $code ) {
 		if ( !isset( self::$mLangObjCache[$code] ) ) {
+			if( count( self::$mLangObjCache ) > 10 ) {
+				// Don't keep a billion objects around, that's stupid.
+				self::$mLangObjCache = array();
+			}
 			self::$mLangObjCache[$code] = self::newFromCode( $code );
 		}
 		return self::$mLangObjCache[$code];
