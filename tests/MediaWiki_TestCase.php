@@ -7,7 +7,7 @@ abstract class MediaWiki_TestCase extends PHPUnit_Framework_TestCase {
 	 */
 	protected function buildTestDatabase( $tables ) {
 		global $testOptions, $wgDBprefix, $wgDBserver, $wgDBadminuser, $wgDBadminpassword, $wgDBname;
-		$wgDBprefix = 'parsertest';
+		$wgDBprefix = 'parsertest_';
 		$db = new Database(
 			$wgDBserver,
 			$wgDBadminuser,
