@@ -1182,9 +1182,9 @@ $2',
 而刪除將在[[Special:Log/delete|刪除日誌]]中記錄。
 
 要在頁面中加入檔案，使用以下其中一種形式的連接:
-* '''<tt><nowiki>[[{{ns:image}}:file.jpg]]</nowiki></tt>'''去用檔案的完整版本
-* '''<tt><nowiki>[[{{ns:image}}:file.png|200px|thumb|left|替換文字]]</nowiki></tt>'''去用一個200像素寬，左面盒上有'替換文字'的描述
-* '''<tt><nowiki>[[{{ns:media}}:file.ogg]]</nowiki></tt>'''去直接連接到檔案而不顯示檔案",
+* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:file.jpg]]</nowiki></tt>'''去用檔案的完整版本
+* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:file.png|200px|thumb|left|替換文字]]</nowiki></tt>'''去用一個200像素寬，左面盒上有'替換文字'的描述
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:file.ogg]]</nowiki></tt>'''去直接連接到檔案而不顯示檔案",
 'upload-permitted'            => '准許的檔案類型: $1。',
 'upload-preferred'            => '建議的檔案類型: $1。',
 'upload-prohibited'           => '禁止的檔案類型: $1。',

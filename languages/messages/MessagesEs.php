@@ -622,7 +622,7 @@ Puedes ignorar este mensaje si esta cuenta fue creado erróneamente.',
 'loginlanguagelabel'         => 'Idioma: $1',
 
 # Password reset dialog
-'resetpass'               => 'Restablecer la contraseña de usuario',
+'resetpass'               => 'Cambiar o restablecer la contraseña de usuario',
 'resetpass_announce'      => 'Has iniciado sesión con una contraseña temporal que fue enviada por correo electrónico. Por favor, ingresa una nueva contraseña aquí:',
 'resetpass_text'          => '<!-- Añada texto aquí -->',
 'resetpass_header'        => 'Restablecer contraseña',
@@ -2121,9 +2121,8 @@ Sin embargo, está bloqueada como parte del rango $2, que puede ser desbloqueado
 'movepagetext'              => "Usando el siguiente formulario se renombrará una página, moviendo todo su historial al nuevo nombre.
 El título anterior se convertirá en una redirección al nuevo título.
 Los enlaces al antiguo título de la página no se cambiarán.
-Asegúrate de no dejar  [[Special:DoubleRedirects|redirecciones dobles]] o [[Special:BrokenRedirects|rotas]].
+Asegúrate de no dejar [[Special:DoubleRedirects|redirecciones dobles]] o [[Special:BrokenRedirects|rotas]].
 Tú eres responsable de hacer que los enlaces sigan apuntando adonde se supone que deberían hacerlo.
-
 
 Recuerda que la página '''no''' será renombrada si ya existe una página con el nuevo título, a no ser que sea una página vacía o una redirección sin historial.
 Esto significa que podrás renombrar una página a su título original si has cometido un error, pero que no podrás sobreescribir una página existente.
@@ -2716,7 +2715,7 @@ Existen otros campos que se mantendrán ocultos por defecto.
 
 # External editor support
 'edit-externally'      => 'Editar este archivo usando una aplicación externa',
-'edit-externally-help' => 'Lee las [http://www.mediawiki.org/wiki/Manual:External_editors instrucciones de configuración] (en inglés) para más información.',
+'edit-externally-help' => '(Lee las [http://www.mediawiki.org/wiki/Manual:External_editors instrucciones de configuración] (en inglés) para más información)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'todos',

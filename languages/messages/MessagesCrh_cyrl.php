@@ -543,7 +543,7 @@ $2 къулланыджысы ичюн янъы пароль будыр <code>$3
 'loginlanguagelabel'         => 'Тиль: $1',
 
 # Password reset dialog
-'resetpass'               => 'Бу эсапнынъ паролини сыфырла',
+'resetpass'               => 'Бу эсапнынъ паролини денъиштир я да сыфырла',
 'resetpass_announce'      => 'Мувакъкъат код вастасынен кирдинъиз. Киришни тамамламакъ ичюн янъы парольни мында къоюнъыз:',
 'resetpass_header'        => 'Парольни сыфырла',
 'resetpass_submit'        => 'Пароль къойып кир',
@@ -1505,7 +1505,7 @@ e-mail: $PAGEEDITOR_EMAIL
 'allmessages'         => 'Система беянатлары',
 'allmessagesname'     => 'Исим',
 'allmessagesdefault'  => 'Оригиналь метин',
-'allmessagescurrent'  => 'Къулланымдаки метин',
+'allmessagescurrent'  => 'Шимди къулланылгъан метин',
 'allmessagestext'     => 'Ишбу джедвель MediaWiki-де мевджут олгъан бутюн система беянатларынынъ джедвелидир.
 MediaWiki интерфейсининъ чешит тиллерге терджиме этювде иштирак этмеге истесенъиз [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] ве [http://translatewiki.net Betawiki] саифелерине зиярет этинъиз.',
 'allmessagesfilter'   => 'Метин айрыштырыджы фильтры:',

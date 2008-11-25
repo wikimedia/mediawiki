@@ -676,7 +676,7 @@ $messages = array(
 'loginlanguagelabel'         => '언어: $1',
 
 # Password reset dialog
-'resetpass'               => '계정 비밀번호 초기화',
+'resetpass'               => '계정 비밀번호 변경 혹은 초기화',
 'resetpass_announce'      => '이메일로 받은 임시 암호로 로그인했습니다. 로그인을 마치려면 새 암호를 입력해 주세요:',
 'resetpass_header'        => '암호 재설정',
 'resetpass_submit'        => '암호를 변경하고 로그인하기',
@@ -955,6 +955,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'nextn'                    => '다음 $1개',
 'viewprevnext'             => '보기: ($1) ($2) ($3).',
 'searchmenu-legend'        => '검색 설정',
+'searchmenu-exists'        => "'''이 위키에 \"[[\$1]]\"의 이름을 가진 문서가 있습니다.'''",
 'searchmenu-new'           => "'''이 위키에 \"\$1\" 문서를 [[:\$1|만드십시오]]!'''",
 'searchhelp-url'           => 'Help:목차',
 'searchmenu-prefix'        => '[[Special:PrefixIndex/$1|이 접두어로 시작하는 문서 찾기]]',
@@ -1141,7 +1142,11 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'action-read'           => '이 문서를 읽기',
 'action-edit'           => '문서 편집',
 'action-createpage'     => '문서 생성',
+'action-createtalk'     => '토론 문서 생성하기',
+'action-createaccount'  => '새 계정 만들기',
+'action-minoredit'      => '이 편집을 사소한 편집으로 표시하기',
 'action-upload'         => '이 파일을 올리기',
+'action-reupload'       => '이미 존재하는 파일 덮어쓰기',
 'action-delete'         => '이 문서 삭제하기',
 'action-deleterevision' => '이 판을 삭제',
 'action-protect'        => '이 문서의 보호 설정을 변경하기',
@@ -1306,6 +1311,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'filehist-datetime'         => '날짜/시간',
 'filehist-thumb'            => '섬네일',
 'filehist-thumbtext'        => '$1 버전의 그림',
+'filehist-nothumb'          => '섬네일 없음',
 'filehist-user'             => '사용자',
 'filehist-dimensions'       => '크기',
 'filehist-filesize'         => '파일 크기',
@@ -2226,7 +2232,11 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'exif-fnumber'             => 'F 번호',
 'exif-shutterspeedvalue'   => '셔터 속도',
 'exif-brightnessvalue'     => '밝기',
+'exif-lightsource'         => '광원',
+'exif-flash'               => '플래시',
 'exif-focallength'         => '렌즈 초점 거리',
+'exif-exposuremode'        => '노출 방식',
+'exif-digitalzoomratio'    => '디지털 줌 비율',
 'exif-gpslatitude'         => '위도',
 'exif-gpslongitude'        => '경도',
 'exif-gpsaltitude'         => '고도',
@@ -2236,6 +2246,24 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'exif-unknowndate' => '날짜를 알 수 없음',
 
 'exif-orientation-3' => '180° 회전됨', # 0th row: bottom; 0th column: right
+
+'exif-subjectdistance-value' => '$1 미터',
+
+'exif-focalplaneresolutionunit-2' => '인치',
+
+'exif-exposuremode-0' => '자동 노출',
+'exif-exposuremode-1' => '수동 노출',
+
+# Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
+'exif-gpslatitude-n' => '북위',
+'exif-gpslatitude-s' => '남위',
+
+# Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-e' => '동경',
+'exif-gpslongitude-w' => '서경',
+
+# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+'exif-gpsspeed-n' => '노트',
 
 # External editor support
 'edit-externally'      => '이 파일을 외부 프로그램을 사용해서 편집하기',

@@ -435,7 +435,7 @@ O administrador que a pechou deu esta explicación: $1',
 Normalmente, isto é causado por seguir unha ligazón cara a unha diferenza vella ou a unha páxina que foi borrada.
 
 Se este non é o caso, pode ter atopado un erro no software.
-Por favor, comuníquello a un [[Special:ListUsers/sysop|administrador]] tomando nota da dirección URL.',
+Por favor, comuníquello a un [[Special:ListUsers/sysop|administrador]] tomando nota do enderezo URL.',
 'missingarticle-rev'   => '(revisión#: $1)',
 'missingarticle-diff'  => '(Dif: $1, $2)',
 'readonly_lag'         => 'A base de datos bloqueouse automaticamente mentres os servidores escravos da base de datos se actualizan desde o máster',
@@ -587,15 +587,20 @@ Pode facer caso omiso desta mensaxe se se creou esta conta por erro.',
 'loginlanguagelabel'         => 'Linguas: $1',
 
 # Password reset dialog
-'resetpass'               => 'Borrar o contrasinal da conta',
-'resetpass_announce'      => 'Debe rexistrarse co código temporal que recibiu por correo electrónico. Para finalizar o rexistro debe indicar un novo contrasinal aquí:',
-'resetpass_text'          => '<!-- Engadir texto aquí -->',
-'resetpass_header'        => 'Contrasinal borrado',
-'resetpass_submit'        => 'Poñer o contrasinal e entrar',
-'resetpass_success'       => 'O cambio do contrasinal realizouse con éxito! Agora pode entrar...',
-'resetpass_bad_temporary' => 'O contrasinal provisorio non é válido. Isto pode deberse a que xa mudou o contrasinal con éxito ou a que solicitou un novo contrasinal provisorio.',
-'resetpass_forbidden'     => 'Os contrasinais non poden ser mudados',
-'resetpass_missing'       => 'O formulario está baleiro.',
+'resetpass'                 => 'Cambiar ou restablecer o contrasinal da conta',
+'resetpass_announce'        => 'Debe rexistrarse co código temporal que recibiu por correo electrónico. Para finalizar o rexistro debe indicar un novo contrasinal aquí:',
+'resetpass_text'            => '<!-- Engadir texto aquí -->',
+'resetpass_header'          => 'Contrasinal borrado',
+'resetpass_submit'          => 'Poñer o contrasinal e entrar',
+'resetpass_success'         => 'O cambio do contrasinal realizouse con éxito! Agora pode entrar...',
+'resetpass_bad_temporary'   => 'O contrasinal provisorio non é válido. Isto pode deberse a que xa mudou o contrasinal con éxito ou a que solicitou un novo contrasinal provisorio.',
+'resetpass_forbidden'       => 'Os contrasinais non poden ser mudados',
+'resetpass_missing'         => 'O formulario está baleiro.',
+'resetpass-no-info'         => 'Debe acceder ao sistema para acceder directamente a esta páxina.',
+'resetpass-submit-loggedin' => 'Cambiar o contrasinal',
+'resetpass-wrong-oldpass'   => 'Contrasinal temporal ou actual inválido. 
+Pode ser que xa cambiase o seu contrasinal ou que solicitase un novo contrasinal temporal.',
+'resetpass-temp-password'   => 'Contrasinal temporal:',
 
 # Edit page toolbar
 'bold_sample'     => 'Texto en negra',
@@ -1006,8 +1011,8 @@ Se quere, pode [[:\$1|creala]].",
 'searchhelp-url'                   => 'Help:Contidos',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Navegue polas páxinas que comezan coas mesmas iniciais]]',
 'searchprofile-articles'           => 'Páxinas de contido',
-'searchprofile-articles-and-proj'  => 'Páxinas de contido e proxecto',
-'searchprofile-project'            => 'Proxecto',
+'searchprofile-articles-and-proj'  => 'Páxinas de contido e do proxecto',
+'searchprofile-project'            => 'Páxinas do proxecto',
 'searchprofile-images'             => 'Ficheiros',
 'searchprofile-everything'         => 'Todo',
 'searchprofile-advanced'           => 'Avanzado',
@@ -1084,6 +1089,7 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'prefs-watchlist-edits'     => 'Número de edicións para mostrar na listaxe de vixilancia completa:',
 'prefs-watchlist-edits-max' => '(número máximo: 1000)',
 'prefs-misc'                => 'Preferencias varias',
+'prefs-resetpass'           => 'Cambiar o contrasinal',
 'saveprefs'                 => 'Gardar as preferencias',
 'resetprefs'                => 'Eliminar os cambios non gardados',
 'oldpassword'               => 'Contrasinal antigo:',
@@ -1515,11 +1521,11 @@ Lembre verificar outras ligazóns cara aos modelos antes de borralos.',
 
 # Random page
 'randompage'         => 'Páxina aleatoria',
-'randompage-nopages' => 'Non hai páxinas neste espazo de nomes.',
+'randompage-nopages' => 'Non hai páxinas no espazo de nomes "$1".',
 
 # Random redirect
 'randomredirect'         => 'Redirección aleatoria',
-'randomredirect-nopages' => 'Non hai redireccións neste espazo de nomes.',
+'randomredirect-nopages' => 'Non hai redireccións no espazo de nomes "$1".',
 
 # Statistics
 'statistics'                      => 'Estatísticas',
@@ -2723,7 +2729,7 @@ Outros agocharanse por omisión.
 
 # External editor support
 'edit-externally'      => 'Editar este ficheiro cunha aplicación externa',
-'edit-externally-help' => 'Vexa as seguintes [http://www.mediawiki.org/wiki/Manual:External_editors instrucións] <small>(en inglés)</small> para máis información.',
+'edit-externally-help' => '(Vexa as seguintes [http://www.mediawiki.org/wiki/Manual:External_editors instrucións] <small>(en inglés)</small> para máis información.)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'todos',

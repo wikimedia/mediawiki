@@ -1396,11 +1396,11 @@ Gjörðu svo vel og endurnefndu skrána og hladdu henni inn aftur.',
 
 # Random page
 'randompage'         => 'Handahófsvalin grein',
-'randompage-nopages' => 'Það eru engar síður í þessu nafnrými.',
+'randompage-nopages' => 'Það eru engar síður í nafnrýminu „$1“.',
 
 # Random redirect
 'randomredirect'         => 'Handahófsvalin tilvísun',
-'randomredirect-nopages' => 'Það eru engar tilvísanir í þessu nafnrými.',
+'randomredirect-nopages' => 'Það eru engar tilvísanir í nafnrýminu „$1“.',
 
 # Statistics
 'statistics'                      => 'Tölfræði',

@@ -698,16 +698,20 @@ $2',
 'loginlanguagelabel'         => 'Мова: $1',
 
 # Password reset dialog
-'resetpass'               => 'Выдаліць пароль рахунку',
-'resetpass_announce'      => 'Вы ўвайшлі з дапамогай часовага паролю, дасланага праз электронную пошту.
+'resetpass'                 => 'Зьмяніць альбо ачысьціць пароль рахунку',
+'resetpass_announce'        => 'Вы ўвайшлі з дапамогай часовага паролю, дасланага праз электронную пошту.
 Для завяршэньня ўваходу ў сыстэму Вы мусіце ўвесьці тут новы пароль:',
-'resetpass_header'        => 'Сьцерці пароль',
-'resetpass_submit'        => 'Наставіць пароль і увайсьці',
-'resetpass_success'       => 'Ваш пароль быў пасьпяхова зьменены! Выконваецца ўваход у сыстэму…',
-'resetpass_bad_temporary' => 'Няслушны часовы пароль.
+'resetpass_header'          => 'Ачысьціць пароль',
+'resetpass_submit'          => 'Наставіць пароль і увайсьці',
+'resetpass_success'         => 'Ваш пароль быў пасьпяхова зьменены! Выконваецца ўваход у сыстэму…',
+'resetpass_bad_temporary'   => 'Няслушны часовы пароль.
 Магчыма Вы ўжо зьмянілі пароль альбо запыталі новы часовы пароль.',
-'resetpass_forbidden'     => 'Пароль ня можа быць зьменены',
-'resetpass_missing'       => 'Няма зьвестак ў форме.',
+'resetpass_forbidden'       => 'Пароль ня можа быць зьменены',
+'resetpass_missing'         => 'Няма зьвестак ў форме.',
+'resetpass-submit-loggedin' => 'Зьмяніць пароль',
+'resetpass-wrong-oldpass'   => 'Няслушны часовы альбо цяперашні пароль.
+Магчыма Вы ўжо пасьпяхова зьмянілі Ваш пароль альбо запыталі новы часовы пароль.',
+'resetpass-temp-password'   => 'Часовы пароль:',
 
 # Edit page toolbar
 'bold_sample'     => 'Тлусты тэкст',
@@ -1111,7 +1115,7 @@ $2',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Праглядзець старонкі з гэтым прэфіксам]]',
 'searchprofile-articles'           => 'Старонкі са зьместам',
 'searchprofile-articles-and-proj'  => 'Старонкі са зьместам і старонкі праекту',
-'searchprofile-project'            => 'Праект',
+'searchprofile-project'            => 'Старонкі праекту',
 'searchprofile-images'             => 'Файлы',
 'searchprofile-everything'         => 'Усё',
 'searchprofile-advanced'           => 'Пашыраны',
@@ -1189,6 +1193,7 @@ $2',
 'prefs-watchlist-edits'     => 'Колькасьць рэдагаваньняў для паказу ў пашыраным сьпісе назіраньня:',
 'prefs-watchlist-edits-max' => '(максымальная колькасьць: 1000)',
 'prefs-misc'                => 'Рознае',
+'prefs-resetpass'           => 'Зьмяніць пароль',
 'saveprefs'                 => 'Захаваць',
 'resetprefs'                => 'Скінуць',
 'oldpassword'               => 'Стары пароль:',
@@ -2917,19 +2922,22 @@ $1
 'lag-warn-high'   => 'У выніку значнага адставаньня ў сынхранізацыі сэрвэраў базаў зьвестак зьмены, зробленыя раней за $1 {{PLURAL:$1|сэкунду|сэкунды|сэкундаў}} таму, могуць быць не паказаныя ў гэтым сьпісе.',
 
 # Watchlist editor
-'watchlistedit-numitems'      => 'Ваш сьпіс назіраньня ўтрымлівае $1 {{PLURAL:$1|запіс|запісы|запісаў}}, без уліку старонак абмеркаваньня.',
-'watchlistedit-noitems'       => 'Ваш сьпіс назіраньня пусты.',
-'watchlistedit-normal-title'  => 'Рэдагаваць сьпіс назіраньня',
-'watchlistedit-normal-legend' => 'Выдаленьне старонак са сьпісу назіраньня',
-'watchlistedit-normal-submit' => 'Выдаліць са сьпісу',
-'watchlistedit-normal-done'   => '$1 {{PLURAL:$1|запіс быў выдалены|запісы былі выдаленыя|запісаў былі выдаленыя}} з Вашага сьпісу назіраньня:',
-'watchlistedit-raw-title'     => 'Рэдагаваць нефарматаваны сьпіс назіраньня',
-'watchlistedit-raw-legend'    => 'Рэдагаваць нефарматаваны сьпіс назіраньня',
-'watchlistedit-raw-titles'    => 'Назвы:',
-'watchlistedit-raw-submit'    => 'Абнавіць сьпіс назіраньня',
-'watchlistedit-raw-done'      => 'Ваш сьпіс назіраньня быў абноўлены.',
-'watchlistedit-raw-added'     => '{{PLURAL:$1|1 запіс быў даданы|$1 запісы былі даданыя|$1 запісаў былі даданыя}}:',
-'watchlistedit-raw-removed'   => '{{PLURAL:$1|1 запіс быў выдалены|$1 запісы было выдаленыя|$1 запісаў былі выдаленыя}}:',
+'watchlistedit-numitems'       => 'Ваш сьпіс назіраньня ўтрымлівае $1 {{PLURAL:$1|запіс|запісы|запісаў}}, без уліку старонак абмеркаваньня.',
+'watchlistedit-noitems'        => 'Ваш сьпіс назіраньня пусты.',
+'watchlistedit-normal-title'   => 'Рэдагаваць сьпіс назіраньня',
+'watchlistedit-normal-legend'  => 'Выдаленьне старонак са сьпісу назіраньня',
+'watchlistedit-normal-explain' => 'Ніжэй паданыя старонкі з Вашага сьпісу назіраньня.
+Для выдаленьня старонкі са сьпісу пазначце адпаведныя пазыцыі і націсьніце кнопку «Выдаліць са сьпісу».
+Таксама Вы можаце [[Special:Watchlist/raw|рэдагаваць нефарматаваны сьпіс назіраньня]].',
+'watchlistedit-normal-submit'  => 'Выдаліць са сьпісу',
+'watchlistedit-normal-done'    => '$1 {{PLURAL:$1|запіс быў выдалены|запісы былі выдаленыя|запісаў былі выдаленыя}} з Вашага сьпісу назіраньня:',
+'watchlistedit-raw-title'      => 'Рэдагаваць нефарматаваны сьпіс назіраньня',
+'watchlistedit-raw-legend'     => 'Рэдагаваць нефарматаваны сьпіс назіраньня',
+'watchlistedit-raw-titles'     => 'Назвы:',
+'watchlistedit-raw-submit'     => 'Абнавіць сьпіс назіраньня',
+'watchlistedit-raw-done'       => 'Ваш сьпіс назіраньня быў абноўлены.',
+'watchlistedit-raw-added'      => '{{PLURAL:$1|1 запіс быў даданы|$1 запісы былі даданыя|$1 запісаў былі даданыя}}:',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 запіс быў выдалены|$1 запісы было выдаленыя|$1 запісаў былі выдаленыя}}:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Паказаць зьмены ў старонках зь сьпісу',

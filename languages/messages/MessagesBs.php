@@ -646,17 +646,22 @@ Molimo vas da sačekate prije nego što pokušate ponovo.',
 'loginlanguagelabel'         => 'Jezik: $1',
 
 # Password reset dialog
-'resetpass'               => 'Resetuj korisničku lozinku',
-'resetpass_announce'      => 'Prijavili ste se sa privremenim kodom koji ste dobili na e-mail.
+'resetpass'                 => 'Promijeni ili resetuj korisničku šifru',
+'resetpass_announce'        => 'Prijavili ste se sa privremenim kodom koji ste dobili na e-mail.
 Da biste završili prijavu, morate unijeti novu šifru ovdje:',
-'resetpass_text'          => '<!-- Unesi tekst ovdje -->',
-'resetpass_header'        => 'Obnovi šifru',
-'resetpass_submit'        => 'Odredi šifru i prijavi se',
-'resetpass_success'       => 'Vaša šifra je uspiješno promjenjena! Prijava u toku...',
-'resetpass_bad_temporary' => 'Nevažeća privremena šifra.
+'resetpass_text'            => '<!-- Unesi tekst ovdje -->',
+'resetpass_header'          => 'Obnovi šifru',
+'resetpass_submit'          => 'Odredi šifru i prijavi se',
+'resetpass_success'         => 'Vaša šifra je uspiješno promjenjena! Prijava u toku...',
+'resetpass_bad_temporary'   => 'Nevažeća privremena šifra.
 Možda ste već promjenili šifru ili ste zatražili novu privremenu šifru.',
-'resetpass_forbidden'     => 'Šifre ne mogu biti promjenjene',
-'resetpass_missing'       => 'Forma ne sadrži tražene podatke.',
+'resetpass_forbidden'       => 'Šifre ne mogu biti promjenjene',
+'resetpass_missing'         => 'Forma ne sadrži tražene podatke.',
+'resetpass-no-info'         => 'Morate biti prijavljeni da bi ste pristupili ovoj stranici direktno.',
+'resetpass-submit-loggedin' => 'Promijeni šifru',
+'resetpass-wrong-oldpass'   => 'Privremena ili trenutna šifra nije validna. 
+Možda ste već uspješno promijenili Vašu šifru ili ste tražili novu privremenu šifru.',
+'resetpass-temp-password'   => 'Privremena šifra:',
 
 # Edit page toolbar
 'bold_sample'     => 'Podebljan tekst',
@@ -1081,8 +1086,8 @@ Možete [[:\$1|da napravite članak sa tim naslovom]].
 'searchhelp-url'                   => 'Help:Sadržaj',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Pregledaj stranice sa ovim prefiksom]]',
 'searchprofile-articles'           => 'Stranice sadržaja',
-'searchprofile-articles-and-proj'  => 'Stranice sadržaja i projekti',
-'searchprofile-project'            => 'Projekat',
+'searchprofile-articles-and-proj'  => 'Stranice sadržaja i projekata',
+'searchprofile-project'            => 'Stranice projekta',
 'searchprofile-images'             => 'Datoteke',
 'searchprofile-everything'         => 'Sve',
 'searchprofile-advanced'           => 'Napredno',
@@ -1160,6 +1165,7 @@ koje sadrže sve izraze koji se traže će se pojaviti u rezultatima).",
 'prefs-watchlist-edits'     => 'Najveći broj izmjena za prikaz u proširenom spisku praćenja:',
 'prefs-watchlist-edits-max' => '(najveći broj: 1000)',
 'prefs-misc'                => 'Ostala podešavanja',
+'prefs-resetpass'           => 'Promijeni šifru',
 'saveprefs'                 => 'Sačuvajte podešavanja',
 'resetprefs'                => 'Vrati podešavanja',
 'oldpassword'               => 'Stara lozinka:',

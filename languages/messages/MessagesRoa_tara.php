@@ -9,35 +9,37 @@
 
 $messages = array(
 # User preference toggles
-'tog-underline'            => 'Cullegaminde sottolinèete:',
-'tog-highlightbroken'      => 'Formete de collegamende sqausciete <a href="" class="new">cumme quiste</a> (in alternativa: cumme quiste<a href="" class="internal">?</a>).',
-'tog-justify'              => 'Giustifeche le paragrafe',
-'tog-hideminor'            => "Scunne le cangiaminde stuédeche jndr'à le cangiaminde recende",
-'tog-extendwatchlist'      => 'Spanne le pàggene condrollete pe fa vedè tutte le cangiaminde fatte',
-'tog-usenewrc'             => 'Cangiaminde recende migliorete (JavaScript)',
-'tog-numberheadings'       => 'Testete auto-numerete',
-'tog-showtoolbar'          => "Fà vedè 'a barra de le cangiaminde (JavaScript)",
-'tog-editondblclick'       => "Cange le pàggene cu 'nu doppie clic (JavaScript)",
-'tog-watchcreations'       => "Mitte le pàggene ca je agghje ccrejete jndr'à le pàggene condrollete",
-'tog-watchdefault'         => "Mitte le pàggene ca je agghje cangete jndr'à le pàggene condrolleteAdd pages I edit to my watchlist",
-'tog-watchmoves'           => "Mitte le pàggene ca je agghje spustete jndr'à le pàggene condrollete",
-'tog-watchdeletion'        => "Mitte le pàggene ca je agghje scangillete jndr'à le pàggene condrollete",
-'tog-minordefault'         => 'Pe convenzione signe tutte le cangiaminde cumme a stuédeche',
-'tog-previewontop'         => "Fa vedè l'andeprime apprime de 'a scatole de le cangiaminde",
-'tog-previewonfirst'       => "Fà vedè l'andeprime sus a 'u prime cangiaminde",
-'tog-nocache'              => "Disabilite 'u caching d'a pàgene",
-'tog-enotifwatchlistpages' => "Manneme 'na mail quanne 'a pàgene ca stoche a condrolle ha cangete",
-'tog-enotifusertalkpages'  => "Manneme 'na mail quanne 'a pàgene de le 'ngazzaminde ha cangete",
-'tog-enotifminoredits'     => "Manneme 'na mail quanne onne state fatte cangiaminde stuèdeche sus 'a pàgene",
-'tog-externaleditor'       => "Ause n'editore esterne pe default (sulamende pe l'esperte, abbesogne de 'na configurazione speciele sus a 'u combiuter tue)",
-'tog-watchlisthideown'     => "Scunne le cangiaminde mie da 'a liste de le pàgene condrollete",
-'tog-watchlisthidebots'    => "Scunne le cangiaminde de le not da 'a liste de le pàgene condrollete",
-'tog-watchlisthideminor'   => "Scunne le cangiaminde stuèdeche da 'a liste de le pàgene condrollete",
-'tog-watchlisthideliu'     => "Scunne le cangiaminde de l'utinde canusciute da 'a liste de le pàgene condrollete",
-'tog-watchlisthideanons'   => "Scunne le cangiaminde de l'utinde scanusciute da 'a liste de le pàgene condrollete",
-'tog-ccmeonemails'         => "Manneme 'na copie de le mail ca je manne a l'ôtre utinde",
-'tog-diffonly'             => 'No fà vedè le pàggene cu le condenute sotte a le differenze',
-'tog-showhiddencats'       => 'Fa vedè le categorije scunnute',
+'tog-underline'               => 'Cullegaminde sottolinèete:',
+'tog-highlightbroken'         => 'Formete de collegamende sqausciete <a href="" class="new">cumme quiste</a> (in alternativa: cumme quiste<a href="" class="internal">?</a>).',
+'tog-justify'                 => 'Giustifeche le paragrafe',
+'tog-hideminor'               => "Scunne le cangiaminde stuédeche jndr'à le cangiaminde recende",
+'tog-extendwatchlist'         => 'Spanne le pàggene condrollete pe fa vedè tutte le cangiaminde fatte',
+'tog-usenewrc'                => 'Cangiaminde recende migliorete (JavaScript)',
+'tog-numberheadings'          => 'Testete auto-numerete',
+'tog-showtoolbar'             => "Fà vedè 'a barra de le cangiaminde (JavaScript)",
+'tog-editondblclick'          => "Cange le pàggene cu 'nu doppie clic (JavaScript)",
+'tog-editsection'             => 'Abilite le cangiaminde a sezione ausanne [cange]',
+'tog-editsectiononrightclick' => "Abilite le cngiaminde d'a sezione ausanne 'u pulsande destre d'u mouse cazzanne sus a 'u titele (Javascript)",
+'tog-watchcreations'          => "Mitte le pàggene ca je agghje ccrejete jndr'à le pàggene condrollete",
+'tog-watchdefault'            => "Mitte le pàggene ca je agghje cangete jndr'à le pàggene condrolleteAdd pages I edit to my watchlist",
+'tog-watchmoves'              => "Mitte le pàggene ca je agghje spustete jndr'à le pàggene condrollete",
+'tog-watchdeletion'           => "Mitte le pàggene ca je agghje scangillete jndr'à le pàggene condrollete",
+'tog-minordefault'            => 'Pe convenzione signe tutte le cangiaminde cumme a stuédeche',
+'tog-previewontop'            => "Fa vedè l'andeprime apprime de 'a scatole de le cangiaminde",
+'tog-previewonfirst'          => "Fà vedè l'andeprime sus a 'u prime cangiaminde",
+'tog-nocache'                 => "Disabilite 'u caching d'a pàgene",
+'tog-enotifwatchlistpages'    => "Manneme 'na mail quanne 'a pàgene ca stoche a condrolle ha cangete",
+'tog-enotifusertalkpages'     => "Manneme 'na mail quanne 'a pàgene de le 'ngazzaminde ha cangete",
+'tog-enotifminoredits'        => "Manneme 'na mail quanne onne state fatte cangiaminde stuèdeche sus 'a pàgene",
+'tog-externaleditor'          => "Ause n'editore esterne pe default (sulamende pe l'esperte, abbesogne de 'na configurazione speciele sus a 'u combiuter tue)",
+'tog-watchlisthideown'        => "Scunne le cangiaminde mie da 'a liste de le pàgene condrollete",
+'tog-watchlisthidebots'       => "Scunne le cangiaminde de le not da 'a liste de le pàgene condrollete",
+'tog-watchlisthideminor'      => "Scunne le cangiaminde stuèdeche da 'a liste de le pàgene condrollete",
+'tog-watchlisthideliu'        => "Scunne le cangiaminde de l'utinde canusciute da 'a liste de le pàgene condrollete",
+'tog-watchlisthideanons'      => "Scunne le cangiaminde de l'utinde scanusciute da 'a liste de le pàgene condrollete",
+'tog-ccmeonemails'            => "Manneme 'na copie de le mail ca je manne a l'ôtre utinde",
+'tog-diffonly'                => 'No fà vedè le pàggene cu le condenute sotte a le differenze',
+'tog-showhiddencats'          => 'Fa vedè le categorije scunnute',
 
 'underline-always' => 'Sembre',
 'underline-never'  => 'Maje',
@@ -265,6 +267,7 @@ Vide [[Special:Version|Versione d'a pàgene]].",
 
 # Main script and global functions
 'nosuchaction'      => 'Non ge stonne otre azione',
+'nosuchspecialpage' => 'Non ge stonne pàggene speciele',
 'nospecialpagetext' => "<big>'''Tu è richieste 'na pàgena speciele ca non g'esiste.'''</big>
 
 Pe 'na liste de le pàggene speciele cirche aqquà [[Special:SpecialPages|{{int:specialpages}}]].",
@@ -390,7 +393,7 @@ Apprime ca otre e-mail avènene mannete a 'u cunde tue, tu ha seguì le 'struzio
 'loginlanguagelabel'        => 'Lénga: $1',
 
 # Password reset dialog
-'resetpass'           => "Azzere 'a password d'u cunde utende",
+'resetpass'           => "Cange o azzere 'a password d'u cunde utende",
 'resetpass_text'      => "<!-- Mitte 'u teste aqquà -->",
 'resetpass_header'    => "Azzere 'a passuord",
 'resetpass_submit'    => "'Mboste 'a passuord e colleghete",
@@ -533,6 +536,8 @@ Leggenda: (cur) = differenze cu 'a versiona corrende,
 'historyempty'           => '(vacande)',
 
 # Revision feed
+'history-feed-title'          => 'Storie de le revisiune',
+'history-feed-description'    => "Storie de le revisiune oe sta pàgene sus 'a le Uicchipèdie",
 'history-feed-item-nocomment' => '$1 a $2', # user at time
 
 # Revision deletion
@@ -557,6 +562,9 @@ Leggenda: (cur) = differenze cu 'a versiona corrende,
 'revdelete-unhid'        => 'fa vedè $1',
 'revdelete-log-message'  => '$1 pe $2 {{PLURAL:$2|revisione|revisione}}',
 'logdelete-log-message'  => '$1 pe $2 {{PLURAL:$2|fatte|fatte}}',
+
+# Suppression log
+'suppressionlog' => 'Archivie de le soppressiune',
 
 # History merging
 'mergehistory-from'        => 'Pàgene sorgende:',
@@ -637,20 +645,24 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'nextn'                           => 'nnande $1',
 'viewprevnext'                    => 'Vide ($1) ($2) ($3)',
 'searchmenu-legend'               => 'Opzione de ricerche',
+'searchmenu-exists'               => "'''Stè 'na pàgene nnumenete \"[[\$1]]\" sus 'a sta Uicchipèdie'''",
+'searchmenu-new'                  => "'''[[:$1|Ccreje]] 'a pàgene ''$1'' sus 'a sta Uicchipèdie!'''",
 'searchhelp-url'                  => 'Help:Condenute',
 'searchprofile-articles'          => 'Pàggene de condenute',
-'searchprofile-articles-and-proj' => 'Pàggene de condenute & Pruggette',
-'searchprofile-project'           => 'Pruggette',
+'searchprofile-articles-and-proj' => 'Pàggene de condenute & de pruggette',
+'searchprofile-project'           => "Pàggene d'u pruggette",
 'searchprofile-images'            => 'Le fail',
 'searchprofile-everything'        => 'Tutte',
 'searchprofile-advanced'          => 'Avanzete',
 'searchprofile-articles-tooltip'  => "Cirche jndr'à $1",
 'searchprofile-project-tooltip'   => "Cirche jndr'à $1",
 'searchprofile-images-tooltip'    => 'Cirche pe le fail',
+'search-result-size'              => '$1 ({{PLURAL:$2|1 parole|$2 parole}})',
 'search-result-score'             => "'Mbortanze: $1%",
 'search-redirect'                 => '(Redirette $1)',
 'search-section'                  => '(sezione $1)',
 'search-interwiki-caption'        => 'Pruggette sorelle',
+'search-interwiki-default'        => '$1 resultete:',
 'search-interwiki-more'           => '(de cchiù)',
 'searchall'                       => 'tutte',
 'powersearch'                     => 'Ricerche avanzete',
@@ -677,6 +689,7 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'prefs-personal'           => "Profile de l'utende",
 'prefs-watchlist'          => 'Pàggene condrollete',
 'prefs-watchlist-days-max' => '(massime 7 sciurne)',
+'prefs-resetpass'          => "Cange a 'password",
 'saveprefs'                => 'Reggistre',
 'resetprefs'               => "Pulizze le cangiaminde ca non g'è reggistrete",
 'oldpassword'              => 'Vécchie passuord:',
@@ -797,6 +810,9 @@ Pàggene sus 'a [[Special:Watchlist|le Pàggene condrollete]] sonde in '''grasce
 'destfilename'      => "Nome d'u file de destinazione:",
 'watchthisupload'   => 'Condrolle sta pàgene',
 
+# Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error6' => "Non ge riesche a raggiungere l'URL",
+
 'upload_source_file' => " ('nu fail sus a 'u combiuter tue)",
 
 # Special:ImageList
@@ -909,6 +925,7 @@ Pàggene sus 'a [[Special:Watchlist|le Pàggene condrollete]] sonde in '''grasce
 'longpages'               => 'Pàggene longhe',
 'deadendpages'            => 'Pàggene senza collegamende',
 'protectedpages'          => 'Pàggene prutette',
+'protectedtitles'         => 'Titele prutette',
 'listusers'               => "Liste de l'utende",
 'newpages'                => 'Pàggene nuève',
 'newpages-username'       => "Nome de l'utende:",
@@ -995,7 +1012,10 @@ Le cangiaminde future a sta pàgene e 'a pàgene de le 'ngazzaminde associete le
 'watching'   => 'Fà vedè...',
 'unwatching' => 'No fà vedè...',
 
+'enotif_newpagetext'           => "Queste è 'na pàgena nove.",
 'enotif_impersonal_salutation' => 'Utende de {{SITENAME}}',
+'changed'                      => 'cangete',
+'created'                      => 'ccrejete',
 'enotif_anon_editor'           => 'Utende anonime $1',
 
 # Delete
@@ -1284,8 +1304,12 @@ Otre avènene scunnute pe defolt.
 
 'exif-componentsconfiguration-0' => "non g'esiste",
 
+'exif-subjectdistance-value' => '$1 metre',
+
 'exif-meteringmode-0'   => 'Scanusciute',
 'exif-meteringmode-1'   => 'Medie',
+'exif-meteringmode-5'   => 'Pattern',
+'exif-meteringmode-6'   => 'Parziele',
 'exif-meteringmode-255' => 'Otre',
 
 'exif-lightsource-0' => 'Scanusciute',
@@ -1302,6 +1326,8 @@ Otre avènene scunnute pe defolt.
 'exif-contrast-2' => 'Tuéste',
 
 'exif-saturation-0' => 'Normale',
+
+'exif-sharpness-0' => 'Normale',
 
 'exif-subjectdistancerange-0' => 'Scanusciute',
 
@@ -1348,11 +1374,12 @@ Otre avènene scunnute pe defolt.
 'livepreview-ready'   => 'Stoche a careche… Agghje fenìte!',
 
 # Watchlist editor
-'watchlistedit-normal-title' => 'Vide le pàggene condrollete',
-'watchlistedit-raw-titles'   => 'Titele:',
-'watchlistedit-raw-done'     => "'A liste de le pàggene condrollete ha state aggiornete.",
-'watchlistedit-raw-added'    => "{{PLURAL:$1|'nu titele ha|$1 titele onne}} state aggiunde:",
-'watchlistedit-raw-removed'  => "{{PLURAL:$1|'nu titele ha|$1 titele onne}} state scangillete:",
+'watchlistedit-normal-title'  => 'Vide le pàggene condrollete',
+'watchlistedit-normal-submit' => 'Live le titele',
+'watchlistedit-raw-titles'    => 'Titele:',
+'watchlistedit-raw-done'      => "'A liste de le pàggene condrollete ha state aggiornete.",
+'watchlistedit-raw-added'     => "{{PLURAL:$1|'nu titele ha|$1 titele onne}} state aggiunde:",
+'watchlistedit-raw-removed'   => "{{PLURAL:$1|'nu titele ha|$1 titele onne}} state scangillete:",
 
 # Watchlist editing tools
 'watchlisttools-view' => "Vide le cangiaminde 'mbortande",
@@ -1362,6 +1389,7 @@ Otre avènene scunnute pe defolt.
 # Special:Version
 'version'                  => 'Versione', # Not used as normal message but as header for the special page itself
 'version-extensions'       => 'Estenziune installete',
+'version-specialpages'     => 'Pàggene speciele',
 'version-variables'        => 'Variabbele',
 'version-other'            => 'Otre',
 'version-version'          => 'Versione',

@@ -513,7 +513,7 @@ $2',
 'loginlanguagelabel'         => 'భాష: $1',
 
 # Password reset dialog
-'resetpass'               => 'ఎకౌంటు సంకేతపదాన్ని మార్చండి',
+'resetpass'               => 'ఖాతా సంకేతపదాన్ని మార్చండి',
 'resetpass_announce'      => 'మీరు తాత్కాలిక ఈమెయిలు కోడుతో లాగిన్ అయి ఉన్నారు. లాగిన్ పూర్తి అయేందుకు, కొత్త సంకేతపదాన్ని ఎంచుకోవాలి:',
 'resetpass_header'        => 'సంకేతపదాన్ని మార్చు',
 'resetpass_submit'        => 'సంకేతపదాన్ని మార్చి లాగిన్ కండి',
@@ -521,6 +521,7 @@ $2',
 'resetpass_bad_temporary' => 'ఈ తాత్కాలిక సంకేతపదం తప్పు. మీ సంకేతపదాన్ని మార్చి ఉండాలి లేదా మరో కొత్త తాత్కాలిక సంకేతపదం కోసం అడిగి ఉండాలి.',
 'resetpass_forbidden'     => 'సంకేతపదాలను మార్చటం కుదరదు',
 'resetpass_missing'       => 'ఫారంలో సమాచారం లేదు.',
+'resetpass-temp-password' => 'తాత్కాలిక సంకేతపదం:',
 
 # Edit page toolbar
 'bold_sample'     => 'బొద్దు అక్షరాలు',
@@ -858,8 +859,8 @@ $3 చెప్పిన కారణం: ''$2''",
 'viewprevnext'              => '($1) ($2) ($3) చూపించు.',
 'searchmenu-legend'         => 'అన్వేషణ ఎంపికలు',
 'searchhelp-url'            => 'Help:సూచిక',
-'searchprofile-articles'    => 'పేజీలు',
-'searchprofile-project'     => 'ప్రాజెక్టు',
+'searchprofile-articles'    => 'విషయపు పేజీలు',
+'searchprofile-project'     => 'ప్రాజెక్టు పేజీలు',
 'searchprofile-images'      => 'ఫైళ్ళు',
 'searchprofile-everything'  => 'ప్రతీ ఒక్కటీ',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 పదం|$2 పదాలు}})',
@@ -1750,6 +1751,7 @@ $NEWPAGE
 'undelete-missing-filearchive' => 'ID $1 కలిగిన భాండారం ఫైలు డేటాబేసులో లేకపోవడం చేత దాన్ని పునస్థాపించలేకున్నాం. దాని తొలగింపును ఇప్పటికే రద్దుపరచి ఉండవచ్చు.',
 'undelete-error-short'         => 'ఫైలు $1 తొలగింపును రద్దు పరచడంలో లోపం దొర్లింది',
 'undelete-error-long'          => 'ఫైలు $1 తొలగింపును రద్దు పరచడంలో లోపాలు దొర్లాయి',
+'undelete-show-file-submit'    => 'అవును',
 
 # Namespace form on various pages
 'namespace'      => 'నేంస్పేసు:',
@@ -2473,7 +2475,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'బయటి అప్లికేషను వాడి ఈ ఫైలును మార్చు',
-'edit-externally-help' => 'మరింత సమాచారం కొరకు [http://www.mediawiki.org/wiki/Manual:External_editors సెటప్‌ సూచనలు] చూడండి.',
+'edit-externally-help' => '(మరింత సమాచారం కొరకు [http://www.mediawiki.org/wiki/Manual:External_editors సెటప్‌ సూచనల]ని చూడండి)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'అన్నీ',

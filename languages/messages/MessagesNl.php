@@ -1205,8 +1205,8 @@ Probeer een andere zoekopdracht.',
 'searchhelp-url'                   => 'Help:Inhoud',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Paginanamen met dit voorvoegsel weergeven]]',
 'searchprofile-articles'           => "Inhoudelijke pagina's",
-'searchprofile-articles-and-proj'  => "Inhoudelijke pagina's en project",
-'searchprofile-project'            => 'Project',
+'searchprofile-articles-and-proj'  => "Inhoudelijke en projectpagina's",
+'searchprofile-project'            => "Projectpagina's",
 'searchprofile-images'             => 'Bestanden',
 'searchprofile-everything'         => 'Alles',
 'searchprofile-advanced'           => 'Uitgebreid',
@@ -1751,7 +1751,7 @@ Vergeet niet de "Verwijzingen naar deze pagina" te controleren alvorens dit sjab
 'statistics-articles'             => "Inhoudelijke pagina's",
 'statistics-pages'                => "Pagina's",
 'statistics-pages-tooltip'        => "Alle pagina's in de wiki, inclusief overlegpagina's, doorverwijzingen, enzovoort.",
-'statistics-files'                => 'Bestandsuploads',
+'statistics-files'                => 'Bestanden',
 'statistics-edits'                => 'Paginabewerkingen sinds het begin van {{SITENAME}}',
 'statistics-edits-average'        => 'Gemiddeld aantal bewerkingen per pagina',
 'statistics-views-total'          => "Totaal aantal weergegeven pagina's",
@@ -1804,7 +1804,7 @@ De pagina's zijn ook niet als sjabloon opgenomen.",
 'uncategorizedtemplates'  => 'Niet-gecategoriseerde sjablonen',
 'unusedcategories'        => 'Ongebruikte categorieën',
 'unusedimages'            => 'Ongebruikte bestanden',
-'popularpages'            => "Populaire pagina's",
+'popularpages'            => "Veel bekeken pagina's",
 'wantedcategories'        => 'Niet-bestaande categorieën met de meeste verwijzingen',
 'wantedpages'             => "Niet-bestaande pagina's met verwijzingen",
 'wantedfiles'             => 'Niet-bestaande bestanden met verwijzingen',
@@ -2373,7 +2373,7 @@ Als u dit niet wenst, controleer dan of er geen [[Special:DoubleRedirects|dubbel
 Een pagina kan '''alleen''' hernoemd worden als de nieuwe paginanaam niet bestaat of een doorverwijspagina zonder verdere geschiedenis is.
 
 '''WAARSCHUWING!'''
-Voor populaire pagina's kan het hernoemen drastische en onvoorziene gevolgen hebben.
+Voor veel bekeken pagina's kan het hernoemen drastische en onvoorziene gevolgen hebben.
 Zorg ervoor dat u die gevolgen overziet voordat u deze handeling uitvoert.",
 'movepagetalktext'          => "De bijbehorende overlegpagina krijgt automatisch een andere naam, '''tenzij''':
 * De overlegpagina onder de nieuwe naam al bestaat;
