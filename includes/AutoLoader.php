@@ -478,6 +478,7 @@ $wgAutoloadLocalClasses = array(
 	'ShortPagesPage' => 'includes/specials/SpecialShortpages.php',
 	'SpecialAllpages' => 'includes/specials/SpecialAllpages.php',
 	'SpecialBookSources' => 'includes/specials/SpecialBooksources.php',
+	'SpecialImport' => 'includes/specials/SpecialImport.php',
 	'SpecialListGroupRights' => 'includes/specials/SpecialListgrouprights.php',
 	'SpecialMostlinkedtemplates' => 'includes/specials/SpecialMostlinkedtemplates.php',
 	'SpecialPrefixindex' => 'includes/specials/SpecialPrefixindex.php',
