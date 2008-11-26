@@ -8,9 +8,10 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  * Global functions used everywhere
  */
 
-require_once dirname(__FILE__) . '/LogPage.php';
-require_once dirname(__FILE__) . '/normal/UtfNormalUtil.php';
-require_once dirname(__FILE__) . '/XmlFunctions.php';
+$dir = dirname(__FILE__) . '/';
+require_once $dir . 'LogPage.php';
+require_once $dir . 'normal/UtfNormalUtil.php';
+require_once $dir . 'XmlFunctions.php';
 
 // Hide compatibility functions from Doxygen
 /// @cond

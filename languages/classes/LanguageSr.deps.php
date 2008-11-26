@@ -5,5 +5,6 @@
 // changed on a subsequent page view.
 // see http://lists.wikimedia.org/pipermail/wikitech-l/2006-January/021311.html
 
-require_once( dirname(__FILE__).'/LanguageSr_ec.php' );
-require_once( dirname(__FILE__).'/../LanguageConverter.php' );
+$dir = dirname(__FILE__) . '/';
+require_once( $dir . 'LanguageSr_ec.php' );
+require_once( $dir . '../LanguageConverter.php' );
