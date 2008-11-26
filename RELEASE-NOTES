@@ -366,6 +366,8 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 7726) Searches for words less than 4 characters now work without
   requiring customization of MySQL server settings
 * Honour unchecked "Leave a redirect behind" for moved subpages
+* (bug 16440) Broken 0-byte math renderings are now deleted and re-rendered
+  when page is re-parsed.
 
 === API changes in 1.14 ===
 
