@@ -146,7 +146,7 @@ class SpecialPage
 		'Log'                       => array( 'SpecialPage', 'Log' ),
 		'Blockip'                   => array( 'SpecialPage', 'Blockip', 'block' ),
 		'Undelete'                  => array( 'SpecialPage', 'Undelete', 'deletedhistory' ),
-		'Import'                    => array( 'SpecialPage', 'Import', 'import' ),
+		'Import'                    => 'SpecialImport',
 		'Lockdb'                    => array( 'SpecialPage', 'Lockdb', 'siteadmin' ),
 		'Unlockdb'                  => array( 'SpecialPage', 'Unlockdb', 'siteadmin' ),
 		'Userrights'                => 'UserrightsPage',
