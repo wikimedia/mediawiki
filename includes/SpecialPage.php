@@ -89,7 +89,7 @@ class SpecialPage
 		'CreateAccount'             => array( 'SpecialRedirectToSpecial', 'CreateAccount', 'Userlogin', 'signup', array( 'uselang' ) ),
 		'Preferences'               => array( 'SpecialPage', 'Preferences' ),
 		'Watchlist'                 => array( 'SpecialPage', 'Watchlist' ),
-		'Resetpass'                 => array( 'SpecialPage', 'Resetpass' ),
+		'Resetpass'                 => 'PasswordReset',
 
 
 		'Recentchanges'             => 'SpecialRecentchanges',
