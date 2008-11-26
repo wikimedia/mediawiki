@@ -13,9 +13,10 @@
  */
  
 define( 'MW_NO_OUTPUT_COMPRESSION', 1 );
-require_once( dirname( __FILE__ ) . '/includes/WebStart.php' );
+$dir = dirname(__FILE__) . '/';
+require_once( $dir . 'includes/WebStart.php' );
 wfProfileIn( 'img_auth.php' );
-require_once( dirname( __FILE__ ) . '/includes/StreamFile.php' );
+require_once( $dir . 'includes/StreamFile.php' );
 
 $perms = User::getGroupPermissions( array( '*' ) );
 if ( in_array( 'read', $perms, true ) ) {
