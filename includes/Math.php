@@ -300,7 +300,7 @@ class MathRenderer {
 	function _mathImageUrl() {
 		global $wgMathPath;
 		$dir = $this->_getHashSubPath();
-		return "$wgMathPath/$dir/$this->hash";
+		return "$wgMathPath/$dir/{$this->hash}.png";
 	}
 	
 	function _getHashPath() {
