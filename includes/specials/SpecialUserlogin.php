@@ -926,7 +926,9 @@ class LoginForm {
 		global $wgOut;
 
 		$titleObj = SpecialPage::getTitleFor( 'Userlogin' );
-		$check = $titleObj->getFullURL( 'wpCookieCheck='.$type );
+		$query = array( 'wpCookieCheck' => $type );
+		if ( $this->mReturnTo ) $query['returnto'] = $this->mReturnTo;
+		$check = $titleObj->getFullURL( $query );
 
 		return $wgOut->redirect( $check );
 	}
