@@ -310,8 +310,8 @@ class RecentChange
 	}
 
 	# Makes an entry in the database corresponding to an edit
-	public static function notifyEdit( $timestamp, &$title, $minor, &$user, $comment,
-		$oldId, $lastTimestamp, $bot, $ip = '', $oldSize = 0, $newSize = 0, $newId = 0)
+	public static function notifyEdit( $timestamp, &$title, $minor, &$user, $comment, $oldId,
+		$lastTimestamp, $bot, $ip='', $oldSize=0, $newSize=0, $newId=0, $patrol=0 )
 	{
 		if( !$ip ) {
 			$ip = wfGetIP();
@@ -338,7 +338,7 @@ class RecentChange
 			'rc_moved_to_ns'	=> 0,
 			'rc_moved_to_title'	=> '',
 			'rc_ip'		=> $ip,
-			'rc_patrolled'	=> 0,
+			'rc_patrolled'	=> intval($patrol),
 			'rc_new'	=> 0,  # obsolete
 			'rc_old_len'	=> $oldSize,
 			'rc_new_len'	=> $newSize,
@@ -365,7 +365,7 @@ class RecentChange
 	 * @todo Document parameters and return
 	 */
 	public static function notifyNew( $timestamp, &$title, $minor, &$user, $comment, $bot,
-	  $ip='', $size = 0, $newId = 0 )
+		$ip='', $size=0, $newId=0, $patrol=0 )
 	{
 		if( !$ip ) {
 			$ip = wfGetIP();
@@ -392,7 +392,7 @@ class RecentChange
 			'rc_moved_to_ns'    => 0,
 			'rc_moved_to_title' => '',
 			'rc_ip'             => $ip,
-			'rc_patrolled'      => 0,
+			'rc_patrolled'      => intval($patrol),
 			'rc_new'	    	=> 1, # obsolete
 			'rc_old_len'        => 0,
 			'rc_new_len'	    => $size,
