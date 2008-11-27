@@ -1556,17 +1556,20 @@ class Article {
 					$revisionId = 0;
 					$dbw->rollback();
 				} else {
+					global $wgUseRCPatrol;
 					wfRunHooks( 'NewRevisionFromEditComplete', array($this, $revision, $baseRevId, $user) );
-
 					# Update recentchanges
 					if( !( $flags & EDIT_SUPPRESS_RC ) ) {
+						# Mark as patrolled if the user can do so
+						$patrolled = $wgUseRCPatrol && $user->isAllowed('autopatrol');
+						# Add RC row to the DB
 						$rc = RecentChange::notifyEdit( $now, $this->mTitle, $isminor, $user, $summary,
 							$this->mLatest, $this->getTimestamp(), $bot, '', $oldsize, $newsize,
-							$revisionId );
-
-						# Mark as patrolled if the user can do so
-						if( $GLOBALS['wgUseRCPatrol'] && $user->isAllowed( 'autopatrol' ) ) {
-							RecentChange::markPatrolled( $rc, true );
+							$revisionId, $patrolled
+						);
+						# Log auto-patrolled edits
+						if( $patrolled ) {
+							PatrolLog::record( $rc, true );
 						}
 					}
 					$user->incEditCount();
@@ -1636,13 +1639,17 @@ class Article {
 			$this->updateRevisionOn( $dbw, $revision, 0 );
 
 			wfRunHooks( 'NewRevisionFromEditComplete', array($this, $revision, false, $user) );
-
+			# Update recentchanges
 			if( !( $flags & EDIT_SUPPRESS_RC ) ) {
+				global $wgUseRCPatrol, $wgUseNPPatrol;
+				# Mark as patrolled if the user can do so
+				$patrolled = ($wgUseRCPatrol || $wgUseNPPatrol) && $user->isAllowed('autopatrol');
+				# Add RC row to the DB
 				$rc = RecentChange::notifyNew( $now, $this->mTitle, $isminor, $user, $summary, $bot,
-				  '', strlen( $text ), $revisionId );
-				# Mark as patrolled if the user can
-				if( ($GLOBALS['wgUseRCPatrol'] || $GLOBALS['wgUseNPPatrol']) && $user->isAllowed( 'autopatrol' ) ) {
-					RecentChange::markPatrolled( $rc, true );
+					'', strlen($text), $revisionId, $patrolled );
+				# Log auto-patrolled edits
+				if( $patrolled ) {
+					PatrolLog::record( $rc, true );
 				}
 			}
 			$user->incEditCount();
