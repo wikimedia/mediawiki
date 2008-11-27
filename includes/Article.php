@@ -1556,7 +1556,7 @@ class Article {
 					$revisionId = 0;
 					$dbw->rollback();
 				} else {
-					wfRunHooks( 'NewRevisionFromEditComplete', array( $this, $revision, $baseRevId ) );
+					wfRunHooks( 'NewRevisionFromEditComplete', array($this, $revision, $baseRevId, $user) );
 
 					# Update recentchanges
 					if( !( $flags & EDIT_SUPPRESS_RC ) ) {
@@ -1635,7 +1635,7 @@ class Article {
 			# Update the page record with revision data
 			$this->updateRevisionOn( $dbw, $revision, 0 );
 
-			wfRunHooks( 'NewRevisionFromEditComplete', array($this, $revision, false) );
+			wfRunHooks( 'NewRevisionFromEditComplete', array($this, $revision, false, $user) );
 
 			if( !( $flags & EDIT_SUPPRESS_RC ) ) {
 				$rc = RecentChange::notifyNew( $now, $this->mTitle, $isminor, $user, $summary, $bot,
@@ -1979,7 +1979,7 @@ class Article {
 					), 'Article::protect'
 				);
 
-				wfRunHooks( 'NewRevisionFromEditComplete', array($this, $nullRevision, $latest) );
+				wfRunHooks( 'NewRevisionFromEditComplete', array($this, $nullRevision, $latest, $wgUser) );
 				wfRunHooks( 'ArticleProtectComplete', array( &$this, &$wgUser, $limit, $reason ) );
 
 				# Update the protection log
@@ -3104,7 +3104,7 @@ class Article {
 		$revision->insertOn( $dbw );
 		$this->updateRevisionOn( $dbw, $revision );
 
-		wfRunHooks( 'NewRevisionFromEditComplete', array($this, $revision, false) );
+		wfRunHooks( 'NewRevisionFromEditComplete', array($this, $revision, false, $wgUser) );
 
 		wfProfileOut( __METHOD__ );
 	}

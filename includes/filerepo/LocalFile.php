@@ -896,7 +896,7 @@ class LocalFile extends File
 			$nullRevision = Revision::newNullRevision( $dbw, $descTitle->getArticleId(), $log->getRcComment(), false );
 			$nullRevision->insertOn( $dbw );
 			
-			wfRunHooks( 'NewRevisionFromEditComplete', array($article, $nullRevision, $latest) );
+			wfRunHooks( 'NewRevisionFromEditComplete', array($article, $nullRevision, $latest, $user) );
 			$article->updateRevisionOn( $dbw, $nullRevision );
 
 			# Invalidate the cache for the description page

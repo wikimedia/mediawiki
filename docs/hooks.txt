@@ -931,6 +931,7 @@ $tools: array of tools
 $article: the article edited
 $rev: the new revision
 $baseID: the revision ID this was based off, if any
+$user: the editing user
 
 'NormalizeMessageKey': Called before the software gets the text of a message
   (stuff in the MediaWiki: namespace), useful for changing WHAT message gets displayed

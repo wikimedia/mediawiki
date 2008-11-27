@@ -2671,7 +2671,7 @@ class Title {
 		$nullRevId = $nullRevision->insertOn( $dbw );
 		
 		$article = new Article( $this );
-		wfRunHooks( 'NewRevisionFromEditComplete', array($article, $nullRevision, $latest) );
+		wfRunHooks( 'NewRevisionFromEditComplete', array($article, $nullRevision, $latest, $wgUser) );
 
 		# Change the name of the target page:
 		$dbw->update( 'page',
@@ -2699,7 +2699,7 @@ class Title {
 			$redirectRevision->insertOn( $dbw );
 			$redirectArticle->updateRevisionOn( $dbw, $redirectRevision, 0 );
 			
-			wfRunHooks( 'NewRevisionFromEditComplete', array($redirectArticle, $redirectRevision, false) );
+			wfRunHooks( 'NewRevisionFromEditComplete', array($redirectArticle, $redirectRevision, false, $wgUser) );
 
 			# Now, we record the link from the redirect to the new title.
 			# It should have no other outgoing links...
@@ -2768,7 +2768,7 @@ class Title {
 		$nullRevId = $nullRevision->insertOn( $dbw );
 		
 		$article = new Article( $this );
-		wfRunHooks( 'NewRevisionFromEditComplete', array($article, $nullRevision, $latest) );
+		wfRunHooks( 'NewRevisionFromEditComplete', array($article, $nullRevision, $latest, $wgUser) );
 
 		# Rename page entry
 		$dbw->update( 'page',
@@ -2796,7 +2796,7 @@ class Title {
 			$redirectRevision->insertOn( $dbw );
 			$redirectArticle->updateRevisionOn( $dbw, $redirectRevision, 0 );
 			
-			wfRunHooks( 'NewRevisionFromEditComplete', array($redirectArticle, $redirectRevision, false) );
+			wfRunHooks( 'NewRevisionFromEditComplete', array($redirectArticle, $redirectRevision, false, $wgUser) );
 
 			# Record the just-created redirect's linking to the page
 			$dbw->insert( 'pagelinks',
