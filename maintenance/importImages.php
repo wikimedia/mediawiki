@@ -9,7 +9,7 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
-$optionsWithArguments = array( 'extensions', 'overwrite' );
+$optionsWithArgs = array( 'extensions', 'comment-file', 'comment-ext' );
 require_once( 'commandLine.inc' );
 require_once( 'importImages.inc.php' );
 $added = $skipped = $overwritten = 0;
@@ -39,9 +39,19 @@ if( count( $args ) > 0 ) {
 	$wgUser = $user;
 
 	# Get the upload comment
-	$comment = isset( $options['comment'] )
-		? $options['comment']
-		: 'Importing image file';
+	$comment = 'Importing image file';
+
+	if ( isset( $options['comment-file'] ) ) {
+		$comment =  file_get_contents( $options['comment-file'] );
+		if ( $comment === false || $comment === NULL ) {
+			die( "failed to read comment file: {$options['comment-file']}\n" );
+		}
+	}
+	else if ( isset( $options['comment'] ) ) {
+		$comment =  $options['comment'];
+	}
+
+	$commentExt = isset( $options['comment-ext'] ) ? $options['comment-ext'] : false;
 
 	# Get the license specifier
 	$license = isset( $options['license'] ) ? $options['license'] : '';
@@ -75,15 +85,40 @@ if( count( $args ) > 0 ) {
 				$svar = 'added';
 			}
 
+			# Find comment text
+			$commentText = false;
+
+			if ( $commentExt ) {
+				$f = findAuxFile( $file, $commentExt );
+				if ( !$f ) {
+					echo( " No comment file with extension {$commentExt} found for {$file}, using default comment. " );
+				} else {
+					$commentText = file_get_contents( $f );
+					if ( !$f ) {
+						echo( " Failed to load comment file {$f}, using default comment. " );
+					}
+				}
+			}
+
+			if ( !$commentText ) {
+				$commentText = $comment;
+			}
+
 			# Import the file	
-			$archive = $image->publish( $file );
-			if( WikiError::isError( $archive ) || !$archive->isGood() ) {
-				echo( "failed.\n" );
-				continue;
+			if ( isset( $options['dry'] ) ) {
+				echo( " publishing {$file}... " );
+			} else {
+				$archive = $image->publish( $file );
+				if( WikiError::isError( $archive ) || !$archive->isGood() ) {
+					echo( "failed.\n" );
+					continue;
+				}
 			}
 
 			$$svar++;
-			if ( $image->recordUpload( $archive->value, $comment, $license ) ) {
+			if ( isset( $options['dry'] ) ) {
+				echo( "done.\n" );
+			} else if ( $image->recordUpload( $archive->value, $commentText, $license ) ) {
 				# We're done!
 				echo( "done.\n" );
 			} else {
@@ -123,10 +158,14 @@ USAGE: php importImages.php [options] <dir>
 
 Options:
 --extensions=<exts>	Comma-separated list of allowable extensions, defaults to \$wgFileExtensions
---overwrite			Overwrite existing images if a conflicting-named image is found
+--overwrite		Overwrite existing images if a conflicting-named image is found
 --user=<username> 	Set username of uploader, default 'Maintenance script'
 --comment=<text>  	Set upload summary comment, default 'Importing image file'
+--comment-file=<file>  	Set upload summary comment the the content of <file>.
+--comment-ext=<ext>  	Causes the comment for each file to be loaded from a file with the same name
+			but the extension <ext>.
 --license=<code>  	Use an optional license template
+--dry			Dry run, don't import anything
 
 END;
 	exit();
