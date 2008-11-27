@@ -1430,8 +1430,8 @@ Primijetite da uporaba navigacijskih poveznica resetira vaše izbore u koloni.',
 Za pregledavanje i pretraživanje već postavljenih slika vidi [[Special:ImageList|popis postavljenih datoteka]]. Postavljanja i brisanja bilježe se i u [[Special:Log|evidenciji]].
 
 Da biste na stranicu stavili sliku, koristite poveznice tipa
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Datoteka.jpg]]</nowiki></tt>''' za punu verziju datoteke
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Datoteka.png|200px|thumb|left|tekst]]</nowiki></tt>''' za datoteku širine 200 px u okviru s popratnim tekstom
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Datoteka.jpg]]</nowiki></tt>''' za punu verziju datoteke
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Datoteka.png|200px|thumb|left|tekst]]</nowiki></tt>''' za datoteku širine 200 px u okviru s popratnim tekstom
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Datoteka.ogg]]</nowiki></tt>''' za direktno povezivanje na datoteku bez njenog pokazivanja",
 'upload-permitted'            => 'Dopušteni tipovi datoteka: $1.',
 'upload-preferred'            => 'Poželjni tipovi datoteka: $1.',
@@ -2987,13 +2987,13 @@ Također možete koristiti [[Special:Watchlist/edit|uređivanje popisa putem ''k
 'filepath-submit'  => 'Putanja',
 'filepath-summary' => "Ova posebna stranica daje Vam kompletnu putanju do neke datoteke. Slike se na taj način prikazuju u punoj rezoluciji, drugi tipovi datoteka se otvaraju na klik (kako je već namješteno u vašem operacijskom sustavu).
 
-Unesite ime datoteke bez predmetka (''prefiksa'') imenskog prostora \"{{ns:image}}:\".",
+Unesite ime datoteke bez predmetka (''prefiksa'') imenskog prostora \"{{ns:file}}:\".",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Traži kopije datoteka',
 'fileduplicatesearch-summary'  => 'Traži kopije datoteka na temelju njihove hash vrijednosti.
 
-Unesite ime datoteke bez prefiksa "{{ns:image}}:"',
+Unesite ime datoteke bez prefiksa "{{ns:file}}:"',
 'fileduplicatesearch-legend'   => 'Traži kopije datoteka',
 'fileduplicatesearch-filename' => 'Ime datoteke:',
 'fileduplicatesearch-submit'   => 'Traži',

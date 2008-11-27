@@ -1058,8 +1058,8 @@ Pads [[Special:Watchlist|galädaliseda olik]] '''pakazetons'''.",
 Löpükams e moükams padakipons id in  [[Special:Log/upload|jenotalised löpükamas]].
 
 Ad pladön magodi at ini pad semik, gebolös yümi fomätü:
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|alt text]]</nowiki>''' u
+'''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki>''',
+'''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|alt text]]</nowiki>''' u
 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''' ad yümön stedöfiko ko ragiv.",
 'upload-permitted'            => 'Ragivasots pedälöl: $1.',
 'upload-preferred'            => 'Ragivasots buik: $1.',
@@ -2255,7 +2255,7 @@ Kanol i [[Special:Watchlist/edit|gebön redakametodi kösömik]].',
 'filepath-submit'  => 'Luveg',
 'filepath-summary' => 'Pad patik at tuvon luvegi lölöfik ragiva. Magods pajonons ma fomät gudikün, ragivasots votik pamaifükons stedöfo kobü programs onsik.
 
-Penolös ragivanemi nen foyümot: „{{ns:image}}:“',
+Penolös ragivanemi nen foyümot: „{{ns:file}}:“',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Ragivanem:',

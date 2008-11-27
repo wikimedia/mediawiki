@@ -1334,8 +1334,8 @@ Už nahrané súbory môžete zobraziť alebo hľadať v [[Special:ImageList|zoz
 
 Na začlenenie obrázka do stránky použite odkaz v tvare
 
-* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Súbor.jpg]]</nowiki>''' - použije sa plná verzia obrázka
-* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Súbor.png|alternatívny text]]</nowiki>''' - vykreslí sa v šírke 200 pixelov s okrajom, na ľavom okraji, s popisom v „alt” texte.
+* '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Súbor.jpg]]</nowiki>''' - použije sa plná verzia obrázka
+* '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Súbor.png|alternatívny text]]</nowiki>''' - vykreslí sa v šírke 200 pixelov s okrajom, na ľavom okraji, s popisom v „alt” texte.
 * '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Súbor.ogg]]</nowiki>''' - priamy odkaz na súbor (nezobrazí obrázok na stránke)",
 'upload-permitted'            => 'Povolené typy súborov: $1.',
 'upload-preferred'            => 'Uprednostňované typy súborov: $1.',
@@ -2920,13 +2920,13 @@ Skúste obyčajný náhľad.',
 'filepath-summary' => 'Táto špeciálna stránka vráti úplnú cestu k súboru.
 Obrázky sa zobrazia v plnom rozlíšení, ostatné typy súborov sa spustia v príslušnom priradenom programe.
 
-Zadajte názov súboru bez predpony „{{ns:image}}:“.',
+Zadajte názov súboru bez predpony „{{ns:file}}:“.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Hľadať duplicitné súbory',
 'fileduplicatesearch-summary'  => 'Hľadanie duplicitných súborov na základe ich haš hodnôt.
 
-Zadajte názov súboru bez predpony „{{ns:image}}:“.',
+Zadajte názov súboru bez predpony „{{ns:file}}:“.',
 'fileduplicatesearch-legend'   => 'Hľadať duplicity',
 'fileduplicatesearch-filename' => 'Názov súboru:',
 'fileduplicatesearch-submit'   => 'Hľadať',

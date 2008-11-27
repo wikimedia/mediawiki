@@ -1475,8 +1475,8 @@ Bestätige dann die Lizenz-Vereinbarung und klicke anschließend auf '''„Datei
 Dies kann eine Weile dauern, besonders bei einer langsamen Internet-Verbindung.
 
 Um ein '''Bild''' in einer Seite zu verwenden, schreibe an Stelle des Bildes zum Beispiel:
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}:Datei.jpg<nowiki>]]</nowiki></tt>'''
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}:Datei.jpg|Link-Text<nowiki>]]</nowiki></tt>'''
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}:Datei.jpg<nowiki>]]</nowiki></tt>'''
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}:Datei.jpg|Link-Text<nowiki>]]</nowiki></tt>'''
 
 Um '''Mediendateien''' einzubinden, verwende zum Beispiel:
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}:Datei.ogg<nowiki>]]</nowiki></tt>'''
@@ -2336,7 +2336,7 @@ Die Seite „[[:$1]]“ existiert bereits. Möchtest du diese löschen, um die S
 'immobile-target-namespace' => 'Seiten können nicht in den „$1“-Namensraum verschoben werden',
 'immobile-source-page'      => 'Diese Seite ist nicht verschiebbar.',
 'immobile-target-page'      => 'Es kann nicht auf diese Zielseite verschoben werden.',
-'imagenocrossnamespace'     => 'Dateien können nicht aus dem {{ns:image}}-Namensraum heraus verschoben werden',
+'imagenocrossnamespace'     => 'Dateien können nicht aus dem {{ns:file}}-Namensraum heraus verschoben werden',
 'imagetypemismatch'         => 'Die neue Dateierweiterung ist nicht mit der alten identisch',
 'imageinvalidfilename'      => 'Der Ziel-Dateiname ist ungültig',
 'fix-double-redirects'      => 'Nach dem Verschieben doppelte Weiterleitungen auflösen',
@@ -3063,13 +3063,13 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'filepath-submit'  => 'Pfad suchen',
 'filepath-summary' => 'Mit dieser Spezialseite lässt sich der komplette Pfad der aktuellen Version einer Datei ohne Umweg abfragen. Die angefragte Datei wird direkt dargestellt bzw. mit der verknüpften Anwendung gestartet.
 
-Die Eingabe muss ohne den Zusatz „{{ns:image}}:“ erfolgen.',
+Die Eingabe muss ohne den Zusatz „{{ns:file}}:“ erfolgen.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Datei-Duplikat-Suche',
 'fileduplicatesearch-summary'  => 'Suche nach Datei-Duplikaten auf Basis ihres Hash-Wertes.
 
-Die Eingabe muss ohne den Zusatz „{{ns:image}}:“ erfolgen.',
+Die Eingabe muss ohne den Zusatz „{{ns:file}}:“ erfolgen.',
 'fileduplicatesearch-legend'   => 'Suche nach Duplikaten',
 'fileduplicatesearch-filename' => 'Dateiname:',
 'fileduplicatesearch-submit'   => 'Suchen',

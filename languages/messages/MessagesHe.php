@@ -1490,8 +1490,8 @@ $2',
 כדי לראות או לחפש קבצים שהועלו בעבר אנא פנו ל[[Special:ImageList|רשימת הקבצים שהועלו]], וכמו כן, העלאות (כולל העלאות של גרסה חדשה) מוצגות ב[[Special:Log/upload|יומן ההעלאות]], ומחיקות ב[[Special:Log/delete|יומן המחיקות]].
 
 כדי לכלול קובץ בדף, השתמשו בקישור באחת הצורות הבאות:
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki></tt>''' לשימוש בגרסה המלאה של הקובץ
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|200px|thumb|left|טקסט תיאור]]</nowiki></tt>''' לשימוש בגרסה מוקטנת ברוחב 200 פיקסלים בתיבה בצד שמאל של הדף, עם 'טקסט תיאור' כתיאור
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' לשימוש בגרסה המלאה של הקובץ
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|טקסט תיאור]]</nowiki></tt>''' לשימוש בגרסה מוקטנת ברוחב 200 פיקסלים בתיבה בצד שמאל של הדף, עם 'טקסט תיאור' כתיאור
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' לקישור ישיר לקובץ בלי להציגו",
 'upload-permitted'            => 'סוגי קבצים מותרים: $1.',
 'upload-preferred'            => 'סוגי קבצים מומלצים: $1.',
@@ -3139,13 +3139,13 @@ $1
 'filepath-summary' => 'דף זה מציג את הנתיב המלא לקבצים שהועלו.
 תמונות מוצגות ברזולוציה מלאה, ואילו סוגי קבצים אחרים מוצגים ישירות באמצעות התוכנה שהוגדרה להצגתם.
 
-יש להקליד את שם הקובץ ללא הקידומת "{{ns:image}}:".',
+יש להקליד את שם הקובץ ללא הקידומת "{{ns:file}}:".',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'חיפוש קבצים כפולים',
 'fileduplicatesearch-summary'  => 'חיפוש קבצים כפולים על בסיס ערכי ה־Hash שלהם.
 
-הקלידו את שם הקובץ ללא הקידומת "{{ns:image}}:".',
+הקלידו את שם הקובץ ללא הקידומת "{{ns:file}}:".',
 'fileduplicatesearch-legend'   => 'חיפוש קבצים כפולים',
 'fileduplicatesearch-filename' => 'קובץ:',
 'fileduplicatesearch-submit'   => 'חיפוש',

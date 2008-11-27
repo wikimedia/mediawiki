@@ -1416,8 +1416,8 @@ baptaw üşin math/README qujatın qarañız.',
 Aldında qotarılıp berilgen faýldardı qaraw ne izdew üşin [[{{#special:Imagelist}}|qotarıp berilgen faýldar tizimine]] barıñız, tağı da qotarıp berwi men joywı  [[{{#special:Log}}/upload|qotarıp berw jwrnalına]] jazılıp alınadı.
 
 Swretti betke kiristirwge, faýlğa twra siltew üşin mına pişindegi siltemeni qoldanıñız:
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|balama mätin]]</nowiki>''' ne
+'''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki>''',
+'''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|balama mätin]]</nowiki>''' ne
 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>'''.",
 'upload-permitted'            => 'Ruqsat etilgen faýl türleri: $1.',
 'upload-preferred'            => 'Unamdı faýl türleri $1.',
@@ -1462,9 +1462,9 @@ Eger sınalğan faýl tüpnusqalı mölşeri bar dälme-däl swret bolsa, qosıs
 Bul — mölşeri kişiritilgen swret <i>(nobaý)</i> sïyaqtı.
 Eger bul swrettiñ tolıq ajıratılımdığı bolsa, bunı qotarıp beriñiz, äýtpese faýl atawın özgertiñiz.',
 'fileexists-forbidden'        => 'Osılaý atalğan faýl aldaqaşan bar;
-keri qaýtıñız da, osı faýldı jaña atımen qotarıp beriñiz. [[{{ns:image}}:$1|thumb|center|$1]]',
+keri qaýtıñız da, osı faýldı jaña atımen qotarıp beriñiz. [[{{ns:file}}:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Osılaý atalğan faýl ortaq qoýmada aldaqaşan bar;
-keri qaýtıñız da, osı faýldı jaña atımen qotarıp beriñiz. [[{{ns:image}}:$1|thumb|center|$1]]',
+keri qaýtıñız da, osı faýldı jaña atımen qotarıp beriñiz. [[{{ns:file}}:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Bul faýl kelesi {{PLURAL:$1|faýldıñ|faýldarınıñ}} telnusqası:',
 'successfulupload'            => 'Sätti qotarıp berildi',
 'uploadwarning'               => 'Qotarıp berw jöninde qulaqtandırw',
@@ -2968,13 +2968,13 @@ Tağı da [[{{#special:Watchlist}}/edit|qalıpalğan öñdewişti paýdalana]] a
 'filepath-summary' => 'Bul arnaýı bet faýl ornalaswı tolıq jolın qaýtaradı.
 Swretter tolıq ajıratılımdığımen körsetiledi, basqa faýl türlerine qatıstı bağdarlaması twra jegiledi.
 
-Faýl atawın «{{ns:image}}:» degen bastawışsız eñgiziñiz.',
+Faýl atawın «{{ns:file}}:» degen bastawışsız eñgiziñiz.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Faýl telnusqaların izdew',
 'fileduplicatesearch-summary'  => 'Faýl xeşi mağınası negizinde telnusqaların izdew.
 
-Faýl atawın «{{ns:image}}:» degen bastawışsız engiziñiz.',
+Faýl atawın «{{ns:file}}:» degen bastawışsız engiziñiz.',
 'fileduplicatesearch-legend'   => 'Telnusqanı izdew',
 'fileduplicatesearch-filename' => 'Faýl atawı:',
 'fileduplicatesearch-submit'   => 'İzde',

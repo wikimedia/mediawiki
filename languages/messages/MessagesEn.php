@@ -1777,8 +1777,8 @@ Pages on [[Special:Watchlist|your watchlist]] are '''bold'''.",
 To view or search previously uploaded files go to the [[Special:ImageList|list of uploaded files]], (re)uploads are also logged in the [[Special:Log/upload|upload log]], deletions in the [[Special:Log/delete|deletion log]].
 
 To include a file in a page, use a link in one of the following forms:
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki></tt>''' to use the full version of the file
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' to use a 200 pixel wide rendition in a box in the left margin with 'alt text' as description
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' to use the full version of the file
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' to use a 200 pixel wide rendition in a box in the left margin with 'alt text' as description
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' for directly linking to the file without displaying the file",
 'upload-permitted'            => 'Permitted file types: $1.',
 'upload-preferred'            => 'Preferred file types: $1.',
@@ -3717,13 +3717,13 @@ You can also [[Special:Watchlist/edit|use the standard editor]].',
 'filepath-summary' => 'This special page returns the complete path for a file.
 Images are shown in full resolution, other file types are started with their associated program directly.
 
-Enter the file name without the "{{ns:image}}:" prefix.',
+Enter the file name without the "{{ns:file}}:" prefix.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Search for duplicate files',
 'fileduplicatesearch-summary'  => 'Search for duplicate files on base of its hash value.
 
-Enter the filename without the "{{ns:image}}:" prefix.',
+Enter the filename without the "{{ns:file}}:" prefix.',
 'fileduplicatesearch-legend'   => 'Search for a duplicate',
 'fileduplicatesearch-filename' => 'Filename:',
 'fileduplicatesearch-submit'   => 'Search',

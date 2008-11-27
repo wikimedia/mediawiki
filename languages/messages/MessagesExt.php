@@ -937,8 +937,8 @@ pa empuntal archivus.',
 'uploadtext'                  => "Gasta el hormuláriu d'embahu pa empuntal archivus, pa vel u landeal imahin ya empuntás vaiti pala [[Special:ImageList|lista d'archivus empuntaus]]. Tantu los archivus empuntaus cumu los esborraus se rustrin nel [[Special:Log/upload|rustrihu d'empuntu]].
 
 P'añiil la imahin nuna páhina, gasta el atihu el hormuláriu
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|alt text]]</nowiki>''' u
+'''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki>''',
+'''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|alt text]]</nowiki>''' u
 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''' p'atihal diretamenti al archivu.",
 'upload-permitted'            => "Crasis d'archivus premitias: $1.",
 'upload-preferred'            => "Crasis d'archivus preferias: $1.",
@@ -2255,7 +2255,7 @@ Pol favol, confirma si rialmenti quieis gorvel a crial la páhina.",
 'filepath-submit'  => 'Ruta',
 'filepath-summary' => "Esta páhina especial degüervi la ruta compreta dun archivu. Las imahin se muestran a resolución compreta; las demas crasis d'archivu s'ehecutan diretamenti con el su pograma asociau.
 
-Escribi el nombri d'archivu sin el prefihu \"{{ns:image}}:\".",
+Escribi el nombri d'archivu sin el prefihu \"{{ns:file}}:\".",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Landeal archivus dupricaus',

@@ -958,8 +958,8 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 Ut fasciculos antea impositos videas aut quaeras, adi ad [[Special:ImageList|indicem fasciculorum impositorum]]. Fasciculi impositi et deleti quoque in [[Special:Log/upload|notatione fasciculorum impositorum]] notantur.
 
 Ad fasciculum in pagina includendum, utere nexu
-'''<nowiki>[[</nowiki>{{ns:image}}:Fasciculus.jpg]]''' aut
-'''<nowiki>[[</nowiki>{{ns:image}}:Fasciculus.png|verba alia]]''' aut
+'''<nowiki>[[</nowiki>{{ns:file}}:Fasciculus.jpg]]''' aut
+'''<nowiki>[[</nowiki>{{ns:file}}:Fasciculus.png|verba alia]]''' aut
 '''<nowiki>[[</nowiki>{{ns:media}}:Fasciculus.ogg]]''' pro nexum ad fasciculum directum.",
 'upload-permitted'   => 'Genera fasciculorum licita: $1.',
 'upload-preferred'   => 'Genera fasciculorum suasa: $1.',

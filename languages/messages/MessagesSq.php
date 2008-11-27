@@ -1039,8 +1039,8 @@ Faqet [[Special:Watchlist|nën mbikqyrjen tuaj]] duken të '''theksuara'''.",
 Për të parë ose për të kërkuar skedat e ngarkuara më parë shikoni [[Special:ImageList|listën e skedave të ngarkuara]]. Ngarkime dhe grisje shënohen edhe tek [[Special:Log/upload|regjistri i ngarkimeve]].
 
 Për të përdorur një skedë në një faqe përdorni lidhje të llojit:
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Skedë.jpg]]</nowiki>''',
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Skedë.png|Përshkrim]]</nowiki>''' ose
+'''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Skedë.jpg]]</nowiki>''',
+'''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Skedë.png|Përshkrim]]</nowiki>''' ose
 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Skedë.ogg]]</nowiki>''' për lidhje të drejtpërdrejta të skedës.",
 'upload-permitted'            => 'Llojet e lejuara të skedave: $1.',
 'upload-preferred'            => 'Llojet e parapëlqyera të skedave: $1.',
@@ -2255,7 +2255,7 @@ Shtypni emrin e skedës pa parashtesën "Figura:".',
 'fileduplicatesearch'          => 'Kërkoni për skeda të dyfishta',
 'fileduplicatesearch-summary'  => 'Kërkoni për dyfishime të skedave në bazë të vlerës përmbledhëse («hash»).
 
-Vendosni emrin e skedës pa parashtesën "{{ns:image}}:".',
+Vendosni emrin e skedës pa parashtesën "{{ns:file}}:".',
 'fileduplicatesearch-legend'   => 'Kërko për dyfishime',
 'fileduplicatesearch-filename' => 'Emri i skedës:',
 'fileduplicatesearch-submit'   => 'Kërko',

@@ -1375,8 +1375,8 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 Pour voir ou rechercher des images précédemment envoyées, consultez la [[Special:ImageList|liste des images]]. Les imports sont aussi enregistrés dans l’[[Special:Log/upload|historique des imports]], les suppressions dans l’[[Special:Log/delete|historique des suppressions]].
 
 Pour inclure une image dans une page, utilisez un lien de la forme :
-* '''<code><nowiki>[[</nowiki>{{ns:image}}<nowiki>:fichier.jpg]]</nowiki></code>''' pour afficher le fichier en pleine résolution ;
-* '''<code><nowiki>[[</nowiki>{{ns:image}}<nowiki>:fichier.png|200px|thumb|left|texte descriptif]]</nowiki></code>''' pour utiliser une miniature de 200 pixels de large dans une boîte à gauche avec « texte descriptif » comme description ;
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:fichier.jpg]]</nowiki></code>''' pour afficher le fichier en pleine résolution ;
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:fichier.png|200px|thumb|left|texte descriptif]]</nowiki></code>''' pour utiliser une miniature de 200 pixels de large dans une boîte à gauche avec « texte descriptif » comme description ;
 * '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:fichier.ogg]]</nowiki></code>''' pour lier directement vers le fichier sans l'afficher.",
 'upload-permitted'            => 'Formats de fichiers autorisés : $1.',
 'upload-preferred'            => 'Formats de fichiers préférés : $1.',
@@ -2968,13 +2968,13 @@ Vous pouvez aussi [[Special:Watchlist/raw|la modifier en mode brut]].',
 'filepath-submit'  => 'Chemin d’accès',
 'filepath-summary' => 'Cette page affiche le chemin d’accès complet d’un fichier ; les images sont montrées en haute résolution, les fichiers audio et vidéo s’exécutent avec leur programme associé.
 
-Entrez le nom du fichier sans le préfixe « {{ns:image}}: »',
+Entrez le nom du fichier sans le préfixe « {{ns:file}}: »',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Recherche des fichiers en double',
 'fileduplicatesearch-summary'  => 'Recherche pour des fichiers en double sur la base de valeurs fragmentaires.
 
-Entrez le nom du fichier sans le préfixe « {{ns:image}}: ».',
+Entrez le nom du fichier sans le préfixe « {{ns:file}}: ».',
 'fileduplicatesearch-legend'   => 'Recherche d’un double',
 'fileduplicatesearch-filename' => 'Nom du fichier :',
 'fileduplicatesearch-submit'   => 'Rechercher',

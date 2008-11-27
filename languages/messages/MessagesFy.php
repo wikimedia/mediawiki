@@ -1227,8 +1227,8 @@ Gean nei oft latex, dvips, en gs goed ynstallearre binne en set om',
 Wat oanbean en wat wiske wurdt, wurdt delskreaun yn it [[Special:Log/upload|lochboek]].
 
 Om de triem yn in side op te nimmen, meitsje jo dêr sa'n keppeling:
-*'''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:jo_foto.jpg]]</nowiki></tt>''', foar grutte ferzje,
-*'''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:jo_logo.png|omskriuwing]]</nowiki></tt>''' foar 200 in piksel ferzje, mei 'alternative tekst' as beskriuwing, of
+*'''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:jo_foto.jpg]]</nowiki></tt>''', foar grutte ferzje,
+*'''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:jo_logo.png|omskriuwing]]</nowiki></tt>''' foar 200 in piksel ferzje, mei 'alternative tekst' as beskriuwing, of
 *'''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:jo_lûd.ogg]]</nowiki></tt>''', foar direkt keppeling nei de triem (sûnder byld).",
 'upload-permitted'            => 'Talitten triemtypen: $1.',
 'upload-preferred'            => 'Oanwiisde triemtypen: $1.',

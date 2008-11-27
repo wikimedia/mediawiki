@@ -1083,8 +1083,8 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'uploadtext'                  => "Ֆայլ բեռնելու համար օգտագործեք ստորև բերված ձևը։ Նախկինում բեռնված ֆայլերը դիտելու կամ որոնելու համար այցելեք [[Special:ImageList|բեռնված ֆայլերի ցանկը]]։ Բեռնումները և ջնջումները նաև գրանցվում են [[Special:Log/upload|բեռնումների տեղեկամատյանում]]։
 
 Այս ֆայլը որևէ էջում ընդգրկելու համար օգտագործեք հետևյալ հղման ձևերը.
-* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
-* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|այլ. տեքստ]]</nowiki>''' կամ
+* '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki>''',
+* '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|այլ. տեքստ]]</nowiki>''' կամ
 * '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''' - ֆայլին ուղիղ հղման համար",
 'uploadlog'                   => 'բեռնման տեղեկամատյան',
 'uploadlogpage'               => 'Բեռնման տեղեկամատյան',

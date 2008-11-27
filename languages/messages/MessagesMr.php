@@ -1176,8 +1176,8 @@ $3ने ''$2'' कारण दिले आहे.",
 पूर्वी चढविलेल्या संचिका पाहण्यासाठी अथवा शोधण्यासाठी [[Special:ImageList|चढविलेल्या संचिकांची यादी]] पहा. चढविलेल्या तसेच वगळलेल्या संचिकांची यादी पहाण्यासाठी [[Special:Log/upload|सूची]] पहा.
 
 एखाद्या लेखात ही संचिका वापरण्यासाठी खालीलप्रमाणे दुवा द्या
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|alt text]]</nowiki>''' किंवा
+'''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki>''',
+'''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|alt text]]</nowiki>''' किंवा
 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''' संचिकेला थेट दुवा देण्यासाठी वापरा.",
 'upload-permitted'            => 'अनुमतीत संचिका वर्ग: $1.',
 'upload-preferred'            => 'श्रेयस्कर संचिका प्रकार:$1.',
@@ -2583,13 +2583,13 @@ $5
 'filepath-summary' => 'हे विशेष पान संचिकेचा संपूर्ण मार्ग कळवते.
 चित्रे संपूर्ण रिझोल्यूशन मध्ये दाखवली आहेत,इतर संचिका प्रकार त्यांच्या संबधीत प्रोग्रामने प्रत्यक्ष सुरू होतात.
 
-"{{ns:image}}:" पूर्वपदा शिवाय संचिकेचे नाव भरा.',
+"{{ns:file}}:" पूर्वपदा शिवाय संचिकेचे नाव भरा.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'जुळ्या संचिका शोधा',
 'fileduplicatesearch-summary'  => 'हॅश किंमतीप्रमाणे जुळ्या संचिका शोधा.
 
-"{{ns:image}}:" न लिहिता फक्त संचिकेचे नाव लिहा.',
+"{{ns:file}}:" न लिहिता फक्त संचिकेचे नाव लिहा.',
 'fileduplicatesearch-legend'   => 'जुळी संचिका शोधा',
 'fileduplicatesearch-filename' => 'संचिकानाव:',
 'fileduplicatesearch-submit'   => 'शोधा',

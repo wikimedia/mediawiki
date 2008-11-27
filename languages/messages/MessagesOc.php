@@ -1381,8 +1381,8 @@ per copiar de fichièrs sul servidor.',
 Per veire o recercar d'imatges precedentament mandats, consultatz [[Special:ImageList|la tièra dels imatges]]. Las còpias e las supressions tanben son enregistradas dins l'[[Special:Log/upload|istoric dels impòrts]], les supressions dins l’[[Special:Log/delete|istoric de las supressions]].
 
 Per enclure un imatge dins una pagina, utilizatz un ligam de la forma
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:fichièr.jpg]]</nowiki></tt>''',
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:fichièr.png|200px|thumb|left|tèxt descriptiu]]</nowiki></tt>''' per utilizar una miniatura de 200 pixèls de larg dins una bóstia a esquèrra amb 'tèxt descriptiu' coma descripcion
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:fichièr.jpg]]</nowiki></tt>''',
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:fichièr.png|200px|thumb|left|tèxt descriptiu]]</nowiki></tt>''' per utilizar una miniatura de 200 pixèls de larg dins una bóstia a esquèrra amb 'tèxt descriptiu' coma descripcion
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:fichièr.ogg]]</nowiki></tt>''' per ligar dirèctament cap al fichièr sens l'afichar.",
 'upload-permitted'            => 'Formats de fichièrs autorizats : $1.',
 'upload-preferred'            => 'Formats de fichièrs preferits : $1.',
@@ -2963,13 +2963,13 @@ Ensajatz la previsualizacion normala.',
 'filepath-submit'  => "Camin d'accès",
 'filepath-summary' => "Aquesta pagina especiala balha lo camin d'accès complet d’un fichièr ; los imatges son mostrats en nauta resolucion, los fichièrs audiò e vidèo s’executan amb lor programa associat.
 
-Picatz lo nom del fichièr sens lo prefix « {{ns:image}}: »",
+Picatz lo nom del fichièr sens lo prefix « {{ns:file}}: »",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Recèrca dels fichièrs en doble',
 'fileduplicatesearch-summary'  => 'Recèrca per de fichièrs en doble sus la banca de valors fragmentàrias.
 
-Picatz lo nom del fichièr sens lo prefix « {{ns:image}}: ».',
+Picatz lo nom del fichièr sens lo prefix « {{ns:file}}: ».',
 'fileduplicatesearch-legend'   => 'Recèrca d’un doble',
 'fileduplicatesearch-filename' => 'Nom del fichièr :',
 'fileduplicatesearch-submit'   => 'Recercar',

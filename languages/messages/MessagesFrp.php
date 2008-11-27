@@ -931,8 +931,8 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'uploadtext'                  => "Utilisâd ceti formulèro por copiyér des fichiérs, por vêre ou rechèrchiér des émâges prècèdament copiyês consultâd la [[Special:ImageList|lista de fichiérs copiyês]], les copies et suprèssions sont asse-ben enregistrâs dens lo [[Special:Log/upload|jornal de les copies]].
 
 Por encllure una émâge dens una pâge, utilisâd un lim de la fôrma :
-* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Fichiér.jpg]]</nowiki>'''
-* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Fichiér.png|tèxte altèrnatif]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fichiér.jpg]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fichiér.png|tèxte altèrnatif]]</nowiki>'''
 ou ben por liyér tot drêt vers lo fichiér :
 * '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fichiér.ogg]]</nowiki>'''",
 'upload-permitted'            => 'Formats de fichiérs ôtorisâs : $1.',
@@ -2378,7 +2378,7 @@ Volyéd confirmar que vos dèsirâd recrèar ceti articllo.",
 'filepath-submit'  => 'Chemin d’accès',
 'filepath-summary' => 'Ceta pâge afiche lo chemin d’accès complèt d’un fichiér ; les émâges sont montrâs en rèsolucion hôta, los fichiérs ôdiô et vidèô s’ègzécutont avouéc lor programe associyê.
 
-Entrâd lo nom du fichiér sen lo prèfixe « {{ns:image}}: ».',
+Entrâd lo nom du fichiér sen lo prèfixe « {{ns:file}}: ».',
 
 # Special:SpecialPages
 'specialpages' => 'Pâges spèciâles',

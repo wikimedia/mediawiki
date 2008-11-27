@@ -922,8 +922,8 @@ $3-এর দেয়া কারণ হল ''$2''",
 'uploadtext'                  => "ফাইল আপলোড করতে নিচের ফরমটি ব্যবহার করুন। পূর্বে আপলোড করা ফাইল দেখতে বা খুঁজতে হলে [[Special:ImageList|পূর্বে আপলোড করা ফাইল এর তালিকা]] দেখুন। আপলোড করা ফাইল এর নাম  [[Special:Log/upload|আপলোডের ইতিহাস তালিকায়]] যোগ হয়ে থাকে।
 
 কোনো নিবন্ধে ছবি যোগ করতে হলে নিচের উদাহরণ অনুযায়ী সংযোগ দিনঃ
-'''<nowiki>[[{{ns:image}}:file.jpg]]</nowiki>''',
-'''<nowiki>[[{{ns:image}}:file.png|alt text]]</nowiki>''' অথবা
+'''<nowiki>[[{{ns:file}}:file.jpg]]</nowiki>''',
+'''<nowiki>[[{{ns:file}}:file.png|alt text]]</nowiki>''' অথবা
 '''<nowiki>[[{{ns:media}}:file.ogg]]</nowiki>'''",
 'upload-permitted'            => 'যেসব ফাইলের ধরন অনুমোদিত: $1।',
 'upload-preferred'            => 'যেসব ফাইলের ধরন পছন্দনীয়: $1।',

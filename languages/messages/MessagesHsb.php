@@ -1248,8 +1248,8 @@ Strony na [[Special:Watchlist|wobkedźbowankach]] su '''tučne'''.",
 Zo by prjedy nahrate dataje wobhladał abo pytał dźi k [[Special:ImageList|lisćinje nahratych datajow]], nahraća so tež w [[Special:Log/upload|protokolu nahraćow]], wušmórnjenja  [[Special:Log/delete|protokolu wušmornjenjow]] protokoluja.
 
 Zo by dataju do strony zapřijał, wužij wotkaz w jednej ze slědowacych formow:
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Dataja.jpg]]</nowiki></tt>''', zo by połnu wersiju dataje wužiwał
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Dataja.png|200px|thumb|left|alternatiwny tekst]]</nowiki></tt>''', zo by wobraz ze šěrokosću 200 pikselow do kašćika na lěwej kromje z alternatiwnym tekstom jako wopisanje wužiwał
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Dataja.jpg]]</nowiki></tt>''', zo by połnu wersiju dataje wužiwał
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Dataja.png|200px|thumb|left|alternatiwny tekst]]</nowiki></tt>''', zo by wobraz ze šěrokosću 200 pikselow do kašćika na lěwej kromje z alternatiwnym tekstom jako wopisanje wužiwał
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Dataja.ogg]]</nowiki></tt>''' zo by direktnje k dataji wotkazał, bjeztoho zo by so dataja zwobrazniła",
 'upload-permitted'            => 'Dowolene datajowe typy: $1.',
 'upload-preferred'            => 'Preferowane datajowe typy: $1.',
@@ -2776,13 +2776,13 @@ Móžeš tež [[Special:Watchlist/edit|standardnu wobdźěłowansku stronu]] wu�
 'filepath-submit'  => 'Puć',
 'filepath-summary' => 'Tuta specialna strona wróća dospołny puć aktualneje datajoweje wersije. Wobrazy so połnym rozeznaću pokazuja, druhe datajowe typy so ze zwjazanym programom startuja.
 
-Zapodaj datajowe mjeno bjez dodawka "{{ns:image}}:".',
+Zapodaj datajowe mjeno bjez dodawka "{{ns:file}}:".',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Dwójne dataje pytać',
 'fileduplicatesearch-summary'  => "Pytanje za duplikatnymi datajemi na zakładźe jich hašoweje hódnoty.
 
-Zapodaj datajowe mjeno '''bjez''' prefiksa \"{{ns:image}}:\".",
+Zapodaj datajowe mjeno '''bjez''' prefiksa \"{{ns:file}}:\".",
 'fileduplicatesearch-legend'   => 'Duplikaty pytać',
 'fileduplicatesearch-filename' => 'Datajowe mjeno:',
 'fileduplicatesearch-submit'   => 'Pytać',

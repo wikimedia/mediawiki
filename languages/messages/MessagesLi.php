@@ -1227,8 +1227,8 @@ Mèrk op dat hun indexe van {{SITENAME}} content e bietje gedatierd kint zien.',
 Uploads en verwiederinge waere ouch biegehauwte in 't [[Special:Log/upload|uploadlogbook]].
 
 Gebroek óm 'n plaetje of 'n besjtand in 'n pazjena op te numme 'ne link in de vörm:
-* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Besjtand.jpg]]</nowiki>'''
-* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Besjtand.png|alternatief teks]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Besjtand.jpg]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Besjtand.png|alternatief teks]]</nowiki>'''
 of veur mediabesjtande:
 * '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Besjtand.ogg]]</nowiki>'''
 
@@ -2633,13 +2633,13 @@ De kèns ouch [[Special:Watchlist/edit|'t sjtanderd bewirkingssjirm gebroeke]]."
 'filepath-submit'  => 'Zeuk',
 'filepath-summary' => "Dees speciaal pazjena guf 't vollejig paad veur 'n bestandj. Aafbeildinge waere in häör vollejige resolutie getoeandj. Anger bestandjstypes waere drèk in 't mit 't MIME-type verbónje programma geäöpendj.
 
-Veur de bestandjsnaam in zónger 't veurvoegsel \"{{ns:image}}:\".",
+Veur de bestandjsnaam in zónger 't veurvoegsel \"{{ns:file}}:\".",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Zeuk veur döbbelbestaondje bestenj',
 'fileduplicatesearch-summary'  => 'Zeuk veur döbbel bestaondje bestenj op basis van zien hashwaarde.
 
-Gaef de bestandjsnaam zónger \'t "{{ns:image}}:" veurvoogsel.',
+Gaef de bestandjsnaam zónger \'t "{{ns:file}}:" veurvoogsel.',
 'fileduplicatesearch-legend'   => "Zeuk veur 'ne döbbele",
 'fileduplicatesearch-filename' => 'Bestandjsnaam:',
 'fileduplicatesearch-submit'   => 'Zeuk',

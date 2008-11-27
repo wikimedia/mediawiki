@@ -1464,8 +1464,8 @@ $2',
 لعرض أو البحث ف الملفات المتحملة سابقا، راجع [[Special:ImageList|قايمة الملفات المتحملة]]، عمليات التحميل والحذف موجودة فى [[Special:Log/upload|سجل التحميل]].
 
 علشان تحط صورة فى صفحة، استخدم الوصلات فى الصيغ التالية:
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki></tt>''' لاستخدام النسخة الكاملة لملف
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|200px|thumb|left|نص بديل]]</nowiki></tt>''' لاستخدام صورة عرضها 200 بكسل فى صندوق فى الجانب الأيسر مع 'نص بديل' كوصف
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' لاستخدام النسخة الكاملة لملف
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|نص بديل]]</nowiki></tt>''' لاستخدام صورة عرضها 200 بكسل فى صندوق فى الجانب الأيسر مع 'نص بديل' كوصف
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' للوصل للملف مباشرة بدون عرض الملف.",
 'upload-permitted'            => 'أنواع الملفات المسموحة: $1.',
 'upload-preferred'            => 'أنواع الملفات المفضلة: $1.',
@@ -3183,13 +3183,13 @@ $1
 'filepath-submit'  => 'المسار',
 'filepath-summary' => 'الصفحة المخصوصة دى بتعرض المسار الكامل  بتاع ملف.
 الصور بتتعرض  بدقة كاملة، أنواع الملفات التانية ح تشتغل فى البرنامج بتاعهم مباشرة.
-دخل اسم الملف  من غير البريفيكس "{{ns:image}}:"',
+دخل اسم الملف  من غير البريفيكس "{{ns:file}}:"',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'دور على الملفات المتكررة',
 'fileduplicatesearch-summary'  => 'دور على الملفات المتكررة على اساس قيمة الهاش بتاعتها.
 
-دخل اسم الملف من غير البريفكس "{{ns:image}}:".',
+دخل اسم الملف من غير البريفكس "{{ns:file}}:".',
 'fileduplicatesearch-legend'   => 'تدوير على متكرر',
 'fileduplicatesearch-filename' => 'اسم الملف:',
 'fileduplicatesearch-submit'   => 'تدوير',

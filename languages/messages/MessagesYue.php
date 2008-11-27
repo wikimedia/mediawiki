@@ -1258,8 +1258,8 @@ $1',
 要睇或者搵嘢之前上載嘅圖像請去[[Special:ImageList|已上載檔案一覽]]，（再）上載嘅動作會喺[[Special:Log/upload|上載日誌]]裏面記錄落嚟，而刪除嘅動作會喺[[Special:Log/delete|刪除日誌]]裏面記錄落嚟。
 
 如果要喺頁面度引入呢張圖像，可以使用以下其中一種方式嘅連結：
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}:file.jpg<nowiki>]]</nowiki></tt>'''去用檔案嘅完整版
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}:file.png|200px|thumb|left|替代文字<nowiki>]]</nowiki></tt>'''去用200像素比例闊，靠左邊加盒，響描述度加'替代文字'
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}:file.jpg<nowiki>]]</nowiki></tt>'''去用檔案嘅完整版
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}:file.png|200px|thumb|left|替代文字<nowiki>]]</nowiki></tt>'''去用200像素比例闊，靠左邊加盒，響描述度加'替代文字'
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}:file.ogg<nowiki>]]</nowiki></tt>''' 直接連結到檔案而唔顯示個檔案。",
 'upload-permitted'            => '准許嘅檔案類型: $1。',
 'upload-preferred'            => '建議嘅檔案類型: $1。',
@@ -2815,13 +2815,13 @@ $1
 'filepath-submit'  => '搵路徑',
 'filepath-summary' => '呢個特別頁拎一個檔案嘅完整路徑。圖像會以完整嘅解像度顯示，其它嘅檔案類型會以同佢哋關聯咗嘅程式啟動。
 
-請輸入檔名，唔好連埋個"{{ns:image}}:"開頭。',
+請輸入檔名，唔好連埋個"{{ns:file}}:"開頭。',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => '㨂重覆檔案',
 'fileduplicatesearch-summary'  => '用重覆檔案嘅切細值去搵個檔案係唔係重覆。
 
-輸入檔名嗰陣唔使輸入 "{{ns:image}}:" 開頭。',
+輸入檔名嗰陣唔使輸入 "{{ns:file}}:" 開頭。',
 'fileduplicatesearch-legend'   => '搵重覆',
 'fileduplicatesearch-filename' => '檔名:',
 'fileduplicatesearch-submit'   => '搵',

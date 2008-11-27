@@ -823,8 +823,8 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'uploaderror'                 => 'የመላክ ስሕተት',
 'uploadtext'                  => "በዚህ ማመልከቻ ላይ ፋይል ለመላክ ይችላሉ። ቀድሞ የተላኩት ስዕሎች [[Special:ImageList|በፋይል / ሥዕሎች ዝርዝር]] ናቸው፤ ከዚህ በላይ የሚጨመረው ፋይል ሁሉ [[Special:Log/upload|በፋይሎች መዝገብ]] ይዘረዝራሉ።
 
-ስዕልዎ በጽሑፍ እንዲታይ '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Filename.jpg]]</nowiki>''' ወይም
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Filename.png|thumb|ሌላ ጽሑፍ]]</nowiki>''' በሚመስል መልክ ይጠቅሙ።",
+ስዕልዎ በጽሑፍ እንዲታይ '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Filename.jpg]]</nowiki>''' ወይም
+'''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Filename.png|thumb|ሌላ ጽሑፍ]]</nowiki>''' በሚመስል መልክ ይጠቅሙ።",
 'upload-permitted'            => 'የተፈቀዱት የፋይል አይነቶች፦ $1 ብቻ ናቸው።',
 'upload-preferred'            => 'የተመረጡት የፋይል አይነቶች፦  $1።',
 'upload-prohibited'           => 'ያልተፈቀዱት የፋይል አይነቶች፦ $1።',
@@ -2019,7 +2019,7 @@ $3
 'filepath-summary' => 'ይህ ልዩ ገጽ ለ1 ፋይል ሙሉ መንገድ ይሰጣል።<br />
 ስዕል በሙሉ ማጉላት ይታያል፤ ሌላ አይነት ፋይል በሚገባው ፕሮግራም በቀጥታ ይጀመራል።
 
-የፋይሉ ስም («{{ns:image}}:» የሚለው ባዕድ መነሻ ሳይኖር) ከዚህ ታች ይግባ፦',
+የፋይሉ ስም («{{ns:file}}:» የሚለው ባዕድ መነሻ ሳይኖር) ከዚህ ታች ይግባ፦',
 
 # Special:SpecialPages
 'specialpages' => 'ልዩ ገጾች',

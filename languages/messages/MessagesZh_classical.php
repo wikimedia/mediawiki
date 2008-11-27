@@ -1095,8 +1095,8 @@ $2',
 'uploaderror'                => '進獻有變',
 'uploadtext'                 => "下表以獻，[[Special:ImageList|載獻]]覽之。或見[[Special:Log/upload|誌獻]]與[[Special:Log/delete|誌刪]]。
 欲嵌頁中，是格鏈之其一：
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}:File.jpg]]</tt>'''用此整獻
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}:File.png||200px|thumb|left|名]]</tt>'''以二百像素置左框置『名』
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}:File.jpg]]</tt>'''用此整獻
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}:File.png||200px|thumb|left|名]]</tt>'''以二百像素置左框置『名』
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}:File.ogg]]</tt>'''直連獻，無示獻",
 'upload-permitted'           => '可之物類：$1。',
 'upload-preferred'           => '議之物類：$1。',
@@ -2259,13 +2259,13 @@ $1
 'filepath-submit'  => '尋路',
 'filepath-summary' => '此奇頁取一檔之整路。圖以全解像示之，他檔會以有關之程式啟動也。
 
-輸檔名之，不包「{{ns:image}}:」開頭也。',
+輸檔名之，不包「{{ns:file}}:」開頭也。',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => '擇重檔',
 'fileduplicatesearch-summary'  => '以重檔之切去查重也。
 
-入名時無 "{{ns:image}}:" 首也。',
+入名時無 "{{ns:file}}:" 首也。',
 'fileduplicatesearch-legend'   => '尋重',
 'fileduplicatesearch-filename' => '名：',
 'fileduplicatesearch-submit'   => '尋',

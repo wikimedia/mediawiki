@@ -1205,8 +1205,8 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 Pa ver o buscar archivos xubíos previamente, vete a la [[Special:ImageList|llista d'archivos xubíos]]. Les xubíes tamién queden conseñaos nel [[Special:Log/upload|rexistru de xubíes]], y los esborraos nel [[Special:Log/delete|rexistru d'esborraos]].
 
 P'amiestar un archivu nuna páxina, usa un enllaz con ún de los siguientes formatos:
-*'''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Archivu.jpg]]</nowiki></tt>''' pa usar la versión completa del archivu
-*'''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Archivu.png|200px|thumb|left|testu alternativu]]</nowiki></tt>''' pa usar un renderizáu de 200 píxeles d'anchu nun caxellu al marxe esquierdu con 'testu alternativu' como la so descripción
+*'''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Archivu.jpg]]</nowiki></tt>''' pa usar la versión completa del archivu
+*'''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Archivu.png|200px|thumb|left|testu alternativu]]</nowiki></tt>''' pa usar un renderizáu de 200 píxeles d'anchu nun caxellu al marxe esquierdu con 'testu alternativu' como la so descripción
 *'''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Archivu.ogg]]</nowiki></tt>''' pa enllazar direutamente al archivu ensin amosar l'archivu",
 'upload-permitted'            => "Menes d'archivu permitíes: $1.",
 'upload-preferred'            => "Menes d'archivu preferíes: $1.",
@@ -2760,13 +2760,13 @@ Tamién pues [[Special:Watchlist/edit|usar l'editor estándar]].",
 'filepath-submit'  => 'Ruta',
 'filepath-summary' => "Esta páxina especial devuelve la ruta completa d'un archivu. Les imáxenes amuésense a resolución completa; les demás tribes d'archivu execútense direutamente col so programa asociáu.
 
-Escribi'l nome d'archivu ensin el prefixu \"{{ns:image}}:\".",
+Escribi'l nome d'archivu ensin el prefixu \"{{ns:file}}:\".",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Buscar archivos duplicaos',
 'fileduplicatesearch-summary'  => 'Busca archivos duplicaos basándose nos sos valores fragmentarios.
 
-Escribi\'l nome del archivu ensin el prefixu "{{ns:image}}:".',
+Escribi\'l nome del archivu ensin el prefixu "{{ns:file}}:".',
 'fileduplicatesearch-legend'   => 'Buscar duplicaos',
 'fileduplicatesearch-filename' => "Nome d'archivu:",
 'fileduplicatesearch-submit'   => 'Buscar',

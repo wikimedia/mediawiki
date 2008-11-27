@@ -446,8 +446,8 @@ $messages = array(
 'uploadtext'        => "拿下头只表格来上载文件。要查看或者搜寻之前上载个图片个说法，请到[[Special:ImageList|已上载文件列表]]，上载搭仔删脱也记录勒拉[[Special:Log/upload|上载日志]]里向。
 
 要勒拉页面里向摆进图片个说法，用下头该种形式个链接
-'''<nowiki>[[{{ns:image}}:文件.jpg]]</nowiki>'''，
-'''<nowiki>[[{{ns:image}}:文件.png|替代文本]]</nowiki>''' 或者用
+'''<nowiki>[[{{ns:file}}:文件.jpg]]</nowiki>'''，
+'''<nowiki>[[{{ns:file}}:文件.png|替代文本]]</nowiki>''' 或者用
 '''<nowiki>[[{{ns:media}}:文件.ogg]]</nowiki>''' 直接链到文件。",
 'uploadlog'         => '文件上载日志',
 'uploadlogpage'     => '文件上载日志',

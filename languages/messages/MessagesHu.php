@@ -1439,8 +1439,8 @@ A [[Special:Watchlist|figyelőlistádon]] szereplő lapok '''félkövérrel''' v
 'uploadtext'                  => "Az alábbi űrlap használatával tölthetsz fel fájlokat.
 A korábban feltöltött képek megtekintéséhez vagy a köztük való kereséshez menj a [[Special:ImageList|feltöltött fájlok listájához]], a(z újra)feltöltések a [[Special:Log/upload|feltöltési naplóban]], a törlések a [[Special:Log/upload|törlési naplóban]] vannak jegyezve.
 
-Képet a következő módon illeszhetsz be egy oldalra: '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Kép.jpg]]</nowiki>''',
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Kép.png|alternatív szöveg]]</nowiki>''' vagy a közvetlen hivatkozáshoz használd a
+Képet a következő módon illeszhetsz be egy oldalra: '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Kép.jpg]]</nowiki>''',
+'''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Kép.png|alternatív szöveg]]</nowiki>''' vagy a közvetlen hivatkozáshoz használd a
 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fájl.ogg]]</nowiki>''' formát.",
 'upload-permitted'            => 'Megengedett fájltípusok: $1.',
 'upload-preferred'            => 'Támogatott fájltípusok: $1.',
@@ -3015,13 +3015,13 @@ minden egyes sor egy figyelt lap címe. Ha kész vagy, kattints a lista alatt ta
 'filepath-submit'  => 'Elérés',
 'filepath-summary' => 'Ezen lap segítségével lekérheted egy adott fájl pontos útvonalát. A képek teljes méretben jelennek meg, más fájltípusok közvetlenül a hozzájuk rendelt programmal indulnak el.
 
-Add meg a fájlnevet a „{{ns:image}}:” prefixum nélkül.',
+Add meg a fájlnevet a „{{ns:file}}:” prefixum nélkül.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Duplikátumok keresése',
 'fileduplicatesearch-summary'  => 'Fájlok duplikátumainak keresése hash értékük alapján.
 
-Add meg a fájl nevét „{{ns:image}}:” előtag nélkül.',
+Add meg a fájl nevét „{{ns:file}}:” előtag nélkül.',
 'fileduplicatesearch-legend'   => 'Duplikátum keresése',
 'fileduplicatesearch-filename' => 'Fájlnév:',
 'fileduplicatesearch-submit'   => 'Keresés',

@@ -1329,8 +1329,8 @@ Legend: (cur) = تفاوتان گون هنوکین نسخه,
 په دیستن یا گشتن پیشگین آپلودی فایلان برو  [[Special:ImageList|لیست فایلان آپلودی]], آپلودان و حذفیات هنچو هستن ته [[Special:Log/upload|آمار آپلود]].
 
 په وارد کتن فایل ته یک صفحه ای، چه لینک ته فرم استفاده کن
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' په استفاده چه نسخه کامل فایل
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' په استفاده چه ۲۰۰ پیکسل پهنات ته یک جعبه ته چپ
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' په استفاده چه نسخه کامل فایل
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' په استفاده چه ۲۰۰ پیکسل پهنات ته یک جعبه ته چپ
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>'''  په مسیری لینک دهگ په فایل بی پیش دارگ فایل",
 'upload-permitted'            => 'مجازین نوع فایل:  $1.',
 'upload-preferred'            => 'ترجیحی نوع فایل:  $1.',
@@ -3058,13 +3058,13 @@ $1
 'filepath-summary' => 'ای حاصین صفحه مسیر کامل په یک فایل پیش داریت.
 تصاویر گون وضوح کامل پیش دارگ بنت و دگه نوع فایلان گون وتی برنامه یانش مستقیما پچ بنت.
 
-نام فایل بی پسوند "{{ns:image}}:" وارد کن',
+نام فایل بی پسوند "{{ns:file}}:" وارد کن',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'گردگ په کپی  فایلان',
 'fileduplicatesearch-summary'  => 'گردگ په کپی فایلان په اساس درهمین ارزش.
 
-نا فایل بی پیش وند "{{ns:image}}:" وارد کنیت',
+نا فایل بی پیش وند "{{ns:file}}:" وارد کنیت',
 'fileduplicatesearch-legend'   => 'گردگ په  کپی',
 'fileduplicatesearch-filename' => ':نام فایل',
 'fileduplicatesearch-submit'   => 'گردگ',

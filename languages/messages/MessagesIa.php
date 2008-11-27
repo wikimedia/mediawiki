@@ -1334,8 +1334,8 @@ Le paginas presente in [[Special:Watchlist|tu observatorio]] se revela in litter
 Pro vider o cercar imagines cargate anteriormente, visita le [[Special:ImageList|lista de imagines cargate]]. In ultra, le (re)cargas es registrate in le [[Special:Log/upload|registro de cargas]], le deletiones in le [[Special:Log/delete|registro de deletiones]].
 
 Pro includer un file in un articulo, usa un ligamine in un del sequente formas:
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki></tt>''' pro usar le version complete del file
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|200px|thumb|left|texto alternative]]</nowiki></tt>''' pro usar un rendition a largor de 200 pixel in un quadro in le margine sinistre con 'texto alternative' qua description
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' pro usar le version complete del file
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|texto alternative]]</nowiki></tt>''' pro usar un rendition a largor de 200 pixel in un quadro in le margine sinistre con 'texto alternative' qua description
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' pro facer un ligamine directe al file sin monstrar le file",
 'upload-permitted'            => 'Typos de file permittite: $1.',
 'upload-preferred'            => 'Typos de file preferite: $1.',
@@ -2978,13 +2978,13 @@ Tu pote etiam [[Special:Watchlist/edit|usar le editor standard]].',
 'filepath-summary' => 'Iste pagina special contine le cammino complete de un file.
 Le imagines se monstra in plen resolution, le altere typos de file se executa directemente con lor programmas associate.
 
-Entra le nomine del file sin le prefixo "{{ns:image}}:".',
+Entra le nomine del file sin le prefixo "{{ns:file}}:".',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Cercar files duplicate',
 'fileduplicatesearch-summary'  => "Cercar files duplicate a base de lor summas de verification ''(hash).''
 
-Entra le nomine del file sin le prefixo \"{{ns:image}}:\".",
+Entra le nomine del file sin le prefixo \"{{ns:file}}:\".",
 'fileduplicatesearch-legend'   => 'Cercar un duplicato',
 'fileduplicatesearch-filename' => 'Nomine del file:',
 'fileduplicatesearch-submit'   => 'Cercar',

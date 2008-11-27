@@ -1513,8 +1513,8 @@ Uploads en bestanden die na verwijdering opnieuw worden toegevoegd zijn na te zi
 Verwijderde bestanden worden bijgehouden in het [[Special:Log/delete|verwijderingslogboek]].
 
 Om het bestand in te voegen in een pagina kunt u een van de volgende vormen gebruiken, al naar gelang het bestandsformaat dat van toepassing is:
-* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Bestand.jpg]]</nowiki>''' om de volledige versie van het bestand te gebruiken
-* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Bestand.png|200px|thumb|left|alternatieve tekst]]</nowiki>''' om een 200-pixel brede afbeelding links weer te geven met een rand en met \"alternatieve tekst\" als beschrijving
+* '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Bestand.jpg]]</nowiki>''' om de volledige versie van het bestand te gebruiken
+* '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Bestand.png|200px|thumb|left|alternatieve tekst]]</nowiki>''' om een 200-pixel brede afbeelding links weer te geven met een rand en met \"alternatieve tekst\" als beschrijving
 * '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Bestand.ogg]]</nowiki>''' om gewoon naar het bestand te verwijzen zonder het weer te geven
 
 De laatste verwijzing is bedoeld voor mediabestanden die geen afbeelding zijn.",
@@ -3178,13 +3178,13 @@ U kunt ook [[Special:Watchlist/edit|het standaard bewerkingsscherm gebruiken]].'
 Afbeeldingen worden in hun volledige resolutie weergegeven.
 Andere bestandstypen worden direct in het met het MIME-type verbonden programma geopend.
 
-Voer de bestandsnaam in zonder het voorvoegsel "{{ns:image}}:".',
+Voer de bestandsnaam in zonder het voorvoegsel "{{ns:file}}:".',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Duplicaatbestanden zoeken',
 'fileduplicatesearch-summary'  => 'Duplicaatbestanden zoeken op basis van de hashwaarde.
 
-Voer de bestandsnaam in zonder het voorvoegsel "{{ns:image}}:".',
+Voer de bestandsnaam in zonder het voorvoegsel "{{ns:file}}:".',
 'fileduplicatesearch-legend'   => 'Duplicaatbestanden zoeken',
 'fileduplicatesearch-filename' => 'Bestandsnaam:',
 'fileduplicatesearch-submit'   => 'Zoeken',

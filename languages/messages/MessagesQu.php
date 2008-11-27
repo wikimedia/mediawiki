@@ -1257,8 +1257,8 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 Churkusqaña rikchakunatataq qhawanaykipaq icha maskanaykipaqqa [[Special:ImageList|rikchakuna p'anqaman]] riy. Churkusqakunata [[Special:Log/upload|churkuy hallch'apim]], qullusqakunatataq [[Special:Log/delete|qulluy hallch'apim]] rikunki.
 
 Rikchata huk p'anqaman ch'aqtanaykipaqqa kay hunt'ana p'anqapi t'inkita llamk'achiy:
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Willañiqi.jpg]]</nowiki></tt>''', willañiqip hunt'a musuqchasqan llamk'achinapaq
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Willañiqi.png|huk qillqa]]</nowiki></tt>''', lluq'i manyapi kaq kahapi 200 iñu suni rikch'achisqata llamk'achinapaq
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Willañiqi.jpg]]</nowiki></tt>''', willañiqip hunt'a musuqchasqan llamk'achinapaq
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Willañiqi.png|huk qillqa]]</nowiki></tt>''', lluq'i manyapi kaq kahapi 200 iñu suni rikch'achisqata llamk'achinapaq
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Willañiqi.ogg]]</nowiki></tt>''', willañiqiman chiqalla t'inkinapaq, willañiqita mana rikuchispa",
 'upload-permitted'            => 'Saqillasqa willañiqi layakuna: $1.',
 'upload-preferred'            => 'Astawan munasqa willañiqi layakuna: $1.',
@@ -2782,13 +2782,13 @@ Sapsilla ñawpaq qhawariyta tukuykachay.',
 'filepath-summary' => "Kay sapaq p'anqaqa willañiqipaq tukuy ñannintam kutichin.
 Rikchakunatataq hunt'a ch'irkukupim rikunki. Huk willañiqi llayakunaqa tantapusqa wakichiwanmi chiqalla kicharikun.
 
-Willañiqi sutita yaykuchispaqa ama \"{{ns:image}}:\" ñawpaq k'askaqta qillqamuychu.",
+Willañiqi sutita yaykuchispaqa ama \"{{ns:file}}:\" ñawpaq k'askaqta qillqamuychu.",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Iskaychasqa willañiqikunata maskay',
 'fileduplicatesearch-summary'  => "Iskaychasqa willañiqikunata maskay ''hash'' chaninpi tiksispa.
 
-Mana “{{ns:image}}:” k'askaqniyuq willañiqip sutinta yaykuchiy.",
+Mana “{{ns:file}}:” k'askaqniyuq willañiqip sutinta yaykuchiy.",
 'fileduplicatesearch-legend'   => 'Iskaychasqata maskay',
 'fileduplicatesearch-filename' => 'Willañiqip sutin:',
 'fileduplicatesearch-submit'   => 'Maskay',

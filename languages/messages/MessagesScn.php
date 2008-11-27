@@ -1244,8 +1244,8 @@ S'havi accirtari ca la cuntinuità storica di la pàggina nun veni altirata.",
 riggistrati [[Special:Log/delete|ccà]].
 
 Pi nziriri nu file nta na pàggina, fai nu lijami accussì:
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki></tt>''' p'usari la virsioni ntera dû file
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|200px|thumb|left|testu altirnativu]]</nowiki></tt>''' p'usari na virsioni làrica 200 pixel nziruta nta nu box, alliniata a manu manca e cu 'testu altirnativu' comu didascalìa
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' p'usari la virsioni ntera dû file
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|testu altirnativu]]</nowiki></tt>''' p'usari na virsioni làrica 200 pixel nziruta nta nu box, alliniata a manu manca e cu 'testu altirnativu' comu didascalìa
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' pi culligari direttamenti a lu file senza vidìrilu.",
 'upload-permitted'            => 'Tipi di file cunzintiti: $1.',
 'upload-preferred'            => 'Tipi di file cunsigghiati: $1.',
@@ -2781,13 +2781,13 @@ Stu còdici di cunferma scadi automaticamenti a li $4.',
 'filepath-submit'  => 'Pircorsu',
 'filepath-summary' => 'Sta pàggina spiciali rimanna arredi lu traggittu cumpretu di nu file. Li mmàggini sù ammustrati cu la cchiù àuta risoluzzioni dispunìbbili, pi l\'àutri tipi di file parti direttamenti lu prugramma assuciatu.
 
-Mèttiri lu nomu dû file senza lu prifissu "{{ns:image}}:"',
+Mèttiri lu nomu dû file senza lu prifissu "{{ns:file}}:"',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Circata dê file duppiuni',
 'fileduplicatesearch-summary'  => "Circata di pussìbbili dupppiuni dû file 'n basi ô valuri di ''hash''.
 
-Nziriri lu nomu di lu file senza lu prifissu \"{{ns:image}}:\"",
+Nziriri lu nomu di lu file senza lu prifissu \"{{ns:file}}:\"",
 'fileduplicatesearch-legend'   => 'Circata di nu duppiuni',
 'fileduplicatesearch-filename' => 'Nomu dû file:',
 'fileduplicatesearch-submit'   => 'Circata',
