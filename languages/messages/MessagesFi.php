@@ -231,6 +231,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Lähetä minulle kopio MediaWikin kautta lähetetyistä sähköposteista',
 'tog-diffonly'                => 'Älä näytä sivun sisältöä versioita vertailtaessa',
 'tog-showhiddencats'          => 'Näytä piilotetut luokat',
+'tog-norollbackdiff'          => 'Älä näytä eroavaisuuksia palauttamisen jälkeen',
 
 'underline-always'  => 'Aina',
 'underline-never'   => 'Ei koskaan',
@@ -594,7 +595,9 @@ Käyttäjätunnuksesi on luotu.
 'passwordtooshort'           => 'Salasanasi on ei kelpaa. Salasanan pitää olla vähintään {{PLURAL:$1|yhden merkin pituinen|$1 merkkiä pitkä}} ja eri kuin käyttäjätunnuksesi.',
 'mailmypassword'             => 'Lähetä uusi salasana sähköpostitse',
 'passwordremindertitle'      => 'Salasanamuistutus {{GRAMMAR:elative|{{SITENAME}}}}',
-'passwordremindertext'       => 'Joku IP-osoitteesta $1 pyysi {{GRAMMAR:partitive|{{SITENAME}}}} ($4) lähettämään uuden salasanan. Salasana käyttäjälle $2 on nyt $3. Kirjaudu sisään ja vaihda salasana.',
+'passwordremindertext'       => 'Joku IP-osoitteesta $1 pyysi {{GRAMMAR:partitive|{{SITENAME}}}} ($4) lähettämään uuden salasanan. Väliaikainen salasana käyttäjälle $2 on nyt $3. Kirjaudu sisään ja vaihda salasana.
+
+Jos joku muu on tehnyt tämän pyynnön, tai jos olet muistanut salasanasi ja et halua vaihtaa sitä, voit jättää tämän viestin huomiotta ja jatkaa vanhan salasanan käyttöä.',
 'noemail'                    => "Käyttäjälle '''$1''' ei ole määritelty sähköpostiosoitetta.",
 'passwordsent'               => 'Uusi salasana on lähetetty käyttäjän <b>$1</b> sähköpostiosoitteeseen.',
 'blocked-mailpassword'       => 'Osoitteellesi on asetettu muokkausesto, joka estää käyttämästä salasanamuistutustoimintoa.',
@@ -629,6 +632,8 @@ Sinun ei tarvitse huomioida tätä viestiä, jos tunnus on luotu virheellisesti.
 'resetpass_missing'         => 'Ei syötettä.',
 'resetpass-no-info'         => 'Sinun täytyy olla kirjautuneena sisään käyttääksesi tätä sivua.',
 'resetpass-submit-loggedin' => 'Muuta salasana',
+'resetpass-wrong-oldpass'   => 'Virheellinen väliaikainen tai nykyinen salasana.
+Olet saattanut jo onnistuneesti vaihtaa salasanasi tai pyytää uutta väliaikaista salasanaa.',
 'resetpass-temp-password'   => 'Väliaikainen salasana:',
 
 # Edit page toolbar
@@ -647,7 +652,7 @@ Sinun ei tarvitse huomioida tätä viestiä, jos tunnus on luotu virheellisesti.
 'nowiki_sample'   => 'Lisää muotoilematon teksti tähän',
 'nowiki_tip'      => 'Tekstiä, jota wiki ei muotoile',
 'image_sample'    => 'Esimerkki.jpg',
-'image_tip'       => 'Tallennettu kuva',
+'image_tip'       => 'Tallennettu tiedosto',
 'media_sample'    => 'Esimerkki.ogg',
 'media_tip'       => 'Mediatiedostolinkki',
 'sig_tip'         => 'Allekirjoitus aikamerkinnällä',
@@ -778,8 +783,12 @@ Lukitsemisen syy: $1',
 Harkitse, kannattaako sivua luoda uudelleen. Alla on tämän sivun poistohistoria:",
 'deleted-notice'                   => 'Tämä sivu on poistettu. Alla on tämän sivun poistohistoria.',
 'deletelog-fulllog'                => 'Näytä loki kokonaan',
+'edit-gone-missing'                => 'Sivun päivitys ei onnistunut.
+Se on ilmeisesti poistettu.',
 'edit-conflict'                    => 'Päällekkäinen muokkaus.',
 'edit-no-change'                   => 'Muokkauksesi sivuutettiin, koska tekstiin ei tehty mitään muutoksia.',
+'edit-already-exists'              => 'Uuden sivun luominen ei onnistunut.
+Se on jo olemassa.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Tällä sivulla on liian monta hitaiden laajennusfunktioiden kutsua.
@@ -791,6 +800,7 @@ Joitakin mallineita ei ole sisällytetty.',
 'post-expand-template-argument-warning'   => 'Varoitus: Tällä sivulla on ainakin yksi mallineen muuttuja, jonka sisällytetty koko on liian suuri.
 Nämä muuttujat on jätetty käsittelemättä.',
 'post-expand-template-argument-category'  => 'Käsittelemättömiä mallinemuuttujia sisältävät sivut',
+'parser-template-loop-warning'            => 'Mallinesilmukka havaittu: [[$1]]',
 
 # "Undo" feature
 'undo-success' => 'Kumoaminen onnistui. Valitse <em>tallenna</em> toteuttaaksesi muutokset.',
@@ -920,6 +930,11 @@ Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa men
 'wikicodecomparison'      => 'Wikitekstin vertailu',
 'editundo'                => 'kumoa',
 'diff-multi'              => '(Versioiden välissä {{PLURAL:$1|yksi muu muokkaus|$1 muuta muokkausta}}.)',
+'diff-styleadded'         => 'tyyli $1 lisätty',
+'diff-added'              => '$1 lisätty',
+'diff-styleremoved'       => 'tyyli $1 poistettu',
+'diff-removed'            => '$1 poistettu',
+'diff-src'                => 'lähde',
 'diff-with-final'         => '&#32;ja $1 $2',
 'diff-width'              => 'leveys',
 'diff-height'             => 'korkeus',
@@ -945,7 +960,9 @@ Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa men
 'diff-a'                  => "'''linkki'''",
 'diff-i'                  => "'''kursiivi'''",
 'diff-b'                  => "'''lihavoitu'''",
+'diff-big'                => "'''iso'''",
 'diff-del'                => "'''poistettu'''",
+'diff-tt'                 => "'''kiinteä leveys'''",
 'diff-sub'                => "'''alaindeksi'''",
 'diff-sup'                => "'''yläindeksi'''",
 'diff-strike'             => "'''yliviivaus'''",
@@ -972,6 +989,7 @@ $1 | $2',
 'searchmenu-exists'                => "'''Sivu ”[[$1]]” löytyy tästä wikistä.'''",
 'searchmenu-new'                   => "'''[[:$1|Luo sivu]] ''$1'' tähän wikiin.'''",
 'searchhelp-url'                   => 'Help:Sisällys',
+'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Selaa sivuja tällä etuliitteellä]]',
 'searchprofile-articles'           => 'Sisältösivut',
 'searchprofile-articles-and-proj'  => 'Sisältö- ja projektisivut',
 'searchprofile-project'            => 'Projektisivut',
@@ -1212,6 +1230,7 @@ $1 | $2',
 'action-import'               => 'tuoda tätä sivua toisesta wikistä',
 'action-importupload'         => 'tuoda tätä sivua tiedostosta',
 'action-patrol'               => 'merkitä muiden muokkauksia tarkastetuiksi',
+'action-autopatrol'           => 'saada muokkaukset automaattisesti tarkastetuiksi',
 'action-unwatchedpages'       => 'tarkastella tarkkailemattomien sivujen listaa',
 'action-trackback'            => 'lähettää trackbackia',
 'action-mergehistory'         => 'yhdistää tämän sivun historiaa',
@@ -1309,8 +1328,9 @@ Jos yllä oleva tiedosto on alkuperäisversio samasta kuvasta, ei sille tarvi ta
 'file-thumbnail-no'           => 'Tiedostonimi alkaa merkkijonolla <strong><tt>$1</tt></strong>. Tiedosto näyttäisi olevan pienennetty kuva <i>(pienoiskuva)</i>.
 Jos sinulla on tämän kuvan alkuperäinen versio, tallenna se. Muussa tapauksessa nimeä tiedosto uudelleen.',
 'fileexists-forbidden'        => 'Samanniminen tiedosto on jo olemassa. Tallenna tiedosto jollakin toisella nimellä. Nykyinen tiedosto: [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Samanniminen tiedosto on jo olemassa jaetussa mediavarastossa. Tallenna tiedosto jollakin toisella nimellä. Nykyinen tiedosto: [[Image:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Samanniminen tiedosto on jo olemassa jaetussa mediavarastossa. Tallenna tiedosto jollakin toisella nimellä. [[Image:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Tämä tiedosto on kaksoiskappale {{PLURAL:$1|seuraavasta tiedostosta|seuraavista tiedostoista}}:',
+'file-deleted-duplicate'      => 'Tiedosto, joka on identtinen tämän tiedoston kanssa ([[$1]]) on aiemmin poistettu. Katso kyseisen tiedoston poistoloki ennen kuin jatkat uudelleentallentamista.',
 'successfulupload'            => 'Tallennus onnistui',
 'uploadwarning'               => 'Tallennusvaroitus',
 'savefile'                    => 'Tallenna',
@@ -1440,7 +1460,7 @@ Seuraava lista näyttää {{PLURAL:$1|ensimmäisen linkittävän sivun|$1 ensimm
 
 # Unused templates
 'unusedtemplates'     => 'Käyttämättömät mallineet',
-'unusedtemplatestext' => 'Tässä on lista kaikista mallineista, joita ei ole liitetty toiselle sivulle. Muista tarkistaa onko malline siitä huolimatta käytössä.',
+'unusedtemplatestext' => 'Tässä on lista nimiavaruuden {{ns:template}} kaikista sivuista, joita ei ole liitetty toiselle sivulle. Muista tarkistaa onko malline siitä huolimatta käytössä.',
 'unusedtemplateswlh'  => 'muut linkit',
 
 # Random page
@@ -1501,7 +1521,7 @@ Seuraava lista näyttää {{PLURAL:$1|ensimmäisen linkittävän sivun|$1 ensimm
 'nviews'                  => '$1 {{PLURAL:$1|lataus|latausta}}',
 'specialpage-empty'       => 'Tämä sivu on tyhjä.',
 'lonelypages'             => 'Yksinäiset sivut',
-'lonelypagestext'         => 'Seuraaviin sivuhin ei ole linkkejä muualta wikistä.',
+'lonelypagestext'         => 'Seuraaviin sivuhin ei ole linkkejä tai sisällytyksiä muualta wikistä.',
 'uncategorizedpages'      => 'Luokittelemattomat sivut',
 'uncategorizedcategories' => 'Luokittelemattomat luokat',
 'uncategorizedimages'     => 'Luokittelemattomat tiedostot',
@@ -1638,7 +1658,7 @@ Lisätietoa yksittäisistä käyttäjäoikeuksista saattaa löytyä [[{{MediaWik
 'mailnologintext' => 'Sinun pitää olla [[Special:UserLogin|kirjautuneena sisään]] ja [[Special:Preferences|asetuksissasi]] pitää olla toimiva ja <strong>varmennettu</strong> sähköpostiosoite, jotta voit lähettää sähköpostia muille käyttäjille.',
 'emailuser'       => 'Lähetä sähköpostia tälle käyttäjälle',
 'emailpage'       => 'Lähetä sähköpostia käyttäjälle',
-'emailpagetext'   => 'Jos tämä käyttäjä on antanut asetuksissaan kelvollisen sähköpostiosoitteen, alla olevalla lomakkeella voit lähettää yhden viestin hänelle. [[Special:Preferences|Omissa asetuksissasi]] annettu sähköpostiosoite näkyy sähköpostin lähettäjän osoitteena, jotta vastaanottaja voi suoraan vastata viestiin.',
+'emailpagetext'   => 'Jos tämä käyttäjä on antanut asetuksissaan kelvollisen sähköpostiosoitteen, alla olevalla lomakkeella voit lähettää hänelle viestin. [[Special:Preferences|Omissa asetuksissasi]] annettu sähköpostiosoite näkyy sähköpostin lähettäjän osoitteena, jotta vastaanottaja voi suoraan vastata viestiin.',
 'usermailererror' => 'Postitus palautti virheen:',
 'defemailsubject' => '{{SITENAME}}-sähköposti',
 'noemailtitle'    => 'Ei sähköpostiosoitetta',
@@ -2085,6 +2105,7 @@ $1 {{PLURAL:$1|sivu|sivua}} siirettiin.',
 'imagetypemismatch'         => 'Uusi tiedostopääte ei vastaa tiedoston tyyppiä',
 'imageinvalidfilename'      => 'Kohdenimi on virheellinen',
 'fix-double-redirects'      => 'Päivitä kaikki tänne viittaavat ohjaukset ohjaamaan uudelle nimelle',
+'move-leave-redirect'       => 'Jätä paikalle ohjaus',
 
 # Export
 'export'            => 'Sivujen vienti',
@@ -2335,7 +2356,7 @@ $1',
 # Bad image list
 'bad_image_list' => 'Listan muoto on seuraava:
 
-Vain *-merkillä alkavat rivit otetaan huomioon. Ensimmäisen linkin on osoitettava arveluttavaan kuvaan. Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa kuvaa saa käyttää.',
+Vain *-merkillä alkavat rivit otetaan huomioon. Ensimmäisen linkin on osoitettava arveluttavaan tiedostoon. Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa saa käyttää.',
 
 # Metadata
 'metadata'          => 'Sisältökuvaukset',
@@ -2527,6 +2548,9 @@ Vain *-merkillä alkavat rivit otetaan huomioon. Ensimmäisen linkin on osoitett
 'exif-lightsource-19'  => 'Oletusvalo C',
 'exif-lightsource-24'  => 'ISO-studiohehkulamppu',
 'exif-lightsource-255' => 'Muu valonlähde',
+
+# Flash modes
+'exif-flash-redeye-1' => 'punasilmäisyyden vähennystila',
 
 'exif-focalplaneresolutionunit-2' => 'tuumaa',
 
@@ -2732,6 +2756,7 @@ Yritä normaalia esikatselua.',
 
 # Core parser functions
 'unknown_extension_tag' => 'Tuntematon laajennuskoodi ”$1”.',
+'duplicate-defaultsort' => 'Varoitus: Oletuslajitteluavain ”$2” korvaa aiemman oletuslajitteluavaimen ”$1”.',
 
 # Special:Version
 'version'                          => 'Versio', # Not used as normal message but as header for the special page itself

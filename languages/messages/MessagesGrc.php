@@ -1506,7 +1506,7 @@ $1',
 
 # What links here
 'whatlinkshere'            => 'Τὰ ἐνθάδε ἄγοντα',
-'whatlinkshere-title'      => 'Δέλτοι ἐζεύγμεναι ὑπὸ "$1"',
+'whatlinkshere-title'      => 'Δέλτοι συνεζευγμέναι μετὰ τοῦ "$1"',
 'whatlinkshere-page'       => 'Δέλτος:',
 'linkshere'                => "Τάδε ἄγουσι πρὸς '''[[:$1]]''':",
 'nolinkshere'              => "Οὐδένα ἄγουσι πρὸς '''[[:$1]]'''.",
