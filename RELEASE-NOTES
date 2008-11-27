@@ -60,9 +60,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   on the user's real name if one is set. Defaults to false (use the username)
 * Removed the 'apiThumbCacheDir' option from $wgForeignFileRepos (only used in
   ForeignAPIRepo)
-* Image namespace and accompanying talk namespace renamed to File. For backward
-  compatibility purposes, Image still works. External tools may need to be
-  updated.
+* (bug 44) Image namespace and accompanying talk namespace renamed to File.
+  For backward compatibility purposes, Image still works. External tools may
+  need to be updated.
+* The constants NS_FILE and NS_FILE_TALK can now be used instead of NS_IMAGE and
+  NS_IMAGE_TALK.  The old constants are retained as aliases for compatibility.
 * MediaWiki can be forced to use private IPs forwarded by a proxy server by
   using $wgUsePrivateIPs.
 
