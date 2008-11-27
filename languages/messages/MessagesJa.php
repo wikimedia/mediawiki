@@ -1291,8 +1291,8 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'uploadtext'                  => "ファイルを新しくアップロードする場合には、以下のフォームを利用してください。過去にアップロードされたファイルの閲覧・検索には[[Special:ImageList|{{int:imagelist}}]]をご利用ください。アップロードの記録は[[Special:Log/upload|アップロード記録]]、削除の記録は[[Special:Log/delete|削除記録]]にも記録されます。
 
 ページにファイルを挿入するには以下の書式のリンクを使います。
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}:<nowiki>File.jpg]]</nowiki></tt>''' とするとファイルをもとのサイズのまま表示します
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}:<nowiki>File.png|200px|thumb|left|代替テキスト]]</nowiki></tt>''' とすると左寄せの枠内に200px幅に縮小した画像を説明文（代替テキスト）を添えて表示します
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}:<nowiki>File.jpg]]</nowiki></tt>''' とするとファイルをもとのサイズのまま表示します
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}:<nowiki>File.png|200px|thumb|left|代替テキスト]]</nowiki></tt>''' とすると左寄せの枠内に200px幅に縮小した画像を説明文（代替テキスト）を添えて表示します
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}:<nowiki>File.ogg]]</nowiki></tt>''' とするとファイルを表示せずに直接ファイルへリンクします",
 'upload-permitted'            => '許可されているファイル形式： $1',
 'upload-preferred'            => '推奨されているファイル形式： $1',
@@ -2858,13 +2858,13 @@ $1
 'filepath-summary' => 'この特別ページは、ファイルへの完全なパスを返します。
 画像は最大解像度で表示され、他のファイルタイプでは関連付けられたプログラムが直接起動します。
 
-ファイル名は"{{ns:image}}:"を付けずに入力してください。',
+ファイル名は"{{ns:file}}:"を付けずに入力してください。',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => '重複ファイルの検索',
 'fileduplicatesearch-summary'  => '重複ファイルを、ファイルのハッシュ値に基づいて検索します。
 
-先頭の「{{ns:image}}:」を付けないでファイル名を入力してください。',
+先頭の「{{ns:file}}:」を付けないでファイル名を入力してください。',
 'fileduplicatesearch-legend'   => '重複の検索',
 'fileduplicatesearch-filename' => 'ファイル名:',
 'fileduplicatesearch-submit'   => '検索',

@@ -1280,8 +1280,8 @@ par poder cargar dei file.',
 Par védar o çercar i file zà caricà, consulta la [[Special:ImageList|lista dei file caricà]]. I caricamenti de file te pol védarli nel [[Special:Log/upload|registro dei caricamenti]], le scancelasion nel [[Special:Log/delete|registro de le scancelasion]].
 
 Par métar un file drento de na pagina, te ghè da inserir un colegamento fato come uno de sti qua:
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki></tt>''' par doparar la version conpleta de sto file
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|200px|thumb|left|testo alternativo]]</nowiki></tt>'''par inserir sto file co na larghessa de 200 pixel in te un riquadro a sinistra con 'testo alternativo' come descrission
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' par doparar la version conpleta de sto file
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|testo alternativo]]</nowiki></tt>'''par inserir sto file co na larghessa de 200 pixel in te un riquadro a sinistra con 'testo alternativo' come descrission
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' par inserir diretamente un colegamento al file sensa che el se véda in te la pagina",
 'upload-permitted'            => 'Tipi de file consentìi: $1.',
 'upload-preferred'            => 'Tipi de file consiglià: $1.',
@@ -2812,13 +2812,13 @@ Doparar l\'anteprima standard.',
 'filepath-submit'  => 'Percorso',
 'filepath-summary' => 'Sta pagina speciale la restituìsse el percorso conpleto de un file. Le imagini le vien mostrà a la risoluzion pi granda che se pol, par i altri tipi de file vien avià diretamente el programa associà.
 
-Inserissi el nome del file senza el prefisso "{{ns:image}}:"',
+Inserissi el nome del file senza el prefisso "{{ns:file}}:"',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Riçerca dei file duplicà',
 'fileduplicatesearch-summary'  => "Riçerca de eventuali duplicati del file in base al valor de ''hash''.
 
-Inserissi el nome del file senza el prefisso \"{{ns:image}}:\"",
+Inserissi el nome del file senza el prefisso \"{{ns:file}}:\"",
 'fileduplicatesearch-legend'   => 'Riçerca de un duplicato',
 'fileduplicatesearch-filename' => 'Nome del file:',
 'fileduplicatesearch-submit'   => 'Riçerca',

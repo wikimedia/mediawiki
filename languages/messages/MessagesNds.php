@@ -1325,8 +1325,8 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 Dat du hoochladene Datein söken un ankieken kannst, gah na de [[Special:ImageList|List vun hoochladene Datein]]. Dat Hoochladen un nee Hoochladen vun Datein warrt ok in dat [[Special:Log/upload|Hoochlade-Logbook]] fasthollen. Dat Wegsmieten in dat [[Special:Log/delete|Wegsmiet-Logbook]].
 
 Üm en Datei in en Sied to bruken, schriev dat hier in de Sied rin:
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:datei.jpg]]</nowiki></tt>''' för de Datei in vulle Grött
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:datei.jpg|200px|thumb|left|Beschrieven]]</nowiki></tt>''' för dat Bild in en Breed vun 200 Pixels in en lütt Kassen op de linke Sied mit ''Beschrieven'' as Text ünner dat Bild
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:datei.jpg]]</nowiki></tt>''' för de Datei in vulle Grött
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:datei.jpg|200px|thumb|left|Beschrieven]]</nowiki></tt>''' för dat Bild in en Breed vun 200 Pixels in en lütt Kassen op de linke Sied mit ''Beschrieven'' as Text ünner dat Bild
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' för en direkten Lenk op de Datei, ahn dat se wiest warrt.",
 'upload-permitted'            => 'Verlöövte Dateitypen: $1.',
 'upload-preferred'            => 'Vörtagene Dateitypen: $1.',
@@ -2150,7 +2150,7 @@ De Siet „[[:$1]]“ gifft dat al. Wullt du ehr wegsmieten, dat disse Siet scha
 'delete_and_move_confirm' => 'Jo, de Siet wegsmieten',
 'delete_and_move_reason'  => 'wegsmeten, Platz to maken för Schuven',
 'selfmove'                => 'Utgangs- un Teelnaam sünd desülve; en Siet kann nich över sik sülvst röver schaven warrn.',
-'imagenocrossnamespace'   => 'Datein köönt nich na buten den {{ns:image}}-Naamruum schaven warrn',
+'imagenocrossnamespace'   => 'Datein köönt nich na buten den {{ns:file}}-Naamruum schaven warrn',
 'imagetypemismatch'       => 'De ne’e Dateiennen passt nich to de ole',
 'imageinvalidfilename'    => 'De ne’e Dateinaam is ungüllig',
 'fix-double-redirects'    => 'All Redirects, de na den olen Titel wiest, op den ne’en ännern',
@@ -2829,13 +2829,13 @@ Du kannst ok de [[Special:Watchlist/edit|normale Sied to’n Ännern]] bruken.',
 'filepath-submit'  => 'Padd',
 'filepath-summary' => 'Disse Spezialsiet gifft den kumpletten Padd för ene Datei trüch. Biller warrt in vull Oplösen wiest, annere Datein warrt glieks mit dat Programm opropen, dat för de Soort Datein instellt is.
 
-Geev den Dateinaam ahn den Tosatz „{{ns:image}}:“ an.',
+Geev den Dateinaam ahn den Tosatz „{{ns:file}}:“ an.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Söök na Datein, de jüst gliek sünd',
 'fileduplicatesearch-summary'  => 'Söök na Datein, de na jemehr Hash-Tallen jüst gliek sünd.
 
-Geev den Dateinaam ahn dat Präfix „{{ns:image}}:“ in.',
+Geev den Dateinaam ahn dat Präfix „{{ns:file}}:“ in.',
 'fileduplicatesearch-legend'   => 'Söök na Datein, de jüst gliek sünd',
 'fileduplicatesearch-filename' => 'Dateinaam:',
 'fileduplicatesearch-submit'   => 'Söken',

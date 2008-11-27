@@ -1160,8 +1160,8 @@ Når du vælger en fil, vil navnet på filen dukke op i tekstfeltet ved siden af
 Du skal også bekræfte, at du ikke er ved at bryde nogens ophavsret. Det gør du ved at sætte et mærke i tjekboksen. Vælg \"Læg en fil op\"-knappen for at lægge filen op. Dette kan godt tage lidt tid hvis du har en langsom internetforbindelse. De foretrukne formater er JPEG til fotografiske billeder, PNG til tegninger og andre små billeder, og OGG til lyd.
 
 For at bruge et billede i en artikel, så brug en henvisning af denne type
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:fil.jpg]]</nowiki>''' eller
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:fil.png|alternativ tekst]]</nowiki>''' eller
+'''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:fil.jpg]]</nowiki>''' eller
+'''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:fil.png|alternativ tekst]]</nowiki>''' eller
 
 For at indlejre '''mediefiler''' ind, bruges f.eks.:
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}:fil.ogg<nowiki>]]</nowiki></tt>'''
@@ -2577,13 +2577,13 @@ Bekræft venligst, at du virkelig vil oprette denne side igen.",
 'filepath-submit'  => 'Vis sti',
 'filepath-summary' => 'Denne specialside giver et direkte link til en fil. Billder vises i fuld opløsning og andre mediatyper vil blive aktiveret med deres tilhærende program.
 
-Angiv filnavnet uden "{{ns:image}}:"-præfix.',
+Angiv filnavnet uden "{{ns:file}}:"-præfix.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Find dubletfiler',
 'fileduplicatesearch-summary'  => 'Find dublerede filer baseret på deres hash-værdi.
 
-Angiv filnavnet uden "{{ns:image}}:"-præfix.',
+Angiv filnavnet uden "{{ns:file}}:"-præfix.',
 'fileduplicatesearch-legend'   => 'Find dubletfiler.',
 'fileduplicatesearch-filename' => 'Filnavn:',
 'fileduplicatesearch-submit'   => 'Find',

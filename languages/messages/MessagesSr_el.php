@@ -914,8 +914,8 @@ Za gledanje ili pretraživanje već poslatih slika, idite na [[Special:ImageList
 Slanja i brisanja se beleže u [[Special:Log/upload|istoriji slanja]]
 
 Da biste ubacili sliku na stranu, koristite vezu u obliku
-'''<nowiki>[[</nowiki>{{ns:image}}:Fajl.jpg<nowiki>]]</nowiki>''',
-'''<nowiki>[[</nowiki>{{ns:image}}:Fajl.png|opis slike<nowiki>]]</nowiki>''' ili
+'''<nowiki>[[</nowiki>{{ns:file}}:Fajl.jpg<nowiki>]]</nowiki>''',
+'''<nowiki>[[</nowiki>{{ns:file}}:Fajl.png|opis slike<nowiki>]]</nowiki>''' ili
 '''<nowiki>[[</nowiki>{{ns:media}}:Fajl.ogg<nowiki>]]</nowiki>''' za direktno povezivanje na fajl.",
 'uploadlog'                   => 'istorija slanja',
 'uploadlogpage'               => 'istorija slanja',

@@ -1328,8 +1328,8 @@ Los archivos subidos quedarán registrado además en el [[Special:Log/upload|reg
 
 Para incluir un archivo en una página, use un enlace como los que siguen
 
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki></tt>''' para usar el fichero en tamaño completo
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|200px|thumb|left|texto descriptivo]]</nowiki></tt>''' para una versión de 200 pixeles de ancho en una caja en el margen izquierdo con 'texto descriptivo' como descripción
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' para usar el fichero en tamaño completo
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|texto descriptivo]]</nowiki></tt>''' para una versión de 200 pixeles de ancho en una caja en el margen izquierdo con 'texto descriptivo' como descripción
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' para enlazar directamente al fichero sin mostrarlo.",
 'upload-permitted'            => 'Tipos de archivo permitidos: $1.',
 'upload-preferred'            => 'Tipos de archivo aconsejados: $1.',
@@ -2878,13 +2878,13 @@ También puedes utilizar el [[Special:Watchlist/edit|editor estándar]].',
 'filepath-summary' => 'Esta página devuelve la ruta completa de un archivo.
 Las imágenes se muestran en resolución máxima, otros tipos de archivo arrancan directamente con su programa asociado.
 
-Ingrese el nombre del archivo sin su prefijo "{{ns:image}}:".',
+Ingrese el nombre del archivo sin su prefijo "{{ns:file}}:".',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Búsqueda de archivos duplicados',
 'fileduplicatesearch-summary'  => 'Búsqueda de archivos duplicados en base a su valor hash. 
 
-Ingrese el nombre del archivo sin el prefijo "{{ns:image}}:".',
+Ingrese el nombre del archivo sin el prefijo "{{ns:file}}:".',
 'fileduplicatesearch-legend'   => 'Busca duplicados',
 'fileduplicatesearch-filename' => 'Nombre del fichero:',
 'fileduplicatesearch-submit'   => 'Buscar',

@@ -1278,8 +1278,8 @@ Um eerder toe-evoegen bestanden te bekieken of te zeuken ku-j naor de [[Special:
 Toe-evoegen bestanden en media dee vort-edaon bin wonnen bie-ehuilen in 't [[Special:Log/upload|logboek mit toe-evoegen bestanden]] en 't [[Special:Log/delete|logboek mit vort-edaon bestanden]].
 
 Um 't bestand in te voegen in een pagina ku-j een van de volgende codes gebruken:
-* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Bestand.jpg]]</nowiki>'''
-* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Bestand.png|alternatieve tekst]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Bestand.jpg]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Bestand.png|alternatieve tekst]]</nowiki>'''
 * '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Bestand.ogg]]</nowiki>''' drekte verwiezing naor een bestand.",
 'upload-permitted'            => 'Toe-estaone bestanstypes: $1.',
 'upload-preferred'            => 'An-ewezen bestanstypes: $1.',
@@ -2600,13 +2600,13 @@ Je kunnen oek [[Special:Watchlist/edit|'t standard bewarkingsscharm gebruken]]."
 'filepath-submit'  => 'Zeuken',
 'filepath-summary' => "Disse speciale pagina geef 't hele pad veur een bestand. Ofbeeldingen wonnen in resolusie helemaole weer-egeven. Aandere bestanstypen wonnen gelieke in 't mit 't MIME-type verbunnen pregramma los edaon.
 
-Voer de bestansnaam in zonder 't veurvoegsel \"{{ns:image}}:\".",
+Voer de bestansnaam in zonder 't veurvoegsel \"{{ns:file}}:\".",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Dubbele bestanden zeuken',
 'fileduplicatesearch-summary'  => 'Dubbele bestanden zeuken op baosis van de hashweerde.
 
-Voer de bestansnaam in zonder \'t veurvoegsel "{{ns:image}}:".',
+Voer de bestansnaam in zonder \'t veurvoegsel "{{ns:file}}:".',
 'fileduplicatesearch-legend'   => 'Dubbele bestanden zeuken',
 'fileduplicatesearch-filename' => 'Bestansnaam:',
 'fileduplicatesearch-submit'   => 'Zeuken',

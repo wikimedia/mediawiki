@@ -1148,8 +1148,8 @@ evit eilañ restroù war ar servijer.",
 Evit sellet pe klask skeudennoù bet enporzhiet a-raok sellit ouzh [[Special:ImageList|roll ar skeudennoù]]. Kavet e vo ar skeudennoù enporzhiet war [[Special:Log/upload|marilh ar pajennoù enporzhiet]] hag an diverkadennoù war [[Special:Log/delete|istor an diverkadennoù]].
 
 Evit enklozañ ur skeudenn en ur pennad, lakait er pennad-se ul liamm skrivet evel-henn :
-*'''<code><nowiki>[[</nowiki>{{ns:image}}<nowiki>:anv_ar_restr.jpg]]</nowiki></code>''' evit diskouez ar restr en he spider brasañ ;
-*'''<code><nowiki>[[</nowiki>{{ns:image}}<nowiki>:anv_ar_restr.png|deskrivadenn]]</nowiki></code>''' evit ober gant ur munud 200 piksel ledander er ur voest a-gleiz enni \"testenn zeskrivañ\" da zeskrivadenn 
+*'''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:anv_ar_restr.jpg]]</nowiki></code>''' evit diskouez ar restr en he spider brasañ ;
+*'''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:anv_ar_restr.png|deskrivadenn]]</nowiki></code>''' evit ober gant ur munud 200 piksel ledander er ur voest a-gleiz enni \"testenn zeskrivañ\" da zeskrivadenn 
 *'''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:anv_ar_restr.ogg]]</nowiki></code>''' evit sevel ul liamm war-eeun war-du ar restr hep diskouez anezhi.",
 'upload-permitted'            => 'Seurtoù restroù aotreet : $1.',
 'upload-preferred'            => 'Seurtoù restroù gwellañ : $1.',
@@ -2624,13 +2624,13 @@ Klaskit rakwelet er mod boutin.',
 'filepath-submit'  => 'Hent moned',
 'filepath-summary' => 'Diskouez a ra ar bajenn-mañ hent moned klok ur restr. Diskouezet eo ar skeudennoù gant ur pizhder uhel, erounit a ra ar restroù all war-eeun gant o frogramm stag.
 
-Merkit anv ar restr hep ar rakger "{{ns:image}} :"',
+Merkit anv ar restr hep ar rakger "{{ns:file}} :"',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Klask ar restroù e doubl',
 'fileduplicatesearch-summary'  => 'Klask restroù e doubl war diazez talvoudennoù darnek.
 
-Merkañ anv ar restr hep ar rakger "{{ns:image}}:"',
+Merkañ anv ar restr hep ar rakger "{{ns:file}}:"',
 'fileduplicatesearch-legend'   => 'Klask un doubl',
 'fileduplicatesearch-filename' => 'Anv ar restr :',
 'fileduplicatesearch-submit'   => 'Klask',

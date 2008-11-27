@@ -771,8 +771,8 @@ iwakken ad tazneḍ afaylu.',
 'uploadtext'                  => "Sseqdec talɣa deg ukessar akken ad tazeneḍ tugnawin, akken ad teẓred neɣ ad tnadiḍ tugnawin yettwaznen, ruḥ ɣer [[Special:ImageList|umuɣ n usekcam n tugnawin]], Amezruy n usekcam d umḥay hatent daɣen deg [[Special:Log/upload|amezruy n usekcam]].
 
 Akken ad tessekcmeḍ tugna deg usebter, seqdec azay am wagi
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Afaylu.jpg]]</nowiki>''',
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Afaylu.png|aḍris]]</nowiki>''' neɣ
+'''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Afaylu.jpg]]</nowiki>''',
+'''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Afaylu.png|aḍris]]</nowiki>''' neɣ
 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Afaylu.ogg]]</nowiki>''' akken ad iruḥ wezday qbala ar ufaylu.",
 'uploadlog'                   => 'amezruy n usekcam',
 'uploadlogpage'               => 'Amezruy n usekcam',

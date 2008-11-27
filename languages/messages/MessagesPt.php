@@ -1311,8 +1311,8 @@ Páginas que estejam em [[Special:Watchlist|sua lista de vigiados]] são exibida
 Para ver ou pesquisar imagens anteriormente carregadas consulte a [[Special:ImageList|lista de ficheiros carregados]]. (re)Envios e eliminações são também registados no [[Special:Log|registo do projecto]]. Eliminações no [[Special:Log/delete|registo de eliminação]]
 
 Para incluir a imagem numa página, utilize o link em um dos seguintes formatos:
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:ficheiro.jpg]]</nowiki></tt>''' para utilizar a versão completa da imagem;
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:ficheiro.png|200px|thumb|left|texto]]</nowiki></tt>''' para utilizar uma renderização de 200 pixels dentro de um box posicionado à esquerda contendo 'texto' como descrição;
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:ficheiro.jpg]]</nowiki></tt>''' para utilizar a versão completa da imagem;
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:ficheiro.png|200px|thumb|left|texto]]</nowiki></tt>''' para utilizar uma renderização de 200 pixels dentro de um box posicionado à esquerda contendo 'texto' como descrição;
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:ficheiro.ogg]]</nowiki></tt>''' para uma ligação directa ao ficheiro.",
 'upload-permitted'            => 'Tipos de ficheiros permitidos: $1.',
 'upload-preferred'            => 'Tipos de ficheiros preferidos: $1.',
@@ -2871,13 +2871,13 @@ Você também pode [[Special:Watchlist/edit|editar a lista da forma convencional
 'filepath-submit'  => 'Diretório',
 'filepath-summary' => 'Através dsta página especial é possível descobrir o endereço completo de um determinado ficheiro. As imagens serão exibidas em sua resolução máxima, outros tipos de ficheiros serão iniciados automaticamente em seus programas correspondentes.
 
-Entre com o nome do ficheiro sem utilizar o prefixo "{{ns:image}}:".',
+Entre com o nome do ficheiro sem utilizar o prefixo "{{ns:file}}:".',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Procurar por ficheiros duplicados',
 'fileduplicatesearch-summary'  => 'Procure por ficheiros duplicados tendo por base seu valor "hash".
 
-Entre com o nome de ficheiro sem fornecer o prefixo "{{ns:image}}:".',
+Entre com o nome de ficheiro sem fornecer o prefixo "{{ns:file}}:".',
 'fileduplicatesearch-legend'   => 'Procurar por duplicatas',
 'fileduplicatesearch-filename' => 'Nome do ficheiro:',
 'fileduplicatesearch-submit'   => 'Pesquisa',

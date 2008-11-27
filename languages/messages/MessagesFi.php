@@ -1289,8 +1289,8 @@ $1 | $2',
 'uploadtext'                  => "Voit tallentaa tiedostoja alla olevalla lomakkeella. [[Special:ImageList|Tiedostoluettelo]] sisältää listan tallennetuista tiedostoista. Tallennukset kirjataan myös [[Special:Log/upload|tallennuslokiin]], ja poistot [[Special:Log/delete|poistolokiin]].
 
 Voit käyttää tiedostoja wikisivuilla seuraavilla tavoilla:
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Tiedosto.jpg]]</nowiki></tt>''', käyttääksesi tiedoston täyttä versiota.
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Tiedosto.png|200px|thumb|left|Kuvausteksti]]</nowiki></tt>''', käyttääksesi tiedostoa sovitettuna 200 kuvapistettä leveään laatikkoon kuvaustekstillä.
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Tiedosto.jpg]]</nowiki></tt>''', käyttääksesi tiedoston täyttä versiota.
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Tiedosto.png|200px|thumb|left|Kuvausteksti]]</nowiki></tt>''', käyttääksesi tiedostoa sovitettuna 200 kuvapistettä leveään laatikkoon kuvaustekstillä.
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Tiedosto.ogg]]</nowiki></tt>''', jos haluat suoran linkin tiedostoon.",
 'upload-permitted'            => 'Sallitut tiedostomuodot: $1.',
 'upload-preferred'            => 'Suositellut tiedostomuodot: $1.',
@@ -2783,13 +2783,13 @@ Yritä normaalia esikatselua.',
 'filepath'         => 'Tiedoston osoite',
 'filepath-page'    => 'Tiedosto',
 'filepath-submit'  => 'Selvitä osoite',
-'filepath-summary' => 'Tämä toimintosivu palauttaa tiedoston URL-osoitteen. Anna tiedoston nimi ilman {{ns:image}}-nimiavaruusliitettä.',
+'filepath-summary' => 'Tämä toimintosivu palauttaa tiedoston URL-osoitteen. Anna tiedoston nimi ilman {{ns:file}}-nimiavaruusliitettä.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Kaksoiskappaleiden haku',
 'fileduplicatesearch-summary'  => 'Etsii tiedoston kaksoiskappaleita hajautusarvon perusteella.
 
-Kirjoita tiedostonimi ilman ”{{ns:image}}:”-etuliitettä.',
+Kirjoita tiedostonimi ilman ”{{ns:file}}:”-etuliitettä.',
 'fileduplicatesearch-legend'   => 'Etsi kaksoiskappaleita',
 'fileduplicatesearch-filename' => 'Tiedostonimi',
 'fileduplicatesearch-submit'   => 'Etsi',

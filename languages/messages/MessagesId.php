@@ -1415,8 +1415,8 @@ Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencak
 Untuk menampilkan atau mencari berkas-berkas yang sebelumnya dimuatkan, gunakan [[Special:ImageList|daftar pemuatan berkas]]. Pemuatan dan pemuatan kembali juga dicatat dalam [[Special:Log/upload|log pemuatan]]. Penghapusan berkas dicatat dalam [[Special:Log/delete|log penghapusan]].
 
 Untuk menampilkan atau menyertakan berkas/gambar pada suatu halaman, gunakan pranala dengan salah satu format di bawah ini:
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Berkas.jpg]]</nowiki></tt>''' untuk menampilkan berkas dalam ukuran aslinya
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Berkas.png|200px|thumb|left|teks alternatif]]</nowiki></tt>''' untuk menampilkan berkas dengan lebar 200px dalam sebuah kotak di kiri artikel dengan 'teks alternatif' sebagai keterangan gambar
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Berkas.jpg]]</nowiki></tt>''' untuk menampilkan berkas dalam ukuran aslinya
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Berkas.png|200px|thumb|left|teks alternatif]]</nowiki></tt>''' untuk menampilkan berkas dengan lebar 200px dalam sebuah kotak di kiri artikel dengan 'teks alternatif' sebagai keterangan gambar
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Berkas.ogg]]</nowiki></tt>''' sebagai pranala langsung ke berkas yang dimaksud tanpa menampilkan berkas tersebut melalui wiki",
 'upload-permitted'            => 'Jenis berkas yang diijinkan: $1.',
 'upload-preferred'            => 'Jenis berkas yang disarankan: $1.',
@@ -2939,13 +2939,13 @@ Anda juga dapat [[Special:Watchlist/raw|menyunting daftar mentahnya]].',
 'filepath-summary' => 'Halaman istimewa ini menampilkan jalur lengkap untuk suatu berkas.
 Gambar ditampilkan dalam resolusi penuh dan tipe lain berkas akan dibuka langsung dengan program terkaitnya.
 
-Masukkan nama berkas tanpa prefiks "{{ns:image}}:"-nya.',
+Masukkan nama berkas tanpa prefiks "{{ns:file}}:"-nya.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Pencarian berkas duplikat',
 'fileduplicatesearch-summary'  => 'Pencarian duplikat berkas berdasarkan nilai hash-nya.
 
-Masukkan nama berkas tanpa prefiks "{{ns:image}}:".',
+Masukkan nama berkas tanpa prefiks "{{ns:file}}:".',
 'fileduplicatesearch-legend'   => 'Cari duplikat',
 'fileduplicatesearch-filename' => 'Nama berkas:',
 'fileduplicatesearch-submit'   => 'Cari',

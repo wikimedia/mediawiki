@@ -1205,8 +1205,8 @@ $2',
 而删除将在[[Special:Log/delete|删除日志]]中记录。
 
 要在页面中加入文件，使用以下形式的连接:
-'''<nowiki>[[</nowiki>{{ns:image}}</nowiki>:file.jpg]]</nowiki>'''，
-'''<nowiki>[[</nowiki>{{ns:image}}</nowiki>:file.png|替换文字]]</nowiki>''' 或
+'''<nowiki>[[</nowiki>{{ns:file}}</nowiki>:file.jpg]]</nowiki>'''，
+'''<nowiki>[[</nowiki>{{ns:file}}</nowiki>:file.png|替换文字]]</nowiki>''' 或
 '''<nowiki>[[</nowiki>{{ns:media}}</nowiki>:file.ogg]]</nowiki>'''。",
 'upload-permitted'            => '准许的文件类型: $1。',
 'upload-preferred'            => '建议的文件类型: $1。',
@@ -2776,13 +2776,13 @@ $1
 'filepath-submit'  => '查找路径',
 'filepath-summary' => '这个特殊页面撷取一个文件的完整路径。图像会以完整的解像度显示，其它的文件类型会以同它们已关联程序启动。
 
-请输入档名，不要包含"{{ns:image}}:"开头。',
+请输入档名，不要包含"{{ns:file}}:"开头。',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => '选择重覆文件',
 'fileduplicatesearch-summary'  => '用重覆文件的切细值去找出文件是否重覆。
 
-输入档名时不需要输入 "{{ns:image}}:" 开头。',
+输入档名时不需要输入 "{{ns:file}}:" 开头。',
 'fileduplicatesearch-legend'   => '找重覆',
 'fileduplicatesearch-filename' => '文件名称:',
 'fileduplicatesearch-submit'   => '找',

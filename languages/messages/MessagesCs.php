@@ -1466,8 +1466,8 @@ $3',
 'uploadtext'                  => "Níže uvedený formulář slouží k načtení souborů. Již načtené soubory si můžete prohlížet a hledat pomocí [[Special:ImageList|seznamu načtených souborů]], každé načtení se také zaznamenává do [[Special:Log/upload|knihy načtení]], smazání jsou v [[Special:Log/delete|knize smazaných stránek]].
 
 Pro vložení obrázku do stránky použijte jeden z následujících způsobů zápisu:
-* '''<code><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Soubor.jpg]]</nowiki></code>''' do stránky vloží celý obrázek,
-* '''<code><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Soubor.png|thumb|left|Popisek]]</nowiki></code>''' vloží náhled v rámečku zarovnaném na levý okraj, s popiskem „Popisek“,
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Soubor.jpg]]</nowiki></code>''' do stránky vloží celý obrázek,
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Soubor.png|thumb|left|Popisek]]</nowiki></code>''' vloží náhled v rámečku zarovnaném na levý okraj, s popiskem „Popisek“,
 * '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Soubor.ogg]]</nowiki></code>''' vloží přímý odkaz na soubor, aniž by se zobrazoval ve stránce.",
 'upload-permitted'            => 'Povolené formáty souborů: $1.',
 'upload-preferred'            => 'Upřednostňované formáty souborů: $1.',
@@ -3045,13 +3045,13 @@ Opravdu si přejete znovu tuto stránku založit?',
 'filepath-submit'  => 'Cesta',
 'filepath-summary' => 'Tato speciální stránka vrátí úplnou cestu k souboru. Obrázky se zobrazí v plném rozlišení, jiné typy souborů se otevřenou v  přiřazených programech.
 
-Jméno souboru vkládejte bez označení "{{ns:image}}:" .',
+Jméno souboru vkládejte bez označení "{{ns:file}}:" .',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Hledání duplicitních souborů',
 'fileduplicatesearch-summary'  => 'Hledání duplicitních souborů vychází z hodnoty hashovací funkce.
 
-Zadejte jméno souboru bez označení "{{ns:image}}:".',
+Zadejte jméno souboru bez označení "{{ns:file}}:".',
 'fileduplicatesearch-legend'   => 'Hledání duplikátů',
 'fileduplicatesearch-filename' => 'Jméno souboru:',
 'fileduplicatesearch-submit'   => 'Hledat',

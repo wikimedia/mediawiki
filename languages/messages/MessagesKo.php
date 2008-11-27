@@ -1207,8 +1207,8 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 [[Special:ImageList|파일 목록]]에서 이전에 올라온 파일을 찾을 수 있습니다. [[Special:Log/upload|올리기 기록]]에는 파일이 올라온 기록이 남습니다. 삭제 기록은 [[Special:Log/delete|삭제 로그]]에서 볼 수 있습니다.
 
 문서에 그림을 넣으려면 아래 방법 중 하나를 사용하세요.
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki></tt>''' 그림의 온전한 모양을 사용하고자 할 때.
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|200픽셀|섬네일|왼쪽|설명]]</nowiki></tt>''' 그림의 넓이를 200픽셀로 하고 왼쪽 정렬하며 '설명' 이라는 주석을 그림 밑에 달 때.
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' 그림의 온전한 모양을 사용하고자 할 때.
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200픽셀|섬네일|왼쪽|설명]]</nowiki></tt>''' 그림의 넓이를 200픽셀로 하고 왼쪽 정렬하며 '설명' 이라는 주석을 그림 밑에 달 때.
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' 파일을 직접 보여주지 않고 파일로 바로 링크할때.",
 'upload-permitted'            => '허용하는 파일 확장자: $1',
 'upload-preferred'            => '권장하는 파일 확장자: $1',
@@ -2396,13 +2396,13 @@ $5
 'filepath-summary' => '파일의 전체 주소를 알려줍니다.
 그림은 최고 해상도로 보여주고 다른 파일은 연결된 프로그램으로 바로 실행합니다.
 
-"{{ns:image}}:" 접두어를 빼고 파일 이름만 넣으세요.',
+"{{ns:file}}:" 접두어를 빼고 파일 이름만 넣으세요.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => '중복된 파일 찾기',
 'fileduplicatesearch-summary'  => '파일 해시값을 이용해 중복 파일을 찾습니다.
 
-"{{ns:image}}:" 접두어를 뺀 파일 이름을 넣어주세요.',
+"{{ns:file}}:" 접두어를 뺀 파일 이름을 넣어주세요.',
 'fileduplicatesearch-legend'   => '중복 찾기',
 'fileduplicatesearch-filename' => '파일 이름:',
 'fileduplicatesearch-submit'   => '찾기',

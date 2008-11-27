@@ -792,8 +792,8 @@ Ev verzyona vê rûpelê hatîye jêbirin. Belkî înformasyon di [{{fullurl:Spe
 'uploadtext'             => "Berê tu wêneyên nû bar bikî, ji bo dîtin an vedîtina wêneyên ku ji xwe hene binêre: [[Special:ImageList|lîsteya wêneyên barkirî]]. Herwisa wêneyên ku hatine barkirin an jî jê birin li vir dikarî bibînî: [[Special:Log/upload|reşahîya barkirîyan]].
 
 Yek ji lînkên jêr ji bo bikarhînana wêne an file'ê di gotarê de bikar bihîne:
-'''<nowiki>[[</nowiki>{{ns:image}}:File.jpg<nowiki>]]</nowiki>''',
-'''<nowiki>[[</nowiki>{{ns:image}}:File.png|alt text<nowiki>]]</nowiki>''',
+'''<nowiki>[[</nowiki>{{ns:file}}:File.jpg<nowiki>]]</nowiki>''',
+'''<nowiki>[[</nowiki>{{ns:file}}:File.png|alt text<nowiki>]]</nowiki>''',
 anjî ji bo file'ên dengî '''<nowiki>[[</nowiki>{{ns:media}}:File.ogg<nowiki>]]</nowiki>'''",
 'upload-permitted'       => "Formatên data'yan, yên tên qebûlkirin: $1.",
 'upload-preferred'       => "Formatên data'yan, yên tên xastin: $1.",

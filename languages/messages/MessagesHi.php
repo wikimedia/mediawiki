@@ -1073,8 +1073,8 @@ latex, dvips, gs, और convert के इन्स्टॉलेशन की
 इसके पहले [[Special:ImageList|अपलोड की गईं फ़ाईलों की सूची]] देखें। अपलोड की हुईं और हटाईं हुई फ़ाइलों के लिये [[Special:Log/upload|सूची]] देखें।
 
 अपने लेखोंमें यह फ़ाईल इस्तेमाल के लिये नीचे दिये गये उदाहरणोंके अनुसार कड़ियां बनाईयें।
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|alt text]]</nowiki>''' या फिर
+'''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki>''',
+'''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|alt text]]</nowiki>''' या फिर
 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''' डाइरेक्ट कड़ि बनाने के लिये।",
 'upload-permitted'            => 'अनुमतित फ़ाईल प्रकार: $1।',
 'upload-preferred'            => 'पसंदीदा फ़ाईल प्रकार: $1।',
@@ -2616,13 +2616,13 @@ $5
 'filepath-summary' => 'यह विशेष पृष्ठ फ़ाईल का पूरा पाथ देता हैं।
 चित्र पूरे रिज़ोल्यूशनके साथ दिखता हैं, अन्य फ़ाईल प्रकार उनके संबंधित प्रोग्रेम डाइरेक्टरी से शुरू होते हैं।
 
-फ़ाईलनाम "{{ns:image}}:" उपपद के बिना लिखें।',
+फ़ाईलनाम "{{ns:file}}:" उपपद के बिना लिखें।',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'फ़ाईल द्विरावृत्ति खोजें',
 'fileduplicatesearch-summary'  => 'हैश वैल्यू के अनुसार फ़ाईल की द्विरावृत्ति खोजें।
 
-फ़ाईलनाम "{{ns:image}}:" उपपद के बिना लिखें।',
+फ़ाईलनाम "{{ns:file}}:" उपपद के बिना लिखें।',
 'fileduplicatesearch-legend'   => 'द्विरावृत्ति के लिये खोजें',
 'fileduplicatesearch-filename' => 'फ़ाईलनाम:',
 'fileduplicatesearch-submit'   => 'खोज',

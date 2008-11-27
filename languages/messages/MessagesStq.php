@@ -1153,8 +1153,8 @@ Bestäätigje dan ju Lizenz-Fereenboarenge un klik deerätter ap '''„Doatäi h
 Dit kon n Schoft duurje, besunners bie ne loangsomme Internet-Ferbiendenge.
 
 Uum ne '''Bielde''' in ne Siede tou ferweenden, schrieuw an Steede fon ju Bielde toun Biespil:
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}:Doatäi.jpg<nowiki>]]</nowiki></tt>'''
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}:Doatäi.jpg|Link-Text<nowiki>]]</nowiki></tt>'''
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}:Doatäi.jpg<nowiki>]]</nowiki></tt>'''
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}:Doatäi.jpg|Link-Text<nowiki>]]</nowiki></tt>'''
 
 Uum '''Mediendoatäie''' ientoubienden, ferweende toun Biespil:
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}:Doatäi.ogg<nowiki>]]</nowiki></tt>'''
@@ -1992,7 +1992,7 @@ Moatest du him foar ju Ferschuuwenge läskje?',
 'immobile-target-namespace' => 'Sieden konnen nit in dän „$1“-Noomensruum ferschäuwen wäide',
 'immobile-source-page'      => 'Disse Siede is nit ferschuuwboar.',
 'immobile-target-page'      => 'Der kon nit ap disse Sielsiede ferschäuwen wäide.',
-'imagenocrossnamespace'     => 'Doatäie konnen nit uut dän {{ns:image}}-Noomensruum hääruut ferschäuwen wäide',
+'imagenocrossnamespace'     => 'Doatäie konnen nit uut dän {{ns:file}}-Noomensruum hääruut ferschäuwen wäide',
 'imagetypemismatch'         => 'Ju näie Doatäifergratterenge is nit mäd ju oolde identisk',
 'imageinvalidfilename'      => 'Die Siel-Doatäinoome is nit gultich',
 'fix-double-redirects'      => 'Ätter dät Ferschuuwen dubbelde Fäärelaitengen aplööse',
@@ -2693,7 +2693,7 @@ Bestäätigje, dät du disse Siede wuddelk näi moakje moatest.",
 'fileduplicatesearch'          => 'Doatäi-Duplikoat-Säike',
 'fileduplicatesearch-summary'  => 'Säike ätter Doatäi-Duplikoate ap Basis fon hieren Hash-Wäid.
 
-Ju Iengoawe mout sunner dän Tousats „{{ns:image}}:“ geböäre.',
+Ju Iengoawe mout sunner dän Tousats „{{ns:file}}:“ geböäre.',
 'fileduplicatesearch-legend'   => 'Säike ätter Duplikoate',
 'fileduplicatesearch-filename' => 'Doatäinoome:',
 'fileduplicatesearch-submit'   => 'Säike',

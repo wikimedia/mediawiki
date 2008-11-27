@@ -1342,8 +1342,8 @@ Các trang trong [[Special:Watchlist|danh sách bạn theo dõi]] được '''t�
 việc tải lên và tải lên lại được ghi lại trong [[Special:Log/upload|nhật trình tải lên]],  việc xóa đi được ghi trong [[Special:Log/delete|nhật trình xóa]].
 
 Để đưa tập tin vào trang, hãy dùng liên kết có một trong các dạng sau:
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Tập tin.jpg]]</nowiki></tt>''' để phiên bản đầy đủ của tập tin
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Tập tin.png|200px|nhỏ|trái|văn bản thay thế]]</nowiki></tt>''' để dùng hình đã được co lại còn 200 pixel chiều rộng đặt trong một hộp ở lề bên trái với 'văn bản thay thế' dùng để mô tả
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Tập tin.jpg]]</nowiki></tt>''' để phiên bản đầy đủ của tập tin
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Tập tin.png|200px|nhỏ|trái|văn bản thay thế]]</nowiki></tt>''' để dùng hình đã được co lại còn 200 pixel chiều rộng đặt trong một hộp ở lề bên trái với 'văn bản thay thế' dùng để mô tả
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Tập tin.ogg]]</nowiki></tt>''' để liên kết trực tiếp đến tập tin mà không hiển thị nó",
 'upload-permitted'            => 'Các định dạng tập tin được phép tải lên: $1.',
 'upload-preferred'            => 'Các định dạng tập tin nên dùng: $1.',
@@ -2921,13 +2921,13 @@ Bạn cũng có thể [[Special:Watchlist/edit|dùng trình soạn thảo chuẩ
 'filepath-submit'  => 'Hiển thị tập tin',
 'filepath-summary' => 'Trang này chuyển bạn thẳng đến địa chỉ của một tập tin. Nếu là hình, địa chỉ là của hình kích thước tối đa; các loại tập tin khác sẽ được mở lên ngay trong chương trình đúng.
 
-Hãy ghi vào tên tập tin, không bao gồm tiền tố “{{ns:image}}:”.',
+Hãy ghi vào tên tập tin, không bao gồm tiền tố “{{ns:file}}:”.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Tìm kiếm các tập tin trùng lắp',
 'fileduplicatesearch-summary'  => 'Tìm kiếm các bản sao y hệt với tập tin khác, theo giá trị băm của nó.
 
-Hãy cho vào tên của tập tin, trừ tiền tố “{{ns:image}}:”.',
+Hãy cho vào tên của tập tin, trừ tiền tố “{{ns:file}}:”.',
 'fileduplicatesearch-legend'   => 'Tìm kiếm tập tin trùng lắp',
 'fileduplicatesearch-filename' => 'Tên tập tin:',
 'fileduplicatesearch-submit'   => 'Tìm kiếm',

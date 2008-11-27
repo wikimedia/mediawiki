@@ -1279,8 +1279,8 @@ Paginile pe care le [[Special:Watchlist|urmăriţi]] apar în '''aldine'''.",
 Pentru a vizualiza sau căuta imagini deja trimise, mergi la [[Special:ImageList|lista de imagini]], încărcările şi ştergerile sunt de asemenea înregistrate în [[Special:Log/upload|jurnalul fişierelor trimise]], ştergerile în [[Special:Log/delete|jurnalul fişierelor şterse]].
 
 Pentru a include un fişier de sunet într-un articol, foloseşti o legătură de forma:
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Fişier.jpg]]</nowiki></tt>''' pentru a include versiunea integrală a unui fişier
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Fişier.png|200px|thumb|left|alt text]]</nowiki></tt>''' pentru a introduce o imagine de 200px într-un chenar cu textul 'alt text' în partea stângă ca descriere
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fişier.jpg]]</nowiki></tt>''' pentru a include versiunea integrală a unui fişier
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fişier.png|200px|thumb|left|alt text]]</nowiki></tt>''' pentru a introduce o imagine de 200px într-un chenar cu textul 'alt text' în partea stângă ca descriere
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fişier.ogg]]</nowiki></tt>''' pentru a lega direct fişierul fără a-l afişa",
 'upload-permitted'            => 'Tipuri de fişiere permise: $1.',
 'upload-preferred'            => 'Tipuri de fişiere preferate: $1.',
@@ -2797,13 +2797,13 @@ Poţi şi să [[Special:Watchlist/edit|foloseşti un editor standard]].',
 'filepath-summary' => 'Această pagină specială întoarce calea completă a fişierului.
 Imaginile sunt prezentate la rezoluţia maximă, alte tipuri de fişiere vor porni direct în programele asociate.
 
-Introdu numele fişierului fără prefixul "{{ns:image}}:".',
+Introdu numele fişierului fără prefixul "{{ns:file}}:".',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Caută fişiere duplicate',
 'fileduplicatesearch-summary'  => 'Caută fişiere duplicat bazate pe valoarea sa hash.
 
-Introdu numele fişierului fără prefixul "{{ns:image}}:".',
+Introdu numele fişierului fără prefixul "{{ns:file}}:".',
 'fileduplicatesearch-legend'   => 'Caută un duplicat',
 'fileduplicatesearch-filename' => 'Nume fişier:',
 'fileduplicatesearch-submit'   => 'Caută',

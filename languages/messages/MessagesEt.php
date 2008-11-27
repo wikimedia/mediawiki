@@ -828,7 +828,7 @@ Eelistatud formaatideks on fotode puhul JPEG , joonistuste
 ja ikoonilaadsete piltide puhul PNG, helide jaoks aga OGG.
 Nimeta oma failid palun nõnda, et nad kirjeldaksid arusaadaval moel faili sisu, see aitab segadusi vältida.
 Pildi lisamiseks artiklile, kasuta linki kujul:
-<b><nowiki>[[</nowiki>{{ns:image}}<nowiki>:pilt.jpg]]</nowiki></b> või <b><nowiki>[[</nowiki>{{ns:image}}<nowiki>:pilt.png|alt. tekst]]</nowiki></b>.
+<b><nowiki>[[</nowiki>{{ns:file}}<nowiki>:pilt.jpg]]</nowiki></b> või <b><nowiki>[[</nowiki>{{ns:file}}<nowiki>:pilt.png|alt. tekst]]</nowiki></b>.
 Helifaili puhul: <b><nowiki>[[</nowiki>{{ns:media}}<nowiki>:fail.ogg]]</nowiki></b>.
 
 Pane tähele, et nagu ka ülejäänud siinsete lehekülgede puhul,

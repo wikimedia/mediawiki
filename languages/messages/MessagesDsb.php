@@ -1280,8 +1280,8 @@ Boki na [[Special:Watchlist|wobglědowańce]] su '''tucne'''.",
 Źi na [[Special:ImageList|lisćinu nagratych datajow]], aby mógł južo nagrate dataje se wobglědaś abo pytaś, nagraśa protokolěruju se w [[Special:Log/upload|protokolu nagraśow]], wulašowanja w [[Special:Log/upload|protokolu wulašowanjow]].
 
 Aby dataju do boka zapśimjeł, wužyj wótkaz slědujuceje formy
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Dataja.jpg]]</nowiki></tt>''', aby wužywał połnu wersiju dataje
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Dataja.png|200px|thumb|left|alternatiwny tekst]]</nowiki></tt>''', aby wužywał wobraz we wjelikosću 200 pikselow w kašćiku na lěwej kšomje z alternatiwnym tekstom ako wopisanje
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Dataja.jpg]]</nowiki></tt>''', aby wužywał połnu wersiju dataje
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Dataja.png|200px|thumb|left|alternatiwny tekst]]</nowiki></tt>''', aby wužywał wobraz we wjelikosću 200 pikselow w kašćiku na lěwej kšomje z alternatiwnym tekstom ako wopisanje
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Dataja.ogg]]</nowiki></tt>''', aby direktnje na dataju wótkazował, bźez togo až dataja se zwobraznijo.",
 'upload-permitted'            => 'Dowolone datajowe typy: $1.',
 'upload-preferred'            => 'Preferěrowane datajowe typy: $1.',
@@ -2120,7 +2120,7 @@ Bok „[[:$1]]“ južo eksistěrujo. Coš jen wulašowaś, aby mógał toś ten
 'immobile-target-namespace' => 'Boki njedaju se do mjenjowego ruma "$1" pśesunuś',
 'immobile-source-page'      => 'Toś ten bok njedajo se pśesunuś.',
 'immobile-target-page'      => 'Njejo móžno na toś ten celowy bok pśesunuś.',
-'imagenocrossnamespace'     => 'Dataja njedajo se z mjenjowego ruma {{ns:image}} wen pśesunuś',
+'imagenocrossnamespace'     => 'Dataja njedajo se z mjenjowego ruma {{ns:file}} wen pśesunuś',
 'imagetypemismatch'         => 'Nowy datajowy sufiks swójomu typoju njewótpowědujo',
 'imageinvalidfilename'      => 'Mě celoweje dataje jo njepłaśiwe',
 'fix-double-redirects'      => 'Dalejpósrědnjenja, kótarež wótkazuju na originalny titel, aktualizěrowaś',
@@ -2829,13 +2829,13 @@ Móžoš teke [[Special:Watchlist/edit|standardny editor wužywaś]].',
 'filepath-submit'  => 'Droga',
 'filepath-summary' => 'Toś ten specialny bok wróśa dopołnu drogu za dataju. Wobraze se w połnym wótgranicowanju pokazuju, druge datajowe typy se ze zwězanym programom direktnje startuju.
 
-Zapódaj datajowe mě bźez dodanka "{{ns:image}}:".',
+Zapódaj datajowe mě bźez dodanka "{{ns:file}}:".',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Za duplikatnymi datajami pytaś',
 'fileduplicatesearch-summary'  => 'Za datajowymi duplikatami na zakłaźe gótnoty hash pytaś.
 
-Zapódaj datajowe mě bźez prefiksa "{{ns:image}}:".',
+Zapódaj datajowe mě bźez prefiksa "{{ns:file}}:".',
 'fileduplicatesearch-legend'   => 'pytaś duplikata',
 'fileduplicatesearch-filename' => 'Datajowe mě:',
 'fileduplicatesearch-submit'   => 'Pytaś',

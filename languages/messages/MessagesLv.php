@@ -831,8 +831,8 @@ Ieteicamie formāti ir:
 * OGG - ja tas ir skaņas fails.
 
 Lūdzu, pārliecinies, ka faila nosaukums ir pietiekami aprakstošs, lai izvairītos no neskaidrībām. Lai attēlu pēc tam ievietotu kādā lapā, izmanto šādi noformētu linkus:
-* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Fails.jpg|paskaidrojošs teksts]]</nowiki>'''
-* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Fails.png|paskaidrojošs teksts]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fails.jpg|paskaidrojošs teksts]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fails.png|paskaidrojošs teksts]]</nowiki>'''
 vai skaņām
 * '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fails.ogg]]</nowiki>'''
 

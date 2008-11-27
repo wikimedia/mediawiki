@@ -1261,8 +1261,8 @@ Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.",
 Ta beyer u mirar imáchens cargatas denantes baiga t'a [[Special:ImageList|lista d'archibos cargatos]]. As cargas y recargas tamién se rechistran en o [[Special:Log/upload|rechistro de cargas]], y os borraus en o [[Special:Log/delete|rechistro de borraus]].
 
 Ta encluyir un archibo u imachen en una pachina, emplegue un binclo d'una d'istas trazas 
-*'''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Archibo.jpg]]</nowiki></tt>''' ta usar a bersion completa de l'archibo, 
-*'''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Archibo.png|200px|thumb|left|testo alternatibo]]</nowiki></tt>''' ta usar una bersión de 200 píxels d'amplaria en una caixa a la marguin cucha con 'testo alternatibo' como descripzión
+*'''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Archibo.jpg]]</nowiki></tt>''' ta usar a bersion completa de l'archibo, 
+*'''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Archibo.png|200px|thumb|left|testo alternatibo]]</nowiki></tt>''' ta usar una bersión de 200 píxels d'amplaria en una caixa a la marguin cucha con 'testo alternatibo' como descripzión
 *'''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Archibo.ogg]]</nowiki></tt>''' ta fer un binclo dreitament ta l'archibo sin amostrar-lo.",
 'upload-permitted'            => "Tipos d'archibo premititos: $1.",
 'upload-preferred'            => "Tipos d'archibo preferitos: $1.",
@@ -2796,13 +2796,13 @@ Tamién puede fer serbir o [[Special:Watchlist/edit|editor estándar]].",
 'filepath-summary' => "Ista pachina espezial le retorna o camín completo d'un archibo.
 As imachens s'amuestran en resoluzión completa, a resta d'archibos fan enzetar dreitament os suyos programas asoziatos.
 
-Escriba o nombre de l'archibo sin o prefixo \"{{ns:image}}:\".",
+Escriba o nombre de l'archibo sin o prefixo \"{{ns:file}}:\".",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Mirar archibos duplicatos',
 'fileduplicatesearch-summary'  => 'Mirar achibos duplicatos basatos en a suya balura hash.
 
-Escriba o nombre de l\'archibo sin o prefixo "{{ns:image}}:".',
+Escriba o nombre de l\'archibo sin o prefixo "{{ns:file}}:".',
 'fileduplicatesearch-legend'   => 'Mirar duplicatos',
 'fileduplicatesearch-filename' => "Nombre de l'archibo:",
 'fileduplicatesearch-submit'   => 'Mirar',

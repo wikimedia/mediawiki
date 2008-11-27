@@ -1182,8 +1182,8 @@ $2',
 而刪除將在[[Special:Log/delete|刪除日誌]]中記錄。
 
 要在頁面中加入檔案，使用以下其中一種形式的連接:
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:file.jpg]]</nowiki></tt>'''去用檔案的完整版本
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:file.png|200px|thumb|left|替換文字]]</nowiki></tt>'''去用一個200像素寬，左面盒上有'替換文字'的描述
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:file.jpg]]</nowiki></tt>'''去用檔案的完整版本
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:file.png|200px|thumb|left|替換文字]]</nowiki></tt>'''去用一個200像素寬，左面盒上有'替換文字'的描述
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:file.ogg]]</nowiki></tt>'''去直接連接到檔案而不顯示檔案",
 'upload-permitted'            => '准許的檔案類型: $1。',
 'upload-preferred'            => '建議的檔案類型: $1。',
@@ -2751,13 +2751,13 @@ $1
 'filepath-submit'  => '搜尋路徑',
 'filepath-summary' => '這個特殊頁面擷取一個檔案的完整路徑。圖像會以完整的解像度顯示，其它的檔案類型會以同它們已關聯程式啟動。
 
-請輸入檔名，不要包含"{{ns:image}}:"開頭。',
+請輸入檔名，不要包含"{{ns:file}}:"開頭。',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => '選擇重覆檔案',
 'fileduplicatesearch-summary'  => '用重覆檔案的切細值去找出檔案是否重覆。
 
-輸入檔名時不需要輸入 "{{ns:image}}:" 開頭。',
+輸入檔名時不需要輸入 "{{ns:file}}:" 開頭。',
 'fileduplicatesearch-legend'   => '找重覆',
 'fileduplicatesearch-filename' => '檔案名稱:',
 'fileduplicatesearch-submit'   => '找',

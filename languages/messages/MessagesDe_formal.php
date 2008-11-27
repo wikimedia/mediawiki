@@ -272,8 +272,8 @@ Bestätigen Sie dann die Lizenz-Vereinbarung und klicken Sie anschließend auf '
 Dies kann eine Weile dauern, besonders bei einer langsamen Internet-Verbindung.
 
 Um ein '''Bild''' in einer Seite zu verwenden, schreiben Sie an Stelle des Bildes zum Beispiel:
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}:Datei.jpg<nowiki>]]</nowiki></tt>'''
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}:Datei.jpg|Link-Text<nowiki>]]</nowiki></tt>'''
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}:Datei.jpg<nowiki>]]</nowiki></tt>'''
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}:Datei.jpg|Link-Text<nowiki>]]</nowiki></tt>'''
 
 Um '''Mediendateien''' einzubinden, verwenden Sie zum Beispiel:
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}:Datei.ogg<nowiki>]]</nowiki></tt>'''

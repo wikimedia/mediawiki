@@ -1156,8 +1156,8 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 Biex tara jew tfittex fajls li ġew mtellgħin mur fil-[[Special:ImageList|lista ta' fajls mtellgħin]]. Fajls imtellgħin u verżjonijiet ġodda tal-fajls huma reġistrati fir-[[Special:Log/upload|reġistru ta' l-''uploads'']], u dawk li tħassru huma fir-[[Special:Log/upload|reġistru tat-tħassir]].
 
 Biex tinkludi fajl f'paġna, uża l-link fil-forma
-* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Fajl.jpg]]</nowiki>''',
-* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|alt text]]</nowiki>''' jew
+* '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fajl.jpg]]</nowiki>''',
+* '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|alt text]]</nowiki>''' jew
 * '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''' biex toħloq link dirett għal fajl.",
 'upload-permitted'            => "Tipi ta' fajls permessi: $1.",
 'upload-preferred'            => "Tipi ta' fajls preferuti: $1.",
@@ -2665,13 +2665,13 @@ Int tista' ukoll tuża l-[[Special:Watchlist/edit|modifikatur standard]].",
 'filepath-summary' => 'Din il-paġna speċjali tagħti lura l-indirizz komplet tal-posta għal fajl.
 Stampi huwa mogħrija b\'risoluzzjoni sħiħa, tipi tal-fajl oħrajn jibdew bil-program assoċjat magħhom direttament.
 
-Daħħal l-isem tal-fajl bla l-prefiss "{{ns:image}}:".',
+Daħħal l-isem tal-fajl bla l-prefiss "{{ns:file}}:".',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Fittex fajls duplikati',
 'fileduplicatesearch-summary'  => "Fittex fajls duplikati fil-bażi għal valur ''hash''.
 
-Daħħal l-isem tal-fajl mingħajr il-prefiss \"{{ns:image}}:\".",
+Daħħal l-isem tal-fajl mingħajr il-prefiss \"{{ns:file}}:\".",
 'fileduplicatesearch-legend'   => 'Fittex għal duplikat',
 'fileduplicatesearch-filename' => 'Isem il-fajl:',
 'fileduplicatesearch-submit'   => 'Fittex',

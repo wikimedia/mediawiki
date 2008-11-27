@@ -1363,8 +1363,8 @@ Ver merksam på at registra deira kan vera utdaterte.',
 For å sjå eller søkje i eksisterande filer, gå til [[Special:ImageList|fillista]]. Opplastingar vert òg lagra i [[Special:Log/upload|opplastingsloggen]].
 
 For å bruke ei fil på ei side, bruk ei slik lenkje:
-*'''<tt><nowiki>[[</nowiki>{{ns:image}}:Filnavn.jpg<nowiki>]]</nowiki></tt>''' for å bruke biletet i opphavleg form
-*'''<tt><nowiki>[[</nowiki>{{ns:image}}:Filnavn.png|200px|mini|venstre|Alternativ tekst<nowiki>]]</nowiki></tt>''' for å bruke bilete med ei breidde på 200&nbsp;pikslar, venstrestilt og med «Alternativ tekst» som bilettekst
+*'''<tt><nowiki>[[</nowiki>{{ns:file}}:Filnavn.jpg<nowiki>]]</nowiki></tt>''' for å bruke biletet i opphavleg form
+*'''<tt><nowiki>[[</nowiki>{{ns:file}}:Filnavn.png|200px|mini|venstre|Alternativ tekst<nowiki>]]</nowiki></tt>''' for å bruke bilete med ei breidde på 200&nbsp;pikslar, venstrestilt og med «Alternativ tekst» som bilettekst
 *'''<tt><nowiki>[[</nowiki>{{ns:media}}:Filnavn.ogg<nowiki>]]</nowiki></tt>''' for å lenkje direkte til fila utan å vise ho",
 'upload-permitted'            => 'Godtekne filtypar: $1.',
 'upload-preferred'            => 'Føretrekte filtypar: $1.',
@@ -2906,13 +2906,13 @@ Du kan òg [[Special:Watchlist/raw|endre overvakingslista i råformat]].',
 'filepath-submit'  => 'Sti',
 'filepath-summary' => 'Denne spesialsida gjev den fullstendige stien for ei fil. Bilete vert vist i oppløysing; andre filtypar vert starta direkte i dei tilknytte programma sine.
 
-Skriv inn filnamnet utan «{{ns:image}}:»-prefikset.',
+Skriv inn filnamnet utan «{{ns:file}}:»-prefikset.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Søk etter duplikatfiler',
 'fileduplicatesearch-summary'  => 'Søk etter duplikatfiler basert på hash-verdiane deira.
 
-Skriv inn filnamn utan «{{ns:image}}:»-prefikset.',
+Skriv inn filnamn utan «{{ns:file}}:»-prefikset.',
 'fileduplicatesearch-legend'   => 'Søk etter ei duplikatfil',
 'fileduplicatesearch-filename' => 'Filnamn:',
 'fileduplicatesearch-submit'   => 'Søk',

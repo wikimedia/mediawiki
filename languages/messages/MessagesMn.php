@@ -979,8 +979,8 @@ math/README-г уншиж тохируулна уу.',
 Өмнө нь оруулсан файлуудыг [[Special:ImageList|оруулсан файлуудын жагсаалтаас]] харна уу. Оруулсан ба устгасан файлуудын жагсаалт нь мөн [[Special:Log/upload|файл оруулалтын логт]] бий.
 
 Хуудсанд файл оруулахад дараахийг хэрэглэнэ үү:
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Файл.jpg]]</nowiki>''',
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Файл.png|alt text]]</nowiki>''', эсвэл шууд холбоход
+'''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Файл.jpg]]</nowiki>''',
+'''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Файл.png|alt text]]</nowiki>''', эсвэл шууд холбоход
 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Файл.ogg]]</nowiki>'''",
 'upload-permitted'            => 'Оруулж болох файлын төрлүүд: $1.',
 'upload-preferred'            => 'Хэрэглэхийг зөвлөж буй файлын төрлүүд: $1.',

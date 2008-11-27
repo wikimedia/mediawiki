@@ -1184,8 +1184,8 @@ Para ver ou pesquisar imagens anteriormente carregadas consulte a [[Special:Imag
 Uploads e eliminações são também registadros no [[Special:Log|registro do projeto]].
 
 Para incluír a imagem em uma página, utilize o link na forma de
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:arquivo.jpg]]</nowiki>''',
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:arquivo.png|texto]]</nowiki>''' ou
+'''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:arquivo.jpg]]</nowiki>''',
+'''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:arquivo.png|texto]]</nowiki>''' ou
 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:arquivo.ogg]]</nowiki>''' para uma ligação directa ao arquivo.",
 'upload-permitted'            => 'Tipos de arquivos permitidos: $1.',
 'upload-preferred'            => 'Tipos de arquivos preferidos: $1.',
@@ -2611,13 +2611,13 @@ Você também pode [[Special:Watchlist/edit|editar a lista da forma convencional
 'filepath-submit'  => 'Diretório',
 'filepath-summary' => 'Através dsta página especial é possível descobrir o endereço completo de um determinado arquivo. As imagens serão exibidas em sua resolução máxima, outros tipos de arquivos serão iniciados automaticamente em seus programas correspondentes.
 
-Entre com o nome do arquivo sem utilizar o prefixo "{{ns:image}}:".',
+Entre com o nome do arquivo sem utilizar o prefixo "{{ns:file}}:".',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Procurar por arquivos duplicados',
 'fileduplicatesearch-summary'  => 'Procure por arquivos duplicados tendo por base seu valor "hash".
 
-Entre com o nome de arquivo sem fornecer o prefixo "{{ns:image}}:".',
+Entre com o nome de arquivo sem fornecer o prefixo "{{ns:file}}:".',
 'fileduplicatesearch-legend'   => 'Procurar por duplicatas',
 'fileduplicatesearch-filename' => 'Nome do arquivo:',
 'fileduplicatesearch-submit'   => 'Pesquisa',

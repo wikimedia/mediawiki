@@ -1434,8 +1434,8 @@ Sidor på [[Special:Watchlist|din bevakningslista]] är markerade med '''fetstil
 För att titta på eller leta efter filer som redan har laddats upp, se [[Special:ImageList|listan över uppladdade filer]]. Uppladdningar loggförs även i [[Special:Log/upload|uppladdningsloggen]], och raderingar i [[Special:Log/delete|raderingsloggen]].
 
 Använd en länk på något av följande format för att infoga en bild på en sida:
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki></tt>''' för att visa bilden i dess hela storlek
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|200px|thumb|left|alternativ text]]</nowiki></tt>''' för att visa en miniatyrbild med bredden 200 pixel i en ruta till vänster med bildtexten 'alternativ text'
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' för att visa bilden i dess hela storlek
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alternativ text]]</nowiki></tt>''' för att visa en miniatyrbild med bredden 200 pixel i en ruta till vänster med bildtexten 'alternativ text'
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' om du vill länka direkt till filen utan att visa den",
 'upload-permitted'            => 'Tillåtna filtyper: $1.',
 'upload-preferred'            => 'Föredragna filtyper: $1.',
@@ -3011,13 +3011,13 @@ Du kan också [[Special:Watchlist/edit|använda standardeditorn]].',
 'filepath-submit'  => 'Sökväg',
 'filepath-summary' => 'Den här sidan ger den fullständiga sökvägen till en fil. Bilder visas i full upplösning i din webbläsare, andra filtyper öppnas direkt i de program som är associerade till dem.
 
-Ange filens namn utan prefixet "{{ns:image}}:".',
+Ange filens namn utan prefixet "{{ns:file}}:".',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Sök efter dubblettfiler',
 'fileduplicatesearch-summary'  => 'Sök efter dubblettfiler baserat på filernas hash-värden.
 
-Skriv filnamnet utan prefixet "{{ns:image}}:" .',
+Skriv filnamnet utan prefixet "{{ns:file}}:" .',
 'fileduplicatesearch-legend'   => 'Sök efter en dubblettfil',
 'fileduplicatesearch-filename' => 'Filnamn:',
 'fileduplicatesearch-submit'   => 'Sök',

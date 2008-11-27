@@ -1467,11 +1467,11 @@ Dat Fo'zeishnis <code>$1</code> för de huhjelaade Dateie es fott, un dat Websö
 <ul style=\"list-style:none outside none; 
 list-style-position:outside; list-style-image:none; list-style-type:none\"><li style=\"list-style:none outside none; 
 list-style-position:outside; list-style-image:none; 
-list-style-type:none\"><code>'''<nowiki>[[</nowiki>{{ns:image}}:'''''Beldche'''''.jpg]]'''</code></li><li style=\"list-style:none outside none; 
+list-style-type:none\"><code>'''<nowiki>[[</nowiki>{{ns:file}}:'''''Beldche'''''.jpg]]'''</code></li><li style=\"list-style:none outside none; 
 list-style-position:outside; list-style-image:none; 
-list-style-type:none\"><code>'''<nowiki>[[</nowiki>{{ns:image}}:'''''Beld'''''.svg| '''''200''''' px|thumb]]'''</code></li><li
+list-style-type:none\"><code>'''<nowiki>[[</nowiki>{{ns:file}}:'''''Beld'''''.svg| '''''200''''' px|thumb]]'''</code></li><li
 style=\"list-style:none outside none; list-style-position:outside; list-style-image:none; 
-list-style-type:none\"><code>'''<nowiki>[[</nowiki>{{ns:image}}:'''''Su süht dat us'''''.png | '''''ene Tex, för zem zeije, wann Brausere kein Belder zeije künne oder kein Belder zeije sulle''''' ]]'''</code></li><li style=\"list-style:none outside none; 
+list-style-type:none\"><code>'''<nowiki>[[</nowiki>{{ns:file}}:'''''Su süht dat us'''''.png | '''''ene Tex, för zem zeije, wann Brausere kein Belder zeije künne oder kein Belder zeije sulle''''' ]]'''</code></li><li style=\"list-style:none outside none; 
 list-style-position:outside; list-style-image:none; 
 list-style-type:none\"><code>'''<nowiki>[[</nowiki>{{ns:media}}:'''''Esu hürt sich dat aan'''''.ogg]]'''</code></li></ul>
 Usführlich met alle Müjjelichkeite fings de dat bei de Hölp.
@@ -2388,7 +2388,7 @@ Di Sigg „[[:$1]]“ jitt et ald. Wollts De se fottschmieße, öm hee di Sigg �
 'immobile-target-namespace' => 'Sigge künne nit en dat Appachtemang „$1“ erenn ömjenannt wääde',
 'immobile-source-page'      => 'Di Sigg kann nit ömjenannt wääde.',
 'immobile-target-page'      => 'Op dä Tittel kann kei Sigg ömjenannt wääde.',
-'imagenocrossnamespace'     => 'Bellder kam_mer nor in et Appachtemang „{{ns:image}}“ donn, noh wonaders hen kam_mer se och nit ömnemme!',
+'imagenocrossnamespace'     => 'Bellder kam_mer nor in et Appachtemang „{{ns:file}}“ donn, noh wonaders hen kam_mer se och nit ömnemme!',
 'imagetypemismatch'         => 'De neu Datei-Endong moß met däm Datei-Tüp zesamme passe',
 'imageinvalidfilename'      => 'Dä Ziel-Name för de Datei es verkeht',
 'fix-double-redirects'      => 'Don noh em Ömnenne de Ömleidunge automattesch ändere, di noch op dä ahle Tittel zeije, also de neu entshtande dubbelte Ömleidunge oplöse.',
@@ -3163,13 +3163,13 @@ Dä Shtanndat-Zoot-Schlößel „$1“ övverschriif dä älldere Zoot-Schlöße
 'filepath-submit'  => 'Zëĳsh dä Pahdt',
 'filepath-summary' => "Med dä Söndersigg hee künnd'Er dä kompläte Paad vun de neuste Version vun ene Datei direk erusfenge. Die Datei weed jlich aanjezeig, odder med däm paßende Projramm op jemaat.
 
-Doht der Name ohne „{{ns:image}}:“ doför ennjävve.",
+Doht der Name ohne „{{ns:file}}:“ doför ennjävve.",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Sök noh dubbelte Dateie',
 'fileduplicatesearch-summary'  => 'Söök noh dubbelte Dateie övver dänne iere Häsh-Zahl.
 
-Der Name moß ohne der Försatz „{{ns:image}}:“ aanjejovve wääde.',
+Der Name moß ohne der Försatz „{{ns:file}}:“ aanjejovve wääde.',
 'fileduplicatesearch-legend'   => 'Sök noh ene dubbelte Datei',
 'fileduplicatesearch-filename' => 'Dateiname:',
 'fileduplicatesearch-submit'   => 'Sööke',

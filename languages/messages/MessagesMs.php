@@ -1322,8 +1322,8 @@ terlebih dahulu untuk memuat naik fail.',
 'uploadtext'                  => "Gunakan borang di bawah untuk memuat naik fail. Untuk melihat atau mencari imej yang sudah dimuat naik, sila ke [[Special:ImageList|senarai fail yang dimuat naik]]. Muat naik dan penghapusan akan direkodkan dalam [[Special:Log/upload|log muat naik]].
 
 Untuk menyertakan imej tersebut dalam sesebuah laman, sila masukkan teks
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Fail.jpg]]</nowiki>''' atau
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Fail.png|teks alternatif]]</nowiki>'''. Anda juga boleh menggunakan
+'''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fail.jpg]]</nowiki>''' atau
+'''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fail.png|teks alternatif]]</nowiki>'''. Anda juga boleh menggunakan
 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fail.ogg]]</nowiki>''' untuk memaut secara terus.",
 'upload-permitted'            => 'Jenis fail yang dibenarkan: $1.',
 'upload-preferred'            => 'Jenis fail yang diutamakan: $1.',
@@ -2893,13 +2893,13 @@ Anda juga boleh [[Special:Watchlist/edit|menggunakan penyunting standard]].',
 'filepath-summary' => 'Laman khas ini mengembalikan laluan penuh bagi sesebuah fail.
 Imej ditunjuk dalam leraian penuh, jenis fail yang lain dibuka dengan atur cara yang berkenaan secara terus.
 
-Sila masukkan nama fail tanpa awalan "{{ns:image}}:".',
+Sila masukkan nama fail tanpa awalan "{{ns:file}}:".',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Cari fail serupa',
 'fileduplicatesearch-summary'  => 'Anda boleh mencari fail serupa berdasarkan nilai cincangannya.
 
-Sila masukkan nama fail tanpa awalan "{{ns:image}}:".',
+Sila masukkan nama fail tanpa awalan "{{ns:file}}:".',
 'fileduplicatesearch-legend'   => 'Cari fail serupa',
 'fileduplicatesearch-filename' => 'Nama fail:',
 'fileduplicatesearch-submit'   => 'Gelintar',

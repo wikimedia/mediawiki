@@ -1555,8 +1555,8 @@ $2',
 
 بعد از این که پرونده‌ای را بارگذاری کردید، به این سه شکل می‌توانید آن را در صفحه‌ها استفاده کنید:
 
-*'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
-*'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|alt text]]</nowiki>'''
+*'''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki>''',
+*'''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|alt text]]</nowiki>'''
 *'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>'''",
 'upload-permitted'            => 'انواع مجاز پرونده‌ها: $1.',
 'upload-preferred'            => 'انواع ترجیح‌داده شده پرونده‌ها: $1.',
@@ -3185,13 +3185,13 @@ $1
 'filepath-submit'  => 'مسیر',
 'filepath-summary' => 'این صفحهٔ ویژه نشانی کامل برای یک پرونده را نشان می‌دهد. تصاویر با کیفیت وضوح کامل نشان داده می‌شوند، سایر انواع پرونده با برنامه مخصوص به خودشان باز می‌شوند.
 
-نشانی پرونده را بدون پیشوند «{{ns:image}}:» وارد کنید.',
+نشانی پرونده را بدون پیشوند «{{ns:file}}:» وارد کنید.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'جستجو برای پرونده‌های تکراری',
 'fileduplicatesearch-summary'  => 'جستجو برای پرونده‌های تکراری بر اساس مقدار درهم‌شدهٔ آن‌ها صورت می‌گیرد.
 
-نام پرونده را بدون پیشوند «{{ns:image}}:» وارد کنید.',
+نام پرونده را بدون پیشوند «{{ns:file}}:» وارد کنید.',
 'fileduplicatesearch-legend'   => 'جستجوی موارد تکراری',
 'fileduplicatesearch-filename' => 'نام پرونده:',
 'fileduplicatesearch-submit'   => 'جستجو',

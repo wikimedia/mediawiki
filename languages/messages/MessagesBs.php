@@ -1390,8 +1390,8 @@ da bi ste slali fajlove.',
 Da bi ste vidjeli ili pretražili ranije postavljene datoteke, pogledajte [[Special:ImageList|spisak postavljenih datoteka]], ponovna postavljanja su također zapisana u [[Special:Log/upload|zapisnik postavljanja]], a brisanja u [[Special:Log/delete|zapisnik brisanja]].
 
 Da bi ste prikazali datoteku na stranici, koristite link na jedan od slijedećih načina:
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Datoteka.jpg]]</nowiki></tt>''' da upotrijebite potpunu veziju datoteke
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Datoteka.png|200px|thumb|lijevo|opis slike]]</nowiki></tt>''' da upotrijebite smanjeni prikaz širine 200 piksela unutar okvira, s lijevim poravnanjem i ''opisom slike''.
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Datoteka.jpg]]</nowiki></tt>''' da upotrijebite potpunu veziju datoteke
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Datoteka.png|200px|thumb|lijevo|opis slike]]</nowiki></tt>''' da upotrijebite smanjeni prikaz širine 200 piksela unutar okvira, s lijevim poravnanjem i ''opisom slike''.
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Datoteka.ogg]]</nowiki></tt>''' za direkno povezivanje datoteke bez njenog prikazivanja",
 'upload-permitted'            => 'Podržane vrste datoteka: $1.',
 'upload-preferred'            => 'Preferirane vrste datoteka: $1.',
@@ -2973,13 +2973,13 @@ Također možete [[Special:Watchlist/edit|koristiti standardni uređivač]].',
 'filepath-summary' => 'Ova posebna stranica prikazuje potpunu putanju za datoteku.
 Slike su prikazane u punoj veličini, ostale vrste datoteka su prikazane direktno sa, s njima povezanim, programom.
 
-Unesite ime datoteke bez "{{ns:image}}:" prefiksa.',
+Unesite ime datoteke bez "{{ns:file}}:" prefiksa.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Pretraga za duplim datotekama',
 'fileduplicatesearch-summary'  => 'Pretraga za duplim datotekama na bazi njihove haš vrijednosti.
 
-Unesite ime datoteke bez "{{ns:image}}:" prefiksa.',
+Unesite ime datoteke bez "{{ns:file}}:" prefiksa.',
 'fileduplicatesearch-legend'   => 'Pretraga za dvojnicima',
 'fileduplicatesearch-filename' => 'Ime datoteke:',
 'fileduplicatesearch-submit'   => 'Traži',

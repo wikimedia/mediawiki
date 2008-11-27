@@ -1204,8 +1204,8 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 Урут суруллубут билэлэри көрөргө манна тиий: [[Special:ImageList|ойуулар тиһиктэрэ]]. Билэлэри суруйуу уонна иккистээн суруйуу устуоруйата [[Special:Log/upload|манна]], сотуу устуоруйата [[Special:Log/delete|манна]] көстөллөр.
 
 Ойууну ыстатыйаҕа киллэрэргэ маннык суруйуллар:
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki></tt>''' ойуу хайдах баарынан (кыччаппакка)
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|200px|thumb|left|хос быһаарыы]]</nowiki></tt>''' 200 пииксэл кэтиттээх аллараа өттүгэр быһаарыы суруктаах экран хаҥас кырыытыгар сыстар ойуу
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' ойуу хайдах баарынан (кыччаппакка)
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|хос быһаарыы]]</nowiki></tt>''' 200 пииксэл кэтиттээх аллараа өттүгэр быһаарыы суруктаах экран хаҥас кырыытыгар сыстар ойуу
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' - ойууну бэйэтин көрдөрбөккө сигэтин эрэ көрдөрүү.",
 'upload-permitted'            => 'Көҥүллэммит билэ көрүҥнэрэ: $1.',
 'upload-preferred'            => 'Маннык билэ көрүҥнэрин туһанар ордук: $1.',
@@ -2783,13 +2783,13 @@ $1
 'filepath-submit'  => 'Суол',
 'filepath-summary' => 'Бу аналлаах сирэй билэ толору суолун (дисскэҕэ ханна сытарын) көрдөрөр.
 
-Билэ аатын префикса суох киллэр <code>{{ns:image}}:</code>.',
+Билэ аатын префикса суох киллэр <code>{{ns:file}}:</code>.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Хос билэлэри көрдөөһүн',
 'fileduplicatesearch-summary'  => 'Тэҥ билэлэри хэш-куодтарынан көрдөөһүн.
 
-Билэ аатын "{{ns:image}}:" префикса суох киллэр.',
+Билэ аатын "{{ns:file}}:" префикса суох киллэр.',
 'fileduplicatesearch-legend'   => 'Хатылааһыннары көрдөөһүн',
 'fileduplicatesearch-filename' => 'Билэ аата:',
 'fileduplicatesearch-submit'   => 'Бул',

@@ -1307,8 +1307,8 @@ Sider som også er på din [[Special:Watchlist|overvåkningsliste]] vises i '''f
 For å se eller søke i eksisterende filer, gå til [[Special:ImageList|listen over filer]]. Opplastinger lagres også i [[Special:Log/upload|opplastingsloggen]].
 
 For å inkludere en fil på en side, bruk en slik lenke:
-*'''<tt><nowiki>[[</nowiki>{{ns:image}}:Filnavn.jpg<nowiki>]]</nowiki></tt>''' for å bruke bildet i opprinnelig form
-*'''<tt><nowiki>[[</nowiki>{{ns:image}}:Filnavn.png|200px|thumb|left|Alternativ tekst<nowiki>]]</nowiki></tt>''' for å bruke bildet med en bredde på 200&nbsp;piksler, venstrestilt og med «Alternativ tekst» som beskrivelse
+*'''<tt><nowiki>[[</nowiki>{{ns:file}}:Filnavn.jpg<nowiki>]]</nowiki></tt>''' for å bruke bildet i opprinnelig form
+*'''<tt><nowiki>[[</nowiki>{{ns:file}}:Filnavn.png|200px|thumb|left|Alternativ tekst<nowiki>]]</nowiki></tt>''' for å bruke bildet med en bredde på 200&nbsp;piksler, venstrestilt og med «Alternativ tekst» som beskrivelse
 *'''<tt><nowiki>[[</nowiki>{{ns:media}}:Filnavn.ogg<nowiki>]]</nowiki></tt>''' for å lenke direkte til filen uten å vise den",
 'upload-permitted'            => 'Tillatte filtyper: $1.',
 'upload-preferred'            => 'Foretrukne filtyper: $1',
@@ -2890,13 +2890,13 @@ Prøv vanlig forhåndsvisning.',
 'filepath-submit'  => 'Sti',
 'filepath-summary' => 'Denne spesialsiden gir den fullstendige stien for en fil. Bilder vises i full oppløsning; andre filtyper startes direkte i sine assosierte programmer.
 
-	Skriv inn filnavnet uten «{{ns:image}}:»-prefikset.',
+	Skriv inn filnavnet uten «{{ns:file}}:»-prefikset.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Søk etter duplikatfiler',
 'fileduplicatesearch-summary'  => 'Søk etter duplikatfiler basert på dets hash-verdi.
 
-Skriv inn filnavn uten «{{ns:image}}:»-prefikset.',
+Skriv inn filnavn uten «{{ns:file}}:»-prefikset.',
 'fileduplicatesearch-legend'   => 'Søk etter en duplikatfil',
 'fileduplicatesearch-filename' => 'Filnavn:',
 'fileduplicatesearch-submit'   => 'Søk',

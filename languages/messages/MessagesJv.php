@@ -1162,8 +1162,8 @@ mangga delengen math/README kanggo cara konfigurasi.',
 Kanggo mirsani utawa nggolèki berkas sing wis diunggah sadurungé pigunakaké [[Special:ImageList|dhaftar berkas sing wis diunggah]], berkas sing diunggah ulang uga kadhaftar ing [[Special:Log/upload|log pangunggahan]], pambusakan ing [[Special:Log/delete|Log pambusakan]].
 
 Kanggo nyertakaké berkas ing sawijining kaca, pigunakaké pranala salah siji saka format ing ngisor iki:
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Berkas.jpg]]</nowiki></tt>''' kanggo migunakaké versi pepak berkas
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Berkas.png|200px|thumb|left|tèks alt]]</nowiki></tt>''' kanggo migunakaké berkas ambané 200 piksel jroning kothak ing sisih kiwa kanthi 'tèks alt' minangka panjelasan
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Berkas.jpg]]</nowiki></tt>''' kanggo migunakaké versi pepak berkas
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Berkas.png|200px|thumb|left|tèks alt]]</nowiki></tt>''' kanggo migunakaké berkas ambané 200 piksel jroning kothak ing sisih kiwa kanthi 'tèks alt' minangka panjelasan
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Berkas.ogg]]</nowiki></tt>''' kanggo nggandhèng langsung menyang berkas tanpa nampilaké berkas",
 'upload-permitted'            => 'Jenis berkas sing diidinaké: $1.',
 'upload-preferred'            => 'Jenis berkas sing disaranaké: $1.',
@@ -2700,13 +2700,13 @@ Panjenengan uga bisa [[Special:Watchlist/edit|nganggo éditor standar panjenenga
 'filepath-summary' => 'Kaca astaméwa utawa kusus iki nuduhaké jalur pepak sawijining berkas.
 Gambar dituduhaké mawa résolusi kebak lan tipe liyané berkas bakal dibuka langsung mawa program kagandhèng.
 
-Lebokna jeneng berkas tanpa imbuhan awalan "{{ns:image}}:".',
+Lebokna jeneng berkas tanpa imbuhan awalan "{{ns:file}}:".',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Golèk berkas duplikat',
 'fileduplicatesearch-summary'  => 'Golèk duplikat berkas adhedhasar biji hash-é.
 
-Lebokna jeneng berkas tanpa imbuhan awal "{{ns:image}}:".',
+Lebokna jeneng berkas tanpa imbuhan awal "{{ns:file}}:".',
 'fileduplicatesearch-legend'   => 'Golèk duplikat',
 'fileduplicatesearch-filename' => 'Jeneng berkas:',
 'fileduplicatesearch-submit'   => 'Golèk',

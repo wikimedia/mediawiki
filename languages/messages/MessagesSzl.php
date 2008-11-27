@@ -1117,8 +1117,8 @@ Artikle na [[Special:Watchlist|pozorliśće]] sům '''rube'''.",
 Jak chceš přejřeć dotychčas wćepane pliki, abo w ńich šnupać, přeńdź do [[Special:ImageList|listy douůnčůnych plikůw]]. Wšyjstke wćepańo uodnotowane sům we [[Special:Log/upload|rejeře přesůuanych plikůw]], a jygo wyćepańy we [[Special:Log/delete|rejeře wyćepanych]].
 
 Plik pojawi śe na zajće, jak užyješ linka wedle jydnygo s nastympujůncych wzorůw:
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Plik.jpg]]</nowiki>''' pokože plik we pounyj postaći,
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Plik.png|tekst uopisu]]</nowiki>''' pokože šyroko na 200 pikseli mińjaturka umjyščůno při lewym margineśe, uotočůno bez ramka, s podpisym „podpis grafiki”
+'''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Plik.jpg]]</nowiki>''' pokože plik we pounyj postaći,
+'''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Plik.png|tekst uopisu]]</nowiki>''' pokože šyroko na 200 pikseli mińjaturka umjyščůno při lewym margineśe, uotočůno bez ramka, s podpisym „podpis grafiki”
 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Plik.ogg]]</nowiki>''' dowo bezpostředńi link do plika ńy pokozujůnc go.",
 'upload-permitted'            => 'Dopuščalne formaty plikůw: $1.',
 'upload-preferred'            => 'Zalecane formaty plikůw: $1.',
@@ -2540,13 +2540,13 @@ Možeš tyž [[Special:Watchlist/edit|užyć standardowygo edytora]].',
 'filepath-summary' => 'Ta ekstra zajta zwraco peuno śćyžka do plika.
 Grafiki sům pokazywane w peunyj rozdźelčośći, inkše typy plikůw sům uodmykane we skojařůnym ś ńimi průgramje.
 
-Naškryflej sam mjano plika bez prefiksu „{{ns:image}}:”.',
+Naškryflej sam mjano plika bez prefiksu „{{ns:file}}:”.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Šnupej za duplikatym plika',
 'fileduplicatesearch-summary'  => 'Šnupej za duplikatůma plika na podstawje wartośći fůnkcyji skrůtu.
 
-Wklepej mjano plika s půmińjyńćym prefiksu „{{ns:image}}:”.',
+Wklepej mjano plika s půmińjyńćym prefiksu „{{ns:file}}:”.',
 'fileduplicatesearch-legend'   => 'Šnupej za duplikatůma plika',
 'fileduplicatesearch-filename' => 'Mjano pliku:',
 'fileduplicatesearch-submit'   => 'Šnupej',

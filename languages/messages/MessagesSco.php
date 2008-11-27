@@ -719,8 +719,8 @@ tae keek at or rake throu aareadies uplaidit eimages gang tae the [[Special:Imag
 uplaids an deletions is recordit in the [[Special:Log|project log]].
 
 Tae pit the eimage intae a page, uise an airtin i the form
-'''<nowiki>[[</nowiki>{{ns:image}}:file.jpg<nowiki>]]</nowiki>''',
-'''<nowiki>[[</nowiki>{{ns:image}}:file.png|alt text<nowiki>]]</nowiki>''' or
+'''<nowiki>[[</nowiki>{{ns:file}}:file.jpg<nowiki>]]</nowiki>''',
+'''<nowiki>[[</nowiki>{{ns:file}}:file.png|alt text<nowiki>]]</nowiki>''' or
 '''<nowiki>[[</nowiki>{{ns:media}}:file.ogg<nowiki>]]</nowiki>''' for pyntin strecht tae the file",
 'uploadlog'                   => 'uplaid log',
 'uploadlogpage'               => 'Uplaid log',
