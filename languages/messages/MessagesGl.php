@@ -1641,7 +1641,7 @@ Unha páxina trátase como páxina de homónimos cando nela se usa un modelo que
 'all-logs-page'        => 'Todos os rexistros',
 'alllogstext'          => 'Vista combinada de todos os rexistros dipoñibles en {{SITENAME}}.
 Pode precisar máis a vista seleccionando o tipo de rexistro, o nome do usuario ou o título da páxina afectada.',
-'logempty'             => 'Non se atopou ningún ítem relacionado no rexistro.',
+'logempty'             => 'Non se atopou ningún elemento relacionado no rexistro.',
 'log-title-wildcard'   => 'Procurar os títulos que comecen con este texto',
 
 # Special:AllPages
@@ -1757,7 +1757,7 @@ Os cambios futuros nesta páxina e na súa páxina de conversa asociada serán l
 'watchmethod-recent'   => 'comprobando as edicións recentes na procura de páxinas vixiadas',
 'watchmethod-list'     => 'comprobando as páxinas vixiadas na procura de edicións recentes',
 'watchlistcontains'    => 'A súa listaxe de vixilancia ten $1 {{PLURAL:$1|páxina|páxinas}}.',
-'iteminvalidname'      => "Hai un problema co ítem '$1', nome non válido...",
+'iteminvalidname'      => 'Hai un problema co elemento "$1", nome non válido...',
 'wlnote'               => "Embaixo {{PLURAL:$1|está a última modificación|están as últimas '''$1''' modificacións}} {{PLURAL:$2|na última hora|nas últimas '''$2''' horas}}.",
 'wlshowlast'           => 'Amosar as últimas $1 horas, os últimos $2 días ou $3',
 'watchlist-options'    => 'Opcións de vixilancia',
@@ -1968,7 +1968,7 @@ $1',
 
 # Contributions
 'contributions'       => 'Contribucións do usuario',
-'contributions-title' => 'Contribucións do usuario $1',
+'contributions-title' => 'Contribucións de $1',
 'mycontris'           => 'As miñas contribucións',
 'contribsub2'         => 'De $1 ($2)',
 'nocontribs'          => 'Non se deron atopado cambios con eses criterios.',
@@ -2350,9 +2350,9 @@ Gráveo no seu disco duro e cárgueo aquí.',
 'anonymous'        => '{{PLURAL:$1|Usuario anónimo|Usuarios anónimos}} de {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} usuario $1',
 'lastmodifiedatby' => 'A última modificación desta páxina foi o $1 as $2 por $3.', # $1 date, $2 time, $3 user
-'othercontribs'    => 'Baseado no traballo de $1.',
+'othercontribs'    => 'Baseado no traballo $1.',
 'others'           => 'outros',
-'siteusers'        => '{{PLURAL:$2|Usuario|Usuarios}} de {{SITENAME}} $1',
+'siteusers'        => '{{PLURAL:$2|do usuario|dos usuarios}} $1 de {{SITENAME}}',
 'creditspage'      => 'Páxina de créditos',
 'nocredits'        => 'Non hai información de créditos dispoñíbel para esta páxina.',
 

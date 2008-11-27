@@ -786,6 +786,9 @@ Eglurhad: (cyf.) = gwahaniaethau rhyngddo a'r fersiwn cyfredol,
 'history-feed-title'          => 'Hanes diwygio',
 'history-feed-description'    => "Hanes diwygio'r dudalen hon ar y wici",
 'history-feed-item-nocomment' => '$1 am $2', # user at time
+'history-feed-empty'          => "Nid yw'r dudalen a ofynwyd amdani'n bod. 
+Gall fod iddi gael ei dileu neu ei hailenwi.
+Gallwch [[Special:Search|chwilio'r]] wici am dudalennau eraill perthnasol.",
 
 # Revision deletion
 'rev-deleted-comment'         => '(sylwad wedi ei ddiddymu)',
@@ -1132,6 +1135,7 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'action-suppressrevision'     => 'gweld ac adfer y golygiad cudd hwn',
 'action-suppressionlog'       => 'gweld y lòg preifat hwn',
 'action-block'                => 'atal y defnyddiwr hwn rhag golygu',
+'action-protect'              => 'newid lefelau gwarchod y dudalen hon',
 'action-import'               => "mewnforio'r dudalen hon o wici arall",
 'action-importupload'         => "mewnforio'r dudalen hon drwy uwchlwytho ffeil XML",
 'action-unwatchedpages'       => 'gweld rhestr y tudalennau heb neb yn eu gwylio',
@@ -1312,6 +1316,7 @@ Gallwch newid trefn y rhestr trwy bwyso ar bennawd colofn.",
 'imagelinks'                     => "Cysylltiadau'r ffeil",
 'linkstoimage'                   => "Mae'r {{PLURAL:$1|tudalen|dudalen|tudalennau|tudalennau|tudalennau|tudalennau}} isod yn cysylltu i'r ddelwedd hon:",
 'nolinkstoimage'                 => 'Nid oes cyswllt ar unrhyw dudalen yn arwain at y ffeil hon.',
+'morelinkstoimage'               => 'Gweld [[Special:WhatLinksHere/$1|rhagor o gysylltiadau]] at y ffeil hon.',
 'redirectstofile'                => "Mae'r {{PLURAL:$1||ffeil|$1 ffeil|$1 ffeil|$1 ffeil|$1 ffeil}} canlynol yn ailgyfeirio at y ffeil hon:",
 'duplicatesoffile'               => "Mae'r {{PLURAL:$1||ffeil|$1 ffeil|$1 ffeil|$1 ffeil|$1 ffeil}} canlynol yn union debyg i'r ffeil hon:",
 'sharedupload'                   => "Mae'r ffeil hon ar gael i'w rannu, felly gall fod ar waith ar brosiectau eraill.",
@@ -1457,6 +1462,7 @@ Gallwch newid trefn y rhestr trwy bwyso ar bennawd colofn.",
 'protectedtitlestext'     => "Diogelwyd rhag creu tudalennau gyda'r teitlau hyn",
 'protectedtitlesempty'    => "Ar hyn o bryd nid oes unrhyw deitlau wedi eu diogelu a'r paramedrau hyn.",
 'listusers'               => 'Rhestr defnyddwyr',
+'listusers-editsonly'     => 'Dangos y defnyddwyr hynny sydd wedi golygu rhywbeth yn unig',
 'usereditcount'           => '$1 {{PLURAL:$1|golygiad|golygiad|olygiad|golygiad|golygiad|o olygiadau}}',
 'newpages'                => 'Erthyglau newydd',
 'newpages-username'       => 'Enw defnyddiwr:',
@@ -1528,6 +1534,11 @@ Gweler hefyd [[Special:WantedCategories|categorïau sydd eu hangen]].",
 'listusers-noresult' => "Dim defnyddiwr i'w gael.",
 
 # Special:Log/newusers
+'newuserlogpage'              => 'Lòg creu cyfrifon defnyddwyr newydd',
+'newuserlogpagetext'          => 'Dyma lòg creu cyfrifon defnyddwyr newydd.',
+'newuserlog-byemail'          => 'anfonwyd y cyfrinair trwy e-bost',
+'newuserlog-create-entry'     => 'Defnyddiwr newydd',
+'newuserlog-create2-entry'    => 'wedi creu cyfrif ar gyfer $1',
 'newuserlog-autocreate-entry' => "Cyfrif wedi ei greu'n awtomatig",
 
 # Special:ListGroupRights
@@ -2387,6 +2398,7 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-exposuremode-0' => 'Dinoethi awtomatig',
 'exif-exposuremode-1' => "Dinoethiad wedi'i osod â llaw",
 
+'exif-scenecapturetype-0' => 'Safonol',
 'exif-scenecapturetype-1' => 'Tirlun',
 'exif-scenecapturetype-2' => 'Portread',
 'exif-scenecapturetype-3' => 'Golygfa nos',
@@ -2398,6 +2410,8 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-contrast-2' => 'Caled',
 
 'exif-saturation-0' => 'Normal',
+'exif-saturation-1' => 'Dirlawnder isel',
+'exif-saturation-2' => 'Dirlawnder uchel',
 
 'exif-sharpness-0' => 'Normal',
 'exif-sharpness-1' => 'Meddal',

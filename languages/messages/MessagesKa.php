@@ -1160,6 +1160,7 @@ $1 საათში.',
 'listusers-noresult' => 'მომხმარებელი ვერ ვიპოვეთ.',
 
 # Special:Log/newusers
+'newuserlogpage'              => 'მომხმარებლის რეგისტრაციის ჟურნალი',
 'newuserlog-byemail'          => 'პაროლი ელ-ფოსტითაა გამოგზავნილი',
 'newuserlog-create-entry'     => 'ახალი მომხმარებელი',
 'newuserlog-autocreate-entry' => 'ავტომატურად შექმნილი ანგარიში',

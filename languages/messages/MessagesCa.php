@@ -627,15 +627,17 @@ Si us plau, esperi abans de tornar-ho a intentar.",
 'loginlanguagelabel'         => 'Llengua: $1',
 
 # Password reset dialog
-'resetpass'               => 'Reinicia la contrasenya del compte',
-'resetpass_announce'      => 'Heu iniciat la sessió amb un codi temporal enviat per correu electrònic. Per a finalitzar-la, heu de definir una nova contrasenya ací:',
-'resetpass_text'          => '<!-- Afegiu-hi un text -->',
-'resetpass_header'        => 'Reinicia la contrasenya',
-'resetpass_submit'        => 'Definiu una contrasenya i inicieu una sessió',
-'resetpass_success'       => "S'ha canviat la vostra contrasenya amb èxit! Ara ja podeu iniciar-hi una sessió...",
-'resetpass_bad_temporary' => 'La contrasenya temporal no és vàlida. Potser ja havíeu canviat la vostra contrasenya o heu soŀlicitat una nova contrasenya temporal.',
-'resetpass_forbidden'     => 'No poden canviar-se les contrasenyes',
-'resetpass_missing'       => 'No hi ha cap dada de formulari.',
+'resetpass'                 => 'Canvia o reinicia la contrasenya del compte',
+'resetpass_announce'        => 'Heu iniciat la sessió amb un codi temporal enviat per correu electrònic. Per a finalitzar-la, heu de definir una nova contrasenya ací:',
+'resetpass_text'            => '<!-- Afegiu-hi un text -->',
+'resetpass_header'          => 'Reinicia la contrasenya',
+'resetpass_submit'          => 'Definiu una contrasenya i inicieu una sessió',
+'resetpass_success'         => "S'ha canviat la vostra contrasenya amb èxit! Ara ja podeu iniciar-hi una sessió...",
+'resetpass_bad_temporary'   => 'La contrasenya temporal no és vàlida. Potser ja havíeu canviat la vostra contrasenya o heu soŀlicitat una nova contrasenya temporal.',
+'resetpass_forbidden'       => 'No poden canviar-se les contrasenyes',
+'resetpass_missing'         => 'No hi ha cap dada de formulari.',
+'resetpass-submit-loggedin' => 'Canvia la contrasenya',
+'resetpass-temp-password'   => 'Contrasenya temporal:',
 
 # Edit page toolbar
 'bold_sample'     => 'Text en negreta',
@@ -818,6 +820,7 @@ No s'inclouran algunes plantilles.",
 'post-expand-template-argument-warning'   => "Avís: Aquesta pàgina conté com a mínim un argument de plantilla que té una mida d'expansió massa llarga.
 Se n'han omès els arguments.",
 'post-expand-template-argument-category'  => "Pàgines que contenen arguments de plantilla que s'han omès",
+'parser-template-loop-warning'            => "S'ha detectat un bucle de plantilla: [[$1]]",
 
 # "Undo" feature
 'undo-success' => "Pot desfer-se la modificació. Si us plau, reviseu la comparació de sota per a assegurar-vos que és el que voleu fer; llavors deseu els canvis per a finalitzar la desfeta de l'edició.",
@@ -1024,7 +1027,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'nextn'                            => '$1 següents',
 'viewprevnext'                     => 'Vés a ($1) ($2) ($3).',
 'searchhelp-url'                   => 'Help:Ajuda',
-'searchprofile-project'            => 'Projecte',
+'searchprofile-project'            => 'Pàgines del projecte',
 'searchprofile-images'             => 'Fitxers',
 'searchprofile-everything'         => 'Tot',
 'searchprofile-advanced'           => 'Avançat',

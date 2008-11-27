@@ -8,6 +8,7 @@
  * @author Matthias
  * @author Ooswesthoesbes
  * @author Pahles
+ * @author Remember the dot
  * @author Tibor
  * @author לערי ריינהארט
  */
@@ -400,7 +401,7 @@ $messages = array(
 'red-link-title'          => '$1 (nag neet aangemaak)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'Artikel',
+'nstab-main'      => 'Pazjena',
 'nstab-user'      => 'Gebroeker',
 'nstab-media'     => 'Mediapazjena',
 'nstab-special'   => 'Speciaal',

@@ -9,6 +9,7 @@
  * @author Broad-Sky
  * @author Emk
  * @author Fievarsty
+ * @author Fryed-peach
  * @author Hatukanezumi
  * @author Hisagi
  * @author Hosiryuhosi
@@ -299,7 +300,7 @@ $messages = array(
 'qbspecialpages' => '特別ページ',
 'moredotdotdot'  => 'すべて表示する',
 'mypage'         => 'マイ・ページ',
-'mytalk'         => 'マイ・トーク',
+'mytalk'         => '会話',
 'anontalk'       => 'このIP利用者の会話',
 'navigation'     => 'ナビゲーション',
 'and'            => '&#32;および',
@@ -548,7 +549,7 @@ $2',
 'youremail'                  => 'メールアドレス*:',
 'username'                   => '利用者名:',
 'uid'                        => '利用者ID:',
-'prefs-memberingroups'       => 'グループ:',
+'prefs-memberingroups'       => 'グループの構成員:',
 'yourrealname'               => '本名*:',
 'yourlanguage'               => '使用言語:',
 'yourvariant'                => '字体変換',
@@ -842,7 +843,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'revisiondelete'              => '版の削除と復帰',
 'revdelete-nooldid-title'     => '対象版がありません',
 'revdelete-nooldid-text'      => '操作の完了に必要な版が指定されていません。',
-'revdelete-selected'          => "''''''$1'''の、以下の選択された版に対する操作:'''",
+'revdelete-selected'          => "'''[[:$1]]の特定版:'''",
 'logdelete-selected'          => "''''''$1'''の選択されたログに対する操作:'''",
 'revdelete-text'              => "'''版の削除ではページの履歴にその版は表示されます。しかしその版に含まれるテキストにはアクセスできなくなります。'''
 
@@ -1048,7 +1049,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'qbsettings-floatingright'  => 'ウィンドウの右上に固定',
 'changepassword'            => 'パスワード変更',
 'skin'                      => '外装',
-'skin-preview'              => '（プレビュー）',
+'skin-preview'              => 'プレビュー',
 'math'                      => '数式',
 'dateformat'                => '日付の書式',
 'datedefault'               => '選択なし',
@@ -1245,7 +1246,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'recentchanges-legend'              => '最近更新されたページのオプション',
 'recentchangestext'                 => '最近の更新はこのページから確認できます。',
 'recentchanges-feed-description'    => '最近付け加えられた変更はこのフィードで確認できます。',
-'rcnote'                            => '以下は $3 までの <strong>$2</strong> 日間に編集された <strong>$1</strong> ページです（<strong>{{int:newpageletter}}</strong>=新規項目、<strong>{{int:minoreditletter}}</strong>=細部の編集、<strong>{{int:boteditletter}}</strong>=ボットの編集、日時はオプションで未設定ならUTC）',
+'rcnote'                            => '以下は $5$4 までの<strong>$2</strong>日間に編集された<strong>$1</strong>の変更です（<strong>{{int:newpageletter}}</strong>=新規項目、<strong>{{int:minoreditletter}}</strong>=細部の編集、<strong>{{int:boteditletter}}</strong>=ボットの編集）',
 'rcnotefrom'                        => '以下は <b>$2</b> までの更新です。（最大 <b>$1</b> 件）',
 'rclistfrom'                        => '$1からの更新を表示する',
 'rcshowhideminor'                   => '細部の編集を$1',

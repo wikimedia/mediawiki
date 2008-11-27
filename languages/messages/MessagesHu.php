@@ -943,7 +943,7 @@ Néhány sablon nem fog megjelenni.',
 'post-expand-template-inclusion-category' => 'Lapok, melyeken a beillesztett sablon mérete meghaladja a megengedett méretet',
 'post-expand-template-argument-warning'   => 'Figyelem: Ez a lap legalább egy olyan sablonparamétert tartalmaz, amely kibontva túl nagy, így el lett(ek) hagyva.',
 'post-expand-template-argument-category'  => 'Elhagyott sablonparaméterekkel rendelkező lapok',
-'parser-template-loop-warning'            => 'Sablonhurok észlelve: [[$1]]',
+'parser-template-loop-warning'            => 'Végtelen ciklus a következő sablonban: [[$1]]',
 
 # "Undo" feature
 'undo-success' => 'A szerkesztés visszavonható. Kérlek ellenőrizd alább a változásokat, hogy valóban ezt szeretnéd-e tenni, majd kattints a lap mentése gombra a visszavonás véglegesítéséhez.',
@@ -1232,6 +1232,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'contextchars'              => 'Soronkénti szövegkörnyezet (karakterszám):',
 'stub-threshold'            => 'A <a href="#" class="stub">csonkokra</a> mutató linkek jelzésének határa:',
 'recentchangesdays'         => 'Napok száma a friss változtatásokban:',
+'recentchangesdays-max'     => '(maximum {{PLURAL:$1|egy|$1}} nap)',
 'recentchangescount'        => 'Címszavak száma a friss változtatásokban:',
 'savedprefs'                => 'Az új beállításaid érvénybe léptek.',
 'timezonelegend'            => 'Időzóna',
@@ -1638,11 +1639,11 @@ Ellenőrizd a meglévő hivatkozásokat, mielőtt törölnéd őket.',
 
 # Random page
 'randompage'         => 'Lap találomra',
-'randompage-nopages' => 'A(z) "$1" névtérben nincsenek lapok.',
+'randompage-nopages' => 'A(z) „$1” névtérben nincsenek lapok.',
 
 # Random redirect
 'randomredirect'         => 'Átirányítás találomra',
-'randomredirect-nopages' => 'A(z) "$1" névtérben nincsenek átirányítások.',
+'randomredirect-nopages' => 'A(z) „$1” névtérben nincsenek átirányítások.',
 
 # Statistics
 'statistics'                      => 'Statisztikák',
