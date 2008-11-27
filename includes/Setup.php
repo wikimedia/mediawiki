@@ -68,6 +68,14 @@ if ( empty( $wgFileStore['deleted']['directory'] ) ) {
 $wgNamespaceProtection[NS_MEDIAWIKI] = 'editinterface';
 
 /**
+ * The canonical names of namespaces 6 and 7 are, as of v1.14, "File"
+ * and "File_talk".  The old names "Image" and "Image_talk" are
+ * retained as aliases for backwards compatibility.
+ */
+$wgNamespaceAliases['Image'] = NS_IMAGE;
+$wgNamespaceAliases['Image_talk'] = NS_IMAGE_TALK;
+
+/**
  * Initialise $wgLocalFileRepo from backwards-compatible settings
  */
 if ( !$wgLocalFileRepo ) {

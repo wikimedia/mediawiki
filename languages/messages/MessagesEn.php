@@ -101,10 +101,7 @@ $namespaceNames = array(
 /**
  * Array of namespace aliases, mapping from name to NS_xxx index
  */
-$namespaceAliases = array(
-	'Image'      => NS_IMAGE,
-	'Image_talk' => NS_IMAGE_TALK,
-);
+$namespaceAliases = array();
 
 /**
  * Skin names. If any key is not specified, the English one will be used.
