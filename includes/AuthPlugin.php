@@ -244,6 +244,11 @@ class AuthPluginUser {
 		# Override this!
 	}
 	
+	public function getId() {
+		# Override this!
+		return -1;
+	}
+	
 	public function isLocked() {
 		# Override this!
 		return false;
