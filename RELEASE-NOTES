@@ -369,6 +369,10 @@ The following extensions are migrated into MediaWiki 1.14:
 * Honour unchecked "Leave a redirect behind" for moved subpages
 * (bug 16440) Broken 0-byte math renderings are now deleted and re-rendered
   when page is re-parsed.
+* (bug 6100) Unicode BiDi embedding/override characters (U+202A - U+202E) are
+  now automatically removed from titles; these characters can accidentally end
+  up in copy-and-pasted titles, and, by overriding normal bidirectional text
+  handling, can lead to annoying behavior such as text rendering backwards
 
 === API changes in 1.14 ===
 

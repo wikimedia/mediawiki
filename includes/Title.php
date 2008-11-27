@@ -2047,8 +2047,7 @@ class Title {
 		# Strip Unicode bidi override characters.
 		# Sometimes they slip into cut-n-pasted page titles, where the
 		# override chars get included in list displays.
-		$dbkey = str_replace( "\xE2\x80\x8E", '', $dbkey ); // 200E LEFT-TO-RIGHT MARK
-		$dbkey = str_replace( "\xE2\x80\x8F", '', $dbkey ); // 200F RIGHT-TO-LEFT MARK
+		$dbkey = preg_replace( '/\xE2\x80[\x8E\x8F\xAA-\xAE]/S', '', $dbkey );
 
 		# Clean up whitespace
 		#
