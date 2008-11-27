@@ -1828,9 +1828,9 @@ If the checked file is the same image of original size it is not necessary to up
 It seems to be an image of reduced size <i>(thumbnail)</i>.
 If you have this image in full resolution upload this one, otherwise change the file name please.',
 'fileexists-forbidden'        => 'A file with this name exists already.
-If you still want to upload your file, please go back and use a new name. [[Image:$1|thumb|center|$1]]',
+If you still want to upload your file, please go back and use a new name. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'A file with this name exists already in the shared file repository.
-If you still want to upload your file, please go back and use a new name. [[Image:$1|thumb|center|$1]]',
+If you still want to upload your file, please go back and use a new name. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'This file is a duplicate of the following {{PLURAL:$1|file|files}}:',
 'file-deleted-duplicate'      => "A file identical to this file ([[$1]]) has previously been deleted. You should check that file's deletion history before proceeding to re-upload it.",
 'successfulupload'            => 'Successful upload',
