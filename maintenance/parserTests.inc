@@ -622,7 +622,9 @@ class ParserTest {
 		$this->oldTablePrefix = $wgDBprefix;
 
 		# CREATE TEMPORARY TABLE breaks if there is more than one server
-		if ( wfGetLB()->getServerCount() != 1 ) {
+		# FIXME: r40209 makes temporary tables break even with just one server
+		# FIXME: (bug 15892); disabling the feature entirely as a temporary fix
+		if ( true || wfGetLB()->getServerCount() != 1 ) {
 			$this->useTemporaryTables = false;
 		}
 
