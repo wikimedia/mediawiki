@@ -1170,7 +1170,7 @@ $wgMessageStructure = array(
 		'upload_source_url',
 		'upload_source_file',
 	),
-	'imagelist' => array(
+	'filelist' => array(
 		'imagelist-summary',
 		'imagelist_search_for',
 		'imgfile',
@@ -1181,7 +1181,7 @@ $wgMessageStructure = array(
 		'imagelist_size',
 		'imagelist_description',
 	),
-	'imagedesciption' => array(
+	'filedescription' => array(
 		'filehist',
 		'filehist-help',
 		'filehist-deleteall',
@@ -2211,7 +2211,7 @@ $wgMessageStructure = array(
 		'show-big-image',
 		'show-big-image-thumb',
 	),
-	'newimages' => array(
+	'newfiles' => array(
 		'newimages',
 		'imagelisttext',
 		'newimages-summary',
@@ -2905,8 +2905,8 @@ XHTML id names.",
 	'upload-errors'       => '',
 	'upload-curl-errors'  => 'Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>',
 	'licenses'            => '',
-	'imagelist'           => 'Special:ImageList',
-	'imagedesciption'     => 'Image description page',
+	'filelist'           => 'Special:FileList',
+	'filedescription'     => 'File description page',
 	'filerevert'          => 'File reversion',
 	'filedelete'          => 'File deletion',
 	'mimesearch'          => 'MIME search',
@@ -2967,7 +2967,7 @@ XHTML id names.",
 	'patrol-log'          => 'Patrol log',
 	'imagedeletion'       => 'Image deletion',
 	'browsediffs'         => 'Browsing diffs',
-	'newimages'           => 'Special:NewImages',
+	'newfiles'           => 'Special:NewFiles',
 	'video-info'          => 'Video information, used by Language::formatTimePeriod() to format lengths in the above messages',
 	'badimagelist'        => 'Bad image list',
 	'variantname-zh'      => "Short names for language variants used for language conversion links.
