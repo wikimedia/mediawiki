@@ -205,14 +205,18 @@ class Article {
 	 * @return Return the text of this revision
 	*/
 	public function getContent() {
-		global $wgUser, $wgOut, $wgMessageCache;
+		global $wgUser, $wgContLang, $wgOut, $wgMessageCache;
 		wfProfileIn( __METHOD__ );
 		if( $this->getID() === 0 ) {
 			# If this is a MediaWiki:x message, then load the messages
 			# and return the message value for x.
 			if( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
-				$wgMessageCache->loadAllMessages();
-				$text = wfMsgWeirdKey( $this->mTitle->getText() ) ;
+				# If this is a system message, get the default text.
+				list( $message, $lang ) = $wgMessageCache->figureMessage( $wgContLang->lcfirst( $this->mTitle->getText() ) );
+				$wgMessageCache->loadAllMessages( $lang );
+				$text = wfMsgGetKey( $message, false, $lang, false );
+				if( wfEmptyMsg( $message, $text ) )
+					$text = '';
 			} else {
 				$text = wfMsg( $wgUser->isLoggedIn() ? 'noarticletext' : 'noarticletextanon' );
 			}
