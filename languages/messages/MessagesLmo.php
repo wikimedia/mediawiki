@@ -346,14 +346,14 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 'sourcefilename'    => "Nomm da l'archivi surgeent:",
 'destfilename'      => "Nomm da l'archivi da destinazziun:",
 
-# Special:ImageList
+# Special:FileList
 'imgfile'        => 'archivi',
 'imagelist'      => 'Listá i imàgin',
 'imagelist_date' => 'Dada',
 'imagelist_name' => 'Nomm',
 'imagelist_user' => 'Dovratt',
 
-# Image description page
+# File description page
 'filehist-revert' => "Butar torna 'me ch'al era",
 'imagelinks'      => 'Ligámm',
 
@@ -573,7 +573,7 @@ Cheest-chí al pöö vess un canbi dràstegh e inaspetaa par una pàgina pupüla
 'imagemaxsize' => 'Limitá i imagin süi pagin da descrizziún dii imagin a:',
 'thumbsize'    => 'Dimensiún diapusitiif:',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages' => 'Espusizziun di imàgin nööf',
 'ilsubmit'  => 'Truvá',
 

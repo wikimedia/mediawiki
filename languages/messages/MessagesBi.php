@@ -89,7 +89,7 @@ $messages = array(
 # Preferences page
 'servertime' => 'Taem blong server',
 
-# Special:ImageList
+# Special:FileList
 'imagelist_name' => 'Nem',
 
 # Miscellaneous special pages
@@ -123,7 +123,7 @@ $messages = array(
 'tooltip-n-mainpage' => 'Go long Nambawan Pej',
 'tooltip-minoredit'  => 'Em i stap wan smol jenis',
 
-# Special:NewImages
+# Special:NewFiles
 'showhidebots' => '($1 bot)',
 
 # EXIF tags

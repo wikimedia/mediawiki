@@ -1201,7 +1201,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'upload_directory_read_only'  => '($1) директорияҕа сиэрбэр билэни суруйар кыаҕа суох.',
 'uploaderror'                 => 'Билэ суруллубата',
 'uploadtext'                  => "Бу форманы туһанан сиэрбэргэ билэлэри суруйуоххун сөп.
-Урут суруллубут билэлэри көрөргө манна тиий: [[Special:ImageList|ойуулар тиһиктэрэ]]. Билэлэри суруйуу уонна иккистээн суруйуу устуоруйата [[Special:Log/upload|манна]], сотуу устуоруйата [[Special:Log/delete|манна]] көстөллөр.
+Урут суруллубут билэлэри көрөргө манна тиий: [[Special:FileList|ойуулар тиһиктэрэ]]. Билэлэри суруйуу уонна иккистээн суруйуу устуоруйата [[Special:Log/upload|манна]], сотуу устуоруйата [[Special:Log/delete|манна]] көстөллөр.
 
 Ойууну ыстатыйаҕа киллэрэргэ маннык суруйуллар:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' ойуу хайдах баарынан (кыччаппакка)
@@ -1213,7 +1213,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'uploadlog'                   => 'уларытыы устуоруйата',
 'uploadlogpage'               => 'Уларытыы устуоруйата',
 'uploadlogpagetext'           => 'Манна бүтэһик уларытыылар тиһиктэрэ көстөр.
-Өссө [[Special:NewImages|саҥа билэлэр]] тиһиктэрин көрүөххүн сөп.',
+Өссө [[Special:NewFiles|саҥа билэлэр]] тиһиктэрин көрүөххүн сөп.',
 'filename'                    => 'Билэ аата',
 'filedesc'                    => 'Быһаарыы',
 'fileuploadsummary'           => 'Быһаарыы:',
@@ -1247,9 +1247,9 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'file-thumbnail-no'           => 'Билэ аата мантан саҕаланар <strong><tt>$1</tt></strong>. 
 Арааһа ойуу кыра куоппуйата быһыылаах <i>(миниатюра)</i>. 
 Бу ойуу толору барыйаана баар буоллаҕына ону манна суруй, эбэтэр аатын уларыт.',
-'fileexists-forbidden'        => 'Маннык ааттаах ойуу баар, төннөн атыннык ааттаа. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Маннык ааттаах ойуу баар, төннөн атыннык ааттаа. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Маннык ааттаах ойуу уопсай ыскылаакка баар эбит. 
-Ол да буоллар билэни киллэриэххин баҕарар буоллаххына төннөн атыннык ааттаа. [[Image:$1|thumb|center|$1]]',
+Ол да буоллар билэни киллэриэххин баҕарар буоллаххына төннөн атыннык ааттаа. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Бу билэ атын {{PLURAL:$1|билэ дубликаата|билэлэр дубликааттара}} буолар:',
 'file-deleted-duplicate'      => 'Маннык билэ ([[$1]]) урут сотуллубут эбит. Суруттарыаҥ иннинэ бастаан тоҕо сотуллубутун көр.',
 'successfulupload'            => 'Сатанна',
@@ -1308,7 +1308,7 @@ PICT # misc.
 'upload_source_url'  => ' (сөптөөх URL, ким баҕарбыт киирэр сирэ)',
 'upload_source_file' => ' (билэ компьютергар баар)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Бу анал сирэй киллэриллибит билэлэри барытын көрдөрөр.
 Соторутааҕыта киллэриллибиттэр үөһэ сылдьаллар.
 Колонка баһын баттаатаххына наардааһын бэрээдэгэ уларыйар.',
@@ -1321,7 +1321,7 @@ PICT # misc.
 'imagelist_size'        => 'Кээмэйэ',
 'imagelist_description' => 'Быһаарыыта',
 
-# Image description page
+# File description page
 'filehist'                       => 'Билэ устуоруйата',
 'filehist-help'                  => 'Ыйын-күнүн/кэмин баттаа, оччотооҕуга баар буолбут.',
 'filehist-deleteall'             => 'барытын сот',
@@ -2321,7 +2321,7 @@ $1',
 'show-big-image'       => 'Ойуу бэйэтин толору кээмэйэ',
 'show-big-image-thumb' => '<small>Хачайдыах иннинэ көрүү кээмэйэ: $1 × $2 пииксэл</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Саҥа билэлэр галереялара',
 'imagelisttext'         => "Манна {{PLURAL:$1|билэ|билэлэр}} испииһэктэрэ ('''$1''') көстөр, суортаммыт: $2.",
 'newimages-summary'     => 'Бу анал сирэй киллэриллибит билэлэр испииһэктэрин көрдөрөр.',

@@ -367,7 +367,7 @@ Ponderai per plaschair da divider quest artitgel en pli pitschnas parts. </stron
 'reupload'          => 'chargiar si danovamain',
 'reuploaddesc'      => 'Anavos tar la pagina da chargiar si.',
 'uploadnologintext' => "Ti stos [[Special:UserLogin|t'annunziar]] per chargiar si files.",
-'uploadtext'        => "Cun il formular sutvart pos ti chargiar si files, per vesair u tschertgar maletgs gia chargiads si, dovra [[Special:ImageList|quest link]]. I dat er ina [[Special:Log/upload|glista dals files chargiads si u stidads]].
+'uploadtext'        => "Cun il formular sutvart pos ti chargiar si files, per vesair u tschertgar maletgs gia chargiads si, dovra [[Special:FileList|quest link]]. I dat er ina [[Special:Log/upload|glista dals files chargiads si u stidads]].
 
 Per integrar il maletg/purtret en tes artitgel sas ti per exempel duvrar in dals suandants cumonds: 
 * '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:file.png]]</nowiki>'''
@@ -381,7 +381,7 @@ Per integrar il maletg/purtret en tes artitgel sas ti per exempel duvrar in dals
 'sourcefilename'    => 'file sin tes computer:',
 'destfilename'      => 'num dal file sin il server:',
 
-# Special:ImageList
+# Special:FileList
 'imagelist' => 'Glista dals maletgs',
 
 # MIME search
@@ -602,7 +602,7 @@ Fai ina visita sin [http://www.mediawiki.org/wiki/Localisation MediaWiki Localis
 'imagemaxsize' => 'Grondezza maximala per maletgs sin paginas da descripziun',
 'thumbsize'    => 'grondezza dals maletgs da prevista (thumbnails):',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages' => 'Novs maletgs',
 'ilsubmit'  => 'Tschertgar',
 'bydate'    => 'tenor data',

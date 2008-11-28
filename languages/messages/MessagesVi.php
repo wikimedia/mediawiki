@@ -1338,7 +1338,7 @@ Các trang trong [[Special:Watchlist|danh sách bạn theo dõi]] được '''t�
 'upload_directory_read_only'  => 'Máy chủ không thể sửa đổi thư mục tải lên ($1) được.',
 'uploaderror'                 => 'Lỗi khi tải lên',
 'uploadtext'                  => "Hãy sử dụng mẫu sau để tải tập tin lên.
-Để xem hoặc tìm kiếm những hình ảnh đã được tải lên trước đây, xin mời xem [[Special:ImageList|danh sách các tập tin đã tải lên]]. 
+Để xem hoặc tìm kiếm những hình ảnh đã được tải lên trước đây, xin mời xem [[Special:FileList|danh sách các tập tin đã tải lên]]. 
 việc tải lên và tải lên lại được ghi lại trong [[Special:Log/upload|nhật trình tải lên]],  việc xóa đi được ghi trong [[Special:Log/delete|nhật trình xóa]].
 
 Để đưa tập tin vào trang, hãy dùng liên kết có một trong các dạng sau:
@@ -1351,7 +1351,7 @@ việc tải lên và tải lên lại được ghi lại trong [[Special:Log/up
 'uploadlog'                   => 'nhật trình tải lên',
 'uploadlogpage'               => 'Nhật trình tải lên',
 'uploadlogpagetext'           => 'Dưới đây là danh sách các tập tin đã tải lên gần nhất.
-Xem [[Special:NewImages|trang trưng bày các tập tin mới]] để xem trực quan hơn.',
+Xem [[Special:NewFiles|trang trưng bày các tập tin mới]] để xem trực quan hơn.',
 'filename'                    => 'Tên tập tin:',
 'filedesc'                    => 'Miêu tả:',
 'fileuploadsummary'           => 'Tóm lược:',
@@ -1384,9 +1384,9 @@ Nếu tập tin được kiểm tra trùng với hình có kích cỡ gốc thì
 'file-thumbnail-no'           => 'Tên tập tin bắt đầu bằng <strong><tt>$1</tt></strong>.
 Có vẻ đây là bản thu nhỏ của hình gốc <i>(thumbnail)</i>.
 Nếu bạn có hình ở độ phân giải tối đa, xin hãy tải bản đó lên, nếu không xin hãy đổi lại tên tập tin.',
-'fileexists-forbidden'        => 'Đã có tập tin với tên gọi này; xin quay lại để tải tập tin này lên dưới tên khác. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Đã có tập tin với tên gọi này; xin quay lại để tải tập tin này lên dưới tên khác. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Một tập tin với tên này đã tồn tại ở kho tập tin dùng chung.
-Nếu bạn vẫn muốn tải tập tin của bạn lên, xin hãy quay lại và dùng một tên khác. [[Image:$1|thumb|center|$1]]',
+Nếu bạn vẫn muốn tải tập tin của bạn lên, xin hãy quay lại và dùng một tên khác. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Tập tin này có vẻ là bản sao của {{PLURAL:$1|tập tin|các  tập tin}} sau:',
 'file-deleted-duplicate'      => 'Một tập tin giống hệt như tập tin này ([[$1]]) đã từng bị xóa trước đây. Bạn nên xem lại lịch sử xóa tập tin trước khi tiếp tục tải nó lên lại.',
 'successfulupload'            => 'Đã tải xong',
@@ -1445,7 +1445,7 @@ Nếu vẫn còn bị lỗi, xin hãy liên hệ với một [[Special:ListUsers
 'upload_source_url'  => ' (địa chỉ URL đúng, có thể truy cập)',
 'upload_source_file' => ' (tập tin trên máy của bạn)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Trang đặc biệt này liệt kê các tập tin được tải lên.
 Theo mặc định, các tập tin mới nhất được xếp vào đầu danh sách.
 Hãy nhấn chuột vào tiêu đề cột để thay đổi thứ tự sắp xếp.',
@@ -1458,7 +1458,7 @@ Hãy nhấn chuột vào tiêu đề cột để thay đổi thứ tự sắp x�
 'imagelist_size'        => 'Kích cỡ',
 'imagelist_description' => 'Miêu tả',
 
-# Image description page
+# File description page
 'filehist'                       => 'Lịch sử tập tin',
 'filehist-help'                  => 'Nhấn vào một ngày/giờ để xem nội dung tập tin tại thời điểm đó.',
 'filehist-deleteall'             => 'xóa toàn bộ',
@@ -2456,7 +2456,7 @@ $1',
 'show-big-image'       => 'Độ phân giải tối đa',
 'show-big-image-thumb' => '<small>Kích thước xem thử: $1 × $2 điểm ảnh</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Trang trưng bày hình ảnh mới',
 'imagelisttext'         => "Dưới đây là danh sách '''$1''' {{PLURAL:$1|tập tin|tập tin}} xếp theo $2.",
 'newimages-summary'     => 'Trang đặc biệt này hiển thị các tập tin được tải lên gần đây nhất.',

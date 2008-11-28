@@ -1180,7 +1180,7 @@ Páginas que estejam em [[Special:Watchlist|sua lista de vigiados]] são exibida
 'upload_directory_read_only'  => 'O diretório de download de arquivos ($1) não tem permissões de escrita para o servidor Web.',
 'uploaderror'                 => 'Erro ao carregar',
 'uploadtext'                  => "Utilize o formulário abaixo para carregar novos arquivos.
-Para ver ou pesquisar imagens anteriormente carregadas consulte a [[Special:ImageList|lista de arquivos carregados]].
+Para ver ou pesquisar imagens anteriormente carregadas consulte a [[Special:FileList|lista de arquivos carregados]].
 Uploads e eliminações são também registadros no [[Special:Log|registro do projeto]].
 
 Para incluír a imagem em uma página, utilize o link na forma de
@@ -1224,8 +1224,8 @@ Por gentileza, escolha um nome diferente.',
 Se o arquivo enviado é o mesmo do de tamanho original, não é necessário enviar uma versão de miniatura adicional.',
 'file-thumbnail-no'           => 'O nome do arquivo começa com <strong><tt>$1</tt></strong>. Isso faz parecer se tratar de uma imagem de tamanho reduzido (<i>miniatura</i>, ou <i>thumbnail</i>).
 Por gentileza, se você tem acesso à imagem de tamanho completo, prefira envia-la no lugar desta. Caso não seja o caso, altere o nome de arquivo.',
-'fileexists-forbidden'        => 'Já existe um arquivo com este nome. Por favor, volte atrás e carregue este arquivo sob um novo nome. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Já existe um arquivo com este nome no repositório de arquivo partilhados. Por favor, volte atrás e carregue este arquivo sob um novo nome. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Já existe um arquivo com este nome. Por favor, volte atrás e carregue este arquivo sob um novo nome. [[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Já existe um arquivo com este nome no repositório de arquivo partilhados. Por favor, volte atrás e carregue este arquivo sob um novo nome. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Esta imagem é uma duplicata do seguinte {{PLURAL:$1|arquivo|arquivos}}:',
 'successfulupload'            => 'Envio efetuado com sucesso',
 'uploadwarning'               => 'Aviso de envio',
@@ -1281,7 +1281,7 @@ PICT # misc.
 'upload_source_url'  => ' (um URL válido, publicamente acessível)',
 'upload_source_file' => ' (um arquivo no seu computador)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Esta página especial mostra todos os arquivos carregados.
 Por padrão, os últimos arquivos carregados são mostrados no topo da lista.
 Um clique sobre um cabeçalho de coluna altera a ordenação.',
@@ -1294,7 +1294,7 @@ Um clique sobre um cabeçalho de coluna altera a ordenação.',
 'imagelist_size'        => 'Tamanho',
 'imagelist_description' => 'Descrição',
 
-# Image description page
+# File description page
 'filehist'                       => 'Histórico do arquivo',
 'filehist-help'                  => 'Clique em uma data/horário para ver o arquivo tal como ele se encontrava em tal momento.',
 'filehist-deleteall'             => 'eliminar todas',
@@ -2166,7 +2166,7 @@ $1',
 'show-big-image'       => 'Resolução completa',
 'show-big-image-thumb' => '<small>Tamanho desta previsão: $1 × $2 pixels</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Galeria de novos arquivos',
 'imagelisttext'         => "É exibida a seguir uma listagem {{PLURAL:$1|de '''um''' arquivo organizado|de '''$1''' arquivos organizados}} por $2.",
 'newimages-summary'     => 'Esta página especial mostra os arquivos mais recentemente enviados',

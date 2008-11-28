@@ -1151,7 +1151,7 @@ om lêers te laai.',
 [[{{MediaWiki:Copyrightpage}}|beleid oor prentgebruik]].
 
 Om prente wat voorheen gelaai is te sien of te soek, gaan na die
-[[Special:ImageList|lys van gelaaide prente]].
+[[Special:FileList|lys van gelaaide prente]].
 Laai van lêers en skrappings word aangeteken in die
 [[Special:Log/upload|laailog]].
 
@@ -1231,7 +1231,7 @@ Die verwyderingsinligting van die lêer word vir u gemak hier herhaal:",
 'upload_source_url'  => " ('n geldige, publiek toeganklike URL)",
 'upload_source_file' => " ('n lêer op u rekenaar)",
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Die spesiale bladsy wys al die opgelaaide lêers.
 Die nuutste lêer word eerste vertoon.
 Klik op die opskrifte om die tabel anders te sorteer.',
@@ -1244,7 +1244,7 @@ Klik op die opskrifte om die tabel anders te sorteer.',
 'imagelist_size'        => 'Grootte',
 'imagelist_description' => 'Beskrywing',
 
-# Image description page
+# File description page
 'filehist'                       => 'Lêergeskiedenis',
 'filehist-help'                  => 'Klik op die datum/tyd om te sien hoe die lêer destyds gelyk het.',
 'filehist-deleteall'             => 'verwyder alles',
@@ -2058,7 +2058,7 @@ $1',
 'show-big-image'       => 'Volle resolusie',
 'show-big-image-thumb' => '<small>Grootte van hierdie voorskou: $1 × $2 pixels</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Gallery van nuwe beelde',
 'imagelisttext'         => "Hier onder is a lys van '''$1''' {{PLURAL:$1|lêer|lêers}}, $2 gesorteer.",
 'newimages-summary'     => 'Die spesiale bladsy wys die nuutste lêers wat na die wiki opgelaai is.',

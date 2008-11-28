@@ -1145,7 +1145,7 @@ Wan du die mäd dät Thema uutkoanst, koast du sälwen ju [[:$1|Siede ferfoatje]
 'uploaderror'                 => 'Failer bie dät Hoochleeden',
 'uploadtext'                  => "Bruuk dit Formular uum näie Doatäie hoochtouleeden.
 
-Gung tou ju [[Special:ImageList|Lieste fon hoochleedene Doatäie]], uum foarhoundene Doatäie tou säiken un antouwiesen. Sjuch uk dät [[Special:Log/upload|Doatäi-]] un [[Special:Log/upload|Läsk-Logbouk]].
+Gung tou ju [[Special:FileList|Lieste fon hoochleedene Doatäie]], uum foarhoundene Doatäie tou säiken un antouwiesen. Sjuch uk dät [[Special:Log/upload|Doatäi-]] un [[Special:Log/upload|Läsk-Logbouk]].
 
 Klik ap '''„Truchsäike …“''', uum n Doatäiuutwoal-Dialog tou eepenjen.
 Ätter dän Uutwoal fon ne Doatäi wäd die Doatäinoome in dät Textfäild '''„Wäldoatäi“''' anwiesd.
@@ -1166,7 +1166,7 @@ Beoachtje, dät, juust as bie normoale Sieden-Inhoolde, uur Benutsere dien Doat�
 'upload-prohibited'           => 'Nit ferlööwede Doatäitypen: $1.',
 'uploadlog'                   => 'Doatäi-Logbouk',
 'uploadlogpage'               => 'Doatäi-Logbouk',
-'uploadlogpagetext'           => 'Dit is dät Logbouk fon do hoochleedene Doatäie, sjuch uk ju [[Special:NewImages|Galerie fon näie Doatäie]] foar n visuellen Uurblik.',
+'uploadlogpagetext'           => 'Dit is dät Logbouk fon do hoochleedene Doatäie, sjuch uk ju [[Special:NewFiles|Galerie fon näie Doatäie]] foar n visuellen Uurblik.',
 'filename'                    => 'Doatäinoome',
 'filedesc'                    => 'Beschrieuwenge, Wälle',
 'fileuploadsummary'           => 'Beschrieuwenge/Wälle:',
@@ -1201,9 +1201,9 @@ Wan et sik uum ju Bielde in Originoalgrööte honnelt, dan houget neen apaate Fo
 'file-thumbnail-no'           => 'Die Doatäinoome begint mäd <strong><tt>$1</tt></strong>. Dit tjut ap ne Bielde fon ferlitjerde Grööte <i>(thumbnail)</i> wai.
 Pröif, of du ju Bielde in fulle Aplöösenge foarlääsen hääst un leed ju unner dän Originoalnoome hooch. Uurs annerje dän Doatäinoome.',
 'fileexists-forbidden'        => 'Mäd dissen Noome bestoant al ne Doatäi.
-Gung jädden tourääch un leede dien Doatäi unner n uur Noome hooch. [[Image:$1|thumb|center|$1]]',
+Gung jädden tourääch un leede dien Doatäi unner n uur Noome hooch. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Mäd dissen Noome bestoant al ne Doatäi in dät zentroale Medienarchiv.
-Wan du ju Doatäi daach hoochleede moatest, gung dan tourääch un leed dien Doatäi unner n uur Noome hooch. [[Image:$1|thumb|center|$1]]',
+Wan du ju Doatäi daach hoochleede moatest, gung dan tourääch un leed dien Doatäi unner n uur Noome hooch. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Disse Doatäi is n Duplikoat fon foulgjende {{PLURAL:$1|Doatäi|$1 Doatäie}}:',
 'successfulupload'            => 'Mäd Ärfoulch hoochleeden',
 'uploadwarning'               => 'Woarschauenge',
@@ -1248,7 +1248,7 @@ Wan dät Problem fääre bestoant, informier n [[Special:ListUsers/sysop|System-
 'upload_source_url'  => ' (gultige, eepentelk tougongelke URL)',
 'upload_source_file' => ' (ne Doatäi ap Jou Computer)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Disse Spezialsiede liestet aal hoochleedene Doatäie ap. Standoardmäitich wäide do toulääst hoochleedene Doatäie toueerst anwiesd. Truch n Klik ap do Spaltenuurschrifte kon ju Sortierenge uumetroald wäide of der kon ätter ne uur Spalte sortierd wäide.',
 'imagelist_search_for'  => 'Säik ätter Doatäi:',
 'imgfile'               => 'Doatäi',
@@ -1259,7 +1259,7 @@ Wan dät Problem fääre bestoant, informier n [[Special:ListUsers/sysop|System-
 'imagelist_size'        => 'Grööte',
 'imagelist_description' => 'Beschrieuwenge',
 
-# Image description page
+# File description page
 'filehist'                       => 'Doatäiversione',
 'filehist-help'                  => 'Klik ap n Tiedpunkt, uum disse Version tou leeden.',
 'filehist-deleteall'             => 'Aal do Versione läskje',
@@ -2227,7 +2227,7 @@ $1',
 'show-big-image'       => 'Bielde in hooge Aplöösenge',
 'show-big-image-thumb' => '<small>Grööte fon disse Foarschau: $1 × $2 Pixel</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Näie Bielden',
 'imagelisttext'         => "Hier is ne Lieste fon '''$1''' {{PLURAL:$1|Doatäi|Doatäie}}, sortierd $2.",
 'newimages-summary'     => 'Disse Spezioalsiede wiest do toulääst hoochleedene Doatäie an.',

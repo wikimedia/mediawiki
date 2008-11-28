@@ -447,10 +447,10 @@ $messages = array(
 'uploadlogpage' => 'ચઢાવેલી ફાઇલોનું માહિતિ પત્રક',
 'filesource'    => 'સ્ત્રોત:',
 
-# Special:ImageList
+# Special:FileList
 'imagelist' => 'ફાઇલોની યાદી',
 
-# Image description page
+# File description page
 'filehist'                  => 'ફાઇલનો ઇતિહાસ',
 'filehist-help'             => 'તારિખ/સમય ઉપર ક્લિક કરવાથી તે સમયે ફાઇલ કેવી હતી તે જોવા મળશે',
 'filehist-current'          => 'વર્તમાન',
@@ -757,7 +757,7 @@ $messages = array(
 'show-big-image'       => 'મહત્તમ આવર્તન',
 'show-big-image-thumb' => '<small>આ પુર્વાવલોકનનું પરિમાણ: $1 × $2 પીક્સલ</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages' => 'નવી ફાઇલોની ઝાંખી',
 'noimages'  => 'જોવા માટે કશું નથી.',
 'ilsubmit'  => 'શોધો',

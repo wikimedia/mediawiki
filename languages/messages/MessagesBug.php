@@ -305,10 +305,10 @@ $messages = array(
 'upload'    => 'Lureng berkas',
 'uploadbtn' => 'Lureng berkas',
 
-# Special:ImageList
+# Special:FileList
 'imagelist_name' => 'Aseŋ',
 
-# Image description page
+# File description page
 'filehist-user'       => 'Papaké',
 'filehist-dimensions' => 'Dimensi',
 'imagelinks'          => 'Liŋke',
@@ -432,7 +432,7 @@ Eloko peddéï supaya weddiŋi mapalecé?',
 # Media information
 'imagemaxsize' => 'Gangkai rapang pada keterangan rapang ri halamang hingga:',
 
-# Special:NewImages
+# Special:NewFiles
 'ilsubmit' => 'Sappa',
 
 # 'all' in various places, this might be different for inflected languages

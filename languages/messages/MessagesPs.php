@@ -706,7 +706,7 @@ $messages = array(
 'uploadnologin'         => 'غونډال کې نه ياست ننوتي',
 'uploadnologintext'     => 'ددې لپاره چې دوتنې پورته کړای شۍ، تاسو ته پکار ده چې لومړی غونډال کې [[Special:UserLogin|ننوتنه]] ترسره کړی.',
 'uploaderror'           => 'د پورته کولو ستونزه',
-'uploadtext'            => "د دوتنو د پورته کولو لپاره د لانديني چوکاټ نه کار واخلۍ، که چېرته غواړۍ چې د پخوانيو پورته شوو انځورونو په اړه لټون وکړۍ او يا يې وکتلای شۍ نو بيا د [[Special:ImageList|پورته شوو دوتنو لړليک]] ته لاړ شی، د پورته شوو دوتنو او ړنګ شوو دوتنو يادښتونه په [[Special:Log/upload|پورته شوي يادښت]] کې کتلای شی.
+'uploadtext'            => "د دوتنو د پورته کولو لپاره د لانديني چوکاټ نه کار واخلۍ، که چېرته غواړۍ چې د پخوانيو پورته شوو انځورونو په اړه لټون وکړۍ او يا يې وکتلای شۍ نو بيا د [[Special:FileList|پورته شوو دوتنو لړليک]] ته لاړ شی، د پورته شوو دوتنو او ړنګ شوو دوتنو يادښتونه په [[Special:Log/upload|پورته شوي يادښت]] کې کتلای شی.
 
 ددې لپاره چې يوه مخ ته انځور ورواچوی، نو بيا پدې ډول تړن (لېنک) وکاروی
 '''<nowiki>[[</nowiki>Image:File.jpg<nowiki>]]</nowiki>''',
@@ -728,7 +728,7 @@ $messages = array(
 د پورته کېدونکې دوتنې نوم: <strong><tt>$1</tt></strong><br />
 د پخوا نه شته دوتنه: <strong><tt>$2</tt></strong><br />
 لطفاً يو داسې نوم وټاکی چې د پخوانۍ دوتنې سره توپير ولري.',
-'fileexists-forbidden'  => 'د پخوا نه پدې نوم يوه دوتنه شته؛ لطفاً بېرته وګرځۍ او همدغه دوتنه بيا په يوه نوي نوم پورته کړی. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'  => 'د پخوا نه پدې نوم يوه دوتنه شته؛ لطفاً بېرته وګرځۍ او همدغه دوتنه بيا په يوه نوي نوم پورته کړی. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate' => 'همدا دوتنه د {{PLURAL:$1|لاندينۍ دوتنې|لاندينيو دوتنو}} غبرګه لمېسه ده:',
 'savefile'              => 'دوتنه خوندي کړه',
 'uploadedimage'         => '"[[$1]]" پورته شوه',
@@ -743,7 +743,7 @@ $messages = array(
 'nolicense'          => 'هېڅ نه دي ټاکل شوي',
 'upload_source_file' => '(ستاسو په کمپيوټر کې يوه دوتنه)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist_search_for'  => 'د انځور د نوم لټون:',
 'imgfile'               => 'دوتنه',
 'imagelist'             => 'د دوتنو لړليک',
@@ -753,7 +753,7 @@ $messages = array(
 'imagelist_size'        => 'کچه (bytes)',
 'imagelist_description' => 'څرګندونه',
 
-# Image description page
+# File description page
 'filehist'                  => 'د دوتنې پېښليک',
 'filehist-help'             => 'په يوې نېټې/يوه وخت وټوکۍ چې د هماغه وخت او نېټې دوتنه چې په هماغه وخت کې څنګه ښکارېده هماغسې درښکاره شي.',
 'filehist-deleteall'        => 'ټول ړنګول',
@@ -1238,7 +1238,7 @@ $messages = array(
 'show-big-image'       => 'بشپړه بېلن نښې',
 'show-big-image-thumb' => '<small>د همدې مخکتنې کچه: $1 × $2 pixels</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'د نوو دوتنو نندارتون',
 'imagelisttext'         => "دلته لاندې د '''$1''' {{PLURAL:$1|دوتنه|دوتنې}} يو لړليک دی چې اوډل شوي $2.",
 'newimages-summary'     => 'همدا ځانګړی مخ، وروستنۍ پورته شوې دوتنې ښکاره کوي.',

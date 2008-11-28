@@ -815,7 +815,7 @@ Lapas, kas ir tavā [[Special:Watchlist|uzraugāmo rakstu sarakstā]] ir '''trek
 'uploadtext'             => "'''STOP!''' Pirms tu kaut ko augšupielādē, noteikti izlasi un ievēro [[Project:Attēlu izmantošanas noteikumi|attēlu izmantošanas noteikumus]].
 
 Lai aplūkotu vai meklētu agrāk augšuplādētus attēlus,
-dodies uz [[Special:ImageList|augšupielādēto attēlu sarakstu]].
+dodies uz [[Special:FileList|augšupielādēto attēlu sarakstu]].
 Augšupielādes un dzēšanas tiek reģistrētas [[Special:Log/upload|augšupielādes reģistrā]].
 
 Izmanto šo veidni, lai augšupielādētu jaunus attēlu failus, ar kuriem ilustrēt tevis izmainītās lapas.
@@ -866,7 +866,7 @@ Lūdzu, ņem vērā, ka tāpat kā citas wiki lapas arī tevis augšuplādētos 
 'file-thumbnail-no'      => 'Faila vārds sākas ar <strong><tt>$1</tt></strong>.
 Izskatās, ka šis ir samazināts attēls <i>(thumbnail)</i>.
 Ja tev ir šis pats attēls pilnā izmērā, augšuplādē to, ja nav, tad nomaini faila vārdu.',
-'fileexists-forbidden'   => 'Fails ar šādu nosaukumu jau eksistē, mēģini kādu citu nosaukumu. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'   => 'Fails ar šādu nosaukumu jau eksistē, mēģini kādu citu nosaukumu. [[File:$1|thumb|center|$1]]',
 'successfulupload'       => 'Augšupielāde veiksmīga',
 'uploadwarning'          => 'Augšupielādes brīdinājums',
 'savefile'               => 'Saglabāt failu',
@@ -892,7 +892,7 @@ Lūdzu izvēlies aprakstošāku vārdu šim failam.',
 
 'license' => 'Licence:',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Šajā lapā ir redzami visi augšuplādētie faili.
 Pēc noklusējuma, pēdējie ielādētie faili atrodas saraksta augšā.
 Uzklikšķinot uz kādas kolonnas virsraksta, var sakārtot pēc kāda cita parametra.',
@@ -905,7 +905,7 @@ Uzklikšķinot uz kādas kolonnas virsraksta, var sakārtot pēc kāda cita para
 'imagelist_size'        => 'Izmērs',
 'imagelist_description' => 'Apraksts',
 
-# Image description page
+# File description page
 'filehist'                  => 'Faila hronoloģija',
 'filehist-help'             => 'Uzklikšķini uz datums/laiks kolonnā esošās saites, lai apskatītos, kā šis fails izskatījās tad.',
 'filehist-deleteall'        => 'dzēst visus',
@@ -1555,7 +1555,7 @@ To visticamāk izraisīja ārēja saite uz melnajā sarakstā esošu interneta v
 'show-big-image'       => 'Pilnā izmērā',
 'show-big-image-thumb' => '<small>Šī priekšskata izmērs: $1 × $2 pikseļi</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Jauno attēlu galerija',
 'imagelisttext'         => 'Šobrīd redzams $1 {{PLURAL:$1|attēla|attēlu}} uzskaitījums, kas sakārtots $2.',
 'newimages-summary'     => 'Šeit var apskatīties pēdējos šeit augšuplādētos failus.',

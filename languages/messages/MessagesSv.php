@@ -1431,7 +1431,7 @@ Sidor på [[Special:Watchlist|din bevakningslista]] är markerade med '''fetstil
 'upload_directory_read_only'  => 'Webbservern kan inte skriva till uppladdningskatalogen ($1).',
 'uploaderror'                 => 'Fel vid uppladdningen',
 'uploadtext'                  => "Använd formuläret nedan för att ladda upp filer.
-För att titta på eller leta efter filer som redan har laddats upp, se [[Special:ImageList|listan över uppladdade filer]]. Uppladdningar loggförs även i [[Special:Log/upload|uppladdningsloggen]], och raderingar i [[Special:Log/delete|raderingsloggen]].
+För att titta på eller leta efter filer som redan har laddats upp, se [[Special:FileList|listan över uppladdade filer]]. Uppladdningar loggförs även i [[Special:Log/upload|uppladdningsloggen]], och raderingar i [[Special:Log/delete|raderingsloggen]].
 
 Använd en länk på något av följande format för att infoga en bild på en sida:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' för att visa bilden i dess hela storlek
@@ -1443,7 +1443,7 @@ Använd en länk på något av följande format för att infoga en bild på en s
 'uploadlog'                   => 'Uppladdningar',
 'uploadlogpage'               => 'Uppladdningslogg',
 'uploadlogpagetext'           => 'Det här är en logg över de senast uppladdade filerna.
-Se [[Special:NewImages|galleriet över nya filer]] för en mer visuell översikt.',
+Se [[Special:NewFiles|galleriet över nya filer]] för en mer visuell översikt.',
 'filename'                    => 'Filnamn',
 'filedesc'                    => 'Beskrivning',
 'fileuploadsummary'           => 'Beskrivning<br />och licens:',
@@ -1477,9 +1477,9 @@ Om det är samma fil i originalstorlek så är det inte nödvändigt att ladda u
 Det verkar vara en bild med förminskad storlek <i>(miniatyrbild)</i>.
 Om du har denna bild i full storlek, ladda då hellre upp den, annars var vänlig och ändra filens namn.',
 'fileexists-forbidden'        => 'Det finns redan en fil med detta namn.
-Om du ändå vill ladda upp din fil, gå då tillbaka och välj ett annat namn. [[Image:$1|thumb|center|$1]]',
+Om du ändå vill ladda upp din fil, gå då tillbaka och välj ett annat namn. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'En fil med detta namn finns redan bland de delade filerna.
-Om du ändå vill ladda upp din fil, gå då tillbaka och använd ett annat namn. [[Image:$1|thumb|center|$1]]',
+Om du ändå vill ladda upp din fil, gå då tillbaka och använd ett annat namn. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Den här filen är en dubblett till följande {{PLURAL:$1|fil|filer}}:',
 'file-deleted-duplicate'      => 'En identisk fil till den här filen ([[$1]]) har tidigare raderats. Du bör kontrollera den filens raderingshistorik innan du fortsätter att återuppladda den.',
 'successfulupload'            => 'Uppladdningen lyckades',
@@ -1539,7 +1539,7 @@ Om problemet kvarstår, kontakta en [[Special:ListUsers/sysop|administratör]].'
 'upload_source_url'  => ' (en giltig URL som är allmänt åtkomlig)',
 'upload_source_file' => ' (en fil på din dator)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Den här specialsidan visar alla filer som har laddats upp.
 Som standard visas de senast upladdade filerna högst upp i listan.
 Genom att klicka på rubrikerna för kolumnerna kan man ändra sorteringsordningen.',
@@ -1552,7 +1552,7 @@ Genom att klicka på rubrikerna för kolumnerna kan man ändra sorteringsordning
 'imagelist_size'        => 'Storlek (byte)',
 'imagelist_description' => 'Beskrivning',
 
-# Image description page
+# File description page
 'filehist'                       => 'Filhistorik',
 'filehist-help'                  => 'Klicka på ett datum/klockslag för att se filen som den såg ut då.',
 'filehist-deleteall'             => 'radera alla',
@@ -2546,7 +2546,7 @@ $1',
 'show-big-image'       => 'Högupplöst version',
 'show-big-image-thumb' => '<small>Storlek på förhandsvisningen: $1 × $2 pixel</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Galleri över nya filer',
 'imagelisttext'         => 'Nedan finns en lista med <strong>$1</strong> {{PLURAL:$1|bild|bilder}} sorterad <strong>$2</strong>.',
 'newimages-summary'     => 'Den här specialsidan visar de senast uppladdade filerna.',

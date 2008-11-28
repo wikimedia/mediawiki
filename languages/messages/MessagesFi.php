@@ -630,7 +630,7 @@ Sinun ei tarvitse huomioida tätä viestiä, jos tunnus on luotu virheellisesti.
 'resetpass_bad_temporary'   => 'Kelvoton väliaikaissalasana. Olet saattanut jo asettaa uuden salasanan tai pyytänyt uutta väliaikaissalasanaa.',
 'resetpass_forbidden'       => 'Salasanoja ei voi vaihtaa.',
 'resetpass_missing'         => 'Ei syötettä.',
-'resetpass-no-info'         => 'Sinun täytyy olla kirjautuneena sisään käyttääksesi tätä sivua.',
+'resetpass-no-info'         => 'Et voi nähdä tätä sivua kirjautumatta sisään.',
 'resetpass-submit-loggedin' => 'Muuta salasana',
 'resetpass-wrong-oldpass'   => 'Virheellinen väliaikainen tai nykyinen salasana.
 Olet saattanut jo onnistuneesti vaihtaa salasanasi tai pyytää uutta väliaikaista salasanaa.',
@@ -1286,7 +1286,7 @@ $1 | $2',
 'upload_directory_missing'    => 'Tallennushakemisto $1 puuttuu, eikä palvelin pysty luomaan sitä.',
 'upload_directory_read_only'  => 'Palvelimella ei ole kirjoitusoikeuksia tallennushakemistoon ”<tt>$1</tt>”.',
 'uploaderror'                 => 'Tallennusvirhe',
-'uploadtext'                  => "Voit tallentaa tiedostoja alla olevalla lomakkeella. [[Special:ImageList|Tiedostoluettelo]] sisältää listan tallennetuista tiedostoista. Tallennukset kirjataan myös [[Special:Log/upload|tallennuslokiin]], ja poistot [[Special:Log/delete|poistolokiin]].
+'uploadtext'                  => "Voit tallentaa tiedostoja alla olevalla lomakkeella. [[Special:FileList|Tiedostoluettelo]] sisältää listan tallennetuista tiedostoista. Tallennukset kirjataan myös [[Special:Log/upload|tallennuslokiin]], ja poistot [[Special:Log/delete|poistolokiin]].
 
 Voit käyttää tiedostoja wikisivuilla seuraavilla tavoilla:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Tiedosto.jpg]]</nowiki></tt>''', käyttääksesi tiedoston täyttä versiota.
@@ -1327,8 +1327,8 @@ Ainoa ero on tiedostopäätteen kirjainkoko. Tarkista ovatko tiedostot identtisi
 Jos yllä oleva tiedosto on alkuperäisversio samasta kuvasta, ei sille tarvi tallentaa pienoiskuvaa.',
 'file-thumbnail-no'           => 'Tiedostonimi alkaa merkkijonolla <strong><tt>$1</tt></strong>. Tiedosto näyttäisi olevan pienennetty kuva <i>(pienoiskuva)</i>.
 Jos sinulla on tämän kuvan alkuperäinen versio, tallenna se. Muussa tapauksessa nimeä tiedosto uudelleen.',
-'fileexists-forbidden'        => 'Samanniminen tiedosto on jo olemassa. Tallenna tiedosto jollakin toisella nimellä. Nykyinen tiedosto: [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Samanniminen tiedosto on jo olemassa jaetussa mediavarastossa. Tallenna tiedosto jollakin toisella nimellä. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Samanniminen tiedosto on jo olemassa. Tallenna tiedosto jollakin toisella nimellä. Nykyinen tiedosto: [[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Samanniminen tiedosto on jo olemassa jaetussa mediavarastossa. Tallenna tiedosto jollakin toisella nimellä. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Tämä tiedosto on kaksoiskappale {{PLURAL:$1|seuraavasta tiedostosta|seuraavista tiedostoista}}:',
 'file-deleted-duplicate'      => 'Tiedosto, joka on identtinen tämän tiedoston kanssa ([[$1]]) on aiemmin poistettu. Katso kyseisen tiedoston poistoloki ennen kuin jatkat uudelleentallentamista.',
 'successfulupload'            => 'Tallennus onnistui',
@@ -1370,7 +1370,7 @@ Harkitse, haluatko jatkaa tämän tiedoston tallentamista. Tiedoston poistoloki 
 'upload_source_url'  => ' (julkinen verkko-osoite)',
 'upload_source_file' => ' (tiedosto tietokoneella)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Tämä toimintosivu näyttää kaikki tallennetut tiedostot. Viimeisin tallennettu tiedosto on listalla ensimmäisenä. Ryhmittelyperustetta voi vaihtaa napsauttamalla sarakenimeä.',
 'imagelist_search_for'  => 'Nimihaku',
 'imgfile'               => 'tiedosto',
@@ -1381,7 +1381,7 @@ Harkitse, haluatko jatkaa tämän tiedoston tallentamista. Tiedoston poistoloki 
 'imagelist_size'        => 'Koko',
 'imagelist_description' => 'Kuvaus',
 
-# Image description page
+# File description page
 'filehist'                       => 'Tiedoston historia',
 'filehist-help'                  => 'Päiväystä napsauttamalla näet millainen tiedosto oli sillä ajan hetkellä.',
 'filehist-deleteall'             => 'poista kaikki',
@@ -2341,7 +2341,7 @@ $1',
 'show-big-image'       => 'Korkeatarkkuuksinen versio',
 'show-big-image-thumb' => '<small>Esikatselun koko: $1×$2 px</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Uudet tiedostot',
 'imagelisttext'         => 'Alla on {{PLURAL:$1|1 tiedosto|$1 tiedostoa}} lajiteltuna <strong>$2</strong>.',
 'newimages-summary'     => 'Tällä toimintosivulla on viimeisimmät tallennetut tiedostot.',

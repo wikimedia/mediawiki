@@ -1319,7 +1319,7 @@ terlebih dahulu untuk memuat naik fail.',
 'upload_directory_missing'    => 'Direktori muat naik ($1) hilang dan tidak dapat dicipta oleh pelayan web.',
 'upload_directory_read_only'  => 'Direktori muat naik ($1) tidak boleh ditulis oleh pelayan web.',
 'uploaderror'                 => 'Ralat muat naik',
-'uploadtext'                  => "Gunakan borang di bawah untuk memuat naik fail. Untuk melihat atau mencari imej yang sudah dimuat naik, sila ke [[Special:ImageList|senarai fail yang dimuat naik]]. Muat naik dan penghapusan akan direkodkan dalam [[Special:Log/upload|log muat naik]].
+'uploadtext'                  => "Gunakan borang di bawah untuk memuat naik fail. Untuk melihat atau mencari imej yang sudah dimuat naik, sila ke [[Special:FileList|senarai fail yang dimuat naik]]. Muat naik dan penghapusan akan direkodkan dalam [[Special:Log/upload|log muat naik]].
 
 Untuk menyertakan imej tersebut dalam sesebuah laman, sila masukkan teks
 '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fail.jpg]]</nowiki>''' atau
@@ -1360,8 +1360,8 @@ Sila pilih nama lain.',
 Jika fail yang disemak itu adalah sama dengan yang saiz asal, maka anda tidak perlu memuat naik imej ringkas tambahan.',
 'file-thumbnail-no'           => 'Nama fail ini bermula dengan <strong><tt>$1</tt></strong>. Barangkali ia adalah sebuah imej yang telah dikecilkan <i>(imej ringkas)</i>.
 Jika anda memiliki imej ini dalam leraian penuh, sila muat naik fail tersebut. Sebaliknya, sila tukar nama fail ini.',
-'fileexists-forbidden'        => 'Sebuah fail dengan nama ini telah pun wujud. Sila berundur dan muat naik fail ini dengan nama lain. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Sebuah fail dengan nama ini telah pun wujud dalam gedung fail kongsi. Jika anda masih mahu memuat naik fail ini, sila kembali ke borang muat naik dan gunakan nama lain. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Sebuah fail dengan nama ini telah pun wujud. Sila berundur dan muat naik fail ini dengan nama lain. [[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Sebuah fail dengan nama ini telah pun wujud dalam gedung fail kongsi. Jika anda masih mahu memuat naik fail ini, sila kembali ke borang muat naik dan gunakan nama lain. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Fail ini adalah salinan bagi {{PLURAL:$1|fail|fail-fail}} berikut:',
 'file-deleted-duplicate'      => 'Sebuah fail yang serupa dengan fail ini ([[$1]]) telah pun dihapuskan sebelum ini. Anda seharusnya memeriksa sejarah penghapusan fail itu terlebih dahulu sebelum memuat naiknya sekali lagi.',
 'successfulupload'            => 'Muat naik berjaya',
@@ -1404,7 +1404,7 @@ Untuk rujukan, berikut ialah log penghapusan bagi fail ini:",
 'upload_source_url'  => ' (URL yang boleh diakses oleh orang awam)',
 'upload_source_file' => ' (fail dalam komputer anda)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Laman khas ini memaparkan senarai fail yang telah dimuat naik.
 Klik di atas mana-mana lajur yang berkenaan untuk menukar tertib susunan.',
 'imagelist_search_for'  => 'Cari nama imej:',
@@ -1416,7 +1416,7 @@ Klik di atas mana-mana lajur yang berkenaan untuk menukar tertib susunan.',
 'imagelist_size'        => 'Saiz',
 'imagelist_description' => 'Huraian',
 
-# Image description page
+# File description page
 'filehist'                       => 'Sejarah fail',
 'filehist-help'                  => 'Klik pada tarikh/waktu untuk melihat rupa fail tersebut pada waktu silam.',
 'filehist-deleteall'             => 'hapuskan semua',
@@ -2413,7 +2413,7 @@ $1',
 'show-big-image'       => 'Leraian penuh',
 'show-big-image-thumb' => '<small>Saiz pratonton ini: $1 × $2 piksel</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Galeri fail baru',
 'imagelisttext'         => "Berikut ialah senarai bagi '''$1''' fail yang disusun secara $2.",
 'newimages-summary'     => 'Laman khas ini memaparkan senarai fail muat naik terakhir.',

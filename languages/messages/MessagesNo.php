@@ -1304,7 +1304,7 @@ Sider som også er på din [[Special:Watchlist|overvåkningsliste]] vises i '''f
 'upload_directory_read_only'  => 'Opplastingsmappa ($1) er ikke skrivbar for tjeneren.',
 'uploaderror'                 => 'Feil under opplasting av fil',
 'uploadtext'                  => "Bruk skjemaet nedenfor for å laste opp filer.
-For å se eller søke i eksisterende filer, gå til [[Special:ImageList|listen over filer]]. Opplastinger lagres også i [[Special:Log/upload|opplastingsloggen]].
+For å se eller søke i eksisterende filer, gå til [[Special:FileList|listen over filer]]. Opplastinger lagres også i [[Special:Log/upload|opplastingsloggen]].
 
 For å inkludere en fil på en side, bruk en slik lenke:
 *'''<tt><nowiki>[[</nowiki>{{ns:file}}:Filnavn.jpg<nowiki>]]</nowiki></tt>''' for å bruke bildet i opprinnelig form
@@ -1316,7 +1316,7 @@ For å inkludere en fil på en side, bruk en slik lenke:
 'uploadlog'                   => 'opplastingslogg',
 'uploadlogpage'               => 'Opplastingslogg',
 'uploadlogpagetext'           => 'Her er en liste over de siste opplastede filene.
-Se [[Special:NewImages|galleriet over nye filer]] for en mer visuell visning',
+Se [[Special:NewFiles|galleriet over nye filer]] for en mer visuell visning',
 'filename'                    => 'Filnavn',
 'filedesc'                    => 'Beskrivelse',
 'fileuploadsummary'           => 'Beskrivelse:',
@@ -1349,9 +1349,9 @@ Om filen du sjekket er det samme bildet, men i opprinnelig størrelse, er det ik
 'file-thumbnail-no'           => 'Filnavnet begynner med <strong><tt>$1</tt></strong>.
 Det virker som om det er et bilde av redusert størrelse <i>(miniatyrbilde)</i>.
 Om du har dette bildet i stor utgave, last opp det, eller endre filnavnet på denne filen.',
-'fileexists-forbidden'        => 'En fil med dette navnet finnes fra før; gå tilbake og last opp filen under et nytt navn. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'En fil med dette navnet finnes fra før; gå tilbake og last opp filen under et nytt navn. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Ei fil med dette navnet finnes fra før i det delte fillageret.
-Om du fortsatt ønsker å laste opp fila, gå tilbake og last den opp under et nytt navn. [[Image:$1|thumb|center|$1]]',
+Om du fortsatt ønsker å laste opp fila, gå tilbake og last den opp under et nytt navn. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Denne filen er en dublett av følgende {{PLURAL:$1|fil|filer}}:',
 'file-deleted-duplicate'      => 'En fil identisk med denne filen ([[$1]]) har tidligere blitt slettet. Du bør sjekke denne filens slettehistorikk før du prøver å laste den opp på nytt.',
 'successfulupload'            => 'Opplastingen er gjennomført',
@@ -1409,7 +1409,7 @@ Om problemet fortsetter, kontakt en [[Special:ListUsers/sysop|administrator]].',
 'upload_source_url'  => ' (en gyldig, offentlig tilgjengelig adresse)',
 'upload_source_file' => ' (en fil på din datamaskin)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Denne spesialsiden viser alle opplastede filer. De sist opplastede filene vises på toppen som standard. Klikk på en kolonneoverskrift for å endre sorteringsmetode.',
 'imagelist_search_for'  => 'Søk etter filnavn:',
 'imgfile'               => 'fil',
@@ -1420,7 +1420,7 @@ Om problemet fortsetter, kontakt en [[Special:ListUsers/sysop|administrator]].',
 'imagelist_size'        => 'Størrelse (bytes)',
 'imagelist_description' => 'Beskrivelse',
 
-# Image description page
+# File description page
 'filehist'                       => 'Filhistorikk',
 'filehist-help'                  => 'Klikk på en dato/klokkeslett for å se filen slik den var på den tiden.',
 'filehist-deleteall'             => 'slett alt',
@@ -2406,7 +2406,7 @@ $1',
 'show-big-image'       => 'Full oppløsning',
 'show-big-image-thumb' => '<small>Størrelse på denne forhåndsvisningen: $1 × $2 piksler</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Galleri over nye filer',
 'imagelisttext'         => "Dete er en liste med '''$1''' {{PLURAL:$1|fil|filer}} sortert $2.",
 'newimages-summary'     => 'Denne spesialsiden viser de sist opplastede filene.',

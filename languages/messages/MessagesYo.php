@@ -592,12 +592,12 @@ Bákannà ẹ tún ṣèlérí fún wa wípé ẹ̀yin lẹkọ́ fúnra arayín
 'minlength1'        => 'Ó kéréjù àwọn orúkọ faili gbọdọ̀ jẹ́ lẹ́tà kan.',
 'uploadedimage'     => 'ti ru "[[$1]]" s\'ókè',
 
-# Special:ImageList
+# Special:FileList
 'imagelist'      => 'Àkójọ faili',
 'imagelist_name' => 'Orúkọ',
 'imagelist_user' => 'Oníṣe',
 
-# Image description page
+# File description page
 'filehist'                  => 'Ìtàn faili',
 'filehist-help'             => 'Ẹ kan ọjọ́/àsìkò kan láti wo faili òún bó ṣe hàn ní ìgbà na.',
 'filehist-current'          => 'lọ́wọ́',
@@ -898,7 +898,7 @@ Bí a ṣe to ojúewé <strong>$1</strong> nì yí:",
 'show-big-image'       => 'Pẹ̀lú ìgbéhàn gíga',
 'show-big-image-thumb' => '<small>Ìtóbi àyẹ̀wò yìí: $1 × $2 pixels</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages' => 'Ọ̀dẹ̀dẹ̀ àwòrán àwọn faili tuntun',
 
 # Metadata

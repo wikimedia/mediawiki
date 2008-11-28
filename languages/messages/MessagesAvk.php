@@ -991,7 +991,7 @@ Bu koe [[Special:Watchlist|rinafi suzdasiki]] tid '''vastaakorafu'''.",
 'upload_directory_read_only'  => 'Sutera ko kalvajarabonja ($1) gan web zanisiko zo pour.',
 'uploaderror'                 => 'Rokla',
 'uploadtext'                  => "Ta iyeltakkalvajara, va vlevefi tazukasiki favel.
-Ta wira va kalvajayan iyeltak oku aneyara, ko [[Special:ImageList|vexala dem kalvajayan iyeltak]] grablel, kalvajaks is sulaks \"log\" tid koe [[Special:Log/upload|kalvajara \"log\"]].
+Ta wira va kalvajayan iyeltak oku aneyara, ko [[Special:FileList|vexala dem kalvajayan iyeltak]] grablel, kalvajaks is sulaks \"log\" tid koe [[Special:Log/upload|kalvajara \"log\"]].
 
 Ta kobura va iyeltak, koe tazukasiki va gluyasiki favel
 '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki>''',
@@ -1031,8 +1031,8 @@ Va amidaf yolt vay kiblal !',
 'fileexists-thumb'            => "<center>'''Kruldes iyeltak'''</center>",
 'fileexists-thumbnail-yes'    => 'Iyeltak nuvelar da tir lumamafa ewava <i>(aluk)</i>. Vay va <strong><tt>$1</tt></strong> iyeltak stujel.<br />
 Ede stujen iyeltak tir mila lumanhafa ewava, va aptaf aluk me kalvajal !',
-'fileexists-forbidden'        => 'Milyoltaf iyeltak ixam krulder; vay dimpil aze va memilyoltaf bat iyeltak kalvajal. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Koe pakana bonja milyoltaf iyeltak ixam tir; vay dimpil aze kan ar yolt va bat iyeltak kalvajal. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Milyoltaf iyeltak ixam krulder; vay dimpil aze va memilyoltaf bat iyeltak kalvajal. [[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Koe pakana bonja milyoltaf iyeltak ixam tir; vay dimpil aze kan ar yolt va bat iyeltak kalvajal. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Bat iyeltak tir jontolaca ke {{PLURAL:$1|iyeltak|iyeltak}}:',
 'successfulupload'            => 'Ksudanhara',
 'uploadwarning'               => 'Obral !',
@@ -1069,7 +1069,7 @@ Sulara \"log\" va batu bu krafiason batlize zo nedir :",
 'upload_source_url'  => ' (enafe sanegon rovansane URL mane)',
 'upload_source_file' => ' (iyeltak koe rinafo vusiko)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist_search_for'  => 'Aneyara va ewavayolt :',
 'imgfile'               => 'iyeltak',
 'imagelist'             => 'Ewavavexala',
@@ -1079,7 +1079,7 @@ Sulara \"log\" va batu bu krafiason batlize zo nedir :",
 'imagelist_size'        => 'Lum',
 'imagelist_description' => 'Pimtara',
 
-# Image description page
+# File description page
 'filehist'                       => 'Iyeltakizvot',
 'filehist-help'                  => 'Ta da va iyeltak wil dum in batoulon awir va evla/bartiv vulegal !',
 'filehist-deleteall'             => 'Sulara va kotcoba',
@@ -1879,7 +1879,7 @@ $1',
 'show-big-image'       => 'Geltraf lum',
 'show-big-image-thumb' => '<small>Lum ke bata abdinedira : $1 × $2 pixels</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Warzaf ewaviyeltak yo',
 'imagelisttext'         => "Tir vexala dem '''$1''' {{PLURAL:$1|iyeltak|iyeltak}} $2 pulana.",
 'newimages-summary'     => 'Batu aptafu bu va ironokaf kalvajayan iyeltakeem nedir.',

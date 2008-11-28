@@ -1372,7 +1372,7 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 'upload_directory_read_only'  => 'Le serveur Web ne peut écrire dans le dossier cible ($1).',
 'uploaderror'                 => 'Erreur',
 'uploadtext'                  => "Utilisez ce formulaire pour importer des fichiers sur le serveur.
-Pour voir ou rechercher des images précédemment envoyées, consultez la [[Special:ImageList|liste des images]]. Les imports sont aussi enregistrés dans l’[[Special:Log/upload|historique des imports]], les suppressions dans l’[[Special:Log/delete|historique des suppressions]].
+Pour voir ou rechercher des images précédemment envoyées, consultez la [[Special:FileList|liste des images]]. Les imports sont aussi enregistrés dans l’[[Special:Log/upload|historique des imports]], les suppressions dans l’[[Special:Log/delete|historique des suppressions]].
 
 Pour inclure une image dans une page, utilisez un lien de la forme :
 * '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:fichier.jpg]]</nowiki></code>''' pour afficher le fichier en pleine résolution ;
@@ -1384,7 +1384,7 @@ Pour inclure une image dans une page, utilisez un lien de la forme :
 'uploadlog'                   => 'Historique des imports',
 'uploadlogpage'               => 'Historique des imports de fichiers multimédia',
 'uploadlogpagetext'           => 'Voici la liste des derniers fichiers importés sur le serveur.
-Voyez la [[Special:NewImages|gallerie des nouvelles images]] pour une présentation plus visuelle.',
+Voyez la [[Special:NewFiles|gallerie des nouvelles images]] pour une présentation plus visuelle.',
 'filename'                    => 'Nom du fichier',
 'filedesc'                    => 'Description',
 'fileuploadsummary'           => 'Description :',
@@ -1417,9 +1417,9 @@ Si le fichier vérifié est la même image (dans une meilleure résolution), il 
 'file-thumbnail-no'           => 'Le nom du fichier commence par <strong><tt>$1</tt></strong>.
 Il est possible qu’il s’agisse d’une version réduite <i>(vignette)</i>.
 Si vous disposez du fichier en haute résolution, importez-le, sinon changez-lui son nom.',
-'fileexists-forbidden'        => 'Un fichier avec ce nom existe déjà ; merci de retourner en arrière et de copier le fichier sous un nouveau nom. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Un fichier avec ce nom existe déjà ; merci de retourner en arrière et de copier le fichier sous un nouveau nom. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Un fichier portant le même nom existe déjà dans la base de données commune.
-Si vous voulez encore l’importer, veuillez revenir en arrière et l’importer sous un autre nom. [[Image:$1|thumb|center|$1]]',
+Si vous voulez encore l’importer, veuillez revenir en arrière et l’importer sous un autre nom. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Ce fichier est un doublon {{PLURAL:$1|du fichier suivant|des fichiers suivants}} :',
 'file-deleted-duplicate'      => 'Un fichier identique à celui-ci ([[$1]]) a déjà été supprimé. Vous devriez vérifier le journal des suppressions de ce fichier avant de le re-télécharger.',
 'successfulupload'            => 'Import réussi',
@@ -1478,7 +1478,7 @@ Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]
 'upload_source_url'  => ' (une URL valide et accessible publiquement)',
 'upload_source_file' => ' (un fichier sur votre ordinateur)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Cette page spéciale montre tous les fichiers importés.
 Par défaut, les derniers fichiers importés sont affichés en haut de la liste.
 Un clic en tête de colonne change l’ordre d’affichage.',
@@ -1491,7 +1491,7 @@ Un clic en tête de colonne change l’ordre d’affichage.',
 'imagelist_size'        => 'Octets',
 'imagelist_description' => 'Description',
 
-# Image description page
+# File description page
 'filehist'                       => 'Historique du fichier',
 'filehist-help'                  => 'Cliquer sur une date et une heure pour voir le fichier tel qu’il était à ce moment-là',
 'filehist-deleteall'             => 'tout supprimer',
@@ -2494,7 +2494,7 @@ $1',
 'show-big-image'       => 'Image en plus haute résolution',
 'show-big-image-thumb' => '<small>Taille de cet aperçu : $1 × $2 pixels</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Galerie des nouveaux fichiers',
 'imagelisttext'         => "Voici une liste de '''$1''' {{PLURAL:$1|fichier|fichiers}} classée $2.",
 'newimages-summary'     => 'Cette page spéciale affiche les derniers fichiers importés.',

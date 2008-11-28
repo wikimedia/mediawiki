@@ -760,7 +760,7 @@ Informacion: (curt) = quiíxde vercion currentua,
 'nolicense'         => 'Seleccion coccebj hun',
 'license-nopreview' => '(Necuáxiit)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist_search_for'  => 'Yahöxde IDde ciúchan:',
 'imgfile'               => 'ciúchan',
 'imagelist'             => 'Listade ciúchán',
@@ -770,7 +770,7 @@ Informacion: (curt) = quiíxde vercion currentua,
 'imagelist_size'        => 'Bajlip',
 'imagelist_description' => 'Discripcion',
 
-# Image description page
+# File description page
 'filehist'                  => 'Historiade ciúchan',
 'filehist-deleteall'        => 'delatom jömde man',
 'filehist-deleteone'        => 'delatom jande man',
@@ -1061,7 +1061,7 @@ iitom e-iitomde diijömde caitóm.',
 # Media information
 'widthheightpage' => '$1×$2, $3 páhinám',
 
-# Special:NewImages
+# Special:NewFiles
 'showhidebots' => '($1 botám)',
 'ilsubmit'     => 'Yahöx',
 'bydate'       => 'de datum',

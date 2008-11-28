@@ -966,7 +966,7 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} rigisthru di ca
 'upload_directory_read_only'  => "L'elaburaddori sivvidori nò è bonu à ischribì i' la carthella di carriggamentu ($1).",
 'uploaderror'                 => "Errori i' lu carriggamentu",
 'uploadtext'                  => "Usà lu mòdulu in giossu pà carriggà file.
-Pà visuarizzà o zirchà li file già carriggaddi, cunsulthà  lu [[Special:ImageList|rigisthru di li file carriggaddi]]. Carriggamenti e ischarriggamenti di file so registhraddi i' lu  [[Special:Log/upload|rigisthru di li carriggamenti]].
+Pà visuarizzà o zirchà li file già carriggaddi, cunsulthà  lu [[Special:FileList|rigisthru di li file carriggaddi]]. Carriggamenti e ischarriggamenti di file so registhraddi i' lu  [[Special:Log/upload|rigisthru di li carriggamenti]].
 
 Pa insirì un'immàgina i'na pàgina, fà un cullegamentu cussì:
 '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki>''' ,
@@ -1007,8 +1007,8 @@ Verifiggà ch'i dui file nò siani lu matessi o sciubarà un'innòmmu diffarènt
 S'è la matessi immàgina, i' li misuri originari, nò è nezzessàriu carriggà althri antiprimmi.",
 'file-thumbnail-no'           => "L'innòmmu di lu file ischumenza cun <strong><tt>$1</tt></strong>. Pari assé lu risulthaddu d'un'antiprimma <i>(thumbnail)</i>.
 Si si diponi di l'immàgina i' la risoruzioni originari, pa piazeri carriggalla. A l'invessu, pa piazeri ciambà l'innòmmu di lu file.",
-'fileexists-forbidden'        => "Un file cun chisthu innòmmu isisthi già. Turrà indareddu e mudìfiggà l'innòmmu cu' lu quari carriggà lu file. [[Image:$1|thumb|center|$1]]",
-'fileexists-shared-forbidden' => "Un file cun chisthu innòmmu isisthi già i l'archìbiu di li risuzzi mùrthimediari cundibisi. Turrà indareddu e mudìfiggà l'innòmmu cu' lu quari carriggà lu file. [[Image:$1|thumb|center|$1]]",
+'fileexists-forbidden'        => "Un file cun chisthu innòmmu isisthi già. Turrà indareddu e mudìfiggà l'innòmmu cu' lu quari carriggà lu file. [[File:$1|thumb|center|$1]]",
+'fileexists-shared-forbidden' => "Un file cun chisthu innòmmu isisthi già i l'archìbiu di li risuzzi mùrthimediari cundibisi. Turrà indareddu e mudìfiggà l'innòmmu cu' lu quari carriggà lu file. [[File:$1|thumb|center|$1]]",
 'successfulupload'            => 'Carriggamentu cumpritaddu',
 'uploadwarning'               => 'Avvisu di carriggamentu',
 'savefile'                    => 'Sàivva file',
@@ -1047,7 +1047,7 @@ Pa piazeri verifigga si vói carriggà avveru chisthu file; inogghi v'è lu rigi
 'upload_source_url'  => " (un'indirizzu vàriddu e pùbbriggu)",
 'upload_source_file' => " (un file i' lu propriu elaburaddori)",
 
-# Special:ImageList
+# Special:FileList
 'imagelist_search_for'  => 'Zercha immàgini pa innòmu:',
 'imgfile'               => 'file',
 'imagelist'             => 'Listha di li file',
@@ -1057,7 +1057,7 @@ Pa piazeri verifigga si vói carriggà avveru chisthu file; inogghi v'è lu rigi
 'imagelist_size'        => 'Misuri in byte',
 'imagelist_description' => 'Deschrizioni',
 
-# Image description page
+# File description page
 'filehist'                  => 'Cronologia di lu file',
 'filehist-help'             => "Fà clic i' un gruppu data/ora pa vidé lu file cumenti era i' lu mamentu indicaddu.",
 'filehist-deleteall'        => 'canzella tuttu',
@@ -1821,7 +1821,7 @@ $1",
 'show-big-image'       => 'Versioni a altha risoruzioni',
 'show-big-image-thumb' => "<small>Misuri di chisth'antiprimma: $1 × $2 punti</small>",
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Galleria di li file nobi',
 'imagelisttext'         => "Inogghi una listha di '''$1''' {{PLURAL:$1|file|file}} ordhinaddi pa $2.",
 'showhidebots'          => '($1 li bot)',

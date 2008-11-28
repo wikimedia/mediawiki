@@ -679,14 +679,14 @@ Tlahcuilōlli iuhcāyōtl {{PLURAL:\$3|moēlēhuia cah|moēlēhuiah cateh}} \$2.
 
 'upload_source_file' => ' (cē tlahcuilōlli mochīuhpōhualhuazco)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist_search_for' => 'Tlatēmōz mēdiatl tōcācopa:',
 'imgfile'              => 'īxiptli',
 'imagelist'            => 'Mochīntīn īxiptli',
 'imagelist_name'       => 'Tōcāitl',
 'imagelist_user'       => 'Tlatequitiltilīlli',
 
-# Image description page
+# File description page
 'filehist'                       => 'Tlahcuilōlli tlahcuilōlloh',
 'filehist-deleteall'             => 'tiquimpolōz mochīntīn',
 'filehist-deleteone'             => 'ticpolōz',
@@ -1073,7 +1073,7 @@ Xiquitta $2 ic yancuīc tlapololiztli.',
 'file-nohires'    => '<small>Ahmo ia achi cualli ahmo occē īxiptli.</small>',
 'show-big-image'  => 'Mochi cuallōtl',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'     => 'Yancuīc īxipcān',
 'imagelisttext' => "Nicān {{PLURAL:$1|mopiya|mopiyah}} '''$1''' īxiptli $2 iuhcopa.",
 'showhidebots'  => '($1 tepoztlācah)',

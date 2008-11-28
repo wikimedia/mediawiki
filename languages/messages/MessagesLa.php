@@ -955,7 +955,7 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'uploadnologintext'  => 'Oportet [[Special:UserLogin|aperire conventum]] ut fasciculos imponas.',
 'uploaderror'        => 'Imponendi erratum',
 'uploadtext'         => "Utere formam subter ad fasciculos imponendos.
-Ut fasciculos antea impositos videas aut quaeras, adi ad [[Special:ImageList|indicem fasciculorum impositorum]]. Fasciculi impositi et deleti quoque in [[Special:Log/upload|notatione fasciculorum impositorum]] notantur.
+Ut fasciculos antea impositos videas aut quaeras, adi ad [[Special:FileList|indicem fasciculorum impositorum]]. Fasciculi impositi et deleti quoque in [[Special:Log/upload|notatione fasciculorum impositorum]] notantur.
 
 Ad fasciculum in pagina includendum, utere nexu
 '''<nowiki>[[</nowiki>{{ns:file}}:Fasciculus.jpg]]''' aut
@@ -966,7 +966,7 @@ Ad fasciculum in pagina includendum, utere nexu
 'uploadlog'          => 'notatio fasciculorum impositorum',
 'uploadlogpage'      => 'Notatio fasciculorum impositorum',
 'uploadlogpagetext'  => 'Subter est index fasciculorum recentissimorum impositorum.
-Vide etiam [[Special:NewImages|pinacothecam fasciculorum recentissimorum impositorum]].',
+Vide etiam [[Special:NewFiles|pinacothecam fasciculorum recentissimorum impositorum]].',
 'filename'           => 'Nomen fasciculi',
 'filedesc'           => 'Descriptio',
 'fileuploadsummary'  => 'Descriptio:',
@@ -999,7 +999,7 @@ Commodule notatio fasciculorum deletorum hic datur:",
 
 'license-nopreview' => '(Praevisum monstrari non potest)',
 
-# Special:ImageList
+# Special:FileList
 'imgfile'               => 'fasciculus',
 'imagelist'             => 'Fasciculorum index',
 'imagelist_name'        => 'Nomen',
@@ -1007,7 +1007,7 @@ Commodule notatio fasciculorum deletorum hic datur:",
 'imagelist_size'        => 'Magnitudo',
 'imagelist_description' => 'Descriptio',
 
-# Image description page
+# File description page
 'filehist'                  => 'Historia fasciculi',
 'filehist-help'             => 'Ad emendationem fasciculi inspiciendum, preme in diem/tempus.',
 'filehist-deleteall'        => 'delere omnes emendationes',
@@ -1674,7 +1674,7 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|pagina|paginae}}',
 'show-big-image'  => 'Resolutio completa',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'     => 'Fasciculi novi',
 'imagelisttext' => "Subter est index {{PLURAL:$1|'''unius''' fasciculi|'''$1''' fasciculorum}} digestus $2.",
 'showhidebots'  => '($1 automata)',

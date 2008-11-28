@@ -165,7 +165,7 @@ $messages = array(
 # Special:Import
 'import-interwiki-submit' => 'Impordiere',
 
-# Special:NewImages
+# Special:NewFiles
 'ilsubmit' => 'Such',
 
 # 'all' in various places, this might be different for inflected languages

@@ -1508,7 +1508,7 @@ om bestanden te uploaden.',
 'upload_directory_read_only'  => 'De webserver kan niet schrijven in de uploadmap ($1).',
 'uploaderror'                 => 'Uploadfout',
 'uploadtext'                  => "Gebruik het onderstaande formulier om bestanden te uploaden.
-Om eerder toegevoegde bestanden te bekijken of te zoeken kunt u naar de [[Special:ImageList|bestandslijst]] gaan.
+Om eerder toegevoegde bestanden te bekijken of te zoeken kunt u naar de [[Special:FileList|bestandslijst]] gaan.
 Uploads en bestanden die na verwijdering opnieuw worden toegevoegd zijn na te zien in het [[Special:Log/upload|uploadlogboek]].
 Verwijderde bestanden worden bijgehouden in het [[Special:Log/delete|verwijderingslogboek]].
 
@@ -1524,7 +1524,7 @@ De laatste verwijzing is bedoeld voor mediabestanden die geen afbeelding zijn.",
 'uploadlog'                   => 'uploadlogboek',
 'uploadlogpage'               => 'Uploadlogboek',
 'uploadlogpagetext'           => 'Hieronder staan de nieuwste bestanden.
-Zie de [[Special:NewImages|galerij met nieuwe bestanden]] voor een visueler overzicht.',
+Zie de [[Special:NewFiles|galerij met nieuwe bestanden]] voor een visueler overzicht.',
 'filename'                    => 'Bestandsnaam',
 'filedesc'                    => 'Beschrijving',
 'fileuploadsummary'           => 'Samenvatting:',
@@ -1567,10 +1567,10 @@ Als u deze afbeelding in volledige resolutie hebt, upload die afbeelding dan.
 Wijzig anders de bestandsnaam.',
 'fileexists-forbidden'        => 'Er bestaat al een bestand met deze naam.
 Upload uw bestand onder een andere naam.
-[[Image:$1|thumb|center|$1]]',
+[[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Er bestaat al een bestand met deze naam bij de gedeelte bestanden.
 Als u het bestand alsnog wilt uploaden, ga dan terug en kies een andere naam.
-[[Image:$1|thumb|center|$1]]',
+[[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Dit bestand is indentiek aan {{PLURAL:$1|het volgende bestand|de volgende bestanden}}:',
 'file-deleted-duplicate'      => 'Een bestand dat identiek is aan dit bestand ([[$1]]) is voorheen verwijderd.
 Raadpleeg het verwijderingslogboek voordat u verder gaat.',
@@ -1637,7 +1637,7 @@ U kunt het misschien proberen als het minder druk is.',
 'upload_source_url'  => ' (een geldige, publiek toegankelijke URL)',
 'upload_source_file' => ' (een bestand op uw computer)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Op deze speciale pagina zijn alle toegevoegde bestanden te bekijken.
 Standaard worden de laatst toegevoegde bestanden bovenaan de lijst weergegeven.
 Klikken op een kolomkop verandert de sortering.',
@@ -1650,7 +1650,7 @@ Klikken op een kolomkop verandert de sortering.',
 'imagelist_size'        => 'Grootte (bytes)',
 'imagelist_description' => 'Beschrijving',
 
-# Image description page
+# File description page
 'filehist'                       => 'Bestandsgeschiedenis',
 'filehist-help'                  => 'Klik op een datum/tijd om het bestand te zien zoals het destijds was.',
 'filehist-deleteall'             => 'alle versies verwijderen',
@@ -2688,7 +2688,7 @@ $1',
 'show-big-image'       => 'Volledige resolutie',
 'show-big-image-thumb' => '<small>Afmetingen van deze weergave: $1 × $2 pixels</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Nieuwe bestanden',
 'imagelisttext'         => "Hier volgt een lijst met '''$1''' {{PLURAL:$1|bestand|bestanden}} gesorteerd $2.",
 'newimages-summary'     => 'Op deze speciale pagina worden de meest recent toegevoegde bestanden weergegeven.',

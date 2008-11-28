@@ -1277,7 +1277,7 @@ Boki na [[Special:Watchlist|wobglědowańce]] su '''tucne'''.",
 'uploaderror'                 => 'Zmólka pśi uploadowanju',
 'uploadtext'                  => "Wužyj toś ten formular za nagraśe nowych datajow.
 
-Źi na [[Special:ImageList|lisćinu nagratych datajow]], aby mógł južo nagrate dataje se wobglědaś abo pytaś, nagraśa protokolěruju se w [[Special:Log/upload|protokolu nagraśow]], wulašowanja w [[Special:Log/upload|protokolu wulašowanjow]].
+Źi na [[Special:FileList|lisćinu nagratych datajow]], aby mógł južo nagrate dataje se wobglědaś abo pytaś, nagraśa protokolěruju se w [[Special:Log/upload|protokolu nagraśow]], wulašowanja w [[Special:Log/upload|protokolu wulašowanjow]].
 
 Aby dataju do boka zapśimjeł, wužyj wótkaz slědujuceje formy
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Dataja.jpg]]</nowiki></tt>''', aby wužywał połnu wersiju dataje
@@ -1289,7 +1289,7 @@ Aby dataju do boka zapśimjeł, wužyj wótkaz slědujuceje formy
 'uploadlog'                   => 'datajowy protokol',
 'uploadlogpage'               => 'Datajowy protokol',
 'uploadlogpagetext'           => 'Dołojce jo lisćina nejnowšych datajowych nagraśow.
-Glědaj [[Special:NewImages|galeriju nowych datajow]] za wizuelny pśeglěd.',
+Glědaj [[Special:NewFiles|galeriju nowych datajow]] za wizuelny pśeglěd.',
 'filename'                    => 'Mě dataje',
 'filedesc'                    => 'Zespominanje',
 'fileuploadsummary'           => 'Zespominanje:',
@@ -1321,9 +1321,9 @@ Wuzwól nowe mě, jolic až sy se wěsty, až dataji njejstej identiskej.',
 Jadna-lic se wó wobraz w originalnej wjelikosći, pón njejo notne, separatny pśeglědowy wobraz uploadowaś.',
 'file-thumbnail-no'           => 'Mě dataje zachopijo z <strong><tt>$1</tt></strong>. Zda se, až to jo wobraz z reducěrowaneju wjelikosću. <i>(thumbnail)</i>.
 Jolic maš toś ten wobraz w połnem rozeznaśu, nagraj jen, howac změń pšosym mě dataje.',
-'fileexists-forbidden'        => 'Dataja z toś tym mjenim južo eksistěrujo. Pšosym nawroś se a uploaduj dataju z hynakšym mjenim. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Dataja z toś tym mjenim južo eksistěrujo. Pšosym nawroś se a uploaduj dataju z hynakšym mjenim. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Dataja z toś tym mjenim južo eksistěrujo w zgromadnej chowarni. Jolic hyšći coš nagraś swóju dataju, źi pšosym slědk a wužyj nowe mě.
-[[Image:$1|thumb|center|$1]]',
+[[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Toś ta dataja jo duplikat {{PLURAL:$1|slědujuceje dataje|slědujuceju datajow|slědujucych datajow|slědujucych datajow}}:',
 'file-deleted-duplicate'      => 'Dataja, kótaraž jo identiska z toś teju dataju ([[$1]]) jo se pjerwjej wulašowała. Ty měł stawizny wulašowanja toś teje dataje pśeglědaś, pjerwjej až pokšacujoš z jeje zasejnagrawanjom.',
 'successfulupload'            => 'Upload jo był wuspěšny.',
@@ -1380,7 +1380,7 @@ PICT # misc.
 'upload_source_url'  => ' (płaśeca, zjawnje pśistupna URL)',
 'upload_source_file' => ' (dataja na twójom kompjuterje)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Toś ten specialny bok nalicyjo wšykne uploadowane dataje. Normalnje pokazuje se te dataje, ako su slědne se uploadowali, ako prědne w lisćinje. Tłocenje na napise špaltow změnijo sortěrowanje.',
 'imagelist_search_for'  => 'Za medijowym mjenim pytaś:',
 'imgfile'               => 'dataja',
@@ -1391,7 +1391,7 @@ PICT # misc.
 'imagelist_size'        => 'Wjelikosć (byte)',
 'imagelist_description' => 'Zespominanje',
 
-# Image description page
+# File description page
 'filehist'                       => 'Stawizny dataje',
 'filehist-help'                  => 'Tłoc na datum/cas aby tencasna wersija se lodowała.',
 'filehist-deleteall'             => 'Wšykno wulašowaś',
@@ -2362,7 +2362,7 @@ $1',
 'show-big-image'       => 'Połne optiske wótgranicowanje.',
 'show-big-image-thumb' => '<small>wjelikosć pśeglěda: $1 × $2 pikselow</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Nowe dataje',
 'imagelisttext'         => "How jo lisćina '''$1''' {{PLURAL:$1|dataje|datajowu|datajow}}, sortěrowane $2.",
 'newimages-summary'     => 'Toś ten specialny bok pokazujo wobraze a dataje, kótarež ako slědne su se uploadowali.',

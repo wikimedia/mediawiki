@@ -628,13 +628,13 @@ E paggine in osservassion son dipinte in '''grascietto'''.",
 'license'   => 'Permisso:',
 'nolicense' => 'Nisciûnn-a liçensa indicâa',
 
-# Special:ImageList
+# Special:FileList
 'imagelist_search_for' => "Çerca pe nomme de l'imàgine:",
 'imgfile'              => 'papê',
 'imagelist'            => "Lista d'archivvi",
 'imagelist_date'       => 'Dæta',
 
-# Image description page
+# File description page
 'filehist'                  => "Cronologîa de l'archivvio",
 'filehist-help'             => "Sciacca inscie 'n grûppo data/ôa pe vedde l'archivvio comme o se presentâva into momento indicòu.",
 'filehist-current'          => 'Corrente',
@@ -1044,7 +1044,7 @@ Inte 'sti câxi, se o se vêu fâ coscì, o se deive stramûâ ò azzonze manual
 'show-big-image'       => "Verscion d'ærta resolûxon",
 'show-big-image-thumb' => "<small>Dimensioîn de 'st'anteprimma: $1 × $2 pixel</small>",
 
-# Special:NewImages
+# Special:NewFiles
 'newimages' => 'Gallerîa de nêuvi archivvi',
 'ilsubmit'  => 'Çerca',
 'bydate'    => 'pe dâta',

@@ -1412,7 +1412,7 @@ Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencak
 'upload_directory_read_only'  => 'Direktori pemuatan ($1) tidak dapat ditulis oleh server web.',
 'uploaderror'                 => 'Kesalahan pemuatan',
 'uploadtext'                  => "Gunakan formulir di bawah untuk memuat berkas.
-Untuk menampilkan atau mencari berkas-berkas yang sebelumnya dimuatkan, gunakan [[Special:ImageList|daftar pemuatan berkas]]. Pemuatan dan pemuatan kembali juga dicatat dalam [[Special:Log/upload|log pemuatan]]. Penghapusan berkas dicatat dalam [[Special:Log/delete|log penghapusan]].
+Untuk menampilkan atau mencari berkas-berkas yang sebelumnya dimuatkan, gunakan [[Special:FileList|daftar pemuatan berkas]]. Pemuatan dan pemuatan kembali juga dicatat dalam [[Special:Log/upload|log pemuatan]]. Penghapusan berkas dicatat dalam [[Special:Log/delete|log penghapusan]].
 
 Untuk menampilkan atau menyertakan berkas/gambar pada suatu halaman, gunakan pranala dengan salah satu format di bawah ini:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Berkas.jpg]]</nowiki></tt>''' untuk menampilkan berkas dalam ukuran aslinya
@@ -1458,9 +1458,9 @@ Jika berkas tersebut memang merupakan gambar dalam ukuran aslinya, Anda tidak pe
 Tampaknya berkas ini merupakan gambar dengan ukuran diperkecil <i>(miniatur)</i>.
 Jika Anda memiliki versi resolusi penuh dari gambar ini, harap muatkan berkas tersebut. Jika tidak, harap ubah nama berkas ini.',
 'fileexists-forbidden'        => 'Ditemukan berkas dengan nama yang sama;
-harap kembali dan muatkan berkas dengan nama lain. [[Image:$1|thumb|center|$1]]',
+harap kembali dan muatkan berkas dengan nama lain. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Ditemukan berkas lain dengan nama yang sama di repositori bersama.
-Jika Anda tetap ingin memuatkan berkas Anda, harap kembali dan gunakan nama lain. [[Image:$1|thumb|center|$1]]',
+Jika Anda tetap ingin memuatkan berkas Anda, harap kembali dan gunakan nama lain. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Berkas ini berduplikasi dengan {{PLURAL:$1|berkas|berkas-berkas}} berikut:',
 'file-deleted-duplicate'      => 'Sebuah berkas yang identik dengan berkas ini ([[$1]]) sudah pernah dihapuskan sebelumnya. Anda harus memeriksa sejarah penghapusan berkas tersebut sebelum melanjutkan memuat ulang berkas ini.',
 'successfulupload'            => 'Berhasil dimuat',
@@ -1503,7 +1503,7 @@ Log penghapusan berkas adalah sebagai berikut:",
 'upload_source_url'  => ' (suatu URL valid yang dapat diakses publik)',
 'upload_source_file' => ' (suatu berkas di komputer Anda)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Halaman istimewa ini menampilkan semua berkas yang telah dimuat.
 Secara baku, berkas yang terakhir dimuat berada pada urutan teratas.
 Klik pada kepala kolom untuk mengubah urutan.',
@@ -1516,7 +1516,7 @@ Klik pada kepala kolom untuk mengubah urutan.',
 'imagelist_size'        => 'Besar',
 'imagelist_description' => 'Deskripsi',
 
-# Image description page
+# File description page
 'filehist'                       => 'Riwayat berkas',
 'filehist-help'                  => 'Klik pada tanggal/waktu untuk melihat berkas ini pada saat tersebut.',
 'filehist-deleteall'             => 'hapus semua',
@@ -2485,7 +2485,7 @@ Ini mungkin disebabkan oleh pranala ke situs luar yang termasuk dalam daftar hit
 'show-big-image'       => 'Resolusi penuh',
 'show-big-image-thumb' => '<small>Ukuran pratayang ini: $1 × $2 piksel</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Berkas baru',
 'imagelisttext'         => "Di bawah ini adalah daftar '''$1''' {{PLURAL:$1|berkas|berkas}} diurutkan $2.",
 'newimages-summary'     => 'Halaman istimewa berikut menampilkan daftar berkas yang terakhir dimuat',

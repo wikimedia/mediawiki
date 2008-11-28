@@ -303,10 +303,10 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'fileexists-thumb' => "<center>'''Immagine esistente'''</center>",
 'uploadedimage'    => 'ha carecato "[[$1]]"',
 
-# Special:ImageList
+# Special:FileList
 'imagelist_name' => 'Nomme',
 
-# Image description page
+# File description page
 'filehist-user'    => 'Utente',
 'imagelinks'       => 'Jonte ê ffiure',
 'noimage-linktext' => 'carrecarlo mmo',
@@ -440,7 +440,7 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'numedits'    => "Nummero 'e cagnamiente (articulo): $1",
 'numwatchers' => "Nummero 'e asservature: $1",
 
-# Special:NewImages
+# Special:NewFiles
 'noimages' => "Nun nc'è nind' 'a veré.",
 'ilsubmit' => 'Truova',
 

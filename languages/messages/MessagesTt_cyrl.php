@@ -665,7 +665,7 @@ $2',
 'uploadlogpage' => 'Йөкләү журналы',
 'uploadedimage' => '«[[$1]]» йөкләнгән',
 
-# Special:ImageList
+# Special:FileList
 'imagelist'             => 'Сүрәтләр исемлеге',
 'imagelist_date'        => 'Вакыт',
 'imagelist_name'        => 'Ат',
@@ -673,7 +673,7 @@ $2',
 'imagelist_size'        => 'Үлчәм',
 'imagelist_description' => 'Тасвир',
 
-# Image description page
+# File description page
 'filehist'                  => 'Файлның тарихы',
 'filehist-help'             => 'Датага/сәгатькә басыгыз, шул вакытта бит нинди булды дип карау өчен.',
 'filehist-current'          => 'агымдагы',
@@ -995,7 +995,7 @@ $2',
 'show-big-image'       => 'Тулы ачыклык',
 'show-big-image-thumb' => '<small>Алдан карау зурлыгы: $1 × $2 нокта</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages' => 'Яңа сүрәтләр җыелмасы',
 
 # Bad image list

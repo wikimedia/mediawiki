@@ -1264,7 +1264,7 @@ Síður á [[Special:Watchlist|vaktlistanum þínum]] eru '''feitletraðar'''.",
 til að hlaða inn skrám.',
 'uploaderror'            => 'Villa í innhlaðningu',
 'uploadtext'             => "Notaðu eyðublaðið hér fyrir neðan til að hlaða inn skrám.
-Til að skoða eða leita í áður innhlöðnum skrám ferðu á [[Special:ImageList|skráarlistann]], (endur)innhlaðnar skrár eru skráðar í [[Special:Log/upload|innhlaðningarskránni]], eyðingar í [[Special:Log/delete|eyðingaskránni]].
+Til að skoða eða leita í áður innhlöðnum skrám ferðu á [[Special:FileList|skráarlistann]], (endur)innhlaðnar skrár eru skráðar í [[Special:Log/upload|innhlaðningarskránni]], eyðingar í [[Special:Log/delete|eyðingaskránni]].
 
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Skrá.jpg]]</nowiki></tt>'''
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Skrá.png|200px|thumb|left|alt-texti]]</nowiki></tt>'''
@@ -1275,7 +1275,7 @@ Til að skoða eða leita í áður innhlöðnum skrám ferðu á [[Special:Imag
 'uploadlog'              => 'innhlaðningarskrá',
 'uploadlogpage'          => 'Innhlaðningarskrá',
 'uploadlogpagetext'      => 'Fyrir neðan er listi yfir nýlegustu innhlöðnu skrárnar.
-Sjá [[Special:NewImages|myndasafn nýrra mynda]] fyrir myndrænna yfirlit.',
+Sjá [[Special:NewFiles|myndasafn nýrra mynda]] fyrir myndrænna yfirlit.',
 'filename'               => 'Skráarnafn',
 'filedesc'               => 'Lýsing',
 'fileuploadsummary'      => 'Ágrip:',
@@ -1324,7 +1324,7 @@ Gjörðu svo vel og endurnefndu skrána og hladdu henni inn aftur.',
 'license-nopreview'  => '(Forskoðun ekki fáanleg)',
 'upload_source_file' => '(skrá á tölvunni þinni)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist_search_for'  => 'Leita að miðilsnafni:',
 'imgfile'               => 'skrá',
 'imagelist'             => 'Skráalisti',
@@ -1334,7 +1334,7 @@ Gjörðu svo vel og endurnefndu skrána og hladdu henni inn aftur.',
 'imagelist_size'        => 'Stærð (bæti)',
 'imagelist_description' => 'Lýsing',
 
-# Image description page
+# File description page
 'filehist'                       => 'Breytingaskrá skjals',
 'filehist-help'                  => 'Smelltu á dagsetningu eða tímasetningu til að sjá hvernig hún leit þá út.',
 'filehist-deleteall'             => 'eyða öllu',
@@ -2125,7 +2125,7 @@ Allir innflutningar eru skráð í [[Special:Log/import|innflutningsskránna]].'
 'show-big-image'       => 'Mesta upplausn',
 'show-big-image-thumb' => '<small>Myndin er í upplausninni $1 × $2 </small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Myndasafn nýlegra skráa',
 'imagelisttext'         => 'Hér fyrir neðan er {{PLURAL:$1|einni skrá|$1 skrám}} raðað $2.',
 'newimages-summary'     => 'Þessi kerfissíða sýnir nýlega innhlaðnar skrár.',

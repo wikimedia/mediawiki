@@ -1083,7 +1083,7 @@ Pastikeun yén ieu parobahan bisa miara jujutan kaca sagemblengna.',
 
 Mun geus aya koropak na wiki nu ngaranna sarua jeung nu disebutkeun ku anjeun, koropak nu geus lila bakal diganti otomatis. Mangka, iwal ti pikeun ngaropéa hiji koropak, tangtu leuwih hadé mun anjeun mariksa heula bisi koropak nu sarupa geus aya.
 
-Pikeun némbongkeun atawa néang gambar-gambar nu pernah dimuat saméméhna, mangga lebet ka [[Special:ImageList|daptar gambar nu dimuat]]. Muatan sarta hapusan kadaptar dina log [[Special:Log/upload|log muatan]].
+Pikeun némbongkeun atawa néang gambar-gambar nu pernah dimuat saméméhna, mangga lebet ka [[Special:FileList|daptar gambar nu dimuat]]. Muatan sarta hapusan kadaptar dina log [[Special:Log/upload|log muatan]].
 
 Paké formulir di handap pikeun ngamuat koropak gambar anyar pikeun ilustrasi kaca anjeun. Na kalolobaan panyungsi, anjeun bakal manggihan tombol \"Sungsi/''Browse''...\", nu bakal nganteur ka dialog muka-koropak nu baku na sistim operasi anjeun. Milih hiji koropak bakal ngeusian ngaran koropakna kana rohangan téks gigireun tombol nu tadi. Anjeun ogé kudu nyontréng kotak nu nandakeun yén anjeun teu ngarumpak hak cipta batur ku dimuatna ieu koropak. Pencét tombol \"Muatkeun/''Upload''\" pikeun ngeréngsékeun muatan. Prosés ieu bisa lila mun anjeun migunakeun sambungan internét nu lambat.
 
@@ -1120,8 +1120,8 @@ Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anje
 'emptyfile'                   => "Koropak nu dimuatkeun ku anjeun jigana kosong. Hal ieu bisa jadi alatan sarupaning ''typo'' na ngaran koropakna. Mangga parios deui yén anjeun leres-leres hoyong ngamuat koropak éta.",
 'fileexists'                  => 'Koropak nu ngaranna kieu geus aya, mangga parios <strong><tt>$1</tt></strong> mun anjeun teu yakin rék ngaganti.',
 'fileexists-thumb'            => "<center>'''Koropak nu aya'''</center>",
-'fileexists-forbidden'        => 'Koropak nu ngaranna ieu geus aya; mangga balik deui sarta muatkeun koropakna maké ngaran nu béda. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => "Koropak nu ngaranna ieu geus aya dina gudang koropak babagi (''shared file repository''); mangga balik deui sarta muatkeun koropak ieu maké ngaran nu béda. [[Image:$1|thumb|center|$1]]",
+'fileexists-forbidden'        => 'Koropak nu ngaranna ieu geus aya; mangga balik deui sarta muatkeun koropakna maké ngaran nu béda. [[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => "Koropak nu ngaranna ieu geus aya dina gudang koropak babagi (''shared file repository''); mangga balik deui sarta muatkeun koropak ieu maké ngaran nu béda. [[File:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => 'Gambar ieu duplikat sareng {{PLURAL:$1|gambar|gambar}}:',
 'successfulupload'            => 'Ngamuat geus hasil',
 'uploadwarning'               => 'Pépéling ngamuat',
@@ -1153,7 +1153,7 @@ Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anje
 'upload_source_url'  => '(URL nu sohéh sarta bisa dibuka ku umum)',
 'upload_source_file' => ' (koropak dina komputer salira)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist_search_for'  => 'Sungsi ngaran média:',
 'imgfile'               => 'koropak',
 'imagelist'             => 'Daptar gambar',
@@ -1163,7 +1163,7 @@ Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anje
 'imagelist_size'        => 'Badagna',
 'imagelist_description' => 'Pedaran',
 
-# Image description page
+# File description page
 'filehist'                       => 'Sajarah gambar',
 'filehist-help'                  => 'Klik dina titimangsa pikeun nempo koropak nu aya dina mangsa éta.',
 'filehist-deleteall'             => 'hapus kabéh',
@@ -2007,7 +2007,7 @@ $1',
 'show-big-image'       => 'Résolusi pinuh',
 'show-big-image-thumb' => '<small>Ukuran ieu pidangan: $1 × $2 piksel</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Galeri gambar anyar',
 'imagelisttext'         => "Di handap ieu daptar '''$1''' {{PLURAL:$1|gambar|gambar}} nu disusun $2.",
 'newimages-summary'     => 'Ieu kaca husus ngabéréndélkeun koropak nu alanyar dimuat.',

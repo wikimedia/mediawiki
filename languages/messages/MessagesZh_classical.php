@@ -5,7 +5,6 @@
  * @file
  *
  * @author Itsmine
- * @comment Based on http://zh-classical.wikipedia.org/w/index.php?title=Wikipedia:%E7%94%A8%E6%88%B6%E4%BB%8B%E9%9D%A2%E7%BF%BB%E8%AD%AF/MessagesZh_classical.php&oldid=60161
  */
 
 $skinNames = array(
@@ -1093,7 +1092,7 @@ $2',
 'upload_directory_missing'   => '目錄$1已失，無建之。',
 'upload_directory_read_only' => '目錄$1禁入，無可獻。',
 'uploaderror'                => '進獻有變',
-'uploadtext'                 => "下表以獻，[[Special:ImageList|載獻]]覽之。或見[[Special:Log/upload|誌獻]]與[[Special:Log/delete|誌刪]]。
+'uploadtext'                 => "下表以獻，[[Special:FileList|載獻]]覽之。或見[[Special:Log/upload|誌獻]]與[[Special:Log/delete|誌刪]]。
 欲嵌頁中，是格鏈之其一：
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}:File.jpg]]</tt>'''用此整獻
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}:File.png||200px|thumb|left|名]]</tt>'''以二百像素置左框置『名』
@@ -1104,7 +1103,7 @@ $2',
 'uploadlog'                  => '誌獻',
 'uploadlogpage'              => '誌獻',
 'uploadlogpagetext'          => '近獻如下。
-看[[Special:NewImages|新畫獻]]示獻功。',
+看[[Special:NewFiles|新畫獻]]示獻功。',
 'filename'                   => '名',
 'filedesc'                   => '概',
 'fileuploadsummary'          => '概：',
@@ -1143,7 +1142,7 @@ $2',
 
 'license-nopreview' => '（謝草覽）',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => '此奇頁示檔之全呈也。
 設最後之檔呈示於表頂。
 點題改其列之。',
@@ -1155,7 +1154,7 @@ $2',
 'imagelist_size'        => '幅（位元組）',
 'imagelist_description' => '述',
 
-# Image description page
+# File description page
 'filehist'                       => '檔史',
 'filehist-help'                  => '揀日尋檔。',
 'filehist-deleteall'             => '全刪',
@@ -2063,7 +2062,7 @@ $NEWPAGE
 'show-big-image'       => '全幅',
 'show-big-image-thumb' => '<small>縮圖幅有像素$1矩$2</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => '新圖之廊',
 'imagelisttext'         => "下表乃按$2排之的'''$1'''檔。",
 'newimages-summary'     => '此奇頁示最後呈上之檔也。',

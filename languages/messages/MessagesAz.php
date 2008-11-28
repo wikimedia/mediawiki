@@ -558,13 +558,13 @@ Bu səhifə üçün silmə qeydləri aşağıda göstərilmişdir:",
 'license'   => 'Lisenziya',
 'nolicense' => 'Heç biri seçilməmişdir',
 
-# Special:ImageList
+# Special:FileList
 'imagelist'      => 'Fayl siyahısı',
 'imagelist_date' => 'Tarix',
 'imagelist_name' => 'Ad',
 'imagelist_user' => 'İstifadəçi',
 
-# Image description page
+# File description page
 'imagelinks'                     => 'İstifadə edilən səhifələr',
 'shareduploadwiki-linktext'      => 'fayl təsvir səhifəsi',
 'shareduploadduplicate-linktext' => 'başqa fayl',
@@ -1020,7 +1020,7 @@ $1',
 'file-info-size' => '($1 × $2 piksel, fayl həcmi: $3, MIME növü: $4)',
 'file-nohires'   => '<small>Daha dəqiq versiyası yoxdur.</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'    => 'Yeni faylların siyahısı',
 'showhidebots' => '($1 bot redaktə)',
 'ilsubmit'     => 'Axtar',

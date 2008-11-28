@@ -1276,7 +1276,7 @@ Paginile pe care le [[Special:Watchlist|urmăriţi]] apar în '''aldine'''.",
 'upload_directory_read_only'  => 'Directorul de trimitere ($1) nu are drepturi de scriere de către server.',
 'uploaderror'                 => 'Eroare la trimitere fişier',
 'uploadtext'                  => "Foloseşte formularul de mai jos pentru a trimite fişiere. 
-Pentru a vizualiza sau căuta imagini deja trimise, mergi la [[Special:ImageList|lista de imagini]], încărcările şi ştergerile sunt de asemenea înregistrate în [[Special:Log/upload|jurnalul fişierelor trimise]], ştergerile în [[Special:Log/delete|jurnalul fişierelor şterse]].
+Pentru a vizualiza sau căuta imagini deja trimise, mergi la [[Special:FileList|lista de imagini]], încărcările şi ştergerile sunt de asemenea înregistrate în [[Special:Log/upload|jurnalul fişierelor trimise]], ştergerile în [[Special:Log/delete|jurnalul fişierelor şterse]].
 
 Pentru a include un fişier de sunet într-un articol, foloseşti o legătură de forma:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fişier.jpg]]</nowiki></tt>''' pentru a include versiunea integrală a unui fişier
@@ -1288,7 +1288,7 @@ Pentru a include un fişier de sunet într-un articol, foloseşti o legătură d
 'uploadlog'                   => 'Raportul fişierelor trimise',
 'uploadlogpage'               => 'Raportul fişierelor trimise',
 'uploadlogpagetext'           => 'Mai jos este afişată lista ultimelor fişiere trimise.
-Vezi [[Special:NewImages|galeria fişierelor noi]] pentru o mai bună vizualizare.',
+Vezi [[Special:NewFiles|galeria fişierelor noi]] pentru o mai bună vizualizare.',
 'filename'                    => 'Nume fişier',
 'filedesc'                    => 'Descriere fişier',
 'fileuploadsummary'           => 'Descriere:',
@@ -1324,8 +1324,8 @@ Dacă fişierul verificat este identic cu imaginea originală nu este necesară 
 'file-thumbnail-no'           => 'Numele fişierului începe cu <strong><tt>$1</tt></strong>.
 Se pare că este o imagine cu dimensiune redusă<i>(thumbnail)</i>.
 Dacă ai această imagine la rezoluţie mare încarc-o pe aceasta, altfel schimbă numele fişierului.',
-'fileexists-forbidden'        => 'Un fişier cu acest nume există deja; mergeţi înapoi şi încărcaţi acest fişier sub un nume nou. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Un fişier cu acest nume există deja în magazia de imagini comune; mergeţi înapoi şi încărcaţi fişierul sub un nou nume. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Un fişier cu acest nume există deja; mergeţi înapoi şi încărcaţi acest fişier sub un nume nou. [[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Un fişier cu acest nume există deja în magazia de imagini comune; mergeţi înapoi şi încărcaţi fişierul sub un nou nume. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Acest fişier este dublura {{PLURAL:$1|fişierului|fişierelor}}:',
 'successfulupload'            => 'Fişierul a fost trimis',
 'uploadwarning'               => 'Avertizare la trimiterea fişierului',
@@ -1374,7 +1374,7 @@ Poate doreşti să încerci la o oră mai puţin ocupată.',
 'upload_source_url'  => ' (un URL valid, accesibil public)',
 'upload_source_file' => ' (un fişier de pe computerul tău)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Această pagină specială arată toate fişierele încărcate.
 În mod normal ultimul fişier încărcat este aşezat în capul listei.
 O apăsare pe antetul coloanei schimbă sortarea.',
@@ -1387,7 +1387,7 @@ O apăsare pe antetul coloanei schimbă sortarea.',
 'imagelist_size'        => 'Mărime (octeţi)',
 'imagelist_description' => 'Descriere',
 
-# Image description page
+# File description page
 'filehist'                       => 'Istoricul fişierului',
 'filehist-help'                  => 'Faceţi click pe o dată/timp pentru a vizualiza fişierul de la timpul respectiv.',
 'filehist-deleteall'             => 'şterge tot',
@@ -2344,7 +2344,7 @@ $1',
 'show-big-image'       => 'Măreşte rezoluţia imaginii',
 'show-big-image-thumb' => '<small>Mărimea acestei previzualizări: $1 × $2 pixeli</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Galeria de imagini noi',
 'imagelisttext'         => "Mai jos se află lista a '''$1''' {{PLURAL:$1|fişier ordonat|fişiere ordonate}} $2.",
 'newimages-summary'     => 'Această pagină specială arată ultimele fişiere încărcate.',

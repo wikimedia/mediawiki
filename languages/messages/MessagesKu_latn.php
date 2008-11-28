@@ -789,7 +789,7 @@ Ev verzyona vê rûpelê hatîye jêbirin. Belkî înformasyon di [{{fullurl:Spe
 'uploadnologin'          => 'Xwe qeyd nekir',
 'uploadnologintext'      => 'Ji bo barkirina wêneyan divê ku tu [[Special:UserLogin|têkevî]].',
 'uploaderror'            => 'Şaşbûn bo barkirinê',
-'uploadtext'             => "Berê tu wêneyên nû bar bikî, ji bo dîtin an vedîtina wêneyên ku ji xwe hene binêre: [[Special:ImageList|lîsteya wêneyên barkirî]]. Herwisa wêneyên ku hatine barkirin an jî jê birin li vir dikarî bibînî: [[Special:Log/upload|reşahîya barkirîyan]].
+'uploadtext'             => "Berê tu wêneyên nû bar bikî, ji bo dîtin an vedîtina wêneyên ku ji xwe hene binêre: [[Special:FileList|lîsteya wêneyên barkirî]]. Herwisa wêneyên ku hatine barkirin an jî jê birin li vir dikarî bibînî: [[Special:Log/upload|reşahîya barkirîyan]].
 
 Yek ji lînkên jêr ji bo bikarhînana wêne an file'ê di gotarê de bikar bihîne:
 '''<nowiki>[[</nowiki>{{ns:file}}:File.jpg<nowiki>]]</nowiki>''',
@@ -824,7 +824,7 @@ Xêra xwe navekî din bibîne.',
 'fileexists-thumb'       => "<center>'''Wêne yê berê heye'''</center>",
 'file-thumbnail-no'      => 'Navî vê datayê bi <strong><tt>$1</tt></strong> destpêdike. Ev dibêje ku ev wêneyekî çûçik e <i>(thumbnail)</i>. Xêra xwe seke, ku belkî versyonekî mezin yê vê wêneyê li cem te heye û wê wêneyê mezintir di bin navî orîjînal da barbike.',
 'fileexists-forbidden'   => 'Medyayek bi vê navî heye; xêra xwe şonda here û vê medyayê bi navekî din barbike.
-[[Image:$1|thumb|center|$1]]',
+[[File:$1|thumb|center|$1]]',
 'successfulupload'       => 'Barkirin serkeftî',
 'uploadwarning'          => 'Hişyara barkirinê',
 'savefile'               => 'Dosyayê tomar bike',
@@ -847,7 +847,7 @@ Zanibe, ku ev barkirina kê were qebûlkirin ya na.
 
 'license' => 'Lîsens:',
 
-# Special:ImageList
+# Special:FileList
 'imagelist_search_for'  => 'Li navî wêneyê bigere:',
 'imagelist'             => 'Listeya wêneyan',
 'imagelist_date'        => 'Dem',
@@ -856,7 +856,7 @@ Zanibe, ku ev barkirina kê were qebûlkirin ya na.
 'imagelist_size'        => 'Mezinbûn',
 'imagelist_description' => 'Wesif',
 
-# Image description page
+# File description page
 'filehist'                  => 'Dîroka datayê',
 'filehist-help'             => 'Li demekê xe ji bo dîtina verzyona wê demê',
 'filehist-deleteall'        => 'giştika jêbibe',
@@ -1516,7 +1516,7 @@ if (wgUserLanguage == "ku-arab")
 'show-big-image'       => 'Mezînbûn',
 'show-big-image-thumb' => '<small>Mezinbûna vê pêşnîşandanê: $1 × $2 pixel</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Pêşangeha wêneyên nû',
 'imagelisttext'         => "Jêr lîsteyek ji $1 file'an heye, duxrekirin $2.",
 'showhidebots'          => "($1 bot'an)",

@@ -1323,7 +1323,7 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'upload_directory_read_only'  => 'El servidor web no puede escribir en el directorio de subida de archivos ($1).',
 'uploaderror'                 => 'Error al intentar subir archivo',
 'uploadtext'                  => "Utilize el siguiente formulario para subir archivos.
-Para ver o buscar archivos subidos con anterioridad, ve a la [[Special:ImageList|lista de archivos subidos]].
+Para ver o buscar archivos subidos con anterioridad, ve a la [[Special:FileList|lista de archivos subidos]].
 Los archivos subidos quedarán registrado además en el [[Special:Log/upload|registro de archivos subidos]] y los borrados en el [[Special:Log/delete|registro de borrados]].
 
 Para incluir un archivo en una página, use un enlace como los que siguen
@@ -1337,7 +1337,7 @@ Para incluir un archivo en una página, use un enlace como los que siguen
 'uploadlog'                   => 'registro de subidas',
 'uploadlogpage'               => 'Subidas de archivos',
 'uploadlogpagetext'           => 'Abajo hay una lista de los últimos archivos subidos.
-Mira la [[Special:NewImages|galería de archivos nuevos]] para una descripción visual',
+Mira la [[Special:NewFiles|galería de archivos nuevos]] para una descripción visual',
 'filename'                    => 'Nombre del archivo',
 'filedesc'                    => 'Sumario',
 'fileuploadsummary'           => 'Descripción:',
@@ -1371,9 +1371,9 @@ Si el archivo comprobado es la misma imagen a tamaño original no es necesario s
 'file-thumbnail-no'           => 'El nombre del archivo comienza con <strong><tt>$1</tt></strong>.
 Parece ser una imagen de tamaño reducido <i>(thumbnail)</i>.
 Si tiene esta imagen a toda resolución súbala, si no, por favor cambie el nombre del archivo.',
-'fileexists-forbidden'        => 'Ya existe un archivo con este nombre. Por favor, cambie el nombre del archivo y vuelva a subirlo. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Ya existe un archivo con este nombre. Por favor, cambie el nombre del archivo y vuelva a subirlo. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Ya existe un archivo con este nombre en el repositorio compartido.
-Si todavía quiere subir su archivo, por favor, regrese a la página anterior y use otro nombre. [[Image:$1|thumb|center|$1]]',
+Si todavía quiere subir su archivo, por favor, regrese a la página anterior y use otro nombre. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Este archivo es un duplicado {{PLURAL:$1|del siguiente|de los siguientes}}:',
 'successfulupload'            => 'Subida con éxito',
 'uploadwarning'               => 'Advertencia de subida de archivo',
@@ -1417,7 +1417,7 @@ Por favor, elige un nombre más descriptivo.',
 'upload_source_url'  => ' (una URL válida y accesible públicamente)',
 'upload_source_file' => ' (un archivo en su ordenador)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Esta página muestra todos los archivos subidos.
 Por defecto, el último subido se muestra al principio de la lista.
 Un click sobre el encabezamiento de la columna cambia el orden.',
@@ -1430,7 +1430,7 @@ Un click sobre el encabezamiento de la columna cambia el orden.',
 'imagelist_size'        => 'Tamaño (bytes)',
 'imagelist_description' => 'Descripción',
 
-# Image description page
+# File description page
 'filehist'                       => 'Historial del archivo',
 'filehist-help'                  => 'Haga clic sobre una fecha/hora para ver el
 archivo a esa fecha.',
@@ -2417,7 +2417,7 @@ $1',
 'show-big-image'       => 'Resolución original',
 'show-big-image-thumb' => '<small>Tamaño de esta vista previa: $1 × $2 píxeles</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Galería de imágenes nuevas',
 'imagelisttext'         => "Debajo hay una lista de '''$1''' {{PLURAL:$1|imagen|imágenes}} ordenadas $2.",
 'newimages-summary'     => 'Esta página especial muestra una galería de los últimos ficheros subidos.',

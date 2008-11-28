@@ -816,7 +816,7 @@ den am an freastalaí (UTC).',
 'uploadnologintext' => 'Ní mór duit [[Special:UserLogin|logáil isteach]] chun comhaid a huaslódáil.',
 'uploaderror'       => 'Earráid uaslódála',
 'uploadtext'        => "Bain úsáid as an bhfoirm thíos chun comhaid a uaslódáil.
-Chun comhaid atá ann cheana a fheiceáil nó a chuardach téigh chuig an [[Special:ImageList|liosta comhad uaslódáilte]]. Gheobhaidh tú liosta de chomhaid uaslódáilte sa [[Special:Log/upload|loga uaslódála]] agus liosta de chomhaid scriosta sa [[Special:Log/delete|loga scriosta]] freisin.
+Chun comhaid atá ann cheana a fheiceáil nó a chuardach téigh chuig an [[Special:FileList|liosta comhad uaslódáilte]]. Gheobhaidh tú liosta de chomhaid uaslódáilte sa [[Special:Log/upload|loga uaslódála]] agus liosta de chomhaid scriosta sa [[Special:Log/delete|loga scriosta]] freisin.
 
 Chun comhad a úsáid ar leathanach, cuir isteach nasc mar seo:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:comhad.jpg]]</nowiki></tt>''' chun leagan iomlán an chomhad a úsáid
@@ -853,11 +853,11 @@ uaslódáil é arís, le do thoil.',
 'upload_source_url'  => ' (URL bailí is féidir a rochtain go poiblí)',
 'upload_source_file' => ' (comhad ar do riomhaire)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist'      => 'Liosta íomhánna',
 'imagelist_user' => 'Úsáideoir',
 
-# Image description page
+# File description page
 'filehist'                  => 'Stair comhad',
 'filehist-help'             => 'Clic ar dáta/am chun an comhad a radharc mar a bhí sé ar an am.',
 'filehist-current'          => 'reatha',
@@ -1520,7 +1520,7 @@ iarradh sábháil. Is dócha gur nasc chuig suíomh seachtrach ba chúis leis.',
 'show-big-image'       => 'Taispeáin leagan ardtaifigh den íomhá',
 'show-big-image-thumb' => '<small>Méid an réamhamhairc seo: $1 × $2 picteilín</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'     => 'Gailearaí na n-íomhánna nua',
 'imagelisttext' => 'Tá liosta thíos de {{PLURAL:$1|comhad amháin|$1 comhaid $2}}.',
 'showhidebots'  => '($1 róbónna)',

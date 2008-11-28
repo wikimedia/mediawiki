@@ -260,11 +260,11 @@ Reomĩsérõ ta'ãnga peteĩ kuatiaroguépe, eipuru peteĩ joaju:
 '''<nowiki>[[</nowiki>Media<nowiki>:Archivo.ogg]]</nowiki>''' ojoaju hag̃ua hekopete pe jehai'atýre.",
 'filename'   => "Téra jehai'aty",
 
-# Special:ImageList
+# Special:FileList
 'imagelist'      => "Ta'ãnga rysýi",
 'imagelist_user' => 'Puruhára',
 
-# Image description page
+# File description page
 'filehist-revert' => 'embojevy',
 'filehist-user'   => 'Puruhára',
 
@@ -453,7 +453,7 @@ Reomĩsérõ ta'ãnga peteĩ kuatiaroguépe, eipuru peteĩ joaju:
 # Media information
 'file-info' => "(tamaño de jehai'aty: $1; tipo MIME: $2)",
 
-# Special:NewImages
+# Special:NewFiles
 'newimages' => "Ta'ãnga pyahu renda",
 'ilsubmit'  => 'Jeheka',
 

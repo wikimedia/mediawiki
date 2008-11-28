@@ -719,7 +719,7 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'uploadnologin'      => 'No jentrât',
 'uploadnologintext'  => 'Tu scugnis [[Special:UserLogin|jentrâ]] cul to non utent par cjamâ sù files.',
 'uploaderror'        => 'Erôr cjamant sù',
-'uploadtext'         => "Dopre la form ca sot par cjamâ sù un file, par cjalâ o cirî i files cjamâts sù in precedence va te [[Special:ImageList|liste dai files cjamâts sù]], lis cjamadis e lis eliminazions a son ancje regjistrâts tal [[Special:Log/upload|regjistri des cjamadis]].
+'uploadtext'         => "Dopre la form ca sot par cjamâ sù un file, par cjalâ o cirî i files cjamâts sù in precedence va te [[Special:FileList|liste dai files cjamâts sù]], lis cjamadis e lis eliminazions a son ancje regjistrâts tal [[Special:Log/upload|regjistri des cjamadis]].
 
 Par includi une figure intune pagjine, dopre un leam inte form
 '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:file.jpg]]</nowiki>''',
@@ -745,7 +745,7 @@ Par includi une figure intune pagjine, dopre un leam inte form
 'sourcefilename'     => 'Non dal file origjinâl:',
 'destfilename'       => 'Non dal file di destinazion:',
 
-# Special:ImageList
+# Special:FileList
 'imagelist'             => 'Liste des figuris',
 'imagelist_date'        => 'Date',
 'imagelist_name'        => 'Non',
@@ -753,7 +753,7 @@ Par includi une figure intune pagjine, dopre un leam inte form
 'imagelist_size'        => 'Dimension in bytes',
 'imagelist_description' => 'Descrizion',
 
-# Image description page
+# File description page
 'filehist'                  => 'Storic dal file',
 'filehist-help'             => 'Frache suntune date/ore par viodi il file cemût che al jere in chel moment.',
 'filehist-current'          => 'corint',
@@ -1248,7 +1248,7 @@ Sielç par plasê un altri non.',
 'show-big-image'       => 'Version a risoluzion plene',
 'show-big-image-thumb' => '<small>Dimensions di cheste anteprime: $1 × $2 pixels</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'     => 'Galarie dai gnûfs files',
 'imagelisttext' => 'Ca sot e je une liste di $1 {{PLURAL:$1|file|files}} ordenâts $2.',
 'showhidebots'  => '($1 i bots)',

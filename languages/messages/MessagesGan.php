@@ -819,7 +819,7 @@ $2',
 'upload_directory_read_only'  => '上傳目錄($1)伓存在或冇寫入許可權。',
 'uploaderror'                 => '上傳出錯',
 'uploadtext'                  => "用下底嗰表格上傳檔案。
-要眵或要尋先前上傳嗰圖像請去[[Special:ImageList|圖像列表]]，上傳同刪除會記到[[Special:Log/upload|上傳日誌]]裡度。
+要眵或要尋先前上傳嗰圖像請去[[Special:FileList|圖像列表]]，上傳同刪除會記到[[Special:Log/upload|上傳日誌]]裡度。
 
 要係想扻文件到頁面，用得正下底嗰方式連結:
 '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki>''',
@@ -852,8 +852,8 @@ $2',
 'fileexists-thumb'            => "<center>'''早就有嘍嗰文件'''</center>",
 'fileexists-thumbnail-yes'    => '箇隻檔案好像係一隻圖像嗰縮小版<i>(縮圖)</i>。請檢查清楚箇隻檔案<strong><tt>$1</tt></strong>。<br /> 如果檢查後嗰檔同原先圖像嗰大小係一樣嗰話，就嫑再上傳多一隻縮圖。',
 'file-thumbnail-no'           => '箇隻檔案名係以<strong><tt>$1</tt></strong>開頭。佢好像一隻圖像嗰縮小版<i>(縮圖)</i>。如果倷有箇隻圖像嗰完整版，伓然請再改過隻檔名。',
-'fileexists-forbidden'        => '箇隻檔案名已存在；請回頭並換過隻新嗰名稱來上傳箇隻檔案。[[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => '到共用檔案庫裡度有嘞同名嗰檔案；請回頭並換過隻新嗰名稱來上傳箇隻檔案。[[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => '箇隻檔案名已存在；請回頭並換過隻新嗰名稱來上傳箇隻檔案。[[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => '到共用檔案庫裡度有嘞同名嗰檔案；請回頭並換過隻新嗰名稱來上傳箇隻檔案。[[File:$1|thumb|center|$1]]',
 'successfulupload'            => '上傳正嘞',
 'uploadwarning'               => '上傳警告',
 'savefile'                    => '保存檔案',
@@ -893,7 +893,7 @@ $2',
 'upload_source_url'  => '(一隻有效嗰，公開嗰 URL)',
 'upload_source_file' => '(倷電腦嗰一隻檔案)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist_search_for'  => '按媒體名字尋:',
 'imgfile'               => '檔案',
 'imagelist'             => '檔案列表',
@@ -903,7 +903,7 @@ $2',
 'imagelist_size'        => '大細',
 'imagelist_description' => '簡話',
 
-# Image description page
+# File description page
 'filehist'                  => '檔案歷史',
 'filehist-help'             => '按到日期／時間去眵吖許時間有過嗰檔案。',
 'filehist-deleteall'        => '全部刪掉',
@@ -1685,7 +1685,7 @@ $1',
 'show-big-image'       => '完整解析度',
 'show-big-image-thumb' => '<small>箇幅縮略圖嗰解析度: $1 × $2 像素</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => '新建圖像畫廊',
 'imagelisttext'         => '底下係按$2排列嗰$1隻檔案列表。',
 'showhidebots'          => '($1機器人)',

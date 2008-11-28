@@ -353,13 +353,13 @@ It must have at least $1 characters and be different from your username.',
 'filesource' => 'Çımey:',
 'savefile'   => 'Dosya qeyd ke',
 
-# Special:ImageList
+# Special:FileList
 'imgfile'        => 'dosya',
 'imagelist'      => 'Lista Dosya',
 'imagelist_date' => 'Tarix',
 'imagelist_user' => 'Karber',
 
-# Image description page
+# File description page
 'filehist-datetime' => 'Tarix/Zeman',
 'filehist-user'     => 'Karber',
 'noimage-linktext'  => 'Bar ke',
@@ -445,7 +445,7 @@ Sebebê kılit-biyayışê $1\'i: "$2"o',
 # Attribution
 'lastmodifiedatby' => 'Ena pele tewr peyên roca $2, $1 by $3. de biya rocaniye', # $1 date, $2 time, $3 user
 
-# Special:NewImages
+# Special:NewFiles
 'ilsubmit' => 'Cıgeyre',
 
 'exif-gaincontrol-0' => 'çino',

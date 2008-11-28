@@ -1240,7 +1240,7 @@ S'havi accirtari ca la cuntinuità storica di la pàggina nun veni altirata.",
 'upload_directory_missing'    => 'La directory di upload ($1) nun asisti e non pò èssiri criata dû webserver.',
 'upload_directory_read_only'  => 'Lu server web nun è n gradu di scrìviri ntâ directory di upload ($1).',
 'uploaderror'                 => 'Erruri ntô carricamentu',
-'uploadtext'                  => "Usa lu mòdulu ccà sutta pi carricari file novi. Pi vìdiri o circari li file già carricati, talìa lu [[Special:ImageList|log dî file carricati]]. Carricamenti di file e di virsioni novi di file sunnu riggistrati ntô [[Special:Log/upload|log di l'upload]], li cancillazzioni di file sunnu 
+'uploadtext'                  => "Usa lu mòdulu ccà sutta pi carricari file novi. Pi vìdiri o circari li file già carricati, talìa lu [[Special:FileList|log dî file carricati]]. Carricamenti di file e di virsioni novi di file sunnu riggistrati ntô [[Special:Log/upload|log di l'upload]], li cancillazzioni di file sunnu 
 riggistrati [[Special:Log/delete|ccà]].
 
 Pi nziriri nu file nta na pàggina, fai nu lijami accussì:
@@ -1252,7 +1252,7 @@ Pi nziriri nu file nta na pàggina, fai nu lijami accussì:
 'upload-prohibited'           => 'Tipi di file pruibbiti: $1.',
 'uploadlog'                   => 'File carricati',
 'uploadlogpage'               => 'File carricati',
-'uploadlogpagetext'           => "Ccà sutta la lista di l'ùrtimi file carricati. Talìa la [[Special:NewImages|gallarìa dî file novi]] pi na visioni ginirali.",
+'uploadlogpagetext'           => "Ccà sutta la lista di l'ùrtimi file carricati. Talìa la [[Special:NewFiles|gallarìa dî file novi]] pi na visioni ginirali.",
 'filename'                    => 'Nomu dû file',
 'filedesc'                    => 'Discrizzioni',
 'fileuploadsummary'           => "Discrizzioni (auturi, fonti, discrizzioni, licenza d'usu, noti) dû file:",
@@ -1283,8 +1283,8 @@ Siduu si tratta dâ stissa mmagini, nte dimenzioni urigginali, nun è nicissariu
 'file-thumbnail-no'           => "Lu nomu dô file accumenza cu <strong><tt>$1</tt></strong>. 
 Pari quinni èssiri lu risurtatu di n'antiprima <i>(thumbnail)</i>.
 Siddu si disponi dâ mmàggini ntâ risuluzzioni urigginali, si prega di carricàrila. 'N casu cuntrariu, si prega di canciari lu nomu dô file.",
-'fileexists-forbidden'        => "Nu file cu stu nomu asisti già. Turnari n'arreri e canciari lu nomu cu lu quali carricari lu file. [[Image:$1|thumb|center|$1]]",
-'fileexists-shared-forbidden' => "Nu file cu stu nomu asisti già nta l'archiviu dî risursi multimidiali cundivisi. Siddu voi ancora carricari lu file, pi favuri torna n'arreri e cancia lu nomu ca voi dari a lu file. [[Image:$1|thumb|center|$1]]",
+'fileexists-forbidden'        => "Nu file cu stu nomu asisti già. Turnari n'arreri e canciari lu nomu cu lu quali carricari lu file. [[File:$1|thumb|center|$1]]",
+'fileexists-shared-forbidden' => "Nu file cu stu nomu asisti già nta l'archiviu dî risursi multimidiali cundivisi. Siddu voi ancora carricari lu file, pi favuri torna n'arreri e cancia lu nomu ca voi dari a lu file. [[File:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => 'Stu file è na copia duppiuni {{PLURAL:$1|dû|dî}} file ccà di sècutu:',
 'file-deleted-duplicate'      => "Nu file lu stissu comu a chistu file ([[$1]]) vinni scanciallatu prima di ora. S'aviss'a cuntrullari la stòria e lu picchì dâ scancillazzioni dû file prima di ri-caricàrilu.",
 'successfulupload'            => 'Carricamentu cumplitatu',
@@ -1341,7 +1341,7 @@ PICT # arcuni
 'upload_source_url'  => '(na URL curretta e accissìbbili)',
 'upload_source_file' => '(un file supra lu propiu computer)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => "Sta pàggina spiciali ammustra tutti li file caricati.
 Li file caricati di cchiù picca tempu sunnu ammustrati ô princìpiu dâ lista.
 Pi canciari l'urdinamentu, fari clic supra a la ntistazzioni dâ culonna scigghiuta.",
@@ -1354,7 +1354,7 @@ Pi canciari l'urdinamentu, fari clic supra a la ntistazzioni dâ culonna scigghi
 'imagelist_size'        => 'Diminzioni (bytes)',
 'imagelist_description' => 'Discrizzioni',
 
-# Image description page
+# File description page
 'filehist'                       => 'Crunoluggìa dô file',
 'filehist-help'                  => 'Fari clic supra nu gruppu data/ura pi vìdiri lu file comu si prisintava ntô mumentu nnicatu.',
 'filehist-deleteall'             => 'cancilla tuttu',
@@ -2314,7 +2314,7 @@ $1',
 'show-big-image'       => 'Virsioni a àuta risuluzzioni',
 'show-big-image-thumb' => "<small>Diminzioni di st'antiprima: $1 × $2 pixel</small>",
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Gallarìa dî file novi',
 'imagelisttext'         => "Di sèquitu veni prisintata na lista di '''$1''' file urdinat{{PLURAL:$1|u|i}} pi $2.",
 'newimages-summary'     => 'Sta pàggina spiciali ammustra li file caricati di cchiù picca tempu.',

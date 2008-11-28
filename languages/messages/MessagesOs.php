@@ -137,6 +137,8 @@ $messages = array(
 'newwindow'      => '(ног рудзынджы)',
 'qbfind'         => 'Агур',
 'qbedit'         => 'Баив æй',
+'qbpageoptions'  => 'Ацы фарс',
+'qbmyoptions'    => 'Мæ фæрстæ',
 'qbspecialpages' => 'Сæрмагонд фæрстæ',
 'moredotdotdot'  => 'Фылдæр…',
 'mypage'         => 'Дæхи фарс',
@@ -164,6 +166,7 @@ $messages = array(
 'protect'           => 'Сæхгæн',
 'protect_change'    => 'баив',
 'protectthispage'   => 'Сæхгæн ацы фарс',
+'unprotect'         => 'Мауал хъахъхъæн',
 'unprotectthispage' => 'Ацы фарс ивынмæ байгом',
 'newpage'           => 'Ног фарс',
 'talkpage'          => 'Ацы фарсы тыххæй ныхас',
@@ -211,6 +214,7 @@ $messages = array(
 'editold'             => 'баив æй',
 'viewsourceold'       => 'йæ код фен',
 'editlink'            => 'баив æй',
+'viewsourcelink'      => 'йæ код фен',
 'editsectionhint'     => 'Баив æй: $1',
 'toc'                 => 'Сæргæндтæ',
 'showtoc'             => 'равдис',
@@ -261,6 +265,7 @@ $messages = array(
 'loginpagetitle'          => 'Дæхи бацамон системæйæн',
 'yourname'                => 'Архайæджы ном:',
 'yourpassword'            => 'Пароль:',
+'yourpasswordagain'       => 'Дæ пароль иу хатт ма:',
 'remembermypassword'      => 'Системæ бахъуыды кæнæд мæ пароль ацы компьютерыл',
 'yourdomainname'          => 'Дæ домен:',
 'login'                   => 'Дæхи бавдис системæйæн',
@@ -270,6 +275,7 @@ $messages = array(
 'userlogout'              => 'Номсусæг суын',
 'notloggedin'             => 'Системæйæн дæхи нæ бацамыдтай',
 'createaccountmail'       => 'адрисмæ гæсгæ',
+'badretype'               => 'Дыууæ хатты иу пароль хъуамæ ныффыстаис',
 'youremail'               => 'Дæ электронон посты адрис',
 'username'                => 'Регистрацигонд ном:',
 'yourrealname'            => 'Дæ æцæг ном*',
@@ -282,10 +288,12 @@ $messages = array(
 'wrongpasswordempty'      => 'Пароль афтид уыд. Афтæ нæ баззы, ныффыс-ма исты пароль.',
 'mailmypassword'          => 'Рарвит мæм ног пароль',
 'noemail'                 => 'Архайæг $1 йæ электрон посты адрис нæ ныууагъта.',
+'emailconfirmlink'        => 'Дæ электронон посты адрис сфидар кæн',
 'loginlanguagelabel'      => 'Æвзаг: $1',
 
 # Password reset dialog
-'resetpass_text' => '<!-- Бахæсс дæ текст ам -->',
+'resetpass_text'          => '<!-- Бахæсс дæ текст ам -->',
+'resetpass-temp-password' => 'Рæстæгмæ пароль:',
 
 # Edit page toolbar
 'bold_sample'     => 'Ацы текст бæзджын суыдзæн',
@@ -296,6 +304,7 @@ $messages = array(
 'link_tip'        => 'Мидæг æрвитæн (æндæр статьямæ)',
 'extlink_tip'     => 'Æддаг æрвитæн (префикс http:// ма рох кæн)',
 'headline_sample' => 'Ам сæргонды текст уæд',
+'math_sample'     => 'Ныффысс формулæ',
 'math_tip'        => 'Математикон формулæ (формат LaTeX)',
 
 # Edit pages
@@ -308,6 +317,7 @@ $messages = array(
 'showdiff'           => 'Цы баивтай ацы тексты, уый фен',
 'blockednoreason'    => 'аххос амынд не ’рцыд',
 'newarticle'         => '(Ног)',
+'note'               => '<strong>Бафиппай:</strong>',
 'editconflict'       => 'Ивыны конфликт: $1',
 'longpagewarning'    => '<strong>РАГФÆДЗАХСТ: Ацы фарсы бæрцуат у $1 килобайты.
 Сæ бæрцуат 32 килобайтæй фылдæр кæмæн у, ахæм фæрстæ иуæй-иу браузерты раст нæ зынынц.
@@ -393,10 +403,10 @@ $3',
 'savefile'      => 'Бавæр æй',
 'uploadvirus'   => 'Файлы разынд вирус! Кæс $1',
 
-# Special:ImageList
+# Special:FileList
 'imagelist' => 'Нывты номхыгъд',
 
-# Image description page
+# File description page
 'filehist'          => 'Файлы истори',
 'filehist-current'  => 'нырыккон',
 'filehist-datetime' => 'Датæ/рæстæг',
@@ -531,7 +541,7 @@ $3',
 # Media information
 'widthheightpage' => '$1 × $2, $3 фарсы',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages' => 'Ног нывты галерей',
 'ilsubmit'  => 'Агур',
 'bydate'    => 'рæстæгмæ гæсгæ',

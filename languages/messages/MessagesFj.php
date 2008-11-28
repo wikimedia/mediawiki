@@ -189,7 +189,7 @@ $messages = array(
 'tooltip-search'         => 'Vaqaqara {{SITENAME}}',
 'tooltip-p-logo'         => 'Tabana levu',
 
-# Special:NewImages
+# Special:NewFiles
 'ilsubmit' => 'Vaqaqara',
 
 # Multipage image navigation

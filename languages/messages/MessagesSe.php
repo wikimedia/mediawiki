@@ -645,7 +645,7 @@ $1 | $2',
 'upload_source_url'  => ' (almmolaš URL-čujuhus)',
 'upload_source_file' => ' (fiila dihtoris)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist_search_for'  => 'Nammaohcan',
 'imgfile'               => 'fiila',
 'imagelist'             => 'Fiilalogahallan',
@@ -655,7 +655,7 @@ $1 | $2',
 'imagelist_size'        => 'Sturrodat',
 'imagelist_description' => 'Govvádus',
 
-# Image description page
+# File description page
 'filehist'                  => 'Fiilla historjá',
 'filehist-help'             => 'Go deaddilat beaivemeari, oainnat makká fiila lei dalle.',
 'filehist-deleteall'        => 'sihko buot',
@@ -1161,7 +1161,7 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 # Media information
 'widthheightpage' => '$1×$2, $3 siiddut',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Ođđa govat',
 'imagelisttext'         => "Vuolábealde lea '''$1''' fiilla ordnejuvvon $2.",
 'ilsubmit'              => 'Oza',

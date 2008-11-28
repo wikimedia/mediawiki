@@ -1159,7 +1159,7 @@ mangga delengen math/README kanggo cara konfigurasi.',
 'upload_directory_read_only'  => 'Dirèktori pangunggahan ($1) ora bisa ditulis déning server wèb.',
 'uploaderror'                 => 'Kaluputan pangunggahan berkas',
 'uploadtext'                  => "Anggonen formulir ing ngisor iki kanggo ngunggahaké berkas. 
-Kanggo mirsani utawa nggolèki berkas sing wis diunggah sadurungé pigunakaké [[Special:ImageList|dhaftar berkas sing wis diunggah]], berkas sing diunggah ulang uga kadhaftar ing [[Special:Log/upload|log pangunggahan]], pambusakan ing [[Special:Log/delete|Log pambusakan]].
+Kanggo mirsani utawa nggolèki berkas sing wis diunggah sadurungé pigunakaké [[Special:FileList|dhaftar berkas sing wis diunggah]], berkas sing diunggah ulang uga kadhaftar ing [[Special:Log/upload|log pangunggahan]], pambusakan ing [[Special:Log/delete|Log pambusakan]].
 
 Kanggo nyertakaké berkas ing sawijining kaca, pigunakaké pranala salah siji saka format ing ngisor iki:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Berkas.jpg]]</nowiki></tt>''' kanggo migunakaké versi pepak berkas
@@ -1171,7 +1171,7 @@ Kanggo nyertakaké berkas ing sawijining kaca, pigunakaké pranala salah siji sa
 'uploadlog'                   => 'log pangunggahan',
 'uploadlogpage'               => 'Log pangunggahan',
 'uploadlogpagetext'           => 'Ing ngisor iki kapacak log pangunggahan berkas sing anyar dhéwé.
-Mangga mirsani [[Special:NewImages|galeri berkas-berkas anyar]] kanggo pratélan visual.',
+Mangga mirsani [[Special:NewFiles|galeri berkas-berkas anyar]] kanggo pratélan visual.',
 'filename'                    => 'Jeneng berkas',
 'filedesc'                    => 'Ringkesan',
 'fileuploadsummary'           => 'Ringkesan:',
@@ -1205,9 +1205,9 @@ Yèn berkas sing wis dipriksa iku padha, ora perlu panjenengan ngunggahaké vèr
 'file-thumbnail-no'           => 'Jeneng berkas diwiwiti kanthi <strong><tt>$1</tt></strong>. Katoné berkas iki sawijining gambar mawa ukuran sing dicilikaké <em>(thumbnail)</em>.
 Yèn panjenengan kagungan vèrsi mawa résolusi kebak saka gambar iki, mangga diunggahaké. Yèn ora, tulung jeneng berkas diganti.',
 'fileexists-forbidden'        => 'Berkas mawa jeneng sing padha wis ana; 
-tulung berkasé diunggahaké manèh mawa jeneng liya. [[Image:$1|thumb|center|$1]]',
+tulung berkasé diunggahaké manèh mawa jeneng liya. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Wis ana berkas liyané mawa jeneng sing padha ing gudhang berkas sing dianggo bebarengan.
-Yèn isih ngersakaké ngunggahaké, mangga berkas diunggahaké manèh mawa jeneng liya. [[Image:$1|thumb|center|$1]]',
+Yèn isih ngersakaké ngunggahaké, mangga berkas diunggahaké manèh mawa jeneng liya. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Berkas iki duplikat utawa padha karo {{PLURAL:$1|berkas|berkas-berkas}} ing ngisor:',
 'file-deleted-duplicate'      => 'Sawijining berkas persis berkas iki ([[$1]]) wis tau dibusak. Mangga panjenengan priksani sajarah pambusakan berkas kasebut sadurungé nerusaké ngunggahaké berkas kuwi manèh.',
 'successfulupload'            => 'Kasil diamot',
@@ -1255,7 +1255,7 @@ Mbok-menawa panjenengan bisa nyoba manèh ing wektu sing luwih longgar.',
 'upload_source_url'  => ' (sawijining URL absah sing bisa diaksès publik)',
 'upload_source_file' => ' (sawijining berkas ing komputeré panjenengan)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Kaca astaméwa utawa kusus iki nuduhaké kabèh berkas sing wis diunggahaké.
 Sacara baku, berkas pungkasan sing diunggahaké dituduhaké ing urutan dhuwur dhéwé.
 Klik sirahé kolom kanggo ngowahi urutan.',
@@ -1268,7 +1268,7 @@ Klik sirahé kolom kanggo ngowahi urutan.',
 'imagelist_size'        => 'Ukuran (bita)',
 'imagelist_description' => 'Dèskripsi',
 
-# Image description page
+# File description page
 'filehist'                       => 'Sajarah berkas',
 'filehist-help'                  => 'Klik ing tanggal/wektu kanggo deleng berkas iki ing wektu iku.',
 'filehist-deleteall'             => 'busaken kabèh',
@@ -2243,7 +2243,7 @@ Mbokmanawa iki disebabaké anané pranala jaba sing klebu dhaptar ireng.',
 'show-big-image'       => 'Résolusi kebak',
 'show-big-image-thumb' => '<small>Ukuran pratayang iki: $1 × $2 piksel</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Galeri berkas anyar',
 'imagelisttext'         => "Ing ngisor iki kapacak daftar '''$1''' {{PLURAL:$1|berkas|berkas}} sing diurutaké $2.",
 'newimages-summary'     => 'Kaca astaméwa utawa kusus iki nuduhaké daftar berkas anyar dhéwé sing diunggahaké.',

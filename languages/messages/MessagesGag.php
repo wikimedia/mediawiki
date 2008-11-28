@@ -547,10 +547,10 @@ Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 'uploadlogpage' => 'Fayl üklemäk jurnalları',
 'uploadedimage' => 'Üklenen: "[[$1]]"',
 
-# Special:ImageList
+# Special:FileList
 'imagelist' => 'Pätret listası',
 
-# Image description page
+# File description page
 'filehist'                  => 'Fayl istoriyası',
 'filehist-help'             => 'Fayl istoriyasın görmää deyni Gün/Zaman bölümündeki dataları tıklayınız.',
 'filehist-current'          => 'Şindiki',
@@ -858,7 +858,7 @@ Yalvarêrêz başka bir ad seçmää.',
 'show-big-image'       => 'Taman aydınnık',
 'show-big-image-thumb' => '<small>Ön siir ölçüsü: $1 × $2 piksel</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages' => 'Eni pätretler',
 
 # Bad image list

@@ -1204,7 +1204,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'upload_directory_read_only'  => '파일 저장 디렉토리($1)에 쓰기 권한이 없습니다.',
 'uploaderror'                 => '올리기 오류',
 'uploadtext'                  => "파일을 올리기 위해서는 아래의 양식을 채워주세요.
-[[Special:ImageList|파일 목록]]에서 이전에 올라온 파일을 찾을 수 있습니다. [[Special:Log/upload|올리기 기록]]에는 파일이 올라온 기록이 남습니다. 삭제 기록은 [[Special:Log/delete|삭제 로그]]에서 볼 수 있습니다.
+[[Special:FileList|파일 목록]]에서 이전에 올라온 파일을 찾을 수 있습니다. [[Special:Log/upload|올리기 기록]]에는 파일이 올라온 기록이 남습니다. 삭제 기록은 [[Special:Log/delete|삭제 로그]]에서 볼 수 있습니다.
 
 문서에 그림을 넣으려면 아래 방법 중 하나를 사용하세요.
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' 그림의 온전한 모양을 사용하고자 할 때.
@@ -1216,7 +1216,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'uploadlog'                   => '올리기 기록',
 'uploadlogpage'               => '올리기 기록',
 'uploadlogpagetext'           => '최근 올라온 그림 목록입니다.
-보다 시각적으로 확인하고 싶으시다면 [[Special:NewImages|새 그림 화랑]]을 보세요.',
+보다 시각적으로 확인하고 싶으시다면 [[Special:NewFiles|새 그림 화랑]]을 보세요.',
 'filename'                    => '파일이름',
 'filedesc'                    => '파일의 설명',
 'fileuploadsummary'           => '설명:',
@@ -1244,9 +1244,9 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 존재하는 파일 이름: <strong><tt>$2</tt></strong><br />
 다른 이름으로 시도해 주세요.',
 'fileexists-thumb'            => "<center>'''존재하는 그림'''</center>",
-'fileexists-forbidden'        => '같은 이름의 파일이 이미 있습니다. 뒤로 돌아가서 다른 이름으로 시도해 주시기 바랍니다. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => '같은 이름의 파일이 이미 있습니다. 뒤로 돌아가서 다른 이름으로 시도해 주시기 바랍니다. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => '같은 이름의 파일이 이미 위키미디어 공용에 있습니다.
-파일을 업로드하길 원하신다면 뒤로 돌아가서 다른 이름으로 시도해 주시기 바랍니다. [[Image:$1|thumb|center|$1]]',
+파일을 업로드하길 원하신다면 뒤로 돌아가서 다른 이름으로 시도해 주시기 바랍니다. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => '현재 올리고 있는 파일이 아래 파일과 중복됩니다:',
 'successfulupload'            => '올리기 성공',
 'uploadwarning'               => '올리기 경고',
@@ -1289,7 +1289,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'nolicense'         => '선택하지 않음',
 'license-nopreview' => '(미리보기 불가능)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => '이 위키에 올라와 있는 모든 파일이 나열되어 있습니다.
 기본적으로 가장 최근에 올라온 파일이 가장 위에 올라와 있습니다.
 다른 방식으로 정렬하려면 기준 열의 머리칸을 눌러주세요.',
@@ -1301,7 +1301,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'imagelist_size'        => '크기',
 'imagelist_description' => '설명',
 
-# Image description page
+# File description page
 'filehist'                  => '파일 역사',
 'filehist-help'             => '날짜/시간 링크를 클릭하면 해당 시간의 파일을 볼 수 있습니다.',
 'filehist-deleteall'        => '모두 삭제',
@@ -2184,7 +2184,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'show-big-image'       => '최대 해상도',
 'show-big-image-thumb' => '<small>미리보기 크기: $1 × $2 픽셀</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => '새 그림 파일 목록',
 'imagelisttext'         => '$1개의 파일이 $2 순으로 정렬되어 있습니다.',
 'newimages-summary'     => '이 특수 문서는 최근에 올라온 파일을 나열하고 있습니다.',

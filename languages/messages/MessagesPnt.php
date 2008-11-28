@@ -597,7 +597,7 @@ $messages = array(
 'upload-file-error' => 'Σφάλμαν απές μερέαν',
 'upload-misc-error' => 'Αναγνώριμον λάθος φορτωματί',
 
-# Special:ImageList
+# Special:FileList
 'imgfile'               => 'αρχείον',
 'imagelist'             => 'Λίσταν εικονίων',
 'imagelist_date'        => 'Ημερομηνία',
@@ -606,7 +606,7 @@ $messages = array(
 'imagelist_size'        => 'Μέγεθος',
 'imagelist_description' => 'Σχόλιον',
 
-# Image description page
+# File description page
 'filehist'                      => "Ιστορικόν τ' αρχείου",
 'filehist-help'                 => "Εφτάτε κλικ σ' έναν ημερομηνίαν/ώραν απάν αέτς για να τερείτε πως έτον τ' αρχείον σ' εκείνεν την ώραν.",
 'filehist-current'              => 'υστερινά',
@@ -992,7 +992,7 @@ $messages = array(
 'show-big-image'       => 'Τζιπ τρανόν ανάλυση',
 'show-big-image-thumb' => "<small>Μέγεθος τη πρώτ' τερεματί: $1 × $2 εικονοστοιχεία</small>",
 
-# Special:NewImages
+# Special:NewFiles
 'newimages' => 'Τερέστεν τα καινούρεα φωτογραφίας',
 'ilsubmit'  => 'Αράεμαν',
 'bydate'    => 'ημερομηνίας',

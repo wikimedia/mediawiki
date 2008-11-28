@@ -259,11 +259,11 @@ $messages = array(
 
 'nolicense' => 'Chemnorume dullinnongey',
 
-# Special:ImageList
+# Special:FileList
 'imagelist_name' => 'Üy',
 'imagelist_user' => 'Lludüchi',
 
-# Image description page
+# File description page
 'filehist-deleteall' => 'kom ñamümün',
 'filehist-deleteone' => 'ñamümün tüfa',
 'filehist-user'      => 'Lludüchi',
@@ -403,7 +403,7 @@ $messages = array(
 # Patrol log
 'patrol-log-diff' => 'ng$1',
 
-# Special:NewImages
+# Special:NewFiles
 'ilsubmit' => 'Kintu',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages

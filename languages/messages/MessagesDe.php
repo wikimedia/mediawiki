@@ -7,6 +7,7 @@
  * @author Church of emacs
  * @author Jimmy Collins <jimmy.collins@web.de>
  * @author Li-sung
+ * @author Melancholie
  * @author Meno25
  * @author Metalhead64
  * @author MichaelFrey
@@ -1190,7 +1191,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen
 'search-interwiki-caption'         => 'Schwesterprojekte',
 'search-interwiki-default'         => '$1 Ergebnisse:',
 'search-interwiki-more'            => '(weitere)',
-'search-mwsuggest-enabled'         => 'mit Vorschläge',
+'search-mwsuggest-enabled'         => 'mit Vorschlägen',
 'search-mwsuggest-disabled'        => 'keine Vorschläge',
 'search-relatedarticle'            => 'Verwandte',
 'mwsuggest-disable'                => 'Vorschläge per Ajax deaktivieren',
@@ -1467,7 +1468,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen
 'uploaderror'                 => 'Fehler beim Hochladen',
 'uploadtext'                  => "Benutze dieses Formular, um neue Dateien hochzuladen. 
 
-Gehe zu der [[Special:ImageList|Liste hochgeladener Dateien]], um vorhandene Dateien zu suchen und anzuzeigen. Siehe auch das [[Special:Log/upload|Datei-]] und [[Special:Log/delete|Lösch-Logbuch]].
+Gehe zu der [[Special:FileList|Liste hochgeladener Dateien]], um vorhandene Dateien zu suchen und anzuzeigen. Siehe auch das [[Special:Log/upload|Datei-]] und [[Special:Log/delete|Lösch-Logbuch]].
 
 Klicke auf '''„Durchsuchen …“''', um einen Dateiauswahl-Dialog zu öffnen.
 Nach der Auswahl einer Datei wird der Dateiname im Textfeld '''„Quelldatei“''' angezeigt.
@@ -1488,7 +1489,7 @@ Bitte beachte, dass, genau wie bei normalen Seiteninhalten, andere Benutzer dein
 'upload-prohibited'           => 'Nicht erlaubte Dateitypen: $1.',
 'uploadlog'                   => 'Datei-Logbuch',
 'uploadlogpage'               => 'Datei-Logbuch',
-'uploadlogpagetext'           => 'Dies ist das Logbuch der hochgeladenen Dateien, siehe auch die [[Special:NewImages|Galerie neuer Dateien]] für einen visuellen Überblick.',
+'uploadlogpagetext'           => 'Dies ist das Logbuch der hochgeladenen Dateien, siehe auch die [[Special:NewFiles|Galerie neuer Dateien]] für einen visuellen Überblick.',
 'filename'                    => 'Dateiname',
 'filedesc'                    => 'Beschreibung',
 'fileuploadsummary'           => 'Beschreibung/Quelle:',
@@ -1518,10 +1519,10 @@ Nur die Dateiendung unterscheidet sich in Groß-/Kleinschreibung. Bitte prüfe, 
 Wenn es sich um das Bild in Originalgröße handelt, so braucht kein separates Vorschaubild hochgeladen zu werden.',
 'file-thumbnail-no'           => 'Der Dateiname beginnt mit <strong><tt>$1</tt></strong>. Dies deutet auf ein Bild verringerter Größe <i>(thumbnail)</i> hin.
 Bitte prüfe, ob du das Bild in voller Auflösung vorliegen hast und lade dieses unter dem Originalnamen hoch.',
-'fileexists-forbidden'        => 'Unter diesem Namen existiert bereits eine Datei. Bitte gehe zurück und lade diese Datei unter einem anderen Namen hoch. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Unter diesem Namen existiert bereits eine Datei. Bitte gehe zurück und lade diese Datei unter einem anderen Namen hoch. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Unter diesem Namen existiert bereits eine Datei im zentralen Medienarchiv.
 Wenn du diese Datei trotzdem hochladen möchtest, gehe bitte zurück und ändere den Namen.
-[[Image:$1|thumb|center|$1]]',
+[[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Diese Datei ist ein Duplikat der folgenden {{PLURAL:$1|Datei|$1 Dateien}}:',
 'file-deleted-duplicate'      => 'Eine identische Datei dieser Datei ([[$1]]) wurde früher gelöscht. Überprüfe das Löschlogbuch, bevor du sie hochlädst.',
 'successfulupload'            => 'Erfolgreich hochgeladen',
@@ -1582,7 +1583,7 @@ Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|Syst
 'upload_source_url'  => ' (gültige, öffentlich zugängliche URL)',
 'upload_source_file' => ' (eine Datei auf deinem Computer)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Diese Spezialseite listet alle hochgeladenen Dateien auf. Standardmäßig werden die zuletzt hochgeladenen Dateien zuerst angezeigt. Durch einen Klick auf die Spaltenüberschriften kann die Sortierung umgedreht werden oder es kann nach einer anderen Spalte sortiert werden.',
 'imagelist_search_for'  => 'Suche nach Datei:',
 'imgfile'               => 'Datei',
@@ -1593,7 +1594,7 @@ Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|Syst
 'imagelist_size'        => 'Größe',
 'imagelist_description' => 'Beschreibung',
 
-# Image description page
+# File description page
 'filehist'                       => 'Dateiversionen',
 'filehist-help'                  => 'Klicke auf einen Zeitpunkt, um diese Version zu laden.',
 'filehist-deleteall'             => 'Alle Versionen löschen',
@@ -2600,7 +2601,7 @@ $1',
 'show-big-image'       => 'Version in höherer Auflösung',
 'show-big-image-thumb' => '<small>Größe der Voransicht: $1 × $2 Pixel</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Neue Dateien',
 'imagelisttext'         => "Hier ist eine Liste von '''$1''' {{PLURAL:$1|Datei|Dateien}}, sortiert $2.",
 'newimages-summary'     => 'Diese Spezialseite zeigt die zuletzt hochgeladenen Dateien an.',

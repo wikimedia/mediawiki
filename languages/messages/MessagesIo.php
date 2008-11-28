@@ -578,14 +578,14 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'uploadedimage'     => 'adkargita "[[$1]]"',
 'uploaddisabled'    => 'Pardonez, la adkargo esas desaktiva.',
 
-# Special:ImageList
+# Special:FileList
 'imgfile'        => 'arkivo',
 'imagelist'      => 'Listo di imaji',
 'imagelist_date' => 'Dato',
 'imagelist_name' => 'Nomo',
 'imagelist_user' => 'Uzanto',
 
-# Image description page
+# File description page
 'filehist'                       => 'Historio dil arkivo',
 'filehist-help'                  => 'Klikez sur la dato/horo por vidar arkivo quale ol aparis ye ta tempo.',
 'filehist-current'               => 'aktuala',
@@ -992,7 +992,7 @@ Voluntez selektar altra nomo.',
 # Media information
 'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|pagino|pagini}}',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'     => 'Galerio di nova arkivi',
 'imagelisttext' => "Infre esas listo di '''$1''' {{PLURAL:$1|arkivo|arkivi}} rangizita $2.",
 'showhidebots'  => '($1 bot-i)',

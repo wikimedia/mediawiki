@@ -966,7 +966,7 @@ om bestan'n te upload'n.",
 'upload_directory_read_only' => 'De webserver kan nie schrieven in de uploadmap ($1).',
 'uploaderror'                => 'Uploadfout',
 'uploadtext'                 => "Gebruuk 't onderstaende formelier om bestan'n te uploaden.
-Om eêder toehevoegde bestan'n te bekieken of te zoeken kan je ni de [[Special:ImageList|bestandslieste]] haen.
+Om eêder toehevoegde bestan'n te bekieken of te zoeken kan je ni de [[Special:FileList|bestandslieste]] haen.
 Uploads en verwiederiengen worn bie'ehouwen in 't [[Special:Log/upload|uploadlogboek]].
 
 Om 't bestand in te voehen in een pagina kan je eên van de volhende codes gebruken, a ni helang 't bestandsformaot dat van toepassieng is:

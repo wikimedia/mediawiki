@@ -449,10 +449,10 @@ $1',
 'uploadlogpage' => 'نمایه آپلود',
 'uploadedimage' => 'آپلود وابید "[[$1]]"',
 
-# Special:ImageList
+# Special:FileList
 'imagelist' => 'لیست فایل',
 
-# Image description page
+# File description page
 'filehist'                  => 'گزارش تاریخی فایل',
 'filehist-help'             => 'رو تاریخ‌ها کلیک کنید تا نسخه مرتبط را ببینین.',
 'filehist-current'          => 'جاری',
@@ -778,7 +778,7 @@ $2',
 'show-big-image'       => 'تصویر با قابلیت تفکیک کامل',
 'show-big-image-thumb' => '<کوچیک>اندازه پیش نمایش: $1 × $2 پیکسلها</کوچیک>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages' => 'گالری فایلهای تازه',
 
 # Bad image list

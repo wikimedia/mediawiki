@@ -1114,7 +1114,7 @@ Artikle na [[Special:Watchlist|pozorliśće]] sům '''rube'''.",
 'upload_directory_read_only'  => 'Serwer ńy može škryflać do katalůgu ($1) kery je přeznačůny na wćepywane pliki.',
 'uploaderror'                 => 'Feler při wćepywańu',
 'uploadtext'                  => "Ůžyj formulařa půńižej do wćepywańo plikůw.
-Jak chceš přejřeć dotychčas wćepane pliki, abo w ńich šnupać, přeńdź do [[Special:ImageList|listy douůnčůnych plikůw]]. Wšyjstke wćepańo uodnotowane sům we [[Special:Log/upload|rejeře přesůuanych plikůw]], a jygo wyćepańy we [[Special:Log/delete|rejeře wyćepanych]].
+Jak chceš přejřeć dotychčas wćepane pliki, abo w ńich šnupać, přeńdź do [[Special:FileList|listy douůnčůnych plikůw]]. Wšyjstke wćepańo uodnotowane sům we [[Special:Log/upload|rejeře přesůuanych plikůw]], a jygo wyćepańy we [[Special:Log/delete|rejeře wyćepanych]].
 
 Plik pojawi śe na zajće, jak užyješ linka wedle jydnygo s nastympujůncych wzorůw:
 '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Plik.jpg]]</nowiki>''' pokože plik we pounyj postaći,
@@ -1126,7 +1126,7 @@ Plik pojawi śe na zajće, jak užyješ linka wedle jydnygo s nastympujůncych w
 'uploadlog'                   => 'Wykoz wćepywań',
 'uploadlogpage'               => 'Wćepane sam',
 'uploadlogpagetext'           => 'Půńižej znojdowo śe lista plikůw wćepanych na uostatku.
-Přelyź na zajta [[Special:NewImages|galeryje nowych plikůw]], coby uobejzdřeć pliki kej mińjatůrki.',
+Přelyź na zajta [[Special:NewFiles|galeryje nowych plikůw]], coby uobejzdřeć pliki kej mińjatůrki.',
 'filename'                    => 'Mjano pliku',
 'filedesc'                    => 'Uopis',
 'fileuploadsummary'           => 'Uopis:',
@@ -1157,9 +1157,9 @@ Jak to je ta sama grafika, ino wjelgo, ńy muśiš juž jei sam zaś wćepywać.
 'file-thumbnail-no'           => 'Mjano plika začyno śe uod <strong><tt>$1</tt></strong>. Zdowo śe, co to je půmńijšůna grafika <i>(mińaturka)</i>.
 Jak moš ta grafika we peunym rozmjaře - wćepej ja sam.
 Jak chceš wćepać ta, bydźeš muśou zmjyńić mjano wćepywanygo terozki plika.',
-'fileexists-forbidden'        => 'Plik uo takym mjańy juž sům můmy! Idź nazod i wćepej tyn plik pod inkšym mjanym. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Plik uo takym mjańy juž sům můmy! Idź nazod i wćepej tyn plik pod inkšym mjanym. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Plik uo takym mjańe juž je wćepany na wspůlne repozytorjům plikůw.
-Idź nazod i wćepej tyn plik pod inkšym mjanym. [[Image:$1|thumb|center|$1]]',
+Idź nazod i wćepej tyn plik pod inkšym mjanym. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Tyn plik je kopjům {{PLURAL:$1|plika|nastypujůncych plikůw:}}',
 'successfulupload'            => 'Wćepańe plika udouo śe',
 'uploadwarning'               => 'Uostřežyńe uo wćepywańu',
@@ -1201,7 +1201,7 @@ Rejer wyćepań tygo plika je podany půńižej, cobyś miou wygoda:",
 'upload_source_url'  => ' (poprowny, publičńy dostympny URL)',
 'upload_source_file' => ' (plik na twojym komputře)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'To je ekstra zajta na kery sům pokazywane wšyske pliki wćepane na serwer. Důmyślńy na wiyrchu listy wyśwjetlajům śe pliki wćepane na uostatku. Coby půmjyńić sposůb sortowańo, klikńij na naguůwek kolůmny.',
 'imagelist_search_for'  => 'Šnupej za grafikům uo mjańe:',
 'imgfile'               => 'plik',
@@ -1212,7 +1212,7 @@ Rejer wyćepań tygo plika je podany půńižej, cobyś miou wygoda:",
 'imagelist_size'        => 'Rozmior (bajty)',
 'imagelist_description' => 'Uopis',
 
-# Image description page
+# File description page
 'filehist'                       => 'Historjo pliku',
 'filehist-help'                  => 'Klikńij na data/čas, coby uobejřeć plik taki jak wtedy wyglůndou.',
 'filehist-deleteall'             => 'wyćep wšyskie',
@@ -2096,7 +2096,7 @@ $1',
 'show-big-image'       => 'Oryginalno rozdźelčość',
 'show-big-image-thumb' => '<small>Rozmiar podglůndu: $1 × $2 pikseli</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Galerjo nowych uobrozkůw',
 'imagelisttext'         => "Půnižyj na {{PLURAL:$1||posortowanyj $2}} liśće {{PLURAL:$1|znojdowo|znojdujům|znojdowo}} śe '''$1''' {{PLURAL:$1|plik|pliki|plikůw}}.",
 'newimages-summary'     => 'Na tyi ekstra zajće prezyntowane sům uostatńo wćepńynte pliki.',

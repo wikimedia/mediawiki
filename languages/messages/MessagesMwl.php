@@ -339,10 +339,10 @@ Legenda: (actu) = diferenças da versão actual,
 'uploadlogpage' => 'Registo de carregamento',
 'uploadedimage' => 'carregou "[[$1]]"',
 
-# Special:ImageList
+# Special:FileList
 'imagelist' => 'Lista de ficheiros',
 
-# Image description page
+# File description page
 'filehist'                  => 'Histórico de l ficheiro',
 'filehist-help'             => 'Clique an unha data/horário para ber l ficheiro tal como eilhe se encontraba an tal momento.',
 'filehist-current'          => 'actual',
@@ -618,7 +618,7 @@ Isto puode ser unha mudança drástica i inesperada para unha página popular; p
 'show-big-image'       => 'Resoluçon completa',
 'show-big-image-thumb' => '<small>Tamanho desta previsão: $1 × $2 pixels</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages' => 'Galeria de nuobos ficheiros',
 
 # Bad image list

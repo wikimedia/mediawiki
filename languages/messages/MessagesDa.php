@@ -1152,7 +1152,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'upload_directory_missing'    => 'upload-kataloget ($1) findes ikke. Webserveren har ikke mulighed for at oprette kataloget.',
 'upload_directory_read_only'  => 'Webserveren har ingen skriverettigheder for upload-kataloget ($1).',
 'uploaderror'                 => 'Fejl under oplægning af fil',
-'uploadtext'                  => "<strong>STOP!</strong> Før du lægger filer op her, så vær sikker på du har læst og følger {{SITENAME}}s [[{{MediaWiki:Policy-url}}|politik om brug af billeder]]. Følg venligst disse retningslinjer: * Angiv tydeligt hvor filen stammer fra * Brug et beskrivende filnavn, så det er til at se hvad filen indeholder * Tjek i [[Special:ImageList|listen over filer]] om filen allerede er lagt op
+'uploadtext'                  => "<strong>STOP!</strong> Før du lægger filer op her, så vær sikker på du har læst og følger {{SITENAME}}s [[{{MediaWiki:Policy-url}}|politik om brug af billeder]]. Følg venligst disse retningslinjer: * Angiv tydeligt hvor filen stammer fra * Brug et beskrivende filnavn, så det er til at se hvad filen indeholder * Tjek i [[Special:FileList|listen over filer]] om filen allerede er lagt op
 
 Brug formularen herunder til at lægge nye filer op, som kan bruges i dine artikler.
 På de fleste browsere vil du se en \"Browse...\" knap eller en \"Gennemse...\" knap, som vil bringe dig til dit styresystems standard-dialog til åbning af filer.
@@ -1203,8 +1203,8 @@ Kun filendelsen adskiller sig med store og små bogstaver. Kontroller venligst o
 Hvis det er billedet i original størrelse, er det ikke nødvendigt at uploade et separat forhåndsvisningsbillede.',
 'file-thumbnail-no'           => 'Filnavnet begynder med <strong><tt>$1</tt></strong>. Det tyder på et billede i reduceret format <i>(thumbnail)</i>.
 Kontroller om du har billedet i fuld størrelse og upload det under det originale navn.',
-'fileexists-forbidden'        => 'Der findes allerede en fil med dette navn. Gå tilbage og upload filen under et andet navn. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Der findes allerede en fil med dette navn. Gå tilbage og upload filen under et andet navn. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Der findes allerede en fil med dette navn. Gå tilbage og upload filen under et andet navn. [[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Der findes allerede en fil med dette navn. Gå tilbage og upload filen under et andet navn. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Denne fil er en bublet af {{PLURAL:$1|den nedenstående fil|de nedenstående $1 filer}}:',
 'successfulupload'            => 'Oplægningen er gennemført',
 'uploadwarning'               => 'Advarsel',
@@ -1246,7 +1246,7 @@ Sletningsloggen for denne fil er gengivet herunder.",
 'upload_source_url'  => ' (gyldig, offentligt tillgængelig URL)',
 'upload_source_file' => ' (en fil på din computer)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Denne specialside viser alle uploadede filer. Standardmæssigt vises de sidst uploadede filer først. Med et klik på spalteoverskriften kan sorteringen vendes om eller der kan sorteres efter en anden spalte.',
 'imagelist_search_for'  => 'Søge efter fil:',
 'imgfile'               => 'Fil',
@@ -1257,7 +1257,7 @@ Sletningsloggen for denne fil er gengivet herunder.",
 'imagelist_size'        => 'Størrelse (Byte)',
 'imagelist_description' => 'Beskrivelse',
 
-# Image description page
+# File description page
 'filehist'                       => 'Filhistorik',
 'filehist-help'                  => 'Klik på en dato/tid for at se den version af filen.',
 'filehist-deleteall'             => 'slet alle',
@@ -2140,7 +2140,7 @@ $1',
 'show-big-image'       => 'Version i større opløsning',
 'show-big-image-thumb' => '<small>Størrelse af forhåndsvisning: $1 × $2 pixel</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Galleri med de nyeste billeder',
 'imagelisttext'         => 'Herunder er en liste med $1 {{PLURAL:$1|billede|billeder}} sorteret $2.',
 'newimages-summary'     => 'Denne specialside viser de nyeste uploadede billeder og filer.',

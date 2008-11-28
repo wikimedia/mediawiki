@@ -579,12 +579,12 @@ di uplodezi media.',
 
 'license-nopreview' => '(PendiBe di nupdeti)',
 
-# Special:ImageList
+# Special:FileList
 'imgfile'        => 'imegi',
 'imagelist'      => 'Mukoloko di imegina',
 'imagelist_user' => 'Sebelu',
 
-# Image description page
+# File description page
 'filehist'                  => 'Imegi bundau',
 'filehist-help'             => 'Tampa datum/taimi di kamukile imegi a sa kwa bye datum.',
 'filehist-current'          => 'bye',
@@ -1019,7 +1019,7 @@ $1',
 'show-big-image'       => 'Risolusi bakisize',
 'show-big-image-thumb' => '<small>PendiBe: $1 × $2 pixel</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Imegina nca',
 'ilsubmit'              => 'Fatukile',
 'sp-newimages-showfrom' => 'Kamukile nca imegi di $1',

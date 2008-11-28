@@ -935,7 +935,7 @@ Vikide bu saifege oşağan saifelerni [[Special:Search|tapıp baqıñız]].',
 'upload_directory_read_only'  => 'Web serverniñ ($1) cüzdanına fayllar saqlamağa aqları yoqtır.',
 'uploaderror'                 => 'Yükleme hatası',
 'uploadtext'                  => "Fayllar yüklemek içün aşağıdaki formanı qullanıñız.
-Evelce yüklengen resim tapmaq ya da baqmaq içün [[Special:ImageList|yüklengen fayllar cedveline]] keçiñiz, bundan ğayrı fayl yüklenüv ve yoq etilüv qaydlarını [[Special:Log/upload|yüklenüv jurnalında]] ve [[Special:Log/delete|yoq etilüv jurnalında]] tapıp olasıñız.
+Evelce yüklengen resim tapmaq ya da baqmaq içün [[Special:FileList|yüklengen fayllar cedveline]] keçiñiz, bundan ğayrı fayl yüklenüv ve yoq etilüv qaydlarını [[Special:Log/upload|yüklenüv jurnalında]] ve [[Special:Log/delete|yoq etilüv jurnalında]] tapıp olasıñız.
 
 Saifede resim qullanmaq içün böyle şekilli bağlantılar qullanıñız: 
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' faylnıñ tam versiyasını qullanmaq içün,
@@ -947,7 +947,7 @@ Saifede resim qullanmaq içün böyle şekilli bağlantılar qullanıñız:
 'uploadlog'                   => 'yükleme jurnalı',
 'uploadlogpage'               => 'Fayl yükleme jurnalı',
 'uploadlogpagetext'           => 'Aşağıda eñ soñki qоşulğan fayllarnıñ cedveli buluna.
-Daa körgezmeli körüniş içün [[Special:NewImages|yañı fayllar galereyasına]] baqıñız.',
+Daa körgezmeli körüniş içün [[Special:NewFiles|yañı fayllar galereyasına]] baqıñız.',
 'filename'                    => 'Fayl',
 'filedesc'                    => 'Faylğa ait qısqa tarif',
 'fileuploadsummary'           => 'Qısqa tarif:',
@@ -981,10 +981,10 @@ Eger belgilengen fayl aynı şu resim olsa, onıñ küçülgen kopiyasını ayr�
 'file-thumbnail-no'           => 'Faylnıñ adı <strong><tt>$1</tt></strong>nen başlana. Belki de bu resimniñ ufaqlaştırılğan bir kopiyasıdır <i>(thumbnail)</i>.
 Eger sizde bu resim tam büyükliginde bar olsa, lütfen, onı yükleñiñiz ya da faylnıñ adını deñiştiriñiz.',
 'fileexists-forbidden'        => 'Bu isimde bir fayl mevcüttir. Lütfen, keri qaytıñız, fayl ismini
-deñiştirip yañıdan yükleñiz. [[Image:$1|thumb|center|$1]]',
+deñiştirip yañıdan yükleñiz. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Fayllar umumiy tutulğan yerinde bu isimde bir fayl mevcüttir.
 Eger bu faylnı ep bir yüklemege isteseñiz, keri qaytıñız ve fayl ismini deñiştirip yañıdan yükleñiz.
-[[Image:$1|thumb|center|$1]]',
+[[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Bu fayl aşağıdaki {{PLURAL:$1|faylnıñ|fayllarnıñ}} dublikatı ola:',
 'successfulupload'            => 'Yüklenüv becerildi',
 'uploadwarning'               => 'Tenbi',
@@ -1026,7 +1026,7 @@ Bu fayl içün yoq etüvniñ jurnalını mında baqıp olasıñız:",
 'upload_source_url'  => ' (doğru, püblik tarzda kirmege musaadeli internet adres)',
 'upload_source_file' => ' (kompyuteriñizdeki fayl)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Bu mahsus saife bütün yüklengen fayllarnı köstere.
 Yaqınlarda yüklengen fayllar cedvelniñ yuqarısında kösterile.
 Sutun serlevasına bir basuv sortirlemeniñ tertibini deñiştirir.',
@@ -1039,7 +1039,7 @@ Sutun serlevasına bir basuv sortirlemeniñ tertibini deñiştirir.',
 'imagelist_size'        => 'Büyüklik',
 'imagelist_description' => 'Tasvir',
 
-# Image description page
+# File description page
 'filehist'                  => 'Faylnıñ keçmişi',
 'filehist-help'             => 'Faylnıñ kerekli anki alını körmek içün tarihqa/saatqa basıñız.',
 'filehist-deleteall'        => 'episini yoq et',
@@ -1645,7 +1645,7 @@ MediaWiki interfeysiniñ çeşit tillerge tercime etüvde iştirak etmege istese
 'show-big-image'       => 'Tam çezinirlik',
 'show-big-image-thumb' => '<small>Baqıp çıquvda resim büyükligi: $1 × $2 piksel</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Yañı resimler',
 'imagelisttext'         => "Aşağıdaki cedvelde $2 köre tizilgen {{PLURAL:$1|'''1''' fayldır|'''$1''' fayldır}}.",
 'showhidebots'          => '(botlarnı $1)',

@@ -221,7 +221,7 @@ $3',
 # Upload
 'upload' => 'trimiţe fişirul',
 
-# Image description page
+# File description page
 'filehist'            => 'Historia fişirulu',
 'filehist-current'    => 'kurentu',
 'filehist-datetime'   => 'Data/Temp',

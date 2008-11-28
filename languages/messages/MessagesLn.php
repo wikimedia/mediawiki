@@ -241,7 +241,7 @@ $messages = array(
 'uploadbtn' => 'kokumbisa',
 'savefile'  => 'kobómbisa kásá-kásá',
 
-# Special:ImageList
+# Special:FileList
 'imagelist_date' => 'Mokɔlɔ',
 
 # File deletion
@@ -371,7 +371,7 @@ $messages = array(
 # Browsing diffs
 'previousdiff' => '← diff ya libosó',
 
-# Special:NewImages
+# Special:NewFiles
 'ilsubmit' => 'Boluki',
 
 # EXIF tags

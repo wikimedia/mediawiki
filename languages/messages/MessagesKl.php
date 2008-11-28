@@ -122,7 +122,7 @@ $messages = array(
 # Upload
 'upload' => 'Læg en fil op',
 
-# Image description page
+# File description page
 'filehist-user' => 'Pineqartoq',
 
 # MIME search

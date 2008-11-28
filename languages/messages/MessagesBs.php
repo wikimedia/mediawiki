@@ -1387,7 +1387,7 @@ da bi ste slali fajlove.',
 'upload_directory_read_only'  => 'Folder za postavljanje ($1) na webserveru je postavljen samo za čitanje.',
 'uploaderror'                 => 'Greška pri slanju',
 'uploadtext'                  => "Koristite formu ispod za postavljanje datoteka.
-Da bi ste vidjeli ili pretražili ranije postavljene datoteke, pogledajte [[Special:ImageList|spisak postavljenih datoteka]], ponovna postavljanja su također zapisana u [[Special:Log/upload|zapisnik postavljanja]], a brisanja u [[Special:Log/delete|zapisnik brisanja]].
+Da bi ste vidjeli ili pretražili ranije postavljene datoteke, pogledajte [[Special:FileList|spisak postavljenih datoteka]], ponovna postavljanja su također zapisana u [[Special:Log/upload|zapisnik postavljanja]], a brisanja u [[Special:Log/delete|zapisnik brisanja]].
 
 Da bi ste prikazali datoteku na stranici, koristite link na jedan od slijedećih načina:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Datoteka.jpg]]</nowiki></tt>''' da upotrijebite potpunu veziju datoteke
@@ -1436,8 +1436,8 @@ Ako je provjerena datoteka ista slika originalne veličine, nije potrebno postav
 'file-thumbnail-no'           => 'Naziv datoteke počinje sa <strong><tt>$1</tt></strong>.
 Izgleda da se radi o smanjenoj slici <i>("thumbnail")</i>.
 Ako imate ovu sliku u punoj rezoluciji, postavite nju; ili promijenite naslov ove datoteke.',
-'fileexists-forbidden'        => 'Fajl sa ovim imenom već postoji; molimo Vas da se vratite i pošaljete ovaj fajl pod novim imenom. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Datoteka sa ovim imenom već postoji u zajedničkoj ostavi; molimo Vas da se vratite i pošaljete ovu datoteku pod novim imenom. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Fajl sa ovim imenom već postoji; molimo Vas da se vratite i pošaljete ovaj fajl pod novim imenom. [[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Datoteka sa ovim imenom već postoji u zajedničkoj ostavi; molimo Vas da se vratite i pošaljete ovu datoteku pod novim imenom. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Ova datoteka je dvojnik {{PLURAL:$1|slijedećoj datoteci|slijedećim datotekama}}:',
 'file-deleted-duplicate'      => 'Datoteka koje je identična ovoj datoteci ([[$1]]) je ranije bila obrisana. Trebate provjeriti historiju brisanja te datoteke prije nego što nastavite sa njenim ponovnim postavljanjem.',
 'successfulupload'            => 'Uspješno slanje',
@@ -1489,7 +1489,7 @@ Možda možete pokušati kada bude manje opterećenje.',
 'upload_source_url'  => ' (validni, javno dostupni URL)',
 'upload_source_file' => ' (datoteka na Vašem računaru)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Ova specijalna stranica prikazuje sve postavljene datoteke.
 Uobičajeno je da posljednja postavljena datoteka bude prikazana na vrhu spiska.
 Klikom na zaglavlje kolone možete promjeniti način sortiranja.',
@@ -1502,7 +1502,7 @@ Klikom na zaglavlje kolone možete promjeniti način sortiranja.',
 'imagelist_size'        => 'Veličina',
 'imagelist_description' => 'Opis',
 
-# Image description page
+# File description page
 'filehist'                       => 'Historija datoteke',
 'filehist-help'                  => 'Kliknite na datum/vrijeme da vidite verziju datoteke iz tog vremena.',
 'filehist-deleteall'             => 'izbriši sve',
@@ -2514,7 +2514,7 @@ $1',
 'show-big-image'       => 'Vidi sliku u punoj veličini (rezoluciji)',
 'show-big-image-thumb' => '<small>Veličina ovoga prikaza: $1 × $2 piksela</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Galerija novih slika',
 'imagelisttext'         => "Ispod je spisak od '''$1''' {{PLURAL:$1|datoteke|datoteke|datoteka}} poređanih $2.",
 'newimages-summary'     => 'Ova specijalna stranica prikazuje posljednje postavljene datoteke.',

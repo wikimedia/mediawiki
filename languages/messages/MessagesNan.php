@@ -467,7 +467,7 @@ $messages = array(
 'destfilename'      => 'Tóng-àn sin miâ:',
 'watchthisupload'   => 'Kàm-sī chit ia̍h',
 
-# Special:ImageList
+# Special:FileList
 'imagelist'             => 'Iáⁿ-siōng lia̍t-toaⁿ',
 'imagelist_date'        => 'Ji̍t-kî',
 'imagelist_name'        => 'Miâ',
@@ -475,7 +475,7 @@ $messages = array(
 'imagelist_size'        => 'Toā-sè',
 'imagelist_description' => 'Soat-bêng',
 
-# Image description page
+# File description page
 'imagelinks'       => 'Iáⁿ-siōng liân-kiat',
 'linkstoimage'     => 'Í-hā ê ia̍h liân kàu chit ê iáⁿ-siōng:',
 'nolinkstoimage'   => 'Bô poàⁿ ia̍h liân kàu chit tiuⁿ iáⁿ-siōng.',
@@ -793,7 +793,7 @@ Liâu--lo̍h-khì chìn-chêng, chhiáⁿ seng khak-tēng lí ū liáu-kái chia
 'file-nohires'         => '<small>Bô khah koân ê kái-sek-tō͘.</small>',
 'show-big-image-thumb' => '<small>Chit tiuⁿ ū-lám tô͘ (preview) ê toā-sè: $1 × $2 pixel</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'     => 'Sin iáⁿ-siōng oē-lóng',
 'imagelisttext' => "Í-hā sī '''$1''' tiuⁿ iáⁿ-siōng ê lia̍t-toaⁿ, $2 pâi-lia̍t.",
 'ilsubmit'      => 'Kiám-sek',

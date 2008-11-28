@@ -1308,7 +1308,7 @@ Páginas que estejam em [[Special:Watchlist|sua lista de vigiados]] são exibida
 'upload_directory_read_only'  => 'O directório de recebimento de ficheiros ($1) não tem permissões de escrita para o servidor Web.',
 'uploaderror'                 => 'Erro ao carregar',
 'uploadtext'                  => "Utilize o formulário abaixo para carregar novos ficheiros.
-Para ver ou pesquisar imagens anteriormente carregadas consulte a [[Special:ImageList|lista de ficheiros carregados]]. (re)Envios e eliminações são também registados no [[Special:Log|registo do projecto]]. Eliminações no [[Special:Log/delete|registo de eliminação]]
+Para ver ou pesquisar imagens anteriormente carregadas consulte a [[Special:FileList|lista de ficheiros carregados]]. (re)Envios e eliminações são também registados no [[Special:Log|registo do projecto]]. Eliminações no [[Special:Log/delete|registo de eliminação]]
 
 Para incluir a imagem numa página, utilize o link em um dos seguintes formatos:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:ficheiro.jpg]]</nowiki></tt>''' para utilizar a versão completa da imagem;
@@ -1320,7 +1320,7 @@ Para incluir a imagem numa página, utilize o link em um dos seguintes formatos:
 'uploadlog'                   => 'registo de carregamento',
 'uploadlogpage'               => 'Registo de carregamento',
 'uploadlogpagetext'           => 'Segue-se uma lista dos carregamentos mais recentes.
-Consulte a [[Special:NewImages|galeria de novos ficheiros]] para uma visualização mais amigável.',
+Consulte a [[Special:NewFiles|galeria de novos ficheiros]] para uma visualização mais amigável.',
 'filename'                    => 'Nome do ficheiro',
 'filedesc'                    => 'Descrição do ficheiro',
 'fileuploadsummary'           => 'Sumário:',
@@ -1353,9 +1353,9 @@ Se o ficheiro enviado é o mesmo do de tamanho original, não é necessário env
 'file-thumbnail-no'           => 'O nome do ficheiro começa com <strong><tt>$1</tt></strong>.
 Isso faz parecer se tratar de uma imagem de tamanho reduzido (<i>miniatura</i>, ou <i>thumbnail)</i>.
 Se você tem acesso à imagem de resolução completa, prefira envia-la no lugar desta. Caso não seja o caso, altere o nome de ficheiro.',
-'fileexists-forbidden'        => 'Já existe um ficheiro com este nome. Por favor, volte atrás e carregue este ficheiro sob um novo nome. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Já existe um ficheiro com este nome. Por favor, volte atrás e carregue este ficheiro sob um novo nome. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Já existe um ficheiro com este nome no repositório de ficheiros partilhados. 
-Caso deseje mesmo assim enviar seu ficheiro, volte atrás e carregue-o sob um novo nome. [[Image:$1|thumb|center|$1]]',
+Caso deseje mesmo assim enviar seu ficheiro, volte atrás e carregue-o sob um novo nome. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Esta imagem é uma duplicata do seguinte {{PLURAL:$1|ficheiro|ficheiros}}:',
 'successfulupload'            => 'Envio efectuado com sucesso',
 'uploadwarning'               => 'Aviso de envio',
@@ -1414,7 +1414,7 @@ Caso o problema persista, contacte um [[Special:ListUsers/sysop|administrador]].
 'upload_source_url'  => ' (um URL válido, publicamente acessível)',
 'upload_source_file' => ' (um ficheiro no seu computador)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Esta página especial mostra todos os ficheiros carregados.
 Por defeito, os últimos ficheiros carregados são mostrados no topo da lista.
 Um clique sobre um cabeçalho de coluna altera a ordenação.',
@@ -1427,7 +1427,7 @@ Um clique sobre um cabeçalho de coluna altera a ordenação.',
 'imagelist_size'        => 'Tamanho',
 'imagelist_description' => 'Descrição',
 
-# Image description page
+# File description page
 'filehist'                       => 'Histórico do ficheiro',
 'filehist-help'                  => 'Clique em uma data/horário para ver o ficheiro tal como ele se encontrava em tal momento.',
 'filehist-deleteall'             => 'eliminar todas',
@@ -2409,7 +2409,7 @@ $1',
 'show-big-image'       => 'Resolução completa',
 'show-big-image-thumb' => '<small>Tamanho desta previsão: $1 × $2 pixels</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Galeria de novos ficheiros',
 'imagelisttext'         => "É exibida a seguir uma listagem {{PLURAL:$1|de '''um''' ficheiro organizado|de '''$1''' ficheiros organizados}} por $2.",
 'newimages-summary'     => 'Esta página especial mostra os ficheiros mais recentemente enviados.',

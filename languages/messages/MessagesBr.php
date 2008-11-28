@@ -1145,7 +1145,7 @@ evit eilañ restroù war ar servijer.",
 'upload_directory_read_only'  => "N'hall ket ar servijer skrivañ e renkell ar c'hargadennoù ($1).",
 'uploaderror'                 => 'Fazi',
 'uploadtext'                  => "Grit gant ar furmskrid a-is evit enporzhiañ restroù war ar servijer.
-Evit sellet pe klask skeudennoù bet enporzhiet a-raok sellit ouzh [[Special:ImageList|roll ar skeudennoù]]. Kavet e vo ar skeudennoù enporzhiet war [[Special:Log/upload|marilh ar pajennoù enporzhiet]] hag an diverkadennoù war [[Special:Log/delete|istor an diverkadennoù]].
+Evit sellet pe klask skeudennoù bet enporzhiet a-raok sellit ouzh [[Special:FileList|roll ar skeudennoù]]. Kavet e vo ar skeudennoù enporzhiet war [[Special:Log/upload|marilh ar pajennoù enporzhiet]] hag an diverkadennoù war [[Special:Log/delete|istor an diverkadennoù]].
 
 Evit enklozañ ur skeudenn en ur pennad, lakait er pennad-se ul liamm skrivet evel-henn :
 *'''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:anv_ar_restr.jpg]]</nowiki></code>''' evit diskouez ar restr en he spider brasañ ;
@@ -1157,7 +1157,7 @@ Evit enklozañ ur skeudenn en ur pennad, lakait er pennad-se ul liamm skrivet ev
 'uploadlog'                   => 'marilh ar pajennoù enporzhiet',
 'uploadlogpage'               => 'Marilh ar pajennoù enporzhiet',
 'uploadlogpagetext'           => "Setu a-is marilh ar restroù diwezhañ bet karget war ar servijer.
-S.o [[Special:NewImages|rann ar skeudennoù nevez]] evit kaout ur sell gwiroc'h",
+S.o [[Special:NewFiles|rann ar skeudennoù nevez]] evit kaout ur sell gwiroc'h",
 'filename'                    => 'Anv&nbsp;',
 'filedesc'                    => 'Deskrivadur&nbsp;',
 'fileuploadsummary'           => 'Diverrañ :',
@@ -1189,9 +1189,9 @@ Mard eo an hevelep skeudenn ha hini ar restr orin zo gwelloc'h he ferzhded n'eo 
 'file-thumbnail-no'           => "Kregiñ a ra anv ar restr gant <strong><tt>$1</tt></strong>. 
 Evit doare eo ur skeudenn krennet he ment <i>(thumbnail)</i>.
 Ma'z eus ganeoc'h ur skeudenn uhel he fizhder, pellgargit anezhi; a-hend-all cheñchit anv ar restr.",
-'fileexists-forbidden'        => "Ur restr all gant an anv-se zo c'hoazh; kit war ho kiz hag enporzhiit ar restr dindan un anv all [[Image:$1|thumb|center|$1]]",
+'fileexists-forbidden'        => "Ur restr all gant an anv-se zo c'hoazh; kit war ho kiz hag enporzhiit ar restr dindan un anv all [[File:$1|thumb|center|$1]]",
 'fileexists-shared-forbidden' => "Ur restr all dezhi an hevelep anv zo c'hoazh er c'havlec'h eskemm restroù.
-Mar fell deoc'h enporzhiañ ar restr-mañ da vat, kit war ho kiz hag enporzhiit anezhi adarre dindan un anv all. [[Image:$1|thumb|center|$1]]",
+Mar fell deoc'h enporzhiañ ar restr-mañ da vat, kit war ho kiz hag enporzhiit anezhi adarre dindan un anv all. [[File:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => 'Un eil eus ar {{PLURAL:$1|restr|restroù}} da-heul eo ar restr-mañ :',
 'successfulupload'            => 'Eiladenn kaset da benn vat',
 'uploadwarning'               => 'Diwallit!',
@@ -1251,7 +1251,7 @@ Ma talc'h ar gudenn, kit e darempred gant [[Special:ListUsers/sysop|merourien ar
 'upload_source_url'  => " (Un URL reizh a c'hall bezañ tizhet gant an holl)",
 'upload_source_file' => " (ur restr war hoc'h urzhiataer)",
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Diskouez a ra ar bajenn zibar-mañ an holl restroù bet enporzhiet.
 Dre ziouer e teu ar restroù enporzhiet da ziwezhañ e laez ar roll.
 Klikañ war penn ar bann a cheñch an urzh kinnig.',
@@ -1264,7 +1264,7 @@ Klikañ war penn ar bann a cheñch an urzh kinnig.',
 'imagelist_size'        => 'Ment (e bitoù)',
 'imagelist_description' => 'Deskrivadur',
 
-# Image description page
+# File description page
 'filehist'                       => 'Istor ar restr',
 'filehist-help'                  => 'Klikañ war un deiziad/eur da welet ar restr evel ma oa da neuze.',
 'filehist-deleteall'             => 'diverkañ pep tra',
@@ -2167,7 +2167,7 @@ $1',
 'show-big-image'       => 'Pizhder leun',
 'show-big-image-thumb' => '<small>Ment ar rakweled-mañ : $1 × $2 piksel</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Roll ar skeudennoù nevez',
 'imagelisttext'         => 'Setu ur roll $1 skeudenn rummet $2.',
 'newimages-summary'     => 'Diskouez a ra ar bajenn zibar-mañ roll ar restroù diwezhañ bet enporzhiet.',

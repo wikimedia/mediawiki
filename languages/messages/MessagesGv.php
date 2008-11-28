@@ -570,7 +570,7 @@ Ta duillagyn er [[Special:Watchlist|dty rolley arrey]] ayns '''clou trome'''.",
 'license-nopreview'  => '(Cha nel roie-haishbynys ry-gheddyn)',
 'upload_source_file' => ' (coadan er dty cho-earrooder)',
 
-# Special:ImageList
+# Special:FileList
 'imgfile'               => 'coadan',
 'imagelist'             => 'Rolley coadanyn',
 'imagelist_date'        => 'Date',
@@ -579,7 +579,7 @@ Ta duillagyn er [[Special:Watchlist|dty rolley arrey]] ayns '''clou trome'''.",
 'imagelist_size'        => 'Mooadys',
 'imagelist_description' => 'Coontey',
 
-# Image description page
+# File description page
 'filehist'                       => 'Shennaghys y choadan',
 'filehist-help'                  => 'Crig er date/traa ennagh son dy ‘akin y coadan myr v’eh ec y traa shen.',
 'filehist-deleteall'             => 'scryss ooilley',
@@ -1023,7 +1023,7 @@ Jean covestey eddyr oc er laueyn, my sailliu.'''",
 'show-big-image'       => 'Jeeskeaylley ymlane',
 'show-big-image-thumb' => '<small>Mooadys y roie-haishbynys shoh: $1 × $2 pixelyn</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'    => 'Laaragh coadanyn noa',
 'showhidebots' => '($1 botyn)',
 'ilsubmit'     => 'Ronsaghey',

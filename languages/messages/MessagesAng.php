@@ -377,7 +377,7 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 
 'nolicense' => 'Nǣnne gecorenne',
 
-# Special:ImageList
+# Special:FileList
 'imagelist_search_for'  => 'Sēcan biliþnaman:',
 'imagelist'             => 'Biliþgetalu',
 'imagelist_date'        => 'Tælmearc',
@@ -385,7 +385,7 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'imagelist_user'        => 'Brūcend',
 'imagelist_description' => 'Tōwritennes',
 
-# Image description page
+# File description page
 'filehist-user'  => 'Brūcend',
 'imagelinks'     => 'Biliþbendas',
 'linkstoimage'   => 'Þā folgendan trametas bindaþ tō þissum biliðe:',
@@ -613,7 +613,7 @@ Bidde cēos ōðerne naman.',
 'imagemaxsize' => 'Settan biliðu on biliþgemearcungtrametum tō:',
 'thumbsize'    => 'Þumannæglmicelnes:',
 
-# Special:NewImages
+# Special:NewFiles
 'imagelisttext' => 'Under is getalu $1 biliða gedæfted $2.',
 'noimages'      => 'Nāht tō sēonne.',
 'ilsubmit'      => 'Sēcan',

@@ -1036,7 +1036,7 @@ Faqet [[Special:Watchlist|nën mbikqyrjen tuaj]] duken të '''theksuara'''.",
 'upload_directory_read_only'  => 'Skedari i ngarkimit ($1) nuk mund të shkruhet nga shërbyesi.',
 'uploaderror'                 => 'Gabim dhënie',
 'uploadtext'                  => "Përdorni formularin e mëposhtëm për të ngarkuar skeda.
-Për të parë ose për të kërkuar skedat e ngarkuara më parë shikoni [[Special:ImageList|listën e skedave të ngarkuara]]. Ngarkime dhe grisje shënohen edhe tek [[Special:Log/upload|regjistri i ngarkimeve]].
+Për të parë ose për të kërkuar skedat e ngarkuara më parë shikoni [[Special:FileList|listën e skedave të ngarkuara]]. Ngarkime dhe grisje shënohen edhe tek [[Special:Log/upload|regjistri i ngarkimeve]].
 
 Për të përdorur një skedë në një faqe përdorni lidhje të llojit:
 '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Skedë.jpg]]</nowiki>''',
@@ -1083,8 +1083,8 @@ Nëse skeda e kontrolluar është e së njëjtës madhësi me origjinalen atëhe
 'file-thumbnail-no'           => 'Emri i skedës fillon me <strong><tt>$1</tt></strong>.
 Duket se është një figurë me madhësi të zvogëluar <i>(figurë përmbledhëse)</i>.
 Nëse keni këtë figurë me madhësi të plotë ju lutem të ngarkoni atë, përndryshe ju lutem të ndryshoni emrin e skedës.',
-'fileexists-forbidden'        => 'Ekziston një skedë me të njëjtin emër. Ju lutemi kthehuni mbrapsh dhe ngarkoni këtë skedë me një emër të ri. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Ekziston një skedë me të njëjtin emër në magazinën e përbashkët. Ju lutem kthehuni mbrapsh dhe ngarkojeni këtë skedë me një emër të ri. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Ekziston një skedë me të njëjtin emër. Ju lutemi kthehuni mbrapsh dhe ngarkoni këtë skedë me një emër të ri. [[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Ekziston një skedë me të njëjtin emër në magazinën e përbashkët. Ju lutem kthehuni mbrapsh dhe ngarkojeni këtë skedë me një emër të ri. [[File:$1|thumb|center|$1]]',
 'successfulupload'            => 'Dhënie e sukseshme',
 'uploadwarning'               => 'Kujdes dhënie',
 'savefile'                    => 'Ruaj skedën',
@@ -1132,7 +1132,7 @@ Këshillohet që ta provoni kur të jetë më pak e zënë.',
 'upload_source_url'  => ' (URL e vlefshme, publikisht e përdorshme)',
 'upload_source_file' => ' (skeda në kompjuterin tuaj)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Kjo faqe speciale tregon tërë skedat e ngarkuara.
 Fillimisht skedat e ngarkuara së fundmi jepen më sipër.
 Shtypni kolonat e tjera për të ndryshuar radhitjen.',
@@ -1145,7 +1145,7 @@ Shtypni kolonat e tjera për të ndryshuar radhitjen.',
 'imagelist_size'        => 'Madhësia (bytes)',
 'imagelist_description' => 'Përshkrimi',
 
-# Image description page
+# File description page
 'filehist'                       => 'Historiku i dosjes',
 'filehist-help'                  => 'Shtypni një datë/kohë për ta parë skedën ashtu si dukej në atë kohë.',
 'filehist-deleteall'             => 'grisi të tëra',
@@ -1940,7 +1940,7 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 'show-big-image'       => 'Rezolucion i plotë',
 'show-big-image-thumb' => '<small>Madhësia e këtij shikimi: $1 × $2 pixel</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Galeria e figurave të reja',
 'imagelisttext'         => 'Më poshtë është një listë e $1 {{PLURAL:$1|skedës të renditur|skedave të renditura}} sipas $2.',
 'newimages-summary'     => 'Kjo faqe speciale tregon skedat e ngarkuara së fundmi.',

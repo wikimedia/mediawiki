@@ -1437,7 +1437,7 @@ A [[Special:Watchlist|figyelőlistádon]] szereplő lapok '''félkövérrel''' v
 'upload_directory_read_only'  => 'A feltöltési könyvtár ($1) nem írható a szerver által.',
 'uploaderror'                 => 'Feltöltési hiba',
 'uploadtext'                  => "Az alábbi űrlap használatával tölthetsz fel fájlokat.
-A korábban feltöltött képek megtekintéséhez vagy a köztük való kereséshez menj a [[Special:ImageList|feltöltött fájlok listájához]], a(z újra)feltöltések a [[Special:Log/upload|feltöltési naplóban]], a törlések a [[Special:Log/upload|törlési naplóban]] vannak jegyezve.
+A korábban feltöltött képek megtekintéséhez vagy a köztük való kereséshez menj a [[Special:FileList|feltöltött fájlok listájához]], a(z újra)feltöltések a [[Special:Log/upload|feltöltési naplóban]], a törlések a [[Special:Log/upload|törlési naplóban]] vannak jegyezve.
 
 Képet a következő módon illeszhetsz be egy oldalra: '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Kép.jpg]]</nowiki>''',
 '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Kép.png|alternatív szöveg]]</nowiki>''' vagy a közvetlen hivatkozáshoz használd a
@@ -1448,7 +1448,7 @@ Képet a következő módon illeszhetsz be egy oldalra: '''<nowiki>[[</nowiki>{{
 'uploadlog'                   => 'feltöltési napló',
 'uploadlogpage'               => 'Feltöltési_napló',
 'uploadlogpagetext'           => 'Lentebb látható a legutóbbi felküldések listája.
-Lásd még az [[Special:NewImages|új fáljlok galériáját]]',
+Lásd még az [[Special:NewFiles|új fáljlok galériáját]]',
 'filename'                    => 'Fájlnév',
 'filedesc'                    => 'Összegzés',
 'fileuploadsummary'           => 'Összefoglaló:',
@@ -1485,8 +1485,8 @@ Ha az ellenőrzött fájl ugyanakkora, mint az eredeti méretű kép, akkor ninc
 'file-thumbnail-no'           => 'A fájlnév a(z) <strong><tt>$1</tt></strong> karakterlánccal kezdődik.
 Úgy tűnik, hogy ez egy kisméretű kép <i>(bélyegkép)</i>.
 Ha rendelkezel a teljesméretű képpel, akkor töltsd fel azt, egyébként kérjük, hogy változtasd meg a fájlnevet.',
-'fileexists-forbidden'        => 'Egy ugyanilyen nevű fájl már létezik; kérlek menj vissza és töltsd fel a fájlt egy másik néven. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Egy ugyanilyen nevű fájl már létezik a közös fájlmegosztóban; kérlek menj vissza és válassz egy másik nevet a fájlnak, ha még mindig fel akarod tölteni! [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Egy ugyanilyen nevű fájl már létezik; kérlek menj vissza és töltsd fel a fájlt egy másik néven. [[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Egy ugyanilyen nevű fájl már létezik a közös fájlmegosztóban; kérlek menj vissza és válassz egy másik nevet a fájlnak, ha még mindig fel akarod tölteni! [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Ez a következő {{PLURAL:$1|fájl|fájlok}} duplikátuma:',
 'successfulupload'            => 'A feltöltés sikerült',
 'uploadwarning'               => 'Feltöltési figyelmeztetés',
@@ -1541,7 +1541,7 @@ PICT # ált.
 'upload_source_url'  => ' (egy érvényes, nyilvánosan elérhető URL)',
 'upload_source_file' => ' (egy fájl a számítógépeden)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Ezen a speciális lapon látható az összes feltöltött fájl.
 A legutóbb feltöltött fájlok vannak a lista elején.
 Az oszlopok címeire kattintva változtathatod meg a rendezést.',
@@ -1554,7 +1554,7 @@ Az oszlopok címeire kattintva változtathatod meg a rendezést.',
 'imagelist_size'        => 'Méret',
 'imagelist_description' => 'Leírás',
 
-# Image description page
+# File description page
 'filehist'                       => 'Fájltörténet',
 'filehist-help'                  => 'Kattints egy időpontra, hogy a fájl akkori állapotát láthasd.',
 'filehist-deleteall'             => 'összes törlése',
@@ -2555,7 +2555,7 @@ $1',
 'show-big-image'       => 'A kép nagyfelbontású változata',
 'show-big-image-thumb' => '<small>Az előnézet mérete: $1 × $2 képpont</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Új képek galériája',
 'imagelisttext'         => 'Lentebb $1 kép látható, $2 rendezve.',
 'newimages-summary'     => 'Ezen a speciális lapon láthatóak a legutóbb feltöltött fájlok.',

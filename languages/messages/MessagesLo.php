@@ -541,10 +541,10 @@ $messages = array(
 'savefile'          => 'ບັນທຶກໄຟລ໌',
 'watchthisupload'   => 'ຕິດຕາມໜ້ານີ້',
 
-# Special:ImageList
+# Special:FileList
 'imagelist' => 'ລາຍຊື່ໄຟລ໌',
 
-# Image description page
+# File description page
 'filehist'            => 'ປະຫວັດໄຟລ໌',
 'filehist-current'    => 'ປະຈຸບັນ',
 'filehist-datetime'   => 'ວັນເວລາ',
@@ -872,7 +872,7 @@ $messages = array(
 'show-big-image'       => 'ເຕັມຂະໜາດ',
 'show-big-image-thumb' => '<small>ຂະໜາດລອງເບິ່ງ: $1 × $2 ປິກເຊລ</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'         => 'ໄຟລ໌ຮູບໃໝ່',
 'newimages-summary' => 'ໜ້າພິເສດນີ້ສະແດງໄຟລ໌ທີ່ຖຶກອັປໂຫຼດຫຼ້າສຸດ',
 'noimages'          => 'ບໍ່ມີຫຍັງເບິ່ງ.',

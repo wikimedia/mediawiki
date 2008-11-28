@@ -131,7 +131,7 @@ $messages = array(
 'tooltip-search'  => 'Izdash {{SITENAME}}',
 'tooltip-p-logo'  => 'Bash Bet',
 
-# Special:NewImages
+# Special:NewFiles
 'ilsubmit' => 'Izdash',
 
 # Trackbacks

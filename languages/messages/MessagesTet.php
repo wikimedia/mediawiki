@@ -382,11 +382,11 @@ $messages = array(
 'uploadbtn'       => 'Tau iha arkivu laran',
 'watchthisupload' => "Hateke pájina ne'e",
 
-# Special:ImageList
+# Special:FileList
 'imagelist_name' => 'Naran',
 'imagelist_user' => "Uza-na'in",
 
-# Image description page
+# File description page
 'filehist-deleteall' => 'halakon hotu',
 'filehist-deleteone' => 'halakon',
 'filehist-current'   => 'atuál',
@@ -610,7 +610,7 @@ $messages = array(
 'previousdiff' => '←Versaun molok',
 'nextdiff'     => 'Versaun oinmai→',
 
-# Special:NewImages
+# Special:NewFiles
 'showhidebots' => '($1 bot sira)',
 'ilsubmit'     => 'Buka',
 

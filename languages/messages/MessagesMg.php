@@ -535,7 +535,7 @@ Fenoy araka ny datin'ny solosainan'ny mpitsidika",
 'uploadnologintext'           => 'Mila [[Special:UserLogin|misoratra anarana]] aloha vao afaka mandefa rakitra.',
 'upload_directory_read_only'  => "Ny répertoire ($1) handraisana ny rakitra alefan'ny mpikambana dia tsy afaka anoratana.",
 'uploaderror'                 => 'Nisy tsy fetezana ny fandefasana rakitra',
-'uploadtext'                  => "Ampiasao ity fisy ity handefasana rakitra. Jereo eto ny [[Special:ImageList|lisitry ny rakitra]] nalefan'ny mpikambana, na koa azonao ampiasaina ny [[Special:Log/upload|tantaran'asan'ny fandefasana sy famonoana rakitra]].
+'uploadtext'                  => "Ampiasao ity fisy ity handefasana rakitra. Jereo eto ny [[Special:FileList|lisitry ny rakitra]] nalefan'ny mpikambana, na koa azonao ampiasaina ny [[Special:Log/upload|tantaran'asan'ny fandefasana sy famonoana rakitra]].
 
 Raha hanisy sary ao anaty pejy, dia mampiasà rohy toy ny iray amin'ireto
 '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:file.jpg]]</nowiki>''', na
@@ -557,9 +557,9 @@ Ngeza noho izay zakan'ny serveur io rakitra io.",
 'emptyfile'                   => "Ohatry ny tsy misy na inona na inona ilay rakitra nalefanao teo.
 Sao dia misy diso tsipelina ny anaran'ny rakitra? Azafady mba hamarino fa tena naniry handefa io rakitra io tokoa ianao.",
 'fileexists'                  => "Efa misy rakitra iray mitondra an'io anarana io, azafady jereo aloha <strong><tt>$1</tt></strong> raha tsy matoky tanteraka ianao fa te-hanova io rakitra io.",
-'fileexists-forbidden'        => "Efa misy rakitra iray mitondra an'io anarana io, azafady miverena amin'ny pejy teo aloha dia avereno alefa ilay rakitra ary omeo anarana hafa. [[Image:$1|thumb|center|$1]]",
+'fileexists-forbidden'        => "Efa misy rakitra iray mitondra an'io anarana io, azafady miverena amin'ny pejy teo aloha dia avereno alefa ilay rakitra ary omeo anarana hafa. [[File:$1|thumb|center|$1]]",
 'fileexists-shared-forbidden' => "
-Efa misy rakitra iray mitondra an'io anarana io ao amin'ny file repository, azafady miverena amin'ny pejy teo aloha dia avereno alefa ilay rakitra ary omeo anarana hafa. [[Image:$1|thumb|center|$1]]",
+Efa misy rakitra iray mitondra an'io anarana io ao amin'ny file repository, azafady miverena amin'ny pejy teo aloha dia avereno alefa ilay rakitra ary omeo anarana hafa. [[File:$1|thumb|center|$1]]",
 'successfulupload'            => 'Voaray soa aman-tsara ny rakitra',
 'uploadwarning'               => 'Fampitandremana',
 'savefile'                    => 'Tehirizo ny rakitra',
@@ -576,10 +576,10 @@ Hamarino tsara aloha dia avereno alefa indray.',
 
 'nolicense' => 'Tsy misy safidy',
 
-# Special:ImageList
+# Special:FileList
 'imagelist' => 'Lisitry ny rakitra',
 
-# Image description page
+# File description page
 'imagelinks'                => 'Rohy',
 'linkstoimage'              => "Ireto avy no pejy mirohy amin'io rakitra io:",
 'nolinkstoimage'            => "Tsy misy pejy mirohy amin'ity sary ity.",
@@ -1009,7 +1009,7 @@ Amporisihina ho an'ny navigateur moderna",
 'imagemaxsize' => "Ferana ny haben'ny sary ao amin'ny pejy famaritana ho:",
 'thumbsize'    => "Haben'ny thumbnail",
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'     => 'Tahala misy ny rakitra vaovao',
 'imagelisttext' => 'Eto ambany ny lisitry ny rakitra $1 milahatra araka ny $2.',
 'showhidebots'  => '(rôbô $1)',

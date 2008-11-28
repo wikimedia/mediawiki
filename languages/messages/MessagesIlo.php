@@ -863,7 +863,7 @@ Dagiti panid iti [[Special:Watchlist|listaan ti bambantayam]] ket '''naipuskol''
 'upload_source_url'  => ' (maysa a valido, ken maakses ti publico nga URL)',
 'upload_source_file' => ' (file iti kompiutermo)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist_search_for'  => 'Agsapul iti nagan ti media:',
 'imgfile'               => 'file',
 'imagelist'             => 'Listaan ti file',
@@ -873,7 +873,7 @@ Dagiti panid iti [[Special:Watchlist|listaan ti bambantayam]] ket '''naipuskol''
 'imagelist_size'        => 'Kadakkel',
 'imagelist_description' => 'Deskripsion',
 
-# Image description page
+# File description page
 'filehist'                       => 'Pakasaritaan ti file',
 'filehist-help'                  => 'Mangiklikka iti maysa a petsa/oras tapno makitam ti file iti kasisigudna a langa iti dayta nga oras.',
 'filehist-deleteall'             => 'ikkaten amin',
@@ -1504,7 +1504,7 @@ Pangngaasim ta i-manualmo lattan a pagtiponem ida.'''",
 'show-big-image'       => 'Sibubukel a resolusion',
 'show-big-image-thumb' => '<small>Rukod daytoy a preview: $1 × $2 a pixels</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Galeria dagiti kabarbaro a files',
 'imagelisttext'         => "Adda iti baba ti listaan ti '''$1''' {{PLURAL:$1|a file|a files}} a naurnos kas $2.",
 'showhidebots'          => '($1 bots)',

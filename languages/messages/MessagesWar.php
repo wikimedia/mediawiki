@@ -220,11 +220,11 @@ $messages = array(
 'upload'    => 'Pagkarga hin file',
 'uploadbtn' => 'Igkarga an file',
 
-# Special:ImageList
+# Special:FileList
 'imagelist_date' => 'Pitsa',
 'imagelist_name' => 'Ngaran',
 
-# Image description page
+# File description page
 'filehist-datetime' => 'Pitsa/Oras',
 'imagelinks'        => 'Mga sumpay',
 'linkstoimage'      => 'Nasumpay hini nga fayl an mga nasunod nga mga pakli:',
@@ -277,7 +277,7 @@ Kitaa an $2 para hin talaan han mga gibag-ohi nga mga ginpamara.',
 # Block/unblock
 'ipblocklist-submit' => 'Bilnga',
 
-# Special:NewImages
+# Special:NewFiles
 'ilsubmit' => 'Bilnga',
 
 # Multipage image navigation

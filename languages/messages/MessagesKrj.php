@@ -230,7 +230,7 @@ Lantawa sa [[Special:Version|version kang page]].',
 
 'upload-file-error' => 'Sayup internal',
 
-# Special:ImageList
+# Special:FileList
 'imgfile' => 'inayap',
 
 # File deletion
@@ -291,7 +291,7 @@ Lantawa sa [[Special:Version|version kang page]].',
 'tooltip-t-contributions'       => 'Lantawa ang listahan kang mga ginbulig kang user nga ja',
 'tooltip-t-emailuser'           => 'Padarhi kang e-mail ang user nga ja',
 
-# Special:NewImages
+# Special:NewFiles
 'ilsubmit' => 'Sagap',
 
 # action=purge

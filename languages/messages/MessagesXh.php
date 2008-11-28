@@ -144,7 +144,7 @@ I Account yakhgo ivuliwe, ungalibali ukutshitsha izinto ozithandayo ngo {{SITENA
 '1movedto2'        => '[[$1]] lidluliselwe [[$2]]',
 'movereason'       => 'Isizathu',
 
-# Special:NewImages
+# Special:NewFiles
 'ilsubmit' => 'Khangela',
 
 # Special:SpecialPages

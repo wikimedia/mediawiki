@@ -445,10 +445,10 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 
 'license' => 'Hatimiliki:',
 
-# Special:ImageList
+# Special:FileList
 'imagelist' => 'Orodha ya mafaili',
 
-# Image description page
+# File description page
 'filehist'                  => 'Historia ya faili',
 'filehist-help'             => 'Bonyeza tarehe/saa kuona faili kama ilivyoonekana wakati huo.',
 'filehist-current'          => 'sasa hivi',
@@ -762,7 +762,7 @@ Chagua jina lengine.',
 'show-big-image'       => 'Ukubwa wa awali',
 'show-big-image-thumb' => '<small>Ukubwa wa hakikisho hili: piseli $1 x $2</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages' => 'Mkusanyiko wa faili jipya',
 
 # Bad image list

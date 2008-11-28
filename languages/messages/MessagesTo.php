@@ -527,8 +527,8 @@ Ko e konga ʻi olunga, ko e '''konga pē ʻe taha''' ʻe haofaki ʻi he lomiʻi 
 'largefileserver'             => 'ʻOku fuʻu lahi ange ʻa e failé ni ʻi he tauhia hono ʻinasi.',
 'emptyfile'                   => 'ʻOku ngalingali maha ʻa e faile naʻa ke hiki hake ai. Mahalo pē naʻa ke fakasipelahalaʻi ki he hingoa. Kātaki vakai ke ke pau te ke fiehiki ʻa e failé ni.',
 'fileexists'                  => 'ʻOku toka ʻi ai ha peesi mo e hingoa ē; fakamolemole fakamoʻoniʻi ki he <strong><tt>$1</tt></strong> kapau ʻoku ʻikai te ke pau ʻo te ke fieliliu ia.',
-'fileexists-forbidden'        => 'ʻOku toka ʻi ai ha peesi mo e hingoa ē; fakamolemole ʻe foki pea hiki hake ʻa e failé ni mo e ha hingoa foʻou. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'ʻOku toka ʻi ai ha peesi mo e hingoa ē ʻi he kalasi vahevahe; fakamolemole ʻe foki pea hiki hake ʻa e failé ni mo e ha hingoa foʻou. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'ʻOku toka ʻi ai ha peesi mo e hingoa ē; fakamolemole ʻe foki pea hiki hake ʻa e failé ni mo e ha hingoa foʻou. [[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'ʻOku toka ʻi ai ha peesi mo e hingoa ē ʻi he kalasi vahevahe; fakamolemole ʻe foki pea hiki hake ʻa e failé ni mo e ha hingoa foʻou. [[File:$1|thumb|center|$1]]',
 'successfulupload'            => 'Kuo ola ʻa e hiki hake',
 'uploadwarning'               => 'Tokanga hiki hake',
 'savefile'                    => 'Haofaki faitaá ni',
@@ -545,7 +545,7 @@ Ko e konga ʻi olunga, ko e '''konga pē ʻe taha''' ʻe haofaki ʻi he lomiʻi 
 'license'   => 'Laiseni:',
 'nolicense' => 'ʻIkai fili ha taha',
 
-# Special:ImageList
+# Special:FileList
 'imagelist_search_for'  => 'Kumi ki he hingoa ʻo e faitā:',
 'imgfile'               => 'faile',
 'imagelist'             => 'Hokohoko faitā',
@@ -555,7 +555,7 @@ Ko e konga ʻi olunga, ko e '''konga pē ʻe taha''' ʻe haofaki ʻi he lomiʻi 
 'imagelist_size'        => 'Hono lahi (ʻū valu)',
 'imagelist_description' => 'Fakamahino',
 
-# Image description page
+# File description page
 'imagelinks'                => 'Ngaahi fehokotaki',
 'linkstoimage'              => 'ʻOku fehokotaki ʻa e ngaahi peesi ki he failé ni:',
 'nolinkstoimage'            => 'ʻOku ʻikai ha ngaahi peesi fehokotaki ki he faitaá ni.',
@@ -1010,7 +1010,7 @@ Vakai ki he [[Special:Log/delete|hokohoko tāmateʻi]] ki he lekooti ʻo e ngaah
 'show-big-image'       => 'ʻAsi ʻa e faitā auiiki',
 'show-big-image-thumb' => '<small>Vakai pē ʻi hono lahi: $1 x $2 tefitoʻifaitā</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Fakaʻaliʻali ʻo e ngaahi faitā foʻou',
 'imagelisttext'         => "ʻOku ʻasi ʻi lalo ha hokohoko ʻo e '''$1''' vahevahe he $2.",
 'showhidebots'          => '($1 fatu fakamīsini)',

@@ -910,7 +910,7 @@ koje sadrže sve izraze koji se traže će se pojaviti u rezultatu).",
 'upload_directory_read_only'  => 'Na direktorijum za slanje ($1) server ne može da piše.',
 'uploaderror'                 => 'Greška pri slanju',
 'uploadtext'                  => "Koristite donji obrazac da pošaljete fajlove.
-Za gledanje ili pretraživanje već poslatih slika, idite na [[Special:ImageList|spisak poslatih fajlova]].
+Za gledanje ili pretraživanje već poslatih slika, idite na [[Special:FileList|spisak poslatih fajlova]].
 Slanja i brisanja se beleže u [[Special:Log/upload|istoriji slanja]]
 
 Da biste ubacili sliku na stranu, koristite vezu u obliku
@@ -934,9 +934,9 @@ Da biste ubacili sliku na stranu, koristite vezu u obliku
 'emptyfile'                   => 'Fajl koji ste poslali deluje da je prazan. Ovo je moguće zbog greške u imenu fajla. Molimo proverite da li stvarno želite da pošaljete ovaj fajl.',
 'fileexists'                  => 'Fajl sa ovim imenom već postoji. Molimo proverite <strong><tt>$1</tt></strong> ako niste sigurni da li želite da ga promenite.',
 'fileexists-forbidden'        => 'Fajl sa ovim imenom već postoji;
-molimo vratite se i pošaljite ovaj fajl pod novim imenom. [[Image:$1|thumb|center|$1]]',
+molimo vratite se i pošaljite ovaj fajl pod novim imenom. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Fajl sa ovim imenom već postoji u zajedničkoj ostavi;
-molimo vratite se i pošaljite ovaj fajl pod novim imenom. [[Image:$1|thumb|center|$1]]',
+molimo vratite se i pošaljite ovaj fajl pod novim imenom. [[File:$1|thumb|center|$1]]',
 'successfulupload'            => 'Uspešno slanje',
 'uploadwarning'               => 'Upozorenje pri slanju',
 'savefile'                    => 'Snimi fajl',
@@ -969,7 +969,7 @@ molimo vratite se i pošaljite ovaj fajl pod novim imenom. [[Image:$1|thumb|cent
 'upload_source_url'  => ' (validan, javno dostupan URL)',
 'upload_source_file' => ' (fajl na vašem računaru)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist_search_for'  => 'Traži ime slike:',
 'imgfile'               => 'fajl',
 'imagelist'             => 'Spisak slika',
@@ -979,7 +979,7 @@ molimo vratite se i pošaljite ovaj fajl pod novim imenom. [[Image:$1|thumb|cent
 'imagelist_size'        => 'Veličina (bajtovi)',
 'imagelist_description' => 'Opis slike',
 
-# Image description page
+# File description page
 'imagelinks'                => 'Upotreba slike',
 'linkstoimage'              => 'Sledeće stranice koriste ovaj fajl:',
 'nolinkstoimage'            => 'Nema stranica koje koriste ovaj fajl.',
@@ -1614,7 +1614,7 @@ Svi transviki uvozi su zabeleženi u [[Posebno:Log/import|istoriji uvoza]].',
 'imagemaxsize' => 'Ograniči slike na stranama za razgovor o slikama na:',
 'thumbsize'    => 'Veličina umanjenog prikaza :',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Galerija novih slika',
 'imagelisttext'         => "Ispod je spisak od '''$1''' {{PLURAL:$1|fajla|fajla|fajlova}} poređanih $2.",
 'showhidebots'          => '($1 botove)',

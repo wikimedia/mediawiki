@@ -250,10 +250,10 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'filedesc'  => 'Descrition',
 'savefile'  => 'Conservar file',
 
-# Special:ImageList
+# Special:FileList
 'imagelist' => 'Liste de images',
 
-# Image description page
+# File description page
 'filehist-comment' => 'Comenta',
 
 # Random page
@@ -347,7 +347,7 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'tooltip-n-mainpage'     => 'Visita li Principal págine',
 'tooltip-t-specialpages' => 'Liste de omni special págines',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages' => 'Galerie de nov images',
 
 # 'all' in various places, this might be different for inflected languages

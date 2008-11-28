@@ -272,13 +272,13 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 
 'upload-file-error' => 'Errore internu',
 
-# Special:ImageList
+# Special:FileList
 'imgfile'        => 'schedariu',
 'imagelist_date' => 'Data',
 'imagelist_name' => 'Nome',
 'imagelist_user' => 'Utilizatore',
 
-# Image description page
+# File description page
 'filehist'         => "Cronolugia di l'imagine",
 'filehist-user'    => 'Utilizatore',
 'imagelinks'       => 'Ligami',
@@ -462,7 +462,7 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 # Media information
 'show-big-image' => 'Imagine in alta resoluzione',
 
-# Special:NewImages
+# Special:NewFiles
 'showhidebots' => '($1 boti)',
 'noimages'     => 'Nulla da vede.',
 'ilsubmit'     => 'Ricerca',

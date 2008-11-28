@@ -234,12 +234,12 @@ $messages = array(
 'fileuploadsummary' => 'အ​ကျဉ်း​ချုပ်:',
 'watchthisupload'   => 'ဤ​စာ​မျက်​နှာ​အား​စောင့်​ကြည့်​ပါ​',
 
-# Special:ImageList
+# Special:FileList
 'imgfile'        => 'ဖိုင်',
 'imagelist'      => 'ဖိုင်စာရင်း',
 'imagelist_date' => 'နေ့စွဲ',
 
-# Image description page
+# File description page
 'filehist'           => 'ဖိုင်မှတ်တမ်း',
 'filehist-deleteall' => 'အားလုံးဖျက်',
 'filehist-deleteone' => 'ဖျက်',
@@ -361,7 +361,7 @@ $messages = array(
 'tooltip-t-upload'       => 'ဖိုင်တင်ပါ',
 'tooltip-save'           => 'ပြင်ဆင်ရန်သိမ်းပါ',
 
-# Special:NewImages
+# Special:NewFiles
 'ilsubmit' => 'ရှာ​ဖွေ​ရန်​',
 
 # EXIF tags

@@ -794,10 +794,10 @@ Fanapunta na fana'an ti gus nuebu i listan-ñiha i guinahan {{SITENAME}}.",
 'uploadlogpage' => "Na'kåtga i log",
 'uploadedimage' => 'mana\'kåtga hulu\' "[[$1]]"',
 
-# Special:ImageList
+# Special:FileList
 'imagelist' => 'Listan atkibu',
 
-# Image description page
+# File description page
 'filehist'                  => 'Historian atkibu',
 'filehist-help'             => "Yemme' i fecha/ora para un li'e' i atkibu annai annok guihi na momentu.",
 'filehist-current'          => "pa'go",
@@ -1106,7 +1106,7 @@ Ayek fan otru nå'an-ña.",
 'show-big-image'       => 'Magåhet mineddong-ña',
 'show-big-image-thumb' => '<small>Mineddong i ripasu: $1 × $2 pixels</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages' => 'Galarian atkibu mannuebu siha',
 'ilsubmit'  => 'Aligao',
 

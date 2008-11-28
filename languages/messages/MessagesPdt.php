@@ -320,10 +320,10 @@ Bitte nemm eenen aundren.',
 'upload_directory_read_only' => 'Dee Webserver haft tjeene Schriewrajchte fe daut Nopplode-Vetetjnis ($1).',
 'uploaderror'                => 'Fehla biem Nopplode',
 
-# Special:ImageList
+# Special:FileList
 'imagelist_user' => 'Brucker',
 
-# Image description page
+# File description page
 'filehist-datetime'   => 'Tiet',
 'filehist-user'       => 'Brucker',
 'filehist-dimensions' => 'Moten',

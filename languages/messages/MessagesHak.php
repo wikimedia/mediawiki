@@ -773,7 +773,7 @@ Tông-tsûng pûn $3 fûng-só ke ngièn-yîn he ''$2''",
 'uploadnologintext'           => 'Ngì pit-sî chó-siên [[Special:UserLogin|tên-ngi̍p]] chhòi-nèn sông-chai vùn-khien.',
 'upload_directory_read_only'  => 'Song-chhòn muk-liu̍k ($1) put-chhùn-chhai fe̍t-chá mò siá khièn-han.',
 'uploaderror'                 => 'Song-chhòn chho-ngu',
-'uploadtext'                  => "Sṳ́-yung ha-mien ke péu-tân lòi song-chhòn yung-chhai vùn-chông nui sîn-ke thù-hìn tóng-on. Yeu kiám-sṳ fe̍t-chá sêu-chhà yî-chhièn song-chhòn ke thù-phién khó-yî chin-ngi̍p [[Special:ImageList|Thù-hìn chhîn-tân]], song-chhòn lâu chhù-hi chiông-chhai [[Special:Log/upload|Song-chhòn ngit-ki]] chûng ki-liu̍k. Yeu-chhai vùn-chông chûng kâ-ngi̍p thù-hiong, sṳ́-yung yî-ha hìn-sṳt ke lièn-chiap: '''<nowiki>[[{{ns:file}}:file.jpg]]</nowiki>'''， '''<nowiki>[[{{ns:file}}:file.png|Thi-von vùn-sṳ]]</nowiki>''' fe̍t-he '''<nowiki>[[{{ns:media}}:file.ogg]]</nowiki>'''.",
+'uploadtext'                  => "Sṳ́-yung ha-mien ke péu-tân lòi song-chhòn yung-chhai vùn-chông nui sîn-ke thù-hìn tóng-on. Yeu kiám-sṳ fe̍t-chá sêu-chhà yî-chhièn song-chhòn ke thù-phién khó-yî chin-ngi̍p [[Special:FileList|Thù-hìn chhîn-tân]], song-chhòn lâu chhù-hi chiông-chhai [[Special:Log/upload|Song-chhòn ngit-ki]] chûng ki-liu̍k. Yeu-chhai vùn-chông chûng kâ-ngi̍p thù-hiong, sṳ́-yung yî-ha hìn-sṳt ke lièn-chiap: '''<nowiki>[[{{ns:file}}:file.jpg]]</nowiki>'''， '''<nowiki>[[{{ns:file}}:file.png|Thi-von vùn-sṳ]]</nowiki>''' fe̍t-he '''<nowiki>[[{{ns:media}}:file.ogg]]</nowiki>'''.",
 'uploadlog'                   => 'Song-chhòn ki-liu̍k',
 'uploadlogpage'               => 'Song-chhòn ki-liu̍k',
 'uploadlogpagetext'           => 'Yî-ha he chui-khiûn song-chhòn vùn-khien ke chúng-péu.',
@@ -804,8 +804,8 @@ Kó-yèn kiám-chhà heu ke tóng-on he khiung-thùng ngièn-pún thù-hiong ke 
 'file-thumbnail-no'           => 'Ke tóng-on he yî <strong><tt>$1</tt></strong> khôi-sṳ́. 
 Hó-chhiong yit-puk thù-hìn ke suk-thù pán-pún <i>(thù-hìn)</i>.
 Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.',
-'fileexists-forbidden'        => 'Yí-kîn chhùn-chhai ke siông-thùng miàng-chhṳ̂n ke tóng-on; chhiáng fì-chón pin yung yit-ke sîn-ke  miàng-chhṳ̂n lòi song-chhòn chhṳ́ tóng-on.[[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Chhai khiung-hióng tóng-on-khu chûng yí-kîn chhùn-chhai chhṳ́ miàng-chhṳ̂n ke tóng-on; Chhiáng fì-chón pin yung yit-ke sîn-ke miàng-chhṳ̂n lòi song-chhòn chhṳ́ tóng-on. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Yí-kîn chhùn-chhai ke siông-thùng miàng-chhṳ̂n ke tóng-on; chhiáng fì-chón pin yung yit-ke sîn-ke  miàng-chhṳ̂n lòi song-chhòn chhṳ́ tóng-on.[[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Chhai khiung-hióng tóng-on-khu chûng yí-kîn chhùn-chhai chhṳ́ miàng-chhṳ̂n ke tóng-on; Chhiáng fì-chón pin yung yit-ke sîn-ke miàng-chhṳ̂n lòi song-chhòn chhṳ́ tóng-on. [[File:$1|thumb|center|$1]]',
 'successfulupload'            => 'Sông-chhòn sṳ̀n-kûng',
 'uploadwarning'               => 'Sông-chai kín-ko',
 'savefile'                    => 'Pó-chhùn vùn-khien',
@@ -838,7 +838,7 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.',
 'upload_source_url'  => '(Yit-ke yû-háu ke, hí-khó kûng-khôi fóng-mun ke URL)',
 'upload_source_file' => '(ngì thien-nó chûng ke tóng-on)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist_search_for'  => 'On-cheu thù-chhiong miàng-chhṳ̂n sêu-chhà:',
 'imgfile'               => 'tóng-on',
 'imagelist'             => 'Tóng-on lie̍t-péu',
@@ -848,7 +848,7 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.',
 'imagelist_size'        => 'Thai-séu',
 'imagelist_description' => 'Mèu-sut',
 
-# Image description page
+# File description page
 'filehist-deleteone'        => 'chhù-thet',
 'imagelinks'                => 'Lièn-kiet',
 'linkstoimage'              => 'Yî-ha vùn-chông lièn-chiap to pún tóng-on:',
@@ -1527,7 +1527,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'show-big-image'       => 'Vàn-cháng ke kié-chhiong-thu',
 'show-big-image-thumb' => '<small>Liá-ke puk-suk-thù ke kié-chhiong-thu he: $1 × $2 chhiong-su</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Sîn-kien thù-chhiong ke va̍k-lòng',
 'imagelisttext'         => 'Yî-ha he on $2 phài-lie̍t ke $1-ke tóng-on lie̍t-péu.',
 'showhidebots'          => '($1 kî-hi-ngìn)',

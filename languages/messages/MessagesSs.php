@@ -85,12 +85,12 @@ $messages = array(
 # Preferences page
 'searchresultshead' => 'Kucálata',
 
-# Special:ImageList
+# Special:FileList
 'imagelist_date' => 'Lusuku',
 'imagelist_name' => 'Ligama',
 'imagelist_user' => 'Umuntfu',
 
-# Image description page
+# File description page
 'filehist-datetime' => 'Lusuku/Síkhatsí',
 'filehist-user'     => 'Umuntfu',
 
@@ -144,7 +144,7 @@ $messages = array(
 'tooltip-search' => 'Kucálata {{SITENAME}}',
 'tooltip-p-logo' => 'Likhasi Lelikhulu',
 
-# Special:NewImages
+# Special:NewFiles
 'ilsubmit' => 'Kucálata',
 
 # Multipage image navigation

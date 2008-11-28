@@ -1258,7 +1258,7 @@ Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.",
 'upload_directory_read_only'  => "O serbidor web no puede escribir en o direutorio de carga d'archibos ($1).",
 'uploaderror'                 => "S'ha produzito una error en cargar l'archibo",
 'uploadtext'                  => "Faiga serbir o formulario d'o cobaxo ta cargar archibos.
-Ta beyer u mirar imáchens cargatas denantes baiga t'a [[Special:ImageList|lista d'archibos cargatos]]. As cargas y recargas tamién se rechistran en o [[Special:Log/upload|rechistro de cargas]], y os borraus en o [[Special:Log/delete|rechistro de borraus]].
+Ta beyer u mirar imáchens cargatas denantes baiga t'a [[Special:FileList|lista d'archibos cargatos]]. As cargas y recargas tamién se rechistran en o [[Special:Log/upload|rechistro de cargas]], y os borraus en o [[Special:Log/delete|rechistro de borraus]].
 
 Ta encluyir un archibo u imachen en una pachina, emplegue un binclo d'una d'istas trazas 
 *'''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Archibo.jpg]]</nowiki></tt>''' ta usar a bersion completa de l'archibo, 
@@ -1269,7 +1269,7 @@ Ta encluyir un archibo u imachen en una pachina, emplegue un binclo d'una d'ista
 'upload-prohibited'           => "Tipos d'archibo biedatos: $1.",
 'uploadlog'                   => 'rechistro de cargas',
 'uploadlogpage'               => "Rechistro de cargas d'archibos",
-'uploadlogpagetext'           => "Contino ye una lista d'os zaguers archibos cargatos. Mire-se a [[Special:NewImages|galería d'archibos nuebos]] ta tener una ambiesta más bisual.",
+'uploadlogpagetext'           => "Contino ye una lista d'os zaguers archibos cargatos. Mire-se a [[Special:NewFiles|galería d'archibos nuebos]] ta tener una ambiesta más bisual.",
 'filename'                    => "Nombre de l'archibo",
 'filedesc'                    => 'Resumen',
 'fileuploadsummary'           => 'Resumen:',
@@ -1300,8 +1300,8 @@ Si l'archibo comprebato ye a mesma imachen en tamaño orichinal no cal cargar un
 'file-thumbnail-no'           => "O nombre de l'archibo prenzipia con <strong><tt>$1</tt></strong>. 
 Pareix que estase una imachen achiquida <i>(thumbnail)</i>.
 Si tiene ista imachen a toda resoluzión, cargue-la, si no, por fabor, cambee o nombre de l'archibo.",
-'fileexists-forbidden'        => "Ya bi ha un archibo con iste nombre. Por fabor, cambee o nombre de l'archibo y torne á cargar-lo. [[Image:$1|thumb|center|$1]]",
-'fileexists-shared-forbidden' => 'Ya bi ha un archibo con ixe nombre en o reposte compartito. Si encara quiere cargr o fichero, por fabor, torne entazaga y faiba serbir un nuebo nombre. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => "Ya bi ha un archibo con iste nombre. Por fabor, cambee o nombre de l'archibo y torne á cargar-lo. [[File:$1|thumb|center|$1]]",
+'fileexists-shared-forbidden' => 'Ya bi ha un archibo con ixe nombre en o reposte compartito. Si encara quiere cargr o fichero, por fabor, torne entazaga y faiba serbir un nuebo nombre. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => "Iste archibo ye un duplicau {{PLURAL:$1|d'o siguient archibo|d'os siguients archibos}}:",
 'file-deleted-duplicate'      => "Un archibo igual que iste ([[$1]]) s'ha borrato enantes. Debería mirar-se o istorial de borraus de l'archibo antes de continar cargando-lo atra begada.",
 'successfulupload'            => 'Cargata correutament',
@@ -1357,7 +1357,7 @@ PICT # misz.
 'upload_source_url'  => ' (una URL conforme y publicament aczesible)',
 'upload_source_file' => ' (un archibo en o suyo ordenador)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => "Ista pachina espezial amuestra toz os archibos cargatos.
 Por defeuto os zaguers archibos cargatos s'amuestran en o cobalto d'a lista.
 Fendo click en un encabezau de colunna se cambia o criterio d'ordenazión.",
@@ -1370,7 +1370,7 @@ Fendo click en un encabezau de colunna se cambia o criterio d'ordenazión.",
 'imagelist_size'        => 'Grandaria (bytes)',
 'imagelist_description' => 'Descripzión',
 
-# Image description page
+# File description page
 'filehist'                       => "Istorial de l'archibo",
 'filehist-help'                  => "Punche en una calendata/ora ta beyer l'archibo como amanixeba por ixas engüeltas.",
 'filehist-deleteall'             => 'borrar-lo tot',
@@ -2341,7 +2341,7 @@ $1",
 'show-big-image'       => 'Imachen en a maisima resoluzión',
 'show-big-image-thumb' => "<small>Grandaria d'ista ambiesta prebia: $1 × $2 píxels</small>",
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Galería de nuebas imachens',
 'imagelisttext'         => "Contino bi ha una lista de '''$1''' {{PLURAL:$1|imachen ordenata|imachens ordenatas}} $2.",
 'newimages-summary'     => 'Ista pachina espezial amuestra os zaguers archibos cargatos.',

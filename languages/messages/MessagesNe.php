@@ -301,13 +301,13 @@ $messages = array(
 
 'nolicense' => 'केहिपनि छानिएन',
 
-# Special:ImageList
+# Special:FileList
 'imagelist_date'        => 'मिति',
 'imagelist_name'        => 'नाम',
 'imagelist_user'        => 'प्रयोगकर्ता',
 'imagelist_description' => 'वर्णन',
 
-# Image description page
+# File description page
 'nolinkstoimage'   => 'यो फाईलसंग लिंकभएको कुनै पृष्ठ छैन.',
 'noimage-linktext' => 'अपलोड गर्नुहोस्',
 
@@ -519,7 +519,7 @@ $messages = array(
 'previousdiff' => '← अधिल्लो भिन्नता',
 'nextdiff'     => 'पछिल्लो भिन्नता →',
 
-# Special:NewImages
+# Special:NewFiles
 'noimages' => 'हेर्नको लागि केही छैन.',
 'ilsubmit' => 'खोज्नुहोस्',
 'bydate'   => 'मिति अनुसार',

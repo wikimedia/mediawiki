@@ -842,7 +842,7 @@ $2',
 'uploaderror'                 => '上載錯誤',
 'uploadtext'                  => "使用下面的表單來上傳用在頁面內新的圖片檔案。
 要檢視或搜尋以前上傳的圖片
-可以進入[[Special:ImageList|圖片清單]]，
+可以進入[[Special:FileList|圖片清單]]，
 上傳和刪除將在[[Special:Log/upload|上傳日誌]]中記錄。
 
 要在頁面中加入圖片，使用以下形式的連接:
@@ -878,8 +878,8 @@ $2',
 如果檢查後的檔案是同原本圖片的大小是一樣的話，就不用再上載多一幅縮圖。',
 'file-thumbnail-no'           => '該檔名是以<strong><tt>$1</tt></strong>開始。它好像一幅圖片的縮圖版本<i>(縮圖)</i>。
 如果你有該圖片的完整大小，如不是請再修改檔名。',
-'fileexists-forbidden'        => '已存在相同名稱的檔案；請返回並用一個新的名稱來上傳此檔案。[[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => '在共享檔案庫中已存在此名稱的檔案；請返回並用一個新的名稱來上傳此檔案。[[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => '已存在相同名稱的檔案；請返回並用一個新的名稱來上傳此檔案。[[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => '在共享檔案庫中已存在此名稱的檔案；請返回並用一個新的名稱來上傳此檔案。[[File:$1|thumb|center|$1]]',
 'successfulupload'            => '上傳成功',
 'uploadwarning'               => '上載警告',
 'savefile'                    => '保存檔案',
@@ -919,7 +919,7 @@ $2',
 'upload_source_url'  => ' (一個有效的，可公開訪問的 URL)',
 'upload_source_file' => ' (在您電腦上的一個檔案)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist_search_for'  => '按圖片名稱搜尋:',
 'imgfile'               => '檔案',
 'imagelist'             => '檔案列表',
@@ -929,7 +929,7 @@ $2',
 'imagelist_size'        => '大小',
 'imagelist_description' => '描述',
 
-# Image description page
+# File description page
 'filehist'                  => '檔案歷史',
 'filehist-help'             => '點擊日期／時間以檢視當時出現過的檔案。',
 'filehist-deleteall'        => '刪除全部',
@@ -1737,7 +1737,7 @@ $1',
 'show-big-image'       => '完整解像度',
 'show-big-image-thumb' => '<small>這幅縮圖的解像度: $1 × $2 像素</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'     => '新建圖片畫廊',
 'imagelisttext' => '以下是按$2排列的$1個檔案列表。',
 'showhidebots'  => '($1機器人)',

@@ -174,12 +174,12 @@ $messages = array(
 
 'license' => 'Iyawsawi:',
 
-# Special:ImageList
+# Special:FileList
 'imagelist_date'        => 'Uru jakhu',
 'imagelist_user'        => 'Apnaqiri',
 'imagelist_description' => 'Uñt’ayawi',
 
-# Image description page
+# File description page
 'filehist-user' => 'Apnaqiri',
 
 # Miscellaneous special pages

@@ -737,7 +737,7 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'upload_source_url'  => ' (тĕрĕс, пурте курма пултаракан интертетел адресĕ)',
 'upload_source_file' => ' (сирĕн компьютер çинчи файл)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Ку ятарлă страницăра эсир пур кĕртнĕ файлсене куратăр.
 Нумай пулмасть кĕртнисем çулте вырнаçнă.
 Юпа тăррине пуссан йĕркелӳ майĕ улшăнĕ.',
@@ -748,7 +748,7 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'imagelist_size'        => 'Виçи',
 'imagelist_description' => 'Ăнлантаркăч',
 
-# Image description page
+# File description page
 'filehist'                  => 'Файл историйĕ',
 'imagelinks'                => 'Ссылкăсем',
 'linkstoimage'              => 'Çак страницăсем ку файл çине кăтартаççĕ:',
@@ -1120,7 +1120,7 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'file-info-size' => '($1 × $2 пиксел, файл пысăкăше: $3, MIME-тĕсĕ: $4)',
 'file-nohires'   => '<small>Пысăкрах калăпăшли çук.</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'         => 'Çĕнĕ файлсен галерейи',
 'newimages-summary' => 'Ку ятарлă страницăра эсир нумай пулмасть кĕртнĕ файлсене куратăр',
 'noimages'          => 'Ӳкерчĕксем çук.',

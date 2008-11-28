@@ -715,7 +715,7 @@ there micht be parteeculars in the [{{fullurl:Special:Log/delete|page={{FULLPAGE
 'uploadnologintext'           => 'Ye maun be [[Special:UserLogin|loggit in]] til uplaid files.',
 'uploaderror'                 => 'Uplaid error',
 'uploadtext'                  => "Uise the form ablo tae uplaid new files;
-tae keek at or rake throu aareadies uplaidit eimages gang tae the [[Special:ImageList|leet o uplaidit files]];
+tae keek at or rake throu aareadies uplaidit eimages gang tae the [[Special:FileList|leet o uplaidit files]];
 uplaids an deletions is recordit in the [[Special:Log|project log]].
 
 Tae pit the eimage intae a page, uise an airtin i the form
@@ -734,8 +734,8 @@ Tae pit the eimage intae a page, uise an airtin i the form
 'badfilename'                 => 'Eimage name haes been chynged tae "$1".',
 'largefileserver'             => 'This file is bigger nor the server is confeigurt tae allou.',
 'fileexists'                  => "A file wi this name exists aareadies, please check <strong><tt>$1</tt></strong> gin ye'r no siccar that ye want tae chynge it.",
-'fileexists-forbidden'        => 'A file wi this name aareadies exists; please gang back an uplaid this file unner a new name. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'A file wi this name aareadies exists in the shared file depose; please gang back an uplaid this file unner a new name. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'A file wi this name aareadies exists; please gang back an uplaid this file unner a new name. [[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'A file wi this name aareadies exists in the shared file depose; please gang back an uplaid this file unner a new name. [[File:$1|thumb|center|$1]]',
 'uploadwarning'               => 'Uplaid warnin',
 'savefile'                    => 'Hain file',
 'uploadedimage'               => 'uplaidit "$1"',
@@ -747,10 +747,10 @@ Tae pit the eimage intae a page, uise an airtin i the form
 
 'nolicense' => 'Nane selected',
 
-# Special:ImageList
+# Special:FileList
 'imagelist' => 'Eimage leet',
 
-# Image description page
+# File description page
 'imagelinks'     => 'Eimage airtins',
 'linkstoimage'   => 'The follaein $1 pages airts tae this image:',
 'nolinkstoimage' => "The'r nae pages airts tae this eimage.",
@@ -1099,7 +1099,7 @@ In the saicont case ye can uise an airtin forbye, for exemplar [[{{ns:special}}:
 'mediawarning' => "'''Warnin''': This file micht haud mislushious code; bi executin it yer seestem micht be compromised.<hr />",
 'imagemaxsize' => 'Limit eimages on eimage description pages tae:',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'     => 'Gallery o new files',
 'imagelisttext' => 'Ablo is a leet o $1 {{PLURAL:$1|eimage|eimages}} sortit $2.',
 'noimages'      => 'Naething tae see.',

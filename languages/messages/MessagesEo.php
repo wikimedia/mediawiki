@@ -1346,7 +1346,7 @@ Paĝoj en [[Special:Watchlist|via atentaro]] estas '''grasaj'''.",
 'upload_directory_read_only'  => 'La TTT-servilo ne povas alskribi la alŝuto-dosierujon ($1).',
 'uploaderror'                 => 'Eraro okazis dum alŝuto',
 'uploadtext'                  => "Uzu la jenan formon por alŝuti dosierojn.
-Vidi aŭ serĉi antaŭe alŝutitajn bildojn, iru la [[Special:ImageList|Listo de alŝutitaj dosieroj]]; (re)alŝutaĵoj ankaŭ estas registrita en la [[Special:Log/upload|Protokolo de alŝutoj]], forigoj en la [[Special:Log/delete|protokolo de forigoj]].
+Vidi aŭ serĉi antaŭe alŝutitajn bildojn, iru la [[Special:FileList|Listo de alŝutitaj dosieroj]]; (re)alŝutaĵoj ankaŭ estas registrita en la [[Special:Log/upload|Protokolo de alŝutoj]], forigoj en la [[Special:Log/delete|protokolo de forigoj]].
 
 Por inkluzivi la dosieron en paĝon, skribu ligilon laŭ la formoj
 
@@ -1392,9 +1392,9 @@ Se la kontrolita dosiero estas la sama bildo kiel la originala grandeco, ĝi ne 
 'file-thumbnail-no'           => 'La dosiernomo komencas kun <strong><tt>$1</tt></strong>. 
 Ĝi ŝajnas kiel bildo de malgrandigita grandeco <i>(thumbnail)</i>.
 Se vi havas ĉi tiun bildon en plena distingivo, alŝutu ĉi tiun, alikaze bonvolu ŝanĝi la dosieran nomon.',
-'fileexists-forbidden'        => 'Dosiero kun tia ĉi nomo jam ekzistas; bonvole realŝutu ĉi tiun dosieron per nova nomo. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Dosiero kun tia ĉi nomo jam ekzistas; bonvole realŝutu ĉi tiun dosieron per nova nomo. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Dosiero kun ĉi tia nomo jam ekzistas en la komuna dosierujo.
-Se vi ankoraŭ volas alŝuti vian dosieron, bonvolu retroigi kaj uzi novan nomon.[[Image:$1|thumb|center|$1]]',
+Se vi ankoraŭ volas alŝuti vian dosieron, bonvolu retroigi kaj uzi novan nomon.[[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Ĉi tiu dosiero estas duplikato de la {{PLURAL:$1|jena dosiero|jenaj dosieroj}}:',
 'file-deleted-duplicate'      => 'Duplikata dosiero de ĉi tiu dosiero ([[$1]]) estis antaŭe forigita. Vi legu la forigan historion de tiu dosiero antaŭ provi realŝuti ĝin.',
 'successfulupload'            => 'Alŝuto sukcesis!',
@@ -1439,7 +1439,7 @@ Se la problemo kontinuas, kontaku [[Special:ListUsers/sysop|sisteman administran
 'upload_source_url'  => ' (valida, publike atingebla URL-o)',
 'upload_source_file' => ' (dosiero en via komputilo)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Ĉi tiu speciala paĝo montras ĉiujn alŝutitajn dosierojn.
 Defaŭlte, la lasta alŝutitaj dosieroj estas montrataj supren.
 Klaku la kolumnan titolon por ŝanĝi la direkton de ordigo.',
@@ -1452,7 +1452,7 @@ Klaku la kolumnan titolon por ŝanĝi la direkton de ordigo.',
 'imagelist_size'        => 'Grandeco',
 'imagelist_description' => 'Priskribo',
 
-# Image description page
+# File description page
 'filehist'                       => 'Historio de dosiero',
 'filehist-help'                  => 'Klaku daton/tempon por rigardi la dosieron kiel ĝin ŝajnitan tiame.',
 'filehist-deleteall'             => 'forigi ĉiujn',
@@ -2441,7 +2441,7 @@ $1',
 'show-big-image'       => 'Plena distingivo',
 'show-big-image-thumb' => '<small>Grandeco de ĉi antaŭvido: $1 × $2 rastrumeroj</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Aro da novaj bildoj',
 'imagelisttext'         => "Jen listo de '''$1''' {{PLURAL:$1|dosiero|dosieroj}}, ordigitaj laŭ $2.",
 'newimages-summary'     => 'Ĉi tiu speciala paĝo montras la lastajn alŝutitajn dosierojn.',

@@ -331,7 +331,7 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 'previousdiff' => '← tunullipaaq asiaNngutuq',
 'nextdiff'     => 'tagga asiaNngutuq mappitaq →',
 
-# Special:NewImages
+# Special:NewFiles
 'ilsubmit' => 'ivaaqpuq',
 'bydate'   => 'pitaaruttuq inuulirvik',
 

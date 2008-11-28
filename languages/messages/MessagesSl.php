@@ -700,7 +700,7 @@ Do skrite vsebine bodo še vedno lahko dostopali drugi administratorji in jo z u
 'upload_directory_read_only'  => 'V mapo za nalaganje datotek ($1) spletni strežnik ne more pisati.',
 'uploaderror'                 => 'Napaka',
 'uploadtext'                  => "Spodnji obrazec lahko uporabite za nalaganje datotek;
-za ogled ali iskanje že naloženih pojdite na [[Special:ImageList|seznam naloženih datotek]].
+za ogled ali iskanje že naloženih pojdite na [[Special:FileList|seznam naloženih datotek]].
 Naložitve in izbrisi so zapisani tudi v [[Special:Log/upload|dnevniku nalaganja]].
 
 Datoteko lahko na želeno stran vključite z naslednjo skladnjo
@@ -724,9 +724,9 @@ ali za neposredno povezavo z datoteko
 'largefileserver'             => 'Velikost datoteke presega strežnikove nastavitve.',
 'emptyfile'                   => 'Naložena datoteka je morda prazna. Do tega bi lahko prišlo zaradi slovnične napake v imenu. Ali datoteko resnično želite naložiti?',
 'fileexists'                  => 'Datoteka s tem imenom že obstaja. Preden jo povozite, preverite stran <strong><tt>$1</tt></strong>. Da preprečite navzkrižja z že obstoječimi datotekami, uporabljajte za datoteke opisna imena (npr. »Eifflov stolp, Pariz, ponoči.jpg«).',
-'fileexists-forbidden'        => 'Datoteka s tem imenom že obstaja in je ni mogoče prepisati. Poskusite svojo datoteko naložiti pod drugim imenom. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Datoteka s tem imenom že obstaja in je ni mogoče prepisati. Poskusite svojo datoteko naložiti pod drugim imenom. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Datoteka s tem imenom že obstaja v skupnem repozitoriju datotek. Prosimo, vrnite se in naložite svojo datoteko pod drugim imenom. 
-[[Image:$1|thumb|center|$1]]',
+[[File:$1|thumb|center|$1]]',
 'successfulupload'            => 'Datoteko ste uspešno naložili',
 'uploadwarning'               => 'Opozorilo!',
 'savefile'                    => 'Shrani datoteko',
@@ -743,10 +743,10 @@ ali za neposredno povezavo z datoteko
 'license'   => 'Dovoljenje:',
 'nolicense' => 'Nobeno (opomba: datoteka bo morda izbrisana)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist' => 'Seznam datotek',
 
-# Image description page
+# File description page
 'imagelinks'                => 'Strani z datoteko',
 'linkstoimage'              => 'Datoteka je del naslednjih strani slovenske {{GRAMMAR:rodilnik|{{SITENAME}}}} (strani drugih projektov niso navedene):',
 'nolinkstoimage'            => 'Z datoteko se ne povezuje nobena stran.',
@@ -1281,7 +1281,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'imagemaxsize' => 'Slike na opisnih straneh omeji na:',
 'thumbsize'    => 'Velikost sličice (thumbnail):',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Galerija novih datotek',
 'imagelisttext'         => 'Prikazujem $1 $2 {{PLURAL:$1|razvrščeno datoteko|razvrščeni datoteki|razvrščene datoteke|razvrščenih datotek|razvrščenih datotek}}.',
 'showhidebots'          => '($1 bote)',

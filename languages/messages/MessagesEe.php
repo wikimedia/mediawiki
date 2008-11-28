@@ -240,7 +240,7 @@ Wòateŋu [[:\$1|adze axa sia gɔme]].",
 'upload'    => 'Ɖo agbalẽ ɖa',
 'uploadbtn' => 'Ɖo agbalẽ ɖa',
 
-# Image description page
+# File description page
 'filehist-help'     => 'Tia ŋkeke/gaƒoƒo ɖeka ne wòadi be yea kpɔ axa sia ƒe tata le ɣemaɣi',
 'filehist-datetime' => 'Ŋkeke/Gaƒoƒo',
 'filehist-user'     => 'Ezãla',
@@ -377,7 +377,7 @@ Wòateŋu akpɔ alesi woŋlɔe.',
 'previousdiff' => '← Tata xoxoa',
 'nextdiff'     => 'Tɔtrɔ yeyea →',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages' => 'Nutata yeyewo',
 
 # External editor support

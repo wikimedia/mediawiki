@@ -357,10 +357,10 @@ $messages = array(
 'uploadlogpage' => 'ལོག་སྐྱེལ་བཙུགས་འབད།',
 'uploadedimage' => '"[[$1]]" སྐྱེལ་བཙུགས་འབད་ཡོདཔ།',
 
-# Special:ImageList
+# Special:FileList
 'imagelist' => 'ཡིག་སྣོད་ཐོ་ཡིག།',
 
-# Image description page
+# File description page
 'filehist'                  => 'ཡིག་སྣོད་སྤྱོད་ཤུལ།',
 'filehist-help'             => 'ཡིག་སྣོད་འདི་ དེ་བསྒང་སྟོན་དོ་བཟུམ་སྦེ་ བལྟ་ནི་གི་དོན་ལུ་ ཚེས་གྲངས་/ཆུ་ཚོད་གུ་ ཨེབ་གཏང་འབད།',
 'filehist-current'          => 'ད་ལྟོ།',
@@ -659,7 +659,7 @@ $messages = array(
 'show-big-image'       => 'ཧུམ་ཆ་གང་།',
 'show-big-image-thumb' => '<small>སྔོན་ལྟའི་ཚད་: $1 × $2 པིག་སེལསི་</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages' => 'ཡིག་སྣོད་གསར་པའི་སྟོན་ཁང་།',
 
 # Bad image list

@@ -956,7 +956,7 @@ Sha'rtli belgiler: (ha'z.) = ha'zirgi nusqasi menen parqı,
 'nolicense'          => "Hesh na'rse saylanbag'an",
 'upload_source_file' => " (sizin' kompyuterin'izdegi fayl)",
 
-# Special:ImageList
+# Special:FileList
 'imagelist_search_for'  => 'Media atamasın izlew:',
 'imgfile'               => 'fayl',
 'imagelist'             => 'Fayllar dizimi',
@@ -966,7 +966,7 @@ Sha'rtli belgiler: (ha'z.) = ha'zirgi nusqasi menen parqı,
 'imagelist_size'        => "Ha'jim",
 'imagelist_description' => 'Kommentariy',
 
-# Image description page
+# File description page
 'filehist'                  => 'Fayl tariyxı',
 'filehist-help'             => "Aldın usı fayl qanday ko'riniste bolg'anın ko'riw ushin ku'n-ay/waqıt degendi basın'.",
 'filehist-deleteall'        => "ha'mmesin o'shir",
@@ -1530,7 +1530,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'show-big-image'       => 'Joqarı imkaniyatlı',
 'show-big-image-thumb' => "<small>Bul aldinnan ko'riwdin' ha'jmi: $1 × $2 piksel</small>",
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Taza fayllar galereyasi',
 'showhidebots'          => '(botlardı $1)',
 'noimages'              => "Ko'riwge su'wret joq.",

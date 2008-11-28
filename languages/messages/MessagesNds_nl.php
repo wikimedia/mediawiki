@@ -1274,7 +1274,7 @@ Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't w
 'upload_directory_read_only'  => "Op 't mement ku-j gien bestanden toevoegen wegens technische rejens ($1).",
 'uploaderror'                 => "Fout bie 't toevoegen van 't bestand",
 'uploadtext'                  => "Gebruuk 't onderstaonde formelier um bestanden toe te voegen.
-Um eerder toe-evoegen bestanden te bekieken of te zeuken ku-j naor de [[Special:ImageList|bestanslieste]] gaon.
+Um eerder toe-evoegen bestanden te bekieken of te zeuken ku-j naor de [[Special:FileList|bestanslieste]] gaon.
 Toe-evoegen bestanden en media dee vort-edaon bin wonnen bie-ehuilen in 't [[Special:Log/upload|logboek mit toe-evoegen bestanden]] en 't [[Special:Log/delete|logboek mit vort-edaon bestanden]].
 
 Um 't bestand in te voegen in een pagina ku-j een van de volgende codes gebruken:
@@ -1287,7 +1287,7 @@ Um 't bestand in te voegen in een pagina ku-j een van de volgende codes gebruken
 'uploadlog'                   => 'Toe-evoegen bestanden',
 'uploadlogpage'               => 'Toe-evoegen bestanden',
 'uploadlogpagetext'           => 'Hieronder steet een lieste mit bestanden dee net niej bin.
-Zie de [[Special:NewImages|gallerieje mit media]] veur een overzichte.',
+Zie de [[Special:NewFiles|gallerieje mit media]] veur een overzichte.',
 'filename'                    => 'Bestansnaam',
 'filedesc'                    => 'Beschrieving',
 'fileuploadsummary'           => 'Beschrieving:',
@@ -1322,10 +1322,10 @@ As de ofbeelding dee-j krek nao-ekeken hemmen dezelfde grootte hef, dan is 't ne
 Dit is werschienlijk een verkleinde ofbeelding <i>(overzichsofbeelding)</i>.
 A-j disse ofbeelding in volle grootte hemmen voeg 't dan toe, wiezig aanders de bestansnaam.",
 'fileexists-forbidden'        => "Een ofbeelding mit disse naam besteet al;
-je wonnen verzoch 't toe te voegen onder een aandere naam. [[Image:$1|thumb|center|$1]]",
+je wonnen verzoch 't toe te voegen onder een aandere naam. [[File:$1|thumb|center|$1]]",
 'fileexists-shared-forbidden' => "Der besteet al een bestand mit disse naam in de gezamelijke bestanslokasie.
 A-j 't bestand asnog toevoegen willen, gao dan weerumme en kies een aandere naam.
-[[Image:$1|thumb|center|$1]]",
+[[File:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => "Dit bestand is liekeleens as {{PLURAL:$1|'t volgende bestand|de volgende bestanden}}:",
 'successfulupload'            => 'Bestanstoevoeging was succesvol',
 'uploadwarning'               => 'Waorschuwing',
@@ -1367,7 +1367,7 @@ Bedenk eers of 't inderdaod de bedoeling is dat dit bestand toe-evoeg wonnen.
 'upload_source_url'  => ' (een geldig, pebliek toegankelijk webadres)',
 'upload_source_file' => ' (een bestand op joew computer)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Op disse speciale pagina ku-j alle toe-evoegen bestanden bekieken.
 Standard wonnen de les toe-evoegen bestanden bovenan de lieste ezet.
 Klikken op een kelomkop veraandert de sortering.',
@@ -1380,7 +1380,7 @@ Klikken op een kelomkop veraandert de sortering.',
 'imagelist_size'        => 'Grootte (bytes)',
 'imagelist_description' => 'Beschrieving',
 
-# Image description page
+# File description page
 'filehist'                       => 'Bestansgeschiedenisse',
 'filehist-help'                  => "Klik op een daotum/tied um 't bestand te zien zoas 't to was.",
 'filehist-deleteall'             => 'alles vortdoon',
@@ -2194,7 +2194,7 @@ Meestentieds wonnen dit veroorzaak deur een uutgaonde verwiezing dee op de zwart
 'show-big-image'       => 'Ofbeelding in hogere resolusie',
 'show-big-image-thumb' => '<small>Grootte van disse weergave: $1 × $2 beeldpunten</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Nieje ofbeeldingen',
 'noimages'              => 'Niks te zien.',
 'ilsubmit'              => 'Zeuk',

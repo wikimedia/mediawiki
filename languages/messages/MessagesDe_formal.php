@@ -264,7 +264,7 @@ Seiten auf Ihrer [[Special:Watchlist|Beobachtungsliste]] sind '''fett''' dargest
 'uploadnologintext'           => 'Sie müssen [[Special:UserLogin|angemeldet sein]], um Dateien hochladen zu können.',
 'uploadtext'                  => "Benutzen Sie dieses Formular, um neue Dateien hochzuladen. 
 
-Gehen Sie zu der [[Special:ImageList|Liste hochgeladener Dateien]], um vorhandene Dateien zu suchen und anzuzeigen. Siehe auch das [[Special:Log/upload|Datei-]]- und [[Special:Log/upload|Lösch-Logbuch]].
+Gehen Sie zu der [[Special:FileList|Liste hochgeladener Dateien]], um vorhandene Dateien zu suchen und anzuzeigen. Siehe auch das [[Special:Log/upload|Datei-]]- und [[Special:Log/upload|Lösch-Logbuch]].
 
 Klicken Sie auf '''„Durchsuchen …“''', um einen Dateiauswahl-Dialog zu öffnen.
 Nach der Auswahl einer Datei wird der Dateiname im Textfeld '''„Quelldatei“''' angezeigt.
@@ -293,10 +293,10 @@ Nur die Dateiendung unterscheidet sich in Groß-/Kleinschreibung. Bitte prüfen 
 Wenn es sich um das Bild in Originalgröße handelt, so braucht kein separates Vorschaubild hochgeladen zu werden.',
 'file-thumbnail-no'           => 'Der Dateiname beginnt mit <strong><tt>$1</tt></strong>. Dies deutet auf ein Bild verringerter Größe <i>(thumbnail)</i> hin.
 Bitte prüfen Sie, ob Sie das Bild in voller Auflösung vorliegen haben und laden dieses unter dem Originalnamen hoch.',
-'fileexists-forbidden'        => 'Unter diesem Namen existiert bereits eine Datei. Bitte gehen Sie zurück und laden Sie diese Datei unter einem anderen Namen hoch. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Unter diesem Namen existiert bereits eine Datei. Bitte gehen Sie zurück und laden Sie diese Datei unter einem anderen Namen hoch. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Unter diesem Namen existiert bereits eine Datei im zentralen Medienarchiv.
 Wenn Sie diese Datei trotzdem hochladen möchten, gehen Sie bitte zurück und ändern den Namen.
-[[Image:$1|thumb|center|$1]]',
+[[File:$1|thumb|center|$1]]',
 'file-deleted-duplicate'      => 'Eine identische Datei dieser Datei ([[$1]]) wurde früher gelöscht.
 Überprüfen Sie das Löschlogbuch, bevor Sie sie hochladen.',
 'uploadcorrupt'               => 'Die Datei ist beschädigt oder hat eine falsche Datei-Erweiterung. Bitte überprüfen Sie die Datei und wiederholen Sie den Hochlade-Vorgang.',
@@ -320,7 +320,7 @@ Wenn das Problem weiter besteht, informieren Sie einen [[Special:ListUsers/sysop
 
 'upload_source_file' => ' (eine Datei auf Ihrem Computer)',
 
-# Image description page
+# File description page
 'filehist-help' => 'Klicken Sie auf einen Zeitpunkt, um diese Version zu laden.',
 'noimage'       => 'Eine Datei mit diesem Namen existiert nicht, Sie können sie jedoch $1.',
 

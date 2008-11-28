@@ -915,7 +915,7 @@ për podej carié dj'archivi.",
 'uploadtext'                  => "'''DOSMAN!''' Anans che carié dla ròba ansima a {{SITENAME}}, che a sia motobin sigur d'avej bin lesù e capì
 [[{{MediaWiki:Policy-url}}|ël regolament ëd {{SITENAME}} ansima al dovré dle figure]].
 
-Për vardé ò pura sërché figure già carià ant sla {{SITENAME}}, che a vada ant sla [[Special:ImageList|lista dle figure]].
+Për vardé ò pura sërché figure già carià ant sla {{SITENAME}}, che a vada ant sla [[Special:FileList|lista dle figure]].
 Lòn che as caria e së scancela a resta marcà ant ël [[Special:Log/upload|registr dij càrich]].
 
 Che a dòvra ël mòdulo ambelessì sota për carié neuv archivi con figure da dovré për fé pì bej e bin spiegà ij sò artìcoj.
@@ -974,9 +974,9 @@ Për piasì, ch'a serna un nòm diferent.",
 S'a l'é la midema figura a amzura pijn-a, a veul dì ch'a fa nen dë manca dë carié na figurin-a.",
 'file-thumbnail-no'           => "Ël nòm dl'archivi as anandia con <strong><tt>$1</tt></strong>. A-j ësmija a na <i>figurin-a</i>.
 Se a l'ha na figura a amzura pijn-a a l'é mej ch'a carìa cola-lì, dësnò ch'a-j cangia nòm a l'archivi, për piasì.",
-'fileexists-forbidden'        => "Belavans n'archivi con ës nòm-sì a-i é già, donca ël nòm as peul pa pì dovresse; për piasì che a torna andré e che as caria sò archivi con un nòm diferent. [[Image:$1|thumb|center|$1]]",
+'fileexists-forbidden'        => "Belavans n'archivi con ës nòm-sì a-i é già, donca ël nòm as peul pa pì dovresse; për piasì che a torna andré e che as caria sò archivi con un nòm diferent. [[File:$1|thumb|center|$1]]",
 'fileexists-shared-forbidden' => "Belavans n'archivi con ës nòm-sì ant la diretriss dj'archivi condivis a-i é già, donca ël nòm as peul pa pì dovresse; për piasì che a torna andré e che as caria sò archivi con un nòm diferent.
-[[Image:$1|thumb|center|$1]]",
+[[File:$1|thumb|center|$1]]",
 'successfulupload'            => 'Carià complet',
 'uploadwarning'               => 'Avis che i soma dapress a carié',
 'savefile'                    => "Salva l'archivi",
@@ -1030,7 +1030,7 @@ PICT # vàire marche diferente
 'upload_source_url'  => "  (n'anliura bon-a e che as peula dovresse)",
 'upload_source_file' => " (n'archivi da sò calcolator)",
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => "Sta pàgina special-sì a la smon tuti j'archivi ch'a ëstàit carià.
 Për sòlit j'ùltim carià a resto an sima.
 Ch'a-i bata 'n colp col rat ansima a j'antestassion dle colòne për cangé órdin.",
@@ -1043,7 +1043,7 @@ Ch'a-i bata 'n colp col rat ansima a j'antestassion dle colòne për cangé órd
 'imagelist_size'        => 'Amzura an byte',
 'imagelist_description' => 'Descrission',
 
-# Image description page
+# File description page
 'filehist'                  => "Stòria dl'archivi",
 'filehist-help'             => "Ch'a-i daga un colp col rat ant sna cobia data/ora për ës-ciairé coma restèissa l'archivi ant col moment-là.",
 'filehist-deleteall'        => 'dëscancelé tut',
@@ -1909,7 +1909,7 @@ $1",
 'show-big-image'       => 'Version a amzura pijn-a',
 'show-big-image-thumb' => '<small>Amzure dë sta figurin-a: $1 × $2 pixel</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Galerìa ëd figure e son neuv',
 'imagelisttext'         => "Ambelessì sota a-i é {{PLURAL:$1|l'ùnica figura che a-i sia|na lista ëd '''$1''' figure, ordinà për $2}}.",
 'newimages-summary'     => "Sta pàgina special-sì a la smon j'ùltim archivi carià.",
