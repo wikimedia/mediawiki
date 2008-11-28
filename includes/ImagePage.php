@@ -24,20 +24,20 @@ class ImagePage extends Article {
 	}
 
 	protected function loadFile() {
-		if ( $this->fileLoaded ) {
+		if( $this->fileLoaded ) {
 			return true;
 		}
 		$this->fileLoaded = true;
 
 		$this->displayImg = $this->img = false;
 		wfRunHooks( 'ImagePageFindFile', array( $this, &$this->img, &$this->displayImg ) );
-		if ( !$this->img ) {
+		if( !$this->img ) {
 			$this->img = wfFindFile( $this->mTitle );
-			if ( !$this->img ) {
+			if( !$this->img ) {
 				$this->img = wfLocalFile( $this->mTitle );
 			}
 		}
-		if ( !$this->displayImg ) {
+		if( !$this->displayImg ) {
 			$this->displayImg = $this->img;
 		}
 		$this->repo = $this->img->getRepo();
@@ -47,18 +47,18 @@ class ImagePage extends Article {
 	 * Handler for action=render
 	 * Include body text only; none of the image extras
 	 */
-	function render() {
+	public function render() {
 		global $wgOut;
 		$wgOut->setArticleBodyOnly( true );
 		parent::view();
 	}
 
-	function view() {
+	public function view() {
 		global $wgOut, $wgShowEXIF, $wgRequest, $wgUser;
 		$this->loadFile();
 
-		if ( $this->mTitle->getNamespace() == NS_IMAGE && $this->img->getRedirected() ) {
-			if ( $this->mTitle->getDBkey() == $this->img->getName() ) {
+		if( $this->mTitle->getNamespace() == NS_IMAGE && $this->img->getRedirected() ) {
+			if( $this->mTitle->getDBkey() == $this->img->getName() ) {
 				// mTitle is the same as the redirect target so ask Article
 				// to perform the redirect for us.
 				return Article::view();
@@ -76,10 +76,10 @@ class ImagePage extends Article {
 		$diff = $wgRequest->getVal( 'diff' );
 		$diffOnly = $wgRequest->getBool( 'diffonly', $wgUser->getOption( 'diffonly' ) );
 
-		if ( $this->mTitle->getNamespace() != NS_IMAGE || ( isset( $diff ) && $diffOnly ) )
+		if( $this->mTitle->getNamespace() != NS_IMAGE || ( isset( $diff ) && $diffOnly ) )
 			return Article::view();
 
-		if ( $wgShowEXIF && $this->displayImg->exists() ) {
+		if( $wgShowEXIF && $this->displayImg->exists() ) {
 			// FIXME: bad interface, see note on MediaHandler::formatMetadata().
 			$formattedMetadata = $this->displayImg->formatMetadata();
 			$showmeta = $formattedMetadata !== false;
@@ -87,13 +87,13 @@ class ImagePage extends Article {
 			$showmeta = false;
 		}
 
-		if ( $this->displayImg->exists() )
+		if( $this->displayImg->exists() )
 			$wgOut->addHTML( $this->showTOC($showmeta) );
 
 		$this->openShowImage();
 
 		# No need to display noarticletext, we use our own message, output in openShowImage()
-		if ( $this->getID() ) {
+		if( $this->getID() ) {
 			Article::view();
 		} else {
 			# Just need to set the right headers
@@ -104,7 +104,7 @@ class ImagePage extends Article {
 		}
 
 		# Show shared description, if needed
-		if ( $this->mExtraDescription ) {
+		if( $this->mExtraDescription ) {
 			$fol = wfMsgNoTrans( 'shareddescriptionfollows' );
 			if( $fol != '-' && !wfEmptyMsg( 'shareddescriptionfollows', $fol ) ) {
 				$wgOut->addWikiText( $fol );
@@ -124,12 +124,12 @@ class ImagePage extends Article {
 		$this->imageDupes();
 		// TODO: We may want to find local images redirecting to a foreign 
 		// file: "The following local files redirect to this file"
-		if ( $this->img->isLocal() ) {
+		if( $this->img->isLocal() ) {
 			$this->imageRedirects();
 		}
 		$this->imageLinks();
 
-		if ( $showmeta ) {
+		if( $showmeta ) {
 			global $wgStylePath, $wgStyleVersion;
 			$expand = htmlspecialchars( wfEscapeJsString( wfMsg( 'metadata-expand' ) ) );
 			$collapse = htmlspecialchars( wfEscapeJsString( wfMsg( 'metadata-collapse' ) ) );
@@ -143,32 +143,32 @@ class ImagePage extends Article {
 	
 	public function getRedirectTarget() {
 		$this->loadFile();
-		if ( $this->img->isLocal() ) {
+		if( $this->img->isLocal() ) {
 			return parent::getRedirectTarget();
 		}
 		// Foreign image page
 		$from = $this->img->getRedirected();
 		$to = $this->img->getName();
-		if ( $from == $to ) {
+		if( $from == $to ) {
 			return null; 
 		}
 		return $this->mRedirectTarget = Title::makeTitle( NS_IMAGE, $to );
 	}
 	public function followRedirect() {
 		$this->loadFile();
-		if ( $this->img->isLocal() ) {
+		if( $this->img->isLocal() ) {
 			return parent::followRedirect();
 		}
 		$from = $this->img->getRedirected();
 		$to = $this->img->getName();
-		if ( $from == $to ) {
+		if( $from == $to ) {
 			return false; 
 		}
 		return Title::makeTitle( NS_IMAGE, $to );	
 	}
 	public function isRedirect( $text = false ) {
 		$this->loadFile();
-		if ( $this->img->isLocal() )
+		if( $this->img->isLocal() )
 			return parent::isRedirect( $text );
 			
 		return (bool)$this->img->getRedirected();
@@ -191,10 +191,10 @@ class ImagePage extends Article {
 	
 	public function getDuplicates() {
 		$this->loadFile();
-		if ( !is_null($this->dupes) ) {
+		if( !is_null($this->dupes) ) {
 			return $this->dupes;
 		}
-		if ( !( $hash = $this->img->getSha1() ) ) {
+		if( !( $hash = $this->img->getSha1() ) ) {
 			return $this->dupes = array();
 		}
 		$dupes = RepoGroup::singleton()->findBySha1( $hash );
@@ -203,9 +203,9 @@ class ImagePage extends Article {
 		$size = $this->img->getSize();
 		foreach ( $dupes as $index => $file ) {
 			$key = $file->getRepoName().':'.$file->getName();
-			if ( $key == $self )
+			if( $key == $self )
 				unset( $dupes[$index] );
-			if ( $file->getSize() != $size )
+			if( $file->getSize() != $size )
 				unset( $dupes[$index] );
 		}
 		return $this->dupes = $dupes;
@@ -216,12 +216,10 @@ class ImagePage extends Article {
 	/**
 	 * Create the TOC
 	 *
-	 * @access private
-	 *
 	 * @param bool $metadata Whether or not to show the metadata link
 	 * @return string
 	 */
-	function showTOC( $metadata ) {
+	protected function showTOC( $metadata ) {
 		global $wgLang;
 		$r = '<ul id="filetoc">
 			<li><a href="#file">' . $wgLang->getNsText( NS_IMAGE ) . '</a></li>
@@ -237,12 +235,10 @@ class ImagePage extends Article {
 	 *
 	 * FIXME: bad interface, see note on MediaHandler::formatMetadata().
 	 *
-	 * @access private
-	 *
 	 * @param array $exif The array containing the EXIF data
 	 * @return string
 	 */
-	function makeMetadataTable( $metadata ) {
+	protected function makeMetadataTable( $metadata ) {
 		$r = wfMsg( 'metadata-help' ) . "\n\n";
 		$r .= "{| id=mw_metadata class=mw_metadata\n";
 		foreach ( $metadata as $type => $stuff ) {
@@ -266,7 +262,7 @@ class ImagePage extends Article {
 	 * Omit noarticletext if sharedupload; text will be fetched from the
 	 * shared upload server if possible.
 	 */
-	function getContent() {
+	public function getContent() {
 		$this->loadFile();
 		if( $this->img && !$this->img->isLocal() && 0 == $this->getID() ) {
 			return '';
@@ -274,7 +270,7 @@ class ImagePage extends Article {
 		return Article::getContent();
 	}
 
-	function openShowImage() {
+	protected function openShowImage() {
 		global $wgOut, $wgUser, $wgImageLimits, $wgRequest, $wgLang, $wgContLang;
 
 		$this->loadFile();
@@ -298,10 +294,10 @@ class ImagePage extends Article {
 		$sk = $wgUser->getSkin();
 		$dirmark = $wgContLang->getDirMark();
 
-		if ( $this->displayImg->exists() ) {
+		if( $this->displayImg->exists() ) {
 			# image
 			$page = $wgRequest->getIntOrNull( 'page' );
-			if ( is_null( $page ) ) {
+			if( is_null( $page ) ) {
 				$params = array();
 				$page = 1;
 			} else {
@@ -318,16 +314,16 @@ class ImagePage extends Article {
 
 			wfRunHooks( 'ImageOpenShowImageInlineBefore', array( &$this , &$wgOut ) )	;
 
-			if ( $this->displayImg->allowInlineDisplay() ) {
+			if( $this->displayImg->allowInlineDisplay() ) {
 				# image
 
 				# "Download high res version" link below the image
 				#$msgsize = wfMsgHtml('file-info-size', $width_orig, $height_orig, $sk->formatSize( $this->displayImg->getSize() ), $mime );
 				# We'll show a thumbnail of this image
-				if ( $width > $maxWidth || $height > $maxHeight ) {
+				if( $width > $maxWidth || $height > $maxHeight ) {
 					# Calculate the thumbnail size.
 					# First case, the limiting factor is the width, not the height.
-					if ( $width / $height >= $maxWidth / $maxHeight ) {
+					if( $width / $height >= $maxWidth / $maxHeight ) {
 						$height = round( $height * $maxWidth / $width);
 						$width = $maxWidth;
 						# Note that $height <= $maxHeight now.
@@ -361,11 +357,11 @@ class ImagePage extends Article {
 						'<br />' . Xml::tags( 'a', $linkAttribs,  $msgbig ) . "$dirmark " . $longDesc;
 				}
 
-				if ( $this->displayImg->isMultipage() ) {
+				if( $this->displayImg->isMultipage() ) {
 					$wgOut->addHTML( '<table class="multipageimage"><tr><td>' );
 				}
 
-				if ( $thumbnail ) {
+				if( $thumbnail ) {
 					$options = array(
 						'alt' => $this->displayImg->getTitle()->getPrefixedText(),
 						'file-link' => true,
@@ -375,10 +371,10 @@ class ImagePage extends Article {
 						$anchorclose . '</div>' );
 				}
 
-				if ( $this->displayImg->isMultipage() ) {
+				if( $this->displayImg->isMultipage() ) {
 					$count = $this->displayImg->pageCount();
 
-					if ( $page > 1 ) {
+					if( $page > 1 ) {
 						$label = $wgOut->parse( wfMsg( 'imgmultipageprev' ), false );
 						$link = $sk->makeKnownLinkObj( $this->mTitle, $label, 'page='. ($page-1) );
 						$thumb1 = $sk->makeThumbLinkObj( $this->mTitle, $this->displayImg, $link, $label, 'none',
@@ -387,7 +383,7 @@ class ImagePage extends Article {
 						$thumb1 = '';
 					}
 
-					if ( $page < $count ) {
+					if( $page < $count ) {
 						$label = wfMsg( 'imgmultipagenext' );
 						$link = $sk->makeKnownLinkObj( $this->mTitle, $label, 'page='. ($page+1) );
 						$thumb2 = $sk->makeThumbLinkObj( $this->mTitle, $this->displayImg, $link, $label, 'none',
@@ -424,7 +420,7 @@ class ImagePage extends Article {
 				}
 			} else {
 				#if direct link is allowed but it's not a renderable image, show an icon.
-				if ( $this->displayImg->isSafeFile() ) {
+				if( $this->displayImg->isSafeFile() ) {
 					$icon= $this->displayImg->iconThumb();
 
 					$wgOut->addHTML( '<div class="fullImageLink" id="file">' .
@@ -436,10 +432,10 @@ class ImagePage extends Article {
 			}
 
 
-			if ($showLink) {
+			if($showLink) {
 				$filename = wfEscapeWikiText( $this->displayImg->getName() );
 
-				if ( !$this->displayImg->isSafeFile() ) {
+				if( !$this->displayImg->isSafeFile() ) {
 					$warning = wfMsgNoTrans( 'mediawarning' );
 					$wgOut->addWikiText( <<<EOT
 <div class="fullMedia">
@@ -476,7 +472,7 @@ EOT
 	/**
 	 * Show a notice that the file is from a shared repository
 	 */
-	function printSharedImageText() {
+	protected function printSharedImageText() {
 		global $wgOut, $wgUser;
 
 		$this->loadFile();
@@ -484,12 +480,12 @@ EOT
 		$descUrl = $this->img->getDescriptionUrl();
 		$descText = $this->img->getDescriptionText();
 		$s = "<div class='sharedUploadNotice'>" . wfMsgWikiHtml( 'sharedupload' );
-		if ( $descUrl ) {
+		if( $descUrl ) {
 			$sk = $wgUser->getSkin();
 			$link = $sk->makeExternalLink( $descUrl, wfMsg( 'shareduploadwiki-linktext' ) );
 			$msg = ( $descText ) ? 'shareduploadwiki-desc' : 'shareduploadwiki';
 			$msg = wfMsgExt( $msg, array( 'parseinline', 'replaceafter' ), $link );
-			if ( $msg != '-' ) {
+			if( $msg != '-' ) {
 				# Show message only if not voided by local sysops
 				$s .= $msg;
 			}
@@ -497,7 +493,7 @@ EOT
 		$s .= "</div>";
 		$wgOut->addHTML( $s );
 
-		if ( $descText ) {
+		if( $descText ) {
 			$this->mExtraDescription = $descText;
 		}
 	}
@@ -505,7 +501,7 @@ EOT
 	/*
 	 * Check for files with the same name on the foreign repos.
 	 */
-	function checkSharedConflict() {
+	protected function checkSharedConflict() {
 		global $wgOut, $wgUser;
 		
 		$repoGroup = RepoGroup::singleton();
@@ -540,7 +536,7 @@ EOT
 		}
 	}
 
-	function checkSharedConflictCallback( $repo ) {
+	protected function checkSharedConflictCallback( $repo ) {
 		$this->loadFile();
 		$dupfile = $repo->newFile( $this->img->getTitle() );
 		if( $dupfile && $dupfile->exists() ) {
@@ -550,7 +546,7 @@ EOT
 		return false;
 	}
 
-	function getUploadUrl() {
+	public function getUploadUrl() {
 		$this->loadFile();
 		$uploadTitle = SpecialPage::getTitleFor( 'Upload' );
 		return $uploadTitle->getFullUrl( 'wpDestFile=' . urlencode( $this->img->getName() ) );
@@ -560,7 +556,7 @@ EOT
 	 * Print out the various links at the bottom of the image page, e.g. reupload,
 	 * external editing (and instructions link) etc.
 	 */
-	function uploadLinksBox() {
+	protected function uploadLinksBox() {
 		global $wgUser, $wgOut;
 
 		$this->loadFile();
@@ -588,21 +584,18 @@ EOT
 		$wgOut->addHTML( '</ul>' );
 	}
 
-	function closeShowImage()
-	{
-		# For overloading
-
-	}
+	protected function closeShowImage() {} # For overloading
 
 	/**
 	 * If the page we've just displayed is in the "Image" namespace,
 	 * we follow it with an upload history of the image and its usage.
 	 */
-	function imageHistory() {
+	protected function imageHistory() {
 		global $wgOut, $wgUseExternalEditor;
 
 		$this->loadFile();
-		if ( $this->img->exists() ) {
+		$s = '';
+		if( $this->img->exists() ) {
 			$list = new ImageHistoryList( $this );
 			$file = $this->img;
 			$s = $list->beginImageHistoryList();
@@ -613,7 +606,7 @@ EOT
 				$s .= $list->imageHistoryLine( false, $file );
 			}
 			$s .= $list->endImageHistoryList();
-		} else { $s=''; }
+		}
 		$wgOut->addHTML( $s );
 
 		$this->img->resetHistory(); // free db resources
@@ -623,10 +616,9 @@ EOT
 		if( $wgUseExternalEditor && $this->img->exists() ) {
 			$this->uploadLinksBox();
 		}
-
 	}
 
-	function imageLinks() {
+	protected function imageLinks() {
 		global $wgUser, $wgOut, $wgLang;
 
 		$limit = 100;
@@ -641,7 +633,7 @@ EOT
 			array( 'LIMIT' => $limit + 1)	
 		);
 		$count = $dbr->numRows( $res );
-		if ( $count == 0 ) {
+		if( $count == 0 ) {
 			$wgOut->addHTML( "<div id='mw-imagepage-nolinkstoimage'>\n" );
 			$wgOut->addWikiMsg( 'nolinkstoimage' );
 			$wgOut->addHTML( "</div>\n" );
@@ -649,7 +641,7 @@ EOT
 		}
 		
 		$wgOut->addHTML( "<div id='mw-imagepage-section-linkstoimage'>\n" );
-		if ( $count <= $limit - 1 ) {
+		if( $count <= $limit - 1 ) {
 			$wgOut->addWikiMsg( 'linkstoimage', $count );
 		} else {
 			// More links than the limit. Add a link to [[Special:Whatlinkshere]]
@@ -664,7 +656,7 @@ EOT
 		$count = 0;
 		while ( $s = $res->fetchObject() ) {
 			$count++;
-			if ( $count <= $limit ) {
+			if( $count <= $limit ) {
 				// We have not yet reached the extra one that tells us there is more to fetch
 				$name = Title::makeTitle( $s->page_namespace, $s->page_title );
 				$link = $sk->makeKnownLinkObj( $name, "" );
@@ -675,15 +667,15 @@ EOT
 		$res->free();
 
 		// Add a links to [[Special:Whatlinkshere]]
-		if ( $count > $limit )
+		if( $count > $limit )
 			$wgOut->addWikiMsg( 'morelinkstoimage', $this->mTitle->getPrefixedDBkey() );
 	}
 	
-	function imageRedirects() {
+	protected function imageRedirects() {
 		global $wgUser, $wgOut, $wgLang;
 
 		$redirects = $this->getTitle()->getRedirectsHere( NS_IMAGE );
-		if ( count( $redirects ) == 0 ) return;
+		if( count( $redirects ) == 0 ) return;
 
 		$wgOut->addHTML( "<div id='mw-imagepage-section-redirectstofile'>\n" );
 		$wgOut->addWikiMsg( 'redirectstofile',
@@ -700,13 +692,13 @@ EOT
 
 	}
 
-	function imageDupes() {
+	protected function imageDupes() {
 		global $wgOut, $wgUser, $wgLang;
 
 		$this->loadFile();
 
 		$dupes = $this->getDuplicates();
-		if ( count( $dupes ) == 0 ) return;
+		if( count( $dupes ) == 0 ) return;
 
 		$wgOut->addHTML( "<div id='mw-imagepage-section-duplicates'>\n" );
 		$wgOut->addWikiMsg( 'duplicatesoffile',
@@ -716,7 +708,7 @@ EOT
 
 		$sk = $wgUser->getSkin();
 		foreach ( $dupes as $file ) {
-			if ( $file->isLocal() )
+			if( $file->isLocal() )
 				$link = $sk->makeKnownLinkObj( $file->getTitle(), "" );
 			else {
 				$link = $sk->makeExternalLink( $file->getDescriptionUrl(),
@@ -753,7 +745,7 @@ EOT
 	/**
 	 * Override handling of action=purge
 	 */
-	function doPurge() {
+	public function doPurge() {
 		$this->loadFile();
 		if( $this->img->exists() ) {
 			wfDebug( "ImagePage::doPurge purging " . $this->img->getName() . "\n" );
@@ -799,15 +791,15 @@ class ImageHistoryList {
 		$this->imagePage = $imagePage;
 	}
 
-	function getImagePage() {
+	public function getImagePage() {
 		return $this->imagePage;
 	}
 
-	function getSkin() {
+	public function getSkin() {
 		return $this->skin;
 	}
 
-	function getFile() {
+	public function getFile() {
 		return $this->img;
 	}
 
@@ -961,7 +953,7 @@ class ImageHistoryList {
 		$row .= '</td><td>';
 
 		// Don't show deleted descriptions
-		if ( $file->isDeleted(File::DELETED_COMMENT) ) {
+		if( $file->isDeleted(File::DELETED_COMMENT) ) {
 			$row .= '<span class="history-deleted">' . wfMsgHtml('rev-deleted-comment') . '</span>';
 		} else {
 			$row .= $this->skin->commentBlock( $description, $this->title );
