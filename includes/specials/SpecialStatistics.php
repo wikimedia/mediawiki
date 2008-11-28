@@ -183,8 +183,11 @@ function wfSpecialStatistics( $par = '' ) {
  * @return string table row in HTML format
  */
 function formatRow( $text, $number, $trExtraParams = '', $tooltip = '' ) {
+	global $wgStylePath;
+
 	if( $tooltip ) {
-		$text = '<div title="' . wfMsg( $tooltip ) . '">' . $text . '<sup>*</sup></div>';
+		$tooltipText = wfMsg( $tooltip );
+		$text = '<div class="mw-tooltip-icon" title="' . $tooltipText . '">' . $text . '<sup><a class="mw-tooptip-icon" title="' . $tooltipText . '"><img alt="' . $tooltipText . '" src="' . $wgStylePath . '/common/images/tooltip_icon.png" width="10" height="12" border="0" /></a></sup></div>';
 	}
 
 	return "<tr{$trExtraParams}>
