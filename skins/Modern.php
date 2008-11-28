@@ -143,6 +143,7 @@ class ModernTemplate extends QuickTemplate {
 	     for the margins -->
 	<div id="mw_contentholder">
 		<div class='mw-topboxes'>
+			<div id="mw-js-message" style="display:none;"></div>
 			<div class="mw-topbox" id="siteSub"><?php $this->msg('tagline') ?></div>
 			<?php if($this->data['newtalk'] ) {
 				?><div class="usermessage mw-topbox"><?php $this->html('newtalk')  ?></div>
