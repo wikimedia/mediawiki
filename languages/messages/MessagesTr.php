@@ -1031,7 +1031,7 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'upload_directory_read_only'  => 'Dosya yükleme dizinine ($1) web sunucusunun yazma izni yok.',
 'uploaderror'                 => 'Yükleme hatası',
 'uploadtext'                  => "Dosya yüklemek için aşağıdaki formu kullanın,
-Önceden yüklenmiş resimleri görmek için  [[Special:ImageList|resim listesine]] bakın,
+Önceden yüklenmiş resimleri görmek için  [[Special:FileList|resim listesine]] bakın,
 yüklenenler ve silinmişler [[Special:Log/upload|yükleme kaydı sayfasında da]] görülebilir.
 
 Sayfaya resim koymak için formdaki linklerdimelerşi kullanın;
@@ -1044,7 +1044,7 @@ veya doğrudan bağlantı için
 'upload-prohibited'           => 'Yasaklanan dosya türleri: $1.',
 'uploadlog'                   => 'yükleme kaydı',
 'uploadlogpage'               => 'Dosya yükleme kayıtları',
-'uploadlogpagetext'           => 'Aşağıda en son eklenen [[Special:NewImages|dosyaların bir listesi]] bulunmaktadır.',
+'uploadlogpagetext'           => 'Aşağıda en son eklenen [[Special:NewFiles|dosyaların bir listesi]] bulunmaktadır.',
 'filename'                    => 'Dosya adı',
 'filedesc'                    => 'Dosya ile ilgili açıklama',
 'fileuploadsummary'           => 'Açıklama:',
@@ -1063,8 +1063,8 @@ veya doğrudan bağlantı için
 'emptyfile'                   => 'Yüklediğiniz dosya boş görünüyor. Bunun sebebi dosya adındaki bir yazım hatası olabilir. Lütfen dosyayı gerçekten tyüklemek isteyip istemediğinizden emin olun.',
 'fileexists'                  => 'Bu isimde bir dosya mevcut. Eğer değiştirmekten emin değilseniz ilk önce <strong><tt>$1</tt></strong> dosyasına bir gözatın.',
 'fileexists-thumb'            => "<center>'''Bu isimde zaten bir resim var'''</center>",
-'fileexists-forbidden'        => 'Bu isimde zaten dosya var; lütfen farklı bir isimle yeniden yükleyin. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Bu isimde bir dosya ortak havuzda zaten mevcut; lütfen geri gidip dosyayı yeni bir isimle yükleyiniz. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Bu isimde zaten dosya var; lütfen farklı bir isimle yeniden yükleyin. [[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Bu isimde bir dosya ortak havuzda zaten mevcut; lütfen geri gidip dosyayı yeni bir isimle yükleyiniz. [[File:$1|thumb|center|$1]]',
 'successfulupload'            => 'Yükleme başarılı',
 'uploadwarning'               => 'Yükleme uyarısı',
 'savefile'                    => 'Dosyayı kaydet',
@@ -1099,7 +1099,7 @@ Bu dosyanın silme kayıtları kolaylık olması için burada sunulmuştur:",
 'upload_source_url'  => ' (geçerli, herkesin ulaşabileceği bir URL)',
 'upload_source_file' => ' (bilgisayarınızdaki bir dosya)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist_search_for'  => 'Medya adı ara:',
 'imgfile'               => 'dosya',
 'imagelist'             => 'Resim listesi',
@@ -1109,7 +1109,7 @@ Bu dosyanın silme kayıtları kolaylık olması için burada sunulmuştur:",
 'imagelist_size'        => 'Boyut (bayt)',
 'imagelist_description' => 'Tanım',
 
-# Image description page
+# File description page
 'filehist'                       => 'Dosya geçmişi',
 'filehist-help'                  => 'Dosyanın geçmişini görebilmek için Gün/Zaman bölümündeki tarihleri tıklayınız.',
 'filehist-deleteall'             => 'Hepsini sil',
@@ -1854,7 +1854,7 @@ Lütfen başka bir isim deneyiniz.',
 'show-big-image'       => 'Tam çözünürlük',
 'show-big-image-thumb' => '<small>Ön izleme boyutu: $1 × $2 piksel</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Yeni resimler',
 'imagelisttext'         => "Aşağıdaki liste '''$2''' göre dizilmiş {{PLURAL:$1|adet dosyayı|adet dosyayı}} göstermektedir.",
 'newimages-summary'     => 'Bu özel sayfa, en son yüklenen dosyaları göstermektedir.',

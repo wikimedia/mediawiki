@@ -327,10 +327,10 @@ Nyoë pat nakeuh log seunampôh nibak ôn nyoë:",
 'uploadlogpage' => 'Log peutamong',
 'uploadedimage' => 'peutamong "[[$1]]"',
 
-# Special:ImageList
+# Special:FileList
 'imagelist' => 'Dapeuta beureukah',
 
-# Image description page
+# File description page
 'filehist'                  => 'Riwayat beureukah',
 'filehist-help'             => 'Teugon bak tanggay/watèë keu eu beureukah nyoë ‘oh watèë nyan.',
 'filehist-current'          => 'jinoë hat',
@@ -621,7 +621,7 @@ Droëneuh cuman jeuët neu’eu nèjih.',
 'show-big-image'       => 'Resolusi peunoh',
 'show-big-image-thumb' => '<small>Rayek atra nyoë: $1 x $2 piksel</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages' => 'Beureukah barô',
 
 # Bad image list

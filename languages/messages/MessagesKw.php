@@ -117,7 +117,7 @@ $messages = array(
 # Tooltip help for the actions
 'tooltip-pt-preferences' => 'Teythi ow akont',
 
-# Special:NewImages
+# Special:NewFiles
 'ilsubmit' => 'Hwilas',
 
 # Special:SpecialPages

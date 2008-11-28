@@ -115,7 +115,7 @@ $messages = array(
 # Upload
 'savefile' => 'ምስሊ ኣቐምጥ',
 
-# Special:ImageList
+# Special:FileList
 'imgfile'        => 'ምስሊ',
 'imagelist'      => 'ምስልታት',
 'imagelist_name' => 'ሽም',
@@ -166,7 +166,7 @@ $messages = array(
 # Tooltip help for the actions
 'tooltip-pt-preferences' => 'ናተይ ኣማረጽቲ',
 
-# Special:NewImages
+# Special:NewFiles
 'ilsubmit' => 'ድሉይ',
 
 # Metadata

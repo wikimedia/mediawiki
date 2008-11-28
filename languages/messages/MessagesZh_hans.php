@@ -1200,7 +1200,7 @@ $2',
 'uploaderror'                 => '上载错误',
 'uploadtext'                  => "使用下面的表单来上传用在页面内新的文件。
 要查看或搜索以前上传的文件
-可以进入[[Special:ImageList|文件上传列表]]，
+可以进入[[Special:FileList|文件上传列表]]，
 （重新）上传将在[[Special:Log/upload|上传日志]]中记录，
 而删除将在[[Special:Log/delete|删除日志]]中记录。
 
@@ -1214,7 +1214,7 @@ $2',
 'uploadlog'                   => '上传日志',
 'uploadlogpage'               => '上传日志',
 'uploadlogpagetext'           => '以下是一个最近上传文件的列表。
-查看[[Special:NewImages|新文件画廊]]去看更富图像的总览。',
+查看[[Special:NewFiles|新文件画廊]]去看更富图像的总览。',
 'filename'                    => '文件名',
 'filedesc'                    => '文件描述',
 'fileuploadsummary'           => '文件描述:',
@@ -1246,8 +1246,8 @@ $2',
 如果检查后的文件是同原本图像的大小是一样的话，就不用再上载多一幅缩图。',
 'file-thumbnail-no'           => '该档名是以<strong><tt>$1</tt></strong>开始。它好像一幅图像的缩图版本<i>(缩图)</i>。
 如果你有该图像的完整大小，如不是请再修改文件名。',
-'fileexists-forbidden'        => '已存在相同名称的文件；请返回并用一个新的名称来上传此文件。[[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => '在共享文件库中已存在此名称的文件；请返回并用一个新的名称来上传此文件。[[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => '已存在相同名称的文件；请返回并用一个新的名称来上传此文件。[[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => '在共享文件库中已存在此名称的文件；请返回并用一个新的名称来上传此文件。[[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => '这个文件是跟以下的{{PLURAL:$1|一|多}}个文件重覆:',
 'successfulupload'            => '上传成功',
 'uploadwarning'               => '上载警告',
@@ -1289,7 +1289,7 @@ $2',
 'upload_source_url'  => ' (一个有效的，可公开访问的 URL)',
 'upload_source_file' => ' (在您计算机上的一个文件)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => '这个特殊页面显示所有上传过的文件。
 预设中最后上传的文件会显示在这个列表中的最顶处。
 点击一栏的标题去改变这个排列。',
@@ -1302,7 +1302,7 @@ $2',
 'imagelist_size'        => '大小',
 'imagelist_description' => '描述',
 
-# Image description page
+# File description page
 'filehist'                       => '文件历史',
 'filehist-help'                  => '点击日期／时间以查看当时出现过的文件。',
 'filehist-deleteall'             => '删除全部',
@@ -2305,7 +2305,7 @@ $1',
 'show-big-image'       => '完整分辨率',
 'show-big-image-thumb' => '<small>这幅略缩图的分辨率: $1 × $2 像素</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => '新建图像画廊',
 'imagelisttext'         => "以下是按$2排列的'''$1'''个文件列表。",
 'newimages-summary'     => '这个特殊页面中显示最后已上传的文件。',

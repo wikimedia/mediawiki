@@ -133,7 +133,7 @@ $messages = array(
 # Recent changes linked
 'recentchangeslinked' => 'Meňzeçli özgertişler',
 
-# Image description page
+# File description page
 'filehist-current'  => 'häzirki',
 'filehist-datetime' => 'Gün/Zaman',
 'filehist-user'     => 'Ulanyjy',

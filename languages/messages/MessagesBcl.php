@@ -863,7 +863,7 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 para makakarga nin mga ''file''.",
 'upload_directory_read_only'  => 'An directoriong pagkarga na ($1) dai puedeng suratan kan serbidor nin web.',
 'uploaderror'                 => 'Salâ an pagkarga',
-'uploadtext'                  => "Gamiton tabî an pormulario sa babâ para magkarga nin mga ''file'', para maghiling o maghanap kan mga ladawan na dating kinarga magduman tabi sa [[Special:ImageList|lista nin mga pigkargang ''file'']], an mga kinarga asin mga pinarâ nakalista man sa [[Special:Log/upload|historial nin pagkarga]].
+'uploadtext'                  => "Gamiton tabî an pormulario sa babâ para magkarga nin mga ''file'', para maghiling o maghanap kan mga ladawan na dating kinarga magduman tabi sa [[Special:FileList|lista nin mga pigkargang ''file'']], an mga kinarga asin mga pinarâ nakalista man sa [[Special:Log/upload|historial nin pagkarga]].
 
 Kun boot mong ikaag an ladawan sa páhina, gamiton tabî an takod arog kan
 '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki>''',
@@ -898,8 +898,8 @@ Magpili tabî nin ibang pangaran.",
 Kun an sinosog na ''file'' iyo an parehong ladawan na nasa dating sokol, dai na kaipuhan magkarga nin iba pang retratito.",
 'file-thumbnail-no'           => "An ''filename'' nagpopoon sa <strong><tt>$1</tt></strong>. Garo ladawan na pinasadit ini <i>(thumbnail)</i>.
 Kun igwa ka nin ladawan na may resolusyón na maximo ikarga tabî ini, kun dai, bâgohon tabî an pangaran nin ''file''.",
-'fileexists-forbidden'        => "Igwa nang ''file'' na may parehong pangaran; bumalik tabi asin ikarga an ''file'' sa bâgong pangaran [[Image:$1|thumb|center|$1]]",
-'fileexists-shared-forbidden' => "Igwa nang ''file'' na may parehong pangaran sa repositoryo nin mga bakas na ''file''; bumalik tabî asin ikarga an ''file'' sa bâgong pangaran. [[Image:$1|thumb|center|$1]]",
+'fileexists-forbidden'        => "Igwa nang ''file'' na may parehong pangaran; bumalik tabi asin ikarga an ''file'' sa bâgong pangaran [[File:$1|thumb|center|$1]]",
+'fileexists-shared-forbidden' => "Igwa nang ''file'' na may parehong pangaran sa repositoryo nin mga bakas na ''file''; bumalik tabî asin ikarga an ''file'' sa bâgong pangaran. [[File:$1|thumb|center|$1]]",
 'successfulupload'            => 'Nakarga na',
 'uploadwarning'               => 'Patanid sa pagkarga',
 'savefile'                    => "Itagama an ''file''",
@@ -939,7 +939,7 @@ An historial nin pagparâ kan ''file'' nakakaag digdi para sa konbenyensya:",
 'upload_source_url'  => ' (sarong tama, na bukas sa publikong URL)',
 'upload_source_file' => " (sarong ''file'' sa kompyuter mo)",
 
-# Special:ImageList
+# Special:FileList
 'imagelist_search_for'  => 'Hanápon an pangaran kan retrato:',
 'imgfile'               => 'dokumento',
 'imagelist'             => 'Lista kan dokumento',
@@ -949,7 +949,7 @@ An historial nin pagparâ kan ''file'' nakakaag digdi para sa konbenyensya:",
 'imagelist_size'        => 'Sukol',
 'imagelist_description' => 'Deskripsión',
 
-# Image description page
+# File description page
 'filehist'                  => 'Uusipón nin file',
 'filehist-help'             => 'Magpindot kan petsa/oras para mahiling an hitsura kan file sa piniling oras.',
 'filehist-deleteall'        => 'parâon gabos',
@@ -1748,7 +1748,7 @@ $1",
 'show-big-image'       => 'Todong resolusyon',
 'show-big-image-thumb' => '<small>Sokol kan patânaw: $1 × $2  na pixel</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Galeria nin mga bàgong file',
 'imagelisttext'         => "Mahihiling sa baba an lista nin mga  '''$1''' {{PLURAL:$1|file|files}} na linain $2.",
 'showhidebots'          => '($1 na bots)',

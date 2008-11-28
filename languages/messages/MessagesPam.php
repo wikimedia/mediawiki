@@ -1012,7 +1012,7 @@ king kekang watchlist (tala da reng babanten).",
 'upload_directory_read_only'  => 'E ne maliaring sulatanan ning webserver ing piyakitan pamaglulan o upload directory ($1).',
 'uploaderror'                 => 'Migkamaling maglulan',
 'uploadtext'                  => "Gamitan me ing ayus (form) king lalam bang maglulan simpan (upload files).
-Ba mong lon o paintunan deng simpan a sadia nang milulan, munta ka king [[Special:ImageList|tala da reng simpan a milulan]]; maka-login la murin deng milulan ampong mebura king [[Special:Log/upload|tala da reng milulan (upload log)]].
+Ba mong lon o paintunan deng simpan a sadia nang milulan, munta ka king [[Special:FileList|tala da reng simpan a milulan]]; maka-login la murin deng milulan ampong mebura king [[Special:Log/upload|tala da reng milulan (upload log)]].
 
 Ba yang iyabe ing simpan king metung a bulung gamitan me ing suglung (link) king ayus (form) a
 '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki>''',
@@ -1059,9 +1059,9 @@ Nung ya naman ketang minunang maki orihinal a dagul ing simpan a maka-check, e n
 Lupa yang larawan a pepalati <i>(thumbnail)</i>.
 Nung atyu keka ining larawan king bersion a pekamalino (full resolution), ilulan me ini; nung ali naman, pakiyalilan me ing lagyung simpan.',
 'fileexists-forbidden'        => 'Atin nang simpan a maki lagyung anti kaniti;
-mibalik ka at ilulan (upload) me king lalam ning bayung lagyu. [[Image:$1|thumb|center|$1]]',
+mibalik ka at ilulan (upload) me king lalam ning bayung lagyu. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Atin nang simpan (file) a maki lagyung anti kaniti king abe-abeng simpanan (shared file repository);
-mibalik ka at ilulan (upload) me king lalam ning bayung lagyu. [[Image:$1|thumb|center|$1]]',
+mibalik ka at ilulan (upload) me king lalam ning bayung lagyu. [[File:$1|thumb|center|$1]]',
 'successfulupload'            => 'Melaus ing pamaglulan',
 'uploadwarning'               => 'Babala king pamaglulan',
 'savefile'                    => 'I-save ya ing simpan (file)',
@@ -1111,7 +1111,7 @@ Mapaliaring mas masanting yang subukan nung mas ditak la reng gagamit.',
 'upload_source_url'  => ' (metung a URL a matatanggap at aluban ding malda)',
 'upload_source_file' => ' (metung a simpan king kekang computer)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Papakit no ngan niting bulung a makabukud/espesial deng simpan a milulan (uploaded files).
 Karaniwan, keta lang babo ning tala deng simpan a tauling milulan.
 Miyalilan ing pamanayus nung i-click ya ing pamagat ning kolum (column header).',
@@ -1124,7 +1124,7 @@ Miyalilan ing pamanayus nung i-click ya ing pamagat ning kolum (column header).'
 'imagelist_size'        => 'Dagul',
 'imagelist_description' => 'Pamilarawan (description)',
 
-# Image description page
+# File description page
 'filehist'                       => 'Amlat ning simpan (File history)',
 'filehist-help'                  => 'Mag-click kang petsa/oras ba meng akit ing itsura ning simpan aniang panaun a ita.',
 'filehist-deleteall'             => 'buran ing eganagana',
@@ -2005,7 +2005,7 @@ $1',
 'show-big-image'       => 'Pekamalino',
 'show-big-image-thumb' => '<small>Dagul na niting preview: $1 × $2 pixels</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Pirinan kareng bayung simpan (new files)',
 'imagelisttext'         => "Ing makatuki tala yang '''$1''' {{PLURAL:$1|simpan|simpan}} a misamasan $2.",
 'newimages-summary'     => 'Ining bulung a makabukud papakit no reng simpan (file) a tauling milulan.',

@@ -396,7 +396,7 @@ $messages = array(
 # Upload
 'upload' => 'وێنەیەک بار بکە',
 
-# Image description page
+# File description page
 'filehist'   => 'مێژووی پەڕگە',
 'imagelinks' => 'بەستەرەکان',
 

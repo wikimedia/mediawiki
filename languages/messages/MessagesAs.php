@@ -784,10 +784,10 @@ $1',
 'uploadlogpage' => 'আপলোড সুচী',
 'uploadedimage' => '"[[$1]]" আপলোড কৰা হ’ল',
 
-# Special:ImageList
+# Special:FileList
 'imagelist' => 'ফাইলৰ তালিকা',
 
-# Image description page
+# File description page
 'filehist'                  => 'ফাইলৰ ইতিবৃত্ত',
 'filehist-help'             => 'ফাইলৰ আগৰ অৱ্স্থা চাবলৈ সেই তাৰিখ/সময়ত টিপা মাৰক|',
 'filehist-current'          => 'বর্তমান',
@@ -1054,7 +1054,7 @@ $1',
 'show-big-image'       => 'সম্পূর্ণ দৃশ্য',
 'show-big-image-thumb' => '<small>এই খচৰাৰ আকাৰ: $1 × $2 পিক্সেল </small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages' => 'নতুন ফাইলৰ বিথীকা',
 'ilsubmit'  => 'সন্ধান কৰক',
 

@@ -364,7 +364,7 @@ $messages = array(
 'previousdiff' => '← ᑐᓄᓪᓕᐹᖅ ᐊᓯᐊᙳᑐᖅ',
 'nextdiff'     => 'ᑕᒡᒐ ᐊᓯᐊᙳᑐᖅ ᒪᑉᐱᑕᖅ →',
 
-# Special:NewImages
+# Special:NewFiles
 'ilsubmit' => 'ᐃᕚᖅᐳᖅ',
 'bydate'   => 'ᐱᑖᕈᑦᑐᖅ ᐃᓅᓕᕐᕕᒃ',
 

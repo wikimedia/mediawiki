@@ -1250,7 +1250,7 @@ Puslapiai iš jūsų [[Special:Watchlist|stebimųjų sąrašo]] yra '''paryškin
 'upload_directory_read_only'  => 'Tinklapio serveris negali rašyti į įkėlimo aplanką ($1).',
 'uploaderror'                 => 'Įkėlimo klaida',
 'uploadtext'                  => "Naudokitės žemiau pateikta forma failų įkėlimui.
-Norėdami peržiūrėti ar ieškoti anksčiau įkeltų paveikslėlių, eikite į [[Special:ImageList|įkeltų failų sąrašą]], įkėlimai ir trynimai yra registruojami [[Special:Log/upload|įkėlimų istorijoje]], trynimai - [[Special:Log/delete|trynimų istorijoje]].
+Norėdami peržiūrėti ar ieškoti anksčiau įkeltų paveikslėlių, eikite į [[Special:FileList|įkeltų failų sąrašą]], įkėlimai ir trynimai yra registruojami [[Special:Log/upload|įkėlimų istorijoje]], trynimai - [[Special:Log/delete|trynimų istorijoje]].
 
 Norėdami panaudoti įkeltą failą puslapyje, naudokite tokias nuorodas:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>'''
@@ -1292,9 +1292,9 @@ Jeigu tai yra toks pats pradinio dydžio paveikslėlis, tai įkelti papildomos m
 'file-thumbnail-no'           => 'Failo pavadinimas prasideda  <strong><tt>$1</tt></strong>. Atrodo, kad yra sumažinto dydžio paveikslėlis <i>(miniatiūra)</i>.
 Jei jūs turite šį paveisklėlį pilna raiška, įkelkite šitą, priešingu atveju prašome pakeisti failo pavadinimą.',
 'fileexists-forbidden'        => 'Failas tokiu pačiu vardu jau egzistuoja;
-prašome eiti atgal ir įkelti šį failą kitu vardu. [[Image:$1|thumb|center|$1]]',
+prašome eiti atgal ir įkelti šį failą kitu vardu. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Failas tokiu vardu jau egzistuoja bendrojoje failų saugykloje;
-prašome eiti atgal ir įkelti šį failą kitu vardu. [[Image:$1|thumb|center|$1]]',
+prašome eiti atgal ir įkelti šį failą kitu vardu. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Šis failas yra {{PLURAL:$1|šio failo|šių failų}} dublikatas:',
 'successfulupload'            => 'Įkelta sėkmingai',
 'uploadwarning'               => 'Dėmesio',
@@ -1336,7 +1336,7 @@ Jūs turėtumėte nuspręsti, ar verta toliau įkeldinėti šį failą.
 'upload_source_url'  => ' (tikras, viešai prieinamas URL)',
 'upload_source_file' => ' (failas jūsų kompiuteryje)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Šis specialus puslapis rodo visus įkeltus failus.
 Pagal numatymą paskutiniai įkelti failai rodomi sąrašo viršuje.
 Paspaudę ant stulpelio antraštės pakeiste išrikiavimą.',
@@ -1349,7 +1349,7 @@ Paspaudę ant stulpelio antraštės pakeiste išrikiavimą.',
 'imagelist_size'        => 'Dydis',
 'imagelist_description' => 'Aprašymas',
 
-# Image description page
+# File description page
 'filehist'                       => 'Paveikslėlio istorija',
 'filehist-help'                  => 'Paspauskite ant datos/laiko, kad pamatytumėte failą tokį, koks jis buvo tuo metu.',
 'filehist-deleteall'             => 'trinti visus',
@@ -2318,7 +2318,7 @@ $1',
 'show-big-image'       => 'Pilna raiška',
 'show-big-image-thumb' => '<small>Šios peržiūros dydis: $1 × $2 taškų</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Naujausių failų galerija',
 'imagelisttext'         => "Žemiau yra '''$1''' {{PLURAL:$1|failo|failų|failų}} sąrašas, surūšiuotas $2.",
 'newimages-summary'     => 'Šis specialus puslapis rodo paskiausiai įkeltus failus.',

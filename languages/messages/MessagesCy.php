@@ -1192,7 +1192,7 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'upload_directory_read_only'  => "Ni all y gweinydd ysgrifennu i'r cyfeiriadur uwchlwytho ($1).",
 'uploaderror'                 => "Gwall tra'n uwchlwytho ffeil",
 'uploadtext'                  => "Defnyddiwch y ffurflen isod i uwchlwytho ffeiliau.
-I weld a chwilio am ffeiliau sydd eisoes wedi eu huwchlwytho ewch at y [[Special:ImageList|rhestr o'r ffeiliau sydd wedi eu huwchlwytho]]. I weld cofnodion uwchlwytho a dileu ffeiliau ewch at y [[Special:Log/upload|lòg uwchlwytho]] neu'r [[Special:Log/delete|lòg dileu]].
+I weld a chwilio am ffeiliau sydd eisoes wedi eu huwchlwytho ewch at y [[Special:FileList|rhestr o'r ffeiliau sydd wedi eu huwchlwytho]]. I weld cofnodion uwchlwytho a dileu ffeiliau ewch at y [[Special:Log/upload|lòg uwchlwytho]] neu'r [[Special:Log/delete|lòg dileu]].
 
 I osod ffeil mewn tudalen defnyddiwch gyswllt wici, ar un o'r ffurfiau canlynol:
 *'''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Ffeil.jpg]]</nowiki><tt>''', er mwyn defnyddio fersiwn llawn y ffeil
@@ -1204,7 +1204,7 @@ I osod ffeil mewn tudalen defnyddiwch gyswllt wici, ar un o'r ffurfiau canlynol:
 'uploadlog'                   => 'lòg uwchlwytho',
 'uploadlogpage'               => 'Lòg uwchlwytho',
 'uploadlogpagetext'           => "Isod mae rhestr o'r uwchlwythiadau ffeiliau <nowiki>diweddaraf</nowiki>.
-Gweler y [[Special:NewImages|galeri o ffeiliau newydd]] i fwrw golwg drostynt.",
+Gweler y [[Special:NewFiles|galeri o ffeiliau newydd]] i fwrw golwg drostynt.",
 'filename'                    => "Enw'r ffeil",
 'filedesc'                    => 'Crynodeb',
 'fileuploadsummary'           => 'Crynodeb:',
@@ -1235,10 +1235,10 @@ Os mai'r un un llun ar ei lawn faint sydd ar yr ail ffeil yna does dim angen uwc
 Mae'n ymddangos felly bod y ddelwedd wedi ei leihau <i>(maint bawd)</i>.
 Os yw'r ddelwedd ar ei lawn faint gallwch barhau i'w uwchlwytho. Os na, newidiwch enw'r ffeil, os gwelwch yn dda.",
 'fileexists-forbidden'        => "Mae ffeil gyda'r enw hwn eisoes yn bodoli; ewch nôl ac uwchlwythwch y ffeil o dan enw newydd.
-[[Image:$1|thumb|center|$1]]",
+[[File:$1|thumb|center|$1]]",
 'fileexists-shared-forbidden' => "Mae ffeil gyda'r enw hwn eisoes yn bodoli yn y storfa ffeiliau cyfrannol.
 Ewch nôl ac uwchlwythwch y ffeil gydag enw gwahanol iddo.
-[[Image:$1|thumb|center|$1]]",
+[[File:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => "Dyblgeb yw'r ffeil hwn o'r {{PLURAL:$1|ffeil|ffeil|ffeiliau|ffeiliau|ffeiliau|ffeiliau}} sy'n dilyn:",
 'successfulupload'            => 'Wedi llwyddo uwchlwytho',
 'uploadwarning'               => 'Rhybudd uwchlwytho',
@@ -1285,7 +1285,7 @@ Efallai yr hoffech rhoi cynnig arni ar adeg llai prysur.',
 'upload_source_url'  => " (URL dilys, ar gael i'r cyhoedd)",
 'upload_source_file' => ' (ffeil ar eich cyfrifiadur)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => "Rhestr yr holl ffeiliau sydd wedi eu huwchlwytho sydd ar y dudalen hon. 
 Trefnir y rhestr yn ôl amser uwchlwytho, gyda'r diweddaraf ar flaen y rhestr.
 Gallwch newid trefn y rhestr trwy bwyso ar bennawd colofn.",
@@ -1298,7 +1298,7 @@ Gallwch newid trefn y rhestr trwy bwyso ar bennawd colofn.",
 'imagelist_size'        => 'Maint',
 'imagelist_description' => 'Disgrifiad',
 
-# Image description page
+# File description page
 'filehist'                       => 'Hanes y ffeil',
 'filehist-help'                  => 'Cliciwch ar ddyddiad/amser i weld y ffeil fel ag yr oedd bryd hynny.',
 'filehist-deleteall'             => 'eu dileu i gyd',
@@ -2215,7 +2215,7 @@ $1",
 'show-big-image'       => 'Maint llawn',
 'show-big-image-thumb' => '<small>Maint y rhagolwg: $1 × $2 picsel</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Oriel y ffeiliau newydd',
 'imagelisttext'         => "Isod mae rhestr {{PLURAL:$1|gwag o ffeiliau|o '''$1''' ffeil|o '''$1''' ffeil wedi'u trefnu $2|o '''$1''' ffeil wedi'u trefnu $2|o '''$1''' o ffeiliau wedi'u trefnu $2|o '''$1''' o ffeiliau wedi'u trefnu $2|}}.",
 'newimages-summary'     => "Mae'r dudalen arbennig hon yn dangos y ffeiliau a uwchlwythwyd yn ddiweddar.",

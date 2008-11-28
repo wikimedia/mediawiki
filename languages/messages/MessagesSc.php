@@ -319,7 +319,7 @@ per fare lo upload di files.',
 'uploadtext'        => "'''FERMA!''' Prima di effettuare un upload su {{SITENAME}}, accertati di avere ben letto e soprattutto compreso
 le regole di {{SITENAME}} sull'uso delle immagini.
 
-Per visualizzare o cercare immagini precedentemente caricate su {{SITENAME}}, vai alla [[Special:ImageList|lista delle immagini già caricate]].
+Per visualizzare o cercare immagini precedentemente caricate su {{SITENAME}}, vai alla [[Special:FileList|lista delle immagini già caricate]].
 Uploads e cancellazioni delle immagini sono registrati nello
 upload log.
 
@@ -351,10 +351,10 @@ Tutti i tempi indicati sono calcolati sul fuso orario del server.',
 'savefile'          => 'Salva file',
 'uploadedimage'     => 'caricato "[[$1]]"',
 
-# Special:ImageList
+# Special:FileList
 'imagelist' => 'Lista delle immagini',
 
-# Image description page
+# File description page
 'imagelinks'     => 'Link alle immagini',
 'linkstoimage'   => 'Le pagine seguenti linkano questa immagine:',
 'nolinkstoimage' => 'Nessuna pagina linka questa immagine.',
@@ -538,7 +538,7 @@ Scegli, per cortesia, un titolo diverso per l'articolo.",
 'movedto'          => 'spostata a',
 'movetalk'         => 'Sposta anche la corrispondente pagina "discussione", se possibile.',
 
-# Special:NewImages
+# Special:NewFiles
 'imagelisttext' => 'Qui di seguito una lista di $1 immagini, ordinate per $2.',
 'ilsubmit'      => 'Cerca',
 'bydate'        => 'data',

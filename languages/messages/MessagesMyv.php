@@ -965,7 +965,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'nolicense'          => 'Лицензия арась',
 'upload_source_file' => ' (арси машинасот файла)',
 
-# Special:ImageList
+# Special:FileList
 'imgfile'        => 'файл',
 'imagelist'      => 'Файлат-мезть',
 'imagelist_date' => 'Чи',
@@ -973,7 +973,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'imagelist_user' => 'Теиця',
 'imagelist_size' => 'Покшолма',
 
-# Image description page
+# File description page
 'filehist'                       => 'Файланть эрямопингезэ',
 'filehist-help'                  => 'Лепштинк чиннть/шканть ланкс, сестэ вансынк коли файлось ульнесь теезь.',
 'filehist-deleteall'             => 'нардамс весе',
@@ -1511,7 +1511,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'show-big-image'       => 'Пешксе теевксесь',
 'show-big-image-thumb' => '<small>Васнянь невтевксэнть покшолмазо: $1 × $2 пиксэлт</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'        => 'Од файлатьнень галлереясь',
 'newimages-legend' => 'Сувтеме',
 'newimages-label'  => 'Файлалем (эли пельксэзэ):',

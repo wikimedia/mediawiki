@@ -245,7 +245,7 @@ Mehmba se sohmtehm dehm indeks-dehm noh ohp-tu-det {{SITENAME}}.',
 'uploadnologin'   => 'Yu noh kam insai di sait yet',
 'watchthisupload' => 'Wach dis pej-ya',
 
-# Image description page
+# File description page
 'filehist-deleteone' => 'ires',
 'filehist-datetime'  => 'Det/Taim',
 'filehist-thumb'     => 'Tohmnel',
@@ -366,7 +366,7 @@ Na im source nohmoh yu go ebul luk.',
 'tooltip-compareselectedversions' => 'Luk wetin difrehnt pan dehm tu vazhon-dehm we yu dohn chuz',
 'tooltip-watch'                   => 'Put dis pej-ya na yu list foh wach',
 
-# Special:NewImages
+# Special:NewFiles
 'ilsubmit' => 'Luk foh am',
 
 # 'all' in various places, this might be different for inflected languages

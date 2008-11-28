@@ -1572,7 +1572,7 @@ $2',
 'upload_directory_read_only'  => 'مجلد الرفع ($1) لا يمكن الكتابة عليه بواسطة خادم الويب.',
 'uploaderror'                 => 'خطأ في الرفع',
 'uploadtext'                  => "استخدم الاستمارة بالأسفل لرفع الملفات.
-لرؤية أو البحث في الملفات المرفوعة سابقا، راجع [[Special:ImageList|قائمة الملفات المرفوعة]]، عمليات الرفع (وإعادة الرفع) مسجلة في [[Special:Log/upload|سجل الرفع]] وعمليات الحذف في [[Special:Log/delete|سجل الحذف]].
+لرؤية أو البحث في الملفات المرفوعة سابقا، راجع [[Special:FileList|قائمة الملفات المرفوعة]]، عمليات الرفع (وإعادة الرفع) مسجلة في [[Special:Log/upload|سجل الرفع]] وعمليات الحذف في [[Special:Log/delete|سجل الحذف]].
 
 لإدراج صورة في صفحة، استخدم الوصلات في الصيغ التالية:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' لاستخدام النسخة الكاملة لملف
@@ -1584,7 +1584,7 @@ $2',
 'uploadlog'                   => 'سجل الرفع',
 'uploadlogpage'               => 'سجل الرفع',
 'uploadlogpagetext'           => 'في الأسفل قائمة بأحدث عمليات رفع الملفات.
-انظر [[Special:NewImages|معرض الملفات الجديدة]] لعرض بصري أكثر',
+انظر [[Special:NewFiles|معرض الملفات الجديدة]] لعرض بصري أكثر',
 'filename'                    => 'اسم الملف',
 'filedesc'                    => 'ملخص',
 'fileuploadsummary'           => 'ملخص:',
@@ -1624,10 +1624,10 @@ $2',
 يبدو أن الملف مصغرا لحجم أعلى <i>(تصغير)</i>.
 إذا كانت لديك الصورة في درجة دقة كاملة قم برفعها، أو قم بتغيير اسم الملف من فضلك.',
 'fileexists-forbidden'        => 'هناك ملف بنفس الاسم حاليا؛
-من فضلك تراجع وأعطه اسما جديدا. [[Image:$1|thumb|center|$1]]',
+من فضلك تراجع وأعطه اسما جديدا. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'يوجد ملف بنفس الاسم بالفعل في مستودع الملفات المشترك.
 لو كنت مازلت تريد رفع ملفك، من فضلك ارجع واستخدم اسما جديدا.
-[[Image:$1|thumb|center|$1]]',
+[[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'هذا الملف مكرر  {{PLURAL:$1|للملف|للملفات}} التالية:',
 'successfulupload'            => 'تم رفع الملف بنجاح',
 'uploadwarning'               => 'تحذير الرفع',
@@ -1692,7 +1692,7 @@ PICT # متنوع
 'upload_source_url'  => '  (مسار صحيح، يمكن الوصول إليه)',
 'upload_source_file' => ' (ملف على حاسوبك)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'هذه الصفحة الخاصة تعرض كل الملفات المرفوعة.
 افتراضيا آخر الملفات المرفوعة تعرض أعلى القائمة.
 الضغط على رأس العامود يغير الترتيب.',
@@ -1705,7 +1705,7 @@ PICT # متنوع
 'imagelist_size'        => 'حجم',
 'imagelist_description' => 'وصف',
 
-# Image description page
+# File description page
 'filehist'                       => 'تاريخ الملف',
 'filehist-help'                  => 'اضغط على وقت/زمن لرؤية الملف كما بدا في هذا الزمن.',
 'filehist-deleteall'             => 'احذف الكل',
@@ -2737,7 +2737,7 @@ $1',
 'show-big-image'       => 'دقة كاملة',
 'show-big-image-thumb' => '<small>حجم هذا العرض: $1 × $2 بكسل</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'معرض الملفات الجديدة',
 'imagelisttext'         => 'فيما يلي قائمة تحوي $1 {{PLURAL:$1|ملف|ملفات}} مرتبة $2.',
 'newimages-summary'     => 'هذه الصفحة الخاصة تعرض آخر الملفات المرفوعة.',

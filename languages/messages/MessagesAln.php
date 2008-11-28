@@ -451,7 +451,7 @@ Ju lutem kërkoni {{SITENAME}}-n para se me krijue një artikull të ri se munet
 # Upload
 'upload' => 'Ngarkoni skeda',
 
-# Image description page
+# File description page
 'filehist'            => 'Historiku i dosjes',
 'filehist-datetime'   => 'Data/Ora',
 'filehist-user'       => 'Përdoruesi',

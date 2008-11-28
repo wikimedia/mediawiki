@@ -593,7 +593,7 @@ Matlakala ago ba [[Special:Watchlist|lenanong la gago la matlakala ditlhapetšo]
 'license-nopreview'  => '(Ponopele ga e gona)',
 'upload_source_file' => '(faele go khomphuthara ya gago)',
 
-# Special:ImageList
+# Special:FileList
 'imgfile'        => 'faele',
 'imagelist'      => 'Lenano la difaele',
 'imagelist_date' => 'Letšatšikgwedi',
@@ -601,7 +601,7 @@ Matlakala ago ba [[Special:Watchlist|lenanong la gago la matlakala ditlhapetšo]
 'imagelist_user' => 'Mošumiši',
 'imagelist_size' => 'Bogolo',
 
-# Image description page
+# File description page
 'filehist'                  => 'Histori ya faele',
 'filehist-help'             => 'Pinyeletša go letšatšikgwedi/nako go bona faela ka tsela yeo ebego e le ka gona nakong yeo.',
 'filehist-deleteall'        => 'phumula ka moka',
@@ -1014,7 +1014,7 @@ $1',
 'show-big-image'       => "''resolution'' ya gofella",
 'show-big-image-thumb' => '<small>Bogolo ba pono: $1 × $2 pixels</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages' => "''Gallery'' ya difaele tše mpsha",
 'ilsubmit'  => 'Fetleka',
 'bydate'    => 'ka letšatšikgwedi',

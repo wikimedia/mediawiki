@@ -928,7 +928,7 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'uploadnologintext'           => 'Vos dête étre [[Special:UserLogin|conèctâ]] por copiyér des fichiérs sur lo sèrvior.',
 'upload_directory_read_only'  => 'Lo sèrvior Vouèbe pôt pas ècrire dens lo dossiér ciba ($1).',
 'uploaderror'                 => 'Èrror',
-'uploadtext'                  => "Utilisâd ceti formulèro por copiyér des fichiérs, por vêre ou rechèrchiér des émâges prècèdament copiyês consultâd la [[Special:ImageList|lista de fichiérs copiyês]], les copies et suprèssions sont asse-ben enregistrâs dens lo [[Special:Log/upload|jornal de les copies]].
+'uploadtext'                  => "Utilisâd ceti formulèro por copiyér des fichiérs, por vêre ou rechèrchiér des émâges prècèdament copiyês consultâd la [[Special:FileList|lista de fichiérs copiyês]], les copies et suprèssions sont asse-ben enregistrâs dens lo [[Special:Log/upload|jornal de les copies]].
 
 Por encllure una émâge dens una pâge, utilisâd un lim de la fôrma :
 * '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fichiér.jpg]]</nowiki>'''
@@ -970,8 +970,8 @@ la solèta difèrence est la câssa (grantes lètres / petiôtes lètres) de l�
 Se lo fichiér controlâ est la méma émâge (dens una rèsolucion mèlyora), y at pas fôta d’importar una vèrsion rèduita.',
 'file-thumbnail-no'           => 'Lo nom du fichiér comence per <strong><tt>$1</tt></strong>. O est possiblo que s’ag·ésse d’una vèrsion rèduita <i>(figura)</i>.
 Se vos disposâd du fichiér en rèsolucion hôta, importâd-lo, ôtrament volyéd changiér lo nom du fichiér.',
-'fileexists-forbidden'        => 'Un fichiér avouéc ceti nom ègziste ja ; marci de tornar arriér et de copiyér lo fichiér desot un novél nom. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Un fichiér portent lo mémo nom ègziste ja dens la bâsa de balyês comena ; volyéd tornar arriér et pués l’emmandar desot un novél nom. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Un fichiér avouéc ceti nom ègziste ja ; marci de tornar arriér et de copiyér lo fichiér desot un novél nom. [[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Un fichiér portent lo mémo nom ègziste ja dens la bâsa de balyês comena ; volyéd tornar arriér et pués l’emmandar desot un novél nom. [[File:$1|thumb|center|$1]]',
 'successfulupload'            => 'Copia reussia',
 'uploadwarning'               => 'Atencion !',
 'savefile'                    => 'Sôvar lo fichiér',
@@ -1025,7 +1025,7 @@ PICT # de totes sôrtes
 'upload_source_url'  => ' (una URL valida et accèssibla publicament)',
 'upload_source_file' => ' (un fichiér sur voutron ordenator)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist_search_for'  => 'Rechèrche por l’émâge apelâ :',
 'imgfile'               => 'fichiér',
 'imagelist'             => 'Lista de les émâges',
@@ -1035,7 +1035,7 @@ PICT # de totes sôrtes
 'imagelist_size'        => 'Octèts',
 'imagelist_description' => 'Dèscripcion',
 
-# Image description page
+# File description page
 'filehist'                  => 'Historico du fichiér',
 'filehist-help'             => 'Clicar sur una dâta et una hora por vêre lo fichiér tâl qu’il ére a cél moment.',
 'filehist-deleteall'        => 'tot suprimar',
@@ -1894,7 +1894,7 @@ Totes les accions d’importacion entèrvouiqui sont consèrvâs dens lo [[Speci
 'show-big-image'       => 'Émâge en rèsolucion ples hôta',
 'show-big-image-thumb' => '<small>Talye de ceta vua : $1 × $2 pixèles</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Galerie des novéls fichiérs',
 'imagelisttext'         => "Vê-que una lista de '''$1''' {{PLURAL:$1|fichiér cllassiê|fichiérs cllassiês}} $2.",
 'showhidebots'          => '($1 bots)',

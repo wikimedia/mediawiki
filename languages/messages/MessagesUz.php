@@ -372,10 +372,10 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 'uploadlogpage' => 'Yuklash qaydlari',
 'uploadedimage' => '"[[$1]]" yuklandi',
 
-# Special:ImageList
+# Special:FileList
 'imagelist' => 'Fayllar roʻyxati',
 
-# Image description page
+# File description page
 'filehist'                  => 'Fayl tarixi',
 'filehist-help'             => 'Faylning biror paytdagi holatini koʻrish uchun tegishli sana/vaqtga bosingiz.',
 'filehist-current'          => 'joriy',
@@ -595,7 +595,7 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 'show-big-image'       => 'Asl hajmdagi tasvir',
 'show-big-image-thumb' => '<small>Ushbu koʻrinish oʻlchamlari: $1 × $2 piksel</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'ilsubmit' => 'Qidirish',
 
 # Metadata

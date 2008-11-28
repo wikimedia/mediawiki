@@ -528,10 +528,10 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'uploadlogpage' => 'چاڙهه لاگ',
 'uploadedimage' => '"[[$1]]" چاڙهيو ويو',
 
-# Special:ImageList
+# Special:FileList
 'imagelist' => 'فائيل فهرست',
 
-# Image description page
+# File description page
 'filehist'                       => 'فائيل جي سوانح',
 'filehist-help'                  => 'ڪنهن به تاريخ/وقت تي ڪلڪ ڪري ڏسندا ته تڏڻي اهو فائيل ڪيئن هو.',
 'filehist-current'               => 'هاڻوڪو',
@@ -849,7 +849,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'show-big-image'       => 'سنهو ترين تحلل',
 'show-big-image-thumb' => '<small>هن پيش نگاهه جي ماپ: $1 × $2 عڪسلون</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages' => 'نون فائيلن جي گيلري',
 'noimages'  => 'ڏسڻ لاءِ ڪجھه ناهي.',
 'bydate'    => 'تاريخوار',

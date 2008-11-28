@@ -1277,7 +1277,7 @@ par poder cargar dei file.',
 'upload_directory_read_only'  => "El server web no l'è bon de scrìvar ne la directory de caricamento ($1).",
 'uploaderror'                 => 'Eror nel caricamento',
 'uploadtext'                  => "Par cargar novi file, dopara el modulo qua soto. 
-Par védar o çercar i file zà caricà, consulta la [[Special:ImageList|lista dei file caricà]]. I caricamenti de file te pol védarli nel [[Special:Log/upload|registro dei caricamenti]], le scancelasion nel [[Special:Log/delete|registro de le scancelasion]].
+Par védar o çercar i file zà caricà, consulta la [[Special:FileList|lista dei file caricà]]. I caricamenti de file te pol védarli nel [[Special:Log/upload|registro dei caricamenti]], le scancelasion nel [[Special:Log/delete|registro de le scancelasion]].
 
 Par métar un file drento de na pagina, te ghè da inserir un colegamento fato come uno de sti qua:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' par doparar la version conpleta de sto file
@@ -1289,7 +1289,7 @@ Par métar un file drento de na pagina, te ghè da inserir un colegamento fato c
 'uploadlog'                   => 'File caricai',
 'uploadlogpage'               => 'Registro dei file caricai',
 'uploadlogpagetext'           => 'Qua se cata la lista dei ultimi files caricà.
-Varda la [[Special:NewImages|galerìa dei file nóvi]] par na vision de insieme.',
+Varda la [[Special:NewFiles|galerìa dei file nóvi]] par na vision de insieme.',
 'filename'                    => 'Nome del file',
 'filedesc'                    => 'Somario',
 'fileuploadsummary'           => 'Somario:',
@@ -1320,9 +1320,9 @@ Se se trata de la stessa imagine, ne le dimension originali, no xe necessario ca
 'file-thumbnail-no'           => "El nome del file el scuminsia con <strong><tt>$1</tt></strong>.
 Pararìà quindi che el fusse el risultato de n'anteprima <i>(thumbnail)</i>.
 Se se dispone de l'imagine ne la risoluzion originale, se prega di cargarla. In caso contrario, se prega de canbiar el nome del file.",
-'fileexists-forbidden'        => 'Un file con sto nome el esiste xà; per favore torna indrio e cambia el nome che te voi dare al file. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Un file con sto nome el esiste xà; per favore torna indrio e cambia el nome che te voi dare al file. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => "Un file con sto nome l'esiste de xà ne l'archivio de risorse multimediałi condivixe.
-Se te vol cargar el file istesso, par piaser torna indrio e canbia el nome che te vol darghe al file. [[Image:$1|thumb|center|$1]]",
+Se te vol cargar el file istesso, par piaser torna indrio e canbia el nome che te vol darghe al file. [[File:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => 'Sto file el xe un duplicato {{PLURAL:$1|del seguente file|dei seguenti file}}:',
 'file-deleted-duplicate'      => "Un file preciso identico de sto file ([[$1]]) el xe stà zà scancelà in precedensa. Te dovaressi darghe n'ociada a la cronologia scancelà prima de cargarlo de novo.",
 'successfulupload'            => 'Caricamento conpletà',
@@ -1368,7 +1368,7 @@ Se el problema el persiste, contatar un [[Special:ListUsers/sysop|aministrador]]
 'upload_source_url'  => ' (na URL coreta e acessibile)',
 'upload_source_file' => ' (un file sul to computer)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => "Sta pagina speciale la fa védar tuti i file caricài.
 I file caricài piessè de reçente i vien mostrà a l'inizio de la lista.
 Par modificar l'ordinamento, struca su l'intestazion de la colona presièlta.",
@@ -1381,7 +1381,7 @@ Par modificar l'ordinamento, struca su l'intestazion de la colona presièlta.",
 'imagelist_size'        => 'Dimension in byte',
 'imagelist_description' => 'Descrizion',
 
-# Image description page
+# File description page
 'filehist'                       => 'Cronologia del file',
 'filehist-help'                  => 'Maca su un grupo data/ora par védar el file come el se presentava nel momento indicà.',
 'filehist-deleteall'             => 'scancela tuto',
@@ -2345,7 +2345,7 @@ $1',
 'show-big-image'       => 'Version ad alta risoluzion',
 'show-big-image-thumb' => '<small>Dimension de sta anteprima: $1 × $2 pixel</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Imagini nove',
 'imagelisttext'         => "Qua ghe xe na lista de '''$1''' {{PLURAL:$1|file|files}} ordinà par $2.",
 'newimages-summary'     => 'Sta pagina speciale la mostra i file cargà piassè reçentemente.',

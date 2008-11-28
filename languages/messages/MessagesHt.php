@@ -823,10 +823,10 @@ Mande ou byen si ou ap byen fè kreye li ankò toutbon (gade jounal paj sa a pou
 'uploadlogpage' => 'Istorik chajman pou fichye miltimedya',
 'uploadedimage' => 'chaje « [[$1]] »',
 
-# Special:ImageList
+# Special:FileList
 'imagelist' => 'Lis fichye yo',
 
-# Image description page
+# File description page
 'filehist'                  => 'Istorik fichye a',
 'filehist-help'             => 'Klike anlè yon dat epi yon lè pou fichye a jan li te ye nan moman sa a.',
 'filehist-current'          => 'Kounye a',
@@ -1141,7 +1141,7 @@ Nan pozisyon sa a, ou ke dwèt renonmen oubyen fizyone ou menm menm paj an si ou
 'show-big-image'       => 'Imaj pli gwo, pli fin',
 'show-big-image-thumb' => '<small>Lajè kout zye sa a : $1 × $2 piksèl</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages' => 'Galri pou nouvo fichye yo',
 
 # Bad image list

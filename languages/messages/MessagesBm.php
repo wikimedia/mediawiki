@@ -121,7 +121,7 @@ $messages = array(
 # Attribution
 'others' => 'wɛrɛ',
 
-# Special:NewImages
+# Special:NewFiles
 'ilsubmit' => 'Nyini',
 
 # Special:SpecialPages

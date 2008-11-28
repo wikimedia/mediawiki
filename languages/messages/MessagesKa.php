@@ -971,7 +971,7 @@ $1 საათში.',
 'nolicense'          => 'არაფერი არის მონიშნული',
 'upload_source_file' => ' (ფაილი შენს კომპიუტერზე)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist_search_for'  => 'ძიება სურათის სახელის მიხედვით:',
 'imgfile'               => 'ფაილი',
 'imagelist'             => 'სურათების სია',
@@ -981,7 +981,7 @@ $1 საათში.',
 'imagelist_size'        => 'ზომა (ბაიტები)',
 'imagelist_description' => 'აღწერილობა',
 
-# Image description page
+# File description page
 'filehist'                       => 'ფაილის ისტორია',
 'filehist-help'                  => 'დააწკაპუნეთ თარიღზე/დროზე, რათა იხილოთ ფაილი, როგორც ის მაშინ გამოიყურებოდა.',
 'filehist-deleteall'             => 'წაშალე ყველა',
@@ -1670,7 +1670,7 @@ $NEWPAGE
 'show-big-image'       => 'სრული გარჩევადობა',
 'show-big-image-thumb' => '<small>ზომა წინასწარი გადახედვისას: $1 × $2 პიქსელი</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'ახალი სურათები',
 'imagelisttext'         => "ქვემოთ მოცემულია '''$1''' ფაილის სია დახარისხებული მომხმარებლის $2 მიერ.",
 'showhidebots'          => '(რობოტების $1)',

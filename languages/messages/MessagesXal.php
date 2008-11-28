@@ -60,7 +60,7 @@ $messages = array(
 # Preferences page
 'preferences' => 'Дурллһн',
 
-# Image description page
+# File description page
 'filehist-user' => 'Орлцач',
 
 # Contributions

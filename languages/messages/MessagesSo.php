@@ -391,7 +391,7 @@ Iskuday in aad [[Special:Search|karaadiso wikigan]] beyjaj laxiira oo cusub.',
 'savefile'        => 'Faylka kaydi',
 'watchthisupload' => 'Boggaan waardiyey',
 
-# Image description page
+# File description page
 'nolinkstoimage'   => "Ma'ay jiraan beyjaj ku xiran faylkaan.",
 'shareduploadwiki' => 'Fadlan meeshaa $1 ka fiiri warbixin dheeraad ah.',
 
@@ -589,7 +589,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 # Info page
 'numwatchers' => 'Tirada waardiyeyaasha: $1',
 
-# Special:NewImages
+# Special:NewFiles
 'imagelisttext' => "Hoos waxaa yaala liiska '''$1''' {{PLURAL:$1|file|faylalka}} oo u kala soocan $2.",
 'bydate'        => 'hab taariikheed',
 

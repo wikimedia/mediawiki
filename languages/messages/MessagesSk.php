@@ -1330,7 +1330,7 @@ Stránky, ktoré sa nachádzajú vo vašom [[Special:Watchlist|zozname sledovan�
 'upload_directory_read_only'  => 'Webový server nemôže zapisovať do adresára pre nahrávanie ($1).',
 'uploaderror'                 => 'Chyba pri nahrávaní',
 'uploadtext'                  => "Tento formulár použite na nahrávanie súborov.
-Už nahrané súbory môžete zobraziť alebo hľadať v [[Special:ImageList|zozname nahraných súborov]]. Nahrávania a mazania sa tiež zaznamenávajú v [[Special:Log/upload|zázname nahrávaní]].
+Už nahrané súbory môžete zobraziť alebo hľadať v [[Special:FileList|zozname nahraných súborov]]. Nahrávania a mazania sa tiež zaznamenávajú v [[Special:Log/upload|zázname nahrávaní]].
 
 Na začlenenie obrázka do stránky použite odkaz v tvare
 
@@ -1343,7 +1343,7 @@ Na začlenenie obrázka do stránky použite odkaz v tvare
 'uploadlog'                   => 'Záznam nahrávaní',
 'uploadlogpage'               => 'Záznam nahrávaní',
 'uploadlogpagetext'           => 'Nižšie je zoznam nedávno nahraných súborov.
-Vizuálny prehľad nájdete v [[Special:NewImages|galérii novo nahraných súborov]].',
+Vizuálny prehľad nájdete v [[Special:NewFiles|galérii novo nahraných súborov]].',
 'filename'                    => 'Názov súboru',
 'filedesc'                    => 'Opis súboru',
 'fileuploadsummary'           => 'Zhrnutie:',
@@ -1376,9 +1376,9 @@ Ak je kontrolovaný súbor rovnaký obrázok v pôvodnej veľkosti, nie je potre
 'file-thumbnail-no'           => 'Názov súboru začína <strong><tt>$1</tt></strong>.
 Zdá sa, že je to obrázok redukovanej veľkosti <i>(náhľad)</i>.
 Ak máte tento obrázok v plnom rozlíšení, nahrajte ho, inak prosím zmeňte názov.',
-'fileexists-forbidden'        => 'Súbor s týmto názvom už existuje; choďte prosím späť a nahrajte tento súbor pod iným názvom. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Súbor s týmto názvom už existuje; choďte prosím späť a nahrajte tento súbor pod iným názvom. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Súbor s týmto názvom už existuje v zdieľanom úložisku súborov.
-Ak ho chcete aj napriek tomu nahrať, choďte prosím späť a použite iný názov. [[Image:$1|thumb|center|$1]]',
+Ak ho chcete aj napriek tomu nahrať, choďte prosím späť a použite iný názov. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Tento súbor je duplikátom {{PLURAL:$1|nasledovného súboru|nasledovných súborov}}:',
 'file-deleted-duplicate'      => 'Súbor zhodný s týmto súborom ([[$1]]) už bol v minulosti zmazaný. Mali by ste skontrolovať históriu nahrávania tohto súboru predtým, než budete pokračovať v jeho nahrávaní.',
 'successfulupload'            => 'Nahranie bolo úspešné',
@@ -1438,7 +1438,7 @@ Ak problém pretrváva, kontaktujte [[Special:ListUsers/sysop|správcu systému]
 'upload_source_url'  => ' (platný, verejne prístupný URL)',
 'upload_source_file' => ' (súbor na vašom počítači)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Táto špeciálna stránka zobrazuje všetky nahrané súbory.
 Posledné nahrané súbory sa štandardne zobrazujú na vrchu.
 Kliknutím na hlavičku stĺpca zmeníte poradie triedenia.',
@@ -1451,7 +1451,7 @@ Kliknutím na hlavičku stĺpca zmeníte poradie triedenia.',
 'imagelist_size'        => 'Veľkosť (v bajtoch)',
 'imagelist_description' => 'Popis',
 
-# Image description page
+# File description page
 'filehist'                       => 'História súboru',
 'filehist-help'                  => 'Po kliknutí na dátum/čas uvidíte súbor ako vyzeral vtedy.',
 'filehist-deleteall'             => 'zmazať všetky',
@@ -2453,7 +2453,7 @@ $1',
 'show-big-image'       => 'Obrázok vo vyššom rozlíšení',
 'show-big-image-thumb' => '<small>Veľkosť tohto náhľadu: $1 × $2 pixelov</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Galéria nových obrázkov',
 'imagelisttext'         => "Tu je zoznam {{PLURAL:$1|jedného súboru|'''$1''' súborov|'''$1''' súborov}} zoradený $2.",
 'newimages-summary'     => 'Táto špeciálna stránka zobrazuje posledné nahrané súbory.',

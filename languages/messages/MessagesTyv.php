@@ -417,7 +417,7 @@ $1',
 'upload-file-error' => 'Иштики алдаг',
 'upload-misc-error' => 'Билбес кииреринге алдаг',
 
-# Special:ImageList
+# Special:FileList
 'imgfile'               => 'файл',
 'imagelist'             => 'Файл даңзызы',
 'imagelist_name'        => 'Ат',
@@ -425,7 +425,7 @@ $1',
 'imagelist_size'        => 'Хемчээл',
 'imagelist_description' => 'Тодарадып бижээни',
 
-# Image description page
+# File description page
 'filehist'           => 'Файлдың төөгүзү',
 'filehist-deleteall' => 'шуптуну ап каар',
 'filehist-deleteone' => 'мону ап каар',
@@ -661,7 +661,7 @@ $1',
 'previousdiff' => '← Бүрүнгү ылгал',
 'nextdiff'     => 'Соонда ылгал →',
 
-# Special:NewImages
+# Special:NewFiles
 'showhidebots' => '(боцду $1)',
 'noimages'     => 'Чуруклар чок.',
 'ilsubmit'     => 'Дилээр',

@@ -1183,14 +1183,14 @@ Panna jon [[Special:Watchlist|aap ke dhyan suchi]] me hai '''bold''' karal hai."
 'uploadedimage'     => '"[[$1]]" ke upload kar dewa gae',
 'watchthisupload'   => 'Ii panna pe dhyan rakho',
 
-# Special:ImageList
+# Special:FileList
 'imgfile'        => 'file',
 'imagelist'      => 'Chapa ke suchi',
 'imagelist_date' => 'Tarik',
 'imagelist_name' => 'Naam',
 'imagelist_user' => 'Sadasya',
 
-# Image description page
+# File description page
 'filehist'                       => 'File ke itihaas',
 'filehist-help'                  => 'File ke dekhe khatir, jaise uu time dekhe me lagat rahaa, date/time pe click karo.',
 'filehist-deleteall'             => 'sab ke mitao',
@@ -1512,7 +1512,7 @@ Meharbani kar ke duusra naam choose karo.',
 'show-big-image'       => 'Puura resolution',
 'show-big-image-thumb' => '<small>Ii preview ke size: $1 × $2 pixels</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages' => 'Nawaa files ke gallery',
 
 # Bad image list

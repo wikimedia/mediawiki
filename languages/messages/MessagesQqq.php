@@ -1145,7 +1145,7 @@ Parameter $1 is a link to the deletion log, with the text in {{msg|deletionlog}}
 'nolicense'         => '{{Identical|None selected}}',
 'license-nopreview' => 'Error message when a certain license does not exist',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'This message is displayed at the top of [[Special:ImageList]] to explain how to use that special page.',
 'imgfile'               => '{{Identical|File}}',
 'imagelist'             => '{{Identical|File list}}',
@@ -1153,7 +1153,7 @@ Parameter $1 is a link to the deletion log, with the text in {{msg|deletionlog}}
 'imagelist_user'        => '{{Identical|User}}',
 'imagelist_description' => '{{Identical|Description}}',
 
-# Image description page
+# File description page
 'filehist'                       => 'Text shown on a media description page. Heads the section where the different versions of the file are displayed.',
 'filehist-help'                  => 'In file description page',
 'filehist-deleteall'             => 'Link in image description page for admins.',
@@ -1973,7 +1973,7 @@ See also [[MediaWiki:Lastmodifiedat/{{SUBPAGENAME}}]].', # $1 date, $2 time, $3 
 'show-big-image'       => 'Displayed under an image at the image description page, when it is displayed smaller there than it was uploaded.',
 'show-big-image-thumb' => 'File info displayed on file description page.',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Page title of [[Special:NewImages]].',
 'imagelisttext'         => 'This is text on [[Special:NewImages]]. $1 is the number of files. $2 is the message [[Mediawiki:Bydate]].',
 'newimages-summary'     => 'This message is displayed at the top of [[Special:NewImages]] to explain what is shown on that special page.',

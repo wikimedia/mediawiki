@@ -158,7 +158,7 @@ $messages = array(
 'upload'   => 'ܛܥܢܐ ܦ̮ܥܝܠ',
 'filename' => 'ܫܡܐ ܕܫܘܦܝܢܐ',
 
-# Special:ImageList
+# Special:FileList
 'imagelist_name' => 'ܫܡܐ',
 
 # Random page
@@ -202,7 +202,7 @@ $messages = array(
 # Namespace 8 related
 'allmessagesname' => 'ܫܡܐ',
 
-# Special:NewImages
+# Special:NewFiles
 'ilsubmit' => 'ܛܥܘܝܐ',
 
 # 'all' in various places, this might be different for inflected languages

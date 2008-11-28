@@ -1138,7 +1138,7 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 'uploadnologintext'           => 'Fitxategiak igotzeko [[Special:UserLogin|saioa hasi]] behar duzu.',
 'upload_directory_read_only'  => 'Web zerbitzariak ez dauka igoera direktorioan ($1) idazteko baimenik.',
 'uploaderror'                 => 'Errorea igotzerakoan',
-'uploadtext'                  => "Fitxategiak igotzeko beheko formularioa erabil dezakezu. Aurretik igotako irudiak ikusi edo bilatzeko [[Special:ImageList|igotako fitxategien zerrendara]] jo. Igoerak eta ezabatutakoak [[Special:Log/upload|igoera erregistroan]] zerrendatzen dira.
+'uploadtext'                  => "Fitxategiak igotzeko beheko formularioa erabil dezakezu. Aurretik igotako irudiak ikusi edo bilatzeko [[Special:FileList|igotako fitxategien zerrendara]] jo. Igoerak eta ezabatutakoak [[Special:Log/upload|igoera erregistroan]] zerrendatzen dira.
 
 Orrialde baten irudi bat txertatzeko, erabili kode hauetako bat:
 '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fitxategia.jpg]]</nowiki>''',
@@ -1176,8 +1176,8 @@ Aurretik dagoen fitxategiaren izena: <strong><tt>$2</tt></strong><br />
 Hautatu beste izen bat.',
 'fileexists-thumb'            => "<center>'''Irudia badago'''</center>",
 'fileexists-thumbnail-yes'    => 'Badirudi neurri txikiko irudia dela <i>(irudi txikia)</i>. Egiaztatu <strong><tt>$1</tt></strong> fitxategia.<br /> Egiaztatutako fitxategia eta jatorrizkoa berdinak badira ez dago irudi txikia igo beharrik.',
-'fileexists-forbidden'        => 'Badago izen hori daukan fitxategi bat; mesedez, atzera itzuli eta igo fitxategia izen ezberdin batekin. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Badago izen hori daukan fitxategi bat elkarbanatutako fitxategi-biltegian; mesedez, atzera itzuli eta igo fitxategia izen ezberdin batekin. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Badago izen hori daukan fitxategi bat; mesedez, atzera itzuli eta igo fitxategia izen ezberdin batekin. [[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Badago izen hori daukan fitxategi bat elkarbanatutako fitxategi-biltegian; mesedez, atzera itzuli eta igo fitxategia izen ezberdin batekin. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Fitxategi hau beste fitxategi {{PLURAL:$1|honen|hauen}} kopia bat da:',
 'successfulupload'            => 'Igoera arrakastatsua',
 'uploadwarning'               => 'Igotzeko oharra',
@@ -1220,7 +1220,7 @@ Aukera ezazu, mesedez, fitxategi izen deskriptiboago bat.',
 'upload_source_url'  => ' (baliozko URL publikoa)',
 'upload_source_file' => ' (zure ordenagailuko fitxategi bat)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist_search_for'  => 'Irudiaren izenagatik bilatu:',
 'imgfile'               => 'fitxategia',
 'imagelist'             => 'Fitxategien zerrenda',
@@ -1230,7 +1230,7 @@ Aukera ezazu, mesedez, fitxategi izen deskriptiboago bat.',
 'imagelist_size'        => 'Tamaina (byte)',
 'imagelist_description' => 'Deskribapena',
 
-# Image description page
+# File description page
 'filehist'                       => 'Fitxategiaren historia',
 'filehist-help'                  => 'Data/orduan klik egin fitxategiak orduan zuen itxura ikusteko.',
 'filehist-deleteall'             => 'guztiak ezabatu',
@@ -2145,7 +2145,7 @@ $1',
 'show-big-image'       => 'Bereizmen handikoa',
 'show-big-image-thumb' => '<small>Aurreikuspen honen neurria: $1 × $2 pixel</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Fitxategi berrien galeria',
 'imagelisttext'         => "Jarraian duzu $2(e)z ordenatutako {{PLURAL:$1|fitxategi baten|'''$1''' fitxategiren}} zerrenda.",
 'newimages-summary'     => 'Orrialde berezi honek igotako azkeneko fitxategiak erakusten ditu.',

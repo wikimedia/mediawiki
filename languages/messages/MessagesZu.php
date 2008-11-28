@@ -191,7 +191,7 @@ ikhawundi lakho liyadalwa. musa ukukhohlwa ukuguqula amakhethelo a-{{SITENAME}} 
 
 'nolicense' => 'Ubekhetha lutho',
 
-# Image description page
+# File description page
 'nolinkstoimage'   => 'Akukho amakhasi akhomba kuleli fayela.',
 'noimage'          => 'Akukho ifayela elinaleli gama, unga $1.',
 'noimage-linktext' => 'Layisha',
@@ -301,7 +301,7 @@ ikhawundi lakho liyadalwa. musa ukukhohlwa ukuguqula amakhethelo a-{{SITENAME}} 
 'markaspatrolledtext' => 'Dweba ukuthi lelikhasi liyagadwa',
 'markedaspatrolled'   => 'Dweba ukuthi lelikhasi liyagadwa',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages' => 'Uhlelo lwamafayela amasha',
 'noimages'  => 'Awuboni lutho.',
 'ilsubmit'  => 'Sesha',

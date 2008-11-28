@@ -341,10 +341,10 @@ $messages = array(
 'uploadlogpage' => 'اپلوڈ لاگ',
 'uploadedimage' => 'چڑھائی گئی"[[$1]]"',
 
-# Special:ImageList
+# Special:FileList
 'imagelist' => 'فائل لسٹ',
 
-# Image description page
+# File description page
 'filehist'                  => 'پچھلی حالت',
 'filehist-help'             => 'فائل نو اس ویلے دی حالت وچ ویکھن واسطے تاریخ/ویلے تے کلک کرو۔',
 'filehist-current'          => 'موجودہ',
@@ -648,7 +648,7 @@ $messages = array(
 'show-big-image'       => 'وڈی مورت',
 'show-big-image-thumb' => '<small>کچے کم دے پکسل:$1 × $2</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages' => 'نئی فائلاں دی نگری',
 
 # Bad image list

@@ -1202,7 +1202,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'upload_directory_read_only'  => "El sirvidor nun pue modificar el direutoriu de xubida d'archivos ($1).",
 'uploaderror'                 => 'Error de xubida',
 'uploadtext'                  => "Usa'l formulariu d'abaxo pa xubir archivos.
-Pa ver o buscar archivos xubíos previamente, vete a la [[Special:ImageList|llista d'archivos xubíos]]. Les xubíes tamién queden conseñaos nel [[Special:Log/upload|rexistru de xubíes]], y los esborraos nel [[Special:Log/delete|rexistru d'esborraos]].
+Pa ver o buscar archivos xubíos previamente, vete a la [[Special:FileList|llista d'archivos xubíos]]. Les xubíes tamién queden conseñaos nel [[Special:Log/upload|rexistru de xubíes]], y los esborraos nel [[Special:Log/delete|rexistru d'esborraos]].
 
 P'amiestar un archivu nuna páxina, usa un enllaz con ún de los siguientes formatos:
 *'''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Archivu.jpg]]</nowiki></tt>''' pa usar la versión completa del archivu
@@ -1214,7 +1214,7 @@ P'amiestar un archivu nuna páxina, usa un enllaz con ún de los siguientes form
 'uploadlog'                   => 'rexistru de xubíes',
 'uploadlogpage'               => 'Rexistru de xubíes',
 'uploadlogpagetext'           => "Abaxo amuésase una llista de les xubíes d'archivos más recientes.
-Mira la [[Special:NewImages|galería d'archivos nuevos]] pa una güeyada más visual.",
+Mira la [[Special:NewFiles|galería d'archivos nuevos]] pa una güeyada más visual.",
 'filename'                    => "Nome d'archivu",
 'filedesc'                    => 'Resume',
 'fileuploadsummary'           => 'Resume:',
@@ -1247,9 +1247,9 @@ Si l'archivu comprobáu tien el mesmu tamañu que la imaxe orixinal, nun ye nece
 'file-thumbnail-no'           => "L'archivu entama con <strong><tt>$1</tt></strong>.
 Paez ser una imaxe de tamañu menguáu <i>(miniatura)</i>.
 Si tienes esta imaxe a resolución completa xúbila; si non, por favor camuda'l nome del archivu.",
-'fileexists-forbidden'        => 'Yá esiste un archivu con esti nome; por favor vuelvi atrás y xubi esti archivu con otru nome. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Yá esiste un archivu con esti nome; por favor vuelvi atrás y xubi esti archivu con otru nome. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => "Yá esiste un archivu con esti nome nel direutoriu d'archivos compartíos.
-Si tovía asina quies xubir l'archivu, por favor vuelvi atrás y usa otru nome. [[Image:$1|thumb|center|$1]]",
+Si tovía asina quies xubir l'archivu, por favor vuelvi atrás y usa otru nome. [[File:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => 'Esti archivu ye un duplicáu {{PLURAL:$1|del siguiente archivu|de los siguientes archivos}}:',
 'successfulupload'            => 'Xubida correuta',
 'uploadwarning'               => "Avisu de xubíes d'archivos",
@@ -1294,7 +1294,7 @@ Si'l problema persiste, contauta con un [[Special:ListUsers/sysop|alministrador]
 'upload_source_url'  => ' (una URL válida y accesible públicamente)',
 'upload_source_file' => ' (un archivu del to ordenador)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => "Esta páxina especial amuesa tolos archivos xubíos.
 Por defeutu los caberos archivos xubíos amuésense a lo cimero de la llista.
 Calcando na cabecera d'una columna camúdase l'orde acordies con ella.",
@@ -1307,7 +1307,7 @@ Calcando na cabecera d'una columna camúdase l'orde acordies con ella.",
 'imagelist_size'        => 'Tamañu',
 'imagelist_description' => 'Descripción',
 
-# Image description page
+# File description page
 'filehist'                       => 'Historial del archivu',
 'filehist-help'                  => "Calca nuna fecha/hora pa ver l'archivu como taba daquélla.",
 'filehist-deleteall'             => 'esborrar too',
@@ -2298,7 +2298,7 @@ $1",
 'show-big-image'       => 'Resolución completa',
 'show-big-image-thumb' => "<small>Tamañu d'esta previsualización: $1 × $2 píxeles</small>",
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => "Galería d'imáxenes nueves",
 'imagelisttext'         => "Embaxo ta la llista {{PLURAL:$1|d'un archivu ordenáu|de '''$1''' archivos ordenaos}} $2.",
 'newimages-summary'     => 'Esta páxina especial amuesa los caberos archivos xubíos.',

@@ -1418,7 +1418,7 @@ Strony z [[Special:Watchlist|listy obserwowanych]] są '''wytłuszczone'''.",
 'upload_directory_read_only'  => 'Serwer nie może zapisywać do katalogu ($1) przeznaczonego na przesyłane pliki.',
 'uploaderror'                 => 'Błąd wysyłania',
 'uploadtext'                  => "Użyj poniższego formularza do przesłania plików.
-Jeśli chcesz przejrzeć lub przeszukać dotychczas przesłane pliki, przejdź do [[Special:ImageList|listy plików]]. Każde przesłanie jest odnotowane w [[Special:Log/upload|rejestrze przesyłanych plików]], a usunięcie w [[Special:Log/delete|rejestrze usuniętych]].
+Jeśli chcesz przejrzeć lub przeszukać dotychczas przesłane pliki, przejdź do [[Special:FileList|listy plików]]. Każde przesłanie jest odnotowane w [[Special:Log/upload|rejestrze przesyłanych plików]], a usunięcie w [[Special:Log/delete|rejestrze usuniętych]].
 
 Plik pojawi się na stronie, jeśli użyjesz linku według jednego z następujących wzorów:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Plik.jpg]]</nowiki></tt>''' pokaże plik w pełnej postaci
@@ -1430,7 +1430,7 @@ Plik pojawi się na stronie, jeśli użyjesz linku według jednego z następują
 'uploadlog'                   => 'rejestr przesyłania plików',
 'uploadlogpage'               => 'Przesłane',
 'uploadlogpagetext'           => 'Lista ostatnio przesłanych plików.
-Przejdź na stronę [[Special:NewImages|galerii nowych plików]], by zobaczyć pliki jako miniaturki.',
+Przejdź na stronę [[Special:NewFiles|galerii nowych plików]], by zobaczyć pliki jako miniaturki.',
 'filename'                    => 'Nazwa pliku',
 'filedesc'                    => 'Opis',
 'fileuploadsummary'           => 'Opis',
@@ -1468,9 +1468,9 @@ Jeśli wybrany plik jest tą samą grafiką co ta w oryginalnym rozmiarze, nie m
 Wydaje się, że jest to pomniejszona grafika <i>(miniaturka)</i>.
 Jeśli posiadasz tę grafikę w pełnym rozmiarze – prześlij ją. Jeśli chcesz wysłać tę – zmień nazwę przesyłanego obecnie pliku.',
 'fileexists-forbidden'        => 'Plik o tej nazwie już istnieje.
-Cofnij się i załaduj plik pod inną nazwą. [[Image:$1|thumb|center|$1]]',
+Cofnij się i załaduj plik pod inną nazwą. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Plik o tej nazwie już istnieje we współdzielonym repozytorium plików.
-Cofnij się i załaduj plik pod inną nazwą. [[Image:$1|thumb|center|$1]]',
+Cofnij się i załaduj plik pod inną nazwą. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Ten plik jest kopią {{PLURAL:$1|pliku|następujących plików:}}',
 'successfulupload'            => 'Przesłanie pliku powiodło się',
 'uploadwarning'               => 'Ostrzeżenie o przesyłce',
@@ -1534,7 +1534,7 @@ Możesz także spróbować w czasie mniejszego obciążenia serwera.',
 'upload_source_url'  => ' (poprawny, publicznie dostępny adres URL)',
 'upload_source_file' => ' (plik na twoim komputerze)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Na tej stronie specjalnej prezentowane są wszystkie pliki przesłane na serwer.
 Domyślnie na górze listy umieszczane są ostatnio przesłane pliki.
 Kliknięcie w nagłówek kolumny zmienia sposób sortowania.',
@@ -1547,7 +1547,7 @@ Kliknięcie w nagłówek kolumny zmienia sposób sortowania.',
 'imagelist_size'        => 'Wielkość',
 'imagelist_description' => 'Opis',
 
-# Image description page
+# File description page
 'filehist'                       => 'Historia pliku',
 'filehist-help'                  => 'Kliknij na datę/czas, aby zobaczyć, jak plik wyglądał w tym czasie.',
 'filehist-deleteall'             => 'usuń wszystkie',
@@ -2552,7 +2552,7 @@ $1',
 'show-big-image'       => 'Oryginalna rozdzielczość',
 'show-big-image-thumb' => '<small>Rozmiar podglądu: $1 × $2 pikseli</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Najnowsze pliki',
 'imagelisttext'         => "Poniżej na {{PLURAL:$1||posortowanej $2}} liście {{PLURAL:$1|znajduje|znajdują|znajduje}} się '''$1''' {{PLURAL:$1|plik|pliki|plików}}.",
 'newimages-summary'     => 'Na tej stronie specjalnej prezentowane są ostatnio przesłane pliki.',

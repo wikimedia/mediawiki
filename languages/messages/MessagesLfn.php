@@ -516,12 +516,12 @@ Pajes a [[Special:Watchlist|tu lista de pajes oservada]] es en leteras '''forte'
 
 'upload-file-error' => 'Era interna',
 
-# Special:ImageList
+# Special:FileList
 'imgfile'        => 'fix',
 'imagelist'      => 'Lista de imajes',
 'imagelist_name' => 'Nom',
 
-# Image description page
+# File description page
 'filehist'                  => 'Istoria de fix',
 'filehist-help'             => 'Clica a un data/tempo per vide la fix como el ia aperi alora.',
 'filehist-current'          => 'aora',
@@ -865,7 +865,7 @@ En esta casos, tu va nesesa move o fusa la paje per mano, si desirada.",
 'show-big-image'       => 'Densia masima',
 'show-big-image-thumb' => '<small>Grandia de eesta previde: $1 × $2 pixeles</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages' => 'Imajes nova',
 'ilsubmit'  => 'Xerca',
 

@@ -1331,7 +1331,7 @@ Le paginas presente in [[Special:Watchlist|tu observatorio]] se revela in litter
 'upload_directory_read_only'  => 'Le servitor de web non ha le permission de scriber in le directorio de cargamento ($1).',
 'uploaderror'                 => 'Error de carga',
 'uploadtext'                  => "Tu pote cargar files con le formulario infra.
-Pro vider o cercar imagines cargate anteriormente, visita le [[Special:ImageList|lista de imagines cargate]]. In ultra, le (re)cargas es registrate in le [[Special:Log/upload|registro de cargas]], le deletiones in le [[Special:Log/delete|registro de deletiones]].
+Pro vider o cercar imagines cargate anteriormente, visita le [[Special:FileList|lista de imagines cargate]]. In ultra, le (re)cargas es registrate in le [[Special:Log/upload|registro de cargas]], le deletiones in le [[Special:Log/delete|registro de deletiones]].
 
 Pro includer un file in un articulo, usa un ligamine in un del sequente formas:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' pro usar le version complete del file
@@ -1343,7 +1343,7 @@ Pro includer un file in un articulo, usa un ligamine in un del sequente formas:
 'uploadlog'                   => 'registro de cargas',
 'uploadlogpage'               => 'Registro de cargas',
 'uploadlogpagetext'           => 'Infra es un lista del plus recente cargas de files.
-Vide le [[Special:NewImages|galeria de nove files]] pro un presentation plus visual.',
+Vide le [[Special:NewFiles|galeria de nove files]] pro un presentation plus visual.',
 'filename'                    => 'Nomine del file',
 'filedesc'                    => 'Summario',
 'fileuploadsummary'           => 'Summario:',
@@ -1384,9 +1384,9 @@ Si le file verificate es le mesme imagine a grandor original, non es necessari c
 Illo pare esser un imagine a grandor reducite <i>(miniatura)</i>.
 Si tu possede iste imagine in plen resolution, carga lo, alteremente cambia le nomine del file per favor.',
 'fileexists-forbidden'        => 'Un file con iste nomine existe ja;
-per favor retorna e carga iste file sub un altere nomine. [[Image:$1|thumb|center|$1]]',
+per favor retorna e carga iste file sub un altere nomine. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Un file con iste nomine existe ja in le repositorio de files commun.
-Si tu vole totevia cargar iste file, per favor retorna e usa un nove nomine. [[Image:$1|thumb|center|$1]]',
+Si tu vole totevia cargar iste file, per favor retorna e usa un nove nomine. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Iste file es un duplicato del sequente {{PLURAL:$1|file|files}}:',
 'file-deleted-duplicate'      => 'Un file identic a iste file ([[$1]]) esseva ja delite anteriormente. Tu deberea verificar le registro de deletiones concernente iste file ante de re-cargar lo.',
 'successfulupload'            => 'Cargamento succedite',
@@ -1452,7 +1452,7 @@ Pote esser preferite reprovar quando le sito es minus occupate.',
 'upload_source_url'  => ' (un adresse URL valide e publicamente accessibile)',
 'upload_source_file' => ' (un file in tu computator)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Iste pagina special monstra tote le files cargate.
 Per predefinition le ultime files cargate se monstra al initio del lista.
 Tu pote reordinar le lista con un clic super le titulo de un columna.',
@@ -1465,7 +1465,7 @@ Tu pote reordinar le lista con un clic super le titulo de un columna.',
 'imagelist_size'        => 'Grandor',
 'imagelist_description' => 'Description',
 
-# Image description page
+# File description page
 'filehist'                       => 'Historia del file',
 'filehist-help'                  => 'Clicca super un data/hora pro vider le file como appareva a ille tempore.',
 'filehist-deleteall'             => 'deler totes',
@@ -2511,7 +2511,7 @@ $1',
 'show-big-image'       => 'Plen resolution',
 'show-big-image-thumb' => '<small>Dimensiones de iste previsualisation: $1 × $2 pixels</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Galeria de nove files',
 'imagelisttext'         => "Infra es un lista de '''$1''' {{PLURAL:$1|imagine|imagines}} ordinate $2.",
 'newimages-summary'     => 'Iste pagina special detalia le recente files cargate.',

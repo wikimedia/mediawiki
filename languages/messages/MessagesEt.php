@@ -810,7 +810,7 @@ Leheküljed, mis lähevad [[Special:Watchlist|Jälgimisloendi]] koosseisu, on es
 peaksid tagama, et see järgib siinset [[{{MediaWiki:Policy-url}}|piltide kasutamise korda]].
 
 Et näha või leida eelnevalt üleslaetud pilte,
-mine vaata [[Special:ImageList|piltide nimekirja]].
+mine vaata [[Special:FileList|piltide nimekirja]].
 Üleslaadimised ning kustutamised logitakse [[Special:Log/upload|üleslaadimise logis]].
 
 Järgneva vormi abil saad laadida üles uusi pilte
@@ -856,7 +856,7 @@ võidakse sinu ligipääs sulgeda.',
 See võib olla tingitud vigasest failinimest.
 Palun kaalutlege, kas Te tõesti soovite seda faili üles laadida.',
 'fileexists'           => 'Sellise nimega fail on juba olemas. Palun kontrollige <strong><tt>$1</tt></strong>, kui te ei ole kindel, kas tahate seda muuta.',
-'fileexists-forbidden' => 'Sellise nimega fail on juba olemas, palun pöörduge tagasi ja laadige fail üles mõne teise nime all. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden' => 'Sellise nimega fail on juba olemas, palun pöörduge tagasi ja laadige fail üles mõne teise nime all. [[File:$1|thumb|center|$1]]',
 'successfulupload'     => 'Üleslaadimine õnnestus',
 'uploadwarning'        => 'Üleslaadimise hoiatus',
 'savefile'             => 'Salvesta fail',
@@ -876,10 +876,10 @@ Palun kaalutlege, kas Te tõesti soovite seda faili üles laadida.',
 'license'   => 'Litsents:',
 'nolicense' => 'pole valitud',
 
-# Special:ImageList
+# Special:FileList
 'imagelist' => 'Piltide loend',
 
-# Image description page
+# File description page
 'filehist'                  => 'Faili ajalugu',
 'filehist-help'             => 'Klõpsa Kuupäev/kellaaeg, et näha faili sel ajahetkel.',
 'filehist-deleteall'        => 'kustuta kõik',
@@ -1441,7 +1441,7 @@ Kui soovid MediaWiki tarkvara tõlkimises osaleda siis vaata lehti [http://www.m
 'show-big-image'       => 'Originaalsuurus',
 'show-big-image-thumb' => '<small>Selle eelvaate suurus on: $1 × $2 pikselit</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Uute meediafailide galerii',
 'imagelisttext'         => 'Failide arv järgnevas loendis: $1. Sorteeritud $2.',
 'showhidebots'          => '($1 bottide kaastööd)',

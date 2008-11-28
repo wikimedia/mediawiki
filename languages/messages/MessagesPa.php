@@ -614,7 +614,7 @@ to upload files.',
 'license-nopreview'  => '(ਝਲਕ ਉਪਲੱਬਧ ਨਹੀਂ)',
 'upload_source_file' => ' (ਤੁਹਾਡੇ ਕੰਪਿਊਟਰ ਉੱਤੇ ਇੱਕ ਫਾਇਲ)',
 
-# Special:ImageList
+# Special:FileList
 'imgfile'               => 'ਫਾਇਲ',
 'imagelist'             => 'ਫਾਇਲ ਲਿਸਟ',
 'imagelist_date'        => 'ਮਿਤੀ',
@@ -623,7 +623,7 @@ to upload files.',
 'imagelist_size'        => 'ਆਕਾਰ',
 'imagelist_description' => 'ਵੇਰਵਾ',
 
-# Image description page
+# File description page
 'filehist'                  => 'ਫਾਇਲ ਅਤੀਤ',
 'filehist-deleteall'        => 'ਸਭ ਹਟਾਓ',
 'filehist-deleteone'        => 'ਇਹ ਹਟਾਓ',
@@ -920,7 +920,7 @@ to upload files.',
 'show-big-image'       => 'ਪੂਰਾ ਰੈਜ਼ੋਲੇਸ਼ਨ',
 'show-big-image-thumb' => '<small>ਇਹ ਝਲਕ ਦਾ ਆਕਾਰ: $1 × $2 ਪਿਕਸਲ</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages' => 'ਨਵੀਆਂ ਫਾਇਲਾਂ ਦੀ ਗੈਲਰੀ',
 'noimages'  => 'ਵੇਖਣ ਲਈ ਕੁਝ ਨਹੀਂ',
 'ilsubmit'  => 'ਖੋਜ',

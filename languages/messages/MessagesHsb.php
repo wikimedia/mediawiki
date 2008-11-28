@@ -1245,7 +1245,7 @@ Strony na [[Special:Watchlist|wobkedźbowankach]] su '''tučne'''.",
 'upload_directory_read_only'  => 'Nahrawanski zapis ($1) njehodźi so přez webserwer popisować.',
 'uploaderror'                 => 'Zmylk při nahrawanju',
 'uploadtext'                  => "Wužij slědowacy formular, zo by nowe dataje nahrał.
-Zo by prjedy nahrate dataje wobhladał abo pytał dźi k [[Special:ImageList|lisćinje nahratych datajow]], nahraća so tež w [[Special:Log/upload|protokolu nahraćow]], wušmórnjenja  [[Special:Log/delete|protokolu wušmornjenjow]] protokoluja.
+Zo by prjedy nahrate dataje wobhladał abo pytał dźi k [[Special:FileList|lisćinje nahratych datajow]], nahraća so tež w [[Special:Log/upload|protokolu nahraćow]], wušmórnjenja  [[Special:Log/delete|protokolu wušmornjenjow]] protokoluja.
 
 Zo by dataju do strony zapřijał, wužij wotkaz w jednej ze slědowacych formow:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Dataja.jpg]]</nowiki></tt>''', zo by połnu wersiju dataje wužiwał
@@ -1257,7 +1257,7 @@ Zo by dataju do strony zapřijał, wužij wotkaz w jednej ze slědowacych formow
 'uploadlog'                   => 'Protokol nahraćow',
 'uploadlogpage'               => 'Protokol nahraćow',
 'uploadlogpagetext'           => 'Deleka je lisćina najnowšich nahratych datajow.
-Hlej [[Special:NewImages|galeriju nowych datajow]] za wizuelny přehlad.',
+Hlej [[Special:NewFiles|galeriju nowych datajow]] za wizuelny přehlad.',
 'filename'                    => 'Mjeno dataje',
 'filedesc'                    => 'Zjeće',
 'fileuploadsummary'           => 'Zjeće:',
@@ -1290,8 +1290,8 @@ Jenož kóncowce rozeznawatej so we wulko- a małopisanju. Prošu wuzwol hinaše
 Jeli je to wobraz w originalnej wulkosći, njetrjebaš minaturku nahrać.',
 'file-thumbnail-no'           => 'Mjeno dataje započina so z <strong><tt>$1</tt></strong>. Zda so, zo to je wobraz z redukowanej wulkosću <i>(thumbnail)</i> pokazać.
 Jeli maš tutón wobraz z połnym rozeznaćom, nahraj tutón, hewak změń prošu datajowe mjeno.',
-'fileexists-forbidden'        => 'Dataja z tutym mjenom hižo eksistuje; prošu dźi wróćo a nahraj tutu dataju z druhim mjenom. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Dataja z tutym mjenom hižo eksistuje w zhromadnej chowarni. Jeli hišće chceš swoju dataju nahrać,  dźi prošu wróćo a wužij nowe mjeno. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Dataja z tutym mjenom hižo eksistuje; prošu dźi wróćo a nahraj tutu dataju z druhim mjenom. [[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Dataja z tutym mjenom hižo eksistuje w zhromadnej chowarni. Jeli hišće chceš swoju dataju nahrać,  dźi prošu wróćo a wužij nowe mjeno. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Tuta dataja je duplikat {{PLURAL:$1|slědowaceje dataje|slědowaceju datajow|slědowacych datajow|slědowacych datajow}}:',
 'file-deleted-duplicate'      => 'Dataja, kotraž je identiska z tutej dataju ([[$1]]), je so prjedy zničiła. Ty měł stawizny zničenja tuteje dataje přepruwować, prjedy pokročuješ z jeje zasonahrawanjom.',
 'successfulupload'            => 'Dataja bu wuspěšnje nahrata',
@@ -1349,7 +1349,7 @@ PICT # misc.
 'upload_source_url'  => ' (płaćiwy, zjawnje docpějomny URL)',
 'upload_source_file' => ' (dataja na twojim ličaku)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Tuta specialna strona naliči wšě nahrate dataje. Standardnje so naposlědk nahrate dateje cyle horjeka pokazuja. Kliknjo na nadpisma stołpikow móžeš sortěrowanje wobroćić abo po druhich kriterijach rjadować.',
 'imagelist_search_for'  => 'Za mjenom wobraza pytać:',
 'imgfile'               => 'dataja',
@@ -1360,7 +1360,7 @@ PICT # misc.
 'imagelist_size'        => 'wulkosć (byte)',
 'imagelist_description' => 'wopisanje',
 
-# Image description page
+# File description page
 'filehist'                       => 'Wersije dataje',
 'filehist-help'                  => 'Klikń na wěsty čas, zo by wersiju dataje w tutym času zwobraznił.',
 'filehist-deleteall'             => 'wšě wersije wušmórnyć',
@@ -2322,7 +2322,7 @@ $1',
 'show-big-image'       => 'Wersija z wyšim rozeznaćom',
 'show-big-image-thumb' => '<small>Wulkosć miniaturki: $1 × $2 pikselow</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Nowe dataje',
 'imagelisttext'         => "Deleka je lisćina '''$1''' {{PLURAL:$1|dataje|datajow|datajow|datajow}}, kotraž je po $2 sortěrowana.",
 'newimages-summary'     => 'Tuta specialna strona naliči aktualnje nahrate wobrazy a druhe dataje.',

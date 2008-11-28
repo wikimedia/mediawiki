@@ -221,7 +221,7 @@ $3',
 # Upload
 'upload' => 'тримиће фиширул',
 
-# Image description page
+# File description page
 'filehist'            => 'Хисториа фиширулу',
 'filehist-current'    => 'куренту',
 'filehist-datetime'   => 'Дата/Темп',

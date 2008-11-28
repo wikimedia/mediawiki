@@ -439,7 +439,7 @@ Eżlë klëczi na ti starnie nie są sczérowóne do ce, tedë [[Special:UserLog
 'upload'            => 'Wladënk lopka',
 'reupload'          => 'Wëslë jesz rôz',
 'uploadnologin'     => 'Felënk logòwaniô',
-'uploadtext'        => '<strong>STOP!</strong> Nigle wladëjesz jaczi lopk,\\nprzeczëtôj regle wladowaniô lopków ë ùgwësnij sã, że wladëwającë gò òstóniesz z\\nnima w zgòdze.\\n<p>Jeżle chcesz przezdrzec abò przeszëkac do terô wladowóné lopczi,\\nprzeńdzë do [[Special:ImageList|lëstë wladowónëch lopków]].\\nWszëtczé wladënczi ë rëmania są òdnotérowóné w\\nspecjalnëch zestôwkach: [[Special:Log/upload|wladënczi]] ë [[Special:Log/delete|rëmóné]].\\n<p>Bë wëslac nowi lopk do zòbrazowaniô Twòjégò artikla wëzwëskùj \\nhewòtny fòrmùlar.\\nW wikszoscë przezérników ùzdrzesz knąpã <i>Browse...</i>\\nabò <i>Przezérôj...</i>, chtëren ùmożlëwi Cë òtemkniãcé sztandardowégò\\nòkna wëbiérkù lopka. Wëbranié lopka sprawi wstôwienié jegò miona\\nw tekstowim pòlu kòl knąpë.\\nZaznaczającë pasowné pòle, mùszisz téż pòcwierdzëc, ëż sélającë\\nlopk nie gwôłcësz nikògò autorsczich praw.\\nWladënk zacznie sã pò wcësniãcym <i>Wladëjë lopk</i>.\\nTo mòże sztërk zdérowac, òsoblëwò jeżle ni môsz chùtczégò dopùscënkù do internetu.\\n<p>Preferowónyma fòrmatama są: JPEG dlô òdjimków, PNG dlô céchùnków\\në òbrôzków ze znankama ikònów, ôs OGG dlô zwãków. Bë nie dac przińc do lëchòrozmieniów nadôwôj lopkom miona sparłãczóné z jich zamkłoscą.\\nBë wstôwic òbrôzk do artikla, wpiszë lënk:\\n<b><nowiki>[[</nowiki>{{ns:file}}<nowiki>:miono.jpg]]</nowiki></b> abò <b><nowiki>[[</nowiki>{{ns:file}}<nowiki>:miono.png|òpcjonalny tekst]]</nowiki></b>.\\nDlô zwãkòwëch lopków lënk mdze wëzdrzôł tak: <b><nowiki>[[</nowiki>{{ns:media}}<nowiki>:file.ogg]]</nowiki></b>.\\n<p>Prosymë wdarzëc, ëż tak samò jak w przëtrôfkù zwëczajnëch starnów {{SITENAME}},\\njińszi brëkòwnicë mògą editowac abò rëmac wladowóné przez Ce lopczi,\\njeżle mdą dbë, że to mdze lepi służëc całi ùdbie {{SITENAME}}.\\nTwòje prawò do sélaniégò lopków mòże bëc Cë òdebróné, eżle nadùżëjesz systemë.',
+'uploadtext'        => '<strong>STOP!</strong> Nigle wladëjesz jaczi lopk,\\nprzeczëtôj regle wladowaniô lopków ë ùgwësnij sã, że wladëwającë gò òstóniesz z\\nnima w zgòdze.\\n<p>Jeżle chcesz przezdrzec abò przeszëkac do terô wladowóné lopczi,\\nprzeńdzë do [[Special:FileList|lëstë wladowónëch lopków]].\\nWszëtczé wladënczi ë rëmania są òdnotérowóné w\\nspecjalnëch zestôwkach: [[Special:Log/upload|wladënczi]] ë [[Special:Log/delete|rëmóné]].\\n<p>Bë wëslac nowi lopk do zòbrazowaniô Twòjégò artikla wëzwëskùj \\nhewòtny fòrmùlar.\\nW wikszoscë przezérników ùzdrzesz knąpã <i>Browse...</i>\\nabò <i>Przezérôj...</i>, chtëren ùmożlëwi Cë òtemkniãcé sztandardowégò\\nòkna wëbiérkù lopka. Wëbranié lopka sprawi wstôwienié jegò miona\\nw tekstowim pòlu kòl knąpë.\\nZaznaczającë pasowné pòle, mùszisz téż pòcwierdzëc, ëż sélającë\\nlopk nie gwôłcësz nikògò autorsczich praw.\\nWladënk zacznie sã pò wcësniãcym <i>Wladëjë lopk</i>.\\nTo mòże sztërk zdérowac, òsoblëwò jeżle ni môsz chùtczégò dopùscënkù do internetu.\\n<p>Preferowónyma fòrmatama są: JPEG dlô òdjimków, PNG dlô céchùnków\\në òbrôzków ze znankama ikònów, ôs OGG dlô zwãków. Bë nie dac przińc do lëchòrozmieniów nadôwôj lopkom miona sparłãczóné z jich zamkłoscą.\\nBë wstôwic òbrôzk do artikla, wpiszë lënk:\\n<b><nowiki>[[</nowiki>{{ns:file}}<nowiki>:miono.jpg]]</nowiki></b> abò <b><nowiki>[[</nowiki>{{ns:file}}<nowiki>:miono.png|òpcjonalny tekst]]</nowiki></b>.\\nDlô zwãkòwëch lopków lënk mdze wëzdrzôł tak: <b><nowiki>[[</nowiki>{{ns:media}}<nowiki>:file.ogg]]</nowiki></b>.\\n<p>Prosymë wdarzëc, ëż tak samò jak w przëtrôfkù zwëczajnëch starnów {{SITENAME}},\\njińszi brëkòwnicë mògą editowac abò rëmac wladowóné przez Ce lopczi,\\njeżle mdą dbë, że to mdze lepi służëc całi ùdbie {{SITENAME}}.\\nTwòje prawò do sélaniégò lopków mòże bëc Cë òdebróné, eżle nadùżëjesz systemë.',
 'uploadlog'         => 'Lësta wladënków',
 'uploadlogpage'     => 'Dołączoné',
 'uploadlogpagetext' => 'Hewò je lësta slédno wladowónëch lopków.\\nWszëtczé gòdzënë tikają conë ùniwersalnégò czasë.',
@@ -455,11 +455,11 @@ Eżlë klëczi na ti starnie nie są sczérowóne do ce, tedë [[Special:UserLog
 'uploadedimage'     => 'wladënk: "$1"',
 'uploaddisabled'    => 'Przeprôszómë! Mòżlëwòta wladënkù lopków na nen serwer òsta wëłączonô.',
 
-# Special:ImageList
+# Special:FileList
 'imagelist'      => 'Lësta òbrôzków',
 'imagelist_user' => 'Brëkòwnik',
 
-# Image description page
+# File description page
 'filehist-user'  => 'Brëkòwnik',
 'imagelinks'     => 'Lënczi do lopka',
 'linkstoimage'   => 'Hewò są starnë, jaczé òdwòłëją sã do negò lopka:',
@@ -688,7 +688,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'imagemaxsize' => 'Limitëjë òbrôzczi na starnie òpisënkù òbrôzków do:',
 'thumbsize'    => 'Miara miniaturków:',
 
-# Special:NewImages
+# Special:NewFiles
 'ilsubmit' => 'Szëkôj',
 'bydate'   => 'wedle datumù',
 

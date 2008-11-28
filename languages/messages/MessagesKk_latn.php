@@ -1413,7 +1413,7 @@ baptaw üşin math/README qujatın qarañız.',
 'upload_directory_read_only'  => 'Qotarıp bermek qaltasına ($1) veb-server jaza almaýdı.',
 'uploaderror'                 => 'Qotarıp berw qatesi',
 'uploadtext'                  => "Tömendegi pişindi faýldardı qotarıp berw üşin qoldanıñız. 
-Aldında qotarılıp berilgen faýldardı qaraw ne izdew üşin [[{{#special:Imagelist}}|qotarıp berilgen faýldar tizimine]] barıñız, tağı da qotarıp berwi men joywı  [[{{#special:Log}}/upload|qotarıp berw jwrnalına]] jazılıp alınadı.
+Aldında qotarılıp berilgen faýldardı qaraw ne izdew üşin [[{{#special:FileList}}|qotarıp berilgen faýldar tizimine]] barıñız, tağı da qotarıp berwi men joywı  [[{{#special:Log}}/upload|qotarıp berw jwrnalına]] jazılıp alınadı.
 
 Swretti betke kiristirwge, faýlğa twra siltew üşin mına pişindegi siltemeni qoldanıñız:
 '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki>''',
@@ -1462,9 +1462,9 @@ Eger sınalğan faýl tüpnusqalı mölşeri bar dälme-däl swret bolsa, qosıs
 Bul — mölşeri kişiritilgen swret <i>(nobaý)</i> sïyaqtı.
 Eger bul swrettiñ tolıq ajıratılımdığı bolsa, bunı qotarıp beriñiz, äýtpese faýl atawın özgertiñiz.',
 'fileexists-forbidden'        => 'Osılaý atalğan faýl aldaqaşan bar;
-keri qaýtıñız da, osı faýldı jaña atımen qotarıp beriñiz. [[{{ns:file}}:$1|thumb|center|$1]]',
+keri qaýtıñız da, osı faýldı jaña atımen qotarıp beriñiz. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Osılaý atalğan faýl ortaq qoýmada aldaqaşan bar;
-keri qaýtıñız da, osı faýldı jaña atımen qotarıp beriñiz. [[{{ns:file}}:$1|thumb|center|$1]]',
+keri qaýtıñız da, osı faýldı jaña atımen qotarıp beriñiz. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Bul faýl kelesi {{PLURAL:$1|faýldıñ|faýldarınıñ}} telnusqası:',
 'successfulupload'            => 'Sätti qotarıp berildi',
 'uploadwarning'               => 'Qotarıp berw jöninde qulaqtandırw',
@@ -1515,7 +1515,7 @@ Talabıñızdı qol tïgen kezinde qaýta baýqap körwiñiz mümkin.',
 'upload_source_url'  => ' (jaramdı, barşağa qatınawlı URL)',
 'upload_source_file' => ' (komp′ywteriñizdegi faýl)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Bul arnaýı bette barlıq qotarıp berilgen faýldar körsetiledi.
 Soñğı qotarıp berilgen faýldar tizimde joğarğı şetimen ädepkiden körsetiledi.
 Bağannıñ bas jolın nuqığanda surıptawdıñ rettewi özgertiledi.',
@@ -1528,7 +1528,7 @@ Bağannıñ bas jolın nuqığanda surıptawdıñ rettewi özgertiledi.',
 'imagelist_size'        => 'Mölşeri',
 'imagelist_description' => 'Sïpattaması',
 
-# Image description page
+# File description page
 'filehist'                       => 'Faýl tarïxı',
 'filehist-help'                  => 'Faýldıñ qaý waqıtta qalaý körinetin üşin Kün-aý/Waqıt degendi nuqıñız.',
 'filehist-deleteall'             => 'barlığın joý',
@@ -2462,7 +2462,7 @@ $1',
 'show-big-image'       => 'Joğarı ajıratılımdı',
 'show-big-image-thumb' => '<small>Qarap şığw mölşeri: $1 × $2 nükte</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Jaña faýldar körmesi',
 'imagelisttext'         => "Tömende $2 surıptalğan '''$1''' faýl tizimi.",
 'newimages-summary'     => 'Bul arnaýı betinde soñğı qotarıp berilgen faýldar körsetiledi',

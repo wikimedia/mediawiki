@@ -1255,7 +1255,7 @@ $1',
 'upload_directory_read_only'  => '嗰個上載嘅目錄 ($1) 而家唔能夠被網頁伺服器寫入。',
 'uploaderror'                 => '上載錯誤',
 'uploadtext'                  => "用下面嘅表格嚟上載檔案。
-要睇或者搵嘢之前上載嘅圖像請去[[Special:ImageList|已上載檔案一覽]]，（再）上載嘅動作會喺[[Special:Log/upload|上載日誌]]裏面記錄落嚟，而刪除嘅動作會喺[[Special:Log/delete|刪除日誌]]裏面記錄落嚟。
+要睇或者搵嘢之前上載嘅圖像請去[[Special:FileList|已上載檔案一覽]]，（再）上載嘅動作會喺[[Special:Log/upload|上載日誌]]裏面記錄落嚟，而刪除嘅動作會喺[[Special:Log/delete|刪除日誌]]裏面記錄落嚟。
 
 如果要喺頁面度引入呢張圖像，可以使用以下其中一種方式嘅連結：
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}:file.jpg<nowiki>]]</nowiki></tt>'''去用檔案嘅完整版
@@ -1267,7 +1267,7 @@ $1',
 'uploadlog'                   => '上載日誌',
 'uploadlogpage'               => '上載日誌',
 'uploadlogpagetext'           => '以下係最近檔案上載嘅一覽表。
-睇[[Special:NewImages|新圖像畫廊]]去睇更詳細嘅總覽。',
+睇[[Special:NewFiles|新圖像畫廊]]去睇更詳細嘅總覽。',
 'filename'                    => '檔名',
 'filedesc'                    => '摘要',
 'fileuploadsummary'           => '摘要：',
@@ -1303,8 +1303,8 @@ $1',
 如果檢查咗嘅檔案係同原本幅圖個大細係一樣嘅話，就唔使再上載多一幅縮圖。",
 'file-thumbnail-no'           => "個檔名係以'''<tt>$1</tt>'''開始。佢好似係一幅圖像嘅縮細版本''（縮圖）''。
 如果你有呢幅圖像嘅完整大細，唔係嘅話請再改過個檔名。",
-'fileexists-forbidden'        => '呢個檔案嘅名已經存在；麻煩返轉去用第二個名嚟上載呢個檔案。[[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => '共享檔案庫入面已經有一個同名嘅檔案；麻煩返轉去用第二個名嚟上載呢個檔案。[[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => '呢個檔案嘅名已經存在；麻煩返轉去用第二個名嚟上載呢個檔案。[[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => '共享檔案庫入面已經有一個同名嘅檔案；麻煩返轉去用第二個名嚟上載呢個檔案。[[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => '呢個檔案係同下面嘅{{PLURAL:$1|一|幾}}個檔案重覆:',
 'successfulupload'            => '成功嘅上載',
 'uploadwarning'               => '上載警告',
@@ -1346,7 +1346,7 @@ $1',
 'upload_source_url'  => ' （啱嘅，公開嘅網址）',
 'upload_source_file' => ' （你部電腦裏面嘅一個檔案）',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => '呢個特別版顯示全部上載過嘅檔案。
 響預設最後上載嘅檔案會顯示響呢個表嘅最頂。
 撳一欄嘅標題去改個排列。',
@@ -1359,7 +1359,7 @@ $1',
 'imagelist_size'        => '大細',
 'imagelist_description' => '描述',
 
-# Image description page
+# File description page
 'filehist'                       => '檔案歷史',
 'filehist-help'                  => '撳個日期／時間去睇響嗰個時間出現過嘅檔案。',
 'filehist-deleteall'             => '刪除全部',
@@ -2338,7 +2338,7 @@ $1',
 'show-big-image'       => '完整解像度',
 'show-big-image-thumb' => '<small>呢個預覽嘅大細： $1 × $2 像素</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => '新檔案畫廊',
 'imagelisttext'         => "以下係'''$1'''個檔案$2排序嘅清單。",
 'newimages-summary'     => '呢個特別頁顯示最後上載咗嘅檔案。',

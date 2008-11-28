@@ -421,7 +421,7 @@ upang makapagkarga ng talaksan.',
 'uploaderror'       => 'Kamalian sa pagkarga',
 'watchthisupload'   => 'Bantayan itong pahina',
 
-# Image description page
+# File description page
 'filehist'          => 'Kasaysayan ng talaksan',
 'filehist-datetime' => 'Petsa/Oras',
 'filehist-user'     => 'Tagagamit',
@@ -636,7 +636,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'show-big-image'       => 'Buong resolusyon',
 'show-big-image-thumb' => '<small>Laki ng itong pribyu: $1 × $2 piksel</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages' => 'Galeriya ng mga bagong talaksan',
 
 # External editor support

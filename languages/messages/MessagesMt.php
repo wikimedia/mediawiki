@@ -1153,7 +1153,7 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'upload_directory_read_only'  => "Il-''Webserver'' m'għandux il-mezzi sabiex jikteb fil-direttorju tal-''upload'' ($1).",
 'uploaderror'                 => "Problema fl-''upload''",
 'uploadtext'                  => "Uża l-formula t'hawn taħt sabiex ittella' fajl.
-Biex tara jew tfittex fajls li ġew mtellgħin mur fil-[[Special:ImageList|lista ta' fajls mtellgħin]]. Fajls imtellgħin u verżjonijiet ġodda tal-fajls huma reġistrati fir-[[Special:Log/upload|reġistru ta' l-''uploads'']], u dawk li tħassru huma fir-[[Special:Log/upload|reġistru tat-tħassir]].
+Biex tara jew tfittex fajls li ġew mtellgħin mur fil-[[Special:FileList|lista ta' fajls mtellgħin]]. Fajls imtellgħin u verżjonijiet ġodda tal-fajls huma reġistrati fir-[[Special:Log/upload|reġistru ta' l-''uploads'']], u dawk li tħassru huma fir-[[Special:Log/upload|reġistru tat-tħassir]].
 
 Biex tinkludi fajl f'paġna, uża l-link fil-forma
 * '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fajl.jpg]]</nowiki>''',
@@ -1165,7 +1165,7 @@ Biex tinkludi fajl f'paġna, uża l-link fil-forma
 'uploadlog'                   => 'Reġistru tal-uploads',
 'uploadlogpage'               => "Reġistru tal-fajls li ġew imtella'",
 'uploadlogpagetext'           => "Ħawn taħt tinsab il-lista ta' l-aktar fajls imtellgħin riċenti.<br />
-Ara l-[[Special:NewImages|gallerija ta' fajls ġodda]] għal ħarsa viżiva.",
+Ara l-[[Special:NewFiles|gallerija ta' fajls ġodda]] għal ħarsa viżiva.",
 'filename'                    => 'Isem il-fajl',
 'filedesc'                    => 'Taqsira',
 'fileuploadsummary'           => 'Taqsira:',
@@ -1202,8 +1202,8 @@ Jekk il-fajl li ċċekkjajt huwa l-istess stampa fid-daqs oriġinali, m'hemmx b�
 'file-thumbnail-no'           => "L-isem tal-fajl jibda' b'<strong><tt>$1</tt></strong>. Jidher ukoll li din hija stampa tad-daqs imnaqqas <i>(thumbnail)</i>.<br />
 Jekk għandek din l-istampa ta' riżoluzzjoni sħiħa, jekk jogħġbok, tella' dan il-fajl jew inkella immodifika l-isem tal-fajl.",
 'fileexists-forbidden'        => "Fajl b'dan l-isem ġa jeżisti;
-jekk jogħġbok mur u tella' dan il-fajl b'isem ġdid. [[Image:$1|thumb|center|$1]]",
-'fileexists-shared-forbidden' => "Fajl b'dan l-isem diġà jeżisti fl-arkivju tar-riżorsi multimedjali maqsuma. Jekk tixtieq xorta waħda li ttella' l-fajl, mur lura u tella' fajl b'isem ġdid. [[Image:$1|thumb|center|$1]]",
+jekk jogħġbok mur u tella' dan il-fajl b'isem ġdid. [[File:$1|thumb|center|$1]]",
+'fileexists-shared-forbidden' => "Fajl b'dan l-isem diġà jeżisti fl-arkivju tar-riżorsi multimedjali maqsuma. Jekk tixtieq xorta waħda li ttella' l-fajl, mur lura u tella' fajl b'isem ġdid. [[File:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => "Dan il-fajl huwa duplikat ta' {{PLURAL:$1|dan il-fajl|dawn il-fajls}} segwenti:",
 'successfulupload'            => "Mtella' b'suċċess",
 'uploadwarning'               => 'Twissija dwar it-tlugħ tal-fajls',
@@ -1266,7 +1266,7 @@ Jekk jogħġbok verifika li s-sit huwa attiv, stenna għal ftit u erġa' prova m
 'upload_source_url'  => ' (URL validu u aċċessibli)',
 'upload_source_file' => ' (fajl fuq il-komputer tiegħek)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => "Din il-paġna speċjali turi l-fajls kollha mtella'.
 L-aktar ''uploads'' riċenti jiġu fuq in-naħa ta' fuq tal-lista.
 Biex tagħmel modifika fl-ordni tal-kolonna, klikkja fuq it-titlu tal-kolonna stess.",
@@ -1279,7 +1279,7 @@ Biex tagħmel modifika fl-ordni tal-kolonna, klikkja fuq it-titlu tal-kolonna st
 'imagelist_size'        => 'Daqs',
 'imagelist_description' => 'Deskrizzjoni',
 
-# Image description page
+# File description page
 'filehist'                       => 'Kronoloġija tal-fajl',
 'filehist-help'                  => 'Agħfas fuq il-grupp data/ħin biex tara l-fajl biex tara kif jidher dak il-ħin.',
 'filehist-deleteall'             => 'ħassar kollox',
@@ -2187,7 +2187,7 @@ $1',
 'show-big-image'       => "Verżjoni b'risoluzzjoni sħiħa",
 'show-big-image-thumb' => '<small>Dimensjoni tal-previżjoni: $1 × $2 pixel</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => "Gallerija ta' fajls ġodda",
 'imagelisttext'         => "Il-Lista t'hawn taħt ta' '''$1''' {{PLURAL:$1|fajl|fajls}} irranġati $2.",
 'newimages-summary'     => "Din il-paġna speċjali turi l-aħħar fajls li ġew mtella' riċentament.",

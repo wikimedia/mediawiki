@@ -344,10 +344,10 @@ Kana avilyan kathe doshatar, ja palpale.',
 'badfilename' => 'O chitrosko anav sas paruvdo; o nevo anav si "$1".',
 'savefile'    => 'Uxtav file',
 
-# Special:ImageList
+# Special:FileList
 'imagelist' => 'Patrinipen le chitrengo',
 
-# Image description page
+# File description page
 'imagelinks' => 'Chitroske phandimata',
 
 # Unused templates
@@ -528,7 +528,7 @@ Dikh ando $2 ek patrinipen le palutne butyange khosle.',
 'previousdiff' => '← Purano ververipen',
 'nextdiff'     => 'Anglutno paruvipen →',
 
-# Special:NewImages
+# Special:NewFiles
 'showhidebots' => '($1 boturya)',
 'ilsubmit'     => 'Rod',
 

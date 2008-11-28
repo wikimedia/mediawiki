@@ -235,7 +235,7 @@ $messages = array(
 'tooltip-ca-move'        => 'ཨཾོབེ༹་ ཐིས་ པགེ་',
 'tooltip-p-logo'         => 'གཙོ་ངོས།',
 
-# Special:NewImages
+# Special:NewFiles
 'ilsubmit' => 'འཚོལ།',
 
 # Multipage image navigation

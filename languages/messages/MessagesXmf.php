@@ -357,11 +357,11 @@ $messages = array(
 'uploadlogpage' => 'გიმოხარგუაშ რეგისტრაცია',
 'uploadedimage' => 'გეთებაა "[[$1]]"',
 
-# Special:ImageList
+# Special:FileList
 'imagelist'      => 'სურათეფიშ ერკებულ',
 'imagelist_name' => 'სახელ',
 
-# Image description page
+# File description page
 'filehist'            => 'ფაილიშ ისტორია',
 'filehist-help'       => 'ქოგეუნჭირით ბორჯის, ნამდა ქოძირათ ფაილი თეშ, მუჭოთ თინა თიწკუმა კილეძირედუ.',
 'filehist-current'    => 'მიმალ',
@@ -593,7 +593,7 @@ $messages = array(
 'show-big-image'       => 'რსული გარჩევადობა',
 'show-big-image-thumb' => '<small>ზომა ოწმახ ძირაშ დროს: $1 × $2 პიქსელ</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages' => 'ახალ სურათეფ',
 
 # Bad image list

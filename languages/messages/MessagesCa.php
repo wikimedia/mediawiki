@@ -1316,7 +1316,7 @@ per a penjar-hi fitxers.",
 'upload_directory_read_only'  => 'El servidor web no pot escriure al directori de càrrega ($1)',
 'uploaderror'                 => "S'ha produït un error en l'intent de carregar",
 'uploadtext'                  => "Feu servir el formulari de sota per a carregar fitxers.
-Per a visualitzar o cercar fitxers que s'hagen carregat prèviament, aneu a la [[Special:ImageList|llista de fitxers carregats]]. Les càrregues es registren en el [[Special:Log/upload|registre de càrregues]] i els fitxers esborrats en el [[Special:Log/delete|registre d'esborrats]].
+Per a visualitzar o cercar fitxers que s'hagen carregat prèviament, aneu a la [[Special:FileList|llista de fitxers carregats]]. Les càrregues es registren en el [[Special:Log/upload|registre de càrregues]] i els fitxers esborrats en el [[Special:Log/delete|registre d'esborrats]].
 
 Per a incloure una imatge en una pàgina, feu un enllaç en una de les formes següents:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fitxer.jpg]]</nowiki></tt>''' per a usar la versió completa del fitxer;
@@ -1328,7 +1328,7 @@ Per a incloure una imatge en una pàgina, feu un enllaç en una de les formes se
 'uploadlog'                   => 'registre de càrregues',
 'uploadlogpage'               => 'Registre de càrregues',
 'uploadlogpagetext'           => "A sota hi ha una llista dels fitxers que s'han carregat més recentment.
-Vegeu la [[Special:NewImages|galeria de nous fitxers]] per a una presentació més visual.",
+Vegeu la [[Special:NewFiles|galeria de nous fitxers]] per a una presentació més visual.",
 'filename'                    => 'Nom de fitxer',
 'filedesc'                    => 'Resum',
 'fileuploadsummary'           => 'Resum:',
@@ -1359,9 +1359,9 @@ Si el fitxer és la mateixa imatge a mida original, no cal carregar cap miniatur
 'file-thumbnail-no'           => 'El nom del fitxer comença per <strong><tt>$1</tt></strong>.
 Sembla ser una imatge de mida reduïda <i>(miniatura)</i>.
 Si teniu la imatge en resolució completa, pugeu-la, sinó mireu de canviar-li el nom, si us plau.',
-'fileexists-forbidden'        => 'Ja hi existeix un fitxer amb aquest nom; si us plau, torneu enrere i carregueu aquest fitxer sota un altre nom. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Ja hi existeix un fitxer amb aquest nom; si us plau, torneu enrere i carregueu aquest fitxer sota un altre nom. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Ja hi ha un fitxer amb aquest nom al fons comú de fitxers.
-Si us plau, si encara desitgeu carregar el vostre fitxer, torneu enrera i carregueu-ne una còpia amb un altre nom. [[Image:$1|thumb|center|$1]]',
+Si us plau, si encara desitgeu carregar el vostre fitxer, torneu enrera i carregueu-ne una còpia amb un altre nom. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Aquest fitxer és un duplicat {{PLURAL:$1|del fitxer |dels següents fitxers:}}',
 'successfulupload'            => "El fitxer s'ha carregat amb èxit",
 'uploadwarning'               => 'Avís de càrrega',
@@ -1403,7 +1403,7 @@ A continuació teniu el registre d'eliminació per a que pugueu comprovar els mo
 'upload_source_url'  => ' (un URL vàlid i accessible públicament)',
 'upload_source_file' => ' (un fitxer en el vostre ordinador)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => "Aquesta pàgina especial mostra tots els fitxers carregats.
 Per defecte, els darrers en ser carregats apareixen al principi de la llista.
 Clicant al capdamunt de les columnes podeu canviar-ne l'ordenació.",
@@ -1416,7 +1416,7 @@ Clicant al capdamunt de les columnes podeu canviar-ne l'ordenació.",
 'imagelist_size'        => 'Mida (octets)',
 'imagelist_description' => 'Descripció',
 
-# Image description page
+# File description page
 'filehist'                       => 'Historial del fitxer',
 'filehist-help'                  => 'Cliqueu una data/hora per veure el fitxer tal com era aleshores.',
 'filehist-deleteall'             => 'elimina-ho tot',
@@ -2420,7 +2420,7 @@ $1",
 'show-big-image'       => 'Imatge en màxima resolució',
 'show-big-image-thumb' => "<small>Mida d'aquesta previsualització: $1 × $2 píxels</small>",
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Galeria de nous fitxers',
 'imagelisttext'         => "Llista {{PLURAL:$1|d'un sol fitxer|de '''$1''' fitxers ordenats $2}}.",
 'newimages-summary'     => 'Aquesta pàgina especial mostra els darrers fitxers carregats.',

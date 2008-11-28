@@ -1288,7 +1288,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'upload_directory_missing'    => 'アップロードディレクトリ ($1) が見つからないためウェブサーバによって作成できませんでした',
 'upload_directory_read_only'  => 'アップロード先のディレクトリ ($1) にウェブサーバーが書き込めません。',
 'uploaderror'                 => 'アップロード エラー',
-'uploadtext'                  => "ファイルを新しくアップロードする場合には、以下のフォームを利用してください。過去にアップロードされたファイルの閲覧・検索には[[Special:ImageList|{{int:imagelist}}]]をご利用ください。アップロードの記録は[[Special:Log/upload|アップロード記録]]、削除の記録は[[Special:Log/delete|削除記録]]にも記録されます。
+'uploadtext'                  => "ファイルを新しくアップロードする場合には、以下のフォームを利用してください。過去にアップロードされたファイルの閲覧・検索には[[Special:FileList|{{int:imagelist}}]]をご利用ください。アップロードの記録は[[Special:Log/upload|アップロード記録]]、削除の記録は[[Special:Log/delete|削除記録]]にも記録されます。
 
 ページにファイルを挿入するには以下の書式のリンクを使います。
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}:<nowiki>File.jpg]]</nowiki></tt>''' とするとファイルをもとのサイズのまま表示します
@@ -1299,7 +1299,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'upload-prohibited'           => '禁止されているファイル形式： $1',
 'uploadlog'                   => 'アップロード記録',
 'uploadlogpage'               => 'アップロード記録',
-'uploadlogpagetext'           => '以下はファイルアップロードの最近の記録です。画像付きで見るには[[Special:NewImages|新規画像ギャラリー]]をご覧ください。',
+'uploadlogpagetext'           => '以下はファイルアップロードの最近の記録です。画像付きで見るには[[Special:NewFiles|新規画像ギャラリー]]をご覧ください。',
 'filename'                    => 'ファイル名',
 'filedesc'                    => 'ファイルの概要',
 'fileuploadsummary'           => 'ファイルの概要:',
@@ -1330,8 +1330,8 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'file-thumbnail-no'           => 'ファイル名が <strong><tt>$1</tt></strong> から始まっており、サムネイル（縮小版画像）である可能性が高いです。
 より高精細な画像をお持ちの場合は、フルサイズ版をアップロードしてください。そうでない場合はファイル名を変更してください。',
 'fileexists-forbidden'        => 'この名前のファイルは既に存在しています。前のページに戻り、別のファイル名でアップロードし直してください。
-[[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'この名前のファイルは共有ファイルリポジトリに既に存在しています。アップロードを継続したい場合は、前のページに戻り、別のファイル名を選択してください。[[Image:$1|thumb|center|$1]]',
+[[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'この名前のファイルは共有ファイルリポジトリに既に存在しています。アップロードを継続したい場合は、前のページに戻り、別のファイル名を選択してください。[[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'このファイルは以下のファイルと重複しています',
 'file-deleted-duplicate'      => 'このファイル ([[$1]]) と同一のファイルが以前に削除されています。再度アップロードをする前に、以前削除されたファイルの削除記録を確認してください。',
 'successfulupload'            => 'アップロード成功',
@@ -1373,7 +1373,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'upload_source_url'  => '（インターネット上のURL）',
 'upload_source_file' => '（あなたのコンピューター上のファイル）',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'この特別ページではすべてのアップロードされたファイルの一覧を表示します。
 
 ソートのデフォルトでは新しい順です。ヘッダのクリックでソート順と種類を変更できます。',
@@ -1386,7 +1386,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'imagelist_size'        => 'サイズ（バイト）',
 'imagelist_description' => '概要',
 
-# Image description page
+# File description page
 'filehist'                       => 'ファイルの履歴',
 'filehist-help'                  => '過去の版のファイルを参照するには、日付/時刻の列にあるリンクをクリックしてください。',
 'filehist-deleteall'             => '全て削除',
@@ -2359,7 +2359,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'show-big-image'       => '高解像度での画像',
 'show-big-image-thumb' => '<small>このプレビューのサイズ: $1 × $2 pixels</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => '新規画像展示室',
 'imagelisttext'         => "'''$1''' 個のファイルを $2 に表示しています",
 'newimages-summary'     => 'この特別ページでは最近、アップロードされたファイルを表示します。',

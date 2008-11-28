@@ -1254,7 +1254,7 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'upload_directory_read_only'  => "Llika sirwiqqa manam atinchu churkuna hallch'aman ($1) qillqayta.",
 'uploaderror'                 => 'Willañiqita churkunayaptiyki pantasqam tukurqan',
 'uploadtext'                  => "Willañiqita churkunaykipaqqa kay qatiqpi kaq hunt'ana p'anqata llamk'achiy.
-Churkusqaña rikchakunatataq qhawanaykipaq icha maskanaykipaqqa [[Special:ImageList|rikchakuna p'anqaman]] riy. Churkusqakunata [[Special:Log/upload|churkuy hallch'apim]], qullusqakunatataq [[Special:Log/delete|qulluy hallch'apim]] rikunki.
+Churkusqaña rikchakunatataq qhawanaykipaq icha maskanaykipaqqa [[Special:FileList|rikchakuna p'anqaman]] riy. Churkusqakunata [[Special:Log/upload|churkuy hallch'apim]], qullusqakunatataq [[Special:Log/delete|qulluy hallch'apim]] rikunki.
 
 Rikchata huk p'anqaman ch'aqtanaykipaqqa kay hunt'ana p'anqapi t'inkita llamk'achiy:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Willañiqi.jpg]]</nowiki></tt>''', willañiqip hunt'a musuqchasqan llamk'achinapaq
@@ -1265,7 +1265,7 @@ Rikchata huk p'anqaman ch'aqtanaykipaqqa kay hunt'ana p'anqapi t'inkita llamk'ac
 'upload-prohibited'           => 'Mana saqillasqa willañiqi layakuna: $1.',
 'uploadlog'                   => "churkuy hallch'a",
 'uploadlogpage'               => 'Churkusqa willañiqikuna',
-'uploadlogpagetext'           => 'Kay qatiqpiqa ñaqha willañiqi churkusqakunam. [[Special:NewImages|Musuq willañiqikunayuq suyu-suyuta]] qhaway rikchachakunata rikunaykipaq.',
+'uploadlogpagetext'           => 'Kay qatiqpiqa ñaqha willañiqi churkusqakunam. [[Special:NewFiles|Musuq willañiqikunayuq suyu-suyuta]] qhaway rikchachakunata rikunaykipaq.',
 'filename'                    => 'Willañiqip sutin',
 'filedesc'                    => 'Pisichay',
 'fileuploadsummary'           => "T'iktu:",
@@ -1302,8 +1302,8 @@ Ama hina kaspa, huk sutita akllay.',
 Llanchisqa willañiqi qallariy chhikan kikin rikchaman kaqlla kaptinqa, huk rikchachata churkunaykiqa manam tiyanchu.",
 'file-thumbnail-no'           => "Willañiqip sutinqa <strong><tt>$1</tt></strong> nisqawanmi qallarin. Ancha uchuylla rikchamanmi rikch'akun <i>(thumbnail)</i>.
 Kay churkunayki rikcha hunt'a chhikan kayniyuq kaptinqa, chay hunt'atam churkuy, manataq hinaptinqa willañiqip sutinta hukchay.",
-'fileexists-forbidden'        => 'Kay sutiyuq willañiqiqa kachkanñam. Ama hina kaspa, willañiqip sutinta hukchaspa musuqmanta churkuy. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => "Kay sutiyuq willañiqiqa kachkañam rakinakusqa willañiqi qullqapi. Ama hina kaspa, churkuyta munaspaykiraq, ñawpaq p'anqaman kutispa willañiqiykita huk sutiwan churkuy. [[Image:$1|thumb|center|$1]]",
+'fileexists-forbidden'        => 'Kay sutiyuq willañiqiqa kachkanñam. Ama hina kaspa, willañiqip sutinta hukchaspa musuqmanta churkuy. [[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => "Kay sutiyuq willañiqiqa kachkañam rakinakusqa willañiqi qullqapi. Ama hina kaspa, churkuyta munaspaykiraq, ñawpaq p'anqaman kutispa willañiqiykita huk sutiwan churkuy. [[File:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => 'Kay willañiqiqa kay qatiq {{PLURAL:$1|willañiqip|willañiqikunap}} iskaychasqanmi:',
 'file-deleted-duplicate'      => 'Kay hinalla ([[$1]]) willañiqiña qullusqam karqa. Qhawariy imarayku qullusqa karqa, manaraq musuqmanta churkuykachaspa.',
 'successfulupload'            => 'Aypalla churkusqañam',
@@ -1346,7 +1346,7 @@ Kay qatiqpiqa willañiqimanta qulluy hallch'atam rikunki:",
 'upload_source_url'  => ' (allin, sapsi chayanalla URL tiyay)',
 'upload_source_file' => ' (antañiqiqniykipi willañiqi)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => "Kay sapaq p'anqapiqa tukuy churkusqa willañiqikunatam rikunki.
 Kikinmantaqa ñaqha churkusqa willañiqikunatam sutisuyup patanpi rikunki.
 Wachup umanpi ñit'ispaqa allichaytam hukchanki.",
@@ -1359,7 +1359,7 @@ Wachup umanpi ñit'ispaqa allichaytam hukchanki.",
 'imagelist_size'        => 'Hatun kay',
 'imagelist_description' => "T'iktuna",
 
-# Image description page
+# File description page
 'filehist'                       => 'Willañiqip wiñay kawsaynin',
 'filehist-help'                  => "P'unchaw/pacha nisqapi ñit'iy chaypacha willañiqi kachkasqata qhawanaykipaq.",
 'filehist-deleteall'             => 'tukuyta qulluy',
@@ -2328,7 +2328,7 @@ $1",
 'show-big-image'       => 'Qallariy huyaku',
 'show-big-image-thumb' => '<small>Kay ñawpaq qhawariypa chhikan kaynin: $1 × $2 iñu</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Musuq rikchakunap suyu-suyun',
 'imagelisttext'         => "Kay qatiqpiqa '''$1''' {{PLURAL:$1|rikchatam|rikchakunatam}} rikunki, $2-kama ñiqichasqa.",
 'newimages-summary'     => "Kay sapaq p'anqapiqa ñaqha churkusqa willañiqikunatam rikunki.",

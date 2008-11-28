@@ -624,7 +624,7 @@ Sytene, wo zu dyre [[Special:Watchlist|Beobachtigslischte]] ghöre, erschyne '''
 'upload'            => 'Datei uffelade',
 'uploadbtn'         => 'Bild lokal ufelade',
 'uploadnologintext' => 'Sie müssen [[Special:UserLogin|angemeldet sein]], um Dateien hochladen zu können.',
-'uploadtext'        => "Bruuche Si sell Formular unte go Dateie uffelade. Zuem aaluege odr fruener uffegladeni Bilder go sueche lueg uff de [[Special:ImageList|Lischte vo uffegladene Dateie]], Uffeladige un Löschige sin au protokolliert uff [[Special:Log/upload|Uffeladige Protokoll]].
+'uploadtext'        => "Bruuche Si sell Formular unte go Dateie uffelade. Zuem aaluege odr fruener uffegladeni Bilder go sueche lueg uff de [[Special:FileList|Lischte vo uffegladene Dateie]], Uffeladige un Löschige sin au protokolliert uff [[Special:Log/upload|Uffeladige Protokoll]].
 
 Go e Datei odr en Bild innere Syte iizbaue schriibe Si eifach ane:
 * '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:file.jpg]]</nowiki>'''
@@ -635,10 +635,10 @@ go direkt e Gleich uff d Datei z'mache.",
 'uploadlogpage'     => 'Ufegladnigs-Logbuech',
 'uploadedimage'     => 'het „[[$1]]“ ufeglade',
 
-# Special:ImageList
+# Special:FileList
 'imagelist' => 'Lischte vo Bilder',
 
-# Image description page
+# File description page
 'filehist'                  => 'Dateiversione',
 'filehist-help'             => "Klick uf'ne Zytpunkt für azzeige, wie's denn het usgseh.",
 'filehist-current'          => 'aktuell',
@@ -1073,7 +1073,7 @@ sollte umgehend ein Administrator informiert werden!',
 'show-big-image'       => 'Originalgrößi',
 'show-big-image-thumb' => '<small>Größi vo dere Vorschou: $1 × $2 Pixel</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'     => 'Gallery vo noie Bilder',
 'imagelisttext' => "Hie isch e Lischte vo '''$1''' {{PLURAL:$1|Datei|Dateie}}, sortiert $2.",
 'ilsubmit'      => 'Suech',

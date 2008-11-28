@@ -1427,7 +1427,7 @@ Primijetite da uporaba navigacijskih poveznica resetira vaše izbore u koloni.',
 'upload_directory_read_only'  => 'Server ne može pisati u direktorij za postavljanje ($1).',
 'uploaderror'                 => 'Pogreška kod postavljanja',
 'uploadtext'                  => "Ovaj obrazac služi za postavljanje slika. 
-Za pregledavanje i pretraživanje već postavljenih slika vidi [[Special:ImageList|popis postavljenih datoteka]]. Postavljanja i brisanja bilježe se i u [[Special:Log|evidenciji]].
+Za pregledavanje i pretraživanje već postavljenih slika vidi [[Special:FileList|popis postavljenih datoteka]]. Postavljanja i brisanja bilježe se i u [[Special:Log|evidenciji]].
 
 Da biste na stranicu stavili sliku, koristite poveznice tipa
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Datoteka.jpg]]</nowiki></tt>''' za punu verziju datoteke
@@ -1470,9 +1470,9 @@ Ukoliko je ta datoteka ista kao i ova koju ste upravo pokušali snimiti, samo u 
 'file-thumbnail-no'           => 'Ime datoteke počinje s <strong><tt>$1</tt></strong>.
 Čini se da je to slika smanjene veličine <i>(minijatura)</i>.
 Ukoliko imate ovu sliku u punoj razlučljivosti (rezoluciji) postavite tu sliku, u protivnom, molimo promijenite ime datoteke.',
-'fileexists-forbidden'        => 'Datoteka s ovim imenom već postoji; molim postavite ju pod drugim imenom. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Datoteka s ovim imenom već postoji; molim postavite ju pod drugim imenom. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Datoteka s ovim imenom već postoji u središnjem poslužitelju datoteka. 
-Ako još uvijek želite postaviti svoju datoteku, idite nazad i postavite ju pod drugim imenom. [[Image:$1|thumb|center|$1]]',
+Ako još uvijek želite postaviti svoju datoteku, idite nazad i postavite ju pod drugim imenom. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Ova datoteka je duplikat {{PLURAL:$1|sljedeće datoteke|sljedećih datoteka}}:',
 'successfulupload'            => 'Postavljanje uspješno.',
 'uploadwarning'               => 'Upozorenje kod postavljanja',
@@ -1516,7 +1516,7 @@ Ukoliko se problem ponovi, javite to [[Special:ListUsers/sysop|administratoru]].
 'upload_source_url'  => ' (valjani, javno dostupni URL)',
 'upload_source_file' => ' (datoteka na vašem računalu)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Ova posebna stranica pokazuje sve postavljene datoteke.
 Na vrhu popisa se nalaze najnovije postavljene datoteke.
 Poredak datoteka mijenja se pritiskom na naslov stupca.',
@@ -1529,7 +1529,7 @@ Poredak datoteka mijenja se pritiskom na naslov stupca.',
 'imagelist_size'        => 'Veličina (u bajtovima)',
 'imagelist_description' => 'Opis',
 
-# Image description page
+# File description page
 'filehist'                       => 'Povijest datoteke',
 'filehist-help'                  => 'Kliknite na datum/vrijeme kako biste vidjeli datoteku kakva je tada bila.',
 'filehist-deleteall'             => 'izbriši sve',
@@ -2521,7 +2521,7 @@ $1',
 'show-big-image'       => 'Vidi sliku u punoj veličini (rezoluciji)',
 'show-big-image-thumb' => '<small>Veličina pretpregleda: $1 × $2 piksela</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Galerija novih datoteka',
 'imagelisttext'         => 'Ispod je popis {{PLURAL:$1|$1 slike|$1 slike|$1 slika}} složen $2.',
 'newimages-summary'     => 'Ova posebna stranica pokazuje zadnje nedavno postavljene datoteke.',

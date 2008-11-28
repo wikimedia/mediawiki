@@ -821,7 +821,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'uploadnologin'               => 'ገና አልገቡም',
 'uploadnologintext'           => 'ፋይል ለመላክ አስቀድሞ [[Special:UserLogin|መግባት]] ያስፈልግዎታል።',
 'uploaderror'                 => 'የመላክ ስሕተት',
-'uploadtext'                  => "በዚህ ማመልከቻ ላይ ፋይል ለመላክ ይችላሉ። ቀድሞ የተላኩት ስዕሎች [[Special:ImageList|በፋይል / ሥዕሎች ዝርዝር]] ናቸው፤ ከዚህ በላይ የሚጨመረው ፋይል ሁሉ [[Special:Log/upload|በፋይሎች መዝገብ]] ይዘረዝራሉ።
+'uploadtext'                  => "በዚህ ማመልከቻ ላይ ፋይል ለመላክ ይችላሉ። ቀድሞ የተላኩት ስዕሎች [[Special:FileList|በፋይል / ሥዕሎች ዝርዝር]] ናቸው፤ ከዚህ በላይ የሚጨመረው ፋይል ሁሉ [[Special:Log/upload|በፋይሎች መዝገብ]] ይዘረዝራሉ።
 
 ስዕልዎ በጽሑፍ እንዲታይ '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Filename.jpg]]</nowiki>''' ወይም
 '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Filename.png|thumb|ሌላ ጽሑፍ]]</nowiki>''' በሚመስል መልክ ይጠቅሙ።",
@@ -858,8 +858,8 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'fileexists-thumb'            => "<center>'''የሚኖር ፋይል'''</center>",
 'fileexists-thumbnail-yes'    => 'ፋይሉ የተቀነሰ መጠን ያለበት ስዕል <i>(ናሙና)</i> እንደ ሆነ ይመስላል። እባክዎ ፋይሉን <strong><tt>$1</tt></strong> ይመለከቱ።<br /> ያው ፋይል ለዚሁ ፋይል አንድ አይነት በኦሪጂናሉ መጠን ቢሆን ኖሮ፣ ተጨማሪ ናሙና መላክ አያስፈልግም።',
 'file-thumbnail-no'           => 'የፋይሉ ስም በ<strong><tt>$1</tt></strong> ይጀመራል። የተቀነሰ መጠን ያለበት ስዕል <i>(ናሙና)</i> እንደ ሆነ ይመስላል። ይህን ስዕል በሙሉ ማጉላት ካለዎ፣ ይህን ይላኩ፤ አለዚያ እባክዎ የፋይሉን ስም ይቀይሩ።',
-'fileexists-forbidden'        => 'በዚህ ስም የሚኖር ፋይል ገና አለ፤ እባክዎ ተመልሰው ይህን ፋይል በአዲስ ስም ስር ይልኩት። [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'ይህ ስም ያለበት ፋይል አሁን በጋራ ፋይል ምንጭ ይኖራል፤ እባክዎ ተመልሰው ፋይሉን በሌላ ስም ስር ይላኩት። [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'በዚህ ስም የሚኖር ፋይል ገና አለ፤ እባክዎ ተመልሰው ይህን ፋይል በአዲስ ስም ስር ይልኩት። [[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'ይህ ስም ያለበት ፋይል አሁን በጋራ ፋይል ምንጭ ይኖራል፤ እባክዎ ተመልሰው ፋይሉን በሌላ ስም ስር ይላኩት። [[File:$1|thumb|center|$1]]',
 'successfulupload'            => 'መላኩ ተከናወነ',
 'uploadwarning'               => 'የመላክ ማስጠንቀቂያ',
 'savefile'                    => 'ፋይሉ ለመቆጠብ',
@@ -894,7 +894,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'upload_source_url'  => ' (ትክክለኛ፣ በግልጽ የሚገኝ URL)',
 'upload_source_file' => ' (በኮምፒውተርዎ ላይ ያለበት ፋይል)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist_search_for'  => 'ለMedia ፋይል ስም ፍለጋ፦',
 'imgfile'               => 'ፋይሉ',
 'imagelist'             => 'የፋይል / ሥዕሎች ዝርዝር',
@@ -904,7 +904,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'imagelist_size'        => 'መጠን (byte)',
 'imagelist_description' => 'ማጠቃለያ',
 
-# Image description page
+# File description page
 'filehist'                  => 'የፋይሉ ታሪክ',
 'filehist-help'             => 'የቀድሞው ዕትም ካለ ቀን/ሰዓቱን በመጫን መመልከት ይቻላል።',
 'filehist-deleteall'        => 'ሁሉን ለማጥፋት',
@@ -1654,7 +1654,7 @@ $1',
 'show-big-image'       => 'በሙሉ ጒልህነት ለመመልከት',
 'show-big-image-thumb' => '<small>የዚህ ናሙና ቅጂ ክልል፦ $1 × $2 ፒክሰል</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'የአዳዲስ ሥዕሎች ማሳያ አዳራሽ',
 'imagelisttext'         => '$1 የተጨመሩ ሥእሎች ወይም ፋይሎች ከታች ይዘረዝራሉ ($2)።',
 'showhidebots'          => '(«bots» $1)',

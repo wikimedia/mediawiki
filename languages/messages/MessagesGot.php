@@ -285,11 +285,11 @@ $messages = array(
 'uploadedimage'   => 'ushlaþiþ "[[$1]]"',
 'watchthisupload' => 'Witan so seido',
 
-# Special:ImageList
+# Special:FileList
 'imgfile'   => 'Feilans',
 'imagelist' => 'Feilans tala',
 
-# Image description page
+# File description page
 'filehist'            => 'Feilans áiris',
 'filehist-current'    => 'nu',
 'filehist-datetime'   => 'Ƕeila',
@@ -471,7 +471,7 @@ $messages = array(
 # Media information
 'show-big-image' => 'Fullis wahstus',
 
-# Special:NewImages
+# Special:NewFiles
 'ilsubmit' => 'Sokeiþ',
 
 # Metadata

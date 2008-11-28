@@ -529,10 +529,10 @@ $messages = array(
 'uploadedimage'   => 'আপলোডকরানি অইল "[[$1]]"',
 'watchthisupload' => 'পাতাএহান খিয়ালে থ',
 
-# Special:ImageList
+# Special:FileList
 'imagelist' => 'ছবির তালিকা',
 
-# Image description page
+# File description page
 'filehist'                  => 'ফাইলর ইতিহাস',
 'filehist-help'             => 'দিন/সময়-র গজে যাতিলে ঔ খেন্তাম পেয়া হঙিসে ফাইলগ চ পারতেই।',
 'filehist-current'          => 'এপাগা',
@@ -860,7 +860,7 @@ $messages = array(
 'show-big-image'       => 'পুল্লাপ রিজলিউশন',
 'show-big-image-thumb' => '<small>আগচা হানর সাইজহান: $1 × $2 পিক্সেলস</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages' => 'নুৱা ফাইলর গ্যালারিগ',
 'ilsubmit'  => 'বিসারা',
 'bydate'    => 'তারিখর সিজিলন',

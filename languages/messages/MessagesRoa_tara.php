@@ -839,7 +839,7 @@ Pàggene sus 'a [[Special:Watchlist|le Pàggene condrollete]] sonde in '''grasce
 'license-nopreview'  => "(L'andeprime non g'è disponibbile)",
 'upload_source_file' => " ('nu fail sus a 'u combiuter tue)",
 
-# Special:ImageList
+# Special:FileList
 'imgfile'               => 'file',
 'imagelist'             => 'Liste de le fail',
 'imagelist_date'        => 'Sciurne',
@@ -848,7 +848,7 @@ Pàggene sus 'a [[Special:Watchlist|le Pàggene condrollete]] sonde in '''grasce
 'imagelist_size'        => 'Dimenzione',
 'imagelist_description' => 'Descrizione',
 
-# Image description page
+# File description page
 'filehist'                      => 'cunde',
 'filehist-help'                 => "Cazze sus 'na date/orarie pe vedè 'u fail a cumme asseva jndr'à quidde timbe.",
 'filehist-deleteall'            => 'scangille tutte',
@@ -1293,7 +1293,7 @@ $1",
 'show-big-image'       => 'Risoluzione chiena chiena',
 'show-big-image-thumb' => '<small>Dimenziune de sta andeprime: $1 × $2 pixels</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'        => 'Gallerie de le fail nuève',
 'newimages-legend' => 'Filtre',
 'newimages-label'  => "Nome d'u fail (o 'nu stuezze de jidde):",

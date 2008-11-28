@@ -1223,7 +1223,7 @@ Mèrk op dat hun indexe van {{SITENAME}} content e bietje gedatierd kint zien.',
 'upload_directory_read_only'  => 'De webserver kin neet sjrieve in de uploadmap ($1).',
 'uploaderror'                 => "fout in 't uploade",
 'uploadtext'                  => "Gebroek 't óngersjtaonde formuleer óm besjtande op te laje.
-Óm ierder opgelaje besjtande te bekieke of te zeuke, gank nao de [[Special:ImageList|lies van opgelaje besjtande]].
+Óm ierder opgelaje besjtande te bekieke of te zeuke, gank nao de [[Special:FileList|lies van opgelaje besjtande]].
 Uploads en verwiederinge waere ouch biegehauwte in 't [[Special:Log/upload|uploadlogbook]].
 
 Gebroek óm 'n plaetje of 'n besjtand in 'n pazjena op te numme 'ne link in de vörm:
@@ -1268,8 +1268,8 @@ Lèver 'ne angere naam te keze.",
 Es 't gecontroleerde bestand dezelfde afbeilding van oorspronkelike grootte is, is 't neet noodzakelik 'ne extra thumbnail te uploade.",
 'file-thumbnail-no'           => "De bestandsnaam begint met <strong><tt>$1</tt></strong>. 't Liek 'n verkleinde afbeelding te zeen <i>(thumbnail)</i>. Esse deze afbeelding in volledige resolutie höbs, upload dae afbeelding dan. Wiezig anges estebleef de bestandsnaam.",
 'fileexists-forbidden'        => "d'r Bestuit al 'n bestand met deze naam. Upload dien bestand onger 'ne angere naam.
-[[Image:$1|thumb|center|$1]]",
-'fileexists-shared-forbidden' => "d'r Bestuit al 'n bestand met deze naam bie de gedeilde bestenj. Upload 't bestand onger  'ne angere naam. [[Image:$1|thumb|center|$1]]",
+[[File:$1|thumb|center|$1]]",
+'fileexists-shared-forbidden' => "d'r Bestuit al 'n bestand met deze naam bie de gedeilde bestenj. Upload 't bestand onger  'ne angere naam. [[File:$1|thumb|center|$1]]",
 'successfulupload'            => 'De upload is geluk',
 'uploadwarning'               => 'Upload waarsjuwing',
 'savefile'                    => 'Bestand opsjlaon',
@@ -1310,7 +1310,7 @@ Lèver zeker te zeen detse gesjik bös om door te gaon met 't uploade van dit be
 'upload_source_url'  => " ('ne geldige, publiek toegankelike URL)",
 'upload_source_file' => " ('n bestand op diene computer)",
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => "Op dees speciaal pazjena zeen alle toegevoogde bestenj te bekieke.
 Standerd waere de lets toegevoogde bestenj baovenaan de lies weergegaeve.
 Klikke op 'ne kolomkop verangert de sortering.",
@@ -1323,7 +1323,7 @@ Klikke op 'ne kolomkop verangert de sortering.",
 'imagelist_size'        => 'Gruutde (bytes)',
 'imagelist_description' => 'Besjrieving',
 
-# Image description page
+# File description page
 'filehist'                       => 'Bestandsgesjiedenis',
 'filehist-help'                  => "Klik op 'ne datum/tied om 't besjtandj te zeen wie 't destieds waor.",
 'filehist-deleteall'             => 'wis alles',
@@ -2190,7 +2190,7 @@ $1",
 'show-big-image'       => 'Vol resolutie',
 'show-big-image-thumb' => '<small>Gruutde van deze afbeilding: $1 × $2 pixels</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Nuuj plaetjes',
 'imagelisttext'         => "Hie volg 'n lies mit $1 {{PLURAL:$1|aafbeilding|aafbeildinge}} geordend $2.",
 'newimages-summary'     => 'Op dees speciaal pazjena waere de meis recènt toegevoogde bestenj weergegaeve.',

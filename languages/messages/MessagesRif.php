@@ -353,10 +353,10 @@ Tasniwin di [[Special:Watchlist|Tabdart uḥṭṭu inec]] d '''tizurarin'''.",
 'uploadedimage'     => 'itwazdem-d "[[$1]]"',
 'watchthisupload'   => 'Xm tasbtirt a',
 
-# Special:ImageList
+# Special:FileList
 'imagelist' => 'Tabdart n ifayluten',
 
-# Image description page
+# File description page
 'filehist'                  => 'Amzruy n ufaylu',
 'filehist-help'             => 'Tka di date/time bac ad tẓerd afaylu mamec ja d-itban di Lwaqt a .',
 'filehist-deleteone'        => 'sfaḍ',
@@ -678,7 +678,7 @@ snaqlitent s ufus.'''",
 'show-big-image'       => 'Resolution ameqran',
 'show-big-image-thumb' => '<small>Tiddi n uzar-ascan: $1 × $2 pixel </small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages' => 'Amewlaf n ifayluten imaynuten',
 'ilsubmit'  => 'Tarzzut',
 

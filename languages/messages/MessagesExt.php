@@ -934,7 +934,7 @@ Las páhinas de la tu [[Special:Watchlist|lista e seguimientu]] están en '''neg
 pa empuntal archivus.',
 'upload_directory_read_only'  => "Nu puei escrebilsi nel diretoriu d'empuntu ($1) el sirviol.",
 'uploaderror'                 => 'Marru d´empuntu',
-'uploadtext'                  => "Gasta el hormuláriu d'embahu pa empuntal archivus, pa vel u landeal imahin ya empuntás vaiti pala [[Special:ImageList|lista d'archivus empuntaus]]. Tantu los archivus empuntaus cumu los esborraus se rustrin nel [[Special:Log/upload|rustrihu d'empuntu]].
+'uploadtext'                  => "Gasta el hormuláriu d'embahu pa empuntal archivus, pa vel u landeal imahin ya empuntás vaiti pala [[Special:FileList|lista d'archivus empuntaus]]. Tantu los archivus empuntaus cumu los esborraus se rustrin nel [[Special:Log/upload|rustrihu d'empuntu]].
 
 P'añiil la imahin nuna páhina, gasta el atihu el hormuláriu
 '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki>''',
@@ -975,8 +975,8 @@ Pol favol, lihi un nombri deferenti.',
 Nel chascu en que huera la mesm imahin (inque seya en grandi) nu es mestel qu'empuntis el tu archivu.",
 'file-thumbnail-no'           => 'El nombri el archivu esmiença pol <strong><tt>$1</tt></strong>. Paci sel una imahin pequeña <i>(cuairu)</i>.
 Si tiinis la imahin cola resolución orihinal, empúntala, si nu, pol favol, chamba el nombri del archivu.',
-'fileexists-forbidden'        => 'Ya desisti un archivu con esti nombri; pol favol, güervi p´atrás i empunta el archivu con otru nombri. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => "Ya desisti un archivu con esti nombri; pol favol, vaiti p'atrás i empunta el archivu con otru nombri. [[Image:$1|thumb|center|$1]]",
+'fileexists-forbidden'        => 'Ya desisti un archivu con esti nombri; pol favol, güervi p´atrás i empunta el archivu con otru nombri. [[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => "Ya desisti un archivu con esti nombri; pol favol, vaiti p'atrás i empunta el archivu con otru nombri. [[File:$1|thumb|center|$1]]",
 'successfulupload'            => 'Empuntu satisfatoriu',
 'uploadwarning'               => 'Avisu d´empuntu',
 'savefile'                    => 'Emburacal archivu',
@@ -1017,7 +1017,7 @@ Velaquí el antigu rustrihu d´esborrau pa esti archivu:",
 'upload_source_url'  => ' (una URL vália i acesibri)',
 'upload_source_file' => ' (un archivu nel tu ordinaol)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Esta páhina especial muestra tolos archivus empuntaus.
 Pol defetu los úrtimus archivus empuntaus se muestran ena parti arta la lista.
 Pursa nel entítulu la coluna pa chambal el ordin.',
@@ -1030,7 +1030,7 @@ Pursa nel entítulu la coluna pa chambal el ordin.',
 'imagelist_size'        => 'Grandol',
 'imagelist_description' => 'Descrición',
 
-# Image description page
+# File description page
 'filehist'                  => 'Estorial el archivu',
 'filehist-help'             => 'Pursa nuna fecha/ora pa vel cumu era el archivu nesi momentu.',
 'filehist-deleteall'        => 'esborral tós',
@@ -1854,7 +1854,7 @@ $1',
 'show-big-image'       => 'Resolución máisima',
 'show-big-image-thumb' => '<small>Grandol al previsoreal: $1 × $2 pixelis</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Correol d´archivus nuevus',
 'imagelisttext'         => "Embahu ai una lista con '''$1''' {{PLURAL:$1|archivu|archivus}} ordenaus $2.",
 'noimages'              => 'Nu ai ná pa vel.',

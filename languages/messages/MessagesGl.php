@@ -1310,7 +1310,7 @@ As páxinas da súa [[Special:Watchlist|listaxe de vixilancia]] aparecen en '''n
 'upload_directory_read_only'  => 'Non se pode escribir no directorio de subida ($1) do servidor web.',
 'uploaderror'                 => 'Erro ao cargar',
 'uploadtext'                  => "Use o formulario de embaixo para cargar ficheiros.
-Para ver ou procurar imaxes subidas con anterioridade vaia á [[Special:ImageList|listaxe de imaxes]]; os envíos tamén se rexistran no [[Special:Log/upload|rexistro de carga]], e as eliminacións no [[Special:Log/delete|rexistro de borrado]].
+Para ver ou procurar imaxes subidas con anterioridade vaia á [[Special:FileList|listaxe de imaxes]]; os envíos tamén se rexistran no [[Special:Log/upload|rexistro de carga]], e as eliminacións no [[Special:Log/delete|rexistro de borrado]].
 
 Para incluír un ficheiro nunha páxina, use unha ligazón do seguinte xeito:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' para usar a versión completa do ficheiro
@@ -1322,7 +1322,7 @@ Para incluír un ficheiro nunha páxina, use unha ligazón do seguinte xeito:
 'uploadlog'                   => 'rexistro de cargas',
 'uploadlogpage'               => 'Rexistro de cargas',
 'uploadlogpagetext'           => 'Embaixo hai unha lista cos ficheiros subidos máis recentemente.
-Vexa a [[Special:NewImages|galería de imaxes novas]] para unha visión máis xeral.',
+Vexa a [[Special:NewFiles|galería de imaxes novas]] para unha visión máis xeral.',
 'filename'                    => 'Nome do ficheiro',
 'filedesc'                    => 'Resumo',
 'fileuploadsummary'           => 'Descrición:',
@@ -1356,10 +1356,10 @@ Se o ficheiro seleccionado é a mesma imaxe de tamaño orixinal non é preciso e
 'file-thumbnail-no'           => 'O nome do ficheiro comeza por <strong><tt>$1</tt></strong>.
 Parece tratarse dunha imaxe de tamaño reducido <i>(miniatura)</i>.
 Se dispón dunha versión desta imaxe de maior resolución, se non, múdelle o nome ao ficheiro.',
-'fileexists-forbidden'        => 'Xa hai un ficheiro co mesmo nome; por favor retroceda e cargue o ficheiro cun novo nome. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Xa hai un ficheiro co mesmo nome; por favor retroceda e cargue o ficheiro cun novo nome. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Xa existe un ficheiro con este nome no depósito de ficheiros compartidos.
 Se aínda quere cargar o seu ficheiro, por favor, volte atrás e use outro nome.
-[[Image:$1|thumb|center|$1]]',
+[[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Este ficheiro é un duplicado {{PLURAL:$1|do seguinte|dos seguintes}}:',
 'file-deleted-duplicate'      => 'Un ficheiro idéntico a este ("[[$1]]") foi borrado previamente. Debería comprobar o historial de borrados do ficheiro antes de proceder a cargalo de novo.',
 'successfulupload'            => 'Carga con éxito',
@@ -1422,7 +1422,7 @@ Tamén pode reintentalo cando haxa menos actividade.',
 'upload_source_url'  => ' (un URL válido, accesíbel publicamente)',
 'upload_source_file' => ' (un ficheiro no seu ordenador)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Esta páxina especial amosa todos os ficheiros cargados.
 Por omisión, os ficheiros enviados máis recentemente aparecen no alto da listaxe.
 Premendo nunha cabeceira da columna cambia a ordenación.',
@@ -1435,7 +1435,7 @@ Premendo nunha cabeceira da columna cambia a ordenación.',
 'imagelist_size'        => 'Tamaño (bytes)',
 'imagelist_description' => 'Descrición',
 
-# Image description page
+# File description page
 'filehist'                       => 'Historial do ficheiro',
 'filehist-help'                  => 'Faga clic nunha data/hora para ver o ficheiro tal e como estaba nese momento.',
 'filehist-deleteall'             => 'borrar todo',
@@ -2429,7 +2429,7 @@ $1',
 'show-big-image'       => 'Imaxe na máxima resolución',
 'show-big-image-thumb' => '<small>Tamaño desta presentación da imaxe: $1 × $2 píxeles</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Galería de imaxes novas',
 'imagelisttext'         => "Abaixo amósase unha listaxe de '''$1''' {{PLURAL:$1|ficheiro|ficheiros}} ordenados $2.",
 'newimages-summary'     => 'Esta páxina especial amosa os ficheiros cargados máis recentemente.',

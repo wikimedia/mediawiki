@@ -910,7 +910,10 @@ $2',
 'prevn'                    => '$1 פריערדיגע',
 'nextn'                    => '$1 קומענדיגע',
 'viewprevnext'             => 'קוקט אויף ($1) ($2) ($3)',
+'searchmenu-legend'        => 'זוכן ברירות',
 'searchhelp-url'           => 'Help:אינהאַלט',
+'searchprofile-articles'   => 'אינהאלט בלעטער',
+'searchprofile-images'     => 'טעקעס',
 'search-result-size'       => '$1 ({{PLURAL:$2|איין ווארט|$2 ווערטער}})',
 'search-result-score'      => 'שייכותדיקייט: $1%',
 'search-redirect'          => '(ווײַטערפֿירן $1)',
@@ -969,8 +972,9 @@ $2',
 'timezonelegend'        => 'צייט זאנע',
 'localtime'             => 'לאקאלער צייט',
 'allowemail'            => 'ערלויבן אנדערע צו אײַך שיקן אימעילס',
+'prefs-searchoptions'   => 'ברירות פאר זוכן',
 'prefs-namespaces'      => 'נאמענטיילן',
-'defaultns'             => 'זוך אין דעם נעימספעיס ביי דיפאלט:',
+'defaultns'             => 'זוך אין דעם נאמענטייל אלס גרונט אויסקלייב:',
 'default'               => 'דיפאלט',
 'files'                 => 'טעקעס',
 
@@ -1019,6 +1023,9 @@ $2',
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|ענדערונג|$1 ענדערונגען}}',
 'recentchanges'                     => 'לעצטע ענדערונגען',
+'recentchanges-legend'              => 'ברירות פאר לעצטע ענדערונגען',
+'recentchangestext'                 => 'גיי נאך די לעצטע ענדערונגען צו דער וויקי אויף דעם בלאט.',
+'recentchanges-feed-description'    => 'גייט נאך די לעצטע ענדערונגען צו דער וויקי אין דעם בלאט.',
 'rcnote'                            => "אונטן {{PLURAL:$1|איז '''1''' ענדערונג|זײַנען די לעצטע '''$1''' ענדערונגען}} אין {{PLURAL:$2|דעם לעצטן טאג|די לעצטע $2 טעג}}, ביז $5, $4.",
 'rcnotefrom'                        => "פֿאלגנד זענען די ענדערונגען זײַט '''$2''' (ביז '''$1''')",
 'rclistfrom'                        => 'װײַז נײַע ענדערונגען זינט $1',
@@ -1065,7 +1072,7 @@ $2',
 'destfilename'    => 'ציל טעקע נאמען:',
 'watchthisupload' => 'פאס אויף דעם בלאט',
 
-# Special:ImageList
+# Special:FileList
 'imgfile'               => 'טעקע',
 'imagelist'             => 'טעקע ליסטע',
 'imagelist_date'        => 'דאטע',
@@ -1074,7 +1081,7 @@ $2',
 'imagelist_size'        => 'גרייס',
 'imagelist_description' => 'באַשרײַבונג',
 
-# Image description page
+# File description page
 'filehist'                       => 'היסטאריע פֿון דער טעקע',
 'filehist-help'                  => 'קליקט אויף א דאטע/צײַט צו זען דאס בילד אזוי ווי עס איז דעמאלסט געווען',
 'filehist-deleteall'             => 'אויסמעקן אלץ',
@@ -1307,6 +1314,7 @@ $2',
 'wlheader-enotif'   => '* אי-מעיל נאטיפיקאציע ערמעגליכט.',
 'watchlistcontains' => 'אייער אויפֿפאסונג ליסטע אנטהאלט {{PLURAL:$1|איין בלאט|$1 בלעטער}}.',
 'wlshowlast'        => "(ווײַזן די לעצטע $1 שעה'ן | $2 טעג | $3)",
+'watchlist-options' => 'אויפֿפאַסן ליסטע ברירות',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'אויפפאסענדונג…',
@@ -1320,7 +1328,7 @@ $2',
 'created'                      => 'באשאפן',
 'enotif_subject'               => 'דער בלאט $PAGETITLE אין {{grammar:תחילית|{{SITENAME}}}} $CHANGEDORCREATED דורך $PAGEEDITOR',
 'enotif_lastvisited'           => 'זעה $1 פאר אלע ענדערונגען זינט אייער לעצטער וויזיט.',
-'enotif_lastdiff'              => 'זעה $1 פאר די ענדערונג.',
+'enotif_lastdiff'              => 'זעט $1 פאר דער ענדערונג.',
 'enotif_anon_editor'           => 'אַנאנימער באַניצער $1',
 'enotif_body'                  => 'לכבוד $WATCHINGUSERNAME,
 
@@ -1405,6 +1413,9 @@ $NEWPAGE
 'protect-expiring'            => 'גייט אויס $1 (UTC)',
 'protect-cascade'             => 'שיץ בלעטער איינגעשלאסן אין דעם בלאט (קאסקאד שיץ)',
 'protect-cantedit'            => 'איר קען נישט ענדערן די שוץ ניוואען פֿון דעם בלאט, ווײַל איר האט נישט קיין רשות  צו רעדאקטירן אים.',
+'protect-othertime'           => 'אנדער צייט:',
+'protect-othertime-op'        => 'אנדער צײַט',
+'protect-expiry-options'      => 'שעה:1 hour,טאג:1 day,וואך:1 week,וואכן:2 weeks,חודש:1 month,דריי חדשים:3 months,זעקס חדשים:6 months,יאר:1 year,אייביג:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'ערלויבניש:',
 
 # Undelete
@@ -1725,7 +1736,7 @@ $NEWPAGE
 'show-big-image'       => 'בילד מיט דער גרעסטער רעזאלוציע',
 'show-big-image-thumb' => '<small>גרייס פון דער ווײַזונג: $1 × $2 פיקסעלן</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'גאַלעריע פֿון נײַע בילדער',
 'imagelisttext'         => 'פאלגנד א ליסטע פון {{PLURAL:$1|איין בילד|$1 בילדער}}, סארטירט $2:',
 'newimages-summary'     => 'דער באזונדערער בלאט ווײַזט די לעצטע ארויפגעלאדענע טעקעס',
@@ -1784,7 +1795,7 @@ $NEWPAGE
 'exif-exposuretime-format'      => '$1 סעק ($2)',
 'exif-fnumber'                  => 'נומער F',
 'exif-exposureprogram'          => 'אויפדעקונג פראגראם',
-'exif-aperturevalue'            => 'עפען',
+'exif-aperturevalue'            => 'עפֿן',
 'exif-brightnessvalue'          => 'אפענקייט',
 'exif-exposurebiasvalue'        => 'עקספאוזשער בייעס',
 'exif-flash'                    => 'פלעש',

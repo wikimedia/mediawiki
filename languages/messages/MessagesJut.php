@@ -507,10 +507,10 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'uploadlogpage' => 'Åplægnengslog',
 'uploadedimage' => 'Låĝde "[[$1]]" åp',
 
-# Special:ImageList
+# Special:FileList
 'imagelist' => 'Billetliste',
 
-# Image description page
+# File description page
 'filehist'                  => 'Billetskigt',
 'filehist-help'             => "Klik på'n dato/tid før at se den hersenenge åf gøret.",
 'filehist-current'          => 'nuværende',
@@ -827,7 +827,7 @@ navn du harst valgt er ekke gyldegt. Vælg et andet navn.',
 'show-big-image'       => 'Hersenenge i større åpløsnenge',
 'show-big-image-thumb' => '<small>Størrelse åf førhåndsvesnenge: $1 × $2 pixel</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages' => 'Liste ve de nyeste billeter',
 
 # Bad image list

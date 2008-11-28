@@ -1476,7 +1476,7 @@ list-style-position:outside; list-style-image:none;
 list-style-type:none\"><code>'''<nowiki>[[</nowiki>{{ns:media}}:'''''Esu hürt sich dat aan'''''.ogg]]'''</code></li></ul>
 Usführlich met alle Müjjelichkeite fings de dat bei de Hölp.
 Wann De jetz entschlosse bes, dat De et hee huhlade wells:
-* Aanluure, wat mer hee en de {{SITENAME}} ald han, kanns De en uns [[Special:ImageList|Liss med huhjelade Dateie]].
+* Aanluure, wat mer hee en de {{SITENAME}} ald han, kanns De en uns [[Special:FileList|Liss med huhjelade Dateie]].
 * Wenn De jet söke wells, eets ens nohluure wells, wat ald huhjelade, oder villeich widder fottjeschmesse wood, dat steiht em [[Special:Log/upload|Logboch vum Huhlade]].
 * Nohluure, wat fottjeschmesse wood, kanns De em [[Special:Log/delete|Logboch vum Sigge Fottschmie0e]].
 Esu, un jetz loss jonn:</div>
@@ -1487,7 +1487,7 @@ Esu, un jetz loss jonn:</div>
 'uploadlog'                   => 'LogBoch vum Dateie Huhlade',
 'uploadlogpage'               => 'Logboch met de huhjelade Dateie',
 'uploadlogpagetext'           => 'Hee sin de Neuste huhjelade Dateie opjeliss un wä dat jedon hät.
-(En de [[Special:NewImages|Jalleri met neu Dateie]] kriß De ene Övverbleck med Belldsche)',
+(En de [[Special:NewFiles|Jalleri met neu Dateie]] kriß De ene Övverbleck med Belldsche)',
 'filename'                    => 'Dä Name vun dä Datei',
 'filedesc'                    => 'Beschrievungstex un Zosammefassung',
 'fileuploadsummary'           => 'Beschrievungstex un Zosammefassung:',
@@ -1524,9 +1524,9 @@ Dat süühd uß, wi wann dat en Minni-Beldsche em Breefmarrke-Fommaat
 dofun häß, un don dat met singe Orjinaaljrüß huhlade, wann müjjelesch.
 Söns donn besser ene andere Dateiname ußsöke.',
 'fileexists-forbidden'        => 'Et jitt ald en Datei met däm Name.
-Jangk zeröck un lad se unger enem andere Name huh. [[Image:$1|thumb|center|$1]]',
+Jangk zeröck un lad se unger enem andere Name huh. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Et jitt ald en Datei met däm Name em jemeinsame Speicher:
-[[Image:$1|thumb|center|$1]]
+[[File:$1|thumb|center|$1]]
 Jangk zeröck un lad Ding Datei unger enem andere Name huh,
 wann De se noch han wells.',
 'file-exists-duplicate'       => 'Di Dattei hät dersellve Enhallt wi hee di {{PLURAL:$1|Datei|Dateie|}}:',
@@ -1588,7 +1588,7 @@ Velleich probees De et och zo en Zick, wo winnijer loss es.',
 'upload_source_url'  => ' (richtije öffentlije URL)',
 'upload_source_file' => ' (en Datei op Dingem Kompjuter)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => "Hee sin de huhjeladene Dateie opjelis. Et eetz wäde de zoletz huhjeladene Dateie aanjezeich. Wa'mer op de Övverschreff von ene Spalt klick, weed die Spalt sotteet, wa'mer norrens klick, weed de Reiejfolg ömjedrieht.",
 'imagelist_search_for'  => 'Sök noh däm Name vun däm Beld:',
 'imgfile'               => 'Datei',
@@ -1599,7 +1599,7 @@ Velleich probees De et och zo en Zick, wo winnijer loss es.',
 'imagelist_size'        => 'Byte',
 'imagelist_description' => 'Wat es op däm Beld drop?',
 
-# Image description page
+# File description page
 'filehist'                       => 'De Versione vun dä Datei',
 'filehist-help'                  => 'Di domohlije Version kriß De jezeich övver dä Link op em Dattum.',
 'filehist-deleteall'             => 'All Versione fottschmieße',
@@ -2653,7 +2653,7 @@ $1',
 'show-big-image'       => 'Jröößer Oplöösung',
 'show-big-image-thumb' => '<small>Di Vör-Aansich es $1 × $2 Pixelle jroß</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Belder, Tön, uew. als Jalerie',
 'imagelisttext'         => 'Hee küt en Liss vun <strong>$1</strong> Datei{{PLURAL:$1||e}}, zoteet $2.',
 'newimages-summary'     => 'Hee die Sigg zeig die zoletz huhjeladene Belder un Dateie aan.',

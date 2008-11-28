@@ -106,7 +106,7 @@ $messages = array(
 'upload'    => 'Файл сӧвтны',
 'uploadbtn' => 'Файл сӧвтны',
 
-# Image description page
+# File description page
 'filehist-datetime' => 'Кадпас/кад',
 'filehist-user'     => 'Вӧлысь',
 'filehist-comment'  => 'Пасйӧд',

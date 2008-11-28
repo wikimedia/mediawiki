@@ -247,10 +247,10 @@ $messages = array(
 'uploadedfiles'     => 'ފޮނުވިފައިވާ ފައިލުތައް',
 'uploadwarning'     => 'ފައިލުފޮނުއްވުމުގެ ކުރިން ދެވޭ އިންޒާރު',
 
-# Special:ImageList
+# Special:FileList
 'imagelist' => 'ފައިލުތަކުގެ ފިހުރިސްތު',
 
-# Image description page
+# File description page
 'imagelinks' => 'ފާލަންތައް',
 
 # Random page
@@ -369,7 +369,7 @@ $messages = array(
 'allmessagesdefault' => 'ކުރީގެ މަތަން',
 'allmessagescurrent' => 'މިހާރުގެ މަތަން',
 
-# Special:NewImages
+# Special:NewFiles
 'showhidebots' => '($1 ސެއްޓި)',
 'ilsubmit'     => 'ހޯއްދަވާ',
 

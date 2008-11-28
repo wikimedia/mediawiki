@@ -203,10 +203,10 @@ $messages = array(
 
 'license' => 'Лицензиялоо:',
 
-# Special:ImageList
+# Special:FileList
 'imagelist' => 'Файлдар тизмеси',
 
-# Image description page
+# File description page
 'imagelinks' => 'Шилтемелер',
 
 # Unused templates
@@ -302,7 +302,7 @@ $messages = array(
 # Browsing diffs
 'nextdiff' => 'Кийинки айырма →',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages' => 'Жаңы файлдардын галлереясы',
 'ilsubmit'  => 'Издөө',
 'bydate'    => 'Күнү боюнча',

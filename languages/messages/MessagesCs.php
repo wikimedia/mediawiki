@@ -1463,7 +1463,7 @@ $3',
 'upload_directory_missing'    => 'Adresář pro nahrávání souborů ($1) chybí a webový server ho nedokáže vytvořit.',
 'upload_directory_read_only'  => 'Do adresáře pro načítané soubory ($1) nemá webserver právo zápisu.',
 'uploaderror'                 => 'Při načítání došlo k chybě',
-'uploadtext'                  => "Níže uvedený formulář slouží k načtení souborů. Již načtené soubory si můžete prohlížet a hledat pomocí [[Special:ImageList|seznamu načtených souborů]], každé načtení se také zaznamenává do [[Special:Log/upload|knihy načtení]], smazání jsou v [[Special:Log/delete|knize smazaných stránek]].
+'uploadtext'                  => "Níže uvedený formulář slouží k načtení souborů. Již načtené soubory si můžete prohlížet a hledat pomocí [[Special:FileList|seznamu načtených souborů]], každé načtení se také zaznamenává do [[Special:Log/upload|knihy načtení]], smazání jsou v [[Special:Log/delete|knize smazaných stránek]].
 
 Pro vložení obrázku do stránky použijte jeden z následujících způsobů zápisu:
 * '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Soubor.jpg]]</nowiki></code>''' do stránky vloží celý obrázek,
@@ -1505,8 +1505,8 @@ Pokud je zmiňovaný soubor větší, ale jinak stejný, není potřeba zvláš�
 'file-thumbnail-no'           => 'Jméno souboru začíná na <strong><tt>$1</tt></strong>.
 Možná to je obrázek ve zmenšené velikosti <i>(náhled)</i>.
 Načtěte soubor v plném rozlišením, pokud je k dispozici, nebo změňte jméno souboru.',
-'fileexists-forbidden'        => 'Soubor s tímto názvem již existuje; vraťte se a zvolte jiný název. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Soubor s tímto názvem již existuje ve sdíleném úložišti. Pokud přesto chcete váš soubor načíst, vraťte se a zvolte jiný název. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Soubor s tímto názvem již existuje; vraťte se a zvolte jiný název. [[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Soubor s tímto názvem již existuje ve sdíleném úložišti. Pokud přesto chcete váš soubor načíst, vraťte se a zvolte jiný název. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Tento soubor je duplikát {{PLURAL:$1|následujícího souboru|následujících souborů}}:',
 'file-deleted-duplicate'      => 'Identický soubor k tomuto ([[$1]]) byl již dříve smazán. Před tím, než soubor znovu nahrajete, byste měli zkontrolovat záznamy o předchozím smazání.',
 'successfulupload'            => 'Načtení úspěšně provedeno!',
@@ -1563,7 +1563,7 @@ PICT # různé
 'upload_source_url'  => ' (platné, veřejně přístupné URL)',
 'upload_source_file' => ' (soubor na vašem počítači)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Tato speciální stránka zobrazuje všechny načtené soubory.
 Ve výchozím stavu je poslední načtený soubor nahoře.
 Kliknutím na hlavičku sloupce můžete změnit řazení.',
@@ -1576,7 +1576,7 @@ Kliknutím na hlavičku sloupce můžete změnit řazení.',
 'imagelist_size'        => 'Velikost (bajtů)',
 'imagelist_description' => 'Popis',
 
-# Image description page
+# File description page
 'filehist'                       => 'Historie souboru',
 'filehist-help'                  => 'Kliknutím na datum a čas se zobrazí tehdejší verze souboru.',
 'filehist-deleteall'             => 'smazat vše',
@@ -2548,7 +2548,7 @@ $1',
 'show-big-image'       => 'Obrázek ve vyšším rozlišení',
 'show-big-image-thumb' => '<small>Velikost tohoto náhledu je: $1 × $2 pixelů</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Galerie nových obrázků',
 'imagelisttext'         => "Níže je {{PLURAL:$1|jeden obrázek|seznam '''$1'''&nbsp;obrázků seřazených $2|seznam '''$1'''&nbsp;obrázků seřazených $2}}.",
 'newimages-summary'     => 'Na této speciální stránce se zobrazují poslední načtené soubory.',

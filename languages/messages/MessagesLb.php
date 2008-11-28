@@ -1257,7 +1257,7 @@ Säite vun [[Special:Watchlist|ärer Iwwerwaachungslëscht]] si '''fett''' gesch
 'upload_directory_read_only'  => 'De Webserver kann net an den Upload-Repertoire ($1) schreiwen.',
 'uploaderror'                 => 'Feeler bäim Eroplueden',
 'uploadtext'                  => "Benotzt dëse Formulair, fir nei Fichieren eropzelueden.
-Gitt op d'[[Special:ImageList|Lëscht vun den eropgeluedene Fichieren]], fir no Fichieren ze sichen déi virdrun eropgeluede goufen, Eropgeluedungen fannt dir an der [[Special:Log/upload|Lëscht vun den eropgeluedene Fichieren]], geläschte Fichieren am [[Special:Log/delete|Läschlog]].
+Gitt op d'[[Special:FileList|Lëscht vun den eropgeluedene Fichieren]], fir no Fichieren ze sichen déi virdrun eropgeluede goufen, Eropgeluedungen fannt dir an der [[Special:Log/upload|Lëscht vun den eropgeluedene Fichieren]], geläschte Fichieren am [[Special:Log/delete|Läschlog]].
 
 Fir e '''Bild''' op enger Säit zu benotzen, schreiwt aplaz vum Bild eng vun dëse Formelen:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fichier.jpg]]</nowiki></tt>''' fir déi ganz Versioun vum Fichier ze benotzen
@@ -1269,7 +1269,7 @@ Fir e '''Bild''' op enger Säit zu benotzen, schreiwt aplaz vum Bild eng vun dë
 'uploadlog'                   => 'Lëscht vun den eropgeluedene Fichieren',
 'uploadlogpage'               => 'Logbuch vum Eroplueden',
 'uploadlogpagetext'           => "Dëst ass d'Lëscht vun de rezente Fichieren déi eropgeluede goufen.
-Kuckt [[Special:NewImages|d'Gallerie vun de neie Fichieren]] wann Dir méi e visuellen Iwwerbléck wëllt",
+Kuckt [[Special:NewFiles|d'Gallerie vun de neie Fichieren]] wann Dir méi e visuellen Iwwerbléck wëllt",
 'filename'                    => 'Numm vum Fichier',
 'filedesc'                    => 'Resumé',
 'fileuploadsummary'           => 'Resumé/Quell:',
@@ -1305,9 +1305,9 @@ Wann et sech ëm d'Bild an de Originalgréisst handelt, da brauch kee separat Bi
 'file-thumbnail-no'           => 'Den Numm vum Fichier fänkt mat <strong><tt>$1</tt></strong> unn.
 Da däit drop hin dat et e Bild vu reduzéierter Gréisst <i>(thumbnail)</i> ass.
 Wann Dir dat Bild a méi enger grousser Opléisung hutt, da lued dëst erop, soss ännert den Numm vum Fichier w.e.g.',
-'fileexists-forbidden'        => "Et gëtt schonn e Fichier mat ësem Nummm. Gitt w.e.g. z'réck a lued dëse Fichier ënntert engem aner Numm erop. [[Image:$1|thumb|center|$1]]",
+'fileexists-forbidden'        => "Et gëtt schonn e Fichier mat ësem Nummm. Gitt w.e.g. z'réck a lued dëse Fichier ënntert engem aner Numm erop. [[File:$1|thumb|center|$1]]",
 'fileexists-shared-forbidden' => 'E Fichier mat dësem Numm gëtt et schonn an dem gedeelte Repertoire.
-Wann Dir dëse Fichier trotzdem eroplued wellt da gitt w.e.g. zréck a lued dëse Fichier ënner engem anere Numm erop. [[Image:$1|thumb|center|$1]]',
+Wann Dir dëse Fichier trotzdem eroplued wellt da gitt w.e.g. zréck a lued dëse Fichier ënner engem anere Numm erop. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Dëse Fichier schéngt een Doublon vun {{PLURAL:$1|dësem Fichier|dëse Fichieren}} ze sinn:',
 'successfulupload'            => 'Eroplueden erfollegräich',
 'uploadwarning'               => 'Opgepasst',
@@ -1353,7 +1353,7 @@ Kuckt w.e.g. no op kee Feeler an der URL ass an op de Site och online ass.',
 'upload_source_url'  => ' (gülteg, ëffentlech zougänglech URL)',
 'upload_source_file' => ' (e Fichier op Ärem Computer)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => "Op dëser Spezialsäit stinn all déi eropgeluede Fichieren. Déi als läscht eropgeluede Fichieren ginn als éischt ugewisen. Duerch e Klick op d'Iwwerschrëfte vun de Kolonnen kënnt Dir d'Sortéierung ëmdréinen an Dir kënnt esou och no enger anerer Kolonn sortéieren.",
 'imagelist_search_for'  => 'Sicht nom Fichier:',
 'imgfile'               => 'Fichier',
@@ -1364,7 +1364,7 @@ Kuckt w.e.g. no op kee Feeler an der URL ass an op de Site och online ass.',
 'imagelist_size'        => 'Gréisst',
 'imagelist_description' => 'Beschreiwung',
 
-# Image description page
+# File description page
 'filehist'                       => 'Versiounen',
 'filehist-help'                  => 'Klickt op e bestëmmten Zäitpunkt fir déi respektiv Versioun vum Fichier ze kucken.',
 'filehist-deleteall'             => 'All Versioune läschen',
@@ -2325,7 +2325,7 @@ $1',
 'show-big-image'       => 'Versioun an enger méi héijer Opléisung',
 'show-big-image-thumb' => '<small>Gréisst vun dem Thumbnail: $1 × $2 Pixel</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Gallerie vun den neie Biller',
 'imagelisttext'         => "Hei ass eng Lëscht vu(n) '''$1''' {{PLURAL:$1|Fichier|Fichieren}}, sortéiert $2.",
 'newimages-summary'     => 'Dës Spezialsäit weist eng Lëscht mat de Biller a Fichieren déi als läscht eropgeluede goufen.',

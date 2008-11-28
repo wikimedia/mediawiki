@@ -1054,7 +1054,7 @@ Pads [[Special:Watchlist|galädaliseda olik]] '''pakazetons'''.",
 'uploadnologintext'           => 'Mutol [[Special:UserLogin|nunädön oli]] ad löpükön ragivis.',
 'upload_directory_read_only'  => 'Ragiviär lopükama ($1) no kanon papenön fa dünanünöm bevüresodik.',
 'uploaderror'                 => 'Pök pö löpükam',
-'uploadtext'                  => "Gebolös fometi dono ad löpükön ragivis. Ad logön u sukön ragivis ya pelöpükölis, gololös lü [[Special:ImageList|lised ragivas pelöpüköl]].
+'uploadtext'                  => "Gebolös fometi dono ad löpükön ragivis. Ad logön u sukön ragivis ya pelöpükölis, gololös lü [[Special:FileList|lised ragivas pelöpüköl]].
 Löpükams e moükams padakipons id in  [[Special:Log/upload|jenotalised löpükamas]].
 
 Ad pladön magodi at ini pad semik, gebolös yümi fomätü:
@@ -1098,8 +1098,8 @@ Välolös, begö! nemi difik.',
 If ragiv ya dabinöli binon magod ot gretota rigik, no zesüdos ad löpükön magodili pluik.',
 'file-thumbnail-no'           => 'Ragivanem primon me <strong><tt>$1</tt></strong>. Binon jiniko magod gretota smalik <i>(magodil)</i>.
 Üf labol magodi at gretota rigik, löpükölos oni, pläo votükolös ragivanemi.',
-'fileexists-forbidden'        => 'Ragiv labü nem at ya dabinon; geikolös e löpükolös ragivi at me nem votik.[[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Ragiv labü nem at ya dabinon in ragivastok kobädik; geikolös e löpükolös ragivi at me nem votik. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Ragiv labü nem at ya dabinon; geikolös e löpükolös ragivi at me nem votik.[[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Ragiv labü nem at ya dabinon in ragivastok kobädik; geikolös e löpükolös ragivi at me nem votik. [[File:$1|thumb|center|$1]]',
 'successfulupload'            => 'Löpükam eplöpon',
 'uploadwarning'               => 'Löpükamanuned',
 'savefile'                    => 'Dakipolöd ragivi',
@@ -1144,7 +1144,7 @@ Binosöv gudikum, if steifülolöv dönu ün tim votik läs jäfädik.',
 'upload_source_url'  => ' (el URL lonöföl ä fa valans gebovik)',
 'upload_source_file' => ' (ragiv pö nünöm olik)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Su pad patik at ragivs pelöpüköl valik pelisedons.
 Nomiko ragivs pelöpüköl lätikün palisedons primü lised.
 Klikolös tiädi padüla ad votükön sökaleodi at.',
@@ -1157,7 +1157,7 @@ Klikolös tiädi padüla ad votükön sökaleodi at.',
 'imagelist_size'        => 'Gretot',
 'imagelist_description' => 'Bepenam',
 
-# Image description page
+# File description page
 'filehist'                  => 'Jenotem ragiva',
 'filehist-help'             => 'Välolös däti/timi ad logön ragivi soäsä äbinon ün tim at.',
 'filehist-deleteall'        => 'moükön valikis',
@@ -1987,7 +1987,7 @@ $1',
 'show-big-image'       => 'Gretot gudikün',
 'show-big-image-thumb' => '<small>Gretot büologeda at: magodaziöbs $1 × $2</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Pänotem ragivas nulik',
 'imagelisttext'         => "Dono binon lised '''$1''' {{PLURAL:$1|ragiva|ragivas}} $2 pedilädölas.",
 'newimages-summary'     => 'Pad patik at lisedon ragivis pelöpüköl lätik.',

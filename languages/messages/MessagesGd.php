@@ -219,7 +219,7 @@ $1",
 'fileexists'    => 'Tha faidhle leis an ainm seo ann cheana; nach faigh sibh cinnt air <strong><tt>$1</tt></strong> gu bheil sibh ag iarraidh atharrachadh.',
 'savefile'      => 'Sàbhail faidhle',
 
-# Special:ImageList
+# Special:FileList
 'imagelist' => 'Liosta nan ìomhaigh',
 
 # Random page
@@ -364,7 +364,7 @@ Ma bu toil leibh a dhubh a'dhuilleag as ur faire agaibh nas fadalache, cnap air 
 'infosubtitle' => 'Fiosrachadh air duilleig',
 'numwatchers'  => 'Aireamh luchd-faire: $1',
 
-# Special:NewImages
+# Special:NewFiles
 'ilsubmit' => 'Rannsaich',
 'bydate'   => 'air ceann-latha',
 

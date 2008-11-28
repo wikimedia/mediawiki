@@ -289,7 +289,7 @@ Indi pagkalimti ang pag ilis sang imo mga pagpasulabi sa {{SITENAME}}.',
 # Media information
 'show-big-image' => 'Kabilogan nga resolusyon',
 
-# Special:NewImages
+# Special:NewFiles
 'ilsubmit' => 'Pangita-a',
 
 # 'all' in various places, this might be different for inflected languages

@@ -366,7 +366,7 @@ Mahimo mong [[:\$1|isulat kini nga panid]].",
 # Upload
 'upload' => 'Pagsumiter og payl',
 
-# Image description page
+# File description page
 'filehist-datetime' => 'Petsa/Takna',
 
 # Random page

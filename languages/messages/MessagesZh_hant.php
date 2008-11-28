@@ -1177,7 +1177,7 @@ $2',
 'uploaderror'                 => '上載錯誤',
 'uploadtext'                  => "使用下面的表單來上傳檔案。
 要檢視或搜索以前上傳的檔案
-可以進入[[Special:ImageList|檔案上傳清單]]，
+可以進入[[Special:FileList|檔案上傳清單]]，
 （重新）上傳將在[[Special:Log/upload|上傳日誌]]中記錄，
 而刪除將在[[Special:Log/delete|刪除日誌]]中記錄。
 
@@ -1191,7 +1191,7 @@ $2',
 'uploadlog'                   => '上載紀錄',
 'uploadlogpage'               => '上載紀錄',
 'uploadlogpagetext'           => '以下是最近上載的檔案的一覽表。
-查看[[Special:NewImages|新檔案畫廊]]去看更富圖像的總覽。',
+查看[[Special:NewFiles|新檔案畫廊]]去看更富圖像的總覽。',
 'filename'                    => '檔案名',
 'filedesc'                    => '檔案描述',
 'fileuploadsummary'           => '檔案描述:',
@@ -1223,8 +1223,8 @@ $2',
 如果檢查後的檔案是同原本圖像的大小是一樣的話，就不用再上載多一幅縮圖。',
 'file-thumbnail-no'           => '該檔名是以<strong><tt>$1</tt></strong>開始。它好像一幅圖像的縮圖版本<i>(縮圖)</i>。
 如果你有該圖像的完整大小，如不是請再修改檔名。',
-'fileexists-forbidden'        => '已存在相同名稱的檔案；請返回並用一個新的名稱來上傳此檔案。[[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => '在共享檔案庫中已存在此名稱的檔案；請返回並用一個新的名稱來上傳此檔案。[[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => '已存在相同名稱的檔案；請返回並用一個新的名稱來上傳此檔案。[[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => '在共享檔案庫中已存在此名稱的檔案；請返回並用一個新的名稱來上傳此檔案。[[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => '這個檔案是跟以下的{{PLURAL:$1|一|多}}個檔案重覆:',
 'successfulupload'            => '上傳成功',
 'uploadwarning'               => '上載警告',
@@ -1266,7 +1266,7 @@ $2',
 'upload_source_url'  => ' (一個有效的，可公開訪問的 URL)',
 'upload_source_file' => ' (在您電腦上的一個檔案)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => '這個特殊頁面顯示所有上傳過的檔案。
 預設中最後上傳的檔案會顯示在這個列表中的最頂處。
 點擊一欄的標題去改變這個排列。',
@@ -1279,7 +1279,7 @@ $2',
 'imagelist_size'        => '大小',
 'imagelist_description' => '描述',
 
-# Image description page
+# File description page
 'filehist'                       => '檔案歷史',
 'filehist-help'                  => '點擊日期／時間以檢視當時出現過的檔案。',
 'filehist-deleteall'             => '刪除全部',
@@ -2280,7 +2280,7 @@ $1',
 'show-big-image'       => '完整解像度',
 'show-big-image-thumb' => '<small>這幅縮圖的解像度: $1 × $2 像素</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => '新建圖像畫廊',
 'imagelisttext'         => "以下是按$2排列的'''$1'''個檔案列表。",
 'newimages-summary'     => '這個特殊頁面中顯示最後已上傳的檔案。',

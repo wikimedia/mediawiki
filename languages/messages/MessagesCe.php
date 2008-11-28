@@ -201,7 +201,7 @@ $messages = array(
 'upload'   => 'Чуоза Файл',
 'filename' => 'файл цIе',
 
-# Special:ImageList
+# Special:FileList
 'imagelist_name' => 'Файли цІе',
 'imagelist_user' => 'юзер',
 
@@ -291,7 +291,7 @@ $messages = array(
 # Media information
 'show-big-image' => 'Доккха де сурт',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages' => 'Керла файлаш галерей',
 
 'exif-scenetype-1' => 'Сурт сфотографировано напрямую',

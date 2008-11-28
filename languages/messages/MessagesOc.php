@@ -1378,7 +1378,7 @@ per copiar de fichièrs sul servidor.',
 'upload_directory_read_only'  => 'Lo servidor Web pòt escriure dins lo dorsièr cibla ($1).',
 'uploaderror'                 => 'Error',
 'uploadtext'                  => "Utilizatz lo formulari çaijós per importar de fichièrs sul servidor.
-Per veire o recercar d'imatges precedentament mandats, consultatz [[Special:ImageList|la tièra dels imatges]]. Las còpias e las supressions tanben son enregistradas dins l'[[Special:Log/upload|istoric dels impòrts]], les supressions dins l’[[Special:Log/delete|istoric de las supressions]].
+Per veire o recercar d'imatges precedentament mandats, consultatz [[Special:FileList|la tièra dels imatges]]. Las còpias e las supressions tanben son enregistradas dins l'[[Special:Log/upload|istoric dels impòrts]], les supressions dins l’[[Special:Log/delete|istoric de las supressions]].
 
 Per enclure un imatge dins una pagina, utilizatz un ligam de la forma
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:fichièr.jpg]]</nowiki></tt>''',
@@ -1390,7 +1390,7 @@ Per enclure un imatge dins una pagina, utilizatz un ligam de la forma
 'uploadlog'                   => 'Istoric de las importacions',
 'uploadlogpage'               => 'Istoric de las importacions de fichièrs multimèdia',
 'uploadlogpagetext'           => 'Vaquí la tièra dels darrièrs fichièrs copiats sul servidor.
-Vejatz la [[Special:NewImages|galariá dels imatges novèls]] per una presentacion mai visuala.',
+Vejatz la [[Special:NewFiles|galariá dels imatges novèls]] per una presentacion mai visuala.',
 'filename'                    => 'Nom del fichièr',
 'filedesc'                    => 'Descripcion',
 'fileuploadsummary'           => 'Resumit :',
@@ -1422,9 +1422,9 @@ la sola diferéncia es la cassa (majusculas / minusculas) de l’extension. Veri
 'file-thumbnail-no'           => 'Lo nom del fichièr comença per <strong><tt>$1</tt></strong>.
 Es possible que s’agisca d’una version reducha <i>(miniatura)</i>.
 Se dispausatz del fichièr en resolucion nauta, importatz-lo, si que non cambiatz lo nom del fichièr.',
-'fileexists-forbidden'        => 'Un fichièr amb aqueste nom existís ja ; mercé de tornar en arrièr e de copiar lo fichièr jos un nom novèl. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Un fichièr amb aqueste nom existís ja ; mercé de tornar en arrièr e de copiar lo fichièr jos un nom novèl. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => "Un fichièr amb lo meteis nom existís ja dins la banca de donadas comuna.
-S'o volètz importar tornamai, tornatz en rèire e importatz-lo jos un autre nom. [[Image:$1|thumb|center|$1]]",
+S'o volètz importar tornamai, tornatz en rèire e importatz-lo jos un autre nom. [[File:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => 'Aqueste fichièr es un doble {{PLURAL:$1|del fichièr seguent|dels fichièrs seguents}} :',
 'file-deleted-duplicate'      => "Un fichièr identic a aqueste ([[$1]]) ja es estat suprimit. Vos caldriá verificar lo jornal de las supressions d'aqueste fichièr abans de la tornar telecargar.",
 'successfulupload'            => 'Importacion capitada',
@@ -1482,7 +1482,7 @@ Se lo problèma persistís, contactatz un [[Special:ListUsers/sysop|administrato
 'upload_source_url'  => ' (una URL valida e accessibla publicament)',
 'upload_source_file' => ' (un fichièr sus vòstre ordenador)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Aquesta pagina especiala mòstra totes los fichièrs importats.
 Per defaut, las darrièrs fichièrs importats son afichats en naut de la lista.
 Un clic en tèsta de colomna càmbia l’òrdre d’afichatge.',
@@ -1495,7 +1495,7 @@ Un clic en tèsta de colomna càmbia l’òrdre d’afichatge.',
 'imagelist_size'        => 'Talha (en octets)',
 'imagelist_description' => 'Descripcion',
 
-# Image description page
+# File description page
 'filehist'                       => 'Istoric del fichièr',
 'filehist-help'                  => 'Clicar sus una data e una ora per veire lo fichièr tal coma èra a aqueste moment',
 'filehist-deleteall'             => 'suprimir tot',
@@ -2493,7 +2493,7 @@ $1",
 'show-big-image'       => 'Imatge en resolucion mai nauta',
 'show-big-image-thumb' => "<small>Talha d'aqueste apercebut : $1 × $2 pixèls</small>",
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Galariá dels fichièrs novèls',
 'imagelisttext'         => "Vaquí una lista de '''$1''' {{PLURAL:$1|fichièr|fichièrs}} classats $2.",
 'newimages-summary'     => 'Aquesta pagina especiala aficha los darrièrs fichièrs importats.',

@@ -1360,7 +1360,7 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'upload_directory_read_only'  => 'Opplastingsmappa ($1) er skriveverna.',
 'uploaderror'                 => 'Feil under opplasting av fil',
 'uploadtext'                  => "Bruk skjemaet under for å laste opp filer.
-For å sjå eller søkje i eksisterande filer, gå til [[Special:ImageList|fillista]]. Opplastingar vert òg lagra i [[Special:Log/upload|opplastingsloggen]].
+For å sjå eller søkje i eksisterande filer, gå til [[Special:FileList|fillista]]. Opplastingar vert òg lagra i [[Special:Log/upload|opplastingsloggen]].
 
 For å bruke ei fil på ei side, bruk ei slik lenkje:
 *'''<tt><nowiki>[[</nowiki>{{ns:file}}:Filnavn.jpg<nowiki>]]</nowiki></tt>''' for å bruke biletet i opphavleg form
@@ -1404,9 +1404,9 @@ Dersom denne er det same biletet i original storleik, er det ikkje nødvendig å
 'file-thumbnail-no'           => 'Filnamnet byrjar med <strong><tt>$1</tt></strong>.
 Det ser ut til å vere eit bilte med redusert storleik<i>(miniatyrbilete)</i>.
 Om du har dette bilete i stor utgåve, så last det opp eller endre filnamnet på denne fila.',
-'fileexists-forbidden'        => 'Ei fil med dette namnet finst allereie, ver venleg og gå tilbake og last opp denne fila med eit anna namn. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Ei fil med dette namnet finst allereie, ver venleg og gå tilbake og last opp denne fila med eit anna namn. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Ei fil med dette namnet finst frå før i det delte fillageret.
-Om du framleis ønskjer å laste opp fila, gå tilbake og last ho opp med eit anna namn. [[Image:$1|thumb|center|$1]]',
+Om du framleis ønskjer å laste opp fila, gå tilbake og last ho opp med eit anna namn. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Denne fila er ein duplikat av følgjande {{PLURAL:$1|fil|filer}}:',
 'successfulupload'            => 'Opplastinga er ferdig',
 'uploadwarning'               => 'Opplastingsåtvaring',
@@ -1462,7 +1462,7 @@ PICT # div.
 'upload_source_url'  => ' (ei gyldig, offentleg tilgjengeleg nettadresse)',
 'upload_source_file' => ' (ei fil på datamaskina di)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Denne spesialsida viser alle opplasta filer. Dei sist opplasta filene vert viste på toppen som standard. Klikk på ei kolonneoverskrift for å byte sorteringsmetode.',
 'imagelist_search_for'  => 'Søk etter filnamn:',
 'imgfile'               => 'fil',
@@ -1473,7 +1473,7 @@ PICT # div.
 'imagelist_size'        => 'Storleik',
 'imagelist_description' => 'Beskriving',
 
-# Image description page
+# File description page
 'filehist'                       => 'Filhistorikk',
 'filehist-help'                  => 'Klikk på dato/klokkeslett for å sjå fila slik ho var på det tidspunktet.',
 'filehist-deleteall'             => 'slett alle',
@@ -2442,7 +2442,7 @@ $1',
 'show-big-image'       => 'Full oppløysing',
 'show-big-image-thumb' => '<small>Storleiken på denne førehandsvisinga: $1 × $2 pikslar</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Filgalleri',
 'imagelisttext'         => 'Her er ei liste med {{PLURAL:$1|éi fil sortert|$1 filer sorterte}} $2.',
 'newimages-summary'     => 'Denne spesialsida syner dei sist opplasta filene.',

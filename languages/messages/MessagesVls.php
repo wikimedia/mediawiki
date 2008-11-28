@@ -99,7 +99,7 @@ $messages = array(
 # Tooltip help for the actions
 'tooltip-n-mainpage' => "Noar 't voorblad goane",
 
-# Special:NewImages
+# Special:NewFiles
 'newimages' => 'Nieuwe ofbeeldiengn',
 
 );

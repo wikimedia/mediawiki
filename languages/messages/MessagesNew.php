@@ -328,7 +328,7 @@ $messages = array(
 # Upload
 'upload' => 'फाइल अपलोड',
 
-# Image description page
+# File description page
 'filehist-user' => 'छ्य्‌लामि',
 
 # Random page

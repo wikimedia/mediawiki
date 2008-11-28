@@ -1223,7 +1223,7 @@ Gean nei oft latex, dvips, en gs goed ynstallearre binne en set om',
 'upload_directory_missing'    => 'De heechlaadmap ($1) is der net en koe net oanmakke wurde troch de webserver.',
 'upload_directory_read_only'  => 'De webserver kin net skriuwe yn de oanbiedpad ($1).',
 'uploaderror'                 => 'Oanbiedfout',
-'uploadtext'                  => "Om in nije triemmen oan te bieden, brûke jo de ûndersteande formulier. Earder oanbeane triemmen, kinne jo fine op de [[Special:ImageList|list fan oanbeane ôfbylden]].
+'uploadtext'                  => "Om in nije triemmen oan te bieden, brûke jo de ûndersteande formulier. Earder oanbeane triemmen, kinne jo fine op de [[Special:FileList|list fan oanbeane ôfbylden]].
 Wat oanbean en wat wiske wurdt, wurdt delskreaun yn it [[Special:Log/upload|lochboek]].
 
 Om de triem yn in side op te nimmen, meitsje jo dêr sa'n keppeling:
@@ -1278,10 +1278,10 @@ As jo dy ôfbylding yn folsleine resolúsje hawwe, bied him dan oan.
 Feroarje oars de triemnamme.',
 'fileexists-forbidden'        => 'Der bestiet al in triem mei dizze namme.
 Bied jo triem ûnder in oare namme oan.
-[[Image:$1|thumb|center|$1]]',
+[[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Der bestiet al in triem mei dizze namme by de dielde triemmen.
 As jo de triem dochs noch oanbiede wolle, gean dan werom en kies in oare namme.
-[[Image:$1|thumb|center|$1]]',
+[[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Dizze triem is idintyk oan {{PLURAL:$1|de folgjende triem|de folgjende triemmen}}:',
 'successfulupload'            => 'Oanbieden slagge.',
 'uploadwarning'               => 'Oanbied-warskôging',
@@ -1346,7 +1346,7 @@ Jo kinne it faaks besykje as it wat minder drok is.",
 'upload_source_url'  => ' (in jildige, publyk tagonklike URL)',
 'upload_source_file' => ' (in triem op jo kompjûter)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Op dizze spesjale side binne alle tafoege triemmen te besjen.
 Standert wurde de lêst tafoege triemmen boppe oan de list werjûn.
 Klikken op in kolomkop feroaret de sortearring.',
@@ -1359,7 +1359,7 @@ Klikken op in kolomkop feroaret de sortearring.',
 'imagelist_size'        => 'Grutte',
 'imagelist_description' => 'Beskriuwing',
 
-# Image description page
+# File description page
 'filehist'                       => 'Triem skiednis',
 'filehist-help'                  => 'Klik op in tiid om de ferzje fan de triem op dat stuit te sjen.',
 'filehist-deleteall'             => 'wiskje alles',
@@ -2046,7 +2046,7 @@ Sjoch: [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation], [htt
 'show-big-image'       => 'Hegere resolúsje',
 'show-big-image-thumb' => '<small>Grutte fan dizze ôfbylding: $1 × $2 pixels</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'        => 'Nije ôfbylden',
 'imagelisttext'    => "Dit is in list fan '''$1''' {{PLURAL:$1|triem|triemen}}, op $2.",
 'newimages-legend' => 'Filter',

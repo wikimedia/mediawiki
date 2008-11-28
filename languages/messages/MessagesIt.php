@@ -1301,7 +1301,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'upload_directory_missing'    => 'La directory di upload ($1) non esiste e non può essere creata dal webserver.',
 'upload_directory_read_only'  => 'Il server web non è in grado di scrivere nella directory di upload ($1).',
 'uploaderror'                 => 'Errore nel caricamento',
-'uploadtext'                  => "Usare il modulo sottostante per caricare nuovi file. Per visualizzare o ricercare i file già caricati, consultare il [[Special:ImageList|log dei file caricati]]. Caricamenti di file e di nuove versioni di file sono registrati nel [[Special:Log/upload|log degli upload]], le cancellazioni nell'[[Special:Log/delete|apposito]].
+'uploadtext'                  => "Usare il modulo sottostante per caricare nuovi file. Per visualizzare o ricercare i file già caricati, consultare il [[Special:FileList|log dei file caricati]]. Caricamenti di file e di nuove versioni di file sono registrati nel [[Special:Log/upload|log degli upload]], le cancellazioni nell'[[Special:Log/delete|apposito]].
 
 Per inserire un file all'interno di una pagina, fare un collegamento di questo tipo:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' per usare la versione intera del file
@@ -1313,7 +1313,7 @@ Per inserire un file all'interno di una pagina, fare un collegamento di questo t
 'uploadlog'                   => 'File caricati',
 'uploadlogpage'               => 'File caricati',
 'uploadlogpagetext'           => "Di seguito sono elencati gli ultimi file caricati.
-Guarda la [[Special:NewImages|galleria dei nuovi file]] per una visione d'insieme.",
+Guarda la [[Special:NewFiles|galleria dei nuovi file]] per una visione d'insieme.",
 'filename'                    => 'Nome del file',
 'filedesc'                    => 'Dettagli',
 'fileuploadsummary'           => 'Dettagli del file:',
@@ -1343,8 +1343,8 @@ Verificare che i due file non siano identici.",
 Se si tratta della stessa immagine, nelle dimensioni originali, non è necessario caricarne altre anteprime.",
 'file-thumbnail-no'           => "Il nome del file inizia con <strong><tt>$1</tt></strong>; sembra quindi essere il risultato di un'anteprima <i>(thumbnail)</i>.
 Se si dispone dell'immagine nella risoluzione originale, si prega di caricarla. In caso contrario, si prega di cambiare il nome del file.",
-'fileexists-forbidden'        => 'Un file con questo nome esiste già. Tornare indietro e modificare il nome con il quale caricare il file. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => "Un file con questo nome esiste già nell'archivio di risorse multimediali condivise. Se si desidera ancora caricare il file, tornare indietro e modificare il nome con il quale caricare il file. [[Image:$1|thumb|center|$1]]",
+'fileexists-forbidden'        => 'Un file con questo nome esiste già. Tornare indietro e modificare il nome con il quale caricare il file. [[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => "Un file con questo nome esiste già nell'archivio di risorse multimediali condivise. Se si desidera ancora caricare il file, tornare indietro e modificare il nome con il quale caricare il file. [[File:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => 'Questo file è un duplicato {{PLURAL:$1|del seguente|dei seguenti}} file:',
 'file-deleted-duplicate'      => 'Un file identico a questo ([[$1]]) è stato precedentemente cancellato. Dovresti controllare la cronologia cancellata prima di ricaricarlo.',
 'successfulupload'            => 'Caricamento completato',
@@ -1401,7 +1401,7 @@ PICT # misc.
 'upload_source_url'  => ' (una URL corretta e accessibile)',
 'upload_source_file' => ' (un file sul proprio computer)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => "Questa pagina speciale mostra tutti i file caricati.
 I file caricati più di recente vengono mostrati all'inizio della lista.
 Per modificare l'ordinamento, fare clic sull'intestazione della colonna prescelta.",
@@ -1414,7 +1414,7 @@ Per modificare l'ordinamento, fare clic sull'intestazione della colonna prescelt
 'imagelist_size'        => 'Dimensione in byte',
 'imagelist_description' => 'Descrizione',
 
-# Image description page
+# File description page
 'filehist'                       => 'Cronologia del file',
 'filehist-help'                  => 'Fare clic su un gruppo data/ora per vedere il file come si presentava nel momento indicato.',
 'filehist-deleteall'             => 'cancella tutto',
@@ -2399,7 +2399,7 @@ $1',
 'show-big-image'       => 'Versione ad alta risoluzione',
 'show-big-image-thumb' => '<small>Dimensioni di questa anteprima: $1 × $2 pixel</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Galleria dei nuovi file',
 'imagelisttext'         => "La lista presentata di seguito, costituita da {{PLURAL:$1|un file|'''$1''' file}}, è ordinata per $2.",
 'newimages-summary'     => 'Questa pagina speciale mostra i file caricati più di recente.',

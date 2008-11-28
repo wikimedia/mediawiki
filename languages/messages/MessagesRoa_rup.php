@@ -202,7 +202,7 @@ Isape a vostrã ira adratã. Nu agãrshits s-le alãxits alidzerle-a vostre ti {
 'tooltip-pt-logout'      => 'Disligats-vã',
 'tooltip-p-logo'         => 'Prota frãndzã',
 
-# Special:NewImages
+# Special:NewFiles
 'ilsubmit' => 'Caftã',
 
 # Multipage image navigation

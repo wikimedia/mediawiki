@@ -272,7 +272,7 @@ $messages = array(
 # Upload
 'upload' => 'Cargar un dosyé',
 
-# Image description page
+# File description page
 'filehist'          => 'Istoria del dosyé',
 'filehist-datetime' => 'Data/Hora',
 'imagelinks'        => 'Linkes',

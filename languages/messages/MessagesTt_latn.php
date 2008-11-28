@@ -430,11 +430,11 @@ Zínhar, bu bitneñ wağraq kisäklärgä bülü turında uylap qara.",
 'uploaddisabled'    => 'Ğafu it, yökläw sünderelgän kileş tora.',
 'uploadcorrupt'     => 'Bu birem yä üze watıq, yä quşımtası yaraqsız. Birem tikşerüdän soñ qabat yöklä zínhar.',
 
-# Special:ImageList
+# Special:FileList
 'imgfile'   => 'fayl',
 'imagelist' => 'Räsem tezmäse',
 
-# Image description page
+# File description page
 'filehist-dimensions' => 'Ölçemi',
 'filehist-comment'    => 'Açıqlama',
 'imagelinks'          => 'Räsem läñkerläre',
@@ -700,7 +700,7 @@ yä isä saylanğan isem yaraqsız buldı. Başqa isem sayla zínhar.',
 # Media information
 'show-big-image' => 'Towlı ölçemi',
 
-# Special:NewImages
+# Special:NewFiles
 'ilsubmit' => 'Ezläw',
 'bydate'   => 'waqıt buyınça',
 

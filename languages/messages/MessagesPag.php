@@ -181,10 +181,10 @@ $messages = array(
 'sourcefilename'  => 'Filename na pinanlapuan:',
 'watchthisupload' => 'Bantayan yan bolong',
 
-# Special:ImageList
+# Special:FileList
 'imagelist_name' => 'Ngaran',
 
-# Image description page
+# File description page
 'imagelinks'       => 'Saray Gawing',
 'noimage-linktext' => 'I-segep ya',
 
@@ -354,7 +354,7 @@ Pinengneng so $2 para ed listaan na saray abural ran balo.',
 # Attribution
 'lastmodifiedatby' => 'Sampot ya binalo yan bolong nen agew ya $2, $1 nen $3.', # $1 date, $2 time, $3 user
 
-# Special:NewImages
+# Special:NewFiles
 'ilsubmit' => 'Anapen',
 
 # EXIF tags

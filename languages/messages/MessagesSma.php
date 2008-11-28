@@ -415,7 +415,7 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:UserLogin|logge s�
 
 'license' => 'Liseense',
 
-# Special:ImageList
+# Special:FileList
 'imagelist_search_for' => 'Ohtsedh ihke guvvie nomme:',
 'imgfile'              => 'guvvie',
 'imagelist'            => 'Guvvie lästoe',
@@ -423,7 +423,7 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:UserLogin|logge s�
 'imagelist_user'       => 'Nuhtjien',
 'imagelist_size'       => 'Stoerre',
 
-# Image description page
+# File description page
 'filehist'                  => 'Baalka histovrije',
 'filehist-help'             => 'Diedtedh nille biejjie ihke vuajna man baalkan lij bealese dïhte tïjje.',
 'filehist-current'          => 'daaletje',
@@ -783,7 +783,7 @@ Gïemhpes veeljeme jeatjebh nomme.',
 'show-big-image'       => 'Dïeves stoerre',
 'show-big-image-thumb' => '<small>Stoerre ihke dïhte vuesiehtidh: $1 × $2 pixel</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages' => 'Gallerije dejstie orre baalkah',
 'ilsubmit'  => 'Ohtsedh',
 

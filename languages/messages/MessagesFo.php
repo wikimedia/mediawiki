@@ -662,12 +662,12 @@ fyri at leggja fílur upp.',
 'license'   => 'Loyvi:',
 'nolicense' => 'Onki valt',
 
-# Special:ImageList
+# Special:FileList
 'imagelist'      => 'Myndalisti',
 'imagelist_name' => 'Navn',
 'imagelist_user' => 'Brúkari',
 
-# Image description page
+# File description page
 'filehist'          => 'Søga fílu',
 'filehist-current'  => 'streymur',
 'filehist-datetime' => 'Dagur/Tíð',
@@ -1083,7 +1083,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'file-info-size' => '($1 × $2 pixel, stødd fílu: $3, MIME-slag: $4)',
 'svg-long-desc'  => '(SVG fíle, nominelt $1 × $2 pixel, fíle stødd: $3)',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages' => 'Nýggjar myndir',
 'noimages'  => 'Einki at síggja.',
 'ilsubmit'  => 'Leita',

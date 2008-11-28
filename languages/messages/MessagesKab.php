@@ -768,7 +768,7 @@ i yesɛan akk awalen i banen-d).",
 iwakken ad tazneḍ afaylu.',
 'upload_directory_read_only'  => 'Weserver/serveur Web ur yezmir ara ad yaru deg ($1).',
 'uploaderror'                 => 'Agul deg usekcam',
-'uploadtext'                  => "Sseqdec talɣa deg ukessar akken ad tazeneḍ tugnawin, akken ad teẓred neɣ ad tnadiḍ tugnawin yettwaznen, ruḥ ɣer [[Special:ImageList|umuɣ n usekcam n tugnawin]], Amezruy n usekcam d umḥay hatent daɣen deg [[Special:Log/upload|amezruy n usekcam]].
+'uploadtext'                  => "Sseqdec talɣa deg ukessar akken ad tazeneḍ tugnawin, akken ad teẓred neɣ ad tnadiḍ tugnawin yettwaznen, ruḥ ɣer [[Special:FileList|umuɣ n usekcam n tugnawin]], Amezruy n usekcam d umḥay hatent daɣen deg [[Special:Log/upload|amezruy n usekcam]].
 
 Akken ad tessekcmeḍ tugna deg usebter, seqdec azay am wagi
 '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Afaylu.jpg]]</nowiki>''',
@@ -802,8 +802,8 @@ Amgirred i yella kan deg isekkilen imecṭuḥen/imeqqranen deg taseggiwit (am "
 Ma llant kif-kif ur tt-taznepd ara.',
 'file-thumbnail-no'           => 'Isem n tugna yebda s <strong><tt>$1</tt></strong>. Waqila tugna-nni d tugna tamecṭuht n tugna nniḍen <i>(thumbnail)</i>.
 Ma tesɛiḍ tugna-nni s resolution tameqqrant, azen-it, ma ulac beddel isem-is.',
-'fileexists-forbidden'        => 'Tugna s yisem kif-kif tewǧed yagi; g leɛnayek uɣal u beddel isem-is. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Tugna s yisem kif-kif tewǧed yagi; g leɛnayek uɣal u beddel isem-is. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Tugna s yisem kif-kif tewǧed yagi; g leɛnayek uɣal u beddel isem-is. [[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Tugna s yisem kif-kif tewǧed yagi; g leɛnayek uɣal u beddel isem-is. [[File:$1|thumb|center|$1]]',
 'successfulupload'            => 'Azen yekfa',
 'uploadwarning'               => 'Aɣtal deg wazan n ufayluwen',
 'savefile'                    => 'Smekti afaylu',
@@ -836,7 +836,7 @@ Ma tesɛiḍ tugna-nni s resolution tameqqrant, azen-it, ma ulac beddel isem-is.
 'upload_source_url'  => ' (URL saḥiḥ)',
 'upload_source_file' => ' (afaylu deg uselkim inek)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist_search_for'  => 'Nadi ɣef yisem n tugna:',
 'imgfile'               => 'afaylu',
 'imagelist'             => 'Umuɣ n tugniwin',
@@ -846,7 +846,7 @@ Ma tesɛiḍ tugna-nni s resolution tameqqrant, azen-it, ma ulac beddel isem-is.
 'imagelist_size'        => 'Tiddi (bytes/octets)',
 'imagelist_description' => 'Aglam',
 
-# Image description page
+# File description page
 'filehist-current'          => 'Lux a',
 'filehist-user'             => 'Amseqdac',
 'imagelinks'                => 'Izdayen',
@@ -1396,7 +1396,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'show-big-image'       => 'Resolution tameqqrant',
 'show-big-image-thumb' => '<small>Tiddi n pre-timeẓriwt-agi: $1 × $2 pixels</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Umuɣ n ifayluwen imaynuten',
 'imagelisttext'         => "Deg ukessar yella wumuɣ n '''$1''' {{PLURAL:$1|ufaylu|yifayluwen}} $2.",
 'noimages'              => 'Tugna ulac-itt.',

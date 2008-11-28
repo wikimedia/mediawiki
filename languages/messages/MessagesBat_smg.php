@@ -768,7 +768,7 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'upload_source_url'  => ' (tėkrs, vėišā priėinams URL)',
 'upload_source_file' => ' (fails Tamstas kompioterī)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist-summary'     => 'Tas specēlus poslapis ruod vėsus ikeltus failus.
 Palē numatīma paskiausē ikeltė failā īr ruoduomė sāroša vėršou.
 Paspaude ont štolpelė ontraštės pakeisėt ėšruokavėma.',
@@ -779,7 +779,7 @@ Paspaude ont štolpelė ontraštės pakeisėt ėšruokavėma.',
 'imagelist_size'        => 'Dėdoms',
 'imagelist_description' => 'Aprašīms',
 
-# Image description page
+# File description page
 'filehist'                  => 'Abruozdielė istuorėjė',
 'filehist-help'             => 'Paspauskėt ont datas/čiesa, ka paveizietomėt faila tuoki, kokis ons bova tū čiesu.',
 'filehist-deleteall'        => 'trintė vėsus',
@@ -1432,7 +1432,7 @@ Paskėrties straipsnis „[[:$1]]“ jau īr. A nuorėt ana ėštrintė, kū gal
 'show-big-image'       => 'Pėlns ėšraiškėms',
 'show-big-image-thumb' => '<small>Šėtuos parvaizos dėdums: $1 × $2 puškiu</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Naujausiu abruozdieliu galerėjė',
 'imagelisttext'         => "Žemiau īr '''$1''' failu sārašos, sorūšiouts $2.",
 'newimages-label'       => 'Faila vards (ar anuo dalis):',

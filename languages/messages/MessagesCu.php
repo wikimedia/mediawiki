@@ -329,14 +329,14 @@ $messages = array(
 'uploadedimage'    => '⁖ [[$1]] ⁖ положє́нъ ѥ́стъ',
 'watchthisupload'  => 'си страни́цѧ блюдє́ниѥ',
 
-# Special:ImageList
+# Special:FileList
 'imgfile'        => 'дѣ́ло',
 'imagelist'      => 'дѣ́лъ ката́логъ',
 'imagelist_name' => 'и́мѧ',
 'imagelist_user' => 'по́льꙃєватєл҄ь',
 'imagelist_size' => 'мѣ́ра',
 
-# Image description page
+# File description page
 'filehist-deleteone' => 'поничьжє́ниѥ',
 'filehist-current'   => 'нꙑнѣщьн҄ь о́браꙁъ',
 'filehist-user'      => 'по́льꙃєватєл҄ь',
@@ -516,7 +516,7 @@ $messages = array(
 'svg-long-desc'  => '(дѣ́ло SVG · обꙑ́чьнъ о́браꙁъ : $1 × $2 п҃ѯ · дѣ́ла мѣ́ра : $3)',
 'show-big-image' => 'пль́нъ ви́да о́браꙁъ',
 
-# Special:NewImages
+# Special:NewFiles
 'ilsubmit' => 'ищи́',
 
 # EXIF tags

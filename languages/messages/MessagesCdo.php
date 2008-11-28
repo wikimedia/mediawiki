@@ -463,7 +463,7 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 'destfilename'      => 'Mŭk-biĕu ùng-giông-miàng:',
 'watchthisupload'   => 'Gáng-sê ciā hiĕk',
 
-# Special:ImageList
+# Special:FileList
 'imgfile'        => 'ùng-giông',
 'imagelist'      => 'Ùng-giông dăng-dăng',
 'imagelist_date' => 'Nĭk-gĭ',
@@ -471,7 +471,7 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 'imagelist_user' => 'Ê̤ṳng-hô',
 'imagelist_size' => 'Chióh-cháung',
 
-# Image description page
+# File description page
 'imagelinks'                => 'Lièng-giék',
 'linkstoimage'              => 'Â-dā̤ gì hiĕk-miêng lièng gáu ciā ùng-giông:',
 'nolinkstoimage'            => 'Mò̤ hiĕk-miêng lièng gáu ciā ùng-giông.',
@@ -818,7 +818,7 @@ Nâ cūng-kuāng, nṳ̄ â̤-sāi cê-gă iè-dông hĕ̤k-ciā sê hăk-biáng
 # Media information
 'file-nohires' => '<small>Cuòi sê có̤i duâi chióh-cháung.</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'showhidebots' => '($1 gĭ-ké-nè̤ng)',
 'ilsubmit'     => 'Sìng-tō̤',
 'bydate'       => 'áng nĭk-gĭ',

@@ -428,7 +428,7 @@ $1',
 # Upload
 'upload' => 'ಫೈಲ್ ಅಪ್ಲೋಡ್',
 
-# Image description page
+# File description page
 'filehist'            => 'ಫೈಲ್’ದ ಇತಿಹಾಸ',
 'filehist-help'       => 'ಫೈಲ್ ಆ ದಿನೊಟು ಎಂಚ ಇತ್ತ್’ನ್ಡ್’ನ್ದ್ ತೂಯೆರೆ ಆ ದಿನ/ಪೊರ್ತುದ ಮಿತ್ತ್ ಕ್ಲಿಕ್ ಮಲ್ಪುಲೆ.',
 'filehist-current'    => 'ಪ್ರಸಕ್ತ',

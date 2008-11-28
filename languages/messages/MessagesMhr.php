@@ -326,11 +326,11 @@ $messages = array(
 'fileuploadsummary' => 'Тидын нерген кӱчыкын:',
 'watchthisupload'   => 'Тиде лаштыкым эскераш',
 
-# Special:ImageList
+# Special:FileList
 'imgfile'        => 'файл',
 'imagelist_user' => 'Пайдаланыше',
 
-# Image description page
+# File description page
 'filehist-deleteone' => 'шӧраш',
 'filehist-current'   => 'кызыт',
 'filehist-user'      => 'Пайдаланыше',
@@ -523,7 +523,7 @@ $messages = array(
 # Media information
 'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|лаштык|лаштык}}',
 
-# Special:NewImages
+# Special:NewFiles
 'showhidebots' => '(Бот-влакым $1 )',
 'ilsubmit'     => 'Кычал',
 

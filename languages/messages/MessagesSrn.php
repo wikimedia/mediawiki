@@ -772,7 +772,7 @@ Papira ini [[Special:Watchlist|yu Tan Luku réy]] '''fatu'''.",
 
 'license-nopreview' => '(No fusi)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist_search_for'  => 'Suku na gefre:',
 'imgfile'               => 'gefre',
 'imagelist'             => 'Réy fu file',
@@ -782,7 +782,7 @@ Papira ini [[Special:Watchlist|yu Tan Luku réy]] '''fatu'''.",
 'imagelist_size'        => 'Gran (byte)',
 'imagelist_description' => 'Infrumasi',
 
-# Image description page
+# File description page
 'filehist'                  => 'File historia',
 'filehist-help'             => 'Naki na tapu a dei/ten fu a file fu si fa a ben de na a ten dati.',
 'filehist-deleteall'        => 'trowe ala',
@@ -1165,7 +1165,7 @@ Yu ka luku a source.',
 'show-big-image'       => 'Moro srapu',
 'show-big-image-thumb' => '<small>Bigi fu a luku-na-fesi disi: $1 × $2 pixel</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'    => 'Nyun file',
 'showhidebots' => '(Bot $1)',
 'noimages'     => 'Noti a si.',

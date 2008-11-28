@@ -863,7 +863,7 @@ mitmõ otsmissõna pruukminõ (sis ilmusõq õnnõ leheküleq, kon ommaq kõik o
 'upload_directory_read_only'  => 'Serveril olõ-i üleslaatmiskausta ($1) kirotamisõ õigust.',
 'uploaderror'                 => 'Üleslaatmisviga',
 'uploadtext'                  => '<strong>PIÄQ KINNIQ!</strong> Inne ülelaatmist kaeq, et taa käünüq {{SITENAME}} [[{{MediaWiki:Policy-url}}|pilte pruukmisõ kõrra]] perrä.
-<p>Innembält üleslaadiduq pildiq lövvät [[Special:ImageList|pilte nimekiräst]].
+<p>Innembält üleslaadiduq pildiq lövvät [[Special:FileList|pilte nimekiräst]].
 <p>Järgmädse vormi abiga saat laatiq üles vahtsit pilte ummi artiklide ilostamisõs. Inämbüsel võrgokaejil näet nuppi "Browse..." vai "Valiq...", miä vii sinno
 su opõratsioonisüsteemi standardsõhe teedüstüide vallalõtegemise aknõhe. Teedüstü valimisõs pandas timä nimi tekstivälä pääle, miä om nupi kõrval.
 Piät ka kastikõistõ märgi tegemä, et kinnütät,
@@ -900,8 +900,8 @@ Ainugõnõ vaih om laendusõ suurõ/väiku algustähe man. Kaeq perrä, kas naaq
 'fileexists-thumbnail-yes'    => 'Taa paistus ollõv vähändet pilt <i>(thumbnail)</i>. Kaeq teedüstü <strong><tt>$1</tt></strong>üle.<br />
 Ku ülekaet teedüstü om sama pilt alguperälidsen suurusõn, sis olõ-i vaia eräle vähändedüt pilti üles laatiq.',
 'file-thumbnail-no'           => 'Teedüstü nimi nakkas pääle <strong><tt>$1</tt></strong>. Taa paistus ollõv vähändet pilt <i>(thumbnail)</i>. Ku sul om olõman taa pilt tävven suurusõn, sis laadiq üles tuu, ku olõ-i, sis muudaq teedüstü nimi ärq.',
-'fileexists-forbidden'        => 'Sääntse nimega teedüstü om jo olõman. Pästäq teedüstü tõõsõ nimega. Parhillanõ teedüstü: [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Sama nimega teedüstü om jo olõman jaetuidõ teedüstüide hulgan. Pästäq teedüstü mõnõ tõõsõ nime ala. Parhillanõ teedüstü: [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Sääntse nimega teedüstü om jo olõman. Pästäq teedüstü tõõsõ nimega. Parhillanõ teedüstü: [[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Sama nimega teedüstü om jo olõman jaetuidõ teedüstüide hulgan. Pästäq teedüstü mõnõ tõõsõ nime ala. Parhillanõ teedüstü: [[File:$1|thumb|center|$1]]',
 'successfulupload'            => "Üleslaatminõ läts' kõrda",
 'uploadwarning'               => 'Üleslaatmishoiatus',
 'savefile'                    => 'Pästäq teedüstü ärq',
@@ -939,7 +939,7 @@ Kas olõt kimmäs, et tahat taad üles laatiq? Kaeq ka sissekirotust taa teedüs
 'upload_source_url'  => ' (avalik tüütäv võrgoaadrõs)',
 'upload_source_file' => ' (teedüstü su puutrin)',
 
-# Special:ImageList
+# Special:FileList
 'imagelist_search_for'  => 'Pildi nime otsminõ:',
 'imgfile'               => 'teedüstü',
 'imagelist'             => 'Pilte nimekiri',
@@ -949,7 +949,7 @@ Kas olõt kimmäs, et tahat taad üles laatiq? Kaeq ka sissekirotust taa teedüs
 'imagelist_size'        => 'Suurus (baidõn)',
 'imagelist_description' => 'Seletüs',
 
-# Image description page
+# File description page
 'filehist'                  => 'Teedüstü aolugu',
 'filehist-help'             => "Klõpsaq kuupäävä/kelläao pääl, et nätäq määne taa teedüstü sis oll'.",
 'filehist-deleteall'        => 'kistudaq kõik ärq',
@@ -1703,7 +1703,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'show-big-image'       => 'Täüsterräv kujo',
 'show-big-image-thumb' => '<small>Proovikaemisõ suurus: $1×$2 pikslit</small>',
 
-# Special:NewImages
+# Special:NewFiles
 'newimages'             => 'Vahtsõq pildiq',
 'imagelisttext'         => 'Pilte nimekirän $1 (sordiduq $2).',
 'showhidebots'          => '($1 robodiq)',

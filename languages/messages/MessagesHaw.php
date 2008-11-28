@@ -418,10 +418,10 @@ hō‘ike ‘ia i lalo:",
 'filedesc'          => "Hō'ulu'ulu mana'o",
 'fileuploadsummary' => "Hō'ulu'ulu mana'o:",
 
-# Special:ImageList
+# Special:FileList
 'imagelist_name' => 'Inoa',
 
-# Image description page
+# File description page
 'filehist'            => 'Mo‘olelo o ka waihona',
 'filehist-current'    => 'o kēia manawa',
 'filehist-datetime'   => 'Manawa',
@@ -603,7 +603,7 @@ Hiki iā ʻoe ke ʻikena i kāna molekumu.',
 # Media information
 'show-big-image' => 'Miomio piha',
 
-# Special:NewImages
+# Special:NewFiles
 'ilsubmit' => 'Huli',
 
 # 'all' in various places, this might be different for inflected languages

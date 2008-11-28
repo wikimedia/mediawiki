@@ -1008,8 +1008,8 @@ Turu dencukaay bi fi am : <strong><tt>$2</tt></strong><br />
 Ngir-yàlla tànnal beneen tur.',
 'fileexists-thumb'            => "<center>'''Dencukaay bi am na'''</center>",
 'fileexists-forbidden'        => 'Am na dencukaay bu ni tudd ba noppi; Dellul ginnaaw ngir yeb dencukaay bi ak beneen tur 
-[[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Am na dencukaay bu ni tudd ba noppi ci dàttub njoxe biñ bokk; Dellul ginnaaw ngir yeb dencukaay bi ak beneen tur. [[Image:$1|thumb|center|$1]]',
+[[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Am na dencukaay bu ni tudd ba noppi ci dàttub njoxe biñ bokk; Dellul ginnaaw ngir yeb dencukaay bi ak beneen tur. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Dencukaay bi ñaaralub {{PLURAL:$1|dencukaay bii di toftal|dencukaay yii di toftal}} :',
 'successfulupload'            => 'Yeb gi jàll na',
 'uploadwarning'               => 'Moytul !',
@@ -1029,11 +1029,11 @@ Ngir-yàlla tànnal beneen tur.',
 
 Jaar-jaaru far gi man na laa dimbali ci nga see ndaxam jar na nga yebaat ko.",
 
-# Special:ImageList
+# Special:FileList
 'imagelist'      => 'Limu nataal yi',
 'imagelist_user' => 'Jëfëndikookat',
 
-# Image description page
+# File description page
 'filehist'            => 'Jaar-jaaru dencukaay bi',
 'filehist-help'       => 'Cuqal cib taariix/waxtu ngir gis ni dencukaay bi meloo ca jamono jooju.',
 'filehist-deleteall'  => 'Far lépp',
@@ -1404,7 +1404,7 @@ Saytul [[Special:Log/delete|jaar-jaaru far bi]] ngir xool far yi ak loppanti yu 
 'file-info-size' => '($1 × $2 pixels, réyaayu file bi : $3, type MIME : $4)',
 'show-big-image' => 'Ngandalal nataal gii',
 
-# Special:NewImages
+# Special:NewFiles
 'ilsubmit' => 'Seet',
 'bydate'   => 'ci diir',
 

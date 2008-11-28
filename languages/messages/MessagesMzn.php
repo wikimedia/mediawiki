@@ -102,7 +102,7 @@ $2، $1
 # Upload
 'upload' => 'فایل بار بی یلدن',
 
-# Special:ImageList
+# Special:FileList
 'imagelist' => 'هارشی ئون ره لیست',
 
 'disambiguations' => 'گجگجی بایری ولگ ئون',
@@ -154,7 +154,7 @@ $2، $1
 # Special:Import
 'import-interwiki-submit' => 'بیاردن',
 
-# Special:NewImages
+# Special:NewFiles
 'ilsubmit' => 'سرک بنک',
 
 # Multipage image navigation

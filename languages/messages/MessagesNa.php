@@ -109,7 +109,7 @@ $messages = array(
 # Contributions
 'contributions' => 'Mana engame totow inne',
 
-# Special:NewImages
+# Special:NewFiles
 'ilsubmit' => 'Anani ko',
 
 );

@@ -139,7 +139,7 @@ $messages = array(
 # Upload
 'upload' => 'Парвиниз шикил',
 
-# Image description page
+# File description page
 'filehist'          => 'Шикил тарих',
 'filehist-datetime' => 'Югъ/Заман',
 
