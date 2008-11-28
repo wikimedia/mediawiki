@@ -124,9 +124,9 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
 	private function prepareSecondQuery($resultPageSet = null) {
 		/* SELECT page_id, page_title, page_namespace, page_is_redirect, pl_title, pl_namespace
-		 * FROM pagelinks, page WHERE pl_from=page_id
-		 * AND (pl_title='Foo' AND pl_namespace=0) OR (pl_title='Bar' AND pl_namespace=1)
-		 * LIMIT 11 ORDER BY pl_namespace, pl_title, pl_from
+		   FROM pagelinks, page WHERE pl_from=page_id
+		   AND (pl_title='Foo' AND pl_namespace=0) OR (pl_title='Bar' AND pl_namespace=1)
+		   ORDER BY pl_namespace, pl_title, pl_from LIMIT 11
 		 */
 		$db = $this->getDB();
 		$this->addTables(array('page', $this->bl_table));
@@ -186,7 +186,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$this->prepareFirstQuery($resultPageSet);
 
 		$db = $this->getDB();
-		$res = $this->select(__METHOD__);
+		$res = $this->select(__METHOD__.'::firstQuery');
 
 		$count = 0;
 		$this->data = array ();
@@ -215,7 +215,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		{
 			$this->resetQueryParams();
 			$this->prepareSecondQuery($resultPageSet);
-			$res = $this->select(__METHOD__);
+			$res = $this->select(__METHOD__.'::secondQuery');
 			$count = 0;
 			while($row = $db->fetchObject($res))
 			{
