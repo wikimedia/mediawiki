@@ -3,10 +3,9 @@
 /**
  * @todo document
  */
-class RCCacheEntry extends RecentChange
-{
+class RCCacheEntry extends RecentChange {
 	var $secureName, $link;
-	var $curlink , $difflink, $lastlink , $usertalklink , $versionlink ;
+	var $curlink , $difflink, $lastlink, $usertalklink, $versionlink;
 	var $userlink, $timestamp, $watched;
 
 	static function newFromParent( $rc ) {
@@ -15,7 +14,7 @@ class RCCacheEntry extends RecentChange
 		$rc2->mExtra = $rc->mExtra;
 		return $rc2;
 	}
-} ;
+}
 
 /**
  * Class to show various lists of changes:
@@ -25,13 +24,12 @@ class RCCacheEntry extends RecentChange
  */
 class ChangesList {
 	# Called by history lists and recent changes
-	#
 
 	/**
 	* Changeslist contructor
 	* @param Skin $skin
 	*/
-	function __construct( &$skin ) {
+	public function __construct( &$skin ) {
 		$this->skin =& $skin;
 		$this->preCacheMessages();
 	}
@@ -58,7 +56,6 @@ class ChangesList {
 	 * they are called often, we call them once and save them in $this->message
 	 */
 	private function preCacheMessages() {
-		// Precache various messages
 		if( !isset( $this->message ) ) {
 			foreach( explode(' ', 'cur diff hist minoreditletter newpageletter last '.
 				'blocklink history boteditletter semicolon-separator' ) as $msg ) {
@@ -78,10 +75,10 @@ class ChangesList {
 	 * @return string
 	 */
 	protected function recentChangesFlags( $new, $minor, $patrolled, $nothing = '&nbsp;', $bot = false ) {
-		$f = $new ? '<span class="newpage">' . $this->message['newpageletter'] . '</span>'
-				: $nothing;
-		$f .= $minor ? '<span class="minor">' . $this->message['minoreditletter'] . '</span>'
-				: $nothing;
+		$f = $new ?
+			'<span class="newpage">' . $this->message['newpageletter'] . '</span>' : $nothing;
+		$f .= $minor ?
+			'<span class="minor">' . $this->message['minoreditletter'] . '</span>' : $nothing;
 		$f .= $bot ? '<span class="bot">' . $this->message['boteditletter'] . '</span>' : $nothing;
 		$f .= $patrolled ? '<span class="unpatrolled">!</span>' : $nothing;
 		return $f;
@@ -142,14 +139,13 @@ class ChangesList {
 		# Hist
 		$s .= $this->skin->makeKnownLinkObj( $rc->getMovedToTitle(), $this->message['hist'], 'action=history' ) .
 			') . . ';
-
 		# "[[x]] moved to [[y]]"
 		$msg = ( $rc->mAttribs['rc_type'] == RC_MOVE ) ? '1movedto2' : '1movedto2_redir';
 		$s .= wfMsg( $msg, $this->skin->makeKnownLinkObj( $rc->getTitle(), '', 'redirect=no' ),
 			$this->skin->makeKnownLinkObj( $rc->getMovedToTitle(), '' ) );
 	}
 
-	protected function insertDateHeader(&$s, $rc_timestamp) {
+	protected function insertDateHeader( &$s, $rc_timestamp ) {
 		global $wgLang;
 
 		# Make date header if necessary
@@ -164,21 +160,20 @@ class ChangesList {
 		}
 	}
 
-	protected function insertLog(&$s, $title, $logtype) {
+	protected function insertLog( &$s, $title, $logtype ) {
 		$logname = LogPage::logName( $logtype );
 		$s .= '(' . $this->skin->makeKnownLinkObj($title, $logname ) . ')';
 	}
 
-	protected function insertDiffHist(&$s, &$rc, $unpatrolled) {
+	protected function insertDiffHist( &$s, &$rc, $unpatrolled ) {
 		# Diff link
 		if( !$this->userCan($rc,Revision::DELETED_TEXT) ) {
 			$diffLink = $this->message['diff'];
 		} else if( $rc->mAttribs['rc_type'] == RC_NEW || $rc->mAttribs['rc_type'] == RC_LOG ) {
 			$diffLink = $this->message['diff'];
 		} else {
-			$rcidparam = $unpatrolled
-				? array( 'rcid' => $rc->mAttribs['rc_id'] )
-				: array();
+			$rcidparam = $unpatrolled ?
+				array( 'rcid' => $rc->mAttribs['rc_id'] ) : array();
 			$diffLink = $this->skin->makeKnownLinkObj( $rc->getTitle(), $this->message['diff'],
 				wfArrayToCGI( array(
 					'curid' => $rc->mAttribs['rc_cur_id'],
@@ -188,7 +183,6 @@ class ChangesList {
 				'', '', ' tabindex="'.$rc->counter.'"');
 		}
 		$s .= '('.$diffLink.') (';
-
 		# History link
 		$s .= $this->skin->makeKnownLinkObj( $rc->getTitle(), $this->message['hist'],
 			wfArrayToCGI( array(
@@ -197,31 +191,32 @@ class ChangesList {
 		$s .= ') . . ';
 	}
 
-	protected function insertArticleLink(&$s, &$rc, $unpatrolled, $watched) {
-		# Article link
+	protected function insertArticleLink( &$s, &$rc, $unpatrolled, $watched ) {
+		global $wgContLang;
 		# If it's a new article, there is no diff link, but if it hasn't been
 		# patrolled yet, we need to give users a way to do so
-		$params = ( $unpatrolled && $rc->mAttribs['rc_type'] == RC_NEW )
-			? 'rcid='.$rc->mAttribs['rc_id']
-			: '';
+		$params = ( $unpatrolled && $rc->mAttribs['rc_type'] == RC_NEW ) ?
+			'rcid='.$rc->mAttribs['rc_id'] : '';
 		if( $this->isDeleted($rc,Revision::DELETED_TEXT) ) {
 			$articlelink = $this->skin->makeKnownLinkObj( $rc->getTitle(), '', $params );
 			$articlelink = '<span class="history-deleted">'.$articlelink.'</span>';
 		} else {
 		    $articlelink = ' '. $this->skin->makeKnownLinkObj( $rc->getTitle(), '', $params );
 		}
-		if( $watched )
+		# Bolden pages watched by this user
+		if( $watched ) {
 			$articlelink = "<strong class=\"mw-watched\">{$articlelink}</strong>";
-		global $wgContLang;
+		}
+		# RTL/LTR marker
 		$articlelink .= $wgContLang->getDirMark();
 
 		wfRunHooks('ChangesListInsertArticleLink',
 			array(&$this, &$articlelink, &$s, &$rc, $unpatrolled, $watched));
 
-		$s .= ' '.$articlelink;
+		$s .= " $articlelink";
 	}
 
-	protected function insertTimestamp(&$s, $rc) {
+	protected function insertTimestamp( &$s, $rc ) {
 		global $wgLang;
 		# Timestamp
 		$s .= $this->message['semicolon-separator'] . $wgLang->time( $rc->mAttribs['rc_timestamp'], true, true ) . ' . . ';
