@@ -1264,7 +1264,7 @@ class Article {
 	/**
 	 * @return string Complete article text, or null if error
 	 */
-	function replaceSection( $section, $text, $summary = '', $edittime = NULL ) {
+	public function replaceSection( $section, $text, $summary = '', $edittime = NULL ) {
 		wfProfileIn( __METHOD__ );
 		if( $section === '' ) {
 			// Whole-page edit; let the whole text through
@@ -1347,7 +1347,7 @@ class Article {
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
-		if($watchthis) {
+		if( $watchthis ) {
 			if(!$this->mTitle->userIsWatching()) {
 				$dbw->begin();
 				$this->doWatch();
@@ -2293,17 +2293,6 @@ class Article {
 		$wgOut->addHTML( $form );
 		LogEventsList::showLogExtract( $wgOut, 'delete', $this->mTitle->getPrefixedText() );
 	}
-
-
-	/**
-	 * Show relevant lines from the deletion log
-	 */
-	public function showLogExtract( $out ) {
-		wfDeprecated( __METHOD__ );
-		$out->addHTML( Xml::element( 'h2', null, LogPage::logName( 'delete' ) ) );
-		LogEventsList::showLogExtract( $out, 'delete', $this->mTitle->getPrefixedText() );
-	}
-
 
 	/**
 	 * Perform a deletion and output success or failure messages
