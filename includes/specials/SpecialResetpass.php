@@ -8,7 +8,7 @@
  * Let users recover their password.
  * @ingroup SpecialPage
  */
-class PasswordReset extends SpecialPage {
+class SpecialResetpass extends SpecialPage {
 	public function __construct() {
 		parent::__construct( 'Resetpass' );
 	}
