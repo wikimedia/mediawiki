@@ -509,10 +509,10 @@ class DatabaseOracle extends Database {
 	 * Returns an SQL expression for a simple conditional.
 	 * Uses CASE on Oracle
 	 *
-	 * @param string $cond SQL expression which will result in a boolean value
-	 * @param string $trueVal SQL expression to return if true
-	 * @param string $falseVal SQL expression to return if false
-	 * @return string SQL fragment
+	 * @param $cond String: SQL expression which will result in a boolean value
+	 * @param $trueVal String: SQL expression to return if true
+	 * @param $falseVal String: SQL expression to return if false
+	 * @return String: SQL fragment
 	 */
 	function conditional( $cond, $trueVal, $falseVal ) {
 		return " (CASE WHEN $cond THEN $trueVal ELSE $falseVal END) ";
@@ -640,7 +640,7 @@ echo "error!\n";
 	 *
 	 * @private
 	 *
-	 * @param array $options an associative array of options to be turned into
+	 * @param $options Array: an associative array of options to be turned into
 	 *              an SQL query, valid keys are listed in the function.
 	 * @return array
 	 */

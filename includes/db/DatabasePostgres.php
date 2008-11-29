@@ -723,10 +723,10 @@ class DatabasePostgres extends Database {
 	 * $args may be a single associative array, or an array of these with numeric keys,
 	 * for multi-row insert (Postgres version 8.2 and above only).
 	 *
-	 * @param array $table   String: Name of the table to insert to.
-	 * @param array $args    Array: Items to insert into the table.
-	 * @param array $fname   String: Name of the function, for profiling
-	 * @param mixed $options String or Array. Valid options: IGNORE
+	 * @param $table   String: Name of the table to insert to.
+	 * @param $args    Array: Items to insert into the table.
+	 * @param $fname   String: Name of the function, for profiling
+	 * @param $options String or Array. Valid options: IGNORE
 	 *
 	 * @return bool Success of insert operation. IGNORE always returns true.
 	 */
@@ -1001,10 +1001,10 @@ class DatabasePostgres extends Database {
 	 * Returns an SQL expression for a simple conditional.
 	 * Uses CASE on Postgres
 	 *
-	 * @param string $cond SQL expression which will result in a boolean value
-	 * @param string $trueVal SQL expression to return if true
-	 * @param string $falseVal SQL expression to return if false
-	 * @return string SQL fragment
+	 * @param $cond String: SQL expression which will result in a boolean value
+	 * @param $trueVal String: SQL expression to return if true
+	 * @param $falseVal String: SQL expression to return if false
+	 * @return String: SQL fragment
 	 */
 	function conditional( $cond, $trueVal, $falseVal ) {
 		return " (CASE WHEN $cond THEN $trueVal ELSE $falseVal END) ";
@@ -1305,7 +1305,7 @@ END;
 	 *
 	 * @private
 	 *
-	 * @param string $com SQL string, read from a stream (usually tables.sql)
+	 * @param $ins String: SQL string, read from a stream (usually tables.sql)
 	 *
 	 * @return string SQL string
 	 */
@@ -1330,7 +1330,7 @@ END;
 	 *
 	 * @private
 	 *
-	 * @param array $options an associative array of options to be turned into
+	 * @param $options Array: an associative array of options to be turned into
 	 *              an SQL query, valid keys are listed in the function.
 	 * @return array
 	 */

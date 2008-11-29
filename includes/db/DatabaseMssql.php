@@ -154,9 +154,6 @@ class DatabaseMssql extends Database {
 		return $ret;
 	}
 
-	/**#@+
-	 * @param mixed $res A SQL result
-	 */
 	/**
 	 * Free a result object
 	 */
@@ -225,6 +222,7 @@ class DatabaseMssql extends Database {
 	/**
 	 * Get the number of fields in a result object
 	 * See documentation for mysql_num_fields()
+	 * @param $res SQL result object as returned from Database::query(), etc.
 	 */
 	function numFields( $res ) {
 		if ( $res instanceof ResultWrapper ) {
@@ -237,6 +235,8 @@ class DatabaseMssql extends Database {
 	 * Get a field name in a result object
 	 * See documentation for mysql_field_name():
 	 * http://www.php.net/mysql_field_name
+	 * @param $res SQL result object as returned from Database::query(), etc.
+	 * @param $n Int
 	 */
 	function fieldName( $res, $n ) {
 		if ( $res instanceof ResultWrapper ) {
@@ -263,6 +263,8 @@ class DatabaseMssql extends Database {
 	/**
 	 * Change the position of the cursor in a result object
 	 * See mysql_data_seek()
+	 * @param $res SQL result object as returned from Database::query(), etc.
+	 * @param $row Database row
 	 */
 	function dataSeek( $res, $row ) {
 		if ( $res instanceof ResultWrapper ) {
@@ -339,7 +341,7 @@ class DatabaseMssql extends Database {
 	 *
 	 * @private
 	 *
-	 * @param array $options an associative array of options to be turned into
+	 * @param $options Array: an associative array of options to be turned into
 	 *              an SQL query, valid keys are listed in the function.
 	 * @return array
 	 */
@@ -390,11 +392,11 @@ class DatabaseMssql extends Database {
 	/**
 	 * SELECT wrapper
 	 *
-	 * @param mixed  $table   Array or string, table name(s) (prefix auto-added)
-	 * @param mixed  $vars    Array or string, field name(s) to be retrieved
-	 * @param mixed  $conds   Array or string, condition(s) for WHERE
-	 * @param string $fname   Calling function name (use __METHOD__) for logs/profiling
-	 * @param array  $options Associative array of options (e.g. array('GROUP BY' => 'page_title')),
+	 * @param $table   Mixed: Array or string, table name(s) (prefix auto-added)
+	 * @param $vars    Mixed: Array or string, field name(s) to be retrieved
+	 * @param $conds   Mixed: Array or string, condition(s) for WHERE
+	 * @param $fname   String: Calling function name (use __METHOD__) for logs/profiling
+	 * @param $options Array: Associative array of options (e.g. array('GROUP BY' => 'page_title')),
 	 *                        see Database::makeSelectOptions code for list of supported stuff
 	 * @return mixed Database result resource (feed to Database::fetchObject or whatever), or false on failure
 	 */
@@ -643,12 +645,12 @@ class DatabaseMssql extends Database {
 	/**
 	 * UPDATE wrapper, takes a condition array and a SET array
 	 *
-	 * @param string $table  The table to UPDATE
-	 * @param array  $values An array of values to SET
-	 * @param array  $conds  An array of conditions (WHERE). Use '*' to update all rows.
-	 * @param string $fname  The Class::Function calling this function
-	 *                       (for the log)
-	 * @param array  $options An array of UPDATE options, can be one or
+	 * @param $table   String: The table to UPDATE
+	 * @param $values  Array: An array of values to SET
+	 * @param $conds   Array: An array of conditions (WHERE). Use '*' to update all rows.
+	 * @param $fname   String: The Class::Function calling this function
+	 *                        (for the log)
+	 * @param $options Array: An array of UPDATE options, can be one or
 	 *                        more of IGNORE, LOW_PRIORITY
 	 * @return bool
 	 */
@@ -666,7 +668,7 @@ class DatabaseMssql extends Database {
 	 * Make UPDATE options for the Database::update function
 	 *
 	 * @private
-	 * @param array $options The options passed to Database::update
+	 * @param $options Array: The options passed to Database::update
 	 * @return string
 	 */
 	function makeUpdateOptions( $options ) {
@@ -698,7 +700,7 @@ class DatabaseMssql extends Database {
 
 	/**
 	 * MSSQL doubles quotes instead of escaping them
-	 * @param string $s String to be slashed.
+	 * @param $s String to be slashed.
 	 * @return string slashed string.
 	 */
 	function strencode($s) {
@@ -755,11 +757,12 @@ class DatabaseMssql extends Database {
 	 *
 	 * DO NOT put the join condition in $conds
 	 *
-	 * @param string $delTable The table to delete from.
-	 * @param string $joinTable The other table.
-	 * @param string $delVar The variable to join on, in the first table.
-	 * @param string $joinVar The variable to join on, in the second table.
-	 * @param array $conds Condition array of field names mapped to variables, ANDed together in the WHERE clause
+	 * @param $delTable String: The table to delete from.
+	 * @param $joinTable String: The other table.
+	 * @param $delVar String: The variable to join on, in the first table.
+	 * @param $joinVar String: The variable to join on, in the second table.
+	 * @param $conds Array: Condition array of field names mapped to variables, ANDed together in the WHERE clause
+	 * @param $fname String: Calling function name
 	 */
 	function deleteJoin( $delTable, $joinTable, $delVar, $joinVar, $conds, $fname = 'Database::deleteJoin' ) {
 		if ( !$conds ) {
@@ -857,9 +860,9 @@ class DatabaseMssql extends Database {
 	/**
 	 * Returns an SQL expression for a simple conditional.
 	 *
-	 * @param string $cond SQL expression which will result in a boolean value
-	 * @param string $trueVal SQL expression to return if true
-	 * @param string $falseVal SQL expression to return if false
+	 * @param $cond String: SQL expression which will result in a boolean value
+	 * @param $trueVal String: SQL expression to return if true
+	 * @param $falseVal String: SQL expression to return if false
 	 * @return string SQL fragment
 	 */
 	function conditional( $cond, $trueVal, $falseVal ) {

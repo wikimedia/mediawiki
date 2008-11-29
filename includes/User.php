@@ -436,8 +436,7 @@ class User {
 	/**
 	 * Get database id given a user name
 	 * @param $name \string Username
-	 * @return \2types{\int,\null} The corresponding user's ID, or null if user is nonexistent
-	 * @static
+	 * @return \types{\int,\null} The corresponding user's ID, or null if user is nonexistent
 	 */
 	static function idFromName( $name ) {
 		$nt = Title::makeTitleSafe( NS_USER, $name );
@@ -631,7 +630,7 @@ class User {
 	 * Given unvalidated user input, return a canonical username, or false if
 	 * the username is invalid.
 	 * @param $name \string User input
-	 * @param $validate \2types{\string,\bool} Type of validation to use:
+	 * @param $validate \types{\string,\bool} Type of validation to use:
 	 *                - false        No validation
 	 *                - 'valid'      Valid for batch processes
 	 *                - 'usable'     Valid for batch processes and login
@@ -1487,7 +1486,7 @@ class User {
 	 *
 	 * @see getNewtalk()
 	 * @param $field \string 'user_ip' for anonymous users, 'user_id' otherwise
-	 * @param $id \2types{\string,\int} User's IP address for anonymous users, User ID otherwise
+	 * @param $id \types{\string,\int} User's IP address for anonymous users, User ID otherwise
 	 * @param $fromMaster \bool true to fetch from the master, false for a slave
 	 * @return \bool True if the user has new messages
 	 * @private
@@ -1506,7 +1505,7 @@ class User {
 	/**
 	 * Add or update the new messages flag
 	 * @param $field \string 'user_ip' for anonymous users, 'user_id' otherwise
-	 * @param $id \2types{\string,\int} User's IP address for anonymous users, User ID otherwise
+	 * @param $id \types{\string,\int} User's IP address for anonymous users, User ID otherwise
 	 * @return \bool True if successful, false otherwise
 	 * @private
 	 */
@@ -1528,7 +1527,7 @@ class User {
 	/**
 	 * Clear the new messages flag for the given user
 	 * @param $field \string 'user_ip' for anonymous users, 'user_id' otherwise
-	 * @param $id \2types{\string,\int} User's IP address for anonymous users, User ID otherwise
+	 * @param $id \types{\string,\int} User's IP address for anonymous users, User ID otherwise
 	 * @return \bool True if successful, false otherwise
 	 * @private
 	 */
@@ -2712,7 +2711,7 @@ class User {
 	 * login credentials aren't being hijacked with a foreign form
 	 * submission.
 	 *
-	 * @param $salt \2types{\string,\arrayof{\string}} Optional function-specific data for hashing
+	 * @param $salt \types{\string,\arrayof{\string}} Optional function-specific data for hashing
 	 * @return \string The new edit token
 	 */
 	function editToken( $salt = '' ) {
@@ -2778,7 +2777,7 @@ class User {
 	 * Generate a new e-mail confirmation token and send a confirmation/invalidation
 	 * mail to the user's given address.
 	 *
-	 * @return \2types{\bool,\type{WikiError}} True on success, a WikiError object on failure.
+	 * @return \types{\bool,\type{WikiError}} True on success, a WikiError object on failure.
 	 */
 	function sendConfirmationMail() {
 		global $wgLang;
@@ -2805,7 +2804,7 @@ class User {
 	 * @param $body \string Message body
 	 * @param $from \string Optional From address; if unspecified, default $wgPasswordSender will be used
 	 * @param $replyto \string Reply-To address
-	 * @return \2types{\bool,\type{WikiError}} True on success, a WikiError object on failure
+	 * @return \types{\bool,\type{WikiError}} True on success, a WikiError object on failure
 	 */
 	function sendMail( $subject, $body, $from = null, $replyto = null ) {
 		if( is_null( $from ) ) {
@@ -2983,7 +2982,7 @@ class User {
 	/**
 	 * Get the timestamp of account creation.
 	 *
-	 * @return \2types{\string,\bool} string Timestamp of account creation, or false for
+	 * @return \types{\string,\bool} string Timestamp of account creation, or false for
 	 *                                non-existent/anonymous user accounts.
 	 */
 	public function getRegistration() {
@@ -3106,7 +3105,7 @@ class User {
 	 * Get the title of a page describing a particular group
 	 *
 	 * @param $group \string Internal group name
-	 * @return \2types{\type{Title},\bool} Title of the page if it exists, false otherwise
+	 * @return \types{\type{Title},\bool} Title of the page if it exists, false otherwise
 	 */
 	static function getGroupPage( $group ) {
 		global $wgMessageCache;
