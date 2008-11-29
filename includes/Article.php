@@ -2852,7 +2852,7 @@ class Article {
 	 *
 	 * @param string $oldid		Revision ID of this article revision
 	 */
-	protected function setOldSubtitle( $oldid=0 ) {
+	public function setOldSubtitle( $oldid=0 ) {
 		global $wgLang, $wgOut, $wgUser;
 
 		if( !wfRunHooks( 'DisplayOldSubtitle', array(&$this, &$oldid) ) ) {
