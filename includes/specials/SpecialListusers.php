@@ -223,6 +223,7 @@ class UsersPager extends AlphabeticPager {
 				$groups[] = $row->ug_group;
 			$dbr->freeResult( $res );
 		}
+		wfRunHooks( 'SpecialListusersGetGroups', array( &$groups, $uid ) );
 		return $groups;
 	}
 
