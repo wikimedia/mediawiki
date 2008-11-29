@@ -81,7 +81,7 @@ class Category {
 	/**
 	 * Factory function.
 	 *
-	 * @param array $name A category name (no "Category:" prefix).  It need
+	 * @param $name Array: A category name (no "Category:" prefix).  It need
 	 *   not be normalized, with spaces replaced by underscores.
 	 * @return mixed Category, or false on a totally invalid name
 	 */
@@ -101,8 +101,8 @@ class Category {
 	/**
 	 * Factory function.
 	 *
-	 * @param array $title Title for the category page
-	 * @return mixed Category, or false on a totally invalid name
+	 * @param $title Title for the category page
+	 * @return Mixed: category, or false on a totally invalid name
 	 */
 	public static function newFromTitle( $title ) {
 		$cat = new self();
@@ -116,7 +116,7 @@ class Category {
 	/**
 	 * Factory function.
 	 *
-	 * @param array $id A category id
+	 * @param $id Integer: a category id
 	 * @return Category
 	 */
 	public static function newFromID( $id ) {

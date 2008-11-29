@@ -72,8 +72,6 @@ class CategoryViewer {
 	/**
 	 * Format the category data list.
 	 *
-	 * @param string $from -- return only sort keys from this item on
-	 * @param string $until -- don't return keys after this point.
 	 * @return string HTML output
 	 * @private
 	 */
@@ -131,7 +129,7 @@ class CategoryViewer {
 
 	/**
 	 * Add a subcategory to the internal lists, using a title object 
-	 * @deprectated kept for compatibility, please use addSubcategoryObject instead
+	 * @deprecated kept for compatibility, please use addSubcategoryObject instead
 	 */
 	function addSubcategory( $title, $sortkey, $pageLength ) {
 		global $wgContLang;
@@ -326,10 +324,10 @@ class CategoryViewer {
 	 * Format a list of articles chunked by letter, either as a
 	 * bullet list or a columnar format, depending on the length.
 	 *
-	 * @param array $articles
-	 * @param array $articles_start_char
-	 * @param int   $cutoff
-	 * @return string
+	 * @param $articles Array
+	 * @param $articles_start_char Array
+	 * @param $cutoff Int
+	 * @return String
 	 * @private
 	 */
 	function formatList( $articles, $articles_start_char, $cutoff = 6 ) {
@@ -346,9 +344,9 @@ class CategoryViewer {
 	 * Format a list of articles chunked by letter in a three-column
 	 * list, ordered vertically.
 	 *
-	 * @param array $articles
-	 * @param array $articles_start_char
-	 * @return string
+	 * @param $articles Array
+	 * @param $articles_start_char Array
+	 * @return String
 	 * @private
 	 */
 	function columnList( $articles, $articles_start_char ) {
@@ -405,9 +403,9 @@ class CategoryViewer {
 
 	/**
 	 * Format a list of articles chunked by letter in a bullet list.
-	 * @param array $articles
-	 * @param array $articles_start_char
-	 * @return string
+	 * @param $articles Array
+	 * @param $articles_start_char Array
+	 * @return String
 	 * @private
 	 */
 	function shortList( $articles, $articles_start_char ) {
@@ -427,12 +425,12 @@ class CategoryViewer {
 	}
 
 	/**
-	 * @param Title  $title
-	 * @param string $first
-	 * @param string $last
-	 * @param int    $limit
-	 * @param array  $query - additional query options to pass
-	 * @return string
+	 * @param $title Title object
+	 * @param $first String
+	 * @param $last String
+	 * @param $limit Int
+	 * @param $query Array: additional query options to pass
+	 * @return String
 	 * @private
 	 */
 	function pagingLinks( $title, $first, $last, $limit, $query = array() ) {
@@ -464,10 +462,10 @@ class CategoryViewer {
 	 * category-subcat-count-limited, category-file-count,
 	 * category-file-count-limited.
 	 *
-	 * @param int $rescnt The number of items returned by our database query.
-	 * @param int $dbcnt The number of items according to the category table.
-	 * @param string $type 'subcat', 'article', or 'file'
-	 * @return string A message giving the number of items, to output to HTML.
+	 * @param $rescnt Int: The number of items returned by our database query.
+	 * @param $dbcnt Int: The number of items according to the category table.
+	 * @param $type String: 'subcat', 'article', or 'file'
+	 * @return String: A message giving the number of items, to output to HTML.
 	 */
 	private function getCountMessage( $rescnt, $dbcnt, $type ) {
 		global $wgLang;
