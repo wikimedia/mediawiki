@@ -583,7 +583,7 @@ class LoginForm {
 	function resetLoginForm( $error ) {
 		global $wgOut;
 		$wgOut->addHTML( Xml::element('p', array( 'class' => 'error' ), $error ) );
-		$reset = new PasswordResetForm( $this->mName, $this->mPassword );
+		$reset = new SpecialResetpass();
 		$reset->execute( null );
 	}
 
