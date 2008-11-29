@@ -536,7 +536,7 @@ EOT
 		}
 	}
 
-	protected function checkSharedConflictCallback( $repo ) {
+	public function checkSharedConflictCallback( $repo ) {
 		$this->loadFile();
 		$dupfile = $repo->newFile( $this->img->getTitle() );
 		if( $dupfile && $dupfile->exists() ) {
