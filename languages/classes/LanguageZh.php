@@ -1,8 +1,7 @@
 <?php
 
-$dir = dirname(__FILE__) . '/';
-require_once( $dir . '../LanguageConverter.php' );
-require_once( $dir . 'LanguageZh_hans.php' );
+require_once( dirname(__FILE__).'/../LanguageConverter.php' );
+require_once( dirname(__FILE__).'/LanguageZh_hans.php' );
 
 /**
  * @ingroup Language
