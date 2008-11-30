@@ -2278,8 +2278,8 @@ class User {
 	 * Set a cookie on the user's client. Wrapper for 
 	 * WebResponse::setCookie
 	 * @param $name \string Name of the cookie to set
-	 * @param $name \string Value to set
-	 * @param $name \int Expiration time, as a UNIX time value; 
+	 * @param $value \string Value to set
+	 * @param $exp \int Expiration time, as a UNIX time value; 
 	 *                   if 0 or not specified, use the default $wgCookieExpiration
 	 */
 	protected function setCookie( $name, $value, $exp=0 ) {
@@ -3249,13 +3249,13 @@ class User {
 	static function crypt( $password, $salt = false ) {
 		global $wgPasswordSalt;
 
-		if($wgPasswordSalt) {
+		if( $wgPasswordSalt ) {
 			if ( $salt === false ) {
 				$salt = substr( wfGenerateToken(), 0, 8 );
 			}
 			return ':B:' . $salt . ':' . md5( $salt . '-' . md5( $password ) );
 		} else {
-			return ':A:' . md5( $password);
+			return ':A:' . md5( $password );
 		}
 	}
 
@@ -3286,7 +3286,7 @@ class User {
 	
 	/**
 	 * Add a newuser log entry for this user
-	 * @param bool $byEmail, account made by email?
+	 * @param $byEmail Boolean: account made by email?
 	 */
 	public function addNewUserLogEntry( $byEmail = false ) {
 		global $wgUser, $wgContLang, $wgNewUserLog;
