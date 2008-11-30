@@ -64,6 +64,9 @@ class LoadMonitor_MySQL implements LoadMonitor {
 		$requestRate = 10;
 
 		global $wgMemc;
+		if ( empty( $wgMemc ) )
+			$wgMemc = wfGetMainCache();
+		
 		$masterName = $this->parent->getServerName( 0 );
 		$memcKey = wfMemcKey( 'lag_times', $masterName );
 		$times = $wgMemc->get( $memcKey );
