@@ -1,8 +1,7 @@
 <?php
 
-$dir = dirname(__FILE__) . '/';
-require_once( $dir . '../LanguageConverter.php' );
-require_once( $dir . 'LanguageKk_cyrl.php' );
+require_once( dirname(__FILE__).'/../LanguageConverter.php' );
+require_once( dirname(__FILE__).'/LanguageKk_cyrl.php' );
 
 define( 'KK_C_UC', 'АӘБВГҒДЕЁЖЗИЙКҚЛМНҢОӨПРСТУҰҮФХҺЦЧШЩЪЫІЬЭЮЯ' ); # Kazakh Cyrillic uppercase
 define( 'KK_C_LC', 'аәбвгғдеёжзийкқлмнңоөпрстуұүфхһцчшщъыіьэюя' ); # Kazakh Cyrillic lowercase
