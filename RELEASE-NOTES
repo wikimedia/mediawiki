@@ -377,6 +377,12 @@ The following extensions are migrated into MediaWiki 1.14:
   now automatically removed from titles; these characters can accidentally end
   up in copy-and-pasted titles, and, by overriding normal bidirectional text
   handling, can lead to annoying behavior such as text rendering backwards
+* Fixed minor bug where the memcached value for how many accounts an IP had
+  created that day would be increased even if $wgAccountCreationThrottle was
+  hit. This meant if an IP hit the throttle and then the throttle was raised
+  later that day, the IP still couldn't create another account, because it
+  had marked them as having created another account, when their last account
+  creation had actually failed.
 
 === API changes in 1.14 ===
 

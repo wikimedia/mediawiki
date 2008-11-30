@@ -311,14 +311,15 @@ class LoginForm {
 
 		if ( $wgAccountCreationThrottle && $wgUser->isPingLimitable() ) {
 			$key = wfMemcKey( 'acctcreate', 'ip', $ip );
-			$value = $wgMemc->incr( $key );
+			$value = $wgMemc->get( $key );
 			if ( !$value ) {
-				$wgMemc->set( $key, 1, 86400 );
+				$wgMemc->set( $key, 0, 86400 );
 			}
-			if ( $value > $wgAccountCreationThrottle ) {
+			if ( $value >= $wgAccountCreationThrottle ) {
 				$this->throttleHit( $wgAccountCreationThrottle );
 				return false;
 			}
+			$wgMemc->incr( $key );
 		}
 
 		if( !$wgAuth->addUser( $u, $this->mPassword, $this->mEmail, $this->mRealName ) ) {
