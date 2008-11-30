@@ -127,7 +127,7 @@ class Block {
 	 * @param array $options
 	 * @return Database
 	 */
-	function &getDBOptions( &$options ) {
+	protected function &getDBOptions( &$options ) {
 		global $wgAntiLockFlags;
 		if ( $this->mForUpdate || $this->mFromMaster ) {
 			$db = wfGetDB( DB_MASTER );
@@ -231,7 +231,7 @@ class Block {
 	 * @param $res ResultWrapper Row from the ipblocks table
 	 * @param $killExpired bool Whether to delete expired rows while loading
 	 */
-	function loadFromResult( ResultWrapper $res, $killExpired = true ) {
+	protected function loadFromResult( ResultWrapper $res, $killExpired = true ) {
 		$ret = false;
 		if ( 0 != $res->numRows() ) {
 			# Get first block
@@ -271,7 +271,7 @@ class Block {
 	 * @param $killExpired bool Whether to delete expired rows while loading
 	 * @param $userid int If not 0, then sets ipb_anon_only
 	 */
-	function loadRange( $address, $killExpired = true, $user = 0 ) {
+	public function loadRange( $address, $killExpired = true, $user = 0 ) {
 		$iaddr = IP::toHex( $address );
 		if ( $iaddr === false ) {
 			# Invalid address
@@ -300,20 +300,12 @@ class Block {
 	}
 
 	/**
-	 * Determine if a given integer IPv4 address is in a given CIDR network
-	 * @deprecated Use IP::isInRange
-	 */
-	function isAddressInRange( $addr, $range ) {
-		return IP::isInRange( $addr, $range );
-	}
-
-	/**
 	 * Given a database row from the ipblocks table, initialize
 	 * member variables
 	 *
 	 * @param $row ResultWrapper A row from the ipblocks table
 	 */
-	function initFromRow( $row ) {
+	public function initFromRow( $row ) {
 		$this->mAddress = $row->ipb_address;
 		$this->mReason = $row->ipb_reason;
 		$this->mTimestamp = wfTimestamp(TS_MW,$row->ipb_timestamp);
@@ -341,7 +333,7 @@ class Block {
 	 * Once $mAddress has been set, get the range they came from. 
 	 * Wrapper for IP::parseRange
 	 */
-	function initialiseRange() {
+	protected function initialiseRange() {
 		$this->mRangeStart = '';
 		$this->mRangeEnd = '';
 
@@ -351,70 +343,12 @@ class Block {
 	}
 
 	/**
-	 * Callback with a Block object for every block
-	 *
-	 * @deprecated Unlimited row count, do your own queries instead
-	 *
-	 * @return integer number of blocks
-	 */
-	/*static*/ function enumBlocks( $callback, $tag, $flags = 0 ) {
-		global $wgAntiLockFlags;
-
-		$block = new Block;
-		if ( $flags & Block::EB_FOR_UPDATE ) {
-			$db = wfGetDB( DB_MASTER );
-			if ( $wgAntiLockFlags & ALF_NO_BLOCK_LOCK ) {
-				$options = '';
-			} else {
-				$options = 'FOR UPDATE';
-			}
-			$block->forUpdate( true );
-		} else {
-			$db = wfGetDB( DB_SLAVE );
-			$options = '';
-		}
-		if ( $flags & Block::EB_RANGE_ONLY ) {
-			$cond = " AND ipb_range_start <> ''";
-		} else {
-			$cond = '';
-		}
-
-		$now = wfTimestampNow();
-
-		list( $ipblocks, $user ) = $db->tableNamesN( 'ipblocks', 'user' );
-
-		$sql = "SELECT $ipblocks.*,user_name FROM $ipblocks,$user " .
-			"WHERE user_id=ipb_by $cond ORDER BY ipb_timestamp DESC $options";
-		$res = $db->query( $sql, 'Block::enumBlocks' );
-		$num_rows = $db->numRows( $res );
-
-		while ( $row = $db->fetchObject( $res ) ) {
-			$block->initFromRow( $row );
-			if ( ( $flags & Block::EB_RANGE_ONLY ) && $block->mRangeStart == '' ) {
-				continue;
-			}
-
-			if ( !( $flags & Block::EB_KEEP_EXPIRED ) ) {
-				if ( $block->mExpiry && $now > $block->mExpiry ) {
-					$block->delete();
-				} else {
-					call_user_func( $callback, $block, $tag );
-				}
-			} else {
-				call_user_func( $callback, $block, $tag );
-			}
-		}
-		$db->freeResult( $res );
-		return $num_rows;
-	}
-
-	/**
 	 * Delete the row from the IP blocks table.
 	 *
 	 * @return bool
 	 */
-	function delete() {
-		if (wfReadOnly()) {
+	public function delete() {
+		if ( wfReadOnly() ) {
 			return false;
 		}
 		if ( !$this->mId ) {
@@ -432,7 +366,7 @@ class Block {
 	 *
 	 * @return bool Whether or not the insertion was successful.
 	 */
-	function insert() {
+	public function insert() {
 		wfDebug( "Block::insert; timestamp {$this->mTimestamp}\n" );
 		$dbw = wfGetDB( DB_MASTER );
 
@@ -508,7 +442,7 @@ class Block {
 	 * Make sure all the proper members are set to sane values
 	 * before adding/updating a block
 	 */
-	private function validateBlockParams() {
+	protected function validateBlockParams() {
 		# Unset ipb_anon_only for user blocks, makes no sense
 		if ( $this->mUser ) {
 			$this->mAnonOnly = 0;
@@ -537,7 +471,7 @@ class Block {
 	*
 	* @return bool Whether or not a retroactive autoblock was made.
 	*/
-	function doRetroactiveAutoblock() {
+	public function doRetroactiveAutoblock() {
 		$dbr = wfGetDB( DB_SLAVE );
 		#If autoblock is enabled, autoblock the LAST IP used
 		# - stolen shamelessly from CheckUser_body.php
@@ -578,7 +512,7 @@ class Block {
 	 * @return bool
 	 * @param string $ip The IP to check
 	 */
-	function isWhitelistedFromAutoblocks( $ip ) {
+	public static function isWhitelistedFromAutoblocks( $ip ) {
 		global $wgMemc;
 		
 		// Try to get the autoblock_whitelist from the cache, as it's faster
@@ -622,7 +556,7 @@ class Block {
 	 * @param bool $justInserted The main block was just inserted
 	 * @return bool Whether or not an autoblock was inserted.
 	 */
-	function doAutoblock( $autoblockIP, $justInserted = false ) {
+	public function doAutoblock( $autoblockIP, $justInserted = false ) {
 		# If autoblocks are disabled, go away.
 		if ( !$this->mEnableAutoblock ) {
 			return;
@@ -687,7 +621,7 @@ class Block {
 	 * Check if a block has expired. Delete it if it is.
 	 * @return bool
 	 */
-	function deleteIfExpired() {
+	public function deleteIfExpired() {
 		$fname = 'Block::deleteIfExpired';
 		wfProfileIn( $fname );
 		if ( $this->isExpired() ) {
@@ -706,7 +640,7 @@ class Block {
 	 * Has the block expired?
 	 * @return bool
 	 */
-	function isExpired() {
+	public function isExpired() {
 		wfDebug( "Block::isExpired() checking current " . wfTimestampNow() . " vs $this->mExpiry\n" );
 		if ( !$this->mExpiry ) {
 			return false;
@@ -719,14 +653,14 @@ class Block {
 	 * Is the block address valid (i.e. not a null string?)
 	 * @return bool
 	 */
-	function isValid() {
+	public function isValid() {
 		return $this->mAddress != '';
 	}
 
 	/**
 	 * Update the timestamp on autoblocks. 
 	 */
-	function updateTimestamp() {
+	public function updateTimestamp() {
 		if ( $this->mAuto ) {
 			$this->mTimestamp = wfTimestamp();
 			$this->mExpiry = Block::getAutoblockExpiry( $this->mTimestamp );
@@ -757,21 +691,21 @@ class Block {
 	 *
 	 * @return string
 	 */
-	function getByName() {
+	public function getByName() {
 		return $this->mByName;
 	}
 
 	/**
 	 * Get/set the SELECT ... FOR UPDATE flag
 	 */
-	function forUpdate( $x = NULL ) {
+	public function forUpdate( $x = NULL ) {
 		return wfSetVar( $this->mForUpdate, $x );
 	}
 
 	/**
 	 * Get/set a flag determining whether the master is used for reads
 	 */
-	function fromMaster( $x = NULL ) {
+	public function fromMaster( $x = NULL ) {
 		return wfSetVar( $this->mFromMaster, $x );
 	}
 
@@ -779,7 +713,7 @@ class Block {
 	 * Get the block name, but with autoblocked IPs hidden as per standard privacy policy
 	 * @return string
 	 */
-	function getRedactedName() {
+	public function getRedactedName() {
 		if ( $this->mAuto ) {
 			return '#' . $this->mId;
 		} else {
@@ -794,7 +728,7 @@ class Block {
 	 * @param $expiry string Timestamp for expiry, or 
 	 * @param $db Database object
 	 */
-	static function encodeExpiry( $expiry, $db ) {
+	public static function encodeExpiry( $expiry, $db ) {
 		if ( $expiry == '' || $expiry == Block::infinity() ) {
 			return Block::infinity();
 		} else {
@@ -809,7 +743,7 @@ class Block {
 	 * @param $expiry string Database expiry format
 	 * @param $timestampType Requested timestamp format
 	 */
-	static function decodeExpiry( $expiry, $timestampType = TS_MW ) {
+	public static function decodeExpiry( $expiry, $timestampType = TS_MW ) {
 		if ( $expiry == '' || $expiry == Block::infinity() ) {
 			return Block::infinity();
 		} else {
@@ -822,7 +756,7 @@ class Block {
 	 *
 	 * @return string
 	 */
-	static function getAutoblockExpiry( $timestamp ) {
+	public static function getAutoblockExpiry( $timestamp ) {
 		global $wgAutoblockExpiry;
 		return wfTimestamp( TS_MW, wfTimestamp( TS_UNIX, $timestamp ) + $wgAutoblockExpiry );
 	}
@@ -833,7 +767,7 @@ class Block {
 	 * @param $range string IP address to normalize
 	 * @return string
 	 */
-	static function normaliseRange( $range ) {
+	public static function normaliseRange( $range ) {
 		$parts = explode( '/', $range );
 		if ( count( $parts ) == 2 ) {
 			// IPv6
@@ -865,7 +799,7 @@ class Block {
 	/**
 	 * Purge expired blocks from the ipblocks table
 	 */
-	static function purgeExpired() {
+	public static function purgeExpired() {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->delete( 'ipblocks', array( 'ipb_expiry < ' . $dbw->addQuotes( $dbw->timestamp() ) ), __METHOD__ );
 	}
@@ -877,7 +811,7 @@ class Block {
 	 *
 	 * @return string
 	 */
-	static function infinity() {
+	public static function infinity() {
 		# This is a special keyword for timestamps in PostgreSQL, and
 		# works with CHAR(14) as well because "i" sorts after all numbers.
 		return 'infinity';
@@ -889,7 +823,7 @@ class Block {
 	 * @param $encoded_expiry string Database encoded expiry time
 	 * @return string
 	 */
-	static function formatExpiry( $encoded_expiry ) {
+	public static function formatExpiry( $encoded_expiry ) {
 		static $msg = null;
 		
 		if( is_null( $msg ) ) {
@@ -908,7 +842,6 @@ class Block {
 			$expiretimestr = $wgLang->timeanddate( $expiry, true );
 			$expirystr = wfMsgReplaceArgs( $msg['expiringblock'], array($expiretimestr) );
 		}
-
 		return $expirystr;
 	}
 	
@@ -917,7 +850,7 @@ class Block {
 	 * @param $expiry_input string Whatever was typed into the form
 	 * @return string More database friendly
 	 */
-	static function parseExpiryInput( $expiry_input ) {
+	public static function parseExpiryInput( $expiry_input ) {
 		if ( $expiry_input == 'infinite' || $expiry_input == 'indefinite' ) {
 			$expiry = 'infinity';
 		} else {
@@ -926,7 +859,6 @@ class Block {
 				return false;
 			}
 		}
-		
 		return $expiry;
 	}
 
