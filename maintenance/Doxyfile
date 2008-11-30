@@ -290,7 +290,7 @@ ALIASES =	"type{1}=<b> \1 </b>:" \
 		"string=\type{String}" \
 		"str=\string" \
 		"mixed=\type{Mixed}" \
-		"access=\n<b> Access </b>:\n" \
+		"access=\par Access:\n" \
 		"private=\access private" \
 		"protected=\access protected" \
 		"public=\access public"

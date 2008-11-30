@@ -175,9 +175,9 @@ class Article {
 	}
 
 	/**
-	  * Clear the object
-	  * @private
-	  */
+	 * Clear the object
+	 * @private
+	 */
 	public function clear() {
 		$this->mDataLoaded    = false;
 		$this->mContentLoaded = false;
@@ -306,8 +306,8 @@ class Article {
 
 	/**
 	 * Fetch a page record with the given conditions
-	 * @param Database $dbr
-	 * @param array    $conditions
+	 * @param $dbr Database object
+	 * @param $conditions Array
 	 */
 	protected function pageData( $dbr, $conditions ) {
 		$fields = array(
@@ -335,8 +335,8 @@ class Article {
 	}
 
 	/**
-	 * @param Database $dbr
-	 * @param Title $title
+	 * @param $dbr Database object
+	 * @param $title Title object
 	 */
 	public function pageDataFromTitle( $dbr, $title ) {
 		return $this->pageData( $dbr, array(
@@ -345,8 +345,8 @@ class Article {
 	}
 
 	/**
-	 * @param Database $dbr
-	 * @param int $id
+	 * @param $dbr Database
+	 * @param $id Integer
 	 */
 	protected function pageDataFromId( $dbr, $id ) {
 		return $this->pageData( $dbr, array( 'page_id' => $id ) );
@@ -356,7 +356,7 @@ class Article {
 	 * Set the general counter, title etc data loaded from
 	 * some source.
 	 *
-	 * @param object $data
+	 * @param $data Database row object or "fromdb"
 	 */
 	public function loadPageData( $data = 'fromdb' ) {
 		if( $data === 'fromdb' ) {
@@ -390,7 +390,7 @@ class Article {
 	/**
 	 * Get text of an article from database
 	 * Does *NOT* follow redirects.
-	 * @param int $oldid 0 for whatever the latest revision is
+	 * @param $oldid Int: 0 for whatever the latest revision is
 	 * @return string
 	 */
 	function fetchContent( $oldid = 0 ) {
@@ -972,9 +972,9 @@ class Article {
 
 	/**
 	 * View redirect
-	 * @param Title $target Title of destination to redirect
-	 * @param Bool  $appendSubtitle [optional]
-	 * @param Bool  $forceKnown Should the image be shown as a bluelink regardless of existence?
+	 * @param $target Title object of destination to redirect
+	 * @param $appendSubtitle Boolean [optional]
+	 * @param $forceKnown Boolean: should the image be shown as a bluelink regardless of existence?
 	 */
 	public function viewRedirect( $target, $appendSubtitle = true, $forceKnown = false ) {
 		global $wgParser, $wgOut, $wgContLang, $wgStylePath, $wgUser;
@@ -1110,8 +1110,8 @@ class Article {
 	 * or else the record will be left in a funky state.
 	 * Best if all done inside a transaction.
 	 *
-	 * @param Database $dbw
-	 * @return int     The newly created page_id key, or false if the title already existed
+	 * @param $dbw Database
+	 * @return int The newly created page_id key, or false if the title already existed
 	 * @private
 	 */
 	public function insertOn( $dbw ) {
@@ -1144,15 +1144,15 @@ class Article {
 	/**
 	 * Update the page record to point to a newly saved revision.
 	 *
-	 * @param Database $dbw
-	 * @param Revision $revision For ID number, and text used to set
-	                             length and redirect status fields
-	 * @param int $lastRevision If given, will not overwrite the page field
-	 *                          when different from the currently set value.
-	 *                          Giving 0 indicates the new page flag should
-	 *                          be set on.
-	 * @param bool $lastRevIsRedirect If given, will optimize adding and
-	 * 							removing rows in redirect table.
+	 * @param $dbw Database object
+	 * @param $revision Revision: For ID number, and text used to set
+	                    length and redirect status fields
+	 * @param $lastRevision Integer: if given, will not overwrite the page field
+	 *                      when different from the currently set value.
+	 *                      Giving 0 indicates the new page flag should be set
+	 *                      on.
+	 * @param $lastRevIsRedirect Boolean: if given, will optimize adding and
+	 * 							 removing rows in redirect table.
 	 * @return bool true on success, false on failure
 	 * @private
 	 */
@@ -1191,11 +1191,11 @@ class Article {
 	/**
 	 * Add row to the redirect table if this is a redirect, remove otherwise.
 	 *
-	 * @param Database $dbw
+	 * @param $dbw Database
 	 * @param $redirectTitle a title object pointing to the redirect target,
-	 * 							or NULL if this is not a redirect
-	 * @param bool $lastRevIsRedirect If given, will optimize adding and
-	 * 							removing rows in redirect table.
+	 * 						 or NULL if this is not a redirect
+	 * @param $lastRevIsRedirect If given, will optimize adding and
+	 * 							 removing rows in redirect table.
 	 * @return bool true on success, false on failure
 	 * @private
 	 */
@@ -1232,8 +1232,8 @@ class Article {
 	 * If the given revision is newer than the currently set page_latest,
 	 * update the page record. Otherwise, do nothing.
 	 *
-	 * @param Database $dbw
-	 * @param Revision $revision
+	 * @param $dbw Database object
+	 * @param $revision Revision object
 	 */
 	public function updateIfNewerOn( &$dbw, $revision ) {
 		wfProfileIn( __METHOD__ );
@@ -1376,9 +1376,9 @@ class Article {
 	 *
 	 * $wgUser must be set before calling this function.
 	 *
-	 * @param string $text New text
-	 * @param string $summary Edit summary
-	 * @param integer $flags bitfield:
+	 * @param $text String: new text
+	 * @param $summary String: edit summary
+	 * @param $flags Integer bitfield:
 	 *      EDIT_NEW
 	 *          Article is known or assumed to be non-existent, create a new one
 	 *      EDIT_UPDATE
@@ -1400,7 +1400,8 @@ class Article {
 	 * edit-already-exists error will be returned. These two conditions are also possible with 
 	 * auto-detection due to MediaWiki's performance-optimised locking strategy.
 	 *
-	 * @param $baseRevId, the revision ID this edit was based off, if any
+	 * @param $baseRevId the revision ID this edit was based off, if any
+	 * @param $user Optional user object, $wgUser will be used if not passed
 	 *
 	 * @return Status object. Possible errors:
 	 *     edit-hook-aborted:       The ArticleSave hook aborted the edit but didn't set the fatal flag of $status
@@ -1665,9 +1666,9 @@ class Article {
 	 * Output a redirect back to the article.
 	 * This is typically used after an edit.
 	 *
-	 * @param boolean $noRedir Add redirect=no
-	 * @param string $sectionAnchor section to redirect to, including "#"
-	 * @param string $extraQuery, extra query params
+	 * @param $noRedir Boolean: add redirect=no
+	 * @param $sectionAnchor String: section to redirect to, including "#"
+	 * @param $extraQuery String: extra query params
 	 */
 	public function doRedirect( $noRedir = false, $sectionAnchor = '', $extraQuery = '' ) {
 		global $wgOut;
@@ -1824,8 +1825,10 @@ class Article {
 	/**
 	 * Update the article's restriction field, and leave a log entry.
 	 *
-	 * @param array $limit set of restriction keys
-	 * @param string $reason
+	 * @param $limit Array: set of restriction keys
+	 * @param $reason String
+	 * @param $cascade Integer
+	 * @param $expiry Array: per restriction type expiration
 	 * @return bool true on success
 	 */
 	public function updateRestrictions( $limit = array(), $reason = '', $cascade = 0, $expiry = array() ) {
@@ -1965,8 +1968,8 @@ class Article {
 	/**
 	 * Take an array of page restrictions and flatten it to a string
 	 * suitable for insertion into the page_restrictions field.
-	 * @param array $limit
-	 * @return string
+	 * @param $limit Array
+	 * @return String
 	 */
 	protected static function flattenRestrictions( $limit ) {
 		if( !is_array( $limit ) ) {
@@ -1984,7 +1987,7 @@ class Article {
 
 	/**
 	 * Auto-generates a deletion reason
-	 * @param bool &$hasHistory Whether the page has a history
+	 * @param &$hasHistory Boolean: whether the page has a history
 	 */
 	public function generateReason( &$hasHistory ) {
 		global $wgContLang;
@@ -2171,8 +2174,8 @@ class Article {
 
 	/**
 	 * Get the last N authors
-	 * @param int $num Number of revisions to get
-	 * @param string $revLatest The latest rev_id, selected from the master (optional)
+	 * @param $num Integer: number of revisions to get
+	 * @param $revLatest String: the latest rev_id, selected from the master (optional)
 	 * @return array Array of authors, duplicates not removed
 	 */
 	public function getLastNAuthors( $num, $revLatest = 0 ) {
@@ -2216,7 +2219,7 @@ class Article {
 
 	/**
 	 * Output deletion confirmation dialog
-	 * @param $reason string Prefilled reason
+	 * @param $reason String: prefilled reason
 	 */
 	public function confirmDelete( $reason ) {
 		global $wgOut, $wgUser;
@@ -2466,12 +2469,12 @@ class Article {
 	 * performs permissions checks on $wgUser, then calls commitRollback()
 	 * to do the dirty work
 	 *
-	 * @param string $fromP - Name of the user whose edits to rollback.
-	 * @param string $summary - Custom summary. Set to default summary if empty.
-	 * @param string $token - Rollback token.
-	 * @param bool   $bot - If true, mark all reverted edits as bot.
+	 * @param $fromP String: Name of the user whose edits to rollback.
+	 * @param $summary String: Custom summary. Set to default summary if empty.
+	 * @param $token String: Rollback token.
+	 * @param $bot Boolean: If true, mark all reverted edits as bot.
 	 *
-	 * @param array $resultDetails contains result-specific array of additional values
+	 * @param $resultDetails Array: contains result-specific array of additional values
 	 *    'alreadyrolled' : 'current' (rev)
 	 *    success        : 'summary' (str), 'current' (rev), 'target' (rev)
 	 *
@@ -2831,7 +2834,7 @@ class Article {
 	/**
 	 * Perform article updates on a special page creation.
 	 *
-	 * @param Revision $rev
+	 * @param $rev Revision object
 	 *
 	 * @todo This is a shitty interface function. Kill it and replace the
 	 * other shitty functions like editUpdates and such so it's not needed
@@ -2850,7 +2853,7 @@ class Article {
 	 *   Revision as of \<date\>; view current revision
 	 *   \<- Previous version | Next Version -\>
 	 *
-	 * @param string $oldid		Revision ID of this article revision
+	 * @param $oldid String: revision ID of this article revision
 	 */
 	public function setOldSubtitle( $oldid=0 ) {
 		global $wgLang, $wgOut, $wgUser;
@@ -2924,7 +2927,7 @@ class Article {
 	 * This function is called right before saving the wikitext,
 	 * so we can do things like signatures and links-in-context.
 	 *
-	 * @param string $text
+	 * @param $text String
 	 */
 	public function preSaveTransform( $text ) {
 		global $wgParser, $wgUser;
@@ -3033,9 +3036,9 @@ class Article {
 	 * The article must already exist; link tables etc
 	 * are not updated, caches are not flushed.
 	 *
-	 * @param string $text text submitted
-	 * @param string $comment comment submitted
-	 * @param bool $minor whereas it's a minor modification
+	 * @param $text String: text submitted
+	 * @param $comment String: comment submitted
+	 * @param $minor Boolean: whereas it's a minor modification
 	 */
 	public function quickEdit( $text, $comment = '', $minor = 0 ) {
 		wfProfileIn( __METHOD__ );
@@ -3058,7 +3061,7 @@ class Article {
 	/**
 	 * Used to increment the view counter
 	 *
-	 * @param integer $id article id
+	 * @param $id Integer: article id
 	 */
 	public static function incViewCount( $id ) {
 		$id = intval( $id );
@@ -3125,8 +3128,8 @@ class Article {
 	 * This is a good place to put code to clear caches, for instance.
 	 *
 	 * This is called on page move and undelete, as well as edit
-	 * @static
-	 * @param $title_obj a title object
+	 *
+	 * @param $title a title object
 	 */
 
 	public static function onArticleCreate( $title ) {
@@ -3217,8 +3220,6 @@ class Article {
 	/**
 	 * Info about this page
 	 * Called for ?action=info when $wgAllowPageInfo is on.
-	 *
-	 * @public
 	 */
 	public function info() {
 		global $wgLang, $wgOut, $wgAllowPageInfo, $wgUser;
@@ -3279,7 +3280,7 @@ class Article {
 	 * Return the total number of edits and number of unique editors
 	 * on a given page. If page does not exist, returns false.
 	 *
-	 * @param Title $title
+	 * @param $title Title object
 	 * @return array
 	 */
 	protected function pageCountInfo( $title ) {
@@ -3310,7 +3311,7 @@ class Article {
 	 * Return a list of templates used by this article.
 	 * Uses the templatelinks table
 	 *
-	 * @return array Array of Title objects
+	 * @return Array of Title objects
 	 */
 	public function getUsedTemplates() {
 		$result = array();
@@ -3336,7 +3337,7 @@ class Article {
 	 * Returns a list of hidden categories this page is a member of.
 	 * Uses the page_props and categorylinks tables.
 	 *
-	 * @return array Array of Title objects
+	 * @return Array of Title objects
 	 */
 	public function getHiddenCategories() {
 		$result = array();
@@ -3361,9 +3362,9 @@ class Article {
 
 	/**
 	* Return an applicable autosummary if one exists for the given edit.
-	* @param string $oldtext The previous text of the page.
-	* @param string $newtext The submitted text of the page.
-	* @param bitmask $flags A bitmask of flags submitted for the edit.
+	* @param $oldtext String: the previous text of the page.
+	* @param $newtext String: The submitted text of the page.
+	* @param $flags Bitmask: a bitmask of flags submitted for the edit.
 	* @return string An appropriate autosummary, or an empty string.
 	*/
 	public static function getAutosummary( $oldtext, $newtext, $flags ) {
@@ -3411,8 +3412,8 @@ class Article {
 	 * Saves the text into the parser cache if possible.
 	 * Updates templatelinks if it is out of date.
 	 *
-	 * @param string  $text
-	 * @param bool    $cache
+	 * @param $text String
+	 * @param $cache Boolean
 	 */
 	public function outputWikiText( $text, $cache = true ) {
 		global $wgParser, $wgUser, $wgOut, $wgEnableParserCache, $wgUseFileCache;
