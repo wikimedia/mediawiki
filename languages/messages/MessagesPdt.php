@@ -402,7 +402,17 @@ Bitte nemm eenen aundren.',
 'year'      => 'Fonn Joa (onn ferdäm):',
 
 # What links here
-'whatlinkshere-links' => '← Links',
+'whatlinkshere'          => 'Links opp dise Sied',
+'whatlinkshere-title'    => 'Siede, woone opp "$1" eenen Link habe',
+'whatlinkshere-page'     => 'Sied:',
+'whatlinkshere-backlink' => '← $1',
+'linkshere'              => "Dee neachste Siede habe eenen Link opp '''[[:$1]]''':",
+'nolinkshere'            => "Tjeene Sied haft eenen Link opp '''[[:$1]]'''.",
+'nolinkshere-ns'         => "Tjeene Siede habe eenen Link opp '''[[:$1]]''' em utjesochten Nomesrum.",
+'isredirect'             => 'Wiedaleid-Sied',
+'istemplate'             => 'Vealoag-Enbinje (Inklusioon)',
+'isimage'                => 'Dotei-Link',
+'whatlinkshere-links'    => '← Links',
 
 # Block/unblock
 'ipboptions'   => '2 Stunde:2 hours,1 Dach:1 day,3 Doag:3 days,1 Wäakj:1 week,2 Wäakje:2 weeks,1 Moonat:1 month,3 Moonate:3 months,6 Moonate:6 months,1 Joa:1 year,one Enj:infinite', # display1:time1,display2:time2,...
@@ -548,6 +558,11 @@ Daut woat aun eenem Link lidje, woona no eene externe Sied wiest.',
 'markaspatrolledtext'   => 'Dise Sied aus kontrolliet markere',
 'markedaspatrolled'     => 'Aus kontrolliet markiet',
 'markedaspatrolledtext' => 'Dee utjewehlde Sied-Versioon es aus kontrolliet markiet.',
+
+# Bad image list
+'bad_image_list' => 'Format:
+
+Bloos items, woone mett eenem * aunfange, woare jenome. Dee eschta Link no dem * mott een Link opp een schlajchtet Dokument (file) senne. Dee Links, woone dan kome, wiese opp Utnohme, aulsoo soone Siede, woo daut Dokument (file) jewese en jeseene woare kaun.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'aule',

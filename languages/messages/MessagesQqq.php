@@ -7,6 +7,7 @@
  * @author Ahonc
  * @author Aleator
  * @author Ans
+ * @author Aotake
  * @author Bangin
  * @author Brest
  * @author BrokenArrow
@@ -844,6 +845,7 @@ $1 is the relevance of this result in per cent.
 
 {{Identical|Preview}}',
 'math'                      => 'Used in user preferences.',
+'datetime'                  => '{{Identical|Date}}',
 'math_syntax_error'         => '{{Identical|Syntax error}}',
 'prefs-personal'            => 'Title of a tab in [[Special:Preferences]].',
 'prefs-rc'                  => 'Used in user preferences.
@@ -1149,6 +1151,7 @@ Parameter $1 is a link to the deletion log, with the text in {{msg|deletionlog}}
 'imagelist-summary'     => 'This message is displayed at the top of [[Special:ImageList]] to explain how to use that special page.',
 'imgfile'               => '{{Identical|File}}',
 'imagelist'             => '{{Identical|File list}}',
+'imagelist_date'        => '{{Identical|Date}}',
 'imagelist_name'        => '{{Identical|Name}}',
 'imagelist_user'        => '{{Identical|User}}',
 'imagelist_description' => '{{Identical|Description}}',
@@ -1166,7 +1169,8 @@ Parameter $1 is a link to the deletion log, with the text in {{msg|deletionlog}}
 'filehist-current'               => 'Link in file description page.
 
 {{Identical|Current}}',
-'filehist-datetime'              => 'Used on image descriptions, see for example [[:Image:Yes.png#filehistory]].',
+'filehist-datetime'              => 'Used on image descriptions, see for example [[:File:Yes.png#filehistory]].
+{{Identical|Date}}',
 'filehist-thumb'                 => 'Shown in the file history list of a file desription page.
 
 Example: [[:Image:Addon-icn.png]]',
@@ -1256,7 +1260,8 @@ Example: [[:Image:Addon-icn.png]]',
 # MIME search
 'mimesearch'         => 'Title of [[Special:MIMESearch]].',
 'mimesearch-summary' => 'Text for [[Special:MIMESearch]]',
-'download'           => 'Direct download link in each line returned by [[Special:MIMESearch]]. Points to the actual file, rather than the image description page.',
+'download'           => 'Direct download link in each line returned by [[Special:MIMESearch]]. Points to the actual file, rather than the image description page.
+{{Identical|Download}}',
 
 # Unwatched pages
 'unwatchedpages' => 'Name of special page displayed in [[Special:SpecialPages]] for admins',
@@ -1730,6 +1735,7 @@ Example line:
 'ipbhidename'                  => 'This is the label for a checkbox in the user block form on [[Special:BlockIP]].',
 'ipbwatchuser'                 => 'This is an option on [[Special:BlockIP]] to watch the user page and talk page of the blocked user',
 'ipballowusertalk'             => 'Option in [[Special:BlockIP]] that allows the blocked user to edit own talk page.',
+'ipb-change-block'             => 'Confirmation checkbox required for blocks that would override an earlier block. Appears together with {{msg|ipb-needreblock}}.',
 'ipb-edit-dropdown'            => 'Shown beneath the user block form on the right side. It is a link to [[MediaWiki:Ipbreason-dropdown]]. See also {{msg|Delete-edit-reasonlist}} and {{msg|Protect-edit-reasonlist}}.',
 'ipblocklist-sh-userblocks'    => 'Top selection button at [[Special:IPBlockList]], which means Show/Hide indefinite blocks
 
@@ -1986,6 +1992,7 @@ See also [[MediaWiki:Lastmodifiedat/{{SUBPAGENAME}}]].', # $1 date, $2 time, $3 
 {{Identical|$1 bots}}',
 'noimages'              => "This is shown on the special page [[Special:NewImages]], when there aren't any recently uploaded files.",
 'ilsubmit'              => '{{Identical|Search}}',
+'bydate'                => '{{Identical|Date}}',
 'sp-newimages-showfrom' => "This is a link on [[Special:NewImages]] which takes you to a gallery of the newest files.
 * $1 is a date (example: ''19 March 2008'')
 * $2 is a time (example: ''12:15'')",

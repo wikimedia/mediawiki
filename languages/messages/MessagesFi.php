@@ -954,12 +954,15 @@ Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa men
 'diff-th'                 => "'''otsikko'''",
 'diff-br'                 => "'''rivinvaihto'''",
 'diff-hr'                 => "'''vaakaviiva'''",
+'diff-dd'                 => "'''määritelmä'''",
 'diff-input'              => "'''kenttä'''",
 'diff-form'               => "'''lomake'''",
 'diff-img'                => "'''kuva'''",
 'diff-a'                  => "'''linkki'''",
 'diff-i'                  => "'''kursiivi'''",
 'diff-b'                  => "'''lihavoitu'''",
+'diff-em'                 => "'''korostus'''",
+'diff-font'               => "'''kirjasin'''",
 'diff-big'                => "'''iso'''",
 'diff-del'                => "'''poistettu'''",
 'diff-tt'                 => "'''kiinteä leveys'''",
@@ -1852,7 +1855,7 @@ Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|k
 'viewdeletedpage'              => 'Poistettujen sivujen selaus',
 'undeletepagetext'             => 'Seuraavat sivut on poistettu, mutta ne löytyvät vielä arkistosta, joten ne ovat palautettavissa. Arkisto saatetaan tyhjentää aika ajoin.',
 'undelete-fieldset-title'      => 'Palauta versiot',
-'undeleteextrahelp'            => "Palauta sivu valitsemalla '''''Palauta'''''. Voit palauttaa versiota valikoivasti valitsemalla vain niiden versioiden valintalaatikot, jotka haluat palauttaa.",
+'undeleteextrahelp'            => "Palauttaaksesi sivun koko muutoshistorian, jätä kaikki valintalaatikot tyhjiksi ja napsauta '''''Palauta'''''. Voit palauttaa versiota valikoivasti valitsemalla vain niiden versioiden valintalaatikot, jotka haluat palauttaa. Voit tyhjentää kommenttikentän ja kaikki valintalaatikot napsauttamalla '''''Tyhjennä'''''.",
 'undeleterevisions'            => '{{PLURAL:$1|Versio|$1 versiota}} arkistoitu.',
 'undeletehistory'              => 'Jos palautat sivun, kaikki versiot lisätään sivun historiaan. Jos uusi sivu samalla nimellä on luotu poistamisen jälkeen, palautetut versiot lisätään sen historiaan.',
 'undeleterevdel'               => 'Palautusta ei tehdä, jos sen seurauksena sivun uusin versio olisi osittain poistettu. Tässä tilanteessa poista uusimman poistettavan version piilotus. Tiedostoversioita, joihin sinulla ei ole katseluoikeutta ei palauteta.',
@@ -2550,7 +2553,11 @@ Vain *-merkillä alkavat rivit otetaan huomioon. Ensimmäisen linkin on osoitett
 'exif-lightsource-255' => 'Muu valonlähde',
 
 # Flash modes
-'exif-flash-redeye-1' => 'punasilmäisyyden vähennystila',
+'exif-flash-fired-0'    => 'Salama ei lauennut',
+'exif-flash-fired-1'    => 'Salama lauennut',
+'exif-flash-mode-3'     => 'automaattitila',
+'exif-flash-function-1' => 'Ei salamatoimintoa',
+'exif-flash-redeye-1'   => 'punasilmäisyyden vähennystila',
 
 'exif-focalplaneresolutionunit-2' => 'tuumaa',
 

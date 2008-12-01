@@ -795,27 +795,28 @@ $2',
 $3ने ''$2'' कारण दिले आहे.",
 
 # History pages
-'viewpagelogs'        => 'या पानाच्या नोंदी पहा',
-'nohistory'           => 'या पृष्ठासाठी आवृत्ती इतिहास अस्तित्वात नाही.',
-'currentrev'          => 'चालू आवृत्ती',
-'revisionasof'        => '$1 नुसारची आवृत्ती',
-'revision-info'       => '$2ने $1चे आवर्तन', # Additionally available: $3: revision id
-'previousrevision'    => '←मागील आवृत्ती',
-'nextrevision'        => 'पुढील आवृत्ती→',
-'currentrevisionlink' => 'आताची आवृत्ती',
-'cur'                 => 'चालू',
-'next'                => 'पुढील',
-'last'                => 'मागील',
-'page_first'          => 'प्रथम',
-'page_last'           => 'अंतिम',
-'histlegend'          => 'बदल निवडणे: जुन्या आवृत्तींमधील फरक पाहण्यासाठी रेडियो बॉक्स निवडा व एन्टर कळ दाबा अथवा खाली दिलेल्या कळीवर टिचकी द्या.<br />
+'viewpagelogs'           => 'या पानाच्या नोंदी पहा',
+'nohistory'              => 'या पृष्ठासाठी आवृत्ती इतिहास अस्तित्वात नाही.',
+'currentrev'             => 'चालू आवृत्ती',
+'revisionasof'           => '$1 नुसारची आवृत्ती',
+'revision-info'          => '$2ने $1चे आवर्तन', # Additionally available: $3: revision id
+'previousrevision'       => '←मागील आवृत्ती',
+'nextrevision'           => 'पुढील आवृत्ती→',
+'currentrevisionlink'    => 'आताची आवृत्ती',
+'cur'                    => 'चालू',
+'next'                   => 'पुढील',
+'last'                   => 'मागील',
+'page_first'             => 'प्रथम',
+'page_last'              => 'अंतिम',
+'histlegend'             => 'बदल निवडणे: जुन्या आवृत्तींमधील फरक पाहण्यासाठी रेडियो बॉक्स निवडा व एन्टर कळ दाबा अथवा खाली दिलेल्या कळीवर टिचकी द्या.<br />
 लिजेंड: (चालू) = चालू आवृत्तीशी फरक,
 (मागील) = पूर्वीच्या आवृत्तीशी फरक, छो = छोटा बदल',
-'deletedrev'          => '[वगळले]',
-'histfirst'           => 'सर्वात जुने',
-'histlast'            => 'सर्वात नवीन',
-'historysize'         => '({{PLURAL:$1|1 बाइट|$1 बाइट}})',
-'historyempty'        => '(रिकामे)',
+'history-fieldset-title' => 'इतिहास विंचरण करा',
+'deletedrev'             => '[वगळले]',
+'histfirst'              => 'सर्वात जुने',
+'histlast'               => 'सर्वात नवीन',
+'historysize'            => '({{PLURAL:$1|1 बाइट|$1 बाइट}})',
+'historyempty'           => '(रिकामे)',
 
 # Revision feed
 'history-feed-title'          => 'आवृत्ती इतिहास',
@@ -2432,7 +2433,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'बाहेरील संगणक प्रणाली वापरून ही संचिका संपादा.',
-'edit-externally-help' => 'अधिक माहितीसाठी [http://www.mediawiki.org/wiki/Manual:External_editors स्थापन करण्याच्या सूचना] पहा.',
+'edit-externally-help' => 'अधिक माहितीसाठी स्थापन करण्याच्या सूचना [http://www.mediawiki.org/wiki/Manual:External_editors] येथे पहा.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'सर्व',

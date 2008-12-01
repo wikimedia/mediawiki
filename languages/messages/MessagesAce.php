@@ -249,20 +249,21 @@ Neutimang-timang dilèë peuë ék patôt neupeulanjut atra nyang teungoh neu’
 Nyoë pat nakeuh log seunampôh nibak ôn nyoë:",
 
 # History pages
-'viewpagelogs'        => 'Eu log ôn nyoë',
-'currentrev'          => 'Geunantoë jinoë',
-'revisionasof'        => 'Gantoë tiëp $1',
-'revision-info'       => 'Geunantoë tiëp $1; $2', # Additionally available: $3: revision id
-'previousrevision'    => '←Geunantoë sigohlomjih',
-'nextrevision'        => 'Geunantoë lheuëh nyan→',
-'currentrevisionlink' => 'Geunantoë jinoë',
-'cur'                 => 'jin',
-'last'                => 'akhé',
-'page_first'          => 'phôn',
-'page_last'           => 'keuneulheuëh',
-'histlegend'          => "Piléh duwa teuneugön radiô, lheuëh nyan teugön teuneugön ''peubandéng'' keu peubandéng seunalén. Teugön saboh tanggay keu eu seunalén ôn bak tanggay nyan.<br />(skr) = bida ngön seunalén jinoë, (akhé) = bida ngön seunalén sigohlomjih. '''b''' = andam bacut, '''b''' = andam bot, → = andam bideuëng, ← = reuningkah keudroë",
-'histfirst'           => 'Paléng trép',
-'histlast'            => 'Paléng barô',
+'viewpagelogs'           => 'Eu log ôn nyoë',
+'currentrev'             => 'Geunantoë jinoë',
+'revisionasof'           => 'Gantoë tiëp $1',
+'revision-info'          => 'Geunantoë tiëp $1; $2', # Additionally available: $3: revision id
+'previousrevision'       => '←Geunantoë sigohlomjih',
+'nextrevision'           => 'Geunantoë lheuëh nyan→',
+'currentrevisionlink'    => 'Geunantoë jinoë',
+'cur'                    => 'jin',
+'last'                   => 'akhé',
+'page_first'             => 'phôn',
+'page_last'              => 'keuneulheuëh',
+'histlegend'             => "Piléh duwa teuneugön radiô, lheuëh nyan teugön teuneugön ''peubandéng'' keu peubandéng seunalén. Teugön saboh tanggay keu eu seunalén ôn bak tanggay nyan.<br />(skr) = bida ngön seunalén jinoë, (akhé) = bida ngön seunalén sigohlomjih. '''b''' = andam bacut, '''b''' = andam bot, → = andam bideuëng, ← = reuningkah keudroë",
+'history-fieldset-title' => 'Jeulajah riwayat away',
+'histfirst'              => 'Paléng trép',
+'histlast'               => 'Paléng barô',
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 bak $2', # user at time
@@ -404,6 +405,8 @@ Nyoë pat nakeuh log seunampôh nibak ôn nyoë:",
 'ancientpages'            => 'Teunuléh away',
 'move'                    => 'Peupinah',
 'movethispage'            => 'Peupinah ôn nyoë',
+'pager-newer-n'           => '{{PLURAL:$1|1 leubèh barô |$1 leubèh barô}}',
+'pager-older-n'           => '{{PLURAL:$1|1 leubèh trép|$1 leubèh trép}}',
 
 # Book sources
 'booksources' => 'Nè kitab',
@@ -503,8 +506,11 @@ Droëneuh jeuët neugantoë tingkat lindông keu ôn nyoë, tapi nyan hana peung
 'month'         => 'Yôh buleuën (ngön yôh goh lom nyan)',
 'year'          => 'Yôh thôn (ngön yôh goh lom nyan)',
 
+'sp-contributions-newbies'     => 'Keu ureuëng-ureuëng nyang ban nguy mantöng',
 'sp-contributions-newbies-sub' => 'Keu nyang nguy barô',
 'sp-contributions-blocklog'    => 'Log peutheun',
+'sp-contributions-search'      => 'Mita soë nyang tuléh',
+'sp-contributions-username'    => 'Alamat IP atawa nan nyang nguy:',
 
 # What links here
 'whatlinkshere'       => 'Hubông balék',
@@ -611,8 +617,8 @@ Droëneuh cuman jeuët neu’eu nèjih.',
 'tooltip-watch'                   => 'Peutamah ôn nyoë u dapeuta keunalön Droëneuh',
 
 # Browsing diffs
-'previousdiff' => '←Bida away',
-'nextdiff'     => 'Bida lheuëh nyan→',
+'previousdiff' => '← Bida away',
+'nextdiff'     => 'Geunantoë lheuëh nyan →',
 
 # Media information
 'file-info-size'       => '($1 × $2 piksel, rayek beureukah: $3, MIME jeunèh: $4)',
@@ -645,7 +651,7 @@ Hubông-hubông lheuëh nyan bak baréh nyang saban geukira sibagoë keucuali, n
 
 # External editor support
 'edit-externally'      => 'Andam beureukah nyoë ngön aplikasi luwa',
-'edit-externally-help' => 'Ngiëng [http://meta.wikimedia.org/wiki/Help:External_editors arah atô] keu beurita leubèh lanjut.',
+'edit-externally-help' => '(Ngiëng [http://meta.wikimedia.org/wiki/Help:External_editors arah atô] keu beurita leubèh lanjôt)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ban dum',

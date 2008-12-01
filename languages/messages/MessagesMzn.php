@@ -39,9 +39,7 @@ $messages = array(
 'viewtalkpage'     => 'گپ ئون ره نشون هدائن',
 'otherlanguages'   => 'دیگه زیوون ئون',
 'lastmodifiedat'   => 'ای ولگ ره پایانی جور هکاردن ره بنه وخت ره وند بونه:
-<br>
-$2، $1
-<br>', # $1 date, $2 time
+$2، $1', # $1 date, $2 time
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'mainpage' => 'گت ولگ',

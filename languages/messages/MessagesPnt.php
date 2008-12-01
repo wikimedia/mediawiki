@@ -455,25 +455,26 @@ $messages = array(
 'cantcreateaccounttitle' => "Το ποίσιμον τη λογαρίας 'κ έντον",
 
 # History pages
-'viewpagelogs'        => "Τέρεν πρωτόκολλα γι' αβούτεν τη σελίδαν",
-'currentrev'          => 'Ατωριζνόν μορφήν',
-'revisionasof'        => 'Μορφήν τη $1',
-'revision-info'       => 'Έκδοση σα $1 ασόν/ασήν $2', # Additionally available: $3: revision id
-'previousrevision'    => '←Παλαιόν μορφήν',
-'nextrevision'        => 'Κι άλλο καινούρεον μορφήν→',
-'currentrevisionlink' => 'Ατωριζνόν μορφήν',
-'cur'                 => 'ατωριζνόν',
-'next'                => 'επόμενον',
-'last'                => 'τελευταίον',
-'page_first'          => 'πρώτον',
-'page_last'           => 'τελευταίον',
-'histlegend'          => 'Σύγκριμα διαφορίων: βαλέστεν τα μορφάς το θέλετε και τερέστεν τα διαφοράσατουν. Για να τερείτε τα διαφοράς, ποίστεν έναν κλικ σο πεδίον το λεει "Γαρσουλαεύτε...". <br />
+'viewpagelogs'           => "Τέρεν πρωτόκολλα γι' αβούτεν τη σελίδαν",
+'currentrev'             => 'Ατωριζνόν μορφήν',
+'revisionasof'           => 'Μορφήν τη $1',
+'revision-info'          => 'Έκδοση σα $1 ασόν/ασήν $2', # Additionally available: $3: revision id
+'previousrevision'       => '←Παλαιόν μορφήν',
+'nextrevision'           => 'Κι άλλο καινούρεον μορφήν→',
+'currentrevisionlink'    => 'Ατωριζνόν μορφήν',
+'cur'                    => 'ατωριζνόν',
+'next'                   => 'επόμενον',
+'last'                   => 'τελευταίον',
+'page_first'             => 'πρώτον',
+'page_last'              => 'τελευταίον',
+'histlegend'             => 'Σύγκριμα διαφορίων: βαλέστεν τα μορφάς το θέλετε και τερέστεν τα διαφοράσατουν. Για να τερείτε τα διαφοράς, ποίστεν έναν κλικ σο πεδίον το λεει "Γαρσουλαεύτε...". <br />
 Πληροφορία: (ατωριζνόν) = διαφοράς με τ\' ατωριζνόν τη μορφήν,
 (υστερνόν) = διαφοράς με τ\' υστερνόν τη μορφήν, μ = μικρά διαφοράς.',
-'deletedrev'          => '[εσβήεν]',
-'histfirst'           => "Ασ' όλεα παλαιόν",
-'histlast'            => "Ασ' όλεα καινούρ'",
-'historyempty'        => '(εύκαιρον)',
+'history-fieldset-title' => 'Εύρον σο ιστορικόν',
+'deletedrev'             => '[εσβήεν]',
+'histfirst'              => "Ασ' όλεα παλαιόν",
+'histlast'               => "Ασ' όλεα καινούρ'",
+'historyempty'           => '(εύκαιρον)',
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 σο $2', # user at time
@@ -689,6 +690,8 @@ $messages = array(
 'ancientpages'            => 'Ασ’ όλιον παλαιά σελίδας',
 'move'                    => 'Ετεροχλάεμαν',
 'movethispage'            => "Άλλαξον τ' όνεμα τη σελίδας",
+'pager-newer-n'           => '{{PLURAL:$1|κιάλλο καινούρεο 1|κιάλλο καινούρεα $1}}',
+'pager-older-n'           => '{{PLURAL:$1|κιάλλο παλαιόν 1|κιάλλο παλαιά $1}}',
 
 # Book sources
 'booksources'               => 'Βιβλιογραφικά πηγάς',
@@ -815,6 +818,7 @@ $messages = array(
 'sp-contributions-newbies-sub' => 'Για τα καινούρεα τοι λογαρίας',
 'sp-contributions-blocklog'    => 'Αρχείον ασπαλιγματίων',
 'sp-contributions-search'      => 'Εύρον συνεισφοράντας',
+'sp-contributions-username'    => 'Διεύθυνσην IP γιά όνεμαν χρήστε:',
 'sp-contributions-submit'      => 'Αράεμαν',
 
 # What links here
@@ -1048,7 +1052,7 @@ $messages = array(
 
 # External editor support
 'edit-externally'      => "Αλλαγήν τ' αρχείου με προγράμματα ασα εξ μερέα",
-'edit-externally-help' => 'Τερέστεν τα [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] και θα ευρίετε κι άλλα γνώσιας.',
+'edit-externally-help' => '(Τερέστεν τα [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] και θα ευρίετε κι άλλα πληροφορίας)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'ούλαι',

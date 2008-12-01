@@ -1472,6 +1472,7 @@ Cofnij się i załaduj plik pod inną nazwą. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Plik o tej nazwie już istnieje we współdzielonym repozytorium plików.
 Cofnij się i załaduj plik pod inną nazwą. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Ten plik jest kopią {{PLURAL:$1|pliku|następujących plików:}}',
+'file-deleted-duplicate'      => 'Identyczny plik do tego pliku ([[$1]]) został usunięty. Sprawdź historię usunięć tamtego pliku zanim wyślesz go ponowanie.',
 'successfulupload'            => 'Przesłanie pliku powiodło się',
 'uploadwarning'               => 'Ostrzeżenie o przesyłce',
 'savefile'                    => 'Zapisz plik',
@@ -2076,7 +2077,7 @@ Być może plik został już odtworzony.',
 'undelete-error-long'          => 'Napotkano błędy przy odtwarzaniu pliku:
 
 $1',
-'undelete-show-file-confirm'   => 'Czy na pewno chcesz zobaczyć usuniętą wersję pliku „<nowiki>$1</nowiki>” z $2?',
+'undelete-show-file-confirm'   => 'Czy na pewno chcesz zobaczyć usuniętą wersję pliku „<nowiki>$1</nowiki>” z $2 $3?',
 'undelete-show-file-submit'    => 'Tak',
 
 # Namespace form on various pages
@@ -2854,7 +2855,7 @@ Pozostałe pola zostaną domyślnie ukryte.
 
 # External editor support
 'edit-externally'      => 'Edytuj plik, używając zewnętrznej aplikacji',
-'edit-externally-help' => "Więcej informacji o używaniu [http://www.mediawiki.org/wiki/Manual:External_editors zewnętrznych edytorów] (''ang.'').",
+'edit-externally-help' => '(Więcej informacji o używaniu [http://www.mediawiki.org/wiki/Manual:External_editors zewnętrznych edytorów]).',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'wszystkie',

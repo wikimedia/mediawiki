@@ -1927,6 +1927,7 @@ Consulta il [[Special:Log/delete|log delle cancellazioni]] per vedere le cancell
 'undelete-error-long'          => 'Si sono verificati degli errori nel tentativo di annullare la cancellazione del file:
 
 $1',
+'undelete-show-file-confirm'   => 'Si desidera visualizzare la revisione cancellate del file "<nowiki>$1</nowiki>" del $2 alle $3?',
 'undelete-show-file-submit'    => 'Sì',
 
 # Namespace form on various pages

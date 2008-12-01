@@ -561,15 +561,20 @@ Móžeš tutu zdźělenku ignorować, jeli so wužiwarske konto zmylnje wutwori�
 'loginlanguagelabel'         => 'Rěč: $1',
 
 # Password reset dialog
-'resetpass'               => 'Hesło za wužiwarske konto wróćo stajić',
-'resetpass_announce'      => 'Sy so z nachwilnym e-mejlowanym hesłom přizjewił. Zo by přizjewjenje zakónčił, dyrbiš nětko nowe hesło postajić.',
-'resetpass_text'          => '<!-- Tu tekst zasunyć -->',
-'resetpass_header'        => 'Hesło wróćo stajić',
-'resetpass_submit'        => 'Hesło posrědkować a so přizjewić',
-'resetpass_success'       => 'Twoje hesło bu wuspěšnje změnjene! Nětko přizjewjenje běži...',
-'resetpass_bad_temporary' => 'Njepłaćiwe nachwilne hesło. Snano sy swoje hesło hižo wuspěšnje změnił abo nowe nachwilne hesło požadał.',
-'resetpass_forbidden'     => 'Hesła njedadźa so změnić.',
-'resetpass_missing'       => 'Prózdny formular.',
+'resetpass'                 => 'Hesło za wužiwarske konto změnić abo wróćo stajić',
+'resetpass_announce'        => 'Sy so z nachwilnym e-mejlowanym hesłom přizjewił. Zo by přizjewjenje zakónčił, dyrbiš nětko nowe hesło postajić.',
+'resetpass_text'            => '<!-- Tu tekst zasunyć -->',
+'resetpass_header'          => 'Hesło wróćo stajić',
+'resetpass_submit'          => 'Hesło posrědkować a so přizjewić',
+'resetpass_success'         => 'Twoje hesło bu wuspěšnje změnjene! Nětko přizjewjenje běži...',
+'resetpass_bad_temporary'   => 'Njepłaćiwe nachwilne hesło. Snano sy swoje hesło hižo wuspěšnje změnił abo nowe nachwilne hesło požadał.',
+'resetpass_forbidden'       => 'Hesła njedadźa so změnić.',
+'resetpass_missing'         => 'Prózdny formular.',
+'resetpass-no-info'         => 'Dyrbiš so přizjewić, zo by direktny přistup na tutu stronu měł.',
+'resetpass-submit-loggedin' => 'Hesło změnić',
+'resetpass-wrong-oldpass'   => 'Njepłaćiwe nachwilne abo aktualne hesło.
+Snano sy swoje hesło hižo wuspěšnje změnił abo nowe nachwilne hesło požadał.',
+'resetpass-temp-password'   => 'Nachwilne hesło:',
 
 # Edit page toolbar
 'bold_sample'     => 'Tučny tekst',
@@ -947,8 +952,8 @@ Móžeš [[:\$1|tutu stronu wutworić]].",
 'searchhelp-url'                   => 'Help:Wobsah',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Strony z tutym prefiksom přepytać]]',
 'searchprofile-articles'           => 'Wobsahowe strony',
-'searchprofile-articles-and-proj'  => 'Wobsahowe strony & Projekt',
-'searchprofile-project'            => 'Projekt',
+'searchprofile-articles-and-proj'  => 'Wobsahowe & projektowe strony',
+'searchprofile-project'            => 'Projektowe strony',
 'searchprofile-images'             => 'Dataje',
 'searchprofile-everything'         => 'Wšitko',
 'searchprofile-advanced'           => 'Rozšěrjeny',
@@ -1022,6 +1027,7 @@ Móžeš [[:\$1|tutu stronu wutworić]].",
 'prefs-watchlist-edits'     => 'Ličba změnow, kotrež maja so we wobkedźbowankach pokazać:',
 'prefs-watchlist-edits-max' => '(maksimalna ličba: 1000)',
 'prefs-misc'                => 'Wšelake nastajenja',
+'prefs-resetpass'           => 'Hesło změnić',
 'saveprefs'                 => 'Składować',
 'resetprefs'                => 'Njeskładowane změny zaćisnyć',
 'oldpassword'               => 'Stare hesło:',
@@ -1869,7 +1875,7 @@ Hlej [[Special:Log/delete|protokol]] za lisćinu aktualnych wušmórnjenjow a wo
 'undelete-error-long'          => 'Buchu zmylki při wobnowjenju dataje zwěsćene:
 
 $1',
-'undelete-show-file-confirm'   => 'Chceš sej woprawdźe zničenu wersiju dataje "<nowiki>$1</nowiki>" $2 wobhladać?',
+'undelete-show-file-confirm'   => 'Chceš sej woprawdźe zničenu wersiju dataje "<nowiki>$1</nowiki>" wot $2 $3 wobhladać?',
 'undelete-show-file-submit'    => 'Haj',
 
 # Namespace form on various pages

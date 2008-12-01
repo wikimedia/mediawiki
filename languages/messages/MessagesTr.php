@@ -362,6 +362,8 @@ $messages = array(
 'editsection'             => 'değiştir',
 'editold'                 => 'değiştir',
 'viewsourceold'           => 'kaynağı gör',
+'editlink'                => 'değiştir',
+'viewsourcelink'          => 'kaynağı gör',
 'editsectionhint'         => '$1 bölümünü değiştir',
 'toc'                     => 'Konu başlıkları',
 'showtoc'                 => 'göster',
@@ -565,15 +567,16 @@ Eğer kullanıcı hesabını yanlışlıkla oluşturmuş iseniz, bu mesajı yoks
 'loginlanguagelabel'         => 'Dil: $1',
 
 # Password reset dialog
-'resetpass'               => 'Kullanıcı parolasını sıfırla',
-'resetpass_announce'      => 'Size gönderilen muvakkat bir parola ile oturum açtınız.
+'resetpass'                 => 'Kullanıcı parolasını sıfırla',
+'resetpass_announce'        => 'Size gönderilen muvakkat bir parola ile oturum açtınız.
 Girişi bitirmek için, burada yeni bir parola yazın:',
-'resetpass_header'        => 'Parolayı sıfırla',
-'resetpass_submit'        => 'Şifreyi ayarlayın ve oturum açın',
-'resetpass_success'       => 'Parolanız başarıyla değiştirldi! Şimdi oturumunuz açılıyor...',
-'resetpass_bad_temporary' => 'Geçersiz geçisi parola. Zaten başarıyla parolanızı değiştirmiş veya yeni geçici şifre istemiş olabilirsiniz.',
-'resetpass_forbidden'     => 'Parolalar değiştirilememektedir',
-'resetpass_missing'       => 'Form data yok.',
+'resetpass_header'          => 'Parolayı sıfırla',
+'resetpass_submit'          => 'Şifreyi ayarlayın ve oturum açın',
+'resetpass_success'         => 'Parolanız başarıyla değiştirldi! Şimdi oturumunuz açılıyor...',
+'resetpass_bad_temporary'   => 'Geçersiz geçisi parola. Zaten başarıyla parolanızı değiştirmiş veya yeni geçici şifre istemiş olabilirsiniz.',
+'resetpass_forbidden'       => 'Parolalar değiştirilememektedir',
+'resetpass_missing'         => 'Form data yok.',
+'resetpass-submit-loggedin' => 'Parolayı değiştir',
 
 # Edit page toolbar
 'bold_sample'     => 'Kalın yazı',
@@ -719,7 +722,10 @@ Geri giderek varolan sayfayı değiştirebilirsiniz ya da kayıtlı iseniz [[Spe
 
 Bu sayfayı düzenlemeye devam ederken bunun uygun olup olmadığını düşünmelisiniz.
 Kolaylık olması açısından bu sayfanın silme kayıtları burada belirtilmiştir:",
+'deleted-notice'                   => 'Bu sayfa silindi.
+Bu sayfanın silinme kaydı aşağıda bulunmaktadır.',
 'deletelog-fulllog'                => 'Tüm kayıtları göster',
+'edit-conflict'                    => 'Değişiklik çakışması.',
 
 # "Undo" feature
 'undo-success' => 'Bu değişiklik geri alınabilir. Lütfen aşağıdaki karşılaştırmayı kontrol edin, gerçekten bu değişikliği yapmak istediğinizden emin olun ve sayfayı kaydederek bir önceki değişikliği geriye alın.',
@@ -831,9 +837,12 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'compareselectedversions' => 'Seçilen sürümleri karşılaştır',
 'editundo'                => 'geriye al',
 'diff-multi'              => '(Gösterilmeyen {{PLURAL:$1|$1 ara değişiklik|$1 ara değişiklik}} bulunmaktadır.)',
+'diff-movedto'            => '$1 sayfasına taşındı',
+'diff-src'                => 'kaynak',
 
 # Search results
 'searchresults'             => 'Arama sonuçları',
+'searchresults-title'       => '"$1" için arama sonuçları',
 'searchresulttext'          => '{{SITENAME}} içinde arama yapmak konusunda bilgi almak için [[{{MediaWiki:Helppage}}|{{int:help}}]] sayfasına bakabilirsiniz.',
 'searchsubtitle'            => "Aranan: \"'''[[:\$1]]'''\"",
 'searchsubtitleinvalid'     => 'Aranan: "$1"',
@@ -846,7 +855,11 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'prevn'                     => 'önceki $1',
 'nextn'                     => 'sonraki $1',
 'viewprevnext'              => '($1) ($2) ($3).',
+'searchmenu-legend'         => 'Arama seçenekleri',
 'searchhelp-url'            => 'Help:İçindekiler',
+'searchprofile-project'     => 'Proje sayfaları',
+'searchprofile-images'      => 'Dosyalar',
+'searchprofile-everything'  => 'Herşey',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 kelime|$2 kelime}})',
 'search-result-score'       => 'Uygunluk: $1%',
 'search-redirect'           => '(yönlendirme $1)',
@@ -900,6 +913,7 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'prefs-watchlist-days'     => 'İzleme listesinde görüntülenecek gün sayısı:',
 'prefs-watchlist-edits'    => 'Genişletilmiş izleme listesinde gösterilecek değişiklik sayısı:',
 'prefs-misc'               => 'Diğer ayarlar',
+'prefs-resetpass'          => 'Parolayı değiştir',
 'saveprefs'                => 'Değişiklikleri kaydet',
 'resetprefs'               => 'Ayarları ilk durumuna getir',
 'oldpassword'              => 'Eski parola',
@@ -1227,6 +1241,7 @@ Bu dosyanın silme kayıtları kolaylık olması için burada sunulmuştur:",
 'wantedcategories'        => 'İstenen kategoriler',
 'wantedpages'             => 'İstenen sayfalar',
 'wantedfiles'             => 'İstenen dosyalar',
+'wantedtemplates'         => 'İstenen şablonlar',
 'mostlinked'              => 'Kendisine en fazla bağlantı verilmiş sayfalar',
 'mostlinkedcategories'    => 'En çok maddeye sahip kategoriler',
 'mostlinkedtemplates'     => 'En çok kullanılan şablonlar',
@@ -1243,6 +1258,7 @@ Bu dosyanın silme kayıtları kolaylık olması için burada sunulmuştur:",
 'protectedpagestext'      => 'Aşağıdaki sayfalar koruma altına alınmıştır',
 'protectedtitles'         => 'Korunan başlıklar',
 'listusers'               => 'Kullanıcı listesi',
+'listusers-editsonly'     => 'Sadece değişiklik yapan kullanıcıları göster',
 'newpages'                => 'Yeni sayfalar',
 'newpages-username'       => 'Kullanıcı adı:',
 'ancientpages'            => 'En son değişiklik tarihi en eski olan maddeler',
@@ -1505,32 +1521,33 @@ Bu sayfanın koruma seviyesini değiştirebilirsiniz; ancak bu kademeli korumaya
 'restriction-level-all'           => 'Herhangi bir düzey',
 
 # Undelete
-'undelete'               => 'Silinmiş sayfaları göster',
-'undeletepage'           => 'Sayfanın silinmiş sürümlerine göz at ve geri getir.',
-'viewdeletedpage'        => 'Silinen sayfalara bak',
-'undeletepagetext'       => 'Aşağıdaki sayfalar silinmiştir, ancak halen arşivde saklanmakta ve istendiği zaman geri getirilebilmektedirler. Arşiv düzenli olarak temizlenebilir.',
-'undeleteextrahelp'      => "Sayfala birlikte geçmişi geri getirmek için onay kutularına dokunmadan '''Geri getir!''' tuşuna tıklayın. Sayfanın geçmişini ayrı ayrı getirmek için geri getirmek istediğiniz değişikliklerin onay kutularını seçip '''Geri getir!''' tuşuna tıklayın. Seçilen onay kutularını ve '''Neden''' alanını sıfırlamak için '''Vazgeç''' tuşuna tıklayın.",
-'undeletehistory'        => 'Eğer bu sayfa geri getiriyorsanız sayfanın bütün geçmişi de geri getirilecektir. Silindikten sonra aynı isimle yeni bir sayfa eklenmişse geri gelecek sayfanın geçmişi varolan sayfayı değiştirmeden halihazırdaki geçmişe eklenecektir.',
-'undeletehistorynoadmin' => 'Bu madde silinmiştir. Silinme sebebi ve silinme öncesinde maddeyi düzenleyen kullanıcıların detayları aşağıdaki özette verilmiştir. Bu silinmiş sürümlerin metinleri ise sadece yöneticiler tarafından görülebilir.',
-'undeletebtn'            => 'Geri getir!',
-'undeletelink'           => 'geri getir',
-'undeletereset'          => 'Vazgeç',
-'undeletecomment'        => 'Neden:',
-'undeletedarticle'       => '"$1" geri getirildi.',
-'undeletedrevisions'     => 'Toplam {{PLURAL:$1|1 kayıt|$1 kayıt}} geri getirildi.',
-'undeletedfiles'         => '{{PLURAL:$1|1 dosya|$1 dosya}} geri getirildi.',
-'cannotundelete'         => 'Sayfayı ya da medyayı sizden önce bir başka kullanıcı geri getirdiğinden dolayı sizin geri getirme işleminiz geçersiz.',
-'undeletedpage'          => "<big>'''$1 sayfası geri getirildi'''</big>
+'undelete'                  => 'Silinmiş sayfaları göster',
+'undeletepage'              => 'Sayfanın silinmiş sürümlerine göz at ve geri getir.',
+'viewdeletedpage'           => 'Silinen sayfalara bak',
+'undeletepagetext'          => 'Aşağıdaki sayfalar silinmiştir, ancak halen arşivde saklanmakta ve istendiği zaman geri getirilebilmektedirler. Arşiv düzenli olarak temizlenebilir.',
+'undeleteextrahelp'         => "Sayfala birlikte geçmişi geri getirmek için onay kutularına dokunmadan '''Geri getir!''' tuşuna tıklayın. Sayfanın geçmişini ayrı ayrı getirmek için geri getirmek istediğiniz değişikliklerin onay kutularını seçip '''Geri getir!''' tuşuna tıklayın. Seçilen onay kutularını ve '''Neden''' alanını sıfırlamak için '''Vazgeç''' tuşuna tıklayın.",
+'undeletehistory'           => 'Eğer bu sayfa geri getiriyorsanız sayfanın bütün geçmişi de geri getirilecektir. Silindikten sonra aynı isimle yeni bir sayfa eklenmişse geri gelecek sayfanın geçmişi varolan sayfayı değiştirmeden halihazırdaki geçmişe eklenecektir.',
+'undeletehistorynoadmin'    => 'Bu madde silinmiştir. Silinme sebebi ve silinme öncesinde maddeyi düzenleyen kullanıcıların detayları aşağıdaki özette verilmiştir. Bu silinmiş sürümlerin metinleri ise sadece yöneticiler tarafından görülebilir.',
+'undeletebtn'               => 'Geri getir!',
+'undeletelink'              => 'geri getir',
+'undeletereset'             => 'Vazgeç',
+'undeletecomment'           => 'Neden:',
+'undeletedarticle'          => '"$1" geri getirildi.',
+'undeletedrevisions'        => 'Toplam {{PLURAL:$1|1 kayıt|$1 kayıt}} geri getirildi.',
+'undeletedfiles'            => '{{PLURAL:$1|1 dosya|$1 dosya}} geri getirildi.',
+'cannotundelete'            => 'Sayfayı ya da medyayı sizden önce bir başka kullanıcı geri getirdiğinden dolayı sizin geri getirme işleminiz geçersiz.',
+'undeletedpage'             => "<big>'''$1 sayfası geri getirildi'''</big>
 
 Önceki silme ve geri getirme işlemleri için [[Special:Log/delete|silme kayıtları]]na bakınız.",
-'undelete-header'        => 'Daha önce silinmiş sayfaları görmek için bakınız: [[Special:Log/delete|silme kayıtları]].',
-'undelete-search-box'    => 'Silinmiş sayfaları ara',
-'undelete-search-submit' => 'Ara',
-'undelete-no-results'    => 'Silme arşivinde birbiriyle eşleşen hiçbir sayfaya rastlanmadı.',
-'undelete-error-short'   => 'Bu dosyanın silinmesini geri alırken hata çıktı: $1',
-'undelete-error-long'    => 'Bu dosyanın silinmesini geri alırken hatalar çıktı:
+'undelete-header'           => 'Daha önce silinmiş sayfaları görmek için bakınız: [[Special:Log/delete|silme kayıtları]].',
+'undelete-search-box'       => 'Silinmiş sayfaları ara',
+'undelete-search-submit'    => 'Ara',
+'undelete-no-results'       => 'Silme arşivinde birbiriyle eşleşen hiçbir sayfaya rastlanmadı.',
+'undelete-error-short'      => 'Bu dosyanın silinmesini geri alırken hata çıktı: $1',
+'undelete-error-long'       => 'Bu dosyanın silinmesini geri alırken hatalar çıktı:
 
 $1',
+'undelete-show-file-submit' => 'Evet',
 
 # Namespace form on various pages
 'namespace'      => 'Alan adı:',
@@ -1687,6 +1704,7 @@ Lütfen başka bir isim deneyiniz.',
 'delete_and_move_confirm' => 'Evet, sayfayı sil',
 'delete_and_move_reason'  => 'İsim değişikliğinin gerçekleşmesi için silindi.',
 'selfmove'                => 'Olmasını istediğiniz isim ile mevcut isim aynı. Değişiklik mümkün değil.',
+'immobile-source-page'    => 'Bu sayfanın adı değiştirilemez.',
 
 # Export
 'export'            => 'Sayfa kaydet',
@@ -2210,6 +2228,7 @@ Bir başlığı çıkarmak için, yanındaki kutucuğu işaretleyin, ve Başlık
 'specialpages-group-spam'        => 'Spam araçları',
 
 # Special:BlankPage
-'blankpage' => 'Boş sayfa',
+'blankpage'              => 'Boş sayfa',
+'intentionallyblankpage' => 'Bu sayfa özellikle boştur.',
 
 );
