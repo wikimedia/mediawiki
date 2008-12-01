@@ -2388,7 +2388,7 @@ Di Sigg „[[:$1]]“ jitt et ald. Wollts De se fottschmieße, öm hee di Sigg �
 'immobile-target-namespace' => 'Sigge künne nit en dat Appachtemang „$1“ erenn ömjenannt wääde',
 'immobile-source-page'      => 'Di Sigg kann nit ömjenannt wääde.',
 'immobile-target-page'      => 'Op dä Tittel kann kei Sigg ömjenannt wääde.',
-'imagenocrossnamespace'     => 'Bellder kam_mer nor in et Appachtemang „{{ns:file}}“ donn, noh wonaders hen kam_mer se och nit ömnemme!',
+'imagenocrossnamespace'     => 'Dateije kam_mer nor in et Appachtemang „{{ns:file}}“ donn, noh wonaders hen kam_mer se och nit ömnemme!',
 'imagetypemismatch'         => 'De neu Datei-Endong moß met däm Datei-Tüp zesamme passe',
 'imageinvalidfilename'      => 'Dä Ziel-Name för de Datei es verkeht',
 'fix-double-redirects'      => 'Don noh em Ömnenne de Ömleidunge automattesch ändere, di noch op dä ahle Tittel zeije, also de neu entshtande dubbelte Ömleidunge oplöse.',

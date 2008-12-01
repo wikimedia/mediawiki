@@ -20,6 +20,7 @@
  * @author Spacebirdy
  * @author Tim Bartel (avatar) <wikipedistik@computerkultur.org> small changes
  * @author UV
+ * @author Umherirrender
  * @author W (aka Wuzur)
  * @author לערי ריינהארט
  */
@@ -2501,6 +2502,7 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'simple.css'      => '/* CSS an dieser Stelle wirkt sich auf den Einfach-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
 'modern.css'      => '/* CSS an dieser Stelle wirkt sich auf den Modern-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
 'print.css'       => '/* CSS an dieser Stelle wirkt sich auf die Druckausgabe aus */',
+'handheld.css'    => '/* CSS an dieser Stelle wirkt sich auf Handheld-Geräte, basierend auf den in $wgHandheldStyle konfigurierten Skin, aus */',
 
 # Scripts
 'common.js'      => '/* Das folgende JavaScript wird für alle Benutzer geladen. */',

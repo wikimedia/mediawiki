@@ -1112,9 +1112,10 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'right-siteadmin'        => "Cloi a datgloi'r databas",
 
 # User rights log
-'rightslog'     => 'Lòg galluoedd defnyddiwr',
-'rightslogtext' => 'Lòg y newidiadau i alluoedd defnyddwyr yw hwn.',
-'rightsnone'    => '(dim)',
+'rightslog'      => 'Lòg galluoedd defnyddiwr',
+'rightslogtext'  => 'Lòg y newidiadau i alluoedd defnyddwyr yw hwn.',
+'rightslogentry' => "wedi gosod $1 yn aelod o'r grŵp $3 (grŵp cynt $2)",
+'rightsnone'     => '(dim)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'darllen y dudalen',

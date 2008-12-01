@@ -1840,6 +1840,8 @@ Meschien is 't al weerummeplaos.",
 'undelete-error-long'          => "Fouten bie 't herstellen van 't bestand:
 
 $1",
+'undelete-show-file-confirm'   => 'Bi-j der wisse van da-j een vort-edaone versie van \'t bestand "<nowiki>$1</nowiki>" van $2 um $3 bekieken willen?',
+'undelete-show-file-submit'    => 'Ja',
 
 # Namespace form on various pages
 'namespace'      => 'Naamruumte:',
@@ -1871,6 +1873,7 @@ $1",
 'nolinkshere-ns'           => "Gien enkele pagina verwiest naor '''[[:$1]]''' in de ekeuzen naamruumte.",
 'isredirect'               => 'deurverwiezing',
 'istemplate'               => 'in-evoeg as sjabloon',
+'isimage'                  => 'bestansverwiezing',
 'whatlinkshere-prev'       => '{{PLURAL:$1|veurige|veurige $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|volgende|volgende $1}}',
 'whatlinkshere-links'      => '← verwiezingen',
@@ -1882,6 +1885,7 @@ $1",
 
 # Block/unblock
 'blockip'                     => 'Gebruker blokkeren',
+'blockip-legend'              => 'Een gebruker of IP-adres blokkeren',
 'blockiptext'                 => "Gebruuk dit formelier um een IP-adres te blokkeren. 't Is bedoeld um vandelisme te veurkoemen. Misbruuk van disse functie zal tot gevolg hemmen dat de staotus van beheerder of-eneumen zal wonnen.",
 'ipaddress'                   => 'IP-adres:',
 'ipadressorusername'          => 'IP-adres of gebrukersnaam',

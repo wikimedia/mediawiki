@@ -698,6 +698,8 @@ $1",
 'resetpass_missing'         => 'Форма не містить даних.',
 'resetpass-no-info'         => 'Щоб звертатися безпосередньо до цієї сторінки, вам слід увійти до системи.',
 'resetpass-submit-loggedin' => 'Змінити пароль',
+'resetpass-wrong-oldpass'   => 'Неправильний тимчасовий або поточний пароль.
+Можливо, ви вже успішно змінили пароль або зробили запит на новий тимчасовий пароль.',
 'resetpass-temp-password'   => 'Тимчасовий пароль:',
 
 # Edit page toolbar
@@ -2892,7 +2894,7 @@ $1
 # action=purge
 'confirm_purge_button' => 'Гаразд',
 'confirm-purge-top'    => 'Очистити кеш цієї сторінки?',
-'confirm-purge-bottom' => 'Після очищення кешу сторінку буде показана її сотання версія.',
+'confirm-purge-bottom' => 'Після очищення кешу сторінки буде показана її остання версія.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← попередня сторінка',
