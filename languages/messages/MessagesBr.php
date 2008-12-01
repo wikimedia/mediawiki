@@ -17,8 +17,8 @@ $namespaceNames = array(
 	NS_USER_TALK      => 'Kaozeadenn_Implijer',
 	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK   => 'Kaozeadenn_$1',
-	NS_IMAGE          => 'Skeudenn',
-	NS_IMAGE_TALK     => 'Kaozeadenn_Skeudenn',
+	NS_FILE           => 'Skeudenn',
+	NS_FILE_TALK      => 'Kaozeadenn_Skeudenn',
 	NS_MEDIAWIKI      => 'MediaWiki',
 	NS_MEDIAWIKI_TALK => 'Kaozeadenn_MediaWiki',
 	NS_TEMPLATE       => 'Patrom',

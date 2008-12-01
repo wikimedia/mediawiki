@@ -27,10 +27,10 @@ $namespaceAliases = array(
 	# This has never worked so it's unlikely to annoy anyone if I disable it -- TS
 	#'{{SITENAME}}_对话' => NS_PROJECT_TALK
 	#"{{SITENAME}}_對話" => NS_PROJECT_TALK
-	'图像' => NS_IMAGE,
-	'圖像' => NS_IMAGE,
-	'图像对话' => NS_IMAGE_TALK,
-	'圖像對話' => NS_IMAGE_TALK,
+	'图像' => NS_FILE,
+	'圖像' => NS_FILE,
+	'图像对话' => NS_FILE_TALK,
+	'圖像對話' => NS_FILE_TALK,
 	'模板'	=> NS_TEMPLATE,
 	'模板讨论'=> NS_TEMPLATE_TALK,
 	"樣板" => NS_TEMPLATE,

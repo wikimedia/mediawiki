@@ -33,7 +33,7 @@ class UnusedimagesPage extends ImageQueryPage {
 					FROM ((($page AS I LEFT JOIN $categorylinks AS L ON I.page_id = L.cl_from)
 						LEFT JOIN $imagelinks AS P ON I.page_title = P.il_to)
 						INNER JOIN $image AS G ON I.page_title = G.img_name)
-					WHERE I.page_namespace = ".NS_IMAGE." AND L.cl_from IS NULL AND P.il_to IS NULL";
+					WHERE I.page_namespace = ".NS_FILE." AND L.cl_from IS NULL AND P.il_to IS NULL";
 		} else {
 			list( $image, $imagelinks ) = $dbr->tableNamesN( 'image','imagelinks' );
 

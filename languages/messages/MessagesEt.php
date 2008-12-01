@@ -21,8 +21,8 @@ $namespaceNames = array(
 	NS_USER_TALK        => 'Kasutaja_arutelu',
 	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => '$1_arutelu',
-	NS_IMAGE            => 'Pilt',
-	NS_IMAGE_TALK       => 'Pildi_arutelu',
+	NS_FILE             => 'Pilt',
+	NS_FILE_TALK        => 'Pildi_arutelu',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'MediaWiki_arutelu',
 	NS_TEMPLATE         => 'Mall',

@@ -32,8 +32,8 @@ $namespaceNames = array(
 	NS_USER_TALK      => 'আতাকুরার_য়্যারী',
 	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK   => '$1_য়্যারী',
-	NS_IMAGE          => 'ছবি',
-	NS_IMAGE_TALK     => 'ছবি_য়্যারী',
+	NS_FILE           => 'ছবি',
+	NS_FILE_TALK      => 'ছবি_য়্যারী',
 	NS_MEDIAWIKI      => 'মিডিয়াউইকি',
 	NS_MEDIAWIKI_TALK => 'মিডিয়াউইকির_য়্যারী',
 	NS_TEMPLATE       => 'মডেল',

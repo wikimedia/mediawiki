@@ -19,8 +19,8 @@ $namespaceNames = array(
 	NS_USER_TALK        => 'Aжыглакчы_чугаа', //User_talk
 	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => '$1_чугаа', //_talk
-	NS_IMAGE            => 'Чурук', //Image
-	NS_IMAGE_TALK       => 'Чурук_чугаа', //Image_talk
+	NS_FILE             => 'Чурук', //Image
+	NS_FILE_TALK        => 'Чурук_чугаа', //Image_talk
 	NS_MEDIAWIKI        => 'МедиаВики', //MediaWiki
 	NS_MEDIAWIKI_TALK   => 'МедиаВики_чугаа', //MediaWiki_talk
 	NS_TEMPLATE         => 'Хээ', //Template

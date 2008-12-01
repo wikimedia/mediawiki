@@ -59,7 +59,7 @@ abstract class FileRepo {
 	 */
 	function newFile( $title, $time = false ) {
 		if ( !($title instanceof Title) ) {
-			$title = Title::makeTitleSafe( NS_IMAGE, $title );
+			$title = Title::makeTitleSafe( NS_FILE, $title );
 			if ( !is_object( $title ) ) {
 				return null;
 			}
@@ -85,7 +85,7 @@ abstract class FileRepo {
 	 */
 	function findFile( $title, $time = false, $flags = 0 ) {
 		if ( !($title instanceof Title) ) {
-			$title = Title::makeTitleSafe( NS_IMAGE, $title );
+			$title = Title::makeTitleSafe( NS_FILE, $title );
 			if ( !is_object( $title ) ) {
 				return false;
 			}
@@ -115,7 +115,7 @@ abstract class FileRepo {
 			return false;
 		}
 		$redir = $this->checkRedirect( $title );		
-		if( $redir && $redir->getNamespace() == NS_IMAGE) {
+		if( $redir && $redir->getNamespace() == NS_FILE) {
 			$img = $this->newFile( $redir );
 			if( !$img ) {
 				return false;
@@ -262,10 +262,10 @@ abstract class FileRepo {
 		if ( is_null( $this->descBaseUrl ) ) {
 			if ( !is_null( $this->articleUrl ) ) {
 				$this->descBaseUrl = str_replace( '$1',
-					wfUrlencode( MWNamespace::getCanonicalName( NS_IMAGE ) ) . ':', $this->articleUrl );
+					wfUrlencode( MWNamespace::getCanonicalName( NS_FILE ) ) . ':', $this->articleUrl );
 			} elseif ( !is_null( $this->scriptDirUrl ) ) {
 				$this->descBaseUrl = $this->scriptDirUrl . '/index.php?title=' .
-					wfUrlencode( MWNamespace::getCanonicalName( NS_IMAGE ) ) . ':';
+					wfUrlencode( MWNamespace::getCanonicalName( NS_FILE ) ) . ':';
 			} else {
 				$this->descBaseUrl = false;
 			}
@@ -300,7 +300,7 @@ abstract class FileRepo {
 	function getDescriptionRenderUrl( $name ) {
 		if ( isset( $this->scriptDirUrl ) ) {
 			return $this->scriptDirUrl . '/index.php?title=' .
-				wfUrlencode( MWNamespace::getCanonicalName( NS_IMAGE ) . ':' . $name ) .
+				wfUrlencode( MWNamespace::getCanonicalName( NS_FILE ) . ':' . $name ) .
 				'&action=render';
 		} else {
 			$descBase = $this->getDescBaseUrl();

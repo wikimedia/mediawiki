@@ -103,7 +103,7 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 				}
 
 				$vals = array();
-				ApiQueryBase :: addTitleInfo($vals, Title :: makeTitle(NS_IMAGE, $row->il_to));
+				ApiQueryBase :: addTitleInfo($vals, Title :: makeTitle(NS_FILE, $row->il_to));
 				$data[] = $vals;
 			}
 
@@ -123,7 +123,7 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 							'|' . $this->keyToTitle($row->il_to));
 					break;
 				}
-				$titles[] = Title :: makeTitle(NS_IMAGE, $row->il_to);
+				$titles[] = Title :: makeTitle(NS_FILE, $row->il_to);
 			}
 			$resultPageSet->populateFromTitles($titles);
 		}

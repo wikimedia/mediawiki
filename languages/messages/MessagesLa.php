@@ -24,8 +24,8 @@ $namespaceNames = array(
 	NS_USER             => 'Usor',
 	NS_USER_TALK        => 'Disputatio_Usoris',
 	NS_PROJECT_TALK     => 'Disputatio_{{GRAMMAR:genitive|$1}}',
-	NS_IMAGE            => 'Fasciculus',
-	NS_IMAGE_TALK       => 'Disputatio_Fasciculi',
+	NS_FILE             => 'Fasciculus',
+	NS_FILE_TALK        => 'Disputatio_Fasciculi',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'Disputatio_MediaWiki',
 	NS_TEMPLATE         => 'Formula',
@@ -37,8 +37,8 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'Imago' => NS_IMAGE,
-	'Disputatio_Imaginis' => NS_IMAGE_TALK,
+	'Imago' => NS_FILE,
+	'Disputatio_Imaginis' => NS_FILE_TALK,
 );
 
 $separatorTransformTable = array( ',' => "\xc2\xa0" );

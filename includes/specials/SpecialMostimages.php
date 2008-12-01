@@ -25,7 +25,7 @@ class MostimagesPage extends ImageQueryPage {
 			"
 			SELECT
 				'Mostimages' as type,
-				" . NS_IMAGE . " as namespace,
+				" . NS_FILE . " as namespace,
 				il_to as title,
 				COUNT(*) as value
 			FROM $imagelinks

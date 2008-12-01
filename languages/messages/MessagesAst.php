@@ -17,8 +17,8 @@ $namespaceNames = array(
 	NS_USER             => 'Usuariu',
 	NS_USER_TALK        => 'Usuariu_alderique',
 	NS_PROJECT_TALK     => '$1_alderique',
-	NS_IMAGE            => 'Archivu',
-	NS_IMAGE_TALK       => 'Archivu_alderique',
+	NS_FILE             => 'Archivu',
+	NS_FILE_TALK        => 'Archivu_alderique',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'MediaWiki_alderique',
 	NS_TEMPLATE         => 'Plantía',
@@ -30,16 +30,16 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'Imaxe' => NS_IMAGE,
-	'Imaxe alderique' => NS_IMAGE_TALK,
+	'Imaxe' => NS_FILE,
+	'Imaxe alderique' => NS_FILE_TALK,
 );
 
 $namespaceAliases = array(
 	'Discusión'           => NS_TALK,
 	'Usuariu_discusión'   => NS_USER_TALK,
 	'$1_discusión'        => NS_PROJECT_TALK,
-	'Imaxen'              => NS_IMAGE,
-	'Imaxen_discusión'    => NS_IMAGE_TALK,
+	'Imaxen'              => NS_FILE,
+	'Imaxen_discusión'    => NS_FILE_TALK,
 	'MediaWiki_discusión' => NS_MEDIAWIKI_TALK,
 	'Plantilla'           => NS_TEMPLATE,
 	'Plantilla_discusión' => NS_TEMPLATE_TALK,

@@ -31,8 +31,8 @@ $namespaceNames = array(
 	NS_USER             => 'کاربر',
 	NS_USER_TALK        => 'بحث_کاربر',
 	NS_PROJECT_TALK     => 'بحث_$1',
-	NS_IMAGE            => 'پرونده',
-	NS_IMAGE_TALK       => 'بحث_پرونده',
+	NS_FILE             => 'پرونده',
+	NS_FILE_TALK        => 'بحث_پرونده',
 	NS_MEDIAWIKI        => 'مدیاویکی',
 	NS_MEDIAWIKI_TALK   => 'بحث_مدیاویکی',
 	NS_TEMPLATE         => 'الگو',
@@ -44,8 +44,8 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'تصویر' => NS_IMAGE,
-	'بحث_تصویر' => NS_IMAGE_TALK,
+	'تصویر' => NS_FILE,
+	'بحث_تصویر' => NS_FILE_TALK,
 );
 
 $specialPageAliases = array(

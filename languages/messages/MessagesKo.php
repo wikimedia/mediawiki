@@ -34,8 +34,8 @@ $namespaceNames = array(
 	NS_USER             => '사용자',
 	NS_USER_TALK        => '사용자토론',
 	NS_PROJECT_TALK     => '$1토론',
-	NS_IMAGE            => '파일',
-	NS_IMAGE_TALK       => '파일토론',
+	NS_FILE             => '파일',
+	NS_FILE_TALK        => '파일토론',
 	NS_MEDIAWIKI        => '미디어위키',
 	NS_MEDIAWIKI_TALK   => '미디어위키토론',
 	NS_TEMPLATE         => '틀',
@@ -49,8 +49,8 @@ $namespaceNames = array(
 $namespaceAliases = array(
 	'특'  => NS_SPECIAL,
 	'MediaWiki토론' => NS_MEDIAWIKI_TALK,
-	'그림' => NS_IMAGE,
-	'파일토론' => NS_IMAGE_TALK,
+	'그림' => NS_FILE,
+	'파일토론' => NS_FILE_TALK,
 );
 
 $specialPageAliases = array(

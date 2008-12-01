@@ -349,7 +349,7 @@ class UploadBase {
 			return $this->mTitle = null;
 		}
 		
-		$nt = Title::makeTitleSafe( NS_IMAGE, $this->mFilteredName );
+		$nt = Title::makeTitleSafe( NS_FILE, $this->mFilteredName );
 		if( is_null( $nt ) ) {
 			$this->mTitleError = self::ILLEGAL_FILENAME;
 			return $this->mTitle = null;
@@ -808,7 +808,7 @@ class UploadBase {
 			// extensions (eg 'jpg' rather than 'JPEG').
 			//
 			// Check for another file using the normalized form...
-			$nt_lc = Title::makeTitle( NS_IMAGE, $partname . '.' . $file->getExtension() );
+			$nt_lc = Title::makeTitle( NS_FILE, $partname . '.' . $file->getExtension() );
 			$file_lc = wfLocalFile( $nt_lc );
 			
 			if( $file_lc->exists() )

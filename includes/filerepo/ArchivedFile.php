@@ -84,7 +84,7 @@ class ArchivedFile
 		if (!count($conds))
 			throw new MWException( "No specific information for retrieving archived file" );
 		
-		if( !$this->title || $this->title->getNamespace() == NS_IMAGE ) {
+		if( !$this->title || $this->title->getNamespace() == NS_FILE ) {
 			$dbr = wfGetDB( DB_SLAVE );
 			$res = $dbr->select( 'filearchive',
 				array(
@@ -149,7 +149,7 @@ class ArchivedFile
 	 * @return ResultWrapper
 	 */
 	public static function newFromRow( $row ) {
-		$file = new ArchivedFile( Title::makeTitle( NS_IMAGE, $row->fa_name ) );
+		$file = new ArchivedFile( Title::makeTitle( NS_FILE, $row->fa_name ) );
 
 		$file->id = intval($row->fa_id);
 		$file->name = $row->fa_name;

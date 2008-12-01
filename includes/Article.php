@@ -1219,7 +1219,7 @@ class Article {
 				$where = array( 'rd_from' => $this->getId() );
 				$dbw->delete( 'redirect', $where, __METHOD__);
 			}
-			if( $this->getTitle()->getNamespace() == NS_IMAGE ) {
+			if( $this->getTitle()->getNamespace() == NS_FILE ) {
 				RepoGroup::singleton()->getLocalRepo()->invalidateImageRedirect( $this->getTitle() );
 			}
 			wfProfileOut( __METHOD__ );
@@ -3172,7 +3172,7 @@ class Article {
 			$wgMessageCache->replace( $title->getDBkey(), false );
 		}
 		# Images
-		if( $title->getNamespace() == NS_IMAGE ) {
+		if( $title->getNamespace() == NS_FILE ) {
 			$update = new HTMLCacheUpdate( $title, 'imagelinks' );
 			$update->doUpdate();
 		}
@@ -3518,7 +3518,7 @@ class Article {
 		if( $ns == NS_CATEGORY ) {
 			$addFields[]    = 'cat_subcats = cat_subcats + 1';
 			$removeFields[] = 'cat_subcats = cat_subcats - 1';
-		} elseif( $ns == NS_IMAGE ) {
+		} elseif( $ns == NS_FILE ) {
 			$addFields[]    = 'cat_files = cat_files + 1';
 			$removeFields[] = 'cat_files = cat_files - 1';
 		}

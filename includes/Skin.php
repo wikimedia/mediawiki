@@ -942,7 +942,7 @@ END;
 		}
 
 		if ( $wgOut->isArticleRelated() ) {
-			if ( $wgTitle->getNamespace() == NS_IMAGE ) {
+			if ( $wgTitle->getNamespace() == NS_FILE ) {
 				$name = $wgTitle->getDBkey();
 				$image = wfFindFile( $wgTitle );
 				if( $image ) {
@@ -1678,7 +1678,7 @@ END;
 				case NS_PROJECT:
 					$text = wfMsg( 'projectpage' );
 					break;
-				case NS_IMAGE:
+				case NS_FILE:
 					$text = wfMsg( 'imagepage' );
 					# Make link known if image exists, even if the desc. page doesn't.
 					if( wfFindFile( $link ) )

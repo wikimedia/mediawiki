@@ -31,8 +31,8 @@ $namespaceNames = array(
 	NS_USER             => 'Pengguna',
 	NS_USER_TALK        => 'Perbincangan_Pengguna',
 	NS_PROJECT_TALK     => 'Perbincangan_$1',
-	NS_IMAGE            => 'Fail',
-	NS_IMAGE_TALK       => 'Perbincangan_Fail',
+	NS_FILE             => 'Fail',
+	NS_FILE_TALK        => 'Perbincangan_Fail',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'Perbincangan_MediaWiki',
 	NS_TEMPLATE         => 'Templat',
@@ -44,8 +44,8 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'Imej' => NS_IMAGE,
-	'Perbincangan_Imej' => NS_IMAGE_TALK,
+	'Imej' => NS_FILE,
+	'Perbincangan_Imej' => NS_FILE_TALK,
 );
 
 $namespaceAliases = array(
@@ -53,7 +53,7 @@ $namespaceAliases = array(
 	'Perbualan'           => NS_TALK,
 	'Perbualan_Pengguna'  => NS_USER_TALK,
 	'Perbualan_$1'        => NS_PROJECT_TALK,
-	'Imej_Perbualan'      => NS_IMAGE_TALK,
+	'Imej_Perbualan'      => NS_FILE_TALK,
 	'MediaWiki_Perbualan' => NS_MEDIAWIKI_TALK,
 	'Perbualan_Templat'   => NS_TEMPLATE_TALK,
 	'Perbualan_Kategori'  => NS_CATEGORY_TALK,

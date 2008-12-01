@@ -113,7 +113,7 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 				$data[] = array_merge(array('name' => $row->img_name),
 					ApiQueryImageInfo::getInfo($file, $prop, $result));
 			} else {
-				$data[] = Title::makeTitle(NS_IMAGE, $row->img_name);
+				$data[] = Title::makeTitle(NS_FILE, $row->img_name);
 			}
 		}
 		$db->freeResult($res);

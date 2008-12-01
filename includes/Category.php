@@ -257,7 +257,7 @@ class Category {
 		}
 
 		$cond1 = $dbw->conditional( 'page_namespace='.NS_CATEGORY, 1, 'NULL' );
-		$cond2 = $dbw->conditional( 'page_namespace='.NS_IMAGE, 1, 'NULL' );
+		$cond2 = $dbw->conditional( 'page_namespace='.NS_FILE, 1, 'NULL' );
 		$result = $dbw->selectRow(
 			array( 'categorylinks', 'page' ),
 			array( 'COUNT(*) AS pages',

@@ -19,8 +19,8 @@ $namespaceNames = array(
 	NS_USER_TALK      => 'Jeno_vakyarimata',
 	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK   => '{{grammar:genitive-pl|$1}}_vakyarimata',
-	NS_IMAGE          => 'Chitro',
-	NS_IMAGE_TALK     => 'Chitro_vakyarimata',
+	NS_FILE           => 'Chitro',
+	NS_FILE_TALK      => 'Chitro_vakyarimata',
 	NS_MEDIAWIKI      => 'MediyaViki',
 	NS_MEDIAWIKI_TALK => 'MediyaViki_vakyarimata',
 	NS_TEMPLATE       => 'Sikavno',

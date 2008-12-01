@@ -244,7 +244,7 @@ class ImageGallery
 
 			$img = wfFindFile( $nt, $time );
 
-			if( $nt->getNamespace() != NS_IMAGE || !$img ) {
+			if( $nt->getNamespace() != NS_FILE || !$img ) {
 				# We're dealing with a non-image, spit out the name and be done with it.
 				$thumbhtml = "\n\t\t\t".'<div style="height: '.($this->mHeights*1.25+2).'px;">'
 					. htmlspecialchars( $nt->getText() ) . '</div>';

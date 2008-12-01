@@ -22,8 +22,8 @@ $namespaceNames = array(
 	NS_USER_TALK        => 'Ciaciarade',
 	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => 'Discussion_ant_sla_$1',
-	NS_IMAGE            => 'Figura',
-	NS_IMAGE_TALK       => 'Discussion_dla_figura',
+	NS_FILE             => 'Figura',
+	NS_FILE_TALK        => 'Discussion_dla_figura',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'Discussion_dla_MediaWiki',
 	NS_TEMPLATE         => 'Stamp',

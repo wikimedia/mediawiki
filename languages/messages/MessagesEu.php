@@ -27,8 +27,8 @@ $namespaceNames = array(
 	NS_USER             => 'Lankide',
 	NS_USER_TALK        => 'Lankide_eztabaida',
 	NS_PROJECT_TALK     => '$1_eztabaida',
-	NS_IMAGE            => 'Fitxategi',
-	NS_IMAGE_TALK       => 'Fitxategi_eztabaida',
+	NS_FILE             => 'Fitxategi',
+	NS_FILE_TALK        => 'Fitxategi_eztabaida',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'MediaWiki_eztabaida',
 	NS_TEMPLATE         => 'Txantiloi',
@@ -41,8 +41,8 @@ $namespaceNames = array(
 
 $namespaceAliases = array(
 	'Aparteko' => NS_SPECIAL,
-	'Irudi' => NS_IMAGE,
-	'Irudi_eztabaida' => NS_IMAGE_TALK,
+	'Irudi' => NS_FILE,
+	'Irudi_eztabaida' => NS_FILE_TALK,
 );
 
 $specialPageAliases = array(

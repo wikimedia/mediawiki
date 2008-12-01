@@ -32,7 +32,7 @@ class UnregisteredLocalFile extends File {
 			$this->name = $repo->getNameFromTitle( $title );
 		} else {
 			$this->name = basename( $path );
-			$this->title = Title::makeTitleSafe( NS_IMAGE, $this->name );
+			$this->title = Title::makeTitleSafe( NS_FILE, $this->name );
 		}
 		$this->repo = $repo;
 		if ( $path ) {

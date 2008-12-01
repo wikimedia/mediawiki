@@ -242,7 +242,7 @@ class MediaWiki {
 	static function articleFromTitle( &$title ) {
 		if( NS_MEDIA == $title->getNamespace() ) {
 			// FIXME: where should this go?
-			$title = Title::makeTitle( NS_IMAGE, $title->getDBkey() );
+			$title = Title::makeTitle( NS_FILE, $title->getDBkey() );
 		}
 
 		$article = null;
@@ -252,7 +252,7 @@ class MediaWiki {
 		}
 
 		switch( $title->getNamespace() ) {
-			case NS_IMAGE:
+			case NS_FILE:
 				return new ImagePage( $title );
 			case NS_CATEGORY:
 				return new CategoryPage( $title );
@@ -277,7 +277,7 @@ class MediaWiki {
 		
 		// Namespace might change when using redirects
 		// Check for redirects ...
-		$file = $title->getNamespace() == NS_IMAGE ? $article->getFile() : null;
+		$file = $title->getNamespace() == NS_FILE ? $article->getFile() : null;
 		if( ( $action == 'view' || $action == 'render' ) 	// ... for actions that show content
 					&& !$request->getVal( 'oldid' ) &&    // ... and are not old revisions
 					$request->getVal( 'redirect' ) != 'no' &&	// ... unless explicitly told not to

@@ -18,8 +18,8 @@ $namespaceNames = array(
         NS_USER_TALK        => "Äğzä_bäxäse",
         # NS_PROJECT set by $wgMetaNamespace
         NS_PROJECT_TALK     => '$1_bäxäse',
-        NS_IMAGE            => "Räsem",
-        NS_IMAGE_TALK       => "Räsem_bäxäse",
+        NS_FILE             => "Räsem",
+        NS_FILE_TALK        => "Räsem_bäxäse",
         NS_MEDIAWIKI        => "MediaWiki",
         NS_MEDIAWIKI_TALK   => "MediaWiki_bäxäse",
         NS_TEMPLATE         => "Ürnäk",

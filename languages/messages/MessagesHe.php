@@ -300,8 +300,8 @@ $namespaceNames = array(
 	NS_USER_TALK      => 'שיחת_משתמש',
 	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK   => 'שיחת_$1',
-	NS_IMAGE          => 'קובץ',
-	NS_IMAGE_TALK     => 'שיחת_קובץ',
+	NS_FILE           => 'קובץ',
+	NS_FILE_TALK      => 'שיחת_קובץ',
 	NS_MEDIAWIKI      => 'מדיה_ויקי',
 	NS_MEDIAWIKI_TALK => 'שיחת_מדיה_ויקי',
 	NS_TEMPLATE       => 'תבנית',
@@ -312,8 +312,8 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK  => 'שיחת_קטגוריה',
 );
 $namespaceAliases = array(
-	'תמונה'      => NS_IMAGE,
-	'שיחת_תמונה' => NS_IMAGE_TALK,
+	'תמונה'      => NS_FILE,
+	'שיחת_תמונה' => NS_FILE_TALK,
 );
 
 $messages = array(

@@ -35,11 +35,11 @@ class WantedFilesPage extends QueryPage {
 			"
 			SELECT
 				$name as type,
-				" . NS_IMAGE . " as namespace,
+				" . NS_FILE . " as namespace,
 				il_to as title,
 				COUNT(*) as value
 			FROM $imagelinks
-			LEFT JOIN $page ON il_to = page_title AND page_namespace = ". NS_IMAGE ."
+			LEFT JOIN $page ON il_to = page_title AND page_namespace = ". NS_FILE ."
 			WHERE page_title IS NULL
 			GROUP BY il_to
 			";

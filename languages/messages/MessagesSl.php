@@ -17,8 +17,8 @@ $namespaceNames = array(
 	NS_USER_TALK      => 'Uporabniški_pogovor',
 	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK   => 'Pogovor_{{grammar:mestnik|$1}}',
-	NS_IMAGE          => 'Slika',
-	NS_IMAGE_TALK     => 'Pogovor_o_sliki',
+	NS_FILE           => 'Slika',
+	NS_FILE_TALK      => 'Pogovor_o_sliki',
 	NS_MEDIAWIKI      => 'MediaWiki',
 	NS_MEDIAWIKI_TALK => 'Pogovor_o_MediaWiki',
 	NS_TEMPLATE       => 'Predloga',

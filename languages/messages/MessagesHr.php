@@ -34,8 +34,8 @@ $namespaceNames = array(
 	NS_USER             => 'Suradnik',
 	NS_USER_TALK        => 'Razgovor_sa_suradnikom',
 	NS_PROJECT_TALK     => 'Razgovor_$1',
-	NS_IMAGE            => 'Datoteka',
-	NS_IMAGE_TALK       => 'Razgovor_o_datoteci',
+	NS_FILE             => 'Datoteka',
+	NS_FILE_TALK        => 'Razgovor_o_datoteci',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'MediaWiki_razgovor',
 	NS_TEMPLATE         => 'Predložak',
@@ -47,8 +47,8 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'Slika' => NS_IMAGE,
-	'Razgovor_o_slici' => NS_IMAGE_TALK,
+	'Slika' => NS_FILE,
+	'Razgovor_o_slici' => NS_FILE_TALK,
 );
 
 $specialPageAliases = array(

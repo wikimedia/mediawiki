@@ -27,8 +27,8 @@ $namespaceNames = array(
 	NS_USER_TALK => 'تبادلۂ_خیال_صارف',
 	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK => 'تبادلۂ_خیال_$1',
-	NS_IMAGE => 'تصویر',
-	NS_IMAGE_TALK => 'تبادلۂ_خیال_تصویر',
+	NS_FILE => 'تصویر',
+	NS_FILE_TALK => 'تبادلۂ_خیال_تصویر',
 	NS_MEDIAWIKI => 'میڈیاوکی',
 	NS_MEDIAWIKI_TALK => 'تبادلۂ_خیال_میڈیاوکی',
 	NS_TEMPLATE => 'سانچہ',

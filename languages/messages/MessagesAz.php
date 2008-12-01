@@ -18,8 +18,8 @@ $namespaceNames = array(
 	NS_USER_TALK        => 'İstifadəçi_müzakirəsi',
 	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => '$1_müzakirəsi',
-	NS_IMAGE            => 'Şəkil',
-	NS_IMAGE_TALK       => 'Şəkil_müzakirəsi',
+	NS_FILE             => 'Şəkil',
+	NS_FILE_TALK        => 'Şəkil_müzakirəsi',
 	NS_MEDIAWIKI        => 'MediyaViki',
 	NS_MEDIAWIKI_TALK   => 'MediyaViki_müzakirəsi',
 	NS_TEMPLATE         => 'Şablon',

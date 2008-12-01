@@ -16,8 +16,8 @@ $namespaceNames = array(
 	NS_USER_TALK        => 'छ्येलेमि_खँलाबँला',
 	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => '$1_खँलाबँला',
-	NS_IMAGE            => 'किपा',
-	NS_IMAGE_TALK       => 'किपा_खँलाबँला',
+	NS_FILE             => 'किपा',
+	NS_FILE_TALK        => 'किपा_खँलाबँला',
 	NS_MEDIAWIKI        => 'मिडियाविकि',
 	NS_MEDIAWIKI_TALK   => 'मिडियाविकि_खँलाबँला',
 	NS_HELP             => 'ग्वाहालि',

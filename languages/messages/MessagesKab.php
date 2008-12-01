@@ -19,8 +19,8 @@ $namespaceNames = array(
 	NS_USER_TALK        => 'Amyannan_umsqedac',
 	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => 'Amyannan_n_$1',
-	NS_IMAGE            => 'Tugna',
-	NS_IMAGE_TALK       => 'Amyannan_n_tugna',
+	NS_FILE             => 'Tugna',
+	NS_FILE_TALK        => 'Amyannan_n_tugna',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'Amyannan_n_MediaWiki',
 	NS_TEMPLATE         => 'Talɣa',

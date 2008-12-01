@@ -234,7 +234,7 @@ class CategoryViewer {
 			if( $title->getNamespace() == NS_CATEGORY ) {
 				$cat = Category::newFromRow( $x, $title );
 				$this->addSubcategoryObject( $cat, $x->cl_sortkey, $x->page_len );
-			} elseif( $this->showGallery && $title->getNamespace() == NS_IMAGE ) {
+			} elseif( $this->showGallery && $title->getNamespace() == NS_FILE ) {
 				$this->addImage( $title, $x->cl_sortkey, $x->page_len, $x->page_is_redirect );
 			} else {
 				$this->addPage( $title, $x->cl_sortkey, $x->page_len, $x->page_is_redirect );

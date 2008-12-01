@@ -33,8 +33,8 @@ $namespaceNames = array(
 	NS_USER_TALK      => 'ਮੈਂਬਰ_ਚਰਚਾ',
 	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK   => '$1_ਚਰਚਾ',
-	NS_IMAGE          => 'ਤਸਵੀਰ',
-	NS_IMAGE_TALK     => 'ਤਸਵੀਰ_ਚਰਚਾ',
+	NS_FILE           => 'ਤਸਵੀਰ',
+	NS_FILE_TALK      => 'ਤਸਵੀਰ_ਚਰਚਾ',
 	NS_MEDIAWIKI      => 'ਮੀਡੀਆਵਿਕਿ',
 	NS_MEDIAWIKI_TALK => 'ਮੀਡੀਆਵਿਕਿ_ਚਰਚਾ',
 	NS_TEMPLATE       => 'ਨਮੂਨਾ',

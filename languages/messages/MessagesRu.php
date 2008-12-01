@@ -46,8 +46,8 @@ $namespaceNames = array(
 	NS_USER             => 'Участник',
 	NS_USER_TALK        => 'Обсуждение_участника',
 	NS_PROJECT_TALK     => 'Обсуждение_{{GRAMMAR:genitive|$1}}',
-	NS_IMAGE            => 'Файл',
-	NS_IMAGE_TALK       => 'Обсуждение_файла',
+	NS_FILE             => 'Файл',
+	NS_FILE_TALK        => 'Обсуждение_файла',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'Обсуждение_MediaWiki',
 	NS_TEMPLATE         => 'Шаблон',
@@ -61,8 +61,8 @@ $namespaceNames = array(
 $namespaceAliases = array(
 	'Участница'            => NS_USER,
 	'Обсуждение участницы' => NS_USER_TALK,
-	'Изображение' => NS_IMAGE,
-	'Обсуждение_изображения' => NS_IMAGE_TALK,
+	'Изображение' => NS_FILE,
+	'Обсуждение_изображения' => NS_FILE_TALK,
 );
 
 $skinNames = array(

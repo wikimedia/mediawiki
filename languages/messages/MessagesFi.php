@@ -24,8 +24,8 @@ $namespaceNames = array(
 	NS_USER             => 'Käyttäjä',
 	NS_USER_TALK        => 'Keskustelu_käyttäjästä',
 	NS_PROJECT_TALK     => 'Keskustelu_{{GRAMMAR:elative|$1}}',
-	NS_IMAGE            => 'Tiedosto',
-	NS_IMAGE_TALK       => 'Keskustelu_tiedostosta',
+	NS_FILE             => 'Tiedosto',
+	NS_FILE_TALK        => 'Keskustelu_tiedostosta',
 	NS_MEDIAWIKI        => 'Järjestelmäviesti',
 	NS_MEDIAWIKI_TALK   => 'Keskustelu_järjestelmäviestistä',
 	NS_TEMPLATE         => 'Malline',
@@ -37,8 +37,8 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'Kuva' => NS_IMAGE,
-	'Keskustelu_kuvasta' => NS_IMAGE_TALK,
+	'Kuva' => NS_FILE,
+	'Keskustelu_kuvasta' => NS_FILE_TALK,
 );
 
 $skinNames = array(

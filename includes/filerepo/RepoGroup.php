@@ -90,7 +90,7 @@ class RepoGroup {
 		$titleObjs = array();
 		foreach ( $titles as $title ) {
 			if ( !( $title instanceof Title ) )
-				$title = Title::makeTitleSafe( NS_IMAGE, $title );
+				$title = Title::makeTitleSafe( NS_FILE, $title );
 			$titleObjs[$title->getDBkey()] = $title;
 		}
 

@@ -55,7 +55,7 @@ class PrefixSearch {
 		if( count($namespaces) == 1 ){
 			$ns = $namespaces[0];
 			if( $ns == NS_MEDIA ) {
-				$namespaces = array(NS_IMAGE);
+				$namespaces = array(NS_FILE);
 			} elseif( $ns == NS_SPECIAL ) {
 				return self::specialSearch( $search, $limit );
 			}

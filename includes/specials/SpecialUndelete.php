@@ -119,7 +119,7 @@ class PageArchive {
 	 * @todo Does this belong in Image for fuller encapsulation?
 	 */
 	function listFiles() {
-		if( $this->title->getNamespace() == NS_IMAGE ) {
+		if( $this->title->getNamespace() == NS_FILE ) {
 			$dbr = wfGetDB( DB_SLAVE );
 			$res = $dbr->select( 'filearchive',
 				array(
@@ -336,7 +336,7 @@ class PageArchive {
 		$restoreText = $restoreAll || !empty( $timestamps );
 		$restoreFiles = $restoreAll || !empty( $fileVersions );
 
-		if( $restoreFiles && $this->title->getNamespace() == NS_IMAGE ) {
+		if( $restoreFiles && $this->title->getNamespace() == NS_FILE ) {
 			$img = wfLocalFile( $this->title );
 			$this->fileStatus = $img->restore( $fileVersions, $unsuppress );
 			$filesRestored = $this->fileStatus->successCount;
@@ -547,7 +547,7 @@ class PageArchive {
 				Article::onArticleEdit( $this->title );
 			}
 
-			if( $this->title->getNamespace() == NS_IMAGE ) {
+			if( $this->title->getNamespace() == NS_FILE ) {
 				$update = new HTMLCacheUpdate( $this->title, 'imagelinks' );
 				$update->doUpdate();
 			}

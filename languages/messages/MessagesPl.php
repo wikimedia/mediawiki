@@ -32,8 +32,8 @@ $namespaceNames = array(
 	NS_USER             => 'Użytkownik',
 	NS_USER_TALK        => 'Dyskusja_użytkownika',
 	NS_PROJECT_TALK     => 'Dyskusja_$1',
-	NS_IMAGE            => 'Plik',
-	NS_IMAGE_TALK       => 'Dyskusja_pliku',
+	NS_FILE             => 'Plik',
+	NS_FILE_TALK        => 'Dyskusja_pliku',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'Dyskusja_MediaWiki',
 	NS_TEMPLATE         => 'Szablon',
@@ -45,8 +45,8 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'Grafika' => NS_IMAGE,
-	'Dyskusja_grafiki' => NS_IMAGE_TALK,
+	'Grafika' => NS_FILE,
+	'Dyskusja_grafiki' => NS_FILE_TALK,
 );
 
 $skinNames = array(

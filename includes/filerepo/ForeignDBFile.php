@@ -13,7 +13,7 @@ class ForeignDBFile extends LocalFile {
 	 * Do not call this except from inside a repo class.
 	 */
 	static function newFromRow( $row, $repo ) {
-		$title = Title::makeTitle( NS_IMAGE, $row->img_name );
+		$title = Title::makeTitle( NS_FILE, $row->img_name );
 		$file = new self( $title, $repo );
 		$file->loadFromRow( $row );
 		return $file;

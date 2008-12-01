@@ -40,8 +40,8 @@ $namespaceNames = array(
 	NS_USER             => 'Користувач',
 	NS_USER_TALK        => 'Обговорення_користувача',
 	NS_PROJECT_TALK     => 'Обговорення_{{GRAMMAR:genitive|$1}}',
-	NS_IMAGE            => 'Файл',
-	NS_IMAGE_TALK       => 'Обговорення_файлу',
+	NS_FILE             => 'Файл',
+	NS_FILE_TALK        => 'Обговорення_файлу',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'Обговорення_MediaWiki',
 	NS_TEMPLATE         => 'Шаблон',
@@ -54,8 +54,8 @@ $namespaceNames = array(
 
 $namespaceAliases = array(
 	'Спеціальні' => NS_SPECIAL,
-	'Зображення' => NS_IMAGE,
-	'Обговорення_зображення' => NS_IMAGE_TALK,
+	'Зображення' => NS_FILE,
+	'Обговорення_зображення' => NS_FILE_TALK,
 );
 
 $skinNames = array(

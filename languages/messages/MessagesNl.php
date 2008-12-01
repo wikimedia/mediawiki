@@ -29,8 +29,8 @@ $namespaceNames = array(
 	NS_USER             => 'Gebruiker',
 	NS_USER_TALK        => 'Overleg_gebruiker',
 	NS_PROJECT_TALK     => 'Overleg_$1',
-	NS_IMAGE            => 'Bestand',
-	NS_IMAGE_TALK       => 'Overleg_bestand',
+	NS_FILE             => 'Bestand',
+	NS_FILE_TALK        => 'Overleg_bestand',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'Overleg_MediaWiki',
 	NS_TEMPLATE         => 'Sjabloon',
@@ -42,8 +42,8 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'Afbeelding' => NS_IMAGE,
-	'Overleg_afbeelding' => NS_IMAGE_TALK,
+	'Afbeelding' => NS_FILE,
+	'Overleg_afbeelding' => NS_FILE_TALK,
 );
 
 $skinNames = array(

@@ -36,7 +36,7 @@ class Image extends LocalFile {
 	 */
 	static function newFromName( $name ) {
 		wfDeprecated( __METHOD__ );
-		$title = Title::makeTitleSafe( NS_IMAGE, $name );
+		$title = Title::makeTitleSafe( NS_FILE, $name );
 		if ( is_object( $title ) ) {
 			$img = wfFindFile( $title );
 			if ( !$img ) {

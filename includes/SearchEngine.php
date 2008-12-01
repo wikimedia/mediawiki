@@ -127,7 +127,7 @@ class SearchEngine {
 		# Go to images that exist even if there's no local page.
 		# There may have been a funny upload, or it may be on a shared
 		# file repository such as Wikimedia Commons.
-		if( $title->getNamespace() == NS_IMAGE ) {
+		if( $title->getNamespace() == NS_FILE ) {
 			$image = wfFindFile( $title );
 			if( $image ) {
 				return $title;
@@ -538,7 +538,7 @@ class SearchResult {
 		$this->mTitle = Title::makeTitle( $row->page_namespace, $row->page_title );
 		if( !is_null($this->mTitle) ){
 			$this->mRevision = Revision::newFromTitle( $this->mTitle );
-			if( $this->mTitle->getNamespace() === NS_IMAGE )
+			if( $this->mTitle->getNamespace() === NS_FILE )
 				$this->mImage = wfFindFile( $this->mTitle );
 		}
 	}
@@ -745,7 +745,7 @@ class SearchHighlighter {
 						if($key == 2){
 							// see if this is an image link
 							$ns = substr($val[0],2,-1);
-							if( $wgContLang->getNsIndex($ns) != NS_IMAGE )
+							if( $wgContLang->getNsIndex($ns) != NS_FILE )
 								break;
 							
 						}
@@ -1115,7 +1115,7 @@ class SearchHighlighter {
 		global $wgContLang;
 		$ns = substr( $matches[1], 0, $colon );
 		$index = $wgContLang->getNsIndex($ns);
-		if( $index !== false && ($index == NS_IMAGE || $index == NS_CATEGORY) )
+		if( $index !== false && ($index == NS_FILE || $index == NS_CATEGORY) )
 			return $matches[0]; // return the whole thing 
 		else
 			return $matches[2];

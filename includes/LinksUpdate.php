@@ -317,7 +317,7 @@ class LinksUpdate {
 	}
 
 	function invalidateImageDescriptions( $images ) {
-		$this->invalidatePages( NS_IMAGE, array_keys( $images ) );
+		$this->invalidatePages( NS_FILE, array_keys( $images ) );
 	}
 
 	function dumbTableUpdate( $table, $insertions, $fromField ) {

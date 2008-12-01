@@ -24,8 +24,8 @@ $namespaceNames = array(
 	NS_USER_TALK      => 'Vikipediista_diskuto',
 	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK   => '$1_diskuto',
-	NS_IMAGE          => 'Dosiero', #FIXME: Check the magic for Image: and Media:
-	NS_IMAGE_TALK     => 'Dosiera_diskuto',
+	NS_FILE           => 'Dosiero', #FIXME: Check the magic for Image: and Media:
+	NS_FILE_TALK      => 'Dosiera_diskuto',
 	NS_MEDIAWIKI      => 'MediaWiki',
 	NS_MEDIAWIKI_TALK => 'MediaWiki_diskuto',
 	NS_TEMPLATE       => 'Ŝablono',

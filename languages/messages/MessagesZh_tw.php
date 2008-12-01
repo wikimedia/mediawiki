@@ -22,8 +22,8 @@ $namespaceNames = array(
 	NS_USER_TALK        => '使用者討論',
 	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => '$1討論',
-	NS_IMAGE            => '圖片',
-	NS_IMAGE_TALK       => '圖片討論',
+	NS_FILE             => '圖片',
+	NS_FILE_TALK        => '圖片討論',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'MediaWiki_talk',
 	NS_TEMPLATE         => '模板',

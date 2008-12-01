@@ -18,8 +18,8 @@ $namespaceNames = array(
 	NS_USER_TALK        => 'Ҡатнашыусы_м-н_фекер_алышыу', 
 	#NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => '$1_б-са_фекер_алышыу',
-	NS_IMAGE            => 'Рәсем',
-	NS_IMAGE_TALK       => 'Рәсем_б-са_фекер_алышыу',
+	NS_FILE             => 'Рәсем',
+	NS_FILE_TALK        => 'Рәсем_б-са_фекер_алышыу',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'MediaWiki_б-са_фекер_алышыу',
 	NS_TEMPLATE         => 'Ҡалып',
