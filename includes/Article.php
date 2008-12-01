@@ -2922,7 +2922,7 @@ class Article {
 			: 'revision-info';
 
 		$r = "\n\t\t\t\t<div id=\"mw-{$infomsg}\">" . wfMsgExt( $infomsg, 
-				array( 'parseinline', 'escapenoentities' ), $td, $userlinks, $revision->getID() ) . "</div>\n" .
+				array( 'parseinline' ), $td, $userlinks, $revision->getID() ) . "</div>\n" .
 				"\n\t\t\t\t<div id=\"mw-revision-nav\">" . $cdel . wfMsg( 'revision-nav', $prevdiff, 
 				$prevlink, $lnk, $curdiff, $nextlink, $nextdiff ) . "</div>\n\t\t\t";
 		$wgOut->setSubtitle( $r );
