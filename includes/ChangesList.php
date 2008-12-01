@@ -339,7 +339,6 @@ class OldChangesList extends ChangesList {
 		wfProfileIn( __METHOD__ );
 
 		# Extract DB fields into local scope
-		// FIXME: Would be good to replace this extract() call with something that explicitly initializes local variables.
 		extract( $rc->mAttribs );
 
 		# Should patrol-related stuff be shown?
@@ -433,7 +432,6 @@ class EnhancedChangesList extends ChangesList {
 		$rc = RCCacheEntry::newFromParent( $baseRC );
 
 		# Extract fields from DB into the function scope (rc_xxxx variables)
-		// FIXME: Would be good to replace this extract() call with something that explicitly initializes local variables.
 		extract( $rc->mAttribs );
 		$curIdEq = 'curid=' . $rc_cur_id;
 
@@ -722,7 +720,6 @@ class EnhancedChangesList extends ChangesList {
 		$r .= '<table cellpadding="0" cellspacing="0"  border="0" style="background: none">';
 		foreach( $block as $rcObj ) {
 			# Get rc_xxxx variables
-			// FIXME: Would be good to replace this extract() call with something that explicitly initializes local variables.
 			extract( $rcObj->mAttribs );
 
 			#$r .= '<tr><td valign="top">'.$this->spacerArrow();
@@ -842,7 +839,6 @@ class EnhancedChangesList extends ChangesList {
 	protected function recentChangesBlockLine( $rcObj ) {
 		global $wgContLang, $wgRCShowChangedSize;
 		# Get rc_xxxx variables
-		// FIXME: Would be good to replace this extract() call with something that explicitly initializes local variables.
 		extract( $rcObj->mAttribs );
 		$curIdEq = "curid={$rc_cur_id}";
 
