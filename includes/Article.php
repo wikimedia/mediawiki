@@ -2046,6 +2046,11 @@ class Article {
 			else
 				$reason = wfMsgForContent( 'excontent', '$1' );
 		}
+		
+		if( $reason == '-' ) {
+			// Allow these UI messages to be blanked out cleanly
+			return '';
+		}
 
 		// Replace newlines with spaces to prevent uglyness
 		$contents = preg_replace( "/[\n\r]/", ' ', $contents );
