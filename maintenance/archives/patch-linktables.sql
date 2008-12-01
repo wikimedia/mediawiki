@@ -49,7 +49,7 @@ CREATE TABLE /*$wgDBprefix*/imagelinks (
   
   -- Filename of target image.
   -- This is also the page_title of the file's description page;
-  -- all such pages are in namespace 6 (NS_IMAGE).
+  -- all such pages are in namespace 6 (NS_FILE).
   il_to varchar(255) binary NOT NULL default '',
   
   UNIQUE KEY il_from(il_from,il_to),

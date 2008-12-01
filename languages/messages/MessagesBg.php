@@ -23,8 +23,8 @@ $namespaceNames = array(
 	NS_USER             => 'Потребител',
 	NS_USER_TALK        => 'Потребител_беседа',
 	NS_PROJECT_TALK     => '$1_беседа',
-	NS_IMAGE            => 'Файл',
-	NS_IMAGE_TALK       => 'Файл_беседа',
+	NS_FILE             => 'Файл',
+	NS_FILE_TALK        => 'Файл_беседа',
 	NS_MEDIAWIKI        => 'МедияУики',
 	NS_MEDIAWIKI_TALK   => 'МедияУики_беседа',
 	NS_TEMPLATE         => 'Шаблон',
@@ -36,8 +36,8 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'Картинка' => NS_IMAGE,
-	'Картинка беседа' => NS_IMAGE_TALK,
+	'Картинка' => NS_FILE,
+	'Картинка беседа' => NS_FILE_TALK,
 );
 
 $skinNames = array(

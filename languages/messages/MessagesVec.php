@@ -21,8 +21,8 @@ $namespaceNames = array(
 	NS_USER             => 'Utente',
 	NS_USER_TALK        => 'Discussion_utente',
 	NS_PROJECT_TALK     => 'Discussion_$1',
-	NS_IMAGE            => 'File',
-	NS_IMAGE_TALK       => 'Discussion_file',
+	NS_FILE             => 'File',
+	NS_FILE_TALK        => 'Discussion_file',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'Discussion_MediaWiki',
 	NS_TEMPLATE         => 'Template',
@@ -34,8 +34,8 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'Imagine' => NS_IMAGE,
-	'Discussion_imagine' => NS_IMAGE_TALK,
+	'Imagine' => NS_FILE,
+	'Discussion_imagine' => NS_FILE_TALK,
 );
 
 $specialPageAliases = array(

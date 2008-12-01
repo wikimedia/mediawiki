@@ -71,7 +71,7 @@ function wfExportGetTemplates( $inputPages, $pageSet ) {
 function wfExportGetImages( $inputPages, $pageSet ) {
 	return wfExportGetLinks( $inputPages, $pageSet,
 		'imagelinks',
-		array( NS_IMAGE . ' AS namespace', 'il_to AS title' ),
+		array( NS_FILE . ' AS namespace', 'il_to AS title' ),
 		array( 'page_id=il_from' ) );
 }
 

@@ -32,8 +32,8 @@ $namespaceNames = array(
 	NS_USER_TALK        => 'Pembicaraan_Pengguna',
 	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => 'Pembicaraan_$1',
-	NS_IMAGE            => 'Berkas',
-	NS_IMAGE_TALK       => 'Pembicaraan_Berkas',
+	NS_FILE             => 'Berkas',
+	NS_FILE_TALK        => 'Pembicaraan_Berkas',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'Pembicaraan_MediaWiki',
 	NS_TEMPLATE         => 'Templat',
@@ -48,13 +48,13 @@ $namespaceNames = array(
  * Array of namespace aliases, mapping from name to NS_xxx index
  */
 $namespaceAliases = array(
-	'Gambar_Pembicaraan'    => NS_IMAGE_TALK,
+	'Gambar_Pembicaraan'    => NS_FILE_TALK,
 	'MediaWiki_Pembicaraan' => NS_MEDIAWIKI_TALK,
 	'Templat_Pembicaraan'   => NS_TEMPLATE_TALK,
 	'Bantuan_Pembicaraan'   => NS_HELP_TALK,
 	'Kategori_Pembicaraan'  => NS_CATEGORY_TALK,
-	'Gambar'                => NS_IMAGE,
-	'Pembicaraan_Gambar'    => NS_IMAGE_TALK,
+	'Gambar'                => NS_FILE,
+	'Pembicaraan_Gambar'    => NS_FILE_TALK,
 	'Bicara'                => NS_TALK,
 	'Bicara_Pengguna'       => NS_USER_TALK,
 );

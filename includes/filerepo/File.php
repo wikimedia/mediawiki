@@ -1246,7 +1246,7 @@ abstract class File {
 	function getRedirectedTitle() {
 		if ( $this->redirected ) {
 			if ( !$this->redirectTitle )
-				$this->redirectTitle = Title::makeTitle( NS_IMAGE, $this->redirected );
+				$this->redirectTitle = Title::makeTitle( NS_FILE, $this->redirected );
 			return $this->redirectTitle;
 		}
 	}

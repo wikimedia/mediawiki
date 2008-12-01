@@ -31,7 +31,7 @@ class UncategorizedImagesPage extends ImageQueryPage {
 	function getSQL() {
 		$dbr = wfGetDB( DB_SLAVE );
 		list( $page, $categorylinks ) = $dbr->tableNamesN( 'page', 'categorylinks' );
-		$ns = NS_IMAGE;
+		$ns = NS_FILE;
 
 		return "SELECT 'Uncategorizedimages' AS type, page_namespace AS namespace,
 				page_title AS title, page_title AS value

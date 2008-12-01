@@ -25,8 +25,8 @@ $namespaceNames = array(
 	NS_USER_TALK        => 'Naudotojo_aptarimas',
 	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => '$1_aptarimas',
-	NS_IMAGE            => 'Vaizdas',
-	NS_IMAGE_TALK       => 'Vaizdo_aptarimas',
+	NS_FILE             => 'Vaizdas',
+	NS_FILE_TALK        => 'Vaizdo_aptarimas',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'MediaWiki_aptarimas',
 	NS_TEMPLATE         => 'Šablonas',

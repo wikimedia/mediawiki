@@ -53,8 +53,8 @@ $namespaceNames = array(
 	NS_USER             => '利用者',
 	NS_USER_TALK        => '利用者‐会話',
 	NS_PROJECT_TALK     => '$1‐ノート',
-	NS_IMAGE            => 'ファイル',
-	NS_IMAGE_TALK       => 'ファイル‐ノート',
+	NS_FILE             => 'ファイル',
+	NS_FILE_TALK        => 'ファイル‐ノート',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'MediaWiki‐ノート',
 	NS_TEMPLATE         => 'Template',
@@ -66,8 +66,8 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'画像' => NS_IMAGE,
-	'画像‐ノート' => NS_IMAGE_TALK,
+	'画像' => NS_FILE,
+	'画像‐ノート' => NS_FILE_TALK,
 );
 
 $specialPageAliases = array(

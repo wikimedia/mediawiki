@@ -861,7 +861,7 @@ class Linker {
 		} else {
 			if ( isset( $fp['manualthumb'] ) ) {
 				# Use manually specified thumbnail
-				$manual_title = Title::makeTitleSafe( NS_IMAGE, $fp['manualthumb'] );
+				$manual_title = Title::makeTitleSafe( NS_FILE, $fp['manualthumb'] );
 				if( $manual_title ) {
 					$manual_img = wfFindFile( $manual_title );
 					if ( $manual_img ) {
@@ -967,7 +967,7 @@ class Linker {
 
 	/** @deprecated use Linker::makeMediaLinkObj() */
 	function makeMediaLink( $name, $unused = '', $text = '', $time = false ) {
-		$nt = Title::makeTitleSafe( NS_IMAGE, $name );
+		$nt = Title::makeTitleSafe( NS_FILE, $name );
 		return $this->makeMediaLinkObj( $nt, $text, $time );
 	}
 

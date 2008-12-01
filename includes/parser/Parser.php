@@ -1709,7 +1709,7 @@ class Parser
 
 			if ($might_be_img) { # if this is actually an invalid link
 				wfProfileIn( __METHOD__."-might_be_img" );
-				if ($ns == NS_IMAGE && $noforce) { #but might be an image
+				if ($ns == NS_FILE && $noforce) { #but might be an image
 					$found = false;
 					while ( true ) {
 						#look at the next 'line' to see if we can close it there
@@ -1769,7 +1769,7 @@ class Parser
 				}
 				wfProfileOut( __METHOD__."-interwiki" );
 
-				if ( $ns == NS_IMAGE ) {
+				if ( $ns == NS_FILE ) {
 					wfProfileIn( __METHOD__."-image" );
 					if ( !wfIsBadImage( $nt->getDBkey(), $this->mTitle ) ) {
 						# recursively parse links inside the image caption
@@ -1841,7 +1841,7 @@ class Parser
 					$s .= $holders->makeHolder( $nt, $text, '', $trail, $prefix );
 				}
 				continue;
-			} elseif( $ns == NS_IMAGE ) {
+			} elseif( $ns == NS_FILE ) {
 				$img = wfFindFile( $nt );
 				if( $img ) {
 					// Force a blue link if the file exists; may be a remote
@@ -4163,7 +4163,7 @@ class Parser
 			
 			if ( strpos( $matches[0], '%' ) !== false )
 				$matches[1] = urldecode( $matches[1] );
-			$tp = Title::newFromText( $matches[1]/*, NS_IMAGE*/ );
+			$tp = Title::newFromText( $matches[1]/*, NS_FILE*/ );
 			$nt =& $tp;
 			if( is_null( $nt ) ) {
 				# Bogus title. Ignore these so we don't bomb out later.
@@ -4180,7 +4180,7 @@ class Parser
 			$ig->add( $nt, $html );
 
 			# Only add real images (bug #5586)
-			if ( $nt->getNamespace() == NS_IMAGE ) {
+			if ( $nt->getNamespace() == NS_FILE ) {
 				$this->mOutput->addImage( $nt->getDBkey() );
 			}
 		}

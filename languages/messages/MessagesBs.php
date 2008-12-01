@@ -19,8 +19,8 @@ $namespaceNames = array(
 	NS_USER             => 'Korisnik',
 	NS_USER_TALK        => 'Razgovor_sa_korisnikom',
 	NS_PROJECT_TALK     => 'Razgovor_{{grammar:instrumental|$1}}',
-	NS_IMAGE            => 'Datoteka',
-	NS_IMAGE_TALK       => 'Razgovor_o_datoteci',
+	NS_FILE             => 'Datoteka',
+	NS_FILE_TALK        => 'Razgovor_o_datoteci',
 	NS_MEDIAWIKI        => 'MedijaViki',
 	NS_MEDIAWIKI_TALK   => 'Razgovor_o_MedijaVikiju',
 	NS_TEMPLATE         => 'Šablon',
@@ -32,8 +32,8 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'Slika' => NS_IMAGE,
-	'Razgovor_o_datoteci' => NS_IMAGE_TALK,
+	'Slika' => NS_FILE,
+	'Razgovor_o_datoteci' => NS_FILE_TALK,
 );
 
 $skinNames = array(

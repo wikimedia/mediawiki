@@ -22,8 +22,8 @@ $namespaceNames = array(
 	NS_USER_TALK        => 'Хутшăнаканăн_канашлу_страници',
 	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => '$1_сӳтсе_явмалли',
-	NS_IMAGE            => 'Ӳкерчĕк',
-	NS_IMAGE_TALK       => 'Ӳкерчĕке_сӳтсе_явмалли',
+	NS_FILE             => 'Ӳкерчĕк',
+	NS_FILE_TALK        => 'Ӳкерчĕке_сӳтсе_явмалли',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'MediaWiki_сӳтсе_явмалли',
 	NS_TEMPLATE         => 'Шаблон',

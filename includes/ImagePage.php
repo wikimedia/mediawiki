@@ -57,7 +57,7 @@ class ImagePage extends Article {
 		global $wgOut, $wgShowEXIF, $wgRequest, $wgUser;
 		$this->loadFile();
 
-		if( $this->mTitle->getNamespace() == NS_IMAGE && $this->img->getRedirected() ) {
+		if( $this->mTitle->getNamespace() == NS_FILE && $this->img->getRedirected() ) {
 			if( $this->mTitle->getDBkey() == $this->img->getName() ) {
 				// mTitle is the same as the redirect target so ask Article
 				// to perform the redirect for us.
@@ -66,7 +66,7 @@ class ImagePage extends Article {
 				// mTitle is not the same as the redirect target so it is 
 				// probably the redirect page itself. Fake the redirect symbol
 				$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
-				$wgOut->addHTML( $this->viewRedirect( Title::makeTitle( NS_IMAGE, $this->img->getName() ),
+				$wgOut->addHTML( $this->viewRedirect( Title::makeTitle( NS_FILE, $this->img->getName() ),
 					/* $appendSubtitle */ true, /* $forceKnown */ true ) );
 				$this->viewUpdates();
 				return;
@@ -76,7 +76,7 @@ class ImagePage extends Article {
 		$diff = $wgRequest->getVal( 'diff' );
 		$diffOnly = $wgRequest->getBool( 'diffonly', $wgUser->getOption( 'diffonly' ) );
 
-		if( $this->mTitle->getNamespace() != NS_IMAGE || ( isset( $diff ) && $diffOnly ) )
+		if( $this->mTitle->getNamespace() != NS_FILE || ( isset( $diff ) && $diffOnly ) )
 			return Article::view();
 
 		if( $wgShowEXIF && $this->displayImg->exists() ) {
@@ -152,7 +152,7 @@ class ImagePage extends Article {
 		if( $from == $to ) {
 			return null; 
 		}
-		return $this->mRedirectTarget = Title::makeTitle( NS_IMAGE, $to );
+		return $this->mRedirectTarget = Title::makeTitle( NS_FILE, $to );
 	}
 	public function followRedirect() {
 		$this->loadFile();
@@ -164,7 +164,7 @@ class ImagePage extends Article {
 		if( $from == $to ) {
 			return false; 
 		}
-		return Title::makeTitle( NS_IMAGE, $to );	
+		return Title::makeTitle( NS_FILE, $to );	
 	}
 	public function isRedirect( $text = false ) {
 		$this->loadFile();
@@ -222,7 +222,7 @@ class ImagePage extends Article {
 	protected function showTOC( $metadata ) {
 		global $wgLang;
 		$r = '<ul id="filetoc">
-			<li><a href="#file">' . $wgLang->getNsText( NS_IMAGE ) . '</a></li>
+			<li><a href="#file">' . $wgLang->getNsText( NS_FILE ) . '</a></li>
 			<li><a href="#filehistory">' . wfMsgHtml( 'filehist' ) . '</a></li>
 			<li><a href="#filelinks">' . wfMsgHtml( 'imagelinks' ) . '</a></li>' .
 			($metadata ? ' <li><a href="#metadata">' . wfMsgHtml( 'metadata' ) . '</a></li>' : '') . '
@@ -674,7 +674,7 @@ EOT
 	protected function imageRedirects() {
 		global $wgUser, $wgOut, $wgLang;
 
-		$redirects = $this->getTitle()->getRedirectsHere( NS_IMAGE );
+		$redirects = $this->getTitle()->getRedirectsHere( NS_FILE );
 		if( count( $redirects ) == 0 ) return;
 
 		$wgOut->addHTML( "<div id='mw-imagepage-section-redirectstofile'>\n" );

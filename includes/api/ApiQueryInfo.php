@@ -217,7 +217,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			
 			$imageIds = array();
 			foreach ($titles as $id => $title)
-				if ($title->getNamespace() == NS_IMAGE)
+				if ($title->getNamespace() == NS_FILE)
 					$imageIds[] = $id;
 			// To avoid code duplication
 			$cascadeTypes = array(
@@ -231,7 +231,7 @@ class ApiQueryInfo extends ApiQueryBase {
 				array(
 				 	'prefix' => 'il',
 				 	'table' => 'imagelinks',
-				 	'ns' => NS_IMAGE,
+				 	'ns' => NS_FILE,
 				 	'title' => 'il_to',
 				 	'ids' => $imageIds
 				)
@@ -295,7 +295,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$images = array();
 			$others = array();
 			foreach ($missing as $title)
-				if ($title->getNamespace() == NS_IMAGE)
+				if ($title->getNamespace() == NS_FILE)
 					$images[] = $title->getDBKey();
 				else
 					$others[] = $title;					
@@ -345,7 +345,7 @@ class ApiQueryInfo extends ApiQueryBase {
 						'expiry' => Block::decodeExpiry( $row->pr_expiry, TS_ISO_8601 ),
 						'source' => $source->getPrefixedText()
 					);
-					$prottitles[NS_IMAGE][$row->il_to][] = $a;
+					$prottitles[NS_FILE][$row->il_to][] = $a;
 				}
 				$db->freeResult($res);
 			}

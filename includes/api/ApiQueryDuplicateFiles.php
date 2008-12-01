@@ -50,10 +50,10 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 	private function run($resultPageSet = null) {
 		$params = $this->extractRequestParams();
 		$namespaces = $this->getPageSet()->getAllTitlesByNamespace();
-		if ( empty( $namespaces[NS_IMAGE] ) ) {
+		if ( empty( $namespaces[NS_FILE] ) ) {
 			return;
 		}
-		$images = $namespaces[NS_IMAGE];
+		$images = $namespaces[NS_FILE];
 		
 		$this->addTables('image', 'i1');
 		$this->addTables('image', 'i2');
@@ -101,7 +101,7 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 				break;
 			}
 			if(!is_null($resultPageSet))
-				$titles[] = Title::makeTitle(NS_IMAGE, $row->dup_name);
+				$titles[] = Title::makeTitle(NS_FILE, $row->dup_name);
 			else
 			{
 				if($row->orig_name != $lastName)

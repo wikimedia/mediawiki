@@ -19,8 +19,8 @@ $namespaceNames = array(
 	NS_USER_TALK      => "Sgwrs_Defnyddiwr",
 	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK   => "Sgwrs_$1",
-	NS_IMAGE          => "Delwedd",
-	NS_IMAGE_TALK     => "Sgwrs_Delwedd",
+	NS_FILE           => "Delwedd",
+	NS_FILE_TALK      => "Sgwrs_Delwedd",
 	NS_MEDIAWIKI      => "MediaWici",
 	NS_MEDIAWIKI_TALK => "Sgwrs_MediaWici",
 	NS_TEMPLATE       => "Nodyn",

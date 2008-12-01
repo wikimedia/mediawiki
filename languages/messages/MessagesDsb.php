@@ -34,8 +34,8 @@ $namespaceNames = array(
 	NS_USER             => 'Wužywaŕ',
 	NS_USER_TALK        => 'Diskusija_wužywarja',
 	NS_PROJECT_TALK     => '$1 diskusija',
-	NS_IMAGE            => 'Dataja',
-	NS_IMAGE_TALK       => 'Diskusija wó dataji',
+	NS_FILE             => 'Dataja',
+	NS_FILE_TALK        => 'Diskusija wó dataji',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'MediaWiki_diskusija',
 	NS_TEMPLATE         => 'Pśedłoga',
@@ -47,8 +47,8 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'Wobraz' => NS_IMAGE,
-	'Diskusija_wó_wobrazu' => NS_IMAGE_TALK,
+	'Wobraz' => NS_FILE,
+	'Diskusija_wó_wobrazu' => NS_FILE_TALK,
 );
 
 $datePreferences = array(

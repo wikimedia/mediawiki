@@ -19,8 +19,8 @@ $namespaceNames = array(
 	NS_USER             => 'مستخدم',
 	NS_USER_TALK        => 'نقاش_المستخدم',
 	NS_PROJECT_TALK     => 'نقاش_$1',
-	NS_IMAGE            => 'ملف',
-	NS_IMAGE_TALK       => 'نقاش_الملف',
+	NS_FILE             => 'ملف',
+	NS_FILE_TALK        => 'نقاش_الملف',
 	NS_MEDIAWIKI        => 'ميدياويكى',
 	NS_MEDIAWIKI_TALK   => 'نقاش_ميدياويكى',
 	NS_TEMPLATE         => 'قالب',
@@ -33,8 +33,8 @@ $namespaceNames = array(
 
 $namespaceAliases = array(
 	'وسائط' => NS_MEDIA,
-	'صورة' => NS_IMAGE,
-	'نقاش_الصورة' => NS_IMAGE_TALK,
+	'صورة' => NS_FILE,
+	'نقاش_الصورة' => NS_FILE_TALK,
 );
 
 $skinNames = array(

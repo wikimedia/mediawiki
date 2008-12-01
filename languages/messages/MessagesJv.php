@@ -23,8 +23,8 @@ $namespaceNames = array(
 	NS_USER_TALK        => 'Dhiskusi_Panganggo',
 	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => 'Dhiskusi_$1',
-	NS_IMAGE            => 'Gambar',
-	NS_IMAGE_TALK       => 'Dhiskusi_Gambar',
+	NS_FILE             => 'Gambar',
+	NS_FILE_TALK        => 'Dhiskusi_Gambar',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'Dhiskusi_MediaWiki',
 	NS_TEMPLATE         => 'Cithakan',
@@ -36,7 +36,7 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'Gambar_Dhiskusi' => NS_IMAGE_TALK,
+	'Gambar_Dhiskusi' => NS_FILE_TALK,
 	'MediaWiki_Dhiskusi' => NS_MEDIAWIKI_TALK,
 	'Cithakan_Dhiskusi' => NS_TEMPLATE_TALK,
 	'Pitulung_Dhiskusi' => NS_HELP_TALK,

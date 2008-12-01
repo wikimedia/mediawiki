@@ -108,7 +108,7 @@ class LocalRepo extends FSRepo {
 			$title = Title::newFromTitle( $title );
 		}
 		if( $title instanceof Title && $title->getNamespace() == NS_MEDIA ) {
-			$title = Title::makeTitle( NS_IMAGE, $title->getText() );
+			$title = Title::makeTitle( NS_FILE, $title->getText() );
 		}
 
 		$memcKey = $this->getMemcKey( "image_redirect:" . md5( $title->getPrefixedDBkey() ) );

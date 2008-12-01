@@ -46,7 +46,7 @@ class MIMEsearchPage extends QueryPage {
 
 		return
 			"SELECT 'MIMEsearch' AS type,
-				" . NS_IMAGE . " AS namespace,
+				" . NS_FILE . " AS namespace,
 				img_name AS title,
 				img_major_mime AS value,
 

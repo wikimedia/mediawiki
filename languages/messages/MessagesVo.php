@@ -16,8 +16,8 @@ $namespaceNames = array(
 	NS_USER             => 'Geban',
 	NS_USER_TALK        => 'Gebanibespik',
 	NS_PROJECT_TALK     => 'Bespik_dö_$1',
-	NS_IMAGE            => 'Ragiv',
-	NS_IMAGE_TALK       => 'Ragivibespik',
+	NS_FILE             => 'Ragiv',
+	NS_FILE_TALK        => 'Ragivibespik',
 	NS_MEDIAWIKI        => 'Sitanuns',
 	NS_MEDIAWIKI_TALK   => 'Bespik_dö_sitanuns',
 	NS_TEMPLATE         => 'Samafomot',
@@ -29,8 +29,8 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'Magod' => NS_IMAGE,
-	'Magodibespik' => NS_IMAGE_TALK,
+	'Magod' => NS_FILE,
+	'Magodibespik' => NS_FILE_TALK,
 );
 
 $datePreferences = array(

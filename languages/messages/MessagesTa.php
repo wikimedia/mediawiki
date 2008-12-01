@@ -26,8 +26,8 @@ $namespaceNames = array(
 	NS_USER_TALK      => 'பயனர்_பேச்சு',
 	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK   => '$1_பேச்சு',
-	NS_IMAGE          => 'படிமம்',
-	NS_IMAGE_TALK     => 'படிமப்_பேச்சு',
+	NS_FILE           => 'படிமம்',
+	NS_FILE_TALK      => 'படிமப்_பேச்சு',
 	NS_MEDIAWIKI      => 'மீடியாவிக்கி',
 	NS_MEDIAWIKI_TALK => 'மீடியாவிக்கி_பேச்சு',
 	NS_TEMPLATE       => 'வார்ப்புரு',
@@ -41,7 +41,7 @@ $namespaceNames = array(
 $namespaceAliases = array(
 	'விக்கிபீடியா' => NS_PROJECT,
 	'விக்கிபீடியா_பேச்சு' => NS_PROJECT_TALK,
-	'உருவப்_பேச்சு' => NS_IMAGE_TALK
+	'உருவப்_பேச்சு' => NS_FILE_TALK
 );
 $linkTrail = "/^([\xE0\xAE\x80-\xE0\xAF\xBF]+)(.*)$/sDu";
 

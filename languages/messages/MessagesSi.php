@@ -17,8 +17,8 @@ $namespaceNames = array(
 	NS_USER             => 'පරිශීලක',
 	NS_USER_TALK        => 'පරිශීලක_සාකච්ඡාව',
 	NS_PROJECT_TALK     => '$1_සාකච්ඡාව',
-	NS_IMAGE            => 'ගොනුව',
-	NS_IMAGE_TALK       => 'ගොනුව_සාකච්ඡාව',
+	NS_FILE             => 'ගොනුව',
+	NS_FILE_TALK        => 'ගොනුව_සාකච්ඡාව',
 	NS_MEDIAWIKI        => 'මාධ්‍යවිකි',
 	NS_MEDIAWIKI_TALK   => 'මාධ්‍යවිකි_සාකච්ඡාව',
 	NS_TEMPLATE         => 'සැකිල්ල',
@@ -30,8 +30,8 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'රූපය' => NS_IMAGE,
-	'රූපය_සාකච්ඡාව' => NS_IMAGE_TALK,
+	'රූපය' => NS_FILE,
+	'රූපය_සාකච්ඡාව' => NS_FILE_TALK,
 	'විකිමාධ්‍ය' => NS_MEDIAWIKI,
 	'විකිමාධ්‍ය_සාකච්ඡාව' => NS_MEDIAWIKI_TALK,
 	'උදව_සාකච්ඡාව' => NS_HELP_TALK,

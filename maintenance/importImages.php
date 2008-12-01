@@ -63,7 +63,7 @@ if( count( $args ) > 0 ) {
 			$base = wfBaseName( $file );
 	
 			# Validate a title
-			$title = Title::makeTitleSafe( NS_IMAGE, $base );
+			$title = Title::makeTitleSafe( NS_FILE, $base );
 			if( !is_object( $title ) ) {
 				echo( "{$base} could not be imported; a valid title cannot be produced\n" );
 				continue;

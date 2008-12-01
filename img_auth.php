@@ -48,7 +48,7 @@ if( preg_match( '!\d+px-(.*)!i', $name, $m ) )
 	$name = $m[1];
 wfDebugLog( 'img_auth', "\$name is {$name}" );
 
-$title = Title::makeTitleSafe( NS_IMAGE, $name );
+$title = Title::makeTitleSafe( NS_FILE, $name );
 if( !$title instanceof Title ) {
 	wfDebugLog( 'img_auth', "Unable to construct a valid Title from `{$name}`" );
 	wfForbidden();

@@ -16,8 +16,8 @@ $namespaceNames = array(
 	NS_USER             => 'ব্যবহারকারী',
 	NS_USER_TALK        => 'ব্যবহারকারী_আলাপ',
 	NS_PROJECT_TALK     => '$1_আলোচনা',
-	NS_IMAGE            => 'চিত্র',
-	NS_IMAGE_TALK       => 'চিত্র_আলোচনা',
+	NS_FILE             => 'চিত্র',
+	NS_FILE_TALK        => 'চিত্র_আলোচনা',
 	NS_MEDIAWIKI        => 'মিডিয়াউইকি',
 	NS_MEDIAWIKI_TALK   => 'মিডিয়াউইকি_আলোচনা',
 	NS_TEMPLATE         => 'টেমপ্লেট',
@@ -30,8 +30,8 @@ $namespaceNames = array(
 
 $namespaceAliases = array(
 	'$1_আলাপ' => NS_PROJECT_TALK,
-	'চিত্র_আলাপ' => NS_IMAGE_TALK,
-	'MediaWiki_আলাপ' => NS_IMAGE_TALK,
+	'চিত্র_আলাপ' => NS_FILE_TALK,
+	'MediaWiki_আলাপ' => NS_FILE_TALK,
 );
 
 $datePreferences = false;

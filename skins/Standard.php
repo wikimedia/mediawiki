@@ -175,7 +175,7 @@ class SkinStandard extends Skin {
 						case NS_TALK:
 						case NS_USER_TALK:
 						case NS_PROJECT_TALK:
-						case NS_IMAGE_TALK:
+						case NS_FILE_TALK:
 						case NS_MEDIAWIKI_TALK:
 						case NS_TEMPLATE_TALK:
 						case NS_HELP_TALK:
@@ -191,7 +191,7 @@ class SkinStandard extends Skin {
 						case NS_PROJECT:
 							$text = wfMsg( 'projectpage' );
 							break;
-						case NS_IMAGE:
+						case NS_FILE:
 							$text = wfMsg( 'imagepage' );
 							break;
 						case NS_MEDIAWIKI:

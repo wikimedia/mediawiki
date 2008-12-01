@@ -49,7 +49,7 @@ class FileDuplicateSearchPage extends QueryPage {
 	function formatResult( $skin, $result ) {
 		global $wgContLang, $wgLang;
 
-		$nt = Title::makeTitle( NS_IMAGE, $result->title );
+		$nt = Title::makeTitle( NS_FILE, $result->title );
 		$text = $wgContLang->convert( $nt->getText() );
 		$plink = $skin->makeLink( $nt->getPrefixedText(), $text );
 

@@ -45,9 +45,9 @@ class ImageQueryPage extends QueryPage {
 	 * @return Image
 	 */
 	private function prepareImage( $row ) {
-		$namespace = isset( $row->namespace ) ? $row->namespace : NS_IMAGE;
+		$namespace = isset( $row->namespace ) ? $row->namespace : NS_FILE;
 		$title = Title::makeTitleSafe( $namespace, $row->title );
-		return ( $title instanceof Title && $title->getNamespace() == NS_IMAGE )
+		return ( $title instanceof Title && $title->getNamespace() == NS_FILE )
 			? wfFindFile( $title )
 			: null;
 	}

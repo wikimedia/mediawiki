@@ -284,7 +284,7 @@ class SpecialSearch {
 		$nsAllSet = array_keys( SearchEngine::searchableNamespaces() );
 		if( $this->searchAdvanced )
 			$this->active = 'advanced';
-		else if( $this->namespaces === NS_IMAGE || $this->startsWithImage( $term ) )
+		else if( $this->namespaces === NS_FILE || $this->startsWithImage( $term ) )
 			$this->active = 'images';
 		elseif( $this->namespaces === $nsAllSet )
 			$this->active = 'all';
@@ -450,7 +450,7 @@ class SpecialSearch {
 		}
 
 		// Include a thumbnail for media files...
-		if( $t->getNamespace() == NS_IMAGE ) {
+		if( $t->getNamespace() == NS_FILE ) {
 			$img = wfFindFile( $t );
 			if( $img ) {
 				$thumb = $img->transform( array( 'width' => 120, 'height' => 120 ) );
@@ -661,8 +661,8 @@ class SpecialSearch {
 		if( $this->active == 'images' ) {
 			$out .= Xml::element( 'strong', array( 'title'=>$tt ), $m );	
 		} else {
-			$imageTextForm = $wgContLang->getFormattedNsText(NS_IMAGE).':'.$bareterm;
-			$out .= $this->makeSearchLink( $imageTextForm, array( NS_IMAGE ) , $m, $tt );
+			$imageTextForm = $wgContLang->getFormattedNsText(NS_FILE).':'.$bareterm;
+			$out .= $this->makeSearchLink( $imageTextForm, array( NS_FILE ) , $m, $tt );
 		}
 		$out .= $sep;
 		
@@ -769,7 +769,7 @@ class SpecialSearch {
 		
 		$p = explode( ':', $term );
 		if( count( $p ) > 1 ) {
-			return $wgContLang->getNsIndex( $p[0] ) == NS_IMAGE;
+			return $wgContLang->getNsIndex( $p[0] ) == NS_FILE;
 		}
 		return false;
 	}
@@ -1209,7 +1209,7 @@ class SpecialSearchOld {
 		}
 				
 		// Include a thumbnail for media files...
-		if( $t->getNamespace() == NS_IMAGE ) {
+		if( $t->getNamespace() == NS_FILE ) {
 			$img = wfFindFile( $t );
 			if( $img ) {
 				$thumb = $img->transform( array( 'width' => 120, 'height' => 120 ) );

@@ -22,8 +22,8 @@ $namespaceNames = array(
 	NS_USER_TALK        => 'ಸದಸ್ಯರ_ಚರ್ಚೆಪುಟ',
 	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => '$1_ಚರ್ಚೆ',
-	NS_IMAGE            => 'ಚಿತ್ರ',
-	NS_IMAGE_TALK       => 'ಚಿತ್ರ_ಚರ್ಚೆಪುಟ',
+	NS_FILE             => 'ಚಿತ್ರ',
+	NS_FILE_TALK        => 'ಚಿತ್ರ_ಚರ್ಚೆಪುಟ',
 	NS_MEDIAWIKI        => 'ಮೀಡಿಯವಿಕಿ',
 	NS_MEDIAWIKI_TALK   => 'ಮೀಡೀಯವಿಕಿ_ಚರ್ಚೆ',
 	NS_TEMPLATE         => 'ಟೆಂಪ್ಲೇಟು',

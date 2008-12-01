@@ -25,8 +25,8 @@ $namespaceNames = array(
 	NS_USER_TALK        => 'Гьуртту_хьуминнал_ихтилат', 
 	#NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => '$1лиясса_ихтилат',
-	NS_IMAGE            => 'Сурат',
-	NS_IMAGE_TALK       => 'Суратраясса_ихтилат',
+	NS_FILE             => 'Сурат',
+	NS_FILE_TALK        => 'Суратраясса_ихтилат',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'MediaWikiлиясса_ихтилат',
 	NS_TEMPLATE         => 'Шаблон',

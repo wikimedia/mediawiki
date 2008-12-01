@@ -226,7 +226,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 					if($this->hasNS)
 						$contTitle = Title::makeTitle($row->{$this->bl_ns}, $row->{$this->bl_title});
 					else
-						$contTitle = Title::makeTitle(NS_IMAGE, $row->{$this->bl_title});
+						$contTitle = Title::makeTitle(NS_FILE, $row->{$this->bl_title});
 					$this->continueStr = $this->getContinueRedirStr($contTitle->getArticleID(), $row->page_id);
 					break;
 				}
@@ -270,7 +270,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		ApiQueryBase::addTitleInfo($a, Title::makeTitle($row->page_namespace, $row->page_title));
 		if($row->page_is_redirect)
 			$a['redirect'] = '';
-		$ns = $this->hasNS ? $row->{$this->bl_ns} : NS_IMAGE;
+		$ns = $this->hasNS ? $row->{$this->bl_ns} : NS_FILE;
 		$this->data[$ns][$row->{$this->bl_title}]['redirlinks'][] = $a;
 		$this->getResult()->setIndexedTagName($this->data[$ns][$row->{$this->bl_title}]['redirlinks'], $this->bl_code);
 	}
@@ -292,7 +292,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		}
 
 		// only image titles are allowed for the root in imageinfo mode
-		if (!$this->hasNS && $this->rootTitle->getNamespace() !== NS_IMAGE)
+		if (!$this->hasNS && $this->rootTitle->getNamespace() !== NS_FILE)
 			$this->dieUsage("The title for {$this->getModuleName()} query must be an image", 'bad_image_title');
 	}
 

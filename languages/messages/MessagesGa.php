@@ -75,8 +75,8 @@ $namespaceNames = array(
 	NS_USER_TALK        => 'Plé_úsáideora',
 	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => 'Plé_{{grammar:genitive|$1}}',
-	NS_IMAGE            => 'Íomhá',
-	NS_IMAGE_TALK       => 'Plé_íomhá',
+	NS_FILE             => 'Íomhá',
+	NS_FILE_TALK        => 'Plé_íomhá',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'Plé_MediaWiki',
 	NS_TEMPLATE         => 'Teimpléad',
@@ -88,7 +88,7 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'Plé_í­omhá' => NS_IMAGE_TALK,
+	'Plé_í­omhá' => NS_FILE_TALK,
 	'Múnla' => NS_TEMPLATE,
 	'Plé_múnla' => NS_TEMPLATE_TALK,
 	'Rang' => NS_CATEGORY

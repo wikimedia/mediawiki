@@ -46,8 +46,8 @@ $namespaceNames = array(
 	NS_USER_TALK      => 'Meidogger_oerlis',
 	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK   => '$1_oerlis',
-	NS_IMAGE          => 'Ofbyld',
-	NS_IMAGE_TALK     => 'Ofbyld_oerlis',
+	NS_FILE           => 'Ofbyld',
+	NS_FILE_TALK      => 'Ofbyld_oerlis',
 	NS_MEDIAWIKI      => 'MediaWiki',
 	NS_MEDIAWIKI_TALK => 'MediaWiki_oerlis',
 	NS_TEMPLATE       => 'Berjocht',

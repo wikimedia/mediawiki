@@ -40,8 +40,8 @@ $namespaceNames = array(
 	NS_USER             => 'Usuari',
 	NS_USER_TALK        => 'Usuari_Discussió',
 	NS_PROJECT_TALK     => '$1_Discussió',
-	NS_IMAGE            => 'Fitxer',
-	NS_IMAGE_TALK       => 'Fitxer_Discussió',
+	NS_FILE             => 'Fitxer',
+	NS_FILE_TALK        => 'Fitxer_Discussió',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'MediaWiki_Discussió',
 	NS_TEMPLATE         => 'Plantilla',
@@ -53,8 +53,8 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'Imatge' => NS_IMAGE,
-	'Imatge_Discussió' => NS_IMAGE_TALK,
+	'Imatge' => NS_FILE,
+	'Imatge_Discussió' => NS_FILE_TALK,
 );
 
 $separatorTransformTable = array(',' => '.', '.' => ',' );

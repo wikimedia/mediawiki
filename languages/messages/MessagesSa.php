@@ -34,8 +34,8 @@ $namespaceNames = array(
 	NS_USER_TALK        => 'योजकसंभाषणं',
 	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => '$1संभाषणं',
-	NS_IMAGE            => 'चित्रं',
-	NS_IMAGE_TALK       => 'चित्रसंभाषणं',
+	NS_FILE             => 'चित्रं',
+	NS_FILE_TALK        => 'चित्रसंभाषणं',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'MediaWiki_talk',
 	NS_TEMPLATE         => 'Template',

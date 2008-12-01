@@ -64,7 +64,7 @@ class ImageCleanup extends TableCleanup {
 		// Many of remainder look like non-normalized unicode
 		$cleaned = UtfNormal::cleanUp( $cleaned );
 		
-		$title = Title::makeTitleSafe( NS_IMAGE, $cleaned );
+		$title = Title::makeTitleSafe( NS_FILE, $cleaned );
 		
 		if( is_null( $title ) ) {
 			$this->log( "page $source ($cleaned) is illegal." );
@@ -116,7 +116,7 @@ class ImageCleanup extends TableCleanup {
 		$final = $new;
 		
 		while( $db->selectField( 'image', 'img_name', array( 'img_name' => $final ), __METHOD__ ) ||
-			Title::makeTitle( NS_IMAGE, $final )->exists() ) {
+			Title::makeTitle( NS_FILE, $final )->exists() ) {
 			$this->log( "Rename conflicts with '$final'..." );
 			$version++;
 			$final = $this->appendTitle( $new, "_$version" );
@@ -140,7 +140,7 @@ class ImageCleanup extends TableCleanup {
 				__METHOD__ );
 			$db->update( 'page',
 				array( 'page_title' => $final ),
-				array( 'page_title' => $orig, 'page_namespace' => NS_IMAGE ),
+				array( 'page_title' => $orig, 'page_namespace' => NS_FILE ),
 				__METHOD__ );
 			$dir = dirname( $finalPath );
 			if( !file_exists( $dir ) ) {
@@ -171,7 +171,7 @@ class ImageCleanup extends TableCleanup {
 			array( $this, 'hexChar' ),
 			$name );
 		
-		$test = Title::makeTitleSafe( NS_IMAGE, $x );
+		$test = Title::makeTitleSafe( NS_FILE, $x );
 		if( is_null( $test ) || $test->getDBkey() !== $x ) {
 			$this->log( "Unable to generate safe title from '$name', got '$x'" );
 			return false;

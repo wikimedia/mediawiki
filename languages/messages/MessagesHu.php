@@ -25,8 +25,8 @@ $namespaceNames = array(
 	NS_USER             => 'Szerkesztő',
 	NS_USER_TALK        => 'Szerkesztővita',
 	NS_PROJECT_TALK     => '$1-vita',
-	NS_IMAGE            => 'Fájl',
-	NS_IMAGE_TALK       => 'Fájlvita',
+	NS_FILE             => 'Fájl',
+	NS_FILE_TALK        => 'Fájlvita',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'MediaWiki-vita',
 	NS_TEMPLATE         => 'Sablon',
@@ -38,14 +38,14 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'Kép' => NS_IMAGE,
-	'Képvita' => NS_IMAGE_TALK,
+	'Kép' => NS_FILE,
+	'Képvita' => NS_FILE_TALK,
 );
 
 $namespaceAliases = array(
 	'User_vita'      => NS_USER_TALK,
 	'$1_vita'        => NS_PROJECT_TALK,
-	'Kép_vita'       => NS_IMAGE_TALK,
+	'Kép_vita'       => NS_FILE_TALK,
 	'MediaWiki_vita' => NS_MEDIAWIKI_TALK,
 	'Sablon_vita'    => NS_TEMPLATE_TALK,
 	'Segítség_vita'  => NS_HELP_TALK,

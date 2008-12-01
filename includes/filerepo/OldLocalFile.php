@@ -23,7 +23,7 @@ class OldLocalFile extends LocalFile {
 	}
 
 	static function newFromRow( $row, $repo ) {
-		$title = Title::makeTitle( NS_IMAGE, $row->oi_name );
+		$title = Title::makeTitle( NS_FILE, $row->oi_name );
 		$file = new self( $title, $repo, null, $row->oi_archive_name );
 		$file->loadFromRow( $row, 'oi_' );
 		return $file;

@@ -18,8 +18,8 @@ $namespaceNames = array(
 	NS_USER_TALK        => 'Puruhára_myangekõi',
 	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => '$1_myangekõi',
-	NS_IMAGE            => 'Ta\'ãnga',
-	NS_IMAGE_TALK       => 'Ta\'ãnga_myangekõi',
+	NS_FILE             => 'Ta\'ãnga',
+	NS_FILE_TALK        => 'Ta\'ãnga_myangekõi',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'MediaWiki_myangekõi',
 	NS_TEMPLATE         => 'Tembiecharã',

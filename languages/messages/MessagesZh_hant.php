@@ -20,8 +20,8 @@ $namespaceNames = array(
 	NS_USER_TALK        => 'User_talk',
 	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => '$1_talk',
-	NS_IMAGE            => 'Image',
-	NS_IMAGE_TALK       => 'Image_talk',
+	NS_FILE             => 'Image',
+	NS_FILE_TALK        => 'Image_talk',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'MediaWiki_talk',
 	NS_TEMPLATE         => 'Template',
@@ -40,8 +40,8 @@ $namespaceAliases = array(
 	"用戶對話" => NS_USER_TALK,
 	# This has never worked so it's unlikely to annoy anyone if I disable it -- TS
 	#"{{SITENAME}}_對話" => NS_PROJECT_TALK
-	"圖像" => NS_IMAGE,
-	"圖像對話" => NS_IMAGE_TALK,
+	"圖像" => NS_FILE,
+	"圖像對話" => NS_FILE_TALK,
 	"樣板" => NS_TEMPLATE,
 	"樣板討論" => NS_TEMPLATE_TALK,
 	"幫助" => NS_HELP,

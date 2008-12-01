@@ -24,8 +24,8 @@ $namespaceNames = array(
 	NS_USER_TALK        => 'Lietotāja_diskusija',
 	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => '{{grammar:ģenitīvs|$1}}_diskusija',
-	NS_IMAGE            => 'Attēls',
-	NS_IMAGE_TALK       => 'Attēla_diskusija',
+	NS_FILE             => 'Attēls',
+	NS_FILE_TALK        => 'Attēla_diskusija',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'MediaWiki_diskusija',
 	NS_TEMPLATE         => 'Veidne',

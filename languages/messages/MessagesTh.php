@@ -30,8 +30,8 @@ $namespaceNames = array(
 	NS_USER             => 'ผู้ใช้',
 	NS_USER_TALK        => 'คุยกับผู้ใช้',
 	NS_PROJECT_TALK     => 'คุยเรื่อง$1',
-	NS_IMAGE            => 'ไฟล์',
-	NS_IMAGE_TALK       => 'คุยเรื่องไฟล์',
+	NS_FILE             => 'ไฟล์',
+	NS_FILE_TALK        => 'คุยเรื่องไฟล์',
 	NS_MEDIAWIKI        => 'มีเดียวิกิ',
 	NS_MEDIAWIKI_TALK   => 'คุยเรื่องมีเดียวิกิ',
 	NS_TEMPLATE         => 'แม่แบบ',
@@ -43,8 +43,8 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'ภาพ' => NS_IMAGE,
-	'คุยเรื่องภาพ' => NS_IMAGE_TALK,
+	'ภาพ' => NS_FILE,
+	'คุยเรื่องภาพ' => NS_FILE_TALK,
 );
 
 $specialPageAliases = array(

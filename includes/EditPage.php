@@ -738,7 +738,7 @@ class EditPage {
 		}
 
 		# Check image redirect
-		if ( $this->mTitle->getNamespace() == NS_IMAGE &&
+		if ( $this->mTitle->getNamespace() == NS_FILE &&
 			Title::newFromRedirect( $this->textbox1 ) instanceof Title &&
 			!$wgUser->isAllowed( 'upload' ) ) {
 				if ( $wgUser->isAnon() ) {
@@ -1971,7 +1971,7 @@ END
 			array(
 				'image'  => $wgLang->getImageFile('button-image'),
 				'id'     => 'mw-editbutton-image',
-				'open'   => '[['.$wgContLang->getNsText(NS_IMAGE).':',
+				'open'   => '[['.$wgContLang->getNsText(NS_FILE).':',
 				'close'  => ']]',
 				'sample' => wfMsg('image_sample'),
 				'tip'    => wfMsg('image_tip'),

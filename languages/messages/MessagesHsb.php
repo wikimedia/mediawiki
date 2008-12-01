@@ -19,8 +19,8 @@ $namespaceNames = array(
 	NS_USER             => 'Wužiwar',
 	NS_USER_TALK        => 'Diskusija_z_wužiwarjom',
 	NS_PROJECT_TALK     => '$1_diskusija',
-	NS_IMAGE            => 'Dataja',
-	NS_IMAGE_TALK       => 'Diskusija_k_dataji',
+	NS_FILE             => 'Dataja',
+	NS_FILE_TALK        => 'Diskusija_k_dataji',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'MediaWiki_diskusija',
 	NS_TEMPLATE         => 'Předłoha',
@@ -32,8 +32,8 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'Wobraz' => NS_IMAGE,
-	'Diskusija_k_wobrazej' => NS_IMAGE_TALK,
+	'Wobraz' => NS_FILE,
+	'Diskusija_k_wobrazej' => NS_FILE_TALK,
 );
 
 $specialPageAliases = array(

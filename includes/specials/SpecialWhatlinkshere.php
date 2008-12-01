@@ -96,7 +96,7 @@ class WhatLinksHerePage {
 		$hidelinks = $this->opts->getValue( 'hidelinks' );
 		$hideredirs = $this->opts->getValue( 'hideredirs' );
 		$hidetrans = $this->opts->getValue( 'hidetrans' );
-		$hideimages = $target->getNamespace() != NS_IMAGE || $this->opts->getValue( 'hideimages' );
+		$hideimages = $target->getNamespace() != NS_FILE || $this->opts->getValue( 'hideimages' );
 
 		$fetchlinks = (!$hidelinks || !$hideredirs);
 
@@ -397,7 +397,7 @@ class WhatLinksHerePage {
 
 		$links = array();
 		$types = array( 'hidetrans', 'hidelinks', 'hideredirs' );
-		if( $this->target->getNamespace() == NS_IMAGE )
+		if( $this->target->getNamespace() == NS_FILE )
 			$types[] = 'hideimages';
 		foreach( $types as $type ) {
 			$chosen = $this->opts->getValue( $type );

@@ -160,8 +160,8 @@ $namespaceNames = array(
 	NS_USER             => 'Удзельнік',
 	NS_USER_TALK        => 'Гутаркі_ўдзельніка',
 	NS_PROJECT_TALK     => 'Абмеркаваньне_$1',
-	NS_IMAGE            => 'Файл',
-	NS_IMAGE_TALK       => 'Абмеркаваньне_файла',
+	NS_FILE             => 'Файл',
+	NS_FILE_TALK        => 'Абмеркаваньне_файла',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'Абмеркаваньне_MediaWiki',
 	NS_TEMPLATE         => 'Шаблён',
@@ -175,8 +175,8 @@ $namespaceNames = array(
 $namespaceAliases = array(
 	'Удзельніца' => NS_USER,
 	'Гутаркі ўдзельніцы' => NS_USER_TALK,
-	'Выява' => NS_IMAGE,
-	'Абмеркаваньне выявы' => NS_IMAGE_TALK,
+	'Выява' => NS_FILE,
+	'Абмеркаваньне выявы' => NS_FILE_TALK,
 );
 
 $specialPageAliases = array(

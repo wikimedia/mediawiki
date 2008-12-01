@@ -30,8 +30,8 @@ $namespaceNames = array(
 	NS_USER_TALK      => 'Euverlèk_gebroeker',
 	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK   => 'Euverlèk_$1',
-	NS_IMAGE          => 'Plaetje',
-	NS_IMAGE_TALK     => 'Euverlèk_plaetje',
+	NS_FILE           => 'Plaetje',
+	NS_FILE_TALK      => 'Euverlèk_plaetje',
 	NS_MEDIAWIKI      => 'MediaWiki',
 	NS_MEDIAWIKI_TALK => 'Euverlèk_MediaWiki',
 	NS_TEMPLATE       => 'Sjabloon',
@@ -45,8 +45,8 @@ $namespaceNames = array(
 $namespaceAliases = array(
 	'Kategorie'           => NS_CATEGORY,
 	'Euverlèk_kategorie'  => NS_CATEGORY_TALK,
-	'Aafbeilding'         => NS_IMAGE,
-	'Euverlèk_afbeelding' => NS_IMAGE_TALK,
+	'Aafbeilding'         => NS_FILE,
+	'Euverlèk_afbeelding' => NS_FILE_TALK,
 );
 
 $specialPageAliases = array(

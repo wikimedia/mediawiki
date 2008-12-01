@@ -47,8 +47,8 @@ $namespaceNames = array(
 	NS_USER             => 'Bruker',
 	NS_USER_TALK        => 'Brukerdiskusjon',
 	NS_PROJECT_TALK     => '$1-diskusjon',
-	NS_IMAGE            => 'Fil',
-	NS_IMAGE_TALK       => 'Fildiskusjon',
+	NS_FILE             => 'Fil',
+	NS_FILE_TALK        => 'Fildiskusjon',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'MediaWiki-diskusjon',
 	NS_TEMPLATE         => 'Mal',
@@ -60,8 +60,8 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'Bilde' => NS_IMAGE,
-	'Bildediskusjon' => NS_IMAGE_TALK,
+	'Bilde' => NS_FILE,
+	'Bildediskusjon' => NS_FILE_TALK,
 );
 
 $separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );

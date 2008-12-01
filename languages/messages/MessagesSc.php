@@ -15,8 +15,8 @@ $namespaceNames = array(
 	NS_USER_TALK       => 'Utente_discussioni',
 	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK    => '$1_discussioni',
-	NS_IMAGE           => 'Immàgini',
-	NS_IMAGE_TALK      => 'Immàgini_contièndha'
+	NS_FILE            => 'Immàgini',
+	NS_FILE_TALK       => 'Immàgini_contièndha'
 );
 
 $dateFormats = array(

@@ -26,8 +26,8 @@ $namespaceNames = array(
 	NS_USER             => 'Gebruiker',
 	NS_USER_TALK        => 'Gebruikerbespreking',
 	NS_PROJECT_TALK     => '$1bespreking',
-	NS_IMAGE            => 'Lêer',
-	NS_IMAGE_TALK       => 'Lêerbespreking',
+	NS_FILE             => 'Lêer',
+	NS_FILE_TALK        => 'Lêerbespreking',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'MediaWikibespreking',
 	NS_TEMPLATE         => 'Sjabloon',
@@ -39,8 +39,8 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'Beeld' => NS_IMAGE,
-	'Beeldbespreking' => NS_IMAGE_TALK,
+	'Beeld' => NS_FILE,
+	'Beeldbespreking' => NS_FILE_TALK,
 );
 
 $specialPageAliases = array(

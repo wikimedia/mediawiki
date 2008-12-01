@@ -383,7 +383,7 @@ class Title {
 
 		$t = preg_replace( "/\\s+/", ' ', $t );
 
-		if ( $ns == NS_IMAGE ) {
+		if ( $ns == NS_FILE ) {
 			$t = preg_replace( "/ (png|gif|jpg|jpeg|ogg)$/", "", $t );
 		}
 		return trim( $t );
@@ -1626,7 +1626,7 @@ class Title {
 
 		$dbr = wfGetDB( DB_SLAVE );
 
-		if ( $this->getNamespace() == NS_IMAGE ) {
+		if ( $this->getNamespace() == NS_FILE ) {
 			$tables = array ('imagelinks', 'page_restrictions');
 			$where_clauses = array(
 				'il_to' => $this->getDBkey(),
@@ -1863,7 +1863,7 @@ class Title {
 			$dbr = wfGetDB( DB_SLAVE );
 			$n = $dbr->selectField( 'archive', 'COUNT(*)', array( 'ar_namespace' => $this->getNamespace(),
 				'ar_title' => $this->getDBkey() ), $fname );
-			if( $this->getNamespace() == NS_IMAGE ) {
+			if( $this->getNamespace() == NS_FILE ) {
 				$n += $dbr->selectField( 'filearchive', 'COUNT(*)',
 					array( 'fa_name' => $this->getDBkey() ), $fname );
 			}
@@ -2444,10 +2444,10 @@ class Title {
 		}
 
 		// Image-specific checks
-		if( $this->getNamespace() == NS_IMAGE ) {
+		if( $this->getNamespace() == NS_FILE ) {
 			$file = wfLocalFile( $this );
 			if( $file->exists() ) {
-				if( $nt->getNamespace() != NS_IMAGE ) {
+				if( $nt->getNamespace() != NS_FILE ) {
 					$errors[] = array('imagenocrossnamespace');
 				}
 				if( $nt->getText() != wfStripIllegalFilenameChars( $nt->getText() ) ) {
@@ -2714,7 +2714,7 @@ class Title {
 		}
 		
 		# Move an image if this is a file
-		if( $this->getNamespace() == NS_IMAGE ) {
+		if( $this->getNamespace() == NS_FILE ) {
 			$file = wfLocalFile( $this );
 			if( $file->exists() ) {
 				$status = $file->move( $nt );
@@ -2809,7 +2809,7 @@ class Title {
 		}
 		
 		# Move an image if this is a file
-		if( $this->getNamespace() == NS_IMAGE ) {
+		if( $this->getNamespace() == NS_FILE ) {
 			$file = wfLocalFile( $this );
 			if( $file->exists() ) {
 				$status = $file->move( $nt );
@@ -2880,7 +2880,7 @@ class Title {
 	public function isValidMoveTarget( $nt ) {
 		$dbw = wfGetDB( DB_MASTER );
 		# Is it an existsing file?
-		if( $nt->getNamespace() == NS_IMAGE ) {
+		if( $nt->getNamespace() == NS_FILE ) {
 			$file = wfLocalFile( $nt );
 			if( $file->exists() ) {
 				wfDebug( __METHOD__ . ": file exists\n" );
@@ -3243,8 +3243,8 @@ class Title {
 			case NS_PROJECT:
 			case NS_PROJECT_TALK:
 				return 'nstab-project';
-			case NS_IMAGE:
-			case NS_IMAGE_TALK:
+			case NS_FILE:
+			case NS_FILE_TALK:
 				return 'nstab-image';
 			case NS_MEDIAWIKI:
 			case NS_MEDIAWIKI_TALK:

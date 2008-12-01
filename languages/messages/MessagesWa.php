@@ -41,8 +41,8 @@ $namespaceNames = array(
 	NS_USER_TALK      => "Uzeu_copene", /* User_talk */
 	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK   => '$1_copene',
-	NS_IMAGE          => "Imådje", /* Image */
-	NS_IMAGE_TALK     => "Imådje_copene", /* Image_talk */
+	NS_FILE           => "Imådje", /* Image */
+	NS_FILE_TALK      => "Imådje_copene", /* Image_talk */
 	NS_MEDIAWIKI      => "MediaWiki", /* MediaWiki */
 	NS_MEDIAWIKI_TALK => "MediaWiki_copene", /* MediaWiki_talk */
 	NS_TEMPLATE       => "Modele",

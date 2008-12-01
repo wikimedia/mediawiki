@@ -423,7 +423,7 @@ class UploadForm {
 			return self::MIN_LENGHT_PARTNAME;
 		}
 
-		$nt = Title::makeTitleSafe( NS_IMAGE, $filtered );
+		$nt = Title::makeTitleSafe( NS_FILE, $filtered );
 		if( is_null( $nt ) ) {
 			$resultDetails = array( 'filtered' => $filtered );
 			return self::ILLEGAL_FILENAME;
@@ -604,7 +604,7 @@ class UploadForm {
 			// extensions (eg 'jpg' rather than 'JPEG').
 			//
 			// Check for another file using the normalized form...
-			$nt_lc = Title::makeTitle( NS_IMAGE, $partname . '.' . $file->getExtension() );
+			$nt_lc = Title::makeTitle( NS_FILE, $partname . '.' . $file->getExtension() );
 			$file_lc = wfLocalFile( $nt_lc );
 		} else {
 			$file_lc = false;
@@ -731,7 +731,7 @@ class UploadForm {
 	public static function ajaxGetLicensePreview( $license ) {
 		global $wgParser, $wgUser;
 		$text = '{{' . $license . '}}';
-		$title = Title::makeTitle( NS_IMAGE, 'Sample.jpg' );
+		$title = Title::makeTitle( NS_FILE, 'Sample.jpg' );
 		$options = ParserOptions::newFromUser( $wgUser );
 
 		// Expand subst: first, then live templates...
@@ -764,7 +764,7 @@ class UploadForm {
 				"</li>\n";
 		} elseif ( $archivedImage->getID() > 0 ) {
 			global $wgOut;
-			$name = Title::makeTitle( NS_IMAGE, $archivedImage->getName() )->getPrefixedText();
+			$name = Title::makeTitle( NS_FILE, $archivedImage->getName() )->getPrefixedText();
 			return Xml::tags( 'li', null, wfMsgExt( 'file-deleted-duplicate', array( 'parseinline' ), array( $name ) ) );
 		} else {
 			return '';
@@ -960,7 +960,7 @@ wgUploadAutoFill = {$autofill};
 		}
 
 		if( $this->mDesiredDestName ) {
-			$title = Title::makeTitleSafe( NS_IMAGE, $this->mDesiredDestName );
+			$title = Title::makeTitleSafe( NS_FILE, $this->mDesiredDestName );
 			// Show a subtitle link to deleted revisions (to sysops et al only)
 			if( $title instanceof Title && ( $count = $title->isDeleted() ) > 0 && $wgUser->isAllowed( 'deletedhistory' ) ) {
 				$link = wfMsgExt(

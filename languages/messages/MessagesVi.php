@@ -28,8 +28,8 @@ $namespaceNames = array(
 	NS_USER             => 'Thành_viên',
 	NS_USER_TALK        => 'Thảo_luận_Thành_viên',
 	NS_PROJECT_TALK     => 'Thảo_luận_$1',
-	NS_IMAGE            => 'Tập_tin',
-	NS_IMAGE_TALK       => 'Thảo_luận_Tập_tin',
+	NS_FILE             => 'Tập_tin',
+	NS_FILE_TALK        => 'Thảo_luận_Tập_tin',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'Thảo_luận_MediaWiki',
 	NS_TEMPLATE         => 'Tiêu_bản',
@@ -41,8 +41,8 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'Hình' => NS_IMAGE,
-	'Thảo_luận_Hình' => NS_IMAGE_TALK,
+	'Hình' => NS_FILE,
+	'Thảo_luận_Hình' => NS_FILE_TALK,
 );
 
 $skinNames = array(

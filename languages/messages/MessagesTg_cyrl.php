@@ -22,8 +22,8 @@ $namespaceNames = array(
 	NS_USER_TALK      => "Баҳси_корбар",
 	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK   => "Баҳси_$1",
-	NS_IMAGE          => "Акс",
-	NS_IMAGE_TALK     => "Баҳси_акс",
+	NS_FILE           => "Акс",
+	NS_FILE_TALK      => "Баҳси_акс",
 	NS_MEDIAWIKI      => "Медиавики",
 	NS_MEDIAWIKI_TALK => "Баҳси_медиавики",
 	NS_TEMPLATE       => "Шаблон",

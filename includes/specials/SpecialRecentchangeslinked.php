@@ -93,8 +93,8 @@ class SpecialRecentchangeslinked extends SpecialRecentchanges {
 		} else {
 			// for now, always join on these tables; really should be configurable as in whatlinkshere
 			$link_tables = array( 'pagelinks', 'templatelinks' );
-			// imagelinks only contains links to pages in NS_IMAGE
-			if( $ns == NS_IMAGE || !$showlinkedto ) $link_tables[] = 'imagelinks';
+			// imagelinks only contains links to pages in NS_FILE
+			if( $ns == NS_FILE || !$showlinkedto ) $link_tables[] = 'imagelinks';
 		}
 
 		if( $id == 0 && !$showlinkedto )
@@ -109,7 +109,7 @@ class SpecialRecentchangeslinked extends SpecialRecentchanges {
 			$pfx = $prefix[$link_table];
 
 			// imagelinks and categorylinks tables have no xx_namespace field, and have xx_to instead of xx_title
-			if( $link_table == 'imagelinks' ) $link_ns = NS_IMAGE;
+			if( $link_table == 'imagelinks' ) $link_ns = NS_FILE;
 			else if( $link_table == 'categorylinks' ) $link_ns = NS_CATEGORY;
 			else $link_ns = 0;
 

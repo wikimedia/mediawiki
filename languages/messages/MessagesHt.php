@@ -20,8 +20,8 @@ $namespaceNames = array(
 	NS_USER_TALK      => 'Diskisyon_Itilizatè',
 	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK   => 'Diskisyon_$1',
-	NS_IMAGE          => 'Imaj',
-	NS_IMAGE_TALK     => 'Diskisyon_Imaj',
+	NS_FILE           => 'Imaj',
+	NS_FILE_TALK      => 'Diskisyon_Imaj',
 	NS_MEDIAWIKI      => 'MedyaWiki',
 	NS_MEDIAWIKI_TALK => 'Diskisyon_MedyaWiki',
 	NS_TEMPLATE       => 'Modèl',

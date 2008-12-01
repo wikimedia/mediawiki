@@ -32,8 +32,8 @@ $namespaceNames = array(
 	NS_USER_TALK        => 'Overleg_gebruker',
 	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => 'Overleg_$1',
-	NS_IMAGE            => 'Ofbeelding',
-	NS_IMAGE_TALK       => 'Overleg_ofbeelding',
+	NS_FILE             => 'Ofbeelding',
+	NS_FILE_TALK        => 'Overleg_ofbeelding',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'Overleg_MediaWiki',
 	NS_TEMPLATE         => 'Sjabloon',

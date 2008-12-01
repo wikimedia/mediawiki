@@ -72,8 +72,8 @@ $wgNamespaceProtection[NS_MEDIAWIKI] = 'editinterface';
  * and "File_talk".  The old names "Image" and "Image_talk" are
  * retained as aliases for backwards compatibility.
  */
-$wgNamespaceAliases['Image'] = NS_IMAGE;
-$wgNamespaceAliases['Image_talk'] = NS_IMAGE_TALK;
+$wgNamespaceAliases['Image'] = NS_FILE;
+$wgNamespaceAliases['Image_talk'] = NS_FILE_TALK;
 
 /**
  * Initialise $wgLocalFileRepo from backwards-compatible settings
