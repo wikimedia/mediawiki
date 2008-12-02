@@ -292,7 +292,6 @@ class IPUnblockForm {
 		if ( $pager->getNumRows() ) {
 			$wgOut->addHTML(
 				$this->searchForm() .
-				$this->showhideLinks() .
 				$pager->getNavigationBar() .
 				Xml::tags( 'ul', null, $pager->getBody() ) .
 				$pager->getNavigationBar()
@@ -301,26 +300,14 @@ class IPUnblockForm {
 			$wgOut->addHTML( $this->searchForm() );
 			$wgOut->addWikiMsg( 'ipblocklist-no-results' );
 		} else {
-			$wgOut->addHTML( $this->searchForm() . $this->showhideLinks() );
+			$wgOut->addHTML( $this->searchForm() );
 			$wgOut->addWikiMsg( 'ipblocklist-empty' );
 		}
 	}
 
 	function searchForm() {
 		global $wgTitle, $wgScript, $wgRequest;
-		return
-			Xml::tags( 'form', array( 'action' => $wgScript ),
-				Xml::hidden( 'title', $wgTitle->getPrefixedDbKey() ) .
-				Xml::openElement( 'fieldset' ) .
-				Xml::element( 'legend', null, wfMsg( 'ipblocklist-legend' ) ) .
-				Xml::inputLabel( wfMsg( 'ipblocklist-username' ), 'ip', 'ip', /* size */ false, $this->ip ) .
-				'&nbsp;' .
-				Xml::submitButton( wfMsg( 'ipblocklist-submit' ) ) .
-				Xml::closeElement( 'fieldset' )
-			);
-	}
-	
-	function showhideLinks() {
+
 		$showhide = array( wfMsg( 'show' ), wfMsg( 'hide' ) );
 		$nondefaults = array();
 		if( $this->hideuserblocks ) {
@@ -338,16 +325,26 @@ class IPUnblockForm {
 			array( 'hidetempblocks' => 1-$this->hidetempblocks ), $nondefaults);
 		$sipbLink = $this->makeOptionsLink( $showhide[1-$this->hideaddressblocks],
 			array( 'hideaddressblocks' => 1-$this->hideaddressblocks ), $nondefaults);
-			
+
 		$links = array();
 		$links[] = wfMsgHtml( 'ipblocklist-sh-userblocks', $ubLink );
 		$links[] = wfMsgHtml( 'ipblocklist-sh-tempblocks', $tbLink );
 		$links[] = wfMsgHtml( 'ipblocklist-sh-addressblocks', $sipbLink );
-		
-		$hl = '(' . implode( ' | ', $links ) . ')<hr/>';
-		return $hl;
+		$hl = implode( ' ' . wfMsg( 'pipe-separator' ) . ' ', $links );
+
+		return
+			Xml::tags( 'form', array( 'action' => $wgScript ),
+				Xml::hidden( 'title', $wgTitle->getPrefixedDbKey() ) .
+				Xml::openElement( 'fieldset' ) .
+				Xml::element( 'legend', null, wfMsg( 'ipblocklist-legend' ) ) .
+				Xml::inputLabel( wfMsg( 'ipblocklist-username' ), 'ip', 'ip', /* size */ false, $this->ip ) .
+				'&nbsp;' .
+				Xml::submitButton( wfMsg( 'ipblocklist-submit' ) ) . '<br />' .
+				$hl .
+				Xml::closeElement( 'fieldset' )
+			);
 	}
-	
+
 	/**
 	 * Makes change an option link which carries all the other options
 	 * @param $title see Title
