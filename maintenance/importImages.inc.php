@@ -77,7 +77,7 @@ function findAuxFile( $file, $auxExtension, $maxStrip = 1 ) {
 			return $f;
 		}
 
-		$idx = strpos( $n, '.' );
+		$idx = strrpos( $n, '.' );
 		if ( !$idx ) break;
 
 		$n = substr( $n, 0, $idx );
