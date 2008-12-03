@@ -482,6 +482,7 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 16408) Added rvgeneratexml to prop=revisions
 * (bug 16421) Made list=logevents's leuser accept user names with underscores
   instead of spaces
+* (bug 16516) Made rvsection=T-2 work
 
 === Languages updated in 1.14 ===
 
