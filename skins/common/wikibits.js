@@ -48,7 +48,10 @@ function hookEvent(hookName, hookFunct) {
 }
 
 function importScript(page) {
-	return importScriptURI(wgScript + '?action=raw&ctype=text/javascript&title=' + encodeURIComponent(page.replace(/ /g,'_')));
+	var uri = wgScript + '?title=' +
+		encodeURIComponent(page.replace(/ /g,'_')).replace('%2F','/').replace('%3A',':') +
+		'&action=raw&ctype=text/javascript';
+	return importScriptURI(uri);
 }
  
 var loadedScripts = {}; // included-scripts tracker
