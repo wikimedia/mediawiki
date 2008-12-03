@@ -35,39 +35,22 @@ class FileStore {
 	 * This is attached to your master database connection, so if you
 	 * suffer an uncaught error the lock will be released when the
 	 * connection is closed.
-	 *
-	 * @todo Probably only works on MySQL. Abstract to the Database class?
+	 * @see Database::lock()
 	 */
 	static function lock() {
-		global $wgDBtype;
-		if ($wgDBtype != 'mysql')
-			return true;
 		$dbw = wfGetDB( DB_MASTER );
 		$lockname = $dbw->addQuotes( FileStore::lockName() );
-		$result = $dbw->query( "SELECT GET_LOCK($lockname, 5) AS lockstatus", __METHOD__ );
-		$row = $dbw->fetchObject( $result );
-		$dbw->freeResult( $result );
-
-		if( $row->lockstatus == 1 ) {
-			return true;
-		} else {
-			wfDebug( __METHOD__." failed to acquire lock\n" );
-			return false;
-		}
+		return $dbw->lock( $lockname, __METHOD__ );
 	}
 
 	/**
 	 * Release the global file store lock.
+	 * @see Database::unlock()
 	 */
 	static function unlock() {
-		global $wgDBtype;
-		if ($wgDBtype != 'mysql')
-			return true;
 		$dbw = wfGetDB( DB_MASTER );
 		$lockname = $dbw->addQuotes( FileStore::lockName() );
-		$result = $dbw->query( "SELECT RELEASE_LOCK($lockname)", __METHOD__ );
-		$dbw->fetchObject( $result );
-		$dbw->freeResult( $result );
+		return $dbw->unlock( $lockname, __METHOD__ );
 	}
 
 	private static function lockName() {
