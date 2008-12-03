@@ -94,7 +94,7 @@ class ForeignAPIRepo extends FileRepo {
 	
 	function getImageInfo( $title, $time = false ) {
 		return $this->queryImage( array(
-			'titles' => $this->getFileNamespace() . ':' . $title->getText(),
+			'titles' => 'Image:' . $title->getText(),
 			'iiprop' => 'timestamp|user|comment|url|size|sha1|metadata|mime' ) );
 	}
 	
