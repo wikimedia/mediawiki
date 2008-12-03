@@ -15,7 +15,7 @@ abstract class FileRepo {
 	var $thumbScriptUrl, $transformVia404;
 	var $descBaseUrl, $scriptDirUrl, $articleUrl, $fetchDescription, $initialCapital;
 	var $pathDisclosureProtection = 'paranoid';
-	var $descriptionCacheExpiry, $apiThumbCacheExpiry, $hashLevels, $fileNamespace;
+	var $descriptionCacheExpiry, $apiThumbCacheExpiry, $hashLevels;
 
 	/**
 	 * Factory functions for creating new files
@@ -30,10 +30,9 @@ abstract class FileRepo {
 
 		// Optional settings
 		$this->initialCapital = true; // by default
-		$this->fileNamespace  = MWNamespace::getCanonicalName( NS_FILE ); // fallback to 'File'
 		foreach ( array( 'descBaseUrl', 'scriptDirUrl', 'articleUrl', 'fetchDescription',
 			'thumbScriptUrl', 'initialCapital', 'pathDisclosureProtection', 
-			'descriptionCacheExpiry', 'apiThumbCacheExpiry', 'hashLevels', 'fileNamespace' ) as $var )
+			'descriptionCacheExpiry', 'apiThumbCacheExpiry', 'hashLevels' ) as $var )
 		{
 			if ( isset( $info[$var] ) ) {
 				$this->$var = $info[$var];
@@ -263,10 +262,10 @@ abstract class FileRepo {
 		if ( is_null( $this->descBaseUrl ) ) {
 			if ( !is_null( $this->articleUrl ) ) {
 				$this->descBaseUrl = str_replace( '$1',
-					wfUrlencode( $this->getFileNamespace() ) . ':', $this->articleUrl );
+					wfUrlencode( MWNamespace::getCanonicalName( NS_FILE ) ) . ':', $this->articleUrl );
 			} elseif ( !is_null( $this->scriptDirUrl ) ) {
 				$this->descBaseUrl = $this->scriptDirUrl . '/index.php?title=' .
-					wfUrlencode( $this->getFileNamespace() ) . ':';
+					wfUrlencode( MWNamespace::getCanonicalName( NS_FILE ) ) . ':';
 			} else {
 				$this->descBaseUrl = false;
 			}
@@ -301,7 +300,7 @@ abstract class FileRepo {
 	function getDescriptionRenderUrl( $name ) {
 		if ( isset( $this->scriptDirUrl ) ) {
 			return $this->scriptDirUrl . '/index.php?title=' .
-				wfUrlencode( $this->getFileNamespace() . ':' . $name ) .
+				wfUrlencode( MWNamespace::getCanonicalName( NS_FILE ) . ':' . $name ) .
 				'&action=render';
 		} else {
 			$descBase = $this->getDescBaseUrl();
@@ -534,12 +533,5 @@ abstract class FileRepo {
 	
 	function findBySha1( $hash ) {
 		return array();
-	}
-	/**
-	 * Returns the file namespace string
-	 * @return string
-	 */
-	function getFileNamespace() {
-		return $this->fileNamespace;
 	}
 }
