@@ -289,6 +289,28 @@ function addPortletLink(portlet, href, text, id, tooltip, accesskey, nextnode) {
 	return item;
 }
 
+function getInnerText(el) {
+	if (typeof el == "string") return el;
+	if (typeof el == "undefined") { return el };
+	if (el.textContent) return el.textContent; // not needed but it is faster
+	if (el.innerText) return el.innerText;     // IE doesn't have textContent
+	var str = "";
+
+	var cs = el.childNodes;
+	var l = cs.length;
+	for (var i = 0; i < l; i++) {
+		switch (cs[i].nodeType) {
+			case 1: //ELEMENT_NODE
+				str += ts_getInnerText(cs[i]);
+				break;
+			case 3:	//TEXT_NODE
+				str += cs[i].nodeValue;
+				break;
+		}
+	}
+	return str;
+}
+
 
 /**
  * Set up accesskeys/tooltips from the deprecated ta array.  If doId
@@ -539,25 +561,7 @@ function ts_makeSortable(table) {
 }
 
 function ts_getInnerText(el) {
-	if (typeof el == "string") return el;
-	if (typeof el == "undefined") { return el };
-	if (el.textContent) return el.textContent; // not needed but it is faster
-	if (el.innerText) return el.innerText;     // IE doesn't have textContent
-	var str = "";
-
-	var cs = el.childNodes;
-	var l = cs.length;
-	for (var i = 0; i < l; i++) {
-		switch (cs[i].nodeType) {
-			case 1: //ELEMENT_NODE
-				str += ts_getInnerText(cs[i]);
-				break;
-			case 3:	//TEXT_NODE
-				str += cs[i].nodeValue;
-				break;
-		}
-	}
-	return str;
+	return getInnerText( el );
 }
 
 function ts_resortTable(lnk) {
