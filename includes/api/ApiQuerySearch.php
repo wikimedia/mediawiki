@@ -71,14 +71,17 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			// of the way we initially set up the MySQL fulltext-based
 			// search engine with separate title and text fields.
 			// In the future, the default should be for a combined index.
+			$what = 'title';
 			$matches = $search->searchTitle( $query );
 			
 			// Not all search engines support a separate title search,
 			// for instance the Lucene-based engine we use on Wikipedia.
 			// In this case, fall back to full-text search (which will
 			// include titles in it!)
-			if( is_null( $matches ) )
+			if( is_null( $matches ) ) {
+				$what = 'text';
 				$matches = $search->searchText( $query );
+			}
 		}
 		if (is_null($matches))
 			$this->dieUsage("{$what} search is disabled",
