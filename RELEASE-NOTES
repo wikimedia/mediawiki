@@ -392,6 +392,7 @@ The following extensions are migrated into MediaWiki 1.14:
   pages if the repo wiki had a different canonical name for the File: namespace.
   Added 'fileNamespace' configuration item to $wgForeignFileRepos to override
   the local canonical name 'File' with another string.
+* (bug 13342) importScript() generates more consistent URI encoding
 
 
 === API changes in 1.14 ===
