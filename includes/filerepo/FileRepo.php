@@ -537,7 +537,7 @@ abstract class FileRepo {
 	}
 	/**
 	 * Returns the file namespace string
-	 * @return strig
+	 * @return string
 	 */
 	function getFileNamespace() {
 		return $this->fileNamespace;
