@@ -387,9 +387,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			),
 			'expandtemplates' => false,
 			'generatexml' => false,
-			'section' => array(
-				ApiBase :: PARAM_TYPE => 'integer'
-			),
+			'section' => null,
 			'token' => array(
 				ApiBase :: PARAM_TYPE => array_keys($this->getTokenFunctions()),
 				ApiBase :: PARAM_ISMULTI => true
