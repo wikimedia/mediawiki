@@ -73,8 +73,10 @@ if (!defined('MEDIAWIKI')) {
 
 		$db = $this->getDB();
 		$this->addTables('user', 'u1');
-		$this->addFields('u1.*');
+		$this->addFields('u1.user_name');
 		$this->addWhereFld('u1.user_name', $goodNames);
+		$this->addFieldsIf('u1.user_editcount', isset($this->prop['editcount']));
+		$this->addFieldsIf('u1.user_registration', isset($this->prop['registration']));
 
 		if(isset($this->prop['groups'])) {
 			$this->addTables('user_groups');
@@ -94,26 +96,20 @@ if (!defined('MEDIAWIKI')) {
 		$data = array();
 		$res = $this->select(__METHOD__);
 		while(($r = $db->fetchObject($res))) {
-			$user = User::newFromRow($r);
-			$name = $user->getName();
-			$data[$name]['name'] = $name;
+			$data[$r->user_name]['name'] = $r->user_name;
 			if(isset($this->prop['editcount']))
-				// No proper member function in User class for this
-				$data[$name]['editcount'] = $r->user_editcount;
+				$data[$r->user_name]['editcount'] = $r->user_editcount;
 			if(isset($this->prop['registration']))
-				// Nor for this one
-				$data[$name]['registration'] = wfTimestampOrNull(TS_ISO_8601, $r->user_registration);
+				$data[$r->user_name]['registration'] = wfTimestampOrNull(TS_ISO_8601, $r->user_registration);
 			if(isset($this->prop['groups']))
 				// This row contains only one group, others will be added from other rows
 				if(!is_null($r->ug_group))
-					$data[$name]['groups'][] = $r->ug_group;
+					$data[$r->user_name]['groups'][] = $r->ug_group;
 			if(isset($this->prop['blockinfo']))
 				if(!is_null($r->blocker_name)) {
-					$data[$name]['blockedby'] = $r->blocker_name;
-					$data[$name]['blockreason'] = $r->ipb_reason;
+					$data[$r->user_name]['blockedby'] = $r->blocker_name;
+					$data[$r->user_name]['blockreason'] = $r->ipb_reason;
 				}
-			if(isset($this->prop['canemail']) && $user->canReceiveEmail())
-				$data[$name]['canemail'] = '';
 		}
 
 		// Second pass: add result data to $retval
@@ -138,8 +134,7 @@ if (!defined('MEDIAWIKI')) {
 					'blockinfo',
 					'groups',
 					'editcount',
-					'registration',
-					'canemail',
+					'registration'
 				)
 			),
 			'users' => array(
@@ -152,11 +147,9 @@ if (!defined('MEDIAWIKI')) {
 		return array (
 			'prop' => array(
 				'What pieces of information to include',
-				'  blockinfo    - tags if the user is blocked, by whom, and for what reason',
-				'  groups       - lists all the groups the user belongs to',
-				'  editcount    - adds the user\'s edit count',
-				'  registration - adds the user\'s registration timestamp',
-				'  canemail     - tags if the user can and wants to receive e-mail through [[Special:Emailuser]]',
+				'  blockinfo - tags if the user is blocked, by whom, and for what reason',
+				'  groups    - lists all the groups the user belongs to',
+				'  editcount - adds the user\'s edit count'
 			),
 			'users' => 'A list of users to obtain the same information for'
 		);
