@@ -388,6 +388,10 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 16026) 'Revision-info' and 'revision-info-current' both accept wiki 
   markup now.
 * (bug 16529) Fix for search suggestions with some third-party JS libraries
+* Foreign repositories (API or DB) would fail to fetch images and/or description
+  pages if the repo wiki had a different canonical name for the File: namespace.
+  Added 'fileNamespace' configuration item to $wgForeignFileRepos to override
+  the local canonical name 'File' with another string.
 
 
 === API changes in 1.14 ===
