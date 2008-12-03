@@ -349,8 +349,6 @@ class UserrightsPage extends SpecialPage {
 	protected function showEditUserGroupsForm( $user, $groups ) {
 		global $wgOut, $wgUser, $wgLang;
 
-		wfRunHooks( 'UserRights::showEditUserGroupsForm', array( &$user, &$groups ) );
-
 		$list = array();
 		foreach( $groups as $group )
 			$list[] = self::buildGroupLink( $group );
