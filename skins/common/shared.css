@@ -152,10 +152,10 @@ div.searchdidyoumean {
 
 div.searchresults {
 	border:1px solid darkblue;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	padding-left: 15px;
-	padding-right: 15px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 /*
