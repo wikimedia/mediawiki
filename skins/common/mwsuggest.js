@@ -611,7 +611,7 @@ function os_eventKeydown(e){
 
 	os_mouse_moved = false;
 
-	os_cur_keypressed = (window.Event) ? e.which : e.keyCode;
+	os_cur_keypressed = (e.keyCode == undefined) ? e.which : e.keyCode;
 	os_last_keypress = 0;
 	os_keypressed_count = 0;
 }
