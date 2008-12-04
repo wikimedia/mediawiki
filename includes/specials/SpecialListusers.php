@@ -215,15 +215,8 @@ class UsersPager extends AlphabeticPager {
 	 * @return array
 	 */
 	protected static function getGroups( $uid ) {
-		$dbr = wfGetDB( DB_SLAVE );
-		$groups = array();
-		$res = $dbr->select( 'user_groups', 'ug_group', array( 'ug_user' => $uid ), __METHOD__ );
-		if( $res && $dbr->numRows( $res ) > 0 ) {
-			while( $row = $dbr->fetchObject( $res ) )
-				$groups[] = $row->ug_group;
-			$dbr->freeResult( $res );
-		}
-		wfRunHooks( 'SpecialListusersGetGroups', array( &$groups, $uid ) );
+		$user = User::newFromId( $uid );
+		$groups = array_diff( $user->getEffectiveGroups(), $user->getImplicitGroups() );
 		return $groups;
 	}
 
