@@ -367,7 +367,7 @@ $messages = array(
 'restorelink'             => '$1 {{PLURAL:$1|éditan|éditan}} dihapus',
 'feedlinks'               => 'Eupan:',
 'feed-invalid'            => 'Tipe paménta asupan henteu pas.',
-'feed-unavailable'        => 'Eupan sindikasi teu aya di {{SITENAME}}',
+'feed-unavailable'        => 'Eupan sindikasi teu sayaga',
 'site-rss-feed'           => 'Eupan RSS $1',
 'site-atom-feed'          => 'Eupan Atom $1',
 'page-rss-feed'           => 'Eupan RSS "$1"',
@@ -513,7 +513,7 @@ kudu kurang ti $1 {{PLURAL:$1|karaktér|karaktér}}.',
 'noname'                     => 'Anjeun teu nuliskeun ngaran pamaké nu sah.',
 'loginsuccesstitle'          => 'Asup log geus hasil',
 'loginsuccess'               => 'Anjeun ayeuna geus asup log ka {{SITENAME}} salaku "$1".',
-'nosuchuser'                 => 'Teu aya pamaké nu ngaranna "$1". Pariksa éjahanana, atawa paké formulir di handap pikeun nyieun rekening pamaké anyar.',
+'nosuchuser'                 => 'Euweuh pamaké nu ngaranna "$1". Pariksa éjahanana, atawa paké formulir di handap pikeun [[Special:UserLogin/signup|nyieun rekening anyar]].',
 'nosuchusershort'            => 'Taya pamaké nu ngaranna "<nowiki>$1</nowiki>", pariksa éjahanana!',
 'nouserspecified'            => 'Anjeun kudu ngeusian ngaran landihan.',
 'wrongpassword'              => 'Sandi nu diasupkeun teu cocog. Mangga cobian deui.',
@@ -680,7 +680,7 @@ Anjeun ogé jangji yén tulisan ieu dijieun ku sorangan, atawa disalin ti ''doma
 'copyrightwarning2'                => 'Catet yén sadaya kontribusi ka {{SITENAME}} bisa diédit, dirobah, atawa dihapus ku kontributor séjén. Mun anjeun teu miharep tulisan anjeun dirobah, ulah ngintunkeun ka dieu.<br />
 Anjeun ogé mastikeun yén ieu téh pituin tulisan anjeun, atawa salinan ti domain umum atawa sumberdaya bébas séjénna (tempo $1 pikeun écésna).
 <strong>ULAH NGINTUNKEUN KARYA NU MIBANDA HAK CIPTA TANPA WIDI!</strong>',
-'longpagewarning'                  => 'PERHATOSAN: Kaca ieu panjangna $1 kilobytes; sababaraha panyungsi boga masalah dina ngédit kaca nu panjangna nepi ka 32 kb. Please consider breaking the page into smaller sections.',
+'longpagewarning'                  => 'PERHATOSAN: Kaca ieu panjangna $1 kb; sababaraha panyungsi boga masalah dina ngédit kaca nu panjangna nepi ka 32 kb. Mun bisa mah bagi-bagi ieu kaca jadi sababaraha bab.',
 'longpageerror'                    => '<strong>SALAH: Téks anu dikirimkeun gedéna $1 kb, leuwih ti maksimum $2 kb. Téks teu bisa disimpen.</strong>',
 'readonlywarning'                  => "'''PERHATOSAN''': pangkalan data dikonci pikeun diropéa, anjeun moal bisa nyimpen éditan anjeun ayeuna. Cobi ''cut-n-paste'' téksna ka na koropak téks sarta simpen dina waktu séjén.
 

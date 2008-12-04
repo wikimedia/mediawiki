@@ -34,6 +34,7 @@ $messages = array(
 'tog-enotifwatchlistpages'    => "Manneme 'na mail quanne 'a pàgene ca stoche a condrolle ha cangete",
 'tog-enotifusertalkpages'     => "Manneme 'na mail quanne 'a pàgene de le 'ngazzaminde ha cangete",
 'tog-enotifminoredits'        => "Manneme 'na mail quanne onne state fatte cangiaminde stuèdeche sus 'a pàgene",
+'tog-shownumberswatching'     => "Fa vedè 'u numere de le utinde ca uardene",
 'tog-fancysig'                => 'Firma grezze (senza collegamende automatiche)',
 'tog-externaleditor'          => "Ause n'editore esterne pe default (sulamende pe l'esperte, abbesogne de 'na configurazione speciele sus a 'u combiuter tue)",
 'tog-uselivepreview'          => "Ause l'andeprime da 'u vive (JavaScript) (Sperimendele)",
@@ -46,8 +47,8 @@ $messages = array(
 'tog-diffonly'                => 'No fà vedè le pàggene cu le condenute sotte a le differenze',
 'tog-showhiddencats'          => 'Fa vedè le categorije scunnute',
 
-'underline-always' => 'Sembre',
-'underline-never'  => 'Maje',
+'underline-always'  => 'Sembre',
+'underline-never'   => 'Maje',
 
 # Dates
 'sunday'        => 'Dumèneche',
@@ -248,6 +249,7 @@ Vide [[Special:Version|Versione d'a pàgene]].",
 'toc'                     => 'Condenute',
 'showtoc'                 => 'fà vedè',
 'hidetoc'                 => 'scunne',
+'thisisdeleted'           => 'Vide o ripristine $1?',
 'viewdeleted'             => 'Vue ccu vide $1?',
 'feedlinks'               => 'Feed:',
 'feed-unavailable'        => 'Syndication feeds non ge sonde disponibbele',
@@ -519,6 +521,9 @@ Pare proprie ca l'onne scangellete.",
 
 # Account creation failure
 'cantcreateaccounttitle' => "Non ge puè ccrejà 'nu cunde utende",
+'cantcreateaccount-text' => "'A creazione d'u cunde utende da stu 'ndirizze IP ('''$1''') ha state blocchete da [[User:$3|$3]].
+
+'U mutive dete da $3 jè ''$2''",
 
 # History pages
 'viewpagelogs'           => "Vide l'archivie pe sta pàgene",
@@ -555,9 +560,11 @@ Leggenda: (cur) = differenze cu 'a versiona corrende,
 'rev-deleted-user'       => '(nome utende scangillete)',
 'rev-deleted-event'      => "(azione de l'archivie scangillete)",
 'rev-delundel'           => 'fa vedè/scunne',
+'revisiondelete'         => 'Scangille/Repristine revisiune',
 'revdelete-hide-text'    => "Scunne 'u teste d'a revisione",
 'revdelete-hide-name'    => 'Scunne azione e obbiettive',
 'revdelete-hide-comment' => 'Scunne le commende de le cangiaminde',
+'revdelete-hide-user'    => "Scunne 'u nome utende/IP de quidde ca ha fatte 'u cangiamende",
 'revdelete-hide-image'   => "Scunne 'u codenute d'u fail",
 'revdelete-log'          => 'Archivie de le commende:',
 'revdel-restore'         => "Cange 'a visibilità",
@@ -1007,20 +1014,25 @@ Pàggene sus 'a [[Special:Watchlist|le Pàggene condrollete]] sonde in '''grasce
 'listgrouprights-removegroup-all' => 'Puè luà tutte le gruppe',
 
 # E-mail user
-'emailuser'    => "Manne n'email a stu utende",
-'emailpage'    => "E-mail de l'utende",
-'email-legend' => "Manne 'na mail a n'otre utende de {{SITENAME}}",
-'emailfrom'    => 'Da:',
-'emailto'      => 'A:',
-'emailsubject' => 'Oggette:',
-'emailmessage' => 'Messagge:',
-'emailsend'    => 'Manne',
-'emailsent'    => 'E-mail mannete',
+'emailuser'       => "Manne n'email a stu utende",
+'emailpage'       => "E-mail de l'utende",
+'defemailsubject' => 'e-mail de {{SITENAME}}',
+'noemailtitle'    => 'Nisciune indirizze e-mail',
+'email-legend'    => "Manne 'na mail a n'otre utende de {{SITENAME}}",
+'emailfrom'       => 'Da:',
+'emailto'         => 'A:',
+'emailsubject'    => 'Oggette:',
+'emailmessage'    => 'Messagge:',
+'emailsend'       => 'Manne',
+'emailsent'       => 'E-mail mannete',
 
 # Watchlist
 'watchlist'         => 'Pàggene condrollete',
 'mywatchlist'       => 'Pàggene condrollete',
 'watchlistfor'      => "(pe '''$1''')",
+'nowatchlist'       => "Non ge tine pàggene jndr'à liste de le pàggene condrollete.",
+'watchnologin'      => 'Non ge sinde colleghete',
+'watchnologintext'  => 'Tu a essere [[Special:UserLogin|colleghete]] pe cangià le pàggene condrollete tue.',
 'addedwatch'        => "Mise jndr'à le pàggene condrollete",
 'addedwatchtext'    => "'A pàgene \"[[:\$1]]\" ha state aggiunde jndr'à le [[Special:Watchlist|pàggene condrollete]].
 Le cangiaminde future a sta pàgene e 'a pàgene de le 'ngazzaminde associete le puè acchià aqquà, e 'a pàgene avène signete cu 'u '''grascette''' jndr'à [[Special:RecentChanges|liste de le cangiaminde recende]] pe facilità l'identificazione.",
@@ -1029,6 +1041,9 @@ Le cangiaminde future a sta pàgene e 'a pàgene de le 'ngazzaminde associete le
 'watch'             => 'Condrolle',
 'watchthispage'     => 'Condrolle sta pàgene',
 'unwatch'           => 'No condrollà cchiù',
+'unwatchthispage'   => "No condrollà cchiù 'a pàgene",
+'notanarticle'      => "Non g'è 'na vosce",
+'notvisiblerev'     => "'A revisione ha state scangellete",
 'watchlist-details' => "{{PLURAL:$1|$1 pàgene|$1 pàggene}} jndr'à liste de le pàggene condrollete, scartanne le pàggene de le 'ngazzaminde.",
 'wlshowlast'        => "Vide l'urteme $1 ore $2 sciurne $3",
 
@@ -1425,6 +1440,7 @@ Otre avènene scunnute pe defolt.
 'watchlistedit-normal-title'  => 'Vide le pàggene condrollete',
 'watchlistedit-normal-submit' => 'Live le titele',
 'watchlistedit-raw-titles'    => 'Titele:',
+'watchlistedit-raw-submit'    => "Aggiorne 'a liste de le pàggene condrollete",
 'watchlistedit-raw-done'      => "'A liste de le pàggene condrollete ha state aggiornete.",
 'watchlistedit-raw-added'     => "{{PLURAL:$1|'nu titele ha|$1 titele onne}} state aggiunde:",
 'watchlistedit-raw-removed'   => "{{PLURAL:$1|'nu titele ha|$1 titele onne}} state scangillete:",
@@ -1434,17 +1450,21 @@ Otre avènene scunnute pe defolt.
 'watchlisttools-edit' => 'Vide e cange le pàggene condrollete',
 'watchlisttools-raw'  => 'Cange le pàggene condrollete grezze grezze',
 
+# Core parser functions
+'unknown_extension_tag' => 'Estenzione d\'u tag scanuscite "S1"',
+
 # Special:Version
-'version'                  => 'Versione', # Not used as normal message but as header for the special page itself
-'version-extensions'       => 'Estenziune installete',
-'version-specialpages'     => 'Pàggene speciele',
-'version-variables'        => 'Variabbele',
-'version-other'            => 'Otre',
-'version-version'          => 'Versione',
-'version-license'          => 'Licenze',
-'version-software'         => 'Softuer installete',
-'version-software-product' => 'Prodotte',
-'version-software-version' => 'Versione',
+'version'                   => 'Versione', # Not used as normal message but as header for the special page itself
+'version-extensions'        => 'Estenziune installete',
+'version-specialpages'      => 'Pàggene speciele',
+'version-variables'         => 'Variabbele',
+'version-other'             => 'Otre',
+'version-hook-subscribedby' => 'Sottoscritte da',
+'version-version'           => 'Versione',
+'version-license'           => 'Licenze',
+'version-software'          => 'Softuer installete',
+'version-software-product'  => 'Prodotte',
+'version-software-version'  => 'Versione',
 
 # Special:FilePath
 'filepath'        => "Percorse d'u fail",
@@ -1464,9 +1484,11 @@ Otre avènene scunnute pe defolt.
 'specialpages-group-users'     => 'Utinde e deritte',
 'specialpages-group-pages'     => 'Liste de le pàggene',
 'specialpages-group-pagetools' => 'Pàgene de le struminde',
+'specialpages-group-wiki'      => 'Date e struminde de Uicchi',
 'specialpages-group-spam'      => "Struminde p'u spam",
 
 # Special:BlankPage
-'blankpage' => 'Pàgene vacande',
+'blankpage'              => 'Pàgene vacande',
+'intentionallyblankpage' => 'Sta pàgene ha state lassete vianghe apposte',
 
 );

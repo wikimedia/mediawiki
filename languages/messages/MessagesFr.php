@@ -2819,8 +2819,8 @@ Retour du programme de courriel : $1',
 'confirmemail_invalid'     => 'Code de confirmation incorrect. Celui-ci a peut-être expiré',
 'confirmemail_needlogin'   => 'Vous devez vous $1 pour confirmer votre adresse de courriel.',
 'confirmemail_success'     => 'Votre adresse de courriel est confirmée. Vous pouvez maintenant vous connecter et profiter du wiki.',
-'confirmemail_loggedin'    => 'Votre adresse est maintenant confirmée',
-'confirmemail_error'       => 'Un problème est survenu en voulant enregistrer votre confirmation',
+'confirmemail_loggedin'    => 'Votre adresse de courriel est maintenant confirmée.',
+'confirmemail_error'       => "Un problème est survenu lors de l'enregistrement de la confirmation de votre adresse de courriel.",
 'confirmemail_subject'     => 'Confirmation d’adresse de courriel pour {{SITENAME}}',
 'confirmemail_body'        => 'Quelqu’un, probablement vous, à partir de l’adresse IP $1, a enregistré un compte « $2 » avec cette adresse de courriel sur le site {{SITENAME}}.
 
@@ -2834,7 +2834,7 @@ $5
 
 Ce code de confirmation expirera le $4.',
 'confirmemail_invalidated' => 'Confirmation de l’adresse courriel annulée',
-'invalidateemail'          => 'Annuler la confirmation du courriel',
+'invalidateemail'          => "Annuler la confirmation de l'adresse de courriel",
 
 # Scary transclusion
 'scarytranscludedisabled' => '[La transclusion interwiki est désactivée]',

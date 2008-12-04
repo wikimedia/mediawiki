@@ -104,7 +104,8 @@ This is the toolbar: [[Image:Toolbar.png]]",
 'tog-ccmeonemails'            => 'In user preferences',
 'tog-diffonly'                => 'Toggle option used in [[Special:Preferences]].',
 'tog-showhiddencats'          => 'Toggle option used in [[Special:Preferences]].',
-'tog-norollbackdiff'          => "Option in [[Special:Preferences]], 'Misc' tab. Only shown for users with the rollback right. By default a diff is shown below the return screen of a rollback. Checking this preference toggle will suppress that.",
+'tog-norollbackdiff'          => "Option in [[Special:Preferences]], 'Misc' tab. Only shown for users with the rollback right. By default a diff is shown below the return screen of a rollback. Checking this preference toggle will suppress that.
+{{Identical|Rollback}}",
 
 'underline-always'  => 'Used in [[Special:Preferences]] (under "Misc"). This option means "always underline links", there are also options "never" and "browser default".',
 'underline-never'   => 'Used in [[Special:Preferences]] (under "Misc"). This option means "never underline links", there are also options "always" and "browser default".
@@ -637,6 +638,12 @@ Please report at [[Support]] if you are unable to properly translate this messag
 'expensive-parserfunction-category'       => 'This message is used as a category name for a category where pages are placed automatically if they contain too many calls to expensive parser functions.',
 'post-expand-template-inclusion-category' => 'When templates are expanded, there is a size limit for the number of bytes yielded. Usually that occurs from excessively nested templates, recursive templates, or ones having x-zillion of #if #case or similar contructs in them. When the wikicode parser detects this, it outputs a red warning message to the page.',
 
+# "Undo" feature
+'undo-success' => '{{Identical|Undo}}',
+'undo-failure' => '{{Identical|Undo}}',
+'undo-norev'   => '{{Identical|Undo}}',
+'undo-summary' => '{{Identical|Undo}}',
+
 # History pages
 'viewpagelogs'           => 'Link displayed in history of pages',
 'currentrev'             => '{{Identical|Current revision}}',
@@ -753,7 +760,8 @@ Parameter $1 is either {{msg|revdelete-content}} (when unhiding the page content
 'lineno'                  => 'Message used when comparing different versions of a page (diff). $1 is a line number.',
 'compareselectedversions' => 'Used as button in history pages.',
 'visualcomparison'        => '{{Identical|Visual comparison}}',
-'editundo'                => 'Undo link when viewing diffs',
+'editundo'                => 'Undo link when viewing diffs
+{{Identical|Undo}}',
 'diff-multi'              => "This message appears in the revision history of a page when comparing two versions which aren't consecutive.",
 'diff-src'                => '{{Identical|Source}}',
 'diff-with'               => '* "<code><nowiki>&amp;#32;</nowiki></code>" is a forced space; leave it in if your language uses spaces
@@ -993,6 +1001,7 @@ See also
 * {{msg|right-deleterevision|pl=yes}}',
 'right-ipblock-exempt'     => 'This user automatically 
 bypasses IP blocks, auto-blocks and range blocks - so I presume - but I am uncertain',
+'right-rollback'           => '{{Identical|Rollback}}',
 'right-markbotedits'       => '{{doc-right}}
 A user with this right can mark a roll-back edit as a bot edit by adding <tt>&bot=1</tt> to the URL (not by default).',
 'right-noratelimit'        => '{{doc-right}}
@@ -1217,20 +1226,25 @@ Example: [[:Image:Addon-icn.png]]',
 'imagepage-searchdupe'           => 'This message is used as text on a link from image pages to [[Special:FileDuplicateSearch]].',
 
 # File reversion
+'filerevert'                => '{{Identical|Revert}}',
+'filerevert-legend'         => '{{Identical|Revert}}',
 'filerevert-intro'          => 'Message displayed when you try to revert a version of a file.
 * $1 is the name of the media
 * $2 is a date
 * $3 is a hour
-* $4 is an URL and must follow square bracket: [$4',
+* $4 is an URL and must follow square bracket: [$4
+{{Identical|Revert}}',
 'filerevert-comment'        => '{{Identical|Comment}}',
 'filerevert-defaultcomment' => '* $1 is a date
-* $2 is an hour',
+* $2 is an hour
+{{Identical|Revert}}',
 'filerevert-submit'         => '{{Identical|Revert}}',
 'filerevert-success'        => 'Message displayed when you succeed in reverting a version of a file.
 * $1 is the name of the media
 * $2 is a date
 * $3 is a hour
-* $4 is an URL and must follow square bracket: [$4',
+* $4 is an URL and must follow square bracket: [$4
+{{Identical|Revert}}',
 
 # File deletion
 'filedelete-intro-old'        => 'Message displayed when you try to delete a version of a file.
@@ -1541,6 +1555,7 @@ $1 = the name of the page',
 'deletionlog'            => 'This message is used to link to the deletion log as parameter $1 of {{msg|Filewasdeleted}} and as parameter $2 of {{msg|deletedtext}}.
 
 {{Identical|Deletion log}}',
+'reverted'               => '{{Identical|Revert}}',
 'deletecomment'          => '{{Identical|Reason for deletion}}',
 'deleteotherreason'      => '{{Identical|Other/additional reason}}',
 'deletereasonotherlist'  => '{{Identical|Other reason}}',
@@ -1550,9 +1565,21 @@ $1 = the name of the page',
 {{Identical|Edit delete reasons}}',
 
 # Rollback
+'rollback'         => '{{Identical|Rollback}}',
 'rollback_short'   => '{{Identical|Rollback}}',
 'rollbacklink'     => '{{Identical|Rollback}}',
-'rollback-success' => 'This message shows up on screen after successful revert (generally visible only to admins). $1 describes user whose changes have been reverted, $2 describes user which produced version, which replaces reverted version.',
+'rollbackfailed'   => '{{Identical|Rollback}}',
+'cantrollback'     => '{{Identical|Revert}}
+{{Identical|Rollback}}',
+'alreadyrolled'    => 'Cannot rollback last edit of [[:$1]] by [[User:$2|$2]] ([[User talk:$2|Talk]] | [[Special:Contributions/$2|{{int:contribslink}}]]);
+someone else has edited or rolled back the page already.
+
+The last edit to the page was by [[User:$3|$3]] ([[User talk:$3|Talk]] | [[Special:Contributions/$3|{{int:contribslink}}]]).
+{{Identical|Rollback}}',
+'revertpage'       => '{{Identical|Revert}}', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'This message shows up on screen after successful revert (generally visible only to admins). $1 describes user whose changes have been reverted, $2 describes user which produced version, which replaces reverted version.
+{{Identical|Revert}}
+{{Identical|Rollback}}',
 
 # Protect
 'protectlogpage'            => 'Title of [[Special:Log/protect]].',
@@ -1924,8 +1951,11 @@ If the length of the translated message is over 60 characters (including spaces)
 'tooltip-diff'                    => 'This is the text (tooltip) that appears when you hover the mouse over the "Show changes" button ({{msg|showdiff}}) on the edit page.',
 'tooltip-compareselectedversions' => 'Tooltip of {{msg|compareselectedversions}} (which is used as button in history pages).',
 'tooltip-watch'                   => '{{Identical|Add this page to your watchlist}}',
-'tooltip-rollback'                => 'Tooltip of the rollback link on the history page and the diff view',
-'tooltip-undo'                    => 'Tooltip of the undo link on the history page and the diff view',
+'tooltip-rollback'                => 'Tooltip of the rollback link on the history page and the diff view
+{{Identical|Rollback}}
+{{Identical|Revert}}',
+'tooltip-undo'                    => 'Tooltip of the undo link on the history page and the diff view
+{{Identical|Undo}}{{Identical|Revert}}',
 
 # Stylesheets
 'common.css'   => 'CSS applied to all users.',
@@ -1946,6 +1976,9 @@ See also [[MediaWiki:Lastmodifiedat/{{SUBPAGENAME}}]].', # $1 date, $2 time, $3 
 * $2 is the number of user names in $1',
 'creditspage'      => "This message is the ''contentSub'' (the grey subtitle) shown when viewing credits of a page (example: {{fullurl:Betawiki:News|action=credits}}). Note that the credits action is disabled by default (currently enabled on Betawiki).",
 'nocredits'        => 'This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}) but when there are no credits available. Note that the credits action is disabled by default (currently enabled on Betawiki).',
+
+# Spam protection
+'spam_reverting' => '{{Identical|Revert}}',
 
 # Math options
 'mw_math_png'    => 'In user preferences.',
