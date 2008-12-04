@@ -483,6 +483,7 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 16526) Added usprop=emailable to list=users
 * (bug 16548) list=search threw errors with an invalid error code
 * (bug 16515) Added pst and onlypst parameters to action=parse
+* (bug 16541) Added block expiry timestamp to list=logevents output
 
 === Languages updated in 1.14 ===
 
