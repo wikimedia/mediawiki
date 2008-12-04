@@ -140,7 +140,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$this->getResult()->addValue('query', $this->getModuleName(), $data);
 	}
 	
-	public static function addLogParams($result, &$vals, $params, $type) {
+	public static function addLogParams($result, &$vals, $params, $type, $ts) {
 		$params = explode("\n", $params);
 		switch ($type) {
 			case 'move':
@@ -169,6 +169,8 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			case 'block':
 				$vals2 = array();
 				list( $vals2['duration'], $vals2['flags'] ) = $params;
+				$vals2['expiry'] = wfTimestamp(TS_ISO_8601,
+						strtotime($params[0], wfTimestamp(TS_UNIX, $ts)));
 				$vals[$type] = $vals2;
 				$params = null;
 				break;
@@ -200,7 +202,8 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 		if ($this->fld_details && $row->log_params !== '') {
 			self::addLogParams($this->getResult(), $vals,
-				$row->log_params, $row->log_type);
+				$row->log_params, $row->log_type,
+				$row->log_timestamp);
 		}
 
 		if ($this->fld_user) {
