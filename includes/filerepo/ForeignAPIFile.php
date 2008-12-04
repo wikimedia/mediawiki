@@ -7,15 +7,19 @@
  * @ingroup FileRepo
  */
 class ForeignAPIFile extends File {
-	function __construct( $title, $repo, $info ) {
+	
+	private $mExists;
+	
+	function __construct( $title, $repo, $info, $exists = false ) {
 		parent::__construct( $title, $repo );
 		$this->mInfo = $info;
+		$this->mExists = $exists;
 	}
 	
 	static function newFromTitle( $title, $repo ) {
 		$info = $repo->getImageInfo( $title );
 		if( $info ) {
-			return new ForeignAPIFile( $title, $repo, $info );
+			return new ForeignAPIFile( $title, $repo, $info, true );
 		} else {
 			return null;
 		}
@@ -23,7 +27,7 @@ class ForeignAPIFile extends File {
 	
 	// Dummy functions...
 	public function exists() {
-		return true;
+		return $this->mExists;
 	}
 	
 	public function getPath() {
