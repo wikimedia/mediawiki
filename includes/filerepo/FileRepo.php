@@ -300,7 +300,7 @@ abstract class FileRepo {
 	function getDescriptionRenderUrl( $name ) {
 		if ( isset( $this->scriptDirUrl ) ) {
 			return $this->scriptDirUrl . '/index.php?title=' .
-				wfUrlencode( MWNamespace::getCanonicalName( NS_FILE ) . ':' . $name ) .
+				wfUrlencode( 'Image:' . $name ) .
 				'&action=render';
 		} else {
 			$descBase = $this->getDescBaseUrl();
