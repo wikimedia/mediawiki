@@ -46,6 +46,8 @@ $namespaceNames = array(
 $namespaceAliases = array(
 	'Imagem' => NS_FILE,
 	'Imagem_Discussão' => NS_FILE_TALK,
+	'Arquivo' => NS_FILE,
+	'Arquivo_Discussão' => NS_FILE_TALK,
 );
 
 $skinNames = array(
