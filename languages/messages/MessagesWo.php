@@ -1168,13 +1168,27 @@ Ab [[Special:WhatLinksHere/$2|lim bu mat]] jàppandi na.',
 'wlshowlast'           => 'wone $1 waxtu yu mujj, $2 bess yu mujj, walla $3.',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching' => 'Topp...',
+'watching'   => 'Topp...',
+'unwatching' => 'Farug toppte gi ...',
 
-'changed' => 'soppi',
+'enotif_reset'                 => 'Fésal xët yépp niki yoo nemmeeku ba noppi',
+'enotif_newpagetext'           => 'Lii aw xët wu bees la.',
+'enotif_impersonal_salutation' => 'Jëfandikukat bu {{SITENAME}}',
+'changed'                      => 'soppi',
+'created'                      => 'sosu na',
+'enotif_subject'               => 'Xët wii di $PAGETITLE wu {{SITENAME}}, $PAGEEDITOR moo ko $CHANGEDORCREATED',
+'enotif_lastvisited'           => 'Nemmeekul $1 ngir gis bépp coppite dale ba sa nemmeku gu mujj.',
+'enotif_lastdiff'              => 'Xoolal $1 ngir gis gii coppite.',
+'enotif_anon_editor'           => 'Jëfandikukat bu binduwul $1',
 
 # Delete
-'confirm'     => 'Dëggal',
-'deletionlog' => 'Yéenekaay',
+'deletepage'      => 'Far xët wi',
+'confirm'         => 'Dëggal',
+'excontent'       => 'ëmbitam doonoon « $1 »',
+'excontentauthor' => 'ëmbitam doonoon: « $1 » te kenn ki ci cëru doonoon « [[Special:Contributions/$2|$2]] »',
+'exbeforeblank'   => 'ëmbitam laataa far gi : $1',
+'exblank'         => 'xët wi amul dara',
+'deletionlog'     => 'Yéenekaay',
 
 # Protect
 'prot_1movedto2' => 'tuddewaat ko [[$1]] en [[$2]]',

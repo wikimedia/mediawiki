@@ -264,11 +264,11 @@ $messages = array(
 'category-empty'                 => "''Kategori ini tidak mengandungi sebarang laman atau media.''",
 'hidden-categories'              => '{{PLURAL:$1|Kategori tersembunyi|Kategori-kategori tersembunyi}}',
 'hidden-category-category'       => 'Kategori tersembunyi', # Name of the category where hidden categories will be listed
-'category-subcat-count'          => '{{PLURAL:$2|Kategori ini mengandungi sebuah subkategori berikut.|Berikut ialah $1 daripada $2 buah subkategori dalam kategori ini.}}',
+'category-subcat-count'          => '{{PLURAL:$2|Kategori ini mengandungi sebuah subkategori berikut.|Yang berikut ialah $1 daripada $2 buah subkategori dalam kategori ini.}}',
 'category-subcat-count-limited'  => 'Kategori ini mengandungi $1 subkategori berikut.',
-'category-article-count'         => '{{PLURAL:$2|Kategori ini mengandungi sebuah laman berikut.|Berikut ialah $1 daripada $2 buah laman dalam kategori ini.}}',
+'category-article-count'         => '{{PLURAL:$2|Kategori ini mengandungi sebuah laman berikut.|Yang berikut ialah $1 daripada $2 buah laman dalam kategori ini.}}',
 'category-article-count-limited' => '$1 laman berikut terdapat dalam kategori ini.',
-'category-file-count'            => '{{PLURAL:$2|Kategori ini mengandungi sebuah fail berikut.|Berikut ialah $1 daripada $2 buah fail dalam kategori ini.}}',
+'category-file-count'            => '{{PLURAL:$2|Kategori ini mengandungi sebuah fail berikut.|Yang berikut ialah $1 daripada $2 buah fail dalam kategori ini.}}',
 'category-file-count-limited'    => '$1 fail berikut terdapat dalam kategori ini.',
 'listingcontinuesabbrev'         => 'samb.',
 
@@ -449,7 +449,7 @@ MySQL memulangkan ralat "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Terdapat kesalahan sintaks pada pertanyaan pangkalan data. Pertanyaan terakhir ialah: "$1" dari dalam fungsi "$2". MySQL memulangkan ralat "$3: $4".',
 'noconnect'            => 'Maaf! Wiki ini sedang menghadapi masalah teknikal dan tidak dapat menghubungi pelayan pangkalan data.<br />$1',
 'nodb'                 => 'Tidak dapat memilih pangkalan data $1',
-'cachederror'          => 'Berikut ialah salinan simpanan bagi laman yang diminta, dan barangkali bukan yang terkini.',
+'cachederror'          => 'Yang berikut ialah salinan simpanan bagi laman yang diminta, dan barangkali bukan yang terkini.',
 'laggedslavemode'      => 'Amaran: Laman ini mungkin bukan yang terkini.',
 'readonly'             => 'Pangkalan data dikunci',
 'enterlockreason'      => 'Sila nyatakan sebab penguncian dan jangkaan
@@ -668,7 +668,7 @@ Anda tidak boleh menggunakan ciri "e-melkan pengguna ini" kecuali sekiranya anda
 
 Alamat IP semasa anda ialah $3, dan ID sekatan ialah #$5. Sila sertakan maklumat-maklumat ini dalam pertanyaan nanti.',
 'autoblockedtext'                  => 'Alamat IP anda telah disekat secara automatik kerana ia digunakan oleh pengguna lain yang disekat oleh $1.
-Berikut ialah sebab yang dinyatakan:
+Yang berikut ialah sebab yang dinyatakan:
 
 :\'\'$2\'\'
 
@@ -758,7 +758,7 @@ melebihi had maksimum $2 kilobait. Ia tidak boleh disimpan.</strong>',
 'readonlywarning'                  => '<strong>AMARAN: Pangkalan data telah dikunci untuk penyenggaraan. Justeru, anda tidak boleh menyimpan suntingan anda pada masa sekarang.
 Anda boleh menyalin teks anda ke dalam komputer anda terlebih dahulu dan simpan teks tersebut di sini pada masa akan datang.</strong>
 
-Berikut ialah penjelasan yang diberikan: $1',
+Yang berikut ialah penjelasan yang diberikan: $1',
 'protectedpagewarning'             => '<strong>AMARAN: Laman ini telah dikunci supaya hanya penyelia boleh menyuntingnya.</strong>',
 'semiprotectedpagewarning'         => "'''Catatan:''' Laman ini telah dikunci supaya hanya pengguna berdaftar sahaja yang boleh menyuntingnya.",
 'cascadeprotectedwarning'          => "'''Amaran:''' Laman ini telah dikunci, oleh itu hanya penyelia boleh menyuntingnya. Ini kerana ia termasuk dalam {{PLURAL:$1|laman|laman-laman}} berikut yang dilindungi secara melata:",
@@ -780,7 +780,7 @@ Anda boleh berundur dan menyunting laman yang sedia ada, atau [[Special:UserLogi
 'recreate-deleted-warn'            => "'''Amaran: Anda sedang mencipta semula sebuah laman yang pernah dihapuskan.''',
 
 Anda harus mempertimbangkan perlunya menyunting laman ini.
-Untuk rujukan, berikut ialah log penghapusan bagi laman ini:",
+Untuk rujukan, yang berikut ialah log penghapusan bagi laman ini:",
 'deleted-notice'                   => 'Laman ini telah dihapuskan. Log penghapusan bagi laman ini dilampirkan di bawah untuk rujukan.',
 'deletelog-fulllog'                => 'Lihat log penuh',
 'edit-hook-aborted'                => 'Suntingan anda telah dibatalkan oleh penyangkuk. Tiada sebab diberikan.',
@@ -902,7 +902,7 @@ semula melalui laman ini melainkan mempunyai batasan.",
 
 # Suppression log
 'suppressionlog'     => 'Log penahanan',
-'suppressionlogtext' => 'Berikut ialah senarai penghapusan dan sekatan yang membabitkan kandungan yang terselindung daripada penyelia.
+'suppressionlogtext' => 'Yang berikut ialah senarai penghapusan dan sekatan yang membabitkan kandungan yang terselindung daripada penyelia.
 Sila lihat juga [[Special:IPBlockList|senarai sekatan IP]] yang sedang berkuatkuasa.',
 
 # History merging
@@ -933,7 +933,7 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 'mergelog'           => 'Log penggabungan',
 'pagemerge-logentry' => 'menggabungkan [[$1]] ke dalam [[$2]] (semakan sehingga $3)',
 'revertmerge'        => 'Batalkan',
-'mergelogpagetext'   => 'Berikut ialah senarai terkini bagi penggabungan sejarah sesebuah laman ke dalam lamana yang lain.',
+'mergelogpagetext'   => 'Yang berikut ialah senarai terkini bagi penggabungan sejarah sesebuah laman ke dalam lamana yang lain.',
 
 # Diffs
 'history-title'           => 'Sejarah semakan bagi "$1"',
@@ -1046,9 +1046,9 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 'mwsuggest-disable'                => 'Matikan ciri cadangan AJAX',
 'searchrelated'                    => 'berkaitan',
 'searchall'                        => 'semua',
-'showingresults'                   => "Berikut ialah '''$1''' hasil bermula daripada yang {{PLURAL:$2|pertama|ke-'''$2'''}}.",
-'showingresultsnum'                => "Berikut ialah '''$3''' hasil bermula daripada yang {{PLURAL:$2|pertama|ke-'''$2'''}}.",
-'showingresultstotal'              => "Berikut ialah {{PLURAL:$4|hasil '''$1'''|hasil '''$1 - $2'''}} daripada '''$3'''",
+'showingresults'                   => "Yang berikut ialah '''$1''' hasil bermula daripada yang {{PLURAL:$2|pertama|ke-'''$2'''}}.",
+'showingresultsnum'                => "Yang berikut ialah '''$3''' hasil bermula daripada yang {{PLURAL:$2|pertama|ke-'''$2'''}}.",
+'showingresultstotal'              => "Yang berikut ialah {{PLURAL:$4|hasil '''$1'''|hasil '''$1 - $2'''}} daripada '''$3'''",
 'nonefound'                        => "'''Catatan''': Kegagalan pencarian biasanya
 disebabkan oleh pencarian perkataan-perkataan yang terlalu umum, seperti \"ada\"
 dan \"dari\" yang tidak diindekskan, atau disebabkan oleh pencarian lebih
@@ -1276,8 +1276,8 @@ daripada satu kata kunci (hanya laman yang mengandungi kesemua kata kunci akan d
 'recentchanges-legend'              => 'Pilihan perubahan terkini',
 'recentchangestext'                 => 'Jejaki perubahan terkini dalam {{SITENAME}} pada laman ini.',
 'recentchanges-feed-description'    => 'Jejaki perubahan terkini dalam {{SITENAME}} pada suapan ini.',
-'rcnote'                            => "Berikut ialah '''$1''' perubahan terakhir sejak '''$2''' hari yang lalu sehingga $5, $4.",
-'rcnotefrom'                        => 'Berikut ialah semua perubahan sejak <b>$2</b> (sehingga <b>$1</b>).',
+'rcnote'                            => "Yang berikut ialah '''$1''' perubahan terakhir sejak '''$2''' hari yang lalu sehingga $5, $4.",
+'rcnotefrom'                        => 'Yang berikut ialah semua perubahan sejak <b>$2</b> (sehingga <b>$1</b>).',
 'rclistfrom'                        => 'Papar perubahan sejak $1',
 'rcshowhideminor'                   => '$1 suntingan kecil',
 'rcshowhidebots'                    => '$1 bot',
@@ -1330,7 +1330,7 @@ Untuk menyertakan imej tersebut dalam sesebuah laman, sila masukkan teks
 'upload-prohibited'           => 'Jenis fail yang dilarang: $1.',
 'uploadlog'                   => 'log muat naik',
 'uploadlogpage'               => 'Log muat naik',
-'uploadlogpagetext'           => 'Berikut ialah senarai terkini bagi fail yang dimuat naik.',
+'uploadlogpagetext'           => 'Yang berikut ialah senarai terkini bagi fail yang dimuat naik.',
 'filename'                    => 'Nama fail',
 'filedesc'                    => 'Ringkasan',
 'fileuploadsummary'           => 'Ringkasan:',
@@ -1382,7 +1382,7 @@ Jika anda memiliki imej ini dalam leraian penuh, sila muat naik fail tersebut. S
 'upload-wasdeleted'           => "'''Amaran: Anda sedang memuat naik sebuah fail yang pernah dihapuskan.'''
 
 Anda harus mempertimbangkan perlunya memuat naik fail ini.
-Untuk rujukan, berikut ialah log penghapusan bagi fail ini:",
+Untuk rujukan, yang berikut ialah log penghapusan bagi fail ini:",
 'filename-bad-prefix'         => 'Nama bagi fail yang dimuat naik bermula dengan <strong>"$1"</strong>, yang mana merupakan nama yang tidak deskriptif yang biasanya ditetapkan oleh kamera digital secara automatik. Sila berikan nama yang lebih deskriptif bagi fail tersebut.',
 
 'upload-proto-error'      => 'Protokol salah',
@@ -1434,7 +1434,7 @@ Klik di atas mana-mana lajur yang berkenaan untuk menukar tertib susunan.',
 'imagelinks'                     => 'Pautan',
 'linkstoimage'                   => '{{PLURAL:$1|Laman|$1 buah laman}} berikut mengandungi pautan ke fail ini:',
 'linkstoimage-more'              => 'Lebih daripada $1 laman mengandungi pautan ke fail ini.
-Berikut ialah {{PLURAL:$1||$1}} pautan pertama ke fail ini.
+Yang berikut ialah {{PLURAL:$1||$1}} pautan pertama ke fail ini.
 Anda boleh melihat [[Special:WhatLinksHere/$2|senarai penuh]].',
 'nolinkstoimage'                 => 'Tiada laman yang mengandungi pautan ke fail ini.',
 'morelinkstoimage'               => 'Lihat [[Special:WhatLinksHere/$1|semua pautan]] ke fail ini.',
@@ -1442,7 +1442,7 @@ Anda boleh melihat [[Special:WhatLinksHere/$2|senarai penuh]].',
 'duplicatesoffile'               => '{{PLURAL:$1|Fail|$1 buah fail}} berikut adalah salinan bagi fail ini:',
 'sharedupload'                   => 'Fail ini adalah fail muat naik kongsi dan boleh digunakan oleh projek lain.',
 'shareduploadwiki'               => 'Sila lihat $1 untuk maklumat lanjut.',
-'shareduploadwiki-desc'          => 'Berikut ialah keterangan yang diambil daripada $1nya di gedung kongsi.',
+'shareduploadwiki-desc'          => 'Yang berikut ialah keterangan yang diambil daripada $1nya di gedung kongsi.',
 'shareduploadwiki-linktext'      => 'laman keterangan fail',
 'shareduploadduplicate'          => 'Fail ini adalah salinan bagi $1 di gedung kongsi.',
 'shareduploadduplicate-linktext' => 'fail lain',
@@ -1496,7 +1496,7 @@ Anda boleh melihat [[Special:WhatLinksHere/$2|senarai penuh]].',
 
 # Unused templates
 'unusedtemplates'     => 'Templat tidak digunakan',
-'unusedtemplatestext' => 'Berikut ialah senarai laman dalam ruang nama {{ns:template}} yang tidak disertakan dalam laman lain. Sila pastikan bahawa anda menyemak pautan lain ke templat-templat tersebut sebelum menghapuskannya.',
+'unusedtemplatestext' => 'Yang berikut ialah senarai laman dalam ruang nama {{ns:template}} yang tidak disertakan dalam laman lain. Sila pastikan bahawa anda menyemak pautan lain ke templat-templat tersebut sebelum menghapuskannya.',
 'unusedtemplateswlh'  => 'pautan-pautan lain',
 
 # Random page
@@ -1532,7 +1532,7 @@ Anda boleh melihat [[Special:WhatLinksHere/$2|senarai penuh]].',
 'disambiguations-text' => "Laman-laman berikut mengandungi pautan ke '''laman penyahtaksaan'''. Pautan ini sepatutnya ditujukan kepada topik yang sepatutnya.<br />Sesebuah laman dianggap sebagai laman penyahtaksaan jika ia menggunakan templat yang dipaut dari [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'            => 'Lencongan berganda',
-'doubleredirectstext'        => 'Berikut ialah sebarai laman yang melencong ke laman lencongan yang lain. Setiap baris mengandungi pautan ke laman lencongan pertama dan kedua, serta baris pertama bagi teks lencongan kedua, lazimnya merupakan laman sasaran "sebenar", yang sepatutnya ditujui oleh lencongan pertama.',
+'doubleredirectstext'        => 'Yang berikut ialah sebarai laman yang melencong ke laman lencongan yang lain. Setiap baris mengandungi pautan ke laman lencongan pertama dan kedua, serta baris pertama bagi teks lencongan kedua, lazimnya merupakan laman sasaran "sebenar", yang sepatutnya ditujui oleh lencongan pertama.',
 'double-redirect-fixed-move' => '[[$1]] dilencongkan ke [[$2]]',
 'double-redirect-fixer'      => 'Pembaiki lencongan',
 
@@ -1612,7 +1612,7 @@ menggunakan URL langsung walaupun ia disenaraikan di sini.</p>',
 'booksources'               => 'Sumber buku',
 'booksources-search-legend' => 'Cari sumber buku',
 'booksources-go'            => 'Pergi',
-'booksources-text'          => 'Berikut ialah senarai pautan ke tapak web lain yang menjual buku baru dan terpakai,
+'booksources-text'          => 'Yang berikut ialah senarai pautan ke tapak web lain yang menjual buku baru dan terpakai,
 serta mungkin mempunyai maklumat lanjut mengenai buku yang anda cari:',
 
 # Special:Log
@@ -1620,7 +1620,7 @@ serta mungkin mempunyai maklumat lanjut mengenai buku yang anda cari:',
 'speciallogtitlelabel' => 'Tajuk:',
 'log'                  => 'Log',
 'all-logs-page'        => 'Semua log',
-'alllogstext'          => 'Berikut ialah gabungan bagi semua log yang ada bagi {{SITENAME}}. Anda boleh menapis senarai ini dengan memilih jenis log, nama pengguna (peka huruf besar), atau nama laman yang terjejas (juga peka huruf besar).',
+'alllogstext'          => 'Yang berikut ialah gabungan bagi semua log yang ada bagi {{SITENAME}}. Anda boleh menapis senarai ini dengan memilih jenis log, nama pengguna (peka huruf besar), atau nama laman yang terjejas (juga peka huruf besar).',
 'logempty'             => 'Tiada item yang sepadan dalam log.',
 'log-title-wildcard'   => 'Cari semua tajuk yang bermula dengan teks ini',
 
@@ -1670,7 +1670,7 @@ Protokol yang disokong: <tt>$1</tt>',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Log akaun baru',
-'newuserlogpagetext'          => 'Berikut ialah log penciptaan pengguna.',
+'newuserlogpagetext'          => 'Yang berikut ialah log penciptaan pengguna.',
 'newuserlog-byemail'          => 'kata laluan dihantar melalui e-mel',
 'newuserlog-create-entry'     => 'Pengguna baru',
 'newuserlog-create2-entry'    => 'membuka akaun $1',
@@ -1678,7 +1678,7 @@ Protokol yang disokong: <tt>$1</tt>',
 
 # Special:ListGroupRights
 'listgrouprights'                 => 'Hak kumpulan pengguna',
-'listgrouprights-summary'         => 'Berikut ialah senarai kumpulan pengguna yang ditubuhkan di wiki ini dengan hak-hak masing-masing.
+'listgrouprights-summary'         => 'Yang berikut ialah senarai kumpulan pengguna yang ditubuhkan di wiki ini dengan hak-hak masing-masing.
 Anda boleh mengetahui [[{{MediaWiki:Listgrouprights-helppage}}|maklumat tambahan]] mengenai setiap hak.',
 'listgrouprights-group'           => 'Kumpulan',
 'listgrouprights-rights'          => 'Hak',
@@ -1747,7 +1747,7 @@ Jika anda mahu membuang laman tersebut daripada senarai pantau, klik \"Nyahpanta
 'watchmethod-list'     => 'menyemak suntingan terkini pada laman-laman yang dipantau',
 'watchlistcontains'    => 'Terdapat $1 laman dalam senarai pantau anda.',
 'iteminvalidname'      => "Terdapat masalah dengan item '$1', nama tidak sah...",
-'wlnote'               => "Berikut ialah '''$1''' perubahan terakhir sejak '''$2''' jam yang lalu.",
+'wlnote'               => "Yang berikut ialah '''$1''' perubahan terakhir sejak '''$2''' jam yang lalu.",
 'wlshowlast'           => 'Tunjukkan $1 jam / $2 hari yang lalu / $3.',
 'watchlist-options'    => 'Pilihan senarai pantau',
 
@@ -1808,7 +1808,7 @@ Sila lihat $2 untuk rekod penghapusan terkini.',
 'deletedarticle'         => 'menghapuskan "[[$1]]"',
 'suppressedarticle'      => 'menahan "[[$1]]"',
 'dellogpage'             => 'Log penghapusan',
-'dellogpagetext'         => 'Berikut ialah senarai penghapusan terkini.',
+'dellogpagetext'         => 'Yang berikut ialah senarai penghapusan terkini.',
 'deletionlog'            => 'log penghapusan',
 'reverted'               => 'Dibalikkan kepada semakan sebelumnya',
 'deletecomment'          => 'Sebab penghapusan:',
@@ -1842,7 +1842,7 @@ Sila tekan butang "back" dan muatkan semula laman yang telah anda kunjungi sebel
 
 # Protect
 'protectlogpage'              => 'Log perlindungan',
-'protectlogtext'              => 'Berikut ialah senarai bagi tindakan penguncian/pembukaan laman. Sila lihat [[Special:ProtectedPages|senarai laman dilindungi]] untuk rujukan lanjut.',
+'protectlogtext'              => 'Yang berikut ialah senarai bagi tindakan penguncian/pembukaan laman. Sila lihat [[Special:ProtectedPages|senarai laman dilindungi]] untuk rujukan lanjut.',
 'protectedarticle'            => 'melindungi "[[$1]]"',
 'modifiedarticleprotection'   => 'menukar peringkat perlindungan bagi "[[$1]]"',
 'unprotectedarticle'          => 'menyahlindung "[[$1]]"',
@@ -1904,7 +1904,7 @@ Ini adalah tetapan semasa bagi laman <strong>$1</strong>:',
 # Undelete
 'undelete'                     => 'Lihat laman-laman yang dihapuskan',
 'undeletepage'                 => 'Lihat dan pulihkan laman yang dihapuskan',
-'undeletepagetitle'            => "'''Berikut ialah semakan-semakan [[:$1|$1]] yang telah dihapuskan'''.",
+'undeletepagetitle'            => "'''Yang berikut ialah semakan-semakan [[:$1|$1]] yang telah dihapuskan'''.",
 'viewdeletedpage'              => 'Lihat laman-laman yang dihapuskan',
 'undeletepagetext'             => 'Laman-laman berikut telah dihapuskan tetapi masih disimpan dalam arkib dan
 masih boleh dipulihkan. Arkib tersebut akan dibersihkan dari semasa ke semasa.',
@@ -2164,7 +2164,7 @@ Sila pilih nama lain.',
 '1movedto2'                 => '[[$1]] dipindahkan ke [[$2]]',
 '1movedto2_redir'           => '[[$1]] dipindahkan ke [[$2]] menerusi pelencongan',
 'movelogpage'               => 'Log pemindahan',
-'movelogpagetext'           => 'Berikut ialah senarai pemindahan laman.',
+'movelogpagetext'           => 'Yang berikut ialah senarai pemindahan laman.',
 'movereason'                => 'Sebab:',
 'revertmove'                => 'balik',
 'delete_and_move'           => 'Hapus dan pindah',
@@ -2377,7 +2377,7 @@ Semua tindakan import transwiki dicatatkan dalam [[Special:Log/import|log import
 
 # Patrol log
 'patrol-log-page'      => 'Log pemeriksaan',
-'patrol-log-header'    => 'Berikut ialah log rondaan bagi semakan.',
+'patrol-log-header'    => 'Yang berikut ialah log rondaan bagi semakan.',
 'patrol-log-line'      => 'menandakan $1 bagi $2 sebagai telah diperiksa $3',
 'patrol-log-auto'      => '(automatik)',
 'patrol-log-diff'      => 's$1',
@@ -2415,7 +2415,7 @@ $1',
 
 # Special:NewFiles
 'newimages'             => 'Galeri fail baru',
-'imagelisttext'         => "Berikut ialah senarai bagi '''$1''' fail yang disusun secara $2.",
+'imagelisttext'         => "Yang berikut ialah senarai bagi '''$1''' fail yang disusun secara $2.",
 'newimages-summary'     => 'Laman khas ini memaparkan senarai fail muat naik terakhir.',
 'newimages-legend'      => 'Nama fail',
 'newimages-label'       => 'Nama fail (atau sebahagian daripadanya):',
@@ -2827,13 +2827,13 @@ Sila sahkan bahawa anda mahu mencipta semula laman ini.",
 'watchlistedit-noitems'        => 'Tiada tajuk dalam senarai pantau anda.',
 'watchlistedit-normal-title'   => 'Sunting senarai pantau',
 'watchlistedit-normal-legend'  => 'Buang tajuk daripada senarai pantau',
-'watchlistedit-normal-explain' => 'Berikut ialah tajuk-tajuk dalam senarai pantau anda. Untuk membuang mana-mana tajuk, tanda
+'watchlistedit-normal-explain' => 'Yang berikut ialah tajuk-tajuk dalam senarai pantau anda. Untuk membuang mana-mana tajuk, tanda
 kotak yang terletak di sebelahnya, dan klik Buang Tajuk. Anda juga boleh [[Special:Watchlist/raw|menyunting senarai mentah]].',
 'watchlistedit-normal-submit'  => 'Buang Tajuk',
 'watchlistedit-normal-done'    => '$1 tajuk dibuang daripada senarai pantau anda:',
 'watchlistedit-raw-title'      => 'Sunting senarai pantau mentah',
 'watchlistedit-raw-legend'     => 'Sunting senarai pantau mentah',
-'watchlistedit-raw-explain'    => 'Berikut ialah tajuk-tajuk dalam senarai pantau anda. Anda boleh menyunting mana-mana tajuk
+'watchlistedit-raw-explain'    => 'Yang berikut ialah tajuk-tajuk dalam senarai pantau anda. Anda boleh menyunting mana-mana tajuk
 dengan menambah atau membuang daripada senarai tersebut, satu tajuk bagi setiap baris. Apabila selesai, klik Kemas Kini Senarai Pantau.
 Anda juga boleh [[Special:Watchlist/edit|menggunakan penyunting standard]].',
 'watchlistedit-raw-titles'     => 'Tajuk:',

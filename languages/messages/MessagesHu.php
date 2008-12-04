@@ -2058,7 +2058,7 @@ melyek megtekintése a számodra nem engedélyezett, nem kerülnek visszaállít
 'undeletehistorynoadmin'       => 'Ezt a szócikket törölték. A törlés okát alább az összegzésben
 láthatod, az oldalt a törlés előtt szerkesztő felhasználók részleteivel együtt. Ezeknek
 a törölt változatoknak a tényleges szövege csak az adminisztrátorok számára hozzáférhető.',
-'undelete-revision'            => '$1 $4, $5-kori $3 által törölt változata.',
+'undelete-revision'            => '$1 $4, $5-kori törölt változata (szerző: $3).',
 'undeleterevision-missing'     => 'Érvénytelen vagy hiányzó változat. Lehet, hogy rossz hivatkozásod van, ill. a
 változatot visszaállították vagy eltávolították az archívumból.',
 'undelete-nodiff'              => 'Nem található korábbi változat.',
@@ -2088,6 +2088,8 @@ Lásd a [[Special:Log/delete|törlési naplót]] a legutóbbi törlések és hel
 'undelete-error-long'          => 'Hiba történt a fájl helyreállítása során:
 
 $1',
+'undelete-show-file-confirm'   => 'Biztosan meg akarod nézni a(z) "<nowiki>$1</nowiki>" fájl $2, $3-kori törölt változatát?',
+'undelete-show-file-submit'    => 'Igen',
 
 # Namespace form on various pages
 'namespace'      => 'Névtér:',
@@ -2387,6 +2389,8 @@ Valamennyi transwiki importálási művelet az [[Special:Log/import|importálás
 'import-nonewrevisions'      => 'A korábban importált összes változat.',
 'xml-error-string'           => '$1 a(z) $2. sorban, $3. oszlopban ($4. bájt): $5',
 'import-upload'              => 'XML-adatok feltöltése',
+'import-token-mismatch'      => 'Elveszett a session adat, próbálkozz újra.',
+'import-invalid-interwiki'   => 'A kijelölt wikiből nem lehet importálni.',
 
 # Import log
 'importlogpage'                    => 'Importnapló',
@@ -2853,7 +2857,7 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 
 # External editor support
 'edit-externally'      => 'A fájl szerkesztése külső alkalmazással',
-'edit-externally-help' => 'Lásd a [http://www.mediawiki.org/wiki/Manual:External_editors „setup instructions”] leírást (angolul) ennek használatához.',
+'edit-externally-help' => '(Lásd a [http://www.mediawiki.org/wiki/Manual:External_editors használati utasítást] (angolul) a beállításához.)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'összes',

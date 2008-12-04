@@ -1381,11 +1381,11 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 
 # Random page
 'randompage'         => '임의 문서로',
-'randompage-nopages' => '이 네임스페이스에는 문서가 없습니다.',
+'randompage-nopages' => '"$1" 이름공간에는 문서가 없습니다.',
 
 # Random redirect
 'randomredirect'         => '임의 넘겨주기 문서로',
-'randomredirect-nopages' => '이 네임스페이스에서 해당하는 넘겨주기 문서가 없습니다.',
+'randomredirect-nopages' => '"$1" 이름공간에서 해당하는 넘겨주기 문서가 없습니다.',
 
 # Statistics
 'statistics'                      => '통계',
@@ -1613,14 +1613,14 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'enotif_reset'                 => '모든 문서를 방문한 것으로 표시하기',
 'enotif_newpagetext'           => '이것은 새 문서입니다.',
 'enotif_impersonal_salutation' => '{{SITENAME}} 사용자',
-'changed'                      => '바뀜',
-'created'                      => '만들어짐',
-'enotif_subject'               => '{{SITENAME}}에서 $PAGEEDITOR 사용자가 $PAGETITLE 문서를 $CHANGEDORCREATED함',
+'changed'                      => '바꾸',
+'created'                      => '만들',
+'enotif_subject'               => '{{SITENAME}}에서 $PAGEEDITOR 사용자가 $PAGETITLE 문서를 $CHANGEDORCREATED었습니다.',
 'enotif_lastvisited'           => '당신의 마지막 방문 이후의 모든 변경사항을 보려면 $1을(를) 보십시오.',
 'enotif_anon_editor'           => '익명 사용자 $1',
-'enotif_body'                  => '$WATCHINGUSERNAME에게,
+'enotif_body'                  => '$WATCHINGUSERNAME님,
 
-{{SITENAME}}의 문서 $PAGETITLE이(가) $PAGEEDITOR에 의해 $CHANGEDORCREATED되었습니다. 현재의 문서는 $PAGETITLE_URL에서 볼 수 있습니다.
+{{SITENAME}}의 문서 $PAGETITLE을(를) $PAGEEDITOR님이 $CHANGEDORCREATED었습니다. 현재의 문서는 $PAGETITLE_URL 에서 볼 수 있습니다.
 
 $NEWPAGE
 
@@ -1630,7 +1630,8 @@ $NEWPAGE
 이메일: $PAGEEDITOR_EMAIL
 위키: $PAGEEDITOR_WIKI
 
-이 문서를 방문하기 전까지는 알림 이메일은 발송되지 않습니다.
+이 문서를 열기 전에는 다른 알림 이메일을 더 이상 보내지 않습니다.
+주시 문서 목록을 지울 수도 있습니다.
 
              {{SITENAME}} 알림 시스템
 
@@ -2124,7 +2125,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'lastmodifiedatby' => '이 문서는 $3에 의해 $2, $1에 마지막으로 바뀌었습니다.', # $1 date, $2 time, $3 user
 'othercontribs'    => '$1의 작업을 바탕으로 함.',
 'others'           => '기타',
-'siteusers'        => '{{SITENAME}} 사용자 $1',
+'siteusers'        => '{{SITENAME}}의 $2명의 사용자 $1',
 'creditspage'      => '문서 기여자들',
 'nocredits'        => '이 문서에서는 기여자 정보가 없습니다.',
 
