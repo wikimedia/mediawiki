@@ -262,10 +262,10 @@ abstract class FileRepo {
 		if ( is_null( $this->descBaseUrl ) ) {
 			if ( !is_null( $this->articleUrl ) ) {
 				$this->descBaseUrl = str_replace( '$1',
-					wfUrlencode( 'Image:', $this->articleUrl );
+					wfUrlencode( 'Image' ) . ':', $this->articleUrl );
 			} elseif ( !is_null( $this->scriptDirUrl ) ) {
 				$this->descBaseUrl = $this->scriptDirUrl . '/index.php?title=' .
-					wfUrlencode( 'Image:';
+					wfUrlencode( 'Image' ) . ':';
 			} else {
 				$this->descBaseUrl = false;
 			}
