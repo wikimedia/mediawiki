@@ -216,6 +216,8 @@ The following extensions are migrated into MediaWiki 1.14:
 * Moved password reset form from Special:Preferences to Special:ResetPass
 * Added Special:ChangePassword as a special page alias for Special:ResetPass
 * Added complimentary function for addHandler() called removeHandler() for removing events
+* Improved security of file uploads for IE clients, using a reverse-engineered 
+  algorithm very similar to IE's content detection algorithm.
 
 === Bug fixes in 1.14 ===
 

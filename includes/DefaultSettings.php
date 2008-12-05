@@ -1885,6 +1885,8 @@ $wgMimeTypeBlacklist= array(
 	'application/x-php', 'text/x-php',
 	# Other types that may be interpreted by some servers
 	'text/x-python', 'text/x-perl', 'text/x-bash', 'text/x-sh', 'text/x-csh',
+	# Client-side script on Internet Explorer
+	'text/scriptlet',
 	# Windows metafile, client-side vulnerability on some systems
 	'application/x-msmetafile',
 	# A ZIP file may be a valid Java archive containing an applet which exploits the

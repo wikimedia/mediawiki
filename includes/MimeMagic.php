@@ -808,4 +808,413 @@ class MimeMagic {
 
 		return MEDIATYPE_UNKNOWN;
 	}
+
+	/**
+	 * Get the MIME type from ieMimeFromData(), but convert the result from IE's 
+	 * idiosyncratic private types into something MediaWiki will understand.
+	 *
+	 * @param string $fileName The file name (unused at present)
+	 * @param string $chunk The first 256 bytes of the file
+	 * @param string $proposed The MIME type proposed by the server
+	 */
+	public function getIEMimeType( $fileName, $chunk, $proposed ) {
+		static $table = array(
+			'image/pjpeg' => 'image/jpeg',
+			'image/x-png' => 'image/png',
+			'image/x-wmf' => 'application/x-msmetafile',
+			'image/bmp' => 'image/x-bmp',
+			'application/x-zip-compressed' => 'application/zip',
+			'application/x-compressed' => 'application/x-compress',
+			'application/x-gzip-compressed' => 'application/x-gzip',
+			'audio/mid' => 'audio/midi',
+		);
+
+		$type = $this->ieMimeFromData( $fileName, $chunk, $proposed );
+		if ( isset( $table[$type] ) ) {
+			$type = $table[$type];
+		}
+		return $type;
+	}
+
+	/**
+	 * Do a MIME type check similar to IE's FindMimeFromData(). This is used to 
+	 * ensure that a file won't be detected as a blacklisted type such as text/html,
+	 * thus opening up an XSS vulnerability. 
+	 *
+	 * Based on a disassembly of urlmon.dll from IE 7.
+	 *
+	 * @param string $fileName The file name (unused at present)
+	 * @param string $chunk The first 256 bytes of the file
+	 * @param string $proposed The MIME type proposed by the server
+	 */
+	public function ieMimeFromData( $fileName, $chunk, $proposed ) {
+		// IE puts a null character at byte 255 (the 256th byte)
+		$chunk = substr( $chunk, 0, 255 );
+		
+		$types = array(
+			'ambiguous' /*1*/ => array(
+				'text/plain', 
+				'application/octet-stream', 
+				'application/x-netcdf', // [sic]
+				'unknown/unknown', // for MediaWiki
+			),
+			'text' /*3*/ => array(
+				'text/richtext', 'image/x-bitmap', 'application/postscript', 'application/base64',
+				'application/macbinhex40', 'application/x-cdf', 'text/scriptlet', 'text/xml', 
+				'application/xml',
+				
+			),
+			'binary' /*4*/ => array(
+				'application/pdf', 'audio/x-aiff', 'audio/basic', 'audio/wav', 'image/gif',
+				'image/pjpeg', 'image/jpeg', 'image/tiff', 'image/x-png', 'image/png', 'image/bmp', 
+				'image/x-jg', 'image/x-art', 'image/x-emf', 'image/x-wmf', 'video/avi', 
+				'video/x-msvideo', 'video/mpeg', 'application/x-compressed',
+				'application/x-zip-compressed', 'application/x-gzip-compressed', 'application/java',
+				'application/x-msdownload'
+			),
+			'html' /*5*/ => array( 'text/html' ),
+		);
+
+		if ( in_array( $proposed, $types['text'] ) ) {
+			return $proposedType;
+		}
+		if ( !in_array( $proposed, $types['binary'] )
+			&& !in_array( $proposed, $types['ambiguous'] ) 
+			&& !in_array( $proposed, $types['html'] ) )
+		{
+			// Unknown
+			return $proposed;
+		}
+
+		// CContentAnalyzer::SampleData
+		$found = array();
+		$numControl = 0;
+		$numHigh = 0;
+		$numLow = 0;
+		$numLF = 0;
+		$numCR = 0;
+		$numFF = 0;
+		$htmlTags = array(
+			'html',
+			'head',
+			'title',
+			'body',
+			'script',
+			'a href',
+			'pre',
+			'img',
+			'plaintext',
+			'table'
+		);
+		$rdfUrl = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#';
+		$rdfPurl = 'http://purl.org/rss/1.0/';
+		$xbmMagic1 = '#define';
+		$xbmMagic2 = '_width';
+		$xbmMagic3 = '_bits';
+		$binhexMagic = 'converted with BinHex';
+
+		for ( $offset = 0; $offset < strlen( $chunk ); $offset++ ) {
+			$curChar = $chunk[$offset];
+			if ( $curChar == "\x0a" ) {
+				$numLF++;
+				continue;
+			} elseif ( $curChar == "\x0d" ) {
+				$numCR++;
+				continue;
+			} elseif ( $curChar == "\x0c" ) {
+				$numFF++;
+				continue;
+			} elseif ( $curChar == "\t" ) {
+				$numLow++;
+				continue;
+			} elseif ( ord( $curChar ) < 32 ) {
+				$numControl++;
+				continue;
+			} elseif ( ord( $curChar ) >= 128 ) {
+				$numHigh++;
+				continue;
+			}
+
+			$numLow++;
+			if ( $curChar == '<' ) {
+				// XML
+				$remainder = substr( $chunk, $offset + 1 );
+				if ( !strncasecmp( $remainder, '?XML', 4 ) ) {
+					$nextChar = substr( $chunk, $offset + 5, 1 );
+					if ( $nextChar == ':' || $nextChar == ' ' || $nextChar == "\t" ) {
+						$found['xml'] = true;
+					}
+				}
+				// Scriptlet (JSP)
+				if ( !strncasecmp( $remainder, 'SCRIPTLET', 9 ) ) {
+					$found['scriptlet'] = true;
+					break;
+				}
+				// HTML
+				foreach ( $htmlTags as $tag ) {
+					if ( !strncasecmp( $remainder, $tag, strlen( $tag ) ) ) {
+						$found['html'] = true;
+					}
+				}
+				// Skip broken check for additional tags (HR etc.)
+
+				// RSS
+				if ( !strncasecmp( $remainder, 'RSS', 3 ) ) {
+					$found['rss'] = true;
+					break; // return from SampleData
+				}
+				if ( !strncasecmp( $remainder, 'rdf:RDF', 7 ) ) {
+					$found['rdf-tag'] = true;
+					// no break
+				}
+				if ( !strncasecmp( $remainder, 'FEED', 4 ) ) {
+					$found['feed'] = true;
+					break;
+				}
+				continue;
+			}
+			// Skip broken check for -->
+
+			// RSS URL checks
+			// For some reason both URLs must appear before a break is triggered
+			$remainder = substr( $chunk, $offset );
+			if ( !strncasecmp( $remainder, $rdfUrl, strlen( $rdfUrl ) ) ) {
+				$found['rdf-url'] = true;
+				if ( isset( $found['rdf-tag'] )
+					&& isset( $found['rdf-purl'] ) ) // [sic]
+				{
+					break;
+				}
+				continue;
+			}
+
+			if ( !strncasecmp( $remainder, $rdfPurl, strlen( $rdfPurl ) ) ) {
+				if ( isset( $found['rdf-tag'] ) 
+					&& isset( $found['rdf-url'] ) ) // [sic]
+				{
+					break;
+				}
+				continue;
+			}
+
+			// XBM checks
+			if ( !strncasecmp( $remainder, $xbmMagic1, strlen( $xbmMagic1 ) ) ) {
+				$found['xbm1'] = true;
+				continue;
+			}
+			if ( $curChar == '_' ) {
+				if ( isset( $found['xbm2'] ) ) {
+					if ( !strncasecmp( $remainder, $xbmMagic3, strlen( $xbmMagic3 ) ) ) {
+						$found['xbm'] = true;
+						break;
+					}
+				} elseif ( isset( $found['xbm1'] ) ) {
+					if ( !strncasecmp( $remainder, $xbmMagic2, strlen( $xbmMagic2 ) ) ) {
+						$found['xbm2'] = true;
+					}
+				}
+			}
+
+			// BinHex
+			if ( !strncasecmp( $remainder, $binhexMagic, strlen( $binhexMagic ) ) ) {
+				$found['binhex'] = true;
+			}
+		} // end main loop
+		
+		// CContentAnalyzer::FindMimeFromData
+		
+		// IE does the Check*Headers() calls last, and instead does the following image 
+		// type checksby directly looking for the magic numbers. What I do here should 
+		// have the same effect since the magic number checks are identical in both cases.
+		$binaryType = $this->ieCheckBinaryHeaders( $chunk );
+		$textType = $this->ieCheckTextHeaders( $chunk );
+
+		if ( $proposed == 'text/html' && isset( $found['html'] ) ) {
+			return 'text/html';
+		}
+		if ( $proposed == 'image/gif' && $binaryType == 'image/gif' ) {
+			return 'image/gif';
+		}
+		if ( ( $proposed == 'image/pjpeg' || $proposed == 'image/jpeg' )
+			&& $binaryType == 'image/pjpeg' ) 
+		{
+			return $proposed;
+		}
+		if ( ( $proposed == 'image/x-png' || $proposed == 'image/png' )
+			&& $binaryType == 'image/x-png' )
+		{
+			return $proposed;
+		}
+
+		if ( isset( $found['rss'] ) ) {
+			return 'application/rss+xml';
+		}
+		if ( isset( $found['rdf-tag'] )
+			&& isset( $found['rdf-url'] )
+			&& isset( $found['rdf-purl'] ) )
+		{
+			return 'application/rss+xml';
+		}
+		// Skip apparently unimplemented atom flag
+		if ( isset( $found['xml'] ) ) {
+			// Skip check for proposed MIME type
+			// IE may continue on here to further checks if a feature is enabled
+			// and if the server proposes something other than text/html or text/xml
+			return 'text/xml';
+		}
+		if ( isset( $found['html'] ) ) {
+			// Skip complex XML-related check
+			return 'text/html';
+		}
+		if ( isset( $found['xbm'] ) ) {
+			return 'image/x-bitmap';
+		}
+		if ( isset( $found['binhex'] ) ) {
+			return 'application/macbinhex40';
+		}
+		if ( isset( $found['scriptlet'] ) ) {
+			// Skip complex HTML-related check
+			return 'text/scriptlet';
+		}
+
+		// Freaky heuristics to determine check order
+		// Probably doesn't matter since the checks appear to be orthogonal
+		// The heuristic is of course broken for non-ASCII text
+		if ( $numControl != 0 && ( $numFF + $numLow ) < ( $numControl + $numHigh ) * 16 ) {
+			$kindOfBinary = true;
+			$type = $binaryType ? $binaryType : $textType;
+		} else {
+			$kindOfBinary = false;
+			$type = $textType ? $textType : $binaryType;
+		}
+		if ( $type !== false ) {
+			return $type;
+		}
+
+		// FormatAgreesWithData()
+		if ( in_array( $proposed, $types['text'] ) && !$kindOfBinary ) {
+			return $proposed;
+		}
+		if ( in_array( $proposed, $types['binary'] ) && $kindOfBinary ) {
+			return $proposed;
+		}
+		if ( in_array( $proposed, $types['html'] ) ) {
+			return $proposed;
+		}
+
+		// TODO: extension checks
+		return $proposed;
+	}
+
+	private function ieCheckTextHeaders( $chunk ) {
+		$chunk2 = substr( $chunk, 0, 2 );
+		$chunk4 = substr( $chunk, 0, 4 );
+		$chunk5 = substr( $chunk, 0, 5 );
+		if ( $chunk4 == '%PDF' ) {
+			return 'application/pdf';
+		}
+		if ( $chunk2 == '%!' ) {
+			return 'application/postscript';
+		}
+		if ( $chunk5 == '{\\rtf' ) {
+			return 'text/richtext';
+		}
+		if ( $chunk5 == 'begin' ) {
+			return 'application/base64';
+		}
+		return false;
+	}
+
+	private function ieCheckBinaryHeaders( $chunk ) {
+		$chunk2 = substr( $chunk, 0, 2 );
+		$chunk3 = substr( $chunk, 0, 3 );
+		$chunk4 = substr( $chunk, 0, 4 );
+		$chunk5 = substr( $chunk, 0, 5 );
+		$chunk8 = substr( $chunk, 0, 8 );
+		if ( $chunk5 == 'GIF87' || $chunk5 == 'GIF89' ) {
+			return 'image/gif';
+		}
+		if ( $chunk2 == "\xff\xd8" ) {
+			return 'image/pjpeg'; // actually plain JPEG but this is what IE returns
+		}
+		if ( $chunk2 == 'BM' 
+			&& substr( $chunk, 6, 2 ) == "\000\000"
+			&& substr( $chunk, 8, 2 ) != "\000\000" )
+		{
+			return 'image/bmp'; // another non-standard MIME
+		}
+		if ( $chunk4 == 'RIFF' 
+			&& substr( $chunk, 8, 4 ) == 'WAVE' )
+		{
+			return 'audio/wav';
+		}
+		// These were integer literals in IE
+		// Perhaps the author was not sure what the target endianness was
+		if ( $chunk4 == ".sd\000"
+			|| $chunk4 == ".snd"
+			|| $chunk4 == "\000ds."
+			|| $chunk4 == "dns." )
+		{
+			return 'audio/basic';
+		}
+		if ( $chunk3 == "MM\000" ) {
+			return 'image/tiff';
+		}
+		if ( $chunk2 == 'MZ' ) {
+			return 'application/x-msdownload';
+		}
+		if ( $chunk8 == "\x89PNG\x0d\x0a\x1a\x0a" ) {
+			return 'image/x-png'; // [sic]
+		}
+		if ( strlen( $chunk ) >= 5 ) {
+			$byte2 = ord( $chunk[2] );
+			$byte4 = ord( $chunk[4] );
+			if ( $byte2 >= 3 && $byte2 <= 31 && $byte4 == 0 && $chunk2 == 'JG' ) {
+				return 'image/x-jg';
+			}
+		}
+		// More endian confusion
+		if ( $chunk4 == 'MROF' ) {
+			return 'audio/x-aiff';
+		}
+		$chunk4_8 = substr( $chunk, 8, 4 );
+		if ( $chunk4 == 'FORM' && ( $chunk4_8 == 'AIFF' || $chunk4_8 == 'AIFC' ) ) {
+			return 'audio/x-aiff';
+		}
+		if ( $chunk4 == 'RIFF' && $chunk4_8 == 'AVI ' ) {
+			return 'video/avi';
+		}
+		if ( $chunk4 == "\x00\x00\x01\xb3" || $chunk4 == "\x00\x00\x01\xba" ) {
+			return 'video/mpeg';
+		}
+		if ( $chunk4 == "\001\000\000\000"
+			&& substr( $chunk, 40, 4 ) == ' EMF' )
+		{
+			return 'image/x-emf';
+		}
+		if ( $chunk4 == "\xd7\xcd\xc6\x9a" ) {
+			return 'image/x-wmf';
+		}
+		if ( $chunk4 == "\xca\xfe\xba\xbe" ) {
+			return 'application/java';
+		}
+		if ( $chunk2 == 'PK' ) {
+			return 'application/x-zip-compressed';
+		}
+		if ( $chunk2 == "\x1f\x9d" ) {
+			return 'application/x-compressed';
+		}
+		if ( $chunk2 == "\x1f\x8b" ) {
+			return 'application/x-gzip-compressed';
+		}
+		// Skip redundant check for ZIP
+		if ( $chunk5 == "MThd\000" ) {
+			return 'audio/mid';
+		}
+		if ( $chunk4 == '%PDF' ) {
+			return 'application/pdf';
+		}
+		return false;
+	}
+	
 }
