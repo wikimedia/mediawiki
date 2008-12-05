@@ -1942,6 +1942,7 @@ $wgMessageStructure = array(
 		'import-interwiki-submit',
 		'import-interwiki-namespace',
 		'import-upload-comment',
+		'filetype-bad-ie-mime',
 		'import-comment',
 		'importtext',
 		'importstart',

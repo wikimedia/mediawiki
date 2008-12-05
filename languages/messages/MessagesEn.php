@@ -1801,7 +1801,7 @@ See the [[Special:NewFiles|gallery of new files]] for a more visual overview.',
 Please rename the file and try uploading it again.',
 'badfilename'                 => 'File name has been changed to "$1".',
 'filetype-badmime'            => 'Files of the MIME type "$1" are not allowed to be uploaded.',
-'filetype-bad-ie-mime'        => 'Can\'t upload this file because Internet Explorer would detect it as "$1", which is a disallowed and potentially dangerous file type.',
+'filetype-bad-ie-mime'        => 'Cannot upload this file because Internet Explorer would detect it as "$1", which is a disallowed and potentially dangerous file type.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' is an unwanted file type.
 Preferred {{PLURAL:\$3|file type is|file types are}} \$2.",
 'filetype-banned-type'        => "'''\".\$1\"''' is not a permitted file type.
