@@ -2148,6 +2148,8 @@ Besicht w.e.g. [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisatio
 'import-interwiki-history'   => "Importéier all d'Versioune vun dëser Säit",
 'import-interwiki-submit'    => 'Import',
 'import-interwiki-namespace' => 'Kopéier Säiten an den Nummraum:',
+'import-upload-comment'      => 'Grond:',
+'import-comment'             => 'Grond:',
 'importtext'                 => 'Exportéiert de Fichier w.e.g vun der Source-Wiki mat der [[Special:Export|Funktioun Export]].
 Späichert en op ärem Computer of a lued en hei nees erop.',
 'importstart'                => 'Importéier Säiten …',

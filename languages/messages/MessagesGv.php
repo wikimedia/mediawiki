@@ -945,8 +945,10 @@ Jean covestey eddyr oc er laueyn, my sailliu.'''",
 'thumbnail_error' => 'Marranys ingin-ordaag y chroo: $1',
 
 # Special:Import
-'importbadinterwiki' => 'Droghchiangley eddyrwiki',
-'importnotext'       => 'Follym ny gyn teks',
+'import-upload-comment' => 'Cohaggloo:',
+'import-comment'        => 'Cohaggloo:',
+'importbadinterwiki'    => 'Droghchiangley eddyrwiki',
+'importnotext'          => 'Follym ny gyn teks',
 
 # Import log
 'importlogpage' => 'Cur lioar chooishyn stiagh',

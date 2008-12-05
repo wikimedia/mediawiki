@@ -2237,6 +2237,8 @@ Todas as accións relacionadas coa importación entre wikis poden verse no [[Spe
 'import-interwiki-history'   => 'Copiar todas as versións que hai no historial desta páxina',
 'import-interwiki-submit'    => 'Importar',
 'import-interwiki-namespace' => 'Transferir páxinas ao espazo de nomes:',
+'import-upload-comment'      => 'Comentario:',
+'import-comment'             => 'Comentario:',
 'importtext'                 => 'Por favor, exporte o ficheiro do wiki de orixe usando a [[Special:Export|ferramenta para exportar]].
 Gráveo no seu disco duro e cárgueo aquí.',
 'importstart'                => 'Importando páxinas...',

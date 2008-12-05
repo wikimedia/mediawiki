@@ -2132,6 +2132,8 @@ Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|i
 'import-interwiki-history'   => 'Kopijuoti visas istorijos versijas šiam puslapiui',
 'import-interwiki-submit'    => 'Importuoti',
 'import-interwiki-namespace' => 'Perkelti puslapius į vardų sritį:',
+'import-upload-comment'      => 'Komentaras:',
+'import-comment'             => 'Komentaras:',
 'importtext'                 => 'Prašome eksportuoti failą iš projekto-šaltinio naudojantis {{ns:special}}:Export priemone, išsaugokite jį savo diske ir įkelkite jį čia.',
 'importstart'                => 'Imporuojami puslapiai...',
 'import-revision-count'      => '$1 {{PLURAL:$1|versija|versijos|versijų}}',

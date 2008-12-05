@@ -2046,6 +2046,8 @@ Alle transwiki-invoerhaandelingen wonnen op-esleugen in 't [[Special:Log/import|
 'import-interwiki-history'   => 'Kopieer de hele geschiedenisse veur disse pagina',
 'import-interwiki-submit'    => 'Invoeren',
 'import-interwiki-namespace' => "Plaos pagina's in de volgende naamruumte:",
+'import-upload-comment'      => 'Opmarkingen:',
+'import-comment'             => 'Opmarkingen:',
 'importtext'                 => "Gebruuk de Special:Export-optie in de wiki waor de infermasie vandaonkump, slao 't op joew eigen systeem op, en stuur 't daornao hier op.",
 'importstart'                => "Pagina's an 't invoeren...",
 'importnopages'              => "Der bin gien pagina's um in te voeren.",

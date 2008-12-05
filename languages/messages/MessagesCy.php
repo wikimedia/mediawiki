@@ -2057,6 +2057,8 @@ Os ydych am gyfrannu at y gwaith o gyfieithu ar gyfer holl prosiectau Mediawiki 
 'import'                  => 'Mewnforio tudalennau',
 'importinterwiki'         => 'Mewnforiad traws-wici',
 'import-interwiki-submit' => 'Mewnforio',
+'import-upload-comment'   => 'Sylw:',
+'import-comment'          => 'Sylw:',
 'importtext'              => "Os gwelwch yn dda, allforiwch y ffeil o'r wici gwreiddiol gan ddefnyddio'r nodwedd <b>Special:Export</b>, cadwch hi i'ch disg, ac uwchlwythwch hi fan hyn.",
 'importstart'             => "Wrthi'n mewnforio...",
 'import-revision-count'   => '$1 {{PLURAL:$1|diwygiad|diwygiad|ddiwygiad|diwygiad|diwygiad|diwygiad}}',

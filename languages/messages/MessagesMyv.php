@@ -1413,6 +1413,8 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'import'                     => 'Таргамс лопатнень',
 'import-interwiki-submit'    => 'Таргамс',
 'import-interwiki-namespace' => 'Печтевтемс лопатнень те лемпотмонтень:',
+'import-upload-comment'      => 'Арсемат-мельть:',
+'import-comment'             => 'Арсемат-мельть:',
 'importstart'                => 'Лопатне совавтовить...',
 'import-revision-count'      => '$1 {{PLURAL:$1|лиякстомтома|лиякстомтомат}}',
 'importnopages'              => 'Йовкстамс лопат арасть',

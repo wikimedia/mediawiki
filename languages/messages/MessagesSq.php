@@ -1790,6 +1790,8 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 # Special:Import
 'import'                => 'Importoni faqe',
 'importinterwiki'       => 'Import ndër-wiki',
+'import-upload-comment' => 'Arsyeja:',
+'import-comment'        => 'Arsyeja:',
 'importtext'            => 'Ju lutem eksportoni këtë skedë nga burimi wiki duke përdorur mjetin Special:Export, ruajeni në diskun tuaj dhe ngarkojeni këtu.',
 'importfailed'          => 'Importimi dështoi: $1',
 'importnotext'          => 'Bosh ose pa tekst',

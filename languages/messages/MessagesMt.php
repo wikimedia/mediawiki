@@ -1990,6 +1990,8 @@ Kull azzjonijiet ta' importazzjoni tal-transwiki jiġu reġistrati fil-[[Special
 'import-interwiki-history'   => 'Kopja l-verżjonijiet tal-kronoloġija kollha għal din il-paġna',
 'import-interwiki-submit'    => 'Importa',
 'import-interwiki-namespace' => 'Ittrasferixxi l-paġni fin-namespace:',
+'import-upload-comment'      => 'Kumment:',
+'import-comment'             => 'Kumment:',
 'importtext'                 => 'Jekk jogħġbok, esporta l-fajl mis-sit wiki l-oriġini bil-funzjoni [[Special:Export]], salvah fuq id-diska tiegħek u tellgħu hawn.',
 'importstart'                => 'Paġni qegħdin jiġu importati...',
 'import-revision-count'      => '{{PLURAL:$1|reviżjoni|$1 reviżjonijiet}}',

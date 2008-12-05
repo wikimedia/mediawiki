@@ -1506,6 +1506,8 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'importinterwiki'          => 'ከሌላ ዊኪ ማስገባት',
 'import-interwiki-history' => 'ለዚህ ገጽ የታሪክ ዕትሞች ሁሉ ለመቅዳት',
 'import-interwiki-submit'  => 'ለማስገባት',
+'import-upload-comment'    => 'ማጠቃለያ፦',
+'import-comment'           => 'ማጠቃለያ፦',
 'import-revision-count'    => '$1 {{PLURAL:$1|ዕትም|ዕትሞች}}',
 'importnopages'            => 'ለማስገባት ምንም ገጽ የለም።',
 'importfailed'             => 'ማስገባቱ አልተከናወነም፦ <nowiki>$1</nowiki>',

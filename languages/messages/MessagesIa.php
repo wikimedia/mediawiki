@@ -2311,6 +2311,8 @@ Tote le actiones de importation transwiki se registra in le [[Special:Log/import
 'import-interwiki-history'   => 'Copiar tote le versiones del historia de iste pagina',
 'import-interwiki-submit'    => 'Importar',
 'import-interwiki-namespace' => 'Transferer paginas verso le spatio de nomines:',
+'import-upload-comment'      => 'Commento:',
+'import-comment'             => 'Commento:',
 'importtext'                 => 'Per favor exporta le file del wiki de origine con le [[Special:Export|facilitate pro exportar]].
 Immagazina lo in tu disco e carga lo hic.',
 'importstart'                => 'Importation de paginas in curso…',

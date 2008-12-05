@@ -2025,6 +2025,8 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 # Special:Import
 'import'                  => '문서 가져오기',
 'import-interwiki-submit' => '가져오기',
+'import-upload-comment'   => '내용:',
+'import-comment'          => '내용:',
 'importtext'              => '원본 위키에서 [[Special:Export|내보내기]] 기능을 사용해 파일을 내려받아서 여기에 올려주세요.',
 'importstart'             => '문서를 가져오는 중...',
 'import-revision-count'   => '$1개의 판',

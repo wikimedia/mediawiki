@@ -2116,6 +2116,8 @@ Toles aiciones d'importación treswiki queden rexistraes nel [[Special:Log/impor
 'import-interwiki-history'   => "Copiar toles versiones d'historial d'esta páxina",
 'import-interwiki-submit'    => 'Importar',
 'import-interwiki-namespace' => 'Tresferir páxines al espaciu de nome:',
+'import-upload-comment'      => 'Comentariu:',
+'import-comment'             => 'Comentariu:',
 'importtext'                 => "Por favor, esporta l'archivu dende la wiki d'orixe usando la [[Special:Export|utilidá d'esportación]].
 Guárdalu nel to ordenador y xúbilu equí.",
 'importstart'                => 'Importando les páxines...',

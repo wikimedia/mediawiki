@@ -2285,6 +2285,8 @@ Toutes les actions d’importation interwiki sont consignées dans l’[[Special
 'import-interwiki-history'   => 'Copier toutes les versions de l’historique de cette page',
 'import-interwiki-submit'    => 'Importer',
 'import-interwiki-namespace' => 'Transférer les pages dans l’espace de nom :',
+'import-upload-comment'      => 'Commentaire :',
+'import-comment'             => 'Commentaire :',
 'importtext'                 => 'Veuillez exporter le fichier depuis le wiki d’origine en utilisant l’outil Special:Export, le sauvegarder sur votre disque dur et le copier ici.',
 'importstart'                => 'Import des pages...',
 'import-revision-count'      => '$1 {{PLURAL:$1|version|versions}}',

@@ -2161,6 +2161,8 @@ Tute łe operazion de inportazion trans-wiki łe xè notà nel [[Special:Log/imp
 'import-interwiki-history'   => "Copia l'intiera cronołogia de sta pàxena",
 'import-interwiki-submit'    => 'Inporta',
 'import-interwiki-namespace' => 'Trasferissi le pagine nel namespace:',
+'import-upload-comment'      => 'Comento:',
+'import-comment'             => 'Comento:',
 'importtext'                 => 'Par piaser, esporta el file da la wiki de origine doparando la [[Special:Export|funsion de esportassion]].
 Salvalo sul to computer e càrghelo qua.',
 'importstart'                => 'Inportazion de łe pàxene in corso...',

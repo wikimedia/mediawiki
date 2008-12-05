@@ -1714,6 +1714,8 @@ Totes les accions d’importacion entèrvouiqui sont consèrvâs dens lo [[Speci
 'import-interwiki-history'   => 'Copiyér totes les vèrsions de l’historico de ceta pâge',
 'import-interwiki-submit'    => 'Importar',
 'import-interwiki-namespace' => 'Transferar les pâges dens l’èspâço de nom :',
+'import-upload-comment'      => 'Comentèro :',
+'import-comment'             => 'Comentèro :',
 'importtext'                 => 'Volyéd èxportar lo fichiér dês lo vouiqui d’origina en utilisent l’outil [[Special:Export]], lo sôvar sur voutron disco dur et pués lo copiyér ique.',
 'importstart'                => 'Impôrt de les pâges...',
 'import-revision-count'      => '$1 {{PLURAL:$1|vèrsion|vèrsions}}',

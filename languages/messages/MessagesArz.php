@@ -2411,6 +2411,8 @@ $1 ممنوع بالفعل. هل تريد تغيير الإعدادات؟',
 'import-interwiki-history'   => 'انسخ كل نسخ التاريخ للصفحة دي',
 'import-interwiki-submit'    => 'استيراد',
 'import-interwiki-namespace' => 'انقل الصفحات للنطاق:',
+'import-upload-comment'      => 'تعليق:',
+'import-comment'             => 'تعليق:',
 'importtext'                 => 'لو سمحت تصدّر الملف من الويكى المصدر عن طريق [[Special:Export|خاصية التصدير]].
 احفظه على جهازك و بعدين حمله هنا.',
 'importstart'                => 'استيراد صفحات...',

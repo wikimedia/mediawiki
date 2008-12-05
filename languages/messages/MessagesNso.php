@@ -936,6 +936,8 @@ Ka kgopelo, kgetha leina le lengwe.',
 'thumbnail_error' => "Phoso go tlhama ''thumbnail'': $1",
 
 # Special:Import
+'import-upload-comment' => 'Ahlaahla:',
+'import-comment'        => 'Ahlaahla:',
 'import-revision-count' => '$1 {{PLURAL:$1|poeletšo|dipoeletšo}}',
 
 # Import log

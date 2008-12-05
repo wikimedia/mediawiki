@@ -47,8 +47,8 @@ $messages = array(
 'tog-diffonly'                => 'No fà vedè le pàggene cu le condenute sotte a le differenze',
 'tog-showhiddencats'          => 'Fa vedè le categorije scunnute',
 
-'underline-always'  => 'Sembre',
-'underline-never'   => 'Maje',
+'underline-always' => 'Sembre',
+'underline-never'  => 'Maje',
 
 # Dates
 'sunday'        => 'Dumèneche',
@@ -1227,10 +1227,12 @@ Videta tu 'a màne a 'ngollà 'a pàgena vecchie cu quedda nova.'''",
 'thumbnail_error' => "Errore ccrejanne l'andeprime picenne: $1",
 
 # Special:Import
-'import'           => "Pàggene 'mbortete",
-'importinterwiki'  => "'Mborte da Transuicchi",
-'xml-error-string' => "$1 a 'a linea $2, colonne $3 (byte $4): $5",
-'import-upload'    => 'Careche le date in XML',
+'import'                => "Pàggene 'mbortete",
+'importinterwiki'       => "'Mborte da Transuicchi",
+'import-upload-comment' => 'Commende:',
+'import-comment'        => 'Commende:',
+'xml-error-string'      => "$1 a 'a linea $2, colonne $3 (byte $4): $5",
+'import-upload'         => 'Careche le date in XML',
 
 # Import log
 'importlogpage'             => "Archivie de le 'mbortaziune",

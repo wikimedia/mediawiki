@@ -1973,6 +1973,8 @@ Allir innflutningar eru skráð í [[Special:Log/import|innflutningsskránna]].'
 'import-interwiki-history'   => 'Afrita allar breytingar þessarar síðu',
 'import-interwiki-submit'    => 'Flytja inn',
 'import-interwiki-namespace' => 'Færa síður í nafnrými:',
+'import-upload-comment'      => 'Athugasemdir:',
+'import-comment'             => 'Athugasemdir:',
 'importstart'                => 'Flyt inn síður...',
 'import-revision-count'      => '$1 {{PLURAL:$1|breyting|breytingar}}',
 'importnopages'              => 'Engar síður til innflutnings.',
