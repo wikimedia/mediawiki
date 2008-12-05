@@ -2414,6 +2414,8 @@ $1 כבר נחסם. האם ברצונכם לשנות את הגדרות החסי�
 'import-interwiki-history'   => 'העתקת כל היסטוריית העריכות של דף זה',
 'import-interwiki-submit'    => 'ייבוא',
 'import-interwiki-namespace' => 'העבר את הדפים לתוך מרחב השם:',
+'import-upload-comment'      => 'הערה:',
+'import-comment'             => 'הערה:',
 'importtext'                 => 'אנא ייצאו את הקובץ מאתר המקור תוך שימוש ב[[Special:Export|כלי הייצוא]], שמרו אותו לדיסק הקשיח שלכם והעלו אותו לכאן.',
 'importstart'                => 'מייבא דפים…',
 'import-revision-count'      => '{{PLURAL:$1|גרסה אחת|$1 גרסאות}}',

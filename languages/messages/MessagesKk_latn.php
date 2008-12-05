@@ -2264,6 +2264,8 @@ Wïkï-aparw üşin sırttan alw barlıq äreketter [[{{#special:Log}}/import|s�
 'import-interwiki-history'   => 'Bul bettiñ barlıq tarïxï nusqaların köşirw',
 'import-interwiki-submit'    => 'Sırttan alw',
 'import-interwiki-namespace' => 'Betterdi mına esim ayasına aparw:',
+'import-upload-comment'      => 'Mändemesi:',
+'import-comment'             => 'Mändemesi:',
 'importtext'                 => 'Qaýnar wïkïden «{{#special:Export}}» qwralın qoldanıp faýldı sırtqa beriñiz, dïskiñizge saqtañız da mında qotarıp beriñiz.',
 'importstart'                => 'Betterdi sırttan alwda…',
 'import-revision-count'      => '$1 tüzetw',

@@ -1825,6 +1825,8 @@ Maka-login la reng eganaganang pamaglub a transwiki (transwiki import actions) k
 'import-interwiki-history'   => 'Kopian la reng eganaganang bersion ning amlat para king bulung a ini.',
 'import-interwiki-submit'    => 'Maglub (import)',
 'import-interwiki-namespace' => 'Iyalis la king pirinan lagyu (namespace) deng bulung:',
+'import-upload-comment'      => 'Komentu:',
+'import-comment'             => 'Komentu:',
 'importtext'                 => 'Pakilual (export) me ing simpan (file) manibat ketang pikuanan a wiki a gagamitan ya ing Special:Export utilit. Potang kayi, i-save me king kekang disk at ilulan (upload) me keni.',
 'importstart'                => 'Maglub bulung...',
 'import-revision-count'      => '$1 {{PLURAL:$1|pamagbayu|pamagbayu}}',

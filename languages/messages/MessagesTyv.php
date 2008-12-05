@@ -620,6 +620,10 @@ $1',
 'allmessagesdefault' => 'Ниити сөзүглел',
 'allmessagescurrent' => 'Амгы сөзүглел',
 
+# Special:Import
+'import-upload-comment' => 'Комментарий:',
+'import-comment'        => 'Комментарий:',
+
 # Import log
 'import-logentry-upload-detail' => '$1 үндүрери(лер)',
 

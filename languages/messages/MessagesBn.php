@@ -1655,6 +1655,8 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'import-interwiki-history'   => 'এই পাতার সমস্ত ইতিহাসের সংস্করণের অনুলিপি করা হোক',
 'import-interwiki-submit'    => 'আমদানি',
 'import-interwiki-namespace' => 'পাতাগুলি এই নামস্থানে স্থানান্তর করা হোক:',
+'import-upload-comment'      => 'মন্তব্য:',
+'import-comment'             => 'মন্তব্য:',
 'importtext'                 => 'অনুগ্রহ করে Special:Export সরঞ্জামটি ব্যবহার করে ফাইলটি উৎস উইকি থেকে রপ্তানি করুন, আপনার ডিস্কে এটি সংরক্ষণ  করুন এবং তারপর সেটি এখানে আপলোড করুন।',
 'importstart'                => 'পাতা আমদানি করা হচ্ছে...',
 'import-revision-count'      => '$1 {{PLURAL:$1|টি সংশোধন|টি সংশোধন}}',

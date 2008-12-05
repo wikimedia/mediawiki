@@ -2195,6 +2195,8 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'import-interwiki-history'   => "Copia l'intera cronologia di questa pagina",
 'import-interwiki-submit'    => 'Importa',
 'import-interwiki-namespace' => 'Trasferisci le pagine nel namespace:',
+'import-upload-comment'      => 'Oggetto:',
+'import-comment'             => 'Oggetto:',
 'importtext'                 => 'Si prega di esportare il file dal sito wiki di origine con la funzione Special:Export, salvarlo sul proprio disco e poi caricarlo qui.',
 'importstart'                => 'Importazione delle pagine in corso...',
 'import-revision-count'      => '{{PLURAL:$1|una revisione importata|$1 revisioni importate}}',

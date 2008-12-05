@@ -2136,6 +2136,8 @@ $1',
 'import-interwiki-history'   => 'ចំលង គ្រប់កំណែចាស់ នៃទំព័រនេះ',
 'import-interwiki-submit'    => 'នាំចូល',
 'import-interwiki-namespace' => 'បញ្ជូនទំព័រទៅក្នុងលំហឈ្មោះ៖',
+'import-upload-comment'      => 'យោបល់៖',
+'import-comment'             => 'យោបល់៖',
 'importtext'                 => 'សូមនាំចេញឯកសារនេះពីវិគីប្រភពដោយប្រើប្រាស់[[Special:Export|ឧបករណ៍នាំចេញ]]។
 
 រក្សាវាទុកទៅក្នុងកុំព្យូទ័ររបស់អ្នករួចផ្ទុកវាឡើងនៅទីនេះ។',

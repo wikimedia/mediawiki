@@ -2257,6 +2257,8 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'import-interwiki-history'   => 'Kopiu ĉiuj versioj el historio por ĉi pago.',
 'import-interwiki-submit'    => 'Importi',
 'import-interwiki-namespace' => 'Transigi paĝoj en nomspaco:',
+'import-upload-comment'      => 'Komento:',
+'import-comment'             => 'Komento:',
 'importtext'                 => 'Bonvole eksportu la dosieron el la fonta vikio per la ilo Speciala:Export, konservu ĝin sur via disko kaj poste alŝutu ĝin tien ĉi.',
 'importstart'                => 'Importante paĝojn...',
 'import-revision-count'      => '$1 {{PLURAL:$1|versio|versioj}}',

@@ -2368,6 +2368,8 @@ Valamennyi transwiki importálási művelet az [[Special:Log/import|importálás
 'import-interwiki-history'   => 'A lap összes előzményváltozatainak másolása',
 'import-interwiki-submit'    => 'Importálás',
 'import-interwiki-namespace' => 'A lapok átvitele névtérbe:',
+'import-upload-comment'      => 'Megjegyzés:',
+'import-comment'             => 'Megjegyzés:',
 'importtext'                 => 'Kérjük, hogy a fájlt a forráswikiből a Special:Export segédeszköz használatával exportáld, mentsd a lemezedre, és töltsd ide föl.',
 'importstart'                => 'Lapok importálása...',
 'import-revision-count'      => '$1 {{PLURAL:$1|revision|változatok}}',

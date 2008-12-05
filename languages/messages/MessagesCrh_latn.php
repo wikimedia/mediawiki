@@ -1515,6 +1515,10 @@ MediaWiki interfeysiniñ çeşit tillerge tercime etüvde iştirak etmege istese
 'thumbnail_invalid_params' => 'Yañlış thumbnail parametri',
 'thumbnail_dest_directory' => 'İstenilgen direktoriyanı yaratmaqnıñ iç çaresi yoq',
 
+# Special:Import
+'import-upload-comment' => 'İzaat:',
+'import-comment'        => 'İzaat:',
+
 # Import log
 'importlogpage' => 'İmport jurnalı',
 

@@ -2327,6 +2327,8 @@ Sve akcije pri međuwiki uvozu će biti zapisane u [[Special:Log/import|zapisu u
 'import-interwiki-history'   => 'Kopiraj sve verzije historije za ovu stranicu',
 'import-interwiki-submit'    => 'Uvoz',
 'import-interwiki-namespace' => 'Uvoz stranica u imenski prostor:',
+'import-upload-comment'      => 'Komentar:',
+'import-comment'             => 'Komentar:',
 'importtext'                 => 'Molimo Vas da izvezete datoteku iz izvornog wikija koristeći [[Special:Export|izvoz]], sačuvajte ga kod sebe i pošaljite ovdje.',
 'importstart'                => 'Uvoz stranica...',
 'import-revision-count'      => '$1 {{PLURAL:$1|revizija|revizije|revizija}}',

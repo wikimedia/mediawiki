@@ -645,10 +645,12 @@ yä isä saylanğan isem yaraqsız buldı. Başqa isem sayla zínhar.',
 'thumbnail-more' => 'Zuraytası',
 
 # Special:Import
-'import'        => 'Bitlärne yökläw',
-'importfailed'  => 'Yökläw xatası: $1',
-'importnotext'  => 'Buş yä ki mäten tügel',
-'importsuccess' => 'Yökläw uñışlı buldı!',
+'import'                => 'Bitlärne yökläw',
+'import-upload-comment' => 'Açıqlama:',
+'import-comment'        => 'Açıqlama:',
+'importfailed'          => 'Yökläw xatası: $1',
+'importnotext'          => 'Buş yä ki mäten tügel',
+'importsuccess'         => 'Yökläw uñışlı buldı!',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'        => 'Şäxsi bitem',

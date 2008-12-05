@@ -1435,6 +1435,8 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 # Special:Import
 'import'                  => 'Betlerdi import qılıw',
 'import-interwiki-submit' => 'Import',
+'import-upload-comment'   => 'Kommentariy:',
+'import-comment'          => 'Kommentariy:',
 'importstart'             => 'Betler import qılınbaqta...',
 'import-revision-count'   => '{{PLURAL:$1|1 nusqa|$1 nusqa}}',
 'importnopages'           => "Import qılınatug'ın betler joq.",

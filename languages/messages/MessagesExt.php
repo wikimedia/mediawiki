@@ -1688,6 +1688,8 @@ Tolas acionis d'emporteau transwiki se rustrin nel [[Special:Log/import|rustrihu
 'import-interwiki-history'   => "Copial tolas velsionis estóricas d'esta páhina",
 'import-interwiki-submit'    => 'Emporteal',
 'import-interwiki-namespace' => 'Movel páhinas al espaciu e nombris:',
+'import-upload-comment'      => 'Comentáriu:',
+'import-comment'             => 'Comentáriu:',
 'importstart'                => 'Emporteandu páhinas...',
 'import-revision-count'      => '$1 {{PLURAL:$1|revisión|revisionis}}',
 'importnopages'              => 'Nu ai páhinas pa emporteal.',

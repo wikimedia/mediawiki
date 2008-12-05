@@ -1941,6 +1941,8 @@ $wgMessageStructure = array(
 		'import-interwiki-history',
 		'import-interwiki-submit',
 		'import-interwiki-namespace',
+		'import-upload-comment',
+		'import-comment',
 		'importtext',
 		'importstart',
 		'import-revision-count',

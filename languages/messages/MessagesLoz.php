@@ -931,6 +931,8 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 # Special:Import
 'import'                  => 'Petulo import',
 'import-interwiki-submit' => 'Petulo import',
+'import-upload-comment'   => 'Lyangutukezi:',
+'import-comment'          => 'Lyangutukezi:',
 
 # Import log
 'importlogpage' => 'Desu di import',

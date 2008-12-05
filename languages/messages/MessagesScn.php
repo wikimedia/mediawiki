@@ -2123,6 +2123,8 @@ Nta st'ùrtimu casu si pò macari utilizzari un culligamentu, p'asempiu [[{{ns:s
 'import-interwiki-history'   => 'Copia la ntera cronoluggìa di sta pàggina',
 'import-interwiki-submit'    => 'Mporta',
 'import-interwiki-namespace' => 'Trasfirisci li pàggini ntô namespace:',
+'import-upload-comment'      => 'Oggettu:',
+'import-comment'             => 'Oggettu:',
 'importtext'                 => "Pi favuri, esporta lu file dâ wiki d'orìggini usannu l'utility Speciale:Export, sàrvalu supra lu tò discu e carrìcalu ccà",
 'importstart'                => 'Mpurtazzioni dî pàggini n cursu...',
 'import-revision-count'      => '{{PLURAL:$1|na rivisioni mpurtata|$1 rivisioni mpurtati}}',

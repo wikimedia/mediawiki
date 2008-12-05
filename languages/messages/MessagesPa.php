@@ -855,6 +855,8 @@ to upload files.',
 # Special:Import
 'import'                  => 'ਪੇਜ ਇੰਪੋਰਟ ਕਰੋ',
 'import-interwiki-submit' => 'ਇੰਪੋਰਟ',
+'import-upload-comment'   => 'ਟਿੱਪਣੀ:',
+'import-comment'          => 'ਟਿੱਪਣੀ:',
 'importstart'             => 'ਪੇਜ ਇੰਪੋਰਟ ਕੀਤੇ ਜਾ ਰਹੇ ਹਨ...',
 'importfailed'            => 'ਇੰਪੋਰਟ ਫੇਲ੍ਹ: $1',
 'importnotext'            => 'ਖਾਲੀ ਜਾਂ ਕੋਈ ਟੈਕਸਟ ਨਹੀਂ',

@@ -1536,6 +1536,8 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'import-interwiki-history'   => 'Kopiq lehe terveq aolugu',
 'import-interwiki-submit'    => 'Tuuq',
 'import-interwiki-namespace' => 'Panõq leheq nimeruumi:',
+'import-upload-comment'      => 'Põhjus:',
+'import-comment'             => 'Põhjus:',
 'importtext'                 => 'Viiq lättevikist lehti [[Special:Export|viimis]]-tüüriistaga. Pästäq teedüs nii uman puutrin ku siin.',
 'importstart'                => 'Tuvvas lehti...',
 'import-revision-count'      => '$1 {{PLURAL:$1|kujo|kujjo}}',

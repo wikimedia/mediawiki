@@ -1961,6 +1961,8 @@ Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{ns:special}}:Expor
 'import-interwiki-history'   => 'Orrialde honen historiako bertsio guztiak kopiatu',
 'import-interwiki-submit'    => 'Inportatu',
 'import-interwiki-namespace' => 'Izen-tarte honetako orrialdeak transferitu:',
+'import-upload-comment'      => 'Iruzkina:',
+'import-comment'             => 'Iruzkina:',
 'importtext'                 => 'Mesedez, jatorrizko wikitik orrialdea esportatzeko Special:Export tresna erabil ezazu, zure diskoan gorde eta jarraian hona igo.',
 'importstart'                => 'Orrialdeak inportatzen...',
 'import-revision-count'      => '{{PLURAL:$1|berrikuspen 1|$1 berrikuspen}}',
