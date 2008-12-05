@@ -111,7 +111,7 @@ class SpecialSearch {
 	 * @param string $term
 	 */
 	public function showResults( $term ) {
-		global $wgOut, $wgDisableTextSearch;
+		global $wgOut, $wgDisableTextSearch, $wgContLang;
 		wfProfileIn( __METHOD__ );
 
 		$this->setupPage( $term );
@@ -129,7 +129,8 @@ class SpecialSearch {
 			Xml::closeElement('table')
 		);
 
-		if( '' === trim( $term ) ) {
+		$filePrefix = $wgContLang->getFormattedNsText(NS_FILE).':';
+		if( '' === trim( $term ) || $filePrefix === trim( $term ) ) {
 			// Empty query -- straight view of search form
 			wfProfileOut( __METHOD__ );
 			return;
