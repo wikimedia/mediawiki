@@ -28,6 +28,7 @@ class SpecialImport extends SpecialPage {
 	private $interwiki = false;
 	private $namespace;
 	private $frompage = '';
+	private $logcomment= false;
 	private $history = true;
 	
 	/**
@@ -69,6 +70,8 @@ class SpecialImport extends SpecialPage {
 		$this->namespace = $wgRequest->getIntOrNull( 'namespace' );
 		$sourceName = $wgRequest->getVal( "source" );
 
+		$this->logcomment = $wgRequest->getText( 'log-comment' );
+
 		if ( !$wgUser->matchEditToken( $wgRequest->getVal( 'editToken' ) ) ) {
 			$source = new WikiErrorMsg( 'import-token-mismatch' );
 		} elseif ( $sourceName == 'upload' ) {
@@ -103,7 +106,7 @@ class SpecialImport extends SpecialPage {
 			if( !is_null( $this->namespace ) ) {
 				$importer->setTargetNamespace( $this->namespace );
 			}
-			$reporter = new ImportReporter( $importer, $isUpload, $this->interwiki );
+			$reporter = new ImportReporter( $importer, $isUpload, $this->interwiki , $this->logcomment);
 
 			$reporter->open();
 			$result = $importer->doImport();
@@ -135,9 +138,26 @@ class SpecialImport extends SpecialPage {
 				Xml::openElement( 'form', array( 'enctype' => 'multipart/form-data', 'method' => 'post', 'action' => $action ) ) .
 				Xml::hidden( 'action', 'submit' ) .
 				Xml::hidden( 'source', 'upload' ) .
+				Xml::openElement( 'table', array( 'id' => 'mw-import-table' ) ) .
+
+				"<tr>
+					<td>" .
 				Xml::input( 'xmlimport', 50, '', array( 'type' => 'file' ) ) . ' ' .
-				Xml::hidden( 'editToken', $wgUser->editToken() ) .
+					"</td>
+				</tr>
+				<tr>
+					<td>" .
+				Xml::label( wfMsg('import-upload-comment'), 'comment' ) .
+				Xml::input( 'log-comment', 50, '', array( 'type' => 'text' ) ) . ' ' .
+					"</td>
+				</tr>
+				<tr>
+					<td>" .
 				Xml::submitButton( wfMsg( 'uploadbtn' ) ) .
+					"</td>
+				</tr>" .
+				Xml::closeElement( 'table' ).
+				Xml::hidden( 'editToken', $wgUser->editToken() ) .
 				Xml::closeElement( 'form' ) .
 				Xml::closeElement( 'fieldset' )
 			);
@@ -188,6 +208,14 @@ class SpecialImport extends SpecialPage {
 					"</td>
 				</tr>
 				<tr>
+					<td>" .
+						Xml::label( wfMsg( 'import-comment' ), 'comment' ) .
+					"</td>
+					<td>" .
+						Xml::input( 'log-comment', 50, '', array( 'type' => 'text' ) ) . ' ' .
+					"</td>
+				</tr>
+				<tr>
 					<td>
 					</td>
 					<td>" .
@@ -207,11 +235,14 @@ class SpecialImport extends SpecialPage {
  * @ingroup SpecialPage
  */
 class ImportReporter {
-	function __construct( $importer, $upload, $interwiki ) {
+      private $reason=false;
+
+	function __construct( $importer, $upload, $interwiki , $reason=false ) {
 		$importer->setPageOutCallback( array( $this, 'reportPage' ) );
 		$this->mPageCount = 0;
 		$this->mIsUpload = $upload;
 		$this->mInterwiki = $interwiki;
+		$this->reason = $reason;
 	}
 
 	function open() {
@@ -239,12 +270,18 @@ class ImportReporter {
 			if( $this->mIsUpload ) {
 				$detail = wfMsgExt( 'import-logentry-upload-detail', array( 'content', 'parsemag' ),
 					$contentCount );
+				if ($this->reason) {
+			                $detail .=  ' (' . $this->reason .')';
+				}
 				$log->addEntry( 'upload', $title, $detail );
 			} else {
 				$interwiki = '[[:' . $this->mInterwiki . ':' .
 					$origTitle->getPrefixedText() . ']]';
 				$detail = wfMsgExt( 'import-logentry-interwiki-detail', array( 'content', 'parsemag' ),
 					$contentCount, $interwiki );
+				if ($this->reason) {
+			                $detail .=  ' (' . $this->reason .')';
+				}
 				$log->addEntry( 'interwiki', $title, $detail );
 			}
 

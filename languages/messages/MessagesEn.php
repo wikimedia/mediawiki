@@ -2790,6 +2790,8 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'import-interwiki-history'   => 'Copy all history versions for this page',
 'import-interwiki-submit'    => 'Import',
 'import-interwiki-namespace' => 'Transfer pages into namespace:',
+'import-upload-comment'      => 'Comment:',
+'import-comment' 	     => 'Comment:',
 'importtext'                 => 'Please export the file from the source wiki using the [[Special:Export|export utility]].
 Save it to your computer and upload it here.',
 'importstart'                => 'Importing pages...',
