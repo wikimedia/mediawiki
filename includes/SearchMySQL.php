@@ -43,12 +43,18 @@ class SearchMySQL extends SearchEngine {
 
 		# FIXME: This doesn't handle parenthetical expressions.
 		$m = array();
-		if( preg_match_all( '/([-+<>~]?)(([' . $lc . ']+)(\*?)|"[^"]*")/',
-			  $filteredText, $m, PREG_SET_ORDER ) ) {
+		if( preg_match_all( '/([-+<>?~]?)(([' . $lc . ']+)(\*?)|"[^"]*")/', 
+			$filteredText, $m, PREG_SET_ORDER ) )
+		{
 			foreach( $m as $terms ) {
 				if( $searchon !== '' ) $searchon .= ' ';
-				if( $this->strictMatching && ($terms[1] == '') ) {
-					$terms[1] = '+';
+				if( $this->strictMatching ) {
+					// '' means AND while ? means OR to the user
+					if( $terms[1] == '' ) {
+						$terms[1] = '+';
+					} else if( $terms[1] == '?' ) {
+						$terms[1] = '';
+					}
 				}
 				$searchon .= $terms[1] . $wgContLang->stripForSearch( $terms[2] );
 				if( !empty( $terms[3] ) ) {
