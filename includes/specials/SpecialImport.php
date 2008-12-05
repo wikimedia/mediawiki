@@ -147,8 +147,8 @@ class SpecialImport extends SpecialPage {
 				</tr>
 				<tr>
 					<td>" .
-				Xml::label( wfMsg('import-upload-comment'), 'comment' ) .
-				Xml::input( 'log-comment', 50, '', array( 'type' => 'text' ) ) . ' ' .
+				Xml::label( wfMsg('import-upload-comment'), 'log-comment' ) .
+				Xml::input( 'log-comment', 50, '', array( 'id' => 'log-comment', 'type' => 'text' ) ) . ' ' .
 					"</td>
 				</tr>
 				<tr>
