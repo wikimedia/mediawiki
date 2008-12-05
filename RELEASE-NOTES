@@ -68,6 +68,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   and should still be used in code meant to be compatible with v1.13 or older.
 * MediaWiki can be forced to use private IPs forwarded by a proxy server by
   using $wgUsePrivateIPs.
+* (bug 11009) The null file (ie: /dev/null) can be configured with $wgNullFile. 
+  Useful for overriding if the normal file isn't accessible
 
 === Migrated extensions ===
 The following extensions are migrated into MediaWiki 1.14:
