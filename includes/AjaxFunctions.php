@@ -141,3 +141,18 @@ function wfAjaxGetThumbnailUrl( $file, $width, $height ) {
 	
 	return $url;
 }
+
+/**
+ * Called in some places (currently just extensions)
+ * to get the URL for a given file.
+ */
+function wfAjaxGetFileUrl( $file ) {
+	$file = wfFindFile( $file );
+	
+	if ( !$file || !$file->exists() )
+		return null;
+		
+	$url = $file->getUrl();
+	
+	return $url;
+}
