@@ -2493,16 +2493,18 @@ class Article {
 		$resultDetails = null;
 
 		# Check permissions
-		$errors = array_merge( $this->mTitle->getUserPermissionsErrors( 'edit', $wgUser ),
-			$this->mTitle->getUserPermissionsErrors( 'rollback', $wgUser ) );
+		$editErrors = $this->mTitle->getUserPermissionsErrors( 'edit', $wgUser );
+		$rollbackErrors = $this->mTitle->getUserPermissionsErrors( 'rollback', $wgUser );
+		$errors = array_merge( $editErrors, wfArrayDiff2( $rollbackErrors, $editErrors ) );
+
 		if( !$wgUser->matchEditToken( $token, array( $this->mTitle->getPrefixedText(), $fromP ) ) )
 			$errors[] = array( 'sessionfailure' );
 
-		if( $wgUser->pingLimiter('rollback') || $wgUser->pingLimiter() ) {
+		if( $wgUser->pingLimiter( 'rollback' ) || $wgUser->pingLimiter() ) {
 			$errors[] = array( 'actionthrottledtext' );
 		}
 		# If there were errors, bail out now
-		if(!empty($errors))
+		if( !empty( $errors ) )
 			return $errors;
 
 		return $this->commitRollback($fromP, $summary, $bot, $resultDetails);
@@ -2637,10 +2639,6 @@ class Article {
 			$details
 		);
 
-		if( in_array( array( 'blocked' ), $result ) ) {
-			$wgOut->blockedPage();
-			return;
-		}
 		if( in_array( array( 'actionthrottledtext' ), $result ) ) {
 			$wgOut->rateLimited();
 			return;
@@ -2662,7 +2660,7 @@ class Article {
 		# Display permissions errors before read-only message -- there's no
 		# point in misleading the user into thinking the inability to rollback
 		# is only temporary.
-		if( !empty($result) && $result !== array( array('readonlytext') ) ) {
+		if( !empty( $result ) && $result !== array( array( 'readonlytext' ) ) ) {
 			# array_diff is completely broken for arrays of arrays, sigh.  Re-
 			# move any 'readonlytext' error manually.
 			$out = array();
@@ -2674,7 +2672,7 @@ class Article {
 			$wgOut->showPermissionsErrorPage( $out );
 			return;
 		}
-		if( $result == array( array('readonlytext') ) ) {
+		if( $result == array( array( 'readonlytext' ) ) ) {
 			$wgOut->readOnlyPage();
 			return;
 		}

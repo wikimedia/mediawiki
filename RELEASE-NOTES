@@ -389,6 +389,8 @@ The following extensions are migrated into MediaWiki 1.14:
   markup now.
 * (bug 16529) Fix for search suggestions with some third-party JS libraries
 * (bug 13342) importScript() generates more consistent URI encoding
+* (bug 16577) When a blocked user tries to rollback a page, the block message
+  is now only displayed once
 
 
 === API changes in 1.14 ===
