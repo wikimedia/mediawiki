@@ -1081,6 +1081,7 @@ $2',
 'nextn'                     => '$1 επομένων',
 'viewprevnext'              => 'Εμφάνιση ($1) ($2) ($3).',
 'searchhelp-url'            => 'Help:Περιεχόμενα',
+'searchprofile-images'      => 'Αρχεία',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 λέξη|$2 λέξεις}})',
 'search-result-score'       => 'Σχετικότητα: $1%',
 'search-suggest'            => 'Μήπως εννοούσατε: $1',
@@ -2171,7 +2172,7 @@ $1',
 'import-noarticle'           => 'Καμία σελίδα για εισαγωγή!',
 'import-nonewrevisions'      => 'Όλες οι αναθεωρήσεις εισάχθηκαν προηγουμένως.',
 'xml-error-string'           => '$1 στη γραμμή $2, στήλη $3 (byte $4): $5',
-'import-upload'              => 'Επιόρτωση δεδομένων XML',
+'import-upload'              => 'Επιφόρτωση δεδομένων XML',
 
 # Import log
 'importlogpage'                    => 'Αρχείο καταγραφής εισαγωγών',
@@ -2622,7 +2623,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Επεξεργαστείτε το συγκεκριμένο αρχείο χρησιμοποιώντας μια από τις εξωτερικές εφαρμογές.',
-'edit-externally-help' => 'Για περισσότερες πληροφορίες ακολουθήστε το σύνδεσμο: [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions].',
+'edit-externally-help' => 'Για περισσότερες πληροφορίες δείτε τις [http://www.mediawiki.org/wiki/Manual:External_editors οδηγίες εγκατάστασης].',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'όλες',

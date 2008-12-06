@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Cecílio
  * @author MCruz
  * @author Malafaya
  * @author Urhixidur
@@ -21,22 +22,22 @@ $messages = array(
 'tuesday'       => 'Terça',
 'wednesday'     => 'Quarta',
 'thursday'      => 'Quinta',
-'friday'        => 'Sexta',
+'friday'        => 'Sesta',
 'saturday'      => 'Sábado',
 'sun'           => 'Dem',
 'mon'           => 'Seg',
 'tue'           => 'Ter',
 'wed'           => 'Qua',
 'thu'           => 'Qui',
-'fri'           => 'Sex',
-'sat'           => 'Sab',
+'fri'           => 'Ses',
+'sat'           => 'Sáb',
 'january'       => 'Janeiro',
 'february'      => 'Febreiro',
-'march'         => 'Márçio',
+'march'         => 'Márcio',
 'april'         => 'Abril',
 'may_long'      => 'Maio',
-'june'          => 'Junho',
-'july'          => 'Julho',
+'june'          => 'Júnio',
+'july'          => 'Júlio',
 'august'        => 'Agosto',
 'september'     => 'Setembre',
 'october'       => 'Outubre',
@@ -47,8 +48,8 @@ $messages = array(
 'march-gen'     => 'Márcio',
 'april-gen'     => 'Abril',
 'may-gen'       => 'Maio',
-'june-gen'      => 'Junho',
-'july-gen'      => 'Julho',
+'june-gen'      => 'Júnio',
+'july-gen'      => 'Júlio',
 'august-gen'    => 'Agosto',
 'september-gen' => 'Setembre',
 'october-gen'   => 'Outubre',
@@ -56,570 +57,593 @@ $messages = array(
 'december-gen'  => 'Dezembre',
 'jan'           => 'Jan',
 'feb'           => 'Feb',
-'mar'           => 'Mar',
+'mar'           => 'Már',
 'apr'           => 'Abr',
 'may'           => 'Mai',
-'jun'           => 'Jun',
-'jul'           => 'Jul',
+'jun'           => 'Jún',
+'jul'           => 'Júl',
 'aug'           => 'Ago',
 'sep'           => 'Set',
 'oct'           => 'Out',
-'nov'           => 'Nov',
+'nov'           => 'Nob',
 'dec'           => 'Dez',
 
 # Categories related messages
-'category_header'        => 'Páginas na categoria "$1"',
-'subcategories'          => 'Subcategories',
-'category-media-header'  => 'Multimédia na categorie "$1"',
-'category-empty'         => "''Yesta categorie de momento num possui nenhuma página de conteúdo o ficheiro multimédia.''",
-'listingcontinuesabbrev' => 'cont.',
+'category_header'        => 'Páiginas an la catadorie "$1"',
+'subcategories'          => 'Subcatadories',
+'category-media-header'  => 'Multimédia an la catadorie "$1"',
+'category-empty'         => "''Esta catadorie neste sfergante nun ten nanhue páigina ó cuntenido multimédia.''",
+'listingcontinuesabbrev' => 'cunt.',
 
-'about'     => 'Sobre',
-'newwindow' => '(abre numa nuoba janela)',
-'cancel'    => 'Cancelar',
-'qbfind'    => 'Procurar',
-'qbedit'    => 'Editar',
+'about'     => 'Subre',
+'newwindow' => '(abre nua nuoba jinela)',
+'cancel'    => 'Çfazer',
+'qbfind'    => 'Percurar',
+'qbedit'    => 'Eiditar',
 'mytalk'    => 'Mie cumbersa',
 
 'errorpagetitle'   => 'Erro',
-'returnto'         => 'Retornar para $1.',
+'returnto'         => 'Retornar pa $1.',
 'tagline'          => 'De {{SITENAME}}',
 'help'             => 'Ajuda',
-'search'           => 'Pesquisa',
-'searchbutton'     => 'Pesquisar',
-'searcharticle'    => 'Ir',
-'history'          => 'Histórico da página',
-'history_short'    => 'Histórico',
-'printableversion' => 'Versão para impressão',
-'permalink'        => 'Ligaçon permanente',
-'edit'             => 'Editar',
-'editthispage'     => 'Editar yesta página',
-'delete'           => 'Apagar',
+'search'           => 'Percura',
+'searchbutton'     => 'Percurar',
+'searcharticle'    => 'Bota',
+'history'          => 'Stórico de la Páigina',
+'history_short'    => 'Stória',
+'printableversion' => 'Berçon pa Ampremir',
+'permalink'        => 'Lhigaçon pa siempre',
+'edit'             => 'Eiditar',
+'editthispage'     => 'Eiditar esta páigina',
+'delete'           => 'Botar fuora',
 'protect'          => 'Proteger',
-'newpage'          => 'Nuoba página',
-'talkpage'         => 'Çcutir yesta página',
+'newpage'          => 'Nuoba páigina',
+'talkpage'         => 'Çcutir esta páigina',
 'talkpagelinktext' => 'Cumbersar',
-'personaltools'    => 'Ferramentas pessoais',
-'talk'             => 'Çcusson',
-'views'            => 'Bistas',
+'personaltools'    => 'Ferramientas pessonales',
+'talk'             => 'Çcuçon',
+'views'            => 'Bejitas',
 'toolbox'          => 'Caixa de Ferramentas',
 'redirectedfrom'   => '(Redireccionado de <b>$1</b>)',
-'redirectpagesub'  => 'Página de redireccionamento',
+'redirectpagesub'  => 'Páigina de reancaminamiento',
 'jumpto'           => 'Saltar a:',
-'jumptonavigation' => 'navegaçon',
-'jumptosearch'     => 'pesquisa',
+'jumptonavigation' => 'nabegaçon',
+'jumptosearch'     => 'percura',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'            => 'Sobre {{SITENAME}}',
-'aboutpage'            => 'Project:Sobre',
-'bugreports'           => 'Reportar bugs',
-'bugreportspage'       => 'Project:Relatos_de_bugs',
-'copyrightpage'        => '{{ns:project}}:Direitos de autor',
-'currentevents'        => 'Amboras actuais',
-'currentevents-url'    => 'Project:Amboras actuales',
-'disclaimers'          => 'Alerta de Conteúdo',
-'disclaimerpage'       => 'Project:Aviso geral',
-'edithelp'             => 'Ajuda de edição',
-'edithelppage'         => 'Help:Editar',
-'helppage'             => 'Help:Conteúdos',
-'mainpage'             => 'Página principal',
-'mainpage-description' => 'Página principal',
+'aboutsite'            => 'Subre {{SITENAME}}',
+'aboutpage'            => 'Project:Subre',
+'bugreports'           => 'Acusar erros',
+'bugreportspage'       => 'Project:Acusar_erros',
+'copyrightpage'        => '{{ns:project}}:Dreitos de outor',
+'currentevents'        => 'Amboras atuales',
+'currentevents-url'    => 'Project:Amboras atuales',
+'disclaimers'          => 'Abiso de Cuntenido',
+'disclaimerpage'       => 'Project:Abiso giral',
+'edithelp'             => 'Ajuda de eidiçon',
+'edithelppage'         => 'Help:Eiditar',
+'helppage'             => 'Help:Cuntenidos',
+'mainpage'             => 'Páigina Percípal',
+'mainpage-description' => 'Páigina Percípal',
 'portal'               => 'Portal da quemunidade',
-'portal-url'           => 'Project:Portal da quemunidade',
+'portal-url'           => 'Project:Portal de la quemunidade',
 'privacy'              => 'Política de privacidade',
-'privacypage'          => 'Project:Política de privacidade',
+'privacypage'          => 'Project:Política de pribacidade',
 
-'retrievedfrom'       => 'Obtido an "$1"',
-'youhavenewmessages'  => 'Você tem $1 ($2).',
-'newmessageslink'     => 'nuobas mensages',
+'retrievedfrom'       => 'Sacado an "$1"',
+'youhavenewmessages'  => 'Tu tenes $1 ($2).',
+'newmessageslink'     => 'nuobas mensaiges',
 'newmessagesdifflink' => 'comparar com la penúltima revison',
-'editsection'         => 'eitar',
-'editold'             => 'editar',
-'editsectionhint'     => 'Editar secção: $1',
-'toc'                 => 'Tabla de contenido',
-'showtoc'             => 'mostrar',
-'hidetoc'             => 'çconder',
+'editsection'         => 'eiditar',
+'editold'             => 'eiditar',
+'editsectionhint'     => 'Eiditar cacho: $1',
+'toc'                 => 'Tabela de cuntenido',
+'showtoc'             => 'amostrar',
+'hidetoc'             => 'scunder',
 'site-rss-feed'       => 'Feed RSS $1',
 'site-atom-feed'      => 'Feed Atom $1',
 'page-rss-feed'       => 'Feed RSS de "$1"',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-user'     => "Página d'utilizador",
-'nstab-project'  => 'Página de proyecto',
-'nstab-image'    => 'Ficheiro',
+'nstab-user'     => 'Páigina de l outelizador',
+'nstab-project'  => 'Páigina de porjeto',
+'nstab-image'    => 'Fexeiro',
 'nstab-template' => 'Modelo',
-'nstab-category' => 'Categoria',
+'nstab-category' => 'Catadorie',
 
 # General errors
-'badtitle'       => 'Títalo inválido',
-'badtitletext'   => 'La página pedida era inbálida, bazia, o un títalo inter-lhenguagem o inter-buiqui ancorrectamiente lhigado.
-Puode conter un o mais caracteres que num puoden ser usados an títalos.',
+'badtitle'       => 'Títalo ambálido',
+'badtitletext'   => 'La páigina que pediste ye ambálida, bazia, ó ua lhigaçon mal feita dun títalo antre-lhéngua ó antre-uiqui.
+Puode tener un ó mais carateres que nun puoden ser outelizados an títalos.',
 'viewsource'     => 'Ber código',
-'viewsourcefor'  => 'para $1',
-'viewsourcetext' => 'Você puode ber i copiar l código desta página:',
+'viewsourcefor'  => 'pa $1',
+'viewsourcetext' => 'Tu puodes ber i copiar l código desta páigina:',
 
 # Login and logout pages
-'yourname'                => 'Su nome de utilizador',
-'yourpassword'            => 'Palabra-chave',
-'remembermypassword'      => 'Lhembrar la mie palabra-chave antre sessons neste computador.',
-'login'                   => 'Entrar',
-'nav-login-createaccount' => 'Entrar / criar cuonta',
-'loginprompt'             => 'Tem que ter ls <i>cookies</i> activos para poder autenticar-se na {{SITENAME}}.',
-'userlogin'               => 'Entrar / criar cuonta',
+'yourname'                => 'Nome de Outelizador',
+'yourpassword'            => 'Palabra chabe',
+'remembermypassword'      => 'Lhembrar-se de mi neste cumputador',
+'login'                   => 'Antrar',
+'nav-login-createaccount' => 'Antrar / criar cuonta',
+'loginprompt'             => 'Tenes que tener ls <i>cookies</i> atibos para te outenticares an{{SITENAME}}.',
+'userlogin'               => 'Antrar / criar cuonta',
 'logout'                  => 'Salir',
 'userlogout'              => 'Salir',
-'nologin'                 => 'Num tem ua cuonta? $1.',
-'nologinlink'             => 'Crear ua cuonta',
+'nologin'                 => 'Nun tenes ua cuonta? $1.',
+'nologinlink'             => 'Criar ua cuonta',
 'createaccount'           => 'Criar nuoba cuonta',
-'gotaccount'              => 'Ya tem ua cuonta? $1.',
-'gotaccountlink'          => 'Entrar',
+'gotaccount'              => 'Yá tenes ua cuonta? $1.',
+'gotaccountlink'          => 'Antrar',
 'yourrealname'            => 'Nome berdadeiro:',
-'prefs-help-realname'     => 'L nome berdadeiro ye opcional, mas, caso decida l revelar, yeste será outelizado para lhe dar crédito pulo sue trabalho.',
-'loginsuccesstitle'       => 'Login bem sucedido',
-'loginsuccess'            => "'''Encontra-se agora lhigado a {{SITENAME}} como \"\$1\"'''.",
-'nosuchuser'              => 'Num eisiste nenhum outelizador com l nome "$1".
-Berifique l nome que antroduziu, o crie unha nuoba cuonta de outelizador.',
-'nouserspecified'         => 'Tem que specificar um nome de outelizador.',
-'wrongpassword'           => 'La palabra-chave que antroduziu ye inbálida. Por fabor, tente de nuobo.',
-'wrongpasswordempty'      => 'La palabra-chave antroduzida stá em branco. Por fabor, tente de nuobo.',
-'passwordtooshort'        => 'La sue palabra-chave ye inbálida o demasiado corta. Debe ter pulo menos $1 caracteres i ser diferente do seu nome de outelizador.',
-'mailmypassword'          => 'Ambiar ua nuoba palabra-chabe por correio electrónico',
-'passwordremindertitle'   => 'Nuoba palabra-chave temporária an {{SITENAME}}',
-'noemail'                 => 'Num eisiste andereço de correio electrónico associado al outelizador "$1".',
+'prefs-help-realname'     => 'L nome berdadeiro ye oupcional.
+Causo l çponiblizes, este será outelizado pa te dar crédito pul tou trabalho.',
+'loginsuccesstitle'       => 'Antreste cumo debe de ser',
+'loginsuccess'            => "'''Stás agora lhigado a {{SITENAME}} cumo \"\$1\"'''.",
+'nosuchuser'              => 'Num eisiste nanhun outelizador cul nome "$1".
+Bei l nome que metiste, ó [[Special:UserLogin/signup|cria ua nouba cuonta]].',
+'nosuchusershort'         => 'Nun eisiste nanhun outelizador cul nome "<nowiki>$1</nowiki>".
+Bei se l screbiste bien.',
+'nouserspecified'         => 'Tenes que dezir un nome de outelizador.',
+'wrongpassword'           => 'La palabra chabe ye ambálida. 
+Por fabor, spurmenta outra beç.',
+'wrongpasswordempty'      => 'Tenes que poner la palabra chabe. 
+Por fabor, spurmenta outra beç.',
+'passwordtooshort'        => 'La tue palabra chabe ye ambálida ó mui pequeinha.
+Debe de tener pul menos {{PLURAL:$1|1 caracter|$1 caracteres}} i ser defrente de l tou nome de outelizador.',
+'mailmypassword'          => 'Ambiar nuoba palabra chabe por carta eiletrónica',
+'passwordremindertitle'   => 'Nuoba palabra chabe temporária an {{SITENAME}}',
+'noemail'                 => 'Nun eisiste morada eiletrónica pa l outelizador "$1".',
 'passwordsent'            => 'Ua nuoba palabra-chave ancontra-se a ser anbiada para l andereço de correio electrónico associado al outelizador "$1".
 Por fabor, bolte a efectuar la autenticaçon al recebê-la.',
 
 # Edit page toolbar
 'bold_sample'     => 'Testo carregado',
-'bold_tip'        => 'Testo negro',
-'italic_sample'   => 'Testo itálico',
-'italic_tip'      => 'Testo an itálico',
-'link_sample'     => 'Título da ligação',
-'link_tip'        => 'Ligação interna',
-'extlink_sample'  => 'http://www.example.com títalu de ligaçon externa',
-'extlink_tip'     => 'Ligaçon externa (lembre-se do prefixo http://)',
-'headline_sample' => 'Testo de cabeçalho',
-'headline_tip'    => 'Secção de nível 2',
-'math_sample'     => 'Inserir fórmula aqui',
+'bold_tip'        => 'Testo a negrito',
+'italic_sample'   => 'Testo eitálico',
+'italic_tip'      => 'Testo an eitálico',
+'link_sample'     => 'Títalo de la lhigaçon',
+'link_tip'        => 'Lhigaçon anterna',
+'extlink_sample'  => 'http://www.example.com títalo de la lhigaçon',
+'extlink_tip'     => 'Lhigaçon sterna (lembra-te de l perfixo http://)',
+'headline_sample' => 'Testo de cabeçailho',
+'headline_tip'    => 'Cacho de níble 2',
+'math_sample'     => 'Poner fórmula eiqui',
 'math_tip'        => 'Fórmula matemática (LaTeX)',
-'nowiki_sample'   => 'Inserir texto não-formatado aqui',
-'nowiki_tip'      => 'Ignorar formato wiki',
-'image_tip'       => 'Ficheiro embebido',
-'media_tip'       => 'Ligação para ficheiro',
-'sig_tip'         => 'Sua assinatura, com hora e data',
-'hr_tip'          => 'Linha horizontal (utilize moderadamente)',
+'nowiki_sample'   => 'Anserir testo nun-formatado eiqui',
+'nowiki_tip'      => 'Nun fazer causo de la formataçon wiki',
+'image_tip'       => 'Fexeiro ambutido',
+'media_tip'       => 'Lhigaçon pa fexeiro',
+'sig_tip'         => 'La tue assinatura, cun hora i data',
+'hr_tip'          => 'Lhinha hourizontal (outeliza cun regra)',
 
 # Edit pages
 'summary'                => 'Sumário',
-'subject'                => 'Assunto/cabeçalho',
-'minoredit'              => 'Marcar como edição mínima',
-'watchthis'              => 'Observar esta página',
-'savearticle'            => 'Grabar página',
-'preview'                => 'Prever',
-'showpreview'            => 'Mostrar prebison',
-'showdiff'               => 'Mostrar alterações',
-'anoneditwarning'        => "'''Atenção''': Você não se encontra autenticado. O seu endereço de IP será registado no histórico de edições desta página.",
-'summary-preview'        => 'Previson de sumário',
-'blockedtext'            => '<big>O seu nome de utilizador ou endereço de IP foi bloqueado</big>
+'subject'                => 'Assunto/cabeçailho',
+'minoredit'              => 'Marcar cumo eidiçon pequerrixa',
+'watchthis'              => 'Ber esta páigina',
+'savearticle'            => 'Grabar páigina',
+'preview'                => 'Amostrar Purmeiro',
+'showpreview'            => 'Amostrar prebison',
+'showdiff'               => 'Amostrar alteraçones',
+'anoneditwarning'        => "'''Abiso''': Tu nun stás outenticado. L tou IP será registrado ne l stórico de las eidiçones desta páigina.",
+'summary-preview'        => 'Amostra de l sumário',
+'blockedtext'            => '<big>L tou nome d\'outelizador ó morada de IP foi bloquiada</big>
 
-O bloqueio foi realizado por $1. O motivo apresentado foi \'\'$2\'\'.
+L bloqueio fui feito por $1. La rezon fui \'\'$2\'\'.
 
-* Início do bloqueio: $8
-* Expiração do bloqueio: $6
-* Destino do bloqueio: $7
+* Ampeço de l bloqueio: $8
+* Balidade de l bloqueio: $6
+* Çtino de l bloqueio: $7
 
-Você pode contactar $1 ou outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir sobre o bloqueio.
+Tu puodes cuntatar $1 ó outro [[{{MediaWiki:Grouppage-sysop}}|admenistrador]] pa çcutir subre l bloqueio.
 
-Note que não poderá utilizar a funcionalidade "Contactar utilizador" se não possuir uma conta neste wiki ({{SITENAME}}) com um endereço de email válido indicado nas suas [[Special:Preferences|preferências de utilizador]] e se tiver sido bloqueado de utilizar tal recurso.
+Bei que nun poderás outelizar la funcionalidade "Cuntatar outelizador" se nun tubires ua counta neste wiki ({{SITENAME}}) cun ua morada eiletrónica bálida andicada an las tues [[Special:Preferences|preferéncias d\'outelizador]] i se tubires sido bloquiado de outelizar essa ferramienta.
 
-O seu endereço de IP atual é $3 e a ID de bloqueio é $5. Por favor, inclua um desses (ou ambos) dados em quaisquer tentativas de esclarecimentos.',
+La tue morada de IP atual ye $3 i l ID de l bloqueio ye $5. Por fabor, anclui un deilhes (ó dambos ls dous) dados an qualquier tentatibas de sclarecimentos.',
 'newarticle'             => '(Nuoba)',
-'newarticletext'         => "Você seguiu uma ligaçon para unhaa página que inda num existe. 
-Para criá-la, screva l sue conteúdo na caixa abaixo
-(veja a [[{{MediaWiki:Helppage}}|página de ajuda]] para mais detalhes).
-Se você chegou até aqui por angano, clique ne l boton '''boltar''' (o ''back'') de l sue navegador.",
-'noarticletext'          => 'Num eisiste actualmente teisto nesta página; você puode [[Special:Search/{{PAGENAME}}|pesquisar pulo títalo desta página noutras páginas]] o [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página].',
-'previewnote'            => '<strong>Isto ye apenas unha prebison. Las alteraçons inda num foram grabadas!</strong>',
-'editing'                => 'A editar $1',
-'editingsection'         => 'Editando $1 (secçon)',
-'copyrightwarning'       => 'Por fabor, note que todas las sues contribuiçons an {{SITENAME}} son consideradas cumo lhançadas ne ls termos de la lhicença $2 (ber $1 para detalhes). Se num deseija que o sue testo seija inexoravelmente editado i redistribuído de tal forma, num lo enbie.<br />
-Você está, al mesmo tempo, a garantir-nos que isto ye algo escrito por si, o algo copiado de unha fonte de testos an domínio público o similarmente de teor libre.
-<strong>NUM ENBIE TRABALHO PROTEGIDO POR DREITOS DE AUTOR SAN A DEBIDA PERMISSON!</strong>',
-'longpagewarning'        => '<strong>AVISO: Esta página possui $1 kilobytes; alguns
-navegadores possuem problemas em editar páginas maiores que 32 kb.
-Por favor, considere seccionar a página em secções de menor dimensão.</strong>',
+'newarticletext'         => "Tu seguíste ua lhigaçon para ua páigina que inda nun eisiste. 
+Para criar la páigina, ampeça a screbir an la caixa ambaixo(bei la [[{{MediaWiki:Helppage}}|páigina de ajuda]] pa mais detailhes).
+Se stás eiqui por anganho, carrega ne l boton '''retornar'''de l tou nabegador de la Anternete.",
+'noarticletext'          => 'Nun eisiste atualmente testo nesta páigina; tu puodes [[Special:Search/{{PAGENAME}}|percurar pul títalo desta páigina noutras páiginas]] ó [{{fullurl:{{FULLPAGENAME}}|action=edit}} eiditar esta páigina].',
+'previewnote'            => '<strong>Esto ye solo ua amostra; las alteraçones inda nun fúrun grabadas!</strong>',
+'editing'                => 'A eiditar $1',
+'editingsection'         => 'A eiditar $1 (cacho)',
+'copyrightwarning'       => "Por fabor, bei que todas las tues cuntribuiçones an {{SITENAME}} son cunsideradas cumo feitas ne ls termos de la lhicença $2 (bei $1 pa detailhes). Se nun quieres que l tou testo seia eiditado sin piedade i reçtribuído cunsante la gana, nun l ambies.<br 
+/>
+Tu stás, al mesmo tiempo, a garantir-mos qu'esto ye algo screbido por ti, ó algo copiado d'ua fuonte de testos an domínio público ó parecido de teor lhibre.
+<strong>NUN AMBIES TRABALHO PORTEGIDO POR DREITOS DE OUTOR SIEN LA DEBIDA PERMISSON!</strong>",
+'longpagewarning'        => '<strong>Abiso: Esta páigina ten$1 kilobytes; alguns
+nabegadores de la anternete tenen porblemas al eiditar páiginas cun mais que 32 kb.
+Por fabor, piensa an scachar la páigina an cachos mais pequeinhos.</strong>',
 'templatesused'          => 'Predefiniçons utilizadas nesta página:',
-'templatesusedpreview'   => 'Templates usados nesta previsão:',
+'templatesusedpreview'   => 'Modelos outelizados neste amostra:',
 'template-protected'     => '(protegida)',
 'template-semiprotected' => '(semi-protegida)',
 'nocreatetext'           => '{{SITENAME}} tem restringida la possibilidade de criar nuobas páginas.
 Pode boltar atrás i editar unha página yá eisistente, o [[Special:UserLogin|autenticar-se o criar unha cuonta]].',
-'recreate-deleted-warn'  => "'''Atenção: Você está a criar uma página já anteriormente eliminada.'''
+'recreate-deleted-warn'  => "'''Abiso: Tu stás a criar ua páigina que yá fui d'atrás botada fuora.'''
 
-Certifique-se de que é adequado prosseguir a edição de esta página.
-O registo de eliminação desta página é exibido a seguir, para sua comodidade:",
+Bei bien se ye aprópiado cuntinar a eiditar esta páigina.
+L registro de quando esta páigina fui botada fuora ye amostrado a seguir, por comodidade:",
 
 # History pages
-'viewpagelogs'        => 'Ber registos para yesta página',
-'currentrev'          => 'Revison actual',
-'revisionasof'        => 'Revisão de $1',
-'revision-info'       => 'Revison de $1; $2', # Additionally available: $3: revision id
-'previousrevision'    => '← Versão anterior',
-'nextrevision'        => 'Verson posterior →',
-'currentrevisionlink' => 'Ber berson actual',
-'cur'                 => 'act',
-'last'                => 'último',
-'page_first'          => 'purmeira',
-'page_last'           => 'última',
-'histlegend'          => 'Selecção de diferença: marque as caixas em uma das versões que deseja comparar e carregue no botão.<br />
+'viewpagelogs'           => 'Ber registros pa esta páigina',
+'currentrev'             => 'Rebison atual',
+'revisionasof'           => 'Eidiçon cumo la de $1',
+'revision-info'          => 'Rebison de $1 por $2', # Additionally available: $3: revision id
+'previousrevision'       => "← Berson d'atrás",
+'nextrevision'           => 'Berçon mais nuoba→',
+'currentrevisionlink'    => 'Ber berçon atual',
+'cur'                    => 'atu',
+'last'                   => 'redadeiro',
+'page_first'             => 'purmeira',
+'page_last'              => 'redadeira',
+'histlegend'             => 'Selecção de diferença: marque as caixas em uma das versões que deseja comparar e carregue no botão.<br />
 Legenda: (actu) = diferenças da versão actual,
 (ult) = diferença da versão precedente, m = edição menor',
-'histfirst'           => 'Mais antigas',
-'histlast'            => 'Mais recentes',
+'history-fieldset-title' => 'Nabegar pul stórico',
+'histfirst'              => 'Mais antigas',
+'histlast'               => 'Redadeiras',
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 a $2', # user at time
 
 # Diffs
-'history-title'           => 'Histórico de ediçons de "$1"',
-'difference'              => '(Diferença entre revisões)',
+'history-title'           => 'Stórico de eidiçones de "$1"',
+'difference'              => '(Defréncias antre rebisones)',
 'lineno'                  => 'Linha $1:',
-'compareselectedversions' => 'Compare as versões seleccionadas',
-'editundo'                => 'desfazer',
+'compareselectedversions' => 'Acumparar las berçones marcadas',
+'editundo'                => 'çfazer',
+'diff-multi'              => '({{PLURAL:$1|ua eidiçon antermédia nun stá a ser amostrada|$1 eidiçones antermédias nun stan a ser amostradas}}.)',
 
 # Search results
 'noexactmatch'   => "'''Num eisiste ua página com l títalo \"\$1\".''' Você puode [[:\$1|criar tal página]].",
 'prevn'          => 'anteriores $1',
-'nextn'          => 'próximos $1',
+'nextn'          => 'próssimos $1',
 'viewprevnext'   => 'Ber ($1) ($2) ($3)',
 'searchhelp-url' => 'Help:Conteúdos',
-'powersearch'    => 'Pesquisa avançada',
+'powersearch'    => 'Percura Abançada',
 
 # Preferences page
 'preferences'   => 'Preferencies',
 'mypreferences' => 'Las mies preferencias',
-'retypenew'     => 'Reintroduza a nuoba palabra-chave',
+'retypenew'     => 'Pon outra beç la nuoba palabra chabe:',
 
 'grouppage-sysop' => '{{ns:project}}:Administradores',
 
 # User rights log
-'rightslog' => 'Registo de privilégios de outelizador',
+'rightslog' => 'Registro de dreitos de l outelizador',
 
 # Recent changes
 'nchanges'                       => '$1 {{PLURAL:$1|alteração|alterações}}',
-'recentchanges'                  => 'Alteraçons recentes',
-'recentchanges-feed-description' => 'Acompanhe las alteraçõns recientes de yeste buiqui por yeste feed.',
-'rcnote'                         => "A seguir {{PLURAL:$1|está listada '''uma''' alteração ocorrida|estão listadas '''$1''' alterações ocorridas}} {{PLURAL:$2|no último dia|nos últimos '''$2''' dias}}, a partir de $3.",
-'rcnotefrom'                     => 'Alteraçons efectuadas desde <b>$2</b> (mostradas até <b>$1</b>).',
+'recentchanges'                  => 'Redadeiras alteraçones',
+'recentchanges-feed-description' => 'Acumpanha las redadeiras alteraçones de l uiqui por este feed.',
+'rcnote'                         => "A seguir {{PLURAL:$1|stá listada '''ua''' alteraçon feita|stan '''$1''' alteraçones feitas}} {{PLURAL:$2|ne l redadeiro die|ne ls redadeiros '''$2''' dies}}, a partir de las $5 de $4.",
+'rcnotefrom'                     => 'Alteraçones feitas zde <b>$2</b> (amostradas até <b>$1</b>).',
 'rclistfrom'                     => 'Mostrar as novas alterações a partir de $1',
-'rcshowhideminor'                => '$1 edições mínimas',
-'rcshowhidebots'                 => '$1 robots',
+'rcshowhideminor'                => '$1 eidiçones pequerrixas',
+'rcshowhidebots'                 => '$1 robós',
 'rcshowhideliu'                  => '$1 utilizadores registados',
-'rcshowhideanons'                => '$1 utilizadores anónimos',
-'rcshowhidepatr'                 => '$1 ediçons berificadas',
-'rcshowhidemine'                 => '$1 mies ediçons',
-'rclinks'                        => 'Mostrar as últimas $1 mudanças nos últimos $2 dias<br />$3',
-'diff'                           => 'dif',
-'hist'                           => 'hist',
-'hide'                           => 'Esconder',
-'show'                           => 'Mostrar',
+'rcshowhideanons'                => '$1 outelizadores anónimos',
+'rcshowhidepatr'                 => '$1 eidiçones patrulhadas',
+'rcshowhidemine'                 => '$1 mies eidiçones',
+'rclinks'                        => 'Amostrar las redadeiras $1 alteraçones ne ls redadeiros $2 dies<br />$3',
+'diff'                           => 'defr',
+'hist'                           => 'stór',
+'hide'                           => 'Scunder',
+'show'                           => 'Amostrar',
 'minoreditletter'                => 'm',
 'newpageletter'                  => 'N',
 'boteditletter'                  => 'b',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Alterações relacionadas',
-'recentchangeslinked-title'    => 'Alterações relacionadas com "$1"',
-'recentchangeslinked-noresult' => 'Não ocorreram alterações em páginas relacionadas no intervalo de tempo fornecido.',
-'recentchangeslinked-summary'  => "Esta página especial lista as alterações mais recentes de páginas que possuam um link a outra. Páginas que estejam em sua lista de artigos vigiados são mostradas a '''negrito'''.",
+'recentchangeslinked-title'    => 'Alteraçones que ténen a ber cun "$1"',
+'recentchangeslinked-noresult' => 'Nun houbo alteraçones an páiginas relacionadas ne l anterbalo de tiempo.',
+'recentchangeslinked-summary'  => "Esta páigina special mostra las redadeiras alteraçones de páiginas que téngan ua lhigaçon a outra (ó de membros de ua catadorie specificada).
+Páiginas que steian an ls [[Special:Watchlist|tous begiados]] son amostradas an '''negrito'''.",
 
 # Upload
-'upload'        => 'Carregar ficheiro',
-'uploadbtn'     => 'Carregar ficheiro',
-'uploadlogpage' => 'Registo de carregamento',
-'uploadedimage' => 'carregou "[[$1]]"',
+'upload'        => 'Cargar fexeiro',
+'uploadbtn'     => 'Cargar fexeiro',
+'uploadlogpage' => 'Registro de carregamiento',
+'uploadedimage' => 'cargou "[[$1]]"',
 
 # Special:FileList
-'imagelist' => 'Lista de ficheiros',
+'imagelist' => 'Fexeiros',
 
 # File description page
-'filehist'                  => 'Histórico de l ficheiro',
-'filehist-help'             => 'Clique an unha data/horário para ber l ficheiro tal como eilhe se encontraba an tal momento.',
-'filehist-current'          => 'actual',
+'filehist'                  => 'Stórico de l fexeiro',
+'filehist-help'             => 'Clique an ua data/hora para ber l fexeiro tal cumo el staba naquel sfergante.',
+'filehist-current'          => 'atual',
 'filehist-datetime'         => 'Data/Hora',
-'filehist-user'             => 'Utilizador',
-'filehist-dimensions'       => 'Dimensões',
-'filehist-filesize'         => 'Tamanho de ficheiro',
-'filehist-comment'          => 'Comentário',
-'imagelinks'                => 'Ligaçons (andereços web)',
-'linkstoimage'              => 'As seguintes páginas apontam para este ficheiro:',
+'filehist-user'             => 'Outelizador',
+'filehist-dimensions'       => 'Tamanho',
+'filehist-filesize'         => 'Tamanho de l fexeiro',
+'filehist-comment'          => 'Comentairo',
+'imagelinks'                => 'Lhigaçones',
+'linkstoimage'              => '{{PLURAL:$1|Esta páigina lhigan|Estas $1 páiginas lhigan}} este fexeiro:',
 'nolinkstoimage'            => 'Nenhuma página aponta para yeste ficheiro.',
-'sharedupload'              => 'Este ficheiro encontra-se partilhado i puode ser usado por otros proyectos.',
-'noimage'                   => 'Num eisiste nenhum ficheiro com yeste nome. Se desejar, puode $1',
-'noimage-linktext'          => 'upload it',
-'uploadnewversion-linktext' => 'Carregar unha nuoba berson de yeste ficheiro',
+'sharedupload'              => 'Este fexeiro stá cumpartido i puode ser outelizado por outros porjetos.',
+'noimage'                   => 'Nun eisiste nanhun fexeiro cun este nome, mas puodes $1',
+'noimage-linktext'          => 'carga un',
+'uploadnewversion-linktext' => 'Cargar ua nuoba berçon deste fexeiro',
 
 # MIME search
-'mimesearch' => 'Pesquisa MIME',
+'mimesearch' => 'Percura MIME',
 
 # List redirects
-'listredirects' => 'Lhistar redireccionamientos',
+'listredirects' => 'Amostrar reancaminamientos',
 
 # Unused templates
-'unusedtemplates' => 'Predefiniçons num outelizadas',
+'unusedtemplates' => 'Modelos nun outelizados',
 
 # Random page
-'randompage' => 'Página aleatória',
+'randompage' => 'Páigina a la suorte',
 
 # Random redirect
-'randomredirect' => 'Redireccionamento aleatório',
+'randomredirect' => 'Reancaminamiento a la suorte',
 
 # Statistics
 'statistics' => 'Çtatísticas',
 
-'disambiguations' => 'Página de desambiguaçon',
+'disambiguations' => 'Páigina de zambiguaçon',
 
-'doubleredirects' => 'Redireccionamentos duplos',
+'doubleredirects' => 'Reancaminamientos duplos',
 
-'brokenredirects' => 'Redireccionamentos quebrados',
+'brokenredirects' => 'Reancaminamientos scachados',
 
-'fewestrevisions' => 'Páginas de conteúdo com menos rebisons',
+'withoutinterwiki' => 'Páiginas sin lhigaçones de lhénguas',
+
+'fewestrevisions' => 'Páiginas de cuntenido cun menos rebisones',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
-'nlinks'                  => '$1 {{PLURAL:$1|link|links}}',
+'nlinks'                  => '$1 {{PLURAL:$1|lhigaçon|lhigaçones}}',
 'nmembers'                => '$1 {{PLURAL:$1|membro|membros}}',
-'lonelypages'             => 'Páginas órfãs',
-'uncategorizedpages'      => 'Páginas num categorizadas',
-'uncategorizedcategories' => 'Categories num categorizadas',
-'uncategorizedimages'     => 'Imagens num categorizadas',
-'uncategorizedtemplates'  => 'Predefinições (templates) num categorizadas',
-'unusedcategories'        => 'Categories num usadas',
-'unusedimages'            => 'Ficheiros num usados',
-'wantedcategories'        => 'Categories pedidas',
-'wantedpages'             => 'Páginas pedidas',
-'mostlinked'              => 'Páginas cum mais afluentes',
-'mostlinkedcategories'    => 'Categories com mais miembros',
-'mostlinkedtemplates'     => 'Predefiniçons com mais artigos ligaçons',
-'mostcategories'          => 'Páginas de conteúdo com mais categories',
-'mostimages'              => 'Imagens com mais referências',
-'mostrevisions'           => 'Páginas de conteúdo com mais rebisons',
-'prefixindex'             => 'Índice de prefixo',
-'shortpages'              => 'Páginas curtas',
-'longpages'               => 'Páginas longas',
-'deadendpages'            => 'Páginas sem saída',
+'lonelypages'             => 'Páiginas uorfanas',
+'uncategorizedpages'      => 'Páiginas sin catadories',
+'uncategorizedcategories' => 'Catadories nun catadorizadas',
+'uncategorizedimages'     => 'Eimaiges sin catadorie',
+'uncategorizedtemplates'  => 'Modelos sin catadorie',
+'unusedcategories'        => 'Catadories nun outelizadas',
+'unusedimages'            => 'Fexeiros nun outelizados',
+'wantedcategories'        => 'Catadories pedidas',
+'wantedpages'             => 'Páiginas pedidas',
+'mostlinked'              => 'Páiginas mais lhigadas',
+'mostlinkedcategories'    => 'Catadories cun mais miembros',
+'mostlinkedtemplates'     => 'Modelos mais populares de lhigaçones',
+'mostcategories'          => 'Páiginas de cuntenido cun mais catadories',
+'mostimages'              => 'Eimaiges cun mais refréncias',
+'mostrevisions'           => 'Páiginas de cuntenido cun mais rebisones',
+'prefixindex'             => 'Índice de perfixo',
+'shortpages'              => 'Páiginas pequeinhas',
+'longpages'               => 'Páiginas cumpridas',
+'deadendpages'            => 'Páiginas sin salida',
 'protectedpages'          => 'Páginas protegidas',
 'listusers'               => 'Lhista de outelizadores',
-'newpages'                => 'Nuovas páginas',
-'ancientpages'            => 'Páginas mais antigas',
-'move'                    => 'Mover',
-'movethispage'            => 'Mover esta página',
+'newpages'                => 'Nuobas páiginas',
+'ancientpages'            => 'Páiginas mais antigas',
+'move'                    => 'Arrastrar',
+'movethispage'            => 'Arrastrar esta páigina',
+'pager-newer-n'           => '{{PLURAL:$1|1 nuoba|$1 nuobas}}',
+'pager-older-n'           => '{{PLURAL:$1|1 atrasada|$1 atrasadas}}',
 
 # Book sources
-'booksources' => 'Fontes de lhibros',
+'booksources' => 'Fuontes de lhibros',
 
 # Special:Log
 'specialloguserlabel'  => 'Outelizador:',
 'speciallogtitlelabel' => 'Títalo:',
-'log'                  => 'Registos',
-'all-logs-page'        => 'Todos os registos',
+'log'                  => 'Registros',
+'all-logs-page'        => 'To ls registros',
 
 # Special:AllPages
-'allpages'       => 'Todas las páginas',
+'allpages'       => 'To las páiginas',
 'alphaindexline' => '$1 a $2',
-'nextpage'       => 'Próxima página ($1)',
+'nextpage'       => 'Próssima páigina ($1)',
 'prevpage'       => 'Página anterior ($1)',
-'allpagesfrom'   => 'Mostrar páginas começando an:',
-'allarticles'    => 'Todas las páginas',
-'allpagessubmit' => 'Ir',
-'allpagesprefix' => 'Mostrar páginas com l prefixo:',
+'allpagesfrom'   => 'Amostrar páiginas ampeçando an:',
+'allarticles'    => 'To las páiginas',
+'allpagessubmit' => 'Bota',
+'allpagesprefix' => 'Amostrar páiginas cul perfixo:',
 
 # Special:Categories
-'categories' => 'Categories',
+'categories' => 'Catadories',
 
 # E-mail user
-'emailuser' => 'Contactar yeste outelizador',
+'emailuser' => 'Ambiar carta eiletrónica a este outelizador',
 
 # Watchlist
-'watchlist'         => 'Artigos vigiados',
-'mywatchlist'       => 'Artigos vigiados',
+'watchlist'         => 'Ls mius begiados',
+'mywatchlist'       => 'Las mies páiginas begiadas',
 'watchlistfor'      => "(para '''$1''')",
-'addedwatch'        => 'Adicionado à lhista de artigos bigiados',
-'removedwatch'      => 'Remobida de la lhista de artigos bigiados',
-'watch'             => 'Bigiar',
-'watchthispage'     => 'Bigiar yesta página',
+'addedwatch'        => 'Ajuntada a las páiginas begiadas',
+'removedwatch'      => 'Botada fuora de las páiginas begiados',
+'watch'             => 'Begiar',
+'watchthispage'     => 'Begiar esta páigina',
 'unwatch'           => 'Desinteressar-se',
-'watchlist-details' => '{{PLURAL:$1|$1 página vigiada|$1 páginas vigiadas}}, excluindo páginas de discussão.',
-'wlshowlast'        => 'Ber últimas $1 horas $2 dias $3',
+'watchlist-details' => '{{PLURAL:$1|$1 páigina begiada|$1 páiginas begiadas}}, fuora las páiginas de çcuçon.',
+'wlshowlast'        => 'Ber redadeiras $1 horas $2 dies $3',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Vigiando...',
-'unwatching' => 'Deixando de vigiar...',
+'watching'   => 'A begiar...',
+'unwatching' => 'A deixar de begiar...',
 
 # Delete
-'deletepage'            => 'Apagar página',
-'confirmdeletetext'     => 'Encontra-se prestes a eliminar permanentemente uma página ou uma imagem e todo o seu histórico.
-Por favor, confirme que possui a intenção de fazer isto, que compreende as consequências e que faz isto de acordo com as [[{{MediaWiki:Policy-url}}|políticas]] do projecto.',
-'actioncomplete'        => 'Acção terminada',
+'deletepage'            => 'Botar fuora páigina',
+'historywarning'        => 'Abiso: La páigina que stás quaije a botar fuora ten un stórico:',
+'confirmdeletetext'     => "Stás quaije a botar fuora para siempre ua páigina ó ua eimaige i to ls sou stórico.
+Por fabor, bei se ye esso que quieres fazer, que antendes las cunsequéncias i se esso stá d'acordo culas [[{{MediaWiki:Policy-url}}|políticas]].",
+'actioncomplete'        => 'Acion acabada',
 'deletedtext'           => '"<nowiki>$1</nowiki>" fue elhiminada.
 Consulte $2 para um registo de eliminações recentes.',
-'deletedarticle'        => 'apagado "[[$1]]"',
-'dellogpage'            => 'Registo de eliminação',
-'deletecomment'         => 'Razon de eliminaçon',
-'deleteotherreason'     => 'Razon adicional:',
-'deletereasonotherlist' => 'Outro motivo',
+'deletedarticle'        => 'botado pa la rue "[[$1]]"',
+'dellogpage'            => 'Registro de botado fuora',
+'deletecomment'         => 'Rezon pa botar pa fuora:',
+'deleteotherreason'     => 'Rezon adicional:',
+'deletereasonotherlist' => 'Outra rezon',
 
 # Rollback
-'rollbacklink' => 'voltar',
+'rollbacklink' => 'retornar',
 
 # Protect
 'protectlogpage'              => 'Registo de protecção',
 'prot_1movedto2'              => '[[$1]] foi movido para [[$2]]',
 'protect-legend'              => 'Confirmar protecçon',
-'protectcomment'              => 'Razon de protecçon',
-'protectexpiry'               => 'Expiraçon',
-'protect-default'             => '(padron)',
-'protect-fallback'            => 'Ye necessário l perbilégio de "$1"',
-'protect-level-autoconfirmed' => 'Bloquear outelizadores num registados',
-'protect-level-sysop'         => 'Apenas administradores',
-'protect-summary-cascade'     => 'p. progressiva',
-'protect-expiring'            => 'expira an $1 (UTC)',
+'protectcomment'              => 'Comentairo:',
+'protectexpiry'               => 'Spira:',
+'protect_expiry_invalid'      => 'L tiempo de balidade ye ambálido.',
+'protect_expiry_old'          => 'L tiempo de balidade stá ne l passado.',
+'protect-unchain'             => 'Zbloguiar permissones pa arrastrar',
+'protect-text'                => 'Tu eiqui puodes ber i demudar ls níbles de proteçon pa esta páigina <strong><nowiki>$1</nowiki></strong>.',
+'protect-default'             => '(oumisson)',
+'protect-fallback'            => 'Ye perciso la outorizaçon "$1"',
+'protect-level-autoconfirmed' => 'Bloquiar outelizadores nun registrados',
+'protect-level-sysop'         => 'Solo admenistradores',
+'protect-summary-cascade'     => 'an cascata',
+'protect-expiring'            => 'termina an $1 (UTC)',
 'protect-cascade'             => '"Protecçon progressiva" - proteya quaisquer páginas que estejam ancluídas nesta.',
+'protect-cantedit'            => 'Tu nun puodes demudar l níble de proteçon desta páigina, porque tu nun tener outorizaçon pa la eiditar.',
 'protect-expiry-options'      => '2 horas:2 hours,1 dia:1 day,3 dias:3 days,1 semana:1 week,2 semanas:2 weeks,1 mês:1 month,3 meses:3 months,6 meses:6 months,1 anho:1 year,indefinido:infinite', # display1:time1,display2:time2,...
-'restriction-type'            => 'Permisson:',
+'restriction-type'            => 'Permiçon:',
 'restriction-level'           => 'Níble de restriçon:',
 
 # Undelete
-'undeletebtn' => 'Restaurar',
+'undeletebtn' => 'Recuperar',
 
 # Namespace form on various pages
-'namespace'      => 'Espaço de nomes:',
-'invert'         => 'Amberter selecçon',
-'blanknamespace' => '(Principal)',
+'namespace'      => 'Spácio de nomes:',
+'invert'         => 'Amberter scuolha',
+'blanknamespace' => '(Percípal)',
 
 # Contributions
-'contributions' => 'Contribuições do utilizador',
-'mycontris'     => 'Mies contribuiçons',
-'contribsub2'   => 'Para $1 ($2)',
-'uctop'         => ' (revison actual)',
-'month'         => 'Mês (incluye meses anteriores):',
-'year'          => 'Anho (incluye anhos anteriores):',
+'contributions' => 'Cuntribuiçones de l outelizador',
+'mycontris'     => 'Las mies upas',
+'contribsub2'   => 'Pa $1 ($2)',
+'uctop'         => '(rebison atual)',
+'month'         => 'De l més (i atrasados):',
+'year'          => 'De l anho (i atrasados):',
 
-'sp-contributions-newbies-sub' => 'Para nuobas cuontas',
-'sp-contributions-blocklog'    => 'Registo de bloqueios',
+'sp-contributions-newbies'     => 'Percurar solo an las cuntribuiçones de nuobas cuontas',
+'sp-contributions-newbies-sub' => 'Pa nuobas cuontas',
+'sp-contributions-blocklog'    => 'Registro de bloqueios',
+'sp-contributions-search'      => 'Percurar cuntribuiçones',
+'sp-contributions-username'    => 'Morada de IP ó outelizador:',
 
 # What links here
-'whatlinkshere'       => 'Páginas afluentes',
-'whatlinkshere-title' => 'Páginas que apontam para $1',
-'linkshere'           => "As seguintes páginas possuem ligações para '''[[:$1]]''':",
-'nolinkshere'         => "Num eisistem ligaçons para '''[[:$1]]'''.",
-'isredirect'          => 'página de redireccionamento',
+'whatlinkshere'       => 'L que lhiga eiqui',
+'whatlinkshere-title' => 'Páiginas que lhigan a "$1"',
+'linkshere'           => "Estas páiginas ténen lhigaçones pa '''[[:$1]]''':",
+'nolinkshere'         => "Nun eisisten lhigaçones pa '''[[:$1]]'''.",
+'isredirect'          => 'páigina de reancaminamiento',
 'istemplate'          => 'incluson',
-'whatlinkshere-prev'  => '{{PLURAL:$1|anterior|$1 anteriores}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|próximo|próximos $1}}',
-'whatlinkshere-links' => '← andereços da anternet',
+'whatlinkshere-prev'  => '{{PLURAL:$1|pa trás|$1 pa trás}}',
+'whatlinkshere-next'  => '{{PLURAL:$1|próssimo|próssimos $1}}',
+'whatlinkshere-links' => '← lhigaçones',
 
 # Block/unblock
-'blockip'       => 'Bloquear outelizador',
-'ipboptions'    => '2 horas:2 hours,1 dia:1 day,3 dias:3 days,1 semana:1 week,2 semanas:2 weeks,1 mês:1 month,3 meses:3 months,6 meses:6 months,1 anho:1 year,indefinido:infinite', # display1:time1,display2:time2,...
-'ipblocklist'   => 'IPs i outelizadores bloqueados',
-'blocklink'     => 'bloquear',
-'unblocklink'   => 'desbloquear',
+'blockip'       => 'Bloquiar outelizador',
+'ipboptions'    => '2 horas:2 hours,1 die:1 day,3 dias:3 days,1 sumana:1 week,2 sumanas:2 weeks,1 més:1 month,3 meses:3 months,6 meses:6 months,1 anho:1 year,anfenito:infinite', # display1:time1,display2:time2,...
+'ipblocklist'   => 'IPs i outelizadores bloquiados',
+'blocklink'     => 'bloquiar',
+'unblocklink'   => 'zbloquiar',
 'contribslink'  => 'contribs',
-'blocklogpage'  => 'Registo de bloqueio',
-'blocklogentry' => '"[[$1]]" fue bloqueado com um tiempo de expiraçon de $2 $3',
+'blocklogpage'  => 'Registro de l bloqueio',
+'blocklogentry' => '"[[$1]]" fui bloquiado cun un tiempo de spiraçon de $2 $3',
 
 # Move page
 'move-page-legend' => 'Mover página',
-'movepagetext'     => "Outelizando l seguinte formulário você poderá renomear unha página, mobendo todo l stórico para l nuobo títalo. L títalo anterior será transformado num redireccionamento para l nuobo.
+'movepagetext'     => "Outelizando este formulário tu puodes renomear ua páigina, arrastrando to l stórico para l nuobo títalo. L títalo anterior será transformado nun reancaminamiento para l nuobo.
+Ye possible amanhar de forma outomática reancaminamientos que lhigen un títalo oureginal.
+Causo scuolhas para que esso nun seia feito, bei se nun hai reancaminamientos [[Special:DoubleRedirects|dous bezes]] ó [[Special:BrokenRedirects|scachados]].
+Ye de la tue respunsabelidade tener la certeza de que las lhigaçones cuntinan a apuntar pa adonde dében.
 
-Links para las páginas antigas num seron mudados; certifique-se de verificar se eisistem redireccionamentos quebrados o duplos. Você ye responsáble por certificar-se que ls links continuam apontando para onde eilhes deberion apuntar.
-
-Note que la página '''num''' será mobida se yá eisistir unha página com l nuobo títalo, a num ser que steya bazio o seya um redireccionamento e num tenha stórico de ediçons. Isto significa que puode renomear unha página de bolta para l nome que tinha anteriormente se cometer algum engano i que num puode sobrepor unha página.
+Note que la páigina '''nun''' será arrastrada se yá eisistir ua páigina cul nuobo títalo, a nun ser que steia bazio ó seia un reancaminamiento i nun tenga stórico de eidiçones. Esto quier dezir que puodes renomear outra beç ua páigina para l nome que tenie antes de l anganho i que nun puodes subrescrebir ua páigina.
 
 <b>CUIDADO!</b>
-Isto puode ser unha mudança drástica i inesperada para unha página popular; por fabor, tenha certeza de que compreende las consequências de la alteraçon antes de prosseguir.",
-'movearticle'      => 'Mover página',
-'newtitle'         => 'Para nuovo títalo',
-'move-watch'       => 'Bigiar yesta página',
-'movepagebtn'      => 'Mover página',
-'pagemovedsub'     => 'Página mobida com sucesso',
-'movepage-moved'   => '<big>\'\'\'"$1" foi mobido para "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'movedto'          => 'movido para',
+Esto puode ser unha mudança drástica i einesperada para una páigina popular; por fabor, ten la certeza de que antendes las cunsequéncias desto antes de cuntinar.",
+'movearticle'      => 'Arrastrar páigina',
+'newtitle'         => 'Pa nuobo títalo:',
+'move-watch'       => 'Begiar esta páigina',
+'movepagebtn'      => 'Arrastrar páigina',
+'pagemovedsub'     => 'Páigina arrastrada cumo debe de ser',
+'movepage-moved'   => '<big>\'\'\'"$1" fui arrastrado pa "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movedto'          => 'arrastrado pa',
 'movetalk'         => 'Mober tambien la página de çcusson associada.',
-'1movedto2'        => '[[$1]] foi movido para [[$2]]',
-'movelogpage'      => 'Registo de movimentos',
-'movereason'       => 'Motivo:',
+'1movedto2'        => '[[$1]] fui arrastrado pa [[$2]]',
+'movelogpage'      => 'Registro de mobimientos',
+'movereason'       => 'Rezon:',
 'revertmove'       => 'reverter',
 
 # Export
-'export' => 'Exportação de páginas',
+'export' => 'Sportar páiginas',
 
 # Namespace 8 related
 'allmessages' => 'Todas as mensagens de sistema',
 
 # Thumbnails
-'thumbnail-more'  => 'Aumentar',
-'thumbnail_error' => 'Erro ao criar miniatura: $1',
+'thumbnail-more'  => 'Oumentar',
+'thumbnail_error' => 'Erro al criar eimaige pequeinha: $1',
 
 # Import log
-'importlogpage' => 'Registo de amportaçons',
+'importlogpage' => 'Registro de amportaçones',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => "La mie página d'utilizador",
-'tooltip-pt-mytalk'               => 'Página de mie cumbersa',
+'tooltip-pt-userpage'             => "La mie páigina d'outelizador",
+'tooltip-pt-mytalk'               => 'Páigina de la mie cumbersa',
 'tooltip-pt-preferences'          => 'Las mies preferencias',
 'tooltip-pt-watchlist'            => 'Lista de artigos vigiados.',
 'tooltip-pt-mycontris'            => 'Lhista das mies contribuiçons',
-'tooltip-pt-login'                => 'Você é encorajado a autenticar-se, apesar disso não ser obrigatório.',
+'tooltip-pt-login'                => 'Tu sós animado pa que te outentiques, inda que esso nun seia oubrigatório.',
 'tooltip-pt-logout'               => 'Sair',
-'tooltip-ca-talk'                 => 'Discussão sobre o conteúdo da página',
-'tooltip-ca-edit'                 => 'Você pode editar esta página. Por favor, use o botão Mostrar Previsão antes de gravar.',
-'tooltip-ca-addsection'           => 'Adicionar comentário a yesta çcusson.',
-'tooltip-ca-viewsource'           => 'Esta página está protegida. No entanto, você pode ver o seu código.',
-'tooltip-ca-protect'              => 'Proteger esta página',
-'tooltip-ca-delete'               => 'Apagar esta página',
-'tooltip-ca-move'                 => 'Mover esta página',
-'tooltip-ca-watch'                => 'Adicionar esta página als artigos vigiados',
-'tooltip-ca-unwatch'              => 'Remover yesta página de ls artigos vigiados',
+'tooltip-ca-talk'                 => 'Çcuçon subre l cuntenido de la páigina',
+'tooltip-ca-edit'                 => 'Tu puodes eiditar esta páigina. Por fabor, outeliza l boton Amostrar Prebison antes de grabar.',
+'tooltip-ca-addsection'           => 'Ajuntar cometairo a esta çcuçon.',
+'tooltip-ca-viewsource'           => 'Esta páigina stá protegida. Inda assi, tu puodes ber l sou código.',
+'tooltip-ca-protect'              => 'Proteger esta páigina',
+'tooltip-ca-delete'               => 'Botar fuora esta páigina',
+'tooltip-ca-move'                 => 'Arrastrar esta páigina',
+'tooltip-ca-watch'                => 'Ajuntar esta páigina als mius begiados',
+'tooltip-ca-unwatch'              => 'Botar pa la rue esta páigina de ls mius begiados',
 'tooltip-search'                  => 'Pesquisa {{SITENAME}}',
-'tooltip-n-mainpage'              => 'Visitar la página principal',
-'tooltip-n-portal'                => 'Sobre l proyecto',
-'tooltip-n-currentevents'         => 'Informaçon temática sobre amboras actuales',
+'tooltip-n-mainpage'              => 'Bejitar la Páigina Percípal',
+'tooltip-n-portal'                => 'Subre l porjeto, l que puodes fazer, adonde ancuntrar cousas',
+'tooltip-n-currentevents'         => 'Ancuntrar anformaçon de fondo subre amboras atuales',
 'tooltip-n-recentchanges'         => 'Lhista de mudanças recentes nesta wiki.',
-'tooltip-n-randompage'            => 'Carregar página aleatória',
-'tooltip-n-help'                  => 'Local com informação auxiliar.',
-'tooltip-t-whatlinkshere'         => 'Lista de todas las páginas que se lhigam a yesta',
-'tooltip-t-contributions'         => 'Ber las contribuiçons de yeste outelizador',
-'tooltip-t-emailuser'             => 'Enbiar um e-mail a yeste outelizador',
-'tooltip-t-upload'                => 'Carregar imagens ou ficheiros',
-'tooltip-t-specialpages'          => 'Lista de páginas especiais',
-'tooltip-ca-nstab-user'           => 'Ber a página de l utilizador',
+'tooltip-n-randompage'            => 'Ber páigina a la suorte',
+'tooltip-n-help'                  => 'Lhugar cun anformaçon pa ajuda.',
+'tooltip-t-whatlinkshere'         => 'Todas las páiginas que se lhigan eiqui',
+'tooltip-t-contributions'         => "Ber las cuntribuiçones d'este outelizador",
+'tooltip-t-emailuser'             => 'Ambiar ua carta eiletrónica a este outelizador',
+'tooltip-t-upload'                => 'Cargar eimaiges ó fexeiros',
+'tooltip-t-specialpages'          => 'To las páiginas speciales',
+'tooltip-ca-nstab-user'           => 'Ber la páigina de l outelizador',
 'tooltip-ca-nstab-project'        => 'Ber la página de l proyecto',
-'tooltip-ca-nstab-image'          => 'Ber la página de l ficheiro',
+'tooltip-ca-nstab-image'          => 'Ber la páigina de l fexeiro',
 'tooltip-ca-nstab-template'       => 'Ber l modelo',
-'tooltip-ca-nstab-help'           => 'Ber la página de ayuda',
-'tooltip-ca-nstab-category'       => 'Ber la página da categoria',
-'tooltip-minoredit'               => 'Marcar como ediçon menor',
-'tooltip-save'                    => 'Grabar sues alterações',
-'tooltip-preview'                 => 'Prever as alterações, por favor utilizar antes de gravar!',
-'tooltip-diff'                    => 'Mostrar alterações que fez a este texto.',
-'tooltip-compareselectedversions' => 'Ber las diferenças antre las dues versons seleccionadas desta página.',
-'tooltip-watch'                   => 'Acrescentar yesta página a la sue lhista de artigos vigiados',
+'tooltip-ca-nstab-help'           => 'Ber la páigina de ajuda',
+'tooltip-ca-nstab-category'       => 'Ber la páigina de la catadorie',
+'tooltip-minoredit'               => 'Marcar cumo eidiçon pequerrixa',
+'tooltip-save'                    => 'Grabar las tues alteraçones',
+'tooltip-preview'                 => 'Bei purmeiro las alteraçones, por fabor outeliza esto antes de grabar!',
+'tooltip-diff'                    => 'Amostrar alteraçones que faziste neste testo.',
+'tooltip-compareselectedversions' => 'Ber las defréncias antre las dues berçones marcadas desta páigina.',
+'tooltip-watch'                   => 'Ajuntar esta páigina als tous begiados',
 
 # Browsing diffs
-'previousdiff' => '← Ber la alteraçom anterior',
-'nextdiff'     => 'Ber la alteraçon posterior →',
+'previousdiff' => "← Eidiçon d'atrás",
+'nextdiff'     => 'Redadeira eidiçon →',
 
 # Media information
 'file-info-size'       => '($1 × $2 pixel, tamanho: $3, tipo MIME: $4)',
-'file-nohires'         => '<small>Sem resolução maior disponível.</small>',
-'svg-long-desc'        => '(ficheiro SVG, de $1 × $2 pixels, tamanho: $3)',
-'show-big-image'       => 'Resoluçon completa',
-'show-big-image-thumb' => '<small>Tamanho desta previsão: $1 × $2 pixels</small>',
+'file-nohires'         => '<small>Sin resoluçon maior çponible.</small>',
+'svg-long-desc'        => '(fexeiro SVG, de $1 × $2 pixeles, tamanho: $3)',
+'show-big-image'       => 'Resoluçon cumpleta',
+'show-big-image-thumb' => '<small>Tamanho desta prebison: $1 × $2 pixeles</small>',
 
 # Special:NewFiles
-'newimages' => 'Galeria de nuobos ficheiros',
+'newimages' => 'Galerie de nuobos fexeiros',
 
 # Bad image list
 'bad_image_list' => 'O formato é o seguinte:
@@ -629,11 +653,11 @@ Links subsequentes na mesma linha são considerados excepções, i.e. artigos on
 
 # Metadata
 'metadata'          => 'Metadados',
-'metadata-help'     => 'Yeste ficheiro contém anformaçon adicional, probablemente adicionada a partir de la câmara digital o de l scanner usado para lo criar.
-Caso l ficheiro tenha sido modificado a partir de l sue stado original, alguns detalhes poderon num reflectir completamente las mudanças efectuadas.',
-'metadata-expand'   => 'Mostrar restantes detalhes',
-'metadata-collapse' => 'Esconder detalhes restantes',
-'metadata-fields'   => 'Os campos de metadados EXIF listados nesta mensagem poderão estar presente na exibição da página de imagem quando a tabela de metadados estiver no modo "expandida". Outros poderão estar escondidos por padrão.
+'metadata-help'     => "Este fexeiro ten anformaçon adecional, l mais cierto ajuntada a partir de la máquina de retratos ó de l ''scanner'' outelizada para l criar.
+Causo l fexeiro tenga sido demudado a partir de l sou stado oureginal, alguns detailhes poderán nun refletir por cumpleto las alteraçones feitas.",
+'metadata-expand'   => 'Amostrar mais detailhes',
+'metadata-collapse' => 'Scunder mais detailhes',
+'metadata-fields'   => 'Ls campos de metadados EXIF amostrados nesta mensaige poderán star persentes an la eisebiçon de la páigina de la eimaige quando la tabela de metadados stubir ne l modo "spandida". Outros poderán star scundidos por oumisson.
 * make
 * model
 * datetimeoriginal
@@ -642,8 +666,8 @@ Caso l ficheiro tenha sido modificado a partir de l sue stado original, alguns d
 * focallength', # Do not translate list items
 
 # External editor support
-'edit-externally'      => 'Editar yeste ficheiro outelizando ua aplicaçon externa',
-'edit-externally-help' => 'Consulte as [http://www.mediawiki.org/wiki/Manual:External_editors instruções de instalação] para mais informação.',
+'edit-externally'      => 'Eiditar este fexeiro outelizando ua aplicaçon sterna',
+'edit-externally-help' => '(Bei las [http://www.mediawiki.org/wiki/Manual:External_editors anstruçones de anstalaçon] pa mais anformaçon).',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'todas',
@@ -651,14 +675,14 @@ Caso l ficheiro tenha sido modificado a partir de l sue stado original, alguns d
 'monthsall'     => 'todos',
 
 # Watchlist editing tools
-'watchlisttools-view' => 'Ber alteraçons amportantes',
-'watchlisttools-edit' => 'Ber i editar a lhista de bigiados',
+'watchlisttools-view' => 'Ber alteraçones amportantes',
+'watchlisttools-edit' => 'Ber i eiditar ls mius begiados',
 'watchlisttools-raw'  => 'Ediçon bruta da lhista de ls bigiados',
 
 # Special:Version
-'version' => 'Berson', # Not used as normal message but as header for the special page itself
+'version' => 'Berçon', # Not used as normal message but as header for the special page itself
 
 # Special:SpecialPages
-'specialpages' => 'Páginas speciales',
+'specialpages' => 'Páiginas speciales',
 
 );

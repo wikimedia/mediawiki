@@ -1482,7 +1482,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'anonymous'   => '{{SITENAME}} сайтэнть лемтеме {{PLURAL:$1|теицязо|теицянзо}}',
 'siteuser'    => '{{SITENAME}}-нь теиця $1',
 'others'      => 'лият',
-'siteusers'   => '{{SITENAME}} сайтэнь {{PLURAL:$2|теиця|теицят}} $1',
+'siteusers'   => '{{SITENAME}} сайтэнть {{PLURAL:$2|теицязо|теицянзо}} $1',
 'creditspage' => 'Лопасонть кинь путовксонзо',
 
 # Spam protection

@@ -15,6 +15,7 @@
  * @author Najami
  * @author Peter Andersen
  * @author Remember the dot
+ * @author Sir48
  * @author Svip
  * @author Urhixidur
  */
@@ -206,10 +207,13 @@ $messages = array(
 'tog-watchlisthideown'        => 'Skjul egne ændringer i overvågningslisten',
 'tog-watchlisthidebots'       => 'Skjul ændringer fra bots i overvågningslisten',
 'tog-watchlisthideminor'      => 'Skjul mindre ændringer i overvågningslisten',
+'tog-watchlisthideliu'        => 'Skjul indloggede brugeres redigeringer i overvågningslisten',
+'tog-watchlisthideanons'      => 'Skjul anonyme brugeres redigeringer i overvågningslisten',
 'tog-nolangconversion'        => 'Deaktiver konverteringer af sprogvarianter',
 'tog-ccmeonemails'            => 'Send mig kopier af e-mails, som jeg sender til andre brugere.',
 'tog-diffonly'                => 'Vis ved versionssammenligninger kun forskelle, ikke hele siden',
 'tog-showhiddencats'          => 'Show hidden categories',
+'tog-norollbackdiff'          => 'Vis ikke forskel efter tilbagerulning',
 
 'underline-always'  => 'altid',
 'underline-never'   => 'aldrig',
@@ -597,17 +601,25 @@ Før en E-mail kan modtages af andre brugere af {{SITENAME}}-mailfunktionen, ska
 ($4). Password for "$2" er "$3". Du opfordres til at logge ind, og ændre kodeordet omgående.
 
 Denne besked kan ignorewres, hvis denne konto er oprettet som følge af en fejl.',
+'login-throttled'            => 'Du har forsøgt at logge ind med forkert adgangskode til denne konto for mange gange.
+Vent, før du prøver igen.',
 'loginlanguagelabel'         => 'Sprog: $1',
 
 # Password reset dialog
-'resetpass'               => 'Nulstille password for brugerkonto',
-'resetpass_announce'      => 'Log på med den via e-mail tilsendte password. For at afslutte tilmeldingen, skal du nu vælge et nyt password.',
-'resetpass_header'        => 'Nulstille password',
-'resetpass_submit'        => 'Send password og log på',
-'resetpass_success'       => 'Dit password er nu ændret. Nu følger tilmelding …',
-'resetpass_bad_temporary' => 'Ugyldigt foreløbigt password. Du har allerede ændret dit password eller bestilt et nyt foreløbigt password.',
-'resetpass_forbidden'     => 'Dette password kan ikke ændres.',
-'resetpass_missing'       => 'Tom formular.',
+'resetpass'                 => 'Nulstille password for brugerkonto',
+'resetpass_announce'        => 'Log på med den via e-mail tilsendte password. For at afslutte tilmeldingen, skal du nu vælge et nyt password.',
+'resetpass_text'            => '<!-- Tilføj tekst her -->',
+'resetpass_header'          => 'Nulstille password',
+'resetpass_submit'          => 'Send password og log på',
+'resetpass_success'         => 'Dit password er nu ændret. Nu følger tilmelding …',
+'resetpass_bad_temporary'   => 'Ugyldigt foreløbigt password. Du har allerede ændret dit password eller bestilt et nyt foreløbigt password.',
+'resetpass_forbidden'       => 'Dette password kan ikke ændres.',
+'resetpass_missing'         => 'Tom formular.',
+'resetpass-no-info'         => 'Du skal være logget på for at komme direkte til denne side.',
+'resetpass-submit-loggedin' => 'Skift adgangskode',
+'resetpass-wrong-oldpass'   => 'Ugyldig midlertidig eller gældende adgangskode. 
+Du har muligvis allerede skiftet din adgangskode eller anmodet om en ny midlertidig kode.',
+'resetpass-temp-password'   => 'Midlertidig adgangskode',
 
 # Edit page toolbar
 'bold_sample'     => 'Fed tekst',
@@ -757,6 +769,15 @@ så du kan ikke gemme dine ændringer lige nu. Det kan godt være en god ide at 
  
 Overvej om det er passende at genoprette siden. De slettede versioner for 
 denne side er vist nedenfor:",
+'deleted-notice'                   => 'Denne side er blevet slettet.
+Siden slettelog er vist nedenfor.',
+'deletelog-fulllog'                => 'Se hele loggen',
+'edit-hook-aborted'                => 'Redigering afbrudt af en programfunktion. Ingen tilknyttet forklaring.',
+'edit-gone-missing'                => 'Kunne ikke opdatere siden. 
+Den ser du til at være slettet.',
+'edit-conflict'                    => 'Redigeringskonflikt.',
+'edit-no-change'                   => 'Din ændring ignoreredes, fordi der ikke var ændring af teksten.',
+'edit-already-exists'              => 'En ny side kunne ikke oprettes, fordi den allerede findes.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Advarsel: Der er for mange beregningstunge oversætter-funktionskald på denne side.
