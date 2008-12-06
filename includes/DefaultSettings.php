@@ -3328,7 +3328,7 @@ $wgUseAjax = true;
  * List of Ajax-callable functions.
  * Extensions acting as Ajax callbacks must register here
  */
-$wgAjaxExportList = array( 'wfAjaxGetThumbnailUrl' );
+$wgAjaxExportList = array( 'wfAjaxGetThumbnailUrl', 'wfAjaxGetFileUrl' );
 
 /**
  * Enable watching/unwatching pages using AJAX.
