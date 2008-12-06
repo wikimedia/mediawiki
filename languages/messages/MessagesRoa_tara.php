@@ -34,10 +34,14 @@ $messages = array(
 'tog-enotifwatchlistpages'    => "Manneme 'na mail quanne 'a pàgene ca stoche a condrolle ha cangete",
 'tog-enotifusertalkpages'     => "Manneme 'na mail quanne 'a pàgene de le 'ngazzaminde ha cangete",
 'tog-enotifminoredits'        => "Manneme 'na mail quanne onne state fatte cangiaminde stuèdeche sus 'a pàgene",
+'tog-enotifrevealaddr'        => "Fa vedè l'indirizze e-mail jndr'à le e-mail de notifiche",
 'tog-shownumberswatching'     => "Fa vedè 'u numere de le utinde ca uardene",
 'tog-fancysig'                => 'Firma grezze (senza collegamende automatiche)',
 'tog-externaleditor'          => "Ause n'editore esterne pe default (sulamende pe l'esperte, abbesogne de 'na configurazione speciele sus a 'u combiuter tue)",
+'tog-externaldiff'            => "Ause na differenze esterne pe default (sulamende pe l'esperte, abbesogne de 'na configuraziona speciele sus a 'u computer tue)",
+'tog-showjumplinks'           => 'Abbilite "zumbe a" pe accedere a le collegaminde',
 'tog-uselivepreview'          => "Ause l'andeprime da 'u vive (JavaScript) (Sperimendele)",
+'tog-forceeditsummary'        => "Ciercheme conferme quanne stoche a 'nzerische 'nu riepighe vianghe",
 'tog-watchlisthideown'        => "Scunne le cangiaminde mie da 'a liste de le pàgene condrollete",
 'tog-watchlisthidebots'       => "Scunne le cangiaminde de le not da 'a liste de le pàgene condrollete",
 'tog-watchlisthideminor'      => "Scunne le cangiaminde stuèdeche da 'a liste de le pàgene condrollete",
@@ -46,9 +50,11 @@ $messages = array(
 'tog-ccmeonemails'            => "Manneme 'na copie de le mail ca je manne a l'ôtre utinde",
 'tog-diffonly'                => 'No fà vedè le pàggene cu le condenute sotte a le differenze',
 'tog-showhiddencats'          => 'Fa vedè le categorije scunnute',
+'tog-norollbackdiff'          => "Non sce penzanne a le differenze apprisse l'esecuzione de 'nu rollback",
 
-'underline-always' => 'Sembre',
-'underline-never'  => 'Maje',
+'underline-always'  => 'Sembre',
+'underline-never'   => 'Maje',
+'underline-default' => "Valore de default d'u browser",
 
 # Dates
 'sunday'        => 'Dumèneche',
@@ -112,7 +118,9 @@ $messages = array(
 'hidden-category-category'       => 'Categorije scunnute', # Name of the category where hidden categories will be listed
 'category-subcat-count'          => "{{PLURAL:$2|Sta categorije tène sulamende 'na sottecategorije.|Sta categorije tène {{PLURAL:$1|'na sottecategorije|$1 sottecategorije}}, sus a 'nu totele de $2.}}",
 'category-subcat-count-limited'  => 'Sta categorije tène {{PLURAL:$1|sottecategorije|le seguende $1 sottecategorije}}.',
+'category-article-count'         => "{{PLURAL:$2|Sta categorije condiene sulamende 'a seguenda pàgene.|{{PLURAL:$1|'A seguende pàgene jè|le seguende $1 pàggene sonde }} condenute jndr'à sta categorije, sus a $2 totele.}}",
 'category-article-count-limited' => "{{PLURAL:$1|'A pàgene seguente ste|Le $1 pàggene seguende stonne}} jndr'à categorija corrende",
+'category-file-count'            => "{{PLURAL:$2|Sta categorije condene sulamende 'u seguende file.|{{PLURAL:$1|'U seguende file stè |le seguende $1 files stonne}} jndr'à sta categorije, sus a $2 totele.}}",
 'category-file-count-limited'    => "{{PLURAL:$1|'U seguende file jè|$1 Le seguende file sonde}} jndr'à categorije corrende.",
 'listingcontinuesabbrev'         => 'cond.',
 
@@ -227,6 +235,7 @@ $messages = array(
 
 'badaccess'        => 'Errore de permesse',
 'badaccess-group0' => "Tu non ge puè fa l'azione ca è richieste.",
+'badaccess-groups' => "L'azione ca tu è richieste è limitete a l'utinde ca stonne jndr'à {{PLURAL:$2|'u gruppe|une de ste gruppe}}: $1.",
 
 'versionrequired'     => "Jè richieste 'a versione $1 de MediaUicchi",
 'versionrequiredtext' => "Ha ausà 'a versione $1 de MediaUicchi pe ausà sta pàgene.
@@ -251,7 +260,9 @@ Vide [[Special:Version|Versione d'a pàgene]].",
 'hidetoc'                 => 'scunne',
 'thisisdeleted'           => 'Vide o ripristine $1?',
 'viewdeleted'             => 'Vue ccu vide $1?',
+'restorelink'             => "{{PLURAL:$1|'nu cangiamende scangellete|$1 cangiaminde scangellete}}",
 'feedlinks'               => 'Feed:',
+'feed-invalid'            => "'U tipe d'u feed de sttoscrizione jè invalide.",
 'feed-unavailable'        => 'Syndication feeds non ge sonde disponibbele',
 'site-rss-feed'           => '$1 RSS Feed',
 'site-atom-feed'          => '$1 Atom Feed',

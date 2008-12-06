@@ -1135,12 +1135,14 @@ $2',
 # Unused templates
 'unusedtemplates'     => 'נישט באניצטע מוסטערן',
 'unusedtemplatestext' => 'דער בלאט ווײַזט אלע בלעטער אינעם {{ns:template}} נאמענטייל וואס זענען נישט אײַנגעשלאסן אין אן אנדער בלאט. געדענקט צו באקוקן אנדערע בלעטער פאר לינקען צו די מוסטערן איידער איר מעקט זיי אויס.',
+'unusedtemplateswlh'  => 'אנדערע פֿאַרבינדונגען',
 
 # Random page
-'randompage' => 'צופֿעליגער אַרטיקל',
+'randompage'         => 'צופֿעליגער אַרטיקל',
+'randompage-nopages' => 'נישטא קיין בלעטער אין נאמענטייל "$1".',
 
 # Random redirect
-'randomredirect'         => ' צופֿעליק ווײַטערפֿירן',
+'randomredirect'         => 'צופֿעליק ווײַטערפֿירן',
 'randomredirect-nopages' => 'נישטא קיין ווײַטערפֿירונגען אין דעם נאמענטייל $1.',
 
 # Statistics
@@ -1148,7 +1150,7 @@ $2',
 'statistics-header-pages' => 'בלעטער סטאטיסטיק',
 'statistics-header-users' => 'באניצער סטאטיסטיק',
 'statistics-articles'     => 'אינהאלט בלעטער',
-'statistics-pages'        => ' בלעטער',
+'statistics-pages'        => 'בלעטער',
 
 'disambiguations'      => 'באדייטן בלעטער',
 'disambiguationspage'  => 'Template:באדייטן',

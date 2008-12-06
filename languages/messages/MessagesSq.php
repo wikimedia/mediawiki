@@ -617,7 +617,7 @@ Përderisa nuk ka seksion $1 nuk ka vend për të ruajtur ndryshimet tuaja.",
 'accmailtitle'                     => 'Fjalëkalimi u dërgua.',
 'accmailtext'                      => "Fjalëkalimi për '$1' u dërgua tek $2.",
 'newarticle'                       => '(I Ri)',
-'newarticletext'                   => "{{SITENAME}} nuk ka akoma një ''{{NAMESPACE}} faqe'' të quajtur '''{{PAGENAME}}'''. Shtypni '''redaktoni''' më sipër ose [[Speciale:Search/{{PAGENAME}}|bëni një kërkim për {{PAGENAME}}]] (Shikoni [[{{MediaWiki:Helppage}}|faqen për ndihmë]] për më shumë informacion).
+'newarticletext'                   => "{{SITENAME}} nuk ka akoma një ''faqe {{NAMESPACE}}'' të quajtur '''{{PAGENAME}}'''. Shtypni '''redaktoni''' më sipër ose [[Speciale:Search/{{PAGENAME}}|bëni një kërkim për {{PAGENAME}}]] (Shikoni [[{{MediaWiki:Helppage}}|faqen për ndihmë]] për më shumë informacion).
 Nëse gjetët këtë faqe aksidentalisht, shtypni butonin mbrapsh të shfletuesit tuaj.",
 'anontalkpagetext'                 => "---- ''Kjo është një faqe diskutimi për një përdorues anonim i cili nuk ka hapur akoma një llogari ose nuk e përdor atë.
 Prandaj, më duhet të përdor numrin e adresës IP për ta identifikuar.

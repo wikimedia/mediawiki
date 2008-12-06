@@ -2863,6 +2863,7 @@ També podeu [[Special:Watchlist/edit|utilitzar l'editor estàndard]].",
 
 # Core parser functions
 'unknown_extension_tag' => "Etiqueta d'extensió desconeguda «$1»",
+'duplicate-defaultsort' => 'Atenció: La clau d\'ordenació per defecte "$2" invalida l\'anterior clau "$1".',
 
 # Special:Version
 'version'                          => 'Versió', # Not used as normal message but as header for the special page itself

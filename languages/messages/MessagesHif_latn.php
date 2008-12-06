@@ -996,6 +996,7 @@ Configure kare khatir meharbani kar ke math/README ke dekho.',
 'contextchars'              => 'Context per line:',
 'stub-threshold'            => 'Threshold for <a href="#" class="stub">stub link</a> formatting (bytes):',
 'recentchangesdays'         => 'Nawaa badlao me ketna roj dekhawa jaae:',
+'recentchangesdays-max'     => '(sab se jaada $1 {{PLURAL:$1|din|din}})',
 'recentchangescount'        => 'nawaa badla, itihaas aur log panna me ketna badlao dekhawa jaae:',
 'savedprefs'                => 'Aap ke pasand ke save kar lewa gais hai.',
 'timezonelegend'            => 'Time ke zone',
@@ -1200,6 +1201,13 @@ Panna jon [[Special:Watchlist|aap ke dhyan suchi]] me hai '''bold''' karal hai."
 'upload_directory_missing'   => 'Upload directory ($1) nai hai aur webserver iske nai banae sakis hai.',
 'upload_directory_read_only' => 'Upload directory ($1) ke webserver nai likhe sake hai.',
 'uploaderror'                => 'Upload nai hoe paais hai',
+'uploadtext'                 => "Niche waala form ke use kar ke file upload karo.
+Pahile upload karaa file ke dekhe khatir [[Special:FileList|list of uploaded files]] jao, (re)uploads are also logged in the [[Special:Log/upload|upload log]], deletions in the [[Special:Log/delete|deletion log]].
+
+To include a file in a page, use a link in one of the following forms:
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' to use the full version of the file
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' to use a 200 pixel wide rendition in a box in the left margin with 'alt text' as description
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' for directly linking to the file without displaying the file",
 'upload-permitted'           => 'File types jiske ijajat hai: $1.',
 'uploadlogpage'              => 'Suchi ke upload karo',
 'filename'                   => 'Filename',
