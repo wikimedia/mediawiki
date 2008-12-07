@@ -47,7 +47,7 @@ class LogEventsList {
 
 	/**
 	 * Set page title and show header for this log type
-	 * @param string $type
+	 * @param $type String
 	 */
 	public function showHeader( $type ) {
 		if( LogPage::isLogType( $type ) ) {
@@ -58,13 +58,13 @@ class LogEventsList {
 
 	/**
 	 * Show options for the log list
-	 * @param string $type,
-	 * @param string $user,
-	 * @param string $page,
-	 * @param string $pattern
-	 * @param int $year year
-	 * @param int $month month
-	 * @param bool $filter
+	 * @param $type String
+	 * @param $user String
+	 * @param $page String
+	 * @param $pattern String
+	 * @param $year Integer: year
+	 * @param $month Integer: month
+	 * @param $filter Boolean
 	 */
 	public function showOptions( $type = '', $user = '', $page = '', $pattern = '', $year = '', 
 			$month = '', $filter = null ) 
@@ -120,8 +120,8 @@ class LogEventsList {
 	}
 
 	/**
-	 * @return string Formatted HTML
-	 * @param string $queryType
+	 * @param $queryType String
+	 * @return String: Formatted HTML
 	 */
 	private function getTypeMenu( $queryType ) {
 		global $wgLogRestrictions, $wgUser;
@@ -158,25 +158,25 @@ class LogEventsList {
 	}
 
 	/**
-	 * @return string Formatted HTML
-	 * @param string $user
+	 * @param $user String
+	 * @return String: Formatted HTML
 	 */
 	private function getUserInput( $user ) {
 		return Xml::inputLabel( wfMsg( 'specialloguserlabel' ), 'user', 'user', 15, $user );
 	}
 
 	/**
-	 * @return string Formatted HTML
-	 * @param string $title
+	 * @param $title String
+	 * @return String: Formatted HTML
 	 */
 	private function getTitleInput( $title ) {
 		return Xml::inputLabel( wfMsg( 'speciallogtitlelabel' ), 'page', 'page', 20, $title );
 	}
 
 	/**
+	 * @param $year Integer
+	 * @param $month Integer
 	 * @return string Formatted HTML
-	 * @param int $year
-	 * @param int $month
 	 */
 	private function getDateMenu( $year, $month ) {
 		# Offset overrides year/month selection
@@ -221,10 +221,9 @@ class LogEventsList {
 		return "</ul>\n";
 	}
 
-		/**
-	 * @param Row $row a single row from the result set
-	 * @return string Formatted HTML list item
-	 * @private
+	/**
+	 * @param $row Row: a single row from the result set
+	 * @return String: Formatted HTML list item
 	 */
 	public function logLine( $row ) {
 		global $wgLang, $wgUser, $wgContLang;
@@ -343,7 +342,7 @@ class LogEventsList {
 	}
 
 	/**
-	 * @param Row $row
+	 * @param $row Row
 	 * @return string
 	 */
 	private function getShowHideLinks( $row ) {
@@ -366,9 +365,9 @@ class LogEventsList {
 	}
 
 	/**
-	 * @param Row $row
-	 * @param mixed $type (string/array)
-	 * @param mixed $action (string/array)
+	 * @param $row Row
+	 * @param $type Mixed: string/array
+	 * @param $action Mixed: string/array
 	 * @return bool
 	 */
 	public static function typeAction( $row, $type, $action ) {
@@ -382,9 +381,9 @@ class LogEventsList {
 	/**
 	 * Determine if the current user is allowed to view a particular
 	 * field of this log row, if it's marked as deleted.
-	 * @param Row $row
-	 * @param int $field
-	 * @return bool
+	 * @param $row Row
+	 * @param $field Integer
+	 * @return Boolean
 	 */
 	public static function userCan( $row, $field ) {
 		if( ( $row->log_deleted & $field ) == $field ) {
@@ -400,9 +399,9 @@ class LogEventsList {
 	}
 
 	/**
-	 * @param Row $row
-	 * @param int $field one of DELETED_* bitfield constants
-	 * @return bool
+	 * @param $row Row
+	 * @param $field Integer: one of DELETED_* bitfield constants
+	 * @return Boolean
 	 */
 	public static function isDeleted( $row, $field ) {
 		return ($row->log_deleted & $field) == $field;
@@ -410,12 +409,12 @@ class LogEventsList {
 
 	/**
 	 * Quick function to show a short log extract
-	 * @param OutputPage $out
-	 * @param string $type
-	 * @param string $page
-	 * @param string $user
-	 * @param int $lim
-	 * @param array $conds
+	 * @param $out OutputPage
+	 * @param $type String
+	 * @param $page String
+	 * @param $user String
+	 * @param $lim Integer
+	 * @param $conds Array
 	 */
 	public static function showLogExtract( $out, $type='', $page='', $user='', $lim=0, $conds=array() ) {
 		global $wgUser;
@@ -436,10 +435,10 @@ class LogEventsList {
 		return $pager->getNumRows();
 	}
 
-	 /**
+	/**
 	 * SQL clause to skip forbidden log types for this user
-	 * @param Database $db
-	 * @returns mixed (string or false)
+	 * @param $db Database
+	 * @return mixed (string or false)
 	 */
 	public static function getExcludeClause( $db ) {
 		global $wgLogRestrictions, $wgUser;
@@ -467,15 +466,18 @@ class LogEventsList {
 class LogPager extends ReverseChronologicalPager {
 	private $type = '', $user = '', $title = '', $pattern = '';
 	public $mLogEventsList;
+
 	/**
-	* constructor
-	* @param LogEventsList $loglist,
-	* @param string $type,
-	* @param string $user,
-	* @param string $page,
-	* @param string $pattern
-	* @param array $conds
-	*/
+	 * constructor
+	 * @param $list LogEventsList
+	 * @param $type String
+	 * @param $user String
+	 * @param $title String
+	 * @param $pattern String
+	 * @param $conds Array
+	 * @param $year Integer
+	 * @param $month Integer
+	 */
 	function __construct( $list, $type = '', $user = '', $title = '', $pattern = '', 
 			$conds = array(), $year = false, $month = false ) 
 	{
@@ -519,8 +521,7 @@ class LogPager extends ReverseChronologicalPager {
 	/**
 	 * Set the log reader to return only entries of the given type.
 	 * Type restrictions enforced here
-	 * @param string $type A log type ('upload', 'delete', etc)
-	 * @private
+	 * @param $type String: A log type ('upload', 'delete', etc)
 	 */
 	private function limitType( $type ) {
 		global $wgLogRestrictions, $wgUser;
@@ -542,8 +543,7 @@ class LogPager extends ReverseChronologicalPager {
 
 	/**
 	 * Set the log reader to return only entries by the given user.
-	 * @param string $name (In)valid user name
-	 * @private
+	 * @param $name String: (In)valid user name
 	 */
 	private function limitUser( $name ) {
 		if( $name == '' ) {
@@ -568,8 +568,8 @@ class LogPager extends ReverseChronologicalPager {
 	/**
 	 * Set the log reader to return only entries affecting the given page.
 	 * (For the block and rights logs, this is a user page.)
-	 * @param string $page Title name as text
-	 * @private
+	 * @param $page String: Title name as text
+	 * @param $pattern String
 	 */
 	private function limitTitle( $page, $pattern ) {
 		global $wgMiserMode;
@@ -679,7 +679,7 @@ class LogPager extends ReverseChronologicalPager {
 class LogReader {
 	var $pager;
 	/**
-	 * @param WebRequest $request For internal use use a FauxRequest object to pass arbitrary parameters.
+	 * @param $request WebRequest: for internal use use a FauxRequest object to pass arbitrary parameters.
 	 */
 	function __construct( $request ) {
 		global $wgUser, $wgOut;
@@ -716,13 +716,15 @@ class LogReader {
  */
 class LogViewer {
 	const NO_ACTION_LINK = 1;
+
 	/**
-	 * @var LogReader $reader
+	 * LogReader object
 	 */
 	var $reader;
+
 	/**
-	 * @param LogReader &$reader where to get our data from
-	 * @param integer $flags Bitwise combination of flags:
+	 * @param &$reader LogReader: where to get our data from
+	 * @param $flags Integer: Bitwise combination of flags:
 	 *     LogEventsList::NO_ACTION_LINK   Don't show restore/unblock/block links
 	 */
 	function __construct( &$reader, $flags = 0 ) {
@@ -762,7 +764,7 @@ class LogViewer {
 	 * Output just the list of entries given by the linked LogReader,
 	 * with extraneous UI elements. Use for displaying log fragments in
 	 * another page (eg at Special:Undelete)
-	 * @param OutputPage $out where to send output
+	 * @param $out OutputPage: where to send output
 	 */
 	public function showList( &$out ) {
 		$logBody = $this->pager->getBody();
