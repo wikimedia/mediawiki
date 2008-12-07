@@ -1314,6 +1314,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'illegalfilename'             => 'ファイル名 "$1" にページ・タイトルとして使えない文字が含まれています。ファイル名を変更してからもう一度アップロードしてください。',
 'badfilename'                 => 'ファイル名は "$1" へ変更されました。',
 'filetype-badmime'            => 'MIME タイプ "$1" のファイルのアップロードは許可されていません。',
+'filetype-bad-ie-mime'        => 'Internet Explorer がこのファイルを "$1" と検知しましたが、このファイル形式は許可されておらず、潜在的に危険なためアップロードできません。',
 'filetype-unwanted-type'      => "'''\".\$1\"''' は好ましくないファイル形式です。次のファイル形式を推奨します： \$2",
 'filetype-banned-type'        => "'''\".\$1\"''' は許可されていないファイル形式です。次のファイル形式を利用してください： \$2",
 'filetype-missing'            => 'ファイルに拡張子 (".jpg" など)がありません。',
@@ -1811,7 +1812,7 @@ $NEWPAGE
 'prot_1movedto2'              => 'ページ [[$1]] を [[$2]] へ移動',
 'protect-legend'              => '保護の確認',
 'protectcomment'              => '保護・保護解除の理由',
-'protectexpiry'               => '期間',
+'protectexpiry'               => '期限:',
 'protect_expiry_invalid'      => '期間の指定が無効です。',
 'protect_expiry_old'          => '保護期限が過去の時刻です。',
 'protect-unchain'             => '移動権限を操作',
@@ -1954,7 +1955,7 @@ $NEWPAGE
 'ipaddress'                       => 'IPアドレス',
 'ipadressorusername'              => '利用者名 / IPアドレス',
 'ipbexpiry'                       => '期間',
-'ipbreason'                       => '理由',
+'ipbreason'                       => '理由:',
 'ipbreasonotherlist'              => 'その他',
 'ipbreason-dropdown'              => '*よくあるブロック理由
 ** 虚偽情報の掲載

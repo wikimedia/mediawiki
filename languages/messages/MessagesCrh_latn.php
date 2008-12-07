@@ -725,6 +725,7 @@ $3 mına böyle bir sebep belgiledi: ''$2''",
 'viewpagelogs'           => 'Bu saifeniñ jurnallarını köster',
 'nohistory'              => 'Bu saifeniñ keçmiş versiyası yoq.',
 'currentrev'             => 'Al-azırki versiya',
+'currentrev-asof'        => '$1 tarihında sоñki оlaraq deñiştirilgen saifeniñ şimdiki alı',
 'revisionasof'           => 'Saifeniñ $1 tarihındaki alı',
 'revision-info'          => 'Saifeniñ $2 tarafından oluştırılğan $1 tarihındaki alı', # Additionally available: $3: revision id
 'previousrevision'       => '← Evelki alı',

@@ -1288,9 +1288,11 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'upload-curl-error28'      => '업로드 시간 초과',
 'upload-curl-error28-text' => '사이트에서 응답하는 시간이 너무 깁니다. 사이트 접속이 가능한지 확인한 다음 다시 시도해주세요. 해당 사이트에 접속이 많을 경우, 접속이 원활한 시간대에 시도해주세요.',
 
-'license'           => '라이센스:',
-'nolicense'         => '선택하지 않음',
-'license-nopreview' => '(미리보기 불가능)',
+'license'            => '라이센스:',
+'nolicense'          => '선택하지 않음',
+'license-nopreview'  => '(미리보기 불가능)',
+'upload_source_url'  => ' (유효하고, 모든 사람이 접근 가능한 URL)',
+'upload_source_file' => ' (당신의 컴퓨터에 있는 파일)',
 
 # Special:FileList
 'imagelist-summary'     => '이 위키에 올라와 있는 모든 파일이 나열되어 있습니다.
