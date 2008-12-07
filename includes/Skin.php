@@ -265,7 +265,7 @@ class Skin extends Linker {
 
 	function setMembers(){
 		global $wgTitle, $wgUser;
-		$this->mTitle = $wgTitle;
+		$this->mTitle =& $wgTitle;
 		$this->mUser = $wgUser;
 		$this->userpage = $wgUser->getUserPage()->getPrefixedText();
 		$this->usercss = false;
