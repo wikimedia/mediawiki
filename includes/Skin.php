@@ -132,7 +132,7 @@ class Skin extends Linker {
 		$className = 'Skin'.ucfirst($key);
 
 		# Grab the skin class and initialise it.
-		if ( !class_exists( $className ) ) {
+		if ( !class_exists( $className, false ) ) {
 			// Preload base classes to work around APC/PHP5 bug
 			$deps = "{$wgStyleDirectory}/{$skinName}.deps.php";
 			if( file_exists( $deps ) ) include_once( $deps );
