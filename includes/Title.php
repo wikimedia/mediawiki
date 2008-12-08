@@ -2979,7 +2979,8 @@ class Title {
 	 */
 	public function pageCond() {
 		if( $this->mArticleID > 0 ) {
-			return array( 'page_id' => $this->mArticleID ); // PK avoids secondary lookups
+			// PK avoids secondary lookups in InnoDB, shouldn't hurt other DBs
+			return array( 'page_id' => $this->mArticleID );
 		} else {
 			return array( 'page_namespace' => $this->mNamespace, 'page_title' => $this->mDbkeyform );
 		}
