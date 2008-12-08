@@ -123,7 +123,7 @@ class Skin extends Linker {
 	 * @static
 	 */
 	static function &newFromKey( $key ) {
-		global $wgStyleDirectory;
+		global $wgStyleDirectory, $wgAutoloadClasses;
 
 		$key = Skin::normalizeKey( $key );
 
@@ -132,7 +132,8 @@ class Skin extends Linker {
 		$className = 'Skin'.ucfirst($key);
 
 		# Grab the skin class and initialise it.
-		if ( !class_exists( $className, false ) ) {
+		# Use autoloader if it is set in $wgAutoloadClasses.
+		if( !class_exists( $className, isset($wgAutoloadClasses[$className]) ) ) {
 			// Preload base classes to work around APC/PHP5 bug
 			$deps = "{$wgStyleDirectory}/{$skinName}.deps.php";
 			if( file_exists( $deps ) ) include_once( $deps );
