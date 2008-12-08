@@ -2978,7 +2978,11 @@ class Title {
 	 * @return \type{\array} Selection array
 	 */
 	public function pageCond() {
-		return array( 'page_namespace' => $this->mNamespace, 'page_title' => $this->mDbkeyform );
+		if( $this->mArticleID > 0 ) {
+			return array( 'page_id' => $this->mArticleID ); // PK avoids secondary lookups
+		} else {
+			return array( 'page_namespace' => $this->mNamespace, 'page_title' => $this->mDbkeyform );
+		}
 	}
 
 	/**
