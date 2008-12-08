@@ -1100,61 +1100,55 @@ class Title {
 		$errors = array();
 
 		// Use getUserPermissionsErrors instead
-		if ( !wfRunHooks( 'userCan', array( &$this, &$user, $action, &$result ) ) ) {
+		if( !wfRunHooks( 'userCan', array( &$this, &$user, $action, &$result ) ) ) {
 			wfProfileOut( __METHOD__ );
 			return $result ? array() : array( array( 'badaccess-group0' ) );
 		}
 
-		if (!wfRunHooks( 'getUserPermissionsErrors', array( &$this, &$user, $action, &$result ) ) ) {
-			if ($result != array() && is_array($result) && !is_array($result[0]))
+		if( !wfRunHooks( 'getUserPermissionsErrors', array(&$this,&$user,$action,&$result) ) ) {
+			if( is_array($result) && count($result) && !is_array($result[0]) )
 				$errors[] = $result; # A single array representing an error
-			else if (is_array($result) && is_array($result[0]))
+			else if( is_array($result) && is_array($result[0]) )
 				$errors = array_merge( $errors, $result ); # A nested array representing multiple errors
-			else if ($result != '' && $result != null && $result !== true && $result !== false)
+			else if( $result !== '' && is_string($result) )
 				$errors[] = array($result); # A string representing a message-id
-			else if ($result === false )
+			else if( $result === false )
 				$errors[] = array('badaccess-group0'); # a generic "We don't want them to do that"
 		}
-		if ($doExpensiveQueries && !wfRunHooks( 'getUserPermissionsErrorsExpensive', array( &$this, &$user, $action, &$result ) ) ) {
-			if ($result != array() && is_array($result) && !is_array($result[0]))
+		if( $doExpensiveQueries && !wfRunHooks( 'getUserPermissionsErrorsExpensive', array(&$this,&$user,$action,&$result) ) ) {
+			if( is_array($result) && count($result) && !is_array($result[0]) )
 				$errors[] = $result; # A single array representing an error
-			else if (is_array($result) && is_array($result[0]))
+			else if( is_array($result) && is_array($result[0]) )
 				$errors = array_merge( $errors, $result ); # A nested array representing multiple errors
-			else if ($result != '' && $result != null && $result !== true && $result !== false)
+			else if( $result !== '' && is_string($result) )
 				$errors[] = array($result); # A string representing a message-id
-			else if ($result === false )
+			else if( $result === false )
 				$errors[] = array('badaccess-group0'); # a generic "We don't want them to do that"
 		}
 		
+		// TODO: document
 		$specialOKActions = array( 'createaccount', 'execute' );
 		if( NS_SPECIAL == $this->mNamespace && !in_array( $action, $specialOKActions) ) {
 			$errors[] = array('ns-specialprotected');
 		}
 
-		if ( $this->isNamespaceProtected() ) {
-			$ns = $this->getNamespace() == NS_MAIN
-				? wfMsg( 'nstab-main' )
-				: $this->getNsText();
-			$errors[] = (NS_MEDIAWIKI == $this->mNamespace
-				? array('protectedinterface')
-				: array( 'namespaceprotected',  $ns ) );
-		}
-
-		if( $this->mDbkeyform == '_' ) {
-			# FIXME: Is this necessary? Shouldn't be allowed anyway...
-			$errors[] = array('badaccess-group0');
+		if( $this->isNamespaceProtected() ) {
+			$ns = $this->getNamespace() == NS_MAIN ?
+				wfMsg( 'nstab-main' ) : $this->getNsText();
+			$errors[] = NS_MEDIAWIKI == $this->mNamespace ?
+				array('protectedinterface') : array( 'namespaceprotected',  $ns );
 		}
 
 		# protect css/js subpages of user pages
 		# XXX: this might be better using restrictions
 		# XXX: Find a way to work around the php bug that prevents using $this->userCanEditCssJsSubpage() from working
-		if( $this->isCssJsSubpage()
-			&& !$user->isAllowed('editusercssjs')
-			&& !preg_match('/^'.preg_quote($user->getName(), '/').'\//', $this->mTextform) ) {
+		if( $this->isCssJsSubpage() && !$user->isAllowed('editusercssjs')
+			&& !preg_match('/^'.preg_quote($user->getName(), '/').'\//', $this->mTextform) )
+		{
 			$errors[] = array('customcssjsprotected');
 		}
 
-		if ( $doExpensiveQueries && !$this->isCssJsSubpage() ) {
+		if( $doExpensiveQueries && !$this->isCssJsSubpage() ) {
 			# We /could/ use the protection level on the source page, but it's fairly ugly
 			#  as we have to establish a precedence hierarchy for pages included by multiple
 			#  cascade-protected pages. So just restrict it to people with 'protect' permission,
@@ -1179,18 +1173,18 @@ class Title {
 
 		foreach( $this->getRestrictions($action) as $right ) {
 			// Backwards compatibility, rewrite sysop -> protect
-			if ( $right == 'sysop' ) {
+			if( $right == 'sysop' ) {
 				$right = 'protect';
 			}
 			if( '' != $right && !$user->isAllowed( $right ) ) {
-				//Users with 'editprotected' permission can edit protected pages
+				// Users with 'editprotected' permission can edit protected pages
 				if( $action=='edit' && $user->isAllowed( 'editprotected' ) ) {
-					//Users with 'editprotected' permission cannot edit protected pages
-					//with cascading option turned on.
-					if($this->mCascadeRestriction) {
+					// Users with 'editprotected' permission cannot edit protected pages
+					// with cascading option turned on.
+					if( $this->mCascadeRestriction ) {
 						$errors[] = array( 'protectedpagetext', $right );
 					} else {
-						//Nothing, user can edit!
+						// Nothing, user can edit!
 					}
 				} else {
 					$errors[] = array( 'protectedpagetext', $right );
@@ -1198,78 +1192,71 @@ class Title {
 			}
 		}
 
-		if ($action == 'protect') {
-			if ($this->getUserPermissionsErrors('edit', $user) != array()) {
+		if( $action == 'protect' ) {
+			if( $this->getUserPermissionsErrors('edit', $user) != array() ) {
 				$errors[] = array( 'protect-cantedit' ); // If they can't edit, they shouldn't protect.
 			}
 		}
 
-		if ($action == 'create') {
+		if( $action == 'create' ) {
 			$title_protection = $this->getTitleProtection();
+			if( is_array($title_protection) ) {
+				extract($title_protection); // is this extract() really needed?
 
-			if (is_array($title_protection)) {
-				extract($title_protection);
-
-				if ($pt_create_perm == 'sysop')
-					$pt_create_perm = 'protect';
-
-				if ($pt_create_perm == '' || !$user->isAllowed($pt_create_perm)) {
-					$errors[] = array ( 'titleprotected', User::whoIs($pt_user), $pt_reason );
+				if( $pt_create_perm == 'sysop' ) {
+					$pt_create_perm = 'protect'; // B/C
+				}
+				if( $pt_create_perm == '' || !$user->isAllowed($pt_create_perm) ) {
+					$errors[] = array( 'titleprotected', User::whoIs($pt_user), $pt_reason );
 				}
 			}
 
-			if( (  $this->isTalkPage() && !$user->isAllowed( 'createtalk' ) ) ||
-				( !$this->isTalkPage() && !$user->isAllowed( 'createpage' ) ) ) {
+			if( ( $this->isTalkPage() && !$user->isAllowed( 'createtalk' ) ) ||
+				( !$this->isTalkPage() && !$user->isAllowed( 'createpage' ) ) ) 
+			{
 				$errors[] = $user->isAnon() ? array ('nocreatetext') : array ('nocreate-loggedin');
 			}
-
-		} elseif ( $action == 'move' ) {
-			if ( !$user->isAllowed( 'move' ) ) {
+		} elseif( $action == 'move' ) {
+			if( !$user->isAllowed( 'move' ) ) {
 				// User can't move anything
 				$errors[] = $user->isAnon() ? array ( 'movenologintext' ) : array ('movenotallowed');
-			} elseif ( !$user->isAllowed( 'move-rootuserpages' ) 
+			} elseif( !$user->isAllowed( 'move-rootuserpages' ) 
 					&& $this->getNamespace() == NS_USER && !$this->isSubpage() ) 
 			{
 				// Show user page-specific message only if the user can move other pages
 				$errors[] = array( 'cant-move-user-page' );
 			}
-
 			// Check for immobile pages
-			if ( !MWNamespace::isMovable( $this->getNamespace() ) ) {
+			if( !MWNamespace::isMovable( $this->getNamespace() ) ) {
 				// Specific message for this case
 				$errors[] = array( 'immobile-source-namespace', $this->getNsText() );
-			} elseif ( !$this->isMovable() ) {
+			} elseif( !$this->isMovable() ) {
 				// Less specific message for rarer cases
 				$errors[] = array( 'immobile-page' );
 			}
-
-		} elseif ( $action == 'move-target' ) {
-			if ( !$user->isAllowed( 'move' ) ) {
+		} elseif( $action == 'move-target' ) {
+			if( !$user->isAllowed( 'move' ) ) {
 				// User can't move anything
 				$errors[] = $user->isAnon() ? array ( 'movenologintext' ) : array ('movenotallowed');
-			} elseif ( !$user->isAllowed( 'move-rootuserpages' ) 
-					&& $this->getNamespace() == NS_USER && !$this->isSubpage() ) 
+			} elseif( !$user->isAllowed( 'move-rootuserpages' ) 
+				&& $this->getNamespace() == NS_USER && !$this->isSubpage() ) 
 			{
 				// Show user page-specific message only if the user can move other pages
 				$errors[] = array( 'cant-move-to-user-page' );
 			}
-			if ( !MWNamespace::isMovable( $this->getNamespace() ) ) {
+			if( !MWNamespace::isMovable( $this->getNamespace() ) ) {
 				$errors[] = array( 'immobile-target-namespace', $this->getNsText() );
-			} elseif ( !$this->isMovable() ) {
+			} elseif( !$this->isMovable() ) {
 				$errors[] = array( 'immobile-target-page' );
 			}
-
-		} elseif ( !$user->isAllowed( $action ) ) {
+		} elseif( !$user->isAllowed( $action ) ) {
 			$return = null;
 			$groups = array_map( array( 'User', 'makeGroupLinkWiki' ),
 				User::getGroupsWithPermission( $action ) );
-			if ( $groups ) {
+			if( $groups ) {
 				$return = array( 'badaccess-groups',
-					array(
-						implode( ', ', $groups ),
-						count( $groups ) ) );
-			}
-			else {
+					array( implode( ', ', $groups ), count( $groups ) ) );
+			} else {
 				$return = array( "badaccess-group0" );
 			}
 			$errors[] = $return;
