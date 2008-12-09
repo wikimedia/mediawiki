@@ -1456,6 +1456,7 @@ Se [[Special:NewFiles|galleriet över nya filer]] för en mer visuell översikt.
 'illegalfilename'             => 'Filnamnet "$1" innehåller tecken som inte är tillåtna i sidtitlar. Byt namn på filen och försök ladda upp igen.',
 'badfilename'                 => 'Filens namn har blivit ändrat till "$1".',
 'filetype-badmime'            => 'Uppladdning av filer med MIME-typen "$1" är inte tillåten.',
+'filetype-bad-ie-mime'        => 'Kan inte ladda upp denna fil på grund av att Internet Explorer skulle upptäcka att den är "$1", vilket är en otillåten och möjligtvis farlig filtyp.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' är en oönskad filtyp.
 {{PLURAL:\$3|Föredragen filtyp|Föredragna filtyper}} är \$2.",
 'filetype-banned-type'        => "'''\".\$1\"''' är inte en tillåten filtyp.

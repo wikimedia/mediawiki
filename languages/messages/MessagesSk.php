@@ -1356,6 +1356,7 @@ Vizuálny prehľad nájdete v [[Special:NewFiles|galérii novo nahraných súbor
 'illegalfilename'             => 'Názov súboru „$1“ obsahuje znaky, ktoré nie sú povolené v názvoch stránok. Prosím premenujte súbor a skúste ho nahrať znovu.',
 'badfilename'                 => 'Názov obrázka bol zmenený na „$1“.',
 'filetype-badmime'            => 'Nie je povolené nahrávať súbory s MIME typom „$1“.',
+'filetype-bad-ie-mime'        => 'Nie je možné nahrať tento typ súboru, pretože Internet Explorer by ho rozpoznal ako „$1“, čo je nepovolený a potenciálne nebezpečný typ súboru.',
 'filetype-unwanted-type'      => "„.$1“''' je nežiadúci typ súboru.
 {{PLURAL:$3|Uprednostňovaný typ súborov je|Uprednostňované typy súborov sú}} $2.",
 'filetype-banned-type'        => "„.$1“''' nie je povolený typ súboru.

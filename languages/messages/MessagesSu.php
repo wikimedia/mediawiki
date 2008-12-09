@@ -530,8 +530,9 @@ is not allowed to use the password recovery function to prevent abuse.',
 'throttled-mailpassword'     => 'Hiji panginget kecap sandi geus dikirimkeun dina {{PLURAL:$1|jam|$1 jam}} pamungkas. 
 Pikeun ngahindar disalahgunakeun, ngan hiji kecap sandi anu baris dikirimkeun saban {{PLURAL:$1|jam|$1 jam}}.',
 'mailerror'                  => 'Kasalahan ngirim surat: $1',
-'acct_creation_throttle_hit' => 'Punten, anjeun geus nyieun $1 rekening, teu bisa nyieun deui.',
-'emailauthenticated'         => 'Alamat surélék anjeun geus dioténtikasi $1.',
+'acct_creation_throttle_hit' => 'Punten, anjeun geus nyieun {{PLURAL:$1|1 rekening|$1 rekening}}.
+anjeun teu bisa nyieun deui.',
+'emailauthenticated'         => 'Alamat surélék anjeun geus dioténtikasi dina $3, $2.',
 'emailnotauthenticated'      => 'Alamat surélék anjeun <strong>can dioténtikasi</strong>. Moal aya surélék nu bakal dikirim pikeun fitur-fitur di handap ieu.',
 'noemailprefs'               => '<strong>Teu aya alamat surélék</strong>, fitur di handap moal bisa jalan.',
 'emailconfirmlink'           => 'Konfirmasi alamat surélék anjeun',
@@ -892,7 +893,7 @@ Pastikeun yén ieu parobahan bisa miara jujutan kaca sagemblengna.',
 'mypreferences'            => 'Préferénsi kuring',
 'prefs-edits'              => 'Jumlah éditan:',
 'prefsnologin'             => 'Can asup log',
-'prefsnologintext'         => 'Anjeun kudu [[Special:UserLogin|asup log]] pikeun ngatur préferénsi pamaké.',
+'prefsnologintext'         => 'Anjeun kudu <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} asup log]]</span> pikeun ngatur préferénsi pamaké.',
 'prefsreset'               => 'Préferénsi geus disét ulang tina arsip.',
 'qbsettings'               => 'Bar gancang',
 'qbsettings-none'          => 'Henteu aya',
@@ -1236,11 +1237,11 @@ Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anje
 
 # Random page
 'randompage'         => 'Kaca acak',
-'randompage-nopages' => 'Euweuh kaca dina ieu spasi ngaran.',
+'randompage-nopages' => 'Euweuh kaca dina ieu spasi ngaran "$1".',
 
 # Random redirect
 'randomredirect'         => 'Alihan acak',
-'randomredirect-nopages' => 'Euweuh alihan dina ieu spasi ngaran.',
+'randomredirect-nopages' => 'Euweuh alihan dina ieu spasi ngaran "$1".',
 
 # Statistics
 'statistics'              => 'Statistik',
@@ -1583,7 +1584,7 @@ Hal ieu teu diwenangkeun pikeun nyegah karuksakan {{SITENAME}} nu teu dihaja.',
 'undeletehistorynoadmin'       => 'Artikel ieu geus dihapus.
 Alesanana bisa dibaca dina katrangan di handap, katut saha waé nu geus ngédit ieu artikel saméméh dihapus.
 Téks aktual révisi nu geus dihapus ieu ngan bisa dibuka ku kuncén.',
-'undelete-revision'            => 'Révisi nu dihapus ti $1 (nepi ka $2) ku $3:',
+'undelete-revision'            => 'Révisi nu dihapus ti $1 (dina $5, $4) ku $3:',
 'undelete-nodiff'              => 'Euweuh revisi nu lewih lila',
 'undeletebtn'                  => 'Simpen deui!',
 'undeletelink'                 => 'pulangkeun',

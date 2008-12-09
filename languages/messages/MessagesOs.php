@@ -396,12 +396,13 @@ $3',
 'recentchangeslinked' => 'Баст ивддзинæдтæ',
 
 # Upload
-'upload'        => 'Ног файл сæвæр',
-'uploadbtn'     => 'Ног файл сæвæр',
-'uploadnologin' => 'Системæйæн дæхи нæ бацамыдтай',
-'filename'      => 'Файлы ном',
-'savefile'      => 'Бавæр æй',
-'uploadvirus'   => 'Файлы разынд вирус! Кæс $1',
+'upload'          => 'Ног файл сæвæр',
+'uploadbtn'       => 'Ног файл сæвæр',
+'uploadnologin'   => 'Системæйæн дæхи нæ бацамыдтай',
+'filename'        => 'Файлы ном',
+'savefile'        => 'Бавæр æй',
+'uploadvirus'     => 'Файлы разынд вирус! Кæс $1',
+'watchthisupload' => 'Ацы файлмæ дæ цæст æрдар',
 
 # Special:FileList
 'imagelist' => 'Нывты номхыгъд',
@@ -417,7 +418,9 @@ $3',
 'linkstoimage'      => 'Ацы нывæй пайда {{PLURAL:$1|кæны иу фарс|кæнынц ахæм фæрстæ}}:',
 
 # File deletion
-'filedelete-submit' => 'Аппар',
+'filedelete-submit'           => 'Аппар',
+'filedelete-otherreason'      => 'Æндæр кæнæ уæлæмхасæн аххос:',
+'filedelete-reason-otherlist' => 'Æндæр аххос',
 
 # Random page
 'randompage' => 'Æнæбары æвзæрст фарс',
@@ -462,6 +465,9 @@ $3',
 'special-categories-sort-count' => 'нымæцмæ гæсгæ равæр',
 'special-categories-sort-abc'   => 'алфавитмæ гæсгæ равæр',
 
+# Special:LinkSearch
+'linksearch-ok' => 'Агур',
+
 # Special:ListUsers
 'listusers-submit' => 'Равдис',
 
@@ -486,10 +492,15 @@ $3',
 
 # Delete
 'exblank'               => 'фарс афтид уыдис',
+'deleteotherreason'     => 'Æндæр кæнæ уæлæмхасæн аххос:',
 'deletereasonotherlist' => 'Æндæр аххос',
 
 # Protect
-'restriction-type' => 'Бартæ:',
+'protect-othertime'      => 'Æндæр рæстæг:',
+'protect-othertime-op'   => 'æндæр рæстæг',
+'protect-otherreason'    => 'Æндæр аххос/уæлæмхасæн:',
+'protect-otherreason-op' => 'æндæр кæнæ уæлæмхасæн аххос',
+'restriction-type'       => 'Бартæ:',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Ивын',
@@ -507,15 +518,19 @@ $3',
 'whatlinkshere-page'      => 'Фарс:',
 'whatlinkshere-links'     => '← æрвитæнтæ',
 'whatlinkshere-hidelinks' => '$1 æрвитæнтæ',
+'whatlinkshere-filters'   => 'Фильтртæ',
 
 # Block/unblock
-'ipbreason'    => 'Аххос',
-'contribslink' => 'бавæрд',
+'ipbreason'              => 'Аххос',
+'ipbreasonotherlist'     => 'Æндæр аххос',
+'ipb-blocklist-contribs' => '$1, зæгъгæ, уыцы архайæджы бавæрд',
+'contribslink'           => 'бавæрд',
 
 # Move page
 'movearticle' => 'Статьяйы ном баив',
 'movenologin' => 'Системæйæн дæхи нæ бацамыдтай',
 'newtitle'    => 'Ног ном',
+'move-watch'  => 'Ацы фарсмæ дæ цæст æрдар',
 'movereason'  => 'Аххос:',
 
 # Namespace 8 related
@@ -537,6 +552,9 @@ $3',
 
 # Attribution
 'others' => 'æндæртæ',
+
+# Spam protection
+'spamprotectiontitle' => 'Спамы ныхмæ фильтр',
 
 # Media information
 'widthheightpage' => '$1 × $2, $3 фарсы',

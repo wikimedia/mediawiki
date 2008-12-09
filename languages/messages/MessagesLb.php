@@ -450,7 +450,7 @@ Den Administrateur huet dës Erklärung uginn: $1',
 'badtitle'             => 'Schlechten Titel',
 'badtitletext'         => 'De gewënschten Titel ass invalid, eidel, oder een net korrekten Interwiki Link.',
 'perfcached'           => 'Dës Date kommen aus dem Cache a si méiglecherweis net aktuell:',
-'perfcachedts'         => 'Dës Donneeë kommen aus dem Cache, leschten Update: $1',
+'perfcachedts'         => 'Dës Donneeë kommen aus dem Cache, lescht Aktualisatioun: $1',
 'querypage-no-updates' => "D'Aktualiséierung vun dëser Säit ass zur Zäit ausgeschalt. D'Date gi bis op weideres net aktualiséiert.'''",
 'wrong_wfQuery_params' => 'Falsche Parameter fir wfQuery()<br />
 Funktioun: $1<br />
@@ -935,6 +935,7 @@ Passt op, datt d'Versiounsgeschicht der Säit historesch korrekt ass.
 'diff-hr'                 => "eng '''horizontal Linn'''",
 'diff-code'               => "e '''Beräich Computercode'''",
 'diff-dl'                 => "eng '''Definitiounslëscht'''",
+'diff-dt'                 => "e '''Begrëff als Definitioun'''",
 'diff-dd'                 => "eng '''Definitioun'''",
 'diff-form'               => "ein '''Formulair'''",
 'diff-img'                => "e '''Bild'''",
@@ -1311,6 +1312,7 @@ Wann Dir dat Bild a méi enger grousser Opléisung hutt, da lued dëst erop, sos
 'fileexists-shared-forbidden' => 'E Fichier mat dësem Numm gëtt et schonn an dem gedeelte Repertoire.
 Wann Dir dëse Fichier trotzdem eroplued wellt da gitt w.e.g. zréck a lued dëse Fichier ënner engem anere Numm erop. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Dëse Fichier schéngt een Doublon vun {{PLURAL:$1|dësem Fichier|dëse Fichieren}} ze sinn:',
+'file-deleted-duplicate'      => 'En identesche Fichier ([[$1]]) gouf virdru geläscht. Kuckt w.e.g. an der Lëscht vum Läsche no, Ier Dir en nach emol eroplued.',
 'successfulupload'            => 'Eroplueden erfollegräich',
 'uploadwarning'               => 'Opgepasst',
 'savefile'                    => 'Fichier späicheren',
@@ -2246,6 +2248,16 @@ Späichert en op ärem Computer of a lued en hei nees erop.',
 'tooltip-upload'                  => 'Mam eroplueden ufänken',
 'tooltip-undo'                    => '"Zréck" setzt dës Ännerung zréck a mécht den Ännerungsformulaire am Modus "kucken ouni ofzespäicheren" op.
 Erlaabt et e Grond an de Resumé derbäizesetzen.',
+
+# Stylesheets
+'common.css'      => "/* Dës CSS huet nëmmen Afloss op de Skin ''Chick''  */",
+'standard.css'    => "/* Dës CSS huet nëmmen Afloss op de Skin ''Klassesch''  */",
+'nostalgia.css'   => "/* Dës CSS huet nëmmen Afloss op de Skin ''Nostalgie''  */",
+'cologneblue.css' => "/* Dës CSS huet nëmmen Afloss op de Skin ''Köln Blo''  */",
+'monobook.css'    => "/* Dës CSS huet nëmmen Afloss op de Skin ''Monobook''  */",
+'myskin.css'      => "/* Dës CSS huet nëmmen Afloss op de Skin ''Myskin''  */",
+'simple.css'      => "/* Dës CSS huet nëmmen Afloss op de Skin ''Einfach''  */",
+'modern.css'      => "/* Dës CSS huet nëmmen Afloss op de Skin ''Modern''  */",
 
 # Metadata
 'nodublincore'      => 'Dublin Core RDF Metadata ass op dësem Server ausgeschalt.',

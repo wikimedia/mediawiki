@@ -5,6 +5,7 @@
  * @file
  *
  * @author Knakts
+ * @author Papuass
  * @author Xil
  * @author Yyy
  * @author לערי ריינהארט
@@ -262,6 +263,7 @@ $messages = array(
 'editsection'         => 'izmainīt šo sadaļu',
 'editold'             => 'rediģēt',
 'viewsourceold'       => 'aplūkot kodu',
+'editlink'            => 'labot',
 'editsectionhint'     => 'Rediģēt sadaļu: $1',
 'toc'                 => 'Satura rādītājs',
 'showtoc'             => 'parādīt',
@@ -270,6 +272,8 @@ $messages = array(
 'viewdeleted'         => 'Skatīt $1?',
 'restorelink'         => '$1 {{PLURAL:$1|dzēsto versiju|dzēstās versijas}}',
 'feedlinks'           => 'Barotne:',
+'site-rss-feed'       => '$1 RSS padeve',
+'site-atom-feed'      => '$1 Atom padeve',
 'page-rss-feed'       => '"$1" RSS barotne',
 'page-atom-feed'      => '"$1" Atom barotne',
 'red-link-title'      => '$1 (vēl nav uzrakstīts)',
@@ -327,6 +331,7 @@ Par šo var paziņot [[Special:ListUsers/sysop|kādam administratoram]], norādo
 'viewsourcetext'       => 'Tu vari apskatīties un nokopēt šīs lapas wikitekstu:',
 'protectedinterface'   => 'Šī lapa satur programmatūras interfeisā lietotu tekstu un ir bloķēta pret izmaiņām, lai pasargātu no bojājumiem.',
 'editinginterface'     => "'''Brīdinājums:''' Tu izmaini lapu, kuras saturu izmanto wiki programmatūras lietotāja saskarnē (''interfeisā''). Šīs lapas izmaiņas ietekmēs lietotāja saskarni citiem lietotājiem. Pēc modificēšanas, šīs izmaiņas būtu lietderīgi pievienot arī [http://translatewiki.net/wiki/Main_Page?setlang=en Betawiki], kas ir MediaWiki lokalizēšanas projekts.",
+'sqlhidden'            => '(SQL vaicājums paslēpts)',
 'namespaceprotected'   => "Tev nav tiesību izmainīt lapas, kas atrodas '''$1''' ''namespacē''.",
 'customcssjsprotected' => "Tev nav tiesību izmainīt šo lapu, tāpēc, ka tā satur cita lietotāja personīgos uzstādījumus (''settings'').",
 'ns-specialprotected'  => 'Nevar izmainīt īpašās lapas.',
@@ -954,6 +959,9 @@ Uzklikšķinot uz kādas kolonnas virsraksta, var sakārtot pēc kāda cita para
 ** Viens tāds jau ir',
 'filedelete-edit-reasonlist'  => 'Izmainīt dzēšanas iemeslus',
 
+# MIME search
+'mimesearch' => 'MIME meklēšana',
+
 # Unwatched pages
 'unwatchedpages' => 'Neuzraudzītās lapas',
 
@@ -1223,6 +1231,7 @@ Lūdzu, spied \"''back''\" un atjaunini iepriekšējo lapu. Tad mēģini vēlrei
 'protect-cascade'             => "Aizsargāt šajā lapā iekļautās lapas (veidnes) ''(cascading protection)''",
 'protect-cantedit'            => 'Tu nevari izmainīt šīs lapas aizsardzības līmeņus, tāpēc, ka tur nevari izmainīt šo lapu.',
 'protect-expiry-options'      => '2 stundas:2 hours,1 diena:1 day,3 dienas:3 days,1 nedēļa:1 week,2 nedēļas:2 weeks,1 mēnesis:1 month,3 mēneši:3 months,6 mēneši:6 months,1 gads:1 year,uz nenoteiktu laiku:infinite', # display1:time1,display2:time2,...
+'restriction-type'            => 'Atļauja:',
 'restriction-level'           => 'Aizsardzības līmenis:',
 
 # Restrictions (nouns)

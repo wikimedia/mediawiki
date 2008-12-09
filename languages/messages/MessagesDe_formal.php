@@ -520,7 +520,7 @@ $5
 Dieser Bestätigungscode ist gültig bis $4.',
 
 # Delete conflict
-'deletedwhileediting' => '<span class="error">Achtung: Diese Seite wurde gelöscht, nachdem Sie angefangen haben, sie zu bearbeiten!
+'deletedwhileediting' => '<span class="error">Achtung: Diese Seite wurde gelöscht, nachdem Sie angefangen haben sie zu bearbeiten!
 Im [{{fullurl:Special:Log|type=delete&page=}}{{FULLPAGENAMEE}} Lösch-Logbuch] finden Sie den Grund für die Löschung.
 Wenn Sie die Seite speichern, wird sie neu angelegt.</span>',
 'confirmrecreate'     => "Benutzer [[User:$1|$1]] ([[User talk:$1|Diskussion]]) hat diese Seite gelöscht, nachdem Sie angefangen haben, sie zu bearbeiten. Die Begründung lautete:
