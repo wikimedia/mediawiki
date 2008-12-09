@@ -18,13 +18,30 @@ function wfScaleSVGUnit( $length ) {
 		'%'  => 2.0, // Fake it!
 		);
 	$matches = array();
-	if( preg_match( '/^(\d+(?:\.\d+)?)(em|ex|px|pt|pc|cm|mm|in|%|)$/', $length, $matches ) ) {
+	if( preg_match( '/^\s*(\d+(?:\.\d+)?)(em|ex|px|pt|pc|cm|mm|in|%|)\s*$/', $length, $matches ) ) {
 		$length = floatval( $matches[1] );
 		$unit = $matches[2];
 		return round( $length * $unitLength[$unit] );
 	} else {
 		// Assume pixels
 		return round( floatval( $length ) );
+	}
+}
+
+class XmlSizeFilter {
+	var $first = true;
+	var $width = 256;
+	var $height = 256;
+	function filter( $name, $attribs ) {
+		if( $this->first ) {
+			if( isset( $attribs['width'] ) ) {
+				$this->width = wfScaleSVGUnit( $attribs['width'] );
+			}
+			if( isset( $attribs['height'] ) ) {
+				$this->height = wfScaleSVGUnit( $attribs['height'] );
+			}
+			$this->first = false;
+		}
 	}
 }
 
@@ -38,30 +55,14 @@ function wfScaleSVGUnit( $length ) {
  * @return array
  */
 function wfGetSVGsize( $filename ) {
-	$width = 256;
-	$height = 256;
-
-	// Read a chunk of the file
-	$f = fopen( $filename, "rt" );
-	if( !$f ) return false;
-	$chunk = fread( $f, 4096 );
-	fclose( $f );
-
-	// Uber-crappy hack! Run through a real XML parser.
-	$matches = array();
-	if( !preg_match( '/<svg\s*([^>]*)\s*>/s', $chunk, $matches ) ) {
-		return false;
+	$filter = new XmlSizeFilter();
+	$xml = new XmlTypeCheck( $filename, array( $filter, 'filter' ) );
+	if( $xml->wellFormed ) {
+		return array( $filter->width, $filter->height, 'SVG',
+			"width=\"$filter->width\" height=\"$filter->height\"" );
 	}
-	$tag = $matches[1];
-	if( preg_match( '/(?:^|\s)width\s*=\s*("[^"]+"|\'[^\']+\')/s', $tag, $matches ) ) {
-		$width = wfScaleSVGUnit( trim( substr( $matches[1], 1, -1 ) ) );
-	}
-	if( preg_match( '/(?:^|\s)height\s*=\s*("[^"]+"|\'[^\']+\')/s', $tag, $matches ) ) {
-		$height = wfScaleSVGUnit( trim( substr( $matches[1], 1, -1 ) ) );
-	}
-
-	return array( $width, $height, 'SVG',
-		"width=\"$width\" height=\"$height\"" );
+	
+	return false;
 }
 
 /**
