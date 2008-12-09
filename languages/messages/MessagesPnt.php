@@ -511,8 +511,8 @@ $messages = array(
 'search-external'          => 'Εύρον σα εξ μερέαν',
 
 # Preferences page
-'preferences'       => 'Προτιμήσαι',
-'mypreferences'     => "Τ' εμά τα προτιμήσαι",
+'preferences'       => 'Αγαπεμένα',
+'mypreferences'     => "Τ' εμά τ' αγαπεμένα",
 'changepassword'    => 'Άλλαξον σημάδιν',
 'skin-preview'      => 'Πρώτον τέρεμαν',
 'dateformat'        => 'Μορφή ημερομηνίας',
@@ -542,6 +542,8 @@ $messages = array(
 'right-createpage'    => "Ποίσον σελίδας (ντο 'κ εν σελίδας καλατζεματί)",
 'right-createtalk'    => 'Ποίσον σελίδας καλατζεματί',
 'right-createaccount' => 'Ποίσον καινούρεα λογαρίας χρηστίων',
+'right-upload'        => 'Φόρτωσον αρχεία',
+'right-upload_by_url' => "Φόρτωσον αρχείον ασ' έναν URL",
 'right-delete'        => 'Σβήσον σελίδας',
 'right-bigdelete'     => 'Σβήσον σελίδας με τρανά ιστορίας',
 'right-browsearchive' => 'Αράεμαν σα σβημένα σελίδας',
@@ -550,6 +552,10 @@ $messages = array(
 
 # User rights log
 'rightslog' => 'Αρχείον δικαιωματίων',
+
+# Associated actions - in the sentence "You do not have permission to X"
+'action-upload'        => 'φόρτωσον αβούτο το αρχείον',
+'action-upload_by_url' => "φόρτωσον αβούτο το αρχείον ασ' έναν URL",
 
 # Recent changes
 'nchanges'                       => '$1 {{PLURAL:$1|αλλαγή|αλλαγάς}}',
@@ -582,9 +588,9 @@ $messages = array(
 'recentchangeslinked-page'     => 'Όνεμαν σελίδας:',
 
 # Upload
-'upload'            => 'Φόρτωμα αρχείου',
-'uploadbtn'         => 'Φόρτωμα αρχείου',
-'reupload'          => 'Αξάν φόρτωμαν',
+'upload'            => 'Φόρτωσον αρχείον',
+'uploadbtn'         => 'Φόρτωσον αρχείον',
+'reupload'          => 'Φόρτωσον αξάν',
 'uploadnologin'     => "'Κ είστουν απές. Εμπάτε σην λογαρίανεσουν.",
 'uploadnologintext' => "Πρεπ' σην σελίδαν [[Special:UserLogin|απές]] να είσνε (log in) για πορείτε να φορτώνετε αρχεία.",
 'uploaderror'       => 'Έντον λάθος σο φόρτωμαν',

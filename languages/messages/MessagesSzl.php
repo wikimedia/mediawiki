@@ -451,7 +451,7 @@ Coby powstřimać nadužyća, možliwość wysyuańa připůmńeń naštalowano 
 'loginlanguagelabel'         => 'Godka: $1',
 
 # Password reset dialog
-'resetpass'               => 'Resetuj hasuo',
+'resetpass'               => 'Zmjyń abo zresetuj hasło',
 'resetpass_announce'      => 'Zalůgowoužeś śe s tymčasowym kodym uotřimanym bez e-brif. Coby zakůńčyć proces logůwańo muśiš naštalować nowe hasuo:',
 'resetpass_header'        => 'Resetuj hasuo',
 'resetpass_submit'        => 'Naštaluj hasuo a zalůguj',
@@ -2381,7 +2381,7 @@ Nostympne linki w lińii uwažůmy za wyjůntki, to sům nazwy zajtůw, kaj plik
 
 # External editor support
 'edit-externally'      => 'Edytuj tyn plik bez zewnyntřno aplikacyjo',
-'edit-externally-help' => 'Zoboč wjyncyj informacyji uo užywańu [http://www.mediawiki.org/wiki/Manual:External_editors zewnyntřnych edytorůw].',
+'edit-externally-help' => '(Zobocz [http://www.mediawiki.org/wiki/Manual:External_editors instrukcyje sztalowańo zewnyntřnych edytorůw] kaj je uo tym wjyncyj naszkryflane.)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'wšyjstke',
