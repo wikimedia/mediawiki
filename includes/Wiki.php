@@ -351,13 +351,11 @@ class MediaWiki {
 	 * @param $updates array of objects that hold an update to do
 	 */
 	function doUpdates( &$updates ) {
-		wfProfileIn( __METHOD__ );
 		/* No need to get master connections in case of empty updates array */
-		if (!$updates) {
-			wfProfileOut( __METHOD__ );
+		if( !$updates ) {
 			return;
 		}
-
+		wfProfileIn( __METHOD__ );
 		$dbw = wfGetDB( DB_MASTER );
 		foreach( $updates as $up ) {
 			$up->doUpdate();
