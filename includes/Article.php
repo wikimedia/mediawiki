@@ -372,8 +372,7 @@ class Article {
 			$this->mTitle->mTouched = wfTimestamp( TS_MW, $data->page_touched );
 
 			# Old-fashioned restrictions
-			if( $data->page_restrictions )
-				$this->mTitle->loadRestrictions( $data->page_restrictions );
+			$this->mTitle->loadRestrictions( $data->page_restrictions );
 
 			$this->mCounter     = $data->page_counter;
 			$this->mTouched     = wfTimestamp( TS_MW, $data->page_touched );
