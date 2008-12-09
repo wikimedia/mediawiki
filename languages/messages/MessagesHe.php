@@ -2412,10 +2412,11 @@ $1 כבר נחסם. האם ברצונכם לשנות את הגדרות החסי�
 'import-interwiki-text'      => 'אנא בחרו אתר ויקי ואת כותרת הדף לייבוא.
 תאריכי ועורכי הגרסאות יישמרו בעת הייבוא.
 כל פעולות הייבוא הבין־אתרי נשמרות ביומן הייבוא.',
+'import-interwiki-source'    => 'אתר/דף המקור:',
 'import-interwiki-history'   => 'העתקת כל היסטוריית העריכות של דף זה',
 'import-interwiki-submit'    => 'ייבוא',
-'import-interwiki-namespace' => 'העבר את הדפים לתוך מרחב השם:',
-'import-upload-comment'      => 'הערה:',
+'import-interwiki-namespace' => 'העתקה למרחב השם:',
+'import-upload-filename'     => 'שם הקובץ:',
 'import-comment'             => 'הערה:',
 'importtext'                 => 'אנא ייצאו את הקובץ מאתר המקור תוך שימוש ב[[Special:Export|כלי הייצוא]], שמרו אותו לדיסק הקשיח שלכם והעלו אותו לכאן.',
 'importstart'                => 'מייבא דפים…',
