@@ -69,6 +69,7 @@ class Title {
 	var $mLength = -1;                ///< The page length, 0 for special pages
 	var $mRedirect = null;            ///< Is the article at this title a redirect?
 	var $mNotificationTimestamp = array(); ///< Associative array of user ID -> timestamp/false
+	var $mTouched = null; // <last cache date>
 	//@}
 
 
@@ -3135,13 +3136,15 @@ class Title {
 
 	/**
 	 * Get the last touched timestamp
-	 * @param Database $db, optional db
 	 * @return \type{\string} Last touched timestamp
 	 */
-	public function getTouched( $db = NULL ) {
-		$db = isset($db) ? $db : wfGetDB( DB_SLAVE );
-		$touched = $db->selectField( 'page', 'page_touched', $this->pageCond(), __METHOD__ );
-		return $touched;
+	public function getTouched() {
+		if( !is_null($this->mTouched) ) {
+			return wfTimestamp( TS_MW, $this->mTouched );
+		}
+		$dbr = wfGetDB( DB_SLAVE );
+		$this->mTouched = $dbr->selectField( 'page', 'page_touched', $this->pageCond(), __METHOD__ );
+		return $this->mTouched;
 	}
 
 	/**
