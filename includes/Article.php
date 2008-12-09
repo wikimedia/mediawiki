@@ -674,7 +674,6 @@ class Article {
 		global $wgEnableParserCache, $wgStylePath, $wgParser;
 		global $wgUseTrackbacks, $wgNamespaceRobotPolicies, $wgArticleRobotPolicies;
 		global $wgDefaultRobotPolicy;
-		$sk = $wgUser->getSkin();
 
 		wfProfileIn( __METHOD__ );
 
@@ -683,6 +682,23 @@ class Article {
 
 		# Get variables from query string
 		$oldid = $this->getOldID();
+
+		# Try file cache
+		if( $oldid === 0 && $this->checkTouched() ) {
+			$wgOut->setETag($parserCache->getETag($this, $wgUser));
+			if( $wgOut->checkLastModified( $this->getTouched() ) ){
+				wfProfileOut( __METHOD__ );
+				return;
+			} else if( $this->tryFileCache() ) {
+				# tell wgOut that output is taken care of
+				$wgOut->disable();
+				$this->viewUpdates();
+				wfProfileOut( __METHOD__ );
+				return;
+			}
+		}
+
+		$sk = $wgUser->getSkin();
 
 		# getOldID may want us to redirect somewhere else
 		if( $this->mRedirectUrl ) {
@@ -733,21 +749,6 @@ class Article {
 			}
 			wfProfileOut( __METHOD__ );
 			return;
-		}
-
-		if( empty( $oldid ) && $this->checkTouched() ) {
-			$wgOut->setETag($parserCache->getETag($this, $wgUser));
-
-			if( $wgOut->checkLastModified( $this->mTouched ) ){
-				wfProfileOut( __METHOD__ );
-				return;
-			} else if( $this->tryFileCache() ) {
-				# tell wgOut that output is taken care of
-				$wgOut->disable();
-				$this->viewUpdates();
-				wfProfileOut( __METHOD__ );
-				return;
-			}
 		}
 
 		# Should the parser cache be used?
