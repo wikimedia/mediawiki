@@ -215,9 +215,9 @@ wfProfileIn( $fname.'-SetupSession' );
 if( $wgSharedPrefix === false ) $wgSharedPrefix = $wgDBprefix;
 
 if( !$wgCookiePrefix ) {
-	if ( in_array('user', $wgSharedTables) && $wgSharedDB && $wgSharedPrefix ) {
+	if ( $wgSharedDB && $wgSharedPrefix && in_array('user',$wgSharedTables) ) {
 		$wgCookiePrefix = $wgSharedDB . '_' . $wgSharedPrefix;
-	} elseif ( in_array('user', $wgSharedTables) && $wgSharedDB ) {
+	} elseif ( $wgSharedDB && in_array('user',$wgSharedTables) ) {
 		$wgCookiePrefix = $wgSharedDB;
 	} elseif ( $wgDBprefix ) {
 		$wgCookiePrefix = $wgDBname . '_' . $wgDBprefix;
