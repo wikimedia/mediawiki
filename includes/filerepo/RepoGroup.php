@@ -91,7 +91,8 @@ class RepoGroup {
 		foreach ( $titles as $title ) {
 			if ( !( $title instanceof Title ) )
 				$title = Title::makeTitleSafe( NS_FILE, $title );
-			$titleObjs[$title->getDBkey()] = $title;
+			if ( $title )
+				$titleObjs[$title->getDBkey()] = $title;
 		}
 
 		$images = $this->localRepo->findFiles( $titleObjs, $flags );

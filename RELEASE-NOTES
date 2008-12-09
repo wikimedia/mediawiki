@@ -392,6 +392,8 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 16577) When a blocked user tries to rollback a page, the block message
   is now only displayed once
 * (bug 14268) SVG image sizes now extracted with proper XML parser
+* (bug 14365) RepoGroup::findFiles() no longer crashes if passed an invalid
+  title via the API
 
 === API changes in 1.14 ===
 
