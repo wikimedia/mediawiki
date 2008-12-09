@@ -171,7 +171,7 @@ class MediaWiki {
 		wfProfileIn( __METHOD__ );
 
 		$action = $this->getVal( 'Action' );
-		if( !$title || $title->getDBkey() == '' ) {
+		if( is_null($title) || $title->getDBkey() == '' ) {
 			$title = SpecialPage::getTitleFor( 'Badtitle' );
 			# Die now before we mess up $wgArticle and the skin stops working
 			throw new ErrorPageError( 'badtitle', 'badtitletext' );
@@ -188,8 +188,8 @@ class MediaWiki {
 				$title = SpecialPage::getTitleFor( 'Badtitle' );
 				throw new ErrorPageError( 'badtitle', 'badtitletext' );
 			}
-		} else if ( ( $action == 'view' ) && !$request->wasPosted() &&
-			(!isset( $this->GET['title'] ) || $title->getPrefixedDBKey() != $this->GET['title'] ) &&
+		} else if ( $action == 'view' && !$request->wasPosted() &&
+			( !isset($this->GET['title']) || $title->getPrefixedDBKey() != $this->GET['title'] ) &&
 			!count( array_diff( array_keys( $this->GET ), array( 'action', 'title' ) ) ) )
 		{
 			$targetUrl = $title->getFullURL();
@@ -277,19 +277,20 @@ class MediaWiki {
 		
 		// Namespace might change when using redirects
 		// Check for redirects ...
-		$file = $title->getNamespace() == NS_FILE ? $article->getFile() : null;
+		$file = ($title->getNamespace() == NS_FILE) ? $article->getFile() : null;
 		if( ( $action == 'view' || $action == 'render' ) 	// ... for actions that show content
-					&& !$request->getVal( 'oldid' ) &&    // ... and are not old revisions
-					$request->getVal( 'redirect' ) != 'no' &&	// ... unless explicitly told not to
-					// ... and the article is not a non-redirect image page with associated file
-					!( is_object( $file ) && $file->exists() && !$file->getRedirected() ) ) {
-
+			&& !$request->getVal( 'oldid' ) &&    // ... and are not old revisions
+			$request->getVal( 'redirect' ) != 'no' &&	// ... unless explicitly told not to
+			// ... and the article is not a non-redirect image page with associated file
+			!( is_object( $file ) && $file->exists() && !$file->getRedirected() ) )
+		{
 			# Give extensions a change to ignore/handle redirects as needed
 			$ignoreRedirect = $target = false;
-			wfRunHooks( 'InitializeArticleMaybeRedirect', array( &$title, &$request, &$ignoreRedirect, &$target ) );
-
+			
 			$dbr = wfGetDB( DB_SLAVE );
 			$article->loadPageData( $article->pageDataFromTitle( $dbr, $title ) );
+
+			wfRunHooks( 'InitializeArticleMaybeRedirect', array( &$title, &$request, &$ignoreRedirect, &$target ) );
 
 			// Follow redirects only for... redirects
 			if( !$ignoreRedirect && $article->isRedirect() ) {
@@ -301,7 +302,7 @@ class MediaWiki {
 						return $target;
 					}
 				}
-				
+
 				if( is_object( $target ) ) {
 					// Rewrite environment to redirected article
 					$rarticle = self::articleFromTitle( $target );
