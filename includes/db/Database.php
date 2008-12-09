@@ -1931,7 +1931,8 @@ class Database {
 		$res = $this->query( 'SHOW SLAVE STATUS', 'Database::getSlavePos' );
 		$row = $this->fetchObject( $res );
 		if ( $row ) {
-			return new MySQLMasterPos( $row->Relay_Master_Log_File, $row->Exec_master_log_pos );
+			$pos = isset($row->Exec_master_log_pos) ? $row->Exec_master_log_pos : $row->Exec_Master_Log_Pos;
+			return new MySQLMasterPos( $row->Relay_Master_Log_File, $pos );
 		} else {
 			return false;
 		}
