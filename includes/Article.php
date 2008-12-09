@@ -371,8 +371,9 @@ class Article {
 			$this->mTitle->mArticleID = $data->page_id;
 			$this->mTitle->mTouched = wfTimestamp( TS_MW, $data->page_touched );
 
-			# Old-fashioned restrictions.
-			$this->mTitle->loadRestrictions( $data->page_restrictions );
+			# Old-fashioned restrictions
+			if( $data->page_restrictions )
+				$this->mTitle->loadRestrictions( $data->page_restrictions );
 
 			$this->mCounter     = $data->page_counter;
 			$this->mTouched     = wfTimestamp( TS_MW, $data->page_touched );
@@ -686,7 +687,7 @@ class Article {
 
 		# Try file cache
 		if( $oldid === 0 && $this->checkTouched() ) {
-			$wgOut->setETag($parserCache->getETag($this, $wgUser));
+			$wgOut->setETag( $parserCache->getETag($this,$wgUser) );
 			if( $wgOut->checkLastModified( $this->getTouched() ) ){
 				wfProfileOut( __METHOD__ );
 				return;
