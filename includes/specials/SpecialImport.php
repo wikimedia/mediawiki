@@ -141,19 +141,25 @@ class SpecialImport extends SpecialPage {
 				Xml::openElement( 'table', array( 'id' => 'mw-import-table' ) ) .
 
 				"<tr>
-					<td>" .
-				Xml::input( 'xmlimport', 50, '', array( 'type' => 'file' ) ) . ' ' .
+					<td class='mw-label'>" .
+						Xml::label( wfMsg( 'import-upload-filename' ), 'xmlimport' ) .
+					"</td>
+					<td class='mw-input'>" .
+						Xml::input( 'xmlimport', 50, '', array( 'type' => 'file' ) ) . ' ' .
 					"</td>
 				</tr>
 				<tr>
-					<td>" .
-				Xml::label( wfMsg('import-upload-comment'), 'log-comment' ) .
-				Xml::input( 'log-comment', 50, '', array( 'id' => 'log-comment', 'type' => 'text' ) ) . ' ' .
+					<td class='mw-label'>" .
+						Xml::label( wfMsg( 'import-comment' ), 'log-comment' ) .
+					"</td>
+					<td class='mw-input'>" .
+						Xml::input( 'log-comment', 50, '', array( 'id' => 'log-comment', 'type' => 'text' ) ) . ' ' .
 					"</td>
 				</tr>
 				<tr>
-					<td>" .
-				Xml::submitButton( wfMsg( 'uploadbtn' ) ) .
+					<td></td>
+					<td class='mw-input'>" .
+						Xml::submitButton( wfMsg( 'uploadbtn' ) ) .
 					"</td>
 				</tr>" .
 				Xml::closeElement( 'table' ).
@@ -178,7 +184,10 @@ class SpecialImport extends SpecialPage {
 				Xml::hidden( 'editToken', $wgUser->editToken() ) .
 				Xml::openElement( 'table', array( 'id' => 'mw-import-table' ) ) .
 				"<tr>
-					<td>" .
+					<td class='mw-label'>" .
+						Xml::label( wfMsg( 'import-interwiki-source' ), 'interwiki' ) .
+					"</td>
+					<td class='mw-input'>" .
 						Xml::openElement( 'select', array( 'name' => 'interwiki' ) )
 			);
 			foreach( $wgImportSources as $prefix ) {
@@ -187,38 +196,36 @@ class SpecialImport extends SpecialPage {
 			}
 			$wgOut->addHTML(
 						Xml::closeElement( 'select' ) .
-					"</td>
-					<td>" .
 						Xml::input( 'frompage', 50, $this->frompage ) .
 					"</td>
 				</tr>
 				<tr>
 					<td>
 					</td>
-					<td>" .
+					<td class='mw-input'>" .
 						Xml::checkLabel( wfMsg( 'import-interwiki-history' ), 'interwikiHistory', 'interwikiHistory', $this->history ) .
 					"</td>
 				</tr>
 				<tr>
-					<td>
-					</td>
 					<td>" .
 						Xml::label( wfMsg( 'import-interwiki-namespace' ), 'namespace' ) .
+					"</td>
+					<td class='mw-input'>" .
 						Xml::namespaceSelector( $this->namespace, '' ) .
 					"</td>
 				</tr>
 				<tr>
-					<td>" .
+					<td class='mw-label'>" .
 						Xml::label( wfMsg( 'import-comment' ), 'comment' ) .
 					"</td>
-					<td>" .
+					<td class='mw-input'>" .
 						Xml::input( 'log-comment', 50, '', array( 'type' => 'text' ) ) . ' ' .
 					"</td>
 				</tr>
 				<tr>
 					<td>
 					</td>
-					<td>" .
+					<td class='mw-input'>" .
 						Xml::submitButton( wfMsg( 'import-interwiki-submit' ), array( 'accesskey' => 's' ) ) .
 					"</td>
 				</tr>" .
@@ -270,8 +277,8 @@ class ImportReporter {
 			if( $this->mIsUpload ) {
 				$detail = wfMsgExt( 'import-logentry-upload-detail', array( 'content', 'parsemag' ),
 					$contentCount );
-				if ($this->reason) {
-			                $detail .=  ' (' . $this->reason .')';
+				if ( $this->reason ) {
+			                $detail .=  wfMsgForContent( 'colon-separator' ) . $this->reason;
 				}
 				$log->addEntry( 'upload', $title, $detail );
 			} else {
@@ -279,8 +286,8 @@ class ImportReporter {
 					$origTitle->getPrefixedText() . ']]';
 				$detail = wfMsgExt( 'import-logentry-interwiki-detail', array( 'content', 'parsemag' ),
 					$contentCount, $interwiki );
-				if ($this->reason) {
-			                $detail .=  ' (' . $this->reason .')';
+				if ( $this->reason ) {
+			                $detail .=  wfMsgForContent( 'colon-separator' ) . $this->reason;
 				}
 				$log->addEntry( 'interwiki', $title, $detail );
 			}
