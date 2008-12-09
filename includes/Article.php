@@ -2953,9 +2953,8 @@ class Article {
 		}
 		$called = true;
 		if( $this->isFileCacheable() ) {
-			$touched = $this->mTouched;
 			$cache = new HTMLFileCache( $this->mTitle );
-			if( $cache->isFileCacheGood( $touched ) ) {
+			if( $cache->isFileCacheGood( $this->mTouched ) ) {
 				wfDebug( "Article::tryFileCache(): about to load file\n" );
 				$cache->loadFromFileCache();
 				return true;
@@ -2978,9 +2977,8 @@ class Article {
 		// Get all query values
 		$queryVals = $wgRequest->getValues();
 		foreach( $queryVals as $query => $val ) {
-			if( $query == 'title' || ($query == 'action' && $val == 'view') ) {
-				// Normal page view in query form
-			} else {
+			// Normal page view in query form can have action=view
+			if( $query !== 'title' && $query !== 'curid' && !($query == 'action' && $val == 'view') ) {
 				return false;
 			}
 		}
@@ -2990,12 +2988,12 @@ class Article {
 		$clang = $wgContLang->getCode();
 
 		$cacheable = $wgUseFileCache
-			&& (!$wgShowIPinHeader)
-			&& ($this->getID() > 0)
-			&& ($wgUser->isAnon())
-			&& (!$wgUser->getNewtalk())
-			&& (!$this->mRedirectedFrom)
-			&& ($ulang === $clang);
+			&& !$wgShowIPinHeader
+			&& $this->getID() > 0
+			&& $wgUser->isAnon()
+			&& !$wgUser->getNewtalk()
+			&& !$this->mRedirectedFrom
+			&& $ulang === $clang;
 		// Extension may have reason to disable file caching on some pages.
 		if( $cacheable ) {
 			$cacheable = wfRunHooks( 'IsFileCacheable', array( &$this ) );
