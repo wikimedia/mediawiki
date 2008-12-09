@@ -1837,7 +1837,7 @@ class Article {
 		global $wgUser, $wgRestrictionTypes, $wgContLang;
 
 		$id = $this->mTitle->getArticleID();
-		if( array() != $this->mTitle->getUserPermissionsErrors( 'protect', $wgUser ) || wfReadOnly() || $id == 0 ) {
+		if( $id <= 0 || wfReadOnly() || !$this->mTitle->userCan('protect') ) {
 			return false;
 		}
 
