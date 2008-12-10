@@ -283,8 +283,8 @@ class CoreParserFunctions {
 	
 			// Register dependency in templatelinks
 			$id = $title->getArticleId();
-			$revid = Revision::newFromTitle($title);
-			$parser->mOutput->addTemplate($title, $id, $revid);
+			$rev = Revision::newFromTitle($title);
+			$parser->mOutput->addTemplate( $title, $id, $rev->getId() );
 		}	
 		return self::formatRaw( $length, $raw );
 	}
