@@ -678,9 +678,6 @@ class Article {
 
 		wfProfileIn( __METHOD__ );
 
-		$parserCache = ParserCache::singleton();
-		$ns = $this->mTitle->getNamespace(); # shortcut
-
 		# Get variables from query string
 		$oldid = $this->getOldID();
 
@@ -688,6 +685,7 @@ class Article {
 		if( $oldid === 0 && $this->checkTouched() ) {
 			global $wgUseETag;
 			if( $wgUseETag ) {
+				$parserCache = ParserCache::singleton();
 				$wgOut->setETag( $parserCache->getETag($this,$wgUser) );
 			}
 			if( $wgOut->checkLastModified( $this->getTouched() ) ){
@@ -702,6 +700,7 @@ class Article {
 			}
 		}
 
+		$ns = $this->mTitle->getNamespace(); # shortcut
 		$sk = $wgUser->getSkin();
 
 		# getOldID may want us to redirect somewhere else
