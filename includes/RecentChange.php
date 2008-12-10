@@ -589,7 +589,8 @@ class RecentChange
 	}
 
 	protected function getIRCLine() {
-		global $wgUseRCPatrol, $wgUseNPPatrol, $wgRC2UDPInterwikiPrefix, $wgLocalInterwiki;
+		global $wgUseRCPatrol, $wgUseNPPatrol, $wgRC2UDPInterwikiPrefix, $wgLocalInterwiki,
+			$wgInternalServer, $wgScript;
 
 		// FIXME: Would be good to replace these 2 extract() calls with something more explicit
 		// e.g. list ($rc_type, $rc_id) = array_values ($this->mAttribs); [or something like that]
@@ -604,19 +605,21 @@ class RecentChange
 		$title = $titleObj->getPrefixedText();
 		$title = self::cleanupForIRC( $title );
 
-		// FIXME: *HACK* these should be getFullURL(), hacked for SSL madness --brion 2005-12-26
+		// XXX: This used to call Title::getInternalURL() and then strip out the title, but that's
+		// a lot of complex code just to prepend two globals to a query string.  Simplified.
 		if( $rc_type == RC_LOG ) {
 			$url = '';
-		} elseif( $rc_new && ($wgUseRCPatrol || $wgUseNPPatrol) ) {
-			$url = $titleObj->getInternalURL("rcid=$rc_id");
-		} else if( $rc_new ) {
-			$url = $titleObj->getInternalURL();
-		} else if( $wgUseRCPatrol ) {
-			$url = $titleObj->getInternalURL("diff=$rc_this_oldid&oldid=$rc_last_oldid&rcid=$rc_id");
-			$url = preg_replace('/title=[^&]*&/', '', $url);
 		} else {
-			$url = $titleObj->getInternalURL("diff=$rc_this_oldid&oldid=$rc_last_oldid");
-			$url = preg_replace('/title=[^&]*&/', '', $url);
+			// XXX: *HACK* this should use $wgServer, hacked for SSL madness --brion 2005-12-26
+			$url = $wgInternalServer . $wgScript;
+			if( $rc_type == RC_NEW ) {
+				$url .= "?oldid=$rc_this_oldid";
+			} else {
+				$url .= "?diff=$rc_this_oldid&oldid=$rc_last_oldid";
+			}
+			if( $wgUseRCPatrol || ($rc_type == RC_NEW && $wgUseNPPatrol) ) {
+				$url .= "&rcid=$rc_id";
+			}
 		}
 
 		if( isset( $oldSize ) && isset( $newSize ) ) {
