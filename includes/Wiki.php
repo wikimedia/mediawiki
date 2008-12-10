@@ -427,6 +427,10 @@ class MediaWiki {
 				$output->setSquidMaxage( $this->getVal( 'SquidMaxage' ) );
 				$article->view();
 				break;
+			case 'raw': // includes JS/CSS
+				$raw = new RawPage( $article );
+				$raw->view();
+				break;
 			case 'watch':
 			case 'unwatch':
 			case 'delete':
@@ -493,10 +497,6 @@ class MediaWiki {
 				}
 				$history = new PageHistory( $article );
 				$history->history();
-				break;
-			case 'raw':
-				$raw = new RawPage( $article );
-				$raw->view();
 				break;
 			default:
 				if( wfRunHooks( 'UnknownAction', array( $action, $article ) ) ) {
