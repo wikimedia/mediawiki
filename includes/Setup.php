@@ -209,6 +209,10 @@ wfDebug( 'Main cache: ' . get_class( $wgMemc ) .
 	"\nParser cache: " . get_class( $parserMemc ) . "\n" );
 
 wfProfileOut( $fname.'-memcached' );
+
+## Most of the config is out, some might want to run hooks here.
+wfRunHooks( 'SetupAfterCache' );
+
 wfProfileIn( $fname.'-SetupSession' );
 
 # Set default shared prefix
