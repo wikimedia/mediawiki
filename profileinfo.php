@@ -1,7 +1,8 @@
 <?php
 ini_set( 'zlib.output_compression', 'off' );
 
-$wgDBadminuser = $wgDBadminpassword = $wgDBserver = $wgDBname = $wgEnableProfileInfo = $wgDBprefix = false;
+$wgDBadminuser = $wgDBadminpassword = $wgDBserver = $wgDBname = $wgDBprefix = false;
+$wgEnableProfileInfo = $wgProfileToDatabase = false;
 
 define( 'MW_NO_SETUP', 1 );
 require_once( './includes/WebStart.php' );
