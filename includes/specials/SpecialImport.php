@@ -150,10 +150,11 @@ class SpecialImport extends SpecialPage {
 				</tr>
 				<tr>
 					<td class='mw-label'>" .
-						Xml::label( wfMsg( 'import-comment' ), 'log-comment' ) .
+						Xml::label( wfMsg( 'import-comment' ), 'mw-import-comment' ) .
 					"</td>
 					<td class='mw-input'>" .
-						Xml::input( 'log-comment', 50, '', array( 'id' => 'log-comment', 'type' => 'text' ) ) . ' ' .
+						Xml::input( 'log-comment', 50, '',
+							array( 'id' => 'mw-import-comment', 'type' => 'text' ) ) . ' ' .
 					"</td>
 				</tr>
 				<tr>
@@ -216,10 +217,11 @@ class SpecialImport extends SpecialPage {
 				</tr>
 				<tr>
 					<td class='mw-label'>" .
-						Xml::label( wfMsg( 'import-comment' ), 'comment' ) .
+						Xml::label( wfMsg( 'import-comment' ), 'mw-interwiki-comment' ) .
 					"</td>
 					<td class='mw-input'>" .
-						Xml::input( 'log-comment', 50, '', array( 'type' => 'text' ) ) . ' ' .
+						Xml::input( 'log-comment', 50, '',
+							array( 'id' => 'mw-interwiki-comment', 'type' => 'text' ) ) . ' ' .
 					"</td>
 				</tr>
 				<tr>
