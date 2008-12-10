@@ -1831,11 +1831,11 @@ class Article {
 	 *
 	 * @param $limit Array: set of restriction keys
 	 * @param $reason String
-	 * @param $cascade Integer
+	 * @param &$cascade Integer. Set to false if cascading protection isn't allowed.
 	 * @param $expiry Array: per restriction type expiration
 	 * @return bool true on success
 	 */
-	public function updateRestrictions( $limit = array(), $reason = '', $cascade = 0, $expiry = array() ) {
+	public function updateRestrictions( $limit = array(), $reason = '', &$cascade = 0, $expiry = array() ) {
 		global $wgUser, $wgRestrictionTypes, $wgContLang;
 
 		$id = $this->mTitle->getArticleID();
@@ -1856,8 +1856,10 @@ class Article {
 		$updated = Article::flattenRestrictions( $limit );
 		$changed = false;
 		foreach( $wgRestrictionTypes as $action ) {
-			$current[$action] = implode( '', $this->mTitle->getRestrictions( $action ) );
-			$changed = ($changed || ($this->mTitle->mRestrictionsExpiry[$action] != $expiry[$action]) );
+			if( isset( $expiry[$action] ) ) {
+				$current[$action] = implode( '', $this->mTitle->getRestrictions( $action ) );
+				$changed = ($changed || ($this->mTitle->mRestrictionsExpiry[$action] != $expiry[$action]) );
+			}
 		}
 
 		$current = Article::flattenRestrictions( $current );
