@@ -1653,7 +1653,6 @@ Tutti l'operazioni d'impurthazioni trans-wiki so rigisthraddi i' lu [[Special:Lo
 'import-interwiki-history'   => "Cupia l'intrea cronologia di chistha pàgina",
 'import-interwiki-submit'    => 'Impurtha',
 'import-interwiki-namespace' => "Traiffira li pàgini i' lu tipu di pàgina:",
-'import-upload-comment'      => 'Oggettu:',
 'import-comment'             => 'Oggettu:',
 'importtext'                 => "Pa piazeri ippurthà lu file da lu situ wiki d'origini cu' la funzioni Special:Export utility, saivvàllu i' lu propriu dischu e daboi carriggallu inogghi.",
 'importstart'                => 'Impurthendi li pàgini...',

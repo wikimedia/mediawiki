@@ -1100,8 +1100,7 @@ Gi wan trawan papiranen.',
 'thumbnail_error' => 'Fowtu na a meki fu a thumbnail: $1',
 
 # Special:Import
-'import-upload-comment' => 'Opotaki:',
-'import-comment'        => 'Opotaki:',
+'import-comment' => 'Opotaki:',
 
 # Import log
 'importlogpage' => "Log buku fu den sen'teki",

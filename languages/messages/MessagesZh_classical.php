@@ -1867,7 +1867,6 @@ $NEWPAGE
 'import-interwiki-history'   => '審、誌同匯',
 'import-interwiki-submit'    => '入匯',
 'import-interwiki-namespace' => '入名冊：',
-'import-upload-comment'      => '註：',
 'import-comment'             => '註：',
 'importtext'                 => '請[[Special:Export|出匯]]儲之。
 再入匯於此。',

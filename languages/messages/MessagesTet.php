@@ -579,8 +579,7 @@ $messages = array(
 'allmessagescurrent' => 'Testu atuál',
 
 # Special:Import
-'import-upload-comment' => 'Komentáriu:',
-'import-comment'        => 'Komentáriu:',
+'import-comment' => 'Komentáriu:',
 
 # Import log
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|versaun|versaun}} husi $2',

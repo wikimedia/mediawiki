@@ -425,13 +425,13 @@ An fáth ná ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Logáil amach',
-'logouttext'                 => 'Tá tú logáilte amach anois.
-Is féidir leat an {{SITENAME}} a úsáid fós gan ainm, nó is féidir leat logáil isteach
-arís mar an úsáideoir céanna, nó mar úsáideoir eile. Tabhair faoi deara go taispeáinfear roinnt
-leathanaigh mar atá tú logtha ann fós, go dtí go ghlanfá amach do thaisce brabhsálaí',
+'logouttext'                 => '<strong>Tá tú logáilte amach anois.</strong>
+
+Is féidir leat an {{SITENAME}} a úsáid fós gan ainm, nó is féidir leat [[Special:UserLoginlogáil isteach arís]] mar an úsáideoir céanna, nó mar úsáideoir eile.
+Tabhair faoi deara go taispeáinfear roinnt leathanaigh mar atá tú logáilte isteach fós, go dtí go ghlanfá amach do taisce líonleitheora.',
 'welcomecreation'            => '== Tá fáilte romhat, $1! ==
 
-Cruthaíodh do chuntas. Ná déan dearmad ar do sainroghanna phearsanta {{GRAMMAR:genitive|{{SITENAME}}}} a hathrú.',
+Cruthaíodh do chuntas. Ná déan dearmad athrú a dhéanamh ar do chuid [[Special:Preferences|sainroghanna {{GRAMMAR:genitive|{{SITENAME}}}}]].',
 'loginpagetitle'             => 'Logáil isteach',
 'yourname'                   => "D'ainm úsáideora",
 'yourpassword'               => "D'fhocal faire",
@@ -441,7 +441,7 @@ Cruthaíodh do chuntas. Ná déan dearmad ar do sainroghanna phearsanta {{GRAMMA
 'externaldberror'            => 'Bhí earráid bhunachair sonraí ann maidir le fíordheimhniú seachtrach, nóThere was either an external authentication database error or you are not allowed to update your external account.',
 'login'                      => 'Logáil isteach',
 'nav-login-createaccount'    => 'Logáil isteach',
-'loginprompt'                => 'Tá fianáin de dhíth chun logáil isteach a dhéanamh ag {{SITENAME}}.',
+'loginprompt'                => 'Tá sé riachtanach fianáin a chur i ngníomh chun logáil isteach a dhéanamh ag {{SITENAME}}.',
 'userlogin'                  => 'Logáil isteach',
 'logout'                     => 'Logáil amach',
 'userlogout'                 => 'Logáil amach',
@@ -502,7 +502,7 @@ Nuair atá sé agat, logáil isteach arís chun fíordheimhniu a dhéanamh.',
 'eauthentsent'               => 'Cuireadh teachtaireacht ríomhphoist chuig an seoladh
 chun fíordheimhniú a dhéanamh. Chun fíordheimhniú a dhéanamh gur leatsa an cuntas, caithfidh tú glac leis an teachtaireacht sin nó ní sheolfar aon rud eile chuig do chuntas.',
 'mailerror'                  => 'Tharlaigh earráid leis an seoladh: $1',
-'acct_creation_throttle_hit' => 'Gabh ár leithscéal, ach tá {{PLURAL:$1|cuntas amháin|$1 cuntasaí}} a chruthaigh tú cheana féin.
+'acct_creation_throttle_hit' => 'Gabh ár leithscéal, ach tá {{PLURAL:$1|cuntas amháin|$1 cuntais}} a chruthaigh tú cheana féin.
 Ní féidir leat níos mó ná an méid sin a chruthú.',
 'emailauthenticated'         => "D'fhíordheimhníodh do sheoladh ríomhphoist ar $2 ar $3.",
 'emailnotauthenticated'      => 'Ní dhearna fíordheimhniú ar do sheoladh ríomhphoist fós, agu díchumasaítear na hardtréithe ríomhphoist go dtí go fíordheimhneofaí é (d.c.f.).
@@ -536,7 +536,7 @@ Iontráil seoladh dea-fhormáidte le do thoil, nó glan an réimse sin.',
 'math_sample'     => 'Cuir foirmle isteach anseo',
 'math_tip'        => 'Foirmle matamataice (LaTeX)',
 'nowiki_sample'   => 'Cuir téacs neamh-fhormáide anseo',
-'nowiki_tip'      => 'Scaoil thar ar fhormáid mearshuímh',
+'nowiki_tip'      => 'Cuir vicífhormáidiú ar ceal',
 'image_sample'    => 'Sámpla.jpg',
 'image_tip'       => 'Íomhá leabaithe',
 'media_sample'    => 'Sámpla.mp3',
@@ -556,7 +556,7 @@ Iontráil seoladh dea-fhormáidte le do thoil, nó glan an réimse sin.',
 'showdiff'               => 'Taispeáin athruithe',
 'anoneditwarning'        => "'''Rabhadh:''' Níl tú logáilte isteach. Cuirfear do sheoladh IP i stair eagarthóireachta an leathanaigh seo.",
 'missingsummary'         => "'''Cuimhneachán:''' Níor thug tú achoimriú don athrú. Má chliceáileann tú Sábháil arís, sábhálfar an t-athrú gan é a hachoimriú.",
-'summary-preview'        => 'Réamhamharc an achoimre',
+'summary-preview'        => 'Réamhamharc an achoimriú',
 'blockedtitle'           => 'Tá an úsáideoir seo faoi chosc',
 'blockedtext'            => "<big>'''Chuir \$1 cosc ar d’ainm úsáideora nó ar do sheoladh IP.'''</big>
 
@@ -659,14 +659,14 @@ Tá an log scriosta ar fáil anseo mar áis:",
 'currentrev'             => 'Leagan reatha',
 'currentrev-asof'        => 'Leagan reatha ó $1',
 'revisionasof'           => 'Leagan ó $1',
-'revision-info'          => 'Leagan mar $1 le $2', # Additionally available: $3: revision id
+'revision-info'          => 'Leagan ó $1 le $2', # Additionally available: $3: revision id
 'previousrevision'       => '← An leasú roimhe seo',
 'nextrevision'           => 'An chéad leasú eile →',
 'currentrevisionlink'    => 'Leagan reatha',
 'cur'                    => 'rth',
 'next'                   => 'i ndiadh',
 'last'                   => 'rmh',
-'page_first'             => 'Céad',
+'page_first'             => 'céad',
 'page_last'              => 'deireanach',
 'histlegend'             => 'Chun difríochtaí a roghnú, marcáil na cnaipíní de na heagráin atá tú ag iarraidh comparáid a dhéanamh astu, agus brúigh Iontráil nó an cnaipe ag bun an leathanaigh.<br />
 Treoir: (rth) = difríocht ón leagan reatha, (rmh) = difríocht ón leagan roimhe, <b>m</b> = mionathrú.',
@@ -685,6 +685,7 @@ Treoir: (rth) = difríocht ón leagan reatha, (rmh) = difríocht ón leagan roim
 # Revision deletion
 'rev-deleted-user'    => '(ainm úsáideora dealaithe)',
 'rev-delundel'        => 'taispeáin/folaigh',
+'logdelete-selected'  => "'''{{PLURAL:$1|Teagmhas log rognaithe|Teagmhais log rognaithe}}:'''",
 'revdelete-hide-text' => 'Folaigh leagan téacs',
 'pagehist'            => 'Stair leathanach',
 'deletedhist'         => 'Stair scriosta',
@@ -865,7 +866,7 @@ den am an freastalaí (UTC).',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Athruithe gaolmhara',
-'recentchangeslinked-title'    => 'Athruithe gaolmhar le "$1"',
+'recentchangeslinked-title'    => 'Athruithe gaolmhara le "$1"',
 'recentchangeslinked-noresult' => 'Níl aon athraithe ar na leathanaigh naiscthe le linn an tréimhse tugtha.',
 'recentchangeslinked-summary'  => "Seo liosta na n-athruithe atá deanta is déanaí le leathanaigh atá naiscthe as leathanach sonraithe (nó baill an chatagóir sonraithe).
 Tá na leathanaigh ar do [[Special:Watchlist|liosta faire]] i '''gcló trom'''.",
@@ -916,7 +917,8 @@ uaslódáil é arís, le do thoil.',
 'upload-maxfilesize' => 'Méad comhad is mó: $1',
 'watchthisupload'    => 'Déan faire ar an leathanach seo',
 
-'upload-file-error' => 'Earraid inmheánach',
+'upload-proto-error' => 'Prótacal mícheart',
+'upload-file-error'  => 'Earraid inmheánach',
 
 'license'            => 'Ceadúnas:',
 'nolicense'          => 'Níl aon cheann roghnaithe',
@@ -924,13 +926,14 @@ uaslódáil é arís, le do thoil.',
 'upload_source_file' => ' (comhad ar do riomhaire)',
 
 # Special:FileList
-'imagelist_search_for' => 'Cuardaigh le íomhá ab ainm:',
-'imgfile'              => 'comhad',
-'imagelist'            => 'Liosta íomhánna',
-'imagelist_date'       => 'Dáta',
-'imagelist_name'       => 'Ainm',
-'imagelist_user'       => 'Úsáideoir',
-'imagelist_size'       => 'Méid',
+'imagelist_search_for'  => 'Cuardaigh le íomhá ab ainm:',
+'imgfile'               => 'comhad',
+'imagelist'             => 'Liosta íomhánna',
+'imagelist_date'        => 'Dáta',
+'imagelist_name'        => 'Ainm',
+'imagelist_user'        => 'Úsáideoir',
+'imagelist_size'        => 'Méid',
+'imagelist_description' => 'Tuairisc',
 
 # File description page
 'filehist'                       => 'Stair comhad',
@@ -983,7 +986,7 @@ uaslódáil é arís, le do thoil.',
 'listredirects' => 'Liostaigh na athsheolaí',
 
 # Unused templates
-'unusedtemplates'    => 'Teimpléid gan úsáid',
+'unusedtemplates'    => 'Teimpléid gan úsáidtear',
 'unusedtemplateswlh' => 'naisc eile',
 
 # Random page
@@ -1142,9 +1145,11 @@ mian leis ríomhphost a fháil ón úsáideoirí eile.',
 # Watchlist
 'watchlist'            => 'Mo liosta faire',
 'mywatchlist'          => 'Mo liosta faire',
-'watchlistfor'         => "(do '''$1''')",
+'watchlistfor'         => "(le '''$1''')",
 'nowatchlist'          => 'Níl aon rud ar do liosta faire.',
+'watchlistanontext'    => "$1, le d'thoil, chun míreanna ar do liosta faire a fheiceáil ná a athrú.",
 'watchnologin'         => 'Níl tú logáilte isteach',
+'watchnologintext'     => 'Tá ort a bheith [[Special:UserLogin|logáilte isteach]] chun do liosta faire a athrú.',
 'addedwatch'           => 'Curtha ar an liosta faire',
 'addedwatchtext'       => "Cuireadh an leathanach \"<nowiki>\$1</nowiki>\" le do [[Special:Watchlist|liosta faire]].
 Amach anseo liostálfar athruithe don leathanach seo agus dá leathanach plé ansin,
@@ -1170,7 +1175,7 @@ taobh istigh den tréimhse atá roghnaithe agat.',
 'wlshowlast'           => 'Líon na n-uair is déanaí le taispeáint: $1. Líon na laethanta is déanaí le taispeáint: $2. Taispeáin $3.',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Á chur le do liosta faire...',
+'watching'   => 'Ag faire...',
 'unwatching' => 'Á bhaint de do liosta faire...',
 
 'enotif_mailer'                => 'Fógrasheoltóir as {{SITENAME}}',
@@ -1311,6 +1316,8 @@ Is an téacs as na leagan scriosta seo ar fáil do riarthóirí amháin.',
 'undeletedarticle'        => 'Díscriosadh "$1" ar ais',
 'undeletedrevisions'      => '{{PLURAL:$1|Leagan amháin|$1 leagain}} díscriosta',
 'undeletedfiles'          => '{{PLURAL:$1|Comhad amháin|$1 comhaid}} díscriosta',
+'undelete-search-box'     => 'Cuardaigh leathanaigh scriosta',
+'undelete-search-submit'  => 'Cuardaigh',
 
 # Namespace form on various pages
 'namespace'      => 'Ainmspás:',
@@ -1327,12 +1334,12 @@ Is an téacs as na leagan scriosta seo ar fáil do riarthóirí amháin.',
 'month'               => 'As mí (agus is luaithe):',
 'year'                => 'As bliain (agus is luaithe):',
 
-'sp-contributions-newbies'       => 'Cuardaigh na dréachtaí as cuntasaí nua amháin',
+'sp-contributions-newbies'       => 'Taispeáin dréachtaí as cuntas nua amháin',
 'sp-contributions-newbies-sub'   => 'Le cuntais nua',
 'sp-contributions-newbies-title' => 'Dréachtaí úsáideora do chuntasaí nua',
 'sp-contributions-blocklog'      => 'Log coisc',
 'sp-contributions-search'        => 'Cuardaigh le dréachtaí',
-'sp-contributions-username'      => 'Seoladh IP ná ainm úsáideoir:',
+'sp-contributions-username'      => 'Seoladh IP ná ainm úsáideora:',
 'sp-contributions-submit'        => 'Cuardaigh',
 
 # What links here
@@ -1513,7 +1520,7 @@ air, nó is féidir leat é a coinniú do do chuid shiamsa féin.',
 # Thumbnails
 'thumbnail-more'  => 'Méadaigh',
 'filemissing'     => 'Comhad ar iarraidh',
-'thumbnail_error' => 'Earráid mionsamhail a chruthú: $1',
+'thumbnail_error' => 'Earráid mionsamhail a crutháil: $1',
 
 # Special:Import
 'import'                  => 'Iompórtáil leathanaigh',
@@ -1528,6 +1535,7 @@ air, nó is féidir leat é a coinniú do do chuid shiamsa féin.',
 uaslódáladh an leathanach seo roimh ré)',
 'importnosources'         => "Níl aon fhoinse curtha i leith d'iompórtáil trasna vicíonna, agus
 ní féidir uaslódála staire díreacha a dhéanamh faoi láthair.",
+'xml-error-string'        => '$1 ag líne $2, col $3 (beart $4): $5',
 'import-upload'           => 'Uaslódaigh sonraí XML',
 'import-token-mismatch'   => 'Sonraí seisiún a bheith caillte. Déan iarracht arís.',
 
@@ -1664,13 +1672,14 @@ iarradh sábháil. Is dócha gur nasc chuig suíomh seachtrach ba chúis leis.',
 'show-big-image-thumb' => '<small>Méid an réamhamhairc seo: $1 × $2 picteilín</small>',
 
 # Special:NewFiles
-'newimages'       => 'Gailearaí na n-íomhánna nua',
-'imagelisttext'   => 'Tá liosta thíos de {{PLURAL:$1|comhad amháin|$1 comhaid $2}}.',
-'newimages-label' => 'Comhadainm (nó cuid de):',
-'showhidebots'    => '($1 róbónna)',
-'noimages'        => 'Tada le feiceáil.',
-'ilsubmit'        => 'Cuardaigh',
-'bydate'          => 'de réir dáta',
+'newimages'             => 'Gailearaí na n-íomhánna nua',
+'imagelisttext'         => 'Tá liosta thíos de {{PLURAL:$1|comhad amháin|$1 comhaid $2}}.',
+'newimages-label'       => 'Comhadainm (nó cuid de):',
+'showhidebots'          => '($1 róbónna)',
+'noimages'              => 'Tada le feiceáil.',
+'ilsubmit'              => 'Cuardaigh',
+'bydate'                => 'de réir dáta',
+'sp-newimages-showfrom' => 'Taispeáin íomhánna nua as $2, $1',
 
 # Bad image list
 'bad_image_list' => 'An formáid ná a leanas:
@@ -1956,7 +1965,7 @@ cúlra i bhfócas)',
 'imagelistall'     => 'gach',
 'watchlistall2'    => 'an t-iomlán',
 'namespacesall'    => 'an t-iomlán',
-'monthsall'        => 'an t-iomlán',
+'monthsall'        => 'gach mí',
 
 # E-mail address confirmation
 'confirmemail'            => 'Deimhnigh do ríomhsheoladh',
@@ -2009,8 +2018,11 @@ Rachaidh an cód deimhnithe seo as feidhm ag $4.',
 'imgmultigoto'     => 'Téigh go leathanach $1',
 
 # Table pager
-'table_pager_next' => 'Leathanach a leanas',
-'table_pager_prev' => 'Leathanach roimhe',
+'table_pager_next'  => 'Leathanach a leanas',
+'table_pager_prev'  => 'Leathanach roimhe',
+'table_pager_first' => 'Céad leathanach',
+'table_pager_last'  => 'Deireadh leathanach',
+'table_pager_empty' => 'Folamh',
 
 # Auto-summaries
 'autoredircomment' => 'Ag athdhíriú go [[$1]]',
@@ -2018,13 +2030,19 @@ Rachaidh an cód deimhnithe seo as feidhm ag $4.',
 
 # Live preview
 'livepreview-loading' => 'Ag lódáil…',
-'livepreview-ready'   => 'Lódáil… Réidh!',
+'livepreview-ready'   => 'Ag lódáil… Réidh!',
 
 # Watchlist editor
-'watchlistedit-normal-submit' => 'Bain Teideail',
+'watchlistedit-numitems'      => 'Tá {{PLURAL:$1|teideal amháin|$1 teideail}} i do liosta faire, gan leathanaigh phlé a chur san áireamh.',
+'watchlistedit-noitems'       => 'Níl aon teideail ar do liosta faire.',
+'watchlistedit-normal-title'  => 'Athraigh do liosta faire',
+'watchlistedit-normal-legend' => 'Bain teideail as do liosta faire',
+'watchlistedit-normal-submit' => 'Bain Teideail as',
 'watchlistedit-raw-title'     => 'Athraigh do amhliosta faire',
 'watchlistedit-raw-legend'    => 'Athraigh do amhliosta faire',
 'watchlistedit-raw-titles'    => 'Teideail:',
+'watchlistedit-raw-submit'    => 'Nuashonraigh do liosta faire',
+'watchlistedit-raw-done'      => 'Tá do liosta faire nuashonraithe.',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Féach ar na hathruithe ábhartha',

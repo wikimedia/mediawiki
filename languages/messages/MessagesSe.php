@@ -1069,7 +1069,6 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 'filemissing' => 'Fiila váilo',
 
 # Special:Import
-'import-upload-comment' => 'Sivva',
 'import-comment'        => 'Sivva',
 'import-revision-count' => '$1 {{PLURAL:$1|veršuvdna|veršuvnna}}',
 

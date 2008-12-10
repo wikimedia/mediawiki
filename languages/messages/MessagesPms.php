@@ -1727,7 +1727,6 @@ Tute le amportassion antra wiki diferente a resto marcà ant ël [[Special:Log/i
 'import-interwiki-history'   => 'Còpia tute le version stòriche dë sta pàgina-sì',
 'import-interwiki-submit'    => 'Amporté',
 'import-interwiki-namespace' => 'Tramuda ste pàgine-sì ant lë spassi nominal:',
-'import-upload-comment'      => 'Oget:',
 'import-comment'             => 'Oget:',
 'importtext'                 => "Për piasì, che as espòrta l'archivi da 'nt la sorgiss wiki esterna ën dovrand l'utiss  Special:Esportassion, che as lo salva ansima a sò disch e peui che a lo caria ambelessì.",
 'importstart'                => 'I soma antramentr che amportoma le pàgine...',

@@ -2354,15 +2354,16 @@ Odwiedź [http://www.mediawiki.org/wiki/Localisation Tłumaczenie MediaWiki] ora
 'thumbnail_dest_directory' => 'Nie można utworzyć katalogu docelowego',
 
 # Special:Import
-'import'                     => 'Importuj strony',
+'import'                     => 'Import stron',
 'importinterwiki'            => 'Import transwiki',
 'import-interwiki-text'      => 'Wybierz wiki i nazwę strony do importowania.
 Daty oraz nazwy autorów zostaną zachowane.
 Wszystkie operacje importu transwiki są odnotowywane w [[Special:Log/import|rejestrze importu]].',
+'import-interwiki-source'    => 'Źródło wiki/strony:',
 'import-interwiki-history'   => 'Kopiuj całą historię edycji tej strony',
 'import-interwiki-submit'    => 'Importuj',
-'import-interwiki-namespace' => 'Przenieś strony do przestrzeni nazw',
-'import-upload-comment'      => 'Komentarz:',
+'import-interwiki-namespace' => 'Docelowa przestrzeń nazw:',
+'import-upload-filename'     => 'Nazwa pliku:',
 'import-comment'             => 'Komentarz:',
 'importtext'                 => 'Używając narzędzia [[Special:Export|eksportu]], wyeksportuj plik ze źródłowej wiki, zapisz go na swoim dysku, a następnie prześlij go tutaj.',
 'importstart'                => 'Trwa importowanie stron...',

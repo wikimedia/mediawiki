@@ -1357,7 +1357,6 @@ Rûpela "[[:$1]]" berê heye. Tu rast dixazê wê jêbibê ji bo navguherandinê
 # Special:Import
 'import'                  => 'Rûpelan wîne (import)',
 'import-interwiki-submit' => 'Wîne',
-'import-upload-comment'   => 'Nivîs:',
 'import-comment'          => 'Nivîs:',
 'importtext'              => 'Please export the file from the source wiki using the {{ns:special}}:Export utility, save it to your disk and upload it here.',
 'importstart'             => 'Rûpel tên împortkirin...',

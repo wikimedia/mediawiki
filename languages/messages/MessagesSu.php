@@ -1836,7 +1836,6 @@ Sadaya aktivitas impor transwiki baris kacatet dina [[Special:Log/import|log imp
 'import-interwiki-history'   => 'Salin sakabéh vérsi jujutan pikeun ieu kaca',
 'import-interwiki-submit'    => 'Impor',
 'import-interwiki-namespace' => 'Pindahkeun kaca ka rohang spasi',
-'import-upload-comment'      => 'Ringkesan:',
 'import-comment'             => 'Ringkesan:',
 'importtext'                 => 'Mangga ékspor koropakna ti sumber nu dipaké ku wiki migunakeun fungsi Special:Export, simpen na piringan anjeun, teras muatkeun di dieu.',
 'importstart'                => 'Ngimpor kaca...',

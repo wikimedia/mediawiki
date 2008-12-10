@@ -1541,7 +1541,6 @@ $NEWPAGE
 'import'                     => 'გვერდების იმპორტი',
 'import-interwiki-submit'    => 'იმპორტირება',
 'import-interwiki-namespace' => 'გვერდების გადატანა სახელთა სივრცეში:',
-'import-upload-comment'      => 'კომენტარი:',
 'import-comment'             => 'კომენტარი:',
 'importstart'                => 'გვერდების იმპორტი...',
 'import-revision-count'      => '$1 ცვლილება',

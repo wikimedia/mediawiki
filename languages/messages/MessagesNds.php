@@ -2245,7 +2245,6 @@ All Transwiki-Import-Akschonen staht later ok in dat [[Special:Log/import|Import
 'import-interwiki-history'   => 'Importeer all Versionen vun disse Siet',
 'import-interwiki-submit'    => 'Rinhalen',
 'import-interwiki-namespace' => 'Siet in Naamruum halen:',
-'import-upload-comment'      => 'Kommentar:',
 'import-comment'             => 'Kommentar:',
 'importtext'                 => 'Exporteer de Siet vun dat Utgangswiki mit Special:Export un laad de Datei denn över disse Siet weer hooch.',
 'importstart'                => 'Sieden warrt rinhaalt...',

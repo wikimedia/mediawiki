@@ -1583,7 +1583,6 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'import'                     => 'Paginas importare',
 'import-interwiki-submit'    => 'Importare',
 'import-interwiki-namespace' => 'Transferre paginas in spatium nominale:',
-'import-upload-comment'      => 'Sententia:',
 'import-comment'             => 'Sententia:',
 'importbadinterwiki'         => 'Nexus intervicus malus',
 'import-upload'              => 'XML imponere et importare',

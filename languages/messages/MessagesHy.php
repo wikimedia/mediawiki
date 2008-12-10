@@ -1781,7 +1781,6 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'import-interwiki-history'   => 'Պատճենել այս էջի փոփոխումների լրիվ պատմությունը',
 'import-interwiki-submit'    => 'Ներմուծել',
 'import-interwiki-namespace' => 'Տեղադրել էջերը անվանատարածքում.',
-'import-upload-comment'      => 'Մեկնաբանություն.',
 'import-comment'             => 'Մեկնաբանություն.',
 'importtext'                 => 'Խնդրում ենք արտածեք էջը ելակետային վիքիից օգտագործելով Special:Export, հիշեք այն ֆայլի տեսքով ձեր սկավառակի վրա և այնուհետև, բեռնեք այն այստեղ։',
 'importstart'                => 'Էջերի ներմուծում...',

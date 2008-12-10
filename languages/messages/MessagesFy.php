@@ -1931,7 +1931,6 @@ Sjoch: [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation], [htt
 # Special:Import
 'import'                  => 'Importearje siden',
 'import-interwiki-submit' => 'Ymportearje',
-'import-upload-comment'   => 'Oanmerking:',
 'import-comment'          => 'Oanmerking:',
 'importstart'             => 'Siden oan it ymportearjen ...',
 'import-revision-count'   => '$1 {{PLURAL:$1|ferzje|ferzjes}}',

@@ -1913,7 +1913,6 @@ In die laatste geval kan u ook \'n verwysing gebruik, byvoorbeeld [[{{ns:special
 'import'                     => 'Voer bladsye in',
 'import-interwiki-submit'    => 'importeer',
 'import-interwiki-namespace' => 'Plaas bladsye in naamruimte:',
-'import-upload-comment'      => 'Opmerking:',
 'import-comment'             => 'Opmerking:',
 'importstart'                => 'Importeer bladsye...',
 'import-revision-count'      => '$1 {{PLURAL:$1|weergawe|weergawes}}',

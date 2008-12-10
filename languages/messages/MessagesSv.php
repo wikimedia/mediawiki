@@ -2344,10 +2344,11 @@ Besök [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] eller
 'import-interwiki-text'      => 'Välj en wiki och sidtitel att importera.
 Versionshistorik (datum och redaktörer) kommer att bevaras.
 All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|importloggen]].',
+'import-interwiki-source'    => 'Källwiki/sida:',
 'import-interwiki-history'   => 'Kopiera hela versionshistoriken för denna sida',
 'import-interwiki-submit'    => 'Importera',
-'import-interwiki-namespace' => 'Överför sidorna till namnrymden:',
-'import-upload-comment'      => 'Kommentar:',
+'import-interwiki-namespace' => 'Målnamnrymd:',
+'import-upload-filename'     => 'Filnamn:',
 'import-comment'             => 'Kommentar:',
 'importtext'                 => 'Exportera filen från ursprungs-wikin genom att använda [[Special:Export|exportverktyget]], spara den till din hårddisk och ladda upp den här.',
 'importstart'                => 'Importerar sidor....',

@@ -1818,7 +1818,6 @@ Nüveigs vüvükik valik pajonons su [[Special:Log/import|nüveigamalised]].',
 'import-interwiki-history'   => 'Kopiedön fomamis valik jenotema pada at',
 'import-interwiki-submit'    => 'Nüveigön',
 'import-interwiki-namespace' => 'Topätükon padis ini nemaspad:',
-'import-upload-comment'      => 'Küpet:',
 'import-comment'             => 'Küpet:',
 'importtext'                 => 'Seveigolös ragivi se fonätavük me [[Special:Export|stum seveiga]].
 Dakipolös oni su nünöm olik e löpükolös oni isio.',

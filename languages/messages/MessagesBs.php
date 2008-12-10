@@ -2325,10 +2325,11 @@ U drugom slučaju možete koristiti i vezu, npr. [[{{ns:special}}:Export/{{Media
 'import-interwiki-text'      => 'Izaberi wiki i naslov stranice za uvoz.
 Datumi revizija i imena autora će biti sačuvani.
 Sve akcije pri međuwiki uvozu će biti zapisane u [[Special:Log/import|zapisu uvoza]].',
+'import-interwiki-source'    => 'Izvorna wiki/stranica:',
 'import-interwiki-history'   => 'Kopiraj sve verzije historije za ovu stranicu',
 'import-interwiki-submit'    => 'Uvoz',
-'import-interwiki-namespace' => 'Uvoz stranica u imenski prostor:',
-'import-upload-comment'      => 'Komentar:',
+'import-interwiki-namespace' => 'Odredišni imenski prostor:',
+'import-upload-filename'     => 'Naziv datoteke:',
 'import-comment'             => 'Komentar:',
 'importtext'                 => 'Molimo Vas da izvezete datoteku iz izvornog wikija koristeći [[Special:Export|izvoz]], sačuvajte ga kod sebe i pošaljite ovdje.',
 'importstart'                => 'Uvoz stranica...',

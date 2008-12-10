@@ -1019,7 +1019,6 @@ iitom e-iitomde diijömde caitóm.',
 # Special:Import
 'import'                  => 'Importóm páhinóm',
 'import-interwiki-submit' => 'Importom',
-'import-upload-comment'   => 'Commentua:',
 'import-comment'          => 'Commentua:',
 'importstart'             => 'Importom páhinám...',
 'importfailed'            => 'Römjde import: $1',

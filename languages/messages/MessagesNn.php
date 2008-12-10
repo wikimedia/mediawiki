@@ -2238,7 +2238,6 @@ Dersom du berre vil ha noverande versjon, kan du også bruke ei lenkje, til døm
 'import-interwiki-history'   => 'Kopier all historikken for denne sida',
 'import-interwiki-submit'    => 'Importer',
 'import-interwiki-namespace' => 'Flytt sidene til namnerommet:',
-'import-upload-comment'      => 'Kommentar:',
 'import-comment'             => 'Kommentar:',
 'importtext'                 => 'Eksporter fila frå kjeldewikien med [[Special:Export|eksporteringsverktøyet]], lagre ho på di eiga datamaskin, og last henne opp her.',
 'importstart'                => 'Importerer sidene…',

@@ -799,6 +799,7 @@ Sha'rtli belgiler: (ha'z.) = ha'zirgi nusqasi menen parqı,
 
 # Search results
 'searchresults'         => "İzlew na'tiyjeleri",
+'searchresults-title'   => '"$1" sorawnaması boyınsha tabılg\'an na\'tiyjeler',
 'searchsubtitle'        => 'İzlegenin\'iz: \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|"$1" baslanıwshı barlıq betler]] | [[Special:WhatLinksHere/$1|"$1" siltewshi barlıq betler]])',
 'searchsubtitleinvalid' => "'''$1''' ushın izlegenin'iz",
 'noexactmatch'          => "'''\"\$1\" atamalı bet joq.''' Bul betti [[:\$1|jaratıwın'ız]] mu'mkin.",
@@ -1435,7 +1436,6 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 # Special:Import
 'import'                  => 'Betlerdi import qılıw',
 'import-interwiki-submit' => 'Import',
-'import-upload-comment'   => 'Kommentariy:',
 'import-comment'          => 'Kommentariy:',
 'importstart'             => 'Betler import qılınbaqta...',
 'import-revision-count'   => '{{PLURAL:$1|1 nusqa|$1 nusqa}}',

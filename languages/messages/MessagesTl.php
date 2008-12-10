@@ -608,7 +608,6 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 # Special:Import
 'import'                  => 'Mag-angkat ng pahina',
 'import-interwiki-submit' => 'Mag-angkat',
-'import-upload-comment'   => 'Komento:',
 'import-comment'          => 'Komento:',
 'importstart'             => 'Inaangkat ang mga pahina...',
 'importsuccess'           => 'Tapos na ang pag-angkat!',

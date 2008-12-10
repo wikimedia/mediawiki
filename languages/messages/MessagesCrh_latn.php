@@ -1517,8 +1517,7 @@ MediaWiki interfeysiniñ çeşit tillerge tercime etüvde iştirak etmege istese
 'thumbnail_dest_directory' => 'İstenilgen direktoriyanı yaratmaqnıñ iç çaresi yoq',
 
 # Special:Import
-'import-upload-comment' => 'İzaat:',
-'import-comment'        => 'İzaat:',
+'import-comment' => 'İzaat:',
 
 # Import log
 'importlogpage' => 'İmport jurnalı',
