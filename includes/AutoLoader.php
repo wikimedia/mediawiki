@@ -538,7 +538,6 @@ class AutoLoader {
 	static function autoload( $className ) {
 		global $wgAutoloadClasses, $wgAutoloadLocalClasses;
 
-		wfProfileIn( __METHOD__ );
 		if ( isset( $wgAutoloadLocalClasses[$className] ) ) {
 			$filename = $wgAutoloadLocalClasses[$className];
 		} elseif ( isset( $wgAutoloadClasses[$className] ) ) {
@@ -568,7 +567,6 @@ class AutoLoader {
 			$filename = "$IP/$filename";
 		}
 		require( $filename );
-		wfProfileOut( __METHOD__ );
 		return true;
 	}
 
