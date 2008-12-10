@@ -105,9 +105,10 @@ class ApiProtect extends ApiBase {
 								wfTimestamp(TS_ISO_8601, $expiryarray[$p[0]])));
 		}
 
+		$cascade = $params['cascade'];
 		if($titleObj->exists()) {
 			$articleObj = new Article($titleObj);
-			$ok = $articleObj->updateRestrictions($protections, $params['reason'], $params['cascade'], $expiryarray);
+			$ok = $articleObj->updateRestrictions($protections, $params['reason'], $cascade, $expiryarray);
 		} else
 			$ok = $titleObj->updateTitleProtection($protections['create'], $params['reason'], $expiryarray['create']);
 		if(!$ok)
@@ -115,7 +116,7 @@ class ApiProtect extends ApiBase {
 			// Just throw an unknown error in this case, as it's very likely to be a race condition
 			$this->dieUsageMsg(array());
 		$res = array('title' => $titleObj->getPrefixedText(), 'reason' => $params['reason']);
-		if($params['cascade'])
+		if($cascade)
 			$res['cascade'] = '';
 		$res['protections'] = $resultProtections;
 		$this->getResult()->setIndexedTagName($res['protections'], 'protection');
@@ -149,7 +150,8 @@ class ApiProtect extends ApiBase {
 			'expiry' => array('Expiry timestamps. If only one timestamp is set, it\'ll be used for all protections.',
 					'Use \'infinite\', \'indefinite\' or \'never\', for a neverexpiring protection.'),
 			'reason' => 'Reason for (un)protecting (optional)',
-			'cascade' => 'Enable cascading protection (i.e. protect pages included in this page)'
+			'cascade' => array('Enable cascading protection (i.e. protect pages included in this page)',
+					'Ignored if not all protection levels are \'sysop\' or \'protect\''),
 		);
 	}
 
