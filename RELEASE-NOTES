@@ -394,6 +394,8 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 14268) SVG image sizes now extracted with proper XML parser
 * (bug 14365) RepoGroup::findFiles() no longer crashes if passed an invalid
   title via the API
+* (bug 4253, bug 16586) Revision ID is now given instead of title in URLs for
+  new pages in the recent changes IRC feed
 
 === API changes in 1.14 ===
 
