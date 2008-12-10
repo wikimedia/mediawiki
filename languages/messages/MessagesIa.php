@@ -1363,6 +1363,7 @@ Vide le [[Special:NewFiles|galeria de nove files]] pro un presentation plus visu
 Per favor renomina le file e prova recargar lo.',
 'badfilename'                 => 'Le nomine del imagine esseva cambiate a "$1".',
 'filetype-badmime'            => 'Non es permittite cargar files del typo MIME "$1".',
+'filetype-bad-ie-mime'        => 'Non pote cargar iste file proque Internet Explorer lo detegerea como "$1", le qual es un typo de files prohibite e potentialmente periculose.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' es un typo de file non desirate.
 Le {{PLURAL:\$3|typo|typos}} de file preferite es \$2.",
 'filetype-banned-type'        => "Le typo de file '''\".\$1\"''' non es permittite.
@@ -2308,10 +2309,11 @@ Per favor visita [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisat
 'import-interwiki-text'      => 'Selige le wiki e le titulo del pagina a importar.
 Le datas del revisiones e nomines del contributores essera preservate.
 Tote le actiones de importation transwiki se registra in le [[Special:Log/import|registro de importationes]].',
+'import-interwiki-source'    => 'Wiki/pagina de origine:',
 'import-interwiki-history'   => 'Copiar tote le versiones del historia de iste pagina',
 'import-interwiki-submit'    => 'Importar',
-'import-interwiki-namespace' => 'Transferer paginas verso le spatio de nomines:',
-'import-upload-comment'      => 'Commento:',
+'import-interwiki-namespace' => 'Spatio de nomines de destination:',
+'import-upload-filename'     => 'Nomine del file:',
 'import-comment'             => 'Commento:',
 'importtext'                 => 'Per favor exporta le file del wiki de origine con le [[Special:Export|facilitate pro exportar]].
 Immagazina lo in tu disco e carga lo hic.',

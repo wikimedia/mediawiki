@@ -2235,10 +2235,11 @@ Por favor, visite a [http://www.mediawiki.org/wiki/Localisation localización Me
 'import-interwiki-text'      => 'Seleccione o wiki e o título da páxina que queira importar.
 As datas das revisións e os nomes dos editores mantéranse.
 Todas as accións relacionadas coa importación entre wikis poden verse no [[Special:Log/import|rexistro de importacións]].',
+'import-interwiki-source'    => 'Wiki/Páxina de orixe:',
 'import-interwiki-history'   => 'Copiar todas as versións que hai no historial desta páxina',
 'import-interwiki-submit'    => 'Importar',
-'import-interwiki-namespace' => 'Transferir páxinas ao espazo de nomes:',
-'import-upload-comment'      => 'Comentario:',
+'import-interwiki-namespace' => 'Espazo de nomes de destino:',
+'import-upload-filename'     => 'Nome do ficheiro:',
 'import-comment'             => 'Comentario:',
 'importtext'                 => 'Por favor, exporte o ficheiro do wiki de orixe usando a [[Special:Export|ferramenta para exportar]].
 Gráveo no seu disco duro e cárgueo aquí.',

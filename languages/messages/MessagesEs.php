@@ -2238,7 +2238,6 @@ Todas las importaciones transwiki se registran en el [[Special:Log/import|regist
 'import-interwiki-history'   => 'Copiar todas las versiones históricas para esta página',
 'import-interwiki-submit'    => 'Importar',
 'import-interwiki-namespace' => 'Transferir páginas al espacio de nombres:',
-'import-upload-comment'      => 'Comentario:',
 'import-comment'             => 'Comentario:',
 'importtext'                 => 'Por favor, exporte el archivo desde el wiki de origen usando la [[Special:Export|herramienta de exportación]], guárdelo en su ordenador y súbalo aquí.',
 'importstart'                => 'Importando páginas...',

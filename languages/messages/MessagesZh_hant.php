@@ -2076,7 +2076,6 @@ $1',
 'import-interwiki-history'   => '複製此頁的所有歷史版本',
 'import-interwiki-submit'    => '匯入',
 'import-interwiki-namespace' => '將頁面轉移到名字空間:',
-'import-upload-comment'      => '註解:',
 'import-comment'             => '註解:',
 'importtext'                 => '請使用[[Special:Export|匯出功能]]從源 wiki 匯出檔案，
 儲存到您的磁片並上傳到這裡。',

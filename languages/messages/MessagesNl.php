@@ -2470,10 +2470,11 @@ Ga naar [http://www.mediawiki.org/wiki/Localisation MediaWiki-localisatie] en [h
 'import-interwiki-text'      => 'Selecteer een wiki en paginanaam om te importeren.
 Versie- en auteursgegevens blijven hierbij bewaard.
 Alle transwiki-importhandelingen worden opgeslagen in het [[Special:Log/import|importlogboek]].',
+'import-interwiki-source'    => 'Bronwiki/pagina:',
 'import-interwiki-history'   => 'Volledige geschiedenis van deze pagina ook kopiëren',
 'import-interwiki-submit'    => 'Importeren',
-'import-interwiki-namespace' => 'Pagina in de volgende naamruimte plaatsen:',
-'import-upload-comment'      => 'Opmerking:',
+'import-interwiki-namespace' => 'Doelnaamruimte:',
+'import-upload-filename'     => 'Bestandsnaam:',
 'import-comment'             => 'Opmerking:',
 'importtext'                 => 'Gebruik de [[Special:Export|exportfunctie]] in de wiki waar de informatie vandaan komt, sla de uitvoer op uw eigen systeem op, en voeg die daarna hier toe.',
 'importstart'                => "Pagina's aan het importeren ...",

@@ -2160,7 +2160,6 @@ Todas as importazions interwiki se rechistran en o [[Special:Log/import|rechistr
 'import-interwiki-history'   => "Copiar todas as bersions de l'istorial d'ista pachina",
 'import-interwiki-submit'    => 'Importar',
 'import-interwiki-namespace' => "Transferir pachinas t'o espazio de nombres:",
-'import-upload-comment'      => 'Comentario:',
 'import-comment'             => 'Comentario:',
 'importtext'                 => "Por fabor, esporte l'archibo dende o wiki d'orichen fendo serbir a [[Special:Export|ferramienta d'esportazión]]. Alze-lo en o suyo ordenador y cargue-lo aquí.",
 'importstart'                => 'Importando pachinas...',

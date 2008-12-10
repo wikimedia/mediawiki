@@ -8,6 +8,7 @@
  * @author Millosh
  * @author Red Baron
  * @author Sasa Stefanovic
+ * @author Slaven Kosanovic
  * @author Јованвб
  * @author לערי ריינהארט
  */
@@ -2084,7 +2085,6 @@ $1',
 'import-interwiki-history'   => 'Копирај све ревизије ове стране',
 'import-interwiki-submit'    => 'Увези',
 'import-interwiki-namespace' => 'Пребаци странице у именски простор:',
-'import-upload-comment'      => 'Коментар:',
 'import-comment'             => 'Коментар:',
 'importtext'                 => 'Молимо извезите фајл из изворног викија користећи [[Special:Export|извоз]].
 Сачувајте га код себе и пошаљите овде.',

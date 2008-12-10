@@ -2158,7 +2158,6 @@ Vă rugăm să vizitaţi [http://www.mediawiki.org/wiki/Localisation MediaWiki L
 'import-interwiki-history'   => 'Copiază toate versiunile istoricului acestei pagini',
 'import-interwiki-submit'    => 'Importă',
 'import-interwiki-namespace' => 'Transferă paginile la spaţiul de nume:',
-'import-upload-comment'      => 'Comentariu:',
 'import-comment'             => 'Comentariu:',
 'importtext'                 => 'Te rog exportă fişierul din sursa wiki folosind [[Special:Export|utilitarul de exportare]].
 Salvează-l pe discul tău şi trimite-l aici.',

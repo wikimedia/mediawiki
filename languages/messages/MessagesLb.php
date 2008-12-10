@@ -2104,6 +2104,7 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'immobile-source-namespace' => 'Säite am Nummraum: $1 kënnen net geréckelt ginn',
 'immobile-target-namespace' => 'Säite kënnen net an den Nummraum: $1 geréckelt ginn',
 'immobile-source-page'      => 'Dës Säit kann net geréckelt ginn.',
+'immobile-target-page'      => 'Kann net op de Bestëmmungs-titel geréckelt ginn.',
 'imagenocrossnamespace'     => 'Fichiere kënnen net an aner Nummraim geréckelt ginn',
 'imagetypemismatch'         => 'Déi nei Dateierweiderung ass net mat dem Fichier kompatibel',
 'imageinvalidfilename'      => 'Den Numm vum Zil-Fichier ass ongëlteg',
@@ -2148,10 +2149,11 @@ Besicht w.e.g. [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisatio
 # Special:Import
 'import'                     => 'Säiten importéieren',
 'importinterwiki'            => 'Transwiki-Import',
+'import-interwiki-source'    => 'Quelle Wiki/Säit:',
 'import-interwiki-history'   => "Importéier all d'Versioune vun dëser Säit",
 'import-interwiki-submit'    => 'Import',
-'import-interwiki-namespace' => 'Kopéier Säiten an den Nummraum:',
-'import-upload-comment'      => 'Bemierkung:',
+'import-interwiki-namespace' => 'Zil-Nummraum:',
+'import-upload-filename'     => 'Numm vum Fichier:',
 'import-comment'             => 'Bemierkung:',
 'importtext'                 => 'Exportéiert de Fichier w.e.g vun der Source-Wiki mat der [[Special:Export|Funktioun Export]].
 Späichert en op ärem Computer of a lued en hei nees erop.',

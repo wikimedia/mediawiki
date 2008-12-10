@@ -2228,10 +2228,11 @@ Sila lawat [http://www.mediawiki.org/wiki/Localisation Penyetempatan MediaWiki] 
 'import-interwiki-text'      => 'Sila pilih wiki dan tajuk laman yang ingin diimport.
 Semua tarikh semakan dan nama penyunting akan dikekalkan.
 Semua tindakan import transwiki dicatatkan dalam [[Special:Log/import|log import]].',
+'import-interwiki-source'    => 'Sumber wiki/halaman:',
 'import-interwiki-history'   => 'Salin semua versi sejarah bagi laman ini',
 'import-interwiki-submit'    => 'Import',
-'import-interwiki-namespace' => 'Pindahkan laman ke dalam ruang nama:',
-'import-upload-comment'      => 'Komen:',
+'import-interwiki-namespace' => 'Ruang nama destinasi:',
+'import-upload-filename'     => 'Nama fail:',
 'import-comment'             => 'Komen:',
 'importtext'                 => 'Sila eksport fail daripada sumber wiki menggunakan kemudahan Special:Export, simpan dalam komputer anda dan muat naik di sini.',
 'importstart'                => 'Mengimport laman...',

@@ -1648,7 +1648,6 @@ $NEWPAGE
 'import-interwiki-history'   => 'קאפירן אלע היסטאריע ווערסיעס פאר דעם בלאט',
 'import-interwiki-submit'    => 'אימפארט',
 'import-interwiki-namespace' => 'אריבערפֿירן בלעטער אין נאמענטייל:',
-'import-upload-comment'      => 'הערה:',
 'import-comment'             => 'הערה:',
 'importtext'                 => 'ביטע עקספארטירט די טעקע פון דער מקור וויקי ניצנדיג דאס [[Special:Export|עקספארט הילפמיטל]], שפייכלט איין אויף אייער הארטדיסק און לאדט אויף דא.',
 'importstart'                => 'אימפארטירט בלעטער…',

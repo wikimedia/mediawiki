@@ -2017,7 +2017,6 @@ Alle transwiki-importhanjelinge waere opgeslage in 't [[Special:Log/import|impor
 'import-interwiki-history'   => 'Volledige gesjiedenis van deze pazjena ouch kopiëre',
 'import-interwiki-submit'    => 'Importere',
 'import-interwiki-namespace' => 'Pazjena in de volgende naamruumde plaatse:',
-'import-upload-comment'      => 'Opmèrking:',
 'import-comment'             => 'Opmèrking:',
 'importtext'                 => 'Gebroek de functie Special:Export in de wiki wo de informatie vanaaf kömp, slao de oetveur op dien eige systeem op, en voeg dae dao nao hiej toe.',
 'importstart'                => "Pazjena's aan 't importere ...",

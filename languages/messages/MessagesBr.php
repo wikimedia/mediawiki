@@ -555,6 +555,7 @@ Na daolit ket evezh ouzh ar c\'hemenn-mañ m\'eo bet krouet ar gont dre fazi.',
 'resetpass_bad_temporary' => "Ger-tremen da c'hortoz faziek. Marteze hoc'h eus cheñchet ho ker-tremen dija pe hoc'h eus goulennet ur ger-tremen da c'hortoz all.",
 'resetpass_forbidden'     => "N'haller ket cheñch ar gerioù-termen",
 'resetpass_missing'       => "N'eus bet lakaet titour ebet.",
+'resetpass-temp-password' => "Ger-tremen da c'hortoz :",
 
 # Edit page toolbar
 'bold_sample'     => 'Testenn dev',
@@ -1983,7 +1984,6 @@ Miret eo an holl enporzhiadennoù etrewiki e-barzh [[Special:Log/import|log an e
 'import-interwiki-history'   => 'Eilañ holl stummoù istor ar bajenn-mañ',
 'import-interwiki-submit'    => 'Enporzhiañ',
 'import-interwiki-namespace' => 'Treuzkas ar pajennoù en esaouenn anv :',
-'import-upload-comment'      => 'Notenn :',
 'import-comment'             => 'Notenn :',
 'importtext'                 => "Ezporzhiit ur restr adal ar wiki orin en ur implij an arc'hwel Special:Export, enrollit ar bajenn war ho pladenn ha degasit anezhi amañ.",
 'importstart'                => "Oc'h enporzhiañ pajennoù...",

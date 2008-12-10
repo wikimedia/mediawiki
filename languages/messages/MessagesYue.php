@@ -2134,7 +2134,6 @@ $1',
 'import-interwiki-history'   => '複製呢一頁所有嘅歷史版本',
 'import-interwiki-submit'    => '倒入',
 'import-interwiki-namespace' => '轉移頁面到空間名：',
-'import-upload-comment'      => '註解:',
 'import-comment'             => '註解:',
 'importtext'                 => '請由原 wiki 嘅[[Special:Export|匯出工具]]匯出成檔案。
 儲存喺你個磁碟度，然後再上載到呢度。',

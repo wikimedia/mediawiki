@@ -2388,10 +2388,11 @@ Alternativ ist der Export auch mit der Syntax [[{{ns:special}}:Export/{{MediaWik
 'import-interwiki-text'      => 'Wähle ein Wiki und eine Seite zum Importieren aus.
 Die Versionsdaten und Benutzernamen bleiben dabei erhalten.
 Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] protokolliert.',
+'import-interwiki-source'    => 'Quell-Wiki/-Seite:',
 'import-interwiki-history'   => 'Importiere alle Versionen dieser Seite',
 'import-interwiki-submit'    => 'Import',
-'import-interwiki-namespace' => 'Importiere die Seite in den Namensraum:',
-'import-upload-comment'      => 'Grund:',
+'import-interwiki-namespace' => 'Zielnamensraum:',
+'import-upload-filename'     => 'Dateiname:',
 'import-comment'             => 'Grund:',
 'importtext'                 => 'Auf dieser Spezialseite können über die [[Special:Export|Exportfunktion]] im Quellwiki exportierte Seiten in dieses Wiki importiert werden.',
 'importstart'                => 'Importiere Seite …',

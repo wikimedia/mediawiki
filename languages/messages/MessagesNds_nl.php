@@ -1813,6 +1813,7 @@ As der al een nieje pagina mit dezelfde naam an-emaak is, zullen disse versies a
 'undeleterevdel'               => "Herstellen kan neet as daor de leste versie van de pagina of 't bestand gedeeltelijk mee vort-edaon wonnen.
 In dat geval mu-j de leste versie as zichbaor instellen.",
 'undeletehistorynoadmin'       => "Disse pagina is vort-edaon. De rejen hierveur steet hieronder, samen mit de infermasie van de gebrukers dee dit artikel ewiezig hemmen veurdat 't vort-edaon is. De tekse van 't artikel is allinnig zichbaor veur beheerders.",
+'undelete-revision'            => 'Vort-edaone versies van $1 (per $4 um $5) deur $3:',
 'undeleterevision-missing'     => "Ongeldige of ontbrekende versie. 't Is meugelijk da-j een verkeerde verwiezing gebruken of dat disse pagina weerummeplaos is of dat 't uut archief ewis is.",
 'undelete-nodiff'              => 'Gien eerdere versie evunnen.',
 'undeletebtn'                  => 'Weerummeplaosen',
@@ -2075,7 +2076,6 @@ Alle transwiki-invoerhaandelingen wonnen op-esleugen in 't [[Special:Log/import|
 'import-interwiki-history'   => 'Kopieer de hele geschiedenisse veur disse pagina',
 'import-interwiki-submit'    => 'Invoeren',
 'import-interwiki-namespace' => "Plaos pagina's in de volgende naamruumte:",
-'import-upload-comment'      => 'Opmarkingen:',
 'import-comment'             => 'Opmarkingen:',
 'importtext'                 => "Gebruuk de Special:Export-optie in de wiki waor de infermasie vandaonkump, slao 't op joew eigen systeem op, en stuur 't daornao hier op.",
 'importstart'                => "Pagina's an 't invoeren...",

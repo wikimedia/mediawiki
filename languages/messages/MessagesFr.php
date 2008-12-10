@@ -2283,10 +2283,11 @@ Veuillez visiter la [http://www.mediawiki.org/wiki/Localisation Localisation Med
 'import-interwiki-text'      => 'Sélectionnez un wiki et un titre de page à importer.
 Les dates des versions et les noms des éditeurs seront préservés.
 Toutes les actions d’importation interwiki sont consignées dans l’[[Special:Log/import|historique des importations]].',
+'import-interwiki-source'    => 'Wiki et page source :',
 'import-interwiki-history'   => 'Copier toutes les versions de l’historique de cette page',
 'import-interwiki-submit'    => 'Importer',
-'import-interwiki-namespace' => 'Transférer les pages dans l’espace de nom :',
-'import-upload-comment'      => 'Commentaire :',
+'import-interwiki-namespace' => 'Espace de noms de destination :',
+'import-upload-filename'     => 'Nom du fichier :',
 'import-comment'             => 'Commentaire :',
 'importtext'                 => 'Veuillez exporter le fichier depuis le wiki d’origine en utilisant l’outil Special:Export, le sauvegarder sur votre disque dur et le copier ici.',
 'importstart'                => 'Import des pages...',

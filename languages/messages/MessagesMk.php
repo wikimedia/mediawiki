@@ -2308,7 +2308,6 @@ $1 е веќе блокиран. Дали сакате да направите �
 'import-interwiki-history'   => 'Копирај ги сите постари верзии за оваа страница',
 'import-interwiki-submit'    => 'Увези',
 'import-interwiki-namespace' => 'Трансфер на страници во именски простор:',
-'import-upload-comment'      => 'Коментар:',
 'import-comment'             => 'Коментар:',
 'importtext'                 => 'Извезете ја податотеката од изворното вики со користење на [[Special:Export|алатката за извоз]].
 Зачувајте ја на вашиот диск и подигнете ја овде.',
@@ -3022,21 +3021,24 @@ $1
 'iranian-calendar-m1' => 'Farvardin',
 
 # Special:Version
-'version'                       => 'Верзија', # Not used as normal message but as header for the special page itself
-'version-extensions'            => 'Инсталирани проширувања',
-'version-specialpages'          => 'Специјални страници',
-'version-parserhooks'           => 'Парсер куки',
-'version-variables'             => 'Променливи',
-'version-other'                 => 'Друго',
-'version-hooks'                 => 'Куки',
-'version-parser-function-hooks' => 'Куки на парсер функција',
-'version-hook-name'             => 'Име на кука',
-'version-hook-subscribedby'     => 'Претплатено од',
-'version-version'               => 'Верзија',
-'version-license'               => 'Лиценца',
-'version-software'              => 'Инсталиран софтвер',
-'version-software-product'      => 'Производ',
-'version-software-version'      => 'Верзија',
+'version'                          => 'Верзија', # Not used as normal message but as header for the special page itself
+'version-extensions'               => 'Инсталирани проширувања',
+'version-specialpages'             => 'Специјални страници',
+'version-parserhooks'              => 'Парсер куки',
+'version-variables'                => 'Променливи',
+'version-other'                    => 'Друго',
+'version-hooks'                    => 'Куки',
+'version-extension-functions'      => 'Функции на проширувањето',
+'version-parser-extensiontags'     => 'Приврзоци на парсер проширување',
+'version-parser-function-hooks'    => 'Куки на парсер функција',
+'version-skin-extension-functions' => 'Функции на проширување на изглед',
+'version-hook-name'                => 'Име на кука',
+'version-hook-subscribedby'        => 'Претплатено од',
+'version-version'                  => 'Верзија',
+'version-license'                  => 'Лиценца',
+'version-software'                 => 'Инсталиран софтвер',
+'version-software-product'         => 'Производ',
+'version-software-version'         => 'Верзија',
 
 # Special:FilePath
 'filepath'         => 'Патека до податотека',

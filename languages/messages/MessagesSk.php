@@ -2259,10 +2259,11 @@ V druhom prípade môžete tiež použiť odkaz, napr. [[{{ns:special}}:Export/{
 'import-interwiki-text'      => 'Zvoľte wiki a názov stránky, ktorá sa má importovať.
 Dátumy revízií a mená používateľov budú zachované.
 Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname importov]].',
+'import-interwiki-source'    => 'Zdrojová wiki/stránka:',
 'import-interwiki-history'   => 'Skopírovať všetky historické revízie tejto stránky',
 'import-interwiki-submit'    => 'Importovať',
-'import-interwiki-namespace' => 'Presunúť stránky do menného priestoru:',
-'import-upload-comment'      => 'komentár:',
+'import-interwiki-namespace' => 'Cieľový menný priestor:',
+'import-upload-filename'     => 'Názov súboru:',
 'import-comment'             => 'komentár:',
 'importtext'                 => 'Prosím exportujte súbor zo zdrojovej wiki použitím [[Special:Export|nástroja na export]], uložte ho na svoj disk a nahrajte sem.',
 'importstart'                => 'Importujú sa stránky...',

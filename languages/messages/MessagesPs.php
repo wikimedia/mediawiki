@@ -1165,8 +1165,7 @@ $messages = array(
 'thumbnail_error' => 'د  بټنوک د جوړېدنې ستونزه: $1',
 
 # Special:Import
-'import-upload-comment' => 'تبصره:',
-'import-comment'        => 'تبصره:',
+'import-comment' => 'تبصره:',
 
 # Import log
 'importlogpage' => 'د واردولو يادښت',

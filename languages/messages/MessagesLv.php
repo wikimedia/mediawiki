@@ -1462,10 +1462,9 @@ Pirmajā gadījumā var arī lietot šādu metodi, piem., [[{{ns:special}}:Expor
 'filemissing'    => 'Trūkst faila',
 
 # Special:Import
-'import'                => 'Importēt lapas',
-'import-upload-comment' => 'Komentārs:',
-'import-comment'        => 'Komentārs:',
-'importnosources'       => "Tiešā hronoloģijas augšuplāde ir atslēgta. Nav definēts neviens ''Transwiki'' importa avots (''source'').",
+'import'          => 'Importēt lapas',
+'import-comment'  => 'Komentārs:',
+'importnosources' => "Tiešā hronoloģijas augšuplāde ir atslēgta. Nav definēts neviens ''Transwiki'' importa avots (''source'').",
 
 # Import log
 'importlogpage' => 'Importēšanas reģistrs',

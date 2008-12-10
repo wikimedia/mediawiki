@@ -953,7 +953,6 @@ Vakai ki he [[Special:Log/delete|hokohoko tāmateʻi]] ki he lekooti ʻo e ngaah
 'import-interwiki-history'   => 'Hiki ko e paaki hisitōlia kotoa maʻa e pēsí ni',
 'import-interwiki-submit'    => 'Hū mai',
 'import-interwiki-namespace' => 'ʻAve ngaahi peesi ki he vā hingoa:',
-'import-upload-comment'      => 'Fakamatala:',
 'import-comment'             => 'Fakamatala:',
 'importtext'                 => "Kātaki ʻe hū atu ʻa e faile mei he ''wiki'' tupunga ngāueʻaki ''Special:Export'', pea haofakiʻi ʻi hoʻo tisi, pea hū mai ia mei hē.",
 'importstart'                => 'Hū mai ngaahi peesi...',

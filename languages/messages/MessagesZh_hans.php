@@ -2101,7 +2101,6 @@ $1',
 'import-interwiki-history'   => '复制此页的所有历史版本',
 'import-interwiki-submit'    => '导入',
 'import-interwiki-namespace' => '将页面转移到名字空间:',
-'import-upload-comment'      => '注解:',
 'import-comment'             => '注解:',
 'importtext'                 => '请使用[[Special:Export|导出功能]]从源 wiki 导出文件，
 保存到您的磁盘并上传到这里。',
