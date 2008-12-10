@@ -255,25 +255,6 @@ abstract class FileRepo {
 	}
 
 	/**
-	 * Get the file description page base URL, or false if there isn't one.
-	 * @private
-	 */
-	function getDescBaseUrl() {
-		if ( is_null( $this->descBaseUrl ) ) {
-			if ( !is_null( $this->articleUrl ) ) {
-				$this->descBaseUrl = str_replace( '$1',
-					wfUrlencode( 'Image' ) . ':', $this->articleUrl );
-			} elseif ( !is_null( $this->scriptDirUrl ) ) {
-				$this->descBaseUrl = $this->scriptDirUrl . '/index.php?title=' .
-					wfUrlencode( 'Image' ) . ':';
-			} else {
-				$this->descBaseUrl = false;
-			}
-		}
-		return $this->descBaseUrl;
-	}
-
-	/**
 	 * Get the URL of an image description page. May return false if it is
 	 * unknown or not applicable. In general this should only be called by the
 	 * File class, since it may return invalid results for certain kinds of
@@ -283,12 +264,29 @@ abstract class FileRepo {
 	 * constructor, whereas local repositories use the local Title functions.
 	 */
 	function getDescriptionUrl( $name ) {
-		$base = $this->getDescBaseUrl();
-		if ( $base ) {
-			return $base . wfUrlencode( $name );
-		} else {
-			return false;
+		$encName = wfUrlencode( $name );
+		if ( !is_null( $this->descBaseUrl ) ) {
+			# "http://example.com/wiki/Image:"
+			return $this->descBaseUrl . $encName;
 		}
+		if ( !is_null( $this->articleUrl ) ) {
+			# "http://example.com/wiki/$1"
+			#
+			# We use "Image:" as the canonical namespace for
+			# compatibility across all MediaWiki versions.
+			return str_replace( '$1',
+				"Image:$encName", $this->articleUrl );
+		}
+		if ( !is_null( $this->scriptDirUrl ) ) {
+			# "http://example.com/w"
+			#
+			# We use "Image:" as the canonical namespace for
+			# compatibility across all MediaWiki versions,
+			# and just sort of hope index.php is right. ;)
+			return $this->scriptDirUrl .
+				"/index.php?title=Image:$encName";
+		}
+		return false;
 	}
 
 	/**
@@ -303,9 +301,9 @@ abstract class FileRepo {
 				wfUrlencode( 'Image:' . $name ) .
 				'&action=render';
 		} else {
-			$descBase = $this->getDescBaseUrl();
-			if ( $descBase ) {
-				return wfAppendQuery( $descBase . wfUrlencode( $name ), 'action=render' );
+			$descUrl = $this->getDescriptionUrl( $name );
+			if ( $descUrl ) {
+				return wfAppendQuery( $descUrl, 'action=render' );
 			} else {
 				return false;
 			}
