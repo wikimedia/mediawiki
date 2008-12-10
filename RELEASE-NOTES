@@ -70,9 +70,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   using $wgUsePrivateIPs.
 * (bug 11009) The null file (ie: /dev/null) can be configured with $wgNullFile. 
   Useful for overriding if the normal file isn't accessible
-* $wgRC2UDPScriptUrl can be used to set the prefix for URLs in the RC->IRC feed
-  where enabled.  The default is $wgServer . $wgScript (used to effectively be
-  $wgInternalServer . $wgScript).
 
 === Migrated extensions ===
 The following extensions are migrated into MediaWiki 1.14:
