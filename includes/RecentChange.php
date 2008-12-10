@@ -589,8 +589,7 @@ class RecentChange
 	}
 
 	protected function getIRCLine() {
-		global $wgUseRCPatrol, $wgUseNPPatrol, $wgRC2UDPInterwikiPrefix, $wgLocalInterwiki,
-			$wgServer, $wgScript, $wgRC2UDPScriptUrl;
+		global $wgUseRCPatrol, $wgUseNPPatrol, $wgRC2UDPInterwikiPrefix, $wgLocalInterwiki;
 
 		// FIXME: Would be good to replace these 2 extract() calls with something more explicit
 		// e.g. list ($rc_type, $rc_id) = array_values ($this->mAttribs); [or something like that]
@@ -605,26 +604,22 @@ class RecentChange
 		$title = $titleObj->getPrefixedText();
 		$title = self::cleanupForIRC( $title );
 
-		// XXX: This used to call Title::getInternalURL() and then strip out the title, but that's
-		// a lot of complex code just to prepend two globals to a query string.  Simplified.
 		if( $rc_type == RC_LOG ) {
 			$url = '';
 		} else {
-			if( $wgRC2UDPScriptUrl !== false ) {
-				$url = $wgRC2UDPScriptUrl;
-			} else {
-				$url = $wgServer . $wgScript;
-			}
-
 			if( $rc_type == RC_NEW ) {
-				$url .= "?oldid=$rc_this_oldid";
+				$url = "oldid=$rc_this_oldid";
 			} else {
-				$url .= "?diff=$rc_this_oldid&oldid=$rc_last_oldid";
+				$url = "diff=$rc_this_oldid&oldid=$rc_last_oldid";
 			}
-
 			if( $wgUseRCPatrol || ($rc_type == RC_NEW && $wgUseNPPatrol) ) {
 				$url .= "&rcid=$rc_id";
 			}
+			// XXX: *HACK* this should use getFullURL(), hacked for SSL madness --brion 2005-12-26
+			// XXX: *HACK^2* the preg_replace() undoes much of what getInternalURL() does, but we 
+			// XXX: need to call it so that URL paths on the Wikimedia secure server can be fixed
+			// XXX: by a custom GetInternalURL hook --vyznev 2008-12-10
+			$url = preg_replace( '/title=[^&]*&/', '', $titleObj->getInternalURL( $url ) );
 		}
 
 		if( isset( $oldSize ) && isset( $newSize ) ) {

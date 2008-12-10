@@ -2143,13 +2143,6 @@ $wgRC2UDPPrefix = '';
 $wgRC2UDPInterwikiPrefix = false;
 
 /**
- * This prefix is prepended to each URL in the IRC feed.  If left false, the prefix
- * $wgServer . $wgScript is used by default.  You should set this if your $wgServer
- * or $wgScript might vary, e.g. if your wiki can be reached via both HTTP and HTTPS.
- */
-$wgRC2UDPScriptUrl = false;
-
-/**
  * Set to true to omit "bot" edits (by users with the bot permission) from the 
  * UDP feed.
  */
