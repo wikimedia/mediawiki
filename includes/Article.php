@@ -686,7 +686,10 @@ class Article {
 
 		# Try file cache
 		if( $oldid === 0 && $this->checkTouched() ) {
-			$wgOut->setETag( $parserCache->getETag($this,$wgUser) );
+			global $wgUseETag;
+			if( $wgUseETag ) {
+				$wgOut->setETag( $parserCache->getETag($this,$wgUser) );
+			}
 			if( $wgOut->checkLastModified( $this->getTouched() ) ){
 				wfProfileOut( __METHOD__ );
 				return;
