@@ -170,13 +170,6 @@ $wgUploadBaseUrl    = "";
 $wgDirectoryMode = 0777;
 
 /**
- * Path to null output (/dev/null on *nix, NUL on Windows)
- * Can be left unset unless you need to override it (ie:
- * open_basedir won't let you hit /dev/null. See bug 11009)
- */
-$wgNullFile = false;
-
-/**
  * New file storage paths; currently used only for deleted files.
  * Set it like this:
  *
