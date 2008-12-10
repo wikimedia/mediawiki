@@ -2816,10 +2816,6 @@ function wfLoadExtensionMessages( $extensionName, $langcode = false ) {
  * @return string
  */
 function wfGetNull() {
-	global $wgNullFile;
-	if ( $wgNullFile ) {
-		return $wgNullFile;
-	}
 	return wfIsWindows()
 		? 'NUL'
 		: '/dev/null';
