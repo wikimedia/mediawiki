@@ -116,6 +116,8 @@ class ApiEditPage extends ApiBase {
 				$this->dieUsage("The section parameter must be set to an integer or 'new'", "invalidsection");
 			$reqArr['wpSection'] = $params['section'];
 		}
+		else
+			$reqArr['wpSection'] = '';
 
 		if($params['watch'])
 			$watch = true;
