@@ -164,32 +164,17 @@ class CoreParserFunctions {
 	 * @param string $text Desired title text
 	 * @return string
 	 */
-	static function displaytitle( $parser, $displayTitleH1 = '', $displayTitleTitle = '' ) {
+	static function displaytitle( $parser, $text = '' ) {
 		global $wgRestrictDisplayTitle;
-		
-		$titleHTML = Sanitizer::removeHTMLtags( $displayTitleH1 ); #escape the bad tags
-		$titleText = trim( Sanitizer::stripAllTags( $titleHTML ) ); #remove the good tags, leaving the bad tags escaped, and trim it to make sure it comes out pretty
-		
-		#the user can put any sanitized text into the page title used in the <title> attribute, since it is not copy-pasteable like the <h1> tag
-		if ($displayTitleTitle == '') {
-			$parser->mOutput->setDisplayTitle( $titleText ); #use the stripped contents of <h1>
-		} else {
-			$parser->mOutput->setDisplayTitle( $displayTitleTitle ); #use what the user explicitly requested, MediaWiki escapes this automatically before it is served out
-		}
-		
+		$text = trim( Sanitizer::decodeCharReferences( $text ) );
+
 		if ( !$wgRestrictDisplayTitle ) {
-			$parser->mOutput->setDisplayTitleH1( $titleHTML );
+			$parser->mOutput->setDisplayTitle( $text );
 		} else {
-			#only titles that normalize to the same title are allowed in the <h1> tag
-			$title = Title::newFromText( $titleText );
-			
-			if ( $title instanceof Title && $title->getFragment() == '' && $title->equals( $parser->mTitle ) ) {
-				$parser->mOutput->setDisplayTitleH1( $titleHTML );
-			} else {
-				$parser->mOutput->setDisplayTitleH1( $parser->mTitle );
-			}
+			$title = Title::newFromText( $text );
+			if( $title instanceof Title && $title->getFragment() == '' && $title->equals( $parser->mTitle ) )
+				$parser->mOutput->setDisplayTitle( $text );
 		}
-		
 		return '';
 	}
 
