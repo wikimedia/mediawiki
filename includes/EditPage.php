@@ -1083,11 +1083,11 @@ class EditPage {
 			# Use the title defined by DISPLAYTITLE magic word when present
 			if ( isset($this->mParserOutput)
 			 && ( $dt = $this->mParserOutput->getDisplayTitle() ) !== false ) {
-				$wgOut->setPageTitle( wfMsg( 'editing', $this->mParserOutput->getDisplayTitleH1() ) );
-				$wgOut->setHTMLTitle( wfMsg( 'editing', $dt ) ); #override the HTML that setPageTitle slated for inclusion in the <title>
+				$title = $dt;
 			} else {
-				$wgOut->setPageTitle( wfMsg( 'editing', $wgTitle->getPrefixedText() ) );
+				$title = $wgTitle->getPrefixedText();
 			}
+			$wgOut->setPageTitle( wfMsg( 'editing', $title ) );
 		}
 	}
 
