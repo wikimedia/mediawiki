@@ -55,7 +55,6 @@ $wgAutoloadLocalClasses = array(
 	'EditPage' => 'includes/EditPage.php',
 	'EmaillingJob' => 'includes/EmaillingJob.php',
 	'EmailNotification' => 'includes/UserMailer.php',
-	'PageChangeNotification' => 'includes/UserMailer.php',
 	'EnhancedChangesList' => 'includes/ChangesList.php',
 	'EnotifNotifyJob' => 'includes/EnotifNotifyJob.php',
 	'ErrorPageError' => 'includes/Exception.php',
