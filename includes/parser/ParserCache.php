@@ -35,9 +35,9 @@ class ParserCache {
 		} else {
 			$edit = '';
 		}
-		$pageid = intval( $article->getID() );
+		$pageid = $article->getID();
 		$renderkey = (int)($action == 'render');
-		$key = wfMemcKey( 'pcache', 'idhash', "$pageid-$renderkey!$hash$edit" );
+		$key = wfMemcKey( 'pcache', 'idhash', "{$pageid}-{$renderkey}!{$hash}{$edit}" );
 		return $key;
 	}
 
