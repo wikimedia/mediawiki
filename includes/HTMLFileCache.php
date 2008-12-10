@@ -23,7 +23,7 @@ class HTMLFileCache {
 	var $mTitle, $mFileCache;
 
 	function HTMLFileCache( &$title ) {
-		$this->mTitle =& $title;
+		$this->mTitle = $title;
 		$this->mFileCache = $this->fileCacheName();
 	}
 
@@ -38,7 +38,7 @@ class HTMLFileCache {
 			$hash2 = substr( $hash, 0, 2 );
 			$this->mFileCache = "{$wgFileCacheDirectory}/{$hash1}/{$hash2}/{$key}.html";
 
-			if($this->useGzip())
+			if( $this->useGzip() )
 				$this->mFileCache .= '.gz';
 
 			wfDebug( " fileCacheName() - {$this->mFileCache}\n" );
@@ -60,8 +60,7 @@ class HTMLFileCache {
 		if( !$this->isFileCached() ) return false;
 
 		$cachetime = $this->fileCacheTime();
-		$good = (( $timestamp <= $cachetime ) &&
-			 ( $wgCacheEpoch <= $cachetime ));
+		$good = $timestamp <= $cachetime && $wgCacheEpoch <= $cachetime;
 
 		wfDebug(" isFileCacheGood() - cachetime $cachetime, touched {$timestamp} epoch {$wgCacheEpoch}, good $good\n");
 		return $good;
@@ -91,7 +90,7 @@ class HTMLFileCache {
 		global $wgOut, $wgMimeType, $wgOutputEncoding, $wgContLanguageCode;
 		wfDebug(" loadFromFileCache()\n");
 
-		$filename=$this->fileCacheName();
+		$filename = $this->fileCacheName();
 		$wgOut->sendCacheControl();
 
 		header( "Content-type: $wgMimeType; charset={$wgOutputEncoding}" );
@@ -111,8 +110,8 @@ class HTMLFileCache {
 
 	function checkCacheDirs() {
 		$filename = $this->fileCacheName();
-		$mydir2=substr($filename,0,strrpos($filename,'/')); # subdirectory level 2
-		$mydir1=substr($mydir2,0,strrpos($mydir2,'/')); # subdirectory level 1
+		$mydir2 = substr($filename,0,strrpos($filename,'/')); # subdirectory level 2
+		$mydir1 = substr($mydir2,0,strrpos($mydir2,'/')); # subdirectory level 1
 
 		wfMkdirParents( $mydir1 );
 		wfMkdirParents( $mydir2 );
