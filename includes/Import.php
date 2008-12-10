@@ -776,6 +776,9 @@ class WikiImporter {
 			if( is_null( $this->pageTitle ) ) {
 				// Invalid page title? Ignore the page
 				$this->notice( "Skipping invalid page title '$this->workTitle'" );
+			} elseif( $this->pageTitle->getInterwiki() != '' ) {
+				$this->notice( "Skipping interwiki page title '$this->workTitle'" );
+				$this->pageTitle = null;
 			} else {
 				$this->pageCallback( $this->workTitle );
 			}
