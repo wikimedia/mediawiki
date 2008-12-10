@@ -556,7 +556,6 @@ class AutoLoader {
 				if( function_exists( 'wfDebug' ) ) 	
 					wfDebug( "Class {$className} not found; skipped loading" );
 				# Give up
-				wfProfileOut( __METHOD__ );
 				return false;
 			}
 		}
