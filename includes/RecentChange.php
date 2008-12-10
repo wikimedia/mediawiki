@@ -215,9 +215,12 @@ class RecentChange
 			$conn = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
 			if( $conn ) {
 				$line = $prefix . $line;
+				wfDebug( __METHOD__ . ": sending UDP line: $line\n" );
 				socket_sendto( $conn, $line, strlen($line), 0, $address, $wgRC2UDPPort );
 				socket_close( $conn );
 				return true;
+			} else {
+				wfDebug( __METHOD__ . ": failed to create UDP socket\n" );
 			}
 		}
 		return false;
