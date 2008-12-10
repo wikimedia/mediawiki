@@ -21,13 +21,13 @@ class RawPage {
 	var $mContentType, $mExpandTemplates;
 
 	function __construct( &$article, $request = false ) {
-		global $wgRequest, $wgInputEncoding, $wgSquidMaxage, $wgJsMimeType, $wgForcedRawSMaxage, $wgGroupPermissions;
+		global $wgRequest, $wgInputEncoding, $wgSquidMaxage, $wgJsMimeType, $wgGroupPermissions;
 
 		$allowedCTypes = array('text/x-wiki', $wgJsMimeType, 'text/css', 'application/x-zope-edit');
 		$this->mArticle =& $article;
 		$this->mTitle =& $article->mTitle;
 
-		if ( $request === false ) {
+		if( $request === false ) {
 			$this->mRequest =& $wgRequest;
 		} else {
 			$this->mRequest = $request;
@@ -44,17 +44,17 @@ class RawPage {
 
 		$oldid = $this->mRequest->getInt( 'oldid' );
 
-		switch ( $wgRequest->getText( 'direction' ) ) {
+		switch( $wgRequest->getText( 'direction' ) ) {
 			case 'next':
 				# output next revision, or nothing if there isn't one
-				if ( $oldid ) {
+				if( $oldid ) {
 					$oldid = $this->mTitle->getNextRevisionId( $oldid );
 				}
 				$oldid = $oldid ? $oldid : -1;
 				break;
 			case 'prev':
 				# output previous revision, or nothing if there isn't one
-				if ( ! $oldid ) {
+				if( ! $oldid ) {
 					# get the current revision so we can get the penultimate one
 					$this->mArticle->getTouched();
 					$oldid = $this->mArticle->mLatest;
@@ -71,11 +71,11 @@ class RawPage {
 		# special case for 'generated' raw things: user css/js
 		$gen = $this->mRequest->getVal( 'gen' );
 
-		if($gen == 'css') {
+		if( $gen == 'css' ) {
 			$this->mGen = $gen;
 			if( is_null( $smaxage ) ) $smaxage = $wgSquidMaxage;
 			if($ctype == '') $ctype = 'text/css';
-		} elseif ($gen == 'js') {
+		} elseif( $gen == 'js' ) {
 			$this->mGen = $gen;
 			if( is_null( $smaxage ) ) $smaxage = $wgSquidMaxage;
 			if($ctype == '') $ctype = $wgJsMimeType;
@@ -85,7 +85,8 @@ class RawPage {
 		$this->mCharset = $wgInputEncoding;
 
 		# Force caching for CSS and JS raw content, default: 5 minutes
-		if (is_null($smaxage) and ($ctype=='text/css' or $ctype==$wgJsMimeType)) {
+		if( is_null($smaxage) and ($ctype=='text/css' or $ctype==$wgJsMimeType) ) {
+			global $wgForcedRawSMaxage;
 			$this->mSmaxage = intval($wgForcedRawSMaxage);
 		} else {
 			$this->mSmaxage = intval( $smaxage );
@@ -94,14 +95,13 @@ class RawPage {
 
 		# Output may contain user-specific data;
 		# vary generated content for open sessions and private wikis
-		if ($this->mGen or !$wgGroupPermissions['*']['read']) {
-			$this->mPrivateCache = ( $this->mSmaxage == 0 ) ||
-				( session_id() != '' );
+		if( $this->mGen or !$wgGroupPermissions['*']['read'] ) {
+			$this->mPrivateCache = $this->mSmaxage == 0 || session_id() != '';
 		} else {
 			$this->mPrivateCache = false;
 		}
 
-		if ( $ctype == '' or ! in_array( $ctype, $allowedCTypes ) ) {
+		if( $ctype == '' or ! in_array( $ctype, $allowedCTypes ) ) {
 			$this->mContentType = 'text/x-wiki';
 		} else {
 			$this->mContentType = $ctype;
@@ -161,14 +161,14 @@ class RawPage {
 
 	function getRawText() {
 		global $wgUser, $wgOut, $wgRequest;
-		if($this->mGen) {
+		if( $this->mGen ) {
 			$sk = $wgUser->getSkin();
 			if( !StubObject::isRealObject( $wgOut ) )
 				$wgOut->_unstub( 2 );
 			$sk->initPage( $wgOut );
-			if($this->mGen == 'css') {
+			if( $this->mGen == 'css' ) {
 				return $sk->generateUserStylesheet();
-			} else if($this->mGen == 'js') {
+			} else if( $this->mGen == 'js' ) {
 				return $sk->generateUserJs();
 			}
 		} else {
@@ -181,7 +181,7 @@ class RawPage {
 		$text = '';
 		if( $this->mTitle ) {
 			// If it's a MediaWiki message we can just hit the message cache
-			if ( $this->mUseMessageCache && $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
+			if( $this->mUseMessageCache && $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 				$key = $this->mTitle->getDBkey();
 				$text = wfMsgForContentNoTrans( $key );
 				# If the message doesn't exist, return a blank
@@ -191,11 +191,11 @@ class RawPage {
 			} else {
 				// Get it from the DB
 				$rev = Revision::newFromTitle( $this->mTitle, $this->mOldId );
-				if ( $rev ) {
+				if( $rev ) {
 					$lastmod = wfTimestamp( TS_RFC2822, $rev->getTimestamp() );
 					header( "Last-modified: $lastmod" );
 
-					if ( !is_null($this->mSection ) ) {
+					if( !is_null($this->mSection ) ) {
 						global $wgParser;
 						$text = $wgParser->getSection ( $rev->getText(), $this->mSection );
 					} else
@@ -232,10 +232,10 @@ class RawPage {
 	}
 
 	function parseArticleText( $text ) {
-		if ( $text === '' )
+		if( $text === '' )
 			return '';
 		else
-			if ( $this->mExpandTemplates ) {
+			if( $this->mExpandTemplates ) {
 				global $wgParser;
 				return $wgParser->preprocess( $text, $this->mTitle, new ParserOptions() );
 			} else
