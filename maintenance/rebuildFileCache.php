@@ -8,7 +8,10 @@
 
 /** */
 require_once( "commandLine.inc" );
-if( !$wgUseFileCache ) exit(0);
+if( !$wgUseFileCache ) {
+	echo "Nothing to do -- \$wgUseFileCache is disabled.\n";
+	exit(0);
+}
 
 $start = isset($args[0]) ? intval($args[0]) : 0;
 echo "Building content page file cache from page {$start}!\n";
@@ -39,7 +42,10 @@ while( $blockEnd <= $end ) {
 	);
 	while( $row = $dbr->fetchObject( $res ) ) {
 		$wgTitle = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
-		if( null == $wgTitle ) continue; // broken title?
+		if( null == $wgTitle ) {
+			echo "Page {$row->page_id} bad title\n";
+			continue; // broken title?
+		}
 		$wgArticle = new Article( $wgTitle );
 		// If the article is cacheable, then load it
 		if( $wgArticle->isFileCacheable() ) {
@@ -47,6 +53,8 @@ while( $blockEnd <= $end ) {
 			if( $cache->isFileCacheGood() ) {
 				echo "Page {$row->page_id} already cached\n";
 				continue; // done already!
+			} else {
+				echo "Page {$row->page_id} not cached\n";
 			}
 			ob_start( array(&$cache, 'saveToFileCache' ) ); // save on ob_end_clean()
 			$wgUseFileCache = false; // hack, we don't want $wgArticle fiddling with filecache
@@ -56,10 +64,12 @@ while( $blockEnd <= $end ) {
 			ob_end_clean(); // clear buffer
 			$wgOut = new OutputPage(); // empty out any output page garbage
 			echo "Cached page {$row->page_id}\n";
+		} else {
+			echo "Page {$row->page_id} not cacheable\n";
 		}
 	}
-	$blockStart += $BATCH_SIZE - 1;
-	$blockEnd += $BATCH_SIZE - 1;
+	$blockStart += $BATCH_SIZE;
+	$blockEnd += $BATCH_SIZE;
 	wfWaitForSlaves( 5 );
 }
 echo "Done!\n";
