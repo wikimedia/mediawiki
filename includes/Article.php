@@ -687,7 +687,7 @@ class Article {
 				$parserCache = ParserCache::singleton();
 				$wgOut->setETag( $parserCache->getETag($this,$wgUser) );
 			}
-			if( $wgOut->checkLastModified( $this->getTouched() ) ){
+			if( $wgOut->checkLastModified( $this->getTouched() ) ) {
 				wfProfileOut( __METHOD__ );
 				return;
 			} else if( $this->tryFileCache() ) {
@@ -2704,16 +2704,13 @@ class Article {
 	/**
 	 * Do standard deferred updates after page view
 	 */
-	protected function viewUpdates() {
-		global $wgDeferredUpdateList, $wgUser;
-		if( 0 != $this->getID() ) {
-			# Don't update page view counters on views from bot users (bug 14044)
-			global $wgDisableCounters;
-			if( !$wgDisableCounters && !$wgUser->isAllowed( 'bot' ) ) {
-				Article::incViewCount( $this->getID() );
-				$u = new SiteStatsUpdate( 1, 0, 0 );
-				array_push( $wgDeferredUpdateList, $u );
-			}
+	public function viewUpdates() {
+		global $wgDeferredUpdateList, $wgDisableCounters, $wgUser;
+		# Don't update page view counters on views from bot users (bug 14044)
+		if( !$wgDisableCounters && !$wgUser->isAllowed('bot') && $this->getID() ) {
+			Article::incViewCount( $this->getID() );
+			$u = new SiteStatsUpdate( 1, 0, 0 );
+			array_push( $wgDeferredUpdateList, $u );
 		}
 		# Update newtalk / watchlist notification status
 		$wgUser->clearNotification( $this->mTitle );
@@ -2977,30 +2974,13 @@ class Article {
 	 * @return bool
 	 */
 	public function isFileCacheable() {
-		global $wgUser, $wgUseFileCache, $wgShowIPinHeader, $wgRequest, $wgLang, $wgContLang;
-		// Get all query values
-		$queryVals = $wgRequest->getValues();
-		foreach( $queryVals as $query => $val ) {
-			// Normal page view in query form can have action=view
-			if( $query !== 'title' && $query !== 'curid' && !($query == 'action' && $val == 'view') ) {
-				return false;
+		$cacheable = false;
+		if( HTMLFileCache::useFileCache() ) {
+			$cacheable = $this->getID() && !$this->mRedirectedFrom;
+			// Extension may have reason to disable file caching on some pages.
+			if( $cacheable ) {
+				$cacheable = wfRunHooks( 'IsFileCacheable', array( &$this ) );
 			}
-		}
-		// Check for non-standard user language; this covers uselang,
-		// and extensions for auto-detecting user language.
-		$ulang = $wgLang->getCode();
-		$clang = $wgContLang->getCode();
-
-		$cacheable = $wgUseFileCache
-			&& !$wgShowIPinHeader
-			&& $this->getID() > 0
-			&& $wgUser->isAnon()
-			&& !$wgUser->getNewtalk()
-			&& !$this->mRedirectedFrom
-			&& $ulang === $clang;
-		// Extension may have reason to disable file caching on some pages.
-		if( $cacheable ) {
-			$cacheable = wfRunHooks( 'IsFileCacheable', array( &$this ) );
 		}
 		return $cacheable;
 	}
