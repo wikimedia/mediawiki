@@ -244,7 +244,7 @@ abstract class ApiQueryBase extends ApiBase {
 
 	/**
 	 * Add information (title and namespace) about a Title object to a result array
-	 * @param array $arr Result array à la ApiResult
+	 * @param array $arr Result array Ã  la ApiResult
 	 * @param Title $title Title object
 	 * @param string $prefix Module prefix
 	 */
@@ -272,7 +272,7 @@ abstract class ApiQueryBase extends ApiBase {
 	/**
 	 * Add a sub-element under the page element with the given page ID
 	 * @param int $pageId Page ID
-	 * @param array $data Data array à la ApiResult 
+	 * @param array $data Data array Ã  la ApiResult 
 	 */
 	protected function addPageSubItems($pageId, $data) {
 		$result = $this->getResult();
