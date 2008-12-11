@@ -645,8 +645,7 @@ class RecentChange
 			$flag = $rc_log_action;
 		} else {
 			$comment = self::cleanupForIRC( $rc_comment );
-			$flag = ($rc_new ? "N" : "") . ($rc_minor ? "M" : "") . ($rc_bot ? "B" : "") 
-					. ($this->getTitle()->isRedirect() ? "R" : "");
+			$flag = ($rc_new ? "N" : "") . ($rc_minor ? "M" : "") . ($rc_bot ? "B" : "");
 		}
 
 		if ( $wgRC2UDPInterwikiPrefix === true ) {
