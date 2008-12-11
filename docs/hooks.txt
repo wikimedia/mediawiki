@@ -1116,6 +1116,8 @@ $text : Current text being indexed
 $term : Search term string
 &$title : Outparam; set to $title object and return false for a match
 
+'SetupAfterCache': Called in Setup.php, after cache objects are set
+
 'ShowRawCssJs': Customise the output of raw CSS and JavaScript in page views
 $text: Text being shown
 $title: Title of the custom script/stylesheet page
