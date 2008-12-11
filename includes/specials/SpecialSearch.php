@@ -619,7 +619,7 @@ class SpecialSearch {
 		if( $t != null && count($this->namespaces) === 1 ) {
 			$out .= wfMsgExt( 'searchmenu-prefix', array('parseinline'), $term );
 		}
-		return $this->powerSearchFocus() .
+		return $term != '' ? $this->powerSearchFocus() : '' .
 			Xml::openElement( 'fieldset', array('id' => 'mw-searchoptions','style' => 'margin:0em;') ) .
 			Xml::element( 'legend', null, wfMsg('powersearch-legend') ) .
 			$this->formHeader($term) . $out . 
@@ -633,7 +633,7 @@ class SpecialSearch {
 				"document.getElementById('searchText').focus();" .
 			"});" .
 			"</script>";
-	}	
+	}
 
 	protected function powerSearchFocus() {
 		global $wgJsMimeType;
@@ -724,7 +724,7 @@ class SpecialSearch {
 		global $wgScript;
 		$searchTitle = SpecialPage::getTitleFor( 'Search' );
 		$searchable = SearchEngine::searchableNamespaces();
-		$out = $this->searchFocus();
+		$out = $term != '' ? $this->searchFocus() : '';
 		$out .= Xml::openElement( 'form', array( 'id' => 'search', 'method' => 'get', 'action' => $wgScript ) );
 		$out .= Xml::hidden( 'title', $searchTitle->getPrefixedText() ) . "\n";
 		// If searching several, but not all namespaces, show what we are searching.
