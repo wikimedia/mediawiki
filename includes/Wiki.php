@@ -222,6 +222,25 @@ class MediaWiki {
 			/* actions that need to be made when we have a special pages */
 			SpecialPage::executePath( $title );
 		} else {
+			/* Try low-level file cache hit */
+			if( $title->getNamespace() != NS_MEDIAWIKI && HTMLFileCache::useFileCache() ) {
+				$cache = new HTMLFileCache( $title );
+				if( $cache->isFileCacheGood( /* Assume up to date */ ) ) {
+					global $wgOut;
+					/* Check incoming headers to see if client has this cached */
+					if( !$wgOut->checkLastModified( $cache->fileCacheTime() ) ) {
+						wfDebug( "MediaWiki::initializeSpecialCases(): about to load file cache\n" );
+						$cache->loadFromFileCache();
+						# Tell $wgOut that output is taken care of
+						$wgOut->disable();
+						# Do any stats increment/watchlist stuff
+						$article = self::articleFromTitle( $title );
+						$article->viewUpdates();
+					}
+					wfProfileOut( __METHOD__ );
+					return true;
+				}
+			}
 			/* No match to special cases */
 			wfProfileOut( __METHOD__ );
 			return false;
@@ -325,7 +344,7 @@ class MediaWiki {
 	 * @param $deferredUpdates array of updates to do
 	 * @param $output OutputPage
 	 */
-	function finalCleanup ( &$deferredUpdates, &$output ) {
+	function finalCleanup( &$deferredUpdates, &$output ) {
 		wfProfileIn( __METHOD__ );
 		# Now commit any transactions, so that unreported errors after output() don't roll back the whole thing
 		$factory = wfGetLBFactory();

@@ -22,12 +22,12 @@
 class HTMLFileCache {
 	var $mTitle, $mFileCache;
 
-	function HTMLFileCache( &$title ) {
+	public function __construct( &$title ) {
 		$this->mTitle = $title;
 		$this->mFileCache = $this->fileCacheName();
 	}
 
-	function fileCacheName() {
+	public function fileCacheName() {
 		global $wgFileCacheDirectory;
 		if( !$this->mFileCache ) {
 			$key = $this->mTitle->getPrefixedDbkey();
@@ -46,37 +46,66 @@ class HTMLFileCache {
 		return $this->mFileCache;
 	}
 
-	function isFileCached() {
+	public function isFileCached() {
 		return file_exists( $this->fileCacheName() );
 	}
 
-	function fileCacheTime() {
+	public function fileCacheTime() {
 		return wfTimestamp( TS_MW, filemtime( $this->fileCacheName() ) );
 	}
+	
+	/**
+	 * Check if pages can be cached for this request/user
+	 * @return bool
+	 */
+	public static function useFileCache() {
+		global $wgUser, $wgUseFileCache, $wgShowIPinHeader, $wgRequest, $wgLang, $wgContLang;
+		if( !$wgUseFileCache )
+			return false;
+		// Get all query values
+		$queryVals = $wgRequest->getValues();
+		foreach( $queryVals as $query => $val ) {
+			// Normal page view in query form can have action=view
+			if( $query !== 'title' && $query !== 'curid' && !($query == 'action' && $val == 'view') ) {
+				return false;
+			}
+		}
+		// Check for non-standard user language; this covers uselang,
+		// and extensions for auto-detecting user language.
+		$ulang = $wgLang->getCode();
+		$clang = $wgContLang->getCode();
 
-	function isFileCacheGood( $timestamp ) {
+		return !$wgShowIPinHeader && !$wgUser->getId() && !$wgUser->getNewtalk() && $ulang == $clang;
+	}
+
+	/* 
+	* Check if up to date cache file exists
+	* @param $timestamp string
+	*/
+	public function isFileCacheGood( $timestamp = '' ) {
 		global $wgCacheEpoch;
 
 		if( !$this->isFileCached() ) return false;
+		if( !$timestamp ) return true; // should be invalidated on change
 
 		$cachetime = $this->fileCacheTime();
 		$good = $timestamp <= $cachetime && $wgCacheEpoch <= $cachetime;
 
-		wfDebug(" isFileCacheGood() - cachetime $cachetime, touched {$timestamp} epoch {$wgCacheEpoch}, good $good\n");
+		wfDebug(" isFileCacheGood() - cachetime $cachetime, touched '{$timestamp}' epoch {$wgCacheEpoch}, good $good\n");
 		return $good;
 	}
 
-	function useGzip() {
+	public function useGzip() {
 		global $wgUseGzip;
 		return $wgUseGzip;
 	}
 
 	/* In handy string packages */
-	function fetchRawText() {
+	public function fetchRawText() {
 		return file_get_contents( $this->fileCacheName() );
 	}
 
-	function fetchPageText() {
+	public function fetchPageText() {
 		if( $this->useGzip() ) {
 			/* Why is there no gzfile_get_contents() or gzdecode()? */
 			return implode( '', gzfile( $this->fileCacheName() ) );
@@ -86,7 +115,7 @@ class HTMLFileCache {
 	}
 
 	/* Working directory to/from output */
-	function loadFromFileCache() {
+	public function loadFromFileCache() {
 		global $wgOut, $wgMimeType, $wgOutputEncoding, $wgContLanguageCode;
 		wfDebug(" loadFromFileCache()\n");
 
@@ -108,7 +137,7 @@ class HTMLFileCache {
 		readfile( $filename );
 	}
 
-	function checkCacheDirs() {
+	protected function checkCacheDirs() {
 		$filename = $this->fileCacheName();
 		$mydir2 = substr($filename,0,strrpos($filename,'/')); # subdirectory level 2
 		$mydir1 = substr($mydir2,0,strrpos($mydir2,'/')); # subdirectory level 1
@@ -117,7 +146,7 @@ class HTMLFileCache {
 		wfMkdirParents( $mydir2 );
 	}
 
-	function saveToFileCache( $origtext ) {
+	public function saveToFileCache( $origtext ) {
 		global $wgUseFileCache;
 		if( !$wgUseFileCache ) {
 			return $origtext; // return to output
