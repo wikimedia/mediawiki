@@ -12,8 +12,10 @@ if( !$wgUseFileCache ) {
 	echo "Nothing to do -- \$wgUseFileCache is disabled.\n";
 	exit(0);
 }
+$wgDisableCounters = false; // no real hits here
 
 $start = isset($args[0]) ? intval($args[0]) : 0;
+$overwrite = isset( $args[1] ) && $args[1] === 'overwrite';
 echo "Building content page file cache from page {$start}!\n";
 
 $dbr = wfGetDB( DB_SLAVE );
@@ -41,6 +43,7 @@ while( $blockEnd <= $end ) {
 		array('ORDER BY' => 'page_id ASC','USE INDEX' => 'PRIMARY')
 	);
 	while( $row = $dbr->fetchObject( $res ) ) {
+		$rebuilt = false;
 		$wgTitle = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
 		if( null == $wgTitle ) {
 			echo "Page {$row->page_id} bad title\n";
@@ -51,8 +54,12 @@ while( $blockEnd <= $end ) {
 		if( $wgArticle->isFileCacheable() ) {
 			$cache = new HTMLFileCache( $wgTitle );
 			if( $cache->isFileCacheGood() ) {
-				echo "Page {$row->page_id} already cached\n";
-				continue; // done already!
+				if( $overwrite ) {
+					$rebuilt = true;
+				} else {
+					echo "Page {$row->page_id} already cached\n";
+					continue; // done already!
+				}
 			} else {
 				echo "Page {$row->page_id} not cached\n";
 			}
@@ -63,7 +70,10 @@ while( $blockEnd <= $end ) {
 			$wgUseFileCache = true;
 			ob_end_clean(); // clear buffer
 			$wgOut = new OutputPage(); // empty out any output page garbage
-			echo "Cached page {$row->page_id}\n";
+			if( $rebuilt )
+				echo "Re-cached page {$row->page_id}\n";
+			else
+				echo "Cached page {$row->page_id}\n";
 		} else {
 			echo "Page {$row->page_id} not cacheable\n";
 		}
