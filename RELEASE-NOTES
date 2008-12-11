@@ -218,6 +218,8 @@ The following extensions are migrated into MediaWiki 1.14:
 * Added complimentary function for addHandler() called removeHandler() for removing events
 * Improved security of file uploads for IE clients, using a reverse-engineered 
   algorithm very similar to IE's content detection algorithm.
+* Cascading protection no longer requires that both edit and move are restricted
+  to sysop, just edit=sysop is enough
 
 === Bug fixes in 1.14 ===
 

@@ -1884,13 +1884,10 @@ class Article {
 
 				# Only restrictions with the 'protect' right can cascade...
 				# Otherwise, people who cannot normally protect can "protect" pages via transclusion
-				foreach( $limit as $action => $restriction ) {
-					# FIXME: can $restriction be an array or what? (same as fixme above)
-					if( $restriction != 'protect' && $restriction != 'sysop' ) {
-						$cascade = false;
-						break;
-					}
-				}
+				$editrestriction = isset( $limit['edit'] ) ? array( $limit['edit'] ) : $this->mTitle->getRestrictions( 'edit' );
+				# The schema allows multiple restrictions
+				if(!in_array('protect', $editrestriction) && !in_array('sysop', $editrestriction))
+					$cascade = false;
 				$cascade_description = ''; 	 
 				if( $cascade ) {
 					$cascade_description = ' ['.wfMsgForContent('protect-summary-cascade').']'; 	 
