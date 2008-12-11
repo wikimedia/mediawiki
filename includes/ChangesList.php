@@ -582,7 +582,7 @@ class EnhancedChangesList extends ChangesList {
 		$curId = $currentRevision = 0;
 		# Some catalyst variables...
 		$namehidden = true;
-		$alllogs = true;
+		$allLogs = true;
 		foreach( $block as $rcObj ) {
 			$oldid = $rcObj->mAttribs['rc_last_oldid'];
 			if( $rcObj->mAttribs['rc_new'] ) {
@@ -601,7 +601,7 @@ class EnhancedChangesList extends ChangesList {
 				$unpatrolled = true;
 			}
 			if( $rcObj->mAttribs['rc_type'] != RC_LOG ) {
-				$alllogs = false;
+				$allLogs = false;
 			}
 			# Get the latest entry with a page_id and oldid
 			# since logs may not have these.
@@ -652,6 +652,8 @@ class EnhancedChangesList extends ChangesList {
 		# Article link
 		if( $namehidden ) {
 			$r .= ' <span class="history-deleted">' . wfMsgHtml('rev-deleted-event') . '</span>';
+		} else if( $allLogs ) {
+			$r .= $this->maybeWatchedLink( $block[0]->link, $block[0]->watched );
 		} else {
 			$this->insertArticleLink( $r, $block[0], $block[0]->unpatrolled, $block[0]->watched );
 		}
@@ -667,7 +669,7 @@ class EnhancedChangesList extends ChangesList {
 		}
 		# Total change link
 		$r .= ' ';
-		if( !$alllogs ) {
+		if( !$allLogs ) {
 			$r .= '(';
 			if( !ChangesList::userCan($rcObj,Revision::DELETED_TEXT) ) {
 				$r .= $nchanges[$n];
@@ -680,7 +682,7 @@ class EnhancedChangesList extends ChangesList {
 		}
 
 		# History
-		if( $alllogs ) {
+		if( $allLogs ) {
 			// don't show history link for logs
 		} else if( $namehidden || !$block[0]->getTitle()->exists() ) {
 			$r .= $this->message['semicolon-separator'] . $this->message['hist'] . ')';
@@ -691,7 +693,7 @@ class EnhancedChangesList extends ChangesList {
 		$r .= ' . . ';
 
 		# Character difference (does not apply if only log items)
-		if( $wgRCShowChangedSize && !$alllogs ) {
+		if( $wgRCShowChangedSize && !$allLogs ) {
 			$last = 0;
 			$first = count($block) - 1;
 			# Some events (like logs) have an "empty" size, so we need to skip those...
