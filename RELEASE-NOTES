@@ -218,6 +218,8 @@ The following extensions are migrated into MediaWiki 1.14:
 * Added complimentary function for addHandler() called removeHandler() for removing events
 * Improved security of file uploads for IE clients, using a reverse-engineered 
   algorithm very similar to IE's content detection algorithm.
+* (bug 14843) IRC output for RecentChanges now contains an "R" flag if the page
+  is a redirect.
 
 === Bug fixes in 1.14 ===
 
