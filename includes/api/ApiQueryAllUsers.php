@@ -121,7 +121,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$row = $db->fetchObject($res);
 			$count++;
 
-			if (!$row || $lastUser != $row->user_name) {
+			if (!$row || $lastUser !== $row->user_name) {
 				// Save the last pass's user data
 				if (is_array($lastUserData))
 					$data[] = $lastUserData;
