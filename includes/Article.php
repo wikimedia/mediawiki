@@ -369,7 +369,6 @@ class Article {
 			$lc->addGoodLinkObj( $data->page_id, $this->mTitle, $data->page_len, $data->page_is_redirect );
 
 			$this->mTitle->mArticleID = $data->page_id;
-			$this->mTitle->mTouched = wfTimestamp( TS_MW, $data->page_touched );
 
 			# Old-fashioned restrictions
 			$this->mTitle->loadRestrictions( $data->page_restrictions );
