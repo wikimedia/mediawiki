@@ -64,8 +64,7 @@ function wfSpecialStatistics( $par = '' ) {
 					' class="mw-statistics-articles"' ) .
 			formatRow( wfMsgExt( 'statistics-pages', array( 'parseinline' ) ),
 					$wgLang->formatNum( $total ),
-					' class="mw-statistics-pages"',
-					'statistics-pages-tooltip' ) .
+					' class="mw-statistics-pages"' ) .
 			formatRow( wfMsgExt( 'statistics-files', array( 'parseinline' ) ),
 					$wgLang->formatNum( $images ),
 					' class="mw-statistics-files"' ) .
@@ -89,8 +88,7 @@ function wfSpecialStatistics( $par = '' ) {
 					' class="mw-statistics-users"' ) .
 			formatRow( wfMsgExt( 'statistics-users-active', array( 'parseinline' ) ),
 					$wgLang->formatNum( $activeUsers ),
-					' class="mw-statistics-users-active"',
-					'statistics-users-active-tooltip' );
+					' class="mw-statistics-users-active"' );
 
 		# Statistic - usergroups
 		foreach( $wgGroupPermissions as $group => $permissions ) {
@@ -182,13 +180,7 @@ function wfSpecialStatistics( $par = '' ) {
  * @param float $number a number
  * @return string table row in HTML format
  */
-function formatRow( $text, $number, $trExtraParams = '', $tooltip = '' ) {
-	global $wgStylePath;
-
-	if( $tooltip ) {
-		$tooltipText = wfMsg( $tooltip );
-		$text = '<div class="mw-tooltip-icon" title="' . $tooltipText . '">' . $text . '<sup><a class="mw-tooptip-icon" title="' . $tooltipText . '"><img alt="' . $tooltipText . '" src="' . $wgStylePath . '/common/images/tooltip_icon.png" width="10" height="12" border="0" /></a></sup></div>';
-	}
+function formatRow( $text, $number, $trExtraParams = '' ) {
 
 	return "<tr{$trExtraParams}>
 			<td>" .
