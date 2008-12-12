@@ -46,9 +46,6 @@ $namespaceNames = array(
 $namespaceAliases = array(
 	'Imej' => NS_FILE,
 	'Perbincangan_Imej' => NS_FILE_TALK,
-);
-
-$namespaceAliases = array(
 	'Istimewa'            => NS_SPECIAL,
 	'Perbualan'           => NS_TALK,
 	'Perbualan_Pengguna'  => NS_USER_TALK,
