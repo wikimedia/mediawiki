@@ -30,12 +30,54 @@ class SpecialBookSources extends SpecialPage {
 	public function execute( $isbn ) {
 		global $wgOut, $wgRequest;
 		$this->setHeaders();
-		$this->isbn = $this->cleanIsbn( $isbn ? $isbn : $wgRequest->getText( 'isbn' ) );
+		$this->isbn = self::cleanIsbn( $isbn ? $isbn : $wgRequest->getText( 'isbn' ) );
 		$wgOut->addWikiMsg( 'booksources-summary' );
 		$wgOut->addHTML( $this->makeForm() );
-		if( strlen( $this->isbn ) > 0 )
+		if( strlen( $this->isbn ) > 0 ) {
+			if( !$this->isValidIsbn( $this->isbn ) ) {
+				$wgOut->wrapWikiMsg( '<div class="error">$1</div>', 'booksources-invalid-isbn' );
+			}
 			$this->showList();
+		}
 	}
+
+	/**
+	 * Returns whether a given ISBN (10 or 13) is valid.  True indicates validity.
+	 * @param isbn ISBN passed for check
+	 */
+	public static function isValidISBN( $isbn ) {
+		$isbn = self::cleanIsbn( $isbn );
+		$sum = 0;
+		$check = -1;
+		if( strlen( $isbn ) == 13 ) {
+			for( $i = 0; $i < 12; $i++ ) {
+				if($i % 2 == 0) {
+					$sum += $isbn{$i};
+				} else {
+					$sum += 3 * $isbn{$i};
+				}
+			}
+		
+			$check = (10 - ($sum % 10)) % 10;
+			if ($check == $isbn{12}) {
+				return true;
+			}
+		} elseif( strlen( $isbn ) == 10 ) {
+			for($i = 0; $i < 9; $i++) {
+				$sum += $isbn{$i} * ($i + 1);
+			}
+		
+			$check = $sum % 11;
+			if($check == 10) {
+				$check = "X";
+			}
+			if($check == $isbn{9}) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 
 	/**
 	 * Trim ISBN and remove characters which aren't required
@@ -43,7 +85,7 @@ class SpecialBookSources extends SpecialPage {
 	 * @param $isbn Unclean ISBN
 	 * @return string
 	 */
-	private function cleanIsbn( $isbn ) {
+	private static function cleanIsbn( $isbn ) {
 		return trim( preg_replace( '![^0-9X]!', '', $isbn ) );
 	}
 

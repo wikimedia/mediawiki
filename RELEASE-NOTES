@@ -220,6 +220,7 @@ The following extensions are migrated into MediaWiki 1.14:
   algorithm very similar to IE's content detection algorithm.
 * Cascading protection no longer requires that both edit and move are restricted
   to sysop, just edit=sysop is enough
+* (bug 2391) A warning is now shown for invalid ISBN numbers on Special:Booksources.
 
 === Bug fixes in 1.14 ===
 
