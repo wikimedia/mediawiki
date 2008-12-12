@@ -84,7 +84,7 @@ class SpecialResetpass extends SpecialPage {
 		if ( !$wgUser->isLoggedIn() ) {
 			$rememberMe = '<tr>' .
 				'<td></td>' .
-				'<td>' .
+				'<td class="mw-input">' .
 					Xml::checkLabel( wfMsg( 'remembermypassword' ),
 						'wpRemember', 'wpRemember',
 						$wgRequest->getCheck( 'wpRemember' ) ) .
@@ -97,8 +97,7 @@ class SpecialResetpass extends SpecialPage {
 			$submitMsg = 'resetpass-submit-loggedin';
 		}
 		$wgOut->addHTML(
-			Xml::openElement( 'fieldset' ) .
-			Xml::element( 'legend', null, wfMsg( 'resetpass_header' ) ) .
+			Xml::fieldset( wfMsg( 'resetpass_header' ) ) .
 			Xml::openElement( 'form',
 				array(
 					'method' => 'post',
@@ -108,21 +107,21 @@ class SpecialResetpass extends SpecialPage {
 			Xml::hidden( 'wpName', $this->mUserName ) .
 			Xml::hidden( 'returnto', $wgRequest->getVal( 'returnto' ) ) .
 			wfMsgExt( 'resetpass_text', array( 'parse' ) ) .
-			'<table>' .
+			Xml::openElement( 'table', array( 'id' => 'mw-resetpass-table' ) ) .
 			$this->pretty( array(
 				array( 'wpName', 'username', 'text', $this->mUserName ),
 				array( 'wpPassword', $oldpassMsg, 'password', $this->mOldpass ),
 				array( 'wpNewPassword', 'newpassword', 'password', '' ),
-				array( 'wpRetype', 'yourpasswordagain', 'password', '' ),
+				array( 'wpRetype', 'retypenew', 'password', '' ),
 			) ) .
 			$rememberMe .
 			'<tr>' .
 				'<td></td>' .
-				'<td>' .
+				'<td class="mw-input">' .
 					Xml::submitButton( wfMsg( $submitMsg ) ) .
 				'</td>' .
 			'</tr>' .
-			'</table>' .
+			Xml::closeElement( 'table' ) .
 			Xml::closeElement( 'form' ) .
 			Xml::closeElement( 'fieldset' )
 		);
