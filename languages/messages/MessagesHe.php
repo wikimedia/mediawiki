@@ -791,7 +791,7 @@ $2',
 'loginlanguagelabel'         => 'שפה: $1',
 
 # Password reset dialog
-'resetpass'                 => 'שינוי סיסמת החשבון',
+'resetpass'                 => 'שינוי סיסמה',
 'resetpass_announce'        => 'נכנסתם באמצעות סיסמה זמנית שנשלחה אליכם בדוא"ל.
 כדי לסיים את הכניסה, עליכם לקבוע כאן סיסמה חדשה:',
 'resetpass_text'            => '<!-- הוסיפו טקסט כאן -->',
