@@ -420,6 +420,11 @@ Divant d' poleur evoyî èn ôte emile a ci conte la, vos dvroz shure les instru
 'accountcreatedtext'         => "Li conte d' uzeu «$1» a stî ahivé.",
 'loginlanguagelabel'         => 'Lingaedje: $1',
 
+# Password reset dialog
+'oldpassword' => 'Vî scret',
+'newpassword' => 'Noû scret',
+'retypenew'   => "Ritapez l' noû scret",
+
 # Edit page toolbar
 'bold_sample'     => 'Cråssès letes',
 'bold_tip'        => 'Tecse e cråssès letes',
@@ -651,9 +656,6 @@ Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' 
 'prefs-misc'               => 'Totes sôres',
 'saveprefs'                => 'Schaper les preferinces',
 'resetprefs'               => 'Rimete les prémetowès valixhances',
-'oldpassword'              => 'Vî scret',
-'newpassword'              => 'Noû scret',
-'retypenew'                => "Ritapez l' noû scret",
 'textboxsize'              => 'Grandeu del boesse di tecse',
 'rows'                     => 'Royes',
 'columns'                  => 'Colones',

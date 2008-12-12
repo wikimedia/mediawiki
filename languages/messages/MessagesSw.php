@@ -381,6 +381,11 @@ kuthibitisha kwamba wewe ndiyo ni mwenye akaunti.',
 'throttled-mailpassword'    => 'Kikumbusho cha nywila tayari kimeshatumwa, ndani ya {{PLURAL:$1|hour|$1masaa}} kadhaa yaliyopita.
 Ili kuzuiya uhuni, kiumbusho cha nywila kimoja pekee utakachotumiwa kwa {{PLURAL:$1|hour|$1 masaa}} kadhaa.',
 
+# Password reset dialog
+'oldpassword' => 'Neno la siri la zamani',
+'newpassword' => 'Neno mpya la siri',
+'retypenew'   => 'Andika nywila tena:',
+
 # Edit page toolbar
 'bold_sample'     => 'Matini ya koze',
 'bold_tip'        => 'Matini ya koze',
@@ -494,9 +499,6 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'mypreferences'  => 'Mapendekezo yangu',
 'changepassword' => 'Badilisha neno la siri',
 'skin'           => 'Sura',
-'oldpassword'    => 'Neno la siri la zamani',
-'newpassword'    => 'Neno mpya la siri',
-'retypenew'      => 'Andika nywila tena:',
 
 'grouppage-sysop' => '{{ns:project}}:Wakabidhi',
 

@@ -164,6 +164,11 @@ $messages = array(
 'loginsuccesstitle'       => 'မှတ်​ပုံ​တင်​ဖြင့်​ဝင်​ခြင်းအောင်မြင်သည်။',
 'loginlanguagelabel'      => 'ဘာသာ: $1',
 
+# Password reset dialog
+'oldpassword' => 'ဝှက်​စ​ကား​လုံးအဟောင်း:',
+'newpassword' => 'ဝှက်​စ​ကား​လုံးအသစ်:',
+'retypenew'   => 'ဝှက်​စ​ကား​လုံးပအသစ်ကိုထပ်ရိုက်ပါ:',
+
 # Edit page toolbar
 'italic_sample' => 'စာသားဆောင်း',
 'italic_tip'    => 'စာသားဆောင်း',
@@ -205,9 +210,6 @@ $messages = array(
 'skin-preview'      => 'နမူနာ',
 'math'              => 'သင်္ချာ',
 'datetime'          => 'နေ့စွဲနှင့် အချိန်',
-'oldpassword'       => 'ဝှက်​စ​ကား​လုံးအဟောင်း:',
-'newpassword'       => 'ဝှက်​စ​ကား​လုံးအသစ်:',
-'retypenew'         => 'ဝှက်​စ​ကား​လုံးပအသစ်ကိုထပ်ရိုက်ပါ:',
 'searchresultshead' => 'ရှာ​ဖွေ​ရန်​',
 
 # Groups

@@ -204,6 +204,11 @@ olwa 'yogera nange' nga ggwe tewetaaze kulaga bikufaako.",
 'accountcreated'             => 'Akawunti ekoleddwa',
 'accountcreatedtext'         => "Akawunti ey'obwa memba eya $1 ekoleddwa.",
 
+# Password reset dialog
+'oldpassword' => 'Ekigambo ekikuumi ekikadde:',
+'newpassword' => 'Ekigambo ekikuumi ekipya:',
+'retypenew'   => 'Ddamu ekikagambo ekikuumi ekipya ekyo:',
+
 # Edit page toolbar
 'bold_sample'     => "Ennukuta z'owandiika wano zonna ziba nziggumivu",
 'bold_tip'        => "Bw'onyiga kano, ofuna w'oyinza okuwandiikira ennukuta ezo ne zivaamu nga nziggumivu",
@@ -310,9 +315,6 @@ oba ku gano agali ku lupapula luno.<br />
 'prefs-personal'    => 'Ebikufaako',
 'saveprefs'         => 'Bino bikaze',
 'resetprefs'        => 'Gyawo enkyukakyuka ze sinnakaza',
-'oldpassword'       => 'Ekigambo ekikuumi ekikadde:',
-'newpassword'       => 'Ekigambo ekikuumi ekipya:',
-'retypenew'         => 'Ddamu ekikagambo ekikuumi ekipya ekyo:',
 'searchresultshead' => 'Noonya',
 'savedprefs'        => 'Enteekateeka yo ekazidwa.',
 'allowemail'        => 'Kkiriza bamemba abalala okukusindikira e-mail',

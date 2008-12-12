@@ -330,6 +330,11 @@ mba hanaporofoana fa anao io kaonty io.",
 'invalidemailaddress'        => 'Tsy mety io imailaka nalefanao io satria tsy manaraka ny firafitra tokony ho izy.
 Azafady manomeza adiresy voasoratra tsara na avelao ho banga io toerana io.',
 
+# Password reset dialog
+'oldpassword' => 'Tenimiafina taloha:',
+'newpassword' => 'Tenimiafina vaovao:',
+'retypenew'   => 'Avereno ampidirina ny tenimiafina vaovao:',
+
 # Edit page toolbar
 'bold_sample'     => 'Soratra matavy',
 'bold_tip'        => 'Soratra matavy',
@@ -481,9 +486,6 @@ ihany no miseho amin'ny vokatry ny karoka).",
 'prefs-misc'            => 'Hafa',
 'saveprefs'             => 'Tehirizo',
 'resetprefs'            => 'Avereno',
-'oldpassword'           => 'Tenimiafina taloha:',
-'newpassword'           => 'Tenimiafina vaovao:',
-'retypenew'             => 'Avereno ampidirina ny tenimiafina vaovao:',
 'textboxsize'           => 'Fanovana',
 'searchresultshead'     => 'Fikarohana',
 'recentchangescount'    => "Lohateny amin'ny vao niova:",

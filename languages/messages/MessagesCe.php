@@ -152,6 +152,9 @@ $messages = array(
 'accountcreatedtext' => '$1 юзер аккаунт кхоллна.',
 'loginlanguagelabel' => 'Мотт: $1',
 
+# Password reset dialog
+'newpassword' => 'Керла тешаман дош:',
+
 # Edit pages
 'summary'         => 'Хийцами комментарий',
 'minoredit'       => 'Жим Хийцам',
@@ -183,7 +186,6 @@ $messages = array(
 'mypreferences'   => 'сан настройки',
 'changepassword'  => 'Тешаман дош хийцар хьам',
 'prefs-watchlist' => 'тергалдеш таптарш',
-'newpassword'     => 'Керла тешаман дош:',
 'textboxsize'     => 'Xийца',
 
 # User rights

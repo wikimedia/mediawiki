@@ -562,11 +562,11 @@ Pa pòte atansyon pou mesaj sa si kont sa kreye pa erè.',
 'resetpass'               => 'Efase mopas ou an pou konfigire yon lòt',
 'resetpass_announce'      => 'Ou anrejistre ou ak yon mopas ki valab yon moman; mopas sa te voye pa imèl. Pou ou kapab fini anrejistreman sa, ou dwèt mete yon nouvo mopas kote sit :',
 'resetpass_header'        => 'Mopas ou an reyinisyalize',
+'retypenew'               => 'Konfime nouvo mopas an :',
 'resetpass_submit'        => 'Chanje mopas epitou anrejistre',
 'resetpass_success'       => 'Nou chanje mopas ou an ak siksè ! Nap anrejistre ou kounye a...',
 'resetpass_bad_temporary' => 'Mopas tanporè sa pa bon ditou. Li sanble ou deja chanje mopas ou an oubyen ou mande yon lòt mopas tanporè.',
 'resetpass_forbidden'     => 'Nou pa kapab chanje mopas yo nan wiki sa',
-'resetpass_missing'       => 'Ou pa bay pyès done',
 
 # Edit page toolbar
 'bold_sample'     => 'Tèks fonse',
@@ -782,7 +782,6 @@ Mande ou byen si ou ap byen fè kreye li ankò toutbon (gade jounal paj sa a pou
 'preferences'   => 'Preferans yo',
 'mypreferences' => 'Preferans yo',
 'skin-preview'  => 'Voye kout zye',
-'retypenew'     => 'Konfime nouvo mopas an :',
 
 'grouppage-sysop' => '{{ns:project}}:Administratè',
 

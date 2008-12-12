@@ -586,6 +586,11 @@ Više nije dozvoljeno.',
 'accountcreatedtext'         => 'Korisnički nalog za $1 je napravljen.',
 'loginlanguagelabel'         => 'Jezik: $1',
 
+# Password reset dialog
+'oldpassword' => 'Stara lozinka:',
+'newpassword' => 'Nova lozinka:',
+'retypenew'   => 'Ponovo otkucajte novu lozinku:',
+
 # Edit page toolbar
 'bold_sample'     => 'podebljan tekst',
 'bold_tip'        => 'podebljan tekst',
@@ -834,9 +839,6 @@ koje sadrže sve izraze koji se traže će se pojaviti u rezultatu).",
 'prefs-misc'               => 'Razno',
 'saveprefs'                => 'Sačuvaj',
 'resetprefs'               => 'Vrati',
-'oldpassword'              => 'Stara lozinka:',
-'newpassword'              => 'Nova lozinka:',
-'retypenew'                => 'Ponovo otkucajte novu lozinku:',
 'textboxsize'              => 'Veličine tekstualnog polja',
 'rows'                     => 'Redova',
 'columns'                  => 'Kolona',

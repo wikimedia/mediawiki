@@ -449,6 +449,11 @@ Prime di ricevi cualsisei altri messaç di pueste, tu scugnis seguî lis istruzi
 'createaccount-title'       => 'Creazion di une identitât par {{SITENAME}}',
 'loginlanguagelabel'        => 'Lenghe: $1',
 
+# Password reset dialog
+'oldpassword' => 'Vecje peraule clâf',
+'newpassword' => 'Gnove peraule clâf',
+'retypenew'   => 'Torne a scrivi chê gnove',
+
 # Edit page toolbar
 'bold_sample'     => 'Test in gruessut',
 'bold_tip'        => 'Test in gruessut',
@@ -636,9 +641,6 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'prefs-misc'               => 'Variis',
 'saveprefs'                => 'Salve lis preferencis',
 'resetprefs'               => 'Predeterminât',
-'oldpassword'              => 'Vecje peraule clâf',
-'newpassword'              => 'Gnove peraule clâf',
-'retypenew'                => 'Torne a scrivi chê gnove',
 'textboxsize'              => 'Cambiament',
 'rows'                     => 'Riis',
 'columns'                  => 'Colonis:',

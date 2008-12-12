@@ -297,6 +297,9 @@ Cha nod oo ny smoo y chroo.',
 'loginlanguagelabel'         => 'Çhengey: $1',
 
 # Password reset dialog
+'oldpassword'         => 'Shenn-ockle yn arrey:',
+'newpassword'         => 'Fockle noa yn arrey:',
+'retypenew'           => "Aascreeu d'ockle arrey noa:",
 'resetpass_forbidden' => 'Cha nod focklyn arrey y arraghey er {{SITENAME}}',
 
 # Edit page toolbar
@@ -468,9 +471,6 @@ Foddee oo [[:\$1|croo yn duillag shoh]].",
 'prefs-watchlist'      => 'Rolley arrey',
 'prefs-watchlist-days' => 'Laaghyn y haishbyney ayns rolley arrey:',
 'saveprefs'            => 'Sauail',
-'oldpassword'          => 'Shenn-ockle yn arrey:',
-'newpassword'          => 'Fockle noa yn arrey:',
-'retypenew'            => "Aascreeu d'ockle arrey noa:",
 'textboxsize'          => 'Reaghey',
 'columns'              => 'Collooyn:',
 'searchresultshead'    => 'Ronsaghey',

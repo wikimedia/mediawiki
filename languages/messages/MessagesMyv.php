@@ -542,10 +542,12 @@ $messages = array(
 # Password reset dialog
 'resetpass'           => 'Полавтомс совамотаркань совамо валот',
 'resetpass_header'    => 'Аравтомс од совамо валот',
+'oldpassword'         => 'Ташто совамо валот:',
+'newpassword'         => 'Од совамо валот:',
+'retypenew'           => 'Сёрмадык омбоцеде совамо валот:',
 'resetpass_submit'    => 'Тештик совамо валот ды совак',
 'resetpass_success'   => 'Совамо валот полавтовсь теть! Совавтыть эйсэть системас...',
 'resetpass_forbidden' => 'Совамо валтнэ а полавтовить',
-'resetpass_missing'   => 'Формань дата арась.',
 
 # Edit page toolbar
 'bold_sample'     => 'Эчке текст',
@@ -819,9 +821,6 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'prefs-misc'               => 'Минеть-сюнот',
 'saveprefs'                => 'Ванстомс',
 'resetprefs'               => 'Нардамс апак вансто полавтнемат',
-'oldpassword'              => 'Ташто совамо валот:',
-'newpassword'              => 'Од совамо валот:',
-'retypenew'                => 'Сёрмадык омбоцеде совамо валот:',
 'textboxsize'              => 'Витнема-петнема',
 'columns'                  => 'Палманть:',
 'searchresultshead'        => 'Вешнэма',

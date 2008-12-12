@@ -140,6 +140,10 @@ $messages = array(
 'accountcreated'     => 'Катталды',
 'loginlanguagelabel' => 'Тил: $1',
 
+# Password reset dialog
+'oldpassword' => 'Эски сырсөз:',
+'newpassword' => 'Жаңы сырсөз:',
+
 # Edit pages
 'summary'            => 'Кыска түшүндүрүү',
 'savearticle'        => 'Баракты сактап кой',
@@ -171,8 +175,6 @@ $messages = array(
 'prefs-rc'           => 'Соңку өзгөрүүлөр',
 'prefs-watchlist'    => 'Байкоо тизме',
 'saveprefs'          => 'Сактап кой',
-'oldpassword'        => 'Эски сырсөз:',
-'newpassword'        => 'Жаңы сырсөз:',
 'textboxsize'        => 'Оңдоо',
 'searchresultshead'  => 'Издөө',
 'localtime'          => 'Жергиликтүү убакыт',

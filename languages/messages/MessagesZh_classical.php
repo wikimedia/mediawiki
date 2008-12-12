@@ -493,6 +493,11 @@ $2',
 'login-throttled'            => '爾多試於此簿之符中。請候再試之。',
 'loginlanguagelabel'         => '語：$1',
 
+# Password reset dialog
+'oldpassword' => '舊符節：',
+'newpassword' => '新符節：',
+'retypenew'   => '重察新符節：',
+
 # Edit page toolbar
 'bold_sample'     => '粗體',
 'bold_tip'        => '粗體',
@@ -886,9 +891,6 @@ $2',
 'prefs-misc'            => '雜',
 'saveprefs'             => '儲',
 'resetprefs'            => '歸白',
-'oldpassword'           => '舊符節：',
-'newpassword'           => '新符節：',
-'retypenew'             => '重察新符節：',
 'textboxsize'           => '在修',
 'rows'                  => '行：',
 'columns'               => '列：',

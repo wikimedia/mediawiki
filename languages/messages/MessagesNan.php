@@ -266,6 +266,11 @@ $messages = array(
 'emailnotauthenticated'      => 'Lí ê e-mail chū-chí iáu-bōe khak-jīn ū-hāu, só·-í ē--kha ê e-mail kong-lêng bē-ēng-tit.',
 'emailconfirmlink'           => 'Chhiáⁿ khak-jīn lí ê e-mail chū-chí ū-hāu',
 
+# Password reset dialog
+'oldpassword' => 'Kū bi̍t-bé:',
+'newpassword' => 'Sin bi̍t-bé:',
+'retypenew'   => 'Têng phah sin bi̍t-bé:',
+
 # Edit page toolbar
 'bold_sample'     => 'Chho·-thé bûn-jī',
 'bold_tip'        => 'Chho·-thé jī',
@@ -394,9 +399,6 @@ $messages = array(
 'prefs-misc'            => 'Kî-thaⁿ ê siat-tēng',
 'saveprefs'             => 'Pó-chûn siat-tēng',
 'resetprefs'            => 'Têng siat-tēng',
-'oldpassword'           => 'Kū bi̍t-bé:',
-'newpassword'           => 'Sin bi̍t-bé:',
-'retypenew'             => 'Têng phah sin bi̍t-bé:',
 'textboxsize'           => 'Pian-chi̍p',
 'rows'                  => 'Chōa:',
 'columns'               => 'Nôa',

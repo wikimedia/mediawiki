@@ -349,6 +349,9 @@ Ga wa dumelwa go tlhoma tše dingwe.',
 
 # Password reset dialog
 'resetpass_text'    => '<!-- Tsenya ditlhaka mo -->',
+'oldpassword'       => 'Ditlhaka-tša-siphiri tša kgale:',
+'newpassword'       => 'Ditlhaka-tša-siphiri tše mpsha:',
+'retypenew'         => 'Tlanya ditlhaka tše mphsa tša siphiri gape:',
 'resetpass_success' => 'Ditlhaka tša siphiri di fetotšwe ka katlego! Bjale o kgona go tsena...',
 
 # Edit page toolbar
@@ -517,9 +520,6 @@ Leka [[Special:Search|go fetleka wikii]] go humana matlakala a mapsha.',
 'prefs-rc'           => 'Diphetogo tša bjale',
 'prefs-watchlist'    => 'Lenano la tlhapetšo',
 'saveprefs'          => 'Boloka',
-'oldpassword'        => 'Ditlhaka-tša-siphiri tša kgale:',
-'newpassword'        => 'Ditlhaka-tša-siphiri tše mpsha:',
-'retypenew'          => 'Tlanya ditlhaka tše mphsa tša siphiri gape:',
 'textboxsize'        => 'Fetola',
 'searchresultshead'  => 'Fetleka',
 'savedprefs'         => 'Dikgatlhegelo tša gago di bolokilwe.',

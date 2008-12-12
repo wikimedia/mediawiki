@@ -187,6 +187,9 @@ $messages = array(
 جدوں توانوں اے ملے تسی دوبارہ لاگن ہو۔',
 'eauthentsent'            => 'اک کنفرمیشن ای میل دتے گۓ ای میل پتے تے پیج دتی گئی اے۔ اس توں پہلاں کہ کوئی دوجی ای میل کھاتے تے پیجی جاۓ، توانوں ای میل چ دتیاں ہدایات تے عمل کرنا ہوۓ گا، تا کے اے پکا ہو سکے کہ اے کھاتہ تواڈا ہی اے۔',
 
+# Password reset dialog
+'retypenew' => 'نئی کنجی دوبارہ لکھو:',
+
 # Edit page toolbar
 'bold_sample'     => 'موٹی لکھائی',
 'bold_tip'        => 'موٹی لکھائی',
@@ -299,7 +302,6 @@ $messages = array(
 # Preferences page
 'preferences'   => 'تانگاں',
 'mypreferences' => 'میریاں تانگاں',
-'retypenew'     => 'نئی کنجی دوبارہ لکھو:',
 
 'grouppage-sysop' => '{{ns:project}}:ایڈمنسٹریٹر',
 

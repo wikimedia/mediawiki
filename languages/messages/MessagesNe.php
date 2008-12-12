@@ -190,6 +190,10 @@ $messages = array(
 'accountcreatedtext'         => '$1 को लागी प्रयोगकर्ता खाता खोलियो ।',
 'loginlanguagelabel'         => 'भाषा: $1',
 
+# Password reset dialog
+'oldpassword' => 'पुरानो पासवर्ड:',
+'newpassword' => 'नयाँ पासवर्ड:',
+
 # Edit page toolbar
 'bold_sample'     => 'गाढा अक्षर',
 'bold_tip'        => 'गाढा अक्षर',
@@ -263,8 +267,6 @@ $messages = array(
 'prefs-personal'        => 'प्रयोगकर्ताको विवरण',
 'prefs-rc'              => 'नयाँ परिवर्तनहरु',
 'prefs-watchlist'       => 'अवलोकन पृष्ठ',
-'oldpassword'           => 'पुरानो पासवर्ड:',
-'newpassword'           => 'नयाँ पासवर्ड:',
 'recentchangescount'    => 'नयाँ परिवर्तित शिर्षकहरु',
 'savedprefs'            => 'तपाँईका अभिरुचिहरू सङ्ग्रहित भयो।',
 'localtime'             => 'स्थानीय समय',

@@ -275,6 +275,9 @@ $messages = array(
 'noemail'                 => 'સભ્ય "$1"નું કોઇ ઇ-મેલ સરનામું નોંધાયેલું નથી.',
 'accountcreated'          => 'ખાતું ખોલવામાં આવ્યું છે',
 
+# Password reset dialog
+'retypenew' => 'નવી ગુપ્ત સંજ્ઞા (પાસવર્ડ) ફરી લખો:',
+
 # Edit page toolbar
 'bold_sample'     => 'ઘાટા અક્ષર',
 'bold_tip'        => 'ઘાટા અક્ષર',
@@ -393,7 +396,6 @@ $messages = array(
 'skin-preview'      => 'ફેરફાર બતાવો',
 'datetime'          => 'તારીખ અને સમય',
 'prefs-watchlist'   => 'ધ્યાનસૂચી',
-'retypenew'         => 'નવી ગુપ્ત સંજ્ઞા (પાસવર્ડ) ફરી લખો:',
 'searchresultshead' => 'શોધો',
 
 # Groups

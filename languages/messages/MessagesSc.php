@@ -194,6 +194,11 @@ Per evidenti ragioni di sicurezza, dovresti fare un log in il prima possibile, e
 'passwordsent'            => 'Una nuova password è stata inviata alla casella e-mail registrata per l\'Utente "$1".
 Per favore, fai subito un log in non appena la ricevi.',
 
+# Password reset dialog
+'oldpassword' => 'Vecchia password',
+'newpassword' => 'Nuova password',
+'retypenew'   => 'Riscrivi qui la nuova password',
+
 # Edit pages
 'summary'         => 'Oggetto',
 'minoredit'       => 'Questa è una modifica minore',
@@ -276,9 +281,6 @@ per poter personalizzare le tue preferenze.',
 'skin'                     => 'Aspetto',
 'saveprefs'                => 'Salva preferenze',
 'resetprefs'               => 'Resetta preferenze',
-'oldpassword'              => 'Vecchia password',
-'newpassword'              => 'Nuova password',
-'retypenew'                => 'Riscrivi qui la nuova password',
 'textboxsize'              => 'Dimensione della casella di edizione',
 'rows'                     => 'Righe',
 'columns'                  => 'Colonne',

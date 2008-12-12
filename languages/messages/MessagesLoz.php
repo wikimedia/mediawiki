@@ -339,10 +339,10 @@ Sa ku bye fatukile zwa sebu dafi e a ni petuho, ni petuho e mulumiwasibukirisize
 'loginlanguagelabel'        => 'Zwa Siselect: $1',
 
 # Password reset dialog
-'resetpass'         => 'Lisetize sebelu sebu dafi',
-'resetpass_header'  => 'Lisetize sebu dafi',
-'resetpass_submit'  => 'Setize sebu dafi e menuhile',
-'resetpass_missing' => 'Ni form datani.',
+'resetpass'        => 'Lisetize sebelu sebu dafi',
+'resetpass_header' => 'Lisetize sebu dafi',
+'retypenew'        => 'Sebu dafi:',
+'resetpass_submit' => 'Setize sebu dafi e menuhile',
 
 # Edit page toolbar
 'bold_sample'     => 'Selt ombelu',
@@ -505,7 +505,6 @@ Informasi: (bye) = petuho a nca selt,
 'prefs-watchlist'   => 'Mukoloko di kentezi',
 'saveprefs'         => 'Bulukezi',
 'resetprefs'        => 'Lisetize',
-'retypenew'         => 'Sebu dafi:',
 'textboxsize'       => "Hloli ye ng'i",
 'rows'              => 'Roo:',
 'columns'           => 'Kalom:',

@@ -216,6 +216,11 @@ Per piasè, ve drent anmò dop che te l'ricevüü.",
 'emailnotauthenticated'   => 'Ul tò adrèss da pòsta letronica l è mia staa gnamò verificaa. Nissün mesacc al saraa mandaa par i servizzi che segütan.',
 'accountcreated'          => 'Cunt bell-e-cread',
 
+# Password reset dialog
+'oldpassword' => "Paròla d'urdin végja:",
+'newpassword' => "Paròla d'urdin növa:",
+'retypenew'   => "Scriif ancamò la paròla d'urdin növa:",
+
 # Edit pages
 'summary'              => 'Argument de la mudifica',
 'minoredit'            => "Chesta chi l'è una mudifica da impurtanza minuur",
@@ -272,9 +277,6 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 'prefs-misc'         => 'Vari',
 'saveprefs'          => 'Tegn i mudifech',
 'resetprefs'         => 'Trá via i mudifech',
-'oldpassword'        => "Paròla d'urdin végja:",
-'newpassword'        => "Paròla d'urdin növa:",
-'retypenew'          => "Scriif ancamò la paròla d'urdin növa:",
 'textboxsize'        => 'Mudifich',
 'rows'               => 'Riich:',
 'columns'            => 'Culònn:',

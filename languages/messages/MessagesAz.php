@@ -309,6 +309,9 @@ Xahiş edirik, e-məktubu aldıqdan sonra yenidən daxil olasınız.',
 
 # Password reset dialog
 'resetpass_text' => '<!-- Şərhinizi bura daxil edin -->',
+'oldpassword'    => 'Köhne parol:',
+'newpassword'    => 'Yeni parol:',
+'retypenew'      => 'Yeni parolu təkrar yazın:',
 
 # Edit page toolbar
 'bold_sample'     => 'Qalın mətn',
@@ -439,9 +442,6 @@ Açıqlama: (hh) = hal-hazırkı versiya ilə olan fərqlər,
 'prefs-misc'            => 'Digər tərcihlər',
 'saveprefs'             => 'Qeyd et',
 'resetprefs'            => 'Reset',
-'oldpassword'           => 'Köhne parol:',
-'newpassword'           => 'Yeni parol:',
-'retypenew'             => 'Yeni parolu təkrar yazın:',
 'textboxsize'           => 'Redaktə',
 'rows'                  => 'Sıralar:',
 'searchresultshead'     => 'Axtar',

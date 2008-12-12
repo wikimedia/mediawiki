@@ -213,6 +213,10 @@ Mishto si te jas kai {{SITENAME}} thai te paruves tiro lav sigo.',
 'accountcreated'             => 'Akount kerdo',
 'accountcreatedtext'         => 'Kerdo o akonto le jenesko ko $1.',
 
+# Password reset dialog
+'oldpassword' => 'Purano nakahvipnasko lav',
+'newpassword' => 'Nevo nakhavipnasko lav:',
+
 # Edit page toolbar
 'image_sample' => 'Misal.jpg',
 
@@ -281,8 +285,6 @@ Kana avilyan kathe doshatar, ja palpale.',
 'prefs-rc'              => 'Neve paruvimata',
 'saveprefs'             => 'Uxtav le kamimata',
 'resetprefs'            => 'Thov le kamimata sar ko shirdipen',
-'oldpassword'           => 'Purano nakahvipnasko lav',
-'newpassword'           => 'Nevo nakhavipnasko lav:',
 'columns'               => 'Uche vortorina:',
 'contextlines'          => 'Vortorinyango gin pe avimos:',
 'contextchars'          => 'Grafemengo gin pe ekh vortorin:',

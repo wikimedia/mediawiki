@@ -486,6 +486,11 @@ Pärast parooli saamist logige palun sisse.',
 'accountcreated'             => 'Konto loodud',
 'loginlanguagelabel'         => 'Keel: $1',
 
+# Password reset dialog
+'oldpassword' => 'Vana parool',
+'newpassword' => 'Uus parool',
+'retypenew'   => 'Sisestage uus parool uuesti',
+
 # Edit page toolbar
 'bold_sample'     => 'Rasvane kiri',
 'bold_tip'        => 'Rasvane kiri',
@@ -717,9 +722,6 @@ sisse logida.',
 'prefs-misc'              => 'Muud seaded',
 'saveprefs'               => 'Salvesta eelistused',
 'resetprefs'              => 'Lähtesta eelistused',
-'oldpassword'             => 'Vana parool',
-'newpassword'             => 'Uus parool',
-'retypenew'               => 'Sisestage uus parool uuesti',
 'textboxsize'             => 'Redigeerimisseaded',
 'rows'                    => 'Redaktoriakna ridade arv:',
 'columns'                 => 'Veergude arv',

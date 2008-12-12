@@ -491,6 +491,9 @@ Bifo tra e-mail kan seni go na a account, yu musu du san skrifi ini a e-mail fu 
 # Password reset dialog
 'resetpass'        => 'Kenki yu waktiwortu',
 'resetpass_header' => 'Kenki yu waktiwortu',
+'oldpassword'      => 'Owru waktiwortu:',
+'newpassword'      => 'Nyun waktiwortu:',
+'retypenew'        => 'Nyun psa wortu ete wan tron:',
 'resetpass_submit' => 'Kenki yu waktiwortu nanga kon',
 
 # Edit page toolbar
@@ -666,9 +669,6 @@ Yu kan [[:\$1|meki a papira disi]].",
 'prefs-misc'               => 'Diversi',
 'saveprefs'                => 'Oponaki',
 'resetprefs'               => 'Bakadray na owru si',
-'oldpassword'              => 'Owru waktiwortu:',
-'newpassword'              => 'Nyun waktiwortu:',
-'retypenew'                => 'Nyun psa wortu ete wan tron:',
 'textboxsize'              => 'Kenki',
 'rows'                     => 'Rei:',
 'columns'                  => 'Kolum:',

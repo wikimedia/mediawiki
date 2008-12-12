@@ -196,6 +196,9 @@ Debe de tener pul menos {{PLURAL:$1|1 caracter|$1 caracteres}} i ser defrente de
 'passwordsent'            => 'Ua nuoba palabra-chave ancontra-se a ser anbiada para l andereço de correio electrónico associado al outelizador "$1".
 Por fabor, bolte a efectuar la autenticaçon al recebê-la.',
 
+# Password reset dialog
+'retypenew' => 'Pon outra beç la nuoba palabra chabe:',
+
 # Edit page toolbar
 'bold_sample'     => 'Testo carregado',
 'bold_tip'        => 'Testo a negrito',
@@ -307,7 +310,6 @@ Legenda: (actu) = diferenças da versão actual,
 # Preferences page
 'preferences'   => 'Preferencies',
 'mypreferences' => 'Las mies preferencias',
-'retypenew'     => 'Pon outra beç la nuoba palabra chabe:',
 
 'grouppage-sysop' => '{{ns:project}}:Administradores',
 

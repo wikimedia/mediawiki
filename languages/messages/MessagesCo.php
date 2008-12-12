@@ -171,6 +171,9 @@ $messages = array(
 'accountcreatedtext'         => "U registramentu di l'utilizatore $1 hè statu fattu.",
 'loginlanguagelabel'         => 'Lingua: $1',
 
+# Password reset dialog
+'retypenew' => 'Scrive torna a nova parulla secreta:',
+
 # Edit page toolbar
 'image_sample' => 'Esempiu.jpg',
 
@@ -221,7 +224,6 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 'math_syntax_error' => 'errore di sintassa',
 'prefs-rc'          => 'Ultimi cambiamenti',
 'prefs-watchlist'   => 'Articuli seguitati',
-'retypenew'         => 'Scrive torna a nova parulla secreta:',
 'columns'           => 'Culonne:',
 'searchresultshead' => 'Ricerca',
 'localtime'         => 'Ora lucale',

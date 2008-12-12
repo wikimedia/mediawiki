@@ -428,6 +428,11 @@ verður sendur fyri nakað av fylgjandi hentleikum.',
 'accountcreated'             => 'Konto upprættað',
 'loginlanguagelabel'         => 'Mál: $1',
 
+# Password reset dialog
+'oldpassword' => 'Gamalt loyniorð:',
+'newpassword' => 'Nýtt loyniorð:',
+'retypenew'   => 'Skriva nýtt loyniorð umaftur:',
+
 # Edit page toolbar
 'bold_sample'     => 'Feitir stavir',
 'bold_tip'        => 'Feitir stavir',
@@ -570,9 +575,6 @@ Vinarliga umhugsa at býta síðuna sundur í styttri pettir.</strong>',
 'prefs-misc'              => 'Ymiskar innstillingar',
 'saveprefs'               => 'Goym innstillingar',
 'resetprefs'              => 'Endurset innstillingar',
-'oldpassword'             => 'Gamalt loyniorð:',
-'newpassword'             => 'Nýtt loyniorð:',
-'retypenew'               => 'Skriva nýtt loyniorð umaftur:',
 'textboxsize'             => 'Broyting av greinum',
 'rows'                    => 'Røð:',
 'columns'                 => 'Teigar:',

@@ -282,6 +282,11 @@ $messages = array(
 'accountcreatedtext'         => '$1 个户头已经建立哉。',
 'loginlanguagelabel'         => '语言：$1',
 
+# Password reset dialog
+'oldpassword' => '旧密码:',
+'newpassword' => '新密码:',
+'retypenew'   => '再打一遍新密码:',
+
 # Edit page toolbar
 'bold_sample'    => '黑体文本',
 'bold_tip'       => '黑体文本',
@@ -379,9 +384,6 @@ $messages = array(
 'prefs-watchlist-days'  => '勒拉监控列表里向显示个日数：',
 'prefs-watchlist-edits' => '勒拉扩展个监控列表里向显示个编辑趟数：',
 'saveprefs'             => '保存',
-'oldpassword'           => '旧密码:',
-'newpassword'           => '新密码:',
-'retypenew'             => '再打一遍新密码:',
 'textboxsize'           => '编辑',
 'searchresultshead'     => '搜索',
 'recentchangescount'    => '近段辰光个改动标题数：',

@@ -189,6 +189,9 @@ $messages = array(
 'loginerror'              => 'Éro log attama',
 'mailmypassword'          => 'E-mail pasewodo baru',
 
+# Password reset dialog
+'oldpassword' => 'Pasewodo matoa:',
+
 # Edit page toolbar
 'bold_tip'    => 'Teks maumpek',
 'italic_tip'  => 'Teks Italik',
@@ -269,7 +272,6 @@ $messages = array(
 'prefs-watchlist'   => 'Watchlist',
 'prefs-misc'        => 'Misc',
 'saveprefs'         => 'Taro',
-'oldpassword'       => 'Pasewodo matoa:',
 'textboxsize'       => 'Mapadécéŋ',
 'searchresultshead' => 'Masappa',
 

@@ -106,6 +106,9 @@ $messages = array(
 'accountcreated'             => 'Agawa so account',
 'accountcreatedtext'         => 'Agawa la so user account para $1.',
 
+# Password reset dialog
+'newpassword' => 'Balon password:',
+
 # Edit page toolbar
 'link_tip' => 'Gawing ed loob',
 
@@ -157,7 +160,6 @@ $messages = array(
 'math_unknown_error' => 'aga-antan error',
 'prefs-rc'           => 'Sampot ran binalo',
 'prefs-watchlist'    => 'Listaan na babantayan',
-'newpassword'        => 'Balon password:',
 'textboxsize'        => 'Babaloen',
 'searchresultshead'  => 'Anapen',
 

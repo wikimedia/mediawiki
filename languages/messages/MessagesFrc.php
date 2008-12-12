@@ -398,7 +398,6 @@ Si quèqu\'une d\'autre a demandé ce mot de passe ou si vous vous rappelez de v
 'resetpass_success'       => 'Vous avez bien changé votre mot de passe!  On est après vous connecter...',
 'resetpass_bad_temporary' => 'Mauvais mot de passe de peu de durée.  Il est possible que vous avez déjà changé votre mot de passe ou demandé un nouveau mot de passe de peu de durée.',
 'resetpass_forbidden'     => 'Vous pouvez pas changer votre mot de passe sus ce wiki ici.',
-'resetpass_missing'       => 'Vide.',
 
 # Edit page toolbar
 'bold_sample'     => 'Gras',

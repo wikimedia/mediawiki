@@ -240,6 +240,11 @@ $messages = array(
 'accountcreated'             => 'تخلیقِ کھاتہ',
 'accountcreatedtext'         => 'تخیلقِ کھاتۂ صارف براۓ $1۔',
 
+# Password reset dialog
+'oldpassword' => 'پرانا کلمۂ شناخت:',
+'newpassword' => 'نیا کلمۂ شناخت',
+'retypenew'   => 'نیا کلمۂ شناخت دوبارہ درج کریں:',
+
 # Edit page toolbar
 'headline_sample' => 'شہ سرخی',
 'headline_tip'    => 'شہ سرخی درجہ دوم',
@@ -319,9 +324,6 @@ $messages = array(
 'prefs-rc'          => 'حالیہ تبدیلیاں',
 'prefs-misc'        => 'دیگر',
 'saveprefs'         => 'محفوظ',
-'oldpassword'       => 'پرانا کلمۂ شناخت:',
-'newpassword'       => 'نیا کلمۂ شناخت',
-'retypenew'         => 'نیا کلمۂ شناخت دوبارہ درج کریں:',
 'rows'              => 'قـطاریں:',
 'searchresultshead' => 'تلاش',
 'savedprefs'        => 'آپ کی ترجیہات محفوظ کر لی گئی ہیں۔',

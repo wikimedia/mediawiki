@@ -375,6 +375,9 @@ Timitztlātlauhtia xicchīhua occeppa.',
 'loginlanguagelabel'        => 'Tlahtōlli: $1',
 
 # Password reset dialog
+'oldpassword'         => 'Huēhueh motlahtōlichtacayo:',
+'newpassword'         => 'Yancuīc motlahtōlichtacayo:',
+'retypenew'           => 'Occeppa xiquihcuiloa yancuīc motlahtōlichtacayo:',
 'resetpass_forbidden' => 'Tlahtōlichtacayōtl ahmo mohuelītih mopatlah',
 
 # Edit page toolbar
@@ -546,9 +549,6 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 'prefs-watchlist-edits' => 'Tlapatlaliztli tiquintta tlachiyalizpan:',
 'prefs-misc'            => 'Zāzo',
 'saveprefs'             => 'Ticpiyāz',
-'oldpassword'           => 'Huēhueh motlahtōlichtacayo:',
-'newpassword'           => 'Yancuīc motlahtōlichtacayo:',
-'retypenew'             => 'Occeppa xiquihcuiloa yancuīc motlahtōlichtacayo:',
 'textboxsize'           => 'Tlapatlaliztli',
 'rows'                  => 'Pāntli:',
 'searchresultshead'     => 'Tlatēmoliztli',

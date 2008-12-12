@@ -354,6 +354,11 @@ $messages = array(
 'createaccount-title'        => 'Δημιουργίαν λογαρίας για {{SITENAME}}',
 'loginlanguagelabel'         => 'Γλώσσαν: $1',
 
+# Password reset dialog
+'oldpassword' => 'Παλαιόν σημάδιν:',
+'newpassword' => 'Καινούρεον σημάδιν:',
+'retypenew'   => 'Γράψον ξαν το νέον σημάδιν:',
+
 # Edit page toolbar
 'bold_sample'     => 'Χοντρόν κείμενον',
 'bold_tip'        => 'Χοντρόν κείμενον',
@@ -519,9 +524,6 @@ $messages = array(
 'datetime'          => 'Ημερομηνίαν και ώραν',
 'prefs-misc'        => 'Διαφ',
 'saveprefs'         => 'Αποθήκεμαν',
-'oldpassword'       => 'Παλαιόν σημάδιν:',
-'newpassword'       => 'Καινούρεον σημάδιν:',
-'retypenew'         => 'Γράψον ξαν το νέον σημάδιν:',
 'searchresultshead' => 'Εύρον',
 
 # Groups

@@ -227,6 +227,9 @@ $messages = array(
 'loginsuccess'            => "'''{{SITENAME}}ga \"\$1\" foydalanuvchi nomi bilan kirdingiz.'''",
 'wrongpassword'           => 'Kiritgan mahfiy soʻzingiz notoʻgʻri. Iltimos, qaytadan kiritib koʻring.',
 
+# Password reset dialog
+'retypenew' => 'Yangi mahfiy soʻzni qayta tering:',
+
 # Edit page toolbar
 'bold_sample'     => 'Qalin matn',
 'bold_tip'        => 'Qalin matn',
@@ -336,7 +339,6 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 'prefs-misc'        => 'Boshqa moslamalar',
 'saveprefs'         => 'Saqlash',
 'resetprefs'        => 'Bekor qilish',
-'retypenew'         => 'Yangi mahfiy soʻzni qayta tering:',
 'textboxsize'       => 'Tahrirlash',
 'searchresultshead' => 'Qidiruv natijalari',
 'files'             => 'Fayllar',

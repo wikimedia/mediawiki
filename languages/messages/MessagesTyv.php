@@ -270,9 +270,10 @@ $1',
 
 # Password reset dialog
 'resetpass_header'    => 'Чажыт сөстү катап чогаадып кылыр',
+'oldpassword'         => 'Эгри чажыт сөс:',
+'newpassword'         => 'Чаа чажыт сөс:',
 'resetpass_submit'    => 'Чажыт сөстү чоогадып кылыр база кирер.',
 'resetpass_forbidden' => '{{grammar:locative|{{SITENAME}}}} чажыт сөстү өскертивейн болбас',
-'resetpass_missing'   => 'Бижиирии медээ чок.',
 
 # Edit page toolbar
 'bold_sample'     => 'Карартыр',
@@ -364,8 +365,6 @@ $1',
 'prefs-rc'           => 'Дээм чаагы өскерлиишкиннер',
 'prefs-watchlist'    => 'Хайгаарылга даңзызы',
 'saveprefs'          => 'Шыгжаар',
-'oldpassword'        => 'Эгри чажыт сөс:',
-'newpassword'        => 'Чаа чажыт сөс:',
 'textboxsize'        => 'Өскертир',
 'rows'               => 'Одуруглар:',
 'columns'            => 'Баганалар:',

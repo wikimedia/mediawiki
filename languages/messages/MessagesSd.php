@@ -366,6 +366,9 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'accountcreated'             => 'کاتو کلي چڪو',
 'accountcreatedtext'         => '$1 نالي يوزر کاتو کلي چڪو آھي.',
 
+# Password reset dialog
+'retypenew' => 'نئون ڳجھو لفظ ٻيهر ٽائيپ ڪندا:',
+
 # Edit page toolbar
 'bold_sample'     => 'گهري تحرير',
 'bold_tip'        => 'گهري لکت',
@@ -477,7 +480,6 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'skin-preview'   => 'پيش نگاهه',
 'datedefault'    => 'بلا ترجيحا',
 'datetime'       => 'تاريخ ۽ وقت',
-'retypenew'      => 'نئون ڳجھو لفظ ٻيهر ٽائيپ ڪندا:',
 'allowemail'     => 'ٻين يُوزرس کان ايندڙ برق ٽپال بحال ڪريو',
 
 # User rights

@@ -365,6 +365,9 @@ $messages = array(
 'accountcreated'             => 'একাউন্টহান হঙকরানি ইল',
 'accountcreatedtext'         => 'আতাকুরা $1 -র কা একাউন্টহান হঙকরানি ইল।',
 
+# Password reset dialog
+'retypenew' => 'নুৱা খন্তাচাবি বারো টাইপ কর:',
+
 # Edit page toolbar
 'bold_sample'     => 'গাঢ়পা ৱাহি',
 'bold_tip'        => 'গাঢ়পা ৱাহি',
@@ -483,7 +486,6 @@ $messages = array(
 'changepassword' => 'খন্তাচাবি(password) পতা',
 'skin-preview'   => 'আগচা',
 'saveprefs'      => 'ইতু',
-'retypenew'      => 'নুৱা খন্তাচাবি বারো টাইপ কর:',
 'columns'        => 'দুরগিঃ',
 'allowemail'     => 'আরতা(ব্যবহার করেকুরা)ই ইমেইল করানির য়্যাথাং দে।',
 
