@@ -50,22 +50,26 @@ $bookstoreList = array(
 );
 
 $namespaceNames = array(
-	NS_MEDIA          => 'Média',
-	NS_SPECIAL        => 'Spécial',
-	NS_TALK           => 'Discuter',
-	NS_USER           => 'Utilisateur',
-	NS_USER_TALK      => 'Discussion_Utilisateur',
-	NS_PROJECT_TALK   => 'Discussion_$1',
-	NS_FILE           => 'Image',
-	NS_FILE_TALK      => 'Discussion_Image',
-	NS_MEDIAWIKI      => 'MediaWiki',
-	NS_MEDIAWIKI_TALK => 'Discussion_MediaWiki',
-	NS_TEMPLATE       => 'Modèle',
-	NS_TEMPLATE_TALK  => 'Discussion_Modèle',
-	NS_HELP           => 'Aide',
-	NS_HELP_TALK      => 'Discussion_Aide',
-	NS_CATEGORY       => 'Catégorie',
-	NS_CATEGORY_TALK  => 'Discussion_Catégorie',
+	NS_MEDIA            => 'Média',
+	NS_SPECIAL          => 'Spécial',
+	NS_TALK             => 'Discuter',
+	NS_USER             => 'Utilisateur',
+	NS_USER_TALK        => 'Discussion_Utilisateur',
+	NS_PROJECT_TALK     => 'Discussion_$1',
+	NS_FILE             => 'Fichier',
+	NS_FILE_TALK        => 'Discussion_Fichier',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Discussion_MediaWiki',
+	NS_TEMPLATE         => 'Modèle',
+	NS_TEMPLATE_TALK    => 'Discussion_Modèle',
+	NS_HELP             => 'Aide',
+	NS_HELP_TALK        => 'Discussion_Aide',
+	NS_CATEGORY         => 'Catégorie',
+	NS_CATEGORY_TALK    => 'Discussion_Catégorie',
+);
+
+$namespaceAliases = array(
+	'Discussion_Image' => NS_FILE_TALK,
 );
 
 $linkTrail = '/^([a-zàâçéèêîôûäëïöüùÇÉÂÊÎÔÛÄËÏÖÜÀÈÙ]+)(.*)$/sDu';
