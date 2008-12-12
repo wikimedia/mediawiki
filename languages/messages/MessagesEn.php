@@ -997,17 +997,19 @@ Please wait before trying again.",
 * Nederlands|nl', # do not translate or duplicate this message to other languages
 
 # Password reset dialog
-'resetpass'                 => 'Change or reset account password',
+'resetpass'                 => 'Change password',
 'resetpass_announce'        => 'You logged in with a temporary e-mailed code.
 To finish logging in, you must set a new password here:',
 'resetpass_text'            => '<!-- Add text here -->', # only translate this message to other languages if you have to change it
-'resetpass_header'          => 'Reset password',
+'resetpass_header'          => 'Change account password',
+'oldpassword'               => 'Old password:',
+'newpassword'               => 'New password:',
+'retypenew'                 => 'Retype new password:',
 'resetpass_submit'          => 'Set password and log in',
 'resetpass_success'         => 'Your password has been changed successfully! Now logging you in...',
 'resetpass_bad_temporary'   => 'Invalid temporary password.
 You may have already successfully changed your password or requested a new temporary password.',
 'resetpass_forbidden'       => 'Passwords cannot be changed',
-'resetpass_missing'         => 'No form data.',
 'resetpass-no-info'         => 'You must be logged in to access this page directly.',
 'resetpass-submit-loggedin' => 'Change password',
 'resetpass-wrong-oldpass'   => 'Invalid temporary or current password. 
@@ -1548,9 +1550,6 @@ please see math/README to configure.',
 'prefs-resetpass'           => 'Change password',
 'saveprefs'                 => 'Save',
 'resetprefs'                => 'Clear unsaved changes',
-'oldpassword'               => 'Old password:',
-'newpassword'               => 'New password:',
-'retypenew'                 => 'Retype new password:',
 'textboxsize'               => 'Editing',
 'rows'                      => 'Rows:',
 'columns'                   => 'Columns:',
