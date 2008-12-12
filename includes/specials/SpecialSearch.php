@@ -131,6 +131,7 @@ class SpecialSearch {
 
 		$filePrefix = $wgContLang->getFormattedNsText(NS_FILE).':';
 		if( '' === trim( $term ) || $filePrefix === trim( $term ) ) {
+			$wgOut->addHTML( $this->searchAdvanced ? $this->powerSearchFocus() : $this->searchFocus() );
 			// Empty query -- straight view of search form
 			wfProfileOut( __METHOD__ );
 			return;
@@ -269,6 +270,9 @@ class SpecialSearch {
 			$wgOut->addWikiMsg( 'search-nonefound' );
 		}
 		$wgOut->addHtml( "</div>" );
+		if( $totalRes === 0 ) {
+			$wgOut->addHTML( $this->searchAdvanced ? $this->powerSearchFocus() : $this->searchFocus() );
+		}
 
 		if( $numSQL || $this->offset ) {
 			$wgOut->addHTML( "<p class='mw-search-pager-bottom'>{$prevnext}</p>\n" );
@@ -619,8 +623,7 @@ class SpecialSearch {
 		if( $t != null && count($this->namespaces) === 1 ) {
 			$out .= wfMsgExt( 'searchmenu-prefix', array('parseinline'), $term );
 		}
-		return $this->powerSearchFocus() .
-			Xml::openElement( 'fieldset', array('id' => 'mw-searchoptions','style' => 'margin:0em;') ) .
+		return Xml::openElement( 'fieldset', array('id' => 'mw-searchoptions','style' => 'margin:0em;') ) .
 			Xml::element( 'legend', null, wfMsg('powersearch-legend') ) .
 			$this->formHeader($term) . $out . 
 			Xml::closeElement( 'fieldset' );
@@ -724,8 +727,7 @@ class SpecialSearch {
 		global $wgScript;
 		$searchTitle = SpecialPage::getTitleFor( 'Search' );
 		$searchable = SearchEngine::searchableNamespaces();
-		$out = $this->searchFocus();
-		$out .= Xml::openElement( 'form', array( 'id' => 'search', 'method' => 'get', 'action' => $wgScript ) );
+		$out = Xml::openElement( 'form', array( 'id' => 'search', 'method' => 'get', 'action' => $wgScript ) );
 		$out .= Xml::hidden( 'title', $searchTitle->getPrefixedText() ) . "\n";
 		// If searching several, but not all namespaces, show what we are searching.
 		if( count($this->namespaces) > 1 && $this->namespaces !== array_keys($searchable) ) {
