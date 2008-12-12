@@ -791,11 +791,11 @@ $2',
 'loginlanguagelabel'         => 'שפה: $1',
 
 # Password reset dialog
-'resetpass'                 => 'שינוי או איפוס סיסמת החשבון',
+'resetpass'                 => 'שינוי סיסמת החשבון',
 'resetpass_announce'        => 'נכנסתם באמצעות סיסמה זמנית שנשלחה אליכם בדוא"ל.
 כדי לסיים את הכניסה, עליכם לקבוע כאן סיסמה חדשה:',
 'resetpass_text'            => '<!-- הוסיפו טקסט כאן -->',
-'resetpass_header'          => 'איפוס הסיסמה',
+'resetpass_header'          => 'שינוי סיסמת החשבון',
 'oldpassword'               => 'סיסמה ישנה:',
 'newpassword'               => 'סיסמה חדשה:',
 'retypenew'                 => 'חזרה על הסיסמה חדשה:',
