@@ -128,6 +128,11 @@ class SpecialImport extends SpecialPage {
 
 	private function showForm() {
 		global $wgUser, $wgOut, $wgRequest, $wgTitle, $wgImportSources;
+		# FIXME: Quick hack to disable import for non privileged users /Raymond 
+		# Regression from 43963 
+		if( !$wgUser->isAllowed( 'import' ) && !$wgUser->isAllowed( 'importupload' ) )
+			return $wgOut->permissionRequired( 'import' );
+
 		$action = $wgTitle->getLocalUrl( 'action=submit' );
 
 		if( $wgUser->isAllowed( 'importupload' ) ) {
@@ -173,8 +178,8 @@ class SpecialImport extends SpecialPage {
 				$wgOut->addWikiMsg( 'importnosources' );
 			}
 		}
-	
-		if( !empty( $wgImportSources ) ) {
+
+		if( $wgUser->isAllowed( 'import' ) && !empty( $wgImportSources ) ) {
 			$wgOut->addHTML(
 				Xml::openElement( 'fieldset' ) .
 				Xml::element( 'legend', null, wfMsg( 'importinterwiki' ) ) .
