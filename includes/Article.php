@@ -1269,7 +1269,7 @@ class Article {
 	 */
 	public function replaceSection( $section, $text, $summary = '', $edittime = NULL ) {
 		wfProfileIn( __METHOD__ );
-		if( $section === '' ) {
+		if( $section == '' ) {
 			// Whole-page edit; let the whole text through
 		} else {
 			if( is_null($edittime) ) {
