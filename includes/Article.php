@@ -1265,11 +1265,12 @@ class Article {
 	}
 
 	/**
+	 * @param $section empty/null/false or a section number (0, 1, 2, T1, T2...)
 	 * @return string Complete article text, or null if error
 	 */
 	public function replaceSection( $section, $text, $summary = '', $edittime = NULL ) {
 		wfProfileIn( __METHOD__ );
-		if( $section == '' ) {
+		if( strval( $section ) == '' ) {
 			// Whole-page edit; let the whole text through
 		} else {
 			if( is_null($edittime) ) {
