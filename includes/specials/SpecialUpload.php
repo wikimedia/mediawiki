@@ -1346,9 +1346,11 @@ wgUploadAutoFill = {$autofill};
 				$chunk = fread( $fp, 256 );
 				fclose( $fp );
 				$extMime = $magic->guessTypesForExtension( $extension );
-				$ieType = $magic->getIEMimeType( $tmpfile, $chunk, $extMime );
-				if ( $this->checkFileExtension( $ieType, $wgMimeTypeBlacklist ) ) {
-					return new WikiErrorMsg( 'filetype-bad-ie-mime', $ieType );
+				$ieTypes = $magic->getIEMimeTypes( $tmpfile, $chunk, $extMime );
+				foreach ( $ieTypes as $ieType ) {
+					if ( $this->checkFileExtension( $ieType, $wgMimeTypeBlacklist ) ) {
+						return new WikiErrorMsg( 'filetype-bad-ie-mime', $ieType );
+					}
 				}
 			}
 		}
