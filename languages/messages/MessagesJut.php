@@ -358,6 +358,9 @@ Du bør loĝge på og ændre din adgangskode straks æfter du harst modtaget æ 
 
 Før en e-mail ken modtages åf andre brugere åf æ {{SITENAME}}-mailfunksje, skel æ adresse og dens tilhørsførholt til denne bruger bekræftes. Følg venlegst anvesnengerne i denne mail.',
 
+# Password reset dialog
+'retypenew' => 'Gentag ny adgangskode',
+
 # Edit page toolbar
 'bold_sample'     => 'Fed skrevselenger',
 'bold_tip'        => 'Fed skrevselenger',
@@ -466,7 +469,6 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'preferences'   => 'Endstellenger',
 'mypreferences' => 'Endstellenger',
 'skin-preview'  => 'Førhåndsvesnenge',
-'retypenew'     => 'Gentag ny adgangskode',
 
 'grouppage-sysop' => '{{ns:project}}:Administråtorer',
 

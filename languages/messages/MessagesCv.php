@@ -446,10 +446,11 @@ $1',
 'loginlanguagelabel'         => 'Чĕлхе: $1',
 
 # Password reset dialog
-'resetpass'         => 'Хутшăнаканăн вăрттăн сăмахне çĕнетесси',
-'resetpass_header'  => 'Пароле пăрахăçла',
-'resetpass_submit'  => 'Вăрттăн сăмаха лартса сайта кĕр',
-'resetpass_missing' => 'Формăра даннăйсем çук.',
+'resetpass'        => 'Хутшăнаканăн вăрттăн сăмахне çĕнетесси',
+'resetpass_header' => 'Пароле пăрахăçла',
+'oldpassword'      => 'Кивě пароль',
+'newpassword'      => 'Çěнě пароль',
+'resetpass_submit' => 'Вăрттăн сăмаха лартса сайта кĕр',
 
 # Edit page toolbar
 'bold_sample'    => 'Çурмахулăм текст',
@@ -622,8 +623,6 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'prefs-watchlist'    => 'Сăнав списокĕ',
 'prefs-misc'         => 'Ытти ĕнерлевсем',
 'saveprefs'          => 'Çырса хур',
-'oldpassword'        => 'Кивě пароль',
-'newpassword'        => 'Çěнě пароль',
 'textboxsize'        => 'Тӳрлетни',
 'rows'               => 'Йěркесем',
 'columns'            => 'Юпасем:',

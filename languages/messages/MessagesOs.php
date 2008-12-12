@@ -293,6 +293,7 @@ $messages = array(
 
 # Password reset dialog
 'resetpass_text'          => '<!-- Бахæсс дæ текст ам -->',
+'newpassword'             => 'Новый пароль',
 'resetpass-temp-password' => 'Рæстæгмæ пароль:',
 
 # Edit page toolbar
@@ -366,7 +367,6 @@ $messages = array(
 'qbsettings-fixedleft'    => 'Галиуырдыгæй',
 'qbsettings-fixedright'   => 'Рахизырдыгæй',
 'qbsettings-floatingleft' => 'Рахизырдыгæй ленккæнгæ',
-'newpassword'             => 'Новый пароль',
 'rows'                    => 'Рæнхътæ:',
 'timezonelegend'          => 'Сахаты таг',
 'localtime'               => 'Бынатон рæстæг',

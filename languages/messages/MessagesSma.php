@@ -241,6 +241,11 @@ Gïemhpes logge sïjse vihth männgan datne åtna låhka dïhte.',
 'accountcreated'          => 'Nuhtjien skaepede',
 'loginlanguagelabel'      => 'Gïele: $1',
 
+# Password reset dialog
+'oldpassword' => 'Båeries loevesbaakoe:',
+'newpassword' => 'Orre loevesbaakoe:',
+'retypenew'   => 'Odhasit orre loevesbaakoe:',
+
 # Edit page toolbar
 'bold_sample'     => 'Buajtehks tjaalege',
 'bold_tip'        => 'Buajtehks tjaalege',
@@ -348,9 +353,6 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:UserLogin|logge s�
 'skin-preview'       => 'Åvte-vuesiehtidh',
 'math_unknown_error' => 'ammes båajhtede',
 'saveprefs'          => 'Spååredh',
-'oldpassword'        => 'Båeries loevesbaakoe:',
-'newpassword'        => 'Orre loevesbaakoe:',
-'retypenew'          => 'Odhasit orre loevesbaakoe:',
 'searchresultshead'  => 'Ohtsedh',
 'timezonelegend'     => 'Tïjjedajve',
 'localtime'          => 'Byjrehks tïjje',

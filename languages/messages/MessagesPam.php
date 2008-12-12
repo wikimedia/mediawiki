@@ -453,12 +453,14 @@ Malyari meng e pansinan ining mensahi, nung pamagkamali ing pamaglalang na nitin
 'resetpass_announce'      => 'Gagamit kang pansamantalang code a me e-mail keka aniang mig-login ka.
 Bang mayari ing kekang pamag-login, kailangan mung mangibiling bayung password keni:',
 'resetpass_header'        => 'Alilan ya ing password',
+'oldpassword'             => 'Sadiang/lumang password:',
+'newpassword'             => 'Bayung password:',
+'retypenew'               => 'Sulat meng pasibayu ing bayung password:',
 'resetpass_submit'        => 'Mangibili kang password at maglogin ka',
 'resetpass_success'       => 'Melaus ing pamanalili mung password! Ngeni mila-login naka...',
 'resetpass_bad_temporary' => 'E matatanggap ing kekang pansamantalang password.
 Mapaliaring melaus na ing pamanalili mung password, o mekapaniad na kang bayung pansamantalang password.',
 'resetpass_forbidden'     => 'E la malyaring alilan deng password keng wiking ini',
-'resetpass_missing'       => 'Alang form data.',
 
 # Edit page toolbar
 'bold_sample'     => 'Makapasalang kulitan',
@@ -840,9 +842,6 @@ pakilawe me ing math/README ba meng i-configure.',
 'prefs-misc'               => 'Alwp',
 'saveprefs'                => 'I-save',
 'resetprefs'               => 'Buran la retang miyalilan a e me-save',
-'oldpassword'              => 'Sadiang/lumang password:',
-'newpassword'              => 'Bayung password:',
-'retypenew'                => 'Sulat meng pasibayu ing bayung password:',
 'textboxsize'              => 'Mag-edit',
 'rows'                     => 'Dane (rows):',
 'columns'                  => 'Ding asias:',

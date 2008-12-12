@@ -409,9 +409,11 @@ nebus siontamas ni vėinam žemiau ėšvardėntam puoslaugiō.',
 
 # Password reset dialog
 'resetpass_header'  => 'Atstatītė slaptažuodi',
+'oldpassword'       => 'Sens slaptažuodis:',
+'newpassword'       => 'Naus slaptažuodis:',
+'retypenew'         => 'Pakartuokėt nauja slaptažuodi:',
 'resetpass_submit'  => 'Nostatītė slaptažuodi ė prėsėjongtė',
 'resetpass_success' => 'Tamstas slaptažuodis pakeists siekmėngā! Daba prėsėjongiama...',
-'resetpass_missing' => 'Nier fuormas doumenū.',
 
 # Edit page toolbar
 'bold_sample'     => 'Pastuorints teksts',
@@ -620,9 +622,6 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'prefs-misc'            => 'Ivairė nustatīmā',
 'saveprefs'             => 'Ėšsauguotė',
 'resetprefs'            => 'Atstatītė nostatīmos',
-'oldpassword'           => 'Sens slaptažuodis:',
-'newpassword'           => 'Naus slaptažuodis:',
-'retypenew'             => 'Pakartuokėt nauja slaptažuodi:',
 'textboxsize'           => 'Redagavėms',
 'rows'                  => 'Eilotės:',
 'columns'               => 'Štolpalē:',

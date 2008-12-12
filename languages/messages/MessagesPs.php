@@ -463,6 +463,9 @@ $messages = array(
 'loginlanguagelabel'         => 'ژبه: $1',
 
 # Password reset dialog
+'oldpassword'             => 'زوړ پټنوم:',
+'newpassword'             => 'نوی پټنوم:',
+'retypenew'               => 'نوی پټنوم بيا وليکه:',
 'resetpass_bad_temporary' => 'لنډمهالی پټنوم مو سم نه دی. کېدای شي تاسو وار دمخې خپل پټنوم برياليتوب سره بدل کړی وي او يا هم د نوي لنډمهالي پټنوم غوښتنه مو کړې وي.',
 'resetpass_forbidden'     => 'په {{SITENAME}} کې مو پټنوم نه شي بدلېدلای',
 
@@ -635,9 +638,6 @@ $messages = array(
 'prefs-misc'            => 'بېلابېل',
 'saveprefs'             => 'خوندي کول',
 'resetprefs'            => 'بيا سمول',
-'oldpassword'           => 'زوړ پټنوم:',
-'newpassword'           => 'نوی پټنوم:',
-'retypenew'             => 'نوی پټنوم بيا وليکه:',
 'textboxsize'           => 'سمادېدنه',
 'searchresultshead'     => 'پلټل',
 'recentchangesdays'     => 'د هغو ورځو شمېر وټاکی چې په وروستي بدلونو کې يې ليدل غواړی:',

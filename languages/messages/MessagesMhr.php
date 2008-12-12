@@ -200,6 +200,11 @@ $messages = array(
 'emailauthenticated'      => 'Тыйын почто адресетым пеҥгыдемдыме $1.',
 'loginlanguagelabel'      => 'Йылме: $1',
 
+# Password reset dialog
+'oldpassword' => 'Тошто шолыпмут:',
+'newpassword' => 'У шолыпмут:',
+'retypenew'   => 'Пеҥгыдемдыза у шолыпмутым:',
+
 # Edit page toolbar
 'bold_sample'     => 'Кӱжгӧ текст',
 'bold_tip'        => 'Кӱжгӧ текст',
@@ -280,9 +285,6 @@ $messages = array(
 'prefs-misc'            => 'Тӱрлӧ',
 'saveprefs'             => 'Аралаш',
 'resetprefs'            => 'Тӧрлатымым шотыш налаш огыл',
-'oldpassword'           => 'Тошто шолыпмут:',
-'newpassword'           => 'У шолыпмут:',
-'retypenew'             => 'Пеҥгыдемдыза у шолыпмутым:',
 'searchresultshead'     => 'Кычалме',
 'savedprefs'            => 'Тыйын настройке-влакетым аралыме.',
 'allowemail'            => 'Вес ушнышо-влак деч электрон почтым налаш кӧнаш',

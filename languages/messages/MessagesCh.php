@@ -384,6 +384,9 @@ Ti para u na'hanao ni sigienti na inayek siha.",
 'loginlanguagelabel'         => 'Lengguahe: $1',
 
 # Password reset dialog
+'oldpassword'      => 'Password bihu:',
+'newpassword'      => 'Password nuebu:',
+'retypenew'        => "Na'tekla nuebu na password:",
 'resetpass_submit' => "Po'lo i password ya log in",
 
 # Edit page toolbar
@@ -723,9 +726,6 @@ Fanapunta na fana'an ti gus nuebu i listan-ñiha i guinahan {{SITENAME}}.",
 'prefs-misc'               => 'Misc',
 'saveprefs'                => 'Såtba',
 'resetprefs'               => "Na'funas i tinilaika ti manma'såtba siha",
-'oldpassword'              => 'Password bihu:',
-'newpassword'              => 'Password nuebu:',
-'retypenew'                => "Na'tekla nuebu na password:",
 'textboxsize'              => 'Tumulaika',
 'rows'                     => 'Fila siha:',
 'columns'                  => 'Kolumna siha:',

@@ -403,6 +403,7 @@ Pe abilitâ l'invîo de messaggi e-mail pe quest'accesso, o se deive seguî l'is
 # Password reset dialog
 'resetpass'           => 'Reverti a pòula segretta',
 'resetpass_header'    => 'Reverti a pòula segretta',
+'retypenew'           => "Ripette a nêuva paròlla d'ordine:",
 'resetpass_forbidden' => "E paròlle d'ordine no se pêuan cangiâ in {{SITENAME}}",
 
 # Edit page toolbar
@@ -559,7 +560,6 @@ Leggenda: (corr) = differense co-a verscion corrente, (prec) = differense co-a v
 'dateformat'        => 'Formato da a data',
 'datetime'          => 'Data e oùa',
 'saveprefs'         => 'Sarva',
-'retypenew'         => "Ripette a nêuva paròlla d'ordine:",
 'textboxsize'       => 'Cangia',
 'searchresultshead' => 'Çerca',
 'timezonelegend'    => 'Oùa',

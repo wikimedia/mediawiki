@@ -358,6 +358,7 @@ O zamana kadar ani e-maildaki instrukțiyalar yapılmaycêk hem doorulanmaycêk 
 'loginlanguagelabel'         => 'Dil: $1',
 
 # Password reset dialog
+'retypenew'           => 'Eni parolu tekrar girin',
 'resetpass_forbidden' => '{{SITENAME}} saytında parol yok nicä diiştirilsin',
 
 # Edit page toolbar
@@ -503,7 +504,6 @@ Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 'preferences'   => 'Seçimner',
 'mypreferences' => 'Seçimnerim',
 'skin-preview'  => 'Ön siir',
-'retypenew'     => 'Eni parolu tekrar girin',
 
 # User rights
 'editinguser' => '"$1" sayfasını diiştirersiniz ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])',

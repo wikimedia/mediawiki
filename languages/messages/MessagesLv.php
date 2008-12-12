@@ -421,6 +421,11 @@ Lai novērstu šīs funkcijas ļaunprātīgu izmantošanu, iespējams nosūtīt 
 'createaccount-title'        => 'Lietotāja konta izveidošana {{grammar:lokatīvs|{{SITENAME}}}}',
 'loginlanguagelabel'         => 'Valoda: $1',
 
+# Password reset dialog
+'oldpassword' => 'Vecā parole',
+'newpassword' => 'Jaunā parole',
+'retypenew'   => 'Atkārto jauno paroli',
+
 # Edit page toolbar
 'bold_sample'     => 'Teksts boldā',
 'bold_tip'        => 'Teksts boldā',
@@ -682,9 +687,6 @@ Pagaidām vari meklēt, izmantojot Google vai Yahoo.
 'prefs-misc'            => 'Dažādi',
 'saveprefs'             => 'Saglabāt izvēles',
 'resetprefs'            => 'Atcelt nesaglabātās izmaiņas',
-'oldpassword'           => 'Vecā parole',
-'newpassword'           => 'Jaunā parole',
-'retypenew'             => 'Atkārto jauno paroli',
 'textboxsize'           => 'Rediģēšana',
 'rows'                  => 'Rindiņas',
 'columns'               => 'Simbolu skaits rindiņā',

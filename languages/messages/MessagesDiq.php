@@ -300,6 +300,11 @@ It must have at least $1 characters and be different from your username.',
 'mailmypassword'            => 'Mı rê e-mail sera parola bırışe',
 'loginlanguagelabel'        => 'Zıwan: $1',
 
+# Password reset dialog
+'oldpassword' => 'Parola khane:',
+'newpassword' => 'Parola newiye:',
+'retypenew'   => 'Parola newiye tekrar ke:',
+
 # Edit pages
 'savearticle'  => 'Ena pele qeyd ke',
 'preview'      => 'Verqayt',
@@ -332,9 +337,6 @@ It must have at least $1 characters and be different from your username.',
 'prefs-rc'        => 'Vurnayışê peyêni',
 'prefs-watchlist' => 'Lista seyr-kerdışi',
 'saveprefs'       => 'Qeyd ke',
-'oldpassword'     => 'Parola khane:',
-'newpassword'     => 'Parola newiye:',
-'retypenew'       => 'Parola newiye tekrar ke:',
 'timezonelegend'  => 'Warey saete',
 'files'           => 'Dosyey',
 

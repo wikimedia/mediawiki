@@ -571,11 +571,13 @@ Eğer kullanıcı hesabını yanlışlıkla oluşturmuş iseniz, bu mesajı yoks
 'resetpass_announce'        => 'Size gönderilen muvakkat bir parola ile oturum açtınız.
 Girişi bitirmek için, burada yeni bir parola yazın:',
 'resetpass_header'          => 'Parolayı sıfırla',
+'oldpassword'               => 'Eski parola',
+'newpassword'               => 'Yeni parola',
+'retypenew'                 => 'Yeni parolayı tekrar girin',
 'resetpass_submit'          => 'Şifreyi ayarlayın ve oturum açın',
 'resetpass_success'         => 'Parolanız başarıyla değiştirldi! Şimdi oturumunuz açılıyor...',
 'resetpass_bad_temporary'   => 'Geçersiz geçisi parola. Zaten başarıyla parolanızı değiştirmiş veya yeni geçici şifre istemiş olabilirsiniz.',
 'resetpass_forbidden'       => 'Parolalar değiştirilememektedir',
-'resetpass_missing'         => 'Form data yok.',
 'resetpass-submit-loggedin' => 'Parolayı değiştir',
 
 # Edit page toolbar
@@ -916,9 +918,6 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'prefs-resetpass'          => 'Parolayı değiştir',
 'saveprefs'                => 'Değişiklikleri kaydet',
 'resetprefs'               => 'Ayarları ilk durumuna getir',
-'oldpassword'              => 'Eski parola',
-'newpassword'              => 'Yeni parola',
-'retypenew'                => 'Yeni parolayı tekrar girin',
 'textboxsize'              => 'Sayfa yazma alanı',
 'rows'                     => 'Satır',
 'columns'                  => 'Sütun',

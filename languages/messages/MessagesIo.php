@@ -331,6 +331,11 @@ Voluntez enirar altrafoye pos recevar ol.',
 'createaccount-title'        => 'Kreo di konto en {{SITENAME}}',
 'loginlanguagelabel'         => 'Linguo: $1',
 
+# Password reset dialog
+'oldpassword' => 'Anciena pasovorto:',
+'newpassword' => 'Nova pasovorto:',
+'retypenew'   => 'Riskribez la nova pasovorto:',
+
 # Edit page toolbar
 'bold_sample'     => 'Dika literi',
 'bold_tip'        => 'Dika literi',
@@ -485,9 +490,6 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'prefs-misc'         => 'Mixaji',
 'saveprefs'          => 'Registragar',
 'resetprefs'         => 'Riestablisar preferaji',
-'oldpassword'        => 'Anciena pasovorto:',
-'newpassword'        => 'Nova pasovorto:',
-'retypenew'          => 'Riskribez la nova pasovorto:',
 'textboxsize'        => 'Grandeso dil areo por texto',
 'rows'               => 'Linei:',
 'columns'            => 'Kolumni:',

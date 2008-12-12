@@ -126,6 +126,9 @@ ikhawundi lakho liyadalwa. musa ukukhohlwa ukuguqula amakhethelo a-{{SITENAME}} 
 'emailconfirmlink'   => 'Qinisekisa ikheli likagesi lakho',
 'loginlanguagelabel' => 'Ulimi: $1',
 
+# Password reset dialog
+'newpassword' => 'Izwi elingenangozi elisha:',
+
 # Edit page toolbar
 'italic_sample' => 'Amazwi ama-italiki',
 'italic_tip'    => 'Amazwi ama-italiki',
@@ -169,7 +172,6 @@ ikhawundi lakho liyadalwa. musa ukukhohlwa ukuguqula amakhethelo a-{{SITENAME}} 
 'changepassword'    => 'Guqula izwi elingenangozi',
 'math'              => 'Izibalo',
 'saveprefs'         => 'Saveprefs',
-'newpassword'       => 'Izwi elingenangozi elisha:',
 'searchresultshead' => 'Sesha',
 'timezonelegend'    => 'Isifunda sasikhathi',
 'localtime'         => 'Isikhathi siyalapha',

@@ -121,6 +121,11 @@ $1",
 'wrongpassword'              => "Chan eil am facal-faire a sgrìobh sibh a-steach ceart. Feuchaibh a-rithis, ma's e ur toil e.",
 'acct_creation_throttle_hit' => 'Tha sinn duilich; tha sibh air {{PLURAL:$1|1 cùnntas|$1 cùnntasan}} a chruthachadh cheana agus chan fhaod sibh barrachd a dhèanamh.',
 
+# Password reset dialog
+'oldpassword' => 'Seann fhacal-faire',
+'newpassword' => 'Facal-faire ùr',
+'retypenew'   => 'Ath-sgrìobh facal-faire ùr',
+
 # Edit page toolbar
 'italic_sample'   => 'Teacsa eadailteach',
 'italic_tip'      => 'Teacsa eadailteach',
@@ -183,9 +188,6 @@ $1",
 'prefs-personal'     => "Dàta a'chleachdair",
 'saveprefs'          => 'Sàbhail roghainnean',
 'resetprefs'         => 'Ath-shuidhich taghaidhean',
-'oldpassword'        => 'Seann fhacal-faire',
-'newpassword'        => 'Facal-faire ùr',
-'retypenew'          => 'Ath-sgrìobh facal-faire ùr',
 'rows'               => 'Sreathan',
 'columns'            => 'Colbhan',
 'savedprefs'         => 'Tha na roghainnean agaibh air an sàbhaladh.',

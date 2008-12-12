@@ -235,6 +235,11 @@ Edscēawa þīne wrītunge, oþþe brūc þone form under tō settene nīwne br�
 'accountcreated'             => 'Hordcleofan gescapen',
 'loginlanguagelabel'         => 'Sprǣc: $1',
 
+# Password reset dialog
+'oldpassword' => 'Eald gelēafnesword:',
+'newpassword' => 'Nīwe gelēafnesword',
+'retypenew'   => 'Nīwe gelēafnesword edwrītan',
+
 # Edit page toolbar
 'bold_sample'     => 'Beald traht',
 'bold_tip'        => 'Beald traht',
@@ -328,9 +333,6 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'prefs-rc'           => 'Nīwlica hweorfunga',
 'prefs-watchlist'    => 'Behealdnestalu',
 'saveprefs'          => 'Sparian',
-'oldpassword'        => 'Eald gelēafnesword:',
-'newpassword'        => 'Nīwe gelēafnesword',
-'retypenew'          => 'Nīwe gelēafnesword edwrītan',
 'rows'               => 'Rǣwa',
 'columns'            => 'Sȳla:',
 'searchresultshead'  => 'Sōcnfintan',

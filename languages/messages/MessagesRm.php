@@ -225,6 +225,11 @@ Perquei è anc nagin retschaiver e trametter dad emails per las suandantas funcz
 'accountcreated'             => "Creà il conto d'utilisader",
 'accountcreatedtext'         => "Il conto d'utilisader per $1 è vegnì creà.",
 
+# Password reset dialog
+'oldpassword' => 'pled-clav vegl:',
+'newpassword' => 'pled-clav nov:',
+'retypenew'   => 'repeter pled-clav nov:',
+
 # Edit page toolbar
 'bold_sample'    => 'Text grass',
 'bold_tip'       => 'Text grass',
@@ -327,9 +332,6 @@ Ponderai per plaschair da divider quest artitgel en pli pitschnas parts. </stron
 'prefs-watchlist-edits' => 'Dumber da las midadas mussadas en la glista dad observaziun extendida:',
 'saveprefs'             => 'arcunar',
 'resetprefs'            => 'remetter las preferenzas (reset)',
-'oldpassword'           => 'pled-clav vegl:',
-'newpassword'           => 'pled-clav nov:',
-'retypenew'             => 'repeter pled-clav nov:',
 'columns'               => 'Colonna:',
 'searchresultshead'     => 'Tschertga',
 'resultsperpage'        => 'resultats per pagina:',

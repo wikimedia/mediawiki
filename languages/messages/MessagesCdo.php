@@ -258,6 +258,11 @@ Siŭ gáu hâiu, chiāng gái láuk diē siŏh làu.',
 'accountcreatedtext'         => '$1 gì ê̤ṳng-hô dióng-hô̤ ī-gĭng châung-gióng lāu.',
 'loginlanguagelabel'         => 'Ngṳ̄-ngiòng: $1',
 
+# Password reset dialog
+'oldpassword' => 'Gô mĭk-mā:',
+'newpassword' => 'Sĭng mĭk-mā:',
+'retypenew'   => 'Káuk-nêng sĭng mĭk-mā:',
+
 # Edit page toolbar
 'bold_sample'     => 'Chŭ-tā̤ ùng-cê',
 'bold_tip'        => 'Chŭ-tā̤ ùng-cê',
@@ -385,9 +390,6 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 'prefs-misc'            => 'Gì-tă',
 'saveprefs'             => 'Bō̤-còng',
 'resetprefs'            => 'Dṳ̀ng-sĭng siék-diâng',
-'oldpassword'           => 'Gô mĭk-mā:',
-'newpassword'           => 'Sĭng mĭk-mā:',
-'retypenew'             => 'Káuk-nêng sĭng mĭk-mā:',
 'searchresultshead'     => 'Sìng-tō̤',
 'resultsperpage'        => 'Mūi hiĕk huōng-ông-liông:',
 'recentchangescount'    => 'Cī-bŏng gāi-biéng gì dà̤-mĕ̤k:',

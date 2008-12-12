@@ -301,6 +301,11 @@ $messages = array(
 'accountcreated'             => 'Konto założone',
 'accountcreatedtext'         => 'Konto brëkòwnika dlô $1 je założone.',
 
+# Password reset dialog
+'oldpassword' => 'Stôrô parola:',
+'newpassword' => 'Nowô parola',
+'retypenew'   => 'Napiszë nową parolã jesz rôz',
+
 # Edit page toolbar
 'bold_sample'   => 'Wëtłëszczony drëk',
 'bold_tip'      => 'Wëtłëszczony drëk',
@@ -386,9 +391,6 @@ Eżlë klëczi na ti starnie nie są sczérowóne do ce, tedë [[Special:UserLog
 'prefs-misc'            => 'Jine',
 'saveprefs'             => 'Zapiszë',
 'resetprefs'            => 'Wëczëszczë',
-'oldpassword'           => 'Stôrô parola:',
-'newpassword'           => 'Nowô parola',
-'retypenew'             => 'Napiszë nową parolã jesz rôz',
 'textboxsize'           => 'Edicëjô',
 'rows'                  => 'Régów:',
 'columns'               => 'Kòlumnów:',

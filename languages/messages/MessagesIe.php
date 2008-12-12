@@ -186,6 +186,11 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'acct_creation_throttle_hit' => 'Vu ja ha creat $1 contos. Vu ne posse crear pli mult quam to.',
 'loginlanguagelabel'         => 'Lingue: $1',
 
+# Password reset dialog
+'oldpassword' => 'Anteyan passa-parol:',
+'newpassword' => 'Nov passa-parol:',
+'retypenew'   => 'Confirmar nov passa-parol',
+
 # Edit pages
 'summary'          => 'Resumate',
 'minoredit'        => 'Modification minori',
@@ -216,9 +221,6 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'qbsettings'     => 'Personalisation del barre de utensiles',
 'changepassword' => 'Modificar passa-parol',
 'saveprefs'      => 'Conservar preferenties',
-'oldpassword'    => 'Anteyan passa-parol:',
-'newpassword'    => 'Nov passa-parol:',
-'retypenew'      => 'Confirmar nov passa-parol',
 
 # Groups
 'group-user' => 'Usatores',

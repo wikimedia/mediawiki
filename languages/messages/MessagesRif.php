@@ -191,6 +191,9 @@ adeff-d xmi ɣa teṭfed.',
 'eauthentsent'            => 'ijj n e-mail itwasekked ɣar e-mail nni.
 zzat ma ca n e-mail nniḍen ma ad itwasekk ɣar umiḍan , ixessa ad tegged manayenni di e-mail, bac ad nessen ila qa amiḍan a inec.',
 
+# Password reset dialog
+'retypenew' => 'Ɛawd arri Taguri n wadaf tamaynut:',
+
 # Edit page toolbar
 'bold_sample'     => 'Tirra tizurarin',
 'bold_tip'        => 'Tirra tizurarin',
@@ -304,7 +307,6 @@ tzemred ad [[:\$1|tarnid cek]].",
 # Preferences page
 'preferences'       => 'Isemyifiyen',
 'mypreferences'     => 'Isemyifiyen inu',
-'retypenew'         => 'Ɛawd arri Taguri n wadaf tamaynut:',
 'searchresultshead' => 'Tarzzut',
 
 # Groups

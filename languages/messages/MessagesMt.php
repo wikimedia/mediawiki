@@ -570,12 +570,14 @@ Jekk trid tista\' ma tagħtix każ dan il-messaġġ, jekk dan il-kont ġie maħl
 'resetpass_announce'      => 'L-Aċċess bil-kodiċi temporanju ġie nseħħ, u ġie postjat bil-posta elettronika. Biex tlesti l-aċċess huwa neċessarju toħloq password ġdid hawnhekk:',
 'resetpass_text'          => '<!-- Żied il-kliem hawnhekk -->',
 'resetpass_header'        => 'Irrisettja l-password',
+'oldpassword'             => 'Password antika:',
+'newpassword'             => 'Password ġdida:',
+'retypenew'               => "Erġa' ikteb il-password il-ġdida:",
 'resetpass_submit'        => 'Issettja l-password u idħol fis-sit',
 'resetpass_success'       => 'Il-password ġie modifikat. Aċċess fil-proċess...',
 'resetpass_bad_temporary' => "Password temporanja invalidu.
 Jista jkun li diġa b'suċċess bidilt il-password jew għamilt rikjesta għal password temporanju ġdid.",
 'resetpass_forbidden'     => 'Mhuwiex possibbli li timmodifika l-passwords',
-'resetpass_missing'       => "L-Ebda data ta' forma.",
 
 # Edit page toolbar
 'bold_sample'     => 'Tipa ħoxna',
@@ -976,9 +978,6 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'prefs-misc'               => 'Varji',
 'saveprefs'                => 'Żomm il-preferenzi',
 'resetprefs'               => 'Neħħi modifiki mhux salvati',
-'oldpassword'              => 'Password antika:',
-'newpassword'              => 'Password ġdida:',
-'retypenew'                => "Erġa' ikteb il-password il-ġdida:",
 'textboxsize'              => 'Modifika',
 'rows'                     => 'Filieri:',
 'columns'                  => 'Kolonni:',

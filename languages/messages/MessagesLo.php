@@ -353,6 +353,9 @@ $messages = array(
 'accountcreatedtext'         => 'ບັນຊີ ຂອງ  $1 ໄດ້ ຖືກສ້າງແລ້ວ.',
 
 # Password reset dialog
+'oldpassword'       => 'ລະຫັດຜ່ານເກົ່າ:',
+'newpassword'       => 'ລະຫັດຜ່ານໃໝ່:',
+'retypenew'         => 'ພິມລະຫັດຜ່ານໃໝ່ອີກ:',
 'resetpass_submit'  => 'ຕັ້ງລະຫັດຜ່ານ ແລະ ເຊັນເຂົ້າ',
 'resetpass_success' => 'ສຳເລັດການປ່ຽນແປງ ລະຫັດຜ່ານຂອງທ່ານແລ້ວ! ດຽວນີ້ ທ່ານ ເຊັ່ນເຂົ້າ ໃນ ...',
 
@@ -480,9 +483,6 @@ $messages = array(
 'prefs-misc'            => 'ແລະອື່ນໆ',
 'saveprefs'             => 'ບັນທຶກ',
 'resetprefs'            => 'ເລີ່ມຄືນໃໝ່',
-'oldpassword'           => 'ລະຫັດຜ່ານເກົ່າ:',
-'newpassword'           => 'ລະຫັດຜ່ານໃໝ່:',
-'retypenew'             => 'ພິມລະຫັດຜ່ານໃໝ່ອີກ:',
 'textboxsize'           => 'ການດັດແກ້',
 'rows'                  => 'ແຖວ:',
 'columns'               => 'ຖັນ:',

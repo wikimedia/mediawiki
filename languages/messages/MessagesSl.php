@@ -400,6 +400,11 @@ možnosti se e-pošte ne bo pošiljalo.',
 'accountcreated'             => 'Račun je ustvarjen',
 'accountcreatedtext'         => 'Uporabniški račun za »$1« je ustvarjen.',
 
+# Password reset dialog
+'oldpassword' => 'Staro geslo:',
+'newpassword' => 'Novo geslo:',
+'retypenew'   => 'Ponovno vpišite geslo:',
+
 # Edit page toolbar
 'bold_sample'     => 'Krepko besedilo',
 'bold_tip'        => 'Krepko besedilo',
@@ -613,9 +618,6 @@ Do skrite vsebine bodo še vedno lahko dostopali drugi administratorji in jo z u
 'prefs-misc'               => 'Druge nastavitve',
 'saveprefs'                => 'Shrani',
 'resetprefs'               => 'Ponastavi',
-'oldpassword'              => 'Staro geslo:',
-'newpassword'              => 'Novo geslo:',
-'retypenew'                => 'Ponovno vpišite geslo:',
 'textboxsize'              => 'Urejanje',
 'rows'                     => 'Razsežnosti urejevalnega polja: vrstic:',
 'columns'                  => 'stolpcev:',

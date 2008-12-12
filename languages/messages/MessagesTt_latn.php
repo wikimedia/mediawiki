@@ -274,6 +274,11 @@ Sineñ xísabıñ yasaldı. {{SITENAME}}'dağı köyläwläreñne dä üzgärter
 Anı alğaç monda tağın kerep qara.',
 'mailerror'             => 'Xat künderü xatası: $1',
 
+# Password reset dialog
+'oldpassword' => 'İske sersüz',
+'newpassword' => 'Yaña sersüz',
+'retypenew'   => 'Yaña sersüz (qabat)',
+
 # Edit page toolbar
 'bold_sample'     => 'Qalın mäten',
 'bold_tip'        => 'Qalın mäten',
@@ -363,9 +368,6 @@ Zínhar, bu bitneñ wağraq kisäklärgä bülü turında uylap qara.",
 'prefs-misc'            => 'Başqa köyläwlär',
 'saveprefs'             => 'Saqla köyläwlärne',
 'resetprefs'            => 'Awdar köyläwne',
-'oldpassword'           => 'İske sersüz',
-'newpassword'           => 'Yaña sersüz',
-'retypenew'             => 'Yaña sersüz (qabat)',
 'textboxsize'           => 'Mätenqır ülçäme',
 'rows'                  => 'Yul:',
 'columns'               => 'Buy:',

@@ -527,12 +527,14 @@ Duhet të hyni brenda dhe të ndërroni fjalëkalimin tani nëse ky person jeni 
 'resetpass_announce'      => 'Ju keni hyrë me një kod të përkohshëm.
 Për të hyrë tërësisht duhet të vendosni një fjalëkalim të ri këtu:',
 'resetpass_header'        => 'Ndrysho fjalëkalimin',
+'oldpassword'             => 'I vjetri',
+'newpassword'             => 'I riu',
+'retypenew'               => 'I riu përsëri',
 'resetpass_submit'        => 'Ndrysho fjalëkalimin dhe hyni brenda',
 'resetpass_success'       => 'Fjalëkalimi juaj është ndryshuar me sukses! Mund të hyni brenda...',
 'resetpass_bad_temporary' => 'Fjalëkalim i përkohshëm është i pavlefshëm.
 Ndoshta e keni ndryshuar fjalëkalimin ose keni kërkuar një fjalëkalim të përkohshëm të ri.',
 'resetpass_forbidden'     => "Fjalëkalimet s'mund të ndryshohen në {{SITENAME}}",
-'resetpass_missing'       => 'Nuk kishte të dhëna në formular.',
 
 # Edit page toolbar
 'bold_sample'     => 'Tekst i trashë',
@@ -912,9 +914,6 @@ Ju lutem kërkoni {{SITENAME}}-n përpara se të krijoni një artikull të ri se
 'prefs-misc'               => 'Të ndryshme',
 'saveprefs'                => 'Ruaj parapëlqimet',
 'resetprefs'               => 'Rikthe parapëlqimet',
-'oldpassword'              => 'I vjetri',
-'newpassword'              => 'I riu',
-'retypenew'                => 'I riu përsëri',
 'textboxsize'              => 'Redaktimi',
 'rows'                     => 'Rreshta',
 'columns'                  => 'Kolona',

@@ -185,6 +185,9 @@ Droëneuh geupeusaran keu neutamong sigra, lheuëh nyan neugantoë lageuëm rahs
 'passwordsent'            => 'Lageuëm rahsia barô ka geukirém u surat-e nyang geupeudapeuta keu "$1". Neutamong teuma lheuëh neuteurimong surat-e nyan.',
 'eauthentsent'            => 'Saboh surat èlèktronik keu peunyoë ka geukirém u alamat surat èlèktronik Droëneuh. Droëneuh beuneuseutöt préntah lam surat nyan keu neupeunyoë meunyo alamat nyan nakeuh beutôy atra Droëneuh. {{SITENAME}} h‘an geupeuudép surat Droëneuh meunyo langkah nyoë hana neupeulaku lom.',
 
+# Password reset dialog
+'retypenew' => 'Pasoë keulayi lageuëm rahsia barô:',
+
 # Edit page toolbar
 'bold_sample'     => 'Citak teubay naseukah nyoë',
 'bold_tip'        => 'Citak teubay',
@@ -287,7 +290,6 @@ Nyoë pat nakeuh log seunampôh nibak ôn nyoë:",
 # Preferences page
 'preferences'   => 'Geunalak',
 'mypreferences' => 'Geunalak lôn',
-'retypenew'     => 'Pasoë keulayi lageuëm rahsia barô:',
 
 'grouppage-sysop' => '{{ns:project}}:Nyang urôh',
 

@@ -322,6 +322,9 @@ Ante alga otra eposta es enviada a la conta, tu va nesesa segue la instruis en l
 'emailconfirmlink'        => 'Aproba tu adirije de eposta',
 'loginlanguagelabel'      => 'Lingua: $1',
 
+# Password reset dialog
+'retypenew' => 'Re-entra tu sinia secreta nova:',
+
 # Edit page toolbar
 'bold_sample'     => 'Testo en leteras forte',
 'bold_tip'        => 'Testo en leteras forte',
@@ -451,7 +454,6 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 'skin-preview'      => 'Previde',
 'math'              => 'Matematica',
 'saveprefs'         => 'Fisa',
-'retypenew'         => 'Re-entra tu sinia secreta nova:',
 'rows'              => 'Linias:',
 'columns'           => 'Colonas:',
 'searchresultshead' => 'Xerca',

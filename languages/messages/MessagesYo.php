@@ -353,6 +353,9 @@ Kí á tó fi e-mail mìíràn ránṣẹ́ sí àpamọ́ yìí, ẹ gbọ́d�
 # Password reset dialog
 'resetpass'         => 'Àtúntò ọ̀rọ̀ìpamọ́ àpamọ́',
 'resetpass_header'  => 'Àtúntò ọ̀rọ̀ìpamọ́',
+'oldpassword'       => 'Ọ̀rọ̀ìpamọ́ titẹ́lẹ̀:',
+'newpassword'       => 'Ọ̀rọ̀ìpamọ́ tuntun:',
+'retypenew'         => 'Àtúntẹ̀ ọ̀rọ̀ìpamọ́ tuntun:',
 'resetpass_success' => 'Ìyípadà ọ̀rọ̀ìpamọ́ yín ti já sí rere! Ẹ̀ ún wọlé lọ́wọ́...',
 
 # Edit page toolbar
@@ -521,9 +524,6 @@ Bákannà ẹ tún ṣèlérí fún wa wípé ẹ̀yin lẹkọ́ fúnra arayín
 'prefs-watchlist-days' => 'Ọjọ́ láti fihàn nínú ìmójútó:',
 'saveprefs'            => 'Ìfipamọ́',
 'resetprefs'           => 'Palẹ̀mọ́ àwọn àtúnṣe tí kò sì ní ìpamọ́',
-'oldpassword'          => 'Ọ̀rọ̀ìpamọ́ titẹ́lẹ̀:',
-'newpassword'          => 'Ọ̀rọ̀ìpamọ́ tuntun:',
-'retypenew'            => 'Àtúntẹ̀ ọ̀rọ̀ìpamọ́ tuntun:',
 'searchresultshead'    => 'Àwáàrí',
 'savedprefs'           => 'Àwọn ìfẹ́ràn yín ti wà nípamọ́.',
 'prefs-searchoptions'  => 'Àwọn ìyàn àwáàrí',

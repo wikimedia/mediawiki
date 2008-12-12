@@ -302,6 +302,11 @@ Kapau naʻe kole ia ʻe he tokotaha kehe, pea ʻosi hoʻo manatuʻi ʻo e leatap
 'accountcreatedtext'         => 'Kuo fakatupu ʻa e tohi kau-ki-ai maʻa $1.',
 'loginlanguagelabel'         => 'Lea: $1',
 
+# Password reset dialog
+'oldpassword' => 'Ko e leatapu motuʻa:',
+'newpassword' => 'Ko e leatapu foʻou:',
+'retypenew'   => 'Toe ʻai leatapu foʻou:',
+
 # Edit page toolbar
 'bold_sample'     => 'Tohi sinolahi',
 'bold_tip'        => 'Tohi sinolahi',
@@ -444,9 +449,6 @@ Ko e konga ʻi olunga, ko e '''konga pē ʻe taha''' ʻe haofaki ʻi he lomiʻi 
 'prefs-misc'            => 'Kehekehe',
 'saveprefs'             => 'Haofaki',
 'resetprefs'            => 'Fakafoki',
-'oldpassword'           => 'Ko e leatapu motuʻa:',
-'newpassword'           => 'Ko e leatapu foʻou:',
-'retypenew'             => 'Toe ʻai leatapu foʻou:',
 'textboxsize'           => 'ʻOku fatu',
 'rows'                  => 'Ngaahi ʻotu:',
 'columns'               => 'Vahaʻa laini:',
