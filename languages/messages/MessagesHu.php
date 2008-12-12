@@ -40,9 +40,6 @@ $namespaceNames = array(
 $namespaceAliases = array(
 	'Kép' => NS_FILE,
 	'Képvita' => NS_FILE_TALK,
-);
-
-$namespaceAliases = array(
 	'User_vita'      => NS_USER_TALK,
 	'$1_vita'        => NS_PROJECT_TALK,
 	'Kép_vita'       => NS_FILE_TALK,
