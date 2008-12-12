@@ -1857,14 +1857,23 @@ class Article {
 		$changed = false;
 		foreach( $wgRestrictionTypes as $action ) {
 			if( isset( $expiry[$action] ) ) {
-				$current[$action] = implode( '', $this->mTitle->getRestrictions( $action ) );
-				$changed = ($changed || ($this->mTitle->mRestrictionsExpiry[$action] != $expiry[$action]) );
+				# Get current restrictions on $action
+				$aLimits = $this->mTitle->getRestrictions( $action );
+				$current[$action] = implode( '', $aLimits );
+				# Are any actual restrictions being dealt with here?
+				$aRChanged = count($aLimits) || !empty($limit[$action]);
+				# If something changed, we need to log it. Checking $aRChanged
+				# assures that "unprotecting" a page that is not protected does
+				# not log just because the expiry was "changed".
+				if( $aRChanged && $this->mTitle->mRestrictionsExpiry[$action] != $expiry[$action] ) {
+					$changed = true;
+				}
 			}
 		}
 
 		$current = Article::flattenRestrictions( $current );
 
-		$changed = ($changed || ( $current != $updated ) );
+		$changed = ($changed || $current != $updated );
 		$changed = $changed || ($updated && $this->mTitle->areRestrictionsCascading() != $cascade);
 		$protect = ( $updated != '' );
 
