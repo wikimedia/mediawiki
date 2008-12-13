@@ -1417,6 +1417,7 @@ $wgMessageStructure = array(
 		'booksources-isbn',
 		'booksources-go',
 		'booksources-text',
+		'booksources-invalid-isbn',
 	),
 	'magicwords' => array(
 		'rfcurl',
