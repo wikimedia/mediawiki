@@ -640,14 +640,20 @@ class LocalFile extends File
 		if( $limit ) {
 			$opts['LIMIT'] = $limit;
 		}
-		$opts['ORDER BY'] = 'oi_timestamp DESC';
+		// Search backwards for time > x queries
+		$order = (!$start && $end === "") ? "ASC" : "DESC";
+		$opts['ORDER BY'] = "oi_timestamp $order";
 		
-		wfRunHooks( 'LocalFile::getHistory', array( &$this, &$tables, &$fields, &$conds, &$opts, &$join_conds ) );
+		wfRunHooks( 'LocalFile::getHistory', array( &$this, &$tables, &$fields, 
+			&$conds, &$opts, &$join_conds ) );
 		
 		$res = $dbr->select( $tables, $fields, $conds, __METHOD__, $opts, $join_conds );
 		$r = array();
 		while( $row = $dbr->fetchObject($res) ) {
 			$r[] = OldLocalFile::newFromRow($row, $this->repo);
+		}
+		if( $order == "ASC" ) {
+			$r = array_reverse( $r ); // make sure it ends up descending
 		}
 		return $r;
 	}
