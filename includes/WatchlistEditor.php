@@ -344,19 +344,45 @@ class WatchlistEditor {
 			$form .= Xml::hidden( 'token', $wgUser->editToken( 'watchlistedit' ) );
 			$form .= "<fieldset>\n<legend>" . wfMsgHtml( 'watchlistedit-normal-legend' ) . "</legend>";
 			$form .= wfMsgExt( 'watchlistedit-normal-explain', 'parse' );
-			foreach( $this->getWatchlistInfo( $user ) as $namespace => $pages ) {
-				$form .= "<h2>" . $this->getNamespaceHeading( $namespace ) . "</h2>\n";
-				$form .= "<ul>\n";
-				foreach( $pages as $dbkey => $redirect ) {
-					$title = Title::makeTitleSafe( $namespace, $dbkey );
-					$form .= $this->buildRemoveLine( $title, $redirect, $wgUser->getSkin() );
-				}
-				$form .= "</ul>\n";
-			}
+			$form .= $this->buildRemoveList( $user, $wgUser->getSkin() );
 			$form .= '<p>' . Xml::submitButton( wfMsg( 'watchlistedit-normal-submit' ) ) . '</p>';
 			$form .= '</fieldset></form>';
 			$output->addHTML( $form );
 		}
+	}
+
+	/**
+	 * Build the part of the standard watchlist editing form with the actual
+	 * title selection checkboxes and stuff.  Also generates a table of
+	 * contents if there's more than one heading.
+	 *
+	 * @param $user User
+	 * @param $skin Skin (really, Linker)
+	 */
+	private function buildRemoveList( $user, $skin ) {
+		$list = "";
+		$toc = $skin->tocIndent();
+		$tocLength = 0;
+		foreach( $this->getWatchlistInfo( $user ) as $namespace => $pages ) {
+			$tocLength++;
+			$heading = htmlspecialchars( $this->getNamespaceHeading( $namespace ) );
+			$anchor = "editwatchlist-ns" . $namespace;
+
+			$list .= $skin->makeHeadLine( 2, ">", $anchor, $heading, "" );
+			$toc .= $skin->tocLine( $anchor, $heading, $tocLength, 1 ) . $skin->tocLineEnd();
+
+			$list .= "<ul>\n";
+			foreach( $pages as $dbkey => $redirect ) {
+				$title = Title::makeTitleSafe( $namespace, $dbkey );
+				$list .= $this->buildRemoveLine( $title, $redirect, $skin );
+			}
+			$list .= "</ul>\n";
+		}
+		// ISSUE: omit the TOC if the total number of titles is low?
+		if( $tocLength > 1 ) {
+			$list = $skin->tocList( $toc ) . $list;
+		}
+		return $list;
 	}
 
 	/**

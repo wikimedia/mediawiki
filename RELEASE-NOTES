@@ -227,6 +227,8 @@ The following extensions are migrated into MediaWiki 1.14:
   as 1.3 (gfdl1_3).
 * (bug 16293) PD URL was changed to the CreativeCommons site on PD (which auto-detects 
   your language) instead of Wikipedia.
+* (bug 16635) The "view and edit watchlist" page (Special:Watchlist/edit) now
+  includes a table of contents
 
 === Bug fixes in 1.14 ===
 
