@@ -631,12 +631,11 @@ class LocalFile extends File
 		$fields = OldLocalFile::selectFields();
 		$conds = $opts = array();
 		$conds[] = "oi_name = " . $dbr->addQuotes( $this->title->getDBKey() );
-		if( $start !== null ) {
+		if( $start ) {
 			$conds[] = "oi_timestamp <= " . $dbr->addQuotes( $dbr->timestamp( $start ) );
 		}
-		if( $end !== null ) {
-			$endTS = $end ? $dbr->timestamp( $end ) : "";
-			$conds[] = "oi_timestamp >= " . $dbr->addQuotes( $endTS );
+		if( $end ) {
+			$conds[] = "oi_timestamp >= " . $dbr->addQuotes( $end );
 		}
 		if( $limit ) {
 			$opts['LIMIT'] = $limit;
