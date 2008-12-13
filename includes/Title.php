@@ -3114,6 +3114,11 @@ class Title {
 	 * misleadingly named.  You probably just want to call isKnown(), which
 	 * calls this function internally.
 	 *
+	 * (ISSUE: Most of these checks are cheap, but the file existence check
+	 * can potentially be quite expensive.  Including it here fixes a lot of
+	 * existing code, but we might want to add an optional parameter to skip
+	 * it and any other expensive checks.)
+	 *
 	 * @return \type{\bool} TRUE or FALSE
 	 */
 	public function isAlwaysKnown() {

@@ -594,8 +594,7 @@ class SkinTemplate extends Skin {
 		if( $selected ) {
 			$classes[] = 'selected';
 		}
-		if( $checkEdit && !$title->isAlwaysKnown() && $title->getArticleId() == 0 &&
-			!($title->getNamespace() == NS_FILE && wfFindFile( $title )) ) {
+		if( $checkEdit && !$title->isKnown() ) {
 			$classes[] = 'new';
 			$query = 'action=edit';
 		}
@@ -696,7 +695,7 @@ class SkinTemplate extends Skin {
 						'href' => $this->mTitle->getLocalUrl( 'action=edit&section=new' )
 					);
 				}
-			} elseif ( $this->mTitle->exists() || $this->mTitle->isAlwaysKnown() ) {
+			} elseif ( $this->mTitle->isKnown() ) {
 				$content_actions['viewsource'] = array(
 					'class' => ($action == 'edit') ? 'selected' : false,
 					'text' => wfMsg('viewsource'),
