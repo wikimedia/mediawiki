@@ -3093,7 +3093,12 @@ class Title {
 	}
 
 	/**
-	 * Check if page exists
+	 * Check if page exists.  For historical reasons, this function simply
+	 * checks for the existence of the title in the page table, and will
+	 * thus return false for interwiki links, special pages and the like.
+	 * If you want to know if a title can be meaningfully viewed, you should
+	 * probably call the isKnown() method instead.
+	 *
 	 * @return \type{\bool} TRUE or FALSE
 	 */
 	public function exists() {
@@ -3101,21 +3106,51 @@ class Title {
 	}
 
 	/**
-	 * Do we know that this title definitely exists, or should we otherwise
-	 * consider that it exists?
+	 * Should links to this title be shown as potentially viewable (i.e. as
+	 * "bluelinks"), even if there's no record by this title in the page
+	 * table?
+	 *
+	 * This function is semi-deprecated for public use, as well as somewhat
+	 * misleadingly named.  You probably just want to call isKnown(), which
+	 * calls this function internally.
 	 *
 	 * @return \type{\bool} TRUE or FALSE
 	 */
 	public function isAlwaysKnown() {
-		// If the page is form Mediawiki:message/lang, calling wfMsgWeirdKey causes
-		// the full l10n of that language to be loaded. That takes much memory and
-		// isn't needed. So we strip the language part away.
-		// Also, extension messages which are not loaded, are shown as red, because
-		// we don't call MessageCache::loadAllMessages.
-		list( $basename, /* rest */ ) = explode( '/', $this->mDbkeyform, 2 );
-		return $this->isExternal()
-			|| ( $this->mNamespace == NS_MAIN && $this->mDbkeyform == '' )
-			|| ( $this->mNamespace == NS_MEDIAWIKI && wfMsgWeirdKey( $basename ) );
+		if( $this->mInterwiki != '' ) {
+			return true;  // any interwiki link might be viewable, for all we know
+		}
+		switch( $this->mNamespace ) {			
+		case NS_MEDIA:
+		case NS_FILE:
+			return wfFindFile( $this );  // file exists, possibly in a foreign repo
+		case NS_SPECIAL:
+			return SpecialPage::exists( $this->getDBKey() );  // valid special page
+		case NS_MAIN:
+			return $this->mDbkeyform == '';  // selflink, possibly with fragment
+		case NS_MEDIAWIKI:
+			// If the page is form Mediawiki:message/lang, calling wfMsgWeirdKey causes
+			// the full l10n of that language to be loaded. That takes much memory and
+			// isn't needed. So we strip the language part away.
+			// Also, extension messages which are not loaded, are shown as red, because
+			// we don't call MessageCache::loadAllMessages.
+			list( $basename, /* rest */ ) = explode( '/', $this->mDbkeyform, 2 );
+			return wfMsgWeirdKey( $basename );  // known system message
+		default:
+			return false;
+		}
+	}
+
+	/**
+	 * Does this title refer to a page that can (or might) be meaningfully
+	 * viewed?  In particular, this function may be used to determine if
+	 * links to the title should be rendered as "bluelinks" (as opposed to
+	 * "redlinks" to non-existent pages).
+	 *
+	 * @return \type{\bool} TRUE or FALSE
+	 */
+	public function isKnown() {
+		return $this->exists() || $this->isAlwaysKnown();
 	}
 
 	/**
