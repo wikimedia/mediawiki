@@ -166,8 +166,6 @@ class LinkHolderArray {
 					$output->addLink( $title, $id );
 				} elseif ( $linkCache->isBadLink( $pdbk ) ) {
 					$colours[$pdbk] = 'new';
-				} elseif ( $title->getNamespace() == NS_SPECIAL && !SpecialPage::exists( $pdbk ) ) {
-					$colours[$pdbk] = 'new';
 				} else {
 					# Not in the link cache, add it to the query
 					if ( !isset( $current ) ) {

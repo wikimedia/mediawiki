@@ -190,15 +190,7 @@ class Linker {
 		# If we don't know whether the page exists, let's find out.
 		wfProfileIn( __METHOD__ . '-checkPageExistence' );
 		if( !in_array( 'known', $options ) and !in_array( 'broken', $options ) ) {
-			if( $target->getNamespace() == NS_SPECIAL ) {
-				if( SpecialPage::exists( $target->getDBKey() ) ) {
-					$options []= 'known';
-				} else {
-					$options []= 'broken';
-				}
-			} elseif( $target->isAlwaysKnown() or
-			($target->getPrefixedText() == '' and $target->getFragment() != '')
-			or $target->exists() ) {
+			if( $target->isKnown() ) {
 				$options []= 'known';
 			} else {
 				$options []= 'broken';

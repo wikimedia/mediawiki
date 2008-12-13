@@ -77,6 +77,7 @@ class FakeTitle extends Title {
 	function equals() { $this->error(); }
 	function exists() { $this->error(); }
 	function isAlwaysKnown() { $this->error(); }
+	function isKnown() { $this->error(); }
 	function touchLinks() { $this->error(); }
 	function trackbackURL() { $this->error(); }
 	function trackbackRDF() { $this->error(); }

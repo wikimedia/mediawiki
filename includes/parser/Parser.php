@@ -1813,14 +1813,15 @@ class Parser
 			}
 
 			# Self-link checking
-			if( $nt->getFragment() === '' && $nt->getNamespace() != NS_SPECIAL ) {
+			if( $nt->getFragment() === '' && $ns != NS_SPECIAL ) {
 				if( in_array( $nt->getPrefixedText(), $selflink, true ) ) {
 					$s .= $prefix . $sk->makeSelfLinkObj( $nt, $text, '', $trail );
 					continue;
 				}
 			}
 
-			# Special and Media are pseudo-namespaces; no pages actually exist in them
+			# NS_MEDIA is a pseudo-namespace for linking directly to a file
+			# FIXME: Should do batch file existence checks, see comment below
 			if( $ns == NS_MEDIA ) {
 				# Give extensions a chance to select the file revision for us
 				$skip = $time = false;
@@ -1834,25 +1835,18 @@ class Parser
 				$s .= $prefix . $this->armorLinks( $link ) . $trail;
 				$this->mOutput->addImage( $nt->getDBkey() );
 				continue;
-			} elseif( $ns == NS_SPECIAL ) {
-				if( SpecialPage::exists( $nt->getDBkey() ) ) {
-					$s .= $this->makeKnownLinkHolder( $nt, $text, '', $trail, $prefix );
-				} else {
-					$s .= $holders->makeHolder( $nt, $text, '', $trail, $prefix );
-				}
-				continue;
-			} elseif( $ns == NS_FILE ) {
-				$img = wfFindFile( $nt );
-				if( $img ) {
-					// Force a blue link if the file exists; may be a remote
-					// upload on the shared repository, and we want to see its
-					// auto-generated page.
-					$s .= $this->makeKnownLinkHolder( $nt, $text, '', $trail, $prefix );
-					$this->mOutput->addLink( $nt );
-					continue;
-				}
 			}
-			$s .= $holders->makeHolder( $nt, $text, '', $trail, $prefix );
+
+			# Some titles, such as valid special pages or files in foreign repos, should
+			# be shown as bluelinks even though they're not included in the page table
+			#
+			# FIXME: isAlwaysKnown() can be expensive for file links; we should really do
+			# batch file existence checks for NS_FILE and NS_MEDIA
+			if( $nt->isAlwaysKnown() ) {
+				$s .= $this->makeKnownLinkHolder( $nt, $text, '', $trail, $prefix );
+			} else {
+				$s .= $holders->makeHolder( $nt, $text, '', $trail, $prefix );
+			}
 		}
 		wfProfileOut( __METHOD__ );
 		return $holders;
