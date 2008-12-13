@@ -164,8 +164,7 @@ class LocalRepo extends FSRepo {
 	/*
 	 * Find many files using one query
 	 */
-	function findFiles( $titles, $flags ) {
-		// FIXME: Comply with $flags
+	function findFiles( $titles ) {
 	 	// FIXME: Only accepts a $titles array where the keys are the sanitized
 	 	// file names.
 	 	 

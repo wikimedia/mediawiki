@@ -133,10 +133,10 @@ abstract class FileRepo {
 	 * @param array $titles, an array of titles
 	 * @param int $flags
 	 */
-	function findFiles( $titles, $flags ) {
+	function findFiles( $titles ) {
 		$result = array();
 		foreach ( $titles as $index => $title ) {
-			$file = $this->findFile( $title, $flags );
+			$file = $this->findFile( $title );
 			if ( $file )
 				$result[$file->getTitle()->getDBkey()] = $file;
 		}
