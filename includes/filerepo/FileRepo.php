@@ -131,7 +131,7 @@ abstract class FileRepo {
 	/*
 	 * Find many files at once. 
 	 * @param array $titles, an array of titles
-	 * @param int $flags
+	 * @todo Think of a good way to optionally pass timestamps to this function.
 	 */
 	function findFiles( $titles ) {
 		$result = array();
