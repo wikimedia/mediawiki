@@ -635,7 +635,8 @@ class LocalFile extends File
 			$conds[] = "oi_timestamp <= " . $dbr->addQuotes( $dbr->timestamp( $start ) );
 		}
 		if( $end !== null ) {
-			$conds[] = "oi_timestamp >= " . $dbr->addQuotes( $dbr->timestamp( $end ) );
+			$endTS = $end ? $dbr->timestamp( $end ) : "";
+			$conds[] = "oi_timestamp >= " . $dbr->addQuotes( $endTS );
 		}
 		if( $limit ) {
 			$opts['LIMIT'] = $limit;
