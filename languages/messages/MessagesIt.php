@@ -1512,7 +1512,7 @@ Di seguito sono elencate solo {{PLURAL:$1|la prima pagina che punta|le prime $1 
 'statistics-header-users'         => 'Statistiche relative agli utenti',
 'statistics-articles'             => 'Pagine di contenuti',
 'statistics-pages'                => 'Pagine',
-'statistics-pages-tooltip'        => 'Tutte le pagina della wiki, comprese le pagina di discussione, i redirect, ecc.',
+'statistics-pages-desc'        => 'Tutte le pagina della wiki, comprese le pagina di discussione, i redirect, ecc.',
 'statistics-files'                => 'File caricati',
 'statistics-edits'                => "Modifiche a partire dall'installazione di {{SITENAME}}",
 'statistics-edits-average'        => 'Media delle modifiche per pagina',
@@ -1521,7 +1521,7 @@ Di seguito sono elencate solo {{PLURAL:$1|la prima pagina che punta|le prime $1 
 'statistics-jobqueue'             => '[http://www.mediawiki.org/wiki/Manual:Job_queue Coda dei processi] da eseguire in background',
 'statistics-users'                => '[[Special:ListUsers|Utenti]] registrati',
 'statistics-users-active'         => 'Utenti attivi',
-'statistics-users-active-tooltip' => "Utenti che hanno effettuato un'azione nel mese scorso",
+'statistics-users-active-desc' => "Utenti che hanno effettuato un'azione nel mese scorso",
 'statistics-mostpopular'          => 'Pagine più visitate',
 
 'disambiguations'      => 'Pagine di disambiguazione',

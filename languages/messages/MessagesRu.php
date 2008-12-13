@@ -1633,7 +1633,7 @@ PICT # различные
 'statistics-header-users'         => 'Статистика по участникам',
 'statistics-articles'             => 'Статей',
 'statistics-pages'                => 'Страниц',
-'statistics-pages-tooltip'        => 'Все страницы в вики, включая страницы обсуждения, перенаправления и прочее.',
+'statistics-pages-desc'        => 'Все страницы в вики, включая страницы обсуждения, перенаправления и прочее.',
 'statistics-files'                => 'Загружено файлов',
 'statistics-edits'                => 'Число правок с момента установки {{grammar:genitive|{{SITENAME}}}}',
 'statistics-edits-average'        => 'Среднее число правок на страницу',
@@ -1642,7 +1642,7 @@ PICT # различные
 'statistics-jobqueue'             => 'Величина [http://www.mediawiki.org/wiki/Manual:Job_queue очереди заданий]',
 'statistics-users'                => 'Зарегистрированные [[Special:ListUsers|участники]]',
 'statistics-users-active'         => 'Активные участники',
-'statistics-users-active-tooltip' => 'Участники, совершившие какое-либо действие за прошедший месяц',
+'statistics-users-active-desc' => 'Участники, совершившие какое-либо действие за прошедший месяц',
 'statistics-mostpopular'          => 'Наиболее часто просматриваемые страницы',
 
 'disambiguations'      => 'Страницы со ссылками на многозначные термины',

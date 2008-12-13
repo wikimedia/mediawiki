@@ -1161,7 +1161,7 @@ $1',
 'statistics-jobqueue'             => 'Μάκρος [http://www.mediawiki.org/wiki/Manual:Job_queue καταλόγου ἀναμένοντων]',
 'statistics-users'                => 'Ἐγγεγραμμένοι [[Special:ListUsers|χρώμενοι]]',
 'statistics-users-active'         => 'Ἐνεργοὶ χρώμενοι <small>(χρώμενοι οἳ have edited or performed an action διάφορον τῆς ποιήσεως λογισμοῦ ἐν τῷ παρελθόντι μηνί)</small>',
-'statistics-users-active-tooltip' => 'Χρώμενοι δραστήριοι ἐν τῷ παρελθόντι μηνί',
+'statistics-users-active-desc' => 'Χρώμενοι δραστήριοι ἐν τῷ παρελθόντι μηνί',
 'statistics-mostpopular'          => 'Αἱ πλέον θεωρουμέναι δέλτοι',
 
 'disambiguations'     => 'Σαφηνίσεως δέλτοι',

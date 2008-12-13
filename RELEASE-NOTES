@@ -397,6 +397,8 @@ The following extensions are migrated into MediaWiki 1.14:
   title via the API
 * (bug 4253, bug 16586) Revision ID is now given instead of title in URLs for
   new pages in the recent changes IRC feed
+* Ugly tooltips in Special:Statistics were phased out in favor of more direct
+  information. Went ahead and rewrote SpecialStatistics to subclass SpecialPage
 
 === API changes in 1.14 ===
 

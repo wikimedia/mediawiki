@@ -1564,7 +1564,7 @@ PICT # misc.
 'statistics-header-users'         => 'آمار کاربر',
 'statistics-articles'             => 'صفحات محتوا',
 'statistics-pages'                => 'صفحات',
-'statistics-pages-tooltip'        => 'کل صفحات ته ویکی په داب صفحات بحث ،غیر مستقیمان و دگه چیز.',
+'statistics-pages-desc'        => 'کل صفحات ته ویکی په داب صفحات بحث ،غیر مستقیمان و دگه چیز.',
 'statistics-files'                => 'آپلود بیتگین فایلان',
 'statistics-edits'                => 'اصلاح صفحات چه وهدی که {{SITENAME}} شر بوتت',
 'statistics-edits-average'        => 'میانگین اصلاحات ته هر صفحه ای',
@@ -1573,7 +1573,7 @@ PICT # misc.
 'statistics-jobqueue'             => '[http://www.mediawiki.org/wiki/Manual:Job_queue طول کار] ای',
 'statistics-users'                => 'ثبت نامی [[Special:ListUsers|users]]',
 'statistics-users-active'         => 'فعالین کاربر',
-'statistics-users-active-tooltip' => 'کاربرانی که ته پیشگین ماه کاری اش کتت',
+'statistics-users-active-desc' => 'کاربرانی که ته پیشگین ماه کاری اش کتت',
 'statistics-mostpopular'          => 'باز چار تگین صفحات',
 
 'disambiguations'      => 'صفحات رفع ابهام',

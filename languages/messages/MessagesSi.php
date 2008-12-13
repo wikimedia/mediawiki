@@ -1559,7 +1559,7 @@ PICT # විවිධ.
 'statistics-header-users'         => 'පරිශීලකයන් පිළිබඳ සංඛ්‍යාන දත්ත',
 'statistics-articles'             => 'අන්තර්ගත  පිටු',
 'statistics-pages'                => 'පිටු',
-'statistics-pages-tooltip'        => 'සාකච්ඡා පිටු, යළි-යොමුවීම් ආදිය ඇතුළු විකියෙහි සියළු පිටු.',
+'statistics-pages-desc'        => 'සාකච්ඡා පිටු, යළි-යොමුවීම් ආදිය ඇතුළු විකියෙහි සියළු පිටු.',
 'statistics-files'                => 'උඩුගතකරන ලද ගොනු',
 'statistics-edits'                => '{{SITENAME}} පිහිටුවීමෙන් අනතුරුව සිදුවූ පිටු සංස්කරණයන්',
 'statistics-edits-average'        => 'එක් පිටුවකට සංස්කරණයන්හි  මධ්‍යක අගය',
@@ -1568,7 +1568,7 @@ PICT # විවිධ.
 'statistics-jobqueue'             => '[http://www.mediawiki.org/wiki/Manual:Job_queue කාර්යය පෝලිමෙහි] දිග',
 'statistics-users'                => 'ලේඛනගත  [[Special:ListUsers|පරිශීලකයෝ]]',
 'statistics-users-active'         => 'ක්‍රියාශීලි පරිශීලකයන්',
-'statistics-users-active-tooltip' => 'පසුගිය මාසයෙහි කිසියම් ක්‍රියාවක් සිදු කල පරිශීලකයන්',
+'statistics-users-active-desc' => 'පසුගිය මාසයෙහි කිසියම් ක්‍රියාවක් සිදු කල පරිශීලකයන්',
 'statistics-mostpopular'          => 'බෙහෙවින් නරඹනු ලබන පිටු',
 
 'disambiguations'      => 'වක්‍රෝත්තිහරණ පිටු',

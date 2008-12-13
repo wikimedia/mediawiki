@@ -1496,7 +1496,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'statistics-header-users'         => '登録利用者に関する統計',
 'statistics-articles'             => '記事数',
 'statistics-pages'                => '総項目数',
-'statistics-pages-tooltip'        => 'ノートページやリダイレクトを含んだこのWiki内全てのページです。',
+'statistics-pages-desc'        => 'ノートページやリダイレクトを含んだこのWiki内全てのページです。',
 'statistics-files'                => 'アップロードされたファイル数',
 'statistics-edits'                => '編集回数の総計',
 'statistics-edits-average'        => '1項目あたりの編集回数',
@@ -1505,7 +1505,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'statistics-jobqueue'             => '[http://www.mediawiki.org/wiki/Manual:Job_queue ジョブ・キュー]の長さ',
 'statistics-users'                => '[[Special:ListUsers|登録利用者]]',
 'statistics-users-active'         => '活動中の利用者',
-'statistics-users-active-tooltip' => '過去1ヶ月に編集など何らかの操作を行った利用者',
+'statistics-users-active-desc' => '過去1ヶ月に編集など何らかの操作を行った利用者',
 'statistics-mostpopular'          => '最も閲覧されているページ',
 
 'disambiguations'      => '曖昧さ回避ページ',

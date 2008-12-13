@@ -1709,7 +1709,7 @@ PICT # שונות
 'statistics-header-users'         => 'סטטיסטיקות משתמשים',
 'statistics-articles'             => 'דפי תוכן',
 'statistics-pages'                => 'דפים',
-'statistics-pages-tooltip'        => 'כל הדפים באתר הוויקי, כולל דפי שיחה, הפניות, וכדומה',
+'statistics-pages-desc'        => 'כל הדפים באתר הוויקי, כולל דפי שיחה, הפניות, וכדומה',
 'statistics-files'                => 'קבצים שהועלו',
 'statistics-edits'                => 'העריכות מאז תחילת הפעולה של {{SITENAME}}',
 'statistics-edits-average'        => 'מספר העריכות הממוצע לדף',
@@ -1718,7 +1718,7 @@ PICT # שונות
 'statistics-jobqueue'             => 'אורך [http://www.mediawiki.org/wiki/Manual:Job_queue תור המשימות]',
 'statistics-users'                => 'ה[[Special:ListUsers|משתמשים]] הרשומים',
 'statistics-users-active'         => 'המשתמשים הפעילים',
-'statistics-users-active-tooltip' => 'משתמשים שביצעו פעולה כלשהי בחודש האחרון',
+'statistics-users-active-desc' => 'משתמשים שביצעו פעולה כלשהי בחודש האחרון',
 'statistics-mostpopular'          => 'הדפים הנצפים ביותר',
 
 'disambiguations'      => 'דפי פירושונים',

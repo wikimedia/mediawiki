@@ -1452,7 +1452,7 @@ Di sècutu sunnu alincati sulu {{PLURAL:$1|la prima pàggina ca punta|li primi $
 'statistics-header-users'         => "Li statìstichi di l'utilizzatura",
 'statistics-articles'             => 'Pàggini di cuntinutu',
 'statistics-pages'                => 'Pàggini',
-'statistics-pages-tooltip'        => 'Tutti li pàggini dâ wiki, cu puru chiddi di discussioni, li rinnirizzamenti, ecc.',
+'statistics-pages-desc'        => 'Tutti li pàggini dâ wiki, cu puru chiddi di discussioni, li rinnirizzamenti, ecc.',
 'statistics-files'                => 'File carricati',
 'statistics-edits'                => 'Canci a pàrtiri di la nstallazzioni di {{SITENAME}}',
 'statistics-edits-average'        => 'Media dî canci pi pàggina',
@@ -1461,7 +1461,7 @@ Di sècutu sunnu alincati sulu {{PLURAL:$1|la prima pàggina ca punta|li primi $
 'statistics-jobqueue'             => '[http://www.mediawiki.org/wiki/Manual:Job_queue Cuda dî prucessi] a esiquiri n background',
 'statistics-users'                => '[[Special:ListUsers|Utilizzatura]] riggistrati',
 'statistics-users-active'         => 'Utilizzatura attivi',
-'statistics-users-active-tooltip' => "Utilizzatura chi fìciru n'azzioni lu misi passatu",
+'statistics-users-active-desc' => "Utilizzatura chi fìciru n'azzioni lu misi passatu",
 'statistics-mostpopular'          => 'Pàggini cchiù visitati',
 
 'disambiguations'      => 'Pàggini cu liami ambìgui',

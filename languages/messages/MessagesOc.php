@@ -1594,7 +1594,7 @@ Doblidetz pas de verificar se i a pas d’autre ligam cap als modèls abans de l
 'statistics-header-users'         => "Estatisticas d'utilizaire",
 'statistics-articles'             => 'Paginas de contengut',
 'statistics-pages'                => 'Paginas',
-'statistics-pages-tooltip'        => 'Totas las paginas del wiki, enclusas las paginas de discussion, las redireccions, ...',
+'statistics-pages-desc'        => 'Totas las paginas del wiki, enclusas las paginas de discussion, las redireccions, ...',
 'statistics-files'                => 'Fichièrs importats',
 'statistics-edits'                => 'Modificacions de paginas dempuèi que {{SITENAME}} foguèt installat',
 'statistics-edits-average'        => 'Modificacions mejanas per pagina',
@@ -1603,7 +1603,7 @@ Doblidetz pas de verificar se i a pas d’autre ligam cap als modèls abans de l
 'statistics-jobqueue'             => 'Longor de la [http://www.mediawiki.org/wiki/Manual:Job_queue lista d’espèra de tractament]',
 'statistics-users'                => '[[Special:ListUsers|Utilizaires]] enregistrats',
 'statistics-users-active'         => 'Utilizaires actius',
-'statistics-users-active-tooltip' => "Nombre d'utilizaires qu'an fach al mens una accion durant lo darrièr mes",
+'statistics-users-active-desc' => "Nombre d'utilizaires qu'an fach al mens una accion durant lo darrièr mes",
 'statistics-mostpopular'          => 'Paginas mai consultadas',
 
 'disambiguations'      => "Paginas d'omonimia",

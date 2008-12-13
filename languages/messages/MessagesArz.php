@@ -1696,7 +1696,7 @@ PICT # misc.
 'statistics-header-users'         => 'الاحصاءات بتاعة اليوزر',
 'statistics-articles'             => 'صفحات المحتوى',
 'statistics-pages'                => 'الصفحات',
-'statistics-pages-tooltip'        => 'كل الصفحات فى الويكى، بما فى ذلك صفحات النقاش، التحويلات، إلى آخره.',
+'statistics-pages-desc'        => 'كل الصفحات فى الويكى، بما فى ذلك صفحات النقاش، التحويلات، إلى آخره.',
 'statistics-files'                => 'الملفات المرفوعة',
 'statistics-edits'                => 'تعديلات الصفحات منذ تنصيب {{SITENAME}}',
 'statistics-edits-average'        => 'متوسط التعديلات لكل صفحة',
@@ -1705,7 +1705,7 @@ PICT # misc.
 'statistics-jobqueue'             => 'طول [http://www.mediawiki.org/wiki/Manual:Job_queue طابور الشغل]',
 'statistics-users'                => '[[Special:ListUsers|يوزرز]] مسجلين',
 'statistics-users-active'         => 'يوزرز نشطين',
-'statistics-users-active-tooltip' => 'اليوزرز اللى قاموا بفعل فى الشهر الماضى',
+'statistics-users-active-desc' => 'اليوزرز اللى قاموا بفعل فى الشهر الماضى',
 'statistics-mostpopular'          => 'اكتر صفحات اتشافت',
 
 'disambiguations'      => 'صفحات التوضيح',

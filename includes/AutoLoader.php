@@ -487,6 +487,7 @@ $wgAutoloadLocalClasses = array(
 	'SpecialRecentchangeslinked' => 'includes/specials/SpecialRecentchangeslinked.php',
 	'SpecialSearch' => 'includes/specials/SpecialSearch.php',
 	'SpecialSearchOld' => 'includes/specials/SpecialSearch.php',
+	'SpecialStatistics' => 'includes/specials/SpecialStatistics.php',
 	'SpecialVersion' => 'includes/specials/SpecialVersion.php',
 	'UncategorizedCategoriesPage' => 'includes/specials/SpecialUncategorizedcategories.php',
 	'UncategorizedPagesPage' => 'includes/specials/SpecialUncategorizedpages.php',

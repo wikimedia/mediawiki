@@ -1604,7 +1604,7 @@ PICT # misc.
 'statistics-header-users'         => 'Статистики за корисници',
 'statistics-articles'             => 'Статии',
 'statistics-pages'                => 'Страници',
-'statistics-pages-tooltip'        => 'Сите страници на викито, вклучувајќи и страници за разговор, пренасочувања, и.т.н.',
+'statistics-pages-desc'        => 'Сите страници на викито, вклучувајќи и страници за разговор, пренасочувања, и.т.н.',
 'statistics-files'                => 'Подигнати податотеки',
 'statistics-edits'                => 'Број на уредувања од започнувањето на {{SITENAME}}',
 'statistics-edits-average'        => 'Просечен број на уредувања по страница',
@@ -1613,7 +1613,7 @@ PICT # misc.
 'statistics-jobqueue'             => 'Должина на [http://www.mediawiki.org/wiki/Manual:Job_queue редица на чекање]',
 'statistics-users'                => 'Регистрирани [[Special:ListUsers|корисници]]',
 'statistics-users-active'         => 'Активни корисници',
-'statistics-users-active-tooltip' => 'Корисници кои имаат извршено некоја активност во последниот месец',
+'statistics-users-active-desc' => 'Корисници кои имаат извршено некоја активност во последниот месец',
 'statistics-mostpopular'          => 'Најпосетувани страници',
 
 'disambiguations'      => 'Страници за појаснување',

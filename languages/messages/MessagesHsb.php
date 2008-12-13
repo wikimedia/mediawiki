@@ -1464,7 +1464,7 @@ Slědowaca lisćina pokazuje jenož {{PLURAL:$1|prěni wotkaz strony|prěnjej $1
 'statistics-header-users'         => 'Statistika wužiwarjow',
 'statistics-articles'             => 'Wobsahowe strony',
 'statistics-pages'                => 'Strony',
-'statistics-pages-tooltip'        => 'Wšě strony we wikiju, inkluziwnje diskusijnych stronow, daleposrědkowanja atd.',
+'statistics-pages-desc'        => 'Wšě strony we wikiju, inkluziwnje diskusijnych stronow, daleposrědkowanja atd.',
 'statistics-files'                => 'Nahrate dataje',
 'statistics-edits'                => 'Změny stronow wot załoženja {{SITENAME}}',
 'statistics-edits-average'        => 'Změny na stronu w přerězku',
@@ -1473,7 +1473,7 @@ Slědowaca lisćina pokazuje jenož {{PLURAL:$1|prěni wotkaz strony|prěnjej $1
 'statistics-jobqueue'             => 'Dołhosć [http://www.mediawiki.org/wiki/Manual:Job_queue Job queue]',
 'statistics-users'                => 'Zregistrowani [[Special:ListUsers|wužiwarjo]]',
 'statistics-users-active'         => 'Aktiwni wužiwarjo',
-'statistics-users-active-tooltip' => 'Wužiwarjo, kotřiž su w zańdźenym měsaću aktiwni byli',
+'statistics-users-active-desc' => 'Wužiwarjo, kotřiž su w zańdźenym měsaću aktiwni byli',
 'statistics-mostpopular'          => 'Najhusćišo wopytowane strony',
 
 'disambiguations'      => 'Rozjasnjenja wjacezmyslnosće',

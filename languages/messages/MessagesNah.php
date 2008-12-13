@@ -746,7 +746,7 @@ Tlahcuilōlli iuhcāyōtl {{PLURAL:\$3|moēlēhuia cah|moēlēhuiah cateh}} \$2.
 'statistics-header-views'  => 'Tlahpololiztli tlapōhualli',
 'statistics-header-users'  => 'Tlatequitiltilīlli ītlapōhualiz',
 'statistics-pages'         => 'Zāzaniltin',
-'statistics-pages-tooltip' => 'Mochīntīn zāzaniltin huiquipan, mopiyah tēixnāmiquiliztli, tlacuepaliztli, etz.',
+'statistics-pages-desc' => 'Mochīntīn zāzaniltin huiquipan, mopiyah tēixnāmiquiliztli, tlacuepaliztli, etz.',
 'statistics-files'         => 'Tlahcuilōlli ōmoquetz',
 
 'disambiguations' => 'Ōmetōcāitl zāzaniltin',

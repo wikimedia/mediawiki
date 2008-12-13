@@ -1558,7 +1558,7 @@ Hãy nhớ kiểm tra các liên kết khác đến tiêu bản trước khi xó
 'statistics-header-users'         => 'Thống kê thành viên',
 'statistics-articles'             => 'Số trang nội dung',
 'statistics-pages'                => 'Số trang',
-'statistics-pages-tooltip'        => 'Tất cả các trang tại wiki, bao gồm trang thảo luận, trang đổi hướng, v.v.',
+'statistics-pages-desc'        => 'Tất cả các trang tại wiki, bao gồm trang thảo luận, trang đổi hướng, v.v.',
 'statistics-files'                => 'Số tập tin đã tải lên',
 'statistics-edits'                => 'Số sửa đổi trang từ khi {{SITENAME}} được thành lập',
 'statistics-edits-average'        => 'Số sửa đổi trung bình trên một trang',
@@ -1567,7 +1567,7 @@ Hãy nhớ kiểm tra các liên kết khác đến tiêu bản trước khi xó
 'statistics-jobqueue'             => 'Chiều dài [http://www.mediawiki.org/wiki/Manual:Job_queue hàng đợi việc]',
 'statistics-users'                => 'Số [[Special:ListUsers|thành viên]] đã đăng ký',
 'statistics-users-active'         => 'Số thành viên tích cực',
-'statistics-users-active-tooltip' => 'Những thành viên đã hoạt động trong tháng qua',
+'statistics-users-active-desc' => 'Những thành viên đã hoạt động trong tháng qua',
 'statistics-mostpopular'          => 'Các trang được xem nhiều nhất',
 
 'disambiguations'      => 'Trang định hướng',

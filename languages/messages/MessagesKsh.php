@@ -1711,7 +1711,7 @@ wääde, un luur Der der iehr ander Links aan!',
 'statistics-header-users'         => 'Statistike üvver de Metmaacher',
 'statistics-articles'             => 'Atikele',
 'statistics-pages'                => 'Sigge jesamp',
-'statistics-pages-tooltip'        => 'All pages in the wiki, including talk pages, redirects, etc.
+'statistics-pages-desc'        => 'All pages in the wiki, including talk pages, redirects, etc.
 All de Sigge em Wiki, och Klaafsigge, Ömleitunge, un esu jet',
 'statistics-files'                => 'Huhjelade Dateie',
 'statistics-edits'                => 'Änderunge aan Sigge',
@@ -1721,7 +1721,7 @@ All de Sigge em Wiki, och Klaafsigge, Ömleitunge, un esu jet',
 'statistics-jobqueue'             => 'Endrääch en de [http://www.mediawiki.org/wiki/Manual:Job_queue Opjaveleß]',
 'statistics-users'                => '[[Special:ListUsers|Metmaacher]] aajemelldt',
 'statistics-users-active'         => 'Aktive Metmaacher',
-'statistics-users-active-tooltip' => 'Metmaacher, die em läzte Mohnd jät jemaat han.',
+'statistics-users-active-desc' => 'Metmaacher, die em läzte Mohnd jät jemaat han.',
 'statistics-mostpopular'          => 'De miets affjeroofe Sigge',
 
 'disambiguations'      => '„(Wat es dat?)“-Sigge',

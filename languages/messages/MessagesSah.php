@@ -1419,7 +1419,7 @@ PICT # misc.
 'statistics-header-users'         => 'Кыттааччы статистиката',
 'statistics-articles'             => 'Ыстатыйа иһинээҕитэ',
 'statistics-pages'                => 'Сирэйдэр',
-'statistics-pages-tooltip'        => 'Биики бары сирэйдэрин (ырытыы сирэйдэрин, утаарыылары уо.д.а киллэрэн туран).',
+'statistics-pages-desc'        => 'Биики бары сирэйдэрин (ырытыы сирэйдэрин, утаарыылары уо.д.а киллэрэн туран).',
 'statistics-files'                => 'Киллэриллибит билэлэр ахсааннара',
 'statistics-edits'                => '{{SITENAME}} туруоҕуттан көннөрүү ахсаана',
 'statistics-edits-average'        => 'Биир сирэйгэ ортотунан хас көннөрүү тиксэрэ',
@@ -1428,7 +1428,7 @@ PICT # misc.
 'statistics-jobqueue'             => '[http://www.mediawiki.org/wiki/Manual:Job_queue Job queue] кээмэйэ',
 'statistics-users'                => '[[Special:ListUsers|Кыттааччы]] бэлиэтэммит',
 'statistics-users-active'         => 'Көхтөөх кыттааччылар',
-'statistics-users-active-tooltip' => 'Ааспыт ыйга тугу эмэ оҥорбут кыттааччылар',
+'statistics-users-active-desc' => 'Ааспыт ыйга тугу эмэ оҥорбут кыттааччылар',
 'statistics-mostpopular'          => 'Саамай элбэхтик көрүллэр ыстатыйалар',
 
 'disambiguations'      => 'Элбэх суолталаах өйдөбүллэр сирэйдэрэ',
