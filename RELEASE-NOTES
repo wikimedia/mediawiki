@@ -401,6 +401,7 @@ The following extensions are migrated into MediaWiki 1.14:
   information. Went ahead and rewrote SpecialStatistics to subclass SpecialPage
 * (bug 5506) Links to files on foreign repositories are now shown consistently
   as bluelinks e.g. in logs and edit summaries
+* (bug 16623) Add missing </p> tag in Special:LockDB
 
 === API changes in 1.14 ===
 

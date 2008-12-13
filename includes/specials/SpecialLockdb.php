@@ -109,7 +109,7 @@ END
 		}
 		fwrite( $fp, $this->reason );
 		fwrite( $fp, "\n<p>(by " . $wgUser->getName() . " at " .
-		  $wgLang->timeanddate( wfTimestampNow() ) . ")\n" );
+		  $wgLang->timeanddate( wfTimestampNow() ) . ")</p>\n" );
 		fclose( $fp );
 
 		$titleObj = SpecialPage::getTitleFor( 'Lockdb' );
