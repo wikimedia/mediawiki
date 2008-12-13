@@ -684,15 +684,20 @@ if( $conf->SysopName ) {
 }
 
 $conf->License = importRequest( "License", "none" );
-if( $conf->License == "gfdl" ) {
-	$conf->RightsUrl = "http://www.gnu.org/copyleft/fdl.html";
+if( $conf->License == "gfdl1_2" ) {
+	$conf->RightsUrl = "http://www.gnu.org/licenses/old-licenses/fdl-1.2.txt";
 	$conf->RightsText = "GNU Free Documentation License 1.2";
-	$conf->RightsCode = "gfdl";
+	$conf->RightsCode = "gfdl1_2";
+	$conf->RightsIcon = '${wgScriptPath}/skins/common/images/gnu-fdl.png';
+} elseif( $conf->License == "gfdl1_3" ) {
+	$conf->RightsUrl = "http://www.gnu.org/copyleft/fdl.html";
+	$conf->RightsText = "GNU Free Documentation License 1.3";
+	$conf->RightsCode = "gfdl1_3";
 	$conf->RightsIcon = '${wgScriptPath}/skins/common/images/gnu-fdl.png';
 } elseif( $conf->License == "none" ) {
 	$conf->RightsUrl = $conf->RightsText = $conf->RightsCode = $conf->RightsIcon = "";
 } elseif( $conf->License == "pd" ) {
-	$conf->RightsUrl = "http://en.wikipedia.org/wiki/Public_domain";
+	$conf->RightsUrl = "http://creativecommons.org/licenses/publicdomain/";
 	$conf->RightsText = "Public Domain";
 	$conf->RightsCode = "pd";
 	$conf->RightsIcon = '${wgScriptPath}/skins/common/images/public-domain.png';
@@ -1186,7 +1191,8 @@ if( count( $errs ) ) {
 		<ul class="plain">
 		<li><?php aField( $conf, "License", "No license metadata", "radio", "none" ); ?></li>
 		<li><?php aField( $conf, "License", "Public Domain", "radio", "pd" ); ?></li>
-		<li><?php aField( $conf, "License", "GNU Free Documentation License 1.2 (Wikipedia-compatible)", "radio", "gfdl" ); ?></li>
+		<li><?php aField( $conf, "License", "GNU Free Documentation License 1.2 (Wikipedia-compatible)", "radio", "gfdl1_2" ); ?></li>
+		<li><?php aField( $conf, "License", "GNU Free Documentation License 1.3", "radio", "gfdl1_3" ); ?></li>
 		<li><?php
 			aField( $conf, "License", "A Creative Commons license - ", "radio", "cc" );
 			$partner = "MediaWiki";
@@ -1594,7 +1600,7 @@ function writeLocalSettings( $conf ) {
 
 	# Add slashes to strings for double quoting
 	$slconf = array_map( "escapePhpString", get_object_vars( $conf ) );
-	if( $conf->License == 'gfdl' || $conf->License == 'pd' ) {
+	if( $conf->License == 'gfdl1_2' || $conf->License == 'pd' || $conf->License == 'gfdl1_3' ) {
 		# Needs literal string interpolation for the current style path
 		$slconf['RightsIcon'] = $conf->RightsIcon;
 	}
