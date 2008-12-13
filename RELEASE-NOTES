@@ -221,6 +221,10 @@ The following extensions are migrated into MediaWiki 1.14:
 * Cascading protection no longer requires that both edit and move are restricted
   to sysop, just edit=sysop is enough
 * (bug 2391) A warning is now shown for invalid ISBN numbers on Special:Booksources.
+* Installer has been updated to reflect the release of the GFDL 1.3. The URL for 1.2
+  has been updated, and the 1.3 URL has been given. 1.2 is still Wikipedia-compatible.
+  RightsCode was changed from 'gfdl' to 'gfdl1_2', so we can now support 1.2 as well
+  as 1.3 (gfdl1_3).
 
 === Bug fixes in 1.14 ===
 
