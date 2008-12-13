@@ -1824,7 +1824,7 @@ PICT # متنوع
 'statistics-header-users'         => 'إحصاءات المستخدمين',
 'statistics-articles'             => 'صفحات المحتوى',
 'statistics-pages'                => 'الصفحات',
-'statistics-pages-tooltip'        => 'كل الصفحات في الويكي، بما في ذلك صفحات النقاش، التحويلات، إلى آخره.',
+'statistics-pages-desc'        => 'كل الصفحات في الويكي، بما في ذلك صفحات النقاش، التحويلات، إلى آخره.',
 'statistics-files'                => 'الملفات المرفوعة',
 'statistics-edits'                => 'تعديلات الصفحات منذ تنصيب {{SITENAME}}',
 'statistics-edits-average'        => 'متوسط التعديلات لكل صفحة',
@@ -1833,7 +1833,7 @@ PICT # متنوع
 'statistics-jobqueue'             => 'طول [http://www.mediawiki.org/wiki/Manual:Job_queue طابور الشغل]',
 'statistics-users'                => '[[Special:ListUsers|مستخدمون]] مسجلون',
 'statistics-users-active'         => 'مستخدمون نشطون',
-'statistics-users-active-tooltip' => 'المستخدمون الذين قاموا بفعل في الشهر الماضي',
+'statistics-users-active-desc' => 'المستخدمون الذين قاموا بفعل في الشهر الماضي',
 'statistics-mostpopular'          => 'أكثر الصفحات مشاهدة',
 
 'disambiguations'      => 'صفحات التوضيح',

@@ -1482,7 +1482,7 @@ Seuraava lista näyttää {{PLURAL:$1|ensimmäisen linkittävän sivun|$1 ensimm
 'statistics-header-users'         => 'Käyttäjätilastot',
 'statistics-articles'             => 'Sisältösivuja',
 'statistics-pages'                => 'Sivuja',
-'statistics-pages-tooltip'        => 'Kaikki sivut, sisältäen keskustelusivut, ohjaukset ja muut.',
+'statistics-pages-desc'        => 'Kaikki sivut, sisältäen keskustelusivut, ohjaukset ja muut.',
 'statistics-files'                => 'Tallennettuja tiedostoja',
 'statistics-edits'                => 'Muokkauksia {{GRAMMAR:genitive|{{SITENAME}}}} perustamisen jälkeen',
 'statistics-edits-average'        => 'Keskimäärin yhtä sivua muokattu',
@@ -1491,7 +1491,7 @@ Seuraava lista näyttää {{PLURAL:$1|ensimmäisen linkittävän sivun|$1 ensimm
 'statistics-jobqueue'             => 'Ohjelmiston suorittamia [http://www.mediawiki.org/wiki/Manual:Job_queue ylläpitotöitä jonossa]',
 'statistics-users'                => 'Rekisteröityneitä [[Special:ListUsers|käyttäjiä]]',
 'statistics-users-active'         => 'Aktiivisia käyttäjiä',
-'statistics-users-active-tooltip' => 'Käyttäjät, jotka ovat suorittaneet jonkin toiminnon viime kuukauden aikana.',
+'statistics-users-active-desc' => 'Käyttäjät, jotka ovat suorittaneet jonkin toiminnon viime kuukauden aikana.',
 'statistics-mostpopular'          => 'Katsotuimmat sivut',
 
 'disambiguations'      => 'Linkit täsmennyssivuihin',

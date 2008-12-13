@@ -925,7 +925,7 @@ Pàggene sus 'a [[Special:Watchlist|le Pàggene condrollete]] sonde in '''grasce
 'statistics-header-users'  => "Statisteche de l'utende",
 'statistics-articles'      => 'Pàggene de le condenute',
 'statistics-pages'         => 'Pàggene',
-'statistics-pages-tooltip' => "Tutte le pàggene jndr'à Uicchi, mettènne le pàggene de le 'ngazzaminde, ridirezionaminde, ecc.",
+'statistics-pages-desc' => "Tutte le pàggene jndr'à Uicchi, mettènne le pàggene de le 'ngazzaminde, ridirezionaminde, ecc.",
 'statistics-files'         => 'File carechete',
 'statistics-users'         => '[[Special:ListUsers|Utinde reggistrete]]',
 

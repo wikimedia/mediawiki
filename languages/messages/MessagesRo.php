@@ -1497,7 +1497,7 @@ Lista tipurilor MIME recunoscute de MediaWiki poate fi găsită la [http://svn.w
 'statistics-header-users'         => 'Statistici legate de utilizatori',
 'statistics-articles'             => 'Articole',
 'statistics-pages'                => 'Pagini',
-'statistics-pages-tooltip'        => 'Toate paginile din wiki, inclusiv pagini de discuţie, redirectări etc.',
+'statistics-pages-desc'        => 'Toate paginile din wiki, inclusiv pagini de discuţie, redirectări etc.',
 'statistics-files'                => 'Fişiere încărcate',
 'statistics-edits'                => 'Editări de la instalarea {{SITENAME}}',
 'statistics-edits-average'        => 'Media editărilor pe pagină',
@@ -1505,7 +1505,7 @@ Lista tipurilor MIME recunoscute de MediaWiki poate fi găsită la [http://svn.w
 'statistics-views-peredit'        => 'Vizualizări pe editare',
 'statistics-users'                => '[[Special:ListUsers|Utilizatori]] înregistraţi',
 'statistics-users-active'         => 'Utilizatori activi',
-'statistics-users-active-tooltip' => 'Utilizatori care au efectuat o acţiune în ultima lună',
+'statistics-users-active-desc' => 'Utilizatori care au efectuat o acţiune în ultima lună',
 'statistics-mostpopular'          => 'Paginile cele mai vizualizate',
 
 'disambiguations'      => 'Pagini de dezambiguizare',

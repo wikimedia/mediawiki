@@ -99,7 +99,7 @@ class SpecialPage
 		'Listusers'                 => array( 'SpecialPage', 'Listusers' ),
 		'Listgrouprights'           => 'SpecialListGroupRights',
 		'DeletedContributions'      => 'DeletedContributionsPage',
-		'Statistics'                => array( 'SpecialPage', 'Statistics' ),
+		'Statistics'				=> 'SpecialStatistics',
 		'Randompage'                => 'Randompage',
 		'Lonelypages'               => array( 'SpecialPage', 'Lonelypages' ),
 		'Uncategorizedpages'        => array( 'SpecialPage', 'Uncategorizedpages' ),

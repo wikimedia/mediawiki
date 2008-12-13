@@ -1750,7 +1750,7 @@ Vergeet niet de "Verwijzingen naar deze pagina" te controleren alvorens dit sjab
 'statistics-header-users'         => 'Gebruikerstatistieken',
 'statistics-articles'             => "Inhoudelijke pagina's",
 'statistics-pages'                => "Pagina's",
-'statistics-pages-tooltip'        => "Alle pagina's in de wiki, inclusief overlegpagina's, doorverwijzingen, enzovoort.",
+'statistics-pages-desc'        => "Alle pagina's in de wiki, inclusief overlegpagina's, doorverwijzingen, enzovoort.",
 'statistics-files'                => 'Bestanden',
 'statistics-edits'                => 'Paginabewerkingen sinds het begin van {{SITENAME}}',
 'statistics-edits-average'        => 'Gemiddeld aantal bewerkingen per pagina',
@@ -1759,7 +1759,7 @@ Vergeet niet de "Verwijzingen naar deze pagina" te controleren alvorens dit sjab
 'statistics-jobqueue'             => '[http://www.mediawiki.org/wiki/Manual:Job_queue Jobqueuelengte]',
 'statistics-users'                => 'Geregistreerde [[Special:ListUsers|gebruikers]]',
 'statistics-users-active'         => 'Actieve gebruikers',
-'statistics-users-active-tooltip' => 'Gebruikers die in de afgelopen maand een handeling hebben uitgevoerd',
+'statistics-users-active-desc' => 'Gebruikers die in de afgelopen maand een handeling hebben uitgevoerd',
 'statistics-mostpopular'          => "Meest bekeken pagina's",
 
 'disambiguations'      => "Doorverwijspagina's",

@@ -13,84 +13,149 @@
  *
  * @param mixed $par (not used)
  */
-function wfSpecialStatistics( $par = '' ) {
-	global $wgOut, $wgLang, $wgRequest, $wgUser, $wgContLang, $wgMessageCache;
-	global $wgDisableCounters, $wgMiserMode, $wgImplicitGroups, $wgGroupPermissions;
-	$wgMessageCache->loadAllMessages();
-	$sk = $wgUser->getSkin();
-	$dbr = wfGetDB( DB_SLAVE );
-
-	$views = SiteStats::views();
-	$edits = SiteStats::edits();
-	$good = SiteStats::articles();
-	$images = SiteStats::images();
-	$total = SiteStats::pages();
-	$users = SiteStats::users();
-	$activeUsers = SiteStats::activeUsers();
-	$admins = SiteStats::numberingroup('sysop');
-	$numJobs = SiteStats::jobs();
-
-	# Staticic - views
-	$viewsStats = '';
-	if( !$wgDisableCounters ) {
-		$viewsStats = Xml::tags( 'th', array( 'colspan' => '2' ), wfMsg( 'statistics-header-views' ) ) .
-				formatRow( wfMsgExt( 'statistics-views-total', array( 'parseinline' ) ),
-						$wgLang->formatNum( $views ),
-						' class="mw-statistics-views-total"' ) .
-				formatRow( wfMsgExt( 'statistics-views-peredit', array( 'parseinline' ) ),
-						$wgLang->formatNum( sprintf( '%.2f', $edits ? $views / $edits : 0 ) ),
-						' class="mw-statistics-views-peredit"' );
+class SpecialStatistics extends SpecialPage {
+	
+	private $views, $edits, $good, $images, $total, $users,
+			$activeUsers, $admins, $numJobs = 0;
+	
+	public function __construct() {
+		parent::__construct( 'Statistics' );
 	}
-	# Set active user count
-	if( !$wgMiserMode ) {
-		$dbw = wfGetDB( DB_MASTER );
-		SiteStatsUpdate::cacheUpdate( $dbw );
-	}
+	
+	public function execute( $par ) {
+		global $wgOut, $wgRequest, $wgMessageCache;
+		global $wgDisableCounters, $wgMiserMode;
+		$wgMessageCache->loadAllMessages();
+		
+		$this->setHeaders();
+	
+		$this->views = SiteStats::views();
+		$this->edits = SiteStats::edits();
+		$this->good = SiteStats::articles();
+		$this->images = SiteStats::images();
+		$this->total = SiteStats::pages();
+		$this->users = SiteStats::users();
+		$this->activeUsers = SiteStats::activeUsers();
+		$this->admins = SiteStats::numberingroup('sysop');
+		$this->numJobs = SiteStats::jobs();
+	
+		# Staticic - views
+		$viewsStats = '';
+		if( !$wgDisableCounters ) {
+			$viewsStats = $this->getViewsStats();
+		}
+		
+		# Set active user count
+		if( !$wgMiserMode ) {
+			$dbw = wfGetDB( DB_MASTER );
+			SiteStatsUpdate::cacheUpdate( $dbw );
+		}
+	
+		# Do raw output
+		if( $wgRequest->getVal( 'action' ) == 'raw' ) {
+			$this->doRawOutput();
+		}
 
-	if( $wgRequest->getVal( 'action' ) == 'raw' ) {
-		# Depreciated, kept for backwards compatibility
-		# http://lists.wikimedia.org/pipermail/wikitech-l/2008-August/039202.html
-		$wgOut->disable();
-		header( 'Pragma: nocache' );
-		echo "total=$total;good=$good;views=$views;edits=$edits;users=$users;";
-		echo "activeusers=$activeUsers;admins=$admins;images=$images;jobs=$numJobs\n";
-		return;
-	} else {
-		$text = Xml::openElement( 'table', array( 'class' => 'mw-statistics-table' ) ) .
-			# Statistic - pages
-			Xml::tags( 'th', array( 'colspan' => '2' ), wfMsg( 'statistics-header-pages' ) ) .
-			formatRow( wfMsgExt( 'statistics-articles', array( 'parseinline' ) ),
-					$wgLang->formatNum( $good ),
-					' class="mw-statistics-articles"' ) .
-			formatRow( wfMsgExt( 'statistics-pages', array( 'parseinline' ) ),
-					$wgLang->formatNum( $total ),
-					' class="mw-statistics-pages"' ) .
-			formatRow( wfMsgExt( 'statistics-files', array( 'parseinline' ) ),
-					$wgLang->formatNum( $images ),
-					' class="mw-statistics-files"' ) .
+		$text = Xml::openElement( 'table', array( 'class' => 'mw-statistics-table' ) );
 
-			# Statistic - edits
-			Xml::tags( 'th', array( 'colspan' => '2' ), wfMsg( 'statistics-header-edits' ) ) .
-			formatRow( wfMsgExt( 'statistics-edits', array( 'parseinline' ) ),
-					$wgLang->formatNum( $edits ),
-					' class="mw-statistics-edits"' ) .
-			formatRow( wfMsgExt( 'statistics-edits-average', array( 'parseinline' ) ),
-					$wgLang->formatNum( sprintf( '%.2f', $total ? $edits / $total : 0 ) ),
-					' class="mw-statistics-edits-average"' ) .
-			formatRow( wfMsgExt( 'statistics-jobqueue', array( 'parseinline' ) ),
-					$wgLang->formatNum( $numJobs ),
-					' class="mw-statistics-jobqueue"' ) .
+		# Statistic - pages
+		$text .= $this->getPageStats();		
 
-			# Statistic - users
-			Xml::tags( 'th', array( 'colspan' => '2' ), wfMsg( 'statistics-header-users' ) ) .
-			formatRow( wfMsgExt( 'statistics-users', array( 'parseinline' ) ),
-					$wgLang->formatNum( $users ),
-					' class="mw-statistics-users"' ) .
-			formatRow( wfMsgExt( 'statistics-users-active', array( 'parseinline' ) ),
-					$wgLang->formatNum( $activeUsers ),
-					' class="mw-statistics-users-active"' );
+		# Statistic - edits
+		$text .= $this->getEditStats();
+
+		# Statistic - users
+		$text .= $this->getUserStats();
 
 		# Statistic - usergroups
+		$text .= $this->getGroupStats();
+		$text .= $viewsStats;
+
+		# Statistic - popular pages
+		if( !$wgDisableCounters && !$wgMiserMode ) {
+			$text .= $this->getMostViewedPages();
+		}
+
+		$text .= Xml::closeElement( 'table' );
+
+		# Customizable footer
+		$footer = wfMsgExt( 'statistics-footer', array('parseinline') );
+		if( !wfEmptyMsg( 'statistics-footer', $footer ) && $footer != '' ) {
+			$text .= "\n" . $footer;
+		}
+
+		$wgOut->addHTML( $text );
+	}
+
+	/**
+	 * Format a row
+	 * @param string $text description of the row
+	 * @param float $number a number
+	 * @return string table row in HTML format
+	 */
+	private function formatRow( $text, $number, $trExtraParams = array(), $descMsg = '' ) {
+		global $wgStylePath;
+	
+		if( $descMsg ) {
+			$descriptionText = wfMsg( $descMsg );
+			if ( !wfEmptyMsg( $descMsg, $descriptionText ) ) {
+				$descriptionText = " ($descriptionText)";
+				$text = $text . "<br />" . Xml::element( 'small', array( 'class' => 'mw-statistic-desc'), $descriptionText );
+			}
+		}
+		
+		return Xml::openElement( 'tr', $trExtraParams ) .
+				Xml::openElement( 'td' ) . $text . Xml::closeElement( 'td' ) .
+				Xml::openElement( 'td' ) . $number . Xml::closeElement( 'td' ) .
+				Xml::closeElement( 'tr' );
+	}
+	
+	/**
+	 * Each of these methods is pretty self-explanatory, get a particular
+	 * row for the table of statistics
+	 * @return string
+	 */
+	private function getPageStats() {
+		global $wgLang;
+		return Xml::tags( 'th', array( 'colspan' => '2' ), wfMsg( 'statistics-header-pages' ) ) .
+				$this->formatRow( wfMsgExt( 'statistics-articles', array( 'parseinline' ) ),
+						$wgLang->formatNum( $this->good ),
+						array( 'class' => 'mw-statistics-articles' ) ) .
+				$this->formatRow( wfMsgExt( 'statistics-pages', array( 'parseinline' ) ),
+						$wgLang->formatNum( $this->total ),
+						array( 'class' => 'mw-statistics-pages' ),
+						'statistics-pages-desc' ) .
+				$this->formatRow( wfMsgExt( 'statistics-files', array( 'parseinline' ) ),
+						$wgLang->formatNum( $this->images ),
+						array( 'class' => 'mw-statistics-files' ) );
+	}
+	private function getEditStats() {
+		global $wgLang;
+		return Xml::tags( 'th', array( 'colspan' => '2' ), wfMsg( 'statistics-header-edits' ) ) .
+				$this->formatRow( wfMsgExt( 'statistics-edits', array( 'parseinline' ) ),
+						$wgLang->formatNum( $this->edits ),
+						array( 'class' => 'mw-statistics-edits' ) ) .
+				$this->formatRow( wfMsgExt( 'statistics-edits-average', array( 'parseinline' ) ),
+						$wgLang->formatNum( sprintf( '%.2f', $this->total ? $this->edits / $this->total : 0 ) ),
+						array( 'class' => 'mw-statistics-edits-average' ) ) .
+				$this->formatRow( wfMsgExt( 'statistics-jobqueue', array( 'parseinline' ) ),
+						$wgLang->formatNum( $this->numJobs ),
+						array( 'class' => 'mw-statistics-jobqueue' ) );
+	}
+	private function getUserStats() {
+		global $wgLang;
+		return Xml::tags( 'th', array( 'colspan' => '2' ), wfMsg( 'statistics-header-users' ) ) .
+				$this->formatRow( wfMsgExt( 'statistics-users', array( 'parseinline' ) ),
+						$wgLang->formatNum( $this->users ),
+						array( 'class' => 'mw-statistics-users' ) ) .
+				$this->formatRow( wfMsgExt( 'statistics-users-active', array( 'parseinline' ) ),
+						$wgLang->formatNum( $this->activeUsers ),
+						array( 'class' => 'mw-statistics-users-active' ),
+						'statistics-users-active-desc' );
+	}
+	private function getGroupStats() {
+		global $wgGroupPermissions, $wgImplicitGroups, $wgLang, $wgUser;
+		$sk = $wgUser->getSkin();
 		foreach( $wgGroupPermissions as $group => $permissions ) {
 			# Skip generic * and implicit groups
 			if ( in_array( $group, $wgImplicitGroups ) || $group == '*' ) {
@@ -115,79 +180,79 @@ function wfSpecialStatistics( $par = '' ) {
 				array(),
 				array( 'group' => $group ),
 				'known' );
-
-			# Add a class when a usergroup contains no members to allow hiding these rows
+				# Add a class when a usergroup contains no members to allow hiding these rows
 			$classZero = '';
 			$countUsers = SiteStats::numberingroup( $groupname );
 			if( $countUsers == 0 ) {
 				$classZero = ' statistics-group-zero';
 			}
-			$text .= formatRow( $grouppage . ' ' . $grouplink,
+			$text .= $this->formatRow( $grouppage . ' ' . $grouplink,
 				$wgLang->formatNum( $countUsers ),
-				' class="statistics-group-' . Sanitizer::escapeClass( $group ) . $classZero . '"' );
+				array( 'class' => 'statistics-group-' . Sanitizer::escapeClass( $group ) . $classZero )  );
 		}
+		return $text;
 	}
-	$text .= $viewsStats;
-
-	# Statistic - popular pages
-	if( !$wgDisableCounters && !$wgMiserMode ) {
+	private function getViewsStats() {
+		global $wgLang;
+		return Xml::tags( 'th', array( 'colspan' => '2' ), wfMsg( 'statistics-header-views' ) ) .
+					$this->formatRow( wfMsgExt( 'statistics-views-total', array( 'parseinline' ) ),
+							$wgLang->formatNum( $this->views ),
+							array ( 'class' => 'mw-statistics-views-total' ) ) .
+					$this->formatRow( wfMsgExt( 'statistics-views-peredit', array( 'parseinline' ) ),
+							$wgLang->formatNum( sprintf( '%.2f', $this->edits ? 
+								$this->views / $this->edits : 0 ) ),
+							array ( 'class' => 'mw-statistics-views-peredit' ) );
+	}
+	private function getMostViewedPages() {
+		global $wgLang, $wgUser;
+		$text = '';
+		$dbr = wfGetDB( DB_SLAVE );
+		$sk = $wgUser->getSkin();
 		$res = $dbr->select(
-			'page',
-			array(
-				'page_namespace',
-				'page_title',
-				'page_counter',
-			),
-			array(
-				'page_is_redirect' => 0,
-				'page_counter > 0',
-			),
-			__METHOD__,
-			array(
-				'ORDER BY' => 'page_counter DESC',
-				'LIMIT' => 10,
-			)
-		);
-		if( $res->numRows() > 0 ) {
-			$text .= Xml::tags( 'th', array( 'colspan' => '2' ), wfMsg( 'statistics-mostpopular' ) );
-			while( $row = $res->fetchObject() ) {
-				$title = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
-				if( $title instanceof Title ) {
-					$text .= formatRow( $sk->link( $title ),
-							$wgLang->formatNum( $row->page_counter ) );
-
+				'page',
+				array(
+					'page_namespace',
+					'page_title',
+					'page_counter',
+				),
+				array(
+					'page_is_redirect' => 0,
+					'page_counter > 0',
+				),
+				__METHOD__,
+				array(
+					'ORDER BY' => 'page_counter DESC',
+					'LIMIT' => 10,
+				)
+			);
+			if( $res->numRows() > 0 ) {
+				$text .= Xml::tags( 'th', array( 'colspan' => '2' ), wfMsg( 'statistics-mostpopular' ) );
+				while( $row = $res->fetchObject() ) {
+					$title = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
+					if( $title instanceof Title ) {
+						$text .= $this->formatRow( $sk->link( $title ),
+								$wgLang->formatNum( $row->page_counter ) );
+	
+					}
 				}
+				$res->free();
 			}
-			$res->free();
-		}
+		return $text;
 	}
-
-	$text .= Xml::closeElement( 'table' );
-
-	# Customizable footer
-	$footer = wfMsgExt( 'statistics-footer', array('parseinline') );
-	if( !wfEmptyMsg( 'statistics-footer', $footer ) && $footer != '' ) {
-		$text .= "\n" . $footer;
+	
+	/**
+	 * Do the action=raw output for this page. Legacy, but we support
+	 * it for backwards compatibility
+	 * http://lists.wikimedia.org/pipermail/wikitech-l/2008-August/039202.html
+	 */
+	private function doRawOutput() {
+		global $wgOut;
+		$wgOut->disable();
+		header( 'Pragma: nocache' );
+		echo "total=" . $this->total . ";good=" . $this->good . ";views=" . 
+				$this->views . ";edits=" . $this->edits . ";users=" . $this->users . ";";
+		echo "activeusers=" . $this->activeUsers . ";admins=" . $this->admins . 
+				";images=" . $this->images . ";jobs=" . $this->numJobs . "\n";
+		return;
 	}
-
-	$wgOut->addHTML( $text );
-}
-
-/**
- * Format a row
- *
- * @param string $text description of the row
- * @param float $number a number
- * @return string table row in HTML format
- */
-function formatRow( $text, $number, $trExtraParams = '' ) {
-
-	return "<tr{$trExtraParams}>
-			<td>" .
-				$text .
-			'</td>
-			<td class="mw-statistics-numbers">' .
-				 $number .
-			'</td>
-		</tr>';
 }

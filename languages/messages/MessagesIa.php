@@ -1571,7 +1571,7 @@ Memora verificar que non existe altere ligamines al patronos ante que tu los del
 'statistics-header-users'         => 'Statisticas de usatores',
 'statistics-articles'             => 'Paginas de contento',
 'statistics-pages'                => 'Paginas',
-'statistics-pages-tooltip'        => 'Tote le paginas del wiki, includente paginas de discussion, redirectiones, etc.',
+'statistics-pages-desc'        => 'Tote le paginas del wiki, includente paginas de discussion, redirectiones, etc.',
 'statistics-files'                => 'Files cargate',
 'statistics-edits'                => 'Modificationes de paginas depost le installation de {{SITENAME}}',
 'statistics-edits-average'        => 'Media del modificationes per pagina',
@@ -1580,7 +1580,7 @@ Memora verificar que non existe altere ligamines al patronos ante que tu los del
 'statistics-jobqueue'             => 'Longor del [http://www.mediawiki.org/wiki/Manual:Job_queue cauda de actiones]',
 'statistics-users'                => '[[Special:ListUsers|Usatores]] registrate',
 'statistics-users-active'         => 'Usatores active',
-'statistics-users-active-tooltip' => 'Usatores qui ha facite un action durante le mense passate',
+'statistics-users-active-desc' => 'Usatores qui ha facite un action durante le mense passate',
 'statistics-mostpopular'          => 'Le paginas plus visitate',
 
 'disambiguations'      => 'Paginas de disambiguation',

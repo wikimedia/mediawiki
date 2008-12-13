@@ -1495,7 +1495,7 @@ Slědujuca lisćina pokazujo jano {{PLURAL:$1|prědny wótkaz|prědnej $1 wótka
 'statistics-header-users'         => 'Statistika wužywarjow',
 'statistics-articles'             => 'Wopśimjeśowe boki',
 'statistics-pages'                => 'Boki',
-'statistics-pages-tooltip'        => 'Wše boki w toś tom wikiju, inkluziwnje diskusijne boki, dalejpósrědnjenja atd.',
+'statistics-pages-desc'        => 'Wše boki w toś tom wikiju, inkluziwnje diskusijne boki, dalejpósrědnjenja atd.',
 'statistics-files'                => 'Nagrate dataje',
 'statistics-edits'                => 'Změny bokow wót załoženja {{SITENAME}}',
 'statistics-edits-average'        => 'Změny na bok w pśerězku',
@@ -1504,7 +1504,7 @@ Slědujuca lisćina pokazujo jano {{PLURAL:$1|prědny wótkaz|prědnej $1 wótka
 'statistics-jobqueue'             => 'Dłujkosć [http://www.mediawiki.org/wiki/Manual:Job_queue Job queue]',
 'statistics-users'                => 'Zregistrěrowane [[Special:ListUsers|wužywarje]]',
 'statistics-users-active'         => 'Aktiwne wužywarje',
-'statistics-users-active-tooltip' => 'Wužywarje, kótarež su w zachadnym mjasecu aktiwne byli',
+'statistics-users-active-desc' => 'Wužywarje, kótarež su w zachadnym mjasecu aktiwne byli',
 'statistics-mostpopular'          => 'Nejwěcej woglědane boki',
 
 'disambiguations'      => 'Rozjasnjenja zapśimjeśow',

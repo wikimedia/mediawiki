@@ -1555,7 +1555,7 @@ Denk dor an, natokieken, wat nich noch annere Sieden na de Vörlagen wiest, ehrd
 'statistics-header-users'         => 'Brukerstatistik',
 'statistics-articles'             => 'Inholtssieden',
 'statistics-pages'                => 'Sieden',
-'statistics-pages-tooltip'        => 'All Sieden in dit Wiki, tohoop mit all Diskuschoonssieden, Redirects usw.',
+'statistics-pages-desc'        => 'All Sieden in dit Wiki, tohoop mit all Diskuschoonssieden, Redirects usw.',
 'statistics-files'                => 'Hoochlaadt Datein',
 'statistics-edits'                => 'Ännern, siet dat {{SITENAME}} gifft',
 'statistics-edits-average'        => 'Dörsnittlich Ännern je Sied',
@@ -1564,7 +1564,7 @@ Denk dor an, natokieken, wat nich noch annere Sieden na de Vörlagen wiest, ehrd
 'statistics-jobqueue'             => '[http://www.mediawiki.org/wiki/Manual:Job_queue Job-Queue-Längd]',
 'statistics-users'                => 'Anmellt [[Special:ListUsers|Brukers]]',
 'statistics-users-active'         => 'Aktive Brukers',
-'statistics-users-active-tooltip' => 'Brukers, de in de vergahn 30 Daag wat daan hebbt',
+'statistics-users-active-desc' => 'Brukers, de in de vergahn 30 Daag wat daan hebbt',
 'statistics-mostpopular'          => 'opmehrst ankekene Sieden',
 
 'disambiguations'      => 'Mehrdüdige Begrepen',
