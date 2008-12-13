@@ -161,7 +161,8 @@ class ApiDelete extends ApiBase {
 			
 		if( !FileDeleteForm::haveDeletableFile($file, $oldfile, $oldimage) )
 			return array(array('nofile'));
-
+		if (is_null($reason)) # Log and RC don't like null reasons
+			$reason = '';
 		$status = FileDeleteForm::doDelete( $title, $file, $oldimage, $reason, $suppress );
 				
 		if( !$status->isGood() )
