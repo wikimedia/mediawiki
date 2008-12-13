@@ -156,6 +156,7 @@ class SpecialStatistics extends SpecialPage {
 	private function getGroupStats() {
 		global $wgGroupPermissions, $wgImplicitGroups, $wgLang, $wgUser;
 		$sk = $wgUser->getSkin();
+		$text = '';
 		foreach( $wgGroupPermissions as $group => $permissions ) {
 			# Skip generic * and implicit groups
 			if ( in_array( $group, $wgImplicitGroups ) || $group == '*' ) {
