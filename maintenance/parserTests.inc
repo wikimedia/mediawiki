@@ -794,6 +794,7 @@ class ParserTest {
 	 */
 	private function teardownGlobals() {
 		RepoGroup::destroySingleton();
+		FileCache::destroySingleton();
 		LinkCache::singleton()->clear();
 		foreach( $this->savedGlobals as $var => $val ) {
 			$GLOBALS[$var] = $val;
