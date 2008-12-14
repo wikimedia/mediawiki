@@ -13,7 +13,6 @@ function wfSpecialWatchlist( $par ) {
 	global $wgUser, $wgOut, $wgLang, $wgRequest;
 	global $wgRCShowWatchingUsers, $wgEnotifWatchlist, $wgShowUpdatedMarker;
 	global $wgEnotifWatchlist;
-	$fname = 'wfSpecialWatchlist';
 
 	$skin = $wgUser->getSkin();
 	$specialTitle = SpecialPage::getTitleFor( 'Watchlist' );
@@ -41,7 +40,9 @@ function wfSpecialWatchlist( $par ) {
 	}
 
 	$uid = $wgUser->getId();
-	if( ($wgEnotifWatchlist || $wgShowUpdatedMarker) && $wgRequest->getVal( 'reset' ) && $wgRequest->wasPosted() ) {
+	if( ($wgEnotifWatchlist || $wgShowUpdatedMarker) && $wgRequest->getVal( 'reset' ) && 
+		$wgRequest->wasPosted() )
+	{
 		$wgUser->clearAllNotifications( $uid );
 		$wgOut->redirect( $specialTitle->getFullUrl() );
 		return;
@@ -86,9 +87,9 @@ function wfSpecialWatchlist( $par ) {
 	if( !is_null( $nameSpace ) ) {
 		$nameSpace = intval( $nameSpace );
 		if( $invert && $nameSpace !== 'all' )
-			$nameSpaceClause = " AND rc_namespace != $nameSpace";
+			$nameSpaceClause = "rc_namespace != $nameSpace";
 		else
-			$nameSpaceClause = " AND rc_namespace = $nameSpace";
+			$nameSpaceClause = "rc_namespace = $nameSpace";
 	} else {
 		$nameSpace = '';
 		$nameSpaceClause = '';
@@ -140,13 +141,7 @@ function wfSpecialWatchlist( $par ) {
 	if ( $days <= 0 ) {
 		$andcutoff = '';
 	} else {
-		$andcutoff = "AND rc_timestamp > '".$dbr->timestamp( time() - intval( $days * 86400 ) )."'";
-		/*
-		$sql = "SELECT COUNT(*) AS n FROM $page, $revision  WHERE rev_timestamp>'$cutoff' AND page_id=rev_page";
-		$res = $dbr->query( $sql, $fname );
-		$s = $dbr->fetchObject( $res );
-		$npages = $s->n;
-		*/
+		$andcutoff = "rc_timestamp > '".$dbr->timestamp( time() - intval( $days * 86400 ) )."'";
 	}
 
 	# If the watchlist is relatively short, it's simplest to zip
@@ -158,21 +153,21 @@ function wfSpecialWatchlist( $par ) {
 	# Up estimate of watched items by 15% to compensate for talk pages...
 
 	# Toggles
-	$andHideOwn   = $hideOwn   ? "AND (rc_user <> $uid)" : '';
-	$andHideBots  = $hideBots  ? "AND (rc_bot = 0)" : '';
-	$andHideMinor = $hideMinor ? "AND (rc_minor = 0)" : '';
-	$andHideLiu   = $hideLiu   ? "AND (rc_user = 0)" : '';
-	$andHideAnons = $hideAnons ? "AND (rc_user != 0)" : '';
-	$andHidePatrolled = $wgUser->useRCPatrol() && $hidePatrolled ? "AND (rc_patrolled != 1)" : '';
+	$andHideOwn   = $hideOwn   ? "rc_user != $uid" : '';
+	$andHideBots  = $hideBots  ? "rc_bot = 0" : '';
+	$andHideMinor = $hideMinor ? "rc_minor = 0" : '';
+	$andHideLiu   = $hideLiu   ? "rc_user = 0" : '';
+	$andHideAnons = $hideAnons ? "rc_user != 0" : '';
+	$andHidePatrolled = $wgUser->useRCPatrol() && $hidePatrolled ? "rc_patrolled != 1" : '';
 
 	# Toggle watchlist content (all recent edits or just the latest)
 	if( $wgUser->getOption( 'extendwatchlist' )) {
 		$andLatest='';
- 		$limitWatchlist = 'LIMIT ' . intval( $wgUser->getOption( 'wllimit' ) );
+ 		$limitWatchlist = intval( $wgUser->getOption( 'wllimit' ) );
 	} else {
 	# Top log Ids for a page are not stored
-		$andLatest = 'AND (rc_this_oldid=page_latest OR rc_type=' . RC_LOG . ') ';
-		$limitWatchlist = '';
+		$andLatest = 'rc_this_oldid=page_latest OR rc_type=' . RC_LOG;
+		$limitWatchlist = 0;
 	}
 
 	# Show a message about slave lag, if applicable
@@ -188,7 +183,7 @@ function wfSpecialWatchlist( $par ) {
 	if( $wgUser->getOption( 'enotifwatchlistpages' ) && $wgEnotifWatchlist) {
 		$form .= wfMsgExt( 'wlheader-enotif', 'parse' ) . "\n";
 	}
-	if ( $wgShowUpdatedMarker ) {
+	if( $wgShowUpdatedMarker ) {
 		$form .= Xml::openElement( 'form', array( 'method' => 'post',
 					'action' => $specialTitle->getLocalUrl(),
 					'id' => 'mw-watchlist-resetbutton' ) ) .
@@ -198,32 +193,33 @@ function wfSpecialWatchlist( $par ) {
 				Xml::closeElement( 'form' );
 	}
 	$form .= '<hr />';
-
-	if ( $wgShowUpdatedMarker ) {
-		$wltsfield = ", ${watchlist}.wl_notificationtimestamp ";
-	} else {
-		$wltsfield = '';
+	
+	$tables = array( 'recentchanges', 'watchlist', 'page' );
+	$fields = array( "{$recentchanges}.*" );
+	$conds = array();
+	$join_conds = array(
+		'watchlist' => array('INNER JOIN',"wl_user='{$uid}' AND wl_namespace=rc_namespace AND wl_title=rc_title"),
+		'page'      => array('LEFT JOIN','rc_cur_id=page_id')
+	);
+	$options = array( 'ORDER BY' => 'rc_timestamp DESC' );
+	if( $wgShowUpdatedMarker ) {
+		$fields[] = 'wl_notificationtimestamp';
 	}
-	$sql = "SELECT ${recentchanges}.* ${wltsfield}
-	  FROM $watchlist,$recentchanges
-	  LEFT JOIN $page ON rc_cur_id=page_id
-	  WHERE wl_user=$uid
-	  AND wl_namespace=rc_namespace
-	  AND wl_title=rc_title
-	  $andcutoff
-	  $andLatest
-	  $andHideOwn
-	  $andHideBots
-	  $andHideMinor
-	  $andHideLiu
-	  $andHideAnons
-	  $andHidePatrolled
-	  $nameSpaceClause
-	  $hookSql
-	  ORDER BY rc_timestamp DESC
-	  $limitWatchlist";
-
-	$res = $dbr->query( $sql, $fname );
+	if( $limitWatchlist ) {
+		$options['LIMIT'] = $limitWatchlist;
+	}
+	if( $andcutoff ) $conds[] = $andcutoff;
+	if( $andLatest ) $conds[] = $andLatest;
+	if( $andHideOwn ) $conds[] = $andHideOwn;
+	if( $andHideBots ) $conds[] = $andHideBots;
+	if( $andHideMinor ) $conds[] = $andHideMinor;
+	if( $andHideLiu ) $conds[] = $andHideLiu;
+	if( $andHideAnons ) $conds[] = $andHideAnons;
+	if( $andHidePatrolled ) $conds[] = $andHidePatrolled;
+	if( $nameSpaceClause ) $conds[] = $nameSpaceClause;
+	if( $hookSql ) $conds[] = $hookSql;
+	
+	$res = $dbr->select( $tables, $fields, $conds, __METHOD__, $options, $join_conds );
 	$numRows = $dbr->numRows( $res );
 
 	/* Start bottom header */
@@ -415,7 +411,8 @@ function wlCountItems( &$user, $talk = true ) {
 	$dbr = wfGetDB( DB_SLAVE, 'watchlist' );
 
 	# Fetch the raw count
-	$res = $dbr->select( 'watchlist', 'COUNT(*) AS count', array( 'wl_user' => $user->mId ), 'wlCountItems' );
+	$res = $dbr->select( 'watchlist', 'COUNT(*) AS count', 
+		array( 'wl_user' => $user->mId ), 'wlCountItems' );
 	$row = $dbr->fetchObject( $res );
 	$count = $row->count;
 	$dbr->freeResult( $res );
