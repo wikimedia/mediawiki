@@ -2719,10 +2719,15 @@ function &wfGetLBFactory() {
  *                    current version. An image object will be returned which
  *                    was created at the specified time.
  * @param mixed $flags FileRepo::FIND_ flags
+ * @param boolean $bypass Bypass the file cache even if it could be used
  * @return File, or false if the file does not exist
  */
-function wfFindFile( $title, $time = false, $flags = 0 ) {
-	return RepoGroup::singleton()->findFile( $title, $time, $flags );
+function wfFindFile( $title, $time = false, $flags = 0, $bypass = false ) {
+        if( !$time && !$flags && !$bypass ) {
+		return FileCache::singleton()->findFile( $title );
+	} else {
+		return RepoGroup::singleton()->findFile( $title, $time, $flags );
+	}
 }
 
 /**

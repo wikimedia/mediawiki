@@ -229,6 +229,7 @@ The following extensions are migrated into MediaWiki 1.14:
   your language) instead of Wikipedia.
 * (bug 16635) The "view and edit watchlist" page (Special:Watchlist/edit) now
   includes a table of contents
+* File objects returned by wfFindFile() are now cached by default
 
 === Bug fixes in 1.14 ===
 
