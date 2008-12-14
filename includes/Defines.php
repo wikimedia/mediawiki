@@ -224,3 +224,5 @@ define( 'APCOND_EDITCOUNT', 1 );
 define( 'APCOND_AGE', 2 );
 define( 'APCOND_EMAILCONFIRMED', 3 );
 define( 'APCOND_INGROUPS', 4 );
+define( 'APCOND_ISIP', 5 );
+define( 'APCOND_IPINRANGE', 6 );
