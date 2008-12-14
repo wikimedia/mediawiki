@@ -447,7 +447,8 @@ Llogaria juaj është hapur. Mos harroni të ndryshoni parapëlqimet e {{SITENAM
 'noname'                     => 'Nuk keni dhënë një emër të saktë.',
 'loginsuccesstitle'          => 'Hyrje me sukses',
 'loginsuccess'               => 'Keni hyrë brënda në {{SITENAME}} si "$1".',
-'nosuchuser'                 => 'Nuk ka ndonjë përdorues me emrin "$1". Kontrolloni gërmat, ose përdorni formularin e mëposhtëm për të hapur një llogari të re.',
+'nosuchuser'                 => 'Nuk ka ndonjë përdorues me emrin "$1".
+Kontrolloni shkrimin ose [[Special:UserLogin/signup|hapni një llogari të re]].',
 'nosuchusershort'            => 'Nuk ka asnjë përdorues me emrin "<nowiki>$1</nowiki>".',
 'nouserspecified'            => 'Ju duhet të jepni një nofkë',
 'wrongpassword'              => 'Fjalëkalimi që futët nuk është i saktë. Provoni përsëri!',
@@ -455,9 +456,15 @@ Llogaria juaj është hapur. Mos harroni të ndryshoni parapëlqimet e {{SITENAM
 'passwordtooshort'           => 'Fjalëkalimi juaj është shumë i shkurtër. Ai duhet të ketë së paku $1 shkronja.',
 'mailmypassword'             => 'Më dërgo një fjalëkalim të ri tek adresa ime',
 'passwordremindertitle'      => 'Kërkesë për fjalëkalim të ri tek {{SITENAME}}',
-'passwordremindertext'       => 'Dikush (ndoshta ju, nga adresa IP $1) kërkoi një fjalëkalim të ri për hyrje tek {{SITENAME}} ($4). Mund të përdoret fjalëkalimi "$3" për llogarinë e përdoruesit "$2" në qoftë se dëshironi. Nëse përdorni këtë fjalëkalim këshillohet ta ndërroni fjalëkalimin tuaj sapo të hyni.
+'passwordremindertext'       => 'Dikush (ndoshta ju, nga adresa IP $1) kërkoi një fjalëkalim të ri
+për hyrje tek {{SITENAME}} ($4). Mund të përdoret fjalëkalimi "$3"
+për llogarinë e përdoruesit "$2" në qoftë se dëshironi. Nëse
+përdorni këtë fjalëkalim këshillohet ta ndërroni fjalëkalimin tuaj
+sapo të hyni.
 
-Në qoftë se nuk e përdorni këtë fjalëkalim të ri, atëherë do të vazhdojë të përdoret ai i vjetri. Nuk ka nevojë ta ndryshoni fjalëkalimin në qoftë se nuk ishit ju që kërkuat fjalëkalim të ri.',
+Në qoftë se nuk e përdorni këtë fjalëkalim të ri, atëherë do të
+vazhdojë të përdoret ai i vjetri. Nuk ka nevojë ta ndryshoni
+fjalëkalimin në qoftë se nuk ishit ju që kërkuat fjalëkalim të ri.',
 'noemail'                    => 'Regjistri nuk ka adresë për përdoruesin "$1".',
 'passwordsent'               => 'Një fjalëkalim i ri është dërguar tek adresa e regjistruar për "$1". Provojeni përsëri hyrjen mbasi ta keni marrë fjalëkalimin.',
 'blocked-mailpassword'       => 'IP adresa juaj është bllokuar , si e tillë nuk lejohet të përdor funksionin pë rikthim të fjalkalimit , në mënyrë që të parandalohet abuzimi.',
@@ -532,8 +539,9 @@ Nëse kryeni ndryshimet redaktimi juaj do të ruhet pa titull.",
 'summary-preview'           => 'Parapamja e përmbledhjes',
 'subject-preview'           => 'Parapamja e titullit',
 'blockedtitle'              => 'Përdoruesi është bllokuar',
-'blockedtext'               => 'Llogaria juaj ose adresa e IP-së është bllokuar nga $1. Arsyeja e dhënë është kjo:<br />
-\'\'$2\'\'<br />
+'blockedtext'               => "<big>'''Llogaria juaj ose adresa e IP-së është bllokuar'''</big>
+
+Bllokimi u bë nga $1 dhe arsyeja e dhënë ishte '''$2'''.
 
 *Fillimi i bllokimit: $8
 *Skadimi i bllokimit: $6
@@ -541,9 +549,9 @@ Nëse kryeni ndryshimet redaktimi juaj do të ruhet pa titull.",
 
 Mund të kontaktoni $1 ose një nga [[{{MediaWiki:Grouppage-sysop}}|administruesit]] e tjerë për të diskutuar bllokimin.
 
-Vini re se nuk mund të përdorni "dërgoji email këtij përdoruesi" n.q.s. nuk keni një adresë të saktë të dhënë në [[Special:Preferences|parapëlqimet e përdoruesit]].
+Vini re se nuk mund t'i dërgoni email përdoruesit nëse nuk keni një adresë të saktë të dhënë tek [[Special:Preferences|parapëlqimet e përdoruesit]] ose nëse kjo është një nga mundësitë që ju është bllokuar.
 
-Adresa e IP-së që keni është $3 dhe nr i identifikimit të bllokimit është #$5. Përfshini këto dy të dhëna në çdo ankesë.',
+Adresa e IP-së që keni është $3 dhe numri i identifikimit të bllokimit është #$5. Përfshini këto dy të dhëna në çdo ankesë.",
 'autoblockedtext'           => 'IP adresa juaj është bllokuar automatikisht sepse ishte përdorur nga një përdorues tjetër i cili ishte bllokuar nga $1.
 Arsyeja e dhënë për këtë është:
 
@@ -577,7 +585,8 @@ Përderisa nuk ka seksion $1 nuk ka vend për të ruajtur ndryshimet tuaja.",
 'accmailtitle'              => 'Fjalëkalimi u dërgua.',
 'accmailtext'               => "Fjalëkalimi për '$1' u dërgua tek $2.",
 'newarticle'                => '(I Ri)',
-'newarticletext'            => "{{SITENAME}} nuk ka akoma një ''{{NAMESPACE}} faqe'' të quajtur '''{{PAGENAME}}'''. Shtypni '''redaktoni''' më sipër ose [[Special:Search/{{PAGENAME}}|bëni një kërkim për {{PAGENAME}}]]",
+'newarticletext'            => "{{SITENAME}} nuk ka akoma një ''faqe {{NAMESPACE}}'' të quajtur '''{{PAGENAME}}'''. Shtypni '''redaktoni''' më sipër ose [[Speciale:Search/{{PAGENAME}}|bëni një kërkim për {{PAGENAME}}]] (Shikoni [[{{MediaWiki:Helppage}}|faqen për ndihmë]] për më shumë informacion).
+Nëse gjetët këtë faqe aksidentalisht, shtypni butonin mbrapsh të shfletuesit tuaj.",
 'anontalkpagetext'          => "---- ''Kjo është një faqe diskutimi për një përdorues anonim i cili nuk ka hapur akoma një llogari ose nuk e përdor atë.
 Prandaj, më duhet të përdor numrin e adresës IP për ta identifikuar.
 Kjo adresë mund të përdoret nga disa njerëz. Në qoftë se jeni një përdorues anonim dhe mendoni se komente kot janë drejtuar ndaj jush, ju lutem [[Special:UserLogin|krijoni një llogari ose hyni brënda]] për të mos u ngatarruar me përdorues të tjerë anonim.''",
@@ -1287,7 +1296,7 @@ Në qoftë se dëshironi të hiqni një faqe nga lista mbikqyrëse më vonë, sh
 'unwatchthispage'      => 'Mos e mbikqyr',
 'notanarticle'         => 'Nuk është artikull',
 'watchnochange'        => 'Asnjë nga artikujt nën mbikqyrje nuk është redaktuar gjatë kohës së dhënë.',
-'watchlist-details'    => "{{PLURAL:$1|'''$1''' faqe|'''$1''' faqe}} nën mbikqyrje duke mos numëruar faqet e diskutimit.",
+'watchlist-details'    => '{{PLURAL:$1|$1 faqe|$1 faqe}} nën mbikqyrje duke mos numëruar faqet e diskutimit.',
 'wlheader-enotif'      => '* Njoftimi me email është lejuar.',
 'wlheader-showupdated' => "* Faqet që kanë ndryshuar nga vizita juaj e fundit do të tregohen të '''trasha'''",
 'watchmethod-recent'   => 'duke parë ndryshimet e fundit për faqet nën mbikqyrje',
@@ -1474,7 +1483,7 @@ Shikoni [[Special:Log/delete|regjistrin e grisjeve]] për grisjet dhe restaurime
 
 # What links here
 'whatlinkshere'       => 'Lidhjet këtu',
-'whatlinkshere-title' => 'Faqe që lidhin me $1',
+'whatlinkshere-title' => 'Faqe që lidhen tek $1',
 'whatlinkshere-page'  => 'Faqja:',
 'linklistsub'         => '(Listë lidhjesh)',
 'linkshere'           => "Faqet e mëposhtme lidhen këtu '''[[:$1]]''':",
@@ -1583,7 +1592,7 @@ Shërbyesi i rrjetit duhet të jetë në gjendje të shkruaj këtë skedë për 
 'movepagetext'            => "Duke përdorur formularin e mëposhtëm do të ndërroni titullin e një faqeje, duke zhvendosur gjithë historinë përkatëse tek titulli i ri.
 Titulli i vjetër do të bëhet një faqe përcjellëse tek titulli i ri.
 Lidhjet tek faqja e vjetër nuk do të ndryshohen;
-duhet të kontrolloni mirëmbajtjen për përcjellime të dyfishta ose të prishura.
+duhet të kontrolloni mirëmbajtjen për përcjellime të [[Special:DoubleRedirects|dyfishta]] ose të [[Special:BrokenRedirects|prishura]].
 Keni përgjegjësinë për tu siguruar që lidhjet të vazhdojnë të jenë të sakta.
 
 Vini re se kjo faqe '''nuk''' do të zhvendoset n.q.s. ekziston një faqe me titullin e ri, përveçse kur ajo të jetë bosh ose një përcjellim dhe të mos ketë një histori të vjetër.
@@ -1974,7 +1983,7 @@ Të tjerat do të fshihen.
 
 # External editor support
 'edit-externally'      => 'Ndryshoni këtë skedë me një mjet të jashtëm',
-'edit-externally-help' => 'Shikoni [http://www.mediawiki.org/wiki/Manual:External_editors udhëzimet e instalimit] për më shumë informacion.',
+'edit-externally-help' => '(Shikoni [http://www.mediawiki.org/wiki/Manual:External_editors udhëzimet e instalimit] për më shumë informacion)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'të gjitha',

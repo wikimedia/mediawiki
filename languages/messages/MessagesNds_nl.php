@@ -557,6 +557,12 @@ $1',
 'readonly'             => 'De databanke is beveilig',
 'enterlockreason'      => "Geef een rejen veur de blokkering op en hoelange 't geet duren. De op-egeven rejen zal an de gebrukers eteund wonnen.",
 'readonlytext'         => "De databanke van {{SITENAME}} is noen esleuten veur nieje bewarkingen en wiezigingen, werschienlijk veur bestansonderhoud. De verantwoordelijke systeembeheerder gaf hierveur de volgende rejen op: '''$1'''",
+'missingarticle'       => 'In de databanke is gien tekse evunnen veur een pagina mit de naam "$1". 
+
+Dit kump meestentieds deur \'t volgen van een verwiezing in een vergeliekings- of geschiedenispagina naor een pagina dee vort-edaon is.
+
+As dit neet \'t geval is, dan he-j een fout in de pregremmetuur evunnen.
+Meld dit effen an een beheerder mit vermelding van \'t webadres.',
 'readonly_lag'         => 'De databanke is autematisch beveilig, zodat de onder-eschikken servers zich kunnen synchroniseren mit de centrale server.',
 'internalerror'        => 'Interne fout',
 'internalerror_info'   => 'Interne fout: $1',
@@ -634,6 +640,7 @@ Kies een aandere naam.',
 'yourvariant'                => 'Gewunste taal:',
 'yournick'                   => 'Alias veur ondertekeningen',
 'badsig'                     => 'Ongeldige haandtekening; controleer HTML.',
+'badsiglength'               => "De alias veur ondertekeningen is te lange; 't mut korter as $1 kerakters ween.",
 'email'                      => 'Privéberichen',
 'prefs-help-realname'        => '* Echte naam (optioneel): a-j disse optie invullen zal joew echte naam gebruuk wonnen veur toekenningen veur joew warkzaamheen.',
 'loginerror'                 => 'Anmeldingsfout',
@@ -651,6 +658,7 @@ Contreleer de spelling of [[Special:UserLogin/signup|maak een nieje gebruker an]
 'nouserspecified'            => 'Vul asjeblief een naam in',
 'wrongpassword'              => "verkeerd wachwoord, prebeer 't opniej.",
 'wrongpasswordempty'         => "Gien wachwoord in-evoerd. Prebeer 't opniej.",
+'passwordtooshort'           => "Joew wachwoord is te kort. 't Mut te minsen uut $1 tekens bestaon.",
 'mailmypassword'             => 'Niej wachwoord opsturen',
 'passwordremindertitle'      => 'niej tiedelik wachwoord veur {{SITENAME}}',
 'passwordremindertext'       => 'Iemand vanof \'t IP-adres $1 (werschienlijk jiezelf) hef evreugen 
@@ -666,6 +674,7 @@ en blief joew bestaonde wachwoord gebruken.',
 'passwordsent'               => 'Der is een niej wachwoord verstuurd naor \'t e-mailadres van gebruker "$1". Meld an, a-j \'t wachwoord ontvangen.',
 'blocked-mailpassword'       => 'Dit IP-adres is eblokkeerd. Dit betekent da-j neet bewarken kunnen en dat {{SITENAME}} joew wachwoord neet weerummehaolen kan, dit wonnen edaon um misbruuk tegen te gaon.',
 'eauthentsent'               => "Der is een bevestigingsberich naor 't op-egeven e-mailadres verstuurd. Veurdat der veerdere berichen naor dit e-mailadres verstuurd kunnen wonnen, mu-j de instructies volgen in 't toe-esturen berich, um te bevestigen da-j joe eigen daodwarkelijk an-emeld hemmen.",
+'throttled-mailpassword'     => 'In de of-eleupen $1 uur is der al een wachwoordherinnering estuurd. Um misbruuk te veurkoemen wonnen der mar één wachwoordherinnering per $1 uur verstuurd.',
 'mailerror'                  => "Fout bie 't versturen van berich: $1",
 'acct_creation_throttle_hit' => 'Der {{PLURAL:$1|is al 1 gebruker|bin al $1 gebrukers}} eregistreerd vanof dit IP-adres.
 Je kunnen gien nieje gebrukers meer registreren.',
@@ -770,6 +779,8 @@ Geef disse nummers deur a-j kontak mit ene opnemen over de blokkering.',
 'whitelistedittitle'        => 'Um disse pagina te bewarken, mu-j je anmelden',
 'whitelistedittext'         => "Um pagina's te kunnen wiezigen, mu-j $1 ween",
 'whitelistreadtitle'        => 'Anmelden is verplich',
+'whitelistreadtext'         => "Je mutten je eers [[Special:UserLogin|anmelden]] um pagina's te kunnen lezen.",
+'whitelistacctitle'         => 'Je maggen gien nieje gebruker registreren',
 'whitelistacctext'          => 'Nieje gebrukersprefielen op {{SITENAME}} kunnen allinnig an-emaak wonnen deur [[Special:UserLogin|an-emelde]] gebrukers mit de juuste rechten.',
 'confirmedittitle'          => 'Berichbevestiging is neudig um te bewarken.',
 'confirmedittext'           => "Je mutten je e-mailadres bevestigen veurda-j bewarken kunnen. Vul je adres in en bevestig 't via [[Special:Preferences|mien veurkeuren]].",
@@ -867,6 +878,7 @@ De deur $3 op-egeven rejen is ''$2''",
 'nohistory'           => 'Der bin gien eerdere versies van disse pagina.',
 'revnotfound'         => 'Wieziging neet evunnen',
 'revnotfoundtext'     => 'De op-evreugen ouwe versie van disse pagina is onvientbaor. Kiek de URL dee-j gebruken nao um naor disse pagina te gaon.',
+'loadhist'            => "Bezig mit 't laojen van de geschiedenisse",
 'currentrev'          => 'Leste versie',
 'revisionasof'        => 'Versie op $1',
 'revision-info'       => 'Versie op $1 van $2',
@@ -876,6 +888,7 @@ De deur $3 op-egeven rejen is ''$2''",
 'cur'                 => 'noen',
 'next'                => 'Volgende',
 'last'                => 'leste',
+'orig'                => 'oorspronkelijk',
 'page_first'          => 'eerste',
 'page_last'           => 'leste',
 'histlegend'          => 'Verklaoring ofkortingen: (noen) = verschil mit de op-esleugen versie, (veurige) = verschil mit de veurige versie, K = kleine wieziging',
@@ -907,7 +920,9 @@ der kan veerdere infermasie staon in 't [{{fullurl:Special:Log/delete|page={{PAG
 'rev-delundel'                => 'teun/verbarg',
 'revisiondelete'              => 'Wiezigingen vortdoon/herstellen',
 'revdelete-nooldid-title'     => 'Gien doelversie',
+'revdelete-nooldid-text'      => 'Je hemmen gien doelversie(s) op-egeven veur disse actie',
 'revdelete-selected'          => "'''{{PLURAL:$2|Esillekteren bewarking|Esillekteren bewarkingen}} van '''[[:$1]]''':'''",
+'logdelete-selected'          => "{{PLURAL:$2|Esillekteren logboekactie|Esillekteren logboekacties}} veur '''$1:'''",
 'revdelete-text'              => "'''Bewarkingen dee vort-ehaold bin, ku-j wel zien in de geschiedenisse, mar de inhoud is neet langer pebliekelijk toegankelijk.'''
 
 Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't weerummeplaosen mit behulpe van dit scharm, behalven as der aandere beparkingen gelden dee in-esteld bin deur de systeembeheerder.",
@@ -916,6 +931,7 @@ Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't w
 'revdelete-hide-name'         => 'Verbarg logboekactie',
 'revdelete-hide-comment'      => 'Verbarg bewarkingssamenvatting',
 'revdelete-hide-user'         => 'Verbarg gebrukersnamen en IP-adressen van aandere luui.',
+'revdelete-hide-restricted'   => 'Disse beparkingen toepassen op beheerders en aander volk',
 'revdelete-suppress'          => 'Gegevens veur beheerders en aandere gebrukers onderdrokken',
 'revdelete-hide-image'        => 'Verbarg bestansinhoud',
 'revdelete-unsuppress'        => 'Beparkingen op weerummezetten wiezigingen vortdoon',
@@ -924,14 +940,18 @@ Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't w
 'revdelete-logentry'          => 'zichbaorheid van bewarkingen is ewiezig veur [[$1]]',
 'logdelete-logentry'          => 'wiezigen zichbaorheid van gebeurtenisse [[$1]]',
 'revdelete-logaction'         => '$1 {{PLURAL:$1|wieziging|wiezigingen}} in-esteld naor modus $2',
+'logdelete-logaction'         => '$1 {{PLURAL:$1|actie|acties}} um [[$3]] naor modus $2 in te stellen',
 'revdelete-success'           => 'Zichbaorheid van de wieziging succesvol in-esteld.',
 'logdelete-success'           => "'''Zichbaorheid van de gebeurtenisse is succesvol in-esteld.'''",
 
 # Oversight log
-'oversightlog' => 'Toezichslogboek',
+'oversightlog'    => 'Toezichslogboek',
+'overlogpagetext' => "Hieronder steet een lieste van de leste vort-edaone pagina's en blokkeringen dee veur beheerders verbörgen bin. Zie de [[Special:Ipblocklist|IP-blokkeerlieste]] veur een lieste mit de blokkeringen en uutbanningen dee noen van toepassing bin.",
 
 # History merging
 'mergehistory'                     => "Geschiedenisse van pagina's bie mekaar doon",
+'mergehistory-header'              => 'Disse pagina stelt joe in staot um versies van de geschiedenisse vanuut de ene bronpagina naor een niejere pagina bie mekaar te doon.
+Zörg derveur dat disse wieziging de geschiedenisse neet in de wiere schop.',
 'mergehistory-box'                 => "Versies van twee pagina's samenvoegen:",
 'mergehistory-from'                => 'Bronpagina:',
 'mergehistory-into'                => 'Bestemmingspagina:',
@@ -980,6 +1000,7 @@ Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't w
 'showingresultsnum'     => "Hieronder {{PLURAL:$3|steet '''1''' risseltaot|staon '''$3''' risseltaoten}} vanof nummer '''$2'''.",
 'nonefound'             => '<strong>Let wel:</strong> as een zeukopdrachte mislok kump dat vake deur gebruuk van veulveurkoemmende woorden as "de" en "het", dee neet eïndexeerd bin.',
 'powersearch'           => 'Zeuk',
+'powersearchtext'       => 'Zeuken in naamruumtes:<br />$1<br />$2 Deurverwiezingen weergeven<br />Zeuken naor $3 $9',
 'searchdisabled'        => 'Zeuken in {{SITENAME}} is neet meugelijk. Je kunnen gebruukmaken van Google. De gegevens over {{SITENAME}} bin meugelijk neet bie-ewörk.',
 
 # Preferences page
@@ -1033,6 +1054,7 @@ Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't w
 'recentchangescount'       => 'Antal wiezigingen in de lieste "leste wiezigingen"',
 'savedprefs'               => 'Veurkeuren bin op-esleugen.',
 'timezonelegend'           => 'Tiedzone',
+'timezonetext'             => "'t Antal uren dat de plaoselijke tied ofwiek van de servertied (UTC).",
 'localtime'                => 'Plaoselijke tied',
 'timezoneoffset'           => 'Tiedverschil',
 'servertime'               => 'Tied op de server',
@@ -1049,7 +1071,14 @@ Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't w
 'userrights-editusergroup'         => 'Bewark gebrukersgroep',
 'saveusergroups'                   => 'Gebrukergroepen opslaon',
 'userrights-groupsmember'          => 'Lid van:',
+'userrights-groupsremovable'       => 'Groepen dee-j vortdoon kunnen:',
+'userrights-groupsavailable'       => 'Beschikbaore groepen:',
+'userrights-groupshelp'            => 'Sillekteer de groepen waor je de gebruker uut willen haolen biezetten willen.
+Neet esillekteren groepen wonnen neet ewiezig. Desillekteer een groep mit "Ctrl + linkermuusknoppe".',
 'userrights-reason'                => 'Rejen:',
+'userrights-available-none'        => 'Je maggen gien gebrukersrechen wiezigen.',
+'userrights-available-add'         => 'Je kunnen gebruker bie disse {{PLURAL:$2|groep|groepen}} doon: $1',
+'userrights-available-remove'      => 'Je kunnen gebrukers uut disse {{PLURAL:$2|groep|groepen}} haolen: $1.',
 'userrights-available-add-self'    => 'Je kunnen je eigen toevoegen an disse {{PLURAL:$2|groep|groepen}}: $1.',
 'userrights-available-remove-self' => 'Je kunnen je eigen vorthaolen uut disse {{PLURAL:$2|groep|groepen}}: $1.',
 'userrights-no-interwiki'          => "Je hemmen gien rechen um gebrukersrechen op aandere wiki's te wiezigen.",
@@ -1112,6 +1141,7 @@ Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't w
 'recentchangeslinked'          => 'Volg verwiezigingen',
 'recentchangeslinked-title'    => 'Wiezigingen verwant an $1',
 'recentchangeslinked-noresult' => 'Gien wiezigingen of pagina waornaor verwezen wonnen in disse periode.',
+'recentchangeslinked-summary'  => "Disse speciale pagina laot de leste wiezigingen zien op pagina's waor naor verwezen wonnen op disse pagina. Pagina's op joew volglieste staon '''vet-edrok'''.",
 
 # Upload
 'upload'                      => 'Bestand toevoegen',
@@ -1149,11 +1179,16 @@ Zie de [[Special:NewImages|gallerieje mit media]] veur een overzichte.',
 'illegalfilename'             => 'De bestansnaam "$1" bevat karakters dee neet in namen van artikels veur maggen koemen. Geef \'t bestand een aandere naam, en prebeer \'t dan opniej toe te voegen.',
 'badfilename'                 => 'De naam van \'t bestand is ewiezig naor "$1".',
 'filetype-badmime'            => 'Bestanden mit \'t MIME-type "$1" maggen hier neet toe-evoeg wonnen.',
+'filetype-unwanted-type'      => "'''\".\$1\"''' is een ongewunst bestanstype.
+An-ewezen bestanstypes bin \$2.",
+'filetype-banned-type'        => "'''\".\$1\"''' is gien toe-estaone bestanstype.
+Toe-estaone bestanstypes bin \$2.",
 'filetype-missing'            => 'Dit bestand hef gien extensie (bv. ".jpg").',
 'large-file'                  => "'t Wonnen an-raojen dat bestanden neet groter bin as $1, dit bestand is $2.",
 'largefileserver'             => "'t Bestand is groter as dat de server toesteet.",
 'emptyfile'                   => "'t Bestand da-j toe-evoeg hemmen is leeg. Dit kan koemen deur een tikfout in de bestansnaam. Kiek effen nao of je dit bestand wel bedoelen.",
 'fileexists'                  => "Een ofbeelding mit disse naam besteet al; je wonnen verzoch 't bestand onder een aandere naam toe te voegen. <strong><tt>$1</tt></strong>",
+'filepageexists'              => "Een pagina (gien bestand) mit disse naam besteet al. Contreleer <strong><tt>$1</tt></strong> a-j neet wisse bin o-j 't wiezigen willen.",
 'fileexists-extension'        => "Een bestand mit een soortgelieke naam besteet al:<br />
 Naam van 't bestand da-j toevoegen wollen: <strong><tt>$1</tt></strong><br />
 Naam van 't bestaonde bestand: <strong><tt>$2</tt></strong><br />
@@ -1213,7 +1248,10 @@ Bedenk eers of 't inderdaod de bedoeling is dat dit bestand toe-evoeg wonnen.
 'imagelist-summary'         => 'Op disse speciale pagina ku-j alle toe-evoegen bestanden bekieken.
 Standard wonnen de les toe-evoegen bestanden bovenan de lieste ezet.
 Klikken op een kelomkop veraandert de sortering.',
+'imagelisttext'             => "Hier volg een lieste mit '''$1''' {{PLURAL:$1|bestand|bestanden}} esorteerd $2.",
+'getimagelist'              => "bezig mit 't laojen van de bestanslieste",
 'ilsubmit'                  => 'Zeuk',
+'showlast'                  => 'Laot de leste $1 bestanden zien esorteerd $2.',
 'byname'                    => 'op naam',
 'bydate'                    => 'op daotum',
 'bysize'                    => 'op grootte',
@@ -1232,6 +1270,7 @@ Klikken op een kelomkop veraandert de sortering.',
 'filehist-filesize'         => 'Bestansgrootte',
 'filehist-comment'          => 'Opmarkingen',
 'imagelinks'                => 'Gebruuk van dit bestand',
+'linkstoimage'              => "De volgende pagina's verwiezen naor dit bestand:",
 'nolinkstoimage'            => 'Ofbeelding is neet in gebruuk.',
 'sharedupload'              => 'Dit bestand is een gedeelde upload en kan ook deur andere prejekken ebruukt worden.',
 'shareduploadwiki'          => 'Zie $1 veur veerdere infermasie.',
@@ -1330,6 +1369,7 @@ Pagina's wonnen ezien as een deurverwiespagina, as 't sjabloon gebruuk wonnen da
 'brokenredirects-delete' => '(vortdoon)',
 
 'withoutinterwiki'         => "Pagina's zonder verwiezingen naor aandere talen",
+'withoutinterwiki-header'  => "De volgende pagina's verwiezen neet naor aandere taalversies:",
 'withoutinterwiki-summary' => "De volgende pagina's verwiezen neet naor versies in een aandere taal.",
 'withoutinterwiki-submit'  => 'Bekieken',
 
@@ -1374,9 +1414,12 @@ Pagina's wonnen ezien as een deurverwiespagina, as 't sjabloon gebruuk wonnen da
 'protectedtitlesempty'    => 'Der bin noen gien titels beveilig dee an disse parremeters voldoon.',
 'listusers'               => 'Gebrukerslieste',
 'specialpages'            => "Speciale pagina's",
+'spheading'               => "Speciale pagina's veur alle gebrukers:",
+'restrictedpheading'      => "Speciale pagina's mit beteunde toegang",
 'newpages'                => 'Nieje artikels',
 'newpages-username'       => 'Gebrukersnaam:',
 'ancientpages'            => 'Artikels dee lange neet bewörk bin',
+'intl'                    => 'Interwikiverwiezingen',
 'move'                    => 'Herneum',
 'movethispage'            => 'Herneum',
 'unusedimagestext'        => "Vergeet neet dat aandere wiki's meschien oek enkele van disse ofbeeldingen gebruken.",
@@ -1399,6 +1442,7 @@ De volgende kattegerieën bevatten pagina's of media.
 Zie oek [[Special:WantedCategories|gewunste kattegerieën]].",
 'data'               => 'Gegevens',
 'userrights'         => 'Gebrukersrechenbeheer',
+'groups'             => 'Gebrukersgroepen',
 'alphaindexline'     => '$1 tot $2',
 'version'            => 'Versie',
 
@@ -1504,6 +1548,28 @@ Toekomstige wiezigingen op disse pagina en de overlegpagina zullen hier vermeld 
 'enotif_lastvisited'           => 'Zie $1 veur alle wiezigingen sinds joew leste bezeuk.',
 'enotif_lastdiff'              => 'Zie $1 um disse wieziging te bekieken.',
 'enotif_anon_editor'           => 'annenieme gebruker $1',
+'enotif_body'                  => 'Beste $WATCHINGUSERNAME,
+
+De pagina $PAGETITLE op {{SITENAME}} is $CHANGEDORCREATED op $PAGEEDITDATE deur $PAGEEDITOR, zie $PAGETITLE_URL veur de leste versie.
+
+$NEWPAGE
+
+Samenvatting van de wieziging: $PAGESUMMARY $PAGEMINOREDIT
+
+Kontakgevevens van de auteur:
+E-mail: $PAGEEDITOR_EMAIL
+Wiki: $PAGEEDITOR_WIKI
+
+Je kriegen veerder gien berichen, behalve a-j disse pagina bezeuken. Op joew volglieste ku-j veur alle pagina\'s dee-j volgen de waorschuwingsinstellingen derof haolen.
+
+             Groeten van \'t {{SITENAME}}-waorschuwingssysteem.
+
+--
+Je kunnen de instellingen van joew volglieste wiezigen op:
+{{fullurl:Special:Watchlist/edit}}
+
+Opmarkingen en veerdere hulpe:
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete/protect/revert
 'deletepage'                  => 'Vortdoon',
@@ -1530,6 +1596,8 @@ Toekomstige wiezigingen op disse pagina en de overlegpagina zullen hier vermeld 
 ** Op anvrage van de auteur
 ** Schending van de auteursrechen
 ** Vandelisme',
+'delete-toobig'               => "Disse pagina hef een lange bewarkingsgeschiedenisse, meer as $1 versies. 't Vortdoon van dit soort pagina's is mit rechen beteund um 't per ongelok versteuren van de warking van {{SITENAME}} te veurkoemen.",
+'delete-warning-toobig'       => "Disse pagina hef een lange bewarkingsgeschiedenisse, meer as $1 versies. 't Vortdoon van disse pagina kan de warking van de databanke van {{SITENAME}} versteuren. Waort je.",
 'rollback'                    => 'Wiezigingen herstellen',
 'rollback_short'              => 'Weerummedreien',
 'rollbacklink'                => 'Weerummedreien',
@@ -1550,11 +1618,13 @@ De leste bewarking is edaon deur [[User:$3|$3]] ([[User talk:$3|Overleeg]]).",
 'protectedarticle'            => '[[$1]] is beveilig',
 'modifiedarticleprotection'   => 'beveiligingsnivo van "[[$1]]"  ewiezig',
 'unprotectedarticle'          => '[[$1]] vrie-egeven',
+'protectsub'                  => '(beveiligingsnivo veur "$1" an \'t instellen)',
 'confirmprotect'              => 'Beveiliging bevestigen',
 'protectcomment'              => 'Rejen',
 'protectexpiry'               => 'Duur',
 'protect_expiry_invalid'      => 'Verlooptied is ongeldig.',
 'protect_expiry_old'          => 'De verlooptied is al veurbie.',
+'unprotectsub'                => '(Beveiliging "$1" op-eheven)',
 'protect-unchain'             => 'Ontkoppel de naamwiezigingsrechen',
 'protect-text'                => "Hier ku-j 't beveiligingsnivo veur de pagina <strong>$1</strong> instellen.",
 'protect-locked-blocked'      => "Je kunnen beveiligingsnivo's neet wiezigen terwiel je eblokkeerd bin. Hier bin de instellingen zoas ze noen bin veur de pagina <strong>$1</strong>:",
@@ -1588,32 +1658,47 @@ Hier staon de instellingen zoas ze noen bin veur de pagina <strong>$1</strong>:"
 'restriction-level-all'           => 'alles',
 
 # Undelete
-'undelete'                 => "Vort-edaone pagina's bekieken",
-'undeletepage'             => "Vort-edaone pagina's bekieken en weerummeplaosen",
-'viewdeletedpage'          => "Bekiek vort-edaone pagina's",
-'undeletepagetext'         => 'Disse pagina is vort-edaon, mar steet in de kas en kan nog weerummeplaos wonnen.',
-'undeleteextrahelp'        => "Um de pagina mit alle eerdere versies weerumme te plaosen lao-j alle hokjes leeg en klik op '''''Weerummeplaosen!'''''.
+'undelete'                     => "Vort-edaone pagina's bekieken",
+'undeletepage'                 => "Vort-edaone pagina's bekieken en weerummeplaosen",
+'viewdeletedpage'              => "Bekiek vort-edaone pagina's",
+'undeletepagetext'             => 'Disse pagina is vort-edaon, mar steet in de kas en kan nog weerummeplaos wonnen.',
+'undeleteextrahelp'            => "Um de pagina mit alle eerdere versies weerumme te plaosen lao-j alle hokjes leeg en klik op '''''Weerummeplaosen!'''''.
 Um een bepaolde versies weerumme te plaosen mu-j de versies dee-j weerummeplaosen willen anvinken en klik op '''''Weerummeplaosen!'''''.
 Um een bulte achter mekaarstaonde versies te kiezen mu-j de eerste in de reeks anvinken en vervolgens mit de schuufknoppe in-edrok de leste anvinken. Hierdeur wonnen oek alle tussenliggende versies mee-eneumen.
 A-j op '''''Herstel''''' klikken wonnen 't infermasieveld en alle hokjes leeg-emaak.",
-'undeletehistory'          => 'A-j een pagina weerummeplaosen, wonnen alle versies as ouwe versies weerummeplaos. 
+'undeleterevisions'            => '$1 {{PLURAL:$1|versie|versies}} earchiveerd',
+'undeletehistory'              => 'A-j een pagina weerummeplaosen, wonnen alle versies as ouwe versies weerummeplaos. 
 As der al een nieje pagina mit dezelfde naam an-emaak is, zullen disse versies as ouwe versies weerummeplaos wonnen, mar de op-esleugen versie zal neet ewiezig wonnen.',
-'undeletehistorynoadmin'   => "Disse pagina is vort-edaon. De rejen hierveur steet hieronder, samen mit de infermasie van de gebrukers dee dit artikel ewiezig hemmen veurdat 't vort-edaon is. De tekse van 't artikel is allinnig zichbaor veur beheerders.",
-'undeleterevision-missing' => "Ongeldige of ontbrekende versie. 't Is meugelijk da-j een verkeerde verwiezing gebruken of dat disse pagina weerummeplaos is of dat 't uut archief ewis is.",
-'undeletebtn'              => 'Weerummeplaosen',
-'undeletelink'             => 'weerummeplaosen',
-'undeletereset'            => 'Herstel',
-'undeletecomment'          => 'Opmarking:',
-'undeletedarticle'         => '"$1" is weerummeplaos',
-'cannotundelete'           => "Weerummeplaosen van 't bestand is mislok; iemand aanders hef disse pagina meschien al weerummeplaos.",
-'undeletedpage'            => "<big>'''$1 is weerummeplaos'''</big>
+'undeleterevdel'               => 'Herstellen is neet meugelijk as daodoor de leste versie van de pagina gedeeltelijk vort-edaon wonnen. Haol in zoksoort gevallen de les vort-edaone versies uut de selectie. Versies van bestanden wao-j gien toegang toe hebben wonnen neet hersteld.',
+'undeletehistorynoadmin'       => "Disse pagina is vort-edaon. De rejen hierveur steet hieronder, samen mit de infermasie van de gebrukers dee dit artikel ewiezig hemmen veurdat 't vort-edaon is. De tekse van 't artikel is allinnig zichbaor veur beheerders.",
+'undeleterevision-missing'     => "Ongeldige of ontbrekende versie. 't Is meugelijk da-j een verkeerde verwiezing gebruken of dat disse pagina weerummeplaos is of dat 't uut archief ewis is.",
+'undelete-nodiff'              => 'Gien eerdere versie evunnen.',
+'undeletebtn'                  => 'Weerummeplaosen',
+'undeletelink'                 => 'weerummeplaosen',
+'undeletereset'                => 'Herstel',
+'undeletecomment'              => 'Opmarking:',
+'undeletedarticle'             => '"$1" is weerummeplaos',
+'undeletedrevisions'           => '$1 {{PLURAL:$1|versie|versies}} weerummeplaos',
+'undeletedrevisions-files'     => '{{PLURAL:$1|1 versie|$1 versies}} en {{PLURAL:$2|1 bestand|$2 bestanden}} bin weerummeplaos',
+'undeletedfiles'               => '{{PLURAL:$1|1 bestand|$1 bestanden}} weerummeplaos',
+'cannotundelete'               => "Weerummeplaosen van 't bestand is mislok; iemand aanders hef disse pagina meschien al weerummeplaos.",
+'undeletedpage'                => "<big>'''$1 is weerummeplaos'''</big>
 
 Bekiek 't [[Special:Log/delete|logboek vort-edaone pagina's]] veur een overzichte van pagina's dee kortens vort-edaon en weerummeplaos bin.",
-'undelete-header'          => "Zie [[Special:Log/delete|'t logboek vort-edaone pagina's]] veur pagina's dee 't les vort-edaon bin.",
-'undelete-search-box'      => "Deurzeuk vort-edaone pagina's",
-'undelete-search-prefix'   => "Teun pagina's vanof:",
-'undelete-search-submit'   => 'Zeuk',
-'undelete-no-results'      => "Gien pagina's evunnen in 't archief mit vort-edaone pagina's.",
+'undelete-header'              => "Zie [[Special:Log/delete|'t logboek vort-edaone pagina's]] veur pagina's dee 't les vort-edaon bin.",
+'undelete-search-box'          => "Deurzeuk vort-edaone pagina's",
+'undelete-search-prefix'       => "Teun pagina's vanof:",
+'undelete-search-submit'       => 'Zeuk',
+'undelete-no-results'          => "Gien pagina's evunnen in 't archief mit vort-edaone pagina's.",
+'undelete-filename-mismatch'   => "Bestansversie van 't tiedstip $1 kon neet hersteld wonnen: bestansnaam kloppen neet",
+'undelete-bad-store-key'       => "Bestansversie van 't tiedstip $1 kon neet hersteld wonnen: 't bestand was der al neet meer veurdat 't vort-edaon wönnen.",
+'undelete-cleanup-error'       => 'Fout bie \'t herstellen van \'t ongebruken archiefbestand "$1".',
+'undelete-missing-filearchive' => "'t Lokken neet um ID $1 weerumme te plaosen umdat 't neet in de databanke is.
+Meschien is 't al weerummeplaos.",
+'undelete-error-short'         => "Fout bie 't herstellen van 't bestand: $1",
+'undelete-error-long'          => "Fouten bie 't herstellen van 't bestand:
+
+$1",
 
 # Namespace form on various pages
 'namespace'      => 'Naamruumte:',
@@ -1625,6 +1710,8 @@ Bekiek 't [[Special:Log/delete|logboek vort-edaone pagina's]] veur een overzicht
 'mycontris'     => 'Mien biedragen',
 'contribsub2'   => 'Veur $1 ($2)',
 'nocontribs'    => 'Gien wiezigingen evunnen dee an de estelde criteria voldoon.',
+'ucnote'        => 'Hieronder staon de leste <b>$1</b> wiezigingen van disse gebruker in de of-eleupen <b>$2</b> dagen.',
+'uclinks'       => 'Laot de leste $1 wiezigingen zien; laot de leste $2 dagen zien.',
 'uctop'         => ' (leste wieziging)',
 'month'         => 'Maond:',
 'year'          => 'Jaor:',
@@ -1722,8 +1809,12 @@ Op de [[Special:IPBlockList|IP-blokkeerlieste]] steet een lieste mit alle blokke
 'ipb_expiry_invalid'          => 'De op-egeven verlooptied is ongeldig.',
 'ipb_already_blocked'         => '"$1" is al eblokkeerd',
 'ipb_cant_unblock'            => "Foutmelding: blokkade ID $1 neet evunnen, 't is meschien al edeblokkeerd.",
+'ipb_blocked_as_range'        => "Fout: 't IP-adres $1 is neet drek eblokkeerd en de blokkering kan neet op-eheven wonnen.
+De blokkering is onderdeel van de reeks $2, waovan de blokkering wè op-eheven kan wonnen.",
+'ip_range_invalid'            => 'Ongeldige IP-reeks',
 'blockme'                     => 'Mien blokkeren',
 'proxyblocker'                => 'Proxyblokker',
+'proxyblocker-disabled'       => 'Disse functie is uut-eschakeld.',
 'proxyblockreason'            => 'Dit is een autematische preventieve blokkering umda-j gebruuk maken van een open proxyserver.',
 'proxyblocksuccess'           => 'Succesvol.',
 'sorbsreason'                 => 'Joew IP-adres is op-eneumen as open proxyserver in de DNS-blacklist de {{SITENAME}} ebruukt.',
@@ -1743,10 +1834,14 @@ Mut de databanke vrie-egeven wonnen?',
 'locknoconfirm'       => "Je hemmen 't vakjen neet esillekteerd um joew keuze te bevestigen.",
 'lockdbsuccesssub'    => 'Databanke succesvol eblokkeerd',
 'unlockdbsuccesssub'  => 'Blokkering van de databanke is op-eheven.',
+'lockdbsuccesstext'   => "De databanke is eblokkeerd.<br />
+Vergeet neet de [[Special:UnlockDB|databanke vrie te geven]] a-j klaor bin mit 't onderhoud.",
+'unlockdbsuccesstext' => 'De databanke is weer vrie-egeven.',
 'lockfilenotwritable' => "Gien schriefrechen op 't beveiligingsbestand van de databanke. Um de databanke te blokkeren of de blokkade op te heffen, mut der eschreven kunnen wonnen deur de webserver.",
 'databasenotlocked'   => 'De databanke is neet eblokkeerd.',
 
 # Move page
+'movepage'                => 'Pagina herneumen',
 'movepagetext'            => "Deur 't formelier da-j hieronder zien in te vullen ku-j de naam wiezigen, zo geet de veurgeschiedenisse neet verleuren. De ouwe paginanaam zal autematisch een deurverwiezing wonnen naor de nieje pagina (disse pagina kan, zoas op alle artikels mit een deurverwiezing, an-epas wonnen). Deurverwiezingen wonnen neet meeveraanderd en mutten mit de haand ewiezig wonnen.",
 'movepagetalktext'        => "De biebeheurende overlegpagina krieg oek een nieje titel, mar '''neet''' in de volgende gevallen:
 * As de pagina in een aandere naamruumte eplaos wonnen
@@ -1755,6 +1850,7 @@ Mut de databanke vrie-egeven wonnen?',
 'movearticle'             => 'Herneum',
 'movenologin'             => 'Neet an-emeld.',
 'movenologintext'         => 'Je mutten [[Special:UserLogin|an-emeld]] ween um de naam van een pagina te wiezigen.',
+'movenotallowed'          => "Je hemmen gien rechen um pagina's te herneumen.",
 'newtitle'                => 'Nieje naam',
 'move-watch'              => 'volg disse pagina',
 'movepagebtn'             => 'Herneum',
@@ -1765,6 +1861,8 @@ Mut de databanke vrie-egeven wonnen?',
 'talkexists'              => "De pagina zelf is verplaos, mar de overlegpagina kon neet verplaos wonnen, umdat de doelnaam al een neet-lege overlegpagina had. Combineer de overlegpagina's haandmaotig.",
 'movedto'                 => 'wiezigen naor',
 'movetalk'                => "De overlegpagina oek wiezigen, as 't meuglijk is.",
+'talkpagemoved'           => 'De biebeheurende overlegpagina is oek herneumd.',
+'talkpagenotmoved'        => 'De biebeheurende overlegpagina is <strong>neet</strong> herneumd.',
 '1movedto2'               => '[[$1]] is ewiezig naor [[$2]]',
 '1movedto2_redir'         => '[[$1]] is ewiezig over de deurverwiezing [[$2]] hinne',
 'movelogpage'             => 'Titelwiezigingen',
@@ -1787,9 +1885,13 @@ Mut de databanke vrie-egeven wonnen?',
 '''NB:''' 't uutvoeren van de hele geschiedenisse is uut-eschakeld vanwegen prestasierejens.",
 'export-submit'     => 'Uutvoeren',
 'export-addcattext' => "Pagina's toevoegen uut kattegerie:",
+'export-addcat'     => 'Toevoegen',
+'export-download'   => 'As bestand opslaon',
+'export-templates'  => 'Mit sjablonen derbie',
 
 # Namespace 8 related
 'allmessages'               => 'Alle systeemteksten',
+'allmessagesname'           => 'Naam',
 'allmessagesdefault'        => 'Standardtekse',
 'allmessagescurrent'        => 'De leste versie',
 'allmessagestext'           => 'Hier vie-j alle berichen in de MediaWiki-naamruumte:',
@@ -1817,6 +1919,7 @@ Alle transwiki-invoerhaandelingen wonnen op-esleugen in 't [[Special:Log/import|
 'import-interwiki-namespace' => "Plaos pagina's in de volgende naamruumte:",
 'importtext'                 => "Gebruuk de Special:Export-optie in de wiki waor de infermasie vandaonkump, slao 't op joew eigen systeem op, en stuur 't daornao hier op.",
 'importstart'                => "Pagina's an 't invoeren...",
+'import-revision-count'      => '$1 {{PLURAL:$1|versie|versies}}',
 'importnopages'              => "Der bin gien pagina's um in te voeren.",
 'importfailed'               => 'Invoeren is mislok: $1',
 'importunknownsource'        => 'Onbekend invoerbrontype',
@@ -1827,12 +1930,24 @@ Alle transwiki-invoerhaandelingen wonnen op-esleugen in 't [[Special:Log/import|
 'importhistoryconflict'      => 'Der bin konflikken in de geschiedenisse van de pagina (is meschien eerder al in-evoerd)',
 'importnosources'            => 'Gien transwiki-invoerbronnen edefinieerd en drekte geschiedenistoevoegingen bin eblokkeerd.',
 'importnofile'               => 'Der is gien invoerbestand toe-evoeg.',
+'importuploaderrorsize'      => "'t Oplaojen van 't invoerbestand is mislok.
+'t Bestand is groter as de in-estelde limiet.",
+'importuploaderrorpartial'   => "'t Oplaojen van 't invoerbestand is mislok.
+'t Bestand is mar gedeeltelijk an-ekeumen.",
+'importuploaderrortemp'      => "'t Oplaojen van 't invoerbestand is mislok.
+De tiejelijke map is neet anwezig.",
+'import-parse-failure'       => "Fout bie 't verwarken van de XML-invoer",
+'import-noarticle'           => "Der bin gien pagina's um in te voeren!",
+'import-nonewrevisions'      => 'Alle versies bin al eerder in-evoerd.',
+'xml-error-string'           => '$1 op regel $2, kelom $3 (byte $4): $5',
 
 # Import log
-'importlogpage'             => 'Invoerlogboek',
-'importlogpagetext'         => "Administratieve invoer van pagina's mit geschiedenisse van aandere wiki's.",
-'import-logentry-upload'    => '[[$1]] in-evoerd via een bestanstoevoeging',
-'import-logentry-interwiki' => 'transwiki $1',
+'importlogpage'                    => 'Invoerlogboek',
+'importlogpagetext'                => "Administratieve invoer van pagina's mit geschiedenisse van aandere wiki's.",
+'import-logentry-upload'           => '[[$1]] in-evoerd via een bestanstoevoeging',
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|versie|versies}}',
+'import-logentry-interwiki'        => 'transwiki $1',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|versie|versies}} van $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Miene gebroekersbladziede',
@@ -1857,6 +1972,7 @@ Alle transwiki-invoerhaandelingen wonnen op-esleugen in 't [[Special:Log/import|
 'tooltip-ca-watch'                => 'Voog disse bladziede too an oewe voalglieste',
 'tooltip-ca-unwatch'              => 'Smiet disse bladziede van oewe voalglieste',
 'tooltip-search'                  => '{{SITENAME}} deurzeuken',
+'tooltip-search-go'               => "Naor een pagina mit disse naam gaon as 't besteet",
 'tooltip-search-fulltext'         => "De pagina's vuur disse tekst zeukn",
 'tooltip-p-logo'                  => 'Vuurziede',
 'tooltip-n-mainpage'              => 'Goa noar de vuurziede',
@@ -1911,9 +2027,13 @@ Alle transwiki-invoerhaandelingen wonnen op-esleugen in 't [[Special:Log/import|
 'nocredits'        => 'Der is gien auteursinfermasie beschikbaor veur disse pagina.',
 
 # Spam protection
+'spamprotectiontitle'    => 'Spamfilter',
 'spamprotectiontext'     => 'De pagina dee-j opslaon wollen is eblokkeerd deur de ongewunsteverwiezingsfilter. 
 Meestentieds wonnen dit veroorzaak deur een uutgaonde verwiezing dee op de zwarte lieste steet.',
 'spamprotectionmatch'    => 'Disse tekse zörgen derveur dat onze spamfilter alarmsleug: $1',
+'subcategorycount'       => 'Der {{PLURAL:$1|steet 1 onderkattegerie|staon $1 onderkattegerieën}} in disse kattegerie.',
+'categoryarticlecount'   => "Der {{PLURAL:$1|steet 1 pagina|staon $1 pagina's}} in disse kattegerie.",
+'category-media-count'   => '$1 mediasegmenten in kattegerie',
 'listingcontinuesabbrev' => '(vervolg)',
 'spambot_username'       => 'MediaWiki keren van ongewunste toevoegingen',
 'spam_reverting'         => "Bezig mit 't weerummezetten naor de leste versie dee gien verwiezing hef naor $1",
@@ -1947,12 +2067,20 @@ Meestentieds wonnen dit veroorzaak deur een uutgaonde verwiezing dee op de zwart
 'markedaspatrollederror-noautopatrol' => 'Je maggen joew eigen bewarkingen neet as econtroleerd markeren.',
 
 # Patrol log
+'patrol-log-page' => 'Markeerlogboek',
 'patrol-log-line' => '$1 van $2 emarkeerd as econtroleerd $3',
 'patrol-log-auto' => '(autematisch)',
 
 # Image deletion
-'deletedrevision'              => 'Vort-edaone ouwe versie $1.',
-'filedelete-archive-read-only' => 'De webserver kan neet in de archiefmap "$1" schrieven.',
+'deletedrevision'                 => 'Vort-edaone ouwe versie $1.',
+'filedeleteerror-short'           => "Fout bie 't vortdoon van bestand: $1",
+'filedeleteerror-long'            => "Der wanen fouten bie 't vortdoon van 't bestand:
+
+$1",
+'filedelete-missing'              => '\'t Bestand "$1" kan neet vort-edaon wonnen, umdat \'t neet besteet.',
+'filedelete-old-unregistered'     => 'De an-egeven bestansversie "$1" steet neet in de databanke.',
+'filedelete-current-unregistered' => '\'t An-egeven bestand "$1" steet neet in de databanke.',
+'filedelete-archive-read-only'    => 'De webserver kan neet in de archiefmap "$1" schrieven.',
 
 # Browsing diffs
 'previousdiff' => '← veurige wieziging',
@@ -1962,6 +2090,7 @@ Meestentieds wonnen dit veroorzaak deur een uutgaonde verwiezing dee op de zwart
 'mediawarning'         => "'''Waorschuwing:''' dit bestand bevat meschien codering dee slich is veur 't systeem. <hr />",
 'imagemaxsize'         => 'Maximumgrootte van ofbeeldingen op de beschrievingspagina:',
 'thumbsize'            => "Grootte van 't ofbeeldingsoverzichte (thumbnail):",
+'widthheightpage'      => "$1×$2, $3 pagina's",
 'file-info'            => 'Bestansgrootte: $1, MIME-type: $2',
 'file-info-size'       => '($1 × $2 beeldpunten, bestansgrootte: $3, MIME-type: $4)',
 'file-nohires'         => '<small>Gien hogere resolusie beschikbaor.</small>',
@@ -1970,8 +2099,9 @@ Meestentieds wonnen dit veroorzaak deur een uutgaonde verwiezing dee op de zwart
 'show-big-image-thumb' => '<small>Grootte van disse weergave: $1 × $2 beeldpunten</small>',
 
 # Special:Newimages
-'newimages' => 'Nieje ofbeeldingen',
-'noimages'  => 'Niks te zien.',
+'newimages'    => 'Nieje ofbeeldingen',
+'showhidebots' => '(Bots $1)',
+'noimages'     => 'Niks te zien.',
 
 # Bad image list
 'bad_image_list' => "De opmaak is as volg:
@@ -1999,11 +2129,23 @@ Alle volgende verwiezingen dee op dezelfde regel staon, wonnen behaandeld as uut
 'exif-compression'                 => 'Compressiemethode',
 'exif-photometricinterpretation'   => 'Beeldpuntsamenstelling',
 'exif-orientation'                 => 'Oriëntasie',
+'exif-samplesperpixel'             => 'Antal compenenten',
+'exif-planarconfiguration'         => 'Gegevensstructuur',
+'exif-ycbcrsubsampling'            => 'Subsamplingsverhouwige van Y tot C',
 'exif-ycbcrpositioning'            => 'Y- en C-posisionering',
+'exif-xresolution'                 => 'Horizontale reselusie',
+'exif-yresolution'                 => 'Verticale reselusie',
+'exif-resolutionunit'              => 'Eenheid van de oplossing X en Y',
 'exif-stripoffsets'                => 'Lokasie ofbeeldingsgegevens',
+'exif-rowsperstrip'                => 'Riejen per strip',
+'exif-stripbytecounts'             => 'Bytes per ecomprimeren strip',
 'exif-jpeginterchangeformat'       => 'Ofstand tot JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'Bytes van JPEG-gegevens',
 'exif-transferfunction'            => 'Overdrachsfunctie',
+'exif-whitepoint'                  => 'Witpuntchromaticiteit',
+'exif-primarychromaticities'       => 'Chromaciteit van primaire kleuren',
+'exif-ycbcrcoefficients'           => 'Transfermasiematrixcoëfficiënten veur de kleurruumte',
+'exif-referenceblackwhite'         => 'Rifferentieweerden veur zwart/wit',
 'exif-datetime'                    => 'Tiedstip van digitalisasie',
 'exif-imagedescription'            => 'Ofbeeldingnaam',
 'exif-make'                        => 'Camera-mark',
@@ -2233,29 +2375,42 @@ Alle volgende verwiezingen dee op dezelfde regel staon, wonnen behaandeld as uut
 
 # External editor support
 'edit-externally'      => 'Wiezig dit bestand mit een extern pregramma',
-'edit-externally-help' => 'Zie de [http://www.mediawiki.org/wiki/Manual:External_editors installasie-instructies] veur meer infermasie.',
+'edit-externally-help' => '(zie de [http://www.mediawiki.org/wiki/Manual:External_editors instellasie-instructies] veur meer infermasie)',
 
 # 'all' in various places, this might be different for inflected languages
-'imagelistall'  => 'alles',
-'watchlistall2' => 'alles',
-'namespacesall' => 'alles',
-'monthsall'     => 'alles',
+'recentchangesall' => 'alles',
+'imagelistall'     => 'alles',
+'watchlistall2'    => 'alles',
+'namespacesall'    => 'alles',
+'monthsall'        => 'alles',
 
 # E-mail address confirmation
-'confirmemail'           => 'Bevestig e-mailadres',
-'confirmemail_noemail'   => 'Je hemmen gien geldig e-mailadres in-evoerd in joew [[Special:Preferences|veurkeuren]].',
-'confirmemail_text'      => 'Bie disse wiki mu-j je e-mailadres bevestigen veurda-j de berichopties gebruken kunnen. Klik op de onderstaonde knoppe um een bevestigingsberich te ontvangen. Dit berich bevat een code mit een verwiezing; um je e-mailadres te bevestigen mu-j disse verwiezing los doon.',
-'confirmemail_pending'   => '<div class="error">
+'confirmemail'            => 'Bevestig e-mailadres',
+'confirmemail_noemail'    => 'Je hemmen gien geldig e-mailadres in-evoerd in joew [[Special:Preferences|veurkeuren]].',
+'confirmemail_text'       => 'Bie disse wiki mu-j je e-mailadres bevestigen veurda-j de berichopties gebruken kunnen. Klik op de onderstaonde knoppe um een bevestigingsberich te ontvangen. Dit berich bevat een code mit een verwiezing; um je e-mailadres te bevestigen mu-j disse verwiezing los doon.',
+'confirmemail_pending'    => '<div class="error">
 Der is al een bevestigingscode op-estuurd; a-j net een gebrukersnaam an-emaak hemmen, wach dan eers een paor menuten tot da-j dit berich ontvungen hemmen veurda-j een nieje code anvragen.
 </div>',
-'confirmemail_send'      => 'Stuur een bevestigingscode',
-'confirmemail_sent'      => 'Bevestigingsberich verstuurd.',
-'confirmemail_oncreate'  => "Een bevestigingscode is naor joew e-mailadres verstuurd. Disse code is neet neudig um an te melden, mar je mutten 't wel bevestigen veurda-j de e-mailmeugelijkheen van disse wiki gebruken kunnen.",
-'confirmemail_invalid'   => 'Ongeldige bevestigingscode. De code kan verlopen ween.',
-'confirmemail_needlogin' => 'Je muttnen $1 um joew e-mailadres te bevestigen.',
-'confirmemail_success'   => 'Joew e-mailadres is bevestig. Je kunnen noen anmelden en {{SITENAME}} gebruken.',
-'confirmemail_loggedin'  => 'Joew e-mailadres is noen bevestig.',
-'confirmemail_error'     => "Der is iets fout egaon bie 't opslaon van joew bevestiging.",
+'confirmemail_send'       => 'Stuur een bevestigingscode',
+'confirmemail_sent'       => 'Bevestigingsberich verstuurd.',
+'confirmemail_oncreate'   => "Een bevestigingscode is naor joew e-mailadres verstuurd. Disse code is neet neudig um an te melden, mar je mutten 't wel bevestigen veurda-j de e-mailmeugelijkheen van disse wiki gebruken kunnen.",
+'confirmemail_sendfailed' => "{{SITENAME}} kon joew gien bevestigingscode toesturen.
+Contreleer joew e-mailadres op ongeldige tekens.
+
+Fout bie 't versturen: $1",
+'confirmemail_invalid'    => 'Ongeldige bevestigingscode. De code kan verlopen ween.',
+'confirmemail_needlogin'  => 'Je muttnen $1 um joew e-mailadres te bevestigen.',
+'confirmemail_success'    => 'Joew e-mailadres is bevestig. Je kunnen noen anmelden en {{SITENAME}} gebruken.',
+'confirmemail_loggedin'   => 'Joew e-mailadres is noen bevestig.',
+'confirmemail_error'      => "Der is iets fout egaon bie 't opslaon van joew bevestiging.",
+'confirmemail_subject'    => 'Bevestiging e-mailadres veur {{SITENAME}}',
+'confirmemail_body'       => 'Ene mit IP-adres $1, werschienlijk jie zelf, hef zien eigen mit dit e-mailadres eregistreerd as de gebruker "$2" op {{SITENAME}}.
+
+Klik op de volgende verwiezing um te bevestigen da-jie disse gebruker bin en um de e-mailmeugelijkheen op {{SITENAME}} te activeren:
+
+$3
+
+A-j joe eigen *neet* an-emeld hemmen, klik dan neet op disse verwiezing. De bevestigingscode zal verlopen op $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki-intergrasie is edeactiveerd]',
@@ -2296,6 +2451,7 @@ $1",
 'imgmultipageprev' => '&larr; veurige',
 'imgmultipagenext' => 'volgende &rarr;',
 'imgmultigo'       => 'Oké',
+'imgmultigotopre'  => 'Gao naor de pagina',
 
 # Table pager
 'ascending_abbrev'         => 'daol',
@@ -2321,6 +2477,10 @@ $1",
 Kiek de pagina op de normale meniere nao.',
 'livepreview-error'   => 'Verbiending neet meugelijk: $1 "$2"
 Kiek de pagina op de normale meniere nao.',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => 'Wiezigingen dee niejer bin as $1 secondes wonnen meschien neet weer-egeven in disse lieste.',
+'lag-warn-high'   => 'De databanke is aorig zwaor belas, wiezigingen niejer as $1 secondes staon daorumme meschien neet in de lieste.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => "Der {{PLURAL:$1|steet 1 pagina|staon $1 pagina's}} op joew volglieste, zonder overlegpagina's.",

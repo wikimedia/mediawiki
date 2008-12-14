@@ -100,7 +100,7 @@ $messages = array(
 'august-gen'    => 'Умарьковонь',
 'september-gen' => 'Таштамковонь',
 'october-gen'   => 'Ожоковонь',
-'november-gen'  => 'Сунденьковонь',
+'november-gen'  => 'Сундерьковонь',
 'december-gen'  => 'Ацамковонь',
 'jan'           => 'Якш',
 'feb'           => 'Дав',
@@ -430,7 +430,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'whitelistedittitle'     => 'Витнемань-петнемань теемга эряви совамо лем',
 'whitelistedittext'      => 'Лопанть витнемс - петнемс эряви $1.',
 'whitelistreadtitle'     => 'Ловномань кисэ эряви совамо лем',
-'whitelistreadtext'      => 'Лопань ловномга сави тенть [[Special:UserLogin|совамс]].',
+'whitelistreadtext'      => 'Лопатнень ловномга сави тенть [[Special:UserLogin|сёрмадстомс]] эсь прят.',
 'whitelistacctitle'      => 'Тонеть а мерить теемс-шкамс совамо тарка',
 'nosuchsectiontitle'     => 'Истямо явкс арась',
 'loginreqtitle'          => 'Совамс эряви',
@@ -1393,7 +1393,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'imgmultipageprev' => '← седикелень лопась',
 'imgmultipagenext' => 'седе мейлень лопась →',
 'imgmultigo'       => 'Адя!',
-'imgmultigotopre'  => 'Адя лопас $1',
+'imgmultigotopre'  => 'Адя лопас',
 
 # Table pager
 'table_pager_next'         => 'Седе тов ве лопа',

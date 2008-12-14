@@ -722,7 +722,7 @@ Caso continue a não funcionar, tente [[Special:UserLogout|sair]] e voltar a ent
 
 <strong>Por favor, tente novamente caso esta seja uma tentativa de edição legítima.
 Caso continue a não funcionar, tente [[Special:UserLogout|desautenticar-se]] e voltar a entrar na sua conta.</strong>",
-'token_suffix_mismatch'     => '<strong>A sua edição foi rejeitada uma vez que seu software de navegação mutilou os sinais de pontuação do sinal de edição. A edição foi rejeitada para evitar perdas no texto da página.
+'token_suffix_mismatch'     => '<strong>A sua edição foi rejeitada uma vez que seu software de navegação mutilou os sinais de pontuação no identificador de edição. A edição foi rejeitada para evitar perdas no texto da página.
 Isso acontece ocasionalmente quando se usa um serviço de proxy anonimizador mal configurado.</strong>',
 'editing'                   => 'Editando $1',
 'editinguser'               => "Modificando privilégios do utilizador '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
@@ -1212,7 +1212,7 @@ Um clique sobre um cabeçalho de coluna altera a ordenação.',
 'shareduploadwiki'          => 'Por favor, consulte a $1 para mais informações.',
 'shareduploadwiki-desc'     => 'A descrição na sua $1 do repositório partilhado é mostrada abaixo.',
 'shareduploadwiki-linktext' => 'página de descrição de ficheiro',
-'noimage'                   => 'Não existe nenhum ficheiro com este nome, mas, pode $1.',
+'noimage'                   => 'Não existe nenhum ficheiro com este nome, mas pode $1.',
 'noimage-linktext'          => 'carregá-lo',
 'uploadnewversion-linktext' => 'Carregar uma nova versão deste ficheiro',
 'imagelist_date'            => 'Data',
@@ -1872,7 +1872,7 @@ As datas das edições e os seus editores serão mantidos.
 Todas as acções de importação transwiki são registadas no [[Special:Log/import|Registo de importações]].',
 'import-interwiki-history'   => 'Copiar todas as edições desta página',
 'import-interwiki-submit'    => 'Importar',
-'import-interwiki-namespace' => 'Transferir páginas para o espaço nominal:',
+'import-interwiki-namespace' => 'Domínio de destino:',
 'importtext'                 => 'Por favor, exporte o ficheiro da wiki de origem utilizando a ferramenta [[Special:Export|de exportar edições]] (Special:Export).
 Salve o ficheiro para o seu disco e importe-o aqui.',
 'importstart'                => 'Importando páginas...',
@@ -2338,7 +2338,7 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 
 # External editor support
 'edit-externally'      => 'Editar este ficheiro utilizando uma aplicação externa',
-'edit-externally-help' => 'Consulte as [http://www.mediawiki.org/wiki/Manual:External_editors instruções de instalação] para mais informação.',
+'edit-externally-help' => '(Consulte as [http://www.mediawiki.org/wiki/Manual:External_editors instruções de instalação] para maiores informações)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'todas',

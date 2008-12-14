@@ -2154,7 +2154,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'बाहेरील संगणक प्रणाली वापरून ही संचिका संपादा.',
-'edit-externally-help' => 'अधिक माहितीसाठी [http://www.mediawiki.org/wiki/Manual:External_editors स्थापन करण्याच्या सूचना] पहा.',
+'edit-externally-help' => 'अधिक माहितीसाठी स्थापन करण्याच्या सूचना [http://www.mediawiki.org/wiki/Manual:External_editors] येथे पहा.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'सर्व',

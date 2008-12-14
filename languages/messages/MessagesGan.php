@@ -1497,8 +1497,8 @@ $NEWPAGE
 'newtitle'                => '新標題:',
 'move-watch'              => '眏到箇頁',
 'movepagebtn'             => '換卟箇頁',
-'pagemovedsub'            => '換正嘞',
-'movepage-moved'          => "<big>'''“$1”換到嘞“$2”'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'pagemovedsub'            => '移正嘞',
+'movepage-moved'          => "<big>'''「$1」已經移動到「$2」'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => '已經有頁面叫箇隻名字，要伓倷揀嗰名字冇用。請揀過隻名字。',
 'cantmove-titleprotected' => '倷移伓正一隻頁面到箇隻位置，箇隻新題目已經拕保護起來嘞，新建伓正。',
 'talkexists'              => '頁面本身移動正嘞，但係新標題下底有嘞對話頁，所以對話頁移伓正。請手工合併兩頁。',

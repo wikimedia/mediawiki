@@ -319,6 +319,7 @@ $messages = array(
 'headline_tip'    => 'ຫົວຂໍ້ລະດັບ 2',
 'math_sample'     => 'ໃສ່ສູດຢູ່ນີ້',
 'math_tip'        => 'ສູດຄະນິດສາດ (LaTeX)',
+'image_tip'       => 'ໄຟລ໌ຕິດຄັດ',
 'media_tip'       => 'ລິ້ງຄ໌ຫາໄຟລ໌',
 
 # Edit pages

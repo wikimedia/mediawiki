@@ -710,6 +710,9 @@ Eglurhad: (cyf.) = gwahaniaethau rhyngddo a'r fersiwn cyfredol,
 'history-feed-title'          => 'Hanes diwygio',
 'history-feed-description'    => "Hanes diwygio'r dudalen hon ar y wici",
 'history-feed-item-nocomment' => '$1 am $2', # user at time
+'history-feed-empty'          => "Nid yw'r dudalen a ofynwyd amdani'n bod. 
+Gall fod iddi gael ei dileu neu ei hailenwi.
+Gallwch [[Special:Search|chwilio'r]] wici am dudalennau eraill perthnasol.",
 
 # Revision deletion
 'rev-deleted-comment'         => '(sylwad wedi ei ddiddymu)',
@@ -734,12 +737,12 @@ gall fod manylion yn y [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} l�
 'revdelete-hide-image'        => 'Cuddio cynnwys y ffeil',
 'revdelete-unsuppress'        => "Tynnu'r cyfyngiadau ar y golygiadau a adferwyd",
 'revdelete-log'               => 'Sylw ar gyfer y lòg:',
-'revdelete-logentry'          => 'newidiwyd y gallu i weld golygiadau ar [[$1]]',
-'logdelete-logentry'          => 'newidiwyd y gallu i weld y digwyddiad [[$1]]',
+'revdelete-logentry'          => 'wedi newid y gallu i weld golygiadau ar [[$1]]',
+'logdelete-logentry'          => 'wedi newid y gallu i weld y digwyddiad ar [[$1]]',
 'revdelete-logaction'         => "Gosodwyd $1 {{PLURAL:$1|diwygiad|diwygiad|ddiwygiad|diwygiad|diwygiad|diwygiad}} i'r modd $2",
 'logdelete-logaction'         => "$1 {{PLURAL:$1|digwyddiad|digwyddiad|ddigwyddiad|digwyddiad|digwyddiad|digwyddiad}} i [[$3]] {{PLURAL:$1|wedi'i osod|wedi'i osod|wedi'u gosod|wedi'u gosod|wedi'u gosod|wedi'u gosod}} i'r modd $2",
 'revdelete-success'           => "'''Llwyddodd y newid i'r gallu i weld golygiadau.'''",
-'logdelete-success'           => "'''Llwyddwyd i guddio'r digwyddiad.'''",
+'logdelete-success'           => "'''Llwyddwyd i guddio neu i ddatguddio'r digwyddiad rhag y lòg.'''",
 
 # Oversight log
 'oversightlog'    => 'Lòg arolygiaeth',
@@ -906,9 +909,10 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'grouppage-bureaucrat'    => '{{ns:project}}:Biwrocratiaid',
 
 # User rights log
-'rightslog'     => 'Lòg galluoedd defnyddiwr',
-'rightslogtext' => 'Lòg y newidiadau i alluoedd defnyddwyr yw hwn.',
-'rightsnone'    => '(dim)',
+'rightslog'      => 'Lòg galluoedd defnyddiwr',
+'rightslogtext'  => 'Lòg y newidiadau i alluoedd defnyddwyr yw hwn.',
+'rightslogentry' => "wedi gosod $1 yn aelod o'r grŵp $3 (grŵp cynt $2)",
+'rightsnone'     => '(dim)',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|newid|newid|newid|newid|newid|o newidiadau}}',
@@ -916,7 +920,7 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'recentchangestext'                 => "Dilynwch y newidiadau diweddaraf i'r wici ar y dudalen hon.",
 'recentchanges-feed-description'    => "Dilynwch y newidiadau diweddaraf i'r wici gyda'r porthiant hwn.",
 'rcnote'                            => "Isod mae'r '''$1''' newidiad diweddaraf yn ystod y '''$2''' {{PLURAL:$2|diwrnod|diwrnod|ddiwrnod|diwrnod|diwrnod|diwrnod}} diwethaf, hyd at $3.",
-'rcnotefrom'                        => "Isod mae pob newidiad ers '''$2''' (hyd at '''$1''' ohonynt).",
+'rcnotefrom'                        => "Isod rhestrir pob newid ers '''$2''' (hyd at '''$1''' ohonynt).",
 'rclistfrom'                        => 'Dangos newidiadau newydd gan ddechrau o $1',
 'rcshowhideminor'                   => '$1 golygiadau bychain',
 'rcshowhidebots'                    => '$1 botiau',
@@ -1032,6 +1036,7 @@ Os yw'r broblem yn parhau, cysylltwch â [[Special:ListUsers/sysop|gweinyddwr]].
 'upload-curl-error6'       => 'Wedi methu cyrraedd yr URL',
 'upload-curl-error6-text'  => 'Ni chyrhaeddwyd yr URL a roddwyd.
 Gwiriwch yr URL a sicrhau bod y wefan ar waith.',
+'upload-curl-error28'      => 'Goroedi wrth uwchlwytho',
 'upload-curl-error28-text' => 'Oedodd y wefan yn rhy hir cyn ymateb.
 Sicrhewch bod y wefan ar waith, arhoswch ennyd, yna ceisiwch eto.
 Efallai yr hoffech rhoi cynnig arni ar adeg llai prysur.',
@@ -1180,7 +1185,7 @@ Hyd y [http://www.mediawiki.org/wiki/Manual:Job_queue rhes dasgau] yw '''\$7'''.
 'nviews'                  => '$1 {{PLURAL:$1|ymweliad|ymweliad|ymweliad|ymweliad|ymweliad|ymweliad}}',
 'specialpage-empty'       => "Ni chafwyd canlyniadau i'w hadrodd.",
 'lonelypages'             => 'Erthyglau heb gysylltiadau iddynt',
-'lonelypagestext'         => 'Nid oes cysylltiad yn arwain at y tudalennau canlynol oddi wrth unrhyw dudalen arall yn {{SITENAME}}.',
+'lonelypagestext'         => 'Nid oes cysylltiad yn arwain at y tudalennau canlynol oddi wrth unrhyw dudalen arall yn {{SITENAME}}. Nid ydynt wedi eu trawsgynnwys ar unrhyw dudalen yn {{SITENAME}}, chwaith.',
 'uncategorizedpages'      => 'Tudalennau heb gategori',
 'uncategorizedcategories' => 'Categorïau sydd heb gategori',
 'uncategorizedimages'     => 'Ffeiliau heb eu categoreiddio',
@@ -1324,7 +1329,7 @@ Os ydych am ddiddymu'r dudalen o'r rhestr gwylio, cliciwch ar \"Stopio gwylio\" 
 'watchmethod-list'     => "yn chwilio'r rhestr gwylio am ddiwygiadau diweddar",
 'watchlistcontains'    => '{{PLURAL:$1|Nid oes $1 tudalen|Mae $1 dudalen|Mae $1 dudalen|Mae $1 tudalen|Mae $1 thudalen|Mae $1 o dudalennau}} ar eich rhestr gwylio.',
 'iteminvalidname'      => "Problem gyda'r eitem '$1', enw annilys...",
-'wlnote'               => "Gweler isod y(r) '''$1''' {{PLURAL:$#|newid}} diweddaraf yn ystod y(r) <b>$2</b> {{PLURAL:$#|awr}} ddiwethaf.",
+'wlnote'               => "{{PLURAL:$1|Ni fu unrhyw newid|Isod mae'r '''$1''' newid diweddaraf|Isod mae'r '''$1''' newid diweddaraf|Isod mae'r '''$1''' newid diweddaraf|Isod mae'r '''$1''' newid diweddaraf|Isod mae'r '''$1''' newid diweddaraf}} yn ystod {{PLURAL:$2||yr awr|y ddwyawr|y teirawr|y <b>$2</b> awr|y(r) <b>$2</b> awr}} ddiwethaf.",
 'wlshowlast'           => "Dangoser newidiadau'r $1 awr ddiwethaf neu'r $2 {{PLURAL:$2|diwrnod|diwrnod|ddiwrnod|diwrnod|diwrnod|diwrnod}} diwethaf neu'r $3 newidiadau.",
 'watchlist-show-bots'  => 'Dangos golygiadau bot',
 'watchlist-hide-bots'  => 'Cuddio golygiadau bot',
@@ -1726,20 +1731,21 @@ Os ydych am gyfrannu at y gwaith o gyfieithu ar gyfer holl prosiectau Mediawiki 
 'thumbnail_dest_directory' => "Methwyd â chreu'r cyfeiriadur cyrchfan",
 
 # Special:Import
-'import'                  => 'Mewnforio tudalennau',
-'importinterwiki'         => 'Mewnforiad traws-wici',
-'import-interwiki-submit' => 'Mewnforio',
-'importtext'              => "Os gwelwch yn dda, allforiwch y ffeil o'r wici gwreiddiol gan ddefnyddio'r nodwedd <b>Special:Export</b>, cadwch hi i'ch disg, ac uwchlwythwch hi fan hyn.",
-'importstart'             => "Wrthi'n mewnforio...",
-'import-revision-count'   => '$1 {{PLURAL:$1|diwygiad|diwygiad|ddiwygiad|diwygiad|diwygiad|diwygiad}}',
-'importfailed'            => 'Mewnforio wedi methu: $1',
-'importbadinterwiki'      => 'Cyswllt rhyngwici gwallus',
-'importnotext'            => 'Gwag, neu heb destun',
-'importsuccess'           => 'Mewnforio wedi llwyddo!',
-'importhistoryconflict'   => "Mae adolygiadau yn yr hanes yn croesgyffwrdd (efallai eich bod chi wedi mewnforio'r dudalen o'r blaen)",
-'importnosources'         => "Ni ddiffiniwyd unrhyw ffynonellau mewnforio traws-wici, ac mae uwchlwytho hanesion yn uniongyrchol wedi'i analluogi.",
-'importnofile'            => 'Ni uwchlwythwyd unrhyw ffeil mewnforio.',
-'xml-error-string'        => '$1 ar linell $2, col $3 (beit $4): $5',
+'import'                     => 'Mewnforio tudalennau',
+'importinterwiki'            => 'Mewnforiad traws-wici',
+'import-interwiki-submit'    => 'Mewnforio',
+'import-interwiki-namespace' => "Symud tudalennau i'r parth:",
+'importtext'                 => "Os gwelwch yn dda, allforiwch y ffeil o'r wici gwreiddiol gan ddefnyddio'r nodwedd <b>Special:Export</b>, cadwch hi i'ch disg, ac uwchlwythwch hi fan hyn.",
+'importstart'                => "Wrthi'n mewnforio...",
+'import-revision-count'      => '$1 {{PLURAL:$1|diwygiad|diwygiad|ddiwygiad|diwygiad|diwygiad|diwygiad}}',
+'importfailed'               => 'Mewnforio wedi methu: $1',
+'importbadinterwiki'         => 'Cyswllt rhyngwici gwallus',
+'importnotext'               => 'Gwag, neu heb destun',
+'importsuccess'              => 'Mewnforio wedi llwyddo!',
+'importhistoryconflict'      => "Mae adolygiadau yn yr hanes yn croesgyffwrdd (efallai eich bod chi wedi mewnforio'r dudalen o'r blaen)",
+'importnosources'            => "Ni ddiffiniwyd unrhyw ffynonellau mewnforio traws-wici, ac mae uwchlwytho hanesion yn uniongyrchol wedi'i analluogi.",
+'importnofile'               => 'Ni uwchlwythwyd unrhyw ffeil mewnforio.',
+'xml-error-string'           => '$1 ar linell $2, col $3 (beit $4): $5',
 
 # Import log
 'importlogpage'                    => 'Lòg mewnforio',
@@ -1999,6 +2005,8 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-gpslongitude'                => 'Hydred',
 'exif-gpsaltituderef'              => 'Cyfeirnod uchder',
 'exif-gpsaltitude'                 => 'Uchder',
+'exif-gpstimestamp'                => 'Amser GPS (cloc atomig)',
+'exif-gpssatellites'               => 'Defnyddir lloerennau i fesur',
 'exif-gpsstatus'                   => 'Statws y derbynnydd',
 'exif-gpsmeasuremode'              => 'Modd mesur',
 'exif-gpsdop'                      => 'Manylder mesur',
@@ -2059,17 +2067,24 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-exposuremode-0' => 'Dinoethi awtomatig',
 'exif-exposuremode-1' => "Dinoethiad wedi'i osod â llaw",
 
+'exif-scenecapturetype-0' => 'Safonol',
 'exif-scenecapturetype-1' => 'Tirlun',
 'exif-scenecapturetype-2' => 'Portread',
 'exif-scenecapturetype-3' => 'Golygfa nos',
 
 'exif-gaincontrol-0' => 'Dim',
+'exif-gaincontrol-1' => 'Lled-gynyddu disgleirdeb - cynyddu',
+'exif-gaincontrol-2' => 'Tra-chynyddu disgleirdeb - cynyddu',
+'exif-gaincontrol-3' => 'Lled-gynyddu disgleirdeb - lleihau',
+'exif-gaincontrol-4' => 'Tra-chynyddu disgleirdeb - lleihau',
 
 'exif-contrast-0' => 'Normal',
 'exif-contrast-1' => 'Meddal',
 'exif-contrast-2' => 'Caled',
 
 'exif-saturation-0' => 'Normal',
+'exif-saturation-1' => 'Dirlawnder isel',
+'exif-saturation-2' => 'Dirlawnder uchel',
 
 'exif-sharpness-0' => 'Normal',
 'exif-sharpness-1' => 'Meddal',
@@ -2090,6 +2105,9 @@ Cuddir y meysydd eraill trwy ragosodiad.
 
 'exif-gpsstatus-a' => "Wrthi'n mesur",
 
+'exif-gpsmeasuremode-2' => 'mesuriad 2 ddimensiwn',
+'exif-gpsmeasuremode-3' => 'mesuriad 3 dimensiwn',
+
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-k' => 'Cilomedr yr awr',
 'exif-gpsspeed-m' => 'Milltir yr awr',
@@ -2101,7 +2119,7 @@ Cuddir y meysydd eraill trwy ragosodiad.
 
 # External editor support
 'edit-externally'      => 'Golygwch y ffeil gyda rhaglen allanol',
-'edit-externally-help' => 'Gwelwch y [http://www.mediawiki.org/wiki/Manual:External_editors cyfarwyddiadau gosod] am fwy o wybodaeth.',
+'edit-externally-help' => '(Gwelwch y [http://www.mediawiki.org/wiki/Manual:External_editors cyfarwyddiadau gosod] am fwy o wybodaeth)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'holl',

@@ -6,6 +6,7 @@
  *
  * @author Church of emacs
  * @author Jimmy Collins <jimmy.collins@web.de>
+ * @author Melancholie
  * @author Metalhead64
  * @author MichaelFrey
  * @author Omnipaedista
@@ -13,6 +14,7 @@
  * @author Purodha
  * @author Raimond Spekking (Raymond) <raimond.spekking@gmail.com> since January 2007
  * @author Red Baron
+ * @author Remember the dot
  * @author Revolus
  * @author Spacebirdy
  * @author Tim Bartel (avatar) <wikipedistik@computerkultur.org> small changes
@@ -517,7 +519,7 @@ $2',
 'customcssjsprotected' => 'Du bist nicht berechtigt, diese Seite zu bearbeiten, da sie zu den persönlichen Einstellungen eines anderen Benutzers gehört.',
 'ns-specialprotected'  => 'Spezialseiten können nicht bearbeitet werden.',
 'titleprotected'       => "Eine Seite mit diesem Namen kann nicht angelegt werden.
-Die Sperre wurde durch [[User:$1|Benutzer:$1]] mit der Begründung ''„$2“'' eingerichtet.",
+Die Sperre wurde durch [[User:$1|$1]] mit der Begründung ''„$2“'' eingerichtet.",
 
 # Login and logout pages
 'logouttitle'                => 'Benutzer-Abmeldung',
@@ -613,7 +615,7 @@ Falls das Benutzerkonto irrtümlich angelegt wurde, kannst du diese Nachricht ig
 'resetpass'               => 'Passwort für Benutzerkonto zurücksetzen',
 'resetpass_announce'      => 'Anmeldung mit dem per E-Mail zugesandten Code. Um die Anmeldung abzuschließen, musst du jetzt ein neues Passwort wählen.',
 'resetpass_text'          => '<!-- Ergänze den Text hier -->',
-'resetpass_header'        => 'Passwort zurücksetzen',
+'resetpass_header'        => 'Passwort ändern',
 'resetpass_submit'        => 'Passwort übermitteln und anmelden',
 'resetpass_success'       => 'Dein Passwort wurde erfolgreich geändert. Es folgt die Anmeldung …',
 'resetpass_bad_temporary' => 'Ungültiges vorläufiges Passwort. Du hast bereits dein Passwort erfolgreich geändert oder ein neues, vorläufiges Passwort angefordert.',
@@ -746,7 +748,7 @@ Sollte das Problem bestehen bleiben, [[Special:UserLogout|melde dich ab]] und da
 'token_suffix_mismatch'     => '<strong>Deine Bearbeitung wurde zurückgewiesen, da dein Browser Zeichen im Bearbeiten-Token verstümmelt hat.
 Eine Speicherung kann den Seiteninhalt zerstören. Dies geschieht bisweilen durch die Benutzung eines anonymen Proxy-Dienstes, der fehlerhaft arbeitet.</strong>',
 'editing'                   => 'Bearbeiten von $1',
-'editinguser'               => "Ändere Benutzerrechte von '''[[User:$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'               => "Ändere Benutzerrechte von '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'editingsection'            => 'Bearbeiten von $1 (Absatz)',
 'editingcomment'            => 'Bearbeiten von $1 (Kommentar)',
 'editconflict'              => 'Bearbeitungskonflikt: $1',
@@ -1315,11 +1317,11 @@ Insgesamt {{PLURAL:$8|wurde '''1''' Datei|wurden '''$8''' Dateien}} hochgeladen.
 Insgesamt gab es '''$3''' {{PLURAL:$3|Seitenabruf|Seitenabrufe}} und '''$4''' {{PLURAL:$4|Seitenbearbeitung|Seitenbearbeitungen}} seit {{SITENAME}} eingerichtet wurde.
 Daraus ergeben sich '''$5''' Bearbeitungen pro Seite und '''$6''' Seitenabrufe pro Bearbeitung.
 
-Länge der [http://www.mediawiki.org/wiki/Manual:Job_queue „Job queue“]: '''$7'''",
+Länge der [http://www.mediawiki.org/wiki/Manual:Job_queue Auftragswarteschlange]: '''$7'''",
 'userstatstext'          => "Es gibt '''$1''' {{PLURAL:$1|registrierten|registrierte}} [[Special:ListUsers|Benutzer]].
 Davon {{PLURAL:$2|hat|haben}} '''$2''' Benutzer (=$4 %) $5-Rechte.
 Aktuell gibt es ungefähr '''$6''' {{PLURAL:$6|aktiven|aktive}} Benutzer.",
-'statistics-mostpopular' => 'Meist besuchte Seiten',
+'statistics-mostpopular' => 'Meistbesuchte Seiten',
 
 'disambiguations'      => 'Begriffsklärungsseiten',
 'disambiguationspage'  => 'Template:Begriffsklärung',
@@ -1936,7 +1938,7 @@ Die Versionsdaten und Benutzernamen bleiben dabei erhalten.
 Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] protokolliert.',
 'import-interwiki-history'   => 'Importiere alle Versionen dieser Seite',
 'import-interwiki-submit'    => 'Import',
-'import-interwiki-namespace' => 'Importiere die Seite in den Namensraum:',
+'import-interwiki-namespace' => 'Zielnamensraum:',
 'importtext'                 => 'Auf dieser Spezialseite können über die [[Special:Export|Exportfunktion]] im Quellwiki exportierte Seiten in dieses Wiki importiert werden.',
 'importstart'                => 'Importiere Seite …',
 'import-revision-count'      => '– {{PLURAL:$1|1 Version|$1 Versionen}}',
@@ -2408,7 +2410,7 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 
 # External editor support
 'edit-externally'      => 'Diese Datei mit einem externen Programm bearbeiten',
-'edit-externally-help' => 'Siehe die [http://www.mediawiki.org/wiki/Manual:External_editors Installationsanweisungen] für weitere Informationen',
+'edit-externally-help' => '(Siehe die [http://www.mediawiki.org/wiki/Manual:External_editors Installationsanweisungen] für weitere Informationen)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'alle',
@@ -2467,7 +2469,7 @@ $1
 'trackbackdeleteok' => 'Trackback wurde erfolgreich gelöscht.',
 
 # Delete conflict
-'deletedwhileediting' => '<span class="error">Achtung: Diese Seite wurde gelöscht, nachdem du angefangen hast, sie zu bearbeiten!
+'deletedwhileediting' => '<span class="error">Achtung: Diese Seite wurde gelöscht, nachdem du angefangen hast sie zu bearbeiten!
 Im [{{fullurl:Special:Log|type=delete&page=}}{{FULLPAGENAMEE}} Lösch-Logbuch] findest du den Grund für die Löschung. Wenn du die Seite speicherst, wird sie neu angelegt.</span>',
 'confirmrecreate'     => "Benutzer [[User:$1|$1]] ([[User talk:$1|Diskussion]]) hat diese Seite gelöscht, nachdem du angefangen hast, sie zu bearbeiten. Die Begründung lautete:
 :''$2''

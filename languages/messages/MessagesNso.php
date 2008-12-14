@@ -684,6 +684,8 @@ Leka [[Special:Search|go fetleka wikii]] go humana matlakala a mapsha.',
 'ancientpages'            => 'Matlakala a kgalekgale',
 'move'                    => 'Huduša',
 'movethispage'            => 'Huduša letlakala le',
+'pager-newer-n'           => '{{PLURAL:$1|1 ye mpšha|$1 tše mpšha}}',
+'pager-older-n'           => '{{PLURAL:$1|1 ya kgale|$1 tša kgale}}',
 
 # Book sources
 'booksources'    => 'Dipuku tša mothopo',
@@ -827,6 +829,7 @@ Seemo sa go lota ga letlakala <strong>$1</strong>:',
 
 'sp-contributions-newbies-sub' => 'Tša tšhupaleloko tše mphsa',
 'sp-contributions-blocklog'    => "''Log'' yago thiba",
+'sp-contributions-search'      => 'Fetleka diabe',
 'sp-contributions-username'    => 'IP Atrese goba leina la mošomiši:',
 'sp-contributions-submit'      => 'Fetleka',
 
@@ -1039,7 +1042,7 @@ letlakala la seswantšho ge tafola ya metadata e bulwa. Tše dingwe tša di ''fi
 
 # External editor support
 'edit-externally'      => 'Fetola faele ye o šumiša thulusi ya ka ntle',
-'edit-externally-help' => 'Lebelela [http://www.mediawiki.org/wiki/Manual:External_editors Taelo ya go thoma] go humana sedi.',
+'edit-externally-help' => '(Lebelela [http://www.mediawiki.org/wiki/Manual:External_editors Taelo ya go thoma] go humana sedi)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'ka moka',

@@ -12,10 +12,12 @@
  * @author Max sonnelid
  * @author MinuteElectron
  * @author Morten LJ
+ * @author Najami
  * @author Peter Andersen
  * @author Ranveig
  * @author Remember the dot
  * @author S.Örvarr.S
+ * @author Sir48
  * @author Urhixidur
  */
 
@@ -570,6 +572,7 @@ Denne besked kan ignorewres, hvis denne konto er oprettet som følge af en fejl.
 # Password reset dialog
 'resetpass'               => 'Nulstille password for brugerkonto',
 'resetpass_announce'      => 'Log på med den via e-mail tilsendte password. For at afslutte tilmeldingen, skal du nu vælge et nyt password.',
+'resetpass_text'          => '<!-- Tilføj tekst her -->',
 'resetpass_header'        => 'Nulstille password',
 'resetpass_submit'        => 'Send password og log på',
 'resetpass_success'       => 'Dit password er nu ændret. Nu følger tilmelding …',
@@ -1616,7 +1619,7 @@ $1',
 
 # What links here
 'whatlinkshere'         => 'Hvad henviser hertil',
-'whatlinkshere-title'   => 'Sider der henviser til $1',
+'whatlinkshere-title'   => 'Sider der linker til "$1"',
 'whatlinkshere-summary' => 'Denne specialside viser alle interne henvisninger til en bestemt side. De mulige tilføjelser „(indlejring)“ og „(omdirigering)“ viser, at siden ikke er henvist med et normalt Wikilink.',
 'whatlinkshere-page'    => 'Side:',
 'linklistsub'           => '(Henvisningsliste)',
@@ -2276,7 +2279,7 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 
 # External editor support
 'edit-externally'      => 'Rediger denne fil med en ekstern editor',
-'edit-externally-help' => 'Se [http://www.mediawiki.org/wiki/Manual:External_editors setup instruktionerne] for mere information.',
+'edit-externally-help' => '(Se [http://www.mediawiki.org/wiki/Manual:External_editors setup instruktionerne] for mere information)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'alle',

@@ -5,6 +5,7 @@
  * @file
  *
  * @author Boivie
+ * @author Grillo
  * @author Habj
  * @author Habjchen
  * @author Jon Harald Søby
@@ -284,7 +285,7 @@ $messages = array(
 'qbspecialpages' => 'Specialsidor',
 'moredotdotdot'  => 'Mer...',
 'mypage'         => 'Min sida',
-'mytalk'         => 'Min diskussionssida',
+'mytalk'         => 'Min diskussion',
 'anontalk'       => 'Diskussionssida för denna IP-adress',
 'navigation'     => 'Navigering',
 'and'            => 'och',
@@ -384,7 +385,7 @@ $messages = array(
 'retrievedfrom'           => 'Hämtad från "$1"',
 'youhavenewmessages'      => 'Du har $1 ($2).',
 'newmessageslink'         => 'nya meddelanden',
-'newmessagesdifflink'     => 'senaste ändring',
+'newmessagesdifflink'     => 'senaste ändringen',
 'youhavenewmessagesmulti' => 'Du har nya meddelanden på $1',
 'editsection'             => 'redigera',
 'editold'                 => 'redigera',
@@ -583,7 +584,7 @@ Du kan ignorera detta meddelande om kontot skapats av misstag.',
 'resetpass'               => 'Välj nytt lösenord',
 'resetpass_announce'      => 'Du loggade in med ett temporärt lösenord. För att slutföra inloggningen måste du välja ett nytt lösenord.',
 'resetpass_text'          => '<!-- här kan text läggas till -->',
-'resetpass_header'        => 'Välj nytt lösenord',
+'resetpass_header'        => 'Ändra lösenord för konto',
 'resetpass_submit'        => 'Spara lösenord och logga in',
 'resetpass_success'       => 'Ditt lösenord ändrades. Du är nu inloggad.',
 'resetpass_bad_temporary' => 'Ditt temporära lösenord är felaktigt. Du kanske redan har loggat in med det eller begärt att få ett nytt tillfälligt lösenord.',
@@ -604,7 +605,7 @@ Du kan ignorera detta meddelande om kontot skapats av misstag.',
 'math_sample'     => 'Skriv formeln här',
 'math_tip'        => 'Matematisk formel (LaTeX)',
 'nowiki_sample'   => 'Skriv in oformaterad text här',
-'nowiki_tip'      => 'Strunta i wikiformatering',
+'nowiki_tip'      => 'Ignorera wikiformatering',
 'image_sample'    => 'Exempel.jpg',
 'image_tip'       => 'Inbäddad fil',
 'media_sample'    => 'Exempel.mp3',
@@ -614,7 +615,7 @@ Du kan ignorera detta meddelande om kontot skapats av misstag.',
 
 # Edit pages
 'summary'                   => 'Sammanfattning',
-'subject'                   => 'Rubrik',
+'subject'                   => 'Ämne/rubrik',
 'minoredit'                 => 'Mindre ändring (m)',
 'watchthis'                 => 'Bevaka denna sida',
 'savearticle'               => 'Spara',
@@ -896,7 +897,7 @@ Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det d
 'showingresults'        => "Nedan visas upp till {{PLURAL:$1|'''1''' post|'''$1''' poster}} från och med nummer '''$2'''.",
 'showingresultsnum'     => "Nedan visas {{PLURAL:$3|'''1''' post|'''$3''' poster}} från och med nummer '''$2'''.",
 'nonefound'             => "'''Observera:''' Som standard sker sökning endast i vissa namnrymder. Du kan pröva att skriva ''all:'' i början av din sökning om du vill söka i alla sidor (inklusive diskussionssidor, mallar, m.m.), eller så kan du att börja din sökning med namnet på den namnrymd du vill söka i.",
-'powersearch'           => 'Sök',
+'powersearch'           => 'Avancerad sök',
 'powersearchtext'       => 'Sök i namnrymderna :<br />
 $1<br />
 $2 Lista omdirigeringar &nbsp; Sök efter $3 $9',
@@ -1024,8 +1025,7 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'rcshowhideanons'                   => '$1 oinloggade användare',
 'rcshowhidepatr'                    => '$1 kontrollerade redigeringar',
 'rcshowhidemine'                    => '$1 mina ändringar',
-'rclinks'                           => 'Visa de senaste $1 ändringarna under de senaste $2 dagarna<br />
-$3',
+'rclinks'                           => 'Visa senaste $1 ändringar under de senaste $2 dagarna<br />$3',
 'diff'                              => 'skillnad',
 'hist'                              => 'historik',
 'hide'                              => 'Göm',
@@ -1039,8 +1039,8 @@ $3',
 'newsectionsummary'                 => '/* $1 */ nytt avsnitt',
 
 # Recent changes linked
-'recentchangeslinked'          => 'Ändringar på angränsande sidor',
-'recentchangeslinked-title'    => 'Angränsande ändringar till $1',
+'recentchangeslinked'          => 'Relaterade ändringar',
+'recentchangeslinked-title'    => 'Ändringar relaterade till $1',
 'recentchangeslinked-noresult' => 'Inga ändringar på länkade sidor under den angivna tidsperioden.',
 'recentchangeslinked-summary'  => "Den här specialsidan listar de senaste ändringarna på angränsande sidor. Sidor på din övervakningslista är markerade med '''fet''' stil.",
 
@@ -1162,7 +1162,7 @@ Om problemet kvarstår, kontakta en [[Special:ListUsers/sysop|administratör]].'
 'imagelist-summary'         => 'Den här specialsidan visar alla filer som har laddats upp.
 Som standard visas de senast upladdade filerna högst upp i listan.
 Genom att klicka på rubrikerna för kolumnerna kan man ändra sorteringsordningen.',
-'imagelisttext'             => 'Nedan finns en lista med <strong>$1</strong> {{PLURAL:$1|bild|bilder}} sorterad <strong>$2</strong>.',
+'imagelisttext'             => 'Nedan finns en lista med <strong>$1</strong> {{PLURAL:$1|fil|filer}} sorterad <strong>$2</strong>.',
 'getimagelist'              => 'hämta bildlista',
 'ilsubmit'                  => 'Sök',
 'showlast'                  => 'Visa de senaste $1 bilderna sorterade $2.',
@@ -1183,7 +1183,7 @@ Genom att klicka på rubrikerna för kolumnerna kan man ändra sorteringsordning
 'filehist-dimensions'       => 'Dimensioner',
 'filehist-filesize'         => 'Filstorlek',
 'filehist-comment'          => 'Kommentar',
-'imagelinks'                => 'Bildlänkar',
+'imagelinks'                => 'Länkar',
 'linkstoimage'              => 'Följande sidor länkar till denna bild:',
 'nolinkstoimage'            => 'Inga sidor länkar till den här filen.',
 'sharedupload'              => 'Denna fil är uppladdad som delad, och kan användas av andra projekt.',
@@ -1423,7 +1423,7 @@ Den e-postadress du har angivit i [[Special:Preferences|dina användarinställni
 Framtida ändringar av den här sidan och dess diskussionssida kommer att listas där, och sidan kommer att markeras med '''fetstil''' i [[Special:RecentChanges|listan över de senaste ändringarna]] för att lättare kunna hittas.",
 'removedwatch'         => 'Borttagen från bevakningslista',
 'removedwatchtext'     => 'Sidan "[[:$1]]" har tagits bort från [[Special:Watchlist|din bevakningslista]].',
-'watch'                => 'bevaka',
+'watch'                => 'Bevaka',
 'watchthispage'        => 'Bevaka denna sida',
 'unwatch'              => 'avbevaka',
 'unwatchthispage'      => 'Sluta bevaka',
@@ -1522,7 +1522,8 @@ Se $2 för noteringar om de senaste raderingarna.',
 Sidan ändrades senast av [[User:$3|$3]] ([[User talk:$3|diskussion]] | [[Special:Contributions/$2|{{int:contribslink}}]]).',
 'editcomment'                 => 'Redigeringskommentaren var: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'                  => 'Återställde redigeringar av  [[Special:Contributions/$2|$2]] ([[User talk:$2|användardiskussion]]) till senaste versionen av [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Återställde ändringar av $1 till senaste versionen av $2.',
+'rollback-success'            => 'Återställde ändringar av $1;
+ändrade tillbaka till senaste version av $2.',
 'sessionfailure'              => 'Något med din session som inloggad är på tok. Din begärda åtgärd har avbrutits, för att förhindra att någon kapar din session. Klicka på "Tillbaka" i din webbläsare och ladda om den sida du kom ifrån. Försök sedan igen.',
 'protectlogpage'              => 'Skrivskyddslogg',
 'protectlogtext'              => 'Detta är en lista över applicerande och borttagande av skrivskydd.',
@@ -1838,7 +1839,7 @@ Besök [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] eller
 # Thumbnails
 'thumbnail-more'           => 'Förstora',
 'filemissing'              => 'Fil saknas',
-'thumbnail_error'          => 'Ett fel uppstod när minibilden skulle skapas: $1',
+'thumbnail_error'          => 'Fel vid skapande av miniatyrbild: $1',
 'djvu_page_error'          => 'DjVu-sida utanför gränserna',
 'djvu_no_xml'              => 'Kan inte hämta DjVu-filens XML',
 'thumbnail_invalid_params' => 'Ogiltiga parametrar för miniatyrbilden',
@@ -1852,7 +1853,7 @@ Versionshistorik (datum och redaktörer) kommer att bevaras.
 All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|importloggen]].',
 'import-interwiki-history'   => 'Kopiera hela versionshistoriken för denna sida',
 'import-interwiki-submit'    => 'Importera',
-'import-interwiki-namespace' => 'Överför sidorna till namnrymden:',
+'import-interwiki-namespace' => 'Målnamnrymd:',
 'importtext'                 => 'Exportera filen från ursprungs-wikin genom att använda [[Special:Export|exportverktyget]], spara den till din hårddisk och ladda upp den här.',
 'importstart'                => 'Importerar sidor....',
 'import-revision-count'      => '$1 {{PLURAL:$1|version|versioner}}',
@@ -1893,8 +1894,9 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'tooltip-pt-login'                => 'Du får gärna logga in, men det är inte nödvändigt',
 'tooltip-pt-anonlogin'            => 'Du får gärna logga in, men det är inte nödvändigt',
 'tooltip-pt-logout'               => 'Logga ut',
-'tooltip-ca-talk'                 => 'Diskussion om sidans innehåll',
-'tooltip-ca-edit'                 => 'Du kan redigera den här sidan. Var vänlig förhandsgranska innan du sparar.',
+'tooltip-ca-talk'                 => 'Diskussion om innehållssidan',
+'tooltip-ca-edit'                 => 'Du kan redigera den här sidan.
+Vänligen använd förhandsgranskningsknappen innan du sparar.',
 'tooltip-ca-addsection'           => 'Lägg till en kommentar i den här diskussionen',
 'tooltip-ca-viewsource'           => 'Den här sidan är skrivskyddad. Du kan se källtexten.',
 'tooltip-ca-history'              => 'Tidigare versioner av sidan',
@@ -1908,14 +1910,14 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'tooltip-search-go'               => 'Gå till sidan med detta namn om den finns',
 'tooltip-search-fulltext'         => 'Sök efter sidor som innehåller denna text',
 'tooltip-p-logo'                  => 'Huvudsida',
-'tooltip-n-mainpage'              => 'Gå till huvudsidan',
+'tooltip-n-mainpage'              => 'Besök huvudsidan',
 'tooltip-n-portal'                => 'Om projektet, vad du kan göra, var man kan hitta saker',
-'tooltip-n-currentevents'         => 'Information om aktuella händelser',
+'tooltip-n-currentevents'         => 'Hitta bakgrundsinformation om aktuella händelser',
 'tooltip-n-recentchanges'         => 'Listan över senaste ändringar i wikin.',
 'tooltip-n-randompage'            => 'Gå till en slumpmässigt vald sida',
 'tooltip-n-help'                  => 'Hjälp och information.',
 'tooltip-n-sitesupport'           => 'Stöd oss',
-'tooltip-t-whatlinkshere'         => 'Lista över alla sidor på {{SITENAME}} som länkar hit',
+'tooltip-t-whatlinkshere'         => 'Lista över alla wikisidor som länkar hit',
 'tooltip-t-recentchangeslinked'   => 'Visa senaste ändringarna av sidor som den här sidan länkar till',
 'tooltip-feed-rss'                => 'RSS-matning för den här sidan',
 'tooltip-feed-atom'               => 'Atom-matning för den här sidan',
@@ -1937,7 +1939,7 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'tooltip-ca-nstab-category'       => 'Se kategorisidan',
 'tooltip-minoredit'               => 'Markera som mindre ändring',
 'tooltip-save'                    => 'Spara dina ändringar',
-'tooltip-preview'                 => 'Det är bra om du förhandsgranskar dina ändringar innan du sparar!',
+'tooltip-preview'                 => 'Förhandsgranska dina ändringar, vänligen använd detta innan du sparar!',
 'tooltip-diff'                    => 'Visa vilka förändringar du har gjort av texten.',
 'tooltip-compareselectedversions' => 'Visa skillnaden mellan de två markerade versionerna av den här sidan.',
 'tooltip-watch'                   => 'Lägg till den här sidan i din bevakningslista',
@@ -2044,6 +2046,9 @@ $1',
 'newimages'    => 'Galleri över nya filer',
 'showhidebots' => '($1 robotar)',
 'noimages'     => 'Ingenting att se.',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'hours-abbrev' => 't',
 
 # Bad image list
 'bad_image_list' => 'Listan fungerar enligt följande:
@@ -2319,7 +2324,7 @@ Den första länken på en rad måste vara en länk till en otillåten fil.
 
 # External editor support
 'edit-externally'      => 'Redigera denna fil med hjälp av extern programvara',
-'edit-externally-help' => 'Se [http://www.mediawiki.org/wiki/Manual:External_editors instruktioner] för mer information.',
+'edit-externally-help' => '(Se [http://www.mediawiki.org/wiki/Manual:External_editors installationsinstruktionerna] för mer information)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'alla',

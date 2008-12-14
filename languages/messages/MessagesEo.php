@@ -494,7 +494,7 @@ Vi povas ignori ĉi mesaĝon, se ĉi konto estis kreita erare.',
 'resetpass'               => 'Refaru konto-pasvorton',
 'resetpass_announce'      => 'Vi ensalutis kun provizora retpoŝtita pasvorto. Por kompleti ensalutadon, vi devas fari novan pasvorton ĉi tien:',
 'resetpass_text'          => '<!-- Aldonu tekston ĉi tien -->',
-'resetpass_header'        => 'Refaru pasvorton',
+'resetpass_header'        => 'Ŝanĝi kontan pasvorton',
 'resetpass_submit'        => 'Fari pasvorton kaj ensaluti',
 'resetpass_success'       => 'Via pasvorto estis sukcese ŝanĝita! Nun ensalutanta vin...',
 'resetpass_bad_temporary' => 'Nevalida provizora pasvorto. Vi verŝajne jam sukcese ŝanĝis vian pasvorton aŭ petis novan provizoran pasvorton.',
@@ -673,7 +673,7 @@ Jen la protokolo de forigoj por via oportuno:",
 'undo-success' => 'La redakto estas malfarebla.
 Bonvolu konfirmi la jenan komparaĵon por verigi ĉi tiel vi volas, kaj konservi la ŝanĝojn suben fini malfarante la redakton.',
 'undo-failure' => 'Ne eblas nuligi redakton pro konfliktaj intermezaj redaktoj.',
-'undo-summary' => 'Nuligis revizion $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskuto]] | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]])',
+'undo-summary' => 'Nuligis version $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskuto]] | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Ne eblas krei konton',
@@ -729,10 +729,10 @@ Kiel administranto de {{SITENAME}} vi povas rigardi ĝin;
 povas esti detaloj en la [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} protokolo de forigoj].
 </div>',
 'rev-delundel'                => 'montri/kaŝi',
-'revisiondelete'              => 'Forigi/Restarigi reviziojn',
-'revdelete-nooldid-title'     => 'Nevalida cela revizio',
+'revisiondelete'              => 'Forigi/malforigi versiojn',
+'revdelete-nooldid-title'     => 'Nevalida cela versio',
 'revdelete-nooldid-text'      => 'Vi ne specifis celan revizion aux reviziojn fari cxi funkcion.',
-'revdelete-selected'          => "'''{{PLURAL:$2|Selektata revizio|Selektataj revizioj}} de [[:$1]]:'''",
+'revdelete-selected'          => "'''{{PLURAL:$2|Selektata versio|Selektataj versioj}} de [[:$1]]:'''",
 'logdelete-selected'          => "{{PLURAL:$2|Selektata loglibra evento|Selektataj loglibraj eventoj}} por '''$1:'''",
 'revdelete-text'              => "'''Forigitaj versioj kaj eventoj plu aperos en la historipaĝoj, sed iliaj tekstoj ne estos alireblaj de la publiko.'''
 
@@ -765,15 +765,15 @@ Aliaj administrantoj ĉe {{SITENAME}} plu povos aliri la kaŝitan entenon kaj re
 Certigu ke ĉi tiu ŝanĝo preservos kontinuecon de la historiaj paĝoj.
 
 '''Almenaŭ la nuna revizio de la fontpaĝo devas resti.'''",
-'mergehistory-box'                 => 'Kunigi reviziojn de du paĝoj:',
+'mergehistory-box'                 => 'Kunigi versiojn de du paĝoj:',
 'mergehistory-from'                => 'Fontpaĝo:',
 'mergehistory-into'                => 'Celpaĝo:',
 'mergehistory-list'                => 'Kunigebla redakthistorio',
-'mergehistory-merge'               => 'La jenaj revizioj de [[:$1]] povas esti kunigitaj en [[:$2]]. Uzu la radio-butonan kolumnon por enkunigi nur la reviziojn kreitajn cxe kaj antaux la specifigita tempo. Notu ke uzado de navigado-ligiloj restarigos ĉi kolumnon.',
+'mergehistory-merge'               => 'La jenaj versioj de [[:$1]] povas esti kunigitaj en [[:$2]]. Uzu la radio-butonan kolumnon por enkunigi nur la versiojn kreitajn ĉe kaj antaŭ la specifigita tempo. Notu ke uzado de navigado-ligiloj restarigos ĉi tiun kolumnon.',
 'mergehistory-go'                  => 'Montri kunigeblajn redaktojn',
-'mergehistory-submit'              => 'Kunigi reviziojn',
-'mergehistory-empty'               => 'Neniuj reviziojn eblas kunigi.',
-'mergehistory-success'             => '$3 {{PLURAL:$3|revizio|revizioj}} de [[:$1]] sukcese kunigita en [[:$2]].',
+'mergehistory-submit'              => 'Kunigi versiojn',
+'mergehistory-empty'               => 'Neniuj versioj estas kunigeblaj.',
+'mergehistory-success'             => '$3 {{PLURAL:$3|versio|versioj}} de [[:$1]] sukcese {{PLURAL:$3|kunigita|kunigitaj}} en [[:$2]].',
 'mergehistory-fail'                => 'Ne eblas fari la historian kunigon; bonvolu konstati la paĝon kaj tempajn parametrojn.',
 'mergehistory-no-source'           => 'Fontpaĝo $1 ne ekzistas.',
 'mergehistory-no-destination'      => 'Celpaĝo $1 ne ekzistas.',
@@ -782,7 +782,7 @@ Certigu ke ĉi tiu ŝanĝo preservos kontinuecon de la historiaj paĝoj.
 
 # Merge log
 'mergelog'           => 'Protokolo de kunigoj',
-'pagemerge-logentry' => 'kunigis [[$1]] en [[$2]] (revizioj gxis $3)',
+'pagemerge-logentry' => 'kunigis [[$1]] en [[$2]] (versioj ĝis $3)',
 'revertmerge'        => 'Malkunigi',
 'mergelogpagetext'   => 'Jen listo de la plej lastatempaj kunigoj de unu paĝhistorio en alian.',
 
@@ -945,7 +945,7 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'rcshowhideanons'                   => '$1 anonimajn redaktojn',
 'rcshowhidepatr'                    => '$1 patrolitajn redaktojn',
 'rcshowhidemine'                    => '$1 miajn redaktojn',
-'rclinks'                           => 'Montru $1 lastajn ŝanĝojn; montru la ŝanĝojn dum la $2 lastaj tagoj.<br />$3',
+'rclinks'                           => 'Montri $1 lastajn ŝanĝojn dum la $2 lastaj tagoj.<br />$3',
 'diff'                              => 'malsamoj',
 'hist'                              => 'historio',
 'hide'                              => 'Kaŝi',
@@ -1198,14 +1198,14 @@ Paĝo estas traktata kiel apartigilo se ĝi uzas ŝablonon kiu estas ligita de [
 'withoutinterwiki-summary' => 'Jenaj paĝoj ne ligas al aliaj lingvoversioj:',
 'withoutinterwiki-submit'  => 'Montri',
 
-'fewestrevisions' => 'Artikoloj kun la plej malmultaj revizioj',
+'fewestrevisions' => 'Artikoloj kun la plej malmultaj versioj',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|bitoko|bitokoj}}',
 'ncategories'             => '{{PLURAL:$1|unu kategorio|$1 kategorioj}}',
 'nlinks'                  => '$1 {{PLURAL:$1|ligilo|ligiloj}}',
 'nmembers'                => '{{PLURAL:$1|unu membro|$1 membroj}}',
-'nrevisions'              => '$1 {{PLURAL:$1|revizio|revizioj}}',
+'nrevisions'              => '$1 {{PLURAL:$1|versio|versioj}}',
 'nviews'                  => '{{PLURAL:$1|unufoje|$1 fojojn}}',
 'specialpage-empty'       => 'Ne estas rezultoj por ĉi tiu raporto.',
 'lonelypages'             => 'Neligitaj paĝoj',
@@ -1224,7 +1224,7 @@ Paĝo estas traktata kiel apartigilo se ĝi uzas ŝablonon kiu estas ligita de [
 'mostlinkedtemplates'     => 'Plej ligitaj ŝablonoj',
 'mostcategories'          => 'Artikoloj kun la plej multaj kategorioj',
 'mostimages'              => 'Plej ligitaj bildoj',
-'mostrevisions'           => 'Artikoloj kun la plej multaj revizioj',
+'mostrevisions'           => 'Artikoloj kun la plej multaj versioj',
 'allpages'                => 'Ĉiuj paĝoj',
 'prefixindex'             => 'Indeksa prefikso',
 'shortpages'              => 'Mallongaj paĝoj',
@@ -1269,7 +1269,7 @@ komprenata kiel rekomendo aŭ reklamo.',
 [[Special:UnusedCategories|Neuzataj kategorioj]] ne estis montrataj ĉi tie.
 Vidu ankaŭ [[Special:WantedCategories|Dezirataj kategorioj]].',
 'data'               => 'Datenoj',
-'userrights'         => 'Administrado de rajtoj de uzantoj',
+'userrights'         => 'Prizorgi rajtojn de uzantoj',
 'groups'             => 'Uzantogrupoj',
 'alphaindexline'     => '$1 ĝis $2',
 'version'            => 'Versio',
@@ -1500,11 +1500,11 @@ Klakante butonon '''''Restarigi''''' viŝigos la komentokampon kaj malmarkos ĉi
 Se nova paĝo kun la sama nomo estis kreita post la forigo, la restarigitaj versioj aperos antaŭe en la antaŭa historio.',
 'undeleterevdel'               => 'Restarigo ne okazos se ĝi rezultos de la supera paĝrevizio estonte parte forigita. Tiukaze, vi devas marki aŭ malkaŝi la plej novajn forigitajn reviziojn.
 Revizioj de dosieroj kiujn vi ne havas permeson rigardi ne estos restarigita.',
-'undeletehistorynoadmin'       => 'Ĉi tiu artikolo estis forigita. La kaŭzo por la forigo estas montrata en la malsupra resumo, kune kun detaloj pri la uzantoj, kiuj redaktis ĉi tiun paĝon antaŭ la forigo. La aktuala teksto de ĉi tiuj forigitaj revizioj estas atingebla nur por administrantoj.',
+'undeletehistorynoadmin'       => 'Ĉi tiu artikolo estis forigita. La kaŭzo por la forigo estas montrata en la malsupra resumo, kune kun detaloj pri la uzantoj, kiuj redaktis ĉi tiun paĝon antaŭ la forigo. La aktuala teksto de ĉi tiuj forigitaj versioj estas atingebla nur de administrantoj.',
 'undelete-revision'            => 'Forigita revizio de $1 (ekde $4, $5) fare de $3:',
-'undeleterevision-missing'     => 'Nevalida aŭ malaperita revizio. Vi verŝajne havas malbonan ligilon, aŭ la
-revizio eble estis restarigita aŭ forigita de la arkivo.',
-'undelete-nodiff'              => 'Neniu antaŭa revizio trovebla.',
+'undeleterevision-missing'     => 'Nevalida aŭ malaperita versio. 
+Vi verŝajne havas malbonan ligilon, aŭ la versio eble estis restarigita aŭ forigita de la arkivo.',
+'undelete-nodiff'              => 'Neniu antaŭa versio troviĝis.',
 'undeletebtn'                  => 'Restarigi',
 'undeletelink'                 => 'restarigi',
 'undeletereset'                => 'Restarigi',
@@ -1522,8 +1522,8 @@ Konsultu la [[Special:Log/delete|deletion log]] por protokolo pri la lastatempaj
 'undelete-search-prefix'       => 'Montri paĝojn komence kun:',
 'undelete-search-submit'       => 'Serĉi',
 'undelete-no-results'          => 'Neniuj kongruaj paĝoj trovitaj en la forigo-arkivo.',
-'undelete-filename-mismatch'   => 'Ne eblas restarigi dosiero-revizion kun tempo $1: malkongrua dosiernomo',
-'undelete-bad-store-key'       => 'Ne eblas restarigi dosiero-revizio de tempo $1: dosiero estis malaperita antaŭ forigo.',
+'undelete-filename-mismatch'   => 'Ne eblas restarigi dosiero-version kun tempo $1: malkongrua dosiernomo',
+'undelete-bad-store-key'       => 'Ne eblas restarigi dosiero-versio de tempo $1: dosiero estis malaperita antaŭ forigo.',
 'undelete-cleanup-error'       => 'Eraro forigante la neuzatan arkivon "$1".',
 'undelete-missing-filearchive' => 'Ne eblas restarigi dosiera arkivo ID $1 ĉar ĝi ne estas en la datumbazo. Verŝajne ĝi jam estis restarigita.',
 'undelete-error-short'         => 'Eraro pro restarigo de dosiero: $1',
@@ -1769,11 +1769,11 @@ La celartikolo "[[:$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon 
 'import'                     => 'Importitaj paĝoj',
 'importinterwiki'            => 'Transvikia importo',
 'import-interwiki-text'      => 'Elektu vikion kaj paĝan titolon por importi.
-Datoj de revizioj kaj nomoj de redaktantoj estos preservitaj.
+Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 Ĉiuj transvikaj importoj estas raportitaj ĉe la [[Special:Log/import|loglibro de importoj]].',
 'import-interwiki-history'   => 'Kopiu ĉiuj versioj el historio por ĉi pago.',
 'import-interwiki-submit'    => 'Importi',
-'import-interwiki-namespace' => 'Transigi paĝoj en nomspaco:',
+'import-interwiki-namespace' => 'Cela nomspaco:',
 'importtext'                 => 'Bonvole eksportu la dosieron el la fonta vikio per la ilo Speciala:Export, konservu ĝin sur via disko kaj poste alŝutu ĝin tien ĉi.',
 'importstart'                => 'Importante paĝojn...',
 'import-revision-count'      => '$1 {{PLURAL:$1|versio|versioj}}',
@@ -1792,16 +1792,16 @@ Datoj de revizioj kaj nomoj de redaktantoj estos preservitaj.
 'importuploaderrortemp'      => 'Alŝutigo de import-dosiero malsukcesis. Labor-dosierujo ne estas trovita.',
 'import-parse-failure'       => 'sintaksa fuŝo de XML-importo',
 'import-noarticle'           => 'Neniu paĝo por importi!',
-'import-nonewrevisions'      => 'Ĉiuj revizioj estis antaŭe importitaj.',
+'import-nonewrevisions'      => 'Ĉiuj versioj estis antaŭe importitaj.',
 'xml-error-string'           => '$1 ĉe linio $2, kolumno $3 (bitiko $4): $5',
 
 # Import log
 'importlogpage'                    => 'Protokolo de importoj',
 'importlogpagetext'                => 'Administrantecaj importoj de paĝoj kun redakto-historio de aliaj vikioj.',
 'import-logentry-upload'           => 'importita [[$1]] de dosiera alŝuto',
-'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|revizio|revizioj}}',
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|versio|versioj}}',
 'import-logentry-interwiki'        => 'transvikiigita $1',
-'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revizio|revizioj}} de $2',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|versio|versioj}} de $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Mia uzantopaĝo',
@@ -1917,7 +1917,7 @@ Datoj de revizioj kaj nomoj de redaktantoj estos preservitaj.
 'rcpatroldisabled'                    => 'Patrolado de lastaj ŝanĝoj malaktivigita',
 'rcpatroldisabledtext'                => 'La funkcio patrolado de la lastaj ŝanĝoj estas nun malaktivigita.',
 'markedaspatrollederror'              => 'Ne povas marki kiel patrolitan',
-'markedaspatrollederrortext'          => 'Vi devas specifi revizion por marki kiel patrolitan.',
+'markedaspatrollederrortext'          => 'Vi devas specifigi version por marki kiel patrolitan.',
 'markedaspatrollederror-noautopatrol' => 'Vi ne rajtas marki viajn proprajn ŝanĝojn kiel patrolitajn.',
 
 # Patrol log
@@ -1932,7 +1932,7 @@ Datoj de revizioj kaj nomoj de redaktantoj estos preservitaj.
 
 $1',
 'filedelete-missing'              => 'La dosiero "$1" ne estas forigebla, ĉar ĝi ne ekzistas.',
-'filedelete-old-unregistered'     => 'La donita dosier-revizio "$1" ne estas en la datumbazo.',
+'filedelete-old-unregistered'     => 'La donita dosier-versio "$1" ne estas en la datumbazo.',
 'filedelete-current-unregistered' => 'La entajpita dosiero "$1" ne estas en la datumbazo.',
 'filedelete-archive-read-only'    => 'La arkiva dosierujo "$1" ne estas skribebla de la retservilo.',
 
@@ -2232,7 +2232,7 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 
 # External editor support
 'edit-externally'      => 'Ŝanĝi ĉi tiun dosieron per ekstera softvaro',
-'edit-externally-help' => "Vidu la [http://www.mediawiki.org/wiki/Manual:External_editors instalinstrukciojn] por pliaj informoj ''(angle)''.",
+'edit-externally-help' => "(Vidu la [http://www.mediawiki.org/wiki/Manual:External_editors instalinstrukciojn] por pliaj informoj.) ''[angle]''.",
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'ĉiuj',

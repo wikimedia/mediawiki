@@ -327,7 +327,7 @@ Mabalinmo nga ituloy ti agaramat iti {{SITENAME}} a kas di am-ammo, wenno makast
 Laglagipem a sumagmamano a pampanid ti mabalin a nakaparang latta a kasla nakaloginka pay laeng, agingga a dim' pay dalusan ti cache ti browsermo.",
 'welcomecreation'            => '== Dumanonka, $1! ==
 Naparnuayen ti accountmo.
-Dimo liplipatan a sukatan dagiti preferenciam iti {{SITENAME}}.',
+Dimo liplipatan a sukatan dagiti preferenciam iti [[Special:Preferences|{{SITENAME}} preferences]].',
 'loginpagetitle'             => 'Pagserkan ti agar-aramat',
 'yourname'                   => 'Nagan:',
 'yourpassword'               => 'Pasesbalikas:',
@@ -341,7 +341,7 @@ Dimo liplipatan a sukatan dagiti preferenciam iti {{SITENAME}}.',
 'logout'                     => 'Rummuar',
 'userlogout'                 => 'Rummuar',
 'notloggedin'                => 'Saan a naka-logged in',
-'nologin'                    => 'Awan pay ti pagserrekmo? $1.',
+'nologin'                    => "Awan kad' pay accountmo? $1.",
 'nologinlink'                => 'Mangaramid iti account',
 'createaccount'              => 'Mangaramid iti baro nga account',
 'gotaccount'                 => 'Addaanka kadin iti account? $1.',
@@ -577,6 +577,7 @@ Legend: (agdama) = paggidiatan iti agdama a version,
 'logdelete-logentry'      => 'nasuktan ti event visibility ti [[$1]]',
 
 # History merging
+'mergehistory'                => 'Pagtitipkelen dagiti pakasaritaan ti pampanid',
 'mergehistory-box'            => 'Pagtiponen dagiti revisions dagiti dua a pampanid:',
 'mergehistory-from'           => 'Panid ti taudan:',
 'mergehistory-into'           => 'Destinasion a panid:',

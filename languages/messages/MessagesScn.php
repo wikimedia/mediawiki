@@ -689,8 +689,9 @@ Accuràtivi ch'è uppurtunu cuntinuari a canciari sta pàggina.
 L'alencu dî cancillazzioni rilativi veni ripurtatu ccà pi cummudità:",
 
 # "Undo" feature
-'undo-success' => "Lu canciamentu hà statu annullatu cu successu. Virificati lu cunfruntu prisintatu ccà sutta p'accuràrivi ca lu cuntinutu è chiddu addisiatu e doppu sarvati la pàggina pi cumplitari l'annullamentu.",
-'undo-failure' => "Lu canciamentu nun pò èssiri annullatu a càusa d'un cunflittu cu li canciamenti ntermedi.",
+'undo-success' => "Lu canciamentu pò essiri annullatu. 
+Virificati lu paraguni ccà sutta p'accuràrivi ca lu cuntinutu è chiddu addisiatu e doppu sarvati la pàggina pi cumplitari l'annullamentu.",
+'undo-failure' => "Lu canciamentu nun pò èssiri annullatu a càusa d'un cunflittu cu li canciamenti ntirmedi.",
 'undo-summary' => 'Annullatu lu canciamentu $1 di [[Special:Contributions/$2|$2]] ([[User talk:$2|discussioni]])',
 
 # Account creation failure
@@ -1082,7 +1083,7 @@ Pi canciari l'urdinamentu, fari clic supra a la ntistazzioni dâ culonna scigghi
 'imgdelete'                 => 'canc',
 'imgdesc'                   => 'disc',
 'imgfile'                   => 'file',
-'filehist'                  => 'Crunoluggìa dô file',
+'filehist'                  => 'Crunuluggìa dô file',
 'filehist-help'             => 'Fari clic supra nu gruppu data/ura pi vìdiri lu file comu si prisintava ntô mumentu nnicatu.',
 'filehist-deleteall'        => 'cancilla tuttu',
 'filehist-deleteone'        => 'cancella',
@@ -2210,7 +2211,7 @@ Li lijami succissivi, supra la stissa riga, sunnu cunzidirati comu eccizzioni (p
 
 # External editor support
 'edit-externally'      => 'Cancia stu file usannu un prugramma sternu',
-'edit-externally-help' => "Pi maiuri nfurmazzioni cunzurtari li [http://www.mediawiki.org/wiki/Manual:External_editors istruzzioni] ('n ngrisi)",
+'edit-externally-help' => "Pi chiossai nfurmazzioni cunzurtari l'[http://www.mediawiki.org/wiki/Manual:External_editors istruzzioni] ('n ngrisi)",
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'tutti',

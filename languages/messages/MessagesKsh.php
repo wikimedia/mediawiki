@@ -438,7 +438,7 @@ De Aanfroch es: „<code>$2</code>“<br />',
 'viewsourcetext'       => 'Hee es dä Sigg ier Wikitex zum Belooere un Koppeere:',
 'protectedinterface'   => 'Op dä Sigg hee steiht Tex usem Interface vun de Wiki-Soffwär. Dröm es die jäje Änderunge jeschötz, domet keine Mess domet aanjestallt weed.',
 'editinginterface'     => '<strong>Opjepass:</strong> 
-Op dä Sigg hee steiht Tex usem Interface vun de Wiki-Soffwär. Dröm es die jäje Änderunge jeschötz, domet keine Mess domet aanjestallt weed. Nor de Wiki-Köbese künne 
+Op dä Sigg hee steiht Tex usem Interface vun de Wiki-Soffwär. Dröm es die jäje Änderunge jeschötz, domet keine Mess domet aanjestallt weed. Nor de Wiki-Köbesse künne 
 se ändere. Denk dran, hee ändere deit et Ussinn un de Wööt ändere met dänne et Wiki op de Metmaacher un de Besöker drop aankütt!',
 'sqlhidden'            => "(Dä SQL_Befähl du'mer nit zeije)",
 'cascadeprotected'     => 'Die Sigg es jeschöz, un mer kann se nit ändere. Se es en en Schotz-Kaskad enjebonge, zosamme met dä {{PLURAL:$1|Sigg|Sigge}}:
@@ -578,7 +578,7 @@ e-mail eijfach. Wann De en däm Wikki nit metmaache wells, och.',
 'resetpass'               => 'Neu Zweschepasswoot övver e-mail bekumme',
 'resetpass_announce'      => 'De beß jez enjelogg med ennem Zweschepasswoot, wat De övver e-mail krääje häs. Dat kanns De nit einfar_esu behallde. Alsu donn jetz e neu Passwoot för op Duur aanjevve.',
 'resetpass_text'          => '<!-- Donn der Täx hee dobei -->',
-'resetpass_header'        => 'Neu Passwood',
+'resetpass_header'        => 'E neu Passwood besorrje',
 'resetpass_submit'        => 'E neu Zweschepasswood övvermeddele un aanmellde',
 'resetpass_success'       => 'Passwood jeändert. Jetz küdd_et Enlogge&nbsp;…',
 'resetpass_bad_temporary' => 'Da Zweschepasswoot es nix. Do häs ald ding Passwoot jeändert, udder De häs zweschedren ald widder e neu Passwoot pä e-mail jescheck bekumme.',
@@ -794,7 +794,7 @@ Jetz kanns De Ding Änderunge nit mieh avspeichere.
 Dun se bei Dir om Rechner fasshalde un versök et späder noch ens.
 
 Nävvebei, dä Datenbank-Köbes hät för et Sperre och ene Jrund aanjejovve: $1',
-'protectedpagewarning'      => '<strong>Opjepass: Die Sigg hee es jäje Veränderunge jeschötz. Nor de Wiki-Köbese künne se ändere.</strong>',
+'protectedpagewarning'      => '<strong>Opjepass: Die Sigg hee es jäje Veränderunge jeschötz. Nor de Wiki-Köbesse künne se ändere.</strong>',
 'semiprotectedpagewarning'  => "'''Opjepass:''' Die Sigg hee es halv jesperrt, wie mer sage, dat heiß, Do muss aanjemeldt un enjelogg sin, wann De dran ändere wells.",
 'cascadeprotectedwarning'   => "'''Opjepaß:''' Die Sigg es jeschöz, un nur de Wiki-Köbesse künne se ändere. Se es en en Schotz-Kaskad enjebonge, zosamme met dä {{PLURAL:$1|Sigg|Sigge}}:",
 'titleprotectedwarning'     => '<strong> <span style="text-transform:uppercase"> Opjepaß! </span> Di Sigg hee is jesperrt woode. Bloß bestemmpte Metmaacher dörve di Sigg neu aanläje.</strong>',
@@ -1056,9 +1056,9 @@ hee nit ussöks, blieve, wie se sin. Dat Ussöke kanns De bei de miehste Brauser
 'group'               => 'Jrupp:',
 'group-autoconfirmed' => 'Bestätichte Metmaacher',
 'group-bot'           => 'Bots',
-'group-sysop'         => 'Wiki Köbese',
+'group-sysop'         => 'Wiki-Köbesse',
 'group-bureaucrat'    => 'Bürrokrade',
-'group-all'           => '(all)',
+'group-all'           => '(jeede)',
 
 'group-autoconfirmed-member' => 'Bestätichte Metmaacher',
 'group-bot-member'           => 'Bot',
@@ -1072,7 +1072,7 @@ hee nit ussöks, blieve, wie se sin. Dat Ussöke kanns De bei de miehste Brauser
 
 # User rights log
 'rightslog'      => 'Logboch för Änderunge aan Metmaacher-Räächde',
-'rightslogtext'  => 'Hee sin de Änderunge an Metmaacher ehre Räächde opjeliss. Op de Sigge üvver Metmaacher, Wiki_Köbese, Bürrokrade, Stewards, un esu, kanns De nohlese, wat domet es.',
+'rightslogtext'  => 'Hee sin de Änderunge an Metmaacher ehre Räächde opjeliss. Op de Sigge üvver Metmaacher, Wiki-Köbesse, Bürrokrade, Stewards, un esu, kanns De nohlese, wat domet es.',
 'rightslogentry' => 'hät däm Metmaacher „$1“ sing Räächde vun „$2“ op „$3“ ömjestallt.',
 'rightsnone'     => '(nix)',
 
@@ -1699,7 +1699,7 @@ Di Sigg <strong>„$1“:</strong> es jetz jrad:',
 'protect-default'             => '-(Standaad)-',
 'protect-fallback'            => 'Do weet dat Rääsch „$1“ jebruch.',
 'protect-level-autoconfirmed' => 'nor Metmaacher dranlooße, die sich aanjemeldt han',
-'protect-level-sysop'         => 'Nor de Wiki Köbese dranlooße',
+'protect-level-sysop'         => 'Nor de Wiki-Köbesse dranlooße',
 'protect-summary-cascade'     => 'met Schotz-Kaskad',
 'protect-expiring'            => 'bes $1 (UTC)',
 'protect-cascade'             => 'Maach en Schoz-Kaskaade — all de Schablone en dä Sigg krijje dersellve Schoz, wi die Sigg sellver en kritt.',
@@ -1735,7 +1735,7 @@ dann kriss De all de fottjeschmesse Versione widder.
 Wann enzwesche en neu Sigg unger däm ahle Name enjerich woode es,
 dann wääde de zeröckjehollte Versione einfach als zosätzlije äldere
 Versione för die neu Sigg enjerich. Die neu Sigg weed nit ersetz.',
-'undeletehistorynoadmin'       => 'Die Sigg es fottjeschmesse woode. Dä Jrund döför es en de Liss unge ze finge, jenau esu wie de Metmaacher, wo de Sigg verändert han, ih dat se fottjeschmesse wood. Wat op dä Sigg ehre fottjeschmesse ahle Versione stundt, dat künne nor de Wiki Köbese noch aansinn (un och widder zeröckholle)',
+'undeletehistorynoadmin'       => 'Die Sigg es fottjeschmesse woode. Dä Jrund döför es en de Liss unge ze finge, jenau esu wie de Metmaacher, wo de Sigg verändert han, ih dat se fottjeschmesse wood. Wat op dä Sigg ehre fottjeschmesse ahle Versione stundt, dat künne nor de Wiki-Köbesse noch aansinn (un och widder zeröckholle)',
 'undelete-revision'            => 'Fottjeschmeße Version fun dä Sigg „$1“ fum $4 öm $5 Uhr, et letz jändert fum $3:',
 'undeleterevision-missing'     => 'De Version stemmp nit. Dat wor ene verkihrte Link, oder de Version wood usem Archiv zeröck jehollt, oder fottjeschmesse.',
 'undelete-nodiff'              => 'Mer han kei ällder Version jefonge.',
@@ -2017,7 +2017,7 @@ Et Datum vun de Versione un de Metmaacher Name vun de Schriever wääde dobei me
 All de Trans Wiki Emporte wääde em [[Special:Log/import|Emport_Logboch]] fassjehallde.',
 'import-interwiki-history'   => 'All de Versione vun dä Sigg hee kopeere',
 'import-interwiki-submit'    => 'Huhlade!',
-'import-interwiki-namespace' => 'Dun de Sigge emporteere em Appachtemeng:',
+'import-interwiki-namespace' => 'Dun de Sigge emporteere en dat Appachtemeng:',
 'importtext'                 => 'Dun de Daate met däm „[[Special:Export|Export]]“ vun do vun enem Wiki Exporteere, dobei dun et - etwa bei Dir om Rechner - avspeichere, un dann hee huhlade.',
 'importstart'                => 'Ben Sigge am emporteere …',
 'import-revision-count'      => '({{PLURAL:$1|ein Version|$1 Versione|kein Version}})',
@@ -2492,7 +2492,7 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo dat Beld trotz dämm jenehm e�
 
 # External editor support
 'edit-externally'      => 'Dun de Datei met enem externe Projramm bei Dr om Rechner bearbeide',
-'edit-externally-help' => 'Luur en de [http://www.mediawiki.org/wiki/Manual:External_editors Installationsaanweisunge] noh Hinwies, wie mer esu en extern Projramm ennrechte un installeere deit.',
+'edit-externally-help' => '(Luur en de [http://www.mediawiki.org/wiki/Manual:External_editors Installationsaanweisunge] noh mieh Hinwies)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'all',

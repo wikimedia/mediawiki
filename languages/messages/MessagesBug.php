@@ -369,6 +369,9 @@ Eloko peddéï supaya weddiŋi mapalecé?',
 'tooltip-pt-preferences' => "Preferencena iya'",
 'tooltip-pt-logout'      => 'Log maessu',
 'tooltip-ca-talk'        => 'Appabicaranna iyé leppa',
+'tooltip-ca-move'        => 'Paléccé leppa édé',
+'tooltip-search'         => 'Sappa ri {{SITENAME}}',
+'tooltip-search-go'      => 'Lao ri leppa aseŋna pappada iyyé rekko eŋkaï',
 'tooltip-n-mainpage'     => 'Lao ri Leppa Indoë',
 
 # Attribution

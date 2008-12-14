@@ -29,6 +29,7 @@
  * @author Piolinfax
  * @author Platonides
  * @author Remember the dot
+ * @author Richard Wolf VI
  * @author Sanbec
  * @author Spacebirdy
  * @author Toniher
@@ -382,7 +383,7 @@ incluyendo el URL.',
 'cannotdelete'         => 'No se pudo borrar la página o archivo especificado.
 Alguien puede haberla borrado antes.',
 'badtitle'             => 'Título incorrecto',
-'badtitletext'         => 'El título de la página solicitada esta vacío, no es válido, o es un enlace interlenguaje o interwiki incorrecto.',
+'badtitletext'         => 'El título de la página solicitada está vacío, no es válido, o es un enlace interlenguaje o interwiki incorrecto.',
 'perfdisabled'         => 'Lo sentimos, esta función está temporalmente desactivada porque enlentece la base de datos a tal punto que nadie puede usar el wiki.',
 'perfcached'           => 'Los siguientes datos están en caché y por tanto pueden estar desactualizados:',
 'perfcachedts'         => 'Estos datos están almacenados. Su última actualización fue el $1.',
@@ -393,7 +394,7 @@ Consulta: $2',
 'viewsource'           => 'Ver código fuente',
 'viewsourcefor'        => 'para $1',
 'actionthrottled'      => 'Acción bloqueada',
-'actionthrottledtext'  => "Como medida contra el ''spam'', la acción que estás realizando está limitada a un número determinado de veces en un periodo corto de tiempo, y has excedido este límite. Por favor prueba de nuevo en unos minutos.",
+'actionthrottledtext'  => "Como medida contra el ''spam'', la acción que estás realizando está limitada a un número determinado de veces en un periodo corto de tiempo, y has excedido ese límite. Por favor prueba de nuevo en unos minutos.",
 'protectedpagetext'    => 'Esta página ha sido bloqueada para evitar su edición.',
 'viewsourcetext'       => 'Puedes ver y copiar el código fuente de esta página:',
 'protectedinterface'   => 'Esta página provee texto del interfaz del software, y está protegida para evitar vandalismos.',
@@ -1678,9 +1679,8 @@ Sin embargo, está bloqueada como parte del rango $2, que puede ser desbloqueado
 'movepagetext'            => "Usando el siguiente formulario se renombrará una página, moviendo todo su historial al nuevo nombre.
 El título anterior se convertirá en una redirección al nuevo título.
 Los enlaces al antiguo título de la página no se cambiarán.
-Asegúrate de no dejar  [[Special:DoubleRedirects|redirecciones dobles]] o [[Special:BrokenRedirects|rotas]].
+Asegúrate de no dejar [[Special:DoubleRedirects|redirecciones dobles]] o [[Special:BrokenRedirects|rotas]].
 Tú eres responsable de hacer que los enlaces sigan apuntando adonde se supone que deberían hacerlo.
-
 
 Recuerda que la página '''no''' será renombrada si ya existe una página con el nuevo título, a no ser que sea una página vacía o una redirección sin historial.
 Esto significa que podrás renombrar una página a su título original si has cometido un error, pero que no podrás sobreescribir una página existente.
@@ -1768,7 +1768,7 @@ Las fechas de revisiones y los nombres de editores se preservarán.
 Todas las importaciones transwiki se registran en el [[Special:Log/import|registro de importaciones]].',
 'import-interwiki-history'   => 'Copiar todas las versiones históricas para esta página',
 'import-interwiki-submit'    => 'Importar',
-'import-interwiki-namespace' => 'Transferir páginas al espacio de nombres:',
+'import-interwiki-namespace' => 'Espacio de nombres de destino:',
 'importtext'                 => 'Por favor, exporte el archivo desde el wiki de origen usando la [[Special:Export|herramienta de exportación]], guárdelo en su ordenador y súbalo aquí.',
 'importstart'                => 'Importando páginas...',
 'import-revision-count'      => '$1 {{PLURAL:$1|revisión|revisiones}}',
@@ -2237,7 +2237,7 @@ Existen otros campos que se mantendrán ocultos por defecto.
 
 # External editor support
 'edit-externally'      => 'Editar este archivo usando una aplicación externa',
-'edit-externally-help' => 'Lee las [http://www.mediawiki.org/wiki/Manual:External_editors instrucciones de configuración] (en inglés) para más información.',
+'edit-externally-help' => '(Lee las [http://www.mediawiki.org/wiki/Manual:External_editors instrucciones de configuración] (en inglés) para más información)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'todos',

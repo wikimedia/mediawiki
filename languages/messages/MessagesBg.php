@@ -2323,7 +2323,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Редактиране на файла чрез външно приложение',
-'edit-externally-help' => 'За повече информация прегледайте [http://www.mediawiki.org/wiki/Manual:External_editors указанията за настройките].',
+'edit-externally-help' => '(За повече информация прегледайте [http://www.mediawiki.org/wiki/Manual:External_editors указанията за настройките]).',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'всички',

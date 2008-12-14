@@ -84,6 +84,9 @@ Bitte ignorieren Sie diese E-Mail, falls Sie sie nicht selbst angefordert haben.
 'passwordsent'               => 'Ein neues, temporäres Passwort wurde an die E-Mail-Adresse von Benutzer „$1“ gesandt.
 Bitte melden Sie sich damit an, sobald sie es erhalten haben. Das alte Passwort bleibt weiterhin gültig.',
 'blocked-mailpassword'       => 'Die von Ihnen verwendete IP-Adresse ist für das Ändern von Seiten gesperrt. Um einen Missbrauch zu verhindern, wurde die Möglichkeit zur Anforderung eines neuen Passwortes ebenfalls gesperrt.',
+'eauthentsent'               => 'Eine Bestätigungs-E-Mail wurde an die angegebene Adresse verschickt.
+
+Bevor eine E-Mail von anderen Benutzern über die E-Mail-Funktion empfangen werden kann, muss die Adresse und ihre tatsächliche Zugehörigkeit zu diesem Benutzerkonto erst bestätigt werden. Bitte befolgen Sie die Hinweise in der Bestätigungs-E-Mail.',
 'acct_creation_throttle_hit' => 'Sie haben schon {{PLURAL:$1|1 Benutzerkonto|$1 Benutzerkonten}} angelegt.
 Weitere Benutzerkonten können nicht angelegt werden.',
 'emailauthenticated'         => 'Ihre E-Mail-Adresse wurde am $2 um $3 Uhr bestätigt.',
@@ -509,7 +512,7 @@ Wenn diese E-Mail-Adresse nicht zu dem genannten Benutzerkonto gehört, folgen S
 {{SITENAME}}: {{fullurl:{{Mediawiki:mainpage}}}}',
 
 # Delete conflict
-'deletedwhileediting' => '<span class="error">Achtung: Diese Seite wurde gelöscht, nachdem Sie angefangen haben, sie zu bearbeiten!
+'deletedwhileediting' => '<span class="error">Achtung: Diese Seite wurde gelöscht, nachdem Sie angefangen haben sie zu bearbeiten!
 Im [{{fullurl:Special:Log|type=delete&page=}}{{FULLPAGENAMEE}} Lösch-Logbuch] finden Sie den Grund für die Löschung.
 Wenn Sie die Seite speichern, wird sie neu angelegt.</span>',
 'confirmrecreate'     => "Benutzer [[User:$1|$1]] ([[User talk:$1|Diskussion]]) hat diese Seite gelöscht, nachdem Sie angefangen haben, sie zu bearbeiten. Die Begründung lautete:

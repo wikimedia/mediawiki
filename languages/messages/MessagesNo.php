@@ -12,6 +12,7 @@
  * @author Kph
  * @author Kph-no
  * @author Max sonnelid
+ * @author Najami
  * @author Stigmj
  * @author Teak
  * @author לערי ריינהארט
@@ -566,7 +567,7 @@ Du kan ignorere denne beskjeden dersom kontoen ble opprettet ved en feil.',
 'resetpass'               => 'Resett kontopassord',
 'resetpass_announce'      => 'Du logget inn med en midlertidig e-postkode. For å fullføre innloggingen må du oppgi et nytt passord her:',
 'resetpass_text'          => '<!-- Legg til tekst her -->',
-'resetpass_header'        => 'Nullstill passord',
+'resetpass_header'        => 'Endre passord',
 'resetpass_submit'        => 'Angi passord og logg inn',
 'resetpass_success'       => 'Passordet ditt ble endret! Logger inn&nbsp;…',
 'resetpass_bad_temporary' => 'Ugyldig midlertidig passord. Du kan allerede ha endret passordet, eller bedt om et nytt midlertidig passord.',
@@ -1799,7 +1800,7 @@ Besøk [http://translatewiki.net Betawiki] om du ønsker å bidra med oversettel
 'import-interwiki-text'      => 'Velg en wiki og en side å importere. Revisjonsdatoer og bidragsyteres navn blir bevart. Alle transwiki-importeringer listes i [[Special:Log/import|importloggen]].',
 'import-interwiki-history'   => 'Kopier all historikk for denne siden',
 'import-interwiki-submit'    => 'Importer',
-'import-interwiki-namespace' => 'Flytt sidene til navnerommet:',
+'import-interwiki-namespace' => 'Målnavnerom:',
 'importtext'                 => 'Importer fila fra kildewikien med [[Special:Export|eksporteringsverktøyet]], lagre den på den egen datamaskin, og last den opp hit.',
 'importstart'                => 'Importerer sider&nbsp;…',
 'import-revision-count'      => '({{PLURAL:$1|Én revisjon|$1 revisjoner}})',
@@ -2267,7 +2268,7 @@ Rotert 90° mot klokka og vridd vertikalt', # 0th row: left; 0th column: top
 
 # External editor support
 'edit-externally'      => 'Rediger denne fila med et eksternt program',
-'edit-externally-help' => 'Se [http://www.mediawiki.org/wiki/Manual:External_editors oppsettsinstruksjonene] for mer informasjon.',
+'edit-externally-help' => '(Se [http://www.mediawiki.org/wiki/Manual:External_editors oppsettsinstruksjonene] for mer informasjon)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'alle',

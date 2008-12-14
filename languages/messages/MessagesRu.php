@@ -9,6 +9,7 @@
  * @author Alessandro
  * @author AlexSm
  * @author Alexander Sigachov (alexander.sigachov@gmail.com)
+ * @author Amikeco
  * @author EugeneZelenko
  * @author Flrn
  * @author HalanTul
@@ -611,7 +612,7 @@ $2',
 'yournick'                   => 'Ваш псевдоним (для подписей):',
 'badsig'                     => 'Неверная подпись. Проверьте корректность HTML-тегов.',
 'badsiglength'               => 'Слишком длинная подпись, должна быть не более $1 символов.',
-'email'                      => 'Эл. почта',
+'email'                      => 'Электронная почта',
 'prefs-help-realname'        => 'Настоящее имя (необязательное поле): если вы укажите его, то оно будет использовано для того чтобы показать кем был внесена правка страницы.',
 'loginerror'                 => 'Ошибка опознавания участника',
 'prefs-help-email'           => 'Электронная почта (необязательное поле). Если адрес электронной почты указан, то вы сможете запросить отправить вам новый пароль, если вдруг забудете действующий.
@@ -667,7 +668,7 @@ $2',
 'resetpass'               => 'Сброс пароля от учётной записи',
 'resetpass_announce'      => 'Вы представились с помощью временного пароля, полученного по электронной почте. Для завершения входа в систему, вы должны установить новый пароль.',
 'resetpass_text'          => '<!-- Добавьте сюда текст -->',
-'resetpass_header'        => 'Сброс пароля',
+'resetpass_header'        => 'Изменение пароля учётной записи',
 'resetpass_submit'        => 'Установить пароль и представиться',
 'resetpass_success'       => 'Ваш пароль был успешно изменён! Выполняется вход в систему…',
 'resetpass_bad_temporary' => 'Недействительный временный пароль. Возможно, вы уже изменили ваш пароль, или попробуйте запросить временный пароль снова.',
@@ -997,7 +998,7 @@ $3 указал следующую причину: ''$2''",
 'qbsettings-fixedright'    => 'Неподвижная справа',
 'qbsettings-floatingleft'  => 'Плавающая слева',
 'qbsettings-floatingright' => 'Плавающая справа',
-'changepassword'           => 'Сменить пароль',
+'changepassword'           => 'Изменение пароля',
 'skin'                     => 'Оформление',
 'math'                     => 'Отображение формул',
 'dateformat'               => 'Формат даты',
@@ -1938,7 +1939,7 @@ $1',
 Все операции межвики импорта регистрируются в [[Special:Log/import|соответствующем журнале]].',
 'import-interwiki-history'   => 'Копировать всю историю изменений этой страницы',
 'import-interwiki-submit'    => 'Импортировать',
-'import-interwiki-namespace' => 'Помещать страницы в пространство имён:',
+'import-interwiki-namespace' => 'Целевое пространство имён:',
 'importtext'                 => 'Пожалуйста, экспортируйте страницу из исходной вики, используя [[Special:Export|соответствующий инструмент]]. Сохраните файл на диск, а затем загрузите его сюда.',
 'importstart'                => 'Импортирование страниц…',
 'import-revision-count'      => '$1 {{PLURAL:$1|версия|версии|версий}}',
@@ -2417,7 +2418,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Редактировать этот файл, используя внешнюю программу',
-'edit-externally-help' => 'Подробности см. на странице [http://www.mediawiki.org/wiki/Manual:External_editors Meta:Help:External_editors].',
+'edit-externally-help' => '(подробнее см. в [http://www.mediawiki.org/wiki/Manual:External_editors руководстве по установке])',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'все',

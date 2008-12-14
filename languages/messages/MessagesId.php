@@ -2373,7 +2373,7 @@ Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, 
 
 # External editor support
 'edit-externally'      => 'Sunting berkas ini dengan aplikasi luar',
-'edit-externally-help' => 'Lihat [http://www.mediawiki.org/wiki/Manual:External_editors instruksi pengaturan] untuk informasi lebih lanjut.',
+'edit-externally-help' => '(Lihat [http://www.mediawiki.org/wiki/Manual:External_editors instruksi pengaturan] untuk informasi lebih lanjut)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'semua',

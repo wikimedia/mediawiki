@@ -443,7 +443,7 @@ $messages = array(
 'otherlanguages'    => 'Más nyelveken',
 'redirectedfrom'    => '($1 szócikkből átirányítva)',
 'redirectpagesub'   => 'Átirányító lap',
-'lastmodifiedat'    => 'A lap utolsó módosítása $2, $1.', # $1 date, $2 time
+'lastmodifiedat'    => 'A lap utolsó módosítása: $1, $2', # $1 date, $2 time
 'viewcount'         => 'Ezt a lapot {{PLURAL:$1|egy|$1}} alkalommal keresték föl.',
 'protectedpage'     => 'Védett lap',
 'jumpto'            => 'Ugrás:',
@@ -1453,7 +1453,7 @@ hivatkozhatnak egy fájl URL-jére, ezért szerepelhet itt annak
 ellenére, hogy aktívan használják.</p>',
 'unusedcategoriestext'    => 'A következő kategóriákban egyetlen szócikk, illetve alkategória sem szerepel.',
 'notargettitle'           => 'Nincs cél',
-'notargettext'            => 'Nem adtál meg lapot vagy usert keresési célpontnak.',
+'notargettext'            => 'Nem adtad meg annak a lapnak vagy szerkesztőnek a nevét, amin a műveletet végre akartad hajtani.',
 'pager-newer-n'           => '{{PLURAL:$1|1 újabb|$1 újabb}}',
 'pager-older-n'           => '{{PLURAL:$1|1 régebbi|$1 régebbi}}',
 
@@ -2040,8 +2040,8 @@ Valamennyi transwiki importálási művelet az [[Special:Log/import|importálás
 'tooltip-search'                  => 'Keresés a wikin',
 'tooltip-search-go'               => 'Ugrás a megadott lapra, ha létezik',
 'tooltip-search-fulltext'         => 'Oldalak keresése a megadott szöveg alapján',
-'tooltip-p-logo'                  => 'Főlap',
-'tooltip-n-mainpage'              => 'A főlap felkeresése',
+'tooltip-p-logo'                  => 'Kezdőlap',
+'tooltip-n-mainpage'              => 'A kezdőlap felkeresése',
 'tooltip-n-portal'                => 'A közösségről, miben segíthetsz, mit hol találsz meg',
 'tooltip-n-currentevents'         => 'Háttérinformáció az aktuális eseményekről',
 'tooltip-n-recentchanges'         => 'A wikiben történt legutóbbi változtatások listája',
@@ -2451,7 +2451,7 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 
 # External editor support
 'edit-externally'      => 'A fájl szerkesztése külső alkalmazással',
-'edit-externally-help' => 'Lásd a [http://www.mediawiki.org/wiki/Manual:External_editors „setup instructions”] leírást (angolul) ennek használatához.',
+'edit-externally-help' => '(Lásd a [http://www.mediawiki.org/wiki/Manual:External_editors használati utasítást] (angolul) a beállításához.)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'összes',

@@ -559,7 +559,7 @@ Móžoš toś te zdźělenje ignorowaś, jolic toś te konto jo se jano zamólnj
 'resetpass'               => 'Šćitne gronidło za konta nastajiś.',
 'resetpass_announce'      => 'Sy z nachylnym e-mailowym šćitnym gronidłom pśizjawjony. Aby pśizjawjenje zakóńcył, zapódaj how nowe šćitne gronidło:',
 'resetpass_text'          => '<!-- Dodaj how tekst -->',
-'resetpass_header'        => 'Šćitne gronidło nastajiś',
+'resetpass_header'        => 'Kontowe gronidło změniś',
 'resetpass_submit'        => 'Šćitne gronidło nastajiś a se pśizjawiś',
 'resetpass_success'       => 'Twójo nowe šćitne gronidło jo nastajone. Něnto se pśizjaw …',
 'resetpass_bad_temporary' => 'Nachylne e-mailowe šćitne gronidło njejo korektne. Sy swójo šćitne gronidło južo pśeměnił(a) abo wó nowe nachylne gronidło pšošył(a).',
@@ -1337,7 +1337,7 @@ Bok wobjadnawa se ako bok wujasnjenja zapśimjeśa, gaž wótkazujo na nju [[Med
 'booksources-summary'       => 'Na toś tom specialnem boce móžoš ISBN zapódaś a dostanjoš pón lisćinu z online-katalogami a móžnosćami, źož móžoš pytanu ISBN dostaś. Wězace smužki abo proznoty mjaz ciframi njegraju za pytanje žednu rolu.',
 'booksources-search-legend' => 'Knigłowe žrědła pytaś',
 'booksources-go'            => 'Pytaś',
-'booksources-text'          => 'To jo lisćina z wótkazami na internetowe boki, kótarež pśedawaju nowe a trjebane knigły. Tam mógu teke dalšne informacije wó knigłach byś. {{SITENAME}} njezwisujo góspodarsce z žednym z toś tych póbitowarjow.',
+'booksources-text'          => 'To jo lisćina z wótkazami na internetowe boki, kótarež pśedawaju nowe a trjebane knigły. Tam mógu teke dalšne informacije wó knigłach byś. {{SITENAME}} njezwisujo góspodarski z žednym z toś tych póbitowarjow.',
 
 'categoriespagetext' => 'Slědujuce kategorije wopśimuju boki abo medije. [[Special:UnusedCategories|Njewužywane kategorije]] se how njepokazuju. Glědaj teke [[Special:WantedCategories|póžedane kategorije]].',
 'data'               => 'Daty',
@@ -1495,6 +1495,7 @@ Aby nastajenja twójich wobglědowańkow změnił, woglědaj: {{fullurl:Special:
 ** Pśekśiwjenje stworiśelskego pšawa
 ** Wandalizm',
 'delete-toobig'               => 'Toś ten bok ma dłujku historiju, wěcej ako $1 {{PLURAL:$1|wersiju|wersiji|wersije|wersijow}}. Lašowanje takich bokow bu wobgranicowane, aby se wobškoźenje z pśigódy {{GRAMMAR:genitiw|{{SITENAME}}}} zajźowało.',
+'delete-warning-toobig'       => 'Toś ten bok ma wjelike stawizny změnow, pśez $1 změnow. Wulašowanje móžo operacije datoweje banki {{GRAMMAR:genitiw|{{SITENAME}}}} kazyś; pókšacuj wobglědniwje.',
 'rollback'                    => 'Wobźěłanja slědk wześ',
 'rollback_short'              => 'anulěrowaś',
 'rollbacklink'                => 'anulěrowaś',
@@ -1825,7 +1826,7 @@ Datumy wersijow a wužywarske mjenja pśi tym se njezměniju.
 Wšykne transwiki-importowe akcije protokolěruju se w [[Special:Log/import|log-lisćinje importow]].',
 'import-interwiki-history'   => 'Importěruj wšykne wersije toś togo boka',
 'import-interwiki-submit'    => 'Importěrowaś',
-'import-interwiki-namespace' => 'Importěruj boki do mjenjowego ruma:',
+'import-interwiki-namespace' => 'Celowy mjenjowy rum:',
 'importtext'                 => 'Eksportěruj pšosym dataju ze žredlowego wikija z pomocu [[Special:Export|eksporteje funkcije]]. Składuj ju na swójom licadle a nagraj su sem.',
 'importstart'                => 'Importěrowanje bokow...',
 'import-revision-count'      => '$1 {{PLURAL:$1|wersija|wersiji|wersije}}',
@@ -2292,7 +2293,7 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 
 # External editor support
 'edit-externally'      => 'Dataje z eksternym programom wobźěłaś',
-'edit-externally-help' => 'Za dalšne informacije glědaj [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions].',
+'edit-externally-help' => '(Za dalšne informacije glědaj [http://www.mediawiki.org/wiki/Manual:External_editors instalaciske instrukcije]).',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'wšykne',
@@ -2417,18 +2418,18 @@ Móžoš teke [[Special:Watchlist/edit|standardny editor wužywaś]].',
 'watchlisttools-raw'  => 'Wobglědowańka wobźěłaś',
 
 # Iranian month names
-'iranian-calendar-m1'  => 'Prědny mjasec Jalāli',
-'iranian-calendar-m2'  => 'Drugi mjasec Jalāli',
-'iranian-calendar-m3'  => 'Tśeśi mjasec Jalāli',
-'iranian-calendar-m4'  => 'Stwórty mjasec Jalāli',
-'iranian-calendar-m5'  => 'Pěty mjasec Jalāli',
-'iranian-calendar-m6'  => 'Šesty mjasec Jalāli',
-'iranian-calendar-m7'  => 'Sedymy mjasec Jalāli',
-'iranian-calendar-m8'  => 'Wósymy mjasec Jalāli',
-'iranian-calendar-m9'  => 'Źewjety mjasec Jalāli',
-'iranian-calendar-m10' => 'Źasety mjasec Jalāli',
-'iranian-calendar-m11' => 'Jadenasty mjasec Jalāli',
-'iranian-calendar-m12' => 'Dwanasty mjasec Jalāli',
+'iranian-calendar-m1'  => 'Farwardin',
+'iranian-calendar-m2'  => 'Ordibehešt',
+'iranian-calendar-m3'  => 'Chordad',
+'iranian-calendar-m4'  => 'Tir',
+'iranian-calendar-m5'  => 'Mordad',
+'iranian-calendar-m6'  => 'Šahriwar',
+'iranian-calendar-m7'  => 'Mehr',
+'iranian-calendar-m8'  => 'Aban',
+'iranian-calendar-m9'  => 'Azar',
+'iranian-calendar-m10' => 'Dej',
+'iranian-calendar-m11' => 'Bahman',
+'iranian-calendar-m12' => 'Esfand',
 
 # Core parser functions
 'unknown_extension_tag' => 'Njeznaty tag rozšyrjenja „$1“',

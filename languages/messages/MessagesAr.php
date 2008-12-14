@@ -798,7 +798,7 @@ $1 ساعة.',
 'resetpass_announce'      => 'تم تسجيل دخولك بكلمة سر مؤقتة.
 للدخول بشكل نهائي، يجب عليك ضبط كلمة سر جديدة هنا:',
 'resetpass_text'          => '<!-- أضف نصا هنا -->',
-'resetpass_header'        => 'أعد ضبط كلمة السر',
+'resetpass_header'        => 'غير كلمة سر الحساب',
 'resetpass_submit'        => 'ضبط كلمة السر والدخول',
 'resetpass_success'       => 'تم تغيير كلمة السر الخاصة بك بنجاح! يتم تسجيل دخولك الآن...',
 'resetpass_bad_temporary' => 'كلمة السر المؤقتة خاطئة.
@@ -2136,7 +2136,7 @@ $1',
 كل أفعال الاستيراد عبر الويكي يتم تسجيلها في [[Special:Log/import|سجل الاستيراد]].',
 'import-interwiki-history'   => 'انسخ كل نسخ التاريخ لهذه الصفحة',
 'import-interwiki-submit'    => 'استيراد',
-'import-interwiki-namespace' => 'انقل الصفحات إلى النطاق:',
+'import-interwiki-namespace' => 'النطاق الهدف:',
 'importtext'                 => 'من فضلك صدر الملف من الويكي المصدر باستخدام [[Special:Export|أداة الاستيراد]].
 احفظها على حاسوبك ثم ارفعها هنا.',
 'importstart'                => 'استيراد صفحات...',
@@ -2639,7 +2639,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'عدل هذا الملف باستخدام تطبيق خارجي',
-'edit-externally-help' => 'انظر [http://www.mediawiki.org/wiki/Manual:External_editors تعليمات الإعداد] لمزيد من المعلومات.',
+'edit-externally-help' => '(انظر [http://www.mediawiki.org/wiki/Manual:External_editors تعليمات الإعداد] لمزيد من المعلومات)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'الكل',

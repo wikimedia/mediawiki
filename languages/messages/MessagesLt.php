@@ -507,11 +507,11 @@ Jūs galite nekreipti dėmesio į laišką, jei ši paskyra buvo sukurta per kla
 'resetpass'               => 'Paskyros slaptažodžio atstatymas',
 'resetpass_announce'      => 'Jūs prisijungėte su atsiųstu laikinuoju kodu. Norėdami užbaigti prisijungimą, čia jums reikia nustatyti naująjį slaptažodį:',
 'resetpass_text'          => '<!-- Įterpkite čia tekstą -->',
-'resetpass_header'        => 'Atstatyti slaptažodį',
+'resetpass_header'        => 'Keisti paskyros slaptažodį',
 'resetpass_submit'        => 'Nustatyti slaptažodį ir prisijungti',
 'resetpass_success'       => 'Jūsų slaptažodis pakeistas sėkmingai! Dabar prisijungiama...',
 'resetpass_bad_temporary' => 'Neteisingas laikinasis slaptažodis. Galbūt jūs jau sėkmingai pakeitėte savo slaptažodį arba paprašėte naujo laikino slaptažodžio.',
-'resetpass_forbidden'     => '{{SITENAME}} slaptažodžiai negali būti pakeisti',
+'resetpass_forbidden'     => 'Slaptažodžiai negali būti pakeisti',
 'resetpass_missing'       => 'Nėra formos duomenų.',
 
 # Edit page toolbar
@@ -674,7 +674,7 @@ Ją užrakinusio administratoriaus paaiškinimas: $1',
 'nocreatetitle'             => 'Puslapių kūrimas apribotas',
 'nocreatetext'              => '{{SITENAME}} apribojo galimybę kurti naujus puslapius.
 Jūs galite grįžti ir redaguoti jau esantį puslapį, arba [[Special:UserLogin|prisijungti arba sukurti paskyrą]].',
-'nocreate-loggedin'         => 'Jūs neturite teisės sukurti puslapius šiame projekte.',
+'nocreate-loggedin'         => 'Jūs neturite teisės kurti puslapius.',
 'permissionserrors'         => 'Teisių klaida',
 'permissionserrorstext'     => 'Jūs neturite teisių tai daryti dėl {{PLURAL:$1|šios priežasties|šių priežasčių}}:',
 'recreate-deleted-warn'     => "'''Dėmesio: Jūs atkuriate puslapį, kuris anksčiau buvo ištrintas.'''
@@ -1014,7 +1014,8 @@ Prašome pasirinkti kitą vardą.',
 'fileexists-thumb'            => "<center>'''Egzistuojantis failas'''</center>",
 'fileexists-thumbnail-yes'    => 'Failas turbūt yra sumažinto dydžio failas <i>(miniatiūra)</i>. Prašome peržiūrėti failą  <strong><tt>$1</tt></strong>.<br />
 Jeigu tai yra toks pats pradinio dydžio paveikslėlis, tai įkelti papildomos miniatūros nereikia.',
-'file-thumbnail-no'           => 'Failo pavadinimas prasideda  <strong><tt>$1</tt></strong>. Atrodo, kad yra sumažinto dydžio paveikslėlis <i>(miniatiūra)</i>.
+'file-thumbnail-no'           => 'Failo pavadinimas prasideda  <strong><tt>$1</tt></strong>. 
+Atrodo, kad yra sumažinto dydžio paveikslėlis <i>(miniatiūra)</i>.
 Jei jūs turite šį paveisklėlį pilna raiška, įkelkite šitą, priešingu atveju prašome pakeisti failo pavadinimą.',
 'fileexists-forbidden'        => 'Failas tokiu pačiu vardu jau egzistuoja;
 prašome eiti atgal ir įkelti šį failą kitu vardu. [[Image:$1|thumb|center|$1]]',
@@ -1026,7 +1027,7 @@ prašome eiti atgal ir įkelti šį failą kitu vardu. [[Image:$1|thumb|center|$
 'uploadedimage'               => 'įkėlė „[[$1]]“',
 'overwroteimage'              => 'įkėlė naują „[[$1]]“ versiją',
 'uploaddisabled'              => 'Įkėlimai uždrausti',
-'uploaddisabledtext'          => 'Šiame projekte failų įkėlimai yra uždrausti.',
+'uploaddisabledtext'          => 'Failų įkėlimai yra uždrausti.',
 'uploadscripted'              => 'Šis failas turi HTML arba programinį kodą, kuris gali būti klaidingai suprastas interneto naršyklės.',
 'uploadcorrupt'               => 'Failas yra pažeistas arba turi neteisingą galūnę. Prašome patikrinti failą ir įkeltį jį vėl.',
 'uploadvirus'                 => 'Šiame faile yra virusas! Smulkiau: $1',
@@ -1121,7 +1122,7 @@ Paspaudę ant stulpelio antraštės pakeiste išrikiavimą.',
 'filedelete-submit'           => 'Trinti',
 'filedelete-success'          => "'''$1''' buvo ištrintas.",
 'filedelete-success-old'      => "'''[[Media:$1|$1]]''' $3, $2 versija buvo ištrinta.",
-'filedelete-nofile'           => "Šioje svetainėje '''$1''' neegzistuoja.",
+'filedelete-nofile'           => "'''$1''' neegzistuoja.",
 'filedelete-nofile-old'       => "Nėra jokios '''$1''' suarchyvuotos versijos su nurodytais atributais.",
 'filedelete-iscurrent'        => 'Jūs bandote ištrinti pačią naujiausią šio failo versiją. Pirmiausia prašome grąžinti į senesnę versiją.',
 'filedelete-otherreason'      => 'Kita/papildoma priežastis:',
@@ -1144,7 +1145,7 @@ Paspaudę ant stulpelio antraštės pakeiste išrikiavimą.',
 
 # Unused templates
 'unusedtemplates'     => 'Nenaudojami šablonai',
-'unusedtemplatestext' => 'Šis puslapis rodo sąrašą puslapių, esančių šablonų vardų srityje, kurie nėra įterpti į jokį kitą puslapį. Nepamirškite patikrinti kitų nuorodų prieš juos ištrinant.',
+'unusedtemplatestext' => 'Šis puslapis rodo sąrašą puslapių, esančių {{ns:template}} vardų srityje, kurie nėra įterpti į jokį kitą puslapį. Nepamirškite patikrinti kitų nuorodų prieš juos ištrinant.',
 'unusedtemplateswlh'  => 'kitos nuorodos',
 
 # Random page
@@ -1601,7 +1602,7 @@ Aplankykite [[Special:IPBlockList|IP blokavimų istoriją]] norėdami jį perži
 'ipb-edit-dropdown'           => 'Redaguoti blokavimų priežastis',
 'ipb-unblock-addr'            => 'Atblokuoti $1',
 'ipb-unblock'                 => 'Atblokuoti naudotojo vardą arba IP adresą',
-'ipb-blocklist-addr'          => 'Rodyti egzistuojančius $1 blokavimus',
+'ipb-blocklist-addr'          => 'Egzistuojantys $1 blokavimai',
 'ipb-blocklist'               => 'Rodyti egzistuončius blokavimus',
 'unblockip'                   => 'Atblokuoti naudotoją',
 'unblockiptext'               => 'Naudokite šią formą, kad atkurtumėte rašymo teises
@@ -1703,7 +1704,7 @@ kad suprantate visas pasekmes.",
 'movearticle'             => 'Pervardinti puslapį:',
 'movenologin'             => 'Neprisijungęs',
 'movenologintext'         => 'Norėdami pervadinti puslapį, turite būti užsiregistravęs naudotojas ir būti  [[Special:UserLogin|prisijungęs]].',
-'movenotallowed'          => 'Jūs neturite teisių pervadinti puslapių šiame projekte.',
+'movenotallowed'          => 'Jūs neturite teisių pervadinti puslapių.',
 'newtitle'                => 'Naujas pavadinimas:',
 'move-watch'              => 'Stebėti šį puslapį',
 'movepagebtn'             => 'Pervadinti puslapį',
@@ -2248,7 +2249,7 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 
 # External editor support
 'edit-externally'      => 'Atverti išoriniame redaktoriuje',
-'edit-externally-help' => 'Norėdami gauti daugiau informacijos, žiūrėkite [http://www.mediawiki.org/wiki/Manual:External_editors diegimo instrukcijas].',
+'edit-externally-help' => '(Norėdami gauti daugiau informacijos, žiūrėkite [http://www.mediawiki.org/wiki/Manual:External_editors diegimo instrukcijas])',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'visos',

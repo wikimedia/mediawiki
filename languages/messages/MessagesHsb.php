@@ -531,7 +531,7 @@ Móžeš tutu zdźělenku ignorować, jeli so wužiwarske konto zmylnje wutwori�
 'resetpass'               => 'Hesło za wužiwarske konto wróćo stajić',
 'resetpass_announce'      => 'Sy so z nachwilnym e-mejlowanym hesłom přizjewił. Zo by přizjewjenje zakónčił, dyrbiš nětko nowe hesło postajić.',
 'resetpass_text'          => '<!-- Tu tekst zasunyć -->',
-'resetpass_header'        => 'Hesło wróćo stajić',
+'resetpass_header'        => 'Kontowe hesło změniś',
 'resetpass_submit'        => 'Hesło posrědkować a so přizjewić',
 'resetpass_success'       => 'Twoje hesło bu wuspěšnje změnjene! Nětko přizjewjenje běži...',
 'resetpass_bad_temporary' => 'Njepłaćiwe nachwilne hesło. Snano sy swoje hesło hižo wuspěšnje změnił abo nowe nachwilne hesło požadał.',
@@ -1782,7 +1782,7 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{ns:special}}:E
 'import-interwiki-text'      => 'Wuběr wiki a stronu za importowanje. Daty wersijow a mjena awtorow so zachowaja. Wšě akcije za transwiki-importy so w [[Special:Log/import|protokolu importow]] protokoluja.',
 'import-interwiki-history'   => 'Wšě wersije ze stawiznow tuteje strony kopěrować',
 'import-interwiki-submit'    => 'Importować',
-'import-interwiki-namespace' => 'Strony importować do mjenoweho ruma:',
+'import-interwiki-namespace' => 'Cilowy mjenowy rum:',
 'importtext'                 => 'Prošu eksportuj dataju ze žórłoweho wikija z pomocu [[Special:Export|Strony eksportować]]. Składuj ju na swojim ličaku a nahraj ju sem.',
 'importstart'                => 'Importuju…',
 'import-revision-count'      => '$1 {{PLURAL:$1|wersija|wersiji|wersije|wersijow}}',
@@ -2246,7 +2246,7 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 
 # External editor support
 'edit-externally'      => 'Dataju z eksternym programom wobdźěłać',
-'edit-externally-help' => 'Hlej [http://www.mediawiki.org/wiki/Manual:External_editors pokiwy za instalaciju] za dalše informacije.',
+'edit-externally-help' => '(Hlej [http://www.mediawiki.org/wiki/Manual:External_editors pokiwy za instalaciju] za dalše informacije)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'wšě',

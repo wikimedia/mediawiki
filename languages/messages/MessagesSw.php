@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Lloffiwr
  * @author Malangali
  * @author Marcos
  * @author Muddyb Blast Producer
@@ -256,7 +257,7 @@ Tafadhali, ondoa kizuizi hicho, baadaye jaribu tena.',
 'noname'                    => 'Hauja dhihilisha jina la mtumiaji.',
 'loginsuccesstitle'         => 'Umefaulu kuingia',
 'loginsuccess'              => "'''Umeingia {{SITENAME}} kama \"\$1\".'''",
-'nosuchuser'                => 'Hakuna mtumiaji mwenye jina "$1". Labda umeandika vibaya, au sajili akaunti mpya.',
+'nosuchuser'                => 'Hakuna mtumiaji mwenye jina "$1". Labda umeandika vibaya, au [[Special:UserLogin/signup|sajili akaunti mpya]].',
 'nosuchusershort'           => 'Hakuna mtumiaji mwenye jina "<nowiki>$1</nowiki>". Labda umeandika vibaya.',
 'nouserspecified'           => 'Lazima uandike jina la mtumiaji.',
 'wrongpassword'             => 'Umeingiza nywila ya makosa. Jaribu tena.',

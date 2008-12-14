@@ -464,7 +464,7 @@ Se l\'acesso el xe stà creà par sbaglio, se pol ignorar sto messagio.',
 # Password reset dialog
 'resetpass'               => 'Reinposta la password',
 'resetpass_announce'      => "L'acesso el xe stà efetuà con un codice tenporaneo, mandà par e-mail. Par conpletar l'acesso bisogna inpostar na password nova:",
-'resetpass_header'        => 'Reinposta password',
+'resetpass_header'        => 'Cànbia la password de la to utensa',
 'resetpass_submit'        => 'Inposta la password e acedi al sito',
 'resetpass_success'       => 'La password la xe stà modificà. Acesso in corso...',
 'resetpass_bad_temporary' => 'Password tenporanea mìa valida. La password la podarìà èssar stà zà canbià, opure podarìà èssar stà richiesta na password tenporanea nova.',
@@ -1676,7 +1676,7 @@ Le date de publicazion e i nomi de i autori de łe varie version i sarà conserv
 Tute łe operazion de inportazion trans-wiki łe xè notà nel [[Special:Log/import|registro de inportazion]].',
 'import-interwiki-history'   => "Copia l'intiera cronołogia de sta pàxena",
 'import-interwiki-submit'    => 'Inporta',
-'import-interwiki-namespace' => 'Trasferissi le pagine nel namespace:',
+'import-interwiki-namespace' => 'Namespace de destinassion:',
 'importtext'                 => 'Par piaser, esporta el file da la wiki de origine doparando la [[Special:Export|funsion de esportassion]].
 Salvalo sul to computer e càrghelo qua.',
 'importstart'                => 'Inportazion de łe pàxene in corso...',
@@ -2140,7 +2140,7 @@ I colegamenti sucessivi, su la stessa riga, i xe considerà come ecezion (cioè 
 
 # External editor support
 'edit-externally'      => 'Modifica sto file doparando un programa esterno',
-'edit-externally-help' => 'Par magiori informazion varda le [http://www.mediawiki.org/wiki/Manual:External_editors istruzion] (in inglese)',
+'edit-externally-help' => '(Par savérghene piessè varda le [http://www.mediawiki.org/wiki/Manual:External_editors istruzion])',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'tute',

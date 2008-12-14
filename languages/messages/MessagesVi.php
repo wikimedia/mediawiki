@@ -1816,7 +1816,7 @@ Ngày của phiên bản và tên người viết trang sẽ được giữ nguy
 Tất cả những lần nhập trang từ wiki khác được ghi lại ở [[Special:Log/import|nhật trình nhập trang]].',
 'import-interwiki-history'   => 'Sao chép tất cả các phiên bản cũ của trang này',
 'import-interwiki-submit'    => 'Nhập trang',
-'import-interwiki-namespace' => 'Chuyển các trang vào không gian tên:',
+'import-interwiki-namespace' => 'Không gian tên đích:',
 'importtext'                 => 'Xin hãy xuất tập tin từ wiki nguồn sử dụng [[Special:Export|tính năng xuất]].
 Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'importstart'                => 'Đang nhập các trang…',
@@ -2283,7 +2283,7 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 
 # External editor support
 'edit-externally'      => 'Sửa bằng phần mềm bên ngoài',
-'edit-externally-help' => '* Xem thêm [http://www.mediawiki.org/wiki/Manual:External_editors hướng dẫn bằng tiếng Anh]',
+'edit-externally-help' => '(Xem [http://www.mediawiki.org/wiki/Manual:External_editors hướng dẫn cài đặt bằng tiếng Anh] để biết thêm thông tin)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'tất cả',

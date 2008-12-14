@@ -5,6 +5,7 @@
  * @file
  *
  * @author Alexsh
+ * @author Skjackey tse
  */
 
 $fallback = 'zh-hans';
@@ -1912,8 +1913,8 @@ $1',
 'filedelete-archive-read-only'    => '存檔目錄 "$1" 在網頁伺服器中不可寫。',
 
 # Browsing diffs
-'previousdiff' => '←上一個',
-'nextdiff'     => '下一個→',
+'previousdiff' => '←上一版本',
+'nextdiff'     => '下一版本→',
 
 # Media information
 'mediawarning'         => "'''警告''': 該檔案可能包含惡意代碼，執行它可能對您的系統帶來危險。<hr />",

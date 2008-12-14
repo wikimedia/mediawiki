@@ -484,7 +484,7 @@ Tu pote ignorar iste message si iste conto se creava in error.',
 'resetpass_announce'      => 'Tu ha aperite un session con un codice temporari que tu recipeva in e-mail.
 Pro completar le session, tu debe definir un nove contrasigno hic:',
 'resetpass_text'          => '<!-- Adde texto hic -->',
-'resetpass_header'        => 'Reinitiar contrasigno',
+'resetpass_header'        => 'Cambiar le contrasigno del conto',
 'resetpass_submit'        => 'Definir contrasigno e aperir un session',
 'resetpass_success'       => 'Tu contrasigno ha essite cambiate! Ora se aperi tu session...',
 'resetpass_bad_temporary' => 'Contrasigno temporari invalide.
@@ -1835,7 +1835,7 @@ Le datas del revisiones e nomines del contributores essera preservate.
 Tote le actiones de importation transwiki se registra in le [[Special:Log/import|registro de importationes]].',
 'import-interwiki-history'   => 'Copiar tote le versiones del historia de iste pagina',
 'import-interwiki-submit'    => 'Importar',
-'import-interwiki-namespace' => 'Transferer paginas verso le spatio de nomines:',
+'import-interwiki-namespace' => 'Spatio de nomines de destination:',
 'importtext'                 => 'Per favor exporta le file del wiki de origine con le [[Special:Export|facilitate pro exportar]].
 Immagazina lo in tu disco e carga lo hic.',
 'importstart'                => 'Importation de paginas in curso…',
@@ -2303,7 +2303,7 @@ Le alteres essera initialmente celate.
 
 # External editor support
 'edit-externally'      => 'Modificar iste file con un programma externe',
-'edit-externally-help' => 'Vide le [http://www.mediawiki.org/wiki/Manual:External_editors instructiones de configuration] pro ulterior informationes.',
+'edit-externally-help' => '(Vide le [http://www.mediawiki.org/wiki/Manual:External_editors instructiones de configuration] pro ulterior informationes)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'totes',

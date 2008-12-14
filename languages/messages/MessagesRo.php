@@ -196,7 +196,7 @@ pe titlul secţiunii (JavaScript)',
 'qbedit'         => 'Modifică',
 'qbpageoptions'  => 'Opţiuni ale paginii',
 'qbpageinfo'     => 'Informaţii ale paginii',
-'qbmyoptions'    => 'Opţiunile mele',
+'qbmyoptions'    => 'Paginile mele',
 'qbspecialpages' => 'Pagini speciale',
 'moredotdotdot'  => 'Mai mult…',
 'mypage'         => 'Pagina mea',
@@ -371,7 +371,7 @@ Administratorul care a blocat-o a oferit această explicaţie: $1',
 'formerror'            => 'Eroare: datele nu au putut fi trimise',
 'badarticleerror'      => 'Această acţiune nu poate fi efectuată pe această pagină.',
 'cannotdelete'         => 'Comanda de ştergere nu s-a putut executa! Probabil că ştergerea a fost operată între timp.',
-'badtitle'             => 'Titlu invalid',
+'badtitle'             => 'Titlu incorect',
 'badtitletext'         => 'Titlul căutat a fost invalid, gol sau o legătură invalidă inter-linguală sau inter-wiki.',
 'perfdisabled'         => 'Ne pare rău! Această opţiune a fost dezactivată temporar în timpul orelor de vârf din motive de performanţă. Te rugăm să revii la altă oră şi să încerci din nou.',
 'perfcached'           => 'Datele următoare au fost păstrate în cache şi s-ar putea să nu fie la zi.',
@@ -1141,7 +1141,8 @@ Lista tipurilor MIME recunoscute de MediaWiki poate fi găsită la [http://svn.w
 
 # Unused templates
 'unusedtemplates'     => 'Formate neutilizate',
-'unusedtemplatestext' => 'Lista de mai jos cuprinde toate formatele care nu sînt incluse în nici o altă pagină. Înainte de a le şterge asiguraţi-vă că într-adevăr nu există legături dinspre alte pagini.',
+'unusedtemplatestext' => 'Lista de mai jos cuprinde toate formatele care nu sînt incluse în nici o altă pagină.
+Înainte de a le şterge asiguraţi-vă că într-adevăr nu există legături dinspre alte pagini.',
 'unusedtemplateswlh'  => 'alte legături',
 
 # Random page
@@ -1199,7 +1200,7 @@ O pagină este considerată o pagină de dezambiguizare dacă foloseşte formate
 'nviews'                  => '{{PLURAL:$1|o accesare|$1 accesări}}',
 'specialpage-empty'       => 'Această pagină este goală.',
 'lonelypages'             => 'Pagini orfane',
-'lonelypagestext'         => 'La următoarele pagini nu se leagă nici o altă pagină din acest wiki.',
+'lonelypagestext'         => 'La următoarele pagini nu se leagă nici o altă pagină din {{SITENAME}}.',
 'uncategorizedpages'      => 'Pagini necategorizate',
 'uncategorizedcategories' => 'Categorii necategorizate',
 'uncategorizedimages'     => 'Fişiere necategorizate',
@@ -1750,7 +1751,7 @@ Vă rugăm să vizitaţi [http://www.mediawiki.org/wiki/Localisation MediaWiki L
 'import-interwiki-text'      => 'Selectează un wiki şi titlul paginii care trebuie importate. Datele reviziilor şi numele editorilor vor fi salvate. Toate acţiunile de import transwiki pot fi găsite la [[Special:Log/import|log import]]',
 'import-interwiki-history'   => 'Copiază toate versiunile istoricului acestei pagini',
 'import-interwiki-submit'    => 'Importă',
-'import-interwiki-namespace' => 'Transferă paginile la spaţiul de nume:',
+'import-interwiki-namespace' => 'Transferă către spaţiul de nume:',
 'importtext'                 => 'Te rog exportă fişierul din sursa wiki folosind [[Special:Export|utilitarul de exportare]].
 Salvează-l pe discul tău şi trimite-l aici.',
 'importstart'                => 'Se importă paginile...',
@@ -2218,7 +2219,7 @@ Altele vor fi ascunse implicit.
 
 # External editor support
 'edit-externally'      => 'Editează acest fişier folosind o aplicaţie externă.',
-'edit-externally-help' => 'Vedeţi [http://www.mediawiki.org/wiki/Manual:External_editors instrucţiuni de instalare] pentru mai multe informaţii.',
+'edit-externally-help' => '(Vedeţi [http://www.mediawiki.org/wiki/Manual:External_editors instrucţiuni de instalare] pentru mai multe informaţii)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'tot',

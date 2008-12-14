@@ -1167,7 +1167,7 @@ $3 చెప్పిన కారణం: ''$2''",
 'nviews'                      => '$1 {{PLURAL:$1|దర్శనము|దర్శనలు}}',
 'specialpage-empty'           => 'ఈ పేజీ ఖాళీగా ఉంది.',
 'lonelypages'                 => 'అనాధ పేజీలు',
-'lonelypagestext'             => 'కింది పేజీలకు ఈ వికీలోని ఏ ఇతర పేజీ నుండి కూడా లింకులు లేవు.',
+'lonelypagestext'             => 'కింది పేజీలకు {{SITENAME}}లోని ఏ ఇతర పేజీ నుండి కూడా లింకులు లేవు లేదా ఇవి మరే ఇతర పేజీలోనూ కలపబడలేదు.',
 'uncategorizedpages'          => 'వర్గీకరించని పేజీలు',
 'uncategorizedcategories'     => 'వర్గీకరించని వర్గములు',
 'uncategorizedimages'         => 'వర్గీకరించని బొమ్మలు',
@@ -2186,7 +2186,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'బయటి అప్లికేషను వాడి ఈ ఫైలును మార్చు',
-'edit-externally-help' => 'మరింత సమాచారం కొరకు [http://www.mediawiki.org/wiki/Manual:External_editors సెటప్‌ సూచనలు] చూడండి.',
+'edit-externally-help' => '(మరింత సమాచారం కొరకు [http://www.mediawiki.org/wiki/Manual:External_editors సెటప్‌ సూచనల]ని చూడండి)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'అన్నీ',
@@ -2344,7 +2344,7 @@ $1',
 
 # Special:Filepath
 'filepath'         => 'పూర్తి చిరునామా',
-'filepath-page'    => '{{ns:image}}:',
+'filepath-page'    => '{{ns:file}}:',
 'filepath-submit'  => 'చిరునామా',
 'filepath-summary' => 'ఈ ప్రత్యేక పేజీలో ఫైళ్ల పేర్లు ఇస్తే వాటి పూర్తి చిరునామలు వస్తాయి. బొమ్మలైతే వాటి పూర్తి సైజుతో తెరుచుకుంటాయి, బొమ్మలు కాని ఇతర ఫైళ్లు వాటి అనుబంధ ప్రోగ్రాములతో తెరుచుకుంటాయి.
 

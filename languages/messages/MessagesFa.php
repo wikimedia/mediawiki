@@ -1977,7 +1977,7 @@ $1',
 'import-interwiki-text'      => 'یک ویکی و یک نام صفحه را انتخاب کنید تا اطلاعات از آن درون‌ریزی شود. تاریخ نسخه‌ها و نام ویرایش‌کنندگان ثابت خواهد ماند. اطلاعات مربوط به درون‌ریزی صفحه‌ها در [[Special:Log/import|سیاههٔ درون‌ریزی‌ها]] درج خواهد شد.',
 'import-interwiki-history'   => 'تمام نسخه‌های تاریخچهٔ این صفحه انتقال داده شود',
 'import-interwiki-submit'    => 'درون‌ریزی شود',
-'import-interwiki-namespace' => 'صفحه‌ها به فضای نام انتقال داده شود',
+'import-interwiki-namespace' => 'فضای نام مقصد:',
 'importtext'                 => 'لطفاً پرونده را از منبع ویکی با کمک ابزار Special:Export برون‌بری کنید، روی دستگاه‌تان ذخیره کنید و این‌جا بارگذاری نمایید.',
 'importstart'                => 'در حال درون‌ریزی صفحه‌ها...',
 'import-revision-count'      => '$1 {{PLURAL:$1|ویرایش|ویرایش}}',
@@ -2448,7 +2448,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'ویرایش این پرونده با استفاده از ویرایشگر خارجی',
-'edit-externally-help' => 'برای اطلاعات بیشتر [http://www.mediawiki.org/wiki/Manual:External_editors راهنمایی‌های تنظیمات] ویرایشگر خارجی را ببینید.',
+'edit-externally-help' => '(برای اطلاعات بیشتر [http://www.mediawiki.org/wiki/Manual:External_editors دستورالعمل تنظیم] را ببینید)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'همه',

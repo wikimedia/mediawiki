@@ -6,6 +6,7 @@
  *
  * @author Bani
  * @author Carla404
+ * @author GKnedo
  * @author Lijealso
  * @author Rodrigo Calanca Nishino
  * @author Urhixidur
@@ -499,7 +500,7 @@ Você pode continuar a usar a {{SITENAME}} anonimamente, ou pode autenticar-se n
 continuar a ser apresentadas como se você ainda estivesse autenticado até que a cache de seu navegador seja limpa.',
 'welcomecreation'            => '== Bem-vindo, $1! ==
 A sua conta foi criada.
-Não se esqueça de personalizar as suas preferências na {{SITENAME}}.',
+Não se esqueça de personalizar as suas [[Special:Preferences|preferências na {{SITENAME}}]].',
 'loginpagetitle'             => 'Autenticação de usuário',
 'yourname'                   => 'Nome de usuário:',
 'yourpassword'               => 'Senha:',
@@ -898,7 +899,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desat
 'mypreferences'            => 'Minhas preferências',
 'prefs-edits'              => 'Número de edições:',
 'prefsnologin'             => 'Não autenticado',
-'prefsnologintext'         => 'Precisa estar [[Special:UserLogin|autenticado]] para definir suas preferências.',
+'prefsnologintext'         => 'É necessário estar <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} autenticado]</span> para definir as suas preferências.',
 'prefsreset'               => 'As preferências foram restauradas tal como se encontravam no banco de dados.',
 'qbsettings'               => 'Configurações da Barra Rápida',
 'qbsettings-none'          => 'Nenhuma',

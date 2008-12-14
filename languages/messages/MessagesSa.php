@@ -5,6 +5,7 @@
  * @file
  *
  * @author Kaustubh
+ * @author Mahitgar
  */
 
 $digitTransformTable = array(
@@ -53,6 +54,8 @@ $skinNames = array(
 );
 
 $messages = array(
+'underline-always' => 'सदा',
+
 # Dates
 'sunday'    => 'विश्रामवासरे',
 'monday'    => 'सोमवासरे',
@@ -81,19 +84,77 @@ $messages = array(
 'november'  => 'कार्तिकमार्गशीर्षे',
 'december'  => 'मार्गशीर्षपौषे',
 
-'and' => 'एवम्',
+# Bits of text used by many pages
+'categories' => 'वर्ग',
 
-'help' => 'सहायता',
+'about'         => 'विषये',
+'newwindow'     => '(उद्घट् नविन पृष्ठ)',
+'qbfind'        => 'शोध',
+'qbedit'        => 'संपादयति',
+'qbpageoptions' => 'इदम्‌ पृष्ठ',
+'navigation'    => 'सुचालन',
+'and'           => 'एवम्',
+
+'help'             => 'सहायता',
+'search'           => 'शोध',
+'go'               => 'गच्छति',
+'history'          => 'पृष्ठस्य इतिहास',
+'history_short'    => 'इतिहास',
+'printableversion' => 'मुद्रणस्य पाठ',
+'newpage'          => 'नविन पृष्ठ',
+'talkpagelinktext' => 'संवाद',
+'specialpage'      => 'विशेष पृष्ठ',
+'toolbox'          => 'साधनपेटी',
+'jumptonavigation' => 'सुचालन',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'edithelp' => 'संपादनार्थं सहायता',
-'mainpage' => 'मुखपृष्ठं',
+'aboutsite'     => '{{SITENAME}}विषये',
+'currentevents' => 'सद्य घटना',
+'disclaimers'   => 'स्वाम्यत्यागं',
+'edithelp'      => 'संपादनार्थं सहायता',
+'faq'           => 'अतिप्रश्नपृष्ट',
+'helppage'      => 'Help:सहाय्य',
+'mainpage'      => 'मुखपृष्ठं',
+'privacy'       => 'गोपनीयविषये नीति',
+
+'editsection' => 'संपादयति',
+
+# Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-main'     => 'पृष्ठ',
+'nstab-image'    => 'संचिका',
+'nstab-template' => 'बिंबधर',
+
+# General errors
+'error'      => 'विभ्रम',
+'viewsource' => 'स्रोत पश्यति',
+
+# Login and logout pages
+'login'          => 'प्रवेश करोसि',
+'gotaccountlink' => 'प्रवेश करोसि',
+
+# Edit pages
+'savearticle' => 'पृष्ठ त्रायते',
+'preview'     => 'प्रारूप प्रेक्षा',
+'showpreview' => 'प्रारूप प्रेक्षा',
+'newarticle'  => '(नविन)',
+
+# History pages
+'page_first' => 'प्रथम्‌',
+
+# Search results
+'powersearch' => 'परिणत शोध',
+
+# Recent changes
+'recentchanges' => 'नवीनतम परिवर्तन',
+'show'          => 'दर्शयति',
 
 # Miscellaneous special pages
 'ancientpages' => 'प्राचीनतम् पृष्ठा',
 
 # Book sources
 'booksources-go' => 'प्रस्थानम्',
+
+'version' => 'आवृत्ति',
 
 # Special:Allpages
 'allarticles' => 'सर्व लेखा',
@@ -111,6 +172,16 @@ $messages = array(
 # Namespace 8 related
 'allmessages'     => 'व्यवस्था सन्देशानि',
 'allmessagesname' => 'नाम',
+
+# Tooltip help for the actions
+'tooltip-n-mainpage'      => 'मुखपृष्ठ अभ्यागम',
+'tooltip-n-recentchanges' => 'नविनतम परिवर्तन सूची',
+'tooltip-n-randompage'    => 'अविशीष्ट लेख',
+'tooltip-save'            => 'त्रायते',
+
+# 'all' in various places, this might be different for inflected languages
+'namespacesall' => 'सर्व',
+'monthsall'     => 'सर्व',
 
 # Auto-summaries
 'autosumm-new' => 'नवीन पृष्ठं: $1',

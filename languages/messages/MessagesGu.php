@@ -206,10 +206,16 @@ $messages = array(
 'nosuchspecialpage' => 'એવું ખાસ પાનું નથી',
 
 # General errors
-'badtitle'       => 'ખરાબ નામ',
-'viewsource'     => 'સ્ત્રોત જુઓ',
-'viewsourcefor'  => '$1ને માટે',
-'viewsourcetext' => 'આપ આ પાનાંનો મૂળ સ્ત્રોત નિહાળી શકો છો અને તેની નકલ (copy) પણ કરી શકો છો:',
+'badtitle'             => 'ખરાબ નામ',
+'badtitletext'         => 'આપનું ઈચ્છિત શિર્ષક અમાન્ય છે, ખાલી છે, અથવાતો અયોગ્ય રીતે આંતર-ભાષિય કે આંતર-વિકિ સાથે જોડાયેલું શિર્ષક છે.
+શક્ય છે કે તેમાં એક કે વધુ એવા અક્ષર કે ચિહ્નો છે કે જે પાનાનાં શિર્ષક માટે અવૈધ છે.',
+'perfcached'           => 'નીચે દર્શાવેલી માહિતિ જુના સંગ્રહમાંથી લીધેલી છે અને શક્ય છે કે તે હાલની પરિસ્થિતિમાં સચોટ ના હોય.',
+'perfcachedts'         => 'નીચેની વિગતો જુના સંગ્રહમાથી છે અને તે છેલ્લે $1 સુધી અદ્યતન હતી.',
+'querypage-no-updates' => 'આ પાનાની નવી આવૃત્તિઓ હાલમાં અક્રિય છે.
+અહીંની વિગતો હાલમાં રિફ્રેશ કરવામાં નહી આવે.',
+'viewsource'           => 'સ્ત્રોત જુઓ',
+'viewsourcefor'        => '$1ને માટે',
+'viewsourcetext'       => 'આપ આ પાનાંનો મૂળ સ્ત્રોત નિહાળી શકો છો અને તેની નકલ (copy) પણ કરી શકો છો:',
 
 # Login and logout pages
 'yourname'              => 'સભ્ય નામ:',
@@ -470,6 +476,7 @@ $messages = array(
 'mostcategories'          => 'સૌથી વધુ શ્રેણીઓ ધરાવતાં પાનાં',
 'mostrevisions'           => 'સૌથી વધુ ફેરફાર થયેલા પાનાં',
 'allpages'                => 'બધા પાના',
+'prefixindex'             => 'પૂર્વાક્ષર સૂચિ',
 'shortpages'              => 'નાનાં પાનાં',
 'longpages'               => 'લાંબા પાનાઓ',
 'protectedpages'          => 'સંરક્ષિત પાનાઓ',
@@ -479,6 +486,8 @@ $messages = array(
 'ancientpages'            => 'સૌથી જૂનાં પાના',
 'move'                    => 'નામ બદલો',
 'movethispage'            => 'આ પાનું ખસેડો',
+'pager-newer-n'           => '{{PLURAL:$1|નવું 1|નવા $1}}',
+'pager-older-n'           => '{{PLURAL:$1|જુનું 1|જુનાં $1}}',
 
 # Book sources
 'booksources'      => 'પુસ્તક સ્ત્રોત',
@@ -543,6 +552,9 @@ $messages = array(
 'deletepage'                  => 'પાનું હટાવો',
 'confirm'                     => 'ખાતરી કરો',
 'exblank'                     => 'પાનું ખાલી હતું',
+'historywarning'              => 'ચેતવણી: જે પાનું તમે હટાવવા જઇ રહ્યાં છો તેનો ઇતિહાસ છે:',
+'confirmdeletetext'           => 'આપ આ પાનું તેના ઇતિહાસ (બધાજ પૂર્વ  ફેરફારો) સાથે હટાવી રહ્યાં છો.
+કૃપા કરી મંજૂરી આપો કે, આપ આમ કરવા ચાહો છો, આપ આના સરા-નરસા પરિણામોથી વાકેફ છો, અને આપ આ કૃત્ય [[{{MediaWiki:Policy-url}}|નીતિ]]ને અનુરૂપ જ કરી રહ્યાં છો.',
 'actioncomplete'              => 'કામ પૂરું થઈ ગયું',
 'deletedtext'                 => '"<nowiki>$1</nowiki>" દૂર કરવામાં આવ્યું છે.
 તાજેતરમાં દૂર કરેલા લેખોની વિગત માટે $2 જુઓ.',
@@ -586,8 +598,11 @@ $messages = array(
 'month'         => ':મહિનાથી (અને પહેલાનાં)',
 'year'          => ':વર્ષથી (અને પહેલાનાં)',
 
+'sp-contributions-newbies'     => 'માત્ર નવા ખુલેલાં ખાતાઓનું યોગદાન બતાવો',
 'sp-contributions-newbies-sub' => 'નવા ખાતાઓ માટે',
 'sp-contributions-blocklog'    => 'પ્રતિબંધ સૂચિ',
+'sp-contributions-search'      => 'યોગદાન શોધો',
+'sp-contributions-username'    => 'IP સરનામું અથવા સભ્યનામ:',
 'sp-contributions-submit'      => 'શોધો',
 
 # What links here

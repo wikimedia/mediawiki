@@ -1795,7 +1795,7 @@ Le date di pubblicazione e i nomi degli autori delle varie versioni saranno cons
 Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log/import|log di importazione]].',
 'import-interwiki-history'   => "Copia l'intera cronologia di questa pagina",
 'import-interwiki-submit'    => 'Importa',
-'import-interwiki-namespace' => 'Trasferisci le pagine nel namespace:',
+'import-interwiki-namespace' => 'Namespace di destinazione:',
 'importtext'                 => 'Si prega di esportare il file dal sito wiki di origine con la funzione Special:Export, salvarlo sul proprio disco e poi caricarlo qui.',
 'importstart'                => 'Importazione delle pagine in corso...',
 'import-revision-count'      => '{{PLURAL:$1|una revisione importata|$1 revisioni importate}}',
@@ -2268,7 +2268,7 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 
 # External editor support
 'edit-externally'      => 'Modifica questo file usando un programma esterno',
-'edit-externally-help' => 'Per maggiori informazioni consultare le [http://www.mediawiki.org/wiki/Manual:External_editors istruzioni] (in inglese)',
+'edit-externally-help' => '(Per maggiori informazioni consultare le [http://www.mediawiki.org/wiki/Manual:External_editors istruzioni])',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'tutte',

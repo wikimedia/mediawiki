@@ -12,6 +12,7 @@
  * @author GerardM
  * @author Hamaryns
  * @author McDutchie
+ * @author Niels
  * @author SPQRobin
  * @author Siebrand
  * @author Troefkaart
@@ -299,7 +300,7 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'Mijn e-mailadres weergeven in e-mailberichten',
 'tog-shownumberswatching'     => 'Het aantal gebruikers weergeven dat deze pagina volgt',
 'tog-fancysig'                => 'Ondertekenen zonder verwijzing naar gebruikerspagina',
-'tog-externaleditor'          => 'Standaard een externe tekstbewerker gebruiken (alleen voor experts - voor deze fucntie zijn speciale instellingen nodig)',
+'tog-externaleditor'          => 'Standaard een externe tekstbewerker gebruiken (alleen voor experts - voor deze functie zijn speciale instellingen nodig)',
 'tog-externaldiff'            => 'Standaard een extern vergelijkingsprogramma gebruiken (alleen voor experts - voor deze functie zijn speciale instellingen nodig)',
 'tog-showjumplinks'           => '“ga naar”-toegankelijkheidsverwijzingen inschakelen',
 'tog-uselivepreview'          => '“live voorvertoning” gebruiken (vereist JavaScript – experimenteel)',
@@ -729,7 +730,7 @@ Negeer dit bericht als deze gebruiker zonder uw medeweten is aangemaakt.',
 'resetpass_announce'      => 'U bent aangemeld met een tijdelijke code die u per e-mail is toegezonden.
 Voer een nieuw wachtwoord in om het aanmelden te voltooien:',
 'resetpass_text'          => '<!-- Voeg hier tekst toe -->',
-'resetpass_header'        => 'Wachtwoord herinstellen',
+'resetpass_header'        => 'Wachtwoord wijzigen',
 'resetpass_submit'        => 'Wachtwoord instellen en aanmelden',
 'resetpass_success'       => 'Uw wachtwoord is gewijzigd.
 Bezig met aanmelden ...',
@@ -980,7 +981,7 @@ Er kunnen details aanwezig zijn in het [{{fullurl:Special:Log/delete|page={{FULL
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">Deze bewerking van de pagina is verwijderd uit de publieke archieven.
 Als beheerder van {{SITENAME}} kunt u deze zien;
 er kunnen details aanwezig zijn in het [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} verwijderingslogboek].</div>',
-'rev-delundel'                => '+/–',
+'rev-delundel'                => 'weergeven/verbergen',
 'revisiondelete'              => 'Versies verwijderen/terugplaatsen',
 'revdelete-nooldid-title'     => 'Geen doelversie',
 'revdelete-nooldid-text'      => 'U heeft geen doelversie(s) voor deze handeling opgegeven.',
@@ -1506,7 +1507,7 @@ De pagina's zijn ook niet als sjabloon opgenomen.",
 'uncategorizedtemplates'  => 'Niet-gecategoriseerde sjablonen',
 'unusedcategories'        => 'Ongebruikte categorieën',
 'unusedimages'            => 'Ongebruikte bestanden',
-'popularpages'            => "Populaire pagina's",
+'popularpages'            => "Veel bekeken pagina's",
 'wantedcategories'        => 'Niet-bestaande categorieën met de meeste verwijzingen',
 'wantedpages'             => "Niet-bestaande pagina's met verwijzingen",
 'mostlinked'              => "Pagina's waar het meest naar verwezen wordt",
@@ -1672,7 +1673,7 @@ $NEWPAGE
 
 Samenvatting van de wijziging: $PAGESUMMARY $PAGEMINOREDIT
 
-Contactgevevens van de auteur:
+Contactgegevens van de auteur:
 E-mail: $PAGEEDITOR_EMAIL
 Wiki: $PAGEEDITOR_WIKI
 
@@ -1986,7 +1987,7 @@ Als u dit niet wenst, controleer dan of er geen [[Special:DoubleRedirects|dubbel
 Een pagina kan '''alleen''' hernoemd worden als de nieuwe paginanaam niet bestaat of een doorverwijspagina zonder verdere geschiedenis is.
 
 '''WAARSCHUWING!'''
-Voor populaire pagina's kan het hernoemen drastische en onvoorziene gevolgen hebben.
+Voor veel bekeken pagina's kan het hernoemen drastische en onvoorziene gevolgen hebben.
 Zorg ervoor dat u die gevolgen overziet voordat u deze handeling uitvoert.",
 'movepagetalktext'        => "De bijbehorende overlegpagina krijgt automatisch een andere naam, '''tenzij''':
 * De overlegpagina onder de nieuwe naam al bestaat;
@@ -2070,7 +2071,7 @@ Versie- en auteursgegevens blijven hierbij bewaard.
 Alle transwiki-importhandelingen worden opgeslagen in het [[Special:Log/import|importlogboek]].',
 'import-interwiki-history'   => 'Volledige geschiedenis van deze pagina ook kopiëren',
 'import-interwiki-submit'    => 'Importeren',
-'import-interwiki-namespace' => 'Pagina in de volgende naamruimte plaatsen:',
+'import-interwiki-namespace' => 'Doelnaamruimte:',
 'importtext'                 => 'Gebruik de [[Special:Export|exportfunctie]] in de wiki waar de informatie vandaan komt, sla de uitvoer op uw eigen systeem op, en voeg die daarna hier toe.',
 'importstart'                => "Pagina's aan het importeren ...",
 'import-revision-count'      => '$1 {{PLURAL:$1|versie|versies}}',
@@ -2249,7 +2250,7 @@ $1',
 'filedelete-archive-read-only'    => 'De webserver kan niet in de archiefmap "$1" schrijven.',
 
 # Browsing diffs
-'previousdiff' => '← Eerdere bewerking',
+'previousdiff' => '← Oudere bewerking',
 'nextdiff'     => 'Nieuwere bewerking →',
 
 # Media information
@@ -2550,7 +2551,7 @@ Andere velden worden verborgen.
 
 # External editor support
 'edit-externally'      => 'Dit bestand in een extern programma bewerken',
-'edit-externally-help' => 'In de [http://www.mediawiki.org/wiki/Manual:External_editors handleiding voor instellingen] staat meer informatie.',
+'edit-externally-help' => '(zie de [http://www.mediawiki.org/wiki/Manual:External_editors handleiding voor instellingen] voor meer informatie)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'alles',

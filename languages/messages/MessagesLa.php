@@ -321,7 +321,7 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'         => 'De {{grammar:ablative|{{SITENAME}}}}',
-'aboutpage'         => 'Project:De {{grammar:ablative|{{SITENAME}}}}',
+'aboutpage'         => 'Project:De {{GRAMMAR:ablative|{{SITENAME}}}}',
 'bugreports'        => 'Renuntiare errata',
 'bugreportspage'    => 'Project:Renuntiare errores',
 'copyright'         => 'Res ad manum sub $1.',
@@ -503,8 +503,12 @@ Hunc nuntium ignorare potes, si nolis hac ratione uti.',
 'loginlanguagelabel'         => 'Lingua: $1',
 
 # Password reset dialog
-'resetpass'         => 'Tesseram novam creare',
-'resetpass_missing' => 'Nulla data formarum.',
+'resetpass'           => 'Tesseram novam creare',
+'resetpass_header'    => 'Tesseram rationis mutare',
+'resetpass_submit'    => 'Tesseram mutare et conventum aperire',
+'resetpass_success'   => 'Tessera tua prospere mutata est. Aperiens conventum...',
+'resetpass_forbidden' => 'Tesserae mutari non possunt',
+'resetpass_missing'   => 'Nulla data formarum.',
 
 # Edit page toolbar
 'bold_sample'    => 'Litterae pingues',
@@ -718,7 +722,7 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'qbsettings-fixedright'    => 'Constituere a dextra',
 'qbsettings-floatingleft'  => 'Innens a sinistra',
 'qbsettings-floatingright' => 'Innens a dextra',
-'changepassword'           => 'Mutare tesseram',
+'changepassword'           => 'Tesseram mutare',
 'skin'                     => 'Aspectum',
 'math'                     => 'Interpretatio artis mathematicae',
 'dateformat'               => 'Forma diei',

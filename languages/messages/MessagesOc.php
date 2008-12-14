@@ -803,9 +803,9 @@ D’autres administrators sus {{SITENAME}} poiràn totjorn accedir al contengut 
 'noexactmatch-nocreate' => "'''I a pas de pagina intitolada « $1 ».'''",
 'toomanymatches'        => 'Tròp d’ocuréncias son estadas trobadas, sètz pregat de sometre una requèsta diferenta.',
 'titlematches'          => "Correspondéncias dins los títols d'articles",
-'notitlematches'        => "Cap de títol d'article correspon pas a la recèrca.",
+'notitlematches'        => "Cap de títol d'article correspond pas a la recèrca.",
 'textmatches'           => "Correspondéncias dins los tèxtes d'articles",
-'notextmatches'         => "Cap de tèxt d'article correspon pas a la recèrca",
+'notextmatches'         => "Cap de tèxt d'article correspond pas a la recèrca",
 'prevn'                 => '$1 precedents',
 'nextn'                 => '$1 seguents',
 'viewprevnext'          => 'Veire ($1) ($2) ($3).',
@@ -1197,7 +1197,7 @@ Deurián puslèu puntar cap a una pagina apropriada.<br />
 Una pagina es tractada coma una pagina d’omonimia s'utiliza un modèl qu'es ligat a partir de [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'     => 'Redireccions doblas',
-'doubleredirectstext' => 'Cada casa conten de ligams cap a la primièra e la segonda redireccion, e mai la primièra linha de tèxt de la segonda pagina, costumièrament, aquò provesís la « vertadièra » pagina cibla, cap a laquina la primièra redireccion deuriá redirigir.',
+'doubleredirectstext' => 'Cada casa conten de ligams cap a la primièra e la segonda redireccion, e mai la primièra linha de tèxt de la segonda pagina, costumièrament, aquò provesís la « vertadièra » pagina cibla, cap a la quala la primièra redireccion deuriá redirigir.',
 
 'brokenredirects'        => 'Redireccions copadas',
 'brokenredirectstext'    => "Aquestas redireccions mènan a una pagina qu'existís pas.",
@@ -1260,7 +1260,7 @@ Una pagina es tractada coma una pagina d’omonimia s'utiliza un modèl qu'es li
 'protectedtitlestext'             => 'Los títols seguents son protegits a la creacion',
 'protectedtitlesempty'            => 'Cap de títol es pas actualament protegit amb aquestes paramètres.',
 'listusers'                       => 'Lista dels participants',
-'listusers-summary'               => "Aquesta pagina aficha la lista de totes los comptes d'utilizaires, qu'ajan efectuats de contribucions o pas. La causida del « grop » correspon als diferents estatuts possibles.",
+'listusers-summary'               => "Aquesta pagina aficha la lista de totes los comptes d'utilizaires, qu'ajan efectuats de contribucions o pas. La causida del « grop » correspond als diferents estatuts possibles.",
 'specialpages'                    => 'Paginas especialas',
 'spheading'                       => 'Paginas especialas',
 'restrictedpheading'              => 'Paginas especialas reservadas',
@@ -1666,7 +1666,7 @@ La rason balhada per $1 es : « $2 ».',
 'ipb_expiry_invalid'          => 'Temps d’expiracion invalid.',
 'ipb_already_blocked'         => '« $1 » ja es blocat',
 'ipb_cant_unblock'            => 'Error : Lo blocatge d’ID $1 existís pas. Es possible qu’un desblocatge ja siá estat efectuat.',
-'ipb_blocked_as_range'        => "Error : L'adreça IP $1 es pas estada blocada dirèctament e doncas pòt pas èsser deblocada. Çaquelà, es estada blocada per la plaja $2 laquina pòt èsser deblocada.",
+'ipb_blocked_as_range'        => "Error : L'adreça IP $1 es pas estada blocada dirèctament e doncas pòt pas èsser deblocada. Çaquelà, es estada blocada per la plaja $2 la quala pòt èsser deblocada.",
 'ip_range_invalid'            => 'Plaja IP incorrècta.',
 'blockme'                     => 'Blocatz-me',
 'proxyblocker'                => 'Blocaire de mandatari (proxy)',
@@ -1790,7 +1790,7 @@ Las datas de las versions e los noms dels editors seràn preservats.
 Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Log/import|jornal d’impòrt]].",
 'import-interwiki-history'   => "Copiar totas las versions de l'istoric d'aquesta pagina",
 'import-interwiki-submit'    => 'Importar',
-'import-interwiki-namespace' => 'Transferir las paginas dins l’espaci de nom :',
+'import-interwiki-namespace' => 'Espaci de noms de destinacion :',
 'importtext'                 => 'Exportatz lo fichièr dempuèi lo wiki d’origina en utilizant l’esplech Special:Export, salvatz-lo sus vòstre disc dur e copiatz-lo aicí.',
 'importstart'                => 'Impòrt de las paginas...',
 'import-revision-count'      => '$1 {{PLURAL:$1|version|versions}}',
@@ -1822,7 +1822,7 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => "Ma pagina d'utilizaire",
-'tooltip-pt-anonuserpage'         => "La pagina d'utilizare de l’IP amb laquina contribuissètz",
+'tooltip-pt-anonuserpage'         => "La pagina d'utilizare de l’IP amb la quala contribuissètz",
 'tooltip-pt-mytalk'               => 'Ma pagina de discussion',
 'tooltip-pt-anontalk'             => 'La pagina de discussion per aquesta adreça IP',
 'tooltip-pt-preferences'          => 'Mas preferéncias',
@@ -1989,6 +1989,37 @@ $1",
 Solas las listas d'enumeracion (las linhas començant per *) son presas en compte. Lo primièr ligam d'una linha deu èsser cap a un imatge marrit.
 Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per exemple d'articles sulsquals l'imatge deu aparéisser.",
 
+/*
+Short names for language variants used for language conversion links.
+To disable showing a particular link, set it to 'disable', e.g.
+'variantname-zh-sg' => 'disable',
+Variants for Chinese language
+*/
+'variantname-zh-hans' => 'hans',
+'variantname-zh-hant' => 'hant',
+'variantname-zh-cn'   => 'cn',
+'variantname-zh-tw'   => 'tw',
+'variantname-zh-hk'   => 'hk',
+'variantname-zh-sg'   => 'sg',
+'variantname-zh'      => 'zh',
+
+# Variants for Serbian language
+'variantname-sr-ec' => 'sr-ec',
+'variantname-sr-el' => 'sr-el',
+'variantname-sr'    => 'sr',
+
+# Variants for Kazakh language
+'variantname-kk-kz'   => 'kk-kz',
+'variantname-kk-tr'   => 'kk-tr',
+'variantname-kk-cn'   => 'kk-cn',
+'variantname-kk-cyrl' => 'kk-cyrl',
+'variantname-kk-latn' => 'kk-latn',
+'variantname-kk-arab' => 'kk-arab',
+'variantname-kk'      => 'kk',
+
+# Variants for Kurdish language
+'variantname-ku-arab' => 'ku-Arab',
+
 # Metadata
 'metadata'          => 'Metadonadas',
 'metadata-help'     => "Aqueste fichièr conten d'entresenhas suplementàrias probablament apondudas per l’aparelh de fòto numeric o l'escanèr que las a aquesas. Se lo fichièr es estat modificat dempuèi son estat original, d'unes detalhs pòdon reflectir pas entièrament l’imatge modificat.",
@@ -2139,6 +2170,8 @@ Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per e
 'exif-planarconfiguration-1' => 'Donadas atenentas',
 'exif-planarconfiguration-2' => 'Donadas separadas',
 
+'exif-xyresolution-c' => '$1 dpc',
+
 'exif-colorspace-ffff.h' => 'Pas calibrat',
 
 'exif-componentsconfiguration-0' => 'existís pas',
@@ -2180,6 +2213,8 @@ Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per e
 'exif-lightsource-17'  => 'Lum estandard A',
 'exif-lightsource-18'  => 'Lum estandard B',
 'exif-lightsource-19'  => 'Lum estandard C',
+'exif-lightsource-22'  => 'D75',
+'exif-lightsource-23'  => 'D50',
 'exif-lightsource-24'  => "Tungstèni ISO d'estudiò",
 'exif-lightsource-255' => 'Autra font de lum',
 
@@ -2260,7 +2295,7 @@ Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per e
 
 # External editor support
 'edit-externally'      => 'Modificar aqueste fichièr en utilizant una aplicacion extèrna',
-'edit-externally-help' => 'Vejatz [http://www.mediawiki.org/wiki/Manual:External_editors las instruccions] per mai d’informacions.',
+'edit-externally-help' => "(Consultatz [http://www.mediawiki.org/wiki/Manual:External_editors/oc las instruccions d'installacion] per mai d’entresenhas)",
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'totes',
