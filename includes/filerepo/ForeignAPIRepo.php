@@ -79,6 +79,9 @@ class ForeignAPIRepo extends FileRepo {
 			$data = $wgMemc->get( $key );
 			if( !$data ) {
 				$data = Http::get( $url );
+				if ( !$data ) {
+					return null;
+				}
 				$wgMemc->set( $key, $data, 3600 );
 			}
 
@@ -104,8 +107,10 @@ class ForeignAPIRepo extends FileRepo {
 										'aiprop'       => 'timestamp|user|comment|url|size|sha1|metadata|mime',
 										'list'         => 'allimages', ) );
 		$ret = array();
-		foreach ( $results['query']['allimages'] as $img ) {
-			$ret[] = new ForeignAPIFile( Title::makeTitle( NS_IMAGE, $img['name'] ), $this, $img );
+		if ( isset( $results['query']['allimages'] ) ) {
+			foreach ( $results['query']['allimages'] as $img ) {
+				$ret[] = new ForeignAPIFile( Title::makeTitle( NS_IMAGE, $img['name'] ), $this, $img );
+			}
 		}
 		return $ret;
 	}
