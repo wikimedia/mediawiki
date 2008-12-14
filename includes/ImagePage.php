@@ -595,7 +595,6 @@ EOT
 
 		$this->loadFile();
 		$pager = new ImageHistoryPseudoPager( $this );
-		# Generate prev/next links
 		$wgOut->addHTML( $pager->getBody() );
 
 		$this->img->resetHistory(); // free db resources
