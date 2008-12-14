@@ -117,7 +117,8 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 			$this->addTables('langlinks');
 			$this->addWhere('page_id=ll_from');
 			$this->addOption('STRAIGHT_JOIN');
-			// We have to GROUP BY
+			// We have to GROUP BY all selected fields to stop
+			// PostgreSQL from whining
 			$this->addOption('GROUP BY', implode(', ', $selectFields));
 			$forceNameTitleIndex = false;
 		}
