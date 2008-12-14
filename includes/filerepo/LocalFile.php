@@ -624,18 +624,18 @@ class LocalFile extends File
 	/** purgeDescription inherited */
 	/** purgeEverything inherited */
 
-	function getHistory($limit = null, $start = null, $end = null) {
+	function getHistory($limit = null, $start = null, $end = null, $inc = true) {
 		$dbr = $this->repo->getSlaveDB();
 		$tables = array('oldimage');
-		$join_conds = array();
 		$fields = OldLocalFile::selectFields();
-		$conds = $opts = array();
+		$conds = $opts = $join_conds = array();
+		$eq = $inc ? "=" : "";
 		$conds[] = "oi_name = " . $dbr->addQuotes( $this->title->getDBKey() );
 		if( $start ) {
-			$conds[] = "oi_timestamp <= " . $dbr->addQuotes( $dbr->timestamp( $start ) );
+			$conds[] = "oi_timestamp <$eq " . $dbr->addQuotes( $dbr->timestamp( $start ) );
 		}
 		if( $end ) {
-			$conds[] = "oi_timestamp >= " . $dbr->addQuotes( $dbr->timestamp( $end ) );
+			$conds[] = "oi_timestamp >$eq " . $dbr->addQuotes( $dbr->timestamp( $end ) );
 		}
 		if( $limit ) {
 			$opts['LIMIT'] = $limit;
