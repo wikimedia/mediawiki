@@ -70,6 +70,13 @@ abstract class ApiFormatBase extends ApiBase {
 	}
 
 	/**
+	 * Get the internal format name
+	 */
+	public function getFormat() {
+		return $this->mFormat;
+	}
+
+	/**
 	 * Specify whether or not ampersands should be escaped to '&amp;' when rendering. This
 	 * should only be set to true for the help message when rendered in the default (xmlfm)
 	 * format. This is a temporary special-case fix that should be removed once the help
