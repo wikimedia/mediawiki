@@ -786,7 +786,7 @@ $2',
 'recentchanges'                     => '最晏嗰改動',
 'recentchangestext'                 => '跟到箇隻wiki上嗰最新改動。',
 'recentchanges-feed-description'    => '跟到箇隻 wiki 上集合嗰最後改動。',
-'rcnote'                            => "下底係到$3，最近'''$2'''日之內嗰最後'''$1'''回改動:",
+'rcnote'                            => "下底係到$4 $5，最近'''$2'''工嗰'''$1'''回改動:",
 'rcnotefrom'                        => "底下係自'''$2'''嗰更改(頂多顯示'''$1'''):",
 'rclistfrom'                        => '顯示自$1後嗰新改動',
 'rcshowhideminor'                   => '$1細編輯',
@@ -812,7 +812,8 @@ $2',
 'recentchangeslinked'          => '連結頁嗰更改',
 'recentchangeslinked-title'    => '連結頁嗰改動到 "$1"',
 'recentchangeslinked-noresult' => '箇段時間嗰連結頁冇更改。',
-'recentchangeslinked-summary'  => "箇隻特殊頁列出箇頁連出去頁面嗰最晏改動。倷監視列表嗰頁面會用'''粗體'''顯到。",
+'recentchangeslinked-summary'  => "箇隻特殊頁列出箇頁連出去頁面嗰最晏改動（或是某隻分類嗰頁面）。
+[[Special:Watchlist|倷嗰監視列表]]頁面會用'''粗體'''顯到。",
 
 # Upload
 'upload'                      => '上傳檔案',
@@ -1462,7 +1463,8 @@ $NEWPAGE
 'newtitle'                => '新標題:',
 'move-watch'              => '眏到箇頁',
 'movepagebtn'             => '換卟箇頁',
-'pagemovedsub'            => '換正嘞',
+'pagemovedsub'            => '移正嘞',
+'movepage-moved'          => "<big>'''「$1」已經移動到「$2」'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => '已經有頁面叫箇隻名字，要伓倷揀嗰名字冇用。請揀過隻名字。',
 'cantmove-titleprotected' => '倷移伓正一隻頁面到箇隻位置，箇隻新題目已經拕保護起來嘞，新建伓正。',
 'talkexists'              => '頁面本身移動正嘞，但係新標題下底有嘞對話頁，所以對話頁移伓正。請手工合併兩頁。',

@@ -510,7 +510,7 @@ Tu pote ignorar iste message si iste conto se creava in error.',
 'resetpass_announce'      => 'Tu ha aperite un session con un codice temporari que tu recipeva in e-mail.
 Pro completar le session, tu debe definir un nove contrasigno hic:',
 'resetpass_text'          => '<!-- Adde texto hic -->',
-'resetpass_header'        => 'Reinitiar contrasigno',
+'resetpass_header'        => 'Cambiar le contrasigno del conto',
 'resetpass_submit'        => 'Definir contrasigno e aperir un session',
 'resetpass_success'       => 'Tu contrasigno ha essite cambiate! Ora se aperi tu session...',
 'resetpass_bad_temporary' => 'Contrasigno temporari invalide.
@@ -1736,6 +1736,8 @@ Es possibile que illo ha ja essite restaurate.',
 'undelete-error-long'          => 'Se incontrava errores durante le restauration del file:
 
 $1',
+'undelete-show-file-confirm'   => 'Es tu secur de voler vider un version delite del file "<nowiki>$1</nowiki>" del $2 a $3?',
+'undelete-show-file-submit'    => 'Si',
 
 # Namespace form on various pages
 'namespace'      => 'Spatio de nomine:',
@@ -2005,7 +2007,7 @@ Le datas del revisiones e nomines del contributores essera preservate.
 Tote le actiones de importation transwiki se registra in le [[Special:Log/import|registro de importationes]].',
 'import-interwiki-history'   => 'Copiar tote le versiones del historia de iste pagina',
 'import-interwiki-submit'    => 'Importar',
-'import-interwiki-namespace' => 'Transferer paginas verso le spatio de nomines:',
+'import-interwiki-namespace' => 'Spatio de nomines de destination:',
 'importtext'                 => 'Per favor exporta le file del wiki de origine con le [[Special:Export|facilitate pro exportar]].
 Immagazina lo in tu disco e carga lo hic.',
 'importstart'                => 'Importation de paginas in curso…',
@@ -2028,6 +2030,8 @@ Immagazina lo in tu disco e carga lo hic.',
 'import-nonewrevisions'      => 'Tote le revisiones habeva ja essite importate anteriormente.',
 'xml-error-string'           => '$1 al linea $2, col $3 (byte $4): $5',
 'import-upload'              => 'Cargar datos XML',
+'import-token-mismatch'      => 'Perdita del datos del session. Per favor reprova.',
+'import-invalid-interwiki'   => 'Non pote importar ab le wiki specificate.',
 
 # Import log
 'importlogpage'                    => 'Registro de importationes',
@@ -2489,7 +2493,7 @@ Le alteres essera initialmente celate.
 
 # External editor support
 'edit-externally'      => 'Modificar iste file con un programma externe',
-'edit-externally-help' => 'Vide le [http://www.mediawiki.org/wiki/Manual:External_editors instructiones de configuration] pro ulterior informationes.',
+'edit-externally-help' => '(Vide le [http://www.mediawiki.org/wiki/Manual:External_editors instructiones de configuration] pro ulterior informationes)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'totes',

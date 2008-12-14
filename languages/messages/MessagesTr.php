@@ -1407,32 +1407,33 @@ Bu sayfanın koruma seviyesini değiştirebilirsiniz; ancak bu kademeli korumaya
 'restriction-level-all'           => 'Herhangi bir düzey',
 
 # Undelete
-'undelete'               => 'Silinmiş sayfaları göster',
-'undeletepage'           => 'Sayfanın silinmiş sürümlerine göz at ve geri getir.',
-'viewdeletedpage'        => 'Silinen sayfalara bak',
-'undeletepagetext'       => 'Aşağıdaki sayfalar silinmiştir, ancak halen arşivde saklanmakta ve istendiği zaman geri getirilebilmektedirler. Arşiv düzenli olarak temizlenebilir.',
-'undeleteextrahelp'      => "Sayfala birlikte geçmişi geri getirmek için onay kutularına dokunmadan '''Geri getir!''' tuşuna tıklayın. Sayfanın geçmişini ayrı ayrı getirmek için geri getirmek istediğiniz değişikliklerin onay kutularını seçip '''Geri getir!''' tuşuna tıklayın. Seçilen onay kutularını ve '''Neden''' alanını sıfırlamak için '''Vazgeç''' tuşuna tıklayın.",
-'undeletehistory'        => 'Eğer bu sayfa geri getiriyorsanız sayfanın bütün geçmişi de geri getirilecektir. Silindikten sonra aynı isimle yeni bir sayfa eklenmişse geri gelecek sayfanın geçmişi varolan sayfayı değiştirmeden halihazırdaki geçmişe eklenecektir.',
-'undeletehistorynoadmin' => 'Bu madde silinmiştir. Silinme sebebi ve silinme öncesinde maddeyi düzenleyen kullanıcıların detayları aşağıdaki özette verilmiştir. Bu silinmiş sürümlerin metinleri ise sadece yöneticiler tarafından görülebilir.',
-'undeletebtn'            => 'Geri getir!',
-'undeletelink'           => 'geri getir',
-'undeletereset'          => 'Vazgeç',
-'undeletecomment'        => 'Neden:',
-'undeletedarticle'       => '"$1" geri getirildi.',
-'undeletedrevisions'     => 'Toplam {{PLURAL:$1|1 kayıt|$1 kayıt}} geri getirildi.',
-'undeletedfiles'         => '{{PLURAL:$1|1 dosya|$1 dosya}} geri getirildi.',
-'cannotundelete'         => 'Sayfayı ya da medyayı sizden önce bir başka kullanıcı geri getirdiğinden dolayı sizin geri getirme işleminiz geçersiz.',
-'undeletedpage'          => "<big>'''$1 sayfası geri getirildi'''</big>
+'undelete'                  => 'Silinmiş sayfaları göster',
+'undeletepage'              => 'Sayfanın silinmiş sürümlerine göz at ve geri getir.',
+'viewdeletedpage'           => 'Silinen sayfalara bak',
+'undeletepagetext'          => 'Aşağıdaki sayfalar silinmiştir, ancak halen arşivde saklanmakta ve istendiği zaman geri getirilebilmektedirler. Arşiv düzenli olarak temizlenebilir.',
+'undeleteextrahelp'         => "Sayfala birlikte geçmişi geri getirmek için onay kutularına dokunmadan '''Geri getir!''' tuşuna tıklayın. Sayfanın geçmişini ayrı ayrı getirmek için geri getirmek istediğiniz değişikliklerin onay kutularını seçip '''Geri getir!''' tuşuna tıklayın. Seçilen onay kutularını ve '''Neden''' alanını sıfırlamak için '''Vazgeç''' tuşuna tıklayın.",
+'undeletehistory'           => 'Eğer bu sayfa geri getiriyorsanız sayfanın bütün geçmişi de geri getirilecektir. Silindikten sonra aynı isimle yeni bir sayfa eklenmişse geri gelecek sayfanın geçmişi varolan sayfayı değiştirmeden halihazırdaki geçmişe eklenecektir.',
+'undeletehistorynoadmin'    => 'Bu madde silinmiştir. Silinme sebebi ve silinme öncesinde maddeyi düzenleyen kullanıcıların detayları aşağıdaki özette verilmiştir. Bu silinmiş sürümlerin metinleri ise sadece yöneticiler tarafından görülebilir.',
+'undeletebtn'               => 'Geri getir!',
+'undeletelink'              => 'geri getir',
+'undeletereset'             => 'Vazgeç',
+'undeletecomment'           => 'Neden:',
+'undeletedarticle'          => '"$1" geri getirildi.',
+'undeletedrevisions'        => 'Toplam {{PLURAL:$1|1 kayıt|$1 kayıt}} geri getirildi.',
+'undeletedfiles'            => '{{PLURAL:$1|1 dosya|$1 dosya}} geri getirildi.',
+'cannotundelete'            => 'Sayfayı ya da medyayı sizden önce bir başka kullanıcı geri getirdiğinden dolayı sizin geri getirme işleminiz geçersiz.',
+'undeletedpage'             => "<big>'''$1 sayfası geri getirildi'''</big>
 
 Önceki silme ve geri getirme işlemleri için [[Special:Log/delete|silme kayıtları]]na bakınız.",
-'undelete-header'        => 'Daha önce silinmiş sayfaları görmek için bakınız: [[Special:Log/delete|silme kayıtları]].',
-'undelete-search-box'    => 'Silinmiş sayfaları ara',
-'undelete-search-submit' => 'Ara',
-'undelete-no-results'    => 'Silme arşivinde birbiriyle eşleşen hiçbir sayfaya rastlanmadı.',
-'undelete-error-short'   => 'Bu dosyanın silinmesini geri alırken hata çıktı: $1',
-'undelete-error-long'    => 'Bu dosyanın silinmesini geri alırken hatalar çıktı:
+'undelete-header'           => 'Daha önce silinmiş sayfaları görmek için bakınız: [[Special:Log/delete|silme kayıtları]].',
+'undelete-search-box'       => 'Silinmiş sayfaları ara',
+'undelete-search-submit'    => 'Ara',
+'undelete-no-results'       => 'Silme arşivinde birbiriyle eşleşen hiçbir sayfaya rastlanmadı.',
+'undelete-error-short'      => 'Bu dosyanın silinmesini geri alırken hata çıktı: $1',
+'undelete-error-long'       => 'Bu dosyanın silinmesini geri alırken hatalar çıktı:
 
 $1',
+'undelete-show-file-submit' => 'Evet',
 
 # Namespace form on various pages
 'namespace'      => 'Alan adı:',
@@ -1786,7 +1787,7 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 # EXIF tags
 'exif-imagewidth'                => 'Genişlik',
 'exif-imagelength'               => 'Yükseklik',
-'exif-compression'               => 'Sıkıştırma modeli',
+'exif-compression'               => 'Sıkıştırma planı',
 'exif-photometricinterpretation' => 'Piksel bileşimi',
 'exif-orientation'               => 'Yönlendirme',
 'exif-planarconfiguration'       => 'Veri düzeni',
@@ -1806,7 +1807,7 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 'exif-flashpixversion'           => 'Desteklenen Flashpix sürümü',
 'exif-colorspace'                => 'Renk aralığı',
 'exif-componentsconfiguration'   => 'Her bir bileşenin anlamı',
-'exif-compressedbitsperpixel'    => 'Resim sıkıştırma modu',
+'exif-compressedbitsperpixel'    => 'Resim sıkıştırma biçimi',
 'exif-pixelydimension'           => 'Geçerli resim genişliği',
 'exif-makernote'                 => 'Yapımcı notları',
 'exif-usercomment'               => 'Kullanıcı yorumları',
@@ -1821,7 +1822,7 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 'exif-isospeedratings'           => 'ISO hızı',
 'exif-shutterspeedvalue'         => 'Deklanşör hızı',
 'exif-aperturevalue'             => 'Diyafram açıklığı',
-'exif-brightnessvalue'           => 'parlaklık',
+'exif-brightnessvalue'           => 'Parlaklık',
 'exif-exposurebiasvalue'         => 'Poz eğilim değeri',
 'exif-maxaperturevalue'          => 'Maksimum açıklık değeri',
 'exif-meteringmode'              => 'Ölçüm modu',
@@ -1874,11 +1875,14 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 'exif-orientation-3' => '180° döndürülmüş', # 0th row: bottom; 0th column: right
 'exif-orientation-4' => 'Düşey (dikey) kırılma', # 0th row: bottom; 0th column: left
 
-'exif-componentsconfiguration-0' => 'yok',
+'exif-componentsconfiguration-0' => 'Var olmayan',
 
-'exif-exposureprogram-0' => 'Tanımlanmamış',
+'exif-exposureprogram-0' => 'Tanımlanmadı',
 'exif-exposureprogram-1' => 'Elle',
 'exif-exposureprogram-3' => 'Açıklık önceliği',
+'exif-exposureprogram-4' => 'Denklanşör önceliği',
+'exif-exposureprogram-5' => 'Kullanıcı programı',
+'exif-exposureprogram-6' => 'Hareket programı',
 'exif-exposureprogram-7' => 'Portre modu (Arka planları bulanıklaştırıp nesneyi netleştirerek çeker)',
 'exif-exposureprogram-8' => 'Peyzaj modu',
 
@@ -2119,6 +2123,7 @@ Bir başlığı çıkarmak için, yanındaki kutucuğu işaretleyin, ve Başlık
 'specialpages-group-spam'        => 'Spam araçları',
 
 # Special:BlankPage
-'blankpage' => 'Boş sayfa',
+'blankpage'              => 'Boş sayfa',
+'intentionallyblankpage' => 'Bu sayfa özellikle boştur.',
 
 );

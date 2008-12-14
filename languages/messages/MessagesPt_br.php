@@ -7,6 +7,7 @@
  * @author Bani
  * @author Brunoy Anastasiya Seryozhenko
  * @author Carla404
+ * @author GKnedo
  * @author LeonardoG
  * @author Lijealso
  * @author Rodrigo Calanca Nishino
@@ -512,7 +513,7 @@ Você pode continuar a usar a {{SITENAME}} anonimamente, ou pode autenticar-se n
 continuar a ser apresentadas como se você ainda estivesse autenticado até que a cache de seu navegador seja limpa.',
 'welcomecreation'            => '== Bem-vindo, $1! ==
 A sua conta foi criada.
-Não se esqueça de personalizar as suas preferências na {{SITENAME}}.',
+Não se esqueça de personalizar as suas [[Special:Preferences|preferências na {{SITENAME}}]].',
 'loginpagetitle'             => 'Autenticação de usuário',
 'yourname'                   => 'Nome de usuário:',
 'yourpassword'               => 'Senha:',
@@ -959,7 +960,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desat
 'mypreferences'            => 'Minhas preferências',
 'prefs-edits'              => 'Número de edições:',
 'prefsnologin'             => 'Não autenticado',
-'prefsnologintext'         => 'Precisa estar [[Special:UserLogin|autenticado]] para definir suas preferências.',
+'prefsnologintext'         => 'É necessário estar <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} autenticado]</span> para definir as suas preferências.',
 'prefsreset'               => 'As preferências foram restauradas tal como se encontravam no banco de dados.',
 'qbsettings'               => 'Configurações da Barra Rápida',
 'qbsettings-none'          => 'Nenhuma',
@@ -2568,8 +2569,8 @@ Tente a previsão comum.',
 Tente a previsão comum.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Possivelmente as alterações que sejam mais recentes do que $1 segundos não serão exibidas nesta lista.',
-'lag-warn-high'   => 'Devido ao longo período de latência no servidor do banco de dados, alterações feitas há menos de $1 segundos poderão não aparecer.',
+'lag-warn-normal' => 'É possível que as alterações que sejam mais recentes do que $1 {{PLURAL:$1|segundo|segundos}} não sejam exibidas nesta lista.',
+'lag-warn-high'   => 'Devido a sérios problemas de latência no servidor do banco de dados, as alterações mais recentes que $1 {{PLURAL:$1|segundo|segundos}} poderão não ser exibidas nesta lista.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'A sua lista de vigiados possui {{PLURAL:$1|um título|$1 títulos}}, além das respectivas páginas de discussão.',

@@ -431,7 +431,7 @@ un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artikel',
-'nstab-user'      => 'Siet vun den Bruker',
+'nstab-user'      => 'Brukersied',
 'nstab-media'     => 'Media',
 'nstab-special'   => 'Spezial',
 'nstab-project'   => 'Över',
@@ -1139,8 +1139,7 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|Een Ännern|$1 Ännern}}',
 'recentchanges'                     => 'Toletzt ännert',
-'recentchangestext'                 => '
-Disse Siet warrt wiel dat Laden automatsch aktualiseert. Wiest warrn Sieten, de toletzt bearbeid worrn sünd, dorto de Tied un de Naam vun de Autor.',
+'recentchangestext'                 => 'Op disse Sied warrt de Sieden wiest, de toletzt ännert worrn sünd.',
 'recentchanges-feed-description'    => 'Behool mit dissen Feed de ne’esten Ännern op dit Wiki in’t Oog.',
 'rcnote'                            => "Hier sünd de letzten '''$1''' Ännern vun {{PLURAL:$2|den letzten Dag|de letzten '''$2''' Daag}} (Stand $5, $4). ('''N''' - Ne’e Sieden; '''L''' - Lütte Ännern)",
 'rcnotefrom'                        => 'Dit sünd de Ännern siet <b>$2</b> (bet to <b>$1</b> wiest).',
@@ -1744,6 +1743,8 @@ In dat [[Special:Log/delete|Lösch-Logbook]] steiht en Översicht över de wegsm
 'undelete-error-long'          => 'Fehlers bi dat Wedderhalen vun de Datei:
 
 $1',
+'undelete-show-file-confirm'   => 'Wullt du worraftig en wegsmeten Version vun de Datei „<nowiki>$1</nowiki>“ vun $2, $3 ankieken?',
+'undelete-show-file-submit'    => 'Jo',
 
 # Namespace form on various pages
 'namespace'      => 'Naamruum:',
@@ -1946,7 +1947,7 @@ De Siet „[[:$1]]“ gifft dat al. Wullt du ehr wegsmieten, dat disse Siet scha
 'delete_and_move_reason'  => 'wegsmeten, Platz to maken för Schuven',
 'selfmove'                => 'Utgangs- un Teelnaam sünd desülve; en Siet kann nich över sik sülvst röver schaven warrn.',
 'immobile_namespace'      => 'De Utgangs- oder Teelnaamruum is schuult; Schuven na oder ut dissen Naamruum geiht nich.',
-'imagenocrossnamespace'   => 'Datein köönt nich na buten den {{ns:image}}-Naamruum schaven warrn',
+'imagenocrossnamespace'   => 'Datein köönt nich na buten den Datei-Naamruum schaven warrn',
 'imagetypemismatch'       => 'De ne’e Dateiennen passt nich to de ole',
 'imageinvalidfilename'    => 'De ne’e Dateinaam is ungüllig',
 'fix-double-redirects'    => 'All Redirects, de na den olen Titel wiest, op den ne’en ännern',
@@ -1990,7 +1991,7 @@ De Versionsdaten un Brukernaams blievt dor bi vörhannen.
 All Transwiki-Import-Akschonen staht later ok in dat [[Special:Log/import|Import-Logbook]].',
 'import-interwiki-history'   => 'Importeer all Versionen vun disse Siet',
 'import-interwiki-submit'    => 'Rinhalen',
-'import-interwiki-namespace' => 'Siet in Naamruum halen:',
+'import-interwiki-namespace' => 'Sied in dissen Naamruum halen:',
 'importtext'                 => 'Exporteer de Siet vun dat Utgangswiki mit Special:Export un laad de Datei denn över disse Siet weer hooch.',
 'importstart'                => 'Sieden warrt rinhaalt...',
 'import-revision-count'      => '$1 {{PLURAL:$1|Version|Versionen}}',
@@ -2012,6 +2013,8 @@ All Transwiki-Import-Akschonen staht later ok in dat [[Special:Log/import|Import
 'import-nonewrevisions'      => 'Gifft kene ne’en Versionen to importeren, all Versionen sünd al vördem importeert worrn.',
 'xml-error-string'           => '$1 Reeg $2, Spalt $3, (Byte $4): $5',
 'import-upload'              => 'XML-Daten hoochladen',
+'import-token-mismatch'      => 'Session-Daten sünd verloren gahn. Versöök dat noch wedder.',
+'import-invalid-interwiki'   => 'Ut dat angevene Wiki is en Import nich mööglich.',
 
 # Import log
 'importlogpage'                    => 'Import-Logbook',
@@ -2451,7 +2454,7 @@ Wat denn noch an Lenken kummt in de Reeg, dat sünd Utnahmen, bi de dat Bild lie
 
 # External editor support
 'edit-externally'      => 'Änner disse Datei mit en extern Programm',
-'edit-externally-help' => '<span class="plainlinks">Lees de [http://www.mediawiki.org/wiki/Manual:External_editors Installatschoonshelp] wenn du dor mehr to weten wist.</span>',
+'edit-externally-help' => '(Lees de [http://www.mediawiki.org/wiki/Manual:External_editors Installatschoonshelp] wenn du dor mehr to weten wullt)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'all',

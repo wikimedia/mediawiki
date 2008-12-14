@@ -487,7 +487,7 @@ Se l\'acesso el xe stà creà par sbaglio, se pol ignorar sto messagio.',
 # Password reset dialog
 'resetpass'               => 'Reinposta la password',
 'resetpass_announce'      => "L'acesso el xe stà efetuà con un codice tenporaneo, mandà par e-mail. Par conpletar l'acesso bisogna inpostar na password nova:",
-'resetpass_header'        => 'Reinposta password',
+'resetpass_header'        => 'Cànbia la password de la to utensa',
 'resetpass_submit'        => 'Inposta la password e acedi al sito',
 'resetpass_success'       => 'La password la xe stà modificà. Acesso in corso...',
 'resetpass_bad_temporary' => 'Password tenporanea mìa valida. La password la podarìà èssar stà zà canbià, opure podarìà èssar stà richiesta na password tenporanea nova.',
@@ -1613,6 +1613,8 @@ Consulta el [[Special:Log/delete|registro de le scancełassion]] par vardare łe
 'undelete-error-long'          => 'Se gà verificà dei erori nel tentativo de anular la scancelazion del file:
 
 $1',
+'undelete-show-file-confirm'   => 'Sito sicuro che te vol vardar na revision del file "<nowiki>$1</nowiki>" scancelà da $2 el $3',
+'undelete-show-file-submit'    => 'Sì',
 
 # Namespace form on various pages
 'namespace'      => 'Namespace:',
@@ -1854,7 +1856,7 @@ Le date de publicazion e i nomi de i autori de łe varie version i sarà conserv
 Tute łe operazion de inportazion trans-wiki łe xè notà nel [[Special:Log/import|registro de inportazion]].',
 'import-interwiki-history'   => "Copia l'intiera cronołogia de sta pàxena",
 'import-interwiki-submit'    => 'Inporta',
-'import-interwiki-namespace' => 'Trasferissi le pagine nel namespace:',
+'import-interwiki-namespace' => 'Namespace de destinassion:',
 'importtext'                 => 'Par piaser, esporta el file da la wiki de origine doparando la [[Special:Export|funsion de esportassion]].
 Salvalo sul to computer e càrghelo qua.',
 'importstart'                => 'Inportazion de łe pàxene in corso...',
@@ -1877,6 +1879,8 @@ Salvalo sul to computer e càrghelo qua.',
 'import-nonewrevisions'      => 'Tute le revision le xe zà stà inportà in precedenza.',
 'xml-error-string'           => '$1 a riga $2, colona $3 (byte $4): $5',
 'import-upload'              => 'Carga dati XML',
+'import-token-mismatch'      => "I dati relativi a la session i xe 'ndài persi. Par piaser, próa da novo.",
+'import-invalid-interwiki'   => 'No se pode inportar da la wiki indicà.',
 
 # Import log
 'importlogpage'                    => 'Inportassion',
@@ -2321,7 +2325,7 @@ I colegamenti sucessivi, su la stessa riga, i xe considerà come ecezion (cioè 
 
 # External editor support
 'edit-externally'      => 'Modifica sto file doparando un programa esterno',
-'edit-externally-help' => 'Par magiori informazion varda le [http://www.mediawiki.org/wiki/Manual:External_editors istruzion] (in inglese)',
+'edit-externally-help' => '(Par savérghene piessè varda le [http://www.mediawiki.org/wiki/Manual:External_editors istruzion])',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'tute',

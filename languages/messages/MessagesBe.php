@@ -1244,7 +1244,7 @@ $2',
 
 # Unused templates
 'unusedtemplates'     => 'Шаблоны, якія не выкарыстаны',
-'unusedtemplatestext' => 'Старонка пералічвае ўсе старонкі ў прасторы назваў {{ns:template}}, якія не ўлучаныя ў аніводную іншую старонку. Памятайце, што трэба правяраць спасылкі на шаблоны перад тым, як сціраць іх.',
+'unusedtemplatestext' => 'Тут пералічаныя ўсе старонкі ў прасторы назваў {{ns:template}}, якія ані разу не ўкладзеныя ў іншыя старонкі. Памятайце, што трэба правяраць спасылкі на шаблоны перад тым, як сціраць іх.',
 'unusedtemplateswlh'  => 'іншыя спасылкі',
 
 # Random page
@@ -1412,7 +1412,7 @@ $2',
 'mailnologintext' => 'Трэба [[Special:UserLogin|ўвайсці ў сістэму]] і мець пацверджаны адрас эл.пошты ў сваіх [[Special:Preferences|настáўленнях]], каб слаць эл.пошту іншым удзельнікам.',
 'emailuser'       => 'Эл.пошта ўдзельніка',
 'emailpage'       => 'Зварот да ўдзельніка праз эл.пошту',
-'emailpagetext'   => 'Калі ўдзельнік упісаў правільны адрас эл.пошты ў сваіх настаўленнях, то форма, што ніжэй, адашле туды адно паведамленне.
+'emailpagetext'   => 'Тут можна выслаць эл.пошту гэтаму ўдзельніку.
 Адрас эл.пошты, уведзены вамі ў [[Special:Preferences|сваіх настаўленнях]], з\'явіцца ў полі "From" вашага ліста, і атрымальнік зможа адказаць на ваш ліст.',
 'usermailererror' => "Паштовы аб'ект паведамляе пра памылку:",
 'defemailsubject' => 'эл.пошта {{SITENAME}}',
@@ -2330,7 +2330,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Правіць файл у вонкавай праграме',
-'edit-externally-help' => 'Глядзіце [http://www.mediawiki.org/wiki/Manual:External_editors інструкцыі па настаўлянню (англ.)] па больш падрабязнасцяў.',
+'edit-externally-help' => '(Гл. падрабязней [http://www.mediawiki.org/wiki/Manual:External_editors пра настаўлянне старонніх праграм-рэдактараў])',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'усе',

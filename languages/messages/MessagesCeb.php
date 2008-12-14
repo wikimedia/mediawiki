@@ -49,6 +49,13 @@ $messages = array(
 'thursday'      => 'Huwebes',
 'friday'        => 'Biyernes',
 'saturday'      => 'Sabado',
+'sun'           => 'Dom',
+'mon'           => 'Lun',
+'tue'           => 'Mar',
+'wed'           => 'Miy',
+'thu'           => 'Huw',
+'fri'           => 'Biy',
+'sat'           => 'Sab',
 'january'       => 'Enero',
 'february'      => 'Pebrero',
 'march'         => 'Marso',
@@ -75,8 +82,13 @@ $messages = array(
 'december-gen'  => 'Disyembre',
 'jan'           => 'Ene',
 'feb'           => 'Peb',
+'apr'           => 'Abr',
 'may'           => 'Mayo',
 'jun'           => 'Hun',
+'jul'           => 'Hul',
+'aug'           => 'Ago',
+'oct'           => 'Okt',
+'nov'           => 'Nob',
 'dec'           => 'Dis',
 
 # Categories related messages
@@ -102,6 +114,7 @@ $messages = array(
 
 'about'          => 'Mahitungod',
 'newwindow'      => "(maabli sa laing ''window'')",
+'cancel'         => 'I-way bili',
 'qbfind'         => 'Pangitaa',
 'qbedit'         => 'Usba',
 'qbpageoptions'  => 'Kini nga panid',
@@ -172,6 +185,7 @@ $messages = array(
 'currentevents'        => 'Mga bag-ong panghitabo',
 'currentevents-url'    => 'Project:Kasamtangang panghitabo',
 'disclaimers'          => 'Mga pagpasabot',
+'disclaimerpage'       => 'Project:Mga pagpasabot',
 'edithelp'             => 'Tabang sa pag-usab',
 'edithelppage'         => 'Help:Pag-usab',
 'helppage'             => 'Help:Mga sulod',
@@ -199,6 +213,7 @@ $messages = array(
 'editold'                 => 'usba',
 'viewsourceold'           => 'tan-awa ang ginikanan',
 'editsectionhint'         => 'Usba ang seksyong: $1',
+'toc'                     => 'Mga sulod',
 'showtoc'                 => 'ipakita',
 'hidetoc'                 => 'tagoa',
 'thisisdeleted'           => 'Ipakita o ibalik ang $1?',
@@ -287,6 +302,10 @@ Palihug pagpili og lain nga ngalan.',
 'anoneditwarning'           => "'''Pahibalo:''' Wala ikaw maka-login.
 Ang imong ''IP address'' maoy itala sa kaagi niini nga panid.",
 'newarticle'                => '(Bag-o)',
+'newarticletext'            => 'Mitulpok ka sa sumpay ngadto sa usa ka wala pa masulat nga panid.
+Aron mahimo ang maong panid, pagtayp sa kahon sa ubos (tan-awa ang [[{{MediaWiki:Helppage}}|panid sa tabang]] alang sa dugang impormasyon).
+Kon miabot ka dinhi pinaagi sa usa ka sayop, palihog tuploka ang back nga tuplokanan sa imong brawser.',
+'noarticletext'             => 'Sa kasamtangan walay sulod nga teksto ang kining panid, pwede nimong  [[Special:Search/{{PAGENAME}}|pangitaon kining titulo sa panid]] sa ubang mga panid o [{{fullurl:{{FULLPAGENAME}}|action=edit}} usba kining panid].',
 'userpage-userdoesnotexist' => 'Ang akawnt sa tiggamit nga "$1" wala marehistro. Palihug tan-awa kon buot nimong himoon/usbon ang kining panid.',
 'previewnote'               => '<strong>Hinumdomi nga kini usa lang ka paunang tan-aw; wala pa matipigi ang imong giusab!</strong>',
 'editing'                   => 'Nagausab sa $1',
@@ -299,13 +318,20 @@ Nagatimaan ka usab nga ikaw mismo ang nagsulat niini, o gikopya nimo kini gikan 
 'template-protected'        => '(giprotektahan)',
 
 # History pages
+'revisionasof'     => 'Rebisyon niadtong $1',
 'previousrevision' => '←Mas daang pag-usab',
 'last'             => 'kataposan',
 'histfirst'        => 'Kinaunahan',
 
+# Diffs
+'compareselectedversions' => 'Ikompara ang piniling mga bersiyon',
+'editundo'                => 'i-way bili',
+
 # Search results
 'noexactmatch' => "'''Walay panid nga ginganla'g \"\$1\".'''
 Mahimo mong [[:\$1|isulat kini nga panid]].",
+'prevn'        => 'miaging $1',
+'nextn'        => 'sunod $1',
 'viewprevnext' => 'Tan-awa sa ($1) ($2) ($3)',
 'powersearch'  => 'Abansadong pagpangita',
 
@@ -315,26 +341,41 @@ Mahimo mong [[:\$1|isulat kini nga panid]].",
 'saveprefs'     => 'Tipigi',
 
 # Recent changes
-'recentchanges' => 'Mga bag-ong giusab',
-'diff'          => 'kalainan',
-'hist'          => 'kaagi',
-'hide'          => 'Tagoi',
+'recentchanges'   => 'Mga bag-ong giusab',
+'rcnote'          => "Sa ubos {{PLURAL:$1|ang '''1''' kausaban|ang mga bag-ong '''$1''' kausaban}} sa miaging {{PLURAL:$2|ka adlaw|'''$2''' ka mga adlaw}}, sa taknang $5, $4.",
+'rcshowhideminor' => '$1 menor nga pag-usab',
+'rclinks'         => 'Ipakita ang miaging $1 ka kausaban sa miaging $2 ka mga adlaw<br />$3',
+'diff'            => 'kalainan',
+'hist'            => 'kaagi',
+'hide'            => 'Tagoi',
+'newpageletter'   => 'B',
 
 # Recent changes linked
-'recentchangeslinked'       => 'Mga may kalabotang kausaban',
-'recentchangeslinked-title' => 'Mga pag-usab nga may kalabotan sa "$1"',
+'recentchangeslinked'         => 'Mga may kalabotang kausaban',
+'recentchangeslinked-title'   => 'Mga pag-usab nga may kalabotan sa "$1"',
+'recentchangeslinked-summary' => "Kini ang talaan sa mga bag-ong kausaban sa mga panid nga misumpay sa espesipikong panid (o sa mga sakop sa espesipikong kategoriya).
+Ang mga panid sa [[Special:Watchlist|imong gibantayan]] '''nakalugom'''.",
 
 # Upload
 'upload' => 'Pagsumiter og payl',
 
 # Image description page
+'filehist'          => 'Kaagi sa payl',
+'filehist-help'     => 'I-klik ang petsa/oras aron makit-an ang hulagway sa payl niadtong panahona.',
+'filehist-current'  => 'kasamtangan',
 'filehist-datetime' => 'Petsa/Takna',
+'filehist-user'     => 'Tiggamit',
+'filehist-comment'  => 'Komento',
+'imagelinks'        => 'Mga sumpay',
+'linkstoimage'      => 'Ang mosunod nga {{PLURAL:$1|mga panid misumpay|$1 panid misumpay}} niining payl:',
+'sharedupload'      => 'Ang kining payl usa ka shared upload ug mahimong gigamit sa ubang mga proyekto.',
 
 # Random page
 'randompage' => 'Bisan unsang panid',
 
 # Miscellaneous special pages
-'move' => 'Ibalhin',
+'nmembers' => '$1 {{PLURAL:$1|sakop|mga sakop}}',
+'move'     => 'Ibalhin',
 
 # Special:AllPages
 'alphaindexline' => '$1 hangtod $2',
@@ -350,34 +391,70 @@ Mahimo mong [[:\$1|isulat kini nga panid]].",
 'watch'       => 'Bantayi',
 'unwatch'     => 'Pasagdi',
 
+# Displayed when you click the "watch" button and it is in the process of watching
+'watching'   => 'Gibantayan...',
+'unwatching' => 'Gipasagdan...',
+
+# Delete/protect/revert
+'deletedarticle' => 'gitangtang "[[$1]]"',
+
 # Contributions
 'contributions' => 'Mga tampo ning gumagamit',
 'mycontris'     => 'Akong tampo',
 
 # What links here
-'whatlinkshere' => 'Unsay mga misumpay dinhi',
+'whatlinkshere'       => 'Unsay mga misumpay dinhi',
+'whatlinkshere-title' => 'Mga panid nga misumpay ngadto sa "$1"',
+'linkshere'           => "Ang mosunod nga mga panid misumpay sa '''[[:$1]]''':",
+'isredirect'          => 'panid sa redirekta',
+'whatlinkshere-prev'  => '{{PLURAL:$1|miaging|miaging $1}}',
+'whatlinkshere-next'  => '{{PLURAL:$1|sunod|sunod $1}}',
+'whatlinkshere-links' => '← mga sumpay',
 
 # Block/unblock
 'contribslink' => 'mga tampo',
 
+# Thumbnails
+'thumbnail-more' => 'Padak-a',
+
 # Tooltip help for the actions
-'tooltip-pt-mytalk'       => 'Akong hisgot',
-'tooltip-pt-preferences'  => 'Akong mga preperensiya',
-'tooltip-pt-mycontris'    => 'Akong mga tampo',
-'tooltip-pt-login'        => "Gihangyo ka namo sa pag-''log-in'', apan wala kini gikinahanglan aron makausab ka sa mga panid.",
-'tooltip-pt-logout'       => 'Biya',
-'tooltip-ca-talk'         => 'Panaghisgot kabahin sa panid',
-'tooltip-ca-edit'         => "Mahimo mong usbon ang kining panid. Palihog gamita ang ''Paunang tan-aw'' nga tuplokanan bag-o nimotipigan ang panid.",
-'tooltip-ca-move'         => 'Ibalhin kini nga panid',
-'tooltip-n-mainpage'      => 'Bisitaha ang Unang Panid',
-'tooltip-n-portal'        => 'Kabahin sa proyekto, unsay imong mahimo, asa mangita sa mga impormasyon',
-'tooltip-n-currentevents' => 'Pangita og nahaunang impormasyon sa mga bag-ong panghitabo',
-'tooltip-n-recentchanges' => 'Ang talaan sa mga bag-ong giusab sa wiki.',
-'tooltip-n-randompage'    => 'Pag-abli og bisan unsang panid',
-'tooltip-n-help'          => 'Ang dapit nga angay mong pangitaan.',
-'tooltip-t-whatlinkshere' => 'Talaan sa mga wiki nga panid nga misumpay dinhi',
-'tooltip-t-upload'        => 'Pagsumiter og mga payl',
-'tooltip-t-specialpages'  => 'Talaan sa mga espesyal nga panid',
+'tooltip-pt-userpage'             => 'Akong panid',
+'tooltip-pt-mytalk'               => 'Akong hisgot',
+'tooltip-pt-preferences'          => 'Akong mga preperensiya',
+'tooltip-pt-watchlist'            => 'Talaan sa mga panid nga imong gibantayan ang mga pag-usab',
+'tooltip-pt-mycontris'            => 'Akong mga tampo',
+'tooltip-pt-login'                => "Gihangyo ka namo sa pag-''log-in'', apan wala kini gikinahanglan aron makausab ka sa mga panid.",
+'tooltip-pt-logout'               => 'Biya',
+'tooltip-ca-talk'                 => 'Panaghisgot kabahin sa panid',
+'tooltip-ca-edit'                 => "Mahimo mong usbon ang kining panid. Palihog gamita ang ''Paunang tan-aw'' nga tuplokanan bag-o nimotipigan ang panid.",
+'tooltip-ca-addsection'           => 'Pagdugang og komento niining panaghisgot-hisgot.',
+'tooltip-ca-viewsource'           => 'Giprotektahan kining panid.
+Pwede nimong tan-awon ang ginikanan.',
+'tooltip-ca-move'                 => 'Ibalhin kini nga panid',
+'tooltip-ca-watch'                => 'Idugang kining panid sa imong gibantayan',
+'tooltip-search'                  => 'Pangitaa {{SITENAME}}',
+'tooltip-n-mainpage'              => 'Bisitaha ang Unang Panid',
+'tooltip-n-portal'                => 'Kabahin sa proyekto, unsay imong mahimo, asa mangita sa mga impormasyon',
+'tooltip-n-currentevents'         => 'Pangita og nahaunang impormasyon sa mga bag-ong panghitabo',
+'tooltip-n-recentchanges'         => 'Ang talaan sa mga bag-ong giusab sa wiki.',
+'tooltip-n-randompage'            => 'Pag-abli og bisan unsang panid',
+'tooltip-n-help'                  => 'Ang dapit nga angay mong pangitaan.',
+'tooltip-t-whatlinkshere'         => 'Talaan sa mga wiki nga panid nga misumpay dinhi',
+'tooltip-t-upload'                => 'Pagsumiter og mga payl',
+'tooltip-t-specialpages'          => 'Talaan sa mga espesyal nga panid',
+'tooltip-ca-nstab-image'          => 'Tan-awa ang panid sa payl',
+'tooltip-ca-nstab-category'       => 'Tan-awa ang panid sa kategoriya',
+'tooltip-save'                    => 'I-save ang imong gipang-usab',
+'tooltip-preview'                 => 'Paunang tan-aw sa imong mga pag-usab, palihog gamita kini usa tipigi ang panid!',
+'tooltip-diff'                    => 'Ipakita asa ang imong giusab sa teksto.',
+'tooltip-compareselectedversions' => 'Tan-awa ang mga kalainan sa duhang gipiling bersiyon niining panid.',
+
+# Metadata
+'metadata-expand' => 'Ipakita ang mas daghang detalye',
+
+# External editor support
+'edit-externally'      => 'Usba kining payl gamit ang eksternal nga aplikasyon',
+'edit-externally-help' => '(Tan-awa ang [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] para sa dugang nga impormasyon)',
 
 # 'all' in various places, this might be different for inflected languages
 'namespacesall' => 'tanan',

@@ -1771,6 +1771,8 @@ $NEWPAGE
 'undelete-error-long'          => 'حطایانی پیش آت وهدی که فایل حذف ترینگ بوت:
 
 $1',
+'undelete-show-file-confirm'   => 'آیا مطمئن ایت که حذف بوتگین بازبینی فایل "<nowiki>$1</nowiki>" از $2 ته $3 را بچاریت؟',
+'undelete-show-file-submit'    => 'بله',
 
 # Namespace form on various pages
 'namespace'      => 'فاصله نام',
@@ -2031,7 +2033,7 @@ $1',
 کل کاران ورود بین ویکی وارد بیت نه [[Special:Log/import|ورود آمار]].',
 'import-interwiki-history'   => 'کپی کن کل بازبینی آن تاریح په ای صفحه',
 'import-interwiki-submit'    => 'ورود',
-'import-interwiki-namespace' => 'ترانسفر صفحات په فضا نام',
+'import-interwiki-namespace' => 'مقصدء نام فضا',
 'importtext'                 => 'لطفا فایل چه منبع ویکی درگیز گون حاصین:[[Special:Export|وسیله درگیزگ]], ایء ته وتی دیسک ذخیره کن و ادان آپلود کن.',
 'importstart'                => 'وارد کنت صفحات...',
 'import-revision-count'      => '$1 {{PLURAL:$1|بازبینی|بازبینی ان}}',
@@ -2053,6 +2055,8 @@ $1',
 'import-nonewrevisions'      => 'کل بازبینی آن پیش تر وارد بیتگن',
 'xml-error-string'           => '$1 ته خط $2, ستون $3 (بایت $4): $5',
 'import-upload'              => 'آپلود دیتا XML',
+'import-token-mismatch'      => 'گار بیگ دیتا نندگ. دگه جهد کن',
+'import-invalid-interwiki'   => 'چه مشخص بیتگین ویکی وارد کنگ نبیتن',
 
 # Import log
 'importlogpage'                    => 'ورودان وارد کن',
@@ -2567,7 +2571,7 @@ Variants for Chinese language
 
 # External editor support
 'edit-externally'      => 'ای صفحه یا اصلاح کن گون یک درآین برنامه ای',
-'edit-externally-help' => 'په گیشترین اطلاعات بچار[http://www.mediawiki.org/wiki/Manual:External_editors setup instructions]',
+'edit-externally-help' => '(په گیشترین اطلاعات بچار[http://www.mediawiki.org/wiki/Manual:External_editors setup instructions])',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'کل',

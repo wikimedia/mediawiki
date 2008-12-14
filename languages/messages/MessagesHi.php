@@ -8,6 +8,7 @@
  * @author Kaustubh
  * @author Shyam
  * @author Sunil Mohan
+ * @author Taxman
  * @author לערי ריינהארט
  */
 
@@ -1704,7 +1705,7 @@ $1',
 
 # What links here
 'whatlinkshere'            => 'यहाँ क्या जुड़ता है',
-'whatlinkshere-title'      => '$1को जुडे हुए पन्ने',
+'whatlinkshere-title'      => '$1 से जुड़े हुए पन्ने',
 'whatlinkshere-page'       => 'पन्ना:',
 'whatlinkshere-barrow'     => '>',
 'linklistsub'              => '(कडियों की सूची)',

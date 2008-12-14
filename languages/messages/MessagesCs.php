@@ -679,7 +679,7 @@ Nezapomeňte si upravit [[Special:Preferences|nastavení {{grammar:2sg|{{SITENAM
 'loginpagetitle'             => 'Přihlaste se',
 'yourname'                   => 'Uživatelské jméno:',
 'yourpassword'               => 'Vaše heslo',
-'yourpasswordagain'          => 'Napište heslo znovu',
+'yourpasswordagain'          => 'Zopakujte heslo:',
 'remembermypassword'         => 'Trvalé přihlášení',
 'yourdomainname'             => 'Vaše doména',
 'externaldberror'            => 'Buď nastala chyba externí autentizační databáze, nebo nemáte dovoleno měnit svůj externí účet.',
@@ -766,7 +766,7 @@ Pokud byl účet vytvořen omylem, považujte tuto zprávu za bezpředmětnou.',
 'resetpass'               => 'Nové nastavení hesla účtu',
 'resetpass_announce'      => 'Přihlašujete se dočasným heslem zaslaným e-mailem. Přihlášení lze dokončit po nastavení nového trvalého hesla.',
 'resetpass_text'          => '<!-- Sem přidejte text -->',
-'resetpass_header'        => 'Nové nastavení hesla',
+'resetpass_header'        => 'Změna hesla',
 'resetpass_submit'        => 'Nastavit heslo a přihlásit se',
 'resetpass_success'       => 'Vaše heslo bylo úspěšně změněno. Probíhá přihlašování…',
 'resetpass_bad_temporary' => 'Neplatné dočasné heslo. Možná již bylo heslo úspěšně změněno nebo někdo znovu požádal o nové dočasné heslo.',
@@ -1147,8 +1147,8 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'prefs-misc'               => 'Různé',
 'saveprefs'                => 'Uložit nastavení',
 'resetprefs'               => 'Vrátit původní nastavení',
-'oldpassword'              => 'Staré heslo',
-'newpassword'              => 'Nové heslo',
+'oldpassword'              => 'Staré heslo:',
+'newpassword'              => 'Nové heslo:',
 'retypenew'                => 'Napište znovu nové heslo',
 'textboxsize'              => 'Editace',
 'rows'                     => 'Řádky',
@@ -1890,6 +1890,8 @@ Záznam o posledních mazáních a obnoveních najdete v [[Special:Log/delete|kn
 'undelete-error-long'          => 'Vyskytla se chyba při obnovování souboru:
 
 $1',
+'undelete-show-file-confirm'   => 'Určitě si chcete prohlédnout smazanou revizi souboru „<nowiki>$1</nowiki>“ z $2, $3?',
+'undelete-show-file-submit'    => 'Ano',
 
 # Namespace form on various pages
 'namespace'      => 'Jmenný prostor:',
@@ -2122,7 +2124,7 @@ V druhém případě můžete také používat přímý odkaz, např. pomocí [[
 'import-interwiki-text'      => 'Pro import zvolte zdrojovou wiki a název stránky. Data revizí a jména autorů budou zachována. Všechny importy se zaznamenávají do [[Special:Log/import|knihy importů]].',
 'import-interwiki-history'   => 'Zkopírovat všechny historické verze této stránky',
 'import-interwiki-submit'    => 'Importovat',
-'import-interwiki-namespace' => 'Stránky přenést do jmenného prostoru:',
+'import-interwiki-namespace' => 'Cílový jmenný prostor:',
 'importtext'                 => 'Prosím exportujte soubor ze zdrojové wiki pomocí nástroje [[Special:Export|{{ns:special}}:Export]], uložte jej na svůj disk a nahrajte ho sem.',
 'importstart'                => 'Stránky se importují…',
 'import-revision-count'      => '$1 {{PLURAL:$1|revize|revize|revizí}}',
@@ -2144,6 +2146,8 @@ V druhém případě můžete také používat přímý odkaz, např. pomocí [[
 'import-nonewrevisions'      => 'Všechny verze již byly dříve importovány.',
 'xml-error-string'           => '$1 na řádku $2, sloupec $3 (bajt $4): $5',
 'import-upload'              => 'Importovat XML data',
+'import-token-mismatch'      => 'Ztratila se data relace. Zkuste to znovu.',
+'import-invalid-interwiki'   => 'Ze zadané wiki nelze importovat.',
 
 # Import log
 'importlogpage'                    => 'Kniha importů',
@@ -2602,7 +2606,7 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 
 # External editor support
 'edit-externally'      => 'Editovat tento soubor v externím programu',
-'edit-externally-help' => 'Více informací najdete v [http://www.mediawiki.org/wiki/Manual:External_editors nápovědě pro nastavení].',
+'edit-externally-help' => '(Více informací najdete v [http://www.mediawiki.org/wiki/Manual:External_editors nápovědě pro nastavení].)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'všechny',

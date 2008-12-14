@@ -1594,6 +1594,8 @@ Huklla llamk'apusqakunata paqarichinaykipaqqa, munasqayki llamk'apusqakunata akl
 'undelete-error-long'          => 'Pantasqakunam tukurqan kay willañiqita qulluypi:
 
 $1',
+'undelete-show-file-confirm'   => 'Allinta yachankiñachu "<nowiki>$1</nowiki>" sutiyuq willañiqimanta qullusqa $2 p\'unchawpi $3 pachapi llamk\'apusqata qhawayta munanaykita?',
+'undelete-show-file-submit'    => 'Arí',
 
 # Namespace form on various pages
 'namespace'      => "Suti k'iti:",
@@ -1859,6 +1861,8 @@ Tukuy hawa wikimanta chaskisqakunaqa [[Special:Log/import|hawamanta chaskiy hall
 'import-nonewrevisions'      => 'Tukuy musuqchasqakunaqa ñawpaqtañam hawamanta chaskisqa.',
 'xml-error-string'           => "$1, $2 siq'ipi, $3 tunupi (byte $4): $5",
 'import-upload'              => 'XML willakunata churkuy',
+'import-token-mismatch'      => 'Tiyay ruraymanta willakunaqa chinkasqam. Ama hina kaspa, musuqmanta ruraykachay.',
+'import-invalid-interwiki'   => 'Manam atinichu nisqa wikimanta chaskiyta.',
 
 # Import log
 'importlogpage'                    => "Hawamanta chaskiy hallch'a",

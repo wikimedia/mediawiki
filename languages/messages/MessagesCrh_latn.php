@@ -546,7 +546,7 @@ Siz oturım açıp paroliñizni şimdi deñiştirmek kereksiñiz.
 # Password reset dialog
 'resetpass'               => 'Bu esapnıñ parolini sıfırla',
 'resetpass_announce'      => 'Muvaqqat kod vastasınen kirdiñiz. Kirişni tamamlamaq içün yañı parolni mında qoyuñız:',
-'resetpass_header'        => 'Parolni sıfırla',
+'resetpass_header'        => 'Esapnıñ parolini deñiştir',
 'resetpass_submit'        => 'Parol qoyıp kir',
 'resetpass_success'       => 'Paroliñiz muvafaqiyetnen deñiştirildi! Oturımıñız açılmaqta...',
 'resetpass_bad_temporary' => 'Muvaqqat paroliñiz yañlıştır. Ola bilir ki, siz endi paroliñizni muvafaqiyetnen deñiştirgen ya da e-mail-ge yañı bir parol yollamağa rica etkendirsiñiz.',
@@ -884,7 +884,7 @@ Vikide bu saifege oşağan saifelerni [[Special:Search|tapıp baqıñız]].',
 'recentchangestext'                 => 'Yapılğan eñ soñki deñişikliklerni bu saifede körip olasıñız.',
 'recentchanges-feed-description'    => 'Bu lenta vastasınen vikide soñki deñişikliklerni közet.',
 'rcnote'                            => "$4 $5 tarihında soñki {{PLURAL:$2|künde|'''$2''' künde}} yapılğan '''{{PLURAL:$1|1|$1}}''' deñişiklik:",
-'rcnotefrom'                        => "'''$2''' tarihından itibaren yapılğan deñişiklikler aşağıdadır (eñ fazla '''$1''' dane saife kösterile).",
+'rcnotefrom'                        => "'''$2''' tarihından itibaren yapılğan deñişiklikler aşağıdadır (eñ çоq '''$1''' dane saife kösterile).",
 'rclistfrom'                        => '$1 tarihından berli yapılğan deñişikliklerni köster',
 'rcshowhideminor'                   => 'kiçik deñişikliklerni $1',
 'rcshowhidebots'                    => 'botlarnı $1',
@@ -1493,7 +1493,7 @@ Lütfen, başqa bir ad saylap yazıñız.',
 'allmessages'         => 'Sistema beyanatları',
 'allmessagesname'     => 'İsim',
 'allmessagesdefault'  => 'Original metin',
-'allmessagescurrent'  => 'Qullanımdaki metin',
+'allmessagescurrent'  => 'Şimdi qullanılğan metin',
 'allmessagestext'     => 'İşbu cedvel MediaWikide mevcüt olğan bütün sistema beyanatlarınıñ cedvelidir.
 MediaWiki interfeysiniñ çeşit tillerge tercime etüvde iştirak etmege isteseñiz [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] ve [http://translatewiki.net Betawiki] saifelerine ziyaret etiñiz.',
 'allmessagesfilter'   => 'Metin ayrıştırıcı filtrı:',
@@ -1726,7 +1726,7 @@ Er satır * işaretinen başlamalı. Satırnıñ birinci bağlantısı qоşmağ
 
 # External editor support
 'edit-externally'      => 'Fayl üzerinde kompyuteriñizde bulunğan programmalar ile deñişiklikler yapıñız',
-'edit-externally-help' => 'Daa fazla malümat içün [http://www.mediawiki.org/wiki/Manual:External_editors bu saifege] (İnglizce)  baqıp olasıñız.',
+'edit-externally-help' => '(Daa ziyade malümat içün [http://www.mediawiki.org/wiki/Manual:External_editors bu saifege] (İnglizce)  baqıp olasıñız.)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'episini',

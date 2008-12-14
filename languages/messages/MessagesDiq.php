@@ -39,7 +39,7 @@ href="" class="internal"}?{/a}) bımocne.',
 'tog-enotifrevealaddr'        => 'E-mailadresa mı emailanê xeberan de bımocne',
 'tog-shownumberswatching'     => 'Amarê (reqemê) karberanê seyrkerdoğan bımocne',
 'tog-fancysig'                => 'İmza xame (bê gıreo otomatik be perra karberan ser)',
-'tog-externaleditor'          => 'Editorê teberi standart bıxebetne (tenya seba ekspertano, komputerê şıma de ayarê xususiy lazımê)',
+'tog-externaleditor'          => 'Editorê teberi standard bıxebetne (tenya seba ekspertano, komputerê şıma de ayarê xususiy lazımê)',
 'tog-externaldiff'            => 'Têverşanayışan pê programê teberi vıraze (tenya seba ekspertano, komputerê şıma de ayarê xususiy lazımê)',
 'tog-showjumplinks'           => 'Gırey "şo"y aktif/feel ke',
 'tog-uselivepreview'          => 'Verqayto cınde bıgurene/bıxebetne (JavaScript) (hewna cerrebnayış dero)',
@@ -51,8 +51,8 @@ href="" class="internal"}?{/a}) bımocne.',
 'tog-diffonly'                => 'Qıyasê verziyonan de tek ferqan bımocne, perra butıne nê',
 'tog-showhiddencats'          => 'Kategoriyanê dızdine bımocne',
 
-'underline-always'  => 'tım',
-'underline-never'   => 'qet',
+'underline-always'  => 'Tım',
+'underline-never'   => 'Qet',
 'underline-default' => 'Qerar browseri (cıgeyraoği) dest dero',
 
 'skinpreview' => '(Verqayt)',
@@ -220,20 +220,24 @@ href="" class="internal"}?{/a}) bımocne.',
 'badaccess' => 'Xeta mısadey',
 
 'ok'                      => 'Temam',
+'retrievedfrom'           => '"$1" ra ard',
 'youhavenewmessages'      => 'To rê estê $1 ($2).',
 'newmessageslink'         => 'mesajê newey',
-'newmessagesdifflink'     => 'vurnayışo peyên',
+'newmessagesdifflink'     => 'vurnayişo peyên',
 'youhavenewmessagesmulti' => 'To rê $1 de mesajê newey estê',
 'editsection'             => 'bıvurne',
+'editsection-brackets'    => '[$1]',
 'editold'                 => 'bıvurne',
+'viewsourceold'           => 'çımey bıvêne',
+'editsectionhint'         => 'Qısımê vurnayışi: $1',
 'toc'                     => 'Tedeestey',
 'showtoc'                 => 'bımocne',
 'hidetoc'                 => 'bınımne',
 'thisisdeleted'           => 'Bıvêne ya ki restore ke $1?',
 'viewdeleted'             => '$1 bıvêne?',
 'restorelink'             => '{{PLURAL:$1|yew vurnayışo esterıte (pakbiyae)|$1 vurnayışê esterıtey (pakbiyaey)}}',
-'feedlinks'               => 'Weyikerdış (feed):',
-'feed-invalid'            => 'Invalid subscription feed type (Beğşo nêvêrde).',
+'feedlinks'               => 'Weyikerdış:',
+'feed-invalid'            => 'Tipê weyikerdışê beğşê nêvêrdey.',
 'red-link-title'          => '$1 (heta nıka nênusiyao)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -312,6 +316,14 @@ It must have at least $1 characters and be different from your username.',
 # Revision deletion
 'rev-delundel' => 'bımocne/bınımne',
 
+# Search results
+'powersearch'        => 'Cıgeyrayışo hera',
+'powersearch-legend' => 'Cıgeyrayışo hera',
+'powersearch-ns'     => 'Cayanê nameyan de cıgeyrayış:',
+'powersearch-redir'  => 'Raçarnayeyan lista ke',
+'powersearch-field'  => 'Cıgeyre',
+'search-external'    => 'Cıgeyrayışê teberi',
+
 # Preferences page
 'mypreferences'   => 'tercihê mı',
 'qbsettings-none' => 'çino',
@@ -329,11 +341,15 @@ It must have at least $1 characters and be different from your username.',
 'rightsnone' => '(çino)',
 
 # Recent changes
-'recentchanges' => 'Vurnayışê peyêni',
-'diff'          => 'ferq',
-'hist'          => 'ver',
-'hide'          => 'Bınımne',
-'show'          => 'Bımocne',
+'recentchanges'   => 'Vurnayışê peyêni',
+'diff'            => 'ferq',
+'hist'            => 'ver',
+'hide'            => 'Bınımne',
+'show'            => 'Bımocne',
+'minoreditletter' => 'q',
+'newpageletter'   => 'N',
+'boteditletter'   => 'b',
+'sectionlink'     => '→',
 
 # Recent changes linked
 'recentchangeslinked' => 'Ney sero vurnayışi',
@@ -390,6 +406,9 @@ It must have at least $1 characters and be different from your username.',
 'log-search-submit'   => 'Şo',
 
 # Special:AllPages
+'alphaindexline' => '$1 ra $2ine',
+'nextpage'       => 'Pela peyêne ($1)',
+'prevpage'       => 'Pela verêne ($1)',
 'allpagessubmit' => 'Şo',
 
 # Special:Categories
@@ -416,9 +435,22 @@ It must have at least $1 characters and be different from your username.',
 # What links here
 'whatlinkshere' => 'Gırey be pele',
 
+# Block/unblock
+'blocklink'    => 'kılit ke',
+'unblocklink'  => 'ake',
+'contribslink' => 'iştıraki',
+'autoblocker'  => 'Şıma otomatikmen kılit biy, çıke adresa şımawa \'\'IP\'\'y terefê "[[User:$1|$1]]" gureniyena. 
+Sebebê kılit-biyayışê $1\'i: "$2"o',
+'blocklogpage' => 'Protokolê kıliti',
+
 # Tooltip help for the actions
-'tooltip-pt-userpage' => 'Pela mına karberi',
-'tooltip-pt-mytalk'   => 'Pela mına werênayışi',
+'tooltip-pt-userpage'     => 'Pela mına karberi',
+'tooltip-pt-mytalk'       => 'Pela mına werênayışi',
+'tooltip-n-mainpage'      => 'Pela Seri bıvêne',
+'tooltip-n-portal'        => 'Heqa projey de, tı çı eşkenay bıkerê, koti çiy vêniyenê',
+'tooltip-n-currentevents' => 'Vurnayışanê peyênan de melumatê pey bıvêne',
+'tooltip-n-recentchanges' => 'Wiki de lista vurnayışanê peyênan.',
+'tooltip-n-randompage'    => 'Kamci pele ke raşt amey bar ke',
 
 # Attribution
 'lastmodifiedatby' => 'Ena pele tewr peyên roca $2, $1 by $3. de biya rocaniye', # $1 date, $2 time, $3 user

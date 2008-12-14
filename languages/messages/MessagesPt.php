@@ -730,7 +730,7 @@ Caso continue a não funcionar, tente [[Special:UserLogout|sair]] e voltar a ent
 
 <strong>Por favor, tente novamente caso esta seja uma tentativa de edição legítima.
 Caso continue a não funcionar, tente [[Special:UserLogout|desautenticar-se]] e voltar a entrar na sua conta.</strong>",
-'token_suffix_mismatch'            => '<strong>A sua edição foi rejeitada uma vez que seu software de navegação mutilou os sinais de pontuação do sinal de edição. A edição foi rejeitada para evitar perdas no texto da página.
+'token_suffix_mismatch'            => '<strong>A sua edição foi rejeitada uma vez que seu software de navegação mutilou os sinais de pontuação no identificador de edição. A edição foi rejeitada para evitar perdas no texto da página.
 Isso acontece ocasionalmente quando se usa um serviço de proxy anonimizador mal configurado.</strong>',
 'editing'                          => 'Editando $1',
 'editingsection'                   => 'Editando $1 (secção)',
@@ -1331,7 +1331,7 @@ Um clique sobre um cabeçalho de coluna altera a ordenação.',
 'shareduploadduplicate-linktext' => 'outro ficheiro',
 'shareduploadconflict'           => 'Este ficheiro tem o mesmo nome que $1 do repositório partilhado.',
 'shareduploadconflict-linktext'  => 'outro ficheiro',
-'noimage'                        => 'Não existe nenhum ficheiro com este nome, mas, pode $1.',
+'noimage'                        => 'Não existe nenhum ficheiro com este nome, mas pode $1.',
 'noimage-linktext'               => 'carregá-lo',
 'uploadnewversion-linktext'      => 'Carregar uma nova versão deste ficheiro',
 'imagepage-searchdupe'           => 'Procurar por ficheiros duplicados',
@@ -1774,6 +1774,8 @@ Consulte o [[Special:Log/delete|registo de eliminações]] para um registo das e
 'undelete-error-long'          => 'Foram encontrados erros ao tentar restaurar o ficheiro:
 
 $1',
+'undelete-show-file-confirm'   => 'Você tem certeza de que deseja visualizar a versão eliminada de "<nowiki>$1</nowiki>" das $3 de $2?',
+'undelete-show-file-submit'    => 'Sim',
 
 # Namespace form on various pages
 'namespace'      => 'Espaço nominal:',
@@ -2022,7 +2024,7 @@ As datas das edições e os seus editores serão mantidos.
 Todas as acções de importação transwiki são registadas no [[Special:Log/import|Registo de importações]].',
 'import-interwiki-history'   => 'Copiar todas as edições desta página',
 'import-interwiki-submit'    => 'Importar',
-'import-interwiki-namespace' => 'Transferir páginas para o espaço nominal:',
+'import-interwiki-namespace' => 'Domínio de destino:',
 'importtext'                 => 'Por favor, exporte o ficheiro da wiki de origem utilizando a ferramenta [[Special:Export|de exportar edições]] (Special:Export).
 Salve o ficheiro para o seu disco e importe-o aqui.',
 'importstart'                => 'Importando páginas...',
@@ -2045,6 +2047,8 @@ Salve o ficheiro para o seu disco e importe-o aqui.',
 'import-nonewrevisions'      => 'Todas as edições já haviam sido importadas.',
 'xml-error-string'           => '$1 na linha $2, coluna $3 (byte $4): $5',
 'import-upload'              => 'Enviar dados em XML',
+'import-token-mismatch'      => 'Perda dos dados da sessão. Por favor tente novamente.',
+'import-invalid-interwiki'   => 'Não é possível importar da wiki especificada.',
 
 # Import log
 'importlogpage'                    => 'Registo de importações',
@@ -2490,7 +2494,7 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 
 # External editor support
 'edit-externally'      => 'Editar este ficheiro utilizando uma aplicação externa',
-'edit-externally-help' => 'Consulte as [http://www.mediawiki.org/wiki/Manual:External_editors instruções de instalação] para mais informação.',
+'edit-externally-help' => '(Consulte as [http://www.mediawiki.org/wiki/Manual:External_editors instruções de instalação] para maiores informações)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'todas',

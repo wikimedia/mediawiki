@@ -985,9 +985,9 @@ Asseguratz-vos qu'aqueste cambiament pòsca conservar la continuitat de l'istori
 'noexactmatch-nocreate'     => "'''I a pas de pagina intitolada « $1 ».'''",
 'toomanymatches'            => 'Tròp d’ocuréncias son estadas trobadas, sètz pregat de sometre una requèsta diferenta.',
 'titlematches'              => "Correspondéncias dins los títols d'articles",
-'notitlematches'            => "Cap de títol d'article correspon pas a la recèrca.",
+'notitlematches'            => "Cap de títol d'article correspond pas a la recèrca.",
 'textmatches'               => "Correspondéncias dins los tèxtes d'articles",
-'notextmatches'             => "Cap de tèxt d'article correspon pas a la recèrca",
+'notextmatches'             => "Cap de tèxt d'article correspond pas a la recèrca",
 'prevn'                     => '$1 precedents',
 'nextn'                     => '$1 seguents',
 'viewprevnext'              => 'Veire ($1) ($2) ($3).',
@@ -1463,7 +1463,7 @@ Deurián puslèu puntar cap a una pagina apropriada.<br />
 Una pagina es tractada coma una pagina d’omonimia s'utiliza un modèl qu'es ligat a partir de [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'            => 'Redireccions doblas',
-'doubleredirectstext'        => 'Cada casa conten de ligams cap a la primièra e la segonda redireccion, e mai la primièra linha de tèxt de la segonda pagina, costumièrament, aquò provesís la « vertadièra » pagina cibla, cap a laquina la primièra redireccion deuriá redirigir.',
+'doubleredirectstext'        => 'Cada casa conten de ligams cap a la primièra e la segonda redireccion, e mai la primièra linha de tèxt de la segonda pagina, costumièrament, aquò provesís la « vertadièra » pagina cibla, cap a la quala la primièra redireccion deuriá redirigir.',
 'double-redirect-fixed-move' => '[[$1]] es estat renomenat, aquò es ara una redireccion cap a [[$2]]',
 'double-redirect-fixer'      => 'Corrector de redireccion',
 
@@ -1795,7 +1795,7 @@ En clicant sul boton '''''Reïnicializar''''', la bóstia de resumit e las casas
 'undeletehistory'              => "Se restablissètz la pagina, totas las revisions seràn plaçadas tornamai dins l'istoric.
 
 S'una pagina novèla amb lo meteis nom es estada creada dempuèi la supression, las revisions restablidas apareisseràn dins l'istoric anterior e la version correnta serà pas automaticament remplaçada.",
-'undeleterevdel'               => 'Lo restabliment serà pas efectuat se, fin finala, la version mai recenta de la pagina es parcialament suprimida. Dins aqueste cas, vos cal deseleccionatz las versions mai recentas (en naut). Las versions dels fichièrs a lasquinas avètz pas accès seràn pas restablidas.',
+'undeleterevdel'               => 'Lo restabliment serà pas efectuat se, fin finala, la version mai recenta de la pagina es parcialament suprimida. Dins aqueste cas, vos cal deseleccionatz las versions mai recentas (en naut). Las versions dels fichièrs a las qualas avètz pas accès seràn pas restablidas.',
 'undeletehistorynoadmin'       => "Aqueste article es estat suprimit. Lo motiu de la supression es indicat dins lo resumit çaijós, amb los detalhs dels utilizaires que l’an modificat abans sa supression. Lo contengut d'aquestas versions es pas accessible qu’als administrators.",
 'undelete-revision'            => 'Version suprimida de $1, (revision del $2) per $3 :',
 'undeleterevision-missing'     => 'Version invalida o mancanta. Benlèu avètz un ligam marrit, o la version es estada restablida o suprimida de l’archiu.',
@@ -1825,6 +1825,8 @@ Consultatz l’[[Special:Log/delete|istoric de las supressions]] per veire las p
 'undelete-error-long'          => "D'errors son estadas rencontradas al moment del restabliment del fichièr :
 
 $1",
+'undelete-show-file-confirm'   => 'Sètz segur(a) que volètz visionar una version suprimida del fichièr « <nowiki>$1</nowiki> » que data del $2 a $3 ?',
+'undelete-show-file-submit'    => 'Òc',
 
 # Namespace form on various pages
 'namespace'      => 'Espaci de noms :',
@@ -1946,7 +1948,7 @@ La rason balhada per $1 es : « $2 ».',
 'ipb_expiry_temp'                 => 'Las plajas dels utilizaires amagats deurián èsser permanentas.',
 'ipb_already_blocked'             => '« $1 » ja es blocat',
 'ipb_cant_unblock'                => 'Error : Lo blocatge d’ID $1 existís pas. Es possible qu’un desblocatge ja siá estat efectuat.',
-'ipb_blocked_as_range'            => "Error : L'adreça IP $1 es pas estada blocada dirèctament e doncas pòt pas èsser deblocada. Çaquelà, es estada blocada per la plaja $2 laquina pòt èsser deblocada.",
+'ipb_blocked_as_range'            => "Error : L'adreça IP $1 es pas estada blocada dirèctament e doncas pòt pas èsser deblocada. Çaquelà, es estada blocada per la plaja $2 la quala pòt èsser deblocada.",
 'ip_range_invalid'                => 'Plaja IP incorrècta.',
 'blockme'                         => 'Blocatz-me',
 'proxyblocker'                    => 'Blocaire de mandatari (proxy)',
@@ -2076,7 +2078,7 @@ Las datas de las versions e los noms dels editors seràn preservats.
 Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Log/import|jornal d’impòrt]].",
 'import-interwiki-history'   => "Copiar totas las versions de l'istoric d'aquesta pagina",
 'import-interwiki-submit'    => 'Importar',
-'import-interwiki-namespace' => 'Transferir las paginas dins l’espaci de nom :',
+'import-interwiki-namespace' => 'Espaci de noms de destinacion :',
 'importtext'                 => 'Exportatz lo fichièr dempuèi lo wiki d’origina en utilizant l’esplech Special:Export, salvatz-lo sus vòstre disc dur e copiatz-lo aicí.',
 'importstart'                => 'Impòrt de las paginas...',
 'import-revision-count'      => '$1 {{PLURAL:$1|version|versions}}',
@@ -2098,6 +2100,8 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 'import-nonewrevisions'      => 'Totas las revisions son estadas importadas deperabans.',
 'xml-error-string'           => '$1 a la linha $2, col $3 (octet $4) : $5',
 'import-upload'              => "Impòrt d'un fichier XML",
+'import-token-mismatch'      => 'Pèrda de las donadas de sesilha. Tornatz ensajar.',
+'import-invalid-interwiki'   => "Impossible d'importar dempuèi lo wiki especificat.",
 
 # Import log
 'importlogpage'                    => 'Istoric de las importacions de paginas',
@@ -2109,7 +2113,7 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => "Ma pagina d'utilizaire",
-'tooltip-pt-anonuserpage'         => "La pagina d'utilizare de l’IP amb laquina contribuissètz",
+'tooltip-pt-anonuserpage'         => "La pagina d'utilizare de l’IP amb la quala contribuissètz",
 'tooltip-pt-mytalk'               => 'Ma pagina de discussion',
 'tooltip-pt-anontalk'             => 'La pagina de discussion per aquesta adreça IP',
 'tooltip-pt-preferences'          => 'Mas preferéncias',
@@ -2590,7 +2594,7 @@ Variants for Chinese language
 
 # External editor support
 'edit-externally'      => 'Modificar aqueste fichièr en utilizant una aplicacion extèrna',
-'edit-externally-help' => 'Vejatz [http://www.mediawiki.org/wiki/Manual:External_editors las instruccions] per mai d’informacions.',
+'edit-externally-help' => "(Consultatz [http://www.mediawiki.org/wiki/Manual:External_editors/oc las instruccions d'installacion] per mai d’entresenhas)",
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'totes',

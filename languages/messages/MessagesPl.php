@@ -683,7 +683,7 @@ Możesz zignorować tę wiadomość, jeśli konto zostało utworzone przez pomy�
 'resetpass_announce'      => 'Zalogowałeś się, wykorzystując tymczasowe hasło otrzymane poprzez e-mail.
 Aby zakończyć proces logowania, musisz ustawić nowe hasło:',
 'resetpass_text'          => '<!-- Dodaj tekst -->',
-'resetpass_header'        => 'Resetuj hasło',
+'resetpass_header'        => 'Zmień hasło dla swojego konta',
 'resetpass_submit'        => 'Ustaw hasło i zaloguj się',
 'resetpass_success'       => 'Twoje hasło zostało pomyślnie zmienione! Trwa logowanie...',
 'resetpass_bad_temporary' => 'Nieprawidłowe hasło tymczasowe.
@@ -892,7 +892,7 @@ Podany przez $3 powód to ''$2''",
 'revnotfound'         => 'Wersja nie została odnaleziona',
 'revnotfoundtext'     => 'Żądana, starsza wersja strony nie została odnaleziona. Sprawdź użyty adres URL.',
 'currentrev'          => 'Aktualna wersja',
-'revisionasof'        => 'Wersja z dnia $1',
+'revisionasof'        => 'Wersja z $1',
 'revision-info'       => 'Wersja $2 z dnia $1',
 'previousrevision'    => '← poprzednia wersja',
 'nextrevision'        => 'następna wersja →',
@@ -1879,6 +1879,8 @@ Być może plik został już odtworzony.',
 'undelete-error-long'          => 'Napotkano błędy przy odtwarzaniu pliku:
 
 $1',
+'undelete-show-file-confirm'   => 'Czy na pewno chcesz zobaczyć usuniętą wersję pliku „<nowiki>$1</nowiki>” z $2 $3?',
+'undelete-show-file-submit'    => 'Tak',
 
 # Namespace form on various pages
 'namespace'      => 'Przestrzeń nazw',
@@ -2132,14 +2134,14 @@ Odwiedź [http://www.mediawiki.org/wiki/Localisation Tłumaczenie MediaWiki] ora
 'thumbnail_dest_directory' => 'Nie można utworzyć katalogu docelowego',
 
 # Special:Import
-'import'                     => 'Importuj strony',
+'import'                     => 'Import stron',
 'importinterwiki'            => 'Import transwiki',
 'import-interwiki-text'      => 'Wybierz wiki i nazwę strony do importowania.
 Daty oraz nazwy autorów zostaną zachowane.
 Wszystkie operacje importu transwiki są odnotowywane w [[Special:Log/import|rejestrze importu]].',
 'import-interwiki-history'   => 'Kopiuj całą historię edycji tej strony',
 'import-interwiki-submit'    => 'Importuj',
-'import-interwiki-namespace' => 'Przenieś strony do przestrzeni nazw',
+'import-interwiki-namespace' => 'Docelowa przestrzeń nazw:',
 'importtext'                 => 'Używając narzędzia [[Special:Export|eksportu]], wyeksportuj plik ze źródłowej wiki, zapisz go na swoim dysku, a następnie prześlij go tutaj.',
 'importstart'                => 'Trwa importowanie stron...',
 'import-revision-count'      => '$1 {{PLURAL:$1|wersja|wersje|wersji}}',
@@ -2161,6 +2163,8 @@ Wszystkie operacje importu transwiki są odnotowywane w [[Special:Log/import|rej
 'import-nonewrevisions'      => 'Wszystkie wersje zostały już wcześniej zaimportowane.',
 'xml-error-string'           => '$1 linia $2, kolumna $3 (bajt $4): $5',
 'import-upload'              => 'Prześlij dane w formacie XML',
+'import-token-mismatch'      => 'Utracono dane sesji. Proszę spróbować ponownie.',
+'import-invalid-interwiki'   => 'Nie można importować z podanej wiki.',
 
 # Import log
 'importlogpage'                    => 'Rejestr importu',
@@ -2611,7 +2615,7 @@ Pozostałe pola zostaną domyślnie ukryte.
 
 # External editor support
 'edit-externally'      => 'Edytuj plik, używając zewnętrznej aplikacji',
-'edit-externally-help' => "Więcej informacji o używaniu [http://www.mediawiki.org/wiki/Manual:External_editors zewnętrznych edytorów] (''ang.'').",
+'edit-externally-help' => '(Więcej informacji o używaniu [http://www.mediawiki.org/wiki/Manual:External_editors zewnętrznych edytorów]).',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'wszystkie',

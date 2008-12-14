@@ -1886,6 +1886,8 @@ $NEWPAGE
 'undelete-error-long'          => 'در زمان احیای پرونده خطا رخ داد:
 
 $1',
+'undelete-show-file-confirm'   => 'آیا مطمئن هستید که می‌خواهید یک نسخهٔ حذف شده از پرونده "<nowiki>$1</nowiki>" از $2 ساعت $3 را ببینید؟',
+'undelete-show-file-submit'    => 'آری',
 
 # Namespace form on various pages
 'namespace'      => 'فضای نام:',
@@ -2133,7 +2135,7 @@ $1',
 'import-interwiki-text'      => 'یک ویکی و یک نام صفحه را انتخاب کنید تا اطلاعات از آن درون‌ریزی شود. تاریخ نسخه‌ها و نام ویرایش‌کنندگان ثابت خواهد ماند. اطلاعات مربوط به درون‌ریزی صفحه‌ها در [[Special:Log/import|سیاههٔ درون‌ریزی‌ها]] درج خواهد شد.',
 'import-interwiki-history'   => 'تمام نسخه‌های تاریخچهٔ این صفحه انتقال داده شود',
 'import-interwiki-submit'    => 'درون‌ریزی شود',
-'import-interwiki-namespace' => 'صفحه‌ها به فضای نام انتقال داده شود',
+'import-interwiki-namespace' => 'فضای نام مقصد:',
 'importtext'                 => 'لطفاً پرونده را از منبع ویکی با کمک ابزار Special:Export برون‌بری کنید، روی دستگاه‌تان ذخیره کنید و این‌جا بارگذاری نمایید.',
 'importstart'                => 'در حال درون‌ریزی صفحه‌ها...',
 'import-revision-count'      => '$1 {{PLURAL:$1|ویرایش|ویرایش}}',
@@ -2155,6 +2157,8 @@ $1',
 'import-nonewrevisions'      => 'تمام نسخه‌ها قبلاً بارگذاری شده‌اند.',
 'xml-error-string'           => '$1 در سطر $2، ستون $3 (بایت $4): $5',
 'import-upload'              => 'بارگذاری داده XML',
+'import-token-mismatch'      => 'از دست رفتن اطلاعات نشست کاربری. لطفاً دوباره امتحان کنید.',
+'import-invalid-interwiki'   => 'از ویکی مشخص شده نمی‌توان درون‌ریزی انجام داد.',
 
 # Import log
 'importlogpage'                    => 'سیاههٔ درون‌ریزی‌ها',
@@ -2602,7 +2606,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'ویرایش این پرونده با استفاده از ویرایشگر خارجی',
-'edit-externally-help' => 'برای اطلاعات بیشتر [http://www.mediawiki.org/wiki/Manual:External_editors راهنمایی‌های تنظیمات] ویرایشگر خارجی را ببینید.',
+'edit-externally-help' => '(برای اطلاعات بیشتر [http://www.mediawiki.org/wiki/Manual:External_editors دستورالعمل تنظیم] را ببینید)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'همه',

@@ -715,8 +715,9 @@ Arcuni template non vènunu nziriti.',
 'post-expand-template-argument-category'  => 'Pàggini ca cuntèninu template cu argumenti mancanti',
 
 # "Undo" feature
-'undo-success' => "Lu canciamentu hà statu annullatu cu successu. Virificati lu cunfruntu prisintatu ccà sutta p'accuràrivi ca lu cuntinutu è chiddu addisiatu e doppu sarvati la pàggina pi cumplitari l'annullamentu.",
-'undo-failure' => "Lu canciamentu nun pò èssiri annullatu a càusa d'un cunflittu cu li canciamenti ntermedi.",
+'undo-success' => "Lu canciamentu pò essiri annullatu. 
+Virificati lu paraguni ccà sutta p'accuràrivi ca lu cuntinutu è chiddu addisiatu e doppu sarvati la pàggina pi cumplitari l'annullamentu.",
+'undo-failure' => "Lu canciamentu nun pò èssiri annullatu a càusa d'un cunflittu cu li canciamenti ntirmedi.",
 'undo-norev'   => 'Lu canciamentu nun pò essiri annullatu pirchì nun esisti o fù cancillato.',
 'undo-summary' => 'Annullatu lu canciamentu $1 di [[Special:Contributions/$2|$2]] ([[User talk:$2|discussioni]])',
 
@@ -1202,7 +1203,7 @@ Pi canciari l'urdinamentu, fari clic supra a la ntistazzioni dâ culonna scigghi
 'imagelist_description' => 'Discrizzioni',
 
 # Image description page
-'filehist'                       => 'Crunoluggìa dô file',
+'filehist'                       => 'Crunuluggìa dô file',
 'filehist-help'                  => 'Fari clic supra nu gruppu data/ura pi vìdiri lu file comu si prisintava ntô mumentu nnicatu.',
 'filehist-deleteall'             => 'cancilla tuttu',
 'filehist-deleteone'             => 'cancella',
@@ -1342,6 +1343,7 @@ Vèninu cunzidirati pàggini di disambiguazzioni tutti chiddi ca cuntèninu li t
 'popularpages'            => 'Pàggini cchiù visitati',
 'wantedcategories'        => 'Catigurìi addumannati',
 'wantedpages'             => 'Artìculi cchiù addumannati',
+'missingfiles'            => 'File pirdutu',
 'mostlinked'              => 'Pàggini supra cui agghìcanu cchiù liami',
 'mostlinkedcategories'    => 'Catigurìi cchiù richiamati',
 'mostlinkedtemplates'     => 'Template cchiù usati',
@@ -1652,6 +1654,8 @@ Li mpostazzioni correnti pâ pàggina sugnu <strong>$1</strong>:',
 'undelete-error-long'          => 'Si virificaru erruri ntô tentativu di annullari la cancillazzioni dô file:
 
 $1',
+'undelete-show-file-confirm'   => 'Si sicuru di vuliri taliari na rivisioni dû file scancillatu "<nowiki>$1</nowiki>" di $2 a $3?',
+'undelete-show-file-submit'    => 'Si',
 
 # Namespace form on various pages
 'namespace'      => 'Tipu di pàggina:',
@@ -1911,6 +1915,8 @@ Nta st'ùrtimu casu si pò macari utilizzari un culligamentu, p'asempiu [[{{ns:s
 'import-nonewrevisions'      => 'Tutti li rivisioni già foru mpurtati apprima.',
 'xml-error-string'           => '$1 a riga $2, culonna $3 (byte $4): $5',
 'import-upload'              => 'Càrrica dati XML',
+'import-token-mismatch'      => "Si pèrsiru li dati rilativi a la sissioni. Pi piaciri, prova n'àutra vota.",
+'import-invalid-interwiki'   => "E' mpussìbbili mpurtari dû pruggettu wiki nnicatu.",
 
 # Import log
 'importlogpage'                    => 'Mpurtazzioni',
@@ -2000,6 +2006,7 @@ Nta st'ùrtimu casu si pò macari utilizzari un culligamentu, p'asempiu [[{{ns:s
 'lastmodifiedatby' => "Sta pàggina hà statu canciata pi l'ùrtima vota lu $2, $1 di $3.", # $1 date, $2 time, $3 user
 'othercontribs'    => 'Basatu supra lu travagghiu di $1.',
 'others'           => 'àutri',
+'siteusers'        => '$1, utenti di {{SITENAME}}',
 'creditspage'      => 'Li autura dâ pàggina',
 'nocredits'        => 'Nudda nfurmazzioni supra li crèditi dispunìbbili pi sta pàggina.',
 
@@ -2039,10 +2046,11 @@ Nta st'ùrtimu casu si pò macari utilizzari un culligamentu, p'asempiu [[{{ns:s
 'markedaspatrollederror-noautopatrol' => 'Nun si disponi dî pirmissi nicissari pi signari li propi canciamenti comu virificati.',
 
 # Patrol log
-'patrol-log-page' => 'Canciamenti virificati',
-'patrol-log-line' => 'hà signatu la $1 di $2 comu virificata $3',
-'patrol-log-auto' => '(virìfica automàtica)',
-'patrol-log-diff' => 'virsioni $1',
+'patrol-log-page'   => 'Canciamenti virificati',
+'patrol-log-header' => 'Ccassutta sunnu elencati li virìfichi dî canci.',
+'patrol-log-line'   => 'hà signatu la $1 di $2 comu virificata $3',
+'patrol-log-auto'   => '(virìfica automàtica)',
+'patrol-log-diff'   => 'virsioni $1',
 
 # Image deletion
 'deletedrevision'                 => 'Rivisioni pricidenti, cancillata: $1.',
@@ -2074,6 +2082,7 @@ $1',
 # Special:NewImages
 'newimages'             => 'Gallarìa dî file novi',
 'imagelisttext'         => "Di sèquitu veni prisintata na lista di '''$1''' file urdinat{{PLURAL:$1|u|i}} pi $2.",
+'newimages-summary'     => 'Sta pàggina spiciali ammustra li file caricati di cchiù picca tempu.',
 'showhidebots'          => '($1 li bot)',
 'noimages'              => 'Nenti a vìdiri.',
 'ilsubmit'              => "Va' cerca",
@@ -2361,7 +2370,7 @@ Li lijami succissivi, supra la stissa riga, sunnu cunzidirati comu eccizzioni (p
 
 # External editor support
 'edit-externally'      => 'Cancia stu file usannu un prugramma sternu',
-'edit-externally-help' => "Pi maiuri nfurmazzioni cunzurtari li [http://www.mediawiki.org/wiki/Manual:External_editors istruzzioni] ('n ngrisi)",
+'edit-externally-help' => "Pi chiossai nfurmazzioni cunzurtari l'[http://www.mediawiki.org/wiki/Manual:External_editors istruzzioni] ('n ngrisi)",
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'tutti',
@@ -2371,23 +2380,23 @@ Li lijami succissivi, supra la stissa riga, sunnu cunzidirati comu eccizzioni (p
 'monthsall'        => 'tutti',
 
 # E-mail address confirmation
-'confirmemail'            => 'Cunferma ndirizzu e-mail',
-'confirmemail_noemail'    => 'Nun hà statu ndicatu un ndirizzu e-mail vàlidu ntê propi [[Special:Preferences|prifirenzi]].',
-'confirmemail_text'       => "Stu situ richiedi la virìfica di l ndirizzu e-mail prima di putiri usari li funzioni cunnessi a l'email. Prèmiri lu pulsanti ccà sutta pi mannari na richiesta di cunferma a lu propiu ndirizzu; ntô missaggiu è prisenti un culligamenti ca cunteni un còdici. Visitari lu culligamentu cu lu propiu browser pi cunfirmari ca lu ndirizzu e-mail è vàlidu.",
-'confirmemail_pending'    => "<div class=\"error\"> Lu còdici di cunferma hà già statu spiditu via posta alittrònica; siddu l'account hà statu criatu di ricenti, si preja d'attènniri l'arrivu dû còdici pi quarchi minutu prima di tintari d'addumannàrinni unu novu. </div>",
-'confirmemail_send'       => 'Manna un còdici di cunferma via e-mail.',
-'confirmemail_sent'       => 'Missaggiu e-mail di cunferma mannatu.',
-'confirmemail_oncreate'   => 'Un còdici di cunferma hà statu spiditu a lu ndirizzu di posta alittrònica ndicatu. Lu còdici nun è nicissariu pi tràsiri lu situ, ma è nicissariu furnirilu pi putiri abbilitari tutti li funzioni dû situ ca fannu usu dâ posta alittrònica.',
-'confirmemail_sendfailed' => "{{SITENAME}} nun pò mannari lu missaggiu e-mail di cunferma. Virificari ca lu nnirizzu nun cunteni caràttiri nun vàlidi.
+'confirmemail'             => 'Cunferma ndirizzu e-mail',
+'confirmemail_noemail'     => 'Nun hà statu ndicatu un ndirizzu e-mail vàlidu ntê propi [[Special:Preferences|prifirenzi]].',
+'confirmemail_text'        => "Stu situ richiedi la virìfica di l ndirizzu e-mail prima di putiri usari li funzioni cunnessi a l'email. Prèmiri lu pulsanti ccà sutta pi mannari na richiesta di cunferma a lu propiu ndirizzu; ntô missaggiu è prisenti un culligamenti ca cunteni un còdici. Visitari lu culligamentu cu lu propiu browser pi cunfirmari ca lu ndirizzu e-mail è vàlidu.",
+'confirmemail_pending'     => "<div class=\"error\"> Lu còdici di cunferma hà già statu spiditu via posta alittrònica; siddu l'account hà statu criatu di ricenti, si preja d'attènniri l'arrivu dû còdici pi quarchi minutu prima di tintari d'addumannàrinni unu novu. </div>",
+'confirmemail_send'        => 'Manna un còdici di cunferma via e-mail.',
+'confirmemail_sent'        => 'Missaggiu e-mail di cunferma mannatu.',
+'confirmemail_oncreate'    => 'Un còdici di cunferma hà statu spiditu a lu ndirizzu di posta alittrònica ndicatu. Lu còdici nun è nicissariu pi tràsiri lu situ, ma è nicissariu furnirilu pi putiri abbilitari tutti li funzioni dû situ ca fannu usu dâ posta alittrònica.',
+'confirmemail_sendfailed'  => "{{SITENAME}} nun pò mannari lu missaggiu e-mail di cunferma. Virificari ca lu nnirizzu nun cunteni caràttiri nun vàlidi.
 
 Missaggiu d'erruri dû mailer: $1",
-'confirmemail_invalid'    => 'Còdici di cunferma nun vàlidu. Lu còdici putissi èssiri scadutu.',
-'confirmemail_needlogin'  => 'È nicissariu $1 pi cunfirmari lu propiu ndirizzu e-mail.',
-'confirmemail_success'    => "Lu ndirizzu e-mail è cunfirmatu. Ora è pussìbbili esèquiri l'accessu e fari chinu usu dû situ.",
-'confirmemail_loggedin'   => 'Lu tò nnirizzu email fu ora cunfirmatu.',
-'confirmemail_error'      => 'Erruri ntô sarvataggiu dâ cunferma.',
-'confirmemail_subject'    => '{{SITENAME}}: richiesta di cunferma di lu ndirizzu',
-'confirmemail_body'       => 'Quarcunu, prubbabbirmenti tu stissu di lu ndirizzu IP $1, hà riggistratu l\'account "$2" supra {{SITENAME}} ndicannu stu ndirizzu e-mail. 
+'confirmemail_invalid'     => 'Còdici di cunferma nun vàlidu. Lu còdici putissi èssiri scadutu.',
+'confirmemail_needlogin'   => 'È nicissariu $1 pi cunfirmari lu propiu ndirizzu e-mail.',
+'confirmemail_success'     => "Lu ndirizzu e-mail è cunfirmatu. Ora è pussìbbili esèquiri l'accessu e fari chinu usu dû situ.",
+'confirmemail_loggedin'    => 'Lu tò nnirizzu email fu ora cunfirmatu.',
+'confirmemail_error'       => 'Erruri ntô sarvataggiu dâ cunferma.',
+'confirmemail_subject'     => '{{SITENAME}}: richiesta di cunferma di lu ndirizzu',
+'confirmemail_body'        => 'Quarcunu, prubbabbirmenti tu stissu di lu ndirizzu IP $1, hà riggistratu l\'account "$2" supra {{SITENAME}} ndicannu stu ndirizzu e-mail. 
 
 Pi cunfirmari ca l\'account t\'apparteni e attivari li funzioni rilativi a lu nvìu di e-mail supra {{SITENAME}}, grapi lu culligamentu siquenti cu lu tò browser: 
 
@@ -2398,6 +2407,8 @@ Siddu l\'account *nun* t\'apparteni, grapi lu siguenti culligamentu:
 $5
 
 Stu còdici di cunferma scadi automaticamenti a li $4.',
+'confirmemail_invalidated' => 'Addumannata di cunferma ndirizzu e-mail scancillata',
+'invalidateemail'          => 'Scancella la dumanna di cunferma e-mail',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[La nchiusioni di pàggini tra siti wiki nun è attiva]',
@@ -2528,13 +2539,35 @@ Stu còdici di cunferma scadi automaticamenti a li $4.',
 
 Mèttiri lu nomu dû file senza lu prifissu "{{ns:image}}:"',
 
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Circata dê file duppiuni',
+'fileduplicatesearch-legend'   => 'Circata di nu duppiuni',
+'fileduplicatesearch-filename' => 'Nomu dû file:',
+'fileduplicatesearch-submit'   => 'Circata',
+'fileduplicatesearch-info'     => '$1 × $2 pixel<br />Diminzioni: $3<br />Tipu MIME: $4',
+'fileduplicatesearch-result-1' => 'Non ci sunnu duppiuni li stissi dû file "$1".',
+'fileduplicatesearch-result-n' => '{{PLURAL:$2|C\'è ggià nu duppiuni lu stissu|Ci sunnu ggià $2 duppiuni li stissi}} dû file "$1".',
+
 # Special:SpecialPages
 'specialpages'                   => 'Pàggini spiciali',
+'specialpages-note'              => '----
+* Pàggini spiciali non risirvati.
+* <span class="mw-specialpagerestricted">Pàggini spiciali risirvati sulu a quarchi catigurìa d\'utenti.</span>',
 'specialpages-group-maintenance' => 'Resocunti di manutinzioni',
 'specialpages-group-other'       => 'Autri pàggini spiciali',
 'specialpages-group-login'       => 'Trasi / riggìstrazzioni',
 'specialpages-group-changes'     => 'Ùrtimi canciamenti e riggistri',
+'specialpages-group-media'       => 'File multimidiali - caricamentu e rennicunti',
 'specialpages-group-users'       => 'Utenti e diritti',
 'specialpages-group-highuse'     => 'Pàggini cchiù usati',
+'specialpages-group-pages'       => 'Listi di pàggini',
+'specialpages-group-pagetools'   => 'Strumenti ùtili pi li pàggini',
+'specialpages-group-wiki'        => 'Strumenti e nfurmazzioni supra lu pruggettu',
+'specialpages-group-redirects'   => 'Pàggini spiciali di redirect',
+'specialpages-group-spam'        => "Strumenti contr'a lu spam",
+
+# Special:BlankPage
+'blankpage'              => 'Pàggina vacanti',
+'intentionallyblankpage' => 'Sta pàggina è lassata vacanti apposta e è usata pi benchmark, ecc.',
 
 );

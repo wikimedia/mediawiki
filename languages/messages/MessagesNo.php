@@ -13,7 +13,9 @@
  * @author Jóna Þórunn
  * @author Kph
  * @author Kph-no
+ * @author Laaknor
  * @author Max sonnelid
+ * @author Najami
  * @author Samuelsen
  * @author Stigmj
  * @author Teak
@@ -604,7 +606,7 @@ Du kan ignorere denne beskjeden dersom kontoen ble opprettet ved en feil.',
 'resetpass'               => 'Resett kontopassord',
 'resetpass_announce'      => 'Du logget inn med en midlertidig e-postkode. For å fullføre innloggingen må du oppgi et nytt passord her:',
 'resetpass_text'          => '<!-- Legg til tekst her -->',
-'resetpass_header'        => 'Nullstill passord',
+'resetpass_header'        => 'Endre passord',
 'resetpass_submit'        => 'Angi passord og logg inn',
 'resetpass_success'       => 'Passordet ditt ble endret! Logger inn&nbsp;…',
 'resetpass_bad_temporary' => 'Ugyldig midlertidig passord. Du kan allerede ha endret passordet, eller bedt om et nytt midlertidig passord.',
@@ -1731,6 +1733,8 @@ Sjekk [[Special:Log/delete|slettingsloggen]] for en liste over nylige slettinger
 'undelete-error-long'          => 'Feil oppsto under filgjenoppretting:
 
 $1',
+'undelete-show-file-confirm'   => 'Er du sikker på at du vil vise en slettet versjon av filen «<nowiki>$1</nowiki>» fra den $2 klokken $3?',
+'undelete-show-file-submit'    => 'Ja',
 
 # Namespace form on various pages
 'namespace'      => 'Navnerom:',
@@ -1978,7 +1982,7 @@ Besøk [http://translatewiki.net Betawiki] om du ønsker å bidra med oversettel
 'import-interwiki-text'      => 'Velg en wiki og en side å importere. Revisjonsdatoer og bidragsyteres navn blir bevart. Alle transwiki-importeringer listes i [[Special:Log/import|importloggen]].',
 'import-interwiki-history'   => 'Kopier all historikk for denne siden',
 'import-interwiki-submit'    => 'Importer',
-'import-interwiki-namespace' => 'Flytt sidene til navnerommet:',
+'import-interwiki-namespace' => 'Målnavnerom:',
 'importtext'                 => 'Importer fila fra kildewikien med [[Special:Export|eksporteringsverktøyet]], lagre den på den egen datamaskin, og last den opp hit.',
 'importstart'                => 'Importerer sider&nbsp;…',
 'import-revision-count'      => '({{PLURAL:$1|Én revisjon|$1 revisjoner}})',
@@ -2000,6 +2004,8 @@ Besøk [http://translatewiki.net Betawiki] om du ønsker å bidra med oversettel
 'import-nonewrevisions'      => 'Alle revisjoner var importert fra før.',
 'xml-error-string'           => '$1 på linje $2, kolonne $3 (byte: $4): $5',
 'import-upload'              => 'Last opp XML-data',
+'import-token-mismatch'      => 'Sesjonsdata mistet. Venligst prøv igjen.',
+'import-invalid-interwiki'   => 'Kan ikke importere fra angitt wiki.',
 
 # Import log
 'importlogpage'                    => 'Importlogg',
@@ -2462,7 +2468,7 @@ Rotert 90° mot klokka og vridd vertikalt', # 0th row: left; 0th column: top
 
 # External editor support
 'edit-externally'      => 'Rediger denne fila med et eksternt program',
-'edit-externally-help' => 'Se [http://www.mediawiki.org/wiki/Manual:External_editors oppsettsinstruksjonene] for mer informasjon.',
+'edit-externally-help' => '(Se [http://www.mediawiki.org/wiki/Manual:External_editors oppsettsinstruksjonene] for mer informasjon)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'alle',

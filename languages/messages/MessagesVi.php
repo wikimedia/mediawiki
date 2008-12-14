@@ -1727,6 +1727,8 @@ Xem nhật trình xóa và phục hồi các trang gần đây tại [[Special:L
 'undelete-error-long'          => 'Xuất hiện lỗi khi phục hồi tập tin:
 
 $1',
+'undelete-show-file-confirm'   => 'Bạn có chắc mình muốn xem một phiên bản đã xóa của tập tin “<nowiki>$1</nowiki>” vào ngày $2 lúc $3?',
+'undelete-show-file-submit'    => 'Có',
 
 # Namespace form on various pages
 'namespace'      => 'Không gian tên:',
@@ -1982,7 +1984,7 @@ Ngày của phiên bản và tên người viết trang sẽ được giữ nguy
 Tất cả những lần nhập trang từ wiki khác được ghi lại ở [[Special:Log/import|nhật trình nhập trang]].',
 'import-interwiki-history'   => 'Sao chép tất cả các phiên bản cũ của trang này',
 'import-interwiki-submit'    => 'Nhập trang',
-'import-interwiki-namespace' => 'Chuyển các trang vào không gian tên:',
+'import-interwiki-namespace' => 'Không gian tên đích:',
 'importtext'                 => 'Xin hãy xuất tập tin từ wiki nguồn sử dụng [[Special:Export|tính năng xuất]].
 Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'importstart'                => 'Đang nhập các trang…',
@@ -2005,6 +2007,8 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'import-nonewrevisions'      => 'Tất cả các phiên bản đều đã được nhập trước đây.',
 'xml-error-string'           => '$1 tại dòng $2, cột $3 (byte $4): $5',
 'import-upload'              => 'Tải lên dữ liệu XML',
+'import-token-mismatch'      => 'Mất dữ liệu phiên làm việc. Xin hãy thử lại lần nữa.',
+'import-invalid-interwiki'   => 'Không thể nhập trang từ wiki được chỉ định.',
 
 # Import log
 'importlogpage'                    => 'Nhật trình nhập trang',
@@ -2451,7 +2455,7 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 
 # External editor support
 'edit-externally'      => 'Sửa bằng phần mềm bên ngoài',
-'edit-externally-help' => '* Xem thêm [http://www.mediawiki.org/wiki/Manual:External_editors hướng dẫn bằng tiếng Anh]',
+'edit-externally-help' => '(Xem [http://www.mediawiki.org/wiki/Manual:External_editors hướng dẫn cài đặt bằng tiếng Anh] để biết thêm thông tin)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'tất cả',

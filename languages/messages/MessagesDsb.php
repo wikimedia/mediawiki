@@ -580,7 +580,7 @@ Móžoš toś te zdźělenje ignorowaś, jolic toś te konto jo se jano zamólnj
 'resetpass'               => 'Šćitne gronidło za konta nastajiś.',
 'resetpass_announce'      => 'Sy z nachylnym e-mailowym šćitnym gronidłom pśizjawjony. Aby pśizjawjenje zakóńcył, zapódaj how nowe šćitne gronidło:',
 'resetpass_text'          => '<!-- Dodaj how tekst -->',
-'resetpass_header'        => 'Šćitne gronidło nastajiś',
+'resetpass_header'        => 'Kontowe gronidło změniś',
 'resetpass_submit'        => 'Šćitne gronidło nastajiś a se pśizjawiś',
 'resetpass_success'       => 'Twójo nowe šćitne gronidło jo nastajone. Něnto se pśizjaw …',
 'resetpass_bad_temporary' => 'Nachylne e-mailowe šćitne gronidło njejo korektne. Sy swójo šćitne gronidło južo pśeměnił(a) abo wó nowe nachylne gronidło pšošył(a).',
@@ -804,7 +804,7 @@ Snaź jo se z wiki wulašował abo hynac pómjenił.
 'rev-delundel'                => 'pokazaś/schowaś',
 'revisiondelete'              => 'Wersije wulašowaś/wótnowiś',
 'revdelete-nooldid-title'     => 'Njepłaśiwa celowa wersija',
-'revdelete-nooldid-text'      => 'Njejsy pak žednu celowu wersiju pódał, aby se toś ta funkcija wuwjadła, podana funkcija njeeksistujo pak wopytujoš aktualnu wersiju chowaś.',
+'revdelete-nooldid-text'      => 'Njejsy pak žednu celowu wersiju pódał, aby se toś ta funkcija wuwjadła, pódana funkcija njeeksistujo pak wopytujoš aktualnu wersiju chowaś.',
 'revdelete-selected'          => "'''{{PLURAL:$2|Wuzwólona wersija|Wuzwólonej wersiji|Wuzwólone wersije}} wót [[:$1]].'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Wuzwólony protokolowe tšojenje|Wuzwólonej protokolowe tšojeni|wuzwólone protokolowe tšojenja}}:'''",
 'revdelete-text'              => "'''Wulašowane wersije budu dalej se wujawjowaś w stawiznach boka, ale jich wopśimjeśe njebuźo za zjawnosć wěcej wiźobna.'''
@@ -1433,7 +1433,7 @@ Bok wobjadnawa se ako bok wujasnjenja zapśimjeśa, gaž wótkazujo na nju [[Med
 'booksources'               => 'Pytanje pó ISBN',
 'booksources-search-legend' => 'Knigłowe žrědła pytaś',
 'booksources-go'            => 'Pytaś',
-'booksources-text'          => 'To jo lisćina z wótkazami na internetowe boki, kótarež pśedawaju nowe a trjebane knigły. Tam mógu teke dalšne informacije wó knigłach byś. {{SITENAME}} njezwisujo góspodarsce z žednym z toś tych póbitowarjow.',
+'booksources-text'          => 'To jo lisćina z wótkazami na internetowe boki, kótarež pśedawaju nowe a trjebane knigły. Tam mógu teke dalšne informacije wó knigłach byś. {{SITENAME}} njezwisujo góspodarski z žednym z toś tych póbitowarjow.',
 
 # Special:Log
 'specialloguserlabel'  => 'Wužywaŕ:',
@@ -1707,6 +1707,8 @@ W [[Special:Log/delete|log-lisćinje wulašowanjow]] namakajoš pśeglěd wulaš
 'undelete-error-long'          => 'Zmólki pśi nawrośenju dataje:
 
 $1',
+'undelete-show-file-confirm'   => 'Coš se napšawdu wulašowanu wersiju dataje "<nowiki>$1</nowiki>" wót $2 $3 woglědaś?',
+'undelete-show-file-submit'    => 'Jo',
 
 # Namespace form on various pages
 'namespace'      => 'Mjenjowy rum:',
@@ -1903,7 +1905,7 @@ Bok „[[:$1]]“ južo eksistěrujo. Coš jen wulašowaś, aby mógał toś ten
 'delete_and_move_reason'  => 'wulašowane, aby było městno za pśesunjenje',
 'selfmove'                => 'Wuchadne a celowe mě stej identiskej; njejo móžno, bok na sam se pśesunuś.',
 'immobile_namespace'      => 'Wuchadne abo celowe mě jo šćitane; njejo móžno, boki z togo resp. do togo mjenjowego ruma pśesuwaś.',
-'imagenocrossnamespace'   => 'Dataja njedajo se z mjenjowego ruma {{ns:image}} wen pśesunuś',
+'imagenocrossnamespace'   => 'Dataja njedajo se pśesunuś do mjenjowego ruma, kótarež njejo za dataje.',
 'imagetypemismatch'       => 'Nowy datajowy sufiks swójomu typoju njewótpowědujo',
 'imageinvalidfilename'    => 'Mě celoweje dataje jo njepłaśiwe',
 'fix-double-redirects'    => 'Dalejpósrědnjenja, kótarež wótkazuju na originalny titel, aktualizěrowaś',
@@ -1952,7 +1954,7 @@ Datumy wersijow a wužywarske mjenja pśi tym se njezměniju.
 Wšykne transwiki-importowe akcije protokolěruju se w [[Special:Log/import|log-lisćinje importow]].',
 'import-interwiki-history'   => 'Importěruj wšykne wersije toś togo boka',
 'import-interwiki-submit'    => 'Importěrowaś',
-'import-interwiki-namespace' => 'Importěruj boki do mjenjowego ruma:',
+'import-interwiki-namespace' => 'Celowy mjenjowy rum:',
 'importtext'                 => 'Eksportěruj pšosym dataju ze žredlowego wikija z pomocu [[Special:Export|eksporteje funkcije]]. Składuj ju na swójom licadle a nagraj su sem.',
 'importstart'                => 'Importěrowanje bokow...',
 'import-revision-count'      => '$1 {{PLURAL:$1|wersija|wersiji|wersije}}',
@@ -1974,6 +1976,8 @@ Wšykne transwiki-importowe akcije protokolěruju se w [[Special:Log/import|log-
 'import-nonewrevisions'      => 'Wšykne wersije buchu južo pjerwjej importowane.',
 'xml-error-string'           => '$1 smužka $2, słup $3, (Byte $4): $5',
 'import-upload'              => 'XML-daty nagraś',
+'import-token-mismatch'      => 'Zgubjenje posejźeńskich datow. Pšosym wopytaj hyšći raz.',
+'import-invalid-interwiki'   => 'Njejo móžno importěrowaś z pódanego wikija.',
 
 # Import log
 'importlogpage'                    => 'Log-lisćinu importěrowaś',
@@ -2420,7 +2424,7 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 
 # External editor support
 'edit-externally'      => 'Dataje z eksternym programom wobźěłaś',
-'edit-externally-help' => 'Za dalšne informacije glědaj [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions].',
+'edit-externally-help' => '(Za dalšne informacije glědaj [http://www.mediawiki.org/wiki/Manual:External_editors instalaciske instrukcije]).',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'wšykne',
@@ -2553,18 +2557,18 @@ Móžoš teke [[Special:Watchlist/edit|standardny editor wužywaś]].',
 'watchlisttools-raw'  => 'Wobglědowańka wobźěłaś',
 
 # Iranian month names
-'iranian-calendar-m1'  => 'Prědny mjasec Jalāli',
-'iranian-calendar-m2'  => 'Drugi mjasec Jalāli',
-'iranian-calendar-m3'  => 'Tśeśi mjasec Jalāli',
-'iranian-calendar-m4'  => 'Stwórty mjasec Jalāli',
-'iranian-calendar-m5'  => 'Pěty mjasec Jalāli',
-'iranian-calendar-m6'  => 'Šesty mjasec Jalāli',
-'iranian-calendar-m7'  => 'Sedymy mjasec Jalāli',
-'iranian-calendar-m8'  => 'Wósymy mjasec Jalāli',
-'iranian-calendar-m9'  => 'Źewjety mjasec Jalāli',
-'iranian-calendar-m10' => 'Źasety mjasec Jalāli',
-'iranian-calendar-m11' => 'Jadenasty mjasec Jalāli',
-'iranian-calendar-m12' => 'Dwanasty mjasec Jalāli',
+'iranian-calendar-m1'  => 'Farwardin',
+'iranian-calendar-m2'  => 'Ordibehešt',
+'iranian-calendar-m3'  => 'Chordad',
+'iranian-calendar-m4'  => 'Tir',
+'iranian-calendar-m5'  => 'Mordad',
+'iranian-calendar-m6'  => 'Šahriwar',
+'iranian-calendar-m7'  => 'Mehr',
+'iranian-calendar-m8'  => 'Aban',
+'iranian-calendar-m9'  => 'Azar',
+'iranian-calendar-m10' => 'Dej',
+'iranian-calendar-m11' => 'Bahman',
+'iranian-calendar-m12' => 'Esfand',
 
 # Core parser functions
 'unknown_extension_tag' => 'Njeznaty tag rozšyrjenja „$1“',

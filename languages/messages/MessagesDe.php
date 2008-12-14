@@ -6,6 +6,7 @@
  *
  * @author Church of emacs
  * @author Jimmy Collins <jimmy.collins@web.de>
+ * @author Melancholie
  * @author Metalhead64
  * @author MichaelFrey
  * @author Omnipaedista
@@ -13,6 +14,7 @@
  * @author Purodha
  * @author Raimond Spekking (Raymond) <raimond.spekking@gmail.com> since January 2007
  * @author Red Baron
+ * @author Remember the dot
  * @author Revolus
  * @author Spacebirdy
  * @author Tim Bartel (avatar) <wikipedistik@computerkultur.org> small changes
@@ -534,7 +536,7 @@ $2',
 'customcssjsprotected' => 'Du bist nicht berechtigt, diese Seite zu bearbeiten, da sie zu den persönlichen Einstellungen eines anderen Benutzers gehört.',
 'ns-specialprotected'  => 'Spezialseiten können nicht bearbeitet werden.',
 'titleprotected'       => "Eine Seite mit diesem Namen kann nicht angelegt werden.
-Die Sperre wurde durch [[User:$1|Benutzer:$1]] mit der Begründung ''„$2“'' eingerichtet.",
+Die Sperre wurde durch [[User:$1|$1]] mit der Begründung ''„$2“'' eingerichtet.",
 
 # Virus scanner
 'virus-badscanner'     => 'Fehlerhafte Konfiguration: unbekannter Virenscanner: <i>$1</i>',
@@ -636,7 +638,7 @@ Falls das Benutzerkonto irrtümlich angelegt wurde, kannst du diese Nachricht ig
 'resetpass'               => 'Passwort für Benutzerkonto zurücksetzen',
 'resetpass_announce'      => 'Anmeldung mit dem per E-Mail zugesandten Code. Um die Anmeldung abzuschließen, musst du jetzt ein neues Passwort wählen.',
 'resetpass_text'          => '<!-- Ergänze den Text hier -->',
-'resetpass_header'        => 'Passwort zurücksetzen',
+'resetpass_header'        => 'Passwort ändern',
 'resetpass_submit'        => 'Passwort übermitteln und anmelden',
 'resetpass_success'       => 'Dein Passwort wurde erfolgreich geändert. Es folgt die Anmeldung …',
 'resetpass_bad_temporary' => 'Ungültiges vorläufiges Passwort. Du hast bereits dein Passwort erfolgreich geändert oder ein neues, vorläufiges Passwort angefordert.',
@@ -976,7 +978,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen
 'search-interwiki-caption'  => 'Schwesterprojekte',
 'search-interwiki-default'  => '$1 Ergebnisse:',
 'search-interwiki-more'     => '(weitere)',
-'search-mwsuggest-enabled'  => 'mit Vorschläge',
+'search-mwsuggest-enabled'  => 'mit Vorschlägen',
 'search-mwsuggest-disabled' => 'keine Vorschläge',
 'search-relatedarticle'     => 'Verwandte',
 'mwsuggest-disable'         => 'Vorschläge per Ajax deaktivieren',
@@ -1062,7 +1064,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen
 'userrights-lookup-user'      => 'Verwalte Gruppenzugehörigkeit',
 'userrights-user-editname'    => 'Benutzername:',
 'editusergroup'               => 'Benutzerrechte bearbeiten',
-'editinguser'                 => "Ändere Benutzerrechte von '''[[User:$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                 => "Ändere Benutzerrechte von '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'Benutzer-Gruppenzugehörigkeit bearbeiten',
 'saveusergroups'              => 'Gruppenzugehörigkeit ändern',
 'userrights-groupsmember'     => 'Mitglied von:',
@@ -1435,10 +1437,10 @@ Insgesamt {{PLURAL:$8|wurde '''1''' Datei|wurden '''$8''' Dateien}} hochgeladen.
 Insgesamt gab es '''$3''' {{PLURAL:$3|Seitenabruf|Seitenabrufe}} und '''$4''' {{PLURAL:$4|Seitenbearbeitung|Seitenbearbeitungen}} seit {{SITENAME}} eingerichtet wurde.
 Daraus ergeben sich '''$5''' Bearbeitungen pro Seite und '''$6''' Seitenabrufe pro Bearbeitung.
 
-Länge der [http://www.mediawiki.org/wiki/Manual:Job_queue „Job queue“]: '''$7'''",
+Länge der [http://www.mediawiki.org/wiki/Manual:Job_queue Auftragswarteschlange]: '''$7'''",
 'userstatstext'          => "Es gibt '''$1''' {{PLURAL:$1|registrierten|registrierte}} [[Special:ListUsers|Benutzer]].
 Davon {{PLURAL:$2|hat|haben}} '''$2''' Benutzer (=$4 %) $5-Rechte.",
-'statistics-mostpopular' => 'Meist besuchte Seiten',
+'statistics-mostpopular' => 'Meistbesuchte Seiten',
 
 'disambiguations'      => 'Begriffsklärungsseiten',
 'disambiguationspage'  => 'Template:Begriffsklärung',
@@ -1803,6 +1805,8 @@ Im [[Special:Log/delete|Lösch-Logbuch]] findest du eine Übersicht der gelösch
 'undelete-error-long'          => 'Es wurden Fehler beim Wiederherstellen einer Datei festgestellt:
 
 $1',
+'undelete-show-file-confirm'   => 'Bist du sicher, dass du eine gelöschte Version der Datei „<nowiki>$1</nowiki>“ vom $2, $3 Uhr sehen willst?',
+'undelete-show-file-submit'    => 'Ja',
 
 # Namespace form on various pages
 'namespace'      => 'Namensraum:',
@@ -2005,7 +2009,7 @@ Die Seite „[[:$1]]“ existiert bereits. Möchtest du diese löschen, um die S
 'delete_and_move_reason'  => 'gelöscht, um Platz für Verschiebung zu machen',
 'selfmove'                => 'Ursprungs- und Zielname sind gleich; eine Seite kann nicht auf sich selbst verschoben werden.',
 'immobile_namespace'      => 'Der Quell- oder Zielnamensraum ist geschützt; Verschiebungen in diesen Namensraum hinein oder aus diesem heraus sind nicht möglich.',
-'imagenocrossnamespace'   => 'Dateien können nicht aus dem {{ns:image}}-Namensraum heraus verschoben werden',
+'imagenocrossnamespace'   => 'Dateien können nicht aus dem {{ns:file}}-Namensraum heraus verschoben werden',
 'imagetypemismatch'       => 'Die neue Dateierweiterung ist nicht mit der alten identisch',
 'imageinvalidfilename'    => 'Der Ziel-Dateiname ist ungültig',
 'fix-double-redirects'    => 'Nach dem Verschieben doppelte Weiterleitungen auflösen',
@@ -2054,7 +2058,7 @@ Die Versionsdaten und Benutzernamen bleiben dabei erhalten.
 Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] protokolliert.',
 'import-interwiki-history'   => 'Importiere alle Versionen dieser Seite',
 'import-interwiki-submit'    => 'Import',
-'import-interwiki-namespace' => 'Importiere die Seite in den Namensraum:',
+'import-interwiki-namespace' => 'Zielnamensraum:',
 'importtext'                 => 'Auf dieser Spezialseite können über die [[Special:Export|Exportfunktion]] im Quellwiki exportierte Seiten in dieses Wiki importiert werden.',
 'importstart'                => 'Importiere Seite …',
 'import-revision-count'      => '– {{PLURAL:$1|1 Version|$1 Versionen}}',
@@ -2076,6 +2080,8 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'import-nonewrevisions'      => 'Es sind keine neuen Versionen zum Import vorhanden, alle Versionen wurden bereits früher importiert.',
 'xml-error-string'           => '$1 Zeile $2, Spalte $3, (Byte $4): $5',
 'import-upload'              => 'XML-Daten importieren',
+'import-token-mismatch'      => 'Verlust der Sessiondaten. Bitte versuche es erneut.',
+'import-invalid-interwiki'   => 'Aus dem angegebenen Wiki ist kein Import möglich.',
 
 # Import log
 'importlogpage'                    => 'Import-Logbuch',
@@ -2541,7 +2547,7 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 
 # External editor support
 'edit-externally'      => 'Diese Datei mit einem externen Programm bearbeiten',
-'edit-externally-help' => 'Siehe die [http://www.mediawiki.org/wiki/Manual:External_editors Installationsanweisungen] für weitere Informationen',
+'edit-externally-help' => '(Siehe die [http://www.mediawiki.org/wiki/Manual:External_editors Installationsanweisungen] für weitere Informationen)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'alle',
@@ -2602,7 +2608,7 @@ $1
 'trackbackdeleteok' => 'Trackback wurde erfolgreich gelöscht.',
 
 # Delete conflict
-'deletedwhileediting' => '<span class="error">Achtung: Diese Seite wurde gelöscht, nachdem du angefangen hast, sie zu bearbeiten!
+'deletedwhileediting' => '<span class="error">Achtung: Diese Seite wurde gelöscht, nachdem du angefangen hast sie zu bearbeiten!
 Im [{{fullurl:Special:Log|type=delete&page=}}{{FULLPAGENAMEE}} Lösch-Logbuch] findest du den Grund für die Löschung. Wenn du die Seite speicherst, wird sie neu angelegt.</span>',
 'confirmrecreate'     => "Benutzer [[User:$1|$1]] ([[User talk:$1|Diskussion]]) hat diese Seite gelöscht, nachdem du angefangen hast, sie zu bearbeiten. Die Begründung lautete:
 :''$2''

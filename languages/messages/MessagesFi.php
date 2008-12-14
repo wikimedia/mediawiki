@@ -590,7 +590,9 @@ Käyttäjätunnuksesi on luotu.
 'passwordtooshort'           => 'Salasanasi on ei kelpaa. Salasanan pitää olla vähintään {{PLURAL:$1|yhden merkin pituinen|$1 merkkiä pitkä}} ja eri kuin käyttäjätunnuksesi.',
 'mailmypassword'             => 'Lähetä uusi salasana sähköpostitse',
 'passwordremindertitle'      => 'Salasanamuistutus {{GRAMMAR:elative|{{SITENAME}}}}',
-'passwordremindertext'       => 'Joku IP-osoitteesta $1 pyysi {{GRAMMAR:partitive|{{SITENAME}}}} ($4) lähettämään uuden salasanan. Salasana käyttäjälle $2 on nyt $3. Kirjaudu sisään ja vaihda salasana.',
+'passwordremindertext'       => 'Joku IP-osoitteesta $1 pyysi {{GRAMMAR:partitive|{{SITENAME}}}} ($4) lähettämään uuden salasanan. Väliaikainen salasana käyttäjälle $2 on nyt $3. Kirjaudu sisään ja vaihda salasana.
+
+Jos joku muu on tehnyt tämän pyynnön, tai jos olet muistanut salasanasi ja et halua vaihtaa sitä, voit jättää tämän viestin huomiotta ja jatkaa vanhan salasanan käyttöä.',
 'noemail'                    => "Käyttäjälle '''$1''' ei ole määritelty sähköpostiosoitetta.",
 'passwordsent'               => 'Uusi salasana on lähetetty käyttäjän <b>$1</b> sähköpostiosoitteeseen.',
 'blocked-mailpassword'       => 'Osoitteellesi on asetettu muokkausesto, joka estää käyttämästä salasanamuistutustoimintoa.',
@@ -616,7 +618,7 @@ Sinun ei tarvitse huomioida tätä viestiä, jos tunnus on luotu virheellisesti.
 'resetpass'               => 'Salasanan alustus',
 'resetpass_announce'      => 'Kirjauduit sisään sähköpostitse lähetetyllä väliaikaissalasanalla. Päätä sisäänkirjautuminen asettamalla uusi salasana.',
 'resetpass_text'          => '<!-- Lisää tekstiä tähän -->',
-'resetpass_header'        => 'Uuden salasanan asettaminen',
+'resetpass_header'        => 'Muuta tunnuksen salasana',
 'resetpass_submit'        => 'Aseta salasana ja kirjaudu sisään',
 'resetpass_success'       => 'Salasanan vaihto onnistui.',
 'resetpass_bad_temporary' => 'Kelvoton väliaikaissalasana. Olet saattanut jo asettaa uuden salasanan tai pyytänyt uutta väliaikaissalasanaa.',
@@ -639,7 +641,7 @@ Sinun ei tarvitse huomioida tätä viestiä, jos tunnus on luotu virheellisesti.
 'nowiki_sample'   => 'Lisää muotoilematon teksti tähän',
 'nowiki_tip'      => 'Tekstiä, jota wiki ei muotoile',
 'image_sample'    => 'Esimerkki.jpg',
-'image_tip'       => 'Tallennettu kuva',
+'image_tip'       => 'Tallennettu tiedosto',
 'media_sample'    => 'Esimerkki.ogg',
 'media_tip'       => 'Mediatiedostolinkki',
 'sig_tip'         => 'Allekirjoitus aikamerkinnällä',
@@ -1226,7 +1228,7 @@ Harkitse, haluatko jatkaa tämän tiedoston tallentamista. Tiedoston poistoloki 
 'upload-proto-error'      => 'Virheellinen protokolla',
 'upload-proto-error-text' => 'Etälähetys on mahdollista vain osoitteista, jotka alkavat merkkijonolla <code>http://</code> tai <code>ftp://</code>.',
 'upload-file-error'       => 'Vakava virhe',
-'upload-file-error-text'  => 'Väliaikaistiedoston luominen epäonnistui. Ota yhteyttä sivuston ylläpitäjään.',
+'upload-file-error-text'  => 'Väliaikaistiedoston luominen epäonnistui. Ota yhteyttä sivuston [[Special:ListUsers/sysop|ylläpitäjään]].',
 'upload-misc-error'       => 'Virhe',
 'upload-misc-error-text'  => 'Tiedoston etälähetys ei onnistunut. Varmista, että antamasi osoite on oikein ja toimiva. Jos virhe ei katoa, ota yhteyttä sivuston ylläpitäjään.',
 
@@ -1327,7 +1329,7 @@ Harkitse, haluatko jatkaa tämän tiedoston tallentamista. Tiedoston poistoloki 
 
 # Unused templates
 'unusedtemplates'     => 'Käyttämättömät mallineet',
-'unusedtemplatestext' => 'Tässä on lista kaikista mallineista, joita ei ole liitetty toiselle sivulle. Muista tarkistaa onko malline siitä huolimatta käytössä.',
+'unusedtemplatestext' => 'Tässä on lista nimiavaruuden {{ns:template}} kaikista sivuista, joita ei ole liitetty toiselle sivulle. Muista tarkistaa onko malline siitä huolimatta käytössä.',
 'unusedtemplateswlh'  => 'muut linkit',
 
 # Random page
@@ -1382,7 +1384,7 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'nviews'                  => '$1 {{PLURAL:$1|lataus|latausta}}',
 'specialpage-empty'       => 'Tämä sivu on tyhjä.',
 'lonelypages'             => 'Yksinäiset sivut',
-'lonelypagestext'         => 'Seuraaviin sivuhin ei ole linkkejä muualta wikistä.',
+'lonelypagestext'         => 'Seuraaviin sivuhin ei ole linkkejä tai sisällytyksiä muualta wikistä.',
 'uncategorizedpages'      => 'Luokittelemattomat sivut',
 'uncategorizedcategories' => 'Luokittelemattomat luokat',
 'uncategorizedimages'     => 'Luokittelemattomat tiedostot',
@@ -1490,7 +1492,7 @@ Lisätietoa yksittäisistä käyttäjäoikeuksista saattaa löytyä [[{{MediaWik
 'mailnologintext' => 'Sinun pitää olla [[Special:UserLogin|kirjautuneena sisään]] ja [[Special:Preferences|asetuksissasi]] pitää olla toimiva ja <strong>varmennettu</strong> sähköpostiosoite, jotta voit lähettää sähköpostia muille käyttäjille.',
 'emailuser'       => 'Lähetä sähköpostia tälle käyttäjälle',
 'emailpage'       => 'Lähetä sähköpostia käyttäjälle',
-'emailpagetext'   => 'Jos tämä käyttäjä on antanut asetuksissaan kelvollisen sähköpostiosoitteen, alla olevalla lomakkeella voit lähettää yhden viestin hänelle. [[Special:Preferences|Omissa asetuksissasi]] annettu sähköpostiosoite näkyy sähköpostin lähettäjän osoitteena, jotta vastaanottaja voi suoraan vastata viestiin.',
+'emailpagetext'   => 'Jos tämä käyttäjä on antanut asetuksissaan kelvollisen sähköpostiosoitteen, alla olevalla lomakkeella voit lähettää hänelle viestin. [[Special:Preferences|Omissa asetuksissasi]] annettu sähköpostiosoite näkyy sähköpostin lähettäjän osoitteena, jotta vastaanottaja voi suoraan vastata viestiin.',
 'usermailererror' => 'Postitus palautti virheen:',
 'defemailsubject' => '{{SITENAME}}-sähköposti',
 'noemailtitle'    => 'Ei sähköpostiosoitetta',
@@ -1669,7 +1671,7 @@ Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|k
 'viewdeletedpage'              => 'Poistettujen sivujen selaus',
 'undeletepagetext'             => 'Seuraavat sivut on poistettu, mutta ne löytyvät vielä arkistosta, joten ne ovat palautettavissa. Arkisto saatetaan tyhjentää aika ajoin.',
 'undelete-fieldset-title'      => 'Palauta versiot',
-'undeleteextrahelp'            => "Palauta sivu valitsemalla '''''Palauta'''''. Voit palauttaa versiota valikoivasti valitsemalla vain niiden versioiden valintalaatikot, jotka haluat palauttaa.",
+'undeleteextrahelp'            => "Palauttaaksesi sivun koko muutoshistorian, jätä kaikki valintalaatikot tyhjiksi ja napsauta '''''Palauta'''''. Voit palauttaa versiota valikoivasti valitsemalla vain niiden versioiden valintalaatikot, jotka haluat palauttaa. Voit tyhjentää kommenttikentän ja kaikki valintalaatikot napsauttamalla '''''Tyhjennä'''''.",
 'undeleterevisions'            => '{{PLURAL:$1|Versio|$1 versiota}} arkistoitu.',
 'undeletehistory'              => 'Jos palautat sivun, kaikki versiot lisätään sivun historiaan. Jos uusi sivu samalla nimellä on luotu poistamisen jälkeen, palautetut versiot lisätään sen historiaan.',
 'undeleterevdel'               => 'Palautusta ei tehdä, jos sen seurauksena sivun uusin versio olisi osittain poistettu. Tässä tilanteessa poista uusimman poistettavan version piilotus. Tiedostoversioita, joihin sinulla ei ole katseluoikeutta ei palauteta.',
@@ -1702,6 +1704,8 @@ Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|k
 'undelete-error-long'          => 'Tiedoston palauttaminen epäonnistui:
 
 $1',
+'undelete-show-file-confirm'   => 'Haluatko varmasti nähdä poistetun version tiedostosta ”<nowiki>$1</nowiki>” ajalta $2 $3?',
+'undelete-show-file-submit'    => 'Kyllä',
 
 # Namespace form on various pages
 'namespace'      => 'Nimiavaruus',
@@ -1964,6 +1968,8 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'import-nonewrevisions'      => 'Kaikki versiot on tuotu aiemmin.',
 'xml-error-string'           => '$1 rivillä $2, sarakkeessa $3 (tavu $4): $5',
 'import-upload'              => 'Tallenna XML-tiedosto',
+'import-token-mismatch'      => 'Istuntotiedot ovat kadonneet. Yritä uudelleen.',
+'import-invalid-interwiki'   => 'Määritellystä wikistä ei voi tuoda.',
 
 # Import log
 'importlogpage'                    => 'Tuontiloki',
@@ -2138,7 +2144,7 @@ $1',
 # Bad image list
 'bad_image_list' => 'Listan muoto on seuraava:
 
-Vain *-merkillä alkavat rivit otetaan huomioon. Ensimmäisen linkin on osoitettava arveluttavaan kuvaan. Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa kuvaa saa käyttää.',
+Vain *-merkillä alkavat rivit otetaan huomioon. Ensimmäisen linkin on osoitettava arveluttavaan tiedostoon. Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa saa käyttää.',
 
 # Metadata
 'metadata'          => 'Sisältökuvaukset',
@@ -2406,7 +2412,7 @@ Vain *-merkillä alkavat rivit otetaan huomioon. Ensimmäisen linkin on osoitett
 
 # External editor support
 'edit-externally'      => 'Muokkaa tätä tiedostoa ulkoisessa sovelluksessa',
-'edit-externally-help' => 'Katso [http://www.mediawiki.org/wiki/Manual:External_editors ohjeet], jos haluat lisätietoja.',
+'edit-externally-help' => '(Katso [http://www.mediawiki.org/wiki/Manual:External_editors ohjeet], jos haluat lisätietoja.)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'kaikki',

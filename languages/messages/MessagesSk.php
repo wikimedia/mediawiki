@@ -1780,6 +1780,8 @@ Zoznam posledných mazaní a obnovení nájdete v [[Special:Log/delete|Zázname 
 'undelete-error-long'          => 'Vyskytli sa chyby pri obnovovaní súboru:
 
 $1',
+'undelete-show-file-confirm'   => 'Ste si istý, že chcete zobraziť zmazanú revíziu súboru „<nowiki>$1</nowiki>“ z $2 $3?',
+'undelete-show-file-submit'    => 'Áno',
 
 # Namespace form on various pages
 'namespace'      => 'Menný priestor:',
@@ -2045,7 +2047,7 @@ Dátumy revízií a mená používateľov budú zachované.
 Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname importov]].',
 'import-interwiki-history'   => 'Skopírovať všetky historické revízie tejto stránky',
 'import-interwiki-submit'    => 'Importovať',
-'import-interwiki-namespace' => 'Presunúť stránky do menného priestoru:',
+'import-interwiki-namespace' => 'Cieľový menný priestor:',
 'importtext'                 => 'Prosím exportujte súbor zo zdrojovej wiki použitím [[Special:Export|nástroja na export]], uložte ho na svoj disk a nahrajte sem.',
 'importstart'                => 'Importujú sa stránky...',
 'import-revision-count'      => '$1 {{PLURAL:$1|revízia|revízie|revízií}}',
@@ -2067,6 +2069,8 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 'import-nonewrevisions'      => 'Všetky revízie boli predtým importované.',
 'xml-error-string'           => '$1 na riadku $2, stĺpec $3 (bajt $4): $5',
 'import-upload'              => 'Nahrať XML údaje',
+'import-token-mismatch'      => 'Strata údajov relácie. Prosím, skúste to znova.',
+'import-invalid-interwiki'   => 'Nie je možné importovať zo zadanej wiki.',
 
 # Import log
 'importlogpage'                    => 'Záznam importov',
@@ -2512,7 +2516,7 @@ Každý ďalší odkaz na rovnakom riadku sa považuje za výnimku, t.j. článk
 
 # External editor support
 'edit-externally'      => 'Upraviť tento súbor pomocou externého programu',
-'edit-externally-help' => 'Viac informácií poskytnú inštrukcie pre nastavenie [http://www.mediawiki.org/wiki/Manual:External_editors externého editora].',
+'edit-externally-help' => '(Viac informácií poskytnú inštrukcie pre nastavenie [http://www.mediawiki.org/wiki/Manual:External_editors externého editora])',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'všetky',

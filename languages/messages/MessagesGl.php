@@ -341,7 +341,7 @@ O administrador que a pechou deu esta explicación: $1',
 Normalmente, isto é causado por seguir unha ligazón cara a unha diferenza vella ou a unha páxina que foi borrada.
 
 Se este non é o caso, pode ter atopado un erro no software.
-Por favor, comuníquello a un [[Special:ListUsers/sysop|administrador]] tomando nota da dirección URL.',
+Por favor, comuníquello a un [[Special:ListUsers/sysop|administrador]] tomando nota do enderezo URL.',
 'missingarticle-rev'   => '(revisión#: $1)',
 'missingarticle-diff'  => '(Dif: $1, $2)',
 'readonly_lag'         => 'A base de datos bloqueouse automaticamente mentres os servidores escravos da base de datos se actualizan desde o máster',
@@ -496,7 +496,7 @@ Pode facer caso omiso desta mensaxe se se creou esta conta por erro.',
 'resetpass'               => 'Borrar o contrasinal da conta',
 'resetpass_announce'      => 'Debe rexistrarse co código temporal que recibiu por correo electrónico. Para finalizar o rexistro debe indicar un novo contrasinal aquí:',
 'resetpass_text'          => '<!-- Engadir texto aquí -->',
-'resetpass_header'        => 'Contrasinal borrado',
+'resetpass_header'        => 'Cambiar o contrasinal da conta',
 'resetpass_submit'        => 'Poñer o contrasinal e entrar',
 'resetpass_success'       => 'O cambio do contrasinal realizouse con éxito! Agora pode entrar...',
 'resetpass_bad_temporary' => 'O contrasinal provisorio non é válido. Isto pode deberse a que xa mudou o contrasinal con éxito ou a que solicitou un novo contrasinal provisorio.',
@@ -1398,7 +1398,7 @@ Unha páxina trátase como páxina de homónimos cando nela se usa un modelo que
 'log-search-submit'    => 'Executar',
 'alllogstext'          => 'Vista combinada de todos os rexistros dipoñibles en {{SITENAME}}.
 Pode precisar máis a vista seleccionando o tipo de rexistro, o nome do usuario ou o título da páxina afectada.',
-'logempty'             => 'Non se atopou ningún ítem relacionado no rexistro.',
+'logempty'             => 'Non se atopou ningún elemento relacionado no rexistro.',
 'log-title-wildcard'   => 'Procurar os títulos que comecen con este texto',
 
 # Special:AllPages
@@ -1466,8 +1466,8 @@ O correo electrónico que inseriu [[Special:Preferences|nas súas preferencias]]
 'watchlist'            => 'A miña listaxe de vixilancia',
 'mywatchlist'          => 'A miña listaxe de vixilancia',
 'watchlistfor'         => "(de '''$1''')",
-'nowatchlist'          => 'Non ten ítems na súa listaxe de vixilancia.',
-'watchlistanontext'    => 'Faga o favor de $1 no sistema para ver ou editar os ítems da súa listaxe de vixilancia.',
+'nowatchlist'          => 'Non ten elementos na súa lista de vixilancia.',
+'watchlistanontext'    => 'Faga o favor de $1 no sistema para ver ou editar os elementos da súa lista de vixilancia.',
 'watchnologin'         => 'Non accedeu ao sistema',
 'watchnologintext'     => 'Debe [[Special:UserLogin|acceder ao sistema]] para modificar a súa listaxe de vixilancia.',
 'addedwatch'           => 'Engadido á listaxe de vixilancia',
@@ -1488,7 +1488,7 @@ Os cambios futuros nesta páxina e na súa páxina de conversa asociada serán l
 'watchmethod-recent'   => 'comprobando as edicións recentes na procura de páxinas vixiadas',
 'watchmethod-list'     => 'comprobando as páxinas vixiadas na procura de edicións recentes',
 'watchlistcontains'    => 'A súa listaxe de vixilancia ten $1 {{PLURAL:$1|páxina|páxinas}}.',
-'iteminvalidname'      => "Hai un problema co ítem '$1', nome non válido...",
+'iteminvalidname'      => 'Hai un problema co elemento "$1", nome non válido...',
 'wlnote'               => "Embaixo {{PLURAL:$1|está a última modificación|están as últimas '''$1''' modificacións}} {{PLURAL:$2|na última hora|nas últimas '''$2''' horas}}.",
 'wlshowlast'           => 'Amosar as últimas $1 horas, os últimos $2 días ou $3',
 'watchlist-show-bots'  => 'Mostrar os bots',
@@ -1674,6 +1674,8 @@ Comprobe o [[Special:Log/delete|rexistro de borrados]] para ver as entradas rece
 'undelete-error-long'          => 'Atopáronse erros ao desfacer a eliminación do ficheiro:
 
 $1',
+'undelete-show-file-confirm'   => 'Está seguro de que desexa ver unha versión borrada do ficheiro "<nowiki>$1</nowiki>" con data de $2 ás $3?',
+'undelete-show-file-submit'    => 'Si',
 
 # Namespace form on various pages
 'namespace'      => 'Espazo de nomes:',
@@ -1928,7 +1930,7 @@ As datas das revisións e os nomes dos editores mantéranse.
 Todas as accións relacionadas coa importación entre wikis poden verse no [[Special:Log/import|rexistro de importacións]].',
 'import-interwiki-history'   => 'Copiar todas as versións que hai no historial desta páxina',
 'import-interwiki-submit'    => 'Importar',
-'import-interwiki-namespace' => 'Transferir páxinas ao espazo de nomes:',
+'import-interwiki-namespace' => 'Espazo de nomes de destino:',
 'importtext'                 => 'Por favor, exporte o ficheiro do wiki de orixe usando a [[Special:Export|ferramenta para exportar]].
 Gráveo no seu disco duro e cárgueo aquí.',
 'importstart'                => 'Importando páxinas...',
@@ -1951,6 +1953,8 @@ Gráveo no seu disco duro e cárgueo aquí.',
 'import-nonewrevisions'      => 'Todas as revisións son previamente importadas.',
 'xml-error-string'           => '$1 na liña $2, col $3 (byte $4): $5',
 'import-upload'              => 'Cargar datos XML',
+'import-token-mismatch'      => 'Perdéronse os datos da sesión. Por favor, inténteo de novo.',
+'import-invalid-interwiki'   => 'Non se pode importar desde o wiki escificado.',
 
 # Import log
 'importlogpage'                    => 'Rexistro de importacións',
@@ -2038,7 +2042,7 @@ Gráveo no seu disco duro e cárgueo aquí.',
 'anonymous'        => 'Usuario(s) anónimo(s) de {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} usuario $1',
 'lastmodifiedatby' => 'A última modificación desta páxina foi o $1 as $2 por $3.', # $1 date, $2 time, $3 user
-'othercontribs'    => 'Baseado no traballo de $1.',
+'othercontribs'    => 'Baseado no traballo $1.',
 'others'           => 'outros',
 'siteusers'        => '{{SITENAME}} usuario(s) $1',
 'creditspage'      => 'Páxina de créditos',
@@ -2399,7 +2403,7 @@ Outros agocharanse por omisión.
 
 # External editor support
 'edit-externally'      => 'Editar este ficheiro cunha aplicación externa',
-'edit-externally-help' => 'Vexa as seguintes [http://www.mediawiki.org/wiki/Manual:External_editors instrucións] <small>(en inglés)</small> para máis información.',
+'edit-externally-help' => '(Vexa as seguintes [http://www.mediawiki.org/wiki/Manual:External_editors instrucións] <small>(en inglés)</small> para máis información.)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'todos',
@@ -2493,7 +2497,7 @@ $1',
 'table_pager_prev'         => 'Páxina anterior',
 'table_pager_first'        => 'Primeira páxina',
 'table_pager_last'         => 'Última páxina',
-'table_pager_limit'        => 'Mostrar $1 ítems por páxina',
+'table_pager_limit'        => 'Mostrar $1 elementos por páxina',
 'table_pager_limit_submit' => 'Ir',
 'table_pager_empty'        => 'Sen resultados',
 

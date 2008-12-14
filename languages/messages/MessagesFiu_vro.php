@@ -400,7 +400,7 @@ Tähelepandmisõs: niikavva, ku sa olõ-i tühäs tennüq uma võrgokaeja vaihõ
 'logout'                     => 'Nime alt välläminek',
 'userlogout'                 => 'Mineq nime alt vällä',
 'notloggedin'                => 'Olõ-i nimega sisse mint',
-'nologin'                    => 'Olõ-i inne nimega sisse lännüq? $1.',
+'nologin'                    => 'Sul olõ-i viil pruukjanimme? $1.',
 'nologinlink'                => 'Tiiq hindäle pruukjanimi',
 'createaccount'              => 'Tiiq pruukjanimi ärq',
 'gotaccount'                 => 'Ku sul jo om uma pruukjanimi, sis $1.',
@@ -427,19 +427,20 @@ Tähelepandmisõs: niikavva, ku sa olõ-i tühäs tennüq uma võrgokaeja vaihõ
 'noname'                     => 'Võlssi kirotõt pruukjanimi.',
 'loginsuccesstitle'          => "Sisseminek läts' kõrda",
 'loginsuccess'               => 'Olõt nimega sisse lännüq. Suq pruukjanimi om "$1".',
-'nosuchuser'                 => ' "$1" nimelist pruukjat olõ-i olõman. Kaeq kiräpilt üle vai pruugiq alanolõvat vormi vahtsõ konto luumisõs.',
+'nosuchuser'                 => '"$1" nimelist pruukjat olõ-i olõman. 
+Kaeq kiräpilt üle vai [[Special:UserLogin/signup|luuq vahtsõnõ pruukjanimi]].',
 'nosuchusershort'            => '"<nowiki>$1</nowiki>" nimelist pruukjat olõ-i olõman. Kas kirotit iks nime õigõhe?',
 'nouserspecified'            => 'Olõ-i kirotõt pruukjanimme.',
 'wrongpassword'              => 'Kirotõt võlss salasõna. Prooviq vahtsõst.',
 'wrongpasswordempty'         => 'Salasõna tohe-i tühi ollaq.',
 'passwordtooshort'           => "Salasõna om viganõ vai pall'o lühkü. Taan piät olõma vähämbält {{PLURAL:$1|1 märk|$1 märki}} ja taa tohe-i ollaq sama, miä su pruukjanimi.",
-'mailmypassword'             => 'Saadaq mullõ vahtsõnõ salasõna',
+'mailmypassword'             => 'Saadaq mullõ e-postiga vahtsõnõ salasõna',
 'passwordremindertitle'      => '{{SITENAME}} salasõna miildetulõtus',
-'passwordremindertext'       => "Kiäki (arvadaq saq esiq, puutri võrgonummõr $1),
-pallõl', et {{SITENAME}} ($4) saatnuq sullõ vahtsõ sisseminegi salasõna.
-Pruukja $2 salasõna om noq $3. Ku olõt nimega sisse lännüq, võit taa aotlidsõ salasõna ärq muutaq.
+'passwordremindertext'       => 'Kiäki (arvadaq saq esiq, puutri võrgonummõr $1),
+pallõl\' vahtsõt sisseminegi salasõnna {{SITENAME}} ($4) jaos.
+Pruukja "$2" salasõna om noq "$3". Ku olõt nimega sisse lännüq, võit taa aotlidsõ salasõna ärq muutaq.
 
-Ku taa pallõmisõ om tennüq kiä tõõnõ vai ku olõt uma salasõna miilde tulõtanuq ja taha-i taad inämb muutaq, sis teku-i seost sõnomist vällä ja pruugiq umma vanna salasõnna edesi.",
+Ku taa pallõmisõ om tennüq kiä tõõnõ vai ku olõt uma salasõna miilde tulõtanuq ja taha-i taad inämb muutaq, sis teku-i seost sõnomist vällä ja pruugiq umma vanna salasõnna edesi.',
 'noemail'                    => 'Kah\'os olõ-i meil pruukja "$1" e-postiaadrõssit.',
 'passwordsent'               => 'Vahtsõnõ salasõna om saadõt pruukja "$1" kirotõdu e-postiaadrõsi pääle. Ku olõt salasõna kätte saanuq, mineq nimega sisse.',
 'blocked-mailpassword'       => 'Su võrgonumbrilõ om pant pääle toimõndamiskiild, miä lasõ-i salasõnna miilde tulõtaq.',
@@ -972,7 +973,7 @@ Kas olõt kimmäs, et tahat taad üles laatiq? Kaeq ka sissekirotust taa teedüs
 'sharedupload'              => 'Taa om ütine teedüstü, taad võivaq pruukiq ka tõõsõq vikiq.',
 'shareduploadwiki'          => 'Taa kotsilõ saa lähkümbält kaiaq $1.',
 'shareduploadwiki-linktext' => 'seletüsleheküle päält',
-'noimage'                   => 'Olõ-i säänest teedüstüt, võit taa esiq {{SITENAME}}he $1.',
+'noimage'                   => 'Olõ-i säänest teedüstüt, võit taa esiq $1.',
 'noimage-linktext'          => 'üles laatiq',
 'uploadnewversion-linktext' => 'Laadiq taa teedüstü vahtsõnõ kujo',
 'imagepage-searchdupe'      => 'Otsiq ütesugutsit teedüstüid',
@@ -1090,6 +1091,8 @@ Lehte peetäs täpsüstüslehes, ku timän om pruugit näüdüst, kohe näütäs
 'notargettitle'           => 'Otsitut lehte olõ-i',
 'notargettext'            => 'Sa olõ-i andnuq lehte ega pruukjat, minka taad tallitust tetäq.',
 'nopagetext'              => 'Säänest lehte olõ-i olõman.',
+'pager-newer-n'           => '{{PLURAL:$1|vahtsõmb 1|vahtsõmbaq $1}}',
+'pager-older-n'           => '{{PLURAL:$1|vanõmb 1|vanõmbaq $1}}',
 
 # Book sources
 'booksources'               => 'Raamaduq',
@@ -1175,7 +1178,7 @@ ja sul piät umin [[Special:Preferences|säädmiisin]] olõma e-postiaadrõs, et
 'unwatchthispage'      => 'Lõpõdaq perräkaeminõ ärq',
 'notanarticle'         => 'Olõ-i artikli',
 'watchnochange'        => 'Taa ao seen olõ-i üttegi perräkaetavat lehte muudõt.',
-'watchlist-details'    => 'Perräkaemisnimekirän om {{PLURAL:$1|$1 leht|$1 lehte}} (rehkendämäldä arotuslehti).',
+'watchlist-details'    => 'Perräkaemisnimekirän om {{PLURAL:$1|$1 leht|$1 lehte}}, rehkendämäldä arotuslehti.',
 'wlheader-enotif'      => '* E-postiga teedäqandmisõq ommaq käügin.',
 'wlheader-showupdated' => "* Leheq, midä om muudõt päält su viimäst käümist, ommaq '''paksun kirän'''",
 'watchmethod-recent'   => 'kontrollitas perräkaetavidõ lehti perämäidsi muutmiisi',
@@ -1701,7 +1704,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 
 # Browsing diffs
 'previousdiff' => '← Innembäne muutminõ',
-'nextdiff'     => 'Järgmäne muutminõ →',
+'nextdiff'     => 'Vahtsõmb toimõndus →',
 
 # Media information
 'mediawarning'         => "'''Kaeq ette''': Taan teedüstün või ollaq sisen ohtlik kuud, miä või su programmilõ vika tetäq.<hr />",

@@ -8,6 +8,7 @@
  * @author EugeneZelenko
  * @author Jim-by
  * @author Red Winged Duck
+ * @author Zedlik
  */
 
 $skinNames = array(
@@ -698,7 +699,7 @@ $2',
 'resetpass'               => 'Выдаліць пароль рахунку',
 'resetpass_announce'      => 'Вы ўвайшлі з дапамогай часовага паролю, дасланага праз электронную пошту.
 Для завяршэньня ўваходу ў сыстэму Вы мусіце ўвесьці тут новы пароль:',
-'resetpass_header'        => 'Сьцерці пароль',
+'resetpass_header'        => 'Зьмяніць пароль рахунку',
 'resetpass_submit'        => 'Наставіць пароль і увайсьці',
 'resetpass_success'       => 'Ваш пароль быў пасьпяхова зьменены! Выконваецца ўваход у сыстэму…',
 'resetpass_bad_temporary' => 'Няслушны часовы пароль.
@@ -719,7 +720,7 @@ $2',
 'headline_tip'    => 'Загаловак 2-га ўзроўню',
 'math_sample'     => 'Зьмясьціце тут формулу',
 'math_tip'        => 'Матэматычная формула (LaTeX)',
-'nowiki_sample'   => 'Пішыце сюды нефарматаваны тэкст',
+'nowiki_sample'   => 'Зьмясьціце тут нефарматаваны тэкст',
 'nowiki_tip'      => 'Ігнараваць вікі-фарматаваньне',
 'image_sample'    => 'Прыклад.jpg',
 'image_tip'       => 'Укладзены файл',
@@ -734,7 +735,7 @@ $2',
 'minoredit'                        => 'Гэта дробная праўка',
 'watchthis'                        => 'Назіраць за гэтай старонкай',
 'savearticle'                      => 'Захаваць старонку',
-'preview'                          => 'Прагляд',
+'preview'                          => 'Папярэдні прагляд',
 'showpreview'                      => 'Праглядзець',
 'showlivepreview'                  => 'Хуткі папярэдні прагляд',
 'showdiff'                         => 'Паказаць зьмены',
@@ -1307,7 +1308,7 @@ $2',
 'largefileserver'             => 'Памер гэтага файла перавышае максымальна дазволены.',
 'emptyfile'                   => 'Загружаны файл, здаецца, пусты. Магчыма гэты адбылося з-за памылкі ў назьве файла.
 Удакладніце, ці Вы сапраўды жадаеце загрузіць гэты файл.',
-'fileexists'                  => 'Файл з такой назвай ужо існуе. Калі ласка, праверце <strong><tt>$1</tt></strong>, калі Вы ня ўпэўненыя, што хаціце яго замяніць.',
+'fileexists'                  => 'Файл з такой назвай ужо існуе. Калі ласка, праверце <strong><tt>$1</tt></strong>, калі Вы ня ўпэўненыя, што жадаеце яго замяніць.',
 'filepageexists'              => 'Старонка апісаньня для гэтага файла ўжо існуе як <strong><tt>$1</tt></strong>, але файла з такой назвай няма.
 Апісаньне якое Вы дадалі ня зьявіцца на старонцы апісаньня.
 Каб яно там зьявілася, Вам трэба рэдагаваць яе самастойна',
@@ -1728,7 +1729,7 @@ $NEWPAGE
 
 # Delete/protect/revert
 'deletepage'                  => 'Выдаліць старонку',
-'confirm'                     => 'Пацьверджаньне',
+'confirm'                     => 'Пацьвердзіць',
 'excontent'                   => 'колішні зьмест: «$1»',
 'excontentauthor'             => "зьмест быў: «$1» (і адзіным аўтарам быў '[[Special:Contributions/$2|$2]]')",
 'exbeforeblank'               => 'зьмест да ачысткі: «$1»',
@@ -1869,6 +1870,8 @@ $NEWPAGE
 'undelete-error-long'          => 'Пад час аднаўленьня файла адбыліся памылкі:
 
 $1',
+'undelete-show-file-confirm'   => 'Вы ўпэўненыя, што жадаеце паглядзець выдаленую вэрсію файла «<nowiki>$1</nowiki>» ад $2 $3?',
+'undelete-show-file-submit'    => 'Так',
 
 # Namespace form on various pages
 'namespace'      => 'Прастора назваў:',
@@ -2120,7 +2123,7 @@ $1',
 Усе дзеяньні імпартаваньня паміж вікі запісваюцца ў [[Special:Log/import|журнал імпартаваньняў]].',
 'import-interwiki-history'   => 'Капіяваць гісторыю старонкі цалкам',
 'import-interwiki-submit'    => 'Імпартаваць',
-'import-interwiki-namespace' => 'Перанесьці старонкі ў прастору назваў:',
+'import-interwiki-namespace' => 'Мэтавая прастора назваў:',
 'importtext'                 => 'Калі ласка, экспартуйце файл з крынічнай вікі з дапамогай [[Special:Export|прылады экспарту]].
 Захавайце яго на свой дыск, а потым загрузіце сюды.',
 'importstart'                => 'Імпартаваньне старонак…',
@@ -2146,6 +2149,8 @@ $1',
 'import-nonewrevisions'      => 'Усе вэрсіі былі імпартаваныя раней.',
 'xml-error-string'           => '$1 у радку $2, пазыцыі $3 (байт $4): $5',
 'import-upload'              => 'Загрузіць XML-зьвесткі',
+'import-token-mismatch'      => 'Страчаныя зьвесткі сэсіі. Калі ласка, паспрабуйце ізноў.',
+'import-invalid-interwiki'   => 'Немагчыма імпартаваць з вызначанай вікі.',
 
 # Import log
 'importlogpage'                    => 'Журнал імпартаваньняў',
@@ -2516,7 +2521,12 @@ $1',
 'exif-focalplaneresolutionunit-2' => 'цаляў',
 
 'exif-sensingmethod-1' => 'Нявызначаны',
+'exif-sensingmethod-2' => 'Аднакрысталічны матрычны колеравы сэнсар',
+'exif-sensingmethod-3' => 'Двухкрысталічны матрычны колеравы сэнсар',
+'exif-sensingmethod-4' => 'Трохкрысталічны матрычны колеравы сэнсар',
+'exif-sensingmethod-5' => 'Каляровы матрычны сэквэнцыйны сэнсар',
 'exif-sensingmethod-7' => 'Трохлінейны сэнсар',
+'exif-sensingmethod-8' => 'Лінейны сэнсар з пасьлядоўнай зьменай колеру',
 
 'exif-scenetype-1' => 'Непасрэдна сфатаграфаваная выява',
 
@@ -2525,6 +2535,7 @@ $1',
 
 'exif-exposuremode-0' => 'Аўтаматычны лад насьвятленьня',
 'exif-exposuremode-1' => 'Ручная ўстаноўка парамэтраў насьвятленьня',
+'exif-exposuremode-2' => 'Брэкетынг',
 
 'exif-whitebalance-0' => 'Аўтаматычны балянс белага',
 'exif-whitebalance-1' => 'Ручны балянс белага',
@@ -2553,6 +2564,7 @@ $1',
 'exif-sharpness-2' => 'Значнае павышэньне',
 
 'exif-subjectdistancerange-0' => 'Невядомы',
+'exif-subjectdistancerange-1' => 'Макраздымка',
 'exif-subjectdistancerange-2' => 'Выгляд зблізку',
 'exif-subjectdistancerange-3' => 'Выгляд здалёку',
 
@@ -2575,9 +2587,13 @@ $1',
 'exif-gpsspeed-m' => 'міляў за гадзіну',
 'exif-gpsspeed-n' => 'вузлоў',
 
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'Сапраўдны накірунак',
+'exif-gpsdirection-m' => 'магнітны кірунак',
+
 # External editor support
 'edit-externally'      => 'Рэдагаваць гэты файл з выкарыстаньнем вонкавай праграмы',
-'edit-externally-help' => 'Глядзіце падрабязнасьці ў [http://www.mediawiki.org/wiki/Manual:External_editors інструкцыі па наладцы] (па-ангельску).',
+'edit-externally-help' => '(Глядзіце падрабязнасьці ў [http://www.mediawiki.org/wiki/Manual:External_editors інструкцыі па наладцы] (па-ангельску))',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'усе',
@@ -2642,7 +2658,7 @@ $1
 'unit-pixel' => 'пкс',
 
 # HTML dump
-'redirectingto' => 'Перанакіроўваем на [[$1]]…',
+'redirectingto' => 'Перанакіраваньне на [[$1]]…',
 
 # action=purge
 'confirm_purge'        => 'Ачысьціць кэш гэтай старонкі?
@@ -2655,7 +2671,7 @@ $1',
 'searchnamed'      => "Пошук старонак з назвай ''$1''.",
 'articletitles'    => "Старонкі, якія пачынаюцца з ''$1''",
 'hideresults'      => 'Схаваць вынікі',
-'useajaxsearch'    => 'Карыстацца AJAX-пошукам',
+'useajaxsearch'    => 'Выкарыстоўваць AJAX-пошук',
 
 # Multipage image navigation
 'imgmultipageprev' => '← папярэдняя старонка',
@@ -2665,7 +2681,7 @@ $1',
 
 # Table pager
 'ascending_abbrev'         => 'узраст.',
-'descending_abbrev'        => 'зьмяньш.',
+'descending_abbrev'        => 'зьмянш.',
 'table_pager_next'         => 'Наступная старонка',
 'table_pager_prev'         => 'Папярэдняя старонка',
 'table_pager_first'        => 'Першая старонка',
@@ -2693,16 +2709,31 @@ $1',
 'livepreview-error'   => 'Не атрымалася далучыцца да: $1 «$2».
 Паспрабуйце ўжыць звычайны папярэдні прагляд.',
 
+# Friendlier slave lag warnings
+'lag-warn-normal' => 'Зьмены, зробленыя меней чым $1 {{PLURAL:$1|сэкунду|сэкунды|сэкундаў}} таму, могуць ня трапіць у гэты сьпіс.',
+'lag-warn-high'   => 'У выніку значнага адставаньня ў сынхранізацыі сэрвэраў базаў зьвестак зьмены, зробленыя раней за $1 {{PLURAL:$1|сэкунду|сэкунды|сэкундаў}} таму, могуць быць не паказаныя ў гэтым сьпісе.',
+
 # Watchlist editor
-'watchlistedit-noitems'       => 'Ваш сьпіс назіраньня пусты.',
-'watchlistedit-normal-title'  => 'Рэдагаваць сьпіс назіраньня',
-'watchlistedit-normal-legend' => 'Выдаленьне старонак са сьпісу назіраньня',
-'watchlistedit-normal-submit' => 'Выдаліць са сьпісу',
-'watchlistedit-raw-title'     => 'Рэдагаваць нефарматаваны сьпіс назіраньня',
-'watchlistedit-raw-legend'    => 'Рэдагаваць нефарматаваны сьпіс назіраньня',
-'watchlistedit-raw-titles'    => 'Назвы:',
-'watchlistedit-raw-submit'    => 'Абнавіць сьпіс назіраньня',
-'watchlistedit-raw-done'      => 'Ваш сьпіс назіраньня быў абноўлены.',
+'watchlistedit-numitems'       => 'Ваш сьпіс назіраньня ўтрымлівае $1 {{PLURAL:$1|запіс|запісы|запісаў}}, без уліку старонак абмеркаваньня.',
+'watchlistedit-noitems'        => 'Ваш сьпіс назіраньня пусты.',
+'watchlistedit-normal-title'   => 'Рэдагаваць сьпіс назіраньня',
+'watchlistedit-normal-legend'  => 'Выдаленьне старонак са сьпісу назіраньня',
+'watchlistedit-normal-explain' => 'Ніжэй паданыя старонкі з Вашага сьпісу назіраньня.
+Для выдаленьня старонкі са сьпісу пазначце адпаведныя пазыцыі і націсьніце кнопку «Выдаліць са сьпісу».
+Таксама Вы можаце [[Special:Watchlist/raw|рэдагаваць нефарматаваны сьпіс назіраньня]].',
+'watchlistedit-normal-submit'  => 'Выдаліць са сьпісу',
+'watchlistedit-normal-done'    => '$1 {{PLURAL:$1|запіс быў выдалены|запісы былі выдаленыя|запісаў былі выдаленыя}} з Вашага сьпісу назіраньня:',
+'watchlistedit-raw-title'      => 'Рэдагаваць нефарматаваны сьпіс назіраньня',
+'watchlistedit-raw-legend'     => 'Рэдагаваць нефарматаваны сьпіс назіраньня',
+'watchlistedit-raw-explain'    => 'Ніжэй пададзены сьпіс старонак Вашага сьпісу назіраньня, і Вы можаце яго рэдагаваць, дадаючы і выдаляючы радкі з назвамі старонак;
+адна назва старонкі ў радку.
+Пасьля заканчэньня рэдагаваньня, націсьніце «Абнавіць сьпіс назіраньня».
+Таксама Вы можаце [[Special:Watchlist/edit|выкарыстаць стандартны інтэрфэйс рэдагаваньня]].',
+'watchlistedit-raw-titles'     => 'Назвы:',
+'watchlistedit-raw-submit'     => 'Абнавіць сьпіс назіраньня',
+'watchlistedit-raw-done'       => 'Ваш сьпіс назіраньня быў абноўлены.',
+'watchlistedit-raw-added'      => '$1 {{PLURAL:$1|запіс быў дададзены|запісы былі дададзеныя|запісаў былі дададзеныя}}:',
+'watchlistedit-raw-removed'    => '$1 {{PLURAL:$1|запіс быў выдалены|запісы былі выдаленыя|запісаў былі выдаленыя}}:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Паказаць зьмены ў старонках зь сьпісу',
@@ -2716,11 +2747,16 @@ $1',
 'version'                          => 'Вэрсія', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Усталяваныя пашырэньні',
 'version-specialpages'             => 'Спэцыяльныя старонкі',
+'version-parserhooks'              => 'Працэдцры-перахопнікі парсэра',
 'version-variables'                => 'Зьменныя',
 'version-other'                    => 'Іншыя',
 'version-mediahandlers'            => 'Апрацоўшчыкі мэдыя',
+'version-hooks'                    => 'Працэдуры-перахопнікі',
 'version-extension-functions'      => 'Функцыі пашырэньняў',
+'version-parser-extensiontags'     => 'Тэгі пашырэньняў парсэра',
+'version-parser-function-hooks'    => 'Перахопнікі функцыяў парсэра',
 'version-skin-extension-functions' => 'Функцыі пашырэньня афармленьняў',
+'version-hook-name'                => 'Назва працэдуры-перахопніка',
 'version-hook-subscribedby'        => 'Падпісаны на',
 'version-version'                  => 'Вэрсія',
 'version-license'                  => 'Ліцэнзія',

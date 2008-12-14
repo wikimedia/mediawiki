@@ -209,6 +209,8 @@ $messages = array(
 'disclaimerpage'       => 'Project:Ιμπρέσουμ',
 'edithelp'             => "Βοήθεια για τ' αλλαγμαν",
 'edithelppage'         => 'Help:Άλλαγμαν',
+'faq'                  => 'Πολλά ερωτήσεις (FAQ)',
+'faqpage'              => 'Project:Πολλά ερωτήσεις (FAQ)',
 'helppage'             => 'Help:Περιεχόμενα',
 'mainpage'             => 'Αρχικόν σελίδα',
 'mainpage-description' => 'Αρχικόν σελίδα',
@@ -507,9 +509,11 @@ $messages = array(
 'search-external'          => 'Εύρον σα εξ μερέαν',
 
 # Preferences page
-'preferences'       => 'Προτιμήσαι',
-'mypreferences'     => "Τ' εμά τα προτιμήσαι",
+'preferences'       => 'Αγαπεμένα',
+'mypreferences'     => "Τ' εμά τ' αγαπεμένα",
+'changepassword'    => 'Άλλαξον σημάδιν',
 'dateformat'        => 'Μορφή ημερομηνίας',
+'datetime'          => 'Ημερομηνίαν και ώραν',
 'prefs-misc'        => 'Διαφ',
 'saveprefs'         => 'Αποθήκεμαν',
 'oldpassword'       => 'Παλαιόν σημάδιν:',
@@ -535,6 +539,8 @@ $messages = array(
 'right-createpage'    => "Ποίσον σελίδας (ντο 'κ εν σελίδας καλατζεματί)",
 'right-createtalk'    => 'Ποίσον σελίδας καλατζεματί',
 'right-createaccount' => 'Ποίσον καινούρεα λογαρίας χρηστίων',
+'right-upload'        => 'Φόρτωσον αρχεία',
+'right-upload_by_url' => "Φόρτωσον αρχείον ασ' έναν URL",
 'right-delete'        => 'Σβήσον σελίδας',
 'right-bigdelete'     => 'Σβήσον σελίδας με τρανά ιστορίας',
 'right-browsearchive' => 'Αράεμαν σα σβημένα σελίδας',
@@ -575,9 +581,9 @@ $messages = array(
 'recentchangeslinked-page'     => 'Όνεμαν σελίδας:',
 
 # Upload
-'upload'            => 'Φόρτωμα αρχείου',
-'uploadbtn'         => 'Φόρτωμα αρχείου',
-'reupload'          => 'Αξάν φόρτωμαν',
+'upload'            => 'Φόρτωσον αρχείον',
+'uploadbtn'         => 'Φόρτωσον αρχείον',
+'reupload'          => 'Φόρτωσον αξάν',
 'uploadnologin'     => "'Κ είστουν απές. Εμπάτε σην λογαρίανεσουν.",
 'uploadnologintext' => "Πρεπ' σην σελίδαν [[Special:UserLogin|απές]] να είσνε (log in) για πορείτε να φορτώνετε αρχεία.",
 'uploaderror'       => 'Έντον λάθος σο φόρτωμαν',
@@ -687,6 +693,8 @@ $messages = array(
 'ancientpages'            => 'Ασ’ όλιον παλαιά σελίδας',
 'move'                    => 'Ετεροχλάεμαν',
 'movethispage'            => "Άλλαξον τ' όνεμα τη σελίδας",
+'pager-newer-n'           => '{{PLURAL:$1|κιάλλο καινούρεο 1|κιάλλο καινούρεα $1}}',
+'pager-older-n'           => '{{PLURAL:$1|κιάλλο παλαιόν 1|κιάλλο παλαιά $1}}',
 
 # Book sources
 'booksources'               => 'Βιβλιογραφικά πηγάς',
@@ -812,6 +820,7 @@ $messages = array(
 'sp-contributions-newbies-sub' => 'Για τα καινούρεα τοι λογαρίας',
 'sp-contributions-blocklog'    => 'Αρχείον ασπαλιγματίων',
 'sp-contributions-search'      => 'Εύρον συνεισφοράντας',
+'sp-contributions-username'    => 'Διεύθυνσην IP γιά όνεμαν χρήστε:',
 'sp-contributions-submit'      => 'Αράεμαν',
 
 # What links here
@@ -1046,7 +1055,7 @@ $messages = array(
 
 # External editor support
 'edit-externally'      => "Αλλαγήν τ' αρχείου με προγράμματα ασα εξ μερέα",
-'edit-externally-help' => 'Τερέστεν τα [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] και θα ευρίετε κι άλλα γνώσιας.',
+'edit-externally-help' => '(Τερέστεν τα [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] και θα ευρίετε κι άλλα πληροφορίας)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'ούλαι',

@@ -1415,7 +1415,7 @@ Cada fila conté enllaços a la segona i tercera redirecció, així com la prime
 'uncategorizedimages'     => 'Fitxers sense categoria',
 'uncategorizedtemplates'  => 'Plantilles sense categoria',
 'unusedcategories'        => 'Categories sense cap ús',
-'unusedimages'            => 'Imatges sense ús',
+'unusedimages'            => 'Fitxers no utilitzats',
 'popularpages'            => 'Pàgines populars',
 'wantedcategories'        => 'Categories demanades',
 'wantedpages'             => 'Pàgines demanades',
@@ -1424,7 +1424,7 @@ Cada fila conté enllaços a la segona i tercera redirecció, així com la prime
 'mostlinkedcategories'    => 'Categories més utilitzades',
 'mostlinkedtemplates'     => 'Plantilles més usades',
 'mostcategories'          => 'Pàgines que utilitzen més categories',
-'mostimages'              => 'Més enllaçat a fitxers',
+'mostimages'              => 'Fitxers més enllaçats',
 'mostrevisions'           => 'Pàgines més modificades',
 'prefixindex'             => 'Cercar per prefix',
 'shortpages'              => 'Pàgines curtes',
@@ -1754,6 +1754,8 @@ Consulteu el [[Special:Log/delete|registre d'esborraments]] per a veure els esbo
 'undelete-error-long'          => "S'han produït errors en revertir la supressió del fitxer:
 
 $1",
+'undelete-show-file-confirm'   => 'Segur que voleu veure la revisió esborrada del fitxer «<nowiki>$1</nowiki>» corresponent a les $3 del $2?',
+'undelete-show-file-submit'    => 'Sí',
 
 # Namespace form on various pages
 'namespace'      => 'Espai de noms:',
@@ -2013,7 +2015,7 @@ Es conservaran les dates de les versions i els noms dels editors.
 Totes les accions d'importació interwiki es conserven al [[Special:Log/import|registre d'importacions]].",
 'import-interwiki-history'   => "Copia totes les versions de l'historial d'aquesta pàgina",
 'import-interwiki-submit'    => 'Importa',
-'import-interwiki-namespace' => "Transfereix les pàgines a l'espai de noms:",
+'import-interwiki-namespace' => 'Espai de noms de destinació:',
 'importtext'                 => "Exporteu el fitxer des del wiki d'origen utilitzant l'[[Special:Export|eina d'exportació]]. 
 Deseu-lo al vostre ordinador i carregueu-ne una còpia ací.",
 'importstart'                => "S'estan important pàgines...",
@@ -2036,6 +2038,8 @@ Deseu-lo al vostre ordinador i carregueu-ne una còpia ací.",
 'import-nonewrevisions'      => "Totes les revisions s'havien importat abans.",
 'xml-error-string'           => '$1 a la línia $2, columna $3 (byte $4): $5',
 'import-upload'              => 'Carrega dades XML',
+'import-token-mismatch'      => 'Pèrdua de dades de sessió. Torneu-ho a intentar.',
+'import-invalid-interwiki'   => 'No es pot importar des del wiki especificat.',
 
 # Import log
 'importlogpage'                    => "Registre d'importació",
@@ -2485,7 +2489,7 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 
 # External editor support
 'edit-externally'      => 'Edita aquest fitxer fent servir una aplicació externa',
-'edit-externally-help' => 'Vegeu les [http://www.mediawiki.org/wiki/Manual:External_editors instruccions de configuració] per a més informació.',
+'edit-externally-help' => '(Vegeu les [http://www.mediawiki.org/wiki/Manual:External_editors instruccions de configuració] per a més informació)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'tots',

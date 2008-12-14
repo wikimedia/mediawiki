@@ -14,6 +14,7 @@
  * @author Jon Harald Søby
  * @author Jorunn
  * @author Max sonnelid
+ * @author Najami
  * @author Olve Utne
  * @author Ranveig
  * @author Shauni
@@ -372,6 +373,7 @@ $messages = array(
 'category-file-count-limited'    => 'Følgjande {{PLURAL:$1|fil|$1 filer}} er i denne kategorien.',
 'listingcontinuesabbrev'         => 'vidare',
 
+'linkprefix'        => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 'mainpagetext'      => 'MediaWiki er no installert.',
 'mainpagedocfooter' => 'Sjå [http://meta.wikimedia.org/wiki/Help:Contents brukarmanualen] for informasjon om bruk og konfigurasjonshjelp for wikiprogramvaren.
 
@@ -580,11 +582,11 @@ Meld gjerne problemet til ein [[Special:ListUsers/sysop|administrator]] og oppgj
 'viewsource'           => 'Vis kjeldetekst',
 'viewsourcefor'        => 'for $1',
 'actionthrottled'      => 'Handlinga vart stoppa',
-'actionthrottledtext'  => 'For å hindre spamming, kan du ikkje utføre denne handlinga for mange gonger på kort tid. Ver venleg og prøv igjen litt seinare.',
+'actionthrottledtext'  => 'For å hindre spamming kan du ikkje utføre denne handlinga for mange gonger på kort tid. Ver venleg og prøv igjen litt seinare.',
 'protectedpagetext'    => 'Denne sida er verna for å hindre endring.',
 'viewsourcetext'       => 'Du kan sjå og kopiere kjeldekoden til denne sida:',
 'protectedinterface'   => 'Denne sida inneheld tekst som er brukt av brukargrensesnittet for programvaren, og er difor låst for å hindre hærverk.',
-'editinginterface'     => "'''Åtvaring:''' Du endrar på ei side som inneheld tekst som er brukt av brukargrensesnittet for programvaren. Endringar på denne sida påverkar utsjånaden til sida for dei andre brukarane. Dersom du ynskjer å omsetje, ver venleg og vurder å bruke [http://translatewiki.net/wiki/Main_Page?setlang=nn Betawiki], prosjektet for omsetjing av MediaWiki.",
+'editinginterface'     => "'''Åtvaring:''' Du endrar på ei side som inneheld tekst som er brukt av brukargrensesnittet for programvaren. Endringar på denne sida påverkar utsjånaden til sida for dei andre brukarane. Dersom du ynskjer å setje om, ver venleg og vurder å bruke [http://translatewiki.net/wiki/Main_Page?setlang=nn Betawiki], prosjektet for omsetjing av MediaWiki.",
 'sqlhidden'            => '(SQL-førespurnaden er gøymd)',
 'cascadeprotected'     => 'Denne sida er verna mot endring fordi ho er inkludert i {{PLURAL:$1|den opplista sida|dei opplista sidene}} som har djupvern slått på:
 $2',
@@ -714,9 +716,9 @@ Du kan sjå bort frå denne meldinga dersom kontoen vart oppretta med eit uhell.
 'math_tip'        => 'Matematisk formel (LaTeX)',
 'nowiki_sample'   => 'Skriv uformatert tekst her',
 'nowiki_tip'      => 'Sjå bort frå wikiformatering',
-'image_sample'    => 'Eksempel.jpg',
+'image_sample'    => 'Døme.jpg',
 'image_tip'       => 'Bilete eller lenkje til filomtale',
-'media_sample'    => 'Eksempel.ogg',
+'media_sample'    => 'Døme.ogg',
 'media_tip'       => 'Filpeikar',
 'sig_tip'         => 'Signaturen din med tidsstempel',
 'hr_tip'          => 'Vassrett line',
@@ -745,7 +747,7 @@ Denne grunnen vart gjeven: ''$2''.
 
 * Blokkeringa byrja: $8
 * Blokkeringa utgår: $6
-* Blokkeringa var meint på: $7
+* Blokkeringa var meint for: $7
 
 Du kan kontakte $1 eller ein annan [[{{MediaWiki:Grouppage-sysop}}|administrator]] for å diskutere blokkeringa. 
 Ver merksam på at du ikkje kan bruke «send e-post til brukar»-funksjonen så lenge du ikkje har ei gyldig e-postadresse registrert i [[Special:Preferences|innstillingane dine]]. Du kan heller ikkje bruke funksjonen dersom du er blokkert frå å sende e-post. 
@@ -794,7 +796,7 @@ Vi er difor nøydde til å bruke den numeriske IP-adressa til å identifisere br
 'note'                             => '<strong>Merk:</strong>',
 'previewnote'                      => '<strong>Hugs at dette berre er ei førehandsvising og at teksten ikkje er lagra!</strong>',
 'previewconflict'                  => 'Dette er ei førehandsvising av teksten i endringsboksen over, slik han vil sjå ut om du lagrar han',
-'session_fail_preview'             => '<strong>Beklagar! Endringa di kunne ikkje lagrast. Ver venleg og prøv ein gong til. Dersom det framleis ikkje går, prøv å logge deg ut og inn att.</strong>',
+'session_fail_preview'             => '<strong>Årsak! Endringa di kunne ikkje lagrast. Ver venleg og prøv ein gong til. Dersom det framleis ikkje går, prøv å logge deg ut og inn att.</strong>',
 'session_fail_preview_html'        => "<strong>Beklagar! Endringa di kunne ikkje lagrast.</strong>
 
 ''Fordi {{SITENAME}} har rå HTML-kode slått på, er førehandsvisinga gøymd grunna fare for JavaScript-angrep.''
@@ -834,7 +836,7 @@ lang, altså lenger enn $2 kilobyte som er maksimum. Han kan difor ikkje lagrast
 'template-protected'               => '(verna)',
 'template-semiprotected'           => '(delvis verna)',
 'hiddencategories'                 => 'Denne sida er med i {{PLURAL:$1|éin gøymd kategori|$1 gøymde kategoriar}}:',
-'edittools'                        => '<!-- Teksten her vert synt mellom tekstboksen og «Lagre»-knappen når ein endrar ei side. -->',
+'edittools'                        => '<!-- Teksten her vert vist mellom tekstboksen og «Lagre»-knappen når ein endrar ei side. -->',
 'nocreatetitle'                    => 'Avgrensa sideoppretting',
 'nocreatetext'                     => '{{SITENAME}} har avgrensa tilgang til å opprette nye sider.
 Du kan gå attende og endre ei eksisterande side, [[Special:UserLogin|logge inn eller opprette ein brukarkonto]].',
@@ -862,7 +864,7 @@ Desse parameterane har vorte utelatne.',
 # "Undo" feature
 'undo-success' => 'Endringa kan attenderullast. Ver venleg og sjå over skilnadene nedanfor for å vere sikker på at du vil attenderulle. Deretter kan du lagre attenderullinga.',
 'undo-failure' => 'Endringa kunne ikkje attenderullast grunna konflikt med endringar som er gjort i mellomtida.',
-'undo-norev'   => 'Redigeringa kunne ikkje fjernast fordi den ikkje finnast eller vart sletta',
+'undo-norev'   => 'Endringa kunne ikkje fjernast fordi han ikkje finst eller vart sletta',
 'undo-summary' => 'Rullar attende versjon $1 av [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusjon]])',
 
 # Account creation failure
@@ -1309,6 +1311,20 @@ Om du framleis ønskjer å laste opp fila, gå tilbake og last ho opp med eit an
 Du bør tenkje over om det er lurt å halde fram med å laste opp denne fila.
 Sletteloggen for fila finn du her:",
 'filename-bad-prefix'         => 'Namnet på fila du lastar opp byrjar med <strong>«$1»</strong>, som er eit inkjeseiande namn som vanlegvis vert gjeve til bilete automatisk av digitale kamera. Ver venleg og vel eit meir skildrande namn på fila di.',
+'filename-prefix-blacklist'   => '  #<!-- leave this line exactly as it is --> <pre>
+# Syntaksen er som følgjer:
+#  * Alt frå teiknet «#» til slutten av linja er ein kommentar
+#  * Alle linjer som ikkje er blanke er ei forstaving som vanlegvis vert nytta automatisk av digitale kamera
+CIMG # Casio
+DSC_ # Nikon
+DSCF # Fuji
+DSCN # Nikon
+DUW # nokre mobiltelefontypar
+IMG # generisk
+JD # Jenoptik
+MGP # Pentax
+PICT # div.
+  #</pre> <!-- leave this line exactly as it is -->',
 
 'upload-proto-error'      => 'Feil protokoll',
 'upload-proto-error-text' => 'Fjernopplasting krev nettadresser som byrjar med <code>http://</code> eller <code>ftp://</code>.',
@@ -1794,6 +1810,7 @@ Sjå [[Special:Log/delete|sletteloggen]] for eit oversyn over sider som nyleg er
 'undelete-error-long'          => 'Feil ved attoppretting av fila:
 
 $1',
+'undelete-show-file-submit'    => 'Ja',
 
 # Namespace form on various pages
 'namespace'      => 'Namnerom:',
@@ -2121,10 +2138,26 @@ Dersom du berre vil ha noverande versjon, kan du også bruke ei lenkje, til døm
 'tooltip-upload'                  => 'Start opplastinga',
 
 # Stylesheets
-'monobook.css' => '/* CSS-tekst som vert plassert her, endrar utsjånaden til sidedrakta Monobook */',
+'common.css'      => '/* CSS plassert i denne fila vil gjelde for alle utsjånader. */',
+'standard.css'    => '/* CSS i denne fila vil gjelde alle som nyttar drakta Standard */',
+'nostalgia.css'   => '/* CSS i denne fila vil gjelde alle som nyttar drakta Nostalgia */',
+'cologneblue.css' => '/* CSS i denne fila vil gjelde alle som nyttar drakta Kølnerblå */',
+'monobook.css'    => '/* CSS-tekst som vert plassert her, endrar utsjånaden til sidedrakta Monobook */',
+'myskin.css'      => '/* CSS i denne fila vil gjelde alle som nyttar drakta Myskin */',
+'chick.css'       => '/* CSS i denne fila vil gjelde alle som nyttar drakta Chick */',
+'simple.css'      => '/* CSS i denne fila vil gjelde alle som nyttar drakta Simple */',
+'modern.css'      => '/* CSS i denne fila vil gjelde alle som nyttar drakta Modern */',
 
 # Scripts
-'monobook.js' => '/* Ute av bruk, bruk [[MediaWiki:common.js]] i staden */',
+'common.js'      => '/* Javascript i denne fila vil gjelde for alle drakter. */',
+'standard.js'    => '/* Javascript i denne fila vil gjelde for brukarar av drakta Standard */',
+'nostalgia.js'   => '/* Javascript i denne fila vil gjelde for brukarar av drakta Nostalgia */',
+'cologneblue.js' => '/* Javascript i denne fila vil gjelde for brukarar av drakta Kølnerblå */',
+'monobook.js'    => '/* Javascript i denne fila vil gjelde for brukarar av drakta Monobook */',
+'myskin.js'      => '* Javascript i denne fila vil gjelde for brukarar av drakta Myskin */',
+'chick.js'       => '* Javascript i denne fila vil gjelde for brukarar av drakta Chick */',
+'simple.js'      => '* Javascript i denne fila vil gjelde for brukarar av drakta Simple */',
+'modern.js'      => '* Javascript i denne fila vil gjelde for brukarar av drakta Modern */',
 
 # Metadata
 'nodublincore'      => 'Funksjonen for Dublin Core RDF metadata er deaktivert på denne tenaren.',
@@ -2494,7 +2527,7 @@ Dei andre felta er gøymde som standard.
 
 # External editor support
 'edit-externally'      => 'Endre denne fila med eit eksternt program',
-'edit-externally-help' => 'Sjå [http://www.mediawiki.org/wiki/Manual:External_editors eksterne program instruksjonane] for meir informasjon.',
+'edit-externally-help' => '(Sjå [http://www.mediawiki.org/wiki/Manual:External_editors eksterne program instruksjonane] for meir informasjon)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'alle',
@@ -2577,6 +2610,9 @@ $1',
 'articletitles'    => "Sider som byrjar med ''$1''",
 'hideresults'      => 'Gøym resultatet',
 'useajaxsearch'    => 'Bruk AJAX-søk',
+
+# Separators for various lists, etc.
+'catseparator' => '|',
 
 # Multipage image navigation
 'imgmultipageprev' => '← førre side',
