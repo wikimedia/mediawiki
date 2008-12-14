@@ -683,8 +683,9 @@ abstract class File {
 	 * @param $limit integer Limit of rows to return
 	 * @param $start timestamp Only revisions older than $start will be returned
 	 * @param $end timestamp Only revisions newer than $end will be returned
+	 * @param $inc bool Include the endpoints of the time range
 	 */
-	function getHistory($limit = null, $start = null, $end = null) {
+	function getHistory($limit = null, $start = null, $end = null, $inc=true) {
 		return array();
 	}
 
