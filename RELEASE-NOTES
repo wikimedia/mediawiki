@@ -28,7 +28,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Blacklist redirects via Special:Filepath, hard to use. (Rem7)
 * Improved input validation on Special:Import form (Rem10, Rem11)
 * Add a .htaccess to deleted images directory for additional protection against exposure of deleted files with known SHA-1 hashes on default installations. (Rem13)
-* Improved scripting safety heuristics for IE 5/6 content-type detection. (Rem14)
+* Improved scripting safety heuristics for IE content-type detection. (Rem14)
 * Improved scripting safety heuristics on SVG uploads. (Rem2, Rem3, Rem5, Rem6)
 * Improved the security of file streaming (Special:Undelete, img_auth.php and thumb.php): use the extension to determine the type, check it against the blacklist. (Rem12.2)
 * Restrict img_auth.php to private wikis only. Require a session token before streaming out Special:Undelete. If uploads are hosted on a different domain, then these changes reduce the chance that an upload containing a script might steal cookies from the wiki. (Rem12.1)

@@ -1326,11 +1326,11 @@ wgUploadAutoFill = {$autofill};
 		$magic = MimeMagic::singleton();
 		$mime = $magic->guessMimeType($tmpfile,false);
 
+
 		#check mime type, if desired
 		global $wgVerifyMimeType;
 		if ($wgVerifyMimeType) {
-
-		  wfDebug ( "\n\nmime: <$mime> extension: <$extension>\n\n");
+			wfDebug ( "\n\nmime: <$mime> extension: <$extension>\n\n");
 			#check mime type against file extension
 			if( !self::verifyExtension( $mime, $extension ) ) {
 				return new WikiErrorMsg( 'uploadcorrupt' );
@@ -1338,9 +1338,22 @@ wgUploadAutoFill = {$autofill};
 
 			#check mime type blacklist
 			global $wgMimeTypeBlacklist;
-			if( isset($wgMimeTypeBlacklist) && !is_null($wgMimeTypeBlacklist)
-				&& $this->checkFileExtension( $mime, $wgMimeTypeBlacklist ) ) {
-				return new WikiErrorMsg( 'filetype-badmime', htmlspecialchars( $mime ) );
+			if( isset($wgMimeTypeBlacklist) && !is_null($wgMimeTypeBlacklist) ) {
+				if ( $this->checkFileExtension( $mime, $wgMimeTypeBlacklist ) ) {
+					return new WikiErrorMsg( 'filetype-badmime', htmlspecialchars( $mime ) );
+				}
+
+				# Check IE type
+				$fp = fopen( $tmpfile, 'rb' );
+				$chunk = fread( $fp, 256 );
+				fclose( $fp );
+				$extMime = $magic->guessTypesForExtension( $extension );
+				$ieTypes = $magic->getIEMimeTypes( $tmpfile, $chunk, $extMime );
+				foreach ( $ieTypes as $ieType ) {
+					if ( $this->checkFileExtension( $ieType, $wgMimeTypeBlacklist ) ) {
+						return new WikiErrorMsg( 'filetype-bad-ie-mime', $ieType );
+					}
+				}
 			}
 		}
 
@@ -1403,6 +1416,7 @@ wgUploadAutoFill = {$autofill};
 			return false;
 		}
 	}
+
 
 	/**
 	 * Heuristic for detecting files that *could* contain JavaScript instructions or
