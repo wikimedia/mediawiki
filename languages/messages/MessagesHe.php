@@ -2387,7 +2387,7 @@ $1',
 'noimages'              => 'אין קבצים.',
 'ilsubmit'              => 'חיפוש',
 'bydate'                => 'לפי תאריך',
-'sp-newimages-showfrom' => 'הצגת קבצים חדשות החל מ־$2, $1',
+'sp-newimages-showfrom' => 'הצגת קבצים חדשים החל מ־$2, $1',
 
 # Bad image list
 'bad_image_list' => 'דרך הכתיבה בהודעה היא כמתואר להלן:
