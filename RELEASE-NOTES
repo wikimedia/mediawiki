@@ -230,6 +230,8 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 16635) The "view and edit watchlist" page (Special:Watchlist/edit) now
   includes a table of contents
 * File objects returned by wfFindFile() are now cached by default
+* (bug 7492) Rights can now be assigned to specific IP addresses and ranges by
+  using $wgAutopromote (new defines: APCOND_ISIP and APCOND_IPINRANGE)
 
 === Bug fixes in 1.14 ===
 
