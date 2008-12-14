@@ -67,6 +67,16 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 		if (isset ($params['prefix']))
 			$this->addWhere("page_title LIKE '" . $db->escapeLike($this->titlePartToKey($params['prefix'])) . "%'");
 
+		if (is_null($resultPageSet)) {
+			$selectFields = array (
+				'page_namespace',
+				'page_title',
+				'page_id'
+			);
+		} else {
+			$selectFields = $resultPageSet->getPageTableFields();
+		}
+		$this->addFields($selectFields);
 		$forceNameTitleIndex = true;
 		if (isset ($params['minsize'])) {
 			$this->addWhere('page_len>=' . intval($params['minsize']));
@@ -106,21 +116,15 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 		} else if($params['filterlanglinks'] == 'withlanglinks') {
 			$this->addTables('langlinks');
 			$this->addWhere('page_id=ll_from');
-			$this->addOption('DISTINCT');
+			$this->addOption('STRAIGHT_JOIN');
+			// We have to GROUP BY
+			$this->addOption('GROUP BY', implode(', ', $selectFields));
 			$forceNameTitleIndex = false;
 		}
 		if ($forceNameTitleIndex)
 			$this->addOption('USE INDEX', 'name_title');
 
-		if (is_null($resultPageSet)) {
-			$this->addFields(array (
-				'page_id',
-				'page_namespace',
-				'page_title'
-			));
-		} else {
-			$this->addFields($resultPageSet->getPageTableFields());
-		}
+		
 
 		$limit = $params['limit'];
 		$this->addOption('LIMIT', $limit+1);

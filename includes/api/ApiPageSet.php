@@ -92,10 +92,11 @@ class ApiPageSet extends ApiQueryBase {
 	 */
 	public function getPageTableFields() {
 		// Ensure we get minimum required fields
+		// DON'T change this order
 		$pageFlds = array (
-			'page_id' => null,
 			'page_namespace' => null,
-			'page_title' => null
+			'page_title' => null,
+			'page_id' => null,
 		);
 
 		// only store non-default fields
