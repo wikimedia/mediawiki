@@ -485,7 +485,7 @@ class SpecialRecentChanges extends SpecialPage {
 	 * @return string
 	 */
 	protected function namespaceFilterForm( FormOptions $opts ) {
-		$nsSelect = HTMLnamespaceselector( $opts['namespace'], '' );
+		$nsSelect = Xml::namespaceSelector( $opts['namespace'], '' );
 		$nsLabel = Xml::label( wfMsg('namespace'), 'namespace' );
 		$invert = Xml::checkLabel( wfMsg('invert'), 'invert', 'nsinvert', $opts['invert'] );
 		return array( $nsLabel, "$nsSelect $invert" );

@@ -646,7 +646,7 @@ END;
 		if($wgOut->isArticle() && $wgUser->getOption('editondblclick') &&
 		  $wgTitle->quickUserCan( 'edit' ) ) {
 			$s = $wgTitle->getFullURL( $this->editUrlOptions() );
-			$s = 'document.location = "' .wfEscapeJSString( $s ) .'";';
+			$s = 'document.location = "' .Xml::escapeJsString( $s ) .'";';
 			$a += array ('ondblclick' => $s);
 
 		}

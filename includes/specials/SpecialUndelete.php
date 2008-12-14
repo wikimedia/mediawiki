@@ -791,37 +791,37 @@ class UndeleteForm {
 		}
 
 		$wgOut->addHTML(
-			wfElement( 'textarea', array(
+			Xml::element( 'textarea', array(
 					'readonly' => 'readonly',
 					'cols' => intval( $wgUser->getOption( 'cols' ) ),
 					'rows' => intval( $wgUser->getOption( 'rows' ) ) ),
 				$rev->getText( Revision::FOR_THIS_USER ) . "\n" ) .
-			wfOpenElement( 'div' ) .
-			wfOpenElement( 'form', array(
+			Xml::openElement( 'div' ) .
+			Xml::openElement( 'form', array(
 				'method' => 'post',
 				'action' => $self->getLocalURL( "action=submit" ) ) ) .
-			wfElement( 'input', array(
+			Xml::element( 'input', array(
 				'type' => 'hidden',
 				'name' => 'target',
 				'value' => $this->mTargetObj->getPrefixedDbKey() ) ) .
-			wfElement( 'input', array(
+			Xml::element( 'input', array(
 				'type' => 'hidden',
 				'name' => 'timestamp',
 				'value' => $timestamp ) ) .
-			wfElement( 'input', array(
+			Xml::element( 'input', array(
 				'type' => 'hidden',
 				'name' => 'wpEditToken',
 				'value' => $wgUser->editToken() ) ) .
-			wfElement( 'input', array(
+			Xml::element( 'input', array(
 				'type' => 'submit',
 				'name' => 'preview',
 				'value' => wfMsg( 'showpreview' ) ) ) .
-			wfElement( 'input', array(
+			Xml::element( 'input', array(
 				'name' => 'diff',
 				'type' => 'submit',
 				'value' => wfMsg( 'showdiff' ) ) ) .
-			wfCloseElement( 'form' ) .
-			wfCloseElement( 'div' ) );
+			Xml::closeElement( 'form' ) .
+			Xml::closeElement( 'div' ) );
 	}
 
 	/**

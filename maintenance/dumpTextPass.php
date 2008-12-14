@@ -487,7 +487,7 @@ class TextPassDumper extends BackupDumper {
 
 	function clearOpenElement( $style ) {
 		if( $this->openElement ) {
-			$this->buffer .= wfElement( $this->openElement[0], $this->openElement[1], $style );
+			$this->buffer .= Xml::element( $this->openElement[0], $this->openElement[1], $style );
 			$this->openElement = false;
 		}
 	}

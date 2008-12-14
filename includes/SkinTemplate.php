@@ -311,7 +311,7 @@ class SkinTemplate extends Skin {
 			$sep = str_replace("_", " ", wfMsgHtml("newtalkseparator"));
 			$msgs = array();
 			foreach ($newtalks as $newtalk) {
-				$msgs[] = wfElement("a",
+				$msgs[] = Xml::element("a",
 					array('href' => $newtalk["link"]), $newtalk["wiki"]);
 			}
 			$parts = implode($sep, $msgs);
@@ -438,7 +438,7 @@ class SkinTemplate extends Skin {
 		// XXX: attach this from javascript, same with section editing
 		if($this->iseditable &&	$wgUser->getOption("editondblclick") )
 		{
-			$encEditUrl = wfEscapeJsString( $this->mTitle->getLocalUrl( $this->editUrlOptions() ) );
+			$encEditUrl = Xml::escapeJsString( $this->mTitle->getLocalUrl( $this->editUrlOptions() ) );
 			$tpl->set('body_ondblclick', 'document.location = "' . $encEditUrl . '";');
 		} else {
 			$tpl->set('body_ondblclick', false);

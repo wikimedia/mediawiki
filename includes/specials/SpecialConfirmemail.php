@@ -71,10 +71,10 @@ class EmailConfirmation extends UnlistedSpecialPage {
 			}
 			$wgOut->addWikiMsg( 'confirmemail_text' );
 			$self = SpecialPage::getTitleFor( 'Confirmemail' );
-			$form  = wfOpenElement( 'form', array( 'method' => 'post', 'action' => $self->getLocalUrl() ) );
-			$form .= wfHidden( 'token', $wgUser->editToken() );
-			$form .= wfSubmitButton( wfMsgHtml( 'confirmemail_send' ) );
-			$form .= wfCloseElement( 'form' );
+			$form  = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $self->getLocalUrl() ) );
+			$form .= Xml::hidden( 'token', $wgUser->editToken() );
+			$form .= Xml::submitButton( wfMsgHtml( 'confirmemail_send' ) );
+			$form .= Xml::closeElement( 'form' );
 			$wgOut->addHTML( $form );
 		}
 	}
