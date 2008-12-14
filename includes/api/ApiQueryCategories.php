@@ -96,9 +96,20 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 			$this->dieUsage("Incorrect parameter - mutually exclusive values may not be supplied", 'show');
 		if(isset($show['hidden']) || isset($show['!hidden']))
 		{
-			$this->addTables('category');
-			$this->addWhere(array(	'cl_to = cat_title',
-						'cat_hidden' => isset($show['hidden'])));
+			$this->addOption('STRAIGHT_JOIN');
+			$this->addTables(array('page', 'page_props'));
+			$this->addJoinConds(array(
+				'page' => array('LEFT JOIN', array(
+					'page_namespace' => NS_CATEGORY,
+					'page_title = cl_to')),
+				'page_props' => array('LEFT JOIN', array(
+					'pp_page=page_id',
+					'pp_propname' => 'hiddencat'))
+			));
+			if(isset($show['hidden']))
+				$this->addWhere(array('pp_propname IS NOT NULL'));
+			else
+				$this->addWhere(array('pp_propname IS NULL'));
 		}
 
 		# Don't order by cl_from if it's constant in the WHERE clause
