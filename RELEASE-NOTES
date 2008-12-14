@@ -5,7 +5,7 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 == MediaWiki 1.13.3 ==
 
-November 18, 2008
+December 15, 2008
 
 This is a security and bugfix release of the Summer 2008 snapshot release of 
 MediaWiki.
@@ -23,15 +23,24 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 == Changes since 1.13.2 ==
 
-* Safer handling of non-MediaWiki exceptions -- now obeys our settings for formatting and path exposure. (Rem1)
-* Less verbose errors from profileinfo.php when not configured (Rem8)
-* Blacklist redirects via Special:Filepath, hard to use. (Rem7)
-* Improved input validation on Special:Import form (Rem10, Rem11)
-* Add a .htaccess to deleted images directory for additional protection against exposure of deleted files with known SHA-1 hashes on default installations. (Rem13)
-* Improved scripting safety heuristics for IE content-type detection. (Rem14)
-* Improved scripting safety heuristics on SVG uploads. (Rem2, Rem3, Rem5, Rem6)
-* Improved the security of file streaming (Special:Undelete, img_auth.php and thumb.php): use the extension to determine the type, check it against the blacklist. (Rem12.2)
-* Restrict img_auth.php to private wikis only. Require a session token before streaming out Special:Undelete. If uploads are hosted on a different domain, then these changes reduce the chance that an upload containing a script might steal cookies from the wiki. (Rem12.1)
+* Fixed XSS vulnerability in api.php. (Rem1)
+* Avoid fatal error in profileinfo.php when not configured. (Rem8)
+* Fixed CSRF vulnerability in Special:Import. (Rem10, Rem11)
+* Add a .htaccess to deleted images directory for additional protection against 
+  exposure of deleted files with known SHA-1 hashes on default installations. 
+  (Rem13)
+* Fixed XSS vulnerability for Internet Explorer clients, via file uploads which
+  are interpreted by IE as HTML. (Rem14)
+* Fixed XSS vulnerability for clients with SVG scripting, on wikis where SVG
+  uploads are enabled. Firefox 1.5+ is affected. (Rem2, Rem3, Rem5, Rem6)
+* Avoid streaming uploaded files to the user via index.php. This allows 
+  security-conscious users to serve uploaded files via a different domain, and
+  thus client-side scripts executed from that domain cannot access the login
+  cookies. Affects Special:Undelete, img_auth.php and thumb.php. (Rem12)
+* When streaming files via index.php, use the MIME type detected from the 
+  file extension, not from the data. This reduces the XSS attack surface.
+* Blacklist redirects via Special:Filepath. Such redirects exacerbate any 
+  XSS vulnerabilities involving uploads of files containing scripts. (Rem7)
 
 == Changes since 1.13.1 ==
 
