@@ -73,6 +73,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				case 'usergroups':
 					$this->appendUserGroups( $p );
 					break;
+				case 'extensions':
+					$this->appendExtensions( $p );
+					break;
 				default :
 					ApiBase :: dieDebug( __METHOD__, "Unknown prop=$p" );
 			}
@@ -183,7 +186,6 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$this->getResult()->setIndexedTagName($data, 'magicword');
 		$this->getResult()->addValue('query', $property, $data);
 	}
-			
 
 	protected function appendInterwikiMap( $property, $filter ) {
 		$this->resetQueryParams();
@@ -278,6 +280,40 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$this->getResult()->addValue( 'query', $property, $data );
 	}
 
+	protected function appendExtensions( $property ) {
+		global $wgExtensionCredits;
+		$data = array();
+		foreach ( $wgExtensionCredits as $type => $extensions ) {
+			foreach ( $extensions as $ext ) {
+				$ret = array();
+				$ret['type'] = $type;
+				if ( isset( $ext['name'] ) ) 
+					$ret['name'] = $ext['name'];
+				if ( isset( $ext['description'] ) ) 
+					$ret['description'] = $ext['description'];
+				if ( isset( $ext['descriptionmsg'] ) ) 
+					$ret['descriptionmsg'] = $ext['descriptionmsg'];
+				if ( isset( $ext['author'] ) ) {
+					$ret['author'] = is_array( $ext['author'] ) ? 
+						implode( ', ', $ext['author' ] ) : $ext['author'];
+				}
+				if ( isset( $ext['version'] ) ) {
+						$ret['version'] = $ext['version'];
+				} elseif ( isset( $ext['svn-revision'] ) && 
+					preg_match( '/\$(?:Rev|LastChangedRevision|Revision): *(\d+)/', 
+						$ext['svn-revision'], $m ) )  
+				{
+						$ret['version'] = 'r' . $m[1];
+				}
+				$data[] = $ret;
+			}
+		}
+
+		$this->getResult()->setIndexedTagName( $data, 'ext' );
+		$this->getResult()->addValue( 'query', $property, $data );
+	}
+
+
 	public function getAllowedParams() {
 		return array(
 			'prop' => array(
@@ -293,6 +329,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					'dbrepllag',
 					'statistics',
 					'usergroups',
+					'extensions',
 				)
 			),
 			'filteriw' => array(
@@ -318,6 +355,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				' "interwikimap" - Returns interwiki map (optionally filtered)',
 				' "dbrepllag"    - Returns database server with the highest replication lag',
 				' "usergroups"   - Returns user groups and the associated permissions',
+				' "extensions"   - Returns extensions installed on the wiki',
 			),
 			'filteriw' =>  'Return only local or only nonlocal entries of the interwiki map',
 			'showalldb' => 'List all database servers, not just the one lagging the most',
