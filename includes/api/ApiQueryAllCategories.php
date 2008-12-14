@@ -67,7 +67,19 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 
 		$prop = array_flip($params['prop']);
 		$this->addFieldsIf( array( 'cat_pages', 'cat_subcats', 'cat_files' ), isset($prop['size']) );
-		$this->addFieldsIf( 'cat_hidden', isset($prop['hidden']) );
+		if(isset($prop['hidden']))
+		{
+			$this->addTables(array('page', 'page_props'));
+			$this->addJoinConds(array(
+				'page' => array('LEFT JOIN', array(
+					'page_namespace' => NS_CATEGORY,
+					'page_title=cat_title')),
+				'page_props' => array('LEFT JOIN', array(
+					'pp_page=page_id',
+					'pp_propname' => 'hiddencat')),
+			));
+			$this->addFields('pp_propname AS cat_hidden');
+		}
 
 		$res = $this->select(__METHOD__);
 

@@ -55,8 +55,16 @@ class ApiQueryCategoryInfo extends ApiQueryBase {
 			$cattitles[$c] = $t->getDBKey();
 		}
 
-		$this->addTables('category');
-		$this->addFields(array('cat_title', 'cat_pages', 'cat_subcats', 'cat_files', 'cat_hidden'));
+		$this->addTables(array('category', 'page', 'page_props'));
+		$this->addJoinConds(array(
+			'page' => array('LEFT JOIN', array(
+				'page_namespace' => NS_CATEGORY,
+				'page_title=cat_title')),
+			'page_props' => array('LEFT JOIN', array(
+				'pp_page=page_id',
+				'pp_propname' => 'hiddencat')),
+		));
+		$this->addFields(array('cat_title', 'cat_pages', 'cat_subcats', 'cat_files', 'pp_propname AS cat_hidden'));
 		$this->addWhere(array('cat_title' => $cattitles));			
 
 		$db = $this->getDB();
