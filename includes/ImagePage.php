@@ -594,20 +594,9 @@ EOT
 		global $wgOut, $wgUseExternalEditor;
 
 		$this->loadFile();
-		$s = '';
-		if( $this->img->exists() ) {
-			$list = new ImageHistoryList( $this );
-			$file = $this->img;
-			$s = $list->beginImageHistoryList();
-			$s .= $list->imageHistoryLine( true, $file );
-			// old image versions
-			$hist = $this->img->getHistory();
-			foreach( $hist as $file ) {
-				$s .= $list->imageHistoryLine( false, $file );
-			}
-			$s .= $list->endImageHistoryList();
-		}
-		$wgOut->addHTML( $s );
+		$pager = new ImageHistoryPseudoPager( $this );
+		# Generate prev/next links
+		$wgOut->addHTML( $pager->getBody() );
 
 		$this->img->resetHistory(); // free db resources
 
@@ -803,10 +792,11 @@ class ImageHistoryList {
 		return $this->img;
 	}
 
-	public function beginImageHistoryList() {
+	public function beginImageHistoryList( $navLinks = '' ) {
 		global $wgOut, $wgUser;
 		return Xml::element( 'h2', array( 'id' => 'filehistory' ), wfMsg( 'filehist' ) )
 			. $wgOut->parse( wfMsgNoTrans( 'filehist-help' ) )
+			. $navLinks
 			. Xml::openElement( 'table', array( 'class' => 'filehistory' ) ) . "\n"
 			. '<tr><td></td>'
 			. ( $this->current->isLocal() && ($wgUser->isAllowed('delete') || $wgUser->isAllowed('deleterevision') ) ? '<td></td>' : '' )
@@ -818,8 +808,8 @@ class ImageHistoryList {
 			. "</tr>\n";
 	}
 
-	public function endImageHistoryList() {
-		return "</table>\n";
+	public function endImageHistoryList( $navLinks = '' ) {
+		return "</table>\n$navLinks\n";
 	}
 
 	public function imageHistoryLine( $iscur, $file ) {
@@ -964,5 +954,125 @@ class ImageHistoryList {
 		$classAttr = $rowClass ? " class='$rowClass'" : "";
 
 		return "<tr{$classAttr}>{$row}</tr>\n";
+	}
+}
+
+class ImageHistoryPseudoPager extends ReverseChronologicalPager {
+	function __construct( $imagePage ) {
+		parent::__construct();
+		$this->mImagePage =& $imagePage;
+		$this->mTitle = $imagePage->getTitle();
+		$this->mImg = NULL;
+		$this->mHist = array();
+		$this->mRange = array( 0, 0 ); // display range
+	}
+
+	function getQueryInfo() {
+		return false;
+	}
+
+	function getIndexField() {
+		return '';
+	}
+
+	function formatRow( $row ) {
+		return '';
+	}
+	
+	function getBody() {
+		$s = '';
+		$this->doQuery();
+		if( count($this->mHist) ) {
+			$list = new ImageHistoryList( $this->mImagePage );
+			# Generate prev/next links
+			$navLink = $this->getNavigationBar();
+			$s = $list->beginImageHistoryList($navLink);
+			// Skip rows there just for paging links
+			for( $i = $this->mRange[0]; $i <= $this->mRange[1]; $i++ ) {
+				$file = $this->mHist[$i];
+				$s .= $list->imageHistoryLine( !$file->isOld(), $file );
+			}
+			$s .= $list->endImageHistoryList($navLink);
+		}
+		return $s;
+	}
+
+	function doQuery() {
+		if( $this->mQueryDone ) return;
+		$this->mImg = $this->mImagePage->getFile(); // ensure loading
+		if( !$this->mImg->exists() ) {
+			return;
+		}
+		$queryLimit = $this->mLimit + 1; // limit plus extra row
+		if( $this->mIsBackwards ) {
+			// Fetch the file history
+			$this->mHist = $this->mImg->getHistory($queryLimit,null,$this->mOffset,false);
+			// The current rev may not meet the offset/limit
+			$numRows = count($this->mHist);
+			if( $numRows <= $this->mLimit && $this->mImg->getTimestamp() > $this->mOffset ) {
+				$this->mHist = array_merge( array($this->mImg), $this->mHist );
+			}
+		} else {
+			// The current rev may not meet the offset
+			if( !$this->mOffset || $this->mImg->getTimestamp() < $this->mOffset ) {
+				$this->mHist[] = $this->mImg;
+			}
+			// Old image versions (fetch extra row for nav links)
+			$oiLimit = count($this->mHist) ? $this->mLimit : $this->mLimit+1;
+			// Fetch the file history
+			$this->mHist = array_merge( $this->mHist,
+				$this->mImg->getHistory($oiLimit,$this->mOffset,null,false) );
+		}
+		$numRows = count($this->mHist); // Total number of query results
+		if( $numRows ) {
+			# Index value of top item in the list
+			$firstIndex = $this->mIsBackwards ?
+				$this->mHist[$numRows-1]->getTimestamp() : $this->mHist[0]->getTimestamp();
+			# Discard the extra result row if there is one
+			if( $numRows > $this->mLimit && $numRows > 1 ) {
+				if( $this->mIsBackwards ) {
+					# Index value of item past the index
+					$this->mPastTheEndIndex = $this->mHist[0]->getTimestamp();
+					# Index value of bottom item in the list
+					$lastIndex = $this->mHist[1]->getTimestamp();
+					# Display range
+					$this->mRange = array( 1, $numRows-1 );
+				} else {
+					# Index value of item past the index
+					$this->mPastTheEndIndex = $this->mHist[$numRows-1]->getTimestamp();
+					# Index value of bottom item in the list
+					$lastIndex = $this->mHist[$numRows-2]->getTimestamp();
+					# Display range
+					$this->mRange = array( 0, $numRows-2 );
+				}
+			} else {
+				# Setting indexes to an empty string means that they will be
+				# omitted if they would otherwise appear in URLs. It just so
+				# happens that this  is the right thing to do in the standard
+				# UI, in all the relevant cases.
+				$this->mPastTheEndIndex = '';
+				# Index value of bottom item in the list
+				$lastIndex = $this->mIsBackwards ?
+					$this->mHist[0]->getTimestamp() : $this->mHist[$numRows-1]->getTimestamp();
+				# Display range
+				$this->mRange = array( 0, $numRows-1 );
+			}
+		} else {
+			$firstIndex = '';
+			$lastIndex = '';
+			$this->mPastTheEndIndex = '';
+		}
+		if( $this->mIsBackwards ) {
+			$this->mIsFirst = ( $numRows < $queryLimit );
+			$this->mIsLast = ( $this->mOffset == '' );
+			$this->mLastShown = $firstIndex;
+			$this->mFirstShown = $lastIndex;
+		} else {
+			$this->mIsFirst = ( $this->mOffset == '' );
+			$this->mIsLast = ( $numRows < $queryLimit );
+			$this->mLastShown = $lastIndex;
+			$this->mFirstShown = $firstIndex;
+		}
+		$this->mQueryDone = true;
 	}
 }
