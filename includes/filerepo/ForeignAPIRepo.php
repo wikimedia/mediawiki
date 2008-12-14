@@ -72,8 +72,7 @@ class ForeignAPIRepo extends FileRepo {
 				array_merge( $query,
 					array(
 						'format' => 'json',
-						'action' => 'query',
-						'prop' => 'imageinfo' ) ) );
+						'action' => 'query' ) ) );
 		
 		if( !isset( $this->mQueryCache[$url] ) ) {
 			$key = wfMemcKey( 'ForeignAPIRepo', 'Metadata', md5( $url ) );
@@ -95,7 +94,20 @@ class ForeignAPIRepo extends FileRepo {
 	function getImageInfo( $title, $time = false ) {
 		return $this->queryImage( array(
 			'titles' => 'Image:' . $title->getText(),
-			'iiprop' => 'timestamp|user|comment|url|size|sha1|metadata|mime' ) );
+			'iiprop' => 'timestamp|user|comment|url|size|sha1|metadata|mime',
+			'prop' => 'imageinfo' ) );
+	}
+	
+	function findBySha1( $hash ) {
+		$results = $this->fetchImageQuery( array(
+										'aisha1base36' => $hash,
+										'aiprop'       => 'timestamp|user|comment|url|size|sha1|metadata|mime',
+										'list'         => 'allimages', ) );
+		$ret = array();
+		foreach ( $results['query']['allimages'] as $img ) {
+			$ret[] = new ForeignAPIFile( Title::makeTitle( NS_IMAGE, $img['name'] ), $this, $img );
+		}
+		return $ret;
 	}
 	
 	function getThumbUrl( $name, $width=-1, $height=-1 ) {
@@ -103,7 +115,8 @@ class ForeignAPIRepo extends FileRepo {
 			'titles' => 'Image:' . $name,
 			'iiprop' => 'url',
 			'iiurlwidth' => $width,
-			'iiurlheight' => $height ) );
+			'iiurlheight' => $height,
+			'prop' => 'imageinfo' ) );
 		if( $info ) {
 			wfDebug( __METHOD__ . " got remote thumb " . $info['thumburl'] . "\n" );
 			return $info['thumburl'];
