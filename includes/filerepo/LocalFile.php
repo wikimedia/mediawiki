@@ -641,7 +641,7 @@ class LocalFile extends File
 			$opts['LIMIT'] = $limit;
 		}
 		// Search backwards for time > x queries
-		$order = (!$start && $end === "") ? "ASC" : "DESC";
+		$order = (!$start && $end !== null) ? "ASC" : "DESC";
 		$opts['ORDER BY'] = "oi_timestamp $order";
 		
 		wfRunHooks( 'LocalFile::getHistory', array( &$this, &$tables, &$fields, 
