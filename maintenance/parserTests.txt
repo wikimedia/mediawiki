@@ -2096,11 +2096,69 @@ Namespace -1 {{ns:-1}}
 !! end
 
 !! test
-Namespace Project {{ns:User}}
+Namespace User {{ns:User}}
 !! input
 {{ns:User}}
 !! result
 <p>User
+</p>
+!! end
+
+!! test
+Namespace User talk {{ns:User_talk}}
+!! input
+{{ns:User_talk}}
+!! result
+<p>User talk
+</p>
+!! end
+
+!! test
+Namespace User talk {{ns:uSeR tAlK}}
+!! input
+{{ns:uSeR tAlK}}
+!! result
+<p>User talk
+</p>
+!! end
+
+!! test
+Namespace File {{ns:File}}
+!! input
+{{ns:File}}
+!! result
+<p>File
+</p>
+!! end
+
+!! test
+Namespace File {{ns:Image}}
+!! input
+{{ns:Image}}
+!! result
+<p>File
+</p>
+!! end
+
+!! test
+Namespace (lang=de) Benutzer {{ns:User}}
+!! options
+language=de
+!! input
+{{ns:User}}
+!! result
+<p>Benutzer
+</p>
+!! end
+
+!! test
+Namespace (lang=de) Benutzer Diskussion {{ns:3}}
+!! options
+language=de
+!! input
+{{ns:3}}
+!! result
+<p>Benutzer Diskussion
 </p>
 !! end
 
