@@ -1790,7 +1790,7 @@ $1',
 'sp-contributions-username'    => 'שם משתמש או כתובת IP:',
 'sp-contributions-submit'      => 'חיפוש',
 
-'sp-newimages-showfrom' => 'הצגת קבצים חדשות החל מ־$2, $1',
+'sp-newimages-showfrom' => 'הצגת קבצים חדשים החל מ־$2, $1',
 
 # What links here
 'whatlinkshere'       => 'דפים המקושרים לכאן',
