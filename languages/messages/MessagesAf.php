@@ -565,18 +565,20 @@ Indien hierdie rekening foutief geskep is, kan u hierdie boodskap ignoreer.',
 'loginlanguagelabel'         => 'Taal: $1',
 
 # Password reset dialog
-'resetpass'               => 'Herstel rekening wagwoord',
-'resetpass_announce'      => "U het aangeteken met 'n tydelike e-poskode.
+'resetpass'                 => 'Herstel rekening wagwoord',
+'resetpass_announce'        => "U het aangeteken met 'n tydelike e-poskode.
 Om voort te gaan moet u 'n nuwe wagwoord hier kies:",
-'resetpass_header'        => 'Herstel wagwoord',
-'oldpassword'             => 'Ou wagwoord',
-'newpassword'             => 'Nuwe wagwoord',
-'retypenew'               => 'Tik nuwe wagwoord weer in',
-'resetpass_submit'        => 'Stel wagwoord en teken in',
-'resetpass_success'       => 'U wagwoord is suksesvol gewysig! Besig om u in te teken ...',
-'resetpass_bad_temporary' => "Ongeldige tydelike wagwoord. 
+'resetpass_header'          => 'Herstel wagwoord',
+'oldpassword'               => 'Ou wagwoord',
+'newpassword'               => 'Nuwe wagwoord',
+'retypenew'                 => 'Tik nuwe wagwoord weer in',
+'resetpass_submit'          => 'Stel wagwoord en teken in',
+'resetpass_success'         => 'U wagwoord is suksesvol gewysig! Besig om u in te teken ...',
+'resetpass_bad_temporary'   => "Ongeldige tydelike wagwoord. 
 U het u wagwoord al gewysig of 'n nuwe tydelike wagwoord aangevra.",
-'resetpass_forbidden'     => 'Wagwoorde kannie gewysig word nie.',
+'resetpass_forbidden'       => 'Wagwoorde kannie gewysig word nie.',
+'resetpass-submit-loggedin' => 'Verander wagwoord',
+'resetpass-temp-password'   => 'Tydelike wagwoord:',
 
 # Edit page toolbar
 'bold_sample'     => 'Vet teks',
@@ -1318,11 +1320,11 @@ Klik op die opskrifte om die tabel anders te sorteer.',
 
 # Random page
 'randompage'         => 'Lukrake bladsy',
-'randompage-nopages' => 'Daar is geen bladye in die naamspasie.',
+'randompage-nopages' => 'Daar is geen bladye in naamspasie "$1".',
 
 # Random redirect
 'randomredirect'         => 'Lukrake aanstuur',
-'randomredirect-nopages' => 'Daar is geen aansture in die naamspasie.',
+'randomredirect-nopages' => 'Daar is geen aansture in naamspasie "$1".',
 
 # Statistics
 'statistics'               => 'Statistiek',
@@ -1332,7 +1334,7 @@ Klik op die opskrifte om die tabel anders te sorteer.',
 'statistics-header-users'  => 'Gebruikerstatistiek',
 'statistics-articles'      => 'Inhoudelike bladsye',
 'statistics-pages'         => 'Bladsye',
-'statistics-pages-desc' => 'Alle bladsye in die wiki, insluitend besprekings-, aanstuur- en ander bladsye.',
+'statistics-pages-desc'    => 'Alle bladsye in die wiki, insluitend besprekings-, aanstuur- en ander bladsye.',
 'statistics-files'         => 'Ongelaaide lêers',
 'statistics-edits'         => 'Wysigings sedert {{SITENAME}} begin is',
 'statistics-edits-average' => 'Gemiddelde wysigings per bladsy',
@@ -2256,7 +2258,7 @@ Ander velde sal versteek wees.
 
 # External editor support
 'edit-externally'      => "Wysig hierdie lêer met 'n eksterne program",
-'edit-externally-help' => 'Sien die [http://www.mediawiki.org/wiki/Manual:External_editors instruksies] (in Engels) vir meer inligting.',
+'edit-externally-help' => '(Sien [http://www.mediawiki.org/wiki/Manual:External_editors instruksies] vir meer inligting)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'alles',

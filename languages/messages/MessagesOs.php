@@ -513,6 +513,8 @@ $3',
 'mycontris'     => 'Дæ бавæрд',
 'uctop'         => '(уæле баззад)',
 
+'sp-contributions-blocklog' => 'Хъодыты лог',
+
 # What links here
 'whatlinkshere'           => 'Цавæр æрвитæнтæ цæуынц ардæм',
 'whatlinkshere-page'      => 'Фарс:',
@@ -523,8 +525,12 @@ $3',
 # Block/unblock
 'ipbreason'              => 'Аххос',
 'ipbreasonotherlist'     => 'Æндæр аххос',
+'ipb-blocklist'          => 'Актуалон хъоды равдис',
 'ipb-blocklist-contribs' => '$1, зæгъгæ, уыцы архайæджы бавæрд',
+'ipblocklist-legend'     => 'Хъодыгонд архайæджы ацагур',
+'ipblocklist-empty'      => 'Хъодыгæндты номхыгъд афтид у.',
 'contribslink'           => 'бавæрд',
+'blocklogpage'           => 'Хъодыты лог',
 
 # Move page
 'movearticle' => 'Статьяйы ном баив',

@@ -543,9 +543,9 @@ Siz oturım açıp paroliñizni şimdi deñiştirmek kereksiñiz.
 'loginlanguagelabel'         => 'Til: $1',
 
 # Password reset dialog
-'resetpass'               => 'Bu esapnıñ parolini deñiştir ya da sıfırla',
+'resetpass'               => 'Parolni deñiştir',
 'resetpass_announce'      => 'Muvaqqat kod vastasınen kirdiñiz. Kirişni tamamlamaq içün yañı parolni mında qoyuñız:',
-'resetpass_header'        => 'Parolni sıfırla',
+'resetpass_header'        => 'Esapnıñ parolini deñiştir',
 'oldpassword'             => 'Eski parol',
 'newpassword'             => 'Yañı parol',
 'retypenew'               => 'Yañı parolni tekrar yazıñız',

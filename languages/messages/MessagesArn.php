@@ -134,6 +134,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Elungeymi we dungu $1 mew.',
 'editsection'             => 'wirin',
 'editold'                 => 'wirin',
+'editlink'                => 'wirin',
 'showtoc'                 => 'pengelün',
 'hidetoc'                 => 'ellkan',
 'viewdeleted'             => 'Küpaadkintuymi $1 am?',
@@ -183,7 +184,7 @@ $messages = array(
 
 # History pages
 'page_first'             => 'wünen',
-'history-fieldset-title' => 'Kintun pünon',
+'history-fieldset-title' => 'Kintun pünon mew',
 'deletedrev'             => '[ñamümüngelu]',
 'historyempty'           => '(welli)',
 
@@ -201,6 +202,7 @@ $messages = array(
 'editundo'     => 'wüñoeltun',
 'diff-movedto' => 'Nengümülu $1 püle',
 'diff-img'     => "kiñe '''ad'''",
+'diff-big'     => "'''füta'''",
 'diff-del'     => "'''Ñamümün'''",
 
 # Search results
@@ -369,6 +371,7 @@ $messages = array(
 'move-page'               => 'Nengümün $1',
 'move-page-legend'        => 'Nengümün pakina',
 'movearticle'             => 'Nengümün pakina',
+'movenologin'             => 'Konlaymi',
 'newtitle'                => 'We üy püle',
 'move-watch'              => 'Llaytun tüfachi pakina',
 'movepagebtn'             => 'Nengümün pakina',
@@ -381,15 +384,16 @@ $messages = array(
 'allmessagesname' => 'Üy',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'   => 'Ñi pakina lludüchi',
-'tooltip-pt-mytalk'     => 'Tañi nütramkawe',
-'tooltip-pt-logout'     => 'Tripan',
-'tooltip-ca-delete'     => 'Ñamümün tüfachi pakina',
-'tooltip-ca-move'       => 'Nengümün tüfachi pakina',
-'tooltip-search'        => 'Kintun tüfachi wiki mew',
-'tooltip-p-logo'        => 'Wüne pakina',
-'tooltip-ca-nstab-user' => 'Pen lludüchi pakina',
-'tooltip-ca-nstab-help' => 'Pen kellupakina',
+'tooltip-pt-userpage'    => 'Ñi pakina lludüchi',
+'tooltip-pt-mytalk'      => 'Tañi nütramkawe',
+'tooltip-pt-logout'      => 'Tripan',
+'tooltip-ca-delete'      => 'Ñamümün tüfachi pakina',
+'tooltip-ca-move'        => 'Nengümün tüfachi pakina',
+'tooltip-search'         => 'Kintun tüfachi wiki mew',
+'tooltip-p-logo'         => 'Wüne pakina',
+'tooltip-ca-nstab-user'  => 'Pen lludüchi pakina',
+'tooltip-ca-nstab-image' => 'Pen pakina ad mew',
+'tooltip-ca-nstab-help'  => 'Pen kellupakina',
 
 # Attribution
 'siteuser'  => 'Lludüchi $1 {{SITENAME}}',
@@ -402,6 +406,10 @@ $messages = array(
 
 # Patrol log
 'patrol-log-diff' => 'ng$1',
+
+# Browsing diffs
+'previousdiff' => '← Füta wirin',
+'nextdiff'     => 'We wirin →',
 
 # Special:NewFiles
 'ilsubmit' => 'Kintu',
@@ -459,7 +467,8 @@ $messages = array(
 'fileduplicatesearch-submit' => 'Kintun',
 
 # Special:SpecialPages
-'specialpages-group-login' => 'Konün',
+'specialpages-group-login'     => 'Konün',
+'specialpages-group-pagetools' => 'Küsawkawe pakina mew',
 
 # Special:BlankPage
 'blankpage' => 'welli pakina',

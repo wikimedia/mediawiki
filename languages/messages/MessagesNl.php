@@ -12,6 +12,7 @@
  * @author GerardM
  * @author Hamaryns
  * @author McDutchie
+ * @author Niels
  * @author SPQRobin
  * @author Siebrand
  * @author Slomox
@@ -771,7 +772,7 @@ U moet even wachten voordat u het opnieuw kunt proberen.',
 'resetpass_announce'        => 'U bent aangemeld met een tijdelijke code die u per e-mail is toegezonden.
 Voer een nieuw wachtwoord in om het aanmelden te voltooien:',
 'resetpass_text'            => '<!-- Voeg hier tekst toe -->',
-'resetpass_header'          => 'Wachtwoord herinstellen',
+'resetpass_header'          => 'Wachtwoord wijzigen',
 'oldpassword'               => 'Huidige wachtwoord:',
 'newpassword'               => 'Nieuwe wachtwoord:',
 'retypenew'                 => 'Herhaling nieuwe wachtwoord:',
@@ -1743,24 +1744,24 @@ Vergeet niet de "Verwijzingen naar deze pagina" te controleren alvorens dit sjab
 'randomredirect-nopages' => 'Er zijn geen doorverwijzingen in de naamruimte "$1".',
 
 # Statistics
-'statistics'                      => 'Statistieken',
-'statistics-header-pages'         => 'Paginastatistieken',
-'statistics-header-edits'         => 'Bewerkingsstatistieken',
-'statistics-header-views'         => 'Paginaweergavestatistieken',
-'statistics-header-users'         => 'Gebruikerstatistieken',
-'statistics-articles'             => "Inhoudelijke pagina's",
-'statistics-pages'                => "Pagina's",
+'statistics'                   => 'Statistieken',
+'statistics-header-pages'      => 'Paginastatistieken',
+'statistics-header-edits'      => 'Bewerkingsstatistieken',
+'statistics-header-views'      => 'Paginaweergavestatistieken',
+'statistics-header-users'      => 'Gebruikerstatistieken',
+'statistics-articles'          => "Inhoudelijke pagina's",
+'statistics-pages'             => "Pagina's",
 'statistics-pages-desc'        => "Alle pagina's in de wiki, inclusief overlegpagina's, doorverwijzingen, enzovoort.",
-'statistics-files'                => 'Bestanden',
-'statistics-edits'                => 'Paginabewerkingen sinds het begin van {{SITENAME}}',
-'statistics-edits-average'        => 'Gemiddeld aantal bewerkingen per pagina',
-'statistics-views-total'          => "Totaal aantal weergegeven pagina's",
-'statistics-views-peredit'        => "Weergegeven pagina's per bewerking",
-'statistics-jobqueue'             => '[http://www.mediawiki.org/wiki/Manual:Job_queue Jobqueuelengte]',
-'statistics-users'                => 'Geregistreerde [[Special:ListUsers|gebruikers]]',
-'statistics-users-active'         => 'Actieve gebruikers',
+'statistics-files'             => 'Bestanden',
+'statistics-edits'             => 'Paginabewerkingen sinds het begin van {{SITENAME}}',
+'statistics-edits-average'     => 'Gemiddeld aantal bewerkingen per pagina',
+'statistics-views-total'       => "Totaal aantal weergegeven pagina's",
+'statistics-views-peredit'     => "Weergegeven pagina's per bewerking",
+'statistics-jobqueue'          => '[http://www.mediawiki.org/wiki/Manual:Job_queue Jobqueuelengte]',
+'statistics-users'             => 'Geregistreerde [[Special:ListUsers|gebruikers]]',
+'statistics-users-active'      => 'Actieve gebruikers',
 'statistics-users-active-desc' => 'Gebruikers die in de afgelopen maand een handeling hebben uitgevoerd',
-'statistics-mostpopular'          => "Meest bekeken pagina's",
+'statistics-mostpopular'       => "Meest bekeken pagina's",
 
 'disambiguations'      => "Doorverwijspagina's",
 'disambiguationspage'  => 'Template:Doorverwijspagina',
@@ -1853,6 +1854,8 @@ Een bestand kan hier dus ten onrechte opgenomen zijn.',
 'booksources-search-legend' => 'Bronnen en informatie over een boek zoeken',
 'booksources-go'            => 'Zoeken',
 'booksources-text'          => 'Hieronder staat een lijst met koppelingen naar andere websites die nieuwe of gebruikte boeken verkopen, en die wellicht meer informatie over het boek dat u zoekt hebben:',
+'booksources-invalid-isbn'  => 'Het ingegeven ISBN-nummer lijkt niet geldig te zijn.
+Controleer of u wellicht een fout hebt gemaakt bij de invoer.',
 
 # Special:Log
 'specialloguserlabel'  => 'Gebruiker:',
@@ -2007,7 +2010,7 @@ $NEWPAGE
 
 Samenvatting van de wijziging: $PAGESUMMARY $PAGEMINOREDIT
 
-Contactgevevens van de auteur:
+Contactgegevens van de auteur:
 E-mail: $PAGEEDITOR_EMAIL
 Wiki: $PAGEEDITOR_WIKI
 

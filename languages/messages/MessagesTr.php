@@ -1196,7 +1196,7 @@ Bu dosyanın silme kayıtları kolaylık olması için burada sunulmuştur:",
 'statistics-header-users'  => 'Kullanıcı istatistikleri',
 'statistics-articles'      => 'Maddeler',
 'statistics-pages'         => 'Sayfalar',
-'statistics-pages-desc' => 'Vikipedideki tüm sayfalar, tartışma sayfaları, yönlendirmeler vs.',
+'statistics-pages-desc'    => 'Vikipedideki tüm sayfalar, tartışma sayfaları, yönlendirmeler vs.',
 'statistics-files'         => 'Yüklenmiş dosyalar',
 'statistics-edits-average' => 'Her sayfadaki ortalama değişiklik',
 'statistics-jobqueue'      => '[http://www.mediawiki.org/wiki/Manual:Job_queue İş sırası] uzunluğu',
@@ -1905,7 +1905,7 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 # EXIF tags
 'exif-imagewidth'                => 'Genişlik',
 'exif-imagelength'               => 'Yükseklik',
-'exif-compression'               => 'Sıkıştırma modeli',
+'exif-compression'               => 'Sıkıştırma planı',
 'exif-photometricinterpretation' => 'Piksel bileşimi',
 'exif-orientation'               => 'Yönlendirme',
 'exif-planarconfiguration'       => 'Veri düzeni',
@@ -1925,7 +1925,7 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 'exif-flashpixversion'           => 'Desteklenen Flashpix sürümü',
 'exif-colorspace'                => 'Renk aralığı',
 'exif-componentsconfiguration'   => 'Her bir bileşenin anlamı',
-'exif-compressedbitsperpixel'    => 'Resim sıkıştırma modu',
+'exif-compressedbitsperpixel'    => 'Resim sıkıştırma biçimi',
 'exif-pixelydimension'           => 'Geçerli resim genişliği',
 'exif-makernote'                 => 'Yapımcı notları',
 'exif-usercomment'               => 'Kullanıcı yorumları',
@@ -1940,7 +1940,7 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 'exif-isospeedratings'           => 'ISO hızı',
 'exif-shutterspeedvalue'         => 'Deklanşör hızı',
 'exif-aperturevalue'             => 'Diyafram açıklığı',
-'exif-brightnessvalue'           => 'parlaklık',
+'exif-brightnessvalue'           => 'Parlaklık',
 'exif-exposurebiasvalue'         => 'Poz eğilim değeri',
 'exif-maxaperturevalue'          => 'Maksimum açıklık değeri',
 'exif-meteringmode'              => 'Ölçüm modu',
@@ -1993,11 +1993,14 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 'exif-orientation-3' => '180° döndürülmüş', # 0th row: bottom; 0th column: right
 'exif-orientation-4' => 'Düşey (dikey) kırılma', # 0th row: bottom; 0th column: left
 
-'exif-componentsconfiguration-0' => 'yok',
+'exif-componentsconfiguration-0' => 'Var olmayan',
 
-'exif-exposureprogram-0' => 'Tanımlanmamış',
+'exif-exposureprogram-0' => 'Tanımlanmadı',
 'exif-exposureprogram-1' => 'Elle',
 'exif-exposureprogram-3' => 'Açıklık önceliği',
+'exif-exposureprogram-4' => 'Denklanşör önceliği',
+'exif-exposureprogram-5' => 'Kullanıcı programı',
+'exif-exposureprogram-6' => 'Hareket programı',
 'exif-exposureprogram-7' => 'Portre modu (Arka planları bulanıklaştırıp nesneyi netleştirerek çeker)',
 'exif-exposureprogram-8' => 'Peyzaj modu',
 
@@ -2025,6 +2028,13 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 'exif-lightsource-18'  => 'B tipi standart ışık',
 'exif-lightsource-19'  => 'C tipi standart ışık',
 'exif-lightsource-255' => 'Diğer ışık kaynakları',
+
+# Flash modes
+'exif-flash-fired-0'  => 'Flaş patlamadı',
+'exif-flash-fired-1'  => 'Flaş patladı',
+'exif-flash-mode-2'   => 'Zorunlu flaş modu',
+'exif-flash-mode-3'   => 'Otomatik kip',
+'exif-flash-redeye-1' => 'Kırmızı göz azaltma kipi',
 
 'exif-focalplaneresolutionunit-2' => 'inç',
 

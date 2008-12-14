@@ -918,16 +918,16 @@ Pàggene sus 'a [[Special:Watchlist|le Pàggene condrollete]] sonde in '''grasce
 'randomredirect' => 'Redirezionamende a uecchie',
 
 # Statistics
-'statistics'               => 'Statisteche',
-'statistics-header-pages'  => 'Pàgene de le statisteche',
-'statistics-header-edits'  => 'Cange le statisteche',
-'statistics-header-views'  => 'Vide le statisteche',
-'statistics-header-users'  => "Statisteche de l'utende",
-'statistics-articles'      => 'Pàggene de le condenute',
-'statistics-pages'         => 'Pàggene',
-'statistics-pages-desc' => "Tutte le pàggene jndr'à Uicchi, mettènne le pàggene de le 'ngazzaminde, ridirezionaminde, ecc.",
-'statistics-files'         => 'File carechete',
-'statistics-users'         => '[[Special:ListUsers|Utinde reggistrete]]',
+'statistics'              => 'Statisteche',
+'statistics-header-pages' => 'Pàgene de le statisteche',
+'statistics-header-edits' => 'Cange le statisteche',
+'statistics-header-views' => 'Vide le statisteche',
+'statistics-header-users' => "Statisteche de l'utende",
+'statistics-articles'     => 'Pàggene de le condenute',
+'statistics-pages'        => 'Pàggene',
+'statistics-pages-desc'   => "Tutte le pàggene jndr'à Uicchi, mettènne le pàggene de le 'ngazzaminde, ridirezionaminde, ecc.",
+'statistics-files'        => 'File carechete',
+'statistics-users'        => '[[Special:ListUsers|Utinde reggistrete]]',
 
 'disambiguations' => 'Pàggene de disambiguazione',
 

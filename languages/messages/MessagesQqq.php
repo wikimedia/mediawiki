@@ -535,6 +535,9 @@ $1 is the minimum number of characters in the password.',
 # Password reset dialog
 'resetpass'                 => 'The caption of [[Special:Resetpass]]',
 'resetpass_header'          => '{{Identical|Reset password}}',
+'oldpassword'               => "Used on the 'User profile' tab of 'my preferences'. This is the text next to an entry box for the old password in the 'change password' section.",
+'newpassword'               => '{{Identical|New password}}',
+'retypenew'                 => "Appears on the 'User profile' tab of the 'Preferences' special page in the 'Change password' section. It appears next to the text box for entering the new password a second time.",
 'resetpass-submit-loggedin' => 'Button on [[Special:ResetPass]] to submit new password.',
 'resetpass-wrong-oldpass'   => 'Error message shown on [[Special:Resetpass]] when the old password is not valid.',
 'resetpass-temp-password'   => 'The label of the input box for the temporary password (received by e-mail) on the form displayed after logging in with a temporary password.',
@@ -711,29 +714,37 @@ This is the introduction explaining the feature.',
 'revdelete-submit'          => '{{RevisionDelete}}
 This is the submit button on [[Special:RevisionDelete]].',
 'revdelete-logentry'        => '{{RevisionDelete}}
-This is the message for the log entry in [[Special:Log/delete]].',
+This is the message for the log entry in [[Special:Log/delete]] when changing visibility restrictions for page revisions. It is followed by the message {{msg|revdelete-log-message}} in brackets.
+
+The parameter $1 is the page name.',
 'logdelete-logentry'        => '{{RevisionDelete}}
-This is the message for the log entry in [[Special:Log/delete]].',
+This is the message for the log entry in [[Special:Log/delete]] when changing visibility restrictions for log events. It is followed by the message {{msg|logdelete-log-message}} in brackets.
+
+The parameter $1 is the log name in brackets.',
 'revdelete-success'         => '{{RevisionDelete}}',
 'logdelete-success'         => '{{RevisionDelete}}',
 'revdel-restore'            => '{{RevisionDelete}}',
-'revdelete-content'         => 'This message is used as parameter $1 in {{msg|revdelete-hid}} and {{msg|revdelete-unhid}} when hiding or unhiding the content of a revision.',
-'revdelete-summary'         => 'This message is used as parameter $1 in {{msg|revdelete-hid}} and {{msg|revdelete-unhid}} when hiding or unhiding the edit summary of a revision.',
-'revdelete-uname'           => 'This message is used as parameter $1 in {{msg|revdelete-hid}} and {{msg|revdelete-unhid}} when hiding or unhiding the username for a revision.
+'revdelete-content'         => 'This message is used as parameter $1 in {{msg|revdelete-hid}} and {{msg|revdelete-unhid}} when hiding or unhiding the content of a revision or event.',
+'revdelete-summary'         => 'This message is used as parameter $1 in {{msg|revdelete-hid}} and {{msg|revdelete-unhid}} when hiding or unhiding the edit summary of a revision or event.',
+'revdelete-uname'           => 'This message is used as parameter $1 in {{msg|revdelete-hid}} and {{msg|revdelete-unhid}} when hiding or unhiding the username for a revision or event.
 
 {{Identical|Username}}',
 'revdelete-restricted'      => 'This message is used as parameter $1 in {{msg|revdelete-log-message}} when setting visibility restrictions for administrators.',
 'revdelete-unrestricted'    => 'This message is used as parameter $1 in {{msg|revdelete-log-message}} when removing visibility restrictions for administrators.',
-'revdelete-hid'             => 'This message is used as parameter $1 in {{msg|revdelete-log-message}} when hiding revisions.
+'revdelete-hid'             => 'This message is used as parameter $1 in {{msg|revdelete-log-message}} when hiding revisions, and {{msg|logdelete-log-message}} when hiding information in the log entry about hiding revisions.
 
 Parameter $1 is either {{msg|revdelete-content}} (when hiding the page content), {{msg|revdelete-summary}} (when hiding the edit summary), {{msg|revdelete-uname}} (when hiding the user name), or a combination of these three messages.',
-'revdelete-unhid'           => 'This message is used as parameter $1 in {{msg|revdelete-log-message}} when unhiding revisions.
+'revdelete-unhid'           => 'This message is used as parameter $1 in {{msg|revdelete-log-message}} when unhiding revisions, and {{msg|logdelete-log-message}} when unhiding information in the log entry about unhiding revisions.
 
 Parameter $1 is either {{msg|revdelete-content}} (when unhiding the page content), {{msg|revdelete-summary}} (when unhiding the edit summary), {{msg|revdelete-uname}} (when unhiding the user name), or a combination of these three messages.',
 'revdelete-log-message'     => 'This log message is used together with {{msg|revdelete-logentry}} in the deletion or suppression logs when changing visibility restrictions for page revisions.
 
 *Parameter $1 is either {{msg|revdelete-hid}} (when hiding data), {{msg|revdelete-unhid}} (when unhiding data), {{msg|revdelete-restricted}} (when applying restrictions for sysops),  {{msg|revdelete-unrestricted}} (when removing restrictions for sysops), or a combination of those messages.
 *Parameter $2 is the number of revisions for which the restrictions are changed.',
+'logdelete-log-message'     => 'This log message appears in brackets after the message {{msg|logdelete-logentry}} in the deletion or suppression logs when changing the visibility of a log entry for events. For a brief description of the process of changing the visibility of events and their log entries see this [http://www.mediawiki.org/wiki/RevisionDelete mediawiki explanation].
+
+*Parameter $1 is either {{msg|revdelete-hid}} (when hiding data), {{msg|revdelete-unhid}} (when unhiding data), {{msg|revdelete-restricted}} (when applying restrictions for sysops),  {{msg|revdelete-unrestricted}} (when removing restrictions for sysops), or a combination of those messages.
+*Parameter $2 is the number of events for which the restrictions are changed.',
 
 # Suppression log
 'suppressionlog'     => 'Title of the suppression log. Shown in the drop down menu at [[Special:log]] and as header of [[Special:log/suppress]].',
@@ -870,9 +881,6 @@ $1 is the relevance of this result in per cent.
 
 {{Identical|Save}}',
 'resetprefs'                => 'Button for resetting changes in the preferences page.',
-'oldpassword'               => "Used on the 'User profile' tab of 'my preferences'. This is the text next to an entry box for the old password in the 'change password' section.",
-'newpassword'               => '{{Identical|New password}}',
-'retypenew'                 => "Appears on the 'User profile' tab of the 'Preferences' special page in the 'Change password' section. It appears next to the text box for entering the new password a second time.",
 'textboxsize'               => 'Title of a tab in [[Special:Preferences]].',
 'searchresultshead'         => 'This is the label of the tab in [[Special:Preferences|my preferences]] which contains options for searching the wiki.
 
@@ -1122,6 +1130,7 @@ Parameter $2 is a date and time.',
 
 {{Identical|Source}}',
 'ignorewarnings'              => 'In [[Special:Upload]]',
+'filetype-bad-ie-mime'        => '$1 will contain a mime type like <tt>image/jpeg</tt> or <tt>application/zip</tt>',
 'filetype-unwanted-type'      => "* $1 is the extension of the file which cannot be uploaded
 * $2 is the list of file extensions that can be uploaded (Example: ''png, gif, jpg, jpeg, ogg, pdf, svg.'')
 * $3 is the number of allowed file formats (to be used for the PLURAL function)",
@@ -1296,26 +1305,26 @@ Example: [[:Image:Addon-icn.png]]',
 'randomredirect' => 'Name of special page displayed in [[Special:SpecialPages]].',
 
 # Statistics
-'statistics'                      => 'Name of special page displayed in [[Special:SpecialPages]].
+'statistics'                   => 'Name of special page displayed in [[Special:SpecialPages]].
 
 {{Identical|Statistics}}',
-'statistics-header-pages'         => 'Used in [[Special:Statistics]]',
-'statistics-header-edits'         => 'Used in [[Special:Statistics]]',
-'statistics-header-views'         => 'Used in [[Special:Statistics]]',
-'statistics-header-users'         => 'Used in [[Special:Statistics]]',
-'statistics-articles'             => 'Used in [[Special:Statistics]]',
-'statistics-pages'                => 'Used in [[Special:Statistics]]',
+'statistics-header-pages'      => 'Used in [[Special:Statistics]]',
+'statistics-header-edits'      => 'Used in [[Special:Statistics]]',
+'statistics-header-views'      => 'Used in [[Special:Statistics]]',
+'statistics-header-users'      => 'Used in [[Special:Statistics]]',
+'statistics-articles'          => 'Used in [[Special:Statistics]]',
+'statistics-pages'             => 'Used in [[Special:Statistics]]',
 'statistics-pages-desc'        => "Tooltip shown over ''Pages*'' in [[Special:Statistics]]",
-'statistics-files'                => 'Used in [[Special:Statistics]]',
-'statistics-edits'                => 'Used in [[Special:Statistics]]',
-'statistics-edits-average'        => 'Used in [[Special:Statistics]]',
-'statistics-views-total'          => 'Used in [[Special:Statistics]]',
-'statistics-views-peredit'        => 'Used in [[Special:Statistics]]',
-'statistics-jobqueue'             => 'Used in [[Special:Statistics]]',
-'statistics-users'                => 'Used in [[Special:Statistics]]',
-'statistics-users-active'         => 'Used in [[Special:Statistics]]',
+'statistics-files'             => 'Used in [[Special:Statistics]]',
+'statistics-edits'             => 'Used in [[Special:Statistics]]',
+'statistics-edits-average'     => 'Used in [[Special:Statistics]]',
+'statistics-views-total'       => 'Used in [[Special:Statistics]]',
+'statistics-views-peredit'     => 'Used in [[Special:Statistics]]',
+'statistics-jobqueue'          => 'Used in [[Special:Statistics]]',
+'statistics-users'             => 'Used in [[Special:Statistics]]',
+'statistics-users-active'      => 'Used in [[Special:Statistics]]',
 'statistics-users-active-desc' => "Tooltip shown over ''Active users*'' in [[Special:Statistics]]",
-'statistics-mostpopular'          => 'Used in [[Special:Statistics]]',
+'statistics-mostpopular'       => 'Used in [[Special:Statistics]]',
 
 'disambiguations'      => 'Name of a special page displayed in [[Special:SpecialPages]].',
 'disambiguationspage'  => 'This message is the name of the template used for marking disambiguation pages. It is used by [[Special:Disambiguations]] to find all pages that links to disambiguation pages.
