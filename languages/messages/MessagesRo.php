@@ -195,10 +195,12 @@ pe titlul secţiunii (JavaScript)',
 'tog-watchlisthideown'        => 'Ascunde modificările mele la lista mea de urmărire',
 'tog-watchlisthidebots'       => 'Ascunde modificările boţilor la lista mea de urmărire',
 'tog-watchlisthideminor'      => 'Ascunde modificările minore la lista mea de urmărire',
+'tog-watchlisthideliu'        => 'Ascunde modificările făcute de utilizatori anonimi din lista de pagini urmărite',
 'tog-nolangconversion'        => 'Dezactivează conversia variabilelor',
 'tog-ccmeonemails'            => 'Trimite-mi o copie când trimit un email altui utilizator',
 'tog-diffonly'                => 'Nu arăta conţinutul paginii prin dif',
 'tog-showhiddencats'          => 'Arată categoriile ascunse',
+'tog-norollbackdiff'          => 'Nu arăta diferenţa după efectuarea unei reveniri',
 
 'underline-always'  => 'Întotdeauna',
 'underline-never'   => 'Niciodată',
@@ -594,17 +596,19 @@ Ignoraţi acest mesaj, dacă acea creare a fost o greşeală.',
 'loginlanguagelabel'         => 'Limba: $1',
 
 # Password reset dialog
-'resetpass'               => 'Resetează parola contului',
-'resetpass_announce'      => 'Sunteţi autentificat cu un cod temporar trimis pe mail. Pentru a termina acţiunea de autentificare, trebuie să setaţi o parolă nouă aici:',
-'resetpass_text'          => '<!-- Adaugă text aici -->',
-'resetpass_header'        => 'Resetează parola',
-'oldpassword'             => 'Parola veche',
-'newpassword'             => 'Parola nouă',
-'retypenew'               => 'Repetă parola nouă',
-'resetpass_submit'        => 'Setează parola şi autentifică',
-'resetpass_success'       => 'Parola a fost schimbată cu succes! Autentificare în curs...',
-'resetpass_bad_temporary' => 'Parola temporară nu este validă. Este posibil să vă fi schimbat deja parola cu succes sau să fi cerut o nouă parolă temporară.',
-'resetpass_forbidden'     => 'Parolele nu pot fi schimbate.',
+'resetpass'                 => 'Modifică sau resetează parola contului',
+'resetpass_announce'        => 'Sunteţi autentificat cu un cod temporar trimis pe mail. Pentru a termina acţiunea de autentificare, trebuie să setaţi o parolă nouă aici:',
+'resetpass_text'            => '<!-- Adaugă text aici -->',
+'resetpass_header'          => 'Resetează parola',
+'oldpassword'               => 'Parola veche',
+'newpassword'               => 'Parola nouă',
+'retypenew'                 => 'Repetă parola nouă',
+'resetpass_submit'          => 'Setează parola şi autentifică',
+'resetpass_success'         => 'Parola a fost schimbată cu succes! Autentificare în curs...',
+'resetpass_bad_temporary'   => 'Parola temporară nu este validă. Este posibil să vă fi schimbat deja parola cu succes sau să fi cerut o nouă parolă temporară.',
+'resetpass_forbidden'       => 'Parolele nu pot fi schimbate.',
+'resetpass-no-info'         => 'Trebuie să fiţi autentificat pentru a accesa această pagină direct.',
+'resetpass-submit-loggedin' => 'Modifică parola',
 
 # Edit page toolbar
 'bold_sample'     => 'Text aldin',
@@ -761,10 +765,13 @@ Puteţi edita o pagină deja existentă sau puteţi să vă [[Special:UserLogin|
 'recreate-deleted-warn'            => "'''Atenție: Recreaţi o pagină care a fost ştearsă anterior.'''
 
 Pentru a verifica dacă recrearea paginii este într-adevăr oportună iată aici jurnalul ştergerilor:",
+'deleted-notice'                   => 'Această pagină a fost ştearsă.
+Pentru detalii puteţi vedea jurnalul ştergerilor de mai jos.',
 'deletelog-fulllog'                => 'Vizualizează întreg jurnalul',
 'edit-gone-missing'                => 'Pagina nu s-a putut actualiza.
 Se pare că a fost ştearsă.',
 'edit-conflict'                    => 'Conflict de modificare.',
+'edit-no-change'                   => 'Modificarea dvs. a fost ignorată deoarece nu s-a efectuat nicio schimbare.',
 'edit-already-exists'              => 'Pagina nouă nu a putut fi creată.
 Ea există deja.',
 
@@ -960,7 +967,7 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'diff-a'                  => "o '''legătură'''",
 'diff-i'                  => "'''cursiv'''",
 'diff-b'                  => "'''aldin'''",
-'diff-strong'             => "'''puternic'''",
+'diff-strong'             => "'''îngroşat'''",
 'diff-em'                 => "'''accentuat'''",
 'diff-font'               => "'''font'''",
 'diff-big'                => "'''mare'''",
@@ -986,10 +993,13 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'prevn'                            => 'anterioarele $1',
 'nextn'                            => 'următoarele $1',
 'viewprevnext'                     => 'Vezi ($1) ($2) ($3).',
+'searchmenu-legend'                => 'Opţiuni căutare',
 'searchmenu-exists'                => "* Pagina '''[[$1]]'''",
 'searchmenu-new'                   => "'''[[:$1|Creează]] pagina ''$1'' pe acest wiki!'''",
 'searchhelp-url'                   => 'Help:Ajutor',
+'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Răsfoieşte paginile cu acest prefix]]',
 'searchprofile-articles'           => 'Pagini',
+'searchprofile-articles-and-proj'  => 'Articole & pagini',
 'searchprofile-project'            => 'Proiect',
 'searchprofile-images'             => 'Fișiere',
 'searchprofile-everything'         => 'Totul',
@@ -1064,6 +1074,7 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'prefs-watchlist-edits'     => 'Numărul de editări care apar în lista extinsă a paginilor urmărite:',
 'prefs-watchlist-edits-max' => '(număr maxim: 1000)',
 'prefs-misc'                => 'Parametri diverşi',
+'prefs-resetpass'           => 'Modifică parola',
 'saveprefs'                 => 'Salvează preferinţele',
 'resetprefs'                => 'Resetează preferinţele',
 'textboxsize'               => 'Dimensiunile casetei de text',
@@ -1478,7 +1489,8 @@ Lista tipurilor MIME recunoscute de MediaWiki poate fi găsită la [http://svn.w
 
 # Unused templates
 'unusedtemplates'     => 'Formate neutilizate',
-'unusedtemplatestext' => 'Lista de mai jos cuprinde toate formatele care nu sînt incluse în nici o altă pagină. Înainte de a le şterge asiguraţi-vă că într-adevăr nu există legături dinspre alte pagini.',
+'unusedtemplatestext' => 'Lista de mai jos cuprinde toate formatele care nu sînt incluse în nici o altă pagină.
+Înainte de a le şterge asiguraţi-vă că într-adevăr nu există legături dinspre alte pagini.',
 'unusedtemplateswlh'  => 'alte legături',
 
 # Random page
@@ -1490,23 +1502,23 @@ Lista tipurilor MIME recunoscute de MediaWiki poate fi găsită la [http://svn.w
 'randomredirect-nopages' => 'Nu există redirecţionări în spaţiul de nume "$1".',
 
 # Statistics
-'statistics'                      => 'Statistici',
-'statistics-header-pages'         => 'Statisticile paginii',
-'statistics-header-edits'         => 'Editează statisticile',
-'statistics-header-views'         => 'Vizualizează statisticile',
-'statistics-header-users'         => 'Statistici legate de utilizatori',
-'statistics-articles'             => 'Articole',
-'statistics-pages'                => 'Pagini',
+'statistics'                   => 'Statistici',
+'statistics-header-pages'      => 'Statisticile paginii',
+'statistics-header-edits'      => 'Editează statisticile',
+'statistics-header-views'      => 'Vizualizează statisticile',
+'statistics-header-users'      => 'Statistici legate de utilizatori',
+'statistics-articles'          => 'Articole',
+'statistics-pages'             => 'Pagini',
 'statistics-pages-desc'        => 'Toate paginile din wiki, inclusiv pagini de discuţie, redirectări etc.',
-'statistics-files'                => 'Fişiere încărcate',
-'statistics-edits'                => 'Editări de la instalarea {{SITENAME}}',
-'statistics-edits-average'        => 'Media editărilor pe pagină',
-'statistics-views-total'          => 'Număr de vizualizări',
-'statistics-views-peredit'        => 'Vizualizări pe editare',
-'statistics-users'                => '[[Special:ListUsers|Utilizatori]] înregistraţi',
-'statistics-users-active'         => 'Utilizatori activi',
+'statistics-files'             => 'Fişiere încărcate',
+'statistics-edits'             => 'Editări de la instalarea {{SITENAME}}',
+'statistics-edits-average'     => 'Media editărilor pe pagină',
+'statistics-views-total'       => 'Număr de vizualizări',
+'statistics-views-peredit'     => 'Vizualizări pe editare',
+'statistics-users'             => '[[Special:ListUsers|Utilizatori]] înregistraţi',
+'statistics-users-active'      => 'Utilizatori activi',
 'statistics-users-active-desc' => 'Utilizatori care au efectuat o acţiune în ultima lună',
-'statistics-mostpopular'          => 'Paginile cele mai vizualizate',
+'statistics-mostpopular'       => 'Paginile cele mai vizualizate',
 
 'disambiguations'      => 'Pagini de dezambiguizare',
 'disambiguationspage'  => 'Template:Dezambiguizare',
@@ -1897,6 +1909,8 @@ S-ar putea ca ea să fie deja restaurată.',
 'undelete-error-long'          => 'S-au găsit erori la ştergerea fişierului:
 
 $1',
+'undelete-show-file-confirm'   => 'Sunteţi sigur că doriţi să vizualizaţi o versiune ştearsă a fişierului "<nowiki>$1</nowiki>" din $2 ora $3?',
+'undelete-show-file-submit'    => 'Da',
 
 # Namespace form on various pages
 'namespace'      => 'Spaţiu de nume:',
@@ -2156,7 +2170,7 @@ Vă rugăm să vizitaţi [http://www.mediawiki.org/wiki/Localisation MediaWiki L
 'import-interwiki-text'      => 'Selectează un wiki şi titlul paginii care trebuie importate. Datele reviziilor şi numele editorilor vor fi salvate. Toate acţiunile de import transwiki pot fi găsite la [[Special:Log/import|log import]]',
 'import-interwiki-history'   => 'Copiază toate versiunile istoricului acestei pagini',
 'import-interwiki-submit'    => 'Importă',
-'import-interwiki-namespace' => 'Transferă paginile la spaţiul de nume:',
+'import-interwiki-namespace' => 'Transferă către spaţiul de nume:',
 'import-comment'             => 'Comentariu:',
 'importtext'                 => 'Te rog exportă fişierul din sursa wiki folosind [[Special:Export|utilitarul de exportare]].
 Salvează-l pe discul tău şi trimite-l aici.',
@@ -2183,6 +2197,8 @@ Un dosar temporar lipseşte.',
 'import-nonewrevisions'      => 'Toate versiunile au fost importate anterior.',
 'xml-error-string'           => '$1 la linia $2, col $3 (octet $4): $5',
 'import-upload'              => 'Încarcă date XML',
+'import-token-mismatch'      => 'S-au pierdut datele sesiunii. Vă rugăm să încercaţi din nou.',
+'import-invalid-interwiki'   => 'Nu se poate importa din wiki-ul specificat.',
 
 # Import log
 'importlogpage'                    => 'Log import',
@@ -2635,7 +2651,7 @@ Altele vor fi ascunse implicit.
 
 # External editor support
 'edit-externally'      => 'Editează acest fişier folosind o aplicaţie externă.',
-'edit-externally-help' => 'Vedeţi [http://www.mediawiki.org/wiki/Manual:External_editors instrucţiuni de instalare] pentru mai multe informaţii.',
+'edit-externally-help' => '(Vedeţi [http://www.mediawiki.org/wiki/Manual:External_editors instrucţiuni de instalare] pentru mai multe informaţii)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'tot',

@@ -740,14 +740,14 @@ Tlahcuilōlli iuhcāyōtl {{PLURAL:\$3|moēlēhuia cah|moēlēhuiah cateh}} \$2.
 'randomredirect' => 'Zāzotlacuepaliztli',
 
 # Statistics
-'statistics'               => 'Tlapōhualiztli',
-'statistics-header-pages'  => 'Zāzaniltin tlapōhualli',
-'statistics-header-edits'  => 'Tlapatlaliztli tlapōhualli',
-'statistics-header-views'  => 'Tlahpololiztli tlapōhualli',
-'statistics-header-users'  => 'Tlatequitiltilīlli ītlapōhualiz',
-'statistics-pages'         => 'Zāzaniltin',
-'statistics-pages-desc' => 'Mochīntīn zāzaniltin huiquipan, mopiyah tēixnāmiquiliztli, tlacuepaliztli, etz.',
-'statistics-files'         => 'Tlahcuilōlli ōmoquetz',
+'statistics'              => 'Tlapōhualiztli',
+'statistics-header-pages' => 'Zāzaniltin tlapōhualli',
+'statistics-header-edits' => 'Tlapatlaliztli tlapōhualli',
+'statistics-header-views' => 'Tlahpololiztli tlapōhualli',
+'statistics-header-users' => 'Tlatequitiltilīlli ītlapōhualiz',
+'statistics-pages'        => 'Zāzaniltin',
+'statistics-pages-desc'   => 'Mochīntīn zāzaniltin huiquipan, mopiyah tēixnāmiquiliztli, tlacuepaliztli, etz.',
+'statistics-files'        => 'Tlahcuilōlli ōmoquetz',
 
 'disambiguations' => 'Ōmetōcāitl zāzaniltin',
 

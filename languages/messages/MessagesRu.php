@@ -9,6 +9,7 @@
  * @author Alessandro
  * @author AlexSm
  * @author Alexander Sigachov (alexander.sigachov@gmail.com)
+ * @author Amikeco
  * @author EugeneZelenko
  * @author Ferrer
  * @author Flrn
@@ -705,10 +706,10 @@ $2',
 'loginlanguagelabel'         => 'Язык: $1',
 
 # Password reset dialog
-'resetpass'                 => 'Изменение или сброс пароля от учётной записи',
+'resetpass'                 => 'Изменение пароля',
 'resetpass_announce'        => 'Вы представились с помощью временного пароля, полученного по электронной почте. Для завершения входа в систему, вы должны установить новый пароль.',
 'resetpass_text'            => '<!-- Добавьте сюда текст -->',
-'resetpass_header'          => 'Сброс пароля',
+'resetpass_header'          => 'Изменение пароля учётной записи',
 'oldpassword'               => 'Старый пароль:',
 'newpassword'               => 'Новый пароль:',
 'retypenew'                 => 'Повторите ввод нового пароля:',
@@ -1626,24 +1627,24 @@ PICT # различные
 'randomredirect-nopages' => 'Пространство имён «$1» не содержит перенаправлений.',
 
 # Statistics
-'statistics'                      => 'Статистика',
-'statistics-header-pages'         => 'Статистика по страницам',
-'statistics-header-edits'         => 'Статистика правок',
-'statistics-header-views'         => 'Статистика просмотров',
-'statistics-header-users'         => 'Статистика по участникам',
-'statistics-articles'             => 'Статей',
-'statistics-pages'                => 'Страниц',
+'statistics'                   => 'Статистика',
+'statistics-header-pages'      => 'Статистика по страницам',
+'statistics-header-edits'      => 'Статистика правок',
+'statistics-header-views'      => 'Статистика просмотров',
+'statistics-header-users'      => 'Статистика по участникам',
+'statistics-articles'          => 'Статей',
+'statistics-pages'             => 'Страниц',
 'statistics-pages-desc'        => 'Все страницы в вики, включая страницы обсуждения, перенаправления и прочее.',
-'statistics-files'                => 'Загружено файлов',
-'statistics-edits'                => 'Число правок с момента установки {{grammar:genitive|{{SITENAME}}}}',
-'statistics-edits-average'        => 'Среднее число правок на страницу',
-'statistics-views-total'          => 'Всего просмотров',
-'statistics-views-peredit'        => 'Просмотров на правку',
-'statistics-jobqueue'             => 'Величина [http://www.mediawiki.org/wiki/Manual:Job_queue очереди заданий]',
-'statistics-users'                => 'Зарегистрированные [[Special:ListUsers|участники]]',
-'statistics-users-active'         => 'Активные участники',
+'statistics-files'             => 'Загружено файлов',
+'statistics-edits'             => 'Число правок с момента установки {{grammar:genitive|{{SITENAME}}}}',
+'statistics-edits-average'     => 'Среднее число правок на страницу',
+'statistics-views-total'       => 'Всего просмотров',
+'statistics-views-peredit'     => 'Просмотров на правку',
+'statistics-jobqueue'          => 'Величина [http://www.mediawiki.org/wiki/Manual:Job_queue очереди заданий]',
+'statistics-users'             => 'Зарегистрированные [[Special:ListUsers|участники]]',
+'statistics-users-active'      => 'Активные участники',
 'statistics-users-active-desc' => 'Участники, совершившие какое-либо действие за прошедший месяц',
-'statistics-mostpopular'          => 'Наиболее часто просматриваемые страницы',
+'statistics-mostpopular'       => 'Наиболее часто просматриваемые страницы',
 
 'disambiguations'      => 'Страницы со ссылками на многозначные термины',
 'disambiguationspage'  => 'Template:Неоднозначность',
