@@ -73,7 +73,7 @@ class ApiFormatWddx extends ApiFormatBase {
 				$cnt = count($elemValue);
 				if($cnt == 0 || array_keys($elemValue) === range(0, $cnt - 1)) {
 					// Regular array
-					$this->printText($indstr . wfElement('array', array(
+					$this->printText($indstr . Xml::element('array', array(
 						'length' => $cnt
 					), null) . $nl);
 					foreach($elemValue as $subElemValue)
@@ -83,7 +83,7 @@ class ApiFormatWddx extends ApiFormatBase {
 					// Associative array (<struct>)
 					$this->printText("$indstr<struct>$nl");
 					foreach($elemValue as $subElemName => $subElemValue) {
-						$this->printText($indstr2 . wfElement('var', array(
+						$this->printText($indstr2 . Xml::element('var', array(
 							'name' => $subElemName
 						), null) . $nl);
 						$this->slowWddxPrinter($subElemValue, $indent + 4);
@@ -94,10 +94,10 @@ class ApiFormatWddx extends ApiFormatBase {
 				break;
 			case 'integer' :
 			case 'double' :
-				$this->printText($indstr . wfElement('number', null, $elemValue) . $nl);
+				$this->printText($indstr . Xml::element('number', null, $elemValue) . $nl);
 				break;
 			case 'string' :
-				$this->printText($indstr . wfElement('string', null, $elemValue) . $nl);
+				$this->printText($indstr . Xml::element('string', null, $elemValue) . $nl);
 				break;
 			default :
 				ApiBase :: dieDebug(__METHOD__, 'Unknown type ' . gettype($elemValue));

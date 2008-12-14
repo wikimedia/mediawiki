@@ -231,7 +231,7 @@ class MergehistoryForm {
 		$last = $this->message['last'];
 
 		$ts = wfTimestamp( TS_MW, $row->rev_timestamp );
-		$checkBox = wfRadio( "mergepoint", $ts, false );
+		$checkBox = Xml::radio( "mergepoint", $ts, false );
 
 		$pageLink = $this->sk->makeKnownLinkObj( $rev->getTitle(),
 			htmlspecialchars( $wgLang->timeanddate( $ts ) ), 'oldid=' . $rev->getId() );

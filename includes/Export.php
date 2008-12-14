@@ -352,7 +352,7 @@ class XmlDumpWriter {
 	function openStream() {
 		global $wgContLanguageCode;
 		$ver = $this->schemaVersion();
-		return wfElement( 'mediawiki', array(
+		return Xml::element( 'mediawiki', array(
 			'xmlns'              => "http://www.mediawiki.org/xml/export-$ver/",
 			'xmlns:xsi'          => "http://www.w3.org/2001/XMLSchema-instance",
 			'xsi:schemaLocation' => "http://www.mediawiki.org/xml/export-$ver/ " .
@@ -378,30 +378,30 @@ class XmlDumpWriter {
 
 	function sitename() {
 		global $wgSitename;
-		return wfElement( 'sitename', array(), $wgSitename );
+		return Xml::element( 'sitename', array(), $wgSitename );
 	}
 
 	function generator() {
 		global $wgVersion;
-		return wfElement( 'generator', array(), "MediaWiki $wgVersion" );
+		return Xml::element( 'generator', array(), "MediaWiki $wgVersion" );
 	}
 
 	function homelink() {
-		return wfElement( 'base', array(), Title::newMainPage()->getFullUrl() );
+		return Xml::element( 'base', array(), Title::newMainPage()->getFullUrl() );
 	}
 
 	function caseSetting() {
 		global $wgCapitalLinks;
 		// "case-insensitive" option is reserved for future
 		$sensitivity = $wgCapitalLinks ? 'first-letter' : 'case-sensitive';
-		return wfElement( 'case', array(), $sensitivity );
+		return Xml::element( 'case', array(), $sensitivity );
 	}
 
 	function namespaces() {
 		global $wgContLang;
 		$spaces = "  <namespaces>\n";
 		foreach( $wgContLang->getFormattedNamespaces() as $ns => $title ) {
-			$spaces .= '      ' . wfElement( 'namespace', array( 'key' => $ns ), $title ) . "\n";
+			$spaces .= '      ' . Xml::element( 'namespace', array( 'key' => $ns ), $title ) . "\n";
 		}
 		$spaces .= "    </namespaces>";
 		return $spaces;
@@ -427,10 +427,10 @@ class XmlDumpWriter {
 	function openPage( $row ) {
 		$out = "  <page>\n";
 		$title = Title::makeTitle( $row->page_namespace, $row->page_title );
-		$out .= '    ' . wfElementClean( 'title', array(), $title->getPrefixedText() ) . "\n";
-		$out .= '    ' . wfElement( 'id', array(), strval( $row->page_id ) ) . "\n";
+		$out .= '    ' . Xml::elementClean( 'title', array(), $title->getPrefixedText() ) . "\n";
+		$out .= '    ' . Xml::element( 'id', array(), strval( $row->page_id ) ) . "\n";
 		if( '' != $row->page_restrictions ) {
-			$out .= '    ' . wfElement( 'restrictions', array(),
+			$out .= '    ' . Xml::element( 'restrictions', array(),
 				strval( $row->page_restrictions ) ) . "\n";
 		}
 		return $out;
@@ -458,12 +458,12 @@ class XmlDumpWriter {
 		wfProfileIn( $fname );
 
 		$out  = "    <revision>\n";
-		$out .= "      " . wfElement( 'id', null, strval( $row->rev_id ) ) . "\n";
+		$out .= "      " . Xml::element( 'id', null, strval( $row->rev_id ) ) . "\n";
 
 		$out .= $this->writeTimestamp( $row->rev_timestamp );
 
 		if( $row->rev_deleted & Revision::DELETED_USER ) {
-			$out .= "      " . wfElement( 'contributor', array( 'deleted' => 'deleted' ) ) . "\n";
+			$out .= "      " . Xml::element( 'contributor', array( 'deleted' => 'deleted' ) ) . "\n";
 		} else {
 			$out .= $this->writeContributor( $row->rev_user, $row->rev_user_text );
 		}
@@ -472,22 +472,22 @@ class XmlDumpWriter {
 			$out .=  "      <minor/>\n";
 		}
 		if( $row->rev_deleted & Revision::DELETED_COMMENT ) {
-			$out .= "      " . wfElement( 'comment', array( 'deleted' => 'deleted' ) ) . "\n";
+			$out .= "      " . Xml::element( 'comment', array( 'deleted' => 'deleted' ) ) . "\n";
 		} elseif( $row->rev_comment != '' ) {
-			$out .= "      " . wfElementClean( 'comment', null, strval( $row->rev_comment ) ) . "\n";
+			$out .= "      " . Xml::elementClean( 'comment', null, strval( $row->rev_comment ) ) . "\n";
 		}
 
 		if( $row->rev_deleted & Revision::DELETED_TEXT ) {
-			$out .= "      " . wfElement( 'text', array( 'deleted' => 'deleted' ) ) . "\n";
+			$out .= "      " . Xml::element( 'text', array( 'deleted' => 'deleted' ) ) . "\n";
 		} elseif( isset( $row->old_text ) ) {
 			// Raw text from the database may have invalid chars
 			$text = strval( Revision::getRevisionText( $row ) );
-			$out .= "      " . wfElementClean( 'text',
+			$out .= "      " . Xml::elementClean( 'text',
 				array( 'xml:space' => 'preserve' ),
 				strval( $text ) ) . "\n";
 		} else {
 			// Stub output
-			$out .= "      " . wfElement( 'text',
+			$out .= "      " . Xml::element( 'text',
 				array( 'id' => $row->rev_text_id ),
 				"" ) . "\n";
 		}
@@ -511,31 +511,31 @@ class XmlDumpWriter {
 		wfProfileIn( $fname );
 
 		$out  = "    <logitem>\n";
-		$out .= "      " . wfElement( 'id', null, strval( $row->log_id ) ) . "\n";
+		$out .= "      " . Xml::element( 'id', null, strval( $row->log_id ) ) . "\n";
 
 		$out .= $this->writeTimestamp( $row->log_timestamp );
 
 		if( $row->log_deleted & LogPage::DELETED_USER ) {
-			$out .= "      " . wfElement( 'contributor', array( 'deleted' => 'deleted' ) ) . "\n";
+			$out .= "      " . Xml::element( 'contributor', array( 'deleted' => 'deleted' ) ) . "\n";
 		} else {
 			$out .= $this->writeContributor( $row->log_user, $row->user_name );
 		}
 
 		if( $row->log_deleted & LogPage::DELETED_COMMENT ) {
-			$out .= "      " . wfElement( 'comment', array( 'deleted' => 'deleted' ) ) . "\n";
+			$out .= "      " . Xml::element( 'comment', array( 'deleted' => 'deleted' ) ) . "\n";
 		} elseif( $row->log_comment != '' ) {
-			$out .= "      " . wfElementClean( 'comment', null, strval( $row->log_comment ) ) . "\n";
+			$out .= "      " . Xml::elementClean( 'comment', null, strval( $row->log_comment ) ) . "\n";
 		}
 		
-		$out .= "      " . wfElement( 'type', null, strval( $row->log_type ) ) . "\n";
-		$out .= "      " . wfElement( 'action', null, strval( $row->log_action ) ) . "\n";
+		$out .= "      " . Xml::element( 'type', null, strval( $row->log_type ) ) . "\n";
+		$out .= "      " . Xml::element( 'action', null, strval( $row->log_action ) ) . "\n";
 
 		if( $row->log_deleted & LogPage::DELETED_ACTION ) {
-			$out .= "      " . wfElement( 'text', array( 'deleted' => 'deleted' ) ) . "\n";
+			$out .= "      " . Xml::element( 'text', array( 'deleted' => 'deleted' ) ) . "\n";
 		} else {
 			$title = Title::makeTitle( $row->log_namespace, $row->log_title );
-			$out .= "      " . wfElementClean( 'logtitle', null, $title->getPrefixedText() ) . "\n";
-			$out .= "      " . wfElementClean( 'params',
+			$out .= "      " . Xml::elementClean( 'logtitle', null, $title->getPrefixedText() ) . "\n";
+			$out .= "      " . Xml::elementClean( 'params',
 				array( 'xml:space' => 'preserve' ),
 				strval( $row->log_params ) ) . "\n";
 		}
@@ -548,16 +548,16 @@ class XmlDumpWriter {
 
 	function writeTimestamp( $timestamp ) {
 		$ts = wfTimestamp( TS_ISO_8601, $timestamp );
-		return "      " . wfElement( 'timestamp', null, $ts ) . "\n";
+		return "      " . Xml::element( 'timestamp', null, $ts ) . "\n";
 	}
 
 	function writeContributor( $id, $text ) {
 		$out = "      <contributor>\n";
 		if( $id ) {
-			$out .= "        " . wfElementClean( 'username', null, strval( $text ) ) . "\n";
-			$out .= "        " . wfElement( 'id', null, strval( $id ) ) . "\n";
+			$out .= "        " . Xml::elementClean( 'username', null, strval( $text ) ) . "\n";
+			$out .= "        " . Xml::element( 'id', null, strval( $id ) ) . "\n";
 		} else {
-			$out .= "        " . wfElementClean( 'ip', null, strval( $text ) ) . "\n";
+			$out .= "        " . Xml::elementClean( 'ip', null, strval( $text ) ) . "\n";
 		}
 		$out .= "      </contributor>\n";
 		return $out;
@@ -585,10 +585,10 @@ class XmlDumpWriter {
 		return "    <upload>\n" .
 			$this->writeTimestamp( $file->getTimestamp() ) .
 			$this->writeContributor( $file->getUser( 'id' ), $file->getUser( 'text' ) ) .
-			"      " . wfElementClean( 'comment', null, $file->getDescription() ) . "\n" .
-			"      " . wfElement( 'filename', null, $file->getName() ) . "\n" .
-			"      " . wfElement( 'src', null, $file->getFullUrl() ) . "\n" .
-			"      " . wfElement( 'size', null, $file->getSize() ) . "\n" .
+			"      " . Xml::elementClean( 'comment', null, $file->getDescription() ) . "\n" .
+			"      " . Xml::element( 'filename', null, $file->getName() ) . "\n" .
+			"      " . Xml::element( 'src', null, $file->getFullUrl() ) . "\n" .
+			"      " . Xml::element( 'size', null, $file->getSize() ) . "\n" .
 			"    </upload>\n";
 	}
 

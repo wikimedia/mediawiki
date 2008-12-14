@@ -1421,8 +1421,8 @@ class Linker {
 		 . "</ul>\n</td></tr></table>"
 		 . '<script type="' . $wgJsMimeType . '">'
 		 . ' if (window.showTocToggle) {'
-		 . ' var tocShowText = "' . wfEscapeJsString( wfMsg('showtoc') ) . '";'
-		 . ' var tocHideText = "' . wfEscapeJsString( wfMsg('hidetoc') ) . '";'
+		 . ' var tocShowText = "' . Xml::escapeJsString( wfMsg('showtoc') ) . '";'
+		 . ' var tocHideText = "' . Xml::escapeJsString( wfMsg('hidetoc') ) . '";'
 		 . ' showTocToggle();'
 		 . ' } '
 		 . "</script>\n";

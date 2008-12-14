@@ -130,11 +130,11 @@ class ApiFormatXml extends ApiFormatBase {
 					ApiBase :: dieDebug(__METHOD__, "($elemName, ...) has content and subelements");
 
 				if (!is_null($subElemContent)) {
-					$this->printText($indstr . wfElement($elemName, $elemValue, $subElemContent));
+					$this->printText($indstr . Xml::element($elemName, $elemValue, $subElemContent));
 				} elseif (!count($indElements) && !count($subElements)) {
-						$this->printText($indstr . wfElement($elemName, $elemValue));
+						$this->printText($indstr . Xml::element($elemName, $elemValue));
 				} else {
-					$this->printText($indstr . wfElement($elemName, $elemValue, null));
+					$this->printText($indstr . Xml::element($elemName, $elemValue, null));
 
 					foreach ($subElements as $subElemId => & $subElemValue)
 						$this->recXmlPrint($subElemId, $subElemValue, $indent);
@@ -142,14 +142,14 @@ class ApiFormatXml extends ApiFormatBase {
 					foreach ($indElements as $subElemId => & $subElemValue)
 						$this->recXmlPrint($subElemIndName, $subElemValue, $indent);
 
-					$this->printText($indstr . wfCloseElement($elemName));
+					$this->printText($indstr . Xml::closeElement($elemName));
 				}
 				break;
 			case 'object' :
 				// ignore
 				break;
 			default :
-				$this->printText($indstr . wfElement($elemName, null, $elemValue));
+				$this->printText($indstr . Xml::element($elemName, null, $elemValue));
 				break;
 		}
 	}
