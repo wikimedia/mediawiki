@@ -783,7 +783,7 @@ class PreferencesForm {
 		} else {
 			# Need to output a hidden option even if the relevant skin is not in use,
 			# otherwise the preference will get reset to 0 on submit
-			$wgOut->addHTML( wfHidden( 'wpQuickbar', $this->mQuickbar ) );
+			$wgOut->addHTML( Xml::hidden( 'wpQuickbar', $this->mQuickbar ) );
 		}
 
 		# Skin
@@ -807,7 +807,7 @@ class PreferencesForm {
 			foreach ($validSkinNames as $skinkey => $sn ) {
 				$checked = $skinkey == $this->mSkin ? ' checked="checked"' : '';
 				$mplink = htmlspecialchars($mptitle->getLocalURL("useskin=$skinkey"));
-				$previewlink = $wgAllowUserSkin ? "(<a target='_blank' href=\"$mplink\">$previewtext</a>)" : '';
+				$previewlink = "(<a target='_blank' href=\"$mplink\">$previewtext</a>)";
 				if( $skinkey == $wgDefaultSkin )
 					$sn .= ' (' . wfMsg( 'default' ) . ')';
 				$wgOut->addHTML( "<input type='radio' name='wpSkin' id=\"wpSkin$skinkey\" value=\"$skinkey\"$checked /> <label for=\"wpSkin$skinkey\">{$sn}</label> $previewlink<br />\n" );
