@@ -1506,6 +1506,8 @@ $wgMessageStructure = array(
 		'undelete-missing-filearchive',
 		'undelete-error-short',
 		'undelete-error-long',
+		'undelete-show-file-confirm',
+		'undelete-show-file-submit',
 	),
 	'nsform' => array(
 		'namespace',
@@ -1749,6 +1751,8 @@ $wgMessageStructure = array(
 		'import-nonewrevisions',
 		'xml-error-string',
 		'import-upload',
+		'import-token-mismatch',
+		'import-invalid-interwiki',
 	),
 	'importlog' => array(
 		'importlogpage',
