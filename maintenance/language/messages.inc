@@ -979,6 +979,7 @@ $wgMessageStructure = array(
 		'illegalfilename',
 		'badfilename',
 		'filetype-badmime',
+		'filetype-bad-ie-mime',
 		'filetype-unwanted-type',
 		'filetype-banned-type',
 		'filetype-missing',
