@@ -890,6 +890,7 @@ class LocalFile extends File
 
 		$descTitle = $this->getTitle();
 		$article = new ImagePage( $descTitle );
+		$article->setFile( $this );
 
 		# Add the log entry
 		$log = new LogPage( 'upload' );
