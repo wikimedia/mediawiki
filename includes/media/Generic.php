@@ -224,15 +224,23 @@ abstract class MediaHandler {
 			'value' => $value
 		);
 	}
-
+	
 	function getShortDesc( $file ) {
+		return self::getShortDescription( $file );
+	}
+
+	function getLongDesc( $file ) {
+		return self::getLongDescription( $file );
+	}	
+
+	static function getShortDescription( $file ) {
 		global $wgLang;
 		$nbytes = '(' . wfMsgExt( 'nbytes', array( 'parsemag', 'escape' ),
 			$wgLang->formatNum( $file->getSize() ) ) . ')';
 		return "$nbytes";
 	}
 
-	function getLongDesc( $file ) {
+	static function getLongDescription( $file ) {
 		global $wgUser;
 		$sk = $wgUser->getSkin();
 		return wfMsgExt( 'file-info', 'parseinline',
