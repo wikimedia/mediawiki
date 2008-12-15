@@ -1218,7 +1218,7 @@ abstract class File {
 		if ( $handler ) {
 			return $handler->getLongDesc( $this );
 		} else {
-			return MediaHandler::getLongDescription( $this );
+			return MediaHandler::getGeneralLongDesc( $this );
 		}
 	}
 
@@ -1227,7 +1227,7 @@ abstract class File {
 		if ( $handler ) {
 			return $handler->getShortDesc( $this );
 		} else {
-			return MediaHandler::getShortDescription( $this );
+			return MediaHandler::getGeneralShortDesc( $this );
 		}
 	}
 
