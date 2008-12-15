@@ -418,6 +418,8 @@ The following extensions are migrated into MediaWiki 1.14:
   pages with preformatted text difficult
 * (bug 15849) Special:Movepage now throws a more specific error when trying to 
   move a title to an interwiki target
+* (bug 16638) 8-bit URL fallback encoding now set on additional languages using
+  Arabic script (Persian, Urdu, Sindhi, Punjabi)
 
 === API changes in 1.14 ===
 

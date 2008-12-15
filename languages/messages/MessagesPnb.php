@@ -7,6 +7,8 @@
  * @author Khalid Mahmood
  */
 
+$fallback8bitEncoding = 'windows-1256';
+
 $messages = array(
 # Dates
 'sun'           => 'اتوار',

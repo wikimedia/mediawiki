@@ -10,6 +10,7 @@
  * @author לערי ריינהארט
  */
 
+$fallback8bitEncoding = 'windows-1256';
 $rtl = true;
 $defaultUserOptionOverrides = array(
 	# Swap sidebar to right side by default
