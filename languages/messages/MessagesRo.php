@@ -1512,6 +1512,8 @@ S-ar putea ca ea să fie deja restaurată.',
 'undelete-error-long'          => 'S-au găsit erori la ştergerea fişierului:
 
 $1',
+'undelete-show-file-confirm'   => 'Sunteţi sigur că doriţi să vizualizaţi o versiune ştearsă a fişierului "<nowiki>$1</nowiki>" din $2 ora $3?',
+'undelete-show-file-submit'    => 'Da',
 
 # Namespace form on various pages
 'namespace'      => 'Spaţiu de nume:',
@@ -1776,6 +1778,8 @@ Un dosar temporar lipseşte.',
 'import-noarticle'           => 'Nicio pagină de importat!',
 'import-nonewrevisions'      => 'Toate versiunile au fost importate anterior.',
 'xml-error-string'           => '$1 la linia $2, col $3 (octet $4): $5',
+'import-token-mismatch'      => 'S-au pierdut datele sesiunii. Vă rugăm să încercaţi din nou.',
+'import-invalid-interwiki'   => 'Nu se poate importa din wiki-ul specificat.',
 
 # Import log
 'importlogpage'                    => 'Log import',

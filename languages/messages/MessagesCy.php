@@ -497,7 +497,7 @@ Rhydd ichi anwybyddu\'r neges hon os mai camgymeriad oedd creu\'r cyfrif.',
 'resetpass'               => 'Ailosod cyfrinair y cyfrif',
 'resetpass_announce'      => "Fe wnaethoch fewngofnodi gyda chôd dros dro oddi ar e-bost.
 Er mwyn cwblhau'r mewngofnodi, rhaid i chi osod cyfrinair newydd fel hyn:",
-'resetpass_header'        => 'Ailosod y cyfrinair',
+'resetpass_header'        => 'Newid cyfrinair y cyfrif',
 'resetpass_submit'        => 'Gosod y cyfrinair a mewngofnodi',
 'resetpass_success'       => "Llwyddodd y newid i'ch cyfrinair! Wrthi'n mewngofnodi...",
 'resetpass_bad_temporary' => 'Cyfrinair dros dro annilys.
@@ -729,6 +729,7 @@ gall fod manylion yn y [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} l�
 'revisiondelete'              => 'Dileu/dad-ddileu diwygiadau',
 'revdelete-selected'          => "'''Y {{PLURAL:$2|golygiad|golygiad|golygiadau|golygiadau|golygiadau|golygiadau}} dewisedig o [[:$1]]:'''",
 'logdelete-selected'          => "{{PLURAL:$2|Digwyddiad|Digwyddiad|Digwyddiadau|Digwyddiadau|Digwyddiadau|Digwyddiadau}} dewisedig y lòg ar gyfer '''$1:'''",
+'revdelete-legend'            => 'Gosod cyfyngiadau ar y gallu i weld',
 'revdelete-hide-text'         => 'Cuddio testun y diwygiad',
 'revdelete-hide-name'         => "Cuddio'r weithred a'r targed",
 'revdelete-hide-comment'      => 'Cuddio sylwad golygu',
@@ -737,6 +738,7 @@ gall fod manylion yn y [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} l�
 'revdelete-hide-image'        => 'Cuddio cynnwys y ffeil',
 'revdelete-unsuppress'        => "Tynnu'r cyfyngiadau ar y golygiadau a adferwyd",
 'revdelete-log'               => 'Sylw ar gyfer y lòg:',
+'revdelete-submit'            => 'Rhoi ar waith ar y golgiad dewisedig',
 'revdelete-logentry'          => 'wedi newid y gallu i weld golygiadau ar [[$1]]',
 'logdelete-logentry'          => 'wedi newid y gallu i weld y digwyddiad ar [[$1]]',
 'revdelete-logaction'         => "Gosodwyd $1 {{PLURAL:$1|diwygiad|diwygiad|ddiwygiad|diwygiad|diwygiad|diwygiad}} i'r modd $2",
@@ -1504,6 +1506,8 @@ Efallai ei bod eisoes wedi ei hadfer.",
 'undelete-error-long'          => 'Cafwyd gwallau wrth adfer y ffeil:
 
 $1',
+'undelete-show-file-confirm'   => 'Ydych chi\'n sicr eich bod am weld golygiad dilëedig o\'r ffeil "<nowiki>$1</nowiki>" a roddwyd ar gadw ar $2 am $3?',
+'undelete-show-file-submit'    => 'Ydw',
 
 # Namespace form on various pages
 'namespace'      => 'Parth:',
@@ -1734,11 +1738,13 @@ Os ydych am gyfrannu at y gwaith o gyfieithu ar gyfer holl prosiectau Mediawiki 
 'import'                     => 'Mewnforio tudalennau',
 'importinterwiki'            => 'Mewnforiad traws-wici',
 'import-interwiki-submit'    => 'Mewnforio',
-'import-interwiki-namespace' => "Symud tudalennau i'r parth:",
+'import-interwiki-namespace' => 'Parth y cyrchir ato:',
 'importtext'                 => "Os gwelwch yn dda, allforiwch y ffeil o'r wici gwreiddiol gan ddefnyddio'r nodwedd <b>Special:Export</b>, cadwch hi i'ch disg, ac uwchlwythwch hi fan hyn.",
 'importstart'                => "Wrthi'n mewnforio...",
 'import-revision-count'      => '$1 {{PLURAL:$1|diwygiad|diwygiad|ddiwygiad|diwygiad|diwygiad|diwygiad}}',
+'importnopages'              => "Dim tudalennau i gael i'w mewnforio.",
 'importfailed'               => 'Mewnforio wedi methu: $1',
+'importcantopen'             => "Ni ellid agor y ffeil i'w fewnforio",
 'importbadinterwiki'         => 'Cyswllt rhyngwici gwallus',
 'importnotext'               => 'Gwag, neu heb destun',
 'importsuccess'              => 'Mewnforio wedi llwyddo!',

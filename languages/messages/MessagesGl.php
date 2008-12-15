@@ -981,6 +981,7 @@ Vexa a [[Special:NewImages|galería de imaxes novas]] para unha visión máis xe
 'illegalfilename'             => 'O nome de ficheiro "$1" contén caracteres que non están permitidos nos títulos das páxinas. Por favor cambie o nome do ficheiro e tente cargalo outra vez.',
 'badfilename'                 => 'O nome desta imaxe cambiouse a "$1".',
 'filetype-badmime'            => 'Non se permite enviar ficheiros de tipo MIME "$1".',
+'filetype-bad-ie-mime'        => 'Non se pode cargar este ficheiro porque o Internet Explorer detectaríao como "$1", o cal é un tipo de ficheiro non permitido e potencialmente perigoso.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' é un tipo de arquivo non desexado.  Os tipos de arquivo preferidos son \$2.",
 'filetype-banned-type'        => "'''\".\$1\"''' non é un tipo de ficheiro permitido.  Os tipos de ficheiros permitidos son \$2.",
 'filetype-missing'            => 'O ficheiro non conta cunha extensión (como ".jpg").',
@@ -1525,6 +1526,8 @@ Comprobe o [[Special:Log/delete|rexistro de borrados]] para ver as entradas rece
 'undelete-error-long'          => 'Atopáronse erros ao desfacer a eliminación do ficheiro:
 
 $1',
+'undelete-show-file-confirm'   => 'Está seguro de que desexa ver unha versión borrada do ficheiro "<nowiki>$1</nowiki>" con data de $2 ás $3?',
+'undelete-show-file-submit'    => 'Si',
 
 # Namespace form on various pages
 'namespace'      => 'Espazo de nomes:',
@@ -1556,7 +1559,7 @@ $1',
 'whatlinkshere-title' => 'Páxinas que ligan con "$1"',
 'whatlinkshere-page'  => 'Páxina:',
 'linklistsub'         => '(Listaxe de ligazóns)',
-'linkshere'           => "As seguintes páxinas ligan con '''[[:$1]]''':",
+'linkshere'           => "As seguintes páxinas ligan con \"'''[[:\$1]]'''\":",
 'nolinkshere'         => "Ningunha páxina liga con \"'''[[:\$1]]'''\".",
 'nolinkshere-ns'      => "Ningunha páxina liga con \"'''[[:\$1]]'''\" no espazo de nomes elixido.",
 'isredirect'          => 'páxina redirixida',
@@ -1788,6 +1791,8 @@ Gráveo no seu disco duro e cárgueo aquí.',
 'import-noarticle'           => 'Ningunha páxina para importar!',
 'import-nonewrevisions'      => 'Todas as revisións son previamente importadas.',
 'xml-error-string'           => '$1 na liña $2, col $3 (byte $4): $5',
+'import-token-mismatch'      => 'Perdéronse os datos da sesión. Por favor, inténteo de novo.',
+'import-invalid-interwiki'   => 'Non se pode importar desde o wiki escificado.',
 
 # Import log
 'importlogpage'                    => 'Rexistro de importacións',

@@ -1236,14 +1236,15 @@ $NEWPAGE
 'restriction-move' => 'באוועגן',
 
 # Undelete
-'undelete'               => 'זען אויסגעמעקט בלעטער',
-'undeletepage'           => 'זען און צוריקשטעלן אויסגעמעקט בלעטער',
-'viewdeletedpage'        => 'זען אויסגעמעקט בלעטער',
-'undeletebtn'            => 'צוריקשטעלן',
-'cannotundelete'         => 'צוריקשטעלונג איז דורכגעפאלן; עס איז מעגליך אז אן אנדערע האט דאס שוין צוריקגעשטעלט.',
-'undelete-search-box'    => 'זוכן אויסגעמעקטע בלעטער',
-'undelete-search-prefix' => 'ווײַז בלעטער וואס הייבן אן מיט:',
-'undelete-search-submit' => 'זוכן',
+'undelete'                  => 'זען אויסגעמעקט בלעטער',
+'undeletepage'              => 'זען און צוריקשטעלן אויסגעמעקט בלעטער',
+'viewdeletedpage'           => 'זען אויסגעמעקט בלעטער',
+'undeletebtn'               => 'צוריקשטעלן',
+'cannotundelete'            => 'צוריקשטעלונג איז דורכגעפאלן; עס איז מעגליך אז אן אנדערע האט דאס שוין צוריקגעשטעלט.',
+'undelete-search-box'       => 'זוכן אויסגעמעקטע בלעטער',
+'undelete-search-prefix'    => 'ווײַז בלעטער וואס הייבן אן מיט:',
+'undelete-search-submit'    => 'זוכן',
+'undelete-show-file-submit' => 'יא',
 
 # Namespace form on various pages
 'namespace'      => 'נאמענטייל:',

@@ -972,6 +972,7 @@ $2リダイレクトを含める &nbsp; &nbsp; &nbsp; $3 $9',
 'illegalfilename'             => 'ファイル名 "$1" にページ・タイトルとして使えない文字が含まれています。ファイル名を変更してからもう一度アップロードしてください。',
 'badfilename'                 => 'ファイル名は "$1" へ変更されました。',
 'filetype-badmime'            => 'MIME タイプ "$1" のファイルのアップロードは許可されていません。',
+'filetype-bad-ie-mime'        => 'このファイルは、禁止されている潜在的に危険なファイル形式 "$1" であるとInternet Explorer が認識してしまうためアップロードできません。',
 'filetype-unwanted-type'      => "'''\".\$1\"''' は好ましくないファイル形式です。次のファイル形式を推奨します： \$2",
 'filetype-banned-type'        => "'''\".\$1\"''' は許可されていないファイル形式です。次のファイル形式を利用してください： \$2",
 'filetype-missing'            => 'ファイルに拡張子 (".jpg" など)がありません。',
@@ -1483,6 +1484,8 @@ $NEWPAGE
 'undelete-missing-filearchive' => 'ID $1 の記録がデータベースに存在しないため復帰できません。既に復帰されている可能性があります。',
 'undelete-error-short'         => 'ファイル復帰エラー: $1',
 'undelete-error-long'          => '$1 の復帰中にエラーが発生しました',
+'undelete-show-file-confirm'   => 'ファイル<nowiki>$1</nowiki>" の削除された版（$2$3）を本当に表示しますか？',
+'undelete-show-file-submit'    => 'はい',
 
 # Namespace form on various pages
 'namespace'      => '名前空間:',
@@ -1735,6 +1738,8 @@ $NEWPAGE
 'import-noarticle'           => 'インポートするページがありません！',
 'import-nonewrevisions'      => '含まれていた履歴は全て既にインポート済みです。',
 'xml-error-string'           => '"$1" $2行 $3文字目（$4バイト目）: $5',
+'import-token-mismatch'      => 'セッションデータを損失しました。もう一度試してください。',
+'import-invalid-interwiki'   => '指定されたウィキからインポートすることができませんでした。',
 
 # Import log
 'importlogpage'                    => 'インポート記録',

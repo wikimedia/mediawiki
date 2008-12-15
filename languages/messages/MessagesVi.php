@@ -1036,6 +1036,7 @@ Xem [[Special:NewImages|trang trưng bày các tập tin mới]] để xem trự
 'illegalfilename'             => 'Tên tập tin “$1” có chứa ký tự không được phép dùng cho tựa trang. Xin hãy đổi tên và tải lên lại.',
 'badfilename'                 => 'Tên tập tin đã được đổi thành “$1”.',
 'filetype-badmime'            => 'Không thể tải lên các tập tin có định dạng MIME “$1”.',
+'filetype-bad-ie-mime'        => 'Không thể tải tập tin này lên vì Internet Explorer sẽ nhận diện tập tin này là “$1”, một định dạng tập tin tiềm ẩn nguy hiểm và không được cho phép.',
 'filetype-unwanted-type'      => "'''“.$1”''' là định dạng tập tin không mong muốn.  Những loại tập tin thích hợp hơn là $2.",
 'filetype-banned-type'        => "'''“.$1”''' là định dạng tập tin không được chấp nhận.  Những loại tập tin được chấp nhận là $2.",
 'filetype-missing'            => 'Tập tin không có phần mở rộng (ví dụ “.jpg”).',
@@ -1573,6 +1574,8 @@ Xem nhật trình xóa và phục hồi các trang gần đây tại [[Special:L
 'undelete-error-long'          => 'Xuất hiện lỗi khi phục hồi tập tin:
 
 $1',
+'undelete-show-file-confirm'   => 'Bạn có chắc mình muốn xem một phiên bản đã xóa của tập tin “<nowiki>$1</nowiki>” vào ngày $2 lúc $3?',
+'undelete-show-file-submit'    => 'Có',
 
 # Namespace form on various pages
 'namespace'      => 'Không gian tên:',
@@ -1838,6 +1841,8 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'import-noarticle'           => 'Không có trang nào để nhập cả!',
 'import-nonewrevisions'      => 'Tất cả các phiên bản đều đã được nhập trước đây.',
 'xml-error-string'           => '$1 tại dòng $2, cột $3 (byte $4): $5',
+'import-token-mismatch'      => 'Mất dữ liệu phiên làm việc. Xin hãy thử lại lần nữa.',
+'import-invalid-interwiki'   => 'Không thể nhập trang từ wiki được chỉ định.',
 
 # Import log
 'importlogpage'                    => 'Nhật trình nhập trang',

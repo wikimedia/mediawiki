@@ -1226,6 +1226,7 @@ $2',
 'illegalfilename'             => 'הקובץ "$1" מכיל תווים בלתי חוקיים. אנא שנו את שמו ונסו להעלותו שנית.',
 'badfilename'                 => 'שם הקובץ שונה ל־"$1".',
 'filetype-badmime'            => 'לא ניתן להעלות קבצים עם סוג ה־MIME "$1".',
+'filetype-bad-ie-mime'        => 'לא ניתן להעלות קובץ זה, כיוון שאינטרנט אקספלורר יזהה אותו כקובץ מסוג "$1", שהוא סוג קובץ אסור שעלול להיות מסוכן.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' הוא סוג קובץ בלתי מומלץ. סוגי הקבצים המומלצים הם \$2.",
 'filetype-banned-type'        => "'''\".\$1\"''' הוא סוג קובץ אסור להעלאה. סוגי הקבצים המותרים הם \$2.",
 'filetype-missing'            => 'לקובץ אין סיומת (כדוגמת ".jpg").',
@@ -1766,6 +1767,8 @@ $NEWPAGE
 'undelete-error-long'          => 'שגיאות שאירעו בעת שחזור הקובץ:
 
 $1',
+'undelete-show-file-confirm'   => 'האם אתם בטוחים שברצונכם לצפות בגרסה המחוקה של הקובץ "<nowiki>$1</nowiki>" מ־$3, $2?',
+'undelete-show-file-submit'    => 'כן',
 
 # Namespace form on various pages
 'namespace'      => 'מרחב שם:',
@@ -2032,6 +2035,8 @@ $1',
 'import-noarticle'           => 'אין דף לייבוא!',
 'import-nonewrevisions'      => 'כל הגרסאות יובאו בעבר.',
 'xml-error-string'           => '$1 בשורה $2, עמודה $3 (בייט מספר $4): $5',
+'import-token-mismatch'      => 'מידע הכניסה אבד. אנא נסו שנית.',
+'import-invalid-interwiki'   => 'לא ניתן לייבא מאתר הוויקי שציינתם.',
 
 # Import log
 'importlogpage'                    => 'יומן ייבוא',

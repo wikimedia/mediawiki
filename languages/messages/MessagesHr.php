@@ -495,7 +495,7 @@ Možete zanemariti ovu poruku, ako je suradnički račun stvoren nenamjerno.',
 # Password reset dialog
 'resetpass'               => 'Postavi novu lozinku',
 'resetpass_announce'      => 'Prijavljeni ste s privremenom lozinkom. Da završite proces mijenjanja lozinke, upišite ovdje novu lozinku:',
-'resetpass_header'        => 'Resetiraj lozinku',
+'resetpass_header'        => 'Promijeni lozinku računa',
 'resetpass_submit'        => 'Postavite lozinku i prijavite se',
 'resetpass_success'       => 'Lozinka uspješno postavljena! Prijava u tijeku...',
 'resetpass_bad_temporary' => 'Nevažeća privremena lozinka. Možda ste već uspješno promijenili svoju lozinku ili ste zatražili novu privremenu lozinku.',
@@ -1530,6 +1530,7 @@ Pogledajte [[Special:Log/delete|evidenciju brisanja]] za zapise nedavnih brisanj
 'undelete-error-long'          => 'Dogodila se pogreška pri vraćanju datoteke:
 
 $1',
+'undelete-show-file-submit'    => 'Da',
 
 # Namespace form on various pages
 'namespace'      => 'Imenski prostor:',
@@ -2238,7 +2239,7 @@ Svaka sljedeća poveznica u istom retku je izuzetak, npr. kod stranica gdje se s
 
 # External editor support
 'edit-externally'      => 'Uredi koristeći se vanjskom aplikacijom',
-'edit-externally-help' => 'Vidi [http://www.mediawiki.org/wiki/Manual:External_editors setup upute] za više informacija.',
+'edit-externally-help' => '(Vidi [http://www.mediawiki.org/wiki/Manual:External_editors setup upute] za više informacija)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'sve',

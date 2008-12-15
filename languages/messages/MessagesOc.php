@@ -507,7 +507,7 @@ Ignoratz aqueste messatge se aqueste compte es estat creat per error.",
 'resetpass'               => 'Remesa a zèro del senhal',
 'resetpass_announce'      => 'Vos sètz enregistrat amb un senhal temporari mandat per corrièr electronic. Per acabar l’enregistrament, vos cal picar un senhal novèl aicí :',
 'resetpass_text'          => '<!-- Apondètz lo tèxt aicí -->',
-'resetpass_header'        => 'Remesa a zèro del senhal',
+'resetpass_header'        => 'Modificar lo senhal del compte',
 'resetpass_submit'        => 'Cambiar lo senhal e s’enregistrar',
 'resetpass_success'       => 'Vòstre senhal es estat cambiat amb succès ! Enregistrament en cors...',
 'resetpass_bad_temporary' => 'Senhal temporari invalid. Benlèu que ja avètz cambiat vòstre senhal amb succès, o demandat un senhal temporari novèl.',
@@ -998,6 +998,7 @@ Vejatz la [[Special:NewImages|galariá dels imatges novèls]] per una presentaci
 'illegalfilename'             => 'Lo nom de fichièr « $1 » conten de caractèrs interdiches dins los títols de paginas. Mercé de lo tornar nomenar e de lo copiar tornarmai.',
 'badfilename'                 => "L'imatge es estat renomenat « $1 ».",
 'filetype-badmime'            => 'Los fichièrs del tipe MIME « $1 » pòdon pas èsser importats.',
+'filetype-bad-ie-mime'        => 'Lo fichièr pòt pas èsser importat perque serià detectat coma « $1 » per Internet Explorer, tipe de fichièr interdich perque potencialament dangierós.',
 'filetype-unwanted-type'      => "'''«.$1»''' es d'un format pas desirat. Los que son preferits son $2.",
 'filetype-banned-type'        => "'''\".\$1\"''' es dins un format pas admes.  Los que son acceptats son \$2.",
 'filetype-missing'            => "Lo fichièr a pas cap d'extension (coma « .jpg » per exemple).",
@@ -1550,6 +1551,8 @@ Consultatz l’[[Special:Log/delete|istoric de las supressions]] per veire las p
 'undelete-error-long'          => "D'errors son estadas rencontradas al moment del restabliment del fichièr :
 
 $1",
+'undelete-show-file-confirm'   => 'Sètz segur(a) que volètz visionar una version suprimida del fichièr « <nowiki>$1</nowiki> » que data del $2 a $3 ?',
+'undelete-show-file-submit'    => 'Òc',
 
 # Namespace form on various pages
 'namespace'      => 'Espaci de noms :',
@@ -1811,6 +1814,8 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 'import-noarticle'           => "Pas de pagina d'importar !",
 'import-nonewrevisions'      => 'Totas las revisions son estadas importadas deperabans.',
 'xml-error-string'           => '$1 a la linha $2, col $3 (octet $4) : $5',
+'import-token-mismatch'      => 'Pèrda de las donadas de sesilha. Tornatz ensajar.',
+'import-invalid-interwiki'   => "Impossible d'importar dempuèi lo wiki especificat.",
 
 # Import log
 'importlogpage'                    => 'Istoric de las importacions de paginas',

@@ -1161,6 +1161,8 @@ Sök Der statt „$1“ jet anders us,
 un dann muss de dat Dinge noch ens huhlade.',
 'badfilename'                 => 'De Datei es en „$1“ ömjedäuf.',
 'filetype-badmime'            => 'Dateie mem MIME-Typ „<code>$1</code>“ wulle mer nit huhjelade krijje.',
+'filetype-bad-ie-mime'        => 'Di Datei kam_mer nit huhlade, weil der Internet Explorrer se för en „$1“ 
+hallde deiht, wat nit erlaub, un müjjelelscherwies ene jefährlesche Dattei-Typp es.',
 'filetype-missing'            => 'Di Datei, di De huhlaade wells, hät keij Fommaat em Name, wi zem Beijspöll „<code>.jpg</code>“, esu jet hätte mer ävver jähn.',
 'large-file'                  => 'Dateie sullte nit jröößer wääde, wi $1, ävver Ding Datei es $2 jroß.',
 'largefileserver'             => 'De Datei es ze jroß. Jrößer wie däm Sörver sing Enstellung erlaub.',
@@ -1764,6 +1766,8 @@ un widder herjehollte Sigge.',
 'undelete-error-long'          => 'Mer wollte en Datei widder zeröckholle, ävver dobei sin_er Fääler opjefalle:
 
 $1',
+'undelete-show-file-confirm'   => 'Wells De dä Datei „<nowiki>$1</nowiki>“ ier fottjeschmesse Version vum $2 öm $3 Uhr werklesch sinn?',
+'undelete-show-file-submit'    => 'Jo',
 
 # Namespace form on various pages
 'namespace'      => 'Appachtemeng:',
@@ -2039,6 +2043,9 @@ Dat ahle Versione Huhlade es avjeschalt, un es nit müjjelich.',
 'import-noarticle'           => 'Kein Sigge do, för ze Emporteere!',
 'import-nonewrevisions'      => 'Et sin kein neue Versione do, för ze Importeere, weil all de Version hee ald fröjer emporteet wodte.',
 'xml-error-string'           => '$1 — en {{PLURAL:$2|eetz|$2-}}te Reih en de {{PLURAL:$3|eetz|$3-}}te Spalde, dat ess_et {{PLURAL:$4|eetz|$4-}}te Byte: $5',
+'import-token-mismatch'      => 'Schadt. Et senn nit alle Date hee aanjekumme.
+Bes esu joot, un versök et noch ens.',
+'import-invalid-interwiki'   => 'Us dämm jenannte Wiki künne mer nix Importeere.',
 
 # Import log
 'importlogpage'                    => 'Logboch met emporteerte Sigge',

@@ -1364,41 +1364,42 @@ Orrialde honen babes maila alda dezakezu, baina ez du eraginik izango kaskada bi
 'restriction-level-all'           => 'edozein maila',
 
 # Undelete
-'undelete'                 => 'Ezabatutako orrialdeak ikusi',
-'undeletepage'             => 'Ezabatutako orrialdeak ikusi eta leheneratu',
-'viewdeletedpage'          => 'Ezabatutako orrialdeak ikusi',
-'undeletepagetext'         => 'Jarraian zerrendatzen diren orrialdeak ezabatu egin dira baina oraindik artxiboa gordeta daude eta leheneratu egin daitezke. Artxiboa noizean behin hustu egin liteke.',
-'undeleteextrahelp'        => "Orrialde osoa leheneratzeko, koadrotxo guztiak hautatu gabe utzi eta '''''Leheneratu'''''n klik egin. 
+'undelete'                  => 'Ezabatutako orrialdeak ikusi',
+'undeletepage'              => 'Ezabatutako orrialdeak ikusi eta leheneratu',
+'viewdeletedpage'           => 'Ezabatutako orrialdeak ikusi',
+'undeletepagetext'          => 'Jarraian zerrendatzen diren orrialdeak ezabatu egin dira baina oraindik artxiboa gordeta daude eta leheneratu egin daitezke. Artxiboa noizean behin hustu egin liteke.',
+'undeleteextrahelp'         => "Orrialde osoa leheneratzeko, koadrotxo guztiak hautatu gabe utzi eta '''''Leheneratu'''''n klik egin. 
 Aukeratutako leheneratze bat burutzeko, leheneratu nahi dituzun berrikuspenen koadrotxoak markatu eta '''''Leheneratu''''' klik egin. 
 '''''Hasiera'''''n klik eginez gero koadrotxo guztiak eta iruzkin koadroa hustu egingo dira.",
-'undeleterevisions'        => '$1 berrikuspen gordeta',
-'undeletehistory'          => 'Orrialdea leheneratzen baduzu, berrikuspena guztiak leheneratuko dira historian. 
+'undeleterevisions'         => '$1 berrikuspen gordeta',
+'undeletehistory'           => 'Orrialdea leheneratzen baduzu, berrikuspena guztiak leheneratuko dira historian. 
 Ezabatu ondoren izen berdina duen orrialde berri bat sortzen bada leheneratutako berrikuspenak azalduko dira historian.',
-'undeletehistorynoadmin'   => 'Artikulua ezabatu egin da. Ezabatzeko azalpena beheko laburpenean erakusten da, ezabatu aurretik parte hartu zuten erabiltzaileen xehetasunekin batera. Ezabatutako berrikuspenen oraingo testua administratzaileek bakarrik ikus dezakete.',
-'undeleterevision-missing' => 'Baliogabeko berrikuspena. Baliteke lotura ezegokia izatea, edo berriskupena leheneratu edo kendu izana.',
-'undelete-nodiff'          => 'Ez da aurkitu aurreko berrikuspenik.',
-'undeletebtn'              => 'Leheneratu',
-'undeletelink'             => 'leheneratu',
-'undeletereset'            => 'Hasieratu',
-'undeletecomment'          => 'Iruzkina:',
-'undeletedarticle'         => '"[[$1]]" leheneratu da',
-'undeletedrevisions'       => '$1 berrikuspen leheneratu dira',
-'undeletedrevisions-files' => '$1 berrikuspen eta $2 fitxategi leheneratu dira',
-'undeletedfiles'           => '$1 fitxategi leheneratu dira',
-'cannotundelete'           => 'Errorea birsortzerakoan; baliteke beste norbaitek lehenago birsortu izana.',
-'undeletedpage'            => "<big>'''$1 leheneratu egin da'''</big>
+'undeletehistorynoadmin'    => 'Artikulua ezabatu egin da. Ezabatzeko azalpena beheko laburpenean erakusten da, ezabatu aurretik parte hartu zuten erabiltzaileen xehetasunekin batera. Ezabatutako berrikuspenen oraingo testua administratzaileek bakarrik ikus dezakete.',
+'undeleterevision-missing'  => 'Baliogabeko berrikuspena. Baliteke lotura ezegokia izatea, edo berriskupena leheneratu edo kendu izana.',
+'undelete-nodiff'           => 'Ez da aurkitu aurreko berrikuspenik.',
+'undeletebtn'               => 'Leheneratu',
+'undeletelink'              => 'leheneratu',
+'undeletereset'             => 'Hasieratu',
+'undeletecomment'           => 'Iruzkina:',
+'undeletedarticle'          => '"[[$1]]" leheneratu da',
+'undeletedrevisions'        => '$1 berrikuspen leheneratu dira',
+'undeletedrevisions-files'  => '$1 berrikuspen eta $2 fitxategi leheneratu dira',
+'undeletedfiles'            => '$1 fitxategi leheneratu dira',
+'cannotundelete'            => 'Errorea birsortzerakoan; baliteke beste norbaitek lehenago birsortu izana.',
+'undeletedpage'             => "<big>'''$1 leheneratu egin da'''</big>
 
 [[Special:Log/delete|Ezabaketa erregistrora]] jo azken ezabaketa eta leheneraketak ikusteko.",
-'undelete-header'          => 'Berriki ezabatutako orrialdeak ikusteko [[Special:Log/delete|ezabaketa erregistrora]] jo.',
-'undelete-search-box'      => 'Ezabatutako orrialdeak bilatu',
-'undelete-search-prefix'   => 'Honela hasten diren orrialdeak erakutsi:',
-'undelete-search-submit'   => 'Bilatu',
-'undelete-no-results'      => 'Ez da bat datorren orrialderik aurkitu ezabaketen artxiboan.',
-'undelete-cleanup-error'   => 'Erabiltzen ez den "$1" fitxategia ezabatzen arazoa egon da.',
-'undelete-error-short'     => 'Errorea fitxategia berreskuratzerakoan: $1',
-'undelete-error-long'      => 'Errorea gertatu da hurrengo orrialdea berreskuratzerakoan:
+'undelete-header'           => 'Berriki ezabatutako orrialdeak ikusteko [[Special:Log/delete|ezabaketa erregistrora]] jo.',
+'undelete-search-box'       => 'Ezabatutako orrialdeak bilatu',
+'undelete-search-prefix'    => 'Honela hasten diren orrialdeak erakutsi:',
+'undelete-search-submit'    => 'Bilatu',
+'undelete-no-results'       => 'Ez da bat datorren orrialderik aurkitu ezabaketen artxiboan.',
+'undelete-cleanup-error'    => 'Erabiltzen ez den "$1" fitxategia ezabatzen arazoa egon da.',
+'undelete-error-short'      => 'Errorea fitxategia berreskuratzerakoan: $1',
+'undelete-error-long'       => 'Errorea gertatu da hurrengo orrialdea berreskuratzerakoan:
 
 $1',
+'undelete-show-file-submit' => 'Bai',
 
 # Namespace form on various pages
 'namespace'      => 'Izen-tartea:',

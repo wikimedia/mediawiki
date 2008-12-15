@@ -1041,6 +1041,7 @@ Glědaj [[Special:NewImages|galeriju nowych datajow]] za wizuelny pśeglěd.',
 'illegalfilename'             => 'Datajowe mě „$1“ wopśimjejo njedowólone znamuška. Pšosym pśemjeni dataju a wopytaj ju wótnowotki uploadowaś.',
 'badfilename'                 => 'Mě dataje jo se změniło na „$1“.',
 'filetype-badmime'            => 'Dataje z MIME-typom „$1“ njesměju se uploadowaś.',
+'filetype-bad-ie-mime'        => 'Toś ta dataja njedajo se nagraś, dokulaž Internet Explorer by ju ako "$1" interpretěrował, kótaryž jo njedowólony a potencielnje tšachotny datajowy typ.',
 'filetype-unwanted-type'      => "'''„.$1“''' jo njewitany datajowy typ. Dowolene su: $2.",
 'filetype-banned-type'        => "'''„.$1“''' jo njedowolony datajowy typ. Dowolone su: $2.",
 'filetype-missing'            => 'Dataja njama žedno rozšyrjenje (na pś. „.jpg“).',
@@ -1593,6 +1594,8 @@ W [[Special:Log/delete|log-lisćinje wulašowanjow]] namakajoš pśeglěd wulaš
 'undelete-error-long'          => 'Zmólki pśi nawrośenju dataje:
 
 $1',
+'undelete-show-file-confirm'   => 'Coš se napšawdu wulašowanu wersiju dataje "<nowiki>$1</nowiki>" wót $2 $3 woglědaś?',
+'undelete-show-file-submit'    => 'Jo',
 
 # Namespace form on various pages
 'namespace'      => 'Mjenjowy rum:',
@@ -1847,6 +1850,8 @@ Wšykne transwiki-importowe akcije protokolěruju se w [[Special:Log/import|log-
 'import-noarticle'           => 'Žeden bok za import!',
 'import-nonewrevisions'      => 'Wšykne wersije buchu južo pjerwjej importowane.',
 'xml-error-string'           => '$1 smužka $2, słup $3, (Byte $4): $5',
+'import-token-mismatch'      => 'Zgubjenje posejźeńskich datow. Pšosym wopytaj hyšći raz.',
+'import-invalid-interwiki'   => 'Njejo móžno importěrowaś z pódanego wikija.',
 
 # Import log
 'importlogpage'                    => 'Log-lisćinu importěrowaś',

@@ -1000,6 +1000,7 @@ Por inkluzivi la dosieron en pagxon, skribu ligilon laŭ la formoj
 'illegalfilename'             => 'La dosiernomo $1 entenas karaktrojn kiuj ne estas permesitaj en paĝaj titoloj. Bonvolu renomi la dosieron kaj provu denove alŝuti ĝin.',
 'badfilename'                 => 'Dosiernomo estis ŝanĝita al "$1".',
 'filetype-badmime'            => 'Dosieroj de la MIME-tipo "$1" ne estas permesitaj por alŝutado.',
+'filetype-bad-ie-mime'        => 'Ne eblas alŝuti ĉi tiun dosieron, ĉar Interreta Esplorilo detektus ĝin kiel "$1", kiu estas malpermesita kaj eble danĝera dosiertipo.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' estas nevolata dosiero-tipo. Prefereataj dosiero-tipoj estas \$2.",
 'filetype-banned-type'        => "'''\".\$1\"''' ne estas permesita dosiero-tipo. Permesitaj dosiero-tipoj estas \$2.",
 'filetype-missing'            => 'Ĉi tiu dosiero ne inkluzivas finaĵon de dosiernomo (kiel ".jpg").',
@@ -1530,6 +1531,8 @@ Konsultu la [[Special:Log/delete|deletion log]] por protokolo pri la lastatempaj
 'undelete-error-long'          => 'Jen eraroj dum restarigo de dosiero:
 
 $1',
+'undelete-show-file-confirm'   => 'Ĉu vi vere volas vidi forigitan version de la dosiero "<nowiki>$1</nowiki>" je $2 $3?',
+'undelete-show-file-submit'    => 'Jes',
 
 # Namespace form on various pages
 'namespace'      => 'Nomspaco:',
@@ -1794,6 +1797,8 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'import-noarticle'           => 'Neniu paĝo por importi!',
 'import-nonewrevisions'      => 'Ĉiuj versioj estis antaŭe importitaj.',
 'xml-error-string'           => '$1 ĉe linio $2, kolumno $3 (bitiko $4): $5',
+'import-token-mismatch'      => 'Seancaj datenoj perdiĝis. Bonvolu reprovi.',
+'import-invalid-interwiki'   => 'Ne povas importi de la specifigita vikio.',
 
 # Import log
 'importlogpage'                    => 'Protokolo de importoj',

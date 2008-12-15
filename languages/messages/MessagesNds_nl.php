@@ -1699,6 +1699,8 @@ Meschien is 't al weerummeplaos.",
 'undelete-error-long'          => "Fouten bie 't herstellen van 't bestand:
 
 $1",
+'undelete-show-file-confirm'   => 'Bi-j der wisse van da-j een vort-edaone versie van \'t bestand "<nowiki>$1</nowiki>" van $2 um $3 bekieken willen?',
+'undelete-show-file-submit'    => 'Ja',
 
 # Namespace form on various pages
 'namespace'      => 'Naamruumte:',
@@ -1940,6 +1942,8 @@ De tiejelijke map is neet anwezig.",
 'import-noarticle'           => "Der bin gien pagina's um in te voeren!",
 'import-nonewrevisions'      => 'Alle versies bin al eerder in-evoerd.',
 'xml-error-string'           => '$1 op regel $2, kelom $3 (byte $4): $5',
+'import-token-mismatch'      => "De sessiegegevens bin verleuren egaon. Prebeer 't opniej.",
+'import-invalid-interwiki'   => "'t Is neet meugelijk um van de an-egeven wiki in te voeren.",
 
 # Import log
 'importlogpage'                    => 'Invoerlogboek',

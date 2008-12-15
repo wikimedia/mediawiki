@@ -1585,6 +1585,8 @@ Am [[Special:Log/delete|Läsch-Logbuch]] fannt Dir déi geläscht a restauréier
 'undelete-error-long'          => 'Beim Restauréiere vun engem Fichier goufe Feeler fonnt:
 
 $1',
+'undelete-show-file-confirm'   => '!Sidd Dir sécher, datt dir eng geläschte Versioun vum Fichier „<nowiki>$1</nowiki>“ vum $2 ëm $3 Auer gesi wëllt?',
+'undelete-show-file-submit'    => 'Jo',
 
 # Namespace form on various pages
 'namespace'      => 'Nummraum:',
@@ -1838,6 +1840,8 @@ Späichert en op ärem Computer of a lued en hei nees erop.',
 'import-noarticle'           => "Keng Säit fir z'importéieren!",
 'import-nonewrevisions'      => "All d'Versioune goufe scho virdrunn importéiert.",
 'xml-error-string'           => '$1 an der Zeil $2, Spalt $3, (Byte $4): $5',
+'import-token-mismatch'      => "D'Date vun ärer Sessioun si verluer gaang. Versicht et w.e.g. nach eemol.",
+'import-invalid-interwiki'   => 'Aus der Wiki déi Dir uginn hutt kann näischt importéiert ginn.',
 
 # Import log
 'importlogpage'                    => 'Lëscht vun den Säitenimporten',

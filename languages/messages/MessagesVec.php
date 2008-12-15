@@ -939,6 +939,7 @@ Varda la [[Special:NewImages|galerìa dei file nóvi]] par na vision de insieme.
 'illegalfilename'             => 'El nome file "$1" el contien caràteri che no xè permessi nei titoli de le pagine. Par piaser, rinomina el file e próa a ricaricarlo.',
 'badfilename'                 => 'El nome de el file el xè stà convertio in "$1".',
 'filetype-badmime'            => 'No xe consentìo de cargar file de tipo MIME "$1".',
+'filetype-bad-ie-mime'        => 'No se pode cargar sto file, parché da Internet Explorer el vegnarìa rilevà come "$1", che xe un tipo de file disativà e potensialmente pericoloso.',
 'filetype-unwanted-type'      => "Cargar file de tipo '''\".\$1\"''' xe sconsiglià. I tipi de file consiglià i xe \$2.",
 'filetype-banned-type'        => "Cargar file de tipo '''\".\$1\"''' no xe mìa consentìo. I tipi de file consentìi i xe \$2.",
 'filetype-missing'            => 'El file no\'l gà nissuna estension (ad es. ".jpg").',
@@ -1448,6 +1449,8 @@ Consulta el [[Special:Log/delete|registro de le scancełassion]] par vardare łe
 'undelete-error-long'          => 'Se gà verificà dei erori nel tentativo de anular la scancelazion del file:
 
 $1',
+'undelete-show-file-confirm'   => 'Sito sicuro che te vol vardar na revision del file "<nowiki>$1</nowiki>" scancelà da $2 el $3',
+'undelete-show-file-submit'    => 'Sì',
 
 # Namespace form on various pages
 'namespace'      => 'Namespace:',
@@ -1698,6 +1701,8 @@ Salvalo sul to computer e càrghelo qua.',
 'import-noarticle'           => 'Nissuna pagina da inportar.',
 'import-nonewrevisions'      => 'Tute le revision le xe zà stà inportà in precedenza.',
 'xml-error-string'           => '$1 a riga $2, colona $3 (byte $4): $5',
+'import-token-mismatch'      => "I dati relativi a la session i xe 'ndài persi. Par piaser, próa da novo.",
+'import-invalid-interwiki'   => 'No se pode inportar da la wiki indicà.',
 
 # Import log
 'importlogpage'                    => 'Inportassion',

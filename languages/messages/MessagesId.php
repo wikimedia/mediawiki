@@ -1680,6 +1680,7 @@ Lihat [[Special:Log/delete|log penghapusan]] untuk data penghapusan dan pengemba
 'undelete-error-long'          => 'Terjadi kesalahan sewaktu membatalkan penghapusan berkas:
 
 $1',
+'undelete-show-file-submit'    => 'Ya',
 
 # Namespace form on various pages
 'namespace'      => 'Ruang nama:',
@@ -1932,6 +1933,8 @@ Simpan ke komputer Anda lalu muatkan di sini.',
 'import-noarticle'           => 'Tak ada halaman yang dapat diimpor!',
 'import-nonewrevisions'      => 'Semua revisi telah pernah diimpor sebelumnya.',
 'xml-error-string'           => '$1 pada baris $2, kolom $3 (bita $4): $5',
+'import-token-mismatch'      => 'Kehilangan data sesi. Silakan mencoba kembali.',
+'import-invalid-interwiki'   => 'Tidak dapat mengimpor dari wiki tersebut.',
 
 # Import log
 'importlogpage'                    => 'Log impor',

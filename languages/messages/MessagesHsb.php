@@ -1005,6 +1005,7 @@ Hlej [[Special:NewImages|galeriju nowych datajow]] za wizuelny přehlad.',
 'illegalfilename'             => 'Mjeno dataje „$1” wobsahuje znamješka, kotrež w titlach stronow dowolene njejsu. Prošu přemjenuj dataju a spytaj ju znowa nahrać.',
 'badfilename'                 => 'Mjeno dataje bu do „$1” změnjene.',
 'filetype-badmime'            => 'Dataje družiny MIME „$1” njesmědźa so składować.',
+'filetype-bad-ie-mime'        => 'Tuta dataja njeda so nahrać, dokelž Internet Explorer by ju jako "$1" interpretował, kotryž je njedowoleny a potencielnje strašny datajowy typ.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' je njepožadany datajowy typ. Preferowane datajowe sypy su \$2.",
 'filetype-banned-type'        => "'''\".\$1\"''' njeje dowoleny datajowy typ. Dowolene datajowe typy su \$2.",
 'filetype-missing'            => 'Dataja nima kóncowku (na přikład „.jpg“).',
@@ -1557,6 +1558,8 @@ Hlej [[Special:Log/delete|protokol]] za lisćinu aktualnych wušmórnjenjow a wo
 'undelete-error-long'          => 'Buchu zmylki při wobnowjenju dataje zwěsćene:
 
 $1',
+'undelete-show-file-confirm'   => 'Chceš sej woprawdźe zničenu wersiju dataje "<nowiki>$1</nowiki>" wot $2 $3 wobhladać?',
+'undelete-show-file-submit'    => 'Haj',
 
 # Namespace form on various pages
 'namespace'      => 'Mjenowy rum:',
@@ -1803,6 +1806,8 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{ns:special}}:E
 'import-noarticle'           => 'Žadyn nastawk za import!',
 'import-nonewrevisions'      => 'Wšě wersije buchu hižo prjedy importowane.',
 'xml-error-string'           => '$1 linka $2, špalta $3, (bajt $4): $5',
+'import-token-mismatch'      => 'Strata posedźenskich datow. Prošu spytaj hišće raz.',
+'import-invalid-interwiki'   => 'Njeje móžno z podateho wikija importować.',
 
 # Import log
 'importlogpage'                    => 'Protokol importow',

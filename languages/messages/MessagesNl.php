@@ -1258,6 +1258,7 @@ Zie de [[Special:NewImages|galerij met nieuwe bestanden]] voor een visueler over
 Geef het bestand een andere naam, en probeer het dan opnieuw te uploaden.',
 'badfilename'                 => 'De naam van het bestand is gewijzigd in "$1".',
 'filetype-badmime'            => 'Het is niet toegestaan om bestanden van MIME-type "$1" te uploaden.',
+'filetype-bad-ie-mime'        => 'Dit bestand kan niet toegevoegd worden omdat Internet Explorer het zou indentificeren als "$1", een niet toegelaten bestandstype dat potentieel schadelijk is.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' is een ongewenst bestandstype.
 Aangewezen bestandstypes zijn \$2.",
 'filetype-banned-type'        => "'''\".\$1\"''' is geen toegelaten bestandstype.
@@ -1825,6 +1826,8 @@ Misschien is het al teruggeplaatst.',
 'undelete-error-long'          => 'Er zijn fouten opgetreden bij het herstellen van het bestand:
 
 $1',
+'undelete-show-file-confirm'   => 'Weet u zeker dat u een verwijderde versie van het bestand "<nowiki>$1</nowiki>" van $2 om $3 wilt bekijken?',
+'undelete-show-file-submit'    => 'Ja',
 
 # Namespace form on various pages
 'namespace'      => 'Naamruimte:',
@@ -2095,6 +2098,8 @@ De tijdelijke map is niet aanwezig.',
 'import-noarticle'           => "Er zijn geen te importeren pagina's!",
 'import-nonewrevisions'      => 'Alle versies zijn al eerder geïmporteerd.',
 'xml-error-string'           => '$1 op regel $2, kolom $3 (byte $4): $5',
+'import-token-mismatch'      => 'De sessiegegevens zijn verloren gegaan. Probeer het opnieuw.',
+'import-invalid-interwiki'   => 'Het is niet mogelijk van de aangegeven wiki te importeren.',
 
 # Import log
 'importlogpage'                    => 'Importlogboek',
@@ -2255,7 +2260,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Waarschuwing''': dit bestand bevat mogelijk programmacode die uw systeem schade kan berokkenen.<hr />",
-'imagemaxsize'         => 'Maximale grootte beelden op beschrijvingspagina:',
+'imagemaxsize'         => 'Maximale grootte van afbeeldingen op beschrijvingspagina:',
 'thumbsize'            => 'Grootte miniatuurafbeelding:',
 'widthheight'          => '$1x$2',
 'widthheightpage'      => "$1×$2, $3 pagina's",

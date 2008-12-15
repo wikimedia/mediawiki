@@ -1285,7 +1285,7 @@ Is an téacs as na leagan scriosta seo ar fáil do riarthóirí amháin.',
 'undeletecomment'          => 'Tuairisc:',
 'undeletedarticle'         => 'Díscriosadh "$1" ar ais',
 'undeletedrevisions'       => '{{PLURAL:$1|Leagan amháin|$1 leagain}} díscriosta',
-'undeletedrevisions-files' => '{{PLURAL:$1|Leagan amháin|$1 leagain}} agus {{PLURAL:$1|comhad amháin|$1 comhaid}}} a chur ar ais',
+'undeletedrevisions-files' => '{{PLURAL:$1|Leagan amháin|$1 leagain}} agus {{PLURAL:$2|comhad amháin|$2 comhaid}} a chur ar ais',
 'undeletedfiles'           => '{{PLURAL:$1|Comhad amháin|$1 comhaid}} díscriosta',
 'undelete-search-box'      => 'Cuardaigh leathanaigh scriosta',
 'undelete-search-submit'   => 'Cuardaigh',
@@ -1514,6 +1514,7 @@ uaslódáladh an leathanach seo roimh ré)',
 'importnosources'         => "Níl aon fhoinse curtha i leith d'iompórtáil trasna vicíonna, agus
 ní féidir uaslódála staire díreacha a dhéanamh faoi láthair.",
 'xml-error-string'        => '$1 ag líne $2, col $3 (beart $4): $5',
+'import-token-mismatch'   => 'Sonraí seisiún a bheith caillte. Déan iarracht arís.',
 
 # Import log
 'importlogpage'             => 'Log iompórtáil',

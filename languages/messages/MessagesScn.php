@@ -995,6 +995,7 @@ Pi nziriri nu file nta na pàggina, fai nu lijami accussì:
 'illegalfilename'             => 'Lu nomu "$1" cunteni dî caràttiri nun ammessi ntê tìtuli dî pàggini. Dari a lu file un nomu diversu e pruvari a carricàrilu di novu.',
 'badfilename'                 => 'Lu nomu dû file è statu cummirtutu n "$1".',
 'filetype-badmime'            => 'Nun è cunzintitu carricari file di tipu MIME "$1".',
+'filetype-bad-ie-mime'        => 'Mpussìbbili caricari lu file pirchì Internet Explorer lu canuscissi comu  "$1", ca è nu tipu di file disattivatu e ca putissi èssiri piriculusu.',
 'filetype-unwanted-type'      => "Caricari file di tipu '''\".\$1\"''' è scunzigghiatu. Li tipi di file cunzigghiati sunnu \$2.",
 'filetype-banned-type'        => "Nun è pirmessu caricari tipi di file '''\".\$1\"'''. Li tipi di file pimittuti sunnu  \$2.",
 'filetype-missing'            => 'Lu file è privu d\'estinzioni (p\'asèmpiu ".jpg").',
@@ -1515,6 +1516,8 @@ Li mpostazzioni correnti pâ pàggina sugnu <strong>$1</strong>:',
 'undelete-error-long'          => 'Si virificaru erruri ntô tentativu di annullari la cancillazzioni dô file:
 
 $1',
+'undelete-show-file-confirm'   => 'Si sicuru di vuliri taliari na rivisioni dû file scancillatu "<nowiki>$1</nowiki>" di $2 a $3?',
+'undelete-show-file-submit'    => 'Si',
 
 # Namespace form on various pages
 'namespace'      => 'Tipu di pàggina:',
@@ -1760,6 +1763,8 @@ Nta st'ùrtimu casu si pò macari utilizzari un culligamentu, p'asempiu [[{{ns:s
 'import-noarticle'           => 'Nudda pàggina di mpurtari.',
 'import-nonewrevisions'      => 'Tutti li rivisioni già foru mpurtati apprima.',
 'xml-error-string'           => '$1 a riga $2, culonna $3 (byte $4): $5',
+'import-token-mismatch'      => "Si pèrsiru li dati rilativi a la sissioni. Pi piaciri, prova n'àutra vota.",
+'import-invalid-interwiki'   => "E' mpussìbbili mpurtari dû pruggettu wiki nnicatu.",
 
 # Import log
 'importlogpage'                    => 'Mpurtazzioni',

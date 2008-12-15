@@ -1073,6 +1073,7 @@ Untuk menyertakan imej tersebut dalam sesebuah laman, sila masukkan teks
 'illegalfilename'             => 'Nama fail "$1" mengandungi aksara yang tidak dibenarkan dalam tajuk laman. Sila tukar nama fail ini dan muat naik sekali lagi.',
 'badfilename'                 => 'Nama fail telah ditukar kepada "$1".',
 'filetype-badmime'            => 'Memuat naik fail jenis MIME "$1" adalah tidak dibenarkan.',
+'filetype-bad-ie-mime'        => 'Fail ini tidak boleh dimuat naik kerana Internet Explorer mengesannya sebagai fail jenis "$1" yang tidak dibenarkan dan berbahaya.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' adalah jenis fail yang tidak dikehendaki. Jenis-jenis fail yang diutamakan ialah \$2.",
 'filetype-banned-type'        => "'''\".\$1\"''' adalah jenis fail yang dilarang.  Jenis-jenis fail yang dibenarkan ialah \$2.",
 'filetype-missing'            => 'Fail ini tidak mempunyai sambungan (contohnya ".jpg").',
@@ -1601,6 +1602,8 @@ Sila rujuk [[Special:Log/delete|log penghapusan]] untuk rekod penghapusan terkin
 'undelete-error-long'          => 'Berlaku ralat ketika menyahhapuskan fail tersebut:
 
 $1',
+'undelete-show-file-confirm'   => 'Betul anda mahu melihat semakan bagi fail "<nowiki>$1</nowiki>" yang telah dihapuskan pada $2, $3?',
+'undelete-show-file-submit'    => 'Ya',
 
 # Namespace form on various pages
 'namespace'      => 'Ruang nama:',
@@ -1866,6 +1869,8 @@ Semua tindakan import transwiki dicatatkan dalam [[Special:Log/import|log import
 'import-noarticle'           => 'Tiada laman untuk diimport!',
 'import-nonewrevisions'      => 'Semua semakan telah pun diimport sebelum ini.',
 'xml-error-string'           => '$1 pada baris $2, lajur $3 (bait $4): $5',
+'import-token-mismatch'      => 'Data sesi telah hilang. Sila cuba lagi.',
+'import-invalid-interwiki'   => 'Wiki yang dinyatakan tidak boleh diimport.',
 
 # Import log
 'importlogpage'                    => 'Log import',

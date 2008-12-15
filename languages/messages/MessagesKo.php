@@ -1348,37 +1348,38 @@ $NEWPAGE
 'restriction-level-all'           => '모두',
 
 # Undelete
-'undelete'                 => '삭제된 문서 보기',
-'undeletepage'             => '삭제된 문서를 보거나 되살리기',
-'viewdeletedpage'          => '삭제된 문서 보기',
-'undeletepagetext'         => '다음의 문서는 삭제되었지만 보관되어 있고, 되살릴 수 있습니다. 보관된 문서들은 주기적으로 삭제될 것입니다.',
-'undeleteextrahelp'        => "문서 역사 전체를 복구하려면 모든 체크박스를 선택 해제한 뒤 '''복구'''를 누르세요.
+'undelete'                  => '삭제된 문서 보기',
+'undeletepage'              => '삭제된 문서를 보거나 되살리기',
+'viewdeletedpage'           => '삭제된 문서 보기',
+'undeletepagetext'          => '다음의 문서는 삭제되었지만 보관되어 있고, 되살릴 수 있습니다. 보관된 문서들은 주기적으로 삭제될 것입니다.',
+'undeleteextrahelp'         => "문서 역사 전체를 복구하려면 모든 체크박스를 선택 해제한 뒤 '''복구'''를 누르세요.
 특정한 버전만을 복구하려면 복구하려는 버전들을 선택한 뒤 '''복구'''를 누르세요. '''초기화'''를 누르면 모든 선택이 취소됩니다.",
-'undeleterevisions'        => '$1개의 버전 보관중',
-'undeletehistory'          => '문서를 되살리면 모든 역사가 같이 복구됩니다.
+'undeleterevisions'         => '$1개의 버전 보관중',
+'undeletehistory'           => '문서를 되살리면 모든 역사가 같이 복구됩니다.
 문서가 삭제된 후에 같은 이름의 문서가 만들어졌다면, 복구되는 버전들은 역사의 과거 부분에 나타날 것입니다.',
-'undeletehistorynoadmin'   => '이 문서는 삭제되어 있습니다. 삭제된 이유와 삭제되기 전에 이 문서를 편집한 사용자들이 아래에 나와 있습니다. 삭제된 문서를 보려면 관리자 권한이 필요합니다.',
-'undelete-revision'        => '삭제된 $1 문서의 $4 $5 버전 (기여자 $3):',
-'undeletebtn'              => '복구',
-'undeletelink'             => '되살리기',
-'undeletereset'            => '초기화',
-'undeletecomment'          => '설명:',
-'undeletedarticle'         => '"[[$1]]" 복구됨',
-'undeletedrevisions'       => '$1개의 버전이 복구되었습니다.',
-'undeletedrevisions-files' => '$1개의 버전과 $2개의 파일이 복구되었습니다.',
-'undeletedfiles'           => '$1개의 파일이 복구되었습니다.',
-'cannotundelete'           => '복구에 실패했습니다. 다른 누군가가 이미 복구했을 수도 있습니다.',
-'undeletedpage'            => "<big>'''$1이(가) 복구되었습니다.'''</big>
+'undeletehistorynoadmin'    => '이 문서는 삭제되어 있습니다. 삭제된 이유와 삭제되기 전에 이 문서를 편집한 사용자들이 아래에 나와 있습니다. 삭제된 문서를 보려면 관리자 권한이 필요합니다.',
+'undelete-revision'         => '삭제된 $1 문서의 $4 $5 버전 (기여자 $3):',
+'undeletebtn'               => '복구',
+'undeletelink'              => '되살리기',
+'undeletereset'             => '초기화',
+'undeletecomment'           => '설명:',
+'undeletedarticle'          => '"[[$1]]" 복구됨',
+'undeletedrevisions'        => '$1개의 버전이 복구되었습니다.',
+'undeletedrevisions-files'  => '$1개의 버전과 $2개의 파일이 복구되었습니다.',
+'undeletedfiles'            => '$1개의 파일이 복구되었습니다.',
+'cannotundelete'            => '복구에 실패했습니다. 다른 누군가가 이미 복구했을 수도 있습니다.',
+'undeletedpage'             => "<big>'''$1이(가) 복구되었습니다.'''</big>
 
 [[Special:Log/delete|삭제 기록]]에서 최근의 삭제/복구 기록을 볼 수 있습니다.",
-'undelete-header'          => '최근에 삭제된 문서 기록은 [[Special:Log/delete|여기]]에서 볼 수 있습니다.',
-'undelete-search-box'      => '삭제된 문서 찾기',
-'undelete-search-prefix'   => '다음으로 시작하는 문서 보이기:',
-'undelete-search-submit'   => '찾기',
-'undelete-error-short'     => '파일 복구 오류: $1',
-'undelete-error-long'      => '파일을 복구하는 중 오류 발생:
+'undelete-header'           => '최근에 삭제된 문서 기록은 [[Special:Log/delete|여기]]에서 볼 수 있습니다.',
+'undelete-search-box'       => '삭제된 문서 찾기',
+'undelete-search-prefix'    => '다음으로 시작하는 문서 보이기:',
+'undelete-search-submit'    => '찾기',
+'undelete-error-short'      => '파일 복구 오류: $1',
+'undelete-error-long'       => '파일을 복구하는 중 오류 발생:
 
 $1',
+'undelete-show-file-submit' => '예',
 
 # Namespace form on various pages
 'namespace'      => '이름공간:',

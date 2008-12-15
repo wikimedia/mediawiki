@@ -1132,6 +1132,7 @@ Voyez la [[Special:NewImages|gallerie des nouvelles images]] pour une présentat
 'illegalfilename'             => 'Le nom de fichier « $1 » contient des caractères interdits dans les titres de pages. Merci de le renommer et de le copier à nouveau.',
 'badfilename'                 => 'L’image a été renommée « $1 ».',
 'filetype-badmime'            => 'Les fichiers du type MIME « $1 » ne peuvent pas être importés.',
+'filetype-bad-ie-mime'        => "Le fichier ne peut pas être importé parce qu'il serait détecté comme « $1 » par Internet Explorer, type de fichier interdit car potentiellement dangereux.",
 'filetype-unwanted-type'      => "'''« .$1 »''' est un format de fichier non désiré. Les extensions privilégiées sont $2.",
 'filetype-banned-type'        => "'''\".\$1\"''' est dans un format non admis.  Ceux qui sont acceptés sont \$2.",
 'filetype-missing'            => 'Le fichier n’a aucune extension (comme « .jpg » par exemple).',
@@ -1666,6 +1667,8 @@ Consultez l’[[Special:Log/delete|historique des suppressions]] pour voir la li
 'undelete-error-long'          => 'Des erreurs ont été rencontrées lors de la restauration du fichier :
 
 $1',
+'undelete-show-file-confirm'   => 'Êtes-vous sûr de vouloir visionner une version supprimée du fichier « <nowiki>$1</nowiki> » datant du $2 à $3 ?',
+'undelete-show-file-submit'    => 'Oui',
 
 # Namespace form on various pages
 'namespace'      => 'Espace de noms :',
@@ -1929,6 +1932,8 @@ Toutes les actions d’importation interwiki sont consignées dans l’[[Special
 'import-noarticle'           => 'Aucune page à importer !',
 'import-nonewrevisions'      => 'Toute les révisions ont été importées auparavant.',
 'xml-error-string'           => '$1 à la ligne $2, col $3 (octet $4) : $5',
+'import-token-mismatch'      => 'Perte des données de session. Ressayez.',
+'import-invalid-interwiki'   => "Impossible d'importer depuis le wiki spécifié.",
 
 # Import log
 'importlogpage'                    => 'Historique des importations de pages',

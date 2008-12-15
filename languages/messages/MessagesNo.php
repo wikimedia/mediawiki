@@ -11,6 +11,7 @@
  * @author Jóna Þórunn
  * @author Kph
  * @author Kph-no
+ * @author Laaknor
  * @author Max sonnelid
  * @author Najami
  * @author Stigmj
@@ -1045,6 +1046,7 @@ Se [[Special:NewImages|galleriet over nye filer]] for en mer visuell visning',
 'illegalfilename'             => 'Filnavnet «$1» inneholder ugyldige tegn; gi fila et nytt navn og prøv igjen.',
 'badfilename'                 => 'Navnet på filen er blitt endret til «$1».',
 'filetype-badmime'            => 'Filer av typen «$1» kan ikke lastes opp.',
+'filetype-bad-ie-mime'        => 'Kan ikke laste opp denne filen fordi Internet Explorer ville detektert denne som «$1», noe som er ikke er tillatt, og en potensielt farlig filtype.',
 'filetype-unwanted-type'      => "'''«.$1»''' er en uønsket filtype. Foretrukne filtyper er $2.",
 'filetype-banned-type'        => "'''«$1»''' er ikke en tillatt filtype. Foretrukne filtyper er $2.",
 'filetype-missing'            => 'Filen har ingen endelse (som «.jpg»).',
@@ -1566,6 +1568,8 @@ Sjekk [[Special:Log/delete|slettingsloggen]] for en liste over nylige slettinger
 'undelete-error-long'          => 'Feil oppsto under filgjenoppretting:
 
 $1',
+'undelete-show-file-confirm'   => 'Er du sikker på at du vil vise en slettet versjon av filen «<nowiki>$1</nowiki>» fra den $2 klokken $3?',
+'undelete-show-file-submit'    => 'Ja',
 
 # Namespace form on various pages
 'namespace'      => 'Navnerom:',
@@ -1821,6 +1825,8 @@ Besøk [http://translatewiki.net Betawiki] om du ønsker å bidra med oversettel
 'import-noarticle'           => 'Ingen side å importere!',
 'import-nonewrevisions'      => 'Alle revisjoner var importert fra før.',
 'xml-error-string'           => '$1 på linje $2, kolonne $3 (byte: $4): $5',
+'import-token-mismatch'      => 'Sesjonsdata mistet. Venligst prøv igjen.',
+'import-invalid-interwiki'   => 'Kan ikke importere fra angitt wiki.',
 
 # Import log
 'importlogpage'                    => 'Importlogg',

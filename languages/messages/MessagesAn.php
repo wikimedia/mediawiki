@@ -1018,6 +1018,7 @@ Ta encluyir un archibo u imachen en una pachina, emplegue un binclo d'una d'ista
 'illegalfilename'             => "O nombre d'archibo «$1» tiene caráuters no premititos en títols de pachinas. Por fabor, cambee o nombre de l'archibo y mire de tornar á cargarlo.",
 'badfilename'                 => 'O nombre d\'a imachen s\'ha cambiato por "$1".',
 'filetype-badmime'            => 'No se premite cargar archibos de tipo MIME "$1".',
+'filetype-bad-ie-mime'        => 'No puet cargar iste archibo porque o Internet Explorer lo consideraría como "$1", que ye un tipo d\'archibo no premitito y potenzialment perigloso.',
 'filetype-unwanted-type'      => "Os '''\".\$1\"''' son un tipo d'archibo no deseyato.  Se prefieren os archibos de tipo \$2.",
 'filetype-banned-type'        => "No se premiten os archibos de tipo '''\".\$1\"'''. Os tipos que se premiten son \$2.",
 'filetype-missing'            => 'L\'archibo no tiene garra estensión (como ".jpg").',
@@ -1547,6 +1548,8 @@ Consulte o [[Special:Log/delete|rechistro de borraus]] ta beyer una lista d'os z
 'undelete-error-long'          => 'Bi abió errors mientres se borraban os archibos:
 
 $1',
+'undelete-show-file-confirm'   => 'Seguro que quiere beyer una bersión borrata de l\'archibo "<nowiki>$1</nowiki>" d\'o $2 á las $3?',
+'undelete-show-file-submit'    => 'Sí',
 
 # Namespace form on various pages
 'namespace'      => 'Espazio de nombres:',
@@ -1804,6 +1807,8 @@ Todas as importazions interwiki se rechistran en o [[Special:Log/import|rechistr
 'import-noarticle'           => 'No bi ha garra pachina ta importar!',
 'import-nonewrevisions'      => "Ya s'eban importato denantes todas as bersions.",
 'xml-error-string'           => '$1 en a linia $2, col $3 (byte $4): $5',
+'import-token-mismatch'      => "S'han perdito os datos d'a sesión. Por fabor, prebe unatra begada.",
+'import-invalid-interwiki'   => 'No se puet importar dende o wiki espezificato.',
 
 # Import log
 'importlogpage'                    => "Rechistro d'importazions",

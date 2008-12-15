@@ -695,7 +695,7 @@ Ha nem kértél új azonosítót, és tévedésből kaptad ezt a levelet, nyugod
 'resetpass'               => 'A fiók jelszavának módosítása',
 'resetpass_announce'      => 'Az e-mailben elküldött ideiglenes kóddal jelentkeztél be. A bejelentkezés befejezéséhez meg kell megadnod egy új jelszót:',
 'resetpass_text'          => '<!-- Ide írd a szöveget -->',
-'resetpass_header'        => 'Jelszó módosítása',
+'resetpass_header'        => 'A fiókhoz tartozó jelszó megváltoztatása',
 'resetpass_submit'        => 'Add meg a jelszót és jelentkezz be',
 'resetpass_success'       => 'A jelszavad megváltoztatása sikeresen befejeződött! Bejelentkezés...',
 'resetpass_bad_temporary' => 'Az ideiglenes jelszó hibás. Lehet, hogy már sikeresen megváltoztattad a jelszavadat, vagy új ideiglenes jelszót kértél.',
@@ -1741,6 +1741,8 @@ Lásd a [[Special:Log/delete|törlési naplót]] a legutóbbi törlések és hel
 'undelete-error-long'          => 'Hiba történt a fájl helyreállítása során:
 
 $1',
+'undelete-show-file-confirm'   => 'Biztosan meg akarod nézni a(z) "<nowiki>$1</nowiki>" fájl $2, $3-kori törölt változatát?',
+'undelete-show-file-submit'    => 'Igen',
 
 # Namespace form on various pages
 'namespace'      => 'Névtér:',
@@ -2006,6 +2008,8 @@ Valamennyi transwiki importálási művelet az [[Special:Log/import|importálás
 'import-noarticle'           => 'Nincs importálandó lap!',
 'import-nonewrevisions'      => 'A korábban importált összes változat.',
 'xml-error-string'           => '$1 a(z) $2. sorban, $3. oszlopban ($4. bájt): $5',
+'import-token-mismatch'      => 'Elveszett a session adat, próbálkozz újra.',
+'import-invalid-interwiki'   => 'A kijelölt wikiből nem lehet importálni.',
 
 # Import log
 'importlogpage'                    => 'Importnapló',

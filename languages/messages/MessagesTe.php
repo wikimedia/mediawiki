@@ -1490,6 +1490,7 @@ $NEWPAGE
 'undelete-missing-filearchive' => 'ID $1 కలిగిన భాండారం ఫైలు డేటాబేసులో లేకపోవడం చేత దాన్ని పునస్థాపించలేకున్నాం. దాని తొలగింపును ఇప్పటికే రద్దుపరచి ఉండవచ్చు.',
 'undelete-error-short'         => 'ఫైలు $1 తొలగింపును రద్దు పరచడంలో లోపం దొర్లింది',
 'undelete-error-long'          => 'ఫైలు $1 తొలగింపును రద్దు పరచడంలో లోపాలు దొర్లాయి',
+'undelete-show-file-submit'    => 'అవును',
 
 # Namespace form on various pages
 'namespace'      => 'నేంస్పేసు:',

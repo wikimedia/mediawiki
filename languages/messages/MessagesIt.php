@@ -1042,6 +1042,7 @@ Guarda la [[Special:NewImages|galleria dei nuovi file]] per una visione d'insiem
 'illegalfilename'             => 'Il nome "$1" contiene dei caratteri non ammessi nei titoli delle pagine. Dare al file un nome diverso e provare a caricarlo di nuovo.',
 'badfilename'                 => 'Il nome del file è stato convertito in "$1".',
 'filetype-badmime'            => 'Non è consentito caricare file di tipo MIME "$1".',
+'filetype-bad-ie-mime'        => 'Impossibile caricare il file perché Internet Explorer lo rileverebbe come "$1", che è un tipo di file disattivato e potenzialmente pericoloso.',
 'filetype-unwanted-type'      => "Caricare file di tipo '''\".\$1\"''' è sconsigliato. I tipi di file consigliati sono \$2.",
 'filetype-banned-type'        => "Caricare file di tipo '''\".\$1\"''' non è consentito. I tipi di file consentiti sono \$2.",
 'filetype-missing'            => 'Il file è privo di estensione (ad es. ".jpg").',
@@ -1565,6 +1566,8 @@ Consulta il [[Special:Log/delete|log delle cancellazioni]] per vedere le cancell
 'undelete-error-long'          => 'Si sono verificati degli errori nel tentativo di annullare la cancellazione del file:
 
 $1',
+'undelete-show-file-confirm'   => 'Si desidera visualizzare la revisione cancellate del file "<nowiki>$1</nowiki>" del $2 alle $3?',
+'undelete-show-file-submit'    => 'Sì',
 
 # Namespace form on various pages
 'namespace'      => 'Namespace:',
@@ -1816,6 +1819,8 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'import-noarticle'           => 'Nessuna pagina da importare.',
 'import-nonewrevisions'      => 'Tutte le revisioni sono già state importate in precedenza.',
 'xml-error-string'           => '$1 a riga $2, colonna $3 (byte $4): $5',
+'import-token-mismatch'      => 'I dati relativi alla sessione sono andati persi. Riprovare.',
+'import-invalid-interwiki'   => 'Impossibile importare dal progetto wiki indicato.',
 
 # Import log
 'importlogpage'                    => 'Importazioni',

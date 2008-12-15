@@ -1075,6 +1075,7 @@ Vegeu la [[Special:NewImages|galeria de nous fitxers]] per a una presentació m�
 'illegalfilename'             => 'El nom del fitxer «$1» conté caràcters que no estan permesos en els títols de pàgines. Si us plau, canvieu el nom al fitxer i torneu a carregar-lo.',
 'badfilename'                 => "El nom de la imatge s'ha canviat a «$1».",
 'filetype-badmime'            => 'Els fitxers del tipus MIME «$1» no poden penjar-se.',
+'filetype-bad-ie-mime'        => 'No es pot carregar aquest fitxer perquè Internet Explorer el detectaria com a «$1», que és un tipus de fitxer prohibit i potencialment perillós.',
 'filetype-unwanted-type'      => "'''«.$1»''' és un tipus de fitxer no desitjat. Els tipus de fitxer preferits són $2.",
 'filetype-banned-type'        => "'''«.$1»''' no és un tipus de fitxer permès.  Els tipus de fitxer permesos són $2.",
 'filetype-missing'            => 'El fitxer no té extensió (com ara «.jpg»).',
@@ -1608,6 +1609,8 @@ Consulteu el [[Special:Log/delete|registre d'esborraments]] per a veure els esbo
 'undelete-error-long'          => "S'han produït errors en revertir la supressió del fitxer:
 
 $1",
+'undelete-show-file-confirm'   => 'Segur que voleu veure la revisió esborrada del fitxer «<nowiki>$1</nowiki>» corresponent a les $3 del $2?',
+'undelete-show-file-submit'    => 'Sí',
 
 # Namespace form on various pages
 'namespace'      => 'Espai de noms:',
@@ -1877,6 +1880,8 @@ Deseu-lo al vostre ordinador i carregueu-ne una còpia ací.",
 'import-noarticle'           => 'No hi ha cap pàgina per importar!',
 'import-nonewrevisions'      => "Totes les revisions s'havien importat abans.",
 'xml-error-string'           => '$1 a la línia $2, columna $3 (byte $4): $5',
+'import-token-mismatch'      => 'Pèrdua de dades de sessió. Torneu-ho a intentar.',
+'import-invalid-interwiki'   => 'No es pot importar des del wiki especificat.',
 
 # Import log
 'importlogpage'                    => "Registre d'importació",

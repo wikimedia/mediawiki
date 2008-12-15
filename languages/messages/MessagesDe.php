@@ -1125,6 +1125,7 @@ Bitte beachte, dass, genau wie bei normalen Seiteninhalten, andere Benutzer dein
 'illegalfilename'             => 'Der Dateiname „$1“ enthält mindestens ein nicht erlaubtes Zeichen. Bitte benenne die Datei um und versuche sie erneut hochzuladen.',
 'badfilename'                 => 'Der Dateiname wurde in „$1“ geändert.',
 'filetype-badmime'            => 'Dateien mit dem MIME-Typ „$1“ dürfen nicht hochgeladen werden.',
+'filetype-bad-ie-mime'        => 'Diese Datei kann nicht hochgeladen werden, da der Internet Explorer sie als „$1“ erkennt, welcher ein nicht erlaubter potentiell gefährlicher Dateityp ist.',
 'filetype-unwanted-type'      => "'''„.$1“''' ist ein unerwünschtes Dateiformat. Erlaubt sind: $2.",
 'filetype-banned-type'        => "'''„.$1“''' ist ein nicht erlaubtes Dateiformat. Erlaubt sind: $2.",
 'filetype-missing'            => 'Die hochzuladende Datei hat keine Erweiterung (z. B. „.jpg“).',
@@ -1698,6 +1699,8 @@ Im [[Special:Log/delete|Lösch-Logbuch]] findest du eine Übersicht der gelösch
 'undelete-error-long'          => 'Es wurden Fehler beim Wiederherstellen einer Datei festgestellt:
 
 $1',
+'undelete-show-file-confirm'   => 'Bist du sicher, dass du eine gelöschte Version der Datei „<nowiki>$1</nowiki>“ vom $2, $3 Uhr sehen willst?',
+'undelete-show-file-submit'    => 'Ja',
 
 # Namespace form on various pages
 'namespace'      => 'Namensraum:',
@@ -1959,6 +1962,8 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'import-noarticle'           => 'Es wurde kein zu importierender Artikel angegeben!',
 'import-nonewrevisions'      => 'Es sind keine neuen Versionen zum Import vorhanden, alle Versionen wurden bereits früher importiert.',
 'xml-error-string'           => '$1 Zeile $2, Spalte $3, (Byte $4): $5',
+'import-token-mismatch'      => 'Verlust der Sessiondaten. Bitte versuche es erneut.',
+'import-invalid-interwiki'   => 'Aus dem angegebenen Wiki ist kein Import möglich.',
 
 # Import log
 'importlogpage'                    => 'Import-Logbuch',

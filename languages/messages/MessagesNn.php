@@ -9,6 +9,7 @@
  * @author Frokor
  * @author Guttorm Flatabø
  * @author H92
+ * @author Harald Khan
  * @author Jon Harald Søby
  * @author Jorunn
  * @author Max sonnelid
@@ -669,7 +670,7 @@ Du kan sjå bort frå denne meldinga dersom kontoen vart oppretta med eit uhell.
 'resetpass'               => 'Nullstill passordet til brukarkontoen',
 'resetpass_announce'      => 'Du logga inn med eit mellombels passord du fekk på e-post. For å fullføre innlogginga må du lage eit nytt passord her:',
 'resetpass_text'          => '<!-- Legg til tekst her -->',
-'resetpass_header'        => 'Nullstill passord',
+'resetpass_header'        => 'Endra passord',
 'resetpass_submit'        => 'Oppgje passord og logg inn',
 'resetpass_success'       => 'Passordet ditt er no nullstilt! Loggar inn...',
 'resetpass_bad_temporary' => 'Ugyldig mellombels passord. Du kan allereie ha endra det, eller bede om eit nytt.',
@@ -1141,6 +1142,7 @@ For å bruke ei fil på ei side, bruk ei slik lenkje:
 'illegalfilename'             => 'Filnamnet «$1» inneheld teikn som ikkje er tillatne i sidetitlar. Skift namn på fila og prøv på nytt.',
 'badfilename'                 => 'Namnet på fila har vorte endra til «$1».',
 'filetype-badmime'            => 'Filer av MIME-typen «$1» kan ikkje lastast opp.',
+'filetype-bad-ie-mime'        => 'Kan ikkje lasta opp fila då Internet Explorer ville merka ho som "$1", ein ikkje-tillate og potensielt farleg filtype.',
 'filetype-unwanted-type'      => "«'''.$1'''» er ein uynskt filtype. Føretrekte filtypar er $2.",
 'filetype-banned-type'        => "«'''.$1'''» er ikkje ein tillaten filtype. Tillatne filtypar er $2.",
 'filetype-missing'            => 'Fila har inga ending (som t.d. «.jpg»).',
@@ -1660,6 +1662,8 @@ Sjå [[Special:Log/delete|sletteloggen]] for eit oversyn over sider som nyleg er
 'undelete-error-long'          => 'Feil ved attoppretting av fila:
 
 $1',
+'undelete-show-file-confirm'   => 'Er du sikker på at du vil visa ein sletta versjon av fila "<nowiki>$1</nowiki>" frå den $2 klokka $3?',
+'undelete-show-file-submit'    => 'Ja',
 
 # Namespace form on various pages
 'namespace'      => 'Namnerom:',
@@ -1881,7 +1885,7 @@ Dersom du berre vil ha noverande versjon, kan du også bruke ei lenkje, til døm
 'import-interwiki-text'      => 'Vel ei wiki og ei side å importere. Endringssdatoer og brukarar som har medverka vert bevart. Alle transwiki-importeringar vert vist i [[Special:Log/import|importloggen]].',
 'import-interwiki-history'   => 'Kopier all historikken for denne sida',
 'import-interwiki-submit'    => 'Importer',
-'import-interwiki-namespace' => 'Flytt sidene til namnerommet:',
+'import-interwiki-namespace' => 'Målnamnerom:',
 'importtext'                 => 'Eksporter fila frå kjeldewikien med [[Special:Export|eksporteringsverktøyet]], lagre ho på di eiga datamaskin, og last henne opp her.',
 'importstart'                => 'Importerer sidene…',
 'import-revision-count'      => '$1 {{PLURAL:$1|versjon|versjonar}}',
@@ -1902,6 +1906,8 @@ Dersom du berre vil ha noverande versjon, kan du også bruke ei lenkje, til døm
 'import-noarticle'           => 'Ingen sider å importere!',
 'import-nonewrevisions'      => 'Alle versjonar var importert frå før.',
 'xml-error-string'           => '$1 på rad $2, kolonne $3 (byte: $4): $5',
+'import-token-mismatch'      => 'Mista sesjonsdata. Ver venleg og prøv om att.',
+'import-invalid-interwiki'   => 'Kan ikkje importera frå valt wiki.',
 
 # Import log
 'importlogpage'                    => 'Importeringslogg',

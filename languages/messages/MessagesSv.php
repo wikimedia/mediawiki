@@ -1079,6 +1079,7 @@ Se [[Special:NewImages|galleriet över nya filer]] för en mer visuell översikt
 'illegalfilename'             => 'Filnamnet "$1" innehåller tecken som inte är tillåtna i sidtitlar. Byt namn på filen och försök ladda upp igen.',
 'badfilename'                 => 'Filens namn har blivit ändrat till "$1".',
 'filetype-badmime'            => 'Uppladdning av filer med MIME-typen "$1" är inte tillåten.',
+'filetype-bad-ie-mime'        => 'Kan inte ladda upp denna fil på grund av att Internet Explorer skulle upptäcka att den är "$1", vilket är en otillåten och möjligtvis farlig filtyp.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' är en oönskad filtyp. Föredragna filtyper är \$2.",
 'filetype-banned-type'        => "'''\".\$1\"''' är inte en tillåten filtyp. Tillåtna filtyper är \$2.",
 'filetype-missing'            => 'Filnamnet saknar ändelse (t ex ".jpg").',
@@ -1614,6 +1615,8 @@ I  [[Special:Log/delete|borttagningsloggen]] kan du hitta information om nyligen
 'undelete-error-long'          => 'Fel inträffade när vid återställning av filen:
 
 $1',
+'undelete-show-file-confirm'   => 'Är du säker på att du vill visa en raderad version av filen "<nowiki>$1</nowiki>" från den $2 kl $3?',
+'undelete-show-file-submit'    => 'Ja',
 
 # Namespace form on various pages
 'namespace'      => 'Namnrymd:',
@@ -1874,6 +1877,8 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'import-noarticle'           => 'Inga sidor att importera!',
 'import-nonewrevisions'      => 'Alla sidversioner hade importerats tidigare.',
 'xml-error-string'           => '$1 på rad $2, kolumn $3 (byte $4): $5',
+'import-token-mismatch'      => 'Sessionsdata har förlorats. Var god pröva igen.',
+'import-invalid-interwiki'   => 'Kan inte importera från den angivna wikin.',
 
 # Import log
 'importlogpage'                    => 'Importlogg',

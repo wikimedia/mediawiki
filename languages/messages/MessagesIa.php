@@ -1005,6 +1005,7 @@ Vide le [[Special:NewImages|galeria de nove files]] pro un presentation plus vis
 Per favor renomina le file e prova recargar lo.',
 'badfilename'                 => 'Le nomine del imagine esseva cambiate a "$1".',
 'filetype-badmime'            => 'Non es permittite cargar files del typo MIME "$1".',
+'filetype-bad-ie-mime'        => 'Non pote cargar iste file proque Internet Explorer lo detegerea como "$1", le qual es un typo de files prohibite e potentialmente periculose.',
 'filetype-missing'            => 'Le nomine del file non ha un extension (como ".jpg").',
 'large-file'                  => 'Es recommendate que le files non sia plus grande de $1;
 iste file occupa $2.',
@@ -1578,6 +1579,8 @@ Es possibile que illo ha ja essite restaurate.',
 'undelete-error-long'          => 'Se incontrava errores durante le restauration del file:
 
 $1',
+'undelete-show-file-confirm'   => 'Es tu secur de voler vider un version delite del file "<nowiki>$1</nowiki>" del $2 a $3?',
+'undelete-show-file-submit'    => 'Si',
 
 # Namespace form on various pages
 'namespace'      => 'Spatio de nomine:',
@@ -1857,6 +1860,8 @@ Immagazina lo in tu disco e carga lo hic.',
 'import-noarticle'           => 'Nulle pagina a importar!',
 'import-nonewrevisions'      => 'Tote le revisiones habeva ja essite importate anteriormente.',
 'xml-error-string'           => '$1 al linea $2, col $3 (byte $4): $5',
+'import-token-mismatch'      => 'Perdita del datos del session. Per favor reprova.',
+'import-invalid-interwiki'   => 'Non pote importar ab le wiki specificate.',
 
 # Import log
 'importlogpage'                    => 'Registro de importationes',

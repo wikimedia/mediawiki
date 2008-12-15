@@ -1675,6 +1675,8 @@ $NEWPAGE
 'undelete-error-long'          => 'Під час відновлення файлу виникли помилки:
 
 $1',
+'undelete-show-file-confirm'   => 'Ви впевнені, що хочете переглянути вилучену версію файлу «<nowiki>$1</nowiki>» від $3 $2?',
+'undelete-show-file-submit'    => 'Так',
 
 # Namespace form on various pages
 'namespace'      => 'Простір назв:',
@@ -1936,6 +1938,8 @@ IP-адреси, що блокуються автоматично тут не в
 'import-noarticle'           => 'Нема сторінки для імпорту!',
 'import-nonewrevisions'      => 'Усі версії були раніше імпортовані.',
 'xml-error-string'           => '$1 в рядку $2, позиції $3 (байт $4): $5',
+'import-token-mismatch'      => 'Утрачені дані сеансу. Будь ласка, спробуйте ще раз.',
+'import-invalid-interwiki'   => 'Неможливо імпортувати із зазначеної вікі.',
 
 # Import log
 'importlogpage'                    => 'Журнал імпорту',

@@ -1102,6 +1102,7 @@ Vizuálny prehľad nájdete v [[Special:NewImages|galérii novo nahraných súbo
 'illegalfilename'             => 'Názov súboru „$1“ obsahuje znaky, ktoré nie sú povolené v názvoch stránok. Prosím premenujte súbor a skúste ho nahrať znovu.',
 'badfilename'                 => 'Názov obrázka bol zmenený na „$1“.',
 'filetype-badmime'            => 'Nie je povolené nahrávať súbory s MIME typom „$1“.',
+'filetype-bad-ie-mime'        => 'Nie je možné nahrať tento typ súboru, pretože Internet Explorer by ho rozpoznal ako „$1“, čo je nepovolený a potenciálne nebezpečný typ súboru.',
 'filetype-unwanted-type'      => "'''„.$1“''' je nežiadúci typ súboru. Uprednostňované typy súborov sú $2.",
 'filetype-banned-type'        => "'''„.$1“''' nie je povolený typ súboru. Povolené typy súborov sú $2.",
 'filetype-missing'            => 'Súbor nemá príponu (ako „.jpg“).',
@@ -1641,6 +1642,8 @@ Zoznam posledných mazaní a obnovení nájdete v [[Special:Log/delete|Zázname 
 'undelete-error-long'          => 'Vyskytli sa chyby pri obnovovaní súboru:
 
 $1',
+'undelete-show-file-confirm'   => 'Ste si istý, že chcete zobraziť zmazanú revíziu súboru „<nowiki>$1</nowiki>“ z $2 $3?',
+'undelete-show-file-submit'    => 'Áno',
 
 # Namespace form on various pages
 'namespace'      => 'Menný priestor:',
@@ -1914,6 +1917,8 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 'import-noarticle'           => 'Žiadny článok na import!',
 'import-nonewrevisions'      => 'Všetky revízie boli predtým importované.',
 'xml-error-string'           => '$1 na riadku $2, stĺpec $3 (bajt $4): $5',
+'import-token-mismatch'      => 'Strata údajov relácie. Prosím, skúste to znova.',
+'import-invalid-interwiki'   => 'Nie je možné importovať zo zadanej wiki.',
 
 # Import log
 'importlogpage'                    => 'Záznam importov',

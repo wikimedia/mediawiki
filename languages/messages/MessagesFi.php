@@ -1055,6 +1055,7 @@ Voit käyttää tiedostoja wikisivuilla seuraavilla tavoilla:
 'illegalfilename'             => "Tiedoston nimessä '''$1''' on merkkejä, joita ei sallita sivujen nimissä. Vaihda tiedoston nimeä, ja yritä lähettämistä uudelleen.",
 'badfilename'                 => 'Tiedoston nimi vaihdettiin: $1.',
 'filetype-badmime'            => 'Tiedostot, joiden MIME-tyyppi on <tt>$1</tt> ei voi lähettää.',
+'filetype-bad-ie-mime'        => 'Tiedostoa ei voi tallentaa, koska Internet Explorer tunnistaa sen kielletyksi tiedostomuodoksi $1, joka on mahdollisesti vaarallinen.',
 'filetype-unwanted-type'      => "'''.$1''' ei ole toivottu tiedostomuoto. Suositeltuja tiedostomuotoja ovat $2.",
 'filetype-banned-type'        => "'''.$1''' ei ole sallittu tiedostomuoto. Sallittuja tiedostomuotoja ovat $2.",
 'filetype-missing'            => 'Tiedostolta puuttuu tiedostopääte – esimerkiksi <tt>.jpg</tt>.',
@@ -1550,6 +1551,8 @@ Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|k
 'undelete-error-long'          => 'Tiedoston palauttaminen epäonnistui:
 
 $1',
+'undelete-show-file-confirm'   => 'Haluatko varmasti nähdä poistetun version tiedostosta ”<nowiki>$1</nowiki>” ajalta $2 $3?',
+'undelete-show-file-submit'    => 'Kyllä',
 
 # Namespace form on various pages
 'namespace'      => 'Nimiavaruus',
@@ -1776,7 +1779,7 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'import-interwiki-text'      => 'Valitse wiki ja sivun nimi. Versioiden päivämäärät ja muokkaajat säilytetään. Kaikki wikienväliset tuonnit kirjataan [[Special:Log/import|tuontilokiin]].',
 'import-interwiki-history'   => 'Kopioi sivun koko historia',
 'import-interwiki-submit'    => 'Tuo',
-'import-interwiki-namespace' => 'Siirrä nimiavaruuteen:',
+'import-interwiki-namespace' => 'Kohdenimiavaruus:',
 'importtext'                 => 'Vie sivuja lähdewikistä käyttäen [[Special:Export|vienti]]-työkalua. Tallenna tiedot koneellesi ja tallenna ne täällä.',
 'importstart'                => 'Tuodaan sivuja...',
 'import-revision-count'      => '$1 {{PLURAL:$1|versio|versiota}}',
@@ -1797,6 +1800,8 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'import-noarticle'           => 'Ei tuotavaa sivua.',
 'import-nonewrevisions'      => 'Kaikki versiot on tuotu aiemmin.',
 'xml-error-string'           => '$1 rivillä $2, sarakkeessa $3 (tavu $4): $5',
+'import-token-mismatch'      => 'Istuntotiedot ovat kadonneet. Yritä uudelleen.',
+'import-invalid-interwiki'   => 'Määritellystä wikistä ei voi tuoda.',
 
 # Import log
 'importlogpage'                    => 'Tuontiloki',

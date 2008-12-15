@@ -1096,6 +1096,7 @@ Przejdź na stronę [[Special:NewImages|galerii nowych plików]], by zobaczyć p
 Zmień nazwę pliku i prześlij go ponownie.',
 'badfilename'                 => 'Nazwa pliku została zmieniona na „$1”.',
 'filetype-badmime'            => 'Przesyłanie plików z typem MIME „$1” jest niedozwolone.',
+'filetype-bad-ie-mime'        => 'Nie można załadować tego pliku, ponieważ Internet Explorer wykryje go jako „$1”, a taki typ pliku jest zabronioniony jako potencjalnie niebezpieczny.',
 'filetype-unwanted-type'      => "'''„.$1”''' nie jest zalecanym typem pliku. Pożądane są pliki w formatach $2.",
 'filetype-banned-type'        => "'''„.$1”''' jest niedozwolonym typem pliku. Dopuszczalne są pliki w formatach $2.",
 'filetype-missing'            => 'Plik nie ma rozszerzenia (np. „.jpg”).',
@@ -1664,6 +1665,8 @@ Być może plik został już odtworzony.',
 'undelete-error-long'          => 'Napotkano błędy przy odtwarzaniu pliku:
 
 $1',
+'undelete-show-file-confirm'   => 'Czy na pewno chcesz zobaczyć usuniętą wersję pliku „<nowiki>$1</nowiki>” z $2 $3?',
+'undelete-show-file-submit'    => 'Tak',
 
 # Namespace form on various pages
 'namespace'      => 'Przestrzeń nazw',
@@ -1932,6 +1935,8 @@ Wszystkie operacje importu transwiki są odnotowywane w [[Special:Log/import|rej
 'import-noarticle'           => 'Brak stron do zaimportowania!',
 'import-nonewrevisions'      => 'Wszystkie wersje zostały już wcześniej zaimportowane.',
 'xml-error-string'           => '$1 linia $2, kolumna $3 (bajt $4): $5',
+'import-token-mismatch'      => 'Utracono dane sesji. Proszę spróbować ponownie.',
+'import-invalid-interwiki'   => 'Nie można importować z podanej wiki.',
 
 # Import log
 'importlogpage'                    => 'Rejestr importu',

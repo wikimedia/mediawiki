@@ -1197,6 +1197,7 @@ Pro vložení obrázku do stránky použijte jeden z následujících způsobů 
 'illegalfilename'             => 'Název souboru "$1" obsahuje znaky, které nejsou povoleny v názvech stránek. Prosím přejmenujte soubor a zkuste jej nahrát znovu.',
 'badfilename'                 => 'Jméno souboru bylo změněno na „$1“.',
 'filetype-badmime'            => 'Není povoleno načítat soubory MIME typu „$1“.',
+'filetype-bad-ie-mime'        => 'Nelze načíst tento soubor, neboť Internet Explorer by ho považoval za „$1“, což je nedovolený a potenciálně nebezpečný typ souboru.',
 'filetype-unwanted-type'      => "'''„.$1“''' je nežádoucí formát souborů. Upřednostňované formáty souborů jsou $2.",
 'filetype-banned-type'        => "'''„.$1“''' je nedovolený formát souborů. Povolené formáty souborů jsou $2.",
 'filetype-missing'            => 'Soubor nemá příponu (např. ".jpg").',
@@ -1717,6 +1718,8 @@ Záznam o posledních mazáních a obnoveních najdete v [[Special:Log/delete|kn
 'undelete-error-long'          => 'Vyskytla se chyba při obnovování souboru:
 
 $1',
+'undelete-show-file-confirm'   => 'Určitě si chcete prohlédnout smazanou revizi souboru „<nowiki>$1</nowiki>“ z $2, $3?',
+'undelete-show-file-submit'    => 'Ano',
 
 # Namespace form on various pages
 'namespace'      => 'Jmenný prostor:',
@@ -1957,6 +1960,8 @@ V druhém případě můžete také používat přímý odkaz, např. pomocí [[
 'import-noarticle'           => 'Není určena žádná stránka na import!',
 'import-nonewrevisions'      => 'Všechny verze již byly dříve importovány.',
 'xml-error-string'           => '$1 na řádku $2, sloupec $3 (bajt $4): $5',
+'import-token-mismatch'      => 'Ztratila se data relace. Zkuste to znovu.',
+'import-invalid-interwiki'   => 'Ze zadané wiki nelze importovat.',
 
 # Import log
 'importlogpage'                    => 'Kniha importů',

@@ -936,6 +936,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'illegalfilename'             => '«$1» билэ аата аакка туттуллубат бэлиэлэрдээх. Уларыт уонна өссө киллэрэн көр.',
 'badfilename'                 => 'Билэ аата маннык буолла: "$1".',
 'filetype-badmime'            => 'MIME-типтээх "$1" билэлэр кыайан манна суруллубаттар.',
+'filetype-bad-ie-mime'        => 'Бу билэни хачайдыыр табыллыбат, тоҕо диэтэххэ Internet Explorer кинини «$1» быһыытынан көрүө, ол аата бобуллубут уонна кутталлаах билэ көрүҥүн курдук.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' — билэ оччо сөбүлэммэт көрүҥэ. Маннык көрүҥнэри туһанар ордук: \$2.",
 'filetype-banned-type'        => "'''\".\$1\"''' — билэ бобуллубут көрүҥэ. Көнүллэммит билэ көрүҥнэрэ: \$2.",
 'filetype-missing'            => 'Билэ расширенията суох (холобур ".jpg").',
@@ -1472,6 +1473,8 @@ $NEWPAGE
 'undelete-error-long'          => 'Билэни төннөрүү кэмигэр моһуок таҕыста:
 
 $1',
+'undelete-show-file-confirm'   => '"<nowiki>$1</nowiki>" билэ баччаҕа $2, $3 сотуллубут торумун көрүөххүн баҕараҕын дуо?',
+'undelete-show-file-submit'    => 'Сөп',
 
 # Namespace form on various pages
 'namespace'      => 'Аат дала (Пространство имён):',
@@ -1739,6 +1742,8 @@ $1',
 'import-noarticle'           => 'Импортанар сирэй суох!',
 'import-nonewrevisions'      => 'Туох баар торумнар бу иннинэ импортаммыттар/импортаннылар.',
 'xml-error-string'           => '$1 - $2 строка, $3 колонка ($4 байт): $5',
+'import-token-mismatch'      => 'Арахсан хаалбыт. Өссө киирэн көр.',
+'import-invalid-interwiki'   => 'Бу биикиттэн импорт оҥорор сатаммат(а).',
 
 # Import log
 'importlogpage'                    => 'Импорт сурунаала',

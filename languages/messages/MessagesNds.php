@@ -1080,6 +1080,7 @@ Kiek bi de [[Special:NewImages|Galerie vun ne’e Datein]] för en Översicht mi
 'illegalfilename'             => 'In den Dateinaam „$1“ snd Teken in, de nich de Naams vun Sieden nich verlööft sünd. Söök di en annern Naam ut un denn versöök de Datei noch wedder hoochtoladen.',
 'badfilename'                 => 'De Bildnaam is na „$1“ ännert worrn.',
 'filetype-badmime'            => 'Datein vun den MIME-Typ „$1“ dröfft nich hoochlaadt warrn.',
+'filetype-bad-ie-mime'        => 'Disse Datei kann nich hoochladen warrn. De Internet Explorer hett ehr as „$1“ kennt, wat en nich verlöövten Dateityp is, de womööglich Schaden toföögt.',
 'filetype-unwanted-type'      => "'''„.$1“''' as Dateiformat schall beter nich bruukt warrn. Verlöövt sünd: $2.",
 'filetype-banned-type'        => "'''„.$1“''' as Dateiformat is nich tolaten. Verlöövt sünd: $2.",
 'filetype-missing'            => 'Disse Datei hett keen Ennen (so as „.jpg“).',
@@ -1590,6 +1591,8 @@ In dat [[Special:Log/delete|Lösch-Logbook]] steiht en Översicht över de wegsm
 'undelete-error-long'          => 'Fehlers bi dat Wedderhalen vun de Datei:
 
 $1',
+'undelete-show-file-confirm'   => 'Wullt du worraftig en wegsmeten Version vun de Datei „<nowiki>$1</nowiki>“ vun $2, $3 ankieken?',
+'undelete-show-file-submit'    => 'Jo',
 
 # Namespace form on various pages
 'namespace'      => 'Naamruum:',
@@ -1846,6 +1849,8 @@ All Transwiki-Import-Akschonen staht later ok in dat [[Special:Log/import|Import
 'import-noarticle'           => 'Kene Siet to’n Rinhalen angeven!',
 'import-nonewrevisions'      => 'Gifft kene ne’en Versionen to importeren, all Versionen sünd al vördem importeert worrn.',
 'xml-error-string'           => '$1 Reeg $2, Spalt $3, (Byte $4): $5',
+'import-token-mismatch'      => 'Session-Daten sünd verloren gahn. Versöök dat noch wedder.',
+'import-invalid-interwiki'   => 'Ut dat angevene Wiki is en Import nich mööglich.',
 
 # Import log
 'importlogpage'                    => 'Import-Logbook',

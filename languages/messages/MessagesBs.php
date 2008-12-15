@@ -1058,6 +1058,7 @@ Da bi ste prikazali datoteku na stranici, koristite link na jedan od slijedećih
 Molimo Vas da promijenite ime datoteke i pokušate da je ponovo postavite.',
 'badfilename'                 => 'Ime slike je promjenjeno u "$1".',
 'filetype-badmime'            => 'Datoteke MIME vrste "$1" nije dopušteno postavljati.',
+'filetype-bad-ie-mime'        => 'Ne može se postaviti ova datoteka jer je Internet prepoznaje kao "$1", što je nedozvoljena i potencijalno opasna vrsta datoteke.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' je nepoželjna vrsta datoteke. Poželjne vrste datoteka su \$2.",
 'filetype-banned-type'        => "'''\".\$1\"''' nije dopuštena vrsta datoteke. Dopuštene vrsta datoteka su \$2.",
 'filetype-missing'            => 'Datoteka nema ekstenziju (poput ".jpg").',
@@ -1221,10 +1222,12 @@ Prije brisanja provjerite da li druge stranice vode na te šablone.',
 'unusedtemplateswlh'  => 'ostali linkovi',
 
 # Random page
-'randompage' => 'Slučajna stranica',
+'randompage'         => 'Slučajna stranica',
+'randompage-nopages' => 'Nema stranica u ovom imenskom prostoru.',
 
 # Random redirect
-'randomredirect' => 'Slučajno preusmjerenje',
+'randomredirect'         => 'Slučajno preusmjerenje',
+'randomredirect-nopages' => 'Ne postoje preusmjeravanja u ovom imenskom prostoru.',
 
 # Statistics
 'statistics'             => 'Statistike',
@@ -1573,6 +1576,7 @@ Ako je nova stranica istog imena napravljena od brisanja, vraćene revizije će 
 'undeleterevdel'               => 'Vraćanje obrisanog se neće izvršiti ako bi rezultiralo djelimičnim brisanjem zaglavlja revizije stranice. U takvim slučajevima, morate ukloniti odabir ili skloniti sakrivanje najnovijih obrisanih revizija.
 Revizije datoteka za koje nemate dopuštenje za pregledanje neće biti vraćene.',
 'undeletehistorynoadmin'       => 'Ova stranica je izbrisana.  Ispod se nalazi dio istorije brisanja i istorija revizija izbrisane stranice.  Tekst izbrisane stranice je vidljiv samo korisnicima koji su administratori.',
+'undelete-revision'            => 'Obrisana revizija $1 (od $2) od strane $3:',
 'undeleterevision-missing'     => 'Nepoznata ili nedostajuća revizija.
 Možda ste unijeli pogrešan link, ili je revizija vraćena ili uklonjena iz arhive.',
 'undelete-nodiff'              => 'Nije pronađena ranija revizija.',
@@ -1603,6 +1607,8 @@ Možda je već ranije vraćena.',
 'undelete-error-long'          => 'Desile su se pogreške pri vraćanju datoteke:
 
 $1',
+'undelete-show-file-confirm'   => 'Da li ste sigurni da želite pogledati obrisanu reviziju datoteke "<nowiki>$1</nowiki>" od $2 u $3?',
+'undelete-show-file-submit'    => 'Da',
 
 # Namespace form on various pages
 'namespace'      => 'Vrsta članka:',
@@ -1876,6 +1882,8 @@ Nedostaje privremeni folder.',
 'import-noarticle'           => 'Nema stranica za uvoz!',
 'import-nonewrevisions'      => 'Sve revizije su prethodno uvežene.',
 'xml-error-string'           => '$1 na liniji $2, kolona $3 (bajt $4): $5',
+'import-token-mismatch'      => 'Izgubljeni podaci sesije. Molimo pokušajte ponovno.',
+'import-invalid-interwiki'   => 'Ne može se uvesti iz navedenog wikija.',
 
 # Import log
 'importlogpage'                    => 'Zapisnik uvoza',

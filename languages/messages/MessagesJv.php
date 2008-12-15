@@ -1460,6 +1460,8 @@ Berkas iku mbok-menawa wis dibusak.',
 'undelete-error-long'          => 'Ana kaluputan nalika mbatalaké pambusakan berkas:
 
 $1',
+'undelete-show-file-confirm'   => 'Apa panjenengan yakin arep mirsani révisi berkas "<nowiki>$1</nowiki>" sing wis kabusak ing $2 jam $3?',
+'undelete-show-file-submit'    => 'Ya',
 
 # Namespace form on various pages
 'namespace'      => 'Bilik nama (bilik jeneng):',
@@ -1715,6 +1717,8 @@ Simpenen ing cakram padhet (''harddisk'') panjenengan lan unggahna ing kéné.",
 'import-noarticle'           => 'Ora ana kaca sing bisa diimpor!',
 'import-nonewrevisions'      => 'Kabèh révisi sadurungé wis tau diimpor.',
 'xml-error-string'           => '$1 ing baris $2, kolom $3 (bita $4): $5',
+'import-token-mismatch'      => 'Kélangan data sèsi. Mangga dijajal manèh.',
+'import-invalid-interwiki'   => 'Ora bisa ngimport saka wiki sing kapilih.',
 
 # Import log
 'importlogpage'                    => 'Log impor',

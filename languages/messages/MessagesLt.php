@@ -1527,6 +1527,8 @@ Peržiūrėkite [[Special:Log/delete|trynimų sąrašą]], norėdami rasti pasku
 'undelete-error-long'          => 'Įvyko klaidų atkuriant failą:
 
 $1',
+'undelete-show-file-confirm'   => 'Ar ištiesų norite peržiūrėti ištrintą failo "<nowiki>$1</nowiki>" reviziją nuo $2 iki $3?',
+'undelete-show-file-submit'    => 'Taip',
 
 # Namespace form on various pages
 'namespace'      => 'Vardų sritis:',
