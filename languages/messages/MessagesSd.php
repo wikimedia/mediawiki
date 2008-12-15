@@ -7,6 +7,7 @@
  * @author Aursani
  */
 
+$fallback8bitEncoding = 'windows-1256';
 $rtl = true;
 
 $namespaceNames = array(
