@@ -20,8 +20,9 @@ class FiveUpgrade {
 	function FiveUpgrade() {
 		$this->conversionTables = $this->prepareWindows1252();
 
-		$this->dbw =& $this->newConnection();
-		$this->dbr =& $this->streamConnection();
+		$this->loadBalancers = array();
+		$this->dbw = wfGetDB( DB_MASTER );
+		$this->dbr = $this->streamConnection();
 
 		$this->cleanupSwaps = array();
 		$this->emailAuth = false; # don't preauthenticate emails
@@ -67,12 +68,23 @@ class FiveUpgrade {
 	 * @return Database
 	 * @access private
 	 */
-	function &newConnection() {
-		global $wgDBadminuser, $wgDBadminpassword, $wgDBtype;
-		global $wgDBserver, $wgDBname;
-		$dbclass = 'Database' . ucfirst( $wgDBtype ) ;
-		$db = new $dbclass( $wgDBserver, $wgDBadminuser, $wgDBadminpassword, $wgDBname );
+	function newConnection() {
+		$lb = wfGetLBFactory()->newMainLB();
+		$db = $lb->getConnection( DB_MASTER );
+		
+		$this->loadBalancers[] = $lb;
 		return $db;
+	}
+	
+	/**
+	 * Close out the connections when we're done...
+	 * Is this needed?
+	 */
+	function close() {
+		foreach( $this->loadBalancers as $lb ) {
+			$lb->commitMasterChanges();
+			$lb->closeAll();
+		}
 	}
 
 	/**
@@ -82,7 +94,7 @@ class FiveUpgrade {
 	 * @return Database
 	 * @access private
 	 */
-	function &streamConnection() {
+	function streamConnection() {
 		global $wgDBtype;
 
 		$timeout = 3600 * 24;
