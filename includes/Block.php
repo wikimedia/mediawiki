@@ -371,6 +371,7 @@ class Block {
 		$dbw = wfGetDB( DB_MASTER );
 
 		$this->validateBlockParams();
+		$this->initialiseRange();
 
 		# Don't collide with expired blocks
 		Block::purgeExpired();
