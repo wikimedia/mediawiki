@@ -1427,6 +1427,7 @@ To include a file in a page, use a link in the form
 Please rename the file and try uploading it again.',
 'badfilename'                 => 'File name has been changed to "$1".',
 'filetype-badmime'            => 'Files of the MIME type "$1" are not allowed to be uploaded.',
+'filetype-bad-ie-mime'        => 'Cannot upload this file because Internet Explorer would detect it as "$1", which is a disallowed and potentially dangerous file type.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' is an unwanted file type.  Preferred file types are \$2.",
 'filetype-banned-type'        => "'''\".\$1\"''' is not a permitted file type.  Permitted file types are \$2.",
 'filetype-missing'            => 'The file has no extension (like ".jpg").',

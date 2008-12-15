@@ -583,7 +583,7 @@ class UndeleteForm {
 	}
 
 	function execute() {
-		global $wgOut;
+		global $wgOut, $wgUser;
 		if ( $this->mAllowed ) {
 			$wgOut->setPagetitle( wfMsg( "undeletepage" ) );
 		} else {

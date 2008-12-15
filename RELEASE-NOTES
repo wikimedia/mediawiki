@@ -1,14 +1,12 @@
 = MediaWiki release notes =
 
-Security reminder: MediaWiki does not require PHP's register_globals
-setting since version 1.2.0. If you have it on, turn it *off* if you can.
+For upgrade instructions please see the UPGRADE file in this directory.
 
 == MediaWiki 1.12.2 ==
 
 December 15, 2008
 
-This is a security and bugfix release of the quarterly branch of MediaWiki 
-for Winter 2008.
+This is a security release of the quarterly branch of MediaWiki for Winter 2008.
 
 MediaWiki is now using a "continuous integration" development model with
 quarterly snapshot releases. The latest development code is always kept
@@ -23,27 +21,57 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 == Changes since 1.12.1 ==
 
-* Fixed output escaping for reporting of non-MediaWiki exceptions. Potential
-  XSS if an extension throws one of these with user input.
-* Avoid fatal error in profileinfo.php when not configured. (Rem8)
-* Fixed CSRF vulnerability in Special:Import. Fixed input validation in 
-  transwiki import feature. (Rem10, Rem11)
+David Remahl of Apple's Product Security team has identified a number of 
+security issues in previous releases of MediaWiki. Subsequent analysis by the
+MediaWiki development team expanded the scope of these vulnerabilities. The
+issues with a significant impact are as follows:
+
+* A local script injection vulnerability affecting Internet Explorer clients for 
+  all MediaWiki installations with uploads enabled. [CVE-2008-5250]
+* A local script injection vulnerability affecting clients with SVG scripting 
+  capability (such as Firefox 1.5+), for all MediaWiki installations with SVG 
+  uploads enabled. [CVE-2008-5250]
+* A CSRF vulnerability affecting the Special:Import feature, for all MediaWiki 
+  installations since the feature was introduced in 1.3.0. [CVE-2008-5252]
+
+A local script injection vulnerability allows an attacker with a wiki account 
+to steal another user's login session, and to act as that user on the wiki. The
+attacker uploads a malicious script file, and tricks the victim into executing
+it.
+
+CSRF vulnerabilities allow an attacker to act as an authorised user on the wiki,
+but unlike an XSS vulnerability, the attacker can only act as the user in a
+specific and restricted way. The present CSRF vulnerability allows pages to be
+edited, with forged revision histories. Like an XSS vulnerability, the
+authorised user must visit the malicious web page to activate the attack.
+
+These three vulnerabilities are all fixed in this release.
+
+David Remahl also reminded us of some security-related configuration issues:
+
+* By default, MediaWiki stores a backup of deleted images in the images/deleted
+  directory. If you do not want these images to be publically accessible, make
+  sure this directory is not accessible from the web. MediaWiki takes some steps
+  to avoid leaking these images, but these measures are not perfect.
+* Set display_errors=off in your php.ini to avoid path disclosure via PHP fatal
+  errors. This is the default on most shared web hosts.
+* Enabling MediaWiki's debugging features, such as $wgShowExceptionDetails, may 
+  lead to path disclosure.
+
+Other changes in this release:
+
+* Avoid fatal error in profileinfo.php when not configured.
 * Add a .htaccess to deleted images directory for additional protection against 
   exposure of deleted files with known SHA-1 hashes on default installations. 
-  (Rem13)
-* Fixed XSS vulnerability for Internet Explorer clients, via file uploads which
-  are interpreted by IE as HTML. (Rem14)
-* Fixed XSS vulnerability for clients with SVG scripting, on wikis where SVG
-  uploads are enabled. Firefox 1.5+ is affected. (Rem2, Rem3, Rem5, Rem6)
 * Avoid streaming uploaded files to the user via index.php. This allows 
   security-conscious users to serve uploaded files via a different domain, and
   thus client-side scripts executed from that domain cannot access the login
-  cookies. Affects Special:Undelete, img_auth.php and thumb.php. (Rem12)
+  cookies. Affects Special:Undelete, img_auth.php and thumb.php.
 * When streaming files via index.php, use the MIME type detected from the 
   file extension, not from the data. This reduces the XSS attack surface.
 * Blacklist redirects via Special:Filepath. Such redirects exacerbate any 
-  XSS vulnerabilities involving uploads of files containing scripts. (Rem7)
-* Internationalisation updates
+  XSS vulnerabilities involving uploads of files containing scripts.
+* Internationalisation updates.
 
 === Changes since 1.12.0 ===
 
