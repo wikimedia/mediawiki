@@ -42,11 +42,11 @@ authorised user must visit a web page controlled by the attacker in order to
 activate the attack. Intranet wikis are vulnerable if the attacker can 
 determine the intranet URL.
 
-A local script injection vulnerability is like an XSS vulnerability, except 
-that the attacker must have an account on the local wiki, and there is no
-external site involved. The attacker uploads a script to the wiki, which another 
-user is tricked into executing, with the effect that the attacker
-is able to act as the privileged user.
+Local script injection vulnerabilities are like XSS vulnerabilities, except 
+that the attacker must have an account on the local wiki, and there is no 
+external site involved. The attacker uploads a script to the wiki, which another
+user is tricked into executing, with the effect that the attacker is able to act 
+as the privileged user.
 
 CSRF vulnerabilities allow an attacker to act as an authorised user on the wiki,
 but unlike an XSS vulnerability, the attacker can only act as the user in a
