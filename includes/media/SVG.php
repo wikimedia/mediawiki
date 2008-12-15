@@ -112,7 +112,7 @@ class SvgHandler extends ImageHandler {
 		return array( 'png', 'image/png' );
 	}
 
-	function getLongDesc( $file ) {
+	static function getLongDescription( $file ) {
 		global $wgLang;
 		return wfMsgExt( 'svg-long-desc', 'parseinline',
 			$wgLang->formatNum( $file->getWidth() ),
