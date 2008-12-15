@@ -2683,7 +2683,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Waarschuwing''': dit bestand bevat mogelijk programmacode die uw systeem schade kan berokkenen.<hr />",
-'imagemaxsize'         => 'Maximale grootte beelden op beschrijvingspagina:',
+'imagemaxsize'         => 'Maximale grootte van afbeeldingen op beschrijvingspagina:',
 'thumbsize'            => 'Grootte miniatuurafbeelding:',
 'widthheight'          => '$1x$2',
 'widthheightpage'      => "$1×$2, $3 {{PLURAL:$3|pagina|pagina's}}",

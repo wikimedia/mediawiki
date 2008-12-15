@@ -673,10 +673,10 @@ Ignoratz aqueste messatge se aqueste compte es estat creat per error.",
 'loginlanguagelabel'         => 'Lenga: $1',
 
 # Password reset dialog
-'resetpass'                 => 'Cambiar o tornar metre a zèro lo senhal del compte',
+'resetpass'                 => 'Cambiar lo senhal del compte',
 'resetpass_announce'        => 'Vos sètz enregistrat amb un senhal temporari mandat per corrièr electronic. Per acabar l’enregistrament, vos cal picar un senhal novèl aicí :',
 'resetpass_text'            => '<!-- Apondètz lo tèxt aicí -->',
-'resetpass_header'          => 'Remesa a zèro del senhal',
+'resetpass_header'          => 'Modificar lo senhal del compte',
 'oldpassword'               => 'Senhal ancian :',
 'newpassword'               => 'Senhal novèl :',
 'retypenew'                 => 'Confirmar lo senhal novèl :',
@@ -1693,6 +1693,7 @@ Una pagina es tractada coma una pagina d’omonimia s'utiliza un modèl qu'es li
 'booksources-isbn'          => 'ISBN :',
 'booksources-go'            => 'Validar',
 'booksources-text'          => "Vaquí una lista de ligams cap a d’autres sits que vendon de libres nous e d’occasion e sulsquals trobarètz benlèu d'entresenhas suls obratges que cercatz. {{SITENAME}} es pas ligada a cap d'aquestas societats, a pas l’intencion de ne far la promocion.",
+'booksources-invalid-isbn'  => "Lo numèro ISBN balhat sembla pas èsser valid ; verificatz s'avètz fach una error al moment de la còpia dempuèi la font.",
 
 # Special:Log
 'specialloguserlabel'  => 'Utilizaire :',

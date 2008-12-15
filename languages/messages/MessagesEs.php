@@ -32,6 +32,7 @@
  * @author Piolinfax
  * @author Platonides
  * @author Remember the dot
+ * @author Richard Wolf VI
  * @author Sanbec
  * @author Spacebirdy
  * @author Technorum
@@ -494,7 +495,7 @@ Por favor, avisa a un [[Special:ListUsers/sysop|administrador]], tomando nota de
 'cannotdelete'         => 'No se pudo borrar la página o archivo especificado.
 Alguien puede haberla borrado antes.',
 'badtitle'             => 'Título incorrecto',
-'badtitletext'         => 'El título de la página solicitada esta vacío, no es válido, o es un enlace interlenguaje o interwiki incorrecto.',
+'badtitletext'         => 'El título de la página solicitada está vacío, no es válido, o es un enlace interlenguaje o interwiki incorrecto.',
 'perfcached'           => 'Los siguientes datos están en caché y por tanto pueden estar desactualizados:',
 'perfcachedts'         => 'Estos datos están almacenados. Su última actualización fue el $1.',
 'querypage-no-updates' => 'Actualmente las actualizaciones de esta página están desactivadas. Estos datos no serán actualizados a corto plazo.',

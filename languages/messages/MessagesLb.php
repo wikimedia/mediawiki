@@ -1565,6 +1565,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'booksources-search-legend' => 'No Bicherreferenze sichen',
 'booksources-go'            => 'Sichen',
 'booksources-text'          => 'Hei ass eng Lescht mat Linken op Internetsäiten, déi nei a gebraucht Bicher verkafen. Do kann et sinn datt Dir méi Informatiounen iwwer déi Bicher fannt déi Dir sicht.',
+'booksources-invalid-isbn'  => "D'ISBN-Nummer déi Dir uginn hutt schéngt net gëlteg ze sinn. Kuckt w.e.g. no ob bäim Kopéiere kee Feeler geschitt ass.",
 
 # Special:Log
 'specialloguserlabel'  => 'Benotzer:',
@@ -1814,6 +1815,7 @@ Hei sinn déi aktuell Astellunge fir d'Säit <strong>$1</strong>:",
 'protect-cantedit'            => "Dir kënnt d'Spär vun dëser Seite net änneren, well Dir net déi néideg Rechter hutt fir déi Säit z'änneren.",
 'protect-othertime'           => 'Aner Zäit:',
 'protect-othertime-op'        => 'aner Zäit',
+'protect-existing-expiry'     => 'Ënn vun der Säitespär: $2 ëm $3 Auer',
 'protect-otherreason'         => 'Aneren/zousätzleche Grond:',
 'protect-otherreason-op'      => 'aneren/zousätzleche Grond',
 'protect-dropdown'            => '*Déi heefegst Grënn fir eng Säit ze spären

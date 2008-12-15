@@ -1567,6 +1567,7 @@ Una pachina se considera pachina de desambigazión si fa serbir una plantilla pr
 'booksources-search-legend' => 'Mirar fuents de libros',
 'booksources-go'            => 'Ir-ie',
 'booksources-text'          => 'Contino ye una lista de binclos ta atros puestos an que benden libros nuebos y usatos, talment bi aiga más informazión sobre os libros que ye mirando.',
+'booksources-invalid-isbn'  => "O numero d'ISBN dato pareix que no ye conforme; comprebe si no bi ha garra error en copiar d'a fuent orichinal.",
 
 # Special:Log
 'specialloguserlabel'  => 'Usuario:',

@@ -7,6 +7,7 @@
  * @author Bani
  * @author Brunoy Anastasiya Seryozhenko
  * @author Carla404
+ * @author GKnedo
  * @author LeonardoG
  * @author Lijealso
  * @author Rodrigo Calanca Nishino
@@ -410,7 +411,7 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|uma edição eliminada|$1 edições eliminadas}}',
 'feedlinks'               => 'Feed:',
 'feed-invalid'            => 'Tipo de subscrição feed inválido.',
-'feed-unavailable'        => '"Feeds" de publicação múltipla não estão disponíveis em {{SITENAME}}',
+'feed-unavailable'        => 'Os "feeds" não se encontram disponíveis',
 'site-rss-feed'           => 'Feed RSS $1',
 'site-atom-feed'          => 'Feed Atom $1',
 'page-rss-feed'           => 'Feed RSS de "$1"',
@@ -518,7 +519,7 @@ Você pode continuar a usar a {{SITENAME}} anonimamente, ou pode autenticar-se n
 continuar a ser apresentadas como se você ainda estivesse autenticado até que a cache de seu navegador seja limpa.',
 'welcomecreation'            => '== Bem-vindo, $1! ==
 A sua conta foi criada.
-Não se esqueça de personalizar as suas preferências na {{SITENAME}}.',
+Não se esqueça de personalizar as suas [[Special:Preferences|preferências na {{SITENAME}}]].',
 'loginpagetitle'             => 'Autenticação de usuário',
 'yourname'                   => 'Nome de usuário:',
 'yourpassword'               => 'Senha:',

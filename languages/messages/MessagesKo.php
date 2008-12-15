@@ -2195,6 +2195,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 
 # Patrol log
 'patrol-log-page'      => '검토 기록',
+'patrol-log-header'    => '이 기록은 검토된 문서에 대한 기록입니다.',
 'patrol-log-line'      => '$2 문서의 $1 판을 검토함 $3',
 'patrol-log-auto'      => '(자동)',
 'log-show-hide-patrol' => '검토 기록을 $1',
