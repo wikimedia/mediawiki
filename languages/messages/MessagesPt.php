@@ -616,10 +616,10 @@ Você pode ignorar esta mensagem caso a conta tenha sido criada por engano.',
 'loginlanguagelabel'         => 'Idioma: $1',
 
 # Password reset dialog
-'resetpass'                 => 'Alterar ou definir nova palavra-chave',
+'resetpass'                 => 'Alterar palavra-chave',
 'resetpass_announce'        => 'Você foi autenticado através de uma palavra-chave temporária. Para prosseguir, será necessário definir uma nova palavra-chave.',
 'resetpass_text'            => '<!-- Adicionar texto aqui -->',
-'resetpass_header'          => 'Criar nova palavra-chave',
+'resetpass_header'          => 'Alterar palavra-chave da conta',
 'oldpassword'               => 'Palavra-chave antiga',
 'newpassword'               => 'Nova palavra-chave',
 'retypenew'                 => 'Reintroduza a nova palavra-chave',
@@ -1652,6 +1652,7 @@ Uma página é considerada como de desambiguação se utilizar uma predefiniçã
 'booksources-search-legend' => 'Procurar por fontes livreiras',
 'booksources-go'            => 'Ir',
 'booksources-text'          => 'É exibida a seguir uma listagem de links para outros sítios que vendem livros novos e usados e que possam possuir informações adicionais sobre os livros que você está pesquisando:',
+'booksources-invalid-isbn'  => 'O número ISBN fornecido não parece ser válido; verifique a existência de erros ao copiar da fonte original.',
 
 # Special:Log
 'specialloguserlabel'  => 'Utilizador:',
@@ -2248,9 +2249,11 @@ Acesse [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [ht
 'import-interwiki-text'      => 'Seleccione uma wiki e um título de página a importar.
 As datas das edições e os seus editores serão mantidos.
 Todas as acções de importação transwiki são registadas no [[Special:Log/import|Registo de importações]].',
+'import-interwiki-source'    => 'Wiki/página fonte:',
 'import-interwiki-history'   => 'Copiar todas as edições desta página',
 'import-interwiki-submit'    => 'Importar',
 'import-interwiki-namespace' => 'Domínio de destino:',
+'import-upload-filename'     => 'Nome do ficheiro:',
 'import-comment'             => 'Comentário:',
 'importtext'                 => 'Por favor, exporte o ficheiro da wiki de origem utilizando a ferramenta [[Special:Export|de exportar edições]] (Special:Export).
 Salve o ficheiro para o seu disco e importe-o aqui.',

@@ -1178,7 +1178,7 @@ Mèrk op dat hun indexe van {{SITENAME}} content e bietje gedatierd kint zien.',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|bewerking|bewerkinge}}',
-'recentchanges'                     => 'Recènte verangeringe',
+'recentchanges'                     => 'Lètste verangeringe',
 'recentchanges-legend'              => 'Opties veur recènte verangeringe',
 'recentchangestext'                 => 'op dees pazjena kins doe de recènte verangeringe in deze wiki betrachte.',
 'recentchanges-feed-description'    => 'Volg de meis recente bewerkinge in deze wiki via deze feed.',
@@ -2575,7 +2575,7 @@ Probeer normaal veurvertuin.',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Verangeringe die nujer zeen es $1 seconde waere mesjiens neet getuind in dees lies.',
-'lag-warn-high'   => "Door 'ne hoege database-servertoeveur zeen verangeringe nujer es $1 seconde mäögelik neet besjikbaar in de lies.",
+'lag-warn-high'   => "Door 'ne hoege database-servertoeveur zeen verangeringe nujer es $1 {{PLURAL:$1|seconde|seconde}} mäögelik neet besjikbaar in de lies.",
 
 # Watchlist editor
 'watchlistedit-numitems'       => "Op dien volglies sjtaon {{PLURAL:$1|1 pazjena|$1 pazjena's}}, exclusief euverlèkpazjena's.",

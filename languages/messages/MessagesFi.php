@@ -1579,6 +1579,7 @@ Seuraava lista näyttää {{PLURAL:$1|ensimmäisen linkittävän sivun|$1 ensimm
 'booksources-isbn'          => 'ISBN',
 'booksources-go'            => 'Etsi',
 'booksources-text'          => 'Alla linkkejä ulkopuolisiin sivustoihin, joilla myydään uusia ja käytettyjä kirjoja. Sivuilla voi myös olla lisätietoa kirjoista.',
+'booksources-invalid-isbn'  => 'Annettu ISBN-numero ei ole kelvollinen. Tarkista alkuperäisestä lähteestä kirjoitusvirheiden varalta.',
 
 # Special:Log
 'specialloguserlabel'  => 'Käyttäjä',
@@ -2153,7 +2154,8 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'import-interwiki-text'      => 'Valitse wiki ja sivun nimi. Versioiden päivämäärät ja muokkaajat säilytetään. Kaikki wikienväliset tuonnit kirjataan [[Special:Log/import|tuontilokiin]].',
 'import-interwiki-history'   => 'Kopioi sivun koko historia',
 'import-interwiki-submit'    => 'Tuo',
-'import-interwiki-namespace' => 'Siirrä nimiavaruuteen:',
+'import-interwiki-namespace' => 'Kohdenimiavaruus:',
+'import-upload-filename'     => 'Tiedostonimi:',
 'import-comment'             => 'Syy',
 'importtext'                 => 'Vie sivuja lähdewikistä käyttäen [[Special:Export|vienti]]-työkalua. Tallenna tiedot koneellesi ja tallenna ne täällä.',
 'importstart'                => 'Tuodaan sivuja...',

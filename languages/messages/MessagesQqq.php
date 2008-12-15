@@ -34,6 +34,7 @@
  * @author Mormegil
  * @author Mpradeep
  * @author Nemo bis
+ * @author Niels
  * @author Nike
  * @author Node ue
  * @author Octahedron80
@@ -2013,6 +2014,7 @@ See also [[MediaWiki:Lastmodifiedat/{{SUBPAGENAME}}]].', # $1 date, $2 time, $3 
 'visual-comparison' => '{{Identical|Visual comparison}}',
 
 # Media information
+'imagemaxsize'         => 'This is used in Special:Preferences, under Files.',
 'widthheightpage'      => 'This message is used on image pages in the dimensions column in the file history section for images  with more than one page. Parameter $1 is the image width (in pixels), parameter $2 is the image height, and parameter $3 is the number of pages.',
 'file-info'            => 'File info displayed on file description page.',
 'file-info-size'       => 'File info displayed on file description page.',

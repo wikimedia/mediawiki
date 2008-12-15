@@ -1516,6 +1516,7 @@ PICT # misc.
 'booksources-search-legend' => 'Кинигэ туһунан көрдөө',
 'booksources-go'            => 'Бул',
 'booksources-text'          => 'Манна кинигэ туһунан атын саайтарга ыйынньыктар хомулуннулар, онно баҕар эбии информация көстүөҕэ.',
+'booksources-invalid-isbn'  => 'ISBN, арааһа, сыыһалаах. Нүөмэр көһөрөргө алҕас тахсыбатаҕын хат көр эрэ.',
 
 # Special:Log
 'specialloguserlabel'  => 'Кыттааччы:',

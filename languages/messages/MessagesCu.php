@@ -169,6 +169,7 @@ $messages = array(
 'talkpage'         => 'си страни́цѧ бєсѣ́да',
 'talkpagelinktext' => 'бєсѣ́да',
 'specialpage'      => 'наро́чьна страни́ца',
+'personaltools'    => 'моꙗ́ орѫ́диꙗ',
 'talk'             => 'бєсѣ́да',
 'toolbox'          => 'орѫ́диꙗ',
 'otherlanguages'   => 'ДРОУГꙐ́ ѨꙀꙐКꙐ́',

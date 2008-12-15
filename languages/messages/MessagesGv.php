@@ -686,6 +686,8 @@ Ta duillagyn er [[Special:Watchlist|dty rolley arrey]] ayns '''clou trome'''.",
 'ancientpages'            => 'Duillagyn by hinney',
 'move'                    => 'Scughey',
 'movethispage'            => 'Yn duillag shoh y scughey',
+'pager-newer-n'           => "{{PLURAL:$1|1 s'noa|$1 s'noa}}",
+'pager-older-n'           => '{{PLURAL:$1|1 shinney|$1 shinney}}',
 'suppress'                => 'Meehastid',
 
 # Book sources
@@ -805,11 +807,15 @@ Jeeagh er $2 son recortys ny scryssaghyn magh jeianagh.',
 'protect-locked-access'       => "Cha nel kied ec dty choontys dys arraghey cormidyn coadee.<br />
 Shoh ny reaghaghyn roie da'n duillag <strong>$1</strong>:",
 'protect-default'             => '(cadjinit)',
+'protect-fallback'            => 'Ta feme kied "$1" ayd',
 'protect-level-autoconfirmed' => 'Cur fo ghlass ymmydeyryn neurecortit',
 'protect-level-sysop'         => 'Reireyderyn ynrican',
 'protect-summary-cascade'     => 'spooytey',
 'protect-expiring'            => 'jerrey jeant ec $1 (UTC)',
 'protect-cascade'             => "Cur fo ghlass ny duillagyn t'ayns y duillag shoh (coadee spooytal)",
+'protect-cantedit'            => 'You cannot change the protection levels of this page, because you do not have permission to edit it.
+
+Cha nod oo caghlaa keim choadey y ghuillag shoh.  Cha nel kied ayd dy reaghey eh.',
 'protect-expiry-options'      => '2 oor:2 hours,1 laa:1 day,3 laaghyn:3 days,1 hiaghtin:1 week,2 hiaghtin:2 weeks,1 vee:1 month,3 meeghyn:3 months,6 meeghyn:6 months,1 vlein:1 year,neuyerrinagh:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Kied:',
 'restriction-level'           => 'Rea teorey:',
@@ -848,8 +854,10 @@ Shoh ny reaghaghyn roie da'n duillag <strong>$1</strong>:",
 'month'         => "Veih mee (as ny s'aa):",
 'year'          => "Veih blein (as ny s'aa):",
 
+'sp-contributions-newbies'     => 'Gyn taishbyney agh cohortyssyn choontyssyn noa',
 'sp-contributions-newbies-sub' => 'Lesh coontysyn noa',
 'sp-contributions-blocklog'    => 'Cur lhiettrimys er lioar chooishyn',
+'sp-contributions-search'      => 'Ronsaghey cohortyssyn',
 'sp-contributions-username'    => 'Enmys IP ny ennym yn ymmydeyr:',
 'sp-contributions-submit'      => 'Ronsaghey',
 

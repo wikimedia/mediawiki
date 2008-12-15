@@ -1705,6 +1705,7 @@ na kome bi se izvela ova funkcija.',
 'booksources-search-legend' => 'Traži književne izvore',
 'booksources-go'            => 'Idi',
 'booksources-text'          => 'Ispod se nalazi spisak vanjskih linkova na ostale stranice koje prodaju nove ili korištene knjige kao i stranice koje mogu da imaju važnije podatke o knjigama koje tražite:',
+'booksources-invalid-isbn'  => 'Navedeni ISBN broj nije validan; molimo da provjerite da li je došlo do greške pri kopiranju iz prvobitnog izvora.',
 
 # Special:Log
 'specialloguserlabel'  => 'Korisnik:',
