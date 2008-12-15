@@ -91,6 +91,7 @@ class AutoLoader {
 		'HTMLFileCache' => 'includes/HTMLFileCache.php',
 		'Http' => 'includes/HttpFunctions.php',
 		'_HWLDF_WordAccumulator' => 'includes/DifferenceEngine.php',
+		'IEContentAnalyzer' => 'includes/IEContentAnalyzer.php',
 		'ImageGallery' => 'includes/ImageGallery.php',
 		'ImageHistoryList' => 'includes/ImagePage.php',
 		'ImagePage' => 'includes/ImagePage.php',
