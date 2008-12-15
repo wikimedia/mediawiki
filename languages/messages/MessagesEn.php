@@ -2149,7 +2149,7 @@ Each row contains links to the first and second redirect, as well as the target 
 'booksources-isbn'          => 'ISBN:', # only translate this message to other languages if you have to change it
 'booksources-go'            => 'Go',
 'booksources-text'          => 'Below is a list of links to other sites that sell new and used books, and may also have further information about books you are looking for:',
-'booksources-invalid-isbn'  => 'The given ISBN number does not appear to be valid; check for errors copying from the original source.',
+'booksources-invalid-isbn'  => 'The given ISBN does not appear to be valid; check for errors copying from the original source.',
 
 # Magic words
 'rfcurl'    => 'http://tools.ietf.org/html/rfc$1', # do not translate or duplicate this message to other languages
