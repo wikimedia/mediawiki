@@ -175,9 +175,9 @@ $messages = array(
 'hidden-category-category'       => 'Skrivene kategorije', # Name of the category where hidden categories will be listed
 'category-subcat-count'          => '{{PLURAL:$2|Ova kategorija ima samo sljedeću podkategoriju.|Ova kategorija ima {{PLURAL:$1|podkategoriju|$1 podkategorije|$1 podkategorija}}, od njih $2 ukupno.}}',
 'category-subcat-count-limited'  => 'Ova kategorija ima {{PLURAL:$1|podkategoriju|$1 podkategorije|$1 podkategorija}}.',
-'category-article-count'         => '{{PLURAL:$2|Ova kategorija sadrži samo sljedeću stranicu.|{{PLURAL:$1|stranica je|$1 stranice su|$1 stranica su}} u ovoj kategoriji, od njih $2 ukupno.}}',
-'category-article-count-limited' => '{{PLURAL:$1|stranica je|$1 stranice su|$1 stranica su}} u ovoj kategoriji.',
-'category-file-count'            => '{{PLURAL:$2|Ova kategorija sadrži samo sljedeću datoteku.|{{PLURAL:$1|datoteka je|$1 datoteke su|$1 datoteka su}} u ovoj kategoriji, od njih $2 ukupno.}}',
+'category-article-count'         => '{{PLURAL:$2|Ova kategorija sadrži samo sljedeću stranicu.|{{PLURAL:$1|stranica je|$1 stranice su|$1 stranica je}} u ovoj kategoriji, od njih $2 ukupno.}}',
+'category-article-count-limited' => '{{PLURAL:$1|stranica je|$1 stranice su|$1 stranica je}} u ovoj kategoriji.',
+'category-file-count'            => '{{PLURAL:$2|Ova kategorija sadrži samo sljedeću datoteku.|{{PLURAL:$1|datoteka je|$1 datoteke su|$1 datoteka je}} u ovoj kategoriji, od njih $2 ukupno.}}',
 'category-file-count-limited'    => '{{PLURAL:$1|datoteka je|$1 datoteke su|$1 datoteka su}} u ovoj kategoriji.',
 'listingcontinuesabbrev'         => 'nast.',
 
@@ -514,7 +514,7 @@ Možete zanemariti ovu poruku, ako je suradnički račun stvoren nenamjerno.',
 # Password reset dialog
 'resetpass'               => 'Postavi novu lozinku',
 'resetpass_announce'      => 'Prijavljeni ste s privremenom lozinkom. Da završite proces mijenjanja lozinke, upišite ovdje novu lozinku:',
-'resetpass_header'        => 'Resetiraj lozinku',
+'resetpass_header'        => 'Promijeni lozinku računa',
 'resetpass_submit'        => 'Postavite lozinku i prijavite se',
 'resetpass_success'       => 'Lozinka uspješno postavljena! Prijava u tijeku...',
 'resetpass_bad_temporary' => 'Nevažeća privremena lozinka. Možda ste već uspješno promijenili svoju lozinku ili ste zatražili novu privremenu lozinku.',
@@ -1663,6 +1663,7 @@ Pogledajte [[Special:Log/delete|evidenciju brisanja]] za zapise nedavnih brisanj
 'undelete-error-long'          => 'Dogodila se pogreška pri vraćanju datoteke:
 
 $1',
+'undelete-show-file-submit'    => 'Da',
 
 # Namespace form on various pages
 'namespace'      => 'Imenski prostor:',
@@ -2386,7 +2387,7 @@ Svaka sljedeća poveznica u istom retku je izuzetak, npr. kod stranica gdje se s
 
 # External editor support
 'edit-externally'      => 'Uredi koristeći se vanjskom aplikacijom',
-'edit-externally-help' => 'Vidi [http://www.mediawiki.org/wiki/Manual:External_editors setup upute] za više informacija.',
+'edit-externally-help' => '(Vidi [http://www.mediawiki.org/wiki/Manual:External_editors setup upute] za više informacija)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'sve',

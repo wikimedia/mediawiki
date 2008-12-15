@@ -608,7 +608,7 @@ Você pode ignorar esta mensagem caso a conta tenha sido criada por engano.',
 'resetpass'               => 'Criar nova palavra-chave',
 'resetpass_announce'      => 'Você foi autenticado através de uma palavra-chave temporária. Para prosseguir, será necessário definir uma nova palavra-chave.',
 'resetpass_text'          => '<!-- Adicionar texto aqui -->',
-'resetpass_header'        => 'Criar nova palavra-chave',
+'resetpass_header'        => 'Alterar palavra-chave da conta',
 'resetpass_submit'        => 'Definir palavra-chave e entrar',
 'resetpass_success'       => 'Sua palavra-chave foi alterada com sucesso! Autenticando-se...',
 'resetpass_bad_temporary' => 'Palavra-chave temporária incorrecta. Pode ser que você já tenha conseguido alterar a sua palavra-chave ou pedido que uma nova temporária fosse gerada.',
@@ -1211,6 +1211,7 @@ Consulte a [[Special:NewImages|galeria de novos ficheiros]] para uma visualizaç
 'illegalfilename'             => 'O ficheiro "$1" possui caracteres que não são permitidos no título de uma página. Por favor, altere o nome do ficheiro e tente carregar novamente.',
 'badfilename'                 => 'O nome do ficheiro foi alterado para "$1".',
 'filetype-badmime'            => 'Ficheiros de tipo MIME "$1" não são permitidos de serem enviados.',
+'filetype-bad-ie-mime'        => 'Este ficheiro não pôde ser carregado porque o Internet Explorer o iria detectar como "$1", que é um tipo de ficheiro não permitido e potencialmente perigoso.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' é um tipo de ficheiro não desejado.
 {{PLURAL:\$3|O tipo preferível é|Os tipos preferíveis são}} \$2.",
 'filetype-banned-type'        => "'''\".\$1\"''' é um tipo proibido de ficheiro.

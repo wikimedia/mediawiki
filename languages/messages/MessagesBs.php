@@ -1181,6 +1181,7 @@ Da bi ste prikazali datoteku na stranici, koristite link na jedan od slijedećih
 Molimo Vas da promijenite ime datoteke i pokušate da je ponovo postavite.',
 'badfilename'                 => 'Ime slike je promjenjeno u "$1".',
 'filetype-badmime'            => 'Datoteke MIME vrste "$1" nije dopušteno postavljati.',
+'filetype-bad-ie-mime'        => 'Ne može se postaviti ova datoteka jer je Internet prepoznaje kao "$1", što je nedozvoljena i potencijalno opasna vrsta datoteke.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' je nepoželjna vrsta datoteke.
 {{PLURAL:\$3|Preporučena vrsta|Preporučene vrste}} datoteke su \$2.",
 'filetype-banned-type'        => "'''\".\$1\"''' nije dopuštena vrsta datoteke.

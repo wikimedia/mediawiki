@@ -1161,6 +1161,7 @@ Xem [[Special:NewImages|trang trưng bày các tập tin mới]] để xem trự
 'illegalfilename'             => 'Tên tập tin “$1” có chứa ký tự không được phép dùng cho tựa trang. Xin hãy đổi tên và tải lên lại.',
 'badfilename'                 => 'Tên tập tin đã được đổi thành “$1”.',
 'filetype-badmime'            => 'Không thể tải lên các tập tin có định dạng MIME “$1”.',
+'filetype-bad-ie-mime'        => 'Không thể tải tập tin này lên vì Internet Explorer sẽ nhận diện tập tin này là “$1”, một định dạng tập tin tiềm ẩn nguy hiểm và không được cho phép.',
 'filetype-unwanted-type'      => "'''“.$1”''' là định dạng tập tin không được trông đợi.
 {{PLURAL:$3|Loại|Những loại}} tập tin thích hợp hơn là $2.",
 'filetype-banned-type'        => "'''“.$1”''' là định dạng tập tin không được chấp nhận.

@@ -1389,6 +1389,7 @@ Zie de [[Special:NewImages|galerij met nieuwe bestanden]] voor een visueler over
 Geef het bestand een andere naam, en probeer het dan opnieuw te uploaden.',
 'badfilename'                 => 'De naam van het bestand is gewijzigd in "$1".',
 'filetype-badmime'            => 'Het is niet toegestaan om bestanden van MIME-type "$1" te uploaden.',
+'filetype-bad-ie-mime'        => 'Dit bestand kan niet toegevoegd worden omdat Internet Explorer het zou indentificeren als "$1", een niet toegelaten bestandstype dat potentieel schadelijk is.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' is een ongewenst bestandstype.
 Aangewezen {{PLURAL:\$3|bestandstype is|bestandstypes zijn}} \$2.",
 'filetype-banned-type'        => "'''\".\$1\"''' is geen toegelaten bestandstype.
@@ -2443,7 +2444,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Waarschuwing''': dit bestand bevat mogelijk programmacode die uw systeem schade kan berokkenen.<hr />",
-'imagemaxsize'         => 'Maximale grootte beelden op beschrijvingspagina:',
+'imagemaxsize'         => 'Maximale grootte van afbeeldingen op beschrijvingspagina:',
 'thumbsize'            => 'Grootte miniatuurafbeelding:',
 'widthheight'          => '$1x$2',
 'widthheightpage'      => "$1×$2, $3 {{PLURAL:$3|pagina|pagina's}}",

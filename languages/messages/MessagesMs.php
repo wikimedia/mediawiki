@@ -1202,6 +1202,7 @@ Untuk menyertakan imej tersebut dalam sesebuah laman, sila masukkan teks
 'illegalfilename'             => 'Nama fail "$1" mengandungi aksara yang tidak dibenarkan dalam tajuk laman. Sila tukar nama fail ini dan muat naik sekali lagi.',
 'badfilename'                 => 'Nama fail telah ditukar kepada "$1".',
 'filetype-badmime'            => 'Memuat naik fail jenis MIME "$1" adalah tidak dibenarkan.',
+'filetype-bad-ie-mime'        => 'Fail ini tidak boleh dimuat naik kerana Internet Explorer mengesannya sebagai fail jenis "$1" yang tidak dibenarkan dan berbahaya.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' adalah jenis fail yang tidak dikehendaki. {{PLURAL:\$3|Jenis|Jenis-jenis}} fail yang diutamakan ialah \$2.",
 'filetype-banned-type'        => "'''\".\$1\"''' adalah jenis fail yang dilarang. {{PLURAL:\$3|Jenis|Jenis-jenis}} fail yang dibenarkan ialah \$2.",
 'filetype-missing'            => 'Fail ini tidak mempunyai sambungan (contohnya ".jpg").',

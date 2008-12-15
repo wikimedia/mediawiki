@@ -1131,6 +1131,7 @@ Vide le [[Special:NewImages|galeria de nove files]] pro un presentation plus vis
 Per favor renomina le file e prova recargar lo.',
 'badfilename'                 => 'Le nomine del imagine esseva cambiate a "$1".',
 'filetype-badmime'            => 'Non es permittite cargar files del typo MIME "$1".',
+'filetype-bad-ie-mime'        => 'Non pote cargar iste file proque Internet Explorer lo detegerea como "$1", le qual es un typo de files prohibite e potentialmente periculose.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' es un typo de file non desirate.
 Le {{PLURAL:\$3|typo|typos}} de file preferite es \$2.",
 'filetype-banned-type'        => "Le typo de file '''\".\$1\"''' non es permittite.

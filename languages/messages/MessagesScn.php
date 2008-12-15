@@ -1114,6 +1114,7 @@ Pi nziriri nu file nta na pàggina, fai nu lijami accussì:
 'illegalfilename'             => 'Lu nomu "$1" cunteni dî caràttiri nun ammessi ntê tìtuli dî pàggini. Dari a lu file un nomu diversu e pruvari a carricàrilu di novu.',
 'badfilename'                 => 'Lu nomu dû file è statu cummirtutu n "$1".',
 'filetype-badmime'            => 'Nun è cunzintitu carricari file di tipu MIME "$1".',
+'filetype-bad-ie-mime'        => 'Mpussìbbili caricari lu file pirchì Internet Explorer lu canuscissi comu  "$1", ca è nu tipu di file disattivatu e ca putissi èssiri piriculusu.',
 'filetype-unwanted-type'      => "Caricari file di tipu '''\".\$1\"''' è scunsigghiatu. {{PLURAL:\$3|Lu tipu di file cunsigghiatu è|Li tipi di file cunsigghiati sunnu}} \$2.",
 'filetype-banned-type'        => "Caricari file di tipu '''\".\$1\"''' non è cunzintitu. {{PLURAL:\$3|Lu tipu di file cunzintitu è|Li tipi di file cunzintiti sunnu}} \$2.",
 'filetype-missing'            => 'Lu file è privu d\'estinzioni (p\'asèmpiu ".jpg").',

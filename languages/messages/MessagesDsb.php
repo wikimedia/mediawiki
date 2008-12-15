@@ -1159,6 +1159,7 @@ Glědaj [[Special:NewImages|galeriju nowych datajow]] za wizuelny pśeglěd.',
 'illegalfilename'             => 'Datajowe mě „$1“ wopśimjejo njedowólone znamuška. Pšosym pśemjeni dataju a wopytaj ju wótnowotki uploadowaś.',
 'badfilename'                 => 'Mě dataje jo se změniło na „$1“.',
 'filetype-badmime'            => 'Dataje z MIME-typom „$1“ njesměju se uploadowaś.',
+'filetype-bad-ie-mime'        => 'Toś ta dataja njedajo se nagraś, dokulaž Internet Explorer by ju ako "$1" interpretěrował, kótaryž jo njedowólony a potencielnje tšachotny datajowy typ.',
 'filetype-unwanted-type'      => "'''„.$1“''' jo njewitany datajowy typ. 
 {{PLURAL:$3|Dowólony datajowy typ jo|Dowólonej datajowej typa stej|Dowólene datajowe typy su}}: $2.",
 'filetype-banned-type'        => "'''„.$1“''' jo njedowólony datajowy typ. 

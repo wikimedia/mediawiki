@@ -1853,9 +1853,10 @@ $1',
 'markedaspatrollederror-noautopatrol' => '자신의 편집을 스스로 검토된 것으로 표시하는 것은 허용되지 않습니다.',
 
 # Patrol log
-'patrol-log-page' => '검토 기록',
-'patrol-log-line' => '$2 문서의 $1 판을 검토함 $3',
-'patrol-log-auto' => '(자동)',
+'patrol-log-page'   => '검토 기록',
+'patrol-log-header' => '이 기록은 검토된 문서에 대한 기록입니다.',
+'patrol-log-line'   => '$2 문서의 $1 판을 검토함 $3',
+'patrol-log-auto'   => '(자동)',
 
 # Image deletion
 'deletedrevision'              => '예전 버전 $1이(가) 삭제되었습니다.',

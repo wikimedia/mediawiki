@@ -239,7 +239,7 @@ $messages = array(
 'delete'            => 'ړنګول',
 'deletethispage'    => 'دا مخ ړنګ کړه',
 'protect'           => 'ژغورل',
-'protect_change'    => 'د ژغورنې بدلون',
+'protect_change'    => 'بدلون',
 'protectthispage'   => 'همدا مخ ژغورل',
 'unprotect'         => 'نه ژغورل',
 'unprotectthispage' => 'همدا مخ نه ژغورل',
@@ -393,7 +393,8 @@ $messages = array(
 'gotaccountlink'             => 'ننوتل',
 'createaccountmail'          => 'د برېښليک له مخې',
 'badretype'                  => 'دا پټنوم چې تاسو ليکلی د پخواني پټنوم سره ورته نه دی.',
-'userexists'                 => 'کوم کارن نوم چې تاسو ورکړی هغه بل چا کارولی. لطفاً يو بل ډول نوم وټاکۍ.',
+'userexists'                 => 'کوم کارن نوم چې تاسو ورکړ هغه بل چا کارولی.
+لطفاً يو بل نوم وټاکۍ.',
 'youremail'                  => 'برېښليک *',
 'username'                   => 'کارن-نوم:',
 'uid'                        => 'د کارونکي پېژندنه:',
@@ -843,6 +844,8 @@ $messages = array(
 'ancientpages'            => 'تر ټولو زاړه مخونه',
 'move'                    => 'لېږدول',
 'movethispage'            => 'دا مخ ولېږدوه',
+'pager-newer-n'           => '{{PLURAL:$1|نوی 1|نوي $1}}',
+'pager-older-n'           => '{{PLURAL:$1|زوړ 1|زاړه $1}}',
 
 # Book sources
 'booksources'               => 'د کتاب سرچينې',
@@ -1186,7 +1189,7 @@ $messages = array(
 'filedeleteerror-short' => 'د دوتنې د ړنګولو ستونزه: $1',
 
 # Browsing diffs
-'previousdiff' => 'تېر توپير →',
+'previousdiff' => 'تېر توپير ←',
 'nextdiff'     => '← بل توپير',
 
 # Media information
@@ -1231,6 +1234,7 @@ $messages = array(
 * focallength', # Do not translate list items
 
 # EXIF tags
+'exif-datetime'         => 'د دوتنې د بدلون وخت او نېټه',
 'exif-imagedescription' => 'د انځور سرليک',
 'exif-model'            => 'د کامرې ماډل',
 'exif-artist'           => 'ليکوال',
@@ -1264,7 +1268,7 @@ $messages = array(
 
 # External editor support
 'edit-externally'      => 'د باندنيو پروګرامونو په کارولو سره دا دوتنه سمادول',
-'edit-externally-help' => 'د نورو مالوماتو لپاره د [http://www.mediawiki.org/wiki/Manual:External_editors امستنو لارښوونې] وګورۍ.',
+'edit-externally-help' => 'د نورو مالوماتو لپاره [http://www.mediawiki.org/wiki/Manual:External_editors د امستنو لارښوونې] وګورۍ.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'ټول',
@@ -1283,7 +1287,7 @@ $messages = array(
 'confirmemail_error'     => 'ستاسو د برېښليک پتې د تاييد په خوندي کولو کې يوه ستونزه رامېنڅ ته شوه.',
 
 # Scary transclusion
-'scarytranscludetoolong' => '[اوبخښۍ؛ URL مو ډېر اوږد دی]',
+'scarytranscludetoolong' => '[URL مو ډېر اوږد دی]',
 
 # Trackbacks
 'trackbackremove' => '([$1 ړنګول])',

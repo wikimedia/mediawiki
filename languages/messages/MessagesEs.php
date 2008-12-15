@@ -1126,6 +1126,7 @@ Mira la [[Special:NewImages|galería de archivos nuevos]] para una descripción 
 'illegalfilename'             => 'El nombre de archivo «$1» contiene caracteres que no están permitidos en títulos de páginas. Por favor, renombra el archivo e intenta volver a subirlo.',
 'badfilename'                 => 'El nombre de la imagen se ha cambiado a "$1".',
 'filetype-badmime'            => 'No se permite subir archivos de tipo MIME "$1".',
+'filetype-bad-ie-mime'        => 'No se puede subir este fichero porque Internet Explorer podría considerarlo como «$1», que es un tipo de fichero deshabilitado y potencialmente peligroso.',
 'filetype-unwanted-type'      => "'''«.$1»''' no está entre los tipos de fichero aconsejados.
 {{PLURAL:$3|El único tipo aconsejado es|Los tipos aconsejados son}} $2.",
 'filetype-banned-type'        => "'''«.$1»''' no está entre los tipos de fichero permitidos.

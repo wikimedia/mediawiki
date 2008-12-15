@@ -736,7 +736,7 @@ Ha nem kértél új azonosítót, és tévedésből kaptad ezt a levelet, nyugod
 'resetpass'               => 'A fiók jelszavának módosítása',
 'resetpass_announce'      => 'Az e-mailben elküldött ideiglenes kóddal jelentkeztél be. A bejelentkezés befejezéséhez meg kell megadnod egy új jelszót:',
 'resetpass_text'          => '<!-- Ide írd a szöveget -->',
-'resetpass_header'        => 'Jelszó módosítása',
+'resetpass_header'        => 'A fiókhoz tartozó jelszó megváltoztatása',
 'resetpass_submit'        => 'Add meg a jelszót és jelentkezz be',
 'resetpass_success'       => 'A jelszavad megváltoztatása sikeresen befejeződött! Bejelentkezés...',
 'resetpass_bad_temporary' => 'Az ideiglenes jelszó hibás. Lehet, hogy már sikeresen megváltoztattad a jelszavadat, vagy új ideiglenes jelszót kértél.',

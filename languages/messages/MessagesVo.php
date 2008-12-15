@@ -2114,7 +2114,7 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 
 # External editor support
 'edit-externally'      => 'Votükön ragivi at me nünömaprogram plödik',
-'edit-externally-help' => 'Reidolös eli [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] (in Linglänapük) ad tuvön nünis pluik.',
+'edit-externally-help' => '(Reidolös eli [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] [in Linglänapük] ad tuvön nünis pluik)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'valik',

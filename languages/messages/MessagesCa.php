@@ -1196,6 +1196,7 @@ Vegeu la [[Special:NewImages|galeria de nous fitxers]] per a una presentació m�
 'illegalfilename'             => 'El nom del fitxer «$1» conté caràcters que no estan permesos en els títols de pàgines. Si us plau, canvieu el nom al fitxer i torneu a carregar-lo.',
 'badfilename'                 => "El nom de la imatge s'ha canviat a «$1».",
 'filetype-badmime'            => 'Els fitxers del tipus MIME «$1» no poden penjar-se.',
+'filetype-bad-ie-mime'        => 'No es pot carregar aquest fitxer perquè Internet Explorer el detectaria com a «$1», que és un tipus de fitxer prohibit i potencialment perillós.',
 'filetype-unwanted-type'      => "Els fitxers del tipus «'''.$1'''» no són desitjats. {{PLURAL:$3|Es prefereix el tipus de fitxer|Els tipus de fitxer preferits són}} $2.",
 'filetype-banned-type'        => "Els fitxers del tipus «'''.$1'''» no estan permesos. {{PLURAL:$3|Només s'admeten els fitxers del tipus|Els tipus de fitxer permesos són}} $2.",
 'filetype-missing'            => 'El fitxer no té extensió (com ara «.jpg»).',

@@ -1297,6 +1297,7 @@ Przejdź na stronę [[Special:NewImages|galerii nowych plików]], by zobaczyć p
 Zmień nazwę pliku i prześlij go ponownie.',
 'badfilename'                 => 'Nazwa pliku została zmieniona na „$1”.',
 'filetype-badmime'            => 'Przesyłanie plików z typem MIME „$1” jest niedozwolone.',
+'filetype-bad-ie-mime'        => 'Nie można załadować tego pliku, ponieważ Internet Explorer wykryje go jako „$1”, a taki typ pliku jest zabronioniony jako potencjalnie niebezpieczny.',
 'filetype-unwanted-type'      => "'''„.$1”''' nie jest zalecanym typem pliku. Pożądane są pliki w {{PLURAL:$3|formacie|formatach}} $2.",
 'filetype-banned-type'        => "'''„.$1”''' jest niedozwolonym typem pliku. Dopuszczalne są pliki w {{PLURAL:$3|formacie|formatach}} $2.",
 'filetype-missing'            => 'Plik nie ma rozszerzenia (np. „.jpg”).',

@@ -1207,6 +1207,7 @@ Kiek bi de [[Special:NewImages|Galerie vun ne’e Datein]] för en Översicht mi
 'illegalfilename'             => 'In den Dateinaam „$1“ snd Teken in, de nich de Naams vun Sieden nich verlööft sünd. Söök di en annern Naam ut un denn versöök de Datei noch wedder hoochtoladen.',
 'badfilename'                 => 'De Bildnaam is na „$1“ ännert worrn.',
 'filetype-badmime'            => 'Datein vun den MIME-Typ „$1“ dröfft nich hoochlaadt warrn.',
+'filetype-bad-ie-mime'        => 'Disse Datei kann nich hoochladen warrn. De Internet Explorer hett ehr as „$1“ kennt, wat en nich verlöövten Dateityp is, de womööglich Schaden toföögt.',
 'filetype-unwanted-type'      => "'''„.$1“''' as Dateiformat schall beter nich bruukt warrn. As Dateityp beter {{PLURAL:$3|is|sünd}}: $2.",
 'filetype-banned-type'        => "'''„.$1“''' is as Dateiformat nich tolaten. {{PLURAL:$3|As Dateityp verlöövt is|Verlöövte Dateitypen sünd}}: $2.",
 'filetype-missing'            => 'Disse Datei hett keen Ennen (so as „.jpg“).',

@@ -1075,6 +1075,7 @@ Varda la [[Special:NewImages|galerìa dei file nóvi]] par na vision de insieme.
 'illegalfilename'             => 'El nome file "$1" el contien caràteri che no xè permessi nei titoli de le pagine. Par piaser, rinomina el file e próa a ricaricarlo.',
 'badfilename'                 => 'El nome de el file el xè stà convertio in "$1".',
 'filetype-badmime'            => 'No xe consentìo de cargar file de tipo MIME "$1".',
+'filetype-bad-ie-mime'        => 'No se pode cargar sto file, parché da Internet Explorer el vegnarìa rilevà come "$1", che xe un tipo de file disativà e potensialmente pericoloso.',
 'filetype-unwanted-type'      => "Cargar file de tipo '''\".\$1\"''' xe sconsiglià. {{PLURAL:\$3|El tipo de file consiglià el|I tipi de file consiglià i}} xe \$2.",
 'filetype-banned-type'        => "Cargar file de tipo '''\".\$1\"''' no xe mìa consentìo. {{PLURAL:\$3|El tipo de file consentìo el|I tipi de file consentìi i}} xe \$2.",
 'filetype-missing'            => 'El file no\'l gà nissuna estension (ad es. ".jpg").',

@@ -1294,6 +1294,8 @@ Sök Der statt „$1“ jet anders us,
 un dann muss de dat Dinge noch ens huhlade.',
 'badfilename'                 => 'De Datei es en „$1“ ömjedäuf.',
 'filetype-badmime'            => 'Dateie mem MIME-Typ „<code>$1</code>“ wulle mer nit huhjelade krijje.',
+'filetype-bad-ie-mime'        => 'Di Datei kam_mer nit huhlade, weil der Internet Explorrer se för en „$1“ 
+hallde deiht, wat nit erlaub, un müjjelelscherwies ene jefährlesche Dattei-Typp es.',
 'filetype-unwanted-type'      => "Dat Dateifommaat '''„<code>.$1</code>“''' wulle mer nit esu jään huhjelaade krijje. Leever {{PLURAL:$3|ham_mer|ham_mer ein fun|ham_mer nix}}: $2.",
 'filetype-banned-type'        => "Dat Dateifommaat '''„<code>.$1</code>“''' wulle mer nit huhjelaade krijje. Älaup {{PLURAL:$3|es|sin_er}}: $2.",
 'filetype-missing'            => 'Di Datei, di De huhlaade wells, hät keij Fommaat em Name, wi zem Beijspöll „<code>.jpg</code>“, esu jet hätte mer ävver jähn.',

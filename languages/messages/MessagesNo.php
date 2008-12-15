@@ -1188,6 +1188,7 @@ Se [[Special:NewImages|galleriet over nye filer]] for en mer visuell visning',
 'illegalfilename'             => 'Filnavnet «$1» inneholder ugyldige tegn; gi fila et nytt navn og prøv igjen.',
 'badfilename'                 => 'Navnet på filen er blitt endret til «$1».',
 'filetype-badmime'            => 'Filer av typen «$1» kan ikke lastes opp.',
+'filetype-bad-ie-mime'        => 'Kan ikke laste opp denne filen fordi Internet Explorer ville detektert denne som «$1», noe som er ikke er tillatt, og en potensielt farlig filtype.',
 'filetype-unwanted-type'      => "'''«.$1»''' er en uønsket filtype.
 {{PLURAL:$3|Foretrukken filtype|Foretrukne filtyper}} er $2.",
 'filetype-banned-type'        => "'''«$1»''' er ikke en tillatt filtype.

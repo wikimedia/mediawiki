@@ -100,6 +100,7 @@ $messages = array(
 'search'           => 'Tschertgar',
 'searchbutton'     => 'Tschertgar',
 'go'               => 'Artitgel',
+'searcharticle'    => 'dai!',
 'history'          => 'versiuns',
 'history_short'    => 'versiuns/auturs',
 'printableversion' => 'versiun per stampar',
@@ -570,6 +571,13 @@ Fai ina visita sin [http://www.mediawiki.org/wiki/Localisation MediaWiki Localis
 'allmessagesnotsupportedDB' => "Questa pagina na po betg vegnir mussada, perquai che '''\$wgUseDatabaseMessages''' è vegnì deactivà.",
 'allmessagesfilter'         => 'filter dals nums da las novitads:',
 'allmessagesmodified'       => 'Be mussar modifitgads',
+
+# Tooltip help for the actions
+'tooltip-n-mainpage'      => 'Ir a la pagina principala',
+'tooltip-n-portal'        => 'Infurmaziuns davart il project, tge che ti pos far, nua che ti chassas infurmaziuns',
+'tooltip-n-currentevents' => 'Chattar infurmaziuns davart occurrenzas actualas',
+'tooltip-n-recentchanges' => 'La glista da las ultimas midadas en la wiki.',
+'tooltip-n-randompage'    => 'Chargiar ina pagina casuala.',
 
 # Stylesheets
 'common.css'   => '/** CSS placed here will be applied to all skins */',

@@ -1147,6 +1147,7 @@ Por inkluzivi la dosieron en pagxon, skribu ligilon laŭ la formoj
 'illegalfilename'             => 'La dosiernomo $1 entenas karaktrojn kiuj ne estas permesitaj en paĝaj titoloj. Bonvolu renomi la dosieron kaj provu denove alŝuti ĝin.',
 'badfilename'                 => 'Dosiernomo estis ŝanĝita al "$1".',
 'filetype-badmime'            => 'Dosieroj de la MIME-tipo "$1" ne estas permesitaj por alŝutado.',
+'filetype-bad-ie-mime'        => 'Ne eblas alŝuti ĉi tiun dosieron, ĉar Interreta Esplorilo detektus ĝin kiel "$1", kiu estas malpermesita kaj eble danĝera dosiertipo.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' estas nevolata dosiero-tipo. {{PLURAL:\$3|Preferata dosiero-tipo|Prefereataj dosiero-tipoj}} estas \$2.",
 'filetype-banned-type'        => "'''\".\$1\"''' ne estas permesita dosiero-tipo. {{PLURAL:\$3|Permesita dosiero-tipo|Permesitaj dosiero-tipoj}} estas \$2.",
 'filetype-missing'            => 'Ĉi tiu dosiero ne inkluzivas finaĵon de dosiernomo (kiel ".jpg").',

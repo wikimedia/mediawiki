@@ -1244,6 +1244,7 @@ Bitte beachte, dass, genau wie bei normalen Seiteninhalten, andere Benutzer dein
 'illegalfilename'             => 'Der Dateiname „$1“ enthält mindestens ein nicht erlaubtes Zeichen. Bitte benenne die Datei um und versuche sie erneut hochzuladen.',
 'badfilename'                 => 'Der Dateiname wurde in „$1“ geändert.',
 'filetype-badmime'            => 'Dateien mit dem MIME-Typ „$1“ dürfen nicht hochgeladen werden.',
+'filetype-bad-ie-mime'        => 'Diese Datei kann nicht hochgeladen werden, da der Internet Explorer sie als „$1“ erkennt, welcher ein nicht erlaubter potentiell gefährlicher Dateityp ist.',
 'filetype-unwanted-type'      => "'''„.$1“''' ist ein unerwünschtes Dateiformat. Erlaubt {{PLURAL:$3|ist das Dateiformat|sind die Dateiformate}}: $2.",
 'filetype-banned-type'        => "'''„.$1“''' ist ein nicht erlaubtes Dateiformat. Erlaubt {{PLURAL:$3|ist das Dateiformat|sind die Dateiformate}}: $2.",
 'filetype-missing'            => 'Die hochzuladende Datei hat keine Erweiterung (z. B. „.jpg“).',

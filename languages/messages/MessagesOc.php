@@ -673,7 +673,7 @@ Ignoratz aqueste messatge se aqueste compte es estat creat per error.",
 'resetpass'               => 'Remesa a zèro del senhal',
 'resetpass_announce'      => 'Vos sètz enregistrat amb un senhal temporari mandat per corrièr electronic. Per acabar l’enregistrament, vos cal picar un senhal novèl aicí :',
 'resetpass_text'          => '<!-- Apondètz lo tèxt aicí -->',
-'resetpass_header'        => 'Remesa a zèro del senhal',
+'resetpass_header'        => 'Modificar lo senhal del compte',
 'resetpass_submit'        => 'Cambiar lo senhal e s’enregistrar',
 'resetpass_success'       => 'Vòstre senhal es estat cambiat amb succès ! Enregistrament en cors...',
 'resetpass_bad_temporary' => 'Senhal temporari invalid. Benlèu que ja avètz cambiat vòstre senhal amb succès, o demandat un senhal temporari novèl.',
@@ -1260,6 +1260,7 @@ Vejatz la [[Special:NewImages|galariá dels imatges novèls]] per una presentaci
 'illegalfilename'             => 'Lo nom de fichièr « $1 » conten de caractèrs interdiches dins los títols de paginas. Mercé de lo tornar nomenar e de lo copiar tornarmai.',
 'badfilename'                 => "L'imatge es estat renomenat « $1 ».",
 'filetype-badmime'            => 'Los fichièrs del tipe MIME « $1 » pòdon pas èsser importats.',
+'filetype-bad-ie-mime'        => 'Lo fichièr pòt pas èsser importat perque serià detectat coma « $1 » per Internet Explorer, tipe de fichièr interdich perque potencialament dangierós.',
 'filetype-unwanted-type'      => "«.$1»''' es un format de fichièr pas desirat.
 {{PLURAL:$3|Lo tipe de fichièr preconizat es|Los tipes de fichièrs preconizats son}} $2.",
 'filetype-banned-type'        => "'''\".\$1\"''' es dins un format pas admes.
