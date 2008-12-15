@@ -934,12 +934,11 @@ class PreferencesForm {
 		# Editing
 		#
 		global $wgLivePreview;
-		$wgOut->addHTML( '<fieldset><legend>' . wfMsg( 'textboxsize' ) . '</legend>
-			<div>' .
-				Xml::inputLabel( wfMsg( 'rows' ), 'wpRows', 'wpRows', 3, $this->mRows ) .
-				' ' .
-				Xml::inputLabel( wfMsg( 'columns' ), 'wpCols', 'wpCols', 3, $this->mCols ) .
-			"</div>" .
+		$wgOut->addHTML(
+			Xml::fieldset( wfMsg( 'textboxsize' ) ) .
+			wfMsgHTML( 'prefs-edit-boxsize' ) . ' ' .
+			Xml::inputLabel( wfMsg( 'rows' ), 'wpRows', 'wpRows', 3, $this->mRows ) . ' ' .
+			Xml::inputLabel( wfMsg( 'columns' ), 'wpCols', 'wpCols', 3, $this->mCols ) .
 			$this->getToggles( array(
 				'editsection',
 				'editsectiononrightclick',
@@ -953,9 +952,10 @@ class PreferencesForm {
 				'externaldiff',
 				$wgLivePreview ? 'uselivepreview' : false,
 				'forceeditsummary',
-			) ) );
-		
-		$wgOut->addHTML( '</fieldset>' );
+			) )
+		);
+
+		$wgOut->addHTML( Xml::closeElement( 'fieldset' ) );
 
 		# Recent changes
 		global $wgRCMaxAge;

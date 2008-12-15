@@ -872,6 +872,7 @@ $wgMessageStructure = array(
 		'saveprefs',
 		'resetprefs',
 		'textboxsize',
+		'prefs-edit-boxsize',
 		'rows',
 		'columns',
 		'searchresultshead',
