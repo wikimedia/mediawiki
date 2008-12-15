@@ -22,6 +22,12 @@ class ImagePage extends Article {
 		$this->dupes = null;
 		$this->repo = null;
 	}
+	
+	public function setFile( $file ) {
+		$this->displayImg = $file;
+		$this->img = $file;
+		$this->fileLoaded = true;
+	}
 
 	protected function loadFile() {
 		if( $this->fileLoaded ) {
