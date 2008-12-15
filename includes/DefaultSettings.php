@@ -32,7 +32,7 @@ require_once( 'includes/SiteConfiguration.php' );
 $wgConf = new SiteConfiguration;
 
 /** MediaWiki version number */
-$wgVersion			= '1.6.10';
+$wgVersion			= '1.6.11';
 
 /** Name of the site. It must be changed in LocalSettings.php */
 $wgSitename         = 'MediaWiki';
@@ -1195,7 +1195,7 @@ $wgFileExtensions = array( 'png', 'gif', 'jpg', 'jpeg' );
 /** Files with these extensions will never be allowed as uploads. */
 $wgFileBlacklist = array(
 	# HTML may contain cookie-stealing JavaScript and web bugs
-	'html', 'htm', 'js', 'jsb',
+	'html', 'htm', 'js', 'jsb', 'svg',
 	# PHP scripts may execute arbitrary code on the server
 	'php', 'phtml', 'php3', 'php4', 'phps',
 	# Other types that may be interpreted by some servers

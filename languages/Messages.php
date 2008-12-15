@@ -1452,6 +1452,8 @@ In the latter case you can also use a link, e.g. [[{{ns:Special}}:Export/{{Media
 'importnosources' => 'No transwiki import sources have been defined and direct history uploads are disabled.',
 'importnofile' => 'No import file was uploaded.',
 'importuploaderror' => 'Upload of import file failed; perhaps the file is bigger than the allowed upload size.',
+'import-token-mismatch'      => 'Loss of session data. Please try again.',
+'import-invalid-interwiki'   => 'Cannot import from the specified wiki.',
 
 # Keyboard access keys for power users
 'accesskey-search' => 'f',

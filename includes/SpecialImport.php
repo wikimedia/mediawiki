@@ -38,20 +38,26 @@ function wfSpecialImport( $page = '' ) {
 	###
 
 	if( $wgRequest->wasPosted() && $wgRequest->getVal( 'action' ) == 'submit') {
-		switch( $wgRequest->getVal( "source" ) ) {
-		case "upload":
+		$sourceName = $wgRequest->getVal( "source" );
+		if ( !$wgUser->matchEditToken( $wgRequest->getVal( 'editToken' ) ) ) {
+			$source = new WikiErrorMsg( 'import-token-mismatch' );
+		} elseif ( $sourceName == 'upload' ) {
 			if( $wgUser->isAllowed( 'importupload' ) ) {
 				$source = ImportStreamSource::newFromUpload( "xmlimport" );
 			} else {
 				return $wgOut->permissionRequired( 'importupload' );
 			}
-			break;
-		case "interwiki":
-			$source = ImportStreamSource::newFromInterwiki(
-				$wgRequest->getVal( "interwiki" ),
-				$wgRequest->getText( "frompage" ) );
-			break;
-		default:
+		} elseif ( $sourceName == "interwiki" ) {
+			$interwiki = $wgRequest->getVal( 'interwiki' );			
+			if ( !in_array( $interwiki, $wgImportSources ) ) {
+				$source = new WikiErrorMsg( "import-invalid-interwiki" );
+			} else {
+				$frompage = $wgRequest->getText( "frompage" );
+				$source = ImportStreamSource::newFromInterwiki(
+					$interwiki,
+					$frompage );
+			}
+		} else {
 			$source = new WikiError( "Unknown import source type" );
 		}
 
@@ -82,7 +88,9 @@ function wfSpecialImport( $page = '' ) {
 		<input type='hidden' name='source' value='upload' />
 		<input type='hidden' name='MAX_FILE_SIZE' value='2000000' />
 		<input type='file' name='xmlimport' value='' size='30' />
-		<input type='submit' value='" . wfMsgHtml( "uploadbtn" ) . "'/>
+		<input type='hidden' name='editToken' value=\"" . 
+			htmlspecialchars( $wgUser->editToken() ) . "\"/>
+		<input type='submit' value=\"" . wfMsgHtml( "uploadbtn" ) . "\"/>
 	</form>
 </fieldset>
 " );
@@ -99,6 +107,7 @@ function wfSpecialImport( $page = '' ) {
 	<form method='post' action=\"$action\">
 		<input type='hidden' name='action' value='submit' />
 		<input type='hidden' name='source' value='interwiki' />
+		<input type='hidden' name='editToken' value=\"" . htmlspecialchars( $wgUser->editToken() ) . "\"/>
 		<select name='interwiki'>
 " );
 		foreach( $wgImportSources as $interwiki ) {

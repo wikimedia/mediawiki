@@ -1,7 +1,43 @@
 = MediaWiki release notes =
 
-Security reminder: MediaWiki does not require PHP's register_globals
-setting since version 1.2.0. If you have it on, turn it *off* if you can.
+For upgrade instructions please see the UPGRADE file in this directory.
+
+== MediaWiki 1.6.11 ==
+
+December 15, 2008
+
+This is a security update to the Spring 2006 quarterly release.
+
+David Remahl of Apple's Product Security team has identified a number of 
+security issues in previous releases of MediaWiki. Subsequent analysis by the
+MediaWiki development team expanded the scope of these vulnerabilities. The
+issues with a significant impact are as follows:
+
+* An XSS vulnerability affecting Internet Explorer clients for all MediaWiki
+  installations with uploads enabled. [CVE-2008-5250]
+* An XSS vulnerability affecting clients with SVG scripting capability (such as
+  Firefox 1.5+), for all MediaWiki installations with SVG uploads enabled.
+  [CVE-2008-5250]
+* A CSRF vulnerability affecting the Special:Import feature, for all MediaWiki 
+  installations since the feature was introduced in 1.3.0. [CVE-2008-5252]
+
+XSS (cross-site scripting) vulnerabilities allow an attacker to steal an
+authorised user's login session, and to act as that user on the wiki. The
+authorised user must visit a web page controlled by the attacker in order to
+activate the attack. Intranet wikis are vulnerable if the attacker can 
+determine the intranet URL, even if the attacker cannot access it.
+
+CSRF vulnerabilities allow an attacker to act as an authorised user on the wiki,
+but unlike an XSS vulnerability, the attacker can only act as the user in a
+specific and restricted way. The present CSRF vulnerability allows pages to be
+edited, with forged revision histories. Like an XSS vulnerability, the
+authorised user must visit the malicious web page to activate the attack.
+
+Rather than backport our SVG validation code to this ancient branch, we have
+instead disabled SVG uploads. To enable SVG uploads, please upgrade to MediaWiki
+1.13.3 or later.
+
+The other two issues have been fixed.
 
 == MediaWiki 1.6.10 ==
 

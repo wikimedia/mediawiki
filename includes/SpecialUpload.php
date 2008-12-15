@@ -847,6 +847,7 @@ class UploadForm {
 		}
 
 		$chunk= strtolower( $chunk );
+		$originalChunk = $chunk;
 
 		if (!$chunk) return false;
 
@@ -855,7 +856,8 @@ class UploadForm {
 		elseif (substr($chunk,0,2)=="\xff\xfe") $enc= "UTF-16LE";
 		else $enc= NULL;
 
-		if ($enc) $chunk= iconv($enc,"ASCII//IGNORE",$chunk);
+		if ($enc) $chunk = iconv($enc,"ASCII//IGNORE",$chunk);
+
 
 		$chunk= trim($chunk);
 
@@ -890,11 +892,17 @@ class UploadForm {
 			'<pre',
 			'<script', #also in safari
 			'<table',
-			'<title'   #also in safari
+			'<title',  #also in safari
+			'<a href',
+			'<plaintext',
+			'<scriptlet',
 			);
 
 		foreach( $tags as $tag ) {
 			if( false !== strpos( $chunk, $tag ) ) {
+				return true;
+			}
+			if( false !== strpos( $originalChunk, $tag ) ) {
 				return true;
 			}
 		}
