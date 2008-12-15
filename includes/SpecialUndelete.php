@@ -530,7 +530,7 @@ class PageArchive {
  */
 class UndeleteForm {
 	var $mAction, $mTarget, $mTimestamp, $mRestore, $mTargetObj;
-	var $mTargetTimestamp, $mAllowed, $mComment;
+	var $mTargetTimestamp, $mAllowed, $mComment, $mToken;
 
 	function UndeleteForm( $request, $par = "" ) {
 		global $wgUser;
@@ -547,6 +547,7 @@ class UndeleteForm {
 		$this->mPreview = $request->getCheck( 'preview' ) && $posted;
 		$this->mDiff = $request->getCheck( 'diff' );
 		$this->mComment = $request->getText( 'wpComment' );
+		$this->mToken = $request->getVal( 'token' );
 		
 		if( $par != "" ) {
 			$this->mTarget = $par;
@@ -604,7 +605,12 @@ class UndeleteForm {
 			return $this->showRevision( $this->mTimestamp );
 		}
 		if( $this->mFile !== null ) {
-			return $this->showFile( $this->mFile );
+			if ( !$wgUser->matchEditToken( $this->mToken, $this->mFile ) ) {
+				$this->showFileConfirmationForm( $this->mFile );
+				return false;
+ 			} else {
+				return $this->showFile( $this->mFile );
+			}
 		}
 		if( $this->mRestore && $this->mAction == "submit" ) {
 			return $this->undelete();
@@ -810,6 +816,29 @@ class UndeleteForm {
 	}
 	
 	/**
+	 * Show a form confirming whether a tokenless user really wants to see a file
+	 */
+	private function showFileConfirmationForm( $key ) {
+		global $wgOut, $wgUser, $wgLang;
+		$file = new ArchivedFile( $this->mTargetObj, '', $this->mFile );
+		$wgOut->addWikiMsg( 'undelete-show-file-confirm',
+			$this->mTargetObj->getText(),
+			$wgLang->timeanddate( $file->getTimestamp() ) );
+		$wgOut->addHTML( 
+			Xml::openElement( 'form', array( 
+				'method' => 'POST',
+				'action' => SpecialPage::getTitleFor( 'Undelete' )->getLocalUrl(
+					'target=' . urlencode( $this->mTarget ) .
+					'&file=' . urlencode( $key ) .
+					'&token=' . urlencode( $wgUser->editToken( $key ) ) )
+				)
+			) .
+			Xml::submitButton( wfMsg( 'undelete-show-file-submit' ) ) .
+			'</form>'
+		);
+	}
+
+	/**
 	 * Show a deleted file version requested by the visitor.
 	 */
 	function showFile( $key ) {
@@ -997,7 +1026,9 @@ class UndeleteForm {
 					$target = urlencode( $this->mTarget );
 					$pageLink = $sk->makeKnownLinkObj( $titleObj,
 						$wgLang->timeanddate( $ts, true ),
-						"target=$target&file=$key" );
+						"target=$target" .
+						"&file=$key" .
+						"&token=" . urlencode( $wgUser->editToken( $key ) ) );
 				} else {
 					$checkBox = '';
 					$pageLink = $wgLang->timeanddate( $ts, true );

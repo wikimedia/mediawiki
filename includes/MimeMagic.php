@@ -100,6 +100,10 @@ class MimeMagic {
 	*/
 	var $mExtToMime= NULL;
 
+	/** IEContentAnalyzer instance
+	 */
+	var $mIEAnalyzer;
+
 	/** The singleton instance
 	 */
 	private static $instance;
@@ -732,6 +736,29 @@ class MimeMagic {
 		}
 
 		return MEDIATYPE_UNKNOWN;
+	}
+
+	/**
+	 * Get the MIME types that various versions of Internet Explorer would 
+	 * detect from a chunk of the content.
+	 *
+	 * @param string $fileName The file name (unused at present)
+	 * @param string $chunk The first 256 bytes of the file
+	 * @param string $proposed The MIME type proposed by the server
+	 */
+	public function getIEMimeTypes( $fileName, $chunk, $proposed ) {
+		$ca = $this->getIEContentAnalyzer();
+		return $ca->getRealMimesFromData( $fileName, $chunk, $proposed );
+	}
+
+	/**
+	 * Get a cached instance of IEContentAnalyzer
+	 */
+	protected function getIEContentAnalyzer() {
+		if ( is_null( $this->mIEAnalyzer ) ) {
+			$this->mIEAnalyzer = new IEContentAnalyzer;
+		}
+		return $this->mIEAnalyzer;
 	}
 }
 

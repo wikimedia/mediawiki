@@ -42,26 +42,30 @@ function wfSpecialImport( $page = '' ) {
 	if( $wgRequest->wasPosted() && $wgRequest->getVal( 'action' ) == 'submit') {
 		$isUpload = false;
 		$namespace = $wgRequest->getIntOrNull( 'namespace' );
+		$sourceName = $wgRequest->getVal( "source" );
 
-		switch( $wgRequest->getVal( "source" ) ) {
-		case "upload":
+		if ( !$wgUser->matchEditToken( $wgRequest->getVal( 'editToken' ) ) ) {
+			$source = new WikiErrorMsg( 'import-token-mismatch' );
+		} elseif ( $sourceName == 'upload' ) {
 			$isUpload = true;
 			if( $wgUser->isAllowed( 'importupload' ) ) {
 				$source = ImportStreamSource::newFromUpload( "xmlimport" );
 			} else {
 				return $wgOut->permissionRequired( 'importupload' );
 			}
-			break;
-		case "interwiki":
+		} elseif ( $sourceName == "interwiki" ) {
 			$interwiki = $wgRequest->getVal( 'interwiki' );
-			$history = $wgRequest->getCheck( 'interwikiHistory' );
-			$frompage = $wgRequest->getText( "frompage" );
-			$source = ImportStreamSource::newFromInterwiki(
-				$interwiki,
-				$frompage,
-				$history );
-			break;
-		default:
+			if ( !in_array( $interwiki, $wgImportSources ) ) {
+				$source = new WikiErrorMsg( "import-invalid-interwiki" );
+			} else {
+				$history = $wgRequest->getCheck( 'interwikiHistory' );
+				$frompage = $wgRequest->getText( "frompage" );
+				$source = ImportStreamSource::newFromInterwiki(
+					$interwiki,
+					$frompage,
+					$history );
+			}
+		} else {
 			$source = new WikiErrorMsg( "importunknownsource" );
 		}
 
@@ -105,6 +109,7 @@ function wfSpecialImport( $page = '' ) {
 			Xml::hidden( 'action', 'submit' ) .
 			Xml::hidden( 'source', 'upload' ) .
 			"<input type='file' name='xmlimport' value='' size='30' />" . // No Xml function for type=file? Todo?
+			Xml::hidden( 'editToken', $wgUser->editToken() ) .
 			Xml::submitButton( wfMsg( 'uploadbtn' ) ) . 
 			Xml::closeElement( 'form' ) .
 			Xml::closeElement( 'fieldset' )
@@ -123,6 +128,7 @@ function wfSpecialImport( $page = '' ) {
 			wfMsgExt( 'import-interwiki-text', array( 'parse' ) ) .
 			Xml::hidden( 'action', 'submit' ) .
 			Xml::hidden( 'source', 'interwiki' ) .
+			Xml::hidden( 'editToken', $wgUser->editToken() ) .
 			Xml::openElement( 'table' ) .
 			"<tr>
 				<td>" .

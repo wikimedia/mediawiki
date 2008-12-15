@@ -1214,11 +1214,11 @@ EOT
 		$magic=& MimeMagic::singleton();
 		$mime= $magic->guessMimeType($tmpfile,false);
 
+
 		#check mime type, if desired
 		global $wgVerifyMimeType;
 		if ($wgVerifyMimeType) {
-
-		  wfDebug ( "\n\nmime: <$mime> extension: <$extension>\n\n");
+			wfDebug ( "\n\nmime: <$mime> extension: <$extension>\n\n");
 			#check mime type against file extension
 			if( !$this->verifyExtension( $mime, $extension ) ) {
 				return new WikiErrorMsg( 'uploadcorrupt' );
@@ -1226,15 +1226,33 @@ EOT
 
 			#check mime type blacklist
 			global $wgMimeTypeBlacklist;
-			if( isset($wgMimeTypeBlacklist) && !is_null($wgMimeTypeBlacklist)
-				&& $this->checkFileExtension( $mime, $wgMimeTypeBlacklist ) ) {
-				return new WikiErrorMsg( 'filetype-badmime', htmlspecialchars( $mime ) );
+			if( isset($wgMimeTypeBlacklist) && !is_null($wgMimeTypeBlacklist) ) {
+				if ( $this->checkFileExtension( $mime, $wgMimeTypeBlacklist ) ) {
+					return new WikiErrorMsg( 'filetype-badmime', htmlspecialchars( $mime ) );
+				}
+
+				# Check IE type
+				$fp = fopen( $tmpfile, 'rb' );
+				$chunk = fread( $fp, 256 );
+				fclose( $fp );
+				$extMime = $magic->guessTypesForExtension( $extension );
+				$ieTypes = $magic->getIEMimeTypes( $tmpfile, $chunk, $extMime );
+				foreach ( $ieTypes as $ieType ) {
+					if ( $this->checkFileExtension( $ieType, $wgMimeTypeBlacklist ) ) {
+						return new WikiErrorMsg( 'filetype-bad-ie-mime', $ieType );
+					}
+				}
 			}
 		}
 
 		#check for htmlish code and javascript
 		if( $this->detectScript ( $tmpfile, $mime, $extension ) ) {
 			return new WikiErrorMsg( 'uploadscripted' );
+		}
+		if( $extension == 'svg' || $mime == 'image/svg+xml' ) {
+			if( $this->detectScriptInSvg( $tmpfile ) ) {
+				return new WikiErrorMsg( 'uploadscripted' );
+			}
 		}
 
 		/**
@@ -1248,6 +1266,7 @@ EOT
 		wfDebug( __METHOD__.": all clear; passing.\n" );
 		return true;
 	}
+
 
 	/**
 	 * Checks if the mime type of the uploaded file matches the file extension.
@@ -1347,6 +1366,7 @@ EOT
 		*/
 
 		$tags = array(
+			'<a href',
 			'<body',
 			'<head',
 			'<html',   #also in safari
@@ -1385,6 +1405,41 @@ EOT
 		return false;
 	}
 
+	function detectScriptInSvg( $filename ) {
+		$check = new XmlTypeCheck( $filename, array( $this, 'checkSvgScriptCallback' ) );
+		return $check->filterMatch;
+	}
+
+ 	/**
+	 * @todo Replace this with a whitelist filter!
+	 */
+	function checkSvgScriptCallback( $element, $attribs ) {
+		$stripped = $this->stripXmlNamespace( $element );
+		
+		if( $stripped == 'script' ) {
+			wfDebug( __METHOD__ . ": Found script element '$element' in uploaded file.\n" );
+			return true;
+		}
+		
+		foreach( $attribs as $attrib => $value ) {
+			$stripped = $this->stripXmlNamespace( $attrib );
+			if( substr( $stripped, 0, 2 ) == 'on' ) {
+				wfDebug( __METHOD__ . ": Found script attribute '$attrib'='value' in uploaded file.\n" );
+				return true;
+			}
+			if( $stripped == 'href' && strpos( strtolower( $value ), 'javascript:' ) !== false ) {
+				wfDebug( __METHOD__ . ": Found script href attribute '$attrib'='$value' in uploaded file.\n" );
+				return true;
+			}
+		}
+	}
+	
+	private function stripXmlNamespace( $name ) {
+		// 'http://www.w3.org/2000/svg:script' -> 'script'
+		$parts = explode( ':', strtolower( $name ) );
+		return array_pop( $parts );
+	}
+	
 	/** 
 	 * Generic wrapper function for a virus scanner program.
 	 * This relies on the $wgAntivirus and $wgAntivirusSetup variables.

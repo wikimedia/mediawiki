@@ -2008,6 +2008,8 @@ Consult the [[Special:Log/delete|deletion log]] for a record of recent deletions
 'undelete-error-long'          => 'Errors were encountered while undeleting the file:
 
 $1',
+'undelete-show-file-confirm'   => 'Are you sure you want to view a deleted revision of the file "<nowiki>$1</nowiki>" from $2?',
+'undelete-show-file-submit'    => 'Yes',
 
 # Namespace form on various pages
 'namespace'      => 'Namespace:',
@@ -2273,6 +2275,8 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'import-noarticle'           => 'No page to import!',
 'import-nonewrevisions'      => 'All revisions were previously imported.',
 'xml-error-string'           => '$1 at line $2, col $3 (byte $4): $5',
+'import-token-mismatch'      => 'Loss of session data. Please try again.',
+'import-invalid-interwiki'   => 'Cannot import from the specified wiki.',
 
 # Import log
 'importlogpage'                    => 'Import log',

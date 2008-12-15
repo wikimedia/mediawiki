@@ -99,6 +99,7 @@ function __autoload($className) {
 		'HistoryBlobCurStub' => 'includes/HistoryBlob.php',
 		'HTMLCacheUpdate' => 'includes/HTMLCacheUpdate.php',
 		'Http' => 'includes/HttpFunctions.php',
+		'IEContentAnalyzer' => 'includes/IEContentAnalyzer.php',
 		'IP' => 'includes/IP.php',
 		'ImageGallery' => 'includes/ImageGallery.php',
 		'ImagePage' => 'includes/ImagePage.php',
