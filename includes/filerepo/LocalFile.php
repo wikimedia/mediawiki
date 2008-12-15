@@ -889,7 +889,7 @@ class LocalFile extends File
 		}
 
 		$descTitle = $this->getTitle();
-		$article = new Article( $descTitle );
+		$article = new ImagePage( $descTitle );
 
 		# Add the log entry
 		$log = new LogPage( 'upload' );
@@ -899,7 +899,8 @@ class LocalFile extends File
 		if( $descTitle->exists() ) {
 			# Create a null revision
 			$latest = $descTitle->getLatestRevID();
-			$nullRevision = Revision::newNullRevision( $dbw, $descTitle->getArticleId(), $log->getRcComment(), false );
+			$nullRevision = Revision::newNullRevision( $dbw, $descTitle->getArticleId(),
+				$log->getRcComment(), false );
 			$nullRevision->insertOn( $dbw );
 			
 			wfRunHooks( 'NewRevisionFromEditComplete', array($article, $nullRevision, $latest, $user) );
