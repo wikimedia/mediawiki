@@ -416,6 +416,8 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 1941) Explicitly tell browsers to use a monospaced font for textareas.
   Safari apparently defaults to a proportional font, which can make editing
   pages with preformatted text difficult
+* (bug 15849) Special:Movepage now throws a more specific error when trying to 
+  move a title to an interwiki target
 
 === API changes in 1.14 ===
 
