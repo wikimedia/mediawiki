@@ -2415,7 +2415,7 @@ class Title {
 			$errors[] = array( 'immobile-source-namespace', $this->getNsText() );
 		}
 		if ( $nt->getInterwiki() != '' ) {
-			$errors[] = array( 'immobile-target-namespace-iw', $nt->getInterwiki() );
+			$errors[] = array( 'immobile-target-namespace-iw' );
 		}
 		if ( !$nt->isMovable() ) {
 			$errors[] = array('immobile-target-namespace', $nt->getNsText() );
