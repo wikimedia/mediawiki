@@ -91,23 +91,24 @@ class SpecialStatistics extends SpecialPage {
 	 * Format a row
 	 * @param string $text description of the row
 	 * @param float $number a number
+	 * @param array $trExtraParams
+	 * @param string $descMsg
 	 * @return string table row in HTML format
 	 */
 	private function formatRow( $text, $number, $trExtraParams = array(), $descMsg = '' ) {
 		global $wgStylePath;
-	
 		if( $descMsg ) {
 			$descriptionText = wfMsg( $descMsg );
 			if ( !wfEmptyMsg( $descMsg, $descriptionText ) ) {
 				$descriptionText = " ($descriptionText)";
-				$text = $text . "<br />" . Xml::element( 'small', array( 'class' => 'mw-statistic-desc'), $descriptionText );
+				$text .= "<br />" . Xml::element( 'small', array( 'class' => 'mw-statistic-desc'), 
+					$descriptionText );
 			}
 		}
-		
 		return Xml::openElement( 'tr', $trExtraParams ) .
-				Xml::openElement( 'td' ) . $text . Xml::closeElement( 'td' ) .
-				Xml::openElement( 'td' ) . $number . Xml::closeElement( 'td' ) .
-				Xml::closeElement( 'tr' );
+			Xml::openElement( 'td' ) . $text . Xml::closeElement( 'td' ) .
+			Xml::openElement( 'td' ) . $number . Xml::closeElement( 'td' ) .
+			Xml::closeElement( 'tr' );
 	}
 	
 	/**
@@ -117,7 +118,9 @@ class SpecialStatistics extends SpecialPage {
 	 */
 	private function getPageStats() {
 		global $wgLang;
-		return Xml::tags( 'th', array( 'colspan' => '2' ), wfMsg( 'statistics-header-pages' ) ) .
+		return Xml::openElement( 'tr' ) .
+			Xml::tags( 'th', array( 'colspan' => '2' ), wfMsg( 'statistics-header-pages' ) ) .
+			Xml::closeElement( 'tr' ) .
 				$this->formatRow( wfMsgExt( 'statistics-articles', array( 'parseinline' ) ),
 						$wgLang->formatNum( $this->good ),
 						array( 'class' => 'mw-statistics-articles' ) ) .
@@ -131,7 +134,9 @@ class SpecialStatistics extends SpecialPage {
 	}
 	private function getEditStats() {
 		global $wgLang;
-		return Xml::tags( 'th', array( 'colspan' => '2' ), wfMsg( 'statistics-header-edits' ) ) .
+		return Xml::openElement( 'tr' ) .
+			Xml::tags( 'th', array( 'colspan' => '2' ), wfMsg( 'statistics-header-edits' ) ) .
+			Xml::closeElement( 'tr' ) .
 				$this->formatRow( wfMsgExt( 'statistics-edits', array( 'parseinline' ) ),
 						$wgLang->formatNum( $this->edits ),
 						array( 'class' => 'mw-statistics-edits' ) ) .
@@ -144,7 +149,9 @@ class SpecialStatistics extends SpecialPage {
 	}
 	private function getUserStats() {
 		global $wgLang;
-		return Xml::tags( 'th', array( 'colspan' => '2' ), wfMsg( 'statistics-header-users' ) ) .
+		return Xml::openElement( 'tr' ) .
+			Xml::tags( 'th', array( 'colspan' => '2' ), wfMsg( 'statistics-header-users' ) ) .
+			Xml::closeElement( 'tr' ) .
 				$this->formatRow( wfMsgExt( 'statistics-users', array( 'parseinline' ) ),
 						$wgLang->formatNum( $this->users ),
 						array( 'class' => 'mw-statistics-users' ) ) .
@@ -195,14 +202,16 @@ class SpecialStatistics extends SpecialPage {
 	}
 	private function getViewsStats() {
 		global $wgLang;
-		return Xml::tags( 'th', array( 'colspan' => '2' ), wfMsg( 'statistics-header-views' ) ) .
-					$this->formatRow( wfMsgExt( 'statistics-views-total', array( 'parseinline' ) ),
-							$wgLang->formatNum( $this->views ),
-							array ( 'class' => 'mw-statistics-views-total' ) ) .
-					$this->formatRow( wfMsgExt( 'statistics-views-peredit', array( 'parseinline' ) ),
-							$wgLang->formatNum( sprintf( '%.2f', $this->edits ? 
-								$this->views / $this->edits : 0 ) ),
-							array ( 'class' => 'mw-statistics-views-peredit' ) );
+		return Xml::openElement( 'tr' ) .
+			Xml::tags( 'th', array( 'colspan' => '2' ), wfMsg( 'statistics-header-views' ) ) .
+			Xml::closeElement( 'tr' ) .
+				$this->formatRow( wfMsgExt( 'statistics-views-total', array( 'parseinline' ) ),
+					$wgLang->formatNum( $this->views ),
+						array ( 'class' => 'mw-statistics-views-total' ) ) .
+				$this->formatRow( wfMsgExt( 'statistics-views-peredit', array( 'parseinline' ) ),
+					$wgLang->formatNum( sprintf( '%.2f', $this->edits ? 
+						$this->views / $this->edits : 0 ) ),
+						array ( 'class' => 'mw-statistics-views-peredit' ) );
 	}
 	private function getMostViewedPages() {
 		global $wgLang, $wgUser;
