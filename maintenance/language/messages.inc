@@ -1896,6 +1896,7 @@ $wgMessageStructure = array(
 		'selfmove',
 		'immobile-source-namespace',
 		'immobile-target-namespace',
+		'immobile-target-namespace-iw',
 		'immobile-source-page',
 		'immobile-target-page',
 		'immobile_namespace',
