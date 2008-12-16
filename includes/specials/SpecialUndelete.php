@@ -700,7 +700,7 @@ class UndeleteForm {
 			return;
 		}
 
-		$wgOut->addHTML( wfMsgExt( 'undeletepagetext', array( 'parseinline' ), $wgLang->formatNum( $result->numRows() ) ) );
+		$wgOut->addWikiMsg( 'undeletepagetext', $wgLang->formatNum( $result->numRows() ) );
 
 		$sk = $wgUser->getSkin();
 		$undelete = SpecialPage::getTitleFor( 'Undelete' );
