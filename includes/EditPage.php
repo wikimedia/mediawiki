@@ -1632,7 +1632,7 @@ END
 	 * @return string
 	 */
 	function getPreviewText() {
-		global $wgOut, $wgUser, $wgTitle, $wgParser, $wgLang, $wgContLang;
+		global $wgOut, $wgUser, $wgTitle, $wgParser, $wgLang, $wgContLang, $wgMessageCache;
 
 		wfProfileIn( __METHOD__ );
 
@@ -1684,19 +1684,9 @@ END
 
 			// Parse mediawiki messages with correct target language
 			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
-				$pos = strrpos( $this->mTitle->getText(), '/' );
-				if ( $pos !== false ) {
-					$code = substr( $this->mTitle->getText(), $pos+1 );
-					switch ($code) {
-						case $wgLang->getCode():
-							$obj = $wgLang; break;
-						case $wgContLang->getCode():
-							$obj = $wgContLang; break;
-						default:
-							$obj = Language::factory( $code );
-					}
-					$parserOptions->setTargetLanguage( $obj );
-				}
+				list( /* $unused */, $lang ) = $wgMessageCache->figureMessage( $this->mTitle->getText() );
+				$obj = wfGetLangObj( $lang );
+				$parserOptions->setTargetLanguage( $obj );
 			}
 
 
