@@ -374,7 +374,7 @@ class IPUnblockForm {
 			$sk = $wgUser->getSkin();
 		if( is_null( $msg ) ) {
 			$msg = array();
-			$keys = array( 'infiniteblock', 'expiringblock', 'unblocklink',
+			$keys = array( 'infiniteblock', 'expiringblock', 'unblocklink', 'change-blocklink',
 				'anononlyblock', 'createaccountblock', 'noautoblockblock', 'emailblock', 'blocklist-nousertalk' );
 			foreach( $keys as $key ) {
 				$msg[$key] = wfMsgHtml( $key );
@@ -423,9 +423,22 @@ class IPUnblockForm {
 		$line = wfMsgReplaceArgs( $msg['blocklistline'], array( $formattedTime, $blocker, $target, $properties ) );
 
 		$unblocklink = '';
-		if ( $wgUser->isAllowed('block') ) {
-			$titleObj = SpecialPage::getTitleFor( "Ipblocklist" );
-			$unblocklink = ' (' . $sk->makeKnownLinkObj($titleObj, $msg['unblocklink'], 'action=unblock&id=' . urlencode( $block->mId ) ) . ')';
+		$changeblocklink = '';
+		if ( $wgUser->isAllowed( 'block' ) ) {
+			$unblocklink = $sk->link( SpecialPage::getTitleFor( 'Ipblocklist' ),
+					$msg['unblocklink'],
+					array(),
+					array( 'action' => 'unblock', 'id' => urlencode( $block->mId ) ),
+					'known' );
+
+			# Create changeblocklink for all blocks with exception of autoblocks
+			if( !$block->mAuto ) {
+				$changeblocklink = ' ' . wfMsg( 'pipe-separator' ) . ' ' .
+					$sk->link( SpecialPage::getTitleFor( 'BlockIP/' . htmlspecialchars( $block->mAddress ) ), 
+						$msg['change-blocklink'],
+						array(), array(), 'known' );
+			}
+		$toolLinks = "($unblocklink$changeblocklink)";
 		}
 
 		$comment = $sk->commentBlock( $block->mReason );
@@ -435,7 +448,7 @@ class IPUnblockForm {
 			$s = '<span class="history-deleted">' . $s . '</span>';
 
 		wfProfileOut( __METHOD__ );
-		return "<li>$s $unblocklink</li>\n";
+		return "<li>$s $toolLinks</li>\n";
 	}
 }
 

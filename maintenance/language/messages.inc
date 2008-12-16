@@ -1807,6 +1807,7 @@ $wgMessageStructure = array(
 		'ipblocklist-no-results',
 		'blocklink',
 		'unblocklink',
+		'change-blocklink',
 		'contribslink',
 		'autoblocker',
 		'blocklogpage',
