@@ -233,7 +233,6 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 7492) Rights can now be assigned to specific IP addresses and ranges by
   using $wgAutopromote (new defines: APCOND_ISIP and APCOND_IPINRANGE)
 * Add a 'change block' link to Special:IPBlockList and Special:Log
-* (bug 16672) Add canonical parameter to meta=siteinfo&siprop=namespaces|namespacealiases. 
 
 === Bug fixes in 1.14 ===
 
@@ -531,6 +530,7 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 16647) list=allcategories, prop=categories don't return "hidden"
   property for hidden categories
 * New siprop parameter of 'extensions' to list all installed extensions
+* (bug 16672) Include canonical namespace name in meta=siteinfo&siprop=namespaces. 
 
 === Languages updated in 1.14 ===
 
