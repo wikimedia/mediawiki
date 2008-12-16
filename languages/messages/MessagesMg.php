@@ -30,18 +30,18 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'Discuter' => NS_TALK
-	'Utilisateur' => NS_USER
-	'Discussion_Utilisateur' => NS_USER_TALK
-	'Discussion_$1' => NS_PROJECT_TALK
-	'Discussion_Image' => NS_IMAGE_TALK
-	'Discussion_MediaWiki' => NS_MEDIAWIKI_TALK
-	'Modèle' => NS_TEMPLATE
-	'Discussion_Modèle' => NS_TEMPLATE_TALK
-	'Aide' => NS_HELP
-	'Discussion_Aide' => NS_HELP_TALK
-	'Catégorie' => NS_CATEGORY
-	'Discussion_Catégorie' => NS_CATEGORY_TALK
+	'Discuter' => NS_TALK,
+	'Utilisateur' => NS_USER,
+	'Discussion_Utilisateur' => NS_USER_TALK,
+	'Discussion_$1' => NS_PROJECT_TALK,
+	'Discussion_Image' => NS_IMAGE_TALK,
+	'Discussion_MediaWiki' => NS_MEDIAWIKI_TALK,
+	'Modèle' => NS_TEMPLATE,
+	'Discussion_Modèle' => NS_TEMPLATE_TALK,
+	'Aide' => NS_HELP,
+	'Discussion_Aide' => NS_HELP_TALK,
+	'Catégorie' => NS_CATEGORY,
+	'Discussion_Catégorie' => NS_CATEGORY_TALK,
 );
 
 $messages = array(
