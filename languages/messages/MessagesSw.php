@@ -13,13 +13,13 @@
  */
 
 $namespaceNames = array(
-	NS_MEDIA            => 'Picha',
+	NS_MEDIA            => 'Faili',
 	NS_SPECIAL          => 'Maalum',
 	NS_TALK             => 'Majadiliano',
 	NS_USER             => 'Mtumiaji',
 	NS_USER_TALK        => 'Majadiliano_ya_mtumiaji',
 	NS_PROJECT_TALK     => '$1_majadiliano',
-	NS_FILE             => 'Faili',
+	NS_FILE             => 'Picha',
 	NS_FILE_TALK        => 'Majadiliano_faili',
 	NS_MEDIAWIKI_TALK   => 'MediaWiki_majadiliano',
 	NS_TEMPLATE         => 'Kigezo',

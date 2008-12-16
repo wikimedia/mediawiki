@@ -159,6 +159,34 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( 'Contribuições eliminadas', 'Edições eliminadas' ),
 );
 
+$magicWords = array(
+	'redirect'              => array( '0', '#REDIRECIONAMENTO', '#REDIRECT' ),
+	'currentmonth'          => array( '1', 'MESATUAL', 'CURRENTMONTH' ),
+	'currentmonthname'      => array( '1', 'NOMEDOMESATUAL', 'CURRENTMONTHNAME' ),
+	'currentday'            => array( '1', 'DIAATUAL', 'CURRENTDAY' ),
+	'currentday2'           => array( '1', 'DIAATUAL2', 'CURRENTDAY2' ),
+	'currentdayname'        => array( '1', 'NOMEDODIAATUAL', 'CURRENTDAYNAME' ),
+	'currentyear'           => array( '1', 'ANOATUAL', 'CURRENTYEAR' ),
+	'currenttime'           => array( '1', 'HORARIOATUAL', 'CURRENTTIME' ),
+	'currenthour'           => array( '1', 'HORAATUAL', 'CURRENTHOUR' ),
+	'localmonth'            => array( '1', 'MESLOCAL', 'LOCALMONTH' ),
+	'localmonthname'        => array( '1', 'NOMEDOMESLOCAL', 'LOCALMONTHNAME' ),
+	'localday'              => array( '1', 'DIALOCAL', 'LOCALDAY' ),
+	'localday2'             => array( '1', 'DIALOCAL2', 'LOCALDAY2' ),
+	'localdayname'          => array( '1', 'NOMEDODIALOCAL', 'LOCALDAYNAME' ),
+	'localyear'             => array( '1', 'ANOLOCAL', 'LOCALYEAR' ),
+	'localtime'             => array( '1', 'HORARIOLOCAL', 'LOCALTIME' ),
+	'localhour'             => array( '1', 'HORALOCAL', 'LOCALHOUR' ),
+	'numberofpages'         => array( '1', 'NUMERODEPAGINAS', 'NUMBEROFPAGES' ),
+	'numberofarticles'      => array( '1', 'NUMERODEARTIGOS', 'NUMBEROFARTICLES' ),
+	'numberoffiles'         => array( '1', 'NUMERODEARQUIVOS', 'NUMBEROFFILES' ),
+	'numberofusers'         => array( '1', 'NUMERODEUSUARIOS', 'NUMBEROFUSERS' ),
+	'numberofedits'         => array( '1', 'NUMERODEEDICOES', 'NUMBEROFEDITS' ),
+	'numberofviews'         => array( '1', 'NUMERODEEXIBICOES', 'NUMBEROFVIEWS' ),
+	'pagename'              => array( '1', 'NOMEDAPAGINA', 'PAGENAME' ),
+	'namespace'             => array( '1', 'DOMINIO', 'NAMESPACE' ),
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Sublinhar hiperligações:',
