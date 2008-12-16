@@ -422,6 +422,8 @@ The following extensions are migrated into MediaWiki 1.14:
   Arabic script (Persian, Urdu, Sindhi, Punjabi)
 * (bug 16656) cleanupTitles and friends should now work in load-balanced
   DB environments when $wgDBserver isn't set.
+* (bug 3691) Aspect ratio from viewBox attribute is now preserved for SVG
+  images which do not specify width and height attributes.
 
 === API changes in 1.14 ===
 

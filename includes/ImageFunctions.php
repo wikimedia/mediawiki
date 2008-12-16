@@ -4,9 +4,10 @@
  * http://www.w3.org/TR/SVG11/coords.html#UnitIdentifiers
  *
  * @param $length String: CSS/SVG length.
+ * @param $viewpoerSize: Float optional scale for percentage units...
  * @return Integer: length in pixels
  */
-function wfScaleSVGUnit( $length ) {
+function wfScaleSVGUnit( $length, $viewportSize=512 ) {
 	static $unitLength = array(
 		'px' => 1.0,
 		'pt' => 1.25,
@@ -14,14 +15,19 @@ function wfScaleSVGUnit( $length ) {
 		'mm' => 3.543307,
 		'cm' => 35.43307,
 		'in' => 90.0,
+		'em' => 16.0, // fake it?
+		'ex' => 12.0, // fake it?
 		''   => 1.0, // "User units" pixels by default
-		'%'  => 2.0, // Fake it!
 		);
 	$matches = array();
 	if( preg_match( '/^\s*(\d+(?:\.\d+)?)(em|ex|px|pt|pc|cm|mm|in|%|)\s*$/', $length, $matches ) ) {
 		$length = floatval( $matches[1] );
 		$unit = $matches[2];
-		return round( $length * $unitLength[$unit] );
+		if( $unit == '%' ) {
+			return round( $length * 0.01 * $viewportSize );
+		} else {
+			return round( $length * $unitLength[$unit] );
+		}
 	} else {
 		// Assume pixels
 		return round( floatval( $length ) );
@@ -29,17 +35,49 @@ function wfScaleSVGUnit( $length ) {
 }
 
 class XmlSizeFilter {
+	const DEFAULT_WIDTH = 512;
+	const DEFAULT_HEIGHT = 512;
 	var $first = true;
-	var $width = 256;
-	var $height = 256;
+	var $width = self::DEFAULT_WIDTH;
+	var $height = self::DEFAULT_HEIGHT;
 	function filter( $name, $attribs ) {
 		if( $this->first ) {
+			$defaultWidth = self::DEFAULT_WIDTH;
+			$defaultHeight = self::DEFAULT_HEIGHT;
+			$aspect = 1.0;
+			$width = null;
+			$height = null;
+			
+			if( isset( $attribs['viewBox'] ) ) {
+				// min-x min-y width height
+				$viewBox = preg_split( '/\s+/', trim( $attribs['viewBox'] ) );
+				if( count( $viewBox ) == 4 ) {
+					$viewWidth = wfScaleSVGUnit( $viewBox[2] );
+					$viewHeight = wfScaleSVGUnit( $viewBox[3] );
+					if( $viewWidth > 0 && $viewHeight > 0 ) {
+						$aspect = $viewWidth / $viewHeight;
+						$defaultHeight = $defaultWidth / $aspect;
+					}
+				}
+			}
 			if( isset( $attribs['width'] ) ) {
-				$this->width = wfScaleSVGUnit( $attribs['width'] );
+				$width = wfScaleSVGUnit( $attribs['width'], $defaultWidth );
 			}
 			if( isset( $attribs['height'] ) ) {
-				$this->height = wfScaleSVGUnit( $attribs['height'] );
+				$height = wfScaleSVGUnit( $attribs['height'], $defaultHeight );
 			}
+			
+			if( !isset( $width ) && !isset( $height ) ) {
+				$width = $defaultWidth;
+				$height = $width / $aspect;
+			} elseif( isset( $width ) && !isset( $height ) ) {
+				$height = $width / $aspect;
+			} elseif( isset( $height ) && !isset( $width ) ) {
+				$width = $height * $aspect;
+			}
+			
+			$this->width = $width;
+			$this->height = $height;
 			$this->first = false;
 		}
 	}
