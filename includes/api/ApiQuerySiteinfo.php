@@ -135,8 +135,13 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				'id' => $ns
 			);
 			ApiResult :: setContent( $data[$ns], $title );
-			if( MWNamespace::hasSubpages($ns) )
+			$canonical = Namespace::getCanonicalName( $ns );
+			
+			if( MWNamespace::hasSubpages( $ns ) )
 				$data[$ns]['subpages'] = '';
+			
+			if( $canonical ) 
+				$data[$ns]['canonical'] = $canonical;
 		}
 
 		$this->getResult()->setIndexedTagName( $data, 'ns' );
