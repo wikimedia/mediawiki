@@ -2048,21 +2048,23 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'djvu_no_xml'     => 'DjVu 파일의 XML 정보를 읽을 수 없음',
 
 # Special:Import
-'import'                  => '문서 가져오기',
-'import-interwiki-submit' => '가져오기',
-'import-upload-filename'  => '파일 이름:',
-'import-comment'          => '내용:',
-'importtext'              => '원본 위키에서 [[Special:Export|내보내기]] 기능을 사용해 파일을 내려받아서 여기에 올려주세요.',
-'importstart'             => '문서를 가져오는 중...',
-'import-revision-count'   => '$1개의 판',
-'importnopages'           => '가져올 문서가 없습니다.',
-'importfailed'            => '가져오기 실패: <nowiki>$1</nowiki>',
-'importcantopen'          => '파일을 열 수 없습니다.',
-'importbadinterwiki'      => '인터위키 링크가 잘못되었습니다.',
-'importsuccess'           => '가져오기 완료!',
-'import-noarticle'        => '가져올 문서가 없습니다!',
-'import-nonewrevisions'   => '모든 판이 이전에 가져오기되었습니다.',
-'import-upload'           => 'XML 데이터 올리기',
+'import'                   => '문서 가져오기',
+'import-interwiki-submit'  => '가져오기',
+'import-upload-filename'   => '파일 이름:',
+'import-comment'           => '내용:',
+'importtext'               => '원본 위키에서 [[Special:Export|내보내기]] 기능을 사용해 파일을 내려받아서 여기에 올려주세요.',
+'importstart'              => '문서를 가져오는 중...',
+'import-revision-count'    => '$1개의 판',
+'importnopages'            => '가져올 문서가 없습니다.',
+'importfailed'             => '가져오기 실패: <nowiki>$1</nowiki>',
+'importcantopen'           => '파일을 열 수 없습니다.',
+'importbadinterwiki'       => '인터위키 링크가 잘못되었습니다.',
+'importsuccess'            => '가져오기 완료!',
+'import-noarticle'         => '가져올 문서가 없습니다!',
+'import-nonewrevisions'    => '모든 판이 이전에 가져오기되었습니다.',
+'import-upload'            => 'XML 데이터 올리기',
+'import-token-mismatch'    => '세션 데이터가 손실되었습니다. 다시 시도해주세요.',
+'import-invalid-interwiki' => '해당 위키에서 문서를 가져올 수 없습니다.',
 
 # Import log
 'importlogpage'                 => '가져오기 기록',
@@ -2271,6 +2273,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'exif-exposuretime'        => '노출 시간',
 'exif-exposuretime-format' => '$1초 ($2)',
 'exif-fnumber'             => 'F 번호',
+'exif-exposureprogram'     => '노출 프로그램',
 'exif-shutterspeedvalue'   => '셔터 속도',
 'exif-brightnessvalue'     => '밝기',
 'exif-lightsource'         => '광원',
@@ -2300,6 +2303,9 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'exif-lightsource-3' => '텅스텐 (백열광)',
 'exif-lightsource-4' => '플래시',
 
+# Flash modes
+'exif-flash-redeye-1' => '적목 방지 모드',
+
 'exif-focalplaneresolutionunit-2' => '인치',
 
 'exif-exposuremode-0' => '자동 노출',
@@ -2322,6 +2328,10 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'exif-gpsspeed-k' => '킬로미터 매 시간',
 'exif-gpsspeed-m' => '마일 매 시간',
 'exif-gpsspeed-n' => '노트',
+
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => '실제 방위',
+'exif-gpsdirection-m' => '자기 방위',
 
 # External editor support
 'edit-externally'      => '이 파일을 외부 프로그램을 사용해서 편집하기',

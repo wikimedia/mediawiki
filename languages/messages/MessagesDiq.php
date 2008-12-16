@@ -190,6 +190,7 @@ href="" class="internal"}?{/a}) bımocne.',
 'lastmodifiedat'    => 'Ena pele tewr peyên roca $2, $1 de biya rocaniye.', # $1 date, $2 time
 'viewcount'         => 'Ena perre {{PLURAL:$1|rae|$1 rey}} vêniya.',
 'protectedpage'     => 'Perra kılitkerdiye',
+'jumpto'            => 'Şo be:',
 'jumptonavigation'  => 'şiyayış',
 'jumptosearch'      => 'cıgeyre',
 
@@ -238,6 +239,8 @@ href="" class="internal"}?{/a}) bımocne.',
 'restorelink'             => '{{PLURAL:$1|yew vurnayışo esterıte (pakbiyae)|$1 vurnayışê esterıtey (pakbiyaey)}}',
 'feedlinks'               => 'Weyikerdış:',
 'feed-invalid'            => 'Tipê weyikerdışê beğşê nêvêrdey.',
+'site-rss-feed'           => 'Weyi-kerdışê $1 RSSi',
+'site-atom-feed'          => 'Weyi-kerdışê $1 Atomi',
 'red-link-title'          => '$1 (heta nıka nênusiyao)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -275,6 +278,7 @@ Seba /qandê lista pelanê xasanê vêrdeyan kerem ke: [[Special:SpecialPages|{{
 'yourpasswordagain'         => 'Parola reyna bınusne',
 'remembermypassword'        => 'Na/In komputer de mı biya xo viri',
 'login'                     => 'Cıkewe',
+'nav-login-createaccount'   => 'Cıkewe / hesab vıraze',
 'loginprompt'               => "Seba ke mumkın bo şıma bıkewê pela {{SITENAME}}, programê internetê şıma de ''cookies''i gereke aktifi bê.",
 'userlogin'                 => 'Cıkewe ya ki hesab vıraze',
 'logout'                    => 'Veciye',
@@ -306,6 +310,7 @@ It must have at least $1 characters and be different from your username.',
 'retypenew'   => 'Parola newiye tekrar ke:',
 
 # Edit pages
+'summary'      => 'Xulasa',
 'savearticle'  => 'Ena pele qeyd ke',
 'preview'      => 'Verqayt',
 'showpreview'  => 'Verqayti bımocne',
@@ -319,6 +324,10 @@ It must have at least $1 characters and be different from your username.',
 
 # Revision deletion
 'rev-delundel' => 'bımocne/bınımne',
+
+# Diffs
+'lineno'   => 'Rêza $1i:',
+'editundo' => 'peyser biya',
 
 # Search results
 'searchhelp-url'     => 'Help:Tedeestey',
@@ -371,8 +380,10 @@ It must have at least $1 characters and be different from your username.',
 'imagelist_user' => 'Karber',
 
 # File description page
+'filehist'          => 'Tarixê dosya',
 'filehist-datetime' => 'Tarix/Zeman',
 'filehist-user'     => 'Karber',
+'imagelinks'        => 'Pelê ke tede xebıtiyenê',
 'noimage-linktext'  => 'Bar ke',
 
 # File deletion
@@ -392,6 +403,7 @@ It must have at least $1 characters and be different from your username.',
 'withoutinterwiki-submit' => 'bımocne',
 
 # Miscellaneous special pages
+'nbytes'            => '$1 {{PLURAL:$1|bayt|bayti}}',
 'ncategories'       => '$1 {{PLURAL:$1|Kategoriye|Kategoriy}}',
 'shortpages'        => 'Pelê kılmi',
 'longpages'         => 'Pelê dergi',
@@ -433,11 +445,15 @@ It must have at least $1 characters and be different from your username.',
 # Restrictions (nouns)
 'restriction-edit' => 'Bıvurne',
 
+# Namespace form on various pages
+'blanknamespace' => '(Ser)',
+
 # Contributions
 'mycontris' => 'iştırakê mı',
 
 # What links here
-'whatlinkshere' => 'Gırey be pele',
+'whatlinkshere'       => 'Gırey be pele',
+'whatlinkshere-links' => '← gırey',
 
 # Block/unblock
 'blocklink'    => 'kılit ke',
@@ -447,20 +463,39 @@ It must have at least $1 characters and be different from your username.',
 Sebebê kılit-biyayışê $1\'i: "$2"o',
 'blocklogpage' => 'Protokolê kıliti',
 
+# Thumbnails
+'thumbnail-more' => 'Gırd ke',
+
 # Tooltip help for the actions
 'tooltip-pt-userpage'     => 'Pela mına karberi',
 'tooltip-pt-mytalk'       => 'Pela mına werênayışi',
+'tooltip-pt-login'        => 'Seba cıkotışi şıma rê dewato, labelê no zeruri niyo.',
+'tooltip-ca-talk'         => 'Pela tedeesteyan sero werênayış',
+'tooltip-ca-edit'         => 'Tı eşkenay na pele bıvurnê.
+Kerem ke, qeyd-kerdış ra ver gozega verqayti bıxebıtne.',
+'tooltip-search'          => 'Zerrey {{SITENAME}} de cıgeyre',
 'tooltip-n-mainpage'      => 'Pela Seri bıvêne',
 'tooltip-n-portal'        => 'Heqa projey de, tı çı eşkenay bıkerê, koti çiy vêniyenê',
 'tooltip-n-currentevents' => 'Vurnayışanê peyênan de melumatê pey bıvêne',
 'tooltip-n-recentchanges' => 'Wiki de lista vurnayışanê peyênan.',
 'tooltip-n-randompage'    => 'Kamci pele ke raşt amey bar ke',
+'tooltip-n-help'          => 'Cayê doş-kerdışi.',
+'tooltip-t-whatlinkshere' => 'Lista pelanê wikiya pêroina ke tiya gırê bena',
+'tooltip-t-upload'        => 'Dosya bar ke',
+'tooltip-t-specialpages'  => 'Lista pelanê xasanê pêroinan bımocne',
 
 # Attribution
 'lastmodifiedatby' => 'Ena pele tewr peyên roca $2, $1 by $3. de biya rocaniye', # $1 date, $2 time, $3 user
 
 # Special:NewFiles
 'ilsubmit' => 'Cıgeyre',
+
+# Bad image list
+'bad_image_list' => 'Şeklo umumi wınayo:
+
+Tenya çiyo ke beno lista (rezê ke be * dest kenê cı) çıman ver de vêniyeno.
+Yew rêze de gırêyo sıfteyın gani gırêyo de dosya xırabıne bo.
+Na rêze de her gırêyo bin zey istisna vêniyeno, yanê pelê ke dosya beno ke sero rêzbiyaye asena.',
 
 'exif-gaincontrol-0' => 'çino',
 

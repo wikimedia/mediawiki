@@ -1171,6 +1171,7 @@ koje sadrže sve izraze koji se traže će se pojaviti u rezultatima).",
 'saveprefs'                 => 'Sačuvajte podešavanja',
 'resetprefs'                => 'Vrati podešavanja',
 'textboxsize'               => 'Veličine tekstualnog polja',
+'prefs-edit-boxsize'        => 'Veličina prozora za uređivanje.',
 'rows'                      => 'Redova',
 'columns'                   => 'Kolona',
 'searchresultshead'         => 'Podešavanja rezultata pretrage',
@@ -2213,9 +2214,9 @@ Ako želite otključati ili zaključati bazu, ova datoteka mora biti omogućena 
 'databasenotlocked'   => 'Baza podataka je zaključana.',
 
 # Move page
-'move-page'                 => 'Preusmjeravanje $1',
-'move-page-legend'          => 'Premjestite stranicu',
-'movepagetext'              => "Korištenjem ovog formulara možete preusmjeriti članak 
+'move-page'                    => 'Preusmjeravanje $1',
+'move-page-legend'             => 'Premjestite stranicu',
+'movepagetext'                 => "Korištenjem ovog formulara možete preusmjeriti članak 
 zajedno sa stranicom za diskusiju tog članka.
 
 Članak pod starim imenom će postati stranica koja preusmjerava 
@@ -2232,57 +2233,58 @@ preusmjerite.
 '''Pažnja!'''
 Imajte na umu da preusmjeravanje popularnog članka može biti 
 drastična i neočekivana promjena za korisnike.",
-'movepagetalktext'          => "Odgovarajuća stranica za razgovor, ako postoji, će automatski biti premještena istovremeno '''osim:'''
+'movepagetalktext'             => "Odgovarajuća stranica za razgovor, ako postoji, će automatski biti premještena istovremeno '''osim:'''
 *Ako premještate stranicu preko imenskih prostora,
 *Neprazna stranica za razgovor već postoji pod novim imenom, ili
 *Odčekirajte donju kutiju.
 
 U tim slučajevima, moraćete ručno da premjestite stranicu ukoliko to želite.",
-'movearticle'               => 'Premjestite stranicu',
-'movenologin'               => 'Niste prijavljeni',
-'movenologintext'           => 'Morate biti registrovani korisnik i [[Special:UserLogin|prijavljeni]] da biste premjestili stranicu.',
-'movenotallowed'            => 'Nemate dopuštenje za premještanje stranica.',
-'cant-move-user-page'       => 'Nemate dopuštenje da premještate korisničke stranice (bez podstranica).',
-'cant-move-to-user-page'    => 'Nemate dopuštenje da premjestite stranicu na korisničku stranicu (osim na korisničku podstranicu).',
-'newtitle'                  => 'Novi naslov',
-'move-watch'                => 'Prati ovu stranicu',
-'movepagebtn'               => 'premjestite stranicu',
-'pagemovedsub'              => 'Premještanje uspjelo',
-'movepage-moved'            => '<big>\'\'\'"$1" je premještena na "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'             => 'Stranica pod tim imenom već postoji, ili je ime koje ste izabrali neispravno.  Molimo Vas da izaberete drugo ime.',
-'cantmove-titleprotected'   => 'Ne možete premjestiti stranicu na ovu lokaciju, jer je novi naslov zaštićen od pravljenja',
-'talkexists'                => 'Sama stranica je uspješno premještena, ali
+'movearticle'                  => 'Premjestite stranicu',
+'movenologin'                  => 'Niste prijavljeni',
+'movenologintext'              => 'Morate biti registrovani korisnik i [[Special:UserLogin|prijavljeni]] da biste premjestili stranicu.',
+'movenotallowed'               => 'Nemate dopuštenje za premještanje stranica.',
+'cant-move-user-page'          => 'Nemate dopuštenje da premještate korisničke stranice (bez podstranica).',
+'cant-move-to-user-page'       => 'Nemate dopuštenje da premjestite stranicu na korisničku stranicu (osim na korisničku podstranicu).',
+'newtitle'                     => 'Novi naslov',
+'move-watch'                   => 'Prati ovu stranicu',
+'movepagebtn'                  => 'premjestite stranicu',
+'pagemovedsub'                 => 'Premještanje uspjelo',
+'movepage-moved'               => '<big>\'\'\'"$1" je premještena na "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'                => 'Stranica pod tim imenom već postoji, ili je ime koje ste izabrali neispravno.  Molimo Vas da izaberete drugo ime.',
+'cantmove-titleprotected'      => 'Ne možete premjestiti stranicu na ovu lokaciju, jer je novi naslov zaštićen od pravljenja',
+'talkexists'                   => 'Sama stranica je uspješno premještena, ali
 stranica za razgovor nije mogla biti premještena jer takva već postoji na novom naslovu.  Molimo Vas da ih spojite ručno.',
-'movedto'                   => 'premještena na',
-'movetalk'                  => 'Premjestite "stranicu za razgovor" takođe, ako je moguće.',
-'move-subpages'             => 'Premjesti sve podstranice, ako je moguće',
-'move-talk-subpages'        => 'Premjesti sve podstranice stranice za razgovor, ako je moguće',
-'movepage-page-exists'      => 'Stranica $1 već postoji i ne može biti automatski zamijenjena.',
-'movepage-page-moved'       => 'Stranica $1 je premještena na $2.',
-'movepage-page-unmoved'     => 'Stranica $1 ne može biti premještena na $2.',
-'movepage-max-pages'        => 'Maksimum od $1 {{PLURAL:$1|stranice|stranice|stranica}} je premješteno i više nije moguće premjestiti automatski.',
-'1movedto2'                 => 'članak [[$1]] premješten na [[$2]]',
-'1movedto2_redir'           => 'stranica [[$1]] premještena u stranicu [[$2]] putem preusmjerenja',
-'movelogpage'               => 'Protokol premještanja',
-'movelogpagetext'           => 'Ispod je spisak stranica koje su premještene.',
-'movereason'                => 'Razlog:',
-'revertmove'                => 'vrati',
-'delete_and_move'           => 'Brisanje i premještanje',
-'delete_and_move_text'      => '==Brisanje neophodno==
+'movedto'                      => 'premještena na',
+'movetalk'                     => 'Premjestite "stranicu za razgovor" takođe, ako je moguće.',
+'move-subpages'                => 'Premjesti sve podstranice, ako je moguće',
+'move-talk-subpages'           => 'Premjesti sve podstranice stranice za razgovor, ako je moguće',
+'movepage-page-exists'         => 'Stranica $1 već postoji i ne može biti automatski zamijenjena.',
+'movepage-page-moved'          => 'Stranica $1 je premještena na $2.',
+'movepage-page-unmoved'        => 'Stranica $1 ne može biti premještena na $2.',
+'movepage-max-pages'           => 'Maksimum od $1 {{PLURAL:$1|stranice|stranice|stranica}} je premješteno i više nije moguće premjestiti automatski.',
+'1movedto2'                    => 'članak [[$1]] premješten na [[$2]]',
+'1movedto2_redir'              => 'stranica [[$1]] premještena u stranicu [[$2]] putem preusmjerenja',
+'movelogpage'                  => 'Protokol premještanja',
+'movelogpagetext'              => 'Ispod je spisak stranica koje su premještene.',
+'movereason'                   => 'Razlog:',
+'revertmove'                   => 'vrati',
+'delete_and_move'              => 'Brisanje i premještanje',
+'delete_and_move_text'         => '==Brisanje neophodno==
 Odredišna stranica "[[:$1]]" već postoji.
 Da li je želite obrisati kako bi ste mogli izvršiti premještanje?',
-'delete_and_move_confirm'   => 'Da, obriši stranicu',
-'delete_and_move_reason'    => 'Obrisano da bi se napravio prostor za premještanje',
-'selfmove'                  => 'Izvorni i ciljani naziv su isti; strana ne može da se premjesti preko same sebe.',
-'immobile-source-namespace' => 'Ne mogu premjestiti stranice u imenski prostor "$1"',
-'immobile-target-namespace' => 'Ne mogu se premjestiti stranice u imenski prostor "$1"',
-'immobile-source-page'      => 'Ova stranica se ne može premještati.',
-'immobile-target-page'      => 'Ne može se preusmjeriti na taj odredišni naslov.',
-'imagenocrossnamespace'     => 'Ne može se premjestiti datoteka u nedatotečni imenski prostor',
-'imagetypemismatch'         => 'Ekstenzija nove datoteke ne odgovara njenom tipu',
-'imageinvalidfilename'      => 'Ciljno ime datoteke nije valjano',
-'fix-double-redirects'      => 'Ažuriraj sva preusmjerenja koja vode ka originalnom naslovu',
-'move-leave-redirect'       => 'Ostavi preusmjerenje',
+'delete_and_move_confirm'      => 'Da, obriši stranicu',
+'delete_and_move_reason'       => 'Obrisano da bi se napravio prostor za premještanje',
+'selfmove'                     => 'Izvorni i ciljani naziv su isti; strana ne može da se premjesti preko same sebe.',
+'immobile-source-namespace'    => 'Ne mogu premjestiti stranice u imenski prostor "$1"',
+'immobile-target-namespace'    => 'Ne mogu se premjestiti stranice u imenski prostor "$1"',
+'immobile-target-namespace-iw' => 'Međuwiki link nije validno odredište premještanja stranice.',
+'immobile-source-page'         => 'Ova stranica se ne može premještati.',
+'immobile-target-page'         => 'Ne može se preusmjeriti na taj odredišni naslov.',
+'imagenocrossnamespace'        => 'Ne može se premjestiti datoteka u nedatotečni imenski prostor',
+'imagetypemismatch'            => 'Ekstenzija nove datoteke ne odgovara njenom tipu',
+'imageinvalidfilename'         => 'Ciljno ime datoteke nije valjano',
+'fix-double-redirects'         => 'Ažuriraj sva preusmjerenja koja vode ka originalnom naslovu',
+'move-leave-redirect'          => 'Ostavi preusmjerenje',
 
 # Export
 'export'            => 'Izvezite stranice',

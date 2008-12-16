@@ -806,7 +806,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'undo-success' => '編集の取り消しが可能です。これがあなたの意図した編集であるか、下に表示されている差分を確認してください。保存ボタンを押すと取り消しが確定されます。',
 'undo-failure' => '中間の版での編集と競合したため、取り消せませんでした。',
 'undo-norev'   => '取り消そうとした編集は存在しないかすでに削除されたために取り消せませんでした。',
-'undo-summary' => '[[Special:Contributions/$2|$2]] ([[User talk:$2|会話]]) による版 $1 を取り消し',
+'undo-summary' => '[[Special:Contributions/$2|$2]] ([[User talk:$2|会話]]) による版 ID:$1 を取り消し',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'アカウントを作成できません',
@@ -1089,6 +1089,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'saveprefs'                 => '設定の保存',
 'resetprefs'                => '変更を破棄',
 'textboxsize'               => '編集画面',
+'prefs-edit-boxsize'        => '編集ウィンドウのサイズ。',
 'rows'                      => '縦:',
 'columns'                   => '横:',
 'searchresultshead'         => '検索',
@@ -1549,9 +1550,9 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'unusedimages'            => '使われていないファイル',
 'popularpages'            => '人気のページ',
 'wantedcategories'        => 'カテゴリページが存在しないカテゴリ',
-'wantedpages'             => '投稿が望まれているページ',
+'wantedpages'             => 'ページが存在しないリンク',
 'wantedfiles'             => 'ファイル情報ページが存在しないファイル',
-'wantedtemplates'         => '投稿が望まれているテンプレート',
+'wantedtemplates'         => 'テンプレートページが存在しないテンプレート',
 'mostlinked'              => '被リンクの多いページ',
 'mostlinkedcategories'    => '項目の多いカテゴリ',
 'mostlinkedtemplates'     => '使用箇所の多いテンプレート',
@@ -2075,9 +2076,9 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'databasenotlocked'   => 'データベースはロックされていません。',
 
 # Move page
-'move-page'                 => '$1 の移動',
-'move-page-legend'          => 'ページの移動',
-'movepagetext'              => "下のフォームを利用すると、ページ名が変更され、その履歴も変更先へ移動します。
+'move-page'                    => '$1 の移動',
+'move-page-legend'             => 'ページの移動',
+'movepagetext'                 => "下のフォームを利用すると、ページ名が変更され、その履歴も変更先へ移動します。
 古いページは変更先へのリダイレクトページとなります。
 変更前のページへのリダイレクトは自動的に修正することができます。
 自動的な修正を選択しない場合は、[[Special:DoubleRedirects|二重リダイレクト]]や[[Special:BrokenRedirects|迷子のリダイレクト]]を確認する必要があります。リンクを正しく維持するのはあなたの責任です。
@@ -2088,7 +2089,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 '''注意！'''
 よく閲覧されるページや、他の多くのページからリンクされているページを移動すると予期せぬ結果が起こるかもしれません。
 ページの移動に伴う影響をよく考えてから踏み切るようにしてください。",
-'movepagetalktext'          => '付随するノートのページがある場合には、基本的には、一緒に移動されることになります。
+'movepagetalktext'             => '付随するノートのページがある場合には、基本的には、一緒に移動されることになります。
 
 但し、以下の場合については別です。
 *名前空間をまたがる移動の場合
@@ -2096,49 +2097,50 @@ $1 は、すでにブロックされています。設定を変更しますか�
 *下のチェックボックスのチェックマークを消した場合
 
 これらの場合、ノートページを移動する場合には、別に作業する必要があります。',
-'movearticle'               => '移動するページ',
-'movenologin'               => 'ログインしていません',
-'movenologintext'           => 'ページを移動するためには、アカウント作成の上、[[Special:UserLogin|ログイン]]している必要があります。',
-'movenotallowed'            => 'あなたにはページを移動する権限がありません。',
-'cant-move-user-page'       => 'あなたは、（サブページは別にして）利用者ページを移動させる権限を持っていません。',
-'cant-move-to-user-page'    => 'あなたは、（利用者サブページを除く）利用者ページへページを移動させる権限を持っていません。',
-'newtitle'                  => '新しいページ名',
-'move-watch'                => '移動するページをウォッチ',
-'movepagebtn'               => 'ページを移動',
-'pagemovedsub'              => '無事移動しました。',
-'movepage-moved'            => '<big>\'\'\'"$1"は"$2"へ移動されました。\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'             => '指定された移動先には既にページが存在するか、名前が不適切です。',
-'cantmove-titleprotected'   => '移動先ページが作成保護対象となっているため、ページを移動できません。',
-'talkexists'                => "'''ページ自身は移動されましたが、付随のノートページは移動先のページが存在したため移動できませんでした。手動で内容を統合してください。'''",
-'movedto'                   => '移動先:',
-'movetalk'                  => 'ノートページが付随する場合には、それも一緒に移動する',
-'move-subpages'             => 'サブページもすべて移動する',
-'move-talk-subpages'        => 'ノートページのサブページもすべて移動する',
-'movepage-page-exists'      => '$1 という名前のページは既に存在するため自動的な上書きは行われませんでした。',
-'movepage-page-moved'       => '$1 は $2 へ移動されました。',
-'movepage-page-unmoved'     => '$1 を $2 へ移動できませんでした。',
-'movepage-max-pages'        => '自動的に移動できるのは $1ページ までで、それ以上は移動されません。',
-'1movedto2'                 => 'ページ [[$1]] を [[$2]] へ移動',
-'1movedto2_redir'           => 'ページ [[$1]] をこのページあてのリダイレクト [[$2]] へ移動',
-'movelogpage'               => '移動記録',
-'movelogpagetext'           => '以下はページ移動の記録です。',
-'movereason'                => '理由',
-'revertmove'                => '差し戻し',
-'delete_and_move'           => '削除して移動する',
-'delete_and_move_text'      => '== 削除が必要です ==
+'movearticle'                  => '移動するページ',
+'movenologin'                  => 'ログインしていません',
+'movenologintext'              => 'ページを移動するためには、アカウント作成の上、[[Special:UserLogin|ログイン]]している必要があります。',
+'movenotallowed'               => 'あなたにはページを移動する権限がありません。',
+'cant-move-user-page'          => 'あなたは、（サブページは別にして）利用者ページを移動させる権限を持っていません。',
+'cant-move-to-user-page'       => 'あなたは、（利用者サブページを除く）利用者ページへページを移動させる権限を持っていません。',
+'newtitle'                     => '新しいページ名',
+'move-watch'                   => '移動するページをウォッチ',
+'movepagebtn'                  => 'ページを移動',
+'pagemovedsub'                 => '無事移動しました。',
+'movepage-moved'               => '<big>\'\'\'"$1"は"$2"へ移動されました。\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'                => '指定された移動先には既にページが存在するか、名前が不適切です。',
+'cantmove-titleprotected'      => '移動先ページが作成保護対象となっているため、ページを移動できません。',
+'talkexists'                   => "'''ページ自身は移動されましたが、付随のノートページは移動先のページが存在したため移動できませんでした。手動で内容を統合してください。'''",
+'movedto'                      => '移動先:',
+'movetalk'                     => 'ノートページが付随する場合には、それも一緒に移動する',
+'move-subpages'                => 'サブページもすべて移動する',
+'move-talk-subpages'           => 'ノートページのサブページもすべて移動する',
+'movepage-page-exists'         => '$1 という名前のページは既に存在するため自動的な上書きは行われませんでした。',
+'movepage-page-moved'          => '$1 は $2 へ移動されました。',
+'movepage-page-unmoved'        => '$1 を $2 へ移動できませんでした。',
+'movepage-max-pages'           => '自動的に移動できるのは $1ページ までで、それ以上は移動されません。',
+'1movedto2'                    => 'ページ [[$1]] を [[$2]] へ移動',
+'1movedto2_redir'              => 'ページ [[$1]] をこのページあてのリダイレクト [[$2]] へ移動',
+'movelogpage'                  => '移動記録',
+'movelogpagetext'              => '以下はページ移動の記録です。',
+'movereason'                   => '理由',
+'revertmove'                   => '差し戻し',
+'delete_and_move'              => '削除して移動する',
+'delete_and_move_text'         => '== 削除が必要です ==
 移動先 "[[:$1]]" は既に存在しています。このページを移動のために削除しますか?',
-'delete_and_move_confirm'   => 'ページ削除の確認',
-'delete_and_move_reason'    => '移動のための削除',
-'selfmove'                  => '移動元と移動先のページ名が同じです。自分自身へは移動できません。',
-'immobile-source-namespace' => '$1名前空間のページを移動させることはできません。',
-'immobile-target-namespace' => '$1名前空間へはページを移動させることはできません。',
-'immobile-source-page'      => 'このページを移動させることはできません。',
-'immobile-target-page'      => '目的のページ名へは移動させることができません。',
-'imagenocrossnamespace'     => 'ファイル用の名前空間以外にはファイルを移動することはできません。',
-'imagetypemismatch'         => '新しいファイルの拡張子がファイルのタイプと一致していません。',
-'imageinvalidfilename'      => '指定したファイル名が無効です',
-'fix-double-redirects'      => 'このページへのリダイレクトがあればそのリダイレクトを修正する',
-'move-leave-redirect'       => '移動元にリダイレクトを作成する',
+'delete_and_move_confirm'      => 'ページ削除の確認',
+'delete_and_move_reason'       => '移動のための削除',
+'selfmove'                     => '移動元と移動先のページ名が同じです。自分自身へは移動できません。',
+'immobile-source-namespace'    => '$1名前空間のページを移動させることはできません。',
+'immobile-target-namespace'    => '$1名前空間へはページを移動させることはできません。',
+'immobile-target-namespace-iw' => 'インターウィキリンクはページ移動のための有効なターゲットではありません。',
+'immobile-source-page'         => 'このページを移動させることはできません。',
+'immobile-target-page'         => '目的のページ名へは移動させることができません。',
+'imagenocrossnamespace'        => 'ファイル用の名前空間以外にはファイルを移動することはできません。',
+'imagetypemismatch'            => '新しいファイルの拡張子がファイルのタイプと一致していません。',
+'imageinvalidfilename'         => '指定したファイル名が無効です',
+'fix-double-redirects'         => 'このページへのリダイレクトがあればそのリダイレクトを修正する',
+'move-leave-redirect'          => '移動元にリダイレクトを作成する',
 
 # Export
 'export'            => 'ページデータの書き出し',
@@ -2343,7 +2345,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'patrol-log-header'    => '以下はパトロールされた版の記録です。',
 'patrol-log-line'      => '$2 の $1 をパトロール済みにマーク$3',
 'patrol-log-auto'      => '（自動）',
-'patrol-log-diff'      => '第$1版',
+'patrol-log-diff'      => 'ID:$1 の版',
 'log-show-hide-patrol' => 'パトロール・ログを$1',
 
 # Image deletion

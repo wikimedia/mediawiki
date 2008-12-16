@@ -513,7 +513,7 @@ Sicht iech een anere Benotzernumm.',
 'username'                   => 'Benotzernumm:',
 'uid'                        => 'Benotzer ID:',
 'prefs-memberingroups'       => 'Member vun {{PLURAL:$1|der Benotzergrupp|de Benotzergruppen}}:',
-'yourrealname'               => 'Richtege Numm:',
+'yourrealname'               => 'Richtegen Numm:',
 'yourlanguage'               => 'Sprooch vun der Benotzeruewerfläch:',
 'yourvariant'                => 'Sproochvariant:',
 'yournick'                   => 'Ënnerschrëft:',
@@ -885,7 +885,7 @@ Passt op, datt d'Versiounsgeschicht der Säit historesch korrekt ass.
 'mergehistory-invalid-destination' => 'Zilsäit muss e gültege Säitennumm sinn.',
 'mergehistory-autocomment'         => '[[:$1]] zesummegeluecht an [[:$2]]',
 'mergehistory-comment'             => '[[:$1]] zesummegeluecht an [[:$2]]: $3',
-'mergehistory-same-destination'    => 'Ausgangs- und Zilsäit däerfen net déi selwescht sinn',
+'mergehistory-same-destination'    => 'Ausgangs- an Zilsäit däerfen net déi selwescht sinn',
 
 # Merge log
 'mergelog'           => 'Fusiouns-Logbuch',
@@ -956,7 +956,7 @@ Passt op, datt d'Versiounsgeschicht der Säit historesch korrekt ass.
 'searchresults'                    => 'Resultat vun der Sich',
 'searchresults-title'              => 'Resultater vun der Sich no "$1"',
 'searchresulttext'                 => "Fir méi Informatiounen iwwert d'Sichfunktiounen op {{SITENAME}}, kuckt w.e.g op [[{{MediaWiki:Helppage}}|{{int:help}}]].",
-'searchsubtitle'                   => 'Dir hutt no "[[:$1]]" gesicht ([[Special:Prefixindex/$1|all Säiten déi mat "$1" ufänken]] | [[Special:WhatLinksHere/$1|all Sàiten déi op "$1" linken]])',
+'searchsubtitle'                   => 'Dir hutt no "[[:$1]]" gesicht ([[Special:Prefixindex/$1|all Säiten déi mat "$1" ufänken]] | [[Special:WhatLinksHere/$1|all Säiten déi op "$1" linken]])',
 'searchsubtitleinvalid'            => 'Dir hutt no "$1" gesicht.',
 'noexactmatch'                     => "'''Et gëtt keng Säite mam Titel \"\$1\".'''
 
@@ -1447,7 +1447,7 @@ Dir musst ëmmer de Medien- a Subtyp aginn: z. Bsp. <tt>image/jpeg</tt>.",
 
 # Unused templates
 'unusedtemplates'     => 'Onbenotzte Schablounen',
-'unusedtemplatestext' => 'Op dëser Säit stinn all Sàiten aus dem {{ns:template}} Nummraum, déi a kenger anerer Säit benotzt ginn. Vergiesst net nozekucken, ob et keng aner Linken op dës Schabloune gëtt, ier Dir eng Schabloun läscht.',
+'unusedtemplatestext' => 'Op dëser Säit stinn all Säiten aus dem {{ns:template}} Nummraum, déi a kenger anerer Säit benotzt ginn. Vergiesst net nozekucken, ob et keng aner Linken op dës Schabloune gëtt, ier Dir eng Schabloun läscht.',
 'unusedtemplateswlh'  => 'Aner Linken',
 
 # Random page
@@ -1778,8 +1778,8 @@ Déi lescht Ännerung vun der Säit ass vum [[User:$3|$3]] ([[User talk:$3|Disku
 'revertpage'       => 'Ännerunge vum [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussioun]]) zréckgesat op déi lescht Versioun vum [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => "D'Ännerunge vum $1 goufen zréckgesat op déi lescht Versioun vum $2.",
 'sessionfailure'   => 'Et schéngt e Problem mat ärer Loginséance ze ginn;
-Dës Aktioun gouf aus Sécherheetsgrënn afgebrach, fir ze verhënneren datt är Séance eine piratéiert ka ginn.
-KLickt w.e.g. op "Zréck" a lued déi Sàit vun däer Dir komm sidd nei, a versicht et dann nach eng Kéier.',
+Dës Aktioun gouf aus Sécherheetsgrënn afgebrach, fir ze verhënneren datt är Séance piratéiert ka ginn.
+KLickt w.e.g. op "Zréck" a lued déi Säit vun däer Dir komm sidd nei, a versicht et dann nach eng Kéier.',
 
 # Protect
 'protectlogpage'              => 'Protectiouns-Logbuch',
@@ -1847,7 +1847,7 @@ Hei sinn déi aktuell Astellunge fir d'Säit <strong>$1</strong>:",
 'undeletepage'                 => 'Geläschte Säite kucken a restauréieren',
 'undeletepagetitle'            => "'''Op dëser Lëscht sti geläschte Versioune vun [[:$1]]'''.",
 'viewdeletedpage'              => 'Geläschte Säite weisen',
-'undeletepagetext'             => "Dës Säite goufe geläscht mee sinn nach ëmmer am Archiv a kënne vun Administrateure restauréiert ginn. D'Archiv gëtt periodesch eidel gemaach.",
+'undeletepagetext'             => "Dës {{PLURAL:$1|Säit gouf |Säite goufe}} geläscht mee sinn nach ëmmer am Archiv a kënne vun Administrateure restauréiert ginn. D'Archiv gëtt periodesch eidel gemaach.",
 'undelete-fieldset-title'      => 'Versioune restauréieren',
 'undeleteextrahelp'            => "Fir d'Säit komplett mat alle Versiounen ze retabléieren, markéiert keng vun den eenzelne Casë mat engem Krop a klickt op '''''Restauréieren'''''. 
 Fir nëmmen eng bestëmmte Versioun vun der Säit ze restauréieren, markéiert d'Case vun der gewënschter Versioun mat engem Krop, a klickt duerno op '''''Restauréieren'''''. 

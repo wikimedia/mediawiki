@@ -1161,6 +1161,7 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 'saveprefs'                 => 'Enregistrer les préférences',
 'resetprefs'                => 'Rétablir les préférences',
 'textboxsize'               => 'Fenêtre de modification',
+'prefs-edit-boxsize'        => 'Taille de la fenêtre de modification.',
 'rows'                      => 'Rangées :',
 'columns'                   => 'Colonnes :',
 'searchresultshead'         => 'Recherche',
@@ -1689,9 +1690,10 @@ Une page est traitée comme une page d’homonymie si elle utilise un modèle qu
 # Book sources
 'booksources'               => 'Ouvrages de référence',
 'booksources-search-legend' => 'Rechercher parmi des ouvrages de référence',
+'booksources-isbn'          => 'ISBN :',
 'booksources-go'            => 'Valider',
 'booksources-text'          => 'Voici une liste de liens vers des sites vendant des livres neufs et d’occasion et sur lesquels vous trouverez peut-être des informations sur les ouvrages que vous cherchez. Ces liens ne sont fournis que dans le but de faciliter les recherches aux utilisateurs, {{SITENAME}} n’étant liée à aucune de ces sociétés.',
-'booksources-invalid-isbn'  => 'Le numéro ISBN donné ne semble pas être valide ; vérifiez si vous avez fait une erreur lors de la copie depuis la source.',
+'booksources-invalid-isbn'  => "L'ISBN donné ne semble pas être valide ; vérifiez si vous avez fait une erreur lors de la copie depuis la source.",
 
 # Special:Log
 'specialloguserlabel'  => 'Utilisateur :',
@@ -1947,7 +1949,7 @@ Voici les réglages actuels de la page <strong>$1</strong> :',
 ** Guerre d'édition
 ** Page à fort trafic",
 'protect-edit-reasonlist'     => 'Modifier les raisons de protection',
-'protect-expiry-options'      => '2 heures:2 hours,1 jour:1 day,3 jours:3 days,1 semaine:1 week,2 semaines:2 weeks,1 mois:1 month,3 mois:3 months,6 mois:6 months,1 an:1 year,indéfiniment:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 heure:1 hour,1 jour:1 day,1 semaine:1 week,2 semaines:2 weeks,1 mois:1 month,3 mois:3 months,6 mois:6 months,1 an:1 year,indéfiniment:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Permission :',
 'restriction-level'           => 'Niveau de restriction :',
 'minimum-size'                => 'Taille minimum',
@@ -1970,7 +1972,7 @@ Voici les réglages actuels de la page <strong>$1</strong> :',
 'undeletepage'                 => 'Voir et restaurer une page supprimée',
 'undeletepagetitle'            => "'''La liste suivante contient des versions supprimées de [[:$1]]'''.",
 'viewdeletedpage'              => 'Historique de la page supprimée',
-'undeletepagetext'             => 'Ces pages ont été supprimées et se trouvent dans l’archive. Elles figurent toujours dans la base de données et peuvent être restaurées.
+'undeletepagetext'             => '{{PLURAL:$1|Cette page a a été supprimée et se trouve|Ces pages ont été supprimées et se trouvent}} dans l’archive. {{PLURAL:$1|Elle figure|Elles figurent}} toujours dans la base de données et {{PLURAL:$1|peut être restaurée|peuvent être restaurées}}.
 L’archive peut être effacée périodiquement.',
 'undelete-fieldset-title'      => 'Restaurer les versions',
 'undeleteextrahelp'            => "Pour restaurer l’historique complet de cette page, laissez vierges toutes les cases à cocher et cliquez '''''Restaurer'''''.
@@ -2125,6 +2127,7 @@ Vous pouvez consulter la [[Special:IPBlockList|liste des comptes et des adresses
 'ipblocklist-no-results'          => 'L’adresse IP ou l’utilisateur n’a pas été bloqué.',
 'blocklink'                       => 'Bloquer',
 'unblocklink'                     => 'débloquer',
+'change-blocklink'                => 'modifier le blocage',
 'contribslink'                    => 'Contributions',
 'autoblocker'                     => 'Vous avez été bloqué automatiquement parce que votre adresse IP a été récemment utilisée par « $1 ». La raison fournie pour le blocage de $1 est : « $2 ».',
 'blocklogpage'                    => 'Historique des blocages',
@@ -2180,9 +2183,9 @@ N’oubliez pas de la déverrouiller lorsque vous aurez terminé votre opératio
 'databasenotlocked'   => 'La base de données n’est pas verrouillée.',
 
 # Move page
-'move-page'                 => 'Renommer $1',
-'move-page-legend'          => 'Renommer une page',
-'movepagetext'              => "Utilisez le formulaire ci-dessous pour renommer une page, en déplaçant tout son historique vers le nouveau nom.
+'move-page'                    => 'Renommer $1',
+'move-page-legend'             => 'Renommer une page',
+'movepagetext'                 => "Utilisez le formulaire ci-dessous pour renommer une page, en déplaçant tout son historique vers le nouveau nom.
 L’ancien titre deviendra une page de redirection vers le nouveau titre.
 Les liens vers le titre de l’ancienne page ne seront pas changés ;
 veuillez vérifier que ce déplacement n’a pas créé de [[Special:DoubleRedirects|double redirection]] ou de [[Special:BrokenRedirects|redirection cassée]].
@@ -2194,56 +2197,57 @@ Ce qui veut dire que vous pouvez renommer une page vers sa position d’origine 
 '''ATTENTION !'''
 Ceci peut provoquer un changement radical et imprévu pour une page souvent consultée.
 Assurez-vous d’en avoir compris les conséquences avant de continuer.",
-'movepagetalktext'          => 'La page de discussion associée, si présente, sera automatiquement renommée <b>sauf si :</b>
+'movepagetalktext'             => 'La page de discussion associée, si présente, sera automatiquement renommée <b>sauf si :</b>
 *Vous renommez une page vers un autre espace,
 *Une page de discussion existe déjà avec le nouveau nom, ou
 *Vous avez désélectionné le bouton ci-dessous.
 
 Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le désirez.',
-'movearticle'               => 'Renommer la page :',
-'movenologin'               => 'Non connecté',
-'movenologintext'           => 'Pour pouvoir renommer une page, vous devez être [[Special:UserLogin|connecté]] en tant qu’utilisateur enregistré et votre compte doit avoir une ancienneté suffisante.',
-'movenotallowed'            => 'Vous n’avez pas la permission de renommer les pages.',
-'cant-move-user-page'       => 'Vous n’avez pas la permission de renommer des pages utilisateurs racines sur ce wiki.',
-'cant-move-to-user-page'    => "Vous n'avez pas la permission de renommer une page vers une page utilisateur (à l'exception d'une sous-page).",
-'newtitle'                  => 'Nouveau titre',
-'move-watch'                => 'Suivre cette page',
-'movepagebtn'               => 'Renommer la page',
-'pagemovedsub'              => 'Renommage réussi',
-'movepage-moved'            => "<big>'''« $1 »''' a été déplacé vers '''« $2 »'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'             => 'Il existe déjà une page portant ce titre, ou le titre que vous avez choisi n’est pas valide. Veuillez en choisir un autre.',
-'cantmove-titleprotected'   => 'Vous ne pouvez pas déplacer une page vers cet emplacement car le nouveau titre a été protégé à la création.',
-'talkexists'                => 'La page elle-même a été déplacée avec succès, mais la page de discussion n’a pas pu être déplacée car il en existait déjà une sous le nouveau nom. Veuillez les fusionner manuellement.',
-'movedto'                   => 'renommé en',
-'movetalk'                  => 'Renommer aussi la page de discussion associée',
-'move-subpages'             => 'Renommer, le cas échéant, toutes les sous-pages',
-'move-talk-subpages'        => 'Renommer, le cas échéant, toutes les sous-pages des pages de discussion',
-'movepage-page-exists'      => 'La page $1 existe déjà et ne peut pas être écrasée automatiquement;',
-'movepage-page-moved'       => 'La page $1 a été renommée en $2.',
-'movepage-page-unmoved'     => 'La page $1 ne peut être renommée en $2.',
-'movepage-max-pages'        => 'Le maximum de $1 {{PLURAL:$1|page renommée|pages renommées}} a été atteint et aucune autre page ne pourra être renommée automatiquement.',
-'1movedto2'                 => 'a renommé [[$1]] en [[$2]]',
-'1movedto2_redir'           => 'a redirigé [[$1]] vers [[$2]]',
-'movelogpage'               => 'Historique des renommages',
-'movelogpagetext'           => 'Voici la liste des dernières pages renommées.',
-'movereason'                => 'Raison du renommage',
-'revertmove'                => 'annuler',
-'delete_and_move'           => 'Supprimer et renommer',
-'delete_and_move_text'      => '==Suppression requise==
+'movearticle'                  => 'Renommer la page :',
+'movenologin'                  => 'Non connecté',
+'movenologintext'              => 'Pour pouvoir renommer une page, vous devez être [[Special:UserLogin|connecté]] en tant qu’utilisateur enregistré et votre compte doit avoir une ancienneté suffisante.',
+'movenotallowed'               => 'Vous n’avez pas la permission de renommer les pages.',
+'cant-move-user-page'          => 'Vous n’avez pas la permission de renommer des pages utilisateurs racines sur ce wiki.',
+'cant-move-to-user-page'       => "Vous n'avez pas la permission de renommer une page vers une page utilisateur (à l'exception d'une sous-page).",
+'newtitle'                     => 'Nouveau titre',
+'move-watch'                   => 'Suivre cette page',
+'movepagebtn'                  => 'Renommer la page',
+'pagemovedsub'                 => 'Renommage réussi',
+'movepage-moved'               => "<big>'''« $1 »''' a été déplacé vers '''« $2 »'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'                => 'Il existe déjà une page portant ce titre, ou le titre que vous avez choisi n’est pas valide. Veuillez en choisir un autre.',
+'cantmove-titleprotected'      => 'Vous ne pouvez pas déplacer une page vers cet emplacement car le nouveau titre a été protégé à la création.',
+'talkexists'                   => 'La page elle-même a été déplacée avec succès, mais la page de discussion n’a pas pu être déplacée car il en existait déjà une sous le nouveau nom. Veuillez les fusionner manuellement.',
+'movedto'                      => 'renommé en',
+'movetalk'                     => 'Renommer aussi la page de discussion associée',
+'move-subpages'                => 'Renommer, le cas échéant, toutes les sous-pages',
+'move-talk-subpages'           => 'Renommer, le cas échéant, toutes les sous-pages des pages de discussion',
+'movepage-page-exists'         => 'La page $1 existe déjà et ne peut pas être écrasée automatiquement;',
+'movepage-page-moved'          => 'La page $1 a été renommée en $2.',
+'movepage-page-unmoved'        => 'La page $1 ne peut être renommée en $2.',
+'movepage-max-pages'           => 'Le maximum de $1 {{PLURAL:$1|page renommée|pages renommées}} a été atteint et aucune autre page ne pourra être renommée automatiquement.',
+'1movedto2'                    => 'a renommé [[$1]] en [[$2]]',
+'1movedto2_redir'              => 'a redirigé [[$1]] vers [[$2]]',
+'movelogpage'                  => 'Historique des renommages',
+'movelogpagetext'              => 'Voici la liste des dernières pages renommées.',
+'movereason'                   => 'Raison du renommage',
+'revertmove'                   => 'annuler',
+'delete_and_move'              => 'Supprimer et renommer',
+'delete_and_move_text'         => '==Suppression requise==
 
 La page de destination « [[:$1]] » existe déjà. Voulez-vous la supprimer pour permettre le renommage ?',
-'delete_and_move_confirm'   => 'Oui, j’accepte de supprimer la page de destination pour permettre le renommage.',
-'delete_and_move_reason'    => 'Page supprimée automatiquement pour permettre un renommage',
-'selfmove'                  => 'Les titres d’origine et de destination sont les mêmes : impossible de renommer une page sur elle-même.',
-'immobile-source-namespace' => "Vous ne pouvez pas renommer des pages dans l'espace de noms « $1 »",
-'immobile-target-namespace' => "Vous ne pouvez pas déplacer des pages vers l'espace de noms « $1 »",
-'immobile-source-page'      => "Cette page n'est pas renommable.",
-'immobile-target-page'      => "Il n'est pas possible de déplacer la page vers ce titre.",
-'imagenocrossnamespace'     => 'Ne peut déplacer une image vers un espace de nommage qui ne soit pas une image.',
-'imagetypemismatch'         => 'La nouvelle extension de ce fichier ne reconnaît pas ce format.',
-'imageinvalidfilename'      => 'Le nom du fichier cible est incorrect',
-'fix-double-redirects'      => 'Mettre à jour les redirections pointant vers l’ancien titre',
-'move-leave-redirect'       => 'laisser derrière un redirect',
+'delete_and_move_confirm'      => 'Oui, j’accepte de supprimer la page de destination pour permettre le renommage.',
+'delete_and_move_reason'       => 'Page supprimée automatiquement pour permettre un renommage',
+'selfmove'                     => 'Les titres d’origine et de destination sont les mêmes : impossible de renommer une page sur elle-même.',
+'immobile-source-namespace'    => "Vous ne pouvez pas renommer des pages dans l'espace de noms « $1 »",
+'immobile-target-namespace'    => "Vous ne pouvez pas déplacer des pages vers l'espace de noms « $1 »",
+'immobile-target-namespace-iw' => 'Les liens interwikis ne sont pas une cible valide pour les renommages.',
+'immobile-source-page'         => "Cette page n'est pas renommable.",
+'immobile-target-page'         => "Il n'est pas possible de déplacer la page vers ce titre.",
+'imagenocrossnamespace'        => 'Ne peut déplacer une image vers un espace de nommage qui ne soit pas une image.',
+'imagetypemismatch'            => 'La nouvelle extension de ce fichier ne reconnaît pas ce format.',
+'imageinvalidfilename'         => 'Le nom du fichier cible est incorrect',
+'fix-double-redirects'         => 'Mettre à jour les redirections pointant vers l’ancien titre',
+'move-leave-redirect'          => 'laisser derrière un redirect',
 
 # Export
 'export'            => 'Exporter des pages',

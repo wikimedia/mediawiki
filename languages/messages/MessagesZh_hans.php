@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Bencmq
  * @author O
  * @author Shinjiman
  */
@@ -1335,8 +1336,8 @@ $2',
 'shareduploadduplicate-linktext' => '另一个文件',
 'shareduploadconflict'           => '这个文件在共用文件库中的$1有同样的文件名。',
 'shareduploadconflict-linktext'  => '另一个文件',
-'noimage'                        => '不存在此名称的文件，您可以$1。',
-'noimage-linktext'               => '上传它',
+'noimage'                        => '不存在此名称的文件，但您可以$1。',
+'noimage-linktext'               => '上传一个',
 'uploadnewversion-linktext'      => '上传该文件的新版本',
 'imagepage-searchdupe'           => '搜索重覆的文件',
 
@@ -1917,7 +1918,7 @@ $1',
 'ipusubmit'                       => '解封此地址',
 'unblocked'                       => '[[User:$1|$1]]已经被解封',
 'unblocked-id'                    => '封禁 $1 已经被删除',
-'ipblocklist'                     => '被封IP地址列表',
+'ipblocklist'                     => '被封禁IP地址和用户名',
 'ipblocklist-legend'              => '检索一位已经被查封的用户',
 'ipblocklist-username'            => '用户名称或IP地址:',
 'ipblocklist-sh-userblocks'       => '$1次账户封锁',
@@ -2289,8 +2290,8 @@ $1',
 'filedelete-archive-read-only'    => '存档目录 "$1" 在网页服务器中不可写。',
 
 # Browsing diffs
-'previousdiff' => '←上一个',
-'nextdiff'     => '下一个→',
+'previousdiff' => '←上一版本',
+'nextdiff'     => '下一版本→',
 
 # Visual comparison
 'visual-comparison' => '可见比较',
@@ -2620,7 +2621,7 @@ Variants for Chinese language
 
 # External editor support
 'edit-externally'      => '用外部程序编辑此文件',
-'edit-externally-help' => '请参见[http://www.mediawiki.org/wiki/Manual:External_editors 设置步骤]了解详细信息。',
+'edit-externally-help' => '（请参见[http://www.mediawiki.org/wiki/Manual:External_editors 设置步骤]了解详细信息）',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => '全部',

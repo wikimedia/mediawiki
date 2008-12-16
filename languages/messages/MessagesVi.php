@@ -628,10 +628,10 @@ Xin hãy bỏ qua thông báo này nếu tài khoản này không phải do bạ
 'loginlanguagelabel'         => 'Ngôn ngữ: $1',
 
 # Password reset dialog
-'resetpass'                 => 'Thay đổi hoặc đặt lại mật khẩu cho tài khoản',
+'resetpass'                 => 'Đổi mật khẩu',
 'resetpass_announce'        => 'Bạn đã đăng nhập bằng mật khẩu tạm gởi qua e-mail. Để hoàn tất việc đăng nhập, bạn phải tạo lại mật khẩu mới tại đây:',
 'resetpass_text'            => '<!-- Gõ chữ vào đây -->',
-'resetpass_header'          => 'Đặt lại mật khẩu',
+'resetpass_header'          => 'Đổi mật khẩu cho tài khoản',
 'oldpassword'               => 'Mật khẩu cũ:',
 'newpassword'               => 'Mật khẩu mới:',
 'retypenew'                 => 'Gõ lại:',
@@ -1123,6 +1123,7 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'saveprefs'                 => 'Lưu tùy chọn',
 'resetprefs'                => 'Mặc định lại lựa chọn',
 'textboxsize'               => 'Sửa đổi',
+'prefs-edit-boxsize'        => 'Kích thước cửa sổ soạn thảo.',
 'rows'                      => 'Số hàng:',
 'columns'                   => 'Số cột:',
 'searchresultshead'         => 'Tìm kiếm',
@@ -1654,6 +1655,7 @@ Hãy nhớ kiểm tra các liên kết khác đến tiêu bản trước khi xó
 'booksources-search-legend' => 'Tìm kiếm nguồn sách',
 'booksources-go'            => 'Tìm kiếm',
 'booksources-text'          => 'Dưới đây là danh sách những trang bán sách mới và cũ, đồng thời có thể có thêm thông tin về những cuốn sách bạn đang tìm:',
+'booksources-invalid-isbn'  => 'ISBN mà bạn cung cấp dường như không đúng; xin hãy kiểm tra lại xem có lỗi gì khi sao chép từ nội dung gốc hay không.',
 
 # Special:Log
 'specialloguserlabel'  => 'Thành viên:',
@@ -2152,9 +2154,9 @@ Xin hãy xác nhận đây là điều bạn định làm.',
 'databasenotlocked'   => 'Cơ sở dữ liệu không bị khóa.',
 
 # Move page
-'move-page'                 => 'Di chuyển $1',
-'move-page-legend'          => 'Di chuyển trang',
-'movepagetext'              => "Dùng mẫu dưới đây để đổi tên một trang, di chuyển tất cả lịch sử của nó sang tên mới.
+'move-page'                    => 'Di chuyển $1',
+'move-page-legend'             => 'Di chuyển trang',
+'movepagetext'                 => "Dùng mẫu dưới đây để đổi tên một trang, di chuyển tất cả lịch sử của nó sang tên mới.
 Tên cũ sẽ trở thành trang đổi hướng sang tên mới.
 Bạn có thể cập nhật tự động các trang đổi hướng đến tên cũ.
 Nếu bạn chọn không cập nhật, hãy nhớ kiểm tra [[Special:DoubleRedirects|đổi hướng kép]] hoặc [[Special:BrokenRedirects|đổi hướng đến trang không tồn tại]].
@@ -2166,56 +2168,57 @@ Chú ý rằng trang sẽ '''không''' bị di chuyển nếu đã có một tra
 '''CẢNH BÁO!'''
 Việc làm này có thể dẫn đến sự thay đổi mạnh mẽ và không lường trước đối với các trang dễ nhìn thấy;
 xin hãy chắc chắn rằng bạn đã nhận thức được những hệ lụy của nó trước khi thực hiện.",
-'movepagetalktext'          => "Trang thảo luận đi kèm sẽ được tự động di chuyển theo '''trừ khi''':
+'movepagetalktext'             => "Trang thảo luận đi kèm sẽ được tự động di chuyển theo '''trừ khi''':
 *Đã tồn tại một trang thảo luận không trống tại tên mới, hoặc
 *Bạn không đánh vào ô bên dưới.
 
 Trong những trường hợp đó, bạn phải di chuyển hoặc hợp nhất trang theo kiểu thủ công nếu muốn.",
-'movearticle'               => 'Di chuyển trang:',
-'movenologin'               => 'Chưa đăng nhập',
-'movenologintext'           => 'Bạn phải là thành viên đã đăng ký và [[Special:UserLogin|đăng nhập]] mới di chuyển trang được.',
-'movenotallowed'            => 'Bạn không có quyền di chuyển trang.',
-'cant-move-user-page'       => 'Bạn không có quyền di chuyển trang cá nhân (ngoại trừ trang con).',
-'cant-move-to-user-page'    => 'Bạn không có quyền di chuyển một trang đến trang cá nhân (ngoại trừ đến trang con của trang cá nhân).',
-'newtitle'                  => 'Tên mới',
-'move-watch'                => 'Theo dõi trang này',
-'movepagebtn'               => 'Di chuyển trang',
-'pagemovedsub'              => 'Di chuyển thành công',
-'movepage-moved'            => "<big>'''“$1” đã được di chuyển đến “$2”'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'             => 'Đã có một trang với tên đó, hoặc tên bạn chọn không hợp lệ.
+'movearticle'                  => 'Di chuyển trang:',
+'movenologin'                  => 'Chưa đăng nhập',
+'movenologintext'              => 'Bạn phải là thành viên đã đăng ký và [[Special:UserLogin|đăng nhập]] mới di chuyển trang được.',
+'movenotallowed'               => 'Bạn không có quyền di chuyển trang.',
+'cant-move-user-page'          => 'Bạn không có quyền di chuyển trang cá nhân (ngoại trừ trang con).',
+'cant-move-to-user-page'       => 'Bạn không có quyền di chuyển một trang đến trang cá nhân (ngoại trừ đến trang con của trang cá nhân).',
+'newtitle'                     => 'Tên mới',
+'move-watch'                   => 'Theo dõi trang này',
+'movepagebtn'                  => 'Di chuyển trang',
+'pagemovedsub'                 => 'Di chuyển thành công',
+'movepage-moved'               => "<big>'''“$1” đã được di chuyển đến “$2”'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'                => 'Đã có một trang với tên đó, hoặc tên bạn chọn không hợp lệ.
 Xin hãy chọn tên khác.',
-'cantmove-titleprotected'   => 'Bạn không thể đổi tên trang, vì tên trang mới đã bị khóa không cho tạo mới',
-'talkexists'                => "'''Trang được di chuyển thành công, nhưng trang thảo luận không thể di chuyển được vì đã tồn tại một trang thảo luận ở tên mới. Xin hãy hợp nhất chúng lại một cách thủ công.'''",
-'movedto'                   => 'đổi thành',
-'movetalk'                  => 'Di chuyển trang thảo luận đi kèm',
-'move-subpages'             => 'Di chuyển tất cả các trang con, nếu được',
-'move-talk-subpages'        => 'Di chuyển tất cả các trang con của trang thảo luận, nếu được',
-'movepage-page-exists'      => 'Trang $1 đã tồn tại và không thể bị tự động ghi đè.',
-'movepage-page-moved'       => 'Trang $1 đã được di chuyển đến $2.',
-'movepage-page-unmoved'     => 'Trang $1 không thể di chuyển đến $2.',
-'movepage-max-pages'        => 'Đã có tối đa $1 {{PLURAL:$1|trang|trang}} đã di chuyển và không tự động di chuyển thêm được nữa.',
-'1movedto2'                 => '[[$1]] đổi thành [[$2]]',
-'1movedto2_redir'           => '[[$1]] đổi thành [[$2]] qua đổi hướng',
-'movelogpage'               => 'Nhật trình di chuyển',
-'movelogpagetext'           => 'Dưới đây là danh sách các trang đã được di chuyển.',
-'movereason'                => 'Lý do:',
-'revertmove'                => 'lùi lại',
-'delete_and_move'           => 'Xóa và đổi tên',
-'delete_and_move_text'      => '==Cần xóa==
+'cantmove-titleprotected'      => 'Bạn không thể đổi tên trang, vì tên trang mới đã bị khóa không cho tạo mới',
+'talkexists'                   => "'''Trang được di chuyển thành công, nhưng trang thảo luận không thể di chuyển được vì đã tồn tại một trang thảo luận ở tên mới. Xin hãy hợp nhất chúng lại một cách thủ công.'''",
+'movedto'                      => 'đổi thành',
+'movetalk'                     => 'Di chuyển trang thảo luận đi kèm',
+'move-subpages'                => 'Di chuyển tất cả các trang con, nếu được',
+'move-talk-subpages'           => 'Di chuyển tất cả các trang con của trang thảo luận, nếu được',
+'movepage-page-exists'         => 'Trang $1 đã tồn tại và không thể bị tự động ghi đè.',
+'movepage-page-moved'          => 'Trang $1 đã được di chuyển đến $2.',
+'movepage-page-unmoved'        => 'Trang $1 không thể di chuyển đến $2.',
+'movepage-max-pages'           => 'Đã có tối đa $1 {{PLURAL:$1|trang|trang}} đã di chuyển và không tự động di chuyển thêm được nữa.',
+'1movedto2'                    => '[[$1]] đổi thành [[$2]]',
+'1movedto2_redir'              => '[[$1]] đổi thành [[$2]] qua đổi hướng',
+'movelogpage'                  => 'Nhật trình di chuyển',
+'movelogpagetext'              => 'Dưới đây là danh sách các trang đã được di chuyển.',
+'movereason'                   => 'Lý do:',
+'revertmove'                   => 'lùi lại',
+'delete_and_move'              => 'Xóa và đổi tên',
+'delete_and_move_text'         => '==Cần xóa==
 
 Trang với tên “[[:$1]]” đã tồn tại. Bạn có muốn xóa nó để dọn chỗ di chuyển tới tên này không?',
-'delete_and_move_confirm'   => 'Xóa trang để đổi tên',
-'delete_and_move_reason'    => 'Xóa để có chỗ đổi tên',
-'selfmove'                  => 'Tên mới giống tên cũ; không đổi tên một trang thành chính nó.',
-'immobile-source-namespace' => 'Không thể di chuyển các trang trong không gian tên    	 	 	 	“$1”',
-'immobile-target-namespace' => 'Không thể di chuyển trang vào không gian tên    	 	 	 	“$1”',
-'immobile-source-page'      => 'Bạn không thể di chuyển trang này.',
-'immobile-target-page'      => 'Không thể di chuyển đến tựa đề đích.',
-'imagenocrossnamespace'     => 'Không được di chuyển tập tin ra khỏi không gian tên Tập tin',
-'imagetypemismatch'         => 'Phần mở rộng trong tên tập tin mới không hợp dạng của tập tin',
-'imageinvalidfilename'      => 'Tên tập tin đích không hợp lệ',
-'fix-double-redirects'      => 'Cập nhật tất cả các trang đổi hướng chỉ đến tựa đề cũ',
-'move-leave-redirect'       => 'Để lại trang đổi hướng',
+'delete_and_move_confirm'      => 'Xóa trang để đổi tên',
+'delete_and_move_reason'       => 'Xóa để có chỗ đổi tên',
+'selfmove'                     => 'Tên mới giống tên cũ; không đổi tên một trang thành chính nó.',
+'immobile-source-namespace'    => 'Không thể di chuyển các trang trong không gian tên    	 	 	 	“$1”',
+'immobile-target-namespace'    => 'Không thể di chuyển trang vào không gian tên    	 	 	 	“$1”',
+'immobile-target-namespace-iw' => 'Không cho phép di chuyển trang đến một liên kết liên wiki.',
+'immobile-source-page'         => 'Bạn không thể di chuyển trang này.',
+'immobile-target-page'         => 'Không thể di chuyển đến tựa đề đích.',
+'imagenocrossnamespace'        => 'Không được di chuyển tập tin ra khỏi không gian tên Tập tin',
+'imagetypemismatch'            => 'Phần mở rộng trong tên tập tin mới không hợp dạng của tập tin',
+'imageinvalidfilename'         => 'Tên tập tin đích không hợp lệ',
+'fix-double-redirects'         => 'Cập nhật tất cả các trang đổi hướng chỉ đến tựa đề cũ',
+'move-leave-redirect'          => 'Để lại trang đổi hướng',
 
 # Export
 'export'            => 'Xuất các trang',

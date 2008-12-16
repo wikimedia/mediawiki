@@ -1924,7 +1924,7 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 'exif-exifversion'               => 'Exif sürümü',
 'exif-flashpixversion'           => 'Desteklenen Flashpix sürümü',
 'exif-colorspace'                => 'Renk aralığı',
-'exif-componentsconfiguration'   => 'Her bir bileşenin anlamı',
+'exif-componentsconfiguration'   => 'Her bileşenin anlamı',
 'exif-compressedbitsperpixel'    => 'Resim sıkıştırma biçimi',
 'exif-pixelydimension'           => 'Geçerli resim genişliği',
 'exif-makernote'                 => 'Yapımcı notları',
@@ -1956,7 +1956,7 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 'exif-sensingmethod'             => 'Algılama metodu',
 'exif-filesource'                => 'Dosya kaynağı',
 'exif-scenetype'                 => 'Çekim tipi',
-'exif-cfapattern'                => 'CFA modeli',
+'exif-cfapattern'                => 'CFA deseni',
 'exif-customrendered'            => 'Özel resim işlemi',
 'exif-exposuremode'              => 'Pozlama',
 'exif-whitebalance'              => 'Beyaz denge',
@@ -1996,7 +1996,7 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 'exif-componentsconfiguration-0' => 'Var olmayan',
 
 'exif-exposureprogram-0' => 'Tanımlanmadı',
-'exif-exposureprogram-1' => 'Elle',
+'exif-exposureprogram-1' => 'Manuel (Elle)',
 'exif-exposureprogram-3' => 'Açıklık önceliği',
 'exif-exposureprogram-4' => 'Denklanşör önceliği',
 'exif-exposureprogram-5' => 'Kullanıcı programı',
@@ -2030,11 +2030,13 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 'exif-lightsource-255' => 'Diğer ışık kaynakları',
 
 # Flash modes
-'exif-flash-fired-0'  => 'Flaş patlamadı',
-'exif-flash-fired-1'  => 'Flaş patladı',
-'exif-flash-mode-2'   => 'Zorunlu flaş modu',
-'exif-flash-mode-3'   => 'Otomatik kip',
-'exif-flash-redeye-1' => 'Kırmızı göz azaltma kipi',
+'exif-flash-fired-0'    => 'Flaş patlamadı',
+'exif-flash-fired-1'    => 'Flaş patladı',
+'exif-flash-mode-1'     => 'Zorunlu flaş açık',
+'exif-flash-mode-2'     => 'Zorunlu flaş kapalı',
+'exif-flash-mode-3'     => 'Otomatik kip',
+'exif-flash-function-1' => 'Flaş kapalı',
+'exif-flash-redeye-1'   => 'Kırmızı göz azaltma kipi',
 
 'exif-focalplaneresolutionunit-2' => 'inç',
 

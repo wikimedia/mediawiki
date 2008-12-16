@@ -1293,6 +1293,7 @@ Ga na of latex, dvips en gs correct geïnstalleerd zijn en zet om',
 'saveprefs'                 => 'Opslaan',
 'resetprefs'                => 'Niet opgeslagen wijzigingen herstellen',
 'textboxsize'               => 'Bewerken',
+'prefs-edit-boxsize'        => 'Afmetingen van het bewerkingsvenster.',
 'rows'                      => 'Regels:',
 'columns'                   => 'Kolommen:',
 'searchresultshead'         => 'Zoekresultaten',
@@ -1854,7 +1855,7 @@ Een bestand kan hier dus ten onrechte opgenomen zijn.',
 'booksources-search-legend' => 'Bronnen en informatie over een boek zoeken',
 'booksources-go'            => 'Zoeken',
 'booksources-text'          => 'Hieronder staat een lijst met koppelingen naar andere websites die nieuwe of gebruikte boeken verkopen, en die wellicht meer informatie over het boek dat u zoekt hebben:',
-'booksources-invalid-isbn'  => 'Het ingegeven ISBN-nummer lijkt niet geldig te zijn.
+'booksources-invalid-isbn'  => 'Het ingegeven ISBN lijkt niet geldig te zijn.
 Controleer of u wellicht een fout hebt gemaakt bij de invoer.',
 
 # Special:Log
@@ -2145,7 +2146,7 @@ Het beveiligingsniveau wijzigen heeft geen enkel effect.",
 'undeletepage'                 => "Verwijderde pagina's bekijken en terugplaatsen",
 'undeletepagetitle'            => "'''Hieronder staan de verwijderde bewerkingen van [[:$1]]'''.",
 'viewdeletedpage'              => "Verwijderde pagina's bekijken",
-'undeletepagetext'             => "Hieronder staan pagina's die zijn verwijderd en vanuit het archief teruggeplaatst kunnen worden.",
+'undeletepagetext'             => "Hieronder {{PLURAL:$1|staat de pagina die verwijderd is|staan pagina's die zijn verwijderd}} en vanuit het archief teruggeplaatst {{PLURAL:$1|kan|kunnen}} worden.",
 'undelete-fieldset-title'      => 'Versies terugplaatsen',
 'undeleteextrahelp'            => "Om de hele pagina inclusief alle eerdere versies terug te plaatsen: laat alle hokjes onafgevinkt en klik op '''''Terugplaatsen'''''.
 Om slechts bepaalde versies terug te zetten: vink de terug te plaatsen versies aan en klik op '''''Terugplaatsen'''''.
@@ -2301,6 +2302,7 @@ Zie de [[Special:IPBlockList|Lijst van geblokkeerde IP-adressen]] voor recente b
 'ipblocklist-no-results'          => 'Dit IP-adres of deze gebruikersnaam is niet geblokkeerd.',
 'blocklink'                       => 'blokkeren',
 'unblocklink'                     => 'deblokkeren',
+'change-blocklink'                => 'blokkade wijzigen',
 'contribslink'                    => 'bijdragen',
 'autoblocker'                     => "Automatisch geblokkeerd omdat het IP-adres overeenkomt met dat van [[User:\$1|\$1]], die geblokkeerd is om de volgende reden: \"'''\$2'''\"",
 'blocklogpage'                    => 'Blokkeerlogboek',
@@ -2364,9 +2366,9 @@ Om de database te kunnen blokkeren of vrij te geven, dient de webserver schrijfr
 'databasenotlocked'   => 'De database is niet geblokkeerd.',
 
 # Move page
-'move-page'                 => '"$1" hernoemen',
-'move-page-legend'          => 'Pagina hernoemen',
-'movepagetext'              => "Door middel van het onderstaande formulier kunt u een pagina hernoemen.
+'move-page'                    => '"$1" hernoemen',
+'move-page-legend'             => 'Pagina hernoemen',
+'movepagetext'                 => "Door middel van het onderstaande formulier kunt u een pagina hernoemen.
 De geschiedenis gaat mee naar de nieuwe pagina.
 * De oude naam wordt automatisch een doorverwijzing naar de nieuwe pagina.
 * Verwijzingen naar de oude pagina worden niet aangepast.
@@ -2378,56 +2380,57 @@ Een pagina kan '''alleen''' hernoemd worden als de nieuwe paginanaam niet bestaa
 '''WAARSCHUWING!'''
 Voor veel bekeken pagina's kan het hernoemen drastische en onvoorziene gevolgen hebben.
 Zorg ervoor dat u die gevolgen overziet voordat u deze handeling uitvoert.",
-'movepagetalktext'          => "De bijbehorende overlegpagina krijgt automatisch een andere naam, '''tenzij''':
+'movepagetalktext'             => "De bijbehorende overlegpagina krijgt automatisch een andere naam, '''tenzij''':
 * De overlegpagina onder de nieuwe naam al bestaat;
 * U het onderstaande vinkje deselecteert.",
-'movearticle'               => 'Te hernoemen pagina:',
-'movenologin'               => 'Niet aangemeld',
-'movenologintext'           => 'U moet [[Special:UserLogin|aangemeld]] zijn om een pagina te hernoemen.',
-'movenotallowed'            => "U hebt geen rechten om pagina's te hernoemen.",
-'cant-move-user-page'       => "U hebt geen rechten om gebruikerspagina's te hernoemen.",
-'cant-move-to-user-page'    => 'U hebt geen rechten om een pagina naar een gebruikerspagina te hernoemen. Hernoemen naar een subpagina is wel mogelijk.',
-'newtitle'                  => 'Naar de nieuwe paginanaam:',
-'move-watch'                => 'Deze pagina volgen',
-'movepagebtn'               => 'Pagina hernoemen',
-'pagemovedsub'              => 'Hernoemen pagina geslaagd',
-'movepage-moved'            => '<big>\'\'\'"$1" is hernoemd naar "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'             => 'De pagina bestaat al of de paginanaam is ongeldig.
+'movearticle'                  => 'Te hernoemen pagina:',
+'movenologin'                  => 'Niet aangemeld',
+'movenologintext'              => 'U moet [[Special:UserLogin|aangemeld]] zijn om een pagina te hernoemen.',
+'movenotallowed'               => "U hebt geen rechten om pagina's te hernoemen.",
+'cant-move-user-page'          => "U hebt geen rechten om gebruikerspagina's te hernoemen.",
+'cant-move-to-user-page'       => 'U hebt geen rechten om een pagina naar een gebruikerspagina te hernoemen. Hernoemen naar een subpagina is wel mogelijk.',
+'newtitle'                     => 'Naar de nieuwe paginanaam:',
+'move-watch'                   => 'Deze pagina volgen',
+'movepagebtn'                  => 'Pagina hernoemen',
+'pagemovedsub'                 => 'Hernoemen pagina geslaagd',
+'movepage-moved'               => '<big>\'\'\'"$1" is hernoemd naar "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'                => 'De pagina bestaat al of de paginanaam is ongeldig.
 Kies een andere paginanaam.',
-'cantmove-titleprotected'   => 'U kunt geen pagina naar deze titel hernoemen, omdat de nieuwe titel beveiligd is tegen het aanmaken ervan.',
-'talkexists'                => "'''De pagina is hernoemd, maar de overlegpagina kon niet hernoemd worden omdat er al een pagina met de nieuwe naam bestaat.
+'cantmove-titleprotected'      => 'U kunt geen pagina naar deze titel hernoemen, omdat de nieuwe titel beveiligd is tegen het aanmaken ervan.',
+'talkexists'                   => "'''De pagina is hernoemd, maar de overlegpagina kon niet hernoemd worden omdat er al een pagina met de nieuwe naam bestaat.
 Combineer de overlegpagina's handmatig.'''",
-'movedto'                   => 'hernoemd naar',
-'movetalk'                  => 'Bijbehorende overlegpagina hernoemen',
-'move-subpages'             => "Alle subpagina's hernoemen",
-'move-talk-subpages'        => "Alle subpagina's van overlegpagina's hernoemen",
-'movepage-page-exists'      => 'De pagina $1 bestaat al en kan niet automatisch verwijderd worden.',
-'movepage-page-moved'       => 'De pagina $1 is hernoemd naar $2.',
-'movepage-page-unmoved'     => 'De pagina $1 kon niet hernoemd worden naar $2.',
-'movepage-max-pages'        => "Het maximale aantal automatisch te hernoemen pagina's is bereikt ({{PLURAL:$1|$1|$1}}).
+'movedto'                      => 'hernoemd naar',
+'movetalk'                     => 'Bijbehorende overlegpagina hernoemen',
+'move-subpages'                => "Alle subpagina's hernoemen",
+'move-talk-subpages'           => "Alle subpagina's van overlegpagina's hernoemen",
+'movepage-page-exists'         => 'De pagina $1 bestaat al en kan niet automatisch verwijderd worden.',
+'movepage-page-moved'          => 'De pagina $1 is hernoemd naar $2.',
+'movepage-page-unmoved'        => 'De pagina $1 kon niet hernoemd worden naar $2.',
+'movepage-max-pages'           => "Het maximale aantal automatisch te hernoemen pagina's is bereikt ({{PLURAL:$1|$1|$1}}).
 De overige pagina's worden niet automatisch hernoemd.",
-'1movedto2'                 => '[[$1]] hernoemd naar [[$2]]',
-'1movedto2_redir'           => '[[$1]] hernoemd over de doorverwijzing [[$2]]',
-'movelogpage'               => 'Hernoemingslogboek',
-'movelogpagetext'           => "Hieronder staan hernoemde pagina's.",
-'movereason'                => 'Reden:',
-'revertmove'                => 'terugdraaien',
-'delete_and_move'           => 'Verwijderen en hernoemen',
-'delete_and_move_text'      => '==Verwijdering nodig==
+'1movedto2'                    => '[[$1]] hernoemd naar [[$2]]',
+'1movedto2_redir'              => '[[$1]] hernoemd over de doorverwijzing [[$2]]',
+'movelogpage'                  => 'Hernoemingslogboek',
+'movelogpagetext'              => "Hieronder staan hernoemde pagina's.",
+'movereason'                   => 'Reden:',
+'revertmove'                   => 'terugdraaien',
+'delete_and_move'              => 'Verwijderen en hernoemen',
+'delete_and_move_text'         => '==Verwijdering nodig==
 Onder de naam "[[:$1]]" bestaat al een pagina.
 Wilt u deze verwijderen om plaats te maken voor de te hernoemen pagina?',
-'delete_and_move_confirm'   => 'Ja, de pagina verwijderen',
-'delete_and_move_reason'    => 'Verwijderd in verband met hernoeming',
-'selfmove'                  => 'U kunt een pagina niet hernoemen naar dezelfde paginanaam.',
-'immobile-source-namespace' => 'Pagina\'s in de naamruimte "$1" kunnen niet hernoemd worden',
-'immobile-target-namespace' => 'Pagina\'s kunnen niet hernoemd worden naar de naamruimte "$1"',
-'immobile-source-page'      => 'Deze pagina kan niet hernoemd worden.',
-'immobile-target-page'      => 'Het is niet mogelijk te hernoemen naar die paginanaam.',
-'imagenocrossnamespace'     => 'Een mediabestand kan niet naar een andere naamruimte verplaatst worden',
-'imagetypemismatch'         => 'De nieuwe bestandsextensie is niet gelijk aan het bestandstype',
-'imageinvalidfilename'      => 'De nieuwe bestandsnaam is ongeldig',
-'fix-double-redirects'      => 'Alle doorverwijzingen bijwerken die verwijzen naar de originele paginanaam',
-'move-leave-redirect'       => 'Een doorverwijzing achterlaten',
+'delete_and_move_confirm'      => 'Ja, de pagina verwijderen',
+'delete_and_move_reason'       => 'Verwijderd in verband met hernoeming',
+'selfmove'                     => 'U kunt een pagina niet hernoemen naar dezelfde paginanaam.',
+'immobile-source-namespace'    => 'Pagina\'s in de naamruimte "$1" kunnen niet hernoemd worden',
+'immobile-target-namespace'    => 'Pagina\'s kunnen niet hernoemd worden naar de naamruimte "$1"',
+'immobile-target-namespace-iw' => 'Een interwikiverwijzing is geen geldige bestemming voor het hernoemen van een pagina.',
+'immobile-source-page'         => 'Deze pagina kan niet hernoemd worden.',
+'immobile-target-page'         => 'Het is niet mogelijk te hernoemen naar die paginanaam.',
+'imagenocrossnamespace'        => 'Een mediabestand kan niet naar een andere naamruimte verplaatst worden',
+'imagetypemismatch'            => 'De nieuwe bestandsextensie is niet gelijk aan het bestandstype',
+'imageinvalidfilename'         => 'De nieuwe bestandsnaam is ongeldig',
+'fix-double-redirects'         => 'Alle doorverwijzingen bijwerken die verwijzen naar de originele paginanaam',
+'move-leave-redirect'          => 'Een doorverwijzing achterlaten',
 
 # Export
 'export'            => 'Exporteren',
