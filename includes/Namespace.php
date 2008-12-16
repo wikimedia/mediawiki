@@ -105,11 +105,15 @@ class MWNamespace {
 	 * Returns the canonical (English Wikipedia) name for a given index
 	 *
 	 * @param $index Int: namespace index
-	 * @return string
+	 * @return string or false if no canonical definition.
 	 */
 	public static function getCanonicalName( $index ) {
 		global $wgCanonicalNamespaceNames;
-		return $wgCanonicalNamespaceNames[$index];
+		if( isset( $wgCanonicalNamespaceNames[$index] ) ) {
+			return $wgCanonicalNamespaceNames[$index];
+		} else {
+			return false;
+		}
 	}
 
 	/**
