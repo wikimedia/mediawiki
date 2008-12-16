@@ -434,7 +434,7 @@ class IPUnblockForm {
 			# Create changeblocklink for all blocks with exception of autoblocks
 			if( !$block->mAuto ) {
 				$changeblocklink = ' ' . wfMsg( 'pipe-separator' ) . ' ' .
-					$sk->link( SpecialPage::getTitleFor( 'BlockIP/' . htmlspecialchars( $block->mAddress ) ), 
+					$sk->link( SpecialPage::getTitleFor( 'Blockip', htmlspecialchars( $block->mAddress ) ), 
 						$msg['change-blocklink'],
 						array(), array(), 'known' );
 			}
