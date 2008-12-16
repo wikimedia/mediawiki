@@ -679,17 +679,16 @@ class UndeleteForm {
 			Xml::openElement( 'form', array(
 				'method' => 'get',
 				'action' => $wgScript ) ) .
-			'<fieldset>' .
-			Xml::element( 'legend', array(),
-				wfMsg( 'undelete-search-box' ) ) .
+			Xml::fieldset( wfMsg( 'undelete-search-box' ) ) .
 			Xml::hidden( 'title',
 				SpecialPage::getTitleFor( 'Undelete' )->getPrefixedDbKey() ) .
 			Xml::inputLabel( wfMsg( 'undelete-search-prefix' ),
 				'prefix', 'prefix', 20,
-				$this->mSearchPrefix ) .
+				$this->mSearchPrefix ) . ' ' .
 			Xml::submitButton( wfMsg( 'undelete-search-submit' ) ) .
-			'</fieldset>' .
-			'</form>' );
+			Xml::closeElement( 'fieldset' ) .
+			Xml::closeElement( 'form' )
+		);
 	}
 
 	// Generic list of deleted pages
@@ -701,7 +700,7 @@ class UndeleteForm {
 			return;
 		}
 
-		$wgOut->addWikiMsg( "undeletepagetext" );
+		$wgOut->addHTML( wfMsgExt( 'undeletepagetext', array( 'parseinline' ), $wgLang->formatNum( $result->numRows() ) ) );
 
 		$sk = $wgUser->getSkin();
 		$undelete = SpecialPage::getTitleFor( 'Undelete' );
@@ -710,7 +709,6 @@ class UndeleteForm {
 			$title = Title::makeTitleSafe( $row->ar_namespace, $row->ar_title );
 			$link = $sk->makeKnownLinkObj( $undelete, htmlspecialchars( $title->getPrefixedText() ),
 				'target=' . $title->getPrefixedUrl() );
-			#$revs = wfMsgHtml( 'undeleterevisions', $wgLang->formatNum( $row->count ) );
 			$revs = wfMsgExt( 'undeleterevisions',
 				array( 'parseinline' ),
 				$wgLang->formatNum( $row->count ) );
