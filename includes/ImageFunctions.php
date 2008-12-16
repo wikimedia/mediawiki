@@ -4,7 +4,7 @@
  * http://www.w3.org/TR/SVG11/coords.html#UnitIdentifiers
  *
  * @param $length String: CSS/SVG length.
- * @param $viewpoerSize: Float optional scale for percentage units...
+ * @param $viewportSize: Float optional scale for percentage units...
  * @return float: length in pixels
  */
 function wfScaleSVGUnit( $length, $viewportSize=512 ) {
