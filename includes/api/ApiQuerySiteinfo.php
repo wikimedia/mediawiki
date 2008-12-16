@@ -127,7 +127,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	protected function appendNamespaces( $property ) {
-		global $wgContLang, $wgCanonicalNamespaceNames;
+		global $wgContLang;
 		$data = array();
 		foreach( $wgContLang->getFormattedNamespaces() as $ns => $title )
 		{
@@ -135,7 +135,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				'id' => $ns
 			);
 			ApiResult :: setContent( $data[$ns], $title );
-			$canonical = isset($wgCanonicalNamespaceNames[$ns]) ? $wgCanonicalNamespaceNames[$ns] : false;
+			$canonical = MWNamespace::getCanonicalName( $ns );
 			
 			if( MWNamespace::hasSubpages( $ns ) )
 				$data[$ns]['subpages'] = '';
