@@ -1095,6 +1095,7 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'saveprefs'                 => 'Gardar as preferencias',
 'resetprefs'                => 'Eliminar os cambios non gardados',
 'textboxsize'               => 'Edición',
+'prefs-edit-boxsize'        => 'Tamaño da caixa de edición.',
 'rows'                      => 'Filas:',
 'columns'                   => 'Columnas:',
 'searchresultshead'         => 'Procurar',
@@ -1917,7 +1918,7 @@ Velaquí a configuración actual da páxina <strong>$1</strong>:',
 'undeletepage'                 => 'Ver e restaurar páxinas borradas',
 'undeletepagetitle'            => "'''A continuación amósanse as revisións eliminadas de''' \"'''[[:\$1|\$1]]'''\".",
 'viewdeletedpage'              => 'Ver as páxinas borradas',
-'undeletepagetext'             => 'As seguintes páxinas foron borradas, pero aínda están no arquivo e poden ser restauradas.
+'undeletepagetext'             => '{{PLURAL:$1|A seguinte páxina foi borrada|As seguintes páxinas foron borradas}}, pero aínda {{PLURAL:$1|está|están}} no arquivo e {{PLURAL:$1|pode|poden}} ser {{PLURAL:$1|restaurada|restauradas}}.
 O arquivo será limpado periodicamente.',
 'undelete-fieldset-title'      => 'Restaurar as revisións',
 'undeleteextrahelp'            => "Para restaurar o historial dunha páxina ao completo, deixe todas as caixas sen marcar e prema en '''''Restaurar'''''.
@@ -2071,6 +2072,7 @@ Olle a [[Special:IPBlockList|lista de enderezos IP e usuarios bloqueados]] para 
 'ipblocklist-no-results'          => 'Nin o enderezo IP nin o nome de usuario solicitados están bloqueados.',
 'blocklink'                       => 'bloquear',
 'unblocklink'                     => 'desbloquear',
+'change-blocklink'                => 'cambiar o bloqueo',
 'contribslink'                    => 'contribucións',
 'autoblocker'                     => 'Autobloqueado porque "[[User:$1|$1]]" usou recentemente este enderezo IP. O motivo do bloqueo de $1 é: "$2".',
 'blocklogpage'                    => 'Rexistro de bloqueos',
@@ -2127,9 +2129,9 @@ Lembre [[Special:UnlockDB|eliminar o bloqueo]] unha vez completado o seu manteme
 'databasenotlocked'   => 'A base de datos non está bloqueada.',
 
 # Move page
-'move-page'                 => 'Mover "$1"',
-'move-page-legend'          => 'Mover páxina',
-'movepagetext'              => "Ao usar o formulario de embaixo vai cambiar o nome da páxina, movendo todo o seu historial ao novo nome.
+'move-page'                    => 'Mover "$1"',
+'move-page-legend'             => 'Mover páxina',
+'movepagetext'                 => "Ao usar o formulario de embaixo vai cambiar o nome da páxina, movendo todo o seu historial ao novo nome.
 O título vello vaise converter nunha páxina de redirección ao novo título.
 Pode actualizar automaticamente as redireccións que van dar ao título orixinal.
 Se escolle non facelo, asegúrese de verificar que non hai redireccións [[Special:DoubleRedirects|dobres]] ou [[Special:BrokenRedirects|crebadas]].
@@ -2141,57 +2143,58 @@ Isto significa que pode volver renomear unha páxina ao seu nome antigo se comet
 '''ATENCIÓN!'''
 Este cambio nunha páxina popular pode ser drástico e inesperado;
 por favor, asegúrese de que entende as consecuencias disto antes de proseguir.",
-'movepagetalktext'          => "A páxina de conversa asociada, se existe, será automaticamente movida con esta '''agás que''':
+'movepagetalktext'             => "A páxina de conversa asociada, se existe, será automaticamente movida con esta '''agás que''':
 *Estea a mover a páxina empregando espazos de nomes,
 *Xa exista unha páxina de conversa con ese nome, ou
 *Desactive a opción de abaixo.
 
 Nestes casos, terá que mover ou mesturar a páxina manualmente se o desexa.",
-'movearticle'               => 'Mover esta páxina:',
-'movenologin'               => 'Non está dentro do sistema',
-'movenologintext'           => 'Debe ser un usuario rexistrado e [[Special:UserLogin|acceder ao sistema]] para mover unha páxina.',
-'movenotallowed'            => 'Non ten os permisos necesarios para mover páxinas.',
-'cant-move-user-page'       => 'Non ten os permisos necesarios para mover páxinas de usuario (agás subpáxinas).',
-'cant-move-to-user-page'    => 'Non ten os permisos necesarios para mover unha páxina a unha páxina de usuario (agás a unha subpáxina).',
-'newtitle'                  => 'Ao novo título:',
-'move-watch'                => 'Vixiar esta páxina',
-'movepagebtn'               => 'Mover a páxina',
-'pagemovedsub'              => 'O movemento foi un éxito',
-'movepage-moved'            => '<big>\'\'\'"$1" foi movida a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'             => 'Xa existe unha páxina con ese nome, ou o nome que escolleu non é válido.
+'movearticle'                  => 'Mover esta páxina:',
+'movenologin'                  => 'Non está dentro do sistema',
+'movenologintext'              => 'Debe ser un usuario rexistrado e [[Special:UserLogin|acceder ao sistema]] para mover unha páxina.',
+'movenotallowed'               => 'Non ten os permisos necesarios para mover páxinas.',
+'cant-move-user-page'          => 'Non ten os permisos necesarios para mover páxinas de usuario (agás subpáxinas).',
+'cant-move-to-user-page'       => 'Non ten os permisos necesarios para mover unha páxina a unha páxina de usuario (agás a unha subpáxina).',
+'newtitle'                     => 'Ao novo título:',
+'move-watch'                   => 'Vixiar esta páxina',
+'movepagebtn'                  => 'Mover a páxina',
+'pagemovedsub'                 => 'O movemento foi un éxito',
+'movepage-moved'               => '<big>\'\'\'"$1" foi movida a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'                => 'Xa existe unha páxina con ese nome, ou o nome que escolleu non é válido.
 Por favor escolla outro nome.',
-'cantmove-titleprotected'   => 'Vostede non pode mover a páxina a esta ubicación, porque o novo título foi protexido da creación',
-'talkexists'                => "'''Só foi movida con éxito a páxina, pero a páxina de conserva non puido ser movida porque xa existe unha co novo título. Por favor, mestúreas de xeito manual.'''",
-'movedto'                   => 'movido a',
-'movetalk'                  => 'Mover a páxina de conversa, se cómpre',
-'move-subpages'             => 'Mover todas as subpáxinas, se cómpre',
-'move-talk-subpages'        => 'Mover todas as subpáxinas da páxina de conversa, se cómpre',
-'movepage-page-exists'      => 'A páxina "$1" xa existe e non pode ser sobreescrita automaticamente.',
-'movepage-page-moved'       => 'A páxina "$1" foi movida a "$2".',
-'movepage-page-unmoved'     => 'A páxina "$1" non pode ser movida a "$2".',
-'movepage-max-pages'        => 'Foi movido o número máximo {{PLURAL:$1|dunha páxina|de $1 páxinas}} e non poderán ser movidas automaticamente máis.',
-'1movedto2'                 => 'moveu "[[$1]]" a "[[$2]]"',
-'1movedto2_redir'           => 'moveu "[[$1]]" a "[[$2]]" sobre unha redirección',
-'movelogpage'               => 'Rexistro de traslados',
-'movelogpagetext'           => 'Abaixo móstrase unha listaxe de páxinas trasladadas.',
-'movereason'                => 'Motivo:',
-'revertmove'                => 'reverter',
-'delete_and_move'           => 'Borrar e mover',
-'delete_and_move_text'      => '==Precísase borrar==
+'cantmove-titleprotected'      => 'Vostede non pode mover a páxina a esta ubicación, porque o novo título foi protexido da creación',
+'talkexists'                   => "'''Só foi movida con éxito a páxina, pero a páxina de conserva non puido ser movida porque xa existe unha co novo título. Por favor, mestúreas de xeito manual.'''",
+'movedto'                      => 'movido a',
+'movetalk'                     => 'Mover a páxina de conversa, se cómpre',
+'move-subpages'                => 'Mover todas as subpáxinas, se cómpre',
+'move-talk-subpages'           => 'Mover todas as subpáxinas da páxina de conversa, se cómpre',
+'movepage-page-exists'         => 'A páxina "$1" xa existe e non pode ser sobreescrita automaticamente.',
+'movepage-page-moved'          => 'A páxina "$1" foi movida a "$2".',
+'movepage-page-unmoved'        => 'A páxina "$1" non pode ser movida a "$2".',
+'movepage-max-pages'           => 'Foi movido o número máximo {{PLURAL:$1|dunha páxina|de $1 páxinas}} e non poderán ser movidas automaticamente máis.',
+'1movedto2'                    => 'moveu "[[$1]]" a "[[$2]]"',
+'1movedto2_redir'              => 'moveu "[[$1]]" a "[[$2]]" sobre unha redirección',
+'movelogpage'                  => 'Rexistro de traslados',
+'movelogpagetext'              => 'Abaixo móstrase unha listaxe de páxinas trasladadas.',
+'movereason'                   => 'Motivo:',
+'revertmove'                   => 'reverter',
+'delete_and_move'              => 'Borrar e mover',
+'delete_and_move_text'         => '==Precísase borrar==
 A páxina de destino, chamada "[[:$1]]", xa existe.
 Quérea eliminar para facer sitio para mover?',
-'delete_and_move_confirm'   => 'Si, borrar a páxina',
-'delete_and_move_reason'    => 'Eliminado para facer sitio para mover',
-'selfmove'                  => 'O título de orixe e o de destino é o mesmo; non se pode mover unha páxina sobre si mesma.',
-'immobile-source-namespace' => 'Non se poden mover as páxinas que están no espazo de nomes "$1"',
-'immobile-target-namespace' => 'Non se poden mover as páxinas ao espazo de nomes "$1"',
-'immobile-source-page'      => 'Esta páxina non se pode mover.',
-'immobile-target-page'      => 'Non se pode mover a ese título.',
-'imagenocrossnamespace'     => 'Non se pode mover o ficheiro a un espazo de nomes que non o admite',
-'imagetypemismatch'         => 'A nova extensión do fiheiro non coincide co seu tipo',
-'imageinvalidfilename'      => 'O nome da imaxe é inválido',
-'fix-double-redirects'      => 'Actualizar calquera redirección que apunte cara ao título orixinal',
-'move-leave-redirect'       => 'Deixar unha redirección detrás',
+'delete_and_move_confirm'      => 'Si, borrar a páxina',
+'delete_and_move_reason'       => 'Eliminado para facer sitio para mover',
+'selfmove'                     => 'O título de orixe e o de destino é o mesmo; non se pode mover unha páxina sobre si mesma.',
+'immobile-source-namespace'    => 'Non se poden mover as páxinas que están no espazo de nomes "$1"',
+'immobile-target-namespace'    => 'Non se poden mover as páxinas ao espazo de nomes "$1"',
+'immobile-target-namespace-iw' => 'A ligazón interwiki non é válida para o movemento da páxina.',
+'immobile-source-page'         => 'Esta páxina non se pode mover.',
+'immobile-target-page'         => 'Non se pode mover a ese título.',
+'imagenocrossnamespace'        => 'Non se pode mover o ficheiro a un espazo de nomes que non o admite',
+'imagetypemismatch'            => 'A nova extensión do fiheiro non coincide co seu tipo',
+'imageinvalidfilename'         => 'O nome da imaxe é inválido',
+'fix-double-redirects'         => 'Actualizar calquera redirección que apunte cara ao título orixinal',
+'move-leave-redirect'          => 'Deixar unha redirección detrás',
 
 # Export
 'export'            => 'Exportar páxinas',
@@ -2872,14 +2875,14 @@ Tamén pode [[Special:Watchlist/edit|empregar o editor normal]].',
 'version'                          => 'Versión', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Extensións instaladas',
 'version-specialpages'             => 'Páxinas especiais',
-'version-parserhooks'              => 'Hooks do analizador (parser)',
+'version-parserhooks'              => 'Asociadores analíticos',
 'version-variables'                => 'Variábeis',
-'version-other'                    => 'Outro',
+'version-other'                    => 'Outros',
 'version-mediahandlers'            => 'Executadores de multimedia',
-'version-hooks'                    => 'Hooks',
+'version-hooks'                    => 'Asociadores',
 'version-extension-functions'      => 'Funcións das extensións',
 'version-parser-extensiontags'     => 'Etiquetas das extensións do analizador (parser)',
-'version-parser-function-hooks'    => 'Hooks da función do analizador',
+'version-parser-function-hooks'    => 'Asociadores da función do analizador',
 'version-skin-extension-functions' => 'Funcións da extensión da aparencia',
 'version-hook-name'                => 'Nome do hook',
 'version-hook-subscribedby'        => 'Subscrito por',

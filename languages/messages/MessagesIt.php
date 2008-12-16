@@ -606,10 +606,10 @@ Se l\'accesso è stato creato per errore, si può ignorare questo messaggio.',
 'loginlanguagelabel'         => 'Lingua: $1',
 
 # Password reset dialog
-'resetpass'                 => "Cambia o reimposta la password dell'account",
+'resetpass'                 => 'Cambia la password',
 'resetpass_announce'        => "L'accesso è stato effettuato con un codice temporaneo, inviato via e-mail. Per completare l'accesso è necessario impostare una nuova password:",
 'resetpass_text'            => '<!-- Aggiungere il testo qui -->',
-'resetpass_header'          => 'Reimposta password',
+'resetpass_header'          => "Cambia la password dell'account",
 'oldpassword'               => 'Vecchia password:',
 'newpassword'               => 'Nuova password:',
 'retypenew'                 => 'Riscrivi la nuova password:',
@@ -1088,6 +1088,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'saveprefs'                 => 'Salva le preferenze',
 'resetprefs'                => 'Reimposta le preferenze',
 'textboxsize'               => 'Casella di modifica',
+'prefs-edit-boxsize'        => 'Dimensioni della finestra di modifica.',
 'rows'                      => 'Righe:',
 'columns'                   => 'Colonne:',
 'searchresultshead'         => 'Ricerca',
@@ -2040,6 +2041,7 @@ Consultare la [[Special:IPBlockList|lista degli IP bloccati]] per vedere i blocc
 'ipblocklist-no-results'          => "L'indirizzo IP o nome utente richiesto non è bloccato.",
 'blocklink'                       => 'blocca',
 'unblocklink'                     => 'sblocca',
+'change-blocklink'                => 'cambia blocco',
 'contribslink'                    => 'contributi',
 'autoblocker'                     => 'Bloccato automaticamente perché l\'indirizzo IP è condiviso con l\'utente "[[User:$1|$1]]".
 Il blocco dell\'utente $1 è stato imposto per il seguente motivo: "$2".',

@@ -628,10 +628,10 @@ Si us plau, esperi abans de tornar-ho a intentar.",
 'loginlanguagelabel'         => 'Llengua: $1',
 
 # Password reset dialog
-'resetpass'                 => 'Canvia o reinicia la contrasenya del compte',
+'resetpass'                 => 'Canvia la contrasenya',
 'resetpass_announce'        => 'Heu iniciat la sessió amb un codi temporal enviat per correu electrònic. Per a finalitzar-la, heu de definir una nova contrasenya ací:',
 'resetpass_text'            => '<!-- Afegiu-hi un text -->',
-'resetpass_header'          => 'Reinicia la contrasenya',
+'resetpass_header'          => 'Canvia la contrasenya del compte',
 'oldpassword'               => 'Contrasenya antiga',
 'newpassword'               => 'Contrasenya nova',
 'retypenew'                 => 'Torneu a escriure la nova contrasenya:',
@@ -1119,6 +1119,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'saveprefs'                 => 'Desa les preferències',
 'resetprefs'                => 'Esborra els canvis no guardats',
 'textboxsize'               => 'Dimensions de la caixa de text',
+'prefs-edit-boxsize'        => "Mida de la finestra d'edició.",
 'rows'                      => 'Files',
 'columns'                   => 'Columnes',
 'searchresultshead'         => 'Preferències de la cerca',
@@ -1633,6 +1634,7 @@ Cada fila conté enllaços a la segona i tercera redirecció, així com la prime
 'booksources-search-legend' => 'Cerca fonts de llibres',
 'booksources-go'            => 'Vés-hi',
 'booksources-text'          => "A sota hi ha una llista d'enllaços d'altres llocs que venen llibres nous i de segona mà, i també podrien tenir més informació dels llibres que esteu cercant:",
+'booksources-invalid-isbn'  => "El codi ISBN donat no és vàlid. Comproveu si l'heu copiat correctament.",
 
 # Special:Log
 'specialloguserlabel'  => 'Usuari:',
@@ -1922,7 +1924,7 @@ Ací es troben els paràmetres actuals de la pàgina <strong>$1</strong>:',
 'undeletepage'                 => 'Mostra i restaura pàgines esborrades',
 'undeletepagetitle'            => "'''A continuació teniu revisions eliminades de [[:$1]]'''.",
 'viewdeletedpage'              => 'Visualitza les pàgines eliminades',
-'undeletepagetext'             => "S'han eliminat les pàgines següents però encara són a l'arxiu i poden ser restaurades. Pot netejar-se l'arxiu periòdicament.",
+'undeletepagetext'             => "S'ha eliminat {{PLURAL:|la pàgina $1, però encara és a l'arxiu i pot ser restaurada|les pàgines $1, però encara són a l'arxiu i poden ser restaurades}}. Pot netejar-se l'arxiu periòdicament.",
 'undelete-fieldset-title'      => 'Restaura revisions',
 'undeleteextrahelp'            => "Per a restaurar la pàgina sencera, deixeu totes les caselles sense seleccionar i
 cliqueu a  '''''Restaura'''''.
@@ -2140,9 +2142,9 @@ Recordeu-vos de [[Special:UnlockDB|treure el bloqueig]] quan hàgiu acabat el ma
 'databasenotlocked'   => 'La base de dades no està bloquejada.',
 
 # Move page
-'move-page'                 => 'Mou $1',
-'move-page-legend'          => 'Reanomena la pàgina',
-'movepagetext'              => "Amb el formulari següent reanomenareu una pàgina, movent tot el seu historial al nou nom.
+'move-page'                    => 'Mou $1',
+'move-page-legend'             => 'Reanomena la pàgina',
+'movepagetext'                 => "Amb el formulari següent reanomenareu una pàgina, movent tot el seu historial al nou nom.
 El títol anterior es convertirà en una redirecció al títol que hàgiu creat.
 Podeu actualitzar automàticament els enllaços a l'antic títol de la pàgina.
 Si no ho feu, assegureu-vos de verificar que no deixeu redireccions [[Special:DoubleRedirects|dobles]] o [[Special:BrokenRedirects|trencades]].
@@ -2154,59 +2156,60 @@ Això significa que podeu reanomenar de nou una pàgina al seu títol original s
 '''ADVERTÈNCIA!'''
 Açò pot ser un canvi dràstic i inesperat en una pàgina que sigui popular;
 assegureu-vos d'entendre les conseqüències que comporta abans de seguir endavant.",
-'movepagetalktext'          => "La pàgina de discussió associada, si existeix, serà traslladada automàticament '''a menys que:'''
+'movepagetalktext'             => "La pàgina de discussió associada, si existeix, serà traslladada automàticament '''a menys que:'''
 *Ja existeixi una pàgina de discussió no buida amb el nom nou, o
 *Hàgiu desseleccionat la opció de sota.
 
 En aquests casos, haureu de traslladar o fusionar la pàgina manualment si ho desitgeu.",
-'movearticle'               => 'Reanomena la pàgina',
-'movenologin'               => "No sou a dins d'una sessió",
-'movenologintext'           => "Heu de ser un usuari registrat i estar [[Special:UserLogin|dintre d'una sessió]]
+'movearticle'                  => 'Reanomena la pàgina',
+'movenologin'                  => "No sou a dins d'una sessió",
+'movenologintext'              => "Heu de ser un usuari registrat i estar [[Special:UserLogin|dintre d'una sessió]]
 per reanomenar una pàgina.",
-'movenotallowed'            => 'No teniu permís per a moure pàgines.',
-'cant-move-user-page'       => "No teniu permís per a moure pàgines d'usuari (independentment de les subpàgines).",
-'cant-move-to-user-page'    => "No teniu permís per a moure una pàgina a una pàgina d'usuari (independentment de poder fer-ho cap a una subpàgina d'usuari).",
-'newtitle'                  => 'A títol nou',
-'move-watch'                => 'Vigila aquesta pàgina',
-'movepagebtn'               => 'Reanomena la pàgina',
-'pagemovedsub'              => 'Reanomenament amb èxit',
-'movepage-moved'            => "<big>'''«$1» s'ha mogut a «$2»'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'             => 'Ja existeix una pàgina amb aquest nom, o el nom que heu triat no és vàlid.
+'movenotallowed'               => 'No teniu permís per a moure pàgines.',
+'cant-move-user-page'          => "No teniu permís per a moure pàgines d'usuari (independentment de les subpàgines).",
+'cant-move-to-user-page'       => "No teniu permís per a moure una pàgina a una pàgina d'usuari (independentment de poder fer-ho cap a una subpàgina d'usuari).",
+'newtitle'                     => 'A títol nou',
+'move-watch'                   => 'Vigila aquesta pàgina',
+'movepagebtn'                  => 'Reanomena la pàgina',
+'pagemovedsub'                 => 'Reanomenament amb èxit',
+'movepage-moved'               => "<big>'''«$1» s'ha mogut a «$2»'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'                => 'Ja existeix una pàgina amb aquest nom, o el nom que heu triat no és vàlid.
 Trieu-ne un altre, si us plau.',
-'cantmove-titleprotected'   => "No podeu moure una pàgina a aquesta ubicació, perquè s'ha protegit la creació del títol nou",
-'talkexists'                => "S'ha reanomenat la pàgina amb èxit, però la pàgina de discussió no s'ha pogut moure car ja no existeix en el títol nou.
+'cantmove-titleprotected'      => "No podeu moure una pàgina a aquesta ubicació, perquè s'ha protegit la creació del títol nou",
+'talkexists'                   => "S'ha reanomenat la pàgina amb èxit, però la pàgina de discussió no s'ha pogut moure car ja no existeix en el títol nou.
 
 Incorporeu-les manualment, si us plau.",
-'movedto'                   => 'reanomenat a',
-'movetalk'                  => 'Mou la pàgina de discussió associada',
-'move-subpages'             => "Mou totes les pàgines (si s'escau)",
-'move-talk-subpages'        => "Mou totes les subpàgines de la discussió (si s'escau)",
-'movepage-page-exists'      => "La pàgina $1 ja existeix i no pot sobreescriure's automàticament.",
-'movepage-page-moved'       => 'La pàgina $1 ha estat traslladada a $2.',
-'movepage-page-unmoved'     => "La pàgina $1 no s'ha pogut moure a $2.",
-'movepage-max-pages'        => "{{PLURAL:$1|S'ha mogut una pàgina|S'han mogut $1 pàgines}} que és el nombre màxim, i per tant no se'n mourà automàticament cap més.",
-'1movedto2'                 => "[[$1]] s'ha reanomenat com [[$2]]",
-'1movedto2_redir'           => "[[$1]] s'ha reanomenat com [[$2]] amb una redirecció",
-'movelogpage'               => 'Registre de reanomenaments',
-'movelogpagetext'           => 'Vegeu la llista de les darreres pàgines reanomenades.',
-'movereason'                => 'Motiu',
-'revertmove'                => 'reverteix',
-'delete_and_move'           => 'Elimina i trasllada',
-'delete_and_move_text'      => "==Cal l'eliminació==
+'movedto'                      => 'reanomenat a',
+'movetalk'                     => 'Mou la pàgina de discussió associada',
+'move-subpages'                => "Mou totes les pàgines (si s'escau)",
+'move-talk-subpages'           => "Mou totes les subpàgines de la discussió (si s'escau)",
+'movepage-page-exists'         => "La pàgina $1 ja existeix i no pot sobreescriure's automàticament.",
+'movepage-page-moved'          => 'La pàgina $1 ha estat traslladada a $2.',
+'movepage-page-unmoved'        => "La pàgina $1 no s'ha pogut moure a $2.",
+'movepage-max-pages'           => "{{PLURAL:$1|S'ha mogut una pàgina|S'han mogut $1 pàgines}} que és el nombre màxim, i per tant no se'n mourà automàticament cap més.",
+'1movedto2'                    => "[[$1]] s'ha reanomenat com [[$2]]",
+'1movedto2_redir'              => "[[$1]] s'ha reanomenat com [[$2]] amb una redirecció",
+'movelogpage'                  => 'Registre de reanomenaments',
+'movelogpagetext'              => 'Vegeu la llista de les darreres pàgines reanomenades.',
+'movereason'                   => 'Motiu',
+'revertmove'                   => 'reverteix',
+'delete_and_move'              => 'Elimina i trasllada',
+'delete_and_move_text'         => "==Cal l'eliminació==
 
 La pàgina de destinació, «[[:$1]]», ja existeix. Voleu eliminar-la per a fer lloc al trasllat?",
-'delete_and_move_confirm'   => 'Sí, esborra la pàgina',
-'delete_and_move_reason'    => "S'ha eliminat per a permetre el reanomenament",
-'selfmove'                  => "Els títols d'origen i de destinació coincideixen: no és possible de reanomenar una pàgina a si mateixa.",
-'immobile-source-namespace' => 'No es poden moure pàgines de l\'espai de noms "$1"',
-'immobile-target-namespace' => 'No es poden moure pàgines cap a l\'espai de noms "$1"',
-'immobile-source-page'      => 'Aquesta pàgina no es pot moure.',
-'immobile-target-page'      => 'No es pot moure cap a una destinació amb aquest títol.',
-'imagenocrossnamespace'     => 'No es pot moure la imatge a un espai de noms on no li correspon',
-'imagetypemismatch'         => 'La nova extensió de fitxer no coincideix amb el seu tipus',
-'imageinvalidfilename'      => 'El nom de fitxer indicat no és vàlid',
-'fix-double-redirects'      => "Actualitza també les redireccions que apuntin a l'article original",
-'move-leave-redirect'       => 'Deixar enrera una redirecció',
+'delete_and_move_confirm'      => 'Sí, esborra la pàgina',
+'delete_and_move_reason'       => "S'ha eliminat per a permetre el reanomenament",
+'selfmove'                     => "Els títols d'origen i de destinació coincideixen: no és possible de reanomenar una pàgina a si mateixa.",
+'immobile-source-namespace'    => 'No es poden moure pàgines de l\'espai de noms "$1"',
+'immobile-target-namespace'    => 'No es poden moure pàgines cap a l\'espai de noms "$1"',
+'immobile-target-namespace-iw' => "No es poden moure pàgines a l'enllaç interwiki",
+'immobile-source-page'         => 'Aquesta pàgina no es pot moure.',
+'immobile-target-page'         => 'No es pot moure cap a una destinació amb aquest títol.',
+'imagenocrossnamespace'        => 'No es pot moure la imatge a un espai de noms on no li correspon',
+'imagetypemismatch'            => 'La nova extensió de fitxer no coincideix amb el seu tipus',
+'imageinvalidfilename'         => 'El nom de fitxer indicat no és vàlid',
+'fix-double-redirects'         => "Actualitza també les redireccions que apuntin a l'article original",
+'move-leave-redirect'          => 'Deixar enrera una redirecció',
 
 # Export
 'export'            => 'Exporta les pàgines',

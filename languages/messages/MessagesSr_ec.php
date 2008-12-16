@@ -671,7 +671,7 @@ $2',
 # Password reset dialog
 'resetpass'               => 'Промените или ресетујте корисничку лозинку',
 'resetpass_announce'      => 'Пријавили сте се са привременом лозинком послатом електронском поштом. Да бисте завршили са пријавом, морате подесити нову лозинку овде:',
-'resetpass_header'        => 'Ресетовање лозинке',
+'resetpass_header'        => 'Промените лозинку',
 'oldpassword'             => 'Стара лозинка:',
 'newpassword'             => 'Нова лозинка:',
 'retypenew'               => 'Поново откуцајте нову лозинку:',
@@ -867,27 +867,28 @@ $2',
 Разлог који је дао $3 је ''$2''",
 
 # History pages
-'viewpagelogs'        => 'Протоколи за ову страну',
-'nohistory'           => 'Не постоји историја измена за ову страницу.',
-'currentrev'          => 'Тренутна ревизија',
-'revisionasof'        => 'Ревизија од $1',
-'revision-info'       => 'Ревизија од $1; $2', # Additionally available: $3: revision id
-'previousrevision'    => '← Претходна ревизија',
-'nextrevision'        => 'Следећа ревизија →',
-'currentrevisionlink' => 'Тренутна ревизија',
-'cur'                 => 'трен',
-'next'                => 'след',
-'last'                => 'посл',
-'page_first'          => 'прво',
-'page_last'           => 'последње',
-'histlegend'          => 'Одабирање разлика: одаберите кутијице ревизија за упоређивање и притисните ентер или дугме на дну.<br />
+'viewpagelogs'           => 'Протоколи за ову страну',
+'nohistory'              => 'Не постоји историја измена за ову страницу.',
+'currentrev'             => 'Тренутна ревизија',
+'revisionasof'           => 'Ревизија од $1',
+'revision-info'          => 'Ревизија од $1; $2', # Additionally available: $3: revision id
+'previousrevision'       => '← Претходна ревизија',
+'nextrevision'           => 'Следећа ревизија →',
+'currentrevisionlink'    => 'Тренутна ревизија',
+'cur'                    => 'трен',
+'next'                   => 'след',
+'last'                   => 'посл',
+'page_first'             => 'прво',
+'page_last'              => 'последње',
+'histlegend'             => 'Одабирање разлика: одаберите кутијице ревизија за упоређивање и притисните ентер или дугме на дну.<br />
 Објашњење: (трен) = разлика са тренутном верзијом,
 (посл) = разлика са претходном верзијом, М = мала измена',
-'deletedrev'          => '[обрисан]',
-'histfirst'           => 'Најраније',
-'histlast'            => 'Последње',
-'historysize'         => '({{PLURAL:$1|1 бајт|$1 бајта|$1 бајтова}})',
-'historyempty'        => '(празно)',
+'history-fieldset-title' => 'Прегледајте историју',
+'deletedrev'             => '[обрисан]',
+'histfirst'              => 'Најраније',
+'histlast'               => 'Последње',
+'historysize'            => '({{PLURAL:$1|1 бајт|$1 бајта|$1 бајтова}})',
+'historyempty'           => '(празно)',
 
 # Revision feed
 'history-feed-title'          => 'Контролна историја',
@@ -2083,7 +2084,7 @@ $1',
 'import-interwiki-text'      => 'Одаберите вики и назив стране за увоз. Датуми ревизије и имена уредника ће бити сачувани. Сви трансвики увози су забележени у [[Special:Log/import|историји увоза]].',
 'import-interwiki-history'   => 'Копирај све ревизије ове стране',
 'import-interwiki-submit'    => 'Увези',
-'import-interwiki-namespace' => 'Пребаци странице у именски простор:',
+'import-interwiki-namespace' => 'Именски простор:',
 'import-comment'             => 'Коментар:',
 'importtext'                 => 'Молимо извезите фајл из изворног викија користећи [[Special:Export|извоз]].
 Сачувајте га код себе и пошаљите овде.',
@@ -2557,7 +2558,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Измените овај фајл користећи спољашњу апликацију',
-'edit-externally-help' => 'Погледајте [http://www.mediawiki.org/wiki/Manual:External_editors упутство за подешавање] за више информација.',
+'edit-externally-help' => '(Погледајте [http://www.mediawiki.org/wiki/Manual:External_editors упутство за подешавање] за више информација)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'све',
@@ -2711,6 +2712,7 @@ $1
 'fileduplicatesearch-filename' => 'Име фајла:',
 'fileduplicatesearch-submit'   => 'Претрага',
 'fileduplicatesearch-info'     => '$1 × $2 поксел<br />Величина фајла: $3<br />MIME тип: $4',
+'fileduplicatesearch-result-1' => 'Датотека „$1“ нема идентичних дупликата.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Посебне странице',

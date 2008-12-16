@@ -459,21 +459,22 @@ Fikiria kama inafaa kuendelea kuhariri ukurasa huu.
 Kumbukumbu ya kufuta ukurasa huu linapatikana hapa kukusaidia:",
 
 # History pages
-'viewpagelogs'        => 'Tazama kumbukumbu kwa ukurasa huu',
-'currentrev'          => 'Kiungo cha daima',
-'revisionasof'        => 'Sahihisho kutoka $1',
-'revision-info'       => 'Sahihisho kutoka $1 na $2', # Additionally available: $3: revision id
-'previousrevision'    => '←Sahihisho lililotangulia',
-'nextrevision'        => 'Sahihisho mpya zaidi?',
-'currentrevisionlink' => 'Sahahisho ya sasa hivi',
-'cur'                 => 'sasa',
-'last'                => 'kabla',
-'page_first'          => 'ya kwanza',
-'page_last'           => 'ya mwisho',
-'histlegend'          => 'Chagua tofauti: tia alama katika vitufe redio kulinganisha matoleo, na bonyeza "enter" au kitufe hapo chini.<br />
+'viewpagelogs'           => 'Tazama kumbukumbu kwa ukurasa huu',
+'currentrev'             => 'Kiungo cha daima',
+'revisionasof'           => 'Sahihisho kutoka $1',
+'revision-info'          => 'Sahihisho kutoka $1 na $2', # Additionally available: $3: revision id
+'previousrevision'       => '←Sahihisho lililotangulia',
+'nextrevision'           => 'Sahihisho mpya zaidi?',
+'currentrevisionlink'    => 'Sahahisho ya sasa hivi',
+'cur'                    => 'sasa',
+'last'                   => 'kabla',
+'page_first'             => 'ya kwanza',
+'page_last'              => 'ya mwisho',
+'histlegend'             => 'Chagua tofauti: tia alama katika vitufe redio kulinganisha matoleo, na bonyeza "enter" au kitufe hapo chini.<br />
 Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotangulia, D = mabadiliko maDogo.',
-'histfirst'           => 'Mwanzoni',
-'histlast'            => 'Mwishoni',
+'history-fieldset-title' => 'Fungua historia',
+'histfirst'              => 'Mwanzoni',
+'histlast'               => 'Mwishoni',
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 kwenye $2', # user at time
@@ -727,8 +728,12 @@ Hivi ni vipimo kwa ukurasa <strong>$1</strong>:',
 'month'         => 'Kutoka mwezi (na zamani zaidi):',
 'year'          => 'Kutoka mwakani (na zamani zaidi):',
 
+'sp-contributions-newbies'     => 'Onyesha michango ya akaunti mpya tu',
 'sp-contributions-newbies-sub' => 'Kwa akaunti mpya',
 'sp-contributions-blocklog'    => 'Kumbukumbu ya uzuio',
+'sp-contributions-search'      => 'Tafuta michango',
+'sp-contributions-username'    => 'Anwani ya IP au jina la mtumiaji:',
+'sp-contributions-submit'      => 'Tafuta',
 
 # What links here
 'whatlinkshere'       => 'Viungo viungacho ukurasa huu',

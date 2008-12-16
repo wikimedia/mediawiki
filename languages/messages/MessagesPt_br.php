@@ -8,6 +8,7 @@
  * @author Brunoy Anastasiya Seryozhenko
  * @author Carla404
  * @author GKnedo
+ * @author Heldergeovane
  * @author LeonardoG
  * @author Lijealso
  * @author Rodrigo Calanca Nishino
@@ -197,10 +198,12 @@ $messages = array(
 'tog-watchlisthidebots'       => 'Esconder edições efetuadas por robôs da lista de artigos vigiados',
 'tog-watchlisthideminor'      => 'Esconder edições menores da lista de artigos vigiados',
 'tog-watchlisthideliu'        => 'Ocultar edições de usuários autenticados da lista de vigiados',
+'tog-watchlisthideanons'      => 'Ocultar edições de usuários anônimos da lista de vigiados',
 'tog-nolangconversion'        => 'Desabilitar conversão de variantes de idioma',
 'tog-ccmeonemails'            => 'Enviar para mim cópias de e-mails que eu enviar a outros usuários',
 'tog-diffonly'                => 'Não mostrar o conteúdo da página ao comparar duas edições',
 'tog-showhiddencats'          => 'Exibir categorias ocultas',
+'tog-norollbackdiff'          => 'Omitir diferenças depois de desfazer edições em bloco',
 
 'underline-always'  => 'Sempre',
 'underline-never'   => 'Nunca',
@@ -451,7 +454,7 @@ A última tentativa de pesquisa no banco de dados foi:
 "$1"
 com a função"$2".
 MySQL retornou o erro "$3: $4".',
-'noconnect'            => 'Desculpe-nos! {{SITENAME}} está passando por algumas dificuldades técnicas e não pôde contactar o servidor de bando de dados. <br />
+'noconnect'            => 'Desculpe-nos! {{SITENAME}} está passando por algumas dificuldades técnicas e não pode contatar o servidor de banco de dados. <br />
 $1',
 'nodb'                 => 'Não foi possível selecionar o banco de dados $1',
 'cachederror'          => 'O que se segue é uma cópia em cache da página solicitada podendo, por isso mesmo, estar com os dados defasados.',
@@ -514,9 +517,10 @@ Quem o protegeu foi [[User:$1|$1]], com a justificativa: ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Desautenticar do sistema',
-'logouttext'                 => '<strong>Você agora está desautenticado.</strong><br />
-Você pode continuar a usar a {{SITENAME}} anonimamente, ou pode autenticar-se novamente com o mesmo nome de usuário ou com um nome de usuário diferente. Tenha em mente que algumas páginas poderão
-continuar a ser apresentadas como se você ainda estivesse autenticado até que a cache de seu navegador seja limpa.',
+'logouttext'                 => "<strong>Agora você está desautenticado.</strong>
+
+Você pode continuar usando o projeto {{SITENAME}} anonimamente, ou pode [[Special:UserLogin|se autenticar novamente]] com o mesmo nome de usuário ou com um nome de usuário diferente.
+Tenha em mente que algumas páginas poderão continuar sendo exibidas como se você ainda estivesse autenticado, até que a ''cache'' de seu navegador seja limpa.",
 'welcomecreation'            => '== Bem-vindo, $1! ==
 A sua conta foi criada.
 Não se esqueça de personalizar as suas [[Special:Preferences|preferências na {{SITENAME}}]].',
@@ -541,7 +545,8 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências na 
 'gotaccountlink'             => 'Entrar',
 'createaccountmail'          => 'por e-mail',
 'badretype'                  => 'As senhas que você digitou não são iguais.',
-'userexists'                 => 'O nome de usuário que você digitou já existe. Por favor, escolha um nome diferente.',
+'userexists'                 => 'O nome de usuário que você digitou já existe.
+Por favor, escolha um nome diferente.',
 'youremail'                  => 'Seu e-mail:',
 'username'                   => 'Nome de usuário:',
 'uid'                        => 'Número de identificação:',
@@ -556,27 +561,30 @@ Seria necessário que possuísse menos de $1 {{PLURAL:$1|caractere|caracteres}}.
 'email'                      => 'E-mail',
 'prefs-help-realname'        => 'O fornecimento de seu Nome verdadeiro é opcional, mas, caso decida o revelar, este será utilizado para lhe dar crédito pelo seu trabalho.',
 'loginerror'                 => 'Erro de autenticação',
-'prefs-help-email'           => 'O fornecimento de um endereço de e-mail é opcional, mas permite que os usuários entrem em contato consigo sem que tenha de lhes revelar o seu endereço de e-mail.',
+'prefs-help-email'           => "O fornecimento de um endereço de ''e-mail'' é opcional, mas permite que uma nova senha lhe seja enviada caso você esqueça sua senha. Você pode ainda preferir deixar que os usuários entrem em contato consigo através de sua página de usuário ou discussão sem ter de revelar sua identidade.",
 'prefs-help-email-required'  => 'O endereço de e-mail é requerido.',
-'nocookiesnew'               => 'A conta do usuário foi criada, mas você não foi autenticado. {{SITENAME}} utiliza <i>cookies</i> para ligar os usuários às suas contas. Por favor, os ative, depois autentique-se com o seu nome de usuário e a sua senha.',
+'nocookiesnew'               => "A conta do usuário foi criada, mas você não foi autenticado.
+{{SITENAME}} utiliza ''cookies'' para autenticar os usuários.
+Você tem os ''cookies'' desativados no seu navegador.
+Por favor ative-os, depois autentique-se com o seu novo nome de usuário e a sua senha.",
 'nocookieslogin'             => 'Você tem os <i>cookies</i> desativados no seu navegador, e a {{SITENAME}} utiliza <i>cookies</i> para ligar os usuários às suas contas. Por favor os ative e tente novamente.',
 'noname'                     => 'Você não colocou um nome de usuário válido.',
 'loginsuccesstitle'          => 'Login bem sucedido',
-'loginsuccess'               => "'''Encontra-se agora ligado à {{SITENAME}} como \"\$1\"'''.",
+'loginsuccess'               => "'''Agora você está ligado à {{SITENAME}} como \"\$1\"'''.",
 'nosuchuser'                 => 'O usuário de nome "$1" não existe.
 Verifique se digitou corretamente, ou [[Special:UserLogin/signup|crie uma nova conta de usuário]].',
 'nosuchusershort'            => 'Não existe um usuário com o nome "<nowiki>$1</nowiki>". Verifique o nome que introduziu.',
-'nouserspecified'            => 'Precisa de especificar um nome de usuário.',
+'nouserspecified'            => 'Você precisa especificar um nome de usuário.',
 'wrongpassword'              => 'A senha que introduziu é inválida. Por favor, tente novamente.',
 'wrongpasswordempty'         => 'A senha introduzida está em branco. Por favor, tente novamente.',
 'passwordtooshort'           => 'A sua senha é inválida ou muito curta.
 Deve de ter no mínimo {{PLURAL:$1|1 caracter|$1 caracteres}} e ser diferente do seu nome de usuário.',
-'mailmypassword'             => 'Enviar uma nova senha por e-mail',
+'mailmypassword'             => "Enviar uma nova senha por ''e-mail''",
 'passwordremindertitle'      => 'Nova senha temporária em {{SITENAME}}',
-'passwordremindertext'       => 'Alguém (provavelmente você, a partir do endereço de IP $1) solicitou que fosse lhe enviada uma nova senha para {{SITENAME}} ($4).
-A senha do usuário "$2" é, a partir de agora, "$3". Você pode entrar na sua conta e alterar a senha, caso prefira.
+'passwordremindertext'       => 'Alguém (provavelmente você, a partir do endereço de IP $1) solicitou uma nova senha para {{SITENAME}} ($4).
+A senha temporária criada para o usuário "$2" é, a partir de agora, "$3". Se esta era sua intenção, você precisará se autenticar e escolher uma nova senha agora.
 
-Se foi outra pessoa quem fez este pedido, ou caso você já se tenha lembrado da sua senha e não deseja a alterar, pode ignorar esta mensagem e continuar a utilizar a senha antiga.',
+Se foi outra pessoa quem fez este pedido, ou se você já lembrou a sua senha, e não quer mais alterá-la, você pode ignorar esta mensagem e continuar utilizando sua senha antiga.',
 'noemail'                    => 'Não há um endereço de e-mail associado ao usuário "$1".',
 'passwordsent'               => 'Uma nova senha está sendo enviada para o endereço de e-mail registrado para "$1".
 Por favor, reconecte-se ao recebê-lo.',
@@ -592,28 +600,34 @@ Não é possível criar mais nenhuma.',
 'emailnotauthenticated'      => 'O seu endereço de e-mail ainda não foi autenticado. Não lhe será enviado nenhum e-mail sobre nenhuma das seguintes funcionalidades.',
 'noemailprefs'               => 'Especifique um endereço de e-mail para que os seguintes recursos funcionem.',
 'emailconfirmlink'           => 'Confirme o seu endereço de e-mail',
-'invalidemailaddress'        => 'O endereço de e-mail não pode ser aceite devido a talvez possuír um formato inválido. Por favor, introduza um endereço bem formatado ou esvazie o campo.',
+'invalidemailaddress'        => "O endereço de ''e-mail'' não pode ser aceite devido a talvez possuir um formato inválido. Por favor, introduza um endereço bem formatado ou esvazie o campo.",
 'accountcreated'             => 'Conta criada',
 'accountcreatedtext'         => 'A conta do usuário para $1 foi criada.',
 'createaccount-title'        => 'Criação de conta em {{SITENAME}}',
 'createaccount-text'         => 'Alguém criou uma conta de nome $2 para o seu endereço de email no wiki {{SITENAME}} ($4), tendo como senha #$3". Você deve se autenticar e alterar sua senha.
 
 Você pode ignorar esta mensagem caso a conta tenha sido criada por engano.',
+'login-throttled'            => 'Você fez muitas tentativas recentes de se autenticar com esta conta.
+Por favor aguarde antes de tentar novamente.',
 'loginlanguagelabel'         => 'Idioma: $1',
 
 # Password reset dialog
-'resetpass'                 => 'Alterar ou definir nova senha',
+'resetpass'                 => 'Alterar senha',
 'resetpass_announce'        => 'Você foi autenticado através de uma senha temporária. Para prosseguir, será necessário definir uma nova senha.',
 'resetpass_text'            => '<!-- Adicionar texto aqui -->',
-'resetpass_header'          => 'Criar nova senha',
+'resetpass_header'          => 'Alterar a senha da conta',
 'oldpassword'               => 'Senha antiga',
 'newpassword'               => 'Nova senha',
 'retypenew'                 => 'Reintroduza a nova senha',
 'resetpass_submit'          => 'Definir senha e entrar',
 'resetpass_success'         => 'Sua senha foi alterada com sucesso! Autenticando-se...',
 'resetpass_bad_temporary'   => 'Senha temporária incorreta. Pode ser que você já tenha conseguido alterar a sua senha ou pedido que uma nova senha temporária fosse gerada.',
-'resetpass_forbidden'       => 'Não é possível alterar senha neste wiki',
+'resetpass_forbidden'       => 'As senhas não podem ser alteradas',
+'resetpass-no-info'         => 'Você precisa estar autenticado para acessar esta página diretamente.',
 'resetpass-submit-loggedin' => 'Alterar senha',
+'resetpass-wrong-oldpass'   => 'Senha temporária ou atual inválida. 
+Você pode já ter alterado com sucesso a sua senha, ou solicitado uma nova senha temporária.',
+'resetpass-temp-password'   => 'Senha temporária:',
 
 # Edit page toolbar
 'bold_sample'     => 'Texto em negrito',
@@ -677,9 +691,9 @@ O motivo apresentado foi:
 * Expiração do bloqueio: $6
 * Destino do bloqueio: $7
 
-Você pode contactar $1 ou outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir sobre o bloqueio.
+Você pode contatar $1 ou outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir sobre o bloqueio.
 
-Note que não poderá utilizar a funcionalidade "Contactar utilizador" se não possuir uma conta neste wiki ({{SITENAME}}) com um endereço de email válido indicado nas suas [[Special:Preferences|preferências de utilizador]] e se tiver sido bloqueado de utilizar tal recurso.
+Note que não poderá utilizar a funcionalidade "Contatar utilizador" se não possuir uma conta neste wiki ({{SITENAME}}) com um endereço de \'\'e-mail\'\' válido indicado nas suas [[Special:Preferences|preferências de usuário]] ou se tiver sido bloqueado de utilizar tal recurso.
 
 Seu endereço de IP no momento é $3 e sua ID de bloqueio é #$5.
 Por favor, inclua tais dados em qualquer tentativa de esclarecimentos que for realizar.',
@@ -703,13 +717,14 @@ Por favor, introduza um e valide-o através das suas [[Special:Preferences|prefe
 Para criá-la, começe escrevendo na caixa abaixo
 (veja [[{{MediaWiki:Helppage}}|a página de ajuda]] para mais informações).
 Se você chegou aqui por engano, apenas clique no botão '''voltar''' do seu navegador.",
-'anontalkpagetext'                 => "---- ''Esta é a página de discussão para um usuário anônimo que ainda não criou uma conta ou que não a usa, de forma que temos de utilizar o endereço de IP para identificá-lo(a). Um endereço de IP pode ser compartilhado por vários usuários. Se você é um usuário anônimo e acha irrelevantes os comentários direcionados a você, por gentileza, [[Special:UserLogin|crie uma conta ou autentique-se]], a fim de evitar futuras confusões com outros usuários anônimos.''",
+'anontalkpagetext'                 => "---- ''Esta é a página de discussão para um usuário anônimo que ainda não criou uma conta ou que não a usa, de forma que temos de utilizar o endereço de IP para identificá-lo(a). Tal endereço de IP pode ser compartilhado por vários usuários. Se você é um usuário anônimo e acha que comentários irrelevantes foram direcionados a você, por gentileza, [[Special:UserLogin/signup|crie uma conta]] ou [[Special:UserLogin|autentique-se]], a fim de evitar futuras confusões com outros usuários anônimos.''",
 'noarticletext'                    => 'Não existe atualmente texto nesta página; você pode [[Special:Search/{{PAGENAME}}|pesquisar pelo título desta página em outras páginas]] ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página].',
 'userpage-userdoesnotexist'        => 'A conta "$1" não se encontra registrada. Por gentileza, verifique se deseja mesmo criar/editar esta página.',
 'clearyourcache'                   => "'''Nota:''' Após salvar, terá de limpar a cache do seu navegador para ver as alterações.'''
 '''Mozilla / Firefox / Safari:''' pressione ''Shift'' enquanto clica em ''Recarregar'', ou pressione ou ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' para Macintosh); '''Konqueror:''': clique no botão ''Recarregar'' ou pressione ''F5''; '''Opera:''' limpe a sua cache em ''Ferramentas → Preferências'' (''Tools → Preferences''); '''Internet Explorer:''' pressione ''Ctrl'' enquanto clica em ''Recarregar'' ou pressione ''Ctrl-F5'';",
 'usercssjsyoucanpreview'           => '<strong>Dica:</strong> Utilize o botão "Mostrar previsão" para testar seu novo CSS/JS antes de salvar.',
-'usercsspreview'                   => "'''Lembre-se que está apenas prevendo o seu CSS particular e que ele ainda não foi salvo!'''",
+'usercsspreview'                   => "'''Lembre-se que está apenas prevendo o seu CSS particular.'''
+'''Ele ainda não foi salvo!'''",
 'userjspreview'                    => "'''Lembre-se que está apenas testando/prevendo o seu JavaScript particular e que ele ainda não foi salvo!'''",
 'userinvalidcssjstitle'            => "'''Aviso:''' Não existe um tema \"\$1\". Lembre-se que as páginas .css e  .js utilizam um título em minúsculas, exemplo: {{ns:user}}:Alguém/monobook.css aposto a {{ns:user}}:Alguém/Monobook.css.",
 'updated'                          => '(Atualizado)',
@@ -721,9 +736,10 @@ As modificações ainda não foram salvas!</strong>',
 Por favor tente novamente. Caso continue a não funcionar, tente sair e voltar a entrar na sua conta.</strong>',
 'session_fail_preview_html'        => "<strong>Desculpe-nos! Não foi possível processar a sua edição devido a uma perda de dados de sessão.</strong>
 
-''Devido a este wiki possuir HTML raw ativo, a previsão não será exibida como forma de precaução contra ataques por JavaScript.''
+''Como o projeto {{SITENAME}} possui HTML bruto ativo, a previsão não será exibida, como uma precaução contra ataques por JavaScript.''
 
-<strong>Por favor, tente novamente caso esta seja uma tentativa de edição legítima. Caso continue a não funcionar, tente desautenticar-se e voltar a entrar na sua conta.</strong>",
+<strong>Se esta é uma tentativa de edição legítima, por favor tente novamente.
+Caso continue não funcionando, tente [[Special:UserLogout|desautenticar-se]] e voltar a entrar na sua conta.</strong>",
 'token_suffix_mismatch'            => '<strong>A sua edição foi rejeitada uma vez que seu software de navegação mutilou os sinais de pontuação do sinal de edição. A edição foi rejeitada para evitar perdas no texto da página.
 Isso acontece ocasionalmente quando se usa um serviço de proxy anonimizador mal configurado.</strong>',
 'editing'                          => 'Editando $1',
@@ -768,7 +784,7 @@ Quem bloqueou o banco de dados forneceu a seguinte justificativa: $1',
 'nocreatetitle'                    => 'A criação de páginas se encontra limitada',
 'nocreatetext'                     => '{{SITENAME}} tem restringida a habilidade de criar novas páginas.
 Volte à tela anterior e edite uma página já existente, ou [[Special:UserLogin|autentique-se ou crie uma conta]].',
-'nocreate-loggedin'                => 'Você não possui permissões de criar novas páginas neste wiki.',
+'nocreate-loggedin'                => 'Você não possui permissão para criar novas páginas.',
 'permissionserrors'                => 'Erros de permissões',
 'permissionserrorstext'            => 'Você não possui permissão de fazer isso, {{PLURAL:$1|pelo seguinte motivo|pelos seguintes motivos}}:',
 'permissionserrorstext-withaction' => 'Você não possui permissão para $2, {{PLURAL:$1|pelo seguinte motivo|pelos motivos a seguir}}:',
@@ -776,7 +792,16 @@ Volte à tela anterior e edite uma página já existente, ou [[Special:UserLogin
 
 Certifique-se de que seja adequado prosseguir editando esta página.
 O registro de eliminação desta página é exibido a seguir, para sua comodidade:",
+'deleted-notice'                   => 'Esta página foi eliminada. O registro de eliminações para esta página é disponibilizado abaixo, para referência.',
+'deletelog-fulllog'                => 'Ver registro completo',
+'edit-hook-aborted'                => "Edição abortada por ''hook''.
+Ele não deu nenhuma explicação.",
+'edit-gone-missing'                => 'Não foi possível atualizar a página.
+Ela parece ter sido eliminada.',
 'edit-conflict'                    => 'Conflito de edição.',
+'edit-no-change'                   => 'A sua edição foi ignorada, uma vez que o texto não sofreu alterações.',
+'edit-already-exists'              => 'Não foi possível criar uma nova página.
+Ela já existia.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Aviso: Esta página contém muitas chamadas a funções do analisador "parser".
@@ -788,6 +813,8 @@ Deveria ter menos de $2 {{PLURAL:$2|chamada|chamadas}}. Neste momento {{PLURAL:$
 'post-expand-template-argument-warning'   => 'Aviso: Esta página contém pelo menos um argumento de predefinição com um tamanho muito grande.
 Estes argumentos foram omitidos.',
 'post-expand-template-argument-category'  => 'Páginas com omissões de argumentos em predefinições',
+'parser-template-loop-warning'            => 'Ciclo de predefinições detectado: [[$1]]',
+'parser-template-recursion-depth-warning' => 'O limite de profundidade de recursividade de predefinição foi ultrapassado ($1)',
 
 # "Undo" feature
 'undo-success' => 'A edição pôde ser desfeita. Por gentileza, verifique o comparativo a seguir para se certificar de que é isto que deseja fazer, salvando as alterações após ter terminado de revisá-las.',
@@ -802,27 +829,29 @@ Estes argumentos foram omitidos.',
 A justificativa apresentada por $3 foi ''$2''",
 
 # History pages
-'viewpagelogs'        => 'Ver registros para esta página',
-'nohistory'           => 'Não há histórico de revisões para esta página.',
-'currentrev'          => 'Revisão atual',
-'revisionasof'        => 'Edição de $1',
-'revision-info'       => 'Edição feita às $1 por $2', # Additionally available: $3: revision id
-'previousrevision'    => '← Versão anterior',
-'nextrevision'        => 'Versão posterior →',
-'currentrevisionlink' => 'ver versão atual',
-'cur'                 => 'atu',
-'next'                => 'prox',
-'last'                => 'ult',
-'page_first'          => 'primeira',
-'page_last'           => 'última',
-'histlegend'          => 'Seleção para diferença: marque as caixas em uma das versões que deseja comparar e clique no botão.<br />
+'viewpagelogs'           => 'Ver registros para esta página',
+'nohistory'              => 'Não há histórico de revisões para esta página.',
+'currentrev'             => 'Revisão atual',
+'currentrev-asof'        => 'Edição atual tal como $1',
+'revisionasof'           => 'Edição de $1',
+'revision-info'          => 'Edição feita às $1 por $2', # Additionally available: $3: revision id
+'previousrevision'       => '← Versão anterior',
+'nextrevision'           => 'Versão posterior →',
+'currentrevisionlink'    => 'ver versão atual',
+'cur'                    => 'atu',
+'next'                   => 'prox',
+'last'                   => 'ult',
+'page_first'             => 'primeira',
+'page_last'              => 'última',
+'histlegend'             => 'Seleção para diferença: marque as caixas em uma das versões que deseja comparar e clique no botão.<br />
 Legenda: (atu) = diferenças da versão atual,
 (ult) = diferença da versão anterior, m = edição menor',
-'deletedrev'          => '[eliminada]',
-'histfirst'           => 'Mais antigas',
-'histlast'            => 'Mais recentes',
-'historysize'         => '({{PLURAL:$1|1 byte|$1 bytes}})',
-'historyempty'        => '(vazio)',
+'history-fieldset-title' => 'Navegar pelo histórico',
+'deletedrev'             => '[eliminada]',
+'histfirst'              => 'Mais antigas',
+'histlast'               => 'Mais recentes',
+'historysize'            => '({{PLURAL:$1|1 byte|$1 bytes}})',
+'historyempty'           => '(vazio)',
 
 # Revision feed
 'history-feed-title'          => 'Histórico de revisão',
@@ -907,6 +936,7 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 'mergehistory-invalid-destination' => 'A página de destino precisa ser um título válido.',
 'mergehistory-autocomment'         => '[[:$1]] fundido em [[:$2]]',
 'mergehistory-comment'             => '[[:$1]] fundido em [[:$2]]: $3',
+'mergehistory-same-destination'    => 'As páginas de origem e de destino não podem ser as mesmas',
 
 # Merge log
 'mergelog'           => 'Registro de fusão de históricos',
@@ -919,6 +949,8 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 'difference'              => '(Diferença entre revisões)',
 'lineno'                  => 'Linha $1:',
 'compareselectedversions' => 'Compare as versões selecionadas',
+'visualcomparison'        => 'Comparação visual',
+'wikicodecomparison'      => 'Comparação de wikitexto',
 'editundo'                => 'desfazer',
 'diff-multi'              => '({{PLURAL:$1|uma edição intermediária não está sendo exibida|$1 edições intermediárias não estão sendo exibidas}}.)',
 'diff-width'              => 'largura',
@@ -1137,10 +1169,11 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desat
 'rightsnone'     => '(nenhum)',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-read'       => 'ler esta página',
-'action-edit'       => 'editar esta página',
-'action-createpage' => 'criar páginas',
-'action-delete'     => 'excluir esta página',
+'action-read'           => 'ler esta página',
+'action-edit'           => 'editar esta página',
+'action-createpage'     => 'criar páginas',
+'action-delete'         => 'excluir esta página',
+'action-suppressionlog' => 'ver este registro privado',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|alteração|alterações}}',
@@ -1189,13 +1222,12 @@ Páginas que estejam em [[Special:Watchlist|sua lista de vigiados]] são exibida
 'upload_directory_read_only'  => 'O diretório de download de arquivos ($1) não tem permissões de escrita para o servidor Web.',
 'uploaderror'                 => 'Erro ao carregar',
 'uploadtext'                  => "Utilize o formulário abaixo para carregar novos arquivos.
-Para ver ou pesquisar imagens anteriormente carregadas consulte a [[Special:FileList|lista de arquivos carregados]].
-Uploads e eliminações são também registadros no [[Special:Log|registro do projeto]].
+Para ver ou pesquisar imagens anteriormente carregadas consulte a [[Special:FileList|lista de arquivos carregados]]. (Re)Envios são também registrados no [[Special:Log/upload|registro de carregamento]], e as eliminações no [[Special:Log/delete|registro de eliminação]]
 
-Para incluír a imagem em uma página, utilize o link na forma de
-'''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:arquivo.jpg]]</nowiki>''',
-'''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:arquivo.png|texto]]</nowiki>''' ou
-'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:arquivo.ogg]]</nowiki>''' para uma ligação directa ao arquivo.",
+Para incluir a imagem numa página, utilize uma ligação em um dos seguintes formatos:
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Arquivo.jpg]]</nowiki></tt>''' para utilizar a versão completa do arquivo;
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Arquivo.png|200px|thumb|left|texto]]</nowiki></tt>''' para utilizar uma renderização de 200 pixels dentro de uma caixa posicionada à margem esquerda contendo 'texto' como descrição;
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Arquivo.ogg]]</nowiki></tt>''' para uma ligação direta ao arquivo sem que ele seja exibido.",
 'upload-permitted'            => 'Tipos de arquivos permitidos: $1.',
 'upload-preferred'            => 'Tipos de arquivos preferidos: $1.',
 'upload-prohibited'           => 'Tipos de arquivo proibidos: $1.',
@@ -1232,7 +1264,7 @@ Por gentileza, escolha um nome diferente.',
 'fileexists-thumbnail-yes'    => 'O arquivo aparenta ser uma imagem de tamanho reduzido (<i>miniatura</i>, ou <i>thumbnail</i>). Por gentileza, verifique o arquivo <strong><tt>$1</tt></strong>.<br />
 Se o arquivo enviado é o mesmo do de tamanho original, não é necessário enviar uma versão de miniatura adicional.',
 'file-thumbnail-no'           => 'O nome do arquivo começa com <strong><tt>$1</tt></strong>. Isso faz parecer se tratar de uma imagem de tamanho reduzido (<i>miniatura</i>, ou <i>thumbnail</i>).
-Por gentileza, se você tem acesso à imagem de tamanho completo, prefira envia-la no lugar desta. Caso não seja o caso, altere o nome de arquivo.',
+Se você tem esta imagem em sua resolução completa, envie a no lugar desta. Caso contrário, por gentileza, altere o nome de arquivo.',
 'fileexists-forbidden'        => 'Já existe um arquivo com este nome. Por favor, volte atrás e carregue este arquivo sob um novo nome. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Já existe um arquivo com este nome no repositório de arquivo partilhados. Por favor, volte atrás e carregue este arquivo sob um novo nome. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Esta imagem é uma duplicata do seguinte {{PLURAL:$1|arquivo|arquivos}}:',
@@ -1330,8 +1362,8 @@ Um clique sobre um cabeçalho de coluna altera a ordenação.',
 'shareduploadduplicate-linktext' => 'outro arquivo',
 'shareduploadconflict'           => 'Este arquivo tem o mesmo nome que $1 do repositório partilhado.',
 'shareduploadconflict-linktext'  => 'outro arquivo',
-'noimage'                        => 'Não existe nenhum arquivo com este nome. Se desejar, pode $1',
-'noimage-linktext'               => 'carregá-lo',
+'noimage'                        => 'Não existe nenhum arquivo com este nome, mas você pode $1.',
+'noimage-linktext'               => 'carregar um',
 'uploadnewversion-linktext'      => 'Carregar uma nova versão deste arquivo',
 'imagepage-searchdupe'           => 'Procurar por arquivos duplicados',
 
@@ -1559,7 +1591,7 @@ Modificações futuras em tal página e páginas de discussão a ela associadas 
 'notanarticle'         => 'Não é uma página de conteúdo',
 'notvisiblerev'        => 'Edição eliminada',
 'watchnochange'        => 'Nenhum dos itens vigiados foram editados no período exibido.',
-'watchlist-details'    => '{{PLURAL:$1|$1 página vigiada|$1 páginas vigiadas}}, excluindo páginas de discussão.',
+'watchlist-details'    => '{{PLURAL:$1|$1 página|$1 páginas}} na sua lista de páginas vigiadas, excluindo páginas de discussão.',
 'wlheader-enotif'      => '* A notificação por email encontra-se ativada.',
 'wlheader-showupdated' => "* As páginas modificadas desde a sua última visita são mostradas em '''negrito'''",
 'watchmethod-recent'   => 'verificando edições recentes para as páginas vigiadas',
@@ -2162,8 +2194,8 @@ $1',
 'filedelete-archive-read-only'    => 'O servidor web não é capaz de fazer alterações no diretório "$1".',
 
 # Browsing diffs
-'previousdiff' => '← Ver a alteração anterior',
-'nextdiff'     => 'Ver a alteração posterior →',
+'previousdiff' => '← Edição anterior',
+'nextdiff'     => 'Edição posterior →',
 
 # Media information
 'mediawarning'         => "'''Aviso''': Este arquivo pode conter código malicioso. Ao executar, o seu sistema poderá estar comprometido.<hr />",
@@ -2460,7 +2492,7 @@ Caso o arquivo tenha sido modificado a partir do seu estado original, alguns det
 
 # External editor support
 'edit-externally'      => 'Editar este arquivo utilizando uma aplicação externa',
-'edit-externally-help' => 'Consulte as [http://www.mediawiki.org/wiki/Manual:External_editors instruções de instalação] para mais informação.',
+'edit-externally-help' => '(Consulte as [http://www.mediawiki.org/wiki/Manual:External_editors instruções de instalação] para maiores informações)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'todas',

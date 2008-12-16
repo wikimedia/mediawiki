@@ -208,6 +208,7 @@ $messages = array(
 
 'ok'                  => 'Афтæ уæд!',
 'pagetitle'           => '$1 — {{SITENAME}}',
+'retrievedfrom'       => 'Ратæдзæн: «$1»',
 'youhavenewmessages'  => 'Райстай $1 ($2).',
 'newmessageslink'     => 'ног фыстæгтæ',
 'newmessagesdifflink' => 'фæстаг ивддзинад',
@@ -221,6 +222,8 @@ $messages = array(
 'showtoc'             => 'равдис',
 'hidetoc'             => 'бамбæхс',
 'viewdeleted'         => '$1 фенын дæ фæнды?',
+'site-rss-feed'       => '$1 — RSS-уаццаг',
+'site-atom-feed'      => '$1 — Atom-уаццаг',
 'red-link-title'      => '$1 (фыст нæма у)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -273,7 +276,7 @@ $messages = array(
 'nav-login-createaccount' => 'Системæйæн дæхи бавдис',
 'userlogin'               => 'Системæйæн дæхи бавдис',
 'logout'                  => 'Номсусæг суын',
-'userlogout'              => 'Номсусæг суын',
+'userlogout'              => 'Номсусæг су',
 'notloggedin'             => 'Системæйæн дæхи нæ бацамыдтай',
 'createaccountmail'       => 'адрисмæ гæсгæ',
 'badretype'               => 'Дыууæ хатты иу пароль хъуамæ ныффыстаис',
@@ -320,6 +323,7 @@ $messages = array(
 'blockednoreason'    => 'аххос амынд не ’рцыд',
 'newarticle'         => '(Ног)',
 'note'               => '<strong>Бафиппай:</strong>',
+'editing'            => 'Ивыс: $1',
 'editconflict'       => 'Ивыны конфликт: $1',
 'longpagewarning'    => '<strong>РАГФÆДЗАХСТ: Ацы фарсы бæрцуат у $1 килобайты.
 Сæ бæрцуат 32 килобайтæй фылдæр кæмæн у, ахæм фæрстæ иуæй-иу браузерты раст нæ зынынц.
@@ -383,7 +387,7 @@ $messages = array(
 # Recent changes
 'recentchanges'     => 'Фæстаг ивддзинæдтæ',
 'recentchangestext' => 'Ацы фарсыл ирон Википедийы фæстаг ивддзинæдтæ фенæн ис.',
-'rcnote'            => 'Дæлдæр нымад сты афæстаг <strong>$2</strong> боны дæргъы конд <strong>{{PLURAL:$1|ивддзинад|$1 ивддзинады}}</strong>, $3 уавæрмæ гæсгæ.',
+'rcnote'            => 'Дæлдæр нымад сты афæстаг <strong>$2</strong> боны дæргъы конд <strong>{{PLURAL:$1|иу ивддзинад|$1 ивддзинады}}</strong>, $5, $4 уавæрмæ гæсгæ.',
 'rcshowhideminor'   => '$1 чысыл ивддзинæдтæ',
 'rclinks'           => 'Фæстаг $1 ивддзинæдтæ (афæстаг $2 боны дæргъы чи ’рцыдысты) равдис;
 $3',
@@ -393,6 +397,7 @@ $3',
 'show'              => 'Равдис',
 'minoreditletter'   => 'ч',
 'newpageletter'     => 'Н',
+'boteditletter'     => 'б',
 
 # Recent changes linked
 'recentchangeslinked' => 'Баст ивддзинæдтæ',
@@ -492,6 +497,10 @@ $3',
 'wlnote'            => "Дæлæ афæстаг '''$2 сахаты дæргъы''' цы $1 {{PLURAL:$1|ивддзинад|ивддзинады}} æрцыди.",
 'wlshowlast'        => 'Фæстæг $1 сахаты, $2 боны дæргъы; $3.',
 
+# Displayed when you click the "watch" button and it is in the process of watching
+'watching'   => 'Цæстдард фæрсты номхыгъдмæ афтауын...',
+'unwatching' => 'Цæстдард фæрсты номхыгъдæй аиуварс кæнын...',
+
 # Delete
 'exblank'               => 'фарс афтид уыдис',
 'deleteotherreason'     => 'Æндæр кæнæ уæлæмхасæн аххос:',
@@ -548,11 +557,20 @@ $3',
 'importnotext' => 'Афтид у кæнæ текст дзы нæй',
 
 # Tooltip help for the actions
+'tooltip-pt-userpage'     => 'Мæхи фарс (дæу тыххæй ам ныффысс)',
+'tooltip-pt-mytalk'       => 'Мæ дискусси',
+'tooltip-pt-preferences'  => 'Википеди куыд кусы, уый срæвдз кæн дæ хъæуындзинæдтæм гæсгæ',
 'tooltip-pt-mycontris'    => 'Мæ бавæрд',
+'tooltip-pt-login'        => 'Системæмæ дæхи бацамонай, кæд æцæг дæ хæс нæу, уæддæр',
+'tooltip-pt-logout'       => 'Регистрацигонд сеансæй рацу',
+'tooltip-ca-edit'         => 'Ацы фарс дæ бон у ивын. Дæ хорзæхæй, «Фен уал æй» джыбыйæ пайда кæн',
 'tooltip-ca-protect'      => 'Ацы фарс ивддзинæдтæй сæхгæн',
 'tooltip-ca-delete'       => 'Аппар ацы фарс',
 'tooltip-ca-watch'        => 'Дæ цæст кæмæ дарыс, уыцы фæрсты номхыгъдмæ бафтау',
 'tooltip-n-mainpage'      => 'Сæйраг фарсмæ рацу',
+'tooltip-n-portal'        => 'Проекты тыххæй æмæ, дæу цы бон у, уый тыххæй дæр',
+'tooltip-n-recentchanges' => 'Чи æмæ цавæр статьяты баивта',
+'tooltip-n-help'          => 'Кæд цыдæртæ нæ бамбæрстай',
 'tooltip-t-whatlinkshere' => 'Ацы фарсмæ чи ’рвитынц, ахæм фæрсты номхыгъд',
 'tooltip-t-upload'        => 'Нывтæ кæнæ мультимедиа-файлтæ бавæр',
 'tooltip-t-specialpages'  => 'Сæрмагонд фæрсты номхыгъд',

@@ -413,7 +413,7 @@ Apprime ca otre e-mail avènene mannete a 'u cunde tue, tu ha seguì le 'struzio
 'loginlanguagelabel'        => 'Lénga: $1',
 
 # Password reset dialog
-'resetpass'                 => "Cange o azzere 'a password d'u cunde utende",
+'resetpass'                 => "Cange 'a password",
 'resetpass_text'            => "<!-- Mitte 'u teste aqquà -->",
 'resetpass_header'          => "Azzere 'a passuord",
 'oldpassword'               => 'Vécchie passuord:',

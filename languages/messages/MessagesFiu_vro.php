@@ -1983,7 +1983,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 
 # External editor support
 'edit-externally'      => 'Toimõndaq taad teedüstüt välidse programmiga',
-'edit-externally-help' => 'Lisateedüst: [http://www.mediawiki.org/wiki/Manual:External_editors kaeq siist].',
+'edit-externally-help' => '(Lisateedüst loeq [http://www.mediawiki.org/wiki/Manual:External_editors pruukmisoppusõ lehe päält].',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'kõik',

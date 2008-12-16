@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author AnakngAraw
  * @author Felipe Aira
  * @author Sky Harbor
  * @author לערי ריינהארט
@@ -63,15 +64,22 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'Ipakita ang direksyong e-liham ko sa mga liham ng pagpapahayag',
 'tog-shownumberswatching'     => 'Ipakita ang bilang ng mga nagbabantay na manggagamit',
 'tog-fancysig'                => 'Hilaw na lagda (walang automatikong pagkawing)',
-'tog-externaleditor'          => 'Gumamit ng mambabagong panlabas nang nakatakda',
+'tog-externaleditor'          => 'Gumamit ng nakatakdang panlabas na pambago (para sa mga dalubhasa lamang, kailangan ng natatanging mga pagtatakda sa iyong kompyuter)',
+'tog-externaldiff'            => 'Gumamit ng nakatakdang ibang panlabas (para sa mga dalubhasa lamang, kailangan ng natatanging pagtatakda sa iyong kompyuter)',
 'tog-showjumplinks'           => 'Payagan ang mga "tumalon sa" na kawing pampagamit',
 'tog-uselivepreview'          => 'Gamitin ang buhay na pribyu (JavaScript) (Eksperimental)',
 'tog-forceeditsummary'        => 'Pagsabihan ako kapag nagpapasok ng walang-lamang buod ng pagbabago',
 'tog-watchlisthideown'        => 'Itago ang aking mga pagbabago mula sa bantayan',
 'tog-watchlisthidebots'       => 'Itago ang mga pagbabago ng mga bot mula sa bantayan',
 'tog-watchlisthideminor'      => 'Itago ang mga maliliit na pagbabago mula sa bantayan',
+'tog-watchlisthideliu'        => 'Itago ang mga pagbabago ng mga lumagdang tagagamit mula sa bantayan',
+'tog-watchlisthideanons'      => "Itago ang mga pagbabago ng 'di-kilalang mga tagagamit mula sa bantayan",
+'tog-nolangconversion'        => 'Huwag paganahin ang pagpapalit ng mga halagang nagkakaibaiba (baryante)',
 'tog-ccmeonemails'            => 'Padalahan ako ng mga kopya ng mga ipinadala kong e-liham sa ibang mga manggagamit',
-'tog-showhiddencats'          => 'Ipakita ang mga nakatago na kategorya',
+'tog-diffonly'                => 'Huwag ipakita ang nilalaman ng pahinang nasa ilalim ng mga pagkakaiba',
+'tog-showhiddencats'          => 'Ipakita ang mga nakatagong kategorya (kaurian)',
+'tog-noconvertlink'           => 'Huwag paganahin ang pagpapalit ng pamagat na pangkawing',
+'tog-norollbackdiff'          => "Alisin ang mga pagkakaiba pagkatapos isagawa ang ''ibalik-sa-dati''",
 
 'underline-always'  => 'Palagi',
 'underline-never'   => 'Hindi magpakailanman',
@@ -118,7 +126,9 @@ $messages = array(
 'december-gen'  => 'Disyembre',
 'jan'           => 'Ene',
 'feb'           => 'Peb',
+'mar'           => 'Mar',
 'apr'           => 'Abr',
+'may'           => 'May',
 'jun'           => 'Hun',
 'jul'           => 'Hul',
 'aug'           => 'Ago',
@@ -128,7 +138,7 @@ $messages = array(
 'dec'           => 'Dis',
 
 # Categories related messages
-'pagecategories'              => '{{PLURAL:$1|Kategorya|Mga kategorya}}',
+'pagecategories'              => '{{PLURAL:$1|Kaurian|Mga kaurian}}',
 'category_header'             => 'Mga pahina sa kategoryang "$1"',
 'subcategories'               => 'Mga subkategorya',
 'category-media-header'       => 'Mga midya sa kategoryang "$1"',
@@ -366,9 +376,15 @@ Nilikha na ang iyong kuwenta. Huwag kalimutang baguhin ang iyong mga kagustuhan 
 'loginsuccess'              => "'''Nakalagda ka na sa {{SITENAME}} bilang si \"\$1\".'''",
 'nosuchusershort'           => 'Walang manggagamit na may pangalang "<nowiki>$1</nowiki>". Pakitingnan ang iyong pagbaybay.',
 'passwordtooshort'          => 'Walang saysay o masyadong maigsi ang iyong hudyat. Dapat ito ay hindi bababa sa $1 karakter at ay magkaiba sa iyong bansag.',
+'mailmypassword'            => 'I-e-liham ang bagong hudyat',
 'passwordremindertitle'     => 'Bagong pansamantalang hudyat para sa {{SITENAME}}',
 'mailerror'                 => 'Kamalian sa pagpapadala ng liham: $1',
 'loginlanguagelabel'        => 'Wika: $1',
+
+# Password reset dialog
+'resetpass_success'       => 'Matagumpay na nabago ang iyong hudyat!  Inilalagda ka na ngayon...',
+'resetpass_bad_temporary' => 'Hindi tanggap na pansamantalang hudyat.
+Maaaring matagumpay mo nang nabago ang iyong hudyat o nakahiling na ng isang bagong pansamantalang hudyat.',
 
 # Edit page toolbar
 'bold_sample'   => 'Tekstong maitim',
@@ -613,32 +629,332 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'importsuccess'           => 'Tapos na ang pag-angkat!',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'    => 'Aking pahina ng manggagamit',
-'tooltip-pt-mytalk'      => 'Aking pahinang usapan',
-'tooltip-pt-preferences' => 'Aking mga kagustuhan',
-'tooltip-pt-mycontris'   => 'Tala ng aking mga ambag',
-'tooltip-pt-logout'      => 'Umalis sa pagkalagda',
+'tooltip-pt-userpage'             => 'Aking pahina ng manggagamit',
+'tooltip-pt-mytalk'               => 'Aking pahinang usapan',
+'tooltip-pt-preferences'          => 'Aking mga kagustuhan',
+'tooltip-pt-mycontris'            => 'Tala ng aking mga ambag',
+'tooltip-pt-logout'               => 'Umalis sa pagkalagda',
+'tooltip-n-mainpage'              => 'Dalawin ang Unang Pahina',
+'tooltip-n-portal'                => 'Hinggil sa proyekto, ano ang magagawa mo, saan matatagpuan ang mga bagay-bagay',
+'tooltip-n-currentevents'         => 'Maghanap ng sanligang impormasyon hinggil sa mga kasalukuyang kaganapan',
+'tooltip-n-recentchanges'         => 'Ang tala ng mga kamakailang pagbabago sa loob ng wiki.',
+'tooltip-n-randompage'            => 'Magkarga ng anumang pahina',
+'tooltip-n-help'                  => 'Pook kung saan ito matutuklasan.',
+'tooltip-t-whatlinkshere'         => 'Tala ng lahat ng pahina ng mga wiking nakakawing dito',
+'tooltip-t-recentchangeslinked'   => 'Kamakailang mga pagbabago na nakakawing mula sa pahinang ito',
+'tooltip-feed-rss'                => 'Subo/Kargang RSS para sa pahinang ito',
+'tooltip-feed-atom'               => 'Subo/kargang Atom para sa pahinang ito',
+'tooltip-t-contributions'         => 'Tunghayan ang tala ng mga ambag ng tagagamit na ito',
+'tooltip-t-emailuser'             => 'Magpadala ng isang e-liham sa tagagamit na ito',
+'tooltip-t-upload'                => 'Magkarga ng mga talaksan',
+'tooltip-t-specialpages'          => 'Tala ng lahat ng mga natatanging pahina',
+'tooltip-t-print'                 => 'Nalilimbag na bersyon ng pahinang ito',
+'tooltip-t-permalink'             => 'Permanenteng kawing sa bersyong ito ng pahina',
+'tooltip-ca-nstab-main'           => 'Tingnan ang pahina ng nilalaman',
+'tooltip-ca-nstab-user'           => 'Tingnan ang pahina ng tagagamit',
+'tooltip-ca-nstab-media'          => 'Tingnan ang pahina ng midya',
+'tooltip-ca-nstab-special'        => 'Isa itong natatanging pahina, hindi mo mababago ang mismong pahina',
+'tooltip-ca-nstab-project'        => 'Tingnan ang pahina ng proyekto',
+'tooltip-ca-nstab-image'          => 'Tingnan ang pahina ng talaksan',
+'tooltip-ca-nstab-mediawiki'      => 'Tingnan ang mensahe ng sistema',
+'tooltip-ca-nstab-template'       => 'Tingnan ang suleras',
+'tooltip-ca-nstab-help'           => 'Tingnan ang pahina ng tulong',
+'tooltip-ca-nstab-category'       => 'Tingnan ang pahina ng kaurian/kategorya',
+'tooltip-minoredit'               => 'Tandaan ito bilang isang maliit na pagbabago',
+'tooltip-save'                    => 'Sagipin ang iyong mga pagbabago',
+'tooltip-preview'                 => 'Paunang-tingnan ang mga pagbabago mo, pakigamit muna ito bago sagipin o magtala!',
+'tooltip-diff'                    => 'Ipakita ang mga pagbabagong ginawa mo sa teksto.',
+'tooltip-compareselectedversions' => 'Tingnan ang pagkakaiba sa pagitan ng dalawang napiling bersyon ng pahinang ito.',
+'tooltip-watch'                   => 'Idagdag ang pahinang ito sa iyong tala ng mga binabantayan',
+'tooltip-recreate'                => 'Muling likhain ang pahina kahit na nabura na ito',
+'tooltip-upload'                  => 'Simulan ang pagkarga',
+'tooltip-rollback'                => 'Ibinabalik ng "Ibalik sa dati" ang (mga) pagbabago sa pahinang ito patungo sa huling bersyon ng huling tagapagambag sa pamamagitan ng isang pindot lamang.',
+'tooltip-undo'                    => 'Ibinabalit ng "Ibalik" ang pagbabagong ito at binubuksan ang pahinang gawaan ng pagbabago sa anyong paunang-tingin muna.  Nagpapahintulot na makapagdagdag ng dahilan sa buod.',
+
+# Stylesheets
+'common.css'      => '/* Ang inilagay na CSS dito ay gagamitin para sa lahat ng mga pabalat */',
+'standard.css'    => '/* Ang inilagay na CSS dito ay makakaapekto sa mga tagagamit ng Karaniwang pabalat */',
+'nostalgia.css'   => '/* Ang CSS na inilagay dito ay makakaapekto sa mga tagagamit ng pabalat na Nostalgia */',
+'cologneblue.css' => "/* Ang CSS na inilagay dito ay makakaapekto sa mga tagagamit ng pabalat na Bugkaw na Kolon (''Cologne Blue'') */",
+'monobook.css'    => '/* Ang CSS na inilagay dito ay makakaapekto sa mga tagagamit ng pabalat na Monobook */',
+'myskin.css'      => "/* Ang CSS na inilagay dito ay makakaapekto sa lahat ng mga tagagamit ng pabalat na Balatko (''Myskin'') */",
+'chick.css'       => "/* Ang CSS na inilagay dito ay makakaapekto sa mga tagagamit ng pabalat na ''Chick'' */",
+'simple.css'      => "/* Ang CSS na iniligay dito ay makakaapekto sa mga tagagamit ng Payak (''Simple'') na pabalat */",
+'modern.css'      => "/* Ang CSS na iniligay dito ay makakaapekto sa tagagamit ng Makabagong (''Modern'') pabalat */",
+'print.css'       => '/* Ang CSS na inilagay dito ay makakaapekto sa kalalabasan o resulta ng paglilimbag */',
+'handheld.css'    => "/* Ang CSS na inilagay dito ay makakaapekto sa mga aparatong nahahawakan (''handheld device'') batay sa itinakdang pabalat sa ''\$wgHandheldStyle'' */",
+
+# Scripts
+'common.js'      => '/* Anumang JavaScript dito ay ikakarga para sa lahat ng mga tagagamit ng bawat pahinang ikinarga. */',
+'standard.js'    => '/* Anumang JavaScript dito ay ikakarga para lahat ng mga tagagamit na gumagamit ng Karaniwang pabalat */',
+'nostalgia.js'   => '/* Anumang JavaScript dito ay ikakarga para lahat ng mga tagagamit na gumagamit ng pabalat na Nostalgia */',
+'cologneblue.js' => '/* Anumang JavaScript dito ay ikakarga para sa tagagamit ng pabalat na Bughaw na Kolon */',
+'monobook.js'    => '/* Anumang JavaScript dito ay ikakarga para sa mga tagagamit na gumagamit ng pabalat na MonoBook */',
+'myskin.js'      => '/* Anumang JavaScript dito ay ikakarga para sa tagagamit na gumagamit ng pabalat na Balatko */',
+'chick.js'       => "/* Anumang JavaScript dito ay ikakarga para sa mga tagagamit na gumagamit ng pabalat na ''Chick'' */",
+'simple.js'      => '/* Anumang JavaScript dito ay ikakarga para sa tagagamit na gumagamit ng Payak na pabalat */',
+'modern.js'      => '/* Anumang JavaScript dito ay ikakarga para sa mga tagagamit na gumagamit ng Makabagong pabalat */',
+
+# Metadata
+'nodublincore'      => 'Hindi pinagana ang metadatang Dublin Core RDF para sa serbidor na ito.',
+'nocreativecommons' => 'Hindi pinagana ang metadatang Creative Commons RDF para sa serbidor na ito.',
+'notacceptable'     => 'Hindi makapagbigay ng dato ang serbidor ng wiki sa anyong mababasa ng iyong kliyente.',
 
 # Attribution
-'othercontribs' => 'Batay sa gawa ni/nina $1.',
+'anonymous'        => 'Hindi kilalang {{PLURAL:$1|tagagamit|mga tagagamit}} ng {{SITENAME}}',
+'siteuser'         => 'Tagagamit $1 ng {{SITENAME}}',
+'lastmodifiedatby' => 'Huling binago ang pahinang ito noong $2, $1 ni $3.', # $1 date, $2 time, $3 user
+'othercontribs'    => 'Batay sa gawa ni/nina $1.',
+'others'           => 'iba pa',
+'siteusers'        => '{{PLURAL:$2|tagagamit|mga tagagamit}} $1 ng {{SITENAME}}',
+'creditspage'      => 'Pahina ng pagkilala sa gumawa (mga kredito)',
+'nocredits'        => 'Walang mga kredito/pagkilala sa gumawa na makuha para sa pahinang ito.',
+
+# Spam protection
+'spamprotectiontitle' => "Pansala na pananggalang laban sa ''Spam''",
+'spamprotectiontext'  => "Ang pahinang ibig mong sagipin ay naharang ng pansala ng ''spam''.
+Maaaring dahil ito sa isang kawing sa isang nakatalang hinarang dahil di-kinaisnais na panlabas na sityo/sayt.",
+'spamprotectionmatch' => "Ang sumusunod na teksto ang bumuhay sa aming panala ng ''spam'': $1",
+'spambot_username'    => "Paglilinis ng ''spam'' ng MediaWiki",
+'spam_reverting'      => "Ibinabalik sa huling bersyon na 'di-naglalaman ng mga kawing sa $1",
+'spam_blanking'       => 'Lahat ng mga pagbabago ay naglalaman ng mga kawing sa $1, pagpapatlang',
 
 # Info page
-'numedits'     => 'Bilang ng mga pagbabago (pahina): $1',
-'numtalkedits' => 'Bilang ng mga pagbabago (pahinang usapan): $1',
+'infosubtitle'   => 'Kabatiran para sa pahina',
+'numedits'       => 'Bilang ng mga pagbabago (pahina): $1',
+'numtalkedits'   => 'Bilang ng mga pagbabago (pahinang usapan): $1',
+'numwatchers'    => 'Bilang ng mga tagatingin: $1',
+'numauthors'     => 'Bilang ng mga bukdo-tanging mga may-akda (pahina): $1',
+'numtalkauthors' => 'Bilang ng bukod-tanging mga may-akda (pahinang usapan): $1',
+
+# Math options
+'mw_math_png'    => 'Palaging ilarawan sa anyong PNG',
+'mw_math_simple' => 'HTML kung napakapayak o kaya PNG kung iba',
+'mw_math_html'   => 'HTML kung maaari o kaya PNG kapag iba',
+'mw_math_source' => "Iwanan bilang TeX (para sa mga panghanap na pangteksto o ''text browser'')",
+'mw_math_modern' => 'Irekomenda para sa makabagong mga panghanap',
+'mw_math_mathml' => 'MathML kung maaari (sinusubok pa)',
+
+# Patrolling
+'markaspatrolleddiff'                 => 'Tatakan bilang napatrolya na',
+'markaspatrolledtext'                 => 'Tatakan ang pahinang ito bilang napatrolya na',
+'markedaspatrolled'                   => 'Tatakan bilang napatrolya na',
+'markedaspatrolledtext'               => 'Ang napiling pagbabago ay natatakan na bilang napatrolya.',
+'rcpatroldisabled'                    => 'Hindi pinagana ang Patrolyang Pangkamailan-Lamang na Pagbabago',
+'rcpatroldisabledtext'                => 'Kasalukuyang hindi pinagagana ang kasangkapang Patrolyang Pangkamakailang-lamang na Pagbabago.',
+'markedaspatrollederror'              => 'Hindi matatakan bilang napatrolya na',
+'markedaspatrollederrortext'          => 'Kailangang tukuyin mo ang isang pagbabago para matatakan ito bilang napatrolya na.',
+'markedaspatrollederror-noautopatrol' => 'Wala kang pahintulot para tatakan ang ginawa mong mga pagbabago bilang napatrolya na.',
 
 # Patrol log
-'patrol-log-auto' => '(automatiko)',
+'patrol-log-page'      => 'Tala ng Pagpapatrolya',
+'patrol-log-header'    => 'Tala ito ng mga pagbabagong napatrolya na.',
+'patrol-log-line'      => 'tinatakang $1 ng $2 napatrolya $3',
+'patrol-log-auto'      => '(awtomatiko)',
+'patrol-log-diff'      => 'r$1',
+'log-show-hide-patrol' => '$1 tala ng pagpatrolya',
 
 # Image deletion
-'filedeleteerror-short' => 'Kamalian sa pagbubura ng talaksan: $1',
+'deletedrevision'                 => 'Binurang lumang pagbabago $1',
+'filedeleteerror-short'           => 'Kamalian sa pagbubura ng talaksan: $1',
+'filedeleteerror-long'            => 'Nakaranas ng mga kamalian habang binubura ang talaksan:
+
+$1',
+'filedelete-missing'              => 'Hindi mabura ang talaksang "$1", dahil wala namang ganito.',
+'filedelete-old-unregistered'     => 'Wala sa himpilan ng dato ang tinutukoy na pagbabago sa talaksan "$1".',
+'filedelete-current-unregistered' => 'Wala sa himpilan ng dato ang tinukoy na talaksang "$1".',
+'filedelete-archive-read-only'    => 'Hindi maisulat ng serbidor ng sapot (web) ang direktoryo ng sinupang "$1".',
+
+# Browsing diffs
+'previousdiff' => '← Mas lumang pagbabago',
+'nextdiff'     => 'Mas bagong pagbabago →',
+
+# Visual comparison
+'visual-comparison' => 'Paghahambing na matatanaw',
 
 # Media information
+'mediawarning'         => "'''Babala''': Maaaring naglalaman ang talaksang ito ng kodigong malisyoso, maaaring manganib ang iyong sistema kapag isinagawa mo ito .<hr />",
+'imagemaxsize'         => 'Itakda lamang ang hangganan ng mga larawan sa ibabaw ng pahina ng paglalarawang pangtalaksan sa:',
+'thumbsize'            => 'Maliit na sukat (parang "kuko sa hinlalaki" lamang):',
+'widthheight'          => '$1×$2',
+'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pahina|mga pahina}}',
+'file-info'            => '(sukat ng talaksan: $1, tipo ng MIME: $2)',
+'file-info-size'       => '($1 × $2 piksel, sukat ng talaksan: $3, tipo ng MIME: $4)',
 'file-nohires'         => '<small>Walang makuhang mas mataas na resolusyon.</small>',
+'svg-long-desc'        => '(Talaksang SVG, nasa mga bilang na $1 × $2 mga piksel, sukat ng talaksan: $3)',
 'show-big-image'       => 'Buong resolusyon',
-'show-big-image-thumb' => '<small>Laki ng itong pribyu: $1 × $2 piksel</small>',
+'show-big-image-thumb' => '<small>Laki ng paunang tinging ganito: $1 × $2 mga piksel</small>',
 
 # Special:NewFiles
-'newimages' => 'Galeriya ng mga bagong talaksan',
+'newimages'             => 'Galerya ng mga bagong talaksan',
+'imagelisttext'         => "Nasa ibaba ang isang tala ng '''$1''' {{PLURAL:$1|talaksan|mga talakasang}} nauri na $2.",
+'newimages-summary'     => 'Nagpapakita ang natatanging pahinang ito ng huling naikargang mga talaksan.',
+'newimages-legend'      => 'Pansala',
+'newimages-label'       => 'Pangalan ng talaksan (o bahagi nito):',
+'showhidebots'          => "($1 mga ''bot'')",
+'noimages'              => 'Walang makikita dito.',
+'ilsubmit'              => 'Hanapin',
+'bydate'                => 'ayon sa petsa',
+'sp-newimages-showfrom' => 'Ipakita ang mga bagong talaksang nagsisimula mula $2, $1',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'video-dims'     => '$1, $2×$3',
+'seconds-abbrev' => 's',
+'minutes-abbrev' => 'm',
+'hours-abbrev'   => 'o',
+
+# Bad image list
+'bad_image_list' => 'Ang anyo ay ang mga sumusunod:
+
+Tanging mga nakatalang bagay lamang (mga linyang nagsisimula sa *) ang pinaguukulan ng pansin.
+Ang unang kawing sa isang linya ay dapat na nakakawing sa isang talaksang may masamang kalagayan.
+Anumang susunod na mga kawing sa pinanggalingang linya ay tinuturing na mga eksepsyon o bukod-tangi, iyong mga pahina kung saan ang mga talaksan ay maaaring lumitaw sa loob ng linya.',
+
+/*
+Short names for language variants used for language conversion links.
+To disable showing a particular link, set it to 'disable', e.g.
+'variantname-zh-sg' => 'disable',
+Variants for Chinese language
+*/
+'variantname-zh-hans' => 'hans',
+'variantname-zh-hant' => 'hant',
+'variantname-zh-cn'   => 'cn',
+'variantname-zh-tw'   => 'tw',
+'variantname-zh-hk'   => 'hk',
+'variantname-zh-mo'   => 'mo',
+'variantname-zh-sg'   => 'sg',
+'variantname-zh-my'   => 'my',
+'variantname-zh'      => 'zh',
+
+# Variants for Serbian language
+'variantname-sr-ec' => 'sr-ec',
+'variantname-sr-el' => 'sr-el',
+'variantname-sr'    => 'sr',
+
+# Variants for Kazakh language
+'variantname-kk-kz'   => 'kk-kz',
+'variantname-kk-tr'   => 'kk-tr',
+'variantname-kk-cn'   => 'kk-cn',
+'variantname-kk-cyrl' => 'kk-cyrl',
+'variantname-kk-latn' => 'kk-latn',
+'variantname-kk-arab' => 'kk-arabe',
+'variantname-kk'      => 'kk',
+
+# Variants for Kurdish language
+'variantname-ku-arab' => 'ku-Arabe',
+'variantname-ku-latn' => 'ku-Latn',
+'variantname-ku'      => 'ku',
+
+# Variants for Tajiki language
+'variantname-tg-cyrl' => 'tg-Cyrl',
+'variantname-tg-latn' => 'tg-Latn',
+'variantname-tg'      => 'tg',
+
+# Metadata
+'metadata'          => 'Metadata',
+'metadata-help'     => 'Naglalaman ang talaksang ito ng karagdagang kabatiran na maaaring idinagdag mula sa isang kamerang dihital o iskaner na ginamit para likhain o para maging dihital ito.
+Kapag nabago ang talaksan mula sa anyong orihinal nito, may ilang detalyeng hindi ganap na maipapakita ang nabagong talaksan.',
+'metadata-expand'   => 'Ipakita ang karugtong na mga detalye',
+'metadata-collapse' => 'Itago ang karugtong na mga detalye',
+'metadata-fields'   => 'Ang mga pook ng metadatang EXIF na nakatala sa mensaheng ito ay masasama sa ipinapakitang pahina ng larawan kapag tumiklop ang tabla ng metadata.
+Nakatakdang itago ang iba pa.
+* kayarian
+* modelo
+* petsaorasorihinal
+* lantadoras
+* pbilang
+* pokalhaba', # Do not translate list items
+
+# EXIF tags
+'exif-imagewidth'                  => 'Lapad',
+'exif-imagelength'                 => 'Taas',
+'exif-bitspersample'               => 'Mga bit (piraso) ng bawat komponente (bahagi)',
+'exif-compression'                 => 'Plano ng kumpresyon (pagkakasiksik)',
+'exif-photometricinterpretation'   => 'Mga taglay (komposisyon) ng piksel',
+'exif-orientation'                 => 'Oryentasyon',
+'exif-samplesperpixel'             => 'Bilang ng mga komponente (sangkap)',
+'exif-planarconfiguration'         => 'Pagkakaayos ng mga dato',
+'exif-ycbcrsubsampling'            => "Halimbawang bahagi ng rata (''ratio'') ng Y sa C",
+'exif-ycbcrpositioning'            => 'Pagkakaposisyon ng Y at C',
+'exif-xresolution'                 => 'Pahalang na resolusyon',
+'exif-yresolution'                 => 'Bertikal (patayo) na resolusyon',
+'exif-resolutionunit'              => 'Yunit ng resolusyong X at Y',
+'exif-stripoffsets'                => 'Lokasyon ng dato ng larawan',
+'exif-rowsperstrip'                => 'Bilang ng pahalang na hanay bawat manipis na piraso',
+'exif-stripbytecounts'             => 'Mga byte ng bawat siniksik na piraso',
+'exif-jpeginterchangeformat'       => "Bawiin at ibalanse (i-''offset'') patungo sa JPEG SOI",
+'exif-jpeginterchangeformatlength' => 'Mga byte ng datong JPEG',
+'exif-transferfunction'            => 'Tungkuling panglipat',
+'exif-whitepoint'                  => 'Kadalisayan (kromatisidad) ng punto o hangganan ng kaputian',
+'exif-primarychromaticities'       => 'Mga kadalisayan (kromatisidad) ng mga pangunahing kulay (mga primarya)',
+'exif-ycbcrcoefficients'           => 'Mga koepisyente (katuwang na bilang) ng matris na pambago ng espasyo ng kulay',
+'exif-referenceblackwhite'         => 'Pares ng mga itim at puting sangguniang halaga',
+'exif-datetime'                    => 'Petsa at oras ng pagbabago ng talaksan',
+'exif-imagedescription'            => 'Pamagat ng larawan',
+'exif-make'                        => 'Kumpanyang tagagawa ng kamera',
+'exif-model'                       => 'Modelo ng kamera',
+'exif-software'                    => 'Ginamit na sopwer',
+'exif-artist'                      => 'May-akda',
+'exif-copyright'                   => 'May-hawak ng karapatang-ari (kopirayt)',
+'exif-exifversion'                 => 'Bersyong Exif',
+'exif-flashpixversion'             => 'Bersyon ng sinusuportahang Flashpix',
+'exif-colorspace'                  => 'Espasyo ng kulay',
+'exif-componentsconfiguration'     => 'Kahulugan ng bawat komponente',
+'exif-compressedbitsperpixel'      => 'Modalidad (paraan) ng pagsisiksik ng larawan',
+'exif-pixelydimension'             => 'Tanggap na lapad ng larawan',
+'exif-pixelxdimension'             => 'Tanggap na taas ng larawan',
+'exif-makernote'                   => 'Mga tala mula sa kumpanyang tagagawa',
+'exif-usercomment'                 => 'Mga kumento ng tagagamit',
+'exif-relatedsoundfile'            => 'Kaugnay na talaksang nadidinig (audio)',
+'exif-datetimeoriginal'            => 'Petsa at oras ng paglikha ng mga dato',
+'exif-datetimedigitized'           => 'Petsa at oras ng pagsasadihital',
+'exif-subsectime'                  => 'PetsaOras mga subsegundo (bahagi ng segundo)',
+'exif-subsectimeoriginal'          => 'PetsaOrasOrihinal subsegundo (bahagi ng segundo)',
+'exif-subsectimedigitized'         => 'PetsaOrasDihitalisasyon subsegundo (bahagi ng segundo)',
+'exif-exposuretime'                => 'Oras ng pagkakalantad',
+'exif-exposuretime-format'         => '$1 seg ($2)<!--seg = segundo (seconds)-->',
+'exif-fnumber'                     => 'F Bilang',
+'exif-fnumber-format'              => 'f/$1',
+'exif-exposureprogram'             => 'Programa ng paglalantad',
+'exif-spectralsensitivity'         => 'Sensitibidad sa ispektrum',
+'exif-isospeedratings'             => 'Grado ng bilis ng ISO',
+'exif-oecf'                        => 'Paktora ng optoelektronikong pagpapalit',
+'exif-shutterspeedvalue'           => "Bilis ng pansara (''shutter'')",
+'exif-aperturevalue'               => 'Apertura (butas na daanan ng liwanag)',
+'exif-brightnessvalue'             => 'Kaningningan',
+'exif-exposurebiasvalue'           => 'Panig ng kalantaran',
+'exif-maxaperturevalue'            => 'Pinakamataas na aperturang (daanan ng liwanag) panglupa',
+'exif-subjectdistance'             => 'Layo ng paksa',
+'exif-meteringmode'                => 'Modalidad ng pagmemetro (pagsusukat)',
+'exif-lightsource'                 => 'Pinagmumulan ng liwanag',
+'exif-flash'                       => "Pangkisap (''flash'')",
+'exif-focallength'                 => 'Haba ng lenteng pampokus (pantuon)',
+'exif-focallength-format'          => '$1 mm',
+'exif-subjectarea'                 => 'Saklaw na paksa',
+'exif-flashenergy'                 => "Lakas ng kisap (''flash'')",
+'exif-spatialfrequencyresponse'    => 'Tugon ng kalimitan na pangespasyo',
+'exif-focalplanexresolution'       => 'Resolusyong X ng kalatagan o lapyang pampokus',
+'exif-focalplaneyresolution'       => 'Resolusyong Y ng kalatagan o lapyang pampokus',
+'exif-focalplaneresolutionunit'    => 'Yunit ng resolusyon ng kalatagan o lapyang pampokus',
+'exif-subjectlocation'             => 'Lokasyon ng paksa',
+'exif-exposureindex'               => 'Pang-antas o indeks ng pagkakalantad',
+'exif-sensingmethod'               => 'Paraang pandama',
+'exif-filesource'                  => 'Pinagmulang talaksan',
+'exif-scenetype'                   => 'Uri ng tagpuan',
+'exif-cfapattern'                  => 'Gawi ng CFA',
+'exif-customrendered'              => 'Pagpoproseso ng pinasadyang larawan',
+'exif-exposuremode'                => 'Modalidad ng paglalantad',
+'exif-whitebalance'                => 'Balanse ng Kaputian',
+'exif-digitalzoomratio'            => "Rata/Antas ng sukat ng dihital na paglapit (''zoom'')",
+'exif-focallengthin35mmfilm'       => 'Haba ng pokus sa pilm na 35 mm',
+'exif-scenecapturetype'            => 'Uri ng panghuli ng tagpuan',
+'exif-gaincontrol'                 => 'Kontrol na pangtagpuan',
+'exif-contrast'                    => "Pagkakaiba ng pagsasalungat (''contrast'')",
+'exif-saturation'                  => 'Saturasyon (pagkakababad/pagkakapuno)',
+'exif-sharpness'                   => 'Katalasan',
+'exif-devicesettingdescription'    => 'Paglalarawan sa mga pagtatakdang pangaparato',
+'exif-subjectdistancerange'        => 'Antas ng layo ng paksa',
+'exif-imageuniqueid'               => 'Natatanging ID ng larawan',
 
 # External editor support
 'edit-externally' => 'Baguhin ang talaksang ito sa pamamagitan ng panlabas na aplikasyon',

@@ -495,7 +495,8 @@ Por favor, avisa a un [[Special:ListUsers/sysop|administrador]], tomando nota de
 'cannotdelete'         => 'No se pudo borrar la página o archivo especificado.
 Alguien puede haberla borrado antes.',
 'badtitle'             => 'Título incorrecto',
-'badtitletext'         => 'El título de la página solicitada está vacío, no es válido, o es un enlace interlenguaje o interwiki incorrecto.',
+'badtitletext'         => 'El título de la página solicitada está vacío, no es válido, o es un enlace interidioma o interwiki incorrecto.
+Puede que contenga uno o más caracteres que no se pueden usar en los títulos.',
 'perfcached'           => 'Los siguientes datos están en caché y por tanto pueden estar desactualizados:',
 'perfcachedts'         => 'Estos datos están almacenados. Su última actualización fue el $1.',
 'querypage-no-updates' => 'Actualmente las actualizaciones de esta página están desactivadas. Estos datos no serán actualizados a corto plazo.',
@@ -623,10 +624,10 @@ Puedes ignorar este mensaje si esta cuenta fue creado erróneamente.',
 'loginlanguagelabel'         => 'Idioma: $1',
 
 # Password reset dialog
-'resetpass'                 => 'Cambiar o restablecer la contraseña de usuario',
+'resetpass'                 => 'Cambiar la contraseña',
 'resetpass_announce'        => 'Has iniciado sesión con una contraseña temporal que fue enviada por correo electrónico. Por favor, ingresa una nueva contraseña aquí:',
 'resetpass_text'            => '<!-- Añada texto aquí -->',
-'resetpass_header'          => 'Restablecer contraseña',
+'resetpass_header'          => 'Cambiar la contraseña',
 'oldpassword'               => 'Contraseña antigua:',
 'newpassword'               => 'Contraseña nueva:',
 'retypenew'                 => 'Confirme la nueva contraseña:',
@@ -1119,6 +1120,7 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'saveprefs'                 => 'Grabar preferencias',
 'resetprefs'                => 'Restaurar preferencias por defecto',
 'textboxsize'               => 'Edición',
+'prefs-edit-boxsize'        => 'Tamaño de la ventana de edición.',
 'rows'                      => 'Filas:',
 'columns'                   => 'Columnas:',
 'searchresultshead'         => 'Búsquedas',
@@ -1641,6 +1643,7 @@ Cada fila contiene enlaces al segundo y tercer redirect, así como la primera l�
 'booksources-search-legend' => 'Buscar fuentes de libros',
 'booksources-go'            => 'Ir',
 'booksources-text'          => 'Abajo hay una lista de enlaces a otros sitios que venden libros nuevos y usados, puede que contengan más información sobre los libros que estás buscando.',
+'booksources-invalid-isbn'  => 'El número de ISBN no parece ser válido; comprueba los errores copiándolo de la fuente original source.',
 
 # Special:Log
 'specialloguserlabel'  => 'Usuario:',
@@ -1924,7 +1927,8 @@ A continuación se muestran las opciones actuales de la página <strong>$1</stro
 'undeletepage'                 => 'Ver y restaurar páginas borradas',
 'undeletepagetitle'            => "'''Las siguientes son las revisiones borradas de [[:$1|$1]]'''.",
 'viewdeletedpage'              => 'Ver páginas borradas',
-'undeletepagetext'             => 'Las siguientes páginas han sido borradas pero aún están en el archivo y pueden ser restauradas. El archivo se puede limpiar periódicamente.',
+'undeletepagetext'             => '{{PLURAL:$1|La siguiente página ha sido borrada pero aún está en el archivo y puede ser restaurada.|Las siguientes $1 páginas han sido borradas pero aún están en el archivo y pueden ser restauradas.}}
+Puede que el archivo se limpie periódicamente.',
 'undelete-fieldset-title'      => 'Restaurar revisiones',
 'undeleteextrahelp'            => "Para restaurar todas las revisiones, deja todas las casillas sin seleccionar y pulsa '''''Restaurar'''''. Para restaurar sólo algunas revisiones, marca las revisiones que quieres restaurar y pulsa '''''Restaurar'''''. Haciendo clic en al botón '''''Cancelar''''', se deseleccionarán todas las casillas y eliminará el comentario que hayas escrito.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|revisión|revisiones}} archivadas',
@@ -2077,6 +2081,7 @@ las páginas en particular que han sido objeto de vandalismo).',
 'ipblocklist-no-results'          => 'El nombre de usuario o IP indicado no está bloqueado.',
 'blocklink'                       => 'bloquear',
 'unblocklink'                     => 'desbloquear',
+'change-blocklink'                => 'cambiar bloque',
 'contribslink'                    => 'contribuciones',
 'autoblocker'                     => 'Has sido bloqueado automáticamente porque tu dirección IP ha sido usada recientemente por «[[User:$1|$1]]». La razón esgrimida para bloquear a «[[User:$1|$1]]» fue «$2».',
 'blocklogpage'                    => 'Bloqueos de usuarios',
@@ -2129,9 +2134,9 @@ Sin embargo, está bloqueada como parte del rango $2, que puede ser desbloqueado
 'databasenotlocked'   => 'La base de datos no está bloqueada.',
 
 # Move page
-'move-page'                 => 'Trasladar $1',
-'move-page-legend'          => 'Renombrar página',
-'movepagetext'              => "Usando el siguiente formulario se renombrará una página, moviendo todo su historial al nuevo nombre.
+'move-page'                    => 'Trasladar $1',
+'move-page-legend'             => 'Renombrar página',
+'movepagetext'                 => "Usando el siguiente formulario se renombrará una página, moviendo todo su historial al nuevo nombre.
 El título anterior se convertirá en una redirección al nuevo título.
 Los enlaces al antiguo título de la página no se cambiarán.
 Asegúrate de no dejar [[Special:DoubleRedirects|redirecciones dobles]] o [[Special:BrokenRedirects|rotas]].
@@ -2143,56 +2148,57 @@ Esto significa que podrás renombrar una página a su título original si has co
 '''¡ADVERTENCIA!'''
 Este puede ser un cambio drástico e inesperado para una página popular;
 por favor, asegúrate de entender las consecuencias del procedimiento antes de seguir adelante.",
-'movepagetalktext'          => "La página de discusión asociada, si existe, será renombrada automáticamente '''a menos que:'''
+'movepagetalktext'             => "La página de discusión asociada, si existe, será renombrada automáticamente '''a menos que:'''
 *Esté moviendo la página entre espacios de nombres diferentes,
 *Una página de discusión no vacía ya exista con el nombre nuevo, o
 *Desactivase la opción \"Renombrar la página de discusión también\".
 
 En estos casos, deberá trasladar manualmente el contenido de la página de discusión.",
-'movearticle'               => 'Renombrar página',
-'movenologin'               => 'No ha iniciado sesión',
-'movenologintext'           => 'Es necesario ser usuario registrado y [[Special:UserLogin|haber iniciado sesión]] para renombrar una página.',
-'movenotallowed'            => 'No tienes permiso para trasladar páginas.',
-'cant-move-user-page'       => 'No tienes permiso para mover páginas de usuario (excepto subpáginas).',
-'cant-move-to-user-page'    => 'No tienes permiso para mover una página a una página de usuario (excepto a subpáginas de usuario).',
-'newtitle'                  => 'A título nuevo',
-'move-watch'                => 'Vigilar este artículo',
-'movepagebtn'               => 'Renombrar página',
-'pagemovedsub'              => 'Renombrado realizado con éxito',
-'movepage-moved'            => '<big>\'\'\'"$1" ha sido trasladado a "$2".\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'             => 'Ya existe una página con ese nombre o el nombre que ha elegido no es válido. Por favor, elija otro nombre.',
-'cantmove-titleprotected'   => 'No se pueden mover páginas a esta ubicacion, porque se ha protegido la creación de este nuevo título.',
-'talkexists'                => 'La página fue renombrada con éxito, pero la discusión no se pudo mover porque ya existe una en el título nuevo. Por favor incorpore su contenido manualmente.',
-'movedto'                   => 'renombrado a',
-'movetalk'                  => 'Renombrar la página de discusión también, si es aplicable.',
-'move-subpages'             => 'Mover todas las subpáginas si es posible',
-'move-talk-subpages'        => 'Mover todas las subpáginas de discusión, si es posible',
-'movepage-page-exists'      => 'La página $1 ya existe, por lo que no puede ser renombrada automáticamente.',
-'movepage-page-moved'       => 'La página $1 ha sido trasladado a $2.',
-'movepage-page-unmoved'     => 'La página $1 no se ha podido trasladar a $2.',
-'movepage-max-pages'        => 'Se {{PLURAL:$1|ha trasladado un máximo de una página|han trasladado un máximo de $1 páginas}}, y no se van a mover más automáticamente.',
-'1movedto2'                 => '[[$1]] trasladada a [[$2]]',
-'1movedto2_redir'           => '[[$1]] trasladada a [[$2]] sobre una redirección',
-'movelogpage'               => 'Registro de traslados',
-'movelogpagetext'           => 'Abajo se encuentra una lista de páginas trasladadas.',
-'movereason'                => 'Motivo',
-'revertmove'                => 'revertir',
-'delete_and_move'           => 'Borrar y trasladar',
-'delete_and_move_text'      => '==Se necesita borrado==
+'movearticle'                  => 'Renombrar página',
+'movenologin'                  => 'No ha iniciado sesión',
+'movenologintext'              => 'Es necesario ser usuario registrado y [[Special:UserLogin|haber iniciado sesión]] para renombrar una página.',
+'movenotallowed'               => 'No tienes permiso para trasladar páginas.',
+'cant-move-user-page'          => 'No tienes permiso para mover páginas de usuario (excepto subpáginas).',
+'cant-move-to-user-page'       => 'No tienes permiso para mover una página a una página de usuario (excepto a subpáginas de usuario).',
+'newtitle'                     => 'A título nuevo',
+'move-watch'                   => 'Vigilar este artículo',
+'movepagebtn'                  => 'Renombrar página',
+'pagemovedsub'                 => 'Renombrado realizado con éxito',
+'movepage-moved'               => '<big>\'\'\'"$1" ha sido trasladado a "$2".\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'                => 'Ya existe una página con ese nombre o el nombre que ha elegido no es válido. Por favor, elija otro nombre.',
+'cantmove-titleprotected'      => 'No se pueden mover páginas a esta ubicacion, porque se ha protegido la creación de este nuevo título.',
+'talkexists'                   => 'La página fue renombrada con éxito, pero la discusión no se pudo mover porque ya existe una en el título nuevo. Por favor incorpore su contenido manualmente.',
+'movedto'                      => 'renombrado a',
+'movetalk'                     => 'Renombrar la página de discusión también, si es aplicable.',
+'move-subpages'                => 'Mover todas las subpáginas si es posible',
+'move-talk-subpages'           => 'Mover todas las subpáginas de discusión, si es posible',
+'movepage-page-exists'         => 'La página $1 ya existe, por lo que no puede ser renombrada automáticamente.',
+'movepage-page-moved'          => 'La página $1 ha sido trasladado a $2.',
+'movepage-page-unmoved'        => 'La página $1 no se ha podido trasladar a $2.',
+'movepage-max-pages'           => 'Se {{PLURAL:$1|ha trasladado un máximo de una página|han trasladado un máximo de $1 páginas}}, y no se van a mover más automáticamente.',
+'1movedto2'                    => '[[$1]] trasladada a [[$2]]',
+'1movedto2_redir'              => '[[$1]] trasladada a [[$2]] sobre una redirección',
+'movelogpage'                  => 'Registro de traslados',
+'movelogpagetext'              => 'Abajo se encuentra una lista de páginas trasladadas.',
+'movereason'                   => 'Motivo',
+'revertmove'                   => 'revertir',
+'delete_and_move'              => 'Borrar y trasladar',
+'delete_and_move_text'         => '==Se necesita borrado==
 
 La página de destino ("[[:$1]]") ya existe. ¿Quiere borrarla para permitir al traslado?',
-'delete_and_move_confirm'   => 'Sí, borrar la página',
-'delete_and_move_reason'    => 'Borrada para permitir el traslado',
-'selfmove'                  => 'Los títulos de origen y destino son los mismos. No se puede trasladar un página sobre sí misma.',
-'immobile-source-namespace' => 'No se pueden trasladar páginas en el espacio de nombres «$1»',
-'immobile-target-namespace' => 'No se puede trasladar páginas al espacio de nombres «$1»',
-'immobile-source-page'      => 'Esta página no se puede renombrar.',
-'immobile-target-page'      => 'No se puede trasladar a tal título.',
-'imagenocrossnamespace'     => 'No se puede trasladar el fichero a otro espacio de nombres',
-'imagetypemismatch'         => 'La nueva extensión de archivo no corresponde con su tipo',
-'imageinvalidfilename'      => 'El nombre del fichero de destino no es válido',
-'fix-double-redirects'      => 'Actualizar las redirecciones que apuntan al título original',
-'move-leave-redirect'       => 'Dejar una redirección',
+'delete_and_move_confirm'      => 'Sí, borrar la página',
+'delete_and_move_reason'       => 'Borrada para permitir el traslado',
+'selfmove'                     => 'Los títulos de origen y destino son los mismos. No se puede trasladar un página sobre sí misma.',
+'immobile-source-namespace'    => 'No se pueden trasladar páginas en el espacio de nombres «$1»',
+'immobile-target-namespace'    => 'No se puede trasladar páginas al espacio de nombres «$1»',
+'immobile-target-namespace-iw' => 'Un enlace interwiki no es un destino válido para trasladar una página.',
+'immobile-source-page'         => 'Esta página no se puede renombrar.',
+'immobile-target-page'         => 'No se puede trasladar a tal título.',
+'imagenocrossnamespace'        => 'No se puede trasladar el fichero a otro espacio de nombres',
+'imagetypemismatch'            => 'La nueva extensión de archivo no corresponde con su tipo',
+'imageinvalidfilename'         => 'El nombre del fichero de destino no es válido',
+'fix-double-redirects'         => 'Actualizar las redirecciones que apuntan al título original',
+'move-leave-redirect'          => 'Dejar una redirección',
 
 # Export
 'export'            => 'Exportar páginas',

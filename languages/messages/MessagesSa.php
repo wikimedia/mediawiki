@@ -97,9 +97,11 @@ $messages = array(
 'help'             => 'सहायता',
 'search'           => 'शोध',
 'go'               => 'गच्छति',
+'searcharticle'    => 'गच्छति',
 'history'          => 'पृष्ठस्य इतिहास',
 'history_short'    => 'इतिहास',
 'printableversion' => 'मुद्रणस्य पाठ',
+'permalink'        => 'स्थायी निबन्धन',
 'newpage'          => 'नविन पृष्ठ',
 'talkpagelinktext' => 'संवाद',
 'specialpage'      => 'विशेष पृष्ठ',
@@ -108,6 +110,7 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}}विषये',
+'aboutpage'            => 'Project:विषये',
 'currentevents'        => 'सद्य घटना',
 'disclaimers'          => 'स्वाम्यत्यागं',
 'edithelp'             => 'संपादनार्थं सहायता',
@@ -148,6 +151,9 @@ $messages = array(
 'recentchanges' => 'नवीनतम परिवर्तन',
 'show'          => 'दर्शयति',
 
+# Upload
+'upload' => 'भारं न्यस्यति सञ्चिका',
+
 # Miscellaneous special pages
 'ancientpages' => 'प्राचीनतम् पृष्ठा',
 
@@ -155,7 +161,8 @@ $messages = array(
 'booksources-go' => 'प्रस्थानम्',
 
 # Special:AllPages
-'allarticles' => 'सर्व लेखा',
+'alphaindexline' => 'इतः $1 यावत् $2',
+'allarticles'    => 'सर्व लेखा',
 
 # Special:Categories
 'categories' => 'वर्ग',
@@ -189,5 +196,8 @@ $messages = array(
 
 # Special:Version
 'version' => 'आवृत्ति', # Not used as normal message but as header for the special page itself
+
+# Special:SpecialPages
+'specialpages' => 'विशेष पृष्ठ',
 
 );

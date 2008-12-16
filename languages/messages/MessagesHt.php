@@ -600,9 +600,9 @@ Ou dwèt te deja modifye l oubyen mande yon nouvo mopas ki tap pèmèt ou chanje
 'minoredit'                        => 'Modifikasyon sa a pa enpòtan',
 'watchthis'                        => 'Swiv paj sa a',
 'savearticle'                      => 'Anrejistre',
-'preview'                          => 'Previzyalize (kout zye)',
-'showpreview'                      => 'Previzyalizasyon',
-'showlivepreview'                  => 'Kout zye rapid, voye zye rapid',
+'preview'                          => 'Gade pou wè',
+'showpreview'                      => 'Gade pou wè',
+'showlivepreview'                  => 'Gade pou wè (Kout zye rapid)',
 'showdiff'                         => 'Montre chanjman yo',
 'anoneditwarning'                  => "'''Pòte atansyon :''' ou pa idantifye nan sistèm an. Adrès IP ou a ap anrejistre nan istorik paj sa a.",
 'missingsummary'                   => "'''Souple :''' ou poko bay rezimz modifikasyon ou fè an
@@ -829,7 +829,7 @@ Mande ou byen si ou ap byen fè kreye li ankò toutbon (gade jounal paj sa a pou
 'recentchangeslinked-summary'  => "Paj espesyal sa a ap montre dènye chanjman nan paj ki genyen lyen sou yo. Paj yo ki nan [[Special:Watchlist|lis swivi]] ou an ap ekri '''fonse'''",
 
 # Upload
-'upload'        => 'Chaje fichye an',
+'upload'        => 'Chaje yon fichye',
 'uploadbtn'     => 'Chaje fichye a',
 'uploadlogpage' => 'Istorik chajman pou fichye miltimedya',
 'uploadedimage' => 'chaje « [[$1]] »',

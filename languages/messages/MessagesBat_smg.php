@@ -534,27 +534,28 @@ Tomsta torėt nosprēst, a pritėnk tuoliau redagoutė šėta poslapi.
 'undo-summary' => 'Atšauktė [[Special:Contributions/$2|$2]] ([[User talk:$2|Aptarėms]]) versėje $1',
 
 # History pages
-'viewpagelogs'        => 'Ruodītė šėtuo poslapė specēliōsios vaiksmos',
-'nohistory'           => 'Šėts poslapis netor keitėmu istuorėjės.',
-'currentrev'          => 'Dabartėnė versėjė',
-'currentrev-asof'     => 'Dabartėnė $1 versėjė',
-'revisionasof'        => '$1 versėjė',
-'revision-info'       => '$1 versėjė nauduotuojė $2', # Additionally available: $3: revision id
-'previousrevision'    => '←Onkstesnė versėjė',
-'nextrevision'        => 'Paskesnė versėjė→',
-'currentrevisionlink' => 'Dabartėnė versėjė',
-'cur'                 => 'dab',
-'next'                => 'kėts',
-'last'                => 'pask',
-'page_first'          => 'pėrm',
-'page_last'           => 'pask',
-'histlegend'          => "Skėrtomā terp versėju: pažīmiekit līginamas versėjės ė spauskėt ''Enter'' klavėša a mīgtuka apatiuo.<br />
+'viewpagelogs'           => 'Ruodītė šėtuo poslapė specēliōsios vaiksmos',
+'nohistory'              => 'Šėts poslapis netor keitėmu istuorėjės.',
+'currentrev'             => 'Dabartėnė versėjė',
+'currentrev-asof'        => 'Dabartėnė $1 versėjė',
+'revisionasof'           => '$1 versėjė',
+'revision-info'          => '$1 versėjė nauduotuojė $2', # Additionally available: $3: revision id
+'previousrevision'       => '←Onkstesnė versėjė',
+'nextrevision'           => 'Paskesnė versėjė→',
+'currentrevisionlink'    => 'Dabartėnė versėjė',
+'cur'                    => 'dab',
+'next'                   => 'kėts',
+'last'                   => 'pask',
+'page_first'             => 'pėrm',
+'page_last'              => 'pask',
+'histlegend'             => "Skėrtomā terp versėju: pažīmiekit līginamas versėjės ė spauskėt ''Enter'' klavėša a mīgtuka apatiuo.<br />
 Žīmiejimā: (dab) = palīginims so vielibiausė versėjė,
 (pask) = palīginims so priš ta bovosia versėjė, S = mažos pataisims.",
-'deletedrev'          => '[ėštrinta]',
-'histfirst'           => 'Seniausė',
-'histlast'            => 'Vielibė̅jė',
-'historyempty'        => '(nieka nier)',
+'history-fieldset-title' => 'Naršītė istuorėjuo',
+'deletedrev'             => '[ėštrinta]',
+'histfirst'              => 'Seniausė',
+'histlast'               => 'Vielibė̅jė',
+'historyempty'           => '(nieka nier)',
 
 # Revision feed
 'history-feed-title'          => 'Versėju istuorėjė',
