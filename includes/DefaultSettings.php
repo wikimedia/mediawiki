@@ -2902,6 +2902,7 @@ $wgLogActions = array(
 	'suppress/event'    => 'logdelete-logentry',
 	'suppress/delete'   => 'suppressedarticle',
 	'suppress/block'	=> 'blocklogentry',
+	'suppress/reblock'  => 'reblock-logentry',
 );
 
 /**
