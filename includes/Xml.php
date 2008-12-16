@@ -660,6 +660,47 @@ class Xml {
 	
 		return $form;
 	}
+	
+	/**
+	 * Build a table of data
+	 * @param array $rows An array of arrays of strings, each to be a row in a table
+	 * @param array $attribs Attributes to apply to the table tag [optional]
+	 * @param array $headers An array of strings to use as table headers [optional]
+	 * @return string
+	 */
+	public static function buildTable( $rows, $attribs = array(), $headers = null ) {
+		$s = Xml::openElement( 'table', $attribs );
+		if ( is_array( $headers ) ) {
+			foreach( $headers as $id => $header ) {
+				$attribs = array();
+				if ( is_string( $id ) ) $attribs['id'] = $id;
+				$s .= Xml::element( 'th', $attribs, $header );
+			}
+		}
+		foreach( $rows as $id => $row ) {
+			$attribs = array();
+			if ( is_string( $id ) ) $attribs['id'] = $id;
+			$s .= Xml::buildTableRow( $attribs, $row );
+		}
+		$s .= Xml::closeElement( 'table' );
+		return $s;
+	}
+	
+	/**
+	 * Build a row for a table
+	 * @param array $cells An array of strings to put in <td>
+	 * @return string
+	 */
+	public static function buildTableRow( $attribs, $cells ) {
+		$s = Xml::openElement( 'tr', $attribs );
+		foreach( $cells as $id => $cell ) {
+			$attribs = array();
+			if ( is_string( $id ) ) $attribs['id'] = $id;
+			$s .= Xml::element( 'td', $attribs, $cell );
+		}
+		$s .= Xml::closeElement( 'tr' );
+		return $s;
+	}
 }
 
 class XmlSelect {
