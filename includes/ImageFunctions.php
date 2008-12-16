@@ -5,7 +5,7 @@
  *
  * @param $length String: CSS/SVG length.
  * @param $viewpoerSize: Float optional scale for percentage units...
- * @return Integer: length in pixels
+ * @return float: length in pixels
  */
 function wfScaleSVGUnit( $length, $viewportSize=512 ) {
 	static $unitLength = array(
@@ -24,13 +24,13 @@ function wfScaleSVGUnit( $length, $viewportSize=512 ) {
 		$length = floatval( $matches[1] );
 		$unit = $matches[2];
 		if( $unit == '%' ) {
-			return round( $length * 0.01 * $viewportSize );
+			return $length * 0.01 * $viewportSize;
 		} else {
-			return round( $length * $unitLength[$unit] );
+			return $length * $unitLength[$unit];
 		}
 	} else {
 		// Assume pixels
-		return round( floatval( $length ) );
+		return floatval( $length );
 	}
 }
 
@@ -76,8 +76,11 @@ class XmlSizeFilter {
 				$width = $height * $aspect;
 			}
 			
-			$this->width = $width;
-			$this->height = $height;
+			if( $width > 0 && $height > 0 ) {
+				$this->width = intval( round( $width ) );
+				$this->height = intval( round( $height ) );
+			}
+			
 			$this->first = false;
 		}
 	}
