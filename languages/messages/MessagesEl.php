@@ -47,14 +47,14 @@
   */
 
 $namespaceNames = array(
-	NS_MEDIA            => 'Μέσον',
+	NS_MEDIA            => 'Μέσο',
 	NS_SPECIAL          => 'Ειδικό',
 	NS_TALK             => 'Συζήτηση',
 	NS_USER             => 'Χρήστης',
 	NS_USER_TALK        => 'Συζήτηση_χρήστη',
 	NS_PROJECT_TALK     => '$1_συζήτηση',
-	NS_FILE             => 'Εικόνα',
-	NS_FILE_TALK        => 'Συζήτηση_εικόνας',
+	NS_FILE             => 'Αρχείο',
+	NS_FILE_TALK        => 'Συζήτηση_αρχείου',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'Συζήτηση_MediaWiki',
 	NS_TEMPLATE         => 'Πρότυπο',
@@ -63,6 +63,12 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Συζήτηση_βοήθειας',
 	NS_CATEGORY         => 'Κατηγορία',
 	NS_CATEGORY_TALK    => 'Συζήτηση_κατηγορίας',
+);
+
+$namespaceAliases = array(
+	'Μέσον' => NS_MEDIA,
+	'Εικόνα' => NS_FILE,
+	'Συζήτηση_εικόνας' => NS_FILE_TALK,
 );
 
 $specialPageAliases = array(
@@ -76,8 +82,8 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'ΛίσταΠαρακολούθησης' ),
 	'Recentchanges'             => array( 'ΠρόσφατεςΑλλαγές' ),
 	'Upload'                    => array( 'Επιφόρτωση' ),
-	'Imagelist'                 => array( 'ΚατάλογοςΕικόνων' ),
-	'Newimages'                 => array( 'ΝέεςΕικόνες' ),
+	'Imagelist'                 => array( 'ΚατάλογοςΑρχείων' ),
+	'Newimages'                 => array( 'ΝέαΑρχεία' ),
 	'Listusers'                 => array( 'ΚατάλογοςΧρηστών' ),
 	'Listgrouprights'           => array( 'ΚατάλογοςΔικαιωμάτωνΧρηστών' ),
 	'Statistics'                => array( 'Στατιστικά' ),
@@ -85,18 +91,18 @@ $specialPageAliases = array(
 	'Lonelypages'               => array( 'ΟρφανέςΣελίδες' ),
 	'Uncategorizedpages'        => array( 'ΣελίδεςΧωρίςΚατηγορία' ),
 	'Uncategorizedcategories'   => array( 'ΚατηγορίεςΧωρίςΚατηγορία' ),
-	'Uncategorizedimages'       => array( 'ΕικόνεςΧωρίςΚατηγορία' ),
+	'Uncategorizedimages'       => array( 'ΑρχείαΧωρίςΚατηγορία' ),
 	'Uncategorizedtemplates'    => array( 'ΠρότυπαΧωρίςΚατηγορία' ),
 	'Unusedcategories'          => array( 'ΑχρησιμοποίητεςΚατηγορίες' ),
-	'Unusedimages'              => array( 'ΑχρησιμοποίητεςΕικόνες' ),
+	'Unusedimages'              => array( 'ΑχρησιμοποίηταΑρχεία' ),
 	'Wantedpages'               => array( 'ΕπιθυμητέςΣελίδες' ),
 	'Wantedcategories'          => array( 'ΕπιθυμητέςΚατηγορίες' ),
 	'Wantedfiles'               => array( 'ΕπιθυμητάΑρχεία' ),
 	'Mostlinked'                => array( 'ΠερισσότεροΣυνδεδεμένες' ),
-	'Mostlinkedcategories'      => array( 'ΠερισσότεροΧρησιμοποιούμενεςΚατηγορίες' ),
-	'Mostlinkedtemplates'       => array( 'ΠερισσότεροΧρησιμοποιούμεναΠρότυπα' ),
+	'Mostlinkedcategories'      => array( 'ΠολυχρησιμοποιημένεςΚατηγορίες' ),
+	'Mostlinkedtemplates'       => array( 'ΠολυχρησιμοποιημέναΠρότυπα' ),
+	'Mostimages'                => array( 'ΠολυχρησιμοποιημέναΑρχεία' ),
 	'Mostcategories'            => array( 'ΠερισσότερεςΚατηγορίες' ),
-	'Mostimages'                => array( 'ΠερισσότερεςΕικόνες' ),
 	'Mostrevisions'             => array( 'ΠερισσότερεςΕπεξεργασίες' ),
 	'Fewestrevisions'           => array( 'ΛιγότερεςΕπεξεργασίες' ),
 	'Shortpages'                => array( 'ΜικρέςΣελίδες' ),
@@ -146,6 +152,7 @@ $specialPageAliases = array(
 	'Resetpass'                 => array( 'ΑρχικοποίησηΚωδικού' ),
 	'Withoutinterwiki'          => array( 'ΧωρίςInterwiki' ),
 	'MergeHistory'              => array( 'ΣυγχώνευσηΙστορικού' ),
+	'Filepath'                  => array( 'ΔιεύθυνσηΑρχείου' ),
 	'Blankpage'                 => array( 'ΚενήΣελίδα' ),
 	'DeletedContributions'      => array( 'ΔιαγραμμένεςΣυνεισφορές' ),
 );

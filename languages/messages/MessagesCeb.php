@@ -16,9 +16,9 @@ $namespaceNames = array(
 	NS_TALK             => 'Hisgot',
 	NS_USER             => 'Gumagamit',
 	NS_USER_TALK        => 'Hisgot_sa_Gumagamit',
-	NS_PROJECT_TALK     => 'Hisgot_sa$1',
-	NS_FILE             => 'Imahen',
-	NS_FILE_TALK        => 'Hisgot_sa_Imahen',
+	NS_PROJECT_TALK     => 'Hisgot_sa_$1',
+	NS_FILE             => 'Payl',
+	NS_FILE_TALK        => 'Hisgot_sa_IPayl',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'Hisgot_sa_MediaWiki',
 	NS_TEMPLATE         => 'Plantilya',
@@ -27,6 +27,12 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Hisgot_sa_Tabang',
 	NS_CATEGORY         => 'Kategoriya',
 	NS_CATEGORY_TALK    => 'Hisgot_sa_Kategoriya',
+);
+
+$namespaceAliases = array(
+	'Hisgot_sa$1' => NS_PROJECT_TALK,
+	'Imahen' => NS_FILE,
+	'Hisgot_sa_Imahen' => NS_FILE_TALK,
 );
 
 $specialPageAliases = array(

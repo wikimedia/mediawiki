@@ -47,7 +47,7 @@ $dateFormats = array(
 );
 
 $namespaceNames = array(
-	NS_MEDIA            => 'Media',
+	NS_MEDIA            => 'メディア',
 	NS_SPECIAL          => '特別',
 	NS_TALK             => 'ノート',
 	NS_USER             => '利用者',
