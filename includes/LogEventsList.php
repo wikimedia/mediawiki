@@ -253,7 +253,7 @@ class LogEventsList {
 		// Add review links and such...
 		if( ($this->flags & self::NO_ACTION_LINK) || ($row->log_deleted & LogPage::DELETED_ACTION) ) {
 			// Action text is suppressed...
-		} else if( self::typeAction($row,'move','move') && !empty($paramArray[0]) && $wgUser->isAllowed( 'move' ) ) {
+		} else if( self::typeAction($row,'move','move','move') && !empty($paramArray[0]) ) {
 			$destTitle = Title::newFromText( $paramArray[0] );
 			if( $destTitle ) {
 				$revert = '(' . $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Movepage' ),
@@ -264,11 +264,11 @@ class LogEventsList {
 					'&wpMovetalk=0' ) . ')';
 			}
 		// Show undelete link
-		} else if( self::typeAction($row,array('delete','suppress'),'delete') && $wgUser->isAllowed( 'delete' ) ) {
+		} else if( self::typeAction($row,array('delete','suppress'),'delete','delete') ) {
 			$revert = '(' . $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Undelete' ),
 				$this->message['undeletelink'], 'target='. urlencode( $title->getPrefixedDBkey() ) ) . ')';
 		// Show unblock/change block link
-		} else if( self::typeAction( $row, array( 'block', 'suppress' ), 'block' ) && $wgUser->isAllowed( 'block' ) ) {
+		} else if( self::typeAction($row,array('block','suppress'),array('block','reblock'),'block') ) {
 			$revert = '(' .
 				$this->skin->link( SpecialPage::getTitleFor( 'Ipblocklist' ),
 					$this->message['unblocklink'],
@@ -289,13 +289,13 @@ class LogEventsList {
 					'action=unprotect' ) . ')';
 			}
 		// Show unmerge link
-		} else if ( self::typeAction($row,'merge','merge') ) {
+		} else if( self::typeAction($row,'merge','merge','mergehistory') ) {
 			$merge = SpecialPage::getTitleFor( 'Mergehistory' );
 			$revert = '(' .  $this->skin->makeKnownLinkObj( $merge, $this->message['revertmerge'],
 				wfArrayToCGI( array('target' => $paramArray[0], 'dest' => $title->getPrefixedDBkey(), 
 					'mergepoint' => $paramArray[1] ) ) ) . ')';
 		// If an edit was hidden from a page give a review link to the history
-		} else if( self::typeAction($row,array('delete','suppress'),'revision') && $wgUser->isAllowed( 'deleterevision' ) ) {
+		} else if( self::typeAction($row,array('delete','suppress'),'revision','deleterevision') ) {
 			if( count($paramArray) == 2 ) {
 				$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 				// Different revision types use different URL params...
@@ -310,7 +310,7 @@ class LogEventsList {
 					'target=' . $title->getPrefixedUrl() . $revParams ) . ')';
 			}
 		// Hidden log items, give review link
-		} else if( self::typeAction($row,array('delete','suppress'),'event') && $wgUser->isAllowed( 'deleterevision' ) ) {
+		} else if( self::typeAction($row,array('delete','suppress'),'event','deleterevision') ) {
 			if( count($paramArray) == 1 ) {
 				$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 				$Ids = explode( ',', $paramArray[0] );
@@ -376,12 +376,18 @@ class LogEventsList {
 	 * @param $row Row
 	 * @param $type Mixed: string/array
 	 * @param $action Mixed: string/array
+	 * @param $right string
 	 * @return bool
 	 */
-	public static function typeAction( $row, $type, $action ) {
+	public static function typeAction( $row, $type, $action, $right='' ) {
 		$match = is_array($type) ? in_array($row->log_type,$type) : $row->log_type == $type;
 		if( $match ) {
-			$match = is_array($action) ? in_array($row->log_action,$action) : $row->log_action == $action;
+			$match = is_array($action) ?
+				in_array($row->log_action,$action) : $row->log_action == $action;
+			if( $match && $right ) {
+				global $wgUser;
+				$match = $wgUser->isAllowed( $right );
+			}
 		}
 		return $match;
 	}
