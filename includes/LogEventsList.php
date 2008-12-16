@@ -38,7 +38,7 @@ class LogEventsList {
 	private function preCacheMessages() {
 		// Precache various messages
 		if( !isset( $this->message ) ) {
-			$messages = 'revertmerge protect_change unblocklink revertmove undeletelink revdel-restore rev-delundel hist';
+			$messages = 'revertmerge protect_change unblocklink change-blocklink revertmove undeletelink revdel-restore rev-delundel hist';
 			foreach( explode( ' ', $messages ) as $msg ) {
 				$this->message[$msg] = wfMsgExt( $msg, array( 'escape') );
 			}
@@ -267,11 +267,19 @@ class LogEventsList {
 		} else if( self::typeAction($row,array('delete','suppress'),'delete') && $wgUser->isAllowed( 'delete' ) ) {
 			$revert = '(' . $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Undelete' ),
 				$this->message['undeletelink'], 'target='. urlencode( $title->getPrefixedDBkey() ) ) . ')';
-		// Show unblock link
-		} else if( self::typeAction($row,array('block','suppress'),'block') && $wgUser->isAllowed( 'block' ) ) {
-			$revert = '(' .  $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Ipblocklist' ),
-				$this->message['unblocklink'],
-				'action=unblock&ip=' . urlencode( $row->log_title ) ) . ')';
+		// Show unblock/change block link
+		} else if( self::typeAction( $row, array( 'block', 'suppress' ), 'block' ) && $wgUser->isAllowed( 'block' ) ) {
+			$revert = '(' .
+				$this->skin->link( SpecialPage::getTitleFor( 'Ipblocklist' ),
+					$this->message['unblocklink'],
+					array(),
+					array( 'action' => 'unblock', 'ip' => urlencode( $row->log_title ) ),
+					'known' ) 
+				. ' ' . wfMsg( 'pipe-separator' ) . ' ' .
+				$this->skin->link( SpecialPage::getTitleFor( 'BlockIP/' . htmlspecialchars( $row->log_title ) ), 
+					$this->message['change-blocklink'],
+					array(), array(), 'known' ) .
+				')';
 		// Show change protection link
 		} else if( self::typeAction($row,'protect',array('modify','protect','unprotect')) ) {
 			$revert .= ' (' .  $this->skin->makeKnownLinkObj( $title, $this->message['hist'], 

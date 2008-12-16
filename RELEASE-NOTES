@@ -232,6 +232,7 @@ The following extensions are migrated into MediaWiki 1.14:
 * File objects returned by wfFindFile() are now cached by default
 * (bug 7492) Rights can now be assigned to specific IP addresses and ranges by
   using $wgAutopromote (new defines: APCOND_ISIP and APCOND_IPINRANGE)
+* Add a 'change block' link to Special:IPBlockList und Special:Log
 
 === Bug fixes in 1.14 ===
 
