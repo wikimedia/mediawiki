@@ -127,7 +127,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	protected function appendNamespaces( $property ) {
-		global $wgContLang;
+		global $wgContLang, $wgCanonicalNamespaceNames;
 		$data = array();
 		foreach( $wgContLang->getFormattedNamespaces() as $ns => $title )
 		{
@@ -135,7 +135,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				'id' => $ns
 			);
 			ApiResult :: setContent( $data[$ns], $title );
-			$canonical = Namespace::getCanonicalName( $ns );
+			$canonical = isset($wgCanonicalNamespaceNames[$ns]) ? $wgCanonicalNamespaceNames[$ns] : false;
 			
 			if( MWNamespace::hasSubpages( $ns ) )
 				$data[$ns]['subpages'] = '';
@@ -352,7 +352,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			'prop' => array(
 				'Which sysinfo properties to get:',
 				' "general"      - Overall system information',
-				' "namespaces"   - List of registered namespaces (localized)',
+				' "namespaces"   - List of registered namespaces and their canonical names',
 				' "namespacealiases" - List of registered namespace aliases',
 				' "specialpagealiases" - List of special page aliases',
 				' "magicwords"   - List of magic words and their aliases',
