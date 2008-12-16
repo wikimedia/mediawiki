@@ -38,7 +38,8 @@ class ArticleCounter {
 	function makeSql() {
 		list( $page, $pagelinks ) = $this->dbr->tableNamesN( 'page', 'pagelinks' );
 		$nsset = $this->makeNsSet();
-		return "SELECT DISTINCT page_namespace,page_title FROM $page,$pagelinks " .
+		return "SELECT COUNT(DISTINCT page_namespace, page_title) AS pagecount " .
+			"FROM $page, $pagelinks " .
 			"WHERE pl_from=page_id and page_namespace IN ( $nsset ) " .
 			"AND page_is_redirect = 0 AND page_len > 0";
 	}
@@ -50,15 +51,9 @@ class ArticleCounter {
 	 */
 	function count() {
 		$res = $this->dbr->query( $this->makeSql(), __METHOD__ );
-		if( $res ) {
-			$count = $this->dbr->numRows( $res );
-			$this->dbr->freeResult( $res );
-			return $count;
-		} else {
-			# Look out for this when handling the result
-			#    - Actually it's unreachable, !$res throws an exception -- TS
-			return false; 
-		}
+		$row = $this->dbr->fetchObject( $res );
+		$this->dbr->freeResult( $res );
+		return $row->pagecount;
 	}
 
 }

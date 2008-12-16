@@ -100,7 +100,7 @@ class FiveUpgrade {
 		$timeout = 3600 * 24;
 		$db =& $this->newConnection();
 		$db->bufferResults( false );
-        if ($wgDBtype == 'mysql') {
+		if ($wgDBtype == 'mysql') {
 			$db->query( "SET net_read_timeout=$timeout" );
 			$db->query( "SET net_write_timeout=$timeout" );
 		}
