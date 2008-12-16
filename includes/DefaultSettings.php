@@ -3205,6 +3205,16 @@ $wgRateLimitLog = null;
 $wgRateLimitsExcludedGroups = array();
 
 /**
+ * Array of IPs which should never trigger the rate limiter.
+ * Really this is a cruddy hack and should be replaced with
+ * an "anti-block" or something which can be managed through
+ * the wiki UI.
+ *
+ *  $wgRateLimitsExcludedIPs = array( '1.2.3.4' );
+ */
+$wgRateLimitsExcludedIPs = array();
+
+/**
  * On Special:Unusedimages, consider images "used", if they are put
  * into a category. Default (false) is not to count those as used.
  */
