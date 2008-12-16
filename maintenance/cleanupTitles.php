@@ -41,11 +41,6 @@ class TitleCleanup extends TableCleanup {
 	}
 
 	function processPage( $row ) {
-		if( $row->page_namespace == NS_FILE ) {
-			// use cleanupImages.php for file pages
-			return $this->progress( 0 );
-		}
-
 		$current = Title::makeTitle( $row->page_namespace, $row->page_title );
 		$display = $current->getPrefixedText();
 
@@ -53,19 +48,30 @@ class TitleCleanup extends TableCleanup {
 
 		$title = Title::newFromText( $verified );
 
-		if( is_null( $title ) ) {
+		if( !is_null( $title ) && $title->equals( $current ) ) {
+			return $this->progress( 0 );  // all is fine
+		}
+
+		if( $row->page_namespace == NS_FILE && $this->fileExists( $row->page_title ) ) {
+			$this->log( "file $row->page_title needs cleanup, please run cleanupImages.php." );
+			return $this->progress( 0 );
+		} elseif( is_null( $title ) ) {
 			$this->log( "page $row->page_id ($display) is illegal." );
 			$this->moveIllegalPage( $row );
 			return $this->progress( 1 );
-		}
-
-		if( !$title->equals( $current ) ) {
+		} else {
 			$this->log( "page $row->page_id ($display) doesn't match self." );
 			$this->moveInconsistentPage( $row, $title );
 			return $this->progress( 1 );
 		}
+	}
 
-		$this->progress( 0 );
+	function fileExists( $name ) {
+		// XXX: Doesn't actually check for file existence, just presence of image record.
+		// This is reasonable, since cleanupImages.php only iterates over the image table.
+		$dbr = wfGetDB( DB_SLAVE );
+		$row = $dbr->selectRow( 'image', array( 'img_name' ), array( 'img_name' => $name ), __METHOD__ );
+		return $row !== false;
 	}
 
 	function moveIllegalPage( $row ) {
