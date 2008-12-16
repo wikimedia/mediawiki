@@ -41,6 +41,11 @@ class TitleCleanup extends TableCleanup {
 	}
 
 	function processPage( $row ) {
+		if( $row->page_namespace == NS_FILE ) {
+			// use cleanupImages.php for file pages
+			return $this->progress( 0 );
+		}
+
 		$current = Title::makeTitle( $row->page_namespace, $row->page_title );
 		$display = $current->getPrefixedText();
 
