@@ -40,7 +40,7 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Diskussjoni_kategorija',
 );
 
-$namespaceNames = array(
+$namespaceAliases = array(
 	'Medja' => NS_MEDIA,
 	'Diskuti' => NS_TALK,
 	'Diskuti_utent' => NS_USER_TALK,
