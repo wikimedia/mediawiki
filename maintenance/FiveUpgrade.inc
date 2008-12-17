@@ -77,8 +77,7 @@ class FiveUpgrade {
 	}
 	
 	/**
-	 * Close out the connections when we're done...
-	 * Is this needed?
+	 * Commit transactions and close the connections when we're done...
 	 */
 	function close() {
 		foreach( $this->loadBalancers as $lb ) {
