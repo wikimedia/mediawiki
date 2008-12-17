@@ -530,10 +530,7 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 16647) list=allcategories, prop=categories don't return "hidden"
   property for hidden categories
 * New siprop parameter of 'extensions' to list all installed extensions
-* (bug 16672) Include canonical namespace name in
-  meta=siteinfo&siprop=namespaces. 
-* (bug 16527) Added user and excludeuser parameters to list=watchlist and
-  list=recentchanges
+* (bug 16672) Include canonical namespace name in meta=siteinfo&siprop=namespaces. 
 
 === Languages updated in 1.14 ===
 

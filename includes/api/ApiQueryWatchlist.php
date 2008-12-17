@@ -59,7 +59,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		if (!$wgUser->isLoggedIn())
 			$this->dieUsage('You must be logged-in to have a watchlist', 'notloggedin');
 
-		$allrev = $start = $end = $namespace = $user = $excludeuser = $dir = $limit = $prop = $show = null;
+		$allrev = $start = $end = $namespace = $dir = $limit = $prop = $show = null;
 		extract($this->extractRequestParams());
 
 		if (!is_null($prop) && is_null($resultPageSet)) {
@@ -162,13 +162,6 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$this->addWhereIf('rc_patrolled = 0', isset($show['!patrolled']));
 			$this->addWhereIf('rc_patrolled != 0', isset($show['patrolled']));			
 		}
-		
-		if(!is_null($user) && !is_null($excludeuser))
-			$this->dieUsage('user and excludeuser cannot be used together', 'badparams');
-		if(!is_null($user))
-			$this->addWhereFld('rc_user_text', $user);
-		if(!is_null($excludeuser))
-			$this->addWhere('rc_user_text != ' . $this->getDB()->addQuotes($excludeuser));
 
 
 		# This is an index optimization for mysql, as done in the Special:Watchlist page
@@ -271,12 +264,6 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				ApiBase :: PARAM_ISMULTI => true,
 				ApiBase :: PARAM_TYPE => 'namespace'
 			),
-			'user' => array(
-				ApiBase :: PARAM_TYPE => 'user',
-			),
-			'excludeuser' => array(
-				ApiBase :: PARAM_TYPE => 'user',
-			),
 			'dir' => array (
 				ApiBase :: PARAM_DFLT => 'older',
 				ApiBase :: PARAM_TYPE => array (
@@ -327,8 +314,6 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			'start' => 'The timestamp to start enumerating from.',
 			'end' => 'The timestamp to end enumerating.',
 			'namespace' => 'Filter changes to only the given namespace(s).',
-			'user' => 'Only list changes by this user',
-			'excludeuser' => 'Don\'t list changes by this user',
 			'dir' => 'In which direction to enumerate pages.',
 			'limit' => 'How many total results to return per request.',
 			'prop' => 'Which additional items to get (non-generator mode only).',
