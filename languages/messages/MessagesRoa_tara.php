@@ -415,7 +415,7 @@ Apprime ca otre e-mail avènene mannete a 'u cunde tue, tu ha seguì le 'struzio
 # Password reset dialog
 'resetpass'                 => "Cange 'a password",
 'resetpass_text'            => "<!-- Mitte 'u teste aqquà -->",
-'resetpass_header'          => "Azzere 'a passuord",
+'resetpass_header'          => "Cange 'a password d'u cunde utende",
 'oldpassword'               => 'Vécchie passuord:',
 'newpassword'               => 'Nova passuord:',
 'retypenew'                 => "Scrive n'otra vota 'a passuord nova:",

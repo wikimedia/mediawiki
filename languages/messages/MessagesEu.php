@@ -511,9 +511,9 @@ Berriro saiatu aurretik itxoin ezazu, mesedez.',
 'loginlanguagelabel'         => 'Hizkuntza: $1',
 
 # Password reset dialog
-'resetpass'               => 'Kontuaren pasahitza hasieratu',
+'resetpass'               => 'Pasahitza aldatu',
 'resetpass_announce'      => 'E-postaz jasotako kode tenporal baten bidez saioa hasi duzu. Saioa hasierarekin jarraitzeko, pasahitz berri bat definitu beharra daukazu:',
-'resetpass_header'        => 'Pasahitza hasieratu',
+'resetpass_header'        => 'Pasahitza aldatu',
 'oldpassword'             => 'Pasahitz zaharra:',
 'newpassword'             => 'Pasahitz berria:',
 'retypenew'               => 'Pasahitz berria berriz idatzi:',
@@ -879,6 +879,7 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 'nextn'                     => 'hurrengo $1ak',
 'viewprevnext'              => 'Ikusi ($1) ($2) ($3).',
 'searchhelp-url'            => 'Help:Laguntza',
+'searchprofile-images'      => 'Fitxategiak',
 'search-result-size'        => '$1 ({{PLURAL:$2|hitz bat|$2 hitz}})',
 'search-result-score'       => 'Garrantzia: %$1',
 'search-redirect'           => '($1 birzuzenketa)',
@@ -2470,7 +2471,7 @@ Zerrenda elementuak (hasieran * duten lerroak) baino ez dira kontuan hartzen. Le
 
 # External editor support
 'edit-externally'      => 'Fitxategi hau editatu kanpo-aplikazio bat erabiliz',
-'edit-externally-help' => 'Ikus [http://www.mediawiki.org/wiki/Manual:External_editors konfiguraziorako argibideak] informazio gehiagorako.',
+'edit-externally-help' => '(Ikus [http://www.mediawiki.org/wiki/Manual:External_editors konfiguraziorako argibideak] informazio gehiagorako)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'guztiak',

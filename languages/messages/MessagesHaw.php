@@ -261,7 +261,7 @@ $2',
 Hoʻokumu ʻia i kou waihona.
 Mai poina e loli kāu makemake ma {{SITENAME}}.',
 'yourname'                => "Inoa mea ho'ohana",
-'yourpassword'            => "Hua'ōlelo huna",
+'yourpassword'            => 'ʻŌlelo hūnā:',
 'yourpasswordagain'       => "Hua'ōlelo huna hou",
 'remembermypassword'      => "Ho'omana'o ia'u",
 'login'                   => 'E komo',
@@ -281,10 +281,15 @@ E koho i kekahi inoa, ke ‘olu‘olu.',
 'youremail'               => 'Leka uila:',
 'username'                => "Inoa mea ho'ohana:",
 'yourrealname'            => 'Inoa maoli:',
-'yourlanguage'            => "Kou 'ōlelo:",
+'yourlanguage'            => 'Kou ʻōlelo:',
 'yournick'                => 'Inoa kapakapa:',
 'email'                   => 'Leka uila',
+'loginsuccesstitle'       => 'ʻEʻe kūleʻa',
 'loginsuccess'            => "'''ʻEʻe ʻia ʻoe, ʻo \"\$1\", iā {{SITENAME}}.'''",
+'wrongpassword'           => 'Hewa ka ʻōlelo hūnā.
+E ʻoluʻolu, e kūlia hou.',
+'wrongpasswordempty'      => 'Hakahaka ka ʻōlelo hūnā.
+E ʻoluʻolu, e kūlia hou.',
 'mailmypassword'          => 'Leka uila i ka huaʻōlelo huna',
 'emailauthenticated'      => 'Ua hō‘oia ‘ia kāu leka uila ma ka lā $2 i ka hola $3.',
 'emailconfirmlink'        => 'E hō‘oia i kāu leka uila',
@@ -333,6 +338,10 @@ hō‘ike ‘ia i lalo:",
 'editingcomment'         => 'Ke ho‘ololi nei iā $1 (mana‘o)',
 'yourtext'               => 'Ko‘u ‘ōlelo',
 'yourdiff'               => 'Nā mea ‘oko‘a',
+'copyrightwarning'       => 'Hoʻokuʻu nā mea lūlū iā {{SITENAME}} i ka $2 (no nā mea kikoʻī, ʻike ʻoe i $1).
+Inā ʻaʻole ʻoe makemake i nā poʻe aʻe e loli i kou kākau ʻana a ʻaʻole ʻoe makemake hoʻomalele hou i kou mau loli, inā mai waiho kou mau loli ma ʻaneʻi.<br />
+Ke hoʻohiki nei ʻoe iā kākou: ua kākau ʻoe i kēia kikokikona na ʻo ʻoe ponoʻī a i ʻole ua kope i kēia kikokikona mai ke kūmole kūʻokoʻa.
+<strong>MAI WAIHO NĀ HANA PONOKOPE ME ʻOLE KA ʻAE!</strong>',
 'protectedpagewarning'   => '<strong>A‘o ‘ana:  Ua laka ‘ia kēia ‘ao‘ao, pēlā, hiki i nā "kahu" ke ho‘opololei wale nō.</strong>',
 'template-protected'     => '(ho‘omalu ‘ia)',
 'template-semiprotected' => '(hapa-ho‘omalu ‘ia)',
@@ -394,8 +403,11 @@ hō‘ike ‘ia i lalo:",
 'group-sysop-member'      => 'Kahu',
 'group-bureaucrat-member' => 'Kuhina',
 
+'grouppage-sysop' => '{{ns:project}}:Nā kahu',
+
 # Recent changes
 'recentchanges'   => 'Nā loli hou',
+'rcnote'          => "ʻO {{PLURAL:$1|ka loli '''1'''|nā loli hope '''$1'''}} ma hope mai {{PLURAL:$2|ka lā ʻekahi|nā lā '''$2'''}} ma hope, ma $5, $4.",
 'rcshowhideminor' => '$1 i nā ho‘opololei iki',
 'rcshowhidebots'  => '$1 i nā lopako',
 'rcshowhideliu'   => '$1 i nā inoa mea ho‘ohana',
@@ -511,6 +523,7 @@ hō‘ike ‘ia i lalo:",
 # Protect
 'prot_1movedto2'         => 'Ua hoʻoneʻe ʻo [[$1]] iā [[$2]]',
 'protect-default'        => '(paʻamau)',
+'protect-cantedit'       => 'ʻAʻole ʻoe hoʻololi i nā pae malu o kēia ʻaoʻao no ka mea ʻaʻohe ʻae āu o ka hoʻopololei ʻana o kēia ʻaoʻao.',
 'protect-expiry-options' => '2 hola:2 hours,1 lā:1 day,3 lā:3 days,1 pule:1 week,2 pule:2 weeks,1 mahina:1 month,3 mahina:3 months,6 mahina:6 months,1 makahiki:1 year,palena ʻole:infinite', # display1:time1,display2:time2,...
 
 # Restrictions (nouns)

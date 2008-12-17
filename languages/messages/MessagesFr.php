@@ -7,6 +7,7 @@
  * @author Agzennay
  * @author Cedric31
  * @author ChrisPtDe
+ * @author Crochet.david
  * @author Delhovlyn
  * @author Dereckson
  * @author Esbardu
@@ -1603,7 +1604,7 @@ Une [[Special:WhatLinksHere/$2|liste complète]] est disponible.',
 'statistics-jobqueue'          => 'Longueur de la [http://www.mediawiki.org/wiki/Manual:Job_queue liste d’attente de traitement]',
 'statistics-users'             => '[[Special:ListUsers|Utilisateurs]] enregistrés',
 'statistics-users-active'      => 'Utilisateurs actifs',
-'statistics-users-active-desc' => "Nombre d'utilisateurs ayant fait au moins une action durant le dernier mois",
+'statistics-users-active-desc' => 'Utilisateurs ayant fait au moins une action durant {{PLURAL:$1|le dernier jours|les $1 derniers jours}}',
 'statistics-mostpopular'       => 'Pages les plus consultées',
 
 'disambiguations'      => 'Pages d’homonymie',
@@ -1972,7 +1973,7 @@ Voici les réglages actuels de la page <strong>$1</strong> :',
 'undeletepage'                 => 'Voir et restaurer une page supprimée',
 'undeletepagetitle'            => "'''La liste suivante contient des versions supprimées de [[:$1]]'''.",
 'viewdeletedpage'              => 'Historique de la page supprimée',
-'undeletepagetext'             => '{{PLURAL:$1|Cette page a a été supprimée et se trouve|Ces pages ont été supprimées et se trouvent}} dans l’archive. {{PLURAL:$1|Elle figure|Elles figurent}} toujours dans la base de données et {{PLURAL:$1|peut être restaurée|peuvent être restaurées}}.
+'undeletepagetext'             => '{{PLURAL:$1|Cette page a été supprimée et se trouve|Ces pages ont été supprimées et se trouvent}} dans l’archive. {{PLURAL:$1|Elle figure|Elles figurent}} toujours dans la base de données et {{PLURAL:$1|peut être restaurée|peuvent être restaurées}}.
 L’archive peut être effacée périodiquement.',
 'undelete-fieldset-title'      => 'Restaurer les versions',
 'undeleteextrahelp'            => "Pour restaurer l’historique complet de cette page, laissez vierges toutes les cases à cocher et cliquez '''''Restaurer'''''.

@@ -88,6 +88,7 @@ $messages = array(
 
 'about'         => 'विषये',
 'newwindow'     => '(उद्घट् नविन पृष्ठ)',
+'cancel'        => 'अपकर्ष',
 'qbfind'        => 'शोध',
 'qbedit'        => 'संपादयति',
 'qbpageoptions' => 'इदम्‌ पृष्ठ',
@@ -111,6 +112,7 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}}विषये',
 'aboutpage'            => 'Project:विषये',
+'copyrightpage'        => '{{ns:project}}:प्रताधिकार',
 'currentevents'        => 'सद्य घटना',
 'disclaimers'          => 'स्वाम्यत्यागं',
 'edithelp'             => 'संपादनार्थं सहायता',
@@ -133,9 +135,11 @@ $messages = array(
 
 # Login and logout pages
 'login'          => 'प्रवेश करोसि',
+'userlogout'     => 'बहिर्गच्छति',
 'gotaccountlink' => 'प्रवेश करोसि',
 
 # Edit pages
+'watchthis'   => 'इदं पृष्ठ निरीक्षा',
 'savearticle' => 'पृष्ठ त्रायते',
 'preview'     => 'प्रारूप प्रेक्षा',
 'showpreview' => 'प्रारूप प्रेक्षा',
@@ -149,10 +153,17 @@ $messages = array(
 
 # Recent changes
 'recentchanges' => 'नवीनतम परिवर्तन',
+'hide'          => 'प्रछद्',
 'show'          => 'दर्शयति',
+
+# Recent changes linked
+'recentchangeslinked' => 'सम्भन्दिन् परिवर्त',
 
 # Upload
 'upload' => 'भारं न्यस्यति सञ्चिका',
+
+# Random page
+'randompage' => 'अविशिष्ट पृष्ठ',
 
 # Miscellaneous special pages
 'ancientpages' => 'प्राचीनतम् पृष्ठा',
@@ -173,6 +184,9 @@ $messages = array(
 
 # Delete
 'actioncomplete' => 'कार्य समापनम्',
+
+# What links here
+'whatlinkshere' => 'किम्‌ पृष्ठ सम्बद्धं करोति',
 
 # Block/unblock
 'blocklink' => 'निषेध',

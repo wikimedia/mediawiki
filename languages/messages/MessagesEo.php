@@ -1936,8 +1936,8 @@ Vi povas ŝanĝi ties protektnivelon, sed tio ne ŝanĝos la kaskadan protekton.
 'undeletepage'                 => 'Montri kaj restarigi forigitajn paĝojn',
 'undeletepagetitle'            => "'''Jen la forigitaj versioj de [[:$1]]'''.",
 'viewdeletedpage'              => 'Rigardi forigitajn paĝojn',
-'undeletepagetext'             => 'La jenaj paĝoj estis forigitaj, sed ankoraŭ restas arkivitaj,
-kaj oni povas restarigi ilin. La arkivo povas esti malplenigita periode.',
+'undeletepagetext'             => 'La {{PLURAL:$1|jena paĝo estis forigita|jenaj paĝoj estis forigitaj}}, sed ankoraŭ restas {{PLURAL:$1|arkivita|arkivitaj}} kaj {{PLURAL:$1|restarigebla|restarigeblaj}}. 
+La arkivo povas esti malplenigita periode.',
 'undelete-fieldset-title'      => 'Malforigi versiojn',
 'undeleteextrahelp'            => "Por restarigi la tuton de la paĝo, lasu ĉiujn markobutonoj malŝaltitaj kaj klaku la butonon '''''Restarigi'''''. 
 Por restarigi selektitajn versiojn de la paĝo, marku la butonojn konformajn al la dezirataj versioj, kaj klaku la butonon '''''Restarigi'''''. 
@@ -2210,7 +2210,7 @@ La celartikolo "[[:$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon 
 'selfmove'                     => 'Font- kaj cel-titoloj samas; ne eblas movi paĝon sur ĝin mem.',
 'immobile-source-namespace'    => 'Ne eblas movi paĝojn en nomspaco "$1"',
 'immobile-target-namespace'    => 'Ne eblas movi paĝojn en nomspacon "$1"',
-'immobile-target-namespace-iw' => 'Ne eblas movi paĝojn al intervikian ligilon "$1"',
+'immobile-target-namespace-iw' => 'Intervikia ligilo ne estas valida celo por paĝa movo.',
 'immobile-source-page'         => 'Ĉi tiu paĝo ne estas movebla.',
 'immobile-target-page'         => 'Ne eblas movi al tiu destina titolo.',
 'imagenocrossnamespace'        => 'Ne eblas movi dosieron al nedosiera nomspaco',

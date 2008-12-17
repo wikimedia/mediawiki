@@ -783,6 +783,7 @@ Bí a ṣe to ojúewé <strong>$1</strong> nì yí:",
 
 'sp-contributions-newbies-sub' => 'Fún àwọn àpamọ́ tuntun',
 'sp-contributions-blocklog'    => 'Àkọsílẹ̀ ìdínà',
+'sp-contributions-username'    => 'Ojúọ̀nà IP tàbí orúkọ oníṣe:',
 
 # What links here
 'whatlinkshere'       => 'Ìjápọ̀ mọ́ ojúewé yí',
@@ -907,7 +908,7 @@ Bí a ṣe to ojúewé <strong>$1</strong> nì yí:",
 'metadata-collapse' => 'Ìbòmọ́lẹ̀ ẹ̀kúnrẹ́rẹ́',
 
 # External editor support
-'edit-externally-help' => 'Ẹ wo [http://www.mediawiki.org/wiki/Manual:External_editors ìlànà ìṣètò] fún ẹ̀kúnrẹ́rẹ́.',
+'edit-externally-help' => '(Ẹ wo [http://www.mediawiki.org/wiki/Manual:External_editors ìlànà ìṣètò] fún ẹ̀kúnrẹ́rẹ́)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'gbogbo',

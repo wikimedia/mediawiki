@@ -1595,7 +1595,7 @@ Ei [[Special:WhatLinksHere/$2|fullstendig liste]] er tilgjengeleg.',
 'statistics-jobqueue'          => 'Lengda på [http://www.mediawiki.org/wiki/Manual:Job_queue jobbkøen]',
 'statistics-users'             => 'Registrerte [[Special:ListUsers|brukarar]]',
 'statistics-users-active'      => 'Aktive brukarar',
-'statistics-users-active-desc' => 'Brukarar som har utført handlinger den siste månaden',
+'statistics-users-active-desc' => 'Brukarar som har utført handlingar {{PLURAL:$1|i dag|dei siste $1 dagane}}',
 'statistics-mostpopular'       => 'Mest viste sider',
 
 'disambiguations'      => 'Fleirtydingssider',

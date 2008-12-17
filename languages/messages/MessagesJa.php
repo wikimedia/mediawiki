@@ -1507,7 +1507,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'statistics-jobqueue'          => '[http://www.mediawiki.org/wiki/Manual:Job_queue ジョブ・キュー]の長さ',
 'statistics-users'             => '[[Special:ListUsers|登録利用者]]',
 'statistics-users-active'      => '活動中の利用者',
-'statistics-users-active-desc' => '過去1ヶ月に編集など何らかの操作を行った利用者',
+'statistics-users-active-desc' => '過去$1日間に何らかの操作を行った利用者',
 'statistics-mostpopular'       => '最も閲覧されているページ',
 
 'disambiguations'      => '曖昧さ回避ページ',
@@ -1878,7 +1878,7 @@ $NEWPAGE
 'undeletepage'                 => '削除されたページの表示と復帰',
 'undeletepagetitle'            => "'''以下に表示されているのは [[:$1]] の削除された版です'''。",
 'viewdeletedpage'              => '削除されたページを表示',
-'undeletepagetext'             => '以下のページは削除されていますが、アーカイブに残っているため、復帰できます。アーカイブは定期的に消去されます。',
+'undeletepagetext'             => '以下のページは削除されていますが、アーカイブに残っているため、復帰できます。アーカイブは定期的に消去される可能性があります。',
 'undelete-fieldset-title'      => '削除された版の復帰',
 'undeleteextrahelp'            => '全ての版を復帰する場合は、全ての版のチェックボックスを選択していない状態で「{{int:undeletebtn}}」ボタンをクリックしてください。
 特定の版を復帰する場合は、復帰する版のチェックボックスを選択した状態で「{{int:undeletebtn}}」ボタンをクリックしてください。
@@ -2023,6 +2023,7 @@ $NEWPAGE
 'ipblocklist-no-results'          => '指定されたIPアドレスまたは利用者名はブロックされていません。',
 'blocklink'                       => 'ブロック',
 'unblocklink'                     => 'ブロック解除',
+'change-blocklink'                => 'ブロック変更',
 'contribslink'                    => '投稿記録',
 'autoblocker'                     => '投稿ブロックされている利用者 "$1" と同じIPアドレスのため、自動的にブロックされています。ブロックの理由は "$2" です。',
 'blocklogpage'                    => '投稿ブロック記録',
@@ -2133,7 +2134,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'selfmove'                     => '移動元と移動先のページ名が同じです。自分自身へは移動できません。',
 'immobile-source-namespace'    => '$1名前空間のページを移動させることはできません。',
 'immobile-target-namespace'    => '$1名前空間へはページを移動させることはできません。',
-'immobile-target-namespace-iw' => 'インターウィキリンクはページ移動のための有効なターゲットではありません。',
+'immobile-target-namespace-iw' => 'インターウィキリンクはページの移動先として指定できません。',
 'immobile-source-page'         => 'このページを移動させることはできません。',
 'immobile-target-page'         => '目的のページ名へは移動させることができません。',
 'imagenocrossnamespace'        => 'ファイル用の名前空間以外にはファイルを移動することはできません。',
