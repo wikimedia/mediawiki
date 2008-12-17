@@ -2,11 +2,11 @@
 
 For upgrade instructions please see the UPGRADE file in this directory.
 
-== MediaWiki 1.12.2 ==
+== MediaWiki 1.12.3 ==
 
-December 15, 2008
+December 17, 2008
 
-This is a security release of the quarterly branch of MediaWiki for Winter 2008.
+This is a bugfix release of the quarterly branch of MediaWiki for Winter 2008.
 
 MediaWiki is now using a "continuous integration" development model with
 quarterly snapshot releases. The latest development code is always kept
@@ -18,6 +18,11 @@ will be made on the development trunk and appear in the next quarterly release.
 
 Those wishing to use the latest code instead of a branch release can obtain
 it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
+
+== Changes since 1.12.2 ==
+
+* Fixed packaging/distribution error. Many files were missing from the 
+  distributed tarball.
 
 == Changes since 1.12.1 ==
 
