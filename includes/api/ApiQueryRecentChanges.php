@@ -84,7 +84,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 	 */
 	public function execute() {
 		/* Initialize vars */
-		$limit = $prop = $namespace = $titles = $show = $type = $dir = $start = $end = $token = null;
+		$limit = $prop = $namespace = $titles = $user = $excludeuser = $show = $type = $dir = $start = $end = $token = null;
 
 		/* Get the parameters of the request. */
 		extract($this->extractRequestParams());
@@ -154,8 +154,15 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			// Don't throw log entries out the window here
 			$this->addWhereIf('page_is_redirect = 0 OR page_is_redirect IS NULL', isset ($show['!redirect']));
 		}
+		
+		if(!is_null($user) && !is_null($excludeuser))
+			$this->dieUsage('user and excludeuser cannot be used together', 'badparams');
+		if(!is_null($user))
+			$this->addWhereFld('rc_user_text', $user);
+		if(!is_null($excludeuser))
+			$this->addWhere('rc_user_text != ' . $this->getDB()->addQuotes($excludeuser));
 
-		/* Add the fields we're concerned with to out query. */
+		/* Add the fields we're concerned with to our query. */
 		$this->addFields(array (
 			'rc_timestamp',
 			'rc_namespace',
@@ -397,6 +404,12 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			'titles' => array(
 				ApiBase :: PARAM_ISMULTI => true
 			),
+			'user' => array(
+				ApiBase :: PARAM_TYPE => 'user'
+			),
+			'excludeuser' => array(
+				ApiBase :: PARAM_TYPE => 'user'
+			),
 			'prop' => array (
 				ApiBase :: PARAM_ISMULTI => true,
 				ApiBase :: PARAM_DFLT => 'title|timestamp|ids',
@@ -457,6 +470,8 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			'dir' => 'In which direction to enumerate.',
 			'namespace' => 'Filter log entries to only this namespace(s)',
 			'titles' => 'Filter log entries to only these page titles',
+			'user' => 'Only list changes by this user',
+			'excludeuser' => 'Don\'t list changes by this user',
 			'prop' => 'Include additional pieces of information',
 			'token' => 'Which tokens to obtain for each change',
 			'show' => array (
