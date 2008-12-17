@@ -273,10 +273,10 @@ class LogEventsList {
 				$this->skin->link( SpecialPage::getTitleFor( 'Ipblocklist' ),
 					$this->message['unblocklink'],
 					array(),
-					array( 'action' => 'unblock', 'ip' => urlencode( $row->log_title ) ),
+					array( 'action' => 'unblock', 'ip' => $row->log_title ),
 					'known' ) 
 				. ' ' . wfMsg( 'pipe-separator' ) . ' ' .
-				$this->skin->link( SpecialPage::getTitleFor( 'Blockip', htmlspecialchars( $row->log_title ) ), 
+				$this->skin->link( SpecialPage::getTitleFor( 'Blockip', $row->log_title ), 
 					$this->message['change-blocklink'],
 					array(), array(), 'known' ) .
 				')';
