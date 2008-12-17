@@ -5,14 +5,12 @@ define( 'MEDIAWIKI', true );
 require 't/Test.php';
 
 require 'includes/Defines.php';
+require 'StartProfiler.php';
+require 'includes/AutoLoader.php';
 require 'LocalSettings.php';
+require 'includes/Setup.php';
 
-plan( 13 );
-
-require_ok( 'includes/ProfilerStub.php' );
-require_ok( 'includes/GlobalFunctions.php' );
-require_ok( 'includes/Exception.php' );
-require_ok( 'includes/db/Database.php' );
+plan( 9 );
 
 $db = new Database( $wgDBserver, $wgDBuser, $wgDBpassword );
 

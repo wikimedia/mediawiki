@@ -5,12 +5,12 @@ define( 'MEDIAWIKI', true );
 require 't/Test.php';
 
 require 'includes/Defines.php';
+require 'StartProfiler.php';
+require 'includes/AutoLoader.php';
 require 'LocalSettings.php';
+require 'includes/Setup.php';
 
-plan( 48 );
-
-require_ok( 'includes/ProfilerStub.php' );
-require_ok( 'includes/GlobalFunctions.php' );
+plan( 46 );
 
 $wgReadOnly = null;
 $wgReadOnlyFile = tempnam(wfTempDir(), "mwtest_readonly");
