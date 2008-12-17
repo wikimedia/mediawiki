@@ -228,19 +228,18 @@ class ApiPageSet extends ApiQueryBase {
 	 */
 	public function execute() {
 		$this->profileIn();
-		$titles = $pageids = $revids = null;
-		extract($this->extractRequestParams());
+		$params = $this->extractRequestParams();
 
 		// Only one of the titles/pageids/revids is allowed at the same time
 		$dataSource = null;
-		if (isset ($titles))
+		if (isset ($params['titles']))
 			$dataSource = 'titles';
-		if (isset ($pageids)) {
+		if (isset ($params['pageids'])) {
 			if (isset ($dataSource))
 				$this->dieUsage("Cannot use 'pageids' at the same time as '$dataSource'", 'multisource');
 			$dataSource = 'pageids';
 		}
-		if (isset ($revids)) {
+		if (isset ($params['revids'])) {
 			if (isset ($dataSource))
 				$this->dieUsage("Cannot use 'revids' at the same time as '$dataSource'", 'multisource');
 			$dataSource = 'revids';
@@ -248,17 +247,17 @@ class ApiPageSet extends ApiQueryBase {
 
 		switch ($dataSource) {
 			case 'titles' :
-				$this->initFromTitles($titles);
+				$this->initFromTitles($params['titles']);
 				break;
 			case 'pageids' :
-				$this->initFromPageIds($pageids);
+				$this->initFromPageIds($params['pageids']);
 				break;
 			case 'revids' :
 				if($this->mResolveRedirects)
 					$this->setWarning('Redirect resolution cannot be used together with the revids= parameter. '.
 					'Any redirects the revids= point to have not been resolved.');
 				$this->mResolveRedirects = false;
-				$this->initFromRevIDs($revids);
+				$this->initFromRevIDs($params['revids']);
 				break;
 			default :
 				// Do nothing - some queries do not need any of the data sources.

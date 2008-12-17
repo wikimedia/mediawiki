@@ -369,7 +369,6 @@ abstract class ApiBase {
 	/**
 	* Using getAllowedParams(), makes an array of the values provided by the user,
 	* with key being the name of the variable, and value - validated value from user or default.
-	* This method can be used to generate local variables using extract().
 	* limit=max will not be parsed if $parseMaxLimit is set to false; use this
 	* when the max limit is not definite, e.g. when getting revisions.
 	*/

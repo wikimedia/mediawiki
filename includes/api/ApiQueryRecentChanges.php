@@ -83,11 +83,8 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 	 * Generates and outputs the result of this query based upon the provided parameters.
 	 */
 	public function execute() {
-		/* Initialize vars */
-		$limit = $prop = $namespace = $titles = $show = $type = $dir = $start = $end = $token = null;
-
 		/* Get the parameters of the request. */
-		extract($this->extractRequestParams());
+		$params = $this->extractRequestParams();
 
 		/* Build our basic query. Namely, something along the lines of:
 		 * SELECT * FROM recentchanges WHERE rc_timestamp > $start
@@ -97,13 +94,13 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 		$db = $this->getDB();
 		$this->addTables('recentchanges');
 		$this->addOption('USE INDEX', array('recentchanges' => 'rc_timestamp'));
-		$this->addWhereRange('rc_timestamp', $dir, $start, $end);
-		$this->addWhereFld('rc_namespace', $namespace);
+		$this->addWhereRange('rc_timestamp', $params['dir'], $params['start'], $params['end']);
+		$this->addWhereFld('rc_namespace', $params['namespace']);
 		$this->addWhereFld('rc_deleted', 0);
-		if($titles)
+		if($params['titles'])
 		{
 			$lb = new LinkBatch;
-			foreach($titles as $t)
+			foreach($params['titles'] as $t)
 			{
 				$obj = Title::newFromText($t);
 				$lb->addObj($obj);
@@ -120,11 +117,11 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 				$this->addWhere($where);
 		}
 
-		if(!is_null($type))
-				$this->addWhereFld('rc_type', $this->parseRCType($type));
+		if(!is_null($params['type']))
+				$this->addWhereFld('rc_type', $this->parseRCType($params['type']));
 
-		if (!is_null($show)) {
-			$show = array_flip($show);
+		if (!is_null($params['show'])) {
+			$show = array_flip($params['show']);
 
 			/* Check for conflicting parameters. */
 			if ((isset ($show['minor']) && isset ($show['!minor']))
@@ -167,8 +164,8 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 		));
 
 		/* Determine what properties we need to display. */
-		if (!is_null($prop)) {
-			$prop = array_flip($prop);
+		if (!is_null($params['prop'])) {
+			$prop = array_flip($params['prop']);
 
 			/* Set up internal members based upon params. */
 			$this->fld_comment = isset ($prop['comment']);
@@ -210,10 +207,8 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 				$this->addFields('page_is_redirect');
 			}
 		}
-		$this->token = $token;
-		/* Specify the limit for our query. It's $limit+1 because we (possibly) need to
-		 * generate a "continue" parameter, to allow paging. */
-		$this->addOption('LIMIT', $limit +1);
+		$this->token = $params['token'];
+		$this->addOption('LIMIT', $params['limit'] +1);
 
 		$data = array ();
 		$count = 0;
@@ -224,7 +219,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 
 		/* Iterate through the rows, adding data extracted from them to our query result. */
 		while ($row = $db->fetchObject($res)) {
-			if (++ $count > $limit) {
+			if (++ $count > $params['limit']) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 				$this->setContinueEnumParameter('start', wfTimestamp(TS_ISO_8601, $row->rc_timestamp));
 				break;

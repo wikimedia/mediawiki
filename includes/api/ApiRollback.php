@@ -70,16 +70,13 @@ class ApiRollback extends ApiBase {
 			// We don't care about multiple errors, just report one of them
 			$this->dieUsageMsg(current($retval));
 
-		$current = $target = $summary = NULL;
-		extract($details);
-
 		$info = array(
 			'title' => $titleObj->getPrefixedText(),
-			'pageid' => $current->getPage(),
-			'summary' => $summary,
+			'pageid' => $details['current']->getPage(),
+			'summary' => $details['summary'],
 			'revid' => $titleObj->getLatestRevID(),
-			'old_revid' => $current->getID(),
-			'last_revid' => $target->getID()
+			'old_revid' => $details['current']->getID(),
+			'last_revid' => $details['target']->getID()
 		);
 
 		$this->getResult()->addValue(null, $this->getModuleName(), $info);

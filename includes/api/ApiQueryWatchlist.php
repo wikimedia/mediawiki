@@ -59,12 +59,11 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		if (!$wgUser->isLoggedIn())
 			$this->dieUsage('You must be logged-in to have a watchlist', 'notloggedin');
 
-		$allrev = $start = $end = $namespace = $dir = $limit = $prop = $show = null;
-		extract($this->extractRequestParams());
+		$params = $this->extractRequestParams();
 
-		if (!is_null($prop) && is_null($resultPageSet)) {
+		if (!is_null($params['prop']) && is_null($resultPageSet)) {
 
-			$prop = array_flip($prop);
+			$prop = array_flip($params['prop']);
 
 			$this->fld_ids = isset($prop['ids']);
 			$this->fld_title = isset($prop['title']);
@@ -100,7 +99,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$this->addFieldsIf('rc_old_len', $this->fld_sizes);
 			$this->addFieldsIf('rc_new_len', $this->fld_sizes);
 		}
-		elseif ($allrev) {
+		elseif ($params['allrev']) {
 			$this->addFields(array (
 				'rc_this_oldid',
 				'rc_namespace',
@@ -131,12 +130,12 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			'rc_deleted' => 0,
 		));
 
-		$this->addWhereRange('rc_timestamp', $dir, $start, $end);
-		$this->addWhereFld('wl_namespace', $namespace);
-		$this->addWhereIf('rc_this_oldid=page_latest', !$allrev);
+		$this->addWhereRange('rc_timestamp', $params['dir'], $params['start'], $params['end']);
+		$this->addWhereFld('wl_namespace', $params['namespace']);
+		$this->addWhereIf('rc_this_oldid=page_latest', !$params['allrev']);
 
-		if (!is_null($show)) {
-			$show = array_flip($show);
+		if (!is_null($params['show'])) {
+			$show = array_flip($params['show']);
 
 			/* Check for conflicting parameters. */
 			if ((isset ($show['minor']) && isset ($show['!minor']))
@@ -165,9 +164,9 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 
 		# This is an index optimization for mysql, as done in the Special:Watchlist page
-		$this->addWhereIf("rc_timestamp > ''", !isset ($start) && !isset ($end) && $wgDBtype == 'mysql');
+		$this->addWhereIf("rc_timestamp > ''", !isset ($params['start']) && !isset ($params['end']) && $wgDBtype == 'mysql');
 
-		$this->addOption('LIMIT', $limit +1);
+		$this->addOption('LIMIT', $params['limit'] +1);
 
 		$data = array ();
 		$count = 0;
@@ -175,7 +174,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 		$db = $this->getDB();
 		while ($row = $db->fetchObject($res)) {
-			if (++ $count > $limit) {
+			if (++ $count > $params['limit']) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 				$this->setContinueEnumParameter('start', wfTimestamp(TS_ISO_8601, $row->rc_timestamp));
 				break;
@@ -186,7 +185,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				if ($vals)
 					$data[] = $vals;
 			} else {
-				if ($allrev) {
+				if ($params['allrev']) {
 					$data[] = intval($row->rc_this_oldid);
 				} else {
 					$data[] = intval($row->rc_cur_id);
@@ -200,7 +199,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$this->getResult()->setIndexedTagName($data, 'item');
 			$this->getResult()->addValue('query', $this->getModuleName(), $data);
 		}
-		elseif ($allrev) {
+		elseif ($params['allrev']) {
 			$resultPageSet->populateFromRevisionIDs($data);
 		} else {
 			$resultPageSet->populateFromPageIDs($data);

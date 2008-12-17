@@ -60,7 +60,6 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	);
 
 	public function __construct($query, $moduleName) {
-		$code = $prefix = $linktbl = null;
 		extract($this->backlinksSettings[$moduleName]);
 
 		parent :: __construct($query, $moduleName, $code);
