@@ -166,7 +166,7 @@ CONTROL;
 		}
 
 		// Prepare a change patrol link, if applicable
-		if( $wgUseRCPatrol && $wgUser->isAllowed( 'patrol' ) ) {
+		if( $wgUseRCPatrol && $this->mTitle->userCan('patrol') ) {
 			// If we've been given an explicit change identifier, use it; saves time
 			if( $this->mRcidMarkPatrolled ) {
 				$rcid = $this->mRcidMarkPatrolled;
@@ -177,10 +177,10 @@ CONTROL;
 				array(
 				// Add redundant user,timestamp condition so we can use the existing index
 						'rc_user_text'  => $this->mNewRev->getUserText( Revision::FOR_THIS_USER ),
-						'rc_timestamp' => $db->timestamp( $this->mNewRev->getTimestamp() ),
+						'rc_timestamp'  => $db->timestamp( $this->mNewRev->getTimestamp() ),
 						'rc_this_oldid' => $this->mNewid,
 						'rc_last_oldid' => $this->mOldid,
-						'rc_patrolled' => 0
+						'rc_patrolled'  => 0
 				),
 				__METHOD__
 				);
@@ -194,10 +194,10 @@ CONTROL;
 			// Build the link
 			if( $rcid ) {
 				$patrol = ' <span class="patrollink">[' . $sk->makeKnownLinkObj(
-				$this->mTitle,
-				wfMsgHtml( 'markaspatrolleddiff' ),
-					"action=markpatrolled&rcid={$rcid}"
-				) . ']</span>';
+					$this->mTitle,
+					wfMsgHtml( 'markaspatrolleddiff' ),
+						"action=markpatrolled&rcid={$rcid}"
+					) . ']</span>';
 			} else {
 				$patrol = '';
 			}

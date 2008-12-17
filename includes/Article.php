@@ -914,7 +914,7 @@ class Article {
 
 		# If we have been passed an &rcid= parameter, we want to give the user a
 		# chance to mark this new article as patrolled.
-		if( !is_null( $rcid ) && $rcid != 0 && $wgUser->isAllowed( 'patrol' ) && $this->mTitle->exists() ) {
+		if( !empty($rcid) && $this->mTitle->exists() && $this->mTitle->userCan('patrol') ) {
 			$wgOut->addHTML(
 				"<div class='patrollink'>" .
 					wfMsgHtml( 'markaspatrolledlink',
