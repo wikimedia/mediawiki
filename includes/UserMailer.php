@@ -262,7 +262,7 @@ class EmailNotification {
 	 * The recipient is appended to the arguments given to messageCompositionFunction.
 	 * Both callbacks are to be given in the same formats accepted by the hook system.
 	 */
-	function notify($editor, $timestamp, $userListFunction, $messageCompositionFunction) {
+	static function notify($editor, $timestamp, $userListFunction, $messageCompositionFunction) {
 		global $wgEnotifUseRealName, $wgEnotifImpersonal;
 		global $wgLang;
 
