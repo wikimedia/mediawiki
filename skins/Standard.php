@@ -279,8 +279,7 @@ class SkinStandard extends Skin {
 		if ( $wgUser->isLoggedIn() && ( $wgEnableUploads || $wgRemoteUploads ) ) {
 			$s .= $this->specialLink( 'upload' ) . $sep;
 		}
-		$s .= $this->specialLink( 'specialpages' )
-		  . $sep . $this->bugReportsLink();
+		$s .= $this->specialLink( 'specialpages' );
 
 		global $wgSiteSupportPage;
 		if( $wgSiteSupportPage ) {
