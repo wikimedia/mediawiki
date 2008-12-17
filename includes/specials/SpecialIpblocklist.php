@@ -428,13 +428,13 @@ class IPUnblockForm {
 			$unblocklink = $sk->link( SpecialPage::getTitleFor( 'Ipblocklist' ),
 					$msg['unblocklink'],
 					array(),
-					array( 'action' => 'unblock', 'id' => urlencode( $block->mId ) ),
+					array( 'action' => 'unblock', 'id' => $block->mId ),
 					'known' );
 
 			# Create changeblocklink for all blocks with exception of autoblocks
 			if( !$block->mAuto ) {
 				$changeblocklink = ' ' . wfMsg( 'pipe-separator' ) . ' ' .
-					$sk->link( SpecialPage::getTitleFor( 'Blockip', htmlspecialchars( $block->mAddress ) ), 
+					$sk->link( SpecialPage::getTitleFor( 'Blockip', $block->mAddress ), 
 						$msg['change-blocklink'],
 						array(), array(), 'known' );
 			}
