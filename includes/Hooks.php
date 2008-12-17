@@ -95,6 +95,8 @@ function wfFormatInvocation($event, $hook, $args = array()) {
 
 /*
  * Invoke a function dynamically.
+ * $event is the name of the invocation; this is used if the hook specifies
+ * an object but no method name; 'on$event' is then invoked on the object.
  * $hook can be: a function, an object, an array of $function and $data,
  * an array of just a function, an array of object and method, or an
  * array of object, method, and data.
