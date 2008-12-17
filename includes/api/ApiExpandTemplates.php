@@ -43,23 +43,22 @@ class ApiExpandTemplates extends ApiBase {
 
 	public function execute() {
 		// Get parameters
-		extract( $this->extractRequestParams() );
-		$retval = '';
+		$params = $this->extractRequestParams();
 
 		//Create title for parser
-		$title_obj = Title :: newFromText( $title );
+		$title_obj = Title :: newFromText( $params['title'] );
 		if(!$title_obj)
-			$title_obj = Title :: newFromText( "API" );	//  Default title is "API". For example, ExpandTemplates uses "ExpendTemplates" for it
+			$title_obj = Title :: newFromText( "API" ); // default
 
 		$result = $this->getResult();
 
 		// Parse text
 		global $wgParser;
 		$options = new ParserOptions();
-		if ( $generatexml )
+		if ( $params['generatexml'] )
 		{
 			$wgParser->startExternalParse( $title_obj, $options, OT_PREPROCESS );
-			$dom = $wgParser->preprocessToDom( $text );
+			$dom = $wgParser->preprocessToDom( $params['text'] );
 			if ( is_callable( array( $dom, 'saveXML' ) ) ) {
 				$xml = $dom->saveXML();
 			} else {
@@ -67,9 +66,9 @@ class ApiExpandTemplates extends ApiBase {
 			}
 			$xml_result = array();
 			$result->setContent( $xml_result, $xml );
-            $result->addValue( null, 'parsetree', $xml_result);
+			$result->addValue( null, 'parsetree', $xml_result);
 		}
-		$retval = $wgParser->preprocess( $text, $title_obj, $options );
+		$retval = $wgParser->preprocess( $params['text'], $title_obj, $options );
 
 		// Return result
 		$retval_array = array();

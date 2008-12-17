@@ -52,15 +52,14 @@ class ApiLogin extends ApiBase {
 	 * @access public
 	 */
 	public function execute() {
-		$name = $password = $domain = null;
-		extract($this->extractRequestParams());
+		$params = $this->extractRequestParams();
 
 		$result = array ();
 
-		$params = new FauxRequest(array (
-			'wpName' => $name,
-			'wpPassword' => $password,
-			'wpDomain' => $domain,
+		$req = new FauxRequest(array (
+			'wpName' => $params['name'],
+			'wpPassword' => $params['password'],
+			'wpDomain' => $params['domain'],
 			'wpRemember' => ''
 		));
 
@@ -69,7 +68,7 @@ class ApiLogin extends ApiBase {
 			wfSetupSession();
 		}
 
-		$loginForm = new LoginForm($params);
+		$loginForm = new LoginForm($req);
 		switch ($authRes = $loginForm->authenticateUserData()) {
 			case LoginForm :: SUCCESS :
 				global $wgUser, $wgCookiePrefix;
