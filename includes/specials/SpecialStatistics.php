@@ -93,12 +93,13 @@ class SpecialStatistics extends SpecialPage {
 	 * @param float $number a number
 	 * @param array $trExtraParams
 	 * @param string $descMsg
+	 * @param string $descMsgParam
 	 * @return string table row in HTML format
 	 */
-	private function formatRow( $text, $number, $trExtraParams = array(), $descMsg = '' ) {
+	private function formatRow( $text, $number, $trExtraParams = array(), $descMsg = '', $descMsgParam = '' ) {
 		global $wgStylePath;
 		if( $descMsg ) {
-			$descriptionText = wfMsg( $descMsg );
+			$descriptionText = wfMsgExt( $descMsg, array( 'parseinline' ), $descMsgParam );
 			if ( !wfEmptyMsg( $descMsg, $descriptionText ) ) {
 				$descriptionText = " ($descriptionText)";
 				$text .= "<br />" . Xml::element( 'small', array( 'class' => 'mw-statistic-desc'), 
@@ -148,7 +149,7 @@ class SpecialStatistics extends SpecialPage {
 						array( 'class' => 'mw-statistics-jobqueue' ) );
 	}
 	private function getUserStats() {
-		global $wgLang;
+		global $wgLang, $wgRCMaxAge;
 		return Xml::openElement( 'tr' ) .
 			Xml::tags( 'th', array( 'colspan' => '2' ), wfMsg( 'statistics-header-users' ) ) .
 			Xml::closeElement( 'tr' ) .
@@ -158,7 +159,8 @@ class SpecialStatistics extends SpecialPage {
 				$this->formatRow( wfMsgExt( 'statistics-users-active', array( 'parseinline' ) ),
 						$wgLang->formatNum( $this->activeUsers ),
 						array( 'class' => 'mw-statistics-users-active' ),
-						'statistics-users-active-desc' );
+						'statistics-users-active-desc',
+						$wgLang->formatNum( ceil( $wgRCMaxAge / ( 3600 * 24 ) ) ) );
 	}
 	private function getGroupStats() {
 		global $wgGroupPermissions, $wgImplicitGroups, $wgLang, $wgUser;
