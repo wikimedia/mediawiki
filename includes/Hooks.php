@@ -23,40 +23,39 @@
  */
 
 /* Private */
-function _wfInvokeInternalGoop($event, $hook) {
+function _wfInvokeInternalGoop( $event, $hook ) {
 	$object = NULL;
 	$method = NULL;
 	$func = NULL;
 	$data = NULL;
 	$have_data = false;
 
-	if (is_array($hook)) {
-		if (count($hook) < 1) {
-			throw new MWException("Empty array in hooks for " . $event . "\n");
-		} else if (is_object($hook[0])) {
+	if ( is_array( $hook ) ) {
+		if ( count( $hook ) < 1 ) {
+			throw new MWException( "Empty array in hooks for " . $event . "\n" );
+		} else if ( is_object( $hook[0] ) ) {
 			$object = $hook[0];
-			if (count($hook) < 2) {
+			if ( count( $hook ) < 2 ) {
 				$method = "on" . $event;
 			} else {
 				$method = $hook[1];
-				if (count($hook) > 2) {
+				if ( count( $hook ) > 2 ) {
 					$data = $hook[2];
 					$have_data = true;
 				}
 			}
-		} else if (is_string($hook[0])) {
+		} else if ( is_string( $hook[0] ) ) {
 			$func = $hook[0];
-			if (count($hook) > 1) {
+			if ( count( $hook ) > 1 ) {
 				$data = $hook[1];
 				$have_data = true;
 			}
 		} else {
-			var_dump( $wgHooks );
-			throw new MWException("Unknown datatype in hooks for " . $event . "\n");
+			throw new MWException( "Unknown datatype in hooks for " . $event . "\n" );
 		}
-	} else if (is_string($hook)) { # functions look like strings, too
+	} else if ( is_string( $hook ) ) { # functions look like strings, too
 		$func = $hook;
-	} else if (is_object($hook)) {
+	} else if ( is_object( $hook ) ) {
 		$object = $hook;
 		$method = "on" . $event;
 	} else {
@@ -76,8 +75,8 @@ function _wfInvokeInternalGoop($event, $hook) {
 }
 
 /* Return a string describing the hook for debugging purposes. */
-function wfFormatInvocation($event, $hook, $args = array()) {
-	list($callback, $func, $data) = _wfInvokeInternalGoop($event, $hook, $args);
+function wfFormatInvocation( $event, $hook, $args = array() ) {
+	list( $callback, $func, $data ) = _wfInvokeInternalGoop( $event, $hook, $args );
 	
 	if( is_array( $callback ) ) {
 		if( is_object( $callback[0] ) ) {
@@ -103,12 +102,12 @@ function wfFormatInvocation($event, $hook, $args = array()) {
  * If arguments are provided both as part of the hook itself, and when
  * calling wfCallFancyCallback, the two arrays are merged.
  */
-function wfInvoke($event, $hook, $args = array()) {
-	list($callback, $func, $data) = _wfInvokeInternalGoop($event, $hook, $args);
+function wfInvoke( $event, $hook, $args = array() ) {
+	list( $callback, $func, $data ) = _wfInvokeInternalGoop( $event, $hook, $args );
 	
 	/* We put the first data element on, if needed. */
-	if ($data) {
-		$hook_args = array_merge(array($data), $args);
+	if ( $data ) {
+		$hook_args = array_merge( array( $data ), $args );
 	} else {
 		$hook_args = $args;
 	}
@@ -129,40 +128,40 @@ function wfInvoke($event, $hook, $args = array()) {
  * careful about its contents. So, there's a lot more error-checking
  * in here than would normally be necessary.
  */
-function wfRunHooks($event, $args = array()) {
+function wfRunHooks( $event, $args = array() ) {
 
 	global $wgHooks;
 
-	if (!is_array($wgHooks)) {
-		throw new MWException("Global hooks array is not an array!\n");
+	if ( !is_array( $wgHooks ) ) {
+		throw new MWException( "Global hooks array is not an array!\n" );
 		return false;
 	}
 
-	if (!array_key_exists($event, $wgHooks)) {
+	if (!array_key_exists( $event, $wgHooks ) ) {
 		return true;
 	}
 
-	if (!is_array($wgHooks[$event])) {
-		throw new MWException("Hooks array for event '$event' is not an array!\n");
+	if ( !is_array( $wgHooks[$event] ) ) {
+		throw new MWException( "Hooks array for event '$event' is not an array!\n" );
 		return false;
 	}
 
-	foreach ($wgHooks[$event] as $index => $hook) {
+	foreach ( $wgHooks[$event] as $index => $hook ) {
 
-		$retval = wfInvoke($event, $hook, $args);
+		$retval = wfInvoke( $event, $hook, $args );
 
 		/* String return is an error; false return means stop processing. */
 
-		if (is_string($retval)) {
+		if ( is_string( $retval ) ) {
 			global $wgOut;
-			$wgOut->showFatalError($retval);
+			$wgOut->showFatalError( $retval );
 			return false;
 		} elseif( $retval === null ) {
-			$prettyFunc = wfFormatInvocation($event, $hook, $args);
+			$prettyFunc = wfFormatInvocation( $event, $hook, $args );
 			throw new MWException( "Detected bug in an extension! " .
 				"Hook $prettyFunc failed to return a value; " .
 				"should return true to continue hook processing or false to abort." );
-		} else if (!$retval) {
+		} else if ( !$retval ) {
 			return false;
 		}
 	}

@@ -262,38 +262,41 @@ class EmailNotification {
 	 * The recipient is appended to the arguments given to messageCompositionFunction.
 	 * Both callbacks are to be given in the same formats accepted by the hook system.
 	 */
-	static function notify($editor, $timestamp, $userListFunction, $messageCompositionFunction) {
+	static function notify( $editor, $timestamp, $userListFunction, $messageCompositionFunction ) {
 		global $wgEnotifUseRealName, $wgEnotifImpersonal;
 		global $wgLang;
 
-		$common_keys = self::commonMessageKeys($editor);
-		$users = wfInvoke("userList", $userListFunction);
-		foreach($users as $u) {
-			list($user_keys, $body_msg_name, $subj_msg_name) =
-				wfInvoke("message", $messageCompositionFunction, array($u)); 
-			$keys = array_merge($common_keys, $user_keys);
+		$users = wfInvoke( 'userList', $userListFunction );
+		if( !count( $users ) )
+			return;
+
+		$common_keys = self::commonMessageKeys( $editor );
+		foreach( $users as $u ) {
+			list( $user_keys, $body_msg_name, $subj_msg_name ) =
+				wfInvoke( 'message', $messageCompositionFunction, array( $u ) ); 
+			$keys = array_merge( $common_keys, $user_keys );
 
 			if( $wgEnotifImpersonal ) {
-				$keys['$WATCHINGUSERNAME'] = wfMsgForContent('enotif_impersonal_salutation');
-				$keys['$PAGEEDITDATE'] = $wgLang->timeanddate($timestamp, true, false, false);
+				$keys['$WATCHINGUSERNAME'] = wfMsgForContent( 'enotif_impersonal_salutation' );
+				$keys['$PAGEEDITDATE'] = $wgLang->timeanddate( $timestamp, true, false, false );
 			} else {
 				$keys['$WATCHINGUSERNAME'] = $wgEnotifUseRealName ? $u->getRealName() : $u->getName();
-				$keys['$PAGEEDITDATE'] = $wgLang->timeAndDate($timestamp, true, false,
-					$u->getOption('timecorrection'));
+				$keys['$PAGEEDITDATE'] = $wgLang->timeAndDate( $timestamp, true, false,
+					$u->getOption( 'timecorrection' ) );
 			}
 
-			$subject = strtr(wfMsgForContent( $subj_msg_name ), $keys);
+			$subject = strtr( wfMsgForContent( $subj_msg_name ), $keys );
 			$body = wordwrap( strtr( wfMsgForContent( $body_msg_name ), $keys ), 72 );
 
-			$to = new MailAddress($u);
+			$to = new MailAddress( $u );
 			$from = $keys['$FROM_HEADER'];
 			$replyto = $keys['$REPLYTO_HEADER'];
-			UserMailer::send($to, $from, $subject, $body, $replyto);
+			UserMailer::send( $to, $from, $subject, $body, $replyto );
 		}
 	}
 
 
-	static function commonMessageKeys($editor) {
+	static function commonMessageKeys( $editor ) {
 		global $wgEnotifUseRealName, $wgEnotifRevealEditorAddress;
 		global $wgNoReplyAddress, $wgPasswordSender;
 
@@ -320,11 +323,11 @@ class EmailNotification {
 		$keys['$REPLYTO_HEADER'] = $replyto;
 
 		if( $editor->isAnon() ) {
-			$keys['$PAGEEDITOR'] = wfMsgForContent('enotif_anon_editor', $name);
+			$keys['$PAGEEDITOR'] = wfMsgForContent( 'enotif_anon_editor', $name );
 			$keys['$PAGEEDITOR_EMAIL'] = wfMsgForContent( 'noemailtitle' );
 		} else{
 			$keys['$PAGEEDITOR'] = $name;
-			$keys['$PAGEEDITOR_EMAIL'] = SpecialPage::getSafeTitleFor('Emailuser', $name)->getFullUrl();
+			$keys['$PAGEEDITOR_EMAIL'] = SpecialPage::getSafeTitleFor( 'Emailuser', $name )->getFullUrl();
 		}
 		$keys['$PAGEEDITOR_WIKI'] = $editor->getUserPage()->getFullUrl();
 
@@ -357,13 +360,13 @@ class PageChangeNotification {
 	 * @param $minorEdit
 	 * @param $oldid (default: false)
 	 */
-	static function notifyOnPageChange($editor, $title, $timestamp, $summary, $minorEdit, $oldid = false) {                          
+	static function notifyOnPageChange( $editor, $title, $timestamp, $summary, $minorEdit, $oldid = false ) {                          
 		global $wgEnotifUseJobQ;
 
-		if( $title->getNamespace() < 0 )
+		if ( $title->getNamespace() < 0 )
 			return;
 
-		if ($wgEnotifUseJobQ) {
+		if ( $wgEnotifUseJobQ ) {
 			$params = array(
 				"editor" => $editor->getName(),
 				"editorID" => $editor->getID(),
@@ -374,7 +377,7 @@ class PageChangeNotification {
 			$job = new EnotifNotifyJob( $title, $params );
 			$job->insert();
 		} else {
-			self::actuallyNotifyOnPageChange($editor, $title, $timestamp, $summary, $minorEdit, $oldid);
+			self::actuallyNotifyOnPageChange( $editor, $title, $timestamp, $summary, $minorEdit, $oldid );
 		}
 
 	}
@@ -392,15 +395,15 @@ class PageChangeNotification {
 	 * @param $minorEdit
 	 * @param $oldid (default: false)
 	 */
-	static function actuallyNotifyOnPageChange($editor, $title, $timestamp,
-			$summary, $minorEdit, $oldid=false) {
+	static function actuallyNotifyOnPageChange( $editor, $title, $timestamp,
+			$summary, $minorEdit, $oldid = false ) {
 		global $wgShowUpdatedMarker, $wgEnotifWatchlist;
 		
 		wfProfileIn( __METHOD__ );
 		
-		EmailNotification::notify($editor, $timestamp,
-			array('PageChangeNotification::usersList', array($editor, $title, $minorEdit)),
-			array('PageChangeNotification::message', array($oldid, $minorEdit, $summary, $title, $editor) ) );
+		EmailNotification::notify( $editor, $timestamp,
+			array( 'PageChangeNotification::usersList', array( $editor, $title, $minorEdit ) ),
+			array( 'PageChangeNotification::message', array( $oldid, $minorEdit, $summary, $title, $editor ) ) );
 	
 		$latestTimestamp = Revision::getTimestampFromId( $title, $title->getLatestRevID() );
 		// Do not update watchlists if something else already did.
@@ -428,7 +431,7 @@ class PageChangeNotification {
 	static function message( $stuff ) {
 		global $wgEnotifImpersonal;
 
-		list($oldid, $medit, $summary, $title, $user) = $stuff;
+		list( $oldid, $medit, $summary, $title, $user ) = $stuff;
 		$keys = array();
 
 		# regarding the use of oldid as an indicator for the last visited version, see also
@@ -448,28 +451,28 @@ class PageChangeNotification {
 
 		if ($wgEnotifImpersonal && $oldid) {
 			# For impersonal mail, show a diff link to the last revision.
-			$keys['$NEWPAGE'] = wfMsgForContent('enotif_lastdiff',
-					$title->getFullURL("oldid={$oldid}&diff=prev"));
+			$keys['$NEWPAGE'] = wfMsgForContent( 'enotif_lastdiff',
+					$title->getFullURL( "oldid={$oldid}&diff=prev" ) );
 		}
 
 		$keys['$PAGETITLE'] = $title->getPrefixedText();
 		$keys['$PAGETITLE_URL'] = $title->getFullUrl();
 		$keys['$PAGEMINOREDIT'] = $medit ? wfMsg( 'minoredit' ) : '';
-		$keys['$PAGESUMMARY'] = ($summary == '') ? ' - ' : $summary;
+		$keys['$PAGESUMMARY'] = ( $summary == '' ) ? ' - ' : $summary;
 
-		return array($keys, 'enotif_body', 'enotif_subject');
+		return array( $keys, 'enotif_body', 'enotif_subject' );
 	}
 
-	static function usersList($stuff) {
+	static function usersList( $stuff ) {
 		global $wgEnotifWatchlist, $wgEnotifMinorEdits, $wgUsersNotifiedOnAllChanges;
 
-		list($editor, $title, $minorEdit) = $stuff;
+		list( $editor, $title, $minorEdit ) = $stuff;
 		$recipients = array();
 
 		# User talk pages:
 		$userTalkId = false;
-		if( $title->getNamespace() == NS_USER_TALK && (!$minorEdit || $wgEnotifMinorEdits) ) {
-		   $targetUser = User::newFromName($title->getText());
+		if( $title->getNamespace() == NS_USER_TALK && ( !$minorEdit || $wgEnotifMinorEdits ) ) {
+		   $targetUser = User::newFromName( $title->getText() );
 
 		   if ( !$targetUser || $targetUser->isAnon() )
 		      $msg = "user talk page edited, but user does not exist";
@@ -477,7 +480,7 @@ class PageChangeNotification {
 		   else if ( $targetUser->getId() == $editor->getId() )
 		      $msg = "user edited their own talk page, no notification sent";
 
-		   else if ( !$targetUser->getOption('enotifusertalkpages') )
+		   else if ( !$targetUser->getOption( 'enotifusertalkpages' ) )
 		      $msg = "talk page owner doesn't want notifications";
 
 		   else if ( !$targetUser->isEmailConfirmed() )
@@ -488,11 +491,11 @@ class PageChangeNotification {
 		      $recipients[] = $targetUser;
 		      $userTalkId = $targetUser->getId(); # won't be included in watchlist, below.
 		   }
-		   wfDebug( __METHOD__ .": ". $msg . "\n" );
+		   wfDebug( __METHOD__ . ': ' . $msg . "\n" );
 		}
-		wfDebug("Did not send a user-talk notification.\n");
+		wfDebug( "Did not send a user-talk notification.\n" );
 
-		if( $wgEnotifWatchlist && (!$minorEdit || $wgEnotifMinorEdits) ) {
+		if( $wgEnotifWatchlist && ( !$minorEdit || $wgEnotifMinorEdits ) ) {
 			// Send updates to watchers other than the current editor
 			$userCondition = 'wl_user != ' . $editor->getID();
 
@@ -525,7 +528,7 @@ class PageChangeNotification {
 		}
 
 		foreach ( $wgUsersNotifiedOnAllChanges as $name ) {
-			$recipients[] = User::newFromName($name);
+			$recipients[] = User::newFromName( $name );
 		}
 
 		return $recipients;
