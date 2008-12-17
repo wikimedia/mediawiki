@@ -1072,6 +1072,7 @@ $2',
 'uploadlog'       => 'ארויפלאָדן לאָגבוך',
 'uploadlogpage'   => 'ארויפֿלאדן לאג',
 'filename'        => 'טעקע נאמען',
+'filesource'      => 'מקור:',
 'uploadedfiles'   => 'ארויפֿגעלאדעטע טעקעס',
 'minlength1'      => 'א טעקע נאמען מוז האבן כאטש איין אות.',
 'badfilename'     => 'פייל נאמען איז געטוישט צו "$1".',
@@ -1160,6 +1161,7 @@ $2',
 'statistics-articles'     => 'אינהאלט בלעטער',
 'statistics-pages'        => 'בלעטער',
 'statistics-files'        => 'ארויפֿגעלאדענע טעקעס',
+'statistics-mostpopular'  => 'מערסטע געזען בלעטער',
 
 'disambiguations'      => 'באדייטן בלעטער',
 'disambiguationspage'  => 'Template:באדייטן',
@@ -1451,9 +1453,9 @@ $NEWPAGE
 'restriction-move' => 'באוועגן',
 
 # Undelete
-'undelete'                  => 'זען אויסגעמעקט בלעטער',
+'undelete'                  => 'זען אויסגעמעקטע בלעטער',
 'undeletepage'              => 'זען און צוריקשטעלן אויסגעמעקט בלעטער',
-'viewdeletedpage'           => 'זען אויסגעמעקט בלעטער',
+'viewdeletedpage'           => 'זען אויסגעמעקטע בלעטער',
 'undeletebtn'               => 'צוריקשטעלן',
 'undeletecomment'           => 'הערה:',
 'cannotundelete'            => 'צוריקשטעלונג איז דורכגעפאלן; עס איז מעגליך אז אן אנדערע האט דאס שוין צוריקגעשטעלט.',
@@ -1780,6 +1782,9 @@ $NEWPAGE
 'markaspatrolledtext' => 'באצייכנען בלאט אלס פאטראלירט',
 'markedaspatrolled'   => 'באצייכנט אלס פאטראלירט',
 
+# Patrol log
+'patrol-log-page' => 'פאטראלירן לאג-בוך',
+
 # Image deletion
 'deletedrevision'       => 'אויסגעמעקט אלטע ווערסיע $1.',
 'filedeleteerror-short' => 'גרייז ביים אויסמעקן טעקע: $1',
@@ -2049,6 +2054,7 @@ $5
 # Special:Version
 'version'              => 'ווערסיע', # Not used as normal message but as header for the special page itself
 'version-specialpages' => 'ספעציעלע בלעטער',
+'version-version'      => 'ווערסיע',
 
 # Special:FilePath
 'filepath-page' => 'טעקע:',

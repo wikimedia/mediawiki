@@ -1090,7 +1090,7 @@ Commodule notatio fasciculorum deletorum hic datur:",
 'statistics-jobqueue'          => 'Numerus [http://www.mediawiki.org/wiki/Manual:Job_queue operationum qui etiam exspectant perfacier]',
 'statistics-users'             => '[[Special:ListUsers|Usores]] relati',
 'statistics-users-active'      => 'Usores activi',
-'statistics-users-active-desc' => 'Usores qui proxima mense actionem perfecerunt',
+'statistics-users-active-desc' => 'Usores qui {{PLURAL:$1|proxima die|proximis $1 diebus}} actionem perfecerunt',
 'statistics-mostpopular'       => 'Paginae plurimum visae',
 
 'disambiguations'      => 'Paginae disambiguationis',

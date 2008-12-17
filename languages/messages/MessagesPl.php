@@ -1658,7 +1658,7 @@ Sprawdź inne linki do szablonów, zanim usuniesz tę stronę.',
 'statistics-jobqueue'          => 'Rozmiar [http://www.mediawiki.org/wiki/Manual:Job_queue kolejki zadań]',
 'statistics-users'             => 'Zarejestrowanych [[Special:ListUsers|użytkowników]]',
 'statistics-users-active'      => 'Aktywnych użytkowników',
-'statistics-users-active-desc' => 'Użytkownicy, którzy byli aktywni w ciągu ostatniego miesiąca',
+'statistics-users-active-desc' => 'Użytkownicy, którzy byli aktywni w ciągu {{PLURAL:$1|ostatniego dnia|ostatnich $1 dni}}',
 'statistics-mostpopular'       => 'Najczęściej odwiedzane strony',
 
 'disambiguations'      => 'Strony ujednoznaczniające',
@@ -2033,7 +2033,7 @@ Obecne ustawienia dla strony <strong>$1</strong> to:',
 'undeletepage'                 => 'Odtwarzanie usuniętych stron',
 'undeletepagetitle'            => "'''Poniżej znajdują się usunięte wersje strony [[:$1]]'''.",
 'viewdeletedpage'              => 'Zobacz usunięte wersje',
-'undeletepagetext'             => 'Poniższe strony zostały usunięte, ale ich kopia wciąż znajduje się w archiwum.
+'undeletepagetext'             => '{{PLURAL:$1|Następująca strona została usunięta, ale jej|Następujące $1 strony zostały usunięte, ale ich}} kopia wciąż znajduje się w archiwum.
 Archiwum co jakiś czas może być oczyszczane.',
 'undelete-fieldset-title'      => 'Odtwarzanie wersji',
 'undeleteextrahelp'            => "Jeśli chcesz odtworzyć całą stronę, pozostaw wszystkie pola niezaznaczone i kliknij '''''Odtwórz'''''.
@@ -2192,6 +2192,7 @@ Przejdź do [[Special:IPBlockList|listy zablokowanych adresów IP]], by przejrze
 'ipblocklist-no-results'          => 'Podany adres IP lub użytkownik nie jest zablokowany.',
 'blocklink'                       => 'zablokuj',
 'unblocklink'                     => 'odblokuj',
+'change-blocklink'                => 'zmień blokadę',
 'contribslink'                    => 'wkład',
 'autoblocker'                     => 'Zablokowano Cię automatycznie, ponieważ używasz tego samego adresu IP, co użytkownik „[[User:$1|$1]]”.
 Przyczyna blokady $1 to: „$2”',

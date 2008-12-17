@@ -1474,7 +1474,7 @@ Slědowaca lisćina pokazuje jenož {{PLURAL:$1|prěni wotkaz strony|prěnjej $1
 'statistics-jobqueue'          => 'Dołhosć [http://www.mediawiki.org/wiki/Manual:Job_queue Job queue]',
 'statistics-users'             => 'Zregistrowani [[Special:ListUsers|wužiwarjo]]',
 'statistics-users-active'      => 'Aktiwni wužiwarjo',
-'statistics-users-active-desc' => 'Wužiwarjo, kotřiž su w zańdźenym měsaću aktiwni byli',
+'statistics-users-active-desc' => 'Wužiwarjo, kotřiž su {{PLURAL:$1|wčera|w zańdźenymaj $1 dnjomaj|w zańdźenych $1 dnjach|w zańdźenych $1 dnjach}} aktiwni byli',
 'statistics-mostpopular'       => 'Najhusćišo wopytowane strony',
 
 'disambiguations'      => 'Rozjasnjenja wjacezmyslnosće',

@@ -1545,7 +1545,7 @@ Lembre verificar outras ligazóns cara aos modelos antes de borralos.',
 'statistics-jobqueue'          => 'Lonxitude da [http://www.mediawiki.org/wiki/Manual:Job_queue cola de traballos]',
 'statistics-users'             => '[[Special:ListUsers|Usuarios]] rexistrados',
 'statistics-users-active'      => 'Usuarios activos',
-'statistics-users-active-desc' => 'Usuarios que teñen levado a cabo unha acción no mes pasado',
+'statistics-users-active-desc' => 'Usuarios que teñen levado a cabo unha acción {{PLURAL:$1|no último día|nos últimos $1 días}}',
 'statistics-mostpopular'       => 'Páxinas máis vistas',
 
 'disambiguations'      => 'Páxinas de homónimos',

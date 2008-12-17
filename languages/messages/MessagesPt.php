@@ -1122,6 +1122,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'saveprefs'                 => 'Salvar',
 'resetprefs'                => 'Eliminar as alterações não-salvas',
 'textboxsize'               => 'Opções de edição',
+'prefs-edit-boxsize'        => 'Tamanho da janela de edição.',
 'rows'                      => 'Linhas:',
 'columns'                   => 'Colunas:',
 'searchresultshead'         => 'Pesquisa',
@@ -1564,7 +1565,7 @@ Uma [[Special:WhatLinksHere/$2|listagem completa]] se encontra disponível.',
 'statistics-jobqueue'          => 'Tamanho da [http://www.mediawiki.org/wiki/Manual:Job_queue fila de tarefas]',
 'statistics-users'             => '[[Special:ListUsers|Utilizadores]] registados',
 'statistics-users-active'      => 'Utilizadores activos',
-'statistics-users-active-desc' => 'Utilizadores que efectuaram uma acção no mês passado',
+'statistics-users-active-desc' => 'Utilizadores que efectuaram uma acção {{PLURAL:$1|ontem|nos últimos $1 dias}}',
 'statistics-mostpopular'       => 'Páginas mais vistas',
 
 'disambiguations'      => 'Página de desambiguações',
@@ -1916,7 +1917,7 @@ Esta é a configuração atual para a página <strong>$1</strong>:',
 ** Guerra de edições improdutiva
 ** Página bastante acessada',
 'protect-edit-reasonlist'     => 'Editar motivos de proteções',
-'protect-expiry-options'      => '2 horas:2 hours,1 dia:1 day,3 dias:3 days,1 semana:1 week,2 semanas:2 weeks,1 mês:1 month,3 meses:3 months,6 meses:6 months,1 ano:1 year,indefinido:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 hora:1 hour,1 dia:1 day,1 semana:1 week,2 semanas:2 weeks,1 mês:1 month,3 meses:3 months,6 meses:6 months,1 ano:1 year,indefinido:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Permissão:',
 'restriction-level'           => 'Nível de restrição:',
 'minimum-size'                => 'Tam. mínimo',
@@ -1939,7 +1940,7 @@ Esta é a configuração atual para a página <strong>$1</strong>:',
 'undeletepage'                 => 'Ver e restaurar páginas eliminadas',
 'undeletepagetitle'            => "'''Seguem-se as edições eliminadas de [[:$1]]'''.",
 'viewdeletedpage'              => 'Ver páginas eliminadas',
-'undeletepagetext'             => 'As seguintes páginas foram eliminadas, apesar de ainda permanecem na base de dados e poderem ser restauradas. O arquivo pode periodicamente ser limpo.',
+'undeletepagetext'             => '{{PLURAL:$1|A seguinte página foi eliminada|As seguintes páginas foram eliminadas}}, mas ainda {{PLURAL:$1|permanece|permanecem}} na base de dados e poderem ser restauradas. O arquivo pode ser limpo periodicamente.',
 'undelete-fieldset-title'      => 'Restaurar edições',
 'undeleteextrahelp'            => "Para restaurar o histórico de edições completo desta página, deixe todas as caixas de selecção desseleccionadas e clique em '''''Restaurar'''''.
 Para efectuar uma restauração selectiva, seleccione as caixas correspondentes às edições a serem restauradas e clique em '''''Restaurar'''''.

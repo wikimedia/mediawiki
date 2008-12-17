@@ -1505,7 +1505,7 @@ Slědujuca lisćina pokazujo jano {{PLURAL:$1|prědny wótkaz|prědnej $1 wótka
 'statistics-jobqueue'          => 'Dłujkosć [http://www.mediawiki.org/wiki/Manual:Job_queue Job queue]',
 'statistics-users'             => 'Zregistrěrowane [[Special:ListUsers|wužywarje]]',
 'statistics-users-active'      => 'Aktiwne wužywarje',
-'statistics-users-active-desc' => 'Wužywarje, kótarež su w zachadnym mjasecu aktiwne byli',
+'statistics-users-active-desc' => 'Wužywarje, kótarež su {{PLURAL:$1|cora|w slědnyma $1 dnjoma|w slědnych $1 dnjach|w slědnych $1 dnjach}} aktiwne byli',
 'statistics-mostpopular'       => 'Nejwěcej woglědane boki',
 
 'disambiguations'      => 'Rozjasnjenja zapśimjeśow',

@@ -1685,7 +1685,7 @@ Vstup: <code>typ obsahu/podtyp</code>, např. <code>image/jpeg</code>.',
 'statistics-jobqueue'          => 'Délka [http://www.mediawiki.org/wiki/Manual:Job_queue fronty údržby]',
 'statistics-users'             => 'Registrovaní [[Special:ListUsers|uživatelé]]',
 'statistics-users-active'      => 'Aktivní uživatelé',
-'statistics-users-active-desc' => 'Uživatelé, kteří v posledním měsíci provedli nějakou operaci',
+'statistics-users-active-desc' => 'Uživatelé, kteří v {{plural:$1|posledním dni|posledních $1 dnech}} provedli nějakou operaci',
 'statistics-mostpopular'       => 'Nejčtenější stránky',
 
 'disambiguations'      => 'Stránky odkazující na rozcestníky',

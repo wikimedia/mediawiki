@@ -208,7 +208,7 @@ $messages = array(
 'deletethispage'    => 'Kistudaq seo artikli ärq',
 'undelete_short'    => 'Võtaq tagasi {{PLURAL:$1|üts muutminõ|$1 muutmist}}',
 'protect'           => 'Kaidsaq',
-'protect_change'    => 'kirotuskaidsõq',
+'protect_change'    => 'muudaq',
 'protectthispage'   => 'Kaidsaq seod artiklit',
 'unprotect'         => 'Kaitsku-i',
 'unprotectthispage' => 'Kaitsku-i seod artiklit',
@@ -281,13 +281,15 @@ $messages = array(
 'editsection'             => 'toimõndaq',
 'editold'                 => 'toimõndaq',
 'viewsourceold'           => 'näütäq lättekuudi',
+'editlink'                => 'toimõndaq',
+'viewsourcelink'          => 'kaeq lätteteksti',
 'editsectionhint'         => 'Toimõndaq lõiku: $1',
 'toc'                     => 'Sisukõrd',
 'showtoc'                 => 'näütäq',
 'hidetoc'                 => 'käkiq',
 'thisisdeleted'           => 'Kaeq vai tiiq tagasi $1?',
 'viewdeleted'             => 'Näüdädäq $1?',
-'restorelink'             => 'Kistutõduid muutmiisi: $1',
+'restorelink'             => '{{PLURAL:$1|üts kistutõt muutminõ|$1 kustutõdut muutmist}}',
 'feedlinks'               => 'Sisseandminõ:',
 'feed-invalid'            => 'Viganõ sisseandminõ.',
 'site-rss-feed'           => '$1-RSS-söödüs',
@@ -327,7 +329,8 @@ Viimäne teedüskogo perräküsümine oll\':
 "$1"
 ja tuu tetti funktsioonist "$2".
 MySQL and\' via "$3: $4".',
-'noconnect'            => 'Wiki saa ei teedüskogoserverit $1 kätte',
+'noconnect'            => "Kah'os om vikil tekniline hädä. Teedüskogoserverit saa-i kätte.<br />
+$1",
 'nodb'                 => 'Saa es teedüskoko $1 kätte',
 'cachederror'          => 'Taa lehekülg om puhvõrdõt kopi ja ei pruugiq tuuperäst ollaq kõgõ värskimb.',
 'laggedslavemode'      => 'Hoiatus: Taa lehe pääl pruugi-i ollaq perämäidsi muutmiisi.',
@@ -410,7 +413,7 @@ Tähelepandmisõs: niikavva, ku sa olõ-i tühäs tennüq uma võrgokaeja vaihõ
 'yourvariant'                => 'Keelevariant:',
 'yournick'                   => 'Suq kutsmisnimi (alakirotamisõs)',
 'badsig'                     => 'Seo alakirotus olõ-i masva.',
-'badsiglength'               => "Alakirotus om pall'o pikk – tohe-i ollaq rohkõmb ku $1 märki.",
+'badsiglength'               => "Alakirotus om pall'o pikk – tohe-i ollaq rohkõmb ku $1 {{PLURAL:$1|märk|märki}}.",
 'email'                      => 'e-posti aadrõs',
 'prefs-help-realname'        => "* <strong>Peris nimi</strong> (piä-i kirotama): ku taa teedäq annat, sis pruugitas taad pruukjanime asõmõl lehekülgi tegijide nimekir'on.",
 'loginerror'                 => 'Sisseminemise viga',
@@ -1515,7 +1518,7 @@ Viimädse johtumisõ kõrral võit ka pruukiq linki, nt leht {{MediaWiki:Mainpag
 'allmessagescurrent'        => 'Parhillanõ tekst',
 'allmessagestext'           => 'Taan nimekirän ommaq kõik MediaWiki nimeruumi tallitusteedüseq.
 Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
-'allmessagesnotsupportedDB' => 'Taad lehte saa-i pruukiq, selle et <tt>$wgUseDatabaseMessages</tt>-säädmine om välän.',
+'allmessagesnotsupportedDB' => "Taad lehte saa-i pruukiq, selle et '''\$wgUseDatabaseMessages'''-säädmine om välän.",
 'allmessagesfilter'         => 'Teedüsenimmi sõgluminõ:',
 'allmessagesmodified'       => 'Näütäq õnnõ muudõtuid',
 
@@ -1545,7 +1548,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'importcantopen'             => 'Saa-s tuudut teedüstüt vallalõ',
 'importbadinterwiki'         => 'Kõlbmalda vikidevaihõlinõ link',
 'importnotext'               => 'Tühi vai tekstildä',
-'importsuccess'              => "Tuuminõ läts' kõrda!",
+'importsuccess'              => 'Tuuminõ valmis!',
 'importhistoryconflict'      => 'Lehest om olõman tuuduga vastaolon kujo. Taad lehte või ollaq jo inne tuud.',
 'importnosources'            => 'Olõ-i vikidevaihõliidsi tuumislättit ja aoluu õkva pästmine tüütä-i.',
 'importnofile'               => 'Olõ-i üttegi tuudut teedüstüt.',
@@ -1636,12 +1639,12 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'notacceptable'     => 'Wikiserver saa-i näüdädäq teedüst sääntsen moodun, midä su programm saasiq lukõq.',
 
 # Attribution
-'anonymous'        => '{{SITENAME}} nimeldäq pruukjaq',
+'anonymous'        => '{{SITENAME}} {{PLURAL:$1|nimeldä pruukja|nimeldä pruukjaq}}',
 'siteuser'         => '{{SITENAME}} pruukja $1',
 'lastmodifiedatby' => "Taad lehte toimõnd' viimäte ”$3” $2 kell $1.", # $1 date, $2 time, $3 user
 'othercontribs'    => 'Tennüq pruukja $1.',
 'others'           => 'tõõsõq',
-'siteusers'        => '{{SITENAME}} pruukja(q) $1',
+'siteusers'        => '{{SITENAME}} {{PLURAL:$2|pruukja|pruukjaq}}  $1',
 'creditspage'      => 'Lehe tegijide nimekiri',
 'nocredits'        => 'Taa lehe tegijide nimekirjä olõ-i.',
 

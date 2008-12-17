@@ -1761,7 +1761,7 @@ Vergeet niet de "Verwijzingen naar deze pagina" te controleren alvorens dit sjab
 'statistics-jobqueue'          => '[http://www.mediawiki.org/wiki/Manual:Job_queue Jobqueuelengte]',
 'statistics-users'             => 'Geregistreerde [[Special:ListUsers|gebruikers]]',
 'statistics-users-active'      => 'Actieve gebruikers',
-'statistics-users-active-desc' => 'Gebruikers die in de afgelopen maand een handeling hebben uitgevoerd',
+'statistics-users-active-desc' => 'Gebruikers die in de afgelopen {{PLURAL:$1|dag|$1 dagen}} een handeling hebben uitgevoerd',
 'statistics-mostpopular'       => "Meest bekeken pagina's",
 
 'disambiguations'      => "Doorverwijspagina's",

@@ -1492,7 +1492,7 @@ Seuraava lista näyttää {{PLURAL:$1|ensimmäisen linkittävän sivun|$1 ensimm
 'statistics-jobqueue'          => 'Ohjelmiston suorittamia [http://www.mediawiki.org/wiki/Manual:Job_queue ylläpitotöitä jonossa]',
 'statistics-users'             => 'Rekisteröityneitä [[Special:ListUsers|käyttäjiä]]',
 'statistics-users-active'      => 'Aktiivisia käyttäjiä',
-'statistics-users-active-desc' => 'Käyttäjät, jotka ovat suorittaneet jonkin toiminnon viime kuukauden aikana.',
+'statistics-users-active-desc' => 'Käyttäjät, jotka ovat suorittaneet jonkin toiminnon {{PLURAL:$1|edellisen päivän|edellisten $1 päivän}} aikana.',
 'statistics-mostpopular'       => 'Katsotuimmat sivut',
 
 'disambiguations'      => 'Linkit täsmennyssivuihin',
@@ -2051,9 +2051,9 @@ $1 on jo estetty. Haluatko muuttaa eston asetuksia?',
 'databasenotlocked'   => 'Tietokanta ei ole lukittu.',
 
 # Move page
-'move-page'                 => 'Siirrä $1',
-'move-page-legend'          => 'Siirrä sivu',
-'movepagetext'              => "Alla olevalla lomakkeella voit nimetä uudelleen sivuja, jolloin niiden koko historia siirtyy uuden nimen alle.
+'move-page'                    => 'Siirrä $1',
+'move-page-legend'             => 'Siirrä sivu',
+'movepagetext'                 => "Alla olevalla lomakkeella voit nimetä uudelleen sivuja, jolloin niiden koko historia siirtyy uuden nimen alle.
 Vanhasta sivusta tulee ohjaussivu, joka osoittaa uuteen sivuun.
 Voit päivittää sivuun viittaavat ohjaukset automaattisesti ohjaamaan uudelle nimelle.
 Jos et halua tätä tehtävän automaattisesti, muista tehdä tarkistukset [[Special:DoubleRedirects|kaksinkertaisten]] tai [[Special:BrokenRedirects|rikkinäisten]] ohjausten varalta.
@@ -2063,55 +2063,56 @@ Huomaa, että sivua '''ei''' siirretä mikäli uusi otsikko on olemassa olevan s
 Tämä tarkoittaa sitä, että voit siirtää sivun takaisin vanhalle nimelleen mikäli teit virheen, mutta et voi kirjoittaa olemassa olevan sivun päälle.
 
 Tämä saattaa olla suuri ja odottamaton muutos suositulle sivulle. Varmista, että tiedät seuraukset ennen kuin siirrät sivun.",
-'movepagetalktext'          => "Sivuun mahdollisesti kytketty keskustelusivu siirretään automaattisesti, '''paitsi jos''':
+'movepagetalktext'             => "Sivuun mahdollisesti kytketty keskustelusivu siirretään automaattisesti, '''paitsi jos''':
 *Siirrät sivua nimiavaruudesta toiseen
 *Kohdesivulla on olemassa keskustelusivu, joka ei ole tyhjä, tai
 *Kumoat alla olevan ruudun asetuksen.
 
 Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.",
-'movearticle'               => 'Siirrä sivu',
-'movenologin'               => 'Et ole kirjautunut sisään',
-'movenologintext'           => 'Sinun pitää olla rekisteröitynyt käyttäjä ja [[Special:UserLogin|kirjautua sisään]], jotta voisit siirtää sivun.',
-'movenotallowed'            => 'Sinulla ei ole oikeuksia siirtää sivuja.',
-'cant-move-user-page'       => 'Sinulla ei ole lupaa siirtää käyttäjäsivuja (lukuun ottamatta alasivuja).',
-'cant-move-to-user-page'    => 'Sinulla ei ole lupaa siirtää sivuja käyttäjäsivuiksi (paitsi alasivuiksi).',
-'newtitle'                  => 'Uusi nimi sivulle',
-'move-watch'                => 'Tarkkaile tätä sivua',
-'movepagebtn'               => 'Siirrä sivu',
-'pagemovedsub'              => 'Siirto onnistui',
-'movepage-moved'            => "<big>'''$1 on siirretty nimelle $2'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'             => 'Kohdesivu on jo olemassa, tai valittu nimi ei ole sopiva. Ole hyvä ja valitse uusi nimi.',
-'cantmove-titleprotected'   => 'Sivua ei voi siirtää tälle nimelle, koska tämän nimisen sivun luonti on estetty.',
-'talkexists'                => 'Sivun siirto onnistui, mutta keskustelusivua ei voitu siirtää, koska uuden otsikon alla on jo keskustelusivu. Keskustelusivujen sisältö täytyy yhdistää käsin.',
-'movedto'                   => 'Siirretty uudelle otsikolle',
-'movetalk'                  => 'Siirrä myös keskustelusivu.',
-'move-subpages'             => 'Siirrä kaikki alasivut, jos mahdollista',
-'move-talk-subpages'        => 'Siirrä kaikki keskustelusivun alasivut, jos mahdollista',
-'movepage-page-exists'      => 'Sivu $1 on jo olemassa ja sitä ei voi automaattisesti korvata.',
-'movepage-page-moved'       => 'Sivu $1 on siirretty nimelle $2.',
-'movepage-page-unmoved'     => 'Sivua $1 ei voitu siirtää nimelle $2.',
-'movepage-max-pages'        => 'Enimmäismäärä sivuja on siirretty, eikä enempää siirretä enää automaattisesti.
+'movearticle'                  => 'Siirrä sivu',
+'movenologin'                  => 'Et ole kirjautunut sisään',
+'movenologintext'              => 'Sinun pitää olla rekisteröitynyt käyttäjä ja [[Special:UserLogin|kirjautua sisään]], jotta voisit siirtää sivun.',
+'movenotallowed'               => 'Sinulla ei ole oikeuksia siirtää sivuja.',
+'cant-move-user-page'          => 'Sinulla ei ole lupaa siirtää käyttäjäsivuja (lukuun ottamatta alasivuja).',
+'cant-move-to-user-page'       => 'Sinulla ei ole lupaa siirtää sivuja käyttäjäsivuiksi (paitsi alasivuiksi).',
+'newtitle'                     => 'Uusi nimi sivulle',
+'move-watch'                   => 'Tarkkaile tätä sivua',
+'movepagebtn'                  => 'Siirrä sivu',
+'pagemovedsub'                 => 'Siirto onnistui',
+'movepage-moved'               => "<big>'''$1 on siirretty nimelle $2'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'                => 'Kohdesivu on jo olemassa, tai valittu nimi ei ole sopiva. Ole hyvä ja valitse uusi nimi.',
+'cantmove-titleprotected'      => 'Sivua ei voi siirtää tälle nimelle, koska tämän nimisen sivun luonti on estetty.',
+'talkexists'                   => 'Sivun siirto onnistui, mutta keskustelusivua ei voitu siirtää, koska uuden otsikon alla on jo keskustelusivu. Keskustelusivujen sisältö täytyy yhdistää käsin.',
+'movedto'                      => 'Siirretty uudelle otsikolle',
+'movetalk'                     => 'Siirrä myös keskustelusivu.',
+'move-subpages'                => 'Siirrä kaikki alasivut, jos mahdollista',
+'move-talk-subpages'           => 'Siirrä kaikki keskustelusivun alasivut, jos mahdollista',
+'movepage-page-exists'         => 'Sivu $1 on jo olemassa ja sitä ei voi automaattisesti korvata.',
+'movepage-page-moved'          => 'Sivu $1 on siirretty nimelle $2.',
+'movepage-page-unmoved'        => 'Sivua $1 ei voitu siirtää nimelle $2.',
+'movepage-max-pages'           => 'Enimmäismäärä sivuja on siirretty, eikä enempää siirretä enää automaattisesti.
 $1 {{PLURAL:$1|sivu|sivua}} siirettiin.',
-'1movedto2'                 => 'siirsi sivun ”$1” uudelle nimelle ”$2”',
-'1movedto2_redir'           => 'siirsi sivun ”$1” ohjauksen ”$2” päälle',
-'movelogpage'               => 'Siirtoloki',
-'movelogpagetext'           => 'Tämä on loki siirretyistä sivuista.',
-'movereason'                => 'Syy',
-'revertmove'                => 'kumoa',
-'delete_and_move'           => 'Poista kohdesivu ja siirrä',
-'delete_and_move_text'      => 'Kohdesivu [[:$1]] on jo olemassa. Haluatko poistaa sen, jotta nykyinen sivu voitaisiin siirtää?',
-'delete_and_move_confirm'   => 'Poista sivu',
-'delete_and_move_reason'    => 'Sivu on siirron tiellä.',
-'selfmove'                  => 'Lähde- ja kohdenimi ovat samat.',
-'immobile-source-namespace' => 'Sivuja ei voi siirtää nimiavaruudessa ”$1”',
-'immobile-target-namespace' => 'Sivuja ei voi siirtää nimiavaruuteen ”$1”',
-'immobile-source-page'      => 'Tämä sivu ei ole siirrettävissä.',
-'immobile-target-page'      => 'Kyseiselle kohdenimelle ei voi siirtää.',
-'imagenocrossnamespace'     => 'Tiedostoja ei voi siirtää pois tiedostonimiavaruudesta.',
-'imagetypemismatch'         => 'Uusi tiedostopääte ei vastaa tiedoston tyyppiä',
-'imageinvalidfilename'      => 'Kohdenimi on virheellinen',
-'fix-double-redirects'      => 'Päivitä kaikki tänne viittaavat ohjaukset ohjaamaan uudelle nimelle',
-'move-leave-redirect'       => 'Jätä paikalle ohjaus',
+'1movedto2'                    => 'siirsi sivun ”$1” uudelle nimelle ”$2”',
+'1movedto2_redir'              => 'siirsi sivun ”$1” ohjauksen ”$2” päälle',
+'movelogpage'                  => 'Siirtoloki',
+'movelogpagetext'              => 'Tämä on loki siirretyistä sivuista.',
+'movereason'                   => 'Syy',
+'revertmove'                   => 'kumoa',
+'delete_and_move'              => 'Poista kohdesivu ja siirrä',
+'delete_and_move_text'         => 'Kohdesivu [[:$1]] on jo olemassa. Haluatko poistaa sen, jotta nykyinen sivu voitaisiin siirtää?',
+'delete_and_move_confirm'      => 'Poista sivu',
+'delete_and_move_reason'       => 'Sivu on siirron tiellä.',
+'selfmove'                     => 'Lähde- ja kohdenimi ovat samat.',
+'immobile-source-namespace'    => 'Sivuja ei voi siirtää nimiavaruudessa ”$1”',
+'immobile-target-namespace'    => 'Sivuja ei voi siirtää nimiavaruuteen ”$1”',
+'immobile-target-namespace-iw' => 'Kielilinkki ei ole kelvollinen kohde sivun siirrolle.',
+'immobile-source-page'         => 'Tämä sivu ei ole siirrettävissä.',
+'immobile-target-page'         => 'Kyseiselle kohdenimelle ei voi siirtää.',
+'imagenocrossnamespace'        => 'Tiedostoja ei voi siirtää pois tiedostonimiavaruudesta.',
+'imagetypemismatch'            => 'Uusi tiedostopääte ei vastaa tiedoston tyyppiä',
+'imageinvalidfilename'         => 'Kohdenimi on virheellinen',
+'fix-double-redirects'         => 'Päivitä kaikki tänne viittaavat ohjaukset ohjaamaan uudelle nimelle',
+'move-leave-redirect'          => 'Jätä paikalle ohjaus',
 
 # Export
 'export'            => 'Sivujen vienti',

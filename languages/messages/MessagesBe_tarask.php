@@ -1643,7 +1643,7 @@ $2',
 'statistics-jobqueue'          => 'Даўжыня [http://www.mediawiki.org/wiki/Manual:Job_queue чаргі заданьняў]',
 'statistics-users'             => '[[Special:ListUsers|Зарэгістраваныя удзельнікі]]',
 'statistics-users-active'      => 'Актыўныя удзельнікі',
-'statistics-users-active-desc' => 'Удзельнікі, якія выканалі нейкае дзеяньне цягам мінулага месяца',
+'statistics-users-active-desc' => 'Удзельнікі, якія выканалі нейкае дзеяньне цягам {{PLURAL:$1|апошняга $1 дня|апошніх $1 дзён|апошніх $1 дзён}}',
 'statistics-mostpopular'       => 'Найпапулярнейшыя старонкі',
 
 'disambiguations'      => 'Старонкі-неадназначнасьці',

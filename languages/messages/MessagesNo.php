@@ -1892,7 +1892,7 @@ Den siste redigeringen ble foretatt av [[User:$3|$3]] ([[User talk:$3|diskusjon]
 'undeletepage'                 => 'Se og gjenopprett slettede sider',
 'undeletepagetitle'            => "'''Følgende innhold er slettede revisjoner av [[:$1]].'''",
 'viewdeletedpage'              => 'Vis slettede sider',
-'undeletepagetext'             => 'Følgende sider er slettet, men finnes fortsatt i arkivet og kan gjenopprettes. Arkivet blir periodevis slettet.',
+'undeletepagetext'             => 'Følgende {{PLURAL:$1|side|sider}} er slettet, men finnes fortsatt i arkivet og kan gjenopprettes. Arkivet blir periodevis slettet.',
 'undelete-fieldset-title'      => 'Gjenopprett revisjoner',
 'undeleteextrahelp'            => "For å gjenopprette hele siden, la alle boksene være som de er, og klikk '''''Gjenopprett'''''.
 For å gjenopprette kun deler, kryss av revisjonenes bokser, og klikk '''''Gjenopprett'''''.
