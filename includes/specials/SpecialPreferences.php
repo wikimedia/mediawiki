@@ -833,24 +833,12 @@ class PreferencesForm {
 
 		# Files
 		#
-		$wgOut->addHTML(
-			"<fieldset>\n" . Xml::element( 'legend', null, wfMsg( 'files' ) ) . "\n"
-		);
-
 		$imageLimitOptions = null;
 		foreach ( $wgImageLimits as $index => $limits ) {
 			$selected = ($index == $this->mImageSize);
 			$imageLimitOptions .= Xml::option( "{$limits[0]}×{$limits[1]}" .
 				wfMsg('unit-pixel'), $index, $selected );
 		}
-
-		$imageSizeId = 'wpImageSize';
-		$wgOut->addHTML(
-			"<div>" . Xml::label( wfMsg('imagemaxsize'), $imageSizeId ) . " " .
-			Xml::openElement( 'select', array( 'name' => $imageSizeId, 'id' => $imageSizeId ) ) .
-				$imageLimitOptions .
-			Xml::closeElement( 'select' ) . "</div>\n"
-		);
 
 		$imageThumbOptions = null;
 		foreach ( $wgThumbLimits as $index => $size ) {
@@ -859,15 +847,33 @@ class PreferencesForm {
 				$selected);
 		}
 
+		$imageSizeId = 'wpImageSize';
 		$thumbSizeId = 'wpThumbSize';
 		$wgOut->addHTML(
-			"<div>" . Xml::label( wfMsg('thumbsize'), $thumbSizeId ) . " " .
-			Xml::openElement( 'select', array( 'name' => $thumbSizeId, 'id' => $thumbSizeId ) ) .
-				$imageThumbOptions .
-			Xml::closeElement( 'select' ) . "</div>\n"
+			Xml::fieldset( wfMsg( 'files' ) ) . "\n" .
+			Xml::openElement( 'table' ) .
+				'<tr>
+					<td class="mw-label">' .
+						Xml::label( wfMsg( 'imagemaxsize' ), $imageSizeId ) .
+					'</td>
+					<td class="mw-input">' .
+						Xml::openElement( 'select', array( 'name' => $imageSizeId, 'id' => $imageSizeId ) ) .
+						$imageLimitOptions .
+						Xml::closeElement( 'select' ) .
+					'</td>
+				</tr><tr>
+					<td class="mw-label">' .
+						Xml::label( wfMsg( 'thumbsize' ), $thumbSizeId ) .
+					'</td>
+					<td class="mw-input">' .
+						Xml::openElement( 'select', array( 'name' => $thumbSizeId, 'id' => $thumbSizeId ) ) .
+						$imageThumbOptions .
+						Xml::closeElement( 'select' ) .
+					'</td>
+				</tr>' .
+ 			Xml::closeElement( 'table' ) .
+ 			Xml::closeElement( 'fieldset' )
 		);
-
-		$wgOut->addHTML( "</fieldset>\n\n" );
 
 		# Date format
 		#
