@@ -438,7 +438,7 @@ class EnhancedChangesList extends ChangesList {
 		$curIdEq = 'curid=' . $rc_cur_id;
 
 		# If it's a new day, add the headline and flush the cache
-		$date = $wgLang->date( $rc_timestamp, true);
+		$date = $wgLang->date( $rc_timestamp, true );
 		$ret = '';
 		if( $date != $this->lastdate ) {
 			# Process current cache
@@ -462,6 +462,19 @@ class EnhancedChangesList extends ChangesList {
 			$msg = ( $rc_type == RC_MOVE ) ? "1movedto2" : "1movedto2_redir";
 			$clink = wfMsg( $msg, $this->skin->makeKnownLinkObj( $rc->getTitle(), '', 'redirect=no' ),
 			  $this->skin->makeKnownLinkObj( $rc->getMovedToTitle(), '' ) );
+		// New unpatrolled pages
+		} else if( $rc->unpatrolled && $rc_type == RC_NEW ) {
+			$clink = $this->skin->makeKnownLinkObj( $rc->getTitle(), '', "rcid={$rc_id}" );
+		// Log entries
+		} else if( $rc_type == RC_LOG ) {
+			var_dump( $rc_log_type );
+			if( $rc_log_type ) {
+				$logtitle = SpecialPage::getTitleFor( 'Log', $rc_log_type );
+				$clink = '(' . $this->skin->makeKnownLinkObj( $logtitle, LogPage::logName($rc_log_type) ) . ')';
+			} else {
+				$clink = $this->skin->makeLinkObj( $rc->getTitle(), '' );
+			}
+			$watched = false;
 		// Log entries (old format) and special pages
 		} elseif( $rc_namespace == NS_SPECIAL ) {
 			list( $specialName, $logtype ) = SpecialPage::resolveAliasWithSubpage( $rc_title );
@@ -473,18 +486,6 @@ class EnhancedChangesList extends ChangesList {
 				wfDebug( "Unexpected special page in recentchanges\n" );
 				$clink = '';
 			}
-		// New unpatrolled pages
-		} else if( $rc->unpatrolled && $rc_type == RC_NEW ) {
-			$clink = $this->skin->makeKnownLinkObj( $rc->getTitle(), '', "rcid={$rc_id}" );
-		// Log entries
-		} else if( $rc_type == RC_LOG ) {
-			if( $rc_log_type ) {
-				$logtitle = SpecialPage::getTitleFor( 'Log', $rc_log_type );
-				$clink = '(' . $this->skin->makeKnownLinkObj( $logtitle, LogPage::logName($rc_log_type) ) . ')';
-			} else {
-				$clink = $this->skin->makeLinkObj( $rc->getTitle(), '' );
-			}
-			$watched = false;
 		// Edits
 		} else {
 			$clink = $this->skin->makeKnownLinkObj( $rc->getTitle(), '' );
