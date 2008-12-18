@@ -25,9 +25,9 @@ $namespaceNames = array(
 	NS_MEDIAWIKI_TALK   => 'Discûscioîn_MediaWiki',
 	NS_TEMPLATE_TALK    => 'Discûscioîn_template',
 	NS_HELP             => 'Agiûtto',
-	NS_HELP_TALK        => 'Discûscioîn_ûtente',
+	NS_HELP_TALK        => 'Discûscioîn_agiûtto',
 	NS_CATEGORY         => 'Categorîa',
-	NS_CATEGORY_TALK    => 'Discûscioîn_ûtente',
+	NS_CATEGORY_TALK    => 'Discûscioîn_categorîa',
 );
 
 $namespaceAliases = array(
