@@ -16,8 +16,8 @@ $namespaceNames = array(
 	NS_USER             => 'Mea_hoʻohana',
 	NS_USER_TALK        => 'Kūkākūkā_o_mea_hoʻohana',
 	NS_PROJECT_TALK     => 'Kūkākūkā_o_Wikipikia',
-	NS_FILE             => 'Kiʻi',
-	NS_FILE_TALK        => 'Kūkākūkā_o_kiʻi',
+	NS_FILE             => 'Waihona',
+	NS_FILE_TALK        => 'Kūkākūkā_o_waihona',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'Kūkākūkā_o_MediaWiki',
 	NS_TEMPLATE         => 'Anakuhi',
@@ -26,6 +26,27 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Kūkākūkā_o_kōkua',
 	NS_CATEGORY         => 'Māhele',
 	NS_CATEGORY_TALK    => 'Kūkākūkā_o_māhele',
+);
+
+$namespaceAliases = array(
+	'Kiʻi' => NS_FILE,
+	'Kūkākūkā_o_kiʻi' => NS_FILE_TALK,
+);
+
+$magicWords = array(
+	'currentmonth'          => array( '1', 'KĒIAMAHINA', 'CURRENTMONTH' ),
+	'currentmonthname'      => array( '1', 'KĒIAINOAMAHINA', 'CURRENTMONTHNAME' ),
+	'currentday'            => array( '1', 'KĒIALĀ', 'CURRENTDAY' ),
+	'currentday2'           => array( '1', 'KĒIALĀ2', 'CURRENTDAY2' ),
+	'currentdayname'        => array( '1', 'KĒIAINOALĀ', 'CURRENTDAYNAME' ),
+	'currentyear'           => array( '1', 'KĒIAMAKAHIKI', 'CURRENTYEAR' ),
+	'currenttime'           => array( '1', 'KĒIAMANAWA', 'CURRENTTIME' ),
+	'currenthour'           => array( '1', 'KĒIAHOLA', 'CURRENTHOUR' ),
+	'img_right'             => array( '1', 'ʻākau', 'right' ),
+	'img_left'              => array( '1', 'hema', 'left' ),
+	'img_none'              => array( '1', 'ʻaʻohe', 'none' ),
+	'currentweek'           => array( '1', 'KĒIAPULE', 'CURRENTWEEK' ),
+	'language'              => array( '0', '#ʻŌLELO', '#LANGUAGE:' ),
 );
 
 $messages = array(
