@@ -141,7 +141,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				$data[$ns]['subpages'] = '';
 			
 			if( $canonical ) 
-				$data[$ns]['canonical'] = $canonical;
+				$data[$ns]['canonical'] = strtr($canonical, '_', ' ');
 		}
 
 		$this->getResult()->setIndexedTagName( $data, 'ns' );
