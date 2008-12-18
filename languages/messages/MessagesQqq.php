@@ -24,6 +24,7 @@
  * @author INkubusse
  * @author Jon Harald Søby
  * @author Kizito
+ * @author Kwj2772
  * @author Leinad
  * @author Lejonel
  * @author Li-sung
@@ -708,7 +709,7 @@ This is the introduction explaining the feature.',
 'revdelete-hide-user'       => 'Option for oversight',
 'revdelete-hide-restricted' => 'Option for oversight.',
 'revdelete-suppress'        => 'Option for oversight',
-'revdelete-hide-image'      => 'Option for oversight',
+'revdelete-hide-image'      => 'Option for <del>oversight</del> [[:mw:RevisionDelete|RevisionDelete]] feature.',
 'revdelete-unsuppress'      => '{{RevisionDelete}}',
 'revdelete-log'             => 'Log comment text for oversight
 
@@ -1325,7 +1326,9 @@ Example: [[:Image:Addon-icn.png]]',
 'statistics-jobqueue'          => 'Used in [[Special:Statistics]]',
 'statistics-users'             => 'Used in [[Special:Statistics]]',
 'statistics-users-active'      => 'Used in [[Special:Statistics]]',
-'statistics-users-active-desc' => "Tooltip shown over ''Active users*'' in [[Special:Statistics]]",
+'statistics-users-active-desc' => "Description shown beneath ''Active users'' in [[Special:Statistics]]
+
+* \$1: Value of \$wgRCMaxAge in days",
 'statistics-mostpopular'       => 'Used in [[Special:Statistics]]',
 
 'disambiguations'      => 'Name of a special page displayed in [[Special:SpecialPages]].',

@@ -1164,7 +1164,7 @@ $1',
 'statistics-jobqueue'          => 'Μάκρος [http://www.mediawiki.org/wiki/Manual:Job_queue καταλόγου ἀναμένοντων]',
 'statistics-users'             => 'Ἐγγεγραμμένοι [[Special:ListUsers|χρώμενοι]]',
 'statistics-users-active'      => 'Ἐνεργοὶ χρώμενοι <small>(χρώμενοι οἳ have edited or performed an action διάφορον τῆς ποιήσεως λογισμοῦ ἐν τῷ παρελθόντι μηνί)</small>',
-'statistics-users-active-desc' => 'Χρώμενοι δραστήριοι ἐν τῷ παρελθόντι μηνί',
+'statistics-users-active-desc' => 'Χρώμενοι δραστήριοι ἐν τῷ παρελθόντι μηνί {{PLURAL:$1|ἡμέρα|$1 ἡμέραι}}',
 'statistics-mostpopular'       => 'Αἱ πλέον θεωρουμέναι δέλτοι',
 
 'disambiguations'     => 'Σαφηνίσεως δέλτοι',
@@ -1438,7 +1438,7 @@ $1',
 ** Ὑπεράριθμαι ἀνεπιθύμηται ἀγγελίαι
 ** Ἀντιπαραγωγικοὶ πόλεμοι μεταγραφῶν
 ** Δἐλτος ὑψηλῆς κυκλοφορίας',
-'protect-expiry-options'      => '2 ὥραι:2 hours,1 ἡμέρα:1 day,3 ἡμέραι:3 days,1 ἑβδομάς:1 week,2 ἑβδομάδες:2 weeks,1 μήν:1 month,3 μῆνες:3 months,6 μῆνες:6 months,1 ἔτος:1 year,ἐπἄπειρον:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 ὥρα:1 hour,1 ἡμέρα:1 day,1 ἑβδομάς:1 week,2 ἑβδομάδες:2 weeks,1 μήν:1 month,3 μῆνες:3 months,6 μῆνες:6 months,1 ἔτος:1 year,ἐπἄπειρον:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Ἐξουσία:',
 'restriction-level'           => 'Κλῖμαξ περιορισμοῦ:',
 'minimum-size'                => 'Ἐλάχιστον μέγεθος',

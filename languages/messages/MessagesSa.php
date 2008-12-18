@@ -97,6 +97,7 @@ $messages = array(
 
 'help'             => 'सहायता',
 'search'           => 'शोध',
+'searchbutton'     => 'शोध',
 'go'               => 'गच्छति',
 'searcharticle'    => 'गच्छति',
 'history'          => 'पृष्ठस्य इतिहास',
@@ -106,6 +107,8 @@ $messages = array(
 'newpage'          => 'नविन पृष्ठ',
 'talkpagelinktext' => 'संवाद',
 'specialpage'      => 'विशेष पृष्ठ',
+'personaltools'    => 'वैयक्तिक साधन',
+'views'            => 'दृश्य',
 'toolbox'          => 'साधनपेटी',
 'jumptonavigation' => 'सुचालन',
 
@@ -134,9 +137,10 @@ $messages = array(
 'viewsource' => 'स्रोत पश्यति',
 
 # Login and logout pages
-'login'          => 'प्रवेश करोसि',
-'userlogout'     => 'बहिर्गच्छति',
-'gotaccountlink' => 'प्रवेश करोसि',
+'login'                   => 'प्रवेश करोसि',
+'nav-login-createaccount' => 'प्रवेश करोसि/ सृज् उपयोजकसंज्ञा',
+'userlogout'              => 'बहिर्गच्छति',
+'gotaccountlink'          => 'प्रवेश करोसि',
 
 # Edit pages
 'watchthis'   => 'इदं पृष्ठ निरीक्षा',
@@ -146,7 +150,12 @@ $messages = array(
 'newarticle'  => '(नविन)',
 
 # History pages
+'cur'        => 'अद्य',
+'last'       => 'पूर्वतन',
 'page_first' => 'प्रथम्‌',
+
+# Diffs
+'editundo' => 'पूर्ववत करोसि',
 
 # Search results
 'powersearch' => 'परिणत शोध',
@@ -182,6 +191,9 @@ $messages = array(
 'emailsubject' => 'विषयः',
 'emailmessage' => 'सन्देशः',
 
+# Displayed when you click the "watch" button and it is in the process of watching
+'watching' => 'निरिक्षा',
+
 # Delete
 'actioncomplete' => 'कार्य समापनम्',
 
@@ -196,6 +208,7 @@ $messages = array(
 'allmessagesname' => 'नाम',
 
 # Tooltip help for the actions
+'tooltip-search'          => '{{SITENAME}} अन्वेषणं करोति',
 'tooltip-n-mainpage'      => 'मुखपृष्ठ अभ्यागम',
 'tooltip-n-recentchanges' => 'नविनतम परिवर्तन सूची',
 'tooltip-n-randompage'    => 'अविशीष्ट लेख',

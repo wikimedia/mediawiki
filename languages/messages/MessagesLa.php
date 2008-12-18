@@ -7,6 +7,7 @@
  * @author Esteban97
  * @author LeighvsOptimvsMaximvs
  * @author Omnipaedista
+ * @author OrbiliusMagister
  * @author Rafaelgarcia
  * @author SPQRobin
  * @author UV
@@ -1675,6 +1676,7 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'imagemaxsize'    => 'Terminare imagines in paginis imaginum ad:',
 'thumbsize'       => 'Magnitudo pollicisunguis:',
 'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|pagina|paginae}}',
+'file-nohires'    => '<small>Nulla maior resolutio imagini exstat.</small>',
 'show-big-image'  => 'Resolutio completa',
 
 # Special:NewFiles
@@ -1684,6 +1686,9 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'noimages'      => 'Nullum videndum.',
 'ilsubmit'      => 'Quaerere',
 'bydate'        => 'ex die',
+
+# Metadata
+'metadata-expand' => 'Plura ostende',
 
 'exif-meteringmode-1' => 'Media',
 

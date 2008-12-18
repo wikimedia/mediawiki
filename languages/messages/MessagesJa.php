@@ -654,9 +654,9 @@ $2',
 'subject'                          => '題名・見出し',
 'minoredit'                        => 'これは細部の編集です',
 'watchthis'                        => 'ウォッチリストに追加',
-'savearticle'                      => '保存する',
+'savearticle'                      => 'ページを保存',
 'preview'                          => 'プレビュー',
-'showpreview'                      => 'プレビューを実行',
+'showpreview'                      => 'プレビューを表示',
 'showlivepreview'                  => 'ライブプレビュー',
 'showdiff'                         => '差分を表示',
 'anoneditwarning'                  => "'''警告:'''あなたはログインしていません。このまま投稿を行った場合、あなたのIPアドレスがこの項目の履歴に記録されます。",
@@ -1368,6 +1368,20 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 
 このままアップロードを行うことが適切かどうか確認してください。参考として以下にこのファイルの削除記録を表示しています:",
 'filename-bad-prefix'         => 'アップロードしようとしている <strong>"$1"</strong> のファイル名が、デジタルカメラによって自動的に付与されるような名称となっています。どのようなファイルであるのか、ファイル名を見ただけでも分かるような名称にしてください。',
+'filename-prefix-blacklist'   => ' #<!-- leave this line exactly as it is --> <pre>
+# 構文は以下:
+#   * "#" 記号から行末まではすべてがコメント
+#   * 空でないすべての行はデジタルカメラによって自動的に付けられる典型的なファイル名の接頭辞
+CIMG # カシオ
+DSC_ # ニコン
+DSCF # 富士フイルム
+DSCN # ニコン
+DUW # 一部の携帯電話
+IMG # 一般
+JD # Jenoptik
+MGP # ペンタックス
+PICT # misc.
+ #</pre> <!-- leave this line exactly as it is -->',
 
 'upload-proto-error'      => '不正なプロトコル',
 'upload-proto-error-text' => 'アップロード元のURLは <code>http://</code> か <code>ftp://</code> で始まっている必要があります。',
@@ -2023,7 +2037,7 @@ $NEWPAGE
 'ipblocklist-no-results'          => '指定されたIPアドレスまたは利用者名はブロックされていません。',
 'blocklink'                       => 'ブロック',
 'unblocklink'                     => 'ブロック解除',
-'change-blocklink'                => 'ブロック変更',
+'change-blocklink'                => '設定変更',
 'contribslink'                    => '投稿記録',
 'autoblocker'                     => '投稿ブロックされている利用者 "$1" と同じIPアドレスのため、自動的にブロックされています。ブロックの理由は "$2" です。',
 'blocklogpage'                    => '投稿ブロック記録',

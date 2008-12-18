@@ -426,12 +426,14 @@ $messages = array(
 'email'                      => 'برېښليک',
 'prefs-help-realname'        => 'د اصلي نوم ليکل ستاسو په خوښه دی خو که تاسو خپل اصلي نوم وټاکۍ پدې سره به ستاسو ټول کارونه او ونډې ستاسو د نوم په اړوندولو کې وکارېږي.',
 'loginerror'                 => 'د ننوتنې ستونزه',
-'prefs-help-email'           => 'د برېښليک ليکل ستاسو په خوښه دی، خو په ورکړې سره به يې نور کارونکي پدې وتوانېږي چې ستاسو سره د کارن-نوم او يا هم د کارونکي خبرې اترې لخوا، پرته له دې چې ستاسو پېژندنه وشي، اړيکې ټينګې کړي.',
+'prefs-help-email'           => 'د برېښليک ليکل ستاسو په خوښه دی، خو په ورکړې سره به يې د يوه نوي پټنوم درلېږلو چار آسانه کړي هغه هم کله چې ستاسو نه خپل پټنوم هېر شوی وي.
+دا هم ستاسو خپله خوښه ده چې نور کارونکو ته اجازه ورکړی چې ستاسو سره د کارن-نوم او يا هم د کارونکي خبرې اترې لخوا، پرته له دې چې ستاسو پېژندنه وشي، اړيکې ټينګې کړي.',
 'prefs-help-email-required'  => 'ستاسو د برېښليک پته پکار ده.',
 'noname'                     => 'تاسو تر اوسه پورې کوم کره کارن نوم نه دی ځانګړی کړی.',
 'loginsuccesstitle'          => 'ننوتل مو برياليتوب سره ترسره شوه',
 'loginsuccess'               => "'''تاسو اوس {{SITENAME}} کې د \"\$1\" په نوم ننوتي ياست.'''",
-'nosuchuser'                 => 'د "$1" په نامه هېڅ کوم کارونکی نه شته. مهرباني وکړی خپل ټاپ کړی نوم وګوری چې سم مو ليکلی او که نه، او يا هم  که تاسو غواړی نو په همدې نوم يو نوی کارن-حساب جوړ کړی.',
+'nosuchuser'                 => 'د "$1" په نامه هېڅ کوم کارونکی نه شته.
+مهرباني وکړی خپل ټاپ کړی نوم وګوری چې سم مو ليکلی او که نه، او يا هم ځان ته [[Special:UserLogin/signup|يو نوی کارن-حساب جوړ کړی]].',
 'nosuchusershort'            => 'د "<nowiki>$1</nowiki>" په نوم هېڅ کوم کارن-حساب نشته. لطفاً خپل د نوم ليکلې بڼې ته ځير شی چې پکې تېروتنه نه وي.',
 'nouserspecified'            => 'تاسو ځان ته کوم کارن نوم نه دی ځانګړی کړی.',
 'wrongpassword'              => 'ناسم پټنوم مو ليکلی. لطفاً يو ځل بيا يې وليکۍ.',
@@ -465,11 +467,12 @@ $messages = array(
 'loginlanguagelabel'         => 'ژبه: $1',
 
 # Password reset dialog
+'resetpass'               => 'پټنوم بدلول',
 'oldpassword'             => 'زوړ پټنوم:',
 'newpassword'             => 'نوی پټنوم:',
 'retypenew'               => 'نوی پټنوم بيا وليکه:',
 'resetpass_bad_temporary' => 'لنډمهالی پټنوم مو سم نه دی. کېدای شي تاسو وار دمخې خپل پټنوم برياليتوب سره بدل کړی وي او يا هم د نوي لنډمهالي پټنوم غوښتنه مو کړې وي.',
-'resetpass_forbidden'     => 'په {{SITENAME}} کې مو پټنوم نه شي بدلېدلای',
+'resetpass_forbidden'     => 'پټنومونه مو نه شي بدلېدلای',
 
 # Edit page toolbar
 'bold_sample'     => 'روڼ ليک',
@@ -660,14 +663,20 @@ $messages = array(
 'userrights-reason'        => 'د بدلون سبب:',
 
 # Groups
-'group'     => 'ډله:',
-'group-all' => '(ټول)',
+'group'      => 'ډله:',
+'group-user' => 'کارونکي',
+'group-all'  => '(ټول)',
+
+'group-user-member' => 'کارونکی',
 
 'grouppage-sysop' => '{{ns:project}}:پازوالان',
 
 # User rights log
 'rightslog'  => 'د کارونکي د رښتو يادښت',
 'rightsnone' => '(هېڅ نه)',
+
+# Associated actions - in the sentence "You do not have permission to X"
+'action-move' => 'همدا مخ لېږدول',
 
 # Recent changes
 'nchanges'                       => '$1 {{PLURAL:$1|بدلون|بدلونونه}}',
@@ -934,15 +943,16 @@ $messages = array(
 'emailpage'       => 'کارونکي ته برېښليک ولېږه',
 'defemailsubject' => 'د {{SITENAME}} برېښليک',
 'noemailtitle'    => 'هېڅ کومه برېښليک پته نشته.',
-'emailfrom'       => 'پيغام لېږونکی',
-'emailto'         => 'پيغام اخيستونکی',
-'emailsubject'    => 'موضوع',
-'emailmessage'    => 'پيغام',
+'emailfrom'       => 'لېږونکی',
+'emailto'         => 'اخيستونکی',
+'emailsubject'    => 'سکالو:',
+'emailmessage'    => 'پيغام:',
 'emailsend'       => 'لېږل',
 'emailccme'       => 'زما د پيغام يوه بېلګه دې ماته هم برېښليک شي.',
 'emailccsubject'  => '$1 ته ستاسو د پيغام لمېسه: $2',
 'emailsent'       => 'برېښليک مو ولېږل شو',
 'emailsenttext'   => 'ستاسو برېښليکي پيغام ولېږل شو.',
+'emailuserfooter' => 'همدا برېښليک د $1 لخوا $2 ته د {{SITENAME}} په وېبځي کې د "همدې کارونکي ته برېښليک لېږل" د کړنې په مرسته لېږل شوی دی.',
 
 # Watchlist
 'watchlist'            => 'زما کتنلړليک',
@@ -1235,7 +1245,7 @@ $messages = array(
 
 # Browsing diffs
 'previousdiff' => 'تېر توپير ←',
-'nextdiff'     => '← بل توپير',
+'nextdiff'     => 'بل توپير →',
 
 # Media information
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|مخ|مخونه}}',
@@ -1403,6 +1413,7 @@ $messages = array(
 'filepath-page' => 'دوتنه:',
 
 # Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'د دوه ګونو دوتنو پلټنه',
 'fileduplicatesearch-filename' => 'د دوتنې نوم:',
 'fileduplicatesearch-submit'   => 'پلټل',
 
