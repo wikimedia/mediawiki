@@ -397,7 +397,7 @@ $messages = array(
 'mytalk'         => '내 사용자 토론',
 'anontalk'       => '익명 사용자 토론',
 'navigation'     => '둘러보기',
-'and'            => '&#32;그리고',
+'and'            => ',',
 
 # Metadata in edit box
 'metadata_help' => '메타데이터:',
@@ -679,17 +679,18 @@ $messages = array(
 'loginlanguagelabel'         => '언어: $1',
 
 # Password reset dialog
-'resetpass'               => '비밀번호 바꾸기',
-'resetpass_announce'      => '이메일로 받은 임시 암호로 로그인했습니다. 로그인을 마치려면 새 암호를 입력해 주세요:',
-'resetpass_header'        => '비밀번호 변경',
-'oldpassword'             => '예전 암호:',
-'newpassword'             => '새 암호:',
-'retypenew'               => '새 암호 확인:',
-'resetpass_submit'        => '암호를 변경하고 로그인하기',
-'resetpass_success'       => '암호가 성공적으로 변경되었습니다! 로그인을 해 주세요.',
-'resetpass_bad_temporary' => '임시 암호가 잘못되었습니다. 암호를 이미 바꾸었거나, 임시 암호를 새로 받았을 수 있습니다.',
-'resetpass_forbidden'     => '비밀번호 변경 불가',
-'resetpass-temp-password' => '임시 비밀번호:',
+'resetpass'                 => '비밀번호 바꾸기',
+'resetpass_announce'        => '이메일로 받은 임시 암호로 로그인했습니다. 로그인을 마치려면 새 암호를 입력해 주세요:',
+'resetpass_header'          => '비밀번호 변경',
+'oldpassword'               => '예전 암호:',
+'newpassword'               => '새 암호:',
+'retypenew'                 => '새 암호 확인:',
+'resetpass_submit'          => '암호를 변경하고 로그인하기',
+'resetpass_success'         => '암호가 성공적으로 변경되었습니다! 로그인을 해 주세요.',
+'resetpass_bad_temporary'   => '임시 암호가 잘못되었습니다. 암호를 이미 바꾸었거나, 임시 암호를 새로 받았을 수 있습니다.',
+'resetpass_forbidden'       => '비밀번호 변경 불가',
+'resetpass-submit-loggedin' => '비밀번호 변경',
+'resetpass-temp-password'   => '임시 비밀번호:',
 
 # Edit page toolbar
 'bold_sample'     => '굵은 글씨',
@@ -891,32 +892,34 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 [[Special:Search|위키 검색 기능]]을 이용해 관련 문서를 찾아보세요.',
 
 # Revision deletion
-'rev-deleted-comment' => '(편집 요약 삭제됨)',
-'rev-deleted-user'    => '(계정 이름 삭제됨)',
-'rev-deleted-event'   => '(로그 삭제됨)',
-'rev-delundel'        => '보이기/숨기기',
-'revisiondelete'      => '버전 삭제/복구',
-'revdelete-selected'  => "'''[[:$1]]의 선택된 판:'''",
-'revdelete-legend'    => '보이기 제한을 설정',
-'revdelete-hide-text' => '판의 내용을 숨기기',
-'revdelete-hide-user' => '편집자의 계정 이름/IP를 숨기기',
-'revdelete-logentry'  => '[[$1]]의 판의 보이기 설정을 변경함',
-'logdelete-logentry'  => '[[$1]]의 로그 보이기 설정을 변경함',
-'revdelete-success'   => "'''판의 보이기 설정이 성공적으로 변경되었습니다.'''",
-'logdelete-success'   => "'''기록의 보이기 설정이 성공적으로 변경되었습니다.'''",
-'revdel-restore'      => '보이기 설정 변경',
-'pagehist'            => '문서 역사',
-'deletedhist'         => '삭제된 역사',
-'revdelete-content'   => '내용',
-'revdelete-summary'   => '편집 요약',
-'revdelete-uname'     => '사용자 이름',
-'revdelete-hid'       => '$1을(를) 숨김',
-'revdelete-unhid'     => '$1을 숨김 해제함',
+'rev-deleted-comment'  => '(편집 요약 삭제됨)',
+'rev-deleted-user'     => '(계정 이름 삭제됨)',
+'rev-deleted-event'    => '(로그 삭제됨)',
+'rev-delundel'         => '보이기/숨기기',
+'revisiondelete'       => '버전 삭제/복구',
+'revdelete-selected'   => "'''[[:$1]]의 선택된 판:'''",
+'revdelete-legend'     => '보이기 제한을 설정',
+'revdelete-hide-text'  => '판의 내용을 숨기기',
+'revdelete-hide-user'  => '편집자의 계정 이름/IP를 숨기기',
+'revdelete-hide-image' => '파일을 숨기기',
+'revdelete-logentry'   => '[[$1]]의 판의 보이기 설정을 변경함',
+'logdelete-logentry'   => '[[$1]]의 로그 보이기 설정을 변경함',
+'revdelete-success'    => "'''판의 보이기 설정이 성공적으로 변경되었습니다.'''",
+'logdelete-success'    => "'''기록의 보이기 설정이 성공적으로 변경되었습니다.'''",
+'revdel-restore'       => '보이기 설정 변경',
+'pagehist'             => '문서 역사',
+'deletedhist'          => '삭제된 역사',
+'revdelete-content'    => '내용',
+'revdelete-summary'    => '편집 요약',
+'revdelete-uname'      => '사용자 이름',
+'revdelete-hid'        => '$1을(를) 숨김',
+'revdelete-unhid'      => '$1을 숨김 해제함',
 
 # History merging
 'mergehistory'             => '문서 역사 합치기',
 'mergehistory-box'         => '두 문서의 역사 합치기:',
 'mergehistory-list'        => '병합 가능한 문서 역사',
+'mergehistory-submit'      => '문서 역사 합치기',
 'mergehistory-empty'       => '합칠 수 있는 판이 없습니다.',
 'mergehistory-success'     => '[[:$1]]의 $3개의 판이 [[:$2]]에 성공적으로 합쳐졌습니다.',
 'mergehistory-autocomment' => '[[:$1]] 문서를 [[:$2]]로 병합함',
@@ -947,14 +950,17 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'diff-h2'                 => "'''2단계 제목'''",
 'diff-h3'                 => "'''3단계 제목'''",
 'diff-h4'                 => "'''4단계 제목'''",
+'diff-h5'                 => '5단계 제목',
 'diff-table'              => "'''표'''",
 'diff-tr'                 => "'''행'''",
 'diff-td'                 => "'''칸'''",
+'diff-code'               => "'''컴퓨터 코드 블록'''",
 'diff-img'                => "'''그림'''",
 'diff-a'                  => "'''링크'''",
 'diff-i'                  => "'''기울임꼴'''",
 'diff-b'                  => "'''굵은 글씨'''",
 'diff-del'                => "'''삭제됨'''",
+'diff-tt'                 => "'''고정폭 글꼴'''",
 'diff-sub'                => "'''아랫첨자'''",
 'diff-sup'                => "'''윗첨자'''",
 
@@ -982,10 +988,13 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'searchprofile-articles-and-proj'  => '일반 및 프로젝트 문서',
 'searchprofile-project'            => '프로젝트 문서',
 'searchprofile-images'             => '파일',
+'searchprofile-everything'         => '모든 문서 검색',
+'searchprofile-advanced'           => '고급 검색',
 'searchprofile-images-tooltip'     => '파일 찾기',
 'searchprofile-everything-tooltip' => '토론 문서를 포함한 모든 문서 찾기',
 'search-result-size'               => '$1 ($2개 단어)',
 'search-result-score'              => '유사도: $1%',
+'search-redirect'                  => '($1로 넘겨줌)',
 'search-suggest'                   => '$1 문서를 찾고 계신가요?',
 'search-interwiki-caption'         => '자매 프로젝트',
 'search-interwiki-default'         => '$1 결과:',
@@ -1001,6 +1010,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'powersearch-ns'                   => '다음의 이름공간에서 찾기:',
 'powersearch-redir'                => '넘겨주기 목록',
 'powersearch-field'                => '검색',
+'search-external'                  => '외부 검색',
 'searchdisabled'                   => '{{SITENAME}} 검색 기능이 비활성화되어 있습니다. 기능이 작동하지 않는 동안에는 구글(Google)을 이용해 검색할 수 있습니다. 검색 엔진의 내용은 최근 것이 아닐 수 있다는 점을 주의해주세요.',
 
 # Preferences page
@@ -1437,7 +1447,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'statistics-jobqueue'          => '[http://www.mediawiki.org/wiki/Manual:Job_queue Job queue]의 길이',
 'statistics-users'             => '등록된 [[Special:ListUsers|사용자]]',
 'statistics-users-active'      => '활동 중인 사용자',
-'statistics-users-active-desc' => '지난 1개월간 활동한 사용자',
+'statistics-users-active-desc' => '지난 $1일간 활동한 사용자',
 'statistics-mostpopular'       => '가장 많이 읽힌 문서',
 
 'disambiguations'      => '동음이의 문서 목록',
@@ -1472,7 +1482,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'nviews'                  => '$1번 읽음',
 'specialpage-empty'       => '명령에 대한 결과가 없습니다.',
 'lonelypages'             => '외톨이 문서 목록',
-'lonelypagestext'         => '{{SITENAME}}에서, 다른 모든 문서에서 링크하지 않은 문서의 목록입니다.',
+'lonelypagestext'         => '{{SITENAME}}에서 다른 모든 문서에서 링크되거나 틀로 포함되지 않은 문서의 목록입니다.',
 'uncategorizedpages'      => '분류되지 않은 문서 목록',
 'uncategorizedcategories' => '분류되지 않은 분류 목록',
 'uncategorizedimages'     => '분류되지 않은 파일 목록',
@@ -1561,13 +1571,14 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'deletedcontributions' => '삭제된 기여 목록',
 
 # Special:LinkSearch
-'linksearch'      => '웹 링크 찾기',
-'linksearch-pat'  => '검색 패턴:',
-'linksearch-ns'   => '이름공간:',
-'linksearch-ok'   => '검색',
-'linksearch-text' => '"*.wikipedia.org"와 같이 와일드카드를 사용할 수 있습니다.<br />
+'linksearch'       => '웹 링크 찾기',
+'linksearch-pat'   => '검색 패턴:',
+'linksearch-ns'    => '이름공간:',
+'linksearch-ok'    => '검색',
+'linksearch-text'  => '"*.wikipedia.org"와 같이 와일드카드를 사용할 수 있습니다.<br />
 지원하는 프로토콜 목록: <tt>$1</tt>',
-'linksearch-line' => '$2에서 $1 을 링크하고 있습니다.',
+'linksearch-line'  => '$2에서 $1 을 링크하고 있습니다.',
+'linksearch-error' => '와일드카드는 주소의 처음 부분에만 사용될 수 있습니다.',
 
 # Special:ListUsers
 'listusersfrom'      => '다음으로 시작하는 사용자 보이기:',
@@ -1786,7 +1797,8 @@ $NEWPAGE
 'undeletepage'              => '삭제된 문서를 보거나 되살리기',
 'undeletepagetitle'         => "'''아래는 [[:$1|$1]]의 삭제된 판입니다.'''.",
 'viewdeletedpage'           => '삭제된 문서 보기',
-'undeletepagetext'          => '다음의 문서는 삭제되었지만 보관되어 있고, 되살릴 수 있습니다. 보관된 문서들은 주기적으로 삭제될 것입니다.',
+'undeletepagetext'          => '다음 {{PLURAL:$1|문서는|$1개의 문서는}} 삭제되었지만 보관되어 있고, 되살릴 수 있습니다.
+보관된 문서들은 주기적으로 삭제될 것입니다.',
 'undelete-fieldset-title'   => '문서 복구',
 'undeleteextrahelp'         => "문서 역사 전체를 복구하려면 모든 체크박스를 선택 해제한 뒤 '''복구'''를 누르세요.
 특정한 버전만을 복구하려면 복구하려는 버전들을 선택한 뒤 '''복구'''를 누르세요. '''초기화'''를 누르면 모든 선택이 취소됩니다.",
@@ -1796,6 +1808,7 @@ $NEWPAGE
 'undeleterevdel'            => '복구하려는 문서의 최신판이 삭제되어 있는 경우 문서를 복구시킬 수 없습니다. 이러한 경우, 삭제된 최신판 문서의 체크박스를 선택 해제하거나 숨김을 해제해야 합니다.',
 'undeletehistorynoadmin'    => '이 문서는 삭제되어 있습니다. 삭제된 이유와 삭제되기 전에 이 문서를 편집한 사용자들이 아래에 나와 있습니다. 삭제된 문서를 보려면 관리자 권한이 필요합니다.',
 'undelete-revision'         => '삭제된 $1 문서의 $4 $5 버전 (기여자 $3):',
+'undelete-nodiff'           => '이전의 판이 없습니다.',
 'undeletebtn'               => '복구',
 'undeletelink'              => '되살리기',
 'undeletereset'             => '초기화',
@@ -1834,12 +1847,13 @@ $1',
 'month'               => '월:',
 'year'                => '연도:',
 
-'sp-contributions-newbies'     => '새 사용자의 기여만 보기',
-'sp-contributions-newbies-sub' => '새 사용자들의 기여',
-'sp-contributions-blocklog'    => '차단 기록',
-'sp-contributions-search'      => '기여 검색',
-'sp-contributions-username'    => 'IP 주소 혹은 계정 이름:',
-'sp-contributions-submit'      => '찾기',
+'sp-contributions-newbies'       => '새 사용자의 기여만 보기',
+'sp-contributions-newbies-sub'   => '새 사용자들의 기여',
+'sp-contributions-newbies-title' => '새 사용자의 기여',
+'sp-contributions-blocklog'      => '차단 기록',
+'sp-contributions-search'        => '기여 검색',
+'sp-contributions-username'      => 'IP 주소 혹은 계정 이름:',
+'sp-contributions-submit'        => '찾기',
 
 # What links here
 'whatlinkshere'            => '여기를 가리키는 글',
@@ -1889,13 +1903,13 @@ $1',
 'ipbotheroption'                  => '수동으로 지정',
 'ipbotherreason'                  => '다른 이유/추가적인 이유:',
 'ipbhidename'                     => '사용자 이름을 차단 기록, 차단된 사용자 목록, 사용자 목록에서 숨기기',
-'ipbwatchuser'                    => '이 사용자의 사용자 및 사용자토론 문서를 주시',
+'ipbwatchuser'                    => '이 사용자 문서와 사용자토론 문서를 주시하기',
 'ipballowusertalk'                => '차단되어 있는 중에도 자신의 토론 문서를 편집할 수 있게 허용',
 'ipb-change-block'                => '이 설정으로 이 사용자를 다시 차단합니다',
 'badipaddress'                    => '잘못된 IP 주소',
 'blockipsuccesssub'               => '차단 완료',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] 사용자가 차단되었습니다. 차단된 사용자 목록은 [[Special:IPBlockList|여기]]에서 볼 수 있습니다.',
-'ipb-edit-dropdown'               => '차단 사유 고치기',
+'ipb-edit-dropdown'               => '차단 이유 목록 편집하기',
 'ipb-unblock-addr'                => '$1 차단 해제하기',
 'ipb-unblock'                     => '사용자/IP 주소 차단 해제하기',
 'ipb-blocklist-addr'              => '$1의 현재 차단 기록 보기',
@@ -1925,6 +1939,7 @@ $1',
 'ipblocklist-no-results'          => '당신이 입력한 IP 주소나 사용자는 차단되지 않았습니다.',
 'blocklink'                       => '차단',
 'unblocklink'                     => '차단 해제',
+'change-blocklink'                => '차단 설정 변경',
 'contribslink'                    => '기여',
 'autoblocker'                     => "당신의 IP 주소는 최근 ‘[[User:$1|$1]]’이(가) 사용하였기 때문에 자동으로 차단되었습니다. $1의 차단 이유는 다음과 같습니다: '''$2'''",
 'blocklogpage'                    => '차단 기록',
@@ -2001,7 +2016,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'move-watch'                => '이 문서 주시하기',
 'movepagebtn'               => '이동',
 'pagemovedsub'              => '문서 이동함',
-'movepage-moved'            => '<big>\'\'\'"$1" 문서를 "$2" 문서로 이동했습니다.\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'            => "<big>'''‘$1’ 문서를 ‘$2’ 문서로 이동했습니다.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'             => '문서가 이미 존재하거나, 문서 이름이 올바르지 않습니다. 다른 제목으로 시도해주세요.',
 'cantmove-titleprotected'   => '새로운 제목으로 문서를 만드는 것이 금지되어 있어, 문서를 이동할 수 없습니다.',
 'talkexists'                => "'''문서는 이동되었습니다. 하지만 딸린 토론 문서의 새 이름으로 된 문서가 이미 존재해서, 토론 문서는 이동하지 않았습니다. 직접 문서를 합쳐 주세요.'''",
@@ -2032,19 +2047,20 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'move-leave-redirect'       => '이동 후 넘겨주기를 남기기',
 
 # Export
-'export'           => '문서 내보내기',
-'exporttext'       => '특정 문서와 그 문서의 편집 역사를 XML 파일로 만들 수 있습니다. 이렇게 만들어진 파일은 다른 미디어위키에서 [[Special:Import|문서 가져오기]] 기능을 통해 가져갈 수 있습니다.
+'export'            => '문서 내보내기',
+'exporttext'        => '특정 문서와 그 문서의 편집 역사를 XML 파일로 만들 수 있습니다. 이렇게 만들어진 파일은 다른 미디어위키에서 [[Special:Import|문서 가져오기]] 기능을 통해 가져갈 수 있습니다.
 
 문서를 내보내려면, 내보내려는 문서 제목을 한 줄에 하나씩 입력해주세요. 그리고 문서의 전체 역사가 필요한지, 혹은 현재 버전만이 필요한지를 선택해 주세요.
 
 특정 문서를 내보내려면, 예를 들어 ‘[[{{MediaWiki:Mainpage}}]]’ 문서를 내보내려면 [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] 링크를 사용할 수도 있습니다.',
-'exportcuronly'    => '현재 버전만 포함하고, 전체 역사는 포함하지 않음',
-'exportnohistory'  => "----
+'exportcuronly'     => '현재 버전만 포함하고, 전체 역사는 포함하지 않음',
+'exportnohistory'   => "----
 '''주의:''' 전체 문서 역사를 내보내는 기능은 성능 문제로 인해 비활성되어 있습니다.",
-'export-submit'    => '내보내기',
-'export-addcat'    => '추가',
-'export-download'  => '파일로 저장',
-'export-templates' => '틀 포함하기',
+'export-submit'     => '내보내기',
+'export-addcattext' => '분류에 있는 문서 추가:',
+'export-addcat'     => '추가',
+'export-download'   => '파일로 저장',
+'export-templates'  => '틀 포함하기',
 
 # Namespace 8 related
 'allmessages'               => '시스템 메시지 목록',
@@ -2064,6 +2080,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 
 # Special:Import
 'import'                   => '문서 가져오기',
+'importinterwiki'          => '다른 위키에서 문서 가져오기',
 'import-interwiki-submit'  => '가져오기',
 'import-upload-filename'   => '파일 이름:',
 'import-comment'           => '내용:',
@@ -2079,6 +2096,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'importnofile'             => '가져오기용 파일이 업로드되지 않았습니다.',
 'importuploaderrorsize'    => '파일 올리기를 통한 가져오기에 실패했습니다.
 파일이 허용된 크기 제한보다 큽니다.',
+'import-parse-failure'     => 'XML 문서 분석 실패',
 'import-noarticle'         => '가져올 문서가 없습니다!',
 'import-nonewrevisions'    => '모든 판이 이전에 가져오기되었습니다.',
 'import-upload'            => 'XML 데이터 올리기',
@@ -2201,8 +2219,8 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'mw_math_simple' => '아주 간단한 것은 HTML로, 나머지는 PNG로',
 'mw_math_html'   => '가능한 한 HTML로, 나머지는 PNG로',
 'mw_math_source' => 'TeX로 남겨둠 (텍스트 브라우저용)',
-'mw_math_modern' => '최신 웹 브라우저인 경우 추천',
-'mw_math_mathml' => '가능하면 MathML로 (시험판)',
+'mw_math_modern' => '최신 브라우저 사용자에게 권장',
+'mw_math_mathml' => '가능하면 MathML로 (실험적인 기능)',
 
 # Patrolling
 'markaspatrolleddiff'                 => '검토된 것으로 표시',
@@ -2289,6 +2307,7 @@ $1',
 'exif-imagelength'         => '높이',
 'exif-xresolution'         => '수평 해상도',
 'exif-yresolution'         => '수직 해상도',
+'exif-datetime'            => '파일이 변경된 날짜와 시간',
 'exif-imagedescription'    => '그림 제목',
 'exif-make'                => '카메라 제조사',
 'exif-model'               => '카메라 모델',
@@ -2303,6 +2322,7 @@ $1',
 'exif-fnumber'             => 'F 번호',
 'exif-exposureprogram'     => '노출 프로그램',
 'exif-shutterspeedvalue'   => '셔터 속도',
+'exif-aperturevalue'       => '조리개',
 'exif-brightnessvalue'     => '밝기',
 'exif-lightsource'         => '광원',
 'exif-flash'               => '플래시',
@@ -2322,6 +2342,8 @@ $1',
 'exif-orientation-3' => '180° 회전됨', # 0th row: bottom; 0th column: right
 
 'exif-exposureprogram-1' => '수동',
+'exif-exposureprogram-3' => '조리개 우선',
+'exif-exposureprogram-4' => '셔터 우선',
 
 'exif-subjectdistance-value' => '$1 미터',
 
@@ -2332,6 +2354,8 @@ $1',
 'exif-lightsource-4' => '플래시',
 
 # Flash modes
+'exif-flash-fired-0'  => '플래시가 터지지 않음',
+'exif-flash-fired-1'  => '플래시 터짐',
 'exif-flash-redeye-1' => '적목 방지 모드',
 
 'exif-focalplaneresolutionunit-2' => '인치',
@@ -2446,6 +2470,10 @@ $5
 
 # Live preview
 'livepreview-loading' => '불러오는 중...',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => '최근 $1 초 안에 변경된 문서 목록은 표시되지 않을 수 있습니다.',
+'lag-warn-high'   => '데이터베이스 서버의 과도한 부하 때문에 최근 $1 초 안에 변경된 문서 목록은 표시되지 않을 수 있습니다.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => '주시문서 목록에는 토론 문서를 제외하고 $1개의 문서가 들어 있습니다.',

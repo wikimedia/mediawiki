@@ -1644,7 +1644,7 @@ PICT # различные
 'statistics-jobqueue'          => 'Величина [http://www.mediawiki.org/wiki/Manual:Job_queue очереди заданий]',
 'statistics-users'             => 'Зарегистрированные [[Special:ListUsers|участники]]',
 'statistics-users-active'      => 'Активные участники',
-'statistics-users-active-desc' => 'Участники, совершившие какое-либо действие за прошедший месяц',
+'statistics-users-active-desc' => 'Участники, совершившие какое-либо действие за {{PLURAL:$1|последний $1 день|последние $1 дня|последние $1 дней}}',
 'statistics-mostpopular'       => 'Наиболее часто просматриваемые страницы',
 
 'disambiguations'      => 'Страницы со ссылками на многозначные термины',

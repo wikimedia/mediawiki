@@ -1559,7 +1559,7 @@ Môžete si pozrieť [[Special:WhatLinksHere/$2|úplný zoznam]].',
 'statistics-jobqueue'          => 'Dĺžka [http://www.mediawiki.org/wiki/Manual:Job_queue frontu úloh]',
 'statistics-users'             => 'Registrovaných [[Special:ListUsers|používateľov]]',
 'statistics-users-active'      => 'Aktívnych používateľov',
-'statistics-users-active-desc' => 'Používatelia, ktorí za posledný mesiac vykonali nejakú operáciu',
+'statistics-users-active-desc' => 'Používatelia, ktorí za {{PLURAL:$1|posledný deň|posledné $1 dni|posledných $1 dní}} vykonali nejakú operáciu',
 'statistics-mostpopular'       => 'Najčastejšie prezerané stránky',
 
 'disambiguations'      => 'Stránky na rozlíšenie viacerých významov',
@@ -1933,8 +1933,9 @@ Tu sú aktuálne nastavenia stránky <strong>$1</strong>:',
 'undeletepage'                 => 'Zobraziť a obnoviť vymazané stránky',
 'undeletepagetitle'            => "'''Nasledovné pozostáva zo zmazaných revízií stránky [[:$1]]'''.",
 'viewdeletedpage'              => 'Zobraziť zmazané stránky',
-'undeletepagetext'             => 'Tieto stránky boli zmazané, ale sú stále v archíve a
-môžu byť obnovené. Archív môže byť pravidelne vyprázdnený.',
+'undeletepagetext'             => '{{PLURAL:$1|Táto stránka bola zmazaná, ale je stále v archíve a
+možno ju obnoviť|Tieto stránky boli zmazané, ale sú stále v archíve a
+možno ich obnoviť}}. Archív môže byť pravidelne vyprázdnený.',
 'undelete-fieldset-title'      => 'Obnoviť revízie',
 'undeleteextrahelp'            => "Ak chcete obnoviť celú stránku, nechajte všetky zaškrtávacie polia nezaškrtnuté a kliknite na '''''Obnoviť'''''.
 Ak chcete vykonať selektívnu obnovu, zašktrnite polia zodpovedajúce revíziám, ktoré sa majú obnoviť a kliknite na '''''Obnoviť'''''.
@@ -2085,6 +2086,7 @@ z/od momentálne zablokovanej IP adresy/používateľa.',
 'ipblocklist-no-results'          => 'Požadovaná IP adresa alebo používateľské meno nie je blokovaná.',
 'blocklink'                       => 'zablokovať',
 'unblocklink'                     => 'odblokuj',
+'change-blocklink'                => 'zmeniť blokovanie',
 'contribslink'                    => 'príspevky',
 'autoblocker'                     => 'Ste zablokovaný, pretože zdieľate IP adresu s „$1“. Dôvod „$2“.',
 'blocklogpage'                    => 'Záznam_blokovaní',

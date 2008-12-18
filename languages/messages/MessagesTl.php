@@ -405,69 +405,79 @@ Ang ibinigay na dahilan ay ''$2''.",
 'virus-unknownscanner' => 'hindi kilalang panlaban sa birus:',
 
 # Login and logout pages
-'logouttitle'               => 'Pangalis sa pagkakalagda ng tagagamit',
-'logouttext'                => "<strong>Nakaalis ka na sa pagkakalagda.</strong>
+'logouttitle'                => 'Pangalis sa pagkakalagda ng tagagamit',
+'logouttext'                 => "<strong>Nakaalis ka na sa pagkakalagda.</strong>
 
 Maaari kang magpatuloy sa paggamit ng {{SITENAME}} na hindi nakikilala (anonimo), o maaaring kang [[Special:UserLogin|lumagda/tumala uli]] bilang kapareho o bilang ibang tagagamit.
 Tandaan na may ilang pahina maaaring magpatuloy na nagpapakitang parang nakalagda ka pa rin, hanggang sa linisin mo ang iyong naitatagong pangtingin-tingin (''browser cache'').",
-'welcomecreation'           => '== Maligayang pagdating, $1! ==
+'welcomecreation'            => '== Maligayang pagdating, $1! ==
 Nalikha na ang iyong kwenta o patnugutan.
 Huwag kalimutang baguhin ang [[Special:Preferences|mga kagustuhan mo sa {{SITENAME}}]].',
-'loginpagetitle'            => 'Paglagda ng tagagamit',
-'yourname'                  => 'Bansag:',
-'yourpassword'              => 'Hudyat:',
-'yourpasswordagain'         => 'Hudyat mo uli:',
-'remembermypassword'        => 'Tandaan ang hudyat sa kompyuter na ito',
-'yourdomainname'            => 'Dominyo mo:',
-'externaldberror'           => 'Maaaring may kamalian sa pagpapatotoo ng kalipunan ng mga dato o kaya hindi ka pinahintulutang isapanahon ng iyong panlabas na kuwenta o patnugutan.',
-'login'                     => 'Lumagda',
-'nav-login-createaccount'   => 'Lumagda / lumikha ng kuwenta',
-'loginprompt'               => "Dapat na pinapahintulutan mo ang mga \"otap\" (''cookie'') upang makalagda sa {{SITENAME}}.",
-'userlogin'                 => 'Lumagda / lumikha ng kuwenta',
-'logout'                    => 'Umalis sa pagkakalagda',
-'userlogout'                => 'Umalis sa pagkakalagda',
-'notloggedin'               => 'Hindi nakalagda',
-'nologin'                   => 'Wala ka pang patnugutan? $1.',
-'nologinlink'               => 'Lumikha ng kuwenta',
-'createaccount'             => 'Lumikha ng kuwenta',
-'gotaccount'                => 'May kuwenta/patnugutan ka na ba? $1.',
-'gotaccountlink'            => 'Lumagda',
-'createaccountmail'         => 'sa pamamagitan ng e-liham',
-'badretype'                 => 'Hindi magkatugma ang ipinasok mong mga hudyat.',
-'userexists'                => 'May gumagamit na ng ganyang pangalang pantagagamit.
+'loginpagetitle'             => 'Paglagda ng tagagamit',
+'yourname'                   => 'Bansag:',
+'yourpassword'               => 'Hudyat:',
+'yourpasswordagain'          => 'Hudyat mo uli:',
+'remembermypassword'         => 'Tandaan ang hudyat sa kompyuter na ito',
+'yourdomainname'             => 'Dominyo mo:',
+'externaldberror'            => 'Maaaring may kamalian sa pagpapatotoo ng kalipunan ng mga dato o kaya hindi ka pinahintulutang isapanahon ng iyong panlabas na kuwenta o patnugutan.',
+'login'                      => 'Lumagda',
+'nav-login-createaccount'    => 'Lumagda / lumikha ng kuwenta',
+'loginprompt'                => "Dapat na pinapahintulutan mo ang mga \"otap\" (''cookie'') upang makalagda sa {{SITENAME}}.",
+'userlogin'                  => 'Lumagda / lumikha ng kuwenta',
+'logout'                     => 'Umalis sa pagkakalagda',
+'userlogout'                 => 'Umalis sa pagkakalagda',
+'notloggedin'                => 'Hindi nakalagda',
+'nologin'                    => 'Wala ka pang patnugutan? $1.',
+'nologinlink'                => 'Lumikha ng kuwenta',
+'createaccount'              => 'Lumikha ng kuwenta',
+'gotaccount'                 => 'May kuwenta/patnugutan ka na ba? $1.',
+'gotaccountlink'             => 'Lumagda',
+'createaccountmail'          => 'sa pamamagitan ng e-liham',
+'badretype'                  => 'Hindi magkatugma ang ipinasok mong mga hudyat.',
+'userexists'                 => 'May gumagamit na ng ganyang pangalang pantagagamit.
 Pumili lamang ng iba pang pangalan.',
-'youremail'                 => 'E-liham:',
-'username'                  => 'Bansag:',
-'uid'                       => 'ID ng tagagamit:',
-'prefs-memberingroups'      => 'Kasapi ng {{PLURAL:$1|na pangkat|na mga pangkat}}:',
-'yourrealname'              => 'Tunay na pangalan:',
-'yourlanguage'              => 'Wika:',
-'yourvariant'               => 'Naiiba pa:',
-'yournick'                  => 'Panglagda:',
-'badsig'                    => 'Hindi tamang hilaw na lagda.
+'youremail'                  => 'E-liham:',
+'username'                   => 'Bansag:',
+'uid'                        => 'ID ng tagagamit:',
+'prefs-memberingroups'       => 'Kasapi ng {{PLURAL:$1|na pangkat|na mga pangkat}}:',
+'yourrealname'               => 'Tunay na pangalan:',
+'yourlanguage'               => 'Wika:',
+'yourvariant'                => 'Naiiba pa:',
+'yournick'                   => 'Panglagda:',
+'badsig'                     => 'Hindi tamang hilaw na lagda.
 Pakisuri ang mga tatak ng HTML.',
-'badsiglength'              => 'Napakahaba ng panlagda.
+'badsiglength'               => 'Napakahaba ng panlagda.
 Dapat na mas mababa kaysa $1 {{PLURAL:$1|na panitik|na mga panitik}} (karakter).',
-'email'                     => 'E-liham',
-'prefs-help-realname'       => "Opsyonal ('di-talaga kailangan) ang tunay na pangalan.
+'email'                      => 'E-liham',
+'prefs-help-realname'        => "Opsyonal ('di-talaga kailangan) ang tunay na pangalan.
 Kung pipiliin mong ibigay ito, gagamitin ito para mabigyan ka ng pagkilala para iyong mga ginawa.",
-'loginerror'                => 'Kamalian sa paglagda',
-'prefs-help-email'          => 'Opsyonal (hindi talaga kailangan) ang adres ng e-liham, subalit makapagpapahintulot ito sa pagpapadala ng bagong hudyat mo kapag nakalimutan mo ang iyong lumang hudyat.
+'loginerror'                 => 'Kamalian sa paglagda',
+'prefs-help-email'           => 'Opsyonal (hindi talaga kailangan) ang adres ng e-liham, subalit makapagpapahintulot ito sa pagpapadala ng bagong hudyat mo kapag nakalimutan mo ang iyong lumang hudyat.
 Mapipili mo ring payagan ang ibang tagagamit na makapagugnayan sa iyo sa pamamagitan ng iyong pahina ng tagagamit o pahina ng usapan na hindi na kailangan pang ipakilala ang iyong katauhan.',
-'prefs-help-email-required' => 'Kinakailangan ang direksyong e-liham.',
-'loginsuccesstitle'         => 'Matagumpay ang paglagda',
-'loginsuccess'              => "'''Nakalagda ka na sa {{SITENAME}} bilang si \"\$1\".'''",
-'nosuchusershort'           => 'Walang manggagamit na may pangalang "<nowiki>$1</nowiki>". Pakitingnan ang iyong pagbaybay.',
-'nouserspecified'           => 'Kailangang tukuyin mo ang isang pangalang pantagagamit.',
-'wrongpassword'             => 'Mali ang pinasok na hudyat.
+'prefs-help-email-required'  => 'Kinakailangan ang direksyong e-liham.',
+'nocookiesnew'               => 'Nilikha na ang kuwentang pantagagamit, ngunit hindi ka nakalagda.
+Gumagamit ang {{SITENAME}} ng mga "otap" (\'\'cookies\'\') para mailagda ang mga tagagamit.
+Hindi mo pinagagana ang mga "otap".
+Paki paandarin mo ang mga ito, pagkatapos ay lumagda na gamit ang bago mong pangalan ng tagagamit at hudyat.',
+'nocookieslogin'             => 'Gumagamit ang {{SITENAME}} ng mga "otap" (\'\'cookies\'\') para mailagda ang mga tagagamit.
+Hindi mo pinagagana ang mga "otap".
+Paki paandarin mo ang mga ito at sumubok uli.',
+'noname'                     => 'Hindi mo tinukoy ang isang tanggap na pangalan ng tagagamit.',
+'loginsuccesstitle'          => 'Matagumpay ang paglagda',
+'loginsuccess'               => "'''Nakalagda ka na sa {{SITENAME}} bilang si \"\$1\".'''",
+'nosuchuser'                 => 'Walang tagagamit na may pangalang "$1".
+Suriin ang iyong pagbabaybay, o [[Natatangi:TagagamitLumagda/tumala|lumikha ng bagong kuwenta]].',
+'nosuchusershort'            => 'Walang tagagamit na may pangalang "<nowiki>$1</nowiki>". Pakitingnan ang iyong pagbabaybay.',
+'nouserspecified'            => 'Kailangang tukuyin mo ang isang pangalang pantagagamit.',
+'wrongpassword'              => 'Mali ang pinasok na hudyat.
 Pakisubok muli.',
-'wrongpasswordempty'        => 'Walang laman ang pinasok na hudyat.
+'wrongpasswordempty'         => 'Walang laman ang pinasok na hudyat.
 Pakisubok muli.',
-'passwordtooshort'          => 'Hindi tanggap o napakaikli ng iyong hudyat.  
+'passwordtooshort'           => 'Hindi tanggap o napakaikli ng iyong hudyat.  
 Dapat na mayroon itong {{PLURAL:$1|1 panitik|$1 mga panitik}} (karakter) at naiiba sa iyong pangalang pantagagamit.',
-'mailmypassword'            => 'I-e-liham ang bagong hudyat',
-'passwordremindertitle'     => 'Bagong pansamantalang hudyat para sa {{SITENAME}}',
-'passwordremindertext'      => 'Mayroong taong (maaaring ikaw, mula sa IP adres na $1) humiling ng isang bagong 
+'mailmypassword'             => 'I-e-liham ang bagong hudyat',
+'passwordremindertitle'      => 'Bagong pansamantalang hudyat para sa {{SITENAME}}',
+'passwordremindertext'       => 'Mayroong taong (maaaring ikaw, mula sa IP adres na $1) humiling ng isang bagong 
 hudyat para sa {{SITENAME}} ($4). Isang pansamantalang hudyat ang nilikha 
 para sa tagagamit na "$2" at itinakda bilang "$3".  Kung ito ang iyong pakay, 
 kailangan mo na ngayong lumagda/tumala at pumili ng isang bagong hudyat. 
@@ -475,18 +485,52 @@ kailangan mo na ngayong lumagda/tumala at pumili ng isang bagong hudyat.
 Kung ibang tao ang humiling nito, o kung naalala mo na ang iyong hudyat,
 at hindi mo ibig baguhin ito, maaari mong huwag pansinin ang mensaheng ito at
 magpatuloy sa paggamit ng iyong lumang hudyat.',
-'noemail'                   => 'Walang nakatalang adress pang-e-liham para sa tagagamit na "$1".',
-'passwordsent'              => 'Isang bagong hudyat ang ipinadala sa adres ng e-liham na nakatala para kay "$1".
+'noemail'                    => 'Walang nakatalang adress pang-e-liham para sa tagagamit na "$1".',
+'passwordsent'               => 'Isang bagong hudyat ang ipinadala sa adres ng e-liham na nakatala para kay "$1".
 Lumagda/Tumala lang po muli pagkaraan mong matanggap ito.',
-'blocked-mailpassword'      => 'Hinarangan sa paggawa ng mga pagbabago ang iyong IP adres, at kaya hindi rin pinapahintulutang gumamit ng tungkuling makabawi ng hudyat para maiwasan ang pangaabuso.',
-'eauthentsent'              => 'Nagpadala ng isang e-liham na pangkompirmasyon doon sa iniharap na adres ng e-liham.
+'blocked-mailpassword'       => 'Hinarangan sa paggawa ng mga pagbabago ang iyong IP adres, at kaya hindi rin pinapahintulutang gumamit ng tungkuling makabawi ng hudyat para maiwasan ang pangaabuso.',
+'eauthentsent'               => 'Nagpadala ng isang e-liham na pangkompirmasyon doon sa iniharap na adres ng e-liham.
 Bago magpadala ng iba pang e-liham sa kuwenta, kailangan mong sundin ang mga tagubiling nasa loob ng e-liham, para mapatunayang iyo talaga ang akawnt.',
-'mailerror'                 => 'Kamalian sa pagpapadala ng liham: $1',
-'loginlanguagelabel'        => 'Wika: $1',
+'throttled-mailpassword'     => 'Nagpadala na ng isang paalalang panghudyat, nitong huling {{PLURAL:$1|oras|$1 mga oras}}.
+Para maiwasin ang pangaabuso, isang paalalang panghudyat lang ang ipapadala bawat {{PLURAL:$1|oras|$1 mga oras}}.',
+'mailerror'                  => 'Kamalian sa pagpapadala ng liham: $1',
+'acct_creation_throttle_hit' => 'Paumanhin, nalikha mo na ang {{PLURAL:$1|1 kuwenta|$1 mga kuwenta}}.
+Hindi ka na maaaring lumikha pa.',
+'emailauthenticated'         => 'Napatunayan na ang iyong adres ng e-liham noong $2 noong $3.',
+'emailnotauthenticated'      => 'Hindi pa napapatunayan ang iyong adres ng e-liham.
+Walang e-liham na ipapadala para sa anumang sumusunod na tampok na kasangkapang-katangian.',
+'noemailprefs'               => 'Tukuyin ang isang adres ng e-liham para gumana ang mga tampok na kasangkapang-katangiang ito.',
+'emailconfirmlink'           => 'Pakikompirma ang iyong adres ng e-liham.',
+'invalidemailaddress'        => 'Hindi matatanggap ang adres ng e-liham na ito dahil tila mayroon itong maling anyo.
+Pakipasok ang isang may mahusay na anyong adres o paki-iwang walang laman na lang ang lagayan.',
+'accountcreated'             => 'Nilikha na ang kuwenta',
+'accountcreatedtext'         => 'Nilikha na ang kuwentang tagagamit para kay $1.',
+'createaccount-title'        => 'Paglikha ng kuwenta para sa {{SITENAME}}',
+'createaccount-text'         => 'May lumikha ng kuwenta para sa iyong adres ng e-liham sa {{SITENAME}} ($4) na pinangalanang "$2", na may hudyat na "$3".
+Dapat kang tumala at baguhin ang hudyat mo ngayon.
+
+Maaari mong huwag pansinin ang mensaheng ito, kung mali ang paglikha ng kuwentang ito.',
+'login-throttled'            => 'Masyadong marami ang ginawa mong kamakailan lang na mga pagsubok sa hudyat ng kuwentang ito.
+Maghintay muna po bago sumubok uli.',
+'loginlanguagelabel'         => 'Wika: $1',
 
 # Password reset dialog
-'resetpass_success'       => 'Matagumpay na nabago ang iyong hudyat!  Inilalagda ka na ngayon...',
-'resetpass_bad_temporary' => 'Hindi tanggap na pansamantalang hudyat.
+'resetpass'                 => 'Palitan ang hudyat',
+'resetpass_announce'        => 'Lumagda ka sa pamamagitan ng isang pansamantalang ini-e-liham na kodigo.
+Para tapusin ang paglagda, dapat kang magtakda ng isang bagong hudyat dito:',
+'resetpass_text'            => '<!-- Idagdag ang teksto rito -->',
+'resetpass_header'          => 'Baguhin ang hudyat ng kuwenta',
+'oldpassword'               => 'Lumang hudyat:',
+'newpassword'               => 'Bagong hudyat:',
+'retypenew'                 => 'Ipasok muli ang bagong hudyat:',
+'resetpass_submit'          => 'Itakda ang hudyat at lumagda',
+'resetpass_success'         => 'Matagumpay na nabago ang iyong hudyat!  Inilalagda ka na ngayon...',
+'resetpass_bad_temporary'   => 'Hindi tanggap na pansamantalang hudyat.
+Maaaring matagumpay mo nang nabago ang iyong hudyat o nakahiling na ng isang bagong pansamantalang hudyat.',
+'resetpass_forbidden'       => 'Hindi mababago ang mga hudyat',
+'resetpass-no-info'         => 'Nakalagda ka dapat para tuwirang mapuntahan ang pahina ito.',
+'resetpass-submit-loggedin' => 'Baguhin ang hudyat',
+'resetpass-wrong-oldpass'   => 'Hindi tanggap na pansamantala o pangkasalukuyang hudyat.
 Maaaring matagumpay mo nang nabago ang iyong hudyat o nakahiling na ng isang bagong pansamantalang hudyat.',
 
 # Edit page toolbar
