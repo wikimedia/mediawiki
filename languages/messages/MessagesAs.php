@@ -11,7 +11,7 @@
  * @author Urhixidur
  */
 
-$fallback='hi';
+$fallback='bn';
 
 $namespaceNames = array(
 	NS_MEDIA            => 'মাধ্যম',
