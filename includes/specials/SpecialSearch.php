@@ -72,6 +72,7 @@ class SpecialSearch {
 		$this->searchAdvanced = $request->getVal( 'advanced' );
 		$this->active = 'advanced';
 		$this->sk = $user->getSkin();
+		$this->didYouMeanHtml = ''; # html of did you mean... link
 	}
 
 	/**
@@ -117,26 +118,6 @@ class SpecialSearch {
 		$this->setupPage( $term );
 		$this->searchEngine = SearchEngine::create();
 		
-		$t = Title::newFromText( $term );
-
-		$wgOut->addHtml( 
-			Xml::openElement( 'table', array( 'border'=>0, 'cellpadding'=>0, 'cellspacing'=>0 ) ) .
-			Xml::openElement( 'tr' ) .
-			Xml::openElement( 'td' ) . "\n"	.
-			( $this->searchAdvanced ? $this->powerSearchBox( $term ) : $this->shortDialog( $term ) ) .
-			Xml::closeElement('td') .
-			Xml::closeElement('tr') .
-			Xml::closeElement('table')
-		);
-
-		$filePrefix = $wgContLang->getFormattedNsText(NS_FILE).':';
-		if( '' === trim( $term ) || $filePrefix === trim( $term ) ) {
-			$wgOut->addHTML( $this->searchAdvanced ? $this->powerSearchFocus() : $this->searchFocus() );
-			// Empty query -- straight view of search form
-			wfProfileOut( __METHOD__ );
-			return;
-		}
-
 		if( $wgDisableTextSearch ) {
 			global $wgSearchForwardUrl;
 			if( $wgSearchForwardUrl ) {
@@ -160,7 +141,9 @@ class SpecialSearch {
 			wfProfileOut( __METHOD__ );
 			return;
 		}
-
+		
+		$t = Title::newFromText( $term );
+		// fetch search results
 		$search =& $this->searchEngine;
 		$search->setLimitOffset( $this->limit, $this->offset );
 		$search->setNamespaces( $this->namespaces );
@@ -168,15 +151,8 @@ class SpecialSearch {
 		$rewritten = $search->replacePrefixes($term);
 
 		$titleMatches = $search->searchTitle( $rewritten );
-
-		// Sometimes the search engine knows there are too many hits
-		if( $titleMatches instanceof SearchResultTooMany ) {
-			$wgOut->addWikiText( '==' . wfMsg( 'toomanymatches' ) . "==\n" );
-			wfProfileOut( __METHOD__ );
-			return;
-		}
-
-		$textMatches = $search->searchText( $rewritten );
+		if( !($titleMatches instanceof SearchResultTooMany))
+			$textMatches = $search->searchText( $rewritten );
 
 		// did you mean... suggestions
 		if( $textMatches && $textMatches->hasSuggestion() ) {
@@ -188,7 +164,33 @@ class SpecialSearch {
 			$suggestLink = '<a href="'.$st->escapeLocalURL($stParams).'">'.
 				$textMatches->getSuggestionSnippet().'</a>';
 
-			$wgOut->addHTML('<div class="searchdidyoumean">'.wfMsg('search-suggest',$suggestLink).'</div>');
+			$this->didYouMeanHtml = '<div class="searchdidyoumean">'.wfMsg('search-suggest',$suggestLink).'</div>';
+		}
+		
+		// start rendering the page		
+		$wgOut->addHtml( 
+			Xml::openElement( 'table', array( 'border'=>0, 'cellpadding'=>0, 'cellspacing'=>0 ) ) .
+			Xml::openElement( 'tr' ) .
+			Xml::openElement( 'td' ) . "\n"	.
+			( $this->searchAdvanced ? $this->powerSearchBox( $term ) : $this->shortDialog( $term ) ) .
+			Xml::closeElement('td') .
+			Xml::closeElement('tr') .
+			Xml::closeElement('table')
+		);
+		
+		// Sometimes the search engine knows there are too many hits
+		if( $titleMatches instanceof SearchResultTooMany ) {
+			$wgOut->addWikiText( '==' . wfMsg( 'toomanymatches' ) . "==\n" );
+			wfProfileOut( __METHOD__ );
+			return;
+		}
+		
+		$filePrefix = $wgContLang->getFormattedNsText(NS_FILE).':';
+		if( '' === trim( $term ) || $filePrefix === trim( $term ) ) {
+			$wgOut->addHTML( $this->searchAdvanced ? $this->powerSearchFocus() : $this->searchFocus() );
+			// Empty query -- straight view of search form
+			wfProfileOut( __METHOD__ );
+			return;
 		}
 
 		// show direct page/create link
@@ -503,7 +505,7 @@ class SpecialSearch {
 		$out = "<div id='mw-search-interwiki'><div id='mw-search-interwiki-caption'>".
 			wfMsg('search-interwiki-caption')."</div>\n";		
 		$off = $this->offset + 1;
-		$out .= "<ul start='{$off}' class='mw-search-iwresults'>\n";
+		$out .= "<ul class='mw-search-iwresults'>\n";
 
 		// work out custom project captions
 		$customCaptions = array();
@@ -600,32 +602,41 @@ class SpecialSearch {
 		$redirect = Xml::check( 'redirs', $this->searchRedirects, array( 'value' => '1', 'id' => 'redirs' ) );
 		$redirectLabel = Xml::label( wfMsg( 'powersearch-redir' ), 'redirs' );
 		$searchField = Xml::input( 'search', 50, $term, array( 'type' => 'text', 'id' => 'powerSearchText' ) );
-		$searchButton = Xml::submitButton( wfMsg( 'powersearch' ), array( 'name' => 'fulltext' ) ) . "\n";
+		$searchButton = Xml::submitButton( wfMsg( 'powersearch' ), array( 'name' => 'fulltext' )) . "\n";
 		$searchTitle = SpecialPage::getTitleFor( 'Search' );
+		
+		$redirectText = '';
+		// show redirects check only if backend supports it 
+		if($this->searchEngine->acceptListRedirects()){
+			"<p>".
+			$redirectText =  $redirect . " " . $redirectLabel
+			."</p>";
+		}
 		
 		$out = Xml::openElement( 'form', array(	'id' => 'powersearch', 'method' => 'get', 'action' => $wgScript ) ) .
 			Xml::hidden( 'title', $searchTitle->getPrefixedText() ) . "\n" .
 			"<p>" .
 			wfMsgExt( 'powersearch-ns', array( 'parseinline' ) ) .
 			"</p>\n" .
+			'<input type="hidden" name="advanced" value="'.$this->searchAdvanced."\"/>\n".
 			$tables .
-			"<hr style=\"clear: both\" />\n" .
-			"<p>" .
-			$redirect . " " . $redirectLabel .
-			"</p>\n" .
+			"<hr style=\"clear: both;\" />\n".			
+			$redirectText ."\n".
+			"<div style=\"padding-top:2px;padding-bottom:2px;\">".
 			wfMsgExt( 'powersearch-field', array( 'parseinline' ) ) .
 			"&nbsp;" .
 			$searchField .
 			"&nbsp;" .
 			$searchButton .
+			"</div>".
 			"</form>";
 		$t = Title::newFromText( $term );
-		if( $t != null && count($this->namespaces) === 1 ) {
+		/* if( $t != null && count($this->namespaces) === 1 ) {
 			$out .= wfMsgExt( 'searchmenu-prefix', array('parseinline'), $term );
-		}
+		} */
 		return Xml::openElement( 'fieldset', array('id' => 'mw-searchoptions','style' => 'margin:0em;') ) .
 			Xml::element( 'legend', null, wfMsg('powersearch-legend') ) .
-			$this->formHeader($term) . $out . 
+			$this->formHeader($term) . $out . $this->didYouMeanHtml . 
 			Xml::closeElement( 'fieldset' );
 	}
 	
@@ -729,8 +740,8 @@ class SpecialSearch {
 		$searchable = SearchEngine::searchableNamespaces();
 		$out = Xml::openElement( 'form', array( 'id' => 'search', 'method' => 'get', 'action' => $wgScript ) );
 		$out .= Xml::hidden( 'title', $searchTitle->getPrefixedText() ) . "\n";
-		// If searching several, but not all namespaces, show what we are searching.
-		if( count($this->namespaces) > 1 && $this->namespaces !== array_keys($searchable) ) {
+		// show namespaces only for advanced search
+		if( $this->active == 'advanced' ) {
 			$active = array();
 			foreach( $this->namespaces as $ns ) {
 				$active[$ns] = $searchable[$ns];
@@ -752,12 +763,12 @@ class SpecialSearch {
 		$out .= Xml::closeElement( 'form' );
 		// Add prefix link for single-namespace searches
 		$t = Title::newFromText( $term );
-		if( $t != null && count($this->namespaces) === 1 ) {
+		/*if( $t != null && count($this->namespaces) === 1 ) {
 			$out .= wfMsgExt( 'searchmenu-prefix', array('parseinline'), $term );
-		}
+		}*/
 		return Xml::openElement( 'fieldset', array('id' => 'mw-searchoptions','style' => 'margin:0em;') ) .
 			Xml::element( 'legend', null, wfMsg('searchmenu-legend') ) .
-			$this->formHeader($term) . $out .
+			$this->formHeader($term) . $out . $this->didYouMeanHtml .
 			Xml::closeElement( 'fieldset' );
 	}
 	
