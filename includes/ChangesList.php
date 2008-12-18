@@ -467,7 +467,6 @@ class EnhancedChangesList extends ChangesList {
 			$clink = $this->skin->makeKnownLinkObj( $rc->getTitle(), '', "rcid={$rc_id}" );
 		// Log entries
 		} else if( $rc_type == RC_LOG ) {
-			var_dump( $rc_log_type );
 			if( $rc_log_type ) {
 				$logtitle = SpecialPage::getTitleFor( 'Log', $rc_log_type );
 				$clink = '(' . $this->skin->makeKnownLinkObj( $logtitle, LogPage::logName($rc_log_type) ) . ')';
