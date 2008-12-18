@@ -57,7 +57,7 @@ let get_preface ()  = "\\nonstopmode\n\\documentclass[12pt]{article}\n" ^
               (if !modules_nonascii then get_encoding !modules_encoding else "") ^
               (if !modules_ams then "\\usepackage{amsmath}\n\\usepackage{amsfonts}\n\\usepackage{amssymb}\n" else "") ^
               (if !modules_color then "\\usepackage[dvips,usenames]{color}\n" else "") ^
-              "\\pagestyle{empty}\n\\begin{document}\n$$\n"
+              "\\usepackage{cancel}\n\\pagestyle{empty}\n\\begin{document}\n$$\n"
 let get_footer  ()  = "\n$$\n\\end{document}\n"
 
 let set_encoding = function
@@ -507,6 +507,8 @@ let find = function
     | "\\cfrac"            -> (tex_use_ams (); FUN_AR2h ("\\cfrac ", fun num den -> Html.html_render [num], "<hr style=\"{background: black}\">", Html.html_render [den]))
     | "\\over"             -> FUN_INFIXh ("\\over ", fun num den -> Html.html_render num, "<hr style=\"{background: black}\"/>", Html.html_render den)
     | "\\sqrt"             -> FUN_AR1 "\\sqrt "
+    | "\\cancel"           -> FUN_AR1 "\\cancel "
+    | "\\cancelto"         -> FUN_AR2 "\\cancelto "
     | "\\pmod"             -> FUN_AR1hl ("\\pmod ", ("(mod ", ")"))
     | "\\bmod"             -> FUN_AR1hl ("\\bmod ", ("mod ", ""))
     | "\\emph"             -> FUN_AR1 "\\emph "
