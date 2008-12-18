@@ -607,10 +607,8 @@ class SpecialSearch {
 		
 		$redirectText = '';
 		// show redirects check only if backend supports it 
-		if($this->searchEngine->acceptListRedirects()){
-			"<p>".
-			$redirectText =  $redirect . " " . $redirectLabel
-			."</p>";
+		if( $this->searchEngine->acceptListRedirects() ) {
+			$redirectText = "<p>". $redirect . " " . $redirectLabel ."</p>";
 		}
 		
 		$out = Xml::openElement( 'form', array(	'id' => 'powersearch', 'method' => 'get', 'action' => $wgScript ) ) .
