@@ -226,16 +226,18 @@ class MediaWiki {
 			if( $title->getNamespace() != NS_MEDIAWIKI && HTMLFileCache::useFileCache() ) {
 				$cache = new HTMLFileCache( $title );
 				if( $cache->isFileCacheGood( /* Assume up to date */ ) ) {
-					global $wgOut;
+					global $wgOut, $wgDisableCounters;
 					/* Check incoming headers to see if client has this cached */
 					if( !$wgOut->checkLastModified( $cache->fileCacheTime() ) ) {
 						wfDebug( "MediaWiki::initializeSpecialCases(): about to load file cache\n" );
 						$cache->loadFromFileCache();
 						# Tell $wgOut that output is taken care of
 						$wgOut->disable();
-						# Do any stats increment/watchlist stuff
-						$article = self::articleFromTitle( $title );
-						$article->viewUpdates();
+						if( !$wgDisableCounters ) {
+							# Do any stats increment/watchlist stuff
+							$article = self::articleFromTitle( $title );
+							$article->viewUpdates();
+						}
 					}
 					wfProfileOut( __METHOD__ );
 					return true;
