@@ -24,19 +24,19 @@ if( count( $args ) < 1 || isset( $options['help'] ) ) {
 		
 		$title = isset( $options['title'] ) ? $options['title'] : titleFromFilename( $filename );
 		$title = Title::newFromUrl( $title );
-		echo( "\nUsing title '" . $title->getPrefixedText() . "'..." );
 		
 		if( is_object( $title ) ) {
 			
+			echo( "\nUsing title '" . $title->getPrefixedText() . "'..." );
 			if( !$title->exists() || !isset( $options['nooverwrite'] ) ) {
 			
 				$text = file_get_contents( $filename );
 				$user = isset( $options['user'] ) ? $options['user'] : 'Maintenance script';
 				$user = User::newFromName( $user );
-				echo( "\nUsing username '" . $user->getName() . "'..." );
 				
 				if( is_object( $user ) ) {
 				
+					echo( "\nUsing username '" . $user->getName() . "'..." );
 					$wgUser =& $user;
 					$comment = isset( $options['comment'] ) ? $options['comment'] : 'Importing text file';
 					$flags = 0 | ( isset( $options['norc'] ) ? EDIT_SUPPRESS_RC : 0 );
