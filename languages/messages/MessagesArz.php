@@ -1706,7 +1706,7 @@ PICT # misc.
 'statistics-jobqueue'          => 'طول [http://www.mediawiki.org/wiki/Manual:Job_queue طابور الشغل]',
 'statistics-users'             => '[[Special:ListUsers|يوزرز]] مسجلين',
 'statistics-users-active'      => 'يوزرز نشطين',
-'statistics-users-active-desc' => 'اليوزرز اللى قاموا بفعل فى الشهر الماضى',
+'statistics-users-active-desc' => 'اليوزرز اللي نفذو عمليه في الـ {{PLURAL:$1|يوم|$1 ايام}} اللي فاتو',
 'statistics-mostpopular'       => 'اكتر صفحات اتشافت',
 
 'disambiguations'      => 'صفحات التوضيح',

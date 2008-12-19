@@ -1084,7 +1084,7 @@ Možete [[:\$1|da napravite članak sa tim naslovom]].
 'viewprevnext'                     => 'Pogledaj ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Opcije pretrage',
 'searchmenu-exists'                => "'''Postoji stranica pod nazivom \"[[\$1]]\" na ovoj wiki'''",
-'searchmenu-new'                   => "'''[[:$1|Napravi]] stranicu ''$1'' na ovoj wiki!'''",
+'searchmenu-new'                   => "'''Napravi stranicu \"[[:\$1|\$1]]\" na ovoj wiki!'''",
 'searchhelp-url'                   => 'Help:Sadržaj',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Pregledaj stranice sa ovim prefiksom]]',
 'searchprofile-articles'           => 'Stranice sadržaja',
@@ -2051,7 +2051,7 @@ $1',
 'blanknamespace' => '(Glavno)',
 
 # Contributions
-'contributions'       => 'Doprinos korisnika',
+'contributions'       => 'Doprinosi korisnika',
 'contributions-title' => 'Doprinosi korisnika $1',
 'mycontris'           => 'Moj doprinos',
 'contribsub2'         => 'Za $1 ($2)',

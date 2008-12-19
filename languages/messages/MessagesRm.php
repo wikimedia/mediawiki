@@ -238,7 +238,7 @@ Tes conto è vegni creà. Betg emblida da midar tias preferenzas da {{SITENAME}}
 'yourrealname'               => 'Voss num endretg (nagin duair):',
 'yourlanguage'               => 'linguatg:',
 'yourvariant'                => 'varianta',
-'yournick'                   => 'surnum per suttascriver:',
+'yournick'                   => 'Signatura:',
 'prefs-help-realname'        => "Opziun: Qua pos inditgar in surnum che vegn inditga empè da tes num d'utilisader en tias suttascripziuns cun '''<nowiki>--~~~~</nowiki>'''.",
 'loginerror'                 => 'Sbagl da log-in',
 'prefs-help-email'           => 'Opziun: Pussibilitescha ad auters utilisaders da contactar tai per email senza che ti stos publitgar tia identitad. Pussibilitescha er da trametter in nov pled-clav en cass da sperdita.',

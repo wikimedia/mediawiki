@@ -744,7 +744,7 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'nextn'                 => '$1 proxima',
 'viewprevnext'          => 'Videre ($1) ($2) ($3).',
 'searchmenu-exists'     => "'''Iam est pagina \"[[\$1]]\"'''",
-'searchmenu-new'        => "'''[[:$1|Creare]] paginam ''$1'''''",
+'searchmenu-new'        => "'''Creare paginam \"[[:\$1|\$1]]\"'''",
 'searchhelp-url'        => 'Help:Adiutatum',
 'search-result-size'    => '$1 ({{PLURAL:$2|1 verbum|$2 verba}})',
 'search-result-score'   => 'Gravitas: $1%',
@@ -1676,7 +1676,7 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'imagemaxsize'    => 'Terminare imagines in paginis imaginum ad:',
 'thumbsize'       => 'Magnitudo pollicisunguis:',
 'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|pagina|paginae}}',
-'file-nohires'    => '<small>Nulla maior resolutio imagini exstat.</small>',
+'file-nohires'    => '<small>Nulla maior resolutio exstat.</small>',
 'show-big-image'  => 'Resolutio completa',
 
 # Special:NewFiles
@@ -1688,7 +1688,8 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'bydate'        => 'ex die',
 
 # Metadata
-'metadata-expand' => 'Plura ostende',
+'metadata-expand'   => 'Plura ostende',
+'metadata-collapse' => 'Partim celare',
 
 'exif-meteringmode-1' => 'Media',
 
