@@ -1549,6 +1549,17 @@ class Language {
 				$out );
 		}
 		
+		// Periods within things like hostnames and IP addresses
+		// are also important -- we want a search for "example.com"
+		// or "192.168.1.1" to work sanely.
+		//
+		// MySQL's search seems to ignore them, so you'd match on
+		// "example.wikipedia.com" and "192.168.83.1" as well.
+		$out = preg_replace(
+			"/(\w)\.(\w|\*)/u",
+			"$1U82e$2",
+			$out );
+		
 		wfProfileOut( __METHOD__ );
 		return $out;
 	}

@@ -150,7 +150,7 @@ class SearchEngine {
 	}
 
 	public static function legalSearchChars() {
-		return "A-Za-z_'0-9\\x80-\\xFF\\-";
+		return "A-Za-z_'.0-9\\x80-\\xFF\\-";
 	}
 
 	/**

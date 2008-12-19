@@ -54,7 +54,11 @@ class SearchMySQL extends SearchEngine {
 				if( !empty( $terms[3] ) ) {
 					// Match individual terms in result highlighting...
 					$regexp = preg_quote( $terms[3], '/' );
-					if( $terms[4] ) $regexp .= "[0-9A-Za-z_]+";
+					if( $terms[4] ) {
+						$regexp = "\b$regexp"; // foo*
+					} else {
+						$regexp = "\b$regexp\b";
+					}
 				} else {
 					// Match the quoted term in result highlighting...
 					$regexp = preg_quote( str_replace( '"', '', $terms[2] ), '/' );
