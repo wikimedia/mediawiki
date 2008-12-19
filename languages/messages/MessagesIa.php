@@ -1122,6 +1122,7 @@ per favor vide math/README pro configurar lo.",
 'saveprefs'                 => 'Confirmar',
 'resetprefs'                => 'Reverter cambios',
 'textboxsize'               => 'Modification',
+'prefs-edit-boxsize'        => 'Dimensiones del fenestra de modification.',
 'rows'                      => 'Lineas:',
 'columns'                   => 'Columnas:',
 'searchresultshead'         => 'Recerca',
@@ -1580,7 +1581,7 @@ Memora verificar que non existe altere ligamines al patronos ante que tu los del
 'statistics-jobqueue'          => 'Longor del [http://www.mediawiki.org/wiki/Manual:Job_queue cauda de actiones]',
 'statistics-users'             => '[[Special:ListUsers|Usatores]] registrate',
 'statistics-users-active'      => 'Usatores active',
-'statistics-users-active-desc' => 'Usatores qui ha facite un action durante le mense passate',
+'statistics-users-active-desc' => 'Usatores qui ha facite un action durante le {{PLURAL:$1|die|$1 dies}} passate',
 'statistics-mostpopular'       => 'Le paginas plus visitate',
 
 'disambiguations'      => 'Paginas de disambiguation',
@@ -1671,6 +1672,7 @@ executar iste function.',
 'booksources-search-legend' => 'Cercar fontes de libros',
 'booksources-go'            => 'Ir',
 'booksources-text'          => 'Infra es un lista de ligamines a altere sitos que vende libros nove e usate, e pote etiam haber altere informationes super libros que tu cerca:',
+'booksources-invalid-isbn'  => 'Le ISBN date non pare esser valide; verifica que tu non ha facite errores copiante lo del fonte original.',
 
 # Special:Log
 'specialloguserlabel'  => 'Usator:',
@@ -1970,7 +1972,7 @@ Tu pote cambiar le nivello de protection de iste pagina, sed isto non cambiara l
 'undeletepage'                 => 'Vider e restaurar paginas delite',
 'undeletepagetitle'            => "'''Lo sequente consiste de revisiones delite de [[:$1|$1]]'''.",
 'viewdeletedpage'              => 'Vider paginas delite',
-'undeletepagetext'             => 'Le paginas sequente ha essite delite, sed es ancora in le archivo e pote esser restaurate.
+'undeletepagetext'             => 'Le {{PLURAL:$1|pagina|paginas}} sequente ha essite delite, sed es ancora in le archivo e pote esser restaurate.
 Le archivo pote esser vacuate periodicamente.',
 'undelete-fieldset-title'      => 'Restaurar revisiones',
 'undeleteextrahelp'            => "Pro restaurar le historia integre del pagina, lassa tote le quadratos dismarcate e clicca '''''Restaurar'''''.
@@ -2132,6 +2134,7 @@ a un adresse IP blocate previemente.',
 'ipblocklist-no-results'          => 'Le adresse IP o nomine de usator que tu requestava non es blocate.',
 'blocklink'                       => 'blocar',
 'unblocklink'                     => 'disblocar',
+'change-blocklink'                => 'cambiar blocada',
 'contribslink'                    => 'contributiones',
 'autoblocker'                     => 'Autoblocate proque tu adresse IP ha recentemente essite usate per "[[User:$1|$1]]".
 Le ration date pro le blocada de $1 es: "$2"',
@@ -2197,9 +2200,9 @@ Pro blocar o disblocar le base de datos, le servitor web debe poter scriber a is
 'databasenotlocked'   => 'Le base de datos non es blocate.',
 
 # Move page
-'move-page'                 => 'Renominar $1',
-'move-page-legend'          => 'Renominar pagina',
-'movepagetext'              => "Per medio del formulario infra tu pote renominar un pagina, transferente tote su historia al nove nomine.
+'move-page'                    => 'Renominar $1',
+'move-page-legend'             => 'Renominar pagina',
+'movepagetext'                 => "Per medio del formulario infra tu pote renominar un pagina, transferente tote su historia al nove nomine.
 Le titulo anterior devenira un pagina de redirection verso le nove titulo.
 Tu pote actualisar automaticamente le redirectiones que puncta verso le titulo original.
 Si tu opta contra facer lo, assecura te de reparar omne redirectiones [[Special:DoubleRedirects|duple]] o [[Special:BrokenRedirects|defecte]].
@@ -2211,59 +2214,60 @@ Isto significa que tu pote renominar un pagina a su titulo original si tu lo ha 
 '''ATTENTION!'''
 Isto pote esser un cambio drastic e inexpectate pro un pagina popular;
 per favor assecura te que tu comprende le consequentias de isto ante que tu procede.",
-'movepagetalktext'          => "Le pagina de discussion associate essera automaticamente renominate conjunctemente con illo '''a minus que''':
+'movepagetalktext'             => "Le pagina de discussion associate essera automaticamente renominate conjunctemente con illo '''a minus que''':
 *Un pagina de discussion non vacue ja existe sub le nove nomine, o
 *Tu dismarca le quadrato infra.
 
 Il tal casos, tu debera renominar o fusionar le pagina manualmente si desirate.",
-'movearticle'               => 'Renominar pagina:',
-'movenologin'               => 'Tu non ha aperite un session',
-'movenologintext'           => 'Tu debe esser un usator registrate e [[Special:UserLogin|aperir un session]]
+'movearticle'                  => 'Renominar pagina:',
+'movenologin'                  => 'Tu non ha aperite un session',
+'movenologintext'              => 'Tu debe esser un usator registrate e [[Special:UserLogin|aperir un session]]
 pro mover un pagina.',
-'movenotallowed'            => 'Tu non ha le permission de renominar paginas.',
-'cant-move-user-page'       => 'Tu non ha le permission de renominar paginas principal de usatores.',
-'cant-move-to-user-page'    => 'Tu non ha le permission de renominar un pagina verso un pagina de usator (excepte un subpagina de usator).',
-'newtitle'                  => 'Al nove titulo:',
-'move-watch'                => 'Observar iste pagina',
-'movepagebtn'               => 'Renominar pagina',
-'pagemovedsub'              => 'Renomination succedite',
-'movepage-moved'            => '<big>\'\'\'"$1" ha essite renominate a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'             => 'Un pagina con iste nomine ja existe, o le nomine seligite non es valide.
+'movenotallowed'               => 'Tu non ha le permission de renominar paginas.',
+'cant-move-user-page'          => 'Tu non ha le permission de renominar paginas principal de usatores.',
+'cant-move-to-user-page'       => 'Tu non ha le permission de renominar un pagina verso un pagina de usator (excepte un subpagina de usator).',
+'newtitle'                     => 'Al nove titulo:',
+'move-watch'                   => 'Observar iste pagina',
+'movepagebtn'                  => 'Renominar pagina',
+'pagemovedsub'                 => 'Renomination succedite',
+'movepage-moved'               => '<big>\'\'\'"$1" ha essite renominate a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'                => 'Un pagina con iste nomine ja existe, o le nomine seligite non es valide.
 Per favor selige un altere nomine.',
-'cantmove-titleprotected'   => 'Tu non pote renominar un pagina a iste titulo, proque le nove titulo ha essite protegite contra creation',
-'talkexists'                => "'''Le pagina mesme ha essite renominate con successo, mais le pagina de discussion associate non ha essite renominate proque ja existe un sub le nove titulo.
+'cantmove-titleprotected'      => 'Tu non pote renominar un pagina a iste titulo, proque le nove titulo ha essite protegite contra creation',
+'talkexists'                   => "'''Le pagina mesme ha essite renominate con successo, mais le pagina de discussion associate non ha essite renominate proque ja existe un sub le nove titulo.
 Per favor fusiona los manualmente.'''",
-'movedto'                   => 'renominate a',
-'movetalk'                  => 'Renominar etiam le pagina de discussion associate',
-'move-subpages'             => 'Renominar tote le subpaginas, si applicabile',
-'move-talk-subpages'        => 'Renominar tote le subpaginas del pagina de discussion, si applicabile',
-'movepage-page-exists'      => 'Le pagina $1 existe ja e non pote esser automaticamente superscribite.',
-'movepage-page-moved'       => 'Le pagina $1 ha essite renominate a $2.',
-'movepage-page-unmoved'     => 'Le pagina $1 non poteva esser renominate a $2.',
-'movepage-max-pages'        => 'Le maximo de $1 {{PLURAL:$1|pagina|paginas}} ha essite renominate e nulle altere pagina pote esser renominate automaticamente.',
-'1movedto2'                 => 'renominava [[$1]] verso [[$2]]',
-'1movedto2_redir'           => 'renominava [[$1]] verso [[$2]] trans redirection',
-'movelogpage'               => 'Registro de renominationes',
-'movelogpagetext'           => 'Infra es un lista de paginas renominate.',
-'movereason'                => 'Motivo:',
-'revertmove'                => 'reverter',
-'delete_and_move'           => 'Deler e renominar',
-'delete_and_move_text'      => '==Deletion requirite==
+'movedto'                      => 'renominate a',
+'movetalk'                     => 'Renominar etiam le pagina de discussion associate',
+'move-subpages'                => 'Renominar tote le subpaginas, si applicabile',
+'move-talk-subpages'           => 'Renominar tote le subpaginas del pagina de discussion, si applicabile',
+'movepage-page-exists'         => 'Le pagina $1 existe ja e non pote esser automaticamente superscribite.',
+'movepage-page-moved'          => 'Le pagina $1 ha essite renominate a $2.',
+'movepage-page-unmoved'        => 'Le pagina $1 non poteva esser renominate a $2.',
+'movepage-max-pages'           => 'Le maximo de $1 {{PLURAL:$1|pagina|paginas}} ha essite renominate e nulle altere pagina pote esser renominate automaticamente.',
+'1movedto2'                    => 'renominava [[$1]] verso [[$2]]',
+'1movedto2_redir'              => 'renominava [[$1]] verso [[$2]] trans redirection',
+'movelogpage'                  => 'Registro de renominationes',
+'movelogpagetext'              => 'Infra es un lista de paginas renominate.',
+'movereason'                   => 'Motivo:',
+'revertmove'                   => 'reverter',
+'delete_and_move'              => 'Deler e renominar',
+'delete_and_move_text'         => '==Deletion requirite==
 Le pagina de destination "[[:$1]]" existe ja.
 Esque tu vole deler lo pro permitter le renomination?',
-'delete_and_move_confirm'   => 'Si, deler le pagina',
-'delete_and_move_reason'    => 'Delite pro permitter renomination',
-'selfmove'                  => 'Le titulos de origine e de destination es identic;
+'delete_and_move_confirm'      => 'Si, deler le pagina',
+'delete_and_move_reason'       => 'Delite pro permitter renomination',
+'selfmove'                     => 'Le titulos de origine e de destination es identic;
 non pote renominar un pagina al mesme titulo.',
-'immobile-source-namespace' => 'Non pote renominar paginas in le spatio de nomines "$1"',
-'immobile-target-namespace' => 'Non pote renominar paginas verso le spatio de nomines "$1"',
-'immobile-source-page'      => 'Iste pagina non es renominabile.',
-'immobile-target-page'      => 'Non pote renominar a iste titulo de destination.',
-'imagenocrossnamespace'     => 'Non pote renominar file verso un spatio de nomines non-file',
-'imagetypemismatch'         => 'Le nove extension del nomine del file non corresponde al typo del file',
-'imageinvalidfilename'      => 'Le nomine del file de destination es invalide',
-'fix-double-redirects'      => 'Actualisar tote le redirectiones que puncta verso le titulo original',
-'move-leave-redirect'       => 'Lassar un redirection',
+'immobile-source-namespace'    => 'Non pote renominar paginas in le spatio de nomines "$1"',
+'immobile-target-namespace'    => 'Non pote renominar paginas verso le spatio de nomines "$1"',
+'immobile-target-namespace-iw' => 'Un ligamine interwiki non es un destination valide pro le renomination de un pagina.',
+'immobile-source-page'         => 'Iste pagina non es renominabile.',
+'immobile-target-page'         => 'Non pote renominar a iste titulo de destination.',
+'imagenocrossnamespace'        => 'Non pote renominar file verso un spatio de nomines non-file',
+'imagetypemismatch'            => 'Le nove extension del nomine del file non corresponde al typo del file',
+'imageinvalidfilename'         => 'Le nomine del file de destination es invalide',
+'fix-double-redirects'         => 'Actualisar tote le redirectiones que puncta verso le titulo original',
+'move-leave-redirect'          => 'Lassar un redirection',
 
 # Export
 'export'            => 'Exportar paginas',

@@ -886,7 +886,7 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 # Preferences page
 'preferences'              => 'Tercihler',
 'mypreferences'            => 'Tercihlerim',
-'prefs-edits'              => 'Değişikilik sayısı:',
+'prefs-edits'              => 'Değişiklik sayısı:',
 'prefsnologin'             => 'Oturum açık değil',
 'prefsnologintext'         => 'Kullanıcı tercihlerinizi ayarlamak için <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} giriş yapmalısınız]</span>.',
 'prefsreset'               => 'Tercihler hafızadan sıfırlandı.',

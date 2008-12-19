@@ -1171,7 +1171,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen
 'viewprevnext'                     => 'Zeige ($1) ($2) ($3)',
 'searchmenu-legend'                => 'Suchoptionen',
 'searchmenu-exists'                => "* Seite '''[[$1]]'''",
-'searchmenu-new'                   => "'''[[:$1|Erstelle]] die Seite ''$1'' in diesem Wiki!'''",
+'searchmenu-new'                   => "'''Erstelle die Seite „[[:$1|$1]]“ in diesem Wiki.'''",
 'searchhelp-url'                   => 'Help:Hilfe',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Zeige alle Seiten, die mit dem Suchbegriff anfangen]]',
 'searchprofile-articles'           => 'Inhaltsseiten',

@@ -16,6 +16,7 @@
  * @author Cerealito
  * @author Clerc
  * @author Cvmontuy
+ * @author David0811
  * @author Dmcdevit
  * @author Drini
  * @author Dvortygirl
@@ -1053,7 +1054,7 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'search-result-score'              => 'Relevancia: $1%',
 'search-redirect'                  => '(redirige a $1)',
 'search-section'                   => '(sección $1)',
-'search-suggest'                   => 'Dice usted: $1',
+'search-suggest'                   => 'Quizás quieres buscar: $1',
 'search-interwiki-caption'         => 'Proyectos hermanos',
 'search-interwiki-default'         => '$1 resultados:',
 'search-interwiki-more'            => '(más)',
@@ -1643,7 +1644,7 @@ Cada fila contiene enlaces al segundo y tercer redirect, así como la primera l�
 'booksources-search-legend' => 'Buscar fuentes de libros',
 'booksources-go'            => 'Ir',
 'booksources-text'          => 'Abajo hay una lista de enlaces a otros sitios que venden libros nuevos y usados, puede que contengan más información sobre los libros que estás buscando.',
-'booksources-invalid-isbn'  => 'El número de ISBN no parece ser válido; comprueba los errores copiándolo de la fuente original source.',
+'booksources-invalid-isbn'  => 'El número de ISBN no parece ser válido; comprueba los errores copiándolo de la fuente original.',
 
 # Special:Log
 'specialloguserlabel'  => 'Usuario:',

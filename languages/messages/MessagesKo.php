@@ -676,6 +676,8 @@ $messages = array(
 'createaccount-text'         => '{{SITENAME}}($4)에서 계정 이름 ‘$2’, 비밀번호 ‘$3’으로 계정을 만들었습니다. 로그인을 한 다음 암호를 바꾸어 주세요.
 
 계정을 잘못 만들었다면 이 메시지는 무시해도 됩니다.',
+'login-throttled'            => '당신은 계속 로그인 하려는 계정의 비밀번호를 잘못 입력하였습니다.
+잠시 후에 다시 시도해주세요.',
 'loginlanguagelabel'         => '언어: $1',
 
 # Password reset dialog
