@@ -1023,7 +1023,7 @@ END;
 		$sub = $wgOut->getSubtitle();
 		if ( '' == $sub ) {
 			global $wgExtraSubtitle;
-			$sub = wfMsg( 'tagline' ) . $wgExtraSubtitle;
+			$sub = wfMsgExt( 'tagline', 'parsemag' ) . $wgExtraSubtitle;
 		}
 		$subpages = $this->subPageSubtitle();
 		$sub .= !empty($subpages)?"</p><p class='subpages'>$subpages":'';
@@ -1840,7 +1840,9 @@ END;
 					$link = wfMsgForContent( $line[0] );
 					if ($link == '-')
 						continue;
-					if (wfEmptyMsg($line[1], $text = wfMsg($line[1])))
+
+					$text = wfMsgExt($line[1], 'parsemag');
+					if (wfEmptyMsg($line[1], $text))
 						$text = $line[1];
 					if (wfEmptyMsg($line[0], $link))
 						$link = $line[0];

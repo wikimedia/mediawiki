@@ -299,7 +299,7 @@ class SpecialContributions extends SpecialPage {
 
 		$feed = new $wgFeedClasses[$type](
 			$this->feedTitle(),
-			wfMsg( 'tagline' ),
+			wfMsgExt( 'tagline', 'parsemag' ),
 			$this->getTitle()->getFullUrl() );
 			
 		// Already valid title

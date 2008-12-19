@@ -534,7 +534,7 @@ class QueryPage {
 	}
 
 	function feedDesc() {
-		return wfMsg( 'tagline' );
+		return wfMsgExt( 'tagline', 'parsemag' );
 	}
 
 	function feedUrl() {

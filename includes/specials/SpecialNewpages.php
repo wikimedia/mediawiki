@@ -281,7 +281,7 @@ class SpecialNewpages extends SpecialPage {
 
 		$feed = new $wgFeedClasses[$type](
 			$this->feedTitle(),
-			wfMsg( 'tagline' ),
+			wfMsgExt( 'tagline', 'parsemag' ),
 			$this->getTitle()->getFullUrl() );
 
 		$pager = new NewPagesPager( $this, $this->opts );
