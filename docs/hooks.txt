@@ -1328,8 +1328,20 @@ $user: User (object) whose permission is being checked
 'UserClearNewTalkNotification': called when clearing the "You have new messages!" message, return false to not delete it
 $user: User (object) that'll clear the message
 
+'UserComparePasswords': called when checking passwords, return false to override the default password checks
+&$hash: String of the password hash (from the database)
+&$password: String of the plaintext password the user entered
+&$userId: Integer of the user's ID or Boolean false if the user ID was not supplied
+&$result: If the hook returns false, this Boolean value will be checked to determine if the password was valid
+
 'UserCreateForm': change to manipulate the login form
 $template: SimpleTemplate instance for the form
+
+'UserCryptPassword': called when hashing a password, return false to implement your own hashing method
+&$password: String of the plaintext password to encrypt
+&$salt: String of the password salt or Boolean false if no salt is provided
+&$wgPasswordSalt: Boolean of whether the salt is used in the default hashing method
+&$hash: If the hook returns false, this String will be used as the hash
 
 'UserEffectiveGroups': Called in User::getEffectiveGroups()
 $user: User to get groups for
