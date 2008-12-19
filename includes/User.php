@@ -3249,6 +3249,11 @@ class User {
 	static function crypt( $password, $salt = false ) {
 		global $wgPasswordSalt;
 
+		$hash = '';
+		if( !wfRunHooks( 'UserCryptPassword', array( &$password, &$salt, &$wgPasswordSalt, &$hash ) ) ) {
+			return $hash;
+		}
+		
 		if( $wgPasswordSalt ) {
 			if ( $salt === false ) {
 				$salt = substr( wfGenerateToken(), 0, 8 );
@@ -3271,6 +3276,12 @@ class User {
 	static function comparePasswords( $hash, $password, $userId = false ) {
 		$m = false;
 		$type = substr( $hash, 0, 3 );
+		
+		$result = false;
+		if( !wfRunHooks( 'UserComparePasswords', array( &$hash, &$password, &$userId, &$result ) ) ) {
+			return $result;
+		}
+		
 		if ( $type == ':A:' ) {
 			# Unsalted
 			return md5( $password ) === substr( $hash, 3 );

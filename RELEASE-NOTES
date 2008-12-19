@@ -236,6 +236,8 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 16459) Use native getElementsByClassName where possible, for better
   performance in modern browsers
 * Enable \cancel and \cancelto in texvc (recompile required)
+* Added 'UserCryptPassword' and 'UserComparePasswords' hooks to allow extensions to implement
+  their own password hashing methods.
 
 === Bug fixes in 1.14 ===
 
