@@ -177,7 +177,7 @@ class SpecialResetpass extends SpecialPage {
 			$this->mNewpass = $this->mOldpass = $this->mRetypePass = '';
 		} catch( PasswordError $e ) {
 			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'error' ) );
-			$this->mainPrefsForm( 'error', $e->getMessage() );
+			throw new PasswordError( $e->getMessage() );
 			return;
 		}
 		
