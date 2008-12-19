@@ -109,9 +109,8 @@ class MediaWiki {
 			$ret = Title::newFromURL( $title );
 			// check variant links so that interwiki links don't have to worry
 			// about the possible different language variants
-			if( count( $wgContLang->getVariants() ) > 1 && !is_null( $ret ) && $ret->getArticleID() == 0 )
+			if( !is_null($ret) && $wgContLang->hasVariants() && $ret->getArticleID() == 0 )
 				$wgContLang->findVariantLink( $title, $ret );
-
 		}
 		if( ( $oldid = $wgRequest->getInt( 'oldid' ) )
 			&& ( is_null( $ret ) || $ret->getNamespace() != NS_SPECIAL ) ) {
@@ -240,7 +239,8 @@ class MediaWiki {
 						}
 					}
 					wfProfileOut( __METHOD__ );
-					return true;
+					$this->restInPeace();
+					exit;
 				}
 			}
 			/* No match to special cases */
@@ -372,7 +372,7 @@ class MediaWiki {
 	function doUpdates( &$updates ) {
 		wfProfileIn( __METHOD__ );
 		/* No need to get master connections in case of empty updates array */
-		if (!$updates) {
+		if( !$updates ) {
 			wfProfileOut( __METHOD__ );
 			return;
 		}

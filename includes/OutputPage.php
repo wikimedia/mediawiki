@@ -165,7 +165,7 @@ class OutputPage {
 	 *
 	 * @return bool True iff cache-ok headers was sent.
 	 */
-	function checkLastModified ( $timestamp ) {
+	function checkLastModified( $timestamp ) {
 		global $wgCachePages, $wgCacheEpoch, $wgUser, $wgRequest;
 		
 		if ( !$timestamp || $timestamp == '19700101000000' ) {
@@ -199,8 +199,8 @@ class OutputPage {
 
 		# Make debug info
 		$info = '';
-		foreach ( $modifiedTimes as $name => $value ) {
-			if ( $info !== '' ) {
+		foreach( $modifiedTimes as $name => $value ) {
+			if( $info !== '' ) {
 				$info .= ', ';
 			}
 			$info .= "$name=" . wfTimestamp( TS_ISO_8601, $value );
@@ -211,27 +211,25 @@ class OutputPage {
 		# this breaks strtotime().
 		$clientHeader = preg_replace( '/;.*$/', '', $_SERVER["HTTP_IF_MODIFIED_SINCE"] );
 
-		wfSuppressWarnings(); // E_STRICT system time bitching
-		$clientHeaderTime = strtotime( $clientHeader );
-		wfRestoreWarnings();
-		if ( !$clientHeaderTime ) {
+		$clientHeaderTime = @strtotime( $clientHeader ); // E_STRICT system time bitching
+		if( !$clientHeaderTime ) {
 			wfDebug( __METHOD__ . ": unable to parse the client's If-Modified-Since header: $clientHeader\n" );
 			return false;
 		}
 		$clientHeaderTime = wfTimestamp( TS_MW, $clientHeaderTime );
 
+		/*
 		wfDebug( __METHOD__ . ": client sent If-Modified-Since: " . 
 			wfTimestamp( TS_ISO_8601, $clientHeaderTime ) . "\n", false );
 		wfDebug( __METHOD__ . ": effective Last-Modified: " . 
 			wfTimestamp( TS_ISO_8601, $maxModified ) . "\n", false );
+		*/
 		if( $clientHeaderTime < $maxModified ) {
 			wfDebug( __METHOD__ . ": STALE, $info\n", false );
 			return false;
 		}
 
-		# Not modified
 		# Give a 304 response code and disable body output 
-		wfDebug( __METHOD__ . ": NOT MODIFIED, $info\n", false );
 		$wgRequest->response()->header( "HTTP/1.1 304 Not Modified" );
 		$this->sendCacheControl();
 		$this->disable();
@@ -739,10 +737,10 @@ class OutputPage {
 		global $wgUseSquid, $wgUseESI, $wgUseETag, $wgSquidMaxage, $wgRequest;
 
 		$response = $wgRequest->response();
-		if ($wgUseETag && $this->mETag)
+		if( $wgUseETag && $this->mETag ) {
 			$response->header("ETag: $this->mETag");
-
-		# don't serve compressed data to clients who can't handle it
+		}
+		# Don't serve compressed data to clients who can't handle it
 		# maintain different caches for logged-in users and non-logged in ones
 		$response->header( 'Vary: Accept-Encoding, Cookie' );
 
@@ -750,10 +748,10 @@ class OutputPage {
 		$response->header( $this->getXVO() );
 
 		if( !$this->uncacheableBecauseRequestVars() && $this->mEnableClientCache ) {
-			if( $wgUseSquid && session_id() == '' &&
-			  ! $this->isPrintable() && $this->mSquidMaxage != 0 && !$this->haveCacheVaryCookies() )
+			if( $wgUseSquid && session_id() == '' && !$this->isPrintable() && 
+				$this->mSquidMaxage != 0 && !$this->haveCacheVaryCookies() )
 			{
-				if ( $wgUseESI ) {
+				if( $wgUseESI ) {
 					# We'll purge the proxy cache explicitly, but require end user agents
 					# to revalidate against the proxy on each visit.
 					# Surrogate-Control controls our Squid, Cache-Control downstream caches
@@ -779,7 +777,7 @@ class OutputPage {
 				$response->header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', 0 ) . ' GMT' );
 				$response->header( "Cache-Control: private, must-revalidate, max-age=0" );
 			}
-			if($this->mLastModified) {
+			if( $this->mLastModified ) {
 				$response->header( "Last-Modified: {$this->mLastModified}" );
 			}
 		} else {
@@ -971,7 +969,6 @@ class OutputPage {
 	 */
 	public static function setEncodings() {
 		global $wgInputEncoding, $wgOutputEncoding;
-		global $wgUser, $wgContLang;
 
 		$wgInputEncoding = strtolower( $wgInputEncoding );
 
