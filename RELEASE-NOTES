@@ -428,6 +428,8 @@ The following extensions are migrated into MediaWiki 1.14:
   DB environments when $wgDBserver isn't set.
 * (bug 3691) Aspect ratio from viewBox attribute is now preserved for SVG
   images which do not specify width and height attributes.
+* (bug 15027) Internet domain names and IP addresses can now be indexed and
+  searched sensibly with the default MySQL search backend.
 
 === API changes in 1.14 ===
 
