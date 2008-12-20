@@ -524,7 +524,6 @@ class RecentChange
 		$this->mAttribs = get_object_vars( $row );
 		$this->mAttribs['rc_timestamp'] = wfTimestamp(TS_MW, $this->mAttribs['rc_timestamp']);
 		$this->mAttribs['rc_deleted'] = $row->rc_deleted; // MUST be set
-		$this->mExtra = array();
 	}
 
 	# Makes a pseudo-RC entry from a cur row
@@ -557,7 +556,6 @@ class RecentChange
 			'rc_log_id' => isset($row->rc_log_id) ? $row->rc_log_id: 0,
 			'rc_deleted' => $row->rc_deleted // MUST be set
 		);
-		$this->mExtra = array();
 	}
 
 	/**
