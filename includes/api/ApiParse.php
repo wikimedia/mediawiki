@@ -49,7 +49,9 @@ class ApiParse extends ApiBase {
 		$prop = array_flip($params['prop']);
 		$revid = false;
 
-		global $wgParser, $wgUser;
+		// The parser needs $wgTitle to be set, apparently the
+		// $title parameter in Parser::parse isn't enough *sigh*
+		global $wgParser, $wgUser, $wgTitle;
 		$popts = new ParserOptions();
 		$popts->setTidy(true);
 		$popts->enableLimitReport();
@@ -66,6 +68,7 @@ class ApiParse extends ApiBase {
 					$this->dieUsage("You don't have permission to view deleted revisions", 'permissiondenied');
 				$text = $rev->getText( Revision::FOR_THIS_USER );
 				$titleObj = $rev->getTitle();
+				$wgTitle = $titleObj;
 				$p_result = $wgParser->parse($text, $titleObj, $popts);
 			}
 			else
@@ -111,6 +114,7 @@ class ApiParse extends ApiBase {
 			$titleObj = Title::newFromText($title);
 			if(!$titleObj)
 				$titleObj = Title::newFromText("API");
+			$wgTitle = $titleObj;
 			if($params['pst'] || $params['onlypst'])
 				$text = $wgParser->preSaveTransform($text, $titleObj, $wgUser, $popts);
 			if($params['onlypst'])
