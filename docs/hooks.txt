@@ -622,6 +622,12 @@ sections.
 'EditPageBeforeEditButtons':  allows modifying the edit buttons below the textarea in the edit form
 &$editpage: The current EditPage object
 &$buttons: Array of edit buttons "Save", "Preview", "Live", and "Diff"
+&$tabindex: HTML tabindex of the last edit check/button
+
+'EditPageBeforeEditChecks':  allows modifying the edit checks below the textarea in the edit form
+&$editpage: The current EditPage object
+&$checks: Array of edit checks like "watch this page"/"minor edit"
+&$tabindex: HTML tabindex of the last edit check/button
 
 'EditSectionLink': Do not use, use DoEditSectionLink instead.
 $skin: Skin rendering the UI
