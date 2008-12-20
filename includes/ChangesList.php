@@ -139,8 +139,8 @@ class ChangesList {
 		# Diff
 		$s .= '(' . $this->message['diff'] . ') (';
 		# Hist
-		$s .= $this->skin->makeKnownLinkObj( $rc->getMovedToTitle(), $this->message['hist'], 'action=history' ) .
-			') . . ';
+		$s .= $this->skin->makeKnownLinkObj( $rc->getMovedToTitle(), $this->message['hist'], 
+			'action=history' ) . ') . . ';
 		# "[[x]] moved to [[y]]"
 		$msg = ( $rc->mAttribs['rc_type'] == RC_MOVE ) ? '1movedto2' : '1movedto2_redir';
 		$s .= wfMsg( $msg, $this->skin->makeKnownLinkObj( $rc->getTitle(), '', 'redirect=no' ),
@@ -168,13 +168,12 @@ class ChangesList {
 
 	protected function insertDiffHist( &$s, &$rc, $unpatrolled ) {
 		# Diff link
-		if( !$this->userCan($rc,Revision::DELETED_TEXT) ) {
+		if( $rc->mAttribs['rc_type'] == RC_NEW || $rc->mAttribs['rc_type'] == RC_LOG ) {
 			$diffLink = $this->message['diff'];
-		} else if( $rc->mAttribs['rc_type'] == RC_NEW || $rc->mAttribs['rc_type'] == RC_LOG ) {
+		} else if( !$this->userCan($rc,Revision::DELETED_TEXT) ) {
 			$diffLink = $this->message['diff'];
 		} else {
-			$rcidparam = $unpatrolled ?
-				array( 'rcid' => $rc->mAttribs['rc_id'] ) : array();
+			$rcidparam = $unpatrolled ? array( 'rcid' => $rc->mAttribs['rc_id'] ) : array();
 			$diffLink = $this->skin->makeKnownLinkObj( $rc->getTitle(), $this->message['diff'],
 				wfArrayToCGI( array(
 					'curid' => $rc->mAttribs['rc_cur_id'],
@@ -224,7 +223,7 @@ class ChangesList {
 
 	/** Insert links to user page, user talk page and eventually a blocking link */
 	public function insertUserRelatedLinks(&$s, &$rc) {
-		if ( $this->isDeleted($rc,Revision::DELETED_USER) ) {
+		if( $this->isDeleted($rc,Revision::DELETED_USER) ) {
 		   $s .= ' <span class="history-deleted">' . wfMsgHtml('rev-deleted-user') . '</span>';
 		} else {
 		  $s .= $this->skin->userLink( $rc->mAttribs['rc_user'], $rc->mAttribs['rc_user_text'] );
@@ -234,13 +233,11 @@ class ChangesList {
 
 	/** insert a formatted action */
 	protected function insertAction(&$s, &$rc) {
-		# Add action
 		if( $rc->mAttribs['rc_type'] == RC_LOG ) {
-			// log action
-			if ( $this->isDeleted($rc,LogPage::DELETED_ACTION) ) {
+			if( $this->isDeleted($rc,LogPage::DELETED_ACTION) ) {
 				$s .= ' <span class="history-deleted">' . wfMsgHtml('rev-deleted-event') . '</span>';
 			} else {
-				$s .= ' ' . LogPage::actionText( $rc->mAttribs['rc_log_type'], $rc->mAttribs['rc_log_action'],
+				$s .= ' '.LogPage::actionText( $rc->mAttribs['rc_log_type'], $rc->mAttribs['rc_log_action'],
 					$rc->getTitle(), $this->skin, LogPage::extractParams($rc->mAttribs['rc_params']), true, true );
 			}
 		}
@@ -248,10 +245,8 @@ class ChangesList {
 
 	/** insert a formatted comment */
 	protected function insertComment(&$s, &$rc) {
-		# Add comment
 		if( $rc->mAttribs['rc_type'] != RC_MOVE && $rc->mAttribs['rc_type'] != RC_MOVE_OVER_REDIRECT ) {
-			// log comment
-			if ( $this->isDeleted($rc,Revision::DELETED_COMMENT) ) {
+			if( $this->isDeleted($rc,Revision::DELETED_COMMENT) ) {
 				$s .= ' <span class="history-deleted">' . wfMsgHtml('rev-deleted-comment') . '</span>';
 			} else {
 				$s .= $this->skin->commentBlock( $rc->mAttribs['rc_comment'], $rc->getTitle() );
@@ -274,8 +269,8 @@ class ChangesList {
 	protected function numberofWatchingusers( $count ) {
 		global $wgLang;
 		static $cache = array();
-		if ( $count > 0 ) {
-			if ( !isset( $cache[$count] ) ) {
+		if( $count > 0 ) {
+			if( !isset( $cache[$count] ) ) {
 				$cache[$count] = wfMsgExt('number_of_watching_users_RCview',
 					array('parsemag', 'escape'), $wgLang->formatNum($count));
 			}
@@ -317,7 +312,6 @@ class ChangesList {
 
 	protected function maybeWatchedLink( $link, $watched=false ) {
 		if( $watched ) {
-			// FIXME: css style might be more appropriate
 			return '<strong class="mw-watched">' . $link . '</strong>';
 		} else {
 			return '<span class="mw-rc-unwatched">' . $link . '</span>';
@@ -335,48 +329,40 @@ class OldChangesList extends ChangesList {
 	 */
 	public function recentChangesLine( &$rc, $watched = false ) {
 		global $wgContLang, $wgRCShowChangedSize, $wgUser;
-
 		wfProfileIn( __METHOD__ );
-
-		# Extract DB fields into local scope
-		// FIXME: Would be good to replace this extract() call with something that explicitly initializes local variables.
-		extract( $rc->mAttribs );
-
 		# Should patrol-related stuff be shown?
-		$unpatrolled = $wgUser->useRCPatrol() && $rc_patrolled == 0;
+		$unpatrolled = $wgUser->useRCPatrol() && !$rc->mAttribs['rc_patrolled'];
 
-		$dateheader = ""; // $s now contains only <li>...</li>, for hooks' convenience.
-		$this->insertDateHeader($dateheader,$rc_timestamp);
+		$dateheader = ''; // $s now contains only <li>...</li>, for hooks' convenience.
+		$this->insertDateHeader( $dateheader, $rc->mAttribs['rc_timestamp'] );
 
 		$s = '';
-
 		// Moved pages
-		if( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
+		if( $rc->mAttribs['rc_type'] == RC_MOVE || $rc->mAttribs['rc_type'] == RC_MOVE_OVER_REDIRECT ) {
 			$this->insertMove( $s, $rc );
 		// Log entries
-		} elseif( $rc_log_type ) {
-			$logtitle = Title::newFromText( "Log/$rc_log_type", NS_SPECIAL );
-			$this->insertLog( $s, $logtitle, $rc_log_type );
+		} elseif( $rc->mAttribs['rc_log_type'] ) {
+			$logtitle = Title::newFromText( 'Log/'.$rc->mAttribs['rc_log_type'], NS_SPECIAL );
+			$this->insertLog( $s, $logtitle, $rc->mAttribs['rc_log_type'] );
 		// Log entries (old format) or log targets, and special pages
-		} elseif( $rc_namespace == NS_SPECIAL ) {
-			list( $specialName, $specialSubpage ) = SpecialPage::resolveAliasWithSubpage( $rc_title );
-			if ( $specialName == 'Log' ) {
-				$this->insertLog( $s, $rc->getTitle(), $specialSubpage );
-			} else {
-				wfDebug( "Unexpected special page in recentchanges\n" );
+		} elseif( $rc->mAttribs['rc_namespace'] == NS_SPECIAL ) {
+			list( $name, $subpage ) = SpecialPage::resolveAliasWithSubpage( $rc->mAttribs['rc_title'] );
+			if( $name == 'Log' ) {
+				$this->insertLog( $s, $rc->getTitle(), $subpage );
 			}
 		// Regular entries
 		} else {
-			$this->insertDiffHist($s, $rc, $unpatrolled);
+			$this->insertDiffHist( $s, $rc, $unpatrolled );
 			# M, N, b and ! (minor, new, bot and unpatrolled)
-			$s .= $this->recentChangesFlags( $rc_type == RC_NEW, $rc_minor, $unpatrolled, '', $rc_bot );
-			$this->insertArticleLink($s, $rc, $unpatrolled, $watched);
+			$s .= $this->recentChangesFlags( $rc->mAttribs['rc_new'], $rc->mAttribs['rc_minor'],
+				$unpatrolled, '', $rc->mAttribs['rc_bot'] );
+			$this->insertArticleLink( $s, $rc, $unpatrolled, $watched );
 		}
-
-		$this->insertTimestamp($s,$rc);
-
-		if( $wgRCShowChangedSize ) {
-			$s .= ( $rc->getCharacterDifference() == '' ? '' : $rc->getCharacterDifference() . ' . . ' );
+		# Edit/log timestamp
+		$this->insertTimestamp( $s, $rc );
+		# Bytes added or removed
+		if( $wgRCShowChangedSize && ($cd = $rc->getCharacterDifference()) ) {
+			$s .= "$cd  . . ";
 		}
 		# User tool links
 		$this->insertUserRelatedLinks($s,$rc);
@@ -384,29 +370,28 @@ class OldChangesList extends ChangesList {
 		$this->insertAction($s, $rc);
 		# Edit or log comment
 		$this->insertComment($s, $rc);
-
 		# Mark revision as deleted if so
-		if ( !$rc_log_type && $this->isDeleted($rc,Revision::DELETED_TEXT) )
+		if( !$rc->mAttribs['rc_log_type'] && $this->isDeleted($rc,Revision::DELETED_TEXT) ) {
 		   $s .= ' <tt>' . wfMsgHtml( 'deletedrev' ) . '</tt>';
-		if($rc->numberofWatchingusers > 0) {
-			$s .= ' ' . wfMsg('number_of_watching_users_RCview',  $wgContLang->formatNum($rc->numberofWatchingusers));
+		}
+		# How many users watch this page
+		if( $rc->numberofWatchingusers > 0 ) {
+			$s .= ' ' . wfMsg( 'number_of_watching_users_RCview', 
+				$wgContLang->formatNum($rc->numberofWatchingusers) );
 		}
 
 		wfRunHooks( 'OldChangesListRecentChangesLine', array(&$this, &$s, $rc) );
-		
-		$s = "<li>$s</li>\n";
 
 		wfProfileOut( __METHOD__ );
-		return $dateheader . $s;
+		return "$dateheader<li>$s</li>\n";
 	}
 }
 
 
 /**
- * Generate a list of changes using an Enhanced system (use javascript).
+ * Generate a list of changes using an Enhanced system (uses javascript).
  */
 class EnhancedChangesList extends ChangesList {
-
 	/**
 	*  Add the JavaScript file for enhanced changeslist
 	*  @ return string
