@@ -569,8 +569,9 @@ class IEContentAnalyzer {
 		$chunk3 = substr( $chunk, 0, 3 );
 		$chunk4 = substr( $chunk, 0, 4 );
 		$chunk5 = substr( $chunk, 0, 5 );
+		$chunk5uc = strtoupper( $chunk5 );
 		$chunk8 = substr( $chunk, 0, 8 );
-		if ( $chunk5 == 'GIF87' || $chunk5 == 'GIF89' ) {
+		if ( $chunk5uc == 'GIF87' || $chunk5uc == 'GIF89' ) {
 			return 'image/gif';
 		}
 		if ( $chunk2 == "\xff\xd8" ) {
@@ -579,7 +580,7 @@ class IEContentAnalyzer {
 
 		if ( $chunk2 == 'BM' 
 			&& substr( $chunk, 6, 2 ) == "\000\000"
-			&& substr( $chunk, 8, 2 ) != "\000\000" )
+			&& substr( $chunk, 8, 2 ) == "\000\000" )
 		{
 			return 'image/bmp'; // another non-standard MIME
 		}
@@ -800,7 +801,7 @@ class IEContentAnalyzer {
 			}
 
 			// BinHex
-			if ( !strncasecmp( $remainder, $binhexMagic, strlen( $binhexMagic ) ) ) {
+			if ( !strncmp( $remainder, $binhexMagic, strlen( $binhexMagic ) ) ) {
 				$found['binhex'] = true;
 			}
 		}
