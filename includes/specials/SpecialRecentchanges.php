@@ -82,9 +82,9 @@ class SpecialRecentChanges extends SpecialPage {
 
 		# 10 seconds server-side caching max
 		$wgOut->setSquidMaxage( 10 );
-
+		# Check if the client has a cached version
 		$lastmod = $this->checkLastModified( $feedFormat );
-		if( $lastmod === false ){
+		if( $lastmod === false ) {
 			return;
 		}
 
@@ -94,7 +94,6 @@ class SpecialRecentChanges extends SpecialPage {
 
 		// Fetch results, prepare a batch link existence check query
 		$rows = array();
-		$batch = new LinkBatch;
 		$conds = $this->buildMainQueryConds( $opts );
 		$rows = $this->doMainQuery( $conds, $opts );
 		if( $rows === false ){
@@ -104,19 +103,19 @@ class SpecialRecentChanges extends SpecialPage {
 			return;
 		}
 
-		foreach( $rows as $row ) {
-			if( !$feedFormat ) {
-				// User page and talk links
+		if( !$feedFormat ) {
+			$batch = new LinkBatch;
+			foreach( $rows as $row ) {
 				$batch->add( NS_USER, $row->rc_user_text  );
 				$batch->add( NS_USER_TALK, $row->rc_user_text  );
 			}
+			$batch->execute();
 		}
 
 		if( $feedFormat ) {
 			list( $feed, $feedObj ) = $this->getFeedObject( $feedFormat );
 			$feed->execute( $feedObj, $rows, $opts['limit'], $opts['hideminor'], $lastmod );
 		} else {
-			$batch->execute();
 			$this->webOutput( $rows, $opts );
 		}
 
@@ -349,17 +348,16 @@ class SpecialRecentChanges extends SpecialPage {
 
 		$s = $list->beginRecentChangesList();
 		foreach( $rows as $obj ) {
-			if( $limit == 0 ) {
-				break;
-			}
+			if( $limit == 0 ) break;
 			$rc = RecentChange::newFromRow( $obj );
 			$rc->counter = $counter++;
-
-			$rc->notificationtimestamp = false; // Default
+			# Check if the page has been updated since the last visit
 			if( $wgShowUpdatedMarker && !empty($obj->wl_notificationtimestamp) ) {
 				$rc->notificationtimestamp = ($obj->rc_timestamp >= $obj->wl_notificationtimestamp);
+			} else {
+				$rc->notificationtimestamp = false; // Default
 			}
-
+			# Check the number of users watching the page
 			$rc->numberofWatchingusers = 0; // Default
 			if( $showWatcherCount && $obj->rc_namespace >= 0 ) {
 				if( !isset($watcherCache[$obj->rc_namespace][$obj->rc_title]) ) {
