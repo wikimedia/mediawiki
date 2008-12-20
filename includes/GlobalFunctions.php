@@ -257,7 +257,7 @@ function wfDebugMem( $exact = false ) {
  */
 function wfDebugLog( $logGroup, $text, $public = true ) {
 	global $wgDebugLogGroups, $wgShowHostnames;
-	if( $text{strlen( $text ) - 1} != "\n" ) $text .= "\n";
+	$text = trim($text)."\n";
 	if( isset( $wgDebugLogGroups[$logGroup] ) ) {
 		$time = wfTimestamp( TS_DB );
 		$wiki = wfWikiID();
