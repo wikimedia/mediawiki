@@ -177,12 +177,12 @@ function wfSpecialNewimages( $par, $specialPage ) {
 
 
 	$opts = array( 'parsemag', 'escapenoentities' );
-	$prevLink = wfMsgExt( 'prevn', $opts, $wgLang->formatNum( $limit ) );
+	$prevLink = wfMsgExt( 'pager-newer-n', $opts, $wgLang->formatNum( $limit ) );
 	if( $firstTimestamp && $firstTimestamp != $latestTimestamp ) {
 		$prevLink = $sk->makeKnownLinkObj( $titleObj, $prevLink, 'from=' . $firstTimestamp . $botpar . $searchpar );
 	}
 
-	$nextLink = wfMsgExt( 'nextn', $opts, $wgLang->formatNum( $limit ) );
+	$nextLink = wfMsgExt( 'pager-older-n', $opts, $wgLang->formatNum( $limit ) );
 	if( $shownImages > $limit && $lastTimestamp ) {
 		$nextLink = $sk->makeKnownLinkObj( $titleObj, $nextLink, 'until=' . $lastTimestamp.$botpar.$searchpar );
 	}
