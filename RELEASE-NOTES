@@ -542,7 +542,8 @@ The following extensions are migrated into MediaWiki 1.14:
   property for hidden categories
 * New siprop parameter of 'extensions' to list all installed extensions
 * (bug 16672) Include canonical namespace name in
-  meta=siteinfo&siprop=namespaces. 
+  meta=siteinfo&siprop=namespaces.
+* (bug 16726) siprop=namespacealiases should also list localized aliases
 
 === Languages updated in 1.14 ===
 
