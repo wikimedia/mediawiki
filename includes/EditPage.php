@@ -104,6 +104,10 @@ class EditPage {
 		$this->editFormTextAfterTools =
 		$this->editFormTextBottom = "";
 	}
+	
+	function getArticle() {
+		return $this->mArticle;
+	}
 
 	/**
 	 * Fetch initial editing page content.
@@ -2081,6 +2085,7 @@ END
 				Xml::check( 'wpWatchthis', $checked['watch'], $attribs ) .
 				"&nbsp;<label for='wpWatchthis'".$skin->tooltip('watch', 'withaccess').">{$watchLabel}</label>";
 		}
+		wfRunHooks( 'EditPageBeforeEditChecks', array( &$this, &$checkboxes, &$tabindex ) );
 		return $checkboxes;
 	}
 
@@ -2158,7 +2163,7 @@ END
 		);
 		$buttons['diff'] = Xml::element('input', $temp, '');
 
-		wfRunHooks( 'EditPageBeforeEditButtons', array( &$this, &$buttons ) );
+		wfRunHooks( 'EditPageBeforeEditButtons', array( &$this, &$buttons, &$tabindex ) );
 		return $buttons;
 	}
 
