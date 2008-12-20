@@ -220,19 +220,30 @@ class WebRequest {
 	 */
 	function getGPCVal( $arr, $name, $default ) {
 		if( isset( $arr[$name] ) ) {
-			global $wgContLang;
 			$data = $arr[$name];
 			if( isset( $_GET[$name] ) && !is_array( $data ) ) {
 				# Check for alternate/legacy character encoding.
-				if( isset( $wgContLang ) ) {
-					$data = $wgContLang->checkTitleEncoding( $data );
-				}
+				$data = $this->checkTitleEncoding( $data );
 			}
 			$data = $this->normalizeUnicode( $data );
 			return $data;
 		} else {
 			return $default;
 		}
+	}
+	
+	protected function checkTitleEncoding( $s ) {
+		global $wgContLang;
+		if( !isset($wgContLang) ) return $s;
+		# Check for non-UTF-8 URLs
+		$ishigh = preg_match( '/[\x80-\xff]/', $s);
+		if( !$ishigh ) return $s;
+
+		$isutf8 = preg_match( '/^([\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
+			'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})+$/', $s );
+		if( $isutf8 ) return $s;
+		# Do the heavy lifting by unstubbing $wgContLang
+		return $wgContLang->iconv( $wgContLang->fallback8bitEncoding(), "utf-8", $s );
 	}
 
 	/**
