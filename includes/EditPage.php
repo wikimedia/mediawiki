@@ -1388,7 +1388,7 @@ class EditPage {
 
 		$tabindex = 2;
 
-		$checkboxes = self::getCheckboxes( $tabindex, $sk,
+		$checkboxes = $this->getCheckboxes( $tabindex, $sk,
 			array( 'minor' => $this->minoredit, 'watch' => $this->watchthis ) );
 
 		$checkboxhtml = implode( $checkboxes, "\n" );
@@ -2055,7 +2055,7 @@ END
 	 *
 	 * @return array
 	 */
-	public static function getCheckboxes( &$tabindex, $skin, $checked ) {
+	public function getCheckboxes( &$tabindex, $skin, $checked ) {
 		global $wgUser;
 
 		$checkboxes = array();
