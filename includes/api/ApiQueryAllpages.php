@@ -99,6 +99,10 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 			$prlevel = array_diff($params['prlevel'], array('', '*'));
 			if (!empty($prlevel))
 				$this->addWhereFld('pr_level', $prlevel);
+			if ($params['prfiltercascade'] == 'cascading')
+				$this->addWhereFld('pr_cascade', 1);
+			if ($params['prfiltercascade'] == 'noncascading')
+				$this->addWhereFld('pr_cascade', 0);
 
 			$this->addOption('DISTINCT');
 
@@ -192,6 +196,14 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 				ApiBase :: PARAM_TYPE => $wgRestrictionLevels,
 				ApiBase :: PARAM_ISMULTI => true
 			),
+			'prfiltercascade' => array (
+				ApiBase :: PARAM_DFLT => 'all',
+				ApiBase :: PARAM_TYPE => array (
+					'cascading',
+					'noncascading',
+					'all'
+				),
+			),
 			'limit' => array (
 				ApiBase :: PARAM_DFLT => 10,
 				ApiBase :: PARAM_TYPE => 'limit',
@@ -228,6 +240,7 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 			'maxsize' => 'Limit to pages with at most this many bytes',
 			'prtype' => 'Limit to protected pages only',
 			'prlevel' => 'The protection level (must be used with apprtype= parameter)',
+			'prfiltercascade' => 'Filter protections based on cascadingness (ignored when apprtype isn\'t set)',
 			'filterlanglinks' => 'Filter based on whether a page has langlinks',
 			'limit' => 'How many total pages to return.'
 		);
