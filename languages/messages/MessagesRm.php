@@ -616,7 +616,7 @@ Per integrar il maletg/purtret en tes artitgel sas ti per exempel duvrar in dals
 'allnotinnamespace' => 'Tut ils artitgels (betg el spaci da nums $1)',
 'allpagesprev'      => 'enavos',
 'allpagesnext'      => 'enavant',
-'allpagessubmit'    => 'Mussa',
+'allpagessubmit'    => 'Mussar',
 'allpagesprefix'    => 'mussar paginas cun il prefix:',
 
 # Special:Categories

@@ -602,7 +602,7 @@ N’oubliez pas de personnaliser vos [[Special:Preferences|préférences sur {{S
 'yourname'                   => 'Votre nom d’utilisateur :',
 'yourpassword'               => 'Votre mot de passe :',
 'yourpasswordagain'          => 'Entrez à nouveau votre mot de passe :',
-'remembermypassword'         => "Se souvenir de mon mot de passe (témoin (''cookie''))",
+'remembermypassword'         => 'Se souvenir de mon mot de passe (témoin (cookie))',
 'yourdomainname'             => 'Votre domaine',
 'externaldberror'            => 'Soit une erreur s’est produite avec la base de données d’authentification externe, soit vous n’êtes pas autorisé à mettre à jour votre compte externe.',
 'login'                      => 'Identification',

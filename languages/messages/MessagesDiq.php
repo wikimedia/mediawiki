@@ -125,8 +125,8 @@ href="" class="internal"}?{/a}) bımocne.',
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
 
-'about'          => 'Sero',
-'article'        => 'Perre',
+'about'          => 'Heqa',
+'article'        => 'Pela tedeesteyan',
 'newwindow'      => '(zerrey pençereyê de newey de beno a)',
 'cancel'         => 'Bıtexelne',
 'qbfind'         => 'Bıvêne',
@@ -171,7 +171,7 @@ href="" class="internal"}?{/a}) bımocne.',
 'unprotectthispage' => 'Ena perre ake',
 'newpage'           => 'Perra newiye',
 'talkpage'          => 'Ena perre sero werêne',
-'talkpagelinktext'  => 'werênayış',
+'talkpagelinktext'  => 'Werênayış',
 'specialpage'       => 'Perra xase',
 'personaltools'     => 'Hacetê şexsi',
 'articlepage'       => 'nuşte',
@@ -203,16 +203,16 @@ href="" class="internal"}?{/a}) bımocne.',
 'copyrightpagename'    => 'Heqa telifê {{SITENAME}}',
 'copyrightpage'        => '{{ns:project}}:Heqê telifi',
 'currentevents'        => 'Textey cerrebi',
-'currentevents-url'    => 'Project:Textey Cerrebi',
+'currentevents-url'    => 'Project:Textey cerrebi',
 'disclaimers'          => 'Reddê mesuliyeti',
 'disclaimerpage'       => 'Project:Reddê mesuliyetê bıngey',
-'edithelp'             => 'Çıturi vurniyeno?',
+'edithelp'             => 'Pheştdarina vurnayışi',
 'edithelppage'         => 'Help:Perre çıtewr vurniyena',
 'helppage'             => 'Help:Tedeestey',
 'mainpage'             => 'Pela Seri',
 'mainpage-description' => 'Pela Seri',
 'portal'               => 'Portalê cemaeti',
-'portal-url'           => 'Project:Portalê cemaeti',
+'portal-url'           => 'Project:Portalê Cemaeti',
 'privacy'              => 'Maddey dızdine',
 'privacypage'          => 'Project:Maddey dızdine',
 
@@ -252,7 +252,7 @@ href="" class="internal"}?{/a}) bımocne.',
 'nstab-image'     => 'Dosya',
 'nstab-mediawiki' => 'Mesaj',
 'nstab-template'  => 'Şablon',
-'nstab-help'      => 'Pela Pheşti',
+'nstab-help'      => 'Pela pheşti',
 'nstab-category'  => 'Kategoriye',
 
 # Main script and global functions
@@ -301,11 +301,11 @@ If you choose to provide it, this will be used for giving you attribution for yo
 'wrongpassword'             => 'Parola ğeleta. Rêna / fına bıcerrebne .',
 'passwordtooshort'          => 'Parola to nêvêrena ya ki zaf kılma.
 It must have at least $1 characters and be different from your username.',
-'mailmypassword'            => 'Mı rê e-mail sera parola bırışe',
+'mailmypassword'            => 'E-mail sera parola newiye bırışe',
 'loginlanguagelabel'        => 'Zıwan: $1',
 
 # Password reset dialog
-'oldpassword' => 'Parola khane:',
+'oldpassword' => 'Parola kıhane:',
 'newpassword' => 'Parola newiye:',
 'retypenew'   => 'Parola newiye tekrar ke:',
 
@@ -389,7 +389,7 @@ It must have at least $1 characters and be different from your username.',
 # File deletion
 'filedelete'        => '$1 bıestere',
 'filedelete-legend' => 'Dosya bıestere',
-'filedelete-submit' => 'bıestere',
+'filedelete-submit' => 'Bıestere',
 
 # MIME search
 'download' => 'bar ke',
@@ -400,7 +400,7 @@ It must have at least $1 characters and be different from your username.',
 'brokenredirects-edit'   => '(bıvurne)',
 'brokenredirects-delete' => '(bıestere)',
 
-'withoutinterwiki-submit' => 'bımocne',
+'withoutinterwiki-submit' => 'Bımocne',
 
 # Miscellaneous special pages
 'nbytes'            => '$1 {{PLURAL:$1|bayt|bayti}}',
@@ -410,7 +410,7 @@ It must have at least $1 characters and be different from your username.',
 'listusers'         => 'Lista karberan',
 'newpages'          => 'Pelê newey',
 'newpages-username' => 'Namey Karberi:',
-'ancientpages'      => 'Pelê khanêri',
+'ancientpages'      => 'Pelê kıhanêri',
 'move'              => 'bere',
 
 # Book sources
@@ -433,14 +433,14 @@ It must have at least $1 characters and be different from your username.',
 
 # Watchlist
 'watchlist'   => 'lista mına seyr-kerdışi',
-'mywatchlist' => 'lista mına seyr-kerdışi',
+'mywatchlist' => 'Lista mına seyr-kerdışi',
 'watch'       => 'bıgê seyr-kerdış',
 
 # Delete
 'deletepage' => 'Pele bıestere',
 
 # Rollback
-'rollbacklink' => 'peyser biya',
+'rollbacklink' => 'peyser bia',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Bıvurne',

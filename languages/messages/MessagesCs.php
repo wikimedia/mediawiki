@@ -1165,7 +1165,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'viewprevnext'                     => 'Ukázat ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Možnosti hledání',
 'searchmenu-exists'                => "*Stránka '''[[$1]]'''",
-'searchmenu-new'                   => "'''[[:$1|Vytvořit]] na této wiki stránku ''[[$1]]'''''",
+'searchmenu-new'                   => "'''Vytvořte na této wiki stránku „[[:$1]]”!'''",
 'searchhelp-url'                   => 'Help:Obsah',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Zobrazit stránky, jejichž název začíná „$1“]]',
 'searchprofile-articles'           => 'Články',

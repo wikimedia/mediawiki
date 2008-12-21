@@ -12,6 +12,7 @@
  * @author Nike
  * @author Silvonen
  * @author Str4nd
+ * @author Tarmo
  * @author לערי ריינהארט
  */
 
@@ -947,8 +948,11 @@ Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa men
 'diff-h3'                 => "'''tason 3 otsikko'''",
 'diff-h4'                 => "'''tason 4 otsikko'''",
 'diff-h5'                 => "'''tason 5 otsikko'''",
+'diff-pre'                => "'''esimuotoiltu kappale'''",
+'diff-div'                => "'''jakoelementti'''",
 'diff-ul'                 => "'''järjestämätön luettelo'''",
 'diff-ol'                 => "'''järjestetty luettelo'''",
+'diff-li'                 => "'''listan kohta'''",
 'diff-table'              => "'''taulukko'''",
 'diff-tbody'              => "'''taulukon sisältö'''",
 'diff-tr'                 => "'''rivi'''",
@@ -956,13 +960,18 @@ Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa men
 'diff-th'                 => "'''otsikko'''",
 'diff-br'                 => "'''rivinvaihto'''",
 'diff-hr'                 => "'''vaakaviiva'''",
+'diff-code'               => "'''lähdekoodikappale'''",
+'diff-dl'                 => "'''määrittelyluettelo'''",
+'diff-dt'                 => "'''määrittelytermi'''",
 'diff-dd'                 => "'''määritelmä'''",
 'diff-input'              => "'''kenttä'''",
 'diff-form'               => "'''lomake'''",
 'diff-img'                => "'''kuva'''",
+'diff-span'               => "'''span'''",
 'diff-a'                  => "'''linkki'''",
 'diff-i'                  => "'''kursiivi'''",
 'diff-b'                  => "'''lihavoitu'''",
+'diff-strong'             => "'''vahvennettu'''",
 'diff-em'                 => "'''korostus'''",
 'diff-font'               => "'''kirjasin'''",
 'diff-big'                => "'''iso'''",
@@ -991,7 +1000,7 @@ Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa men
 
 $1 | $2',
 'searchmenu-legend'                => 'Hakuasetukset',
-'searchmenu-exists'                => "'''Sivu ”[[$1]]” löytyy tästä wikistä.'''",
+'searchmenu-exists'                => "'''Sivu [[:$1]] löytyy tästä wikistä.'''",
 'searchmenu-new'                   => "'''Luo sivu ''[[:$1]]'' tähän wikiin.'''",
 'searchhelp-url'                   => 'Help:Sisällys',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Selaa sivuja tällä etuliitteellä]]',
@@ -2155,6 +2164,7 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'import'                     => 'Tuo sivuja',
 'importinterwiki'            => 'Tuo sivuja lähiwikeistä',
 'import-interwiki-text'      => 'Valitse wiki ja sivun nimi. Versioiden päivämäärät ja muokkaajat säilytetään. Kaikki wikienväliset tuonnit kirjataan [[Special:Log/import|tuontilokiin]].',
+'import-interwiki-source'    => 'Lähdewiki/sivu:',
 'import-interwiki-history'   => 'Kopioi sivun koko historia',
 'import-interwiki-submit'    => 'Tuo',
 'import-interwiki-namespace' => 'Kohdenimiavaruus:',
@@ -2831,5 +2841,14 @@ Kirjoita tiedostonimi ilman ”{{ns:file}}:”-etuliitettä.',
 # Special:BlankPage
 'blankpage'              => 'Tyhjä sivu',
 'intentionallyblankpage' => 'Tämä sivu on tarkoituksellisesti tyhjä.',
+
+# External image whitelist
+'external_image_whitelist' => ' #Älä muuta tätä riviä lainkaan.<pre>
+#Laita säännölliset lausekepalaset (vain osa, joka menee // väliin) alapuolelle
+#Niitä verrataan ulkoisten (suoralinkitettyjen) kuvien URLeihin
+#Ne jotka sopivat, näytetään kuvina, muutoin kuviin näytetään vain linkit
+#Rivit, jotka alkavat #-merkillä ovat kommentteja
+
+#Laita kaikki säännölliset lausekepalaset tämän rivit yläpuolelle. Älä muuta tätä riviä lainkaan</pre>',
 
 );

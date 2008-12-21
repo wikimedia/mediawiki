@@ -296,7 +296,7 @@ $messages = array(
 'qbedit'         => '編集',
 'qbpageoptions'  => '個人用ツール',
 'qbpageinfo'     => 'ページ情報',
-'qbmyoptions'    => 'オプション',
+'qbmyoptions'    => '個人設定',
 'qbspecialpages' => '特別ページ',
 'moredotdotdot'  => 'すべて表示する',
 'mypage'         => 'マイ・ページ',
@@ -527,7 +527,7 @@ $2',
 なお、ブラウザのキャッシュをクリアするまで、ログインしているかのように表示されることがあります。',
 'welcomecreation'            => '== $1 さん、ようこそ！ ==
 あなたのアカウントができました。
-お好みに合わせて[[Special:Preferences|オプション（{{SITENAME}}）]]を変更することができます。',
+お好みに合わせて[[Special:Preferences|個人設定（{{SITENAME}}）]]を変更することができます。',
 'loginpagetitle'             => 'ログイン',
 'yourname'                   => '利用者名:',
 'yourpassword'               => 'パスワード:',
@@ -675,7 +675,7 @@ $2',
 *ブロック解除予定: $6
 *ブロック対象: $7
 
-このブロックについて $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]に問い合わせることができます。ただし、[[Special:Preferences|オプション]]に有効なメールアドレスが登録されていない場合、またはメール送信機能の使用がブロックされている場合、「この利用者にメールを送る」の機能は使えません。
+このブロックについて $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]に問い合わせることができます。ただし、[[Special:Preferences|個人設定]]に有効なメールアドレスが登録されていない場合、またはメール送信機能の使用がブロックされている場合、「この利用者にメールを送る」の機能は使えません。
 
 あなたの現在のIPアドレスは「$3」、ブロックIDは #$5 です。問い合わせを行う際には、上記の情報を必ず書いてください。",
 'autoblockedtext'                  => 'ご利用のIPアドレスは $1 によって投稿をブロックされた利用者によって使用されたために自動的にブロックされています。理由は次の通りです。
@@ -688,7 +688,7 @@ $2',
 
 $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件について問い合わせることができます。
 
-ただし、[[Special:Preferences|オプション]]に正しいメールアドレスが登録されていない場合、またはメール送信がブロックされている場合、メール送信機能が使えないことに注意してください。
+ただし、[[Special:Preferences|個人設定]]に正しいメールアドレスが登録されていない場合、またはメール送信がブロックされている場合、メール送信機能が使えないことに注意してください。
 
 あなたの現在のIPアドレスは $3 、ブロックIDは &#x23;$5 です。問い合わせを行う際には、この情報を必ず書いてください。',
 'blockednoreason'                  => '理由が設定されていません',
@@ -697,7 +697,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'whitelistedittitle'               => '編集にはログインが必要',
 'whitelistedittext'                => 'このページを編集するには $1 する必要があります。',
 'confirmedittitle'                 => '編集にはメールアドレスの確認が必要です。',
-'confirmedittext'                  => 'ページの編集を始める前にメールアドレスの確認をする必要があります。[[Special:Preferences|オプション]]でメールアドレスを設定し、確認を行ってください。',
+'confirmedittext'                  => 'ページの編集を始める前にメールアドレスの確認をする必要があります。[[Special:Preferences|個人設定]]でメールアドレスを設定し、確認を行ってください。',
 'nosuchsectiontitle'               => 'セクションが存在しません',
 'nosuchsectiontext'                => '指定されたセクションはありません。セクション $1 はありませんでしたので、セクション編集は無効となります。編集内容は保存されません。',
 'loginreqtitle'                    => 'ログインが必要',
@@ -1049,12 +1049,12 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'searchdisabled'                   => '<p>全文検索はサーバー負荷の都合から、一時的に使用停止しています。元に戻るまでGoogleでの全文検索を利用してください。検索結果は少し古い内容となります。</p>',
 
 # Preferences page
-'preferences'               => 'オプション',
-'mypreferences'             => 'オプション',
+'preferences'               => '個人設定',
+'mypreferences'             => '個人設定',
 'prefs-edits'               => '編集回数:',
 'prefsnologin'              => 'ログインしていません',
-'prefsnologintext'          => 'オプションを変更するためには<span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} ログイン]</span>している必要があります。',
-'prefsreset'                => 'オプションを保存されている状態に復帰しました。',
+'prefsnologintext'          => '個人設定を変更するためには<span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} ログイン]</span>している必要があります。',
+'prefsreset'                => '個人設定を保存されている状態に復帰しました。',
 'qbsettings'                => 'クイックバー設定',
 'qbsettings-none'           => 'なし',
 'qbsettings-fixedleft'      => '左端',
@@ -1100,7 +1100,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'recentchangesdays'         => '最近更新したページの表示日数:',
 'recentchangesdays-max'     => '(最大$1日間)',
 'recentchangescount'        => '最近更新したページ・履歴・ログページの表示件数:',
-'savedprefs'                => 'オプションを保存しました。',
+'savedprefs'                => '個人設定を保存しました。',
 'timezonelegend'            => 'タイムゾーン',
 'timezonetext'              => '¹サーバーの時刻（UTC）とあなたの地域の標準時との時差。',
 'localtime'                 => 'あなたの現在時刻',
@@ -1684,7 +1684,7 @@ PICT # misc.
 
 # E-mail user
 'mailnologin'     => 'メールアドレスの記載がありません。',
-'mailnologintext' => '他の利用者宛てにメールを送信するためには、[[Special:UserLogin|ログイン]]し、あなたのメールアドレスを[[Special:Preferences|オプション]]に設定する必要があります。',
+'mailnologintext' => '他の利用者宛てにメールを送信するためには、[[Special:UserLogin|ログイン]]し、あなたのメールアドレスを[[Special:Preferences|個人設定]]に設定する必要があります。',
 'emailuser'       => 'この利用者にメールを送信',
 'emailpage'       => 'メール送信ページ',
 'emailpagetext'   => '下のフォームを通じて、この利用者にメールを送ることができます。
@@ -1692,7 +1692,7 @@ PICT # misc.
 'usermailererror' => 'メール送信時に以下のエラーが発生しました:',
 'defemailsubject' => '{{SITENAME}} 電子メール',
 'noemailtitle'    => '送り先のメールアドレスがありません。',
-'noemailtext'     => 'この利用者は有効なメールアドレスを登録していないか、メールを受け取りたくないというオプションを選択しています。',
+'noemailtext'     => 'この利用者は有効なメールアドレスを登録していないか、メールを受け取らない設定にしています。',
 'email-legend'    => '{{SITENAME}}の他の利用者に電子メールを送る',
 'emailfrom'       => 'あなたのアドレス',
 'emailto'         => 'あて先',
@@ -2075,8 +2075,8 @@ $1 は、すでにブロックされています。設定を変更しますか�
 # Developer tools
 'lockdb'              => 'データベースのロック',
 'unlockdb'            => 'データベースのロック解除',
-'lockdbtext'          => 'データベースをロックすると全ての利用者はページを編集できなくなり、オプションを変更できなくなり、ウォッチリストを編集できなくなるなど、データベースに書き込む全ての作業ができなくなります。本当にデータベースをロックして良いかどうか確認してください。メンテナンスが終了したらロックを解除してください。',
-'unlockdbtext'        => 'データベースのロックを解除することで利用者はページを編集できるようになり、オプションを変更できるようになり、ウォッチリストを編集できるようになるなど、データベースに書き込む全ての作業ができるようになります。本当にデータベースのロックを解除していいかどうか確認してください。',
+'lockdbtext'          => 'データベースをロックすると全ての利用者はページを編集できなくなり、個人設定を変更できなくなり、ウォッチリストを編集できなくなるなど、データベースに書き込む全ての作業ができなくなります。本当にデータベースをロックして良いかどうか確認してください。メンテナンスが終了したらロックを解除してください。',
+'unlockdbtext'        => 'データベースのロックを解除することで利用者はページを編集できるようになり、個人設定を変更できるようになり、ウォッチリストを編集できるようになるなど、データベースに書き込む全ての作業ができるようになります。本当にデータベースのロックを解除していいかどうか確認してください。',
 'lockconfirm'         => '本当にデータベースをロックする',
 'unlockconfirm'       => 'ロックを解除する',
 'lockbtn'             => 'ロック',
@@ -2239,7 +2239,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'tooltip-pt-anonuserpage'         => 'あなたのIPアドレス用の利用者ページ',
 'tooltip-pt-mytalk'               => '自分の会話ページ',
 'tooltip-pt-anontalk'             => 'あなたのIPアドレスからなされた編集の会話ページ',
-'tooltip-pt-preferences'          => 'オプションの変更',
+'tooltip-pt-preferences'          => '個人設定',
 'tooltip-pt-watchlist'            => '変更を監視しているページの一覧',
 'tooltip-pt-mycontris'            => '自分の投稿記録',
 'tooltip-pt-login'                => 'ログインすることが推奨されますが、しなくても構いません。',
@@ -2298,12 +2298,28 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'tooltip-undo'                    => '「取り消し」 (undo) はこの編集を差し戻し、プレビュー付きの編集画面を開きます。要約欄に取り消しの理由を追加することができます。',
 
 # Stylesheets
-'common.css'   => '/* ここに書いた CSS は全ての外装に反映されます */',
-'monobook.css' => '/* ここに書いた CSS は Monobook 外装に反映されます */',
+'common.css'      => '/* ここに書いた CSS は全ての外装に反映されます */',
+'standard.css'    => '/* ここに記述したCSSは Standard スキンの利用者に影響します */',
+'nostalgia.css'   => '/* ここに記述したCSSは Nostalgia スキンの利用者に影響します */',
+'cologneblue.css' => '/* ここに記述したCSSは Cologne Blue スキンの利用者に影響します */',
+'monobook.css'    => '/* ここに書いた CSS は Monobook 外装に反映されます */',
+'myskin.css'      => '/* ここに記述したCSSは Myskin スキンの利用者に影響します */',
+'chick.css'       => '/* ここに記述したCSSは Chick スキンの利用者に影響します */',
+'simple.css'      => '/* ここに記述したCSSは Simple スキンの利用者に影響します */',
+'modern.css'      => '/* ここに記述したCSSは Modern スキンの利用者に影響します */',
+'print.css'       => '/* ここに記述したCSSは印刷出力に影響します */',
+'handheld.css'    => '/* ここに記述したCSSは $wgHandheldStyle で設定されたスキンに基づく携帯機器に影響します */',
 
 # Scripts
-'common.js'   => '/* ここに書いた JavaScript は全てのページ上で実行されます */',
-'monobook.js' => '/* ここに書かれた JavaScript は MonoBook スキンを使っている全利用者に適用されます */',
+'common.js'      => '/* ここに書いた JavaScript は全てのページ上で実行されます */',
+'standard.js'    => '/* ここに記述したJavaScriptは Standard スキンの利用者に影響します */',
+'nostalgia.js'   => '/* ここに記述したJavaScriptは Nostalgia スキンの利用者に影響します */',
+'cologneblue.js' => '/* ここに記述したJavaScriptは Cologne Blue スキンの利用者に影響します */',
+'monobook.js'    => '/* ここに書かれた JavaScript は MonoBook スキンを使っている全利用者に適用されます */',
+'myskin.js'      => '/* ここに記述したJavaScriptは Myskin スキンの利用者に影響します */',
+'chick.js'       => '/* ここに記述したJavaScriptは Chick スキンの利用者に影響します */',
+'simple.js'      => '/* ここに記述したJavaScriptは Simple スキンの利用者に影響します */',
+'modern.js'      => '/* ここに記述したJavaScriptは Modern スキンの利用者に影響します */',
 
 # Metadata
 'nodublincore'      => 'このサーバーでは Dublin Core RDF メタデータが許可されていません。',
@@ -2718,7 +2734,7 @@ Variants for Chinese language
 
 # E-mail address confirmation
 'confirmemail'             => 'メールアドレスの確認',
-'confirmemail_noemail'     => '[[Special:Preferences|オプション設定]]で有効なメールアドレスが指定されていません。',
+'confirmemail_noemail'     => '[[Special:Preferences|個人設定]]で有効なメールアドレスが指定されていません。',
 'confirmemail_text'        => 'このウィキではメール通知を受け取る前にメールアドレスの確認が必要です。以下のボタンを押すと「{{int:Confirmemail_subject}}」という件名の確認メールがあなたのメールアドレスに送られます。メールには確認用コードを含むリンクが書かれています。そのリンクを開くことによってメールアドレスの正当性が確認されます。',
 'confirmemail_pending'     => '<div class="error">
 確認メールは既に送信されています。あなたがこのアカウントを作成したばかりであれば、数分待って既にメールが送信されていないかを確かめてください。
@@ -2858,6 +2874,46 @@ $1
 'iranian-calendar-m10' => 'イラン歴第10月',
 'iranian-calendar-m11' => 'イラン歴第11月',
 'iranian-calendar-m12' => 'イラン歴第12月',
+
+# Hijri month names
+'hijri-calendar-m1'  => 'ムハッラム',
+'hijri-calendar-m2'  => 'サファル',
+'hijri-calendar-m3'  => 'ラビーウ＝ル＝アウワル',
+'hijri-calendar-m4'  => 'ラビーウッ＝サーニー',
+'hijri-calendar-m5'  => 'ジュマーダー＝ル＝ウーラー',
+'hijri-calendar-m6'  => 'ジュマーダーッ＝サーニー',
+'hijri-calendar-m7'  => 'ラジャブ',
+'hijri-calendar-m8'  => 'シャアバーン',
+'hijri-calendar-m9'  => 'ラマダーン',
+'hijri-calendar-m10' => 'シャウワール',
+'hijri-calendar-m11' => 'ズー＝ル＝カアダ',
+'hijri-calendar-m12' => 'ズー＝ル＝ヒッジャ',
+
+# Hebrew month names
+'hebrew-calendar-m1'      => 'ティシュリー',
+'hebrew-calendar-m2'      => 'ヘシュヴァン',
+'hebrew-calendar-m3'      => 'キスレーヴ',
+'hebrew-calendar-m4'      => 'テベット',
+'hebrew-calendar-m5'      => 'シュバット',
+'hebrew-calendar-m6'      => 'アダル',
+'hebrew-calendar-m7'      => 'ニサン',
+'hebrew-calendar-m8'      => 'イヤール',
+'hebrew-calendar-m9'      => 'シバン',
+'hebrew-calendar-m10'     => 'タムーズ',
+'hebrew-calendar-m11'     => 'アブ',
+'hebrew-calendar-m12'     => 'エルール',
+'hebrew-calendar-m1-gen'  => 'ティシュリー',
+'hebrew-calendar-m2-gen'  => 'ヘシュヴァン',
+'hebrew-calendar-m3-gen'  => 'キスレーヴ',
+'hebrew-calendar-m4-gen'  => 'テベット',
+'hebrew-calendar-m5-gen'  => 'シュバット',
+'hebrew-calendar-m6-gen'  => 'アダル',
+'hebrew-calendar-m7-gen'  => 'ニサン',
+'hebrew-calendar-m8-gen'  => 'イヤール',
+'hebrew-calendar-m9-gen'  => 'シバン',
+'hebrew-calendar-m10-gen' => 'タムーズ',
+'hebrew-calendar-m11-gen' => 'アブ',
+'hebrew-calendar-m12-gen' => 'エルール',
 
 # Core parser functions
 'unknown_extension_tag' => '拡張機能タグ "$1" は登録されていません',

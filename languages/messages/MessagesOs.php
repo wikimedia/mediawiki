@@ -433,6 +433,9 @@ $3',
 'filedelete-otherreason'      => 'Æндæр кæнæ уæлæмхасæн аххос:',
 'filedelete-reason-otherlist' => 'Æндæр аххос',
 
+# MIME search
+'download' => 'æрбавгæн',
+
 # Random page
 'randompage' => 'Æнæбары æвзæрст фарс',
 
@@ -540,6 +543,7 @@ $3',
 # Block/unblock
 'ipbreason'              => 'Аххос',
 'ipbreasonotherlist'     => 'Æндæр аххос',
+'ipbotherreason'         => 'Æндæр кæнæ уæлæмхасæн аххос:',
 'ipb-blocklist'          => 'Актуалон хъоды равдис',
 'ipb-blocklist-contribs' => '$1, зæгъгæ, уыцы архайæджы бавæрд',
 'ipblocklist-legend'     => 'Хъодыгонд архайæджы ацагур',
