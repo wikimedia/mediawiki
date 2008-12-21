@@ -3026,6 +3026,16 @@ class Title {
 			array( 'ORDER BY' => 'rev_id' )
 		);
 	}
+	
+	/**
+	 * Check if this is a new page
+	 *
+	 * @return bool
+	 */
+	public function isNewPage() {
+		$dbr = wfGetDB( DB_SLAVE );
+		return (bool)$dbr->selectField( 'page', 'page_is_new', $this->pageCond(), __METHOD__ );
+	}
 
 	/**
 	 * Get the oldest revision timestamp of this page
