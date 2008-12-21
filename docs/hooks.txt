@@ -897,7 +897,7 @@ $variableIDs: array of strings
 		of Skin::makeVariablesScript
 
 'MarkPatrolled': before an edit is marked patrolled
-$rcid: ID of the revision to be marked patrolled
+$rc: RecentChange object of the revision to be marked patrolled
 $user: the user (object) marking the revision as patrolled
 $wcOnlySysopsCanPatrol: config setting indicating whether the user
  needs to be a sysop in order to mark an edit patrolled
