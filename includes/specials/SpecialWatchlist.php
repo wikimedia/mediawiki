@@ -128,17 +128,12 @@ function wfSpecialWatchlist( $par ) {
 	wfAppendToArrayIfNotDefault( 'namespace', $nameSpace     , $defaults, $nondefaults);
 	wfAppendToArrayIfNotDefault( 'hidePatrolled', (int)$hidePatrolled, $defaults, $nondefaults );
 
-	$hookSql = "";
-	if( ! wfRunHooks('BeforeWatchlist', array($nondefaults, $wgUser, &$hookSql)) ) {
-		return;
-	}
-
-	if($nitems == 0) {
+	if( $nitems == 0 ) {
 		$wgOut->addWikiMsg( 'nowatchlist' );
 		return;
 	}
 
-	if ( $days <= 0 ) {
+	if( $days <= 0 ) {
 		$andcutoff = '';
 	} else {
 		$andcutoff = "rc_timestamp > '".$dbr->timestamp( time() - intval( $days * 86400 ) )."'";
@@ -217,7 +212,8 @@ function wfSpecialWatchlist( $par ) {
 	if( $andHideAnons ) $conds[] = $andHideAnons;
 	if( $andHidePatrolled ) $conds[] = $andHidePatrolled;
 	if( $nameSpaceClause ) $conds[] = $nameSpaceClause;
-	if( $hookSql ) $conds[] = $hookSql;
+	
+	wfRunHooks('SpecialWatchlistQuery', array(&$conds,&$tables,&$join_conds,&$fields) );
 	
 	$res = $dbr->select( $tables, $fields, $conds, __METHOD__, $options, $join_conds );
 	$numRows = $dbr->numRows( $res );
