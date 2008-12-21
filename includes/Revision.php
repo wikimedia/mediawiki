@@ -906,7 +906,7 @@ class Revision {
 
 		$current = $dbw->selectRow(
 			array( 'page', 'revision' ),
-			array( 'page_latest', 'rev_text_id' ),
+			array( 'page_latest', 'rev_text_id', 'rev_len' ),
 			array(
 				'page_id' => $pageId,
 				'page_latest=rev_id',
@@ -919,7 +919,8 @@ class Revision {
 				'comment'    => $summary,
 				'minor_edit' => $minor,
 				'text_id'    => $current->rev_text_id,
-				'parent_id'  => $current->page_latest
+				'parent_id'  => $current->page_latest,
+				'len'        => $current->rev_len
 				) );
 		} else {
 			$revision = null;
