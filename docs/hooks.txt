@@ -505,13 +505,6 @@ rendered inline in wiki pages or galleries in category pages.
 &$parser: Parser object
 &$ig: ImageGallery object
 
-'BeforeWatchlist': Override watchlist display or add extra SQL clauses.
-$nondefaults: Assoc array with the following keys:
-              days, hideOwn, hideBots, hideMinor, namespace
-$wgUser: wgUser.
-&$hookSql: a string which will be inserted without sanitation into the SQL query
-           used to get the watchlist, at the end of the WHERE part.
-
 'BlockIp': before an IP address or user is blocked
 $block: the Block object about to be saved
 $user: the user _doing_ the block (not the one being blocked)
@@ -1239,7 +1232,7 @@ $list: list (array) of core special pages
 $opts: FormOptions for this request
 
 'SpecialRecentChangesQuery': called when building sql query for SpecialRecentChanges
-&$conds: array of where conditionals for query
+&$conds: array of WHERE conditionals for query
 &$tables: array of tables to be queried
 &$join_conds: join conditions for the tables
 $opts: FormOptions for this request
@@ -1257,6 +1250,12 @@ $term: string of search term
 
 'SpecialVersionExtensionTypes': called when generating the extensions credits, use this to change the tables headers
 $extTypes: associative array of extensions types
+
+'SpecialWatchlistQuery': called when building sql query for SpecialWatchlist
+&$conds: array of WHERE conditionals for query
+&$tables: array of tables to be queried
+&$join_conds: join conditions for the tables
+&$fields: array of query fields
 
 'TitleArrayFromResult': called when creating an TitleArray object from a database result
 &$titleArray: set this to an object to override the default object returned
