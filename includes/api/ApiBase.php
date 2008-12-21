@@ -265,7 +265,7 @@ abstract class ApiBase {
 						$choices = array();
 						$nothingPrompt = false;
 						foreach ($type as $t)
-							if ($t=='')
+							if ($t === '')
 								$nothingPrompt = 'Can be empty, or ';
 							else
 								$choices[] =  $t;
