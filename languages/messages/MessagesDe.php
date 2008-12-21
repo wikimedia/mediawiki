@@ -2496,7 +2496,7 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'common.css'      => '/* CSS an dieser Stelle wirkt sich auf alle Skins aus */',
 'standard.css'    => '/* CSS an dieser Stelle wirkt sich auf den Klassik-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
 'nostalgia.css'   => '/* CSS an dieser Stelle wirkt sich auf den Nostalgie-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
-'cologneblue.css' => '/* CSS an dieser Stelle wirkt sich auf den Kölnisch Blau-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
+'cologneblue.css' => '/* CSS an dieser Stelle wirkt sich auf den Kölnisch-Blau-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
 'monobook.css'    => '/* CSS an dieser Stelle wirkt sich auf den Monobook-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */
 /* Kleinschreibung nicht erzwingen */
 .portlet h5,
@@ -2516,7 +2516,7 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'common.js'      => '/* Das folgende JavaScript wird für alle Benutzer geladen. */',
 'standard.js'    => '/* Das folgende JavaScript wird für Benutzer geladen, die den Klassik-Skin verwenden. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
 'nostalgia.js'   => '/* Das folgende JavaScript wird für Benutzer geladen, die den Nostalgie-Skin verwenden. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
-'cologneblue.js' => '/* Das folgende JavaScript wird für Benutzer geladen, die den Kölnisch Blau-Skin verwenden. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
+'cologneblue.js' => '/* Das folgende JavaScript wird für Benutzer geladen, die den Kölnisch-Blau-Skin verwenden. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
 'monobook.js'    => '/* Das folgende JavaScript wird für Benutzer geladen, die den Monobook-Skin verwenden. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
 'myskin.js'      => '/* Das folgende JavaScript wird für Benutzer geladen, die den Myskin-Skin verwenden. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
 'chick.js'       => '/* Das folgende JavaScript wird für Benutzer geladen, die den KükenSkin verwenden. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
@@ -2626,8 +2626,8 @@ $1',
 # Bad image list
 'bad_image_list' => 'Format:
 
-Nur Zeilen, die mit einem * anfangen, werden ausgewertet. Als erstes nach dem * muss ein Link auf ein unerwünschtes Bild stehen.
-Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Kontext das Bild trotzdem erscheinen darf.',
+Nur Zeilen, die mit einem * anfangen, werden ausgewertet. Als erstes nach dem * muss ein Link auf eine unerwünschte Datei stehen.
+Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Kontext die Datei trotzdem erscheinen darf.',
 
 # Metadata
 'metadata'          => 'Metadaten',

@@ -1004,7 +1004,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'viewprevnext'                     => 'Vedi ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Opzioni di ricerca',
 'searchmenu-exists'                => "* Pagina '''[[$1]]'''",
-'searchmenu-new'                   => "'''[[:$1|Crea]] la pagina ''[[$1]]'' su questa wiki!'''",
+'searchmenu-new'                   => "'''Crea la pagina \"[[:\$1]]\" su questa wiki!'''",
 'searchhelp-url'                   => 'Help:Indice',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Visualizza le pagine con questo prefisso]]',
 'searchprofile-articles'           => 'Pagine di contenuti',
@@ -1522,7 +1522,7 @@ Di seguito sono elencate solo {{PLURAL:$1|la prima pagina che punta|le prime $1 
 'statistics-jobqueue'          => '[http://www.mediawiki.org/wiki/Manual:Job_queue Coda dei processi] da eseguire in background',
 'statistics-users'             => '[[Special:ListUsers|Utenti]] registrati',
 'statistics-users-active'      => 'Utenti attivi',
-'statistics-users-active-desc' => "Utenti che hanno effettuato un'azione nel mese scorso",
+'statistics-users-active-desc' => "Utenti che hanno effettuato un'azione {{PLURAL:$1|nell'ultimo giorno|negli ultimi $1 giorni}}",
 'statistics-mostpopular'       => 'Pagine più visitate',
 
 'disambiguations'      => 'Pagine di disambiguazione',
@@ -1611,6 +1611,7 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'booksources-isbn'          => 'Codice ISBN:',
 'booksources-go'            => 'Vai',
 'booksources-text'          => 'Di seguito viene presentato un elenco di collegamenti verso siti esterni che vendono libri nuovi e usati, attraverso i quali è possibile ottenere maggiori informazioni sul testo cercato.',
+'booksources-invalid-isbn'  => "L'ISBN dato sembra non essere valido; controlla gli errori di ricopiatura dalla sorgente originale.",
 
 # Special:Log
 'specialloguserlabel'  => 'Azione effettuata da:',
@@ -2094,64 +2095,65 @@ $1 è già bloccato. Vuoi cambiare le impostazioni?',
 'databasenotlocked'   => 'Il database non è bloccato.',
 
 # Move page
-'move-page'                 => 'Spostamento di $1',
-'move-page-legend'          => 'Spostamento di pagina',
-'movepagetext'              => "Questo modulo consente di rinominare una pagina, spostando tutta la sua cronologia al nuovo nome. La pagina attuale diverrà automaticamente un redirect al nuovo titolo. Puoi aggiornare automaticamente i redirect che puntano al titolo originale. Puoi decidere di non farlo, ma ricordati di verificare che lo spostamento non abbia creato [[Special:DoubleRedirects|doppi redirect]] o [[Special:BrokenRedirects|redirect errati]]. L'onere di garantire che i collegamenti alla pagina restino corretti spetta a chi la sposta.
+'move-page'                    => 'Spostamento di $1',
+'move-page-legend'             => 'Spostamento di pagina',
+'movepagetext'                 => "Questo modulo consente di rinominare una pagina, spostando tutta la sua cronologia al nuovo nome. La pagina attuale diverrà automaticamente un redirect al nuovo titolo. Puoi aggiornare automaticamente i redirect che puntano al titolo originale. Puoi decidere di non farlo, ma ricordati di verificare che lo spostamento non abbia creato [[Special:DoubleRedirects|doppi redirect]] o [[Special:BrokenRedirects|redirect errati]]. L'onere di garantire che i collegamenti alla pagina restino corretti spetta a chi la sposta.
 
 Si noti che la pagina '''non''' sarà spostata se ne esiste già una con il nuovo nome, a meno che non sia vuota o costituita solo da un redirect alla vecchia e sia priva di versioni precedenti. In caso di spostamento errato si può quindi tornare subito al vecchio titolo, e non è possibile sovrascrivere per errore una pagina già esistente.
 
 '''ATTENZIONE:'''
 Un cambiamento così drastico può creare contrattempi e problemi, soprattutto per le pagine più visitate. Accertarsi di aver valutato le conseguenze dello spostamento prima di procedere.",
-'movepagetalktext'          => "La corrispondente pagina di discussione, se esiste, sarà spostata automaticamente insieme alla pagina principale, '''tranne che nei seguenti casi''':
+'movepagetalktext'             => "La corrispondente pagina di discussione, se esiste, sarà spostata automaticamente insieme alla pagina principale, '''tranne che nei seguenti casi''':
 * lo spostamento della pagina è tra namespace diversi;
 * in corrispondenza del nuovo titolo esiste già una pagina di discussione (non vuota);
 * la casella qui sotto è stata deselezionata.
 
 In questi casi, se lo si ritiene opportuno, occorre spostare o aggiungere manualmente le informazioni contenute nella pagina di discussione.",
-'movearticle'               => 'Sposta la pagina',
-'movenologin'               => 'Accesso non effettuato',
-'movenologintext'           => "Lo spostamento delle pagine è consentito solo agli utenti registrati che hanno eseguito l'[[Special:UserLogin|accesso]] al sito.",
-'movenotallowed'            => 'Non si dispone dei permessi necessari allo spostamento delle pagine.',
-'cant-move-user-page'       => 'Non si dispone dei permessi necessari per spostare le pagine utente.',
-'cant-move-to-user-page'    => 'Non si dispone dei permessi necessari allo spostamento della pagina su una pagina utente (con eccezione di una sottopagina utente).',
-'newtitle'                  => 'Nuovo titolo:',
-'move-watch'                => 'Aggiungi la pagina agli osservati speciali',
-'movepagebtn'               => 'Sposta la pagina',
-'pagemovedsub'              => 'Spostamento effettuato con successo',
-'movepage-moved'            => '<big>\'\'\'"$1" è stata spostata a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'             => 'Una pagina con questo nome esiste già, oppure il nome che hai scelto non è valido.<br /> Scegli, per cortesia, un titolo diverso per la pagina.',
-'cantmove-titleprotected'   => 'Lo spostamento della pagina non è possibile in quanto il nuovo titolo è stato protetto per impedirne la creazione',
-'talkexists'                => "'''La pagina è stata spostata correttamente, ma non è stato possibile spostare la pagina di discussione perché ne esiste già un'altra con il nuovo titolo. Integrare manualmente i contenuti delle due pagine.'''",
-'movedto'                   => 'spostata a',
-'movetalk'                  => 'Sposta anche la pagina di discussione.',
-'move-subpages'             => 'Sposta tutte le sottopagine, se possibile',
-'move-talk-subpages'        => 'Sposta tutte le sottopagine di discussione, se possibile',
-'movepage-page-exists'      => 'La pagina $1 esiste già e non può essere automaticamente sovrascritta.',
-'movepage-page-moved'       => 'La pagina $1 è stata spostata a $2.',
-'movepage-page-unmoved'     => 'La pagina $1 non può essere spostata a $2.',
-'movepage-max-pages'        => 'È stato spostato il numero massimo di $1 {{PLURAL:$1|pagina|pagine}} e non protranno essere spostate ulteriori pagine automaticamente.',
-'1movedto2'                 => 'ha spostato [[$1]] a [[$2]]',
-'1movedto2_redir'           => 'ha spostato [[$1]] a [[$2]] tramite redirect',
-'movelogpage'               => 'Spostamenti',
-'movelogpagetext'           => 'Di seguito sono elencate le pagine spostate di recente.',
-'movereason'                => 'Motivo:',
-'revertmove'                => 'ripristina',
-'delete_and_move'           => 'Cancella e sposta',
-'delete_and_move_text'      => '==Cancellazione richiesta==
+'movearticle'                  => 'Sposta la pagina',
+'movenologin'                  => 'Accesso non effettuato',
+'movenologintext'              => "Lo spostamento delle pagine è consentito solo agli utenti registrati che hanno eseguito l'[[Special:UserLogin|accesso]] al sito.",
+'movenotallowed'               => 'Non si dispone dei permessi necessari allo spostamento delle pagine.',
+'cant-move-user-page'          => 'Non si dispone dei permessi necessari per spostare le pagine utente.',
+'cant-move-to-user-page'       => 'Non si dispone dei permessi necessari allo spostamento della pagina su una pagina utente (con eccezione di una sottopagina utente).',
+'newtitle'                     => 'Nuovo titolo:',
+'move-watch'                   => 'Aggiungi la pagina agli osservati speciali',
+'movepagebtn'                  => 'Sposta la pagina',
+'pagemovedsub'                 => 'Spostamento effettuato con successo',
+'movepage-moved'               => '<big>\'\'\'"$1" è stata spostata a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'                => 'Una pagina con questo nome esiste già, oppure il nome che hai scelto non è valido.<br /> Scegli, per cortesia, un titolo diverso per la pagina.',
+'cantmove-titleprotected'      => 'Lo spostamento della pagina non è possibile in quanto il nuovo titolo è stato protetto per impedirne la creazione',
+'talkexists'                   => "'''La pagina è stata spostata correttamente, ma non è stato possibile spostare la pagina di discussione perché ne esiste già un'altra con il nuovo titolo. Integrare manualmente i contenuti delle due pagine.'''",
+'movedto'                      => 'spostata a',
+'movetalk'                     => 'Sposta anche la pagina di discussione.',
+'move-subpages'                => 'Sposta tutte le sottopagine, se possibile',
+'move-talk-subpages'           => 'Sposta tutte le sottopagine di discussione, se possibile',
+'movepage-page-exists'         => 'La pagina $1 esiste già e non può essere automaticamente sovrascritta.',
+'movepage-page-moved'          => 'La pagina $1 è stata spostata a $2.',
+'movepage-page-unmoved'        => 'La pagina $1 non può essere spostata a $2.',
+'movepage-max-pages'           => 'È stato spostato il numero massimo di $1 {{PLURAL:$1|pagina|pagine}} e non protranno essere spostate ulteriori pagine automaticamente.',
+'1movedto2'                    => 'ha spostato [[$1]] a [[$2]]',
+'1movedto2_redir'              => 'ha spostato [[$1]] a [[$2]] tramite redirect',
+'movelogpage'                  => 'Spostamenti',
+'movelogpagetext'              => 'Di seguito sono elencate le pagine spostate di recente.',
+'movereason'                   => 'Motivo:',
+'revertmove'                   => 'ripristina',
+'delete_and_move'              => 'Cancella e sposta',
+'delete_and_move_text'         => '==Cancellazione richiesta==
 
 La pagina specificata come destinazione "[[:$1]]" esiste già. Vuoi cancellarla per proseguire con lo spostamento?',
-'delete_and_move_confirm'   => 'Sì, sovrascrivi la pagina esistente',
-'delete_and_move_reason'    => 'Cancellata per rendere possibile lo spostamento',
-'selfmove'                  => "Il titolo di destinazione inserito è uguale a quello di provenienza: '''attenzione''', leggi i titoli dei campi prima di confermare un comando! Il secondo campo contiene un commento che è necessario per giustificare lo spostamento della pagine e viene memorizzato nel log.",
-'immobile-source-namespace' => 'Non puoi spostare pagine nel namespace "$1"',
-'immobile-target-namespace' => 'Non puoi spostare pagine nel namespace "$1"',
-'immobile-source-page'      => 'Questa pagina non può essere spostata.',
-'immobile-target-page'      => 'Non puoi spostare a questo titolo.',
-'imagenocrossnamespace'     => "Non puoi spostare un'immagine fuori del namespace Immagine.",
-'imagetypemismatch'         => 'La nuova estensione del file non corrisponde alla sua reale estensione',
-'imageinvalidfilename'      => "Il nome dell'immagine non è valido",
-'fix-double-redirects'      => 'Aggiorna tutti i redirect che puntano al titolo originale',
-'move-leave-redirect'       => 'Crea un redirect con lo spostamento',
+'delete_and_move_confirm'      => 'Sì, sovrascrivi la pagina esistente',
+'delete_and_move_reason'       => 'Cancellata per rendere possibile lo spostamento',
+'selfmove'                     => "Il titolo di destinazione inserito è uguale a quello di provenienza: '''attenzione''', leggi i titoli dei campi prima di confermare un comando! Il secondo campo contiene un commento che è necessario per giustificare lo spostamento della pagine e viene memorizzato nel log.",
+'immobile-source-namespace'    => 'Non puoi spostare pagine nel namespace "$1"',
+'immobile-target-namespace'    => 'Non puoi spostare pagine nel namespace "$1"',
+'immobile-target-namespace-iw' => 'Il link interwiki non è una valida motivazione per spostare una pagina.',
+'immobile-source-page'         => 'Questa pagina non può essere spostata.',
+'immobile-target-page'         => 'Non puoi spostare a questo titolo.',
+'imagenocrossnamespace'        => "Non puoi spostare un'immagine fuori del namespace Immagine.",
+'imagetypemismatch'            => 'La nuova estensione del file non corrisponde alla sua reale estensione',
+'imageinvalidfilename'         => "Il nome dell'immagine non è valido",
+'fix-double-redirects'         => 'Aggiorna tutti i redirect che puntano al titolo originale',
+'move-leave-redirect'          => 'Crea un redirect con lo spostamento',
 
 # Export
 'export'            => 'Esporta pagine',

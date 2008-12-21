@@ -668,6 +668,7 @@ $messages = array(
 'servertime'            => 'د پالنګر وخت',
 'allowemail'            => 'د نورو کارونکو لخوا د برېښليک رالېږل چارن کړه',
 'defaultns'             => 'په دغو نوم-تشيالونو کې د ټاکل شوو سمونونو له مخې لټون وکړی:',
+'default'               => 'تلواليز',
 'files'                 => 'دوتنې',
 
 # User rights
@@ -688,7 +689,7 @@ $messages = array(
 
 # User rights log
 'rightslog'  => 'د کارونکي د رښتو يادښت',
-'rightsnone' => '(هېڅ نه)',
+'rightsnone' => '(هېڅ)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-move' => 'همدا مخ لېږدول',
@@ -1051,7 +1052,7 @@ $messages = array(
 دلته د <strong>$1</strong> مخ لپاره اوسني شته امستنې دي:',
 'protect-cascadeon'           => 'د اوسمهال لپاره همدا مخ ژغورل شوی دا ځکه چې همدا مخ په {{PLURAL:$1|لانديني مخ|لانديني مخونو}} کې ورګډ دی چې {{PLURAL:$1|ځوړاوبيزه ژغورنه يې چارنه ده|ځوړاوبيزې ژغورنې يې چارنې دي}}.
 تاسو د همدې مخ د ژغورنې په کچه کې بدلون راوستلای شی، خو دا به په ځوړاوبيزه ژغورنه اغېزمنه نه کړي.',
-'protect-default'             => '(اصلي بڼه)',
+'protect-default'             => '(تلواليز)',
 'protect-fallback'            => 'د "$1" اجازه پکار ده',
 'protect-level-autoconfirmed' => 'د ناثبته کارونکو مخنيوی کول',
 'protect-level-sysop'         => 'يواځې پازوالان',

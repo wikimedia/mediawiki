@@ -1927,7 +1927,7 @@ $1',
 'whatlinkshere-links'      => '← Linken',
 'whatlinkshere-hideredirs' => 'Viruleedunge $1',
 'whatlinkshere-hidetrans'  => 'Agebonne Schabloune $1',
-'whatlinkshere-hidelinks'  => '$1 Linken',
+'whatlinkshere-hidelinks'  => 'Linke $1',
 'whatlinkshere-hideimages' => '$1 Linken op de Fichier',
 'whatlinkshere-filters'    => 'Filteren',
 

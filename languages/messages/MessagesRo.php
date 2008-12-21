@@ -1002,7 +1002,7 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'viewprevnext'                     => 'Vezi ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Opţiuni căutare',
 'searchmenu-exists'                => "* Pagina '''[[$1]]'''",
-'searchmenu-new'                   => "'''[[:$1|Creează]] pagina ''$1'' pe acest wiki!'''",
+'searchmenu-new'                   => "'''Creează pagina \"[[:\$1]]\" pe acest wiki!'''",
 'searchhelp-url'                   => 'Help:Ajutor',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Răsfoieşte paginile cu acest prefix]]',
 'searchprofile-articles'           => 'Pagini',
@@ -1086,6 +1086,7 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'saveprefs'                 => 'Salvează preferinţele',
 'resetprefs'                => 'Resetează preferinţele',
 'textboxsize'               => 'Dimensiunile casetei de text',
+'prefs-edit-boxsize'        => 'Mărimea ferestrei de modificare.',
 'rows'                      => 'Rânduri:',
 'columns'                   => 'Coloane',
 'searchresultshead'         => 'Parametri căutare',
@@ -1527,7 +1528,7 @@ Lista tipurilor MIME recunoscute de MediaWiki poate fi găsită la [http://svn.w
 'statistics-views-peredit'     => 'Vizualizări pe editare',
 'statistics-users'             => '[[Special:ListUsers|Utilizatori]] înregistraţi',
 'statistics-users-active'      => 'Utilizatori activi',
-'statistics-users-active-desc' => 'Utilizatori care au efectuat o acţiune în ultima lună',
+'statistics-users-active-desc' => 'Utilizatori care au efectuat o acţiune în {{PLURAL:$1|ultima zi|ultimele $1 zile}}',
 'statistics-mostpopular'       => 'Paginile cele mai vizualizate',
 
 'disambiguations'      => 'Pagini de dezambiguizare',
@@ -1861,6 +1862,11 @@ Puteţi schimba nivelul de protejare al acestei pagini, dar asta nu va afecta pr
 'protect-othertime'           => 'Alt termen:',
 'protect-othertime-op'        => 'alt termen',
 'protect-otherreason'         => 'Alt motiv (suplimentar):',
+'protect-dropdown'            => '*Motive comune de protejare
+** Vandalism excesiv
+** Spam excesiv
+** Modificări neproductive
+** Pagină cu trafic mare',
 'protect-edit-reasonlist'     => 'Modifică motivele protejării',
 'protect-expiry-options'      => '15 minute:15 minutes,1 oră:1 hour,3 ore:3 hours,24 ore:24 hours,48 ore:48 hours,1 săptămână:1 week,1 lună:1 month,nelimitat:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Permisiune:',
@@ -1885,7 +1891,7 @@ Puteţi schimba nivelul de protejare al acestei pagini, dar asta nu va afecta pr
 'undeletepage'                 => 'Vizualizează şi recuperează pagini şterse',
 'undeletepagetitle'            => "'''Această listă cuprinde versiuni şterse ale paginii [[:$1|$1]].'''",
 'viewdeletedpage'              => 'Vezi paginile şterse',
-'undeletepagetext'             => 'Următoarele pagini au fost şterse, dar încă se află în arhivă şi pot fi recuperate. Reţine că arhiva se poate şterge din timp în timp.',
+'undeletepagetext'             => '{{PLURAL:$1|Următoarea pagină a fost ştearsă, dar încă se află în arhivă şi poate fi recuperată|Următoarele $1 pagini au fost şterse, dar încă se află în arhivă şi pot fi recuperate}}. Reţine că arhiva se poate şterge din timp în timp.',
 'undelete-fieldset-title'      => 'Recuperează versiuni',
 'undeleteextrahelp'            => "Pentru a recupera întreaga pagină lăsaţi toate căsuţele nebifate şi apăsaţi butonul '''''Recuperează'''''. Pentru a realiza o recuperare selectivă bifaţi versiunile pe care doriţi să le recuperaţi şi apăsaţi butonul '''''Recuperează'''''. Butonul '''''Resetează'''''  va şterge comentariul şi toate bifările.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|versiune arhivată|versiuni arhivate}}',
@@ -2597,7 +2603,8 @@ Altele vor fi ascunse implicit.
 'exif-lightsource-255' => 'Altă sursă de lumină',
 
 # Flash modes
-'exif-flash-mode-3' => 'modul automat',
+'exif-flash-mode-3'     => 'modul automat',
+'exif-flash-function-1' => 'Fără funcţie flash',
 
 'exif-focalplaneresolutionunit-2' => 'ţoli',
 

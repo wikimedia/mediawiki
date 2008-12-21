@@ -986,6 +986,7 @@ $3 അതിനു കാണിച്ചിരിക്കുന്ന കാര
 'servertime'            => 'സെര്‍വര്‍ സമയം',
 'guesstimezone'         => 'സമയവ്യത്യാസം ബ്രൗസറില്‍ നിന്നും ശേഖരിക്കൂ',
 'allowemail'            => 'എനിക്ക് എഴുത്തയക്കാന്‍ മറ്റുള്ളവരെ അനുവദിക്കുക',
+'prefs-namespaces'      => 'നാമമേഖലകള്‍',
 'defaultns'             => 'സ്വതവേ ഈ നാമമേഖലകളില്‍ തിരയുക:',
 'default'               => 'സ്വതവെ',
 'files'                 => 'ഫയലുകള്‍',
@@ -1025,9 +1026,11 @@ $3 അതിനു കാണിച്ചിരിക്കുന്ന കാര
 'grouppage-bureaucrat'    => '{{ns:project}}:ബ്യൂറോക്രാറ്റ്',
 
 # Rights
-'right-read' => '
+'right-read'      => '
 താളുകള്‍ വായിക്കുക',
-'right-edit' => 'താളുകള്‍ തിരുത്തുക',
+'right-edit'      => 'താളുകള്‍ തിരുത്തുക',
+'right-delete'    => 'താളുകള്‍ മായ്ക്കുക',
+'right-bigdelete' => 'വലിയ നാള്‍വഴിയുള്ള താളുകള്‍ മായ്ക്കുക',
 
 # User rights log
 'rightslog'      => 'ഉപയോക്താവിന്റെ അവകാശ ലോഗ്',
@@ -1036,8 +1039,10 @@ $3 അതിനു കാണിച്ചിരിക്കുന്ന കാര
 'rightsnone'     => '(ഒന്നുമില്ല)',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-read' => 'ഈ താൾ വായിക്കുക',
-'action-edit' => 'ഈ താൾ തിരുത്തുക',
+'action-read'       => 'ഈ താൾ വായിക്കുക',
+'action-edit'       => 'ഈ താൾ തിരുത്തുക',
+'action-createpage' => 'താളുകള്‍ നിര്‍മിക്കുക',
+'action-createtalk' => 'സംവാദം താളുകള്‍ നിര്‍മിക്കുക',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|മാറ്റം|മാറ്റങ്ങള്‍}}',

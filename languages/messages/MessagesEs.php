@@ -15,6 +15,7 @@
  * @author Boivie
  * @author Cerealito
  * @author Clerc
+ * @author Crazymadlover
  * @author Cvmontuy
  * @author David0811
  * @author Dmcdevit
@@ -1034,7 +1035,7 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'viewprevnext'                     => 'Ver ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Opciones de búsqueda',
 'searchmenu-exists'                => "'''Hay una página llamada «[[$1]]» en esta wiki'''",
-'searchmenu-new'                   => "'''¡[[:$1|Crear]] la página ''$1'' en esta wiki!'''",
+'searchmenu-new'                   => "'''¡Crear la página \"[[:\$1]]\" en esta wiki!'''",
 'searchhelp-url'                   => 'Help:Ayuda',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Otras páginas con este prefijo]]',
 'searchprofile-articles'           => 'Páginas de contenido',
