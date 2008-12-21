@@ -566,7 +566,14 @@ function ts_makeSortable(table) {
 	for (var i = 0; i < firstRow.cells.length; i++) {
 		var cell = firstRow.cells[i];
 		if ((" "+cell.className+" ").indexOf(" unsortable ") == -1) {
-			cell.innerHTML += '&nbsp;&nbsp;<a href="#" class="sortheader" onclick="ts_resortTable(this);return false;"><span class="sortarrow"><img src="'+ ts_image_path + ts_image_none + '" alt="&darr;"/></span></a>';
+			cell.innerHTML += '&nbsp;&nbsp;'
+				+ '<a href="#" class="sortheader" '
+				+ 'onclick="ts_resortTable(this);return false;">'
+				+ '<span class="sortarrow">'
+				+ '<img src="'
+				+ ts_image_path
+				+ ts_image_none
+				+ '" alt="&darr;"/></span></a>';
 		}
 	}
 	if (ts_alternate_row_colors) {
