@@ -28,7 +28,7 @@ $skinNames = array(
 );
 
 $namespaceNames = array(
-	NS_MEDIA            => 'Media',
+	NS_MEDIA            => '미디어',
 	NS_SPECIAL          => '특수기능',
 	NS_TALK             => '토론',
 	NS_USER             => '사용자',

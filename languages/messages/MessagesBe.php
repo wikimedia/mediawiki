@@ -11,12 +11,14 @@
  */
 
 $skinNames = array(
-	'standard'    => 'Клясычны',
-	'nostalgia'   => 'Настальгія',
-	'cologneblue' => 'Кёльнскі смутак',
-	'monobook'    => 'Монакніга',
-	'myskin'      => 'MySkin',
-	'chick'       => 'Цыпа'
+	'standard'      => 'Класіка',
+	'nostalgia'     => 'Настальгія',
+	'cologneblue'   => 'Сіні Кёльн',
+	'monobook'      => 'Манабук',
+	'myskin'        => 'Майскін',
+	'chick'         => 'Чык',
+	'simple'        => 'Проста',
+	'modern'        => 'Сучаснасць',
 );
 
 $bookstoreList = array(
