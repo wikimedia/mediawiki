@@ -36,6 +36,19 @@ class CategoryPage extends Article {
 			$this->closeShowCategory();
 		}
 	}
+	
+	/**
+	 * Don't return a 404 for categories in use.
+	 */
+	function hasViewableContent() {
+		if( parent::hasViewableContent() ) {
+			return true;
+		} else {
+			$cat = Category::newFromTitle( $this->mTitle );
+			return $cat->getId() != 0;
+		}
+			
+	}
 
 	function openShowCategory() {
 		# For overloading

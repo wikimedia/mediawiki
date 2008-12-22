@@ -508,6 +508,18 @@ class Article {
 	public function exists() {
 		return $this->getId() > 0;
 	}
+	
+	/**
+	 * Check if this page is something we're going to be showing
+	 * some sort of sensible content for. If we return false, page
+	 * views (plain action=view) will return an HTTP 404 response,
+	 * so spiders and robots can know they're following a bad link.
+	 *
+	 * @return bool
+	 */
+	public function hasViewableContent() {
+		return $this->exists() || $this->mTitle->isAlwaysKnown();
+	}
 
 	/**
 	 * @return int The view count for the page
@@ -714,6 +726,7 @@ class Article {
 		$rdfrom = $wgRequest->getVal( 'rdfrom' );
 		$diffOnly = $wgRequest->getBool( 'diffonly', $wgUser->getOption( 'diffonly' ) );
 		$purge = $wgRequest->getVal( 'action' ) == 'purge';
+		$return404 = false;
 
 		$wgOut->setArticleFlag( true );
 
@@ -813,11 +826,21 @@ class Article {
 					$text = wfMsg( 'noarticletext' );
 				}
 			}
+			
 			# Non-existent pages
 			if( $this->getID() === 0 ) {
 				$wgOut->setRobotPolicy( 'noindex,nofollow' );
 				$text = "<div class='noarticletext'>\n$text\n</div>";
+				if( !$this->hasViewableContent() ) {
+					// If there's no backing content, send a 404 Not Found
+					// for better machine handling of broken links.
+					$return404 = true;
+				}
 			} 
+
+			if( $return404 ) {
+				$wgRequest->response()->header( "HTTP/1.x 404 Not Found" );
+			}
 
 			# Another whitelist check in case oldid is altering the title
 			if( !$this->mTitle->userCanRead() ) {
