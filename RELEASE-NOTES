@@ -238,6 +238,7 @@ The following extensions are migrated into MediaWiki 1.14:
 * Enable \cancel and \cancelto in texvc (recompile required)
 * Added 'UserCryptPassword' and 'UserComparePasswords' hooks to allow extensions to implement
   their own password hashing methods.
+* (bug 16760) Add CSS-class to action links of Special:Log
 
 === Bug fixes in 1.14 ===
 
@@ -436,12 +437,6 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 16712) Special:NewFiles updated to use "newer"/"older" paging messages
   for clarity over "previous/next"
 * (bug 16612) Fixed "noprint" class for Modern skin print style
-* Section anchors now have an "id" attribute as well as a "name" attribute,
-  even when Tidy is not used
-* (bug 16026) revision-info, revision-info-current, cannotdelete,
-  redirectedfrom and historywarning messages now use Wiki text rather than raw
-  HTML markup
-
 
 === API changes in 1.14 ===
 
