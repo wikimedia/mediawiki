@@ -9,7 +9,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  */
 
 require_once dirname(__FILE__) . '/normal/UtfNormalUtil.php';
-require_once dirname(__FILE__) . '/XmlFunctions.php';
 
 // Hide compatibility functions from Doxygen
 /// @cond
@@ -749,46 +748,6 @@ function wfMsgExt( $key, $options ) {
 	return $string;
 }
 
-
-/**
- * Just like exit() but makes a note of it.
- * Commits open transactions except if the error parameter is set
- *
- * @deprecated Please return control to the caller or throw an exception
- */
-function wfAbruptExit( $error = false ){
-	static $called = false;
-	if ( $called ){
-		exit( -1 );
-	}
-	$called = true;
-
-	$bt = wfDebugBacktrace();
-	if( $bt ) {
-		for($i = 0; $i < count($bt) ; $i++){
-			$file = isset($bt[$i]['file']) ? $bt[$i]['file'] : "unknown";
-			$line = isset($bt[$i]['line']) ? $bt[$i]['line'] : "unknown";
-			wfDebug("WARNING: Abrupt exit in $file at line $line\n");
-		}
-	} else {
-		wfDebug('WARNING: Abrupt exit\n');
-	}
-
-	wfLogProfilingData();
-
-	if ( !$error ) {
-		wfGetLB()->closeAll();
-	}
-	exit( -1 );
-}
-
-/**
- * @deprecated Please return control the caller or throw an exception
- */
-function wfErrorExit() {
-	wfAbruptExit( true );
-}
-
 /**
  * Print a simple message and die, returning nonzero to the shell if any.
  * Plain die() fails to return nonzero to the shell if you pass a string.
@@ -837,21 +796,19 @@ function wfHostname() {
 	return $host;
 }
 
-	/**
-	 * Returns a HTML comment with the elapsed time since request.
-	 * This method has no side effects.
-	 * @return string
-	 */
-	function wfReportTime() {
-		global $wgRequestTime, $wgShowHostnames;
-
-		$now = wfTime();
-		$elapsed = $now - $wgRequestTime;
-
-		return $wgShowHostnames
-			? sprintf( "<!-- Served by %s in %01.3f secs. -->", wfHostname(), $elapsed )
-			: sprintf( "<!-- Served in %01.3f secs. -->", $elapsed );
-	}
+/**
+ * Returns a HTML comment with the elapsed time since request.
+ * This method has no side effects.
+ * @return string
+ */
+function wfReportTime() {
+	global $wgRequestTime, $wgShowHostnames;
+	$now = wfTime();
+	$elapsed = $now - $wgRequestTime;
+	return $wgShowHostnames
+		? sprintf( "<!-- Served by %s in %01.3f secs. -->", wfHostname(), $elapsed )
+		: sprintf( "<!-- Served in %01.3f secs. -->", $elapsed );
+}
 
 /**
  * Safety wrapper for debug_backtrace().
@@ -1205,14 +1162,6 @@ function wfExpandUrl( $url ) {
 	} else {
 		return $url;
 	}
-}
-
-/**
- * This is obsolete, use SquidUpdate::purge()
- * @deprecated
- */
-function wfPurgeSquidServers ($urlArr) {
-	SquidUpdate::purge( $urlArr );
 }
 
 /**
@@ -2395,13 +2344,6 @@ function wfDoUpdates()
 }
 
 /**
- * @deprecated use StringUtils::explodeMarkup
- */
-function wfExplodeMarkup( $separator, $text ) {
-	return StringUtils::explodeMarkup( $separator, $text );
-}
-
-/**
  * Convert an arbitrarily-long digit string from one numeric base
  * to another, optionally zero-padding to a minimum column width.
  *
@@ -2515,29 +2457,10 @@ function wfCreateObject( $name, $p ){
 	}
 }
 
-/**
- * Alias for modularized function
- * @deprecated Use Http::get() instead
- */
-function wfGetHTTP( $url, $timeout = 'default' ) {
-	wfDeprecated(__FUNCTION__);
-	return Http::get( $url, $timeout );
-}
-
-/**
- * Alias for modularized function
- * @deprecated Use Http::isLocalURL() instead
- */
-function wfIsLocalURL( $url ) {
-	wfDeprecated(__FUNCTION__);
-	return Http::isLocalURL( $url );
-}
-
 function wfHttpOnlySafe() {
 	global $wgHttpOnlyBlacklist;
 	if( !version_compare("5.2", PHP_VERSION, "<") )
 		return false;
-
 	if( isset( $_SERVER['HTTP_USER_AGENT'] ) ) {
 		foreach( $wgHttpOnlyBlacklist as $regex ) {
 			if( preg_match( $regex, $_SERVER['HTTP_USER_AGENT'] ) ) {
@@ -2545,7 +2468,6 @@ function wfHttpOnlySafe() {
 			}
 		}
 	}
-
 	return true;
 }
 
@@ -2722,7 +2644,7 @@ function &wfGetLBFactory() {
  * @return File, or false if the file does not exist
  */
 function wfFindFile( $title, $time = false, $flags = 0, $bypass = false ) {
-        if( !$time && !$flags && !$bypass ) {
+	if( !$time && !$flags && !$bypass ) {
 		return FileCache::singleton()->findFile( $title );
 	} else {
 		return RepoGroup::singleton()->findFile( $title, $time, $flags );
