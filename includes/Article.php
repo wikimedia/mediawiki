@@ -766,7 +766,7 @@ class Article {
 			// We'll need a backlink to the source page for navigation.
 			if( wfRunHooks( 'ArticleViewRedirect', array( &$this ) ) ) {
 				$redir = $sk->makeKnownLinkObj( $this->mRedirectedFrom, '', 'redirect=no' );
-				$s = wfMsg( 'redirectedfrom', $redir );
+				$s = wfMsgExt( 'redirectedfrom', array( 'parseinline', 'replaceafter' ), $redir );
 				$wgOut->setSubtitle( $s );
 
 				// Set the fragment if one was specified in the redirect
@@ -782,7 +782,7 @@ class Article {
 			global $wgRedirectSources;
 			if( $wgRedirectSources && preg_match( $wgRedirectSources, $rdfrom ) ) {
 				$redir = $sk->makeExternalLink( $rdfrom, $rdfrom );
-				$s = wfMsg( 'redirectedfrom', $redir );
+				$s = wfMsgExt( 'redirectedfrom', array( 'parseinline', 'replaceafter' ), $redir );
 				$wgOut->setSubtitle( $s );
 				$wasRedirected = true;
 			}
@@ -2092,14 +2092,14 @@ class Article {
 
 		$reason = $this->DeleteReasonList;
 
-		if( $reason != 'other' && $this->DeleteReason != '') {
+		if( $reason != 'other' && $this->DeleteReason != '' ) {
 			// Entry from drop down menu + additional comment
 			$reason .= ': ' . $this->DeleteReason;
 		} elseif( $reason == 'other' ) {
 			$reason = $this->DeleteReason;
 		}
 		# Flag to hide all contents of the archived revisions
-		$suppress = $wgRequest->getVal( 'wpSuppress' ) && $wgUser->isAllowed('suppressrevision');
+		$suppress = $wgRequest->getVal( 'wpSuppress' ) && $wgUser->isAllowed( 'suppressrevision' );
 
 		# This code desperately needs to be totally rewritten
 
@@ -2112,7 +2112,7 @@ class Article {
 		# Check permissions
 		$permission_errors = $this->mTitle->getUserPermissionsErrors( 'delete', $wgUser );
 
-		if(count($permission_errors)>0) {
+		if( count( $permission_errors ) > 0 ) {
 			$wgOut->showPermissionsErrorPage( $permission_errors );
 			return;
 		}
@@ -2124,7 +2124,7 @@ class Article {
 		$conds = $this->mTitle->pageCond();
 		$latest = $dbw->selectField( 'page', 'page_latest', $conds, __METHOD__ );
 		if( $latest === false ) {
-			$wgOut->showFatalError( wfMsg( 'cannotdelete' ) );
+			$wgOut->showFatalError( wfMsgExt( 'cannotdelete', array( 'parse' ) ) );
 			return;
 		}
 
@@ -2153,8 +2153,8 @@ class Article {
 
 		// If the page has a history, insert a warning
 		if( $hasHistory && !$confirm ) {
-			$skin=$wgUser->getSkin();
-			$wgOut->addHTML( '<strong>' . wfMsg( 'historywarning' ) . ' ' . $skin->historyLink() . '</strong>' );
+			$skin = $wgUser->getSkin();
+			$wgOut->addHTML( '<strong>' . wfMsgExt( 'historywarning', array( 'parseinline' ) ) . ' ' . $skin->historyLink() . '</strong>' );
 			if( $bigHistory ) {
 				global $wgLang, $wgDeleteRevisionsLimit;
 				$wgOut->wrapWikiMsg( "<div class='error'>\n$1</div>\n",
@@ -2243,7 +2243,7 @@ class Article {
 
 		wfDebug( "Article::confirmDelete\n" );
 
-		$wgOut->setSubtitle( wfMsg( 'delete-backlink', $wgUser->getSkin()->makeKnownLinkObj( $this->mTitle ) ) );
+		$wgOut->setSubtitle( wfMsgHtml( 'delete-backlink', $wgUser->getSkin()->makeKnownLinkObj( $this->mTitle ) ) );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->addWikiMsg( 'confirmdeletetext' );
 
@@ -2336,7 +2336,7 @@ class Article {
 				wfRunHooks('ArticleDeleteComplete', array(&$this, &$wgUser, $reason, $id));
 			} else {
 				if( $error == '' )
-					$wgOut->showFatalError( wfMsg( 'cannotdelete' ) );
+					$wgOut->showFatalError( wfMsgExt( 'cannotdelete', array( 'parse' ) ) );
 				else
 					$wgOut->showFatalError( $error );
 			}
@@ -2867,10 +2867,10 @@ class Article {
 	 *
 	 * @param $oldid String: revision ID of this article revision
 	 */
-	public function setOldSubtitle( $oldid=0 ) {
+	public function setOldSubtitle( $oldid = 0 ) {
 		global $wgLang, $wgOut, $wgUser;
 
-		if( !wfRunHooks( 'DisplayOldSubtitle', array(&$this, &$oldid) ) ) {
+		if( !wfRunHooks( 'DisplayOldSubtitle', array( &$this, &$oldid ) ) ) {
 			return;
 		}
 
@@ -2880,34 +2880,34 @@ class Article {
 		$td = $wgLang->timeanddate( $this->mTimestamp, true );
 		$sk = $wgUser->getSkin();
 		$lnk = $current
-			? wfMsg( 'currentrevisionlink' )
-			: $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'currentrevisionlink' ) );
+			? wfMsgHtml( 'currentrevisionlink' )
+			: $sk->makeKnownLinkObj( $this->mTitle, wfMsgHtml( 'currentrevisionlink' ) );
 		$curdiff = $current
-			? wfMsg( 'diff' )
-			: $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'diff' ), 'diff=cur&oldid='.$oldid );
+			? wfMsgHtml( 'diff' )
+			: $sk->makeKnownLinkObj( $this->mTitle, wfMsgHtml( 'diff' ), 'diff=cur&oldid='.$oldid );
 		$prev = $this->mTitle->getPreviousRevisionID( $oldid ) ;
 		$prevlink = $prev
-			? $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'previousrevision' ), 'direction=prev&oldid='.$oldid )
-			: wfMsg( 'previousrevision' );
+			? $sk->makeKnownLinkObj( $this->mTitle, wfMsgHtml( 'previousrevision' ), 'direction=prev&oldid='.$oldid )
+			: wfMsgHtml( 'previousrevision' );
 		$prevdiff = $prev
-			? $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'diff' ), 'diff=prev&oldid='.$oldid )
-			: wfMsg( 'diff' );
+			? $sk->makeKnownLinkObj( $this->mTitle, wfMsgHtml( 'diff' ), 'diff=prev&oldid='.$oldid )
+			: wfMsgHtml( 'diff' );
 		$nextlink = $current
-			? wfMsg( 'nextrevision' )
-			: $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'nextrevision' ), 'direction=next&oldid='.$oldid );
+			? wfMsgHtml( 'nextrevision' )
+			: $sk->makeKnownLinkObj( $this->mTitle, wfMsgHtml( 'nextrevision' ), 'direction=next&oldid='.$oldid );
 		$nextdiff = $current
-			? wfMsg( 'diff' )
-			: $sk->makeKnownLinkObj( $this->mTitle, wfMsg( 'diff' ), 'diff=next&oldid='.$oldid );
+			? wfMsgHtml( 'diff' )
+			: $sk->makeKnownLinkObj( $this->mTitle, wfMsgHtml( 'diff' ), 'diff=next&oldid='.$oldid );
 
 		$cdel='';
 		if( $wgUser->isAllowed( 'deleterevision' ) ) {
 			$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 			if( $revision->isCurrent() ) {
 			// We don't handle top deleted edits too well
-				$cdel = wfMsgHtml('rev-delundel');
+				$cdel = wfMsgHtml( 'rev-delundel' );
 			} else if( !$revision->userCan( Revision::DELETED_RESTRICTED ) ) {
 			// If revision was hidden from sysops
-				$cdel = wfMsgHtml('rev-delundel');
+				$cdel = wfMsgHtml( 'rev-delundel' );
 			} else {
 				$cdel = $sk->makeKnownLinkObj( $revdel,
 					wfMsgHtml('rev-delundel'),
@@ -2928,9 +2928,9 @@ class Article {
 			? 'revision-info-current'
 			: 'revision-info';
 
-		$r = "\n\t\t\t\t<div id=\"mw-{$infomsg}\">" . wfMsg( $infomsg, $td, $userlinks, $revision->getID() ) . "</div>\n" .
+		$r = "\n\t\t\t\t<div id=\"mw-{$infomsg}\">" . wfMsgExt( $infomsg, array( 'parseinline', 'replaceafter' ), $td, $userlinks, $revision->getID() ) . "</div>\n" .
 
-		     "\n\t\t\t\t<div id=\"mw-revision-nav\">" . $cdel . wfMsg( 'revision-nav', $prevdiff, 
+		     "\n\t\t\t\t<div id=\"mw-revision-nav\">" . $cdel . wfMsgHtml( 'revision-nav', $prevdiff, 
 				$prevlink, $lnk, $curdiff, $nextlink, $nextdiff ) . "</div>\n\t\t\t";
 		$wgOut->setSubtitle( $r );
 	}
@@ -3226,7 +3226,7 @@ class Article {
 
 		$wgOut->setPagetitle( $page->getPrefixedText() );
 		$wgOut->setPageTitleActionText( wfMsg( 'info_short' ) );
-		$wgOut->setSubtitle( wfMsg( 'infosubtitle' ) );
+		$wgOut->setSubtitle( wfMsgHtml( 'infosubtitle' ) );
 
 		if( !$this->mTitle->exists() ) {
 			$wgOut->addHTML( '<div class="noarticletext">' );
