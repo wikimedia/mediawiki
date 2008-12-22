@@ -346,6 +346,10 @@ class LogEventsList {
 			$action = LogPage::actionText( $row->log_type, $row->log_action, $title, $this->skin, $paramArray, true );
 		}
 
+		if( $revert != '' ) {
+			$revert = '<span class="mw-logevent-actionlink">' . $revert . '</span>';
+		}
+
 		return "<li>$del$time $userLink $action $comment $revert</li>\n";
 	}
 
