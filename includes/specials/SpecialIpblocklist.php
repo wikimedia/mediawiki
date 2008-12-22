@@ -424,6 +424,7 @@ class IPUnblockForm {
 
 		$unblocklink = '';
 		$changeblocklink = '';
+		$toolLinks = '';
 		if ( $wgUser->isAllowed( 'block' ) ) {
 			$unblocklink = $sk->link( SpecialPage::getTitleFor( 'Ipblocklist' ),
 					$msg['unblocklink'],
@@ -438,7 +439,7 @@ class IPUnblockForm {
 						$msg['change-blocklink'],
 						array(), array(), 'known' );
 			}
-		$toolLinks = "($unblocklink$changeblocklink)";
+			$toolLinks = "($unblocklink$changeblocklink)";
 		}
 
 		$comment = $sk->commentBlock( $block->mReason );
