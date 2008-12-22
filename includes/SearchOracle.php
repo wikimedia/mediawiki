@@ -77,9 +77,10 @@ class SearchOracle extends SearchEngine {
 	function queryNamespaces() {
 		if( is_null($this->namespaces) )
 			return '';
-		$namespaces = implode(',', $this->namespaces);
-		if ($namespaces == '') {
+		if ( !count( $this->namespaces ) ) {
 			$namespaces = '0';
+		} else {
+			$namespaces = $this->db->makeList( $this->namespaces );
 		}
 		return 'AND page_namespace IN (' . $namespaces . ')';
 	}
@@ -144,7 +145,10 @@ class SearchOracle extends SearchEngine {
 			'WHERE page_id=si_page AND ' . $match;
 	}
 
-	/** @todo document */
+	/** 
+	 * Parse a user input search string, and return an SQL fragment to be used 
+	 * as part of a WHERE clause
+	 */
 	function parseQuery($filteredText, $fulltext) {
 		global $wgContLang;
 		$lc = SearchEngine::legalSearchChars();
@@ -170,9 +174,9 @@ class SearchOracle extends SearchEngine {
 			}
 		}
 
-		$searchon = $this->db->strencode(join(',', $q));
+		$searchon = $this->db->addQuotes(join(',', $q));
 		$field = $this->getIndexField($fulltext);
-		return " CONTAINS($field, '$searchon', 1) > 0 ";
+		return " CONTAINS($field, $searchon, 1) > 0 ";
 	}
 
 	/**
