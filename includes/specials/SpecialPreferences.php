@@ -24,7 +24,7 @@ class PreferencesForm {
 	var $mQuickbar, $mStubs;
 	var $mRows, $mCols, $mSkin, $mMath, $mDate, $mUserEmail, $mEmailFlag, $mNick;
 	var $mUserLanguage, $mUserVariant;
-	var $mSearch, $mRecent, $mRecentDays, $mHourDiff, $mSearchLines, $mSearchChars, $mAction;
+	var $mSearch, $mRecent, $mRecentDays, $mTimeZone, $mHourDiff, $mSearchLines, $mSearchChars, $mAction;
 	var $mReset, $mPosted, $mToggles, $mSearchNs, $mRealName, $mImageSize;
 	var $mUnderline, $mWatchlistEdits;
 
@@ -51,6 +51,7 @@ class PreferencesForm {
 		$this->mSearch = $request->getVal( 'wpSearch' );
 		$this->mRecent = $request->getVal( 'wpRecent' );
 		$this->mRecentDays = $request->getVal( 'wpRecentDays' );
+		$this->mTimeZone = $request->getVal( 'wpTimeZone' );
 		$this->mHourDiff = $request->getVal( 'wpHourDiff' );
 		$this->mSearchLines = $request->getVal( 'wpSearchLines' );
 		$this->mSearchChars = $request->getVal( 'wpSearchChars' );
@@ -170,34 +171,37 @@ class PreferencesForm {
 
 	/**
 	 * Used to validate the user inputed timezone before saving it as
-	 * 'timecorrection', will return '00:00' if fed bogus data.
-	 * Note: It's not a 100% correct implementation timezone-wise, it will
-	 * accept stuff like '14:30',
+	 * 'timecorrection', will return 'System' if fed bogus data.
 	 * @access private
-	 * @param string $s the user input
+	 * @param string $tz the user input Zoneinfo timezone
+	 * @param string $s  the user input offset string
 	 * @return string
 	 */
-	function validateTimeZone( $s ) {
-		if ( $s !== '' ) {
-			if ( strpos( $s, ':' ) ) {
-				# HH:MM
-				$array = explode( ':' , $s );
-				$hour = intval( $array[0] );
-				$minute = intval( $array[1] );
-			} else {
-				$minute = intval( $s * 60 );
-				$hour = intval( $minute / 60 );
-				$minute = abs( $minute ) % 60;
-			}
-			# Max is +14:00 and min is -12:00, see:
-			# http://en.wikipedia.org/wiki/Timezone
-			$hour = min( $hour, 14 );
-			$hour = max( $hour, -12 );
-			$minute = min( $minute, 59 );
-			$minute = max( $minute, 0 );
-			$s = sprintf( "%02d:%02d", $hour, $minute );
+	function validateTimeZone( $tz, $s ) {
+		$data = explode( '|', $tz, 3 );
+		switch ( $data[0] ) {
+			case 'ZoneInfo':
+			case 'System':
+				return $tz;
+			case 'Offset':
+			default:
+				$data = explode( ':', $s, 2 );
+				$minDiff = 0;
+				if( count( $data ) == 2 ) {
+					$data[0] = intval( $data[0] );
+					$data[1] = intval( $data[1] );
+					$minDiff = abs( $data[0] ) * 60 + $data[1];
+					if ( $data[0] < 0 ) $minDiff = -$minDiff;
+				} else {
+					$minDiff = intval( $data[0] ) * 60;
+				}
+
+				# Max is +14:00 and min is -12:00, see:
+				# http://en.wikipedia.org/wiki/Timezone
+				$minDiff = min( $minDiff, 840 );  # 14:00
+				$minDiff = max( $minDiff, -720 ); # -12:00
+				return 'Offset|'.$minDiff;
 		}
-		return $s;
 	}
 
 	/**
@@ -259,7 +263,7 @@ class PreferencesForm {
 		$wgUser->setOption( 'rows', $this->validateInt( $this->mRows, 4, 1000 ) );
 		$wgUser->setOption( 'cols', $this->validateInt( $this->mCols, 4, 1000 ) );
 		$wgUser->setOption( 'stubthreshold', $this->validateIntOrNull( $this->mStubs ) );
-		$wgUser->setOption( 'timecorrection', $this->validateTimeZone( $this->mHourDiff, -12, 14 ) );
+		$wgUser->setOption( 'timecorrection', $this->validateTimeZone( $this->mTimeZone, $this->mHourDiff ) );
 		$wgUser->setOption( 'imagesize', $this->mImageSize );
 		$wgUser->setOption( 'thumbsize', $this->mThumbSize );
 		$wgUser->setOption( 'underline', $this->validateInt($this->mUnderline, 0, 2) );
@@ -344,7 +348,7 @@ class PreferencesForm {
 	 * @access private
 	 */
 	function resetPrefs() {
-		global $wgUser, $wgLang, $wgContLang, $wgContLanguageCode, $wgAllowRealName;
+		global $wgUser, $wgLang, $wgContLang, $wgContLanguageCode, $wgAllowRealName, $wgLocalTZoffset;
 
 		$this->mUserEmail = $wgUser->getEmail();
 		$this->mUserEmailAuthenticationtimestamp = $wgUser->getEmailAuthenticationtimestamp();
@@ -364,7 +368,47 @@ class PreferencesForm {
 		$this->mRows = $wgUser->getOption( 'rows' );
 		$this->mCols = $wgUser->getOption( 'cols' );
 		$this->mStubs = $wgUser->getOption( 'stubthreshold' );
-		$this->mHourDiff = $wgUser->getOption( 'timecorrection' );
+
+		$tz = $wgUser->getOption( 'timecorrection' );
+		$data = explode( '|', $tz, 3 );
+		$minDiff = null;
+		switch ( $data[0] ) {
+			case 'ZoneInfo':
+				$this->mTimeZone = $tz;
+				# Check if the specified TZ exists, and change to 'Offset' if 
+				# not.
+				if ( !function_exists('timezone_open') || @timezone_open( $data[2] ) === false ) {
+					$this->mTimeZone = 'Offset';
+					$minDiff = intval( $data[1] );
+				}
+				break;
+			case '':
+			case 'System':
+				$this->mTimeZone = 'System|'.$wgLocalTZoffset;
+				break;
+			case 'Offset':
+				$this->mTimeZone = 'Offset';
+				$minDiff = intval( $data[1] );
+				break;
+			default:
+				$this->mTimeZone = 'Offset';
+				$data = explode( ':', $tz, 2 );
+				if( count( $data ) == 2 ) {
+					$data[0] = intval( $data[0] );
+					$data[1] = intval( $data[1] );
+					$minDiff = abs( $data[0] ) * 60 + $data[1];
+					if ( $data[0] < 0 ) $minDiff = -$minDiff;
+				} else {
+					$minDiff = intval( $data[0] ) * 60;
+				}
+				break;
+		}
+		if ( is_null( $minDiff ) ) {
+			$this->mHourDiff = '';
+		} else {
+			$this->mHourDiff = sprintf( '%+03d:%02d', floor($minDiff/60), abs($minDiff)%60 );
+		}
+
 		$this->mSearch = $wgUser->getOption( 'searchlimit' );
 		$this->mSearchLines = $wgUser->getOption( 'contextlines' );
 		$this->mSearchChars = $wgUser->getOption( 'contextchars' );
@@ -490,7 +534,7 @@ class PreferencesForm {
 		global $wgRCShowWatchingUsers, $wgEnotifRevealEditorAddress;
 		global $wgEnableEmail, $wgEnableUserEmail, $wgEmailAuthentication;
 		global $wgContLanguageCode, $wgDefaultSkin, $wgCookieExpiration;
-		global $wgEmailConfirmToEdit, $wgEnableMWSuggest;
+		global $wgEmailConfirmToEdit, $wgEnableMWSuggest, $wgLocalTZoffset;
 
 		$wgOut->setPageTitle( wfMsg( 'preferences' ) );
 		$wgOut->setArticleRelated( false );
@@ -908,18 +952,61 @@ class PreferencesForm {
 			$wgOut->addHTML( Xml::closeElement( 'fieldset' ) . "\n" );
 		}
 
-		$nowlocal = $wgLang->time( $now = wfTimestampNow(), true );
-		$nowserver = $wgLang->time( $now, false );
+		$nowlocal = Xml::openElement( 'span', array( 'id' => 'wpLocalTime' ) ) .
+			$wgLang->time( $now = wfTimestampNow(), true ) .
+			Xml::closeElement( 'span' );
+		$nowserver = $wgLang->time( $now, false ) .
+			Xml::hidden( 'wpServerTime', substr( $now, 8, 2 ) * 60 + substr( $now, 10, 2 ) );
 
 		$wgOut->addHTML(
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', null, wfMsg( 'timezonelegend' ) ) .
 			Xml::openElement( 'table' ) .
 		 	$this->addRow( wfMsg( 'servertime' ), $nowserver ) .
-			$this->addRow( wfMsg( 'localtime' ), $nowlocal ) .
+			$this->addRow( wfMsg( 'localtime' ), $nowlocal )
+		);
+		$opt = Xml::openElement( 'select', array(
+			'name' => 'wpTimeZone',
+			'id' => 'wpTimeZone',
+			'onchange' => 'javascript:updateTimezoneSelection(false)' ) );
+		$opt .= Xml::option( wfMsg( 'timezoneuseserverdefault' ), "System|$wgLocalTZoffset", $this->mTimeZone === "System|$wgLocalTZoffset" );
+		$opt .= Xml::option( wfMsg( 'timezoneuseoffset' ), 'Offset', $this->mTimeZone === 'Offset' );
+		if ( function_exists( 'timezone_identifiers_list' ) ) {
+			$optgroup = '';
+			$tzs = timezone_identifiers_list();
+			sort( $tzs );
+			$selZone = explode( '|', $this->mTimeZone, 3);
+			$selZone = ( $selZone[0] == 'ZoneInfo' ) ? $selZone[2] : null;
+			$now = date_create( 'now' );
+			foreach ( $tzs as $tz ) {
+				$z = explode( '/', $tz, 2 );
+				# timezone_identifiers_list() returns a number of
+				# backwards-compatibility entries. This filters them out of the 
+				# list presented to the user.
+				if ( count( $z ) != 2 || !in_array( $z[0], array( 'Africa', 'America', 'Antarctica', 'Arctic', 'Asia', 'Atlantic', 'Australia', 'Europe', 'Indian', 'Pacific' ) ) ) continue;
+				if ( $optgroup != $z[0] ) {
+					if ( $optgroup !== '' ) $opt .= Xml::closeElement( 'optgroup' );
+					$optgroup = $z[0];
+					$opt .= Xml::openElement( 'optgroup', array( 'label' => $z[0] ) );
+				}
+				$minDiff = floor( timezone_offset_get( timezone_open( $tz ), $now ) / 60 );
+				$opt .= Xml::option( str_replace( '_', ' ', $tz ), "ZoneInfo|$minDiff|$tz", $selZone === $tz, array( 'label' => $z[1] ) );
+			}
+			if ( $optgroup !== '' ) $opt .= Xml::closeElement( 'optgroup' );
+		}
+		$opt .= Xml::closeElement( 'select' );
+		$wgOut->addHTML(
+			$this->addRow(
+				Xml::label( wfMsg( 'timezoneselect' ), 'wpTimeZone' ),
+				$opt )
+		);
+		$wgOut->addHTML(
 			$this->addRow(
 				Xml::label( wfMsg( 'timezoneoffset' ), 'wpHourDiff'  ),
-				Xml::input( 'wpHourDiff', 6, $this->mHourDiff, array( 'id' => 'wpHourDiff' ) ) ) .
+				Xml::input( 'wpHourDiff', 6, $this->mHourDiff, array(
+					'id' => 'wpHourDiff',
+					'onfocus' => 'javascript:updateTimezoneSelection(true)',
+					'onblur' => 'javascript:updateTimezoneSelection(false)' ) ) ) .
 			"<tr>
 				<td></td>
 				<td class='mw-submit'>" .

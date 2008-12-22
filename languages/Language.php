@@ -479,39 +479,50 @@ class Language {
 	function userAdjust( $ts, $tz = false )	{
 		global $wgUser, $wgLocalTZoffset;
 
-		if (!$tz) {
+		if ( $tz === false ) {
 			$tz = $wgUser->getOption( 'timecorrection' );
 		}
 
-		# minutes and hours differences:
-		$minDiff = 0;
-		$hrDiff  = 0;
+		$data = explode( '|', $tz, 3 );
 
-		if ( $tz === '' ) {
-			# Global offset in minutes.
-			if( isset($wgLocalTZoffset) ) {
-				if( $wgLocalTZoffset >= 0 ) {
-					$hrDiff = floor($wgLocalTZoffset / 60);
-				} else {
-					$hrDiff = ceil($wgLocalTZoffset / 60);
-				}
-				$minDiff = $wgLocalTZoffset % 60;
+		if ( $data[0] == 'ZoneInfo' ) {
+			if ( function_exists( 'timezone_open' ) && @timezone_open( $data[2] ) !== false ) {
+				$date = date_create( $ts, timezone_open( 'UTC' ) );
+				date_timezone_set( $date, timezone_open( $data[2] ) );
+				$date = date_format( $date, 'YmdHis' );
+				return $date;
 			}
-		} elseif ( strpos( $tz, ':' ) !== false ) {
-			$tzArray = explode( ':', $tz );
-			$hrDiff = intval($tzArray[0]);
-			$minDiff = intval($hrDiff < 0 ? -$tzArray[1] : $tzArray[1]);
+			# Unrecognized timezone, default to 'Offset' with the stored offset.
+			$data[0] = 'Offset';
+		}
+
+		$minDiff = 0;
+		if ( $data[0] == 'System' || $tz == '' ) {
+			# Global offset in minutes.
+			if( isset($wgLocalTZoffset) ) $minDiff = $wgLocalTZoffset;
+		} else if ( $data[0] == 'Offset' ) {
+			$minDiff = intval( $data[1] );
 		} else {
-			$hrDiff = intval( $tz );
+			$data = explode( ':', $tz );
+			if( count( $data ) == 2 ) {
+				$data[0] = intval( $data[0] );
+				$data[1] = intval( $data[1] );
+				$minDiff = abs( $data[0] ) * 60 + $data[1];
+				if ( $data[0] < 0 ) $minDiff = -$minDiff;
+			} else {
+				$minDiff = intval( $data[0] ) * 60;
+			}
 		}
 
 		# No difference ? Return time unchanged
-		if ( 0 == $hrDiff && 0 == $minDiff ) { return $ts; }
+		if ( 0 == $minDiff ) return $ts;
 
 		wfSuppressWarnings(); // E_STRICT system time bitching
-		# Generate an adjusted date
+		# Generate an adjusted date; take advantage of the fact that mktime
+		# will normalize out-of-range values so we don't have to split $minDiff 
+		# into hours and minutes.
 		$t = mktime( (
-		  (int)substr( $ts, 8, 2) ) + $hrDiff, # Hours
+		  (int)substr( $ts, 8, 2) ), # Hours
 		  (int)substr( $ts, 10, 2 ) + $minDiff, # Minutes
 		  (int)substr( $ts, 12, 2 ), # Seconds
 		  (int)substr( $ts, 4, 2 ), # Month

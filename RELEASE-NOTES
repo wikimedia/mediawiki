@@ -239,6 +239,9 @@ The following extensions are migrated into MediaWiki 1.14:
 * Added 'UserCryptPassword' and 'UserComparePasswords' hooks to allow extensions to implement
   their own password hashing methods.
 * (bug 16760) Add CSS-class to action links of Special:Log
+* (bug 505) Time zones can now be specified by location in user preferences,
+  avoiding the need to manually update for DST. Patch by Brad Jorsch.
+
 
 === Bug fixes in 1.14 ===
 
