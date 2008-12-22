@@ -51,7 +51,7 @@ class MediaWiki {
 	 */
 	function initialize( &$title, &$article, &$output, &$user, $request ) {
 		wfProfileIn( __METHOD__ );
-		$this->preliminaryChecks( $title, $output, $request ) ;
+		$this->preliminaryChecks( $title, $output, $request );
 		if( !$this->initializeSpecialCases( $title, $output, $request ) ) {
 			$new_article = $this->initializeArticle( $title, $request );
 			if( is_object( $new_article ) ) {
@@ -131,7 +131,6 @@ class MediaWiki {
 	 * @param $request WebRequest
 	 */
 	function preliminaryChecks( &$title, &$output, $request ) {
-
 		if( $request->getCheck( 'search' ) ) {
 			// Compatibility with old search URLs which didn't use Special:Search
 			// Just check for presence here, so blank requests still
@@ -140,7 +139,6 @@ class MediaWiki {
 			// Do this above the read whitelist check for security...
 			$title = SpecialPage::getTitleFor( 'Search' );
 		}
-
 		# If the user is not logged in, the Namespace:title of the article must be in
 		# the Read array in order for the user to see it. (We have to check here to
 		# catch special pages etc. We check again in Article::view())
@@ -149,7 +147,6 @@ class MediaWiki {
 			$output->output();
 			exit;
 		}
-
 	}
 
 	/**
@@ -309,7 +306,8 @@ class MediaWiki {
 			$dbr = wfGetDB( DB_SLAVE );
 			$article->loadPageData( $article->pageDataFromTitle( $dbr, $title ) );
 
-			wfRunHooks( 'InitializeArticleMaybeRedirect', array( &$title, &$request, &$ignoreRedirect, &$target ) );
+			wfRunHooks( 'InitializeArticleMaybeRedirect', 
+				array(&$title,&$request,&$ignoreRedirect,&$target,&$article) );
 
 			// Follow redirects only for... redirects
 			if( !$ignoreRedirect && $article->isRedirect() ) {

@@ -753,6 +753,7 @@ $title: Title object ($wgTitle)
 $request: WebRequest
 $ignoreRedirect: boolean to skip redirect check
 $target: Title/string of redirect target
+$article: Article object
 
 'InitPreferencesForm': called at the end of PreferencesForm's constructor
 $form: the PreferencesForm
