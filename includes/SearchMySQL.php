@@ -34,7 +34,10 @@ class SearchMySQL extends SearchEngine {
 		$this->db = $db;
 	}
 
-	/** @todo document */
+	/** 
+	 * Parse the user's query and transform it into an SQL fragment which will 
+	 * become part of a WHERE clause
+	 */
 	function parseQuery( $filteredText, $fulltext ) {
 		global $wgContLang;
 		$lc = SearchEngine::legalSearchChars(); // Minus format chars
@@ -126,9 +129,10 @@ class SearchMySQL extends SearchEngine {
 	function queryNamespaces() {
 		if( is_null($this->namespaces) )
 			return '';  # search all
-		$namespaces = implode( ',', $this->namespaces );
-		if ($namespaces == '') {
+		if ( !count( $this->namespaces ) ) {
 			$namespaces = '0';
+		} else {
+			$namespaces = $this->db->makeList( $this->namespaces );
 		}
 		return 'AND page_namespace IN (' . $namespaces . ')';
 	}

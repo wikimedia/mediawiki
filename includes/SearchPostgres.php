@@ -66,6 +66,7 @@ class SearchPostgres extends SearchEngine {
 
 	/*
 	 * Transform the user's search string into a better form for tsearch2
+	 * Returns an SQL fragment consisting of quoted text to search for.
 	*/
 	function parseQuery( $term ) {
 
@@ -142,6 +143,7 @@ class SearchPostgres extends SearchEngine {
 		}
 		$prefix = $wgDBversion < 8.3 ? "'default'," : '';
 
+		# Get the SQL fragment for the given term
 		$searchstring = $this->parseQuery( $term );
 
 		## We need a separate query here so gin does not complain about empty searches
@@ -183,7 +185,7 @@ class SearchPostgres extends SearchEngine {
 			if ( count($this->namespaces) < 1)
 				$query .= ' AND page_namespace = 0';
 			else {
-				$namespaces = implode( ',', $this->namespaces );
+				$namespaces = $this->db->makeList( $this->namespaces );
 				$query .= " AND page_namespace IN ($namespaces)";
 			}
 		}
@@ -202,8 +204,8 @@ class SearchPostgres extends SearchEngine {
 	function update( $pageid, $title, $text ) {
 		## We don't want to index older revisions
 		$SQL = "UPDATE pagecontent SET textvector = NULL WHERE old_id IN ".
-				"(SELECT rev_text_id FROM revision WHERE rev_page = $pageid ".
-				"ORDER BY rev_text_id DESC OFFSET 1)";
+				"(SELECT rev_text_id FROM revision WHERE rev_page = " . intval( $pageid ) . 
+				" ORDER BY rev_text_id DESC OFFSET 1)";
 		$this->db->doQuery($SQL);
 		return true;
 	}
