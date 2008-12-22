@@ -106,7 +106,7 @@ $bookstoreList = array(
 );
 
 $magicWords = array(
-	'redirect'              => array( '0', '#ПЕРЕНАПРАВЛЕНИЕ', '#ПЕРЕНАПР', '#REDIRECT' ),
+	'redirect'              => array( '0', '#перенаправление', '#перенапр', '#REDIRECT' ),
 	'notoc'                 => array( '0', '__БЕЗ_ОГЛ__', '__NOTOC__' ),
 	'nogallery'             => array( '0', '__БЕЗ_ГАЛЕРЕИ__', '__NOGALLERY__' ),
 	'forcetoc'              => array( '0', '__ОБЯЗ_ОГЛ__', '__FORCETOC__' ),
