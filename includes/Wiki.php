@@ -42,6 +42,7 @@ class MediaWiki {
 	/**
 	 * Initialization of ... everything
 	 * Performs the request too
+	 * FIXME: why is this crap called "initialize" when it performs everything?
 	 *
 	 * @param $title Title ($wgTitle)
 	 * @param $article Article
@@ -84,7 +85,6 @@ class MediaWiki {
 			return true;
 		}
 	}
-
 
 	/**
 	 * Checks some initial queries
@@ -156,6 +156,8 @@ class MediaWiki {
 	 * - local interwiki redirects
 	 * - redirect loop
 	 * - special pages
+	 *
+	 * FIXME: why is this crap called "initialize" when it performs everything?
 	 *
 	 * @param $title Title
 	 * @param $output OutputPage
@@ -286,9 +288,14 @@ class MediaWiki {
 	function initializeArticle( &$title, $request ) {
 		wfProfileIn( __METHOD__ );
 
-		$action = $this->getVal( 'action' );
+		$action = $this->getVal( 'action', 'view' );
 		$article = self::articleFromTitle( $title );
-		
+		# NS_MEDIAWIKI has no redirects.
+		# It is also used for CSS/JS, so performance matters here...
+		if( $title->getNamespace() == NS_MEDIAWIKI ) {
+			wfProfileOut( __METHOD__ );
+			return $article;
+		}
 		// Namespace might change when using redirects
 		// Check for redirects ...
 		$file = ($title->getNamespace() == NS_FILE) ? $article->getFile() : null;
@@ -317,8 +324,7 @@ class MediaWiki {
 						return $target;
 					}
 				}
-
-				if( is_object( $target ) ) {
+				if( is_object($target) ) {
 					// Rewrite environment to redirected article
 					$rarticle = self::articleFromTitle( $target );
 					$rarticle->loadPageData( $rarticle->pageDataFromTitle( $dbr, $target ) );
