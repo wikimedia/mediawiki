@@ -786,8 +786,7 @@ Lukitsemisen syy: $1',
 Harkitse, kannattaako sivua luoda uudelleen. Alla on tämän sivun poistohistoria:",
 'deleted-notice'                   => 'Tämä sivu on poistettu. Alla on tämän sivun poistohistoria.',
 'deletelog-fulllog'                => 'Näytä loki kokonaan',
-'edit-hook-aborted'                => 'Koukku keskeytti muokkauksen.
-Syytä ei tiedossa.',
+'edit-hook-aborted'                => 'Laajennuskoodi esti muokkauksen antamatta syytä.',
 'edit-gone-missing'                => 'Sivun päivitys ei onnistunut.
 Se on ilmeisesti poistettu.',
 'edit-conflict'                    => 'Päällekkäinen muokkaus.',
