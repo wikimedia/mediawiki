@@ -126,8 +126,12 @@ class CoreParserFunctions {
 		# attempt, url-decode and try for a second.
 		if( is_null( $title ) )
 			$title = Title::newFromUrl( urldecode( $s ) );
-		if ( !is_null( $title ) ) {
-			if ( !is_null( $arg ) ) {
+		if( !is_null( $title ) ) {
+			# Convert NS_MEDIA -> NS_FILE
+			if( $title->getNamespace() == NS_MEDIA ) {
+				$title = Title::makeTitle( NS_FILE, $title->getDBKey() );
+			}
+			if( !is_null( $arg ) ) {
 				$text = $title->$func( $arg );
 			} else {
 				$text = $title->$func();
