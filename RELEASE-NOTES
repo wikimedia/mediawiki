@@ -444,8 +444,8 @@ The following extensions are migrated into MediaWiki 1.14:
 * Section anchors now have an "id" attribute as well as a "name" attribute,
   even when Tidy is not used
 * (bug 16026) revision-info, revision-info-current, cannotdelete,
-  redirectedfrom and historywarning messages now use Wiki text rather than raw
-  HTML markup
+  redirectedfrom, historywarning and difference messages now use Wiki text
+  rather than raw HTML markup
 * (bug 13835) Fix rendering of {{filepath:Wiki.png|nowiki}}
 
 === API changes in 1.14 ===
