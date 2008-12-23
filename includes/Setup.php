@@ -22,7 +22,7 @@ $fname = 'Setup.php';
 wfProfileIn( $fname );
 
 // Check to see if we are at the file scope
-if( !isset( $wgVersion ) ) {
+if ( !isset( $wgVersion ) ) {
 	echo "Error, Setup.php must be included from the file scope, after DefaultSettings.php\n";
 	die( 1 );
 }
@@ -33,9 +33,9 @@ if( $wgRedirectScript === false ) $wgRedirectScript = "$wgScriptPath/redirect$wg
 
 if( $wgArticlePath === false ) {
 	if( $wgUsePathInfo ) {
-		$wgArticlePath = "$wgScript/$1";
+		$wgArticlePath      = "$wgScript/$1";
 	} else {
-		$wgArticlePath = "$wgScript?title=$1";
+		$wgArticlePath      = "$wgScript?title=$1";
 	}
 }
 
@@ -54,7 +54,7 @@ if( $wgTmpDirectory === false ) $wgTmpDirectory = "{$wgUploadDirectory}/tmp";
 if( $wgReadOnlyFile === false ) $wgReadOnlyFile = "{$wgUploadDirectory}/lock_yBgMBwiR";
 if( $wgFileCacheDirectory === false ) $wgFileCacheDirectory = "{$wgUploadDirectory}/cache";
 
-if( empty( $wgFileStore['deleted']['directory'] ) ) {
+if ( empty( $wgFileStore['deleted']['directory'] ) ) {
 	$wgFileStore['deleted']['directory'] = "{$wgUploadDirectory}/deleted";
 }
 
@@ -78,7 +78,7 @@ $wgNamespaceAliases['Image_talk'] = NS_FILE_TALK;
 /**
  * Initialise $wgLocalFileRepo from backwards-compatible settings
  */
-if( !$wgLocalFileRepo ) {
+if ( !$wgLocalFileRepo ) {
 	$wgLocalFileRepo = array(
 		'class' => 'LocalRepo',
 		'name' => 'local',
@@ -95,8 +95,8 @@ if( !$wgLocalFileRepo ) {
 /**
  * Initialise shared repo from backwards-compatible settings
  */
-if( $wgUseSharedUploads ) {
-	if( $wgSharedUploadDBname ) {
+if ( $wgUseSharedUploads ) {
+	if ( $wgSharedUploadDBname ) {
 		$wgForeignFileRepos[] = array(
 			'class' => 'ForeignDBRepo',
 			'name' => 'shared',
@@ -130,7 +130,9 @@ if( $wgUseSharedUploads ) {
 		);
 	}
 }
-require_once( "$IP/includes/AutoLoader.php" );
+if ( !class_exists( 'AutoLoader' ) ) {
+	require_once( "$IP/includes/AutoLoader.php" );
+}
 
 wfProfileIn( $fname.'-exception' );
 require_once( "$IP/includes/Exception.php" );
@@ -154,9 +156,9 @@ $wgIP = false; # Load on demand
 $wgRequest = new WebRequest;
 
 # Useful debug output
-if( $wgCommandLineMode ) {
+if ( $wgCommandLineMode ) {
 	wfDebug( "\n\nStart command line script $self\n" );
-} elseif( function_exists( 'getallheaders' ) ) {
+} elseif ( function_exists( 'getallheaders' ) ) {
 	wfDebug( "\n\nStart request\n" );
 	wfDebug( $_SERVER['REQUEST_METHOD'] . ' ' . $_SERVER['REQUEST_URI'] . "\n" );
 	$headers = getallheaders();
@@ -181,13 +183,13 @@ if( $wgRCFilterByAge ) {
 	}
 }
 
-if( $wgSkipSkin ) {
+if ( $wgSkipSkin ) {
 	$wgSkipSkins[] = $wgSkipSkin;
 }
 
 $wgUseEnotif = $wgEnotifUserTalk || $wgEnotifWatchlist;
 
-if( $wgMetaNamespace === FALSE ) {
+if($wgMetaNamespace === FALSE) {
 	$wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
 }
 
@@ -234,7 +236,7 @@ $wgCookiePrefix = strtr($wgCookiePrefix, "=,; +.\"'\\[", "__________");
 if( !wfIniGetBool( 'session.auto_start' ) )
 	session_name( $wgSessionName ? $wgSessionName : $wgCookiePrefix . '_session' );
 
-if( !$wgCommandLineMode && ( $wgRequest->checkSessionCookie() || isset($_COOKIE[$wgCookiePrefix.'Token']) ) ) {
+if( !$wgCommandLineMode && ( $wgRequest->checkSessionCookie() || isset( $_COOKIE[$wgCookiePrefix.'Token'] ) ) ) {
 	wfIncrStats( 'request_with_session' );
 	wfSetupSession();
 	$wgSessionStarted = true;
@@ -266,7 +268,7 @@ wfProfileIn( $fname.'-User' );
 # Entries can be added to this variable during the inclusion
 # of the extension file. Skins can then perform any necessary initialisation.
 #
-foreach( $wgSkinExtensionFunctions as $func ) {
+foreach ( $wgSkinExtensionFunctions as $func ) {
 	call_user_func( $func );
 }
 
@@ -282,8 +284,8 @@ wfProfileIn( $fname.'-misc2' );
 $wgDeferredUpdateList = array();
 $wgPostCommitUpdateList = array();
 
-if( $wgAjaxWatch ) $wgAjaxExportList[] = 'wfAjaxWatch';
-if( $wgAjaxUploadDestCheck ) $wgAjaxExportList[] = 'UploadForm::ajaxGetExistsWarning';
+if ( $wgAjaxWatch ) $wgAjaxExportList[] = 'wfAjaxWatch';
+if ( $wgAjaxUploadDestCheck ) $wgAjaxExportList[] = 'UploadForm::ajaxGetExistsWarning';
 if( $wgAjaxLicensePreview )
 	$wgAjaxExportList[] = 'UploadForm::ajaxGetLicensePreview';
 
@@ -298,7 +300,7 @@ wfProfileIn( $fname.'-extensions' );
 # Entries should be added to this variable during the inclusion
 # of the extension file. This allows the extension to perform
 # any necessary initialisation in the fully initialised environment
-foreach( $wgExtensionFunctions as $func ) {
+foreach ( $wgExtensionFunctions as $func ) {
 	$profName = $fname.'-extensions-'.strval( $func );
 	wfProfileIn( $profName );
 	call_user_func( $func );
