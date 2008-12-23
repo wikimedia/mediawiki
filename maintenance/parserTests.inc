@@ -559,6 +559,7 @@ class ParserTest {
 				'createpage'    => true,
 				'createtalk'    => true,
 			) ),
+			'wgNamespaceProtection' => array( NS_MEDIAWIKI => 'editinterface' ),
 			'wgDefaultExternalStore' => array(),
 			'wgForeignFileRepos' => array(),
 			'wgLinkHolderBatchSize' => $linkHolderBatchSize,
