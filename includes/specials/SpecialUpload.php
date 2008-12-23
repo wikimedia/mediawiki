@@ -399,15 +399,20 @@ class UploadForm {
 			$basename = $this->mSrcName;
 		}
 		$filtered = wfStripIllegalFilenameChars( $basename );
-
+		
+		$nt = Title::makeTitleSafe( NS_FILE, $filtered );
+		if( is_null( $nt ) ) {
+			$resultDetails = array( 'filtered' => $filtered );
+			return self::ILLEGAL_FILENAME;
+		}
 		/**
 		 * We'll want to blacklist against *any* 'extension', and use
 		 * only the final one for the whitelist.
 		 */
-		list( $partname, $ext ) = $this->splitExtensions( $filtered );
+		list( $partname, $ext ) = $this->splitExtensions( $nt->getDBkey() );
 
 		if( count( $ext ) ) {
-			$finalExt = trim( $ext[count( $ext ) - 1] );
+			$finalExt = $ext[count( $ext ) - 1];
 		} else {
 			$finalExt = '';
 		}
@@ -423,11 +428,6 @@ class UploadForm {
 			return self::MIN_LENGHT_PARTNAME;
 		}
 
-		$nt = Title::makeTitleSafe( NS_FILE, $filtered );
-		if( is_null( $nt ) ) {
-			$resultDetails = array( 'filtered' => $filtered );
-			return self::ILLEGAL_FILENAME;
-		}
 		$this->mLocalFile = wfLocalFile( $nt );
 		$this->mDestName = $this->mLocalFile->getName();
 
