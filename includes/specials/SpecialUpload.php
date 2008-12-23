@@ -400,16 +400,19 @@ class UploadForm {
 		}
 		$filtered = wfStripIllegalFilenameChars( $basename );
 		
+		/* Normalize to title form before we do any further processing */
 		$nt = Title::makeTitleSafe( NS_FILE, $filtered );
 		if( is_null( $nt ) ) {
 			$resultDetails = array( 'filtered' => $filtered );
 			return self::ILLEGAL_FILENAME;
 		}
+		$filtered = $nt->getDBkey();
+		
 		/**
 		 * We'll want to blacklist against *any* 'extension', and use
 		 * only the final one for the whitelist.
 		 */
-		list( $partname, $ext ) = $this->splitExtensions( $nt->getDBkey() );
+		list( $partname, $ext ) = $this->splitExtensions( $filtered );
 
 		if( count( $ext ) ) {
 			$finalExt = $ext[count( $ext ) - 1];
