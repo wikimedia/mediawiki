@@ -68,6 +68,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   and should still be used in code meant to be compatible with v1.13 or older.
 * MediaWiki can be forced to use private IPs forwarded by a proxy server by
   using $wgUsePrivateIPs.
+* The 'BeforeWatchlist' hook has been removed due to internal changes in
+  Special:Watchlist. 'SpecialWatchlistQuery' should now be used by extensions
+  to customize the watchlist database query.
+
 
 === Migrated extensions ===
 The following extensions are migrated into MediaWiki 1.14:
