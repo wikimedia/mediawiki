@@ -12,6 +12,22 @@
 
 $fallback = 'ar';
 
+// (bug 16469) Override Eastern Arabic numberals, use Western
+$digitTransformTable = array(
+	'0' => '0',
+	'1' => '1',
+	'2' => '2',
+	'3' => '3',
+	'4' => '4',
+	'5' => '5',
+	'6' => '6',
+	'7' => '7',
+	'8' => '8',
+	'9' => '9',
+	'.' => '.',
+	',' => ',',
+);
+
 $namespaceNames = array(
 	NS_MEDIA            => 'ميديا',
 	NS_SPECIAL          => 'خاص',
