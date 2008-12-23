@@ -218,6 +218,10 @@ class MediaWiki {
 		} else if( NS_SPECIAL == $title->getNamespace() ) {
 			/* actions that need to be made when we have a special pages */
 			SpecialPage::executePath( $title );
+		} else if( NS_MEDIA == $title->getNamespace() ) {
+			global $wgOut;
+			$fileTitle = Title::makeTitle( NS_FILE, $title->getDBKey() );
+			$wgOut->redirect( $fileTitle->getFullUrl() );
 		} else {
 			/* Try low-level file cache hit */
 			if( $title->getNamespace() != NS_MEDIAWIKI && HTMLFileCache::useFileCache() ) {
