@@ -380,9 +380,9 @@ class EditPage {
 		}
 
 		if ( wfReadOnly() && $this->save ) {
-			// Force preview
-			$this->save = false;
-			$this->preview = true;
+				// Force preview
+				$this->save = false;
+				$this->preview = true;
 		}
 
 		$wgOut->addScriptFile( 'edit.js' );
@@ -404,7 +404,7 @@ class EditPage {
 				if ( $this->previewOnOpen() ) {
 					$this->formtype = 'preview';
 				} else {
-					$this->extractMetaDataFromArticle() ;
+					$this->extractMetaDataFromArticle () ;
 					$this->formtype = 'initial';
 				}
 			}
@@ -448,6 +448,7 @@ class EditPage {
 		# and redundantly check for locked database, blocked IPs, etc.
 		# that edit() already checked just in case someone tries to sneak
 		# in the back door with a hand-edited submission URL.
+
 		if ( 'save' == $this->formtype ) {
 			if ( !$this->attemptSave() ) {
 				wfProfileOut( __METHOD__."-business-end" );
@@ -1107,7 +1108,8 @@ class EditPage {
 		# Some hook probably called this function  without checking
 		# for is_null($wgTitle) first. Bail out right here so we don't
 		# do lots of work just to discard it right after.
-		if (is_null($wgTitle)) return;
+		if (is_null($wgTitle))
+			return;
 
 		$fname = 'EditPage::showEditForm';
 		wfProfileIn( $fname );
@@ -1127,7 +1129,6 @@ class EditPage {
 
 		$this->setHeaders();
 
-		$uComp = $this->checkUnicodeCompliantBrowser();
 		# Enabled article-related sidebar, toplinks, etc.
 		$wgOut->setArticleRelated( true );
 
@@ -1169,18 +1170,18 @@ class EditPage {
 				$wgOut->addWikiText( $this->hookError );
 			}
 
-			if ( !$uComp ) {
+			if ( !$this->checkUnicodeCompliantBrowser() ) {
 				$wgOut->addWikiMsg( 'nonunicodebrowser' );
 			}
+			if ( isset( $this->mArticle ) && isset( $this->mArticle->mRevision ) ) {
+			// Let sysop know that this will make private content public if saved
 
-			if ( isset( $this->mArticle->mRevision ) ) {
-				// Let sysop know that this will make private content public if saved
 				if ( !$this->mArticle->mRevision->userCan( Revision::DELETED_TEXT ) ) {
 					$wgOut->addWikiMsg( 'rev-deleted-text-permission' );
 				} else if ( $this->mArticle->mRevision->isDeleted( Revision::DELETED_TEXT ) ) {
 					$wgOut->addWikiMsg( 'rev-deleted-text-view' );
 				}
-				// Give archived revision header
+
 				if ( !$this->mArticle->mRevision->isCurrent() ) {
 					$this->mArticle->setOldSubtitle( $this->mArticle->mRevision->getId() );
 					$wgOut->addWikiMsg( 'editingold' );
@@ -1192,14 +1193,16 @@ class EditPage {
 			$wgOut->wrapWikiMsg( "<div id=\"mw-read-only-warning\">\n$1\n</div>", array( 'readonlywarning', wfReadOnlyReason() ) );
 		} elseif ( $wgUser->isAnon() && $this->formtype != 'preview' ) {
 			$wgOut->wrapWikiMsg( '<div id="mw-anon-edit-warning">$1</div>', 'anoneditwarning' );
-		} else if ( $this->isCssJsSubpage ) {
-			# Check the skin exists
-			if ( $this->isValidCssJsSubpage ) {
-				if ( $this->formtype !== 'preview' ) {
-					$wgOut->addWikiMsg( 'usercssjsyoucanpreview' );
+		} else {
+			if ( $this->isCssJsSubpage ) {
+				# Check the skin exists
+				if ( $this->isValidCssJsSubpage ) {
+					if ( $this->formtype !== 'preview' ) {
+						$wgOut->addWikiMsg( 'usercssjsyoucanpreview' );
+					}
+				} else {
+					$wgOut->addWikiMsg( 'userinvalidcssjstitle', $wgTitle->getSkinFromCssJsSubpage() );
 				}
-			} else {
-				$wgOut->addWikiMsg( 'userinvalidcssjstitle', $wgTitle->getSkinFromCssJsSubpage() );
 			}
 		}
 
@@ -1226,9 +1229,11 @@ class EditPage {
 			# Is this page under cascading protection from some source pages?
 			list($cascadeSources, /* $restrictions */) = $this->mTitle->getCascadeProtectionSources();
 			$notice = "$1\n";
-			# Explain, and list the titles responsible
-			foreach( $cascadeSources as $page ) {
-				$notice .= '* [[:' . $page->getPrefixedText() . "]]\n";
+			if ( count($cascadeSources) > 0 ) {
+				# Explain, and list the titles responsible
+				foreach( $cascadeSources as $page ) {
+					$notice .= '* [[:' . $page->getPrefixedText() . "]]\n";
+				}
 			}
 			$wgOut->wrapWikiMsg( $notice, array( 'cascadeprotectedwarning', count($cascadeSources) ) );
 		}
@@ -1241,8 +1246,7 @@ class EditPage {
 		}
 		if ( $this->tooBig || $this->kblength > $wgMaxArticleSize ) {
 			$wgOut->addHTML( "<div class='error' id='mw-edit-longpageerror'>\n" );
-			$wgOut->addWikiMsg( 'longpageerror', $wgLang->formatNum( $this->kblength ), 
-				$wgLang->formatNum( $wgMaxArticleSize ) );
+			$wgOut->addWikiMsg( 'longpageerror', $wgLang->formatNum( $this->kblength ), $wgLang->formatNum( $wgMaxArticleSize ) );
 			$wgOut->addHTML( "</div>\n" );
 		} elseif ( $this->kblength > 29 ) {
 			$wgOut->addHTML( "<div id='mw-edit-longpagewarning'>\n" );
@@ -1251,13 +1255,15 @@ class EditPage {
 		}
 
 		$q = 'action='.$this->action;
+		#if ( "no" == $redirect ) { $q .= "&redirect=no"; }
 		$action = $wgTitle->escapeLocalURL( $q );
 
 		$colonSep = wfMsg( 'colon-separator' );
 		$summary = wfMsg( 'summary' ) . $colonSep;
 		$subject = wfMsg( 'subject' ) . $colonSep;
 
-		$cancel = $sk->makeKnownLink( $wgTitle->getPrefixedText(), wfMsgExt('cancel', array('parseinline')) );
+		$cancel = $sk->makeKnownLink( $wgTitle->getPrefixedText(),
+				wfMsgExt('cancel', array('parseinline')) );
 		$edithelpurl = Skin::makeInternalOrExternalUrl( wfMsgForContent( 'edithelppage' ));
 		$edithelp = '<a target="helpwindow" href="'.$edithelpurl.'">'.
 			htmlspecialchars( wfMsg( 'edithelp' ) ).'</a> '.
@@ -1273,19 +1279,17 @@ class EditPage {
 				'[[' . wfMsgForContent( 'copyrightpage' ) . ']]' );
 		}
 
-		if ( $wgUser->getOption('showtoolbar') && !$this->isCssJsSubpage ) {
+		if ( $wgUser->getOption('showtoolbar') and !$this->isCssJsSubpage ) {
 			# prepare toolbar for edit buttons
 			$toolbar = EditPage::getEditToolbar();
 		} else {
 			$toolbar = '';
 		}
 
-		// Activate checkboxes if user wants them to be always active
+		// activate checkboxes if user wants them to be always active
 		if ( !$this->preview && !$this->diff ) {
 			# Sort out the "watch" checkbox
-			if( $wgRequest->getBool( 'watchthis' ) ) {
-				$this->watchthis = true; // May be overriden by request parameters
-			} else if ( $wgUser->getOption( 'watchdefault' ) ) {
+			if ( $wgUser->getOption( 'watchdefault' ) ) {
 				# Watch all edits
 				$this->watchthis = true;
 			} elseif ( $wgUser->getOption( 'watchcreations' ) && !$this->mTitle->exists() ) {
@@ -1295,8 +1299,13 @@ class EditPage {
 				# Already watched
 				$this->watchthis = true;
 			}
-			if ( $wgUser->getOption( 'minordefault' ) )
-				$this->minoredit = true;
+			
+			# May be overriden by request parameters
+			if( $wgRequest->getBool( 'watchthis' ) ) {
+				$this->watchthis = true;
+			}
+
+			if ( $wgUser->getOption( 'minordefault' ) ) $this->minoredit = true;
 		}
 
 		$wgOut->addHTML( $this->editFormPageTop );
@@ -1304,6 +1313,7 @@ class EditPage {
 		if ( $wgUser->getOption( 'previewontop' ) ) {
 			$this->displayPreviewArea( $previewOutput, true );
 		}
+
 
 		$wgOut->addHTML( $this->editFormTextTop );
 
@@ -1323,9 +1333,9 @@ class EditPage {
 		$autosumm = $this->autoSumm ? $this->autoSumm : md5( $this->summary );
 		$summaryhiddens .= Xml::hidden( 'wpAutoSummary', $autosumm );
 		if ( $this->section == 'new' ) {
-			global $wgParser;
 			$commentsubject="<span id='wpSummaryLabel'><label for='wpSummary'>{$subject}</label></span>\n<input tabindex='1' type='text' value=\"$summarytext\" name='wpSummary' id='wpSummary' maxlength='200' size='60' />{$summaryhiddens}<br />";
 			$editsummary = "<div class='editOptions'>\n";
+			global $wgParser;
 			$formattedSummary = wfMsgForContent( 'newsectionsummary', $wgParser->stripSectionName( $this->summary ) );
 			$subjectpreview = $summarytext && $this->preview ? "<div class=\"mw-summary-preview\">".wfMsg('subject-preview').$colonSep.$sk->commentBlock( $formattedSummary, $this->mTitle, true )."</div>\n" : '';
 			$summarypreview = '';
@@ -1346,8 +1356,7 @@ class EditPage {
 		$hiddencats = $this->mArticle->getHiddenCategories();
 		$formattedhiddencats = $sk->formatHiddenCategories( $hiddencats );
 
-		$metadata = '';
-		global $wgUseMetadataEdit;
+		global $wgUseMetadataEdit ;
 		if ( $wgUseMetadataEdit ) {
 			$metadata = $this->mMetaData ;
 			$metadata = htmlspecialchars( $wgContLang->recodeForEdit( $metadata ) ) ;
@@ -1360,6 +1369,7 @@ class EditPage {
 			/* /ToDo */
 			$metadata = $top . "<textarea name='metadata' rows='3' cols='{$cols}'{$ew}>{$metadata}</textarea>" ;
 		}
+		else $metadata = "" ;
 
 		$recreate = '';
 		if ( $this->wasDeletedSinceLastEdit() ) {
@@ -1386,7 +1396,8 @@ class EditPage {
 		$buttons = $this->getEditButtons( $tabindex );
 		$buttonshtml = implode( $buttons, "\n" );
 
-		$safemodehtml = $uComp ? '' : Xml::hidden( 'safemode', '1' );
+		$safemodehtml = $this->checkUnicodeCompliantBrowser()
+			? '' : Xml::hidden( 'safemode', '1' );
 
 		$wgOut->addHTML( <<<END
 {$toolbar}
@@ -1394,7 +1405,7 @@ class EditPage {
 END
 );
 
-		if ( $formCallback && is_callable( $formCallback ) ) {
+		if ( is_callable( $formCallback ) ) {
 			call_user_func_array( $formCallback, array( &$wgOut ) );
 		}
 
