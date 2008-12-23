@@ -2681,8 +2681,8 @@ Bug 6563: Edit link generation for section shown by <includeonly>
 !! input
 {{includeonly section}}
 !! result
-<a name="Includeonly_section"></a><h2><span class="editsection">[<a href="/index.php?title=Template:Includeonly_section&amp;action=edit&amp;section=T-1" title="Template:Includeonly section">edit</a>]</span> <span class="mw-headline">Includeonly section</span></h2>
-<a name="Section_T-1"></a><h2><span class="editsection">[<a href="/index.php?title=Template:Includeonly_section&amp;action=edit&amp;section=T-2" title="Template:Includeonly section">edit</a>]</span> <span class="mw-headline">Section T-1</span></h2>
+<a name="Includeonly_section" id="Includeonly_section"></a><h2><span class="editsection">[<a href="/index.php?title=Template:Includeonly_section&amp;action=edit&amp;section=T-1" title="Template:Includeonly section">edit</a>]</span> <span class="mw-headline">Includeonly section</span></h2>
+<a name="Section_T-1" id="Section_T-1"></a><h2><span class="editsection">[<a href="/index.php?title=Template:Includeonly_section&amp;action=edit&amp;section=T-2" title="Template:Includeonly section">edit</a>]</span> <span class="mw-headline">Section T-1</span></h2>
 
 !! end
 
@@ -2708,7 +2708,7 @@ Bug 6563: Edit link generation for section suppressed by <includeonly>
 </includeonly>
 ==Section 1==
 !! result
-<a name="Section_1"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Section 1">edit</a>]</span> <span class="mw-headline">Section 1</span></h2>
+<a name="Section_1" id="Section_1"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Section 1">edit</a>]</span> <span class="mw-headline">Section 1</span></h2>
 
 !! end
 
@@ -3523,13 +3523,13 @@ More
 ===Smaller headline===
 Blah blah
 !! result
-<a name="Headline_1"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Headline 1">edit</a>]</span> <span class="mw-headline"> Headline 1 </span></h2>
+<a name="Headline_1" id="Headline_1"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Headline 1">edit</a>]</span> <span class="mw-headline"> Headline 1 </span></h2>
 <p>Some text
 </p>
-<a name="Headline_2"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Headline 2">edit</a>]</span> <span class="mw-headline">Headline 2</span></h2>
+<a name="Headline_2" id="Headline_2"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Headline 2">edit</a>]</span> <span class="mw-headline">Headline 2</span></h2>
 <p>More
 </p>
-<a name="Smaller_headline"></a><h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: Smaller headline">edit</a>]</span> <span class="mw-headline">Smaller headline</span></h3>
+<a name="Smaller_headline" id="Smaller_headline"></a><h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: Smaller headline">edit</a>]</span> <span class="mw-headline">Smaller headline</span></h3>
 <p>Blah blah
 </p>
 !! end
@@ -3568,14 +3568,14 @@ Some text
 </li>
 </ul>
 </td></tr></table><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
-<a name="Headline_1"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Headline 1">edit</a>]</span> <span class="mw-headline"> Headline 1 </span></h2>
-<a name="Subheadline_1"></a><h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Subheadline 1">edit</a>]</span> <span class="mw-headline"> Subheadline 1 </span></h3>
-<a name="Skipping_a_level"></a><h5><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: Skipping a level">edit</a>]</span> <span class="mw-headline"> Skipping a level </span></h5>
-<a name="Skipping_a_level_2"></a><h6><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: Skipping a level">edit</a>]</span> <span class="mw-headline"> Skipping a level </span></h6>
-<a name="Headline_2"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: Headline 2">edit</a>]</span> <span class="mw-headline"> Headline 2 </span></h2>
+<a name="Headline_1" id="Headline_1"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Headline 1">edit</a>]</span> <span class="mw-headline"> Headline 1 </span></h2>
+<a name="Subheadline_1" id="Subheadline_1"></a><h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Subheadline 1">edit</a>]</span> <span class="mw-headline"> Subheadline 1 </span></h3>
+<a name="Skipping_a_level" id="Skipping_a_level"></a><h5><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: Skipping a level">edit</a>]</span> <span class="mw-headline"> Skipping a level </span></h5>
+<a name="Skipping_a_level_2" id="Skipping_a_level_2"></a><h6><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: Skipping a level">edit</a>]</span> <span class="mw-headline"> Skipping a level </span></h6>
+<a name="Headline_2" id="Headline_2"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: Headline 2">edit</a>]</span> <span class="mw-headline"> Headline 2 </span></h2>
 <p>Some text
 </p>
-<a name="Another_headline"></a><h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: Another headline">edit</a>]</span> <span class="mw-headline">Another headline</span></h3>
+<a name="Another_headline" id="Another_headline"></a><h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: Another headline">edit</a>]</span> <span class="mw-headline">Another headline</span></h3>
 
 !! end
 
@@ -3623,16 +3623,16 @@ Handling of sections up to level 6 and beyond
 </li>
 </ul>
 </td></tr></table><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
-<a name="Level_1_Heading"></a><h1><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Level 1 Heading">edit</a>]</span> <span class="mw-headline"> Level 1 Heading</span></h1>
-<a name="Level_2_Heading"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Level 2 Heading">edit</a>]</span> <span class="mw-headline"> Level 2 Heading</span></h2>
-<a name="Level_3_Heading"></a><h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: Level 3 Heading">edit</a>]</span> <span class="mw-headline"> Level 3 Heading</span></h3>
-<a name="Level_4_Heading"></a><h4><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: Level 4 Heading">edit</a>]</span> <span class="mw-headline"> Level 4 Heading</span></h4>
-<a name="Level_5_Heading"></a><h5><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: Level 5 Heading">edit</a>]</span> <span class="mw-headline"> Level 5 Heading</span></h5>
-<a name="Level_6_Heading"></a><h6><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: Level 6 Heading">edit</a>]</span> <span class="mw-headline"> Level 6 Heading</span></h6>
-<a name=".3D_Level_7_Heading.3D"></a><h6><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=7" title="Edit section: = Level 7 Heading=">edit</a>]</span> <span class="mw-headline">= Level 7 Heading=</span></h6>
-<a name=".3D.3D_Level_8_Heading.3D.3D"></a><h6><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=8" title="Edit section: == Level 8 Heading==">edit</a>]</span> <span class="mw-headline">== Level 8 Heading==</span></h6>
-<a name=".3D.3D.3D_Level_9_Heading.3D.3D.3D"></a><h6><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=9" title="Edit section: === Level 9 Heading===">edit</a>]</span> <span class="mw-headline">=== Level 9 Heading===</span></h6>
-<a name=".3D.3D.3D.3D_Level_10_Heading.3D.3D.3D.3D"></a><h6><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=10" title="Edit section: ==== Level 10 Heading====">edit</a>]</span> <span class="mw-headline">==== Level 10 Heading====</span></h6>
+<a name="Level_1_Heading" id="Level_1_Heading"></a><h1><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Level 1 Heading">edit</a>]</span> <span class="mw-headline"> Level 1 Heading</span></h1>
+<a name="Level_2_Heading" id="Level_2_Heading"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Level 2 Heading">edit</a>]</span> <span class="mw-headline"> Level 2 Heading</span></h2>
+<a name="Level_3_Heading" id="Level_3_Heading"></a><h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: Level 3 Heading">edit</a>]</span> <span class="mw-headline"> Level 3 Heading</span></h3>
+<a name="Level_4_Heading" id="Level_4_Heading"></a><h4><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: Level 4 Heading">edit</a>]</span> <span class="mw-headline"> Level 4 Heading</span></h4>
+<a name="Level_5_Heading" id="Level_5_Heading"></a><h5><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: Level 5 Heading">edit</a>]</span> <span class="mw-headline"> Level 5 Heading</span></h5>
+<a name="Level_6_Heading" id="Level_6_Heading"></a><h6><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: Level 6 Heading">edit</a>]</span> <span class="mw-headline"> Level 6 Heading</span></h6>
+<a name=".3D_Level_7_Heading.3D" id=".3D_Level_7_Heading.3D"></a><h6><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=7" title="Edit section: = Level 7 Heading=">edit</a>]</span> <span class="mw-headline">= Level 7 Heading=</span></h6>
+<a name=".3D.3D_Level_8_Heading.3D.3D" id=".3D.3D_Level_8_Heading.3D.3D"></a><h6><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=8" title="Edit section: == Level 8 Heading==">edit</a>]</span> <span class="mw-headline">== Level 8 Heading==</span></h6>
+<a name=".3D.3D.3D_Level_9_Heading.3D.3D.3D" id=".3D.3D.3D_Level_9_Heading.3D.3D.3D"></a><h6><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=9" title="Edit section: === Level 9 Heading===">edit</a>]</span> <span class="mw-headline">=== Level 9 Heading===</span></h6>
+<a name=".3D.3D.3D.3D_Level_10_Heading.3D.3D.3D.3D" id=".3D.3D.3D.3D_Level_10_Heading.3D.3D.3D.3D"></a><h6><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=10" title="Edit section: ==== Level 10 Heading====">edit</a>]</span> <span class="mw-headline">==== Level 10 Heading====</span></h6>
 
 !! end
 
@@ -3665,12 +3665,12 @@ TOC regression (bug 9764)
 </li>
 </ul>
 </td></tr></table><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
-<a name="title_1"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: title 1">edit</a>]</span> <span class="mw-headline"> title 1 </span></h2>
-<a name="title_1.1"></a><h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: title 1.1">edit</a>]</span> <span class="mw-headline"> title 1.1 </span></h3>
-<a name="title_1.1.1"></a><h4><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: title 1.1.1">edit</a>]</span> <span class="mw-headline"> title 1.1.1 </span></h4>
-<a name="title_1.2"></a><h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: title 1.2">edit</a>]</span> <span class="mw-headline"> title 1.2 </span></h3>
-<a name="title_2"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: title 2">edit</a>]</span> <span class="mw-headline"> title 2 </span></h2>
-<a name="title_2.1"></a><h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: title 2.1">edit</a>]</span> <span class="mw-headline"> title 2.1 </span></h3>
+<a name="title_1" id="title_1"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: title 1">edit</a>]</span> <span class="mw-headline"> title 1 </span></h2>
+<a name="title_1.1" id="title_1.1"></a><h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: title 1.1">edit</a>]</span> <span class="mw-headline"> title 1.1 </span></h3>
+<a name="title_1.1.1" id="title_1.1.1"></a><h4><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: title 1.1.1">edit</a>]</span> <span class="mw-headline"> title 1.1.1 </span></h4>
+<a name="title_1.2" id="title_1.2"></a><h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: title 1.2">edit</a>]</span> <span class="mw-headline"> title 1.2 </span></h3>
+<a name="title_2" id="title_2"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: title 2">edit</a>]</span> <span class="mw-headline"> title 2 </span></h2>
+<a name="title_2.1" id="title_2.1"></a><h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: title 2.1">edit</a>]</span> <span class="mw-headline"> title 2.1 </span></h3>
 
 !! end
 
@@ -3701,12 +3701,12 @@ wgMaxTocLevel=3
 </li>
 </ul>
 </td></tr></table><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
-<a name="title_1"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: title 1">edit</a>]</span> <span class="mw-headline"> title 1 </span></h2>
-<a name="title_1.1"></a><h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: title 1.1">edit</a>]</span> <span class="mw-headline"> title 1.1 </span></h3>
-<a name="title_1.1.1"></a><h4><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: title 1.1.1">edit</a>]</span> <span class="mw-headline"> title 1.1.1 </span></h4>
-<a name="title_1.2"></a><h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: title 1.2">edit</a>]</span> <span class="mw-headline"> title 1.2 </span></h3>
-<a name="title_2"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: title 2">edit</a>]</span> <span class="mw-headline"> title 2 </span></h2>
-<a name="title_2.1"></a><h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: title 2.1">edit</a>]</span> <span class="mw-headline"> title 2.1 </span></h3>
+<a name="title_1" id="title_1"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: title 1">edit</a>]</span> <span class="mw-headline"> title 1 </span></h2>
+<a name="title_1.1" id="title_1.1"></a><h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: title 1.1">edit</a>]</span> <span class="mw-headline"> title 1.1 </span></h3>
+<a name="title_1.1.1" id="title_1.1.1"></a><h4><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: title 1.1.1">edit</a>]</span> <span class="mw-headline"> title 1.1.1 </span></h4>
+<a name="title_1.2" id="title_1.2"></a><h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: title 1.2">edit</a>]</span> <span class="mw-headline"> title 1.2 </span></h3>
+<a name="title_2" id="title_2"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: title 2">edit</a>]</span> <span class="mw-headline"> title 2 </span></h2>
+<a name="title_2.1" id="title_2.1"></a><h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: title 2.1">edit</a>]</span> <span class="mw-headline"> title 2.1 </span></h3>
 
 !! end
 
@@ -3716,8 +3716,8 @@ Resolving duplicate section names
 == Foo bar ==
 == Foo bar ==
 !! result
-<a name="Foo_bar"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Foo bar">edit</a>]</span> <span class="mw-headline"> Foo bar </span></h2>
-<a name="Foo_bar_2"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Foo bar">edit</a>]</span> <span class="mw-headline"> Foo bar </span></h2>
+<a name="Foo_bar" id="Foo_bar"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Foo bar">edit</a>]</span> <span class="mw-headline"> Foo bar </span></h2>
+<a name="Foo_bar_2" id="Foo_bar_2"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Foo bar">edit</a>]</span> <span class="mw-headline"> Foo bar </span></h2>
 
 !! end
 
@@ -3727,8 +3727,8 @@ Resolving duplicate section names with differing case (bug 10721)
 == Foo bar ==
 == Foo Bar ==
 !! result
-<a name="Foo_bar"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Foo bar">edit</a>]</span> <span class="mw-headline"> Foo bar </span></h2>
-<a name="Foo_Bar_2"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Foo Bar">edit</a>]</span> <span class="mw-headline"> Foo Bar </span></h2>
+<a name="Foo_bar" id="Foo_bar"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Foo bar">edit</a>]</span> <span class="mw-headline"> Foo bar </span></h2>
+<a name="Foo_Bar_2" id="Foo_Bar_2"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Foo Bar">edit</a>]</span> <span class="mw-headline"> Foo Bar </span></h2>
 
 !! end
 
@@ -3747,10 +3747,10 @@ __NOTOC__
 {{sections}}
 ==Section 4==
 !! result
-<a name="Section_0"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Section 0">edit</a>]</span> <span class="mw-headline">Section 0</span></h2>
-<a name="Section_1"></a><h3><span class="editsection">[<a href="/index.php?title=Template:Sections&amp;action=edit&amp;section=T-1" title="Template:Sections">edit</a>]</span> <span class="mw-headline">Section 1</span></h3>
-<a name="Section_2"></a><h2><span class="editsection">[<a href="/index.php?title=Template:Sections&amp;action=edit&amp;section=T-2" title="Template:Sections">edit</a>]</span> <span class="mw-headline">Section 2</span></h2>
-<a name="Section_4"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Section 4">edit</a>]</span> <span class="mw-headline">Section 4</span></h2>
+<a name="Section_0" id="Section_0"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Section 0">edit</a>]</span> <span class="mw-headline">Section 0</span></h2>
+<a name="Section_1" id="Section_1"></a><h3><span class="editsection">[<a href="/index.php?title=Template:Sections&amp;action=edit&amp;section=T-1" title="Template:Sections">edit</a>]</span> <span class="mw-headline">Section 1</span></h3>
+<a name="Section_2" id="Section_2"></a><h2><span class="editsection">[<a href="/index.php?title=Template:Sections&amp;action=edit&amp;section=T-2" title="Template:Sections">edit</a>]</span> <span class="mw-headline">Section 2</span></h2>
+<a name="Section_4" id="Section_4"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Section 4">edit</a>]</span> <span class="mw-headline">Section 4</span></h2>
 
 !! end
 
@@ -3761,8 +3761,8 @@ __NOEDITSECTION__
 ==Section 1==
 ==Section 2==
 !! result
-<a name="Section_1"></a><h2> <span class="mw-headline">Section 1</span></h2>
-<a name="Section_2"></a><h2> <span class="mw-headline">Section 2</span></h2>
+<a name="Section_1" id="Section_1"></a><h2> <span class="mw-headline">Section 1</span></h2>
+<a name="Section_2" id="Section_2"></a><h2> <span class="mw-headline">Section 2</span></h2>
 
 !! end
 
@@ -3771,7 +3771,7 @@ Link inside a section heading
 !! input
 ==Section with a [[Main Page|link]] in it==
 !! result
-<a name="Section_with_a_link_in_it"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Section with a link in it">edit</a>]</span> <span class="mw-headline">Section with a <a href="/wiki/Main_Page" title="Main Page">link</a> in it</span></h2>
+<a name="Section_with_a_link_in_it" id="Section_with_a_link_in_it"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Section with a link in it">edit</a>]</span> <span class="mw-headline">Section with a <a href="/wiki/Main_Page" title="Main Page">link</a> in it</span></h2>
 
 !! end
 
@@ -3793,9 +3793,9 @@ __TOC__
 <li class="toclevel-1"><a href="#title_2"><span class="tocnumber">2</span> <span class="toctext">title 2</span></a></li>
 </ul>
 </td></tr></table><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
-<a name="title_1"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: title 1">edit</a>]</span> <span class="mw-headline"> title 1 </span></h2>
-<a name="title_1.1"></a><h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: title 1.1">edit</a>]</span> <span class="mw-headline"> title 1.1 </span></h3>
-<a name="title_2"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: title 2">edit</a>]</span> <span class="mw-headline"> title 2 </span></h2>
+<a name="title_1" id="title_1"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: title 1">edit</a>]</span> <span class="mw-headline"> title 1 </span></h2>
+<a name="title_1.1" id="title_1.1"></a><h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: title 1.1">edit</a>]</span> <span class="mw-headline"> title 1.1 </span></h3>
+<a name="title_2" id="title_2"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: title 2">edit</a>]</span> <span class="mw-headline"> title 2 </span></h2>
 
 !! end
 
@@ -4963,7 +4963,7 @@ Fuzz testing: Parser14
 == onmouseover= ==
 http://__TOC__
 !! result
-<a name="onmouseover.3D"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: onmouseover=">edit</a>]</span> <span class="mw-headline"> onmouseover= </span></h2>
+<a name="onmouseover.3D" id="onmouseover.3D"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: onmouseover=">edit</a>]</span> <span class="mw-headline"> onmouseover= </span></h2>
 http://<table id="toc" class="toc" summary="Contents"><tr><td><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1"><a href="#onmouseover.3D"><span class="tocnumber">1</span> <span class="toctext">onmouseover=</span></a></li>
@@ -4978,7 +4978,7 @@ Fuzz testing: Parser14-table
 ==a==
 {| STYLE=__TOC__
 !! result
-<a name="a"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: a">edit</a>]</span> <span class="mw-headline">a</span></h2>
+<a name="a" id="a"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: a">edit</a>]</span> <span class="mw-headline">a</span></h2>
 <table style="&#95;_TOC&#95;_">
 <tr><td></td></tr>
 </table>
@@ -6561,7 +6561,7 @@ Inclusion of !userCanEdit() content
 !! input
 {{MediaWiki:Fake}}
 !! result
-<a name="header"></a><h2><span class="editsection">[<a href="/index.php?title=MediaWiki:Fake&amp;action=edit&amp;section=T-1" title="MediaWiki:Fake">edit</a>]</span> <span class="mw-headline">header</span></h2>
+<a name="header" id="header"></a><h2><span class="editsection">[<a href="/index.php?title=MediaWiki:Fake&amp;action=edit&amp;section=T-1" title="MediaWiki:Fake">edit</a>]</span> <span class="mw-headline">header</span></h2>
 
 !! end
 
@@ -6592,12 +6592,12 @@ Out-of-order TOC heading levels
 </li>
 </ul>
 </td></tr></table><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
-<a name="2"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: 2">edit</a>]</span> <span class="mw-headline">2</span></h2>
-<a name="6"></a><h6><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: 6">edit</a>]</span> <span class="mw-headline">6</span></h6>
-<a name="3"></a><h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: 3">edit</a>]</span> <span class="mw-headline">3</span></h3>
-<a name="1"></a><h1><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: 1">edit</a>]</span> <span class="mw-headline">1</span></h1>
-<a name="5"></a><h5><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: 5">edit</a>]</span> <span class="mw-headline">5</span></h5>
-<a name="2_2"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: 2">edit</a>]</span> <span class="mw-headline">2</span></h2>
+<a name="2" id="2"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: 2">edit</a>]</span> <span class="mw-headline">2</span></h2>
+<a name="6" id="6"></a><h6><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: 6">edit</a>]</span> <span class="mw-headline">6</span></h6>
+<a name="3" id="3"></a><h3><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: 3">edit</a>]</span> <span class="mw-headline">3</span></h3>
+<a name="1" id="1"></a><h1><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: 1">edit</a>]</span> <span class="mw-headline">1</span></h1>
+<a name="5" id="5"></a><h5><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: 5">edit</a>]</span> <span class="mw-headline">5</span></h5>
+<a name="2_2" id="2_2"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: 2">edit</a>]</span> <span class="mw-headline">2</span></h2>
 
 !! end
 
@@ -6843,7 +6843,7 @@ language=sr variant=sr-ec
 !! input
 == -{Naslov}- ==
 !! result
-<a name="-.7BNaslov.7D-"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Уреди део: Naslov">уреди</a>]</span> <span class="mw-headline"> Naslov </span></h2>
+<a name="-.7BNaslov.7D-" id="-.7BNaslov.7D-"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Уреди део: Naslov">уреди</a>]</span> <span class="mw-headline"> Naslov </span></h2>
 
 !! end
 
@@ -6982,7 +6982,7 @@ Morwen/13: Unclosed link followed by heading
 !! result
 <p>[[link
 </p>
-<a name="heading"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: heading">edit</a>]</span> <span class="mw-headline">heading</span></h2>
+<a name="heading" id="heading"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: heading">edit</a>]</span> <span class="mw-headline">heading</span></h2>
 
 !! end
 
@@ -6994,7 +6994,7 @@ HHP2.1: Heuristics for headings in preprocessor parenthetical structures
 !! result
 <p>{{foo|
 </p>
-<a name="heading"></a><h1> <span class="mw-headline">heading</span></h1>
+<a name="heading" id="heading"></a><h1> <span class="mw-headline">heading</span></h1>
 
 !! end
 
@@ -7006,7 +7006,7 @@ HHP2.2: Heuristics for headings in preprocessor parenthetical structures
 !! result
 <p>{{foo|
 </p>
-<a name="heading"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: heading">edit</a>]</span> <span class="mw-headline">heading</span></h2>
+<a name="heading" id="heading"></a><h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: heading">edit</a>]</span> <span class="mw-headline">heading</span></h2>
 
 !! end
 
