@@ -349,7 +349,7 @@ class CoreParserFunctions {
 		if( $file ) {
 			$url = $file->getFullUrl();
 			if( $option == 'nowiki' ) {
-				return "<nowiki>$url</nowiki>";
+				return array( $url, 'nowiki' => true );
 			}
 			return $url;
 		} else {
