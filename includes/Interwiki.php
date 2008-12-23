@@ -143,27 +143,24 @@ class Interwiki {
 		$key = wfMemcKey( 'interwiki', $prefix );
 		$mc = $wgMemc->get( $key );
 		$iw = false;
-		if( $mc && is_array( $mc ) ) { // is_array is hack for old keys
+		if( $mc && is_array( $mc ) ){ // is_array is hack for old keys
 			$iw = Interwiki::loadFromArray( $mc );
 			if( $iw ){
 				return $iw;
 			}
-		} else if( $mc === 0 ) {
-			return false; // negative result cached
 		}
+		
 		$db = wfGetDB( DB_SLAVE );
+			
 		$row = $db->fetchRow( $db->select( 'interwiki', '*', array( 'iw_prefix' => $prefix ),
 			__METHOD__ ) );
 		$iw = Interwiki::loadFromArray( $row );
-		if( $iw ) {
+		if ( $iw ) {
 			$mc = array( 'iw_url' => $iw->mURL, 'iw_local' => $iw->mLocal, 'iw_trans' => $iw->mTrans );
 			$wgMemc->add( $key, $mc, $wgInterwikiExpiry );
 			return $iw;
-		} else {
-			# Pages like "Command & Conquer 3: Kane's Wrath" may keep checking
-			# the prefix. Cache the negative result to avoid extra db hits.
-			$wgMemc->add( $key, 0, $wgInterwikiExpiry );
 		}
+		
 		return false;
 	}
 
