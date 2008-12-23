@@ -270,7 +270,7 @@ class RecentChange
 		// Automatic patrol needs "autopatrol", ordinary patrol needs "patrol"
 		$right = $auto ? 'autopatrol' : 'patrol';
 		$errors = array_merge( $errors, $this->getTitle()->getUserPermissionsErrors( $right, $wgUser ) );
-		if( !wfRunHooks('MarkPatrolled', array($this, &$wgUser, false)) ) {
+		if( !wfRunHooks('MarkPatrolled', array($this->getAttribute('rc_id'), &$wgUser, false)) ) {
 			$errors[] = array('hookaborted');
 		}
 		// Users without the 'autopatrol' right can't patrol their
