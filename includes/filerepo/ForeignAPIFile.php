@@ -35,6 +35,10 @@ class ForeignAPIFile extends File {
 	}
 
 	function transform( $params, $flags = 0 ) {
+		if( !$this->canRender() ) {
+			// show icon
+			return parent::transform( $params, $flags );
+		}
 		$thumbUrl = $this->repo->getThumbUrlFromCache(
 				$this->getName(),
 				isset( $params['width'] ) ? $params['width'] : -1,
