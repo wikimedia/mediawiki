@@ -223,14 +223,14 @@ class CategoryViewer {
 			array( 'page', 'categorylinks', 'category' ),
 			array( 'page_title', 'page_namespace', 'page_len', 'page_is_redirect', 'cl_sortkey',
 				'cat_id', 'cat_title', 'cat_subcats', 'cat_pages', 'cat_files' ),
-			array( $pageCondition,
-			       'cl_to' => $this->title->getDBkey() ),
+			array( $pageCondition, 'cl_to' => $this->title->getDBkey() ),
 			__METHOD__,
 			array( 'ORDER BY' => $this->flip ? 'cl_sortkey DESC' : 'cl_sortkey',
-			       'USE INDEX' => array( 'categorylinks' => 'cl_sortkey' ),
-			       'LIMIT'    => $this->limit + 1 ),
+				'USE INDEX' => array( 'categorylinks' => 'cl_sortkey' ),
+				'LIMIT'    => $this->limit + 1 ),
 			array( 'categorylinks'  => array( 'INNER JOIN', 'cl_from = page_id' ),
-		               'category' => array( 'LEFT JOIN', 'cat_title = page_title AND page_namespace = ' . NS_CATEGORY ) ) );
+				'category' => array( 'LEFT JOIN', 'cat_title = page_title AND page_namespace = ' . NS_CATEGORY ) )
+		);
 
 		$count = 0;
 		$this->nextPage = null;
