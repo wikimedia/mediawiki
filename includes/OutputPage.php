@@ -1383,6 +1383,7 @@ class OutputPage {
 	 */
 	public function addReturnTo( $title ) {
 		global $wgUser;
+		$this->addLink( array( 'rel' => 'next', 'href' => $title->getFullUrl() ) );
 		$link = wfMsg( 'returnto', $wgUser->getSkin()->makeLinkObj( $title ) );
 		$this->addHTML( "<p>{$link}</p>\n" );
 	}
