@@ -235,7 +235,8 @@ class MediaWiki {
 						$article->viewUpdates();
 					}
 					wfProfileOut( __METHOD__ );
-					return true;
+					$this->restInPeace();
+					exit;
 				}
 			}
 			/* No match to special cases */
