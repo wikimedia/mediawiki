@@ -218,7 +218,8 @@ class ChangesList {
 
 	protected function insertTimestamp( &$s, $rc ) {
 		global $wgLang;
-		$s .= $this->message['semicolon-separator'] . $wgLang->time( $rc->mAttribs['rc_timestamp'], true, true ) . ' . . ';
+		$s .= $this->message['semicolon-separator'] . 
+			$wgLang->time( $rc->mAttribs['rc_timestamp'], true, true ) . ' . . ';
 	}
 
 	/** Insert links to user page, user talk page and eventually a blocking link */
@@ -303,7 +304,7 @@ class ChangesList {
 			$permission = ( $rc->mAttribs['rc_deleted'] & Revision::DELETED_RESTRICTED ) == Revision::DELETED_RESTRICTED
 				? 'suppressrevision'
 				: 'deleterevision';
-			wfDebug( "Checking for $permission due to $field match on $rc->mAttribs['rc_deleted']\n" );
+			wfDebug( "Checking for $permission due to $field match on {$rc->mAttribs['rc_deleted']}\n" );
 			return $wgUser->isAllowed( $permission );
 		} else {
 			return true;
@@ -418,7 +419,8 @@ class EnhancedChangesList extends ChangesList {
 		$rc = RCCacheEntry::newFromParent( $baseRC );
 
 		# Extract fields from DB into the function scope (rc_xxxx variables)
-		// FIXME: Would be good to replace this extract() call with something that explicitly initializes local variables.
+		// FIXME: Would be good to replace this extract() call with something
+		// that explicitly initializes variables.
 		extract( $rc->mAttribs );
 		$curIdEq = 'curid=' . $rc_cur_id;
 
@@ -454,7 +456,8 @@ class EnhancedChangesList extends ChangesList {
 		} else if( $rc_type == RC_LOG ) {
 			if( $rc_log_type ) {
 				$logtitle = SpecialPage::getTitleFor( 'Log', $rc_log_type );
-				$clink = '(' . $this->skin->makeKnownLinkObj( $logtitle, LogPage::logName($rc_log_type) ) . ')';
+				$clink = '(' . $this->skin->makeKnownLinkObj( $logtitle, 
+					LogPage::logName($rc_log_type) ) . ')';
 			} else {
 				$clink = $this->skin->makeLinkObj( $rc->getTitle(), '' );
 			}
@@ -495,7 +498,8 @@ class EnhancedChangesList extends ChangesList {
 		$querycur = $curIdEq."&diff=0&oldid=$rc_this_oldid";
 		$querydiff = $curIdEq."&diff=$rc_this_oldid&oldid=$rc_last_oldid$rcIdQuery";
 		$aprops = ' tabindex="'.$baseRC->counter.'"';
-		$curLink = $this->skin->makeKnownLinkObj( $rc->getTitle(), $this->message['cur'], $querycur, '' ,'', $aprops );
+		$curLink = $this->skin->makeKnownLinkObj( $rc->getTitle(), 
+			$this->message['cur'], $querycur, '' ,'', $aprops );
 
 		# Make "diff" an "cur" links
 		if( !$showdifflinks ) {
@@ -507,7 +511,8 @@ class EnhancedChangesList extends ChangesList {
 			}
 			$diffLink = $this->message['diff'];
 		} else {
-			$diffLink = $this->skin->makeKnownLinkObj( $rc->getTitle(), $this->message['diff'], $querydiff, '' ,'', $aprops );
+			$diffLink = $this->skin->makeKnownLinkObj( $rc->getTitle(), $this->message['diff'], 
+				$querydiff, '' ,'', $aprops );
 		}
 
 		# Make "last" link
@@ -614,7 +619,8 @@ class EnhancedChangesList extends ChangesList {
 			array_push( $users, $text );
 		}
 
-		$users = ' <span class="changedby">[' . implode( $this->message['semicolon-separator'], $users ) . ']</span>';
+		$users = ' <span class="changedby">[' . 
+			implode( $this->message['semicolon-separator'], $users ) . ']</span>';
 
 		# ID for JS visibility toggle
 		$jsid = $this->rcCacheIndex;
@@ -708,8 +714,9 @@ class EnhancedChangesList extends ChangesList {
 		$r .= '<div id="mw-rc-subentries-'.$jsid.'" class="mw-changeslist-hidden">';
 		$r .= '<table cellpadding="0" cellspacing="0"  border="0" style="background: none">';
 		foreach( $block as $rcObj ) {
-			# Get rc_xxxx variables
-			// FIXME: Would be good to replace this extract() call with something that explicitly initializes local variables.
+			# Extract fields from DB into the function scope (rc_xxxx variables)
+			// FIXME: Would be good to replace this extract() call with something
+			// that explicitly initializes variables.
 			extract( $rcObj->mAttribs );
 
 			#$r .= '<tr><td valign="top">'.$this->spacerArrow();
@@ -828,8 +835,9 @@ class EnhancedChangesList extends ChangesList {
 	 */
 	protected function recentChangesBlockLine( $rcObj ) {
 		global $wgContLang, $wgRCShowChangedSize;
-		# Get rc_xxxx variables
-		// FIXME: Would be good to replace this extract() call with something that explicitly initializes local variables.
+		# Extract fields from DB into the function scope (rc_xxxx variables)
+		// FIXME: Would be good to replace this extract() call with something
+		// that explicitly initializes variables.
 		extract( $rcObj->mAttribs );
 		$curIdEq = "curid={$rc_cur_id}";
 
@@ -852,13 +860,14 @@ class EnhancedChangesList extends ChangesList {
 		}
 		# Diff and hist links
 		if ( $rc_type != RC_LOG ) {
-		   $r .= ' ('. $rcObj->difflink . $this->message['semicolon-separator'];
-		   $r .= $this->skin->makeKnownLinkObj( $rcObj->getTitle(), wfMsg( 'hist' ), $curIdEq.'&action=history' ) . ')';
+			$r .= ' ('. $rcObj->difflink . $this->message['semicolon-separator'];
+			$r .= $this->skin->makeKnownLinkObj( $rcObj->getTitle(), wfMsg( 'hist' ), 
+				$curIdEq.'&action=history' ) . ')';
 		}
 		$r .= ' . . ';
 		# Character diff
-		if( $wgRCShowChangedSize ) {
-			$r .= ( $rcObj->getCharacterDifference() == '' ? '' : $rcObj->getCharacterDifference() . ' . . ' ) ;
+		if( $wgRCShowChangedSize && ($cd = $rcObj->getCharacterDifference()) ) {
+			$r .= "$cd . . ";
 		}
 		# User/talk
 		$r .= ' '.$rcObj->userlink . $rcObj->usertalklink;
