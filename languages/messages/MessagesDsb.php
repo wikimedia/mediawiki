@@ -1082,8 +1082,11 @@ Móžoš bok ale teke [[:$1|sam załožyś]].",
 'timezonelegend'            => 'Casowa cona',
 'timezonetext'              => '¹Pódaj licbu góźinow, kótarež laže mjazy twójeju casoweju conu a UTC.',
 'localtime'                 => 'Městny cas:',
+'timezoneselect'            => 'Casowa cona',
+'timezoneuseserverdefault'  => 'Standard serwera wužywaś',
+'timezoneuseoffset'         => 'Drugi (pódaj wótchylenje)',
 'timezoneoffset'            => 'Rozdźěl¹:',
-'servertime'                => 'Aktualny cas na serwerje:',
+'servertime'                => 'Cas serwera:',
 'guesstimezone'             => 'Z browsera pśewześ',
 'allowemail'                => 'Dostawanje e-mailow drugich wužywarjow zmóžniś.',
 'prefs-searchoptions'       => 'Pytańske opcije',
@@ -1846,7 +1849,7 @@ Pšosym nawroś se na bok, wót kótaregož sy pśišeł a wopytaj hyšći raz.'
 ** Wobźěłańska wójna
 ** Bok z wusokim datowym wobchadom',
 'protect-edit-reasonlist'     => 'Šćitne pśicyny wobźěłaś',
-'protect-expiry-options'      => '1 góźina:1 hour,2 góźinje:2 hours, 6 góźiny:6 hours,1 źeń:1 day,2 dnja:2 days,3 dny:3 days,1 tyźeń:1 week,2 tyźenja:2 weeks,3 tyźenje:3 weeks,1 mjasec:1 month,2 mjaseca:2 month,3 mjasece:3 months,6 mjasecy:6 months,1 lěto:1 year,na nimjer:indefinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 góźina:1 hour,1 źeń:1 day,1 tyźeń:1 week,2 tyźenja:2 weeks,1 mjasec:1 month,3 mjasece:3 months,6 mjasecy:6 months,1 lěto:1 year,na nimjer:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Status šćita',
 'restriction-level'           => 'Rownina šćita:',
 'minimum-size'                => 'Minimalna wjelikosć',
@@ -1978,7 +1981,7 @@ $1',
 'ipbenableautoblock'              => 'Awtomatiske blokěrowanje slědneje wót togo wužywarja wužywaneje IP-adresy a wšyknych slědujucych adresow, wót kótarychž wopytajo boki wobźěłaś.',
 'ipbsubmit'                       => 'Togo wužywarja blokěrowaś.',
 'ipbother'                        => 'Drugi cas:',
-'ipboptions'                      => '1 góźina:1 hour,2 góźinje:2 hours, 6 góźiny:6 hours,1 źeń:1 day,2 dnja:2 days,3 dny:3 days,1 tyźeń:1 week,2 tyźenja:2 weeks,3 tyźenje:3 weeks,1 mjasec:1 month,2 mjaseca:2 month,3 mjasece:3 months,6 mjasecy:6 months,1 lěto:1 year,na nimjer:indefinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 góźinje:2 hours,1 źeń:1 day,3 dny:3 days,1 tyźeń:1 week,2 tyźenja:2 weeks,1 mjasec:1 month,3 mjasece:3 months,6 mjasecy:6 months,1 lěto:1 year,na nimjer:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'drugi',
 'ipbotherreason'                  => 'Hynakša/dalšna pśicyna:',
 'ipbhidename'                     => 'Wužywarske mě z protokola blokěrowanjow, lisćiny aktiwnych blokěrowanjow a lisćiny wužywarjow schowaś',

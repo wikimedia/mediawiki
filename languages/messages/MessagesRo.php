@@ -1239,6 +1239,7 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'action-import'               => 'importă această pagină din alt wiki',
 'action-importupload'         => 'importă această pagină prin încărcarea unui fișier',
 'action-patrol'               => 'marchează modificările celorlalţi ca patrulate',
+'action-autopatrol'           => 'marchează modificarea drept patrulată',
 'action-unwatchedpages'       => 'vizualizezi lista de pagini neurmărite',
 'action-mergehistory'         => 'unește istoricul acestei pagini',
 'action-userrights'           => 'modifici toate drepturile de utilizator',
@@ -1348,6 +1349,7 @@ Dacă ai această imagine la rezoluţie mare încarc-o pe aceasta, altfel schimb
 'fileexists-forbidden'        => 'Un fişier cu acest nume există deja; mergeţi înapoi şi încărcaţi acest fişier sub un nume nou. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Un fişier cu acest nume există deja în magazia de imagini comune; mergeţi înapoi şi încărcaţi fişierul sub un nou nume. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Acest fişier este dublura {{PLURAL:$1|fişierului|fişierelor}}:',
+'file-deleted-duplicate'      => 'Un fişier identic cu acesta ([[$1]]) a fost şters anterior. Verificaţi istoricul ştergerilor fişierului înainte de a-l reîncărca.',
 'successfulupload'            => 'Fişierul a fost trimis',
 'uploadwarning'               => 'Avertizare la trimiterea fişierului',
 'savefile'                    => 'Salvează fişierul',
@@ -1423,7 +1425,7 @@ O apăsare pe antetul coloanei schimbă sortarea.',
 'filehist-dimensions'            => 'Dimensiuni',
 'filehist-filesize'              => 'Mărimea fişierului',
 'filehist-comment'               => 'Comentariu',
-'imagelinks'                     => 'Legăturile imaginii',
+'imagelinks'                     => 'Legături',
 'linkstoimage'                   => '{{PLURAL:$1|Următoarea pagină trimite spre|Următoarele $1 pagini trimit spre}} această imagine:',
 'linkstoimage-more'              => 'Mai mult de $1 {{PLURAL:$1|pagină este legată|pagini sunt legate}} de acest fişier.
 Următoarea listă arată {{PLURAL:$1|prima legătură|primele $1 legături}} către acest fişier.
@@ -1467,7 +1469,7 @@ O [[Special:WhatLinksHere/$2|listă completă]] este disponibilă.',
 'filedelete-success-old'      => "Versiunea fişierului '''[[Media:$1|$1]]''' din $2 $3 a fost ştearsă.",
 'filedelete-nofile'           => "'''$1''' nu există.",
 'filedelete-nofile-old'       => "Nu există nicio versiune arhivată a '''$1''' cu atributele specificate.",
-'filedelete-otherreason'      => 'Alt motiv (adiţional):',
+'filedelete-otherreason'      => 'Motiv diferit/adiţional:',
 'filedelete-reason-otherlist' => 'Alt motiv',
 'filedelete-reason-dropdown'  => '*Motive uzuale
 ** Încălcare drepturi de autor
@@ -1588,6 +1590,7 @@ O pagină este considerată o pagină de dezambiguizare dacă foloseşte formate
 'deadendpagestext'        => 'Următoarele pagini nu se leagă de alte pagini din acest wiki.',
 'protectedpages'          => 'Pagini protejate',
 'protectedpages-indef'    => 'Doar protecţiile pe termen nelimitat',
+'protectedpages-cascade'  => 'Doar protejări în cascadă',
 'protectedpagestext'      => 'Următoarele pagini sunt protejate la mutare sau editare',
 'protectedpagesempty'     => 'Nu există pagini protejate',
 'protectedtitles'         => 'Titluri protejate',
@@ -1616,6 +1619,7 @@ O pagină este considerată o pagină de dezambiguizare dacă foloseşte formate
 'booksources-search-legend' => 'Caută surse pentru cărţi',
 'booksources-go'            => 'Du-te',
 'booksources-text'          => 'Mai jos se află o listă de legături înspre alte situri care vând cărţi noi sau vechi, şi care pot oferi informaţii suplimentare despre cărţile pe care le căutaţi:',
+'booksources-invalid-isbn'  => 'Codul ISBN oferit nu este valid; verificaţi dacă a fost copiat corect de la sursa originală.',
 
 # Special:Log
 'specialloguserlabel'  => 'Utilizator:',
@@ -1799,7 +1803,7 @@ Asistenţă şi suport:
 'deletionlog'            => 'raportul de ştergeri',
 'reverted'               => 'Revenire la o versiune mai veche',
 'deletecomment'          => 'Motiv pentru ştergere:',
-'deleteotherreason'      => 'Alt motiv/detalii:',
+'deleteotherreason'      => 'Motiv diferit/adiţional:',
 'deletereasonotherlist'  => 'Alt motiv',
 'deletereason-dropdown'  => '*Motive uzuale
 ** Cererea autorului
@@ -1861,7 +1865,8 @@ Puteţi schimba nivelul de protejare al acestei pagini, dar asta nu va afecta pr
 'protect-cantedit'            => 'Nu puteţi schimba nivelul de protecţie a acestei pagini, deoarece nu aveţi permisiunea de a o modifica.',
 'protect-othertime'           => 'Alt termen:',
 'protect-othertime-op'        => 'alt termen',
-'protect-otherreason'         => 'Alt motiv (suplimentar):',
+'protect-otherreason'         => 'Motiv diferit/adiţional:',
+'protect-otherreason-op'      => 'motiv diferit/adiţional',
 'protect-dropdown'            => '*Motive comune de protejare
 ** Vandalism excesiv
 ** Spam excesiv
@@ -2002,7 +2007,7 @@ Precizaţi motivul blocării; de exemplu indicaţi paginile vandalizate de acest
 'ipbother'                        => 'Alt termen:',
 'ipboptions'                      => '15 minute:15 minutes,1 oră:1 hour,3 ore:3 hours,24 ore:24 hours,48 ore:48 hours,1 săptămână:1 week,1 lună:1 month,nelimitat:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'altul',
-'ipbotherreason'                  => 'Alt motiv sau suplimentar:',
+'ipbotherreason'                  => 'Motiv diferit/adiţional:',
 'ipbhidename'                     => 'Ascunde numele de utilizator din jurnalul blocărilor, lista activă a blocărilor şi lista utilizatorilor',
 'ipbwatchuser'                    => 'Urmăreşte pagina sa de utilizator şi de discuţii',
 'ipballowusertalk'                => 'Permite acestui utilizator să-şi modifice propria pagină de discuţie cât timp este blocat',

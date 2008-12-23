@@ -1068,7 +1068,7 @@ iwwerpréift déi korrekt Installatioun vu LaTeX, dvips, gs a convert",
 'timezonelegend'            => 'Zäitzon',
 'timezonetext'              => "¹Gitt d'Zuel vun de Stonnen an, déi tëscht ärer Zäitzon an der Serverzäit (UTC) leien .",
 'localtime'                 => 'Lokalzäit:',
-'timezoneoffset'            => 'Ënnerscheed¹:',
+'timezoneoffset'            => 'Zäit-Differenz¹:',
 'servertime'                => 'Serverzäit:',
 'guesstimezone'             => 'Vum Browser iwwerhuelen',
 'allowemail'                => 'E-Maile vun anere Benotzer kréien.',
@@ -1331,7 +1331,7 @@ Wann Dir dëse Fichier trotzdem eroplued wellt da gitt w.e.g. zréck a lued dës
 'upload-wasdeleted'           => "'''Opgepasst: Dir lued e Fichier erop, dee schonn eng Kéier geläscht ginn ass.'''
 
 Kuckt w.e.g. genee no, ob d'dat erneit Eroplueden de Richtlinnen entsprecht.
-Zu ärer Informatioun steett hei Läsch-Lëscht mat dem Grond vum viregte Läschen:",
+Zu ärer Informatioun steet hei Läsch-Lëscht mat dem Grond vum viregte Läschen:",
 'filename-bad-prefix'         => 'Den Numm vum Fichier fänkt mat <strong>„$1“</strong> un. Dësen Numm ass automatesch vun der Kamera gi ginn a seet näischt iwwert dat aus, wat drop ass. Gitt dem Fichier w.e.gl. en Numm, deen den Inhalt besser beschreift, an deen net verwiesselt ka ginn.',
 
 'upload-proto-error'      => 'Falsche Protokoll',
@@ -1394,10 +1394,10 @@ Eng [[Special:WhatLinksHere/$2|komplett Lëscht]] ass disponibel.',
 'duplicatesoffile'               => '{{PLURAL:$1|De Fichier ass een Doublon|Dës Fichiere sinn Doublonen}} vum Fichier:',
 'sharedupload'                   => 'Dës Fichier ass ee gemeinsam genotzten Upload a ka vun anere Projeten benotzt ginn.',
 'shareduploadwiki'               => 'Kuckt w.e.g. $1 fir méi Informatiounen.',
-'shareduploadwiki-desc'          => "D'Beschreiwung op sénger $1 op dem geeelte Repertoire steet ënnendrënner.",
+'shareduploadwiki-desc'          => "D'Beschreiwung op sénger $1 op dem gedeelte Repertoire steet ënnendrënner.",
 'shareduploadwiki-linktext'      => 'Datei-Beschreiwungssäit',
 'shareduploadduplicate'          => 'Dëse Fichier ass een Doublon vun $1 aus dem gemeinsam genotzte Repertoire.',
-'shareduploadduplicate-linktext' => 'een anere Fichier',
+'shareduploadduplicate-linktext' => 'engem anere Fichier',
 'shareduploadconflict'           => 'Dëse Fichier huet deeselweschte Numm wéi $1 aus engem gemeinschaftlech genotzte Repertoire.',
 'shareduploadconflict-linktext'  => 'een anere Fichier',
 'noimage'                        => 'Ee Fichier mat dësem Numm gëtt et net, Dir kënnt awer $1.',
@@ -1942,7 +1942,7 @@ $1',
 'ipbreasonotherlist'              => 'Anere Grond',
 'ipbreason-dropdown'              => "*Heefeg Ursaache fir Benotzer ze spären:
 **Bewosst falsch Informatiounen an een oder méi Säite gesat
-**Ouni Grond Inhalt vun Säite geläscht
+**Ouni Grond Inhalt vu Säite geläscht
 **Spam-Verknëppunge mat externe Säiten
 **Topereien an d'Säite gesat
 **Beleidegt oder bedréit aner Mataarbechter
@@ -2262,6 +2262,7 @@ Erlaabt et e Grond an de Resumé derbäizesetzen.',
 'cologneblue.css' => "/* Dës CSS huet nëmmen Afloss op de Skin ''Köln Blo''  */",
 'monobook.css'    => "/* Dës CSS huet nëmmen Afloss op de Skin ''Monobook''  */",
 'myskin.css'      => "/* Dës CSS huet nëmmen Afloss op de Skin ''Myskin''  */",
+'chick.css'       => '/* Dës CSS huet nëmmen Afloss op de Skin "Chick" */',
 'simple.css'      => "/* Dës CSS huet nëmmen Afloss op de Skin ''Einfach''  */",
 'modern.css'      => "/* Dës CSS huet nëmmen Afloss op de Skin ''Modern''  */",
 

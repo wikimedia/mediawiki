@@ -9,6 +9,7 @@
  * @author EivindJ
  * @author Finnrind
  * @author H92
+ * @author Harald Khan
  * @author Jon Harald Søby
  * @author Jóna Þórunn
  * @author Kph
@@ -1002,7 +1003,7 @@ Forsikre deg om at denne endringen vil opprettholde historisk sidekontinuitet.',
 'viewprevnext'                     => 'Vis ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Søkeinnstillinger',
 'searchmenu-exists'                => "* Siden '''[[$1]]'''",
-'searchmenu-new'                   => "'''[[:$1|Opprett]] siden ''$1'' på denne wikien.'''",
+'searchmenu-new'                   => "'''Opprett siden ''[[:$1]]'' på denne wikien.'''",
 'searchhelp-url'                   => 'Help:Hjelp',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Vis alle sider som begynner med dette]]',
 'searchprofile-articles'           => 'Innholdssider',
@@ -1101,9 +1102,12 @@ se math/README for oppsett.',
 'savedprefs'                => 'Innstillingene ble lagret.',
 'timezonelegend'            => 'Tidssone',
 'timezonetext'              => '¹Tast inn antall timer lokaltid differerer fra tjenertiden (UTC).',
-'localtime'                 => 'Lokaltid',
-'timezoneoffset'            => 'Forskjell',
-'servertime'                => 'Tjenerens tid er nå',
+'localtime'                 => 'Lokaltid:',
+'timezoneselect'            => 'Tidssone:',
+'timezoneuseserverdefault'  => 'Bruk serverens standardinnstillinger',
+'timezoneuseoffset'         => 'Annet (spesifiser forskjell)',
+'timezoneoffset'            => 'Forskjell¹:',
+'servertime'                => 'Serverens tid er nå:',
 'guesstimezone'             => 'Hent tidssone fra nettleseren',
 'allowemail'                => 'Tillat andre å sende meg e-post',
 'prefs-searchoptions'       => 'Søkealternativ',
@@ -1528,7 +1532,7 @@ En [[Special:WhatLinksHere/$2|fullstendig liste]] er tilgjengelig.',
 'statistics-jobqueue'          => '[http://www.mediawiki.org/wiki/Manual:Job_queue Jobbkøens] lengde',
 'statistics-users'             => 'Registrerte [[Special:ListUsers|brukere]]',
 'statistics-users-active'      => 'Aktive brukere',
-'statistics-users-active-desc' => 'Brukere som har utført handlinger den siste måneden',
+'statistics-users-active-desc' => 'Brukere som har utført handlinger {{PLURAL:$1|det siste døgnet|de siste $1 dagene}}',
 'statistics-mostpopular'       => 'Mest viste sider',
 
 'disambiguations'      => 'Artikler med flertydige titler',

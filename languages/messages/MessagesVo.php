@@ -1280,6 +1280,7 @@ Pad palelogon telplänovapad if gebon samafomoti, lü kel payümon pad [[MediaWi
 'popularpages'            => 'Pads suvüno pelogöls',
 'wantedcategories'        => 'Klads mekabik',
 'wantedpages'             => 'Pads mekabik',
+'wantedfiles'             => 'Ragivs mekabik',
 'wantedtemplates'         => 'Samafomots mekabik',
 'mostlinked'              => 'Pads suvüno peyümöls',
 'mostlinkedcategories'    => 'Klads suvüno peyümöls',
@@ -1391,10 +1392,10 @@ fomet at osedon one penedi bal. Ladet leäktronik in gebanabuükams olik opubon 
 'defemailsubject' => 'Ladet leäktronik ela {{SITENAME}}',
 'noemailtitle'    => 'Ladet no dabinon',
 'noemailtext'     => 'Geban at no egivon ladeti leäktronik lonöföl, ud ebuükon ad no getön penedis de gebans votik.',
-'emailfrom'       => 'De el',
-'emailto'         => 'Ele',
-'emailsubject'    => 'Yegäd',
-'emailmessage'    => 'Nun',
+'emailfrom'       => 'De el:',
+'emailto'         => 'Ele:',
+'emailsubject'    => 'Yegäd:',
+'emailmessage'    => 'Nun:',
 'emailsend'       => 'Sedolöd',
 'emailccme'       => 'Sedolöd obe kopiedi peneda obik.',
 'emailccsubject'  => 'Kopied peneda olik ele $1: $2',
@@ -1605,6 +1606,7 @@ Moükam onik ba ya pesädunon.',
 'undelete-error-long'          => 'Pöls äjenons dü sädunam moükama ragiva:
 
 $1',
+'undelete-show-file-submit'    => 'Si',
 
 # Namespace form on various pages
 'namespace'      => 'Nemaspad:',

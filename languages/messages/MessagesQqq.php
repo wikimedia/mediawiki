@@ -18,6 +18,7 @@
  * @author Dsvyas
  * @author Erwin85
  * @author EugeneZelenko
+ * @author Fryed-peach
  * @author Garas
  * @author GerardM
  * @author Helix84
@@ -1017,6 +1018,8 @@ bypasses IP blocks, auto-blocks and range blocks - so I presume - but I am uncer
 A user with this right can mark a roll-back edit as a bot edit by adding <tt>&bot=1</tt> to the URL (not by default).',
 'right-noratelimit'        => '{{doc-right}}
 The rate limits have no effect on the groups that have this right. Rate limits is a restriction that you can only do X actions (edits, moves, etc.) in Y number of seconds (set by [[mw:Manual:$wgRateLimits|$wgRateLimits]]).',
+'right-import'             => '{{doc-right}}',
+'right-importupload'       => '{{doc-right}}',
 
 # User rights log
 'rightslog'      => 'In [[Special:Log]]',

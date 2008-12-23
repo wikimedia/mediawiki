@@ -1075,7 +1075,7 @@ Asseguratz-vos qu'aqueste cambiament pòsca conservar la continuitat de l'istori
 'viewprevnext'                     => 'Veire ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Opcions de recèrca',
 'searchmenu-exists'                => "* Pagina '''[[$1]]'''",
-'searchmenu-new'                   => "'''Crear la pagina ''[[$1]]'' sus aqueste wiki !'''",
+'searchmenu-new'                   => "'''Crear la pagina ''[[:$1|$1]]'' sus aqueste wiki !'''",
 'searchhelp-url'                   => 'Help:Acuèlh',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Recercar las paginas amb aqueste prefix]]',
 'searchprofile-articles'           => 'Paginas de contengut',
@@ -1163,6 +1163,7 @@ Atencion, lor indexacion de contengut {{SITENAME}} benlèu es pas a jorn.',
 'saveprefs'                 => 'Enregistrar las preferéncias',
 'resetprefs'                => 'Restablir las preferéncias',
 'textboxsize'               => 'Fenèstra de modificacion',
+'prefs-edit-boxsize'        => 'Talha de la fenèstra de modificacion.',
 'rows'                      => 'Rengadas :',
 'columns'                   => 'Colomnas :',
 'searchresultshead'         => 'Recèrca',
@@ -1176,9 +1177,11 @@ Atencion, lor indexacion de contengut {{SITENAME}} benlèu es pas a jorn.',
 'savedprefs'                => 'Las preferéncias son estadas salvadas.',
 'timezonelegend'            => 'Zòna orària',
 'timezonetext'              => '¹Nombre d’oras de decalatge entre vòstra ora locala e l’ora del servidor (UTC).',
-'localtime'                 => 'Ora locala',
+'localtime'                 => 'Ora locala :',
+'timezoneselect'            => 'Zòna orària :',
+'timezoneuseserverdefault'  => 'Utilizar la valor del servidor',
 'timezoneoffset'            => 'Decalatge orari¹ :',
-'servertime'                => 'Ora del servidor',
+'servertime'                => 'Ora del servidor :',
 'guesstimezone'             => 'Utilizar la valor del navigador',
 'allowemail'                => 'Autorizar lo mandadís de corrièr electronic venent d’autres utilizaires',
 'prefs-searchoptions'       => 'Opcions de recèrca',
@@ -1603,7 +1606,7 @@ Doblidetz pas de verificar se i a pas d’autre ligam cap als modèls abans de l
 'statistics-jobqueue'          => 'Longor de la [http://www.mediawiki.org/wiki/Manual:Job_queue lista d’espèra de tractament]',
 'statistics-users'             => '[[Special:ListUsers|Utilizaires]] enregistrats',
 'statistics-users-active'      => 'Utilizaires actius',
-'statistics-users-active-desc' => "Nombre d'utilizaires qu'an fach al mens una accion durant lo darrièr mes",
+'statistics-users-active-desc' => "Utilizaires qu'an fach al mens una accion durant {{PLURAL:$1|lo darrièr jorn|los $1 darrièrs jorns}}",
 'statistics-mostpopular'       => 'Paginas mai consultadas',
 
 'disambiguations'      => "Paginas d'omonimia",
@@ -1978,7 +1981,7 @@ Clicatz sus « Precedent » e tornatz cargar la pagina d’ont venètz, puèi en
 'undeletepage'                 => 'Veire e restablir la pagina escafada',
 'undeletepagetitle'            => "'''La lista seguenta se compausa de versions suprimidas de [[:$1]]'''.",
 'viewdeletedpage'              => 'Istoric de la pagina suprimida',
-'undeletepagetext'             => "Aquestas paginas son estadas escafadas e se tròban dins l'archiu. Figuran totjorn dins la banca de donada e pòdon èsser restablidas.
+'undeletepagetext'             => "{{PLURAL:$1|Aquesta pagina es estada escafada e se tròba|Aquestas paginas son estadas escafadas e se tròban}} dins l'archiu. {{PLURAL:$1|Figura|Figuran}} encara dins la banca de donada e {{PLURAL:$1|pòt èsser restablida|pòdon èsser restablidas}}.
 L'archiu pòt èsser escafat periodicament.",
 'undelete-fieldset-title'      => 'Restablir las versions',
 'undeleteextrahelp'            => "Per restablir l'istoric complet d'aquesta pagina, daissatz vèrjas totas las casas de marcar, puèi clicatz sus '''''Restablir'''''.
@@ -2132,6 +2135,7 @@ a partir d'una adreça IP precedentament blocada.",
 'ipblocklist-no-results'          => 'L’adreça IP o l’utilizaire es pas esta blocat.',
 'blocklink'                       => 'blocar',
 'unblocklink'                     => 'desblocar',
+'change-blocklink'                => 'modificar lo blocatge',
 'contribslink'                    => 'contribucions',
 'autoblocker'                     => 'Sètz estat autoblocat perque partejatz una adreça IP amb "[[User:$1|$1]]".
 La rason balhada per $1 es : « $2 ».',
@@ -2188,67 +2192,68 @@ Doblidetz pas de la desvarrolhar quand auretz acabat vòstra operacion de manten
 'databasenotlocked'   => 'La banca de donadas es pas varrolhada.',
 
 # Move page
-'move-page'                 => 'Tornar nomenar $1',
-'move-page-legend'          => 'Tornar nomenar una pagina',
-'movepagetext'              => "Utilizatz lo formulari çaijós per tornar nomenar una pagina, en desplaçant tot son istoric cap al nom novèl. Lo títol ancian vendrà una pagina de redireccion cap al títol novèl. Los ligams cap al títol de la pagina anciana seràn pas cambiats ; verificatz qu'aqueste desplaçament a pas creat de [[Special:DoubleRedirects|redireccion dobla]] o de [[Special:BrokenRedirects|redireccion copada]].
+'move-page'                    => 'Tornar nomenar $1',
+'move-page-legend'             => 'Tornar nomenar una pagina',
+'movepagetext'                 => "Utilizatz lo formulari çaijós per tornar nomenar una pagina, en desplaçant tot son istoric cap al nom novèl. Lo títol ancian vendrà una pagina de redireccion cap al títol novèl. Los ligams cap al títol de la pagina anciana seràn pas cambiats ; verificatz qu'aqueste desplaçament a pas creat de [[Special:DoubleRedirects|redireccion dobla]] o de [[Special:BrokenRedirects|redireccion copada]].
 
 Avètz la responsabilitat de vos assegurar que los ligams contunhen de puntar cap a lor destinacion supausada. Una pagina serà pas desplaçada se la pagina del títol novèl existís ja, a mens qu'aquesta darrièra siá voida o en redireccion, e qu’aja pas d’istoric. Aquò vòl dire que podètz tornar nomenar una pagina cap a sa posicion d’origina s'avètz fach una error, mas que podètz pas escafar una pagina qu'existís ja amb aqueste procediment.
 
 '''ATENCION !''' Aquò pòt provocar un cambiament radical e imprevist per una pagina consultada frequentament. Asseguratz-vos de n'aver comprés las consequéncias abans de contunhar.",
-'movepagetalktext'          => "La pagina de discussion associada, se presenta, serà automaticament desplaçada amb '''en defòra de se:'''
+'movepagetalktext'             => "La pagina de discussion associada, se presenta, serà automaticament desplaçada amb '''en defòra de se:'''
 *Desplaçatz una pagina cap a un autre espaci,
 *Una pagina de discussion ja existís amb lo nom novèl, o
 *Avètz deseleccionat lo boton çaijós.
 
 Dins aqueste cas, deuretz desplaçar o fusionar la pagina manualament se o volètz.",
-'movearticle'               => "Tornar nomenar l'article",
-'movenologin'               => 'Vos sètz pas identificat(ada)',
-'movenologintext'           => "Per poder tornar nomenar un article, vos cal èsser [[Special:UserLogin|connectat(ada)]]
+'movearticle'                  => "Tornar nomenar l'article",
+'movenologin'                  => 'Vos sètz pas identificat(ada)',
+'movenologintext'              => "Per poder tornar nomenar un article, vos cal èsser [[Special:UserLogin|connectat(ada)]]
 en tant qu'utilizaire enregistrat.",
-'movenotallowed'            => 'Avètz pas la permission de tornar nomenar de paginas.',
-'cant-move-user-page'       => "Avètz pas la permission de tornar nomenar de paginas d'utilizaires raices sus aqueste wiki.",
-'cant-move-to-user-page'    => "Avètz pas la permission de tornar nomenar una pagina cap a una pagina d'utilizaire (a l'excepcion d'una sospagina).",
-'newtitle'                  => 'Títol novèl',
-'move-watch'                => 'Seguir aquesta pagina',
-'movepagebtn'               => "Tornar nomenar l'article",
-'pagemovedsub'              => 'Cambiament de nom capitat',
-'movepage-moved'            => 'La pagina « $1 » es estada renomenada en « $2 ».', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'             => "Existís ja un article que pòrta aqueste títol, o lo títol qu'avètz causit es pas valid.
+'movenotallowed'               => 'Avètz pas la permission de tornar nomenar de paginas.',
+'cant-move-user-page'          => "Avètz pas la permission de tornar nomenar de paginas d'utilizaires raices sus aqueste wiki.",
+'cant-move-to-user-page'       => "Avètz pas la permission de tornar nomenar una pagina cap a una pagina d'utilizaire (a l'excepcion d'una sospagina).",
+'newtitle'                     => 'Títol novèl',
+'move-watch'                   => 'Seguir aquesta pagina',
+'movepagebtn'                  => "Tornar nomenar l'article",
+'pagemovedsub'                 => 'Cambiament de nom capitat',
+'movepage-moved'               => 'La pagina « $1 » es estada renomenada en « $2 ».', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'                => "Existís ja un article que pòrta aqueste títol, o lo títol qu'avètz causit es pas valid.
 Causissètz-ne un autre.",
-'cantmove-titleprotected'   => 'Avètz pas la possibilitat de desplaçar una pagina cap a aqueste emplaçament perque lo títol es estat protegit a la creacion.',
-'talkexists'                => "La pagina ela-meteissa es estada desplaçada amb succès, mas
+'cantmove-titleprotected'      => 'Avètz pas la possibilitat de desplaçar una pagina cap a aqueste emplaçament perque lo títol es estat protegit a la creacion.',
+'talkexists'                   => "La pagina ela-meteissa es estada desplaçada amb succès, mas
 la pagina de discussion a pas pogut èsser desplaçada perque ja n'existissiá una
 jol nom novèl. Se vos plai, fusionatz-las manualament.",
-'movedto'                   => 'renomenat en',
-'movetalk'                  => 'Tornar nomenar tanben la pagina de discussion associada',
-'move-subpages'             => 'Tornar nomenar, se fa mestièr, totas las sospaginas',
-'move-talk-subpages'        => 'Tornar nomenar, se fa mestièr, totas las sospaginas de las paginas de discussion',
-'movepage-page-exists'      => 'La pagina $1 existís ja e pòt pas èsser espotida automaticament.',
-'movepage-page-moved'       => 'La pagina $1 es estada renomenada en $2.',
-'movepage-page-unmoved'     => 'La pagina $1 pòt èsser renomenada en $2.',
-'movepage-max-pages'        => "Lo maximom de $1 {{PLURAL:$1|pagina es estat renomenat|paginas son estadas renomenadas}} e cap d'autra o poirà pas èsser automaticament.",
-'1movedto2'                 => 'a renomenat [[$1]] en [[$2]]',
-'1movedto2_redir'           => 'a redirigit [[$1]] cap a [[$2]]',
-'movelogpage'               => 'Istoric dels cambiaments de nom',
-'movelogpagetext'           => 'Vaquí la lista de las darrièras paginas renomenadas.',
-'movereason'                => 'Motiu :',
-'revertmove'                => 'anullar',
-'delete_and_move'           => 'Suprimir e tornar nomenar',
-'delete_and_move_text'      => '==Supression requesida==
+'movedto'                      => 'renomenat en',
+'movetalk'                     => 'Tornar nomenar tanben la pagina de discussion associada',
+'move-subpages'                => 'Tornar nomenar, se fa mestièr, totas las sospaginas',
+'move-talk-subpages'           => 'Tornar nomenar, se fa mestièr, totas las sospaginas de las paginas de discussion',
+'movepage-page-exists'         => 'La pagina $1 existís ja e pòt pas èsser espotida automaticament.',
+'movepage-page-moved'          => 'La pagina $1 es estada renomenada en $2.',
+'movepage-page-unmoved'        => 'La pagina $1 pòt èsser renomenada en $2.',
+'movepage-max-pages'           => "Lo maximom de $1 {{PLURAL:$1|pagina es estat renomenat|paginas son estadas renomenadas}} e cap d'autra o poirà pas èsser automaticament.",
+'1movedto2'                    => 'a renomenat [[$1]] en [[$2]]',
+'1movedto2_redir'              => 'a redirigit [[$1]] cap a [[$2]]',
+'movelogpage'                  => 'Istoric dels cambiaments de nom',
+'movelogpagetext'              => 'Vaquí la lista de las darrièras paginas renomenadas.',
+'movereason'                   => 'Motiu :',
+'revertmove'                   => 'anullar',
+'delete_and_move'              => 'Suprimir e tornar nomenar',
+'delete_and_move_text'         => '==Supression requesida==
 L’article de destinacion « [[:$1]] » existís ja.
 Lo volètz suprimir per permetre lo cambiament de nom ?',
-'delete_and_move_confirm'   => 'Òc, accèpti de suprimir la pagina de destinacion per permetre lo cambiament de nom.',
-'delete_and_move_reason'    => 'Pagina suprimida per permetre un cambiament de nom',
-'selfmove'                  => 'Los títols d’origina e de destinacion son los meteisses : impossible de tornar nomenar una pagina sus ela-meteissa.',
-'immobile-source-namespace' => "Podètz pas tornar nomenar de paginas dins l'espaci de noms « $1 »",
-'immobile-target-namespace' => "Podètz pas desplaçar de paginas cap a l'espaci de noms « $1 »",
-'immobile-source-page'      => 'Aquesta pagina se pòt pas tornar nomenar.',
-'immobile-target-page'      => 'Es pas possible de desplaçar la pagina cap a aqueste títol.',
-'imagenocrossnamespace'     => 'Pòt pas desplaçar un imatge cap a un espaci de nomenatge que siá pas un imatge.',
-'imagetypemismatch'         => "L'extension novèla d'aqueste fichièr reconeis pas aqueste format.",
-'imageinvalidfilename'      => 'Lo nom del fichièr cibla es incorrècte',
-'fix-double-redirects'      => 'Metre a jorn las redireccions que puntant cap al títol ancian',
-'move-leave-redirect'       => 'Daissar una redireccion darrièr',
+'delete_and_move_confirm'      => 'Òc, accèpti de suprimir la pagina de destinacion per permetre lo cambiament de nom.',
+'delete_and_move_reason'       => 'Pagina suprimida per permetre un cambiament de nom',
+'selfmove'                     => 'Los títols d’origina e de destinacion son los meteisses : impossible de tornar nomenar una pagina sus ela-meteissa.',
+'immobile-source-namespace'    => "Podètz pas tornar nomenar de paginas dins l'espaci de noms « $1 »",
+'immobile-target-namespace'    => "Podètz pas desplaçar de paginas cap a l'espaci de noms « $1 »",
+'immobile-target-namespace-iw' => 'Los ligams interwikis son pas una cibla valida pels cambiaments de nom.',
+'immobile-source-page'         => 'Aquesta pagina se pòt pas tornar nomenar.',
+'immobile-target-page'         => 'Es pas possible de desplaçar la pagina cap a aqueste títol.',
+'imagenocrossnamespace'        => 'Pòt pas desplaçar un imatge cap a un espaci de nomenatge que siá pas un imatge.',
+'imagetypemismatch'            => "L'extension novèla d'aqueste fichièr reconeis pas aqueste format.",
+'imageinvalidfilename'         => 'Lo nom del fichièr cibla es incorrècte',
+'fix-double-redirects'         => 'Metre a jorn las redireccions que puntant cap al títol ancian',
+'move-leave-redirect'          => 'Daissar una redireccion darrièr',
 
 # Export
 'export'            => 'Exportar de paginas',

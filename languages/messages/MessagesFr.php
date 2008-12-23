@@ -10,6 +10,7 @@
  * @author Crochet.david
  * @author Delhovlyn
  * @author Dereckson
+ * @author Elfix
  * @author Esbardu
  * @author Grondin
  * @author Guillom
@@ -474,7 +475,7 @@ $messages = array(
 'ok'                      => 'OK',
 'retrievedfrom'           => 'Récupérée de « $1 »',
 'youhavenewmessages'      => 'Vous avez $1 ($2).',
-'newmessageslink'         => 'des nouveaux messages',
+'newmessageslink'         => 'de nouveaux messages',
 'newmessagesdifflink'     => 'dernière modification',
 'youhavenewmessagesmulti' => 'Vous avez de nouveaux messages sur $1.',
 'editsection'             => 'modifier',
@@ -1119,7 +1120,7 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 'powersearch-redir'                => 'Afficher les redirections',
 'powersearch-field'                => 'Rechercher',
 'search-external'                  => 'Recherche externe',
-'searchdisabled'                   => 'La recherche sur {{SITENAME}} est désactivée. En attendant la réactivation, vous pouvez effectuer une recherche via Google. Attention, leur indexation du contenu {{SITENAME}} peut ne pas être à jour.',
+'searchdisabled'                   => 'La recherche sur {{SITENAME}} est désactivée. En attendant la réactivation, vous pouvez effectuer une recherche via Google. Attention, leur indexation du contenu de {{SITENAME}} peut ne pas être à jour.',
 
 # Preferences page
 'preferences'               => 'Préférences',
@@ -1177,6 +1178,9 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 'timezonelegend'            => 'Fuseau horaire',
 'timezonetext'              => 'Nombre d’heures de décalage entre votre heure locale et l’heure du serveur (UTC).',
 'localtime'                 => 'Heure locale :',
+'timezoneselect'            => 'Zone horaire',
+'timezoneuseserverdefault'  => 'Utiliser la valeur du serveur',
+'timezoneuseoffset'         => 'Autre (especificar lo decalatge)',
 'timezoneoffset'            => 'Décalage horaire¹ :',
 'servertime'                => 'Heure du serveur :',
 'guesstimezone'             => 'Utiliser la valeur du navigateur',
@@ -1249,7 +1253,7 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 'right-reupload-own'         => 'Écraser un fichier téléchargé par le même utilisateur',
 'right-reupload-shared'      => 'Écraser localement un fichier présent sur un dépôt partagé',
 'right-upload_by_url'        => 'Importer un fichier depuis une adresse URL',
-'right-purge'                => 'Purger le cache des pages sans avoir à le confirmer',
+'right-purge'                => 'Purger le cache des pages sans demande de confirmation',
 'right-autoconfirmed'        => 'Modifier les pages semi-protégées',
 'right-bot'                  => 'Être traité comme un processus automatisé',
 'right-nominornewtalk'       => "Ne pas afficher le bandeau « Vous avez de nouveaux messages » lors d'une modification mineure sur une page de discussion d'un utilisateur",
@@ -1609,9 +1613,9 @@ Une [[Special:WhatLinksHere/$2|liste complète]] est disponible.',
 
 'disambiguations'      => 'Pages d’homonymie',
 'disambiguationspage'  => 'Template:Homonymie',
-'disambiguations-text' => "Les pages suivantes pointent vers une '''page d’homonymie'''.
-Elles devraient plutôt pointer le sujet approprié.<br />
-Une page est traitée comme une page d’homonymie si elle utilise un modèle qui est lié à partir de [[MediaWiki:Disambiguationspage]]",
+'disambiguations-text' => "Les pages suivantes comprennent des liens vers une '''page d’homonymie'''.
+Elles devraient plutôt lier vers le bon article.<br />
+Une page est considérée comme page d’homonymie si elle contient un des modèles présents sur [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects'            => 'Doubles redirections',
 'doubleredirectstext'        => 'Chaque case contient des liens vers la première et la seconde redirection, ainsi que la première ligne de texte de la seconde page, ce qui fournit habituellement la « vraie » page cible, vers laquelle la première redirection devrait rediriger.',
@@ -2109,7 +2113,7 @@ Vous pouvez consulter la [[Special:IPBlockList|liste des comptes et des adresses
 'ipusubmit'                       => 'Débloquer cette adresse',
 'unblocked'                       => '[[User:$1|$1]] a été débloqué',
 'unblocked-id'                    => 'Le blocage $1 a été enlevé',
-'ipblocklist'                     => 'Adresses IP et des utilisateurs bloqués',
+'ipblocklist'                     => 'Adresses IP et utilisateurs bloqués',
 'ipblocklist-legend'              => 'Chercher un utilisateur bloqué',
 'ipblocklist-username'            => 'Nom de l’utilisateur ou adresse IP :',
 'ipblocklist-sh-userblocks'       => '$1 les comptes bloqués',
