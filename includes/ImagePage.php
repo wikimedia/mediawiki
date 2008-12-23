@@ -965,12 +965,16 @@ class ImageHistoryList {
 class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 	function __construct( $imagePage ) {
 		parent::__construct();
-		$this->mImagePage =& $imagePage;
-		$this->mTitle = $imagePage->getTitle();
+		$this->mImagePage = $imagePage;
+		$this->mTitle = clone( $imagePage->getTitle() );
 		$this->mTitle->setFragment( '#filehistory' );
 		$this->mImg = NULL;
 		$this->mHist = array();
 		$this->mRange = array( 0, 0 ); // display range
+	}
+	
+	function getTitle() {
+		return $this->mTitle;
 	}
 
 	function getQueryInfo() {
