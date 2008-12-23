@@ -446,7 +446,7 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 16026) revision-info, revision-info-current, cannotdelete,
   redirectedfrom and historywarning messages now use Wiki text rather than raw
   HTML markup
-
+* (bug 13835) Fix rendering of {{filepath:Wiki.png|nowiki}}
 
 === API changes in 1.14 ===
 
