@@ -451,6 +451,8 @@ The following extensions are migrated into MediaWiki 1.14:
   redirectedfrom, historywarning and difference messages now use Wiki text
   rather than raw HTML markup
 * (bug 13835) Fix rendering of {{filepath:Wiki.png|nowiki}}
+* (bug 16772) Special:Upload now correctly rejects files with spaces in the
+  file extension (e.g. Foo. jpg).
 
 === API changes in 1.14 ===
 
