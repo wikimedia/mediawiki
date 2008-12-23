@@ -1135,6 +1135,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desat
 'saveprefs'                => 'Salvar',
 'resetprefs'               => 'Eliminar as alterações não-salvas',
 'textboxsize'              => 'Opções de edição',
+'prefs-edit-boxsize'       => 'Tamanho da janela de edição.',
 'rows'                     => 'Linhas:',
 'columns'                  => 'Colunas:',
 'searchresultshead'        => 'Pesquisa',

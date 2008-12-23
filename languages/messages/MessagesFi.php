@@ -786,6 +786,8 @@ Lukitsemisen syy: $1',
 Harkitse, kannattaako sivua luoda uudelleen. Alla on tämän sivun poistohistoria:",
 'deleted-notice'                   => 'Tämä sivu on poistettu. Alla on tämän sivun poistohistoria.',
 'deletelog-fulllog'                => 'Näytä loki kokonaan',
+'edit-hook-aborted'                => 'Koukku keskeytti muokkauksen.
+Syytä ei tiedossa.',
 'edit-gone-missing'                => 'Sivun päivitys ei onnistunut.
 Se on ilmeisesti poistettu.',
 'edit-conflict'                    => 'Päällekkäinen muokkaus.',
@@ -804,6 +806,7 @@ Joitakin mallineita ei ole sisällytetty.',
 Nämä muuttujat on jätetty käsittelemättä.',
 'post-expand-template-argument-category'  => 'Käsittelemättömiä mallinemuuttujia sisältävät sivut',
 'parser-template-loop-warning'            => 'Mallinesilmukka havaittu: [[$1]]',
+'parser-template-recursion-depth-warning' => 'Mallineen rekursioraja ylitetty ($1)',
 
 # "Undo" feature
 'undo-success' => 'Kumoaminen onnistui. Valitse <em>tallenna</em> toteuttaaksesi muutokset.',
@@ -933,11 +936,17 @@ Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa men
 'wikicodecomparison'      => 'Wikitekstin vertailu',
 'editundo'                => 'kumoa',
 'diff-multi'              => '(Versioiden välissä {{PLURAL:$1|yksi muu muokkaus|$1 muuta muokkausta}}.)',
+'diff-movedto'            => 'siirretty tänne: $1',
 'diff-styleadded'         => 'tyyli $1 lisätty',
 'diff-added'              => '$1 lisätty',
+'diff-changedto'          => 'muutettu täksi: $1',
+'diff-movedoutof'         => 'siirretty täältä: $1',
 'diff-styleremoved'       => 'tyyli $1 poistettu',
 'diff-removed'            => '$1 poistettu',
+'diff-changedfrom'        => 'muutettu tästä: $1',
 'diff-src'                => 'lähde',
+'diff-withdestination'    => 'kohteena: $1',
+'diff-with'               => '&#32;jossa $1 $2',
 'diff-with-final'         => '&#32;ja $1 $2',
 'diff-width'              => 'leveys',
 'diff-height'             => 'korkeus',
@@ -1100,6 +1109,9 @@ $1 | $2',
 'timezonelegend'            => 'Aikavyöhyke',
 'timezonetext'              => 'Paikallisen ajan ja palvelimen ajan (UTC) välinen aikaero tunteina.',
 'localtime'                 => 'Paikallinen aika',
+'timezoneselect'            => 'Aikavyöhyke',
+'timezoneuseserverdefault'  => 'Käytä palvelimen oletusta',
+'timezoneuseoffset'         => 'Muu (määritä aikaero)',
 'timezoneoffset'            => 'Aikaero',
 'servertime'                => 'Palvelimen aika',
 'guesstimezone'             => 'Utele selaimelta',
@@ -1292,7 +1304,7 @@ $1 | $2',
 'upload'                      => 'Tallenna tiedosto',
 'uploadbtn'                   => 'Tallenna',
 'reupload'                    => 'Lähetä uudelleen',
-'reuploaddesc'                => 'Palaa lähetyslomakkeelle.',
+'reuploaddesc'                => 'Peruuta tallennus ja palaa tallennuslomakkeelle.',
 'uploadnologin'               => 'Et ole kirjautunut sisään',
 'uploadnologintext'           => 'Sinun pitää olla [[Special:UserLogin|kirjautuneena sisään]], jotta voisit tallentaa tiedostoja.',
 'upload_directory_missing'    => 'Tallennushakemisto $1 puuttuu, eikä palvelin pysty luomaan sitä.',
@@ -2571,6 +2583,11 @@ Vain *-merkillä alkavat rivit otetaan huomioon. Ensimmäisen linkin on osoitett
 # Flash modes
 'exif-flash-fired-0'    => 'Salama ei lauennut',
 'exif-flash-fired-1'    => 'Salama lauennut',
+'exif-flash-return-0'   => 'ei pulssivalon tunnistustoimintoa',
+'exif-flash-return-2'   => 'pulssivalon paluuta ei havaittu',
+'exif-flash-return-3'   => 'pulssivalon paluu havaittu',
+'exif-flash-mode-1'     => 'salamavalo käytössä',
+'exif-flash-mode-2'     => 'salamavalo estetty',
 'exif-flash-mode-3'     => 'automaattitila',
 'exif-flash-function-1' => 'Ei salamatoimintoa',
 'exif-flash-redeye-1'   => 'punasilmäisyyden vähennystila',
@@ -2844,11 +2861,11 @@ Kirjoita tiedostonimi ilman ”{{ns:file}}:”-etuliitettä.',
 
 # External image whitelist
 'external_image_whitelist' => ' #Älä muuta tätä riviä lainkaan.<pre>
-#Laita säännölliset lausekepalaset (vain osa, joka menee // väliin) alapuolelle
+#Laita säännöllisten lausekkeiden palaset (vain osa, joka menee //-merkkien väliin) alle
 #Niitä verrataan ulkoisten (suoralinkitettyjen) kuvien URLeihin
 #Ne jotka sopivat, näytetään kuvina, muutoin kuviin näytetään vain linkit
 #Rivit, jotka alkavat #-merkillä ovat kommentteja
 
-#Laita kaikki säännölliset lausekepalaset tämän rivit yläpuolelle. Älä muuta tätä riviä lainkaan</pre>',
+#Laita kaikki säännöllisten lausekkeiden palaset tämän rivit yläpuolelle. Älä muuta tätä riviä lainkaan</pre>',
 
 );

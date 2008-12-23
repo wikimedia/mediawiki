@@ -651,7 +651,7 @@ Wenn du dat Brukerkonto gor nich hebben wullst, denn is disse Naricht egaal för
 'loginlanguagelabel'         => 'Spraak: $1',
 
 # Password reset dialog
-'resetpass'                 => 'Passwoord vun dat Brukerkonto ännern oder trüchsetten',
+'resetpass'                 => 'Passwoord ännern',
 'resetpass_announce'        => 'Du hest di mit en Kood anmellt, de di över E-Mail toschickt worrn is. Dat anmellen aftosluten, söök di nu en neet Passwoord ut:',
 'resetpass_header'          => 'Passwoort trüchsetten',
 'oldpassword'               => 'Oolt Passwoort:',
@@ -1059,7 +1059,7 @@ Seh to, dat de Versionsgeschicht vun’n Artikel vun de Historie her bi de Reeg 
 'viewprevnext'                     => 'Wies ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Söökoptionen',
 'searchmenu-exists'                => "* Sied '''[[$1]]'''",
-'searchmenu-new'                   => "'''[[:$1|Stell]] de Sied ''$1'' in dit Wiki nee op!'''",
+'searchmenu-new'                   => "'''Stell de Sied „[[:$1]]“ in dit Wiki nee op!'''",
 'searchhelp-url'                   => 'Help:Hülp',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Wies Sieden, de mit disse Bookstaven anfangt]]',
 'searchprofile-articles'           => 'Inholtsieden',

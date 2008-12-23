@@ -286,6 +286,7 @@ Vide [[Special:Version|Versione d'a pàgene]].",
 
 # Main script and global functions
 'nosuchaction'      => 'Non ge stonne otre azione',
+'nosuchactiontext'  => "L'aziona specifichete da l'URL non g'è canusciute da Uicchi",
 'nosuchspecialpage' => 'Non ge stonne pàggene speciele',
 'nospecialpagetext' => "<big>'''Tu è richieste 'na pàgena speciele ca non g'esiste.'''</big>
 
@@ -329,6 +330,8 @@ Query: $2",
 'namespaceprotected'   => "Non ge tine 'u permesse pe cangià pàggene d'u neimspeise '''$1'''.",
 'customcssjsprotected' => "Non ge tine 'u permesse pe cangià sta pàgene, purcè tène otre configurazione personele.",
 'ns-specialprotected'  => 'Le pàgene speciale no ponne essere cangete.',
+'titleprotected'       => "Stu titele ha state prutette da 'a ccreazione da [[User:$1|$1]].
+'U mutive jè ''$2''.",
 
 # Virus scanner
 'virus-badscanner'     => 'Configurazione ca fece schife: Virus scanner scanusciute: <i>$1</i>',
@@ -477,6 +480,7 @@ L'IP ca tine mò jè $3 e 'u codece d'u blocche jè #$5.
 Pe piacere mitte ste doje 'mbormaziune ce manne 'na richieste de sblocche.",
 'blockednoreason'                  => 'nisciune mutive',
 'blockedoriginalsource'            => "'A sorgende de '''$1''' jè mostreta aqquà sotte:",
+'blockededitsource'                => "'U teste de le '''cangiaminde tue''' sus a '''$1''' ìu stè vide aqquà sotte:",
 'whitelistedittitle'               => "Pe fa le cangiaminde t'a collegà",
 'confirmedittitle'                 => "Ce vuè cu fece le cangiaminde a confermà cu l'email",
 'nosuchsectiontitle'               => 'Non ge stonne seziune',
@@ -1492,6 +1496,7 @@ Otre avènene scunnute pe defolt.
 'fileduplicatesearch'          => 'Cirche pe le file duplichete',
 'fileduplicatesearch-filename' => "Nome d'u faile:",
 'fileduplicatesearch-submit'   => 'Cirche',
+'fileduplicatesearch-info'     => "$1 × $2 pixel<br />Dimenzione d'u file: $3<br />Tipe de MIME: $4",
 
 # Special:SpecialPages
 'specialpages'                 => 'Pàggene speciele',
@@ -1499,6 +1504,7 @@ Otre avènene scunnute pe defolt.
 'specialpages-group-login'     => 'Tràse / Reggistrete',
 'specialpages-group-changes'   => 'Cangiaminde recende e archivie',
 'specialpages-group-users'     => 'Utinde e deritte',
+'specialpages-group-highuse'   => 'Pàggene ausete assaje proprie',
 'specialpages-group-pages'     => 'Liste de le pàggene',
 'specialpages-group-pagetools' => 'Pàgene de le struminde',
 'specialpages-group-wiki'      => 'Date e struminde de Uicchi',

@@ -691,7 +691,10 @@ $messages = array(
 'resetpass_success'         => '암호가 성공적으로 변경되었습니다! 로그인을 해 주세요.',
 'resetpass_bad_temporary'   => '임시 암호가 잘못되었습니다. 암호를 이미 바꾸었거나, 임시 암호를 새로 받았을 수 있습니다.',
 'resetpass_forbidden'       => '비밀번호 변경 불가',
+'resetpass-no-info'         => '이 특수 문서에 직접 접근하려면 반드시 로그인해야 합니다.',
 'resetpass-submit-loggedin' => '비밀번호 변경',
+'resetpass-wrong-oldpass'   => '비밀번호가 잘못되었거나 현재의 비밀번호와 같습니다.
+당신은 이미 비밀번호를 성공적으로 변경하였거나 새 임시 비밀번호를 발급받았을 수 있습니다.',
 'resetpass-temp-password'   => '임시 비밀번호:',
 
 # Edit page toolbar
@@ -904,6 +907,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'revdelete-hide-text'    => '판의 내용을 숨기기',
 'revdelete-hide-comment' => '편집 요약을 숨기기',
 'revdelete-hide-user'    => '편집자의 계정 이름/IP를 숨기기',
+'revdelete-suppress'     => '문서 내용을 관리자에게도 보이지 않게 숨기기',
 'revdelete-hide-image'   => '파일을 숨기기',
 'revdelete-logentry'     => '[[$1]]의 판의 보이기 설정을 변경함',
 'logdelete-logentry'     => '[[$1]]의 로그 보이기 설정을 변경함',
@@ -938,6 +942,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'lineno'                  => '$1번째 줄:',
 'compareselectedversions' => '선택된 판들을 비교하기',
 'visualcomparison'        => '시각적 비교',
+'wikicodecomparison'      => '위키텍스트 비교',
 'editundo'                => '편집 취소',
 'diff-multi'              => '(중간 $1개의 편집이 숨겨짐)',
 'diff-movedto'            => '$1(으)로 이동',
@@ -958,6 +963,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'diff-tr'                 => "'''행'''",
 'diff-td'                 => "'''칸'''",
 'diff-br'                 => "'''줄바꿈'''",
+'diff-hr'                 => "'''가로줄'''",
 'diff-code'               => "'''컴퓨터 코드 블록'''",
 'diff-img'                => "'''그림'''",
 'diff-a'                  => "'''링크'''",
@@ -1058,6 +1064,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'saveprefs'                 => '저장',
 'resetprefs'                => '저장하지 않은 설정 되돌리기',
 'textboxsize'               => '편집상자 크기',
+'prefs-edit-boxsize'        => '편집 창의 크기',
 'rows'                      => '줄 수:',
 'columns'                   => '열:',
 'searchresultshead'         => '찾기',
@@ -1071,9 +1078,12 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'savedprefs'                => '설정을 저장했습니다.',
 'timezonelegend'            => '시간대',
 'timezonetext'              => '¹현지 시각과 서버 시각(UTC) 사이의 시차를 써 주세요.',
-'localtime'                 => '현지 시각',
-'timezoneoffset'            => '시차¹',
-'servertime'                => '서버 시각',
+'localtime'                 => '현지 시각:',
+'timezoneselect'            => '시간대:',
+'timezoneuseserverdefault'  => '서버 기본값을 사용',
+'timezoneuseoffset'         => '기타 (시차를 입력해주세요)',
+'timezoneoffset'            => '시차¹:',
+'servertime'                => '서버 시각:',
 'guesstimezone'             => '웹 브라우저 설정에서 가져오기',
 'allowemail'                => '다른 사용자로부터의 이메일 허용',
 'prefs-searchoptions'       => '검색 설정',
@@ -1110,6 +1120,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'group-bot'           => '봇',
 'group-sysop'         => '관리자',
 'group-bureaucrat'    => '뷰로크랫',
+'group-suppress'      => '오버사이트',
 'group-all'           => '(모두)',
 
 'group-user-member'          => '사용자',
@@ -1117,6 +1128,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'group-bot-member'           => '봇',
 'group-sysop-member'         => '관리자',
 'group-bureaucrat-member'    => '뷰로크랫',
+'group-suppress-member'      => '오버사이트',
 
 'grouppage-user'          => '{{ns:project}}:일반 사용자',
 'grouppage-autoconfirmed' => '{{ns:project}}:자동 인증된 사용자',
@@ -1147,6 +1159,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'right-delete'               => '문서 삭제',
 'right-bigdelete'            => '문서 역사가 긴 문서를 삭제',
 'right-deleterevision'       => '문서의 특정 판을 삭제 및 복구',
+'right-deletedhistory'       => '삭제된 문서의 내용을 제외한 역사를 보기',
 'right-browsearchive'        => '삭제된 문서 검색',
 'right-undelete'             => '삭제된 문서 복구',
 'right-suppressrevision'     => '관리자도 보지 못하도록 숨겨진 판의 확인 및 복구',
@@ -1196,6 +1209,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'action-deleterevision'       => '이 판을 삭제',
 'action-deletedhistory'       => '이 문서의 삭제된 기여의 역사 보기',
 'action-browsearchive'        => '삭제된 문서 찾기',
+'action-undelete'             => '이 문서를 복구하기',
 'action-block'                => '이 사용자를 편집하지 못하도록 차단',
 'action-protect'              => '이 문서의 보호 설정을 변경하기',
 'action-import'               => '다른 위키에서 이 문서를 가져오기',
@@ -1295,6 +1309,9 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 존재하는 파일 이름: <strong><tt>$2</tt></strong><br />
 다른 이름으로 시도해 주세요.',
 'fileexists-thumb'            => "<center>'''존재하는 파일'''</center>",
+'file-thumbnail-no'           => '파일 이름이 <strong><tt>$1</tt></strong>으로 시작합니다.
+이것은 파일의 크기가 줄어든 그림 (썸네일)으로 보입니다.
+당신이 최대 해상도의 파일을 갖고 있다면 최대 해상도의 파일로 올려주세요, 아니라면 파일의 이름을 바꿔 주세요.',
 'fileexists-forbidden'        => '같은 이름의 파일이 이미 있습니다. 뒤로 돌아가서 다른 이름으로 시도해 주시기 바랍니다. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => '같은 이름의 파일이 이미 위키미디어 공용에 있습니다.
 파일을 업로드하길 원하신다면 뒤로 돌아가서 다른 이름으로 시도해 주시기 바랍니다. [[File:$1|thumb|center|$1]]',
@@ -1714,6 +1731,7 @@ $NEWPAGE
 'actioncomplete'         => '명령완료',
 'deletedtext'            => '‘<nowiki>$1</nowiki>’ 문서를 삭제했습니다. 최근 삭제 기록은 $2에 있습니다.',
 'deletedarticle'         => '이(가) [[$1]]을(를) 삭제하였습니다.',
+'suppressedarticle'      => '"[[$1]]"를 숨김',
 'dellogpage'             => '삭제 기록',
 'dellogpagetext'         => '아래의 목록은 최근에 삭제된 문서들입니다.',
 'deletionlog'            => '삭제 기록',
@@ -2021,6 +2039,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'movenologin'               => '로그인하지 않음',
 'movenologintext'           => '[[Special:UserLogin|로그인]]해야만 문서를 이동할 수 있습니다.',
 'movenotallowed'            => '문서를 이동할 권한이 없습니다.',
+'cant-move-user-page'       => '당신은 사용자 문서(하위 문서를 제외)를 옮길 권한이 없습니다.',
 'newtitle'                  => '새 문서 이름',
 'move-watch'                => '이 문서 주시하기',
 'movepagebtn'               => '이동',
@@ -2090,6 +2109,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 # Special:Import
 'import'                   => '문서 가져오기',
 'importinterwiki'          => '다른 위키에서 문서 가져오기',
+'import-interwiki-source'  => '원본 위키/문서:',
 'import-interwiki-submit'  => '가져오기',
 'import-upload-filename'   => '파일 이름:',
 'import-comment'           => '내용:',
@@ -2298,6 +2318,15 @@ $1',
 매 줄의 첫번째 고리는 부적절한 파일을 가리켜야 합니다.
 같은 줄에 따라오는 모든 고리는 예외로 봅니다. (예: 파일이 사용되어야 하는 문서)',
 
+/*
+Short names for language variants used for language conversion links.
+To disable showing a particular link, set it to 'disable', e.g.
+'variantname-zh-sg' => 'disable',
+Variants for Chinese language
+*/
+'variantname-zh-hans' => '간체',
+'variantname-zh-hant' => '번체',
+
 # Metadata
 'metadata'          => '메타데이터',
 'metadata-help'     => '이 파일은 카메라/스캐너에서 추가한 부가 정보를 담고 있습니다. 파일을 편집한다면, 변경된 그림에는 일부 부가 정보가 빠질 수 있습니다.',
@@ -2314,6 +2343,7 @@ $1',
 # EXIF tags
 'exif-imagewidth'          => '너비',
 'exif-imagelength'         => '높이',
+'exif-orientation'         => '방향',
 'exif-xresolution'         => '수평 해상도',
 'exif-yresolution'         => '수직 해상도',
 'exif-datetime'            => '파일이 변경된 날짜와 시간',
@@ -2325,6 +2355,8 @@ $1',
 'exif-copyright'           => '저작권자',
 'exif-exifversion'         => 'Exif 버전',
 'exif-colorspace'          => '색 공간',
+'exif-pixelydimension'     => '유효한 그림 너비',
+'exif-pixelxdimension'     => '유효한 그림 높이',
 'exif-relatedsoundfile'    => '관련된 오디오 파일',
 'exif-datetimeoriginal'    => '날짜와 시간',
 'exif-exposuretime'        => '노출 시간',
@@ -2338,8 +2370,10 @@ $1',
 'exif-flash'               => '플래시',
 'exif-focallength'         => '렌즈 초점 거리',
 'exif-exposuremode'        => '노출 방식',
+'exif-whitebalance'        => '화이트 밸런스',
 'exif-digitalzoomratio'    => '디지털 줌 비율',
 'exif-saturation'          => '채도',
+'exif-gpslatituderef'      => '북위 또는 남위',
 'exif-gpslatitude'         => '위도',
 'exif-gpslongitude'        => '경도',
 'exif-gpsaltitude'         => '고도',
@@ -2349,7 +2383,11 @@ $1',
 
 'exif-unknowndate' => '날짜를 알 수 없음',
 
+'exif-orientation-1' => '일반', # 0th row: top; 0th column: left
+'exif-orientation-2' => '수평으로 뒤집음', # 0th row: top; 0th column: right
 'exif-orientation-3' => '180° 회전됨', # 0th row: bottom; 0th column: right
+'exif-orientation-4' => '수직으로 뒤집음', # 0th row: bottom; 0th column: left
+'exif-orientation-6' => '시계 방향으로 90° 회전함', # 0th row: right; 0th column: top
 'exif-orientation-8' => '시계 반대 방향으로 90° 회전됨', # 0th row: left; 0th column: bottom
 
 'exif-exposureprogram-1' => '수동',
@@ -2365,11 +2403,16 @@ $1',
 'exif-lightsource-2'   => '형광등',
 'exif-lightsource-3'   => '텅스텐 (백열광)',
 'exif-lightsource-4'   => '플래시',
+'exif-lightsource-12'  => '주광색 형광등 (D 5700 – 7100K)',
+'exif-lightsource-13'  => '주백색 형광등 (N 4600 – 5400K)',
+'exif-lightsource-14'  => '냉백색 형광등 (W 3900 – 4500K)',
+'exif-lightsource-15'  => '백색 형광등 (WW 3200 – 3700K)',
 'exif-lightsource-255' => '다른 광원',
 
 # Flash modes
 'exif-flash-fired-0'  => '플래시가 터지지 않음',
 'exif-flash-fired-1'  => '플래시 터짐',
+'exif-flash-mode-3'   => '자동 모드',
 'exif-flash-redeye-1' => '적목 방지 모드',
 
 'exif-focalplaneresolutionunit-2' => '인치',
@@ -2377,7 +2420,13 @@ $1',
 'exif-exposuremode-0' => '자동 노출',
 'exif-exposuremode-1' => '수동 노출',
 
+'exif-whitebalance-0' => '자동 화이트 밸런스',
+'exif-whitebalance-1' => '수동 화이트 밸런스',
+
+'exif-scenecapturetype-0' => '표준',
 'exif-scenecapturetype-1' => '풍경',
+'exif-scenecapturetype-2' => '인물 사진',
+'exif-scenecapturetype-3' => '야경 사진',
 
 'exif-saturation-1' => '저채도',
 'exif-saturation-2' => '고채도',

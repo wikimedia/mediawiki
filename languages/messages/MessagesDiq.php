@@ -187,6 +187,7 @@ href="" class="internal"}?{/a}) bımocne.',
 'categorypage'      => 'Perra kategoriye bıvêne',
 'viewtalkpage'      => 'Perra werênayışi bıvêne',
 'otherlanguages'    => 'zıwananê binan de',
+'redirectedfrom'    => '($1 ra neqıl bi)',
 'lastmodifiedat'    => 'Ena pele tewr peyên roca $2, $1 de biya rocaniye.', # $1 date, $2 time
 'viewcount'         => 'Ena perre {{PLURAL:$1|rae|$1 rey}} vêniya.',
 'protectedpage'     => 'Perra kılitkerdiye',
@@ -319,8 +320,10 @@ It must have at least $1 characters and be different from your username.',
 'newarticle'   => '(Newe)',
 
 # History pages
-'cur'  => 'ferq',
-'last' => 'pey',
+'revisionasof'     => 'Verziyonê roca $1ine',
+'previousrevision' => '← Rewşa kıhanêre',
+'cur'              => 'ferq',
+'last'             => 'pey',
 
 # Revision deletion
 'rev-delundel' => 'bımocne/bınımne',
@@ -435,6 +438,11 @@ It must have at least $1 characters and be different from your username.',
 'watchlist'   => 'lista mına seyr-kerdışi',
 'mywatchlist' => 'Lista mına seyr-kerdışi',
 'watch'       => 'bıgê seyr-kerdış',
+'unwatch'     => 'Endi seyr meke',
+
+# Displayed when you click the "watch" button and it is in the process of watching
+'watching'   => 'Seyr ke...',
+'unwatching' => 'Seyr meke...',
 
 # Delete
 'deletepage' => 'Pele bıestere',

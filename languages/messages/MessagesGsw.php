@@ -9,6 +9,7 @@
  * @author J. 'mach' wust
  * @author MichaelFrey
  * @author Spacebirdy
+ * @author Strommops
  * @author Urhixidur
  * @author לערי ריינהארט
  * @author 80686
@@ -1393,6 +1394,7 @@ Der Schutzstatus vo dere Syte lat sech la ändere, aber das het kei Yfluss uf d 
 # Undelete
 'undeletehistorynoadmin' => 'Dä Artikel isch glescht wore. Dr Grund fir d Leschig isch in dr Zämmefassig aagee, derzue au Aagaabe zum letschte Benutzer, wu dä Artikel bearbeitet het vor dr Leschig. Dr aktuäll Täxt vum gleschte Artikel isch nume zuegängli fir Ammanne.',
 'undeletebtn'            => 'Widerhärstelle',
+'undeletedarticle'       => 'hät d Site „[[$1]]“ widderhergstellt',
 'undeletedrevisions'     => '{{PLURAL:$1|ei Revision|$1 Revisione}} wider zruckgholt.',
 
 # Namespace form on various pages
