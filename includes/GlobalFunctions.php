@@ -9,7 +9,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  */
 
 require_once dirname(__FILE__) . '/normal/UtfNormalUtil.php';
-require_once dirname(__FILE__) . '/XmlFunctions.php';
+#require_once dirname(__FILE__) . '/XmlFunctions.php';
 
 // Hide compatibility functions from Doxygen
 /// @cond
