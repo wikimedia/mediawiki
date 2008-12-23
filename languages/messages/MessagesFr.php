@@ -495,8 +495,8 @@ $messages = array(
 'feed-unavailable'        => 'Les flux de syndication ne sont pas disponibles',
 'site-rss-feed'           => 'Flux RSS de $1',
 'site-atom-feed'          => 'Flux Atom de $1',
-'page-rss-feed'           => 'Flux RSS de "$1"',
-'page-atom-feed'          => 'Flux Atom de "$1"',
+'page-rss-feed'           => 'Flux RSS de « $1 »',
+'page-atom-feed'          => 'Flux Atom de « $1 »',
 'red-link-title'          => '$1 (page inexistante)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -1063,7 +1063,7 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 
 # Search results
 'searchresults'                    => 'Résultats de la recherche',
-'searchresults-title'              => 'Résultats de recherche pour "$1"',
+'searchresults-title'              => 'Résultats de recherche pour « $1 »',
 'searchresulttext'                 => 'Pour plus d’informations sur la recherche dans {{SITENAME}}, voir [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'                   => "Vous avez recherché « '''[[:$1]]''' » ([[Special:Prefixindex/$1|toutes les pages commençant par « $1 »]] | [[Special:WhatLinksHere/$1|toutes les pages qui ont un lien vers « $1 »]])",
 'searchsubtitleinvalid'            => 'Vous avez recherché « $1 »',
@@ -1078,8 +1078,8 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 'nextn'                            => '$1 suivantes',
 'viewprevnext'                     => 'Voir ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Options de recherche',
-'searchmenu-exists'                => "*Page '''[[$1]]'''",
-'searchmenu-new'                   => "'''Créer la page ''[[:$1|$1]]'' sur ce wiki !'''",
+'searchmenu-exists'                => "'''Il y a une page prénommée « [[:$1]] » sur ce wiki'''",
+'searchmenu-new'                   => "'''Créer la page « [[:$1|$1]] » sur ce wiki !'''",
 'searchhelp-url'                   => 'Help:Accueil',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Rechercher les pages commençant par ce mot]]',
 'searchprofile-articles'           => 'Pages de contenu',
@@ -1180,7 +1180,7 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 'localtime'                 => 'Heure locale :',
 'timezoneselect'            => 'Zone horaire',
 'timezoneuseserverdefault'  => 'Utiliser la valeur du serveur',
-'timezoneuseoffset'         => 'Autre (especificar lo decalatge)',
+'timezoneuseoffset'         => 'Autre (spécifier le décalage)',
 'timezoneoffset'            => 'Décalage horaire¹ :',
 'servertime'                => 'Heure du serveur :',
 'guesstimezone'             => 'Utiliser la valeur du navigateur',
@@ -1364,7 +1364,7 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Suivi des liens',
-'recentchangeslinked-title'    => 'Suivi des liens associés à $1',
+'recentchangeslinked-title'    => 'Suivi des liens associés à « $1 »',
 'recentchangeslinked-noresult' => 'Aucun changement sur les pages liées pendant la période choisie.',
 'recentchangeslinked-summary'  => "Cette page spéciale montre les modifications récentes sur les pages qui sont liées. Les pages de votre liste de suivi sont '''en gras'''.",
 'recentchangeslinked-page'     => 'Nom de la page :',
@@ -1407,10 +1407,10 @@ Voyez la [[Special:NewFiles|gallerie des nouvelles images]] pour une présentati
 'badfilename'                 => 'L’image a été renommée « $1 ».',
 'filetype-badmime'            => 'Les fichiers du type MIME « $1 » ne peuvent pas être importés.',
 'filetype-bad-ie-mime'        => "Le fichier ne peut pas être importé parce qu'il serait détecté comme « $1 » par Internet Explorer, type de fichier interdit car potentiellement dangereux.",
-'filetype-unwanted-type'      => "« .$1 »''' est un format de fichier non désiré.
+'filetype-unwanted-type'      => "'''« .$1 »''' est un format de fichier non désiré.
 {{PLURAL:$3|Le type de fichier préconisé est|Les types de fichiers préconisés sont}} $2.",
-'filetype-banned-type'        => "'''\".\$1\"''' est dans un format non admis.
-{{PLURAL:\$3|Celui qui est accepté est|Ceux qui sont acceptés sont}} \$2.",
+'filetype-banned-type'        => "'''« .$1 »''' est dans un format non admis.
+{{PLURAL:$3|Celui qui est accepté est|Ceux qui sont acceptés sont}} $2.",
 'filetype-missing'            => 'Le fichier n’a aucune extension (comme « .jpg » par exemple).',
 'large-file'                  => 'Les fichiers importés ne devraient pas être plus gros que $1 ; ce fichier fait $2.',
 'largefileserver'             => 'La taille de ce fichier est supérieure au maximum autorisé.',
@@ -1451,7 +1451,8 @@ Veuillez vérifer le fichier.',
 'upload-wasdeleted'           => "'''Attention : Vous êtes en train d’importer un fichier qui a déjà été supprimé auparavant.'''
 
 Le journal des suppressions de ce fichier vous aidera à déterminer s’il est opportun de continuer son import :",
-'filename-bad-prefix'         => 'Le nom du fichier que vous importez commence par <strong>"$1"</strong> qui est un nom généralement donné par les appareils photo numériques. Veuillez choisir un nom de fichier descriptif.',
+'filename-bad-prefix'         => 'Le nom du fichier que vous importez commence par <strong>« $1 »</strong> qui est un nom généralement donné par les appareils photo numériques.
+Veuillez choisir un nom de fichier descriptif.',
 'filename-prefix-blacklist'   => ' #<!-- laisser cette ligne telle quelle --><pre>
 # La syntaxe est la suivante :
 #  * Tout ce qui figure entre un caractère "#" jusqu’à la fin de la ligne est un commentaire ;
@@ -1731,7 +1732,7 @@ Vous pouvez restreindre la vue en sélectionnant un type de journal, un nom d’
 'categories'                    => 'Catégories',
 'categoriespagetext'            => 'Les catégories suivantes contiennent des pages ou fichiers.
 [[Special:UnusedCategories|Les catégories inutilisées]] ne sont pas affichées ici.
-Voyez aussi [[Special:WantedCategories|les catégories demandées]] .',
+Voyez aussi [[Special:WantedCategories|les catégories demandées]].',
 'categoriesfrom'                => 'Afficher les catégories commençant à :',
 'special-categories-sort-count' => 'tri par compte',
 'special-categories-sort-abc'   => 'tri alphabétique',
@@ -1808,7 +1809,8 @@ L’adresse électronique que vous avez indiquée dans [[Special:Preferences|vos
 'watchnologin'         => 'Non connecté',
 'watchnologintext'     => 'Vous devez être [[Special:UserLogin|connecté]] pour modifier votre liste.',
 'addedwatch'           => 'Ajouté à la liste de suivi',
-'addedwatchtext'       => 'La page « <nowiki>$1</nowiki> » a été ajoutée à votre [[Special:Watchlist|liste de suivi]].',
+'addedwatchtext'       => "La page « [[:$1]] » a été ajoutée à votre [[Special:Watchlist|liste de suivi]].
+Les futurs changements sur cette page et sa page de discussion associée seront listées ici, et la page apparaitra '''en gras''' dans la [[Special:RecentChanges|pages des modifications récentes]] pour facilité sa visualisation.",
 'removedwatch'         => 'Retirée de la liste de suivi',
 'removedwatchtext'     => 'La page « [[:$1]] » a été retirée de votre [[Special:Watchlist|liste de suivi]].',
 'watch'                => 'Suivre',
@@ -1935,7 +1937,7 @@ Voici les réglages actuels de la page <strong>$1</strong> :',
 Voici les réglages actuels de la page <strong>$1</strong> :',
 'protect-cascadeon'           => 'Cette page est actuellement protégée car incluse dans {{PLURAL:$1|la page suivante|les pages suivantes}}, {{PLURAL:$1|laquelle a été protégée|lesquelles ont été protégées}} avec l’option « protection en cascade » activée. Vous pouvez changer le niveau de protection de cette page sans que cela n’affecte la protection en cascade.',
 'protect-default'             => 'Pas de protection',
-'protect-fallback'            => 'Nécessite l’habilitation "$1"',
+'protect-fallback'            => 'Nécessite l’habilitation « $1 »',
 'protect-level-autoconfirmed' => 'Semi-protection',
 'protect-level-sysop'         => 'Administrateurs uniquement',
 'protect-summary-cascade'     => 'protection en cascade',
@@ -2134,7 +2136,8 @@ Vous pouvez consulter la [[Special:IPBlockList|liste des comptes et des adresses
 'unblocklink'                     => 'débloquer',
 'change-blocklink'                => 'modifier le blocage',
 'contribslink'                    => 'Contributions',
-'autoblocker'                     => 'Vous avez été bloqué automatiquement parce que votre adresse IP a été récemment utilisée par « $1 ». La raison fournie pour le blocage de $1 est : « $2 ».',
+'autoblocker'                     => 'Vous avez été bloqué automatiquement parce que votre adresse IP a été récemment utilisée par « [[User:$1|$1]] ».
+La raison fournie pour le blocage de $1 est : « $2 ».',
 'blocklogpage'                    => 'Historique des blocages',
 'blocklog-fulllog'                => 'Journal complet des blocages',
 'blocklogentry'                   => 'a bloqué « [[$1]] » - durée : $2 $3',
@@ -2394,8 +2397,9 @@ Toutes les actions d’importation interwiki sont consignées dans l’[[Special
 'tooltip-watch'                   => 'Ajouter cette page à votre liste de suivi',
 'tooltip-recreate'                => 'Recréer la page même si celle-ci a été effacée',
 'tooltip-upload'                  => 'Commencer l’envoi',
-'tooltip-rollback'                => '"Révoquer" annule en un clic la ou les édition(s) sur cette page du dernier contributeur.',
-'tooltip-undo'                    => '"Défaire" révoque cette édition et ouvre la fenêtre d’édition en mode prévisualisation. Permet d’ajouter une raison dans la boîte de résumé.',
+'tooltip-rollback'                => '« Révoquer » annule en un clic la ou les édition(s) sur cette page du dernier contributeur.',
+'tooltip-undo'                    => '« Défaire » révoque cette édition et ouvre la fenêtre d’édition en mode prévisualisation.
+Permet d’ajouter une raison dans la boîte de résumé.',
 
 # Stylesheets
 'common.css'      => '/* Le CSS placé ici sera appliqué à tous les habillages. */',
@@ -2917,7 +2921,7 @@ Veuillez confirmer que vous désirez recréer cette page.",
 'livepreview-ready'   => 'Chargement … terminé !',
 'livepreview-failed'  => 'L’aperçu rapide a échoué !
 Essayez la prévisualisation normale.',
-'livepreview-error'   => 'Impossible de se connecter : $1 "$2"
+'livepreview-error'   => 'Impossible de se connecter : $1 « $2 ».
 Essayez la prévisualisation normale.',
 
 # Friendlier slave lag warnings
