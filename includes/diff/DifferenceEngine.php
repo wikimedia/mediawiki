@@ -145,7 +145,7 @@ CONTROL;
 		} else {
 			$wgOut->setPageTitle( $oldTitle . ', ' . $newTitle );
 		}
-		$wgOut->setSubtitle( wfMsg( 'difference' ) );
+		$wgOut->setSubtitle( wfMsgExt( 'difference', array( 'parseinline' ) ) );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 
 		if ( !( $this->mOldPage->userCanRead() && $this->mNewPage->userCanRead() ) ) {
@@ -219,11 +219,11 @@ CONTROL;
 		$newminor = '';
 
 		if ($this->mOldRev->mMinorEdit == 1) {
-			$oldminor = Xml::span( wfMsg( 'minoreditletter'), 'minor' ) . ' ';
+			$oldminor = Xml::span( wfMsg( 'minoreditletter' ), 'minor' ) . ' ';
 		}
 
 		if ($this->mNewRev->mMinorEdit == 1) {
-			$newminor = Xml::span( wfMsg( 'minoreditletter'), 'minor' ) . ' ';
+			$newminor = Xml::span( wfMsg( 'minoreditletter' ), 'minor' ) . ' ';
 		}
 
 		$rdel = ''; $ldel = '';
@@ -231,10 +231,10 @@ CONTROL;
 			$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 			if( !$this->mOldRev->userCan( Revision::DELETED_RESTRICTED ) ) {
 				// If revision was hidden from sysops
-				$ldel = wfMsgHtml('rev-delundel');
+				$ldel = wfMsgHtml( 'rev-delundel' );
 			} else {
 				$ldel = $sk->makeKnownLinkObj( $revdel,
-				wfMsgHtml('rev-delundel'),
+				wfMsgHtml( 'rev-delundel' ),
 					'target=' . urlencode( $this->mOldRev->mTitle->getPrefixedDbkey() ) .
 					'&oldid=' . urlencode( $this->mOldRev->getId() ) );
 				// Bolden oversighted content
@@ -245,13 +245,13 @@ CONTROL;
 			// We don't currently handle well changing the top revision's settings
 			if( $this->mNewRev->isCurrent() ) {
 				// If revision was hidden from sysops
-				$rdel = wfMsgHtml('rev-delundel');
+				$rdel = wfMsgHtml( 'rev-delundel' );
 			} else if( !$this->mNewRev->userCan( Revision::DELETED_RESTRICTED ) ) {
 				// If revision was hidden from sysops
-				$rdel = wfMsgHtml('rev-delundel');
+				$rdel = wfMsgHtml( 'rev-delundel' );
 			} else {
 				$rdel = $sk->makeKnownLinkObj( $revdel,
-				wfMsgHtml('rev-delundel'),
+				wfMsgHtml( 'rev-delundel' ),
 					'target=' . urlencode( $this->mNewRev->mTitle->getPrefixedDbkey() ) .
 					'&oldid=' . urlencode( $this->mNewRev->getId() ) );
 				// Bolden oversighted content
@@ -442,7 +442,7 @@ CONTROL;
 
 		$wgOut->addHTML( $header );
 
-		$wgOut->setSubtitle( wfMsg( 'difference' ) );
+		$wgOut->setSubtitle( wfMsgExt( 'difference', array( 'parseinline' ) ) );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 
 		wfProfileOut( __METHOD__ );
@@ -668,7 +668,7 @@ CONTROL;
 
 	function localiseLineNumbersCb( $matches ) {
 		global $wgLang;
-		return wfMsgExt( 'lineno', array('parseinline'), $wgLang->formatNum( $matches[1] ) );
+		return wfMsgExt( 'lineno', array( 'parseinline' ), $wgLang->formatNum( $matches[1] ) );
 	}
 
 
