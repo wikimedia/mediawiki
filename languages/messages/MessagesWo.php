@@ -1227,13 +1227,48 @@ Saytul [[Special:Log/delete|jaar-jaaru far bi]] ngir xool far yi ak loppanti yu 
 'year'          => 'Tambalee ci attum (ak yi jiitu) :',
 
 # What links here
-'whatlinkshere'       => 'Xët yi mu lëkkalool',
-'linkshere'           => 'Xët yii ci suuf am nañ ab lëkkalekaay buy jëm <b>[[:$1]]</b> :',
-'whatlinkshere-prev'  => '{{PLURAL:$1|wi jiitu|$1 yi jiitu}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|wi tegu|$1 yi tegu}}',
-'whatlinkshere-links' => '← lëkkalekaay',
+'whatlinkshere'            => 'Xët yi mu lëkkalool',
+'whatlinkshere-title'      => 'Xët yi lëkkalook wii « $1 »',
+'whatlinkshere-page'       => 'Xët :',
+'linkshere'                => 'Xët yii ci suuf am nañ ab lëkkalekaay buy jëm <b>[[:$1]]</b> :',
+'nolinkshere'              => 'Amul wenn xët wu lëkkalook wii <b>[[:$1]]</b>.',
+'nolinkshere-ns'           => "Amul wenn xët wu lëkkalook wii '''[[:$1]]''' ci barabu tur bi nga tànn.",
+'isredirect'               => 'Xëtu jubluwaat',
+'isimage'                  => 'lëkkalekaayu nataal bi',
+'whatlinkshere-prev'       => '{{PLURAL:$1|wi jiitu|$1 yi jiitu}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|wi toftal|$1 yi toftal}}',
+'whatlinkshere-links'      => '← lëkkalekaay',
+'whatlinkshere-hideredirs' => '$1 jubluwaat',
+'whatlinkshere-hidelinks'  => '$1 lëkkalekaay',
+'whatlinkshere-hideimages' => '$1 lëkkalekaay yu nataal',
+'whatlinkshere-filters'    => 'Seggukaay',
 
 # Block/unblock
+'blockip'                     => 'Téyeb jëfandikukat',
+'blockip-legend'              => 'Téye jëfandikukat bi',
+'ipaddress'                   => 'Màkkaanu IP :',
+'ipadressorusername'          => 'Màkkaanu IP walla turu jëfandikukat:',
+'ipbexpiry'                   => 'Diiru téye gi',
+'ipbreason'                   => 'Ngirte :',
+'ipbreasonotherlist'          => 'Yeneeni ngirte',
+'ipbreason-dropdown'          => '* Ngirtey téye yi ëpp
+** Ag caay-caay
+** Dugalub xibaar yu dëgguwul
+** Farug ëmbitu ay xët
+** Dugalub lëkkalekaay ngir yëgle ay dal
+** Dugalub ëmbit yu amul-njariñ
+** Di jéem a xiixaan walla di xuloo ak nit ñi
+** Ëppal ci sosi sàq yu bari
+** Turu jëfandikukat buñu fi nanguwul',
+'ipbanononly'                 => 'Téye jëfandikukat yu binduwul rekk',
+'ipbcreateaccount'            => 'Tere sosug yeneeni sàq',
+'ipbemailban'                 => 'Tere jëfandikukat bi yónne ay m-bataaxal',
+'ipbenableautoblock'          => 'Téye ci saa si màkkaanu IP bi mu mujje jëfandikoo, ak yeneen yi muy jëfandikoo-ji ngir amali coppite',
+'ipbsubmit'                   => 'Téye bii jëfandikukat',
+'ipbother'                    => 'Beneen diir:',
+'ipboptions'                  => '2 waxtu:2 hours,1 fan:1 day,3 fan:3 day,1 ayubés:1 week,2 ayubés:2 weeks,1 weer:1 month,3 weer:3 months,6 weer:6 months,1 at:1 year,ba-faaw:infinite', # display1:time1,display2:time2,...
+'ipbotheroption'              => 'beneen',
+'ipbotherreason'              => 'Yeneeni ngirte/faramfacce:',
 'anononlyblock'               => 'Jëfëndikookat yu binduwul rek',
 'blocklink'                   => 'Teye',
 'contribslink'                => 'Cërute',

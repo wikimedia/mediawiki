@@ -86,6 +86,9 @@ $messages = array(
 'november'  => 'कार्तिकमार्गशीर्षे',
 'december'  => 'मार्गशीर्षपौषे',
 
+# Categories related messages
+'listingcontinuesabbrev' => 'आगामि.',
+
 'about'         => 'विषये',
 'newwindow'     => '(उद्घट् नविन पृष्ठ)',
 'cancel'        => 'अपकर्ष',
@@ -131,6 +134,7 @@ $messages = array(
 'nstab-main'     => 'पृष्ठ',
 'nstab-image'    => 'संचिका',
 'nstab-template' => 'बिंबधर',
+'nstab-category' => 'वर्ग',
 
 # General errors
 'error'      => 'विभ्रम',
@@ -139,7 +143,9 @@ $messages = array(
 # Login and logout pages
 'login'                   => 'प्रवेश करोसि',
 'nav-login-createaccount' => 'प्रवेश करोसि/ सृज् उपयोजकसंज्ञा',
+'logout'                  => 'बहिर्गच्छति',
 'userlogout'              => 'बहिर्गच्छति',
+'createaccount'           => 'सृज उपयोजकसंज्ञा',
 'gotaccountlink'          => 'प्रवेश करोसि',
 
 # Edit pages
@@ -150,9 +156,11 @@ $messages = array(
 'newarticle'  => '(नविन)',
 
 # History pages
-'cur'        => 'अद्य',
-'last'       => 'पूर्वतन',
-'page_first' => 'प्रथम्‌',
+'currentrevisionlink' => 'सद्य आवृत्ती',
+'cur'                 => 'अद्य',
+'last'                => 'पूर्वतन',
+'page_first'          => 'प्रथम्‌',
+'page_last'           => 'अन्तिम',
 
 # Diffs
 'editundo' => 'पूर्ववत करोसि',
@@ -183,6 +191,7 @@ $messages = array(
 # Special:AllPages
 'alphaindexline' => 'इतः $1 यावत् $2',
 'allarticles'    => 'सर्व लेखा',
+'allpagessubmit' => 'गच्छति',
 
 # Special:Categories
 'categories' => 'वर्ग',
@@ -191,11 +200,17 @@ $messages = array(
 'emailsubject' => 'विषयः',
 'emailmessage' => 'सन्देशः',
 
+# Watchlist
+'watchthispage' => 'प्रतिरक्षति इदं पृष्ठ',
+
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'निरिक्षा',
 
 # Delete
 'actioncomplete' => 'कार्य समापनम्',
+
+# Namespace form on various pages
+'namespace' => 'नामविश्व:',
 
 # What links here
 'whatlinkshere' => 'किम्‌ पृष्ठ सम्बद्धं करोति',
@@ -214,7 +229,11 @@ $messages = array(
 'tooltip-n-randompage'    => 'अविशीष्ट लेख',
 'tooltip-save'            => 'त्रायते',
 
+# Special:NewFiles
+'newimages' => 'नूतन संचिका दालन',
+
 # 'all' in various places, this might be different for inflected languages
+'watchlistall2' => 'सर्व',
 'namespacesall' => 'सर्व',
 'monthsall'     => 'सर्व',
 
