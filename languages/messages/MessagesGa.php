@@ -405,7 +405,8 @@ $1',
 'unexpected'           => 'Luach gan súil leis: "$1"="$2".',
 'formerror'            => 'Earráid: ní féidir an foirm a tabhair isteach',
 'badarticleerror'      => 'Ní féidir an gníomh seo a dhéanamh ar an leathanach seo.',
-'cannotdelete'         => "Ní féidir an leathanach nó íomhá sonraithe a scriosaigh. (B'fhéidir gur scrios duine eile é cheana féin.)",
+'cannotdelete'         => "Ní féidir an leathanach nó comhad sonraithe a scriosaigh.
+B'fhéidir gur scrios duine eile é cheana féin.",
 'badtitle'             => 'Teideal neamhbhailí',
 'badtitletext'         => "Bhí teideal an leathanaigh a d'iarr tú ar neamhbhailí, folamh, nó
 teideal idirtheangach nó idirvicí nasctha go mícheart.",

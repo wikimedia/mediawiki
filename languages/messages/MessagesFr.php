@@ -1810,7 +1810,7 @@ L’adresse électronique que vous avez indiquée dans [[Special:Preferences|vos
 'watchnologintext'     => 'Vous devez être [[Special:UserLogin|connecté]] pour modifier votre liste.',
 'addedwatch'           => 'Ajouté à la liste de suivi',
 'addedwatchtext'       => "La page « [[:$1]] » a été ajoutée à votre [[Special:Watchlist|liste de suivi]].
-Les futurs changements sur cette page et sa page de discussion associée seront listées ici, et la page apparaitra '''en gras''' dans la [[Special:RecentChanges|pages des modifications récentes]] pour facilité sa visualisation.",
+Les futures modifications de cette page et de sa page de discussion y seront listées et la page apparaîtra '''en gras''' dans la [[Special:RecentChanges|liste des modifications récentes]] pour faciliter sa visualisation.",
 'removedwatch'         => 'Retirée de la liste de suivi',
 'removedwatchtext'     => 'La page « [[:$1]] » a été retirée de votre [[Special:Watchlist|liste de suivi]].',
 'watch'                => 'Suivre',
