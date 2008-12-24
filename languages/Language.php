@@ -1899,12 +1899,12 @@ class Language {
 		if (!$nocommafy) {
 			$number = $this->commafy($number);
 			$s = $this->separatorTransformTable();
-			if (!is_null($s)) { $number = strtr($number, $s); }
+			if ($s) { $number = strtr($number, $s); }
 		}
 
 		if ($wgTranslateNumerals) {
 			$s = $this->digitTransformTable();
-			if (!is_null($s)) { $number = strtr($number, $s); }
+			if ($s) { $number = strtr($number, $s); }
 		}
 
 		return $number;
@@ -1912,10 +1912,10 @@ class Language {
 
 	function parseFormattedNumber( $number ) {
 		$s = $this->digitTransformTable();
-		if (!is_null($s)) { $number = strtr($number, array_flip($s)); }
+		if ($s) { $number = strtr($number, array_flip($s)); }
 
 		$s = $this->separatorTransformTable();
-		if (!is_null($s)) { $number = strtr($number, array_flip($s)); }
+		if ($s) { $number = strtr($number, array_flip($s)); }
 
 		$number = strtr( $number, array (',' => '') );
 		return $number;
