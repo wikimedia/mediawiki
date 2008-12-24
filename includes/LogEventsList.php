@@ -24,7 +24,7 @@ class LogEventsList {
 	private $out;
 	public $flags;
 
-	function __construct( $skin, $out, $flags = 0 ) {
+	public function __construct( $skin, $out, $flags = 0 ) {
 		$this->skin = $skin;
 		$this->out = $out;
 		$this->flags = $flags;
@@ -38,8 +38,9 @@ class LogEventsList {
 	private function preCacheMessages() {
 		// Precache various messages
 		if( !isset( $this->message ) ) {
-			$messages = 'revertmerge protect_change unblocklink change-blocklink revertmove undeletelink revdel-restore rev-delundel hist';
-			foreach( explode( ' ', $messages ) as $msg ) {
+			$messages = array('revertmerge','protect_change','unblocklink','change-blocklink',
+				'revertmove','undeletelink','revdel-restore','rev-delundel','hist');
+			foreach( $messages as $msg ) {
 				$this->message[$msg] = wfMsgExt( $msg, array( 'escape') );
 			}
 		}
@@ -331,7 +332,8 @@ class LogEventsList {
 				$revert = $this->skin->userToolLinks( 1, $title->getDBkey() );
 			}
 			if( $time < '20080129000000' ) {
-				# Suppress $comment from old entries (before 2008-01-29), not needed and can contain incorrect links
+				# Suppress $comment from old entries (before 2008-01-29),
+				# not needed and can contain incorrect links
 				$comment = '';
 			}
 		// Do nothing. The implementation is handled by the hook modifiying the passed-by-ref parameters.
@@ -343,7 +345,8 @@ class LogEventsList {
 		if( self::isDeleted($row,LogPage::DELETED_ACTION) ) {
 			$action = '<span class="history-deleted">' . wfMsgHtml('rev-deleted-event') . '</span>';
 		} else {
-			$action = LogPage::actionText( $row->log_type, $row->log_action, $title, $this->skin, $paramArray, true );
+			$action = LogPage::actionText( $row->log_type, $row->log_action, $title,
+				$this->skin, $paramArray, true );
 		}
 
 		if( $revert != '' ) {
@@ -496,8 +499,8 @@ class LogPager extends ReverseChronologicalPager {
 	 * @param $year Integer
 	 * @param $month Integer
 	 */
-	function __construct( $list, $type = '', $user = '', $title = '', $pattern = '', 
-			$conds = array(), $year = false, $month = false ) 
+	public function __construct( $list, $type = '', $user = '', $title = '', $pattern = '', 
+		$conds = array(), $year = false, $month = false ) 
 	{
 		parent::__construct();
 		$this->mConds = $conds;
@@ -701,6 +704,7 @@ class LogReader {
 	 */
 	function __construct( $request ) {
 		global $wgUser, $wgOut;
+		wfDeprecated(__FUNCTION__);
 		# Get parameters
 		$type = $request->getVal( 'type' );
 		$user = $request->getText( 'user' );
@@ -747,6 +751,7 @@ class LogViewer {
 	 */
 	function __construct( &$reader, $flags = 0 ) {
 		global $wgUser;
+		wfDeprecated(__FUNCTION__);
 		$this->reader =& $reader;
 		$this->reader->pager->mLogEventsList->flags = $flags;
 		# Aliases for shorter code...
