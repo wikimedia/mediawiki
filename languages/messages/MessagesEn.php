@@ -104,20 +104,6 @@ $namespaceNames = array(
 $namespaceAliases = array();
 
 /**
- * Skin names. If any key is not specified, the English one will be used.
- */
-$skinNames = array(
-	'standard'    => 'Classic',
-	'nostalgia'   => 'Nostalgia',
-	'cologneblue' => 'Cologne Blue',
-	'monobook'    => 'MonoBook',
-	'myskin'      => 'MySkin',
-	'chick'       => 'Chick',
-	'simple'      => 'Simple',
-	'modern'      => 'Modern',
-);
-
-/**
  * Deprecated, use the message array
  */
 $mathNames = array(
@@ -3018,6 +3004,16 @@ This is probably caused by a link to a blacklisted external site.',
 'numwatchers'    => 'Number of watchers: $1',
 'numauthors'     => 'Number of distinct authors (page): $1',
 'numtalkauthors' => 'Number of distinct authors (discussion page): $1',
+
+# Skins names
+'skinname-standard'    => 'Classic',
+'skinname-nostalgia'   => 'Nostalgia',
+'skinname-cologneblue' => 'Cologne Blue',
+'skinname-monobook'    => 'MonoBook',
+'skinname-myskin'      => 'MySkin',
+'skinname-chick'       => 'Chick',
+'skinname-simple'      => 'Simple',
+'skinname-modern'      => 'Modern',
 
 # Math options
 'mw_math_png'    => 'Always render PNG',
