@@ -574,8 +574,8 @@ $2',
 'hr_tip'          => '水平线 (小心使用)',
 
 # Edit pages
-'summary'                          => '摘要',
-'subject'                          => '标题',
+'summary'                          => '摘要:',
+'subject'                          => '标题:',
 'minoredit'                        => '这是一个小修改',
 'watchthis'                        => '监视本页',
 'savearticle'                      => '保存本页',
@@ -587,8 +587,8 @@ $2',
 'missingsummary'                   => "'''提示:''' 您没有提供一个编辑摘要。如果您再次单击保存，您的编辑将不带编辑摘要保存。",
 'missingcommenttext'               => '请在下面输入评论。',
 'missingcommentheader'             => "'''提示:''' 您没有为此评论提供一个标题。如果您再次单击保存，您的编辑将不带标题保存。",
-'summary-preview'                  => '摘要预览',
-'subject-preview'                  => '标题预览',
+'summary-preview'                  => '摘要预览:',
+'subject-preview'                  => '标题预览:',
 'blockedtitle'                     => '用户被查封',
 'blockedtext'                      => "<big>你的用户名或IP地址已经被$1查封。</big>
 
@@ -1293,7 +1293,8 @@ $2',
 'file-thumbnail-no'           => '文件名是以<strong><tt>$1</tt></strong>开头的。它似乎是一幅图像的缩小版本<i>（缩略图）</i>。
 如果你有该图像的完整大小，请上传完整版本。否则请修改文件名。',
 'fileexists-forbidden'        => '已存在相同名称的文件；请返回并用一个新的名称来上传此文件。[[File:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => '在共享文件库中已存在此名称的文件；请返回并用一个新的名称来上传此文件。[[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => '在共享文件库中已存在此名称的文件。
+如果你仍然想去上载它的话，请返回并用一个新的名称来上传此文件。[[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => '这个文件是跟以下的{{PLURAL:$1|一|多}}个文件重覆:',
 'file-deleted-duplicate'      => "一个相同名称的文件 ([[$1]]) 在先前删除过。您应该在重新上传之前检查一下该文件之删除纪录。",
 'successfulupload'            => '上传成功',
@@ -1429,7 +1430,7 @@ $2',
 
 # Unused templates
 'unusedtemplates'     => '未使用的模板',
-'unusedtemplatestext' => '此页面列出模板名字空间下所有未被其它页面使用的页面。请在删除这些模板前检查其它链入该模板的页面。',
+'unusedtemplatestext' => '此页面列出{{ns:template}}名字空间下所有未被其它页面使用的页面。请在删除这些模板前检查其它链入该模板的页面。',
 'unusedtemplateswlh'  => '其它链接',
 
 # Random page
@@ -1557,7 +1558,7 @@ Template:消除歧義',
 'speciallogtitlelabel' => '标题:',
 'log'                  => '日志',
 'all-logs-page'        => '所有日志',
-'alllogstext'          => '综合显示上传、删除、保护、查封以及管理日志。
+'alllogstext'          => '综合{{SITENAME}}的显示上传、删除、保护、查封以及管理日志。
 您可以选择日志类型，用户名或者相关页面来缩小查询范围。',
 'logempty'             => '在日志中不存在匹配项。',
 'log-title-wildcard'   => '搜寻以这个文字开始的标题',
@@ -1841,7 +1842,9 @@ $NEWPAGE
 'undeletepagetext'             => '以下的$1个页面已经被删除，但依然在档案中并可以被恢复。
 档案库可能被定时清理。',
 'undelete-fieldset-title'      => '恢复修订',
-'undeleteextrahelp'            => "恢复整个页面时，请清除所有复选框后点击 '''''恢复'''''。恢复特定版本时，请选择相应版本前的复选框后点击 '''''恢复'''''。点击 '''''重设''''' 将清除评论内容及所有复选框。",
+'undeleteextrahelp'            => "恢复整个页面时，请清除所有复选框后点击 '''''恢复'''''。
+恢复特定版本时，请选择相应版本前的复选框后点击 '''''恢复'''''。
+点击 '''''重设''''' 将清除评论内容及所有复选框。",
 'undeleterevisions'            => '$1版本存档',
 'undeletehistory'              => '如果您恢复了该页面，所有版本都会被恢复到修订历史中。
 如果本页删除后有一个同名的新页面建立，被恢复的版本将会称为较新的历史。',
@@ -2159,7 +2162,7 @@ $1已经被封锁。您是否想更改这个设置？',
 'import-interwiki-source'    => '来源维基／页面：',
 'import-interwiki-history'   => '复制此页的所有历史版本',
 'import-interwiki-submit'    => '导入',
-'import-interwiki-namespace' => '将页面转移到名字空间:',
+'import-interwiki-namespace' => '目的名字空间:',
 'import-upload-filename'     => '文件名：',
 'import-comment'             => '注解:',
 'importtext'                 => '请使用[[Special:Export|导出功能]]从源 wiki 导出文件，
@@ -2299,7 +2302,8 @@ $1已经被封锁。您是否想更改这个设置？',
 
 # Spam protection
 'spamprotectiontitle' => '广告保护过滤器',
-'spamprotectiontext'  => '您要保存的页面被广告过滤器阻止。这可能是由于一个到外部站点的链接引起的。',
+'spamprotectiontext'  => '您要保存的页面被广告过滤器阻止。
+这可能是由于一个到外部站点的链接引起的。',
 'spamprotectionmatch' => '以下是触发广告过滤器的文本: $1',
 'spambot_username'    => 'MediaWiki 广告清除',
 'spam_reverting'      => '恢复到不包含链接至$1的最近版本',

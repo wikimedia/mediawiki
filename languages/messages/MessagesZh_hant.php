@@ -552,8 +552,8 @@ $2',
 'hr_tip'          => '水平線 (小心使用)',
 
 # Edit pages
-'summary'                          => '摘要',
-'subject'                          => '主題',
+'summary'                          => '摘要:',
+'subject'                          => '主題:',
 'minoredit'                        => '這是一個小修改',
 'watchthis'                        => '監視本頁',
 'savearticle'                      => '保存本頁',
@@ -565,8 +565,8 @@ $2',
 'missingsummary'                   => "'''提示:''' 您沒有提供一個編輯摘要。如果您再次單擊儲存，您的編輯將不帶編輯摘要儲存。",
 'missingcommenttext'               => '請在下面輸入評論。',
 'missingcommentheader'             => "'''提示:''' 您沒有為此評論提供一個標題。如果您再次單擊儲存，您的編輯將不帶標題儲存。",
-'summary-preview'                  => '摘要預覽',
-'subject-preview'                  => '主題/標題預覽',
+'summary-preview'                  => '摘要預覽:',
+'subject-preview'                  => '主題/標題預覽:',
 'blockedtitle'                     => '用戶被查封',
 'blockedtext'                      => "<big>你的用戶名或IP地址已經被$1查封。</big>
 
@@ -1270,7 +1270,8 @@ $2',
 'file-thumbnail-no'           => '該檔名是以<strong><tt>$1</tt></strong>開始。它好像一幅圖像的縮圖版本<i>(縮圖)</i>。
 如果你有該圖像的完整大小，如不是請再修改檔名。',
 'fileexists-forbidden'        => '已存在相同名稱的檔案；請返回並用一個新的名稱來上傳此檔案。[[File:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => '在共享檔案庫中已存在此名稱的檔案；請返回並用一個新的名稱來上傳此檔案。[[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => '在共享檔案庫中已存在此名稱的檔案。
+如果你仍然想去上載它的話，請返回並用一個新的名稱來上傳此檔案。[[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => '這個檔案是跟以下的{{PLURAL:$1|一|多}}個檔案重覆:',
 'file-deleted-duplicate'      => "一個相同名稱的檔案 ([[$1]]) 在先前刪除過。您應該在重新上傳之前檢查一下該檔案之刪除紀錄。",
 'successfulupload'            => '上傳成功',
@@ -1406,7 +1407,7 @@ $2',
 
 # Unused templates
 'unusedtemplates'     => '未使用的模板',
-'unusedtemplatestext' => '本頁面列出模板名字空間下所有未被其他頁面使用的頁面。請在刪除這些模板前檢查其他鏈入該模板的頁面。',
+'unusedtemplatestext' => '本頁面列出{{ns:template}}名字空間下所有未被其他頁面使用的頁面。請在刪除這些模板前檢查其他鏈入該模板的頁面。',
 'unusedtemplateswlh'  => '其他連結',
 
 # Random page
@@ -1534,7 +1535,7 @@ Template:消除歧義',
 'speciallogtitlelabel' => '標題:',
 'log'                  => '日誌',
 'all-logs-page'        => '所有日誌',
-'alllogstext'          => '綜合顯示上傳、刪除、保護、查封以及站務日誌。',
+'alllogstext'          => '綜合{{SITENAME}}的顯示上傳、刪除、保護、查封以及站務日誌。',
 'logempty'             => '在日誌中不存在匹配項。',
 'log-title-wildcard'   => '搜尋以這個文字開始的標題',
 
@@ -1818,7 +1819,9 @@ $NEWPAGE
 'undeletepagetext'             => '以下的$1個頁面已經被刪除，但依然在檔案中並可以被恢復。
 檔案庫可能被定時清理。',
 'undelete-fieldset-title'      => '恢復修訂',
-'undeleteextrahelp'            => "恢復整個頁面時，請清除所有複選框後按 '''''恢復''''' 。 恢復特定版本時，請選擇相應版本前的複選框後按'''''恢復''''' 。按 '''''重設''''' 將清除評論內容及所有複選框。",
+'undeleteextrahelp'            => "恢復整個頁面時，請清除所有複選框後按 '''''恢復''''' 。
+恢復特定版本時，請選擇相應版本前的複選框後按'''''恢復''''' 。
+按 '''''重設''''' 將清除評論內容及所有複選框。",
 'undeleterevisions'            => '$1版本存檔',
 'undeletehistory'              => '如果您恢復了該頁面，所有版本都會被恢復到修訂歷史中。
 如果本頁刪除後有一個同名的新頁面建立，被恢復的版本將會稱為較新的歷史。',
@@ -2134,7 +2137,7 @@ $1已經被封鎖。您是否想更改這個設定？',
 'import-interwiki-source'    => '來源維基／頁面：',
 'import-interwiki-history'   => '複製此頁的所有歷史版本',
 'import-interwiki-submit'    => '匯入',
-'import-interwiki-namespace' => '將頁面轉移到名字空間:',
+'import-interwiki-namespace' => '目的名字空間:',
 'import-upload-filename'     => '檔案名：',
 'import-comment'             => '註解:',
 'importtext'                 => '請使用[[Special:Export|匯出功能]]從源 wiki 匯出檔案，
@@ -2274,7 +2277,8 @@ $1已經被封鎖。您是否想更改這個設定？',
 
 # Spam protection
 'spamprotectiontitle' => '垃圾過濾器',
-'spamprotectiontext'  => '垃圾過濾器禁止保存您剛才提交的頁面，這可能是由於您所加入的外部網站鏈接所產生的問題。',
+'spamprotectiontext'  => '您要儲存的頁面被垃圾過濾器阻止。
+這可能是由於一個到外部站點的鏈接引起的。',
 'spamprotectionmatch' => '觸發了我們的垃圾過濾器的文本如下：$1',
 'spambot_username'    => 'MediaWiki 廣告清除',
 'spam_reverting'      => '恢復到不包含連結至$1的最近版本',
@@ -2679,7 +2683,7 @@ Variants for Chinese language
 'confirmemail_sent'        => '確認郵件已發送。',
 'confirmemail_oncreate'    => '一個確認代碼已經被發送到您的郵箱。該代碼並不要求您進行登錄，
 但若您要啟用在此 wiki 上的任何基於電子郵件的功能，您必須先提交此代碼。',
-'confirmemail_sendfailed'  => '無法發送確認郵件，請檢查郵箱位址是否包含非法字元。
+'confirmemail_sendfailed'  => '{{SITENAME}}無法發送確認郵件，請檢查郵箱位址是否包含非法字元。
 
 郵件傳送員回應: $1',
 'confirmemail_invalid'     => '無效的確認碼，該代碼可能已經過期。',

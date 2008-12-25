@@ -560,7 +560,7 @@ $1',
 'wrongpassword'              => '密碼唔啱，麻煩你再試多次。',
 'wrongpasswordempty'         => '你都未入密碼，唔該再試多次啦。',
 'passwordtooshort'           => '你嘅密碼唔啱或者太短。佢最少要有$1個半形字元，同埋要唔同你嘅用戶名。',
-'mailmypassword'             => '寄返個密碼畀我',
+'mailmypassword'             => '寄個新密碼',
 'passwordremindertitle'      => '{{SITENAME}}嘅新臨時密碼',
 'passwordremindertext'       => '有人（可能係你，IP 位置 $1）
 請求 {{SITENAME}} 嘅新密碼 ($4)。
@@ -631,8 +631,8 @@ $1',
 'hr_tip'          => '橫線（請小心用）',
 
 # Edit pages
-'summary'                          => '摘要',
-'subject'                          => '主題／標題',
+'summary'                          => '摘要:',
+'subject'                          => '主題／標題:',
 'minoredit'                        => '呢個係小修改',
 'watchthis'                        => '睇實呢一頁',
 'savearticle'                      => '儲存呢頁',
@@ -644,8 +644,8 @@ $1',
 'missingsummary'                   => "'''提醒：''' 你未提供編輯摘要。如果你再撳多一下儲存嘅話，咁你儲存嘅編輯就會無摘要。",
 'missingcommenttext'               => '請輸入一個註解。',
 'missingcommentheader'             => "'''提醒：'''你響呢個註解度並無提供一個主題／標題。如果你再撳一次儲存，你嘅編輯就會無題。",
-'summary-preview'                  => '摘要預覽',
-'subject-preview'                  => '標題／頭條預覽',
+'summary-preview'                  => '摘要預覽:',
+'subject-preview'                  => '標題／頭條預覽:',
 'blockedtitle'                     => '用戶已經封鎖',
 'blockedtext'                      => "<big>你嘅用戶名或者 IP 位址已經被 $1 封咗。</big>
 
@@ -1353,7 +1353,8 @@ $1',
 'file-thumbnail-no'           => "個檔名係以'''<tt>$1</tt>'''開始。佢好似係一幅圖像嘅縮細版本''（縮圖）''。
 如果你有呢幅圖像嘅完整大細，唔係嘅話請再改過個檔名。",
 'fileexists-forbidden'        => '呢個檔案嘅名已經存在；麻煩返轉去用第二個名嚟上載呢個檔案。[[File:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => '共享檔案庫入面已經有一個同名嘅檔案；麻煩返轉去用第二個名嚟上載呢個檔案。[[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => '共享檔案庫入面已經有一個同名嘅檔案。
+如果你仍然想去上載佢嘅話，麻煩返轉去用第二個名嚟上載呢個檔案。[[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => '呢個檔案係同下面嘅{{PLURAL:$1|一|幾}}個檔案重覆:',
 'file-deleted-duplicate'      => "一個同名嘅檔案 ([[$1]]) 響之前刪除過。你應該響重新上載之前檢查一下嗰個檔案嘅刪除紀錄。",
 'successfulupload'            => '成功嘅上載',
@@ -1887,7 +1888,9 @@ wiki: $PAGEEDITOR_WIKI
 'viewdeletedpage'              => '去睇被刪除咗嘅頁面',
 'undeletepagetext'             => '以下嘅$1個頁面已經刪除，但係重喺檔庫度可以恢復。檔案庫可能會定時清理。',
 'undelete-fieldset-title'      => '恢復修訂',
-'undeleteextrahelp'            => "要恢復成個頁面，唔好剔任何嘅核選盒，再撳'''''恢復'''''。要恢復已經選擇咗嘅修訂，將要恢復代表有關修訂嘅核選盒剔上，再撳'''''恢復'''''。撳'''''重設'''''會清除註解文字同埋全部嘅核選盒。",
+'undeleteextrahelp'            => "要恢復成個頁面，唔好剔任何嘅核選盒，再撳'''''恢復'''''。
+要恢復已經選擇咗嘅修訂，將要恢復代表有關修訂嘅核選盒剔上，再撳'''''恢復'''''。
+撳'''''重設'''''會清除註解文字同埋全部嘅核選盒。",
 'undeleterevisions'            => '$1個修訂都已經存檔',
 'undeletehistory'              => '如果你恢復呢個頁面，佢嘅所有修改歷史都會恢復返到嗰篇頁面嘅歷史度。如果喺佢刪除之後又新開咗同名嘅頁面，你恢復嘅修改歷史會顯示喺先前歷史度。',
 'undeleterevdel'               => '如果響最新修訂度部份刪除，噉反刪除就唔能夠進行。如果遇到呢種情況，你一定要反選或者反隱藏最新刪除咗嘅修訂。',
@@ -2335,7 +2338,8 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 
 # Spam protection
 'spamprotectiontitle' => '隔垃圾器',
-'spamprotectiontext'  => '隔垃圾器已經擋住咗你要儲存嘅頁面。噉可能係由指去外部網站嘅連結引起。',
+'spamprotectiontext'  => '隔垃圾器已經擋住咗你要儲存嘅頁面。
+噉可能係由指去外部網站嘅連結引起。',
 'spamprotectionmatch' => '以下係觸發我哋嘅反垃圾過濾器嘅文字：$1',
 'spambot_username'    => 'MediaWiki垃圾清除',
 'spam_reverting'      => '恢復返去最後一個唔包含指去$1嘅連結嘅嗰個版本。',
@@ -2749,7 +2753,7 @@ Variants for Chinese language
 'confirmemail_sent'        => '確認電郵已經寄出。',
 'confirmemail_oncreate'    => '一個確認碼已經寄送咗到嘅嘅電郵地址。
 呢個代碼唔係登入嗰陣去用，但係你需要佢去開響呢個wiki度，任何同電郵有關嘅功能。',
-'confirmemail_sendfailed'  => '發唔到確認信。請檢查吓個地址有冇無效嘅字。
+'confirmemail_sendfailed'  => '{{SITENAME}}發唔到確認信。請檢查吓個地址有冇無效嘅字。
 
 郵件遞送員回應咗：$1',
 'confirmemail_invalid'     => '無效嘅確認碼。個代碼可能已經過咗期。',

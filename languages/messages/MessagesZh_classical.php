@@ -533,8 +533,8 @@ $2',
 'hr_tip'          => '縱線，慎用之',
 
 # Edit pages
-'summary'                          => '概',
-'subject'                          => '題',
+'summary'                          => '概：',
+'subject'                          => '題：',
 'minoredit'                        => '令校',
 'watchthis'                        => '派哨',
 'savearticle'                      => '存儲',
@@ -545,6 +545,8 @@ $2',
 'anoneditwarning'                  => "'''警示：'''子未登簿，IP將誌。",
 'missingsummary'                   => "''''醒示：'''子未概之，復存則文倍焉。",
 'missingcommenttext'               => '請贊之',
+'summary-preview'                  => '覽概：',
+'subject-preview'                  => '覽題：',
 'blockedtitle'                     => '子見禁',
 'blockedtext'                      => "<big>'''子名、IP見禁。'''</big>禁者$1也，因''$2''故。
 
@@ -1395,7 +1397,7 @@ $2',
 'speciallogtitlelabel' => '標：',
 'log'                  => '誌',
 'all-logs-page'        => '眾誌',
-'alllogstext'          => '眾誌有合者，俱併版見。擇門、選簿、限疆以裁之。',
+'alllogstext'          => '眾{{SITENAME}}之誌有合者，俱併版見。擇門、選簿、限疆以裁之。',
 'logempty'             => '無合誌也。',
 'log-title-wildcard'   => '題以此始者，取之',
 
@@ -1655,7 +1657,9 @@ $NEWPAGE
 'viewdeletedpage'              => '覽刪',
 'undeletepagetext'             => '如下之$1頁已刪，備謄以還；曆滿乃清之。',
 'undelete-fieldset-title'      => '復審',
-'undeleteextrahelp'            => "欲還題，撤核後令'''''還刪'''''。欲還某審，核之再令。欲清核、贊，令之'''''歸白'''''。",
+'undeleteextrahelp'            => "欲還題，撤核後令'''''還刪'''''。
+欲還某審，核之再令。
+欲清核、贊，令之'''''歸白'''''。",
 'undeleterevisions'            => '審備$1',
 'undeletehistory'              => '如還題，審亦隨焉；若存同題，還如誌，不以代焉。',
 'undeleterevdel'               => '新審不牽，難還也；銷、見之以篤還。',
@@ -1933,7 +1937,7 @@ $1已被禁矣。爾是否改此置？',
 'import-interwiki-source'    => '來源wiki／頁：',
 'import-interwiki-history'   => '審、誌同匯',
 'import-interwiki-submit'    => '入匯',
-'import-interwiki-namespace' => '入名冊：',
+'import-interwiki-namespace' => '入名集：',
 'import-upload-filename'     => '檔名：',
 'import-comment'             => '註：',
 'importtext'                 => '請[[Special:Export|出匯]]儲之。
@@ -2068,7 +2072,8 @@ $1已被禁矣。爾是否改此置？',
 
 # Spam protection
 'spamprotectiontitle' => '防賈濫',
-'spamprotectiontext'  => '外鏈疑賈，存頁止焉。',
+'spamprotectiontext'  => '外鏈疑賈。
+存頁止焉。',
 'spamprotectionmatch' => '憑如下：$1',
 'spambot_username'    => 'MediaWiki清濫',
 'spam_reverting'      => '還新審之無鏈$1者。',
@@ -2207,7 +2212,7 @@ $1已被禁矣。爾是否改此置？',
 'confirmemail_noemail'     => '[[Special:Preferences|簿註]]有驛。',
 'confirmemail_send'        => '遣核符',
 'confirmemail_sent'        => '核符遣矣',
-'confirmemail_sendfailed'  => '信未遣焉，請核郵驛。
+'confirmemail_sendfailed'  => '{{SITENAME}}信未遣焉，請核郵驛。
 
 郵者覆之：$1',
 'confirmemail_invalidated' => '核郵驛消也',
