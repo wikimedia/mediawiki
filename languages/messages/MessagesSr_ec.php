@@ -54,9 +54,6 @@ $namespaceAliases = array(
 	'Razgovor_o_kategoriji'   => NS_CATEGORY_TALK,
 );
 
-$skinNames = array(
- "Обична", "Носталгија", "Келнско плаво"
-);
 
 $extraUserToggles = array(
 	'nolangconversion',

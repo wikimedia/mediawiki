@@ -15,16 +15,6 @@
  * @author לערי ריינהארט
  */
 
-$skinNames = array(
-	'standard'    => 'Sígilt',
-	'nostalgia'   => 'Gamaldags',
-	'cologneblue' => 'Kölnarblátt',
-	'monobook'    => 'EinBók',
-	'myskin'      => 'Mitt þema',
-	'chick'       => 'Gella',
-	'simple'      => 'Einfalt',
-	'modern'      => 'Nútímalegt',
-);
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Miðill',
@@ -2110,6 +2100,16 @@ Allir innflutningar eru skráð í [[Special:Log/import|innflutningsskránna]].'
 'numwatchers'    => 'Fjöldi vaktara: $1',
 'numauthors'     => 'Fjöldi frábrugðinna höfunda (grein): $1',
 'numtalkauthors' => 'Fjöldi frábrugðinna höfunda (spjall síða): $1',
+
+# Skin names
+'skinname-standard'    => 'Sígilt',
+'skinname-nostalgia'   => 'Gamaldags',
+'skinname-cologneblue' => 'Kölnarblátt',
+'skinname-monobook'    => 'EinBók',
+'skinname-myskin'      => 'Mitt þema',
+'skinname-chick'       => 'Gella',
+'skinname-simple'      => 'Einfalt',
+'skinname-modern'      => 'Nútímalegt',
 
 # Math options
 'mw_math_png'    => 'Alltaf birta PNG mynd',

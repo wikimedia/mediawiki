@@ -15,13 +15,6 @@
 
 $fallback = 'nl';
 
-$skinNames = array(
-	'standard'      => 'Klassiek',
-	'nostalgia'     => 'Nostalgie',
-	'cologneblue'   => 'Keuls blauw',
-	'chick'         => 'Sjiek',
-	'myskin'        => 'MienSkin',
-);
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
@@ -2346,6 +2339,13 @@ Meestentieds wonnen dit veroorzaak deur een uutgaonde verwiezing dee op de zwart
 'numwatchers'    => 'Antal volgers: $1',
 'numauthors'     => 'Antal verschillende auteurs (artikel): $1',
 'numtalkauthors' => 'Antal verschillende auteurs (overlegpagina): $1',
+
+# Skin names
+'skinname-standard'    => 'Klassiek',
+'skinname-nostalgia'   => 'Nostalgie',
+'skinname-cologneblue' => 'Keuls blauw',
+'skinname-myskin'      => 'MienSkin',
+'skinname-chick'       => 'Sjiek',
 
 # Math options
 'mw_math_png'    => 'Altied as PNG weergeven',

@@ -10,14 +10,6 @@
 
 $fallback = 'ru';
 
-$skinNames = array(
-	'standard' => 'Стандартон',
-	'nostalgia' => 'Æнкъард',
-	'cologneblue' => 'Кёльны æрхæндæг',
-	'monobook' => 'Моно-чиныг',
-	'myskin' => 'Мæхи',
-	'chick' => 'Карк'
-);
 $namespaceNames = array(
 	NS_MEDIA            => 'Media', //чтоб не писать "Мультимедия"
 	NS_SPECIAL          => 'Сæрмагонд',
@@ -589,6 +581,14 @@ $3',
 
 # Spam protection
 'spamprotectiontitle' => 'Спамы ныхмæ фильтр',
+
+# Skin names
+'skinname-standard'    => 'Стандартон',
+'skinname-nostalgia'   => 'Æнкъард',
+'skinname-cologneblue' => 'Кёльны æрхæндæг',
+'skinname-monobook'    => 'Моно-чиныг',
+'skinname-myskin'      => 'Мæхи',
+'skinname-chick'       => 'Карк',
 
 # Media information
 'widthheightpage' => '$1 × $2, $3 фарсы',

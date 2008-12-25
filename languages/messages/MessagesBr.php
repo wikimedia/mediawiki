@@ -29,16 +29,6 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK  => 'Kaozeadenn_Rummad'
 );
 
-$skinNames = array(
-	'standard'      => 'Standard',
-	'nostalgia'     => 'Melkoni',
-	'cologneblue'   => 'Glaz Kologn',
-	'monobook'      => 'MonoBook',
-	'myskin'        => 'MySkin',
-	'chick'         => 'Plogig',
-	'simple'        => 'Eeun',
-	'modern'        => 'Modern',
-);
 
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'AdksaoùDoubl' ),
@@ -2115,6 +2105,16 @@ Sur a-walc'h abalamour d'ul liamm enni a gas d'ul lec'hienn ziavaez berzet.",
 'numwatchers'    => 'Niver a dud o lenn : $1',
 'numauthors'     => 'Niver a aozerien zisheñvel (pennad) : $1',
 'numtalkauthors' => 'Niver a aozerien zisheñvel (pajenn gaozeal) : $1',
+
+# Skin names
+'skinname-standard'    => 'Standard',
+'skinname-nostalgia'   => 'Melkoni',
+'skinname-cologneblue' => 'Glaz Kologn',
+'skinname-monobook'    => 'MonoBook',
+'skinname-myskin'      => 'MySkin',
+'skinname-chick'       => 'Plogig',
+'skinname-simple'      => 'Eeun',
+'skinname-modern'      => 'Modern',
 
 # Math options
 'mw_math_png'    => 'Produiñ atav ur skeudenn PNG',

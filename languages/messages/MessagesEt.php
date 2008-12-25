@@ -33,13 +33,6 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Kategooria_arutelu'
 );
 
-$skinNames = array(
-	'standard' => 'Standard',
-	'nostalgia' => 'Nostalgia',
-	'cologneblue' => 'Kölni sinine',
-	'monobook' => 'MonoBook',
-	'myskin' => 'Mu oma nahk'
-);
 
 #Lisasin eestimaised poed, aga võõramaiseid ei julenud kustutada.
 
@@ -1421,6 +1414,13 @@ Kui soovid MediaWiki tarkvara tõlkimises osaleda siis vaata lehti [http://www.m
 'siteuser'  => 'Viki kasutaja $1',
 'others'    => 'teised',
 'siteusers' => 'Viki kasutaja(d) $1',
+
+# Skin names
+'skinname-standard'    => 'Standard',
+'skinname-nostalgia'   => 'Nostalgia',
+'skinname-cologneblue' => 'Kölni sinine',
+'skinname-monobook'    => 'MonoBook',
+'skinname-myskin'      => 'Mu oma nahk',
 
 # Math options
 'mw_math_png'    => 'Alati PNG',

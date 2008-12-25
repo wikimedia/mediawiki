@@ -58,16 +58,6 @@ $namespaceAliases = array(
 	'Обговорення_зображення' => NS_FILE_TALK,
 );
 
-$skinNames = array(
-	'standard'    => 'Стандартне',
-	'nostalgia'   => 'Ностальгія',
-	'cologneblue' => 'Кельнське синє',
-	'monobook'    => 'Моно-книга',
-	'myskin'      => 'Своє',
-	'chick'       => 'Курча',
-	'simple'      => 'Просте',
-	'modern'      => 'Сучасне',
-);
 
 $dateFormats = array(
 	'mdy time' => 'H:i',
@@ -2472,6 +2462,16 @@ The wiki server can't provide data in a format your client can read.",
 'numwatchers'    => 'Кількість спостерігачів: $1',
 'numauthors'     => 'Кількість різних авторів (сторінка): $1',
 'numtalkauthors' => 'Кількість авторів (сторінка обговорення): $1',
+
+# Skin names
+'skinname-standard'    => 'Стандартне',
+'skinname-nostalgia'   => 'Ностальгія',
+'skinname-cologneblue' => 'Кельнське синє',
+'skinname-monobook'    => 'Моно-книга',
+'skinname-myskin'      => 'Своє',
+'skinname-chick'       => 'Курча',
+'skinname-simple'      => 'Просте',
+'skinname-modern'      => 'Сучасне',
 
 # Math options
 'mw_math_png'    => 'Завжди генерувати PNG',

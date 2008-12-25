@@ -6,16 +6,6 @@
  *
  */
 
-$skinNames = array(
-	'standard'    => '傳統', /* "Classic, Standard" */
-	'nostalgia'   => '懷舊', /* "Nostalgia" */
-	'cologneblue' => '科隆藍', /* "Cologne Blue" */
-	'monobook'    => 'MonoBook',
-	'myskin'      => '我嘅畫面', /* "MySkin" */
-	'chick'       => '俏', /* "Chick" */
-	'simple'      => '簡單', /* "Simple" */
-	'modern'      => '摩登', /* "Modern" */
-);
 
 $bookstoreList = array(
 	'AddALL' => 'http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN',
@@ -2352,6 +2342,16 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 'numwatchers'    => '監視者數：$1',
 'numauthors'     => '唔同編者嘅數目（版頁）：$1',
 'numtalkauthors' => '唔同編者嘅數目（討論頁）：$1',
+
+# Skin names
+'skinname-standard'    => '傳統',
+'skinname-nostalgia'   => '懷舊',
+'skinname-cologneblue' => '科隆藍',
+'skinname-monobook'    => 'MonoBook',
+'skinname-myskin'      => '我嘅畫面',
+'skinname-chick'       => '俏',
+'skinname-simple'      => '簡單',
+'skinname-modern'      => '摩登',
 
 # Math options
 'mw_math_png'    => '全部用PNG表示',

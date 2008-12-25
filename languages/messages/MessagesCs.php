@@ -42,15 +42,6 @@ $namespaceNames = array(
 /**
  * Skin names. If any key is not specified, the English one will be used.
  */
-$skinNames = array(
-	'standard'    => 'Klasický',
-	'nostalgia'   => 'Nostalgie',
-	'cologneblue' => 'Kolínská modř',
-	'myskin'      => 'Můj vzhled',
-	'chick'       => 'Kuře',
-	'simple'      => 'Jednoduchý',
-	'modern'      => 'Moderní',
-);
 
 /**
  * Date formats list for Special:Preferences
@@ -2502,6 +2493,15 @@ V druhém případě můžete také používat přímý odkaz, např. pomocí [[
 'numwatchers'    => 'Počet sledujících uživatelů: $1',
 'numauthors'     => 'Počet různých autorů (obsahová stránka): $1',
 'numtalkauthors' => 'Počet různých autorů (diskusní stránka): $1',
+
+# Skin names
+'skinname-standard'    => 'Klasický',
+'skinname-nostalgia'   => 'Nostalgie',
+'skinname-cologneblue' => 'Kolínská modř',
+'skinname-myskin'      => 'Můj vzhled',
+'skinname-chick'       => 'Kuře',
+'skinname-simple'      => 'Jednoduchý',
+'skinname-modern'      => 'Moderní',
 
 # Math options
 'mw_math_png'    => 'Vždy jako PNG',

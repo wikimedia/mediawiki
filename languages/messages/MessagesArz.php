@@ -53,16 +53,6 @@ $namespaceAliases = array(
 	'نقاش_الصورة' => NS_FILE_TALK,
 );
 
-$skinNames = array(
-	'standard'      => 'كلاسيك',
-	'nostalgia'     => 'نوستالجيا',
-	'cologneblue'   => 'كولون بلو',
-	'monobook'      => 'مونوبوك',
-	'myskin'        => 'ماى سكين',
-	'chick'         => 'تشيك',
-	'simple'        => 'سيمبل',
-	'modern'        => 'مودرن',
-);
 
 $magicWords = array(
 	'redirect'              => array( '0', '#تحويل', '#تحويل', '#REDIRECT' ),
@@ -2592,6 +2582,16 @@ $1 ممنوع بالفعل. هل تريد تغيير الإعدادات؟',
 'numwatchers'    => 'عدد المراقبين: $1',
 'numauthors'     => 'عدد المؤلفين المميزين (صفحة): $1',
 'numtalkauthors' => 'عدد المؤلفين المميزين (صحفة نقاش): $1',
+
+# Skin names
+'skinname-standard'    => 'كلاسيك',
+'skinname-nostalgia'   => 'نوستالجيا',
+'skinname-cologneblue' => 'كولون بلو',
+'skinname-monobook'    => 'مونوبوك',
+'skinname-myskin'      => 'ماى سكين',
+'skinname-chick'       => 'تشيك',
+'skinname-simple'      => 'سيمبل',
+'skinname-modern'      => 'مودرن',
 
 # Math options
 'mw_math_png'    => 'دايما اعرض PNG',

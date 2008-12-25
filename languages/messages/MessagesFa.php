@@ -13,16 +13,6 @@
  * @author לערי ריינהארט
  */
 
-$skinNames = array(
-	'standard'    => 'کلاسیک',
-	'nostalgia'   => 'نوستالژی',
-	'cologneblue' => 'آبی کلون',
-	'monobook'    => 'مونوبوک',
-	'myskin'      => 'پوستهٔ من',
-	'chick'       => 'شیک',
-	'simple'      => 'ساده',
-	'modern'      => 'مدرن',
-);
 $namespaceNames = array(
 	NS_MEDIA            => 'مدیا',
 	NS_SPECIAL          => 'ویژه',
@@ -2604,6 +2594,16 @@ $1',
 'numwatchers'    => 'شمار پی‌گیری‌کنندگان: $1',
 'numauthors'     => 'شمار نویسندگان متمایز (مقاله): $1',
 'numtalkauthors' => 'تعداد مؤلفان مختلف (صفحهٔ بحث): $1',
+
+# Skin names
+'skinname-standard'    => 'کلاسیک',
+'skinname-nostalgia'   => 'نوستالژی',
+'skinname-cologneblue' => 'آبی کلون',
+'skinname-monobook'    => 'مونوبوک',
+'skinname-myskin'      => 'پوستهٔ من',
+'skinname-chick'       => 'شیک',
+'skinname-simple'      => 'ساده',
+'skinname-modern'      => 'مدرن',
 
 # Math options
 'mw_math_png'    => 'همیشه PNG کشیده شود',

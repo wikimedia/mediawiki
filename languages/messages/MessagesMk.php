@@ -39,14 +39,6 @@ $namespaceAliases = array(
 	'Разговор_за_слика' => NS_FILE_TALK,
 );
 
-$skinNames = array(
-	'standard'    => 'Класика',
-	'nostalgia'   => 'Носталгија',
-	'cologneblue' => 'Келнско сино',
-	'monobook'    => 'Monobook',
-	'myskin'      => 'Моја маска',
-	'chick'       => 'Шик'
-);
 
 $datePreferences = array(
 	'default',
@@ -2543,6 +2535,14 @@ $1 е веќе блокиран. Дали сакате да направите �
 'numwatchers'    => 'Број на набљудувачи: $1',
 'numauthors'     => 'Број на различни автори (страница): $1',
 'numtalkauthors' => 'Број на различни автори (страница за разговор): $1',
+
+# Skin names
+'skinname-standard'    => 'Класика',
+'skinname-nostalgia'   => 'Носталгија',
+'skinname-cologneblue' => 'Келнско сино',
+'skinname-monobook'    => 'Monobook',
+'skinname-myskin'      => 'Моја маска',
+'skinname-chick'       => 'Шик',
 
 # Math options
 'mw_math_png'    => 'Секогаш исцртувај во PNG',

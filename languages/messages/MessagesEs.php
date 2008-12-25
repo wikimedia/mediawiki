@@ -44,9 +44,6 @@
  * @author לערי ריינהארט
  */
 
-$skinNames = array(
-	'standard' => 'Estándar',
-);
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Especial',
@@ -2389,6 +2386,9 @@ Esto podría estar causado por un enlace a un sitio externo incluido en la lista
 'numwatchers'    => 'Número de usuarios vigilándola: $1',
 'numauthors'     => 'Número de autores distintos (artículo): $1',
 'numtalkauthors' => 'Número de autores distintos (página de discusión): $1',
+
+# Skin names
+'skinname-standard' => 'Estándar',
 
 # Math options
 'mw_math_png'    => 'Producir siempre PNG',

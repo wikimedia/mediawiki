@@ -31,14 +31,6 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Бөлүк_чугаа', //Category_talk
 );
 
-$skinNames = array(
-	'standard' => 'Classic', //Classic
-	'nostalgia' => 'Nostalgia', //Nostalgia
-	'cologneblue' => 'Cologne Blue', //Cologne Blue
-	'monobook' => 'Моно-Ном', //MonoBook
-	'myskin' => 'MySkin', //MySkin
-	'chick' => 'Chick' //Chick
-);
 
 $bookstoreList = array(
 	'ОЗОН' => 'http://www.ozon.ru/?context=advsearch_book&isbn=$1',
@@ -655,6 +647,14 @@ $1',
 
 # Attribution
 'anonymous' => '{{grammar:genitive|{{SITENAME}}}} ат эвес ажыглакчызы(лары)',
+
+# Skin names
+'skinname-standard'    => 'Classic',
+'skinname-nostalgia'   => 'Nostalgia',
+'skinname-cologneblue' => 'Cologne Blue',
+'skinname-monobook'    => 'Моно-Ном',
+'skinname-myskin'      => 'MySkin',
+'skinname-chick'       => 'Chick',
 
 # Image deletion
 'filedelete-missing' => '"$1" деп файл чок, ынчангаш ол ап калдынмас.',

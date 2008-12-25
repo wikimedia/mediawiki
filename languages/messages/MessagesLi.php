@@ -15,11 +15,6 @@
 
 $fallback = 'nl';
 
-$skinNames = array(
-	'standard' => 'Standaard',
-	'nostalgia' => 'Nostalgie',
-	'cologneblue' => 'Keuls blauw',
-);
 
 $namespaceNames = array(
 	NS_MEDIA          => 'Media',
@@ -2182,6 +2177,11 @@ Alle transwiki-importhanjelinge waere opgeslage in 't [[Special:Log/import|impor
 'numwatchers'    => 'Aantal volgende: $1',
 'numauthors'     => 'Aantal sjrievers (pagina): $1',
 'numtalkauthors' => 'Aantal versjilende auteurs (euverlikpagina): $1',
+
+# Skin names
+'skinname-standard'    => 'Standaard',
+'skinname-nostalgia'   => 'Nostalgie',
+'skinname-cologneblue' => 'Keuls blauw',
 
 # Math options
 'mw_math_png'    => 'Ummer PNG rendere',

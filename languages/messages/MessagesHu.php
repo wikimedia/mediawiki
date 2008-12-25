@@ -49,16 +49,6 @@ $namespaceAliases = array(
 	'Kategória_vita' => NS_CATEGORY_TALK,
 );
 
-$skinNames = array(
-	'standard'      => 'Klasszikus',
-	'nostalgia'     => 'Nosztalgia',
-	'cologneblue'   => 'Kölni kék',
-	'monobook'      => 'MonoBook',
-	'myskin'        => 'MySkin',
-	'chick'         => 'Csirke',
-	'simple'        => 'Egyszerű',
-	'modern'        => 'Modern',
-);
 
 $fallback8bitEncoding = "iso8859-2";
 $separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );
@@ -2530,6 +2520,16 @@ Ez valószínűleg egy olyan link miatt van, ami egy feketelistán lévő oldalr
 'numwatchers'    => 'Figyelők száma: $1',
 'numauthors'     => 'Önálló szerzők száma (szócikk): $1',
 'numtalkauthors' => 'Önálló szerzők száma (vitalap): $1',
+
+# Skin names
+'skinname-standard'    => 'Klasszikus',
+'skinname-nostalgia'   => 'Nosztalgia',
+'skinname-cologneblue' => 'Kölni kék',
+'skinname-monobook'    => 'MonoBook',
+'skinname-myskin'      => 'MySkin',
+'skinname-chick'       => 'Csirke',
+'skinname-simple'      => 'Egyszerű',
+'skinname-modern'      => 'Modern',
 
 # Math options
 'mw_math_png'    => 'Mindig készítsen PNG-t',

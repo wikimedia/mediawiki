@@ -11,10 +11,6 @@
  * @author לערי ריינהארט
  */
 
-$skinNames = array(
-	'standard' => 'Standert',
-	'nostalgia' => 'Nostalgy',
-);
 
 $datePreferences = array(
 	'default',
@@ -2014,6 +2010,10 @@ Sjoch: [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation], [htt
 
 # Info page
 'infosubtitle' => 'Ynformaasje foar side',
+
+# Skin names
+'skinname-standard'  => 'Standert',
+'skinname-nostalgia' => 'Nostalgy',
 
 # Math options
 'mw_math_png'    => 'Altiten as PNG ôfbyldzje',

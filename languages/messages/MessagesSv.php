@@ -23,16 +23,6 @@
  * @author לערי ריינהארט
  */
 
-$skinNames = array(
-	'standard'    => 'Standard',
-	'nostalgia'   => 'Nostalgi',
-	'cologneblue' => 'Cologne blå',
-	'monobook'    => 'Monobook',
-	'myskin'      => 'Mitt utseende',
-	'chick'       => 'Chick',
-	'simple'      => 'Enkel',
-	'modern'      => 'Modern',
-);
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
@@ -2500,6 +2490,16 @@ Detta orsakades troligen av en länk till en svartlistad webbplats.',
 'numwatchers'    => 'Antal användare som bevakar sidan: $1',
 'numauthors'     => 'Antal olika bidragsgivare (sida): $1',
 'numtalkauthors' => 'Antal olika bidragsgivare (diskussionssida): $1',
+
+# Skin names
+'skinname-standard'    => 'Standard',
+'skinname-nostalgia'   => 'Nostalgi',
+'skinname-cologneblue' => 'Cologne blå',
+'skinname-monobook'    => 'Monobook',
+'skinname-myskin'      => 'Mitt utseende',
+'skinname-chick'       => 'Chick',
+'skinname-simple'      => 'Enkel',
+'skinname-modern'      => 'Modern',
 
 # Math options
 'mw_math_png'    => 'Rendera alltid PNG',

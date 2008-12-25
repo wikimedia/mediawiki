@@ -56,12 +56,6 @@ $namespaceAliases = array(
 	'分类讨论'=> NS_CATEGORY_TALK,
 );
 
-$skinNames = array(
-	'standard' => '标准',
-	'nostalgia' => '怀旧',
-	'cologneblue' => '科隆香水蓝',
-	'modern' => '现代',
-);
 
 $extraUserToggles = array(
 	'nolangconversion',
@@ -2314,6 +2308,12 @@ $1已经被封锁。您是否想更改这个设置？',
 'numwatchers'    => '监视者数目: $1',
 'numauthors'     => '作者数量 (页面): $1',
 'numtalkauthors' => '作者数量 (讨论页): $1',
+
+# Skin names
+'skinname-standard'    => '标准',
+'skinname-nostalgia'   => '怀旧',
+'skinname-cologneblue' => '科隆香水蓝',
+'skinname-modern'      => '现代',
 
 # Math options
 'mw_math_png'    => '永远使用PNG图像',

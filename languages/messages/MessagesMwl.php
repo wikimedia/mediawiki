@@ -12,16 +12,6 @@
 
 $fallback = 'pt';
 
-$skinNames = array(
-	'standard'      => 'Clássico',
-	'nostalgia'     => 'Suidade',
-	'cologneblue'   => 'Azul',
-	'monobook'      => 'Lhibro',
-	'myskin'        => 'Piel',
-	'chick'         => 'Cipe-Çape',
-	'simple'        => 'Simpre',
-	'modern'        => 'Moderno',
-);
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
@@ -724,6 +714,16 @@ Por fabor, scuolhe outro nome.',
 'tooltip-diff'                    => 'Amostrar alteraçones que faziste neste testo.',
 'tooltip-compareselectedversions' => 'Ber las defréncias antre las dues berçones marcadas desta páigina.',
 'tooltip-watch'                   => 'Ajuntar esta páigina als tous begiados',
+
+# Skin names
+'skinname-standard'    => 'Clássico',
+'skinname-nostalgia'   => 'Suidade',
+'skinname-cologneblue' => 'Azul',
+'skinname-monobook'    => 'Lhibro',
+'skinname-myskin'      => 'Piel',
+'skinname-chick'       => 'Cipe-Çape',
+'skinname-simple'      => 'Simpre',
+'skinname-modern'      => 'Moderno',
 
 # Browsing diffs
 'previousdiff' => "← Eidiçon d'atrás",

@@ -12,16 +12,6 @@
  * @author לערי ריינהארט
  */
 
-$skinNames = array(
-	'standard'    => 'Estandard',
-	'nostalgia'   => 'Nostalgia',
-	'cologneblue' => 'Colonha Blau',
-	'monobook'    => 'Monobook',
-	'myskin'      => 'Mon interfàcia',
-	'chick'       => 'Poleton',
-	'simple'      => 'Simple',
-	'modern'      => 'Modèrn',
-);
 
 $bookstoreList = array(
 	'Amazon.fr' => 'http://www.amazon.fr/exec/obidos/ISBN=$1'
@@ -2445,6 +2435,16 @@ Aquò es probablament causat per un ligam sus lista negra que punta cap a un sit
 'numwatchers'    => "Nombre de contributors qu'an la pagina dins lor lista de seguit : $1",
 'numauthors'     => 'Nombre d’autors distints : $1',
 'numtalkauthors' => 'Nombre d’autors distints (pagina de discussion) : $1',
+
+# Skin names
+'skinname-standard'    => 'Estandard',
+'skinname-nostalgia'   => 'Nostalgia',
+'skinname-cologneblue' => 'Colonha Blau',
+'skinname-monobook'    => 'Monobook',
+'skinname-myskin'      => 'Mon interfàcia',
+'skinname-chick'       => 'Poleton',
+'skinname-simple'      => 'Simple',
+'skinname-modern'      => 'Modèrn',
 
 # Math options
 'mw_math_png'    => 'Totjorn produire un imatge PNG',

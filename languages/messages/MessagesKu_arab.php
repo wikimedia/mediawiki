@@ -10,15 +10,6 @@
 
 $fallback = 'ku-latn';
 
-$skinNames = array(
-'standard'    => 'كلاسیك',
-'nostalgia'   => 'قاوه‌یی',
-'cologneblue' => 'شین',
-'monobook'    => 'مۆنۆ',
-'myskin'      => 'پێستی خۆم',
-'chick'       => 'جوجه‌',
-'simple'      => 'ساده‌'
-);
 
 $digitTransformTable = array(
 	'0' => '٠', # &#x0660;
@@ -452,6 +443,15 @@ $messages = array(
 'tooltip-pt-userpage'             => 'په‌ڕه‌ی تایبه‌تی خۆم',
 'tooltip-ca-nstab-user'           => 'پەڕەی بەکارھێنەر تەماشا بکە',
 'tooltip-compareselectedversions' => 'جیاوازییەکانی دوو وەشانە دیاریکراوەی ئەم پەڕە ببینە.',
+
+# Skin names
+'skinname-standard'    => 'كلاسیك',
+'skinname-nostalgia'   => 'قاوه‌یی',
+'skinname-cologneblue' => 'شین',
+'skinname-monobook'    => 'مۆنۆ',
+'skinname-myskin'      => 'پێستی خۆم',
+'skinname-chick'       => 'جوجه‌',
+'skinname-simple'      => 'ساده‌',
 
 # Media information
 'show-big-image' => 'گەورە کردنەوە',

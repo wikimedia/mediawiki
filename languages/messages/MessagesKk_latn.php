@@ -101,16 +101,6 @@ $namespaceAliases = array(
 	'سانات_تالقىلاۋى'    => NS_CATEGORY_TALK,
 );
 
-$skinNames = array(
-	'standard'    => 'Dağdılı (standard)',
-	'nostalgia'   => 'Añsaw (nostalgia)',
-	'cologneblue' => 'Köln zeñgirligi (cologneblue)',
-	'monobook'    => 'Dara kitap (monobook)',
-	'myskin'      => 'Öz mänerim (myskin)',
-	'chick'       => 'Balapan (chick)',
-	'simple'      => 'Kädimgi (simple)',
-	'modern'      => 'Zamanawï (modern)',
-);
 
 $datePreferences = array(
 	'default',
@@ -2408,6 +2398,16 @@ Bunıñ sebebi şettik torap siltemesinen bolwı mümkin.',
 'numwatchers'    => 'Baqılawşı sanı: $1',
 'numauthors'     => 'Ärtürli awtor sanı (bet): $1',
 'numtalkauthors' => 'Ärtürli awtor sanı (talqılaw beti): $1',
+
+# Skin names
+'skinname-standard'    => 'Dağdılı (standard)',
+'skinname-nostalgia'   => 'Añsaw (nostalgia)',
+'skinname-cologneblue' => 'Köln zeñgirligi (cologneblue)',
+'skinname-monobook'    => 'Dara kitap (monobook)',
+'skinname-myskin'      => 'Öz mänerim (myskin)',
+'skinname-chick'       => 'Balapan (chick)',
+'skinname-simple'      => 'Kädimgi (simple)',
+'skinname-modern'      => 'Zamanawï (modern)',
 
 # Math options
 'mw_math_png'    => 'Ärqaşan PNG pişinimen körsetkiz',

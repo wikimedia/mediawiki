@@ -54,15 +54,6 @@ $namespaceAliases = array(
 	'Категория_музакереси'   => NS_CATEGORY_TALK,
 );
 
-$skinNames = array(
-    'standard'    => 'Standart',
-    'nostalgia'   => 'Nostalgiya',
-    'cologneblue' => 'Köln asretligi',
-    'monobook'    => 'MonoBook',
-    'myskin'      => 'Öz resimleme',
-    'chick'       => 'Çipçe',
-    'simple'      => 'Adiy'
-);
 
 $datePreferences = array(
     'default',
@@ -1615,6 +1606,15 @@ MediaWiki interfeysiniñ çeşit tillerge tercime etüvde iştirak etmege istese
 'numwatchers'    => 'Közetici sayısı: $1',
 'numauthors'     => 'Müellif sayısı (saife): $1',
 'numtalkauthors' => 'Müellif sayısı (muzakere saifesi): $1',
+
+# Skin names
+'skinname-standard'    => 'Standart',
+'skinname-nostalgia'   => 'Nostalgiya',
+'skinname-cologneblue' => 'Köln asretligi',
+'skinname-monobook'    => 'MonoBook',
+'skinname-myskin'      => 'Öz resimleme',
+'skinname-chick'       => 'Çipçe',
+'skinname-simple'      => 'Adiy',
 
 # Math options
 'mw_math_png'    => 'Daima PNG resim formatına çevir',

@@ -13,11 +13,6 @@
  * @author Spacebirdy
  */
 
-$skinNames = array(
-	'standard' => 'Standaard',
-	'nostalgia' => 'Nostalgie',
-	'cologneblue' => 'Keulen blou',
-);
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
@@ -2011,6 +2006,11 @@ In die laatste geval kan u ook \'n verwysing gebruik, byvoorbeeld [[{{ns:special
 'numwatchers'    => 'Aantal dophouers: $1',
 'numauthors'     => 'Aantal outeurs (bladsy): $1',
 'numtalkauthors' => 'Aantal outeurs (besprekingsblad): $1',
+
+# Skin names
+'skinname-standard'    => 'Standaard',
+'skinname-nostalgia'   => 'Nostalgie',
+'skinname-cologneblue' => 'Keulen blou',
 
 # Math options
 'mw_math_png'    => 'Gebruik altyd PNG.',

@@ -12,11 +12,6 @@
  * @author לערי ריינהארט
  */
 
-$skinNames = array(
-	'standard' => 'Standarte',
-	'nostalgia' => 'Nostalgjike',
-	'cologneblue' => 'Kolonjë Blu'
-);
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
@@ -1895,6 +1890,11 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 'numwatchers'    => 'Numri i mbikqyrësve: $1',
 'numauthors'     => 'Numri i autorëve të artikullit: $1',
 'numtalkauthors' => 'Numri i diskutuesve për artikullin: $1',
+
+# Skin names
+'skinname-standard'    => 'Standarte',
+'skinname-nostalgia'   => 'Nostalgjike',
+'skinname-cologneblue' => 'Kolonjë Blu',
 
 # Math options
 'mw_math_png'    => 'Gjithmonë PNG',

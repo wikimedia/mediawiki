@@ -43,10 +43,6 @@ $namespaceAliases = array(
 	'Discussioni_Catigurìa' => NS_CATEGORY_TALK,
 );
 
-$skinNames = array(
-	'standard'    => 'Classicu',
-	'simple'      => 'Sìmprici',
-);
 
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'RinnirizzamentiDuppi' ),
@@ -2263,6 +2259,10 @@ Nta st'ùrtimu casu si pò macari utilizzari un culligamentu, p'asempiu [[{{ns:s
 'numwatchers'    => "Nùmmuru d'ossirvatura: $1",
 'numauthors'     => "Nùmmuru d'autura distinti (artìculu): $1",
 'numtalkauthors' => "Nùmmuru d'autura distinti (pàggina di discussioni): $1",
+
+# Skin names
+'skinname-standard' => 'Classicu',
+'skinname-simple'   => 'Sìmprici',
 
 # Math options
 'mw_math_png'    => "Ammustra sempri 'n PNG",

@@ -31,11 +31,6 @@ $namespaceNames = array(
 	NS_HELP_TALK	  => "Sgwrs Cymorth"
 );
 
-$skinNames = array(
-	'standard'    => 'Safonol',
-	'nostalgia'   => 'Hiraeth',
-	'cologneblue' => 'Glas Cwlen',
-);
 
 $defaultDateFormat = 'dmy';
 
@@ -2180,6 +2175,11 @@ Achos hyn yn fwy na thebyg yw presenoldeb cysylltiad i wefan ar y rhestr gwahard
 'numwatchers'    => 'Nifer y gwylwyr: $1',
 'numauthors'     => "Nifer yr awduron (o'r dudalen): $1",
 'numtalkauthors' => "Nifer yr awduron (o'r dudalen sgwrs): $1",
+
+# Skin names
+'skinname-standard'    => 'Safonol',
+'skinname-nostalgia'   => 'Hiraeth',
+'skinname-cologneblue' => 'Glas Cwlen',
 
 # Math options
 'mw_math_png'    => 'Arddangos symbolau mathemateg fel delwedd PNG bob amser',

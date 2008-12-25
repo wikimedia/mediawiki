@@ -14,11 +14,6 @@
  * @author לערי ריינהארט
  */
 
-$skinNames = array(
-	'standard'    => 'Lehenetsia',
-	'nostalgia'   => 'Nostalgia',
-	'cologneblue' => 'Cologne Blue',
-);
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
@@ -2150,6 +2145,11 @@ Baliteke zerrenda beltzean dagoen kanpo lotura batek sortzea arazo hori.',
 'numwatchers'    => 'Jarraitzaile kopurua: $1',
 'numauthors'     => 'Egile ezberdinen kopurua (artikulua): $1',
 'numtalkauthors' => 'Egile ezberdinen kopurua (eztabaida orrialdea): $1',
+
+# Skin names
+'skinname-standard'    => 'Lehenetsia',
+'skinname-nostalgia'   => 'Nostalgia',
+'skinname-cologneblue' => 'Cologne Blue',
 
 # Math options
 'mw_math_png'    => 'Beti PNG irudiak sortu',

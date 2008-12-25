@@ -34,11 +34,6 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => '分類討論'
 );
 
-$skinNames = array(
-	'standard' => '標準',
-	'nostalgia' => '懷舊',
-	'cologneblue' => '科隆香水藍',
-);
 
 $bookstoreList = array(
 	'博客來書店' => 'http://www.books.com.tw/exep/prod/booksfile.php?item=$1',
@@ -1685,6 +1680,11 @@ $1',
 'numwatchers'    => '監視者數目: $1',
 'numauthors'     => '作者數量 (頁面): $1',
 'numtalkauthors' => '作者數量 (討論頁): $1',
+
+# Skin names
+'skinname-standard'    => '標準',
+'skinname-nostalgia'   => '懷舊',
+'skinname-cologneblue' => '科隆香水藍',
 
 # Math options
 'mw_math_png'    => '永遠使用PNG圖片',

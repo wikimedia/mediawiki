@@ -27,11 +27,6 @@
  * @author לערי ריינהארט
  */
 
-$skinNames = array(
-	'standard' => "標準",
-	'nostalgia' => "ノスタルジア",
-	'cologneblue' => "ケルンブルー",
-);
 
 $datePreferences = array(
 	'default',
@@ -2382,6 +2377,11 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'numwatchers'    => 'ウォッチしている利用者数: $1',
 'numauthors'     => '投稿者数（項目）: $1',
 'numtalkauthors' => '投稿者数（ノート）: $1',
+
+# Skin names
+'skinname-standard'    => '標準',
+'skinname-nostalgia'   => 'ノスタルジア',
+'skinname-cologneblue' => 'ケルンブルー',
 
 # Math options
 'mw_math_png'    => '常にPNG',

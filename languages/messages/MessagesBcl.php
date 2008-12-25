@@ -9,11 +9,6 @@
  * @author Urhixidur
  */
 
-$skinNames = array(
-	'standard'    => 'Klasiko',
-	'simple'      => 'Simple',
-	'modern'      => 'Bago',
-);
 
 $namespaceNames = array(
 	NS_MEDIA          => 'Medio',
@@ -1696,6 +1691,11 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'numwatchers'    => 'Bilang kan mga parábantay: $1',
 'numauthors'     => 'Bilang kan mga parásurat na ibá (páhina): $1',
 'numtalkauthors' => 'Bilang kan mga parásurat na ibá (páhina kan orólay): $1',
+
+# Skin names
+'skinname-standard' => 'Klasiko',
+'skinname-simple'   => 'Simple',
+'skinname-modern'   => 'Bago',
 
 # Math options
 'mw_math_png'    => 'Itaô pirmi an PNG',

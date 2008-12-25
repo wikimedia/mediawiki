@@ -97,16 +97,6 @@ $namespaceAliases = array(
 	'سانات_تالقىلاۋى'    => NS_CATEGORY_TALK,
 );
 
-$skinNames = array(
-	'standard'    => 'Дағдылы (standard)',
-	'nostalgia'   => 'Аңсау (nostalgia)',
-	'cologneblue' => 'Көлн зеңгірлігі (cologneblue)',
-	'monobook'    => 'Дара кітап (monobook)',
-	'myskin'      => 'Өз мәнерім (myskin)',
-	'chick'       => 'Балапан (chick)',
-	'simple'      => 'Кәдімгі (simple)',
-	'modern'      => 'Заманауи (modern)',
-);
 
 $datePreferences = array(
 	'default',
@@ -2408,6 +2398,16 @@ MediaWiki жүйесінің [[{{#special:Import}}|сырттан алу бет�
 'numwatchers'    => 'Бақылаушы саны: $1',
 'numauthors'     => 'Әртүрлі аутор саны (бет): $1',
 'numtalkauthors' => 'Әртүрлі аутор саны (талқылау беті): $1',
+
+# Skin names
+'skinname-standard'    => 'Дағдылы (standard)',
+'skinname-nostalgia'   => 'Аңсау (nostalgia)',
+'skinname-cologneblue' => 'Көлн зеңгірлігі (cologneblue)',
+'skinname-monobook'    => 'Дара кітап (monobook)',
+'skinname-myskin'      => 'Өз мәнерім (myskin)',
+'skinname-chick'       => 'Балапан (chick)',
+'skinname-simple'      => 'Кәдімгі (simple)',
+'skinname-modern'      => 'Заманауи (modern)',
 
 # Math options
 'mw_math_png'    => 'Әрқашан PNG пішінімен көрсеткіз',

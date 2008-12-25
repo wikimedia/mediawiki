@@ -30,11 +30,6 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Katõgooria_arotus'
 );
 
-$skinNames = array(
-	'standard'    => array( "Harilik" ),
-	'cologneblue' => array( "Kölni sinine" ),
-	'myskin'      => array( "Mu uma kujondus" ),
-);
 
 $magicWords = array(
 	'redirect'            => array( "0", "#redirect", "#saadaq" ),
@@ -1667,6 +1662,11 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'numwatchers'    => 'Perräkaejit: $1',
 'numauthors'     => 'Lehele eräle kirotajit: $1',
 'numtalkauthors' => 'Arotuskülele eräle kirotajit: $1',
+
+# Skin names
+'skinname-standard'    => 'Array',
+'skinname-cologneblue' => 'Array',
+'skinname-myskin'      => 'Array',
 
 # Math options
 'mw_math_png'    => 'Kõgõ PNG',

@@ -7,16 +7,6 @@
  * @author Itsmine
  */
 
-$skinNames = array(
-        'standard' => '經典',
-        'nostalgia' => '懷古',
-        'cologneblue' => '馨藍',
-        'monobook' => '單書',
-        'myskin' => '吾風',
-	'chick' => '窈窕',
-	'simple' => '簡明',
-	'modern' => '時髦',
-);
 
 /**
  * A list of date format preference keys which can be selected in user
@@ -2085,6 +2075,16 @@ $1已被禁矣。爾是否改此置？',
 'numwatchers'    => '有哨$1',
 'numauthors'     => '編者$1',
 'numtalkauthors' => '議者$1',
+
+# Skin names
+'skinname-standard'    => '經典',
+'skinname-nostalgia'   => '懷古',
+'skinname-cologneblue' => '馨藍',
+'skinname-monobook'    => '單書',
+'skinname-myskin'      => '吾風',
+'skinname-chick'       => '窈窕',
+'skinname-simple'      => '簡明',
+'skinname-modern'      => '時髦',
 
 # Math options
 'mw_math_png'    => '屢作PNG',

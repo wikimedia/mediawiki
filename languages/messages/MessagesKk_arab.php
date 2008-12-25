@@ -121,16 +121,6 @@ $namespaceAliases = array(
 	'ٴۇلگٴى_تالقىلاۋى'    => NS_TEMPLATE_TALK,
 );
 
-$skinNames = array(
-	'standard'    => 'داعدىلى (standard)',
-	'nostalgia'   => 'اڭساۋ (nostalgia)',
-	'cologneblue' => 'كولن زەڭگىرلىگى (cologneblue)',
-	'monobook'    => 'دارا كىتاپ (monobook)',
-	'myskin'      => 'ٴوز مانەرىم (myskin)',
-	'chick'       => 'بالاپان (chick)',
-	'simple'      => 'كادىمگى (simple)',
-	'modern'      => 'زاماناۋىي (modern)',
-);
 
 $datePreferences = array(
 	'default',
@@ -2443,6 +2433,16 @@ MediaWiki جۇيەسىنىڭ [[{{#special:Import}}|سىرتتان الۋ بەت�
 'numwatchers'    => 'باقىلاۋشى سانى: $1',
 'numauthors'     => 'ٴارتۇرلى اۋتور سانى (بەت): $1',
 'numtalkauthors' => 'ٴارتۇرلى اۋتور سانى (تالقىلاۋ بەتى): $1',
+
+# Skin names
+'skinname-standard'    => 'داعدىلى (standard)',
+'skinname-nostalgia'   => 'اڭساۋ (nostalgia)',
+'skinname-cologneblue' => 'كولن زەڭگىرلىگى (cologneblue)',
+'skinname-monobook'    => 'دارا كىتاپ (monobook)',
+'skinname-myskin'      => 'ٴوز مانەرىم (myskin)',
+'skinname-chick'       => 'بالاپان (chick)',
+'skinname-simple'      => 'كادىمگى (simple)',
+'skinname-modern'      => 'زاماناۋىي (modern)',
 
 # Math options
 'mw_math_png'    => 'ارقاشان PNG پىشىنىمەن كورسەتكىز',

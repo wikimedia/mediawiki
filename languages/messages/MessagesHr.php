@@ -18,14 +18,6 @@
  * @author לערי ריינהארט
  */
 
-$skinNames = array(
-	'standard'  => 'Standardna',
-	'nostalgia'  => 'Nostalgija',
-	'cologneblue'  => 'Kölnska plava',
-	'monobook'  => 'MonoBook',
-	'myskin'  => 'MySkin',
-	'chick'  => 'Chick'
-);
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Mediji',
@@ -2502,6 +2494,14 @@ Razlog je vjerojatno vanjska poveznica koja se nalazi na crnom popisu.',
 'numwatchers'    => 'Broj pratitelja: $1',
 'numauthors'     => 'Broj autora (članak): $1',
 'numtalkauthors' => 'Broj autora (stranica za razgovor): $1',
+
+# Skin names
+'skinname-standard'    => 'Standardna',
+'skinname-nostalgia'   => 'Nostalgija',
+'skinname-cologneblue' => 'Kölnska plava',
+'skinname-monobook'    => 'MonoBook',
+'skinname-myskin'      => 'MySkin',
+'skinname-chick'       => 'Chick',
 
 # Math options
 'mw_math_png'    => 'Uvijek kao PNG',

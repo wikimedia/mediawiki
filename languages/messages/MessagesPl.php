@@ -49,16 +49,6 @@ $namespaceAliases = array(
 	'Dyskusja_grafiki' => NS_FILE_TALK,
 );
 
-$skinNames = array(
-	'standard'    => 'Standardowa',
-	'nostalgia'   => 'Tęsknota',
-	'cologneblue' => 'Błękit',
-	'monobook'    => 'Książka',
-	'myskin'      => 'Moja skórka',
-	'chick'       => 'Kurczaczek',
-	'simple'      => 'Prosta',
-	'modern'      => 'Nowoczesna',
-);
 
 $dateFormats = array(
 	'mdy time' => 'H:i',
@@ -2506,6 +2496,16 @@ Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony int
 'numwatchers'    => 'Liczba obserwujących: $1',
 'numauthors'     => 'Liczba autorów (strona zawartości): $1',
 'numtalkauthors' => 'Liczba autorów (strona dyskusji): $1',
+
+# Skin names
+'skinname-standard'    => 'Standardowa',
+'skinname-nostalgia'   => 'Tęsknota',
+'skinname-cologneblue' => 'Błękit',
+'skinname-monobook'    => 'Książka',
+'skinname-myskin'      => 'Moja skórka',
+'skinname-chick'       => 'Kurczaczek',
+'skinname-simple'      => 'Prosta',
+'skinname-modern'      => 'Nowoczesna',
 
 # Math options
 'mw_math_png'    => 'Zawsze generuj grafikę PNG',

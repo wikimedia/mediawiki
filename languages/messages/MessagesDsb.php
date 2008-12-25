@@ -17,15 +17,6 @@
 
 $fallback = 'de';
 
-$skinNames = array(
-	'standard'    => 'Klasiski',
-	'nostalgia'   => 'Nostalgiski',
-	'cologneblue' => 'Kölnski Módry',
-	'monobook'    => 'MonoBook',
-	'myskin'      => 'Mój šat',
-	'chick'       => 'Kurjetko',
-	'simple'      => 'Jadnorje',
-);
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Medija',
@@ -2322,6 +2313,15 @@ W zespominanju dajo se pśicyna pódaś.',
 'numwatchers'    => 'Licba  wobglědowarjow: $1',
 'numauthors'     => 'Licba awtorow: $1',
 'numtalkauthors' => 'Licba diskutěrujucych: $1',
+
+# Skin names
+'skinname-standard'    => 'Klasiski',
+'skinname-nostalgia'   => 'Nostalgiski',
+'skinname-cologneblue' => 'Kölnski Módry',
+'skinname-monobook'    => 'MonoBook',
+'skinname-myskin'      => 'Mój šat',
+'skinname-chick'       => 'Kurjetko',
+'skinname-simple'      => 'Jadnorje',
 
 # Math options
 'mw_math_png'    => 'Pśecej ako PNG zwobrazniś.',
