@@ -509,6 +509,7 @@ $messages = array(
 'restorelink'             => '$1개의 삭제된 편집',
 'feedlinks'               => '피드:',
 'feed-invalid'            => '잘못된 구독 피드 방식입니다.',
+'feed-unavailable'        => '피드 서비스는 제공하지 않습니다',
 'site-rss-feed'           => '$1 RSS 피드',
 'site-atom-feed'          => '$1 Atom 피드',
 'page-rss-feed'           => '‘$1’ RSS 피드',
@@ -549,6 +550,11 @@ $messages = array(
 'readonlytext'         => '데이터베이스가 잠겨 있어서 문서를 편집할 수 없습니다. 데이터베이스 관리가 끝난 후에는 정상으로 돌아올 것입니다.
 
 관리자가 데이터베이스를 잠글 때 남긴 메시지는 다음과 같습니다: $1',
+'missing-article'      => '데이터베이스에서 ‘$1’ 문서$2를 찾지 못했습니다.
+
+삭제된 문서의 역사/비교 문서를 보려고 시도할 때 이러한 문제가 발생할 수 있습니다.
+
+또는, 프로그램 버그가 발생했을 수도 있습니다. [[Special:ListUsers/sysop|관리자]]에게 오류가 나는 URL을 알려주세요.',
 'missingarticle-rev'   => '(판번호: $1)',
 'missingarticle-diff'  => '(차이: $1, $2)',
 'readonly_lag'         => '슬레이브 데이터베이스가 마스터 서버의 자료를 갱신하는 중입니다. 데이터베이스가 자동으로 잠겨 있습니다.',
@@ -579,7 +585,7 @@ $messages = array(
 'protectedinterface'   => '이 문서는 소프트웨어 인터페이스에 쓰이는 문서로, 잠겨 있습니다.',
 'editinginterface'     => "'''경고''': 소프트웨어에서 사용하는 메시지 문서를 고치고 있습니다. 이것은 모든 사용자에게 영향을 끼칩니다. 번역되지 않은 메시지를 번역하려는 경우에는, [http://translatewiki.net/wiki/Main_Page?setlang=ko 베타위키(Betawiki)]에 참여하면 메시지 번역을 미디어위키에 직접 반영할 수 있습니다.",
 'sqlhidden'            => '(SQL 쿼리 숨겨짐)',
-'cascadeprotected'     => '이 문서는 "연쇄적 보호"된 문서에 포함되어 있어 보호됩니다. 연쇄적 보호된 문서: $2',
+'cascadeprotected'     => '이 문서는 연쇄 보호가 걸린 문서에 포함되어 있어, 함께 보호됩니다. 연쇄 보호된 문서:',
 'namespaceprotected'   => "'''$1''' 네임스페이스를 편집할 수 있는 권한이 없습니다.",
 'customcssjsprotected' => '이 문서는 다른 사용자의 개인 설정을 담고 있기 때문에, 편집할 권한이 없습니다.',
 'ns-specialprotected'  => '{{ns:special}} 네임스페이스의 문서는 편집할 수 없습니다.',
@@ -676,7 +682,7 @@ $messages = array(
 'createaccount-text'         => '{{SITENAME}}($4)에서 계정 이름 ‘$2’, 비밀번호 ‘$3’으로 계정을 만들었습니다. 로그인을 한 다음 암호를 바꾸어 주세요.
 
 계정을 잘못 만들었다면 이 메시지는 무시해도 됩니다.',
-'login-throttled'            => '당신은 계속 로그인 하려는 계정의 비밀번호를 잘못 입력하였습니다.
+'login-throttled'            => '로그인 하려는 계정의 비밀번호를 연속으로 잘못 입력하였습니다.
 잠시 후에 다시 시도해주세요.',
 'loginlanguagelabel'         => '언어: $1',
 
@@ -839,7 +845,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'nocreate-loggedin'                => '새 문서를 만들 권한이 없습니다.',
 'permissionserrors'                => '권한 오류',
 'permissionserrorstext'            => '해당 명령을 수행할 권한이 없습니다. 다음의 이유를 확인해보세요:',
-'permissionserrorstext-withaction' => '$2 명령을 수행할 권한이 없습니다. 다음의 이유를 확인해보세요:',
+'permissionserrorstext-withaction' => '$2 권한이 없습니다. 다음의 이유를 확인해주세요:',
 'recreate-deleted-warn'            => "'''주의: 과거에 삭제된 문서를 다시 만들고 있습니다.'''
 
 이 문서를 계속 편집하는 것이 적합한 것인지 확인해주세요.
@@ -849,6 +855,8 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'deletelog-fulllog'                => '전체 기록 보기',
 'edit-conflict'                    => '편집 충돌.',
 'edit-no-change'                   => '문서에 아무런 변화가 없기 때문에, 당신의 편집은 무시되었습니다.',
+'edit-already-exists'              => '새 문서를 만들 수 없습니다.
+문서가 이미 존재합니다.',
 
 # Parser/template warnings
 'expensive-parserfunction-category' => '느린 파서 함수 호출을 너무 많이 하는 문서',
@@ -921,6 +929,9 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'revdelete-uname'        => '사용자 이름',
 'revdelete-hid'          => '$1을(를) 숨김',
 'revdelete-unhid'        => '$1을 숨김 해제함',
+
+# Suppression log
+'suppressionlog' => '숨기기 기록',
 
 # History merging
 'mergehistory'             => '문서 역사 합치기',
@@ -1295,7 +1306,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'badfilename'                 => '파일 이름이 ‘$1’(으)로 바뀌었습니다.',
 'filetype-badmime'            => '‘$1’ MIME을 가진 파일은 올릴 수 없습니다.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' 확장자는 추천하지 않습니다. 추천하는 파일 확장자는 \$2입니다.",
-'filetype-banned-type'        => "'''\".\$1\"''' 확장자로 파일을 올릴 수 없습니다. 가능한 확장자는 \$2입니다.",
+'filetype-banned-type'        => "‘'''.$1'''’ 확장자는 올릴 수 없습니다. $2 확장자만이 사용 가능합니다.",
 'filetype-missing'            => '파일에 확장자(‘.jpg’ 등)가 없습니다.',
 'large-file'                  => '파일 크기는 $1을 넘지 않는 것을 추천합니다. 이 파일의 크기는 $2입니다.',
 'largefileserver'             => '이 파일의 크기가 서버에서 허용된 설정보다 큽니다.',
@@ -1434,9 +1445,10 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'filedelete-edit-reasonlist'  => '삭제 이유 편집',
 
 # MIME search
-'mimesearch' => 'MIME 검색',
-'mimetype'   => 'MIME 종류:',
-'download'   => '다운로드',
+'mimesearch'         => 'MIME 검색',
+'mimesearch-summary' => 'MIME 타입에 해당하는 파일을 검색합니다. MIME 값을 <tt>image/jpeg</tt> 형태로 입력해주세요.',
+'mimetype'           => 'MIME 종류:',
+'download'           => '다운로드',
 
 # Unwatched pages
 'unwatchedpages' => '주시되지 않는 문서 목록',
@@ -1446,7 +1458,9 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 
 # Unused templates
 'unusedtemplates'     => '사용하지 않는 틀 목록',
-'unusedtemplatestext' => '다른 문서에 사용되지 않는 틀을 모아 놓았습니다. 삭제하기 전에 쓰이지 않는지를 다시 한번 확인해 주세요.',
+'unusedtemplatestext' => '다른 문서에서 사용하지 않는 {{ns:template}} 네임스페이스 문서의 목록입니다.
+
+삭제하기 전에 사용 여부를 다시 확인해 주세요.',
 'unusedtemplateswlh'  => '다른 링크',
 
 # Random page
@@ -1551,6 +1565,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'unusedcategoriestext'    => '사용하지 않는 분류 문서들의 목록입니다.',
 'notargettitle'           => '해당하는 문서 없음',
 'notargettext'            => '기능을 수행할 목표 문서나 목표 사용자를 지정하지 않았습니다.',
+'nopagetitle'             => '해당 문서 없음',
 'pager-newer-n'           => '이전 $1개',
 'pager-older-n'           => '다음 $1개',
 
@@ -2215,9 +2230,10 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 # Metadata
 'nodublincore'      => '더블린 코어 RDF 메타데이터 기능은 비활성되어 있습니다.',
 'nocreativecommons' => '크리에이티브 커먼즈 RDF 메타데이터 기능은 비활성되어 있습니다.',
+'notacceptable'     => '클라이언트에서 인식 가능한 출력 포맷이 없습니다.',
 
 # Attribution
-'anonymous'        => '{{SITENAME}}의 익명 사용자',
+'anonymous'        => '{{SITENAME}} 익명 사용자',
 'siteuser'         => '{{SITENAME}} 사용자 $1',
 'lastmodifiedatby' => '이 문서는 $3에 의해 $2, $1에 마지막으로 바뀌었습니다.', # $1 date, $2 time, $3 user
 'othercontribs'    => '$1의 작업을 바탕으로 함.',
@@ -2376,6 +2392,7 @@ Variants for Chinese language
 'exif-gpslatituderef'      => '북위 또는 남위',
 'exif-gpslatitude'         => '위도',
 'exif-gpslongitude'        => '경도',
+'exif-gpsaltituderef'      => '고도 정보',
 'exif-gpsaltitude'         => '고도',
 'exif-gpstimestamp'        => 'GPS 시간 (원자 시계)',
 'exif-gpsstatus'           => '수신기 상태',
@@ -2466,6 +2483,7 @@ Variants for Chinese language
 'confirmemail_pending'     => '<div class="error">이미 확인 이메일을 보냈습니다. 계정을 최근에 만들었다면 이메일을 보내는 데에 몇 분이 걸릴 수 있으므로 잠시 후에 다시 확인해 주세요.</div>',
 'confirmemail_send'        => '인증 코드를 메일로 보내기',
 'confirmemail_sent'        => '인증 이메일을 보냈습니다.',
+'confirmemail_oncreate'    => '확인 이메일을 보냈습니다. 이 확인 과정은 로그인하는 데에 필요하지는 않지만, 위키 프로그램에서 제공하는 이메일 기능을 사용하기 위해서 필요합니다.',
 'confirmemail_sendfailed'  => '{{SITENAME}}에서 인증 이메일을 보낼 수 없습니다.
 이메일 주소를 잘못 입력했는지 확인해주세요.
 
@@ -2515,6 +2533,7 @@ $5
 # Multipage image navigation
 'imgmultipageprev' => '← 이전 문서',
 'imgmultipagenext' => '다음 문서 →',
+'imgmultigo'       => '이동',
 
 # Table pager
 'table_pager_next'         => '다음 문서',
@@ -2613,5 +2632,8 @@ $5
 'specialpages-group-pagetools'   => '문서 도구',
 'specialpages-group-wiki'        => '위키 정보와 도구',
 'specialpages-group-redirects'   => '넘겨주기 특수 문서',
+
+# Special:BlankPage
+'blankpage' => '빈 문서',
 
 );

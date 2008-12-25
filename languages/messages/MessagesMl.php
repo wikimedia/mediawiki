@@ -1042,7 +1042,7 @@ $3 അതിനു കാണിച്ചിരിക്കുന്ന കാര
 'action-read'       => 'ഈ താൾ വായിക്കുക',
 'action-edit'       => 'ഈ താൾ തിരുത്തുക',
 'action-createpage' => 'താളുകള്‍ നിര്‍മിക്കുക',
-'action-createtalk' => 'സംവാദം താളുകള്‍ നിര്‍മിക്കുക',
+'action-createtalk' => 'സംവാദ താളുകള്‍ നിര്‍മിക്കുക',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|മാറ്റം|മാറ്റങ്ങള്‍}}',

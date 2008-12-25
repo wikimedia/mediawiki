@@ -10,6 +10,11 @@
 $fallback8bitEncoding = 'windows-1256';
 
 $messages = array(
+# User preference toggles
+'tog-justify'         => 'پیراگراف ثابت کرو',
+'tog-hideminor'       => 'چھوٹیاں تبدیلیاں چھپاؤ',
+'tog-extendwatchlist' => 'نظر تھلے رکھے صفحے نوں کھلا کرو تاکہ اوہ تبدیلیاں جیڑیاں کم دے قابل نیں ویکھیاں جا سکن',
+
 # Dates
 'sun'           => 'اتوار',
 'mon'           => 'سوموار',
@@ -307,6 +312,16 @@ $messages = array(
 
 'grouppage-sysop' => '{{ns:project}}:ایڈمنسٹریٹر',
 
+# Rights
+'right-upload'        => 'فائل چڑہاؤ',
+'right-reupload'      => 'پہلاں دی لکھی ہوئی فائل دے اتے لکھو',
+'right-delete'        => 'صفحے مٹاؤ',
+'right-bigdelete'     => 'لمبیاں تاریخاں آلے صفحے مٹاؤ',
+'right-browsearchive' => 'مٹاۓ ہوۓ صفحے کھوجو',
+'right-undelete'      => 'مٹایا صفحہ واپس لیاو',
+'right-blockemail'    => 'ورتن آلے نوں ای میل پیجن توں روکو',
+'right-hideuser'      => 'لوکاں توں چھپاندے ہویاں اک ورتن آلے نوں روکو',
+
 # User rights log
 'rightslog' => 'ورتن والے دے حقاں دی لاگ',
 
@@ -331,6 +346,7 @@ $messages = array(
 'minoreditletter'                => 'چھوٹا کم',
 'newpageletter'                  => 'نواں',
 'boteditletter'                  => 'بوٹ',
+'rc_categories_any'              => 'کوئی',
 
 # Recent changes linked
 'recentchangeslinked'          => 'ملدیاں جلدیاں تبدیلیاں',
@@ -338,12 +354,21 @@ $messages = array(
 'recentchangeslinked-noresult' => 'جڑیاں صفحیاں چ دتے ہوۓ ویلے چ کوئی تبدیلیاں نہیں۔',
 'recentchangeslinked-summary'  => "اے اوناں تبدیلیاں دی لسٹ اے جیڑیاں تھوڑا چر پہلاں بنائیاں گئیاں اوناں صفحیاں تے جیڑے خاص صفحے تے جڑدے نے یا کسی خاص کیٹاگری دے ممبراں نوں۔<br />
 تواڈی [[Special:Watchlist|اکھ تھلے صفحے]] '''موٹے''' نیں۔",
+'recentchangeslinked-page'     => 'صفحے دا ناں:',
 
 # Upload
-'upload'        => 'فائل چڑھاؤ',
-'uploadbtn'     => 'فائل چڑھاؤ',
-'uploadlogpage' => 'اپلوڈ لاگ',
-'uploadedimage' => 'چڑھائی گئی"[[$1]]"',
+'upload'            => 'فائل چڑھاؤ',
+'uploadbtn'         => 'فائل چڑھاؤ',
+'reupload'          => 'دوبارہ چڑھاؤ',
+'reuploaddesc'      => 'فائل چڑانا چھڑو تے فائل چڑانے آلے فارم تے واپس ٹرو',
+'uploadnologin'     => 'لاگ ان نئیں ہوۓ',
+'uploaderror'       => 'فائل چڑاندیاں مسئلا ہویا اے',
+'uploadlogpage'     => 'اپلوڈ لاگ',
+'filename'          => 'فائل دا ناں',
+'filedesc'          => 'خلاصہ',
+'fileuploadsummary' => 'خلاصہ:',
+'filesource'        => 'ذریعہ:',
+'uploadedimage'     => 'چڑھائی گئی"[[$1]]"',
 
 # Special:FileList
 'imagelist' => 'فائل لسٹ',
@@ -544,17 +569,23 @@ $messages = array(
 'whatlinkshere-links' => '← تعلق',
 
 # Block/unblock
-'blockip'       => 'اس ورتن والے نو روکو',
-'ipboptions'    => 'دو کینٹے:2 hours,1 دن:1 day,3 دن:3 days,1 ہفتہ:1 week,2 ہفتے:2 weeks,1 مہینہ:1 month,3 مہینے:3 months,6 مہینے:6 months,1 سال:1 year,بے انت:infinite', # display1:time1,display2:time2,...
-'ipblocklist'   => 'بند کیتے گۓ آئی پی پتے تے ورتن والیاں دے ناں',
-'blocklink'     => 'روک',
-'unblocklink'   => 'روک ختم',
-'contribslink'  => 'حصے داری',
-'blocklogpage'  => 'لاگ روکو',
-'blocklogentry' => 'روک دتا گیا تے اے رکاوٹ دا ویلا $2 $3 مک جاۓ گا [[$1]]',
+'blockip'              => 'اس ورتن والے نو روکو',
+'ipboptions'           => 'دو کینٹے:2 hours,1 دن:1 day,3 دن:3 days,1 ہفتہ:1 week,2 ہفتے:2 weeks,1 مہینہ:1 month,3 مہینے:3 months,6 مہینے:6 months,1 سال:1 year,بے انت:infinite', # display1:time1,display2:time2,...
+'ipblocklist'          => 'بند کیتے گۓ آئی پی پتے تے ورتن والیاں دے ناں',
+'ipblocklist-username' => 'ورتن آلے دا ناں یا آئی پی پتہ:',
+'ipblocklist-submit'   => 'کھوجو',
+'infiniteblock'        => 'بے انت',
+'blocklink'            => 'روک',
+'unblocklink'          => 'روک ختم',
+'contribslink'         => 'حصے داری',
+'blocklogpage'         => 'لاگ روکو',
+'blocklogentry'        => 'روک دتا گیا تے اے رکاوٹ دا ویلا $2 $3 مک جاۓ گا [[$1]]',
+'ipb_already_blocked'  => '"$1" پہلاں توں ہی روکیا ہویا اے۔',
+'blockme'              => 'مینوں روکو',
+'proxyblocksuccess'    => 'ہوگیا۔',
 
 # Move page
-'movepagetext'     => "تھلے دتے گۓ فـارم نوں استعمال کرکے اس صفحہ دا ناں دوبارہ رکھیا جا سکدا اے، نال ہی اس نال جڑے تاریخچہ وی نۓ ناں نال جڑ جاۓ گی۔ اسدے بعد توں اس صفحے دا پرانا ناں ، نۓ ناں دی جانب -- ریڈائریکٹ کیتے گۓ صفحہ -- بن جاۓ گا۔ لیکن اے یاد رکھو کہ دوجے صفحیاں تے، پرانے صفحہ دی جانب دتے گۓ جوڑ تبدیل نئیں ہونگے؛ اس بات نوں یقینی بنانا ضروری اے کہ کوئی دوہرہ -- پلٹایا گیا جوڑ -- نہ رہ جاۓ۔ 
+'movepagetext'            => "تھلے دتے گۓ فـارم نوں استعمال کرکے اس صفحہ دا ناں دوبارہ رکھیا جا سکدا اے، نال ہی اس نال جڑے تاریخچہ وی نۓ ناں نال جڑ جاۓ گی۔ اسدے بعد توں اس صفحے دا پرانا ناں ، نۓ ناں دی جانب -- ریڈائریکٹ کیتے گۓ صفحہ -- بن جاۓ گا۔ لیکن اے یاد رکھو کہ دوجے صفحیاں تے، پرانے صفحہ دی جانب دتے گۓ جوڑ تبدیل نئیں ہونگے؛ اس بات نوں یقینی بنانا ضروری اے کہ کوئی دوہرہ -- پلٹایا گیا جوڑ -- نہ رہ جاۓ۔ 
 
 لہذا اے یقینی بنانا تواڈی ذمہ داری اے کہ سارے جوڑ ٹھیک صفحیاں دی جانب رہنمائی کردے رین۔
 
@@ -562,36 +593,44 @@ $messages = array(
 
 ''' خبردار '''
  کسی اہم تے مشہور صفحہ دے ناں دی تبدیلی، اچانک تے پریشانی آلی گل وی ہوسکدی اے اس لئی؛ تبدیلی توں پہلاں مہربانی کر کے یقین کرلو کہ تسی اسدے نتائج جاندے او۔",
-'movepagetalktext' => "ایس نال جڑیا ہویا گلاں باتاں آلا صفحہ خودبخود ہی ایدھے نال ٹر جاۓ گا
+'movepagetalktext'        => "ایس نال جڑیا ہویا گلاں باتاں آلا صفحہ خودبخود ہی ایدھے نال ٹر جاۓ گا
 '''اگر نئیں تے'''
 *اک لکھیا گیا گلاں باتاں والا صفحہ نۓ ناں توں پہلاں توں ہی موجود اے۔ 
 *تسی تھلے دتے گۓ ڈبے نوں مٹا دیو۔
 
 ایوجیاں مسئلیاں چ توانوں دوویں صفحیاں نوں آپے ہی ملانے ہوۓ گا اگر تسی چاندے او۔",
-'movearticle'      => 'صفحہ لے چلو:',
-'newtitle'         => 'نوے عنوان ول:',
-'move-watch'       => 'صفحے اکھ تھلے رکھو',
-'movepagebtn'      => 'صفحہ لے جاؤ',
-'pagemovedsub'     => 'لے جانا کامیاب ریا',
-'movepage-moved'   => '<big>\'\'\'"$1" نوں "$2" لے جایا گیا اے\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'    => 'اس ناں دا صفحہ یا تے پہلاں توں ہی موجود اے یا فیر جیڑا ناں تسی چنیا اے درست نہیں۔<br />
+'movearticle'             => 'صفحہ لے چلو:',
+'newtitle'                => 'نوے عنوان ول:',
+'move-watch'              => 'صفحے اکھ تھلے رکھو',
+'movepagebtn'             => 'صفحہ لے جاؤ',
+'pagemovedsub'            => 'لے جانا کامیاب ریا',
+'movepage-moved'          => '<big>\'\'\'"$1" نوں "$2" لے جایا گیا اے\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'           => 'اس ناں دا صفحہ یا تے پہلاں توں ہی موجود اے یا فیر جیڑا ناں تسی چنیا اے درست نہیں۔<br />
 کوئی دوجا ناں چنو۔',
-'talkexists'       => "'''اے صفحہ کامیابی دے نال ے جایا گیا مگر ایدا گلاں باتاں آلا صفحہ رنہیں لے جایا جا سکدا کیونکہ اک نیا اسی ناں نال موجود اے۔ ایناں نوں ہتھ نال ملا دیو۔'''",
-'movedto'          => 'لے جایا گیا',
-'movetalk'         => 'تبدیلی نال جڑیاں گلاں باتاں والا صفحہ',
-'1movedto2'        => '[[$1]] نوں لیجایا گیا [[$2]] تک',
-'movelogpage'      => 'ناں تبدیل کرن دا لاگ',
-'movereason'       => 'وجہ:',
-'revertmove'       => 'واپس',
+'talkexists'              => "'''اے صفحہ کامیابی دے نال ے جایا گیا مگر ایدا گلاں باتاں آلا صفحہ رنہیں لے جایا جا سکدا کیونکہ اک نیا اسی ناں نال موجود اے۔ ایناں نوں ہتھ نال ملا دیو۔'''",
+'movedto'                 => 'لے جایا گیا',
+'movetalk'                => 'تبدیلی نال جڑیاں گلاں باتاں والا صفحہ',
+'1movedto2'               => '[[$1]] نوں لیجایا گیا [[$2]] تک',
+'movelogpage'             => 'ناں تبدیل کرن دا لاگ',
+'movereason'              => 'وجہ:',
+'revertmove'              => 'واپس',
+'delete_and_move_confirm' => 'آہو، صفحہ مٹا دیو',
 
 # Export
-'export' => 'صفحے باہر پیجو',
+'export'            => 'صفحے باہر پیجو',
+'export-submit'     => 'برامد کرو',
+'export-addcattext' => 'اس ٹولی توں صفحے شامل کرو:',
+'export-addcat'     => 'شامل کرو',
+'export-download'   => 'فائل دے طور تے بچاؤ',
+'export-templates'  => 'سچہ شامل کرو',
 
 # Namespace 8 related
-'allmessages' => 'سسٹم سنیآ',
+'allmessages'     => 'سسٹم سنیآ',
+'allmessagesname' => 'ناں',
 
 # Thumbnails
 'thumbnail-more'  => 'وڈا کرو',
+'filemissing'     => 'فائل گواچی ہوئی اے',
 'thumbnail_error' => '$1 دی نکی مورت بناندیاں مسئلہ',
 
 # Import log
