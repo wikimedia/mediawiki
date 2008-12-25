@@ -917,8 +917,13 @@ END;
 	}
 
 	function printFooter() {
+		global $wgArticle;
+		// Under certain conditions, $wgArticle might not be an object which would cause a fatal error like this:
+		// Fatal error: Call to a member function getID() on a non-object in ../includes/Skin.php on line 1270
+		// To prevent this, we'll check first if $wgArticle is an object and if that's the case, then we'll load the page stats.
+		$stats = ( is_object( $wgArticle ) ? "<p>" . $this->pageStats() . "</p>\n" : '' );
 		return "<p>" .  $this->printSource() .
-			"</p>\n\n<p>" . $this->pageStats() . "</p>\n";
+			"</p>\n\n" . $stats;
 	}
 
 	/** overloaded by derived classes */
