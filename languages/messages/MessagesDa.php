@@ -646,8 +646,8 @@ Du har muligvis allerede skiftet din adgangskode eller anmodet om en ny midlerti
 'hr_tip'          => 'Horisontal linje (brug den sparsomt)',
 
 # Edit pages
-'summary'                          => 'Beskrivelse',
-'subject'                          => 'Emne/overskrift',
+'summary'                          => 'Beskrivelse:',
+'subject'                          => 'Emne/overskrift:',
 'minoredit'                        => 'Dette er en mindre ændring.',
 'watchthis'                        => 'Overvåg denne artikel',
 'savearticle'                      => 'Gem side',
@@ -659,8 +659,8 @@ Du har muligvis allerede skiftet din adgangskode eller anmodet om en ny midlerti
 'missingsummary'                   => "'''Bemærk:''' du har ikke angivet en redigeringsbeskrivelse. Hvis du atter trykker på „Gem“, gemmes ændringerne uden resume.",
 'missingcommenttext'               => 'Indtast venligst et resume.',
 'missingcommentheader'             => "'''BEMÆRK:''' du har ikke angivet en overskrift i feltet „Emne:“. Hvis du igen trykker på „Gem side“, gemmes bearbejdningen uden overskrift.",
-'summary-preview'                  => 'Forhåndsvisning af resumelinien',
-'subject-preview'                  => 'Forhåndsvisning af emnet',
+'summary-preview'                  => 'Forhåndsvisning af resumelinien:',
+'subject-preview'                  => 'Forhåndsvisning af emnet:',
 'blockedtitle'                     => 'Brugeren er blokeret',
 'blockedtext'                      => "<big>'''Dit brugernavn eller din IP-adresse er blevet blokeret.'''</big>
 
@@ -1031,7 +1031,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'userrights-editusergroup'    => 'Redigér brugergrupper',
 'saveusergroups'              => 'Gem brugergrupper',
 'userrights-groupsmember'     => 'Medlem af:',
-'userrights-groups-help'      => 'Du kan ændre denne brugers gruppermedlemsskaber::
+'userrights-groups-help'      => 'Du kan ændre denne brugers gruppermedlemsskaber:
 * Et markeret afkrydsningsfelt betyder at brugeren er medlen af den pågældende gruppe..
 * Et umarkeret felt betyder at brugeren ikke er medlem af gruppen.
 * En * betyder at du ikke kan fravælge gruppen, når den først er tilføjet og omvendt.',

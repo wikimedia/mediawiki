@@ -646,8 +646,8 @@ Potresti aver già cambiato correttamente la tua password oppure aver richiesto 
 'hr_tip'          => 'Linea orizzontale (usare con giudizio)',
 
 # Edit pages
-'summary'                          => 'Oggetto',
-'subject'                          => 'Argomento (intestazione)',
+'summary'                          => 'Oggetto:',
+'subject'                          => 'Argomento (intestazione):',
 'minoredit'                        => 'Questa è una modifica minore',
 'watchthis'                        => 'Aggiungi agli osservati speciali',
 'savearticle'                      => 'Salva la pagina',
@@ -659,8 +659,8 @@ Potresti aver già cambiato correttamente la tua password oppure aver richiesto 
 'missingsummary'                   => "'''Attenzione:''' non è stato specificato l'oggetto di questa modifica. Premendo di nuovo '''Salva la pagina''' la modifica verrà salvata con l'oggetto vuoto.",
 'missingcommenttext'               => 'Inserire un commento qui sotto.',
 'missingcommentheader'             => "'''Attenzione:''' Non è stata specificata l'intestazione di questo commento. Premendo di nuovo '''Salva la pagina''' la modifica verrà salvata senza intestazione.",
-'summary-preview'                  => 'Anteprima oggetto',
-'subject-preview'                  => 'Anteprima oggetto/intestazione',
+'summary-preview'                  => 'Anteprima oggetto:',
+'subject-preview'                  => 'Anteprima oggetto/intestazione:',
 'blockedtitle'                     => 'Utente bloccato.',
 'blockedtext'                      => "<big>'''Questo nome utente o indirizzo IP sono stati bloccati.'''</big>
 

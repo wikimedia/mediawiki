@@ -444,8 +444,8 @@ $2',
 'hr_tip'          => '橫線 (小聲使用)',
 
 # Edit pages
-'summary'                   => '摘要',
-'subject'                   => '主題/頭條',
+'summary'                   => '摘要:',
+'subject'                   => '主題/頭條:',
 'minoredit'                 => '箇係隻細修改',
 'watchthis'                 => '眏到箇頁',
 'savearticle'               => '存到著',
@@ -457,8 +457,8 @@ $2',
 'missingsummary'            => "'''提示:''' 倷冇提供編寫摘要。要係倷再按係保存嗰話，倷保存嗰編輯就會冇編輯摘要。",
 'missingcommenttext'        => '請到底下評論。',
 'missingcommentheader'      => "'''提示:''' 倷嗰評論冇提供標題。要係倷再按係保存嗰話，倷保存嗰編輯就會冇標題。",
-'summary-preview'           => '摘要預覽',
-'subject-preview'           => '主題/頭條預覽',
+'summary-preview'           => '摘要預覽:',
+'subject-preview'           => '主題/頭條預覽:',
 'blockedtitle'              => '用戶封到嘞',
 'blockedtext'               => "<big>倷嗰用戶名或IP地址拕$1封到嘞。</big>
 

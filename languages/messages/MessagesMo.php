@@ -89,7 +89,7 @@ $messages = array(
 'userlogout' => 'Ынкиде сесиуня',
 
 # Edit pages
-'summary'     => 'Резумат',
+'summary'     => 'Резумат:',
 'watchthis'   => 'Привеште ачастэ паӂинэ',
 'showpreview' => 'Аратэ превизуализаре',
 

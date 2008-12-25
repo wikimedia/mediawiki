@@ -496,8 +496,8 @@ Ku taa pruukjanimi om luud kogõmaldaq, olõ-i sul vaia taast sõnomist vällä 
 'hr_tip'          => 'Horisontaaljuun',
 
 # Edit pages
-'summary'                   => 'Kokkovõtõq',
-'subject'                   => 'Päälkiri',
+'summary'                   => 'Kokkovõtõq:',
+'subject'                   => 'Päälkiri:',
 'minoredit'                 => 'Taa om väiku parandus',
 'watchthis'                 => 'Kaeq taa lehe perrä',
 'savearticle'               => 'Pästäq',
@@ -509,8 +509,8 @@ Ku taa pruukjanimi om luud kogõmaldaq, olõ-i sul vaia taast sõnomist vällä 
 'missingsummary'            => "'''Miildetulõtus:'''sa olõ-i kirotanuq uma toimõndamisõ kokkovõtõt. Ku klõpsahtat viil kõrra nuppi Pästäq, sis pästetäs su toimõndus ilma kokkovõttõldaq.",
 'missingcommenttext'        => 'Olõq hää, kirodaq kokkovõtõq.',
 'missingcommentheader'      => 'Sa olõ-i andnuq umalõ kokkovõttõlõ päälkirjä. Ku klõpsahtat nuppi <em>Pästäq</em>, pästetäs toimõndus ilma päälkiräldä.',
-'summary-preview'           => 'Kokkovõttõ kaeminõ',
-'subject-preview'           => 'Päälkirä kaeminõ',
+'summary-preview'           => 'Kokkovõttõ kaeminõ:',
+'subject-preview'           => 'Päälkirä kaeminõ:',
 'blockedtitle'              => 'Pruukja om kinniq peet',
 'blockedtext'               => "<big>'''Su pruukjanimi vai puutri võrgoaadrõs om kinniq pant.'''</big>
 

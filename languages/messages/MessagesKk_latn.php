@@ -864,8 +864,8 @@ Mümkin qupïya söziñizdi aldaqaşan sätti özgertken bolarsız nemese jaña 
 'hr_tip'          => 'Dereleý sızıq (ünemdi qoldanıñız)',
 
 # Edit pages
-'summary'                          => 'Tüýindemesi',
-'subject'                          => 'Taqırıbı/bas jolı',
+'summary'                          => 'Tüýindemesi:',
+'subject'                          => 'Taqırıbı/bas jolı:',
 'minoredit'                        => 'Bul şağın öñdeme',
 'watchthis'                        => 'Betti baqılaw',
 'savearticle'                      => 'Betti saqta!',
@@ -880,8 +880,8 @@ IP mekenjaýıñız bul bettiñ tüzetw tarïxında jazılıp alınadı.",
 'missingcommenttext'               => 'Mändemeñizdi tömende engiziñiz.',
 'missingcommentheader'             => "'''Eskertpe:''' Bul mändemege taqırıp/basjol jetistirmepsiz.
 Eger tağı da Saqtaw tüýmesin nuqısañız, öñdemeñiz solsız saqtaladı.",
-'summary-preview'                  => 'Qısqaşa mazmundamasın qarap şığw',
-'subject-preview'                  => 'Taqırıbın/bas jolın qarap şığw',
+'summary-preview'                  => 'Qısqaşa mazmundamasın qarap şığw:',
+'subject-preview'                  => 'Taqırıbın/bas jolın qarap şığw:',
 'blockedtitle'                     => 'Qatıswşı buğattalğan',
 'blockedtext'                      => "<big>'''Qatıswşı atıñız ne IP mekenjaýıñız buğattalğan.'''</big>
 

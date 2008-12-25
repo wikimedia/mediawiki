@@ -601,8 +601,8 @@ Snano sy swoje hesło hižo wuspěšnje změnił abo nowe nachwilne hesło poža
 'hr_tip'          => 'Wodoruna linija (zrědka wužiwać!)',
 
 # Edit pages
-'summary'                          => 'Zjeće',
-'subject'                          => 'Tema/Nadpismo',
+'summary'                          => 'Zjeće:',
+'subject'                          => 'Tema/Nadpismo:',
 'minoredit'                        => 'Snadna změna',
 'watchthis'                        => 'Stronu wobkedźbować',
 'savearticle'                      => 'Składować',
@@ -614,8 +614,8 @@ Snano sy swoje hesło hižo wuspěšnje změnił abo nowe nachwilne hesło poža
 'missingsummary'                   => '<b>Kedźbu:</b> Njejsy žane zjeće zapodał. Jeli hišće raz na „Składować” kliknješ so twoje změny bjez komentara składuja.',
 'missingcommenttext'               => 'Prošu zapodaj zjeće.',
 'missingcommentheader'             => '<b>Kedźbu:</b> Njejsy nadpis za tutón komentar podał. Jeli na „Składować” kliknješ, składuje so twoja změna bjez nadpisa.',
-'summary-preview'                  => 'Přehlad zjeća',
-'subject-preview'                  => 'Přehlad temy',
+'summary-preview'                  => 'Přehlad zjeća:',
+'subject-preview'                  => 'Přehlad temy:',
 'blockedtitle'                     => 'Wužiwar je zablokowany',
 'blockedtext'                      => "<big>'''Twoje wužiwarske mjeno abo twoja IP-adresa bu zablokowane.'''</big>
 

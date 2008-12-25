@@ -363,8 +363,8 @@ Du geavaheaddjidovddaldat lea dál anus.
 'hr_tip'          => 'Láskkosárggis',
 
 # Edit pages
-'summary'                  => 'Čoahkkáigeassu',
-'subject'                  => 'Fáddá',
+'summary'                  => 'Čoahkkáigeassu:',
+'subject'                  => 'Fáddá:',
 'minoredit'                => 'Dát lea unna rievdadus',
 'watchthis'                => 'Lasit čuovvunlistui',
 'savearticle'              => 'Vurke siiddu',
@@ -376,8 +376,8 @@ Du geavaheaddjidovddaldat lea dál anus.
 'missingsummary'           => 'It leat čállán čoahkkáigeasu. Jus válljet Vurke ođđasit, de rievdadusat maid ráhkadit vurkejuvvo čoahkkáigeasuhaga.',
 'missingcommenttext'       => 'Čále čoahkkáigeasu vuollái.',
 'missingcommentheader'     => 'It leat čállán bajilčállaga du oaivilii. Vállje <em>Vurke</em>, jus it hálit čállit bajilčállaga.',
-'summary-preview'          => 'Čoahkkáigeasu ovdalgihtiigeahččan',
-'subject-preview'          => 'Bájilčállaga ovdalgihtiigeahččan',
+'summary-preview'          => 'Čoahkkáigeasu ovdalgihtiigeahččan:',
+'subject-preview'          => 'Bájilčállaga ovdalgihtiigeahččan:',
 'blockedtitle'             => 'Geavaheaddji lea cakkastallojuvvon',
 'blockedoriginalsource'    => 'Siiddu ”$1” prográmmagálvu:',
 'blockededitsource'        => 'Du rievdadusat siidui ”$1”:',

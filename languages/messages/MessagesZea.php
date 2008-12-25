@@ -502,8 +502,8 @@ Neheer dit bericht as deêze gebruker zonder joe medeweten is anemikt.',
 'hr_tip'          => 'Horizontaele lien (gebruuk spaerzaem)',
 
 # Edit pages
-'summary'                   => 'Saemenvatting',
-'subject'                   => 'Onderwerp/kop',
+'summary'                   => 'Saemenvatting:',
+'subject'                   => 'Onderwerp/kop:',
 'minoredit'                 => 'Dit is een kleine wieziging',
 'watchthis'                 => 'Volg deêze bladzie',
 'savearticle'               => 'Bewaer bladzie',
@@ -515,8 +515,8 @@ Neheer dit bericht as deêze gebruker zonder joe medeweten is anemikt.',
 'missingsummary'            => "'''Herinnerieng:''' je ei hin saemenvattieng opeheven voe je bewerkieng. A je nog een keêr op ''Pagina opslaen'' klik wor de bewerkieng zonder saemenvattieng opeslogen.",
 'missingcommenttext'        => 'Plek jen opmerkieng asjeblieft ieronder.',
 'missingcommentheader'      => "'''Let op:''' Je ei hin onderwerp/kop voe deêze opmerkieng opeheven. A je opnieuw op \"opslaen\" klik, wor je wieziging zonder een onderwerp/kop opeslogen.",
-'summary-preview'           => 'Saemenvattieng naekieken',
-'subject-preview'           => 'Naekieken onderwerp/kop',
+'summary-preview'           => 'Saemenvattieng naekieken:',
+'subject-preview'           => 'Naekieken onderwerp/kop:',
 'blockedtitle'              => 'Gebruker is geblokkeerd',
 'blockedtext'               => "<big>'''Je gebruker of IP-adres is eblokkeerd.'''</big>
 

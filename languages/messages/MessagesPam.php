@@ -483,8 +483,8 @@ Mapaliaring melaus na ing pamanalili mung password, o mekapaniad na kang bayung 
 'hr_tip'          => 'Gulis a pakera (e dapat paneng gagamitan)',
 
 # Edit pages
-'summary'                   => 'Sampulung (Summary)',
-'subject'                   => 'Paksa/pamagat (headline)',
+'summary'                   => 'Sampulung (Summary):',
+'subject'                   => 'Paksa/pamagat (headline):',
 'minoredit'                 => 'Malati yang edit ini',
 'watchthis'                 => 'Banten ya ing bulung a ini',
 'savearticle'               => 'I-save ya ing bulung',
@@ -498,8 +498,8 @@ Nung i-click meng pasibayu ing Save, ma-save ya ing kekang in-edit a alang anti 
 'missingcommenttext'        => 'Pakisulat me ing kekang komentu/puna king lalam.',
 'missingcommentheader'      => "'''Kapabaluan:''' Ala kang binieng paksa/pamagat para kaniting komentu.
 Nung i-click meng pasibayu ing Save, ma-save ya ing kekang i-edit a yalang anti kaniti.",
-'summary-preview'           => 'Preview ning sampulung (summary preview)',
-'subject-preview'           => 'Preview ning paksa/pamagat',
+'summary-preview'           => 'Preview ning sampulung (summary preview):',
+'subject-preview'           => 'Preview ning paksa/pamagat:',
 'blockedtitle'              => 'Ing talagamit mesabat ya',
 'blockedtext'               => "<big>'''Mesabat ya ing kekang lagiung talagamit (user name) o IP address.'''</big>
 

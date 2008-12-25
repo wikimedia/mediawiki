@@ -565,8 +565,8 @@ Kanol nedemön penedi at, üf jafam kala at binon pöl.',
 'hr_tip'          => 'Lien horitätik (no gebolös tu suvo)',
 
 # Edit pages
-'summary'                   => 'Plän brefik',
-'subject'                   => 'Subyet/tiäd',
+'summary'                   => 'Plän brefik:',
+'subject'                   => 'Subyet/tiäd:',
 'minoredit'                 => 'Votükam pülik',
 'watchthis'                 => 'Galädolöd padi at',
 'savearticle'               => 'Dakipolöd padi',
@@ -578,8 +578,8 @@ Kanol nedemön penedi at, üf jafam kala at binon pöl.',
 'missingsummary'            => "'''Noet:''' No epenol redakamipläni. If ovälol dönu knopi: Dakipolöd, redakam olik podakipon nen plän.",
 'missingcommenttext'        => 'Penolös, begö! küpeti dono.',
 'missingcommentheader'      => "'''Noet:''' No epenol yegädi/tiädi küpete at. If ovälol dönu knopi: Dakipolöd, redakam olik podakipon nen on.",
-'summary-preview'           => 'Büologed brefik',
-'subject-preview'           => 'Büologed yegäda/diläda',
+'summary-preview'           => 'Büologed brefik:',
+'subject-preview'           => 'Büologed yegäda/diläda:',
 'blockedtitle'              => 'Geban peblokon',
 'blockedtext'               => "<big>'''Gebananam u ladet-IP olik(s) peblokon(s).'''</big>
 

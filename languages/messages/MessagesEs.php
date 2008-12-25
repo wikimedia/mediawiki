@@ -666,8 +666,8 @@ Puede que ya hayas cambiado la contraseña o que hayas pedido una temporal.',
 'hr_tip'          => 'Línea horizontal (utilícela con moderación)',
 
 # Edit pages
-'summary'                          => 'Resumen',
-'subject'                          => 'Tema/título',
+'summary'                          => 'Resumen:',
+'subject'                          => 'Tema/título:',
 'minoredit'                        => 'Esta es una edición menor',
 'watchthis'                        => 'Vigilar este artículo',
 'savearticle'                      => 'Grabar la página',
@@ -679,8 +679,8 @@ Puede que ya hayas cambiado la contraseña o que hayas pedido una temporal.',
 'missingsummary'                   => "'''Atención:''' No has escrito un resumen de edición. Si haces clic nuevamente en «{{MediaWiki:Savearticle}}» tu edición se grabará sin él.",
 'missingcommenttext'               => 'Por favor introduce texto debajo.',
 'missingcommentheader'             => "'''Atención:''' No has escrito un título para este comentario. Si haces clic nuevamente en Grabar tu edición se grabará sin él.",
-'summary-preview'                  => 'Previsualización del resumen',
-'subject-preview'                  => 'Previsualización del tema/título',
+'summary-preview'                  => 'Previsualización del resumen:',
+'subject-preview'                  => 'Previsualización del tema/título:',
 'blockedtitle'                     => 'El usuario está bloqueado',
 'blockedtext'                      => "<big>'''Tu nombre de usuario o dirección IP ha sido bloqueada.'''</big>
 

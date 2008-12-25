@@ -500,8 +500,8 @@ In dän Fal dät Benutserkonto uut Fersjoon anlaid wuude, koast du disse Ätterg
 'hr_tip'          => 'Horizontoale Lienje (spoarsoam ferweende)',
 
 # Edit pages
-'summary'                          => 'Touhoopefoatenge',
-'subject'                          => 'Themoa',
+'summary'                          => 'Touhoopefoatenge:',
+'subject'                          => 'Themoa:',
 'minoredit'                        => 'Bloot litje Seeken wuuden ferannerd',
 'watchthis'                        => 'Disse Siede beooboachtje',
 'savearticle'                      => 'Siede spiekerje',
@@ -513,8 +513,8 @@ In dän Fal dät Benutserkonto uut Fersjoon anlaid wuude, koast du disse Ätterg
 'missingsummary'                   => "'''Waiwiesenge:''' Du hääst neen Touhoopefoatenge anroat. Wan du fonnäien ap „Siede spiekerje“ klikst, wäd dien Annerenge sunner Touhoopefoatenge uurnuumen.",
 'missingcommenttext'               => 'Reek jädden ne Touhoopefoatenge ien.',
 'missingcommentheader'             => "'''OACHTENGE:''' Du hääst neen Uurschrift in dät Fäild „Beträft:“ ienroat. Wan du fonnäien ap „Siede spiekerje“ klikst, wäd dien Beoarbaidenge sunner Uurschrift spiekerd.",
-'summary-preview'                  => 'Foarschau fon ju Touhoopefoatengsriege',
-'subject-preview'                  => 'Themoa bekiekje',
+'summary-preview'                  => 'Foarschau fon ju Touhoopefoatengsriege:',
+'subject-preview'                  => 'Themoa bekiekje:',
 'blockedtitle'                     => 'Benutser is blokkierd',
 'blockedtext'                      => '<big>\'\'\'Din Benutsernoome of dien IP-Adrässe wuud fon $1 speerd.\'\'\'</big> 
 

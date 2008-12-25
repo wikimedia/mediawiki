@@ -123,8 +123,8 @@ $messages = array(
 'userlogout' => 'Logaut',
 
 # Edit pages
-'summary'           => 'Liklik toksave bilong senis',
-'subject'           => 'Nem bilong pes (o hap bilong pes)',
+'summary'           => 'Liklik toksave bilong senis:',
+'subject'           => 'Nem bilong pes (o hap bilong pes):',
 'minoredit'         => 'Dispela emi liklik senis',
 'watchthis'         => 'Putim dispela pes long lukautbuk bilong mi',
 'savearticle'       => 'Raitim pes',
@@ -132,8 +132,8 @@ $messages = array(
 'showpreview'       => 'Soim pes wantaim senis (pastaim long raitim)',
 'showlivepreview'   => 'Soim senis kwiktaim taim mi wokim (pastaim long raitim)',
 'showdiff'          => 'Soim ol senis',
-'summary-preview'   => 'Toksave bilong senis bai luk olsem',
-'subject-preview'   => 'Nem bilong pes (o hap bilong pes) bai olsem',
+'summary-preview'   => 'Toksave bilong senis bai luk olsem:',
+'subject-preview'   => 'Nem bilong pes (o hap bilong pes) bai olsem:',
 'copyrightwarning'  => 'Toksave: olgeta senis yu wokim long long {{SITENAME}} bai stap ananit long tokorait $2 (lukim $1 long painimaut moa long dispela). Sapos yu no laikim narapela manmeri long senisim olgeta, o salim dispela i go long ol kainkain hap, noken raitim long hia.<br />
 Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap we lo i tok olsem i orait long kisim (Tok Inglis: <i>public domain</i>).
 <strong>YU NOKEN RAITIM WANPELA SAMTING SAPOS YU NO WOKIM YU YET, O YU KISIM TOKORAIT LONG PUTIM LONG HIA!</strong>',

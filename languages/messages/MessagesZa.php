@@ -71,7 +71,7 @@ $messages = array(
 'username'    => 'Ciu bouxdeiz:',
 
 # Edit pages
-'summary'            => 'Saegmangj',
+'summary'            => 'Saegmangj:',
 'minoredit'          => 'Di-nej gaij noix',
 'watchthis'          => 'Demq mae-nej',
 'savearticle'        => 'Zonzdiuz mae-nej',

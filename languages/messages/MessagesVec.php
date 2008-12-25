@@ -610,8 +610,8 @@ Forse te ghè zà canbià la to password o te ghè domandà na password tenporan
 'hr_tip'          => 'Linea orizontal (dòparela con giudizio)',
 
 # Edit pages
-'summary'                          => 'Ogeto',
-'subject'                          => 'Argomento (intestazion)',
+'summary'                          => 'Ogeto:',
+'subject'                          => 'Argomento (intestazion):',
 'minoredit'                        => "Sta quà l'è na modifica minore",
 'watchthis'                        => "Tegni d'ocio sta voçe",
 'savearticle'                      => 'Salva la pàxena',
@@ -623,8 +623,8 @@ Forse te ghè zà canbià la to password o te ghè domandà na password tenporan
 'missingsummary'                   => "'''Ocio:''' No te ghè indicà l'ogeto de la modifica. Macando de novo 'Salva la pagina' la modifica la vegnerà con l'ogeto vodo.",
 'missingcommenttext'               => 'Inserissi un comento qua soto.',
 'missingcommentheader'             => "'''Ocio:''' No te ghè specificà l'intestazion de sto commento. Macando de novo '''Salva la pagina''' la modifica la vegnarà salvà senza intestazion.",
-'summary-preview'                  => 'Anteprima ogeto',
-'subject-preview'                  => 'Anteprima ogeto/intestazion',
+'summary-preview'                  => 'Anteprima ogeto:',
+'subject-preview'                  => 'Anteprima ogeto/intestazion:',
 'blockedtitle'                     => 'Utente blocà',
 'blockedtext'                      => "<big>'''Sto nome utente o indirizo IP el xe stà blocà.'''</big>
 

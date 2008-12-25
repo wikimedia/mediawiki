@@ -508,8 +508,8 @@ $messages = array(
 'hr_tip'          => 'څنډيزه ليکه (ددې په کارولو کې سپما وکړۍ)',
 
 # Edit pages
-'summary'                  => 'لنډيز',
-'subject'                  => 'سکالو/سرليک',
+'summary'                  => 'لنډيز:',
+'subject'                  => 'سکالو/سرليک:',
 'minoredit'                => 'دا يوه وړوکې سمادېدنه ده',
 'watchthis'                => 'همدا مخ کتل',
 'savearticle'              => 'مخ خوندي کول',
@@ -519,8 +519,8 @@ $messages = array(
 'showdiff'                 => 'بدلونونه ښکاره کول',
 'anoneditwarning'          => "'''يادونه:''' تاسو غونډال ته نه ياست ننوتي. ستاسو IP پته به د دې مخ د سمادولو په پېښليک کې ثبت شي.",
 'missingcommenttext'       => 'لطفاً تبصره لاندې وليکۍ.',
-'summary-preview'          => 'د لنډيز مخکتنه',
-'subject-preview'          => 'موضوع/سرليک مخکتنه',
+'summary-preview'          => 'د لنډيز مخکتنه:',
+'subject-preview'          => 'موضوع/سرليک مخکتنه:',
 'blockedtitle'             => 'د کارونکي مخه نيول شوې',
 'blockedtext'              => "<big>'''ستاسو د کارن-نوم يا آی پي پتې مخنيوی شوی.'''</big>
 

@@ -247,7 +247,7 @@ $messages = array(
 'sig_tip'         => 'Imzoingiz va sana',
 
 # Edit pages
-'summary'                => 'Qisqa izoh',
+'summary'                => 'Qisqa izoh:',
 'minoredit'              => 'Bu kichik tahrir',
 'watchthis'              => 'Sahifani kuzatish',
 'savearticle'            => 'Saqlash',

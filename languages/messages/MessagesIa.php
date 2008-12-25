@@ -641,8 +641,8 @@ Es possibile que tu ha ja cambiate tu contrasigno o requestate un nove contrasig
 'hr_tip'          => 'Linea horizontal (usa con moderation)',
 
 # Edit pages
-'summary'                          => 'Summario',
-'subject'                          => 'Subjecto/titulo',
+'summary'                          => 'Summario:',
+'subject'                          => 'Subjecto/titulo:',
 'minoredit'                        => 'Isto es un modification minor',
 'watchthis'                        => 'Observar iste pagina',
 'savearticle'                      => 'Publicar articulo',
@@ -657,8 +657,8 @@ Si tu clicca super Publicar de novo, le modification essera publicate sin summar
 'missingcommenttext'               => 'Per favor entra un commento infra.',
 'missingcommentheader'             => "'''Memento:''' Tu non entrava un subjecto/titulo pro iste commento.
 Si tu clicca super Publicar de novo, tu commento essera publicate sin subjecto/titulo.",
-'summary-preview'                  => 'Previsualisation del summario',
-'subject-preview'                  => 'Previsualisation del subjecto/titulo',
+'summary-preview'                  => 'Previsualisation del summario:',
+'subject-preview'                  => 'Previsualisation del subjecto/titulo:',
 'blockedtitle'                     => 'Le usator es blocate',
 'blockedtext'                      => "<big>'''Tu nomine de usator o adresse IP ha essite blocate.'''</big>
 

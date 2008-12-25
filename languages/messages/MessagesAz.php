@@ -334,8 +334,8 @@ Xahiş edirik, e-məktubu aldıqdan sonra yenidən daxil olasınız.',
 'hr_tip'          => 'Horizontal cizgi',
 
 # Edit pages
-'summary'                  => 'Qısa məzmun',
-'subject'                  => 'Mövzu/başlıq',
+'summary'                  => 'Qısa məzmun:',
+'subject'                  => 'Mövzu/başlıq:',
 'minoredit'                => 'Kiçik redaktə',
 'watchthis'                => 'Bu səhifəni izlə',
 'savearticle'              => 'Səhifəni qeyd et',

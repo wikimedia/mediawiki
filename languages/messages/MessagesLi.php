@@ -616,8 +616,8 @@ Meugelik höbs doe dien wachwaord al gewiezig of 'n nuuj tiedelik wachwaord aang
 'hr_tip'          => 'Horizontaal lien (gebroek spaarzaam)',
 
 # Edit pages
-'summary'                          => 'Samevatting',
-'subject'                          => 'Ongerwerp/kop',
+'summary'                          => 'Samevatting:',
+'subject'                          => 'Ongerwerp/kop:',
 'minoredit'                        => "Dit is 'n klein verangering",
 'watchthis'                        => 'Volg dees pazjena',
 'savearticle'                      => 'Pazjena opsjlaon',
@@ -629,8 +629,8 @@ Meugelik höbs doe dien wachwaord al gewiezig of 'n nuuj tiedelik wachwaord aang
 'missingsummary'                   => "'''Herinnering:''' Doe höbs gén samevatting opgegaeve veur dien bewèrking. Esse nogmaals op ''Pazjena opslaon'' kliks wörd de bewèrking zonger samevatting opgeslage.",
 'missingcommenttext'               => 'Plaats dien opmèrking hiej onger, a.u.b.',
 'missingcommentheader'             => "'''Let op:''' Doe höbs gén ongerwerp/kop veur deze opmèrking opgegaeve. Esse oppernuuj op \"opslaon\" kliks, wörd dien verangering zonger ongerwerp/kop opgeslage.",
-'summary-preview'                  => 'Naokieke samevatting',
-'subject-preview'                  => 'Naokieke ongerwerp/kop',
+'summary-preview'                  => 'Naokieke samevatting:',
+'subject-preview'                  => 'Naokieke ongerwerp/kop:',
 'blockedtitle'                     => 'Gebroeker is geblokkeerd',
 'blockedtext'                      => "<big>'''Dien gebroekersaccount of IP-adres is geblokkeerd.'''</big>
 

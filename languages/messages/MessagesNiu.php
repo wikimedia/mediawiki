@@ -110,7 +110,7 @@ Ua nimo ke hiki e haau tau manako {{SITENAME}}.',
 'email'                   => 'Meli hila',
 
 # Edit pages
-'summary'            => 'Fakakatoakatoa',
+'summary'            => 'Fakakatoakatoa:',
 'minoredit'          => 'Ko e fakahakohako fakatote',
 'watchthis'          => 'Onoono e lau e',
 'savearticle'        => 'Taofi e lau',

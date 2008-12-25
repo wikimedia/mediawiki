@@ -602,8 +602,8 @@ Puet estar que ya aiga cambeato a suya palabra de paso u aiga demandato una nueb
 'hr_tip'          => 'Linia orizontal (en faiga un emplego amoderau)',
 
 # Edit pages
-'summary'                          => 'Resumen',
-'subject'                          => 'Tema/títol',
+'summary'                          => 'Resumen:',
+'subject'                          => 'Tema/títol:',
 'minoredit'                        => 'He feito una edizión menor',
 'watchthis'                        => 'Cosirar ista pachina',
 'savearticle'                      => 'Alzar pachina',
@@ -615,8 +615,8 @@ Puet estar que ya aiga cambeato a suya palabra de paso u aiga demandato una nueb
 'missingsummary'                   => "'''Pare cuenta:''' No ha escrito garra resumen d'edizión. Si fa clic nuebament en «{{MediaWiki:Savearticle}}» a suya edizión se grabará sin resumen.",
 'missingcommenttext'               => 'Por fabor, escriba o testo astí baxo.',
 'missingcommentheader'             => "'''Pare cuenta:''' No ha escrito garra títol ta iste comentario. Si puncha un atra bez en con a rateta en \"Alzar\", a suya edizión se grabará sin títol.",
-'summary-preview'                  => "Beyer ambiesta prebia d'o resumen",
-'subject-preview'                  => "Ambiesta prebia d'o tema/títol",
+'summary-preview'                  => "Beyer ambiesta prebia d'o resumen:",
+'subject-preview'                  => "Ambiesta prebia d'o tema/títol:",
 'blockedtitle'                     => "L'usuario ye bloqueyato",
 'blockedtext'                      => "<big>'''O suyo nombre d'usuario u adreza IP ye bloqueyato.'''</big>
 

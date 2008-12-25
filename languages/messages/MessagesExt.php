@@ -473,8 +473,8 @@ Si s\'á criau la cuenta ebiu a angún marru, inora esti mensahi.',
 'hr_tip'          => 'Línia orizontal (deseparaol)',
 
 # Edit pages
-'summary'                          => 'Síntesis',
-'subject'                          => 'Tema/entítulu',
+'summary'                          => 'Síntesis:',
+'subject'                          => 'Tema/entítulu:',
 'minoredit'                        => 'Esta es una eición chiquenina',
 'watchthis'                        => 'Vehilal esta páhina',
 'savearticle'                      => 'Emburacal páhina',
@@ -486,8 +486,8 @@ Si s\'á criau la cuenta ebiu a angún marru, inora esti mensahi.',
 'missingsummary'                   => "'''Atención:''' Nu as escrebiu una síntesis al tentu la tu eición. Si pursas otra vezi sobri «{{MediaWiki:Savearticle}}» la tu eición s´emburacará sin él.",
 'missingcommenttext'               => 'Pol favol, escrebi un testu embahu.',
 'missingcommentheader'             => "'''Atención:''' Nu as escrebiu un entítulu pal tu comentáriu. Si güervis a pursal sobri \"Emburacal\", s'emburacará sin él.",
-'summary-preview'                  => 'Previsoreal síntesis',
-'subject-preview'                  => 'Previsoreal tema/entítulu',
+'summary-preview'                  => 'Previsoreal síntesis:',
+'subject-preview'                  => 'Previsoreal tema/entítulu:',
 'blockedtitle'                     => 'Esti usuáriu está atarugau',
 'blockedtext'                      => "<big>'''El tu nombri d'usuáriu/direción IP está atarugau/á.'''</big>
 

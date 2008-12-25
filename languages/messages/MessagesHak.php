@@ -423,8 +423,8 @@ Tshòng-tón pit-sî chhai $1-ke sṳ-ngièn yî-ha.',
 'hr_tip'          => 'Súi-phiàng sien  (séu-sîm sṳ́-yung)',
 
 # Edit pages
-'summary'                   => 'Chak-yeu',
-'subject'                   => 'Chú-thì/phêu-thì',
+'summary'                   => 'Chak-yeu:',
+'subject'                   => 'Chú-thì/phêu-thì:',
 'minoredit'                 => 'Liá-he yit-ke séu siû-kói',
 'watchthis'                 => 'Kam-sṳ pún-chông',
 'savearticle'               => 'Pó-chhùn pún-chông',
@@ -436,8 +436,8 @@ Tshòng-tón pit-sî chhai $1-ke sṳ-ngièn yî-ha.',
 'missingsummary'            => "'''Thì-sṳ:''' Kgì hàn-mò thì-kiûng yit-ke phiên-siá chak-yeu. Kó-yèn ngì chai-chhṳ tân-kit tú-chhùn, ngì-ke phiên-siá chiông put-tai phiên-siá chak-yeu tú-chhùn.",
 'missingcommenttext'        => 'Chhiáng chhai ha-mien sû-ngi̍p phìn-lun.',
 'missingcommentheader'      => "'''Thì-sṳ:''' ngì hàn-mò vi-chhṳ́ phìn-lun thì-kiûng yit-ke phêu-thì. Kó-yèn ngì chai-chhṳ tân-kit tú-chhùn, ngì-ke phiên-siá chiông put-tai phêu-thì tú-chhùn.",
-'summary-preview'           => 'Chak-yeu yi-ko',
-'subject-preview'           => 'Chú-thì/phêu-thì yi-ko',
+'summary-preview'           => 'Chak-yeu yi-ko:',
+'subject-preview'           => 'Chú-thì/phêu-thì yi-ko:',
 'blockedtitle'              => 'Yung-fu pûn chhà-fûng',
 'blockedtext'               => "<big>Ngì-ke yung-fu-miàng fe̍t-chá IP thi-tiám yí-kîn pûn $1 chhà-fûng.</big>
 

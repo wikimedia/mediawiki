@@ -279,7 +279,7 @@ $messages = array(
 'loginlanguagelabel'      => 'भाषा: $1',
 
 # Edit pages
-'summary'       => 'सारांश',
+'summary'       => 'सारांश:',
 'savearticle'   => 'पौ मुंकादिसं',
 'preview'       => 'स्वयादिसं',
 'newarticle'    => '(न्हु)',

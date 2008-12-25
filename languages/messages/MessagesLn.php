@@ -165,8 +165,8 @@ $messages = array(
 'headline_tip'    => 'Litɛ́mɛ ya emeko 2',
 
 # Edit pages
-'summary'                => 'Likwé ya mokusé',
-'subject'                => 'Mokonza/litɛ́mɛ',
+'summary'                => 'Likwé ya mokusé:',
+'subject'                => 'Mokonza/litɛ́mɛ:',
 'minoredit'              => 'Ezalí mbóngwana ya mokɛ́',
 'watchthis'              => 'Kolanda lokásá loye',
 'savearticle'            => 'kobómbisa ekakoli',

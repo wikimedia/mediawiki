@@ -145,7 +145,7 @@ $messages = array(
 'newpassword' => 'Жаңы сырсөз:',
 
 # Edit pages
-'summary'            => 'Кыска түшүндүрүү',
+'summary'            => 'Кыска түшүндүрүү:',
 'savearticle'        => 'Баракты сактап кой',
 'whitelistedittitle' => 'Оңдоо үчүн катоодон өтүү зарыл',
 'accmailtitle'       => 'Сырсөз жөнөтүлдү.',

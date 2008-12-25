@@ -57,7 +57,7 @@ $messages = array(
 'username'          => 'Ishletkuqi ismi:',
 
 # Edit pages
-'summary'     => 'Hulasa',
+'summary'     => 'Hulasa:',
 'minoredit'   => 'Bu Kichik Uzgartish',
 'watchthis'   => 'Bu Batka Kharang',
 'showpreview' => 'Aldinala kurux',

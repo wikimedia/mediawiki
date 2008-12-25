@@ -627,8 +627,8 @@ Sy snaź swójo gronidło južo wuspěšnje změnił abo nowe nachylne gronidło
 'hr_tip'          => 'Horicontalna linija (rědko wužywaś)',
 
 # Edit pages
-'summary'                          => 'Zespominanje',
-'subject'                          => 'Tema/Nadpismo',
+'summary'                          => 'Zespominanje:',
+'subject'                          => 'Tema/Nadpismo:',
 'minoredit'                        => 'Snadna změna',
 'watchthis'                        => 'Toś ten bok wobglědowaś',
 'savearticle'                      => 'Bok składowaś',
@@ -640,8 +640,8 @@ Sy snaź swójo gronidło južo wuspěšnje změnił abo nowe nachylne gronidło
 'missingsummary'                   => "'''Pokazka:''' Njejsy žedno zespominanje zapódał. Gaž kliknjoš na \"Składowaś\" składujo se bok bźez zespominanja.",
 'missingcommenttext'               => 'Pšosym zespominanje zapódaś.',
 'missingcommentheader'             => "'''WARNOWANJE:''' Njejsy žedno nadpismo zapódał. Gaž kliknjoš na \"Składowaś\", składujo se twójo wobźěłanje mimo nadpisma.",
-'summary-preview'                  => 'Pśeglěd zespominanja',
-'subject-preview'                  => 'Pśeglěd nadpisma',
+'summary-preview'                  => 'Pśeglěd zespominanja:',
+'subject-preview'                  => 'Pśeglěd nadpisma:',
 'blockedtitle'                     => 'Wužywaŕ jo se blokěrował',
 'blockedtext'                      => "<big>'''Twójo wužywarske mě abo IP-adresa stej se blokěrowałej.'''</big>
 

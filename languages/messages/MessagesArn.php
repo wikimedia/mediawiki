@@ -170,7 +170,7 @@ $messages = array(
 'loginlanguagelabel'      => 'Dungun: $1',
 
 # Edit pages
-'subject'            => 'Dungu/üy',
+'subject'            => 'Dungu/üy:',
 'minoredit'          => 'Tüfachi ta kiñe pichi wirin',
 'watchthis'          => 'Llaytun tüfachi pakina',
 'preview'            => 'Pen chum müley',

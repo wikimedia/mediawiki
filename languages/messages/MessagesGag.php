@@ -382,8 +382,8 @@ O zamana kadar ani e-maildaki instrukțiyalar yapılmaycêk hem doorulanmaycêk 
 'hr_tip'          => 'Gorizontal liniya (çok sık kullanmayın)',
 
 # Edit pages
-'summary'                => 'Kısaca',
-'subject'                => 'Konu/başlık',
+'summary'                => 'Kısaca:',
+'subject'                => 'Konu/başlık:',
 'minoredit'              => 'Küçük diişilmäkler',
 'watchthis'              => 'Bak bu sayfaa',
 'savearticle'            => 'Sayfayı registrat et',
@@ -392,8 +392,8 @@ O zamana kadar ani e-maildaki instrukțiyalar yapılmaycêk hem doorulanmaycêk 
 'showlivepreview'        => 'Cannı ön siir',
 'showdiff'               => 'Diişilmäkleri göster',
 'anoneditwarning'        => 'Sessiya açmadınız deyni yazının diişmäk istoriyasına diil nik, IP adresiniz registrat olunacêk.',
-'summary-preview'        => 'Ön siir özeti',
-'subject-preview'        => 'Konu/başlık ön siiri',
+'summary-preview'        => 'Ön siir özeti:',
+'subject-preview'        => 'Konu/başlık ön siiri:',
 'blockedtitle'           => 'Kullanıcı kösteklendi.',
 'blockedtext'            => '<big>Kullanıcı adınız yaki parolunuz $1 tarafından kösteklendi.</big>
 

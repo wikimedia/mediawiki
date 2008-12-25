@@ -301,8 +301,8 @@ Anı alğaç monda tağın kerep qara.',
 'hr_tip'          => 'Yatma sızıq (siräk qullan)',
 
 # Edit pages
-'summary'            => 'Yomğaq',
-'subject'            => 'Ni turında/başlıq',
+'summary'            => 'Yomğaq:',
+'subject'            => 'Ni turında/başlıq:',
 'minoredit'          => 'Bu waq-töyäk üzgärmä genä',
 'watchthis'          => 'Bitne küzätep torası',
 'savearticle'        => 'Saqla biremne',

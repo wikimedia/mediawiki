@@ -206,8 +206,8 @@ $messages = array(
 'media_sample'    => 'उदाहरण.ogg',
 
 # Edit pages
-'summary'                => 'सारांश',
-'subject'                => 'विषय/शिर्षक',
+'summary'                => 'सारांश:',
+'subject'                => 'विषय/शिर्षक:',
 'minoredit'              => 'यो सानो सम्पादन हो',
 'watchthis'              => 'यो पृष्ठ अवलोकन गर्नुहोस्',
 'savearticle'            => 'संग्रह गर्नुहोस्',
@@ -215,7 +215,7 @@ $messages = array(
 'showpreview'            => 'पूर्वालोकन देखाउनुहोस्',
 'showlivepreview'        => 'प्रत्यक्ष पूर्वालोकन',
 'showdiff'               => 'परिवर्तन देखाउनुहोस्',
-'summary-preview'        => 'सारांश पूर्वालोकन',
+'summary-preview'        => 'सारांश पूर्वालोकन:',
 'blockedoriginalsource'  => "'''$1''' को स्रोत तल देखाइएको छ:",
 'whitelistedittitle'     => 'सम्पादन गर्नको लागि प्रवेश (लग इन) आवश्यक छ',
 'whitelistedittext'      => 'पाना सम्पादन गर्न तपाँईले $1 गर्नु पर्दछ।',

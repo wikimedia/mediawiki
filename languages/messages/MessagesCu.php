@@ -243,7 +243,7 @@ $messages = array(
 'extlink_sample' => 'http://www.example.com съвѧ́ꙁи и́мѧ',
 
 # Edit pages
-'summary'            => 'опьса́ниѥ',
+'summary'            => 'опьса́ниѥ:',
 'minoredit'          => 'ма́лаꙗ мѣ́на',
 'watchthis'          => 'си страни́цѧ блюдє́ниѥ',
 'savearticle'        => 'съхранѥ́ниѥ',

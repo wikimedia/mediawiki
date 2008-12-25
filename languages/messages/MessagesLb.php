@@ -615,8 +615,8 @@ Dir hutt ärt Passwuert scho geännert oder een  neit temporairt Passwuert ugefr
 'hr_tip'          => 'Horizontal Linn (mat Moosse gebrauchen)',
 
 # Edit pages
-'summary'                          => 'Resumé',
-'subject'                          => 'Sujet/Iwwerschrëft',
+'summary'                          => 'Resumé:',
+'subject'                          => 'Sujet/Iwwerschrëft:',
 'minoredit'                        => 'Kleng Ännerung',
 'watchthis'                        => 'Dës Säit iwwerwaachen',
 'savearticle'                      => 'Säit späicheren',
@@ -628,8 +628,8 @@ Dir hutt ärt Passwuert scho geännert oder een  neit temporairt Passwuert ugefr
 'missingsummary'                   => "'''Erënnerung:''' Dir hutt kee Resumé aginn. Wann Dir nachemol op \"Säit ofspäicheren\" klickt, gëtt är Ännerung ouni Resumé ofgespäichert.",
 'missingcommenttext'               => 'Gitt w.e.g. eng Bemierkung an.',
 'missingcommentheader'             => "'''OPGEPASST:''' Dir hutt keen Titel/Sujet fir dës Bemierkung aginn. Wann Dir nach en Kéier op \"Späicheren\" klickt da gëtt àr Ännerung ouni Titel ofgespäichert.",
-'summary-preview'                  => 'Resumé kucken ouni ofzespäicheren',
-'subject-preview'                  => 'Sujet/Iwwerschrëft kucken',
+'summary-preview'                  => 'Resumé kucken ouni ofzespäicheren:',
+'subject-preview'                  => 'Sujet/Iwwerschrëft kucken:',
 'blockedtitle'                     => 'Benotzer ass gespaart',
 'blockedtext'                      => "<big>Äre Benotzernumm oder är IP Adress gouf gespaart.</big>
 

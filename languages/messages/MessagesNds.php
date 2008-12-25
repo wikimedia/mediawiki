@@ -690,8 +690,8 @@ Villicht hest du dien Passwoord al ännert oder noch wedder en nee temporär Pas
 'hr_tip'          => 'Waagrechte Lien (sporsam bruken)',
 
 # Edit pages
-'summary'                          => 'Grund för’t Ännern',
-'subject'                          => 'Bedrap',
+'summary'                          => 'Grund för’t Ännern:',
+'subject'                          => 'Bedrap:',
 'minoredit'                        => 'Blots lütte Ännern',
 'watchthis'                        => 'Op disse Siet oppassen',
 'savearticle'                      => 'Siet spiekern',
@@ -703,8 +703,8 @@ Villicht hest du dien Passwoord al ännert oder noch wedder en nee temporär Pas
 'missingsummary'                   => "'''Wohrschau:''' Du hest keen Tosamenfaten angeven, wat du ännert hest. Wenn du nu Spiekern klickst, warrt de Siet ahn Tosamenfaten spiekert.",
 'missingcommenttext'               => 'Geev ünnen en Tosamenfaten in.',
 'missingcommentheader'             => "'''WOHRSCHAU:''' Du hest keen Överschrift in dat Feld „{{MediaWiki:Subject/nds}}“ ingeven. Wenn du noch wedder op „{{MediaWiki:Savearticle/nds}}“ klickst, denn warrt dien Ännern ahn Överschrift spiekert.",
-'summary-preview'                  => 'Vörschau vun’t Tosamenfaten',
-'subject-preview'                  => "Vörschau vun de Reeg ''Tosamenfaten''",
+'summary-preview'                  => 'Vörschau vun’t Tosamenfaten:',
+'subject-preview'                  => "Vörschau vun de Reeg ''Tosamenfaten'':",
 'blockedtitle'                     => 'Bruker is blockt',
 'blockedtext'                      => 'Dien Brukernaam oder diene IP-Adress is vun $1 blockt worrn.
 As Grund is angeven: \'\'$2\'\' (<span class="plainlinks">[{{fullurl:Special:IPBlockList|&action=search&limit=&ip=%23}}$5 Logbookindrag]</span>, de Block-ID is $5).
@@ -2207,7 +2207,7 @@ De Siet „[[:$1]]“ gifft dat al. Wullt du ehr wegsmieten, dat disse Siet scha
 
 # Export
 'export'            => 'Sieden exporteren',
-'exporttext'        => 'Du kannst de Text un de Bearbeidenshistorie vun een oder mehr Sieten no XML exporteern. Dat Resultat kann in en annern Wiki mit Mediawiki-Software inspeelt warrn, bearbeid oder archiveert warrn.',
+'exporttext'        => 'Du kannst de Text un de Bearbeidenshistorie vun een oder mehr Sieten no XML exporteern. Dat Resultat kann in en annern Wiki mit MediaWiki-Software inspeelt warrn, bearbeid oder archiveert warrn.',
 'exportcuronly'     => 'Blots de aktuelle Version vun de Siet exporteern',
 'exportnohistory'   => "----
 '''Henwies:''' Exporteren vun hele Versionsgeschichten över dit Formular geiht nich, wegen de Performance.",
@@ -2222,7 +2222,7 @@ De Siet „[[:$1]]“ gifft dat al. Wullt du ehr wegsmieten, dat disse Siet scha
 'allmessagesname'           => 'Naam',
 'allmessagesdefault'        => 'Standardtext',
 'allmessagescurrent'        => 'Text nu',
-'allmessagestext'           => 'Dit is de List vun all de Systemnarichten, de dat in den Mediawiki-Naamruum gifft.',
+'allmessagestext'           => 'Dit is de List vun all de Systemnarichten, de dat in den MediaWiki-Naamruum gifft.',
 'allmessagesnotsupportedDB' => '{{ns:special}}:Allmessages is nich ünnerstütt, vun wegen dat wgUseDatabaseMessages utstellt is.',
 'allmessagesfilter'         => 'Narichtennaamfilter:',
 'allmessagesmodified'       => 'Blot ännerte wiesen',

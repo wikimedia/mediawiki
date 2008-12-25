@@ -289,8 +289,8 @@ $messages = array(
 'sig_tip'         => 'Lí ê chhiam-miâ kap sî-kan ìn-á',
 
 # Edit pages
-'summary'                => 'Khài-iàu',
-'subject'                => 'Tê-bo̍k/piau-tê',
+'summary'                => 'Khài-iàu:',
+'subject'                => 'Tê-bo̍k/piau-tê:',
 'minoredit'              => 'Che sī sió siu-kái',
 'watchthis'              => 'Kàm-sī chit ia̍h',
 'savearticle'            => 'Pó-chûn chit ia̍h',
@@ -298,8 +298,8 @@ $messages = array(
 'showpreview'            => 'Seng khoàⁿ-māi',
 'showdiff'               => 'Khòaⁿ kái-piàn ê pō·-hūn',
 'anoneditwarning'        => "'''Kéng-kò:''' Lí bô teng-ji̍p. Lí ê IP chū-chí ē kì tī pún ia̍h ê pian-chi̍p le̍k-sú lāi-bīn.",
-'summary-preview'        => 'Khài-iàu ê preview',
-'subject-preview'        => 'Ū-lám tê-bo̍k/piau-tê',
+'summary-preview'        => 'Khài-iàu ê preview:',
+'subject-preview'        => 'Ū-lám tê-bo̍k/piau-tê:',
 'whitelistedittitle'     => 'Su-iàu teng-ji̍p chiah ē-sái siu-kái',
 'whitelistedittext'      => 'Lí ài $1 chiah ē-sái siu-kái.',
 'confirmedittitle'       => 'Su-iàu khak-jīn e-mail chū-chí chiah ē-tit pian-chi̍p',

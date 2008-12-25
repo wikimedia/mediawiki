@@ -167,7 +167,7 @@ kom li sami o altri usere.',
 'image_sample' => 'Exemple.jpg',
 
 # Edit pages
-'summary'               => 'Resume',
+'summary'               => 'Resume:',
 'minoredit'             => 'Dise es mikri modifiko',
 'watchthis'             => 'Observa disi pagine',
 'savearticle'           => 'Spara pagine',

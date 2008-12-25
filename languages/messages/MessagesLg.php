@@ -230,7 +230,7 @@ olwa 'yogera nange' nga ggwe tewetaaze kulaga bikufaako.",
 'hr_tip'          => "Bw'onyiga ku kano ofuna olusaze olwawula mu by'owandiika. (Gezaako butakozesa nyingi)",
 
 # Edit pages
-'summary'                => "Wandika wano ebinyonyola enkyukakyuka z'okoze",
+'summary'                => "Wandika wano ebinyonyola enkyukakyuka z'okoze:",
 'minoredit'              => 'Eno nkyukakyuka ntono',
 'watchthis'              => 'Goberera olupapula luno',
 'savearticle'            => 'Kaza olupapula',

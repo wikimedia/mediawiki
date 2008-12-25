@@ -256,7 +256,7 @@ Edscēawa þīne wrītunge, oþþe brūc þone form under tō settene nīwne br�
 'sig_tip'         => 'Þín namansegn mid tídstempunge',
 
 # Edit pages
-'summary'                => 'Scortnes',
+'summary'                => 'Scortnes:',
 'minoredit'              => 'Þēos is lȳtlu ādihtung',
 'savearticle'            => 'Sparian tramet',
 'showpreview'            => 'Forescēawian',

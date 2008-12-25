@@ -161,8 +161,8 @@ $messages = array(
 'hr_tip'          => 'Linia orizontala (esnidivale)',
 
 # Edit pages
-'summary'                => 'Sumar',
-'subject'                => 'Subjekt / titlur',
+'summary'                => 'Sumar:',
+'subject'                => 'Subjekt / titlur:',
 'minoredit'              => 'Aceasta este o editare minoră',
 'watchthis'              => 'klăaere ce pažu',
 'showpreview'            => 'Rată previzualizare',

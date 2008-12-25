@@ -577,8 +577,8 @@ Siz oturım açıp paroliñizni şimdi deñiştirmek kereksiñiz.
 'hr_tip'          => 'Gorizontal sızıq (pek sıq qullanmañız)',
 
 # Edit pages
-'summary'                          => 'Deñişiklik qısqa tarifi',
-'subject'                          => 'Mevzu/serleva',
+'summary'                          => 'Deñişiklik qısqa tarifi:',
+'subject'                          => 'Mevzu/serleva:',
 'minoredit'                        => 'Kiçik deñişiklik',
 'watchthis'                        => 'Saifeni közet',
 'savearticle'                      => 'Saifeni saqla',
@@ -590,8 +590,8 @@ Siz oturım açıp paroliñizni şimdi deñiştirmek kereksiñiz.
 'missingsummary'                   => "'''Hatırlatma.''' Deñiştirmeleriñizni qısqadan tarif etmediñiz. \"Saifeni saqla\" dögmesine tekrar basuv ile deñiştirmeleriñiz tefsirsiz saqlanacaqlar.",
 'missingcommenttext'               => 'Lütfen, aşağıda tefsir yazıñız.',
 'missingcommentheader'             => "'''Hatırlatuv:''' Tefsir serlevasını belgilemediñiz. \"Saifeni saqla\" dögmesine tekrar basqan soñ tefsiriñiz serlevasız saqlanır.",
-'summary-preview'                  => 'Baqıp çıquv tarifi',
-'subject-preview'                  => 'Baqıp çıquv serlevası',
+'summary-preview'                  => 'Baqıp çıquv tarifi:',
+'subject-preview'                  => 'Baqıp çıquv serlevası:',
 'blockedtitle'                     => 'Qullanıcı blok etildi.',
 'blockedtext'                      => '<big>\'\'\'Esabıñız ya da IP adresiñiz blok etildi.\'\'\'</big>
 

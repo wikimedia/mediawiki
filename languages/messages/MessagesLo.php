@@ -375,8 +375,8 @@ $messages = array(
 'media_tip'       => 'ລິ້ງຄ໌ຫາໄຟລ໌',
 
 # Edit pages
-'summary'                  => 'ຄຳອະທິບາຍໂດຍຫຍໍ້',
-'subject'                  => 'ຫົວຂໍ້',
+'summary'                  => 'ຄຳອະທິບາຍໂດຍຫຍໍ້:',
+'subject'                  => 'ຫົວຂໍ້:',
 'minoredit'                => 'ນີ້ແມ່ນການດັດແກ້ເລັກນ້ອຍ',
 'watchthis'                => 'ຕິດຕາມໜ້ານີ້',
 'savearticle'              => 'ບັນທຶກ',

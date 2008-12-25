@@ -450,8 +450,8 @@ Apprime ca otre e-mail avènene mannete a 'u cunde tue, tu ha seguì le 'struzio
 'hr_tip'          => 'Linee orizzondele (ausele picche)',
 
 # Edit pages
-'summary'                          => 'Riepileghe',
-'subject'                          => 'Oggette/Testete',
+'summary'                          => 'Riepileghe:',
+'subject'                          => 'Oggette/Testete:',
 'minoredit'                        => 'Cangiaminde stuèdeche',
 'watchthis'                        => 'Condrolle sta pàgene',
 'savearticle'                      => "Registre 'a vôsce",
@@ -462,7 +462,7 @@ Apprime ca otre e-mail avènene mannete a 'u cunde tue, tu ha seguì le 'struzio
 'anoneditwarning'                  => "'''Attenziò:''' Tu non ge sinde colleghete..
 L'indirizze IP tue avène reggistrete jndr'à le cangiaminde de sta pàgene.",
 'missingcommenttext'               => "Pe piacere mitte 'nu commende aqquà sotte.",
-'summary-preview'                  => "Andeprime d'u riepileghe",
+'summary-preview'                  => "Andeprime d'u riepileghe:",
 'blockedtitle'                     => "L'utende è blocchete",
 'blockedtext'                      => "<big>''''U nome de l'utende o l'indirizze IP ha state blocchete.'''</big>
 

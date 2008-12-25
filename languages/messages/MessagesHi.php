@@ -527,8 +527,8 @@ Don't forget to personalize your {{SITENAME}} preferences.",
 'hr_tip'          => 'हॉरिझॉंटल लाईन (कम इस्तेमाल करें)',
 
 # Edit pages
-'summary'                          => 'सारांश',
-'subject'                          => 'विषय/शीर्षक',
+'summary'                          => 'सारांश:',
+'subject'                          => 'विषय/शीर्षक:',
 'minoredit'                        => 'यह एक छोटा बदलाव है',
 'watchthis'                        => 'इस पृष्ठ को ध्यानसूची में डालें',
 'savearticle'                      => 'बदलाव संजोयें',
@@ -542,8 +542,8 @@ Don't forget to personalize your {{SITENAME}} preferences.",
 'missingcommenttext'               => 'कृपया नीचे टिप्पणी दें ।',
 'missingcommentheader'             => "'''स्मरण-पत्र:''' आपने इस टिप्पणीको शीर्षक नहीं दिया हैं ।
 अगर आप दुबारा संजोयें पर क्लीक करें तो आपके बदलाव संजोयें जायेंगे ।",
-'summary-preview'                  => 'सारांशकी झलक',
-'subject-preview'                  => 'विषय/शीर्षक की झलक',
+'summary-preview'                  => 'सारांशकी झलक:',
+'subject-preview'                  => 'विषय/शीर्षक की झलक:',
 'blockedtitle'                     => 'सदस्य अवरुद्ध है',
 'blockedtext'                      => "<big>'''आपका सदस्यनाम अथवा IP एड्रेस ब्लॉक कर दिया गया हैं ।'''</big>
 

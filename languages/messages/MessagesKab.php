@@ -282,7 +282,7 @@ $messages = array(
 'databaseerror'        => 'Agul n database',
 'dberrortext'          => 'Yella ugul n tseddast deg database.
 Waqila yella bug deg software.
-Query n database taneggarut hatt::
+Query n database taneggarut hatt:
 <blockquote><tt>$1</tt></blockquote>
 seg tawuri  "<tt>$2</tt>".
 MySQL yerra-d agul "<tt>$3: $4</tt>".',
@@ -443,8 +443,8 @@ iwakken ad tbeyyneḍ belli tansa n email inek.',
 'hr_tip'          => 'Ajerriḍ aglawan (ur teččerɛiḍ ara)',
 
 # Edit pages
-'summary'                   => 'Agzul',
-'subject'                   => 'Asentel/Azwel azellum',
+'summary'                   => 'Agzul:',
+'subject'                   => 'Asentel/Azwel azellum:',
 'minoredit'                 => 'Wagi d abeddel afessas',
 'watchthis'                 => 'Ɛass asebter-agi',
 'savearticle'               => 'Beddel asebter',
@@ -456,8 +456,8 @@ iwakken ad tbeyyneḍ belli tansa n email inek.',
 'missingsummary'            => "'''Ur tettuḍ ara:''' Ur tefkiḍ ara azwel i ubeddel inek. Lukan twekkiḍ ''Smekti'' tikelt nniḍen, abeddel inek ad yettusmekti mebla azwel.",
 'missingcommenttext'        => 'Ssekcem awennit deg ukessar.',
 'missingcommentheader'      => "'''Ur tettuḍ ara:''' Ur tefkiḍ ara azwel-azellum i ubeddel inek. Lukan twekkiḍ ''Smekti'' tikelt nniḍen, abeddel inek ad yettusmekti mebla azwel-azellum.",
-'summary-preview'           => 'Pre-timeẓriwt n ugzul',
-'subject-preview'           => 'Pre-timeẓriwt asentel/azwel azellum',
+'summary-preview'           => 'Pre-timeẓriwt n ugzul:',
+'subject-preview'           => 'Pre-timeẓriwt asentel/azwel azellum:',
 'blockedtitle'              => 'Amseqdac iɛekkel',
 'blockedtext'               => "<big>'''Isem n wemseqdac neɣ tansa n IP inek ɛekkelen.'''</big>
 

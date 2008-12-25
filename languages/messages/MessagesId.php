@@ -759,8 +759,8 @@ Anda mungkin telah berhasil mengganti kata sandi Anda atau telah meminta kata sa
 'hr_tip'          => 'Garis horisontal',
 
 # Edit pages
-'summary'                          => 'Ringkasan',
-'subject'                          => 'Subjek/judul',
+'summary'                          => 'Ringkasan:',
+'subject'                          => 'Subjek/judul:',
 'minoredit'                        => 'Ini adalah suntingan kecil.',
 'watchthis'                        => 'Pantau halaman ini',
 'savearticle'                      => 'Simpan halaman',
@@ -772,8 +772,8 @@ Anda mungkin telah berhasil mengganti kata sandi Anda atau telah meminta kata sa
 'missingsummary'                   => "'''Peringatan:''' Anda tidak memasukkan ringkasan penyuntingan. Jika Anda kembali menekan tombol Simpan, suntingan Anda akan disimpan tanpa ringkasan penyuntingan.",
 'missingcommenttext'               => 'Harap masukkan komentar di bawah ini.',
 'missingcommentheader'             => "'''Peringatan:''' Anda belum memberikan subjek atau judul untuk komentar Anda. Jika Anda kembali menekan Simpan, suntingan Anda akan disimpan tanpa komentar tersebut.",
-'summary-preview'                  => 'Pratayang ringkasan',
-'subject-preview'                  => 'Pratayang subyek/tajuk',
+'summary-preview'                  => 'Pratayang ringkasan:',
+'subject-preview'                  => 'Pratayang subyek/tajuk:',
 'blockedtitle'                     => 'Pengguna diblokir',
 'blockedtext'                      => "<big>'''Nama pengguna atau alamat IP Anda telah diblokir.'''</big>
 

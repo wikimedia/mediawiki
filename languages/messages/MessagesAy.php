@@ -163,8 +163,8 @@ $messages = array(
 'loginlanguagelabel' => 'Aru: $1',
 
 # Edit pages
-'summary'  => 'Juk’aptayawi',
-'subject'  => 'Yatsuwi/titulu',
+'summary'  => 'Juk’aptayawi:',
+'subject'  => 'Yatsuwi/titulu:',
 'yourdiff' => 'Jalaqtatanaka',
 
 # Preferences page

@@ -442,8 +442,8 @@ Saankan a makaaramid pay.',
 'hr_tip'          => 'Pakuros a linia (manmano la nga aramaten)',
 
 # Edit pages
-'summary'                          => 'Pakabuklan',
-'subject'                          => 'Sujeto/paulo',
+'summary'                          => 'Pakabuklan:',
+'subject'                          => 'Sujeto/paulo:',
 'minoredit'                        => 'Bassit a balbaliw laeng daytoy',
 'watchthis'                        => 'Bantayan',
 'savearticle'                      => 'Idulin ti panid',
@@ -458,8 +458,8 @@ No iklikmo ti Idulin manen, saan a maidulin ti editmo no awan pakabuklan.",
 'missingcommenttext'               => 'Pangngaasim ta mangipanka iti komento iti baba.',
 'missingcommentheader'             => "'''Palagip:''' Saanka a nangipan iti subject/paulo para iti daytoy a komento.
 No iklikmo manen ti Save, maidulin ti panageditmo nga awanan subject wenno paulo.",
-'summary-preview'                  => 'Preview ti pakabuklan',
-'subject-preview'                  => 'Preview ti subject/headline',
+'summary-preview'                  => 'Preview ti pakabuklan:',
+'subject-preview'                  => 'Preview ti subject/headline:',
 'blockedtitle'                     => 'Nabangenan ti agar-aramat',
 'blockedtext'                      => "<big>'''Naserraan ti nagan wenno ti IP addressmo.'''</big>
 

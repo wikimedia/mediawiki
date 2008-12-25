@@ -614,8 +614,8 @@ Više nije dozvoljeno.',
 'hr_tip'          => 'Horizontalna linija',
 
 # Edit pages
-'summary'                   => 'Opis izmene',
-'subject'                   => 'Tema/naslov',
+'summary'                   => 'Opis izmene:',
+'subject'                   => 'Tema/naslov:',
 'minoredit'                 => 'Ovo je mala izmena',
 'watchthis'                 => 'Nadgledaj ovaj članak',
 'savearticle'               => 'Snimi stranicu',

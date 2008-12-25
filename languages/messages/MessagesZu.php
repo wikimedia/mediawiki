@@ -136,7 +136,7 @@ ikhawundi lakho liyadalwa. musa ukukhohlwa ukuguqula amakhethelo a-{{SITENAME}} 
 'hr_tip'        => 'Umugqa uhleliwe  (use sparingly)',
 
 # Edit pages
-'summary'            => 'Isifinyezo',
+'summary'            => 'Isifinyezo:',
 'minoredit'          => 'Lokho ngukuhlela okuncane',
 'watchthis'          => 'Bukela ngalelikhasi',
 'savearticle'        => 'Ukonga ikhasi',

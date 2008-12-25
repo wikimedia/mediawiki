@@ -745,8 +745,8 @@ Jista jkun li diġa b'suċċess bidilt il-password jew għamilt rikjesta għal p
 'hr_tip'          => 'Linja mimduda (uża bil-qies)',
 
 # Edit pages
-'summary'                          => 'Taqsira',
-'subject'                          => 'Suġġett/Titlu',
+'summary'                          => 'Taqsira:',
+'subject'                          => 'Suġġett/Titlu:',
 'minoredit'                        => 'Din hija modifika żgħira',
 'watchthis'                        => 'Segwi din il-paġna',
 'savearticle'                      => 'Modifika',
@@ -761,8 +761,8 @@ Jekk terġa' tagħfas Modifika, l-modifika se tiġi salvata mingħajr waħda.",
 'missingcommenttext'               => 'Jekk jogħġbok, ħalli kumment hawn taħt.',
 'missingcommentheader'             => "'''Twissija:''' Ma pprovdejtx suġġett/titlu għal dan il-kumment.
 Jekk terġa' tagħfas Modifika, l-modifika tiegħek se tiġi salvata mingħajr waħda.",
-'summary-preview'                  => "Previżjoni ta' taqsira",
-'subject-preview'                  => 'Previżjoni dwar suġġett/titlu',
+'summary-preview'                  => "Previżjoni ta' taqsira:",
+'subject-preview'                  => 'Previżjoni dwar suġġett/titlu:',
 'blockedtitle'                     => 'L-utent ġie bblokkjat',
 'blockedtext'                      => "<big>'''L-isem ta' l-utent jew l-indirizz IP tiegħek ġew imblukkati.'''</big>
 

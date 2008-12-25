@@ -428,8 +428,8 @@ možnosti se e-pošte ne bo pošiljalo.',
 'hr_tip'          => 'Vodoravna črta (uporabljajte zmerno)',
 
 # Edit pages
-'summary'                   => 'Povzetek urejanja',
-'subject'                   => 'Tema/naslov',
+'summary'                   => 'Povzetek urejanja:',
+'subject'                   => 'Tema/naslov:',
 'minoredit'                 => 'Manjše urejanje',
 'watchthis'                 => 'Opazuj članek',
 'savearticle'               => 'Shrani stran',

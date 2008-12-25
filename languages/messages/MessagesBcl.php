@@ -490,8 +490,8 @@ $1 na oras.',
 'hr_tip'          => 'Pabalagbag na linya (use sparingly)',
 
 # Edit pages
-'summary'                   => 'Sumada',
-'subject'                   => 'Tema/pamayohan',
+'summary'                   => 'Sumada:',
+'subject'                   => 'Tema/pamayohan:',
 'minoredit'                 => 'Sadit na paghirá ini',
 'watchthis'                 => 'Bantayan an pahinang ini',
 'savearticle'               => 'Itagáma an pahina',
@@ -503,8 +503,8 @@ $1 na oras.',
 'missingsummary'            => "'''Paisi:''' Dai ka nagkaag nin sumád kan paghirâ. Kun pindotón mo giraray an Itagama, maitatagama an hirá mo na mayô kaini.",
 'missingcommenttext'        => 'Paki lâgan nin komento sa ibabâ.',
 'missingcommentheader'      => "'''Paisi:''' Dai ka nagkaag nin tema/pamayohan para sa ining komentaryo. Kun pindoton mo giraray an Itagama, maitatagama an hira mo na mayô ini.",
-'summary-preview'           => 'Patànaw nin sumada',
-'subject-preview'           => 'Patânaw nin tema/pamayohan',
+'summary-preview'           => 'Patànaw nin sumada:',
+'subject-preview'           => 'Patânaw nin tema/pamayohan:',
 'blockedtitle'              => 'Pigbágat an parágamit',
 'blockedtext'               => "<big>'''Pigbagat an pangaran o IP mo.'''</big>
 

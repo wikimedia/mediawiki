@@ -149,7 +149,7 @@ Indi pagkalimti ang pag ilis sang imo mga pagpasulabi sa {{SITENAME}}.',
 'email'                   => 'E-mail',
 
 # Edit pages
-'summary'            => 'Kabilogan',
+'summary'            => 'Kabilogan:',
 'minoredit'          => 'Ini menor nga pag-ilis',
 'watchthis'          => 'Bantayan ining panid',
 'savearticle'        => 'Tiponon ining panid',

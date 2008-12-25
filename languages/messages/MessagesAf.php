@@ -603,8 +603,8 @@ U het u wagwoord al gewysig of 'n nuwe tydelike wagwoord aangevra.",
 'hr_tip'          => 'Horisontale streep (selde nodig)',
 
 # Edit pages
-'summary'                          => 'Opsomming',
-'subject'                          => 'Onderwerp/opskrif',
+'summary'                          => 'Opsomming:',
+'subject'                          => 'Onderwerp/opskrif:',
 'minoredit'                        => 'Klein wysiging',
 'watchthis'                        => 'Hou bladsy dop',
 'savearticle'                      => 'Stoor bladsy',
@@ -616,8 +616,8 @@ U het u wagwoord al gewysig of 'n nuwe tydelike wagwoord aangevra.",
 'missingsummary'                   => "'''Onthou:''' Geen opsomming van die wysiging is verskaf nie. As \"Stoor\" weer geklik word, word die wysiging sonder opsomming gestoor.",
 'missingcommenttext'               => 'Tik die opsomming onder.',
 'missingcommentheader'             => "'''Let op:''' U het geen onderwerp/opskrif vir die opmerking verskaf nie. As u weer op \"Stoor\" klik, sal u wysiging sonder die onderwerp/opskrif gestoor word.",
-'summary-preview'                  => 'Opsomming nakijken',
-'subject-preview'                  => 'Onderwerp/ opskrif voorskou',
+'summary-preview'                  => 'Opsomming nakijken:',
+'subject-preview'                  => 'Onderwerp/ opskrif voorskou:',
 'blockedtitle'                     => 'Gebruiker is geblokkeer',
 'blockedtext'                      => "<big>'''U gebruikersnaam of IP-adres is geblokkeer.'''</big>
 
@@ -1886,7 +1886,7 @@ Die eksportlêer kan daarna geïmporteer word na enige ander MediaWiki webwerf v
 
 Verskaf die name van die bladsye wat geëksporteer moet word in die onderstaande veld, een bladsy per lyn, en kies of u alle weergawes (met geskiedenis) of slegs die nuutste weergawe soek.
 
-In die laatste geval kan u ook \'n verwysing gebruik, byvoorbeeld [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] vir die bladsy "{{Mediawiki:Mainpage}}".',
+In die laatste geval kan u ook \'n verwysing gebruik, byvoorbeeld [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] vir die bladsy "{{MediaWiki:Mainpage}}".',
 'exportcuronly'     => 'Slegs die nuutste weergawes, sonder volledige geskiedenis',
 'export-submit'     => 'Eksporteer',
 'export-addcattext' => 'Voeg bladsye by van kategorie:',

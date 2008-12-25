@@ -338,7 +338,7 @@ E ʻoluʻolu, e kūlia hou.',
 'hr_tip'          => 'Laina ‘ilikai (e ho‘ohana pākiko)',
 
 # Edit pages
-'summary'                => "Hō'ulu'ulu mana'o",
+'summary'                => "Hō'ulu'ulu mana'o:",
 'minoredit'              => "He mea i ho'opololei iki 'ia",
 'watchthis'              => 'E nānā pono i kēia mea',
 'savearticle'            => 'E mālama i ka mea',

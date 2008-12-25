@@ -535,8 +535,8 @@ Pues inorar esti mensaxe si la cuenta foi creada por error.',
 'hr_tip'          => 'Llinia horizontal (úsala con moderación)',
 
 # Edit pages
-'summary'                          => 'Resume',
-'subject'                          => 'Asuntu/títulu',
+'summary'                          => 'Resume:',
+'subject'                          => 'Asuntu/títulu:',
 'minoredit'                        => 'Esta ye una edición menor',
 'watchthis'                        => 'Vixilar esta páxina',
 'savearticle'                      => 'Grabar páxina',
@@ -548,8 +548,8 @@ Pues inorar esti mensaxe si la cuenta foi creada por error.',
 'missingsummary'                   => "'''Recordatoriu:''' Nun escribisti un resume d'edición. Si vuelves a calcar en Guardar, la to edición sedrá guardada ensin nengún resume.",
 'missingcommenttext'               => 'Por favor, escribi un comentariu embaxo.',
 'missingcommentheader'             => "'''Recordatoriu:''' Nun-y punxisti tema/títulu a esti comentariu. Si vuelves a calcar en Guardar, la to edición va grabase ensin él.",
-'summary-preview'                  => 'Previsualización del resume',
-'subject-preview'                  => 'Previsualización del tema/títulu',
+'summary-preview'                  => 'Previsualización del resume:',
+'subject-preview'                  => 'Previsualización del tema/títulu:',
 'blockedtitle'                     => "L'usuariu ta bloquiáu",
 'blockedtext'                      => "<big>'''El to nome d'usuariu o la to direición IP foi bloquiáu.'''</big>
 

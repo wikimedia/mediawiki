@@ -89,7 +89,7 @@ $messages = array(
 'userlogout' => 'mi o tawa',
 
 # Edit pages
-'summary'          => 'ante li seme',
+'summary'          => 'ante li seme:',
 'minoredit'        => 'ante ni li lili taso',
 'watchthis'        => 'mi wile sona e ante ale pi lipu ni lon tenpo kama',
 'savearticle'      => 'o awen',

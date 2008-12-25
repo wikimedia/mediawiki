@@ -379,8 +379,8 @@ Kí á tó fi e-mail mìíràn ránṣẹ́ sí àpamọ́ yìí, ẹ gbọ́d�
 'hr_tip'          => 'Ìlà gbọlọjọ (ẹ lọ̀ọ́ pẹ̀lú àkíyèsì)',
 
 # Edit pages
-'summary'                => 'Àkótán',
-'subject'                => 'Orí ọ̀rọ̀/àkọlé',
+'summary'                => 'Àkótán:',
+'subject'                => 'Orí ọ̀rọ̀/àkọlé:',
 'minoredit'              => 'Àtúnṣe kékeré nìyí',
 'watchthis'              => "M'ójútó ojúewé yìí",
 'savearticle'            => 'Ẹ fi pamọ́',
@@ -389,7 +389,7 @@ Kí á tó fi e-mail mìíràn ránṣẹ́ sí àpamọ́ yìí, ẹ gbọ́d�
 'showdiff'               => 'Àfihàn àwọn àyípadà',
 'anoneditwarning'        => "'''Ìkìlọ̀:''' Ẹ ò tíì wọlé.
 Á ṣe àkọsílẹ̀ ojúọ̀nà IP yín ninu ìwé àtúnṣe ojúewé yìí.",
-'summary-preview'        => 'Àyẹ̀wò àkótán',
+'summary-preview'        => 'Àyẹ̀wò àkótán:',
 'blockedtitle'           => 'Ìdènà sí oníṣe',
 'blockedtext'            => "<big>'''A ti dínà orúkọ oníṣe tàbí ojúọ̀nà IP yín.'''</big>
 

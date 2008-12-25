@@ -218,8 +218,8 @@ $messages = array(
 'hr_tip'          => 'سدھی لکیر',
 
 # Edit pages
-'summary'                => 'خلاصہ',
-'subject'                => 'موضوع/شہ صرحی',
+'summary'                => 'خلاصہ:',
+'subject'                => 'موضوع/شہ صرحی:',
 'minoredit'              => 'اے نکا جیا کم اے',
 'watchthis'              => 'اس صفحے تے نظر رکھو',
 'savearticle'            => 'کم بچاؤ',
@@ -228,7 +228,7 @@ $messages = array(
 'showdiff'               => 'تبدیلیاں وکھاؤ',
 'anoneditwarning'        => "<div/>'''خبردار''' تسی اندر نہیں آۓ
 تواڈا ''آئی پی'' پتہ فائل فائل وچ لکھیا جاۓ گا۔",
-'summary-preview'        => 'کچے کم دا خلاصہ',
+'summary-preview'        => 'کچے کم دا خلاصہ:',
 'blockedtext'            => "<big>'''تواڈا ورتن والا ناں یا فیر آئی پی ایڈریس روک دتا گیا اے۔'''</big>
 
 توانوں $1 نے روکیا اے۔<br />
@@ -357,38 +357,61 @@ $messages = array(
 'recentchangeslinked-page'     => 'صفحے دا ناں:',
 
 # Upload
-'upload'            => 'فائل چڑھاؤ',
-'uploadbtn'         => 'فائل چڑھاؤ',
-'reupload'          => 'دوبارہ چڑھاؤ',
-'reuploaddesc'      => 'فائل چڑانا چھڑو تے فائل چڑانے آلے فارم تے واپس ٹرو',
-'uploadnologin'     => 'لاگ ان نئیں ہوۓ',
-'uploaderror'       => 'فائل چڑاندیاں مسئلا ہویا اے',
-'uploadlogpage'     => 'اپلوڈ لاگ',
-'filename'          => 'فائل دا ناں',
-'filedesc'          => 'خلاصہ',
-'fileuploadsummary' => 'خلاصہ:',
-'filesource'        => 'ذریعہ:',
-'uploadedimage'     => 'چڑھائی گئی"[[$1]]"',
+'upload'             => 'فائل چڑھاؤ',
+'uploadbtn'          => 'فائل چڑھاؤ',
+'reupload'           => 'دوبارہ چڑھاؤ',
+'reuploaddesc'       => 'فائل چڑانا چھڑو تے فائل چڑانے آلے فارم تے واپس ٹرو',
+'uploadnologin'      => 'لاگ ان نئیں ہوۓ',
+'uploaderror'        => 'فائل چڑاندیاں مسئلا ہویا اے',
+'uploadlogpage'      => 'اپلوڈ لاگ',
+'filename'           => 'فائل دا ناں',
+'filedesc'           => 'خلاصہ',
+'fileuploadsummary'  => 'خلاصہ:',
+'filesource'         => 'ذریعہ:',
+'uploadedfiles'      => 'اتے چڑھائیاں گئیاں فائلاں',
+'successfulupload'   => 'فائل چڑھ گئی اے',
+'savefile'           => 'فائل بچاؤ',
+'uploadedimage'      => 'چڑھائی گئی"[[$1]]"',
+'uploaddisabledtext' => 'فائل چڑانے چ رکاوٹ اے۔',
+'uploadvirus'        => 'اس فائل چ وائرس اے! تفصیل: $1',
+'watchthisupload'    => 'اس صفحے تے نظر رکھو',
+
+'upload-file-error' => 'اندر دا مسئلا',
 
 # Special:FileList
-'imagelist' => 'فائل لسٹ',
+'imgfile'               => 'فائل',
+'imagelist'             => 'فائل لسٹ',
+'imagelist_date'        => 'تاریخ',
+'imagelist_name'        => 'ناں',
+'imagelist_user'        => 'ورتن آلا',
+'imagelist_size'        => 'ناپ',
+'imagelist_description' => 'تفصیل',
 
 # File description page
-'filehist'                  => 'پچھلی حالت',
-'filehist-help'             => 'فائل نو اس ویلے دی حالت وچ ویکھن واسطے تاریخ/ویلے تے کلک کرو۔',
-'filehist-current'          => 'موجودہ',
-'filehist-datetime'         => 'تاریخ/ویلہ',
-'filehist-user'             => 'ورتن والا',
-'filehist-dimensions'       => 'پاسے',
-'filehist-filesize'         => 'فائل دا ناپ',
-'filehist-comment'          => 'راۓ',
-'imagelinks'                => 'کتھے کتھے تعلق اے',
-'linkstoimage'              => 'تھلے دتے گۓ {{PLURAL:$1|$1 صفحے}} اس فائل نال جڑدے نے',
-'nolinkstoimage'            => 'اس فائل نال جڑیا کوئی صفحہ نہیں۔',
-'sharedupload'              => 'اے فائل مشترکہ اپلوڈ اے تے اے دوجے منصوبے وی استعمال کر سکدے نے۔',
-'noimage'                   => 'اس ناں دی کوئی فائل نہيں، مگر تسی $1 بنا سکدے او۔',
-'noimage-linktext'          => 'اک چڑھاؤ',
-'uploadnewversion-linktext' => 'اس فائل دا نوا ورژن چھڑھاؤ',
+'filehist'                       => 'پچھلی حالت',
+'filehist-help'                  => 'فائل نو اس ویلے دی حالت وچ ویکھن واسطے تاریخ/ویلے تے کلک کرو۔',
+'filehist-deleteall'             => 'سب نوں مٹاؤ',
+'filehist-deleteone'             => 'مٹاؤ',
+'filehist-current'               => 'موجودہ',
+'filehist-datetime'              => 'تاریخ/ویلہ',
+'filehist-user'                  => 'ورتن والا',
+'filehist-dimensions'            => 'پاسے',
+'filehist-filesize'              => 'فائل دا ناپ',
+'filehist-comment'               => 'راۓ',
+'imagelinks'                     => 'کتھے کتھے تعلق اے',
+'linkstoimage'                   => 'تھلے دتے گۓ {{PLURAL:$1|$1 صفحے}} اس فائل نال جڑدے نے',
+'nolinkstoimage'                 => 'اس فائل نال جڑیا کوئی صفحہ نہیں۔',
+'sharedupload'                   => 'اے فائل مشترکہ اپلوڈ اے تے اے دوجے منصوبے وی استعمال کر سکدے نے۔',
+'shareduploadduplicate-linktext' => 'دوجی فائل',
+'shareduploadconflict-linktext'  => 'دوجی فائل',
+'noimage'                        => 'اس ناں دی کوئی فائل نہيں، مگر تسی $1 بنا سکدے او۔',
+'noimage-linktext'               => 'اک چڑھاؤ',
+'uploadnewversion-linktext'      => 'اس فائل دا نوا ورژن چھڑھاؤ',
+
+# File deletion
+'filedelete'        => '$1 مٹاؤ',
+'filedelete-legend' => 'فائل مٹاؤ',
+'filedelete-intro'  => "تسی '''[[Media:$1|$1]]''' مٹا رۓ او۔",
 
 # MIME search
 'mimesearch' => 'MIME کھوج',
@@ -412,7 +435,9 @@ $messages = array(
 
 'doubleredirects' => 'دوہری ریڈیرکٹس',
 
-'brokenredirects' => 'ٹٹے ہوۓ ریڈائریکٹس',
+'brokenredirects'        => 'ٹٹے ہوۓ ریڈائریکٹس',
+'brokenredirects-edit'   => '(لکھو)',
+'brokenredirects-delete' => '(مٹاؤ)',
 
 'withoutinterwiki' => 'او صفحہ جناں دا دوجی بولیاں نال جوڑ نہیں',
 
@@ -429,6 +454,7 @@ $messages = array(
 'uncategorizedtemplates'  => 'بغیر کیٹاگریاں آلے سچے',
 'unusedcategories'        => 'نا استعمال ہوئیاں کیٹاگریاں',
 'unusedimages'            => 'نا استعمال ہوئیاں فائلاں',
+'popularpages'            => 'مشہور صفحے',
 'wantedcategories'        => 'چاھیدیاں کیٹاگریاں',
 'wantedpages'             => 'چائیدے صفحے',
 'mostlinked'              => 'سب توں بوتے جوڑاں آۂے صفحے',

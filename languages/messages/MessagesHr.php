@@ -785,8 +785,8 @@ Možda ste već uspješno promijenili vašu lozinku ili ste zatražili novu priv
 'hr_tip'          => 'Vodoravna crta (koristiti rijetko)',
 
 # Edit pages
-'summary'                          => 'Sažetak',
-'subject'                          => 'Predmet',
+'summary'                          => 'Sažetak:',
+'subject'                          => 'Predmet:',
 'minoredit'                        => 'Ovo je manja promjena',
 'watchthis'                        => 'Prati ovaj članak',
 'savearticle'                      => 'Sačuvaj stranicu',
@@ -798,8 +798,8 @@ Možda ste već uspješno promijenili vašu lozinku ili ste zatražili novu priv
 'missingsummary'                   => "'''Napomena:''' Niste unijeli sažetak promjena. Ako ponovno kliknete na 'Sačuvaj', vaše će promjene biti snimljene bez sažetka.",
 'missingcommenttext'               => 'Molim unesite sažetak.',
 'missingcommentheader'             => "'''Upozorenje:''' Niste napisali sažetak ovog predmeta. Ako ponovno kliknete \"Sačuvaj stranicu\", vaš će predmet biti snimljen bez sažetka.",
-'summary-preview'                  => 'Pregled sažetka',
-'subject-preview'                  => 'Pregled predmeta',
+'summary-preview'                  => 'Pregled sažetka:',
+'subject-preview'                  => 'Pregled predmeta:',
 'blockedtitle'                     => 'Suradnik je blokiran',
 'blockedtext'                      => '<big>\'\'\'Vaše suradničko ime ili IP adresa je blokirana\'\'\'</big>
 

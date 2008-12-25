@@ -311,7 +311,7 @@ It must have at least $1 characters and be different from your username.',
 'retypenew'   => 'Parola newiye tekrar ke:',
 
 # Edit pages
-'summary'      => 'Xulasa',
+'summary'      => 'Xulasa:',
 'savearticle'  => 'Ena pele qeyd ke',
 'preview'      => 'Verqayt',
 'showpreview'  => 'Verqayti bımocne',

@@ -523,8 +523,8 @@ Ignorâd ceti mèssâjo se ceti compto at étâ crèâ per èrror.',
 'hr_tip'          => 'Legne plana (pas nen abusar)',
 
 # Edit pages
-'summary'                   => 'Rèsumâ&nbsp;',
-'subject'                   => 'Sujèt/titro',
+'summary'                   => 'Rèsumâ&nbsp;:',
+'subject'                   => 'Sujèt/titro:',
 'minoredit'                 => 'Modificacion minora',
 'watchthis'                 => 'Siuvre ceta pâge',
 'savearticle'               => 'Sôvar ceta pâge',
@@ -536,8 +536,8 @@ Ignorâd ceti mèssâjo se ceti compto at étâ crèâ per èrror.',
 'missingsummary'            => "'''Atencion :''' vos éd pas modifiâ lo rèsumâ de voutra modificacion. Se vos tornâd clicar sur lo boton « Sôvar ceta pâge », la pâge serat sôvâ sen novél avèrtissement.",
 'missingcommenttext'        => 'Volyéd fâre voutron comentèro ce-desot.',
 'missingcommentheader'      => "'''Rapèl :''' vos éd pas forni de sujèt/titro a ceti comentèro. Se vos tornâd clicar dessus « Sôvar ceta pâge », voutra èdicion serat enregistrâ sen titro.",
-'summary-preview'           => 'Prèvisualisacion du rèsumâ ',
-'subject-preview'           => 'Prèvisualisacion du sujèt/titro ',
+'summary-preview'           => 'Prèvisualisacion du rèsumâ :',
+'subject-preview'           => 'Prèvisualisacion du sujèt/titro :',
 'blockedtitle'              => 'L’utilisator est blocâ.',
 'blockedtext'               => "<big>'''Voutron compto utilisator ou voutra adrèce IP at étâ blocâ.'''</big>
 

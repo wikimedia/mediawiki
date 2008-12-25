@@ -781,8 +781,8 @@ Lehet, hogy már sikeresen megváltoztattad a jelszavad, vagy pedig időközben 
 'hr_tip'          => 'Vízszintes vonal (ritkán használd)',
 
 # Edit pages
-'summary'                          => 'Összefoglaló',
-'subject'                          => 'Téma/főcím',
+'summary'                          => 'Összefoglaló:',
+'subject'                          => 'Téma/főcím:',
 'minoredit'                        => 'Apró változtatás',
 'watchthis'                        => 'A lap figyelése',
 'savearticle'                      => 'Lap mentése',
@@ -794,8 +794,8 @@ Lehet, hogy már sikeresen megváltoztattad a jelszavad, vagy pedig időközben 
 'missingsummary'                   => "'''Emlékeztető:''' Nem adtál meg szerkesztési összefoglalót. Ha összefoglaló nélkül akarod elküldeni a szöveget, kattints újra a mentésre.",
 'missingcommenttext'               => 'Kérjük, hogy írj összefoglalót szerkesztésedhez.',
 'missingcommentheader'             => "'''Emlékeztető:''' Nem adtad meg a megjegyzés tárgyát/címét. Ha ismét a Mentés gombra kattintasz, akkor a szerkesztésed anélkül kerül mentésre.",
-'summary-preview'                  => 'A szerkesztési összefoglaló előnézete',
-'subject-preview'                  => 'A szakaszcím előnézete',
+'summary-preview'                  => 'A szerkesztési összefoglaló előnézete:',
+'subject-preview'                  => 'A téma/főcím előnézete:',
 'blockedtitle'                     => 'A szerkesztő blokkolva van',
 'blockedtext'                      => "<big>'''A felhasználói nevedet vagy az IP-címedet blokkoltuk.'''</big>
 

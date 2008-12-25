@@ -200,7 +200,7 @@ Per favore, fai subito un log in non appena la ricevi.',
 'retypenew'   => 'Riscrivi qui la nuova password',
 
 # Edit pages
-'summary'         => 'Oggetto',
+'summary'         => 'Oggetto:',
 'minoredit'       => 'Questa è una modifica minore',
 'watchthis'       => "Tieni d'occhio questo articolo",
 'savearticle'     => 'Salva la pagina',

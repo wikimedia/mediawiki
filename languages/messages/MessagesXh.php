@@ -87,7 +87,7 @@ I Account yakhgo ivuliwe, ungalibali ukutshitsha izinto ozithandayo ngo {{SITENA
 'loginlanguagelabel' => 'Ulwimi: $1',
 
 # Edit pages
-'summary'     => 'Isishwankathelo',
+'summary'     => 'Isishwankathelo:',
 'minoredit'   => 'Lutshitsho oluncinci olu',
 'watchthis'   => 'Bukela le Page',
 'savearticle' => 'Gcina eliphepha',

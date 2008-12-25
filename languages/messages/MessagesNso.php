@@ -377,8 +377,8 @@ Ga wa dumelwa go tlhoma tše dingwe.',
 'hr_tip'          => 'Mothalo wago ya faase/papamela (šomiša ka hloko)',
 
 # Edit pages
-'summary'                => 'Kakaretšo',
-'subject'                => 'Tabataba/Hlogo ya taba',
+'summary'                => 'Kakaretšo:',
+'subject'                => 'Tabataba/Hlogo ya taba:',
 'minoredit'              => 'Ye ke phetogo ye nnyenyane',
 'watchthis'              => 'Tlhapetša letlakala le',
 'savearticle'            => 'Boloka letlakala',
@@ -386,7 +386,7 @@ Ga wa dumelwa go tlhoma tše dingwe.',
 'showpreview'            => 'Laetša sebopego sa letlaka',
 'showdiff'               => 'Laetša diphetogo',
 'anoneditwarning'        => "'''Temošo''' Gawa ''tsena'', IP ya gago e tla šumišwa go histori ya diphetogo tša letlakala",
-'summary-preview'        => 'Lebelela kakaretšo',
+'summary-preview'        => 'Lebelela kakaretšo:',
 'blockedtitle'           => 'Mošomiši o thibilwe',
 'blockedtext'            => "<big>'''Leina la gago la mošomiši goba IP atrese e thibilwe.'''</big>
 

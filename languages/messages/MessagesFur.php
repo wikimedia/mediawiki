@@ -477,8 +477,8 @@ Prime di ricevi cualsisei altri messaç di pueste, tu scugnis seguî lis istruzi
 'hr_tip'          => 'Rie orizontâl (no stâ doprâle masse spes)',
 
 # Edit pages
-'summary'                   => 'Somari',
-'subject'                   => 'Argoment (intestazion)',
+'summary'                   => 'Somari:',
+'subject'                   => 'Argoment (intestazion):',
 'minoredit'                 => 'Cheste al è un piçul cambiament',
 'watchthis'                 => 'Ten di voli cheste pagjine',
 'savearticle'               => 'Salve la pagjine',
@@ -488,8 +488,8 @@ Prime di ricevi cualsisei altri messaç di pueste, tu scugnis seguî lis istruzi
 'showdiff'                  => 'Mostre cambiaments',
 'anoneditwarning'           => 'No tu sês jentrât cuntun non utent. La to direzion IP e vignarà regjistrade tal storic di cheste pagjine.',
 'missingcommenttext'        => 'Inserìs un coment ca sot.',
-'summary-preview'           => 'Anteprime dal somari',
-'subject-preview'           => 'Anteprime ogjet/intestazion',
+'summary-preview'           => 'Anteprime dal somari:',
+'subject-preview'           => 'Anteprime ogjet/intestazion:',
 'blockedtitle'              => 'Utent blocât',
 'blockedtext'               => "<big>'''Chest non utent o direzion IP a son stâts blocâts.'''</big>
 

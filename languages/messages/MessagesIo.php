@@ -359,8 +359,8 @@ Voluntez enirar altrafoye pos recevar ol.',
 'hr_tip'          => 'Horizontala lineo (ne trouzez ol)',
 
 # Edit pages
-'summary'              => 'Rezumo',
-'subject'              => 'Temo / Titulo',
+'summary'              => 'Rezumo:',
+'subject'              => 'Temo / Titulo:',
 'minoredit'            => 'Ico esas mikra chanjo',
 'watchthis'            => 'Surveyez ica artiklo',
 'savearticle'          => 'Registragar pagino',

@@ -221,7 +221,7 @@ Mishto si te jas kai {{SITENAME}} thai te paruves tiro lav sigo.',
 'image_sample' => 'Misal.jpg',
 
 # Edit pages
-'summary'            => 'Xarno xalyaripen',
+'summary'            => 'Xarno xalyaripen:',
 'minoredit'          => 'Kadava si ek tikno editisarimos',
 'watchthis'          => 'Dikh kadaya patrin',
 'savearticle'        => 'Uxtav i patrin',

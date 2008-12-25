@@ -594,8 +594,8 @@ Villicht hesch Dyy Passwort scho gänderet oder e nej temporär Passwort aagford
 'hr_tip'          => 'Horizontali Linie (sparsam verwende)',
 
 # Edit pages
-'summary'                          => 'Zämefassig',
-'subject'                          => 'Beträff',
+'summary'                          => 'Zämefassig:',
+'subject'                          => 'Beträff:',
 'minoredit'                        => 'Numen es birebitzeli gänderet',
 'watchthis'                        => 'Dä Artikel beobachte',
 'savearticle'                      => 'Syte spychere',
@@ -607,8 +607,8 @@ Villicht hesch Dyy Passwort scho gänderet oder e nej temporär Passwort aagford
 'missingsummary'                   => "'''Obacht:''' Du hesch kei Zämefassig aagee. Wenn du nomol uf Spychere drucksch, wird d Änderung ohni gspychert.",
 'missingcommenttext'               => 'Bitte gib Dyy Kommentar unte yy.',
 'missingcommentheader'             => "'''ACHTIG:''' Du hesch kei Iberschrift im Fäld „Betreff:“ yygee. Wänn nomol uf „Syte spichere“ drucksch, wird Dyyni Bearbeitig ohni Iberschrift gspicheret.",
-'summary-preview'                  => 'Vorschou vor Zämefassig',
-'subject-preview'                  => 'Vorschau vum Betreff',
+'summary-preview'                  => 'Vorschou vor Zämefassig:',
+'subject-preview'                  => 'Vorschau vum Betreff:',
 'blockedtitle'                     => 'Benutzer isch gsperrt.',
 'blockedtext'                      => "<big>'''Dy Benutzernamen oder dyni IP-Adrässen isch gsperrt worde.'''</big>
 

@@ -490,8 +490,8 @@ Se sòn a l\'é rivà për eror, a peul lassé sté e fe gnente sensa problema.'
 'hr_tip'          => 'Riga orisontal (da dovresse nen tròp soèns)',
 
 # Edit pages
-'summary'                   => 'Somari',
-'subject'                   => 'Sogèt',
+'summary'                   => 'Somari:',
+'subject'                   => 'Sogèt:',
 'minoredit'                 => "Costa-sì a l'è na modìfica cita",
 'watchthis'                 => "Ten sot euj st'artìcol-sì",
 'savearticle'               => 'Salva sta pàgina',
@@ -503,8 +503,8 @@ Se sòn a l\'é rivà për eror, a peul lassé sté e fe gnente sensa problema.'
 'missingsummary'            => "'''Nòta:''' a l'ha pa butà gnun somari dla modìfica. Se a sgnaca Salva n'àutra vira, soa modìfica a resterà salvà sensa pa ëd somari.",
 'missingcommenttext'        => 'Për piasì che a buta un coment ambelessì sota.',
 'missingcommentheader'      => "'''A l'euj!:''' ës coment-sì a l'é sensa intestassion. Se a sgnaca torna \"Salva sta pàgina\" soa modìfica a sarà salvà sensa gnun-a intestassion.",
-'summary-preview'           => "Preuva dl'oget",
-'subject-preview'           => "Preuva d'oget/intestassion",
+'summary-preview'           => "Preuva dl'oget:",
+'subject-preview'           => "Preuva d'oget/intestassion:",
 'blockedtitle'              => "Belavans cost ëstranòm-sì a resta col ëd n'utent che a l'é stait disabilità a fé 'd modìfiche a j'articoj.",
 'blockedtext'               => "<big>'''Sò stranòm ò pura adrëssa IP a l'é stait blocà.'''</big>
 

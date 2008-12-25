@@ -301,7 +301,7 @@ $messages = array(
 'sig_tip'        => '倷个签名搭仔辰光记录',
 
 # Edit pages
-'summary'            => '总结',
+'summary'            => '总结:',
 'minoredit'          => '该个是个小改动',
 'watchthis'          => '监控该只页面',
 'savearticle'        => '保存页面',

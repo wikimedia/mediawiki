@@ -367,8 +367,8 @@ Sa ku bye fatukile zwa sebu dafi e a ni petuho, ni petuho e mulumiwasibukirisize
 'hr_tip'          => 'Lani - (sepalati)',
 
 # Edit pages
-'summary'                => 'Lyangutukezi',
-'subject'                => 'Lyangutukezi selt',
+'summary'                => 'Lyangutukezi:',
+'subject'                => 'Lyangutukezi selt:',
 'minoredit'              => 'A sa pili kenki',
 'watchthis'              => 'Kantezi bye petulo',
 'savearticle'            => 'Bulukezi',
@@ -378,7 +378,7 @@ Sa ku bye fatukile zwa sebu dafi e a ni petuho, ni petuho e mulumiwasibukirisize
 'showdiff'               => 'Kamukile nca petuho',
 'anoneditwarning'        => "'''!:''' A ni sa menuhile.
 Zwa adresi di IP sa bulukezi kwa kenki bundau di petulo.",
-'summary-preview'        => 'Lyangutukezi pendiBe',
+'summary-preview'        => 'Lyangutukezi pendiBe:',
 'blockedtitle'           => 'Sebelu sa bolok',
 'blockedtext'            => "<big>'''Zwa sebelu/IP sa bolok.'''</big>
 

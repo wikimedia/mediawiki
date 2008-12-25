@@ -757,8 +757,8 @@ Du kanske redan har lyckats ändra ditt lösenord eller begärt ett nytt tillfä
 'hr_tip'          => 'Horisontell linje (använd sparsamt)',
 
 # Edit pages
-'summary'                          => 'Sammanfattning',
-'subject'                          => 'Ämne/rubrik',
+'summary'                          => 'Sammanfattning:',
+'subject'                          => 'Ämne/rubrik:',
 'minoredit'                        => 'Mindre ändring (m)',
 'watchthis'                        => 'Bevaka denna sida',
 'savearticle'                      => 'Spara',
@@ -772,8 +772,8 @@ Din IP-adress kommer att sparas i historiken för den här sidan.",
 Om du klickar på Spara igen, kommer din redigering att sparas utan en sådan.",
 'missingcommenttext'               => 'Var god och skriv in en kommentar nedan.',
 'missingcommentheader'             => "'''OBS:''' Du har inte skrivit någon rubrik till den här kommentaren. Om du trycker på \"Spara\" igen, så sparas kommentaren utan någon rubrik.",
-'summary-preview'                  => 'Förhandsgranskning av sammanfattning',
-'subject-preview'                  => 'Rubrikförhandsgranskning',
+'summary-preview'                  => 'Förhandsgranskning av sammanfattning:',
+'subject-preview'                  => 'Rubrikförhandsgranskning:',
 'blockedtitle'                     => 'Användaren är blockerad',
 'blockedtext'                      => "<big>'''Din IP-adress eller ditt användarnamn är blockerat.'''</big>
 
