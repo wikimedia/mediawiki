@@ -888,17 +888,17 @@ END;
 		$add = array();
 		while( $row = $this->dbr->fetchObject( $result ) ) {
 			$add[] = array(
-				'wl_user'      =>                        $row->wl_user,
-				'wl_namespace' => Namespace::getSubject( $row->wl_namespace ),
-				'wl_title'     =>           $this->conv( $row->wl_title ),
-				'wl_notificationtimestamp' =>            '0' );
+				'wl_user'      =>                          $row->wl_user,
+				'wl_namespace' => MWNamespace::getSubject( $row->wl_namespace ),
+				'wl_title'     =>             $this->conv( $row->wl_title ),
+				'wl_notificationtimestamp' =>              '0' );
 			$this->addChunk( $add );
 
 			$add[] = array(
-				'wl_user'      =>                        $row->wl_user,
-				'wl_namespace' =>    Namespace::getTalk( $row->wl_namespace ),
-				'wl_title'     =>           $this->conv( $row->wl_title ),
-				'wl_notificationtimestamp' =>            '0' );
+				'wl_user'      =>                          $row->wl_user,
+				'wl_namespace' =>    MWNamespace::getTalk( $row->wl_namespace ),
+				'wl_title'     =>             $this->conv( $row->wl_title ),
+				'wl_notificationtimestamp' =>              '0' );
 			$this->addChunk( $add );
 		}
 		$this->lastChunk( $add );
