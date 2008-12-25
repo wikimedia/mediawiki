@@ -516,6 +516,12 @@ class CheckExtensionsCLI extends CheckLanguageCLI {
 				$group = MessageGroups::getGroup( $extension );
 				$this->extensions[] = new extensionLanguages( $group );
 			}
+		} elseif ( $extension == 'flaggedrevs' ) {
+			foreach ( MessageGroups::singleton()->getGroups() as $group ) {
+				if ( strpos( $group->getId(), 'ext-flaggedrevs-' ) === 0 && !$group->isMeta() ) {
+					$this->extensions[] = new extensionLanguages( $group );
+				}
+			}
 		} else {
 			$extensions = explode( ',', $extension );
 			foreach ( $extensions as $extension ) {
@@ -568,7 +574,7 @@ class CheckExtensionsCLI extends CheckLanguageCLI {
 Run this script to check the status of a specific language in extensions, or all of them.
 Command line settings are in form --parameter[=value], except for the first one.
 Parameters:
-	* First parameter (mandatory): Extension name, multiple extension names (separated by commas), "all" for all the extensions or "wikimedia" for extensions used by Wikimedia.
+	* First parameter (mandatory): Extension name, multiple extension names (separated by commas), "all" for all the extensions, "wikimedia" for extensions used by Wikimedia or "flaggedrevs" for all FLaggedRevs extension messages.
 	* lang: Language code (default: the installation default language).
 	* help: Show this help.
 	* level: Show the following display level (default: 2).
