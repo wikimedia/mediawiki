@@ -3005,7 +3005,7 @@ This is probably caused by a link to a blacklisted external site.',
 'numauthors'     => 'Number of distinct authors (page): $1',
 'numtalkauthors' => 'Number of distinct authors (discussion page): $1',
 
-# Skins names
+# Skin names
 'skinname-standard'    => 'Classic',
 'skinname-nostalgia'   => 'Nostalgia',
 'skinname-cologneblue' => 'Cologne Blue',
