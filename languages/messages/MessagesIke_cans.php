@@ -164,14 +164,14 @@ $messages = array(
 'bold_tip'    => 'ᐃᔾᔪᔪᒡ ᑕᖅᓴᓕᖅᐹ',
 
 # Edit pages
-'summary'         => 'ᓱᕕᑦ',
+'summary'         => 'ᓱᕕᑦ:',
 'minoredit'       => 'ᐅᑭᐅᑭᓗᐊᖅᑐᖅ ᐊᓯᐊᙳᑐᖅ',
 'watchthis'       => 'ᐅᕝᕙ',
 'savearticle'     => 'ᐅᖃᐅᓯᓪᓚᕆᖏᑕ ᑎᑎᕋᖅᑕᐅᓂᖏᑦ',
 'preview'         => 'ᐅᕝᕙ ᖃᖓᓵᖑᓕᖅᑐᖅ',
 'showpreview'     => 'ᓱᖁᓯᖅᐹ ᐊᓚᒃᑲᐅᑎᕗᖅ ᓯᕗᓕᐅᖅᐹ ᐅᖃᐅᓯᓪᓚᕆᖏᑕ ᑎᑎᕋᖅᑕᐅᓂᖏᑦ',
 'showdiff'        => 'ᐊᓚᒃᑲᑎᑉᐹ ᐊᓯᐊᙳᑐᖅ',
-'summary-preview' => 'ᓱᕕᑦ',
+'summary-preview' => 'ᓱᕕᑦ:',
 'blockedtitle'    => 'ᐋᖅᑭᒃᓱᐃᔨ ᐅᒥᙵᓯᓯᔪᖅ',
 'loginreqlink'    => 'ᐊᑯᓐᓇᐳᖅ',
 'newarticle'      => '(ᐱᒋᕗᖅ)',

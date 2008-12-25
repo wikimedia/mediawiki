@@ -6,6 +6,7 @@
  *
  * @author Cedric31
  * @author ChrisPtDe
+ * @author Fryed-peach
  * @author Spacebirdy
  * @author Горан Анђелковић
  * @author לערי ריינהארט
@@ -562,7 +563,7 @@ Requèsta : $2',
 'protectedpagetext'    => 'Aquesta pagina es estada protegida per empachar sa modificacion.',
 'viewsourcetext'       => 'Podètz veire e copiar lo contengut de l’article per poder trabalhar dessús :',
 'protectedinterface'   => 'Aquesta pagina fornís de tèxt d’interfàcia pel logicial e es protegida per evitar los abuses.',
-'editinginterface'     => "'''Atencion :''' sètz a editar una pagina utilizada per crear lo tèxt de l’interfàcia del logicial. Los cambiaments se repercutaràn, segon lo contèxt, sus totas o cèrtas paginas visiblas pels autres utilizaires. Per las traduccions, vos convidam a utilizar lo projècte Mediawiki d'internacionalizacion dels messatges [http://translatewiki.net/wiki/Main_Page?setlang=oc Betawiki].",
+'editinginterface'     => "'''Atencion :''' sètz a editar una pagina utilizada per crear lo tèxt de l’interfàcia del logicial. Los cambiaments se repercutaràn, segon lo contèxt, sus totas o cèrtas paginas visiblas pels autres utilizaires. Per las traduccions, vos convidam a utilizar lo projècte MediaWiki d'internacionalizacion dels messatges [http://translatewiki.net/wiki/Main_Page?setlang=oc Betawiki].",
 'sqlhidden'            => '(Requèsta SQL amagada)',
 'cascadeprotected'     => "Aquesta pagina es actualament protegida perque es inclusa dins {{PLURAL:$1|la pagina seguenta|las paginas seguentas}}, {{PLURAL:$1|qu'es estada protegida|que son estadas protegidas}} amb l’opcion « proteccion en cascada » activada :
 $2",
@@ -713,8 +714,8 @@ Benlèu ja avètz modificat vòstre senhal o demandat un senhal temporari novèl
 'hr_tip'          => "Linha orizontala (n'abusetz pas)",
 
 # Edit pages
-'summary'                          => 'Resumit&nbsp;',
-'subject'                          => 'Subjècte/títol',
+'summary'                          => 'Resumit :&nbsp;',
+'subject'                          => 'Subjècte/títol :',
 'minoredit'                        => 'Aquò es un cambiament menor',
 'watchthis'                        => 'Seguir aquesta pagina',
 'savearticle'                      => 'Salvar',
@@ -727,8 +728,8 @@ Vòstra adreça IP serà enregistrada dins l’istoric d'aquesta pagina.",
 'missingsummary'                   => "'''Atencion :''' avètz pas modificat lo resumit de vòstra modificacion. Se clicatz tornarmai sul boton « Salvar », lo salvament serà facha sens avertiment novèl.",
 'missingcommenttext'               => 'Mercé de metre un comentari çaijós.',
 'missingcommentheader'             => "'''Rampèl :''' Avètz pas provesit de subjècte/títol per aqueste comentari. Se clicatz tornamai sus ''Salvar'', vòstra edicion serà enregistrada sens aquò.",
-'summary-preview'                  => 'Previsualizacion del resumit',
-'subject-preview'                  => 'Previsualizacion del subjècte/títol',
+'summary-preview'                  => 'Previsualizacion del resumit :',
+'subject-preview'                  => 'Previsualizacion del subjècte/títol :',
 'blockedtitle'                     => "L'utilizaire es blocat",
 'blockedtext'                      => "<big>'''Vòstre compte d'utilizaire o vòstra adreça IP es estat blocat'''</big>
 

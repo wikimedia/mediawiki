@@ -172,8 +172,8 @@ $messages = array(
 'headline_sample' => 'ސުރުހީގެ އިބާރާތް',
 
 # Edit pages
-'summary'                  => 'ހުލާސާ',
-'subject'                  => 'މާއްދާ/ސުރުހީ',
+'summary'                  => 'ހުލާސާ:',
+'subject'                  => 'މާއްދާ/ސުރުހީ:',
 'minoredit'                => 'މިއީ ކުޑަކުޑަ އުނިއިތުރެކެވެ',
 'watchthis'                => 'މި ޞަފްޙާއަށް ނަޒަރުބަހައްޓަވާ',
 'savearticle'              => 'ޞަފްޙާ ރައްކާކުރައްވާ',

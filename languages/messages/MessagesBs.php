@@ -688,8 +688,8 @@ Možda ste već uspješno promijenili Vašu šifru ili ste tražili novu privrem
 'hr_tip'          => 'Horizontalna linija (koristite oskudno)',
 
 # Edit pages
-'summary'                          => 'Sažetak',
-'subject'                          => 'Tema/naslov',
+'summary'                          => 'Sažetak:',
+'subject'                          => 'Tema/naslov:',
 'minoredit'                        => 'Ovo je mala izmjena',
 'watchthis'                        => 'Prati ovu stranicu',
 'savearticle'                      => 'Sačuvaj',
@@ -703,8 +703,8 @@ Ako kliknete na Sačuvaj, Vaša izmjena će biti sačuvana bez sažetka.",
 'missingcommenttext'               => 'Molimo unesite komentar ispod.',
 'missingcommentheader'             => "'''Podsjetnik:''' Niste napisati temu/naslov za ovaj komentar.
 Ako ponovo kliknete na '''Sačuvaj članak''', vaše izmjene će biti spašene bez teme/naslova.",
-'summary-preview'                  => 'Pregled sažetka',
-'subject-preview'                  => 'Pregled tema/naslova',
+'summary-preview'                  => 'Pregled sažetka:',
+'subject-preview'                  => 'Pregled tema/naslova:',
 'blockedtitle'                     => 'Korisnik je blokiran',
 'blockedtext'                      => "<big>'''Vaše korisničko ime ili IP adresa je blokirana.'''</big>
 

@@ -510,8 +510,8 @@ Panjengen manawa wis kasil ganti tembung sandi utawa nyuwun tembung sandi saunta
 'hr_tip'          => 'Garis horisontal',
 
 # Edit pages
-'summary'                          => 'Ringkesan',
-'subject'                          => 'Subyek/judhul',
+'summary'                          => 'Ringkesan:',
+'subject'                          => 'Subyek/judhul:',
 'minoredit'                        => 'Iki suntingan cilik.',
 'watchthis'                        => 'Awasana kaca iki',
 'savearticle'                      => 'Simpen kaca',
@@ -523,8 +523,8 @@ Panjengen manawa wis kasil ganti tembung sandi utawa nyuwun tembung sandi saunta
 'missingsummary'                   => "'''Pènget:''' Panjenengan ora nglebokaké ringkesan panyuntingan. Menawa panjenengan mencèt tombol Simpen manèh, suntingan panjenengan bakal kasimpen tanpa ringkesan panyuntingan.",
 'missingcommenttext'               => 'Tulung lebokna komentar ing ngisor iki.',
 'missingcommentheader'             => "'''Pènget:''' Panjenengan durung mènèhi subyèk utawa judhul kanggo komentar panjenengan. Menawa panjenengan mencèt Simpan, suntingan panjenengan bakal kasimpen tanpa komentar iku.",
-'summary-preview'                  => 'Pratayang ringkesan',
-'subject-preview'                  => 'Pratayang subyèk/judhul',
+'summary-preview'                  => 'Pratayang ringkesan:',
+'subject-preview'                  => 'Pratayang subyèk/judhul:',
 'blockedtitle'                     => 'Panganggo diblokir',
 'blockedtext'                      => "<big>'''Asma panganggo utawa alamat IP panjenengan diblokir.'''</big>
 

@@ -382,8 +382,8 @@ Før en e-mail ken modtages åf andre brugere åf æ {{SITENAME}}-mailfunksje, s
 'hr_tip'          => 'Plat lenje (brug den sparsåmt)',
 
 # Edit pages
-'summary'                => 'Beskrevelse',
-'subject'                => 'Emne/åverskreft',
+'summary'                => 'Beskrevelse:',
+'subject'                => 'Emne/åverskreft:',
 'minoredit'              => "Dette'r en mendre æller lile ændrenge.",
 'watchthis'              => 'Åvervåg denne ertikel',
 'savearticle'            => 'Gem side',
@@ -391,7 +391,7 @@ Før en e-mail ken modtages åf andre brugere åf æ {{SITENAME}}-mailfunksje, s
 'showpreview'            => 'Førhåndsvesnenge',
 'showdiff'               => 'Ves ændrenger',
 'anoneditwarning'        => "Du arbejder uden at være loĝget på. Estedet før brugernav veses så'n IP-adresse i'n hersenengerskigt.",
-'summary-preview'        => 'Førhåndsvesnenge åf beskrevelselejne',
+'summary-preview'        => 'Førhåndsvesnenge åf beskrevelselejne:',
 'blockedtext'            => "<big>'''Dit brugernav æller din IP-adresse er blevet blokeret.'''</big>
 
 Æ blokerenge er lavet åf $1. Æ begrundelse er ''$2''.

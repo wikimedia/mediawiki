@@ -723,8 +723,8 @@ Du kan allereie ha byta passordet, eller ha bede om å få eit nytt mellombels p
 'hr_tip'          => 'Vassrett line',
 
 # Edit pages
-'summary'                          => 'Samandrag',
-'subject'                          => 'Emne/overskrift',
+'summary'                          => 'Samandrag:',
+'subject'                          => 'Emne/overskrift:',
 'minoredit'                        => 'Småplukk',
 'watchthis'                        => 'Overvak denne sida',
 'savearticle'                      => 'Lagre',
@@ -736,8 +736,8 @@ Du kan allereie ha byta passordet, eller ha bede om å få eit nytt mellombels p
 'missingsummary'                   => "'''Påminning:''' Du har ikkje skrive noko endringssamandrag. Dersom du trykkjer «Lagre» ein gong til, vert endringa di lagra utan.",
 'missingcommenttext'               => 'Ver venleg og skriv ein kommentar nedanfor.',
 'missingcommentheader'             => "'''Påminning:''' Du har ikkje oppgjeve noko emne/overskrift for denne kommentaren. Dersom du trykkjer «Lagre» ein gong til, vert endringa di lagra utan.",
-'summary-preview'                  => 'Førehandsvising av endringssamandraget',
-'subject-preview'                  => 'Førehandsvising av emne/overskrift',
+'summary-preview'                  => 'Førehandsvising av endringssamandraget:',
+'subject-preview'                  => 'Førehandsvising av emne/overskrift:',
 'blockedtitle'                     => 'Brukaren er blokkert',
 'blockedtext'                      => "<big>'''Brukarnamnet ditt eller IP-adressa di er blokkert frå endring'''</big>
 

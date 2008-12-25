@@ -649,8 +649,8 @@ Du kan ha allerede byttet passordet, eller bedt om et nytt midlertidig passord.'
 'hr_tip'          => 'Horisontal linje',
 
 # Edit pages
-'summary'                          => 'Redigeringsforklaring',
-'subject'                          => 'Overskrift',
+'summary'                          => 'Redigeringsforklaring:',
+'subject'                          => 'Overskrift:',
 'minoredit'                        => 'Mindre endring',
 'watchthis'                        => 'Overvåk denne siden',
 'savearticle'                      => 'Lagre siden',
@@ -663,8 +663,8 @@ Du kan ha allerede byttet passordet, eller bedt om et nytt midlertidig passord.'
 Velger du ''Lagre siden'' en gang til blir endringene lagret uten forklaring.",
 'missingcommenttext'               => 'Vennligst legg inn en kommentar under.',
 'missingcommentheader'             => "'''Merk:''' Du har ikke angitt et emne/overskrift for denne kommentaren. Om du trykker Lagre igjen, vil redigeringen din bli lagret uten en.",
-'summary-preview'                  => 'Forhåndsvisning av sammendrag',
-'subject-preview'                  => 'Forhåndsvisning av emne/overskrift',
+'summary-preview'                  => 'Forhåndsvisning av sammendrag:',
+'subject-preview'                  => 'Forhåndsvisning av emne/overskrift:',
 'blockedtitle'                     => 'Brukeren er blokkert',
 'blockedtext'                      => "<big>'''Ditt brukernavn eller din IP-adresse har blitt blokkert.'''</big>
 

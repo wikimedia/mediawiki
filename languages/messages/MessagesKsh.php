@@ -722,7 +722,7 @@ Do häs Der enzwesche e neuZweschepasswood jehollt.',
 'hr_tip'          => 'En Querlinnich',
 
 # Edit pages
-'summary'                          => 'Koot Zosammejefass, Quell',
+'summary'                          => 'Koot Zosammejefass, Quell:',
 'subject'                          => 'Üvverschreff - wodröm jeiht et?',
 'minoredit'                        => 'Dat es en klein Änderung (mini)',
 'watchthis'                        => 'Op die Sigg hee oppasse',
@@ -735,8 +735,8 @@ Do häs Der enzwesche e neuZweschepasswood jehollt.',
 'missingsummary'                   => '<strong>Opjepass:</strong> Do häs nix bei „Koot Zosammejefass, Quell“ enjejovve. Dun noch ens op „<b style="padding:2px; background-color:#ddd; color:black">De Sigg Avspeichere</b>“ klicke, öm Ding Änderunge ohne de Zosammefassung ze Speicheree. Ävver besser jiss De do jetz tirek ens jet en!',
 'missingcommenttext'               => 'Jevv en „Koot Zosammejefass, Quell“ aan!',
 'missingcommentheader'             => "'''Opjepass:''' Do häs kein Üvverschreff för Dinge Beidrach enjejovve. Wann De noch ens op „De Sigg Avspeichere“ dröcks, weed dä Beidrach ohne Üvverschreff avjespeichert.",
-'summary-preview'                  => 'Vör-Aansich vun „Koot Zosammejefass, Quell“',
-'subject-preview'                  => 'Vör-Aansich vun de Üvverschreff',
+'summary-preview'                  => 'Vör-Aansich vun „Koot Zosammejefass, Quell“:',
+'subject-preview'                  => 'Vör-Aansich vun de Üvverschreff:',
 'blockedtitle'                     => 'Dä Metmaacher es jesperrt',
 'blockedtext'                      => "<big>'''Dinge Metmaacher-Name oder IP Adress es vun „\$1“ jesperrt woode.'''</big>
 

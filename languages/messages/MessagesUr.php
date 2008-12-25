@@ -251,15 +251,15 @@ $messages = array(
 'headline_tip'    => 'شہ سرخی درجہ دوم',
 
 # Edit pages
-'summary'              => 'خلاصہ',
-'subject'              => 'مضمون/شہ سرخی',
+'summary'              => 'خلاصہ:',
+'subject'              => 'مضمون/شہ سرخی:',
 'minoredit'            => 'معمولی ترمیم',
 'watchthis'            => 'یہ صفحہ زیر نظر کیجیۓ',
 'savearticle'          => 'محفوظ',
 'preview'              => 'نمائش',
 'showpreview'          => 'نمائش',
 'anoneditwarning'      => 'آپ {{SITENAME}} میں داخل نہیں ہوۓ لہذا آپکا IP پتہ اس صفحہ کے تاریخچہ ء ترمیم میں محفوظ ہوجاۓ گا۔',
-'summary-preview'      => 'نمائش خلاصہ',
+'summary-preview'      => 'نمائش خلاصہ:',
 'whitelistedittext'    => 'ترمیم و تدوین کے لیۓ آپکا [[Special:UserLogin|داخل ہونا]] لا زمی ہے۔',
 'loginreqtitle'        => 'داخلہ / اندراج لازم',
 'loginreqlink'         => 'داخلہ',

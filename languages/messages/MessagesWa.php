@@ -448,8 +448,8 @@ Divant d' poleur evoyî èn ôte emile a ci conte la, vos dvroz shure les instru
 'hr_tip'          => "Roye di coûtchî (a n' nén eployî d' trop)",
 
 # Edit pages
-'summary'                   => 'Rascourti',
-'subject'                   => 'Sudjet/tiestire',
+'summary'                   => 'Rascourti:',
+'subject'                   => 'Sudjet/tiestire:',
 'minoredit'                 => "Ci n' est k' ene tchitcheye",
 'watchthis'                 => 'Shuve cist årtike',
 'savearticle'               => "Schaper l' pådje",

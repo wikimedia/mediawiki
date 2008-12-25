@@ -417,8 +417,8 @@ Ili kuzuiya uhuni, kiumbusho cha nywila kimoja pekee utakachotumiwa kwa {{PLURAL
 'hr_tip'          => 'Mstari wa mlalo (usitumie ovyo)',
 
 # Edit pages
-'summary'                => 'Muhtasari',
-'subject'                => 'Kuhusu/kichwa cha habari',
+'summary'                => 'Muhtasari:',
+'subject'                => 'Kuhusu/kichwa cha habari:',
 'minoredit'              => 'Haya ni mabadiliko madogo',
 'watchthis'              => 'Fuatilia ukurasa huu',
 'savearticle'            => 'Hifadhi ukurasa',
@@ -426,7 +426,7 @@ Ili kuzuiya uhuni, kiumbusho cha nywila kimoja pekee utakachotumiwa kwa {{PLURAL
 'showpreview'            => 'Onyesha hakikisho la mabadiliko',
 'showdiff'               => 'Onyesha mabadiliko',
 'anoneditwarning'        => "'''Ilani:''' Wewe hujaingia rasmi kwenye tovuti. Anwani ya IP ya tarakilishi yako itahifadhiwa katika historia ya uhariri wa ukurasa huu.",
-'summary-preview'        => 'Hakikisho la muhtasari',
+'summary-preview'        => 'Hakikisho la muhtasari:',
 'blockedtext'            => "<big>'''Jina lako la mtumiaji au anwani yako ya IP imezuiwa.'''</big>
 
 Umezuiwa na $1. Sababu alitambua ni ''$2''

@@ -668,8 +668,8 @@ Deveu haver canviat la vostra contrasenya o demanat una nova contrasenya tempora
 'hr_tip'          => 'Línia horitzontal (feu-la servir amb moderació)',
 
 # Edit pages
-'summary'                          => 'Resum',
-'subject'                          => 'Tema/capçalera',
+'summary'                          => 'Resum:',
+'subject'                          => 'Tema/capçalera:',
 'minoredit'                        => 'Aquesta és una edició menor',
 'watchthis'                        => 'Vigila aquesta pàgina',
 'savearticle'                      => 'Desa la pàgina',
@@ -681,8 +681,8 @@ Deveu haver canviat la vostra contrasenya o demanat una nova contrasenya tempora
 'missingsummary'                   => "'''Recordatori''': Heu deixat en blanc el resum de l'edició. Si torneu a clicar al botó de desar, l'edició es guardarà sense resum.",
 'missingcommenttext'               => 'Introduïu un comentari a continuació.',
 'missingcommentheader'             => "'''Recordatori:''' No heu proporcionat un assumpte/encapçalament per al comentari. Si cliqueu al botó Torna a desar, la vostra contribució se desarà sense cap.",
-'summary-preview'                  => 'Previsualització del resum',
-'subject-preview'                  => 'Previsualització de tema/capçalera',
+'summary-preview'                  => 'Previsualització del resum:',
+'subject-preview'                  => 'Previsualització de tema/capçalera:',
 'blockedtitle'                     => "L'usuari està blocat",
 'blockedtext'                      => "<big>'''S'ha procedit al blocatge del vostre compte d'usuari o la vostra adreça IP.'''</big>
 

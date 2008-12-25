@@ -724,8 +724,8 @@ $messages = array(
 'hr_tip'          => '가로줄(되도록 사용하지 말아 주세요)',
 
 # Edit pages
-'summary'                          => '편집 요약',
-'subject'                          => '주제/제목',
+'summary'                          => '편집 요약:',
+'subject'                          => '주제/제목:',
 'minoredit'                        => '사소한 편집',
 'watchthis'                        => '이 문서 주시하기',
 'savearticle'                      => '저장',
@@ -736,8 +736,8 @@ $messages = array(
 'anoneditwarning'                  => "'''주의''': 로그인하고 있지 않습니다. 당신의 IP 주소가 문서 역사에 남게 됩니다.",
 'missingsummary'                   => "'''알림:''' 편집 요약을 적지 않았습니다. 그대로 저장하면 편집 요약 없이 저장됩니다.",
 'missingcommenttext'               => '아래에 내용을 채워 넣어 주세요.',
-'summary-preview'                  => '편집 요약 미리 보기',
-'subject-preview'                  => '주제/제목 미리 보기',
+'summary-preview'                  => '편집 요약 미리 보기:',
+'subject-preview'                  => '주제/제목 미리 보기:',
 'blockedtitle'                     => '차단됨',
 'blockedtext'                      => "<big>'''당신의 계정 혹은 IP 주소가 차단되었습니다.'''</big>
 
@@ -1216,6 +1216,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'action-upload'               => '이 파일을 올리기',
 'action-reupload'             => '이미 존재하는 파일 덮어쓰기',
 'action-upload_by_url'        => 'URL 주소를 통해 이 파일을 올리기',
+'action-writeapi'             => 'API를 작성할',
 'action-delete'               => '이 문서 삭제하기',
 'action-deleterevision'       => '이 판을 삭제',
 'action-deletedhistory'       => '이 문서의 삭제된 기여의 역사 보기',

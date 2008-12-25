@@ -668,8 +668,8 @@ Có thể bạn đã thay đổi thành công mật khẩu của mình hoặc đ
 'hr_tip'          => 'Dòng kẻ ngang (không nên lạm dụng)',
 
 # Edit pages
-'summary'                          => 'Tóm tắt',
-'subject'                          => 'Đề mục',
+'summary'                          => 'Tóm tắt:',
+'subject'                          => 'Đề mục:',
 'minoredit'                        => 'Sửa đổi nhỏ',
 'watchthis'                        => 'Theo dõi trang này',
 'savearticle'                      => 'Lưu trang',
@@ -681,8 +681,8 @@ Có thể bạn đã thay đổi thành công mật khẩu của mình hoặc đ
 'missingsummary'                   => "'''Nhắc nhở:''' Bạn đã không ghi lại tóm lược sửa đổi. Nếu bạn nhấn Lưu trang một lần nữa, sửa đổi của bạn sẽ được lưu mà không có tóm lược.",
 'missingcommenttext'               => 'Xin hãy gõ vào lời bàn luận ở dưới.',
 'missingcommentheader'             => "'''Nhắc nhở:''' Bạn chưa cung cấp đề mục cho bàn luận này. Nếu bạn nhấn nút Lưu trang lần nữa, sửa đổi của bạn sẽ được lưu mà không có đề mục.",
-'summary-preview'                  => 'Xem trước dòng tóm lược',
-'subject-preview'                  => 'Xem trước đề mục',
+'summary-preview'                  => 'Xem trước dòng tóm lược:',
+'subject-preview'                  => 'Xem trước đề mục:',
 'blockedtitle'                     => 'Thành viên bị cấm',
 'blockedtext'                      => "<big>'''Tên người dùng hoặc địa chỉ IP của bạn đã bị cấm.'''</big>
 

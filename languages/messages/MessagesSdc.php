@@ -558,8 +558,8 @@ Pa cumprità la registhrazioni è nezzessàriu impusthà una noba paràura d'ór
 'hr_tip'          => 'Lìnia orizontari (usà cun moderazioni)',
 
 # Edit pages
-'summary'                   => 'Oggettu',
-'subject'                   => 'Tìturu',
+'summary'                   => 'Oggettu:',
+'subject'                   => 'Tìturu:',
 'minoredit'                 => 'Chistha è una mudìfigga minori',
 'watchthis'                 => "Aggiungi a l'abbaidaddi ippiziari",
 'savearticle'               => 'Sàivva la pàgina',
@@ -571,8 +571,8 @@ Pa cumprità la registhrazioni è nezzessàriu impusthà una noba paràura d'ór
 'missingsummary'            => "'''Promimória:''' Nò ài ippizzificaddu l'oggettu di la mudìfigga. Turrendi à incalchà '''Sàivva la pàgina''' lu mudìfigga sarà sàivvadda cun l'oggettu bioddu.",
 'missingcommenttext'        => 'Insirì un cummentu in giossu.',
 'missingcommentheader'      => "'''Promimória:''' Nò hai ippizzificaddu l'intisthazioni di chisthu cummentu. Turrendi à incalchà '''Sàivva la pàgina''' lu mudìfigga sarà sàivvadda chena intisthazioni.",
-'summary-preview'           => 'Antiprimma oggettu',
-'subject-preview'           => 'Antiprimma oggettu/intisthazioni',
+'summary-preview'           => 'Antiprimma oggettu:',
+'subject-preview'           => 'Antiprimma oggettu/intisthazioni:',
 'blockedtitle'              => 'Utenti broccaddu.',
 'blockedtext'               => "<big>'''Chisth'innòmmu utenti o indirizzu IP so isthaddi broccaddi.'''</big>
 

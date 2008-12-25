@@ -373,8 +373,8 @@ Azafady manomeza adiresy voasoratra tsara na avelao ho banga io toerana io.',
 'hr_tip'          => 'Tsipika mitsivalana (aza anaranam-po loatra)',
 
 # Edit pages
-'summary'                => 'Ambangovangony',
-'subject'                => 'Lohateny',
+'summary'                => 'Ambangovangony:',
+'subject'                => 'Lohateny:',
 'watchthis'              => 'Araho maso ity pejy ity',
 'savearticle'            => 'Tehirizo',
 'preview'                => 'Topi-maso',

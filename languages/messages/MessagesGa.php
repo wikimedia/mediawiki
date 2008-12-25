@@ -560,8 +560,8 @@ Iontráil seoladh dea-fhormáidte le do thoil, nó glan an réimse sin.',
 'hr_tip'          => 'Líne cothrománach (inúsáidte go coigilteach)',
 
 # Edit pages
-'summary'                => 'Achoimriú',
-'subject'                => 'Ábhar/ceannlíne',
+'summary'                => 'Achoimriú:',
+'subject'                => 'Ábhar/ceannlíne:',
 'minoredit'              => 'Mionathrú é seo',
 'watchthis'              => 'Déan faire ar an lch seo',
 'savearticle'            => 'Sábháil an lch',
@@ -571,7 +571,7 @@ Iontráil seoladh dea-fhormáidte le do thoil, nó glan an réimse sin.',
 'showdiff'               => 'Taispeáin athruithe',
 'anoneditwarning'        => "'''Rabhadh:''' Níl tú logáilte isteach. Cuirfear do sheoladh IP i stair eagarthóireachta an leathanaigh seo.",
 'missingsummary'         => "'''Cuimhneachán:''' Níor thug tú achoimriú don athrú. Má chliceáileann tú Sábháil arís, sábhálfar an t-athrú gan é a hachoimriú.",
-'summary-preview'        => 'Réamhamharc an achoimriú',
+'summary-preview'        => 'Réamhamharc an achoimriú:',
 'blockedtitle'           => 'Tá an úsáideoir seo faoi chosc',
 'blockedtext'            => "<big>'''Chuir \$1 cosc ar d’ainm úsáideora nó ar do sheoladh IP.'''</big>
 

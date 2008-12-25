@@ -102,7 +102,7 @@ O ipuletse akhaonte. O seka wa lebala go fetola tse o di dikgatlhegelo tsa gago 
 'username'           => 'Leina la modirisi:',
 
 # Edit pages
-'summary'            => 'Tshoboko',
+'summary'            => 'Tshoboko:',
 'minoredit'          => 'Se ke paakanyo e potlana',
 'watchthis'          => 'Lebelela tsebe e',
 'savearticle'        => 'Boloka tsebe',

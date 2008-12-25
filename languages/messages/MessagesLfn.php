@@ -346,8 +346,8 @@ Ante alga otra eposta es enviada a la conta, tu va nesesa segue la instruis en l
 'hr_tip'          => 'Linia orizonal (usa nonfrecuente)',
 
 # Edit pages
-'summary'                => 'Soma',
-'subject'                => 'Sujeto/titulo',
+'summary'                => 'Soma:',
+'subject'                => 'Sujeto/titulo:',
 'minoredit'              => 'Esta es un cambia minor',
 'watchthis'              => 'Oserva esta paje',
 'savearticle'            => 'Fisa paje',
@@ -356,7 +356,7 @@ Ante alga otra eposta es enviada a la conta, tu va nesesa segue la instruis en l
 'showdiff'               => 'Mostra diferes',
 'anoneditwarning'        => "'''Avisa:''' Tu no ia sinia per entra.
 Tu adirije de IP va es memorada en la istoria de revisas de esta paje.",
-'summary-preview'        => 'Previde soma',
+'summary-preview'        => 'Previde soma:',
 'blockedtitle'           => 'Usor es impedida',
 'blockedtext'            => "<big>'''Tu nom de usor o adirije de IP ia es impedida.'''</big>
 

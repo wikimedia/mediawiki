@@ -169,7 +169,7 @@ $messages = array(
 'badaccess-group0' => 'ʻOku ʻikai ngofua kia te koe ʻo fai ʻa e ngāue naʻa ke eke ki ai.',
 'badaccess-groups' => 'Ko e ngāue naʻa ke eke ki ai, ʻoku fakangatangata ki he kau ʻetita ʻi he taha ʻo e ngaahi kulupu $1 pē.',
 
-'versionrequired'     => "ʻOku pau ko e paaki $1 ʻo e ''Mediawiki''",
+'versionrequired'     => "ʻOku pau ko e paaki $1 ʻo e ''MediaWiki''",
 'versionrequiredtext' => "ʻOku pau ʻoku ʻi ai e paaki $1 'o e ''Mediwiki'' ʻi he ngāueʻaki ʻo e pēsí ni. Vakai ki he [[Special:Version]].",
 
 'ok'                      => 'Fai ā',
@@ -323,8 +323,8 @@ Kapau naʻe kole ia ʻe he tokotaha kehe, pea ʻosi hoʻo manatuʻi ʻo e leatap
 'sig_tip'         => 'Ko e fakamoʻoniʻi ʻaʻau mo hono taimi',
 
 # Edit pages
-'summary'                 => 'Fakanounou',
-'subject'                 => 'Tuʻunga lea',
+'summary'                 => 'Fakanounou:',
+'subject'                 => 'Tuʻunga lea:',
 'minoredit'               => 'Ko e fatu siʻi pē ia',
 'watchthis'               => 'Leʻo he pēsí ni',
 'savearticle'             => 'Haofaki e pēsí',
@@ -941,7 +941,7 @@ Vakai ki he [[Special:Log/delete|hokohoko tāmateʻi]] ki he lekooti ʻo e ngaah
 'allmessagesname'           => 'Hingoa',
 'allmessagesdefault'        => 'Tohi tuʻunga',
 'allmessagescurrent'        => 'Tohi lolotonga',
-'allmessagestext'           => "Ko e hokohoko ʻeni ʻo e ngaahi tala fakafounga kātoa ʻi he vā hingoa ''Mediawiki''.",
+'allmessagestext'           => "Ko e hokohoko ʻeni ʻo e ngaahi tala fakafounga kātoa ʻi he vā hingoa ''MediaWiki''.",
 'allmessagesnotsupportedDB' => "ʻOku ʻikai ngāueʻaki mo e '''{{ns:special}}:Allmessages''' koeʻuhi ʻoku kamosiʻi mate ʻa e '''\$wgUseDatabaseMessages'''.",
 'allmessagesfilter'         => 'Meʻasivi ki he hingoa ʻo e tala:',
 'allmessagesmodified'       => 'ʻAsi mai meʻa kuo liliu pē',

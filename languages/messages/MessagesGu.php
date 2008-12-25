@@ -299,8 +299,8 @@ $messages = array(
 'hr_tip'          => 'આડી લીટી (શક્ય તેટલો ઓછો ઉપયોગ કરો)',
 
 # Edit pages
-'summary'                => 'સારાંશ',
-'subject'                => 'વિષય/શિર્ષક',
+'summary'                => 'સારાંશ:',
+'subject'                => 'વિષય/શિર્ષક:',
 'minoredit'              => 'આ એક નાનો સુધારો છે.',
 'watchthis'              => 'આ પાનાને ધ્યાનમાં રાખો',
 'savearticle'            => 'સાચવો',

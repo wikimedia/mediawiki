@@ -761,8 +761,8 @@ Meschien he-j 't wachwoord al ewiezig of een niej veurlopig wachwoord an-evreuge
 'hr_tip'          => 'Horizontale liende',
 
 # Edit pages
-'summary'                          => 'Samenvatting',
-'subject'                          => 'Onderwarp',
+'summary'                          => 'Samenvatting:',
+'subject'                          => 'Onderwarp:',
 'minoredit'                        => 'kleine wieziging / spelling',
 'watchthis'                        => 'volg disse pagina',
 'savearticle'                      => 'Pagina opslaon',
@@ -775,8 +775,8 @@ As annenieme gebruker zal joew IP-adres bie elke bewarking veur iederene zichbao
 'missingsummary'                   => "'''Herinnering:''' je hemmen gien samenvatting op-egeven veur de bewarking. A-j noen weer op ''Pagina opslaon'' klikken wonnen de bewarking zonder samenvatting op-esleugen.",
 'missingcommenttext'               => 'Plaos joew opmarking hieronder.',
 'missingcommentheader'             => "'''Let wel:''' je hemmen gien onderwarptitel toe-evoeg. A-j opniej op Pagina opslaon klikken wonnen de bewarking op-esleugen zonder onderwarptitel.",
-'summary-preview'                  => 'Samenvatting naokieken',
-'subject-preview'                  => 'Onderwarp/kop naokieken',
+'summary-preview'                  => 'Samenvatting naokieken:',
+'subject-preview'                  => 'Onderwarp/kop naokieken:',
 'blockedtitle'                     => 'Gebruker is eblokkeerd',
 'blockedtext'                      => "<big>'''Joew gebrukersnaam of IP-adres is eblokkeerd.'''</big>
 

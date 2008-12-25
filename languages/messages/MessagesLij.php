@@ -429,8 +429,8 @@ Pe abilitâ l'invîo de messaggi e-mail pe quest'accesso, o se deive seguî l'is
 'hr_tip'          => 'Linnia orissontâ',
 
 # Edit pages
-'summary'                => 'Oggetto',
-'subject'                => 'Argomento (tittolo)',
+'summary'                => 'Oggetto:',
+'subject'                => 'Argomento (tittolo):',
 'minoredit'              => 'Cangiamento minô (m)',
 'watchthis'              => 'Azzonze a-i osservæ speçiâli',
 'savearticle'            => 'Sârva a pagina',
@@ -438,7 +438,7 @@ Pe abilitâ l'invîo de messaggi e-mail pe quest'accesso, o se deive seguî l'is
 'showpreview'            => "Veddi l'anteprimma",
 'showdiff'               => 'Veddi i cangiamenti',
 'anoneditwarning'        => "'''Attension:''' No ti t'hæ registròu. O têu indirisso IP o sajà misso inta stöja di cangiamenti da paggina.",
-'summary-preview'        => 'Anteprimma oggetto',
+'summary-preview'        => 'Anteprimma oggetto:',
 'blockedtitle'           => "L'utente o l'é bloccòu",
 'blockedtext'            => "<big>''''Sto nomme d'ûtente ou indirisso IP o l'è stæto bloccòu.'''</big>
 

@@ -582,8 +582,8 @@ Na daolit ket evezh ouzh ar c\'hemenn-mañ m\'eo bet krouet ar gont dre fazi.',
 'hr_tip'          => 'Liamm a-led (arabat implijout re)',
 
 # Edit pages
-'summary'                          => 'Diverrañ&nbsp;',
-'subject'                          => 'Danvez/titl',
+'summary'                          => 'Diverrañ&nbsp;:',
+'subject'                          => 'Danvez/titl:',
 'minoredit'                        => 'Kemm dister',
 'watchthis'                        => 'Evezhiañ ar pennad-mañ',
 'savearticle'                      => 'Enrollañ',
@@ -595,8 +595,8 @@ Na daolit ket evezh ouzh ar c\'hemenn-mañ m\'eo bet krouet ar gont dre fazi.',
 'missingsummary'                   => "'''Taolit evezh:''' N'hoc'h eus ket lakaet tamm testenn diverrañ ebet evit ho kemmoù. Mar klikit war enrollañ en-dro, e vo enrollet ho testenn evel m'emañ hepmuiken.",
 'missingcommenttext'               => "Skrivit hoc'h evezhiadenn a-is.",
 'missingcommentheader'             => "'''Taolit evezh:''' N'hoc'h eus ket lakaet tamm danvez/titl ebet evit hoc'h evezhiadenn. Mar klikit war enrollañ en-dro, e vo enrollet ho testenn evel m'emañ hepmuiken.",
-'summary-preview'                  => 'Rakwelet an diverrañ',
-'subject-preview'                  => 'Rakwelet danvez/titl',
+'summary-preview'                  => 'Rakwelet an diverrañ:',
+'subject-preview'                  => 'Rakwelet danvez/titl:',
 'blockedtitle'                     => 'Implijer stanket',
 'blockedtext'                      => "<big>'''Stanket eo bet ho kont implijer pe ho chomlec'h IP'''</big>
 

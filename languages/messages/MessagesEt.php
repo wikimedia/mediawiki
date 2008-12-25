@@ -514,8 +514,8 @@ Pärast parooli saamist logige palun sisse.',
 'hr_tip'          => 'Horisontaalkriips (kasuta säästlikult)',
 
 # Edit pages
-'summary'                  => 'Resümee',
-'subject'                  => 'Pealkiri',
+'summary'                  => 'Resümee:',
+'subject'                  => 'Pealkiri:',
 'minoredit'                => 'See on pisiparandus',
 'watchthis'                => 'Jälgi seda artiklit',
 'savearticle'              => 'Salvesta',
@@ -525,7 +525,7 @@ Pärast parooli saamist logige palun sisse.',
 'showdiff'                 => 'Näita muudatusi',
 'anoneditwarning'          => 'Te ei ole sisse logitud. Selle lehe redigeerimislogisse salvestatakse Teie IP-aadress.',
 'missingcommenttext'       => 'Palun sisesta siit allapoole kommentaar.',
-'summary-preview'          => 'Resümee eelvaade',
+'summary-preview'          => 'Resümee eelvaade:',
 'blockedtitle'             => 'Kasutaja on blokeeritud',
 'blockedtext'              => "<big>'''Teie kasutajanime või IP-aadressi blokeeris $1.'''</big>
 

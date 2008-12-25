@@ -656,8 +656,8 @@ Você pode já ter alterado com sucesso a sua palavra-chave, ou solicitado uma n
 'hr_tip'          => 'Linha horizontal (utilize moderadamente)',
 
 # Edit pages
-'summary'                          => 'Sumário',
-'subject'                          => 'Assunto/cabeçalho',
+'summary'                          => 'Sumário:',
+'subject'                          => 'Assunto/cabeçalho:',
 'minoredit'                        => 'Marcar como edição menor',
 'watchthis'                        => 'Observar esta página',
 'savearticle'                      => 'Salvar página',
@@ -669,8 +669,8 @@ Você pode já ter alterado com sucesso a sua palavra-chave, ou solicitado uma n
 'missingsummary'                   => "'''Lembrete:''' Você não introduziu um sumário de edição. Se carregar novamente em Salvar a sua edição será salva sem um sumário.",
 'missingcommenttext'               => 'Por favor, introduzida um comentário abaixo.',
 'missingcommentheader'             => "'''Lembrete:''' Você não introduziu um assunto/título para este comentário. Se carregar novamente em Salvar a sua edição será salva sem um título/assunto.",
-'summary-preview'                  => 'Previsão de sumário',
-'subject-preview'                  => 'Previsão de assunto/título',
+'summary-preview'                  => 'Previsão de sumário:',
+'subject-preview'                  => 'Previsão de assunto/título:',
 'blockedtitle'                     => 'O utilizador está bloqueado',
 'blockedtext'                      => '<big>O seu nome de utilizador ou endereço de IP foi bloqueado</big>
 

@@ -675,8 +675,8 @@ Olet saattanut jo onnistuneesti vaihtaa salasanasi tai pyytää uutta väliaikai
 'missingsummary'                   => 'Et ole antanut yhteenvetoa. Jos valitset Tallenna uudelleen, niin muokkauksesi tallennetaan ilman yhteenvetoa.',
 'missingcommenttext'               => 'Anna yhteenveto alle.',
 'missingcommentheader'             => 'Et ole antanut otsikkoa kommentillesi. Valitse <em>Tallenna</em>, jos et halua antaa otsikkoa.',
-'summary-preview'                  => 'Yhteenvedon esikatselu',
-'subject-preview'                  => 'Otsikon esikatselu',
+'summary-preview'                  => 'Yhteenvedon esikatselu:',
+'subject-preview'                  => 'Otsikon esikatselu:',
 'blockedtitle'                     => 'Pääsy estetty',
 'blockedtext'                      => "<big>'''Käyttäjätunnuksesi tai IP-osoitteesi on estetty.'''</big>
 

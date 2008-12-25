@@ -525,8 +525,8 @@ Jéelaleel bataaxal bii su fekkee ci njuumte nga sosee mii sàq.',
 'hr_tip'          => 'Rëbb wu tëdd (bul ci ëppal)',
 
 # Edit pages
-'summary'                          => 'Koj&nbsp;',
-'subject'                          => 'Tëriit/koj',
+'summary'                          => 'Koj&nbsp;:',
+'subject'                          => 'Tëriit/koj:',
 'minoredit'                        => 'Coppite yu néewal',
 'watchthis'                        => 'Topp xët wii',
 'savearticle'                      => 'Duggal coppite yi',
@@ -538,8 +538,8 @@ Jéelaleel bataaxal bii su fekkee ci njuumte nga sosee mii sàq.',
 'missingsummary'                   => "'''Moytul :''' Defoo ab tënk ci coppite yi nga amal. Soo cuqaate ci «Duggal coppite yi», say coppite di nañ duggu te duñ am koj, maanaam duñ xam loo soppi.",
 'missingcommenttext'               => 'Di la sakku nga duggal ab tënk ci-suuf, jërëjëf.',
 'missingcommentheader'             => "'''Fattali :''' Joxoo ab koj say coppite. Soo cuqaate ci «duggal coppite yi», di nañ leen duggal te duñ am koj.",
-'summary-preview'                  => 'Wonendi koj gi',
-'subject-preview'                  => 'Wonendi gu tëriit/koj',
+'summary-preview'                  => 'Wonendi koj gi:',
+'subject-preview'                  => 'Wonendi gu tëriit/koj:',
 'blockedtitle'                     => 'Bii jëfandikukat dañ kaa téye',
 'blockedtext'                      => '<big>\'\'\'Sa sàqum jëfandikukat walla sa màkkaanu IP dañ leen téye .\'\'\'</big>
 

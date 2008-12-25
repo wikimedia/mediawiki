@@ -221,8 +221,8 @@ $messages = array(
 'media_tip'      => 'Link al arxivo multimedia',
 
 # Edit pages
-'summary'          => 'Resumen',
-'subject'          => 'Tema/título',
+'summary'          => 'Resumen:',
+'subject'          => 'Tema/título:',
 'minoredit'        => 'Esta es una edición chiquitica',
 'watchthis'        => 'Vigilar este artículo',
 'savearticle'      => 'Registrar la página',

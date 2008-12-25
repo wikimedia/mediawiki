@@ -469,7 +469,7 @@ Dúbida: $2',
 'protectedinterface'   => 'Esta páxina fornece o texto da interface do software e está protexida para evitar o seu abuso.',
 'editinginterface'     => "'''Aviso:''' está editando unha páxina usada para fornecer o texto da interface do software.
 Os cambios nesta páxina afectarán á aparencia da interface para os outros usuarios.
-Para traducións, considere usar [http://translatewiki.net/wiki/Main_Page?setlang=gl Betawiki], o proxecto de localización de Mediawiki.",
+Para traducións, considere usar [http://translatewiki.net/wiki/Main_Page?setlang=gl Betawiki], o proxecto de localización de MediaWiki.",
 'sqlhidden'            => '(Procura SQL agochada)',
 'cascadeprotected'     => 'Esta páxina foi protexida fronte á edición debido a que está incluída {{PLURAL:$1|na seguinte páxina protexida, que ten|nas seguintes páxinas protexidas, que teñen}} a "protección en serie" activada:
 $2',
@@ -627,8 +627,8 @@ Pode ser que xa cambiase o seu contrasinal ou que solicitase un novo contrasinal
 'hr_tip'          => 'Liña horizontal (úsea con moderación)',
 
 # Edit pages
-'summary'                          => 'Resumo',
-'subject'                          => 'Asunto/cabeceira',
+'summary'                          => 'Resumo:',
+'subject'                          => 'Asunto/cabeceira:',
 'minoredit'                        => 'Esta é unha edición pequena',
 'watchthis'                        => 'Vixiar esta páxina',
 'savearticle'                      => 'Gardar a páxina',
@@ -643,8 +643,8 @@ Se preme en \"Gardar a páxina\" a súa edición gardarase sen ningunha descrici
 'missingcommenttext'               => 'Por favor escriba un comentario a continuación.',
 'missingcommentheader'             => "'''Aviso:''' non escribiu ningún texto no asunto/cabeceira deste comentario.
 Se preme en \"Gardar a páxina\", a súa edición gardarase sen el.",
-'summary-preview'                  => 'Vista previa do resumo',
-'subject-preview'                  => 'Vista previa do asunto/cabeceira',
+'summary-preview'                  => 'Vista previa do resumo:',
+'subject-preview'                  => 'Vista previa do asunto/cabeceira:',
 'blockedtitle'                     => 'O usuario está bloqueado',
 'blockedtext'                      => '<big>\'\'\'O seu nome de usuario ou enderezo IP foi bloqueado.\'\'\'</big>
 

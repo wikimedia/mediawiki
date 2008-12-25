@@ -679,8 +679,8 @@ $2',
 'hr_tip'          => '水平線（利用は控えめに）',
 
 # Edit pages
-'summary'                          => '編集内容の要約',
-'subject'                          => '題名・見出し',
+'summary'                          => '編集内容の要約:',
+'subject'                          => '題名・見出し:',
 'minoredit'                        => 'これは細部の編集です',
 'watchthis'                        => 'ウォッチリストに追加',
 'savearticle'                      => 'ページを保存',
@@ -692,8 +692,8 @@ $2',
 'missingsummary'                   => "'''注意:''' 要約欄が空欄です。投稿ボタンをもう一度押すと、要約なしのまま投稿されます。",
 'missingcommenttext'               => '以下にコメントを入力してください。',
 'missingcommentheader'             => "'''注意:''' 題名・見出しが空欄です。投稿ボタンをもう一度押すと、要約なしのまま投稿されます。",
-'summary-preview'                  => '要約のプレビュー',
-'subject-preview'                  => '題名・見出しのプレビュー',
+'summary-preview'                  => '要約のプレビュー:',
+'subject-preview'                  => '題名・見出しのプレビュー:',
 'blockedtitle'                     => '投稿ブロック',
 'blockedtext'                      => "<big>'''この利用者名またはIPアドレスでの投稿はブロックされています。'''</big>
 
@@ -2205,12 +2205,11 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'export-templates'  => 'テンプレートも含める',
 
 # Namespace 8 related
-'allmessages'               => '表示メッセージの一覧',
+'allmessages'               => 'システムメッセージの一覧',
 'allmessagesname'           => 'メッセージ名',
 'allmessagesdefault'        => '既定の文章',
 'allmessagescurrent'        => '現在の文章',
-'allmessagestext'           => 'これは{{ns:mediawiki}}名前空間にある全てのシステムメッセージの一覧です。
-もし、MediaWikiデフォルトメッセージの翻訳を行いたい場合は、[http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]や[http://translatewiki.net?setlang=ja Betawiki]に行ってみてください。',
+'allmessagestext'           => 'これはMediaWiki名前空間で利用可能なシステムメッセージの一覧です。もし MediaWiki の一般的なローカリゼーションに貢献したい場合は、[http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] や [http://translatewiki.net?setlang=ja Betawiki] を訪れてみてください。',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages''' が無効なので、このページを使うことはできません。",
 'allmessagesfilter'         => 'メッセージ名フィルタ:',
 'allmessagesmodified'       => '変更されたもののみを表示',
@@ -2805,7 +2804,7 @@ $5
 'invalidateemail'          => 'メールアドレスの認証をキャンセルする',
 
 # Scary transclusion
-'scarytranscludedisabled' => '[Interwiki transcluding は無効になっています]',
+'scarytranscludedisabled' => '[ウィキ間トランスクルージョンは無効になっています]',
 'scarytranscludefailed'   => '[テンプレート $1 の取得に失敗しました]',
 'scarytranscludetoolong'  => '[URLが長すぎます]',
 

@@ -647,8 +647,8 @@ Jūs galbūt jau sėkmingai pakeitėte savo slaptažodį ar gavote naują laikin
 'hr_tip'          => 'Horizontali linija (naudokite taupiai)',
 
 # Edit pages
-'summary'                          => 'Komentaras',
-'subject'                          => 'Tema/antraštė',
+'summary'                          => 'Komentaras:',
+'subject'                          => 'Tema/antraštė:',
 'minoredit'                        => 'Tai smulkus pataisymas',
 'watchthis'                        => 'Stebėti šį puslapį',
 'savearticle'                      => 'Įrašyti puslapį',
@@ -660,8 +660,8 @@ Jūs galbūt jau sėkmingai pakeitėte savo slaptažodį ar gavote naują laikin
 'missingsummary'                   => "'''Priminimas:''' Jūs nenurodėte keitimo komentaro. Jei vėl paspausite Įrašyti, jūsų keitimas bus įrašytas be jo.",
 'missingcommenttext'               => 'Prašome įvesti komentarą.',
 'missingcommentheader'             => "'''Priminimas:''' Jūs nenurodėte skyrelio/antraštės šiam komentarui. Jei vėl paspausite Įrašyti, jūsų keitimas bus įrašytas be jo.",
-'summary-preview'                  => 'Komentaro peržiūra',
-'subject-preview'                  => 'Skyrelio/antraštės peržiūra',
+'summary-preview'                  => 'Komentaro peržiūra:',
+'subject-preview'                  => 'Skyrelio/antraštės peržiūra:',
 'blockedtitle'                     => 'Naudotojas yra užblokuotas',
 'blockedtext'                      => "<big>'''Jūsų naudotojo vardas arba IP adresas yra užblokuotas.'''</big>
 

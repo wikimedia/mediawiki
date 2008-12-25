@@ -323,8 +323,8 @@ Cha nod oo ny smoo y chroo.',
 'hr_tip'          => 'Linney cochruinnagh (ymmyd dy spaarailagh)',
 
 # Edit pages
-'summary'                => 'Giare-choontey',
-'subject'                => 'Cooish/kione-linney',
+'summary'                => 'Giare-choontey:',
+'subject'                => 'Cooish/kione-linney:',
 'minoredit'              => 'She myn-arraghey eh shoh',
 'watchthis'              => 'Freill arrey er y duillag shoh',
 'savearticle'            => 'Sauail y duillag',
@@ -335,8 +335,8 @@ Cha nod oo ny smoo y chroo.',
 'anoneditwarning'        => "'''Raaue:''' Cha nel ou loggit stiagh.
 Bee dt'enmys IP recortyssit ayns shennaghys reaghey yn duillag shoh.",
 'missingcommenttext'     => 'Taggloo er heese, my sailt.',
-'summary-preview'        => 'Roie-haishbynys y ghiare-choontey',
-'subject-preview'        => 'Roie-haishbynys cooish/kione-linney',
+'summary-preview'        => 'Roie-haishbynys y ghiare-choontey:',
+'subject-preview'        => 'Roie-haishbynys cooish/kione-linney:',
 'blockedtitle'           => "Ta'n ymmydeyr glast magh",
 'blockedtext'            => "<big>'''Ta dt'ennym ymmydeyr ny dt'enmys IP currit fo ghlass.'''</big>
 

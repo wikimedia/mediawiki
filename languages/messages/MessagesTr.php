@@ -603,8 +603,8 @@ Girişi bitirmek için, burada yeni bir parola yazın:',
 'hr_tip'          => 'Yatay çizgi (çok sık kullanmayın)',
 
 # Edit pages
-'summary'                          => 'Özet',
-'subject'                          => 'Konu/başlık',
+'summary'                          => 'Özet:',
+'subject'                          => 'Konu/başlık:',
 'minoredit'                        => 'Küçük değişiklik',
 'watchthis'                        => 'Sayfayı izle',
 'savearticle'                      => 'Sayfayı kaydet',
@@ -617,8 +617,8 @@ Girişi bitirmek için, burada yeni bir parola yazın:',
 Kaydet tuşuna tekrar basarsan sayfa özetsiz kaydedilecek.",
 'missingcommenttext'               => 'Lütfen aşağıda bir açıklama yazınız.',
 'missingcommentheader'             => "'''Hatırlatıcı:''' Bu yorum için konu/başlık sunmadınız. Eğer tekrar Kaydet tuşuna basarsanız, değişikliğiniz konu/başlık olmadan kaydedilecektir.",
-'summary-preview'                  => 'Önizleme özeti',
-'subject-preview'                  => 'Konu/Başlık önizlemesi',
+'summary-preview'                  => 'Önizleme özeti:',
+'subject-preview'                  => 'Konu/Başlık önizlemesi:',
 'blockedtitle'                     => 'Kullanıcı erişimi engellendi.',
 'blockedtext'                      => '<big>\'\'\'Kullanıcı adı veya IP adresiniz engellenmiştir.\'\'\'</big>
 

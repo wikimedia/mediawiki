@@ -237,7 +237,7 @@ $messages = array(
 'nstab-category'  => 'Kategòrëjô',
 
 # Main script and global functions
-'nosuchactiontext'  => 'Programa Mediawiki nie rozpòznôwô taczi òperacëji jakô je w URL',
+'nosuchactiontext'  => 'Programa MediaWiki nie rozpòznôwô taczi òperacëji jakô je w URL',
 'nosuchspecialpage' => 'Nie da taczi specjalny starnë',
 
 # General errors
@@ -314,7 +314,7 @@ $messages = array(
 'hr_tip'        => 'Wòdorównô (horizontalnô) linijô (brëkùjë szpôrowno)',
 
 # Edit pages
-'summary'               => 'Pòdrechòwanié',
+'summary'               => 'Pòdrechòwanié:',
 'minoredit'             => 'Drobnô edicëjô.',
 'watchthis'             => 'Ùzérôj',
 'savearticle'           => 'Zapiszë artikel',

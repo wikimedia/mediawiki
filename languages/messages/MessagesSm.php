@@ -118,7 +118,7 @@ $messages = array(
 'email'             => "'Imeli",
 
 # Edit pages
-'summary'      => "'Oto'otoga",
+'summary'      => "'Oto'otoga:",
 'minoredit'    => "'O se teuteuga la'itiiti lenei",
 'watchthis'    => 'Matau lenei itulau',
 'savearticle'  => 'Sefe le itulau',

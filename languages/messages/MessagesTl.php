@@ -554,8 +554,8 @@ Maaaring matagumpay mo nang nabago ang iyong hudyat o nakahiling na ng isang bag
 'hr_tip'          => 'Pahalagang na guhit (gamitin nang madalang)',
 
 # Edit pages
-'summary'                          => 'Buod',
-'subject'                          => 'Paksa/paulo',
+'summary'                          => 'Buod:',
+'subject'                          => 'Paksa/paulo:',
 'minoredit'                        => 'Ito ay isang munting pagbabago',
 'watchthis'                        => 'Bantayan ang pahinang ito',
 'savearticle'                      => 'Sagipin ang pahina',
@@ -570,8 +570,8 @@ Kapag pinindot mo uli ang Sagip, masasagip ang pagbabago mo na wala nito.",
 'missingcommenttext'               => 'Magbigay ng isang kumento/puna sa ibaba.',
 'missingcommentheader'             => "'''Paalala:''' Hindi ka nagbigay ng isang paksa/paulo para sa puna/kumentong ito.
 Kapag pinindot mo uli ang Sagip, masasagip ang pagbabago mo na wala nito.",
-'summary-preview'                  => 'Paunang tingin sa buod',
-'subject-preview'                  => 'Paunang tingin sa paksa/paulo',
+'summary-preview'                  => 'Paunang tingin sa buod:',
+'subject-preview'                  => 'Paunang tingin sa paksa/paulo:',
 'blockedtitle'                     => 'Hinarang ang tagagamit',
 'blockedtext'                      => "<big>'''Hinarang/hinadlangan ang iyong pangalan ng tagagamit o adres ng IP.'''</big>
 

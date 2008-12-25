@@ -222,7 +222,7 @@ Per piasè, ve drent anmò dop che te l'ricevüü.",
 'retypenew'   => "Scriif ancamò la paròla d'urdin növa:",
 
 # Edit pages
-'summary'              => 'Argument de la mudifica',
+'summary'              => 'Argument de la mudifica:',
 'minoredit'            => "Chesta chi l'è una mudifica da impurtanza minuur",
 'watchthis'            => "Tegn d'öcc quela pagina chì",
 'savearticle'          => 'Salva',

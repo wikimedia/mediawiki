@@ -390,8 +390,8 @@ Llogaria juej asht hap. Mos harroni me ndryshu parapëlqimet e {{SITENAME}}-s.',
 'hr_tip'          => 'vijë horizontale (përdoreni rallë)',
 
 # Edit pages
-'summary'            => 'Përmbledhje',
-'subject'            => 'Subjekt/Titull',
+'summary'            => 'Përmbledhje:',
+'subject'            => 'Subjekt/Titull:',
 'minoredit'          => 'Ky asht një redaktim i vogël',
 'watchthis'          => 'Mbikqyre kët faqe',
 'showpreview'        => 'Trego parapamjen',

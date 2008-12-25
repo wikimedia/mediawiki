@@ -637,8 +637,8 @@ Anda mungkin telah pun berjaya menukar kata laluan anda atau meminta kata laluan
 'hr_tip'          => 'Garis melintang (gunakan dengan hemat)',
 
 # Edit pages
-'summary'                          => 'Ringkasan',
-'subject'                          => 'Tajuk',
+'summary'                          => 'Ringkasan:',
+'subject'                          => 'Tajuk:',
 'minoredit'                        => 'Ini adalah suntingan kecil',
 'watchthis'                        => 'Pantau laman ini',
 'savearticle'                      => 'Simpan',
@@ -650,8 +650,8 @@ Anda mungkin telah pun berjaya menukar kata laluan anda atau meminta kata laluan
 'missingsummary'                   => "'''Peringatan:''' Anda tidak menyatakan ringkasan suntingan. Klik '''Simpan''' sekali lagi untuk menyimpan suntingan ini tanpa ringkasan.",
 'missingcommenttext'               => 'Sila masukkan komen dalam ruangan di bawah.',
 'missingcommentheader'             => "'''Peringatan:''' Anda tidak menyatakan tajuk bagi komen ini. Klik '''Simpan''' sekali lagi untuk menyimpan suntingan ini tanpa tajuk.",
-'summary-preview'                  => 'Pratonton ringkasan',
-'subject-preview'                  => 'Pratonton tajuk',
+'summary-preview'                  => 'Pratonton ringkasan:',
+'subject-preview'                  => 'Pratonton tajuk:',
 'blockedtitle'                     => 'Pengguna disekat',
 'blockedtext'                      => '<big>\'\'\'Nama pengguna atau alamat IP anda telah disekat.\'\'\'</big>
 

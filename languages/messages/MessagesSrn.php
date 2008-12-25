@@ -517,8 +517,8 @@ Bifo tra e-mail kan seni go na a account, yu musu du san skrifi ini a e-mail fu 
 'hr_tip'          => 'Didon lini (no kebroiki furu)',
 
 # Edit pages
-'summary'                => "In' syatu",
-'subject'                => 'Abra san/ede',
+'summary'                => "In' syatu:",
+'subject'                => 'Abra san/ede:',
 'minoredit'              => 'Disi na wan pikin kenki',
 'watchthis'              => 'Tan luku a papira disi',
 'savearticle'            => 'Kibri a papira disi',
@@ -528,8 +528,8 @@ Bifo tra e-mail kan seni go na a account, yu musu du san skrifi ini a e-mail fu 
 'showdiff'               => 'Sori den kenki',
 'anoneditwarning'        => "'''Warskow:''' Yu no psa kon ete. Yu IP o kibri poti ini a kenki historia fu a papira disi.",
 'missingcommenttext'     => 'Presi yu oponaki dyaso-ondro.',
-'summary-preview'        => "Luku In'syatu na fesi",
-'subject-preview'        => 'Ondroinfru/edelen fusi',
+'summary-preview'        => "Luku In'syatu na fesi:",
+'subject-preview'        => 'Ondroinfru/edelen fusi:',
 'blockedtitle'           => 'Masyin ben spikri',
 'blockedtext'            => "<big>'''Pasi tapu gi yu kebroikiman-nen noso IP.'''</big>
 

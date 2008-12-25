@@ -444,8 +444,8 @@ nebus siontamas ni vėinam žemiau ėšvardėntam puoslaugiō.',
 'hr_tip'          => 'Guorizuontali linėjė (nenauduokėt ba reikala)',
 
 # Edit pages
-'summary'                   => 'Kuomentars',
-'subject'                   => 'Tema/ontraštė',
+'summary'                   => 'Kuomentars:',
+'subject'                   => 'Tema/ontraštė:',
 'minoredit'                 => 'Mažos pataisims',
 'watchthis'                 => 'Keravuotė šėta poslapė',
 'savearticle'               => 'Ėšsauguotė poslapė',
@@ -456,8 +456,8 @@ nebus siontamas ni vėinam žemiau ėšvardėntam puoslaugiō.',
 'anoneditwarning'           => "'''Diemesė:''' Tomsta nesat prisėjungės. Jūsa IP adresos būs irašīts i šiuo poslapė istuorėjė.",
 'missingsummary'            => "'''Priminėms:''' Tamsta nenuruodiet pakeitėma kuomentara. Jēgo viel paspausėt ''Ėšsauguotė'', Tamstas pakeitėms bus ėšsauguots ba anuo.",
 'missingcommenttext'        => 'Prašuom ivestė kuomentara.',
-'summary-preview'           => 'Kuomentara parvaiza',
-'subject-preview'           => 'Skėrsnelė/ontraštės parvaiza',
+'summary-preview'           => 'Kuomentara parvaiza:',
+'subject-preview'           => 'Skėrsnelė/ontraštės parvaiza:',
 'blockedtitle'              => 'Nauduotuos īr ožblokouts',
 'blockedtext'               => "<big>'''Tamstas nauduotuojė vards a IP adresos īr ožblokouts.'''</big>
 

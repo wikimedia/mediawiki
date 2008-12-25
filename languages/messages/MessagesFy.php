@@ -616,8 +616,8 @@ Jo moatte efkes wachtsje foar't jo it op'e nij besykje kinne.",
 'hr_tip'          => 'Horizontale line (mei ferdrach brûke)',
 
 # Edit pages
-'summary'                          => 'Gearfetting',
-'subject'                          => 'Mêd',
+'summary'                          => 'Gearfetting:',
+'subject'                          => 'Mêd:',
 'minoredit'                        => 'Dit is in tekstwiziging',
 'watchthis'                        => 'Folgje dizze side',
 'savearticle'                      => 'Fêstlizze',
@@ -629,8 +629,8 @@ Jo moatte efkes wachtsje foar't jo it op'e nij besykje kinne.",
 'missingsummary'                   => "'''Wink:''' jo hawwe gjin gearfetting jûn foar jo bewurking. As jo nochris op ''Side opslaan'' klikke wurdt de bewurking sûnder gearfetting opslein.",
 'missingcommenttext'               => 'Set jo opmerking beleaven hjir ûnder.',
 'missingcommentheader'             => "'''Tink derom:''' Jo hawwe gjin ûnderwerp/kop foar dizze opmerking opjûn. As jo op 'e nij op \"opslaan\" klikke, wurdt jo feroaring sûnder in ûnderwerp/kop opslein.",
-'summary-preview'                  => 'Gearfetting sa at dy brûkt wurdt',
-'subject-preview'                  => 'Neisjen ûnderwerp/kop',
+'summary-preview'                  => 'Gearfetting sa at dy brûkt wurdt:',
+'subject-preview'                  => 'Neisjen ûnderwerp/kop:',
 'blockedtitle'                     => 'Meidogger is útsletten troch',
 'blockedtext'                      => "<big>'''Jo meidoggernamme of Ynternet-adres is útsletten.'''</big>
 

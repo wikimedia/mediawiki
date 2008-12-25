@@ -139,7 +139,7 @@ $messages = array(
 'currentevents'        => 'მიმალ მოლინეფ',
 'currentevents-url'    => 'Project:მიმალ მოლინეფ',
 'disclaimers'          => 'გამამინჯალაშ მონწყუმა',
-'disclaimerpage'       => 'Project::პასუხისმგებლობაშ ვარება',
+'disclaimerpage'       => 'Project:პასუხისმგებლობაშ ვარება',
 'edithelp'             => 'მოხვარა',
 'edithelppage'         => 'Help:ტექსტიშ რედაქტირაფა (იოლი)',
 'helppage'             => 'Help:მოხვარა',
@@ -229,8 +229,8 @@ $messages = array(
 'hr_tip'          => 'ჰორიზონტალურ ხაზ (ნუ გამოიყენებთ ხშირას)',
 
 # Edit pages
-'summary'                => 'რეზიუმე',
-'subject'                => 'თემა/სახელ',
+'summary'                => 'რეზიუმე:',
+'subject'                => 'თემა/სახელ:',
 'minoredit'              => 'ჭიჭე რედაქტირაფა',
 'watchthis'              => 'თე ხასილაშ კონტროლ',
 'savearticle'            => 'ჩუალა',
@@ -238,7 +238,7 @@ $messages = array(
 'showpreview'            => 'ოწოხიან გინოჯინა',
 'showdiff'               => 'თირაფეფიშ ძირაფა',
 'anoneditwarning'        => "'''გათხილება:''' თქვა ვარეთ რეგისტრირებულ. თქვან IP მისამართ დინოჭარილ იჸიი თე ხასილაშ რედაქტირაფაშ ისტორიას.",
-'summary-preview'        => 'რეზიუმეშ ოწოხიან გინოჯინა',
+'summary-preview'        => 'რეზიუმეშ ოწოხიან გინოჯინა:',
 'blockedtext'            => "<big>'''თქვან მახვარებუშ ჯოხო ვარა IP მიოწურაფუქ ბლოკირქ იჸუ. '''</big> 
 
 ბლოკირაფა ღოლუ $-ქ. 

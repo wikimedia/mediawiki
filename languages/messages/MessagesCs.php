@@ -804,8 +804,8 @@ Možná jste si již úspěšně heslo změnili, nebo jste si vyžádali nové d
 'hr_tip'          => 'Vodorovná čára (používejte střídmě)',
 
 # Edit pages
-'summary'                          => 'Shrnutí editace',
-'subject'                          => 'Předmět/nadpis',
+'summary'                          => 'Shrnutí editace:',
+'subject'                          => 'Předmět/nadpis:',
 'minoredit'                        => 'Tato změna je malá editace.',
 'watchthis'                        => 'Sledovat tuto stránku',
 'savearticle'                      => 'Uložit změny',
@@ -817,8 +817,8 @@ Možná jste si již úspěšně heslo změnili, nebo jste si vyžádali nové d
 'missingsummary'                   => "'''Připomenutí:''' Nezadali jste shrnutí editace. Pokud ještě jednou kliknete na Uložit změny, bude vaše editace zapsána bez shrnutí.",
 'missingcommenttext'               => 'Zadejte komentář',
 'missingcommentheader'             => "'''Připomenutí:''' Nezadali jste předmět/nadpis pro tento komentář. Pokud ještě jednou kliknete na Uložit změny, bude vaše editace zapsána i bez toho.",
-'summary-preview'                  => 'Náhled shrnutí',
-'subject-preview'                  => 'Náhled předmětu/nadpisu',
+'summary-preview'                  => 'Náhled shrnutí:',
+'subject-preview'                  => 'Náhled předmětu/nadpisu:',
 'blockedtitle'                     => 'Uživatel zablokován',
 'blockedtext'                      => "<big>'''Vaší IP adrese či uživatelskému jménu byla zablokována možnost editace.'''</big>
 

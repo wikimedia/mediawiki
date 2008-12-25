@@ -209,8 +209,8 @@ Droëneuh geupeusaran keu neutamong sigra, lheuëh nyan neugantoë lageuëm rahs
 'hr_tip'          => 'Garéh data',
 
 # Edit pages
-'summary'                => 'Reuningkah',
-'subject'                => 'Bhah/nan',
+'summary'                => 'Reuningkah:',
+'subject'                => 'Bhah/nan:',
 'minoredit'              => 'Nyoë lôn andam bacut',
 'watchthis'              => 'Kalön ôn nyoë',
 'savearticle'            => 'Keubah ôn',
@@ -218,7 +218,7 @@ Droëneuh geupeusaran keu neutamong sigra, lheuëh nyan neugantoë lageuëm rahs
 'showpreview'            => 'Peuleumah hasé',
 'showdiff'               => 'Peuleumah neu’ubah',
 'anoneditwarning'        => 'Droëneuh   hana teudapeuta tamong. Alamat IP Droëneuh   teucatat lam tarèh (riwayat away) ôn nyoë.',
-'summary-preview'        => 'Eu dilèë reuningkah',
+'summary-preview'        => 'Eu dilèë reuningkah:',
 'blockedtext'            => "<big>'''Nan nyang nguy atawa alamat IP Droëneuh  ka geutheun.'''</big> 
 
 Geutheun lé $1. Dalèh jih nakeuh ''$2''. 

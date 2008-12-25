@@ -210,7 +210,7 @@ Query: $2',
 'yourlanguage'            => 'Ririmi:',
 
 # Edit pages
-'summary'          => 'Nkomiso',
+'summary'          => 'Nkomiso:',
 'minoredit'        => 'Lowu i ndzulamiso wu tsongo',
 'watchthis'        => 'Langutisa tluka leri',
 'savearticle'      => 'Hlayisa tluka',

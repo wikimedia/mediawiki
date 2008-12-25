@@ -133,8 +133,8 @@ $1",
 'headline_tip'    => 'Ceann-loidhne ìre 2',
 
 # Edit pages
-'summary'         => 'Geàrr-chùnntas',
-'subject'         => 'Cuspair/ceann-loidhne',
+'summary'         => 'Geàrr-chùnntas:',
+'subject'         => 'Cuspair/ceann-loidhne:',
 'minoredit'       => 'Seo mùthadh beag',
 'watchthis'       => 'Cùm sùil air an aithris seo',
 'savearticle'     => 'Sàbhail duilleag',
@@ -344,7 +344,7 @@ Ma bu toil leibh a dhubh a'dhuilleag as ur faire agaibh nas fadalache, cnap air 
 
 # Namespace 8 related
 'allmessages'     => 'Uile teachdaireachdan an t-siostam',
-'allmessagestext' => 'Seo liosta de\'n a h-uile teachdaireachd an t-siostam ri fhaotainn anns an fhànais-ainm "Mediawiki:".',
+'allmessagestext' => 'Seo liosta de\'n a h-uile teachdaireachd an t-siostam ri fhaotainn anns an fhànais-ainm "MediaWiki:".',
 
 # Thumbnails
 'thumbnail-more' => 'Meudaich',

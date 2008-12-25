@@ -454,8 +454,8 @@ Ye can sling a deifie on this message, if this accoont wis creatit by mistak.',
 'hr_tip'          => 'Horizontal line (dinna ower uise)',
 
 # Edit pages
-'summary'                   => 'Ootline',
-'subject'                   => 'Subject/headline',
+'summary'                   => 'Ootline:',
+'subject'                   => 'Subject/headline:',
 'minoredit'                 => 'This is a smaa edit',
 'watchthis'                 => 'Leuk ower this page',
 'savearticle'               => 'Hain page',
@@ -467,8 +467,8 @@ Ye can sling a deifie on this message, if this accoont wis creatit by mistak.',
 'missingsummary'            => "'''Mynd:''' Ye hivna gien an edit summary. Gin ye dab on Hain again, yer edit will be haint athoot ane.",
 'missingcommenttext'        => 'Please enter a comment ablo.',
 'missingcommentheader'      => "'''Mynd:''' Ye hivna gien a subject/heidline for this comment. Gin ye dab on Hain again, yer edit will be haint athoot ane.",
-'summary-preview'           => 'Ootline leuk ower',
-'subject-preview'           => 'Subject/headline leuk ower',
+'summary-preview'           => 'Ootline leuk ower:',
+'subject-preview'           => 'Subject/headline leuk ower:',
 'blockedtitle'              => 'Uiser is blockit',
 'blockedtext'               => '<big>\'\'\'Yer uisername or IP address haes been blockit.\'\'\'</big>
 

@@ -8,6 +8,7 @@
  * @author Effeietsanders
  * @author Erwin85
  * @author Extended by Hendrik Maryns <hendrik.maryns@uni-tuebingen.de>, March 2007.
+ * @author Fryed-peach
  * @author Galwaygirl
  * @author GerardM
  * @author Hamaryns
@@ -811,8 +812,8 @@ Mogelijk hebt u uw wachtwoord al gewijzigd of een nieuw tijdelijk wachtwoord aan
 'hr_tip'          => 'Horizontale lijn (gebruik spaarzaam)',
 
 # Edit pages
-'summary'                          => 'Samenvatting',
-'subject'                          => 'Onderwerp/kop',
+'summary'                          => 'Samenvatting:',
+'subject'                          => 'Onderwerp/kop:',
 'minoredit'                        => 'Dit is een kleine bewerking',
 'watchthis'                        => 'Deze pagina volgen',
 'savearticle'                      => 'Pagina opslaan',
@@ -827,8 +828,8 @@ Als u nogmaals op ''Pagina opslaan'' klikt wordt de bewerking zonder samenvattin
 'missingcommenttext'               => 'Plaats uw opmerking hieronder.',
 'missingcommentheader'             => "'''Let op:''' U hebt geen onderwerp/kop voor deze opmerking opgegeven.
 Als u opnieuw op \"opslaan\" klikt, wordt uw wijziging zonder een onderwerp/kop opgeslagen.",
-'summary-preview'                  => 'Samenvatting nakijken',
-'subject-preview'                  => 'Nakijken onderwerp/kop',
+'summary-preview'                  => 'Samenvatting nakijken:',
+'subject-preview'                  => 'Nakijken onderwerp/kop:',
 'blockedtitle'                     => 'Gebruiker is geblokkeerd',
 'blockedtext'                      => '<big>\'\'\'Uw gebruiker of IP-adres is geblokkeerd.\'\'\'</big>
 
@@ -2442,7 +2443,7 @@ Dit exportbestand is daarna te importeren in een andere MediaWiki via de [[Speci
 
 Geef in het onderstaande veld de namen van de te exporteren pagina\'s op, één pagina per regel, en geef aan of u alle versies met de bewerkingssamenvatting of alleen de huidige versies met de bewerkingssamenvatting wilt exporteren.
 
-In het laatste geval kunt u ook een verwijzing gebruiken, bijvoorbeeld [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] voor de pagina "{{Mediawiki:Mainpage}}".',
+In het laatste geval kunt u ook een verwijzing gebruiken, bijvoorbeeld [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] voor de pagina "{{MediaWiki:Mainpage}}".',
 'exportcuronly'     => 'Alleen de laatste versie, niet de volledige geschiedenis',
 'exportnohistory'   => "----
 '''Let op:''' het exporteren van de gehele geschiedenis is uitgeschakeld wegens prestatieredenen.",

@@ -317,8 +317,8 @@ $messages = array(
 'math_tip'        => 'Математикон формулæ (формат LaTeX)',
 
 # Edit pages
-'summary'            => 'Ивддзинæдты мидис',
-'subject'            => 'Темæ/сæргонд',
+'summary'            => 'Ивддзинæдты мидис:',
+'subject'            => 'Темæ/сæргонд:',
 'minoredit'          => 'Ай чысыл ивддзинад у.',
 'watchthis'          => 'Ацы фарсмæ дæ цæст æрдар',
 'savearticle'        => 'Афтæ уæд!',

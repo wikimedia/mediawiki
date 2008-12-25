@@ -483,8 +483,8 @@ Coby powstřimać nadužyća, možliwość wysyuańa připůmńeń naštalowano 
 'hr_tip'          => 'Lińja poźůmo (užywej s ůmjarym)',
 
 # Edit pages
-'summary'                          => 'Uopis pomjyńań',
-'subject'                          => 'Tymat/naguůwek',
+'summary'                          => 'Uopis pomjyńań:',
+'subject'                          => 'Tymat/naguůwek:',
 'minoredit'                        => 'To je ńywjelge sprowjyńy',
 'watchthis'                        => 'Dej pozůr',
 'savearticle'                      => 'Škryflej',
@@ -496,8 +496,8 @@ Coby powstřimać nadužyća, možliwość wysyuańa připůmńeń naštalowano 
 'missingsummary'                   => "'''Připomńyńy:''' Ńy wprowadźiužeś uopisu pomjyńań. Kej go ńy chceš wprowadzać, naćiś knefel Škryflej ješče roz.",
 'missingcommenttext'               => 'Wćepej kůmyntoř půńižyj.',
 'missingcommentheader'             => "'''Dej pozůr:''' Treść naguůwka je pusto - uzupeuńij go! Jeli tego ńy zrobiš, Twůj kůmyntoř bydźe naškryflany bez naguůwka.",
-'summary-preview'                  => 'Podglůnd uopisu',
-'subject-preview'                  => 'Podglůnd tematu/naguůwka',
+'summary-preview'                  => 'Podglůnd uopisu:',
+'subject-preview'                  => 'Podglůnd tematu/naguůwka:',
 'blockedtitle'                     => 'Užytkowńik je zawarty uod sprowjyń',
 'blockedtext'                      => '<big>\'\'\'Twoje kůnto abo adres IP sům zawarte.\'\'\'</big>
 

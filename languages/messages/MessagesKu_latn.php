@@ -486,8 +486,8 @@ Eger account\'a bikarhêneran şaşî hate çêkirin, guhdare vê peyamê meke.'
 'hr_tip'          => 'Rastexêza berwarî (kêm bi kar bîne)',
 
 # Edit pages
-'summary'                          => 'Kurte û çavkanî (Te çi kir?)',
-'subject'                          => 'Mijar/sernivîs',
+'summary'                          => 'Kurte û çavkanî (Te çi kir?):',
+'subject'                          => 'Mijar/sernivîs:',
 'minoredit'                        => 'Ev guheraniyekê biçûk e',
 'watchthis'                        => 'Vê gotarê bişopîne',
 'savearticle'                      => 'Rûpelê tomar bike',
@@ -499,8 +499,8 @@ Eger account\'a bikarhêneran şaşî hate çêkirin, guhdare vê peyamê meke.'
 'missingsummary'                   => "<span style=\"color:#990000;\">'''Zanibe:'''</span> Te nivîsekî kurt ji bo guherandinê ra nenivîsand. Eger tu niha carekî din li Tomar xê, guherandinê te vê nivîsekî kurt yê were tomarkirin.",
 'missingcommenttext'               => 'Xêra xwe kurtehîya naverokê li jêr binivisîne.',
 'missingcommentheader'             => "<span style=\"color:#990000;\">'''Zanibe:'''</span> Te sernavekî nenivîsandîye. Eger tu niha carekî din li Tomar xê, ev guherandina vê sernavekê yê were tomarkirin.",
-'summary-preview'                  => 'Pêşdîtinê kurtenivîsê',
-'subject-preview'                  => 'Pêşdîtinê sernivîsê',
+'summary-preview'                  => 'Pêşdîtinê kurtenivîsê:',
+'subject-preview'                  => 'Pêşdîtinê sernivîsê:',
 'blockedtitle'                     => 'Bikarhêner hat asteng kirin',
 'blockedtext'                      => "<big>'''Navî te ya IP'ya te hate astengkirin.'''</big>
 

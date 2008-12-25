@@ -409,8 +409,8 @@ Ti para u na'hanao ni sigienti na inayek siha.",
 'hr_tip'          => "Råya ni umadespatta (uho' fan)",
 
 # Edit pages
-'summary'                          => 'Sumaria',
-'subject'                          => "Suhetu/titulo mo'na",
+'summary'                          => 'Sumaria:',
+'subject'                          => "Suhetu/titulo mo'na:",
 'minoredit'                        => "Dikike' este na tiniliaka",
 'watchthis'                        => 'Pulan este na påhina',
 'savearticle'                      => 'Såtba i påhina',
@@ -424,8 +424,8 @@ An un yemme' Såtba ta'lo, para u såtba i tinilaika-mu sin sumaria.",
 'missingcommenttext'               => "Nå'ye kommentu gi papa'.",
 'missingcommentheader'             => "'''Nina'hasso:''' Ti un tuge' suhetu/titulon må'gas para i kommentu.
 Yanggen un yemme' \"Såtba\" ta'lo, masåtba tinilaika-mu sin titulo.",
-'summary-preview'                  => 'Ripasun sumaria',
-'subject-preview'                  => 'Ripasun suhetu/titulo',
+'summary-preview'                  => 'Ripasun sumaria:',
+'subject-preview'                  => 'Ripasun suhetu/titulo:',
 'blockedtitle'                     => "Machoma' i muna'sesetbi",
 'blockedtext'                      => "<big>'''Machomma' i na'an-mu muna'sesetbi pat IP-mu.'''</big>
 

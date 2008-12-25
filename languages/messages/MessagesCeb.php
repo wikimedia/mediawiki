@@ -335,7 +335,7 @@ Palihug pagpili og lain nga ngalan.',
 'hr_tip'        => 'Pahigda nga linya (palihog usahay ra gamita)',
 
 # Edit pages
-'summary'                   => 'Mubong sugid',
+'summary'                   => 'Mubong sugid:',
 'minoredit'                 => 'Ginagmay lang nga kausaban',
 'watchthis'                 => 'Bantayi kining maong panid',
 'savearticle'               => 'Tipigi ang panid',

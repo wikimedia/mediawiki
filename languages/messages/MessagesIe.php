@@ -192,7 +192,7 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'retypenew'   => 'Confirmar nov passa-parol',
 
 # Edit pages
-'summary'          => 'Resumate',
+'summary'          => 'Resumate:',
 'minoredit'        => 'Modification minori',
 'watchthis'        => 'Sequer ti articul',
 'savearticle'      => 'Conservar págine',

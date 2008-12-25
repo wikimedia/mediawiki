@@ -649,8 +649,8 @@ Je možné, že sa vám už podarilo úspešne zmeniť svoje heslo alebo ste si 
 'hr_tip'          => 'Vodorovná čiara (radšej ju nepoužívajte)',
 
 # Edit pages
-'summary'                          => 'Zhrnutie úprav',
-'subject'                          => 'Téma/nadpis',
+'summary'                          => 'Zhrnutie úprav:',
+'subject'                          => 'Téma/nadpis:',
 'minoredit'                        => 'Toto je drobná úprava',
 'watchthis'                        => 'Sledovať úpravy tejto stránky',
 'savearticle'                      => 'Uložiť stránku',
@@ -663,8 +663,8 @@ Vaša IP adresa bude zaznamenaná v histórii úprav tejto stránky.",
 'missingsummary'                   => "'''Pripomienka:''' Neposkytli ste zhrnutie úprav. Ak kliknete znova na Uložiť, vaše úpravy sa uložia bez zhrnutia úprav.",
 'missingcommenttext'               => 'Prosím, dolu napíšte komentár.',
 'missingcommentheader'             => "'''Pripomienka:''' Neposkytli ste predmet/hlavičku tohto komentára. Ak znova kliknete na tlačidlo Uložiť, vaša úprava sa uloží bez nej.",
-'summary-preview'                  => 'Náhľad zhrnutia',
-'subject-preview'                  => 'Náhľad predmetu/hlavičky',
+'summary-preview'                  => 'Náhľad zhrnutia:',
+'subject-preview'                  => 'Náhľad predmetu/hlavičky:',
 'blockedtitle'                     => 'Používateľ je zablokovaný',
 'blockedtext'                      => "<big>'''Vaše používateľské meno alebo IP adresa bola zablokovaná.'''</big>
 

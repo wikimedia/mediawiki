@@ -74,7 +74,7 @@ Putiv cuntinuèr ad usèr {{SITENAME}} anonimamèint, o putiv cunnètterv dòp c
 'accountcreated'       => 'Et criê un nôv account',
 
 # Edit pages
-'summary'          => "Mutîv d'al cambiamèint",
+'summary'          => "Mutîv d'al cambiamèint:",
 'minoredit'        => "Còst cambiamèint ché l'é un gnînt in tót",
 'watchthis'        => "Tîn a drê a c'la pàgina chè",
 'savearticle'      => 'Salva',

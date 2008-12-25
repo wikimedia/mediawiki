@@ -510,8 +510,8 @@ Sait aap password ke safalta se badal sia hoga nai to nawaa temporary password k
 'hr_tip'          => 'Samthar line (bahut jaada nai kaam me laana)',
 
 # Edit pages
-'summary'                          => 'Sanchhipt',
-'subject'                          => 'Subject/headline',
+'summary'                          => 'Sanchhipt:',
+'subject'                          => 'Subject/headline:',
 'minoredit'                        => 'Ii chhota badlao hai',
 'watchthis'                        => 'Ii panna ke dhyaan rakho',
 'savearticle'                      => 'Save panna',
@@ -526,8 +526,8 @@ Agar aap Save ke fir se click karaa tab, aap ke badlao bina summary ke save kar 
 'missingcommenttext'               => 'Meharbani kar ke niche aapan vichar deo.',
 'missingcommentheader'             => "'''Suchna:''' Aap ii vichar ke vishay nai likha hai.
 Agar aap Save pe click karaa tab bina vishay ke iske save kar lewa jaai.",
-'summary-preview'                  => 'Sanchhep jhalak',
-'subject-preview'                  => 'Suchi ke jhalak',
+'summary-preview'                  => 'Sanchhep jhalak:',
+'subject-preview'                  => 'Suchi ke jhalak:',
 'blockedtitle'                     => 'Sadasya ke rok dewa gais hai',
 'blockedtext'                      => "<big>'''Aapke user name nai to IP address ke rok dewa gae hai.'''</big>
 

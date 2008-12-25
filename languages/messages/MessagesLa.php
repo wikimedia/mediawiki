@@ -561,8 +561,8 @@ Hunc nuntium ignorare potes, si nolis hac ratione uti.',
 'hr_tip'         => 'Linea horizontalis (noli saepe uti)',
 
 # Edit pages
-'summary'                          => 'Summarium',
-'subject'                          => 'Res/titulus',
+'summary'                          => 'Summarium:',
+'subject'                          => 'Res/titulus:',
 'minoredit'                        => 'Haec est recensio minor',
 'watchthis'                        => 'Custodire hanc paginam',
 'savearticle'                      => 'Servare hanc rem',
@@ -572,8 +572,8 @@ Hunc nuntium ignorare potes, si nolis hac ratione uti.',
 'showdiff'                         => 'Mutata ostendere',
 'anoneditwarning'                  => "'''Monitio:''' Conventum tuum non apertum. Locus IP tuus in historia huius paginae notabitur.",
 'missingcommenttext'               => 'Sententiam subter inscribe.',
-'summary-preview'                  => 'Praevisum summarii',
-'subject-preview'                  => 'Praevisum rei/tituli',
+'summary-preview'                  => 'Praevisum summarii:',
+'subject-preview'                  => 'Praevisum rei/tituli:',
 'blockedtitle'                     => 'Usor obstructus est',
 'blockedtext'                      => '<big>\'\'\'Nomen usoris aut locus IP tuus obstructus est\'\'\'</big> a magistratu $1.
 

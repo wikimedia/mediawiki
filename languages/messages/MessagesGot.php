@@ -197,8 +197,8 @@ $messages = array(
 'hr_tip'          => 'Ráihtsbáurd (brukjan miþ niufarussus)',
 
 # Edit pages
-'summary'                => 'Máidjanspillon',
-'subject'                => 'Háubidaboka',
+'summary'                => 'Máidjanspillon:',
+'subject'                => 'Háubidaboka:',
 'minoredit'              => 'Sa ist lietila máideins',
 'watchthis'              => '𐍅𐌰𐍂𐌰𐌽 𐍃𐌴𐌹𐌳𐍉',
 'savearticle'            => 'Melja seido',

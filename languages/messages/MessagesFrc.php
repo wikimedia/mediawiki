@@ -422,8 +422,8 @@ Si quèqu\'une d\'autre a demandé ce mot de passe ou si vous vous rappelez de v
 'hr_tip'          => 'Ligne horizontale (Abusez-lé pas.)',
 
 # Edit pages
-'summary'                   => 'Description',
-'subject'                   => 'Sujet',
+'summary'                   => 'Description:',
+'subject'                   => 'Sujet:',
 'minoredit'                 => "Ça ici, c'est un petit changement.",
 'watchthis'                 => 'Guetter cette page',
 'savearticle'               => 'Sauver la page',
@@ -435,8 +435,8 @@ Si quèqu\'une d\'autre a demandé ce mot de passe ou si vous vous rappelez de v
 'missingsummary'            => "'''Attention:'''  Vous avez pas mis de description.  Si vous cliquez le bouton \"Sauver\" encore, votre changement va être sauvé sans description.",
 'missingcommenttext'        => 'Mettez donc un commentaire en bas.',
 'missingcommentheader'      => "'''Attention:'''  Vous avez pas pas mis de sujet pour ce commentaire.  Si vous cliquez le bouton \"Sauver\" encore, votre changement va être sauvé sans sujet.",
-'summary-preview'           => "Vue d'avance de la description",
-'subject-preview'           => "Vue d'avance du sujet",
+'summary-preview'           => "Vue d'avance de la description:",
+'subject-preview'           => "Vue d'avance du sujet:",
 'blockedtitle'              => "L'useur est bloqué",
 'blockedtext'               => "<big>'''Votre compte d'useur (ou votre adresse IP) est bloqué.'''</big>
 

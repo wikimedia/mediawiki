@@ -215,8 +215,8 @@ zzat ma ca n e-mail nniḍen ma ad itwasekk ɣar umiḍan , ixessa ad tegged man
 'hr_tip'          => 'Acariḍ aglawan',
 
 # Edit pages
-'summary'                => 'Tagḍwit',
-'subject'                => 'Subject/headline',
+'summary'                => 'Tagḍwit:',
+'subject'                => 'Subject/headline:',
 'minoredit'              => 'Ta d taẓrigt d-tamẓeyant',
 'watchthis'              => 'Ẓar Tasna ya',
 'savearticle'            => 'Ḥaḍ Tasna',
@@ -225,7 +225,7 @@ zzat ma ca n e-mail nniḍen ma ad itwasekk ɣar umiḍan , ixessa ad tegged man
 'showdiff'               => 'Ẓar mayn teẓṛegd.',
 'anoneditwarning'        => "'''ɣark:''' war tudifd ca s isem inec.
 Tansa n IP inac ad-teqqim deg umezruy n teẓṛigin n Tasna ya .",
-'summary-preview'        => 'Azar-ascan n Tegḍwit',
+'summary-preview'        => 'Azar-ascan n Tegḍwit:',
 'blockedtext'            => "<big>'''Isem useqdac niɣ tansa IP inecc tewabluca  .'''</big>
 
 iblocat  $1.

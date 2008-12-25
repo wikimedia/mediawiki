@@ -137,7 +137,7 @@ $messages = array(
 'email'              => 'དྲ་འཕྲིན།',
 
 # Edit pages
-'summary'      => 'བསྡུས་དོན།',
+'summary'      => 'བསྡུས་དོན།:',
 'minoredit'    => 'འདི་རྩོམ་སྒྲིག་ཚར་མེད།',
 'watchthis'    => 'དྲ་ངོས་འདི་ལ་མཉམ་འཇོག་པ།',
 'savearticle'  => 'དྲ་ངོས་ཉར་བ།',

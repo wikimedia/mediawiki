@@ -200,15 +200,15 @@ $messages = array(
 'hr_tip'        => 'Haipuku oñenóva (eipurúke tekotevẽ javénte)',
 
 # Edit pages
-'summary'               => 'Jehaimombyky',
-'subject'               => "Mba'ekuaarã/teraete",
+'summary'               => 'Jehaimombyky:',
+'subject'               => "Mba'ekuaarã/teraete:",
 'minoredit'             => "Kóva ha'e peteĩ jehai mbyky",
 'watchthis'             => 'Toñeñangareko ko tembiapóre',
 'savearticle'           => 'Hai',
 'showpreview'           => 'Tojechauka jehai ñemboguapy mboyve',
 'showdiff'              => 'Tojechauka ñemoambue',
 'missingsummary'        => "'''Atención:''' No has escrito un resumen de edición. Si haces clic nuevamente en «Hai» tu edición se grabará sin él.",
-'subject-preview'       => "Previsualización del mba'ekuaarã/teraete",
+'subject-preview'       => "Previsualización del mba'ekuaarã/teraete:",
 'newarticletext'        => "Rehapykuehókuri peteĩ joaju peteĩ kuatiarogue ndaipórivape.
 Nde remoheñoisérõ ko kuatiarogue, eñepyrũkatu ehai.
 Reikotevẽvérõ marandu, emoñe'ẽ kuatiarogue ñepytyvõ rehegua. Oiméramo reikereínte térã rejavyhaguére, upéicharõ terehojey [[{{MediaWiki:Helppage}}|kuatiarogue mboyveguápe]].",

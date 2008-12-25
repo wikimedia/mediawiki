@@ -389,8 +389,8 @@ $messages = array(
 'hr_tip'          => 'পাথারি খাস (খানি করা ইয়া আতা)',
 
 # Edit pages
-'summary'                => 'সারমর্ম',
-'subject'                => 'বিষয়/চিঙনাঙ',
+'summary'                => 'সারমর্ম:',
+'subject'                => 'বিষয়/চিঙনাঙ:',
 'minoredit'              => 'এহান হুরু-মুরু সম্পাদনাহানহে।',
 'watchthis'              => 'পাতাএহান খিয়ালে থ',
 'savearticle'            => 'পাতাহান ইতুকর',
@@ -398,7 +398,7 @@ $messages = array(
 'showpreview'            => 'আগচা',
 'showdiff'               => 'পতাসিতা দেহাদে',
 'anoneditwarning'        => "'''সিঙুইসঃ''' তি লগইন নাকরিসত। পতানির ইতিহাসহাত তর IP addressহান সিজিল ইতই।",
-'summary-preview'        => 'সারমর্মর আগচা',
+'summary-preview'        => 'সারমর্মর আগচা:',
 'blockedtitle'           => 'আতাকুরাগরে থেপ করানি অসে',
 'blockedtext'            => "<big>'''তর আতাকুরা নাঙহান নাইলেউ আইপি ঠিকানাহানরে থেপকরানি অসে।'''</big>
 

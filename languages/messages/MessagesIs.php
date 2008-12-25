@@ -742,8 +742,8 @@ Til að klára að skrá þig inn, verður þú að endurstilla lykilorðið hé
 'hr_tip'          => 'Lárétt lína (notist sparlega)',
 
 # Edit pages
-'summary'                          => 'Breytingarágrip',
-'subject'                          => 'Fyrirsögn',
+'summary'                          => 'Breytingarágrip:',
+'subject'                          => 'Fyrirsögn:',
 'minoredit'                        => 'Þetta er minniháttar breyting',
 'watchthis'                        => 'Vakta þessa síðu',
 'savearticle'                      => 'Vista síðu',
@@ -757,8 +757,8 @@ Ef þú smellir á Vista aftur, verður breyting þín vistuð án þess.",
 'missingcommenttext'               => 'Gerðu svo vel og skrifaðu athugasemd fyrir neðan.',
 'missingcommentheader'             => "'''Áminning:''' Þú hefur ekki gefið upp umræðuefni/fyrirsögn.
 Ef þú smellir á Vista aftur, verður breyting þín vistuð án þess.",
-'summary-preview'                  => 'Forskoða breytingarágrip',
-'subject-preview'                  => 'Forskoðun umræðuefnis/fyrirsagnar',
+'summary-preview'                  => 'Forskoða breytingarágrip:',
+'subject-preview'                  => 'Forskoðun umræðuefnis/fyrirsagnar:',
 'blockedtitle'                     => 'Notandi er bannaður',
 'blockedtext'                      => "<big>'''Notandanafn þitt eða vistfang hefur verið bannað.'''</big>
 

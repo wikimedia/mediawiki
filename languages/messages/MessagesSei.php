@@ -439,8 +439,8 @@ confirmom account zo coccebj de'me.",
 'hr_tip'          => 'I horizont (seperatman)',
 
 # Edit pages
-'summary'                   => 'Abvuatl',
-'subject'                   => 'Subject/ccanzam',
+'summary'                   => 'Abvuatl:',
+'subject'                   => 'Subject/ccanzam:',
 'minoredit'                 => 'Jan coccebj editám z bajlöxám',
 'watchthis'                 => 'Cáminot jan páhina',
 'savearticle'               => 'Xuniim páhina',
@@ -452,8 +452,8 @@ confirmom account zo coccebj de'me.",
 'missingsummary'            => "'''Attencion:''' Me necoccebj providöx abvuatlde ticpatlöx zo. Clicköx 'Xuniim páhina' xuniim meticpatlöx sans abvuatlde ticpatlöx.",
 'missingcommenttext'        => 'Enterom commentua !-cmaa.',
 'missingcommentheader'      => "'''Attencion:''' Me necoccebj providöx subjectua/corridor zode jan commentua. Clickom 'Xuniim páhina' xuniim meticpatlöx sans subjectua/corridor zo.",
-'summary-preview'           => 'Cuáxiitde abvuatl',
-'subject-preview'           => 'Cuáxiitde subjectua/corridor',
+'summary-preview'           => 'Cuáxiitde abvuatl:',
+'subject-preview'           => 'Cuáxiitde subjectua/corridor:',
 'blockedtitle'              => 'Caitom blockámit',
 'blockedtext'               => "<big>'''Hexuatl jöx adressade IP cáablockom.'''</big>
 

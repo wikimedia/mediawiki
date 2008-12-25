@@ -299,8 +299,8 @@ Perquei è anc nagin retschaiver e trametter dad emails per las suandantas funcz
 'hr_tip'          => 'Lingia orizontala (betg utilisar savens!)',
 
 # Edit pages
-'summary'                => 'Resumaziun',
-'subject'                => 'Pertutga',
+'summary'                => 'Resumaziun:',
+'subject'                => 'Pertutga:',
 'minoredit'              => 'Midà be bagatellas',
 'watchthis'              => 'observar quest artitgel',
 'savearticle'            => "memorisar l'artitgel",
@@ -309,7 +309,7 @@ Perquei è anc nagin retschaiver e trametter dad emails per las suandantas funcz
 'showlivepreview'        => 'prevista directa',
 'showdiff'               => 'mussar midadas',
 'anoneditwarning'        => "Vus essas betg annunziads. Empè dal num d'utilisader vign l'adressa dad IP registrada en la historia da las versiuns.",
-'summary-preview'        => 'prevista da la resumaziun',
+'summary-preview'        => 'prevista da la resumaziun:',
 'blockedtitle'           => 'Utilisader è bloccà',
 'blockedtext'            => "<big>'''Tes num d'utilisader u tia adressa d'IP è vegnida bloccada.'''</big>
 

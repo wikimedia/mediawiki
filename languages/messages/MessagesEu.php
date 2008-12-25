@@ -549,8 +549,8 @@ Agian dagoeneko ondo aldatu duzu zure pasahitza edo behin-behineko pasahitza bat
 'hr_tip'          => 'Lerro horizontala (gutxitan erabili)',
 
 # Edit pages
-'summary'                          => 'Laburpena',
-'subject'                          => 'Izenburua',
+'summary'                          => 'Laburpena:',
+'subject'                          => 'Izenburua:',
 'minoredit'                        => 'Hau aldaketa txikia da',
 'watchthis'                        => 'Orrialde hau jarraitu',
 'savearticle'                      => 'Orrialdea gorde',
@@ -562,8 +562,8 @@ Agian dagoeneko ondo aldatu duzu zure pasahitza edo behin-behineko pasahitza bat
 'missingsummary'                   => "'''Gogorarazpena:''' Ez duzu aldaketa laburpen bat zehaztu. Berriz ere gordetzeko aukeratzen baduzu, laburpen mezurik gordeko da.",
 'missingcommenttext'               => 'Mesedez, iruzkin bat idatzi jarraian.',
 'missingcommentheader'             => "'''Oharra:''' Ez duzu iruzkin honentzako gai/goiburuko bat ezarri. Berriz gordetzeko aukeratzen baduzu, hutsune horrekin gorde egingo da.",
-'summary-preview'                  => 'Laburpenaren aurreikuspena',
-'subject-preview'                  => 'Gaia/Izenburuaren aurreikuspena',
+'summary-preview'                  => 'Laburpenaren aurreikuspena:',
+'subject-preview'                  => 'Gaia/Izenburuaren aurreikuspena:',
 'blockedtitle'                     => 'Erabiltzailea blokeatuta dago',
 'blockedtext'                      => "<big>'''Zure lankide izena edo IP helbidea blokeaturik dago'''</big>
 Blokeoa $1(e)k egin zuen.

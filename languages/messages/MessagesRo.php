@@ -637,8 +637,8 @@ Este posibil să fi reuşit deja schimbarea parolei sau să fi cerut o parolă t
 'hr_tip'          => 'Linie orizontală (folosiţi-o cumpătat)',
 
 # Edit pages
-'summary'                          => 'Sumar',
-'subject'                          => 'Subiect / titlu',
+'summary'                          => 'Sumar:',
+'subject'                          => 'Subiect / titlu:',
 'minoredit'                        => 'Aceasta este o editare minoră',
 'watchthis'                        => 'Urmăreşte această pagină',
 'savearticle'                      => 'Salvează pagina',
@@ -650,7 +650,7 @@ Este posibil să fi reuşit deja schimbarea parolei sau să fi cerut o parolă t
 'missingsummary'                   => "'''Atenţie:''' Nu aţi completat caseta \"descriere modificări\". Dacă apăsaţi din nou butonul \"salvează pagina\" modificările vor fi salvate fără descriere.",
 'missingcommenttext'               => 'Vă rugăm să introduceţi un comentariu.',
 'missingcommentheader'             => "'''Atenţie:''' Nu aţi furnizat un titlu/subiect pentru acest comentariu. Dacă daţi click pe \"Salvaţi din nou\", modificarea va fi salvată fără titlu.",
-'summary-preview'                  => 'Previzualizare descriere',
+'summary-preview'                  => 'Previzualizare descriere:',
 'subject-preview'                  => 'Previzualizare subiect/titlu:',
 'blockedtitle'                     => 'Utilizatorul este blocat',
 'blockedtext'                      => "<big>'''Adresa IP sau contul dumneavoastră de utilizator a fost blocat.'''</big>
@@ -1285,7 +1285,7 @@ $3',
 'recentchangeslinked-noresult' => 'Nici o schimbare la paginile legate în perioada dată.',
 'recentchangeslinked-summary'  => "Aceasta este o listă a schimbărilor efectuate recent asupra paginilor cu legături de la o anumită pagină (sau asupra membrilor unei anumite categorii).
 Paginile pe care le [[Special:Watchlist|urmăriţi]] apar în '''aldine'''.",
-'recentchangeslinked-page'     => 'Nume pagină:',
+'recentchangeslinked-page'     => 'Numele paginii:',
 'recentchangeslinked-to'       => 'Afişează schimbările în paginile care se leagă de pagina dată',
 
 # Upload
@@ -2202,6 +2202,7 @@ Vă rugăm să vizitaţi [http://www.mediawiki.org/wiki/Localisation MediaWiki L
 'import'                     => 'Importă pagini',
 'importinterwiki'            => 'Import transwiki',
 'import-interwiki-text'      => 'Selectează un wiki şi titlul paginii care trebuie importate. Datele reviziilor şi numele editorilor vor fi salvate. Toate acţiunile de import transwiki pot fi găsite la [[Special:Log/import|log import]]',
+'import-interwiki-source'    => 'Wiki/pagină sursă:',
 'import-interwiki-history'   => 'Copiază toate versiunile istoricului acestei pagini',
 'import-interwiki-submit'    => 'Importă',
 'import-interwiki-namespace' => 'Transferă către spaţiul de nume:',

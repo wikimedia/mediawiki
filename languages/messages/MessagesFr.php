@@ -12,6 +12,7 @@
  * @author Dereckson
  * @author Elfix
  * @author Esbardu
+ * @author Fryed-peach
  * @author Grondin
  * @author Guillom
  * @author Hégésippe Cormier
@@ -724,8 +725,8 @@ Vous avez peut-être déjà modifié votre mot de passe ou demandé un nouveau m
 'hr_tip'          => 'Ligne horizontale (ne pas en abuser)',
 
 # Edit pages
-'summary'                          => 'Résumé',
-'subject'                          => 'Sujet/titre',
+'summary'                          => 'Résumé :',
+'subject'                          => 'Sujet / titre :',
 'minoredit'                        => 'Modification mineure',
 'watchthis'                        => 'Suivre cette page',
 'savearticle'                      => 'Publier',
@@ -739,8 +740,8 @@ Si vous cliquez de nouveau sur le bouton « Publier », la publication sera fait
 'missingcommenttext'               => 'Veuillez faire votre commentaire ci-dessous.',
 'missingcommentheader'             => "'''Rappel :''' vous n’avez pas fourni de sujet/titre à ce commentaire.
 Si vous cliquez à nouveau sur « Publier », votre édition sera enregistrée sans titre.",
-'summary-preview'                  => 'Prévisualiser le résumé',
-'subject-preview'                  => 'Prévisualisation du sujet/titre',
+'summary-preview'                  => 'Prévisualiser le résumé :',
+'subject-preview'                  => 'Prévisualisation du sujet/titre :',
 'blockedtitle'                     => 'L’utilisateur est bloqué.',
 'blockedtext'                      => "<big>'''Votre compte utilisateur ou votre adresse IP a été bloqué.'''</big>
 

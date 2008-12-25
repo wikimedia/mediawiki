@@ -584,8 +584,8 @@ Mun ieu rekening balukar ayana éror, teu kudu diwaro.',
 'hr_tip'          => 'Garis horizontal (use sparingly)',
 
 # Edit pages
-'summary'                          => 'Ringkesan',
-'subject'                          => 'Jejer/Judul',
+'summary'                          => 'Ringkesan:',
+'subject'                          => 'Jejer/Judul:',
 'minoredit'                        => 'Ieu éditan minor',
 'watchthis'                        => 'Awaskeun kaca ieu',
 'savearticle'                      => 'Simpen',
@@ -597,8 +597,8 @@ Mun ieu rekening balukar ayana éror, teu kudu diwaro.',
 'missingsummary'                   => "'''Pépéling:''' Anjeun can ngeusian sari éditan. Mun anjeun ngaklik deui Simpen, éditan anjeun bakal disimpen tanpa sari éditan",
 'missingcommenttext'               => 'Mangga tulis koméntar di handapeun ieu.',
 'missingcommentheader'             => "'''Pépéling:''' Anjeun can ngeusian judul pikeun ieu koméntar. Mun anjeun ngaklik deui Simpen, éditan anjeun bakal disimpen tanpa judul.",
-'summary-preview'                  => 'Ringkesan pramidang',
-'subject-preview'                  => 'Sawangan subyek/tajuk',
+'summary-preview'                  => 'Ringkesan pramidang:',
+'subject-preview'                  => 'Sawangan subyek/tajuk:',
 'blockedtitle'                     => 'Pamaké dipeungpeuk',
 'blockedtext'                      => "<big>'''Ngaran pamaké atawa alamat IP anjeun dipeungpeuk.'''</big>
 

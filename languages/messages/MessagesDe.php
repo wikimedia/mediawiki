@@ -798,8 +798,8 @@ Möglicherweise hast du dein Passwort bereits erfolgreich geändert oder ein neu
 'hr_tip'          => 'Horizontale Linie (sparsam verwenden)',
 
 # Edit pages
-'summary'                          => 'Zusammenfassung',
-'subject'                          => 'Betreff',
+'summary'                          => 'Zusammenfassung:',
+'subject'                          => 'Betreff:',
 'minoredit'                        => 'Nur Kleinigkeiten wurden verändert',
 'watchthis'                        => 'Diese Seite beobachten',
 'savearticle'                      => 'Seite speichern',
@@ -811,8 +811,8 @@ Möglicherweise hast du dein Passwort bereits erfolgreich geändert oder ein neu
 'missingsummary'                   => "'''Hinweis:''' Du hast keine Zusammenfassung angegeben. Wenn du erneut auf „Seite speichern“ klickst, wird deine Änderung ohne Zusammenfassung übernommen.",
 'missingcommenttext'               => 'Bitte gib eine Zusammenfassung ein.',
 'missingcommentheader'             => "'''ACHTUNG:''' Du hast keine Überschrift im Feld „Betreff:“ eingegeben. Wenn du erneut auf „Seite speichern“ klickst, wird deine Bearbeitung ohne Überschrift gespeichert.",
-'summary-preview'                  => 'Vorschau der Zusammenfassungszeile',
-'subject-preview'                  => 'Vorschau des Betreffs',
+'summary-preview'                  => 'Vorschau der Zusammenfassungszeile:',
+'subject-preview'                  => 'Vorschau des Betreffs:',
 'blockedtitle'                     => 'Benutzer ist gesperrt',
 'blockedtext'                      => 'Dein Benutzername oder deine IP-Adresse wurde von $1 gesperrt. Als Grund wurde angegeben:
 

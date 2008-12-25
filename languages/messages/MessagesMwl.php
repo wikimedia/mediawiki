@@ -298,8 +298,8 @@ de modo a cunfirmar que la cuonta ye mesmo la tue.',
 'hr_tip'          => 'Lhinha hourizontal (outeliza cun regra)',
 
 # Edit pages
-'summary'                => 'Sumário',
-'subject'                => 'Assunto/cabeçailho',
+'summary'                => 'Sumário:',
+'subject'                => 'Assunto/cabeçailho:',
 'minoredit'              => 'Marcar cumo eidiçon pequerrixa',
 'watchthis'              => 'Ber esta páigina',
 'savearticle'            => 'Grabar páigina',
@@ -307,7 +307,7 @@ de modo a cunfirmar que la cuonta ye mesmo la tue.',
 'showpreview'            => 'Amostrar prebison',
 'showdiff'               => 'Amostrar alteraçones',
 'anoneditwarning'        => "'''Abiso''': Tu nun stás outenticado. L tou IP será registrado ne l stórico de las eidiçones desta páigina.",
-'summary-preview'        => 'Amostra de l sumário',
+'summary-preview'        => 'Amostra de l sumário:',
 'blockedtext'            => '<big>L tou nome d\'outelizador ó morada de IP foi bloquiada</big>
 
 L bloqueio fui feito por $1. La rezon fui \'\'$2\'\'.

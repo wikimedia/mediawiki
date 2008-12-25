@@ -598,8 +598,8 @@ Pò èssiri ca ggià canciasti cu successu la tò password o c'addumannasti na n
 'hr_tip'          => 'Lìnia urizzuntali (usari cu giudizziu)',
 
 # Edit pages
-'summary'                          => 'Discrizzioni',
-'subject'                          => 'Suggettu/ntistazzioni',
+'summary'                          => 'Discrizzioni:',
+'subject'                          => 'Suggettu/ntistazzioni:',
 'minoredit'                        => 'Chistu è nu canciamentu nicu',
 'watchthis'                        => 'talìa sta pàggina',
 'savearticle'                      => 'sarva la pàggina',
@@ -611,8 +611,8 @@ Pò èssiri ca ggià canciasti cu successu la tò password o c'addumannasti na n
 'missingsummary'                   => "'''Accura:''' Nun hà statu spicificatu l'uggettu di stu canciamentu. Primennu di novu '''Sarva''' lu canciamentu veni sarvatu cu l'uggettu vacanti.",
 'missingcommenttext'               => 'Nziriri un cummentu ccà sutta.',
 'missingcommentheader'             => "'''Accura:''' Nun hà statu spicificatu la ntistazzioni di stu cummentu. Primennu di novu '''Sarva''' lu canciamentu veni saravtu senza ntistazzioni.",
-'summary-preview'                  => 'Antiprima uggettu',
-'subject-preview'                  => 'Antiprima suggettu/ntistazzioni',
+'summary-preview'                  => 'Antiprima uggettu:',
+'subject-preview'                  => 'Antiprima suggettu/ntistazzioni:',
 'blockedtitle'                     => 'Utenti bluccatu.',
 'blockedtext'                      => "<big>'''Stu nomu d'utenti o nnirizzu IP havi statu bluccatu.'''</big>
 
@@ -1042,6 +1042,7 @@ S'havi accirtari ca la cuntinuità storica di la pàggina nun veni altirata.",
 'timezonelegend'            => 'Zona oraria',
 'timezonetext'              => "Mmetti lu nùmmiru d'uri di diffirenza tra la tò ura lucali e l'ura dû server (UTC).",
 'localtime'                 => 'Uràriu lucali',
+'timezoneselect'            => 'Time zone:',
 'timezoneoffset'            => 'Uri di diffirenza¹',
 'servertime'                => 'Ura dû server',
 'guesstimezone'             => "Usa l'ura dû tò browser",

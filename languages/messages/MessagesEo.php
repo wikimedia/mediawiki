@@ -666,8 +666,8 @@ Vi eble jam ŝanĝis vian pasvorton aŭ petis novan provizoran pasvorton.',
 'hr_tip'          => 'Horizontala linio (uzu ŝpareme)',
 
 # Edit pages
-'summary'                          => 'Resumo',
-'subject'                          => 'Temo/subtitolo',
+'summary'                          => 'Resumo:',
+'subject'                          => 'Temo/subtitolo:',
 'minoredit'                        => 'Ĉi tiu ŝanĝo estas redakteto',
 'watchthis'                        => 'Atenti ĉi tiun paĝon',
 'savearticle'                      => 'Konservi ŝanĝojn',
@@ -680,8 +680,8 @@ Vi eble jam ŝanĝis vian pasvorton aŭ petis novan provizoran pasvorton.',
 'missingcommenttext'               => 'Bonvolu entajpi komenton malsupre.',
 'missingcommentheader'             => "'''Atento:''' Vi ne donis temo/subtitolo por ĉi tiu komento. 
 Se vi klakos Konservi denove, via redakto estos konservita sen ĝi.",
-'summary-preview'                  => 'Resuma antaŭrigardo',
-'subject-preview'                  => 'Antaŭrigardo de Temo/Subitolo',
+'summary-preview'                  => 'Resuma antaŭrigardo:',
+'subject-preview'                  => 'Antaŭrigardo de Temo/Subitolo:',
 'blockedtitle'                     => 'La uzanto estas forbarita.',
 'blockedtext'                      => "<big>'''Via konto aŭ IP-adreso estis forbarita'''</big> 
 

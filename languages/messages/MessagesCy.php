@@ -232,7 +232,7 @@ $messages = array(
 'category-file-count-limited'    => "Mae'r {{PLURAL:$1|dim ffeil|un ffeil|$1 ffeil|$1 ffeil|$1 ffeil|$1 ffeil}} canlynol yn y categori hwn.",
 'listingcontinuesabbrev'         => ' parh.',
 
-'mainpagetext'      => "<big>'''Wedi llwyddo gosod meddalwedd Mediawiki yma'''</big>",
+'mainpagetext'      => "<big>'''Wedi llwyddo gosod meddalwedd MediaWiki yma'''</big>",
 'mainpagedocfooter' => 'Ceir cymorth (yn Saesneg) ar ddefnyddio meddalwedd wici yn y [http://meta.wikimedia.org/wiki/Help:Contents Canllaw Defnyddwyr] ar wefan Wikimedia.
 
 ==Cychwyn arni==
@@ -347,7 +347,7 @@ $messages = array(
 'badaccess-groups' => "Dim ond defnyddwyr o blith y {{PLURAL:$2|grwp|grwp|grwpiau|grwpiau|grwpiau|grwpiau}} $1 sy'n cael gwneud y weithred y gofynwyd amdani.",
 
 'versionrequired'     => 'Mae angen fersiwn $1 y meddalwedd MediaWiki',
-'versionrequiredtext' => "Mae angen fersiwn $1 y meddalwedd Mediawiki er mwyn gwneud defnydd o'r dudalen hon. Gweler y dudalen am y [[Special:Version|fersiwn]].",
+'versionrequiredtext' => "Mae angen fersiwn $1 y meddalwedd MediaWiki er mwyn gwneud defnydd o'r dudalen hon. Gweler y dudalen am y [[Special:Version|fersiwn]].",
 
 'ok'                      => 'Iawn',
 'retrievedfrom'           => 'Wedi dod o "$1"',
@@ -598,8 +598,8 @@ Efallai eich bod eisoes wedi llwyddo newid eich cyfrinair neu eich bod wedi gwne
 'hr_tip'          => "Llinell lorweddol (peidiwch â'i gor-ddefnyddio)",
 
 # Edit pages
-'summary'                          => 'Crynodeb',
-'subject'                          => 'Pwnc/pennawd',
+'summary'                          => 'Crynodeb:',
+'subject'                          => 'Pwnc/pennawd:',
 'minoredit'                        => 'Golygiad bychan yw hwn',
 'watchthis'                        => 'Gwylier y dudalen hon',
 'savearticle'                      => "Cadw'r dudalen",
@@ -612,8 +612,8 @@ Efallai eich bod eisoes wedi llwyddo newid eich cyfrinair neu eich bod wedi gwne
 Os y pwyswch eto ar 'Cadw'r dudalen' caiff y golygiad ei gadw heb nodyn.",
 'missingcommenttext'               => 'Rhowch eich sylwadau isod.',
 'missingcommentheader'             => "'''Nodyn:''' Nid ydych wedi cynnig unrhywbeth yn y blwch 'Pwnc/Pennawd:'. Os y cliciwch 'Cadw'r dudalen' eto fe gedwir y golygiad heb bennawd.",
-'summary-preview'                  => "Rhagolwg o'r crynodeb",
-'subject-preview'                  => 'Rhagolwg pwnc/pennawd',
+'summary-preview'                  => "Rhagolwg o'r crynodeb:",
+'subject-preview'                  => 'Rhagolwg pwnc/pennawd:',
 'blockedtitle'                     => "Mae'r defnyddiwr hwn wedi cael ei flocio",
 'blockedtext'                      => "<big>'''Mae eich enw defnyddiwr neu gyfeiriad IP wedi cael ei flocio.'''</big>
 
@@ -2045,7 +2045,7 @@ Yn achos yr ail ddewis, mae modd defnyddio cyswllt, e.e. [[{{ns:special}}:Export
 'allmessagesdefault'        => 'Testun rhagosodedig',
 'allmessagescurrent'        => 'Testun cyfredol',
 'allmessagestext'           => "Dyma restr o'r holl negeseuon yn y parth MediaWici.
-Os ydych am gyfrannu at y gwaith o gyfieithu ar gyfer holl prosiectau Mediawiki ar y cyd, mae croeso i chi ymweld â [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] a [http://translatewiki.net Betawiki].",
+Os ydych am gyfrannu at y gwaith o gyfieithu ar gyfer holl prosiectau MediaWiki ar y cyd, mae croeso i chi ymweld â [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] a [http://translatewiki.net Betawiki].",
 'allmessagesnotsupportedDB' => "Nid yw '''{{ns:special}}:PobNeges''' yn cael ei gynnal gan fod '''\$wgUseDatabaseMessages''' wedi ei ddiffodd.",
 'allmessagesfilter'         => 'Hidl enw neges:',
 'allmessagesmodified'       => 'Dangos y rhai a ddiwygiwyd yn unig',

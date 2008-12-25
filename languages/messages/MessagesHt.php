@@ -595,8 +595,8 @@ Ou dwèt te deja modifye l oubyen mande yon nouvo mopas ki tap pèmèt ou chanje
 'hr_tip'          => 'Liy orizontal (pa abize)',
 
 # Edit pages
-'summary'                          => 'Somè&nbsp;',
-'subject'                          => 'Sijè/tit',
+'summary'                          => 'Somè&nbsp;:',
+'subject'                          => 'Sijè/tit:',
 'minoredit'                        => 'Modifikasyon sa a pa enpòtan',
 'watchthis'                        => 'Swiv paj sa a',
 'savearticle'                      => 'Anrejistre',
@@ -610,8 +610,8 @@ Si ou klike sou \"Pibliye\", piblikasyon sa ke ap fèt san pyès avètisman.",
 'missingcommenttext'               => 'Souple, ekri komantè ou an pli ba nan paj sa.',
 'missingcommentheader'             => "'''Pòte atansyon :''' ou pa bay komantè ou an yon sijè/tit .
 Si ou klike sou \"Pibliye\", edisyon ou an pap genyen yon tit.",
-'summary-preview'                  => 'Kout zye nan rezime an anvan li anrejistre',
-'subject-preview'                  => 'Yon kout zye sou sijè/tit atik kontni sa',
+'summary-preview'                  => 'Kout zye nan rezime an anvan li anrejistre:',
+'subject-preview'                  => 'Yon kout zye sou sijè/tit atik kontni sa:',
 'blockedtitle'                     => 'itilizatè a bloke.',
 'blockedtext'                      => "<big>'''Kont itilizatè ou an (oubyen adrès IP ou an) bloke.'''</big>
 

@@ -156,7 +156,7 @@ $messages = array(
 'newpassword' => 'Керла тешаман дош:',
 
 # Edit pages
-'summary'         => 'Хийцами комментарий',
+'summary'         => 'Хийцами комментарий:',
 'minoredit'       => 'Жим Хийцам',
 'watchthis'       => 'TIяргалдеш таптарш юккхе язде',
 'savearticle'     => 'ДIаязде Таптар',

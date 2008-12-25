@@ -559,8 +559,8 @@ Ndoshta e keni ndryshuar fjalëkalimin ose keni kërkuar një fjalëkalim të p�
 'hr_tip'          => 'vijë horizontale (përdoreni rallë)',
 
 # Edit pages
-'summary'                          => 'Përmbledhje',
-'subject'                          => 'Subjekt/Titull',
+'summary'                          => 'Përmbledhje:',
+'subject'                          => 'Subjekt/Titull:',
 'minoredit'                        => 'Ky është një redaktim i vogël',
 'watchthis'                        => 'Mbikqyre këtë faqe',
 'savearticle'                      => 'Kryej ndryshimet',
@@ -574,8 +574,8 @@ You are not logged in. Your IP address will be recorded in this page's edit hist
 'missingcommenttext'               => 'Ju lutemi shtoni një koment në vazhdim.',
 'missingcommentheader'             => "'''Kujdes:''' Ju nuk keni dhënë një titull për këtë koment.
 Nëse kryeni ndryshimet redaktimi juaj do të ruhet pa titull.",
-'summary-preview'                  => 'Parapamja e përmbledhjes',
-'subject-preview'                  => 'Parapamja e titullit',
+'summary-preview'                  => 'Parapamja e përmbledhjes:',
+'subject-preview'                  => 'Parapamja e titullit:',
 'blockedtitle'                     => 'Përdoruesi është bllokuar',
 'blockedtext'                      => "<big>'''Llogaria juaj ose adresa e IP-së është bllokuar'''</big>
 

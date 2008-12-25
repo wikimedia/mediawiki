@@ -601,8 +601,8 @@ Yaykuna rimaykitaqa aypalla hukcharqunkiñachá icha huk mit'alla yaykuna rimata
 'hr_tip'          => "Siriq siq'i (ama nisyutachu llamk'apuy)",
 
 # Edit pages
-'summary'                          => 'Pisichay',
-'subject'                          => 'Yachaywa/umalli',
+'summary'                          => 'Pisichay:',
+'subject'                          => 'Yachaywa/umalli:',
 'minoredit'                        => 'Kayqa uchuylla hukchaymi',
 'watchthis'                        => 'Kay qillqata watiqay',
 'savearticle'                      => "P'anqata waqaychay",
@@ -614,8 +614,8 @@ Yaykuna rimaykitaqa aypalla hukcharqunkiñachá icha huk mit'alla yaykuna rimata
 'missingsummary'                   => "'''Paqtataq:''' Manaraqmi llamk'apusqaykimanta pisichaytachu qillqamurqunki. Musuqmanta «{{MediaWiki:Savearticle}}» nisqapi ñit'iptiykiqa, llamk'apusqayki waqaychasqam kanqa mana pisichay kaptinpas.",
 'missingcommenttext'               => 'Ama hina kaspa, kay qatiqpi willaspa qillqamuy.',
 'missingcommentheader'             => "'''Paqtataq:''' Manaraqmi kay willaypa umallintachu qillqamurqunki. Musuqmanta «waqaychay» nisqapi ñit'iptiykiqa, llamk'apusqayki waqaychasqam kanqa mana willaypa umallin kaptinpas.",
-'summary-preview'                  => 'Pisichayta ñawpaqta qhawarillay',
-'subject-preview'                  => 'Yachaywata/umallita ñawpaqta qhawarillay',
+'summary-preview'                  => 'Pisichayta ñawpaqta qhawarillay:',
+'subject-preview'                  => 'Yachaywata/umallita ñawpaqta qhawarillay:',
 'blockedtitle'                     => "Ruraqqa hark'asqam",
 'blockedtext'                      => "<big>'''Ruraqpa sutiykiqa icha IP huchhaykiqa hark'asqam.'''</big>
 
