@@ -804,7 +804,7 @@ class SpecialSearch {
 		$rows = array();
 		$tables = "";
 		foreach( $namespaces as $ns => $name ) {
-			$subj = Namespace::getSubject( $ns );
+			$subj = MWNamespace::getSubject( $ns );
 			if( !array_key_exists( $subj, $rows ) ) {
 				$rows[$subj] = "";
 			}
@@ -1379,7 +1379,7 @@ class SpecialSearchOld {
 		// many assumptions about namespace numbering
 		$rows = array();
 		foreach( $namespaces as $ns => $name ) {
-			$subj = Namespace::getSubject( $ns );
+			$subj = MWNamespace::getSubject( $ns );
 			if( !array_key_exists( $subj, $rows ) ) {
 				$rows[$subj] = "";
 			}
