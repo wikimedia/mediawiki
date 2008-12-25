@@ -727,9 +727,9 @@ Mit anderen Benutzer kannst du auch über die Benutzerdiskussionsseiten Kontakt 
 'passwordremindertitle'      => 'Neues Passwort für ein {{SITENAME}}-Benutzerkonto',
 'passwordremindertext'       => 'Jemand mit der IP-Adresse $1, wahrscheinlich du selbst, hat ein neues Passwort für die Anmeldung bei {{SITENAME}} ($4) angefordert.
 
-Das automatisch generierte Passwort für Benutzer "$2" lautet nun: $3
+Das automatisch generierte Passwort für Benutzer „$2“ lautet nun: $3
 
-Du solltest dich jetzt anmelden und das Passwort ändern: {{fullurl:{{ns:special}}}}:Userlogin
+Du solltest dich jetzt anmelden und das Passwort ändern: {{fullurl:{{ns:special}}:Userlogin}}
 
 Bitte ignoriere diese E-Mail, falls du sie nicht selbst angefordert hast. Das alte Passwort bleibt weiterhin gültig.',
 'noemail'                    => 'Benutzer „$1“ hat keine E-Mail-Adresse angegeben.',
@@ -751,7 +751,7 @@ Weitere Benutzerkonten können nicht angelegt werden.',
 'accountcreated'             => 'Benutzerkonto erstellt',
 'accountcreatedtext'         => 'Das Benutzerkonto $1 wurde eingerichtet.',
 'createaccount-title'        => 'Erstellung eines Benutzerkontos für {{SITENAME}}',
-'createaccount-text'         => 'Es wurde für dich ein Benutzerkonto "$2" auf {{SITENAME}} ($4) erstellt. Das automatisch generierte Passwort für "$2" ist "$3". Du solltest dich nun anmelden und das Passwort ändern.
+'createaccount-text'         => 'Es wurde für dich ein Benutzerkonto „$2“ auf {{SITENAME}} ($4) erstellt. Das automatisch generierte Passwort für „$2“ ist „$3“. Du solltest dich nun anmelden und das Passwort ändern.
 
 Falls das Benutzerkonto irrtümlich angelegt wurde, kannst du diese Nachricht ignorieren.',
 'login-throttled'            => 'Du hast zu oft vergeblich versucht, dich unter diesem Benutzernamen anzumelden. Bitte warte, bevor du es erneut probierst.',
@@ -935,7 +935,7 @@ Grund für die Sperre: $1',
 'template-protected'               => '(schreibgeschützt)',
 'template-semiprotected'           => '(schreibgeschützt für unangemeldete und neue Benutzer)',
 'hiddencategories'                 => 'Diese Seite ist Mitglied von {{PLURAL:$1|1 versteckter Kategorie|$1 versteckten Kategorien}}:',
-'edittools'                        => '<!-- Dieser Text wird unter dem „Bearbeiten“-Formular sowie dem "Hochladen"-Formular angezeigt. -->',
+'edittools'                        => '<!-- Dieser Text wird unter dem „Bearbeiten“-Formular sowie dem „Hochladen“-Formular angezeigt. -->',
 'nocreatetitle'                    => 'Die Erstellung neuer Seiten ist eingeschränkt.',
 'nocreatetext'                     => 'Auf {{SITENAME}} wurde das Erstellen neuer Seiten eingeschränkt. Du kannst bestehende Seiten ändern oder dich [[Special:UserLogin|anmelden]].',
 'nocreate-loggedin'                => 'Du hast keine Berechtigung, neue Seiten zu erstellen.',
@@ -2939,7 +2939,7 @@ Rückmeldung des Mailservers: $1',
 'confirmemail_subject'     => '[{{SITENAME}}] - Bestätigung der E-Mail-Adresse',
 'confirmemail_body'        => 'Hallo,
 
-jemand mit der IP-Adresse $1, wahrscheinlich du selbst, hat das Benutzerkonto "$2" in {{SITENAME}} registriert.
+jemand mit der IP-Adresse $1, wahrscheinlich du selbst, hat das Benutzerkonto „$2“ in {{SITENAME}} registriert.
 
 Um die E-Mail-Funktion für {{SITENAME}} (wieder) zu aktivieren und um zu bestätigen,
 dass dieses Benutzerkonto wirklich zu deiner E-Mail-Adresse und damit zu dir gehört, öffne bitte die folgende Web-Adresse:
@@ -3026,7 +3026,7 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'watchlistedit-noitems'        => 'Deine Beobachtungsliste ist leer.',
 'watchlistedit-normal-title'   => 'Beobachtungsliste bearbeiten',
 'watchlistedit-normal-legend'  => 'Einträge von der Beobachtungsliste entfernen',
-'watchlistedit-normal-explain' => 'Dies sind die Einträge deiner Beobachtungsliste. Um Einträge zu entfernen, markiere die Kästchen neben den Einträgen und klicke am Ende der Seite auf „Einträge entfernen“. Du kannst deine Beobachtungsliste auch im  [[Special:Watchlist/raw|Listenformat bearbeiten]].',
+'watchlistedit-normal-explain' => 'Dies sind die Einträge deiner Beobachtungsliste. Um Einträge zu entfernen, markiere die Kästchen neben den Einträgen und klicke am Ende der Seite auf „Einträge entfernen“. Du kannst deine Beobachtungsliste auch im [[Special:Watchlist/raw|Listenformat bearbeiten]].',
 'watchlistedit-normal-submit'  => 'Einträge entfernen',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 Eintrag wurde|$1 Einträge wurden}} von deiner Beobachtungsliste entfernt:',
 'watchlistedit-raw-title'      => 'Beobachtungsliste im Listenformat bearbeiten',
