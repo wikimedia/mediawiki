@@ -1327,7 +1327,6 @@ class EditPage {
 		if ( $this->missingSummary ) $summaryhiddens .= Xml::hidden( 'wpIgnoreBlankSummary', true );
 		$autosumm = $this->autoSumm ? $this->autoSumm : md5( $this->summary );
 		$summaryhiddens .= Xml::hidden( 'wpAutoSummary', $autosumm );
-		$subjectPreviewMsg = wfMsgExt( 'subject-preview', array( 'escapenoentities' ) );
 		if ( $this->section == 'new' ) {
 			$commentsubject = "<span id='wpSummaryLabel'><label for='wpSummary'>{$subject}</label></span>\n" .
 				"<input tabindex='1' type='text' value=\"$summarytext\" name='wpSummary' id='wpSummary' maxlength='200' size='60' />" .
@@ -1336,7 +1335,8 @@ class EditPage {
 			global $wgParser;
 			$formattedSummary = wfMsgForContent( 'newsectionsummary', $wgParser->stripSectionName( $this->summary ) );
 			$subjectpreview = $summarytext && $this->preview ?
-				"<div class=\"mw-summary-preview\">" . $subjectPreviewMsg . $sk->commentBlock( $formattedSummary, $this->mTitle, true ) . "</div>\n" : '';
+				"<div class=\"mw-summary-preview\">" . wfMsgExt( 'subject-preview', array( 'escapenoentities' ) ) .
+				$sk->commentBlock( $formattedSummary, $this->mTitle, true ) . "</div>\n" : '';
 			$summarypreview = '';
 		} else {
 			$commentsubject = '';
@@ -1345,7 +1345,8 @@ class EditPage {
 				"{$summaryhiddens}<br />";
 			$subjectpreview = '';
 			$summarypreview = $summarytext && $this->preview ?
-				"<div class=\"mw-summary-preview\">" . $subjectPreviewMsg . $sk->commentBlock( $this->summary, $this->mTitle ) . "</div>\n" : '';
+				"<div class=\"mw-summary-preview\">" . wfMsgExt( 'summary-preview', array( 'escapenoentities' ) ) .
+				$sk->commentBlock( $this->summary, $this->mTitle ) . "</div>\n" : '';
 		}
 
 		# Set focus to the edit box on load, except on preview or diff, where it would interfere with the display
