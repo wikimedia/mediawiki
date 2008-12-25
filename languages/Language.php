@@ -56,9 +56,9 @@ class Language {
 	var $mConverter, $mVariants, $mCode, $mLoaded = false;
 	var $mMagicExtensions = array(), $mMagicHookDone = false;
 
-	static public $mLocalisationKeys = array( 'fallback', 'namespaceNames',
-		'skinNames', 'mathNames',
-		'bookstoreList', 'magicWords', 'messages', 'rtl', 'digitTransformTable',
+	static public $mLocalisationKeys = array(
+		'fallback', 'namespaceNames', 'mathNames', 'bookstoreList',
+		'magicWords', 'messages', 'rtl', 'digitTransformTable',
 		'separatorTransformTable', 'fallback8bitEncoding', 'linkPrefixExtension',
 		'defaultUserOptionOverrides', 'linkTrail', 'namespaceAliases',
 		'dateFormats', 'datePreferences', 'datePreferenceMigrationMap',
@@ -320,7 +320,7 @@ class Language {
 		if ( isset( $aliases[$name][0] ) ) {
 			$name = $aliases[$name][0];
 		}
-		return $this->getNsText(NS_SPECIAL) . ':' . $name;
+		return $this->getNsText( NS_SPECIAL ) . ':' . $name;
 	}
 
 	function getQuickbarSettings() {
@@ -331,11 +331,6 @@ class Language {
 			$this->getMessage( 'qbsettings-floatingleft' ),
 			$this->getMessage( 'qbsettings-floatingright' )
 		);
-	}
-
-	function getSkinNames() {
-		$this->load();
-		return $this->skinNames;
 	}
 
 	function getMathNames() {

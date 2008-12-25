@@ -20,7 +20,6 @@ class languages {
 
 	protected $mNamespaceNames; # Namespace names
 	protected $mNamespaceAliases; # Namespace aliases
-	protected $mSkinNames; # Skin names
 	protected $mMagicWords; # Magic words
 	protected $mSpecialPageAliases; # Special page aliases
 
@@ -79,7 +78,6 @@ class languages {
 		if ( isset( $this->mRawMessages[$code] ) &&
 			isset( $this->mNamespaceNames[$code] ) &&
 			isset( $this->mNamespaceAliases[$code] ) &&
-			isset( $this->mSkinNames[$code] ) &&
 			isset( $this->mMagicWords[$code] ) &&
 			isset( $this->mSpecialPageAliases[$code] ) ) {
 			return;
@@ -87,7 +85,6 @@ class languages {
 		$this->mRawMessages[$code] = array();
 		$this->mNamespaceNames[$code] = array();
 		$this->mNamespaceAliases[$code] = array();
-		$this->mSkinNames[$code] = array();
 		$this->mMagicWords[$code] = array();
 		$this->mSpecialPageAliases[$code] = array();
 		$filename = Language::getMessagesFileName( $code );
@@ -101,9 +98,6 @@ class languages {
 			}
 			if ( isset( $namespaceAliases ) ) {
 				$this->mNamespaceAliases[$code] = $namespaceAliases;
-			}
-			if ( isset( $skinNames ) ) {
-				$this->mSkinNames[$code] = $skinNames;
 			}
 			if ( isset( $magicWords ) ) {
 				$this->mMagicWords[$code] = $magicWords;
@@ -234,18 +228,6 @@ class languages {
 	public function getNamespaceAliases( $code ) {
 		$this->loadFile( $code );
 		return $this->mNamespaceAliases[$code];
-	}
-
-	/**
-	 * Get skin names for a specific language.
-	 *
-	 * @param $code The language code.
-	 *
-	 * @return Skin names.
-	 */
-	public function getSkinNames( $code ) {
-		$this->loadFile( $code );
-		return $this->mSkinNames[$code];
 	}
 
 	/**
@@ -573,19 +555,6 @@ class languages {
 		}
 
 		return $namespaces;
-	}
-
-	/**
-	 * Get the untranslated skin names.
-	 *
-	 * @param $code The language code.
-	 *
-	 * @return The untranslated skin names in this language.
-	 */
-	public function getUntranslatedSkins( $code ) {
-		$this->loadFile( 'en' );
-		$this->loadFile( $code );
-		return array_diff_key( $this->mSkinNames['en'], $this->mSkinNames[$code] );
 	}
 
 	/**

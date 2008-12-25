@@ -552,7 +552,6 @@ class PreferencesForm {
 		}
 
 		$qbs = $wgLang->getQuickbarSettings();
-		$skinNames = $wgLang->getSkinNames();
 		$mathopts = $wgLang->getMathNames();
 		$dateopts = $wgLang->getDatePreferences();
 		$togs = User::getToggles();
@@ -834,23 +833,25 @@ class PreferencesForm {
 		#
 		global $wgAllowUserSkin;
 		if( $wgAllowUserSkin ) {
-			$wgOut->addHTML( "<fieldset>\n<legend>\n" . wfMsg('skin') . "</legend>\n" );
+			$wgOut->addHTML( "<fieldset>\n<legend>\n" . wfMsg( 'skin' ) . "</legend>\n" );
 			$mptitle = Title::newMainPage();
-			$previewtext = wfMsg('skin-preview');
+			$previewtext = wfMsg( 'skin-preview' );
 			# Only show members of Skin::getSkinNames() rather than
 			# $skinNames (skins is all skin names from Language.php)
 			$validSkinNames = Skin::getUsableSkins();
 			# Sort by UI skin name. First though need to update validSkinNames as sometimes
 			# the skinkey & UI skinname differ (e.g. "standard" skinkey is "Classic" in the UI).
-			foreach ($validSkinNames as $skinkey => & $skinname ) {
-				if ( isset( $skinNames[$skinkey] ) )  {
-					$skinname = $skinNames[$skinkey];
+			foreach ( $validSkinNames as $skinkey => &$skinname ) {
+				$msgName = "skinname-{$skinkey}";
+				$localisedSkinName = wfMsg( $msgName );
+				if ( !wfEmptyMsg( $msgName, $localisedSkinName ) )  {
+					$skinname = $localisedSkinName;
 				}
 			}
 			asort($validSkinNames);
 			foreach ($validSkinNames as $skinkey => $sn ) {
 				$checked = $skinkey == $this->mSkin ? ' checked="checked"' : '';
-				$mplink = htmlspecialchars($mptitle->getLocalURL("useskin=$skinkey"));
+				$mplink = htmlspecialchars( $mptitle->getLocalURL( "useskin=$skinkey" ) );
 				$previewlink = "(<a target='_blank' href=\"$mplink\">$previewtext</a>)";
 				if( $skinkey == $wgDefaultSkin )
 					$sn .= ' (' . wfMsg( 'default' ) . ')';
