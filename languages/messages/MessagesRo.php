@@ -15,10 +15,6 @@
  * @author לערי ריינהארט
  */
 
-$skinNames = array(
-	'standard' => 'Normală',
-	'nostalgia' => 'Nostalgie'
-);
 
 $separatorTransformTable = array( ',' => ".", '.' => ',' );
 
@@ -2339,6 +2335,10 @@ Un dosar temporar lipseşte.',
 'numwatchers'    => 'Număr de utilizatori care urmăresc: $1',
 'numauthors'     => 'Număr de autori distincţi (articole): $1',
 'numtalkauthors' => 'Număr de autori distincţi (pagini de discuţii): $1',
+
+# Skin names
+'skinname-standard'  => 'Normală',
+'skinname-nostalgia' => 'Nostalgie',
 
 # Math options
 'mw_math_png'    => 'Întodeauna afişează PNG',

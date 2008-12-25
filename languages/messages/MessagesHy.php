@@ -42,15 +42,6 @@ $namespaceAliases = array(
 	'Սպասարկող' => NS_SPECIAL,
 );
 
-$skinNames = array(
-	'standard'    => 'Դասական',
-	'nostalgia'   => 'Հայրենաբաղձություն',
-	'cologneblue' => 'Քյոլնի թախիծ',
-	'monobook'    => 'ՄիաԳիրք',
-	'myskin'      => 'ԻմՏեսք',
-	'chick'       => 'Ծիտ',
-	'simple'      => 'Պարզ',
-);
 
 $datePreferences = array(
 	'default',
@@ -1903,6 +1894,15 @@ The wiki server can't provide data in a format your client can read.",
 'numwatchers'    => 'Հսկողների թիվ. $1',
 'numauthors'     => 'Տարբեր հեղինակների թիվ (հոդված). $1',
 'numtalkauthors' => 'Տարբեր հեղինակների թիվ (քննարկման էջ). $1',
+
+# Skin names
+'skinname-standard'    => 'Դասական',
+'skinname-nostalgia'   => 'Հայրենաբաղձություն',
+'skinname-cologneblue' => 'Քյոլնի թախիծ',
+'skinname-monobook'    => 'ՄիաԳիրք',
+'skinname-myskin'      => 'ԻմՏեսք',
+'skinname-chick'       => 'Ծիտ',
+'skinname-simple'      => 'Պարզ',
 
 # Math options
 'mw_math_png'    => 'Միշտ դարձնել PNG',

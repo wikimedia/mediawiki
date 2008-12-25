@@ -78,12 +78,6 @@ $magicWords = array(
 	'grammar'             => array( '0', 'GRAMMAR:', 'GRAMMATIK:' ),
 );
 
-$skinNames = array(
-	'standard'    => 'Klassik',
-	'nostalgia'   => 'Nostalgie',
-	'cologneblue' => 'Kölsch Blau',
-	'chick'       => 'Küken',
-);
 
 $bookstoreList = array(
 	'Verteken vun leverbore Böker'  => 'http://www.buchhandel.de/sixcms/list.php?page=buchhandel_profisuche_frameset&suchfeld=isbn&suchwert=$1=0&y=0',
@@ -2377,6 +2371,12 @@ All Transwiki-Import-Akschonen staht later ok in dat [[Special:Log/import|Import
 'numwatchers'    => 'Antall vun Oppassers: $1',
 'numauthors'     => 'Antall vun verschedene Autoren (Siet): $1',
 'numtalkauthors' => 'Antall vun verschedene Autoren (Diskuschoonssiet): $1',
+
+# Skin names
+'skinname-standard'    => 'Klassik',
+'skinname-nostalgia'   => 'Nostalgie',
+'skinname-cologneblue' => 'Kölsch Blau',
+'skinname-chick'       => 'Küken',
 
 # Math options
 'mw_math_png'    => 'Jümmer as PNG dorstellen',

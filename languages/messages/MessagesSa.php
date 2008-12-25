@@ -46,14 +46,6 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'वर्गसंभाषणं',
 );
 
-$skinNames = array(
-	'standard' => 'पूर्व',
-	'nostalgia' => 'पुराण',
-	'cologneblue' => 'नील',
-	'monobook' => 'पुस्तक',
-	'myskin' => 'मे चर्मन्',
-	'chick' => 'Chick'
-);
 
 $messages = array(
 'underline-always' => 'सदा',
@@ -228,6 +220,14 @@ $messages = array(
 'tooltip-n-recentchanges' => 'नविनतम परिवर्तन सूची',
 'tooltip-n-randompage'    => 'अविशीष्ट लेख',
 'tooltip-save'            => 'त्रायते',
+
+# Skin names
+'skinname-standard'    => 'पूर्व',
+'skinname-nostalgia'   => 'पुराण',
+'skinname-cologneblue' => 'नील',
+'skinname-monobook'    => 'पुस्तक',
+'skinname-myskin'      => 'मे चर्मन्',
+'skinname-chick'       => 'Chick',
 
 # Special:NewFiles
 'newimages' => 'नूतन संचिका दालन',

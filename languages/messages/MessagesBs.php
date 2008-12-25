@@ -36,9 +36,6 @@ $namespaceAliases = array(
 	'Razgovor_o_datoteci' => NS_FILE_TALK,
 );
 
-$skinNames = array(
-	'Obična', 'Nostalgija', 'Kelnsko plavo'
-);
 
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'DvostrukaPreusmjerenja' ),

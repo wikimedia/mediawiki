@@ -12,11 +12,6 @@
  * @author לערי ריינהארט
  */
 
-$skinNames = array(
-	'standard'    => 'Standardur',
-	'nostalgia'   => 'Nostalgiskur',
-	'cologneblue' => 'Cologne-bláur'
-);
 
 $bookstoreList = array(
 	'Bokasolan.fo' => 'http://www.bokasolan.fo/vleitari.asp?haattur=bok.alfa&Heiti=&Hovindur=&Forlag=&innbinding=Oell&bolkur=Allir&prisur=Allir&Aarstal=Oell&mal=Oell&status=Oell&ISBN=$1',
@@ -54,11 +49,6 @@ $namespaceAliases = array(
 	'Bólkur_kjak' => NS_CATEGORY_TALK,
 );
 
-$skinNames = array(
-	'standard' => 'Standardur',
-	'nostalgia' => 'Nostalgiskur',
-	'cologneblue' => 'Cologne-bláur',
-);
 
 $datePreferences = false;
 $defaultDateFormat = 'dmy';
@@ -1062,6 +1052,11 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 
 # Info page
 'infosubtitle' => 'Upplýsingar um síðu',
+
+# Skin names
+'skinname-standard'    => 'Standardur',
+'skinname-nostalgia'   => 'Nostalgiskur',
+'skinname-cologneblue' => 'Cologne-bláur',
 
 # Math options
 'mw_math_png'    => 'Vís altíð sum PNG',

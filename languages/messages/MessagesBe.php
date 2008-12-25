@@ -10,16 +10,6 @@
  * @author לערי ריינהארט
  */
 
-$skinNames = array(
-	'standard'      => 'Класіка',
-	'nostalgia'     => 'Настальгія',
-	'cologneblue'   => 'Сіні Кёльн',
-	'monobook'      => 'Манабук',
-	'myskin'        => 'Майскін',
-	'chick'         => 'Чык',
-	'simple'        => 'Проста',
-	'modern'        => 'Сучаснасць',
-);
 
 $bookstoreList = array(
 	'OZ.by' => 'http://oz.by/search.phtml?what=books&isbn=$1',
@@ -2245,6 +2235,16 @@ $1 ужо знаходзіцца пад блокам. Ці жадаеце змя
 'numwatchers'    => 'Колькасць назіральнікаў: $1',
 'numauthors'     => 'Колькасць розных аўтараў (у тэксце): $1',
 'numtalkauthors' => 'Колькасць розных аўтараў (у размове): $1',
+
+# Skin names
+'skinname-standard'    => 'Класіка',
+'skinname-nostalgia'   => 'Настальгія',
+'skinname-cologneblue' => 'Сіні Кёльн',
+'skinname-monobook'    => 'Манабук',
+'skinname-myskin'      => 'Майскін',
+'skinname-chick'       => 'Чык',
+'skinname-simple'      => 'Проста',
+'skinname-modern'      => 'Сучаснасць',
 
 # Math options
 'mw_math_png'    => 'Заўсёды вырабляць PNG',

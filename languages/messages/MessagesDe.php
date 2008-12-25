@@ -50,16 +50,6 @@ $namespaceAliases = array(
 	'Bild_Diskussion' => NS_FILE_TALK,
 );
 
-$skinNames = array(
-	'standard'      => 'Klassik',
-	'nostalgia'     => 'Nostalgie',
-	'cologneblue'   => 'Kölnisch Blau',
-	'monobook'      => 'MonoBook',
-	'myskin'        => 'MySkin',
-	'chick'         => 'Küken',
-	'simple'        => 'Einfach',
-	'modern'        => 'Modern'
-);
 
 $bookstoreList = array(
 	'abebooks.de' => 'http://www.abebooks.de/servlet/BookSearchPL?ph=2&isbn=$1',
@@ -2556,6 +2546,16 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'numwatchers'    => 'Anzahl der Beobachter: $1',
 'numauthors'     => 'Anzahl der Autoren: $1',
 'numtalkauthors' => 'Anzahl der Diskussionsteilnehmer: $1',
+
+# Skin names
+'skinname-standard'    => 'Klassik',
+'skinname-nostalgia'   => 'Nostalgie',
+'skinname-cologneblue' => 'Kölnisch Blau',
+'skinname-monobook'    => 'MonoBook',
+'skinname-myskin'      => 'MySkin',
+'skinname-chick'       => 'Küken',
+'skinname-simple'      => 'Einfach',
+'skinname-modern'      => 'Modern',
 
 # Math options
 'mw_math_png'    => 'Immer als PNG darstellen',

@@ -34,16 +34,6 @@
  * @author לערי ריינהארט
  */
 
-$skinNames = array(
-	'standard'    => 'Standard',
-	'nostalgia'   => 'Nostalgie',
-	'cologneblue' => 'Bleu de Cologne',
-	'monobook'    => 'Monobook',
-	'myskin'      => 'Mon Interface',
-	'chick'       => 'Poussin',
-	'simple'      => 'Simple',
-	'modern'      => 'Moderne',
-);
 
 $bookstoreList = array(
 	'Amazon.fr'    => 'http://www.amazon.fr/exec/obidos/ISBN=$1',
@@ -2457,6 +2447,16 @@ Ceci est probablement causé par un lien sur liste noire pointant vers un site e
 'numwatchers'    => 'Nombre de contributeurs ayant la page dans leur liste de suivi : $1',
 'numauthors'     => 'Nombre d’auteurs distincts : $1',
 'numtalkauthors' => 'Nombre d’auteurs distincts (page de discussion) : $1',
+
+# Skin names
+'skinname-standard'    => 'Standard',
+'skinname-nostalgia'   => 'Nostalgie',
+'skinname-cologneblue' => 'Bleu de Cologne',
+'skinname-monobook'    => 'Monobook',
+'skinname-myskin'      => 'Mon Interface',
+'skinname-chick'       => 'Poussin',
+'skinname-simple'      => 'Simple',
+'skinname-modern'      => 'Moderne',
 
 # Math options
 'mw_math_png'    => 'Toujours produire une image PNG',

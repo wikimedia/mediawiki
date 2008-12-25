@@ -45,11 +45,6 @@ $namespaceAliases = array(
 	'Thảo_luận_Hình' => NS_FILE_TALK,
 );
 
-$skinNames = array(
-	'standard'		=> 'Cổ điển',
-	'nostalgia'		=> 'Vọng cổ',
-	'myskin'		=> 'Cá nhân'
-);
 
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'Đổi hướng kép' ),
@@ -2405,6 +2400,11 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'numwatchers'    => 'Số người theo dõi: $1',
 'numauthors'     => 'Số người sửa đổi khác nhau (trang nội dung): $1',
 'numtalkauthors' => 'Số người sửa đổi khác nhau (trang thảo luận): $1',
+
+# Skin names
+'skinname-standard'  => 'Cổ điển',
+'skinname-nostalgia' => 'Vọng cổ',
+'skinname-myskin'    => 'Cá nhân',
 
 # Math options
 'mw_math_png'    => 'Luôn cho ra dạng hình PNG',

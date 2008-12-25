@@ -62,10 +62,6 @@ $namespaceAliases = array(
 /**
  * Skin names. If any key is not specified, the English one will be used.
  */
-$skinNames = array(
-	'standard' => 'Klasik',
-	'simple'   => 'Sederhana',
-);
 
 /**
  * Default list of book sources
@@ -2430,6 +2426,10 @@ Ini mungkin disebabkan oleh pranala ke situs luar yang termasuk dalam daftar hit
 'numwatchers'    => 'Jumlah pengamat: $1',
 'numauthors'     => 'Jumlah pengarang yang berbeda (artikel): $1',
 'numtalkauthors' => 'Jumlah pengarang yang berbeda (halaman pembicaraan): $1',
+
+# Skin names
+'skinname-standard' => 'Klasik',
+'skinname-simple'   => 'Sederhana',
 
 # Math options
 'mw_math_png'    => 'Selalu buat PNG',

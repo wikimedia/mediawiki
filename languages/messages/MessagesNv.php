@@ -7,9 +7,6 @@
  * @author לערי ריינהארט
  */
 
-$skinNames = array(
-	'monobook' => 'NaaltsoosŁáa\'ígíí'
-);
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
@@ -69,5 +66,8 @@ $messages = array(
 'dec'       => 'Ntsx',
 
 'edit' => 'Łahgo áshłééh',
+
+# Skin names
+'skinname-monobook' => "NaaltsoosŁáa'ígíí",
 
 );

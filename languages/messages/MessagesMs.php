@@ -57,11 +57,6 @@ $namespaceAliases = array(
 	'Perbualan_Bantuan'   => NS_HELP_TALK,
 );
 
-$skinNames = array(
-	'standard' => 'Klasik',
-	'simple'   => 'Ringkas',
-	'modern'   => 'Moden',
-);
 
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'Lencongan berganda', 'Pelencongan berganda' ),
@@ -2361,6 +2356,11 @@ Semua tindakan import transwiki dicatatkan dalam [[Special:Log/import|log import
 'numwatchers'    => 'Bilangan pemantau: $1',
 'numauthors'     => 'Bilangan pengarang (page): $1',
 'numtalkauthors' => 'Bilangan pengarang (laman perbincangan): $1',
+
+# Skin names
+'skinname-standard' => 'Klasik',
+'skinname-simple'   => 'Ringkas',
+'skinname-modern'   => 'Moden',
 
 # Math options
 'mw_math_png'    => 'Sentiasa lakar PNG',

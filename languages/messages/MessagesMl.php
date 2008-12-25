@@ -57,14 +57,6 @@ $namespaceAliases = array(
 	'സസം' => NS_HELP_TALK,
 );
 
-$skinNames = array(
-	'standard'      => 'സാര്‍വത്രികം',
-	'simple'        => 'ലളിതം',
-	'nostalgia'     => 'ഗൃഹാതുരത്വം',
-	'cologneblue'   => 'ക്ലോണ്‍ നീല',
-	'monobook'      => 'മോണോബുക്ക്',
-	'chick'         => 'സുന്ദരി',
-);
 
 /**
  * Magic words
@@ -1911,6 +1903,14 @@ $1',
 'numwatchers'    => 'ശ്രദ്ധിക്കുന്നവരുടെ എണ്ണം: $1',
 'numauthors'     => 'വ്യത്യസ്തരായ രചയിതാക്കളുടെ എണ്ണം (താളിന്റെ): $1',
 'numtalkauthors' => 'വ്യത്യസ്തരായ രചയിതാക്കളുടെ എണ്ണം (സം‌വാദം താളിന്റെ): $1',
+
+# Skin names
+'skinname-standard'    => 'സാര്‍വത്രികം',
+'skinname-nostalgia'   => 'ഗൃഹാതുരത്വം',
+'skinname-cologneblue' => 'ക്ലോണ്‍ നീല',
+'skinname-monobook'    => 'മോണോബുക്ക്',
+'skinname-chick'       => 'സുന്ദരി',
+'skinname-simple'      => 'ലളിതം',
 
 # Math options
 'mw_math_png'    => 'എപ്പോഴും PNG ആയി പ്രദര്‍ശിപ്പിക്കുക',

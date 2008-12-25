@@ -42,11 +42,6 @@ $namespaceAliases = array(
 	'Keskustelu_kuvasta' => NS_FILE_TALK,
 );
 
-$skinNames = array(
-	'standard'          => 'Perus',
-	'cologneblue'       => 'Kölnin sininen',
-	'myskin'            => 'Oma tyylisivu'
-);
 
 $datePreferences = array(
 	'default',
@@ -2314,6 +2309,11 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'numwatchers'    => 'Tarkkailijoiden määrä: $1',
 'numauthors'     => 'Sivun erillisten kirjoittajien määrä: $1',
 'numtalkauthors' => 'Keskustelusivun erillisten kirjoittajien määrä: $1',
+
+# Skin names
+'skinname-standard'    => 'Perus',
+'skinname-cologneblue' => 'Kölnin sininen',
+'skinname-myskin'      => 'Oma tyylisivu',
 
 # Math options
 'mw_math_png'    => 'Näytä aina PNG:nä',

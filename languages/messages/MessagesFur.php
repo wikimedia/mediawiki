@@ -13,11 +13,6 @@
 
 $fallback = 'it';
 
-$skinNames = array(
-	'standard'    => 'Classiche',
-	'nostalgia'   => 'Nostalgjie',
-	'modern'      => 'Moderne',
-);
 
 $namespaceNames = array(
 	NS_MEDIA          => 'Media',
@@ -1227,6 +1222,11 @@ Sielç par plasê un altri non.',
 'numwatchers'    => 'Numar di chei che e àn cjalât: $1',
 'numauthors'     => 'Numar di autôrs diviers (vôs): $1',
 'numtalkauthors' => 'Numar di autôrs diviers (pagjine di discussion): $1',
+
+# Skin names
+'skinname-standard'  => 'Classiche',
+'skinname-nostalgia' => 'Nostalgjie',
+'skinname-modern'    => 'Moderne',
 
 # Math options
 'mw_math_png'    => 'Torne simpri PNG',

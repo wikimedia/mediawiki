@@ -18,16 +18,6 @@ $defaultUserOptionOverrides = array(
 $linkTrail = '/^([a-zא-ת]+)(.*)$/sDu';
 $fallback8bitEncoding = 'windows-1255';
 
-$skinNames = array(
-	'standard'    => 'קלאסי',
-	'nostalgia'   => 'נוסטלגיה',
-	'cologneblue' => 'מים כחולים',
-	'monobook'    => 'מונובוק',
-	'myskin'      => 'העיצוב שלי',
-	'chick'       => "צ'יק",
-	'simple'      => 'פשוט',
-	'modern'      => 'מודרני',
-);
 
 $datePreferences = array(
 	'default',
@@ -2575,6 +2565,16 @@ $1 כבר נחסם. האם ברצונכם לשנות את הגדרות החסי�
 'numwatchers'    => 'מספר העוקבים אחרי הדף: $1',
 'numauthors'     => 'מספר כותבים נפרדים (דף תוכן): $1',
 'numtalkauthors' => 'מספר כותבים נפרדים (דף שיחה): $1',
+
+# Skin names
+'skinname-standard'    => 'קלאסי',
+'skinname-nostalgia'   => 'נוסטלגיה',
+'skinname-cologneblue' => 'מים כחולים',
+'skinname-monobook'    => 'מונובוק',
+'skinname-myskin'      => 'העיצוב שלי',
+'skinname-chick'       => "צ'יק",
+'skinname-simple'      => 'פשוט',
+'skinname-modern'      => 'מודרני',
 
 # Math options
 'mw_math_png'    => 'תמיד הצג כ־PNG',

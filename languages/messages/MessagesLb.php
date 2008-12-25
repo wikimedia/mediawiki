@@ -36,16 +36,6 @@ $namespaceAliases = array(
 	'Bild_Diskussioun' => NS_FILE_TALK,
 );
 
-$skinNames = array(
-	'standard'    => 'Klassesch',
-	'nostalgia'   => 'Nostalgie',
-	'cologneblue' => 'Köln Blo',
-	'monobook'    => 'MonoBook',
-	'myskin'      => 'MySkin',
-	'chick'       => 'Chick',
-	'simple'      => 'Einfach',
-	'modern'      => 'Modern',
-);
 
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'Duebel Viruleedungen' ),
@@ -2300,6 +2290,16 @@ Dëst warscheinlech duerch en externe Link den op der schwaarzer Lëscht (blackl
 'numwatchers'    => 'Zuel vun de Benotzer déi dës Säit iwwerwaachen: $1',
 'numauthors'     => 'Zuel vu verschiddenen Auteuren: $1',
 'numtalkauthors' => 'Zuel vun den Auteuren (Diskussiounssäit): $1',
+
+# Skin names
+'skinname-standard'    => 'Klassesch',
+'skinname-nostalgia'   => 'Nostalgie',
+'skinname-cologneblue' => 'Köln Blo',
+'skinname-monobook'    => 'MonoBook',
+'skinname-myskin'      => 'MySkin',
+'skinname-chick'       => 'Chick',
+'skinname-simple'      => 'Einfach',
+'skinname-modern'      => 'Modern',
 
 # Math options
 'mw_math_png'    => 'Ëmmer als PNG duerstellen',

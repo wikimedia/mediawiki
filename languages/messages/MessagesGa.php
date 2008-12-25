@@ -13,14 +13,6 @@
  * @author לערי ריינהארט
  */
 
-$skinNames = array(
-	'standard' => 'Gnáth',
-	'nostalgia' => 'Sean-nós',
-	'cologneblue' => 'Gorm na Colóna',
-	'monobook' => 'MonoBook',
-	'myskin' => 'MySkin',
-	'chick' => 'Chick'
-);
 
 $magicWords = array(
 	#   ID	                         CASE  SYNONYMS
@@ -1657,6 +1649,14 @@ iarradh sábháil. Is dócha gur nasc chuig suíomh seachtrach ba chúis leis.',
 'numwatchers'    => 'Méid féachnóirí: $1',
 'numauthors'     => 'Méid údair ar leith (alt): $1',
 'numtalkauthors' => 'Méid údair ar leith (leathanach phlé): $1',
+
+# Skin names
+'skinname-standard'    => 'Gnáth',
+'skinname-nostalgia'   => 'Sean-nós',
+'skinname-cologneblue' => 'Gorm na Colóna',
+'skinname-monobook'    => 'MonoBook',
+'skinname-myskin'      => 'MySkin',
+'skinname-chick'       => 'Chick',
 
 # Math options
 'mw_math_png'    => 'Déan PNG-íomhá gach uair',

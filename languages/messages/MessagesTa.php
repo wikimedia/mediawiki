@@ -11,11 +11,6 @@
  * @author לערי ריינהארט
  */
 
-$skinNames = array(
-	'standard' => "இயல்பான",
-	'nostalgia' => "பசுமை நினைவு (Nostalgia)",
-	'cologneblue' => "கொலோன் (Cologne) நீலம் Blue",
-);
 
 $namespaceNames = array(
 	NS_MEDIA          => 'ஊடகம்',
@@ -1833,6 +1828,11 @@ $1',
 'numwatchers'    => 'இப்பக்கத்தைக் கவனிப்பவர்கள்: $1',
 'numauthors'     => 'எழுத்தாளர்களின் எண்ணிக்கை (பக்கம்): $1',
 'numtalkauthors' => 'எழுத்தாளர்களின் எண்ணிக்கை (உரையாடல் பக்கம்): $1',
+
+# Skin names
+'skinname-standard'    => 'இயல்பான',
+'skinname-nostalgia'   => 'பசுமை நினைவு (Nostalgia)',
+'skinname-cologneblue' => 'கொலோன் (Cologne) நீலம் Blue',
 
 # Math options
 'mw_math_png'    => 'எப்போதும் PNG ஆக மாற்று',

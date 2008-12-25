@@ -37,15 +37,6 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Kategorijos_aptarimas',
 );
 
-$skinNames = array(
-	'standard'    => 'Klasikinė',
-	'nostalgia'   => 'Nostalgija',
-	'cologneblue' => 'Kelno mėlyna',
-	'monobook'    => 'MonoBook',
-	'myskin'      => 'Mano išvaizda',
-	'chick'       => 'Chick',
-	'simple'      => 'Paprasta',
-);
 
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'Dvigubi peradesavimai' ),
@@ -2319,6 +2310,15 @@ Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|i
 'numwatchers'    => 'Stebinčiųjų skaičius: $1',
 'numauthors'     => 'Skirtingų autorių skaičius (puslapis): $1',
 'numtalkauthors' => 'Skirtingų autorių skaičius (aptarimo puslapis): $1',
+
+# Skin names
+'skinname-standard'    => 'Klasikinė',
+'skinname-nostalgia'   => 'Nostalgija',
+'skinname-cologneblue' => 'Kelno mėlyna',
+'skinname-monobook'    => 'MonoBook',
+'skinname-myskin'      => 'Mano išvaizda',
+'skinname-chick'       => 'Chick',
+'skinname-simple'      => 'Paprasta',
 
 # Math options
 'mw_math_png'    => 'Visada formuoti PNG',

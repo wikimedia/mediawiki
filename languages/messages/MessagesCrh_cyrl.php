@@ -58,15 +58,6 @@ $namespaceAliases = array(
 	'Kategoriya_muzakeresi' => NS_CATEGORY_TALK,
 );
 
-$skinNames = array(
-    'standard'    => 'Стандарт',
-    'nostalgia'   => 'Ностальгия',
-    'cologneblue' => 'Кёльн асретлиги',
-    'monobook'    => 'MonoBook',
-    'myskin'      => 'Озь ресимлеме',
-    'chick'       => 'Чипче',
-    'simple'      => 'Адий'
-);
 
 $datePreferences = array(
     'default',
@@ -1618,6 +1609,15 @@ MediaWiki интерфейсининъ чешит тиллерге терджи�
 'numwatchers'    => 'Козетиджи сайысы: $1',
 'numauthors'     => 'Муэллиф сайысы (саифе): $1',
 'numtalkauthors' => 'Муэллиф сайысы (музакере саифеси): $1',
+
+# Skin names
+'skinname-standard'    => 'Стандарт',
+'skinname-nostalgia'   => 'Ностальгия',
+'skinname-cologneblue' => 'Кёльн асретлиги',
+'skinname-monobook'    => 'MonoBook',
+'skinname-myskin'      => 'Озь ресимлеме',
+'skinname-chick'       => 'Чипче',
+'skinname-simple'      => 'Адий',
 
 # Math options
 'mw_math_png'    => 'Даима PNG ресим форматына чевир',

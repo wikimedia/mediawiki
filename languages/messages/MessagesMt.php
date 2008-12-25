@@ -10,16 +10,6 @@
  * @author Urhixidur
  */
 
-$skinNames = array(
-	'standard'      => 'Klassika',
-	'nostalgia'     => 'Nostalġija',
-	'cologneblue'   => 'Ikħal',
-	'monobook'      => 'Monobook',
-	'myskin'        => 'L-Iskin tiegħi',
-	'chick'         => 'Fellus',
-	'simple'        => 'Sempliċi',
-	'modern'        => 'Moderna',
-);
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Midja',
@@ -2277,6 +2267,16 @@ Din hija wisq probabli kawża ta' link għal sit estern.",
 'numwatchers'    => "Numru ta' osservaturi: $1",
 'numauthors'     => "Numru ta' awturi distinti (paġna): $1",
 'numtalkauthors' => "Numru ta' awturi distinti (paġna tad-diskussjoni): $1",
+
+# Skin names
+'skinname-standard'    => 'Klassika',
+'skinname-nostalgia'   => 'Nostalġija',
+'skinname-cologneblue' => 'Ikħal',
+'skinname-monobook'    => 'Monobook',
+'skinname-myskin'      => 'L-Iskin tiegħi',
+'skinname-chick'       => 'Fellus',
+'skinname-simple'      => 'Sempliċi',
+'skinname-modern'      => 'Moderna',
 
 # Math options
 'mw_math_png'    => "Uri dejjem f'PNG",

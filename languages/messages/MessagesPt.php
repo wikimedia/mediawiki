@@ -50,16 +50,6 @@ $namespaceAliases = array(
 	'Arquivo_Discussão' => NS_FILE_TALK,
 );
 
-$skinNames = array(
-	'standard'    => 'Clássico',
-	'nostalgia'   => 'Nostalgia',
-	'cologneblue' => 'Azul colonial',
-	'monobook'    => 'MonoBook',
-	'myskin'      => 'MySkin',
-	'chick'       => 'Chique',
-	'simple'      => 'Simples',
-	'modern'      => 'Moderno',
-);
 
 $defaultDateFormat = 'dmy';
 
@@ -2394,6 +2384,16 @@ Tal bloqueio foi provavelmente causado por uma ligação para um website externo
 'numwatchers'    => 'Número de pessoas vigiando: $1',
 'numauthors'     => 'Número de autores distintos (página): $1',
 'numtalkauthors' => 'Número de autores distintos (página de discussão): $1',
+
+# Skin names
+'skinname-standard'    => 'Clássico',
+'skinname-nostalgia'   => 'Nostalgia',
+'skinname-cologneblue' => 'Azul colonial',
+'skinname-monobook'    => 'MonoBook',
+'skinname-myskin'      => 'MySkin',
+'skinname-chick'       => 'Chique',
+'skinname-simple'      => 'Simples',
+'skinname-modern'      => 'Moderno',
 
 # Math options
 'mw_math_png'    => 'Gerar sempre como PNG',

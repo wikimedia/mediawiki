@@ -16,13 +16,6 @@
  * @see http://bugzilla.wikimedia.org/show_bug.cgi?id=11145
  */
 
-$skinNames = array(
-	'standard'    => 'ਕਲਾਸਿਕ',
-	'monobook'    => 'ਮੋਨੋਬੁੱਕ',
-	'myskin'      => 'ਮੇਰੀਸਕਿਨ',
-	'chick'       => 'ਚੀਚਕ',
-	'simple'      => 'ਸੈਂਪਲ'
-);
 
 $namespaceNames = array(
 	NS_MEDIA          => 'ਮੀਡੀਆ',
@@ -903,6 +896,13 @@ to upload files.',
 
 # Info page
 'infosubtitle' => 'ਸਫ਼ੇ ਦੀ ਜਾਣਕਾਰੀ',
+
+# Skin names
+'skinname-standard' => 'ਕਲਾਸਿਕ',
+'skinname-monobook' => 'ਮੋਨੋਬੁੱਕ',
+'skinname-myskin'   => 'ਮੇਰੀਸਕਿਨ',
+'skinname-chick'    => 'ਚੀਚਕ',
+'skinname-simple'   => 'ਸੈਂਪਲ',
 
 # Patrol log
 'patrol-log-auto' => '(ਆਟੋਮੈਟਿਕ)',

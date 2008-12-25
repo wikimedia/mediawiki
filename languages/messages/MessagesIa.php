@@ -12,9 +12,6 @@
 
 $separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );
 
-$skinNames = array(
-	'cologneblue' => 'Blau Colonia',
-);
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
@@ -2467,6 +2464,9 @@ Le causa es probabilemente un ligamine verso un sito externe que es presente in 
 'numwatchers'    => 'Numero de observatores: $1',
 'numauthors'     => 'Numero de autores distincte (pagina): $1',
 'numtalkauthors' => 'Numero de autores distincte (pagina de discussion): $1',
+
+# Skin names
+'skinname-cologneblue' => 'Blau Colonia',
 
 # Math options
 'mw_math_png'    => 'Sempre producer PNG',

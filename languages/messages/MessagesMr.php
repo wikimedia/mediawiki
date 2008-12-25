@@ -16,16 +16,6 @@
  * @author शࣿरीहरि
  */
 
-$skinNames = array(
-	'standard'    => 'अभिजात',
-	'nostalgia'   => 'रम्य',
-	'cologneblue' => 'सुरेखनीळी',
-	'monobook'    => 'मोनोबुक',
-	'myskin'      => 'माझीकांती',
-	'chick'       => 'मस्त',
-	'simple'      => 'साधी',
-	'modern'      => 'आधुनिक',
-);
 
 $namespaceNames = array(
 	NS_MEDIA            => 'मिडिया',
@@ -2099,6 +2089,16 @@ $1',
 'numwatchers'    => 'बघ्यांची संख्या: $1',
 'numauthors'     => 'स्पष्ट पणे वेगळ्या लेखकांची संख्या (पान): $1',
 'numtalkauthors' => 'स्पष्टपणे वेग-वेगळ्या लेखकांची संख्या(चर्चा पान): $1',
+
+# Skin names
+'skinname-standard'    => 'अभिजात',
+'skinname-nostalgia'   => 'रम्य',
+'skinname-cologneblue' => 'सुरेखनीळी',
+'skinname-monobook'    => 'मोनोबुक',
+'skinname-myskin'      => 'माझीकांती',
+'skinname-chick'       => 'मस्त',
+'skinname-simple'      => 'साधी',
+'skinname-modern'      => 'आधुनिक',
 
 # Math options
 'mw_math_png'    => 'नेहमीच पीएनजी (PNG) रेखाटा',

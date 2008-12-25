@@ -9,16 +9,6 @@
 
 $fallback = 'fa';
 
-$skinNames = array(
-	'standard'    => 'کلاسیک',
-	'nostalgia'   => 'نوستالجیک',
-	'cologneblue' => 'نیلی کولاجن',
-	'monobook'    => 'منوبوک',
-	'myskin'      => 'منی جلد',
-	'chick'       => 'شیک',
-	'simple'      => 'ساده',
-	'modern'      => 'مدرن',
-);
 
 $namespaceNames = array(
 	NS_MEDIA            => 'مدیا',
@@ -2421,6 +2411,16 @@ $1',
 'numwatchers'    => 'تعداد چاروکان: $1',
 'numauthors'     => 'تعداد دوراین نویسوکان (صفحه): $1',
 'numtalkauthors' => 'تعداد مجزاین نویسوکان(صفحه بحث): $1',
+
+# Skin names
+'skinname-standard'    => 'کلاسیک',
+'skinname-nostalgia'   => 'نوستالجیک',
+'skinname-cologneblue' => 'نیلی کولاجن',
+'skinname-monobook'    => 'منوبوک',
+'skinname-myskin'      => 'منی جلد',
+'skinname-chick'       => 'شیک',
+'skinname-simple'      => 'ساده',
+'skinname-modern'      => 'مدرن',
 
 # Math options
 'mw_math_png'    => 'یکسره PNG تحویل دی',

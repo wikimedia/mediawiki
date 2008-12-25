@@ -14,10 +14,6 @@
  * @author לערי ריינהארט
  */
 
-$skinNames = array(
-	'standard' => 'Norma',
-	'cologneblue' => 'Caerulus Colonia'
-);
 
 $namespaceNames = array(
 	NS_SPECIAL          => 'Specialis',
@@ -1658,6 +1654,10 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 # Info page
 'numedits'     => 'Numerus recensionum (pagina): $1',
 'numtalkedits' => 'Numerus recensionum (pagina disputationis): $1',
+
+# Skin names
+'skinname-standard'    => 'Norma',
+'skinname-cologneblue' => 'Caerulus Colonia',
 
 # Math options
 'mw_math_png'    => 'Semper vertere PNG',

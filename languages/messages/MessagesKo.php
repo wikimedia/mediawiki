@@ -16,16 +16,6 @@
  * @author לערי ריינהארט
  */
 
-$skinNames = array(
-	'standard'      => '클래식',
-	'nostalgia'     => '노스탤지아',
-	'cologneblue'   => '쾰른 블루',
-	'monobook'      => '모노북',
-	'myskin'        => '마이스킨',
-	'chick'         => '치크',
-	'simple'        => '심플',
-	'modern'        => '모던',
-);
 
 $namespaceNames = array(
 	NS_MEDIA            => '미디어',
@@ -2259,6 +2249,16 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'numwatchers'    => '주시하는 사용자 수: $1',
 'numauthors'     => '기여한 사용자 수(문서): $1',
 'numtalkauthors' => '기여한 사용자 수(토론 문서): $1',
+
+# Skin names
+'skinname-standard'    => '클래식',
+'skinname-nostalgia'   => '노스탤지아',
+'skinname-cologneblue' => '쾰른 블루',
+'skinname-monobook'    => '모노북',
+'skinname-myskin'      => '마이스킨',
+'skinname-chick'       => '치크',
+'skinname-simple'      => '심플',
+'skinname-modern'      => '모던',
 
 # Math options
 'mw_math_png'    => '항상 PNG로 표시',

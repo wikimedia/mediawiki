@@ -13,13 +13,6 @@
 
 $fallback = 'es';
 
-$skinNames = array(
-	'standard'    => 'Clasica (Classic)',
-	'nostalgia'   => 'Recosiros (Nostalgia)',
-	'cologneblue' => 'Colonia Azul (Cologne Blue)',
-	'myskin'      => 'A mía aparenzia (MySkin)',
-	'simple'      => 'Simpla (Simple)',
-);
 
 $namespaceNames = array(
 	NS_MEDIA          => 'Media',
@@ -2294,6 +2287,13 @@ Todas as importazions interwiki se rechistran en o [[Special:Log/import|rechistr
 'numwatchers'    => "Número d'usuario cosirando: $1",
 'numauthors'     => "Numero d'autors (articlo): $1",
 'numtalkauthors' => "Numero d'autors (pachina de descusión): $1",
+
+# Skin names
+'skinname-standard'    => 'Clasica (Classic)',
+'skinname-nostalgia'   => 'Recosiros (Nostalgia)',
+'skinname-cologneblue' => 'Colonia Azul (Cologne Blue)',
+'skinname-myskin'      => 'A mía aparenzia (MySkin)',
+'skinname-simple'      => 'Simpla (Simple)',
 
 # Math options
 'mw_math_png'    => 'Produzir siempre PNG',

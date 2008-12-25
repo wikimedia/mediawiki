@@ -7,12 +7,6 @@
  * @author MF-Warburg
  */
 
-$skinNames = array(
-	'standard'    => 'Klásiku',
-	'cologneblue' => 'Kolónia azúl',
-	'myskin'      => 'MySkin',
-	'chick'       => 'Manu',
-);
 
 $namespaceNames = array(
 	NS_MEDIA          => 'Media',
@@ -608,6 +602,12 @@ $messages = array(
 'tooltip-ca-nstab-project' => 'Haree pájina projetu nian',
 'tooltip-minoredit'        => "Halo ne'e osan-rahun",
 'tooltip-watch'            => "Tau tan pájina ne'e ba ó-nia lista hateke",
+
+# Skin names
+'skinname-standard'    => 'Klásiku',
+'skinname-cologneblue' => 'Kolónia azúl',
+'skinname-myskin'      => 'MySkin',
+'skinname-chick'       => 'Manu',
 
 # Browsing diffs
 'previousdiff' => '←Versaun molok',

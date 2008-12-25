@@ -10,13 +10,6 @@
 
 $fallback = 'fr';
 
-$skinNames = array(
-    'standard'    => 'Estandârd',
-    'nostalgia'   => 'Encrêt',
-    'cologneblue' => 'Cologne Blu',
-    'chick'       => 'Pugin',
-    'simple'      => 'Simplo'
-);
 
 $bookstoreList = array(
     'Amazon.fr'    => 'http://www.amazon.fr/exec/obidos/ISBN=$1',
@@ -1842,6 +1835,13 @@ Totes les accions d’importacion entèrvouiqui sont consèrvâs dens lo [[Speci
 'numwatchers'    => 'Nombro de contributors èyent la pâge dens lor lista de siuvu : $1',
 'numauthors'     => 'Nombro d’ôtors difèrents : $1',
 'numtalkauthors' => 'Nombro d’ôtors difèrents (pâge de discussion) : $1',
+
+# Skin names
+'skinname-standard'    => 'Estandârd',
+'skinname-nostalgia'   => 'Encrêt',
+'skinname-cologneblue' => 'Cologne Blu',
+'skinname-chick'       => 'Pugin',
+'skinname-simple'      => 'Simplo',
 
 # Math options
 'mw_math_png'    => 'Tojorn fâre una émâge PNG',

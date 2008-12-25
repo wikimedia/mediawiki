@@ -67,15 +67,6 @@ $namespaceAliases = array(
 	'Обсуждение_изображения' => NS_FILE_TALK,
 );
 
-$skinNames = array(
-	'standard'    => 'Классическое',
-	'nostalgia'   => 'Ностальгия',
-	'cologneblue' => 'Кёльнская тоска',
-	'myskin'      => 'Своё',
-	'chick'       => 'Цыпа',
-	'simple'      => 'Простое',
-	'modern'      => 'Современное',
-);
 
 $dateFormats = array(
 	'mdy time' => 'H:i',
@@ -2486,6 +2477,15 @@ The wiki server can't provide data in a format your client can read.",
 'numwatchers'    => 'Число наблюдателей: $1',
 'numauthors'     => 'Число различных авторов (статья): $1',
 'numtalkauthors' => 'Число различных авторов (страница обсуждения): $1',
+
+# Skin names
+'skinname-standard'    => 'Классическое',
+'skinname-nostalgia'   => 'Ностальгия',
+'skinname-cologneblue' => 'Кёльнская тоска',
+'skinname-myskin'      => 'Своё',
+'skinname-chick'       => 'Цыпа',
+'skinname-simple'      => 'Простое',
+'skinname-modern'      => 'Современное',
 
 # Math options
 'mw_math_png'    => 'Всегда генерировать PNG',

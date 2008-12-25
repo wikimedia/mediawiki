@@ -89,16 +89,6 @@ $namespaceAliases = array(
 
 $separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );
 
-$skinNames = array(
-	'standard'    => 'Klassesch',
-	'nostalgia'   => 'Nostaljesch',
-	'cologneblue' => 'Kölsch Blau',
-	'monobook'    => 'MonoBoch',
-	'myskin'      => 'Ming Skin',
-	'chick'       => 'Höhnche',
-	'simple'      => 'Eifach',
-	'modern'      => 'Modern',
-);
 
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'Ömleitunge op Ömleitunge' ),
@@ -2613,6 +2603,16 @@ Esu kam_mer noch en Aanmerkung en „{{int:summary}}“ maache.',
 'numwatchers'    => 'Aanzahl Oppasser: <strong>$1</strong>',
 'numauthors'     => 'Aanzahl Metmaacher, die aan däm Atikkel met jeschrevve han: <strong>$1</strong>',
 'numtalkauthors' => 'Aanzahl Metmaacher beim Klaaf: <strong>$1</strong>',
+
+# Skin names
+'skinname-standard'    => 'Klassesch',
+'skinname-nostalgia'   => 'Nostaljesch',
+'skinname-cologneblue' => 'Kölsch Blau',
+'skinname-monobook'    => 'MonoBoch',
+'skinname-myskin'      => 'Ming Skin',
+'skinname-chick'       => 'Höhnche',
+'skinname-simple'      => 'Eifach',
+'skinname-modern'      => 'Modern',
 
 # Math options
 'mw_math_png'    => 'Immer nor PNG aanzeije',

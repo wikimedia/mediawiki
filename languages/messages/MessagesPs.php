@@ -7,16 +7,6 @@
  * @author Ahmed-Najib-Biabani-Ibrahimkhel
  */
 
-$skinNames = array(
-	'standard'    => 'کلاسيک',
-	'nostalgia'   => 'نوستالژي',
-	'cologneblue' => 'شين کلون',
-	'monobook'    => 'مونوبوک',
-	'myskin'      => 'زمابڼه',
-	'chick'       => 'شيک',
-	'simple'      => 'ساده',
-	'modern'      => 'نوی',
-);
 
 $namespaceNames = array(
 	NS_MEDIA          => 'رسنۍ',
@@ -1265,6 +1255,16 @@ $messages = array(
 
 # Info page
 'infosubtitle' => 'د مخ مالومات',
+
+# Skin names
+'skinname-standard'    => 'کلاسيک',
+'skinname-nostalgia'   => 'نوستالژي',
+'skinname-cologneblue' => 'شين کلون',
+'skinname-monobook'    => 'مونوبوک',
+'skinname-myskin'      => 'زمابڼه',
+'skinname-chick'       => 'شيک',
+'skinname-simple'      => 'ساده',
+'skinname-modern'      => 'نوی',
 
 # Patrol log
 'patrol-log-auto' => '(خپلسر)',

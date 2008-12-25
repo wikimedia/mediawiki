@@ -41,16 +41,6 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK  => 'Kategoridiskussion'
 );
 
-$skinNames = array(
-	'standard'      => 'Klassik',
-	'nostalgia'     => 'Nostalgi',
-	'cologneblue'   => 'Kølnerblå',
-	'monobook'      => 'MonoBook',
-	'chick'         => 'Chick',
-	'myskin'        => 'Eget udseende ',
-	'simple'        => 'Enkelt',
-	'modern'        => 'Moderne',
-);
 
 $bookstoreList = array(
 	"Bibliotek.dk" => "http://bibliotek.dk/vis.php?base=dfa&origin=kommando&field1=ccl&term1=is=$1&element=L&start=1&step=10",
@@ -2107,6 +2097,16 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 'numwatchers'    => 'Antal overvågere: $1',
 'numauthors'     => 'Antal forskellige forfattere (artikel): $1',
 'numtalkauthors' => 'Antal forskellige forfattere (diskussionsside): $1',
+
+# Skin names
+'skinname-standard'    => 'Klassik',
+'skinname-nostalgia'   => 'Nostalgi',
+'skinname-cologneblue' => 'Kølnerblå',
+'skinname-monobook'    => 'MonoBook',
+'skinname-myskin'      => 'Eget udseende ',
+'skinname-chick'       => 'Chick',
+'skinname-simple'      => 'Enkelt',
+'skinname-modern'      => 'Moderne',
 
 # Math options
 'mw_math_png'    => 'Vis altid som PNG',

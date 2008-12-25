@@ -36,13 +36,6 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK  => 'Kategoria_diskuto',
 );
 
-$skinNames = array(
-	'standard' => 'Klasika',
-	'nostalgia' => 'Nostalgio',
-	'cologneblue' => 'Kolonja Bluo',
-	'monobook' => 'Librejo',
-	'chick' => 'Kokido',
-);
 
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'Duoblaj alidirektiloj' ),
@@ -2390,6 +2383,13 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'numwatchers'    => 'Nombro de atentantoj: $1',
 'numauthors'     => 'Nombro de apartaj aŭtoroj (paĝo): $1',
 'numtalkauthors' => 'Nombro de apartaj aŭtoroj (diskuto-paĝo): $1',
+
+# Skin names
+'skinname-standard'    => 'Klasika',
+'skinname-nostalgia'   => 'Nostalgio',
+'skinname-cologneblue' => 'Kolonja Bluo',
+'skinname-monobook'    => 'Librejo',
+'skinname-chick'       => 'Kokido',
 
 # Math options
 'mw_math_png'    => 'Ĉiam krei PNG-bildon',

@@ -35,13 +35,6 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Категориядо кортамось',
 );
 
-$skinNames = array(
-	'standard'      => 'Классикань',
-	'nostalgia'     => 'ОдПингеньМазы',
-	'myskin'        => 'ЭсьМелемКоряс',
-	'simple'        => 'Шожда',
-	'modern'        => 'НееньШкань',
-);
 
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'КавтоньКирданьЛиявНевтемат' ),
@@ -1491,6 +1484,13 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'numedits'     => 'Зяроксть витнезь-петнезь (лопа): $1',
 'numtalkedits' => 'Зяроксть витнезь-петнезь (кортнема лопа): $1',
 'numwatchers'  => 'Зяро ванстнить тень мельга: $1',
+
+# Skin names
+'skinname-standard'  => 'Классикань',
+'skinname-nostalgia' => 'ОдПингеньМазы',
+'skinname-myskin'    => 'ЭсьМелемКоряс',
+'skinname-simple'    => 'Шожда',
+'skinname-modern'    => 'НееньШкань',
 
 # Patrol log
 'patrol-log-auto' => '(сонсь теи)',

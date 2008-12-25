@@ -30,14 +30,6 @@
   * @see http://nn.wikipedia.org/w/index.php?title=Brukar:Dittaeva/LanguageNn.php&action=history
   */
 
-$skinNames = array(
-	'standard'    => 'Klassisk',
-	'nostalgia'   => 'Nostalgi',
-	'cologneblue' => 'Kölnerblå',
-	'myskin'      => 'MiDrakt',
-	'simple'      => 'Enkel',
-	'modern'      => 'Moderne',
-);
 
 $datePreferences = array(
 	'default',
@@ -2412,6 +2404,14 @@ Dersom du berre vil ha noverande versjon, kan du også bruke ei lenkje, til døm
 'numwatchers'    => 'Tal brukarar som overvakar: $1',
 'numauthors'     => 'Tal ulike bidragsytarar (innhaldsside): $1',
 'numtalkauthors' => 'Tal ulike bidragsytarar (diskusjonsside): $1',
+
+# Skin names
+'skinname-standard'    => 'Klassisk',
+'skinname-nostalgia'   => 'Nostalgi',
+'skinname-cologneblue' => 'Kölnerblå',
+'skinname-myskin'      => 'MiDrakt',
+'skinname-simple'      => 'Enkel',
+'skinname-modern'      => 'Moderne',
 
 # Math options
 'mw_math_png'    => 'Vis alltid som PNG',

@@ -22,15 +22,6 @@
  * @author לערי ריינהארט
  */
 
-$skinNames = array(
-	'standard'    => 'Standard',
-	'nostalgia'   => 'Nostalgi',
-	'cologneblue' => 'Kølnerblå',
-	'monobook'    => 'Monobook',
-	'myskin'      => 'Eget utseende',
-	'simple'      => 'Enkel',
-	'modern'      => 'Moderne',
-);
 
 $bookstoreList = array(
 	'Antikvariat.net' => 'http://www.antikvariat.net/',
@@ -2360,6 +2351,15 @@ Dette er sannsynligvis forårsaket av en lenke til et svartelistet eksternt nett
 'numwatchers'    => 'Antall overvåkere: $1',
 'numauthors'     => 'Antall forskjellige bidragsytere (artikkel): $1',
 'numtalkauthors' => 'Antall forskjellige bidragsytere (diskusjonsside): $1',
+
+# Skin names
+'skinname-standard'    => 'Standard',
+'skinname-nostalgia'   => 'Nostalgi',
+'skinname-cologneblue' => 'Kølnerblå',
+'skinname-monobook'    => 'Monobook',
+'skinname-myskin'      => 'Eget utseende',
+'skinname-simple'      => 'Enkel',
+'skinname-modern'      => 'Moderne',
 
 # Math options
 'mw_math_png'    => 'Vis alltid som PNG',

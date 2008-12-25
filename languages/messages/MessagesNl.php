@@ -48,15 +48,6 @@ $namespaceAliases = array(
 	'Overleg_afbeelding' => NS_FILE_TALK,
 );
 
-$skinNames = array(
-	'standard'    => 'Klassiek',
-	'nostalgia'   => 'Nostalgie',
-	'cologneblue' => 'Keuls blauw',
-	'monobook'    => 'Monobook',
-	'myskin'      => 'MijnSkin',
-	'simple'      => 'Eenvoudig',
-	'modern'      => 'Modern',
-);
 
 $dateFormats = array(
 	'mdy time' => 'H:i',
@@ -2642,6 +2633,15 @@ Meestal wordt dit door een externe verwijzing op een zwarte lijst veroorzaakt.',
 'numwatchers'    => 'Aantal volgers: $1',
 'numauthors'     => 'Aantal auteurs (pagina): $1',
 'numtalkauthors' => 'Aantal verschilende auteurs (overlegpagina): $1',
+
+# Skin names
+'skinname-standard'    => 'Klassiek',
+'skinname-nostalgia'   => 'Nostalgie',
+'skinname-cologneblue' => 'Keuls blauw',
+'skinname-monobook'    => 'Monobook',
+'skinname-myskin'      => 'MijnSkin',
+'skinname-simple'      => 'Eenvoudig',
+'skinname-modern'      => 'Modern',
 
 # Math options
 'mw_math_png'    => 'Altijd als PNG weergeven',

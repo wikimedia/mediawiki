@@ -21,11 +21,6 @@
  * @author לערי ריינהארט
  */
 
-$skinNames = array(
-	'standard'    => 'Clàssic',
-	'nostalgia'   => 'Nostàlgia',
-	'cologneblue' => 'Colònia blava',
-);
 
 $bookstoreList = array(
 	'Catàleg Col·lectiu de les Universitats de Catalunya' => 'http://ccuc.cbuc.es/cgi-bin/vtls.web.gateway?searchtype=control+numcard&searcharg=$1',
@@ -2397,6 +2392,11 @@ Això deu ser degut per un enllaç a un lloc extern inclòs a la llista negra.',
 'numwatchers'    => "Nombre d'usuaris que l'estan vigilant: $1",
 'numauthors'     => "Nombre d'autors (pàgina): $1",
 'numtalkauthors' => "Nombre d'autors (pàgina de discussió): $1",
+
+# Skin names
+'skinname-standard'    => 'Clàssic',
+'skinname-nostalgia'   => 'Nostàlgia',
+'skinname-cologneblue' => 'Colònia blava',
 
 # Math options
 'mw_math_png'    => 'Produeix sempre PNG',
