@@ -58,7 +58,6 @@ $dateFormats = array(
 );
 
 $separatorTransformTable = array(',' => ' ', '.' => ',' );
-#$linkTrail = '/^([a-z]+)(.*)$/sD';# ignore list
 
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'Redirecionamentos duplos', 'Redireccionamentos duplos' ),
@@ -69,7 +68,7 @@ $specialPageAliases = array(
 	'CreateAccount'             => array( 'Criar conta' ),
 	'Preferences'               => array( 'Preferências' ),
 	'Watchlist'                 => array( 'Páginas vigiadas', 'Artigos vigiados', 'Vigiados' ),
-	'Recentchanges'             => array( 'Mudanças recentes' ),
+	'Recentchanges'             => array( 'Mudanças recentes', 'Recentes' ),
 	'Upload'                    => array( 'Carregar imagem', 'Carregar ficheiro', 'Carregar arquivo', 'Enviar' ),
 	'Imagelist'                 => array( 'Lista de imagens', 'Lista de ficheiros', 'Lista de arquivos' ),
 	'Newimages'                 => array( 'Imagens novas', 'Ficheiros novos', 'Arquivos novos' ),
@@ -91,8 +90,8 @@ $specialPageAliases = array(
 	'Mostlinked'                => array( 'Páginas com mais afluentes', 'Artigos com mais afluentes' ),
 	'Mostlinkedcategories'      => array( 'Categorias com mais afluentes' ),
 	'Mostlinkedtemplates'       => array( 'Predefinições com mais afluentes' ),
-	'Mostcategories'            => array( 'Páginas com mais categorias', 'Artigos com mais categorias' ),
 	'Mostimages'                => array( 'Imagens com mais afluentes', 'Ficheiros com mais afluentes', 'Arquivos com mais afluentes' ),
+	'Mostcategories'            => array( 'Páginas com mais categorias', 'Artigos com mais categorias' ),
 	'Mostrevisions'             => array( 'Páginas com mais edições', 'Artigos com mais edições' ),
 	'Fewestrevisions'           => array( 'Páginas com menos edições', 'Artigos com menos edições', 'Artigos menos editados' ),
 	'Shortpages'                => array( 'Páginas curtas', 'Artigos curtos' ),
