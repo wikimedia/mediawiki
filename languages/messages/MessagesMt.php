@@ -243,6 +243,8 @@ $magicWords = array(
 	'hiddencat'             => array( '1', '__KATMOĦBIJA__', '__HIDDENCAT__' ),
 	'pagesincategory'       => array( '1', 'PAĠNIFIL-KATEGORIJI', 'PAĠNIFILK', 'PAGESINCATEGORY', 'PAGESINCAT' ),
 	'pagesize'              => array( '1', 'DAQSTAL-PAĠNI', 'PAGESIZE' ),
+	'index'                 => array( '1', '__INDIĊI__', '__INDEX__' ),
+	'noindex'               => array( '1', '__EBDAINDIĊI__', '__NOINDEX__' ),
 );
 
 $messages = array(

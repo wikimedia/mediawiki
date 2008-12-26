@@ -11,6 +11,46 @@
 
 $rtl = true;
 
+$namespaceNames = array(
+	NS_SPECIAL          => 'ހާއްޞަ',
+	NS_TALK             => 'ޚިޔާލު',
+	NS_USER             => 'މެމްބަރު',
+	NS_FILE             => 'ފައިލް',
+	NS_FILE_TALK        => 'ފައިލް_ޚިޔާލު',
+	NS_MEDIAWIKI        => 'މީޑިއާވިކީ',
+	NS_MEDIAWIKI_TALK   => 'މީޑިޔާވިކި_ޚިޔާލު',
+	NS_TEMPLATE         => 'ފަންވަތް',
+	NS_TEMPLATE_TALK    => 'ފަންވަތް_ޚިޔާލު',
+	NS_HELP             => 'އެހީ',
+	NS_HELP_TALK        => 'އެހީ_ޚިޔާލު',
+	NS_CATEGORY         => 'ޤިސްމު',
+	NS_CATEGORY_TALK    => 'ޤިސްމު_ޚިޔާލު',
+);
+
+$specialPageAliases = array(
+	'Userlogin'                 => array( 'ވަދެވަޑައިގަންނަވާ' ),
+	'Userlogout'                => array( 'ބޭރަށް ވަޑައިގަންނަވާ' ),
+	'CreateAccount'             => array( 'މެމްބަރުކަން ހާސިލްކުރައްވާ' ),
+	'Preferences'               => array( 'ތަރުޖީހުތައް' ),
+	'Recentchanges'             => array( 'އެންމެ ފަހުގެ ބަދަލްތައް' ),
+	'Upload'                    => array( 'ފޮނުއްވާ' ),
+	'Imagelist'                 => array( 'ފައިލް ލިސްޓް' ),
+	'Newimages'                 => array( 'އާ ފައިލް' ),
+	'Randompage'                => array( 'ކޮންމެވެސް ސަފްޙާއެއް' ),
+	'Uncategorizedtemplates'    => array( 'ޤިސްމުކުރެވިފައި ނުވާ ފަންވަތް' ),
+	'Unusedcategories'          => array( 'ބޭނުން ނުކުރާ ޤިސްމުތައް' ),
+	'Unusedimages'              => array( 'ބޭނުން ނުކުރާ ފައިލް' ),
+	'Shortpages'                => array( 'ކުރު ސަފްޙާތައް' ),
+	'Longpages'                 => array( 'ދިގު ސަފްޙާތައް' ),
+	'Newpages'                  => array( 'އާ ސަފްހާތައް' ),
+	'Protectedpages'            => array( 'ދިފާޢުކުރެވިފައިވާ ސަފްޙާތައް' ),
+	'Allpages'                  => array( 'ހުރިހާ ސަފްޙާއެއް' ),
+	'Ipblocklist'               => array( 'ބްލޮކް ކުރެވިފައިވާ ލިސްޓް' ),
+	'Specialpages'              => array( 'ޙާއްސަ ސަފްޙާތައް' ),
+	'Contributions'             => array( 'ޙިއްސާ' ),
+	'Emailuser'                 => array( 'މެމްބަރަށް އީ-މެއިލް ފޮނުވާ' ),
+);
+
 $messages = array(
 # User preference toggles
 'tog-hideminor'    => 'ކުޑަ ކުޑަ އުނި އިތުރުތައް ފަހު ބަދަލު އިން ފޮރުއްވަވާ',
