@@ -2282,6 +2282,16 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{ns:special}}:E
 'numauthors'     => 'Ličba rozdźělnych awtorow (nastawk): $1',
 'numtalkauthors' => 'Ličba rozdźělnych awtorow (diskusijna strona): $1',
 
+# Skin names
+'skinname-standard'    => 'Klasiski',
+'skinname-nostalgia'   => 'Nostalgija',
+'skinname-cologneblue' => 'Kölnjanska módrina',
+'skinname-monobook'    => 'MonoBook',
+'skinname-myskin'      => 'MySkin',
+'skinname-chick'       => 'Ćipka',
+'skinname-simple'      => 'Jednory',
+'skinname-modern'      => 'Moderny',
+
 # Math options
 'mw_math_png'    => 'Přeco jako PNG zwobraznić',
 'mw_math_simple' => 'HTML jeli jara jednory, hewak PNG',

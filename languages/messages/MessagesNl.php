@@ -2640,6 +2640,7 @@ Meestal wordt dit door een externe verwijzing op een zwarte lijst veroorzaakt.',
 'skinname-cologneblue' => 'Keuls blauw',
 'skinname-monobook'    => 'Monobook',
 'skinname-myskin'      => 'MijnSkin',
+'skinname-chick'       => 'Chick',
 'skinname-simple'      => 'Eenvoudig',
 'skinname-modern'      => 'Modern',
 

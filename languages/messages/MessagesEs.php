@@ -2388,7 +2388,14 @@ Esto podría estar causado por un enlace a un sitio externo incluido en la lista
 'numtalkauthors' => 'Número de autores distintos (página de discusión): $1',
 
 # Skin names
-'skinname-standard' => 'Estándar',
+'skinname-standard'    => 'Estándar',
+'skinname-nostalgia'   => 'Nostalgia',
+'skinname-cologneblue' => 'Colonia azul',
+'skinname-monobook'    => 'MonoBook',
+'skinname-myskin'      => 'Mi piel',
+'skinname-chick'       => 'Pollito',
+'skinname-simple'      => 'Simple',
+'skinname-modern'      => 'Moderna',
 
 # Math options
 'mw_math_png'    => 'Producir siempre PNG',
@@ -2751,7 +2758,7 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'imagelistall'     => 'todas',
 'watchlistall2'    => 'todos',
 'namespacesall'    => 'todos',
-'monthsall'        => '(todos)',
+'monthsall'        => 'todos',
 
 # E-mail address confirmation
 'confirmemail'             => 'Confirmar dirección de correo electrónico',

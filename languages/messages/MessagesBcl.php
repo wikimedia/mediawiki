@@ -9,7 +9,6 @@
  * @author Urhixidur
  */
 
-
 $namespaceNames = array(
 	NS_MEDIA          => 'Medio',
 	NS_SPECIAL        => 'Espesyal',

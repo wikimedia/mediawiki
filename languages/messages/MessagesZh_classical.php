@@ -7,7 +7,6 @@
  * @author Itsmine
  */
 
-
 /**
  * A list of date format preference keys which can be selected in user
  * preferences. New preference keys can be added, provided they are supported

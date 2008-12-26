@@ -10,7 +10,6 @@
  * @author Urhixidur
  */
 
-
 $namespaceNames = array(
 	NS_SPECIAL          => 'Аналлаах',
 	NS_TALK             => 'Ырытыы',

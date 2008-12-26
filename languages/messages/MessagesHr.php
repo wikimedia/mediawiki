@@ -18,7 +18,6 @@
  * @author לערי ריינהארט
  */
 
-
 $namespaceNames = array(
 	NS_MEDIA            => 'Mediji',
 	NS_SPECIAL          => 'Posebno',

@@ -22,7 +22,6 @@
  * @author לערי ריינהארט
  */
 
-
 $bookstoreList = array(
 	'Antikvariat.net' => 'http://www.antikvariat.net/',
 	'Frida' => 'http://wo.uio.no/as/WebObjects/frida.woa/wa/fres?action=sok&isbn=$1&visParametre=1&sort=alfabetisk&bs=50',

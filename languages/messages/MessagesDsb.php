@@ -2322,6 +2322,7 @@ W zespominanju dajo se pśicyna pódaś.',
 'skinname-myskin'      => 'Mój šat',
 'skinname-chick'       => 'Kurjetko',
 'skinname-simple'      => 'Jadnorje',
+'skinname-modern'      => 'Moderny',
 
 # Math options
 'mw_math_png'    => 'Pśecej ako PNG zwobrazniś.',

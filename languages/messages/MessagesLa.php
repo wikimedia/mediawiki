@@ -14,7 +14,6 @@
  * @author לערי ריינהארט
  */
 
-
 $namespaceNames = array(
 	NS_SPECIAL          => 'Specialis',
 	NS_TALK             => 'Disputatio',
@@ -967,8 +966,8 @@ Ad fasciculum in pagina includendum, utere nexu
 'uploadlogpagetext'  => 'Subter est index fasciculorum recentissimorum impositorum.
 Vide etiam [[Special:NewFiles|pinacothecam fasciculorum recentissimorum impositorum]].',
 'filename'           => 'Nomen fasciculi',
-'filedesc'           => 'Descriptio',
-'fileuploadsummary'  => 'Descriptio:',
+'filedesc'           => 'Summarium',
+'fileuploadsummary'  => 'Summarium:',
 'filestatus'         => 'Locus verborum privatorum:',
 'filesource'         => 'Fons:',
 'uploadedfiles'      => 'Fasciculi impositi',

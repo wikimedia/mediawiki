@@ -8,6 +8,7 @@
  * @author Bencmq
  * @author Shinjiman
  * @author Skjackey tse
+ * @author Wrightbus
  */
 
 $fallback = 'zh-hans';
@@ -219,7 +220,7 @@ $messages = array(
 'tagline'           => '出自{{SITENAME}}',
 'help'              => '幫助',
 'search'            => '搜索',
-'searchbutton'      => '搜索',
+'searchbutton'      => '搜尋',
 'go'                => '進入',
 'searcharticle'     => '進入',
 'history'           => '頁面歷史',

@@ -2409,7 +2409,9 @@ Dersom du berre vil ha noverande versjon, kan du også bruke ei lenkje, til døm
 'skinname-standard'    => 'Klassisk',
 'skinname-nostalgia'   => 'Nostalgi',
 'skinname-cologneblue' => 'Kölnerblå',
+'skinname-monobook'    => 'MonoBook',
 'skinname-myskin'      => 'MiDrakt',
+'skinname-chick'       => 'Chick',
 'skinname-simple'      => 'Enkel',
 'skinname-modern'      => 'Moderne',
 

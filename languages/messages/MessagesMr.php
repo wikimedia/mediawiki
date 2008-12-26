@@ -16,7 +16,6 @@
  * @author शࣿरीहरि
  */
 
-
 $namespaceNames = array(
 	NS_MEDIA            => 'मिडिया',
 	NS_SPECIAL          => 'विशेष',

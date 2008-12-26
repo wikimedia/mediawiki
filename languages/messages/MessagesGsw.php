@@ -7,6 +7,7 @@
  * @author Als-Holder
  * @author Hendergassler
  * @author J. 'mach' wust
+ * @author Melancholie
  * @author MichaelFrey
  * @author Spacebirdy
  * @author Strommops
@@ -472,7 +473,7 @@ Vergiss nid, dyni Yystellige aazpasse.',
 'yourdomainname'             => 'Dyyni Domäne',
 'externaldberror'            => 'Entwäder s lit e Fähler bi dr externe Authentifizierung vor, oder Du derfsch Dyy extern Benutzerchonto nid aktualisiere.',
 'login'                      => 'Aamälde',
-'nav-login-createaccount'    => 'Amälde/Regischtriere',
+'nav-login-createaccount'    => 'Aamälde / Chonto aaleege',
 'loginprompt'                => '<small>Für di bir {{SITENAME}} aazmälde, muesch Cookies erloube!</small>',
 'userlogin'                  => 'Aamälde',
 'logout'                     => 'Abmälde',
@@ -500,8 +501,8 @@ Bitte nimm e andere.',
 'email'                      => 'E-Mail',
 'prefs-help-realname'        => '* <strong>Dyy ächte Name</strong> (optional): Wänn du wetsch, ass Dyyni Änderige uf Dii chenne zruckgfierd wäre.',
 'loginerror'                 => 'Fähler bir Aamäldig',
-'prefs-help-email'           => 'E E-Mail-Adräss aazgee isch optional, aber s cha ne Ersatzpasswort zuegschickt wäre, wänn Du Dyy Passwort vergässe hesch.
-Du chasch zueloo, ass anderi iber Dyyni Benutzerdiskussionssyte mit Dir Kontakt ufnämme, ohni ass Dyyni Identität zeige muesch.',
+'prefs-help-email'           => '* <strong>E-Mail-Adrässe</strong> (optional): We du en E-Mail-Adrässen aagisch, überchömen anderi Benutzer d Müglechkeit, di über dyni Benutzer- oder Benutzer_Diskussionsyte z kontaktiere. Im Fall das du mal ds Passwort sötsch vergässe ha, cha dir es nöis Zuefalls-Passwort gmailet wärde.<br />
+** <strong>Signatur</strong> (optional): D Signatur wird ygsetzt, we du e Diskussionsbytrag mit «<nowiki>~~~~</nowiki>» unterschrybsch; we du ke spezielli Signatur aagisch, de wird eifach di Benutzername mit emne Link uf dyni Benutzersyten ygfüegt.',
 'prefs-help-email-required'  => 'S brucht e giltigi E-Mail-Adräss.',
 'nocookiesnew'               => 'Dr Benutzerzuegang isch aaglait wore, aber Du bisch nid yygloggt. {{SITENAME}} brucht fir die Funktion Cookies, bitte tue die aktiviere un logg Di derno mit Dyynem neje Benutzername un em Passwort, wu drzue ghert, yy.',
 'nocookieslogin'             => '{{SITENAME}} brucht Cookies fir e Aamäldig. Du hesch d Cookies deaktiviert. Aktivier si bitte un versuech s no mol.',
@@ -1192,7 +1193,8 @@ Zum e Datei oder e Bild in ere Syte yyzböue, schryybsch eifach:
 'disambiguations'     => 'Begriffsklärigssytene',
 'disambiguationspage' => 'Template:Begriffsklärig',
 
-'doubleredirects' => 'Doppleti Wyterleitige (Redirects)',
+'doubleredirects'       => 'Doppleti Wyterleitige (Redirects)',
+'double-redirect-fixer' => 'DoubleRedirectBot',
 
 'brokenredirects'     => 'Kaputti Wyterleitige',
 'brokenredirectstext' => 'Die Wyterleitige fiere zue Artikel, wu s gar nid git.',
@@ -1411,7 +1413,7 @@ Der Schutzstatus vo dere Syte lat sech la ändere, aber das het kei Yfluss uf d 
 'year'          => 'bis Jahr:',
 
 'sp-contributions-newbies'     => 'Zeig nume Biträg vo neie Benutzer',
-'sp-contributions-newbies-sub' => 'Für Nöui',
+'sp-contributions-newbies-sub' => 'vo nöji Benützer',
 'sp-contributions-blocklog'    => 'Sperrlogbuech',
 'sp-contributions-search'      => 'Suech no Benutzerbiträg',
 'sp-contributions-username'    => 'IP-Adress oder Benutzername:',
@@ -1429,6 +1431,10 @@ Der Schutzstatus vo dere Syte lat sech la ändere, aber das het kei Yfluss uf d 
 
 # Block/unblock
 'blockip'         => 'Benutzer bzw. IP blockyre',
+'blockiptext'     => 'Bnutz des Formular, zum e Bnutzer oder e IP-Adress z\'blockiere.<sup class="plainlinks">[http://jodies.de/ipcalc?host=&mask1=&mask2= <span title="IP-Berych ermittle; bloss kurz sperre!">(B)</span>]</sup>
+
+Des söt nummer erfolge um [[Wikipedia:Vandalismus|Vandalismus]] z\'verhindre in i Übereinstimmig mit üsre [[Wikipedia:Leitlinien|Leitlinie]] gschehe.
+Bitte gib au de Grund für d\'Blockad aa.',
 'ipbsubmit'       => 'Adräss blockiere',
 'ipboptions'      => '1 Stund:1 hour,2 Stunde:2 hours,6 Stunde:6 hours,1 Tag:1 day,3 Täg:3 days,1 Wuche:1 week,2 Wuche:2 weeks,1 Monet:1 month,3 Monet:3 months,1 Johr:1 year,Fir immer:infinite', # display1:time1,display2:time2,...
 'ipblocklist'     => 'Liste vo blockierten IP-Adrässen u Benutzernäme',
@@ -1490,10 +1496,12 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'thumbnail_error' => 'Fähler bir Härstellig vo re Vorschou: $1',
 
 # Special:Import
-'importtext' => 'Bitte speichere Si selli Syte vom Quellwiki met em Special:Export Wärkzüg ab un lade Si denn di Datei denn do uffe.',
+'importtext'            => 'Bitte speicher d’Syte vum Quellwiki met em Spezial:Export-Wärkzüg ab, un lad denn di XML-Datei do uffe. („Bild lokal“ sot im Folgénde eigentle „XML-Datei“ hoiße ;-)',
+'import-revision-count' => '– {{PLURAL:$1|1 Vérsion|$1 Vérsiona}}',
 
 # Import log
-'importlogpage' => 'Import-Logbuech',
+'importlogpage'                 => 'Import-Logbuech',
+'import-logentry-upload-detail' => '$1 {{PLURAL:$1|Vérsion|Vérsiona}} [[Spezial:Importieren|importiert]]',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Myni Benutzersyte',
@@ -1563,9 +1571,12 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'mw_math_modern' => 'Empfolnigi Ystellig für modärni Browser',
 
 # Patrolling
-'markaspatrolleddiff'   => 'Als geprüft markiere',
-'markaspatrolledtext'   => 'Den Artikel als geprüft markiere',
-'markedaspatrolledtext' => 'Die usgwählte Artikeländerung isch als geprüft markiert worre.',
+'markaspatrolleddiff'   => 'Als patrulyrt markyre',
+'markaspatrolledtext'   => 'Erschtversion patrulyre',
+'markedaspatrolledtext' => 'D’Änderig isch als patrulyrt markyrt.',
+
+# Patrol log
+'patrol-log-line' => 'het d’$1 vo $2 als patrulyrt markyrt $3',
 
 # Browsing diffs
 'previousdiff' => '← Vorderi Änderig',
@@ -1665,6 +1676,7 @@ Fründtlechi Grüess",
 'version' => 'Version', # Not used as normal message but as header for the special page itself
 
 # Special:SpecialPages
-'specialpages' => 'Spezialsytene',
+'specialpages'             => 'Spezialsytene',
+'specialpages-group-login' => 'Aamälde',
 
 );

@@ -22,6 +22,7 @@
  * @author Garas
  * @author GerardM
  * @author Helix84
+ * @author IAlex
  * @author INkubusse
  * @author Jon Harald Søby
  * @author Kizito
@@ -1812,6 +1813,9 @@ See also [[MediaWiki:Blocklogentry]].',
 *$2 is the duration of the block (hours, days etc.) or the specified expiry date
 *$3 contains "(details) (\'\'reason\'\')"
 See also [[MediaWiki:Blocklistline]].',
+'reblock-logentry'             => '* $1 is the user being reblocked
+* $2 is the expiry time of the block
+* $3 is the reason of the block',
 'block-log-flags-noautoblock'  => '{{Identical|Autoblock disabled}}',
 'block-log-flags-noemail'      => "Log message for [[Special:Log/block]] to note that a user cannot use the 'email another user' option.
 

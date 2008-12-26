@@ -7,7 +7,6 @@
  * @author Ahmed-Najib-Biabani-Ibrahimkhel
  */
 
-
 $namespaceNames = array(
 	NS_MEDIA          => 'رسنۍ',
 	NS_SPECIAL        => 'ځانګړی',
@@ -734,6 +733,7 @@ $messages = array(
 'filename'              => 'د دوتنې نوم',
 'filedesc'              => 'لنډيز',
 'fileuploadsummary'     => 'لنډيز:',
+'filestatus'            => 'د رښتو دريځ:',
 'filesource'            => 'سرچينه:',
 'uploadedfiles'         => 'پورته شوې دوتنې',
 'ignorewarnings'        => 'هر ډول ګواښونه له پامه غورځول',
@@ -910,6 +910,7 @@ $messages = array(
 'allpagessubmit'    => 'ورځه',
 'allpagesprefix'    => 'هغه مخونه ښکاره کړه چې مختاړی يې داسې وي:',
 'allpagesbadtitle'  => 'ورکړ شوی سرليک سم نه دی او يا هم د ژبو او يا د بېلابېلو ويکي ګانو مختاړی لري. ستاسو په سرليک کې يو يا څو داسې ابېڅې دي کوم چې په سرليک کې نه شي کارېدلی.',
+'allpages-bad-ns'   => '{{SITENAME}} د "$1" په نامه هېڅ کوم نوم-تشيال نه لري.',
 
 # Special:Categories
 'categories'                  => 'وېشنيزې',
