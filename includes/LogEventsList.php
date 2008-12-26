@@ -38,10 +38,10 @@ class LogEventsList {
 	private function preCacheMessages() {
 		// Precache various messages
 		if( !isset( $this->message ) ) {
-			$messages = array('revertmerge','protect_change','unblocklink','change-blocklink',
-				'revertmove','undeletelink','revdel-restore','rev-delundel','hist');
+			$messages = array( 'revertmerge', 'protect_change', 'unblocklink', 'change-blocklink',
+				'revertmove', 'undeletelink', 'revdel-restore', 'rev-delundel', 'hist', 'pipe-separator' );
 			foreach( $messages as $msg ) {
-				$this->message[$msg] = wfMsgExt( $msg, array( 'escape') );
+				$this->message[$msg] = wfMsgExt( $msg, array( 'escape' ) );
 			}
 		}
 	}
@@ -276,19 +276,27 @@ class LogEventsList {
 					array(),
 					array( 'action' => 'unblock', 'ip' => $row->log_title ),
 					'known' ) 
-				. ' ' . wfMsg( 'pipe-separator' ) . ' ' .
+				. ' ' . $this->message['pipe-separator'] . ' ' .
 				$this->skin->link( SpecialPage::getTitleFor( 'Blockip', $row->log_title ), 
 					$this->message['change-blocklink'],
 					array(), array(), 'known' ) .
 				')';
 		// Show change protection link
-		} else if( self::typeAction($row,'protect',array('modify','protect','unprotect')) ) {
-			$revert .= ' (' .  $this->skin->makeKnownLinkObj( $title, $this->message['hist'], 
-				'action=history&offset=' . urlencode($row->log_timestamp) ) . ')';
-			if( $wgUser->isAllowed('protect') && $row->log_action != 'unprotect' ) {
-				$revert .= ' (' .  $this->skin->makeKnownLinkObj( $title, $this->message['protect_change'], 
-					'action=unprotect' ) . ')';
+		} else if( self::typeAction( $row, 'protect', array( 'modify', 'protect', 'unprotect' ) ) ) {
+			$revert .= ' (' . 
+				$this->skin->link( $title,
+					$this->message['hist'],
+					array(),
+					array( 'action' => 'history', 'offset' => $row->log_timestamp ) );
+			if( $wgUser->isAllowed( 'protect' ) ) {
+				$revert .= ' ' . $this->message['pipe-separator'] . ' ' .
+					$this->skin->link( $title,
+						$this->message['protect_change'],
+						array(),
+						array( 'action' => 'protect' ),
+						'known' );
 			}
+			$revert .= ')';
 		// Show unmerge link
 		} else if( self::typeAction($row,'merge','merge','mergehistory') ) {
 			$merge = SpecialPage::getTitleFor( 'Mergehistory' );
