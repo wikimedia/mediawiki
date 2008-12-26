@@ -248,6 +248,8 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 2585) HTTP 404 return code is now given for a page view if the page
   does not exist, allowing spiders and link checkers to detect broken links.
 * Special:Log: Add 'change protection' link for unprotected pages too
+* Special:Log: Add log type specific CSS classes 'mw-logline-$logtype' to
+  'li' elements
 
 === Bug fixes in 1.14 ===
 
