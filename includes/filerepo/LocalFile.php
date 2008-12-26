@@ -913,7 +913,11 @@ class LocalFile extends File
 		} else {
 			// New file; create the description page.
 			// There's already a log entry, so don't make a second RC entry
-			$article->doEdit( $pageText, $comment, EDIT_NEW | EDIT_SUPPRESS_RC );
+			$result = $article->doEdit( $pageText, $comment, EDIT_NEW | EDIT_SUPPRESS_RC );
+			if ( !$result->isOK() ) {
+				$dbw->rollback( __METHOD__ );
+				return false;
+			}
 		}
 
 		# Hooks, hooks, the magic of hooks...
