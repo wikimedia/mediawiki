@@ -1128,6 +1128,8 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'timezonetext'              => '¹Número de horas que o seu horário local difere do horário do servidor (UTC).',
 'localtime'                 => 'Horário local:',
 'timezoneselect'            => 'Fuso horário:',
+'timezoneuseserverdefault'  => 'Usar padrão do servidor',
+'timezoneuseoffset'         => 'Outro (especificar desvio)',
 'timezoneoffset'            => 'Diferença horária¹:',
 'servertime'                => 'Horário do servidor:',
 'guesstimezone'             => 'Preencher a partir do navegador (browser)',

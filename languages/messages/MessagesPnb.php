@@ -11,9 +11,20 @@ $fallback8bitEncoding = 'windows-1256';
 
 $messages = array(
 # User preference toggles
-'tog-justify'         => 'پیراگراف ثابت کرو',
-'tog-hideminor'       => 'چھوٹیاں تبدیلیاں چھپاؤ',
-'tog-extendwatchlist' => 'نظر تھلے رکھے صفحے نوں کھلا کرو تاکہ اوہ تبدیلیاں جیڑیاں کم دے قابل نیں ویکھیاں جا سکن',
+'tog-justify'              => 'پیراگراف ثابت کرو',
+'tog-hideminor'            => 'چھوٹیاں تبدیلیاں چھپاؤ',
+'tog-extendwatchlist'      => 'نظر تھلے رکھے صفحے نوں کھلا کرو تاکہ اوہ تبدیلیاں جیڑیاں کم دے قابل نیں ویکھیاں جا سکن',
+'tog-watchcreations'       => 'جیڈے صفحے میں بناندا واں اوہ میری اکھ تھلے کر دیو',
+'tog-watchdefault'         => 'جیڈے صفحیاں چ میں لکھداں اوہ میری اکھ تھلے کر دیو',
+'tog-watchmoves'           => 'جیڈے صفحے میں لے چلداں اوہ میری اکھ تھلے کر دیو',
+'tog-watchdeletion'        => 'جیڈے صفحے میں مٹانداں اوہ میری اکھ تھلے کر دیو',
+'tog-enotifwatchlistpages' => 'اگر میری اکھ تھلیاں صفحیاں چوں کسے چ تبدیلی ہوۓ، تے مینوں ای میل کر دیو',
+'tog-enotifusertalkpages'  => 'اگر میرے گلاں باتاں آلے صفحے چ کوئی تبدیلی کرے، تے مینوں ای میل کر دیو',
+'tog-enotifminoredits'     => 'صفحیاں چ چھوٹیاں موٹیاں تبدیلیاں تے وی مینوں ای میل کر دیو',
+'tog-watchlisthideown'     => 'میری اپنی لکھائی نوں اکھ تھلیوں لکاؤ',
+'tog-watchlisthidebots'    => 'بوٹ دی لکھائی اکھ تھلیوں لکاؤ',
+'tog-watchlisthideminor'   => 'چھوٹی موٹی لکھائی اکھ تھلیوں لکاؤ',
+'tog-showhiddencats'       => 'لکیاں کیٹاگریاں وکھاؤ',
 
 'underline-always' => 'ہمیشہ',
 'underline-never'  => 'کدی وی نئیں',
@@ -94,6 +105,9 @@ $messages = array(
 'mytalk'         => 'میریاں گلاں',
 'anontalk'       => 'اس آئی پی آسطے گل کرو',
 'navigation'     => 'تلاش',
+
+# Metadata in edit box
+'metadata_help' => 'میٹا ڈیٹا:',
 
 'errorpagetitle'    => 'مسئلہ',
 'returnto'          => 'واپس $1 چلو',
@@ -177,6 +191,8 @@ $messages = array(
 'editsection'         => 'لکھو',
 'editold'             => 'لکھو',
 'viewsourceold'       => 'لکھیا ویکھو',
+'editlink'            => 'لکھو',
+'viewsourcelink'      => 'لکھائی وکھاؤ',
 'editsectionhint'     => 'حصہ لکھو: $1',
 'toc'                 => 'حصے',
 'showtoc'             => 'کھولو',
@@ -222,6 +238,7 @@ $messages = array(
 'yourpassword'              => 'کنجی:',
 'yourpasswordagain'         => 'کنجی دوبارہ لکھو:',
 'remembermypassword'        => 'اس کمپیوٹر تے میرا لاگن یاد رکھو',
+'yourdomainname'            => 'تواڈا علاقہ:',
 'login'                     => 'اندر آؤ جی',
 'nav-login-createaccount'   => 'اندر آؤ / کھاتہ کھولو',
 'loginprompt'               => 'اندر آنے آستے تواڈیاں کوکیز آن ہونیاں چائیدیاں نے {{SITENAME}}.',
@@ -246,6 +263,7 @@ $messages = array(
 اگر تسی اینو دے دیو گۓ تے اے تواڈا کم اس ناں نال لکھیا جاۓ گا۔',
 'loginerror'                => 'لاگ ان چ مسئلا اے',
 'prefs-help-email-required' => 'ای میل پتہ چائیدا اے۔',
+'noname'                    => 'تسی کوئی پکا ورتن آلا ناں نئیں رکھ رۓ۔',
 'loginsuccesstitle'         => 'تسی لاگن ہوگۓ او',
 'loginsuccess'              => "'''ہن تسی {{SITENAME}} تے \"\$1\" دے ناں توں لاگ ان او'''",
 'nosuchuser'                => 'اس $1 ناں نال کوئی ورتن آلا نہیں۔
@@ -336,6 +354,7 @@ $messages = array(
 اس صفحہ بنانے آسطے تھلے دتے گۓ ڈبے وچ لکھنا شروع کر دیو(زیادہ رہنمائی آستے اے ویکھو [[{{MediaWiki:Helppage}}|<br />مدد دا صفحہ]])۔
 اگر تسی ایتھے غلطی نال پہنچے او تے اپنے کھوجی توں "بیک" دا بٹن دبا دیو۔',
 'noarticletext'          => 'اس ویلے اس صفحے تے کج نہیں لکھیا ہویا تسی [[Special:Search/{{PAGENAME}}|اس صفحے دے ناں نوں دوجے صفحیاں تے کھوج سکدے او]] یا فیر [{{fullurl:{{FULLPAGENAME}}|action=edit}} اس صفحے نوں لکھ سکدے او۔]',
+'updated'                => '(نواں کیتا گیا)',
 'previewnote'            => '<strong>اے ہلے کچا کم اے؛ تبدیلیاں بچائیاں نہیں گئیاں</strong>',
 'editing'                => 'تسی "$1" لکھ رہے او',
 'editingsection'         => '$1 دا حصہ لکھ رہے او',
@@ -352,15 +371,22 @@ $messages = array(
 'templatesusedpreview'   => 'اس کچے کم تے استعمال ہوۓ سانچے:',
 'template-protected'     => '(بچایا گیا)',
 'template-semiprotected' => '(کج بچایا ہویا)',
+'nocreatetitle'          => 'صفحہ بنانے دی حد اے',
 'nocreatetext'           => '{{SITENAME}} نے نۓ صفحے بنانے تے پابندی لائی اے۔<br />
 تسی واپس جا کے پہلاں توں موجود صفحیاں تے لکھ سکدے او یا فیر [[Special:UserLogin|اندر آؤ یا نواں کھاتہ کھولو۔]]',
+'nocreate-loggedin'      => 'توانوں نواں صفحہ بنانے دی اجازت نئیں۔',
+'permissionserrors'      => 'توانوں اجازت چ کوئی مسئلا اے',
 'recreate-deleted-warn'  => "'''خبردار: تسی اک پہلاں توں مٹایا ہویا صفحہ دوبارا لکھ رہے او۔'''
 
 توانوں اے گل سوچنی چائیدی اے کہ اینو لکھنا کوئی عقلمنداں دا کم اے۔<div/>
 تواڈی سہولت آسطے مٹان دا لاگ ایتھے موجود اے۔",
 
+# Account creation failure
+'cantcreateaccounttitle' => 'کھاتہ نئیں کھول سکدے',
+
 # History pages
 'viewpagelogs'           => 'صفحے دے لاگ ویکھو',
+'nohistory'              => 'اس صفحے دی پرانی لکھائی دی کوئی تاریخ نئیں۔',
 'currentrev'             => 'ہن آلی تبدیلی',
 'revisionasof'           => 'دی تبدیلیاں $1',
 'revision-info'          => '$2 نے $1 تے اے لکھیا', # Additionally available: $3: revision id
@@ -368,6 +394,7 @@ $messages = array(
 'nextrevision'           => 'نویں تبدیلی →',
 'currentrevisionlink'    => 'موجودہ حالت',
 'cur'                    => 'موجودہ',
+'next'                   => 'اگلا',
 'last'                   => 'آخری',
 'page_first'             => 'پہلا',
 'page_last'              => 'آخری',
@@ -375,15 +402,34 @@ $messages = array(
 لیجنڈ: (موجودہ) = موجودہ تبدیلی نال مقابلہ، 
 (آخری) = پچھلی تبدیلی توں فرق، M = تھوڑی تبدیلی',
 'history-fieldset-title' => 'ریکارڈ ویکھو',
+'deletedrev'             => '[مٹایا جا چکیا اے]',
 'histfirst'              => 'سب توں پہلا',
 'histlast'               => 'سب توں نواں',
+'historyempty'           => '(خالی)',
 
 # Revision feed
 'history-feed-item-nocomment' => '$2 نوں $1', # user at time
 
 # Revision deletion
-'rev-delundel'         => 'وکھاؤ/لکاؤ',
-'revdelete-hide-image' => 'فائل دا مواد لکاؤ',
+'rev-deleted-comment'    => '(صلاع مٹ گئی)',
+'rev-deleted-user'       => '(ورتن آلا ناں مٹ گیا)',
+'rev-delundel'           => 'وکھاؤ/لکاؤ',
+'revisiondelete'         => 'ریوژن مٹاؤ یا واپس کرو',
+'revdelete-hide-text'    => 'ریوژن ٹیکسٹ لکاؤ',
+'revdelete-hide-name'    => 'کم تے نشانہ چھپاؤ',
+'revdelete-hide-comment' => 'لکھن دے بارے چ صلاع لکاؤ',
+'revdelete-hide-user'    => 'لکھن آلے دا ناں/آئی پی پتہ لکاؤ',
+'revdelete-hide-image'   => 'فائل دا مواد لکاؤ',
+'revdelete-content'      => 'مواد',
+'revdelete-summary'      => 'لکھائی دا خلاصہ',
+'revdelete-uname'        => 'ورتن آلے دا ناں',
+
+# History merging
+'mergehistory-from' => 'ذریعے آلا صفحہ:',
+'mergehistory-into' => 'اصلی صفحہ:',
+
+# Merge log
+'revertmerge' => 'وکھریاں کرو',
 
 # Diffs
 'history-title'           => '"$1" دا ریکارڈ',
@@ -394,6 +440,7 @@ $messages = array(
 'diff-multi'              => '({{PLURAL:$1|One intermediate revision|$1 درمیانی تبدیلی}} نئیں وکھائی گئی۔)',
 
 # Search results
+'searchresults'             => 'کھوج دا نتارا',
 'noexactmatch'              => "'''اس \"\$1\" ناں دا کوئی صفحہ نہیں۔'''
 تسی اے [[:\$1|صفحہ لکھ سکدے او]]۔",
 'prevn'                     => 'پہلا $1',
@@ -402,6 +449,7 @@ $messages = array(
 'searchhelp-url'            => 'Help:فہرست',
 'search-mwsuggest-enabled'  => 'صلاع دے نال',
 'search-mwsuggest-disabled' => 'کوئی صلاع نئیں',
+'search-relatedarticle'     => 'جڑیاں',
 'searchrelated'             => 'جڑیا',
 'searchall'                 => 'سارے',
 'powersearch'               => 'ودیا کھوج',
@@ -413,6 +461,7 @@ $messages = array(
 'preferences'           => 'تانگاں',
 'mypreferences'         => 'میریاں تانگاں',
 'prefs-edits'           => 'تبدیلیاں دی گنتی:',
+'prefsnologin'          => 'لاگ ان نئیں او',
 'qbsettings-none'       => 'کوئی نئیں',
 'changepassword'        => 'کنجی بدلو',
 'skin'                  => 'کھل',
@@ -428,18 +477,35 @@ $messages = array(
 'rows'                  => 'قطار:',
 'columns'               => 'کالم:',
 'searchresultshead'     => 'کھوج',
+'timezonelegend'        => 'ویلے دا علاقہ',
+'localtime'             => 'مقامی ویلا:',
+'timezoneselect'        => 'ویلیاں دے علاقے:',
+'files'                 => 'فائلاں',
+
+# User rights
+'userrights-groupsmember' => 'سنگی اے:',
+'userrights-reason'       => 'تبدیلی دی وجہ:',
 
 # Groups
-'group'      => 'ٹولی:',
-'group-user' => 'ورتن آلے',
+'group'            => 'ٹولی:',
+'group-user'       => 'ورتن آلے',
+'group-bot'        => 'بوٹ',
+'group-bureaucrat' => 'بیوروکریٹ',
+'group-all'        => '(سارے)',
 
-'group-user-member' => 'ورتن آلا',
+'group-user-member'       => 'ورتن آلا',
+'group-bureaucrat-member' => 'بیوروکریٹ',
 
 'grouppage-sysop' => '{{ns:project}}:ایڈمنسٹریٹر',
 
 # Rights
 'right-read'          => 'صفحے پڑھو',
 'right-edit'          => 'صفحے لکھو',
+'right-createpage'    => 'صفحے بناؤ (جیڑے کے گلاں باتاں آلے نئیں نیں)۔',
+'right-createtalk'    => 'گلاں باتاں آلے صفحے بناؤ',
+'right-createaccount' => 'ورتن آلیاں دے نوے اکاونٹ کھولو',
+'right-minoredit'     => 'لکھائی نوں چھوٹیاں موٹیاں قرار دے دیو',
+'right-move'          => 'صفحے لے چلو',
 'right-upload'        => 'فائل چڑہاؤ',
 'right-reupload'      => 'پہلاں دی لکھی ہوئی فائل دے اتے لکھو',
 'right-delete'        => 'صفحے مٹاؤ',
@@ -448,9 +514,26 @@ $messages = array(
 'right-undelete'      => 'مٹایا صفحہ واپس لیاو',
 'right-blockemail'    => 'ورتن آلے نوں ای میل پیجن توں روکو',
 'right-hideuser'      => 'لوکاں توں چھپاندے ہویاں اک ورتن آلے نوں روکو',
+'right-userrights'    => 'تمام ورتن آلیاں دے حق رلکھو',
 
 # User rights log
-'rightslog' => 'ورتن والے دے حقاں دی لاگ',
+'rightslog'  => 'ورتن والے دے حقاں دی لاگ',
+'rightsnone' => '(کوئی وی نئیں)',
+
+# Associated actions - in the sentence "You do not have permission to X"
+'action-read'          => 'اس صفحے نوں پڑھو',
+'action-edit'          => 'اس صفحے تے لکھو',
+'action-createpage'    => 'صفحے بناؤ',
+'action-createtalk'    => 'گلاں باتاں آلا صفحہ بناؤ',
+'action-move'          => 'اس صفحے نوں لے جاؤ',
+'action-move-subpages' => 'اس صفحے نوں تے ایدے نال دے جڑے صفحیاں نوں لے چلو',
+'action-upload'        => 'اس فائل نوں اتے چاڑو',
+'action-reupload'      => 'اس پہلاں توں موجود فائل دے اتے لکھو',
+'action-delete'        => 'اس صفحے نوں مٹا دیو',
+'action-browsearchive' => 'مٹاۓ گۓ صفحے کھوجو',
+'action-undelete'      => 'اس صفحے نوں واپس لیاؤ',
+'action-block'         => 'اس ورتن آلے نوں لکھن توں روکو',
+'action-protect'       => 'اس صفحے دے بچاؤ دا درجہ بدلو',
 
 # Recent changes
 'nchanges'                       => '$1 {{PLURAL:$1|change|تبدیلیاں}}',
@@ -501,9 +584,15 @@ $messages = array(
 'uploadedimage'      => 'چڑھائی گئی"[[$1]]"',
 'uploaddisabledtext' => 'فائل چڑانے چ رکاوٹ اے۔',
 'uploadvirus'        => 'اس فائل چ وائرس اے! تفصیل: $1',
+'sourcefilename'     => 'فائل دے ذریعے دا ناں:',
+'destfilename'       => 'وکی دے اتے فائل دا ناں:',
+'upload-maxfilesize' => 'فائل دا زيادہ توں زيادہ ناپ: $1',
 'watchthisupload'    => 'اس صفحے تے نظر رکھو',
 
 'upload-file-error' => 'اندر دا مسئلا',
+'upload-misc-error' => 'اتے چڑاندیاں انجان مسئلا اے',
+
+'nolicense' => 'انچنی',
 
 # Special:FileList
 'imgfile'               => 'فائل',
@@ -534,6 +623,10 @@ $messages = array(
 'noimage'                        => 'اس ناں دی کوئی فائل نہيں، مگر تسی $1 بنا سکدے او۔',
 'noimage-linktext'               => 'اک چڑھاؤ',
 'uploadnewversion-linktext'      => 'اس فائل دا نوا ورژن چھڑھاؤ',
+
+# File reversion
+'filerevert-legend'  => 'فائل پچھلی حالت چ لے جاؤ',
+'filerevert-comment' => 'صلاع:',
 
 # File deletion
 'filedelete'                  => '$1 مٹاؤ',

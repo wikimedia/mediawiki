@@ -397,7 +397,7 @@ $messages = array(
 'category-empty'                 => "''Cette catégorie ne contient aucune page, sous-catégorie ou fichier multimédia.''",
 'hidden-categories'              => '{{PLURAL:$1|Catégorie cachée|Catégories cachées}}',
 'hidden-category-category'       => 'Catégories cachées', # Name of the category where hidden categories will be listed
-'category-subcat-count'          => '{{PLURAL:$2|Cette catégorie ne dispose que de la sous-catégorie suivante.|Cette catégorie comprend $1 sous-catégorie{{PLURAL:$1||s}}, sur un total de $2.}}',
+'category-subcat-count'          => 'Cette catégorie {{PLURAL:$2|ne dispose que de la sous-catégorie suivante.|comprend $1 sous-catégorie{{PLURAL:$1||s}}, sur un total de $2.}}',
 'category-subcat-count-limited'  => 'Cette catégorie comprend $1 sous-catégorie{{PLURAL:$1||s}}.',
 'category-article-count'         => '{{PLURAL:$2|Cette catégorie contient uniquement la page suivante.|{{PLURAL:$1|La page suivante figure|Les $1 pages suivantes figurent}} dans cette catégorie, sur un total de $2.}}',
 'category-article-count-limited' => '{{PLURAL:$1|La page suivante figure|Les $1 pages suivantes figurent}} dans la présente catégorie.',
@@ -680,7 +680,8 @@ Veuillez en choisir un autre.',
 'yourlanguage'               => 'Langue de l’interface :',
 'yourvariant'                => 'Variante :',
 'yournick'                   => 'Signature pour les discussions :',
-'badsig'                     => 'Signature brute incorrecte ; Vérifiez vos balises HTML.',
+'badsig'                     => 'Signature brute incorrecte.
+Vérifiez vos balises HTML.',
 'badsiglength'               => 'Votre signature est trop longue : la taille maximale est de $1 caractère{{PLURAL:$1||s}}.',
 'email'                      => 'Courriel',
 'prefs-help-realname'        => '(facultatif) : si vous le spécifiez, il sera utilisé pour vous attribuer vos contributions.',

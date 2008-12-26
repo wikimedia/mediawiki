@@ -5,6 +5,7 @@
  * @file
  *
  * @author ChrisiPK
+ * @author Imre
  * @author Jimmy Collins <jimmy.collins@web.de>
  * @author Leithian
  * @author MichaelFrey
@@ -474,6 +475,7 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 
 # Tooltip help for the actions
 'tooltip-pt-anonuserpage' => 'Benutzerseite der IP-Adresse, von der aus Sie Änderungen durchführen',
+'tooltip-n-mainpage'      => 'Besuchen Sie die Hauptseite',
 'tooltip-n-portal'        => 'Über das Portal, was Sie tun können, wo was zu finden ist',
 'tooltip-watch'           => 'Fügt diese Seite Ihrer Beobachtungsliste hinzu',
 
