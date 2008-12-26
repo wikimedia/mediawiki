@@ -98,7 +98,7 @@ class ApiRollback extends ApiBase {
 		return array (
 			'title' => 'Title of the page you want to rollback.',
 			'user' => 'Name of the user whose edits are to be rolled back. If set incorrectly, you\'ll get a badtoken error.',
-			'token' => 'A rollback token previously retrieved through prop=info',
+			'token' => 'A rollback token previously retrieved through prop=revisions',
 			'summary' => 'Custom edit summary. If not set, default summary will be used.',
 			'markbot' => 'Mark the reverted edits and the revert as bot edits'
 		);
