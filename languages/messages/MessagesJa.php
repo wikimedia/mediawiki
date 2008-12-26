@@ -484,7 +484,7 @@ MySQL の返したエラー "<tt>$3: $4</tt>"',
 MySQL の返したエラー "$3: $4"',
 'noconnect'            => '申し訳ありません。技術的な問題が発生しており、データベースサーバーに接続できません。<br />$1',
 'nodb'                 => 'データベース $1 を選択できませんでした',
-'cachederror'          => '以下はリクエストしたページのキャッシュです。最新の更新を反映していない可能性があります。',
+'cachederror'          => '以下は要求したページのキャッシュです。最新の更新を反映していない可能性があります。',
 'laggedslavemode'      => '警告: ページに最新の編集が反映されていない可能性があります。',
 'readonly'             => 'データベースはロックされています',
 'enterlockreason'      => 'ロックの理由とロック解除の予定を入力してください',
@@ -509,7 +509,7 @@ $1',
 'filenotfound'         => 'ファイル "$1" が見つかりませんでした。',
 'fileexistserror'      => '$1 への書き込みができません: ファイルが存在します',
 'unexpected'           => '値が異常です: $1 = "$2"',
-'formerror'            => 'エラー: フォームを送信できませんでした。',
+'formerror'            => 'エラー: フォームを送信できませんでした',
 'badarticleerror'      => 'このページでは要求された操作を行えません。',
 'cannotdelete'         => '指定されたページまたはファイルを削除できませんでした。すでに他の利用者によって削除された可能性があります。',
 'badtitle'             => 'ページタイトルの間違い',
@@ -527,7 +527,7 @@ $1',
 'protectedpagetext'    => 'このページは編集できないように保護されています。',
 'viewsourcetext'       => '以下にソースを表示しています:',
 'protectedinterface'   => 'このページはソフトウェアのインターフェースに使用されるテキストが保存されており、いたずらなどの防止のために保護されています。',
-'editinginterface'     => "'''警告:''' あなたはソフトウェアのインターフェースに使用されているテキストを編集しています。このページの変更はすべての利用者に影響します。翻訳をする場合、MediaWikiの多言語対応プロジェクトである[http://translatewiki.net/wiki/Main_Page?setlang=ja Betawiki]の利用を検討してください。",
+'editinginterface'     => "'''警告:''' あなたはソフトウェアのインターフェースに使用されているテキストを編集しています。このページの変更はすべての利用者のユーザインタフェースに影響します。翻訳をする場合、MediaWiki の多言語対応プロジェクトである [http://translatewiki.net/wiki/Main_Page?setlang=ja Betawiki] の利用を検討してください。",
 'sqlhidden'            => '（SQLクエリ非表示）',
 'cascadeprotected'     => 'このページはカスケード保護されている以下のページから呼び出されているため、編集できないように保護されています。
 $2',
@@ -1343,7 +1343,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'filename'                    => 'ファイル名',
 'filedesc'                    => 'ファイルの概要',
 'fileuploadsummary'           => 'ファイルの概要:',
-'filestatus'                  => '著作権情報:',
+'filestatus'                  => '著作権状態:',
 'filesource'                  => 'ファイルの出典:',
 'uploadedfiles'               => 'アップロードされたファイル',
 'ignorewarning'               => '警告を無視し、保存してしまう',
@@ -1359,7 +1359,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'large-file'                  => 'ファイルサイズは $1 バイト以下に抑えることが推奨されています。このファイルは $2 バイトです。',
 'largefileserver'             => 'ファイルが大きすぎます。サーバー設定で許されている最大値を超過しました。',
 'emptyfile'                   => 'あなたがアップロードしようとしているファイルは内容が空であるか、もしくはファイル名の指定が間違っています。もう一度、ファイル名が正しいか、あるいはアップロードしようとしたファイルであるかどうかを確認してください。',
-'fileexists'                  => 'この名前のファイルは既に存在しています。<strong><tt>$1</tt></strong>と置き換えるかどうかお確かめください。',
+'fileexists'                  => 'この名前のファイルは既に存在しています。置き換えたいか確信がもてない場合は <strong><tt>$1</tt></strong> を確認してください。',
 'filepageexists'              => 'このファイル <strong><tt>$1</tt></strong> に関する説明ページは既に存在しますが、ファイル自体が存在していない現状です。よって、この名前でファイルをアップロードすることは可能ですが、説明ページには入力された概要が反映されません。新しい概要へ更新するためには、説明ページを手動で編集する必要があります。',
 'fileexists-extension'        => '類似した名前のファイルが既に存在しています:<br />
 アップロード中のファイル: <strong><tt>$1</tt></strong><br />
@@ -1491,7 +1491,7 @@ PICT # misc.
 'filedelete-legend'           => 'ファイルの削除',
 'filedelete-intro'            => "あなたは'''[[Media:$1|$1]]'''を削除しようとしています。",
 'filedelete-intro-old'        => "あなたは'''[[Media:$1|$1]]'''の[$4 $3, $2]の版を削除しようとしています。",
-'filedelete-comment'          => 'コメント:',
+'filedelete-comment'          => '削除理由:',
 'filedelete-submit'           => '削除する',
 'filedelete-success'          => "'''$1''' は削除されました。",
 'filedelete-success-old'      => "'''[[Media:$1|$1]]''' の $2 $3 版は削除されています。",
@@ -1556,7 +1556,7 @@ PICT # misc.
 [[MediaWiki:Disambiguationspage]] からリンクされたテンプレートを使用しているページは曖昧さ回避ページと見なされます。",
 
 'doubleredirects'            => '二重リダイレクト',
-'doubleredirectstext'        => '各列は最初及び2つ目のリダイレクトへのリンクが記されています。2つ目のそれ同様、最初のものを本来のページへリダイレクトしなおしてください。',
+'doubleredirectstext'        => 'このページは他のリダイレクトページにリダイレクトしているページの一覧です。各行は始点のリダイレクトとそのリダイレクト先のリダイレクトページ、および、そのまたリダイレクトしている先のページを含んでいます。3つ目のページがたいていは「真の」リダイレクト先であり、1つ目のリダイレクトはそこを直接指すべきです。',
 'double-redirect-fixed-move' => '[[$1]] が移動されているため、リダイレクト先を移動先の [[$2]] へ変更しました。',
 'double-redirect-fixer'      => 'リダイレクトフィクサー',
 
@@ -1827,7 +1827,7 @@ $NEWPAGE
 'dellogpagetext'         => '以下は最近の削除と復帰の記録です。',
 'deletionlog'            => '削除記録',
 'reverted'               => '以前のバージョンへの差し戻し',
-'deletecomment'          => '削除の理由',
+'deletecomment'          => '削除理由:',
 'deleteotherreason'      => 'その他 / 理由の付記:',
 'deletereasonotherlist'  => 'その他の理由',
 'deletereason-dropdown'  => '*よくある削除理由
@@ -2081,7 +2081,7 @@ $NEWPAGE
 'range_block_disabled'            => '広域ブロックは無効に設定されています。',
 'ipb_expiry_invalid'              => '不正な期間です。',
 'ipb_expiry_temp'                 => '利用者名を秘匿したブロックは無期限でなければなりません。',
-'ipb_already_blocked'             => '"$1" は既にブロックされています。',
+'ipb_already_blocked'             => '"$1" は既にブロックされています',
 'ipb-needreblock'                 => '== すでにブロックされています ==
 $1 は、すでにブロックされています。設定を変更しますか？',
 'ipb_cant_unblock'                => 'エラー: ブロックされた ID $1 が見つかりません。おそらく既にブロック解除されています。',
@@ -2227,7 +2227,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'import-interwiki-namespace' => '目的の名前空間:',
 'import-upload-filename'     => 'ファイルの名前:',
 'import-comment'             => 'コメント:',
-'importtext'                 => '書き出し元となるウィキから [[Special:Export|書き出し用ユーティリティ]]を使ってXMLファイルを書き出してください。あなたのコンピューターに保存した後、ここにアップロードしてください。',
+'importtext'                 => '書き出し元となるウィキから[[Special:Export|書き出し用ユーティリティ]]を使ってXMLファイルを書き出してください。あなたのコンピュータに保存した後、ここにアップロードしてください。',
 'importstart'                => 'ページを取り込んでいます...',
 'import-revision-count'      => '$1 版',
 'importnopages'              => 'インポートするページがありません',
@@ -2378,9 +2378,14 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'numtalkauthors' => '投稿者数（ノート）: $1',
 
 # Skin names
-'skinname-standard'    => '標準',
+'skinname-standard'    => 'クラシック',
 'skinname-nostalgia'   => 'ノスタルジア',
 'skinname-cologneblue' => 'ケルンブルー',
+'skinname-monobook'    => 'モノブック',
+'skinname-myskin'      => 'マイスキン',
+'skinname-chick'       => 'チック',
+'skinname-simple'      => 'シンプル',
+'skinname-modern'      => 'モダン',
 
 # Math options
 'mw_math_png'    => '常にPNG',
@@ -2974,10 +2979,9 @@ $1
 'filepath'         => 'パスの取得',
 'filepath-page'    => 'ファイル名:',
 'filepath-submit'  => 'パスを取得',
-'filepath-summary' => 'この特別ページは、ファイルへの完全なパスを返します。
-画像は最大解像度で表示され、他のファイルタイプでは関連付けられたプログラムが直接起動します。
+'filepath-summary' => 'この特別ページは、ファイルへの完全なパスを返します。画像は最大解像度で表示され、他のファイルタイプは関連付けされたプログラムが直接起動します。
 
-ファイル名は"{{ns:file}}:"を付けずに入力してください。',
+ファイル名は接頭辞「{{ns:file}}:」を付けずに入力してください。',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => '重複ファイルの検索',

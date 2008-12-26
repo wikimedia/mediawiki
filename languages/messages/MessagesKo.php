@@ -1560,6 +1560,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'nopagetitle'             => '해당 문서 없음',
 'pager-newer-n'           => '이전 $1개',
 'pager-older-n'           => '다음 $1개',
+'suppress'                => '오버사이트',
 
 # Book sources
 'booksources'               => '책 찾기',
@@ -1630,6 +1631,8 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'listgrouprights'                 => '사용자 권한 목록',
 'listgrouprights-summary'         => '다음은 이 위키에서 설정된 사용자 권한 그룹의 목록입니다.
 각각의 권한에 대해서는 [[{{MediaWiki:Listgrouprights-helppage}}|이곳]]을 참조하십시오.',
+'listgrouprights-group'           => '그룹',
+'listgrouprights-rights'          => '권한',
 'listgrouprights-members'         => '(사용자 목록)',
 'listgrouprights-addgroup'        => '$1 권한을 부여',
 'listgrouprights-removegroup'     => '$1 권한을 해제',
@@ -2387,12 +2390,14 @@ Variants for Chinese language
 'exif-lightsource'         => '광원',
 'exif-flash'               => '플래시',
 'exif-focallength'         => '렌즈 초점 거리',
+'exif-exposureindex'       => '노출 지수',
 'exif-exposuremode'        => '노출 방식',
 'exif-whitebalance'        => '화이트 밸런스',
 'exif-digitalzoomratio'    => '디지털 줌 비율',
 'exif-saturation'          => '채도',
 'exif-gpslatituderef'      => '북위 또는 남위',
 'exif-gpslatitude'         => '위도',
+'exif-gpslongituderef'     => '동경 또는 서경',
 'exif-gpslongitude'        => '경도',
 'exif-gpsaltituderef'      => '고도 정보',
 'exif-gpsaltitude'         => '고도',
@@ -2406,7 +2411,9 @@ Variants for Chinese language
 'exif-orientation-2' => '수평으로 뒤집음', # 0th row: top; 0th column: right
 'exif-orientation-3' => '180° 회전됨', # 0th row: bottom; 0th column: right
 'exif-orientation-4' => '수직으로 뒤집음', # 0th row: bottom; 0th column: left
+'exif-orientation-5' => '시계 반대 방향으로 90° 회전하고 수직으로 뒤집음', # 0th row: left; 0th column: top
 'exif-orientation-6' => '시계 방향으로 90° 회전함', # 0th row: right; 0th column: top
+'exif-orientation-7' => '시계 방향으로 90° 회전하고 수직으로 뒤집음', # 0th row: right; 0th column: bottom
 'exif-orientation-8' => '시계 반대 방향으로 90° 회전됨', # 0th row: left; 0th column: bottom
 
 'exif-exposureprogram-1' => '수동',
@@ -2426,6 +2433,9 @@ Variants for Chinese language
 'exif-lightsource-13'  => '주백색 형광등 (N 4600 – 5400K)',
 'exif-lightsource-14'  => '냉백색 형광등 (W 3900 – 4500K)',
 'exif-lightsource-15'  => '백색 형광등 (WW 3200 – 3700K)',
+'exif-lightsource-17'  => '표준 A',
+'exif-lightsource-18'  => '표준 B',
+'exif-lightsource-19'  => '표준 C',
 'exif-lightsource-255' => '다른 광원',
 
 # Flash modes
@@ -2588,6 +2598,7 @@ $5
 'version-specialpages'         => '특수 문서',
 'version-parserhooks'          => '파서 훅',
 'version-other'                => '기타',
+'version-hooks'                => '훅',
 'version-extension-functions'  => '확장 함수',
 'version-parser-extensiontags' => '파서 확장 태그',
 'version-hook-name'            => '훅 이름',

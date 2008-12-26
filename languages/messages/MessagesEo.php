@@ -1139,10 +1139,12 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'timezonetext'              => 'Indiku je kiom da horoj via
 loka horzono malsamas disde tiu de la servilo (UTC).
 Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertempo.',
-'localtime'                 => 'Loka horzono',
+'localtime'                 => 'Loka tempo:',
 'timezoneselect'            => 'Horzono:',
-'timezoneoffset'            => 'Malsamo',
-'servertime'                => 'Horo de la servilo',
+'timezoneuseserverdefault'  => 'Uzi defaŭlton de servilo',
+'timezoneuseoffset'         => 'Alia (Enigu diferencon)',
+'timezoneoffset'            => 'Diferenco¹:',
+'servertime'                => 'Servila tempo:',
 'guesstimezone'             => 'Plenigita el la foliumilo',
 'allowemail'                => 'Rajtigi retmesaĝojn de aliaj uzantoj',
 'prefs-searchoptions'       => 'Serĉi opciojn',
