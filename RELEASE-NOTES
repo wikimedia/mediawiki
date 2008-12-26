@@ -250,6 +250,8 @@ The following extensions are migrated into MediaWiki 1.14:
 * Special:Log: Add 'change protection' link for unprotected pages too
 * Special:Log: Add log type specific CSS classes 'mw-logline-$logtype' to
   'li' elements
+* (bug 16754) Making arbitrary rows of sortable tables sticky:
+  |- class="unsortable"
 
 === Bug fixes in 1.14 ===
 
