@@ -3006,14 +3006,14 @@ This is probably caused by a link to a blacklisted external site.',
 'numtalkauthors' => 'Number of distinct authors (discussion page): $1',
 
 # Skin names
-'skinname-standard'    => 'Classic',
-'skinname-nostalgia'   => 'Nostalgia',
-'skinname-cologneblue' => 'Cologne Blue',
-'skinname-monobook'    => 'MonoBook',
-'skinname-myskin'      => 'MySkin',
-'skinname-chick'       => 'Chick',
-'skinname-simple'      => 'Simple',
-'skinname-modern'      => 'Modern',
+'skinname-standard'    => 'Classic', # only translate this message to other languages if you have to change it
+'skinname-nostalgia'   => 'Nostalgia', # only translate this message to other languages if you have to change it
+'skinname-cologneblue' => 'Cologne Blue', # only translate this message to other languages if you have to change it
+'skinname-monobook'    => 'MonoBook', # only translate this message to other languages if you have to change it
+'skinname-myskin'      => 'MySkin', # only translate this message to other languages if you have to change it
+'skinname-chick'       => 'Chick', # only translate this message to other languages if you have to change it
+'skinname-simple'      => 'Simple', # only translate this message to other languages if you have to change it
+'skinname-modern'      => 'Modern', # only translate this message to other languages if you have to change it
 
 # Math options
 'mw_math_png'    => 'Always render PNG',
