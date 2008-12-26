@@ -2103,7 +2103,7 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 'skinname-nostalgia'   => 'Nostalgi',
 'skinname-cologneblue' => 'Kølnerblå',
 'skinname-monobook'    => 'MonoBook',
-'skinname-myskin'      => 'Eget udseende ',
+'skinname-myskin'      => 'Eget udseende',
 'skinname-chick'       => 'Chick',
 'skinname-simple'      => 'Enkelt',
 'skinname-modern'      => 'Moderne',

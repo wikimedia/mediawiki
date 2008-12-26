@@ -13,7 +13,6 @@
  * @author Spacebirdy
  */
 
-
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Spesiaal',

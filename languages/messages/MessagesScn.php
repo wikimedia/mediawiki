@@ -1039,8 +1039,10 @@ S'havi accirtari ca la cuntinuità storica di la pàggina nun veni altirata.",
 'timezonetext'              => "Mmetti lu nùmmiru d'uri di diffirenza tra la tò ura lucali e l'ura dû server (UTC).",
 'localtime'                 => 'Uràriu lucali',
 'timezoneselect'            => 'Time zone:',
+'timezoneuseserverdefault'  => 'Usa uràriu dû server',
+'timezoneuseoffset'         => 'Àutru (spicificari diffirenza)',
 'timezoneoffset'            => 'Uri di diffirenza¹',
-'servertime'                => 'Ura dû server',
+'servertime'                => 'Uràriu dû server',
 'guesstimezone'             => "Usa l'ura dû tò browser",
 'allowemail'                => 'Cunzenti la ricezzioni di e-mail di àutri utenti',
 'prefs-searchoptions'       => 'Opzioni di circata',
@@ -1549,6 +1551,7 @@ chisti putìssiru quinni èssiri utilizzati puru siddu cumpàrinu nta l'alencu."
 'booksources-isbn'          => 'Còdici ISBN:',
 'booksources-go'            => 'Vai',
 'booksources-text'          => "Di sèquitu veni prisintatu n'alencu di culligamenti versu siti sterni ca vìnninu libbra novi e usati, attraversu li quali è pussìbbili ottèniri maiuri nfurmazzioni supra lu testu circatu:",
+'booksources-invalid-isbn'  => "L'ISBN datu pari ca nun è vàlidu; cuntrolla l'erruri di ricupiatura dâ surgenti urigginali.",
 
 # Special:Log
 'specialloguserlabel'  => 'Utenti:',
@@ -2261,8 +2264,14 @@ Nta st'ùrtimu casu si pò macari utilizzari un culligamentu, p'asempiu [[{{ns:s
 'numtalkauthors' => "Nùmmuru d'autura distinti (pàggina di discussioni): $1",
 
 # Skin names
-'skinname-standard' => 'Classicu',
-'skinname-simple'   => 'Sìmprici',
+'skinname-standard'    => 'Classicu',
+'skinname-nostalgia'   => 'Nustargìa',
+'skinname-cologneblue' => 'Cologne Blu',
+'skinname-monobook'    => 'MonoBook',
+'skinname-myskin'      => 'MySkin',
+'skinname-chick'       => 'Chick',
+'skinname-simple'      => 'Sìmprici',
+'skinname-modern'      => 'Mudernu',
 
 # Math options
 'mw_math_png'    => "Ammustra sempri 'n PNG",

@@ -11,7 +11,6 @@
  * @author לערי ריינהארט
  */
 
-
 $datePreferences = array(
 	'default',
 	'fy normal',

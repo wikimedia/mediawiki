@@ -568,7 +568,7 @@ $2',
 'hr_tip'          => '水平线 (小心使用)',
 
 # Edit pages
-'summary'                          => '摘要',
+'summary'                          => '摘要：',
 'subject'                          => '标题:',
 'minoredit'                        => '这是一个小修改',
 'watchthis'                        => '监视本页',
@@ -1552,8 +1552,8 @@ Template:消除歧義',
 'speciallogtitlelabel' => '标题:',
 'log'                  => '日志',
 'all-logs-page'        => '所有日志',
-'alllogstext'          => '综合显示上传、删除、保护、查封以及管理日志。
-您可以选择日志类型，用户名或者相关页面来缩小查询范围。',
+'alllogstext'          => '综合显示{{SITENAME}}所有的可用日志。
+您可以选择日志类型，用户名（区分大小写）或者相关页面（区分大小写）来缩小查询范围。',
 'logempty'             => '在日志中不存在匹配项。',
 'log-title-wildcard'   => '搜寻以这个文字开始的标题',
 
@@ -1836,7 +1836,7 @@ $NEWPAGE
 'undeletepagetext'             => '以下的$1个页面已经被删除，但依然在档案中并可以被恢复。
 档案库可能被定时清理。',
 'undelete-fieldset-title'      => '恢复修订',
-'undeleteextrahelp'            => "恢复整个页面时，请清除所有复选框后点击 '''''恢复'''''。恢复特定版本时，请选择相应版本前的复选框后点击 '''''恢复'''''。点击 '''''重设''''' 将清除评论内容及所有复选框。",
+'undeleteextrahelp'            => "恢复整个页面时，请清除所有复选框后点击'''''恢复'''''。恢复特定版本时，请选择相应版本前的复选框后点击'''''恢复'''''。点击'''''重设'''''将清除评论内容及所有复选框。",
 'undeleterevisions'            => '$1版本存档',
 'undeletehistory'              => '如果您恢复了该页面，所有版本都会被恢复到修订历史中。
 如果本页删除后有一个同名的新页面建立，被恢复的版本将会称为较新的历史。',
@@ -2154,7 +2154,7 @@ $1已经被封锁。您是否想更改这个设置？',
 'import-interwiki-source'    => '来源维基／页面：',
 'import-interwiki-history'   => '复制此页的所有历史版本',
 'import-interwiki-submit'    => '导入',
-'import-interwiki-namespace' => '将页面转移到名字空间:',
+'import-interwiki-namespace' => '目标名字空间：',
 'import-upload-filename'     => '文件名：',
 'import-comment'             => '注解:',
 'importtext'                 => '请使用[[Special:Export|导出功能]]从源 wiki 导出文件，
@@ -2313,6 +2313,10 @@ $1已经被封锁。您是否想更改这个设置？',
 'skinname-standard'    => '标准',
 'skinname-nostalgia'   => '怀旧',
 'skinname-cologneblue' => '科隆香水蓝',
+'skinname-monobook'    => 'MonoBook',
+'skinname-myskin'      => 'MySkin',
+'skinname-chick'       => 'Chick',
+'skinname-simple'      => 'Simple',
 'skinname-modern'      => '现代',
 
 # Math options

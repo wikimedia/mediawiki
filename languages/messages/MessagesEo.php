@@ -7,6 +7,7 @@
  * @author Amikeco
  * @author ArnoLagrange
  * @author Malafaya
+ * @author Melancholie
  * @author Michawiki
  * @author MinuteElectron
  * @author Tlustulimu
@@ -1139,6 +1140,7 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 loka horzono malsamas disde tiu de la servilo (UTC).
 Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertempo.',
 'localtime'                 => 'Loka horzono',
+'timezoneselect'            => 'Horzono:',
 'timezoneoffset'            => 'Malsamo',
 'servertime'                => 'Horo de la servilo',
 'guesstimezone'             => 'Plenigita el la foliumilo',

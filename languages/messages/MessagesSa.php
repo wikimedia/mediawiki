@@ -46,7 +46,6 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'वर्गसंभाषणं',
 );
 
-
 $messages = array(
 'underline-always' => 'सदा',
 

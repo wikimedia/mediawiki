@@ -15,7 +15,6 @@
  * @author לערי ריינהארט
  */
 
-
 $namespaceNames = array(
 	NS_MEDIA            => 'Miðill',
 	NS_SPECIAL          => 'Kerfissíða',

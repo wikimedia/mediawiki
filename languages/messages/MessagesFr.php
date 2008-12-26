@@ -34,7 +34,6 @@
  * @author לערי ריינהארט
  */
 
-
 $bookstoreList = array(
 	'Amazon.fr'    => 'http://www.amazon.fr/exec/obidos/ISBN=$1',
 	'alapage.fr'   => 'http://www.alapage.com/mx/?tp=F&type=101&l_isbn=$1&donnee_appel=ALASQ&devise=&',
@@ -2132,7 +2131,7 @@ La raison fournie pour le blocage de $1 est : « $2 ».',
 'blocklogpage'                    => 'Historique des blocages',
 'blocklog-fulllog'                => 'Journal complet des blocages',
 'blocklogentry'                   => 'a bloqué « [[$1]] » - durée : $2 $3',
-'reblock-logentry'                => 'a modifié les paramètres du blocage de [[$1]] avec une date d’expiration au $2 à $3',
+'reblock-logentry'                => 'a modifié les paramètres du blocage de [[$1]] avec une date d’expiration au $2 $3',
 'blocklogtext'                    => 'Ceci est la trace des blocages et déblocages des utilisateurs. Les adresses IP automatiquement bloquées ne sont pas listées. Consultez la [[Special:IPBlockList|liste des utilisateurs bloqués]] pour voir qui est actuellement effectivement bloqué.',
 'unblocklogentry'                 => 'a débloqué « $1 »',
 'block-log-flags-anononly'        => 'utilisateurs anonymes seulement',

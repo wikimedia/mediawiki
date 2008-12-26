@@ -13,7 +13,6 @@
  * @author לערי ריינהארט
  */
 
-
 $magicWords = array(
 	#   ID	                         CASE  SYNONYMS
 	'redirect'               => array( 0,    '#redirect', '#athsheoladh' ),

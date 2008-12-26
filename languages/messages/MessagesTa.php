@@ -11,7 +11,6 @@
  * @author לערי ריינהארט
  */
 
-
 $namespaceNames = array(
 	NS_MEDIA          => 'ஊடகம்',
 	NS_SPECIAL        => 'சிறப்பு',

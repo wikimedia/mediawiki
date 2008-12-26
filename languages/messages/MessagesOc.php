@@ -12,7 +12,6 @@
  * @author לערי ריינהארט
  */
 
-
 $bookstoreList = array(
 	'Amazon.fr' => 'http://www.amazon.fr/exec/obidos/ISBN=$1'
 );

@@ -15,7 +15,6 @@
  * @author לערי ריינהארט
  */
 
-
 $separatorTransformTable = array( ',' => ".", '.' => ',' );
 
 $magicWords = array(
@@ -352,7 +351,7 @@ pe titlul secţiunii (JavaScript)',
 'viewcount'         => 'Această pagină a fost vizitată {{PLURAL:$1|odată|de $1 ori}}.',
 'protectedpage'     => 'Pagină protejată',
 'jumpto'            => 'Salt la:',
-'jumptonavigation'  => 'Navigare',
+'jumptonavigation'  => 'navigare',
 'jumptosearch'      => 'căutare',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).

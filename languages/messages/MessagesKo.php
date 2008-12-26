@@ -16,7 +16,6 @@
  * @author לערי ריינהארט
  */
 
-
 $namespaceNames = array(
 	NS_MEDIA            => '미디어',
 	NS_SPECIAL          => '특수기능',
@@ -907,6 +906,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'revdelete-hide-user'    => '편집자의 계정 이름/IP를 숨기기',
 'revdelete-suppress'     => '문서 내용을 관리자에게도 보이지 않게 숨기기',
 'revdelete-hide-image'   => '파일을 숨기기',
+'revdelete-unsuppress'   => '복구된 판에 대한 제한을 해제',
 'revdelete-logentry'     => '[[$1]]의 판의 보이기 설정을 변경함',
 'logdelete-logentry'     => '[[$1]]의 로그 보이기 설정을 변경함',
 'revdelete-success'      => "'''판의 보이기 설정이 성공적으로 변경되었습니다.'''",
@@ -927,6 +927,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'mergehistory'             => '문서 역사 합치기',
 'mergehistory-box'         => '두 문서의 역사 합치기:',
 'mergehistory-list'        => '병합 가능한 문서 역사',
+'mergehistory-go'          => '합칠 수 있는 편집 보기',
 'mergehistory-submit'      => '문서 역사 합치기',
 'mergehistory-empty'       => '합칠 수 있는 판이 없습니다.',
 'mergehistory-success'     => '[[:$1]]의 $3개의 판이 [[:$2]]에 성공적으로 합쳐졌습니다.',
@@ -1631,7 +1632,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 각각의 권한에 대해서는 [[{{MediaWiki:Listgrouprights-helppage}}|이곳]]을 참조하십시오.',
 'listgrouprights-members'         => '(사용자 목록)',
 'listgrouprights-addgroup'        => '$1 권한을 부여',
-'listgrouprights-removegroup'     => '$1 권한을 회수',
+'listgrouprights-removegroup'     => '$1 권한을 해제',
 'listgrouprights-addgroup-all'    => '모든 권한을 부여',
 'listgrouprights-removegroup-all' => '모든 권한을 회수',
 

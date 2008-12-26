@@ -23,7 +23,6 @@
  * @author לערי ריינהארט
  */
 
-
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Special',

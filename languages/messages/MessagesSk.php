@@ -10,6 +10,7 @@
  * @author Michawiki
  * @author Mormegil
  * @author Palica
+ * @author Rudko
  * @author Sp5uhe
  * @author Urhixidur
  * @author Valasek
@@ -1129,9 +1130,10 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 'savedprefs'                => 'Vaše nastavenia boli uložené.',
 'timezonelegend'            => 'Časové pásmo',
 'timezonetext'              => '¹Počet hodín, o ktorý sa váš miestny čas odlišuje od času na serveri (UTC).',
-'localtime'                 => 'Miestny čas',
-'timezoneoffset'            => 'Rozdiel¹',
-'servertime'                => 'Aktuálny čas na serveri',
+'localtime'                 => 'Miestny čas:',
+'timezoneselect'            => 'Časová zóna:',
+'timezoneoffset'            => 'Rozdiel¹:',
+'servertime'                => 'Aktuálny čas na serveri:',
 'guesstimezone'             => 'Prevziať z prehliadača',
 'allowemail'                => 'Povoliť prijímanie e-mailov od iných používateľov',
 'prefs-searchoptions'       => 'Voľby hľadania',
@@ -2403,6 +2405,14 @@ Pravdepodobne to spôsobil odkaz na externú internetovú lokalitu, ktorá sa na
 'numwatchers'    => 'Počet zobrazení: $1',
 'numauthors'     => 'Počet odlišných autorov (stránka): $1',
 'numtalkauthors' => 'Počet odlišných autorov (diskusná stránka): $1',
+
+# Skin names
+'skinname-standard'    => 'Klasický',
+'skinname-nostalgia'   => 'Nostalgický',
+'skinname-cologneblue' => 'Kolínsky Modrý',
+'skinname-monobook'    => 'MonoKniha',
+'skinname-simple'      => 'Jednoduchý',
+'skinname-modern'      => 'Moderný',
 
 # Math options
 'mw_math_png'    => 'Vždy vykresľovať PNG',

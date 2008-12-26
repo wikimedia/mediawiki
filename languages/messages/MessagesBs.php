@@ -2465,6 +2465,16 @@ Ovo je vjerovatno izazvao vezom ka vanjskoj nepoželjnoj stranici.',
 'numauthors'     => 'Broj različitih autora (stranice): $1',
 'numtalkauthors' => 'Broj različitih autora (stranice za razgovor): $1',
 
+# Skin names
+'skinname-standard'    => 'Klasično',
+'skinname-nostalgia'   => 'Nostalgija',
+'skinname-cologneblue' => 'Kelnsko plavo',
+'skinname-monobook'    => 'MonoKnjiga',
+'skinname-myskin'      => 'MojaKoža',
+'skinname-chick'       => 'Pile (chick)',
+'skinname-simple'      => 'Jednostavna',
+'skinname-modern'      => 'Moderna',
+
 # Math options
 'mw_math_png'    => 'Uvijek prikaži kao PNG',
 'mw_math_simple' => 'HTML ako je jednostavno, inače PNG',

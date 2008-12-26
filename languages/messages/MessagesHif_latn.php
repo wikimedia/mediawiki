@@ -470,11 +470,11 @@ Agar ii account galti se banaa hai tab ii sandes ke ignore kar do.',
 'loginlanguagelabel'         => 'Bhasa: $1',
 
 # Password reset dialog
-'resetpass'                 => 'Account password ke badlo nai to reset karo',
+'resetpass'                 => 'Password ke badlo',
 'resetpass_announce'        => 'Aap ek temporary e-mailed code se login bhaya hai
 Login khatam kare khatir, aap ke nawaa password set kare ke parri hian:',
 'resetpass_text'            => '<!-- Hian pe likho -->',
-'resetpass_header'          => 'Password ke reset karo',
+'resetpass_header'          => 'Account assword ke badlo',
 'oldpassword'               => 'Purana password:',
 'newpassword'               => 'Nawaa password:',
 'retypenew'                 => 'Password fir se type karo:',
@@ -898,7 +898,7 @@ Note that using the navigation links will reset this column.',
 'viewprevnext'                     => 'Dekho ($1) ($2) ($3)',
 'searchmenu-legend'                => 'Khoje ke option',
 'searchmenu-exists'                => "'''Ii wiki me \"[[\$1]]\" naam ke panna hai'''",
-'searchmenu-new'                   => "'''[[:$1|Banao]] panna ''$1'' ii panna me!'''",
+'searchmenu-new'                   => "'''Ii wiki me \"[[:\$1]]\" panna ke banao!'''",
 'searchhelp-url'                   => 'Help:Madat',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Ii prefix ke panna ke browse karo]]',
 'searchprofile-articles'           => 'Vishay suchi ke panna',
@@ -987,6 +987,7 @@ Configure kare khatir meharbani kar ke math/README ke dekho.',
 'saveprefs'                 => 'Save karo',
 'resetprefs'                => 'Binaa bachawa gias badlao ke mitao',
 'textboxsize'               => 'Badaltaa hai',
+'prefs-edit-boxsize'        => 'Edit window ke size.',
 'rows'                      => 'Rows:',
 'columns'                   => 'Columns:',
 'searchresultshead'         => 'Khojo',
@@ -1000,9 +1001,12 @@ Configure kare khatir meharbani kar ke math/README ke dekho.',
 'savedprefs'                => 'Aap ke pasand ke save kar lewa gais hai.',
 'timezonelegend'            => 'Time ke zone',
 'timezonetext'              => '¹ Aap ke local time aur server time (UTC) me ketna farka hai.',
-'localtime'                 => 'Sthaniye samay',
-'timezoneoffset'            => 'Offset¹',
-'servertime'                => 'Server ke time',
+'localtime'                 => 'Sthaniye samay:',
+'timezoneselect'            => 'Time ke zone:',
+'timezoneuseserverdefault'  => 'Server default ke use karo',
+'timezoneuseoffset'         => 'Aur koi (offset ke specify karo)',
+'timezoneoffset'            => 'Offset¹:',
+'servertime'                => 'Server ke time:',
 'guesstimezone'             => 'Browser se bharo',
 'allowemail'                => 'Aur sadasya se e-mail enable karo',
 'prefs-searchoptions'       => 'Khoje ke option',
@@ -1208,14 +1212,40 @@ To include a file in a page, use a link in one of the following forms:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' to use a 200 pixel wide rendition in a box in the left margin with 'alt text' as description
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' for directly linking to the file without displaying the file",
 'upload-permitted'           => 'File types jiske ijajat hai: $1.',
+'upload-preferred'           => 'Kon rakam ke file ke mangtaa hai: $1.',
+'upload-prohibited'          => 'Ii rakam ke file ke upload nai karaa jaae sake hai: $1.',
+'uploadlog'                  => 'upload karaa gae file ke log',
 'uploadlogpage'              => 'Suchi ke upload karo',
+'uploadlogpagetext'          => 'Niche ke list me haali ke uplaod karaa gae file ke suchi hai.
+Visual overview ke khatir [[Special:NewFiles|nawaa file ke gallery]] ke dekho.',
 'filename'                   => 'Filename',
+'filedesc'                   => 'Sanchhipt me',
+'fileuploadsummary'          => 'Sanchhipt me:',
+'filestatus'                 => 'Copyright ke haalat:',
+'filesource'                 => 'File ke source:',
 'uploadedfiles'              => 'Files jiske upload karaa gais hai.',
+'ignorewarning'              => 'Chetauni pe dhyan nai de ke file ke save karo',
+'ignorewarnings'             => 'Koi bhi chetauni pe dhyan nai do',
 'minlength1'                 => 'File ke naam me kamti se kamti ek letter hoe ke chaahi.',
+'illegalfilename'            => 'Filename "$1" me uu akchhar hai jiske panna ke title me allowed nai hai.
+Maharbaani kar ke file ke naam ke badal ke fir se upload kare ke kosis karo.',
 'badfilename'                => 'File ke naam badak ke "$1" kar dewa gais hai.',
 'filetype-badmime'           => 'MIME rakam "$1" ke upload kare ke ijajat nai hai.',
+'filetype-bad-ie-mime'       => 'Ii file ke upload nai kare sakta hai kahe ki Internet Explorer iske "$1" ke rakam dekhi, jon ki allowed nai hai aur khatarnaat rakam ke file jaana jaae hai.',
+'filetype-unwanted-type'     => "'''\".\$1\"''' rakam ke file ke hian nai maaga jaae hai.
+Maange waala {{PLURAL:\$3|file ke rakam hai|file ke rakam hai}} \$2.",
+'filetype-banned-type'       => "'''\".\$1\"''' ke rakam ke file hian pe allowed nai hai.
+Allowed {{PLURAL:\$3|rakam ke file hai|rakam ke fle hai}} \$2.",
 'filetype-missing'           => 'File ke koi extension nai hai (jaise ki ".jpg").',
+'large-file'                 => 'Ii salah hai ki file ke size $1 se barraa nai rahe;
+ii file hai $2',
 'largefileserver'            => 'Ii file, jetna ki server allow kare hai, se barraa hai.',
+'emptyfile'                  => 'Jon file aap upload karaa rahaa uu khaali rahaa.
+Ii saait file ke naam likhe me typing mistake ke kaaran hoi.
+Meharbaani kar ke ii dekho ki aap such me ii file upload kare mangtaa hai ki nai.',
+'filepageexists'             => 'Ii file ke description ke <strong><tt>$1</tt></strong> me banae dewa gais rakaa, lekin ii naam ke koi file abhi nai hai.
+Aap jon summary likhtaa hai uu panna ke description me nai dekhai.
+Description ke dekhae ke khatir, aap ke iske manually badle ke parri.',
 'successfulupload'           => 'Upload safal bhais',
 'uploadwarning'              => 'Upload warning',
 'savefile'                   => 'File ke save karo',
@@ -1323,6 +1353,7 @@ To include a file in a page, use a link in one of the following forms:
 'ancientpages'            => 'Sab se purana panna',
 'move'                    => 'Naam badlo',
 'movethispage'            => 'Panna ke naam badlo',
+'pager-newer-n'           => '{{PLURAL:$1|nawaa 1|nawaa $1}}',
 
 # Book sources
 'booksources' => 'Pustak sources',
@@ -1575,7 +1606,7 @@ Wahii line pe aur koi link exception consider karaa jai i.e. jahan par panna sak
 
 # External editor support
 'edit-externally'      => 'Edit this file using an external application',
-'edit-externally-help' => 'Aur jaankari khatir [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] ke dekho.',
+'edit-externally-help' => '(Aur jaankari khatir [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] ke dekho)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'sab',

@@ -12,7 +12,6 @@
  * @author לערי ריינהארט
  */
 
-
 $bookstoreList = array(
 	'Bokasolan.fo' => 'http://www.bokasolan.fo/vleitari.asp?haattur=bok.alfa&Heiti=&Hovindur=&Forlag=&innbinding=Oell&bolkur=Allir&prisur=Allir&Aarstal=Oell&mal=Oell&status=Oell&ISBN=$1',
 	'inherit' => true,

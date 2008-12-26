@@ -16,7 +16,6 @@
  * @see http://bugzilla.wikimedia.org/show_bug.cgi?id=11145
  */
 
-
 $namespaceNames = array(
 	NS_MEDIA          => 'ਮੀਡੀਆ',
 	NS_SPECIAL        => 'ਖਾਸ',
