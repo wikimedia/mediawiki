@@ -637,13 +637,16 @@ function ts_resortTable(lnk) {
 	var reverse = (span.getAttribute("sortdir") == 'down');
 
 	var newRows = new Array();
+	var staticRows = new Array();
 	for (var j = rowStart; j < table.rows.length; j++) {
 		var row = table.rows[j];
-		var keyText = ts_getInnerText(row.cells[column]);
-		var oldIndex = (reverse ? -j : j);
-		var preprocessed = preprocessor( keyText );
+		if((" "+row.className+" ").indexOf(" unsortable ") < 0) {
+			var keyText = ts_getInnerText(row.cells[column]);
+			var oldIndex = (reverse ? -j : j);
+			var preprocessed = preprocessor( keyText );
 
-		newRows[newRows.length] = new Array(row, preprocessed, oldIndex);
+			newRows[newRows.length] = new Array(row, preprocessed, oldIndex);
+		} else staticRows[staticRows.length] = new Array(row, false, j-rowStart);
 	}
 
 	newRows.sort(sortfn);
@@ -656,6 +659,11 @@ function ts_resortTable(lnk) {
 	} else {
 		arrowHTML = '<img src="'+ ts_image_path + ts_image_up + '" alt="&uarr;"/>';
 		span.setAttribute('sortdir','down');
+	}
+
+	for(var i in staticRows) {
+		var row = staticRows[i];
+		newRows.splice(row[2], 0, row);
 	}
 
 	// We appendChild rows that already exist to the tbody, so it moves them rather than creating new ones
