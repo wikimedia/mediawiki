@@ -280,6 +280,7 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'דף_ריק' ),
 	'LinkSearch'                => array( 'חיפוש_קישורים_חיצוניים' ),
 	'DeletedContributions'      => array( 'תרומות_מחוקות' ),
+	'Interwiki'                 => array( 'בינוויקי' ),
 );
 
 $namespaceNames = array(
@@ -1868,11 +1869,13 @@ PICT # שונות
 'interwiki_error'          => 'שגיאה: טבלת הבינוויקי ריקה, או שיש שגיאה אחרת.',
 'interwiki_intro'          => 'ראו [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] למידע נוסף אודות טבלת הבינוויקי.
 ישנו [[Special:Log/interwiki|יומן שינויים]] לטבלת הבינוויקי.',
+'interwiki_local'          => 'הגדרה כאתר ויקי מקומי',
 'interwiki_log_added'      => 'הקידומת "$2" ($3) (הכללה: $4) (מקומית: $5) נוספה לטבלת הבינוויקי',
 'interwiki_log_deleted'    => 'הסיר את הקידומת "$2" מטבלת הבינוויקי',
 'interwiki_log_edited'     => 'הקידומת "$2" : ($3) (הכללה: $4) (מקומית: $5) שונתה בטבלת הבינוויקי',
 'interwiki_prefix'         => 'קידומת',
 'interwiki_reasonfield'    => 'סיבה',
+'interwiki_trans'          => 'אפשרות להכללת דפים מהאתר',
 'interwikilogpage'         => 'יומן טבלת הבינוויקי',
 'interwikilogpagetext'     => 'זהו יומן השינויים שנערכו ב[[Special:Interwiki|טבלת הבינוויקי]].',
 'right-interwiki'          => 'עריכת נתוני הבינוויקי',
@@ -3008,7 +3011,7 @@ $5
 'invalidateemail'          => 'ביטול האימות של כתובת הדוא"ל',
 
 # Scary transclusion
-'scarytranscludedisabled' => '[הכללת תבניות בין אתרים מבוטלת]',
+'scarytranscludedisabled' => '[הכללת דפים בין אתרים מבוטלת]',
 'scarytranscludefailed'   => '[הכללת התבנית נכשלה בגלל $1]',
 'scarytranscludetoolong'  => '[כתובת ה־URL ארוכה מדי]',
 
