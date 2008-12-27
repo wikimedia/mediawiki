@@ -1607,7 +1607,6 @@ Hlej tež [[Special:WantedCategories|požadane kategorije]].',
 
 # Special:Interwiki
 'interwiki'                => 'Interwiki-daty wobhladać a změnić',
-'interwiki-desc'           => 'Přidawa [[Special:Interwiki|specialnu stronu]] za wobhladowanje a wobdźěłowanje interwiki-tabele',
 'interwiki-title-norights' => 'Daty interwiki wobhladać',
 'interwiki_addbutton'      => 'Přidać',
 'interwiki_added'          => 'Prefiks "$1" je so wuspěšnje interwiki-tabeli přidał.',

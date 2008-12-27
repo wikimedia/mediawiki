@@ -1407,7 +1407,6 @@ PICT # misc.
 
 # Special:Interwiki
 'interwiki'                => 'आंतरविकि डाटा देखें एवं बदलें',
-'interwiki-desc'           => 'आंतरविकि तालिका देखनेके लिये और बदलने के लिये एक [[Special:Interwiki|विशेष पॄष्ठ]]',
 'interwiki-title-norights' => 'आंतरविकि डाटा देखें',
 'interwiki_addbutton'      => 'बढायें',
 'interwiki_added'          => '$1" उपपद आंतरविकि तालिका में बढाया गया हैं।',

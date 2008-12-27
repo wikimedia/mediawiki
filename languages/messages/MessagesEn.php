@@ -2190,7 +2190,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:Interwiki
 'interwiki'                => 'View and edit interwiki data',
-'interwiki-desc'           => 'Adds a [[Special:Interwiki|special page]] to view and edit the interwiki table',
 'interwiki-title-norights' => 'View interwiki data',
 'interwiki_addbutton'      => 'Add',
 'interwiki_added'          => 'Prefix "$1" was successfully added to the interwiki table.',

@@ -1895,7 +1895,6 @@ Zie ook [[Special:WantedCategories|niet-bestaande categorieën met verwijzingen]
 
 # Special:Interwiki
 'interwiki'                => 'Interwikigegevens bekijken en wijzigen',
-'interwiki-desc'           => 'Voegt een [[Special:Interwiki|speciale pagina]] toe om de interwikitabel te bekijken en bewerken',
 'interwiki-title-norights' => 'Interwikigegevens bekijken',
 'interwiki_addbutton'      => 'Toevoegen',
 'interwiki_added'          => 'Voorvoegsel "$1" is toegevoegd aan de interwikitabel.',

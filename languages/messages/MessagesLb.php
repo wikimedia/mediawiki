@@ -1602,7 +1602,6 @@ Kuckt och [[Special:WantedCategories|Gewënschte Kategorien]].',
 
 # Special:Interwiki
 'interwiki'                => 'Interwiki-Date kucken a veränneren',
-'interwiki-desc'           => "Setzt eng [[Special:Interwiki|Spezialsäit]] derbäi fir d'Interwiki-Tabell ze gesin an z'änneren",
 'interwiki-title-norights' => 'Interwiki-Date kucken',
 'interwiki_addbutton'      => 'Derbäisetzen',
 'interwiki_addtext'        => 'En Interwiki-prefix derbäisetzen',

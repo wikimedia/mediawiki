@@ -1696,7 +1696,6 @@ Vidu ankaŭ [[Special:WantedCategories|Dezirataj kategorioj]].',
 
 # Special:Interwiki
 'interwiki'                => 'Rigardi kaj redakti intervikiajn datenojn',
-'interwiki-desc'           => 'Aldonas [[Special:Interwiki|specialan paĝon]] por rigardi kaj redakti la intervikian tabelon',
 'interwiki-title-norights' => 'Rigardi intervikiajn datenojn',
 'interwiki_addbutton'      => 'Aldoni',
 'interwiki_added'          => 'Prefikso "$1" estis sukcese aldonita al la intervikia tabelo.',

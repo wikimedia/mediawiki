@@ -941,7 +941,6 @@ Mande ou byen si ou ap byen fè kreye li ankò toutbon (gade jounal paj sa a pou
 
 # Special:Interwiki
 'interwiki'                => 'Wè epi edite enfòmasyon entèwiki yo',
-'interwiki-desc'           => 'Ajoute yon [[Special:Interwiki|paj espesial]] pou wè ak edite tab interwiki-a',
 'interwiki-title-norights' => 'Wè enfòmasyon interwiki',
 'interwiki_addbutton'      => 'Ajoute',
 'interwiki_added'          => 'Prefix "$1" te ajoute sou tab interwiki-a avèk siksès.',

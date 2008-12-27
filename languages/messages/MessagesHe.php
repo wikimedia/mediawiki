@@ -1846,7 +1846,6 @@ PICT # שונות
 
 # Special:Interwiki
 'interwiki'                => 'הצגת ועריכת מידע הבינוויקי',
-'interwiki-desc'           => 'הוספת [[Special:Interwiki|דף מיוחד]] להצגת ולעריכת טבלת הבינוויקי',
 'interwiki-title-norights' => 'הצגת מידע הבינוויקי',
 'interwiki_addbutton'      => 'הוספה',
 'interwiki_added'          => 'הקידומת "$1" נוספה בהצלחה לטבלת הבינוויקי.',

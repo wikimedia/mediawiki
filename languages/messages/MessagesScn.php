@@ -1593,7 +1593,6 @@ Talìa macari li [[Special:WantedCategories|catigurìi addumannati]].',
 
 # Special:Interwiki
 'interwiki'                => 'Talìa e mudìfica li dati interwiki',
-'interwiki-desc'           => 'Junci na [[Special:Interwiki|pàggina spiciali]] pi taliari e mudificari la tabedda di li interwiki',
 'interwiki-title-norights' => 'Talìa li dati interwiki',
 
 # Special:LinkSearch

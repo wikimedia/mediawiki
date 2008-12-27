@@ -1680,7 +1680,6 @@ Véxanse tamén as [[Special:WantedCategories|categorías requiridas]].',
 
 # Special:Interwiki
 'interwiki'                => 'Ver e manipular datos interwiki',
-'interwiki-desc'           => 'Engade unha [[Special:Interwiki|páxina especial]] para ver e editar a táboa interwiki',
 'interwiki-title-norights' => 'Ver os datos do interwiki',
 'interwiki_addbutton'      => 'Engadir',
 'interwiki_added'          => 'Engadiuse sen problemas o prefixo "$1" á táboa interwiki.',

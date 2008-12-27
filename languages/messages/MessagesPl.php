@@ -1784,7 +1784,6 @@ Zobacz też [[Special:WantedCategories|nieistniejące kategorie]].',
 
 # Special:Interwiki
 'interwiki'                => 'Zobacz i edytuj dane interwiki',
-'interwiki-desc'           => 'Dodaje [[Special:Interwiki|stronę specjalną]] służącą do przeglądania i redakcji tablicy interwiki.',
 'interwiki-title-norights' => 'Zobacz dane interwiki',
 'interwiki_addbutton'      => 'Dodaj',
 'interwiki_added'          => 'Prefiks „$1” został z powodzeniem dodany do tablicy interwiki.',

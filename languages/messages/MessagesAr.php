@@ -1963,7 +1963,6 @@ PICT # متنوع
 
 # Special:Interwiki
 'interwiki'                => 'عرض وتعديل بيانات الإنترويكي',
-'interwiki-desc'           => 'يضيف [[Special:Interwiki|صفحة خاصة]] لرؤية وتعديل جدول الإنترويكي',
 'interwiki-title-norights' => 'عرض بيانات الإنترويكي',
 'interwiki_addbutton'      => 'إضافة',
 'interwiki_added'          => 'البادئة "$1" تمت إضافتها بنجاح إلى جدول الإنترويكي.',

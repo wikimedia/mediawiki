@@ -1629,7 +1629,6 @@ Bok wobjadnawa se ako bok wujasnjenja zapśimjeśa, gaž wótkazujo na nju [[Med
 
 # Special:Interwiki
 'interwiki'                => 'Daty interwiki se wobglědaś a wobźěłaś',
-'interwiki-desc'           => 'Pśidawa [[Special:Interwiki|specialny bok]] za woglědowanje a wobźěłowanje tabele interwiki',
 'interwiki-title-norights' => 'Daty interwiki se wobglědaś',
 'interwiki_addbutton'      => 'Pśidaś',
 'interwiki_added'          => 'Prefiks "$1" jo se wuspěšnje tabeli interwiki pśidał.',

@@ -1729,7 +1729,6 @@ Vejatz tanben [[Special:WantedCategories|las categorias demandadas]].',
 
 # Special:Interwiki
 'interwiki'                => 'Veire e editar las donadas interwiki',
-'interwiki-desc'           => 'Apond una [[Special:Interwiki|pagina especiala]] per veire e editar la taula interwiki',
 'interwiki-title-norights' => 'Veire las donadas interwiki',
 'interwiki_addbutton'      => 'Apondre',
 'interwiki_added'          => '$1 es estat apondut amb succès dins la taula interwiki.',

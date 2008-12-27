@@ -1696,7 +1696,6 @@ Pozri aj [[Special:WantedCategories|žiadané kategórie]].',
 
 # Special:Interwiki
 'interwiki'                => 'Zobraziť a upravovať údaje interwiki',
-'interwiki-desc'           => 'Pridáva [[Special:Interwiki|špeciálnu stránku]] na zobrazovanie a upravovanie tabuľky interwiki',
 'interwiki-title-norights' => 'Zobraziť údaje interwiki',
 'interwiki_addbutton'      => 'Pridať',
 'interwiki_added'          => 'Predpona „$1“ bola úspešne pridaná do tabuľky interwiki.',

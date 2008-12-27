@@ -1870,7 +1870,6 @@ Mer han_er eije Leßte för de
 
 # Special:Interwiki
 'interwiki'                => 'Engerwiki Date beloere un änndere',
-'interwiki-desc'           => 'Brengk de Sondersigg [[Special:Interwiki]], öm Engerwiki Date ze beloore un ze ändere.',
 'interwiki-title-norights' => 'Engerwiki Date beloore',
 'interwiki_addbutton'      => 'Dobei donn',
 'interwiki_added'          => 'Dä Försaz „$1“ es jäz bei de Engerwiki Date dobei jekomme.',

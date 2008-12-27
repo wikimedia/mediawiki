@@ -1656,7 +1656,6 @@ Vedi anche le [[Special:WantedCategories|categorie richieste]].',
 
 # Special:Interwiki
 'interwiki'                => 'Visualizza e modifica i dati interwiki',
-'interwiki-desc'           => 'Aggiunge una [[Special:Interwiki|pagina speciale]] per visualizzare e modificare la tabella degli interwiki',
 'interwiki-title-norights' => 'Visualizza i dati interwiki',
 'interwiki_addbutton'      => 'Aggiungi',
 'interwiki_added'          => 'Il prefisso "$1" è stato aggiunto alla tabella degli interwiki.',

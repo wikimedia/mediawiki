@@ -1784,7 +1784,6 @@ Du kan avgränsa sökningen och få färre träffar genom att ange typ av logg, 
 
 # Special:Interwiki
 'interwiki'                => 'Visa och redigera interwiki-data',
-'interwiki-desc'           => 'Lägger till en [[Special:Interwiki|specialsida]] för att visa och ändra interwikitabellen',
 'interwiki-title-norights' => 'Visa interwiki-data',
 'interwiki_addbutton'      => 'Lägg till',
 'interwiki_added'          => 'Prefixet "$1" har lagts till i interwikitabellen.',

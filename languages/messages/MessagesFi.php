@@ -1638,7 +1638,6 @@ Katso myös [[Special:WantedCategories|halutut luokat]].',
 
 # Special:Interwiki
 'interwiki'                => 'Katso ja muokkaa wikien välisiä linkkejä',
-'interwiki-desc'           => 'Lisää [[Special:Interwiki|toimintosivun]], jonka avulla voi katsoa ja muokata interwiki-taulua',
 'interwiki-title-norights' => 'Selaa interwiki-tietueita',
 'interwiki_addbutton'      => 'Lisää',
 'interwiki_added'          => 'Etuliite ”$1” lisättiin onnistuneesti interwiki-tauluun.',

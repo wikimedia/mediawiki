@@ -1565,7 +1565,6 @@ Template:消除歧義',
 
 # Special:Interwiki
 'interwiki'                => '跨語言連結表',
-'interwiki-desc'           => '新增[[Special:Interwiki|特殊頁面]]以檢視或編輯跨語言連結表',
 'interwiki-title-norights' => '檢視跨維基資料',
 'interwiki_addtext'        => '新增跨語連結字串',
 'interwiki_deleted'        => '已成功從連結表中刪除連結字串"$1"',

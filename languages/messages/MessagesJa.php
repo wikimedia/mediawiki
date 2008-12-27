@@ -1675,7 +1675,6 @@ PICT # misc.
 
 # Special:Interwiki
 'interwiki'                => 'インターウィキデータの閲覧と編集',
-'interwiki-desc'           => 'インターウィキテーブルの表示と編集を行う[[Special:Interwiki|特別ページ]]を追加する',
 'interwiki-title-norights' => 'インターウィキデータの一覧',
 'interwiki_addbutton'      => '追加',
 'interwiki_added'          => 'プレフィクス"$1" はインターウィキテーブルに正常に追加されました。',

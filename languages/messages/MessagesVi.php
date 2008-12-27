@@ -1693,7 +1693,6 @@ Xem thêm [[Special:WantedCategories|thể loại cần thiết]].',
 
 # Special:Interwiki
 'interwiki'                => 'Xem và sửa đổi dữ liệu về liên kết liên wiki',
-'interwiki-desc'           => 'Thêm một [[Special:Interwiki|trang đặc biệt]] để xem sửa đổi bảng liên wiki',
 'interwiki-title-norights' => 'Xem dữ liệu liên wiki',
 'interwiki_addbutton'      => 'Thêm',
 'interwiki_added'          => 'Tiền tố “$1” đã được thêm vào bảng liên wiki.',
