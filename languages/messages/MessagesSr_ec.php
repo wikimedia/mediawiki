@@ -1560,9 +1560,9 @@ $2',
 'deletedcontributions' => 'Обрисане измене',
 
 # Special:Interwiki
-'interwiki_reasonfield' => 'Разлог',
+'interwiki_addbutton'   => 'Додај',
 'interwiki_delquestion' => 'Бришем „$1”',
-'interwiki_addbutton' => 'Додај',
+'interwiki_reasonfield' => 'Разлог',
 
 # Special:LinkSearch
 'linksearch'       => 'претрага веб линкова',

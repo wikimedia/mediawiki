@@ -164,11 +164,11 @@ Ua nimo ke hiki e haau tau manako {{SITENAME}}.',
 # Book sources
 'booksources-go' => 'Fano',
 
-# Special:LinkSearch
-'linksearch-ok' => 'Kumi',
-
 # Special:Interwiki
 'interwiki_reasonfield' => 'Kakano',
+
+# Special:LinkSearch
+'linksearch-ok' => 'Kumi',
 
 # Watchlist
 'watchlist'     => 'Ko e haaku lau kitekite',

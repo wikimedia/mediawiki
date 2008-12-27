@@ -1504,37 +1504,38 @@ Deleng uga [[Special:WantedCategories|kategori-kategori sing diperlokaké]].',
 # Special:DeletedContributions
 'deletedcontributions' => 'Kontribusi panganggo sing dibusak',
 
-'interwiki' => 'Ndeleng lan nyunting data interwiki',
+# Special:Interwiki
+'interwiki'                => 'Ndeleng lan nyunting data interwiki',
+'interwiki-desc'           => 'Nambahaké sawijining [[Special:Interwiki|kaca astaméwa]] kanggo ndeleng lan nyunting tabèl interwiki',
 'interwiki-title-norights' => 'Ndeleng data interwiki',
-'interwiki-desc' => 'Nambahaké sawijining [[Special:Interwiki|kaca astaméwa]] kanggo ndeleng lan nyunting tabèl interwiki',
-'interwiki_prefix' => 'Préfiks (sisipan awal)',
-'interwiki_reasonfield' => 'Alesan',
-'interwiki_intro' => 'Mangga mirsani $1 kanggo informasi sabanjuré perkara tabèl interwiki.
-Ana sawijining [[Special:Log/interwiki|log owah-owahan]] perkara tabèl interwiki.',
-'interwiki_error' => 'KALUPUTAN: Tabèl interwikiné kosong, utawa ana masalah liya.',
-'interwiki_delquestion' => 'Mbusak "$1"',
-'interwiki_deleting' => 'Panjenengan mbusak préfiks utawa sisipan awal "$1".',
-'interwiki_deleted' => 'Préfisk "$1" bisa kasil dibusak saka tabèl interwiki.',
-'interwiki_delfailed' => 'Préfiks "$1" ora bisa diilangi saka tabèl interwiki.',
-'interwiki_addtext' => 'Nambah préfiks interwiki',
-'interwiki_addintro' => 'Panjenengan nambah préfiks utawa sisipan awal interwiki anyar.
-Élinga yèn iku ora bisa ngandhut spasi ( ), pada pangkat (:), ampersands (&), utawa tandha padha (=).',
-'interwiki_addbutton' => 'Nambah',
-'interwiki_added' => 'Préfiks utawa sisipan awal "$1" bisa kasil ditambahaké ing tabèl interwiki.',
-'interwiki_addfailed' => 'Préfiks "$1" ora bisa ditambahaké ing tabèl interwiki.
+'interwiki_addbutton'      => 'Nambah',
+'interwiki_added'          => 'Préfiks utawa sisipan awal "$1" bisa kasil ditambahaké ing tabèl interwiki.',
+'interwiki_addfailed'      => 'Préfiks "$1" ora bisa ditambahaké ing tabèl interwiki.
 Mbok-menawa iki pancèn wis ana ing tabèl interwiki.',
-'interwiki_edittext' => 'Nyunting sawijining préfiks interwiki',
-'interwiki_editintro' => 'Panjenengan nyunting préfiks interwiki.
-Élinga yèn iki ora bisa nugel pranala-pranala sing wis ana.',
-'interwiki_edited' => 'Préfiks "$1" bisa suksès dimodifikasi ing tabèl interwiki.',
-'interwiki_editerror' => 'Préfiks utawa sisipan awal "$1" ora bisa dimodifikasi ing tabèl interwiki.
+'interwiki_addintro'       => 'Panjenengan nambah préfiks utawa sisipan awal interwiki anyar.
+Élinga yèn iku ora bisa ngandhut spasi ( ), pada pangkat (:), ampersands (&), utawa tandha padha (=).',
+'interwiki_addtext'        => 'Nambah préfiks interwiki',
+'interwiki_defaultreason'  => 'ora mènèhi alesan',
+'interwiki_deleted'        => 'Préfisk "$1" bisa kasil dibusak saka tabèl interwiki.',
+'interwiki_deleting'       => 'Panjenengan mbusak préfiks utawa sisipan awal "$1".',
+'interwiki_delfailed'      => 'Préfiks "$1" ora bisa diilangi saka tabèl interwiki.',
+'interwiki_delquestion'    => 'Mbusak "$1"',
+'interwiki_edited'         => 'Préfiks "$1" bisa suksès dimodifikasi ing tabèl interwiki.',
+'interwiki_editerror'      => 'Préfiks utawa sisipan awal "$1" ora bisa dimodifikasi ing tabèl interwiki.
 Mbok-menawa iki ora ana.',
-'interwikilogpage' => 'Log tabèl interwiki',
-'interwiki_log_added' => 'nambahaké préfiks (sisipan awal) "$2" ($3) (trans: $4) (local: $5) ing tabèl interwiki',
-'interwiki_log_edited' => 'modifikasi préfiks (sisipan awal) "$2" : ($3) (trans: $4) (local: $5) ing tabèl interwiki',
-'interwiki_log_deleted' => 'ngilangi sisipan awal (préfiks) "$2" saka tabèl interwiki',
-'interwikilogpagetext' => 'Kaca iki log owah-owahan kanggo [[Special:Interwiki|tabèl interwiki]].',
-'interwiki_defaultreason' => 'ora mènèhi alesan',
+'interwiki_editintro'      => 'Panjenengan nyunting préfiks interwiki.
+Élinga yèn iki ora bisa nugel pranala-pranala sing wis ana.',
+'interwiki_edittext'       => 'Nyunting sawijining préfiks interwiki',
+'interwiki_error'          => 'KALUPUTAN: Tabèl interwikiné kosong, utawa ana masalah liya.',
+'interwiki_intro'          => 'Mangga mirsani $1 kanggo informasi sabanjuré perkara tabèl interwiki.
+Ana sawijining [[Special:Log/interwiki|log owah-owahan]] perkara tabèl interwiki.',
+'interwiki_log_added'      => 'nambahaké préfiks (sisipan awal) "$2" ($3) (trans: $4) (local: $5) ing tabèl interwiki',
+'interwiki_log_deleted'    => 'ngilangi sisipan awal (préfiks) "$2" saka tabèl interwiki',
+'interwiki_log_edited'     => 'modifikasi préfiks (sisipan awal) "$2" : ($3) (trans: $4) (local: $5) ing tabèl interwiki',
+'interwiki_prefix'         => 'Préfiks (sisipan awal)',
+'interwiki_reasonfield'    => 'Alesan',
+'interwikilogpage'         => 'Log tabèl interwiki',
+'interwikilogpagetext'     => 'Kaca iki log owah-owahan kanggo [[Special:Interwiki|tabèl interwiki]].',
 
 # Special:LinkSearch
 'linksearch'       => 'Golèk pranala jaba',

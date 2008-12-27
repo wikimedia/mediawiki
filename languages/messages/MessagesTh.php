@@ -1537,9 +1537,9 @@ $1 เป็นผู้ดำเนินการบล็อกในคร�
 'deletedcontributions' => 'การแก้ไขที่ถูกลบ',
 
 # Special:Interwiki
-'interwiki_reasonfield' => 'เหตุผล',
+'interwiki_addbutton'   => 'เพิ่ม',
 'interwiki_delquestion' => 'ลบ "$1"',
-'interwiki_addbutton' => 'เพิ่ม',
+'interwiki_reasonfield' => 'เหตุผล',
 
 # Special:LinkSearch
 'linksearch-pat'  => 'รูปแบบการค้นหา:',

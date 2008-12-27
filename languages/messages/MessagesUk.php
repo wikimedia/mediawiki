@@ -1751,7 +1751,7 @@ $3 зазначив таку причину: ''$2''",
 'deletedcontributions' => 'Вилучений внесок користувача',
 
 # Special:Interwiki
-'interwiki_prefix' => 'Префікс',
+'interwiki_prefix'      => 'Префікс',
 'interwiki_reasonfield' => 'Причина',
 
 # Special:LinkSearch

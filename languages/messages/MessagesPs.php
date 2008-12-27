@@ -924,12 +924,12 @@ $messages = array(
 'deletedcontributions' => 'د کارونکي ونډې ړنګې شوې',
 
 # Special:Interwiki
-'interwiki_prefix' => 'مختاړی',
-'interwiki_reasonfield' => 'سبب',
-'interwiki_delquestion' => '"$1" د ړنګولو په حال کې دی...',
-'interwiki_deleting' => 'تاسو د "$1" مختاړی ړنګوی.',
-'interwiki_addbutton' => 'ورګډول',
+'interwiki_addbutton'     => 'ورګډول',
 'interwiki_defaultreason' => 'هېڅ کوم سبب نه دی ورکړ شوی',
+'interwiki_deleting'      => 'تاسو د "$1" مختاړی ړنګوی.',
+'interwiki_delquestion'   => '"$1" د ړنګولو په حال کې دی...',
+'interwiki_prefix'        => 'مختاړی',
+'interwiki_reasonfield'   => 'سبب',
 
 # Special:LinkSearch
 'linksearch'      => 'د جال تړنې پلټل',
