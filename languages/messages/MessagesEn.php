@@ -430,6 +430,7 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'BlankPage' ),
 	'LinkSearch'                => array( 'LinkSearch' ),
 	'DeletedContributions'      => array( 'DeletedContributions' ),
+	'Interwiki'                 => array( 'Interwiki' ),
 );
 
 /**
@@ -2186,6 +2187,45 @@ Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:DeletedContributions
 'deletedcontributions' => 'Deleted user contributions',
+
+# Special:Interwiki
+'interwiki'                => 'View and edit interwiki data',
+'interwiki-title-norights' => 'View interwiki data',
+'interwiki-desc'           => 'Adds a [[Special:Interwiki|special page]] to view and edit the interwiki table',
+'interwiki_reasonfield'    => 'Reason',
+'interwiki_intro'          => 'See $1 for more information about the interwiki table.
+There is a [[Special:Log/interwiki|log of changes]] to the interwiki table.',
+'interwiki_prefix'         => 'Prefix',
+'interwiki_url'            => 'URL',
+'interwiki_local'          => 'Local', 
+'interwiki_trans'          => 'Trans',
+'interwiki_error'          => 'Error: The interwiki table is empty, or something else went wrong.',
+'interwiki_delquestion'    => 'Deleting "$1"',
+'interwiki_deleting'       => 'You are deleting prefix "$1".',
+'interwiki_deleted'        => 'Prefix "$1" was successfully removed from the interwiki table.',
+'interwiki_delfailed'      => 'Prefix "$1" could not be removed from the interwiki table.',
+'interwiki_addtext'        => 'Add an interwiki prefix',
+'interwiki_addintro'       => 'You are adding a new interwiki prefix.
+Remember that it cannot contain spaces ( ), colons (:), ampersands (&), or equal signs (=).',
+'interwiki_addbutton'      => 'Add',
+'interwiki_added'          => 'Prefix "$1" was successfully added to the interwiki table.',
+'interwiki_addfailed'      => 'Prefix "$1" could not be added to the interwiki table.
+Possibly it already exists in the interwiki table.',
+'interwiki_defaulturl'     => 'http://www.example.com/$1',
+'interwiki_edittext'       => 'Editing an interwiki prefix',
+'interwiki_editintro'      => 'You are editing an interwiki prefix.
+Remember that this can break existing links.',
+'interwiki_edited'         => 'Prefix "$1" was successfully modified in the interwiki table.',
+'interwiki_editerror'      => 'Prefix "$1" can not be modified in the interwiki table.
+Possibly it does not exist.',
+'interwikilogpage'         => 'Interwiki table log',
+'interwiki_log_added'      => 'added prefix "$2" ($3) (trans: $4) (local: $5) to the interwiki table',
+'interwiki_log_edited'     => 'modified prefix "$2" : ($3) (trans: $4) (local: $5) in the interwiki table',
+'interwiki_log_deleted'    => 'removed prefix "$2" from the interwiki table',
+'interwikilogpagetext'     => 'This is a log of changes to the [[Special:Interwiki|interwiki table]].',
+'interwiki_defaultreason'  => 'no reason given',
+'interwiki_logentry'       => '', # do not translate this message
+'right-interwiki'          => 'Edit interwiki data',
 
 # Special:LinkSearch
 'linksearch'       => 'Search web links',
