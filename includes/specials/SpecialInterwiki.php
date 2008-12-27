@@ -56,7 +56,7 @@ class SpecialInterwiki extends SpecialPage {
 		
 		$actionUrl = $this->getTitle()->getLocalURL( 'action=submit' );
 		$token = $wgUser->editToken();
-		$defaultreason = wfMsgForContent( 'interwiki_defaultreason' );
+		$defaultreason = $wgRequest->getVal( 'wpInterwikiReason' ) ? $wgRequest->getVal( 'wpInterwikiReason' ) : wfMsgForContent( 'interwiki_defaultreason' );
 		
 		switch( $action ){
 		case "delete":
@@ -94,7 +94,7 @@ class SpecialInterwiki extends SpecialPage {
 				$dbr = wfGetDB( DB_SLAVE );
 				$row = $dbr->selectRow( 'interwiki', '*', array( 'iw_prefix' => $prefix ) );
 				if( !$row ){
-					$wgOut->wrapWikiMsg( '<div class="errorbox">$1</div>', array( 'interwiki_editerror', $prefix ) );
+					$this->error( wfMsg( 'interwiki_editerror', $prefix ) );
 					return;
 				}
 				$prefix = '<tt>' . htmlspecialchars( $row->iw_prefix ) . '</tt>';
@@ -106,11 +106,12 @@ class SpecialInterwiki extends SpecialPage {
 				$intromessage = wfMsgExt( 'interwiki_editintro', array( 'parseinline' ) );
 				$button = wfMsg( 'edit' );
 			} else {
-				$prefix = Xml::input( 'wpInterwikiPrefix', 20, false, array( 'tabindex'=>'1', 'id'=>'mw-interwiki-prefix', 'maxlength'=>'20' ) );
-				$local = false;
-				$trans = false;
+				$prefix = $wgRequest->getVal( 'wpInterwikiPrefix' ) ? $wgRequest->getVal( 'wpInterwikiPrefix' ) : $wgRequest->getVal( 'prefix' );
+				$prefix = Xml::input( 'wpInterwikiPrefix', 20, $prefix, array( 'tabindex'=>'1', 'id'=>'mw-interwiki-prefix', 'maxlength'=>'20' ) );
+				$local = $wgRequest->getCheck( 'wpInterwikiLocal' );
+				$trans = $wgRequest->getCheck( 'wpInterwikiTrans' );
 				$old = '';
-				$defaulturl = wfMsg( 'interwiki_defaulturl' );
+				$defaulturl = $wgRequest->getVal( 'wpInterwikiURL' ) ? $wgRequest->getVal( 'wpInterwikiURL' ) : wfMsg( 'interwiki_defaulturl' );
 				$topmessage = wfMsgExt( 'interwiki_addtext', array( 'parseinline' ) );
 				$intromessage = wfMsgExt( 'interwiki_addintro', array( 'parseinline' ) );
 				$button = wfMsg( 'interwiki_addbutton' );
@@ -121,7 +122,6 @@ class SpecialInterwiki extends SpecialPage {
 			$transmessage = wfMsg( 'interwiki_trans' );
 			$reasonmessage = wfMsg( 'interwiki_reasonfield' );
 			$urlmessage = wfMsg( 'interwiki_url' );
-			$defaultreason = wfMsgForContent( 'interwiki_defaultreason' );
 
 			$wgOut->addHTML(
 				Xml::openElement( 'fieldset' ) .
@@ -154,8 +154,13 @@ class SpecialInterwiki extends SpecialPage {
 	function doSubmit() {
 		global $wgRequest, $wgOut;
 		$prefix = $wgRequest->getVal( 'wpInterwikiPrefix' );
-		$reason = $wgRequest->getText( 'wpInterwikiReason' );
 		$do = $wgRequest->getVal( 'wpInterwikiAction' );
+		if( preg_match( '/[\s:&=]/', $prefix ) ) {
+			$this->error( wfMsg( 'interwiki-badprefix', $prefix ) );
+			$this->showForm( $do );
+			return;
+		}
+		$reason = $wgRequest->getText( 'wpInterwikiReason' );
 		$selfTitle = $this->getTitle();
 		$dbw = wfGetDB( DB_MASTER );
 		switch( $do ){
@@ -163,7 +168,8 @@ class SpecialInterwiki extends SpecialPage {
 			$dbw->delete( 'interwiki', array( 'iw_prefix' => $prefix ), __METHOD__ );
 
 			if ( $dbw->affectedRows() == 0 ) {
-				$wgOut->addWikiText( '<span class="error">' . wfMsg( 'interwiki_delfailed', $prefix ) . '</span>' );
+				$this->error( wfMsg( 'interwiki_delfailed', $prefix ) );
+				$this->showForm( $do );
 			} else {
 				$wgOut->addWikiText( wfMsg( 'interwiki_deleted', $prefix ));
 				$wgOut->returnToMain( false, $selfTitle );
@@ -186,7 +192,8 @@ class SpecialInterwiki extends SpecialPage {
 			}
 
 			if( $dbw->affectedRows() == 0 ) {
-				$wgOut->wrapWikiMsg( '<span class="error">$1</span>', array( "interwiki_{$do}failed", $prefix ) );
+				$this->error( wfMsg( "interwiki_{$do}failed", $prefix ) );
+				$this->showForm( $do );
 			} else {
 				$wgOut->addWikiMsg( "interwiki_{$do}ed", $prefix );
 				$wgOut->returnToMain( false, $selfTitle );
@@ -218,7 +225,7 @@ class SpecialInterwiki extends SpecialPage {
 		$res = $dbr->select( 'interwiki', '*' );
 		$numrows = $res->numRows();
 		if ( $numrows == 0 ) {
-			$wgOut->wrapWikiMsg( '<div class="errorbox">$1</div>', 'interwiki_error' );
+			$this->error( wfMsgWikiHtml( 'interwiki_error' ) );
 			return;
 		}
 		
@@ -258,5 +265,10 @@ class SpecialInterwiki extends SpecialPage {
 		$res->free();
 		$out .= "</table><br />";
 		$wgOut->addHTML( $out );
+	}
+	
+	function error( $msg ) {
+		global $wgOut;
+		$wgOut->addHTML( Xml::element('p', array( 'class' => 'error' ), $msg ) );
 	}
 }
