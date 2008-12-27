@@ -67,11 +67,33 @@ wfProfileOut( 'main-misc-setup' );
 #
 if( $wgUseAjax && $action == 'ajax' ) {
 	require_once( $IP . '/includes/AjaxDispatcher.php' );
-
 	$dispatcher = new AjaxDispatcher();
 	$dispatcher->performAction();
 	$mediaWiki->restInPeace();
 	exit;
+}
+
+if( $wgUseFileCache && isset($wgTitle) ) {
+	wfProfileIn( 'main-try-filecache' );
+	if( HTMLFileCache::useFileCache() ) {
+		/* Try low-level file cache hit */
+		$cache = new HTMLFileCache( $wgTitle );
+		if( $cache->isFileCacheGood( /* Assume up to date */ ) ) {
+			/* Check incoming headers to see if client has this cached */
+			if( !$wgOut->checkLastModified( $cache->fileCacheTime() ) ) {
+				$cache->loadFromFileCache();
+				# Do any stats increment/watchlist stuff
+				$wgArticle = self::articleFromTitle( $wgTitle );
+				$wgArticle->viewUpdates();
+			}
+			# Tell $wgOut that output is taken care of
+			$wgOut->disable();
+			wfProfileOut( 'main-try-filecache' );
+			$mediaWiki->restInPeace();
+			exit;
+		}
+	}
+	wfProfileOut( 'main-try-filecache' );
 }
 
 # Setting global variables in mediaWiki
@@ -89,7 +111,7 @@ $mediaWiki->setVal( 'UseExternalEditor', $wgUseExternalEditor );
 $mediaWiki->setVal( 'UsePathInfo', $wgUsePathInfo );
 
 $mediaWiki->initialize( $wgTitle, $wgArticle, $wgOut, $wgUser, $wgRequest );
-$mediaWiki->finalCleanup ( $wgDeferredUpdateList, $wgOut );
+$mediaWiki->finalCleanup( $wgDeferredUpdateList, $wgOut );
 
 # Not sure when $wgPostCommitUpdateList gets set, so I keep this separate from finalCleanup
 $mediaWiki->doUpdates( $wgPostCommitUpdateList );
