@@ -1750,7 +1750,6 @@ Lihat pula [[Special:WantedCategories|daftar kategori yang dibutuhkan]].',
 
 # Special:Interwiki
 'interwiki'                => 'Lihat dan sunting data interwiki',
-'interwiki-desc'           => 'Menambahkan sebuah [[Special:Interwiki|halaman istimewa]] untuk menampilkan dan menyunting tabel interwiki',
 'interwiki-title-norights' => 'Lihat data interwiki',
 'interwiki_addbutton'      => 'Tambahkan',
 'interwiki_added'          => 'Prefiks "$1" berhasil ditambahkan ke tabel interwiki.',

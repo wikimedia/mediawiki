@@ -1465,7 +1465,6 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 
 # Special:Interwiki
 'interwiki'                => 'आंतरविकि डाटा पहा व संपादा',
-'interwiki-desc'           => 'आंतरविकि सारणी पाहण्यासाठी व संपादन्यासाठी एक [[Special:Interwiki|विशेष पान]] वाढविते',
 'interwiki-title-norights' => 'अंतरविकि डाटा पहा',
 'interwiki_addbutton'      => 'वाढवा',
 'interwiki_added'          => '"$1" उपपद आंतरविकि सारणी मध्ये वाढविण्यात आलेले आहे.',

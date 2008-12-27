@@ -1654,7 +1654,6 @@ Se også [[Special:WantedCategories|ønskede kategorier]].',
 
 # Special:Interwiki
 'interwiki'                => 'Vis og manipuler interwikidata',
-'interwiki-desc'           => 'Legger til en [[Special:Interwiki|spesialside]] som gjør at man kan se og redigere interwiki-tabellen.',
 'interwiki-title-norights' => 'Vis interwikidata',
 'interwiki_addbutton'      => 'Legg til',
 'interwiki_added'          => 'Prefikset «$1» ble lagt til i interwikitabellen.',

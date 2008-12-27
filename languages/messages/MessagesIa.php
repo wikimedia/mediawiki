@@ -1716,7 +1716,6 @@ Vide etiam le [[Special:WantedCategories|categorias desirate]].',
 
 # Special:Interwiki
 'interwiki'                => 'Vider e modificar datos interwiki',
-'interwiki-desc'           => 'Adde un [[Special:Interwiki|pagina special]] pro vider e modificar le tabella interwiki',
 'interwiki-title-norights' => 'Vider datos interwiki',
 'interwiki_addbutton'      => 'Adder',
 'interwiki_added'          => 'Le prefixo "$1" ha essite addite al tabella interwiki con successo.',

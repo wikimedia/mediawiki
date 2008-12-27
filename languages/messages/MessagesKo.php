@@ -1606,7 +1606,6 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 
 # Special:Interwiki
 'interwiki'                => '인터위키 목록 보기/고치기',
-'interwiki-desc'           => '인터위키 표를 보거나 고칠 수 있는 [[Special:Interwiki|특수문서]]를 추가',
 'interwiki-title-norights' => '인터위키 보기',
 'interwiki_addbutton'      => '더하기',
 'interwiki_added'          => '접두어 "$1"을(를) 더했습니다.',

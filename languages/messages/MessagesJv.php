@@ -1506,7 +1506,6 @@ Deleng uga [[Special:WantedCategories|kategori-kategori sing diperlokaké]].',
 
 # Special:Interwiki
 'interwiki'                => 'Ndeleng lan nyunting data interwiki',
-'interwiki-desc'           => 'Nambahaké sawijining [[Special:Interwiki|kaca astaméwa]] kanggo ndeleng lan nyunting tabèl interwiki',
 'interwiki-title-norights' => 'Ndeleng data interwiki',
 'interwiki_addbutton'      => 'Nambah',
 'interwiki_added'          => 'Préfiks utawa sisipan awal "$1" bisa kasil ditambahaké ing tabèl interwiki.',

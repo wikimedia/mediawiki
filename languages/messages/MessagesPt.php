@@ -1690,7 +1690,6 @@ Veja também as [[Special:WantedCategories|categorias em falta]].',
 
 # Special:Interwiki
 'interwiki'                => 'Ver e manipular dados de interwikis',
-'interwiki-desc'           => 'Adiciona uma [[Special:Interwiki|página especial]] para visualizar e editar a tabela de interwikis',
 'interwiki-title-norights' => 'Ver dados interwiki',
 'interwiki_addbutton'      => 'Adicionar',
 'interwiki_added'          => 'O prefixo "$1" foi adicionado à tabela de interwikis com sucesso.',

@@ -1830,7 +1830,6 @@ Siehe auch die Liste der [[Special:WantedCategories|gewünschten Kategorien]].',
 
 # Special:Interwiki
 'interwiki'                => 'Interwiki-Daten betrachten und bearbeiten',
-'interwiki-desc'           => '[[Special:Interwiki|Spezialseite]] zur Pflege der Interwiki-Tabelle',
 'interwiki-title-norights' => 'Interwiki-Daten betrachten',
 'interwiki_addbutton'      => 'Hinzufügen',
 'interwiki_added'          => '„$1“ wurde erfolgreich der Interwiki-Tabelle hinzugefügt.',

@@ -1790,7 +1790,6 @@ Možete suziti prikaz odabirući tip evidencije, suradničko ime ili stranicu u 
 
 # Special:Interwiki
 'interwiki'                => 'Vidi i uredi međuwiki podatke',
-'interwiki-desc'           => 'Dodaje [[Special:Interwiki|posebnu stranicu]] za gledanje i uređivanje interwiki tablice',
 'interwiki-title-norights' => 'Gledanje interwiki tablice',
 'interwiki_addbutton'      => 'Dodaj',
 'interwiki_added'          => 'Prefiks "$1" je uspješno dodan u interwiki tablicu.',

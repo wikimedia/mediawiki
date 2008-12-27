@@ -1719,7 +1719,6 @@ Sjå òg [[Special:WantedCategories|ønska kategoriar]].',
 
 # Special:Interwiki
 'interwiki'                => 'Vis og endre interwikidata',
-'interwiki-desc'           => 'Legg ti ei [[Special:Interwiki|spesialsida]] som gjer at ein kan syna og endra interwikitabellen.',
 'interwiki-title-norights' => 'Vis interwikidata',
 'interwiki_addbutton'      => 'Legg til',
 'interwiki_added'          => 'Prefikset «$1» blei lagt til i interwikitabellen.',

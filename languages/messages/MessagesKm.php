@@ -1628,7 +1628,6 @@ $2',
 
 # Special:Interwiki
 'interwiki'                => 'មើលនិងកែប្រែទិន្នន័យអន្តរវិគី',
-'interwiki-desc'           => 'បន្ថែម[[Special:Interwiki|ទំព័រពិសេស]]ដើម្បីមើលនិងកែប្រែតារាងអន្តរវិគី',
 'interwiki-title-norights' => 'មើលទិន្នន័យអន្តរវិគី',
 'interwiki_addbutton'      => 'បន្ថែម',
 'interwiki_added'          => 'បុព្វបទ "$1" ត្រូវបានបន្ថែមទៅក្នុងតារាងអន្តរវិគីដោយជោគជ័យ។',

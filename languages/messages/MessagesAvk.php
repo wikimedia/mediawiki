@@ -1271,7 +1271,6 @@ Abdi sulara, setikel da va ari skedasiki va teza stujel.',
 
 # Special:Interwiki
 'interwiki'                => "Wira va 'interwiki' orig isu betara",
-'interwiki-desc'           => "Batcoba, ta wira va 'interwiki' origak isu betara, va [[Special:Interwiki|aptafu bu]] loplekur",
 'interwiki-title-norights' => "Wira va 'interwiki' orig",
 'interwiki_addbutton'      => 'Loplekura',
 'interwiki_added'          => '"$1" abdueosta ko \'interwiki\' origak al zo loplekunhur.',

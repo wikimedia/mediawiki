@@ -1793,7 +1793,6 @@ Voyez aussi [[Special:WantedCategories|les catégories demandées]].',
 
 # Special:Interwiki
 'interwiki'                => 'Voir et manipuler les données interwiki',
-'interwiki-desc'           => 'Ajoute une [[Special:Interwiki|page spéciale]] pour voir et éditer la table interwiki',
 'interwiki-title-norights' => 'Voir les données interwiki',
 'interwiki_addbutton'      => 'Ajouter',
 'interwiki_added'          => '« $1 » a été ajouté avec succès dans la table interwiki.',

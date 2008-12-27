@@ -1467,7 +1467,6 @@ $wgMessageStructure = array(
 	),
 	'interwiki' => array(
 		'interwiki',
-		'interwiki-desc',
 		'interwiki-title-norights',
 		'interwiki_addbutton',
 		'interwiki_added',
