@@ -223,13 +223,13 @@ class SpecialInterwiki extends SpecialPage {
 				$url = htmlspecialchars( $s->iw_url );
 				$trans = htmlspecialchars( $s->iw_trans );
 				$local = htmlspecialchars( $s->iw_local );
-				$out .= "<tr id='interwikitable-row'>
-					<td id='interwikitable-prefix'>$prefix</td>
-					<td id='interwikitable-url'>$url</td>
-					<td id='interwikitable-local'>$local</td>
-					<td id='interwikitable-trans'>$trans</td>";
+				$out .= "<tr class='interwikitable-row'>
+					<td class='mw-interwikitable-prefix'>$prefix</td>
+					<td class='mw-interwikitable-url'>$url</td>
+					<td class='mw-interwikitable-local'>$local</td>
+					<td class='mw-interwikitable-trans'>$trans</td>";
 				if( $admin ) {
-					$out .= '<td id="interwikitable-modify">';
+					$out .= '<td class="mw-interwikitable-modify">';
 					$out .= $skin->makeLinkObj( $selfTitle, $editmessage,
 						'action=edit&prefix=' . urlencode( $s->iw_prefix ) );
 					$out .= ', ';
