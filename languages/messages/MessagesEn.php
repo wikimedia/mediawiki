@@ -2212,7 +2212,7 @@ Possibly it does not exist.',
 Remember that this can break existing links.',
 'interwiki_edittext'       => 'Editing an interwiki prefix',
 'interwiki_error'          => 'Error: The interwiki table is empty, or something else went wrong.',
-'interwiki_intro'          => 'See $1 for more information about the interwiki table.
+'interwiki_intro'          => 'See [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] for more information about the interwiki table.
 There is a [[Special:Log/interwiki|log of changes]] to the interwiki table.',
 'interwiki_local'          => 'Define this as a local wiki',
 'interwiki_log_added'      => 'added prefix "$2" ($3) (trans: $4) (local: $5) to the interwiki table',
