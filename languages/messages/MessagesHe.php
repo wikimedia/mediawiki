@@ -514,8 +514,6 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'אודות {{SITENAME}}',
 'aboutpage'            => 'Project:אודות',
-'bugreports'           => 'דיווח על באגים',
-'bugreportspage'       => 'Project:דיווח על באגים',
 'copyright'            => 'התוכן מוגש בכפוף ל־$1.<br /> בעלי זכויות היוצרים מפורטים בהיסטוריית השינויים של הדף.',
 'copyrightpagename'    => 'זכויות היוצרים של {{SITENAME}}',
 'copyrightpage'        => '{{ns:project}}:זכויות יוצרים',
@@ -1855,6 +1853,7 @@ PICT # שונות
 'interwiki_addintro'       => 'הנכם עורכים קידומת בינוויקי.
 זכרו שלא ניתן לכלול רווחים ( ), נקודותיים (:), אמפרסנד (&) או הסימן שווה (=).',
 'interwiki_addtext'        => 'הוספת קידומת בינוויקי',
+'interwiki-badprefix'      => '"$1" כולל תווים בלתי תקינים',
 'interwiki_defaultreason'  => 'לא ניתנה סיבה',
 'interwiki_deleted'        => 'הקידומת "$1" הוסרה בהצלחה מטבלת הבינוויקי.',
 'interwiki_deleting'       => 'הנכם מוחקים את הקידומת "$1".',
