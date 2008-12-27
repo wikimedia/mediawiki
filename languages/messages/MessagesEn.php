@@ -629,7 +629,7 @@ XHTML id names.
 'mytalk'         => 'My talk',
 'anontalk'       => 'Talk for this IP',
 'navigation'     => 'Navigation',
-'and'            => ',&#32;and',
+'and'            => '&#32;and',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
