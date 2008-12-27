@@ -218,8 +218,6 @@ $wgMessageStructure = array(
 	'links' => array(
 		'aboutsite',
 		'aboutpage',
-		'bugreports',
-		'bugreportspage',
 		'copyright',
 		'copyrightpagename',
 		'copyrightpage',
