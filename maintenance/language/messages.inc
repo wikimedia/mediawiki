@@ -1465,6 +1465,9 @@ $wgMessageStructure = array(
 	'deletedcontribs' => array(
 		'deletedcontributions',
 	),
+	'interwiki' => array(
+		'interwiki',
+	),
 	'linksearch' => array(
 		'linksearch',
 		'linksearch-pat',
@@ -2948,6 +2951,7 @@ XHTML id names.",
 	'allpages'            => 'Special:AllPages',
 	'categories'          => 'Special:Categories',
 	'deletedcontribs'     => 'Special:DeletedContributions',
+	'deletedcontribs'     => 'Special:Interwiki',
 	'linksearch'          => 'Special:LinkSearch',
 	'listusers'           => 'Special:ListUsers',
 	'newuserlog'          => 'Special:Log/newusers',

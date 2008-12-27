@@ -1210,6 +1210,7 @@ $wgGroupPermissions['sysop']['editinterface']    = true;
 $wgGroupPermissions['sysop']['editusercssjs']    = true;
 $wgGroupPermissions['sysop']['import']           = true;
 $wgGroupPermissions['sysop']['importupload']     = true;
+$wgGroupPermissions['sysop']['interwiki']        = true;
 $wgGroupPermissions['sysop']['move']             = true;
 $wgGroupPermissions['sysop']['move-subpages']    = true;
 $wgGroupPermissions['sysop']['move-rootuserpages'] = true;
@@ -2791,6 +2792,7 @@ $wgLogTypes = array( '',
 	'upload',
 	'move',
 	'import',
+	'interwiki',
 	'patrol',
 	'merge',
 	'suppress',
@@ -2845,6 +2847,7 @@ $wgLogNames = array(
 	'upload'  => 'uploadlogpage',
 	'move'    => 'movelogpage',
 	'import'  => 'importlogpage',
+	'interwiki' => 'interwikilogpage',
 	'patrol'  => 'patrol-log-page',
 	'merge'   => 'mergelog',
 	'suppress' => 'suppressionlog',
@@ -2865,6 +2868,7 @@ $wgLogHeaders = array(
 	'upload'  => 'uploadlogpagetext',
 	'move'    => 'movelogpagetext',
 	'import'  => 'importlogpagetext',
+	'interwiki' => 'interwikilogpagetext',
 	'patrol'  => 'patrol-log-header',
 	'merge'   => 'mergelogpagetext',
 	'suppress' => 'suppressionlogtext',
@@ -2896,6 +2900,10 @@ $wgLogActions = array(
 	'move/move_redir'   => '1movedto2_redir',
 	'import/upload'     => 'import-logentry-upload',
 	'import/interwiki'  => 'import-logentry-interwiki',
+	'interwiki/interwiki' => 'interwiki_logentry',
+	'interwiki/iw_add' => 'interwiki_log_added',
+	'interwiki/iw_delete' => 'interwiki_log_deleted',
+	'interwiki/iw_edit' => 'interwiki_log_edited',
 	'merge/merge'       => 'pagemerge-logentry',
 	'suppress/revision' => 'revdelete-logentry',
 	'suppress/file'     => 'revdelete-logentry',
@@ -3014,6 +3022,7 @@ $wgSpecialPageGroups = array(
 	'Specialpages'              => 'other',
 	'Blockme'                   => 'other',
 	'Booksources'               => 'other',
+	'Interwiki'                 => 'other',
 );
 
 /**
