@@ -1,16 +1,6 @@
 <?php
 
 /**
- * Constructor
- */
-function wfSpecialInterwiki( $par ) {
-	global $wgRequest;
-
-	$form = new SpecialInterwiki( $wgRequest, $par );
-	$form->execute();
-}
-
-/**
  * implements Special:Interwiki
  * @ingroup SpecialPage
  */
