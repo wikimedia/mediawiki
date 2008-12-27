@@ -1202,6 +1202,26 @@ Vide etiam [[Special:WantedCategories|categorias desideratas]].',
 # Special:DeletedContributions
 'deletedcontributions' => 'Conlationes usoris deletae',
 
+# Special:Interwiki
+'interwiki' => 'Videre et recensere data intervica',
+'interwiki_prefix' => 'Praefixum',
+'interwiki_reasonfield' => 'Causa',
+'interwiki_intro' => 'De tabula intervica, vide etiam $1. Etiam sunt [[Special:Log/interwiki|acta mutationum]] tabulae intervicae.',
+'interwiki_error' => 'ERROR: Tabula intervica est vacua, aut aerumna alia occurrit.',
+'interwiki_delquestion' => 'Removens "$1"',
+'interwiki_deleting' => 'Delens praefixum "$1".',
+'interwiki_deleted' => 'Praefixum "$1" prospere remotum est ex tabula intervica.',
+'interwiki_delfailed' => 'Praefixum "$1" ex tabula intervica removeri non potuit.',
+'interwiki_addtext' => 'Addere praefixum intervicum',
+'interwiki_addbutton' => 'Addere',
+'interwiki_added' => 'Praefixum "$1" prospere in tabulam intervicam additum est.',
+'interwiki_addfailed' => 'Praefixum "$1" in tabulam intervicam addi non potuit. Fortasse iam est in tabula intervica.',
+'interwikilogpage' => 'Index tabulae intervicae',
+'interwiki_log_added' => 'addidit "$2" ($3) (trans: $4) (local: $5) in tabulam intervicam',
+'interwiki_log_deleted' => 'removit praefixum "$2" ex tabula intervica',
+'interwikilogpagetext' => 'Hic est index mutationum [[Special:Interwiki|tabulae intervicae]].',
+'interwiki_defaultreason' => 'nulla causa data',
+
 # Special:LinkSearch
 'linksearch'    => 'Quaerere nexus externos',
 'linksearch-ns' => 'Spatium nominale:',

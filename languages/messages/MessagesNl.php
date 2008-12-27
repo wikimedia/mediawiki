@@ -1893,6 +1893,37 @@ Zie ook [[Special:WantedCategories|niet-bestaande categorieën met verwijzingen]
 # Special:DeletedContributions
 'deletedcontributions' => 'Verwijderde gebruikersbijdragen',
 
+# Special:Interwiki
+'interwiki' => 'Interwikigegevens bekijken en wijzigen',
+'interwiki-title-norights' => 'Interwikigegevens bekijken',
+'interwiki-desc' => 'Voegt een [[Special:Interwiki|speciale pagina]] toe om de interwikitabel te bekijken en bewerken',
+'interwiki_prefix' => 'Voorvoegsel',
+'interwiki_reasonfield' => 'Reden',
+'interwiki_intro' => 'Zie $1 voor meer informatie over de interwikitabel.
+Er is een [[Special:Log/interwiki|logboek van wijzigingen]] aan de interwikitabel.',
+'interwiki_local' => 'Lokaal',
+'interwiki_error' => 'FOUT: De interwikitabel is leeg, of iets anders ging verkeerd.',
+'interwiki_delquestion' => '"$1" aan het verwijderen',
+'interwiki_deleting' => 'U bent voorvoegsel "$1" aan het verwijderen.',
+'interwiki_deleted' => 'Voorvoegsel "$1" is verwijderd uit de interwikitabel.',
+'interwiki_delfailed' => 'Voorvoegsel "$1" kon niet worden verwijderd van de interwikitabel.',
+'interwiki_addtext' => 'Een interwikivoorvoegsel toevoegen',
+'interwiki_addintro' => 'U bent een nieuw interwikivoorvoegsel aan het toevoegen. Let op dat dit geen spaties ( ), dubbelepunt (:), ampersands (&), of gelijkheidstekens (=) mag bevatten.',
+'interwiki_addbutton' => 'Toevoegen',
+'interwiki_added' => 'Voorvoegsel "$1" is toegevoegd aan de interwikitabel.',
+'interwiki_addfailed' => 'Voorvoegsel "$1" kon niet worden toegevoegd aan de interwikitabel. Mogelijk bestaat hij al in de interwikitabel.',
+'interwiki_edittext' => 'Een interwikivoorvoegsel bewerken',
+'interwiki_editintro' => 'U bent een interwikivoorvoegsel aan het bewerken. Let op dat dit bestaande links kan breken.',
+'interwiki_edited' => 'Voorvoegsel "$1" is gewijzigd in de interwikitabel.',
+'interwiki_editerror' => 'Voorvoegsel "$1" kan niet worden gewijzigd in de interwikitabel. Mogelijk bestaat hij niet.',
+'interwikilogpage' => 'Logboek interwikitabel',
+'interwiki_log_added' => 'Voegde "$2" ($3) (trans: $4) (local: $5) toe aan de interwikitabel',
+'interwiki_log_edited' => 'wijzigde voorvoegsel "$2": ($3) (trans: $4) (local: $5) in de interwikitabel',
+'interwiki_log_deleted' => 'Verwijderde voorvoegsel "$2" van de interwikitabel',
+'interwikilogpagetext' => 'Dit is een logboek van wijzigingen aan de [[Special:Interwiki|interwikitabel]].',
+'interwiki_defaultreason' => 'geen reden gegeven',
+'right-interwiki' => 'Interwikigegevens bewerken',
+
 # Special:LinkSearch
 'linksearch'       => 'Externe verwijzingen zoeken',
 'linksearch-pat'   => 'Zoekpatroon:',

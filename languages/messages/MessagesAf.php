@@ -1454,6 +1454,18 @@ U kan die resultate vernou deur 'n boekstaaftipe, gebruikersnaam of spesifieke b
 # Special:DeletedContributions
 'deletedcontributions' => 'Geskrapte gebruikersbydraes',
 
+# Special:Interwiki
+'interwiki' => 'Bekyk en wysig interwiki data',
+'interwiki-title-norights' => 'Bekyk interwiki data',
+'interwiki-desc' => "Voeg 'n [[Special:Interwiki|spesiale bladsy]] by om die interwiki tabel te bekyk en wysig",
+'interwiki_prefix' => 'Voorvoegsel',
+'interwiki_reasonfield' => 'Rede',
+'interwiki_delquestion' => 'Besig om "$1" te verwyder',
+'interwiki_deleting' => 'U is besig om voorvoegsel "$1" te verwyder.',
+'interwiki_addbutton' => 'Voeg by',
+'interwikilogpage' => 'Interwiki tabel staaf',
+'interwiki_defaultreason' => 'geen rede gegee',
+
 # Special:LinkSearch
 'linksearch'       => 'Soek webskakels',
 'linksearch-pat'   => 'Soekpatroon:',

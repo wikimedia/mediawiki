@@ -1748,6 +1748,10 @@ Vidi također [[Special:WantedCategories|zatražene kategorije]].',
 # Special:DeletedContributions
 'deletedcontributions' => 'Obrisani doprinosi korisnika',
 
+# Special:Interwiki
+'interwiki_reasonfield' => 'Razlog',
+'interwiki_addbutton' => 'Dodaj',
+
 # Special:LinkSearch
 'linksearch'       => 'Traži web linkove',
 'linksearch-pat'   => 'Šema traženja:',

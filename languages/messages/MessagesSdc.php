@@ -1231,6 +1231,17 @@ Pa piazeri verifigga si vói carriggà avveru chisthu file; inogghi v'è lu rigi
 'categories'         => 'Categuri',
 'categoriespagetext' => "Erencu cumpretu di li categuri prisenti i'lu situ.",
 
+# Special:Interwiki
+'interwiki' => 'Vidè e mudìfiggà li dati interwiki',
+'interwiki_prefix' => 'Prefissu',
+'interwiki_reasonfield' => 'Rasgioni',
+'interwiki_delquestion' => 'Canzillendi "$1"',
+'interwiki_deleting' => 'Sei canzillendi lu prefissu "$1".',
+'interwiki_addtext' => 'Aggiungi un prefissu interwiki',
+'interwiki_addbutton' => 'Aggiungi',
+'interwikilogpage' => 'Rigisthru di la table interwiki',
+'interwiki_defaultreason' => 'nisciuna mutibazioni indicadda',
+
 # Special:ListUsers
 'listusersfrom'      => "Musthra l'utenti parthendi da:",
 'listusers-submit'   => 'Musthra',

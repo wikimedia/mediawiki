@@ -1748,6 +1748,38 @@ Lihat pula [[Special:WantedCategories|daftar kategori yang dibutuhkan]].',
 # Special:DeletedContributions
 'deletedcontributions' => 'Kontribusi yang dihapus',
 
+# Special:Interwiki
+'interwiki' => 'Lihat dan sunting data interwiki',
+'interwiki-title-norights' => 'Lihat data interwiki',
+'interwiki-desc' => 'Menambahkan sebuah [[Special:Interwiki|halaman istimewa]] untuk menampilkan dan menyunting tabel interwiki',
+'interwiki_prefix' => 'Prefiks',
+'interwiki_reasonfield' => 'Alasan',
+'interwiki_intro' => 'Lihat $1 untuk informasi lebih lanjut mengenai tabel interwiki. Lihat [[Special:Log/interwiki|log perubahan]] tabel interwiki.',
+'interwiki_error' => 'KESALAHAN: Tabel interwiki kosong, atau terjadi kesalahan lain.',
+'interwiki_delquestion' => 'Menghapus "$1"',
+'interwiki_deleting' => 'Anda menghapus prefiks "$1".',
+'interwiki_deleted' => 'Prefiks "$1" berhasil dihapus dari tabel interwiki.',
+'interwiki_delfailed' => 'Prefiks "$1" tidak dapat dihapuskan dari tabel interwiki.',
+'interwiki_addtext' => 'Menambahkan sebuah prefiks interwiki',
+'interwiki_addintro' => 'Anda akan menambahkan sebuah prefiks interwiki.
+Ingat bahwa prefiks tidak boleh mengandung tanda spasi ( ), titik dua (:), lambang dan (&), atau tanda sama dengan (=).',
+'interwiki_addbutton' => 'Tambahkan',
+'interwiki_added' => 'Prefiks "$1" berhasil ditambahkan ke tabel interwiki.',
+'interwiki_addfailed' => 'Prefiks "$1" tidak dapat ditambahkan ke tabel interwiki. Kemungkinan dikarenakan prefiks ini telah ada di tabel interwiki.',
+'interwiki_edittext' => 'Menyunting sebuah prefiks interwiki',
+'interwiki_editintro' => 'Anda sedang menyunting sebuah prefiks interwiki.
+Ingat bahwa tindakan ini dapat mempengaruhi pranala yang telah eksis.',
+'interwiki_edited' => 'Prefiks "$1" berhasil diubah di tabel interwiki.',
+'interwiki_editerror' => 'Prefiks "$1" tidak dapat diubah di tabel interwiki.
+Kemungkinan karena prefiks ini tidak ada.',
+'interwikilogpage' => 'Log tabel interwiki',
+'interwiki_log_added' => 'menambahkan prefiks "$2" ($3) (trans: $4) (lokal: $5) ke tabel interwiki',
+'interwiki_log_edited' => 'mengubah prefiks "$2" : ($3) (trans: $4) (lokal: $5) di tabel interwiki',
+'interwiki_log_deleted' => 'menghapus prefiks "$2" dari tabel interwiki',
+'interwikilogpagetext' => 'Ini adalah log perubahan [[Special:Interwiki|tabel interwiki]].',
+'interwiki_defaultreason' => 'tidak ada ringkasan penjelasan',
+'right-interwiki' => 'Menyunting data interwiki',
+
 # Special:LinkSearch
 'linksearch'       => 'Pencarian pranala luar',
 'linksearch-pat'   => 'Pola pencarian:',

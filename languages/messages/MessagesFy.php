@@ -1547,6 +1547,9 @@ Jo kinne it oersjoch beheine troch in loch, in meidoggernamme of in side oan te 
 # Special:DeletedContributions
 'deletedcontributions' => 'Wiske meidogger bydragen',
 
+# Special:Interwiki
+'interwiki_addbutton' => 'Tafoegje',
+
 # Special:LinkSearch
 'linksearch-ok' => 'Sykje',
 

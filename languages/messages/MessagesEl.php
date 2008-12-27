@@ -1630,6 +1630,11 @@ $2',
 # Special:DeletedContributions
 'deletedcontributions' => 'Διαγραμμένες συνεισφορές χρήστη',
 
+# Special:Interwiki
+'interwiki_prefix' => 'Πρόθεμα',
+'interwiki_reasonfield' => 'Λόγος',
+'interwiki_defaultreason' => 'Δεν δίνετε λόγος',
+
 # Special:LinkSearch
 'linksearch-ok' => 'Αναζήτηση',
 

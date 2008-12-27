@@ -1605,6 +1605,9 @@ Se beigan tamién as [[Special:WantedCategories|categorías requiestas]].",
 # Special:DeletedContributions
 'deletedcontributions' => "Contrebuzions d'usuario borratas",
 
+# Special:Interwiki
+'interwiki_reasonfield' => 'Razón',
+
 # Special:LinkSearch
 'linksearch'       => 'Mirar binclos ta pachinas web',
 'linksearch-pat'   => 'Mirar patrón:',

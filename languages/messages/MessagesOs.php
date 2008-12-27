@@ -471,6 +471,9 @@ $3',
 'special-categories-sort-count' => 'нымæцмæ гæсгæ равæр',
 'special-categories-sort-abc'   => 'алфавитмæ гæсгæ равæр',
 
+# Special:Interwiki
+'interwiki_reasonfield' => 'Аххос',
+
 # Special:LinkSearch
 'linksearch-ok' => 'Агур',
 

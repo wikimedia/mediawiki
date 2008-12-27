@@ -167,6 +167,9 @@ Ua nimo ke hiki e haau tau manako {{SITENAME}}.',
 # Special:LinkSearch
 'linksearch-ok' => 'Kumi',
 
+# Special:Interwiki
+'interwiki_reasonfield' => 'Kakano',
+
 # Watchlist
 'watchlist'     => 'Ko e haaku lau kitekite',
 'mywatchlist'   => 'Ko e haaku lau kitekite',

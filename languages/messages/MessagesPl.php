@@ -1781,6 +1781,37 @@ Zobacz też [[Special:WantedCategories|nieistniejące kategorie]].',
 # Special:DeletedContributions
 'deletedcontributions' => 'Usunięty wkład użytkownika',
 
+# Special:Interwiki
+'interwiki' => 'Zobacz i edytuj dane interwiki',
+'interwiki-title-norights' => 'Zobacz dane interwiki',
+'interwiki-desc' => 'Dodaje [[Special:Interwiki|stronę specjalną]] służącą do przeglądania i redakcji tablicy interwiki.',
+'interwiki_prefix' => 'Przedrostek',
+'interwiki_reasonfield' => 'Powód',
+'interwiki_intro' => 'Zobacz $1 aby uzyskać więcej informacji na temat tablicy interwiki.
+Historię zmian w tablicy interwiki możesz zobaczyć w [[Special:Log/interwiki|rejestrze]].',
+'interwiki_error' => 'BŁĄD: Tablica interwiki jest pusta lub coś wystąpił poważny problem.',
+'interwiki_delquestion' => 'Czy usunąć „$1”',
+'interwiki_deleting' => 'Usuwasz prefiks „$1”.',
+'interwiki_deleted' => 'Prefiks „$1” został z powodzeniem usunięty z tablicy interwiki.',
+'interwiki_delfailed' => 'Prefiks „$1” nie może zostać usunięty z tablicy interwiki.',
+'interwiki_addtext' => 'Dodaj przedrostek interwiki',
+'interwiki_addintro' => 'Edytujesz przedrostek interwiki.
+Pamiętaj, że nie może on zawierać znaku odstępu ( ), dwukropka (:), ampersandu (&) oraz znaku równości (=).',
+'interwiki_addbutton' => 'Dodaj',
+'interwiki_added' => 'Prefiks „$1” został z powodzeniem dodany do tablicy interwiki.',
+'interwiki_addfailed' => 'Prefiks „$1” nie może zostać dodany do tablicy interwiki.
+Prawdopodobnie ten prefiks już jest w tablicy.',
+'interwiki_edittext' => 'Edycja przedrostka interwiki',
+'interwiki_editintro' => 'Redagujesz przedrostek interwiki. Pamiętaj, że może to zerwać istniejące powiązania między projektami językowymi.',
+'interwiki_edited' => 'Prefiks „$1” został z powodzeniem poprawiony w tablicy interwiki.',
+'interwiki_editerror' => 'Prefiks „$1” nie może zostać poprawiony w tablicy interwiki. Prawdopodobnie nie brak w tablicy.',
+'interwikilogpage' => 'Rejestr tablicy interwiki',
+'interwiki_log_added' => 'dodał przedrostek „$2” ($3) (trans: $4) (local: $5) do tablicy interwiki',
+'interwiki_log_edited' => 'zmienił przedrostek „$2” : ($3) (trans: $4) (local: $5) w tablicy interwiki',
+'interwiki_log_deleted' => 'usunął przedrostek „$2” z tablicy interwiki',
+'interwikilogpagetext' => 'Poniżej znajduje się rejestr zmian wykonanych w [[Special:Interwiki|tablicy interwiki]].',
+'interwiki_defaultreason' => 'nie podano powodu',
+
 # Special:LinkSearch
 'linksearch'       => 'Wyszukiwarka linków zewnętrznych',
 'linksearch-pat'   => 'Wzorzec wyszukiwania',

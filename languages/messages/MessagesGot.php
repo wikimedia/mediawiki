@@ -302,6 +302,9 @@ $messages = array(
 # File deletion
 'filedelete-submit' => 'Taíran',
 
+# Special:Interwiki
+'interwiki_reasonfield' => 'Faírina',
+
 # MIME search
 'mimesearch' => 'MIME sokeiþ',
 
