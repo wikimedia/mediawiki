@@ -1984,7 +1984,7 @@ PICT # متنوع
 تذكر أن هذا يمكن أن يكسر الوصلات الحالية.',
 'interwiki_edittext'       => 'تعديل بادئة إنترويكي',
 'interwiki_error'          => 'خطأ: جدول الإنترويكي فارغ، أو حدث خطأ آخر.',
-'interwiki_intro'          => 'انظر $1 لمزيد من المعلومات حول جدول الإنترويكي.
+'interwiki_intro'          => 'انظر [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] لمزيد من المعلومات حول جدول الإنترويكي.
 يوجد [[Special:Log/interwiki|سجل بالتغييرات]] لجدول الإنترويكي.',
 'interwiki_local'          => 'محلي',
 'interwiki_log_added'      => 'أضاف "$2" ($3) (نقل: $4) (محلي: $5) إلى جدول الإنترويكي',
@@ -1993,6 +1993,7 @@ PICT # متنوع
 'interwiki_prefix'         => 'بادئة',
 'interwiki_reasonfield'    => 'سبب',
 'interwiki_trans'          => 'عابر',
+'interwiki_url'            => 'مسار',
 'interwikilogpage'         => 'سجل جدول الإنترويكي',
 'interwikilogpagetext'     => 'هذا سجل بالتغييرات في [[Special:Interwiki|جدول الإنترويكي]].',
 'right-interwiki'          => 'تعديل بيانات الإنترويكي',

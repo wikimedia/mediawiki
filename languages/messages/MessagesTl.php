@@ -178,7 +178,7 @@ $messages = array(
 'mypage'         => 'Pahina ko',
 'mytalk'         => 'Usapan ko',
 'anontalk'       => 'Usapan para sa IP na ito',
-'navigation'     => 'Nabigasyon',
+'navigation'     => 'Panlibot (nabigasyon)',
 'and'            => ',&#32;at',
 
 # Metadata in edit box
@@ -236,7 +236,7 @@ $messages = array(
 'viewcount'         => 'Namataan na pahinang ito nang {{PLURAL:$1|isang|$1}} ulit.',
 'protectedpage'     => 'Pahinang nakasanggalang',
 'jumpto'            => 'Tumalon sa:',
-'jumptonavigation'  => 'nabigasyon',
+'jumptonavigation'  => 'Panlibot (nabigasyon)',
 'jumptosearch'      => 'Paghahanap',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -837,7 +837,7 @@ Tiyakin na ang pagbabago ay makapagpapanatili ng pagkakatuluy-tuloy ng pahinang 
 'mergehistory-from'                => 'Pinagmulang pahina:',
 'mergehistory-into'                => 'Kapupuntahang pahina:',
 'mergehistory-list'                => 'Mapagsasanib na kasaysayan ng pagbabago',
-'mergehistory-merge'               => "Ang mga sumusunod na mga pagbabago ng [[:$1]] ay maaaring pag-isahin sa [[:$2]]. Gamitin ang hanay ng radyong buton upang pag-isahin lamang ang mga pagbabagong nilikha sa at bago ang binigay na oras.  Tandaan na ma-re-''reset'' ang paggamit ng mga ugnay ng nabigasyon ng hanay na ito.",
+'mergehistory-merge'               => "Ang mga sumusunod na mga pagbabago ng [[:$1]] ay maaaring pag-isahin sa [[:$2]]. Gamitin ang hanay ng radyong buton upang pag-isahin lamang ang mga pagbabagong nilikha sa at bago ang binigay na oras.  Tandaan na ma-re-''reset'' ang paggamit ng mga ugnay ng panlibot (nabigasyon) ng hanay na ito.",
 'mergehistory-go'                  => 'Ipakita ang mga pagbabagong mapagsasanib',
 'mergehistory-submit'              => 'Pagsanibin ang mga pagbabago',
 'mergehistory-empty'               => 'Walang mga pagbabagong mapagsasanib.',

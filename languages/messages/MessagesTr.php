@@ -880,6 +880,7 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'powersearch'               => 'Gelişmiş arama',
 'powersearch-legend'        => 'Gelişmiş arama',
 'powersearch-redir'         => 'Yönlendirmeleri listele',
+'powersearch-field'         => 'Ara:',
 'search-external'           => 'Dış arama',
 'searchdisabled'            => '{{SITENAME}} sitesinde arama yapma geçici olarak durdurulmuştur. Bu arada Google kullanarak {{SITENAME}} içinde arama yapabilirsiniz. Arama sitelerinde indekslemelerinin biraz eski kalmış olabileceğini göz önünde bulundurunuz.',
 

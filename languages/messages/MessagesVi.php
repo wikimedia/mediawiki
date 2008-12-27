@@ -1712,7 +1712,7 @@ Hãy nhớ rằng nó không chứa được khoảng trắng ( ), dấu hai ch�
 'interwiki_editintro'      => 'Bạn đang sửa đổi một tiền tố liên wiki. Hãy nhớ rằng việc làm này có thể phá hỏng các liên hết đã có.',
 'interwiki_edittext'       => 'Sửa đổi tiền tố liên wiki',
 'interwiki_error'          => 'LỖi: Bảng liên wiki hiện đang trống, hoặc có vấn đề gì đó đã xảy ra.',
-'interwiki_intro'          => 'Xem $1 để biết thêm thông tin về bảng liên wiki.
+'interwiki_intro'          => 'Xem [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] để biết thêm thông tin về bảng liên wiki.
 Đây là [[Special:Log/interwiki|nhật trình các thay đổi]] tại bảng liên wiki.',
 'interwiki_log_added'      => 'đã thêm tiền tố “$2” ($3) (ngoài: $4) (trong:$5) vào bảng liên wiki',
 'interwiki_log_deleted'    => 'đã xóa tiền tố “$2” khỏi bảng liên wiki',

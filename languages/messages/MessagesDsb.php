@@ -1650,7 +1650,7 @@ Snaź njeeksistěrujo.',
 Źiwaj na to, až to móžo eksistěrujuce wótkaze skóńcowaś',
 'interwiki_edittext'       => 'Prefiks interwiki wobźěłaś',
 'interwiki_error'          => 'Zmólka: Tabela interwiki jo prozna abo něco druge jo wopak.',
-'interwiki_intro'          => 'Glědaj $1 za dalšne informacije wó tabeli interwiki.
+'interwiki_intro'          => 'Glědaj [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] za dalšne informacije wó tabeli interwiki.
 Jo [[Special:Log/interwiki|protokol změnow]] za tabelu interwiki.',
 'interwiki_local'          => 'Lokalny',
 'interwiki_log_added'      => 'jo pśidał prefiks "$2" ($3) (trans: $4) (lokalny: $5) tabeli interwiki',

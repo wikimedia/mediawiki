@@ -1891,7 +1891,7 @@ Maach sin, dat et inn nit jitt.',
 Denk draan, domet könnts De Links em Wiki kapott maache, die velleich do drop opboue.',
 'interwiki_edittext'       => 'Enne Engerwiki Fürsaz Ändere',
 'interwiki_error'          => '<span style="text-transform:uppercase">Fähler:</span> de Tabäll met de Engerwiki Date is leddisch.',
-'interwiki_intro'          => 'Op dä Sigg $1 fingk mer mieh do dröver, wat et met dä Tabäll met de Engerwiki Date op sich hät.
+'interwiki_intro'          => 'Op dä Sigg [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] fingk mer mieh do dröver, wat et met dä Tabäll met de Engerwiki Date op sich hät.
 Et [[Special:Log/interwiki|Logbuch med de Engerwiki Date]] zeichnet all de Änderunge aan de Engerwiki Date op.',
 'interwiki_local'          => 'Lokal',
 'interwiki_log_added'      => 'hät dä Försaz „$2“ ($3) (Trans: $4) (Lokal: $5) en de Engerwiki Date eren jedonn',

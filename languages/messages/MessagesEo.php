@@ -1717,7 +1717,7 @@ Verŝajne ĝi ne ekzistas.',
 Notu ke ĉi tiu ago povas rompi ekzistantajn ligilojn.',
 'interwiki_edittext'       => 'Redaktante intervikian prefikson',
 'interwiki_error'          => 'ERARO: La intervikia tabelo estas malplena, aŭ iel misfunkciis.',
-'interwiki_intro'          => 'Vidu $1 por plia informo pri la intervikia tabelo.
+'interwiki_intro'          => 'Vidu [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] por plia informo pri la intervikia tabelo.
 Ekzistas [[Special:Log/interwiki|protokolo pri ŝanĝoj]] por la intervikia tabelo.',
 'interwiki_log_added'      => 'Aldonis prefikson "$2" ($3) (transvikie: $4) (loke: $5) al la intervikia tabelo',
 'interwiki_log_deleted'    => 'Forigita prefikso "$2" de la intervikia tabelo',

@@ -1292,7 +1292,7 @@ Rotir koeon me krulder.',
 Me vulkul da batcoba va kruldesi gluyasiki rotempar !",
 'interwiki_edittext'       => "Betara va 'interwiki' abdueosta",
 'interwiki_error'          => "ROKLA : 'Interwiki' origak tir vlardaf oke rotaca al sokir.",
-'interwiki_intro'          => "Ta lo giva icde 'interwiki' origak va $1 wil !
+'interwiki_intro'          => "Ta lo giva icde 'interwiki' origak va [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] wil !
 Batcoba tir [[Special:Log/interwiki|'log' dem betaks]] va 'interwiki' origak.",
 'interwiki_log_added'      => '"$2" abdueosta ($3) (trans: $4) (local: $5) loplekuyuna ko \'interwiki\' origak',
 'interwiki_log_deleted'    => '"$2" abdueosta plekuyuna div \'interwiki\' origak',

@@ -1527,7 +1527,7 @@ Mbok-menawa iki ora ana.',
 Élinga yèn iki ora bisa nugel pranala-pranala sing wis ana.',
 'interwiki_edittext'       => 'Nyunting sawijining préfiks interwiki',
 'interwiki_error'          => 'KALUPUTAN: Tabèl interwikiné kosong, utawa ana masalah liya.',
-'interwiki_intro'          => 'Mangga mirsani $1 kanggo informasi sabanjuré perkara tabèl interwiki.
+'interwiki_intro'          => 'Mangga mirsani [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] kanggo informasi sabanjuré perkara tabèl interwiki.
 Ana sawijining [[Special:Log/interwiki|log owah-owahan]] perkara tabèl interwiki.',
 'interwiki_log_added'      => 'nambahaké préfiks (sisipan awal) "$2" ($3) (trans: $4) (local: $5) ing tabèl interwiki',
 'interwiki_log_deleted'    => 'ngilangi sisipan awal (préfiks) "$2" saka tabèl interwiki',

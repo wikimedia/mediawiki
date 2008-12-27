@@ -1425,7 +1425,7 @@ PICT # misc.
 'interwiki_editintro'      => 'आप एक आंतरविकि उपपद बदल रहें हैं। ध्यान रखें ये पहले दी हुई कड़ीयों को तोड सकता हैं।',
 'interwiki_edittext'       => 'एक आंतरविकि उपपद बदल रहें हैं',
 'interwiki_error'          => 'गलती: आंतरविकि तालिका खाली हैं, या और कुछ गलत हैं।',
-'interwiki_intro'          => 'आंतरविकि तालिका के बारें में अधिक ज़ानकारी के लिये $1 देखें। यहां आंतरविकि तालिका में हुए [[Special:Log/interwiki|बदलावों की सूची]] हैं।',
+'interwiki_intro'          => 'आंतरविकि तालिका के बारें में अधिक ज़ानकारी के लिये [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] देखें। यहां आंतरविकि तालिका में हुए [[Special:Log/interwiki|बदलावों की सूची]] हैं।',
 'interwiki_log_added'      => 'आंतरविकि तालिकामें उपपद "$2" ($3) (trans: $4) (local: $5) बढाया',
 'interwiki_log_deleted'    => '"$2" उपपद आंतरविकि तालिकासे हटाया',
 'interwiki_log_edited'     => 'आंतरविकि तालिकामें उपपद "$2" : ($3) (trans: $4) (local: $5) को बदला',

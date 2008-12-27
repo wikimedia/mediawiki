@@ -1611,7 +1611,7 @@ Kuckt och [[Special:WantedCategories|Gewënschte Kategorien]].',
 'interwiki_delquestion'    => 'Läscht "$1"',
 'interwiki_edittext'       => 'En interwiki Prefix änneren',
 'interwiki_error'          => "Feeler: D'Interwiki-Tabell ass eidel.",
-'interwiki_intro'          => "Kuckt $1 fir méi Informatiounen iwwert d'Interwiki-Tabell.
+'interwiki_intro'          => "Kuckt [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] fir méi Informatiounen iwwert d'Interwiki-Tabell.
 Et gëtt eng [[Special:Log/interwiki|Lëscht vun den Ännerungen]] vun dëser Interwiki-Tabell.",
 'interwiki_local'          => 'Lokal',
 'interwiki_prefix'         => 'Prefix',

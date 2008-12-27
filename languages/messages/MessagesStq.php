@@ -1508,7 +1508,7 @@ Ju Uutgoawe kon truch ju Uutwoal fon dän Logbouktyp, fon dän Benutser of dän 
 'interwiki_delfailed'     => '„$1“ kuude nit uut ju Interwiki-Tabelle läsked wäide.',
 'interwiki_delquestion'   => 'Läsket „$1“',
 'interwiki_error'         => 'Failer: Ju Interwiki-Tabelle is loos.',
-'interwiki_intro'         => 'Sjuch $1 foar wiedere Informatione uur ju Interwiki-Tabelle. Dät [[Special:Log/interwiki|Logbouk]] wiest aal Annerengen an ju Interwiki-Tabelle.',
+'interwiki_intro'         => 'Sjuch [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] foar wiedere Informatione uur ju Interwiki-Tabelle. Dät [[Special:Log/interwiki|Logbouk]] wiest aal Annerengen an ju Interwiki-Tabelle.',
 'interwiki_log_added'     => 'häd „$2“ ($3) (trans: $4) (lokal: $5) ju Interwiki-Tabelle bietouföiged',
 'interwiki_log_deleted'   => 'häd „$2“ uut ju Interwiki-Tabelle wächhoald',
 'interwiki_prefix'        => 'Präfix',

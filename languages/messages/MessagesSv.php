@@ -1803,7 +1803,7 @@ Kom ihåg att det inte kan innehålla mellanslag ( ), kolon (:), &-tecken eller 
 'interwiki_editintro'      => 'Du redigerar ett interwikiprefix. Notera att detta kan förstöra existerande länkar.',
 'interwiki_edittext'       => 'Redigera ett interwikiprefix',
 'interwiki_error'          => 'FEL: Interwikitabellen är tom, eller så gick något fel.',
-'interwiki_intro'          => 'Se $1 för mer information om interwikitabellen.
+'interwiki_intro'          => 'Se [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] för mer information om interwikitabellen.
 Det finns en [[Special:Log/interwiki|logg]] över ändringar av interwikitabellen.',
 'interwiki_log_added'      => 'lade till prefixet "$2" ($3) (trans: $4) (lokal: $5) i interwikitabellen',
 'interwiki_log_deleted'    => 'tog bort prefixet "$2" från interwikitabellen',

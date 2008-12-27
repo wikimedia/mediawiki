@@ -1740,7 +1740,7 @@ Kanskje finst det ikkje.',
 Hugs at dette kan øydeleggja lenkjer som finst frå før.',
 'interwiki_edittext'       => 'Endrar eit interwikiprefiks',
 'interwiki_error'          => 'Feil: Interwikitabellen er tom, eller noko anna gjekk gale.',
-'interwiki_intro'          => 'Sjå $1 for meir informasjon om interwikitabellen.
+'interwiki_intro'          => 'Sjå [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] for meir informasjon om interwikitabellen.
 Det finst ein [[Special:Log/interwiki|logg]] over endringar i interwikitabellen.',
 'interwiki_log_added'      => 'la til «$2» ($3) (trans: $4) (lokal: $5) til interwikitabellen',
 'interwiki_log_deleted'    => 'fjerna prefikset «$2» frå interwikitabellen',

@@ -96,6 +96,7 @@ $messages = array(
 'viewsource' => 'Gözbaşy gör',
 
 # Login and logout pages
+'login'                   => 'Sessiýa aç',
 'nav-login-createaccount' => 'Sessiýa aç / täze hasap edin',
 'userlogin'               => 'Sessiýa aç / täze hasap edin',
 'userlogout'              => 'Sessiýaýy kapas',
@@ -109,8 +110,9 @@ $messages = array(
 'headline_sample' => 'Sözbaşy ýazgysy',
 
 # Edit pages
-'minoredit' => 'Bu bir kiçi özgertiş',
-'showdiff'  => 'Özgertişleriňi görkez',
+'minoredit'  => 'Bu bir kiçi özgertiş',
+'showdiff'   => 'Özgertişleriňi görkez',
+'newarticle' => '(Täze)',
 
 # History pages
 'cur'  => 'parh',
@@ -140,7 +142,8 @@ $messages = array(
 'imagelinks'        => 'Aragatnaşyklar',
 
 # Miscellaneous special pages
-'move' => 'Atyňy özgert',
+'newpages' => 'Täze sahypalar',
+'move'     => 'Atyňy özgert',
 
 # Special:AllPages
 'allpagessubmit' => 'Git',
