@@ -1971,7 +1971,7 @@ class Language {
 	 * @param $list array of strings to put in a comma list
 	 * @return string
 	 */
-	function commaList( $list, $forContent = false ) {
+	function commaList( $list ) {
 		return implode(
 			$list,
 			wfMsgExt( 'comma-separator', array( 'escapenoentities', 'language' => $this ) ) );
