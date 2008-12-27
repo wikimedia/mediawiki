@@ -1651,12 +1651,6 @@ END;
 		return $s;
 	}
 
-	function bugReportsLink() {
-		$s = $this->makeKnownLink( wfMsgForContent( 'bugreportspage' ),
-		  wfMsg( 'bugreports' ) );
-		return $s;
-	}
-
 	function talkLink() {
 		global $wgTitle;
 

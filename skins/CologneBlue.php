@@ -263,8 +263,7 @@ class SkinCologneBlue extends Skin {
 		$s .= $this->menuHead( "qbspecialpages" )
 		  . $this->specialLink( "newpages" )
 		  . $sep . $this->specialLink( "imagelist" )
-		  . $sep . $this->specialLink( "statistics" )
-		  . $sep . $this->bugReportsLink();
+		  . $sep . $this->specialLink( "statistics" );
 		if ( $wgUser->isLoggedIn() && $wgEnableUploads ) {
 			$s .= $sep . $this->specialLink( "upload" );
 		}

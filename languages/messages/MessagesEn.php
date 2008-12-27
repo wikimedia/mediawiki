@@ -693,8 +693,6 @@ XHTML id names.
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'About {{SITENAME}}',
 'aboutpage'            => 'Project:About',
-'bugreports'           => 'Bug reports',
-'bugreportspage'       => 'Project:Bug reports',
 'copyright'            => 'Content is available under $1.',
 'copyrightpagename'    => '{{SITENAME}} copyright',
 'copyrightpage'        => '{{ns:project}}:Copyrights',
