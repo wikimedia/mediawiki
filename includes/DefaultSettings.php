@@ -1210,7 +1210,6 @@ $wgGroupPermissions['sysop']['editinterface']    = true;
 $wgGroupPermissions['sysop']['editusercssjs']    = true;
 $wgGroupPermissions['sysop']['import']           = true;
 $wgGroupPermissions['sysop']['importupload']     = true;
-$wgGroupPermissions['sysop']['interwiki']        = true;
 $wgGroupPermissions['sysop']['move']             = true;
 $wgGroupPermissions['sysop']['move-subpages']    = true;
 $wgGroupPermissions['sysop']['move-rootuserpages'] = true;
@@ -1237,6 +1236,7 @@ $wgGroupPermissions['sysop']['noratelimit']      = true;
 // Permission to change users' group assignments
 $wgGroupPermissions['bureaucrat']['userrights']  = true;
 $wgGroupPermissions['bureaucrat']['noratelimit'] = true;
+$wgGroupPermissions['bureaucrat']['interwiki']   = true;
 // Permission to change users' groups assignments across wikis
 #$wgGroupPermissions['bureaucrat']['userrights-interwiki'] = true;
 
