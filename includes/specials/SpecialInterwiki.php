@@ -269,6 +269,6 @@ class SpecialInterwiki extends SpecialPage {
 	
 	function error( $msg ) {
 		global $wgOut;
-		$wgOut->addHTML( Xml::element('p', array( 'class' => 'error' ), $msg ) );
+		$wgOut->addHTML( Xml::tags( 'p', array( 'class' => 'error' ), $msg ) );
 	}
 }
