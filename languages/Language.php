@@ -1938,26 +1938,33 @@ class Language {
 
 
 	/**
-	 * For the credit list in includes/Credits.php (action=credits)
+	 * Take a list of strings and build a locale-friendly comma-separated
+	 * list, using the local comma-separator message.
+	 * The last two strings are chained with an "and".
 	 *
 	 * @param $l Array
 	 * @return string
 	 */
 	function listToText( $l ) {
 		$s = '';
-		$m = count($l) - 1;
-		for ($i = $m; $i >= 0; $i--) {
-			if ($i == $m) {
-				$s = $l[$i];
-			} else if ($i == $m - 1) {
-				$s = $l[$i] . $this->getMessageFromDB( 'and' ) . $this->getMessageFromDB( 'word-separator' ) . $s;
-			} else {
-				$s = $l[$i] . $this->getMessageFromDB( 'comma-separator' ) . $s;
-			}
+		$m = count( $l ) - 1;
+		if( $m == 1 ) {
+			return $l[0] . $this->getMessageFromDB( 'and' ) . $this->getMessageFromDB( 'word-separator' ) . $l[1];
 		}
-		return $s;
+		else {
+			for ( $i = $m; $i >= 0; $i-- ) {
+				if ( $i == $m ) {
+					$s = $l[$i];
+				} else if( $i == $m - 1 ) {
+					$s = $l[$i] . $this->getMessageFromDB( 'and' ) . $this->getMessageFromDB( 'word-separator' ) . $s;
+				} else {
+					$s = $l[$i] . $this->getMessageFromDB( 'comma-separator' ) . $s;
+				}
+			}
+			return $s;
+		}
 	}
-	
+
 	/**
 	 * Take a list of strings and build a locale-friendly comma-separated
 	 * list, using the local comma-separator message.
