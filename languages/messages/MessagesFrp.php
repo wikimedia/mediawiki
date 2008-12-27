@@ -1216,6 +1216,9 @@ PICT # de totes sôrtes
 # Special:DeletedContributions
 'deletedcontributions' => 'Contribucions suprimâs d’un utilisator',
 
+# Special:Interwiki
+'interwiki_defaulturl' => 'http://www.ègzemplo.com/$1',
+
 # Special:LinkSearch
 'linksearch'       => 'Rechèrchiér des lims Malyâjo',
 'linksearch-pat'   => 'Rechèrchiér l’èxprèssion :',

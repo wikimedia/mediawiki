@@ -954,6 +954,11 @@ Nō xiquitta [[Special:WantedCategories|neneuhcāyōtl monequi]].',
 'special-categories-sort-count' => 'tlapōhualcopa',
 'special-categories-sort-abc'   => 'tlahtōlcopa',
 
+# Special:Interwiki
+'interwiki_reasonfield' => 'Īxtlamatiliztli',
+'interwiki_addbutton' => 'Ticcētilīz',
+'interwiki_defaultreason' => 'ahmo cah īxtlamatiliztli',
+
 # Special:LinkSearch
 'linksearch'    => 'Tiquintēmōz tzonhuiliztli mātlatzālan',
 'linksearch-ns' => 'Tōcātzin:',

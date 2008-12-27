@@ -728,6 +728,13 @@ Matlakala ago ba [[Special:Watchlist|lenanong la gago la matlakala ditlhapetšo]
 # Special:DeletedContributions
 'deletedcontributions' => 'Diabe tša mošomiši tšeo di phumutšwego',
 
+# Special:Interwiki
+'interwiki_reasonfield' => 'Lebaka',
+'interwiki_delquestion' => 'Phumula "$1"',
+'interwiki_addbutton' => 'Lokela',
+'interwiki_defaulturl' => 'http://www.mohlala.com/$1',
+'interwiki_defaultreason' => 'gago lebaka leo lefilwego',
+
 # Special:LinkSearch
 'linksearch-ok' => 'Fetleka',
 

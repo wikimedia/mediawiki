@@ -1656,6 +1656,11 @@ Vedeţi şi [[Special:WantedCategories|categoriile dorite]].',
 # Special:DeletedContributions
 'deletedcontributions' => 'Contribuţii şterse',
 
+# Special:Interwiki
+'interwiki_reasonfield' => 'Motiv',
+'interwiki_addbutton' => 'Adaugă',
+'interwiki_defaultreason' => 'nici un motiv oferit',
+
 # Special:LinkSearch
 'linksearch'     => 'Caută legături web',
 'linksearch-pat' => 'Model de căutare:',

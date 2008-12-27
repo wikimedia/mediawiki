@@ -1356,6 +1356,9 @@ Ad brefükam lisedi, kanoy välön lisedasoti, gebananemi, u padi tefik.',
 # Special:DeletedContributions
 'deletedcontributions' => 'Gebanakeblünots pemoüköl',
 
+# Special:Interwiki
+'interwiki_reasonfield' => 'Kod',
+
 # Special:LinkSearch
 'linksearch'    => 'Sukön bevüresodayümis',
 'linksearch-ns' => 'Nemaspad:',

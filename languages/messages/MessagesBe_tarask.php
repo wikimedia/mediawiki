@@ -1765,6 +1765,12 @@ $2',
 # Special:DeletedContributions
 'deletedcontributions' => 'Выдалены ўнёсак удзельніка',
 
+# Special:Interwiki
+'interwiki' => 'Прагляд і рэдагаваньне зьвестак пра інтэрвікі',
+'interwiki-title-norights' => 'Прагляд зьвестак пра інтэрвікі',
+'interwiki_reasonfield' => 'Прычына',
+'interwiki_addbutton' => 'Дадаць',
+
 # Special:LinkSearch
 'linksearch'       => 'Пошук вонкавых спасылак',
 'linksearch-pat'   => 'Узор для пошуку:',

@@ -1691,6 +1691,37 @@ Xem thêm [[Special:WantedCategories|thể loại cần thiết]].',
 # Special:DeletedContributions
 'deletedcontributions' => 'Đóng góp đã bị xóa của thành viên',
 
+# Special:Interwiki
+'interwiki' => 'Xem và sửa đổi dữ liệu về liên kết liên wiki',
+'interwiki-title-norights' => 'Xem dữ liệu liên wiki',
+'interwiki-desc' => 'Thêm một [[Special:Interwiki|trang đặc biệt]] để xem sửa đổi bảng liên wiki',
+'interwiki_prefix' => 'Tiền tố',
+'interwiki_reasonfield' => 'Lý do',
+'interwiki_intro' => 'Xem $1 để biết thêm thông tin về bảng liên wiki.
+Đây là [[Special:Log/interwiki|nhật trình các thay đổi]] tại bảng liên wiki.',
+'interwiki_error' => 'LỖi: Bảng liên wiki hiện đang trống, hoặc có vấn đề gì đó đã xảy ra.',
+'interwiki_delquestion' => 'Xóa “$1”',
+'interwiki_deleting' => 'Bạn đang xóa tiền tố “$1”.',
+'interwiki_deleted' => 'Tiền tố “$1” đã được xóa khỏi bảng liên wiki.',
+'interwiki_delfailed' => 'Tiền tố “$1” không thể xóa khỏi bảng liên wiki.',
+'interwiki_addtext' => 'Thêm tiền tố liên kết liên wiki',
+'interwiki_addintro' => 'Bạn đang thêm một tiền tố liên wiki mới.
+Hãy nhớ rằng nó không chứa được khoảng trắng ( ), dấu hai chấm (:), dấu và (&), hay dấu bằng (=).',
+'interwiki_addbutton' => 'Thêm',
+'interwiki_added' => 'Tiền tố “$1” đã được thêm vào bảng liên wiki.',
+'interwiki_addfailed' => 'Tiền tố “$1” không thể thêm vào bảng liên wiki.
+Có thể nó đã tồn tại trong bảng liên wiki rồi.',
+'interwiki_edittext' => 'Sửa đổi tiền tố liên wiki',
+'interwiki_editintro' => 'Bạn đang sửa đổi một tiền tố liên wiki. Hãy nhớ rằng việc làm này có thể phá hỏng các liên hết đã có.',
+'interwiki_edited' => 'Tiền tố “$1” đã thay đổi xong trong bảng liên wiki.',
+'interwiki_editerror' => 'Tiền tố “$1” không thể thay đổi trong bảng liên wiki. Có thể nó không tồn tại.',
+'interwikilogpage' => 'Nhật trình bảng liên wiki',
+'interwiki_log_added' => 'đã thêm tiền tố “$2” ($3) (ngoài: $4) (trong:$5) vào bảng liên wiki',
+'interwiki_log_edited' => 'đã thay đổi tiền tố “$2” : ($3) (ngoài: $4) (trong: $5) trong bảng liên wiki',
+'interwiki_log_deleted' => 'đã xóa tiền tố “$2” khỏi bảng liên wiki',
+'interwikilogpagetext' => 'Đây là nhật trình các thay đổi trong [[Special:Interwiki|bảng liên wiki]].',
+'interwiki_defaultreason' => 'không đưa ra lý do',
+
 # Special:LinkSearch
 'linksearch'       => 'Tìm liên kết ngoài',
 'linksearch-pat'   => 'Mẫu liên kết:',

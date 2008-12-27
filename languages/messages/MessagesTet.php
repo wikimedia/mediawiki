@@ -435,6 +435,9 @@ $messages = array(
 # Special:Categories
 'categories' => 'Kategoría',
 
+# Special:Interwiki
+'interwiki_delquestion' => 'Halakon $1',
+
 # Special:LinkSearch
 'linksearch-ok' => 'Buka',
 

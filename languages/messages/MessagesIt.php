@@ -1654,6 +1654,40 @@ Vedi anche le [[Special:WantedCategories|categorie richieste]].',
 # Special:DeletedContributions
 'deletedcontributions' => 'Contributi utente cancellati',
 
+# Special:Interwiki
+'interwiki' => 'Visualizza e modifica i dati interwiki',
+'interwiki-title-norights' => 'Visualizza i dati interwiki',
+'interwiki-desc' => 'Aggiunge una [[Special:Interwiki|pagina speciale]] per visualizzare e modificare la tabella degli interwiki',
+'interwiki_prefix' => 'Prefisso',
+'interwiki_reasonfield' => 'Motivo',
+'interwiki_intro' => 'Vedi $1 per maggiori informazioni sulla tabella degli interwiki.
+Esiste un [[Special:Log/interwiki|registro delle modifiche]] alla tabella degli interwiki.',
+'interwiki_error' => "ERRORE: La tabella degli interwiki è vuota, o c'è qualche altro errore.",
+'interwiki_delquestion' => 'Cancello "$1"',
+'interwiki_deleting' => 'Stai cancellando il prefisso "$1"',
+'interwiki_deleted' => 'Il prefisso "$1" è stato cancellato con successo dalla tabella degli interwiki.',
+'interwiki_delfailed' => 'Rimozione del prefisso "$1" dalla tabella degli interwiki fallita.',
+'interwiki_addtext' => 'Aggiungi un prefisso interwiki',
+'interwiki_addintro' => 'Sta per essere aggiunto un nuovo prefisso interwiki.
+Non sono ammessi i caratteri: spazio ( ), due punti (:), e commerciale (&), simbolo di uguale (=).',
+'interwiki_addbutton' => 'Aggiungi',
+'interwiki_added' => 'Il prefisso "$1" è stato aggiunto alla tabella degli interwiki.',
+'interwiki_addfailed' => 'Impossibile aggiungere il prefisso "$1" alla tabella degli interwiki.
+Il prefisso potrebbe essere già presente in tabella.',
+'interwiki_edittext' => 'Modifica di un prefisso interwiki',
+'interwiki_editintro' => 'Si sta modificando un prefisso interwiki.
+Ciò può rendere non funzionanti dei collegamenti esistenti.',
+'interwiki_edited' => 'Il prefisso "$1" è stato modificato nella tabella degli interwiki.',
+'interwiki_editerror' => 'Impossibile modificare il prefisso "$1" nella tabella degli interwiki.
+Il prefisso potrebbe essere inesistente.',
+'interwikilogpage' => 'Registro tabella interwiki',
+'interwiki_log_added' => 'ha aggiunto il prefisso "$2" ($3) (trans: $4) (locale: $5) alla tabella degli interwiki',
+'interwiki_log_edited' => 'ha modificato il prefisso "$2" : ($3) (trans: $4) (locale: $5) nella tabella degli interwiki',
+'interwiki_log_deleted' => 'ha rimosso il prefisso "$2" dalla tabella degli interwiki',
+'interwikilogpagetext' => 'Registro dei cambiamenti apportati alla [[Special:Interwiki|tabella degli interwiki]].',
+'interwiki_defaultreason' => 'nessuna motivazione indicata',
+'right-interwiki' => 'Modifica i dati interwiki',
+
 # Special:LinkSearch
 'linksearch'       => 'Ricerca collegamenti esterni',
 'linksearch-pat'   => 'Pattern di ricerca:',

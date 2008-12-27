@@ -1686,6 +1686,9 @@ Véase también las [[Special:WantedCategories|categorías requeridas]].',
 # Special:DeletedContributions
 'deletedcontributions' => 'Contribuciones de usuario borradas',
 
+# Special:Interwiki
+'interwiki_defaultreason' => 'no se da ninguna razón',
+
 # Special:LinkSearch
 'linksearch'       => 'Buscar enlaces a páginas web',
 'linksearch-pat'   => 'Patrón de búsqueda:',

@@ -1600,6 +1600,26 @@ Kuckt och [[Special:WantedCategories|Gewënschte Kategorien]].',
 # Special:DeletedContributions
 'deletedcontributions' => 'Geläschte Kontributiounen',
 
+# Special:Interwiki
+'interwiki' => 'Interwiki-Date kucken a veränneren',
+'interwiki-title-norights' => 'Interwiki-Date kucken',
+'interwiki-desc' => "Setzt eng [[Special:Interwiki|Spezialsäit]] derbäi fir d'Interwiki-Tabell ze gesin an z'änneren",
+'interwiki_prefix' => 'Prefix',
+'interwiki_reasonfield' => 'Grond',
+'interwiki_intro' => "Kuckt $1 fir méi Informatiounen iwwert d'Interwiki-Tabell.
+Et gëtt eng [[Special:Log/interwiki|Lëscht vun den Ännerungen]] vun dëser Interwiki-Tabell.",
+'interwiki_local' => 'Lokal',
+'interwiki_error' => "Feeler: D'Interwiki-Tabell ass eidel.",
+'interwiki_delquestion' => 'Läscht "$1"',
+'interwiki_addtext' => 'En Interwiki-prefix derbäisetzen',
+'interwiki_addbutton' => 'Derbäisetzen',
+'interwiki_defaulturl' => 'http://www.beispill.com/$1',
+'interwiki_edittext' => 'En interwiki Prefix änneren',
+'interwikilogpage' => 'Lëscht mat der Interwikitabell',
+'interwikilogpagetext' => 'Dëst ass eng Lëscht mat den Ännerunge vun der [[Special:Interwiki|Interwikitabell]].',
+'interwiki_defaultreason' => 'kee Grond uginn',
+'right-interwiki' => 'Interwiki-Daten änneren',
+
 # Special:LinkSearch
 'linksearch'      => 'Weblink-Sich',
 'linksearch-pat'  => 'Sich-Critère:',

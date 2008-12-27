@@ -1694,6 +1694,40 @@ Vidu ankaŭ [[Special:WantedCategories|Dezirataj kategorioj]].',
 # Special:DeletedContributions
 'deletedcontributions' => 'Forigitaj kontribuoj de uzantoj',
 
+# Special:Interwiki
+'interwiki' => 'Rigardi kaj redakti intervikiajn datenojn',
+'interwiki-title-norights' => 'Rigardi intervikiajn datenojn',
+'interwiki-desc' => 'Aldonas [[Special:Interwiki|specialan paĝon]] por rigardi kaj redakti la intervikian tabelon',
+'interwiki_prefix' => 'Prefikso',
+'interwiki_reasonfield' => 'Kialo',
+'interwiki_intro' => 'Vidu $1 por plia informo pri la intervikia tabelo.
+Ekzistas [[Special:Log/interwiki|protokolo pri ŝanĝoj]] por la intervikia tabelo.',
+'interwiki_error' => 'ERARO: La intervikia tabelo estas malplena, aŭ iel misfunkciis.',
+'interwiki_delquestion' => 'Forigante "$1"',
+'interwiki_deleting' => 'Vi forigas prefikson "$1".',
+'interwiki_deleted' => 'Prefikso "$1" estis sukcese forigita de la intervikia tabelo.',
+'interwiki_delfailed' => 'Prefikso "$1" ne eblis esti forigita el la intervikia tabelo.',
+'interwiki_addtext' => 'Aldonu intervikian prefikson',
+'interwiki_addintro' => 'Vi aldonas novan intervikian prefikson.
+Memoru ke ĝi ne povas enhavi spacetojn ( ), kolojn (:), kajsignojn (&), aŭ egalsignojn (=).',
+'interwiki_addbutton' => 'Aldoni',
+'interwiki_added' => 'Prefikso "$1" estis sukcese aldonita al la intervikia tabelo.',
+'interwiki_addfailed' => 'Prefikso "$1" ne eblis esti aldonita al la intervikia tabelo.
+Eble ĝi jam ekzistas en la intervikia tabelo.',
+'interwiki_edittext' => 'Redaktante intervikian prefikson',
+'interwiki_editintro' => 'Vi redaktas intervikian prefikson.
+Notu ke ĉi tiu ago povas rompi ekzistantajn ligilojn.',
+'interwiki_edited' => 'Prefikso "$1" estis sukcese modifita en la intervikian tabelon.',
+'interwiki_editerror' => 'Prefikso "$1" ne eblis esti modifita en la intervikia tabelo.
+Verŝajne ĝi ne ekzistas.',
+'interwikilogpage' => 'Loglibro pri la intervikia tabelo',
+'interwiki_log_added' => 'Aldonis prefikson "$2" ($3) (transvikie: $4) (loke: $5) al la intervikia tabelo',
+'interwiki_log_edited' => 'modifis prefikson "$2" : ($3) (transvikie: $4) (loke: $5) en la intervikia tabelo',
+'interwiki_log_deleted' => 'Forigita prefikso "$2" de la intervikia tabelo',
+'interwikilogpagetext' => 'Jen loglibro de ŝanĝoj al la [[Special:Interwiki|intervikia tabelo]].',
+'interwiki_defaultreason' => 'nenia kialo skribata',
+'right-interwiki' => 'Redakti intervikiajn datenojn',
+
 # Special:LinkSearch
 'linksearch'       => 'Serĉi retajn ligilojn',
 'linksearch-pat'   => 'Serĉesprimo:',

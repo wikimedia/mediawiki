@@ -1563,6 +1563,23 @@ Template:消除歧義',
 # Special:DeletedContributions
 'deletedcontributions' => '已刪除的用戶貢獻',
 
+# Special:Interwiki
+'interwiki' => '跨語言連結表',
+'interwiki-title-norights' => '檢視跨維基資料',
+'interwiki-desc' => '新增[[Special:Interwiki|特殊頁面]]以檢視或編輯跨語言連結表',
+'interwiki_prefix' => '連結字串',
+'interwiki_reasonfield' => '原因',
+'interwiki_intro' => '請參閱$1以取得更多有關跨語言連結表的訊息。
+
+這裡有跨語言連結表的[[Special:Log/interwiki|更動日誌]]。',
+'interwiki_error' => '錯誤：跨語言連結表為空，或是發生其他錯誤。',
+'interwiki_delquestion' => '正在刪除"$1"',
+'interwiki_deleting' => '您正在刪除連結字串"$1"',
+'interwiki_deleted' => '已成功從連結表中刪除連結字串"$1"',
+'interwiki_delfailed' => '無法從連結表刪除連結字串"$1"',
+'interwiki_addtext' => '新增跨語連結字串',
+'right-interwiki' => '修改跨維基資料',
+
 # Special:LinkSearch
 'linksearch'       => '搜尋網頁連結',
 'linksearch-pat'   => '搜尋網址:',

@@ -1014,6 +1014,14 @@ Pàggene sus 'a [[Special:Watchlist|le Pàggene condrollete]] sonde in '''grasce
 # Special:Categories
 'categories' => 'Le Categorije',
 
+# Special:Interwiki
+'interwiki_prefix' => 'Prefisse',
+'interwiki_reasonfield' => 'Mutive',
+'interwiki_delquestion' => 'Scangellamende de "£1"',
+'interwiki_deleting' => 'Tu ste scangille \'u prefisse "$1".',
+'interwiki_addbutton' => 'Aggiunge',
+'interwiki_defaultreason' => 'Nisciune mutive date',
+
 # Special:LinkSearch
 'linksearch-ns' => 'Neimspeise:',
 'linksearch-ok' => 'Cirche',

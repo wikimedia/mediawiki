@@ -1782,6 +1782,38 @@ Du kan avgränsa sökningen och få färre träffar genom att ange typ av logg, 
 # Special:DeletedContributions
 'deletedcontributions' => 'Raderade användarbidrag',
 
+# Special:Interwiki
+'interwiki' => 'Visa och redigera interwiki-data',
+'interwiki-title-norights' => 'Visa interwiki-data',
+'interwiki-desc' => 'Lägger till en [[Special:Interwiki|specialsida]] för att visa och ändra interwikitabellen',
+'interwiki_prefix' => 'Prefix',
+'interwiki_reasonfield' => 'Anledning',
+'interwiki_intro' => 'Se $1 för mer information om interwikitabellen.
+Det finns en [[Special:Log/interwiki|logg]] över ändringar av interwikitabellen.',
+'interwiki_error' => 'FEL: Interwikitabellen är tom, eller så gick något fel.',
+'interwiki_delquestion' => 'Ta bort "$1"',
+'interwiki_deleting' => 'Du håller på att ta bort prefixet "$1".',
+'interwiki_deleted' => 'Prefixet "$1 har raderats från interwikitabellen.',
+'interwiki_delfailed' => 'Prefixet "$1" kunde inte raderas från interwikitabellen.',
+'interwiki_addtext' => 'Lägg till ett interwikiprefix',
+'interwiki_addintro' => 'Du håller på att lägga till ett nytt interwikiprefix.
+Kom ihåg att det inte kan innehålla mellanslag ( ), kolon (:), &-tecken eller likhetstecken (=).',
+'interwiki_addbutton' => 'Lägg till',
+'interwiki_added' => 'Prefixet "$1" har lagts till i interwikitabellen.',
+'interwiki_addfailed' => 'Prefixet "$1" kunde inte läggas till i interwikitabellen.
+Det är möjligt att prefixet redan finns i tabellen.',
+'interwiki_edittext' => 'Redigera ett interwikiprefix',
+'interwiki_editintro' => 'Du redigerar ett interwikiprefix. Notera att detta kan förstöra existerande länkar.',
+'interwiki_edited' => 'Prefixet "$1" har ändrats i interwikitabellen.',
+'interwiki_editerror' => 'Prefixet "$1" kan inte ändras i interwikitabellen. Det är möjligt att det inte finns.',
+'interwikilogpage' => 'Interwikitabellogg',
+'interwiki_log_added' => 'lade till prefixet "$2" ($3) (trans: $4) (lokal: $5) i interwikitabellen',
+'interwiki_log_edited' => 'ändrade prefixet "$2" ($3) (trans: $4) (lokal: $5) i interwikitabellen',
+'interwiki_log_deleted' => 'tog bort prefixet "$2" från interwikitabellen',
+'interwikilogpagetext' => 'Detta är en logg över ändringar i [[Special:Interwiki|interwikitabellen]].',
+'interwiki_defaultreason' => 'ingen anledning given',
+'right-interwiki' => 'Redigera interwikidata',
+
 # Special:LinkSearch
 'linksearch'       => 'Sök webblänkar',
 'linksearch-pat'   => 'Sökmönster:',

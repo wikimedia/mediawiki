@@ -1788,6 +1788,38 @@ Možete suziti prikaz odabirući tip evidencije, suradničko ime ili stranicu u 
 # Special:DeletedContributions
 'deletedcontributions' => 'Obrisani suradnički doprinosi',
 
+# Special:Interwiki
+'interwiki' => 'Vidi i uredi međuwiki podatke',
+'interwiki-title-norights' => 'Gledanje interwiki tablice',
+'interwiki-desc' => 'Dodaje [[Special:Interwiki|posebnu stranicu]] za gledanje i uređivanje interwiki tablice',
+'interwiki_prefix' => 'Prefiks',
+'interwiki_reasonfield' => 'Razlog',
+'interwiki_intro' => 'Pogledajte $1 za više informacija o interwiki tablici.
+Postoji [[Special:Log/interwiki|evidencija promjena]] za interwiki tablicu.',
+'interwiki_local' => 'Lokalno',
+'interwiki_trans' => 'Međuwiki',
+'interwiki_error' => 'GREŠKA: Interwiki tablica je prazna, ili je nešto drugo neispravno.',
+'interwiki_delquestion' => 'Brišem "$1"',
+'interwiki_deleting' => 'Brišete prefiks "$1".',
+'interwiki_deleted' => 'Prefiks "$1" je uspješno uklonjen iz interwiki tablice.',
+'interwiki_delfailed' => 'Prefiks "$1" nije mogao biti uklonjen iz interwiki tablice.',
+'interwiki_addtext' => 'Dodaj međuwiki prefiks',
+'interwiki_addintro' => 'Uređujete novi interwiki prefiks. Upamtite, prefiks ne može sadržavati prazno mjesto ( ), dvotočku (:), znak za i (&), ili znakove jednakosti (=).',
+'interwiki_addbutton' => 'Dodaj',
+'interwiki_added' => 'Prefiks "$1" je uspješno dodan u interwiki tablicu.',
+'interwiki_addfailed' => 'Prefiks "$1" nije mogao biti dodan u interwiki tablicu. Vjerojatno već postoji u interwiki tablici.',
+'interwiki_edittext' => 'Uređivanje interwiki prefiksa',
+'interwiki_editintro' => 'Uređujete interwiki prefiks. Ovo može oštetiti postojeće poveznice.',
+'interwiki_edited' => 'Prefiks "$1" je uspješno promijenjen u interwiki tablici.',
+'interwiki_editerror' => 'Prefiks "$1" ne može biti promijenjen u interwiki tablici. Vjerojatno ne postoji.',
+'interwikilogpage' => 'Evidencije interwiki tablice',
+'interwiki_log_added' => 'dodan prefiks "$2" ($3) (trans: $4) (lokalno: $5) u interwiki tablicu',
+'interwiki_log_edited' => 'promijenjen prefiks "$2" : ($3) (trans: $4) (lokalno: $5) u interwiki tablici',
+'interwiki_log_deleted' => 'uklonjen prefiks "$2" iz interwiki tablice',
+'interwikilogpagetext' => 'Ovo su evidencije promjena na [[Special:Interwiki|interwiki tablici]].',
+'interwiki_defaultreason' => 'nema razloga',
+'right-interwiki' => 'Uređivanje interwiki podataka',
+
 # Special:LinkSearch
 'linksearch'       => 'Pretraživanje vanjskih poveznica',
 'linksearch-pat'   => 'Uzorak traženja:',
