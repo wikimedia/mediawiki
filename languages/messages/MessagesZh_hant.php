@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(傳統字)‬)
+/** Traditional Chinese (‪中文(繁體)‬)
  *
  * @ingroup Language
  * @file
@@ -1573,7 +1573,7 @@ Template:消除歧義',
 'interwiki_delfailed'      => '無法從連結表刪除連結字串"$1"',
 'interwiki_delquestion'    => '正在刪除"$1"',
 'interwiki_error'          => '錯誤：跨語言連結表為空，或是發生其他錯誤。',
-'interwiki_intro'          => '請參閱$1以取得更多有關跨語言連結表的訊息。
+'interwiki_intro'          => '請參閱[http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org]以取得更多有關跨語言連結表的訊息。
 
 這裡有跨語言連結表的[[Special:Log/interwiki|更動日誌]]。',
 'interwiki_prefix'         => '連結字串',

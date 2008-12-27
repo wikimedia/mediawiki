@@ -1,10 +1,11 @@
 <?php
-/** Simplified Chinese (‪中文(简化字)‬)
+/** Simplified Chinese (‪中文(简体)‬)
  *
  * @ingroup Language
  * @file
  *
  * @author Bencmq
+ * @author Gzdavidwong
  * @author O
  * @author Shinjiman
  */
@@ -1585,6 +1586,10 @@ Template:消除歧義',
 
 # Special:DeletedContributions
 'deletedcontributions' => '已删除的用户贡献',
+
+# Special:Interwiki
+'interwiki-title-norights' => '查看跨语言（维基）资料',
+'right-interwiki'          => '编辑跨语言（维基）资料',
 
 # Special:LinkSearch
 'linksearch'       => '搜索网页链接',

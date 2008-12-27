@@ -1677,7 +1677,7 @@ Il prefisso potrebbe essere inesistente.',
 Ciò può rendere non funzionanti dei collegamenti esistenti.',
 'interwiki_edittext'       => 'Modifica di un prefisso interwiki',
 'interwiki_error'          => "ERRORE: La tabella degli interwiki è vuota, o c'è qualche altro errore.",
-'interwiki_intro'          => 'Vedi $1 per maggiori informazioni sulla tabella degli interwiki.
+'interwiki_intro'          => 'Vedi [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] per maggiori informazioni sulla tabella degli interwiki.
 Esiste un [[Special:Log/interwiki|registro delle modifiche]] alla tabella degli interwiki.',
 'interwiki_log_added'      => 'ha aggiunto il prefisso "$2" ($3) (trans: $4) (locale: $5) alla tabella degli interwiki',
 'interwiki_log_deleted'    => 'ha rimosso il prefisso "$2" dalla tabella degli interwiki',

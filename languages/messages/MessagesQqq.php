@@ -1487,7 +1487,6 @@ Parameter $1 is the interwiki prefix you are deleting.
 'interwiki_editerror'      => 'Part of the interwiki extension. Error message when modifying a prefix has failed.',
 'interwiki_error'          => 'Part of the interwiki extension. This error message is shown when the Special:Interwiki page is empty.',
 'interwiki_intro'          => 'Part of the interwiki extension.
-Parameter $1 contains the following (a link): [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org]',
 'interwiki_log_added'      => 'Part of the interwiki extension. Shows up in "Special:Log/interwiki" when someone has added a prefix. Leave parameters and text between brackets exactly as it is.',
 'interwiki_log_deleted'    => 'Part of the interwiki extension. Shows up in "Special:Log/interwiki" when someone removed a prefix.',
 'interwiki_log_edited'     => 'Part of the interwiki extension. Shows up in "Special:Log/interwiki" when someone has modified a prefix. Leave parameters and text between brackets exactly as it is.',

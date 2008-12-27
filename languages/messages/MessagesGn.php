@@ -5,6 +5,7 @@
  * @file
  *
  * @author Hugo.arg
+ * @author Perla
  */
 
 $fallback = 'es';
@@ -31,6 +32,10 @@ $namespaceNames = array(
 );
 
 $messages = array(
+# User preference toggles
+'tog-underline' => 'Haiguy joajuha',
+'tog-justify'   => 'embojoja haipyvo',
+
 'underline-always' => 'Akói',
 'underline-never'  => "Araka'eve",
 
@@ -107,6 +112,7 @@ $messages = array(
 'searcharticle'    => 'Ha',
 'history'          => 'Tembiasakue',
 'history_short'    => 'Tembiasakue',
+'printableversion' => 'Osẽma haguãicha',
 'edit'             => 'Jehaijey',
 'delete'           => "Mboje'o",
 'undelete_short'   => 'Restaurar $1 ediciones',

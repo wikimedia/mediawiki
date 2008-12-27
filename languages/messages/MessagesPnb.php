@@ -326,6 +326,7 @@ $messages = array(
 'savearticle'            => 'کم بچاؤ',
 'preview'                => 'وکھاؤ',
 'showpreview'            => 'کچا کم ویکھو',
+'showlivepreview'        => 'جیندا کچا کم',
 'showdiff'               => 'تبدیلیاں وکھاؤ',
 'anoneditwarning'        => "<div/>'''خبردار''' تسی اندر نہیں آۓ
 تواڈا ''آئی پی'' پتہ فائل فائل وچ لکھیا جاۓ گا۔",
@@ -346,6 +347,7 @@ $messages = array(
 تواڈا موجودہ آئی پی پتہ $3 اے تے روکی گئی آئی ڈی #$5 اے۔
 مہربانی کر کے کوئی وی سوال جواب کرن آسطے اتے دتیاں گئیاں تفصیلات ضرور دیو۔",
 'blockednoreason'        => 'کوئی وجہ نئیں دسی گئی',
+'nosuchsectiontitle'     => 'اے ہو جیا کوئی ٹوٹا نئیں',
 'loginreqtitle'          => 'لاگ ان چائیدا اے',
 'loginreqlink'           => 'لاگ ان ہو جاو',
 'accmailtitle'           => 'کنجی پیج دتی گئی اے۔',
@@ -369,6 +371,7 @@ $messages = array(
 اس صفحہ نوں چھوٹے ٹوٹیاں چ تقسیم کرن دے بارے چ سوچ لو۔</strong>',
 'templatesused'          => 'اس صفحے تے استعمال کیتے گۓ سانچے:',
 'templatesusedpreview'   => 'اس کچے کم تے استعمال ہوۓ سانچے:',
+'templatesusedsection'   => 'اس ٹوٹے چ استعمال کیتے گۓ سچے:',
 'template-protected'     => '(بچایا گیا)',
 'template-semiprotected' => '(کج بچایا ہویا)',
 'nocreatetitle'          => 'صفحہ بنانے دی حد اے',
@@ -420,6 +423,8 @@ $messages = array(
 'revdelete-hide-comment' => 'لکھن دے بارے چ صلاع لکاؤ',
 'revdelete-hide-user'    => 'لکھن آلے دا ناں/آئی پی پتہ لکاؤ',
 'revdelete-hide-image'   => 'فائل دا مواد لکاؤ',
+'pagehist'               => 'صفحے دی تاریخ',
+'deletedhist'            => 'مٹائی گئی تاریخ',
 'revdelete-content'      => 'مواد',
 'revdelete-summary'      => 'لکھائی دا خلاصہ',
 'revdelete-uname'        => 'ورتن آلے دا ناں',
@@ -447,6 +452,7 @@ $messages = array(
 'nextn'                     => 'اگلا $1',
 'viewprevnext'              => 'ویکھو ($1) ($2) ($3)',
 'searchhelp-url'            => 'Help:فہرست',
+'search-interwiki-caption'  => 'نال دے منصوبے',
 'search-mwsuggest-enabled'  => 'صلاع دے نال',
 'search-mwsuggest-disabled' => 'کوئی صلاع نئیں',
 'search-relatedarticle'     => 'جڑیاں',
@@ -580,8 +586,10 @@ $messages = array(
 'filesource'         => 'ذریعہ:',
 'uploadedfiles'      => 'اتے چڑھائیاں گئیاں فائلاں',
 'successfulupload'   => 'فائل چڑھ گئی اے',
+'uploadwarning'      => 'فائل چڑانے توں خبردار',
 'savefile'           => 'فائل بچاؤ',
 'uploadedimage'      => 'چڑھائی گئی"[[$1]]"',
+'uploaddisabled'     => 'فائل چڑانا بند اے',
 'uploaddisabledtext' => 'فائل چڑانے چ رکاوٹ اے۔',
 'uploadvirus'        => 'اس فائل چ وائرس اے! تفصیل: $1',
 'sourcefilename'     => 'فائل دے ذریعے دا ناں:',
@@ -589,10 +597,16 @@ $messages = array(
 'upload-maxfilesize' => 'فائل دا زيادہ توں زيادہ ناپ: $1',
 'watchthisupload'    => 'اس صفحے تے نظر رکھو',
 
-'upload-file-error' => 'اندر دا مسئلا',
-'upload-misc-error' => 'اتے چڑاندیاں انجان مسئلا اے',
+'upload-proto-error' => 'غلط پروٹوکول',
+'upload-file-error'  => 'اندر دا مسئلا',
+'upload-misc-error'  => 'اتے چڑاندیاں انجان مسئلا اے',
 
-'nolicense' => 'انچنی',
+# Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error28' => 'فائل اتے چڑانے دا ویلا مک گیا اے',
+
+'nolicense'          => 'انچنی',
+'license-nopreview'  => '(کچا کم نئیں ویکھ سکدے او)',
+'upload_source_file' => ' (تواڈے کمپیوٹر تے اک فائل)',
 
 # Special:FileList
 'imgfile'               => 'فائل',
@@ -608,6 +622,7 @@ $messages = array(
 'filehist-help'                  => 'فائل نو اس ویلے دی حالت وچ ویکھن واسطے تاریخ/ویلے تے کلک کرو۔',
 'filehist-deleteall'             => 'سب نوں مٹاؤ',
 'filehist-deleteone'             => 'مٹاؤ',
+'filehist-revert'                => 'واپس',
 'filehist-current'               => 'موجودہ',
 'filehist-datetime'              => 'تاریخ/ویلہ',
 'filehist-user'                  => 'ورتن والا',
@@ -627,6 +642,7 @@ $messages = array(
 # File reversion
 'filerevert-legend'  => 'فائل پچھلی حالت چ لے جاؤ',
 'filerevert-comment' => 'صلاع:',
+'filerevert-submit'  => 'واپس',
 
 # File deletion
 'filedelete'                  => '$1 مٹاؤ',
@@ -637,6 +653,7 @@ $messages = array(
 'filedelete-success'          => "'''$1''' مٹایا جا چکیا اے۔",
 'filedelete-otherreason'      => ':دوجی وجہ',
 'filedelete-reason-otherlist' => 'ہور وجہ',
+'filedelete-edit-reasonlist'  => 'مٹانے دی وجہ لکھو',
 
 # MIME search
 'mimesearch' => 'MIME کھوج',
@@ -659,7 +676,8 @@ $messages = array(
 'randomredirect' => 'بے پترتیب ریڈائریکٹ',
 
 # Statistics
-'statistics' => 'حساب کتاب',
+'statistics'             => 'حساب کتاب',
+'statistics-mostpopular' => 'سب توں بوتے ویکھے گۓ صفجے',
 
 'disambiguations' => 'اک جۓ صفحے',
 
@@ -702,10 +720,12 @@ $messages = array(
 'protectedtitles'         => 'بچاۓ ہوۓ صفحے',
 'listusers'               => 'ورتن والیاں دے ناں',
 'newpages'                => 'نوے صفحے',
+'newpages-username'       => 'ورتن آلا ناں:',
 'ancientpages'            => 'سب توں پرانے صفحے',
 'move'                    => 'لے چلو',
 'movethispage'            => 'اس صفحے نوں لے چلو',
 'notargettitle'           => 'بغیر نشانے توں',
+'nopagetitle'             => 'اس طرح دا کوئی صفحہ نئیں اے',
 'pager-newer-n'           => '{{PLURAL:$1|newer 1|زیادہ نواں $1}}',
 'pager-older-n'           => '{{PLURAL:$1|older 1|زیادہ پرانا $1}}',
 
@@ -770,25 +790,42 @@ $messages = array(
 'watching'   => 'نظر تھلے۔۔۔۔',
 'unwatching' => 'نظروں اولے',
 
+'enotif_reset'       => 'سارے ویکھے گۓ صفحیاں تے نشان لاؤ',
+'enotif_newpagetext' => 'اے نواں صفحہ اے۔',
+'changed'            => 'بدلیا',
+'created'            => 'بن گیا',
+'enotif_anon_editor' => 'گم نام ورتن آلا $1',
+
 # Delete
-'deletepage'            => 'صفحہ مٹاؤ',
-'historywarning'        => 'خوشیار: او صفحہ جس نوں تسی مٹانے لگے او دا ریکارڈ موجود اے۔',
-'confirmdeletetext'     => 'تسی اک صفحہ اسدی تاریخ دے نال مٹان لگے او۔
+'deletepage'             => 'صفحہ مٹاؤ',
+'confirm'                => 'پکا کرو',
+'exblank'                => 'صفحہ خالی سی',
+'delete-confirm'         => '"$1" مٹاؤ',
+'delete-legend'          => 'مٹاؤ',
+'historywarning'         => 'خوشیار: او صفحہ جس نوں تسی مٹانے لگے او دا ریکارڈ موجود اے۔',
+'confirmdeletetext'      => 'تسی اک صفحہ اسدی تاریخ دے نال مٹان لگے او۔
 کیا تسی اے ای کرنا چاہندے او کیا تسی اس دے نتیجے نوں جاندے او کہ تسی اے کم [[{{MediaWiki:Policy-url}}|پالیسی]] دے مطابق کر رہے او۔',
-'actioncomplete'        => 'کم ہوگیا',
-'deletedtext'           => '"<nowiki>$1</nowiki>" مٹایا جا چکیا اے۔<br />
+'actioncomplete'         => 'کم ہوگیا',
+'deletedtext'            => '"<nowiki>$1</nowiki>" مٹایا جا چکیا اے۔<br />
 نیڑے نیڑے مٹاۓ گۓ ریکارڈ نوں دیکن آسطے $2 ایتھے چلو۔',
-'deletedarticle'        => '"[[$1]]" مٹا دتا گیا',
-'dellogpage'            => 'مٹان آلی لاگ',
-'deletecomment'         => 'مٹانے دی وجہ:',
-'deleteotherreason'     => 'دوجی/ہور وجہ:',
-'deletereasonotherlist' => 'ہور وجہ',
+'deletedarticle'         => '"[[$1]]" مٹا دتا گیا',
+'dellogpage'             => 'مٹان آلی لاگ',
+'dellogpagetext'         => 'تھلے نویاں مٹائے گۓ صفحیاں دی لسٹ اے۔',
+'deletecomment'          => 'مٹانے دی وجہ:',
+'deleteotherreason'      => 'دوجی/ہور وجہ:',
+'deletereasonotherlist'  => 'ہور وجہ',
+'delete-edit-reasonlist' => 'مٹانے دیاں وجہ لکھو',
 
 # Rollback
-'rollbacklink' => 'واپس',
+'rollback'       => 'لکھائیاں واپس کرو',
+'rollback_short' => 'واپس کرو',
+'rollbacklink'   => 'واپس',
 
 # Protect
 'protectlogpage'              => 'بچت لاگ',
+'protectedarticle'            => '"[[$1]]" بچایا گیا اے',
+'unprotectedarticle'          => '"[[$1]]" نئیں بچایا گیا',
+'protect-legend'              => 'بچاؤ پکا کرو',
 'protectcomment'              => 'را‌ۓ:',
 'protectexpiry'               => 'انت ہوندا اے:',
 'protect_expiry_invalid'      => 'اکسپائری ٹیم غلط اے۔',
@@ -810,6 +847,9 @@ $messages = array(
 'protect-cantedit'            => 'تسی اس صفحے دے حفاظتی درجے نوں نہیں بدل سکدے کیونکہ توانوں اس کم دی اجازت نہیں اے۔',
 'restriction-type'            => 'اجازت:',
 'restriction-level'           => 'حفاظتی درجہ:',
+'minimum-size'                => 'چھوٹا ترین ناپ',
+'maximum-size'                => 'وڈآ ترین ناپ:',
+'pagesize'                    => '(بائٹ)',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'لکھو',
@@ -827,6 +867,10 @@ $messages = array(
 'undeletepage'              => 'مٹاۓ گۓ صفحے ویکھو تے واپس لے آؤ',
 'viewdeletedpage'           => 'مٹاۓ گۓ صفحے ویکھو',
 'undeletebtn'               => 'بحال کرو',
+'undeletelink'              => 'واپس لے چلو',
+'undeletereset'             => 'پہلی حالت تے لے آؤ',
+'undeletecomment'           => 'صلاع:',
+'undelete-search-box'       => 'مٹاۓ گۓ صفحے کھوجو',
 'undelete-search-submit'    => 'کھوجو',
 'undelete-show-file-submit' => 'ہاں جی',
 
@@ -851,51 +895,69 @@ $messages = array(
 'sp-contributions-submit'      => 'کھوجو',
 
 # What links here
-'whatlinkshere'       => 'ایتھے کیدا تعلق اے',
-'whatlinkshere-title' => 'او صفحات جیڑے "$1" نال جڑے نے',
-'whatlinkshere-page'  => 'صفحہ:',
-'linkshere'           => "تھلے دتے گۓ صفحے اس دے نال جڑدے نے '''[[:$1]]''':",
-'nolinkshere'         => "'''[[:$1]]''' دے نال کسے دا جوڑ نہیں",
-'isredirect'          => 'ریڈائرکٹ صفحہ',
-'istemplate'          => 'ملن',
-'whatlinkshere-prev'  => '{{PLURAL:$1|پچھل $1ا|پچھلا}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|اگلا $1|اگلا}}',
-'whatlinkshere-links' => '← تعلق',
+'whatlinkshere'         => 'ایتھے کیدا تعلق اے',
+'whatlinkshere-title'   => 'او صفحات جیڑے "$1" نال جڑے نے',
+'whatlinkshere-page'    => 'صفحہ:',
+'linkshere'             => "تھلے دتے گۓ صفحے اس دے نال جڑدے نے '''[[:$1]]''':",
+'nolinkshere'           => "'''[[:$1]]''' دے نال کسے دا جوڑ نہیں",
+'isredirect'            => 'ریڈائرکٹ صفحہ',
+'istemplate'            => 'ملن',
+'isimage'               => 'مورت دا جوڑ',
+'whatlinkshere-prev'    => '{{PLURAL:$1|پچھل $1ا|پچھلا}}',
+'whatlinkshere-next'    => '{{PLURAL:$1|اگلا $1|اگلا}}',
+'whatlinkshere-links'   => '← تعلق',
+'whatlinkshere-filters' => 'نتارے',
 
 # Block/unblock
-'blockip'               => 'اس ورتن والے نو روکو',
-'ipaddress'             => 'آئی پی پتہ:',
-'ipadressorusername'    => 'آئی پی پتہ یا ورتن آلے دا ناں:',
-'ipbexpiry'             => 'انت:',
-'ipbreason'             => 'وجہ:',
-'ipbreasonotherlist'    => 'ہور وجہ',
-'ipbanononly'           => 'انجان ورتن آلیاں نوں روکو',
-'ipbcreateaccount'      => 'کھاتہ کھولنا روکو',
-'ipbsubmit'             => 'اس ورتن آلے نوں روکو',
-'ipbother'              => 'دوجے ویلے:',
-'ipboptions'            => 'دو کینٹے:2 hours,1 دن:1 day,3 دن:3 days,1 ہفتہ:1 week,2 ہفتے:2 weeks,1 مہینہ:1 month,3 مہینے:3 months,6 مہینے:6 months,1 سال:1 year,بے انت:infinite', # display1:time1,display2:time2,...
-'ipbotheroption'        => 'دوجا',
-'ipbotherreason'        => 'دوجیاں ہور وجہ:',
-'badipaddress'          => 'آئی پی پتہ ٹھیک نئیں',
-'blockipsuccesssub'     => 'روک کامیاب',
-'ipb-blocklist'         => 'روکیاں گياں نوں ویکھو',
-'unblockip'             => 'ورتن آلے تے روک بند کرو',
-'ipblocklist'           => 'بند کیتے گۓ آئی پی پتے تے ورتن والیاں دے ناں',
-'ipblocklist-username'  => 'ورتن آلے دا ناں یا آئی پی پتہ:',
-'ipblocklist-submit'    => 'کھوجو',
-'infiniteblock'         => 'بے انت',
-'emailblock'            => 'ای میل روک دتی گئی اے',
-'blocklink'             => 'روک',
-'unblocklink'           => 'روک ختم',
-'contribslink'          => 'حصے داری',
-'blocklogpage'          => 'لاگ روکو',
-'blocklogentry'         => 'روک دتا گیا تے اے رکاوٹ دا ویلا $2 $3 مک جاۓ گا [[$1]]',
-'ipb_already_blocked'   => '"$1" پہلاں توں ہی روکیا ہویا اے۔',
-'blockme'               => 'مینوں روکو',
-'proxyblocker-disabled' => 'اس کم نوں روک دتا گیا اے۔',
-'proxyblocksuccess'     => 'ہوگیا۔',
+'blockip'                 => 'اس ورتن والے نو روکو',
+'blockip-legend'          => 'ورتن آلے نوں روکو',
+'ipaddress'               => 'آئی پی پتہ:',
+'ipadressorusername'      => 'آئی پی پتہ یا ورتن آلے دا ناں:',
+'ipbexpiry'               => 'انت:',
+'ipbreason'               => 'وجہ:',
+'ipbreasonotherlist'      => 'ہور وجہ',
+'ipbanononly'             => 'انجان ورتن آلیاں نوں روکو',
+'ipbcreateaccount'        => 'کھاتہ کھولنا روکو',
+'ipbemailban'             => 'ورتن آلے نوں ای میل پیجن توں روکو',
+'ipbsubmit'               => 'اس ورتن آلے نوں روکو',
+'ipbother'                => 'دوجے ویلے:',
+'ipboptions'              => 'دو کینٹے:2 hours,1 دن:1 day,3 دن:3 days,1 ہفتہ:1 week,2 ہفتے:2 weeks,1 مہینہ:1 month,3 مہینے:3 months,6 مہینے:6 months,1 سال:1 year,بے انت:infinite', # display1:time1,display2:time2,...
+'ipbotheroption'          => 'دوجا',
+'ipbotherreason'          => 'دوجیاں ہور وجہ:',
+'badipaddress'            => 'آئی پی پتہ ٹھیک نئیں',
+'blockipsuccesssub'       => 'روک کامیاب',
+'ipb-blocklist'           => 'روکیاں گياں نوں ویکھو',
+'unblockip'               => 'ورتن آلے تے روک بند کرو',
+'ipblocklist'             => 'بند کیتے گۓ آئی پی پتے تے ورتن والیاں دے ناں',
+'ipblocklist-username'    => 'ورتن آلے دا ناں یا آئی پی پتہ:',
+'ipblocklist-submit'      => 'کھوجو',
+'infiniteblock'           => 'بے انت',
+'emailblock'              => 'ای میل روک دتی گئی اے',
+'blocklink'               => 'روک',
+'unblocklink'             => 'روک ختم',
+'contribslink'            => 'حصے داری',
+'blocklogpage'            => 'لاگ روکو',
+'blocklogentry'           => 'روک دتا گیا تے اے رکاوٹ دا ویلا $2 $3 مک جاۓ گا [[$1]]',
+'block-log-flags-noemail' => 'ای میل روکی گئی اے',
+'ipb_already_blocked'     => '"$1" پہلاں توں ہی روکیا ہویا اے۔',
+'blockme'                 => 'مینوں روکو',
+'proxyblocker-disabled'   => 'اس کم نوں روک دتا گیا اے۔',
+'proxyblocksuccess'       => 'ہوگیا۔',
+
+# Developer tools
+'lockdb'              => 'ڈیٹابیس تے تالا لاؤ',
+'unlockdb'            => 'ڈیٹابیس دا تالا کھولو',
+'lockconfirm'         => 'ہاں، میں ڈیٹابیس تے تالا لانا چاندا واں۔',
+'unlockconfirm'       => 'ہاں، میں سچی ڈیٹابیس دا تالا کھولنا چاندا واں۔',
+'lockbtn'             => 'ڈیٹابیس تے تالا لاؤ',
+'unlockbtn'           => 'ڈیٹابیس دا تالا کھولو',
+'lockdbsuccesssub'    => 'ڈیٹابیس تے تالا لگ گیا',
+'unlockdbsuccesssub'  => 'ڈیٹابیس دا تالا کھل گیا',
+'unlockdbsuccesstext' => 'ڈیٹابیس دا تالا کھل گیا اے۔',
+'databasenotlocked'   => 'ڈیٹابیس تے تالا نئیں لگیا۔',
 
 # Move page
+'move-page'               => '$1 لے چلو',
 'move-page-legend'        => 'صفحے لے چلو',
 'movepagetext'            => "تھلے دتے گۓ فـارم نوں استعمال کرکے اس صفحہ دا ناں دوبارہ رکھیا جا سکدا اے، نال ہی اس نال جڑے تاریخچہ وی نۓ ناں نال جڑ جاۓ گی۔ اسدے بعد توں اس صفحے دا پرانا ناں ، نۓ ناں دی جانب -- ریڈائریکٹ کیتے گۓ صفحہ -- بن جاۓ گا۔ لیکن اے یاد رکھو کہ دوجے صفحیاں تے، پرانے صفحہ دی جانب دتے گۓ جوڑ تبدیل نئیں ہونگے؛ اس بات نوں یقینی بنانا ضروری اے کہ کوئی دوہرہ -- پلٹایا گیا جوڑ -- نہ رہ جاۓ۔ 
 
@@ -939,13 +1001,26 @@ $messages = array(
 'export-templates'  => 'سچہ شامل کرو',
 
 # Namespace 8 related
-'allmessages'     => 'سسٹم سنیآ',
-'allmessagesname' => 'ناں',
+'allmessages'        => 'سسٹم سنیآ',
+'allmessagesname'    => 'ناں',
+'allmessagesdefault' => 'ڈیفالٹ لکھائی',
+'allmessagescurrent' => 'موجودہ لکھائی',
 
 # Thumbnails
 'thumbnail-more'  => 'وڈا کرو',
 'filemissing'     => 'فائل گواچی ہوئی اے',
 'thumbnail_error' => '$1 دی نکی مورت بناندیاں مسئلہ',
+
+# Special:Import
+'import'                  => 'صفحے لیاؤ',
+'import-interwiki-submit' => 'لے آؤ',
+'importstart'             => 'صفحے لیا رۓ آں۔۔۔۔۔',
+'importnopages'           => 'لانے آسطے کوئی صفحہ نئیں۔',
+'importcantopen'          => 'لیاندی گئی فائل نئیں کھولی جاسکی',
+'importnotext'            => 'خالی یا کوئی لکھائی نئیں',
+'importsuccess'           => 'لے کے آگۓ آں!',
+'importnofile'            => 'لیاندی ہوئی کوئی فائل نئیں چڑہائی گئی۔',
+'import-noarticle'        => 'لیانے آسطے کوئی صفحہ نئیں!',
 
 # Import log
 'importlogpage' => 'لاگ لے کے آؤ',
@@ -957,6 +1032,7 @@ $messages = array(
 'tooltip-pt-watchlist'            => 'او صفحے جنہاں وچ تبدیلیاں تسی ویکھ رہے او',
 'tooltip-pt-mycontris'            => 'میرے کم',
 'tooltip-pt-login'                => 'جی صدقے اندر آؤ، پر اے لازمی نہیں۔',
+'tooltip-pt-anonlogin'            => 'اے بہتر اے کہ لاگ ان ہو جاؤ، لیکن فیر وی اے لازمی نئیں۔',
 'tooltip-pt-logout'               => 'باہر آؤ',
 'tooltip-ca-talk'                 => 'اس صفحے دے بار وچ گل بات',
 'tooltip-ca-edit'                 => 'تسیں اس صفحے تے لکھ سکدے او۔
@@ -964,6 +1040,7 @@ $messages = array(
 'tooltip-ca-addsection'           => 'اس گل بات وچ حصہ لے لو۔',
 'tooltip-ca-viewsource'           => 'اے صفحہ بچایا گیا اے۔
 تسی اینو صرف ویکھ سکدے او۔',
+'tooltip-ca-history'              => 'اس صفحے دا پرانہ ورژن۔',
 'tooltip-ca-protect'              => 'اس صفحے نوں بچاؤ',
 'tooltip-ca-delete'               => 'اس صفحے نوں مٹاؤ',
 'tooltip-ca-move'                 => 'اس صفحے نوں لے چلو',
@@ -982,7 +1059,11 @@ $messages = array(
 'tooltip-t-emailuser'             => 'اس ورتن والے نو ای میل کرو',
 'tooltip-t-upload'                => 'فائل چڑھاؤ',
 'tooltip-t-specialpages'          => 'سارے خاص صفحے',
+'tooltip-t-print'                 => 'اس صفحے دا چھپنے آلا ورژن ویکھو',
+'tooltip-ca-nstab-main'           => 'مواد آلا صفحہ ویکھو',
 'tooltip-ca-nstab-user'           => 'ورتن آلے دا صفحہ ویکھو',
+'tooltip-ca-nstab-media'          => 'میڈیا آلا صفحہ ویکھو',
+'tooltip-ca-nstab-special'        => 'اے اک خاص صفحہ اے، تےی اے صفحہ آپے نئیں لکھ سکدے',
 'tooltip-ca-nstab-project'        => 'منصوبے دا صفحہ ویکھو',
 'tooltip-ca-nstab-image'          => 'فائل دا صفحہ ویکھو',
 'tooltip-ca-nstab-template'       => 'سانچہ تکو',
@@ -1001,6 +1082,8 @@ $messages = array(
 
 # Info page
 'infosubtitle' => 'صفحے آسطے معلومات',
+'numedits'     => 'لکھائی دی گنتی (صفحہ): $1',
+'numwatchers'  => 'ویکھنے آلیاں دی گنتی: $1',
 
 # Browsing diffs
 'previousdiff' => '← پرانی لکھائی',
@@ -1015,6 +1098,9 @@ $messages = array(
 
 # Special:NewFiles
 'newimages' => 'نئی فائلاں دی نگری',
+'noimages'  => 'ویکھن آسطے کج نئیں۔',
+'ilsubmit'  => 'کھوجو',
+'bydate'    => 'تاریخ نال',
 
 # Bad image list
 'bad_image_list' => 'فارمیٹ اینج اے:۔
@@ -1035,14 +1121,120 @@ $messages = array(
 * fnumber
 * focallength', # Do not translate list items
 
+# EXIF tags
+'exif-imagewidth'        => 'چوڑائی',
+'exif-imagelength'       => 'اچائی',
+'exif-datetime'          => 'فائل بدلن دی تاریخ تے ویلا',
+'exif-imagedescription'  => 'مورت دا ناں',
+'exif-make'              => 'کیمرہ بنانے آلا',
+'exif-model'             => 'کیمرا ماڈل',
+'exif-software'          => 'استعمال ہویا سافٹویر',
+'exif-artist'            => 'بنانے آلا',
+'exif-usercomment'       => 'ورتن آلے دی صلاع',
+'exif-fnumber'           => 'ایف نمبر',
+'exif-shutterspeedvalue' => 'شٹر دی تیزی',
+'exif-aperturevalue'     => 'اپرچر',
+'exif-lightsource'       => 'روشنی دا ذریعہ',
+'exif-flash'             => 'فلیش',
+'exif-flashenergy'       => 'فلیش دی طاقت',
+'exif-filesource'        => 'فائل دا ذریعہ',
+'exif-contrast'          => 'فرق',
+'exif-sharpness'         => 'صفائی',
+'exif-gpslongitude'      => 'طول بلد',
+'exif-gpsaltitude'       => 'اچائی',
+'exif-gpsspeedref'       => 'تیزی دا ناپ',
+'exif-gpstrack'          => 'چلن دی راہ',
+'exif-gpsimgdirection'   => 'مورت دی راہ',
+
+'exif-unknowndate' => 'انجان تاریخ',
+
+'exif-orientation-1' => 'عام', # 0th row: top; 0th column: left
+
+'exif-exposureprogram-0' => 'بیان نئیں کیتا گیا',
+'exif-exposureprogram-1' => 'طریقہ',
+'exif-exposureprogram-2' => 'عام پروگرام',
+
+'exif-subjectdistance-value' => '$1 میٹر',
+
+'exif-meteringmode-0'   => 'انجان',
+'exif-meteringmode-1'   => 'اوسط',
+'exif-meteringmode-3'   => 'جگہ',
+'exif-meteringmode-6'   => 'کج حصہ',
+'exif-meteringmode-255' => 'دوجے',
+
+'exif-lightsource-9'   => 'چنگا موسم',
+'exif-lightsource-10'  => 'بدل آلا موسم',
+'exif-lightsource-11'  => 'سایہ',
+'exif-lightsource-255' => 'روشنی دے ہور ذریعے',
+
+'exif-focalplaneresolutionunit-2' => 'انچ',
+
+'exif-sensingmethod-1' => 'غیر واضح',
+
+'exif-customrendered-0' => 'عام طریقہ',
+'exif-customrendered-1' => 'اپنی مرضی دا طریقہ',
+
+'exif-scenecapturetype-0' => 'معیاری',
+'exif-scenecapturetype-1' => 'لینڈسکیپ',
+'exif-scenecapturetype-2' => 'پورٹریٹ',
+'exif-scenecapturetype-3' => 'رات دا منظر',
+
+'exif-gaincontrol-0' => 'کوئی نئیں',
+
+'exif-contrast-0' => 'عام',
+'exif-contrast-1' => 'نرم',
+'exif-contrast-2' => 'سخت',
+
+'exif-saturation-0' => 'عام',
+
+'exif-sharpness-0' => 'عام',
+'exif-sharpness-1' => 'نرم',
+'exif-sharpness-2' => 'سخت',
+
+'exif-subjectdistancerange-0' => 'انجان',
+'exif-subjectdistancerange-1' => 'ماکرو',
+'exif-subjectdistancerange-2' => 'نیڑے دا منظر',
+'exif-subjectdistancerange-3' => 'دور دا منظر',
+
+# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+'exif-gpsspeed-k' => 'کلومیٹر فی کینٹہ',
+'exif-gpsspeed-m' => 'میل فی کینٹہ',
+'exif-gpsspeed-n' => 'ناٹ',
+
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'سدھا راہ',
+'exif-gpsdirection-m' => 'مقناطیسی راہ',
+
 # External editor support
 'edit-externally'      => 'بارلا سافٹ ویئر استعال کردے ہوۓ اے فائل لکھو',
 'edit-externally-help' => 'زیادہ معلومات آسطے اے [http://www.mediawiki.org/wiki/Manual:External_editors] ویکھو۔',
 
 # 'all' in various places, this might be different for inflected languages
-'watchlistall2' => 'سارے',
-'namespacesall' => 'سارے',
-'monthsall'     => 'سارے',
+'recentchangesall' => 'سارے',
+'imagelistall'     => 'سارے',
+'watchlistall2'    => 'سارے',
+'namespacesall'    => 'سارے',
+'monthsall'        => 'سارے',
+
+# E-mail address confirmation
+'confirmemail' => 'ای میل پتہ پکا کرو',
+
+# Delete conflict
+'recreate' => 'دوبارہ بناؤ',
+
+# action=purge
+'confirm_purge_button' => 'ٹھیکھ ہے',
+
+# Multipage image navigation
+'imgmultipageprev' => '← پچھلا صفحہ',
+'imgmultipagenext' => 'اگلا صفحہ →',
+'imgmultigo'       => 'جاؤ!',
+'imgmultigoto'     => '$1 تے جاؤ',
+
+# Table pager
+'table_pager_next'  => 'اگلا صفحہ',
+'table_pager_prev'  => 'پچھلا صفحہ',
+'table_pager_first' => 'پہلا صفحہ',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'ملدیاں ہوئیاں تبدیلیاں ویکھو',

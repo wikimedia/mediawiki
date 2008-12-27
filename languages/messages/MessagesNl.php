@@ -1912,14 +1912,15 @@ Zie ook [[Special:WantedCategories|niet-bestaande categorieën met verwijzingen]
 'interwiki_editintro'      => 'U bent een interwikivoorvoegsel aan het bewerken. Let op dat dit bestaande links kan breken.',
 'interwiki_edittext'       => 'Een interwikivoorvoegsel bewerken',
 'interwiki_error'          => 'FOUT: De interwikitabel is leeg, of iets anders ging verkeerd.',
-'interwiki_intro'          => 'Zie $1 voor meer informatie over de interwikitabel.
+'interwiki_intro'          => 'Zie [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] voor meer informatie over de interwikitabel.
 Er is een [[Special:Log/interwiki|logboek van wijzigingen]] aan de interwikitabel.',
-'interwiki_local'          => 'Lokaal',
+'interwiki_local'          => 'Als lokale wiki instellen',
 'interwiki_log_added'      => 'Voegde "$2" ($3) (trans: $4) (local: $5) toe aan de interwikitabel',
 'interwiki_log_deleted'    => 'Verwijderde voorvoegsel "$2" van de interwikitabel',
 'interwiki_log_edited'     => 'wijzigde voorvoegsel "$2": ($3) (trans: $4) (local: $5) in de interwikitabel',
 'interwiki_prefix'         => 'Voorvoegsel',
 'interwiki_reasonfield'    => 'Reden',
+'interwiki_trans'          => 'Interwikitransclusies toestaan',
 'interwikilogpage'         => 'Logboek interwikitabel',
 'interwikilogpagetext'     => 'Dit is een logboek van wijzigingen aan de [[Special:Interwiki|interwikitabel]].',
 'right-interwiki'          => 'Interwikigegevens bewerken',

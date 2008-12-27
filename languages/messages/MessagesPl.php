@@ -14,6 +14,7 @@
  * @author Maikking
  * @author Masti
  * @author Matma Rex
+ * @author McMonster
  * @author Remember the dot
  * @author Sp5uhe
  * @author Stv
@@ -1802,7 +1803,7 @@ Pamiętaj, że nie może on zawierać znaku odstępu ( ), dwukropka (:), ampersa
 'interwiki_editintro'      => 'Redagujesz przedrostek interwiki. Pamiętaj, że może to zerwać istniejące powiązania między projektami językowymi.',
 'interwiki_edittext'       => 'Edycja przedrostka interwiki',
 'interwiki_error'          => 'BŁĄD: Tablica interwiki jest pusta lub coś wystąpił poważny problem.',
-'interwiki_intro'          => 'Zobacz $1 aby uzyskać więcej informacji na temat tablicy interwiki.
+'interwiki_intro'          => 'Zobacz [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] aby uzyskać więcej informacji na temat tablicy interwiki.
 Historię zmian w tablicy interwiki możesz zobaczyć w [[Special:Log/interwiki|rejestrze]].',
 'interwiki_log_added'      => 'dodał przedrostek „$2” ($3) (trans: $4) (local: $5) do tablicy interwiki',
 'interwiki_log_deleted'    => 'usunął przedrostek „$2” z tablicy interwiki',

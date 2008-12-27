@@ -1591,6 +1591,11 @@ Talìa macari li [[Special:WantedCategories|catigurìi addumannati]].',
 # Special:DeletedContributions
 'deletedcontributions' => 'Cuntribbuti utenti scancillati',
 
+# Special:Interwiki
+'interwiki'                => 'Talìa e mudìfica li dati interwiki',
+'interwiki-desc'           => 'Junci na [[Special:Interwiki|pàggina spiciali]] pi taliari e mudificari la tabedda di li interwiki',
+'interwiki-title-norights' => 'Talìa li dati interwiki',
+
 # Special:LinkSearch
 'linksearch'       => 'Circata lijami di fora',
 'linksearch-pat'   => 'Mudellu di circata:',

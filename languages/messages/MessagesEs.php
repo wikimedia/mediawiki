@@ -23,6 +23,7 @@
  * @author Dvortygirl
  * @author Fluence
  * @author Icvav
+ * @author Imre
  * @author Jatrobat
  * @author Jurock
  * @author Lin linao
@@ -537,7 +538,7 @@ Tu cuenta ha sido creada.
 No olvides personalizar [[Special:Preferences|tus preferencias]].',
 'loginpagetitle'             => 'Registrarse/Entrar',
 'yourname'                   => 'Su nombre de usuario',
-'yourpassword'               => 'Su contraseña',
+'yourpassword'               => 'Contraseña:',
 'yourpasswordagain'          => 'Repita su contraseña',
 'remembermypassword'         => 'Quiero que me recuerden entre sesiones.',
 'yourdomainname'             => 'Su dominio',
@@ -1687,7 +1688,9 @@ Véase también las [[Special:WantedCategories|categorías requeridas]].',
 'deletedcontributions' => 'Contribuciones de usuario borradas',
 
 # Special:Interwiki
+'interwiki_addbutton'     => 'Agregar',
 'interwiki_defaultreason' => 'no se da ninguna razón',
+'interwiki_reasonfield'   => 'Motivo',
 
 # Special:LinkSearch
 'linksearch'       => 'Buscar enlaces a páginas web',
@@ -2026,10 +2029,10 @@ Esto debería hacerse sólo para prevenir vandalismos, y de
 acuerdo a las [[{{MediaWiki:Policy-url}}|políticas]].
 Explica la razón específica del bloqueo (por ejemplo, citando
 las páginas en particular que han sido objeto de vandalismo).',
-'ipaddress'                       => 'Dirección IP',
+'ipaddress'                       => 'Dirección IP:',
 'ipadressorusername'              => 'Dirección IP o nombre de usuario',
 'ipbexpiry'                       => 'Caduca dentro de',
-'ipbreason'                       => 'Razón',
+'ipbreason'                       => 'Razón:',
 'ipbreasonotherlist'              => 'Otra razón',
 'ipbreason-dropdown'              => '
 *Motivos comunes de bloqueo
@@ -2185,7 +2188,7 @@ En estos casos, deberá trasladar manualmente el contenido de la página de disc
 '1movedto2_redir'              => '[[$1]] trasladada a [[$2]] sobre una redirección',
 'movelogpage'                  => 'Registro de traslados',
 'movelogpagetext'              => 'Abajo se encuentra una lista de páginas trasladadas.',
-'movereason'                   => 'Motivo',
+'movereason'                   => 'Motivo:',
 'revertmove'                   => 'revertir',
 'delete_and_move'              => 'Borrar y trasladar',
 'delete_and_move_text'         => '==Se necesita borrado==

@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Agbad
  * @author Rotem Dan (July 2003)
  * @author Rotem Liss (March 2006 on)
  * @author YaronSh
@@ -1866,7 +1867,7 @@ PICT # שונות
 זכרו שפעולה זו עלולה לשבור קישורים קיימים.',
 'interwiki_edittext'       => 'עריכת קידומת בינוויקי',
 'interwiki_error'          => 'שגיאה: טבלת הבינוויקי ריקה, או שיש שגיאה אחרת.',
-'interwiki_intro'          => 'ראו $1 למידע נוסף אודות טבלת הבינוויקי.
+'interwiki_intro'          => 'ראו [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] למידע נוסף אודות טבלת הבינוויקי.
 ישנו [[Special:Log/interwiki|יומן שינויים]] לטבלת הבינוויקי.',
 'interwiki_log_added'      => 'הקידומת "$2" ($3) (הכללה: $4) (מקומית: $5) נוספה לטבלת הבינוויקי',
 'interwiki_log_deleted'    => 'הסיר את הקידומת "$2" מטבלת הבינוויקי',

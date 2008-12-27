@@ -962,7 +962,7 @@ Posibleman li pa ekziste.',
 Sonje ke sa ka kase chèn ki deja ekziste.',
 'interwiki_edittext'       => 'Edite yon prefix interwiki',
 'interwiki_error'          => 'ERÈ:  Tab interwiki-a vid, oubien yon lòt bagay mal mache.',
-'interwiki_intro'          => 'Wè $1 pou plis enfòmasyon sou tab interwiki-a.
+'interwiki_intro'          => 'Wè [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] pou plis enfòmasyon sou tab interwiki-a.
 Geyen yon [[Special:Log/interwiki|jounal pou chanjman yo]] nan tab interwiki-a.',
 'interwiki_log_added'      => 'te ajoute prefix "$2" ($3) (trans: $4) (local: $5) nan tab interwiki-a',
 'interwiki_log_deleted'    => 'prefix ki te retire "$2" nan tab interwiki-a',

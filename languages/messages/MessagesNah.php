@@ -427,20 +427,21 @@ Occeppa xicalaqui niman ticmatīz.',
 'resetpass-submit-loggedin' => 'Ticpatlāz motlahtōlichtacāyo',
 
 # Edit page toolbar
-'bold_sample'    => 'Tlīltic tlahcuilōlli',
-'bold_tip'       => 'Tlīltic tlahcuilōlli',
-'italic_sample'  => 'Italic tlahcuilōlli',
-'italic_tip'     => 'Italic tlahcuilōlli',
-'link_sample'    => 'Tzonhuiliztli ītōcā',
-'link_tip'       => 'Tzonhuiliztli tlahtic',
-'extlink_sample' => 'http://www.tlamantli.com Tōcāitl',
-'extlink_tip'    => 'Tzonhuilizcallān (xitequitiltia http://)',
-'headline_tip'   => 'Iuhcāyōtl 2 tōcāyōtl',
-'math_sample'    => 'Xihcuiloa nicān',
-'math_tip'       => 'Tlapōhualmatiliztlahtōl (LaTeX)',
-'media_tip'      => 'Mēdiahuīc tzonhuiliztli',
-'sig_tip'        => 'Motōcā īca cāhuitl',
-'hr_tip'         => 'Pāntli',
+'bold_sample'     => 'Tlīltic tlahcuilōlli',
+'bold_tip'        => 'Tlīltic tlahcuilōlli',
+'italic_sample'   => 'Italic tlahcuilōlli',
+'italic_tip'      => 'Italic tlahcuilōlli',
+'link_sample'     => 'Tzonhuiliztli ītōcā',
+'link_tip'        => 'Tzonhuiliztli tlahtic',
+'extlink_sample'  => 'http://www.tlamantli.com Tōcāitl',
+'extlink_tip'     => 'Tzonhuilizcallān (xitequitiltia http://)',
+'headline_sample' => 'Cuātlahcuilōlli',
+'headline_tip'    => 'Iuhcāyōtl 2 tōcāyōtl',
+'math_sample'     => 'Xihcuiloa nicān',
+'math_tip'        => 'Tlapōhualmatiliztlahtōl (LaTeX)',
+'media_tip'       => 'Mēdiahuīc tzonhuiliztli',
+'sig_tip'         => 'Motōcā īca cāhuitl',
+'hr_tip'          => 'Pāntli',
 
 # Edit pages
 'summary'                          => 'Mopatlaliz:',
@@ -923,6 +924,8 @@ Timitztlātlauhtiah, xitlahcuiloa occē tōcāitl.',
 'ancientpages'            => 'Huēhuehzāzanilli',
 'move'                    => 'Ticzacāz',
 'movethispage'            => 'Ticzacāz inīn zāzanilli',
+'pager-newer-n'           => '{{PLURAL:$1|1 yancuīc|$1 yancuīc}}',
+'pager-older-n'           => '{{PLURAL:$1|1 huēhuetl|$1 huēhueh}}',
 
 # Book sources
 'booksources-go' => 'Yāuh',
@@ -957,6 +960,7 @@ Nō xiquitta [[Special:WantedCategories|neneuhcāyōtl monequi]].',
 # Special:Interwiki
 'interwiki_addbutton'     => 'Ticcētilīz',
 'interwiki_defaultreason' => 'ahmo cah īxtlamatiliztli',
+'interwiki_delquestion'   => 'Mopolocah "$1"',
 'interwiki_reasonfield'   => 'Īxtlamatiliztli',
 
 # Special:LinkSearch
@@ -1052,15 +1056,16 @@ Xiquitta $2 ic yancuīc tlapololiztli.',
 'rollback-success' => 'Ōmotlacuep $1 ītlahcuilōl; āxcān achto $2 ītlahcuilōl.',
 
 # Protect
-'protectedarticle'       => 'ōmoquīxti "[[$1]]"',
-'unprotectedarticle'     => 'ōahmoquīxti "[[$1]]"',
-'prot_1movedto2'         => '[[$1]] ōmozacac īhuīc [[$2]]',
-'protectexpiry'          => 'Tlamiliztli:',
-'protect_expiry_invalid' => 'Ahcualli tlamiliztli cāhuitl.',
-'protect-default'        => '(ic default)',
-'protect-fallback'       => 'Tiquihuīquilia tlahuelītiliztli "$1"',
-'protect-expiring'       => 'motlamīz $1 (UTC)',
-'protect-expiry-options' => '2 yēmpōhualminutl:2 hours,1 tōnalli:1 day,3 tōnaltin:3 days,7 tōnaltin:1 week,1 mētztli:1 month,3 mētztli:3 months,6 mētztli:6 months,1 xihuitl:1 year,Mochipa:infinite', # display1:time1,display2:time2,...
+'protectedarticle'            => 'ōmoquīxti "[[$1]]"',
+'unprotectedarticle'          => 'ōahmoquīxti "[[$1]]"',
+'prot_1movedto2'              => '[[$1]] ōmozacac īhuīc [[$2]]',
+'protectexpiry'               => 'Tlamiliztli:',
+'protect_expiry_invalid'      => 'Ahcualli tlamiliztli cāhuitl.',
+'protect-default'             => '(ic default)',
+'protect-fallback'            => 'Tiquihuīquilia tlahuelītiliztli "$1"',
+'protect-level-autoconfirmed' => 'Tiquinquīxtīz tlatequitiltilīlli tlein ahmo ōmocalac',
+'protect-expiring'            => 'motlamīz $1 (UTC)',
+'protect-expiry-options'      => '2 yēmpōhualminutl:2 hours,1 tōnalli:1 day,2 tōnaltin:2 days,3 tōnaltin:3 days,1 mētztli:1 month,3 mētztli:3 months,6 mētztli:6 months,1 xihuitl:1 year,Mochipa:infinite', # display1:time1,display2:time2,...
 
 # Restrictions (nouns)
 'restriction-edit'   => 'Ticpatlāz',
@@ -1213,6 +1218,9 @@ Hueliz cah inīn huēyi tlapatlaliztli. Timitztlātlauhtia ticmatīz cuallōtl a
 'importbadinterwiki'      => 'Ahcualli interhuiqui tzonhuiliztli',
 'importnotext'            => 'Ahtlein ahnozo ahtlahtōl',
 'import-upload'           => 'Tiquinquetzāz XML tlahcuilōlli',
+
+# Import log
+'importlogpage' => 'Tiquincōhuāz tlahcuilōlloh',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Notlatequitiltilīlzāzanil',

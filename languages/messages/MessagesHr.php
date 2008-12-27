@@ -1807,7 +1807,7 @@ Možete suziti prikaz odabirući tip evidencije, suradničko ime ili stranicu u 
 'interwiki_editintro'      => 'Uređujete interwiki prefiks. Ovo može oštetiti postojeće poveznice.',
 'interwiki_edittext'       => 'Uređivanje interwiki prefiksa',
 'interwiki_error'          => 'GREŠKA: Interwiki tablica je prazna, ili je nešto drugo neispravno.',
-'interwiki_intro'          => 'Pogledajte $1 za više informacija o interwiki tablici.
+'interwiki_intro'          => 'Pogledajte [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] za više informacija o interwiki tablici.
 Postoji [[Special:Log/interwiki|evidencija promjena]] za interwiki tablicu.',
 'interwiki_local'          => 'Lokalno',
 'interwiki_log_added'      => 'dodan prefiks "$2" ($3) (trans: $4) (lokalno: $5) u interwiki tablicu',

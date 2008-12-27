@@ -749,7 +749,8 @@ Se você chegou aqui por engano, apenas clique no botão '''voltar''' do seu nav
 As modificações ainda não foram salvas!</strong>',
 'previewconflict'                  => 'Esta previsão reflete o texto que está na área de edição acima e como ele aparecerá se você escolher salvar.',
 'session_fail_preview'             => '<strong>Pedimos desculpas, mas não foi possível processar a sua edição devido à perda de dados da sua sessão.
-Por favor tente novamente. Caso continue a não funcionar, tente sair e voltar a entrar na sua conta.</strong>',
+Por favor tente novamente.
+Caso continue não funcionando, tente [[Special:UserLogout|sair]] e voltar a entrar na sua conta.</strong>',
 'session_fail_preview_html'        => "<strong>Desculpe-nos! Não foi possível processar a sua edição devido a uma perda de dados de sessão.</strong>
 
 ''Como o projeto {{SITENAME}} possui HTML bruto ativo, a previsão não será exibida, como uma precaução contra ataques por JavaScript.''

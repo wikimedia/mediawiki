@@ -1737,7 +1737,7 @@ Es possibile que illo non existe.',
 Memora que isto pote rumper ligamines existente.',
 'interwiki_edittext'       => 'Modificar un prefixo interwiki',
 'interwiki_error'          => 'Error: Le tabella interwiki es vacue, o un altere cosa faceva falta.',
-'interwiki_intro'          => 'Vider $1 pro ulterior informationes super le tabella interwiki.
+'interwiki_intro'          => 'Vider [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] pro ulterior informationes super le tabella interwiki.
 Existe un [[Special:Log/interwiki|registro de modificationes]] al tabella interwiki.',
 'interwiki_log_added'      => 'addeva le prefixo "$2" ($3) (trans: $4) (local: $5) al tabella interwiki',
 'interwiki_log_deleted'    => 'removeva le prefixo "$2" del tabella interwiki',
