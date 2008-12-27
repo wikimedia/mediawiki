@@ -223,7 +223,7 @@ class SpecialInterwiki extends SpecialPage {
 				$url = htmlspecialchars( $s->iw_url );
 				$trans = htmlspecialchars( $s->iw_trans );
 				$local = htmlspecialchars( $s->iw_local );
-				$out .= "<tr class='interwikitable-row'>
+				$out .= "<tr class='mw-interwikitable-row'>
 					<td class='mw-interwikitable-prefix'>$prefix</td>
 					<td class='mw-interwikitable-url'>$url</td>
 					<td class='mw-interwikitable-local'>$local</td>
