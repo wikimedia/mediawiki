@@ -146,6 +146,7 @@ class User {
 		'editusercssjs',
 		'import',
 		'importupload',
+		'interwiki',
 		'ipblock-exempt',
 		'markbotedits',
 		'minoredit',
