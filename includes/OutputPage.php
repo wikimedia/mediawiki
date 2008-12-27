@@ -798,15 +798,12 @@ class OutputPage {
 	 * the object, let's actually output it:
 	 */
 	public function output() {
+		if( $this->mDoNothing ) return;
 		global $wgUser, $wgOutputEncoding, $wgRequest;
 		global $wgContLanguageCode, $wgDebugRedirects, $wgMimeType;
 		global $wgJsMimeType, $wgUseAjax, $wgAjaxWatch;
 		global $wgEnableMWSuggest, $wgUniversalEditButton;
 		global $wgArticle, $wgTitle;
-
-		if( $this->mDoNothing ){
-			return;
-		}
 
 		wfProfileIn( __METHOD__ );
 
