@@ -1869,39 +1869,39 @@ Mer han_er eije Leßte för de
 'deletedcontributions' => 'Fottjeschmesse Versione',
 
 # Special:Interwiki
-'interwiki' => 'Engerwiki Date beloere un änndere',
+'interwiki'                => 'Engerwiki Date beloere un änndere',
+'interwiki-desc'           => 'Brengk de Sondersigg [[Special:Interwiki]], öm Engerwiki Date ze beloore un ze ändere.',
 'interwiki-title-norights' => 'Engerwiki Date beloore',
-'interwiki-desc' => 'Brengk de Sondersigg [[Special:Interwiki]], öm Engerwiki Date ze beloore un ze ändere.',
-'interwiki_prefix' => 'Försaz',
-'interwiki_reasonfield' => 'Aanlass',
-'interwiki_intro' => 'Op dä Sigg $1 fingk mer mieh do dröver, wat et met dä Tabäll met de Engerwiki Date op sich hät.
-Et [[Special:Log/interwiki|Logbuch med de Engerwiki Date]] zeichnet all de Änderunge aan de Engerwiki Date op.',
-'interwiki_local' => 'Lokal',
-'interwiki_error' => '<span style="text-transform:uppercase">Fähler:</span> de Tabäll met de Engerwiki Date is leddisch.',
-'interwiki_delquestion' => '„$1“ weed fottjeschmeße',
-'interwiki_deleting' => 'Do wells dä Engerwiki Försaz „$1“ fott schmiiße.',
-'interwiki_deleted' => 'Dä Försaz „$1“ es jäz uß dä Engerwiki Date erusjeschmesse.',
-'interwiki_delfailed' => 'Dä Försaz „$1“ konnt nit uß dä Engerwiki Date jenomme wääde.',
-'interwiki_addtext' => 'Ene Engerwiki Försaz dobei donn',
-'interwiki_addintro' => 'Do bes an ennem Engerwiki Fösaz am dobei donn.
-Denk draan, et dörfe kei Zweschräum ( ), Koufmanns-Un (&amp;), Jlisch-Zeiche (=), un kein Dubbelpünkscher (:) do dren sin.',
-'interwiki_addbutton' => 'Dobei donn',
-'interwiki_added' => 'Dä Försaz „$1“ es jäz bei de Engerwiki Date dobei jekomme.',
-'interwiki_addfailed' => 'Dä Försaz „$1“ konnt nit bei de Engerwiki Date dobeijedonn wäde.
+'interwiki_addbutton'      => 'Dobei donn',
+'interwiki_added'          => 'Dä Försaz „$1“ es jäz bei de Engerwiki Date dobei jekomme.',
+'interwiki_addfailed'      => 'Dä Försaz „$1“ konnt nit bei de Engerwiki Date dobeijedonn wäde.
 Maach sin, dat dä en de Engerwiki Tabäll ald dren wor un es.',
-'interwiki_edittext' => 'Enne Engerwiki Fürsaz Ändere',
-'interwiki_editintro' => 'Do bes an ennem Engerwiki Fösaz am ändere.
-Denk draan, domet könnts De Links em Wiki kapott maache, die velleich do drop opboue.',
-'interwiki_edited' => 'Föz dä Försaz „$1“ sen de Engerwiki Date jäz jetuusch.',
-'interwiki_editerror' => 'Dä Försaz „$1“ konnt en de Engerwiki Date nit beärrbeidt wäde.
+'interwiki_addintro'       => 'Do bes an ennem Engerwiki Fösaz am dobei donn.
+Denk draan, et dörfe kei Zweschräum ( ), Koufmanns-Un (&amp;), Jlisch-Zeiche (=), un kein Dubbelpünkscher (:) do dren sin.',
+'interwiki_addtext'        => 'Ene Engerwiki Försaz dobei donn',
+'interwiki_defaultreason'  => 'Keine Aanlass aanjejovve',
+'interwiki_deleted'        => 'Dä Försaz „$1“ es jäz uß dä Engerwiki Date erusjeschmesse.',
+'interwiki_deleting'       => 'Do wells dä Engerwiki Försaz „$1“ fott schmiiße.',
+'interwiki_delfailed'      => 'Dä Försaz „$1“ konnt nit uß dä Engerwiki Date jenomme wääde.',
+'interwiki_delquestion'    => '„$1“ weed fottjeschmeße',
+'interwiki_edited'         => 'Föz dä Försaz „$1“ sen de Engerwiki Date jäz jetuusch.',
+'interwiki_editerror'      => 'Dä Försaz „$1“ konnt en de Engerwiki Date nit beärrbeidt wäde.
 Maach sin, dat et inn nit jitt.',
-'interwikilogpage' => 'Logbooch fun de Engerwiki Tabäll',
-'interwiki_log_added' => 'hät dä Försaz „$2“ ($3) (Trans: $4) (Lokal: $5) en de Engerwiki Date eren jedonn',
-'interwiki_log_edited' => 'hät dä Försaz „$2“ ($3) (Trans: $4) (Lokal: $5) en de Engerwiki Date ömjemodelt',
-'interwiki_log_deleted' => 'hät dä Försaz „$2“ es us de Engerwiki Date eruß jeworfe',
-'interwikilogpagetext' => 'Hee is dat Logboch met de Änderonge aan de [[Special:Interwiki|Engerwiki Date]].',
-'interwiki_defaultreason' => 'Keine Aanlass aanjejovve',
-'right-interwiki' => 'de Tabäll met de Engerwiki Date ändere',
+'interwiki_editintro'      => 'Do bes an ennem Engerwiki Fösaz am ändere.
+Denk draan, domet könnts De Links em Wiki kapott maache, die velleich do drop opboue.',
+'interwiki_edittext'       => 'Enne Engerwiki Fürsaz Ändere',
+'interwiki_error'          => '<span style="text-transform:uppercase">Fähler:</span> de Tabäll met de Engerwiki Date is leddisch.',
+'interwiki_intro'          => 'Op dä Sigg $1 fingk mer mieh do dröver, wat et met dä Tabäll met de Engerwiki Date op sich hät.
+Et [[Special:Log/interwiki|Logbuch med de Engerwiki Date]] zeichnet all de Änderunge aan de Engerwiki Date op.',
+'interwiki_local'          => 'Lokal',
+'interwiki_log_added'      => 'hät dä Försaz „$2“ ($3) (Trans: $4) (Lokal: $5) en de Engerwiki Date eren jedonn',
+'interwiki_log_deleted'    => 'hät dä Försaz „$2“ es us de Engerwiki Date eruß jeworfe',
+'interwiki_log_edited'     => 'hät dä Försaz „$2“ ($3) (Trans: $4) (Lokal: $5) en de Engerwiki Date ömjemodelt',
+'interwiki_prefix'         => 'Försaz',
+'interwiki_reasonfield'    => 'Aanlass',
+'interwikilogpage'         => 'Logbooch fun de Engerwiki Tabäll',
+'interwikilogpagetext'     => 'Hee is dat Logboch met de Änderonge aan de [[Special:Interwiki|Engerwiki Date]].',
+'right-interwiki'          => 'de Tabäll met de Engerwiki Date ändere',
 
 # Special:LinkSearch
 'linksearch'       => 'Lėngkß op Websigge sööke',

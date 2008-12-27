@@ -1715,38 +1715,38 @@ Vide etiam le [[Special:WantedCategories|categorias desirate]].',
 'deletedcontributions' => 'Contributiones delite de usatores',
 
 # Special:Interwiki
-'interwiki' => 'Vider e modificar datos interwiki',
+'interwiki'                => 'Vider e modificar datos interwiki',
+'interwiki-desc'           => 'Adde un [[Special:Interwiki|pagina special]] pro vider e modificar le tabella interwiki',
 'interwiki-title-norights' => 'Vider datos interwiki',
-'interwiki-desc' => 'Adde un [[Special:Interwiki|pagina special]] pro vider e modificar le tabella interwiki',
-'interwiki_prefix' => 'Prefixo',
-'interwiki_reasonfield' => 'Motivo',
-'interwiki_intro' => 'Vider $1 pro ulterior informationes super le tabella interwiki.
-Existe un [[Special:Log/interwiki|registro de modificationes]] al tabella interwiki.',
-'interwiki_error' => 'Error: Le tabella interwiki es vacue, o un altere cosa faceva falta.',
-'interwiki_delquestion' => 'Deletion de "$1"',
-'interwiki_deleting' => 'Tu sta super le puncto de deler le prefixo "$1".',
-'interwiki_deleted' => 'Le prefixo "$1" ha essite removite del tabella interwiki con successo.',
-'interwiki_delfailed' => 'Le prefixo "$1" non poteva esser removite del tabella interwiki.',
-'interwiki_addtext' => 'Adder un prefixo interwiki',
-'interwiki_addintro' => 'Tu sta super le puncto de adder un nove prefixo interwiki.
-Memora que illo non pote continer spatios (&nbsp;), duo punctos (:), signos et (&), o signos equal (=).',
-'interwiki_addbutton' => 'Adder',
-'interwiki_added' => 'Le prefixo "$1" ha essite addite al tabella interwiki con successo.',
-'interwiki_addfailed' => 'Le prefixo "$1" non poteva esser addite al tabella interwiki.
+'interwiki_addbutton'      => 'Adder',
+'interwiki_added'          => 'Le prefixo "$1" ha essite addite al tabella interwiki con successo.',
+'interwiki_addfailed'      => 'Le prefixo "$1" non poteva esser addite al tabella interwiki.
 Es possibile que illo ja existe in le tabella interwiki.',
-'interwiki_edittext' => 'Modificar un prefixo interwiki',
-'interwiki_editintro' => 'Tu modifica un prefixo interwiki.
-Memora que isto pote rumper ligamines existente.',
-'interwiki_edited' => 'Le prefixo "$1" ha essite modificate in le tabella interwiki con successo.',
-'interwiki_editerror' => 'Le prefixo "$1" non pote esser modificate in le tabella interwiki.
+'interwiki_addintro'       => 'Tu sta super le puncto de adder un nove prefixo interwiki.
+Memora que illo non pote continer spatios (&nbsp;), duo punctos (:), signos et (&), o signos equal (=).',
+'interwiki_addtext'        => 'Adder un prefixo interwiki',
+'interwiki_defaultreason'  => 'nulle ration date',
+'interwiki_deleted'        => 'Le prefixo "$1" ha essite removite del tabella interwiki con successo.',
+'interwiki_deleting'       => 'Tu sta super le puncto de deler le prefixo "$1".',
+'interwiki_delfailed'      => 'Le prefixo "$1" non poteva esser removite del tabella interwiki.',
+'interwiki_delquestion'    => 'Deletion de "$1"',
+'interwiki_edited'         => 'Le prefixo "$1" ha essite modificate in le tabella interwiki con successo.',
+'interwiki_editerror'      => 'Le prefixo "$1" non pote esser modificate in le tabella interwiki.
 Es possibile que illo non existe.',
-'interwikilogpage' => 'Registro del tabella interwiki',
-'interwiki_log_added' => 'addeva le prefixo "$2" ($3) (trans: $4) (local: $5) al tabella interwiki',
-'interwiki_log_edited' => 'modificava le prefixo "$2" : ($3) (trans: $4) (local: $5) in le tabella interwiki',
-'interwiki_log_deleted' => 'removeva le prefixo "$2" del tabella interwiki',
-'interwikilogpagetext' => 'Isto es un registro de modificationes in le [[Special:Interwiki|tabella interwiki]].',
-'interwiki_defaultreason' => 'nulle ration date',
-'right-interwiki' => 'Modificar datos interwiki',
+'interwiki_editintro'      => 'Tu modifica un prefixo interwiki.
+Memora que isto pote rumper ligamines existente.',
+'interwiki_edittext'       => 'Modificar un prefixo interwiki',
+'interwiki_error'          => 'Error: Le tabella interwiki es vacue, o un altere cosa faceva falta.',
+'interwiki_intro'          => 'Vider $1 pro ulterior informationes super le tabella interwiki.
+Existe un [[Special:Log/interwiki|registro de modificationes]] al tabella interwiki.',
+'interwiki_log_added'      => 'addeva le prefixo "$2" ($3) (trans: $4) (local: $5) al tabella interwiki',
+'interwiki_log_deleted'    => 'removeva le prefixo "$2" del tabella interwiki',
+'interwiki_log_edited'     => 'modificava le prefixo "$2" : ($3) (trans: $4) (local: $5) in le tabella interwiki',
+'interwiki_prefix'         => 'Prefixo',
+'interwiki_reasonfield'    => 'Motivo',
+'interwikilogpage'         => 'Registro del tabella interwiki',
+'interwikilogpagetext'     => 'Isto es un registro de modificationes in le [[Special:Interwiki|tabella interwiki]].',
+'right-interwiki'          => 'Modificar datos interwiki',
 
 # Special:LinkSearch
 'linksearch'       => 'Cercar per ligamines web',

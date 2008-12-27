@@ -1469,33 +1469,33 @@ Example: [[:Image:Addon-icn.png]]',
 'deletedcontributions' => 'Title of [[Special:DeletedContributions]] (extension), a special page with a list of edits to pages which were deleted. Only viewable by sysops. The message is also shown as a link on [[Special:Contributions]] to the DeletedContributions special page.',
 
 # Special:Interwiki
-'interwiki' => 'Part of the interwiki extension. This message is the title of the special page [[Special:Interwiki]].',
+'interwiki'                => 'Part of the interwiki extension. This message is the title of the special page [[Special:Interwiki]].',
+'interwiki-desc'           => 'Part of the interwiki extension. This message is the description shown on [[Special:Version]].',
 'interwiki-title-norights' => 'Part of the interwiki extension. This message is the title of the special page [[Special:Interwiki]] when the user has no right to edit the interwiki data, so can only view them.',
-'interwiki-desc' => 'Part of the interwiki extension. This message is the description shown on [[Special:Version]].',
-'interwiki_prefix' => 'Part of the interwiki extension.',
-'interwiki_reasonfield' => '{{Identical|Reason}}',
-'interwiki_intro' => 'Part of the interwiki extension.
-Parameter $1 contains the following (a link): [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org]',
-'interwiki_error' => 'Part of the interwiki extension. This error message is shown when the Special:Interwiki page is empty.',
-'interwiki_delquestion' => 'Part of the interwiki extension.
+'interwiki_addbutton'      => 'Part of the interwiki extension. This message is the text of the button to submit the interwiki prefix you are adding.
+
+{{Identical|Add}}',
+'interwiki_defaultreason'  => 'Part of the interwiki extension. This message is the default reason in the interwiki log (when adding or deleting a prefix).
+
+{{Identical|No reason given}}',
+'interwiki_deleted'        => 'Part of the interwiki extension.',
+'interwiki_deleting'       => 'Part of the interwiki extension.',
+'interwiki_delquestion'    => 'Part of the interwiki extension.
 Parameter $1 is the interwiki prefix you are deleting.
 
 {{Identical|Deleting $1}}',
-'interwiki_deleting' => 'Part of the interwiki extension.',
-'interwiki_deleted' => 'Part of the interwiki extension.',
-'interwiki_addbutton' => 'Part of the interwiki extension. This message is the text of the button to submit the interwiki prefix you are adding.
-
-{{Identical|Add}}',
-'interwiki_editerror' => 'Part of the interwiki extension. Error message when modifying a prefix has failed.',
-'interwikilogpage' => 'Part of the interwiki extension. This message is shown as page title on Special:Log/interwiki.',
-'interwiki_log_added' => 'Part of the interwiki extension. Shows up in "Special:Log/interwiki" when someone has added a prefix. Leave parameters and text between brackets exactly as it is.',
-'interwiki_log_edited' => 'Part of the interwiki extension. Shows up in "Special:Log/interwiki" when someone has modified a prefix. Leave parameters and text between brackets exactly as it is.',
-'interwiki_log_deleted' => 'Part of the interwiki extension. Shows up in "Special:Log/interwiki" when someone removed a prefix.',
-'interwikilogpagetext' => 'Part of the interwiki extension. Summary shown on Special:Log/interwiki.',
-'interwiki_defaultreason' => 'Part of the interwiki extension. This message is the default reason in the interwiki log (when adding or deleting a prefix).
-
-{{Identical|No reason given}}',
-'right-interwiki' => '{{doc-right}}',
+'interwiki_editerror'      => 'Part of the interwiki extension. Error message when modifying a prefix has failed.',
+'interwiki_error'          => 'Part of the interwiki extension. This error message is shown when the Special:Interwiki page is empty.',
+'interwiki_intro'          => 'Part of the interwiki extension.
+Parameter $1 contains the following (a link): [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org]',
+'interwiki_log_added'      => 'Part of the interwiki extension. Shows up in "Special:Log/interwiki" when someone has added a prefix. Leave parameters and text between brackets exactly as it is.',
+'interwiki_log_deleted'    => 'Part of the interwiki extension. Shows up in "Special:Log/interwiki" when someone removed a prefix.',
+'interwiki_log_edited'     => 'Part of the interwiki extension. Shows up in "Special:Log/interwiki" when someone has modified a prefix. Leave parameters and text between brackets exactly as it is.',
+'interwiki_prefix'         => 'Part of the interwiki extension.',
+'interwiki_reasonfield'    => '{{Identical|Reason}}',
+'interwikilogpage'         => 'Part of the interwiki extension. This message is shown as page title on Special:Log/interwiki.',
+'interwikilogpagetext'     => 'Part of the interwiki extension. Summary shown on Special:Log/interwiki.',
+'right-interwiki'          => '{{doc-right}}',
 
 # Special:LinkSearch
 'linksearch-ns' => '{{Identical|Namespace}}',

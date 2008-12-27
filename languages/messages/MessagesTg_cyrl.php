@@ -1264,10 +1264,10 @@ $1',
 'deletedcontributions' => 'Ҳиссагузориҳои ҳазфшудаи корбар',
 
 # Special:Interwiki
-'interwiki_reasonfield' => 'Сабаб',
-'interwiki_delquestion' => 'Дар ҳоли ҳазфи "$1"',
-'interwiki_addbutton' => 'Илова',
+'interwiki_addbutton'     => 'Илова',
 'interwiki_defaultreason' => 'далеле мушаххас нашудааст',
+'interwiki_delquestion'   => 'Дар ҳоли ҳазфи "$1"',
+'interwiki_reasonfield'   => 'Сабаб',
 
 # Special:LinkSearch
 'linksearch'       => 'Ҷусутҷӣ пайвандҳои веб',

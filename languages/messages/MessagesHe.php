@@ -1844,38 +1844,38 @@ PICT # שונות
 'deletedcontributions' => 'תרומות משתמש מחוקות',
 
 # Special:Interwiki
-'interwiki' => 'הצגת ועריכת מידע הבינוויקי',
+'interwiki'                => 'הצגת ועריכת מידע הבינוויקי',
+'interwiki-desc'           => 'הוספת [[Special:Interwiki|דף מיוחד]] להצגת ולעריכת טבלת הבינוויקי',
 'interwiki-title-norights' => 'הצגת מידע הבינוויקי',
-'interwiki-desc' => 'הוספת [[Special:Interwiki|דף מיוחד]] להצגת ולעריכת טבלת הבינוויקי',
-'interwiki_prefix' => 'קידומת',
-'interwiki_reasonfield' => 'סיבה',
-'interwiki_intro' => 'ראו $1 למידע נוסף אודות טבלת הבינוויקי.
-ישנו [[Special:Log/interwiki|יומן שינויים]] לטבלת הבינוויקי.',
-'interwiki_error' => 'שגיאה: טבלת הבינוויקי ריקה, או שיש שגיאה אחרת.',
-'interwiki_delquestion' => 'מחיקת "$1"',
-'interwiki_deleting' => 'הנכם מוחקים את הקידומת "$1".',
-'interwiki_deleted' => 'הקידומת "$1" הוסרה בהצלחה מטבלת הבינוויקי.',
-'interwiki_delfailed' => 'לא ניתן להסיר את הקידומת "$1" מטבלת הבינוויקי.',
-'interwiki_addtext' => 'הוספת קידומת בינוויקי',
-'interwiki_addintro' => 'הנכם עורכים קידומת בינוויקי.
-זכרו שלא ניתן לכלול רווחים ( ), נקודותיים (:), אמפרסנד (&) או הסימן שווה (=).',
-'interwiki_addbutton' => 'הוספה',
-'interwiki_added' => 'הקידומת "$1" נוספה בהצלחה לטבלת הבינוויקי.',
-'interwiki_addfailed' => 'לא ניתן להוסיף את הקידומת "$1" לטבלת הבינוויקי.
+'interwiki_addbutton'      => 'הוספה',
+'interwiki_added'          => 'הקידומת "$1" נוספה בהצלחה לטבלת הבינוויקי.',
+'interwiki_addfailed'      => 'לא ניתן להוסיף את הקידומת "$1" לטבלת הבינוויקי.
 ייתכן שהיא כבר קיימת בטבלה.',
-'interwiki_edittext' => 'עריכת קידומת בינוויקי',
-'interwiki_editintro' => 'הנכם עורכים קידומת בינוויקי.
-זכרו שפעולה זו עלולה לשבור קישורים קיימים.',
-'interwiki_edited' => 'הקידומת "$1" שונתה בהצלחה בטבלת הבינוויקי.',
-'interwiki_editerror' => 'לא ניתן לשנות את הקידומת "$1" בטבלת הבינוויקי.
+'interwiki_addintro'       => 'הנכם עורכים קידומת בינוויקי.
+זכרו שלא ניתן לכלול רווחים ( ), נקודותיים (:), אמפרסנד (&) או הסימן שווה (=).',
+'interwiki_addtext'        => 'הוספת קידומת בינוויקי',
+'interwiki_defaultreason'  => 'לא ניתנה סיבה',
+'interwiki_deleted'        => 'הקידומת "$1" הוסרה בהצלחה מטבלת הבינוויקי.',
+'interwiki_deleting'       => 'הנכם מוחקים את הקידומת "$1".',
+'interwiki_delfailed'      => 'לא ניתן להסיר את הקידומת "$1" מטבלת הבינוויקי.',
+'interwiki_delquestion'    => 'מחיקת "$1"',
+'interwiki_edited'         => 'הקידומת "$1" שונתה בהצלחה בטבלת הבינוויקי.',
+'interwiki_editerror'      => 'לא ניתן לשנות את הקידומת "$1" בטבלת הבינוויקי.
 ייתכן שהיא אינה קיימת.',
-'interwikilogpage' => 'יומן טבלת הבינוויקי',
-'interwiki_log_added' => 'הקידומת "$2" ($3) (הכללה: $4) (מקומית: $5) נוספה לטבלת הבינוויקי',
-'interwiki_log_edited' => 'הקידומת "$2" : ($3) (הכללה: $4) (מקומית: $5) שונתה בטבלת הבינוויקי',
-'interwiki_log_deleted' => 'הסיר את הקידומת "$2" מטבלת הבינוויקי',
-'interwikilogpagetext' => 'זהו יומן השינויים שנערכו ב[[Special:Interwiki|טבלת הבינוויקי]].',
-'interwiki_defaultreason' => 'לא ניתנה סיבה',
-'right-interwiki' => 'עריכת נתוני הבינוויקי',
+'interwiki_editintro'      => 'הנכם עורכים קידומת בינוויקי.
+זכרו שפעולה זו עלולה לשבור קישורים קיימים.',
+'interwiki_edittext'       => 'עריכת קידומת בינוויקי',
+'interwiki_error'          => 'שגיאה: טבלת הבינוויקי ריקה, או שיש שגיאה אחרת.',
+'interwiki_intro'          => 'ראו $1 למידע נוסף אודות טבלת הבינוויקי.
+ישנו [[Special:Log/interwiki|יומן שינויים]] לטבלת הבינוויקי.',
+'interwiki_log_added'      => 'הקידומת "$2" ($3) (הכללה: $4) (מקומית: $5) נוספה לטבלת הבינוויקי',
+'interwiki_log_deleted'    => 'הסיר את הקידומת "$2" מטבלת הבינוויקי',
+'interwiki_log_edited'     => 'הקידומת "$2" : ($3) (הכללה: $4) (מקומית: $5) שונתה בטבלת הבינוויקי',
+'interwiki_prefix'         => 'קידומת',
+'interwiki_reasonfield'    => 'סיבה',
+'interwikilogpage'         => 'יומן טבלת הבינוויקי',
+'interwikilogpagetext'     => 'זהו יומן השינויים שנערכו ב[[Special:Interwiki|טבלת הבינוויקי]].',
+'right-interwiki'          => 'עריכת נתוני הבינוויקי',
 
 # Special:LinkSearch
 'linksearch'       => 'חיפוש קישורים חיצוניים',

@@ -302,9 +302,6 @@ $messages = array(
 # File deletion
 'filedelete-submit' => 'Taíran',
 
-# Special:Interwiki
-'interwiki_reasonfield' => 'Faírina',
-
 # MIME search
 'mimesearch' => 'MIME sokeiþ',
 
@@ -349,6 +346,9 @@ $messages = array(
 
 # Special:Categories
 'categories' => '𐌺𐌿𐌽𐌾𐍉𐍃',
+
+# Special:Interwiki
+'interwiki_reasonfield' => 'Faírina',
 
 # Special:LinkSearch
 'linksearch-ns' => 'Seidofera:',

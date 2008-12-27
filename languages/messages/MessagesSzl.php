@@ -1483,8 +1483,8 @@ Kukńij tyż [[Special:WantedCategories|ńyistńyjůnce kategoryje]].',
 'deletedcontributions' => 'Wyćepane sprowjyńa użytkowńika',
 
 # Special:Interwiki
+'interwiki_addbutton'   => 'Dodej',
 'interwiki_reasonfield' => 'Čymu',
-'interwiki_addbutton' => 'Dodej',
 
 # Special:LinkSearch
 'linksearch'       => 'Sznuparka uod auskuplůngůw',
