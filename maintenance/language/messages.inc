@@ -1471,6 +1471,7 @@ $wgMessageStructure = array(
 		'interwiki_addfailed',
 		'interwiki_addintro',
 		'interwiki_addtext',
+		'interwiki-badprefix',
 		'interwiki_defaultreason',
 		'interwiki_defaulturl',
 		'interwiki_deleted',
