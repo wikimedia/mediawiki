@@ -15,7 +15,7 @@ $session = intval($wgMemc->get(wfMemcKey('stats','request_with_session')));
 $noSession = intval($wgMemc->get(wfMemcKey('stats','request_without_session')));
 $total = $session + $noSession;
 if ( $total == 0 ) {
-	die("You either have no stats or memcached isn't running. Aborting.");
+	die("You either have no stats or memcached isn't running. Aborting.\n");
 }
 print "Requests\n";
 printf( "with session:      %-10d %6.2f%%\n", $session, $session/$total*100 );
