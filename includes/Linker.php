@@ -1633,11 +1633,13 @@ class Linker {
 					$protected = '';
 				}
 				if( $titleObj->quickUserCan( 'edit' ) ) {
-					$editLink = $sk->makeLinkObj( $titleObj, wfMsg('editlink'), 'action=edit' );
+					$editLink = $sk->link( $titleObj, wfMsg( 'editlink' ), array(), array( 'action' => 'edit' ), 'known' );
 				} else {
-					$editLink = $sk->makeLinkObj( $titleObj, wfMsg('viewsourcelink'), 'action=edit' );
+					$editLink = $sk->link( $titleObj, wfMsg( 'viewsourcelink' ), array(), array( 'action' => 'edit' ), 'known' );
 				}
-				$outText .= '<li>' . $sk->link( $titleObj ) . ' (' . $editLink . ') ' . $protected . '</li>';
+				$talkLink = $sk->link( $titleObj->getTalkPage(), wfMsg( 'talkpagelinktext' ) );
+				$outText .= Xml::tags( 'li', array(),
+						$sk->link( $titleObj ) . ' (' . $editLink . ' ' . wfMsg( 'pipe-separator' ) . ' ' . $talkLink . ') ' . $protected );
 			}
 			$outText .= '</ul>';
 		}
