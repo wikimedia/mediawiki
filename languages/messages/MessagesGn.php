@@ -5,6 +5,7 @@
  * @file
  *
  * @author Hugo.arg
+ * @author Perla
  */
 
 $fallback = 'es';
@@ -31,35 +32,68 @@ $namespaceNames = array(
 );
 
 $messages = array(
+# User preference toggles
+'tog-underline'       => 'Haiguy joajuha',
+'tog-justify'         => 'embojoja haipyvo',
+'tog-hideminor'       => 'Eñomi ñemyatyrõ michĩva «ñemoambue pyahúpe»',
+'tog-extendwatchlist' => 'Eipyso tembiapo rapykueho rysýi opaite ñemoambue ikatúvape',
+'tog-usenewrc'        => "Ñemoambue ojejapo ramóva (ndoikói opaite 'navegador'-pe)",
+'tog-numberheadings'  => 'Mbopapapy ijehegui myakãha',
+'tog-showtoolbar'     => 'Ehechauka ñemyatyrõ renda',
+
 'underline-always' => 'Akói',
 'underline-never'  => "Araka'eve",
 
 # Dates
-'sunday'       => 'arateĩ',
-'monday'       => 'arakői',
-'tuesday'      => 'araapy',
-'wednesday'    => 'ararundy',
-'thursday'     => 'arapo',
-'friday'       => 'arapoteĩ',
-'saturday'     => 'arapokői',
-'january'      => 'jasyteĩ',
-'february'     => 'jasykői',
-'march'        => 'jasyapy',
-'april'        => 'jasyrundy',
-'may_long'     => 'jasypo',
-'june'         => 'jasypoteĩ',
-'july'         => 'jasypokői',
-'august'       => 'jasypoapy',
-'september'    => 'jasyporundy',
-'october'      => 'jasypa',
-'november'     => 'jasypateĩ',
-'december'     => 'jasypakői',
-'january-gen'  => 'jasyteĩ',
-'february-gen' => 'jasykõi',
-'jan'          => 'jasyteĩ',
-'feb'          => 'jasykõi',
-'may'          => 'jasypo',
-'dec'          => 'jasypakõi',
+'sunday'        => 'arateĩ',
+'monday'        => 'arakői',
+'tuesday'       => 'araapy',
+'wednesday'     => 'ararundy',
+'thursday'      => 'arapo',
+'friday'        => 'arapoteĩ',
+'saturday'      => 'arapokői',
+'sun'           => 'arateĩ',
+'mon'           => 'arakõi',
+'tue'           => 'araapy',
+'wed'           => 'ararundy',
+'thu'           => 'arapo',
+'fri'           => 'arapoteĩ',
+'january'       => 'jasyteĩ',
+'february'      => 'jasykői',
+'march'         => 'jasyapy',
+'april'         => 'jasyrundy',
+'may_long'      => 'jasypo',
+'june'          => 'jasypoteĩ',
+'july'          => 'jasypokői',
+'august'        => 'jasypoapy',
+'september'     => 'jasyporundy',
+'october'       => 'jasypa',
+'november'      => 'jasypateĩ',
+'december'      => 'jasypakői',
+'january-gen'   => 'jasyteĩ',
+'february-gen'  => 'jasykõi',
+'march-gen'     => 'jasyapy',
+'april-gen'     => 'jasyrundy',
+'may-gen'       => 'jasypo',
+'june-gen'      => 'jasypoteĩ',
+'july-gen'      => 'jasypokõi',
+'august-gen'    => 'jasypoapy',
+'september-gen' => 'jasyporundy',
+'october-gen'   => 'jasypa',
+'november-gen'  => 'jasypateĩ',
+'december-gen'  => 'jasypakõi',
+'jan'           => 'jasyteĩ',
+'feb'           => 'jasykõi',
+'mar'           => 'jasyapy',
+'apr'           => 'jasyrundy',
+'may'           => 'jasypo',
+'jun'           => 'jasypoteĩ',
+'jul'           => 'jasypokõi',
+'aug'           => 'jasypoapy',
+'sep'           => 'jasyporundy',
+'oct'           => 'jasypa',
+'nov'           => 'jasypateĩ',
+'dec'           => 'jasypakõi',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Ñemohenda|Ñemohendakuéra}}',
@@ -75,6 +109,7 @@ $messages = array(
 'mytalk'         => 'Che myangekõi',
 'navigation'     => 'Kundaharã',
 
+'tagline'          => '{{SITENAME}}megua',
 'help'             => 'Pytyvõhára',
 'search'           => 'Heka',
 'searchbutton'     => 'Heka',
@@ -82,12 +117,17 @@ $messages = array(
 'searcharticle'    => 'Ha',
 'history'          => 'Tembiasakue',
 'history_short'    => 'Tembiasakue',
+'printableversion' => 'Osẽma haguãicha',
 'edit'             => 'Jehaijey',
 'delete'           => "Mboje'o",
 'undelete_short'   => 'Restaurar $1 ediciones',
+'newpage'          => 'Pyahu kuatia',
 'talkpagelinktext' => "ñe'ẽ",
 'specialpage'      => "Kuatiarogue mba'echĩchĩ",
+'personaltools'    => 'Tapicha rembipuru',
+'postcomment'      => "Emoĩ ne remimo'ã",
 'talk'             => 'Myangekõi',
+'views'            => 'Techakuéra',
 'toolbox'          => 'Tembiporu',
 'mediawikipage'    => 'Hecha kuatiarogue marandu',
 'viewtalkpage'     => 'Hecha myangekõi',
@@ -100,6 +140,7 @@ $messages = array(
 'jumptosearch'     => 'Jeheka',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'aboutsite'            => 'Ári {{SITENAME}}',
 'aboutpage'            => 'Project:Rehegua',
 'copyright'            => "Tembikuaa'aty ikatu ojepuru <i>$1</i> rekópe",
 'currentevents'        => 'Ag̃agua',
@@ -193,6 +234,8 @@ Reikotevẽvérõ marandu, emoñe'ẽ kuatiarogue ñepytyvõ rehegua. Oiméramo 
 Aipórõ, eñeha'ãna emboja'o ne rembiapo, vore michĩvévape.</strong>",
 
 # History pages
+'cur'         => "ko'ag̃agua",
+'last'        => 'ipaha',
 'deletedrev'  => '[oñembogue]',
 'historysize' => '($1 bytes)',
 
@@ -202,6 +245,7 @@ Aipórõ, eñeha'ãna emboja'o ne rembiapo, vore michĩvévape.</strong>",
 
 # Diffs
 'difference' => "(Mba'épe ojaovy oñemyatyrõva'ekue)",
+'lineno'     => 'Jehai $1:',
 'editundo'   => 'embyai',
 'diff-multi' => '($1 ediciones intermedias no se muestran.)',
 
@@ -237,7 +281,7 @@ Aipórõ, eñeha'ãna emboja'o ne rembiapo, vore michĩvévape.</strong>",
 # Recent changes
 'nchanges'          => '$1 ñemoambue',
 'recentchanges'     => 'Oñemoambue pyahúva',
-'rcnote'            => 'Iguýpe oĩ umi <b>$1</b> oñemoambue pyahúva ko ara<b>$2</b>ndýpe, hekopyahúva $3',
+'rcnote'            => "Iguýpe oĩ umi {{PLURAL:$1|'''1'''|$1}} oñemoambue pyahúva ko ara{{PLURAL:$2|'''1'''|$2}}ndýpe, hekopyahúva $5, $4.",
 'rclistfrom'        => 'Tojehechauka oñemoambue pyahúva $1 guive',
 'rcshowhideminor'   => '$1 jehaijey michĩva',
 'rcshowhideliu'     => '$1 puruhára ohejáva teraguapy',
@@ -265,8 +309,12 @@ Reomĩsérõ ta'ãnga peteĩ kuatiaroguépe, eipuru peteĩ joaju:
 'imagelist_user' => 'Puruhára',
 
 # Image description page
-'filehist-revert' => 'embojevy',
-'filehist-user'   => 'Puruhára',
+'filehist-revert'   => 'embojevy',
+'filehist-current'  => "ko'ag̃agua",
+'filehist-datetime' => 'Ára/Aravo',
+'filehist-user'     => 'Puruhára',
+'filehist-comment'  => 'Jehaimombyky',
+'imagelinks'        => 'Joajukuéra',
 
 # File reversion
 'filerevert' => 'Embojevy $1',
@@ -402,6 +450,7 @@ Reomĩsérõ ta'ãnga peteĩ kuatiaroguépe, eipuru peteĩ joaju:
 'linkshere'           => "Ko'ã kuatiarogue ojoaju '''[[:$1]]''' rehe:",
 'whatlinkshere-prev'  => 'mboyvegua $1',
 'whatlinkshere-next'  => 'upeigua $1',
+'whatlinkshere-links' => '← joajukuéra',
 
 # Block/unblock
 'blockip'            => 'Ejoko puruhára',
@@ -433,10 +482,12 @@ Reomĩsérõ ta'ãnga peteĩ kuatiaroguépe, eipuru peteĩ joaju:
 'import-logentry-interwiki-detail' => '$1 revisiones desde $2',
 
 # Tooltip help for the actions
-'tooltip-pt-mytalk'    => 'Che kuatiarogue myangekõi',
-'tooltip-pt-mycontris' => "Tysỹi che mba'emoĩmbyre",
-'tooltip-ca-move'      => 'Guerova kuatiarogue',
-'tooltip-p-logo'       => 'Ape',
+'tooltip-pt-userpage'    => 'Che puruhárakuatia',
+'tooltip-pt-mytalk'      => 'Che kuatiarogue myangekõi',
+'tooltip-pt-preferences' => 'Che mbohoryha',
+'tooltip-pt-mycontris'   => "Tysỹi che mba'emoĩmbyre",
+'tooltip-ca-move'        => 'Guerova kuatiarogue',
+'tooltip-p-logo'         => 'Ape',
 
 # Spam protection
 'spamprotectiontitle' => 'Filtro de protección contra spam',
@@ -455,6 +506,7 @@ Reomĩsérõ ta'ãnga peteĩ kuatiaroguépe, eipuru peteĩ joaju:
 
 # 'all' in various places, this might be different for inflected languages
 'namespacesall' => 'opaite',
+'monthsall'     => 'opaite',
 
 # Auto-summaries
 'autosumm-new' => 'Kuatiarogue ipyahúva: $1',

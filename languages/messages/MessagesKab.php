@@ -286,7 +286,7 @@ $messages = array(
 'databaseerror'        => 'Agul n database',
 'dberrortext'          => 'Yella ugul n tseddast deg database.
 Waqila yella bug deg software.
-Query n database taneggarut hatt::
+Query n database taneggarut hatt:
 <blockquote><tt>$1</tt></blockquote>
 seg tawuri  "<tt>$2</tt>".
 MySQL yerra-d agul "<tt>$3: $4</tt>".',

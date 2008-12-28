@@ -7,8 +7,10 @@
  * @author Agzennay
  * @author Cedric31
  * @author ChrisPtDe
+ * @author Crochet.david
  * @author Delhovlyn
  * @author Dereckson
+ * @author Elfix
  * @author Esbardu
  * @author Grondin
  * @author Guillom
@@ -337,7 +339,7 @@ $messages = array(
 'category-empty'                 => "''Cette catégorie ne contient aucune page, sous-catégorie ou fichier multimédia.''",
 'hidden-categories'              => '{{PLURAL:$1|Catégorie cachée|Catégories cachées}}',
 'hidden-category-category'       => 'Catégories cachées', # Name of the category where hidden categories will be listed
-'category-subcat-count'          => '{{PLURAL:$2|Cette catégorie ne dispose que de la sous-catégorie suivante.|Cette catégorie comprend $1 sous-catégorie{{PLURAL:$1||s}}, sur un total de $2.}}',
+'category-subcat-count'          => 'Cette catégorie {{PLURAL:$2|ne dispose que de la sous-catégorie suivante.|comprend $1 sous-catégorie{{PLURAL:$1||s}}, sur un total de $2.}}',
 'category-subcat-count-limited'  => 'Cette catégorie comprend $1 sous-catégorie{{PLURAL:$1||s}}.',
 'category-article-count'         => '{{PLURAL:$2|Cette catégorie contient uniquement la page suivante.|{{PLURAL:$1|La page suivante figure|Les $1 pages suivantes figurent}} dans cette catégorie, sur un total de $2.}}',
 'category-article-count-limited' => '{{PLURAL:$1|La page suivante figure|Les $1 pages suivantes figurent}} dans la présente catégorie.',
@@ -467,7 +469,7 @@ $messages = array(
 'ok'                      => 'OK',
 'retrievedfrom'           => 'Récupérée de « $1 »',
 'youhavenewmessages'      => 'Vous avez $1 ($2).',
-'newmessageslink'         => 'des nouveaux messages',
+'newmessageslink'         => 'de nouveaux messages',
 'newmessagesdifflink'     => 'dernière modification',
 'youhavenewmessagesmulti' => 'Vous avez de nouveaux messages sur $1.',
 'editsection'             => 'modifier',
@@ -485,8 +487,8 @@ $messages = array(
 'feed-unavailable'        => 'Les flux de syndication ne sont pas disponibles',
 'site-rss-feed'           => 'Flux RSS de $1',
 'site-atom-feed'          => 'Flux Atom de $1',
-'page-rss-feed'           => 'Flux RSS de "$1"',
-'page-atom-feed'          => 'Flux Atom de "$1"',
+'page-rss-feed'           => 'Flux RSS de « $1 »',
+'page-atom-feed'          => 'Flux Atom de « $1 »',
 'red-link-title'          => '$1 (page inexistante)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -594,7 +596,7 @@ N’oubliez pas de personnaliser vos [[Special:Preferences|préférences sur {{S
 'yourname'                   => 'Votre nom d’utilisateur :',
 'yourpassword'               => 'Votre mot de passe :',
 'yourpasswordagain'          => 'Entrez à nouveau votre mot de passe :',
-'remembermypassword'         => "Se souvenir de mon mot de passe (témoin (''cookie''))",
+'remembermypassword'         => 'Se souvenir de mon mot de passe (témoin (cookie))',
 'yourdomainname'             => 'Votre domaine',
 'externaldberror'            => 'Soit une erreur s’est produite avec la base de données d’authentification externe, soit vous n’êtes pas autorisé à mettre à jour votre compte externe.',
 'loginproblem'               => '<b>Problème d’identification.</b><br />Essayez à nouveau !',
@@ -622,7 +624,8 @@ Veuillez en choisir un autre.',
 'yourlanguage'               => 'Langue de l’interface :',
 'yourvariant'                => 'Variante :',
 'yournick'                   => 'Signature pour les discussions :',
-'badsig'                     => 'Signature brute incorrecte ; Vérifiez vos balises HTML.',
+'badsig'                     => 'Signature brute incorrecte.
+Vérifiez vos balises HTML.',
 'badsiglength'               => 'Votre signature est trop longue : la taille maximale est de $1 caractère{{PLURAL:$1||s}}.',
 'email'                      => 'Courriel',
 'prefs-help-realname'        => '(facultatif) : si vous le spécifiez, il sera utilisé pour vous attribuer vos contributions.',
@@ -1012,7 +1015,7 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 'powersearch-redir'         => 'Afficher les redirections',
 'powersearch-field'         => 'Rechercher',
 'search-external'           => 'Recherche externe',
-'searchdisabled'            => 'La recherche sur {{SITENAME}} est désactivée. En attendant la réactivation, vous pouvez effectuer une recherche via Google. Attention, leur indexation du contenu {{SITENAME}} peut ne pas être à jour.',
+'searchdisabled'            => 'La recherche sur {{SITENAME}} est désactivée. En attendant la réactivation, vous pouvez effectuer une recherche via Google. Attention, leur indexation du contenu de {{SITENAME}} peut ne pas être à jour.',
 
 # Preferences page
 'preferences'              => 'Préférences',
@@ -1138,7 +1141,7 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 'right-reupload-own'         => 'Écraser un fichier téléchargé par le même utilisateur',
 'right-reupload-shared'      => 'Écraser localement un fichier présent sur un dépôt partagé',
 'right-upload_by_url'        => 'Importer un fichier depuis une adresse URL',
-'right-purge'                => 'Purger le cache des pages sans avoir à le confirmer',
+'right-purge'                => 'Purger le cache des pages sans demande de confirmation',
 'right-autoconfirmed'        => 'Modifier les pages semi-protégées',
 'right-bot'                  => 'Être traité comme un processus automatisé',
 'right-nominornewtalk'       => "Ne pas afficher le bandeau « Vous avez de nouveaux messages » lors d'une modification mineure sur une page de discussion d'un utilisateur",
@@ -1211,7 +1214,7 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Suivi des liens',
-'recentchangeslinked-title'    => 'Suivi des liens associés à $1',
+'recentchangeslinked-title'    => 'Suivi des liens associés à « $1 »',
 'recentchangeslinked-noresult' => 'Aucun changement sur les pages liées pendant la période choisie.',
 'recentchangeslinked-summary'  => "Cette page spéciale montre les modifications récentes sur les pages qui sont liées. Les pages de votre liste de suivi sont '''en gras'''.",
 'recentchangeslinked-page'     => 'Nom de la page :',
@@ -1254,10 +1257,10 @@ Voyez la [[Special:NewImages|gallerie des nouvelles images]] pour une présentat
 'badfilename'                 => 'L’image a été renommée « $1 ».',
 'filetype-badmime'            => 'Les fichiers du type MIME « $1 » ne peuvent pas être importés.',
 'filetype-bad-ie-mime'        => "Le fichier ne peut pas être importé parce qu'il serait détecté comme « $1 » par Internet Explorer, type de fichier interdit car potentiellement dangereux.",
-'filetype-unwanted-type'      => "« .$1 »''' est un format de fichier non désiré.
+'filetype-unwanted-type'      => "'''« .$1 »''' est un format de fichier non désiré.
 {{PLURAL:$3|Le type de fichier préconisé est|Les types de fichiers préconisés sont}} $2.",
-'filetype-banned-type'        => "'''\".\$1\"''' est dans un format non admis.
-{{PLURAL:\$3|Celui qui est accepté est|Ceux qui sont acceptés sont}} \$2.",
+'filetype-banned-type'        => "'''« .$1 »''' est dans un format non admis.
+{{PLURAL:$3|Celui qui est accepté est|Ceux qui sont acceptés sont}} $2.",
 'filetype-missing'            => 'Le fichier n’a aucune extension (comme « .jpg » par exemple).',
 'large-file'                  => 'Les fichiers importés ne devraient pas être plus gros que $1 ; ce fichier fait $2.',
 'largefileserver'             => 'La taille de ce fichier est supérieure au maximum autorisé.',
@@ -1297,7 +1300,8 @@ Veuillez vérifer le fichier.',
 'upload-wasdeleted'           => "'''Attention : Vous êtes en train d’importer un fichier qui a déjà été supprimé auparavant.'''
 
 Le journal des suppressions de ce fichier vous aidera à déterminer s’il est opportun de continuer son import :",
-'filename-bad-prefix'         => 'Le nom du fichier que vous importez commence par <strong>"$1"</strong> qui est un nom généralement donné par les appareils photo numériques. Veuillez choisir un nom de fichier descriptif.',
+'filename-bad-prefix'         => 'Le nom du fichier que vous importez commence par <strong>« $1 »</strong> qui est un nom généralement donné par les appareils photo numériques.
+Veuillez choisir un nom de fichier descriptif.',
 'filename-prefix-blacklist'   => ' #<!-- laisser cette ligne telle quelle --><pre>
 # La syntaxe est la suivante :
 #  * Tout ce qui figure entre un caractère "#" jusqu’à la fin de la ligne est un commentaire ;
@@ -1452,9 +1456,9 @@ Il y a '''$7''' article{{PLURAL:$7||s}} dans [http://www.mediawiki.org/wiki/Manu
 
 'disambiguations'      => 'Pages d’homonymie',
 'disambiguationspage'  => 'Template:Homonymie',
-'disambiguations-text' => "Les pages suivantes pointent vers une '''page d’homonymie'''.
-Elles devraient plutôt pointer le sujet approprié.<br />
-Une page est traitée comme une page d’homonymie si elle utilise un modèle qui est lié à partir de [[MediaWiki:Disambiguationspage]]",
+'disambiguations-text' => "Les pages suivantes comprennent des liens vers une '''page d’homonymie'''.
+Elles devraient plutôt lier vers le bon article.<br />
+Une page est considérée comme page d’homonymie si elle contient un des modèles présents sur [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects'            => 'Doubles redirections',
 'doubleredirectstext'        => 'Chaque case contient des liens vers la première et la seconde redirection, ainsi que la première ligne de texte de la seconde page, ce qui fournit habituellement la « vraie » page cible, vers laquelle la première redirection devrait rediriger.',
@@ -1530,6 +1534,7 @@ Une page est traitée comme une page d’homonymie si elle utilise un modèle qu
 # Book sources
 'booksources'               => 'Ouvrages de référence',
 'booksources-search-legend' => 'Rechercher parmi des ouvrages de référence',
+'booksources-isbn'          => 'ISBN :',
 'booksources-go'            => 'Valider',
 'booksources-text'          => 'Voici une liste de liens vers des sites vendant des livres neufs et d’occasion et sur lesquels vous trouverez peut-être des informations sur les ouvrages que vous cherchez. Ces liens ne sont fournis que dans le but de faciliter les recherches aux utilisateurs, {{SITENAME}} n’étant liée à aucune de ces sociétés.',
 
@@ -1565,7 +1570,7 @@ Vous pouvez restreindre la vue en sélectionnant un type de journal, un nom d’
 'categories'                    => 'Catégories',
 'categoriespagetext'            => 'Les catégories suivantes contiennent des pages ou fichiers.
 [[Special:UnusedCategories|Les catégories inutilisées]] ne sont pas affichées ici.
-Voyez aussi [[Special:WantedCategories|les catégories demandées]] .',
+Voyez aussi [[Special:WantedCategories|les catégories demandées]].',
 'categoriesfrom'                => 'Afficher les catégories commençant à :',
 'special-categories-sort-count' => 'tri par compte',
 'special-categories-sort-abc'   => 'tri alphabétique',
@@ -1617,7 +1622,8 @@ L’adresse électronique que vous avez indiquée dans [[Special:Preferences|vos
 'watchnologin'         => 'Non connecté',
 'watchnologintext'     => 'Vous devez être [[Special:UserLogin|connecté]] pour modifier votre liste.',
 'addedwatch'           => 'Ajouté à la liste de suivi',
-'addedwatchtext'       => 'La page « <nowiki>$1</nowiki> » a été ajoutée à votre [[Special:Watchlist|liste de suivi]].',
+'addedwatchtext'       => "La page « [[:$1]] » a été ajoutée à votre [[Special:Watchlist|liste de suivi]].
+Les futures modifications de cette page et de sa page de discussion y seront listées et la page apparaîtra '''en gras''' dans la [[Special:RecentChanges|liste des modifications récentes]] pour faciliter sa visualisation.",
 'removedwatch'         => 'Retirée de la liste de suivi',
 'removedwatchtext'     => 'La page « [[:$1]] » a été retirée de votre [[Special:Watchlist|liste de suivi]].',
 'watch'                => 'Suivre',
@@ -1743,7 +1749,7 @@ Voici les réglages actuels de la page <strong>$1</strong> :',
 Voici les réglages actuels de la page <strong>$1</strong> :',
 'protect-cascadeon'           => 'Cette page est actuellement protégée car incluse dans {{PLURAL:$1|la page suivante|les pages suivantes}}, {{PLURAL:$1|laquelle a été protégée|lesquelles ont été protégées}} avec l’option « protection en cascade » activée. Vous pouvez changer le niveau de protection de cette page sans que cela n’affecte la protection en cascade.',
 'protect-default'             => 'Pas de protection',
-'protect-fallback'            => 'Nécessite l’habilitation "$1"',
+'protect-fallback'            => 'Nécessite l’habilitation « $1 »',
 'protect-level-autoconfirmed' => 'Semi-protection',
 'protect-level-sysop'         => 'Administrateurs uniquement',
 'protect-summary-cascade'     => 'protection en cascade',
@@ -1903,7 +1909,7 @@ Vous pouvez consulter la [[Special:IPBlockList|liste des comptes et des adresses
 'ipusubmit'                       => 'Débloquer cette adresse',
 'unblocked'                       => '[[User:$1|$1]] a été débloqué',
 'unblocked-id'                    => 'Le blocage $1 a été enlevé',
-'ipblocklist'                     => 'Adresses IP et des utilisateurs bloqués',
+'ipblocklist'                     => 'Adresses IP et utilisateurs bloqués',
 'ipblocklist-legend'              => 'Chercher un utilisateur bloqué',
 'ipblocklist-username'            => 'Nom de l’utilisateur ou adresse IP :',
 'ipblocklist-submit'              => 'Chercher',
@@ -1919,7 +1925,8 @@ Vous pouvez consulter la [[Special:IPBlockList|liste des comptes et des adresses
 'blocklink'                       => 'Bloquer',
 'unblocklink'                     => 'débloquer',
 'contribslink'                    => 'Contributions',
-'autoblocker'                     => 'Vous avez été bloqué automatiquement parce que votre adresse IP a été récemment utilisée par « $1 ». La raison fournie pour le blocage de $1 est : « $2 ».',
+'autoblocker'                     => 'Vous avez été bloqué automatiquement parce que votre adresse IP a été récemment utilisée par « [[User:$1|$1]] ».
+La raison fournie pour le blocage de $1 est : « $2 ».',
 'blocklogpage'                    => 'Historique des blocages',
 'blocklogentry'                   => 'a bloqué « [[$1]] » - durée : $2 $3',
 'blocklogtext'                    => 'Ceci est la trace des blocages et déblocages des utilisateurs. Les adresses IP automatiquement bloquées ne sont pas listées. Consultez la [[Special:IPBlockList|liste des utilisateurs bloqués]] pour voir qui est actuellement effectivement bloqué.',
@@ -2671,7 +2678,7 @@ Veuillez confirmer que vous désirez recréer cette page.",
 'livepreview-ready'   => 'Chargement … terminé !',
 'livepreview-failed'  => 'L’aperçu rapide a échoué !
 Essayez la prévisualisation normale.',
-'livepreview-error'   => 'Impossible de se connecter : $1 "$2"
+'livepreview-error'   => 'Impossible de se connecter : $1 « $2 ».
 Essayez la prévisualisation normale.',
 
 # Friendlier slave lag warnings

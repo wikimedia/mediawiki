@@ -275,6 +275,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Toret naujū žėnotiu $1',
 'editsection'             => 'taisītė',
 'editold'                 => 'taisītė',
+'viewsourceold'           => 'veizietė šaltėni',
 'editsectionhint'         => 'Redagoutė skirsneli: $1',
 'toc'                     => 'Torėnīs',
 'showtoc'                 => 'ruodītė',
@@ -315,6 +316,8 @@ $messages = array(
 mažo doumenū bazės techninē pruofilaktėkā,
 puo tuo vėsks griš i sava viežes.
 Ožrakėnusiuojo admėnėstratuoriaus pateikts rakėnima paaiškėnims: $1',
+'missingarticle-rev'   => '(versėjė#: $1)',
+'missingarticle-diff'  => '(Skėrt.: $1, $2)',
 'readonly_lag'         => 'Doumenū bazė bova autuomatėškā ožrakėnta, kuol pagelbinės doumenū bazės pasvīs pagrėndine',
 'internalerror'        => 'Vėdėnė klaida',
 'internalerror_info'   => 'Vėdėnė klaida: $1',

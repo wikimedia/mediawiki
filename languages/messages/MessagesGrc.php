@@ -33,14 +33,14 @@ $dateFormats = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Ὑπογραμμίζειν συνδέσμους:',
-'tog-highlightbroken'         => 'Μορφοῦν ἀπωλομένους συνδέσμους <a href="" class="new">οὐτωσί</a> (ἄλλως: οὐτωσί <a href="" class="internal">;</a>).',
+'tog-highlightbroken'         => 'Μορφοῦν ἀπωλομένους συνδέσμους <a href="" class="new">οὐτωσὶ</a> (ἄλλως: οὐτωσὶ <a href="" class="internal">;</a>).',
 'tog-justify'                 => 'Στοιχίζειν παραγράφους',
-'tog-hideminor'               => 'Κρύπτειν μικρὰς ἐγγραφὰς ἐν προσφάτοις ἀλλαγαῖς',
-'tog-extendwatchlist'         => 'Καταλογὴ ἐφορωμένων ἐκτείνειν ἵνα φανῶσιν ἅπασαι αἱ ἁρμοδίαι ἀλλαγαί',
-'tog-usenewrc'                => 'Προσκεκοσμημέναι πρόσφατοι ἀλλαγαί (JavaScript)',
+'tog-hideminor'               => 'Κρύπτειν μικρὰς μεταγραφὰς ἐν προσφάτοις ἀλλαγαῖς',
+'tog-extendwatchlist'         => 'Ἐφοροδιαλογὴν ἐκτείνειν ἵνα ἅπασαι φανῶσιν αἱ ἁρμόδιαι ἀλλαγαὶ',
+'tog-usenewrc'                => 'Προσκεκοσμημέναι πρόσφατοι ἀλλαγαὶ (JavaScript)',
 'tog-numberheadings'          => 'Ἐξαριθμεῖν ἐπικεφαλίδας αὐτομάτως',
 'tog-showtoolbar'             => 'Δεικνύναι τὴν τῶν ἐργαλείων μεταγραφῆς μετώπην (JavaScript)',
-'tog-editondblclick'          => 'Ἐπὶ δέλτων δὶς θλίψας, μετάγραψον αὐτάς (JavaScript)',
+'tog-editondblclick'          => 'Ἐπὶ δέλτων δὶς θλίψας, μετάγραψον αὐτὰς (JavaScript)',
 'tog-editsection'             => 'Τμῆμα διὰ συνδέσμου [μεταγράφειν] μεταγράφειν παρέχειν',
 'tog-editsectiononrightclick' => 'Τμῆμα μεταγράφειν παρέχειν <br /> διὰ τίτλον δεξιῷ ὀμφαλῷ θλίβειν (JavaScript)',
 'tog-showtoc'                 => 'Δεικνύναι πίνακα περιεχομένων (ἐν δέλτοις περιεχούσαις πλείους τῶν 3 ἐπικεφαλίδων)',
@@ -60,15 +60,15 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'Ἀποκαλύπτειν τὴν ταχυδρομικὴν μου διεύθυνσιν ἐν τῇ εἰδοποιητηρίᾳ ἀλληλογραφίᾳ',
 'tog-shownumberswatching'     => 'Δεικνύναι τὸν ἀριθμὸν τῶν παρακολουθούντων χρωμένων',
 'tog-fancysig'                => 'Ἀκατέργασται ὑπογραφαὶ (ἄνευ αὐτομάτου συνδέσμου)',
-'tog-externaleditor'          => 'Χρῆσθαι ἐξώτερον πρόγραμμα επεξεργασίας κειμένων κατὰ προεπιλογήν (διὰ εἰδικοῦς μόνον· ἀπαραίτητοι εἰδικαὶ ῥυθμίσεις τινες ἐν τῇ ὑπολογιστικῇ μηχανῇ σου)',
-'tog-externaldiff'            => 'Χρῆσθαι ἐξώτερον λογισμικὸν αντιπαραβολῆς κατὰ προεπιλογήν (διὰ εἰδικοῦς μόνον· ἀπαραίτητοι εἰδικαὶ ῥυθμίσεις τινες ἐν τῇ ὑπολογιστικῇ μηχανῇ σου)',
+'tog-externaleditor'          => 'Χρῆσθαι ἐξώτερον πρόγραμμα ἐπεξεργασίας κειμένων κατὰ προεπιλογὴν (διὰ εἰδικοὺς μόνον· ἀπαραίτητοι εἰδικαὶ ῥυθμίσεις τινὲς ἐν τῇ σῇ ὑπολογιστικῇ μηχανῇ)',
+'tog-externaldiff'            => 'Χρῆσθαι ἐξώτερον λογισμικὸν ἀντιπαραβολῆς κατὰ προεπιλογὴν (διὰ εἰδικοὺς μόνον• ἀπαραίτητοι εἰδικαὶ ῥυθμίσεις τινες ἐν τῇ σῇ ὑπολογιστικῇ μηχανῇ)',
 'tog-showjumplinks'           => 'Ἐνεργοποιεῖν τοὺς "ἅλμα πρὸς" συνδέσμους προσβασιμότητος',
 'tog-uselivepreview'          => 'Χρῆσθαι ἄμεσον προθεώρησιν (JavaScript) (Πειραστικόν)',
-'tog-forceeditsummary'        => 'Προμήνυσόν με εἰ εἰσάγω κενὴ σύνοψιν μεταγραφῆς',
+'tog-forceeditsummary'        => 'Προμήνυσόν με εἰ εἰσάγω κενὴν σύνοψιν μεταγραφῆς',
 'tog-watchlisthideown'        => 'Οὐ δηλοῦν τὰς ἐμὰς μεταβολὴς ἐν τὰ ἐφορώμενά μου',
 'tog-watchlisthidebots'       => 'Ἀποκρύπτειν τὰς αὐτόματους μεταγραφὰς ἐκ τῆς ἐφοροδιαλογῆς',
 'tog-watchlisthideminor'      => 'Οὐ δηλοῦν τὰς μικρὰς μεταβολὰς ἐν τὰ ἐφορώμενά μου',
-'tog-ccmeonemails'            => "Στεῖλον μοι ἀντίγραφα τῶν ἠλ.-ἐπιστολῶν τῶν ἀπεσταλμένων ὑπ'ἐμοῦ πρὸς ἑτέρους χρωμένους",
+'tog-ccmeonemails'            => "Στεῖλόν μοι ἀντίγραφα τῶν ἠ-ἐπιστολῶν τῶν ἀπεσταλμένων ὑπ' ἐμοῦ πρὸς ἑτέρους χρωμένους",
 'tog-diffonly'                => 'Οὐκ ἐμφανίζειν τὸ τῆς δέλτου περιεχόμενον ὑπὸ τῶν διαφορῶν',
 'tog-showhiddencats'          => 'Κεκρυμμένας κατηγορίας δηλοῦν',
 
@@ -138,7 +138,7 @@ $messages = array(
 'category-empty'                 => "''Αὕτη ἡ κατηγορία οὐ περιλαμβάνει δέλτους τινὰς τῷ παρόντι.''",
 'hidden-categories'              => '{{PLURAL:$1|Κεκρυμμένη Κατηγορία|Κεκρυμμέναι Κατηγορίαι}}',
 'hidden-category-category'       => 'Κεκρυμμέναι κατηγορίαι', # Name of the category where hidden categories will be listed
-'category-subcat-count'          => '{{PLURAL:$2|Ἥδε ἡ κατηγορία περίεχει μόνον τὴν ἐξῆς ὑποκατηγορίαν.|Ἥδε ἡ κατηγορία περιέχει {{PLURAL:$1|τὴν ἐξῆς|τὰς ἐξῆς}} {{PLURAL:$1|ὑποκατηγορίαν|$1 ὑποκατηγορίας}}, ἐκ συνόλου $2.}}',
+'category-subcat-count'          => '{{PLURAL:$2|Ἥδε ἡ κατηγορία περιέχει μόνον τὴν ἐξῆς ὑποκατηγορίαν.|Ἥδε ἡ κατηγορία περιέχει {{PLURAL:$1|τὴν ἐξῆς|τὰς ἐξῆς}} {{PLURAL:$1|ὑποκατηγορίαν|$1 ὑποκατηγορίας}}, ἐκ συνόλου $2.}}',
 'category-subcat-count-limited'  => 'Ἥδε ἡ κατηγορία περιέχει {{PLURAL:$1|τὴν ἐξῆς|τὰς ἐξῆς}} {{PLURAL:$1|ὑποκατηγορίαν|$1 ὑποκατηγορίας}}.',
 'category-article-count'         => '{{PLURAL:$2|Ἥδε ἡ κατηγορία περιέχει μόνον τὴν ἐξῆς δέλτον.|Αἱ ἐξῆς {{PLURAL:$1|δέλτος ἐστὶν|$1 δέλτοι εἰσὶν}} ἐν τῇδε τῇ κατηγορίᾳ, ἐκ συνόλου $2.}}',
 'category-article-count-limited' => '{{PLURAL:$1|Ἡ|Αἱ}} ἐξῆς {{PLURAL:$1|δέλτος ἐστὶν|$1 δέλτοι εἰσὶν}} ἐν τῇ τρεχούσῃ κατηγορίᾳ.',
@@ -185,9 +185,9 @@ $messages = array(
 'searcharticle'     => 'Ἱέναι',
 'history'           => 'Αἱ τῆς δέλτου προτέραι',
 'history_short'     => 'Αἱ προτέραι',
-'updatedmarker'     => 'αἰ δέλτου ἐνήμερώσεις ἀφότε ἐπεσκέφθην αὐτὴν ὑστάτως',
+'updatedmarker'     => 'αἱ δέλτου ἐνημερώσεις ἀφ’ ὅτε ἐπεσκέφθην αὐτὴν ὑστάτως',
 'info_short'        => 'Μάθησις',
-'printableversion'  => 'Ἐκτυπώσιμος μορφή',
+'printableversion'  => 'Ἐκτυπώσιμος μορφὴ',
 'permalink'         => 'Σύνδεσμος μόνιμος',
 'print'             => 'Τυποῦν',
 'edit'              => 'Μεταγράφειν',
@@ -196,8 +196,8 @@ $messages = array(
 'create-this-page'  => 'Ποιεῖν τήνδε τὴν δέλτον',
 'delete'            => 'Σβεννύναι',
 'deletethispage'    => 'Διαγράφειν τήνδε τὴν δέλτον',
-'undelete_short'    => 'Ἐπανορθοῦν {{PLURAL:$1|ἕνα μεταγραφέν|$1 μεταγραφέντα}}',
-'protect'           => 'Φυλλάττειν',
+'undelete_short'    => 'Ἐπανορθοῦν {{PLURAL:$1|ἕνα μεταγραφὲν|$1 μεταγραφέντα}}',
+'protect'           => 'Φυλάττειν',
 'protect_change'    => 'ἀλλάττειν',
 'protectthispage'   => 'Tήνδε τὴν δέλτον φυλάττειν',
 'unprotect'         => 'μὴ φυλάττειν',
@@ -220,7 +220,7 @@ $messages = array(
 'viewhelppage'      => 'Ὁρᾶν βοηθείας δέλτον',
 'categorypage'      => 'Ὁρᾶν τὴν δέλτον κατηγοριῶν',
 'viewtalkpage'      => 'Ὁρᾶν διάλεκτον',
-'otherlanguages'    => 'Ἀλλογλωσσιστί',
+'otherlanguages'    => 'Ἀλλογλωσσιστὶ',
 'redirectedfrom'    => '(Ἀποσταλτὸν ἀπὸ $1)',
 'redirectpagesub'   => 'Ἐπανάγειν δέλτον',
 'lastmodifiedat'    => 'Ἥδε ἡ δέλτος ὕστατον μετεβλήθη $2, $1.', # $1 date, $2 time
@@ -232,7 +232,7 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Περὶ {{SITENAME}}',
-'aboutpage'            => 'Project:Περί',
+'aboutpage'            => 'Project:Περὶ',
 'bugreports'           => 'Ἀναφορὰ πλανῶν',
 'bugreportspage'       => 'Project:Ἀναφορὰ πλανῶν',
 'copyright'            => 'Ἡ διάθεσις τοῦδε περιεχομένου ἐστιν ὑπὸ $1.',
@@ -275,23 +275,23 @@ $messages = array(
 'toc'                     => 'Περιεχόμενα',
 'showtoc'                 => 'δεικνύναι',
 'hidetoc'                 => 'κρύπτειν',
-'thisisdeleted'           => 'Ὁρᾶν ἢ ἀποκαθίσταναι $1;',
+'thisisdeleted'           => 'Ὁρᾶν ἢ ἀποκαθιστᾶναι $1;',
 'viewdeleted'             => 'Ὁρᾶν $1;',
-'restorelink'             => '{{PLURAL:$1|μία διεγραμμένη μεταγραφή|$1 διεγραμμέναι μεταγραφαί}}',
+'restorelink'             => '{{PLURAL:$1|μία διεγραμμένη μεταγραφὴ|$1 διεγραμμέναι μεταγραφαὶ}}',
 'feedlinks'               => 'Βοτήρ:',
 'feed-invalid'            => 'Ἄκυρος τύπος συνδρομῆς εἰς ῥοὴν δεδομένων.',
 'feed-unavailable'        => 'Αἱ ῥοαὶ οὐκ εἰσὶ διαθέσιμοι',
-'site-rss-feed'           => 'Ἡ τοῦ $1 RSS-παρασκευή',
-'site-atom-feed'          => 'Ἡ τοῦ $1 Atom-παρασκευή',
+'site-rss-feed'           => 'Ἡ τοῦ $1 RSS-παρασκευὴ',
+'site-atom-feed'          => 'Ἡ τοῦ $1 Atom-παρασκευὴ',
 'page-rss-feed'           => 'Βοτὴρ RSS "$1"',
-'page-atom-feed'          => '"$1" Atom Ῥοή',
+'page-atom-feed'          => '"$1" Atom Ῥοὴ',
 'red-link-title'          => '$1 (οὔπω γέγραπται)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Χρῆμα',
 'nstab-user'      => 'Δέλτος χρωμένου',
 'nstab-media'     => 'Δέλτος μέσων',
-'nstab-special'   => 'Εἰδικόν',
+'nstab-special'   => 'Εἰδικὸν',
 'nstab-project'   => 'Δέλτος σχεδίου',
 'nstab-image'     => 'Ἀρχεῖον',
 'nstab-mediawiki' => 'Ἀγγελία',
@@ -300,9 +300,12 @@ $messages = array(
 'nstab-category'  => 'Κατηγορία',
 
 # Main script and global functions
-'nosuchaction'      => 'Οὐδεμία τοιούτη ἐνέργεια',
-'nosuchactiontext'  => 'Ἡ καθωρισμένη ὑπὸ τοῦ URL δρᾶσις μὴ ἀναγνωρίσιμος ὑπὸ τοῦ ϝίκι ἐστίν',
+'nosuchaction'      => 'Οὐδεμία τοιαύτη ἐνέργεια',
+'nosuchactiontext'  => 'Ἡ καθωρισμένη ὑπὸ τοῦ URL δρᾶσις μὴ ἀναγνωρίσιμος ὑπὸ τοῦ ϝίκι ἐστὶν',
 'nosuchspecialpage' => 'Οὐδεμία τοιούτη δέλτος',
+'nospecialpagetext' => "<big>'''Ἡ αἰτηθεῖσα εἰδικὴ δέλτος ἄκυρός ἐστιν.'''</big>
+
+Εἶς τῶν ἐγκύρων εἰδικῶν δέλτων κατάλογος εὕρηται εἰς [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Σφάλμα',
@@ -324,6 +327,7 @@ $1',
 'cachederror'          => 'Τὸ ἀκόλουθον ἐστὶ λανθάνον ἀντίγραφόν τι τῆς ζητουμένης δέλτου καὶ ἐνδεχομένως οὐκ ἐστὶ ἐνήμερον.',
 'laggedslavemode'      => 'Προσοχή: Ἡ δέλτος ἐνδέχεται οὐ περιέχειν προσφάτους μεταβολάς.',
 'readonly'             => 'Βάσις δεδομένων ἀποκεκλεισμένη',
+'enterlockreason'      => 'Λέγε διὰ τὶ τὸ ἀποκλῄειν τε καὶ ὅτε τοῦτο ἀρθήσεται',
 'missingarticle-rev'   => '(ἀναθεώρησις#: $1)',
 'missingarticle-diff'  => '(Διαφ: $1, $2)',
 'internalerror'        => 'Ἐσώτερον σφάλμα',
@@ -437,7 +441,7 @@ $1',
 
 # Password reset dialog
 'resetpass'           => 'Ἀναδιορισμὸς συνθήματος λογισμοῦ',
-'resetpass_header'    => 'Ἀναδιορισμὸς συνθήματος',
+'resetpass_header'    => 'Ἀναδιορισμὸς συνθήματος λογισμοῦ',
 'resetpass_submit'    => 'Ἀναδιορισμὸς συνθήματος καὶ σύνδεσις',
 'resetpass_forbidden' => 'Οὐκ ἔξεστι τοῖς συνθήμασιν ἀλλαγῆναι',
 'resetpass_missing'   => 'Οὐδὲν δεδομένον τύπου.',
@@ -533,6 +537,9 @@ $1',
 'updated'                => '(Ἐνημερωθέν)',
 'note'                   => '<strong>Ἐπισήμανσις:</strong>',
 'previewnote'            => '<strong>Ἥδε ἐστὶ προθεώρησις, οὐχὶ καταγραφὴ τῶν μεταβολῶν!</strong>',
+'session_fail_preview'   => '<strong>Ἀδύνατος ἦν ἡ διαδικασία τῆς μεταγραφῆς σου ἐξ αἰτίας τῆς ἀπωλείας συνοδῶν δεδομένων.
+Πείρασον πάλιν.
+Εἰ μὴ δύνατος ἐστὶ πάραυτα, πείρασον [[Special:UserLogout|ἀποσυνδεῖσθαι]] καὶ ἐν συνεχείᾳ ἐπανασυνδεῖσθαι.</strong>',
 'editing'                => 'Μεταγράφειν $1',
 'editingsection'         => 'Μεταγράφειν $1 (τμῆμα)',
 'editingcomment'         => 'Μεταγράφειν $1 (σχόλιον)',
@@ -558,6 +565,7 @@ $1',
 'nocreatetitle'          => 'Ποίησις δέλτων περιωρισμένη',
 'nocreatetext'           => "{{SITENAME}} οὐ σ'ἐᾷ νέας δέλτους ποιεῖν.
 Ἐᾷ σε δέλτον ἢδη οὖσαν μεταβάλλειν ἢ [[Special:UserLogin|συνδεῖσθαι ἢ λογισμὸν ποιεῖν]].",
+'nocreate-loggedin'      => 'Οὐκ ἔξεστι σοι νέας δέλτους ποιεῖν.',
 'permissionserrors'      => 'Σφάλματα ἀδειῶν',
 'recreate-deleted-warn'  => "'''Προσοχή: Ἀναποιεῖς δέλτον πάλαι ποτὲ διαγραφεῖσα.'''
 
@@ -736,6 +744,8 @@ $1',
 'math_syntax_error'        => 'σφάλμα συντάξεως',
 'math_image_error'         => 'Ἡ PNG-μετατροπὴ ἀπετεύχθη·
 ἔλεγξον τὴν ὀρθὴν ἐγκατάστασιν τῶν latex, dvips, gs, καὶ μετάτρεψον',
+'math_notexvc'             => 'Ἐλλεῖπον ἐκτελέσιμον texvc;
+ἴδε math/README διὰ τὸ διαμορφοῦν.',
 'prefs-personal'           => 'Στοιχεῖα χρωμένου',
 'prefs-rc'                 => 'Αἱ νέαι μεταβολαί',
 'prefs-watchlist'          => 'Τὰ ἐφορώμενα',
@@ -1487,6 +1497,7 @@ $1',
 'movepage-page-unmoved'   => 'Ἡ δέλτος $1 μὴ μετακεκινημένη ἐστὶν εἰς $2.',
 'movepage-max-pages'      => 'Τὸ μέγιστον τῶν $1 {{PLURAL:$1|δέλτου|δέλτων}} μετεκινήθη ἤδη καὶ οὐ πλέον μετακινηθήσεται αὐτομάτως.',
 '1movedto2'               => '[[$1]] ἐκινήθη πρὸς [[$2]]',
+'1movedto2_redir'         => '[[$1]] μετακινηθεῖσα εἰς [[$2]] μέσῳ ἀναδιευθύνσεως',
 'movelogpage'             => 'Τὰ κινηθέντα',
 'movelogpagetext'         => 'Κατωτέρω ἐστὶ καταλογή τις τῶν κεκινημένων δέλτων.',
 'movereason'              => 'Ἀπολογία:',
@@ -1529,7 +1540,7 @@ $1',
 'importinterwiki'            => 'Ὑπερδιαϝίκι-εἰσαγωγή',
 'import-interwiki-history'   => 'Ἀντιγράφειν ἁπάσας τὰς ἐκδόσεις τοῦ ἱστορικοῦ τῆσδε τῆς δέλτου',
 'import-interwiki-submit'    => 'Εἰσάγειν',
-'import-interwiki-namespace' => 'Μετάφερε τὰς δέλτους ἐν τῷ ὀνοματείῳ:',
+'import-interwiki-namespace' => 'Ὀνοματεῖον προορισμός:',
 'importstart'                => 'Εἰσάγειν δέλτους...',
 'import-revision-count'      => '$1 {{PLURAL:$1|ἀναθεώρησις|ἀναθεωρήσεις}}',
 'importnopages'              => 'Οὐδεμία εἰσακτέα δέλτος.',
@@ -1545,6 +1556,7 @@ $1',
 'import-nonewrevisions'      => 'Ἅπασαι αἱ ἀναθεωρήσεις εἰσηγμέναι εἰσὶ προηγουμένως.',
 'xml-error-string'           => '$1 ἐις τὴν $2, στηλ. $3 (δυφίον $4): $5',
 'import-upload'              => 'Ἐπιφόρτωσις δεδομένων XML',
+'import-token-mismatch'      => 'Ἀπὠλεια συνοδῶν δεδομένων. Πείρασον πάλιν.',
 
 # Import log
 'importlogpage'                    => 'Εἰσάγειν κατάλογον',
@@ -1620,6 +1632,7 @@ $1',
 'lastmodifiedatby' => 'Ἥδε ἡ δἐλτος ἠλλάχθη ὑστάτως $2, $1 ἐκ τοῦ $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Βεβασισμένον τῷ ἔργῳ τοῦ/τῶν $1.',
 'others'           => 'ἄλλοι',
+'siteusers'        => '{{SITENAME}} χρώμεν-ος,-οι $1',
 'creditspage'      => 'Διαπιστεύσεις δέλτου',
 
 # Spam protection
@@ -1646,6 +1659,7 @@ $1',
 'markaspatrolleddiff'    => 'Σεσημασμένη ὡς φρουρουμένη',
 'markaspatrolledtext'    => 'Σημαίνειν τήνδε τὴν δέλτον ὡς φρουρούμενη',
 'markedaspatrolled'      => 'Σεσημασμένη ὡς φρουρουμένη',
+'rcpatroldisabled'       => 'Περίπολος Προσφάτων Μεταβολῶν ἀπενεργοποιηθεῖσα',
 'markedaspatrollederror' => 'Μὴ δυνατὴ ἡ σήμανσις περιπολήσεως',
 
 # Patrol log
@@ -1745,6 +1759,8 @@ $1',
 'exif-datetimeoriginal'            => 'Χρονολογία καὶ ὥρα παραγωγῆς δεδομένων',
 'exif-datetimedigitized'           => 'Χρονολογία καὶ ὥρα ψηφιοποιήσεως',
 'exif-subsectime'                  => 'Ὑποδευτερόλεπτα χρονολογίας',
+'exif-subsectimeoriginal'          => 'Χρονολογίας ἀρχικῆς λήψεως ὑποδευτερόλεπτα',
+'exif-subsectimedigitized'         => 'Χρονολογίας ψηφιοποίησεως ὑποδευτερόλεπτα',
 'exif-exposuretime'                => 'Χρόνος ἐκθέσεως',
 'exif-exposuretime-format'         => '$1 δευτ. ($2)',
 'exif-fnumber'                     => 'Ἀριθμός F',
@@ -1995,6 +2011,9 @@ $1
 # Delete conflict
 'recreate' => 'Ἀναποιεῖν',
 
+# HTML dump
+'redirectingto' => 'Ἀναδιευθύνειν εἰς τὴν [[$1]]...',
+
 # action=purge
 'confirm_purge'        => 'Καθαίρειν τὴν λανθάνουσαν μνήμην τῆσδε τῆς δέλτου;
 
@@ -2002,6 +2021,7 @@ $1',
 'confirm_purge_button' => 'εἶεν',
 
 # AJAX search
+'articletitles' => "Δέλτοι ἀρχόμεναι ἐκ/ἐξ ''$1''",
 'hideresults'   => 'Ἀποκρύπτειν ἀποτελέσματα',
 'useajaxsearch' => 'Χρῆσθαι ἀναζήτησιν AJAX',
 

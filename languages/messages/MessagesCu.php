@@ -195,6 +195,7 @@ $messages = array(
 'newmessagesdifflink' => 'послѣ́дьнꙗ мѣ́на',
 'editsection'         => 'испра́ви',
 'editold'             => 'испра́ви',
+'showtoc'             => 'ви́ждь',
 'hidetoc'             => 'съкрꙑи',
 'viewdeleted'         => '$1 ви́дєти хо́щєши ;',
 'red-link-title'      => '$1 (ѥщє нє напь́сано ѥ́стъ)',
@@ -259,6 +260,8 @@ $messages = array(
 'viewpagelogs' => 'си страни́цѧ їсторі́ѩ',
 'cur'          => 'нꙑ҃н',
 'last'         => 'пс҃лд',
+'page_first'   => 'прь́ва страни́ца',
+'page_last'    => 'послѣ́дьнꙗ страни́ца',
 'historyempty' => '(поу́сто)',
 
 # Revision feed
@@ -312,6 +315,7 @@ $messages = array(
 'diff'            => 'ра҃ꙁн',
 'hist'            => 'їс҃т',
 'hide'            => 'съкрꙑи',
+'show'            => 'ви́ждь',
 'minoreditletter' => 'м҃л',
 'newpageletter'   => 'н҃в',
 'boteditletter'   => 'а҃ѵ',
@@ -403,6 +407,9 @@ $messages = array(
 # Special:Categories
 'categories' => 'катигорі́ѩ',
 
+# Special:ListUsers
+'listusers-submit' => 'ви́ждь',
+
 # E-mail user
 'emailuser' => 'Посъли епїстолѫ',
 
@@ -490,6 +497,7 @@ $messages = array(
 'allmessagesname' => 'и́мѧ',
 
 # Tooltip help for the actions
+'tooltip-pt-userpage'     => 'моꙗ́ по́льꙃєватєл҄ьска страни́ца',
 'tooltip-pt-mytalk'       => 'моꙗ́ бєсѣ́дꙑ страни́ца',
 'tooltip-pt-logout'       => 'ис̾хо́дъ',
 'tooltip-ca-viewsource'   => 'си страни́ца ꙁабранєна́ ѥ́стъ ⁙

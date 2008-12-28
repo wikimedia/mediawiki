@@ -393,7 +393,7 @@ $messages = array(
 'nstab-user'      => 'Benotzersäit',
 'nstab-media'     => 'Media Säit',
 'nstab-special'   => 'Spezialsäit',
-'nstab-project'   => 'Portalsäit',
+'nstab-project'   => 'Porject:',
 'nstab-image'     => 'Fichier',
 'nstab-mediawiki' => 'Systemmessage',
 'nstab-template'  => 'Schabloun',
@@ -508,7 +508,7 @@ Sicht iech een anere Benotzernumm.',
 'username'                   => 'Benotzernumm:',
 'uid'                        => 'Benotzer ID:',
 'prefs-memberingroups'       => 'Member vun {{PLURAL:$1|der Benotzergrupp|de Benotzergruppen}}:',
-'yourrealname'               => 'Richtege Numm:',
+'yourrealname'               => 'Richtegen Numm:',
 'yourlanguage'               => 'Sprooch vun der Benotzeruewerfläch:',
 'yourvariant'                => 'Sproochvariant:',
 'yournick'                   => 'Ënnerschrëft:',
@@ -879,7 +879,7 @@ Passt op, datt d'Versiounsgeschicht der Säit historesch korrekt ass.
 # Search results
 'searchresults'             => 'Resultat vun der Sich',
 'searchresulttext'          => "Fir méi Informatiounen iwwert d'Sichfunktiounen op {{SITENAME}}, kuckt w.e.g op [[{{MediaWiki:Helppage}}|{{int:help}}]].",
-'searchsubtitle'            => 'Dir hutt no "[[:$1]]" gesicht ([[Special:Prefixindex/$1|all Säiten déi mat "$1" ufänken]] | [[Special:WhatLinksHere/$1|all Sàiten déi op "$1" linken]])',
+'searchsubtitle'            => 'Dir hutt no "[[:$1]]" gesicht ([[Special:Prefixindex/$1|all Säiten déi mat "$1" ufänken]] | [[Special:WhatLinksHere/$1|all Säiten déi op "$1" linken]])',
 'searchsubtitleinvalid'     => 'Dir hutt no "$1" gesicht.',
 'noexactmatch'              => "'''Et gëtt keng Säite mam Titel \"\$1\".'''
 
@@ -934,6 +934,7 @@ Dir kënnt [[:\$1|déi Säit uleeën]].",
 'qbsettings-floatingright' => 'Schwiewt riets',
 'changepassword'           => 'Passwuert änneren',
 'skin'                     => 'Skin',
+'math'                     => 'Math/TeX',
 'dateformat'               => 'Datumsformat',
 'datedefault'              => 'Egal (Standard)',
 'datetime'                 => 'Datum an Auerzäit',
@@ -944,6 +945,8 @@ Dir kënnt [[:\$1|déi Säit uleeën]].",
 'math_syntax_error'        => 'Syntaxfeeler',
 'math_image_error'         => "d'PNG-Konvertéierung huet net fonctionnéiert;
 iwwerpréift déi korrekt Installatioun vu LaTeX, dvips, gs a convert",
+'math_bad_tmpdir'          => 'Den temporäre Repertire fir mathematesch Formele kann net ugeluecht ginn oder et kann näischt do gespäichert ginn.',
+'math_bad_output'          => 'Den Zilrepertoire fir mathematesch Formele kann net ugeluecht ginn oder et kann näischt do gespäichert ginn.',
 'prefs-personal'           => 'Benotzerprofil',
 'prefs-rc'                 => 'Rezent Ännerungen',
 'prefs-watchlist'          => 'Iwwerwaachungslëscht',
@@ -1197,7 +1200,7 @@ Wann Dir dëse Fichier trotzdem eroplued wellt da gitt w.e.g. zréck a lued dës
 'upload-wasdeleted'           => "'''Opgepasst: Dir lued e Fichier erop, dee schonn eng Kéier geläscht ginn ass.'''
 
 Kuckt w.e.g. genee no, ob d'dat erneit Eroplueden de Richtlinnen entsprecht.
-Zu ärer Informatioun steett hei Läsch-Lëscht mat dem Grond vum viregte Läschen:",
+Zu ärer Informatioun steet hei Läsch-Lëscht mat dem Grond vum viregte Läschen:",
 'filename-bad-prefix'         => 'Den Numm vum Fichier fänkt mat <strong>„$1“</strong> un. Dësen Numm ass automatesch vun der Kamera gi ginn a seet näischt iwwert dat aus, wat drop ass. Gitt dem Fichier w.e.gl. en Numm, deen den Inhalt besser beschreift, an deen net verwiesselt ka ginn.',
 
 'upload-proto-error'      => 'Falsche Protokoll',
@@ -1254,10 +1257,10 @@ Kuckt w.e.g. no op kee Feeler an der URL ass an op de Site och online ass.',
 'duplicatesoffile'               => '{{PLURAL:$1|De Fichier ass een Doublon|Dës Fichiere sinn Doublonen}} vum Fichier:',
 'sharedupload'                   => 'Dës Fichier ass ee gemeinsam genotzten Upload a ka vun anere Projeten benotzt ginn.',
 'shareduploadwiki'               => 'Kuckt w.e.g. $1 fir méi Informatiounen.',
-'shareduploadwiki-desc'          => "D'Beschreiwung op sénger $1 op dem geeelte Repertoire steet ënnendrënner.",
+'shareduploadwiki-desc'          => "D'Beschreiwung op sénger $1 op dem gedeelte Repertoire steet ënnendrënner.",
 'shareduploadwiki-linktext'      => 'Datei-Beschreiwungssäit',
 'shareduploadduplicate'          => 'Dëse Fichier ass een Doublon vun $1 aus dem gemeinsam genotzte Repertoire.',
-'shareduploadduplicate-linktext' => 'een anere Fichier',
+'shareduploadduplicate-linktext' => 'engem anere Fichier',
 'shareduploadconflict'           => 'Dëse Fichier huet deeselweschte Numm wéi $1 aus engem gemeinschaftlech genotzte Repertoire.',
 'shareduploadconflict-linktext'  => 'een anere Fichier',
 'noimage'                        => 'Ee Fichier mat dësem Numm gëtt et net, Dir kënnt awer $1.',
@@ -1310,7 +1313,7 @@ Dir musst ëmmer de Medien- a Subtyp aginn: z. Bsp. <tt>image/jpeg</tt>.",
 
 # Unused templates
 'unusedtemplates'     => 'Onbenotzte Schablounen',
-'unusedtemplatestext' => 'Op dëser Säit stinn all Sàiten aus dem {{ns:template}} Nummraum, déi a kenger anerer Säit benotzt ginn. Vergiesst net nozekucken, ob et keng aner Linken op dës Schabloune gëtt, ier Dir eng Schabloun läscht.',
+'unusedtemplatestext' => 'Op dëser Säit stinn all Säiten aus dem {{ns:template}} Nummraum, déi a kenger anerer Säit benotzt ginn. Vergiesst net nozekucken, ob et keng aner Linken op dës Schabloune gëtt, ier Dir eng Schabloun läscht.',
 'unusedtemplateswlh'  => 'Aner Linken',
 
 # Random page
@@ -1616,8 +1619,8 @@ Déi lescht Ännerung vun der Säit ass vum [[User:$3|$3]] ([[User talk:$3|Disku
 'revertpage'                  => 'Ännerunge vum [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussioun]]) zréckgesat op déi lescht Versioun vum [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => "D'Ännerunge vum $1 goufen zréckgesat op déi lescht Versioun vum $2.",
 'sessionfailure'              => 'Et schéngt e Problem mat ärer Loginséance ze ginn;
-Dës Aktioun gouf aus Sécherheetsgrënn afgebrach, fir ze verhënneren datt är Séance eine piratéiert ka ginn.
-KLickt w.e.g. op "Zréck" a lued déi Sàit vun däer Dir komm sidd nei, a versicht et dann nach eng Kéier.',
+Dës Aktioun gouf aus Sécherheetsgrënn ofgebrach, fir ze verhënneren datt är Séance piratéiert ka ginn.
+KLickt w.e.g. op "Zréck" a lued déi Säit vun däer Dir komm sidd nei, a versicht et dann nach eng Kéier.',
 'protectlogpage'              => 'Protectiouns-Logbuch',
 'protectlogtext'              => "Dëst ass d'Lëscht vun de Säitespären.
 Kuckt d'[[Special:ProtectedPages|Lëscht vun de gespaarte Säite]] fir eng Lëscht vun den aktuelle Säitespären.",
@@ -1746,7 +1749,7 @@ $1',
 'whatlinkshere-links'      => '← Linken',
 'whatlinkshere-hideredirs' => 'Viruleedunge $1',
 'whatlinkshere-hidetrans'  => 'Agebonne Schabloune $1',
-'whatlinkshere-hidelinks'  => '$1 Linken',
+'whatlinkshere-hidelinks'  => 'Linke $1',
 'whatlinkshere-hideimages' => '$1 Linken op de Fichier',
 'whatlinkshere-filters'    => 'Filteren',
 
@@ -1761,7 +1764,7 @@ $1',
 'ipbreasonotherlist'              => 'Anere Grond',
 'ipbreason-dropdown'              => "*Heefeg Ursaache fir Benotzer ze spären:
 **Bewosst falsch Informatiounen an een oder méi Säite gesat
-**Ouni Grond Inhalt vun Säite geläscht
+**Ouni Grond Inhalt vu Säite geläscht
 **Spam-Verknëppunge mat externe Säiten
 **Topereien an d'Säite gesat
 **Beleidegt oder bedréit aner Mataarbechter
@@ -2052,6 +2055,7 @@ Späichert en op ärem Computer of a lued en hei nees erop.',
 'cologneblue.css' => "/* Dës CSS huet nëmmen Afloss op de Skin ''Köln Blo''  */",
 'monobook.css'    => "/* Dës CSS huet nëmmen Afloss op de Skin ''Monobook''  */",
 'myskin.css'      => "/* Dës CSS huet nëmmen Afloss op de Skin ''Myskin''  */",
+'chick.css'       => '/* Dës CSS huet nëmmen Afloss op de Skin "Chick" */',
 'simple.css'      => "/* Dës CSS huet nëmmen Afloss op de Skin ''Einfach''  */",
 'modern.css'      => "/* Dës CSS huet nëmmen Afloss op de Skin ''Modern''  */",
 
@@ -2093,6 +2097,7 @@ Dëst warscheinlech duerch en externe Link den op der schwaarzer Lëscht (blackl
 'mw_math_html'   => 'Wa méiglech als HTML duerstellen, soss PNG',
 'mw_math_source' => 'Als TeX loossen (fir Textbrowser)',
 'mw_math_modern' => 'Recommandéiert fir modern Browser',
+'mw_math_mathml' => 'MathML wa méiglech (experimentell)',
 
 # Patrolling
 'markaspatrolleddiff'        => 'Als kontrolléiert markéieren',

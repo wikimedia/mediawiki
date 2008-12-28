@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Bencmq
  * @author O
  * @author Shinjiman
  */
@@ -530,10 +531,11 @@ $2',
 'resetpass'               => '重设账户密码',
 'resetpass_announce'      => '您是通过一个临时的发送到邮件中的代码登录的。要完成登录，您必须在这里设定一个新密码:',
 'resetpass_text'          => '<!-- 在此处添加文本 -->',
-'resetpass_header'        => '重设密码',
+'resetpass_header'        => '更改账户密码',
 'resetpass_submit'        => '设定密码并登录',
 'resetpass_success'       => '您的密码已经被成功更改！现在正为您登录...',
-'resetpass_bad_temporary' => '无效的临时密码。您可能已成功地更改了您的密码，或者需要请求一个新的临时密码。',
+'resetpass_bad_temporary' => '无效的临时密码。
+您可能已成功地更改了您的密码，或者已经请求一个新的临时密码。',
 'resetpass_forbidden'     => '无法更改密码',
 'resetpass_missing'       => '无表单数据。',
 
@@ -913,10 +915,10 @@ $2',
 'prefs-watchlist-days'     => '监视列表中显示记录的天数:',
 'prefs-watchlist-edits'    => '在增强的监视列表中显示最多更改次数:',
 'prefs-misc'               => '杂项',
-'saveprefs'                => '保存参数设置',
-'resetprefs'               => '重设参数',
-'oldpassword'              => '旧密码',
-'newpassword'              => '新密码',
+'saveprefs'                => '保存',
+'resetprefs'               => '清除未保存的更改',
+'oldpassword'              => '旧密码:',
+'newpassword'              => '新密码:',
 'retypenew'                => '确认密码:',
 'textboxsize'              => '编辑',
 'rows'                     => '行:',
@@ -1052,7 +1054,7 @@ $2',
 'recentchangestext'                 => '跟踪这个wiki上的最新更改。',
 'recentchanges-feed-description'    => '跟踪此订阅在 wiki 上的最近更改。',
 'rcnote'                            => "以下是在$4 $5，最近'''$2'''天内的'''$1'''次最近更改记录:",
-'rcnotefrom'                        => '以下是自<b>$2</b>的更改(最多显示<b>$1</b>):',
+'rcnotefrom'                        => "以下是自'''$2'''的更改(最多显示'''$1'''):",
 'rclistfrom'                        => '显示自$1以来的新更改',
 'rcshowhideminor'                   => '$1小编辑',
 'rcshowhidebots'                    => '$1机器人的编辑',
@@ -1121,6 +1123,7 @@ $2',
 'illegalfilename'             => '文件名「$1」包含有页面标题所禁止的字符。请改名后重新上传。',
 'badfilename'                 => '文件名已被改为「$1」。',
 'filetype-badmime'            => 'MIME类别"$1"不是容许的文件格式。',
+'filetype-bad-ie-mime'        => '不可以上传这个文件，因为 Internet Explorer 会将它侦测为 "$1"，它是一种不容许以及有潜在危险性之文件类型。',
 'filetype-unwanted-type'      => "'''\".\$1\"'''是一种不需要的文件类型。
 建议的{{PLURAL:\$3|一种|多种}}文件类型有\$2。",
 'filetype-banned-type'        => "'''\".\$1\"'''是一种不准许的文件类型。
@@ -1138,8 +1141,8 @@ $2',
 'fileexists-thumb'            => "<center>'''已经存在的文件'''</center>",
 'fileexists-thumbnail-yes'    => '这个文件好像是一幅图像的缩图版本<i>(缩图)</i>。请检查清楚该文件<strong><tt>$1</tt></strong>。<br />
 如果检查后的文件是同原本图像的大小是一样的话，就不用再上载多一幅缩图。',
-'file-thumbnail-no'           => '该档名是以<strong><tt>$1</tt></strong>开始。它好像一幅图像的缩图版本<i>(缩图)</i>。
-如果你有该图像的完整大小，如不是请再修改文件名。',
+'file-thumbnail-no'           => '文件名是以<strong><tt>$1</tt></strong>开头的。它似乎是一幅图像的缩小版本<i>（缩略图）</i>。
+如果你有该图像的完整大小，请上传完整版本。否则请修改文件名。',
 'fileexists-forbidden'        => '已存在相同名称的文件；请返回并用一个新的名称来上传此文件。[[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => '在共享文件库中已存在此名称的文件；请返回并用一个新的名称来上传此文件。[[Image:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => '这个文件是跟以下的{{PLURAL:$1|一|多}}个文件重覆:',
@@ -1222,8 +1225,8 @@ $2',
 'shareduploadduplicate-linktext' => '另一个文件',
 'shareduploadconflict'           => '这个文件在共用文件库中的$1有同样的文件名。',
 'shareduploadconflict-linktext'  => '另一个文件',
-'noimage'                        => '不存在此名称的文件，您可以$1。',
-'noimage-linktext'               => '上传它',
+'noimage'                        => '不存在此名称的文件，但您可以$1。',
+'noimage-linktext'               => '上传一个',
 'uploadnewversion-linktext'      => '上传该文件的新版本',
 'imagepage-searchdupe'           => '搜索重覆的文件',
 
@@ -1271,7 +1274,7 @@ $2',
 
 # Unused templates
 'unusedtemplates'     => '未使用的模板',
-'unusedtemplatestext' => '此页面列出模板名字空间下所有未被其它页面使用的页面。请在删除这些模板前检查其它链入该模板的页面。',
+'unusedtemplatestext' => '此页面列出{{ns:template}}名字空间下所有未被其它页面使用的页面。请在删除这些模板前检查其它链入该模板的页面。',
 'unusedtemplateswlh'  => '其它链接',
 
 # Random page
@@ -1336,7 +1339,7 @@ Template:消除歧義',
 'nviews'                  => '$1次浏览',
 'specialpage-empty'       => '这个报告的结果为空。',
 'lonelypages'             => '孤立页面',
-'lonelypagestext'         => '以下页面尚未被{{SITENAME}}中的其它页面链接。',
+'lonelypagestext'         => '以下页面尚未被{{SITENAME}}中的其它页面链接或被之包含。',
 'uncategorizedpages'      => '未归类页面',
 'uncategorizedcategories' => '未归类分类',
 'uncategorizedimages'     => '未归类文件',
@@ -1394,8 +1397,8 @@ Template:消除歧義',
 'all-logs-page'        => '所有日志',
 'log-search-legend'    => '搜寻日志',
 'log-search-submit'    => '去',
-'alllogstext'          => '综合显示上传、删除、保护、查封以及管理日志。
-您可以选择日志类型，用户名或者相关页面来缩小查询范围。',
+'alllogstext'          => '综合显示{{SITENAME}}所有的可用日志。
+您可以选择日志类型，用户名（区分大小写）或者相关页面（区分大小写）来缩小查询范围。',
 'logempty'             => '在日志中不存在匹配项。',
 'log-title-wildcard'   => '搜寻以这个文字开始的标题',
 
@@ -1445,7 +1448,8 @@ Template:消除歧義',
 中有一个有效的电子邮箱地址才可以向其他用户发邮件。',
 'emailuser'       => '向该用户发邮件',
 'emailpage'       => '向用户发邮件',
-'emailpagetext'   => '如果该用户已经在他或她的参数设置页中输入了有效的电子邮箱地址，以下的表单将寄一个信息给该用户。您在[[Special:Preferences|您参数设置]]中所输入的电子邮箱地址将出现在邮件"发件人"一栏中，这样该用户就可以回复您。',
+'emailpagetext'   => '您可以用下面的表格去寄一封电邮给这位用户。
+您在[[Special:Preferences|您参数设置]]中所输入的电子邮箱地址将出现在邮件"发件人"一栏中，这样该用户就可以回复您。',
 'usermailererror' => 'Mail 对象返回错误:',
 'defemailsubject' => '{{SITENAME}}电子邮件',
 'noemailtitle'    => '无电子邮件地址',
@@ -1636,7 +1640,7 @@ $NEWPAGE
 'undeletepagetext'             => '以下页面已经被删除，但依然在档案中并可以被恢复。
 档案库可能被定时清理。',
 'undelete-fieldset-title'      => '恢复修订',
-'undeleteextrahelp'            => "恢复整个页面时，请清除所有复选框后点击 '''''恢复'''''。恢复特定版本时，请选择相应版本前的复选框后点击 '''''恢复'''''。点击 '''''重设''''' 将清除评论内容及所有复选框。",
+'undeleteextrahelp'            => "恢复整个页面时，请清除所有复选框后点击'''''恢复'''''。恢复特定版本时，请选择相应版本前的复选框后点击'''''恢复'''''。点击'''''重设'''''将清除评论内容及所有复选框。",
 'undeleterevisions'            => '$1版本存档',
 'undeletehistory'              => '如果您恢复了该页面，所有版本都会被恢复到修订历史中。
 如果本页删除后有一个同名的新页面建立，被恢复的版本将会称为较新的历史。',
@@ -1670,6 +1674,8 @@ $NEWPAGE
 'undelete-error-long'          => '当进行反删除文件时遇到错误:
 
 $1',
+'undelete-show-file-confirm'   => '确定要查看在 $2 $3 ，"<nowiki>$1</nowiki>"的已删除修订版本吗？',
+'undelete-show-file-submit'    => '是',
 
 # Namespace form on various pages
 'namespace'      => '名字空间:',
@@ -1757,7 +1763,7 @@ $1',
 'ipusubmit'                       => '解封此地址',
 'unblocked'                       => '[[User:$1|$1]]已经被解封',
 'unblocked-id'                    => '封禁 $1 已经被删除',
-'ipblocklist'                     => '被封IP地址列表',
+'ipblocklist'                     => '被封禁IP地址和用户名',
 'ipblocklist-legend'              => '检索一位已经被查封的用户',
 'ipblocklist-username'            => '用户名称或IP地址:',
 'ipblocklist-submit'              => '搜索',
@@ -1775,7 +1781,7 @@ $1',
 'contribslink'                    => '贡献',
 'autoblocker'                     => '因为您与"[[$1]]"共享一个IP地址而被自动查封。$1被封的理由是"$2"。',
 'blocklogpage'                    => '查封日志',
-'blocklogentry'                   => '[[$1]]已被查封 $3 ，终止时间为$2',
+'blocklogentry'                   => '已封锁[[$1]]，到期时间为$2 $3',
 'blocklogtext'                    => '这是关于用户查封和解封操作的日志。
 被自动查封的IP地址没有被列出。请参看[[Special:IPBlockList|被封IP地址列表]]。',
 'unblocklogentry'                 => '[[$1]]已被解封',
@@ -1925,7 +1931,7 @@ $1',
 所有的跨 wiki 导入操作被记录在[[Special:Log/import|导入日志]]。',
 'import-interwiki-history'   => '复制此页的所有历史版本',
 'import-interwiki-submit'    => '导入',
-'import-interwiki-namespace' => '将页面转移到名字空间:',
+'import-interwiki-namespace' => '目标名字空间：',
 'importtext'                 => '请使用[[Special:Export|导出功能]]从源 wiki 导出文件，
 保存到您的磁盘并上传到这里。',
 'importstart'                => '正在导入页面...',
@@ -1948,6 +1954,8 @@ $1',
 'import-nonewrevisions'      => '所有的修订已经在先前导入。',
 'xml-error-string'           => '$1 於行$2，列$3 ($4字节): $5',
 'import-upload'              => '上传XML资料',
+'import-token-mismatch'      => '小节资料遗失。请再尝试。',
+'import-invalid-interwiki'   => '不能在指定的wiki导入。',
 
 # Import log
 'importlogpage'                    => '导入日志',
@@ -2057,7 +2065,8 @@ $1',
 
 # Spam protection
 'spamprotectiontitle' => '广告保护过滤器',
-'spamprotectiontext'  => '您要保存的页面被广告过滤器阻止。这可能是由于一个到外部站点的链接引起的。',
+'spamprotectiontext'  => '您要保存的页面被广告过滤器阻止。
+这可能是由于一个到外部站点的链接引起的。',
 'spamprotectionmatch' => '以下是触发广告过滤器的文本: $1',
 'spambot_username'    => 'MediaWiki 广告清除',
 'spam_reverting'      => '恢复到不包含链接至$1的最近版本',
@@ -2108,8 +2117,8 @@ $1',
 'filedelete-archive-read-only'    => '存档目录 "$1" 在网页服务器中不可写。',
 
 # Browsing diffs
-'previousdiff' => '←上一个',
-'nextdiff'     => '下一个→',
+'previousdiff' => '←上一版本',
+'nextdiff'     => '下一版本→',
 
 # Media information
 'mediawarning'         => "'''警告''': 该文件可能包含恶意代码，运行它可能对您的系统带来危险。<hr />",
@@ -2422,7 +2431,7 @@ Variants for Chinese language
 
 # External editor support
 'edit-externally'      => '用外部程序编辑此文件',
-'edit-externally-help' => '请参见[http://www.mediawiki.org/wiki/Manual:External_editors 设置步骤]了解详细信息。',
+'edit-externally-help' => '（请参见[http://www.mediawiki.org/wiki/Manual:External_editors 设置步骤]了解详细信息）',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => '全部',
@@ -2444,9 +2453,9 @@ Variants for Chinese language
 'confirmemail_sent'        => '确认邮件已发送。',
 'confirmemail_oncreate'    => '一个确认代码已经被发送到您的邮箱。该代码并不要求您进行登录，
 但若您要启用在此 wiki 上的任何基于电子邮件的功能，您必须先提交此代码。',
-'confirmemail_sendfailed'  => '不能发送确认邮件，请检查邮箱地址是否包含非法字符。
+'confirmemail_sendfailed'  => '{{SITENAME}}不能发送确认邮件，请检查您的邮箱地址是否包含非法字符。
 
-邮件传送员回应: $1',
+邮件传送员回应：$1',
 'confirmemail_invalid'     => '无效的确认码，该代码可能已经过期。',
 'confirmemail_needlogin'   => '您需要$1以确认您的邮箱地址。',
 'confirmemail_success'     => '您的邮箱已经被确认。您现在可以[[Special:UserLogin|登录]]并使用此网站了。',
@@ -2483,7 +2492,7 @@ $1
 'trackbackdeleteok' => '该引用已被成功删除。',
 
 # Delete conflict
-'deletedwhileediting' => '警告: 此页在您开始编辑之后已经被删除！',
+'deletedwhileediting' => "'''警告''': 此页在您开始编辑之后已经被删除！",
 'confirmrecreate'     => '在您编辑这个页面后，用户[[User:$1|$1]]([[User talk:$1|对话]])以下列原因删除了这个页面: $2。
 请确认在您重新创建页面前三思。',
 'recreate'            => '重建',

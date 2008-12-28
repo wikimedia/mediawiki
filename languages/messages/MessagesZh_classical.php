@@ -491,6 +491,16 @@ $2',
 如簿誤增，爾可略之。',
 'loginlanguagelabel'         => '語：$1',
 
+# Password reset dialog
+'resetpass_announce'      => '爾乃過郵之臨符登之。要完登，汝乃需設新符節：',
+'resetpass_text'          => '<!-- 加字 -->',
+'resetpass_header'        => '改簿符',
+'resetpass_submit'        => '設符再登',
+'resetpass_success'       => '爾之符節已改！現登簿中...',
+'resetpass_bad_temporary' => '無效之臨符。
+爾或改符，或求新臨符。',
+'resetpass_forbidden'     => '無改符節',
+
 # Edit page toolbar
 'bold_sample'     => '粗體',
 'bold_tip'        => '粗體',
@@ -811,7 +821,7 @@ $2',
 'prefs-watchlist-edits' => '哨站有易',
 'prefs-misc'            => '雜',
 'saveprefs'             => '儲',
-'resetprefs'            => '歸白',
+'resetprefs'            => '除未儲之修',
 'oldpassword'           => '舊符節：',
 'newpassword'           => '新符節：',
 'retypenew'             => '重察新符節：',
@@ -822,6 +832,7 @@ $2',
 'resultsperpage'        => '頁示尋',
 'contextlines'          => '尋分列',
 'contextchars'          => '列有字',
+'recentchangesdays'     => '近易示日：',
 'recentchangescount'    => '近易、史與誌有題：',
 'savedprefs'            => '簿註書矣',
 'timezonelegend'        => '時區',
@@ -944,7 +955,7 @@ $2',
 'recentchanges'                     => '近易',
 'recentchangestext'                 => '共筆揮新，悉列於此。',
 'rcnote'                            => "下為自$4$5起，'''$2'''日內'''$1'''近易也。",
-'rcnotefrom'                        => '下為自<b>$2</b至<b>$1</b>之易也。',
+'rcnotefrom'                        => "下為自'''$2'''至'''$1'''之易也。",
 'rclistfrom'                        => '自$1起之易也',
 'rcshowhideminor'                   => '$1校',
 'rcshowhidebots'                    => '$1僕',
@@ -1007,6 +1018,7 @@ $2',
 'illegalfilename'            => '名"$1"不格，更之再焉。',
 'badfilename'                => '更名"$1。"。',
 'filetype-badmime'           => '「$1」之MIME類物檔案不能獻之。',
+'filetype-bad-ie-mime'       => '因 Internet Explorer 偵作「$1」不貢也。它乃有危險之類也。',
 'filetype-unwanted-type'     => "'''「.$1」'''乃無需之物類也。
 議之物類有{{PLURAL:$3|一|多}}$2也。",
 'filetype-banned-type'       => "'''「.$1」'''乃無允之物類也。
@@ -1165,7 +1177,7 @@ $2',
 'nrevisions'              => '$1審',
 'nviews'                  => '$1閱',
 'lonelypages'             => '孤寡',
-'lonelypagestext'         => '頁下無鏈',
+'lonelypagestext'         => '頁下無鏈或含',
 'uncategorizedpages'      => '欲訂',
 'uncategorizedcategories' => '問栓',
 'uncategorizedimages'     => '候裱',
@@ -1215,7 +1227,7 @@ $2',
 'all-logs-page'        => '眾誌',
 'log-search-legend'    => '尋誌',
 'log-search-submit'    => '往',
-'alllogstext'          => '眾誌有合者，俱併版見。擇門、選簿、限疆以裁之。',
+'alllogstext'          => '眾{{SITENAME}}之誌有合者，俱併版見。擇門、選簿、限疆以裁之。',
 'logempty'             => '無合誌也。',
 'log-title-wildcard'   => '題以此始者，取之',
 
@@ -1263,7 +1275,8 @@ $2',
 'mailnologintext' => '[[Special:UserLogin|登簿]]置郵，方可捎書。',
 'emailuser'       => '捎君',
 'emailpage'       => '捎書',
-'emailpagetext'   => '若此君有郵，表下捎焉。署[[Special:Preferences|子簿郵]]以候往返。',
+'emailpagetext'   => '表下捎焉，以郵制君。
+署[[Special:Preferences|子簿郵]]以候往返。',
 'usermailererror' => '驛報有誤：',
 'defemailsubject' => '{{SITENAME}}來書',
 'noemailtitle'    => '無郵',
@@ -1433,7 +1446,9 @@ $NEWPAGE
 'viewdeletedpage'              => '覽刪',
 'undeletepagetext'             => '如下已刪，備謄以還；曆滿乃清之。',
 'undelete-fieldset-title'      => '復審',
-'undeleteextrahelp'            => "欲還題，撤核後令'''''還刪'''''。欲還某審，核之再令。欲清核、贊，令之'''''歸白'''''。",
+'undeleteextrahelp'            => "欲還題，撤核後令'''''還刪'''''。
+欲還某審，核之再令。
+欲清核、贊，令之'''''歸白'''''。",
 'undeleterevisions'            => '審備$1',
 'undeletehistory'              => '如還題，審亦隨焉；若存同題，還如誌，不以代焉。',
 'undeleterevdel'               => '新審不牽，難還也；銷、見之以篤還。',
@@ -1461,7 +1476,11 @@ $NEWPAGE
 'undelete-cleanup-error'       => '冗檔$1，欲刪而有誤也。',
 'undelete-missing-filearchive' => '$1無尋，或已還矣。',
 'undelete-error-short'         => '$1欲還而有誤也。',
-'undelete-error-long'          => '還檔有誤。欲還者：\\n\\n$1\\n',
+'undelete-error-long'          => '還檔有誤。欲還者：
+
+$1',
+'undelete-show-file-confirm'   => '汝乃確視於 $2 $3 之「<nowiki>$1</nowiki>」的已刪之審嗎？',
+'undelete-show-file-submit'    => '是',
 
 # Namespace form on various pages
 'namespace'      => '名冊：',
@@ -1682,7 +1701,7 @@ $NEWPAGE
 'import-interwiki-text'      => '欲入匯，擇維基、揀題文，審時、纂者隨記也。互匯錄於[[Special:Log/import|誌入]]。',
 'import-interwiki-history'   => '審、誌同匯',
 'import-interwiki-submit'    => '入匯',
-'import-interwiki-namespace' => '入名冊：',
+'import-interwiki-namespace' => '入名集：',
 'importtext'                 => '請[[Special:Export|出匯]]儲之。
 再入匯於此。',
 'importstart'                => '入匯…',
@@ -1705,6 +1724,8 @@ $NEWPAGE
 'import-nonewrevisions'      => '全審已入匯也。',
 'xml-error-string'           => '$1 於行$2，欄$3 ($4字節): $5',
 'import-upload'              => '貢XML',
+'import-token-mismatch'      => '節遺。再嘗之。',
+'import-invalid-interwiki'   => '無乃定之wiki匯入。',
 
 # Import log
 'importlogpage'                    => '誌入',
@@ -1809,7 +1830,8 @@ $NEWPAGE
 
 # Spam protection
 'spamprotectiontitle' => '防賈濫',
-'spamprotectiontext'  => '外鏈疑賈，存頁止焉。',
+'spamprotectiontext'  => '外鏈疑賈。
+存頁止焉。',
 'spamprotectionmatch' => '憑如下：$1',
 'spambot_username'    => 'MediaWiki清濫',
 'spam_reverting'      => '還新審之無鏈$1者。',
@@ -1916,7 +1938,7 @@ $NEWPAGE
 
 # External editor support
 'edit-externally'      => '以外部程式修此文',
-'edit-externally-help' => '請閱[http://www.mediawiki.org/wiki/Manual:External_editors 安裝指引]以知詳情。',
+'edit-externally-help' => '（請閱[http://www.mediawiki.org/wiki/Manual:External_editors 安裝指引]以知詳情）',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => '全',
@@ -1930,7 +1952,7 @@ $NEWPAGE
 'confirmemail_noemail'     => '[[Special:Preferences|簿註]]有驛。',
 'confirmemail_send'        => '遣核符',
 'confirmemail_sent'        => '核符遣矣',
-'confirmemail_sendfailed'  => '信未遣焉，請核郵驛。
+'confirmemail_sendfailed'  => '{{SITENAME}}信未遣焉，請核郵驛。
 
 郵者覆之：$1',
 'confirmemail_invalidated' => '核郵驛消也',

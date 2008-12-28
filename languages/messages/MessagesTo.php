@@ -173,7 +173,7 @@ $messages = array(
 'badaccess-group2' => 'Ko e ngāue naʻa ke eke ki ai, ʻoku fakangatangata ki he kau ʻetita ʻi he taha ʻo e ngaahi kulupu $1 pē.',
 'badaccess-groups' => 'Ko e ngāue naʻa ke eke ki ai, ʻoku fakangatangata ki he kau ʻetita ʻi he taha ʻo e ngaahi kulupu $1 pē.',
 
-'versionrequired'     => "ʻOku pau ko e paaki $1 ʻo e ''Mediawiki''",
+'versionrequired'     => "ʻOku pau ko e paaki $1 ʻo e ''MediaWiki''",
 'versionrequiredtext' => "ʻOku pau ʻoku ʻi ai e paaki $1 'o e ''Mediwiki'' ʻi he ngāueʻaki ʻo e pēsí ni. Vakai ki he [[Special:Version]].",
 
 'ok'                      => 'Fai ā',
@@ -934,7 +934,7 @@ Vakai ki he [[Special:Log/delete|hokohoko tāmateʻi]] ki he lekooti ʻo e ngaah
 'allmessagesname'           => 'Hingoa',
 'allmessagesdefault'        => 'Tohi tuʻunga',
 'allmessagescurrent'        => 'Tohi lolotonga',
-'allmessagestext'           => "Ko e hokohoko ʻeni ʻo e ngaahi tala fakafounga kātoa ʻi he vā hingoa ''Mediawiki''.",
+'allmessagestext'           => "Ko e hokohoko ʻeni ʻo e ngaahi tala fakafounga kātoa ʻi he vā hingoa ''MediaWiki''.",
 'allmessagesnotsupportedDB' => "ʻOku ʻikai ngāueʻaki mo e '''{{ns:special}}:Allmessages''' koeʻuhi ʻoku kamosiʻi mate ʻa e '''\$wgUseDatabaseMessages'''.",
 'allmessagesfilter'         => 'Meʻasivi ki he hingoa ʻo e tala:',
 'allmessagesmodified'       => 'ʻAsi mai meʻa kuo liliu pē',

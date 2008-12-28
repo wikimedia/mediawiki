@@ -687,7 +687,7 @@ Gjörðu svo vel og settu inn netfang á gildu formi eða tæmdu reitinn.',
 'resetpass_announce'      => 'Þú skráðir þig inn með tímabundnum netfangskóða.
 Til að klára að skrá þig inn, verður þú að endurstilla lykilorðið hér:',
 'resetpass_text'          => '<!-- Setja texta hér -->',
-'resetpass_header'        => 'Endurstilla lykilorð',
+'resetpass_header'        => 'Breyta lykilorði',
 'resetpass_submit'        => 'Skrifaðu aðgangsorðið og skráðu þig inn',
 'resetpass_success'       => 'Aðgangsorðinu þínu hefur verið breytt! Skráir þig inn...',
 'resetpass_bad_temporary' => 'Ógilt tímabundið lykilorð.
@@ -906,6 +906,7 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'revdelete-hide-comment'    => 'Fela breytingaathugasemdir',
 'revdelete-hide-user'       => 'Fela notandanafn/vistfang',
 'revdelete-hide-restricted' => 'Setja þessar hömlur á fyrir stjórnendur og læsa viðmótinu',
+'revdelete-suppress'        => 'Dylja gögn frá stjórnendum og öðrum',
 'revdelete-hide-image'      => 'Fela efni skráar',
 'revdelete-log'             => 'Athugasemd atburðaskráar:',
 'revdelete-submit'          => 'Setja á valda breytingu',
@@ -920,8 +921,12 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'revdelete-log-message'     => '$1 fyrir $2 {{PLURAL:$2|breytingu|breytingar}}',
 
 # History merging
+'mergehistory'      => 'Sameina breytingaskrár',
 'mergehistory-from' => 'Heimildsíða:',
 'mergehistory-into' => 'Áætlunarsíða:',
+
+# Merge log
+'mergelog' => 'Sameina skrá',
 
 # Diffs
 'history-title'           => 'Breytingaskrá fyrir "$1"',
@@ -1593,31 +1598,32 @@ Núverandi staða síðunnar er <strong>$1</strong>:',
 'restriction-level-all'           => 'öll stig',
 
 # Undelete
-'undelete'                 => 'Endurvekja eydda síðu',
-'undeletepage'             => 'Skoða og endurvekja eyddar síður',
-'undeletepagetitle'        => "'''Eftirfarandi er samansafn af eyddum breytingum á [[:$1|$1]]'''.",
-'viewdeletedpage'          => 'Skoða eyddar síður',
-'undeletepagetext'         => 'Eftirfarandi síðum hefur verið eitt en eru þó enn í gagnagrunninum og geta verið endurvaknar. Athugið að síður þessar eru reglulega fjarlægðar endanlega úr gagnagrunninum.',
-'undeleterevisions'        => '$1 {{PLURAL:$1|breyting|breytingar}}',
-'undeletehistorynoadmin'   => 'Þessari síðu hefur verið eytt. Ástæðan sést í ágripinu fyrir neðan, ásamt upplýsingum um hvaða notendur breyttu síðunni fyrir eyðingu.
+'undelete'                  => 'Endurvekja eydda síðu',
+'undeletepage'              => 'Skoða og endurvekja eyddar síður',
+'undeletepagetitle'         => "'''Eftirfarandi er samansafn af eyddum breytingum á [[:$1|$1]]'''.",
+'viewdeletedpage'           => 'Skoða eyddar síður',
+'undeletepagetext'          => 'Eftirfarandi síðum hefur verið eitt en eru þó enn í gagnagrunninum og geta verið endurvaknar. Athugið að síður þessar eru reglulega fjarlægðar endanlega úr gagnagrunninum.',
+'undeleterevisions'         => '$1 {{PLURAL:$1|breyting|breytingar}}',
+'undeletehistorynoadmin'    => 'Þessari síðu hefur verið eytt. Ástæðan sést í ágripinu fyrir neðan, ásamt upplýsingum um hvaða notendur breyttu síðunni fyrir eyðingu.
 Innihald greinarinnar er einungis aðgengilegt möppudýrum.',
-'undeletebtn'              => 'Endurvekja',
-'undeletelink'             => 'endurvekja',
-'undeletereset'            => 'Endurstilla',
-'undeletecomment'          => 'Athugasemd:',
-'undeletedarticle'         => 'endurvakti „[[$1]]“',
-'undeletedrevisions'       => '$1 {{PLURAL:$1|breyting endurvakin|breytingar endurvaktar}}',
-'undeletedrevisions-files' => '$1 {{PLURAL:$1|breyting|breytingar}} og $2 {{PLURAL:$2|skrá|skrár}} endurvaktar',
-'undeletedfiles'           => '{{PLURAL:$1|Ein skrá endurvakin|$1 skrár endurvaktar}}',
-'cannotundelete'           => 'Ekki var hægt að afturkalla síðuna. (Líklega hefur einhver gert það á undan þér.)',
-'undeletedpage'            => "<big>'''$1 var endurvakin'''</big>
+'undeletebtn'               => 'Endurvekja',
+'undeletelink'              => 'endurvekja',
+'undeletereset'             => 'Endurstilla',
+'undeletecomment'           => 'Athugasemd:',
+'undeletedarticle'          => 'endurvakti „[[$1]]“',
+'undeletedrevisions'        => '$1 {{PLURAL:$1|breyting endurvakin|breytingar endurvaktar}}',
+'undeletedrevisions-files'  => '$1 {{PLURAL:$1|breyting|breytingar}} og $2 {{PLURAL:$2|skrá|skrár}} endurvaktar',
+'undeletedfiles'            => '{{PLURAL:$1|Ein skrá endurvakin|$1 skrár endurvaktar}}',
+'cannotundelete'            => 'Ekki var hægt að afturkalla síðuna. (Líklega hefur einhver gert það á undan þér.)',
+'undeletedpage'             => "<big>'''$1 var endurvakin'''</big>
 
 Skoðaðu [[Special:Log/delete|eyðingaskrána]] til að skoða eyðingar og endurvakningar.",
-'undelete-search-box'      => 'Leita að eyddum síðum',
-'undelete-search-prefix'   => 'Sýna síður sem byrja á:',
-'undelete-search-submit'   => 'Leita',
-'undelete-no-results'      => 'Engar samsvarandi síður fundust í eyðingarskjalasafninu.',
-'undelete-error-short'     => 'Villa við endurvakningu skráar: $1',
+'undelete-search-box'       => 'Leita að eyddum síðum',
+'undelete-search-prefix'    => 'Sýna síður sem byrja á:',
+'undelete-search-submit'    => 'Leita',
+'undelete-no-results'       => 'Engar samsvarandi síður fundust í eyðingarskjalasafninu.',
+'undelete-error-short'      => 'Villa við endurvakningu skráar: $1',
+'undelete-show-file-submit' => 'Já',
 
 # Namespace form on various pages
 'namespace'      => 'Nafnrými:',
@@ -1697,7 +1703,7 @@ Sjá [[Special:IPBlockList|bannaðar notendur og vistföng]] fyrir yfirlit yfir 
 'ipb-edit-dropdown'           => 'Breyta ástæðu fyrir banni',
 'ipb-unblock-addr'            => 'Afbanna $1',
 'ipb-unblock'                 => 'Afbanna notanda eða vistfang',
-'ipb-blocklist-addr'          => 'Sjá núverandi bönn fyrir $1',
+'ipb-blocklist-addr'          => 'Núverandi bönn fyrir $1',
 'ipb-blocklist'               => 'Sjá núverandi bönn',
 'unblockip'                   => 'Afbanna notanda',
 'unblockiptext'               => 'Endurvekja skrifréttindi bannaðra notenda eða vistfanga.',
@@ -1841,7 +1847,7 @@ Breytingaupplýsingar s.s. dagsetningar og höfundanöfn eru geymd.
 Allir innflutningar eru skráð í [[Special:Log/import|innflutningsskránna]].',
 'import-interwiki-history'   => 'Afrita allar breytingar þessarar síðu',
 'import-interwiki-submit'    => 'Flytja inn',
-'import-interwiki-namespace' => 'Færa síður í nafnrými:',
+'import-interwiki-namespace' => 'Ákvörðunarnafnrými:',
 'importstart'                => 'Flyt inn síður...',
 'import-revision-count'      => '$1 {{PLURAL:$1|breyting|breytingar}}',
 'importnopages'              => 'Engar síður til innflutnings.',

@@ -258,6 +258,8 @@ $messages = array(
 'yourname'                  => "Naran uza-n'in:",
 'nav-login-createaccount'   => 'Log in / kriar konta ida',
 'userlogin'                 => 'Log in / kriar konta ida',
+'logout'                    => 'Husik',
+'userlogout'                => 'Husik',
 'nologinlink'               => 'Registrar',
 'createaccount'             => "Registrar uza-na'in",
 'userexists'                => "Uza-na'in ne'e ona iha wiki. Favór ida lori naran seluk.",
@@ -447,7 +449,7 @@ $messages = array(
 'allpagessubmit' => 'Bá',
 
 # Special:Categories
-'categories' => 'Kategoría',
+'categories' => 'Kategoria sira',
 
 # Special:ListUsers
 'listusers-submit' => 'Hatudu',
@@ -571,7 +573,8 @@ $messages = array(
 'delete_and_move_confirm' => 'Sin, halakon pájina',
 
 # Export
-'export' => 'Esporta pájina sira',
+'export'        => 'Esporta pájina sira',
+'export-submit' => 'Esporta',
 
 # Namespace 8 related
 'allmessagesname'    => 'Naran',
@@ -585,6 +588,7 @@ $messages = array(
 'tooltip-pt-mytalk'        => "Ha'u-nia pájina diskusaun",
 'tooltip-pt-preferences'   => "Ha'u-nia preferénsia",
 'tooltip-pt-mycontris'     => "Lista ha'u-nia kontribuisaun",
+'tooltip-pt-logout'        => 'Husik',
 'tooltip-ca-addsection'    => "Tau tan komentáriu ida ba diskusaun ne'e.",
 'tooltip-ca-protect'       => "Proteje pájina ne'e",
 'tooltip-ca-delete'        => "Halakon pájina ne'e",

@@ -1104,6 +1104,7 @@ Da biste na stranicu stavili sliku, koristite poveznice tipa
 'illegalfilename'             => 'Ime datoteke "$1" sadrži znakove koji nisu dopušteni u imenima stranica. Preimenujte datoteku i ponovno je postavite.',
 'badfilename'                 => 'Ime slike automatski je promijenjeno u "$1".',
 'filetype-badmime'            => 'Datoteke MIME tipa "$1" ne mogu se snimati.',
+'filetype-bad-ie-mime'        => 'Nemogu postaviti ovu datoteku zato što ju Internet Explorer prepoznaje kao "$1", koji nije dopušten i potencijalno je opasan tip datoteke.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' je neželjena vrsta datoteke. {{PLURAL:\$3|Preporučena vrsta je|Preporučene vrste su}} \$2.",
 'filetype-banned-type'        => "'''\".\$1\"''' je nedopuštena vrsta datoteke. {{PLURAL:\$3|Dopuštena vrsta je|Dopuštene vrste su}} \$2.",
 'filetype-missing'            => 'Datoteka nema nastavak koji određuje tip (poput ".jpg").',
@@ -1663,6 +1664,7 @@ Pogledajte [[Special:Log/delete|evidenciju brisanja]] za zapise nedavnih brisanj
 'undelete-error-long'          => 'Dogodila se pogreška pri vraćanju datoteke:
 
 $1',
+'undelete-show-file-confirm'   => 'Jeste li sigurni da želite vidjeti izbrisanu inačicu datoteke "<nowiki>$1</nowiki>" od $2 u $3?',
 'undelete-show-file-submit'    => 'Da',
 
 # Namespace form on various pages
@@ -1914,7 +1916,7 @@ Povijest stranice i imena suradnika će biti sačuvani.
 Transwiki uvoz stranica je zabilježen u [[Special:Log/import|evidenciji uvoza stranica]].',
 'import-interwiki-history'   => 'Prenesi sve inačice ove stranice',
 'import-interwiki-submit'    => 'Uvezi',
-'import-interwiki-namespace' => 'Prenesi stranice u imenski prostor:',
+'import-interwiki-namespace' => 'Odredišni imenski prostor:',
 'importtext'                 => 'Molim da izvezete ovu datoteku iz izvorišnog wikija koristeći pomagalo Special:Export, snimite je na svoj disk i postavite je ovdje.',
 'importstart'                => 'Uvozim stranice...',
 'import-revision-count'      => '$1 {{PLURAL:$1|izmjena|izmjene|izmjena}}',
@@ -1936,6 +1938,8 @@ Transwiki uvoz stranica je zabilježen u [[Special:Log/import|evidenciji uvoza s
 'import-nonewrevisions'      => 'Sve inačice su bile prethodno uvezene.',
 'xml-error-string'           => '$1 u retku $2, stupac $3 (bajt $4): $5',
 'import-upload'              => 'Postavljanje XML datoteka',
+'import-token-mismatch'      => 'Izgubljeni su podaci o sesiji. Molimo pokušajte ponovno.',
+'import-invalid-interwiki'   => 'Nemogu uvesti iz navedene wiki.',
 
 # Import log
 'importlogpage'                    => 'Evidencija uvoza članaka',

@@ -1162,7 +1162,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'recentchangescount'       => 'Počet zobrazených záznamů v posledních změnách, historii a knihách záznamů:',
 'savedprefs'               => 'Vaše nastavení bylo uloženo.',
 'timezonelegend'           => 'Časové pásmo',
-'timezonetext'             => 'Označte, o kolik se vaše časové pásmo liší od serveru (UTC). Například pro středoevropské časové pásmo (SEČ) vyplňte „01:00“ v zimě, „02:00“ v období platnosti letního času.',
+'timezonetext'             => '¹O kolik se váš místní čas liší od času na serveru (UTC).',
 'localtime'                => 'Místní časové pásmo',
 'timezoneoffset'           => 'Posun',
 'servertime'               => 'Aktuální čas na serveru',

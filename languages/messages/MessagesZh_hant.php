@@ -5,8 +5,10 @@
  * @file
  *
  * @author Alexsh
+ * @author Bencmq
  * @author Shinjiman
  * @author Skjackey tse
+ * @author Wrightbus
  */
 
 $fallback = 'zh-hans';
@@ -216,7 +218,7 @@ $messages = array(
 'tagline'           => '出自{{SITENAME}}',
 'help'              => '幫助',
 'search'            => '搜索',
-'searchbutton'      => '搜索',
+'searchbutton'      => '搜尋',
 'go'                => '進入',
 'searcharticle'     => '進入',
 'history'           => '頁面歷史',
@@ -508,10 +510,11 @@ $2',
 'resetpass'               => '重設帳戶密碼',
 'resetpass_announce'      => '您是透過一個臨時的發送到郵件中的代碼登入的。要完成登入，您必須在這裡設定一個新密碼:',
 'resetpass_text'          => '<!-- 在此處加入文字 -->',
-'resetpass_header'        => '重設密碼',
+'resetpass_header'        => '更改賬戶密碼',
 'resetpass_submit'        => '設定密碼並登入',
-'resetpass_success'       => '您的密碼已經被成功更改﹗現下正為您登入...',
-'resetpass_bad_temporary' => '無效的臨時密碼。您可能已成功地更改了您的密碼，或者需要請求一個新的臨時密碼。',
+'resetpass_success'       => '您的密碼已經被成功更改！現在正為您登入...',
+'resetpass_bad_temporary' => '無效的臨時密碼。
+您可能已成功地更改了您的密碼，或者已經請求一個新的臨時密碼。',
 'resetpass_forbidden'     => '無法更改密碼',
 'resetpass_missing'       => '無表單資料。',
 
@@ -889,10 +892,10 @@ $2',
 'prefs-watchlist-days'     => '監視列表中顯示記錄的天數:',
 'prefs-watchlist-edits'    => '在增強的監視列表中顯示的最多更改次數:',
 'prefs-misc'               => '雜項',
-'saveprefs'                => '保存參數設置',
-'resetprefs'               => '重設參數',
-'oldpassword'              => '舊密碼',
-'newpassword'              => '新密碼',
+'saveprefs'                => '保存',
+'resetprefs'               => '清除未保存的更改',
+'oldpassword'              => '舊密碼:',
+'newpassword'              => '新密碼:',
 'retypenew'                => '確認密碼:',
 'textboxsize'              => '編輯',
 'rows'                     => '列:',
@@ -1028,7 +1031,7 @@ $2',
 'recentchangestext'                 => '跟蹤這個wiki上的最新更改。',
 'recentchanges-feed-description'    => '跟蹤此訂閱在 wiki 上的最近更改。',
 'rcnote'                            => "以下是在$4 $5，最近'''$2'''天內的'''$1'''次最近更改記錄:",
-'rcnotefrom'                        => '下面是自<b>$2</b>(最多顯示<b>$1</b>):',
+'rcnotefrom'                        => "下面是自'''$2'''(最多顯示'''$1'''):",
 'rclistfrom'                        => '顯示自$1以來的新更改',
 'rcshowhideminor'                   => '$1小編輯',
 'rcshowhidebots'                    => '$1機器人的編輯',
@@ -1098,6 +1101,7 @@ $2',
 'illegalfilename'             => '檔案名“$1”包含有頁面標題所禁止的字符。請改名後重新上傳。',
 'badfilename'                 => '檔案名已被改為“$1”。',
 'filetype-badmime'            => 'MIME類別"$1"不是容許的檔案格式。',
+'filetype-bad-ie-mime'        => '不可以上傳這個檔案，因為 Internet Explorer 會將它偵測為 "$1"，它是一種不容許以及有潛在危險性之檔案類型。',
 'filetype-unwanted-type'      => "'''\".\$1\"'''是一種不需要的檔案類型。
 建議的{{PLURAL:\$3|一種|多種}}檔案類型有\$2。",
 'filetype-banned-type'        => "'''\".\$1\"'''是一種不准許的檔案類型。
@@ -1199,7 +1203,7 @@ $2',
 'shareduploadduplicate-linktext' => '另一個檔案',
 'shareduploadconflict'           => '這個檔案在共用檔案庫中的$1有同樣的檔名。',
 'shareduploadconflict-linktext'  => '另一個檔案',
-'noimage'                        => '不存在此名稱的檔案，您可以$1。',
+'noimage'                        => '不存在此名稱的檔案，但您可以$1。',
 'noimage-linktext'               => '上傳它',
 'uploadnewversion-linktext'      => '上傳該檔案的新版本',
 'imagepage-searchdupe'           => '搜尋重覆的檔案',
@@ -1248,7 +1252,7 @@ $2',
 
 # Unused templates
 'unusedtemplates'     => '未使用的模板',
-'unusedtemplatestext' => '本頁面列出模板名字空間下所有未被其他頁面使用的頁面。請在刪除這些模板前檢查其他鏈入該模板的頁面。',
+'unusedtemplatestext' => '本頁面列出{{ns:template}}名字空間下所有未被其他頁面使用的頁面。請在刪除這些模板前檢查其他鏈入該模板的頁面。',
 'unusedtemplateswlh'  => '其他連結',
 
 # Random page
@@ -1313,7 +1317,7 @@ Template:消除歧義',
 'nviews'                  => '$1次瀏覽',
 'specialpage-empty'       => '這個報告的結果為空。',
 'lonelypages'             => '孤立頁面',
-'lonelypagestext'         => '以下頁面尚未被{{SITENAME}}中的其它頁面連結。',
+'lonelypagestext'         => '以下頁面尚未被{{SITENAME}}中的其它頁面連結或被之包含。',
 'uncategorizedpages'      => '待分類頁面',
 'uncategorizedcategories' => '待分類類別',
 'uncategorizedimages'     => '待分類檔案',
@@ -1371,7 +1375,7 @@ Template:消除歧義',
 'all-logs-page'        => '所有日誌',
 'log-search-legend'    => '搜尋日誌',
 'log-search-submit'    => '去',
-'alllogstext'          => '綜合顯示上傳、刪除、保護、查封以及站務日誌。',
+'alllogstext'          => '綜合{{SITENAME}}的顯示上傳、刪除、保護、查封以及站務日誌。',
 'logempty'             => '在日誌中不存在匹配項。',
 'log-title-wildcard'   => '搜尋以這個文字開始的標題',
 
@@ -1421,7 +1425,8 @@ Template:消除歧義',
 中有一個有效的e-mail地址才可以電郵其他用戶。',
 'emailuser'       => 'E-mail該用戶',
 'emailpage'       => 'E-mail用戶',
-'emailpagetext'   => '如果該用戶已經在他或她的參數設置頁中輸入了有效的e-mail地址，以下的表格將寄一個訊息給該用戶。您在[[Special:Preferences|您參數設置]]中所輸入的e-mail地址將出現在郵件「發件人」一欄中，這樣該用戶就可以回覆您。',
+'emailpagetext'   => '您可以用下面的表格去寄一封電郵給這位用戶。
+您在[[Special:Preferences|您參數設置]]中所輸入的e-mail地址將出現在郵件「發件人」一欄中，這樣該用戶就可以回覆您。',
 'usermailererror' => '目標郵件地址返回錯誤：',
 'defemailsubject' => '{{SITENAME}}電子郵件',
 'noemailtitle'    => '無e-mail地址',
@@ -1613,7 +1618,9 @@ $NEWPAGE
 'undeletepagetext'             => '以下頁面已經被刪除，但依然在檔案中並可以被恢復。
 檔案庫可能被定時清理。',
 'undelete-fieldset-title'      => '恢復修訂',
-'undeleteextrahelp'            => "恢復整個頁面時，請清除所有複選框後按 '''''恢復''''' 。 恢復特定版本時，請選擇相應版本前的複選框後按'''''恢復''''' 。按 '''''重設''''' 將清除評論內容及所有複選框。",
+'undeleteextrahelp'            => "恢復整個頁面時，請清除所有複選框後按 '''''恢復''''' 。
+恢復特定版本時，請選擇相應版本前的複選框後按'''''恢復''''' 。
+按 '''''重設''''' 將清除評論內容及所有複選框。",
 'undeleterevisions'            => '$1版本存檔',
 'undeletehistory'              => '如果您恢復了該頁面，所有版本都會被恢復到修訂歷史中。
 如果本頁刪除後有一個同名的新頁面建立，被恢復的版本將會稱為較新的歷史。',
@@ -1645,6 +1652,8 @@ $NEWPAGE
 'undelete-error-long'          => '當進行反刪除檔案時遇到錯誤:
 
 $1',
+'undelete-show-file-confirm'   => '確定要檢視在 $2 $3 ，"<nowiki>$1</nowiki>"的已刪除修訂版本嗎？',
+'undelete-show-file-submit'    => '是',
 
 # Namespace form on various pages
 'namespace'      => '名字空間:',
@@ -1750,7 +1759,7 @@ $1',
 'contribslink'                    => '貢獻',
 'autoblocker'                     => '你的IP和被封了的 "$1" 是一樣的。封鎖原因： "$2".',
 'blocklogpage'                    => '封鎖記錄',
-'blocklogentry'                   => '[[$1]]已被查封 $3 ，終止時間為$2',
+'blocklogentry'                   => '已封鎖[[$1]]，到期時間為$2 $3',
 'blocklogtext'                    => '這是關於用戶封禁和解除封禁操作的記錄。被自動封禁的IP地址沒有被列出。請參閱[[Special:IPBlockList|被查封的IP地址和用戶列表]]。',
 'unblocklogentry'                 => '[[$1]]已被解封',
 'block-log-flags-anononly'        => '僅限匿名用戶',
@@ -1900,7 +1909,7 @@ $1',
 所有的跨 wiki 匯入操作被記錄在[[Special:Log/import|匯入日誌]]。',
 'import-interwiki-history'   => '複製此頁的所有歷史版本',
 'import-interwiki-submit'    => '匯入',
-'import-interwiki-namespace' => '將頁面轉移到名字空間:',
+'import-interwiki-namespace' => '目的名字空間:',
 'importtext'                 => '請使用[[Special:Export|匯出功能]]從源 wiki 匯出檔案，
 儲存到您的磁片並上傳到這裡。',
 'importstart'                => '正在匯入頁面...',
@@ -1923,6 +1932,8 @@ $1',
 'import-nonewrevisions'      => '所有的修訂已經在先前匯入。',
 'xml-error-string'           => '$1 於行$2，欄$3 ($4位元組): $5',
 'import-upload'              => '上傳XML資料',
+'import-token-mismatch'      => '小節資料遺失。請再嘗試。',
+'import-invalid-interwiki'   => '不能在指定的wiki匯入。',
 
 # Import log
 'importlogpage'                    => '匯入日誌',
@@ -2032,7 +2043,8 @@ $1',
 
 # Spam protection
 'spamprotectiontitle' => '垃圾過濾器',
-'spamprotectiontext'  => '垃圾過濾器禁止保存您剛才提交的頁面，這可能是由於您所加入的外部網站鏈接所產生的問題。',
+'spamprotectiontext'  => '您要儲存的頁面被垃圾過濾器阻止。
+這可能是由於一個到外部站點的鏈接引起的。',
 'spamprotectionmatch' => '觸發了我們的垃圾過濾器的文本如下：$1',
 'spambot_username'    => 'MediaWiki 廣告清除',
 'spam_reverting'      => '恢復到不包含連結至$1的最近版本',
@@ -2397,7 +2409,7 @@ Variants for Chinese language
 
 # External editor support
 'edit-externally'      => '用外部程式編輯此檔案',
-'edit-externally-help' => '請參見[http://www.mediawiki.org/wiki/Manual:External_editors 設定步驟]了解詳細資訊。',
+'edit-externally-help' => '（請參見[http://www.mediawiki.org/wiki/Manual:External_editors 設定步驟]了解詳細資訊）',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => '全部',
@@ -2419,7 +2431,7 @@ Variants for Chinese language
 'confirmemail_sent'        => '確認郵件已發送。',
 'confirmemail_oncreate'    => '一個確認代碼已經被發送到您的郵箱。該代碼並不要求您進行登錄，
 但若您要啟用在此 wiki 上的任何基於電子郵件的功能，您必須先提交此代碼。',
-'confirmemail_sendfailed'  => '不能發送確認郵件，請檢查郵箱位址是否包含非法字元。
+'confirmemail_sendfailed'  => '{{SITENAME}}無法發送確認郵件，請檢查郵箱位址是否包含非法字元。
 
 郵件傳送員回應: $1',
 'confirmemail_invalid'     => '無效的確認碼，該代碼可能已經過期。',

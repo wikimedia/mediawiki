@@ -239,7 +239,7 @@ $messages = array(
 'nstab-category'  => 'Kategòrëjô',
 
 # Main script and global functions
-'nosuchactiontext'  => 'Programa Mediawiki nie rozpòznôwô taczi òperacëji jakô je w URL',
+'nosuchactiontext'  => 'Programa MediaWiki nie rozpòznôwô taczi òperacëji jakô je w URL',
 'nosuchspecialpage' => 'Nie da taczi specjalny starnë',
 
 # General errors

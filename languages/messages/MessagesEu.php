@@ -492,7 +492,7 @@ Mesedez, formatu egokia duen helbide bat zehaztu, edo hutsik utzi.',
 # Password reset dialog
 'resetpass'               => 'Kontuaren pasahitza hasieratu',
 'resetpass_announce'      => 'E-postaz jasotako kode tenporal baten bidez saioa hasi duzu. Saioa hasierarekin jarraitzeko, pasahitz berri bat definitu beharra daukazu:',
-'resetpass_header'        => 'Pasahitza hasieratu',
+'resetpass_header'        => 'Pasahitza aldatu',
 'resetpass_submit'        => 'Pasahitza definitu eta saioa hasi',
 'resetpass_success'       => 'Zure pasahitza aldatu egin da! Saioa hasten...',
 'resetpass_bad_temporary' => 'Baliogabeko pasahitz tenporala. Baliteke pasahitza jada aldatu edo pasahitz tenporal berri bat eskatu izana.',
@@ -721,6 +721,7 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 'revdelete-hide-restricted'   => 'Mugapen hauek administratzaileei zein besteei aplikatu',
 'revdelete-suppress'          => 'Administratzaileen eta bestelakoen datuak kendu',
 'revdelete-hide-image'        => 'Fitxategiaren edukia ezkutatu',
+'revdelete-unsuppress'        => 'Berrezarritako aldaketen mugak kendu',
 'revdelete-log'               => 'Erregistroaren iruzkina:',
 'revdelete-submit'            => 'Hautatutako berrikuspenari aplikatu',
 'revdelete-logentry'          => '[[$1]](r)entzako berriskupen ikusgaitasuna aldatu da',
@@ -1135,9 +1136,12 @@ Aukera ezazu, mesedez, fitxategi izen deskriptiboago bat.',
 # File reversion
 'filerevert'                => '$1 leheneratu',
 'filerevert-legend'         => 'Fitxategia leheneratu',
+'filerevert-intro'          => "'''[[Media:$1|$1]]''' berrezartzen ari zara [$4 $3(e)ko, $2(e)tako bertsiora].",
 'filerevert-comment'        => 'Iruzkina:',
 'filerevert-defaultcomment' => '$2, $1 bertsiora leheneratu da',
 'filerevert-submit'         => 'Leheneratu',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' [$4 $3(e)ko, $2(e)tako bertsiora] lehenratua izan da.",
+'filerevert-badversion'     => 'Ez dago aurreragoko fitxategi honen bertsio lokalik emandako denbora tartean.',
 
 # File deletion
 'filedelete'                  => '$1 ezabatu',
@@ -1170,7 +1174,7 @@ Aukera ezazu, mesedez, fitxategi izen deskriptiboago bat.',
 
 # Unused templates
 'unusedtemplates'     => 'Erabili gabeko txantiloiak',
-'unusedtemplatestext' => 'Orrialde honetan beste edozein orrialdetan erabiltzen ez diren txantiloi izen-tarteko orrialdeak zerrendatzen dira. Ez ahaztu txantiloietara egon daitezkeen loturak egiaztatzeaz ezabatu aurretik.',
+'unusedtemplatestext' => 'Orrialde honetan beste edozein orrialdetan erabiltzen ez diren {{ns:template}} izen-tarteko orrialdeak zerrendatzen dira. Ez ahaztu txantiloietara egon daitezkeen loturak egiaztatzeaz ezabatu aurretik.',
 'unusedtemplateswlh'  => 'beste loturak',
 
 # Random page
@@ -1229,7 +1233,7 @@ Gure [http://www.mediawiki.org/wiki/Manual:Job_queue Job queue] '''$7'''-koa da.
 'nviews'                  => '{{PLURAL:$1|ikusketa 1|$1 ikusketa}}',
 'specialpage-empty'       => 'Ez dago emaitzarik bilaketa honetarako.',
 'lonelypages'             => 'Orrialde umezurtzak',
-'lonelypagestext'         => 'Jarraian zerrendatutako orrialdeek ez daukate wikiko beste orrialdeetatik loturarik.',
+'lonelypagestext'         => 'Jarraian zerrendatutako orrialdeek ez daukate {{SITENAME}}(e)n beste orrialdeetatik loturarik.',
 'uncategorizedpages'      => 'Kategorizatu gabeko orrialdeak',
 'uncategorizedcategories' => 'Kategorizatu gabeko kategoriak',
 'uncategorizedimages'     => 'Kategorizatu gabeko irudiak',
@@ -1515,6 +1519,11 @@ Aukeratutako leheneratze bat burutzeko, leheneratu nahi dituzun berrikuspenen ko
 'undeleterevisions'         => '$1 berrikuspen gordeta',
 'undeletehistory'           => 'Orrialdea leheneratzen baduzu, berrikuspena guztiak leheneratuko dira historian. 
 Ezabatu ondoren izen berdina duen orrialde berri bat sortzen bada leheneratutako berrikuspenak azalduko dira historian.',
+'undeleterevdel'            => 'Berrezarpena ez da egingo goreneko orrialde edo fitxategia partzialki ezabatua suertatzen bada.
+Kasu horietan ezabatutako azken aldaketen aukeraketa kendu edo agertarazi beharko dituzu.
+
+Undeletion will not be performed if it will result in the top page or file revision being partially deleted.
+In such cases, you must uncheck or unhide the newest deleted revision.',
 'undeletehistorynoadmin'    => 'Artikulua ezabatu egin da. Ezabatzeko azalpena beheko laburpenean erakusten da, ezabatu aurretik parte hartu zuten erabiltzaileen xehetasunekin batera. Ezabatutako berrikuspenen oraingo testua administratzaileek bakarrik ikus dezakete.',
 'undeleterevision-missing'  => 'Baliogabeko berrikuspena. Baliteke lotura ezegokia izatea, edo berriskupena leheneratu edo kendu izana.',
 'undelete-nodiff'           => 'Ez da aurkitu aurreko berrikuspenik.',
@@ -1695,7 +1704,7 @@ Artikulu oso erabilia edo asko aldatzen denaren izenburua aldatzera bazoaz, mese
 
 Kasu horietan orrialdea eskuz mugitu edo bestearekin bateratu beharko duzu.",
 'movearticle'             => 'Orrialdea mugitu',
-'movenotallowed'          => 'Ez daukazu {{SITENAME}}n orrialdeak mugitzeko baimenik.',
+'movenotallowed'          => 'Ez daukazu orrialdeak mugitzeko baimenik.',
 'newtitle'                => 'Izenburu berria',
 'move-watch'              => 'Orrialde hau jarraitu',
 'movepagebtn'             => 'Orrialde mugitu',
@@ -1771,7 +1780,7 @@ Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{ns:special}}:Expor
 'import-interwiki-text'      => 'Aukeratu inportatzeko wiki eta orrialde izenburu bat. Berrikuspenen datak eta egileak gorde egingo dira. Inportazio ekintza guzti hauek [[Special:Log/import|inportazio erregistroan]] gordetzen dira.',
 'import-interwiki-history'   => 'Orrialde honen historiako bertsio guztiak kopiatu',
 'import-interwiki-submit'    => 'Inportatu',
-'import-interwiki-namespace' => 'Izen-tarte honetako orrialdeak transferitu:',
+'import-interwiki-namespace' => 'Helburuko izen-tartea:',
 'importtext'                 => 'Mesedez, jatorrizko wikitik orrialdea esportatzeko Special:Export tresna erabil ezazu, zure diskoan gorde eta jarraian hona igo.',
 'importstart'                => 'Orrialdeak inportatzen...',
 'import-revision-count'      => '{{PLURAL:$1|berrikuspen 1|$1 berrikuspen}}',
@@ -1787,12 +1796,16 @@ Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{ns:special}}:Expor
 'importnofile'               => 'Ez da inportazio fitxategirik igo.',
 'importuploaderrorsize'      => 'Inportatutako artxiboaren igoera-porrota.
 Artxiboa onartutako igoera-tamaina baino handiagoa da.',
+'importuploaderrorpartial'   => 'Fitxategiaren igoera eta inportazioak huts egin du.
+Fitxategiaren atal bat baino ez zen igo.',
 'importuploaderrortemp'      => 'Inportatze fitxategiaren igoeran akatsa egon da. Karpeta tenporal bat falta da.',
 'import-parse-failure'       => 'XML inportatze parseak akatsa izan du',
 'import-noarticle'           => 'Ez dago inportatzeko orrialderik!',
 'import-nonewrevisions'      => 'Berrikuspen guztiak aurrez inportatu ziren.',
 'xml-error-string'           => '$1 $2 lerroan, $3 zutabean ($4 byte): $5',
 'import-upload'              => 'Igo XML datuak',
+'import-token-mismatch'      => 'Sesio data galdu da. Saia saitez berriro ere, mesedez.',
+'import-invalid-interwiki'   => 'Ezin da esandako wikitik inportatu.',
 
 # Import log
 'importlogpage'                    => 'Inportazio erregistroa',
@@ -1922,9 +1935,10 @@ Baliteke zerrenda beltzean dagoen kanpo lotura batek sortzea arazo hori.',
 'markedaspatrollederror-noautopatrol' => 'Ez daukazu zure aldaketak patruilatu bezala markatzeko baimenik.',
 
 # Patrol log
-'patrol-log-page' => 'Patrullatze loga',
-'patrol-log-line' => '$1etik $2 markatu da patrullatu moduan $3',
-'patrol-log-auto' => '(automatikoa)',
+'patrol-log-page'   => 'Patrullatze loga',
+'patrol-log-header' => 'Hau patruliatutako aldaketen log bat da.',
+'patrol-log-line'   => '$1etik $2 markatu da patrullatu moduan $3',
+'patrol-log-auto'   => '(automatikoa)',
 
 # Image deletion
 'deletedrevision'                 => '$1 berrikuspen zaharra ezabatu da',
@@ -2256,6 +2270,7 @@ Zerrenda elementuak (hasieran * duten lerroak) baino ez dira kontuan hartzen. Le
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-k' => 'Kilometro orduko',
 'exif-gpsspeed-m' => 'Milia orduko',
+'exif-gpsspeed-n' => 'Lotailuak',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Benetako norabidea',
@@ -2263,7 +2278,7 @@ Zerrenda elementuak (hasieran * duten lerroak) baino ez dira kontuan hartzen. Le
 
 # External editor support
 'edit-externally'      => 'Fitxategi hau editatu kanpo-aplikazio bat erabiliz',
-'edit-externally-help' => 'Ikus [http://www.mediawiki.org/wiki/Manual:External_editors konfiguraziorako argibideak] informazio gehiagorako.',
+'edit-externally-help' => '(Ikus [http://www.mediawiki.org/wiki/Manual:External_editors konfiguraziorako argibideak] informazio gehiagorako)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'guztiak',
@@ -2388,17 +2403,29 @@ Gainera [[special:Watchlist/raw|raw zerrenda editatu]] dezakezu.',
 'watchlisttools-edit' => 'Zerrenda ikusi eta aldatu',
 'watchlisttools-raw'  => 'Zerrenda idatziz aldatu',
 
+# Core parser functions
+'unknown_extension_tag' => '"$1" luzapen etiketa ezezaguna',
+
 # Special:Version
-'version'                  => 'Bertsioa', # Not used as normal message but as header for the special page itself
-'version-extensions'       => 'Instalatutako luzapenak',
-'version-specialpages'     => 'Aparteko orrialdeak',
-'version-variables'        => 'Aldagaiak',
-'version-other'            => 'Bestelakoak',
-'version-version'          => 'Bertsioa',
-'version-license'          => 'Lizentzia',
-'version-software'         => 'Instalatutako softwarea',
-'version-software-product' => 'Produktua',
-'version-software-version' => 'Bertsioa',
+'version'                          => 'Bertsioa', # Not used as normal message but as header for the special page itself
+'version-extensions'               => 'Instalatutako luzapenak',
+'version-specialpages'             => 'Aparteko orrialdeak',
+'version-parserhooks'              => 'Parser estentsioak',
+'version-variables'                => 'Aldagaiak',
+'version-other'                    => 'Bestelakoak',
+'version-mediahandlers'            => 'Media gordailuak',
+'version-hooks'                    => 'Estentsioak',
+'version-extension-functions'      => 'Luzapen funtzioak',
+'version-parser-extensiontags'     => 'Parser luzapen etiketak',
+'version-parser-function-hooks'    => 'Parser funtzio estentsioak',
+'version-skin-extension-functions' => 'Itxura luzapen funtzioak',
+'version-hook-name'                => 'Estentsioaren izena',
+'version-hook-subscribedby'        => 'Hauen harpidetzarekin',
+'version-version'                  => 'Bertsioa',
+'version-license'                  => 'Lizentzia',
+'version-software'                 => 'Instalatutako softwarea',
+'version-software-product'         => 'Produktua',
+'version-software-version'         => 'Bertsioa',
 
 # Special:FilePath
 'filepath'        => 'Fitxategi bidea',

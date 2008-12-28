@@ -606,7 +606,7 @@ Si no hi teniu cap relació i aquest compte ha estat creat per error, simplement
 'resetpass'               => 'Reinicia la contrasenya del compte',
 'resetpass_announce'      => 'Heu iniciat la sessió amb un codi temporal enviat per correu electrònic. Per a finalitzar-la, heu de definir una nova contrasenya ací:',
 'resetpass_text'          => '<!-- Afegiu-hi un text -->',
-'resetpass_header'        => 'Reinicia la contrasenya',
+'resetpass_header'        => 'Canvia la contrasenya del compte',
 'resetpass_submit'        => 'Definiu una contrasenya i inicieu una sessió',
 'resetpass_success'       => "S'ha canviat la vostra contrasenya amb èxit! Ara ja podeu iniciar-hi una sessió...",
 'resetpass_bad_temporary' => 'La contrasenya temporal no és vàlida. Potser ja havíeu canviat la vostra contrasenya o heu soŀlicitat una nova contrasenya temporal.',
@@ -1736,7 +1736,7 @@ al resum a continuació, juntament amb detalls dels usuaris que l'havien editat 
 'undeletecomment'              => 'Comentari:',
 'undeletedarticle'             => 'restaurat «[[$1]]»',
 'undeletedrevisions'           => '{{PLURAL:$1|Una revisió restaurada|$1 revisions restaurades}}',
-'undeletedrevisions-files'     => '{{PLURAL:$1|Una revisió|$1 revisions}} i {{PLURAL:$2|un arxiu|$2 arxius}} restaurats',
+'undeletedrevisions-files'     => '{{PLURAL:$1|Una revisió|$1 revisions}} i {{PLURAL:$2|un fitxer|$2 fitxers}} restaurats',
 'undeletedfiles'               => '$1 {{PLURAL:$1|fitxer restaurat|fitxers restaurats}}',
 'cannotundelete'               => "No s'ha pogut restaurar; algú altre pot estar restaurant la mateixa pàgina.",
 'undeletedpage'                => "<big>'''S'ha restaurat «$1»'''</big>

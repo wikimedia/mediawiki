@@ -14,7 +14,15 @@
 
 $messages = array(
 # User preference toggles
+'tog-underline'               => 'Wekea mstari viungo:',
+'tog-highlightbroken'         => 'Muundo wa viungo vilivyovunjika <a href="" class="mpya">kama hii</a> (badala yake: kama hii<a href="" class="kwa ndani">?</a>).',
+'tog-justify'                 => 'Sawazisha ibara',
 'tog-hideminor'               => 'Ficha mabadilisho madogo ya hivi karibuni',
+'tog-extendwatchlist'         => 'Tanua orodha ya maangalizi ili kuonyesha mabadiliko yote yaliyofanyika',
+'tog-usenewrc'                => 'Mabadiliko yaliyoongezeka hivi karibuni (JavaScript)',
+'tog-numberheadings'          => 'Vichwa vya habari vijipange namba-vyenyewe',
+'tog-showtoolbar'             => 'Onyesha ufito wa vifaa vya kuhariria (JavaScript)',
+'tog-editondblclick'          => 'Hariri ukurasa kwa kubonyeza mara mbili',
 'tog-editsection'             => 'Wezesha sehemu ya kuandikia kwa kutumia viungo vya [hariri]',
 'tog-editsectiononrightclick' => 'Wezesha sehemu ya kuandikia kwa kubonyeza kitufe cha kulia cha puku yako juu ya sehemu ya majina husika (JavaScript)',
 'tog-showtoc'                 => 'Onyesha mistari ya yaliyomo (kwa kila kurasa iliyo na zaidi ya vichwa vya habari 3)',
@@ -33,7 +41,9 @@ $messages = array(
 'tog-enotifminoredits'        => 'Pia nitumie barua pale kurasa za mabadiliko madogo zikiwa zimebadilishwa',
 'tog-enotifrevealaddr'        => 'Onyesha anwani ya barua pepe yangu katika barua pepe za taarifa',
 'tog-shownumberswatching'     => 'Onyesha idadi ya watumiaji waangalizi',
-'tog-fancysig'                => 'Sahihi changa (bila kijiweka kiungo yenyewe)',
+'tog-fancysig'                => 'Sahihi changa (bila kujiweka kiungo yenyewe)',
+'tog-externaleditor'          => 'Tumia kiharirio cha nje inaposhindikana (kwa wataalamu tu, inahitaji marekebisho maalum kwenye kompyuta yako',
+'tog-externaldiff'            => 'Tumia diff za nje inaposhindikana (kwa wataalamu tu, inahitaji marekebisho maalum kwenye kompyuta yako)',
 'tog-ccmeonemails'            => 'Nitumie nakala ya barua pepe nitakazo tuma kwa watumiaji wengine',
 
 # Dates
@@ -627,8 +637,12 @@ Hivi ni vipimo kwa ukurasa <strong>$1</strong>:',
 'month'         => 'Kutoka mwezi (na zamani zaidi):',
 'year'          => 'Kutoka mwakani (na zamani zaidi):',
 
+'sp-contributions-newbies'     => 'Onyesha michango ya akaunti mpya tu',
 'sp-contributions-newbies-sub' => 'Kwa akaunti mpya',
 'sp-contributions-blocklog'    => 'Kumbukumbu ya uzuio',
+'sp-contributions-search'      => 'Tafuta michango',
+'sp-contributions-username'    => 'Anwani ya IP au jina la mtumiaji:',
+'sp-contributions-submit'      => 'Tafuta',
 
 # What links here
 'whatlinkshere'       => 'Viungo viungacho ukurasa huu',

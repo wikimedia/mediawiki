@@ -99,9 +99,11 @@ $messages = array(
 'dec'           => 'Dis',
 
 # Categories related messages
-'pagecategories'  => '{{PLURAL:$1|Qaybta|Qaybaha}}',
-'category_header' => 'Maqaalada ku jirta qaybta "$1"',
-'subcategories'   => 'Qaybaha hoose',
+'pagecategories'           => '{{PLURAL:$1|Qaybta|Qaybaha}}',
+'category_header'          => 'Maqaalada ku jirta qaybta "$1"',
+'subcategories'            => 'Qaybaha hoose',
+'hidden-category-category' => 'Qeybaha qarsoon', # Name of the category where hidden categories will be listed
+'category-subcat-count'    => '{{PLURAL:$2|Qeybtaan waxaa kaliya ay leedahay qeyb-hooseedyadaan.|Qeybtaan waxay leedahay {{PLURAL:$1|qeyb-hoosaad|$1 qeyb-hoosaadyo}} ee soo socda, guud ahaan $2 marka loo fiiriyo.}}',
 
 'about'          => 'Warbixin',
 'article'        => 'Bogga maqaalka',

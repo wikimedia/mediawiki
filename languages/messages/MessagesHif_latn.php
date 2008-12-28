@@ -474,7 +474,7 @@ Agar ii account galti se banaa hai tab ii sandes ke ignore kar do.',
 'resetpass_announce'      => 'Aap ek temporary e-mailed code se login bhaya hai
 Login khatam kare khatir, aap ke nawaa password set kare ke parri hian:',
 'resetpass_text'          => '<!-- Hian pe likho -->',
-'resetpass_header'        => 'Password ke reset karo',
+'resetpass_header'        => 'Account assword ke badlo',
 'resetpass_submit'        => 'Password ke set kar ke login karo',
 'resetpass_success'       => 'Aap ke password ke safalta se badal dewa gais hai! Aap ke ab login karaa jaae hai...',
 'resetpass_bad_temporary' => 'Temporary password achchha nai hai.
@@ -1062,19 +1062,71 @@ Panna jon [[Special:Watchlist|aap ke dhyan suchi]] me hai '''bold''' karal hai."
 'upload_directory_read_only' => 'Upload directory ($1) ke webserver nai likhe sake hai.',
 'uploaderror'                => 'Upload nai hoe paais hai',
 'upload-permitted'           => 'File types jiske ijajat hai: $1.',
+'upload-preferred'           => 'Kon rakam ke file ke mangtaa hai: $1.',
+'upload-prohibited'          => 'Ii rakam ke file ke upload nai karaa jaae sake hai: $1.',
+'uploadlog'                  => 'upload karaa gae file ke log',
 'uploadlogpage'              => 'Suchi ke upload karo',
 'filename'                   => 'Filename',
+'filedesc'                   => 'Sanchhipt me',
+'fileuploadsummary'          => 'Sanchhipt me:',
+'filestatus'                 => 'Copyright ke haalat:',
+'filesource'                 => 'File ke source:',
 'uploadedfiles'              => 'Files jiske upload karaa gais hai.',
+'ignorewarning'              => 'Chetauni pe dhyan nai de ke file ke save karo',
+'ignorewarnings'             => 'Koi bhi chetauni pe dhyan nai do',
 'minlength1'                 => 'File ke naam me kamti se kamti ek letter hoe ke chaahi.',
+'illegalfilename'            => 'Filename "$1" me uu akchhar hai jiske panna ke title me allowed nai hai.
+Maharbaani kar ke file ke naam ke badal ke fir se upload kare ke kosis karo.',
 'badfilename'                => 'File ke naam badak ke "$1" kar dewa gais hai.',
 'filetype-badmime'           => 'MIME rakam "$1" ke upload kare ke ijajat nai hai.',
+'filetype-bad-ie-mime'       => 'Ii file ke upload nai kare sakta hai kahe ki Internet Explorer iske "$1" ke rakam dekhi, jon ki allowed nai hai aur khatarnaat rakam ke file jaana jaae hai.',
+'filetype-unwanted-type'     => "'''\".\$1\"''' rakam ke file ke hian nai maaga jaae hai.
+Maange waala {{PLURAL:\$3|file ke rakam hai|file ke rakam hai}} \$2.",
+'filetype-banned-type'       => "'''\".\$1\"''' ke rakam ke file hian pe allowed nai hai.
+Allowed {{PLURAL:\$3|rakam ke file hai|rakam ke fle hai}} \$2.",
 'filetype-missing'           => 'File ke koi extension nai hai (jaise ki ".jpg").',
+'large-file'                 => 'Ii salah hai ki file ke size $1 se barraa nai rahe;
+ii file hai $2',
 'largefileserver'            => 'Ii file, jetna ki server allow kare hai, se barraa hai.',
+'emptyfile'                  => 'Jon file aap upload karaa rahaa uu khaali rahaa.
+Ii saait file ke naam likhe me typing mistake ke kaaran hoi.
+Meharbaani kar ke ii dekho ki aap such me ii file upload kare mangtaa hai ki nai.',
+'fileexists'                 => 'Ii naam ke file abhi hai, meharbani kar ke check karo <strong><tt>$1</tt></strong> agar jo aap sure nai hai ki aap iske badle mangta hai.',
+'filepageexists'             => 'Ii file ke description ke <strong><tt>$1</tt></strong> me banae dewa gais rakaa, lekin ii naam ke koi file abhi nai hai.
+Aap jon summary likhtaa hai uu panna ke description me nai dekhai.
+Description ke dekhae ke khatir, aap ke iske manually badle ke parri.',
+'fileexists-extension'       => 'Ii rakam ke naam ke ek aur file hai:<br />
+Uploading file ke naam: <strong><tt>$1</tt></strong><br />
+Abhi ke file ke naam: <strong><tt>$2</tt></strong><br />
+Meharbani kar ke duusra naam chuno.',
+'fileexists-thumb'           => "<center>'''Abhi ke file'''</center>",
+'fileexists-thumbnail-yes'   => 'Ii janawe hai ki ii file ek chhota chapa hai <i>(thumbnail)</i>.
+Meharbani kar ke file ke check karo <strong><tt>$1</tt></strong>.<br />
+Agar jo check karaa gais file wahi chhapa ke original size hai tab ek aur thumbnail ke upload kare ke jaruri nai hai.',
+'file-thumbnail-no'          => 'File ke naam <strong><tt>$1</tt></strong> se suruu hoe hai.
+Ii janawe hai ki ii chhota size ke chapa hai <i>(thumbnail)</i>.
+Agar jo aap ke lage ii chapa full resolution me hai tab uske upload karna, nai to file ke naam badlo.',
+'file-exists-duplicate'      => 'Ii file following file ke duplicate hai {{PLURAL:$1|file|files}}:',
 'successfulupload'           => 'Upload safal bhais',
 'uploadwarning'              => 'Upload warning',
 'savefile'                   => 'File ke save karo',
 'uploadedimage'              => '"[[$1]]" ke upload kar dewa gae',
+'overwroteimage'             => '"[[$1]]" ke nawaa version ke upload karaa gais hai',
+'uploaddisabled'             => 'Uploads ke disable kar dewa gais hai',
+'uploaddisabledtext'         => 'File uploads ke disable kar dewa gais hai.',
+'uploadscripted'             => 'Ii file me HTML nai to script code hai jiske web browser erroneously interpret kare sake hai.',
+'uploadcorrupt'              => 'Ii file chaahe ke corrupt hai nai to isme wrong extension hai.
+Meharbani kar ke file ke check kar ke fir se upload karo.',
+'uploadvirus'                => 'Ii file me virus hai! Details: $1',
+'sourcefilename'             => 'Source filename:',
+'destfilename'               => 'Destination filename:',
+'upload-maxfilesize'         => 'jaada se jaada file size: $1',
 'watchthisupload'            => 'Ii panna pe dhyan rakho',
+'filewasdeleted'             => 'Ii naam ke file ke pahile upload kar ke baad me delete karaa gais hai.
+Aap ke chaahi ki aap $1 check kar lo fir se upload kare se pahile.',
+'upload-wasdeleted'          => "'''Chetauni: Aap uu file ke upload karta hai jiske pahile delete karaa gais hai.'''
+Aap ke ii soche ke chaahi ki ii file ke upload karna appropriate hai ki nai.
+Aap ke subidha khatir deletion log hian pe hai:",
 
 # Special:ImageList
 'imgfile'        => 'file',
@@ -1175,6 +1227,7 @@ Panna jon [[Special:Watchlist|aap ke dhyan suchi]] me hai '''bold''' karal hai."
 'ancientpages'            => 'Sab se purana panna',
 'move'                    => 'Naam badlo',
 'movethispage'            => 'Panna ke naam badlo',
+'pager-newer-n'           => '{{PLURAL:$1|nawaa 1|nawaa $1}}',
 
 # Book sources
 'booksources' => 'Pustak sources',
@@ -1425,7 +1478,7 @@ Wahii line pe aur koi link exception consider karaa jai i.e. jahan par panna sak
 
 # External editor support
 'edit-externally'      => 'Edit this file using an external application',
-'edit-externally-help' => 'Aur jaankari khatir [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] ke dekho.',
+'edit-externally-help' => '(Aur jaankari khatir [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] ke dekho)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'sab',

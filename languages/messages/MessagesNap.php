@@ -41,6 +41,13 @@ $messages = array(
 'thursday'      => 'gioverì',
 'friday'        => 'viernarì',
 'saturday'      => 'sàbbato',
+'sun'           => 'dum',
+'mon'           => 'lun',
+'tue'           => 'mar',
+'wed'           => 'mier',
+'thu'           => 'gio',
+'fri'           => 'ven',
+'sat'           => 'sab',
 'january'       => 'jennaro',
 'february'      => 'frevàro',
 'march'         => 'màrzo',
@@ -96,6 +103,11 @@ $messages = array(
 'mytalk'         => "'E mmie chiacchieriàte",
 'anontalk'       => 'Chiacchierate pe chisto IP',
 
+# Metadata in edit box
+'metadata_help' => 'Metadate:',
+
+'errorpagetitle'    => 'Sbaglio',
+'returnto'          => 'Torna a $1.',
 'help'              => 'Ajùto',
 'search'            => 'Truova',
 'searchbutton'      => 'Truova',

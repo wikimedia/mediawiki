@@ -72,7 +72,7 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'Ibunyág an adres kan sakuyang e-koreo sa mga surat na pag-abiso',
 'tog-shownumberswatching'     => 'Ipahilíng an bilang kan nagbabantay na mga parágamit',
 'tog-fancysig'                => 'Mga bàgong pirma (mayò nin tolos na pantakod)',
-'tog-externaleditor'          => 'Gamíton mùna an panluwás na editor',
+'tog-externaleditor'          => 'Gamíton mùna an panluwas na editor',
 'tog-externaldiff'            => 'Gamíton mùna an diff na panluwás',
 'tog-showjumplinks'           => 'Maka-"luksó sa" mga takód na pangabót',
 'tog-uselivepreview'          => 'Gamíton an patànaw na direkto (JavaScript) (Experimental)',
@@ -293,6 +293,7 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|sarong pinarang paghirá|$1 na pinarang paghirá}}',
 'feedlinks'               => 'Hungit:',
 'feed-invalid'            => 'Bawal na tipo nin hungit na subkripsyon.',
+'feed-unavailable'        => 'Mayò an mga sindikasyon na hungit',
 'site-rss-feed'           => '$1 Hungit nin RSS',
 'site-atom-feed'          => '$1 Hungit nin Atomo',
 'page-rss-feed'           => '"$1" Hungit na RSS',
@@ -344,6 +345,8 @@ $1",
 'readonlytext'         => 'Sarado mùna an base nin datos sa mga bàgong entrada asin iba pang mga pagribay, pwede gayod sa rutinang pagmantenir kan base nin datos, despues, mabalik na ini sa normal.
 
 Ini an eksplikasyon kan tagamató na nagkandado kaini: $1',
+'missingarticle-rev'   => '(pagbàgo#: $1)',
+'missingarticle-diff'  => '(Kaibhán: $1, $2)',
 'readonly_lag'         => 'Enseguidang nakandado an base nin datos mientras makaabot an base nin datos na esklabo saiyang amo.',
 'internalerror'        => 'Panlaog na salâ',
 'internalerror_info'   => 'Panlaog na salâ: $1',
@@ -379,6 +382,10 @@ $2',
 'customcssjsprotected' => 'Mayô kang permiso na maghirâ kaining páhina, hulî ta igwa ining mga puesta na personal kan ibang paragamit.',
 'ns-specialprotected'  => 'An mga páhinang nasa {{ns:special}} na ngaran-espacio dai pwedeng hirahón.',
 
+# Virus scanner
+'virus-badscanner'     => 'Saláng konfigurasyon: dai aram an virus scanner: <i>$1</i>',
+'virus-unknownscanner' => 'dai aram an antivirus:',
+
 # Login and logout pages
 'logouttitle'                => 'Magluwas an paragamit',
 'logouttext'                 => "<strong>Nakaluwas ka na.</strong><br />
@@ -413,6 +420,7 @@ Nagibo na an ''account'' mo. Giromdomon tabi na ribayán an saimong mga kabôtan
 'youremail'                  => 'E-koreo:',
 'username'                   => 'Pangaran kan parágamit:',
 'uid'                        => 'ID kan parágamit:',
+'prefs-memberingroups'       => 'Miembro kan {{PLURAL:$1|grupo|grupos}}:',
 'yourrealname'               => 'Totoong pangaran:',
 'yourlanguage'               => 'Tataramon:',
 'yourvariant'                => 'Bariante:',
@@ -702,6 +710,7 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 'logdelete-logentry'          => 'Pigribayan an bisibilidad nin panyayari kan [[$1]]',
 'revdelete-success'           => "'''Nakapwesto na an bisibilidad kan pagpakarhay.'''",
 'logdelete-success'           => "'''Nakapuesto na an katalâan kan nangyari.'''",
+'revdelete-uname'             => 'paragamit',
 
 # Diffs
 'history-title'           => 'Uusipón nin pagpakarháy kan "$1"',
@@ -1973,6 +1982,13 @@ Pwede mo man [[Special:Watchlist/edit|gamiton an standard editor]].',
 'version' => 'Bersyon', # Not used as normal message but as header for the special page itself
 
 # Special:SpecialPages
-'specialpages' => 'Mga espesyal na pahina',
+'specialpages'               => 'Mga espesyal na pahina',
+'specialpages-group-other'   => 'Iba pang mga espesyal na pahina',
+'specialpages-group-login'   => 'Maglaog/ maggibo',
+'specialpages-group-changes' => 'Kaaagi pa sanang mga pagbàgo asin laog',
+
+# Special:BlankPage
+'blankpage'              => 'Blangkong pahina',
+'intentionallyblankpage' => 'Pigtuyong blangko an pahinang ini',
 
 );

@@ -420,9 +420,9 @@ $messages = array(
 'permalink'         => 'Fast lenkje',
 'print'             => 'Skriv ut',
 'edit'              => 'Endre',
-'create'            => 'opprett',
+'create'            => 'Opprett',
 'editthispage'      => 'Endre sida',
-'create-this-page'  => 'Lag denne sida',
+'create-this-page'  => 'Opprett denne sida',
 'delete'            => 'Slett',
 'deletethispage'    => 'Slett denne sida',
 'undelete_short'    => 'Attopprett {{PLURAL:$1|éin versjon|$1 versjonar}}',
@@ -542,7 +542,7 @@ $messages = array(
 'dberrortext'          => 'Det oppstod ein syntaksfeil i databaseførespurnaden. Dette kan tyde på ein feil i programvaren. Den sist prøvde førespurnaden var: <blockquote><tt>$1</tt></blockquote> frå funksjonen «<tt>$2</tt>». MySQL returnerte feilen «<tt>$3: $4</tt>».',
 'dberrortextcl'        => 'Det oppstod ein syntaksfeil i databaseførespurnaden. Den sist prøvde førespurnaden var: «$1» frå funksjonen "$2".
 MySQL returnerte feilen «$3: $4».',
-'noconnect'            => 'Årsak! Wikien har tekniske problem og kunne ikkje kople til databasen.<br />
+'noconnect'            => 'Orsak! Wikien har tekniske problem og kunne ikkje kople til databasen.<br />
 $1',
 'nodb'                 => 'Kunne ikkje velja databasen $1',
 'cachederror'          => 'Det følgjande er ein lagra kopi av den ønska sida, og er ikkje nødvendigvis oppdatert.',
@@ -797,7 +797,7 @@ Vi er difor nøydde til å bruke den numeriske IP-adressa til å identifisere br
 'note'                             => '<strong>Merk:</strong>',
 'previewnote'                      => '<strong>Hugs at dette berre er ei førehandsvising og at teksten ikkje er lagra!</strong>',
 'previewconflict'                  => 'Dette er ei førehandsvising av teksten i endringsboksen over, slik han vil sjå ut om du lagrar han',
-'session_fail_preview'             => '<strong>Årsak! Endringa di kunne ikkje lagrast. Ver venleg og prøv ein gong til. Dersom det framleis ikkje går, prøv å logge deg ut og inn att.</strong>',
+'session_fail_preview'             => '<strong>Orsak! Endringa di kunne ikkje lagrast. Ver venleg og prøv ein gong til. Dersom det framleis ikkje går, prøv å logge deg ut og inn att.</strong>',
 'session_fail_preview_html'        => "<strong>Beklagar! Endringa di kunne ikkje lagrast.</strong>
 
 ''Fordi {{SITENAME}} har rå HTML-kode slått på, er førehandsvisinga gøymd grunna fare for JavaScript-angrep.''
@@ -1013,9 +1013,9 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 'search-interwiki-more'     => '(meir)',
 'search-mwsuggest-enabled'  => 'med forslag',
 'search-mwsuggest-disabled' => 'ingen forslag',
-'search-relatedarticle'     => 'Relaterte',
+'search-relatedarticle'     => 'Relatert',
 'mwsuggest-disable'         => 'Slå av AJAX-forslag',
-'searchrelated'             => 'relaterte',
+'searchrelated'             => 'relatert',
 'searchall'                 => 'alle',
 'showingresults'            => "Nedanfor er opp til {{PLURAL:$1|'''éitt''' resultat|'''$1''' resultat}} som byrjar med nummer '''$2''' vist.",
 'showingresultsnum'         => "Nedanfor er {{PLURAL:$3|'''éitt''' resultat|'''$3''' resultat}} som byrjar med nummer '''$2''' vist.",
@@ -1230,7 +1230,7 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'recentchangeslinked-title'    => 'Endringar relaterte til "$1"',
 'recentchangeslinked-noresult' => 'Det er ikkje gjort endringar på sidene som var lenkja hit i den oppgjevne perioden.',
 'recentchangeslinked-summary'  => "Denne spesialsida inneheld alle endringane som er gjort på sider som vert ''lenkja til'' frå denne (eller på sider i ein viss kategori). Dei av sidene du har på [[Special:Watchlist|overvakingslista]] di er '''utheva'''.",
-'recentchangeslinked-page'     => 'Sidnamn:',
+'recentchangeslinked-page'     => 'Sidenamn:',
 'recentchangeslinked-to'       => 'Vis endringar på sider som lenkjer til den gitte sida i staden',
 
 # Upload
@@ -1850,8 +1850,8 @@ $1',
 'whatlinkshere-prev'       => '{{PLURAL:$1|førre|førre $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|neste|neste $1}}',
 'whatlinkshere-links'      => '← lenkjer',
-'whatlinkshere-hideredirs' => '$1 omdirigeringer',
-'whatlinkshere-hidetrans'  => '$1 inkluderinger',
+'whatlinkshere-hideredirs' => '$1 omdirigeringar',
+'whatlinkshere-hidetrans'  => '$1 inkluderingar',
 'whatlinkshere-hidelinks'  => '$1 lenkjer',
 'whatlinkshere-hideimages' => '$1 fillenkjer',
 'whatlinkshere-filters'    => 'Filter',
@@ -2239,7 +2239,7 @@ $1',
 'mediawarning'         => "'''Åtvaring''': Denne fila kan innehalda skadelege program, ved å opna ho kan systemet ditt ta skade.<hr />",
 'imagemaxsize'         => 'Avgrens bilete på filsider til (pikslar):',
 'thumbsize'            => 'Miniatyrstørrelse:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|side|sider}}',
+'widthheightpage'      => '$1×$2, {{PLURAL:$3|éi side|$3 sider}}',
 'file-info'            => '(filstorleik: $1, MIME-type: $2)',
 'file-info-size'       => '($1 × $2 pikslar, filstorleik: $3, MIME-type: $4)',
 'file-nohires'         => '<small>Høgare oppløysing er ikkje tilgjengeleg.</small>',
@@ -2598,7 +2598,7 @@ $1
 'confirmrecreate'     => "Brukaren «[[User:$1|$1]]» ([[User talk:$1|brukardiskusjon]]) sletta denne sida medan du endra henne, og gav denne grunnen: ''$2''
 
 Du må stadfeste at du verkeleg vil nyopprette denne sida.",
-'recreate'            => 'Nyopprett',
+'recreate'            => 'Attopprett',
 
 # HTML dump
 'redirectingto' => 'Omdirigerer til [[:$1]]...',
@@ -2623,7 +2623,7 @@ $1',
 'imgmultipageprev' => '← førre side',
 'imgmultipagenext' => 'neste side →',
 'imgmultigo'       => 'Gå!',
-'imgmultigoto'     => 'Gå til side $1',
+'imgmultigoto'     => 'Gå til sida $1',
 
 # Table pager
 'ascending_abbrev'         => 'stigande',
@@ -2716,7 +2716,7 @@ Skriv inn filnamn utan «{{ns:image}}:»-prefikset.',
 'fileduplicatesearch-legend'   => 'Søk etter ei duplikatfil',
 'fileduplicatesearch-filename' => 'Filnamn:',
 'fileduplicatesearch-submit'   => 'Søk',
-'fileduplicatesearch-info'     => '$1 × $2 piksler<br />Filstorleik: $3<br />MIME-type: $4',
+'fileduplicatesearch-info'     => '$1 × $2 pikslar<br />Filstorleik: $3<br />MIME-type: $4',
 'fileduplicatesearch-result-1' => 'Det er ingen kopiar av fila «$1».',
 'fileduplicatesearch-result-n' => 'Det er {{PLURAL:$2|éin kopi|$2 kopiar}} av fila «$1».',
 

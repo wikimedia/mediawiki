@@ -674,7 +674,7 @@ $2',
 # Password reset dialog
 'resetpass'               => 'Ресетујте корисничку лозинку',
 'resetpass_announce'      => 'Пријавили сте се са привременом лозинком послатом електронском поштом. Да бисте завршили са пријавом, морате подесити нову лозинку овде:',
-'resetpass_header'        => 'Ресетовање лозинке',
+'resetpass_header'        => 'Промените лозинку',
 'resetpass_submit'        => 'Подеси лозинку и пријави се',
 'resetpass_success'       => 'Ваша лозинка је успешно промењена! Пријављивање у току...',
 'resetpass_bad_temporary' => 'Привремена лозинка не одговара. Могуће је да сте већ успешно променили лозинку или да сте затражили да вам се пошаље нова привремена лозинка.',
@@ -2072,7 +2072,7 @@ $1',
 'import-interwiki-text'      => 'Одаберите вики и назив стране за увоз. Датуми ревизије и имена уредника ће бити сачувани. Сви трансвики увози су забележени у [[Special:Log/import|историји увоза]].',
 'import-interwiki-history'   => 'Копирај све ревизије ове стране',
 'import-interwiki-submit'    => 'Увези',
-'import-interwiki-namespace' => 'Пребаци странице у именски простор:',
+'import-interwiki-namespace' => 'Именски простор:',
 'importtext'                 => 'Молимо извезите фајл из изворног викија користећи [[Special:Export|извоз]].
 Сачувајте га код себе и пошаљите овде.',
 'importstart'                => 'Увожење страна у току...',
@@ -2544,7 +2544,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Измените овај фајл користећи спољашњу апликацију',
-'edit-externally-help' => 'Погледајте [http://www.mediawiki.org/wiki/Manual:External_editors упутство за подешавање] за више информација.',
+'edit-externally-help' => '(Погледајте [http://www.mediawiki.org/wiki/Manual:External_editors упутство за подешавање] за више информација)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'све',
@@ -2657,18 +2657,22 @@ $1',
 'lag-warn-high'   => 'Због великог лага базе података, измене новије од $1 {{PLURAL:$1|секунде|секунде|секунди}} се неће приказати на списку.',
 
 # Watchlist editor
-'watchlistedit-numitems'      => 'Ваш списак надгледања садржи {{PLURAL:$1|1 наслов|$1 наслова}}, искључујући странице за разговор.',
-'watchlistedit-noitems'       => 'Нема наслова у вашем списку надгледања.',
-'watchlistedit-normal-title'  => 'Уреди списак надгледања',
-'watchlistedit-normal-legend' => 'Уклони наслове са списка надгледања',
-'watchlistedit-normal-submit' => 'Уклони наслове',
-'watchlistedit-raw-title'     => 'мењање сировог списка надгледања',
-'watchlistedit-raw-legend'    => 'мењање сировог списка надгледања',
-'watchlistedit-raw-titles'    => 'Наслови:',
-'watchlistedit-raw-submit'    => 'Освежите списак надгледања',
-'watchlistedit-raw-done'      => 'Ваш списак надгледања је освежен.',
-'watchlistedit-raw-added'     => '{{PLURAL:$1|1 наслов је додат|$1 наслова су додата|$1 наслова је додато}}:',
-'watchlistedit-raw-removed'   => '{{PLURAL:$1|1 наслов је уклоњен|$1 наслова су уклоњена|$1 наслова је уклоњено}}:',
+'watchlistedit-numitems'       => 'Ваш списак надгледања садржи {{PLURAL:$1|1 наслов|$1 наслова}}, искључујући странице за разговор.',
+'watchlistedit-noitems'        => 'Нема наслова у вашем списку надгледања.',
+'watchlistedit-normal-title'   => 'Уреди списак надгледања',
+'watchlistedit-normal-legend'  => 'Уклони наслове са списка надгледања',
+'watchlistedit-normal-explain' => 'Списак страница које надгледате је приказан испод.
+Да уклоните страницу, обележите квадратић поред, и кликните на дугме Уклони наслове.
+Такође, можете да [[Special:Watchlist/raw|измените сирову листу]].',
+'watchlistedit-normal-submit'  => 'Уклони наслове',
+'watchlistedit-normal-done'    => '{{PLURAL:$1|1 чланак је уклоњен|$1 чланка су уклоњена|$1 чланака је уклоњено}} са вашег списка надгледања:',
+'watchlistedit-raw-title'      => 'мењање сировог списка надгледања',
+'watchlistedit-raw-legend'     => 'мењање сировог списка надгледања',
+'watchlistedit-raw-titles'     => 'Наслови:',
+'watchlistedit-raw-submit'     => 'Освежите списак надгледања',
+'watchlistedit-raw-done'       => 'Ваш списак надгледања је освежен.',
+'watchlistedit-raw-added'      => '{{PLURAL:$1|1 наслов је додат|$1 наслова су додата|$1 наслова је додато}}:',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 наслов је уклоњен|$1 наслова су уклоњена|$1 наслова је уклоњено}}:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Преглед сродних промена',
@@ -2710,6 +2714,7 @@ $1',
 'fileduplicatesearch-filename' => 'Име фајла:',
 'fileduplicatesearch-submit'   => 'Претрага',
 'fileduplicatesearch-info'     => '$1 × $2 поксел<br />Величина фајла: $3<br />MIME тип: $4',
+'fileduplicatesearch-result-1' => 'Датотека „$1“ нема идентичних дупликата.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Посебне странице',

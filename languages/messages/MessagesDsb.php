@@ -751,7 +751,7 @@ Njesměju wěcej nježli $2 {{PLURAL:$2|wołanja|wołanjowu|wołanjow|wołanjow}
 # "Undo" feature
 'undo-success' => 'Wobźěłanje móžo se wótpóraś. Pšosym pśeglěduj dołojcne pśirownowanje aby se wěsty był, až to wót wěrnosći coš, a pón składuj změny, aby se wobźěłanje doskóńcnje wótpórało.',
 'undo-failure' => '<span class="error">Změna njejo se mógała wótpóraś, dokulaž jo něchten pótrjefjony wótrězk mjaztym změnił.</span>',
-'undo-norev'   => 'Změna njeda se wótwrośiś, dokulaž njeeksistujo abo bu wulašowana.',
+'undo-norev'   => 'Změna njeda se wótwrośiś, dokulaž njeeksistěčujo abo jo se wulašowała.',
 'undo-summary' => 'Wersija $1 wót [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskusija]]) jo se anulěrowała',
 
 # Account creation failure
@@ -804,7 +804,7 @@ Snaź jo se z wiki wulašował abo hynac pómjenił.
 'rev-delundel'                => 'pokazaś/schowaś',
 'revisiondelete'              => 'Wersije wulašowaś/wótnowiś',
 'revdelete-nooldid-title'     => 'Njepłaśiwa celowa wersija',
-'revdelete-nooldid-text'      => 'Njejsy pak žednu celowu wersiju pódał, aby se toś ta funkcija wuwjadła, pódana funkcija njeeksistujo pak wopytujoš aktualnu wersiju chowaś.',
+'revdelete-nooldid-text'      => 'Njejsy pak žednu celowu wersiju pódał, aby se toś ta funkcija wuwjadła, pódana funkcija njeeksistěrujo pak wopytujoš aktualnu wersiju chowaś.',
 'revdelete-selected'          => "'''{{PLURAL:$2|Wuzwólona wersija|Wuzwólonej wersiji|Wuzwólone wersije}} wót [[:$1]].'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Wuzwólony protokolowe tšojenje|Wuzwólonej protokolowe tšojeni|wuzwólone protokolowe tšojenja}}:'''",
 'revdelete-text'              => "'''Wulašowane wersije budu dalej se wujawjowaś w stawiznach boka, ale jich wopśimjeśe njebuźo za zjawnosć wěcej wiźobna.'''
@@ -1038,7 +1038,7 @@ Móžoš bok ale teke [[:$1|sam załožyś]].",
 'right-move-subpages'        => 'Boki ze swójimi pódbokami pśesunuś',
 'right-suppressredirect'     => 'Pśi pśesunjenju žedne dalejpósrědnjenje ze starego mjenja napóraś',
 'right-upload'               => 'lódowaś dataje',
-'right-reupload'             => 'Eksistujucu dataju pśepisaś',
+'right-reupload'             => 'Eksistěrujucu dataju pśepisaś',
 'right-reupload-own'         => 'Dataju nagratu wót togo samogo wužywarja pśepisaś',
 'right-reupload-shared'      => 'Dataje w zgromadnje wužywanem repozitoriju lokalnje pśepisaś',
 'right-upload_by_url'        => 'Dataju z URL-adrese nagraś',
@@ -1169,7 +1169,7 @@ Glědaj [[Special:NewImages|galeriju nowych datajow]] za wizuelny pśeglěd.',
 'largefileserver'             => 'Dataja jo wětša ako serwer dopušćijo.',
 'emptyfile'                   => 'Dataja jo prozna. Pśicyna togo móžo byś zmólka w mjenju dataje. Kontrolěruj pšosym, lic coš dataju napšawdu uploadowaś.',
 'fileexists'                  => 'Dataja z toś tym mjenim južo eksistěrujo. Tłocyš-lic na "Dataju składowaś", ga se dataja pśepišo. Pšosym kontrolěruj <strong><tt>$1</tt></strong>, gaž njejsy se kradu wěsty.',
-'filepageexists'              => 'Wopisański bok za toś tu dataju bu južo na <strong><tt>$1</tt></strong> napórany, ale dataja z toś tym mjenim njeeksistujo. Zespominanje, kótarež sy zapódał, se na wopisańskem boku njezjawijo. Aby se twóje zespominanje tam zjawiło, dejš jen manuelnje wobźěłaś.',
+'filepageexists'              => 'Wopisański bok za toś tu dataju bu južo na <strong><tt>$1</tt></strong> napórany, ale dataja z toś tym mjenim njeeksistěrujo. Zespominanje, kótarež sy zapódał, se na wopisańskem boku njezjawijo. Aby se twóje zespominanje tam zjawiło, dejš jen manuelnje wobźěłaś.',
 'fileexists-extension'        => 'Eksistěrujo južo dataja z pódobnym mjenim:<br />
 Mě dataje, kótaraž dej se uploadowaś: <strong><tt>$1</tt></strong><br />
 Mě eksistěrujuceje dataje: <strong><tt>$2</tt></strong><br />
@@ -1425,7 +1425,7 @@ Bok wobjadnawa se ako bok wujasnjenja zapśimjeśa, gaž wótkazujo na nju [[Med
 'notargettitle'           => 'Žeden celowy bok njejo zapódany.',
 'notargettext'            => 'Njejsy zapódał celowy bok, źož dejała funkcija se wugbaś.',
 'nopagetitle'             => 'Žeden taki celowy bok',
-'nopagetext'              => 'Celowy bok, kótaryž sćo pódał, njeeksistujo.',
+'nopagetext'              => 'Celowy bok, kótaryž sćo pódał, njeeksistěrujo.',
 'pager-newer-n'           => '{{PLURAL:$1|nowšy 1|nowšej $1|nowše $1|nowšych $1}}',
 'pager-older-n'           => '{{PLURAL:$1|staršy 1|staršej $1|starše $1|staršych $1}}',
 'suppress'                => 'Doglědowanje',
@@ -1753,8 +1753,8 @@ $1',
 'whatlinkshere-filters'    => 'filtry',
 
 # Block/unblock
-'blockip'                         => 'wužywarja blokěrowaś',
-'blockip-legend'                  => 'Wužywarja blokowaś',
+'blockip'                         => 'Wužywarja blokěrowaś',
+'blockip-legend'                  => 'Wužywarja blokěrowaś',
 'blockiptext'                     => 'Wužywaj slědujucy formular, jolic až coš wěstej IP-adresy abo konkretnemu wužywarjeju pśistup znjemóžniś. Take dejało se pó [[{{MediaWiki:Policy-url}}|směrnicach]] jano staś, aby se wandalizmoju zadorało. Pšosym zapódaj pśicynu za twójo blokěrowanje (na pś. mógu se citěrowaś konkretne boki, źo jo se wandalěrowało).',
 'ipaddress'                       => 'IP-adresa',
 'ipadressorusername'              => 'IP-adresa abo wužywarske mě',
@@ -1775,7 +1775,7 @@ $1',
 'ipbenableautoblock'              => 'Awtomatiske blokěrowanje slědneje wót togo wužywarja wužywaneje IP-adresy a wšyknych slědujucych adresow, wót kótarychž wopytajo boki wobźěłaś.',
 'ipbsubmit'                       => 'Togo wužywarja blokěrowaś.',
 'ipbother'                        => 'Drugi cas:',
-'ipboptions'                      => '1 góźina:1 hour,2 góźinje:2 hours, 6 góźiny:6 hours,1 źeń:1 day,2 dnja:2 days,3 dny:3 days,1 tyźeń:1 week,2 tyźenja:2 weeks,3 tyźenje:3 weeks,1 mjasec:1 month,2 mjaseca:2 month,3 mjasece:3 months,6 mjasecy:6 months,1 lěto:1 year,na nimjer:indefinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 góźinje:2 hours,1 źeń:1 day,3 dny:3 days,1 tyźeń:1 week,2 tyźenja:2 weeks,1 mjasec:1 month,3 mjasece:3 months,6 mjasecy:6 months,1 lěto:1 year,na nimjer:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'drugi',
 'ipbotherreason'                  => 'Hynakša/dalšna pśicyna:',
 'ipbhidename'                     => 'Wužywarske mě z protokola blokěrowanjow, lisćiny aktiwnych blokěrowanjow a lisćiny wužywarjow schowaś',
@@ -1787,7 +1787,7 @@ Glědaj do [[Special:IPBlockList|lisćiny aktiwnych blokěrowanjow]].',
 'ipb-edit-dropdown'               => 'Pśicyny blokěrowanja wobźěłaś',
 'ipb-unblock-addr'                => '$1 dopušćiś',
 'ipb-unblock'                     => 'Wužywarske mě abo IP-adresu dopušćiś',
-'ipb-blocklist-addr'              => 'Eksistujuce blokěrowanja za $1',
+'ipb-blocklist-addr'              => 'Eksistěrujuce blokěrowanja za $1',
 'ipb-blocklist'                   => 'Wšykne aktualne blokěrowanja pokazaś',
 'unblockip'                       => 'Wužywarja dopušćiś',
 'unblockiptext'                   => 'Z pomocu dołojcnego formulara móžotej IP-adresa abo wužywaŕ zasej se dopušćiś.',
@@ -1864,7 +1864,7 @@ Móžoš awtomatiski aktualizěrowaś dalejposrědkowanja, kótarež pokazuju na
 Jolic njocoš, pśeglědaj za [[Special:DoubleRedirects|dwójnymi]] abo [[Special:BrokenRedirects|defektnymi daleposrědkowanjami]].
 Sy zagronity, až wótkaze wjedu tam, źož maju wjasć.
 
-Źiwaj na to, až se bok '''nje'''pśesuwa, jolic jo južo bok z nowym titelom, snaźkuli jo prozny abo dalejpósrědnjenje a njama stare wobźěłane wersije. To ma groniś, až móžoš bok zasej slědk pśemjenjowaś, jolic cyniš zmólku, a njemóžoš eksistujucy bok pśepisaś.
+Źiwaj na to, až se bok '''nje'''pśesuwa, jolic jo južo bok z nowym titelom, snaźkuli jo prozny abo dalejpósrědnjenje a njama stare wobźěłane wersije. To ma groniś, až móžoš bok zasej slědk pśemjenjowaś, jolic cyniš zmólku, a njemóžoš eksistěrujucy bok pśepisaś.
 
 '''WARNOWANJE!'''
 To móžo byś drastiska a njewocakowana změna za popularny bok;
@@ -1886,9 +1886,9 @@ W toś tyma padoma dej wopśimjeśe boka manualnje se pśesunuś resp. gromadu w
 'talkexists'              => 'Samy bok jo se pśesunuł, ale pśisłušny diskusijny bok nic, dokulaž eksistěrujo južo taki bok z nowym mjenim. Pšosym pśirownaj wopśimjeśi manualnje.',
 'movedto'                 => 'pśesunjony do',
 'movetalk'                => 'Diskusijny bok sobu pśesunuś.',
-'move-subpages'           => 'Wše pódboki, jolic eksistuju, sobu pśesunuś',
-'move-talk-subpages'      => 'Wše pódboki diskusijnych bokow, jolic eksistuju, sobu pśesunuś',
-'movepage-page-exists'    => 'Bok $1 južo eksistujo a njedajo se awtomatiski pśepisaś.',
+'move-subpages'           => 'Wše pódboki, jolic eksistěruju, sobu pśesunuś',
+'move-talk-subpages'      => 'Wše pódboki diskusijnych bokow, jolic eksistěruju, sobu pśesunuś',
+'movepage-page-exists'    => 'Bok $1 južo eksistěrujo a njedajo se awtomatiski pśepisaś.',
 'movepage-page-moved'     => 'Bok $1 jo se do $2 pśesunuł.',
 'movepage-page-unmoved'   => 'Bok $1 njejo se do $2 pśesunuś dał.',
 'movepage-max-pages'      => 'Maksimalna licba $1 {{PLURAL:$1|boka|bokowu|bokow|bokow}} jo se pśesunuła a žedne dalšne wěcej njedaje se awtomatiski pśesunuś.',

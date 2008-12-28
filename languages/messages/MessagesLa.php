@@ -6,6 +6,7 @@
  *
  * @author LeighvsOptimvsMaximvs
  * @author Omnipaedista
+ * @author OrbiliusMagister
  * @author Rafaelgarcia
  * @author SPQRobin
  * @author UV
@@ -913,8 +914,8 @@ Ad fasciculum in pagina includendum, utere nexu
 'uploadlogpagetext'  => 'Subter est index fasciculorum recentissimorum impositorum.
 Vide etiam [[Special:NewImages|pinacothecam fasciculorum recentissimorum impositorum]].',
 'filename'           => 'Nomen fasciculi',
-'filedesc'           => 'Descriptio',
-'fileuploadsummary'  => 'Descriptio:',
+'filedesc'           => 'Summarium',
+'fileuploadsummary'  => 'Summarium:',
 'filestatus'         => 'Locus verborum privatorum:',
 'filesource'         => 'Fons:',
 'uploadedfiles'      => 'Fasciculi impositi',
@@ -1557,6 +1558,7 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'imagemaxsize'    => 'Terminare imagines in paginis imaginum ad:',
 'thumbsize'       => 'Magnitudo pollicisunguis:',
 'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|pagina|paginae}}',
+'file-nohires'    => '<small>Nulla maior resolutio exstat.</small>',
 'show-big-image'  => 'Resolutio completa',
 
 # Special:NewImages
@@ -1566,6 +1568,10 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'noimages'      => 'Nullum videndum.',
 'ilsubmit'      => 'Quaerere',
 'bydate'        => 'ex die',
+
+# Metadata
+'metadata-expand'   => 'Plura ostende',
+'metadata-collapse' => 'Partim celare',
 
 'exif-meteringmode-1' => 'Media',
 

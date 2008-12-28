@@ -101,9 +101,9 @@ $messages = array(
 'tog-usenewrc'                => 'Schimbări recente avansate (JavaScript)',
 'tog-numberheadings'          => 'Numerotează automat secţiunile',
 'tog-showtoolbar'             => 'Afişează bara de unelte pentru modificare (JavaScript)',
-'tog-editondblclick'          => 'Modifică pagini la dublu clic (JavaScript)',
+'tog-editondblclick'          => 'Modifică pagini la dublu click (JavaScript)',
 'tog-editsection'             => 'Activează modificarea secţiunilor prin legăturile [modifică]',
-'tog-editsectiononrightclick' => 'Activează modificarea secţiunilor prin clic dreapta<br />
+'tog-editsectiononrightclick' => 'Activează modificarea secţiunilor prin click dreapta
 pe titlul secţiunii (JavaScript)',
 'tog-showtoc'                 => 'Arată cuprinsul (pentru paginile cu mai mult de 3 paragrafe cu titlu)',
 'tog-rememberpassword'        => 'Aminteşte-ţi între sesiuni',
@@ -132,7 +132,7 @@ pe titlul secţiunii (JavaScript)',
 'tog-watchlisthideminor'      => 'Ascunde modificările minore la lista mea de urmărire',
 'tog-nolangconversion'        => 'Dezactivează conversia variabilelor',
 'tog-ccmeonemails'            => 'Trimite-mi o copie când trimit un email altui utilizator',
-'tog-diffonly'                => 'Nu arăta conţinutul paginii prin dif',
+'tog-diffonly'                => 'Nu arăta conţinutul paginii sub dif',
 'tog-showhiddencats'          => 'Arată categoriile ascunse',
 
 'underline-always'  => 'Întotdeauna',
@@ -207,7 +207,7 @@ pe titlul secţiunii (JavaScript)',
 'category-article-count-limited' => '{{PLURAL:$1|Următoarea pagină|Următoarele $1 pagini}} se află în categoria curentă.',
 'category-file-count'            => '{{PLURAL:$2|Această categorie conţine doar următorul fişier.|{{PLURAL:$1|Următorul fişier|Următoarele $1 fişiere}} se află în această categorie, dintr-un total de $2.}}',
 'category-file-count-limited'    => '{{PLURAL:$1|Următorul fişier|Următoarele $1 fişiere}} se află în categoria curentă.',
-'listingcontinuesabbrev'         => ' cont.',
+'listingcontinuesabbrev'         => 'cont.',
 
 'mainpagetext'      => "<big>'''Programul Wiki a fost instalat cu succes.'''</big>",
 'mainpagedocfooter' => 'Consultă [http://meta.wikimedia.org/wiki/Help:Contents Ghidul utilizatorului (en)] pentru informaţii despre utilizarea programului wiki.
@@ -259,7 +259,7 @@ pe titlul secţiunii (JavaScript)',
 'create-this-page'  => 'Crează această pagină',
 'delete'            => 'Şterge',
 'deletethispage'    => 'Şterge pagina',
-'undelete_short'    => 'Recuperarea {{PLURAL:$1|unei editări|de $1 editări}}',
+'undelete_short'    => 'Recuperarea {{PLURAL:$1|unei editări|a $1 editări}}',
 'protect'           => 'Protejează',
 'protect_change'    => 'schimbă protecţia',
 'protectthispage'   => 'Protejează pagina',
@@ -275,14 +275,14 @@ pe titlul secţiunii (JavaScript)',
 'talk'              => 'Discuţie',
 'views'             => 'Vizualizări',
 'toolbox'           => 'Trusa de unelte',
-'userpage'          => 'Vezi pagina utilizatorului',
+'userpage'          => 'Vizualizaţi pagina utilizatorului',
 'projectpage'       => 'Vezi pagina proiectului',
-'imagepage'         => 'Vizualizează pagina imaginii',
-'mediawikipage'     => 'Vezi pagina mesajului',
-'templatepage'      => 'Vezi pagina formatului',
-'viewhelppage'      => 'Vezi pagina de ajutor',
-'categorypage'      => 'Vezi pagina categoriei',
-'viewtalkpage'      => 'Vezi discuţia',
+'imagepage'         => 'Vizualizaţi pagina imaginii',
+'mediawikipage'     => 'Vizualizaţi pagina mesajului',
+'templatepage'      => 'Vizualizaţi pagina formatului',
+'viewhelppage'      => 'Vizualizaţi pagina de ajutor',
+'categorypage'      => 'Vizualizaţi pagina categoriei',
+'viewtalkpage'      => 'Vizualizaţi discuţia',
 'otherlanguages'    => 'În alte limbi',
 'redirectedfrom'    => '(Redirecţionat de la $1)',
 'redirectpagesub'   => 'Pagină de redirecţionare',
@@ -290,7 +290,7 @@ pe titlul secţiunii (JavaScript)',
 'viewcount'         => 'Această pagină a fost vizitată {{PLURAL:$1|odată|de $1 ori}}.',
 'protectedpage'     => 'Pagină protejată',
 'jumpto'            => 'Salt la:',
-'jumptonavigation'  => 'Navigare',
+'jumptonavigation'  => 'navigare',
 'jumptosearch'      => 'căutare',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -335,7 +335,7 @@ pe titlul secţiunii (JavaScript)',
 'youhavenewmessagesmulti' => 'Aveţi mesaje noi la $1',
 'editsection'             => 'modifică',
 'editold'                 => 'modifică',
-'viewsourceold'           => 'vizualizează sursa',
+'viewsourceold'           => 'vizualizaţi sursa',
 'editsectionhint'         => 'Modifică secţiunea: $1',
 'toc'                     => 'Cuprins',
 'showtoc'                 => 'arată',
@@ -450,7 +450,7 @@ Motivul invocat este ''$2''.",
 Contul dumneavoatră a fost creat. Nu uitaţi să vă personalizaţi [[Special:Preferences|preferinţele]] în {{SITENAME}}.',
 'loginpagetitle'             => 'Autentificare utilizator',
 'yourname'                   => 'Nume de utilizator:',
-'yourpassword'               => 'Parola',
+'yourpassword'               => 'Parolă:',
 'yourpasswordagain'          => 'Repetă parola',
 'remembermypassword'         => 'Reţine-mi parola între sesiuni',
 'yourdomainname'             => 'Domeniul tău',
@@ -536,7 +536,7 @@ Ignoraţi acest mesaj, dacă acea creare a fost o greşeală.',
 'resetpass'               => 'Resetează parola contului',
 'resetpass_announce'      => 'Sunteţi autentificat cu un cod temporar trimis pe mail. Pentru a termina acţiunea de autentificare, trebuie să setaţi o parolă nouă aici:',
 'resetpass_text'          => '<!-- Adaugă text aici -->',
-'resetpass_header'        => 'Resetează parola',
+'resetpass_header'        => 'Modifică parola',
 'resetpass_submit'        => 'Setează parola şi autentifică',
 'resetpass_success'       => 'Parola a fost schimbată cu succes! Autentificare în curs...',
 'resetpass_bad_temporary' => 'Parola temporară nu este validă. Este posibil să vă fi schimbat deja parola cu succes sau să fi cerut o nouă parolă temporară.',
@@ -693,9 +693,10 @@ Puteţi edita o pagină deja existentă sau puteţi să vă [[Special:UserLogin|
 'permissionserrors'                => 'Erori de permisiune',
 'permissionserrorstext'            => 'Nu aveţi permisiune pentru a face acest lucru, din următoarele {{PLURAL:$1|motiv|motive}}:',
 'permissionserrorstext-withaction' => 'Nu ai permisiunea să $2, din {{PLURAL:$1|următorul motivul|următoarele motive}}:',
-'recreate-deleted-warn'            => "'''Atenție: Recreaţi o pagină care a fost ştearsă anterior.'''
+'recreate-deleted-warn'            => "'''Atenţie: Recreaţi o pagină care a fost ştearsă anterior.'''
 
-Pentru a verifica dacă recrearea paginii este într-adevăr oportună iată aici jurnalul ştergerilor:",
+
+Pentru a verifica dacă recrearea paginii este într-adevăr oportună, iată aici jurnalul ştergerilor:",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Atenţie: Această pagină conţine prea multe apelări costisitoare ale funcţiilor parser.
@@ -722,7 +723,7 @@ Acsete argumente au fost omise.',
 Motivul invocat de $3 este ''$2''",
 
 # History pages
-'viewpagelogs'        => 'Vezi rapoartele pentru această pagină',
+'viewpagelogs'        => 'Vezi jurnalele pentru această pagină',
 'nohistory'           => 'Nu există istoric pentru această pagină.',
 'revnotfound'         => 'Versiunea nu a fost găsită',
 'revnotfoundtext'     => 'Versiunea mai veche a paginii pe care aţi cerut-o nu a fost găsită. Vă rugăm să verificaţi legătura pe care aţi folosit-o pentru a accesa această pagină.',
@@ -948,23 +949,23 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'files'                    => 'Fişiere',
 
 # User rights
-'userrights'                  => 'Administrarea drepturilor de utilizator', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Administrarea permisiunilor de utilizator', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'      => 'Administrare grupuri de utilizatori',
 'userrights-user-editname'    => 'Introdu un nume de utilizator:',
 'editusergroup'               => 'Modificare grup de utilizatori',
-'editinguser'                 => "modificare drepturi de utilizator ale utilizatorului '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                 => "modificare permisiuni de utilizator ale utilizatorului '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'Modifică grupul de utilizatori',
 'saveusergroups'              => 'Salvează grupul de utilizatori',
 'userrights-groupsmember'     => 'Membru al:',
-'userrights-groups-help'      => 'Poţi schimba grupul căruia îi aparţine utilizatorul:
+'userrights-groups-help'      => 'Puteţi schimba grupul căruia îi aparţine utilizatorul:
 *Căsuţa bifată înseamnă că utilizatorul este în acel grup.
 *Căsuţa nebifată înseamnă că utilizatorul nu este în acel grup.
 *Steluţa (*) indică faptul că utilizatorul nu poate fi eliminat din grup odată adăugat, sau invers',
 'userrights-reason'           => 'Motivul schimbării:',
-'userrights-no-interwiki'     => 'Nu aveţi permisiunea de a modifica drepturi de utilizatori pe alte wiki.',
+'userrights-no-interwiki'     => 'Nu aveţi permisiunea de a modifica permisiunile utilizatorilor pe alte wiki.',
 'userrights-nodatabase'       => 'Baza de date $1 nu există sau nu este locală.',
-'userrights-nologin'          => 'Trebuie să te [[Special:UserLogin|autentifici]] cu un cont de administrator pentru a atribui drepturi utilizatorilor.',
-'userrights-notallowed'       => 'Contul tău nu îţi permite să aloci drepturi speciale utilizatorilor.',
+'userrights-nologin'          => 'Trebuie să te [[Special:UserLogin|autentifici]] cu un cont de administrator pentru a atribui permisiuni utilizatorilor.',
+'userrights-notallowed'       => 'Contul dumneavoastră nu are permisiunea de a acorda permisiuni utilizatorilor.',
 'userrights-changeable-col'   => 'Grupuri pe care le puteţi schimba',
 'userrights-unchangeable-col' => 'Grupuri pe care nu le puteţi schimba',
 
@@ -1041,13 +1042,13 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'right-unwatchedpages'       => 'Vizualizezaă listă de pagini neurmărite',
 'right-trackback'            => 'Trimite un urmăritor',
 'right-mergehistory'         => 'Uneşte istoricele paginilor',
-'right-userrights'           => 'Modifică toate drepturile de utilizator',
-'right-userrights-interwiki' => 'Modifică drepturile de utilizator pentru utilizatorii de pe alte wiki',
+'right-userrights'           => 'Modifică toate permisiunile de utilizator',
+'right-userrights-interwiki' => 'Modifică permisiunile de utilizator pentru utilizatorii de pe alte wiki',
 'right-siteadmin'            => 'Blochează şi deblochează baza de date',
 
 # User rights log
-'rightslog'      => 'Raportul drepturilor de utilizator',
-'rightslogtext'  => 'Acesta este un raport al modificărilor drepturilor utilizatorilor.',
+'rightslog'      => 'Jurnal permisiuni de utilizator',
+'rightslogtext'  => 'Acest jurnal cuprinde modificările permisiunilor utilizatorilor.',
 'rightslogentry' => 'a schimbat pentru $1 apartenenţa la un grup de la $2 la $3',
 'rightsnone'     => '(niciunul)',
 
@@ -1069,8 +1070,8 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 $3',
 'diff'                              => 'dif',
 'hist'                              => 'ist',
-'hide'                              => 'ascunde',
-'show'                              => 'arată',
+'hide'                              => 'Ascunde',
+'show'                              => 'Arată',
 'minoreditletter'                   => 'm',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'b',
@@ -1085,7 +1086,7 @@ $3',
 'recentchangeslinked-noresult' => 'Nici o schimbare la paginile legate în perioada dată.',
 'recentchangeslinked-summary'  => "Aceasta este o listă a schimbărilor efectuate recent asupra paginilor cu legături de la o anumită pagină (sau asupra membrilor unei anumite categorii).
 Paginile pe care le [[Special:Watchlist|urmăriţi]] apar în '''aldine'''.",
-'recentchangeslinked-page'     => 'Nume pagină:',
+'recentchangeslinked-page'     => 'Numele paginii:',
 'recentchangeslinked-to'       => 'Afişează schimbările în paginile care se leagă de pagina dată',
 
 # Upload
@@ -1096,7 +1097,7 @@ Paginile pe care le [[Special:Watchlist|urmăriţi]] apar în '''aldine'''.",
 'uploadnologin'               => 'Nu sunteţi autentificat',
 'uploadnologintext'           => 'Trebuie să fiţi [[Special:UserLogin|autentificat]] pentru a putea trimite fişiere.',
 'upload_directory_missing'    => 'Directorul în care sunt încărcate fişierele ($1) lipseşte şi nu poate fi creat de serverul web.',
-'upload_directory_read_only'  => 'Directorul de trimitere ($1) nu are drepturi de scriere de către server.',
+'upload_directory_read_only'  => 'Directorul de încărcare ($1) nu poate fi scris de server.',
 'uploaderror'                 => 'Eroare la trimitere fişier',
 'uploadtext'                  => "Foloseşte formularul de mai jos pentru a trimite fişiere. 
 Pentru a vizualiza sau căuta imagini deja trimise, mergi la [[Special:ImageList|lista de imagini]], încărcările şi ştergerile sunt de asemenea înregistrate în [[Special:Log/upload|jurnalul fişierelor trimise]], ştergerile în [[Special:Log/delete|jurnalul fişierelor şterse]].
@@ -1108,13 +1109,13 @@ Pentru a include un fişier de sunet într-un articol, foloseşti o legătură d
 'upload-permitted'            => 'Tipuri de fişiere permise: $1.',
 'upload-preferred'            => 'Tipuri de fişiere preferate: $1.',
 'upload-prohibited'           => 'Tipuri de fişiere interzise: $1.',
-'uploadlog'                   => 'Raportul fişierelor trimise',
-'uploadlogpage'               => 'Raportul fişierelor trimise',
+'uploadlog'                   => 'jurnal fişiere trimise',
+'uploadlogpage'               => 'Jurnal fişiere trimise',
 'uploadlogpagetext'           => 'Mai jos este afişată lista ultimelor fişiere trimise.
 Vezi [[Special:NewImages|galeria fişierelor noi]] pentru o mai bună vizualizare.',
 'filename'                    => 'Nume fişier',
 'filedesc'                    => 'Descriere fişier',
-'fileuploadsummary'           => 'Descriere:',
+'fileuploadsummary'           => 'Rezumat:',
 'filestatus'                  => 'Statutul drepturilor de autor:',
 'filesource'                  => 'Sursă:',
 'uploadedfiles'               => 'Fişiere trimise',
@@ -1124,6 +1125,7 @@ Vezi [[Special:NewImages|galeria fişierelor noi]] pentru o mai bună vizualizar
 'illegalfilename'             => 'Numele fişierului "$1" conţine caractere care nu sunt permise în titlurile paginilor. Vă rugăm redenumiţi fişierul şi încercaţi să îl încărcaţi din nou.',
 'badfilename'                 => 'Numele fişierului a fost schimbat în "$1".',
 'filetype-badmime'            => 'Nu este permisă încărcarea de fişiere de tipul MIME "$1".',
+'filetype-bad-ie-mime'        => 'Nu puteţi încărca acest fişier deoarece Internet Explorer îl va detecta ca şi "$1", care este nepermis şi poate fi un format periculos.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' este un tip de fişier nedorit.
 {{PLURAL:\$3|Tipul de fişier preferat este|Tipurile de fişiere preferate sunt}} \$2.",
 'filetype-banned-type'        => "'''\".\$1\"''' este un tip de fişier nepermis. 
@@ -1156,7 +1158,7 @@ Dacă ai această imagine la rezoluţie mare încarc-o pe aceasta, altfel schimb
 'uploadedimage'               => 'a trimis [[$1]]',
 'overwroteimage'              => 'încărcat o versiune nouă a fişierului "[[$1]]"',
 'uploaddisabled'              => 'Ne pare rău, trimiterea de imagini este dezactivată.',
-'uploaddisabledtext'          => 'Încărcările de fișiere sunt dezactivate.',
+'uploaddisabledtext'          => 'Încărcările de fişiere sunt dezactivate.',
 'uploadscripted'              => 'Fişierul conţine HTML sau cod script care poate fi interpretat în mod eronat de un browser.',
 'uploadcorrupt'               => 'Fişierul este corupt sau are o extensie incorectă. Verifică fişierul şi trimite-l din nou.',
 'uploadvirus'                 => 'Fişierul conţine un virus! Detalii: $1',
@@ -1165,12 +1167,12 @@ Dacă ai această imagine la rezoluţie mare încarc-o pe aceasta, altfel schimb
 'upload-maxfilesize'          => 'Mărimea maximă a unui fişier: $1',
 'watchthisupload'             => 'Urmăreşte această pagină',
 'filewasdeleted'              => 'Un fişier cu acest nume a fost anterior încărcat şi apoi şters. Ar trebui să verificaţi $1 înainte să îl încărcaţi din nou.',
-'upload-wasdeleted'           => "'''Atenţie: Eşti pe cale să încarci un fişier şters anterior.'''
+'upload-wasdeleted'           => "'''Atenţie: Sunteţi pe cale să încarcaţi un fişier şters anterior.'''
 
-Te rog să ai în vedere dacă este utilă reîncărcarea acestuia.
-Raportul pentru această ştergere este disponibil aici:",
-'filename-bad-prefix'         => 'Numele fişierului pe care îl încarci începe cu <strong>"$1"</strong>, care este un nume non-descriptiv alocat automat în general de camerele digitale.
-Te rog alege un nume mai descriptiv pentru fişerul tău.',
+Vă rugăm să aveţi în vedere dacă este utilă reîncărcarea acestuia.
+Jurnalul pentru această ştergere este disponibil aici:",
+'filename-bad-prefix'         => 'Numele fişierului pe care îl încărcaţi începe cu <strong>"$1"</strong>, care este un nume non-descriptiv alocat automat în general de camerele digitale.
+Vă rugăm, alegeţi un nume mai descriptiv pentru fişerul dumneavoastră.',
 
 'upload-proto-error'      => 'Protocol incorect',
 'upload-proto-error-text' => 'Importul de la distanţă necesită adrese URL care încep cu <code>http://</code> sau <code>ftp://</code>.',
@@ -1222,7 +1224,7 @@ O apăsare pe antetul coloanei schimbă sortarea.',
 'filehist-dimensions'            => 'Dimensiuni',
 'filehist-filesize'              => 'Mărimea fişierului',
 'filehist-comment'               => 'Comentariu',
-'imagelinks'                     => 'Legăturile imaginii',
+'imagelinks'                     => 'Legături',
 'linkstoimage'                   => '{{PLURAL:$1|Următoarea pagină trimite spre|Următoarele $1 pagini trimit spre}} această imagine:',
 'nolinkstoimage'                 => 'Nici o pagină nu se leagă la această imagine.',
 'morelinkstoimage'               => 'Vedeţi [[Special:WhatLinksHere/$1|mai multe legături]] către acest fişier.',
@@ -1264,7 +1266,7 @@ O apăsare pe antetul coloanei schimbă sortarea.',
 'filedelete-nofile'           => "'''$1''' nu există.",
 'filedelete-nofile-old'       => "Nu există nicio versiune arhivată a '''$1''' cu atributele specificate.",
 'filedelete-iscurrent'        => 'Eşti pe cale să ştergi cea mai recentă versiune a acestui fişier. Te rog să revii la o versiune mai veche.',
-'filedelete-otherreason'      => 'Alt motiv (adiţional):',
+'filedelete-otherreason'      => 'Motiv diferit/adiţional:',
 'filedelete-reason-otherlist' => 'Alt motiv',
 'filedelete-reason-dropdown'  => '*Motive uzuale
 ** Încălcare drepturi de autor
@@ -1412,13 +1414,13 @@ O pagină este considerată o pagină de dezambiguizare dacă foloseşte formate
 # Special:Log
 'specialloguserlabel'  => 'Utilizator:',
 'speciallogtitlelabel' => 'Titlu:',
-'log'                  => 'Rapoarte',
+'log'                  => 'Jurnale',
 'all-logs-page'        => 'Toate jurnalele',
 'log-search-legend'    => 'Caută jurnale',
 'log-search-submit'    => 'Du-te',
 'alllogstext'          => 'Afişare combinată a tuturor jurnalelor {{SITENAME}}.
-Puteţi limita vizualizarea selectând tipul raportului, numele de utilizator sau pagina afectată.',
-'logempty'             => 'Nici o înregistrare în raport.',
+Puteţi limita vizualizarea selectând tipul jurnalului, numele de utilizator sau pagina afectată.',
+'logempty'             => 'Nici o înregistrare în jurnal.',
 'log-title-wildcard'   => 'Caută titluri care încep cu acest text',
 
 # Special:AllPages
@@ -1453,10 +1455,10 @@ Vedeţi şi [[Special:WantedCategories|categoriile dorite]].',
 
 # Special:ListGroupRights
 'listgrouprights'          => 'Permisiunile grupurilor de utilizatori',
-'listgrouprights-summary'  => 'Mai jos este afişată o listă a grupurilor de utilizatori definită în această wiki, împreună cu drepturile de acces asociate.
-Pot exista [[{{MediaWiki:Listgrouprights-helppage}}|informaţii adiţionale]] despre drepturile individuale.',
+'listgrouprights-summary'  => 'Mai jos este afişată o listă a grupurilor de utilizatori definită în această wiki, împreună cu permisiunile de acces asociate.
+Pot exista [[{{MediaWiki:Listgrouprights-helppage}}|informaţii adiţionale]] despre permisiunile individuale.',
 'listgrouprights-group'    => 'Grup',
-'listgrouprights-rights'   => 'Drepturi',
+'listgrouprights-rights'   => 'Permisiuni',
 'listgrouprights-helppage' => 'Help:Group rights',
 'listgrouprights-members'  => '(listă de membri)',
 
@@ -1573,10 +1575,10 @@ Asistenţă şi suport:
 'suppressedarticle'           => 'eliminate "[[$1]]"',
 'dellogpage'                  => 'Jurnal pagini şterse',
 'dellogpagetext'              => 'Mai jos se află lista celor mai recente elemente şterse.',
-'deletionlog'                 => 'raportul de ştergeri',
+'deletionlog'                 => 'jurnal pagini şterse',
 'reverted'                    => 'Revenire la o versiune mai veche',
 'deletecomment'               => 'Motiv pentru ştergere:',
-'deleteotherreason'           => 'Alt motiv/detalii:',
+'deleteotherreason'           => 'Motiv diferit/adiţional:',
 'deletereasonotherlist'       => 'Alt motiv',
 'deletereason-dropdown'       => '*Motive uzuale
 ** Cererea autorului
@@ -1618,7 +1620,7 @@ revenire la ultima versiune de $2.',
 Iată configuraţia curentă a paginii <strong>$1</strong>:',
 'protect-locked-dblock'       => 'Nivelurile de protecţie nu pot fi aplicate deoarece baza de date este închisă.
 Iată configuraţia curentă a paginii <strong>$1</strong>:',
-'protect-locked-access'       => 'Contul dumneavoastră nu are dreptul de a schimba nivelurile de protejare.
+'protect-locked-access'       => 'Contul dumneavoastră nu are permisiunea de a schimba nivelurile de protejare.
 Aici sunt setările curente pentru pagina <strong>$1</strong>:',
 'protect-cascadeon'           => 'Această pagină este protejată deoarece este inclusă în {{PLURAL:$1|următoarea pagină, ce are|următoarele pagini ce au}} activată protejarea la modificare în cascadă.
 Puteţi schimba nivelul de protejare al acestei pagini, dar asta nu va afecta protecţia în cascadă.',
@@ -1675,7 +1677,7 @@ S-ar putea ca această legătură să fie greşită, sau revizia a fost restaura
 'cannotundelete'               => 'Recuperarea a eşuat; este posibil ca altcineva să fi recuperat pagina deja.',
 'undeletedpage'                => "<big>'''$1 a fost recuperat'''</big>
 
-Consultaţi [[Special:Log/delete|raportul ştergerilor]] pentru a vedea toate ştergerile şi recuperările recente.",
+Consultaţi [[Special:Log/delete|jurnalul ştergerilor]] pentru a vedea toate ştergerile şi recuperările recente.",
 'undelete-header'              => 'Vezi [[Special:Log/delete|logul de ştergere]] pentru paginile şterse recent.',
 'undelete-search-box'          => 'Caută pagini şterse',
 'undelete-search-prefix'       => 'Arată paginile care încep cu:',
@@ -1695,7 +1697,7 @@ $1',
 
 # Namespace form on various pages
 'namespace'      => 'Spaţiu de nume:',
-'invert'         => 'Exclude spaţiul:',
+'invert'         => 'Exclude spaţiul',
 'blanknamespace' => '(Principală)',
 
 # Contributions
@@ -1709,7 +1711,7 @@ $1',
 
 'sp-contributions-newbies'     => 'Arată doar contribuţiile conturilor noi',
 'sp-contributions-newbies-sub' => 'Pentru începători',
-'sp-contributions-blocklog'    => 'Raport blocări',
+'sp-contributions-blocklog'    => 'Jurnal blocări',
 'sp-contributions-search'      => 'Caută contribuţii',
 'sp-contributions-username'    => 'Adresă IP sau nume de utilizator:',
 'sp-contributions-submit'      => 'Caută',
@@ -1758,10 +1760,10 @@ Precizaţi motivul blocării; de exemplu indicaţi paginile vandalizate de acest
 'ipbemailban'                     => 'Nu permite utilizatorului să trimită e-mail',
 'ipbenableautoblock'              => 'Blochează automat ultima adresă IP folosită de acest utilizator şi toate adresele de la care încearcă să editeze în viitor',
 'ipbsubmit'                       => 'Blochează acest utilizator',
-'ipbother'                        => 'Alt termen',
+'ipbother'                        => 'Alt termen:',
 'ipboptions'                      => '15 minute:15 minutes,1 oră:1 hour,3 ore:3 hours,24 ore:24 hours,48 ore:48 hours,1 săptămână:1 week,1 lună:1 month,nelimitat:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'altul',
-'ipbotherreason'                  => 'Alt motiv sau suplimentar:',
+'ipbotherreason'                  => 'Motiv diferit/adiţional:',
 'ipbhidename'                     => 'Ascunde numele de utilizator din jurnalul blocărilor, lista activă a blocărilor şi lista utilizatorilor',
 'ipbwatchuser'                    => 'Urmăreşte pagina sa de utilizator şi de discuţii',
 'badipaddress'                    => 'Adresa IP este invalidă.',
@@ -1770,13 +1772,12 @@ Precizaţi motivul blocării; de exemplu indicaţi paginile vandalizate de acest
 <br />Vezi [[Special:IPBlockList|lista de adrese IP şi conturi blocate]] pentru a revizui adresele blocate.',
 'ipb-edit-dropdown'               => 'Modifică motivele blocării',
 'ipb-unblock-addr'                => 'Deblochează $1',
-'ipb-unblock'                     => 'Deblochează un cont de utilizator sau o adresă IP',
+'ipb-unblock'                     => 'Deblocaţi un nume de utilizator sau o adresă IP',
 'ipb-blocklist-addr'              => 'Blocări existente pentru $1',
 'ipb-blocklist'                   => 'Vezi blocările existente',
 'unblockip'                       => 'Deblochează adresă IP',
-'unblockiptext'                   => 'Foloseşte chestionarul de mai jos pentru a restaura
-drepturile de scriere pentru o adresă IP blocată anterior..',
-'ipusubmit'                       => 'Deblochează adresa',
+'unblockiptext'                   => 'Folosiţi formularul de mai jos pentru a restaura permisiunea de scriere pentru adrese IP sau nume de utilizator blocate anterior.',
+'ipusubmit'                       => 'Deblochează această adresă',
 'unblocked'                       => '[[User:$1|$1]] a fost deblocat',
 'unblocked-id'                    => 'Blocarea $1 a fost eliminată',
 'ipblocklist'                     => 'Lista adreselor IP şi a conturilor blocate',
@@ -1798,7 +1799,7 @@ drepturile de scriere pentru o adresă IP blocată anterior..',
 'autoblocker'                     => 'Autoblocat fiindcă foloseşti aceeaşi adresă IP ca şi "$1". Motivul este "$2".',
 'blocklogpage'                    => 'Jurnal blocări',
 'blocklogentry'                   => 'a blocat "[[$1]]" pe o perioadă de $2 $3',
-'blocklogtext'                    => 'Acesta este un raport al acţiunilor de blocare şi deblocare. Adresele IP blocate automat nu sunt afişate. Vizitaţi [[Special:IPBlockList|lista de adrese blocate]] pentru o listă explicită a adreselor blocate în acest moment.',
+'blocklogtext'                    => 'Acest jurnal cuprinde acţiunile de blocare şi deblocare. Adresele IP blocate automat nu sunt afişate. Vizitaţi [[Special:IPBlockList|lista de adrese blocate]] pentru o listă explicită a adreselor blocate în acest moment.',
 'unblocklogentry'                 => 'a deblocat $1',
 'block-log-flags-anononly'        => 'doar utilizatorii anonimi',
 'block-log-flags-nocreate'        => 'creare de conturi dezactivată',
@@ -2612,7 +2613,7 @@ Introdu numele fişierului fără prefixul "{{ns:image}}:".',
 'specialpages-group-login'       => 'Autentificare / Înregistrare',
 'specialpages-group-changes'     => 'Schimbări recente şi jurnale',
 'specialpages-group-media'       => 'Fişiere',
-'specialpages-group-users'       => 'Utilizatori şi drepturi',
+'specialpages-group-users'       => 'Utilizatori şi permisiuni',
 'specialpages-group-highuse'     => 'Pagini utilizate intens',
 'specialpages-group-pages'       => 'Listă de pagini',
 'specialpages-group-pagetools'   => 'Unelte pentru pagini',

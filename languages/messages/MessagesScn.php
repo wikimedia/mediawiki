@@ -2542,6 +2542,9 @@ Mèttiri lu nomu dû file senza lu prifissu "{{ns:image}}:"',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Circata dê file duppiuni',
+'fileduplicatesearch-summary'  => "Circata di pussìbbili duppiuni dû file 'n basi ô valuru di ''hash''.
+
+Nziriri lu nomu dû file senza lu prifissu \"{{ns:image}}:\"",
 'fileduplicatesearch-legend'   => 'Circata di nu duppiuni',
 'fileduplicatesearch-filename' => 'Nomu dû file:',
 'fileduplicatesearch-submit'   => 'Circata',

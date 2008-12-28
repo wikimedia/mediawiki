@@ -1169,7 +1169,7 @@ $2',
 'localtime'                => 'זמן מקומי',
 'timezoneoffset'           => 'הפרש¹',
 'servertime'               => 'השעה הנוכחית בשרת היא',
-'guesstimezone'            => 'קבל מהדפדפן',
+'guesstimezone'            => 'קבלה מהדפדפן',
 'allowemail'               => 'קבלת דוא"ל ממשתמשים אחרים',
 'prefs-searchoptions'      => 'אפשרויות חיפוש',
 'prefs-namespaces'         => 'מרחבי שם',
@@ -1278,7 +1278,7 @@ $2',
 # User rights log
 'rightslog'      => 'יומן תפקידים',
 'rightslogtext'  => 'זהו יומן השינויים בתפקידי המשתמשים.',
-'rightslogentry' => 'שינה את ההרשאות של $1 מ-$2 ל-$3',
+'rightslogentry' => 'שינה את ההרשאות של $1 מ־$2 ל־$3',
 'rightsnone'     => '(כלום)',
 
 # Recent changes
@@ -2707,7 +2707,7 @@ $5
 'invalidateemail'          => 'ביטול האימות של כתובת הדוא"ל',
 
 # Scary transclusion
-'scarytranscludedisabled' => '[הכללת תבניות בין אתרים מבוטלת]',
+'scarytranscludedisabled' => '[הכללת דפים בין אתרים מבוטלת]',
 'scarytranscludefailed'   => '[הכללת התבנית נכשלה בגלל $1]',
 'scarytranscludetoolong'  => '[כתובת ה־URL ארוכה מדי]',
 

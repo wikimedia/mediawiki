@@ -455,7 +455,7 @@ $2',
 # Password reset dialog
 'resetpass'               => 'Сёрматфтомать сувама валсь полафнема',
 'resetpass_announce'      => 'Тон сувать ёткопингонь сувама валть вельде кона сась электрононь адресозот. Сувама аделаманди тондейть эряви путомс тязк од сувама вал:',
-'resetpass_header'        => 'Полафтомс сувама валть',
+'resetpass_header'        => 'Полафтомс сувама валцень',
 'resetpass_submit'        => 'Арафтк сувама валть эди сувак',
 'resetpass_success'       => 'Тонь сувама валцень полафнемась ётась лац! Тонь сувафттядязь системс...',
 'resetpass_bad_temporary' => 'Аф кондясти ётконь сувама валсь. Шятьта сонь полафтыть ни эли кучить тага фкя вешфкс од сувама валть кундаманкса.',
@@ -1585,6 +1585,7 @@ $NEWPAGE
 'undelete-error-long'          => 'Листь эльбятькст мърдафтома файл:
 
 $1',
+'undelete-show-file-submit'    => 'Ина',
 
 # Namespace form on various pages
 'namespace'      => 'Лемботма:',
@@ -1841,7 +1842,7 @@ $1',
 Сембе ётковикинь таргама тефне тяшневихть [[Special:Log/import|таргамань лувомас]].',
 'import-interwiki-history'   => 'Копияфтомс тя лопать сембе историянь верзиенза',
 'import-interwiki-submit'    => 'Таргамс',
-'import-interwiki-namespace' => 'Пачфтемс лопатнень тя лемботмос:',
+'import-interwiki-namespace' => 'Пачфтема лемботма:',
 'importtext'                 => 'Эняльттяма таргак файлть Вики лисьмостонза [[Special:Export|вима лезкссь]] тевс нолдазь, ванфтт тянь тонь содама машинаса ди тонк тязк.',
 'importstart'                => 'Лопатне тарксевихть...',
 'import-revision-count'      => '$1 {{PLURAL:$1|илякстоптома|илякстоптомат}}',
@@ -2299,7 +2300,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Петнемс тя файлть ушеширень програмонь вельде',
-'edit-externally-help' => 'Ванк [http://www.mediawiki.org/wiki/Manual:External_editors арафнемань вятемовал] сяда лама содаманкса.',
+'edit-externally-help' => '(Ванк [http://www.mediawiki.org/wiki/Manual:External_editors арафнемань вятемовалсь] сяда лама содаманкса)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'сембе',
