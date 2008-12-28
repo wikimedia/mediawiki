@@ -131,7 +131,9 @@ class HTMLFileCache {
 		wfDebug(" loadFromFileCache()\n");
 
 		$filename = $this->fileCacheName();
-		$wgOut->sendCacheControl();
+		// Raw pages will handle control on their own
+		if( $this->mType !== 'raw' )
+			$wgOut->sendCacheControl();
 
 		header( "Content-type: $wgMimeType; charset={$wgOutputEncoding}" );
 		header( "Content-language: $wgContLanguageCode" );
