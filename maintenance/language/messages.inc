@@ -1489,6 +1489,7 @@ $wgMessageStructure = array(
 		'interwiki_log_deleted',
 		'interwiki_log_edited',
 		'interwiki_logentry',
+		'interwiki-not-enabled',
 		'interwiki_prefix',
 		'interwiki_reasonfield',
 		'interwiki_trans',
