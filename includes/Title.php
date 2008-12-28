@@ -1954,7 +1954,6 @@ class Title {
 	 * @return \type{\bool} true if the update succeded
 	 */
 	public function invalidateCache() {
-		global $wgUseFileCache;
 		if( wfReadOnly() ) {
 			return;
 		}
@@ -1964,10 +1963,7 @@ class Title {
 			$this->pageCond(), 
 			__METHOD__
 		);
-		if( $wgUseFileCache) {
-			$cache = new HTMLFileCache( $this );
-			@unlink( $cache->fileCacheName() );
-		}
+		HTMLFileCache::clearFileCache( $this );
 		return $success;
 	}
 

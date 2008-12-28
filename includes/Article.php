@@ -3164,7 +3164,7 @@ class Article {
 	}
 
 	public static function onArticleDelete( $title ) {
-		global $wgUseFileCache, $wgMessageCache;
+		global $wgMessageCache;
 		# Update existence markers on article/talk tabs...
 		if( $title->isTalkPage() ) {
 			$other = $title->getSubjectPage();
@@ -3178,10 +3178,7 @@ class Article {
 		$title->purgeSquid();
 
 		# File cache
-		if( $wgUseFileCache ) {
-			$cm = new HTMLFileCache( $title );
-			@unlink( $cm->fileCacheName() );
-		}
+		HTMLFileCache::clearFileCache( $title );
 
 		# Messages
 		if( $title->getNamespace() == NS_MEDIAWIKI ) {
@@ -3203,7 +3200,7 @@ class Article {
 	 * Purge caches on page update etc
 	 */
 	public static function onArticleEdit( $title, $transclusions = 'transclusions' ) {
-		global $wgDeferredUpdateList, $wgUseFileCache;
+		global $wgDeferredUpdateList;
 
 		// Invalidate caches of articles which include this page
 		if( $transclusions !== 'skiptransclusions' )
@@ -3216,10 +3213,7 @@ class Article {
 		$title->purgeSquid();
 
 		# Clear file cache for this page only
-		if( $wgUseFileCache ) {
-			$cm = new HTMLFileCache( $title );
-			@unlink( $cm->fileCacheName() );
-		}
+		HTMLFileCache::clearFileCache( $title );
 	}
 
 	/**#@-*/

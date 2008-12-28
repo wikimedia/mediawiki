@@ -151,7 +151,7 @@ class RawPage {
 		header( 'Cache-Control: '.$mode.', s-maxage='.$this->mSmaxage.', max-age='.$this->mMaxage );
 		
 		if( HTMLFileCache::useFileCache() ) {
-			$cache = new HTMLFileCache( $this->mTitle );
+			$cache = new HTMLFileCache( $this->mTitle, 'raw' );
 			if( $cache->isFileCacheGood( /* Assume up to date */ ) ) {
 				/* Check incoming headers to see if client has this cached */
 				if( !$wgOut->checkLastModified( $cache->fileCacheTime() ) ) {
