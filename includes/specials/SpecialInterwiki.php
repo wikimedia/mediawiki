@@ -231,7 +231,7 @@ class SpecialInterwiki extends SpecialPage {
 		
 		$out = "
 		<br />
-		<table width='100%' border='2' id='interwikitable'>
+		<table width='100%' style='border:1px solid #aaa;' class='wikitable'>
 		<tr id='interwikitable-header'><th>$prefixmessage</th> <th>$urlmessage</th> <th>$localmessage</th> <th>$transmessage</th>";
 		if( $admin ) {
 			$deletemessage = wfMsgHtml( 'delete' );
