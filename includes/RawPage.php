@@ -153,10 +153,8 @@ class RawPage {
 		if( HTMLFileCache::useFileCache() ) {
 			$cache = new HTMLFileCache( $this->mTitle, 'raw' );
 			if( $cache->isFileCacheGood( /* Assume up to date */ ) ) {
-				/* Check incoming headers to see if client has this cached */
-				if( !$wgOut->checkLastModified( $cache->fileCacheTime() ) ) {
-					$cache->loadFromFileCache();
-				}
+				$cache->loadFromFileCache();
+				$wgOut->disable();
 				return;
 			} else {
 				ob_start( array(&$cache, 'saveToFileCache' ) );

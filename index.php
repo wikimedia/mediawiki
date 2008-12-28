@@ -82,12 +82,11 @@ if( $wgUseFileCache && isset($wgTitle) ) {
 			/* Check incoming headers to see if client has this cached */
 			if( !$wgOut->checkLastModified( $cache->fileCacheTime() ) ) {
 				$cache->loadFromFileCache();
-				# Do any stats increment/watchlist stuff
-				$wgArticle = self::articleFromTitle( $wgTitle );
-				$wgArticle->viewUpdates();
 			}
+			# Do any stats increment/watchlist stuff
+			$wgArticle = MediaWiki::articleFromTitle( $wgTitle );
+			$wgArticle->viewUpdates();
 			# Tell $wgOut that output is taken care of
-			$wgOut->disable();
 			wfProfileOut( 'main-try-filecache' );
 			$mediaWiki->restInPeace();
 			exit;
