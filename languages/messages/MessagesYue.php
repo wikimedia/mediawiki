@@ -1633,6 +1633,42 @@ Template:搞清楚',
 # Special:DeletedContributions
 'deletedcontributions' => '已經刪除咗嘅用戶貢獻',
 
+# Special:Interwiki
+'interwiki'                => '去睇同編輯跨維基資料',
+'interwiki-title-norights' => '去睇跨維基資料',
+'interwiki_addbutton'      => '加',
+'interwiki_added'          => '前綴 "$1" 已經成功噉加入到跨維基表。',
+'interwiki_addfailed'      => '前綴 "$1" 唔能夠加入到跨維基表。
+可能已經響個跨維基表度存在。',
+'interwiki_addintro'       => '你而家加緊一個新嘅跨維基前綴。
+要記住佢係唔可以包含住空格 ( )、冒號 (:)、連字號 (&)，或者係等號 (=)。',
+'interwiki_addtext'        => '加入一個跨維基前綴',
+'interwiki-badprefix'      => '"$1" 含有無效嘅字母',
+'interwiki_defaultreason'  => '無畀到原因',
+'interwiki_deleted'        => '前綴 "$1" 已經成功噉響個跨維基表度拎走咗。',
+'interwiki_deleting'       => '你而家拎走緊前綴 "$1"。',
+'interwiki_delfailed'      => '前綴 "$1" 唔能夠響個跨維基表度拎走。',
+'interwiki_delquestion'    => '刪緊 "$1"',
+'interwiki_edited'         => '前綴 "$1" 已經響個跨維基表度改咗。',
+'interwiki_editerror'      => '前綴 "$1" 唔能夠響個跨維基表度改。
+可能佢並唔存在。',
+'interwiki_editintro'      => '你而家改緊跨維基前綴。
+記住呢個可以整斷現有嘅連結。',
+'interwiki_edittext'       => '改緊一個跨維基前綴',
+'interwiki_error'          => '錯誤: 跨維基表係空、又或者有其它嘢出錯。',
+'interwiki_intro'          => '睇吓[http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org]有關跨維基表嘅更多資料。
+嗰度有一個對跨維基表嘅[[Special:Log/interwiki|修改日誌]]。',
+'interwiki_local'          => '定義呢個做一個本地wiki',
+'interwiki_log_added'      => '加咗前綴 "$2" ($3) (含: $4) (本: $5) 到個跨維基表',
+'interwiki_log_deleted'    => '響個跨維基表度拎走咗前綴 "$2" ',
+'interwiki_log_edited'     => '響跨維基表度改咗前綴 "$2" : ($3) (含: $4) (本: $5)',
+'interwiki_prefix'         => '前綴',
+'interwiki_reasonfield'    => '原因',
+'interwiki_trans'          => '容許跨維基包含',
+'interwikilogpage'         => '跨維基表日誌',
+'interwikilogpagetext'     => '呢個係對[[Special:Interwiki|跨維基表]]嘅改動日誌。',
+'right-interwiki'          => '編輯跨維基資料',
+
 # Special:LinkSearch
 'linksearch'       => '搵網頁連結',
 'linksearch-pat'   => '搵嘅形態:',
