@@ -1193,62 +1193,95 @@ Panna jon [[Special:Watchlist|aap ke dhyan suchi]] me hai '''bold''' karal hai."
 'recentchangeslinked-to'       => 'Badalo jon ki given panna se linked hai ke dekhao',
 
 # Upload
-'upload'                     => 'File ke upload karo',
-'uploadbtn'                  => 'File upload karo',
-'reupload'                   => 'Fir se upload karo',
-'reuploaddesc'               => 'Upload ke cancel kar ke upload form pe lauto',
-'uploadnologin'              => 'Aap abhi loged in nai hai',
-'uploadnologintext'          => 'Aap ke [[Special:UserLogin|logged in]] kare ke chaahi, file upload kare ke khatir.',
-'upload_directory_missing'   => 'Upload directory ($1) nai hai aur webserver iske nai banae sakis hai.',
-'upload_directory_read_only' => 'Upload directory ($1) ke webserver nai likhe sake hai.',
-'uploaderror'                => 'Upload nai hoe paais hai',
-'uploadtext'                 => "Niche waala form ke use kar ke file upload karo.
+'upload'                      => 'File ke upload karo',
+'uploadbtn'                   => 'File upload karo',
+'reupload'                    => 'Fir se upload karo',
+'reuploaddesc'                => 'Upload ke cancel kar ke upload form pe lauto',
+'uploadnologin'               => 'Aap abhi loged in nai hai',
+'uploadnologintext'           => 'Aap ke [[Special:UserLogin|logged in]] kare ke chaahi, file upload kare ke khatir.',
+'upload_directory_missing'    => 'Upload directory ($1) nai hai aur webserver iske nai banae sakis hai.',
+'upload_directory_read_only'  => 'Upload directory ($1) ke webserver nai likhe sake hai.',
+'uploaderror'                 => 'Upload nai hoe paais hai',
+'uploadtext'                  => "Niche waala form ke use kar ke file upload karo.
 Pahile upload karaa file ke dekhe khatir [[Special:FileList|list of uploaded files]] jao, (re)uploads are also logged in the [[Special:Log/upload|upload log]], deletions in the [[Special:Log/delete|deletion log]].
 
 To include a file in a page, use a link in one of the following forms:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' to use the full version of the file
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' to use a 200 pixel wide rendition in a box in the left margin with 'alt text' as description
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' for directly linking to the file without displaying the file",
-'upload-permitted'           => 'File types jiske ijajat hai: $1.',
-'upload-preferred'           => 'Kon rakam ke file ke mangtaa hai: $1.',
-'upload-prohibited'          => 'Ii rakam ke file ke upload nai karaa jaae sake hai: $1.',
-'uploadlog'                  => 'upload karaa gae file ke log',
-'uploadlogpage'              => 'Suchi ke upload karo',
-'uploadlogpagetext'          => 'Niche ke list me haali ke uplaod karaa gae file ke suchi hai.
+'upload-permitted'            => 'File types jiske ijajat hai: $1.',
+'upload-preferred'            => 'Kon rakam ke file ke mangtaa hai: $1.',
+'upload-prohibited'           => 'Ii rakam ke file ke upload nai karaa jaae sake hai: $1.',
+'uploadlog'                   => 'upload karaa gae file ke log',
+'uploadlogpage'               => 'Suchi ke upload karo',
+'uploadlogpagetext'           => 'Niche ke list me haali ke uplaod karaa gae file ke suchi hai.
 Visual overview ke khatir [[Special:NewFiles|nawaa file ke gallery]] ke dekho.',
-'filename'                   => 'Filename',
-'filedesc'                   => 'Sanchhipt me',
-'fileuploadsummary'          => 'Sanchhipt me:',
-'filestatus'                 => 'Copyright ke haalat:',
-'filesource'                 => 'File ke source:',
-'uploadedfiles'              => 'Files jiske upload karaa gais hai.',
-'ignorewarning'              => 'Chetauni pe dhyan nai de ke file ke save karo',
-'ignorewarnings'             => 'Koi bhi chetauni pe dhyan nai do',
-'minlength1'                 => 'File ke naam me kamti se kamti ek letter hoe ke chaahi.',
-'illegalfilename'            => 'Filename "$1" me uu akchhar hai jiske panna ke title me allowed nai hai.
+'filename'                    => 'Filename',
+'filedesc'                    => 'Sanchhipt me',
+'fileuploadsummary'           => 'Sanchhipt me:',
+'filestatus'                  => 'Copyright ke haalat:',
+'filesource'                  => 'File ke source:',
+'uploadedfiles'               => 'Files jiske upload karaa gais hai.',
+'ignorewarning'               => 'Chetauni pe dhyan nai de ke file ke save karo',
+'ignorewarnings'              => 'Koi bhi chetauni pe dhyan nai do',
+'minlength1'                  => 'File ke naam me kamti se kamti ek letter hoe ke chaahi.',
+'illegalfilename'             => 'Filename "$1" me uu akchhar hai jiske panna ke title me allowed nai hai.
 Maharbaani kar ke file ke naam ke badal ke fir se upload kare ke kosis karo.',
-'badfilename'                => 'File ke naam badak ke "$1" kar dewa gais hai.',
-'filetype-badmime'           => 'MIME rakam "$1" ke upload kare ke ijajat nai hai.',
-'filetype-bad-ie-mime'       => 'Ii file ke upload nai kare sakta hai kahe ki Internet Explorer iske "$1" ke rakam dekhi, jon ki allowed nai hai aur khatarnaat rakam ke file jaana jaae hai.',
-'filetype-unwanted-type'     => "'''\".\$1\"''' rakam ke file ke hian nai maaga jaae hai.
+'badfilename'                 => 'File ke naam badak ke "$1" kar dewa gais hai.',
+'filetype-badmime'            => 'MIME rakam "$1" ke upload kare ke ijajat nai hai.',
+'filetype-bad-ie-mime'        => 'Ii file ke upload nai kare sakta hai kahe ki Internet Explorer iske "$1" ke rakam dekhi, jon ki allowed nai hai aur khatarnaat rakam ke file jaana jaae hai.',
+'filetype-unwanted-type'      => "'''\".\$1\"''' rakam ke file ke hian nai maaga jaae hai.
 Maange waala {{PLURAL:\$3|file ke rakam hai|file ke rakam hai}} \$2.",
-'filetype-banned-type'       => "'''\".\$1\"''' ke rakam ke file hian pe allowed nai hai.
+'filetype-banned-type'        => "'''\".\$1\"''' ke rakam ke file hian pe allowed nai hai.
 Allowed {{PLURAL:\$3|rakam ke file hai|rakam ke fle hai}} \$2.",
-'filetype-missing'           => 'File ke koi extension nai hai (jaise ki ".jpg").',
-'large-file'                 => 'Ii salah hai ki file ke size $1 se barraa nai rahe;
+'filetype-missing'            => 'File ke koi extension nai hai (jaise ki ".jpg").',
+'large-file'                  => 'Ii salah hai ki file ke size $1 se barraa nai rahe;
 ii file hai $2',
-'largefileserver'            => 'Ii file, jetna ki server allow kare hai, se barraa hai.',
-'emptyfile'                  => 'Jon file aap upload karaa rahaa uu khaali rahaa.
+'largefileserver'             => 'Ii file, jetna ki server allow kare hai, se barraa hai.',
+'emptyfile'                   => 'Jon file aap upload karaa rahaa uu khaali rahaa.
 Ii saait file ke naam likhe me typing mistake ke kaaran hoi.
 Meharbaani kar ke ii dekho ki aap such me ii file upload kare mangtaa hai ki nai.',
-'filepageexists'             => 'Ii file ke description ke <strong><tt>$1</tt></strong> me banae dewa gais rakaa, lekin ii naam ke koi file abhi nai hai.
+'fileexists'                  => 'Ii naam ke file abhi hai, meharbani kar ke check karo <strong><tt>$1</tt></strong> agar jo aap sure nai hai ki aap iske badle mangta hai.',
+'filepageexists'              => 'Ii file ke description ke <strong><tt>$1</tt></strong> me banae dewa gais rakaa, lekin ii naam ke koi file abhi nai hai.
 Aap jon summary likhtaa hai uu panna ke description me nai dekhai.
 Description ke dekhae ke khatir, aap ke iske manually badle ke parri.',
-'successfulupload'           => 'Upload safal bhais',
-'uploadwarning'              => 'Upload warning',
-'savefile'                   => 'File ke save karo',
-'uploadedimage'              => '"[[$1]]" ke upload kar dewa gae',
-'watchthisupload'            => 'Ii panna pe dhyan rakho',
+'fileexists-extension'        => 'Ii rakam ke naam ke ek aur file hai:<br />
+Uploading file ke naam: <strong><tt>$1</tt></strong><br />
+Abhi ke file ke naam: <strong><tt>$2</tt></strong><br />
+Meharbani kar ke duusra naam chuno.',
+'fileexists-thumb'            => "<center>'''Abhi ke file'''</center>",
+'fileexists-thumbnail-yes'    => 'Ii janawe hai ki ii file ek chhota chapa hai <i>(thumbnail)</i>.
+Meharbani kar ke file ke check karo <strong><tt>$1</tt></strong>.<br />
+Agar jo check karaa gais file wahi chhapa ke original size hai tab ek aur thumbnail ke upload kare ke jaruri nai hai.',
+'file-thumbnail-no'           => 'File ke naam <strong><tt>$1</tt></strong> se suruu hoe hai.
+Ii janawe hai ki ii chhota size ke chapa hai <i>(thumbnail)</i>.
+Agar jo aap ke lage ii chapa full resolution me hai tab uske upload karna, nai to file ke naam badlo.',
+'fileexists-forbidden'        => 'Ii naam ke file abhi hai.
+Agar jo aap fir bhi aapan file ke upload kare mangta hai, tab nawaa naam use karo. [[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Ii naam ke file abhi shared file repository me hai.
+Agar jo aap fir bhi aapan file upload kare manta hai tab pichhe jaae ke nawaa naam use karo. [[File:$1|thumb|center|$1]]',
+'file-exists-duplicate'       => 'Ii file following file ke duplicate hai {{PLURAL:$1|file|files}}:',
+'file-deleted-duplicate'      => 'Yahii rakam ke ek aur file ([[$1]]) ke pahile delete karaa gais hai. Aap ke file ke deletion history ke check kare ke chaahi, upload kare se pahile.',
+'successfulupload'            => 'Upload safal bhais',
+'uploadwarning'               => 'Upload warning',
+'savefile'                    => 'File ke save karo',
+'uploadedimage'               => '"[[$1]]" ke upload kar dewa gae',
+'overwroteimage'              => '"[[$1]]" ke nawaa version ke upload karaa gais hai',
+'uploaddisabled'              => 'Uploads ke disable kar dewa gais hai',
+'uploaddisabledtext'          => 'File uploads ke disable kar dewa gais hai.',
+'uploadscripted'              => 'Ii file me HTML nai to script code hai jiske web browser erroneously interpret kare sake hai.',
+'uploadcorrupt'               => 'Ii file chaahe ke corrupt hai nai to isme wrong extension hai.
+Meharbani kar ke file ke check kar ke fir se upload karo.',
+'uploadvirus'                 => 'Ii file me virus hai! Details: $1',
+'sourcefilename'              => 'Source filename:',
+'destfilename'                => 'Destination filename:',
+'upload-maxfilesize'          => 'jaada se jaada file size: $1',
+'watchthisupload'             => 'Ii panna pe dhyan rakho',
+'filewasdeleted'              => 'Ii naam ke file ke pahile upload kar ke baad me delete karaa gais hai.
+Aap ke chaahi ki aap $1 check kar lo fir se upload kare se pahile.',
+'upload-wasdeleted'           => "'''Chetauni: Aap uu file ke upload karta hai jiske pahile delete karaa gais hai.'''
+Aap ke ii soche ke chaahi ki ii file ke upload karna appropriate hai ki nai.
+Aap ke subidha khatir deletion log hian pe hai:",
 
 # Special:FileList
 'imgfile'        => 'file',

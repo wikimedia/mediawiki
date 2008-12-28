@@ -63,7 +63,7 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'Ibunyág an adres kan sakuyang e-koreo sa mga surat na pag-abiso',
 'tog-shownumberswatching'     => 'Ipahilíng an bilang kan nagbabantay na mga parágamit',
 'tog-fancysig'                => 'Mga bàgong pirma (mayò nin tolos na pantakod)',
-'tog-externaleditor'          => 'Gamíton mùna an panluwás na editor',
+'tog-externaleditor'          => 'Gamíton mùna an panluwas na editor',
 'tog-externaldiff'            => 'Gamíton mùna an diff na panluwás',
 'tog-showjumplinks'           => 'Maka-"luksó sa" mga takód na pangabót',
 'tog-uselivepreview'          => 'Gamíton an patànaw na direkto (JavaScript) (Experimental)',
@@ -269,6 +269,8 @@ $messages = array(
 'editsection'             => 'ligwatón',
 'editold'                 => 'Ligwatón',
 'viewsourceold'           => 'hilingón an ginikánan',
+'editlink'                => 'ligwatón',
+'viewsourcelink'          => 'hilingón an toltolan',
 'editsectionhint'         => 'Ligwatón an seksyon: $1',
 'toc'                     => 'Mga laog',
 'showtoc'                 => 'ipahilíng',
@@ -278,6 +280,7 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|sarong pinarang paghirá|$1 na pinarang paghirá}}',
 'feedlinks'               => 'Hungit:',
 'feed-invalid'            => 'Bawal na tipo nin hungit na subkripsyon.',
+'feed-unavailable'        => 'Mayò an mga sindikasyon na hungit',
 'site-rss-feed'           => '$1 Hungit nin RSS',
 'site-atom-feed'          => '$1 Hungit nin Atomo',
 'page-rss-feed'           => '"$1" Hungit na RSS',
@@ -329,6 +332,8 @@ $1",
 'readonlytext'         => 'Sarado mùna an base nin datos sa mga bàgong entrada asin iba pang mga pagribay, pwede gayod sa rutinang pagmantenir kan base nin datos, despues, mabalik na ini sa normal.
 
 Ini an eksplikasyon kan tagamató na nagkandado kaini: $1',
+'missingarticle-rev'   => '(pagbàgo#: $1)',
+'missingarticle-diff'  => '(Kaibhán: $1, $2)',
 'readonly_lag'         => 'Enseguidang nakandado an base nin datos mientras makaabot an base nin datos na esklabo saiyang amo.',
 'internalerror'        => 'Panlaog na salâ',
 'internalerror_info'   => 'Panlaog na salâ: $1',
@@ -363,6 +368,10 @@ $2',
 'customcssjsprotected' => 'Mayô kang permiso na maghirâ kaining páhina, hulî ta igwa ining mga puesta na personal kan ibang paragamit.',
 'ns-specialprotected'  => 'An mga páhinang nasa {{ns:special}} na ngaran-espacio dai pwedeng hirahón.',
 
+# Virus scanner
+'virus-badscanner'     => 'Saláng konfigurasyon: dai aram an virus scanner: <i>$1</i>',
+'virus-unknownscanner' => 'dai aram an antivirus:',
+
 # Login and logout pages
 'logouttitle'                => 'Magluwas an paragamit',
 'logouttext'                 => "<strong>Nakaluwas ka na.</strong><br />
@@ -396,6 +405,7 @@ Nagibo na an ''account'' mo. Giromdomon tabi na ribayán an saimong mga kabôtan
 'youremail'                  => 'E-koreo:',
 'username'                   => 'Pangaran kan parágamit:',
 'uid'                        => 'ID kan parágamit:',
+'prefs-memberingroups'       => 'Miembro kan {{PLURAL:$1|grupo|grupos}}:',
 'yourrealname'               => 'Totoong pangaran:',
 'yourlanguage'               => 'Tataramon:',
 'yourvariant'                => 'Bariante:',
@@ -447,17 +457,21 @@ $1 na oras.',
 'loginlanguagelabel'         => 'Tataramon: $1',
 
 # Password reset dialog
-'resetpass'               => "Ipwesto giraray an sekretong panlaog kan ''account''",
-'resetpass_announce'      => "Nakalaog ka na may kodang temporaryong ''e''-sinurat. Para matapos an paglaog, kaipuhan mong magpwesto nin bâgong sekretong panlaog digdi:",
-'resetpass_text'          => '<!-- Magdugang nin teksto digdi -->',
-'resetpass_header'        => 'Ibalyó an sekretong panlaog',
-'oldpassword'             => 'Lumang sekretong panlaog:',
-'newpassword'             => 'Bàgong sekretong panlaog:',
-'retypenew'               => 'Itaták giraray an bàgong panlaog:',
-'resetpass_submit'        => 'Ipwesto an sekretong panlaog dangan maglaog',
-'resetpass_success'       => 'Naribayan na an saimong sekretong panlaog! Pigpapadagos ka na...',
-'resetpass_bad_temporary' => 'Dai pwede ining temporariong sekretong panlaog. Pwede ser na binâgo mo na an saimong sekretong panlaog o naghagad ka na nin bâgong temporariong sekretong panlaog.',
-'resetpass_forbidden'     => 'Dai pwedeng ribayan an mga sekretong panlaog sa ining wiki',
+'resetpass'                 => "Ipwesto giraray an sekretong panlaog kan ''account''",
+'resetpass_announce'        => "Nakalaog ka na may kodang temporaryong ''e''-sinurat. Para matapos an paglaog, kaipuhan mong magpwesto nin bâgong sekretong panlaog digdi:",
+'resetpass_text'            => '<!-- Magdugang nin teksto digdi -->',
+'resetpass_header'          => 'Ibalyó an sekretong panlaog',
+'oldpassword'               => 'Lumang sekretong panlaog:',
+'newpassword'               => 'Bàgong sekretong panlaog:',
+'retypenew'                 => 'Itaták giraray an bàgong panlaog:',
+'resetpass_submit'          => 'Ipwesto an sekretong panlaog dangan maglaog',
+'resetpass_success'         => 'Naribayan na an saimong sekretong panlaog! Pigpapadagos ka na...',
+'resetpass_bad_temporary'   => 'Dai pwede ining temporariong sekretong panlaog. Pwede ser na binâgo mo na an saimong sekretong panlaog o naghagad ka na nin bâgong temporariong sekretong panlaog.',
+'resetpass_forbidden'       => 'Dai pwedeng ribayan an mga sekretong panlaog sa ining wiki',
+'resetpass-submit-loggedin' => 'Ribayan an sekretong panlaog',
+'resetpass-wrong-oldpass'   => 'Saláng temporaryo o presenteng sekretong panlaog. 
+Matriumpo mo nang nailaog an sekretong panlaog o nakua an bàgong temporaryong sekretong panlaog.',
+'resetpass-temp-password'   => 'Temporaryong sekretong panlaog:',
 
 # Edit page toolbar
 'bold_sample'     => 'Tekstong mahìbog',
@@ -606,6 +620,9 @@ Pwede kang bumalik dangan maghirá nin presenteng pahina, o [[Special:UserLogin|
 
 Dapat mong isipon kun kaipuhan na ipadagos an paghirá kaining pahina.
 An paghalì kan historial para sa pahinang ini yaon digdi para sa saimong kombenyensya:",
+'edit-conflict'             => 'Igwang iregularidad sa pagligwat.',
+'edit-already-exists'       => 'Dai maggibo an bàgong pahina.
+Igwa na kaini.',
 
 # "Undo" feature
 'undo-success' => 'Pwedeng bawion an paghirá. Sosogon tabì an pagkakaiba sa babâ tangarig maberipikár kun ini an boot mong gibohon, dangan itagama an mga pagbabàgo sa babâ tangarig tapuson an pagbawì sa paghirá.',
@@ -619,27 +636,28 @@ An paghalì kan historial para sa pahinang ini yaon digdi para sa saimong komben
 ''$2'' an rason na pigtao ni $3",
 
 # History pages
-'viewpagelogs'        => 'Hilingón an mga usip para sa pahinang ini',
-'nohistory'           => 'Mayong paghirá nin uusipón sa pahinang ini.',
-'currentrev'          => 'Sa ngonyan na pagpakarháy',
-'revisionasof'        => 'Pagpakarháy sa $1',
-'revision-info'       => 'An pagpakarháy sa $1 ni $2', # Additionally available: $3: revision id
-'previousrevision'    => '←Mas lumang pagpakarhay',
-'nextrevision'        => 'Mas bàgong pagpakarháy→',
-'currentrevisionlink' => 'Sa ngonyan na pagpakarháy',
-'cur'                 => 'ngonyan',
-'next'                => 'sunod',
-'last'                => 'huri',
-'page_first'          => 'enot',
-'page_last'           => 'huri',
-'histlegend'          => 'Kaib na pinili: markahán an mga kahon kan mga bersyon tangarig makomparar asin pindoton an enter o butones babâ.<br />
+'viewpagelogs'           => 'Hilingón an mga usip para sa pahinang ini',
+'nohistory'              => 'Mayong paghirá nin uusipón sa pahinang ini.',
+'currentrev'             => 'Sa ngonyan na pagpakarháy',
+'revisionasof'           => 'Pagpakarháy sa $1',
+'revision-info'          => 'An pagpakarháy sa $1 ni $2', # Additionally available: $3: revision id
+'previousrevision'       => '←Mas lumang pagpakarhay',
+'nextrevision'           => 'Mas bàgong pagpakarháy→',
+'currentrevisionlink'    => 'Sa ngonyan na pagpakarháy',
+'cur'                    => 'ngonyan',
+'next'                   => 'sunod',
+'last'                   => 'huri',
+'page_first'             => 'enot',
+'page_last'              => 'huri',
+'histlegend'             => 'Kaib na pinili: markahán an mga kahon kan mga bersyon tangarig makomparar asin pindoton an enter o butones babâ.<br />
 Legend: (ngonyan) = kaibhán sa ngonyan na bersyon,
 (huri) = kaibhán sa huring bersyon, S = saradít na paghirá.',
-'deletedrev'          => '[pigparà]',
-'histfirst'           => 'Pinakaenot',
-'histlast'            => 'Pinakahúri',
-'historysize'         => '($1 bytes)',
-'historyempty'        => '(mayong laog)',
+'history-fieldset-title' => 'Rinsayon an uusipon',
+'deletedrev'             => '[pigparà]',
+'histfirst'              => 'Pinakaenot',
+'histlast'               => 'Pinakahúri',
+'historysize'            => '($1 bytes)',
+'historyempty'           => '(mayong laog)',
 
 # Revision feed
 'history-feed-title'          => 'Uusipón kan pagpakaraháy',
@@ -685,6 +703,7 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 'logdelete-logentry'          => 'Pigribayan an bisibilidad nin panyayari kan [[$1]]',
 'revdelete-success'           => "'''Nakapwesto na an bisibilidad kan pagpakarhay.'''",
 'logdelete-success'           => "'''Nakapuesto na an katalâan kan nangyari.'''",
+'revdelete-uname'             => 'paragamit',
 
 # Diffs
 'history-title'           => 'Uusipón nin pagpakarháy kan "$1"',
@@ -693,6 +712,15 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 'compareselectedversions' => 'Ikomparar an mga piniling bersyon',
 'editundo'                => 'ibalik',
 'diff-multi'              => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} dai ipinahihiling.)',
+'diff-width'              => 'lakbáng',
+'diff-height'             => 'langkáw',
+'diff-blockquote'         => "saróng '''quote'''",
+'diff-h1'                 => "saróng '''pamayohan (tangga 1)'''",
+'diff-h2'                 => "saróng '''pamayohan (tangga 2)'''",
+'diff-h3'                 => "saróng '''pamayohan (tangga 3)'''",
+'diff-h4'                 => "saróng '''pamayohan (tangga 4)'''",
+'diff-h5'                 => "saróng '''pamayohan (tangga 5)'''",
+'diff-pre'                => "saróng '''naformat nang pagbagat'''",
 
 # Search results
 'searchresults'         => 'Hanapon an mga resulta',
@@ -1943,6 +1971,13 @@ Pwede mo man [[Special:Watchlist/edit|gamiton an standard editor]].',
 'version' => 'Bersyon', # Not used as normal message but as header for the special page itself
 
 # Special:SpecialPages
-'specialpages' => 'Mga espesyal na pahina',
+'specialpages'               => 'Mga espesyal na pahina',
+'specialpages-group-other'   => 'Iba pang mga espesyal na pahina',
+'specialpages-group-login'   => 'Maglaog/ maggibo',
+'specialpages-group-changes' => 'Kaaagi pa sanang mga pagbàgo asin laog',
+
+# Special:BlankPage
+'blankpage'              => 'Blangkong pahina',
+'intentionallyblankpage' => 'Pigtuyong blangko an pahinang ini',
 
 );

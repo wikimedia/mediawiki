@@ -201,6 +201,7 @@ $messages = array(
 'tog-watchlisthideminor'      => 'Kaŝu malgrandajn redaktojn de la atentaro',
 'tog-watchlisthideliu'        => 'Kaŝi redaktojn de ensalutitaj uzantoj de la atentaro',
 'tog-watchlisthideanons'      => 'Kaŝi redaktojn de anonimuloj de la atentaro',
+'tog-nolangconversion'        => 'Malŝalti konvertadon de variantoj',
 'tog-ccmeonemails'            => 'Sendi al mi kopiojn de retpoŝtaĵoj, kiujn mi sendis al aliaj uzuloj.',
 'tog-diffonly'                => 'Ne montri paĝan enhavon sub la ŝanĝoj',
 'tog-showhiddencats'          => 'Montri kaŝitajn kategoriojn',
@@ -1702,6 +1703,7 @@ Eble ĝi jam ekzistas en la intervikia tabelo.',
 'interwiki_addintro'       => 'Vi aldonas novan intervikian prefikson.
 Memoru ke ĝi ne povas enhavi spacetojn ( ), kolojn (:), kajsignojn (&), aŭ egalsignojn (=).',
 'interwiki_addtext'        => 'Aldonu intervikian prefikson',
+'interwiki-badprefix'      => 'Specifigita intervika prefikso "$1" enhavas nevalidajn signojn',
 'interwiki_defaultreason'  => 'nenia kialo skribata',
 'interwiki_deleted'        => 'Prefikso "$1" estis sukcese forigita de la intervikia tabelo.',
 'interwiki_deleting'       => 'Vi forigas prefikson "$1".',
@@ -1720,6 +1722,7 @@ Ekzistas [[Special:Log/interwiki|protokolo pri ŝanĝoj]] por la intervikia tabe
 'interwiki_log_added'      => 'Aldonis prefikson "$2" ($3) (transvikie: $4) (loke: $5) al la intervikia tabelo',
 'interwiki_log_deleted'    => 'Forigita prefikso "$2" de la intervikia tabelo',
 'interwiki_log_edited'     => 'modifis prefikson "$2" : ($3) (transvikie: $4) (loke: $5) en la intervikia tabelo',
+'interwiki-not-enabled'    => 'Redaktado de la intervika tabelo estis malŝaltita.',
 'interwiki_prefix'         => 'Prefikso',
 'interwiki_reasonfield'    => 'Kialo',
 'interwiki_trans'          => 'Permesi intervikiajn transinkluzivaĵojn',
@@ -2319,7 +2322,7 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'import-invalid-interwiki'   => 'Ne povas importi de la specifigita vikio.',
 
 # Import log
-'importlogpage'                    => 'Protokolo de importoj',
+'importlogpage'                    => 'Protokolo de importaĵoj',
 'importlogpagetext'                => 'Administrantecaj importoj de paĝoj kun redakto-historio de aliaj vikioj.',
 'import-logentry-upload'           => 'importita [[$1]] de dosiera alŝuto',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|versio|versioj}}',
