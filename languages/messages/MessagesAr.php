@@ -1969,6 +1969,7 @@ PICT # متنوع
 'interwiki_addintro'       => 'أنت تضيف بادئة إنترويكي جديدة.
 تذكر أنها لا يمكن أن تحتوي على مسافات ( )، نقطتين فوق بعض (:)، علامة و (&)، أو علامة يساوي (=).',
 'interwiki_addtext'        => 'أضف بادئة إنترويكي',
+'interwiki-badprefix'      => 'بادئة إنترويكي محددة "$1" تحتوي أحرفا غير صحيحة',
 'interwiki_defaultreason'  => 'لا سبب معطى',
 'interwiki_deleted'        => 'البادئة "$1" تمت إزالتها بنجاح من جدول الإنترويكي.',
 'interwiki_deleting'       => 'أنت تحذف البادئة "$1".',
@@ -1983,10 +1984,11 @@ PICT # متنوع
 'interwiki_error'          => 'خطأ: جدول الإنترويكي فارغ، أو حدث خطأ آخر.',
 'interwiki_intro'          => 'انظر [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] لمزيد من المعلومات حول جدول الإنترويكي.
 يوجد [[Special:Log/interwiki|سجل بالتغييرات]] لجدول الإنترويكي.',
-'interwiki_local'          => 'محلي',
+'interwiki_local'          => 'تعريف هذه كويكي محلّية',
 'interwiki_log_added'      => 'أضاف "$2" ($3) (نقل: $4) (محلي: $5) إلى جدول الإنترويكي',
 'interwiki_log_deleted'    => 'أزال البادئة "$2" من جدول الإنترويكي',
 'interwiki_log_edited'     => 'عدل البادئة "$2" : ($3) (عابر: $4) (محلي: $5) في جدول الإنترويكي',
+'interwiki-not-enabled'    => 'تعديل جدول الإنترويكي عُطّل.',
 'interwiki_prefix'         => 'بادئة',
 'interwiki_reasonfield'    => 'سبب',
 'interwiki_trans'          => 'عابر',

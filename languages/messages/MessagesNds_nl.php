@@ -898,7 +898,7 @@ Der is gien rejen op-egeven.',
 # Parser/template warnings
 'expensive-parserfunction-warning'        => "Waorschuwing: disse pagina gebruuk te veul kosbaore parserfuncties.
 
-Noen bin 't der $1, terwiel 't der minder as $2 mutten ween.",
+Noen {{PLURAL:$1|is|bin}} 't der $1, terwiel 't der minder as $2 {{PLURAL:$2|mut|mutten}} ween.",
 'expensive-parserfunction-category'       => "Pagina's dee te veule kosbaore parserfuncties gebruken",
 'post-expand-template-inclusion-warning'  => "Waorschuwing: de grootte van 't in-evoegen sjabloon is te groot.
 Sommigen sjablonen wonnen neet in-evoeg.",
@@ -1210,9 +1210,12 @@ Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't w
 'savedprefs'                => 'Veurkeuren bin op-esleugen.',
 'timezonelegend'            => 'Tiedzone',
 'timezonetext'              => "Geef 't antal uren an, dee tussen joew tiedgebied en UTC liggen.",
-'localtime'                 => 'Plaoselijke tied',
-'timezoneoffset'            => 'Tiedverschil',
-'servertime'                => 'Tied op de server',
+'localtime'                 => 'Plaoselijke tied:',
+'timezoneselect'            => 'Tiedzone:',
+'timezoneuseserverdefault'  => 'Tied van de server gebruken',
+'timezoneuseoffset'         => 'Aanders (tiedverschil angeven)',
+'timezoneoffset'            => 'Tiedverschil¹:',
+'servertime'                => 'Tied op de server:',
 'guesstimezone'             => 'Vanuut webblaojeraar toevoegen',
 'allowemail'                => 'Berichen van aandere gebrukers toelaoten',
 'prefs-searchoptions'       => 'Zeukinstellingen',
@@ -1338,6 +1341,7 @@ Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't w
 'action-move-rootuserpages'   => "gebrukerspagina's van 't hoogste nivo herneumen",
 'action-upload'               => 'dit bestand toevoegen',
 'action-reupload'             => 'dit bestaonde bestand overschrieven',
+'action-reupload-shared'      => 'een aander bestand over dit bestand uut de edelen beweerstee hinne zetten.',
 'action-upload_by_url'        => 'dit bestand vanof een webadres toevoegen',
 'action-writeapi'             => 'de schrief-API bewarken',
 'action-delete'               => 'disse pagina vortdoon',
@@ -1387,6 +1391,8 @@ Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't w
 'rc_categories'                     => 'Kattegeriebeparking (scheiden mit "|")',
 'rc_categories_any'                 => 'alles',
 'newsectionsummary'                 => 'Niej onderwarp: /* $1 */',
+'rc-enhanced-expand'                => 'Details weergeven (hier he-j JavaScript veur neudig)',
+'rc-enhanced-hide'                  => 'Details verbargen',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Volg verwiezigingen',
@@ -1461,6 +1467,8 @@ je wonnen verzoch 't toe te voegen onder een aandere naam. [[File:$1|thumb|cente
 A-j 't bestand asnog toevoegen willen, gao dan weerumme en kies een aandere naam.
 [[File:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => "Dit bestand is liekeleens as {{PLURAL:$1|'t volgende bestand|de volgende bestanden}}:",
+'file-deleted-duplicate'      => "Een bestand dat liekeleens is an dit bestand ([[$1]]) is veurher vort-edaon.
+Raodpleeg 't logboek mit vort-edaone pagina's veurda-j veurdan gaon.",
 'successfulupload'            => 'Bestanstoevoeging was succesvol',
 'uploadwarning'               => 'Waorschuwing',
 'savefile'                    => 'Bestand opslaon',
@@ -1522,12 +1530,18 @@ Klikken op een kelomkop veraandert de sortering.',
 'filehist-revert'                => 'weerummedreien',
 'filehist-current'               => "zoas 't noen is",
 'filehist-datetime'              => 'Daotum/tied',
+'filehist-thumb'                 => 'Ofbeeldingsoverzichte',
+'filehist-thumbtext'             => 'Ofbeeldingsoverzichte veur versie van $1',
+'filehist-nothumb'               => 'Gien ofbeeldingsoverzichte',
 'filehist-user'                  => 'Gebruker',
 'filehist-dimensions'            => 'Ofmetingen',
 'filehist-filesize'              => 'Bestansgrootte',
 'filehist-comment'               => 'Opmarkingen',
 'imagelinks'                     => 'Gebruuk van dit bestand',
 'linkstoimage'                   => "Disse ofbeelding wonnen gebruuk op de volgende {{PLURAL:$1|pagina|$1 pagina's}}:",
+'linkstoimage-more'              => 'Der {{PLURAL:$2|is|bin}} meer as $1 {{PLURAL:$1|verwiezing|verwiezingen}} naor dit bestand.
+De volgende lieste geef allinnig de eerste {{PLURAL:$1|verwiezing|$1 verwiezingen}} naor dit bestand weer.
+De [[Special:WhatLinksHere/$2|hele lieste]] is oek beschikbaor.',
 'nolinkstoimage'                 => 'Ofbeelding is neet in gebruuk.',
 'morelinkstoimage'               => '[[Special:WhatLinksHere/$1|Meer verwiezingen]] naor dit bestand bekieken.',
 'redirectstofile'                => "{{PLURAL:$1|'t Volgende bestand verwies|De volgende $1 bestanden verwiezen}} deur naor dit bestand:",
@@ -1601,6 +1615,7 @@ Vergeet neet de verwiezingen te contreleren veurda-j 't sjabloon vortdoon.",
 
 # Statistics
 'statistics'              => 'Staotestieken',
+'statistics-header-pages' => 'Paginastaotestieken',
 'statistics-header-users' => 'Gebrukerstaotestieken',
 'statistics-mostpopular'  => "Meestbekeken pagina's",
 
@@ -1865,7 +1880,8 @@ Opmarkingen en veerdere hulpe:
 'delete-edit-reasonlist' => "Rejens veur 't vortdoon bewarken",
 'delete-toobig'          => "Disse pagina hef een lange bewarkingsgeschiedenisse, meer as $1 {{PLURAL:$1|versie|versies}}.
 't Vortdoon van dit soort pagina's is mit rechen bepark um 't per ongelok versteuren van de warking van {{SITENAME}} te veurkoemen.",
-'delete-warning-toobig'  => "Disse pagina hef een lange bewarkingsgeschiedenisse, meer as $1 versies. Woart je: 't vortdoon van disse pagina kan de warking van de databanke van {{SITENAME}} versteuren. 
+'delete-warning-toobig'  => "Disse pagina hef een lange bewarkingsgeschiedenisse, meer as $1 {{PLURAL:$1|versie|versies}}.
+Woart je: 't vortdoon van disse pagina kan de warking van de databanke van {{SITENAME}} versteuren.
 Wees veurzichtig",
 
 # Rollback
@@ -1914,7 +1930,7 @@ Hier staon de instellingen zoas ze noen bin veur de pagina <strong>$1</strong>:"
 'protect-expiring'            => 'verloop op $1 (UTC)',
 'protect-cascade'             => "Cascadebeveiliging (beveilig alle pagina's en sjablonen dee in disse pagina op-eneumen bin)",
 'protect-cantedit'            => "Je kunnen 't beveiligingsnivo van disse pagina neet wiezigen, umda-j gien rechen hemmen um 't te bewarken.",
-'protect-expiry-options'      => '2 uren:2 hours,1 dag:1 day,3 dagen:3 days,1 weke:1 week,2 weken:2 weeks,1 maond:1 month,3 maonden:3 months,6 maonden:6 months,1 jaor:1 year,onbepark:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 uur:1 hour,1 dag:1 day,1 weke:1 week,2 weken:2 weeks,1 maond:1 month,3 maonden:3 months,6 maonden:6 months,1 jaor:1 year,onbepark:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Toegang',
 'restriction-level'           => 'Beveiligingsnivo',
 'minimum-size'                => 'Minimumgrootte (bytes)',

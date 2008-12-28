@@ -336,6 +336,8 @@ Tihuelīti tiquitta mochi nōncuahquīzqui āmatl īpan [[Special:SpecialPages|{
 'cannotdelete'        => 'Ahmo huelīti mopoloa inōn zāzanilli.
 Hueliz āquin ōquipolo achtopa.',
 'badtitle'            => 'Ahcualli tōcāitl',
+'badtitletext'        => 'Zāzanilli ticnequi in ītōca cah ahcualli, ahtlein quipiya nozo ahcualtzonhuiliztli interwiki tōcāhuicpa.
+Hueliz quimpiya tlahtōl tlein ahmo mohuelītih motequitiltia tōcāpan.',
 'viewsource'          => 'Tiquittāz tlahtōlcaquiliztilōni',
 'viewsourcefor'       => '$1 ītechcopa',
 'actionthrottled'     => 'Tlachīhualiztli ōmotzacuili',
@@ -910,6 +912,7 @@ Timitztlātlauhtiah, xitlahcuiloa occē tōcāitl.',
 'mostlinked'              => 'Tlahcuilōlli achi motzonhuilia',
 'mostlinkedcategories'    => 'Neneuhcāyōtl achi motzonhuilia',
 'mostlinkedtemplates'     => 'Nemachiyōtīlli achi motzonhuilia',
+'mostimages'              => 'Īxiptli tlein in achi motzonhuilia',
 'shortpages'              => 'Ahhuēiyac zāzaniltin',
 'longpages'               => 'Huēiyac zāzaniltin',
 'deadendpages'            => 'Ahtlaquīzaliztli zāzaniltin',
@@ -1000,6 +1003,7 @@ Nō xiquitta [[Special:WantedCategories|neneuhcāyōtl monequi]].',
 'watchthispage'     => 'Tictlachiyāz inīn zāzanilli',
 'unwatch'           => 'Ahtictlachiyāz',
 'watchlist-details' => '{{PLURAL:$1|$1 zāzanilli|$1 zāzaniltin}} motlachiyaliz, ahmo mopōhua tēixnāmiquiliztli.',
+'wlshowlast'        => 'Tiquinttāz tlapatlaliztli īhuīcpa achto $1 yēmpohualminuhtli, $2 tōnaltin $3',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Tlachiyacah...',

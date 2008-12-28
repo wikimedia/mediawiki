@@ -1481,12 +1481,22 @@ Example: [[:Image:Addon-icn.png]]',
 {{Identical|Deleting $1}}',
 'interwiki_editerror'      => 'Error message when modifying a prefix has failed.',
 'interwiki_error'          => 'This error message is shown when the Special:Interwiki page is empty.',
-'interwiki_local'          => 'Used on [[Special:Interwiki]]',
+'interwiki_local'          => 'Used on [[Special:Interwiki]] as a column header.
+
+Meaning of the column data are: References to this via URL from external sources are:
+* 0: not honored (usually blocked by "page not found")
+* 1: redirected to the target URLs given the interwiki link definitions (treated like references in local pages)',
 'interwiki_log_added'      => 'Shows up in "Special:Log/interwiki" when someone has added a prefix. Leave parameters and text between brackets exactly as it is.',
 'interwiki_log_deleted'    => 'Shows up in "Special:Log/interwiki" when someone removed a prefix.',
 'interwiki_log_edited'     => 'Shows up in "Special:Log/interwiki" when someone has modified a prefix. Leave parameters and text between brackets exactly as it is.',
-'interwiki_prefix'         => '-',
+'interwiki_prefix'         => 'Used on [[Special:Interwiki]] as a column header of the table.',
 'interwiki_reasonfield'    => '{{Identical|Reason}}',
+'interwiki_trans'          => 'User in [[Special:Interwiki]] as table column header.
+
+Meaning of the data in the column:
+* 1: Allow interwiki transclusions
+* 0: Do not allow them',
+'interwiki_url'            => 'Used on [[Special:Interwiki]] as a column header of the table.',
 'interwikilogpage'         => 'This message is shown as page title on Special:Log/interwiki.',
 'interwikilogpagetext'     => 'Summary shown on Special:Log/interwiki.',
 'right-interwiki'          => '{{doc-right}}',
