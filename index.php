@@ -75,8 +75,8 @@ if( $wgUseAjax && $action == 'ajax' ) {
 
 if( $wgUseFileCache && isset($wgTitle) ) {
 	wfProfileIn( 'main-try-filecache' );
-	// Raw pages should handle control on their own
-	// even when using file cache.
+	// Raw pages should handle cache control on their own,
+	// even when using file cache. This reduces hits from clients.
 	if( $action != 'raw' && HTMLFileCache::useFileCache() ) {
 		/* Try low-level file cache hit */
 		$cache = new HTMLFileCache( $wgTitle, $action );

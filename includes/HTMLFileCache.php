@@ -131,7 +131,8 @@ class HTMLFileCache {
 		wfDebug(" loadFromFileCache()\n");
 
 		$filename = $this->fileCacheName();
-		// Raw pages will handle control on their own
+		// Raw pages should handle cache control on their own,
+		// even when using file cache. This reduces hits from clients.
 		if( $this->mType !== 'raw' )
 			$wgOut->sendCacheControl();
 
