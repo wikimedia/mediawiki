@@ -77,7 +77,7 @@ if( $wgUseFileCache && isset($wgTitle) ) {
 	wfProfileIn( 'main-try-filecache' );
 	if( HTMLFileCache::useFileCache() ) {
 		/* Try low-level file cache hit */
-		$cache = new HTMLFileCache( $wgTitle );
+		$cache = new HTMLFileCache( $wgTitle, $action );
 		if( $cache->isFileCacheGood( /* Assume up to date */ ) ) {
 			/* Check incoming headers to see if client has this cached */
 			if( !$wgOut->checkLastModified( $cache->fileCacheTime() ) ) {
