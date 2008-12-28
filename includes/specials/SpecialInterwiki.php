@@ -11,7 +11,7 @@ class SpecialInterwiki extends SpecialPage {
 	}
 	
 	function execute( $par ) {
-		global $wgRequest, $wgOut, $wgUser;
+		global $wgRequest, $wgOut, $wgUser, $wgEnableSpecialInterwiki;
 
 		$this->setHeaders();
 		$this->outputHeader();
@@ -28,6 +28,10 @@ class SpecialInterwiki extends SpecialPage {
 		case "delete":
 		case "edit" :
 		case "add" :
+			if( !$wgEnableSpecialInterwiki ) {
+				$wgOut->addWikiMsg( 'interwiki-not-enabled' );
+				return;
+			}
 			if( !$admin ){
 				$wgOut->permissionRequired( 'interwiki' );
 				return;
@@ -35,6 +39,10 @@ class SpecialInterwiki extends SpecialPage {
 			$this->showForm( $action );
 			break;
 		case "submit":
+			if( !$wgEnableSpecialInterwiki ) {
+				$wgOut->addWikiMsg( 'interwiki-not-enabled' );
+				return;
+			}
 			if( !$admin ){
 				$wgOut->permissionRequired( 'interwiki' );
 				return;
@@ -205,7 +213,7 @@ class SpecialInterwiki extends SpecialPage {
 	}
 
 	function showList( $admin ) {
-		global $wgUser, $wgOut; 
+		global $wgUser, $wgOut, $wgEnableSpecialInterwiki; 
 		$prefixmessage = wfMsgHtml( 'interwiki_prefix' );
 		$urlmessage = wfMsgHtml( 'interwiki_url' );
 		$localmessage = wfMsgHtml( 'interwiki_local' );
@@ -214,7 +222,7 @@ class SpecialInterwiki extends SpecialPage {
 		$wgOut->addWikiMsg( 'interwiki_intro' );
 		$selfTitle = $this->getTitle();
 
-		if ( $admin ) {
+		if ( $admin && $wgEnableSpecialInterwiki ) {
 			$skin = $wgUser->getSkin();
 			$addtext = wfMsgHtml( 'interwiki_addtext' );
 			$addlink = $skin->link( $selfTitle, $addtext, array(), array( 'action' => 'add' ) );
@@ -233,7 +241,7 @@ class SpecialInterwiki extends SpecialPage {
 		<br />
 		<table width='100%' style='border:1px solid #aaa;' class='wikitable'>
 		<tr id='interwikitable-header'><th>$prefixmessage</th> <th>$urlmessage</th> <th>$localmessage</th> <th>$transmessage</th>";
-		if( $admin ) {
+		if( $admin && $wgEnableSpecialInterwiki ) {
 			$deletemessage = wfMsgHtml( 'delete' );
 			$editmessage = wfMsgHtml( 'edit' );
 			$out .= "<th>$editmessage</th>";
@@ -250,7 +258,7 @@ class SpecialInterwiki extends SpecialPage {
 				<td class='mw-interwikitable-url'>$url</td>
 				<td class='mw-interwikitable-local'>$local</td>
 				<td class='mw-interwikitable-trans'>$trans</td>";
-			if( $admin ) {
+			if( $admin && $wgEnableSpecialInterwiki ) {
 				$out .= '<td class="mw-interwikitable-modify">';
 				$out .= $skin->link( $selfTitle, $editmessage, array(),
 					array( 'action' => 'edit', 'prefix' => $s->iw_prefix ) );

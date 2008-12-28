@@ -3630,3 +3630,9 @@ $wgEdititis = false;
 * See http://universaleditbutton.org for more background information
 */
 $wgUniversalEditButton = true;
+
+/**
+* Enable the Interwiki special page. 
+* Disable for wikis that have their interwiki table updated automatically from a central location (like Wikimedia)
+*/
+$wgEnableSpecialInterwiki = true;
