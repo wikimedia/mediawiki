@@ -451,13 +451,7 @@ class Title {
 	 * Escape a text fragment, say from a link, for a URL
 	 */
 	static function escapeFragmentForURL( $fragment ) {
-		$fragment = str_replace( ' ', '_', $fragment );
-		$fragment = urlencode( Sanitizer::decodeCharReferences( $fragment ) );
-		$replaceArray = array(
-			'%3A' => ':',
-			'%' => '.'
-		);
-		return strtr( $fragment, $replaceArray );
+		return Sanitizer::escapeId( $fragment, Sanitizer::NONE );
 	}
 
 #----------------------------------------------------------------------------

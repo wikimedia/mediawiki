@@ -617,7 +617,7 @@ class Sanitizer {
 			}
 
 			if ( $attribute === 'id' )
-				$value = Sanitizer::escapeId( $value );
+				$value = Sanitizer::escapeId( $value, Sanitizer::NONE );
 
 			// If this attribute was previously set, override it.
 			// Output should only have one attribute of each name.

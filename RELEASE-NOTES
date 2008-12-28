@@ -457,7 +457,7 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 13835) Fix rendering of {{filepath:Wiki.png|nowiki}}
 * (bug 16772) Special:Upload now correctly rejects files with spaces in the
   file extension (e.g. Foo. jpg).
-* Ensure that all HTML id's generated for headers begin with a letter.
+* Ensure that all HTML id's begin with a letter as required by XHTML standard
 
 === API changes in 1.14 ===
 
