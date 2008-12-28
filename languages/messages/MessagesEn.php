@@ -2196,7 +2196,7 @@ Possibly it already exists in the interwiki table.',
 'interwiki_addintro'       => 'You are adding a new interwiki prefix.
 Remember that it cannot contain spaces ( ), colons (:), ampersands (&), or equal signs (=).',
 'interwiki_addtext'        => 'Add an interwiki prefix',
-'interwiki-badprefix'      => '"$1" contains invalid characters',
+'interwiki-badprefix'      => 'Specified interwiki prefix "$1" contains invalid characters',
 'interwiki_defaultreason'  => 'no reason given',
 'interwiki_defaulturl'     => 'http://www.example.com/$1', # only translate this message to other languages if you have to change it
 'interwiki_deleted'        => 'Prefix "$1" was successfully removed from the interwiki table.',

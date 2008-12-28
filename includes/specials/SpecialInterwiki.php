@@ -64,7 +64,7 @@ class SpecialInterwiki extends SpecialPage {
 		
 		$actionUrl = $this->getTitle()->getLocalURL( 'action=submit' );
 		$token = $wgUser->editToken();
-		$defaultreason = $wgRequest->getVal( 'wpInterwikiReason' ) ? $wgRequest->getVal( 'wpInterwikiReason' ) : wfMsgForContent( 'interwiki_defaultreason' );
+		$defaultreason = $wgRequest->getVal( 'wpInterwikiReason', wfMsgForContent( 'interwiki_defaultreason' ) );
 		
 		switch( $action ){
 		case "delete":
@@ -102,7 +102,7 @@ class SpecialInterwiki extends SpecialPage {
 				$dbr = wfGetDB( DB_SLAVE );
 				$row = $dbr->selectRow( 'interwiki', '*', array( 'iw_prefix' => $prefix ) );
 				if( !$row ){
-					$this->error( wfMsg( 'interwiki_editerror', $prefix ) );
+					$this->error( 'interwiki_editerror', $prefix );
 					return;
 				}
 				$prefix = '<tt>' . htmlspecialchars( $row->iw_prefix ) . '</tt>';
@@ -164,7 +164,7 @@ class SpecialInterwiki extends SpecialPage {
 		$prefix = $wgRequest->getVal( 'wpInterwikiPrefix' );
 		$do = $wgRequest->getVal( 'wpInterwikiAction' );
 		if( preg_match( '/[\s:&=]/', $prefix ) ) {
-			$this->error( wfMsg( 'interwiki-badprefix', $prefix ) );
+			$this->error( 'interwiki-badprefix', htmlspecialchars( $prefix ) );
 			$this->showForm( $do );
 			return;
 		}
@@ -176,7 +176,7 @@ class SpecialInterwiki extends SpecialPage {
 			$dbw->delete( 'interwiki', array( 'iw_prefix' => $prefix ), __METHOD__ );
 
 			if ( $dbw->affectedRows() == 0 ) {
-				$this->error( wfMsg( 'interwiki_delfailed', $prefix ) );
+				$this->error( 'interwiki_delfailed', $prefix );
 				$this->showForm( $do );
 			} else {
 				$wgOut->addWikiText( wfMsg( 'interwiki_deleted', $prefix ));
@@ -200,7 +200,7 @@ class SpecialInterwiki extends SpecialPage {
 			}
 
 			if( $dbw->affectedRows() == 0 ) {
-				$this->error( wfMsg( "interwiki_{$do}failed", $prefix ) );
+				$this->error( "interwiki_{$do}failed", $prefix );
 				$this->showForm( $do );
 			} else {
 				$wgOut->addWikiMsg( "interwiki_{$do}ed", $prefix );
@@ -233,7 +233,7 @@ class SpecialInterwiki extends SpecialPage {
 		$res = $dbr->select( 'interwiki', '*' );
 		$numrows = $res->numRows();
 		if ( $numrows == 0 ) {
-			$this->error( wfMsgWikiHtml( 'interwiki_error' ) );
+			$this->error( 'interwiki_error' );
 			return;
 		}
 		
@@ -275,8 +275,9 @@ class SpecialInterwiki extends SpecialPage {
 		$wgOut->addHTML( $out );
 	}
 	
-	function error( $msg ) {
+	function error() {
 		global $wgOut;
-		$wgOut->addHTML( Xml::tags( 'p', array( 'class' => 'error' ), $msg ) );
+		$args = func_get_args();
+		$wgOut->wrapWikiMsg( "<p class='error'>$1</p>", $args );
 	}
 }
