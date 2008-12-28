@@ -149,6 +149,20 @@ class RawPage {
 		# allow the client to cache this for 24 hours
 		$mode = $this->mPrivateCache ? 'private' : 'public';
 		header( 'Cache-Control: '.$mode.', s-maxage='.$this->mSmaxage.', max-age='.$this->mMaxage );
+		
+		if( HTMLFileCache::useFileCache() ) {
+			$cache = new HTMLFileCache( $this->mTitle );
+			if( $cache->isFileCacheGood( /* Assume up to date */ ) ) {
+				/* Check incoming headers to see if client has this cached */
+				if( !$wgOut->checkLastModified( $cache->fileCacheTime() ) ) {
+					$cache->loadFromFileCache();
+				}
+				return;
+			} else {
+				ob_start( array(&$cache, 'saveToFileCache' ) );
+			}
+		}
+		
 		$text = $this->getRawText();
 
 		if( !wfRunHooks( 'RawPageViewBeforeOutput', array( &$this, &$text ) ) ) {

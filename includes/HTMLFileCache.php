@@ -28,15 +28,18 @@ class HTMLFileCache {
 	}
 
 	public function fileCacheName() {
-		global $wgFileCacheDirectory;
 		if( !$this->mFileCache ) {
+			global $wgFileCacheDirectory, $wgRequest;
 			$key = $this->mTitle->getPrefixedDbkey();
 			$hash = md5( $key );
+			# Avoid extension confusion
 			$key = str_replace( '.', '%2E', urlencode( $key ) );
-
+			# Store raw pages (like CSS hits) elsewhere
+			$subdir = $wgRequest->getVal('action') == 'raw' ? 'raw/' : '';
+	
 			$hash1 = substr( $hash, 0, 1 );
 			$hash2 = substr( $hash, 0, 2 );
-			$this->mFileCache = "{$wgFileCacheDirectory}/{$hash1}/{$hash2}/{$key}.html";
+			$this->mFileCache = "{$wgFileCacheDirectory}/{$subdir}{$hash1}/{$hash2}/{$key}.html";
 
 			if( $this->useGzip() )
 				$this->mFileCache .= '.gz';
@@ -60,21 +63,24 @@ class HTMLFileCache {
 	 */
 	public static function useFileCache() {
 		global $wgUser, $wgUseFileCache, $wgShowIPinHeader, $wgRequest, $wgLang, $wgContLang;
-		if( !$wgUseFileCache )
-			return false;
+		if( !$wgUseFileCache ) return false;
 		// Get all query values
 		$queryVals = $wgRequest->getValues();
 		foreach( $queryVals as $query => $val ) {
-			// Normal page view in query form can have action=view
-			if( $query !== 'title' && $query !== 'curid' && !($query == 'action' && $val == 'view') ) {
-				return false;
-			}
+			if( $query == 'title' || $query == 'curid' ) continue;
+			// Normal page view in query form can have action=view.
+			// Raw hits for pages also stored, like .css pages for example.
+			if( $query == 'action' && ($val == 'view' || $val == 'raw') ) continue;
+			if( $query == 'usemsgcache' && $val == 'yes' ) continue;
+			// Below are header setting params
+			if( $query == 'maxage' || $query == 'smaxage' || $query == 'ctype' || $query == 'gen' )
+				continue;
 		}
 		// Check for non-standard user language; this covers uselang,
 		// and extensions for auto-detecting user language.
 		$ulang = $wgLang->getCode();
 		$clang = $wgContLang->getCode();
-
+		// Check that there are no other sources of variation
 		return !$wgShowIPinHeader && !$wgUser->getId() && !$wgUser->getNewtalk() && $ulang == $clang;
 	}
 
