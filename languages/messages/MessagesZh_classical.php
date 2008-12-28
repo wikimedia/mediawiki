@@ -1416,6 +1416,42 @@ $2',
 # Special:DeletedContributions
 'deletedcontributions' => '已刪之積',
 
+# Special:Interwiki
+'interwiki'                => '察與修跨維表',
+'interwiki-title-norights' => '察跨維',
+'interwiki_addbutton'      => '加',
+'interwiki_added'          => '「$1」加至跨維也。',
+'interwiki_addfailed'      => '「$1」無加跨維也。
+或已存在之。',
+'interwiki_addintro'       => '爾正加新之跨。
+記無含空（ ）、冒（:）、連（&），或等（=）。',
+'interwiki_addtext'        => '加跨維',
+'interwiki-badprefix'      => '「$1」含有無效之字',
+'interwiki_defaultreason'  => '無因',
+'interwiki_deleted'        => '已刪「$1」。',
+'interwiki_deleting'       => '爾正刪「$1」。',
+'interwiki_delfailed'      => '無刪「$1」。',
+'interwiki_delquestion'    => '現刪「$1」',
+'interwiki_edited'         => '「$1」已改之。',
+'interwiki_editerror'      => '「$1」無改之。
+無存。',
+'interwiki_editintro'      => '爾正改跨維。
+記此能斷現連。',
+'interwiki_edittext'       => '改跨維',
+'interwiki_error'          => '錯：跨維為空，或它錯發生。',
+'interwiki_intro'          => '閱[http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org]之。
+有跨維之[[Special:Log/interwiki|誌]]。',
+'interwiki_local'          => '定為本維',
+'interwiki_log_added'      => '加「$2」（$3）（含：$4）（本：$5）至跨維表',
+'interwiki_log_deleted'    => '刪跨維表自「$2」',
+'interwiki_log_edited'     => '改「$2」：（$3）（含：$4）（本：$5）自跨維表',
+'interwiki_prefix'         => '前',
+'interwiki_reasonfield'    => '因',
+'interwiki_trans'          => '許跨維之含',
+'interwikilogpage'         => '誌跨維',
+'interwikilogpagetext'     => '此乃為[[Special:Interwiki|跨維表]]之誌。',
+'right-interwiki'          => '改跨維',
+
 # Special:LinkSearch
 'linksearch'       => '尋網連',
 'linksearch-pat'   => '尋址：',
