@@ -29,15 +29,19 @@ function wfSpecialAllmessages() {
 
 	$wgMessageCache->loadAllMessages();
 
-	$sortedArray = array_merge( Language::getMessagesFor( 'en' ), $wgMessageCache->getExtensionMessagesFor( 'en' ) );
+	$sortedArray = array_merge( Language::getMessagesFor( 'en' ), 
+		$wgMessageCache->getExtensionMessagesFor( 'en' ) );
 	ksort( $sortedArray );
-	$messages = array();
 
-	foreach ( $sortedArray as $key => $value ) {
+	$messages = array();
+	foreach( $sortedArray as $key => $value ) {
 		$messages[$key]['enmsg'] = $value;
-		$messages[$key]['statmsg'] = wfMsgReal( $key, array(), false, false, false ); // wfMsgNoDbNoTrans doesn't exist
+		$messages[$key]['statmsg'] = wfMsgReal( $key, array(), false, false, false );
 		$messages[$key]['msg'] = wfMsgNoTrans( $key );
+		$sortedArray[$key] = NULL; // trade bytes from $sortedArray to this
+		
 	}
+	unset($sortedArray); // trade bytes from $sortedArray to this
 
 	wfProfileOut( __METHOD__ . '-setup' );
 
@@ -63,13 +67,14 @@ function wfSpecialAllmessages() {
 	wfProfileOut( __METHOD__ );
 }
 
-function wfAllMessagesMakeXml( $messages ) {
+function wfAllMessagesMakeXml( &$messages ) {
 	global $wgLang;
 	$lang = $wgLang->getCode();
 	$txt = "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n";
 	$txt .= "<messages lang=\"$lang\">\n";
 	foreach( $messages as $key => $m ) {
 		$txt .= "\t" . Xml::element( 'message', array( 'name' => $key ), $m['msg'] ) . "\n";
+		$messages[$key] = NULL; // trade bytes
 	}
 	$txt .= "</messages>";
 	return $txt;
@@ -81,7 +86,7 @@ function wfAllMessagesMakeXml( $messages ) {
  * @return The PHP messages array.
  * @todo Make suitable for language files.
  */
-function wfAllMessagesMakePhp( $messages ) {
+function wfAllMessagesMakePhp( &$messages ) {
 	global $wgLang;
 	$txt = "\n\n\$messages = array(\n";
 	foreach( $messages as $key => $m ) {
@@ -94,6 +99,7 @@ function wfAllMessagesMakePhp( $messages ) {
 			$comment = '';
 		}
 		$txt .= "'$key' => '" . preg_replace( '/(?<!\\\\)\'/', "\'", $m['msg']) . "',$comment\n";
+		$messages[$key] = NULL; // trade bytes
 	}
 	$txt .= ');';
 	return $txt;
@@ -104,7 +110,7 @@ function wfAllMessagesMakePhp( $messages ) {
  * @param $messages Messages array.
  * @return The HTML list of messages.
  */
-function wfAllMessagesMakeHTMLText( $messages ) {
+function wfAllMessagesMakeHTMLText( &$messages ) {
 	global $wgLang, $wgContLang, $wgUser;
 	wfProfileIn( __METHOD__ );
 
@@ -123,7 +129,8 @@ function wfAllMessagesMakeHTMLText( $messages ) {
 		'onclick' => 'allmessagesmodified()'
 	), '' );
 
-	$txt = '<span id="allmessagesfilter" style="display: none;">' . wfMsgHtml( 'allmessagesfilter' ) . " {$input}{$checkbox} " . '</span>';
+	$txt = '<span id="allmessagesfilter" style="display: none;">' . wfMsgHtml( 'allmessagesfilter' ) . 
+		" {$input}{$checkbox} " . '</span>';
 
 	$txt .= '
 <table border="1" cellspacing="0" width="100%" id="allmessagestable">
@@ -144,11 +151,14 @@ function wfAllMessagesMakeHTMLText( $messages ) {
 		NS_MEDIAWIKI_TALK => array()
 	);
 	$dbr = wfGetDB( DB_SLAVE );
-	$page = $dbr->tableName( 'page' );
-	$sql = "SELECT page_namespace,page_title FROM $page WHERE page_namespace IN (" . NS_MEDIAWIKI . ", " . NS_MEDIAWIKI_TALK . ")";
-	$res = $dbr->query( $sql );
+	$res = $dbr->select( 'page',
+		array( 'page_namespace', 'page_title' ),
+		array( 'page_namespace' => array(NS_MEDIAWIKI,NS_MEDIAWIKI_TALK) ),
+		__METHOD__,
+		array( 'USE INDEX' => 'name_title' )
+	);
 	while( $s = $dbr->fetchObject( $res ) ) {
-		$pageExists[$s->page_namespace][$s->page_title] = true;
+		$pageExists[$s->page_namespace][$s->page_title] = 1;
 	}
 	$dbr->freeResult( $res );
 	wfProfileOut( __METHOD__ . "-check" );
@@ -163,19 +173,21 @@ function wfAllMessagesMakeHTMLText( $messages ) {
 			$title .= '/' . $wgLang->getCode();
 		}
 
-		$titleObj =& Title::makeTitle( NS_MEDIAWIKI, $title );
-		$talkPage =& Title::makeTitle( NS_MEDIAWIKI_TALK, $title );
+		$titleObj = Title::makeTitle( NS_MEDIAWIKI, $title );
+		$talkPage = Title::makeTitle( NS_MEDIAWIKI_TALK, $title );
 
 		$changed = ( $m['statmsg'] != $m['msg'] );
 		$message = htmlspecialchars( $m['statmsg'] );
 		$mw = htmlspecialchars( $m['msg'] );
 
-		if( isset( $pageExists[NS_MEDIAWIKI][$title] ) ) {
-			$pageLink = $sk->makeKnownLinkObj( $titleObj, "<span id=\"sp-allmessages-i-$i\">" .  htmlspecialchars( $key ) . '</span>' );
+		if( array_key_exists( $title, $pageExists[NS_MEDIAWIKI] ) ) {
+			$pageLink = $sk->makeKnownLinkObj( $titleObj, "<span id=\"sp-allmessages-i-$i\">" . 
+				htmlspecialchars( $key ) . '</span>' );
 		} else {
-			$pageLink = $sk->makeBrokenLinkObj( $titleObj, "<span id=\"sp-allmessages-i-$i\">" .  htmlspecialchars( $key ) . '</span>' );
+			$pageLink = $sk->makeBrokenLinkObj( $titleObj, "<span id=\"sp-allmessages-i-$i\">" . 
+				htmlspecialchars( $key ) . '</span>' );
 		}
-		if( isset( $pageExists[NS_MEDIAWIKI_TALK][$title] ) ) {
+		if( array_key_exists( $title, $pageExists[NS_MEDIAWIKI_TALK] ) ) {
 			$talkLink = $sk->makeKnownLinkObj( $talkPage, htmlspecialchars( $talk ) );
 		} else {
 			$talkLink = $sk->makeBrokenLinkObj( $talkPage, htmlspecialchars( $talk ) );
@@ -186,27 +198,28 @@ function wfAllMessagesMakeHTMLText( $messages ) {
 
 		if( $changed ) {
 			$txt .= "
-	<tr class=\"orig\" id=\"sp-allmessages-r1-$i\">
-		<td rowspan=\"2\">
-			$anchor$pageLink<br />$talkLink
-		</td><td>
-$message
-		</td>
-	</tr><tr class=\"new\" id=\"sp-allmessages-r2-$i\">
-		<td>
-$mw
-		</td>
-	</tr>";
+				<tr class=\"orig\" id=\"sp-allmessages-r1-$i\">
+					<td rowspan=\"2\">
+						$anchor$pageLink<br />$talkLink
+					</td><td>
+				$message
+					</td>
+				</tr><tr class=\"new\" id=\"sp-allmessages-r2-$i\">
+					<td>
+				$mw
+					</td>
+				</tr>";
 		} else {
 			$txt .= "
-	<tr class=\"def\" id=\"sp-allmessages-r1-$i\">
-		<td>
-			$anchor$pageLink<br />$talkLink
-		</td><td>
-$mw
-		</td>
-	</tr>";
+				<tr class=\"def\" id=\"sp-allmessages-r1-$i\">
+					<td>
+						$anchor$pageLink<br />$talkLink
+					</td><td>
+				$mw
+					</td>
+				</tr>";
 		}
+		$messages[$key] = NULL; // trade bytes
 		$i++;
 	}
 	$txt .= '</table>';
