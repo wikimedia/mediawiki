@@ -292,6 +292,7 @@ $messages = array(
 'yourpasswordagain'  => 'تێپه‌ڕه‌وشه‌ دووباره‌',
 'remembermypassword' => 'زانیاریی چوونه‌ ژووره‌وه‌م له‌سه‌ر ئه‌م كۆمپیوته‌ره‌ پاشه‌كه‌وت بكه‌',
 'yourdomainname'     => 'ناوی دۆمه‌ینی خۆت',
+'login'              => 'تێکەوە (login)',
 'userlogin'          => 'دروست کردنی ھەژمار/چوونە ژورەوە',
 'logout'             => 'ده‌رچوون',
 'userlogout'         => 'دەرچوون',
@@ -375,14 +376,17 @@ $messages = array(
 # Search results
 'noexactmatch' => "'''ھیچ پەڕەیەک ھەر بەم سەردێڕەوە نیە.''' 
 ئێستە دەتوانی ئەم پەڕە دروست بکەیت",
+'powersearch'  => 'بە ھێز بگەڕە',
 
 # Preferences page
 'mypreferences' => 'ھەڵبژاردەکانی من',
 
 # Recent changes
+'recentchanges'   => 'دوایین گۆڕانکارییەکان',
 'diff'            => 'جیاوازی',
 'hist'            => 'مێژوو',
 'hide'            => 'شاردنەوە',
+'show'            => 'نیشان بە',
 'minoreditletter' => 'ور',
 'newpageletter'   => 'ن',
 'boteditletter'   => 'ڕ',
@@ -403,7 +407,14 @@ $messages = array(
 # Miscellaneous special pages
 'nbytes'       => '$1 {{PLURAL:$1|بایت|بایت}}',
 'specialpages' => 'لاپەڕە تایبەتەکان',
+'newpages'     => 'پەڕە نوێکان',
 'move'         => 'ناوی ئەم پەڕە بگۆڕە',
+
+# Special:Allpages
+'allarticles' => 'ھەمووی وتارەکان',
+
+# E-mail user
+'emailuser' => 'بۆ ئەم بەکارھێنەرە E-Mail بنێرە',
 
 # Watchlist
 'mywatchlist' => 'لیستی چاودێڕی‌یەکانم',
@@ -416,6 +427,7 @@ $messages = array(
 'rollbacklink' => 'گەڕاندنەوە',
 
 # Namespace form on various pages
+'invert'         => 'ھەڵبژاردەکان پێچەوانە بکە',
 'blanknamespace' => '(سەرەکی)',
 
 # Contributions
@@ -435,6 +447,9 @@ $messages = array(
 'tooltip-pt-userpage'             => 'په‌ڕه‌ی تایبه‌تی خۆم',
 'tooltip-ca-nstab-user'           => 'پەڕەی بەکارھێنەر تەماشا بکە',
 'tooltip-compareselectedversions' => 'جیاوازییەکانی دوو وەشانە دیاریکراوەی ئەم پەڕە ببینە.',
+
+# Media information
+'show-big-image' => 'گەورە کردنەوە',
 
 # Metadata
 'metadata-help'   => 'ئەم پەڕگە زانیاری زێدەی ھەیە، کە لەوە دەچێت کامێرا یان ھێماگر (scanner) خستبێتیە سەری. ئەگەر پەڕگەکە لە حاڵەتی سەرەتاییەکەیەوە دەستکاری کرابێ، شایەد بڕێ لە بڕگەکان بە تەواوی زانیارەکانی وێنە گۆڕدراوەکە نیشان نەدەن.',

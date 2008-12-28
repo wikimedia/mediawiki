@@ -1296,6 +1296,7 @@ $NEWPAGE
 'undelete-error-long'        => 'ፋይሉ በመመለስ ስኅተቶች ተነሡ፦
 
 $1',
+'undelete-show-file-submit'  => 'አዎን',
 
 # Namespace form on various pages
 'namespace'      => 'ዓይነት፦',
@@ -1399,6 +1400,7 @@ $1',
 'block-log-flags-noemail'     => 'ኢ-ሜል ታገደ',
 'ipb_expiry_invalid'          => 'የሚያልቅበት ግዜ አይሆንም።',
 'ipb_already_blocked'         => '«$1» ገና ከዚህ በፊት ታግዶ ነው።',
+'blockme'                     => 'ልታገድ',
 'proxyblocker-disabled'       => 'ይህ ተግባር እንደማይሠራ ተደርጓል።',
 'proxyblocksuccess'           => 'ተደርጓል።',
 
@@ -1922,7 +1924,7 @@ $3
 የዚህ መያያዣው ኮድ እስከ $4 ድረስ ይሠራል።',
 
 # Scary transclusion
-'scarytranscludetoolong' => '[ይቅርታ፤ URL ከመጠን በላይ የረዘመ ነው]',
+'scarytranscludetoolong' => '[URL ከመጠን በላይ የረዘመ ነው]',
 
 # Trackbacks
 'trackbackremove' => ' ([$1 ማጥፋት])',

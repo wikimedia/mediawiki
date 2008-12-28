@@ -938,7 +938,7 @@ $2 Izlistajte preusmjerenja &nbsp; Tražite $3 $9',
 'localtime'                => 'Lokalno vrijeme',
 'timezoneoffset'           => 'Odstupanje',
 'servertime'               => 'Vrijeme na serveru',
-'guesstimezone'            => 'Popuni iz brauzera',
+'guesstimezone'            => 'Popuni iz preglednika',
 'allowemail'               => 'Dozvoli e-poštu od ostalih korisnika',
 'defaultns'                => 'Uobičajeno tražite u ovim imenskim prostorima:',
 'default'                  => 'standardno',
@@ -1616,7 +1616,7 @@ $1',
 'blanknamespace' => '(Glavno)',
 
 # Contributions
-'contributions' => 'Doprinos korisnika',
+'contributions' => 'Doprinosi korisnika',
 'mycontris'     => 'Moj doprinos',
 'contribsub2'   => 'Za $1 ($2)',
 'nocontribs'    => 'Nisu nađene promjene koje zadovoljavaju ove uslove.',
@@ -1671,7 +1671,7 @@ $1',
 'ipbenableautoblock'          => 'Automatski blokiraj zadnju IP adresu koju je koristio ovaj korisnik i sve druge IP adrese s kojih je on pokušao uređivati',
 'ipbsubmit'                   => 'Blokirajte ovog korisnika',
 'ipbother'                    => 'Ostali period:',
-'ipboptions'                  => '15 minuta:15 min,1 sat:1 hour,2 sata:2 hours,6 sati:6 hours,12 sati:12 hours,1 dan:1 day,3 dana:3 days,1 sedmica:1 week,2 sedmice:2 weeks,1 mjesec:1 month,3 mjeseca:3 months,6 mjeseci:6 months,1 godine:1 year,zauvijek:infinite', # display1:time1,display2:time2,...
+'ipboptions'                  => '2 sata:2 hours,1 dan:1 day,3 dana:3 days,1 sedmica:1 week,2 sedmice:2 weeks,1 mjesec:1 month,3 mjeseca:3 months,6 mjeseci:6 months,1 godine:1 year,zauvijek:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'ostalo',
 'ipbotherreason'              => 'Ostali/dodatni razlozi:',
 'ipbhidename'                 => 'Sakrij korisničko ime iz zapisa blokiranja, spiska aktivnih blokiranja i spisak korisnika',
@@ -2481,8 +2481,12 @@ Također možete [[Special:Watchlist/edit|koristiti standardni uređivač]].',
 'version-software-version'         => 'Verzija',
 
 # Special:Filepath
-'filepath'        => 'Putanja datoteke',
-'filepath-page'   => 'Datoteka:',
-'filepath-submit' => 'Putanja',
+'filepath'         => 'Putanja datoteke',
+'filepath-page'    => 'Datoteka:',
+'filepath-submit'  => 'Putanja',
+'filepath-summary' => 'Ova posebna stranica prikazuje potpunu putanju za datoteku.
+Slike su prikazane u punoj rezoluciji, ostale vrste datoteka se otvaraju s njima povezanim programima.
+
+Unesite naziv datoteke bez prefiksa "{{ns:image}}:".',
 
 );

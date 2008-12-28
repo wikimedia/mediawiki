@@ -7,6 +7,7 @@
  * @author Alsandro
  * @author Malafaya
  * @author Sopho
+ * @author Temuri rajavi
  * @author ka.wikipedia.org sysops
  * @author לערי ריינהארט
  */
@@ -244,7 +245,7 @@ $messages = array(
 'currentevents'     => 'მიმდინარე მოვლენები',
 'currentevents-url' => 'Project:მიმდინარე მოვლენები',
 'disclaimers'       => 'პასუხისმგებლობის მოხსნა',
-'disclaimerpage'    => 'Project::პასუხისმგებლობის უარყოფა',
+'disclaimerpage'    => 'Project:პასუხისმგებლობის უარყოფა',
 'edithelp'          => 'დახმარება',
 'edithelppage'      => 'Help:ტექსტის რედაქტირება (მარტივი)',
 'faq'               => 'ხშირი შეკითხვები',
@@ -1530,6 +1531,7 @@ $NEWPAGE
 'tooltip-t-emailuser'             => 'გაუგზავნე ელ. ფოსტა ამ მომხმარებელს',
 'tooltip-t-upload'                => 'ჩატვირთეთ მედიაფაილები',
 'tooltip-t-specialpages'          => 'ყველა სპეციალური გვერდის სია',
+'tooltip-t-print'                 => 'ამ გვერდის დასაბეჭდი ვერსია',
 'tooltip-ca-nstab-user'           => 'მომხმარებლის გვერდის ჩვენება',
 'tooltip-ca-nstab-project'        => 'იხილეთ პროექტის გვერდი',
 'tooltip-ca-nstab-image'          => 'სურათის გვერდის ჩვენება',
@@ -1635,8 +1637,8 @@ $NEWPAGE
 'metadata-collapse' => 'დეტალების დამალვა',
 'metadata-fields'   => 'EXIF მეტამონაცემების ჩამონათვალი ამ შეტყობინებაში დამატებული იქნება სურათის გვერდზე, როცა მეტამონაცემების ცხრილი გახსნილია.
 სხვები უპირობოდ დამალული იქნება.
-* მწარმოებელი
-* მოდელი
+* make
+* model
 * datetimeoriginal
 * exposuretime
 * fnumber

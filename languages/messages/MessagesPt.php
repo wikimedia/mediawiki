@@ -383,7 +383,7 @@ $messages = array(
 'badaccess-group0' => 'Você não está autorizado a executar a acção requisitada.',
 'badaccess-group1' => 'A acção que você requisitou está limitada a utilizadores do grupo $1.',
 'badaccess-group2' => 'A acção que você requisitou está limitada a utilizadores de um dos seguintes grupos: $1.',
-'badaccess-groups' => 'A acção que você requisitou está limitada a utilizadores {{PLURAL:$2|do grupo|de um dos seguintes grupos}}: $1.',
+'badaccess-groups' => 'A acção que você requisitou está limitada a utilizadores de um dos seguintes grupos: $1.',
 
 'versionrequired'     => 'É necessária a versão $1 do MediaWiki',
 'versionrequiredtext' => 'Esta página requer a versão $1 do MediaWiki para poder ser utilizada. Consulte [[Special:Version|a página sobre a versão do sistema]]',
@@ -578,7 +578,7 @@ $1 horas.',
 'mailerror'                  => 'Erro a enviar o email: $1',
 'acct_creation_throttle_hit' => 'Desculpe, você já criou {{PLURAL:$1|1 conta|$1 contas}}.
 Não lhe é possível criar mais nenhuma.',
-'emailauthenticated'         => 'O seu endereço de e-mail foi autenticado às $3 de $2.',
+'emailauthenticated'         => 'O seu endereço de e-mail foi autenticado em $1.',
 'emailnotauthenticated'      => 'O seu endereço de correio electrónico ainda não foi autenticado. Não lhe será enviado nenhum correio sobre nenhuma das seguintes funcionalidades.',
 'noemailprefs'               => 'Especifique um endereço de e-mail para que os seguintes recursos funcionem.',
 'emailconfirmlink'           => 'Confirme o seu endereço de correio electrónico',
@@ -678,9 +678,9 @@ Por favor, inclua tais dados em qualquer tentativa de esclarecimentos que for re
 'whitelistedittitle'        => 'É necessário autenticar-se para editar páginas',
 'whitelistedittext'         => 'Precisa de se $1 para poder editar páginas.',
 'whitelistreadtitle'        => 'É necessária a autentificação para poder visualizar',
-'whitelistreadtext'         => 'Precisa de se [[Special:UserLogin|autenticar]] para poder visualizar páginas.',
+'whitelistreadtext'         => 'Precisa de se [[Special:Userlogin|autenticar]] para poder visualizar páginas.',
 'whitelistacctitle'         => 'Não lhe é permitido criar uma conta',
-'whitelistacctext'          => 'De modo a poder criar contas de utilizador neste Wiki terá que se [[Special:UserLogin|autenticar]] e possuir as devidas permissões.',
+'whitelistacctext'          => 'De modo a poder criar contas de utilizador neste Wiki terá que se [[Special:Userlogin|autenticar]] e possuir as devidas permissões.',
 'confirmedittitle'          => 'Confirmação de e-mail requerida para editar',
 'confirmedittext'           => 'Você precisa confirmar o seu endereço de e-mail antes de começar a editar páginas.
 Por favor, introduza um e valide-o através das suas [[Special:Preferences|preferências de utilizador]].',
@@ -754,9 +754,7 @@ navegadores possuem problemas em editar páginas maiores que 32 kb.
 Por favor, considere seccionar a página em secções de menor dimensão.</strong>',
 'longpageerror'             => '<strong>ERRO: O texto de página que você submeteu tem mais de $1 kilobytes em tamanho, que é maior que o máximo de $2 kilobytes. A página não pode ser salva.</strong>',
 'readonlywarning'           => '<strong>AVISO: A base de dados foi bloqueada para manutenção, pelo que não poderá salvar a sua edição neste momento.
-Pode, no entanto, copiar o seu texto num editor externo e guardá-lo para posterior submissão.</strong>
-
-Quem bloqueou a base de dados forneceu a seguinte justificativa: $1',
+Pode, no entanto, copiar o seu texto num editor externo e guardá-lo para posterior submissão.</strong>',
 'protectedpagewarning'      => '<strong>AVISO: Esta página foi protegida e poderá ser editada apenas por utilizadores com privilégios sysop (administradores).</strong>',
 'semiprotectedpagewarning'  => "'''Nota:''' Esta página foi protegida de modo a que apenas utilizadores registados a possam editar.",
 'cascadeprotectedwarning'   => "'''Atenção:''' Esta página se encontra protegida de forma que apenas {{int:group-sysop}} possam editá-la, uma vez que se encontra incluída {{PLURAL:\$1|na seguinte página protegida|nas seguintes páginas protegidas}} com a \"proteção progressiva\":",
@@ -866,7 +864,7 @@ Outros administradores nesta wiki continuarão a poder aceder ao conteúdo escon
 
 # Oversight log
 'oversightlog'    => 'Registo de edições ocultadas',
-'overlogpagetext' => 'É exibida a seguir uma listagem das deleções e bloqueios mais recentes envolvendo conteúdos ocultados por Administradores. Veja a [[{{ns:special}}:Ipblocklist|lista de bloqueios]] para os bloqueios e banimentos atualmente vigentes.',
+'overlogpagetext' => 'É exibida a seguir uma listagem das deleções e bloqueios mais recentes envolvendo conteúdos ocultados por Administradores. Veja a [[Special:Ipblocklist|lista de bloqueios]] para os bloqueios e banimentos atualmente vigentes.',
 
 # History merging
 'mergehistory'                     => 'Fundir histórico de páginas',
@@ -1077,7 +1075,7 @@ Grupos não seleccionados não serão alterados. Pode seleccionar ou remover a s
 'upload_directory_read_only'  => 'O directório de recebimento de ficheiros ($1) não tem permissões de escrita para o servidor Web.',
 'uploaderror'                 => 'Erro ao carregar',
 'uploadtext'                  => "Utilize o formulário abaixo para carregar novos ficheiros.
-Para ver ou pesquisar imagens anteriormente carregadas consulte a [[Special:ImageList|lista de ficheiros carregados]]. (re)Envios e eliminações são também registados no [[Special:Log|registo do projecto]]. Eliminações no [[Special:Log/delete|registo de eliminação]]
+Para ver ou pesquisar imagens anteriormente carregadas consulte a [[Special:Imagelist|lista de ficheiros carregados]]. (Re)Envios e eliminações são também registados no [[Special:Log/upload|registo de carregamentos]].
 
 Para incluir a imagem numa página, utilize o link em um dos seguintes formatos:
 * '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:ficheiro.jpg]]</nowiki></tt>''' para utilizar a versão completa da imagem;
@@ -1088,8 +1086,7 @@ Para incluir a imagem numa página, utilize o link em um dos seguintes formatos:
 'upload-prohibited'           => 'Tipos de ficheiro proibidos: $1.',
 'uploadlog'                   => 'registo de carregamento',
 'uploadlogpage'               => 'Registo de carregamento',
-'uploadlogpagetext'           => 'Segue-se uma lista dos carregamentos mais recentes.
-Consulte a [[Special:NewImages|galeria de novos ficheiros]] para uma visualização mais amigável.',
+'uploadlogpagetext'           => 'Segue-se uma lista dos carregamentos mais recentes.',
 'filename'                    => 'Nome do ficheiro',
 'filedesc'                    => 'Descrição do ficheiro',
 'fileuploadsummary'           => 'Sumário:',
@@ -1289,8 +1286,7 @@ Excluindo estas, há {{PLURAL:\$2|'''\$2''' página que provavelmente é uma pá
 Há um total de '''\$3''' {{PLURAL:\$3|página vista|páginas vistas}} e '''\$4''' {{PLURAL:\$4|edição|edições}} em páginas desde que este wiki foi instalado, o que resulta em aproximadamente '''\$5''' edições por página e '''\$6''' vistas por edição.
 
 O tamanho actual da [http://www.mediawiki.org/wiki/Manual:Job_queue fila de tarefas] é '''\$7'''.",
-'userstatstext'          => "Há {{PLURAL:$1|'''$1''' [[Special:ListUsers|utilizador]] registado|'''$1''' [[Special:ListUsers|utilizadores]] registados}}, dos quais '''$2''' (ou '''$4%''') {{PLURAL:$2|tem|têm}} privilégios de $5.
-Há actualmente cerca de '''$6''' {{PLURAL:$6|conta|contas}} de utilizador {{PLURAL:$6| registada activa|registadas activas}}.",
+'userstatstext'          => "Há {{PLURAL:$1|'''$1''' [[Special:Listusers|utilizador]] registado|'''$1''' [[Special:Listusers|utilizadores]] registados}}, dos quais '''$2''' (ou '''$4%''') {{PLURAL:$2|tem|têm}} privilégios de $5.",
 'statistics-mostpopular' => 'Páginas mais vistas',
 
 'disambiguations'      => 'Página de desambiguações',
@@ -1610,7 +1606,7 @@ Clicar em '''''Limpar''''' irá limpar o campo de comentário e todas as caixas 
 Se uma nova página foi criada com o mesmo nome desde a eliminação, as edições restauradas aparecerão no histórico anterior.',
 'undeleterevdel'               => 'O restauro não será executado se resultar na remoção parcial da versão mais recente da página. Em tais casos, deverá desseleccionar ou reverter a ocultação das versões apagadas mais recentes. Versões de ficheiros para os quais não tenha permissão de visualização não serão restauradas.',
 'undeletehistorynoadmin'       => 'Esta página foi eliminada. O motivo de eliminação é apresentado no súmario abaixo, junto dos detalhes do utilizador que editou esta página antes de eliminar. O texto actual destas edições eliminadas encontra-se agora apenas disponível para administradores.',
-'undelete-revision'            => 'Edição eliminada da página $1 (das $5 de $4), por $3:',
+'undelete-revision'            => 'Eliminada edição da página $1 (de $2), por $3:',
 'undeleterevision-missing'     => 'Edição inválida ou não encontrada. Talvez você esteja com um link incorrecto ou talvez a edição foi restaurada ou removida dos arquivos.',
 'undelete-nodiff'              => 'Não foram encontradas edições anteriores.',
 'undeletebtn'                  => 'Restaurar',
@@ -1984,12 +1980,12 @@ Salve o ficheiro para o seu disco e importe-o aqui.',
 'notacceptable'     => 'O servidor não pode fornecer os dados num formato que o seu cliente possa ler.',
 
 # Attribution
-'anonymous'        => '{{PLURAL:$1|Utilizador anónimo|Utilizadores anónimos}} da {{SITENAME}}',
+'anonymous'        => 'Utilizadores anónimos da {{SITENAME}}',
 'siteuser'         => 'um utilizador da {{SITENAME}}: $1',
 'lastmodifiedatby' => 'Esta página foi modificada pela última vez às $2 de $1 por $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Baseado no trabalho de $1.',
 'others'           => 'outros',
-'siteusers'        => '{{PLURAL:$2|um utilizador|$2 utilizadores}} da {{SITENAME}}: $1',
+'siteusers'        => 'Utilizadores da {{SITENAME}}: $1',
 'creditspage'      => 'Créditos da página',
 'nocredits'        => 'Não há informação disponível sobre os créditos desta página.',
 

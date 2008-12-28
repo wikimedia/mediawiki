@@ -1049,8 +1049,8 @@ Biex tagħmel modifika fl-ordni tal-kolonna, klikkja fuq it-titlu tal-kolonna st
 'shareduploadwiki'          => 'Jekk jogħġbok ara $1 għal aktar informazzjoni.',
 'shareduploadwiki-desc'     => 'Id-deskrizzjoni fuq il-$1, tinsab ħawn taħt.',
 'shareduploadwiki-linktext' => 'paġna tad-deskrizzjoni tal-fajl',
-'noimage'                   => "L-Ebda fajl b'dan l-isem, tridu $1.",
-'noimage-linktext'          => "jiġi mtella'",
+'noimage'                   => "Ebda fajl ma jeżisti b'dan l-isem, imma jekk trid tista' $1.",
+'noimage-linktext'          => "tella' wieħed",
 'uploadnewversion-linktext' => "Tella' verżjoni ġdida ta' dan il-fajl",
 'imagelist_date'            => 'Data',
 'imagelist_name'            => 'Isem',
@@ -1872,8 +1872,8 @@ $1',
 'filedelete-archive-read-only'    => 'L-Arkivju tad-direttorju "$1" ma jistax jinkiteb mill-webserver.',
 
 # Browsing diffs
-'previousdiff' => "← Differenza ta' qabel",
-'nextdiff'     => 'Id-differenza li jmiss →',
+'previousdiff' => '← Differenza preċedenti',
+'nextdiff'     => 'Id-differenza suċċessiva →',
 
 # Media information
 'mediawarning'         => "'''Twissija''': Dan il-fajl jista' jkun fih kodiċi malinja, jekk tagħżel li tiftħu jista' jagħmel ħsara fis-sistema informatika tiegħek.<hr />",
@@ -2174,7 +2174,7 @@ Minħabba veduta predefinita ,l-oħrajn se jiġu moħbija.
 
 # External editor support
 'edit-externally'      => "Immodifika dan il-fajl b'użu ta' applikazzjoni esterna",
-'edit-externally-help' => 'Għal aktar informazzjoni ara l-[http://www.mediawiki.org/wiki/Manual:External_editors istruzzjonijiet] (bl-Ingliż)',
+'edit-externally-help' => '(Għal aktar informazzjoni ara l-[http://www.mediawiki.org/wiki/Manual:External_editors istruzzjonijiet])',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'kollha',

@@ -9,6 +9,7 @@
  * @author Maros
  * @author Michawiki
  * @author Palica
+ * @author Rudko
  * @author Sp5uhe
  * @author Urhixidur
  * @author Valasek
@@ -291,7 +292,7 @@ $messages = array(
 
 'errorpagetitle'    => 'Chyba',
 'returnto'          => 'Späť na $1.',
-'tagline'           => 'Z {{GRAMMAR:genitív|{{SITENAME}}}}',
+'tagline'           => 'Z {{GRAMMAR:akuzatív|{{SITENAME}}}}',
 'help'              => 'Pomoc',
 'search'            => 'Hľadať',
 'searchbutton'      => 'Hľadať',
@@ -369,7 +370,7 @@ $messages = array(
 'sitesupport-url'   => 'Project:Podpora',
 
 'badaccess'        => 'Chyba povolenia',
-'badaccess-group0' => 'Nemáte povolenie na vykonanie požadovanej činnosti.',
+'badaccess-group0' => 'Nemáte povolenie na vykonanie požadovaného úkonu.',
 'badaccess-group1' => 'Činnosť, ktorú požadujete môže vykonať iba člen skupiny $1.',
 'badaccess-group2' => 'Činnosť, ktorú požadujete môže vykonať iba člen jednej zo skupín $1.',
 'badaccess-groups' => 'Činnosť, ktorú požadujete, môže vykonať iba člen {{PLURAL:$2|skupiny|jednej zo skupín}}: $1.',
@@ -440,7 +441,7 @@ $1',
 'nodb'                 => 'Nebolo možné vybrať databázu $1',
 'cachederror'          => 'Nasledujúca stránka je kópia vyžiadanej stránky z vyrovnávacej pamäte a nemusí byť aktuálna.',
 'laggedslavemode'      => 'Upozornenie: Je možné, že stránka neobsahuje posledné aktualizácie.',
-'readonly'             => 'Databáza je zamknutá',
+'readonly'             => 'Databáza uzamknutá',
 'enterlockreason'      => 'Zadajte dôvod požadovaného zamknutia vrátane odhadu, kedy očakávate odomknutie',
 'readonlytext'         => 'Databáza je momentálne zamknutá, nové stránky a úpravy sú zablokované, pravdepodobne z dôvodu údržby databázy. Po skončení tejto údržby bude {{SITENAME}} opäť fungovať normálne.
 
@@ -592,7 +593,7 @@ Ak bol účet vytvorený omylom, túto správu môžete ignorovať.',
 'resetpass'               => 'Zmeniť heslo k účtu',
 'resetpass_announce'      => 'Prishlásili ste sa pomocou dočasného emailom zaslaného kódu. Pre dokončenie prihlásenia je potrebné tu nastaviť nové heslo:',
 'resetpass_text'          => '<!-- Pridajte text sem -->',
-'resetpass_header'        => 'Zmeniť heslo',
+'resetpass_header'        => 'Zmeniť heslo k účtu',
 'resetpass_submit'        => 'Nastaviť heslo a prihlásiť sa',
 'resetpass_success'       => 'Vaše heslo bolo úspešne zmenené! Prebieha prihlasovanie...',
 'resetpass_bad_temporary' => 'Neplatné dočasné heslo. Možno ste už úspešne zmenili svoje heslo alebo vyžiadali nové dočasné heslo.',

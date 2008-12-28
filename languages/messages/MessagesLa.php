@@ -7,6 +7,7 @@
  * @author Helix84
  * @author LeighvsOptimvsMaximvs
  * @author Omnipaedista
+ * @author OrbiliusMagister
  * @author Rafaelgarcia
  * @author SPQRobin
  * @author Siebrand Mazeland
@@ -845,8 +846,8 @@ Ad fasciculum in pagina includendum, utere nexu
 'uploadlogpagetext'  => 'Subter est index fasciculorum recentissimorum impositorum.
 Vide etiam [[Special:NewImages|pinacothecam fasciculorum recentissimorum impositorum]].',
 'filename'           => 'Nomen fasciculi',
-'filedesc'           => 'Descriptio',
-'fileuploadsummary'  => 'Descriptio:',
+'filedesc'           => 'Summarium',
+'fileuploadsummary'  => 'Summarium:',
 'filestatus'         => 'Locus verborum privatorum:',
 'filesource'         => 'Fons:',
 'uploadedfiles'      => 'Fasciculi impositi',
@@ -1480,12 +1481,17 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 # Media information
 'imagemaxsize'   => 'Terminare imagines in paginis imaginum ad:',
 'thumbsize'      => 'Magnitudo pollicisunguis:',
+'file-nohires'   => '<small>Nulla maior resolutio exstat.</small>',
 'show-big-image' => 'Resolutio completa',
 
 # Special:Newimages
 'newimages'    => 'Fasciculi novi',
 'showhidebots' => '($1 automata)',
 'noimages'     => 'Nullum videndum.',
+
+# Metadata
+'metadata-expand'   => 'Plura ostende',
+'metadata-collapse' => 'Partim celare',
 
 'exif-meteringmode-1' => 'Media',
 

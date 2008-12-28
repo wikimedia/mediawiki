@@ -531,7 +531,7 @@ $1',
 'wrongpassword'              => '密碼唔啱，麻煩你再試多次。',
 'wrongpasswordempty'         => '你都未入密碼，唔該再試多次啦。',
 'passwordtooshort'           => '你嘅密碼唔啱或者太短。佢最少要有$1個半形字元，同埋要唔同你嘅用戶名。',
-'mailmypassword'             => '寄返個密碼畀我',
+'mailmypassword'             => '寄個新密碼',
 'passwordremindertitle'      => '{{SITENAME}}嘅新臨時密碼',
 'passwordremindertext'       => '有人（可能係你，IP 位置 $1）
 請求 {{SITENAME}} 嘅新密碼 ($4)。
@@ -565,10 +565,11 @@ $1',
 'resetpass'               => '重設戶口密碼',
 'resetpass_announce'      => '你已經用咗一個臨時電郵碼登入。要完成登入，你一定要響呢度定一個新嘅密碼：',
 'resetpass_text'          => '<!-- 響呢度加入文字 -->',
-'resetpass_header'        => '重設密碼',
+'resetpass_header'        => '改戶口密碼',
 'resetpass_submit'        => '設定密碼同登入',
-'resetpass_success'       => '你嘅密碼已經成功咁更改！而家幫你登入緊...',
-'resetpass_bad_temporary' => '唔啱嘅臨時密碼。你可能已經成功咁更改你嘅密碼，又或者重新請求過一個新嘅臨時密碼。',
+'resetpass_success'       => '你嘅密碼已經成功噉改咗！而家幫你登入緊...',
+'resetpass_bad_temporary' => '無效嘅臨時密碼。
+你可能已經成功咁更改你嘅密碼，又或者重新請求過一個新嘅臨時密碼。',
 'resetpass_forbidden'     => '唔可以更改密碼',
 'resetpass_missing'       => '響資料度搵唔到嘢。',
 
@@ -914,10 +915,10 @@ $1',
 'prefs-watchlist-edits'    => '喺加強版監視清單度嘅最多顯示更改數：',
 'prefs-misc'               => '雜項',
 'saveprefs'                => '儲存',
-'resetprefs'               => '重設',
-'oldpassword'              => '舊密碼：',
-'newpassword'              => '新密碼：',
-'retypenew'                => '打多次新密碼：',
+'resetprefs'               => '清除未保存嘅更改',
+'oldpassword'              => '舊密碼:',
+'newpassword'              => '新密碼:',
+'retypenew'                => '打多次新密碼:',
 'textboxsize'              => '編輯中',
 'rows'                     => '列：',
 'columns'                  => '行：',
@@ -1053,6 +1054,7 @@ $1',
 'illegalfilename'             => '檔名「$1」含有頁面標題所唔允許嘅字。請試下改檔名再上載。',
 'badfilename'                 => '檔名已經更改成「$1」。',
 'filetype-badmime'            => '「$1」嘅MIME類型檔案係唔容許上載嘅。',
+'filetype-bad-ie-mime'        => '唔可以上載呢個檔案，因為 Internet Explorer 會將佢偵測做 "$1"，佢係一種唔容許同埋有潛在危險性嘅檔案類型。',
 'filetype-unwanted-type'      => "'''\".\$1\"'''係一種唔需要嘅檔案類型。建議嘅檔案類型有\$2。",
 'filetype-banned-type'        => "'''\".\$1\"'''係一種唔准許嘅檔案類型。容許嘅檔案類型有\$2。",
 'filetype-missing'            => '個檔名並冇副檔名（好以「.jpg」）。',
@@ -1201,7 +1203,7 @@ $1',
 
 # Unused templates
 'unusedtemplates'     => '未用嘅模',
-'unusedtemplatestext' => '呢一頁列示喺template空間名未包括喺其它頁面嘅全部頁面。請記得喺刪除佢哋之前檢查其它連結到呢個模嘅頁面。',
+'unusedtemplatestext' => '呢一頁列示喺{{ns:template}}空間名未包括喺其它頁面嘅全部頁面。請記得喺刪除佢哋之前檢查其它連結到呢個模嘅頁面。',
 'unusedtemplateswlh'  => '其它連結',
 
 # Random page
@@ -1258,7 +1260,7 @@ Template:搞清楚',
 'nviews'                  => '$1 次瀏覽',
 'specialpage-empty'       => '呢個報告嘅結果係空嘅。',
 'lonelypages'             => '孤立咗嘅頁面',
-'lonelypagestext'         => '以下嘅面頁係響{{SITENAME}}度未有連結到其它頁面。',
+'lonelypagestext'         => '以下嘅面頁係響{{SITENAME}}度未有連結到或包含到其它頁面。',
 'uncategorizedpages'      => '未有分類嘅頁面',
 'uncategorizedcategories' => '未有分類嘅分類',
 'uncategorizedimages'     => '未有分類嘅檔案',
@@ -1353,7 +1355,8 @@ Template:搞清楚',
 'mailnologintext' => '你一定要[[Special:UserLogin|登入咗]]同埋喺你嘅[[Special:Preferences|喜好設定]]度有個有效嘅電郵地址先可以傳送電郵畀其他用戶。',
 'emailuser'       => '發電郵畀呢位用戶',
 'emailpage'       => '發電郵畀用戶',
-'emailpagetext'   => '如果呢位用戶已經喺佢嘅用戶使用偏好入邊填咗個有效嘅電郵地址，以下表格會發送單單一條信息。你喺[[Special:Preferences|你嘅用戶喜好設定]]入面填寫嘅電郵地址會出現喺呢封電郵「由」嘅地址度，以便收件人可以回覆到。',
+'emailpagetext'   => '你可以用下面嘅表去寄一封電郵畀呢位用戶。
+你喺[[Special:Preferences|你嘅用戶喜好設定]]入面填寫嘅電郵地址會出現喺呢封電郵「由」嘅地址度，以便收件人可以回覆到。',
 'usermailererror' => '目標郵件地址返回錯誤：',
 'defemailsubject' => '{{SITENAME}} 電郵',
 'noemailtitle'    => '無電郵地址',
@@ -1532,7 +1535,9 @@ wiki: $PAGEEDITOR_WIKI
 'undeletepage'                 => '去睇同恢復刪除咗嘅頁面',
 'viewdeletedpage'              => '去睇被刪除咗嘅頁面',
 'undeletepagetext'             => '以下頁面已經刪除，但係重喺檔庫度可以恢復。檔案庫可能會定時清理。',
-'undeleteextrahelp'            => "要恢復成個頁面，唔好剔任何嘅核選盒，再撳'''''恢復'''''。要恢復已經選擇咗嘅修訂，將要恢復代表有關修訂嘅核選盒剔上，再撳'''''恢復'''''。撳'''''重設'''''會清除註解文字同埋全部嘅核選盒。",
+'undeleteextrahelp'            => "要恢復成個頁面，唔好剔任何嘅核選盒，再撳'''''恢復'''''。
+要恢復已經選擇咗嘅修訂，將要恢復代表有關修訂嘅核選盒剔上，再撳'''''恢復'''''。
+撳'''''重設'''''會清除註解文字同埋全部嘅核選盒。",
 'undeleterevisions'            => '$1個修訂都已經存檔',
 'undeletehistory'              => '如果你恢復呢個頁面，佢嘅所有修改歷史都會恢復返到嗰篇頁面嘅歷史度。如果喺佢刪除之後又新開咗同名嘅頁面，你恢復嘅修改歷史會顯示喺先前歷史度。',
 'undeleterevdel'               => '如果響最新修訂度部份刪除，噉反刪除就唔能夠進行。如果遇到呢種情況，你一定要反選或者反隱藏最新刪除咗嘅修訂。對於你冇權限去睇嘅修訂係唔能夠恢復嘅。',
@@ -1565,6 +1570,8 @@ wiki: $PAGEEDITOR_WIKI
 'undelete-error-long'          => '當反刪除緊個檔案嗰陣遇到錯誤:
 
 $1',
+'undelete-show-file-confirm'   => '你係咪肯定你想去睇響 $2 $3 嘅 "<nowiki>$1</nowiki>" 檔案?',
+'undelete-show-file-submit'    => '係',
 
 # Namespace form on various pages
 'namespace'      => '空間名：',
@@ -1799,7 +1806,7 @@ $1',
 所有 transwiki 嘅倒入動作會響[[Special:Log/import|倒入日誌]]度記錄落嚟。',
 'import-interwiki-history'   => '複製呢一頁所有嘅歷史版本',
 'import-interwiki-submit'    => '倒入',
-'import-interwiki-namespace' => '轉移頁面到空間名：',
+'import-interwiki-namespace' => '目的空間名：',
 'importtext'                 => '請由原 wiki 嘅[[Special:Export|匯出工具]]匯出成檔案。
 儲存喺你個磁碟度，然後再上載到呢度。',
 'importstart'                => '倒入緊...',
@@ -1821,6 +1828,8 @@ $1',
 'import-noarticle'           => '無版去倒入！',
 'import-nonewrevisions'      => '全部嘅修訂已經響之前倒入咗。',
 'xml-error-string'           => '$1 響行$2，欄$3 ($4 bytes): $5',
+'import-token-mismatch'      => '小節資料遺失。請再試過。',
+'import-invalid-interwiki'   => '唔能夠響指定嘅wiki倒入。',
 
 # Import log
 'importlogpage'                    => '倒入日誌',
@@ -1917,7 +1926,8 @@ $1',
 
 # Spam protection
 'spamprotectiontitle'    => '隔垃圾器',
-'spamprotectiontext'     => '隔垃圾器已經擋住咗你要儲存嘅頁面。噉可能係由指去外部網站嘅連結引起。',
+'spamprotectiontext'     => '隔垃圾器已經擋住咗你要儲存嘅頁面。
+噉可能係由指去外部網站嘅連結引起。',
 'spamprotectionmatch'    => '以下係觸發我哋嘅反垃圾過濾器嘅文字：$1',
 'subcategorycount'       => '呢個類別入邊有$1個細類別。',
 'categoryarticlecount'   => '呢個類別入邊有$1版。',
@@ -2295,7 +2305,7 @@ Variants for Chinese language
 
 # External editor support
 'edit-externally'      => '用外面程式來改呢個檔案',
-'edit-externally-help' => '去[http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] 睇多啲資料',
+'edit-externally-help' => '(去[http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] 睇多啲資料)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => '全部',
@@ -2313,7 +2323,7 @@ Variants for Chinese language
 'confirmemail_sent'       => '確認電郵已經寄出。',
 'confirmemail_oncreate'   => '一個確認碼已經寄送咗到嘅嘅電郵地址。
 呢個代碼唔係登入嗰陣去用，但係你需要佢去開響呢個wiki度，任何同電郵有關嘅功能。',
-'confirmemail_sendfailed' => '發唔到確認信。請檢查吓個地址有冇無效嘅字。
+'confirmemail_sendfailed' => '{{SITENAME}}發唔到確認信。請檢查吓個地址有冇無效嘅字。
 
 郵件遞送員回應咗：$1',
 'confirmemail_invalid'    => '無效嘅確認碼。個代碼可能已經過咗期。',

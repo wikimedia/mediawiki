@@ -1188,7 +1188,7 @@ Fendo click en un encabezau de colunna se cambia o criterio d'ordenazión.",
 'randomredirect-nopages' => 'No bi ha garra reendrezera en iste espazio de nombres.',
 
 # Statistics
-'statistics'             => 'Estadisticas',
+'statistics'             => 'Estatisticas',
 'sitestats'              => 'Estadisticas de {{SITENAME}}',
 'userstats'              => "Estadisticas d'usuario",
 'sitestatstext'          => "Bi ha un total de {{PLURAL:$1|'''1''' pachina|'''$1''' pachinas}} en a base de datos.

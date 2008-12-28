@@ -309,9 +309,9 @@ $messages = array(
 'restorelink'             => '$1 {{PLURAL:$1|ištrintą keitimą|ištrintus keitimus|ištrintų keitimų}}',
 'feedlinks'               => 'Šaltinis:',
 'feed-invalid'            => 'Neleistinas šaltinio tipas.',
-'feed-unavailable'        => 'RSS ir Atom projekte {{SITENAME}} nėra galimas',
-'site-rss-feed'           => '$1 RSS šaltinis',
-'site-atom-feed'          => '$1 Atom šaltinis',
+'feed-unavailable'        => 'Keitimų prenumeratos negalimos',
+'site-rss-feed'           => '$1 RSS prenumerata',
+'site-atom-feed'          => '$1 Atom prenumerata',
 'page-rss-feed'           => '„$1“ RSS šaltinis',
 'page-atom-feed'          => '„$1“ Atom šaltinis',
 'red-link-title'          => '$1 (dar nesukurtas)',
@@ -999,6 +999,7 @@ Norėdami panaudoti įkeltą failą puslapyje, naudokite tokias nuorodas:
 'illegalfilename'             => 'Failo varde „$1“ yra simbolių, neleidžiamų puslapio pavadinimuose. Prašome pervadint failą ir mėginkite įkelti jį iš naujo.',
 'badfilename'                 => 'Failo pavadinimas pakeistas į „$1“.',
 'filetype-badmime'            => 'Neleidžiama įkelti „$1“ MIME tipo failų.',
+'filetype-bad-ie-mime'        => 'Negalima įkelti šio failo kadangi Internet Explorer ji pažymėtų kaip "$1". Tai yra neleistinas ir potencialiai pavojingas failo tipas.',
 'filetype-unwanted-type'      => "'''„.$1“''' yra nepageidautinas failo tipas. Pageidautini failų tipai yra $2.",
 'filetype-banned-type'        => "'''„.$1“''' nėra leistinas failo tipas. Leistini failų tipai yra $2.",
 'filetype-missing'            => 'Failas neturi galūnės (pavyzdžiui „.jpg“).',
@@ -1205,7 +1206,7 @@ Puslapis laikomas daugiaprasmiu puslapiu, jei jis naudoja šabloną, kuris yra n
 'nviews'                  => '$1 {{PLURAL:$1|parodymas|parodymai|parodymų}}',
 'specialpage-empty'       => 'Šiai ataskaitai nėra rezultatų.',
 'lonelypages'             => 'Vieniši puslapiai',
-'lonelypagestext'         => 'Į šiuos puslapius nėra nuorodų iš kitų šio projekto puslapių.',
+'lonelypagestext'         => 'Į šiuos puslapius nėra nuorodų ar įtraukimų iš kitų {{SITENAME}} puslapių.',
 'uncategorizedpages'      => 'Puslapiai, nepriskirti jokiai kategorijai',
 'uncategorizedcategories' => 'Kategorijos, nepriskirtos jokiai kategorijai',
 'uncategorizedimages'     => 'Failai, nepriskirti jokiai kategorijai',
@@ -1301,10 +1302,8 @@ Galima sumažinti rezultatų skaičių patikslinant veiksmo rūšį, naudotoją 
 'mailnologintext' => 'Jums reikia būti [[Special:UserLogin|prisijungusiam]] ir turi būti įvestas teisingas el. pašto adresas jūsų [[Special:Preferences|nustatymuose]], kad siųstumėte el. laiškus kitiems nautotojams.',
 'emailuser'       => 'Rašyti laišką šiam naudotojui',
 'emailpage'       => 'Siųsti el. laišką naudotojui',
-'emailpagetext'   => 'Jei šis naudotojas yra įvedęs teisingą el. pašto adresą
-savo nustatymuose, ši forma nusiųs vieną laišką.
-El. pašto adresas, nurodytas jūsų nustatymuose, bus rodomas
-kaip laiško adresas „Nuo“, kad gavėjas galėtų jums atsakyti.',
+'emailpagetext'   => 'Jūs gali pasinaudoti šia forma norėdami nusiųsti el. laišką šiam naudotojui.
+El. pašto adresas, kurį įvedėte [[Special:Preferences|savo naudotojo nustatymuose]], bus rodomas kaip el. pašto siuntėjo adresas, tam, kad gavėjas galėtų jums iškart atsakyti.',
 'usermailererror' => 'Pašto objektas grąžino klaidą:',
 'defemailsubject' => '{{SITENAME}} el. paštas',
 'noemailtitle'    => 'Nėra el. pašto adreso',

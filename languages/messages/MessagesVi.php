@@ -546,7 +546,7 @@ Xin hãy bỏ qua thông báo này nếu tài khoản này không phải do bạ
 'resetpass'               => 'Đặt lại mật khẩu',
 'resetpass_announce'      => 'Bạn đã đăng nhập bằng mật khẩu tạm gởi qua e-mail. Để hoàn tất việc đăng nhập, bạn phải tạo lại mật khẩu mới tại đây:',
 'resetpass_text'          => '<!-- Gõ chữ vào đây -->',
-'resetpass_header'        => 'Đặt lại mật khẩu',
+'resetpass_header'        => 'Đổi mật khẩu cho tài khoản',
 'resetpass_submit'        => 'Chọn mật khẩu và đăng nhập',
 'resetpass_success'       => 'Đã đổi mật khẩu thành công! Đang đăng nhập…',
 'resetpass_bad_temporary' => 'Mật khẩu tạm sai. Có thể là bạn đã đổi mật khẩu thành công hay đã xin mật khẩu tạm mới.',

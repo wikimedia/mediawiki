@@ -527,7 +527,7 @@ $messages = array(
 'dberrortext'          => 'Det oppstod ein syntaksfeil i databaseførespurnaden. Dette kan tyde på ein feil i programvaren. Den sist prøvde førespurnaden var: <blockquote><tt>$1</tt></blockquote> frå funksjonen «<tt>$2</tt>». MySQL returnerte feilen «<tt>$3: $4</tt>».',
 'dberrortextcl'        => 'Det oppstod ein syntaksfeil i databaseførespurnaden. Den sist prøvde førespurnaden var: «$1» frå funksjonen "$2".
 MySQL returnerte feilen «$3: $4».',
-'noconnect'            => 'Årsak! Wikien har tekniske problem og kunne ikkje kople til databasen.<br />
+'noconnect'            => 'Orsak! Wikien har tekniske problem og kunne ikkje kople til databasen.<br />
 $1',
 'nodb'                 => 'Kunne ikkje velja databasen $1',
 'cachederror'          => 'Det følgjande er ein lagra kopi av den ønska sida, og er ikkje nødvendigvis oppdatert.',
@@ -776,7 +776,7 @@ Vi er difor nøydde til å bruke den numeriske IP-adressa til å identifisere br
 'note'                      => '<strong>Merk:</strong>',
 'previewnote'               => '<strong>Hugs at dette berre er ei førehandsvising og at teksten ikkje er lagra!</strong>',
 'previewconflict'           => 'Dette er ei førehandsvising av teksten i endringsboksen over, slik han vil sjå ut om du lagrar han',
-'session_fail_preview'      => '<strong>Årsak! Endringa di kunne ikkje lagrast. Ver venleg og prøv ein gong til. Dersom det framleis ikkje går, prøv å logge deg ut og inn att.</strong>',
+'session_fail_preview'      => '<strong>Orsak! Endringa di kunne ikkje lagrast. Ver venleg og prøv ein gong til. Dersom det framleis ikkje går, prøv å logge deg ut og inn att.</strong>',
 'session_fail_preview_html' => "<strong>Beklagar! Endringa di kunne ikkje lagrast.</strong>
 
 ''Fordi {{SITENAME}} har rå HTML-kode slått på, er førehandsvisinga gøymd grunna fare for JavaScript-angrep.''
@@ -2414,7 +2414,7 @@ $1
 'confirmrecreate'     => "Brukaren «[[User:$1|$1]]» ([[User talk:$1|brukardiskusjon]]) sletta denne sida medan du endra henne, og gav denne grunnen: ''$2''
 
 Du må stadfeste at du verkeleg vil nyopprette denne sida.",
-'recreate'            => 'Nyopprett',
+'recreate'            => 'Attopprett',
 
 # HTML dump
 'redirectingto' => 'Omdirigerer til [[:$1]]...',

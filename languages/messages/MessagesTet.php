@@ -71,6 +71,10 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-hideminor'          => "Lá'os hatudu osan-rahun sira iha mudansa foufoun sira",
+'tog-watchcreations'     => "Hateke pájina sira-ne'ebé ha'u kria",
+'tog-watchdefault'       => "Hateke pájina sira-ne'ebé ha'u edita",
+'tog-watchmoves'         => "Hateke pájina sira-ne'ebé ha'u book",
+'tog-watchdeletion'      => "Hateke pájina sira-ne'ebé ha'u halakon",
 'tog-watchlisthidebots'  => 'Hamsumik bot iha lista hateke',
 'tog-watchlisthideminor' => 'Hamsumik osan-rahun iha lista hateke',
 
@@ -130,7 +134,7 @@ $messages = array(
 'dec'           => 'Dez',
 
 # Bits of text used by many pages
-'categories'      => 'Kategoría',
+'categories'      => 'Kategoria sira',
 'pagecategories'  => '{{PLURAL:$1|Kategoría|Kategoría}}',
 'category_header' => 'Artigu iha kategoría "$1"',
 'category-empty'  => "''Kategoria ne'e agora la iha pájina sira.''",
@@ -250,6 +254,8 @@ $messages = array(
 # Login and logout pages
 'yourname'                  => "Naran uza-n'in:",
 'userlogin'                 => 'Log in / kriar konta ida',
+'logout'                    => 'Husik',
+'userlogout'                => 'Husik',
 'nologinlink'               => 'Registrar',
 'createaccount'             => "Registrar uza-na'in",
 'userexists'                => "Uza-na'in ne'e ona iha wiki. Favór ida lori naran seluk.",
@@ -560,7 +566,8 @@ $messages = array(
 'delete_and_move_confirm' => 'Sin, halakon pájina',
 
 # Export
-'export' => 'Esporta pájina sira',
+'export'        => 'Esporta pájina sira',
+'export-submit' => 'Esporta',
 
 # Namespace 8 related
 'allmessagesname'    => 'Naran',
@@ -574,6 +581,7 @@ $messages = array(
 'tooltip-pt-mytalk'        => "Ha'u-nia pájina diskusaun",
 'tooltip-pt-preferences'   => "Ha'u-nia preferénsia",
 'tooltip-pt-mycontris'     => "Lista ha'u-nia kontribuisaun",
+'tooltip-pt-logout'        => 'Husik',
 'tooltip-ca-addsection'    => "Tau tan komentáriu ida ba diskusaun ne'e.",
 'tooltip-ca-protect'       => "Proteje pájina ne'e",
 'tooltip-ca-delete'        => "Halakon pájina ne'e",

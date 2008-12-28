@@ -19,6 +19,7 @@
  * @author Dvortygirl
  * @author Fluence
  * @author Icvav
+ * @author Imre
  * @author Jatrobat
  * @author Jurock
  * @author Lin linao
@@ -298,7 +299,7 @@ $messages = array(
 'versionrequired'     => 'La versión $1 de MediaWiki es necesaria para utilizar esta página',
 'versionrequiredtext' => 'Se necesita la versión $1 de MediaWiki para utilizar esta página. Para más información, consulte [[Special:Version|la página de versión]]',
 
-'ok'                      => 'OK',
+'ok'                      => 'Aceptar',
 'retrievedfrom'           => 'Obtenido de "$1"',
 'youhavenewmessages'      => 'Tiene $1 ($2).',
 'newmessageslink'         => 'mensajes nuevos',
@@ -383,7 +384,8 @@ incluyendo el URL.',
 'cannotdelete'         => 'No se pudo borrar la página o archivo especificado.
 Alguien puede haberla borrado antes.',
 'badtitle'             => 'Título incorrecto',
-'badtitletext'         => 'El título de la página solicitada está vacío, no es válido, o es un enlace interlenguaje o interwiki incorrecto.',
+'badtitletext'         => 'El título de la página solicitada está vacío, no es válido, o es un enlace interidioma o interwiki incorrecto.
+Puede que contenga uno o más caracteres que no se pueden usar en los títulos.',
 'perfdisabled'         => 'Lo sentimos, esta función está temporalmente desactivada porque enlentece la base de datos a tal punto que nadie puede usar el wiki.',
 'perfcached'           => 'Los siguientes datos están en caché y por tanto pueden estar desactualizados:',
 'perfcachedts'         => 'Estos datos están almacenados. Su última actualización fue el $1.',
@@ -421,7 +423,7 @@ Tu cuenta ha sido creada.
 No olvides personalizar [[Special:Preferences|tus preferencias]].',
 'loginpagetitle'             => 'Registrarse/Entrar',
 'yourname'                   => 'Su nombre de usuario',
-'yourpassword'               => 'Su contraseña',
+'yourpassword'               => 'Contraseña:',
 'yourpasswordagain'          => 'Repita su contraseña',
 'remembermypassword'         => 'Quiero que me recuerden entre sesiones.',
 'yourdomainname'             => 'Su dominio',
@@ -506,7 +508,7 @@ Puedes ignorar este mensaje si esta cuenta fue creado erróneamente.',
 'resetpass'               => 'Restablecer la contraseña de usuario',
 'resetpass_announce'      => 'Has iniciado sesión con una contraseña temporal que fue enviada por correo electrónico. Por favor, ingresa una nueva contraseña aquí:',
 'resetpass_text'          => '<!-- Añada texto aquí -->',
-'resetpass_header'        => 'Restablecer contraseña',
+'resetpass_header'        => 'Cambiar la contraseña',
 'resetpass_submit'        => 'Cambiar la contraseña e identificarse',
 'resetpass_success'       => 'Se ha cambiado su contraseña. Autenticándole...',
 'resetpass_bad_temporary' => 'Contraseña temporal no válida. Puede que ya hayas cambiado tu contraseña o que hayas solicitado el envío de otra.',
@@ -673,7 +675,7 @@ Debería considerar si es apropiado continuar editando esta página.
 Consulte a continuación el registro de borrados:",
 
 # "Undo" feature
-'undo-success' => 'La edición puede deshacerse. Antes de deshacer la edición, comprueba la siguiente comparación para verificar que realmente es lo que quiere hacer, y entonces guarde los cambios para así deshacer la edición.',
+'undo-success' => 'La edición puede deshacerse. Antes de deshacer la edición, comprueba la siguiente comparación para verificar que realmente es lo que quieres hacer, y entonces guarda los cambios para así deshacer la edición.',
 'undo-failure' => 'No se puede deshacer la edición ya que otro usuario ha realizado una edición intermedia.',
 'undo-summary' => 'Deshecha la edición $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|disc.]])',
 
@@ -860,7 +862,7 @@ $2 Listar redirecciones   Buscar $3 $9',
 'prefs-watchlist-days'     => 'Número de días a mostrar en la lista de seguimiento:',
 'prefs-watchlist-edits'    => 'Número de ediciones a mostrar en la lista extendida:',
 'prefs-misc'               => 'Miscelánea',
-'saveprefs'                => 'Grabar preferencias',
+'saveprefs'                => 'Guardar',
 'resetprefs'               => 'Restaurar preferencias por defecto',
 'oldpassword'              => 'Contraseña antigua:',
 'newpassword'              => 'Contraseña nueva:',
@@ -1069,7 +1071,7 @@ Por favor, elige un nombre más descriptivo.',
 'upload_source_file' => ' (un archivo en su ordenador)',
 
 # Image list
-'imagelist'                 => 'Lista de imágenes',
+'imagelist'                 => 'Lista de archivos',
 'imagelist-summary'         => 'Esta página muestra todos los archivos subidos.
 Por defecto, el último subido se muestra al principio de la lista.
 Un click sobre el encabezamiento de la columna cambia el orden.',
@@ -1115,11 +1117,11 @@ archivo a esa fecha.',
 # File reversion
 'filerevert'                => 'Revertir $1',
 'filerevert-legend'         => 'Reversión de archivos',
-'filerevert-intro'          => "Estás revirtiendo '''[[Media:$1|$1]]''' a la [$4 version del $2 a las $3].",
+'filerevert-intro'          => "Estás revirtiendo '''[[Media:$1|$1]]''' a la [$4 versión del $2 a las $3].",
 'filerevert-comment'        => 'Comentario:',
-'filerevert-defaultcomment' => 'Revirtiendo a la versión subida el $1 a las $2',
+'filerevert-defaultcomment' => 'Revertido a la versión subida el $1 a las $2',
 'filerevert-submit'         => 'Revertir',
-'filerevert-success'        => "'''[[Media:$1|$1]]''' ha sido revertido a la [$4 version del $2 a las $3].",
+'filerevert-success'        => "'''[[Media:$1|$1]]''' ha sido revertido a la [$4 versión del $2 a las $3].",
 'filerevert-badversion'     => 'No existe version local previa de este archivo con esa marca de tiempo.',
 
 # File deletion
@@ -1437,7 +1439,7 @@ Véase $2 para un registro de los borrados recientes.',
 'rollback_short'              => 'Revertir',
 'rollbacklink'                => 'Revertir',
 'rollbackfailed'              => 'No se pudo revertir',
-'cantrollback'                => 'No se pueden revertir las ediciones; el último colaborador es el único autor de este artículo.',
+'cantrollback'                => 'No se pueden revertir las ediciones; el último colaborador es el único autor de esta página.',
 'alreadyrolled'               => 'No se puede revertir la última edición de [[:$1]] hecha por [[User:$2|$2]] ([[User talk:$2|discusión]] | [[Special:Contributions/$2|{{int:contribslink}}]]); alguien más ya ha editado o revertido esa página.
 
 La última edición fue hecha por [[User:$3|$3]] ([[User talk:$3|discusión]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
@@ -1454,7 +1456,7 @@ Por favor, pulsa "Atrás", recarga la página de la que viniste e inténtalo de 
 'unprotectedarticle'          => 'desprotegió [[$1]]',
 'protectsub'                  => '(Protegiendo "$1")',
 'confirmprotect'              => 'Confirmar protección',
-'protectcomment'              => 'Motivo de la protección',
+'protectcomment'              => 'Comentario:',
 'protectexpiry'               => 'Caducidad:',
 'protect_expiry_invalid'      => 'Tiempo de caducidad incorrecto.',
 'protect_expiry_old'          => 'El tiempo de expiración está en el pasado.',
@@ -1582,10 +1584,10 @@ Esto debería hacerse sólo para prevenir vandalismos, y de
 acuerdo a las [[{{MediaWiki:Policy-url}}|políticas]].
 Explica la razón específica del bloqueo (por ejemplo, citando
 las páginas en particular que han sido objeto de vandalismo).',
-'ipaddress'                   => 'Dirección IP',
+'ipaddress'                   => 'Dirección IP:',
 'ipadressorusername'          => 'Dirección IP o nombre de usuario',
 'ipbexpiry'                   => 'Caduca dentro de',
-'ipbreason'                   => 'Razón',
+'ipbreason'                   => 'Motivo:',
 'ipbreasonotherlist'          => 'Otra razón',
 'ipbreason-dropdown'          => '
 *Motivos comunes de bloqueo
@@ -1717,7 +1719,7 @@ En estos casos, deberá trasladar manualmente el contenido de la página de disc
 '1movedto2_redir'         => '[[$1]] trasladada a [[$2]] sobre una redirección',
 'movelogpage'             => 'Registro de traslados',
 'movelogpagetext'         => 'Abajo se encuentra una lista de páginas trasladadas.',
-'movereason'              => 'Motivo',
+'movereason'              => 'Motivo:',
 'revertmove'              => 'revertir',
 'delete_and_move'         => 'Borrar y trasladar',
 'delete_and_move_text'    => '==Se necesita borrado==
@@ -2249,7 +2251,7 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'imagelistall'     => 'todas',
 'watchlistall2'    => 'todos',
 'namespacesall'    => 'todos',
-'monthsall'        => '(todos)',
+'monthsall'        => 'todos',
 
 # E-mail address confirmation
 'confirmemail'            => 'Confirmar dirección de correo electrónico',

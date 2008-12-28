@@ -794,7 +794,7 @@ Förklaring: (nuvarande) = skillnad mot nuvarande version; (föregående) = skil
 'deletedrev'          => '[raderad]',
 'histfirst'           => 'Första',
 'histlast'            => 'Senaste',
-'historysize'         => '($1 byte)',
+'historysize'         => '({{PLURAL:$1|1 byte|$1 byte}})',
 'historyempty'        => '(tom)',
 
 # Revision feed
@@ -1644,7 +1644,7 @@ $1',
 'sp-newimages-showfrom' => 'Visa nya filer från och med kl. $2 den $1',
 
 # What links here
-'whatlinkshere'       => 'Sidor som länkar hit',
+'whatlinkshere'       => 'Vad som länkar hit',
 'whatlinkshere-title' => 'Sidor som länkar till "$1"',
 'whatlinkshere-page'  => 'Sida:',
 'linklistsub'         => '(Länklista)',

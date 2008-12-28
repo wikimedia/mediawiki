@@ -318,7 +318,7 @@ Edit section: $1',
 'nstab-mediawiki' => 'Porosia',
 'nstab-template'  => 'Stampa',
 'nstab-help'      => 'Ndihmë',
-'nstab-category'  => 'Kategori',
+'nstab-category'  => 'Kategoria',
 
 # Main script and global functions
 'nosuchaction'      => 'Nuk ekziston ky veprim',

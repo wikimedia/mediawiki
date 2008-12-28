@@ -1637,7 +1637,7 @@ $1',
 'whatlinkshere-links' => '← wótkaze',
 
 # Block/unblock
-'blockip'                     => 'wužywarja blokěrowaś',
+'blockip'                     => 'Wužywarja blokěrowaś',
 'blockiptext'                 => 'Wužywaj slědujucy formular, jolic až coš wěstej IP-adresy abo konkretnemu wužywarjeju pśistup znjemóžniś. Take dejało se pó [[{{MediaWiki:Policy-url}}|směrnicach]] jano staś, aby se wandalizmoju zadorało. Pšosym zapódaj pśicynu za twójo blokěrowanje (na pś. mógu se citěrowaś konkretne boki, źo jo se wandalěrowało).',
 'ipaddress'                   => 'IP-adresa',
 'ipadressorusername'          => 'IP-adresa abo wužywarske mě',
@@ -1658,7 +1658,7 @@ $1',
 'ipbenableautoblock'          => 'Awtomatiske blokěrowanje slědneje wót togo wužywarja wužywaneje IP-adresy a wšyknych slědujucych adresow, wót kótarychž wopytajo boki wobźěłaś.',
 'ipbsubmit'                   => 'Togo wužywarja blokěrowaś.',
 'ipbother'                    => 'Drugi cas:',
-'ipboptions'                  => '1 góźina:1 hour,2 góźinje:2 hours, 6 góźiny:6 hours,1 źeń:1 day,2 dnja:2 days,3 dny:3 days,1 tyźeń:1 week,2 tyźenja:2 weeks,3 tyźenje:3 weeks,1 mjasec:1 month,2 mjaseca:2 month,3 mjasece:3 months,6 mjasecy:6 months,1 lěto:1 year,na nimjer:indefinite', # display1:time1,display2:time2,...
+'ipboptions'                  => '2 góźinje:2 hours,1 źeń:1 day,3 dny:3 days,1 tyźeń:1 week,2 tyźenja:2 weeks,1 mjasec:1 month,3 mjasece:3 months,6 mjasecy:6 months,1 lěto:1 year,na nimjer:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'drugi',
 'ipbotherreason'              => 'Hynakša/dalšna pśicyna:',
 'ipbhidename'                 => 'Wužywarske mě z protokola blokěrowanjow, lisćiny aktiwnych blokěrowanjow a lisćiny wužywarjow schowaś',
@@ -1669,7 +1669,7 @@ Glědaj do [[Special:IPBlockList|lisćiny aktiwnych blokěrowanjow]].',
 'ipb-edit-dropdown'           => 'Pśicyny blokěrowanja wobźěłaś',
 'ipb-unblock-addr'            => '$1 dopušćiś',
 'ipb-unblock'                 => 'Wužywarske mě abo IP-adresu dopušćiś',
-'ipb-blocklist-addr'          => 'Eksistujuce blokěrowanja za $1',
+'ipb-blocklist-addr'          => 'Eksistěrujuce blokěrowanja za $1',
 'ipb-blocklist'               => 'Wšykne aktualne blokěrowanja pokazaś',
 'unblockip'                   => 'Wužywarja dopušćiś',
 'unblockiptext'               => 'Z pomocu dołojcnego formulara móžotej IP-adresa abo wužywaŕ zasej se dopušćiś.',
@@ -1744,7 +1744,7 @@ Móžoš awtomatiski aktualizěrowaś dalejposrědkowanja, kótarež pokazuju na
 Jolic njocoš, pśeglědaj za [[Special:DoubleRedirects|dwójnymi]] abo [[Special:BrokenRedirects|defektnymi daleposrědkowanjami]].
 Sy zagronity, až wótkaze wjedu tam, źož maju wjasć.
 
-Źiwaj na to, až se bok '''nje'''pśesuwa, jolic jo južo bok z nowym titelom, snaźkuli jo prozny abo dalejpósrědnjenje a njama stare wobźěłane wersije. To ma groniś, až móžoš bok zasej slědk pśemjenjowaś, jolic cyniš zmólku, a njemóžoš eksistujucy bok pśepisaś.
+Źiwaj na to, až se bok '''nje'''pśesuwa, jolic jo južo bok z nowym titelom, snaźkuli jo prozny abo dalejpósrědnjenje a njama stare wobźěłane wersije. To ma groniś, až móžoš bok zasej slědk pśemjenjowaś, jolic cyniš zmólku, a njemóžoš eksistěrujucy bok pśepisaś.
 
 '''WARNOWANJE!'''
 To móžo byś drastiska a njewocakowana změna za popularny bok;

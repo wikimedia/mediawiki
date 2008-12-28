@@ -70,10 +70,10 @@ $messages = array(
 'tog-justify'                 => 'Paragrafe oetvölle',
 'tog-hideminor'               => 'Versjtaek klein bewirkinge bie recènte verangeringe',
 'tog-extendwatchlist'         => 'Oetgebreide volglies',
-'tog-usenewrc'                => 'Oetgebreide recènte vervangeringe (neet vuur alle browsers)',
+'tog-usenewrc'                => 'Oetgebreide recènte vervangeringe (Javascript nudig)',
 'tog-numberheadings'          => 'Köpkes automatisch nummere',
 'tog-showtoolbar'             => 'Laot edit toolbar zeen',
-'tog-editondblclick'          => "Bewirk pazjena's bie 'ne dubbelklik (JavaScript)",
+'tog-editondblclick'          => "Bewirk pazjena's bie 'ne dobbelklik (JavaScript)",
 'tog-editsection'             => 'Bewirke van secties via [bewirke] links',
 'tog-editsectiononrightclick' => 'Sècties bewirke mit inne rechtermoesklik op sèctietitels (JavaScript)',
 'tog-showtoc'                 => "Inhawdsopgaaf vuur pazjena's mit mië as 3 köpkes",
@@ -479,7 +479,7 @@ Negeer dit berich as deze gebroeker zonger dien medewete is aangemaak.',
 # Password reset dialog
 'resetpass'               => 'Wachwaord oppernuuj instelle',
 'resetpass_announce'      => "Doe bös aangemeld mèt 'ne tiejdelikke code dae per e-mail is toegezönje. Veur 'n nuuj wachwaord in om 't aanmelje te voltooie:",
-'resetpass_header'        => 'Wachwaord oppernuuj instelle',
+'resetpass_header'        => 'Wachwaord obbenuuts insjtèlle',
 'resetpass_submit'        => 'Wachwaord instelle en aanmelje',
 'resetpass_success'       => 'Dien wachwaord is verangerd. Bezig mèt aanmelje...',
 'resetpass_bad_temporary' => "Ongeldig tiejdelik wachwaord. Doe höbs dien wachwaord al verangerd of 'n nuuj tiejdelik wachwaord aangevräög.",
@@ -998,7 +998,7 @@ Lèver zeker te zeen detse gesjik bös om door te gaon met 't uploade van dit be
 'upload-proto-error'      => 'Verkeerd protocol',
 'upload-proto-error-text' => "Uploads via deze methode vereise URL's die beginne met <code>http://</code> of <code>ftp://</code>.",
 'upload-file-error'       => 'Interne fout',
-'upload-file-error-text'  => "'n intern fuitke vonj plaats wen 'n tiedelik bestand op de server waerde aangemaak. Nöm aub contac op met 'ne systeembeheerder.",
+'upload-file-error-text'  => "'n Intern fuitje vonj plaats wie 'n tiedelik besjtandj op de server woort aangemaak. Num aub contac op met 'ne systeembeheerder.",
 'upload-misc-error'       => 'Onbekinde uploadfout',
 'upload-misc-error-text'  => "d'r Is tiedes 't uploade 'ne onbekinde fout opgetraeje. Controleer of de URL correc en besjikbaar is en probeer 't opnuuj. Es 't probleem aanhaojt, nöm dan contac op met 'ne systeembeheerder.",
 
@@ -1463,6 +1463,7 @@ In 't [[Special:Log/delete|logbook verwiederde pazjena's]] staon recènte verwie
 'undelete-error-long'          => "d'r Zeen foute opgetraeje bie 't herstelle van 't bestand:
 
 $1",
+'undelete-show-file-submit'    => 'Jao',
 
 # Namespace form on various pages
 'namespace'      => 'Naamruumde:',
@@ -1702,6 +1703,7 @@ Alle transwiki-importhanjelinge waere opgeslage in 't [[Special:Log/import|impor
 'import-noarticle'           => "d'r Zeen gein importeerbaar pazjena's!",
 'import-nonewrevisions'      => 'Alle versies zeen al eerder geïmporteerd.',
 'xml-error-string'           => '$1 op regel $2, kolom $3 (byte $4): $5',
+'import-invalid-interwiki'   => "'t Is neet mäögelik van de aangegeve wiki te importere.",
 
 # Import log
 'importlogpage'                    => 'Importlogbook',

@@ -89,6 +89,7 @@ $messages = array(
 
 'about'         => 'विषये',
 'newwindow'     => '(उद्घट् नविन पृष्ठ)',
+'cancel'        => 'अपकर्ष',
 'qbfind'        => 'शोध',
 'qbedit'        => 'संपादयति',
 'qbpageoptions' => 'इदम्‌ पृष्ठ',
@@ -97,18 +98,25 @@ $messages = array(
 
 'help'             => 'सहायता',
 'search'           => 'शोध',
+'searchbutton'     => 'शोध',
 'go'               => 'गच्छति',
+'searcharticle'    => 'गच्छति',
 'history'          => 'पृष्ठस्य इतिहास',
 'history_short'    => 'इतिहास',
 'printableversion' => 'मुद्रणस्य पाठ',
+'permalink'        => 'स्थायी निबन्धन',
 'newpage'          => 'नविन पृष्ठ',
 'talkpagelinktext' => 'संवाद',
 'specialpage'      => 'विशेष पृष्ठ',
+'personaltools'    => 'वैयक्तिक साधन',
+'views'            => 'दृश्य',
 'toolbox'          => 'साधनपेटी',
 'jumptonavigation' => 'सुचालन',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'     => '{{SITENAME}}विषये',
+'aboutpage'     => 'Project:विषये',
+'copyrightpage' => '{{ns:project}}:प्रताधिकार',
 'currentevents' => 'सद्य घटना',
 'disclaimers'   => 'स्वाम्यत्यागं',
 'edithelp'      => 'संपादनार्थं सहायता',
@@ -123,6 +131,7 @@ $messages = array(
 'nstab-main'     => 'पृष्ठ',
 'nstab-image'    => 'संचिका',
 'nstab-template' => 'बिंबधर',
+'nstab-category' => 'वर्ग',
 
 # General errors
 'error'      => 'विभ्रम',
@@ -130,41 +139,77 @@ $messages = array(
 
 # Login and logout pages
 'login'          => 'प्रवेश करोसि',
+'logout'         => 'बहिर्गच्छति',
+'userlogout'     => 'बहिर्गच्छति',
+'createaccount'  => 'सृज उपयोजकसंज्ञा',
 'gotaccountlink' => 'प्रवेश करोसि',
 
 # Edit pages
+'watchthis'   => 'इदं पृष्ठ निरीक्षा',
 'savearticle' => 'पृष्ठ त्रायते',
 'preview'     => 'प्रारूप प्रेक्षा',
 'showpreview' => 'प्रारूप प्रेक्षा',
 'newarticle'  => '(नविन)',
 
 # History pages
-'page_first' => 'प्रथम्‌',
+'currentrevisionlink' => 'सद्य आवृत्ती',
+'cur'                 => 'अद्य',
+'last'                => 'पूर्वतन',
+'page_first'          => 'प्रथम्‌',
+'page_last'           => 'अन्तिम',
+
+# Diffs
+'editundo' => 'पूर्ववत करोसि',
 
 # Search results
 'powersearch' => 'परिणत शोध',
 
 # Recent changes
 'recentchanges' => 'नवीनतम परिवर्तन',
+'hide'          => 'प्रछद्',
 'show'          => 'दर्शयति',
 
+# Recent changes linked
+'recentchangeslinked' => 'सम्भन्दिन् परिवर्त',
+
+# Upload
+'upload' => 'भारं न्यस्यति सञ्चिका',
+
+# Random page
+'randompage' => 'अविशिष्ट पृष्ठ',
+
 # Miscellaneous special pages
+'specialpages' => 'विशेष पृष्ठ',
 'ancientpages' => 'प्राचीनतम् पृष्ठा',
 
 # Book sources
 'booksources-go' => 'प्रस्थानम्',
 
-'version' => 'आवृत्ति',
+'alphaindexline' => 'इतः $1 यावत् $2',
+'version'        => 'आवृत्ति',
 
 # Special:Allpages
-'allarticles' => 'सर्व लेखा',
+'allarticles'    => 'सर्व लेखा',
+'allpagessubmit' => 'गच्छति',
 
 # E-mail user
 'emailsubject' => 'विषयः',
 'emailmessage' => 'सन्देशः',
 
+# Watchlist
+'watchthispage' => 'प्रतिरक्षति इदं पृष्ठ',
+
+# Displayed when you click the "watch" button and it's in the process of watching
+'watching' => 'निरिक्षा',
+
 # Delete/protect/revert
 'actioncomplete' => 'कार्य समापनम्',
+
+# Namespace form on various pages
+'namespace' => 'नामविश्व:',
+
+# What links here
+'whatlinkshere' => 'किम्‌ पृष्ठ सम्बद्धं करोति',
 
 # Block/unblock
 'blocklink' => 'निषेध',
@@ -174,12 +219,20 @@ $messages = array(
 'allmessagesname' => 'नाम',
 
 # Tooltip help for the actions
+'tooltip-search'          => '{{SITENAME}} अन्वेषणं करोति',
 'tooltip-n-mainpage'      => 'मुखपृष्ठ अभ्यागम',
 'tooltip-n-recentchanges' => 'नविनतम परिवर्तन सूची',
 'tooltip-n-randompage'    => 'अविशीष्ट लेख',
 'tooltip-save'            => 'त्रायते',
 
+# Spam protection
+'listingcontinuesabbrev' => 'आगामि.',
+
+# Special:Newimages
+'newimages' => 'नूतन संचिका दालन',
+
 # 'all' in various places, this might be different for inflected languages
+'watchlistall2' => 'सर्व',
 'namespacesall' => 'सर्व',
 'monthsall'     => 'सर्व',
 

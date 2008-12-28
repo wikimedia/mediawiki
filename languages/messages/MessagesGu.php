@@ -146,7 +146,7 @@ $messages = array(
 'personaltools'    => 'વ્યક્તિગત સાધનો',
 'talk'             => 'ચર્ચા',
 'views'            => 'અવલોકનો',
-'toolbox'          => 'ઓજારની પેટી',
+'toolbox'          => 'સાધન પેટી',
 'userpage'         => 'સભ્યનું પાનું જુઓ',
 'viewtalkpage'     => 'ચર્ચા જુઓ',
 'otherlanguages'   => 'બીજી ભાષાઓમાં',
@@ -275,10 +275,10 @@ $messages = array(
 'subject'                => 'વિષય/શિર્ષક',
 'minoredit'              => 'આ એક નાનો સુધારો છે.',
 'watchthis'              => 'આ પાનાને ધ્યાનમાં રાખો',
-'savearticle'            => 'કાર્ય સુરક્ષિત કરો',
+'savearticle'            => 'સાચવો',
 'preview'                => 'પૂર્વાવલોકન',
-'showpreview'            => 'ઝલક બતાવો',
-'showdiff'               => 'ફેરફારો બતાવો',
+'showpreview'            => 'ઝલક',
+'showdiff'               => 'ફેરફારો',
 'anoneditwarning'        => "'''ચેતવણી:''' તમે તમારા સભ્ય નામથી પ્રવેશ કર્યો નથી.
 આ પાનાનાં ઇતિહાસમાં તમારૂં આઇ.પી. (IP) એડ્રેસ નોંધવામાં આવશે.",
 'blockedtext'            => "<big>'''આપનાં સભ્ય નામ અથવા આઇ.પી. એડ્રેસ પર પ્રતિબંધ મુકવામાં આવ્યો છે.'''</big>
@@ -494,7 +494,9 @@ $messages = array(
 'booksources-isbn' => 'આઇએસબીએન:',
 'booksources-go'   => 'જાઓ',
 
-'categoriespagetext' => 'નીચેની શ્રેણીઓમાં પાના કે અન્ય સભ્યો છે.',
+'categoriespagetext' => 'નીચેની શ્રેણીઓમાં પાના કે અન્ય સભ્યો છે.
+[[Special:UnusedCategories|વણ વપરાયેલી શ્રેણીઓ]] અત્રે દર્શાવવામાં આવી નથી.
+[[Special:WantedCategories|ઈચ્છિત શ્રેણીઓ]] પણ જોઈ જુઓ.',
 'alphaindexline'     => '$1 થી $2',
 'version'            => 'આવૃત્તિ',
 
@@ -518,10 +520,10 @@ $messages = array(
 
 # E-mail user
 'emailuser'    => 'સભ્યને ઇ-મેલ કરો',
-'emailfrom'    => 'મોકલનાર',
-'emailto'      => 'લેનાર',
-'emailsubject' => 'વિષય',
-'emailmessage' => 'સંદેશ',
+'emailfrom'    => 'મોકલનાર:',
+'emailto'      => 'પ્રતિ:',
+'emailsubject' => 'વિષય:',
+'emailmessage' => 'સંદેશો:',
 'emailsend'    => 'મોકલો',
 
 # Watchlist
@@ -775,7 +777,7 @@ $messages = array(
 
 # External editor support
 'edit-externally'      => 'બાહ્ય સોફ્ટવેર વાપરીને આ ફાઇલમાં ફેરફાર કરો',
-'edit-externally-help' => 'વધુ માહિતિ માટે જુઓ: [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions]',
+'edit-externally-help' => '(વધુ માહિતિ માટે [http://www.mediawiki.org/wiki/Manual:External_editors સેટ-અપ સુચનાઓ] જુઓ)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'બધા',
