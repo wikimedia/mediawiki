@@ -1596,11 +1596,8 @@ class Linker {
 	 * @param bool $section Whether this is for a section edit
 	 * @return string HTML output
 	 */
-	public function formatTemplates( $templates, $preview = false, $section = false) {
-		global $wgUser;
+	public function formatTemplates( $templates, $preview = false, $section = false ) {
 		wfProfileIn( __METHOD__ );
-
-		$sk = $wgUser->getSkin();
 
 		$outText = '';
 		if ( count( $templates ) > 0 ) {
@@ -1620,7 +1617,7 @@ class Linker {
 			} else {
 				$outText .= wfMsgExt( 'templatesused', array( 'parse' ) );
 			}
-			$outText .= '</div><ul>';
+			$outText .= "</div><ul>\n";
 
 			usort( $templates, array( 'Title', 'compare' ) );
 			foreach ( $templates as $titleObj ) {
@@ -1633,13 +1630,13 @@ class Linker {
 					$protected = '';
 				}
 				if( $titleObj->quickUserCan( 'edit' ) ) {
-					$editLink = $sk->link( $titleObj, wfMsg( 'editlink' ), array(), array( 'action' => 'edit' ), 'known' );
+					$editLink = $this->link( $titleObj, wfMsgHtml( 'editlink' ), array(), array( 'action' => 'edit' ), 'known' );
 				} else {
-					$editLink = $sk->link( $titleObj, wfMsg( 'viewsourcelink' ), array(), array( 'action' => 'edit' ), 'known' );
+					$editLink = $this->link( $titleObj, wfMsgHtml( 'viewsourcelink' ), array(), array( 'action' => 'edit' ), 'known' );
 				}
-				$talkLink = $sk->link( $titleObj->getTalkPage(), wfMsg( 'talkpagelinktext' ) );
+				$talkLink = $this->link( $titleObj->getTalkPage(), wfMsgHtml( 'talkpagelinktext' ) );
 				$outText .= Xml::tags( 'li', array(),
-						$sk->link( $titleObj ) . ' (' . $editLink . ' ' . wfMsg( 'pipe-separator' ) . ' ' . $talkLink . ') ' . $protected );
+						$this->link( $titleObj ) . ' (' . $editLink . ' ' . wfMsgHtml( 'pipe-separator' ) . ' ' . $talkLink . ') ' . $protected ) . "\n";
 			}
 			$outText .= '</ul>';
 		}
@@ -1654,21 +1651,19 @@ class Linker {
 	 * or similar
 	 * @return string HTML output
 	 */
-	public function formatHiddenCategories( $hiddencats) {
-		global $wgUser, $wgLang;
+	public function formatHiddenCategories( $hiddencats ) {
+		global $wgLang;
 		wfProfileIn( __METHOD__ );
-
-		$sk = $wgUser->getSkin();
 
 		$outText = '';
 		if ( count( $hiddencats ) > 0 ) {
 			# Construct the HTML
 			$outText = '<div class="mw-hiddenCategoriesExplanation">';
 			$outText .= wfMsgExt( 'hiddencategories', array( 'parse' ), $wgLang->formatnum( count( $hiddencats ) ) );
-			$outText .= '</div><ul>';
+			$outText .= "</div><ul>\n";
 
 			foreach ( $hiddencats as $titleObj ) {
-				$outText .= '<li>' . $sk->link( $titleObj, null, array(), array(), 'known' ) . '</li>'; # If it's hidden, it must exist - no need to check with a LinkBatch
+				$outText .= '<li>' . $this->link( $titleObj, null, array(), array(), 'known' ) . "</li>\n"; # If it's hidden, it must exist - no need to check with a LinkBatch
 			}
 			$outText .= '</ul>';
 		}
