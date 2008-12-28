@@ -487,8 +487,6 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Over {{SITENAME}}',
 'aboutpage'            => 'Project:Info',
-'bugreports'           => 'Foutrapporten',
-'bugreportspage'       => 'Project:Foutrapporten',
 'copyright'            => 'De inhoud is beschikbaar onder de $1.',
 'copyrightpagename'    => 'Auteursrechten {{SITENAME}}',
 'copyrightpage'        => '{{ns:project}}:Auteursrechten',
@@ -1901,6 +1899,7 @@ Zie ook [[Special:WantedCategories|niet-bestaande categorieën met verwijzingen]
 'interwiki_addfailed'      => 'Voorvoegsel "$1" kon niet worden toegevoegd aan de interwikitabel. Mogelijk bestaat hij al in de interwikitabel.',
 'interwiki_addintro'       => 'U bent een nieuw interwikivoorvoegsel aan het toevoegen. Let op dat dit geen spaties ( ), dubbelepunt (:), ampersands (&), of gelijkheidstekens (=) mag bevatten.',
 'interwiki_addtext'        => 'Een interwikivoorvoegsel toevoegen',
+'interwiki-badprefix'      => '"$1" bevat ongeldige karakters',
 'interwiki_defaultreason'  => 'geen reden gegeven',
 'interwiki_deleted'        => 'Voorvoegsel "$1" is verwijderd uit de interwikitabel.',
 'interwiki_deleting'       => 'U bent voorvoegsel "$1" aan het verwijderen.',

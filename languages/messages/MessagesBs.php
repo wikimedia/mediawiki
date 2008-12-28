@@ -387,8 +387,6 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'O projektu {{SITENAME}}',
 'aboutpage'            => 'Project:O_projektu_{{SITENAME}}',
-'bugreports'           => 'Prijavite grešku',
-'bugreportspage'       => 'Project:Prijave_grešaka',
 'copyright'            => 'Svi sadržaji podliježu "$1" licenci.',
 'copyrightpagename'    => '{{SITENAME}} autorska prava',
 'copyrightpage'        => '{{ns:project}}:Autorska_prava',
@@ -1749,8 +1747,39 @@ Vidi također [[Special:WantedCategories|zatražene kategorije]].',
 'deletedcontributions' => 'Obrisani doprinosi korisnika',
 
 # Special:Interwiki
-'interwiki_addbutton'   => 'Dodaj',
-'interwiki_reasonfield' => 'Razlog',
+'interwiki'                => 'Vidi i uredi međuwiki podatke',
+'interwiki-title-norights' => 'Pregled interwiki podataka',
+'interwiki_addbutton'      => 'Dodaj',
+'interwiki_added'          => 'Prefiks "$1" je uspješno dodat u interwiki tabelu.',
+'interwiki_addfailed'      => 'Prefiks "$1" nije bilo moguće dodati u interwiki tabelu.
+Moguće je da već postoji u interwiki tabeli.',
+'interwiki_addintro'       => 'Dodajete novi interwiki prefiks.
+Zapamtite da ne može sadržavati razmake ( ), dvotačke (:), znak and (&), ili znakove jednakosti (=).',
+'interwiki_addtext'        => 'Dodaj interwiki prefiks',
+'interwiki_defaultreason'  => 'nije naveden razlog',
+'interwiki_deleted'        => 'Prefiks "$1" je uspješno uklonjen iz interwiki tabele.',
+'interwiki_deleting'       => 'Brišete prefiks "$1".',
+'interwiki_delfailed'      => 'Prefiks "$1" nije bilo moguće ukloniti iz interwiki tabele.',
+'interwiki_delquestion'    => 'Briše se "$1"',
+'interwiki_edited'         => 'Prefiks "$1" je uspješno izmijenjen u interwiki tabeli.',
+'interwiki_editerror'      => 'Prefiks "$1" ne može biti izmijenjen u interwiki tabeli.
+Moguće je da uopće ne postoji.',
+'interwiki_editintro'      => 'Uređujete interwiki prefiks.
+Zapamtite da ovo može poremetiti postojeće linkove.',
+'interwiki_edittext'       => 'Uređivanje interwiki prefiksa',
+'interwiki_error'          => 'Greška: interwiki tabela je prazna ili je nešto drugo pogrešno.',
+'interwiki_intro'          => 'Pogledajte [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] za više informacija o interwiki tabelama.
+Ovdje se nalazi [[Special:Log/interwiki|zapis izmjena]] učinjenih na interwiki tabeli.',
+'interwiki_local'          => 'Odredi ovu kao lokalnu wiki',
+'interwiki_log_added'      => 'dodat prefiks "$2" ($3) (trans: $4) (local: $5) u interwiki tabelu',
+'interwiki_log_deleted'    => 'uklonjen prefiks "$2" iz interwiki tabele',
+'interwiki_log_edited'     => 'izmijenjen prefiks "$2" : ($3) (trans: $4) (local: $5) u interwiki tabeli',
+'interwiki_prefix'         => 'Prefiks',
+'interwiki_reasonfield'    => 'Razlog',
+'interwiki_trans'          => 'Dopusti interwiki uključenja',
+'interwikilogpage'         => 'Zapis interwiki tabele',
+'interwikilogpagetext'     => 'Ovo je zapisnik promjena na [[Special:Interwiki|interwiki tabeli]].',
+'right-interwiki'          => 'Uređivanje interwiki podataka',
 
 # Special:LinkSearch
 'linksearch'       => 'Traži web linkove',

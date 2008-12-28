@@ -238,8 +238,6 @@ dj'artìcol ancó pa scrit",
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'A propòsit ëd {{SITENAME}}',
 'aboutpage'            => 'Project:A propòsit',
-'bugreports'           => 'Malfunsionament',
-'bugreportspage'       => 'Project:Malfonsionament',
 'copyright'            => 'Ël contnù a resta disponibil sota a na licensa $1.',
 'copyrightpagename'    => "Drit d'autor ëd {{SITENAME}}",
 'copyrightpage'        => "{{ns:project}}:Drit d'autor",

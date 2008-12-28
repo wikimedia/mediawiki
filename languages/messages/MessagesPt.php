@@ -360,8 +360,6 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Sobre',
 'aboutpage'            => 'Project:Sobre',
-'bugreports'           => 'Relatar bugs',
-'bugreportspage'       => 'Project:Relatos_de_bugs',
 'copyright'            => 'Conteúdo disponível sob $1.',
 'copyrightpagename'    => 'Direitos de autor de {{SITENAME}}',
 'copyrightpage'        => '{{ns:project}}:Direitos_de_autor',
@@ -1129,7 +1127,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'localtime'                 => 'Horário local:',
 'timezoneselect'            => 'Fuso horário:',
 'timezoneuseserverdefault'  => 'Usar padrão do servidor',
-'timezoneuseoffset'         => 'Outro (especificar desvio)',
+'timezoneuseoffset'         => 'Outro (especificar diferença)',
 'timezoneoffset'            => 'Diferença horária¹:',
 'servertime'                => 'Horário do servidor:',
 'guesstimezone'             => 'Preencher a partir do navegador (browser)',

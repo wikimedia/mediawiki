@@ -282,8 +282,6 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Maidir leis an {{SITENAME}}',
 'aboutpage'            => 'Project:Maidir leis',
-'bugreports'           => 'Fabht-thuairiscí',
-'bugreportspage'       => 'Project:Fabht-thuairiscí',
 'copyright'            => 'Tá an t-ábhar le fáil faoin $1.',
 'copyrightpagename'    => 'Cóipcheart {{GRAMMAR:genitive|{{SITENAME}}}}',
 'copyrightpage'        => '{{ns:project}}:Cóipchearta',

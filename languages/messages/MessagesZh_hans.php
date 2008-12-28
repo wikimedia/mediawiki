@@ -5,6 +5,7 @@
  * @file
  *
  * @author Bencmq
+ * @author Gaoxuewei
  * @author Gzdavidwong
  * @author O
  * @author Shinjiman
@@ -290,8 +291,6 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '关于{{SITENAME}}',
 'aboutpage'            => 'Project:关于',
-'bugreports'           => '错误报告',
-'bugreportspage'       => 'Project:错误报告',
 'copyright'            => '本站的全部文本内容在$1之条款下提供。',
 'copyrightpagename'    => '{{SITENAME}}版权',
 'copyrightpage'        => '{{ns:project}}:版权信息',
@@ -1589,6 +1588,8 @@ Template:消除歧義',
 
 # Special:Interwiki
 'interwiki-title-norights' => '查看跨语言（维基）资料',
+'interwiki_addbutton'      => '增加',
+'interwiki_reasonfield'    => '原因',
 'right-interwiki'          => '编辑跨语言（维基）资料',
 
 # Special:LinkSearch

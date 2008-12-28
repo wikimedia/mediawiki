@@ -334,8 +334,6 @@ $messages = array(
 'aboutsite'            => '{{SITENAME}} පිළිබඳ
 <!--{{SITENAME}}About-->',
 'aboutpage'            => 'Project:පිළිබඳ',
-'bugreports'           => 'දෝෂ වාර්තා',
-'bugreportspage'       => 'Project:දෝෂ වාර්තා',
 'copyright'            => ' $1 යටතේ අන්තර්ගතය දැක ගත හැක.',
 'copyrightpagename'    => '{{SITENAME}} කර්තෘ-හිමිකම්',
 'copyrightpage'        => '{{ns:project}}:කර්තෘ-හිමිකම්',

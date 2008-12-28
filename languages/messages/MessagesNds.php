@@ -408,8 +408,6 @@ un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Över {{SITENAME}}',
 'aboutpage'            => 'Project:Över_{{SITENAME}}',
-'bugreports'           => 'Kontakt',
-'bugreportspage'       => 'Project:Kontakt',
 'copyright'            => 'Inholt is verfögbor ünner de $1.',
 'copyrightpagename'    => '{{SITENAME}} Copyright',
 'copyrightpage'        => '{{ns:project}}:Lizenz',
@@ -647,7 +645,7 @@ Wenn du dat Brukerkonto gor nich hebben wullst, denn is disse Naricht egaal för
 # Password reset dialog
 'resetpass'                 => 'Passwoord ännern',
 'resetpass_announce'        => 'Du hest di mit en Kood anmellt, de di över E-Mail toschickt worrn is. Dat anmellen aftosluten, söök di nu en neet Passwoord ut:',
-'resetpass_header'          => 'Passwoort trüchsetten',
+'resetpass_header'          => 'Passwoord trüchsetten',
 'oldpassword'               => 'Oolt Passwoort:',
 'newpassword'               => 'Nee Passwoort',
 'retypenew'                 => 'Nee Passwoort (nochmal)',

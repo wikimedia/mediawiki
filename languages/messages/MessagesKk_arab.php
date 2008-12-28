@@ -602,8 +602,6 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} تۋرالى',
 'aboutpage'            => 'Project:جوبا تۋرالى',
-'bugreports'           => 'قاتەلىك باياناتتارى',
-'bugreportspage'       => 'Project:قاتەلىك ەسەپتەمەلەرى',
 'copyright'            => 'ماعلۇمات $1 شارتىمەن جەتىمدى.',
 'copyrightpagename'    => '{{SITENAME}} اۋتورلىق قۇقىقتارى',
 'copyrightpage'        => '{{ns:project}}:اۋتورلىق قۇقىقتار',

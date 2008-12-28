@@ -328,8 +328,6 @@ I seguenti cołegamenti i xe en lengua inglese:
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Se parla de {{SITENAME}}',
 'aboutpage'            => 'Project:Se parla de',
-'bugreports'           => 'Malfunsionamenti',
-'bugreportspage'       => 'Project:Malfunsionamenti',
 'copyright'            => 'Contenuto disponibile soto $1.',
 'copyrightpagename'    => 'El copyright su {{SITENAME}}',
 'copyrightpage'        => '{{ns:project}}:Copyright',
@@ -1622,6 +1620,39 @@ Varda anca le [[Special:WantedCategories|categorie domandà]].',
 
 # Special:DeletedContributions
 'deletedcontributions' => 'Contributi utente scancelà',
+
+# Special:Interwiki
+'interwiki'                => 'Varda e modìfega i dati interwiki',
+'interwiki-title-norights' => 'Varda i dati interwiki',
+'interwiki_addbutton'      => 'Zonta',
+'interwiki_added'          => 'El prefisso "$1" el xe stà zontà a la tabèla dei interwiki.',
+'interwiki_addfailed'      => 'No se riesse a zontar el prefisso "$1" a la tabèla dei interwiki.
+El prefisso el podarìa èssar xà presente in tabèla.',
+'interwiki_addintro'       => 'Te sì drio zontar un prefisso interwiki novo.
+No xe mia parmessi i caràteri: spassio ( ), do ponti (:), e comerçial (&), sìnbolo de uguale (=).',
+'interwiki_addtext'        => 'Zonta un prefisso interwiki',
+'interwiki_defaultreason'  => 'nissuna motivassion indicà',
+'interwiki_deleted'        => 'El prefisso "$1" el xe stà scancelà da la tabèla dei interwiki.',
+'interwiki_deleting'       => 'Te sì drio scancelar el prefisso "$1"',
+'interwiki_delfailed'      => 'No s\'à podesto cavar el prefisso "$1" da la tabèla dei interwiki.',
+'interwiki_delquestion'    => 'Scancelassion de "$1"',
+'interwiki_edited'         => 'El prefisso "$1" el xe stà canbià in te la tabèla dei interwiki.',
+'interwiki_editerror'      => 'No se riesse a canbiar el prefisso "$1" in te la tabèla dei interwiki.
+Sto prefisso el podarìa èssar inesistente.',
+'interwiki_editintro'      => 'Te sì drio modificar un prefisso interwiki.
+Ocio a no desfar i colegamenti esistenti.',
+'interwiki_edittext'       => 'Modìfega de un prefisso interwiki',
+'interwiki_error'          => 'ERÓR: La tabèla dei interwiki la xe voda, o ghe xe qualche altro erór.',
+'interwiki_intro'          => 'Varda [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] par savérghene piassè su la tabèla dei interwiki.
+Ghe xe anca un [[Special:Log/interwiki|registro de le modìfeghe]] a la tabèla dei interwiki.',
+'interwiki_log_added'      => 'gà zontà el prefisso "$2" ($3) (trans: $4) (locale: $5) a la tabèla dei interwiki',
+'interwiki_log_deleted'    => 'gà cavà el prefisso "$2" da la tabèla dei interwiki',
+'interwiki_log_edited'     => 'gà canbià el prefisso "$2" : ($3) (trans: $4) (locale: $5) in te la tabèla dei interwiki',
+'interwiki_prefix'         => 'Prefisso',
+'interwiki_reasonfield'    => 'Motivassion',
+'interwikilogpage'         => 'Registro de la tabèla interwiki',
+'interwikilogpagetext'     => 'Registro dei canbiamenti fati su la [[Special:Interwiki|tabèla dei interwiki]].',
+'right-interwiki'          => 'Cànbia i dati interwiki',
 
 # Special:LinkSearch
 'linksearch'       => 'Çerca colegamenti foresti',

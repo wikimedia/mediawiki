@@ -153,8 +153,6 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Äwa {{SITENAME}}',
 'aboutpage'            => 'Project:Äwa',
-'bugreports'           => 'Fehla-Berecht',
-'bugreportspage'       => 'Project:Fehla-Berecht',
 'copyright'            => 'Enhault es to habe unja $1.',
 'currentevents'        => 'Aktuelle Sache',
 'currentevents-url'    => 'Project:Aktuelle Sache',
@@ -309,6 +307,15 @@ Bitte nemm eenen aundren.',
 'minoreditletter' => 'k',
 'newpageletter'   => 'N',
 'boteditletter'   => 'b',
+
+# Recent changes linked
+'recentchangeslinked'          => 'Endarunge aun velinkte Siede',
+'recentchangeslinked-title'    => 'Endarunge aun Siede, woone von "$1" velinkt send',
+'recentchangeslinked-backlink' => '← $1',
+'recentchangeslinked-noresult' => 'Em utjesochten Tietrum es aun dee velinkte Siede nuscht aundasch jemoakt worde.',
+'recentchangeslinked-summary'  => "Dit es eene List mette latzte Endarunge aune velinkte Siede (ooda bie Kategorien von Mettjlieda von dise Kategorie). Dee Siede opp diene [[Special:Watchlist|your watchlist]] woare '''fat''' jewese.",
+'recentchangeslinked-page'     => 'Siednome:',
+'recentchangeslinked-to'       => 'Wies Endarunge opp Siede, woone mett dise Sied velinkt send',
 
 # Upload
 'upload'                     => 'Nopplode',

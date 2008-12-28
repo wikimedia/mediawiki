@@ -387,8 +387,6 @@ Dat es och all op Änglesch:
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Üvver de {{SITENAME}}',
 'aboutpage'            => 'Project:Üvver de {{SITENAME}}',
-'bugreports'           => 'Fähler melde',
-'bugreportspage'       => 'Project:Kontak',
 'copyright'            => 'Dä Enhald steiht unger de $1.',
 'copyrightpagename'    => 'Lizenz',
 'copyrightpage'        => '{{ns:project}}:Lizenz',
@@ -696,7 +694,7 @@ Do häs Der enzwesche e neuZweschepasswood jehollt.',
 'italic_tip'      => 'Scheive Schreff',
 'link_sample'     => 'Anker Tex',
 'link_tip'        => 'Ene Link en de {{SITENAME}}',
-'extlink_sample'  => 'http://www.example.com/dat_he_oohne_Zwescheräum Dä Anker Tex',
+'extlink_sample'  => 'http://www.example.com/dat_he_oohne_Zwescheräum Donoh dä Anker Tex',
 'extlink_tip'     => 'Ene Link noh drusse (denk dran, http:// aan dr Aanfang!)',
 'headline_sample' => 'Üvverschreff',
 'headline_tip'    => 'Üvverschreff op de bövverschte Ebene',
@@ -767,7 +765,7 @@ Dun en Ding Aanfroge nenne:
 * Ding IP-Adress is jetz: \$3
 * Di Sperr es wäje odde jäje: \$7
 
-Do kanns och noch en et <span class=\"plainlinks\">[{{fullurl:Special:IPBlockList|&action=search&limit=&ip=%23}}\$5 Logboch met de Sperre]</span> loore.",
+Do kanns och noch en et <span class=\"plainlinks\">[{{fullurl:Special:IPBlockList|&action=search&limit=&ip=%23}}\$5 {{int:ipblocklist}}]</span> loore.",
 'blockednoreason'                  => 'Keine Aanlass aanjejovve',
 'blockedoriginalsource'            => 'Dä orjenal Wiki Tex vun dä Sigg „<strong>$1</strong>“ steiht hee drunger:',
 'blockededitsource'                => 'Dä Wiki Tex vun <strong>Dinge Änderunge</strong> aan dä Sigg „<strong>$1</strong>“ steiht hee drunger:',
@@ -1892,12 +1890,13 @@ Denk draan, domet könnts De Links em Wiki kapott maache, die velleich do drop o
 'interwiki_error'          => '<span style="text-transform:uppercase">Fähler:</span> de Tabäll met de Engerwiki Date is leddisch.',
 'interwiki_intro'          => 'Op dä Sigg [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] fingk mer mieh do dröver, wat et met dä Tabäll met de Engerwiki Date op sich hät.
 Et [[Special:Log/interwiki|Logbuch med de Engerwiki Date]] zeichnet all de Änderunge aan de Engerwiki Date op.',
-'interwiki_local'          => 'Lokal',
+'interwiki_local'          => 'Dat es e lokal Wiki',
 'interwiki_log_added'      => 'hät dä Försaz „$2“ ($3) (Trans: $4) (Lokal: $5) en de Engerwiki Date eren jedonn',
 'interwiki_log_deleted'    => 'hät dä Försaz „$2“ es us de Engerwiki Date eruß jeworfe',
 'interwiki_log_edited'     => 'hät dä Försaz „$2“ ($3) (Trans: $4) (Lokal: $5) en de Engerwiki Date ömjemodelt',
 'interwiki_prefix'         => 'Försaz',
 'interwiki_reasonfield'    => 'Aanlass',
+'interwiki_trans'          => 'Enbenge övver Ingerwiki Lengks zolohße',
 'interwikilogpage'         => 'Logbooch fun de Engerwiki Tabäll',
 'interwikilogpagetext'     => 'Hee is dat Logboch met de Änderonge aan de [[Special:Interwiki|Engerwiki Date]].',
 'right-interwiki'          => 'de Tabäll met de Engerwiki Date ändere',
@@ -2271,7 +2270,7 @@ Drag bei „Aanlass“ ene möchlichs jenaue Jrund en, wöröm dat Sperre passee
 'ipboptions'                      => '1 Stund:1 hour,2 Stund:2 hours,3 Stund:3 hours,6 Stund:6 hours,12 Stund:12 hours,1 Dach:1 day,3 Däch:3 days,1 Woch:1 week,2 Woche:2 weeks,3 Woche:3 weeks,1 Mond:1 month,3 Mond:3 months,6 Mond:6 months,9 Mond:9 months,1 Johr:1 year,2 Johre:2 years,3 Johre:3 years,Unbejrenz:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'Söns wie lang',
 'ipbotherreason'                  => 'Ander Jrund oder Zosätzlich:',
-'ipbhidename'                     => 'Don däm Metmaacher singe Name versteiche: Em [[Special:Log/block|{{int:blocklogpage}}]], en de [[Special:IPBlockList|{{int:ipblocklist}}]], un en de [[Special:ListUsers|{{int:listusers}}]].',
+'ipbhidename'                     => ' Don däm Metmaacher singe Name versteiche: Em [[Special:Log/block|{{int:blocklogpage}}]], en de [[Special:IPBlockList|{{int:ipblocklist}}]], un en de [[Special:ListUsers|{{int:listusers}}]].',
 'ipbwatchuser'                    => 'Op däm Metmaacher sing Metmaachersigg un Klaafsigg oppasse',
 'ipballowusertalk'                => 'Lohß dä Metmaacher an sing eije Klaafsigg ändere, och su lang, wi sing Sperr dooht',
 'ipb-change-block'                => 'Wigger sperre met dä neue Enstellunge',

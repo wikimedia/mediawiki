@@ -449,8 +449,6 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} 소개',
 'aboutpage'            => 'Project:소개',
-'bugreports'           => '버그 신고',
-'bugreportspage'       => 'Project:버그 신고',
 'copyright'            => '문서는 $1 라이센스 하에 있습니다.',
 'copyrightpagename'    => '{{SITENAME}} 저작권',
 'copyrightpage'        => '{{ns:project}}:저작권',
@@ -907,6 +905,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'revdelete-suppress'     => '문서 내용을 관리자에게도 보이지 않게 숨기기',
 'revdelete-hide-image'   => '파일을 숨기기',
 'revdelete-unsuppress'   => '복구된 판에 대한 제한을 해제',
+'revdelete-submit'       => '선택된 판에 적용',
 'revdelete-logentry'     => '[[$1]]의 판의 보이기 설정을 변경함',
 'logdelete-logentry'     => '[[$1]]의 로그 보이기 설정을 변경함',
 'revdelete-success'      => "'''판의 보이기 설정이 성공적으로 변경되었습니다.'''",
@@ -917,8 +916,10 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'revdelete-content'      => '내용',
 'revdelete-summary'      => '편집 요약',
 'revdelete-uname'        => '사용자 이름',
-'revdelete-hid'          => '$1을(를) 숨김',
+'revdelete-restricted'   => '관리자에게 제한을 적용함',
+'revdelete-hid'          => '$1을 숨김',
 'revdelete-unhid'        => '$1을 숨김 해제함',
+'revdelete-log-message'  => '$2개의 판에 대해 $1',
 
 # Suppression log
 'suppressionlog' => '숨기기 기록',
@@ -964,9 +965,11 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'diff-table'              => "'''표'''",
 'diff-tr'                 => "'''행'''",
 'diff-td'                 => "'''칸'''",
+'diff-th'                 => "'''제목'''",
 'diff-br'                 => "'''줄바꿈'''",
 'diff-hr'                 => "'''가로줄'''",
 'diff-code'               => "'''컴퓨터 코드 블록'''",
+'diff-input'              => "'''입력 상자'''",
 'diff-img'                => "'''그림'''",
 'diff-a'                  => "'''링크'''",
 'diff-i'                  => "'''기울임꼴'''",
@@ -1341,6 +1344,20 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'filename-bad-prefix'         => '올리려고 하는 파일 이름이 <strong>"$1"</strong>(으)로 시작합니다.
 "$1"은(는) 디지털 사진기가 자동으로 붙이는 의미없는 이름입니다.
 파일에 대해 알기 쉬운 이름을 골라주세요.',
+'filename-prefix-blacklist'   => ' #<!-- 이 줄은 그대로 두십시오. --> <pre>
+# 문법은 다음과 같습니다:
+#   * "#"에서 그 줄의 끝까지는 코멘트입니다.
+#   * 비어 있지 않은 줄은 디지털 카메라에서 자동적으로 부여하는 파일 접두어입니다.
+CIMG # 카시오
+DSC_ # 니콘
+DSCF # 후지
+DSCN # 니콘
+DUW # 일부 휴대폰
+IMG # 일반
+JD # 제놉틱
+MGP # 펜탁스
+PICT # 기타
+ #</pre> <!-- 이 줄은 그대로 두십시오. -->',
 
 'upload-proto-error'      => '잘못된 프로토콜',
 'upload-proto-error-text' => '파일을 URL로 올리려면 <code>http://</code>이나 <code>ftp://</code>로 시작해야 합니다.',
@@ -2109,6 +2126,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'immobile-source-namespace' => '"$1" 이름공간에 속한 문서는 이동시킬 수 없습니다.',
 'immobile-target-namespace' => '"$1" 이름공간에 속한 문서는 이동시킬 수 없습니다.',
 'immobile-source-page'      => '이 문서는 이동할 수 없습니다.',
+'imagenocrossnamespace'     => '파일을 파일이 아닌 이름공간으로 옮길 수 없습니다.',
 'fix-double-redirects'      => '기존 이름을 가리키는 넘겨주기를 갱신',
 'move-leave-redirect'       => '이동 후 넘겨주기를 남기기',
 
@@ -2314,8 +2332,9 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 # Patrol log
 'patrol-log-page'      => '검토 기록',
 'patrol-log-header'    => '이 기록은 검토된 문서에 대한 기록입니다.',
-'patrol-log-line'      => '$2 문서의 $1 판을 검토함 $3',
+'patrol-log-line'      => '$2 문서의 $1을 검토함 $3',
 'patrol-log-auto'      => '(자동)',
+'patrol-log-diff'      => '$1판',
 'log-show-hide-patrol' => '검토 기록을 $1',
 
 # Image deletion
@@ -2485,6 +2504,7 @@ Variants for Chinese language
 'exif-scenecapturetype-2' => '인물 사진',
 'exif-scenecapturetype-3' => '야경 사진',
 
+'exif-saturation-0' => '보통',
 'exif-saturation-1' => '저채도',
 'exif-saturation-2' => '고채도',
 
