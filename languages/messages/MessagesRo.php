@@ -357,8 +357,6 @@ pe titlul secţiunii (JavaScript)',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Despre {{SITENAME}}',
 'aboutpage'            => 'Project:Despre',
-'bugreports'           => 'Raportare probleme',
-'bugreportspage'       => 'Project:Rapoarte probleme',
 'copyright'            => 'Conţinutul este disponibil sub $1.',
 'copyrightpagename'    => 'Drepturi de autor în {{SITENAME}}',
 'copyrightpage'        => '{{ns:project}}:Drepturi de autor',

@@ -33,8 +33,13 @@ $namespaceNames = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline' => 'Haiguy joajuha',
-'tog-justify'   => 'embojoja haipyvo',
+'tog-underline'       => 'Haiguy joajuha',
+'tog-justify'         => 'embojoja haipyvo',
+'tog-hideminor'       => 'Eñomi ñemyatyrõ michĩva «ñemoambue pyahúpe»',
+'tog-extendwatchlist' => 'Eipyso tembiapo rapykueho rysýi opaite ñemoambue ikatúvape',
+'tog-usenewrc'        => "Ñemoambue ojejapo ramóva (ndoikói opaite 'navegador'-pe)",
+'tog-numberheadings'  => 'Mbopapapy ijehegui myakãha',
+'tog-showtoolbar'     => 'Ehechauka ñemyatyrõ renda',
 
 'underline-always' => 'Akói',
 'underline-never'  => "Araka'eve",
@@ -119,6 +124,8 @@ $messages = array(
 'newpage'          => 'Pyahu kuatia',
 'talkpagelinktext' => "ñe'ẽ",
 'specialpage'      => "Kuatiarogue mba'echĩchĩ",
+'personaltools'    => 'Tapicha rembipuru',
+'postcomment'      => "Emoĩ ne remimo'ã",
 'talk'             => 'Myangekõi',
 'views'            => 'Techakuéra',
 'toolbox'          => 'Tembiporu',

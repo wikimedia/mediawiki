@@ -197,8 +197,6 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Nípa {{SITENAME}}',
 'aboutpage'            => 'Project:Nípa',
-'bugreports'           => 'Ìjábọ̀ àsìṣe',
-'bugreportspage'       => 'Project:Ìjábọ̀ àsìṣe',
 'copyright'            => 'Gbogbo ohun inú ibí yi wà lábẹ́  $1.',
 'copyrightpagename'    => '{{SITENAME}} ẹ̀tọ́àwòkọ',
 'copyrightpage'        => '{{ns:project}}:Ẹ̀tọ́àwòko',

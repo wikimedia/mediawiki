@@ -302,8 +302,6 @@ See also [[MediaWiki:Lastmodifiedatby/{{SUBPAGENAME}}]].', # $1 date, $2 time
 'aboutpage'            => 'Used as page for that contains the site description. Used at the bottom of every page on the wiki. Example: [[{{MediaWiki:Aboutpage}}|{{MediaWiki:About}} {{SITENAME}}]].
 
 {{doc-important|Do not translate "Project:" part}}',
-'bugreportspage'       => 'Not used in Monobook skin. 
-{{doc-important|Do not change <tt>Project:</tt> part.}}',
 'copyrightpagename'    => '{{doc-important|Do not change <nowiki>{{SITENAME}}</nowiki>}}',
 'copyrightpage'        => '{{doc-important|Do not change <nowiki>{{ns:project}}</nowiki>}}',
 'currentevents'        => 'Standard link in the sidebar, for news. See also {{msg|currentevents-url}} for the link url.',
@@ -1470,21 +1468,24 @@ Example: [[:Image:Addon-icn.png]]',
 
 # Special:Interwiki
 'interwiki'                => 'This message is the title of the special page [[Special:Interwiki]].',
-'interwiki-title-norights' => 'This message is the title of the special page [[Special:Interwiki]] when the user has no right to edit the interwiki data, so can only view them.',
+'interwiki-title-norights' => 'Part of the interwiki extension. This message is the title of the special page [[Special:Interwiki]] when the user has no right to edit the interwiki data, so can only view them.',
 'interwiki_addbutton'      => 'This message is the text of the button to submit the interwiki prefix you are adding.
 
 {{Identical|Add}}',
 'interwiki_defaultreason'  => 'This message is the default reason in the interwiki log (when adding or deleting a prefix).
 
 {{Identical|No reason given}}',
+'interwiki_deleting'       => '-',
 'interwiki_delquestion'    => 'Parameter $1 is the interwiki prefix you are deleting.
 
 {{Identical|Deleting $1}}',
 'interwiki_editerror'      => 'Error message when modifying a prefix has failed.',
 'interwiki_error'          => 'This error message is shown when the Special:Interwiki page is empty.',
+'interwiki_local'          => 'Used on [[Special:Interwiki]]',
 'interwiki_log_added'      => 'Shows up in "Special:Log/interwiki" when someone has added a prefix. Leave parameters and text between brackets exactly as it is.',
 'interwiki_log_deleted'    => 'Shows up in "Special:Log/interwiki" when someone removed a prefix.',
 'interwiki_log_edited'     => 'Shows up in "Special:Log/interwiki" when someone has modified a prefix. Leave parameters and text between brackets exactly as it is.',
+'interwiki_prefix'         => '-',
 'interwiki_reasonfield'    => '{{Identical|Reason}}',
 'interwikilogpage'         => 'This message is shown as page title on Special:Log/interwiki.',
 'interwikilogpagetext'     => 'Summary shown on Special:Log/interwiki.',

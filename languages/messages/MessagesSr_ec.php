@@ -411,8 +411,6 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'О пројекту {{SITENAME}}',
 'aboutpage'            => 'Project:О',
-'bugreports'           => 'Пријаве грешака',
-'bugreportspage'       => 'Project:Пријаве грешака',
 'copyright'            => 'Садржај је објављен под $1.',
 'copyrightpagename'    => 'Ауторска права пројекта {{SITENAME}}',
 'copyrightpage'        => '{{ns:project}}:Ауторска права',

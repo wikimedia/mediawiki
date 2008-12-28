@@ -366,8 +366,6 @@ I seguenti collegamenti sono in lingua inglese:
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Informazioni su {{SITENAME}}',
 'aboutpage'            => 'Project:Informazioni',
-'bugreports'           => 'Malfunzionamenti',
-'bugreportspage'       => 'Project:Malfunzionamenti',
 'copyright'            => "Contenuti soggetti a licenza d'uso $1.",
 'copyrightpagename'    => 'Il copyright su {{SITENAME}}',
 'copyrightpage'        => '{{ns:project}}:Copyright',

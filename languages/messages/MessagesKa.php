@@ -8,6 +8,7 @@
  * @author Dato deutschland
  * @author Malafaya
  * @author Sopho
+ * @author Temuri rajavi
  * @author ka.wikipedia.org sysops
  * @author לערי ריינהארט
  */
@@ -275,8 +276,6 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}}-ის შესახებ',
 'aboutpage'            => 'Project:შესახებ',
-'bugreports'           => 'ანგარიში შეცდომის შესახებ',
-'bugreportspage'       => 'Project:ანგარიში შეცდომის შესახებ',
 'copyrightpagename'    => 'ვიკიპედია საავტორო უფლებები',
 'copyrightpage'        => '{{ns:project}}:საავტორო უფლებები',
 'currentevents'        => 'მიმდინარე მოვლენები',
@@ -398,6 +397,9 @@ $2',
 'namespaceprotected'   => "თქვენ არ გაქვთ '''$1''' სახელთა სივრცეში გვერდების რედაქტირების უფლება.",
 'customcssjsprotected' => 'თქვენ არ გაქვთ ამ გვერდის რედაქტირების უფლება, ვინაიდან ის სხვა მომხმარებლის პირად კონფიგურაციას შეიცავს.',
 'ns-specialprotected'  => 'გვერდების რედაქტირება სახელთა სივრცეში {{ns:special}} შეუძლებელია.',
+
+# Virus scanner
+'virus-unknownscanner' => 'უცნობი ანტივირუსი:',
 
 # Login and logout pages
 'logouttitle'                => 'მომხმარებლის სისტემიდან გასვლა',
@@ -1159,6 +1161,9 @@ $1 საათში.',
 'categoriespagetext'          => 'ვიკიპედიაში შემდეგი კატეგორიებია.',
 'special-categories-sort-abc' => 'ანბანზე დალაგება',
 
+# Special:Interwiki
+'interwiki_reasonfield' => 'მიზეზი',
+
 # Special:LinkSearch
 'linksearch-ns' => 'სახელთა სივრცე:',
 
@@ -1596,6 +1601,7 @@ $NEWPAGE
 'tooltip-t-emailuser'             => 'გაუგზავნე ელ. ფოსტა ამ მომხმარებელს',
 'tooltip-t-upload'                => 'ჩატვირთეთ მედიაფაილები',
 'tooltip-t-specialpages'          => 'ყველა სპეციალური გვერდის სია',
+'tooltip-t-print'                 => 'ამ გვერდის დასაბეჭდი ვერსია',
 'tooltip-ca-nstab-user'           => 'მომხმარებლის გვერდის ჩვენება',
 'tooltip-ca-nstab-project'        => 'იხილეთ პროექტის გვერდი',
 'tooltip-ca-nstab-image'          => 'სურათის გვერდის ჩვენება',

@@ -512,8 +512,6 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'O&nbsp;{{grammar:6sg|{{SITENAME}}}}',
 'aboutpage'            => 'Project:{{SITENAME}}',
-'bugreports'           => 'Hlášení chyb',
-'bugreportspage'       => 'Project:Chyby',
 'copyright'            => 'Obsah je dostupný pod $1.',
 'copyrightpagename'    => 'podmínek {{grammar:2sg|{{SITENAME}}}}',
 'copyrightpage'        => '{{ns:project}}:Autorské právo',
@@ -1806,6 +1804,42 @@ Možná Vás budou zajímat [[Special:WantedCategories|žádané kategorie]].',
 
 # Special:DeletedContributions
 'deletedcontributions' => 'Smazané editace uživatele',
+
+# Special:Interwiki
+'interwiki'                => 'Zobrazit a upravovat interwiki',
+'interwiki-title-norights' => 'Zobrazit interwiki',
+'interwiki_addbutton'      => 'Přidat',
+'interwiki_added'          => 'Prefix „$1” byl úspěšně přidán do tabulky interwiki.',
+'interwiki_addfailed'      => 'Prefix „$1” nemohl být přidán do tabulky interwiki.
+Pravděpodobně tam již existuje.',
+'interwiki_addintro'       => 'Přidáváte nový interwiki prefix.
+Mějte na vědomí, že nemůže obsahovat mezery ( ), dvojtečky (:), ampersandy (&), nebo rovnítka (=).',
+'interwiki_addtext'        => 'Přidat interwiki prefix',
+'interwiki-badprefix'      => '„$1“ obsahuje nepovolený znak',
+'interwiki_defaultreason'  => 'důvod neuveden',
+'interwiki_deleted'        => 'Prefix „$1” byl úspěšně odstraněn z tabulky interwiki.',
+'interwiki_deleting'       => 'Mažete prefix „$1”.',
+'interwiki_delfailed'      => 'Prefix „$1” nebylo možné odstranit z tabulky interwiki.',
+'interwiki_delquestion'    => 'Odstraňuje se „$1”',
+'interwiki_edited'         => 'Prefix „$1” byl úspěšně modifikován v tabulce interwiki.',
+'interwiki_editerror'      => 'Prefix „$1” nemohl být modifikován v tabulce interwiki.
+Pravděpodobně neexistuje.',
+'interwiki_editintro'      => 'Editujete interwiki prefix.
+Mějte na vědomí, že to může znefunkčnit existující odkazy.',
+'interwiki_edittext'       => 'Editace interwiki prefixu',
+'interwiki_error'          => 'CHYBA: Interwiki tabulka je prázdná anebo se pokazilo něco jiného.',
+'interwiki_intro'          => 'Více informací o interwiki tabulce najdete na [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org].
+Vizte též [[Special:Log/interwiki|knihu změn]] v interwiki tabulce.',
+'interwiki_local'          => 'Nastavit jako lokální wiki',
+'interwiki_log_added'      => 'přidal prefix „$2” ($3) (trans: $4) (local: $5) to interwiki tabulky',
+'interwiki_log_deleted'    => 'odstranil prefix „$2” z interwiki tabulky',
+'interwiki_log_edited'     => 'změnil prefix „$2” : ($3) (trans: $4) (local: $5) v interwiki tabulce',
+'interwiki_prefix'         => 'Prefix',
+'interwiki_reasonfield'    => 'Důvod',
+'interwiki_trans'          => 'Povolit interwiki transkluze',
+'interwikilogpage'         => 'Kniha změn v interwiki tabulce',
+'interwikilogpagetext'     => 'Toto je kniha změn v [[Special:Interwiki|interwiki tabulce]].',
+'right-interwiki'          => 'Editování interwiki záznamů',
 
 # Special:LinkSearch
 'linksearch'       => 'Hledání externích odkazů',

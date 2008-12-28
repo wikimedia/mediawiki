@@ -198,8 +198,6 @@ href="" class="internal"}?{/a}) bımocne.',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Heqa {{SITENAME}} de',
 'aboutpage'            => 'Project:Heqa',
-'bugreports'           => 'Xebera xeteyan',
-'bugreportspage'       => 'Project:Xebera xeteyan',
 'copyright'            => 'Nuştey bınê Lisansê $1 de vêrenê.',
 'copyrightpagename'    => 'Heqa telifê {{SITENAME}}',
 'copyrightpage'        => '{{ns:project}}:Heqê telifi',

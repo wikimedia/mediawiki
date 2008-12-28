@@ -490,8 +490,6 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'O projektu {{SITENAME}}',
 'aboutpage'            => 'Project:O_projektu_{{SITENAME}}',
-'bugreports'           => 'Poruke o programskim pogreškama',
-'bugreportspage'       => 'Project:Poruke_o_programskim_pogreškama',
 'copyright'            => 'Sadržaji se koriste u skladu s $1.',
 'copyrightpagename'    => 'Autorska prava na projektu {{SITENAME}}',
 'copyrightpage'        => '{{ns:project}}:Autorska prava',

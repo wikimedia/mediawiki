@@ -108,7 +108,6 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutpage'            => 'Project:बारेमा',
-'bugreports'           => 'त्रुटी बिवरण',
 'copyright'            => 'लेखका सामाग्री $1 अनुसार उपलब्ध छ।',
 'currentevents'        => 'हालैका घटनाहरु',
 'currentevents-url'    => 'Project:हालैका घटनाहरु',

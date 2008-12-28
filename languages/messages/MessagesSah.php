@@ -232,8 +232,6 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} туһунан',
 'aboutpage'            => 'Project:туһунан',
-'bugreports'           => 'Сыыһалар тустарынан хобо',
-'bugreportspage'       => 'Project:сыыһаларын туһунан хобо',
 'copyright'            => 'Маны туһанары $1 көҥүллүүр.',
 'copyrightpagename'    => '{{SITENAME}} бас билиитэ',
 'copyrightpage'        => '{{ns:project}}:бас билиитэ',
@@ -1551,6 +1549,39 @@ PICT # misc.
 
 # Special:DeletedContributions
 'deletedcontributions' => 'Сотуллубут көннөрүү',
+
+# Special:Interwiki
+'interwiki'                => 'Интервики туруорууларын көрүү уонна уларытыы',
+'interwiki-title-norights' => 'Интервики туһунан',
+'interwiki_addbutton'      => 'Эбэргэ',
+'interwiki_added'          => '"$1" префикс интервики табылыыссатыгар эбилиннэ.',
+'interwiki_addfailed'      => '"$1" префикс интервики табылыысатыгар кыайан эбиллибэтэ.
+Баҕар номнуо онно баара буолуо.',
+'interwiki_addintro'       => 'Эн саҥа интервики префиксын эбээри гынныҥ. Онтуҥ пробела ( ), икки туочуката (:), амперсанда (&) уонна тэҥнэһии бэлиэтэ (=) суох буолуохтаах.',
+'interwiki_addtext'        => 'Саҥа интервики префиксы эбии',
+'interwiki-badprefix'      => '"$1" туттуллуо суохтаах бэлиэлэрдээх',
+'interwiki_defaultreason'  => 'төрүөтэ ыйыллыбатах',
+'interwiki_deleted'        => '"$1" префикс интервики табылыыссатыттан сотулунна.',
+'interwiki_deleting'       => '"$1" префиксы сотон эрэҕин.',
+'interwiki_delfailed'      => '"$1" префикс интервики табылыыссатыттан сотуллар кыаҕа суох.',
+'interwiki_delquestion'    => '"$1" сотуу',
+'interwiki_edited'         => '"$1" префикс интервики табылыыссатыгар сөпкө уларытылынна.',
+'interwiki_editerror'      => '"$1" префикс уларыйар кыаҕа суох.
+Баҕар отой да суох буолуон сөп.',
+'interwiki_editintro'      => 'Интервики префиксы уларытан эрэҕин.
+Баар сигэлэри алдьатыан сөбүн өйдөө.',
+'interwiki_edittext'       => 'Интервики префикстары уларытыы',
+'interwiki_error'          => 'Алҕас: Интервики табылыыссата кураанах эбэтэр туга эрэ сатамматах.',
+'interwiki_intro'          => 'Инервики табылыыссатын туһунан сиһилии билиэххин баҕардаххына маны [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] көр. 
+Өссө интервики табылыыссатын [[Special:Log/interwiki|уларытыытын сурунаала]] баар.',
+'interwiki_log_added'      => '«$2» ($3) префикс (trans: $4) (local: $5) интервики табылыыссатыгар эбилиннэ',
+'interwiki_log_deleted'    => '"$2" префикс интервики табылыыссатыттан сотулунна',
+'interwiki_log_edited'     => 'интервики табылыыссаҕа «$2» префиксы уларытта: ($3) (trans: $4) (лок.: $5)',
+'interwiki_prefix'         => 'Префикс (эбиискэ)',
+'interwiki_reasonfield'    => 'Төрүөтэ',
+'interwikilogpage'         => 'Интервики табылыыссатын сурунаала',
+'interwikilogpagetext'     => 'Бу [[Special:Interwiki|интервики табылыыссатын]] уларыйыытын сурунаала.',
+'right-interwiki'          => 'Интервикины уларытыы',
 
 # Special:LinkSearch
 'linksearch'       => 'Тас сигэлэри көрдөөһүн',

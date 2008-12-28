@@ -174,7 +174,6 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Mombamomba ny {{SITENAME}}',
 'aboutpage'            => 'Project:Mombamomba',
-'bugreports'           => 'Fitaterana tsi-fahatomombanana',
 'copyright'            => '$1 no mifehy ny fampiasana ny votoatin-kevitra eto.',
 'currentevents'        => 'Ny vaovao',
 'disclaimerpage'       => 'Project:General disclaimer',

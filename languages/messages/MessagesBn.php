@@ -250,8 +250,6 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} বৃত্তান্ত',
 'aboutpage'            => 'Project:বৃত্তান্ত',
-'bugreports'           => 'ত্রুটি বিবরণী',
-'bugreportspage'       => 'Project:ত্রুটি বিবরণী',
 'copyright'            => '$1 এর আওতায় প্রাপ্য।',
 'copyrightpagename'    => '{{SITENAME}} কপিরাইট',
 'copyrightpage'        => '{{ns:project}}:কপিরাইটসমূহ',

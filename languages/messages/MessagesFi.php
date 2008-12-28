@@ -9,6 +9,7 @@
  * @author Crt
  * @author Jaakonam
  * @author Jack Phoenix
+ * @author Mobe
  * @author Nike
  * @author Silvonen
  * @author Str4nd
@@ -399,8 +400,6 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Tietoja {{GRAMMAR:elative|{{SITENAME}}}}',
 'aboutpage'            => 'Project:Tietoja',
-'bugreports'           => 'Ongelmat ja parannusehdotukset',
-'bugreportspage'       => 'Project:Ongelmat ja parannusehdotukset',
 'copyright'            => 'Sisältö on käytettävissä lisenssillä $1.',
 'copyrightpagename'    => '{{SITENAME}} ja tekijänoikeudet',
 'copyrightpage'        => '{{ns:project}}:Tekijänoikeudet',
@@ -1644,6 +1643,7 @@ Katso myös [[Special:WantedCategories|halutut luokat]].',
 'interwiki_addfailed'      => 'Etuliitteen ”$1” lisääminen interwiki-tauluun epäonnistui. Kyseinen etuliite saattaa jo olla interwiki-taulussa.',
 'interwiki_addintro'       => 'Olet lisäämässä uutta wikienvälistä etuliitettä. Se ei voi sisältää välilyöntejä ( ), kaksoispisteitä (:), et-merkkejä (&), tai yhtäsuuruusmerkkejä (=).',
 'interwiki_addtext'        => 'Lisää wikienvälinen etuliite',
+'interwiki-badprefix'      => '"$1" sisältää virheellisen merkin',
 'interwiki_defaultreason'  => 'ei annettua syytä',
 'interwiki_deleted'        => 'Etuliite ”$1” poistettiin onnistuneesti interwiki-taulusta.',
 'interwiki_deleting'       => 'Olet poistamassa etuliitettä ”$1”.',
@@ -1653,14 +1653,16 @@ Katso myös [[Special:WantedCategories|halutut luokat]].',
 'interwiki_editerror'      => 'Etuliitettä ”$1” ei voi muokata interwiki-taulukossa. Sitä ei mahdollisesti ole olemassa.',
 'interwiki_editintro'      => 'Muokkaat interwiki-etuliitettä. Muista, että tämä voi rikkoa olemassa olevia linkkejä.',
 'interwiki_edittext'       => 'Muokataan interwiki-etuliitettä',
-'interwiki_error'          => 'VIRHE: interwiki-taulu on tyhjä tai jokin muu meni pieleen.',
+'interwiki_error'          => 'Virhe: Interwiki-taulu on tyhjä tai jokin muu meni pieleen.',
 'interwiki_intro'          => 'Lisätietoja interwiki-taulusta on sivulla [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org]. On olemassa [[Special:Log/interwiki|loki]] interwiki-tauluun tehdyistä muutoksista.',
+'interwiki_local'          => 'Paikallinen wiki',
 'interwiki_log_added'      => 'Uusi etuliite ”$2” ($3) (trans: $4) (paikallinen: $5) interwiki-tauluun',
 'interwiki_log_deleted'    => 'Poisti etuliitteen ”$2” interwiki-taulusta',
 'interwiki_log_edited'     => 'muokkasi etuliitettä ”$2”: ($3) (trans: $4) (paikallinen: $5) interwiki-taulussa',
 'interwiki_prefix'         => 'Etuliite',
 'interwiki_reasonfield'    => 'Syy',
-'interwikilogpage'         => 'Loki muutoksista interwiki-tauluun',
+'interwiki_trans'          => 'Salli wikienvälinen sisällytys.',
+'interwikilogpage'         => 'Interwikitaululoki',
 'interwikilogpagetext'     => 'Tämä on loki muutoksista [[Special:Interwiki|interwiki-tauluun]].',
 'right-interwiki'          => 'Muokata interwiki-dataa',
 

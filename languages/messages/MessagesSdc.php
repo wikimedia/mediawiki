@@ -299,8 +299,6 @@ Li sighenti cullegamenti so in linga ingrese:
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Infuimmazioni in {{SITENAME}}',
 'aboutpage'            => 'Project:Infuimmazioni',
-'bugreports'           => 'Maiffunzionamenti',
-'bugreportspage'       => 'Project:Maiffunzionamenti',
 'copyright'            => "Cuntinuddi suggetti a licèntzia d'usu $1.",
 'copyrightpagename'    => 'Lu copyright i {{SITENAME}}',
 'copyrightpage'        => '{{ns:project}}:Copyright',

@@ -223,8 +223,6 @@ in [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Uporabniški priroč
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{UCFIRST:{{GRAMMAR:orodnik|{{SITENAME}}}}}}',
 'aboutpage'            => 'Project:{{UCFIRST:{{GRAMMAR:orodnik|{{SITENAME}}}}}}',
-'bugreports'           => 'Poročila o hroščih',
-'bugreportspage'       => 'Project:Poročila o hroščih',
 'copyright'            => 'Besedilo je na razpolago pod pogoji $1.',
 'copyrightpagename'    => 'Avtorske pravice {{GRAMMAR:rodilnik|{{SITENAME}}}}',
 'copyrightpage'        => '{{ns:project}}:Avtorske pravice {{GRAMMAR:rodilnik|{{SITENAME}}}}',

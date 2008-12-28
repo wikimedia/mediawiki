@@ -332,8 +332,6 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Iwwer {{SITENAME}}',
 'aboutpage'            => 'Project: Iwwer {{SITENAME}}',
-'bugreports'           => 'Feelermeldungen',
-'bugreportspage'       => 'Project:Feelermeldungen',
 'copyright'            => 'Inhalt ass zur Verfügung gestallt ënnert der $1.<br />',
 'copyrightpagename'    => '{{SITENAME}} Copyright',
 'copyrightpage'        => '{{ns:project}}:Copyright',
@@ -580,6 +578,8 @@ Dir hutt ärt Passwuert scho geännert oder een  neit temporairt Passwuert ugefr
 'resetpass_forbidden'       => 'Passwierder kënnen net geännert ginn.',
 'resetpass-no-info'         => 'Dir musst ageloggt sinn, fir direkt op dës Säit ze kommen.',
 'resetpass-submit-loggedin' => 'Passwuert änneren',
+'resetpass-wrong-oldpass'   => 'Net valabelt temporärt oder aktuellt Passwuert.
+Vläicht hutt Dir Ärt Passwuert scho geännert oder en neit temporärt Passwuert ugefrot.',
 'resetpass-temp-password'   => 'Temporärt Passwuert:',
 
 # Edit page toolbar
@@ -931,6 +931,7 @@ Passt op, datt d'Versiounsgeschicht der Säit historesch korrekt ass.
 'diff-dd'                 => "eng '''Definitioun'''",
 'diff-form'               => "ein '''Formulair'''",
 'diff-img'                => "e '''Bild'''",
+'diff-span'               => "e '''Span'''",
 'diff-a'                  => "e '''Link'''",
 'diff-i'                  => "'''kursiv'''",
 'diff-b'                  => "'''fett'''",
@@ -940,6 +941,8 @@ Passt op, datt d'Versiounsgeschicht der Säit historesch korrekt ass.
 'diff-big'                => "'''grouss'''",
 'diff-del'                => "'''geläscht'''",
 'diff-tt'                 => "'''fest Breet'''",
+'diff-sub'                => "'''déifgestallt'''",
+'diff-sup'                => "'''héichgestallt'''",
 'diff-strike'             => "'''duerchgestrach'''",
 
 # Search results
@@ -1021,6 +1024,7 @@ Dir kënnt [[:\$1|déi Säit uleeën]].",
 'changepassword'            => 'Passwuert änneren',
 'skin'                      => 'Skin',
 'skin-preview'              => 'Kucken',
+'math'                      => 'Math/TeX',
 'dateformat'                => 'Datumsformat',
 'datedefault'               => 'Egal (Standard)',
 'datetime'                  => 'Datum an Auerzäit',
@@ -1031,6 +1035,8 @@ Dir kënnt [[:\$1|déi Säit uleeën]].",
 'math_syntax_error'         => 'Syntaxfeeler',
 'math_image_error'          => "d'PNG-Konvertéierung huet net fonctionnéiert;
 iwwerpréift déi korrekt Installatioun vu LaTeX, dvips, gs a convert",
+'math_bad_tmpdir'           => 'Den temporäre Repertire fir mathematesch Formele kann net ugeluecht ginn oder et kann näischt do gespäichert ginn.',
+'math_bad_output'           => 'Den Zilrepertoire fir mathematesch Formele kann net ugeluecht ginn oder et kann näischt do gespäichert ginn.',
 'prefs-personal'            => 'Benotzerprofil',
 'prefs-rc'                  => 'Rezent Ännerungen',
 'prefs-watchlist'           => 'Iwwerwaachungslëscht',
@@ -1604,15 +1610,19 @@ Kuckt och [[Special:WantedCategories|Gewënschte Kategorien]].',
 'interwiki'                => 'Interwiki-Date kucken a veränneren',
 'interwiki-title-norights' => 'Interwiki-Date kucken',
 'interwiki_addbutton'      => 'Derbäisetzen',
+'interwiki_added'          => 'De Prefix "$1" gou an d\'Interwiki-Tabell derbäigesat.',
 'interwiki_addtext'        => 'En Interwiki-prefix derbäisetzen',
 'interwiki_defaultreason'  => 'kee Grond uginn',
 'interwiki_defaulturl'     => 'http://www.beispill.com/$1',
+'interwiki_deleting'       => 'Dir läscht de Prefix "$1".',
 'interwiki_delquestion'    => 'Läscht "$1"',
+'interwiki_editintro'      => 'Dir ännert en Interwiki Prefix.
+Denkt drun, datt dëst kann dozou féieren datt Linen déi et scho gëtt net méi fonctionnieren.',
 'interwiki_edittext'       => 'En interwiki Prefix änneren',
 'interwiki_error'          => "Feeler: D'Interwiki-Tabell ass eidel.",
 'interwiki_intro'          => "Kuckt [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] fir méi Informatiounen iwwert d'Interwiki-Tabell.
 Et gëtt eng [[Special:Log/interwiki|Lëscht vun den Ännerungen]] vun dëser Interwiki-Tabell.",
-'interwiki_local'          => 'Lokal',
+'interwiki_local'          => 'Dës Wiki als Lokal-Wiki definéieren',
 'interwiki_prefix'         => 'Prefix',
 'interwiki_reasonfield'    => 'Grond',
 'interwikilogpage'         => 'Lëscht mat der Interwikitabell',
@@ -2326,6 +2336,7 @@ Dëst warscheinlech duerch en externe Link den op der schwaarzer Lëscht (blackl
 'mw_math_html'   => 'Wa méiglech als HTML duerstellen, soss PNG',
 'mw_math_source' => 'Als TeX loossen (fir Textbrowser)',
 'mw_math_modern' => 'Recommandéiert fir modern Browser',
+'mw_math_mathml' => 'MathML wa méiglech (experimentell)',
 
 # Patrolling
 'markaspatrolleddiff'        => 'Als kontrolléiert markéieren',

@@ -462,8 +462,6 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Om {{SITENAME}}',
 'aboutpage'            => 'Project:Om',
-'bugreports'           => 'Felrapporter',
-'bugreportspage'       => 'Project:Felrapporter',
 'copyright'            => 'Innehållet är tillgängligt under $1.',
 'copyrightpagename'    => '{{SITENAME}} upphovsrätt',
 'copyrightpage'        => '{{ns:project}}:Upphovsrätt',
@@ -1804,11 +1802,13 @@ Kom ihåg att det inte kan innehålla mellanslag ( ), kolon (:), &-tecken eller 
 'interwiki_error'          => 'FEL: Interwikitabellen är tom, eller så gick något fel.',
 'interwiki_intro'          => 'Se [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] för mer information om interwikitabellen.
 Det finns en [[Special:Log/interwiki|logg]] över ändringar av interwikitabellen.',
+'interwiki_local'          => 'Definiera detta som en lokal wiki',
 'interwiki_log_added'      => 'lade till prefixet "$2" ($3) (trans: $4) (lokal: $5) i interwikitabellen',
 'interwiki_log_deleted'    => 'tog bort prefixet "$2" från interwikitabellen',
 'interwiki_log_edited'     => 'ändrade prefixet "$2" ($3) (trans: $4) (lokal: $5) i interwikitabellen',
 'interwiki_prefix'         => 'Prefix',
 'interwiki_reasonfield'    => 'Anledning',
+'interwiki_trans'          => 'Tillåt interwikitransklusioner',
 'interwikilogpage'         => 'Interwikitabellogg',
 'interwikilogpagetext'     => 'Detta är en logg över ändringar i [[Special:Interwiki|interwikitabellen]].',
 'right-interwiki'          => 'Redigera interwikidata',
