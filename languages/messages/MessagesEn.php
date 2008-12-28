@@ -2217,7 +2217,7 @@ There is a [[Special:Log/interwiki|log of changes]] to the interwiki table.',
 'interwiki_log_deleted'    => 'removed prefix "$2" from the interwiki table',
 'interwiki_log_edited'     => 'modified prefix "$2" : ($3) (trans: $4) (local: $5) in the interwiki table',
 'interwiki_logentry'       => '', # do not translate or duplicate this message to other languages
-'interwiki-not-enabled'    => 'Editing of the interwiki table is not on the wiki.',
+'interwiki-not-enabled'    => 'Editing of the interwiki table has been disabled.',
 'interwiki_prefix'         => 'Prefix',
 'interwiki_reasonfield'    => 'Reason',
 'interwiki_trans'          => 'Allow interwiki transclusions',
