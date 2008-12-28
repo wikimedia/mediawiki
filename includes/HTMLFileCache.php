@@ -20,22 +20,23 @@
  * @ingroup Cache
  */
 class HTMLFileCache {
-	var $mTitle, $mFileCache;
+	var $mTitle, $mFileCache, $mType;
 
-	public function __construct( &$title ) {
+	public function __construct( &$title, $type = 'view' ) {
 		$this->mTitle = $title;
-		$this->mFileCache = $this->fileCacheName();
+		$this->mType = ($type == 'raw' || $type == 'view' ) ? $type : false;
+		$this->fileCacheName(); // init name
 	}
 
 	public function fileCacheName() {
 		if( !$this->mFileCache ) {
 			global $wgFileCacheDirectory, $wgRequest;
+			# Store raw pages (like CSS hits) elsewhere
+			$subdir = ($this->mType === 'raw') ? 'raw/' : '';
 			$key = $this->mTitle->getPrefixedDbkey();
 			$hash = md5( $key );
 			# Avoid extension confusion
 			$key = str_replace( '.', '%2E', urlencode( $key ) );
-			# Store raw pages (like CSS hits) elsewhere
-			$subdir = $wgRequest->getVal('action') == 'raw' ? 'raw/' : '';
 	
 			$hash1 = substr( $hash, 0, 1 );
 			$hash2 = substr( $hash, 0, 2 );
@@ -50,6 +51,7 @@ class HTMLFileCache {
 	}
 
 	public function isFileCached() {
+		if( $this->mType === false ) return false;
 		return file_exists( $this->fileCacheName() );
 	}
 
@@ -70,11 +72,13 @@ class HTMLFileCache {
 			if( $query == 'title' || $query == 'curid' ) continue;
 			// Normal page view in query form can have action=view.
 			// Raw hits for pages also stored, like .css pages for example.
-			if( $query == 'action' && ($val == 'view' || $val == 'raw') ) continue;
-			if( $query == 'usemsgcache' && $val == 'yes' ) continue;
+			else if( $query == 'action' && ($val == 'view' || $val == 'raw') ) continue;
+			else if( $query == 'usemsgcache' && $val == 'yes' ) continue;
 			// Below are header setting params
-			if( $query == 'maxage' || $query == 'smaxage' || $query == 'ctype' || $query == 'gen' )
+			else if( $query == 'maxage' || $query == 'smaxage' || $query == 'ctype' || $query == 'gen' )
 				continue;
+			else
+				return false;
 		}
 		// Check for non-standard user language; this covers uselang,
 		// and extensions for auto-detecting user language.
@@ -193,4 +197,13 @@ class HTMLFileCache {
 		return $text;
 	}
 
+	public static function clearFileCache( $title ) {
+		global $wgUseFileCache;
+		if( !$wgUseFileCache ) return false;
+		$fc = new self( $title, '' );
+		@unlink( $fc->fileCacheName() );
+		$fc = new self( $title, 'raw' );
+		@unlink( $fc->fileCacheName() );
+		return true;
+	}
 }

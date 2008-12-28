@@ -172,8 +172,7 @@ class HTMLCacheUpdate
 				# Update file cache
 				if  ( $wgUseFileCache ) {
 					foreach ( $titles as $title ) {
-						$cm = new HTMLFileCache($title);
-						@unlink($cm->fileCacheName());
+						HTMLFileCache::clearFileCache( $title );
 					}
 				}
 			}
