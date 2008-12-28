@@ -258,4 +258,9 @@ class AuthPluginUser {
 		# Override this!
 		return false;
 	}
+	
+	public function resetAuthToken() {
+		# Override this!
+		return true;
+	}
 }
