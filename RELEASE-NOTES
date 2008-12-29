@@ -458,6 +458,7 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 16772) Special:Upload now correctly rejects files with spaces in the
   file extension (e.g. Foo. jpg).
 * Ensure that all HTML id's begin with a letter as required by XHTML standard
+* Image moving over an existing file no longer throws a database error
 
 === API changes in 1.14 ===
 
