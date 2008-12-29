@@ -305,6 +305,12 @@ class MovePageForm {
 				return;
 			}
 
+			// Delete an associated image if there is
+			$file = wfLocalFile( $nt );
+			if( $file->exists() ) {
+				$file->delete( wfMsgForContent( 'delete_and_move_reason' ), false );
+			}
+
 			// This may output an error message and exit
 			$article->doDelete( wfMsgForContent( 'delete_and_move_reason' ) );
 		}
