@@ -34,7 +34,7 @@ class RawPage {
 		}
 
 		$ctype = $this->mRequest->getVal( 'ctype' );
-		$smaxage = $this->mRequest->getIntOrNull( 'smaxage', $wgSquidMaxage );
+		$smaxage = $this->mRequest->getInt( 'smaxage', $wgSquidMaxage );
 		$maxage = $this->mRequest->getInt( 'maxage', $wgSquidMaxage );
 
 		$this->mExpandTemplates = $this->mRequest->getVal( 'templates' ) === 'expand';
@@ -73,11 +73,9 @@ class RawPage {
 
 		if( $gen == 'css' ) {
 			$this->mGen = $gen;
-			if( is_null( $smaxage ) ) $smaxage = $wgSquidMaxage;
 			if($ctype == '') $ctype = 'text/css';
 		} elseif( $gen == 'js' ) {
 			$this->mGen = $gen;
-			if( is_null( $smaxage ) ) $smaxage = $wgSquidMaxage;
 			if($ctype == '') $ctype = $wgJsMimeType;
 		} else {
 			$this->mGen = false;
