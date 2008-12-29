@@ -1282,21 +1282,58 @@ Aap ke chaahi ki aap $1 check kar lo fir se upload kare se pahile.',
 'upload-wasdeleted'           => "'''Chetauni: Aap uu file ke upload karta hai jiske pahile delete karaa gais hai.'''
 Aap ke ii soche ke chaahi ki ii file ke upload karna appropriate hai ki nai.
 Aap ke subidha khatir deletion log hian pe hai:",
+'filename-bad-prefix'         => 'Jon file aap upload kartaa hai uske naam <strong>"$1"</strong> se suruu hoe hai, jon ki non-descriptive naam hai jiske jaada kar ke digital camera automatically assign kare hai.
+Meharbaani kar ke aur jaada descriptive filename chose karo.',
+
+'upload-proto-error'      => 'Protocol right nai hai',
+'upload-proto-error-text' => 'Duur ke upload maange hai URLs jon ki suruu hoe hai <code>http://</code> nai to <code>ftp://</code>.',
+'upload-file-error'       => 'Bhitri error',
+'upload-file-error-text'  => 'Server pe temporary file banae ke time ek bhitri error hoe gais.
+[[Special:ListUsers/sysop|administrator]] ke contact karo.',
+'upload-misc-error'       => 'Unknown upload error',
+'upload-misc-error-text'  => 'Upload kare ke time ek unknown error hoe gais hai.
+Meharbani kar ke verify karo ki URL valid aur accessible hai aur fir se kosis karo.
+Agar jo problem fir nai khatam hoe tab [[Special:ListUsers/sysop|administrator]] ke contact karo.',
+
+# Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error6'       => 'URL pe pahunche nai paya hai',
+'upload-curl-error6-text'  => 'URL tak nahi pahunche sakaa hai.
+Meharbani kar ke fir se check karo ki URL correct hai aur site chale hai.',
+'upload-curl-error28'      => 'Upload ke time khalaas hoe gais hai',
+'upload-curl-error28-text' => 'Ii site respond kare ke bahut time liis hai.
+Meharbani kar ke dekho ki ii site chale hai, thora deri tak wait kar ke fir se kosis karo.
+Saait aap ke kamti busy time kosis kare ke chaahi.',
+
+'license'            => 'Licensing:',
+'nolicense'          => 'Koi bhi selct nai karaa gais hai',
+'license-nopreview'  => '(Preview abhi taiyaar nai hai)',
+'upload_source_url'  => ' (ek valid, publicly accessible URL)',
+'upload_source_file' => ' (aap ke computer me ek file)',
 
 # Special:FileList
-'imgfile'        => 'file',
-'imagelist'      => 'Chapa ke suchi',
-'imagelist_date' => 'Tarik',
-'imagelist_name' => 'Naam',
-'imagelist_user' => 'Sadasya',
+'imagelist-summary'     => 'Ii khaas panna sab uploaded file ke dekhae hai.
+Default se akhri uploaded file ke list me pahile dekhawa gais hai.
+Column header me click kare se sorting badal jaai.',
+'imagelist_search_for'  => 'Media ke naam khojo:',
+'imgfile'               => 'file',
+'imagelist'             => 'Chapa ke suchi',
+'imagelist_date'        => 'Tarik',
+'imagelist_name'        => 'Naam',
+'imagelist_user'        => 'Sadasya',
+'imagelist_size'        => 'Size',
+'imagelist_description' => 'Description',
 
 # File description page
 'filehist'                       => 'File ke itihaas',
 'filehist-help'                  => 'File ke dekhe khatir, jaise uu time dekhe me lagat rahaa, date/time pe click karo.',
 'filehist-deleteall'             => 'sab ke mitao',
 'filehist-deleteone'             => 'mitao',
+'filehist-revert'                => 'pahile jaise karo',
 'filehist-current'               => 'abhi waala',
 'filehist-datetime'              => 'Din/Time',
+'filehist-thumb'                 => 'Chhota chapa',
+'filehist-thumbtext'             => '$1 waala version ke chhota chapa',
+'filehist-nothumb'               => 'Chhota chap anai hai',
 'filehist-user'                  => 'Sadasya',
 'filehist-dimensions'            => 'Lambai aur chaurai',
 'filehist-filesize'              => 'File ke size',
@@ -1304,12 +1341,22 @@ Aap ke subidha khatir deletion log hian pe hai:",
 'imagelinks'                     => 'Jorr',
 'linkstoimage'                   => 'Ii sab panna ii file {{PLURAL:$1|panna ke jorr|$1 panna ke jorr}} se link hoe hai:',
 'nolinkstoimage'                 => 'Ii file se koi panna nai jurre hai.',
+'morelinkstoimage'               => 'Dekho [[Special:WhatLinksHere/$1|more links]] ii file se.',
+'redirectstofile'                => 'Niche waala file ii file {{PLURAL:$1|file redirects|$1 files redirect}} se redirect hoe hai:',
 'sharedupload'                   => 'Ii file baatal hai aur duusra project me bhi kaam lawa jaae sake hai.',
+'shareduploadwiki'               => 'Aur jaankari khatir $1 ke dekho.',
+'shareduploadwiki-linktext'      => 'file description waala panna',
 'shareduploadduplicate-linktext' => 'duusra file',
 'shareduploadconflict-linktext'  => 'duusra file',
 'noimage'                        => 'Ii naam ke koi file nai hai, lekin aap sakta hai $1.',
 'noimage-linktext'               => 'ek ke upload karo',
 'uploadnewversion-linktext'      => 'Ii file ke nawaa version ke upload karo',
+'imagepage-searchdupe'           => 'Dugna files ke khojo',
+
+# File reversion
+'filerevert'        => '$1 ke pahile jaise karo',
+'filerevert-legend' => 'File ke pahile jaise karo',
+'filerevert-submit' => 'Pahile jaise karo',
 
 # File deletion
 'filedelete'                  => '$1 ke mitao',
@@ -1319,6 +1366,7 @@ Aap ke subidha khatir deletion log hian pe hai:",
 'filedelete-success'          => "'''$1''' ke mitae dewa gais hai.",
 'filedelete-nofile'           => "'''$1''' nai hai.",
 'filedelete-reason-otherlist' => 'Duusra kaaran',
+'filedelete-edit-reasonlist'  => 'Delete kare ke kaaran ke badlo',
 
 # MIME search
 'mimesearch' => 'MIME khojo',

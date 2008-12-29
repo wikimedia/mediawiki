@@ -751,7 +751,6 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'showingresults'        => "Subter monstrans {{PLURAL:$1|'''1''' eventu|'''$1''' eventibus}} tenus incipiens ab #'''$2'''.",
 'showingresultsnum'     => "Subter monstrans {{PLURAL:$3|'''1''' eventum|'''$3''' eventus}} incipiens ab #'''$2'''.",
 'showingresultstotal'   => "Subter monstrans {{PLURAL:$4|eventum '''$1''' ex '''$3'''|eventus '''$1 - $2''' ex '''$3'''}}",
-'nonefound'             => "'''Nota''': investigationes saepe infelices sunt propter verba frequentes huiusmodi \"que\" et \"illo\", aut quod plus unum verba quaerere designavisti (solae paginae qui tota verba investigationis continent in evento apparebit).",
 'powersearch'           => 'Quaerere',
 'powersearch-legend'    => 'Quaerere',
 'powersearch-ns'        => 'Quaerere in spatiis nominalibus:',

@@ -929,6 +929,7 @@ Passt op, datt d'Versiounsgeschicht der Säit historesch korrekt ass.
 'diff-dl'                 => "eng '''Definitiounslëscht'''",
 'diff-dt'                 => "e '''Begrëff als Definitioun'''",
 'diff-dd'                 => "eng '''Definitioun'''",
+'diff-input'              => "eng '''Entrée'''",
 'diff-form'               => "ein '''Formulair'''",
 'diff-img'                => "e '''Bild'''",
 'diff-span'               => "e '''Span'''",
@@ -1639,6 +1640,7 @@ Et gëtt eng [[Special:Log/interwiki|Lëscht vun den Ännerungen]] vun dëser In
 'interwiki-not-enabled'    => "D'Ännere vun der Interwiki-Tabell gouf ausgeschalt.",
 'interwiki_prefix'         => 'Prefix',
 'interwiki_reasonfield'    => 'Grond',
+'interwiki_trans'          => 'Interwikitransklusiounen erlaben',
 'interwikilogpage'         => 'Lëscht mat der Interwikitabell',
 'interwikilogpagetext'     => 'Dëst ass eng Lëscht mat den Ännerunge vun der [[Special:Interwiki|Interwikitabell]].',
 'right-interwiki'          => 'Interwiki-Daten änneren',
@@ -2385,6 +2387,7 @@ $1',
 'visual-comparison' => 'Visuelle Vergläich',
 
 # Media information
+'mediawarning'         => "'''Warnung:''' Dës Zort vu Fichier ka béiswëllegen Programmcode enthalen. Duerch d'Erolueden an Opmaache vum Fichier kann Äre Computer beschiedegt ginn.<hr />",
 'imagemaxsize'         => 'Biller op de Billerbeschreiwungssäite limitéieren op:',
 'thumbsize'            => 'Gréisst vun de Thumbnails:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|Säit|Säiten}}',

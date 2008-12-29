@@ -1430,7 +1430,7 @@ Se la problemo kontinuas, kontaku [[Special:ListUsers/sysop|sisteman administran
 'upload-curl-error28'      => 'Tempolimo de alŝuto atingita',
 'upload-curl-error28-text' => 'La retejo atendas tro sen respondo. Bonvolu verigi ke la retejo ankoraŭ funkcias kaj reprovi. Vi eble volus trovi dum malpli okupa tempo.',
 
-'license'            => 'Permesilo:',
+'license'            => 'Licencado:',
 'nolicense'          => 'Neniu selektita',
 'license-nopreview'  => '(Antaŭvido ne montrebla)',
 'upload_source_url'  => ' (valida, publike atingebla URL-o)',
@@ -1524,7 +1524,7 @@ La jena listo montras la {{PLURAL:$1|unua paĝligilo|unuaj $1 paĝligiloj}} al n
 'unwatchedpages' => 'Neatentataj paĝoj',
 
 # List redirects
-'listredirects' => 'Listo de redirektiloj',
+'listredirects' => 'Listo de alidirektiloj',
 
 # Unused templates
 'unusedtemplates'     => 'Neuzitaj ŝablonoj',
@@ -1662,7 +1662,7 @@ komprenata kiel rekomendo aŭ reklamo.',
 'alllogstext'          => 'Suma kompilaĵo de ĉiuj protokoloj de {{SITENAME}}.
 Vi povas plistrikti la mendon per selektado de protokola speco, la salutnomo (inkluzivante uskladon) aŭ la efika paĝo (ankaŭ inkluzivas uskladon).',
 'logempty'             => 'Neniaj artikoloj en la protokolo.',
-'log-title-wildcard'   => 'Serĉi titolojn komencantajn kun ĉi teksto',
+'log-title-wildcard'   => 'Serĉi titolojn komencantajn kun ĉi tiu teksto',
 
 # Special:AllPages
 'allpages'          => 'Ĉiuj paĝoj',
@@ -2061,7 +2061,7 @@ $1',
 'blockip-legend'                  => 'Forbari uzanton',
 'blockiptext'                     => "Per jena formularo vi povas forpreni de ajna nomo aŭ IP-adreso la rajton skribi en la vikio. Oni faru tion ''nur'' por eviti vandalismon, kaj sekvante la [[{{MediaWiki:Policy-url}}|regulojn pri forbarado]]. Klarigu la precizan kialon malsupre (ekzemple, citu paĝojn, kiuj estis vandaligitaj).",
 'ipaddress'                       => 'IP-adreso/nomo',
-'ipadressorusername'              => 'IP adreso aŭ uzantonomo',
+'ipadressorusername'              => 'IP-adreso aŭ salutnomo:',
 'ipbexpiry'                       => 'Blokdaŭro',
 'ipbreason'                       => 'Kialo:',
 'ipbreasonotherlist'              => 'Alia kaŭzo',
@@ -2081,8 +2081,8 @@ $1',
 'ipbother'                        => 'Alia daŭro:',
 'ipboptions'                      => '2 horoj:2 hours,1 tago:1 day,3 tagoj:3 days,1 semajno:1 week,2 semajnoj:2 weeks,1 monato:1 month,3 monatoj:3 months,6 monatoj:6 months,1 jaro:1 year,porĉiam:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'alia',
-'ipbotherreason'                  => 'Alia/aldona kaŭzo:',
-'ipbhidename'                     => 'Kaŝi la uzantonomon de la forbara protokolo, de la aktuala forbarlisto kaj de la uzantolisto.',
+'ipbotherreason'                  => 'Alia/kroma kialo:',
+'ipbhidename'                     => 'Kaŝi la salutnomon de la forbara protokolo, aktuala forbarlisto kaj uzula listo',
 'ipbwatchuser'                    => 'Kontroli la paĝojn por uzanto kaj diskuto de ĉi tiu uzanto.',
 'ipballowusertalk'                => 'Permsi al ĉi tiu uzanto redakti propran diskuto-paĝon dum forbaro',
 'ipb-change-block'                => 'Reforbari la uzanton kun ĉi tiuj preferoj',
@@ -2091,9 +2091,9 @@ $1',
 'blockipsuccesstext'              => '"$1" estas forbarita. <br />Vidu la [[Special:IPBlockList|liston de IP-forbaroj]].',
 'ipb-edit-dropdown'               => 'Redakti kialojn por forbaro.',
 'ipb-unblock-addr'                => 'Restarigi $1',
-'ipb-unblock'                     => 'Malforbari uzantnomon aŭ IP-adreson',
+'ipb-unblock'                     => 'Malforbari salutnomon aŭ IP-adreson',
 'ipb-blocklist-addr'              => 'Ekzistantaj forbaroj por $1',
-'ipb-blocklist'                   => 'Rigardi ekzistantajn blokojn',
+'ipb-blocklist'                   => 'Vidi ekzistantajn forbarojn',
 'ipb-blocklist-contribs'          => 'Kontribuoj de $1',
 'unblockip'                       => 'Malforbari IP-adreson/nomon',
 'unblockiptext'                   => 'Per la jena formulo vi povas repovigi al iu
@@ -2292,7 +2292,7 @@ La celartikolo "[[:$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon 
 Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 Ĉiuj transvikaj importoj estas raportitaj ĉe la [[Special:Log/import|loglibro de importoj]].',
 'import-interwiki-source'    => 'Fonta vikio/paĝo:',
-'import-interwiki-history'   => 'Kopiu ĉiuj versioj el historio por ĉi pago.',
+'import-interwiki-history'   => 'Kopiu ĉiujn historiajn versiojn por ĉi tiu pago.',
 'import-interwiki-submit'    => 'Importi',
 'import-interwiki-namespace' => 'Cela nomspaco:',
 'import-upload-filename'     => 'Dosiernomo:',

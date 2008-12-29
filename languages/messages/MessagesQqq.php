@@ -841,7 +841,7 @@ $1 is the relevance of this result in per cent.
 * $1–$2 is the range of results shown on the page
 * $3 is the total number of results from the search
 * $4 is the number of results shown on the page (equal to the size of the $1–$2 interval)',
-'nonefound'                      => 'This message appears on the search results page if no results are found.',
+'nonefound'                      => 'This message appears on the search results page if no results are found. "all:" should remain untranslated.',
 'search-nonefound'               => 'Message shown when a search returned no results (when using the default MediaWiki search engine).',
 'powersearch'                    => 'Verb. Text of search button at the bottom of [[Special:Search]], for searching in selected namespaces.
 

@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Homo logos
  * @author Malafaya
  * @author OldakQuill
  */
@@ -46,7 +47,9 @@ $messages = array(
 'may'           => 'la mumast.',
 
 # Categories related messages
-'pagecategories' => '{{PLURAL:$1|klesi|klesi}}',
+'pagecategories'  => '{{PLURAL:$1|klesi|klesi}}',
+'category_header' => 'fe le kibypapri cu klesi "$1"',
+'subcategories'   => "le'a ti",
 
 'qbedit'        => 'stika',
 'qbpageoptions' => 'ti ckupau',
@@ -81,6 +84,16 @@ $messages = array(
 'portal'               => 'bende ckupau',
 'portal-url'           => 'Project:bende ckupau',
 'privacy'              => "javni be sera'a lo sivni",
+
+'editsection'          => 'stika ti',
+'editsection-brackets' => '[$1]',
+'editold'              => 'edit',
+'viewsourceold'        => 'catlu le mifra',
+'editlink'             => 'stika ti',
+'editsectionhint'      => 'stika ti: $1',
+'toc'                  => 'ckupau pakbu',
+'showtoc'              => 'jarco',
+'hidetoc'              => 'toljarco',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-mediawiki' => 'notci',
@@ -164,7 +177,8 @@ $messages = array(
 '1movedto2' => "le pu se cmene lu [[$1]] li'u cu ca se cmene lu [[$2]] li'u",
 
 # Tooltip help for the actions
-'tooltip-pt-logout' => "co'u se jaspu",
+'tooltip-pt-logout'  => "co'u se jaspu",
+'tooltip-n-mainpage' => 'vitke le ralju ckupau',
 
 # Special:FilePath
 'filepath-page' => 'se datnyvei zoi',
