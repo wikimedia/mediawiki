@@ -1163,9 +1163,9 @@ It cannot be saved.</strong>',
 You may wish to cut-n-paste the text into a text file and save it for later.</strong>
 
 The administrator who locked it offered this explanation: $1',
-'protectedpagewarning'             => '<strong>WARNING: This page has been locked so that only users with sysop privileges can edit it.</strong>',
+'protectedpagewarning'             => '<strong>WARNING: This page has been locked so that only users with administrator privileges can edit it.</strong>',
 'semiprotectedpagewarning'         => "'''Note:''' This page has been locked so that only registered users can edit it.",
-'cascadeprotectedwarning'          => "'''Warning:''' This page has been locked so that only users with sysop privileges can edit it, because it is included in the following cascade-protected {{PLURAL:$1|page|pages}}:",
+'cascadeprotectedwarning'          => "'''Warning:''' This page has been locked so that only users with administrator privileges can edit it, because it is included in the following cascade-protected {{PLURAL:$1|page|pages}}:",
 'titleprotectedwarning'            => '<strong>WARNING:  This page has been locked so that only some users can create it.</strong>',
 'templatesused'                    => 'Templates used on this page:',
 'templatesusedpreview'             => 'Templates used in this preview:',
@@ -1303,8 +1303,8 @@ Other admins on {{SITENAME}} will still be able to access the hidden content and
 'revdelete-content'           => 'content',
 'revdelete-summary'           => 'edit summary',
 'revdelete-uname'             => 'username',
-'revdelete-restricted'        => 'applied restrictions to sysops',
-'revdelete-unrestricted'      => 'removed restrictions for sysops',
+'revdelete-restricted'        => 'applied restrictions to administrators',
+'revdelete-unrestricted'      => 'removed restrictions for administrators',
 'revdelete-hid'               => 'hid $1',
 'revdelete-unhid'             => 'unhid $1',
 'revdelete-log-message'       => '$1 for $2 {{PLURAL:$2|revision|revisions}}',
@@ -1312,7 +1312,7 @@ Other admins on {{SITENAME}} will still be able to access the hidden content and
 
 # Suppression log
 'suppressionlog'     => 'Suppression log',
-'suppressionlogtext' => 'Below is a list of deletions and blocks involving content hidden from sysops.
+'suppressionlogtext' => 'Below is a list of deletions and blocks involving content hidden from administrators.
 See the [[Special:IPBlockList|IP block list]] for the list of currently operational bans and blocks.',
 
 # History merging
@@ -1592,7 +1592,7 @@ please see math/README to configure.',
 'group-user'          => 'Users',
 'group-autoconfirmed' => 'Autoconfirmed users',
 'group-bot'           => 'Bots',
-'group-sysop'         => 'Sysops',
+'group-sysop'         => 'Administrators',
 'group-bureaucrat'    => 'Bureaucrats',
 'group-suppress'      => 'Oversights',
 'group-all'           => '(all)',
@@ -1600,7 +1600,7 @@ please see math/README to configure.',
 'group-user-member'          => 'User',
 'group-autoconfirmed-member' => 'Autoconfirmed user',
 'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Sysop',
+'group-sysop-member'         => 'Administrator',
 'group-bureaucrat-member'    => 'Bureaucrat',
 'group-suppress-member'      => 'Oversight',
 
@@ -2441,7 +2441,7 @@ You can change this page's protection level, but it will not affect the cascadin
 'protect-default'             => '(default)',
 'protect-fallback'            => 'Require "$1" permission',
 'protect-level-autoconfirmed' => 'Block unregistered users',
-'protect-level-sysop'         => 'Sysops only',
+'protect-level-sysop'         => 'Administrators only',
 'protect-summary-cascade'     => 'cascading',
 'protect-expiring'            => 'expires $1 (UTC)',
 'protect-expiry-indefinite'   => 'indefinite',
@@ -2472,7 +2472,7 @@ You can change this page's protection level, but it will not affect the cascadin
 'restriction-upload' => 'Upload',
 
 # Restriction levels
-'restriction-level-sysop'         => 'full protected',
+'restriction-level-sysop'         => 'fully protected',
 'restriction-level-autoconfirmed' => 'semi protected',
 'restriction-level-all'           => 'any level',
 
@@ -2662,7 +2662,7 @@ See the [[Special:IPBlockList|IP block list]] for the list of currently operatio
 'block-log-flags-noemail'         => 'e-mail blocked',
 'block-log-flags-nousertalk'      => 'cannot edit own talk page',
 'block-log-flags-angry-autoblock' => 'enhanced autoblock enabled',
-'range_block_disabled'            => 'The sysop ability to create range blocks is disabled.',
+'range_block_disabled'            => 'The administrator ability to create range blocks is disabled.',
 'ipb_expiry_invalid'              => 'Expiry time invalid.',
 'ipb_expiry_temp'                 => 'Hidden username blocks must be permanent.',
 'ipb_already_blocked'             => '"$1" is already blocked',
