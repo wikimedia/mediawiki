@@ -355,7 +355,7 @@ class DiffHistoryBlob implements HistoryBlob {
 	}
 
 	function compress() {
-		if ( !function_exists( 'xdiff_string_bdiff' ) ){ 
+		if ( !function_exists( 'xdiff_string_rabdiff' ) ){ 
 			throw new MWException( "Need xdiff 1.5+ support to write DiffHistoryBlob\n" );
 		}
 		if ( isset( $this->mDiffs ) ) {
@@ -430,7 +430,7 @@ class DiffHistoryBlob implements HistoryBlob {
 		# Need to do a null concatenation with warnings off, due to bugs in the current version of xdiff
 		# "String is not zero-terminated"
 		wfSuppressWarnings();
-		$diff = xdiff_string_bdiff( $t1, $t2 ) . '';
+		$diff = xdiff_string_rabdiff( $t1, $t2 ) . '';
 		wfRestoreWarnings();
 		return $diff;
 	}
