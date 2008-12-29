@@ -331,14 +331,16 @@ class PageHistory {
 		}
 
 		$tools = array();
-
 		if( !is_null( $next ) && is_object( $next ) ) {
-			if( $latest && $this->mTitle->userCan( 'rollback' ) && $this->mTitle->userCan( 'edit' ) ) {
+			# Add [rollback] link to current revision
+			if( $latest && $this->mTitle->quickUserCan( 'rollback' ) && 
+				$this->mTitle->quickUserCan( 'edit' ) )
+			{
 				$tools[] = '<span class="mw-rollback-link">'.$this->mSkin->buildRollbackLink( $rev ).'</span>';
 			}
-
+			# Add (undo) links to revisions
 			if( $this->mTitle->quickUserCan( 'edit' ) && !$rev->isDeleted( Revision::DELETED_TEXT ) &&
-				!$next->rev_deleted & Revision::DELETED_TEXT )
+				!($next->rev_deleted & Revision::DELETED_TEXT) )
 			{
 				# Create undo tooltip for the first (=latest) line only
 				$undoTooltip = $latest
