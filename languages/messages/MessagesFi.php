@@ -1036,7 +1036,8 @@ $1 | $2',
 'showingresults'                   => "{{PLURAL:$1|'''Yksi''' tulos|'''$1''' tulosta}} tuloksesta '''$2''' alkaen.",
 'showingresultsnum'                => "Alla on {{PLURAL:$3|'''Yksi''' hakutulos|'''$3''' hakutulosta}} alkaen '''$2.''' tuloksesta.",
 'showingresultstotal'              => "Alla on {{PLURAL:$4|tulos '''$1'''|tulokset '''$1–$2'''}}; yhteensä '''$3'''.",
-'nonefound'                        => "'''Huomautus''': Epäonnistuneet haut johtuvat usein hyvin yleisten sanojen, kuten ''on'' ja ''ei'', etsimisestä tai useamman kuin yhden hakutermin määrittelemisestä. Vain sivut, joilla on kaikki hakutermin sanat, näkyvät tuloksissa.",
+'nonefound'                        => "'''Huomautus''': Haku kohdistuu oletuksena vain tiettyihin nimiavaruuksiin.
+Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön (mukaanlukien keskustelut, mallineet jne.) tai kohdista haku haluttuun nimiavaruuteen.",
 'search-nonefound'                 => 'Hakusi ei tuottanut tulosta.',
 'powersearch'                      => 'Etsi',
 'powersearch-legend'               => 'Laajennettu haku',
@@ -2307,10 +2308,12 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'monobook.css' => '/* Tämä sivu sisältää Monobook-ulkoasua muuttavia tyylejä. */',
 
 # Scripts
-'common.js'   => '/* Tämän sivun koodi liitetään jokaiseen sivulataukseen */',
-'monobook.js' => '/* Tämän sivun JavaScript-koodi liitetään MonoBook-tyyliin */',
-'simple.js'   => '/* Tämän sivun JavaScript-koodi liitetään Yksinkertainen-tyyliin */',
-'modern.js'   => '/* Tämän sivun JavaScript-koodi liitetään Moderni-tyyliin */',
+'common.js'      => '/* Tämän sivun koodi liitetään jokaiseen sivulataukseen */',
+'nostalgia.js'   => '/* Tämän sivun JavaScript-koodi liitetään Nostalgia-tyyliin */',
+'cologneblue.js' => '/* Tämän sivun JavaScript-koodi liitetään Kölnin sininen -tyyliin */',
+'monobook.js'    => '/* Tämän sivun JavaScript-koodi liitetään Monobook-tyyliin */',
+'simple.js'      => '/* Tämän sivun JavaScript-koodi liitetään Yksinkertaistettuun tyyliin */',
+'modern.js'      => '/* Tämän sivun JavaScript-koodi liitetään Moderni-tyyliin */',
 
 # Metadata
 'nodublincore'      => 'Dublin Core RDF-metatieto on poissa käytöstä tällä palvelimella.',

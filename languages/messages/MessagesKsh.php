@@ -442,6 +442,7 @@ Dat es och all op Änglesch:
 'page-rss-feed'           => 'RSS-Abonnomang-Kannal (<i lang="en">Feed</i>) för de Sigg „$1“',
 'page-atom-feed'          => 'Atom-Abonnomang-Kannal (<i lang="en">Feed</i>) för de Sigg „$1“',
 'feed-atom'               => 'Atom',
+'feed-rss'                => 'RSS',
 'red-link-title'          => '$1 — en Sigg, die et noch nit jitt',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -1564,6 +1565,21 @@ Bes esu joot un don Der övverlääje, of di Dattei mem sellve Name norr_ens huh
 Hee es dat Logbooch met de fotjeschmesse Dateie, met däm Jrond, woröm di Dattei dohmohls fottjeschmesse woode es:",
 'filename-bad-prefix'         => 'Dä Datei ier Name fängk met <strong>„$1“</strong> aan. dat eß fä jewöhnlesch ene Name, dä en dijjitaale Kammerra iere Belder jitt. Esu en Name donn uns esu winnisch verzälle, dat mer se nit jän em Wiki han wulle.
 Bes esu joot un jiff dä enne Name, wo mer mieh met aanfange, öm ze wesse, wat en dä Datei dren es.',
+'filename-prefix-blacklist'   => ' #<!-- Lohß di Reih jenou esu wie se es! --> <pre>
+#  Syntax:
+#   * Alles zwesche em #-Zeiche bes nohm Engk vun de Reih es ene Kommäntaa
+#   * Jede Reih met jet dren es ene typpesche Aanfang för ene Datteiname,
+#   * dä automattesch vun ene Dijjitahlkammera kütt
+CIMG # Casio
+DSC_ # Nikon
+DSCF # Fuji
+DSCN # Nikon
+DUW # - et ein udder andere mobile Tellefohn -
+IMG # - alljemein üplesch -
+JD # Jenoptik
+MGP # Pentax
+PICT # - diverse -
+ #</pre> <!-- Lohß di Reih jenou esu wie se es! -->',
 
 'upload-proto-error'      => 'Verkihrt Protokoll',
 'upload-proto-error-text' => 'Ene URL för en Datei fun huhzelade moß met <code>http://</code> uder <code>ftp://</code> aafange.',
@@ -1859,7 +1875,7 @@ eins vun all däm op eimol.',
 
 # Special:Categories
 'categories'                    => 'Saachjruppe',
-'categoriespagetext'            => 'Hee sin nur Saachjruppe met jät dren jeliss.
+'categoriespagetext'            => 'Hee sin nur Saachjruppe jeliss, met jät dren.<br />
 Mer han_er eije Leßte för de
 [[Special:UnusedCategories|Saachjruppe met nix dren]], un de
 [[Special:WantedCategories|jewönschte un nit aanjelaate Saachjruppe]].',
@@ -3202,6 +3218,16 @@ De könnts Ding Oppassliss ävver och [[Special:Watchlist/edit|övver e Fomulaa 
 'hebrew-calendar-m5'  => 'Shevat',
 'hebrew-calendar-m6'  => 'Adar',
 'hebrew-calendar-m6a' => 'Adar I',
+'hebrew-calendar-m6b' => 'Adar II',
+'hebrew-calendar-m7'  => 'Nisan',
+'hebrew-calendar-m8'  => 'Iyar',
+'hebrew-calendar-m9'  => 'Sivan',
+'hebrew-calendar-m10' => 'Tamuz',
+'hebrew-calendar-m11' => 'Av',
+'hebrew-calendar-m12' => 'Elul',
+
+# Signatures
+'timezone-utc' => 'UTC',
 
 # Core parser functions
 'unknown_extension_tag' => '„<code>$1</code>“ es en zosäzlejje Kennzeichnung, die kenne mer nit.',

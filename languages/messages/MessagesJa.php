@@ -1663,7 +1663,7 @@ PICT # misc.
 
 # Special:Categories
 'categories'                    => 'カテゴリ',
-'categoriespagetext'            => '以下のカテゴリにはページまたはメディアが存在します。[[Special:UnusedCategories|未使用のカテゴリ]]はここには表示されていません。 [[Special:WantedCategories|カテゴリページが存在しないカテゴリ]]も参照してください。',
+'categoriespagetext'            => '以下のカテゴリにはページまたはメディアが存在します。[[Special:UnusedCategories|未使用のカテゴリ]]はここには表示されていません。[[Special:WantedCategories|カテゴリページが存在しないカテゴリ]]も参照してください。',
 'categoriesfrom'                => '表示開始カテゴリ:',
 'special-categories-sort-count' => '項目数順',
 'special-categories-sort-abc'   => 'アルファベット順',

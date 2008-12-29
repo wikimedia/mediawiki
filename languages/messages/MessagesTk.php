@@ -61,19 +61,30 @@ $messages = array(
 'nov'           => 'noý',
 'dec'           => 'dek',
 
-'newwindow' => '(täze bir penjirede açylyr)',
-'mytalk'    => 'Tabşyryk sahypam',
+# Categories related messages
+'pagecategories' => '{{PLURAL:$1|Kategoriýa|Kategoriýalar}}',
+
+'article'        => 'Makala',
+'newwindow'      => '(täze bir penjirede açylyr)',
+'qbedit'         => 'Redakte',
+'qbspecialpages' => 'Ýörite sahypalar',
+'mytalk'         => 'Tabşyryk sahypam',
 
 'help'             => 'Ýardam',
 'search'           => 'Gözle',
 'searchbutton'     => 'Gözle',
 'searcharticle'    => 'Git',
+'history'          => 'Sahypanyň geçmişi',
 'permalink'        => 'Hemişelik aragatnaşyk',
 'edit'             => 'Redakte',
+'create'           => 'Döret',
+'protect_change'   => 'redakte',
 'talkpagelinktext' => 'Çekisme',
+'specialpage'      => 'Ýörite Sahypa',
 'personaltools'    => 'Şahsy gurallar',
-'talk'             => 'Çekisme',
+'talk'             => 'çekisme',
 'toolbox'          => 'Gurallar',
+'otherlanguages'   => 'Başga diller',
 'redirectedfrom'   => '($1 sahypasyndan gönükdirildi)',
 'jumptosearch'     => 'gözle',
 
@@ -85,11 +96,16 @@ $messages = array(
 'privacy'              => 'Hususylyk ýörelgesi',
 
 'editsection'     => 'redakte',
+'editold'         => 'redakte',
 'editsectionhint' => '$1. bölümü redaktirle',
 'showtoc'         => 'görkez',
 'hidetoc'         => 'ýaşyr',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-user'     => 'Ulaňyjy sahypasy',
+'nstab-special'  => 'Ýörite',
+'nstab-project'  => 'Taslama sahypasy',
+'nstab-image'    => 'Dosýe',
 'nstab-category' => 'Kategoriya',
 
 # General errors
@@ -141,6 +157,9 @@ $messages = array(
 'filehist-user'     => 'Ulanyjy',
 'imagelinks'        => 'Aragatnaşyklar',
 
+# Random page
+'randompage' => 'Oýlamazdan sahypa',
+
 # Miscellaneous special pages
 'newpages' => 'Täze sahypalar',
 'move'     => 'Atyňy özgert',
@@ -166,7 +185,8 @@ $messages = array(
 'whatlinkshere-links' => '← aragatnaşyklar',
 
 # Block/unblock
-'blocklink' => 'bökdençle',
+'blocklink'    => 'bökdençle',
+'contribslink' => 'Goşantlar',
 
 # Move page
 '1movedto2' => '[[$1]] sahypasy [[$2]] sahypasyna göçürildi',
