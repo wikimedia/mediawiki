@@ -1416,6 +1416,7 @@ $NEWPAGE
 'protect-othertime-op'        => 'ሌላ ጊዜ',
 'protect-otherreason'         => 'ሌላ/ተጨማሪ ምክንያት፦',
 'protect-otherreason-op'      => 'ሌላ/ተጨማሪ ምክንያት',
+'protect-edit-reasonlist'     => "'ተራ የመቆለፍ ምክንያቶች' ለማዘጋጀት",
 'protect-expiry-options'      => '2 ሰዓቶች:2 hours,1 ቀን:1 day,3 ቀን:3 days,1 ሳምንት:1 week,2 ሳምንት:2 weeks,1 ወር:1 month,3 ወር:3 months,6 ወር:6 months,1 አመት:1 year,ዘላለም:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'ፈቃድ፦',
 'restriction-level'           => 'የመቆለፍ ደረጃ፦',
@@ -1437,6 +1438,7 @@ $NEWPAGE
 'undeletepage'               => 'የተደለዘ ገጽ ለመመለስ',
 'viewdeletedpage'            => 'የተደለዙ ገጾች ለማየት',
 'undeletepagetext'           => 'እነዚህ ገጾች ተደለዙ፣ እስካሁን ግን በመዝገቡ ውስጥ ይገኛሉና ሊመለሱ ይቻላል። ሆኖም መዝገቡ አንዳንዴ ሊደመስስ ይቻላል።',
+'undelete-fieldset-title'    => 'የጠፉትን እትሞች ለመመልስ',
 'undeleteextrahelp'          => "እትሞቹን በሙሉ ለመመልስ፣ ሳጥኖቹ ሁሉ ባዶ ሆነው ይቆዩና 'ይመለስ' የሚለውን ይጫኑ። <br />አንዳንድ እትም ብቻ ለመመልስ፣ የተፈለገውን እትሞች በየሳጥኖቹ አመልክተው 'ይመለስ' ይጫኑ። <br />'ባዶ ይደረግ' ቢጫን፣ ማጠቃልያውና ሳጥኖቹ ሁሉ እንደገና ባዶ ይሆናሉ።",
 'undeleterevisions'          => 'በመዝገቡ $1 {{PLURAL:$1|ዕትም አለ|ዕትሞች አሉ}}',
 'undeletehistory'            => 'የተደለዘ ገጽ ሲመለስ፣ የተመለከቱት ዕትሞች ሁሉ ወደ ዕትሞች ታሪክ ደግሞ ይመልሳሉ። ገጹ ከጠፋ በኋላ በዚያው አርዕሥት ሌላ ገጽ ቢኖር፣ የተመለሱት ዕትሞች ወደ ዕትሞች ታሪክ አንድላይ ይጨመራሉ።',
