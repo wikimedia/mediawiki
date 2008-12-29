@@ -109,8 +109,15 @@ class FileDeleteForm {
 				// Need to delete the associated article
 				$article = new Article( $title );
 				if( wfRunHooks('ArticleDelete', array(&$article, &$wgUser, &$reason)) ) {
-					if( $article->doDeleteArticle( $reason, $suppress, $id ) )
+					if( $article->doDeleteArticle( $reason, $suppress, $id ) ) {
+						global $wgRequest;
+						if( $wgRequest->getCheck( 'wpWatch' ) ) {
+							$article->doWatch();
+						} elseif( $this->mTitle->userIsWatching() ) {
+							$article->doUnwatch();
+						}
 						wfRunHooks('ArticleDeleteComplete', array(&$article, &$wgUser, $reason, $id));
+					}
 				}
 			}
 		}
@@ -127,7 +134,7 @@ class FileDeleteForm {
 		global $wgOut, $wgUser, $wgRequest;
 
 		if( $wgUser->isAllowed( 'suppressrevision' ) ) {
-			$suppress = "<tr id=\"wpDeleteSuppressRow\" name=\"wpDeleteSuppressRow\">
+			$suppress = "<tr id=\"wpDeleteSuppressRow\">
 					<td></td>
 					<td class='mw-input'>" .
 						Xml::checkLabel( wfMsg( 'revdelete-suppress' ),
@@ -138,7 +145,9 @@ class FileDeleteForm {
 			$suppress = '';
 		}
 
-		$form = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getAction(), 'id' => 'mw-img-deleteconfirm' ) ) .
+		$checkWatch = $wgUser->getBoolOption( 'watchdeletion' ) || $this->title->userIsWatching();
+		$form = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getAction(),
+			'id' => 'mw-img-deleteconfirm' ) ) .
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', null, wfMsg( 'filedelete-legend' ) ) .
 			Xml::hidden( 'wpEditToken', $wgUser->editToken( $this->oldimage ) ) .
@@ -164,6 +173,13 @@ class FileDeleteForm {
 				"</td>
 			</tr>
 			{$suppress}
+			<tr>
+				<td></td>
+				<td class='mw-input'>" .
+					Xml::checkLabel( wfMsg( 'watchthis' ),
+						'wpWatch', 'wpWatch', $checkWatch, array( 'tabindex' => '3' ) ) .
+				"</td>
+			</tr>
 			<tr>
 				<td></td>
 				<td class='mw-submit'>" .
