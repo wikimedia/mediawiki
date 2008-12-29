@@ -2709,6 +2709,7 @@ $wgMessageStructure = array(
 		'autocomment-prefix',
 		'pipe-separator',
 		'word-separator',
+		'ellipsis-separator',
 	),
 	'imgmulti' => array(
 		'imgmultipageprev',
