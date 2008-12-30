@@ -331,9 +331,6 @@ $wgHtmlEntityAliases = array(
  * @ingroup Parser
  */
 class Sanitizer {
-	const NONE = 0;
-	const INITIAL_NONLETTER = 1;
-
 	/**
 	 * Cleans up HTML, removes dangerous tags and attributes, and
 	 * removes HTML comments
@@ -617,7 +614,7 @@ class Sanitizer {
 			}
 
 			if ( $attribute === 'id' )
-				$value = Sanitizer::escapeId( $value, Sanitizer::NONE );
+				$value = Sanitizer::escapeId( $value );
 
 			// If this attribute was previously set, override it.
 			// Output should only have one attribute of each name.
@@ -777,15 +774,15 @@ class Sanitizer {
 	 *                                                          name attributes
 	 * @see http://www.w3.org/TR/html401/struct/links.html#h-12.2.3 Anchors with the id attribute
 	 *
-	 * @param string $id    Id to validate
-	 * @param int    $flags Currently only two values: Sanitizer::INITIAL_NONLETTER
-	 *                      (default) permits initial non-letter characters,
-	 *                      such as if you're adding a prefix to them.
-	 *                      Sanitizer::NONE will prepend an 'x' if the id
-	 *                      would otherwise start with a nonletter.
+	 * @param string $id      Id to validate
+	 * @param mixed  $options String or array of strings (default is array()):
+	 *   'noninitial': This is a non-initial fragment of an id, not a full id,
+	 *       so don't prepend an 'x' if the first character isn't valid at the
+	 *       beginning of an id.
 	 * @return string
 	 */
-	static function escapeId( $id, $flags = Sanitizer::INITIAL_NONLETTER ) {
+	static function escapeId( $id, $options = array() ) {
+		$options = (array)$options;
 		static $replace = array(
 			'%3A' => ':',
 			'%' => '.'
@@ -794,8 +791,8 @@ class Sanitizer {
 		$id = urlencode( Sanitizer::decodeCharReferences( strtr( $id, ' ', '_' ) ) );
 		$id = str_replace( array_keys( $replace ), array_values( $replace ), $id );
 
-		if( ~$flags & Sanitizer::INITIAL_NONLETTER
-		&& !preg_match( '/[a-zA-Z]/', $id[0] ) ) {
+		if( preg_match( '/[^a-zA-Z]/', $id[0] )
+		&& !in_array( 'noninitial', $options ) )  {
 			// Initial character must be a letter!
 			$id = "x$id";
 		}
