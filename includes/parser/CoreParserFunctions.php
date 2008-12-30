@@ -168,17 +168,24 @@ class CoreParserFunctions {
 	 * @param string $text Desired title text
 	 * @return string
 	 */
-	static function displaytitle( $parser, $text = '' ) {
+	static function displaytitle( $parser, $displayTitleH1 = '' ) {
 		global $wgRestrictDisplayTitle;
-		$text = trim( Sanitizer::decodeCharReferences( $text ) );
-
+		
+		$titleHTML = Sanitizer::removeHTMLtags( $displayTitleH1 ); #escape the bad tags
+		$titleText = trim( Sanitizer::stripAllTags( $titleHTML ) ); #remove the good tags, leaving the bad tags escaped, and trim it to make sure it comes out pretty
+		
 		if ( !$wgRestrictDisplayTitle ) {
-			$parser->mOutput->setDisplayTitle( $text );
+			$parser->mOutput->setDisplayTitleH1( $titleHTML );
+			$parser->mOutput->setDisplayTitle( $titleText );
 		} else {
-			$title = Title::newFromText( $text );
-			if( $title instanceof Title && $title->getFragment() == '' && $title->equals( $parser->mTitle ) )
-				$parser->mOutput->setDisplayTitle( $text );
+			# Only requested titles that normalize to the actual title are allowed through
+			$title = Title::newFromText( $titleText );
+			if ( $title != null && $title->getFragment() == '' && $title->equals( $parser->mTitle ) ) {
+				$parser->mOutput->setDisplayTitleH1( $titleHTML );
+				$parser->mOutput->setDisplayTitle( $titleText ); #put the stripped contents of <h1> into <title>
+			}
 		}
+		
 		return '';
 	}
 
