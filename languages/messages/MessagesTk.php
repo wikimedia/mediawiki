@@ -134,6 +134,9 @@ $messages = array(
 'cur'  => 'parh',
 'last' => 'soň',
 
+# Revision deletion
+'rev-delundel' => 'görkez/ýaşyr',
+
 # Search results
 'searchhelp-url' => 'Help:Içindäkiler',
 'powersearch'    => 'Giňişleýin Gözleg',
@@ -154,7 +157,7 @@ $messages = array(
 # File description page
 'filehist-current'  => 'häzirki',
 'filehist-datetime' => 'Gün/Zaman',
-'filehist-user'     => 'Ulanyjy',
+'filehist-user'     => 'Ulaňyjy',
 'imagelinks'        => 'Aragatnaşyklar',
 
 # Random page
@@ -169,6 +172,7 @@ $messages = array(
 
 # Watchlist
 'mywatchlist' => 'Synlama tablisam',
+'watch'       => 'Synla',
 
 # Protect
 'prot_1movedto2' => '[[$1]] sahypasy [[$2]] sahypasyna göçürildi',
@@ -177,7 +181,7 @@ $messages = array(
 'blanknamespace' => '(Baş)',
 
 # Contributions
-'mycontris' => 'Goşantlarım',
+'mycontris' => 'Goşantlarym',
 
 # What links here
 'whatlinkshere'       => 'Sahypaýa aragatnaşyklar',
@@ -195,12 +199,13 @@ $messages = array(
 'thumbnail-more' => 'Ulal',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'       => 'Menim ulanyjy sahypam',
+'tooltip-pt-userpage'       => 'Menim ulaňyjy sahypam',
 'tooltip-pt-mytalk'         => 'Menim tabşyryk sahypam',
 'tooltip-pt-mycontris'      => 'Ýasadyýym goşantlarımıň tablisasy',
 'tooltip-pt-logout'         => 'Sessiýaýy kapas',
 'tooltip-ca-move'           => 'Bu sahypanyň atyňy özgert',
 'tooltip-ca-nstab-category' => 'Kategoriya sahypsayny gör',
+'tooltip-watch'             => 'Bu sahypaýy synlama tablisaňa goşun',
 
 # Special:SpecialPages
 'specialpages' => 'Ýörite sahypalar',

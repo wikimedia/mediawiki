@@ -436,7 +436,7 @@ Causas normal de iste problema es: tu ha consultate un \'\'diff\'\' obsolete, o 
 
 Si isto non es le caso, es possibile que tu ha trovate un error in le software.
 Per favor reporta isto a un [[Special:ListUsers/sysop|administrator]], faciente nota del adresse URL.',
-'missingarticle-rev'   => '(numero del revision: $1)',
+'missingarticle-rev'   => '(numero del version: $1)',
 'missingarticle-diff'  => '(Diff: $1, $2)',
 'readonly_lag'         => 'Le base de datos ha essite automaticamente blocate durante que le servitores de base de datos secundari se synchronisa con le servitor principal.',
 'internalerror'        => 'Error interne',
@@ -750,7 +750,7 @@ quando tu clicca super \"Publicar articulo\".",
 'nonunicodebrowser'                => '<strong>ATTENTION: Tu utilisa un navigator non compatibile con le characteres Unicode.
 Se ha activate un systema de modification alternative que te permittera modificar articulos con securitate: le characteres non-ASCII apparera in le quadro de modification como codices hexadecimal.</strong>',
 'editingold'                       => '<strong>ATTENTION: Tu va modificar un version obsolete de iste pagina.
-Si tu lo publica, tote le modificationes facite post iste revision essera perdite.</strong>',
+Si tu lo publica, tote le modificationes facite post iste version essera perdite.</strong>',
 'yourdiff'                         => 'Differentias',
 'copyrightwarning'                 => 'Nota ben que tote le contributiones a {{SITENAME}} se considera publicate sub le $2 (vide plus detalios in $1).
 Si tu non vole que tu scripto sia modificate impietosemente e redistribuite a voluntate, alora non lo submitte hic.<br />
@@ -822,7 +822,7 @@ Iste parametros ha essite omittite.',
 Per favor controla le comparation infra pro verificar que tu vole facer isto, e alora immagazina le modificationes infra pro assi annullar le modification.',
 'undo-failure' => 'Le modification non poteva esser annullate a causa de conflicto con modificationes intermedie.',
 'undo-norev'   => 'Impossibile annullar le modification proque illo non existe o esseva delite.',
-'undo-summary' => 'Annullava le revision $1 per [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]] | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]])',
+'undo-summary' => 'Annullava le version $1 per [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]] | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Non pote crear conto',
@@ -833,13 +833,13 @@ Le motivo que $3 dava es ''$2''",
 # History pages
 'viewpagelogs'           => 'Vider le registro de iste pagina',
 'nohistory'              => 'Non existe un historia de modificationes pro iste pagina.',
-'currentrev'             => 'Revision actual',
+'currentrev'             => 'Version actual',
 'currentrev-asof'        => 'Version actual in data del $1',
-'revisionasof'           => 'Revision del $1',
-'revision-info'          => 'Revision del $1 per $2', # Additionally available: $3: revision id
-'previousrevision'       => '←Revision precedente',
-'nextrevision'           => 'Revision sequente→',
-'currentrevisionlink'    => 'Revision actual',
+'revisionasof'           => 'Version del $1',
+'revision-info'          => 'Version del $1 per $2', # Additionally available: $3: revision id
+'previousrevision'       => '← Version precedente',
+'nextrevision'           => 'Version sequente →',
+'currentrevisionlink'    => 'Version actual',
 'cur'                    => 'actu',
 'next'                   => 'sequ',
 'last'                   => 'prec',
@@ -856,8 +856,8 @@ Legenda: (actu) = comparar con le version actual,
 'historyempty'           => '(vacue)',
 
 # Revision feed
-'history-feed-title'          => 'Historia de revisiones',
-'history-feed-description'    => 'Historia de revisiones de iste pagina in le wiki',
+'history-feed-title'          => 'Historia de versiones',
+'history-feed-description'    => 'Historia del versiones de iste pagina in le wiki',
 'history-feed-item-nocomment' => '$1 a $2', # user at time
 'history-feed-empty'          => 'Le pagina que tu requestava non existe.
 Es possibile que illo esseva delite del wiki, o renominate.
@@ -868,36 +868,36 @@ Prova [[Special:Search|cercar nove paginas relevante]] in le wiki.',
 'rev-deleted-user'            => '(nomine de usator eliminate)',
 'rev-deleted-event'           => '(entrata eliminate)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-Iste revision del pagina ha essite eliminate del archivos public.
+Iste version del pagina ha essite eliminate del archivos public.
 Es possibile que se trova detalios in le [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].</div>',
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
-Iste revision del pagina ha essite eliminate del archivos public.
+Iste version del pagina ha essite eliminate del archivos public.
 Como administrator in {{SITENAME}} tu pote vider lo;
 es possibile que se trova detalios in le [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].</div>',
 'rev-delundel'                => 'revelar/celar',
-'revisiondelete'              => 'Deler/restaurar revisiones',
-'revdelete-nooldid-title'     => 'Le revision de destination es invalide',
-'revdelete-nooldid-text'      => 'O tu non ha specificate alcun revision(es) de destination pro executar iste 
-function, o le revision specificate non existe, o tu essaya celar le revision actual.',
-'revdelete-selected'          => "'''{{PLURAL:$2|Revision seligite|Revisiones seligite}} de [[:$1]]:'''",
+'revisiondelete'              => 'Deler/restaurar versiones',
+'revdelete-nooldid-title'     => 'Le version de destination es invalide',
+'revdelete-nooldid-text'      => 'O tu non ha specificate alcun version(es) de destination pro executar iste 
+function, o le version specificate non existe, o tu essaya celar le version actual.',
+'revdelete-selected'          => "'''{{PLURAL:$2|Version seligite|Versiones seligite}} de [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Evento|Eventos}} de registro seligite:'''",
-'revdelete-text'              => "'''Le revisiones e eventos delite continuara a apparer in le historia e registro del pagina, sed partes de lor contento essera inaccessibile al publico.'''
+'revdelete-text'              => "'''Le versiones e eventos delite continuara a apparer in le historia e registro del pagina, sed partes de lor contento essera inaccessibile al publico.'''
 
 Altere administratores in {{SITENAME}} continuara a poter acceder al contento celate e pote restaurar lo per medio de iste mesme interfacie, si non se ha definite restrictiones additional.",
 'revdelete-legend'            => 'Definir restrictiones de visibilitate',
-'revdelete-hide-text'         => 'Celar texto del revision',
+'revdelete-hide-text'         => 'Celar texto del version',
 'revdelete-hide-name'         => 'Celar action e objectivo',
 'revdelete-hide-comment'      => 'Celar commento de modification',
 'revdelete-hide-user'         => 'Celar nomine de usator o adresse IP del modificator',
 'revdelete-hide-restricted'   => 'Applicar iste restrictiones al administratores e blocar iste interfacie',
 'revdelete-suppress'          => 'Supprimer datos e de Administratores e de alteres',
 'revdelete-hide-image'        => 'Celar contento del file',
-'revdelete-unsuppress'        => 'Eliminar restrictiones super revisiones restaurate',
+'revdelete-unsuppress'        => 'Eliminar restrictiones super versiones restaurate',
 'revdelete-log'               => 'Commento pro registro:',
-'revdelete-submit'            => 'Applicar al revision seligite',
-'revdelete-logentry'          => 'cambiava le visibilitate de revisiones pro [[$1]]',
+'revdelete-submit'            => 'Applicar al version seligite',
+'revdelete-logentry'          => 'cambiava le visibilitate de versiones pro [[$1]]',
 'logdelete-logentry'          => 'cambiava le visibilitate de eventos pro [[$1]]',
-'revdelete-success'           => "'''Le visibilitate de revisiones ha essite definite con successo.'''",
+'revdelete-success'           => "'''Le visibilitate de versiones ha essite definite con successo.'''",
 'logdelete-success'           => "'''Le visibilitate del registro ha essite definite con successo.'''",
 'revdel-restore'              => 'Cambiar visibilitate',
 'pagehist'                    => 'Historia del pagina',
@@ -909,7 +909,7 @@ Altere administratores in {{SITENAME}} continuara a poter acceder al contento ce
 'revdelete-unrestricted'      => 'restrictiones eliminate pro administratores',
 'revdelete-hid'               => 'celava $1',
 'revdelete-unhid'             => 'revelava $1',
-'revdelete-log-message'       => '$1 pro $2 {{PLURAL:$2|revision|revisiones}}',
+'revdelete-log-message'       => '$1 pro $2 {{PLURAL:$2|version|versiones}}',
 'logdelete-log-message'       => '$1 pro $2 {{PLURAL:$2|evento|eventos}}',
 
 # Suppression log
@@ -919,19 +919,19 @@ Vide le [[Special:IPBlockList|lista de blocadas IP]] pro le lista de bannimentos
 
 # History merging
 'mergehistory'                     => 'Fusionar historias del paginas',
-'mergehistory-header'              => 'Iste pagina te permitte fusionar revisiones del historia de un pagina de origine in un pagina plus nove.
+'mergehistory-header'              => 'Iste pagina te permitte fusionar versiones del historia de un pagina de origine in un pagina plus nove.
 Assecura te que iste cambio mantenera le continuitate historic del pagina.',
-'mergehistory-box'                 => 'Fusionar le revisiones de duo paginas:',
+'mergehistory-box'                 => 'Fusionar le versiones de duo paginas:',
 'mergehistory-from'                => 'Pagina de origine:',
 'mergehistory-into'                => 'Pagina de destination:',
 'mergehistory-list'                => 'Historia de modificationes fusionabile',
-'mergehistory-merge'               => 'Le sequente revisiones de [[:$1]] pote esser fusionate in [[:$2]].
-Usa le columna de buttones radio pro fusionar solmente le revisiones create in e ante le tempore specificate.
+'mergehistory-merge'               => 'Le sequente versiones de [[:$1]] pote esser fusionate in [[:$2]].
+Usa le columna de buttones radio pro fusionar solmente le versiones create in e ante le tempore specificate.
 Nota que le uso del ligamines de navigation causara le perdita de tote cambios in iste columna.',
 'mergehistory-go'                  => 'Revelar modificationes fusionabile',
-'mergehistory-submit'              => 'Fusionar revisiones',
-'mergehistory-empty'               => 'Nulle revisiones pote esser fusionate.',
-'mergehistory-success'             => '$3 {{PLURAL:$3|revision|revisiones}} de [[:$1]] fusionate in [[:$2]] con successo.',
+'mergehistory-submit'              => 'Fusionar versiones',
+'mergehistory-empty'               => 'Nulle versiones pote esser fusionate.',
+'mergehistory-success'             => '$3 {{PLURAL:$3|version|versiones}} de [[:$1]] fusionate in [[:$2]] con successo.',
 'mergehistory-fail'                => 'Impossibile executar le fusion del historia. Per favor reverifica le parametros del pagina e del tempore.',
 'mergehistory-no-source'           => 'Le pagina de origine $1 non existe.',
 'mergehistory-no-destination'      => 'Le pagina de destination $1 non existe.',
@@ -943,19 +943,19 @@ Nota que le uso del ligamines de navigation causara le perdita de tote cambios i
 
 # Merge log
 'mergelog'           => 'Registro de fusiones',
-'pagemerge-logentry' => 'fusionava [[$1]] in [[$2]] (revisiones usque a $3)',
+'pagemerge-logentry' => 'fusionava [[$1]] in [[$2]] (versiones usque a $3)',
 'revertmerge'        => 'Reverter fusion',
 'mergelogpagetext'   => 'Infra es un lista del fusiones le plus recente de un historia de pagina in un altere.',
 
 # Diffs
-'history-title'           => 'Historia de revisiones de "$1"',
-'difference'              => '(Differentia inter revisiones)',
+'history-title'           => 'Historia de versiones de "$1"',
+'difference'              => '(Differentia inter versiones)',
 'lineno'                  => 'Linea $1:',
 'compareselectedversions' => 'Comparar versiones seligite',
 'visualcomparison'        => 'Comparation visual',
 'wikicodecomparison'      => 'Comparation del wikitexto',
 'editundo'                => 'annullar',
-'diff-multi'              => '({{PLURAL:$1|Un revision intermedie|$1 revisiones intermedie}} non se revela.)',
+'diff-multi'              => '({{PLURAL:$1|Un version intermedie|$1 versiones intermedie}} non se revela.)',
 'diff-movedto'            => 'displaciate verso $1',
 'diff-styleadded'         => '$1 stilo addite',
 'diff-added'              => '$1 addite',
@@ -1214,11 +1214,11 @@ per favor vide math/README pro configurar lo.",
 'right-writeapi'             => 'Uso del API pro modificar le wiki',
 'right-delete'               => 'Deler paginas',
 'right-bigdelete'            => 'Deler paginas con historias longe',
-'right-deleterevision'       => 'Deler e restaurar revisiones specific de paginas',
+'right-deleterevision'       => 'Deler e restaurar versiones specific de paginas',
 'right-deletedhistory'       => 'Vider entratas de historia delite, sin lor texto associate',
 'right-browsearchive'        => 'Cercar in paginas delite',
 'right-undelete'             => 'Restaurar un pagina',
-'right-suppressrevision'     => 'Revider e restaurar revisiones celate ab administratores',
+'right-suppressrevision'     => 'Revider e restaurar versiones celate ab administratores',
 'right-suppressionlog'       => 'Vider registros private',
 'right-block'                => 'Blocar altere usatores de facer modificationes',
 'right-blockemail'           => 'Blocar un usator de inviar e-mail',
@@ -1270,7 +1270,7 @@ per favor vide math/README pro configurar lo.",
 'action-deletedhistory'       => 'vider le historia delite de iste pagina',
 'action-browsearchive'        => 'cercar in paginas delite',
 'action-undelete'             => 'restaurar iste pagina',
-'action-suppressrevision'     => 'revider e restaurar iste revision celate',
+'action-suppressrevision'     => 'revider e restaurar iste version celate',
 'action-suppressionlog'       => 'vider iste registro private',
 'action-block'                => 'blocar iste usator de facer modificationes',
 'action-protect'              => 'cambiar le nivellos de protection pro iste pagina',
@@ -1611,7 +1611,7 @@ Cata linea contine ligamines al prime e al secunde redirection, con le destinati
 'ncategories'             => '$1 {{PLURAL:$1|categoria|categorias}}',
 'nlinks'                  => '$1 {{PLURAL:$1|ligamine|ligamines}}',
 'nmembers'                => '$1 {{PLURAL:$1|membro|membros}}',
-'nrevisions'              => '$1 {{PLURAL:$1|revision|revisiones}}',
+'nrevisions'              => '$1 {{PLURAL:$1|version|versiones}}',
 'nviews'                  => '$1 {{PLURAL:$1|visita|visitas}}',
 'specialpage-empty'       => 'Il non ha resultatos pro iste reporto.',
 'lonelypages'             => 'Paginas orphanate',
@@ -1722,7 +1722,7 @@ Es possibile que illo ja existe in le tabella interwiki.',
 'interwiki_addintro'       => 'Tu sta super le puncto de adder un nove prefixo interwiki.
 Memora que illo non pote continer spatios (&nbsp;), duo punctos (:), signos et (&), o signos equal (=).',
 'interwiki_addtext'        => 'Adder un prefixo interwiki',
-'interwiki-badprefix'      => '"$1" contine characteres invalide',
+'interwiki-badprefix'      => 'Le prefixo interwiki specificate "$1" contine characteres invalide',
 'interwiki_defaultreason'  => 'nulle ration date',
 'interwiki_deleted'        => 'Le prefixo "$1" ha essite removite del tabella interwiki con successo.',
 'interwiki_deleting'       => 'Tu sta super le puncto de deler le prefixo "$1".',
@@ -1741,6 +1741,7 @@ Existe un [[Special:Log/interwiki|registro de modificationes]] al tabella interw
 'interwiki_log_added'      => 'addeva le prefixo "$2" ($3) (trans: $4) (local: $5) al tabella interwiki',
 'interwiki_log_deleted'    => 'removeva le prefixo "$2" del tabella interwiki',
 'interwiki_log_edited'     => 'modificava le prefixo "$2" : ($3) (trans: $4) (local: $5) in le tabella interwiki',
+'interwiki-not-enabled'    => 'Le modification del tabula interwiki ha essite disactivate.',
 'interwiki_prefix'         => 'Prefixo',
 'interwiki_reasonfield'    => 'Motivo',
 'interwiki_trans'          => 'Permitter le transclusiones interwiki',
@@ -1831,7 +1832,7 @@ facilitar su identification.",
 'unwatch'              => 'Disobservar',
 'unwatchthispage'      => 'Cancellar observation',
 'notanarticle'         => 'Non es un articulo',
-'notvisiblerev'        => 'Le revision ha essite delite',
+'notvisiblerev'        => 'Le version ha essite delite',
 'watchnochange'        => 'Nulle articulo que tu observa esseva modificate durante le periodo de tempore indicate.',
 'watchlist-details'    => '{{PLURAL:$1|$1 pagina|$1 paginas}} es in tu observatorio, sin contar le paginas de discussion.',
 'wlheader-enotif'      => '* Le notificationes via e-mail es active.',
@@ -1904,7 +1905,7 @@ Vide $2 pro un registro de deletiones recente.',
 'dellogpagetext'         => 'Infra es un lista del plus recente deletiones.
 Tote le horas es in le fuso horari del servitor.',
 'deletionlog'            => 'registro de deletiones',
-'reverted'               => 'Revertite a revision anterior',
+'reverted'               => 'Revertite al version anterior',
 'deletecomment'          => 'Motivo pro deletion:',
 'deleteotherreason'      => 'Motivo altere/additional:',
 'deletereasonotherlist'  => 'Altere motivo',
@@ -1913,9 +1914,9 @@ Tote le horas es in le fuso horari del servitor.',
 ** Violation de copyright
 ** Vandalismo',
 'delete-edit-reasonlist' => 'Modificar le motivos pro deletion',
-'delete-toobig'          => 'Iste pagina ha un grande historia de modificationes con plus de $1 {{PLURAL:$1|revision|revisiones}}.
+'delete-toobig'          => 'Iste pagina ha un grande historia de modificationes con plus de $1 {{PLURAL:$1|version|versiones}}.
 Le deletion de tal paginas ha essite restringite pro impedir le disruption accidental de {{SITENAME}}.',
-'delete-warning-toobig'  => 'Iste pagina ha un grande historia de modificationes con plus de $1 {{PLURAL:$1|revision|revisiones}}.
+'delete-warning-toobig'  => 'Iste pagina ha un grande historia de modificationes con plus de $1 {{PLURAL:$1|version|versiones}}.
 Le deletion de illo pote disrumper le operationes del base de datos de {{SITENAME}};
 procede con caution.',
 
@@ -2004,35 +2005,35 @@ Tu pote cambiar le nivello de protection de iste pagina, sed isto non cambiara l
 # Undelete
 'undelete'                     => 'Vider paginas delite',
 'undeletepage'                 => 'Vider e restaurar paginas delite',
-'undeletepagetitle'            => "'''Lo sequente consiste de revisiones delite de [[:$1|$1]]'''.",
+'undeletepagetitle'            => "'''Lo sequente consiste de versiones delite de [[:$1|$1]]'''.",
 'viewdeletedpage'              => 'Vider paginas delite',
 'undeletepagetext'             => 'Le {{PLURAL:$1|pagina|paginas}} sequente ha essite delite, sed es ancora in le archivo e pote esser restaurate.
 Le archivo pote esser vacuate periodicamente.',
-'undelete-fieldset-title'      => 'Restaurar revisiones',
+'undelete-fieldset-title'      => 'Restaurar versiones',
 'undeleteextrahelp'            => "Pro restaurar le historia integre del pagina, lassa tote le quadratos dismarcate e clicca '''''Restaurar'''''.
 Pro executar un restauration selective, marca le quadratos correspondente al versiones pro restaurar, e clicca '''''Restaurar'''''.
 Le button '''''Reinitiar''''' face rader le campo de commento e tote le quadratos.",
-'undeleterevisions'            => '$1 {{PLURAL:$1|revision|revisiones}} archivate',
-'undeletehistory'              => 'Si tu restaura un pagina, tote le revisiones essera restaurate al historia.
-Si un nove pagina con le mesme nomine ha essite create post le deletion, le revisiones
+'undeleterevisions'            => '$1 {{PLURAL:$1|version|versiones}} archivate',
+'undeletehistory'              => 'Si tu restaura un pagina, tote le versiones essera restaurate al historia.
+Si un nove pagina con le mesme nomine ha essite create post le deletion, le versiones
 restaurate apparera in le historia anterior.',
-'undeleterevdel'               => 'Le restauration non essera executate si illo resultara in le deletion partial del revision le plus recente del pagina o del file.
-In tal casos, tu debe dismarcar o revelar le revision delite le plus recente.',
+'undeleterevdel'               => 'Le restauration non essera executate si illo resultara in le deletion partial del version le plus recente del pagina o del file.
+In tal casos, tu debe dismarcar o revelar le version delite le plus recente.',
 'undeletehistorynoadmin'       => 'Iste pagina ha essite delite.
 Le motivo del deletion se monstra in le summario infra, con le detalios del usatores que habeva modificate iste pagina ante le deletion.
-Le texto complete de iste revisiones delite es solmente disponibile al administratores.',
+Le texto complete de iste versiones delite es solmente disponibile al administratores.',
 'undelete-revision'            => 'Version delite de $1 (facite le $4 a $5) per $3:',
-'undeleterevision-missing'     => 'Revision invalide o mancante.
-Es possibile que le adresse URL es invalide, o que le revision ha essite restaurate o eliminate del archivo.',
-'undelete-nodiff'              => 'Nulle revision precedente trovate.',
+'undeleterevision-missing'     => 'Version invalide o mancante.
+Es possibile que le adresse URL es invalide, o que le version ha essite restaurate o eliminate del archivo.',
+'undelete-nodiff'              => 'Nulle version precedente trovate.',
 'undeletebtn'                  => 'Restaurar',
 'undeletelink'                 => 'restaurar',
 'undeletereset'                => 'Reinitiar',
 'undeleteinvert'               => 'Inverter selection',
 'undeletecomment'              => 'Commento:',
 'undeletedarticle'             => 'restaurava "[[$1]]"',
-'undeletedrevisions'           => '{{PLURAL:$1|1 revision|$1 revisiones}} restaurate',
-'undeletedrevisions-files'     => '{{PLURAL:$1|1 revision|$1 revisiones}} e {{PLURAL:$2|1 file|$2 files}} restaurate',
+'undeletedrevisions'           => '{{PLURAL:$1|1 version|$1 versiones}} restaurate',
+'undeletedrevisions-files'     => '{{PLURAL:$1|1 version|$1 versiones}} e {{PLURAL:$2|1 file|$2 files}} restaurate',
 'undeletedfiles'               => '$1 {{PLURAL:$1|archivo|archivos}} restaurate',
 'cannotundelete'               => 'Le restauration ha fallite;
 es possibile que un altere persona ha ja restaurate le pagina.',
@@ -2044,8 +2045,8 @@ Consulta le [[Special:Log/delete|registro de deletiones]] pro un lista de deleti
 'undelete-search-prefix'       => 'Monstrar paginas que comencia con:',
 'undelete-search-submit'       => 'Cercar',
 'undelete-no-results'          => 'Nulle paginas correspondente trovate in le archivo de deletiones.',
-'undelete-filename-mismatch'   => 'Non pote restaurar le revision del file con data e hora $1: le nomine del file non corresponde',
-'undelete-bad-store-key'       => 'Non pote restaurar le revision del file con data e hora $1: le file mancava ja ante le deletion.',
+'undelete-filename-mismatch'   => 'Non pote restaurar le version del file con data e hora $1: le nomine del file non corresponde',
+'undelete-bad-store-key'       => 'Non pote restaurar le version del file con data e hora $1: le file mancava ja ante le deletion.',
 'undelete-cleanup-error'       => 'Error durante le deletion del file de archivo non usate "$1".',
 'undelete-missing-filearchive' => 'Impossibile restaurar le file con ID de archvo $1 proque illo non es presente in le base de datos.
 Es possibile que illo ha ja essite restaurate.',
@@ -2311,7 +2312,7 @@ Isto pote esser importate in un altere wiki que usa MediaWiki via le [[Special:I
 Pro exportar paginas, entra le titulos in le quadro de texto infra, un titulo per linea, e indica si tu vole haber le version currente con tote le versiones ancian, con le lineas de historia de paginas, o simplemente le version actual con le informationes super le ultime modification.
 
 In le secunde caso tu pote etiam usar un ligamine, p.ex. [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] pro le pagina "[[{{MediaWiki:Mainpage}}]]".',
-'exportcuronly'     => 'Includer solmente le revision actual, non le historia complete',
+'exportcuronly'     => 'Includer solmente le version actual, non le historia complete',
 'exportnohistory'   => "----
 '''Nota:''' Le exportation del historia de paginas complete per medio de iste formulario ha essite disactivate pro motivos concernente le prestationes del servitor.",
 'export-submit'     => 'Exportar',
@@ -2344,7 +2345,7 @@ Per favor visita [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisat
 'import'                     => 'Importar paginas',
 'importinterwiki'            => 'Importation transwiki',
 'import-interwiki-text'      => 'Selige le wiki e le titulo del pagina a importar.
-Le datas del revisiones e nomines del contributores essera preservate.
+Le datas del versiones e nomines del contributores essera preservate.
 Tote le actiones de importation transwiki se registra in le [[Special:Log/import|registro de importationes]].',
 'import-interwiki-source'    => 'Wiki/pagina de origine:',
 'import-interwiki-history'   => 'Copiar tote le versiones del historia de iste pagina',
@@ -2355,7 +2356,7 @@ Tote le actiones de importation transwiki se registra in le [[Special:Log/import
 'importtext'                 => 'Per favor exporta le file del wiki de origine con le [[Special:Export|facilitate pro exportar]].
 Immagazina lo in tu disco e carga lo hic.',
 'importstart'                => 'Importation de paginas in curso…',
-'import-revision-count'      => '$1 {{PLURAL:$1|revision|revisiones}}',
+'import-revision-count'      => '$1 {{PLURAL:$1|version|versiones}}',
 'importnopages'              => 'Nulle paginas a importar.',
 'importfailed'               => 'Importation fallite: <nowiki>$1</nowiki>',
 'importunknownsource'        => 'Typo del origine de importation non cognoscite',
@@ -2363,7 +2364,7 @@ Immagazina lo in tu disco e carga lo hic.',
 'importbadinterwiki'         => 'Ligamine interwiki invalide',
 'importnotext'               => 'Texto vacue o mancante',
 'importsuccess'              => 'Importation complete!',
-'importhistoryconflict'      => 'Existe un conflicto in le historia de revisiones (es possibile que iste pagina ha essite importate anteriormente)',
+'importhistoryconflict'      => 'Existe un conflicto in le historia de versiones (es possibile que iste pagina ha essite importate anteriormente)',
 'importnosources'            => 'Nulle origine de importation transwiki ha essite definite e le cargas de historia directe es disactivate.',
 'importnofile'               => 'Nulle file de importation esseva cargate.',
 'importuploaderrorsize'      => 'Le carga del file de importation ha fallite. Le grandor del file excede le limite pro cargas.',
@@ -2371,7 +2372,7 @@ Immagazina lo in tu disco e carga lo hic.',
 'importuploaderrortemp'      => 'Le carga del file de importation ha fallite. Un directorio temporari manca.',
 'import-parse-failure'       => 'Error syntactic durante importation XML',
 'import-noarticle'           => 'Nulle pagina a importar!',
-'import-nonewrevisions'      => 'Tote le revisiones habeva ja essite importate anteriormente.',
+'import-nonewrevisions'      => 'Tote le versiones habeva ja essite importate anteriormente.',
 'xml-error-string'           => '$1 al linea $2, col $3 (byte $4): $5',
 'import-upload'              => 'Cargar datos XML',
 'import-token-mismatch'      => 'Perdita del datos del session. Per favor reprova.',
@@ -2381,9 +2382,9 @@ Immagazina lo in tu disco e carga lo hic.',
 'importlogpage'                    => 'Registro de importationes',
 'importlogpagetext'                => 'Importationes administrative de paginas con historia de modificationes desde altere wikis.',
 'import-logentry-upload'           => 'importava [[$1]] per medio de carga de file',
-'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|revision|revisiones}}',
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|version|versiones}}',
 'import-logentry-interwiki'        => 'importava $1 transwiki',
-'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revision|revisiones}} desde $2',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|version|versiones}} desde $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Mi pagina de usator',
@@ -2492,7 +2493,7 @@ Le causa es probabilemente un ligamine verso un sito externe que es presente in 
 'spamprotectionmatch' => 'Le sequente texto es lo que activava nostre filtro antispam: $1',
 'spambot_username'    => 'Nettamento de spam in MediaWiki',
 'spam_reverting'      => 'Revertite al ultime version que non contine ligamines a $1',
-'spam_blanking'       => 'Tote le revisiones contineva ligamines a $1. Le pagina ha essite vacuate.',
+'spam_blanking'       => 'Tote le versiones contineva ligamines a $1. Le pagina ha essite vacuate.',
 
 # Info page
 'infosubtitle'   => 'Informationes del pagina',
@@ -2524,28 +2525,28 @@ Le causa es probabilemente un ligamine verso un sito externe que es presente in 
 'markaspatrolleddiff'                 => 'Marcar como patruliate',
 'markaspatrolledtext'                 => 'Marcar iste pagina como patruliate',
 'markedaspatrolled'                   => 'Marcate como patruliate',
-'markedaspatrolledtext'               => 'Le revision seligite ha essite marcate como patruliate.',
+'markedaspatrolledtext'               => 'Le version seligite ha essite marcate como patruliate.',
 'rcpatroldisabled'                    => 'Patrulia de modificationes recente disactivate',
 'rcpatroldisabledtext'                => 'Le functionalitate de patrulia de modificationes recente es disactivate al momento.',
 'markedaspatrollederror'              => 'Impossibile marcar como patruliate',
-'markedaspatrollederrortext'          => 'Tu debe specificar un revision a marcar como patruliate.',
+'markedaspatrollederrortext'          => 'Tu debe specificar un version a marcar como patruliate.',
 'markedaspatrollederror-noautopatrol' => 'Tu non es permittite a marcar tu proprie modificationes como patruliate.',
 
 # Patrol log
 'patrol-log-page'      => 'Registro de patrulia',
-'patrol-log-header'    => 'Isto es un registro de revisiones patruliate.',
+'patrol-log-header'    => 'Isto es un registro de versiones patruliate.',
 'patrol-log-line'      => 'marcava $1 de $2 como patruliate $3',
 'patrol-log-auto'      => '(automaticamente)',
 'log-show-hide-patrol' => '$1 le registro de versiones patruliate',
 
 # Image deletion
-'deletedrevision'                 => 'Deleva le ancian revision $1',
+'deletedrevision'                 => 'Deleva le ancian version $1',
 'filedeleteerror-short'           => 'Error durante le deletion del file: $1',
 'filedeleteerror-long'            => 'Se incontrava errores durante le deletion del file:
 
 $1',
 'filedelete-missing'              => 'Le file "$1" non pote esser delite, proque illo non existe.',
-'filedelete-old-unregistered'     => 'Le revision del file specificate "$1" non existe in le base de datos.',
+'filedelete-old-unregistered'     => 'Le version del file specificate "$1" non existe in le base de datos.',
 'filedelete-current-unregistered' => 'Le file specificate "$1" non existe in le base de datos.',
 'filedelete-archive-read-only'    => 'Le servitor de web non pote scriber al directorio de archivo "$1".',
 

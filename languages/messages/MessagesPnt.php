@@ -218,6 +218,7 @@ $messages = array(
 'versionrequiredtext' => 'Για να κουλεύετε αβούτεν τη σελίδαν χρειάσκεται η έκδοση $1 τη MediaWiki.
 Τερέστεν τη [[Special:Version|version page]].',
 
+'ok'                      => 'Ἐγεντον',
 'retrievedfrom'           => 'Ασο "$1"',
 'youhavenewmessages'      => 'Έχετε $1 ($2).',
 'newmessageslink'         => 'καινούρεα μενέματα',
@@ -497,6 +498,8 @@ $messages = array(
 'compareselectedversions' => 'Γαρσουλαεύτε...',
 'editundo'                => 'αναίρεση',
 'diff-multi'              => "({{PLURAL:$1|Μίαν αλλαγήν|$1 αλλαγάς}} 'κ δεκνίζκουνταν.)",
+'diff-src'                => 'πηγήν',
+'diff-with'               => '&#32;με $1 $2',
 'diff-with-final'         => '&#32;και $1 $2',
 
 # Search results
@@ -518,26 +521,35 @@ $messages = array(
 'mypreferences'     => "Τ' εμά τ' αγαπεμένα",
 'changepassword'    => 'Άλλαξον σημάδιν',
 'skin-preview'      => 'Πρώτον τέρεμαν',
+'math'              => 'Απόδοσην μαθηματικίων',
 'dateformat'        => 'Μορφή ημερομηνίας',
 'datetime'          => 'Ημερομηνίαν και ώραν',
 'prefs-misc'        => 'Διαφ',
 'saveprefs'         => 'Αποθήκεμαν',
 'searchresultshead' => 'Εύρον',
+'timezonelegend'    => 'Χρονικόν ζώνην',
+'localtime'         => 'Τοπικόν χρόνον:',
 
 # Groups
-'group-user'  => 'Χρήστες',
-'group-bot'   => 'Bots',
-'group-sysop' => 'Νοματέοι',
-'group-all'   => '(ούλαι)',
+'group-user'       => 'Χρήστες',
+'group-bot'        => 'Bots',
+'group-sysop'      => 'Νοματέοι',
+'group-bureaucrat' => 'Γεροντάδες',
+'group-suppress'   => 'Παραβλέμματα',
+'group-all'        => '(ούλαι)',
 
-'group-user-member'  => 'Χρήστες',
-'group-bot-member'   => 'bot',
-'group-sysop-member' => 'Νοματέας',
+'group-user-member'       => 'Χρήστες',
+'group-bot-member'        => 'bot',
+'group-sysop-member'      => 'Νοματέας',
+'group-bureaucrat-member' => 'Γέροντας',
+'group-suppress-member'   => 'Παράβλεμμαν',
 
-'grouppage-sysop' => '{{ns:project}}:Νοματέοι',
+'grouppage-sysop'      => '{{ns:project}}:Νοματέοι',
+'grouppage-bureaucrat' => '{{ns:project}}:Γεροντάδες',
+'grouppage-suppress'   => '{{ns:project}}:Παράβλεμμαν',
 
 # Rights
-'right-read'          => 'Δέβασον σελίδας',
+'right-read'          => 'Δεάβασον σελίδας',
 'right-edit'          => 'Άλλαξον σελίδας',
 'right-createpage'    => "Ποίσον σελίδας (ντο 'κ εν σελίδας καλατζεματί)",
 'right-createtalk'    => 'Ποίσον σελίδας καλατζεματί',
@@ -702,6 +714,7 @@ $messages = array(
 'movethispage'            => "Άλλαξον τ' όνεμα τη σελίδας",
 'pager-newer-n'           => '{{PLURAL:$1|κιάλλο καινούρεο 1|κιάλλο καινούρεα $1}}',
 'pager-older-n'           => '{{PLURAL:$1|κιάλλο παλαιόν 1|κιάλλο παλαιά $1}}',
+'suppress'                => 'Παράβλεμμαν',
 
 # Book sources
 'booksources'               => 'Βιβλιογραφικά πηγάς',
@@ -730,6 +743,9 @@ $messages = array(
 'categories'         => 'Κατηγορίας',
 'categoriespagetext' => "Τ' αφκά τα κατηγορίας έχνε απές σελίδας και μέσα. [[Special:UnusedCategories|Κατηγορίας που 'κ εμεταχειρίσκουνταν]] 'κ επορείτε να ελέπετε τα αδακά.
 Τερέστεν και τα [[Special:WantedCategories|κατηγορίας που χρειάσκουνταν]].",
+
+# Special:Interwiki
+'interwikilogpage' => 'Κατάλογον τραπεζίου Interwiki',
 
 # Special:ListGroupRights
 'listgrouprights-rights' => 'Δικαιώματα',
@@ -1074,6 +1090,9 @@ $messages = array(
 # Delete conflict
 'recreate' => 'Ποίσον αξάν',
 
+# action=purge
+'confirm_purge_button' => 'Ἐγεντον',
+
 # Multipage image navigation
 'imgmultipageprev' => '← πρωτεζνόν σελίδα',
 'imgmultipagenext' => 'επόμενον σελίδα →',
@@ -1098,6 +1117,8 @@ $messages = array(
 # Special:Version
 'version'                  => 'Έκδοση', # Not used as normal message but as header for the special page itself
 'version-specialpages'     => 'Ειδικά σελίδας',
+'version-hooks'            => 'Αγκιστρία',
+'version-license'          => 'Ἀδεια',
 'version-software-version' => 'Έκδοση',
 
 # Special:FilePath
@@ -1110,5 +1131,8 @@ $messages = array(
 # Special:SpecialPages
 'specialpages'             => 'Ειδικά σελίδας',
 'specialpages-group-other' => 'Αλέτερα ειδικά σελίδας',
+
+# Special:BlankPage
+'blankpage' => 'Κενόν σελίδα',
 
 );

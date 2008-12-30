@@ -358,7 +358,7 @@ $messages = array(
 'jumptosearch'      => 'pesquisa',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'            => 'Sobre',
+'aboutsite'            => 'Sobre {{SITENAME}}',
 'aboutpage'            => 'Project:Sobre',
 'copyright'            => 'Conteúdo disponível sob $1.',
 'copyrightpagename'    => 'Direitos de autor de {{SITENAME}}',

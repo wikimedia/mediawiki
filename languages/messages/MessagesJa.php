@@ -548,7 +548,7 @@ $2',
 なお、ブラウザのキャッシュをクリアするまで、ログインしているかのように表示されることがあります。',
 'welcomecreation'            => '== $1 さん、ようこそ！ ==
 あなたのアカウントができました。
-お好みに合わせて[[Special:Preferences|個人設定（{{SITENAME}}）]]を変更することができます。',
+お好みに合わせて{{SITENAME}}内での[[Special:Preferences|個人設定]]を変更することができます。',
 'loginpagetitle'             => 'ログイン',
 'yourname'                   => '利用者名:',
 'yourpassword'               => 'パスワード:',
@@ -827,7 +827,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'undo-success' => '編集の取り消しが可能です。これがあなたの意図した編集であるか、下に表示されている差分を確認してください。保存ボタンを押すと取り消しが確定されます。',
 'undo-failure' => '中間の版での編集と競合したため、取り消せませんでした。',
 'undo-norev'   => '取り消そうとした編集は存在しないかすでに削除されたために取り消せませんでした。',
-'undo-summary' => '[[Special:Contributions/$2|$2]] ([[User talk:$2|会話]]) による版 ID:$1 を取り消し',
+'undo-summary' => '[[Special:Contributions/$2|$2]] ([[User talk:$2|会話]]) による ID:$1 の版を取り消し',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'アカウントを作成できません',
@@ -1074,7 +1074,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'mypreferences'             => '個人設定',
 'prefs-edits'               => '編集回数:',
 'prefsnologin'              => 'ログインしていません',
-'prefsnologintext'          => '個人設定を変更するためには<span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} ログイン]</span>している必要があります。',
+'prefsnologintext'          => '個人設定を変更するためには<span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} ログイン]</span>する必要があります。',
 'prefsreset'                => '個人設定を保存されている状態に復帰しました。',
 'qbsettings'                => 'クイックバー設定',
 'qbsettings-none'           => 'なし',
@@ -1740,7 +1740,7 @@ PICT # misc.
 
 # E-mail user
 'mailnologin'     => 'メールアドレスの記載がありません。',
-'mailnologintext' => '他の利用者宛てにメールを送信するためには、[[Special:UserLogin|ログイン]]し、あなたのメールアドレスを[[Special:Preferences|個人設定]]に設定する必要があります。',
+'mailnologintext' => '他の利用者宛てにメールを送信するためには、[[Special:UserLogin|ログイン]]し、あなたのメールアドレスを[[Special:Preferences|個人設定]]で設定する必要があります。',
 'emailuser'       => 'この利用者にメールを送信',
 'emailpage'       => 'メール送信ページ',
 'emailpagetext'   => '下のフォームを通じて、この利用者にメールを送ることができます。
@@ -2354,27 +2354,27 @@ $1 は、すでにブロックされています。設定を変更しますか�
 
 # Stylesheets
 'common.css'      => '/* ここに書いた CSS は全ての外装に反映されます */',
-'standard.css'    => '/* ここに記述したCSSは Standard スキンの利用者に影響します */',
-'nostalgia.css'   => '/* ここに記述したCSSは Nostalgia スキンの利用者に影響します */',
-'cologneblue.css' => '/* ここに記述したCSSは Cologne Blue スキンの利用者に影響します */',
-'monobook.css'    => '/* ここに書いた CSS は Monobook 外装に反映されます */',
-'myskin.css'      => '/* ここに記述したCSSは Myskin スキンの利用者に影響します */',
-'chick.css'       => '/* ここに記述したCSSは Chick スキンの利用者に影響します */',
-'simple.css'      => '/* ここに記述したCSSは Simple スキンの利用者に影響します */',
-'modern.css'      => '/* ここに記述したCSSは Modern スキンの利用者に影響します */',
+'standard.css'    => '/* ここに記述したCSSは クラシック スキンの利用者に影響します */',
+'nostalgia.css'   => '/* ここに記述したCSSは ノスタルジア スキンの利用者に影響します */',
+'cologneblue.css' => '/* ここに記述したCSSは ケルンブルー スキンの利用者に影響します */',
+'monobook.css'    => '/* ここに書いた CSS は モノブック 外装に反映されます */',
+'myskin.css'      => '/* ここに記述したCSSは マイスキン スキンの利用者に影響します */',
+'chick.css'       => '/* ここに記述したCSSは チック スキンの利用者に影響します */',
+'simple.css'      => '/* ここに記述したCSSは シンプル スキンの利用者に影響します */',
+'modern.css'      => '/* ここに記述したCSSは モダン スキンの利用者に影響します */',
 'print.css'       => '/* ここに記述したCSSは印刷出力に影響します */',
 'handheld.css'    => '/* ここに記述したCSSは $wgHandheldStyle で設定されたスキンに基づく携帯機器に影響します */',
 
 # Scripts
 'common.js'      => '/* ここに書いた JavaScript は全てのページ上で実行されます */',
-'standard.js'    => '/* ここに記述したJavaScriptは Standard スキンの利用者に影響します */',
-'nostalgia.js'   => '/* ここに記述したJavaScriptは Nostalgia スキンの利用者に影響します */',
-'cologneblue.js' => '/* ここに記述したJavaScriptは Cologne Blue スキンの利用者に影響します */',
-'monobook.js'    => '/* ここに書かれた JavaScript は MonoBook スキンを使っている全利用者に適用されます */',
-'myskin.js'      => '/* ここに記述したJavaScriptは Myskin スキンの利用者に影響します */',
-'chick.js'       => '/* ここに記述したJavaScriptは Chick スキンの利用者に影響します */',
-'simple.js'      => '/* ここに記述したJavaScriptは Simple スキンの利用者に影響します */',
-'modern.js'      => '/* ここに記述したJavaScriptは Modern スキンの利用者に影響します */',
+'standard.js'    => '/* ここに記述したJavaScriptは クラシック スキンの利用者に影響します */',
+'nostalgia.js'   => '/* ここに記述したJavaScriptは ノスタルジア スキンの利用者に影響します */',
+'cologneblue.js' => '/* ここに記述したJavaScriptは ケルンブルー スキンの利用者に影響します */',
+'monobook.js'    => '/* ここに書かれた JavaScript は モノブック スキンを使っている全利用者に適用されます */',
+'myskin.js'      => '/* ここに記述したJavaScriptは マイスキン スキンの利用者に影響します */',
+'chick.js'       => '/* ここに記述したJavaScriptは チック スキンの利用者に影響します */',
+'simple.js'      => '/* ここに記述したJavaScriptは シンプル スキンの利用者に影響します */',
+'modern.js'      => '/* ここに記述したJavaScriptは モダン スキンの利用者に影響します */',
 
 # Metadata
 'nodublincore'      => 'このサーバーでは Dublin Core RDF メタデータが許可されていません。',

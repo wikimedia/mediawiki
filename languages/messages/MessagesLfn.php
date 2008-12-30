@@ -727,6 +727,7 @@ Asi es la ajustas presente per la paje <strong>$1</strong>:',
 
 'sp-contributions-newbies-sub' => 'Per contas nova',
 'sp-contributions-blocklog'    => 'Impedi arcivo',
+'sp-contributions-username'    => 'Adirije de IP o nom de usor:',
 'sp-contributions-submit'      => 'Xerca',
 
 # What links here

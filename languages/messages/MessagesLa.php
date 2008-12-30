@@ -751,6 +751,8 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'showingresults'        => "Subter monstrans {{PLURAL:$1|'''1''' eventu|'''$1''' eventibus}} tenus incipiens ab #'''$2'''.",
 'showingresultsnum'     => "Subter monstrans {{PLURAL:$3|'''1''' eventum|'''$3''' eventus}} incipiens ab #'''$2'''.",
 'showingresultstotal'   => "Subter monstrans {{PLURAL:$4|eventum '''$1''' ex '''$3'''|eventus '''$1 - $2''' ex '''$3'''}}",
+'nonefound'             => "'''Note''': Only some namespaces are searched by default.
+Try prefixing your query with ''all:'' to search all content (including talk pages, templates, etc), or use the desired namespace as prefix.",
 'powersearch'           => 'Quaerere',
 'powersearch-legend'    => 'Quaerere',
 'powersearch-ns'        => 'Quaerere in spatiis nominalibus:',
@@ -818,10 +820,10 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'files'                    => 'Fasciculi',
 
 # User rights
-'userrights'               => 'Usorum potestas', # Not used as normal message but as header for the special page itself
+'userrights'               => 'Usorum potestates', # Not used as normal message but as header for the special page itself
 'userrights-user-editname' => 'Nomen usoris inscribe:',
 'editusergroup'            => 'Greges usorum recensere',
-'editinguser'              => "Modificare iura usoris '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'              => "Modificare potestates usoris '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup' => 'Greges usorum recensere',
 'userrights-reason'        => 'Causa modificationis:',
 
@@ -853,6 +855,7 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'right-move'                 => 'Paginas movere',
 'right-move-subpages'        => 'Paginas una cum subpaginis movere',
 'right-move-rootuserpages'   => 'Paginas usorum movere',
+'right-movefile'             => 'Fasciculos movere',
 'right-suppressredirect'     => 'Non creare redirectionem ex titulo vetere paginam movendo',
 'right-upload'               => 'Fasciculos imponere',
 'right-upload_by_url'        => 'Fasciculum imponere ex inscriptione URL',
@@ -1245,8 +1248,9 @@ Memento hoc nexus frangere posse.',
 'newuserlog-autocreate-entry' => 'Ratio automatice creata',
 
 # Special:ListGroupRights
+'listgrouprights'                 => 'Gregum usorum potestates',
 'listgrouprights-group'           => 'Grex',
-'listgrouprights-rights'          => 'Iura',
+'listgrouprights-rights'          => 'Potestates',
 'listgrouprights-members'         => '(index rationum)',
 'listgrouprights-addgroup'        => 'Potest usores addere ad {{PLURAL:$2|gregem|greges}}: $1',
 'listgrouprights-removegroup'     => 'Potest usores removere ex {{PLURAL:$2|grege|gregibus}}: $1',
@@ -1556,6 +1560,7 @@ Ergo manu necesse disputationes motare vel contribuere erit, si vis.",
 'movenologin'               => 'Conventum non apertum',
 'movenologintext'           => 'Rationem usoris habere et [[Special:UserLogin|conventum aperire]] debes ad movendum paginam.',
 'movenotallowed'            => 'Tibi non licet paginas movere.',
+'movenotallowedfile'        => 'Tibi non licet fasciculos movere.',
 'cant-move-user-page'       => 'Tibi non licet paginas usorum movere (solum eorum subpaginas).',
 'cant-move-to-user-page'    => 'Tibi non licet paginam ad paginam usoris movere (solum ad paginae usoris subpaginam).',
 'newtitle'                  => 'Ad titulum novum:',
@@ -1575,6 +1580,7 @@ Quaesumus, titulum alterum elige.',
 'movepage-page-unmoved'     => 'Pagina $1 ad $2 moveri non potuit.',
 '1movedto2'                 => 'movit [[$1]] ad [[$2]]',
 '1movedto2_redir'           => 'movit [[$1]] ad [[$2]] praeter redirectionem',
+'move-redirect-suppressed'  => 'sine redirectione',
 'movereason'                => 'Causa:',
 'revertmove'                => 'reverti',
 'delete_and_move'           => 'Delere et movere',
