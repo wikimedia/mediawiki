@@ -301,7 +301,7 @@ $messages = array(
 
 'errorpagetitle'    => 'Chyba',
 'returnto'          => 'Späť na $1.',
-'tagline'           => 'Z {{GRAMMAR:akuzatív|{{SITENAME}}}}',
+'tagline'           => 'Z {{GRAMMAR:genitív|{{SITENAME}}}}',
 'help'              => 'Pomoc',
 'search'            => 'Hľadať',
 'searchbutton'      => 'Hľadať',
@@ -378,7 +378,7 @@ $messages = array(
 'privacypage'          => 'Project:Ochrana osobných údajov',
 
 'badaccess'        => 'Chyba povolenia',
-'badaccess-group0' => 'Nemáte povolenie na vykonanie požadovaného úkonu.',
+'badaccess-group0' => 'Nemáte povolenie na vykonanie požadovanej operácie.',
 'badaccess-groups' => 'Činnosť, ktorú požadujete, môže vykonať iba člen {{PLURAL:$2|skupiny|jednej zo skupín}}: $1.',
 
 'versionrequired'     => 'Požadovaná verzia MediaWiki $1',
@@ -450,7 +450,7 @@ $1',
 'nodb'                 => 'Nebolo možné vybrať databázu $1',
 'cachederror'          => 'Nasledujúca stránka je kópia vyžiadanej stránky z vyrovnávacej pamäte a nemusí byť aktuálna.',
 'laggedslavemode'      => 'Upozornenie: Je možné, že stránka neobsahuje posledné aktualizácie.',
-'readonly'             => 'Databáza uzamknutá',
+'readonly'             => 'Databáza je zamknutá',
 'enterlockreason'      => 'Zadajte dôvod požadovaného zamknutia vrátane odhadu, kedy očakávate odomknutie',
 'readonlytext'         => 'Databáza je momentálne zamknutá, nové stránky a úpravy sú zablokované, pravdepodobne z dôvodu údržby databázy. Po skončení tejto údržby bude {{SITENAME}} opäť fungovať normálne.
 
@@ -1130,8 +1130,8 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 'timezonetext'              => '¹Počet hodín, o ktorý sa váš miestny čas odlišuje od času na serveri (UTC).',
 'localtime'                 => 'Miestny čas:',
 'timezoneselect'            => 'Časová zóna:',
-'timezoneuseserverdefault'  => 'použi nastavenie serveru',
-'timezoneuseoffset'         => 'Iné (zadaj rozdiel)',
+'timezoneuseserverdefault'  => 'Použiť nastavenie servera',
+'timezoneuseoffset'         => 'Iné (uvedením rozdielu)',
 'timezoneoffset'            => 'Rozdiel¹:',
 'servertime'                => 'Aktuálny čas na serveri:',
 'guesstimezone'             => 'Prevziať z prehliadača',
@@ -2440,9 +2440,9 @@ Pravdepodobne to spôsobil odkaz na externú internetovú lokalitu, ktorá sa na
 
 # Skin names
 'skinname-standard'    => 'Klasický',
-'skinname-nostalgia'   => 'Nostalgický',
-'skinname-cologneblue' => 'Kolínsky Modrý',
-'skinname-monobook'    => 'MonoKniha',
+'skinname-nostalgia'   => 'Nostalgia',
+'skinname-cologneblue' => 'Kolínska modrá',
+'skinname-monobook'    => 'MonoBook',
 'skinname-simple'      => 'Jednoduchý',
 'skinname-modern'      => 'Moderný',
 

@@ -968,6 +968,7 @@ The right to use the "This is a minor edit" checkbox. See {{msg|minoredit|pl=yes
 'right-move'               => '{{doc-right}}
 The right to move any page that is not protected from moving.',
 'right-move-rootuserpages' => '{{doc-right}}',
+'right-movefile'           => '{{doc-right}}',
 'right-upload'             => '{{doc-right}}
 The right to [[Special:Upload|upload]] a file (this includes images, media, audio, ...).',
 'right-reupload'           => '{{doc-right}}
@@ -1432,6 +1433,8 @@ Example: [[:Image:Addon-icn.png]]',
 'log'                  => 'Name of special page displayed in [[Special:SpecialPages]]',
 'all-logs-page'        => 'Title of [[Special:Log]].',
 'alllogstext'          => 'Header of [[Special:Log]]',
+'log-title-wildcard'   => '* Appears in: [[Special:Log]]
+* Description: A check box to enable prefix search option',
 
 # Special:AllPages
 'allpages'       => 'Name of special page displayed in [[Special:AllPages]]

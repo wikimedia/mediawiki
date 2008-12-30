@@ -79,6 +79,7 @@ $messages = array(
 'tog-ccmeonemails'            => "Saadaq mullõ kopiq e-kir'ost, miä ma saada tõisilõ pruukjilõ",
 'tog-diffonly'                => 'Näüdäku-i lahkominekide lehe all lehe täüt sissu',
 'tog-showhiddencats'          => 'Näütäq käkitüid katõgoorijit',
+'tog-norollbackdiff'          => 'Päält tagasivõtmist näüdäku-i lahkominekiid',
 
 'underline-always'  => 'Kõgõ',
 'underline-never'   => 'Ei kunagi',
@@ -285,10 +286,12 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|üts kistutõt muutminõ|$1 kustutõdut muutmist}}',
 'feedlinks'               => 'Sisseandminõ:',
 'feed-invalid'            => 'Viganõ sisseandminõ.',
+'feed-unavailable'        => 'Võrgosüütit olõ-i saiaq',
 'site-rss-feed'           => '$1-RSS-söödüs',
 'site-atom-feed'          => '$1-Atom-söödüs',
 'page-rss-feed'           => '$1 (RSS-söödüs)',
 'page-atom-feed'          => '$1 (Atom-söödüs)',
+'red-link-title'          => '$1 (olõ-i viil kirotõt)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artikli',
@@ -332,6 +335,14 @@ $1",
 'readonlytext'         => "Teedüskogo om kirotuskaitsõ all, arvadaq niikavvas ku tedä parandõdas.
 Kõrraldaja, kiä taa kirotuskaitsõ alaq võtt', and' sääntse selgütüse:
 <p>$1",
+'missing-article'      => 'Lehe sissu lövvetä-s teedüskogost: $1 $2.
+
+Hariligult tulõ taa vanaslännüst võrrõlus- vai aoluulehelingist, miä näütäs ärqkistutõdu lehe pääle.
+
+Ku olõ-i tegemist ärqkistutõdu lehega, olõt või-ollaq löüdnüq programmivia.
+Annaq taa lehe aadrõs viki [[Special:ListUsers/sysop|ülevänpidäjäle]].',
+'missingarticle-rev'   => '(kujo#: $1)',
+'missingarticle-diff'  => '(lahkominek: $1, $2)',
 'readonly_lag'         => 'Teedüskogo panti automaatsõhe kinniq, et kõik teedüskogoserveriq saasiq kätte kõik värskiq muutmisõq',
 'internalerror'        => 'Sisemäne viga',
 'internalerror_info'   => 'Viga: $1',
@@ -369,6 +380,11 @@ Perräküsümine: $2',
 'ns-specialprotected'  => 'Tallituslehekülgi ei saaq toimõndaq.',
 'titleprotected'       => "Pruukja [[User:$1|$1]] om sääntse nimega lehe luumisõ ärq kiildnüq põhjusõga: ''$2''.",
 
+# Virus scanner
+'virus-badscanner'     => 'Viga säädmiisin: tundmalda viirusõkaidsõq: <i>$1</i>',
+'virus-scanfailed'     => 'viirusõotsminõ lää-s kõrda (viakuud $1)',
+'virus-unknownscanner' => 'tundmalda viirusõkaidsõq:',
+
 # Login and logout pages
 'logouttitle'                => 'Nime alt välläminek',
 'logouttext'                 => '<strong>Olõt nime alt vällä lännüq.</strong>
@@ -402,6 +418,7 @@ Valiq tõõnõ nimi.',
 'youremail'                  => 'Suq e-posti aadrõs *',
 'username'                   => 'Pruukjanimi:',
 'uid'                        => 'Pruukjanummõr:',
+'prefs-memberingroups'       => 'Kuulus {{PLURAL:$1|rühmä|rühmihe}}:',
 'yourrealname'               => 'Peris nimi *',
 'yourlanguage'               => 'Pruukjapalgõ kiil:',
 'yourvariant'                => 'Keelevariant:',
@@ -411,7 +428,7 @@ Valiq tõõnõ nimi.',
 'email'                      => 'e-posti aadrõs',
 'prefs-help-realname'        => "* <strong>Peris nimi</strong> (piä-i kirotama): ku taa teedäq annat, sis pruugitas taad pruukjanime asõmõl lehekülgi tegijide nimekir'on.",
 'loginerror'                 => 'Sisseminemise viga',
-'prefs-help-email'           => '* <strong>E-post</strong> (piä-i kirotama): tõõsõq pruukjaq saavaq sullõ kirotaq ilma su aadrõssit nägemäldäq. Taast om sis kah kassu, ku uma salasõna ärq johtut unõhtama.',
+'prefs-help-email'           => 'E-postiaadrõssit piä-i kirotama, a taa lupa tõisil pruukjil sullõ kirotaq ilma su aadrõssit nägemäldäq. Taast om sis kah kassu, ku uma salasõna ärq johtut unõhtama.',
 'prefs-help-email-required'  => 'E-postiaadrõs piät olõma.',
 'nocookiesnew'               => 'Pruukjakonto om valmis, a sa päse-s sisse, selle et {{SITENAME}} tarvitas pruukjidõ kimmästegemises valmistuisi. Suq võrgokaejan ommaq valmistusõq ärq keeledüq. Säeq valmistusõq lubatus ja mineq sis uma vahtsõ pruukjanime ja salasõnaga sisse.',
 'nocookieslogin'             => '{{SITENAME}} tarvitas pruukjidõ kimmästegemises valmistuisi. Suq võrgokaejan ommaq valmistusõq keeledüq. Säeq valmistusõq lubatus ja prooviq vahtsõst.',
@@ -436,14 +453,15 @@ Ku taa pallõmisõ om tennüq kiä tõõnõ vai ku olõt uma salasõna miilde tu
 'passwordsent'               => 'Vahtsõnõ salasõna om saadõt pruukja "$1" kirotõdu e-postiaadrõsi pääle. Ku olõt salasõna kätte saanuq, mineq nimega sisse.',
 'blocked-mailpassword'       => 'Su võrgonumbrilõ om pant pääle toimõndamiskiild, miä lasõ-i salasõnna miilde tulõtaq.',
 'eauthentsent'               => 'Sullõ om saadõt kinnütüskiri. Muid kirjo saadõta-i inne, ku olõt tennüq nii, kuis kirän opat ja kinnütänüq, et taa om suq e-postiaadrõs.',
-'throttled-mailpassword'     => '$1 tunni seen om saadõt salasõna miildetulõtus. Sääntsit miildetulõtuisi saadõtas õnnõ $1 tunni takast.',
+'throttled-mailpassword'     => '{{PLURAL:$1|tunni|$1 tunni}} seen om saadõt salasõna miildetulõtus. Sääntsit miildetulõtuisi saadõtas õnnõ {{PLURAL:$1|tunni|$1 tunni}} takast.',
 'mailerror'                  => 'Kirä saatmisõ viga: $1',
-'acct_creation_throttle_hit' => 'Sa olõt tennüq jo $1 kontot. Rohkõmb ei saaq.',
+'acct_creation_throttle_hit' => 'Sa olõt tennüq jo {{PLURAL:$1|1 pruukjanime|$1 pruukjanimme}}. Rohkõmb ei saaq.',
 'emailauthenticated'         => 'Su e-postiaadrõs kinnütedi ärq $2 kell $3.',
 'emailnotauthenticated'      => "Su e-postiaadrõssit olõ-i viil kinnütet. Alanolõvi as'on e-kirjo ei saadõtaq.",
 'noemailprefs'               => 'Olõ-i ant e-postiaadrõssit.',
 'emailconfirmlink'           => 'Kinnüdäq uma e-postiaadrõs.',
-'invalidemailaddress'        => 'Olõ-i kõrralik e-postiaadrõs. Kirodaq õigõ e-postiaadrõs vai jätäq rivi rühäs.',
+'invalidemailaddress'        => 'Olõ-i kõrralik e-postiaadrõs, taa om võlss moodun. 
+Kirodaq õigõ e-postiaadrõs vai jätäq rivi rühäs.',
 'accountcreated'             => 'Pruukjanimi luudi',
 'accountcreatedtext'         => 'Luudi pruukjanimi pruukjalõ $1.',
 'createaccount-title'        => 'Vahtsõ {{SITENAME}} pruukjanime luuminõ',
@@ -451,20 +469,27 @@ Ku taa pallõmisõ om tennüq kiä tõõnõ vai ku olõt uma salasõna miilde tu
 Mineq nimega sisse ja vaihtaq salasõna ärq.
 
 Ku taa pruukjanimi om luud kogõmaldaq, olõ-i sul vaia taast sõnomist vällä tetäq.',
+'login-throttled'            => "Olõt uma nime ala minekis pruuvnuq pall'o hulga esiqsugutsit salasõnno.
+Oodaq vähä inne ku proovit vahtsõst.",
 'loginlanguagelabel'         => 'Kiil: $1',
 
 # Password reset dialog
-'resetpass'               => 'Muudaq salasõnna',
-'resetpass_announce'      => 'Sa lätsit sisse e-postiga saadõdu aotlidsõ koodiga. Kõrdapiten sisseminekis tulõ sul siin tetäq hindäle  vahtsõnõ salasõna:',
-'resetpass_text'          => '<!-- Kirodaq siiäq -->',
-'resetpass_header'        => 'Salasõna vahtsõndus',
-'oldpassword'             => 'Vana salasõna',
-'newpassword'             => 'Vahtsõnõ salasõna',
-'retypenew'               => 'Kirodaq viilkõrd vahtsõnõ salasõna',
-'resetpass_submit'        => 'Kirodaq salasõna ja mineq nimega sisse',
-'resetpass_success'       => 'Salasõna vaihtaminõ läts kõrda.',
-'resetpass_bad_temporary' => 'Taa aotlinõ salasõna kõlba-i. Sa olõt jo saanuq vahtsõ salasõna vai küsünüq vahtsõ aotlidsõ salasõna.',
-'resetpass_forbidden'     => '{{SITENAME}} salasõnno saa-i vaihtaq.',
+'resetpass'                 => 'Muudaq salasõnna',
+'resetpass_announce'        => 'Sa lätsit sisse e-postiga saadõdu aotlidsõ koodiga. Kõrdapiten sisseminekis tulõ sul siin tetäq hindäle  vahtsõnõ salasõna:',
+'resetpass_text'            => '<!-- Kirodaq siiäq -->',
+'resetpass_header'          => 'Muudaq pruukjanime salasõnna',
+'oldpassword'               => 'Vana salasõna',
+'newpassword'               => 'Vahtsõnõ salasõna',
+'retypenew'                 => 'Kirodaq viilkõrd vahtsõnõ salasõna',
+'resetpass_submit'          => 'Kirodaq salasõna ja mineq nimega sisse',
+'resetpass_success'         => 'Salasõna vaihtaminõ läts kõrda.',
+'resetpass_bad_temporary'   => 'Taa aotlinõ salasõna kõlba-i. Sa olõt jo saanuq vahtsõ salasõna vai küsünüq vahtsõ aotlidsõ salasõna.',
+'resetpass_forbidden'       => 'Salasõnno saa-i muutaq.',
+'resetpass-no-info'         => 'Taa lehe pääle päsemises piät olõma nimega sisse lännüq.',
+'resetpass-submit-loggedin' => 'Muudaq salasõnna',
+'resetpass-wrong-oldpass'   => 'Viganõ aotlinõ vai parhillanõ salasõna. 
+Või-ollaq olõt jo uma salasõna ärq muutnuq vai küsünüq vahtsõ aotlidsõ salasõna.',
+'resetpass-temp-password'   => 'Aotlinõ salasõna:',
 
 # Edit page toolbar
 'bold_sample'     => 'Paks kiri',
@@ -551,12 +576,12 @@ Suq puutri võrgoaadrõs om parhilla $3 ja kinniqpidämise tunnusnummõr om #$5.
 'newarticletext'            => "Taad lehekülge olõ-i viil.
 Leheküle luumisõs nakkaq kirotama alanolõvahe kasti.
 Ku sa johtuq siiäq kogõmaldaq, sis klõpsaq võrgokaeja '''Tagasi'''-nuppi.",
-'anontalkpagetext'          => "---- ''Taa om arotusleht nimeldä pruukja kotsilõ, kiä olõ-i loonuq kontot vai pruugi-i tuud. Tuuperäst tulõ meil pruukja kimmästegemises pruukiq timä puutri võrgoaadrõssit. Taa aadrõs või ollaq mitmõ pruukja pääle ütine. Ku olõt nimeldä pruukja ja lövvät, et taa leheküle pääle kirotõt jutt käü suq kotsilõ, sis olõq hää, [[Special:UserLogin|luuq konto vai mineq nimega sisse]], et edespiten segähüisi ärq hoitaq.''",
+'anontalkpagetext'          => "---- ''Taa om arotusleht nimeldä pruukja kotsilõ, kiä olõ-i loonuq pruukjanimme vai pruugi-i tuud. Tuuperäst tulõ meil pruukja kimmästegemises pruukiq timä puutri võrgoaadrõssit. Taa aadrõs või ollaq mitmõ pruukja pääle ütine. Ku olõt nimeldä pruukja ja lövvät, et taa leheküle pääle kirotõt jutt käü suq kotsilõ, sis olõq hää, [[Special:UserLogin/signup|luuq konto]] vai [[Special:UserLogin|mineq nimega sisse]], et edespiten segähüisi ärq hoitaq.''",
 'noarticletext'             => 'Seo leht om parlaq tühi. Võit [[Special:Search/{{PAGENAME}}|otsiq seo lehe nimme]] tõisi lehti päält vai [{{fullurl:{{FULLPAGENAME}}|action=edit}} naataq seod lehte esiq kirotama].',
 'userpage-userdoesnotexist' => 'Pruukjanimme "$1" olõ-i kirjä pant. Kaeq perrä, kas olõt iks kimmäs, et tahat taad lehte toimõndaq.',
-'clearyourcache'            => "'''Panõq tähele:''' perän pästmist piät muutmiisi nägemises uma võrgokaeja vaihõmälo tühäs tegemä: '''Mozilla:''' vaodaq ''reload''  vai ''ctrl-r'', '''IE / Opera:''' ''ctrl-f5'', '''Safari:''' ''cmd-r'', '''Konqueror''' ''ctrl-r''.",
+'clearyourcache'            => "'''Panõq tähele:''' perän pästmist piät muutmiisi nägemises uma võrgokaeja vaihõmälo tühäs tegemä. '''Mozillal / Firofoxil / Safaril''' hoiaq all nõstmisnuppi ''Shift'' ja vaodaq ''Reload'' vai ''Ctrl-R'' (Macintoshil ''Command-R''); Konqueroril vaodaq ''Reload'' vai ''F5''. Operal puhastaq vaihõmälo ja võtaq valikust ''Tools → Preferences''. Internet Exploreril hoiaq ''Ctrl'' ja vaodaq ''Refresh'' vai vaodaq  ''ctrl-f5''.",
 'usercssjsyoucanpreview'    => "<strong>Nõvvoannõq:</strong> Pruugiq nuppi 'Näütäq proovikaehust' uma vahtsõ CCS-i vai JavaScripti ülekaemisõs, inne ku taa ärq pästät.",
-'usercsspreview'            => "'''Unõhtagu-i, et seod kujjo su umast stiililehest olõ-i viil pästet!'''",
+'usercsspreview'            => "'''Seo um CSS-i proovikaehus. Määntsitki muutuisi olõ-i viil pästet.'''",
 'userjspreview'             => "'''Unõhtagu-i, et seo kujo su umast javascriptist om viil pästmäldäq!'''",
 'userinvalidcssjstitle'     => "'''Miildetulõtus:''' Olõ-i stiili nimega \"\$1\". Piäq meelen, et pruukja säedüq .css- and .js-leheq piät nakkama väiku algustähega.",
 'updated'                   => '(Värskis tett)',
@@ -659,7 +684,7 @@ Lisateedüst või ollaq [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} k
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">Taa kujo om avaligust pruugist ärq kistutõt, a kõrraldajaq saavaq taad nätäq. As\'a kotsilõ või teedüst olla [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} kistutusnimekirän] </div>',
 'rev-delundel'                => 'näütäq/käkiq',
 'revisiondelete'              => 'Kistudaq/võtaq tagasi lehe kujjõ',
-'revdelete-nooldid-title'     => 'Olõ-i säänest kujjo',
+'revdelete-nooldid-title'     => 'Säänest otsitavat kujjo olõ-i',
 'revdelete-nooldid-text'      => 'Sa olõ-i valinuq kujjo vai kujjõ.',
 'revdelete-selected'          => "'''{{PLURAL:$2|Valit kujo|Validuq kujoq}} lehele '''$1:''''''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Valit muutminõ|Validuq muutmisõq}}:'''",
@@ -697,6 +722,7 @@ Lisateedüst või ollaq [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} k
 'compareselectedversions' => 'Võrdõlõq valituid kujjõ',
 'editundo'                => 'võtaq tagasi',
 'diff-multi'              => '(Kujjõ vaihõl {{PLURAL:$1|üts näütämäldä muutminõ|$1 näütämäldä muutmist}}.)',
+'diff-src'                => 'läteq',
 
 # Search results
 'searchresults'             => 'Otsmisõ tulõmusõq',
@@ -1012,9 +1038,19 @@ Kas olõt kimmäs, et tahat taad üles laatiq? Kaeq ka sissekirotust taa teedüs
 'randomredirect-nopages' => 'Seon nimeruumin olõ-i üttegi ümbresaatmist.',
 
 # Statistics
-'statistics'              => 'Statistiga',
-'statistics-header-users' => 'Pruukjidõ statistiga',
-'statistics-mostpopular'  => 'Kõgõ kaetumbaq leheq',
+'statistics'               => 'Statistiga',
+'statistics-header-pages'  => 'Lehekülgi statistiga',
+'statistics-header-edits'  => 'Toimõndamisõ statistiga',
+'statistics-header-views'  => 'Kaemisõ statistiga',
+'statistics-header-users'  => 'Pruukjidõ statistiga',
+'statistics-articles'      => 'Sisulehekülgi',
+'statistics-pages'         => 'Lehekülgi',
+'statistics-pages-desc'    => 'Kõik leheq, säälhulgan arotusleheq, ümbresaatmisleheq ja muuq.',
+'statistics-files'         => 'Üleslaadituid teedüstüid',
+'statistics-edits'         => 'Toimõnduisi {{SITENAME}} luumisõst pääle',
+'statistics-edits-average' => 'Keskmädselt toimõnduisi leheküle kotsilõ',
+'statistics-views-total'   => 'Lehti kaemiisi kokko',
+'statistics-mostpopular'   => 'Kõgõ kaetumbaq leheq',
 
 'disambiguations'      => 'Lingiq, miä näütäseq täpsüstüslehekülgi pääle',
 'disambiguationspage'  => 'Template:Linke täpsüstüslehekülile',

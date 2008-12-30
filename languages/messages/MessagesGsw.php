@@ -296,7 +296,7 @@ $messages = array(
 'categorypage'      => 'Kategoriesyte aazeige',
 'viewtalkpage'      => 'Diskussion',
 'otherlanguages'    => 'Anderi Sproche',
-'redirectedfrom'    => '(Witergleitet vo $1)',
+'redirectedfrom'    => '(Witergleitet vun $1)',
 'redirectpagesub'   => 'Umgleiteti Syte',
 'lastmodifiedat'    => 'Letschti Änderig vo dere Syte: $2, $1<br />', # $1 date, $2 time
 'viewcount'         => 'Selli Syte isch {{PLURAL:$1|eimol|$1 Mol}} bsuecht worde.',
@@ -1415,11 +1415,28 @@ E [[Special:WhatLinksHere/$2|vollständigi Lischt]] isch verfiegbar.',
 'filerevert-badversion'     => 'S git kei Version vu dr Datei zum Zytpunkt, wu aagee woren isch.',
 
 # File deletion
-'filedelete'        => 'Lesch „$1“',
-'filedelete-legend' => 'Lesch d Datei',
+'filedelete'                  => 'Lesch „$1“',
+'filedelete-legend'           => 'Lesch d Datei',
+'filedelete-intro'            => "Du leschesch d Datei '''„[[Media:$1|$1]]“'''.",
+'filedelete-intro-old'        => "Du leschesch vu dr Datei '''„[[Media:$1|$1]]“''' d [$4 Version vum $2, $3 Uhr].",
+'filedelete-comment'          => 'Grund:',
+'filedelete-submit'           => 'Lesche',
+'filedelete-success'          => "'''„$1“''' isch glescht wore.",
+'filedelete-success-old'      => "Vu dr Datei '''„[[Media:$1|$1]]“''' isch d Version vum $2, $3 Uhr glescht wore.",
+'filedelete-nofile'           => "'''„$1“''' isch nit vorhande.",
+'filedelete-nofile-old'       => "S git vu '''„$1“''' kei archivierti Version mit Attribut, wu aagee sin.",
+'filedelete-otherreason'      => 'Andere/zuesätzlige Grund:',
+'filedelete-reason-otherlist' => 'Andere Grund',
+'filedelete-reason-dropdown'  => '* Allgmeini Leschgrind
+** Urheberrächtsverletzig
+** Duplikat',
+'filedelete-edit-reasonlist'  => 'Leschgrind bearbeite',
 
 # MIME search
-'mimesearch' => 'MIME-Suechi',
+'mimesearch'         => 'MIME-Suechi',
+'mimesearch-summary' => 'Uf däre Spezialsyte chenne d Dateie noch em MIME-Typ gfilteret wäre. In dr Yygob muess es alliwyl dr Medie- un Subtyp din haa: <tt>image/jpeg</tt> (lueg Bildbschryybigssyte).',
+'mimetype'           => 'MIME-Typ:',
+'download'           => 'Abelade',
 
 # Unwatched pages
 'unwatchedpages' => 'Unbeobachteti Sytene',
@@ -1428,28 +1445,58 @@ E [[Special:WhatLinksHere/$2|vollständigi Lischt]] isch verfiegbar.',
 'listredirects' => 'Lischte vo Wyterleitige (Redirects)',
 
 # Unused templates
-'unusedtemplates' => 'Nid bruuchti Vorlage',
+'unusedtemplates'     => 'Nid bruuchti Vorlage',
+'unusedtemplatestext' => 'Die Syte lischtet alli Syten im {{ns:template}}-Namensruum uf, wu nit in andere Syte yybunden sin.
+Iberprief anderi Gleicher zue dr Vorlage, voreb Du die leschesch.',
+'unusedtemplateswlh'  => 'Anderi Gleicher',
 
 # Random page
-'randompage' => 'Zuefalls-Artikel',
+'randompage'         => 'Zuefalls-Artikel',
+'randompage-nopages' => 'Im Namensruum „$1“ sin kei Syte vorhande.',
 
 # Random redirect
-'randomredirect' => 'Zuefälligi Wyterleitig',
+'randomredirect'         => 'Zuefälligi Wyterleitig',
+'randomredirect-nopages' => 'Im Namensruum „$1“ sin kei Wyterleitige vorhande.',
 
 # Statistics
-'statistics'              => 'Statistik',
-'statistics-header-users' => 'Benutzer-Statischtik',
+'statistics'                   => 'Statistik',
+'statistics-header-pages'      => 'Sytestatischtik',
+'statistics-header-edits'      => 'Bearbeitigsstatischtik',
+'statistics-header-views'      => 'Sytenufruefstatischtik',
+'statistics-header-users'      => 'Benutzer-Statischtik',
+'statistics-articles'          => 'Inhaltssyte',
+'statistics-pages'             => 'Syte',
+'statistics-pages-desc'        => 'Alli Syten in däm Wiki, mit Diskussionssyte, Wyterleitige usw.',
+'statistics-files'             => 'Uffegladeni Dateie',
+'statistics-edits'             => 'Sytebearbeitige',
+'statistics-edits-average'     => 'Bearbeitige pro Syte im Durchschnitt',
+'statistics-views-total'       => 'Sytenufruef insgsamt',
+'statistics-views-peredit'     => 'Sytenufruef pro Bearbeitig',
+'statistics-jobqueue'          => 'Längi vu dr [http://www.mediawiki.org/wiki/Manual:Job_queue Uftragswarteschlang]',
+'statistics-users'             => 'Regischtrierti [[Special:ListUsers|Benutzer]]',
+'statistics-users-active'      => 'Aktivi Benutzer',
+'statistics-users-active-desc' => 'Benutzer mit Bearbeitige {{PLURAL:$1|in dr letchte 24 Stund|in dr letschte $1 Täg}}',
+'statistics-mostpopular'       => 'Am meischte aagluegti Syte',
 
-'disambiguations'     => 'Begriffsklärigssytene',
-'disambiguationspage' => 'Template:Begriffsklärig',
+'disambiguations'      => 'Begriffsklärigssytene',
+'disambiguationspage'  => 'Template:Begriffsklärig',
+'disambiguations-text' => 'Die Syte vergleiche uf e Begriffsklärigs-Syte. Sie sotte aber besser uf d Syte vergleiche, wu eigetli gmeint sin.<br />E Syte wird as Begriffsklärigs-Syte behandlet, wänn [[MediaWiki:Disambiguationspage]] uf si vergleicht.<br />Gleicher us Namensryym wäre do nit ufglischtet.',
 
-'doubleredirects'       => 'Doppleti Wyterleitige (Redirects)',
-'double-redirect-fixer' => 'DoubleRedirectBot',
+'doubleredirects'            => 'Doppleti Wyterleitige (Redirects)',
+'doubleredirectstext'        => 'Die Lischt zeigt Wyterleitige, wu uf anderi Wyterleitige vergleiche.
+In jedere Zyylete het s Gleicher zue dr erschte un dr zwote Wyterleitig un s Ziil vu dr zwote Wyterleitig, wu normalerwys di gwinscht Ziilsyten isch. Do sott eigetli scho di erscht Wyterleitig druf zeige.',
+'double-redirect-fixed-move' => 'doppleti Wyterleitig ufglest: [[$1]] → [[$2]]',
+'double-redirect-fixer'      => 'DoubleRedirectBot',
 
-'brokenredirects'     => 'Kaputti Wyterleitige',
-'brokenredirectstext' => 'Die Wyterleitige fiere zue Artikel, wu s gar nid git.',
+'brokenredirects'        => 'Kaputti Wyterleitige',
+'brokenredirectstext'    => 'Die Wyterleitige fiere zue Artikel, wu s gar nid git.',
+'brokenredirects-edit'   => '(bearbeite)',
+'brokenredirects-delete' => '(lesche)',
 
-'withoutinterwiki' => 'Sytenen ohni Links zu andere Sprache',
+'withoutinterwiki'         => 'Sytenen ohni Links zu andere Sprache',
+'withoutinterwiki-summary' => 'Die Syte vergleiche nit uf anderi Sprochversione.',
+'withoutinterwiki-legend'  => 'Vorsilb',
+'withoutinterwiki-submit'  => 'Zeig',
 
 'fewestrevisions' => 'Syte mit de wenigschte Bearbeitige',
 
@@ -1460,7 +1507,9 @@ E [[Special:WhatLinksHere/$2|vollständigi Lischt]] isch verfiegbar.',
 'nmembers'                => '$1 {{PLURAL:$1|Syte|Sytene}}',
 'nrevisions'              => '$1 {{PLURAL:$1|Revision|Revisione}}',
 'nviews'                  => '$1 {{PLURAL:$1|Betrachtig|Betrachtige}}',
+'specialpage-empty'       => 'In dr Syte het s no kei aktuälli Yytreg.',
 'lonelypages'             => 'Verwaisti Sytene',
+'lonelypagestext'         => 'Die Syte wäre nit yybunde oder s wird nit uf si verwiise in {{SITENAME}}.',
 'uncategorizedpages'      => 'Nit kategorisierte Sytene',
 'uncategorizedcategories' => 'Nit kategorisierte Kategorie',
 'uncategorizedimages'     => 'Nid kategorisierti Dateie',
@@ -1470,6 +1519,8 @@ E [[Special:WhatLinksHere/$2|vollständigi Lischt]] isch verfiegbar.',
 'popularpages'            => 'Beliebti Artikel',
 'wantedcategories'        => 'Bruuchti Kategorie, wo s no nid git',
 'wantedpages'             => 'Artikel, wo fähle',
+'wantedfiles'             => 'Dateie, wu fähle',
+'wantedtemplates'         => 'Vorlage, wu fähle',
 'mostlinked'              => 'Syte, wo am meischte vergleicht sin',
 'mostlinkedcategories'    => 'Am meischte verlinkti Kategorië',
 'mostlinkedtemplates'     => 'Am meischten yybouti Vorlage',
@@ -1480,17 +1531,39 @@ E [[Special:WhatLinksHere/$2|vollständigi Lischt]] isch verfiegbar.',
 'shortpages'              => 'Churzi Artikel',
 'longpages'               => 'Langi Artikel',
 'deadendpages'            => 'Artikel ohni Links («Sackgasse»)',
+'deadendpagestext'        => 'Die Syte sin nit zue anderi Syte in {{SITENAME}} vergleicht.',
 'protectedpages'          => 'Gschützti Sytene',
+'protectedpages-indef'    => 'Nume uubschränkt gschitzti Syte zeige',
+'protectedpages-cascade'  => 'Nume Syte mit Kaskadeschutz',
+'protectedpagestext'      => 'Die Spezialsyte zeigt alli vor em Verschiebe oder Bearbeite gschitzti Syte.',
+'protectedpagesempty'     => 'Aktuäll sin kei Syte mit däne Parameter gschitzt.',
+'protectedtitles'         => 'Gsperrti Titel',
+'protectedtitlestext'     => 'Die Titel sin gsperrt fir s Neijaalege',
+'protectedtitlesempty'    => 'Im Momänt sin kei Syte fir s Nejaalege gsperrt mit däne Parameter.',
 'listusers'               => 'Lischte vo Benutzer',
+'listusers-editsonly'     => 'Zeig nume Benutzer mit Byytreg',
+'usereditcount'           => '$1 {{PLURAL:$1|Bearbeitig|Bearbeitige}}',
 'newpages'                => 'Nöji Artikel',
+'newpages-username'       => 'Benutzername:',
 'ancientpages'            => 'alti Sytene',
 'move'                    => 'verschiebe',
 'movethispage'            => 'Artikel verschiebe',
+'unusedimagestext'        => 'Bitte gib Acht, ass anderi Netzsyte die Datei mit ere diräkte URL chenne vergleiche. Des wird nit as Verwändig erkannt. Wäge däm wird d Datei do ufgfiert.',
+'unusedcategoriestext'    => 'Die Spezialsyte zeigt alli lääre Kategorie, d. h. si wäre nit brucht vu andre Syte oder Kategorie.',
+'notargettitle'           => 'Kei Syte aagee',
+'notargettext'            => 'Du hesch nit aagee, uf weli Syte die Funktion soll druf aagwändet wäre.',
+'nopagetitle'             => 'Ziilsyte isch nit vorhande',
+'nopagetext'              => 'D Ziilsyte, wu aagee isch, isch nit vorhande.',
 'pager-newer-n'           => '{{PLURAL:$1|nächschte|nächschte $1}}',
 'pager-older-n'           => '{{PLURAL:$1|vorige|vorige $1}}',
+'suppress'                => 'Oversight',
 
 # Book sources
-'booksources' => 'ISBN-Suech',
+'booksources'               => 'ISBN-Suech',
+'booksources-search-legend' => 'Suech no Bezugsquälle fir Biecher',
+'booksources-go'            => 'Sueche',
+'booksources-text'          => 'Des isch e Lischt mit Gleicher zue Netzsyte, wu neiji un bruchti Biecher verchaufe. S cha syy, ass es dert au meh Informatione zue dr Biecher git. {{SITENAME}} isch mit keinem vu däne Aabieter gschäftli verbunde.',
+'booksources-invalid-isbn'  => 'D ISBN isch schyyns falsch. Lueg no Fähler in dr Kopii.',
 
 # Special:Log
 'specialloguserlabel'  => 'Benutzer:',
@@ -1500,6 +1573,7 @@ E [[Special:WhatLinksHere/$2|vollständigi Lischt]] isch verfiegbar.',
 'alllogstext'          => 'Kombinierti Aasicht vu alle in {{SITENAME}} gfierte Protokoll.
 D Aazeig cha dur d Uuswahl vun eme Protokoll, eme Benutzername oder eme Sytename yygschränkt wäre (Acht gee uf d Gross- un Chleischrybig).',
 'logempty'             => 'Kei Yyträg gfunde, wu passe.',
+'log-title-wildcard'   => 'Titel fangt aa mit',
 
 # Special:AllPages
 'allpages'          => 'alli Sytene',
@@ -1507,6 +1581,7 @@ D Aazeig cha dur d Uuswahl vun eme Protokoll, eme Benutzername oder eme Sytename
 'nextpage'          => 'Nächscht Syte ($1)',
 'prevpage'          => 'Vorderi Syte ($1)',
 'allpagesfrom'      => 'Syte aazeige vo:',
+'allpagesto'        => 'Syten aazeige bis:',
 'allarticles'       => 'alli Artikel',
 'allinnamespace'    => 'alli Sytene im Namensruum $1',
 'allnotinnamespace' => 'alli Sytene, wo nit im $1 Namensruum sin',
@@ -1514,10 +1589,47 @@ D Aazeig cha dur d Uuswahl vun eme Protokoll, eme Benutzername oder eme Sytename
 'allpagesnext'      => 'nächschts',
 'allpagessubmit'    => 'gang',
 'allpagesprefix'    => 'Alli Sytene mit em Präfix:',
+'allpagesbadtitle'  => 'Dr Sytename, wu yygee hesch, isch nit giltig: Er het entwäder e vorgstellt Sproch-, e Interwiki-Chirzel oder s het ei oder meh Zeiche din, wu in eme Sytename nit derfe brucht wäre.',
+'allpages-bad-ns'   => 'Dr Namensruum „$1“ isch in {{SITENAME}} nit vorhande.',
 
 # Special:Categories
-'categories'         => 'Kategorie',
-'categoriespagetext' => 'Selli Kategorie gits in dem Wiki:',
+'categories'                    => 'Kategorie',
+'categoriespagetext'            => 'In däne Kategorie het s Syte oder Dateie.
+[[Special:UnusedCategories|Nit benutzte Kategorie]] wäre do nit ufgfiert.
+Lueg au d Lischt vu dr [[Special:WantedCategories|gwinschte Kategorie]].',
+'categoriesfrom'                => 'Zeig Kategorie ab:',
+'special-categories-sort-count' => 'Sortierig no Aazahl',
+'special-categories-sort-abc'   => 'Sortierig no Alfabet',
+
+# Special:DeletedContributions
+'deletedcontributions' => 'Gleschti Bytreg',
+
+# Special:Interwiki
+'interwiki'                => 'Interwiki-Date aaluege un bearbeite',
+'interwiki-title-norights' => 'Interwiki-Date aaluege',
+'interwiki_addbutton'      => 'Zuefiege',
+'interwiki_added'          => '„$1“ isch mit Erfolg dr Interwiki-Tabälle zuegfiegt wore.',
+'interwiki_addfailed'      => '„$1“ het nit chenne dr Interwiki-Tabälle zuegfiegt wäre.',
+'interwiki_addintro'       => 'Du fiegsch e nej Interwiki-Präfix zue. Gib Acht, ass es kei Läärzeiche ( ), Chaufmännisch Un (&), Glyychzeiche (=) un kei Doppelpunkt (:) derf enthalte.',
+'interwiki_addtext'        => 'E Interwiki-Präfix zuefiege',
+'interwiki-badprefix'      => 'Im feschtgleite Interwikipräfix „$1“ het s nit giltigi Zeiche din',
+'interwiki_defaultreason'  => 'kei Grund aagee',
+'interwiki_deleted'        => '„$1“ isch mit Erfolg us dr Interwiki-Tabälle usegnuh wore.',
+'interwiki_deleting'       => 'Du bisch am Lesche vum Präfix „$1“.',
+'interwiki_delfailed'      => '„$1“ het nit chenne us dr Interwiki-Tabälle glescht wäre.',
+'interwiki_delquestion'    => 'Lescht „$1“',
+'interwiki_edited'         => 'S Präfix „$1“ isch mit Erfolg in dr Interwiki-Tabälle gänderet wore.',
+'interwiki_editerror'      => 'S Präfix „$1“ cha in dr Interwiki-Tabälle nit gänderet wäre.
+Villicht git s es nit.',
+'interwiki_editintro'      => 'Du bisch am Ändere vun eme Präfix.
+Gib Acht, ass des Gleicher cha uugiltig mache, wu s scho git.',
+'interwiki_edittext'       => 'Interwiki-Präfix bearbeite',
+'interwiki_error'          => 'Fähler: D Interwiki-Tabälle isch läär.',
+'interwiki_intro'          => 'Lueg [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] fir meh Informatione iber d Interwiki-Tabälle. S [[Special:Log/interwiki|Logbuech]] zeigt alli Änderige an dr Interwiki-Tabälle.',
+'interwiki_local'          => 'Definier des as lokals Wiki',
+'interwiki_log_added'      => 'het „$2“ ($3) (trans: $4) (lokal: $5) dr Interwiki-Tabälle zuegfiegt',
+'interwiki_log_deleted'    => 'het „$2“ us dr Interwiki-Tabälle usegnuh',
+'interwiki_log_edited'     => 'gändereti Präfix „$2“: ($3) (trans: $4) (lokal: $5) in dr Interwiki-Tabälle',
 
 # Special:LinkSearch
 'linksearch'       => 'Suech Netzgleicher',

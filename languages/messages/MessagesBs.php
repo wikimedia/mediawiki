@@ -415,12 +415,14 @@ $messages = array(
 'versionrequiredtext' => 'Potrebna je verzija $1 MediaWikija da bi se koristila ova strana. Pogledaj [[Special:Version|verziju]].',
 
 'ok'                      => 'da',
+'pagetitle'               => '$1 - {{SITENAME}}',
 'retrievedfrom'           => 'Dobavljeno iz "$1"',
 'youhavenewmessages'      => 'Imate $1 ($2).',
 'newmessageslink'         => 'novih poruka',
 'newmessagesdifflink'     => 'posljednja promjena',
 'youhavenewmessagesmulti' => 'Imate nove poruke na $1',
 'editsection'             => 'uredi',
+'editsection-brackets'    => '[$1]',
 'editold'                 => 'uredi',
 'viewsourceold'           => 'pogledaj izvor',
 'editlink'                => 'uredi',
@@ -575,6 +577,7 @@ Molimo Vas da izaberete drugo ime.',
 'prefs-memberingroups'       => 'Član {{PLURAL:$1|grupe|grupa}}:',
 'yourrealname'               => 'Vaše pravo ime *',
 'yourlanguage'               => 'Jezik:',
+'yourvariant'                => 'Varijanta:',
 'yournick'                   => 'Nadimak (za potpise):',
 'badsig'                     => 'Loš sirovi potpis.
 Provjerite HTML tagove.',
@@ -1014,6 +1017,7 @@ Korištenje navigacionih linkova će resetovati ovaj stupac.',
 'diff-src'                => 'izvorno',
 'diff-withdestination'    => 'sa odredištem $1',
 'diff-with'               => '&#32;sa $1 $2',
+'diff-with-additional'    => '$1 $2',
 'diff-with-final'         => '&#32;i $1 $2',
 'diff-width'              => 'širina',
 'diff-height'             => 'visina',
@@ -1112,10 +1116,8 @@ Možete [[:\$1|da napravite članak sa tim naslovom]].
 'showingresults'                   => "Dole {{PLURAL:$1|je prikazan '''1''' rezultat|su prikazana '''$1''' rezultata|je prikazano '''$1''' rezultata}} počev od '''$2'''.",
 'showingresultsnum'                => "Dole {{PLURAL:$3|je prikazan '''1''' rezultat|su prikazana '''$3''' rezultata|je prikazano '''$3''' rezultata}} počev od '''$2'''.",
 'showingresultstotal'              => "Ispod {{PLURAL:$4|je prikazan rezultat '''$1''' od '''$3'''|su prikazani rezultati '''$1 - $2''' od ukupno '''$3'''}}",
-'nonefound'                        => "'''Pažnja''': neuspješne pretrage su
-često izazvane traženjem čestih riječi kao \"je\" ili \"od\",
-koje nisu indeksirane, ili navođenjem više od jednog izraza za traženje (samo stranice
-koje sadrže sve izraze koji se traže će se pojaviti u rezultatima).",
+'nonefound'                        => "'''Pažnja''': Po pretpostavljenim postavkama pretražuju se samo neki imenski prostori.
+Pokušajte u Vaš upit uključiti prefiks ''all:'' da bi ste pretražili sav sadržaj (uključujući stranice za razgovor, šablone i sl.) ili koristite željeni imenski prostor kao prefiks.",
 'search-nonefound'                 => 'Nisu pronađeni rezultati koji odgovaraju upitu.',
 'powersearch'                      => 'Traži',
 'powersearch-legend'               => 'Napredna pretraga',
@@ -1357,6 +1359,7 @@ koje sadrže sve izraze koji se traže će se pojaviti u rezultatima).",
 'minoreditletter'                   => 'm',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'b',
+'sectionlink'                       => '→',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|korisnik|korisnika}} koji pregledaju]',
 'rc_categories'                     => 'Ograniči na kategorije (razdvojene sa "|")',
 'rc_categories_any'                 => 'Sve',
@@ -1463,6 +1466,20 @@ Potrebno je da razmotrite da li je uredu nastaviti sa postavljanjem ove datoteke
 Zapis brisanja za ovu datoteku je prikazan ovdje kao referenca:",
 'filename-bad-prefix'         => 'Naziv datoteke koju postavljate počinje sa <strong>"$1"</strong>, što je naziv koji obično automatski dodjeljuju digitalni fotoaparati i kamere.
 Molimo Vas da odaberete naziv datoteke koji opisuje njen sadržaj.',
+'filename-prefix-blacklist'   => ' #<!-- ostavite ovu liniju onakvom kakva jeste --> <pre>
+# Sintaksa je slijedeća:
+#   * Sve od karaktera "#" pa do kraja je komentar
+#   * Svaka neprazna linija je prefiks za tipična imena datoteka koja automatski dodjeljuje digitalna kamera
+CIMG # Casio
+DSC_ # Nikon
+DSCF # Fuji
+DSCN # Nikon
+DUW # neki mobilni telefoni
+IMG # generic
+JD # Jenoptik
+MGP # Pentax
+PICT # razni
+ #</pre> <!-- ostavite ovu liniju onakvom kakva jeste -->',
 
 'upload-proto-error'      => 'Pogrešan protokol',
 'upload-proto-error-text' => 'Postavljanje sa vanjske lokacije zahtjeva URL-ove koji počinju sa <code>http://</code> ili <code>ftp://</code>.',
@@ -1758,6 +1775,7 @@ Zapamtite da ne može sadržavati razmake ( ), dvotačke (:), znak and (&), ili 
 'interwiki_addtext'        => 'Dodaj interwiki prefiks',
 'interwiki-badprefix'      => 'Navedeni interwiki prefiks "$1" sadrži nevaljane znakove',
 'interwiki_defaultreason'  => 'nije naveden razlog',
+'interwiki_defaulturl'     => 'http://www.primjer.com/$1',
 'interwiki_deleted'        => 'Prefiks "$1" je uspješno uklonjen iz interwiki tabele.',
 'interwiki_deleting'       => 'Brišete prefiks "$1".',
 'interwiki_delfailed'      => 'Prefiks "$1" nije bilo moguće ukloniti iz interwiki tabele.',
@@ -1779,6 +1797,7 @@ Ovdje se nalazi [[Special:Log/interwiki|zapis izmjena]] učinjenih na interwiki 
 'interwiki_prefix'         => 'Prefiks',
 'interwiki_reasonfield'    => 'Razlog',
 'interwiki_trans'          => 'Dopusti interwiki uključenja',
+'interwiki_url'            => 'URL',
 'interwikilogpage'         => 'Zapis interwiki tabele',
 'interwikilogpagetext'     => 'Ovo je zapisnik promjena na [[Special:Interwiki|interwiki tabeli]].',
 'right-interwiki'          => 'Uređivanje interwiki podataka',
@@ -2468,6 +2487,30 @@ Nedostaje privremeni folder.',
 'tooltip-undo'                    => 'Vraća posljednju izmjenu i otvara formu za uređivanje u modu pregleda.
 Dopušta unos razloga u sažetak.',
 
+# Stylesheets
+'common.css'      => '/* CSS umetnut ovdje primijenit će se na sve skinove */',
+'standard.css'    => '/* CSS umetnut ovdje uticat će na korisnike koji koriste Standard skin */',
+'nostalgia.css'   => '/* CSS umetnut ovdje uticat će na korisnike koji koriste Nostalgia skin */',
+'cologneblue.css' => '/* CSS umetnut ovdje uticat će na korisnike koji koriste Cologne Blue skin */',
+'monobook.css'    => '/* CSS umetnut ovdje uticat će na korisnike koji koriste Monobook skin */',
+'myskin.css'      => '/* CSS umetnut ovdje uticat će na korisnike koji koriste Myskin skin */',
+'chick.css'       => '/* CSS umetnut ovdje uticat će na korisnike koji koriste Chick skin */',
+'simple.css'      => '/* CSS umetnut ovdje uticat će na korisnike koji koriste Simple skin */',
+'modern.css'      => '/* CSS umetnut ovdje uticat će na korisnike koji koriste Modern skin */',
+'print.css'       => '/* CSS umetnut ovdje uticat će na izgled isprintane stranice */',
+'handheld.css'    => '/* CSS umetnut ovdje uticat će na ručne sprave koji rade na skinu konfigurisanom u $wgHandheldStyle */',
+
+# Scripts
+'common.js'      => '/* Bilo koja JavaScript će biti učitana za sve korisnike pri svakom učitavanju stranice. */',
+'standard.js'    => '/* Bilo koja JavaScript će biti učitana za sve korisnike koji koriste Standard skin */',
+'nostalgia.js'   => '/* Bilo koja JavaScript će biti učitana za sve korisnike koji koriste Nostalgia skin */',
+'cologneblue.js' => '/* Bilo koja JavaScript će biti učitana za sve korisnike koji koriste Cologne Blue skin */',
+'monobook.js'    => '/* Bilo koja JavaScript će biti učitana za sve korisnike koji koriste MonoBook skin */',
+'myskin.js'      => '/* Bilo koja JavaScript će biti učitana za sve korisnike koji koriste Myskin skin */',
+'chick.js'       => '/* Bilo koja JavaScript će biti učitana za sve korisnike koji koriste Chick skin */',
+'simple.js'      => '/* Bilo koja JavaScript će biti učitana za sve korisnike koji koriste Simple skin */',
+'modern.js'      => '/* Bilo koja JavaScript će biti učitana za sve korisnike koji koriste Modern skin */',
+
 # Metadata
 'nodublincore'      => 'Dublin Core RDF metapodaci onemogućeni za ovaj server.',
 'nocreativecommons' => 'Creative Commons RDF metapodaci onemogućeni za ovaj server.',
@@ -2774,6 +2817,10 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'exif-lightsource-17'  => 'Standardno svjetlo A',
 'exif-lightsource-18'  => 'Standardno svjetlo B',
 'exif-lightsource-19'  => 'Standardno svjetlo C',
+'exif-lightsource-20'  => 'D55',
+'exif-lightsource-21'  => 'D65',
+'exif-lightsource-22'  => 'D75',
+'exif-lightsource-23'  => 'D50',
 'exif-lightsource-24'  => 'ISO studio volfram',
 'exif-lightsource-255' => 'Ostali izvori svjetlosti',
 
@@ -2798,6 +2845,8 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'exif-sensingmethod-5' => 'Sekvencijalni senzor boje površine',
 'exif-sensingmethod-7' => 'Trilinearni senzor',
 'exif-sensingmethod-8' => 'Sekvencijalni senzor boje linija',
+
+'exif-filesource-3' => 'DSC',
 
 'exif-scenetype-1' => 'Direktno fotografisana slika',
 
@@ -2926,10 +2975,22 @@ $1
 Molimo Vas da potvrdite da stvarno želite da ponovo napravite ovaj članak.",
 'recreate'            => 'Ponovno napravi',
 
+'unit-pixel' => 'px',
+
 # action=purge
 'confirm_purge_button' => 'U redu',
 'confirm-purge-top'    => 'Da li želite obrisati keš ove stranice?',
 'confirm-purge-bottom' => 'Ispražnjava keš stranice i prikazuje najsvježiju verziju.',
+
+# Separators for various lists, etc.
+'catseparator'        => '|',
+'semicolon-separator' => ';&#32;',
+'comma-separator'     => ',&#32;',
+'colon-separator'     => ':&#32;',
+'autocomment-prefix'  => '-&#32;',
+'pipe-separator'      => '|',
+'word-separator'      => '&#32;',
+'ellipsis-separator'  => '…',
 
 # Multipage image navigation
 'imgmultipageprev' => '← prethodna stranica',
@@ -2953,6 +3014,12 @@ Molimo Vas da potvrdite da stvarno želite da ponovo napravite ovaj članak.",
 'autosumm-replace' => "Zamjena stranice sa '$1'",
 'autoredircomment' => 'Preusmjereno na [[$1]]',
 'autosumm-new'     => 'Nova stranica: $1',
+
+# Size units
+'size-bytes'     => '$1 B',
+'size-kilobytes' => '$1 KB',
+'size-megabytes' => '$1 MB',
+'size-gigabytes' => '$1 GB',
 
 # Live preview
 'livepreview-loading' => 'Punjenje…',
@@ -2992,7 +3059,65 @@ Također možete [[Special:Watchlist/edit|koristiti standardni uređivač]].',
 'watchlisttools-raw'  => 'Uređivanje praćenih stranica u okviru praćenja.',
 
 # Iranian month names
-'iranian-calendar-m1' => 'Farvardin (Iranski kalendar)',
+'iranian-calendar-m1'  => 'Farvardin (Iranski kalendar)',
+'iranian-calendar-m2'  => 'Ordibehesht',
+'iranian-calendar-m3'  => 'Khordad',
+'iranian-calendar-m4'  => 'Tir',
+'iranian-calendar-m5'  => 'Mordad',
+'iranian-calendar-m6'  => 'Shahrivar',
+'iranian-calendar-m7'  => 'Mehr',
+'iranian-calendar-m8'  => 'Aban',
+'iranian-calendar-m9'  => 'Azar',
+'iranian-calendar-m10' => 'Dey',
+'iranian-calendar-m11' => 'Bahman',
+'iranian-calendar-m12' => 'Esfand',
+
+# Hijri month names
+'hijri-calendar-m1'  => 'Muharem',
+'hijri-calendar-m2'  => 'Safer',
+'hijri-calendar-m3'  => 'Rebiul-evel',
+'hijri-calendar-m4'  => 'Rebiul-ahir',
+'hijri-calendar-m5'  => 'Džumadel-ula',
+'hijri-calendar-m6'  => 'Džumadel-uhra',
+'hijri-calendar-m7'  => 'Redžeb',
+'hijri-calendar-m8'  => 'Šaban',
+'hijri-calendar-m9'  => 'Ramazan',
+'hijri-calendar-m10' => 'Ševal',
+'hijri-calendar-m11' => 'Zulkada',
+'hijri-calendar-m12' => 'Zulhidže',
+
+# Hebrew month names
+'hebrew-calendar-m1'      => 'Tishrei',
+'hebrew-calendar-m2'      => 'Cheshvan',
+'hebrew-calendar-m3'      => 'Kislev',
+'hebrew-calendar-m4'      => 'Tevet',
+'hebrew-calendar-m5'      => 'Shevat',
+'hebrew-calendar-m6'      => 'Adar',
+'hebrew-calendar-m6a'     => 'Adar I',
+'hebrew-calendar-m6b'     => 'Adar II',
+'hebrew-calendar-m7'      => 'Nisan',
+'hebrew-calendar-m8'      => 'Iyar',
+'hebrew-calendar-m9'      => 'Sivan',
+'hebrew-calendar-m10'     => 'Tamuz',
+'hebrew-calendar-m11'     => 'Av',
+'hebrew-calendar-m12'     => 'Elul',
+'hebrew-calendar-m1-gen'  => 'Tishrei',
+'hebrew-calendar-m2-gen'  => 'Cheshvan',
+'hebrew-calendar-m3-gen'  => 'Kislev',
+'hebrew-calendar-m4-gen'  => 'Tevet',
+'hebrew-calendar-m5-gen'  => 'Shevat',
+'hebrew-calendar-m6-gen'  => 'Adar',
+'hebrew-calendar-m6a-gen' => 'Adar I',
+'hebrew-calendar-m6b-gen' => 'Adar II',
+'hebrew-calendar-m7-gen'  => 'Nisan',
+'hebrew-calendar-m8-gen'  => 'Iyar',
+'hebrew-calendar-m9-gen'  => 'Sivan',
+'hebrew-calendar-m10-gen' => 'Tamuz',
+'hebrew-calendar-m11-gen' => 'Av',
+'hebrew-calendar-m12-gen' => 'Elul',
+
+# Signatures
+'timezone-utc' => 'KSV',
 
 # Core parser functions
 'unknown_extension_tag' => 'Nepoznata oznaka ekstenzije "$1"',

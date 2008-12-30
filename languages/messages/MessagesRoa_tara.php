@@ -299,6 +299,11 @@ L'urteme tendative de inderrogazione sus a 'u database ha state:
 <blockquote><tt>\$1</tt></blockquote>
 cu 'a funzione \"<tt>\$2</tt>\".
 MySQL ha returnete l'errore \"<tt>\$3: \$4</tt>\".",
+'dberrortextcl'        => 'A assute \'n\'errore de sindasse sus a \'n\'inderrogazione d\'u database.
+L\'urteme tendative de inderrogazione sus a \'u database ha state:
+"$1"
+ausanne \'a funzione "$2".
+MySQL ha returnete l\'errore "$3: $4"',
 'noconnect'            => "Sime dispiaciute! Sus 'a Uicchipedie stè quacche probbleme tecniche e non ge putime condattà 'u server d'u database.<br />
 $1",
 'nodb'                 => "Non ge pozze scacchià l'archivie $1",
@@ -306,6 +311,15 @@ $1",
 'laggedslavemode'      => "Attenzione: 'A pàgene no ge tène cangiaminde recente.",
 'readonly'             => 'Archivie blocchete',
 'enterlockreason'      => "Mitte 'na raggione p'u blocche, 'ncludenne 'na stime de quanne 'u blocche avène luate.",
+'readonlytext'         => "'U database jndr'à stu mumende jè blocchete pe nueve 'nzereminde e otre cangiaminde, pò essere 'nu blocche pe 'na manutenziona de ''routine'', apprisse 'a quale torne tutte a poste.
+
+Le amministrature ca onne mise 'u blocche onne date sta motivazione: $1",
+'missing-article'      => "'U database non ge iacchije 'u teste de 'na pàgene ca avesse acchià, nnomenete \"\$1\" \$2.
+
+Stu fatte pò succedere quanne le collegaminde 'mbrà le differenze o le cunde non ge sonde aggiornete sus a 'na pàgene ca ha state scangellete.
+
+Ce quiste non g'è 'u case, tu pò essere ca è 'cchiate 'nu bochere jndr'à 'u software.
+Pe piacere manne 'na comunicazzione a 'n'[[Special:ListUsers/sysop|amministratore]], mettène jndr'à note pure l'URL.",
 'missingarticle-rev'   => '(versione#: $1)',
 'missingarticle-diff'  => '(Diff: $1, $2)',
 'readonly_lag'         => "'U database ha state automaticamende blocchete purcè le server de le database ca depennene da 'u master onne sciute in eccezzione",
@@ -320,18 +334,32 @@ $1",
 'unexpected'           => 'Valore inattese: "$1"="$2".',
 'formerror'            => "Errore: non ge riesche a reggistrà 'u form",
 'badarticleerror'      => "Quest'azione non ge pò essere fatte sus 'a sta pàgene.",
+'cannotdelete'         => "Non ge puè scangellà 'a pàgene o 'u file specifichete.
+Pò essere ca ggià ha state scangellete da quacche otre.",
 'badtitle'             => 'Titele sbagliete',
 'badtitletext'         => "'A pàgene ca è cerchete tène 'nu titele errete, vacande, o jè 'nu collegamende inter-lènghe o inter-uicchi errete.
 Pò essere ca tène une o cchiù carattere ca non ge ponne essere ausete jndr'à le titele.",
+'perfcached'           => "'U date segeunde stè jndr'à cache e non ge pò essere aggiornete.",
+'perfcachedts'         => "'U date segeunde stè jndr'à cache e l'urteme aggiornamente ha state $1.",
+'querypage-no-updates' => "L'aggiornaminde pe sta pàgene sonde, pe mò, disabbilitete.
+Le date ca stonne aqquà jndre non ge sonde aggiornete.",
 'wrong_wfQuery_params' => "Parametre incorrette sus 'a wfQuery()<br />
 Function: $1<br />
 Query: $2",
 'viewsource'           => "Vide 'u sorgende",
 'viewsourcefor'        => 'pe $1',
 'actionthrottled'      => 'Azione inderrotte',
+'actionthrottledtext'  => "Cumme 'na mesure andi-spam, tu è state limitete da fà st'azione troppe vote jndr'à 'nu timbe piccinne e tu è subranete stu limite.
+Pe piacere prueve cchiù tarde.",
 'protectedpagetext'    => 'Sta pàgene ha state prutette pe no fa fà cangiaminde a uecchje.',
 'viewsourcetext'       => "Tu puè vedè e cupià 'a sorgente de sta pàgene:",
+'protectedinterface'   => "Sta pàgene te dè l'inderfacce de teste pìu software e jè blocchete pe prevenì l'abbuse.",
+'editinginterface'     => "'''Fà attenziò:'''  Tu ste cange 'na pàgene ca jè ausete pe dà ìnìinderfacce p'u software.
+Le cangiaminde de sta pàgene vonne a mettene mane sus a l'inderfacce utende pe l'otre utinde.
+Pe traduziune, pe piacere vide ce ause [http://translatewiki.net/wiki/Main_Page?setlang=roa-tara BetaUicchi], 'u pruggette de localizzazione de MediaUicchi.",
 'sqlhidden'            => '(query SQL ascunnute)',
+'cascadeprotected'     => 'Sta pàgene ha state prutette da le cangiaminde, purcè jè ingluse jndr\'à {{PLURAL:$1|seguende pàgene, ca jè|le seguende pàggene, ca sonde}} prutette cu l\'opzione "a caschete":
+$2',
 'namespaceprotected'   => "Non ge tine 'u permesse pe cangià pàggene d'u neimspeise '''$1'''.",
 'customcssjsprotected' => "Non ge tine 'u permesse pe cangià sta pàgene, purcè tène otre configurazione personele.",
 'ns-specialprotected'  => 'Le pàgene speciale no ponne essere cangete.',
@@ -345,6 +373,10 @@ Query: $2",
 
 # Login and logout pages
 'logouttitle'               => 'Utende assute',
+'logouttext'                => "<strong>Tu tè scolleghete.</strong>
+
+Tu puè condinuà a ausà {{SITENAME}} in mode anonime, o tu puè [[Special:UserLogin|collegarte 'n'otra vote]] cumme 'u stesse utende o cumme 'n'otre utende.
+Note Bbuene ca certe pàggene ponne condinuà a essere viste cumme ce tu ste angore colleghete, fine a quanne a cache d'u browser no se sdeveche.",
 'welcomecreation'           => "== Bovegne, $1! ==
 'U cunde tue ha state ccrejete.
 No te sce scurdanne de cangià le [[Special:Preferences|{{SITENAME}} preferenze tue]].",
@@ -354,6 +386,7 @@ No te sce scurdanne de cangià le [[Special:Preferences|{{SITENAME}} preferenze 
 'yourpasswordagain'         => "Scrive 'a passuord notra vote:",
 'remembermypassword'        => "Arrencuerdete 'u nome mie sus a stu combiuter",
 'yourdomainname'            => "'U nome d'u dominie tue:",
+'externaldberror'           => "Vide bbuene, o stè 'n'errore de autendicazione a 'u database oppure tu non ge puè aggiorna 'u cunde tue esterne.",
 'login'                     => 'Tràse',
 'nav-login-createaccount'   => 'Tràse / Reggistrete',
 'loginprompt'               => "Tu a tenè le cookies abilitate pe tràse jndr'à {{SITENAME}}.",
@@ -385,7 +418,18 @@ Addà essere assaje assaje sotte a $1 {{PLURAL:$1|carattere|carattere}}.",
 'prefs-help-realname'       => "'U nome vere (quidde d'u munne reale) jè facoltative.
 Ce tu 'u mitte, a fatje ca è fatte t'avène ricanusciute.",
 'loginerror'                => 'Errore de collegamende',
+'prefs-help-email'          => "L'indirizze e-mail jè facoltative ma te dè 'a possibbilità de mannarte 'na password nova nove ce tu te scuèrde quedde ca tenive.
+Tu puè pure scacchià de lassà otre condatte ausanne l'utende tue o le pàggene de le 'ngazzaminde senza ca abbesogne de fa canoscere l'idendità toje.",
 'prefs-help-email-required' => "L'indirizze e-mail jè obbligatorie.",
+'nocookiesnew'              => "'U cunde utende ha state ccrejete ma angore non g'è trasute jndr'à {{SITENAME}}.
+
+{{SITENAME}} ause le cookie pe fà collegà l'utinde.
+Tu tine le cookie disabbilitete.
+Pe piacere, ce vuè ccu trase, abilitesce le cookie e pò prueve a mettere 'a ''login'' e 'a password.",
+'nocookieslogin'            => "{{SITENAME}} ause le cookie pe fà trasè l'utinde.
+
+Tu tine le cookie disabbilitete.
+Pe piacere, vide ce l'abilitesce e pò prueve 'n'otra vote a mettere le date tue.",
 'noname'                    => "Non gìè specifichete 'nu nome utende valide.",
 'loginsuccesstitle'         => 'Tutte a poste, è trasute!',
 'loginsuccess'              => "'''Mò tu si colleghete jndr'à {{SITENAME}} cumme \"\$1\".'''",
@@ -410,6 +454,7 @@ Ce quacche otre 'nvece ha fatte sta rechieste, o ce tu t'è recurdate 'a passuor
 'noemail'                   => 'Non ge stonne email reggistrete pe l\'utende "$1".',
 'passwordsent'              => "'Na nova passuord ha state mannete a l'indirizze e-mail reggistrete pe \"\$1\".
 Pe piacere, colleghete n'otra vota quanne l'è ricevute.",
+'blocked-mailpassword'      => "L'indirizze IP tue jè blocchete pe le cangiaminde e accussì tu non ge puè ausà 'a funzione de recupere d'a password pe prevenìe l'abbuse.",
 'eauthentsent'              => "'N'e-mail de conferme ha state mannete a l'indirizze ca tu è ditte.
 Apprime ca otre e-mail avènene mannete a 'u cunde tue, tu ha seguì le 'struzione ca stonne jndr'à l'e-mail, pe confermà l'iscrizione.",
 'mailerror'                 => "Errore mannanne 'a mail: $1",
@@ -430,6 +475,7 @@ Apprime ca otre e-mail avènene mannete a 'u cunde tue, tu ha seguì le 'struzio
 'resetpass_submit'          => "'Mboste 'a passuord e colleghete",
 'resetpass_success'         => "'A password toje ha state cangete cu successe! Mò te puè collegà...",
 'resetpass_forbidden'       => 'Le Password non ge ponne cangià',
+'resetpass-no-info'         => 'Tu a essere colleghete pe accedere a sta pàgene direttamende.',
 'resetpass-submit-loggedin' => "Cange 'a password",
 'resetpass-temp-password'   => 'Password temboranea:',
 
@@ -530,6 +576,8 @@ Pe piacere considere de cangià 'a pàgene a stuezze stuezze ausanne le sezione.
 'templatesusedsection'             => "Jndr'à sta sezione sonde ausete chiste template:",
 'template-protected'               => '(prutette)',
 'template-semiprotected'           => '(mmienze protette)',
+'hiddencategories'                 => 'Sta pàgene jè membre de {{PLURAL:$1|1 categorja|$1 categorije}} scunnute:',
+'nocreatetitle'                    => "Ccreazione d'a pàgene limitete",
 'nocreatetext'                     => "{{SITENAME}} ha restritte l'abilità de ccrejà pàggene nuéve.
 Tu puè turnà rrete e cangià 'na pàgene ca già esiste, oppure puè [[Special:UserLogin|trasè o ccrejà n'utende nuéve]].",
 'nocreate-loggedin'                => 'Non ge tine le permesse pe ccreja pàggene nuève.',
@@ -545,6 +593,10 @@ Pare proprie ca l'onne scangellete.",
 'edit-conflict'                    => 'conflitte de cangiaminde.',
 'edit-no-change'                   => "'U cangiamende ca p fatte, avène scettate purcè 'u teste non g'à cangete manghe de 'na virgola.",
 'edit-already-exists'              => "Non ge puè ccrejà 'na pàgene nove purcè esiste già!",
+
+# Parser/template warnings
+'parser-template-loop-warning'            => "Amme acchiete 'nu cicle de template: [[$1]]",
+'parser-template-recursion-depth-warning' => "Ha state supranete 'u limite di ricorsione de le template ($1)",
 
 # Account creation failure
 'cantcreateaccounttitle' => "Non ge puè ccrejà 'nu cunde utende",
@@ -588,12 +640,15 @@ Leggenda: (cur) = differenze cu 'a versiona corrende,
 'rev-deleted-event'      => "(azione de l'archivie scangillete)",
 'rev-delundel'           => 'fa vedè/scunne',
 'revisiondelete'         => 'Scangille/Repristine revisiune',
+'revdelete-selected'     => "'''{{PLURAL:$2|Revisiona selezionete|Revisiune selezionete}} de [[:$1]]:'''",
+'revdelete-legend'       => "'Mboste le restriziune sus 'a visibbilità",
 'revdelete-hide-text'    => "Scunne 'u teste d'a revisione",
 'revdelete-hide-name'    => 'Scunne azione e obbiettive',
 'revdelete-hide-comment' => 'Scunne le commende de le cangiaminde',
 'revdelete-hide-user'    => "Scunne 'u nome utende/IP de quidde ca ha fatte 'u cangiamende",
 'revdelete-hide-image'   => "Scunne 'u codenute d'u fail",
 'revdelete-log'          => 'Archivie de le commende:',
+'revdelete-submit'       => 'Applichesce a le revisiune selezionete',
 'revdel-restore'         => "Cange 'a visibilità",
 'pagehist'               => "Storie d'a vôsce",
 'deletedhist'            => "Storie d'u scangellamende",
@@ -611,11 +666,13 @@ Leggenda: (cur) = differenze cu 'a versiona corrende,
 'suppressionlog' => 'Archivie de le soppressiune',
 
 # History merging
-'mergehistory-from'        => 'Pàgene sorgende:',
-'mergehistory-into'        => 'Pàgene de destinazione:',
-'mergehistory-submit'      => "Scuagghije 'nzieme le revisiune",
-'mergehistory-autocomment' => "Squagghiete [[:$1]] jndr'à [[:$2]]",
-'mergehistory-comment'     => "Squagghiete [[:$1]] jndr'à [[:$2]]: $3",
+'mergehistory-from'           => 'Pàgene sorgende:',
+'mergehistory-into'           => 'Pàgene de destinazione:',
+'mergehistory-submit'         => "Scuagghije 'nzieme le revisiune",
+'mergehistory-no-source'      => "'A pàgena sorgende $1 non g'esiste.",
+'mergehistory-no-destination' => "'A pàgene de destinazione $1 non g'esiste.",
+'mergehistory-autocomment'    => "Squagghiete [[:$1]] jndr'à [[:$2]]",
+'mergehistory-comment'        => "Squagghiete [[:$1]] jndr'à [[:$2]]: $3",
 
 # Merge log
 'mergelog' => 'Archivije de le scuagghiaminde',
@@ -711,6 +768,7 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'searchprofile-articles-tooltip'  => "Cirche jndr'à $1",
 'searchprofile-project-tooltip'   => "Cirche jndr'à $1",
 'searchprofile-images-tooltip'    => 'Cirche pe le fail',
+'searchprofile-advanced-tooltip'  => "Cirche jndr'à le namespace personalizzete",
 'search-result-size'              => '$1 ({{PLURAL:$2|1 parole|$2 parole}})',
 'search-result-score'             => "'Mbortanze: $1%",
 'search-redirect'                 => '(Redirette $1)',
@@ -721,9 +779,14 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'search-interwiki-more'           => '(de cchiù)',
 'search-mwsuggest-enabled'        => 'cu le consiglie',
 'search-mwsuggest-disabled'       => 'senza consiglie',
+'search-relatedarticle'           => 'Colleghete',
+'mwsuggest-disable'               => 'Disabbilete le conziglie in AJAX',
+'searchrelated'                   => 'colleghete',
 'searchall'                       => 'tutte',
 'powersearch'                     => 'Ricerche avanzete',
+'powersearch-legend'              => 'Ricerche avanzete',
 'powersearch-ns'                  => "Cirche jndr'à le namespace:",
+'powersearch-redir'               => 'Liste de le ridirezionaminde',
 'powersearch-field'               => 'Cirche pe',
 'search-external'                 => 'Ricerche esterne',
 
@@ -732,8 +795,13 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'mypreferences'             => 'Me piece accussì',
 'prefs-edits'               => 'Numere de cangiaminde:',
 'prefsnologin'              => 'Non ge sinde colleghete',
+'prefsnologintext'          => 'Tu a essere <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} colleghete]</span> pe \'mbostà le preferenze de l\'utinde.',
 'qbsettings'                => 'Barra veloce',
 'qbsettings-none'           => 'Ninde',
+'qbsettings-fixedleft'      => 'Fissete a sinistre (Fixed left)',
+'qbsettings-fixedright'     => 'Fissete a destre (Fixed right)',
+'qbsettings-floatingleft'   => 'Volanne a sinistre (Floating left)',
+'qbsettings-floatingright'  => 'Volanne a destre (Floating right)',
 'changepassword'            => "Cange 'a password",
 'skin'                      => 'Skin',
 'skin-preview'              => 'Andeprime',
@@ -745,9 +813,12 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'math_unknown_function'     => 'funziona scanusciute',
 'math_lexing_error'         => 'errore de lessiche',
 'math_syntax_error'         => 'errore de sintassi',
+'math_image_error'          => "'A conversione d'u PNG ha fallite;
+condrolle ce l'installazione de latex, dvips, gs e convertitore jè corrette",
 'math_bad_tmpdir'           => "Non ge puè scrivere o ccrejà 'na cartelle temboranea de math",
 'math_bad_output'           => "Non ge puè scrivere o ccrejà 'na cartelle de destinazzione de math",
 'prefs-personal'            => "Profile de l'utende",
+'prefs-rc'                  => 'Cangiaminde recende',
 'prefs-watchlist'           => 'Pàggene condrollete',
 'prefs-watchlist-days-max'  => '(massime 7 sciurne)',
 'prefs-watchlist-edits-max' => '(numere massime: 1000)',
@@ -762,6 +833,7 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'contextlines'              => 'Linne pe collegamende:',
 'contextchars'              => 'Condeste pe linee:',
 'recentchangesdays-max'     => '(massime $1 {{PLURAL:$1|sciurne|sciurne}})',
+'savedprefs'                => 'Le preferenze tue onne state aggiornete.',
 'timezonelegend'            => "Orarie d'a zone",
 'localtime'                 => 'Orarie lochele:',
 'timezoneselect'            => "Orarie de l'area:",
@@ -772,6 +844,7 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'files'                     => 'Fails',
 
 # User rights
+'userrights-lookup-user'         => "Gestisce le gruppe de l'utinde",
 'userrights-user-editname'       => "Mitte 'nu nome utende:",
 'userrights-editusergroup'       => "Cange le gruppe d'utinde",
 'saveusergroups'                 => "Reggistre le gruppe d'utinde",
@@ -803,13 +876,18 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'grouppage-bureaucrat'    => '{{ns:project}}:Burocrate',
 
 # Rights
-'right-minoredit' => 'Signe le cangiaminde cumme stuedéche',
-'right-move'      => 'Spuéste le pàggene',
-'right-upload'    => 'Careche le fail',
-'right-delete'    => 'Scangille le pàggene',
-'right-bigdelete' => "Scangille le pàggene cu 'na storia longa longa",
-'right-block'     => 'Blocche otre utinde a fà le cangiaminde',
-'right-import'    => "Pàggene 'mbortete da otre Uicchipèdie",
+'right-read'          => 'Ligge le pàggene',
+'right-edit'          => 'Cange le pàggene',
+'right-createpage'    => "Ccreje le pàggene (ca non ge tènene le pàggene de le 'ngazzaminde)",
+'right-minoredit'     => 'Signe le cangiaminde cumme stuedéche',
+'right-move'          => 'Spuéste le pàggene',
+'right-upload'        => 'Careche le fail',
+'right-upload_by_url' => "Careche 'nu file da l'indirizze URL",
+'right-delete'        => 'Scangille le pàggene',
+'right-bigdelete'     => "Scangille le pàggene cu 'na storia longa longa",
+'right-undelete'      => "Repristine 'na pàgene",
+'right-block'         => 'Blocche otre utinde a fà le cangiaminde',
+'right-import'        => "Pàggene 'mbortete da otre Uicchipèdie",
 
 # User rights log
 'rightslog'  => "Archivie de le diritte de l'utende",
@@ -818,7 +896,10 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'           => 'ligge sta pàgene',
 'action-edit'           => 'cange sta pàgene',
+'action-createpage'     => 'ccreje le pàggene',
 'action-createtalk'     => "ccreje le pàggene de le 'ngazzaminde",
+'action-createaccount'  => 'ccreje stu cunde utende',
+'action-minoredit'      => 'signe stu cangiamende cumme stuédeche',
 'action-move'           => 'spuéste sta pàgene',
 'action-move-subpages'  => 'spuéste sta pàgene e tutte chidde ca stonne sotte a jedde',
 'action-upload'         => 'careche stu fail',
@@ -826,6 +907,7 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'action-deleterevision' => 'scangille sta versione',
 'action-import'         => "'mborte sta pàgene da n'otra Uicchi",
 'action-userrights'     => "cange tutte le deritte de l'utende",
+'action-siteadmin'      => "blocche o sblocche 'u database",
 
 # Recent changes
 'nchanges'                       => '$1 {{PLURAL:$1|cangiaminde|cangiaminde}}',
@@ -853,6 +935,7 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'rc_categories_any'              => 'Tutte',
 'rc-change-size'                 => '$1',
 'newsectionsummary'              => '/* $1 */ seziona nove',
+'rc-enhanced-expand'             => 'Fà vedè le dettaglie (ha ausà JavaScript)',
 'rc-enhanced-hide'               => 'Scunne le dettaglie',
 
 # Recent changes linked
@@ -865,31 +948,36 @@ Pàggene sus 'a [[Special:Watchlist|le Pàggene condrollete]] sonde in '''grasce
 'recentchangeslinked-page'     => "Nome d'a vôsce:",
 
 # Upload
-'upload'            => "Careche 'u file",
-'uploadbtn'         => "Careche 'nu fail",
-'reupload'          => 'Recareche',
-'uploadnologin'     => 'non ge sinde colleghete',
-'uploaderror'       => 'Errore de carecamende',
-'upload-permitted'  => 'Tipe de file permesse: $1.',
-'upload-preferred'  => 'Tipe de file preferite: $1.',
-'upload-prohibited' => 'Tipe de file proibbite: $1.',
-'uploadlog'         => 'Archivie de le carecaminde',
-'uploadlogpage'     => 'Archivije de le carecaminde',
-'filename'          => "Nome d'u fail",
-'filedesc'          => 'Riepileghe',
-'fileuploadsummary' => 'Riepileghe:',
-'filestatus'        => "State d'u Copyright:",
-'filesource'        => 'Sorgende:',
-'uploadedfiles'     => 'File carechete',
-'fileexists-thumb'  => "<center>'''File già ca esiste'''</center>",
-'successfulupload'  => 'Carecamende sciute apposte',
-'savefile'          => "Reggistre 'u file",
-'uploadedimage'     => 'carechete "[[$1]]"',
-'overwroteimage'    => 'ha state carechete \'na versiona nove de "[[$1]]"',
-'uploadscripted'    => "Stu file condene HTML o codece de script ca ponne essere inderpretete jndr'à 'nu mode sbagliete da le browser.",
-'sourcefilename'    => "Nome d'u fail d'origgine:",
-'destfilename'      => "Nome d'u file de destinazione:",
-'watchthisupload'   => 'Condrolle sta pàgene',
+'upload'             => "Careche 'u file",
+'uploadbtn'          => "Careche 'nu fail",
+'reupload'           => 'Recareche',
+'uploadnologin'      => 'non ge sinde colleghete',
+'uploadnologintext'  => 'Tu a essere [[Special:UserLogin|colleghete]] pe carecà le file.',
+'uploaderror'        => 'Errore de carecamende',
+'upload-permitted'   => 'Tipe de file permesse: $1.',
+'upload-preferred'   => 'Tipe de file preferite: $1.',
+'upload-prohibited'  => 'Tipe de file proibbite: $1.',
+'uploadlog'          => 'Archivie de le carecaminde',
+'uploadlogpage'      => 'Archivije de le carecaminde',
+'filename'           => "Nome d'u fail",
+'filedesc'           => 'Riepileghe',
+'fileuploadsummary'  => 'Riepileghe:',
+'filestatus'         => "State d'u Copyright:",
+'filesource'         => 'Sorgende:',
+'uploadedfiles'      => 'File carechete',
+'fileexists-thumb'   => "<center>'''File già ca esiste'''</center>",
+'successfulupload'   => 'Carecamende sciute apposte',
+'savefile'           => "Reggistre 'u file",
+'uploadedimage'      => 'carechete "[[$1]]"',
+'overwroteimage'     => 'ha state carechete \'na versiona nove de "[[$1]]"',
+'uploadscripted'     => "Stu file condene HTML o codece de script ca ponne essere inderpretete jndr'à 'nu mode sbagliete da le browser.",
+'sourcefilename'     => "Nome d'u fail d'origgine:",
+'destfilename'       => "Nome d'u file de destinazione:",
+'upload-maxfilesize' => "Dimenzione massima d'u file: $1",
+'watchthisupload'    => 'Condrolle sta pàgene',
+
+'upload-file-error' => 'Errore inderne',
+'upload-misc-error' => 'Errore de carecamende scanusciute',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => "Non ge riesche a raggiungere l'URL",
@@ -907,42 +995,56 @@ Pàggene sus 'a [[Special:Watchlist|le Pàggene condrollete]] sonde in '''grasce
 'imagelist_description' => 'Descrizione',
 
 # File description page
-'filehist'                      => 'cunde',
-'filehist-help'                 => "Cazze sus 'na date/orarie pe vedè 'u fail a cumme asseva jndr'à quidde timbe.",
-'filehist-deleteall'            => 'scangille tutte',
-'filehist-deleteone'            => 'scangille',
-'filehist-current'              => 'corrende',
-'filehist-datetime'             => 'Sciurne/Orarie',
-'filehist-thumb'                => 'Thumbnail',
-'filehist-thumbtext'            => "Thumbnail p'a versione de $1",
-'filehist-nothumb'              => 'Nisciuna thumbnail',
-'filehist-user'                 => 'Utende',
-'filehist-dimensions'           => 'Dimenziune',
-'filehist-filesize'             => "Dimenzione d'u file",
-'filehist-comment'              => 'Commende',
-'imagelinks'                    => 'Collegaminde',
-'linkstoimage'                  => '{{PLURAL:$1|sta pàgene apponde |$1 ste pàggene appondene}} a stu fail:',
-'nolinkstoimage'                => 'Non ge stonne pàggene ca appodene a stu fail.',
-'sharedupload'                  => 'This file is a shared upload and may be used by other projects.',
-'shareduploadconflict-linktext' => "n'otre fail",
-'noimage'                       => "Non g'esiste nisciune fail cu stu nome, ma tu puè $1.",
-'noimage-linktext'              => 'carechene une',
-'uploadnewversion-linktext'     => "Careche 'na versiona nove de stu fail",
+'filehist'                       => 'cunde',
+'filehist-help'                  => "Cazze sus 'na date/orarie pe vedè 'u fail a cumme asseva jndr'à quidde timbe.",
+'filehist-deleteall'             => 'scangille tutte',
+'filehist-deleteone'             => 'scangille',
+'filehist-current'               => 'corrende',
+'filehist-datetime'              => 'Sciurne/Orarie',
+'filehist-thumb'                 => 'Thumbnail',
+'filehist-thumbtext'             => "Thumbnail p'a versione de $1",
+'filehist-nothumb'               => 'Nisciuna thumbnail',
+'filehist-user'                  => 'Utende',
+'filehist-dimensions'            => 'Dimenziune',
+'filehist-filesize'              => "Dimenzione d'u file",
+'filehist-comment'               => 'Commende',
+'imagelinks'                     => 'Collegaminde',
+'linkstoimage'                   => '{{PLURAL:$1|sta pàgene apponde |$1 ste pàggene appondene}} a stu fail:',
+'nolinkstoimage'                 => 'Non ge stonne pàggene ca appodene a stu fail.',
+'sharedupload'                   => 'This file is a shared upload and may be used by other projects.',
+'shareduploadduplicate-linktext' => "'n'otre file",
+'shareduploadconflict-linktext'  => "n'otre fail",
+'noimage'                        => "Non g'esiste nisciune fail cu stu nome, ma tu puè $1.",
+'noimage-linktext'               => 'carechene une',
+'uploadnewversion-linktext'      => "Careche 'na versiona nove de stu fail",
 
 # File reversion
+'filerevert'          => "'Nvirte $1",
 'filerevert-backlink' => '← $1',
+'filerevert-legend'   => "'Nvirte 'u file",
 'filerevert-comment'  => 'Commende:',
+'filerevert-submit'   => "'Nvirte",
 
 # File deletion
-'filedelete'          => 'Scangille $1',
-'filedelete-backlink' => '← $1',
-'filedelete-legend'   => "Scangille 'u file",
-'filedelete-submit'   => 'Scangille',
+'filedelete'                  => 'Scangille $1',
+'filedelete-backlink'         => '← $1',
+'filedelete-legend'           => "Scangille 'u file",
+'filedelete-submit'           => 'Scangille',
+'filedelete-nofile'           => "'''$1''' non g'esiste.",
+'filedelete-otherreason'      => 'Otre/addizionale mutive:',
+'filedelete-reason-otherlist' => 'Otre mutive',
+'filedelete-reason-dropdown'  => "*Mutive comune pe le scangellaminde
+** Violazione d'u Copyright
+** File duplichete",
+'filedelete-edit-reasonlist'  => "Cange le mutive d'a scangellazione",
 
 # MIME search
 'mimesearch' => "Ricerca jndr'à 'u MIME",
 'mimetype'   => 'Tipe de MIME:',
 'download'   => 'scareche',
+
+# Unwatched pages
+'unwatchedpages' => 'Pàggene ca non ge ste condrolle',
 
 # List redirects
 'listredirects' => 'Liste de le ridirezionaminde',
@@ -958,16 +1060,21 @@ Pàggene sus 'a [[Special:Watchlist|le Pàggene condrollete]] sonde in '''grasce
 'randomredirect' => 'Redirezionamende a uecchie',
 
 # Statistics
-'statistics'              => 'Statisteche',
-'statistics-header-pages' => 'Pàgene de le statisteche',
-'statistics-header-edits' => 'Cange le statisteche',
-'statistics-header-views' => 'Vide le statisteche',
-'statistics-header-users' => "Statisteche de l'utende",
-'statistics-articles'     => 'Pàggene de le condenute',
-'statistics-pages'        => 'Pàggene',
-'statistics-pages-desc'   => "Tutte le pàggene jndr'à Uicchi, mettènne le pàggene de le 'ngazzaminde, ridirezionaminde, ecc.",
-'statistics-files'        => 'File carechete',
-'statistics-users'        => '[[Special:ListUsers|Utinde reggistrete]]',
+'statistics'                   => 'Statisteche',
+'statistics-header-pages'      => 'Pàgene de le statisteche',
+'statistics-header-edits'      => 'Cange le statisteche',
+'statistics-header-views'      => 'Vide le statisteche',
+'statistics-header-users'      => "Statisteche de l'utende",
+'statistics-articles'          => 'Pàggene de le condenute',
+'statistics-pages'             => 'Pàggene',
+'statistics-pages-desc'        => "Tutte le pàggene jndr'à Uicchi, mettènne le pàggene de le 'ngazzaminde, ridirezionaminde, ecc.",
+'statistics-files'             => 'File carechete',
+'statistics-views-total'       => 'Visite totele',
+'statistics-views-peredit'     => 'Visite pe cangiaminde',
+'statistics-users'             => '[[Special:ListUsers|Utinde reggistrete]]',
+'statistics-users-active'      => 'Utinde attive',
+'statistics-users-active-desc' => "Sonde l'utinde ca onne fatte quacchecose jndr'à l'urteme {{PLURAL:$1|giurne|$1 giurne}}",
+'statistics-mostpopular'       => 'Pàggene cchiù visitete',
 
 'disambiguations' => 'Pàggene de disambiguazione',
 
@@ -985,8 +1092,11 @@ Pàggene sus 'a [[Special:Watchlist|le Pàggene condrollete]] sonde in '''grasce
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
+'ncategories'             => '$1 {{PLURAL:$1|categorije|categorije}}',
 'nlinks'                  => '$1 {{PLURAL:$1|collegamende|collegaminde}}',
 'nmembers'                => '$1 {{PLURAL:$1|membre|membre}}',
+'nrevisions'              => '$1 {{PLURAL:$1|revisione|revisiune}}',
+'nviews'                  => '$1 {{PLURAL:$1|visite|visite}}',
 'lonelypages'             => 'Pàggene orfane',
 'uncategorizedpages'      => 'Pàggene senza categorije',
 'uncategorizedcategories' => 'Categorije senza categorije',
@@ -994,8 +1104,10 @@ Pàggene sus 'a [[Special:Watchlist|le Pàggene condrollete]] sonde in '''grasce
 'uncategorizedtemplates'  => 'Templeit senza categorije',
 'unusedcategories'        => 'Categorije ca non ge sonde ausete',
 'unusedimages'            => "Fail ca non g'avènene ausete",
+'popularpages'            => 'Pàggene cchiù canusciute',
 'wantedcategories'        => 'Categorije cerchete',
 'wantedpages'             => 'Pàggene cchiù cerchete',
+'wantedfiles'             => 'File cchiù cerchete',
 'mostlinked'              => 'Pàggene cchiù appundete',
 'mostlinkedcategories'    => 'Categorije cchiù appundete',
 'mostlinkedtemplates'     => 'Templeit cchiù appundete',
@@ -1009,11 +1121,13 @@ Pàggene sus 'a [[Special:Watchlist|le Pàggene condrollete]] sonde in '''grasce
 'protectedpages'          => 'Pàggene prutette',
 'protectedtitles'         => 'Titele prutette',
 'listusers'               => "Liste de l'utende",
+'usereditcount'           => '$1 {{PLURAL:$1|cangiamende|cangiaminde}}',
 'newpages'                => 'Pàggene nuève',
 'newpages-username'       => "Nome de l'utende:",
 'ancientpages'            => 'Pàggene vìcchje',
 'move'                    => 'Spuèste',
 'movethispage'            => 'Spueste sta pàgene',
+'notargettitle'           => 'Nisciuna destinazione',
 'pager-newer-n'           => '{{PLURAL:$1|cchiù nueve 1|cchiù nueve $1}}',
 'pager-older-n'           => '{{PLURAL:$1|cchiù vecchie 1|cchiù vicchie $1}}',
 
@@ -1027,6 +1141,7 @@ Pàggene sus 'a [[Special:Watchlist|le Pàggene condrollete]] sonde in '''grasce
 'speciallogtitlelabel' => 'Titele:',
 'log'                  => 'Archivije',
 'all-logs-page'        => "Tutte l'archivije",
+'logempty'             => "Non ge stè 'n'anema de priatorie jndr'à l'archivije.",
 
 # Special:AllPages
 'allpages'          => 'Tutte le pàggene',
@@ -1043,7 +1158,12 @@ Pàggene sus 'a [[Special:Watchlist|le Pàggene condrollete]] sonde in '''grasce
 'allpagesprefix'    => "Fa vedè le pàggene cu 'u prefisse:",
 
 # Special:Categories
-'categories' => 'Le Categorije',
+'categories'                    => 'Le Categorije',
+'special-categories-sort-count' => 'ordere pe condegge',
+'special-categories-sort-abc'   => 'ordere alfabbeticamende',
+
+# Special:DeletedContributions
+'deletedcontributions' => "Condrebbute de l'utende scangellete",
 
 # Special:Interwiki
 'interwiki_addbutton'     => 'Aggiunge',
@@ -1054,19 +1174,25 @@ Pàggene sus 'a [[Special:Watchlist|le Pàggene condrollete]] sonde in '''grasce
 'interwiki_reasonfield'   => 'Mutive',
 
 # Special:LinkSearch
-'linksearch-ns' => 'Neimspeise:',
-'linksearch-ok' => 'Cirche',
+'linksearch-ns'   => 'Neimspeise:',
+'linksearch-ok'   => 'Cirche',
+'linksearch-line' => '$1 jè pundete da $2',
 
 # Special:ListUsers
 'listusers-submit'   => 'Fa vedè',
 'listusers-noresult' => 'Nisciune utende acchiete.',
 
 # Special:Log/newusers
-'newuserlog-create-entry' => 'Utende nuève',
+'newuserlog-byemail'          => 'password mannete pe e-mail',
+'newuserlog-create-entry'     => 'Utende nuève',
+'newuserlog-create2-entry'    => 'cunde utende ccrejete pe $1',
+'newuserlog-autocreate-entry' => 'Cunde utende ccrejete automaticamende',
 
 # Special:ListGroupRights
+'listgrouprights'                 => 'Deritte de le gruppe utinde',
 'listgrouprights-group'           => 'Gruppe',
 'listgrouprights-rights'          => 'Diritte',
+'listgrouprights-helppage'        => 'Help:Deritte de le gruppe',
 'listgrouprights-members'         => '(liste de le membre)',
 'listgrouprights-right-display'   => '$1 ($2)',
 'listgrouprights-addgroup-all'    => 'Puè aggiungere tutte le gruppe',
@@ -1075,6 +1201,7 @@ Pàggene sus 'a [[Special:Watchlist|le Pàggene condrollete]] sonde in '''grasce
 # E-mail user
 'emailuser'       => "Manne n'email a stu utende",
 'emailpage'       => "E-mail de l'utende",
+'usermailererror' => "L'oggette ''Mail'' ha returnete 'n'errore:",
 'defemailsubject' => 'e-mail de {{SITENAME}}',
 'noemailtitle'    => 'Nisciune indirizze e-mail',
 'email-legend'    => "Manne 'na mail a n'otre utende de {{SITENAME}}",
@@ -1110,6 +1237,7 @@ Le cangiaminde future a sta pàgene e 'a pàgene de le 'ngazzaminde associete le
 'watching'   => 'Fà vedè...',
 'unwatching' => 'No fà vedè...',
 
+'enotif_reset'                 => 'Signe tutte le pàggene cumme visitete',
 'enotif_newpagetext'           => "Queste è 'na pàgena nove.",
 'enotif_impersonal_salutation' => 'Utende de {{SITENAME}}',
 'changed'                      => 'cangete',
@@ -1120,6 +1248,8 @@ Le cangiaminde future a sta pàgene e 'a pàgene de le 'ngazzaminde associete le
 'deletepage'            => "Scangille 'a pàgene",
 'confirm'               => 'Conferme',
 'excontent'             => "'u condenute ere: '$1'",
+'excontentauthor'       => "'u condenute ere: '$1' (e l'uneche condrebbutore ere '[[Special:Contributions/$2|$2]]')",
+'exblank'               => "'a vosce ere vacande",
 'delete-confirm'        => 'Scangille "$1"',
 'delete-backlink'       => '← $1',
 'delete-legend'         => 'Scangille',
@@ -1140,7 +1270,11 @@ Vide $2 pe \'na reggistrazione de le scangellaziune recende.',
 
 # Protect
 'protectlogpage'              => 'Archibie de le prutezziune',
+'protectedarticle'            => 'prutette "[[$1]]"',
+'unprotectedarticle'          => 'sprutette "[[$1]]"',
+'protect-title'               => 'Cange levèlle de protezione pe "$1"',
 'protect-backlink'            => '← $1',
+'protect-legend'              => "Conferme 'a protezione",
 'protectcomment'              => 'Commende:',
 'protectexpiry'               => 'More:',
 'protect_expiry_invalid'      => 'Orarie de scadenze jè invalide.',
@@ -1159,6 +1293,7 @@ Tu puè cangià 'u levèlle de protezione de sta pàgene ma stu cangiamende non 
 'protect-expiring'            => "more 'u $1 (UTC)",
 'protect-cascade'             => "Le pàggene prutette 'ngludene sta pàgene (protezione a caschete)",
 'protect-cantedit'            => 'Tu non ge puè cangià le levèlle de protezzione de sta pàgene, purcè tu non ge tine le diritte pe cangiarle.',
+'protect-othertime-op'        => 'otre orarie',
 'protect-expiry-options'      => '2 ore:2 hours,1 giurne:1 day,3 giurne:3 days,1 sumane:1 week,2 sumane:2 weeks,1 mese:1 month,3 mise:3 months,6 mise:6 months,1 anne:1 year,infinite:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Permesse:',
 'restriction-level'           => 'Levèlle de restrizione:',
@@ -1175,11 +1310,21 @@ Tu puè cangià 'u levèlle de protezione de sta pàgene ma stu cangiamende non 
 # Restriction levels
 'restriction-level-sysop'         => 'tutte prutette',
 'restriction-level-autoconfirmed' => "'mmienze prutette",
+'restriction-level-all'           => 'ogne levèlle',
 
 # Undelete
-'undeletebtn'            => 'Repristine',
-'undeletecomment'        => 'Commende:',
-'undelete-search-submit' => 'Cirche',
+'undelete'                => 'Vide le pàggene scangellete',
+'viewdeletedpage'         => 'Vide le pàggene scangellete',
+'undelete-fieldset-title' => 'Repristine le revisiune',
+'undeleterevisions'       => '$1 {{PLURAL:$1|revisione|revisiune}} archiviete',
+'undelete-revision'       => 'Revisiona scangellete de $1 (cumme de $4, a $5) da $3:',
+'undeletebtn'             => 'Repristine',
+'undeletelink'            => 'repristine',
+'undeletereset'           => 'Azzere',
+'undeleteinvert'          => 'Selezione a smerse',
+'undeletecomment'         => 'Commende:',
+'undeletedarticle'        => 'ripristinete "[[$1]]"',
+'undelete-search-submit'  => 'Cirche',
 
 # Namespace form on various pages
 'namespace'      => 'Namespace:',
@@ -1214,16 +1359,22 @@ Tu puè cangià 'u levèlle de protezione de sta pàgene ma stu cangiamende non 
 'whatlinkshere-links'    => '← collegaminde',
 
 # Block/unblock
-'blockip'           => "Blocche l'utende",
-'ipboptions'        => '2 ore:2 hours,1 giurne:1 day,3 giurne:3 days,1 sumane:1 week,2 sumane:2 weeks,1 mese:1 month,3 mise:3 months,6 mise:6 months,1 anne:1 year,infinite:infinite', # display1:time1,display2:time2,...
-'ipblocklist'       => "'Ndirizze IP e nome utinde blocchete",
-'blocklink'         => 'blocche',
-'unblocklink'       => 'sblocche',
-'contribslink'      => 'condrebbute',
-'blocklogpage'      => 'Archivije de le Bloccaminde',
-'blocklogentry'     => "blocchete [[$1]] pe 'nu timbe de $2 $3",
-'proxyblocksuccess' => 'Spicciete.',
-'sorbs'             => 'DNSBL',
+'blockip'             => "Blocche l'utende",
+'ipbanononly'         => "Blocche sulamende l'utinde anonime",
+'ipbsubmit'           => "Blocche st'utende",
+'ipboptions'          => '2 ore:2 hours,1 giurne:1 day,3 giurne:3 days,1 sumane:1 week,2 sumane:2 weeks,1 mese:1 month,3 mise:3 months,6 mise:6 months,1 anne:1 year,infinite:infinite', # display1:time1,display2:time2,...
+'ipbotheroption'      => 'otre',
+'ipblocklist'         => "'Ndirizze IP e nome utinde blocchete",
+'ipblocklist-submit'  => 'Cirche',
+'blocklink'           => 'blocche',
+'unblocklink'         => 'sblocche',
+'contribslink'        => 'condrebbute',
+'blocklogpage'        => 'Archivije de le Bloccaminde',
+'blocklogentry'       => "blocchete [[$1]] pe 'nu timbe de $2 $3",
+'unblocklogentry'     => 'sblocchete $1',
+'ipb_already_blocked' => '"$1" jè ggià blocchete',
+'proxyblocksuccess'   => 'Spicciete.',
+'sorbs'               => 'DNSBL',
 
 # Developer tools
 'lockdb'        => 'Blocche databeise',
@@ -1428,9 +1579,12 @@ Otre avènene scunnute pe defolt.
 'exif-meteringmode-6'   => 'Parziele',
 'exif-meteringmode-255' => 'Otre',
 
-'exif-lightsource-0' => 'Scanusciute',
+'exif-lightsource-0'  => 'Scanusciute',
+'exif-lightsource-24' => 'ISO studio tungstene',
 
 'exif-focalplaneresolutionunit-2' => 'pollece (inches)',
+
+'exif-sensingmethod-1' => 'Indefinite',
 
 'exif-customrendered-0' => 'Processe normele',
 'exif-customrendered-1' => 'Processe personalizzete',
@@ -1450,6 +1604,8 @@ Otre avènene scunnute pe defolt.
 
 'exif-subjectdistancerange-0' => 'Scanusciute',
 'exif-subjectdistancerange-1' => 'Macro',
+'exif-subjectdistancerange-2' => "Chiude 'a viste",
+'exif-subjectdistancerange-3' => "Distanzie 'a viste",
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-k' => "Chilometre a l'ore",
@@ -1473,6 +1629,7 @@ Otre avènene scunnute pe defolt.
 'confirmemail_needlogin'   => "A confermà $1 l'indirizze email ca è mise.",
 'confirmemail_subject'     => 'Indirizze email de conferme pe {{SITENAME}}',
 'confirmemail_invalidated' => "Conferme de l'indirizze e-mail scangellete",
+'invalidateemail'          => "Scangille 'a conferme de l'e-mail",
 
 # Scary transclusion
 'scarytranscludetoolong' => '[URL jè troppe longhe]',
@@ -1481,14 +1638,18 @@ Otre avènene scunnute pe defolt.
 'trackbackremove' => ' ([$1 Scangille])',
 
 # Delete conflict
-'recreate' => "Ccreje n'otra vote",
+'deletedwhileediting' => "'''Fà attenziò''': Sta pàgene ha state scangellete apprime ca tu acumenzasse a fà 'u cangiamende!",
+'recreate'            => "Ccreje n'otra vote",
 
 # action=purge
 'confirm_purge_button' => 'OK',
 'confirm-purge-top'    => "Pulizze 'a cache de sta pàgene?",
 
 # Multipage image navigation
-'imgmultigo' => 'Veje!',
+'imgmultipageprev' => '← pàgena precedende',
+'imgmultipagenext' => 'pàgena successive →',
+'imgmultigo'       => 'Veje!',
+'imgmultigoto'     => "Veje 'a pàgene $1",
 
 # Table pager
 'ascending_abbrev'         => 'asc',
@@ -1500,13 +1661,20 @@ Otre avènene scunnute pe defolt.
 'table_pager_limit_submit' => 'Veje',
 'table_pager_empty'        => 'Nisciune resultete',
 
+# Auto-summaries
+'autosumm-new' => 'Pàgena nove: $1',
+
 # Live preview
 'livepreview-loading' => 'Stoche a careche…',
 'livepreview-ready'   => 'Stoche a careche… Agghje fenìte!',
+'livepreview-error'   => 'Non ge tè riuscite a connettere: $1 "$2".
+Prueve l\'andeprima normele.',
 
 # Watchlist editor
 'watchlistedit-normal-title'  => 'Vide le pàggene condrollete',
+'watchlistedit-normal-legend' => "Live le titele da 'a liste de le pàggene condrollete",
 'watchlistedit-normal-submit' => 'Live le titele',
+'watchlistedit-normal-done'   => "{{PLURAL:$1|1 titele ha state|$1 titele onne state}} scangellete da 'a liste de le pàggene condrollete toje:",
 'watchlistedit-raw-titles'    => 'Titele:',
 'watchlistedit-raw-submit'    => "Aggiorne 'a liste de le pàggene condrollete",
 'watchlistedit-raw-done'      => "'A liste de le pàggene condrollete ha state aggiornete.",
@@ -1541,21 +1709,25 @@ Otre avènene scunnute pe defolt.
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Cirche pe le file duplichete',
+'fileduplicatesearch-legend'   => "Cirche pe 'nu duplichete",
 'fileduplicatesearch-filename' => "Nome d'u faile:",
 'fileduplicatesearch-submit'   => 'Cirche',
 'fileduplicatesearch-info'     => "$1 × $2 pixel<br />Dimenzione d'u file: $3<br />Tipe de MIME: $4",
+'fileduplicatesearch-result-1' => '\'U file "$1" non ge tène \'na duplicazione uguale uguale.',
+'fileduplicatesearch-result-n' => '\'U file "$1" tène {{PLURAL:$2|1 duplicazione|$2 duplicaziune}} uguale uguale.',
 
 # Special:SpecialPages
-'specialpages'                 => 'Pàggene speciele',
-'specialpages-group-other'     => 'Otre pàggene speciele',
-'specialpages-group-login'     => 'Tràse / Reggistrete',
-'specialpages-group-changes'   => 'Cangiaminde recende e archivie',
-'specialpages-group-users'     => 'Utinde e deritte',
-'specialpages-group-highuse'   => 'Pàggene ausete assaje proprie',
-'specialpages-group-pages'     => 'Liste de le pàggene',
-'specialpages-group-pagetools' => 'Pàgene de le struminde',
-'specialpages-group-wiki'      => 'Date e struminde de Uicchi',
-'specialpages-group-spam'      => "Struminde p'u spam",
+'specialpages'                   => 'Pàggene speciele',
+'specialpages-group-maintenance' => "Report d'a manutenzione",
+'specialpages-group-other'       => 'Otre pàggene speciele',
+'specialpages-group-login'       => 'Tràse / Reggistrete',
+'specialpages-group-changes'     => 'Cangiaminde recende e archivie',
+'specialpages-group-users'       => 'Utinde e deritte',
+'specialpages-group-highuse'     => 'Pàggene ausete assaje proprie',
+'specialpages-group-pages'       => 'Liste de le pàggene',
+'specialpages-group-pagetools'   => 'Pàgene de le struminde',
+'specialpages-group-wiki'        => 'Date e struminde de Uicchi',
+'specialpages-group-spam'        => "Struminde p'u spam",
 
 # Special:BlankPage
 'blankpage'              => 'Pàgene vacande',

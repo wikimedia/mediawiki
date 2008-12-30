@@ -139,7 +139,24 @@ $messages = array(
 'tog-fancysig'                => 'Sahihi changa (bila kujiweka kiungo yenyewe)',
 'tog-externaleditor'          => 'Tumia kiharirio cha nje inaposhindikana (kwa wataalamu tu, inahitaji marekebisho maalum kwenye kompyuta yako',
 'tog-externaldiff'            => 'Tumia diff za nje inaposhindikana (kwa wataalamu tu, inahitaji marekebisho maalum kwenye kompyuta yako)',
+'tog-showjumplinks'           => 'Wezesha "ruka hadi" viungo vya mafikio',
+'tog-uselivepreview'          => 'Tumia kihakikio cha papohapo (JavaScript) (Experimental)',
+'tog-forceeditsummary'        => 'Nishtue pale ninapoingiza muhtasari mtupu wa kuhariri',
+'tog-watchlisthideown'        => 'Ficha kuhariri kwangu kwenye orodha ya maangalizi',
+'tog-watchlisthidebots'       => 'Ficha uhariri wa vikaragosi kwenye orodha ya maangalizi',
+'tog-watchlisthideminor'      => 'Ficha mabadliko madogo kwenye maangalizi',
+'tog-watchlisthideliu'        => 'Ficha mabadiliko yaliyofanywa na watumiaji kwenye maangalilizi',
+'tog-watchlisthideanons'      => 'Ficha mabadiliko yaliyofanywa na watumiaji wasiojisajili kwenye maangalilizi',
+'tog-nolangconversion'        => 'Lemaza mabadiliko kadhaa',
 'tog-ccmeonemails'            => 'Nitumie nakala ya barua pepe nitakazo tuma kwa watumiaji wengine',
+'tog-diffonly'                => 'Usionyeshe yaliyomo kwenye ukurasa chini ya faili za diff',
+'tog-showhiddencats'          => 'Onyesha jamii zilizofichwa',
+'tog-noconvertlink'           => 'Lemaza kiungo cha jina la badiliko',
+'tog-norollbackdiff'          => 'Ondoa faili za diff baada ya kufanyakazi ya kurejesha',
+
+'underline-always'  => 'Muda wote',
+'underline-never'   => 'Kamwe',
+'underline-default' => 'Kivinjari mbadala',
 
 # Dates
 'sunday'        => 'Jumapili',
@@ -194,11 +211,20 @@ $messages = array(
 'dec'           => 'Des',
 
 # Categories related messages
-'category_header'        => 'Makala katika jamii "$1"',
-'subcategories'          => 'Vijamii',
-'category-media-header'  => 'Picha, video, na sauti katika jamii  "$1"',
-'category-empty'         => "''Jamii hii haina ukurasa, picha, video, wala sauti yoyote.''",
-'listingcontinuesabbrev' => 'endelea',
+'pagecategories'                 => '{{PLURAL:$1|Jamii|Jamii}}',
+'category_header'                => 'Makala katika jamii "$1"',
+'subcategories'                  => 'Vijamii',
+'category-media-header'          => 'Picha, video, na sauti katika jamii  "$1"',
+'category-empty'                 => "''Jamii hii haina ukurasa, picha, video, wala sauti yoyote.''",
+'hidden-categories'              => '{{PLURAL:$1|Jamii zilizofichwa|Jamii zilizofichwa}}',
+'hidden-category-category'       => 'Jamii zilizofichwa', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => '{{PLURAL:$2|Jamii hii ina kijamii hiki tu.|Jamii hii ina kijamii kifuatacho {{PLURAL:$1|kijamii|$1 vijamii}}, nje ya $2 jumla.}}',
+'category-subcat-count-limited'  => 'Jamii hii ina {{PLURAL:$1|kijamii|$1 vijamii}} vifuatavyo.',
+'category-article-count'         => '{{PLURAL:$2|Jamii hii ina makala zifuatazo tu.|Kurasa zifuatazo {{PLURAL:$1|ni|$1 kurasa za}} katika jamii hii, nje ya $2 jumla.}}',
+'category-article-count-limited' => 'Kurasa zifuatazo {{PLURAL:$1|ni|$1 kurasa za}} katika jamii hii.',
+'category-file-count'            => '{{PLURAL:$2|Jamii hii ina faili zifuatazo tu.|Faili zifuatazo {{PLURAL:$1|ni|$1faili za}} katika jamii hii, nje ya $2 jumla.}}',
+'category-file-count-limited'    => 'Faili zifuatazo {{PLURAL:$1|file is|$1 ni faili za}} katika jamii hii.',
+'listingcontinuesabbrev'         => 'endelea',
 
 'about'          => 'Kuhusu',
 'article'        => 'Makala',
@@ -388,6 +414,12 @@ Kabla ya kutuma barua pepe nyingine kwenye akaunti hiyo, itabidi ufuate maelezo 
 kuthibitisha kwamba wewe ndiyo ni mwenye akaunti.',
 'throttled-mailpassword'    => 'Kikumbusho cha nywila tayari kimeshatumwa, ndani ya {{PLURAL:$1|hour|$1masaa}} kadhaa yaliyopita.
 Ili kuzuiya uhuni, kiumbusho cha nywila kimoja pekee utakachotumiwa kwa {{PLURAL:$1|hour|$1 masaa}} kadhaa.',
+'createaccount-text'        => 'Kuna mtu amesajili akaunti kwa kutumia anwani ya barua pepe yako kwenye  {{SITENAME}} ($4) anaitwa "$2", yenye nywila "$3".
+Inabidi uingie na kisha ubadilishe nywila yako sasa.
+
+Unaweza kupuuza ujumbe huu, endapo akaunti hii ilianzishwa kimakosa.',
+'login-throttled'           => 'Umefanya majaribio kadha wa kadha ya kutaka kuingiza nywila ya akaunti hii. Tafadhali subiri kwanza kabla ya kujaribu tena.',
+'loginlanguagelabel'        => 'Lugha: $1',
 
 # Password reset dialog
 'oldpassword' => 'Neno la siri la zamani',
@@ -905,6 +937,27 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 'watchlistall2' => 'zote',
 'namespacesall' => 'zote',
 'monthsall'     => 'zote',
+
+# E-mail address confirmation
+'confirmemail_needlogin'   => 'Unahitajika $1 kuthibitisha anwani ya barua pepe yako.',
+'confirmemail_success'     => 'Barua pepe yako imethibitishwa.
+Sasa unaweza [[Special:UserLogin|kuingia]] na kuifurahia {{SITENAME}}.',
+'confirmemail_loggedin'    => 'Anwani ya barua pepe yako imethibishwa sasa.',
+'confirmemail_error'       => 'Kuna mambo yameenda kombo hifadhi ukamilisho wako.',
+'confirmemail_subject'     => 'Barua pepe ya uthibitisho ya {{SITENAME}}',
+'confirmemail_body'        => 'Kuna mtu, huenda ikawa wewe, kutoka anwani ya IP $1, amesajili akaunti "$2" na anwani ya barua pepe hii kwenye {{SITENAME}}.
+
+Kuthibitisha ya kwamba akaunti hii inamilikiwa na wewe, unatakiwa kuwezesha njia ya barua pepe kwenye  {{SITENAME}}, fungua kiungo hiki katika kivinjari chako:
+
+$3
+
+na kama *huja* sajili akaunti hii, fuata kiungo hiki ili kubatilisha uthibitisho wa anwani ya barua pepe:
+
+$5
+
+Kodi hizi za uthibitisho zitaishia mnamo $4.',
+'confirmemail_invalidated' => 'Uthibitisho wa barua pepe umebatilishwa.',
+'invalidateemail'          => 'Batilisha barua pepe ya uthibitisho.',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Tazama mabadiliko yanayohusiana',

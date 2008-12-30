@@ -119,7 +119,8 @@ $messages = array(
 'mainpage-description' => 'मुखपृष्ठं',
 'privacy'              => 'गोपनीयविषये नीति',
 
-'editsection' => 'संपादयति',
+'newmessageslink' => 'नूतन संदेश',
+'editsection'     => 'संपादयति',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'पृष्ठ',
@@ -132,12 +133,14 @@ $messages = array(
 'viewsource' => 'स्रोत पश्यति',
 
 # Login and logout pages
+'yourpassword'            => 'सङ्केतशब्द:',
 'login'                   => 'प्रवेश करोसि',
 'nav-login-createaccount' => 'प्रवेश करोसि/ सृज् उपयोजकसंज्ञा',
 'logout'                  => 'बहिर्गच्छति',
 'userlogout'              => 'बहिर्गच्छति',
 'createaccount'           => 'सृज उपयोजकसंज्ञा',
 'gotaccountlink'          => 'प्रवेश करोसि',
+'loginsuccesstitle'       => 'सुस्वागतम्‌ प्रवेश यशस्वी अस्ति',
 
 # Edit pages
 'watchthis'   => 'इदं पृष्ठ निरीक्षा',
@@ -157,12 +160,14 @@ $messages = array(
 'editundo' => 'पूर्ववत करोसि',
 
 # Search results
+'nextn'       => 'आगामि$1',
 'powersearch' => 'परिणत शोध',
 
 # Recent changes
-'recentchanges' => 'नवीनतम परिवर्तन',
-'hide'          => 'प्रछद्',
-'show'          => 'दर्शयति',
+'recentchanges'   => 'नवीनतम परिवर्तन',
+'rcshowhideanons' => 'अनामिक योजकस्य परिवर्त $1',
+'hide'            => 'प्रछद्',
+'show'            => 'दर्शयति',
 
 # Recent changes linked
 'recentchangeslinked' => 'सम्भन्दिन् परिवर्त',
@@ -173,13 +178,20 @@ $messages = array(
 # Random page
 'randompage' => 'अविशिष्ट पृष्ठ',
 
+# Statistics
+'statistics' => 'सांख्यिकी',
+
 # Miscellaneous special pages
+'longpages'    => 'दीर्घ पृष्ठ',
+'newpages'     => 'नूतन पृष्ठ',
 'ancientpages' => 'प्राचीनतम् पृष्ठा',
+'movethispage' => 'इदं पृष्ठस्य स्थानांतर',
 
 # Book sources
 'booksources-go' => 'प्रस्थानम्',
 
 # Special:AllPages
+'allpages'       => 'सर्व पृष्ठ',
 'alphaindexline' => 'इतः $1 यावत् $2',
 'allarticles'    => 'सर्व लेखा',
 'allpagessubmit' => 'गच्छति',
@@ -199,6 +211,12 @@ $messages = array(
 
 # Delete
 'actioncomplete' => 'कार्य समापनम्',
+
+# Protect
+'protectcomment'          => 'प्रतिक्रीया:',
+'protect-level-sysop'     => 'केवल प्रबंधक',
+'protect-summary-cascade' => 'निःश्रेणि',
+'restriction-type'        => 'अनुमति:',
 
 # Namespace form on various pages
 'namespace' => 'नामविश्व:',
