@@ -643,6 +643,7 @@ class LocalFile extends File
 		// Search backwards for time > x queries
 		$order = (!$start && $end !== null) ? "ASC" : "DESC";
 		$opts['ORDER BY'] = "oi_timestamp $order";
+		$opts['USE INDEX'] = array('oldimage' => 'oi_name_timestamp');
 		
 		wfRunHooks( 'LocalFile::getHistory', array( &$this, &$tables, &$fields, 
 			&$conds, &$opts, &$join_conds ) );
