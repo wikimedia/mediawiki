@@ -157,15 +157,21 @@ class SpecialVersion extends SpecialPage {
 				usort( $wgExtensionCredits[$type], array( $this, 'compare' ) );
 
 				foreach ( $wgExtensionCredits[$type] as $extension ) {
+					$version = null;
+					$subVersion = '';
 					if ( isset( $extension['version'] ) ) {
 						$version = $extension['version'];
-					} elseif ( isset( $extension['svn-revision'] ) && 
+					}
+					if ( isset( $extension['svn-revision'] ) && 
 						preg_match( '/\$(?:Rev|LastChangedRevision|Revision): *(\d+)/', 
-							$extension['svn-revision'], $m ) ) 
-					{
-						$version = 'r' . $m[1];
-					} else {
-						$version = null;
+							$extension['svn-revision'], $m ) ) {
+						$subVersion = 'r' . $m[1];
+					}
+
+					if( $version && $subVersion ) {
+						$version = $version . ' [' . $subVersion . ']';
+					} elseif ( !$version && $subVersion ) {
+						$version = $subVersion;
 					}
 
 					$out .= $this->formatCredits(
