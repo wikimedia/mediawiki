@@ -489,7 +489,7 @@ class RecompressTracked {
 		$dbw->update( 'text',
 			array( // set
 				'old_text' => $url,
-				'old_flags' => 'external,utf8',
+				'old_flags' => 'external,utf-8',
 			),
 			array( // where
 				'old_id' => $textId
