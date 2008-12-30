@@ -720,9 +720,11 @@ class Revision {
 			}
 
 			global $wgLegacyEncoding;
-			if( $wgLegacyEncoding && !in_array( 'utf-8', $flags ) ) {
+			if( $wgLegacyEncoding && !in_array( 'utf-8', $flags ) && !in_array( 'utf8', $flags ) ) {
 				# Old revisions kept around in a legacy encoding?
 				# Upconvert on demand.
+				# ("utf8" checked for compatibility with some broken
+				#  conversion scripts 2008-12-30)
 				global $wgInputEncoding, $wgContLang;
 				$text = $wgContLang->iconv( $wgLegacyEncoding, $wgInputEncoding, $text );
 			}
