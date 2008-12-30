@@ -1843,6 +1843,11 @@ class Parser
 			# FIXME: isAlwaysKnown() can be expensive for file links; we should really do
 			# batch file existence checks for NS_FILE and NS_MEDIA
 			if( $iw == '' && $nt->isAlwaysKnown() ) {
+				# Need to add file links to parser output here or else they won't end up
+				# in the pagelinks table later
+				if( $ns == NS_FILE ) {
+					$this->mOutput->addLink( $nt );
+				}
 				$s .= $this->makeKnownLinkHolder( $nt, $text, '', $trail, $prefix );
 			} else {
 				$s .= $holders->makeHolder( $nt, $text, '', $trail, $prefix );
