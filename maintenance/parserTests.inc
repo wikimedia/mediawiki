@@ -563,6 +563,7 @@ class ParserTest {
 			'wgDefaultExternalStore' => array(),
 			'wgForeignFileRepos' => array(),
 			'wgLinkHolderBatchSize' => $linkHolderBatchSize,
+			'wgEnforceHtmlIds' => true,
 			);
 		$this->savedGlobals = array();
 		foreach( $settings as $var => $val ) {
