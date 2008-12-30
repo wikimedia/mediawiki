@@ -1018,7 +1018,7 @@ END;
 
 	function pageTitle() {
 		global $wgOut;
-		$s = '<h1 class="pagetitle">' . $wgOut->getPageTitle() . '</h1>';
+		$s = '<h1 class="pagetitle">' . htmlspecialchars( $wgOut->getPageTitle() ) . '</h1>';
 		return $s;
 	}
 
