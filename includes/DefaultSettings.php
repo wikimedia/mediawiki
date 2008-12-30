@@ -1232,7 +1232,6 @@ $wgGroupPermissions['sysop']['markbotedits']     = true;
 $wgGroupPermissions['sysop']['apihighlimits']    = true;
 $wgGroupPermissions['sysop']['browsearchive']    = true;
 $wgGroupPermissions['sysop']['noratelimit']      = true;
-$wgGroupPermissions['sysop']['nuke']             = true;
 $wgGroupPermissions['sysop']['movefile']         = true;
 #$wgGroupPermissions['sysop']['mergehistory']     = true;
 
