@@ -1467,7 +1467,7 @@ $2',
 'recentchangeslinked-summary'  => "בדף מיוחד זה רשומים השינויים האחרונים בדפים המקושרים מתוך הדף (או בדפים החברים בקטגוריה).
 דפים ב[[Special:Watchlist|רשימת המעקב שלכם]] מוצגים ב'''הדגשה'''.",
 'recentchangeslinked-page'     => 'שם הדף:',
-'recentchangeslinked-to'       => 'הצגת השינויים בדפים המקשרים לדף הנתון במקום זאת',
+'recentchangeslinked-to'       => 'המקשרים לדף זה במקום זאת',
 
 # Upload
 'upload'                      => 'העלאת קובץ לשרת',
