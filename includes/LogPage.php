@@ -210,6 +210,10 @@ class LogPage {
 						if( $params[2] ) {
 							$details .= ' ['.wfMsg('protect-summary-cascade').']';
 						}
+					} else if ( $type == 'move' && count( $params ) == 3 ) {
+						if( $params[2] ) {
+							$details .= ' [' . wfMsg( 'move-redirect-suppressed' ) . ']';
+						}
 					}
 					$rv = wfMsgReal( $wgLogActions[$key], $params, true, !$skin ) . $details;
 				}

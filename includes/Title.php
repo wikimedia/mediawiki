@@ -2691,10 +2691,12 @@ class Title {
 					'pl_namespace' => $nt->getNamespace(),
 					'pl_title'     => $nt->getDBkey() ),
 				$fname );
+			$redirectSuppressed = false;
 		} else {
 			$this->resetArticleID( 0 );
+			$redirectSuppressed = true;
 		}
-		
+
 		# Move an image if this is a file
 		if( $this->getNamespace() == NS_FILE ) {
 			$file = wfLocalFile( $this );
@@ -2709,7 +2711,7 @@ class Title {
 
 		# Log the move
 		$log = new LogPage( 'move' );
-		$log->addEntry( 'move_redir', $this, $reason, array( 1 => $nt->getPrefixedText() ) );
+		$log->addEntry( 'move_redir', $this, $reason, array( 1 => $nt->getPrefixedText(), 2 => $redirectSuppressed ) );
 
 		# Purge squid
 		if ( $wgUseSquid ) {
@@ -2786,10 +2788,12 @@ class Title {
 					'pl_namespace' => $nt->getNamespace(),
 					'pl_title'     => $nt->getDBkey() ),
 				$fname );
+			$redirectSuppressed = false;
 		} else {
 			$this->resetArticleID( 0 );
+			$redirectSuppressed = true;
 		}
-		
+
 		# Move an image if this is a file
 		if( $this->getNamespace() == NS_FILE ) {
 			$file = wfLocalFile( $this );
@@ -2804,7 +2808,7 @@ class Title {
 
 		# Log the move
 		$log = new LogPage( 'move' );
-		$log->addEntry( 'move', $this, $reason, array( 1 => $nt->getPrefixedText()) );
+		$log->addEntry( 'move', $this, $reason, array( 1 => $nt->getPrefixedText(), 2 => $redirectSuppressed ) );
 
 		# Purge caches as per article creation
 		Article::onArticleCreate( $nt );

@@ -1923,6 +1923,7 @@ $wgMessageStructure = array(
 		'movepage-max-pages',
 		'1movedto2',
 		'1movedto2_redir',
+		'move-redirect-suppressed',
 		'movelogpage',
 		'movelogpagetext',
 		'movereason',
