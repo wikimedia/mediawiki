@@ -713,7 +713,7 @@ class LogReader {
 	 */
 	function __construct( $request ) {
 		global $wgUser, $wgOut;
-		wfDeprecated(__FUNCTION__);
+		wfDeprecated(__METHOD__);
 		# Get parameters
 		$type = $request->getVal( 'type' );
 		$user = $request->getText( 'user' );
@@ -760,7 +760,7 @@ class LogViewer {
 	 */
 	function __construct( &$reader, $flags = 0 ) {
 		global $wgUser;
-		wfDeprecated(__FUNCTION__);
+		wfDeprecated(__METHOD__);
 		$this->reader =& $reader;
 		$this->reader->pager->mLogEventsList->flags = $flags;
 		# Aliases for shorter code...
