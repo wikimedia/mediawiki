@@ -362,8 +362,11 @@ class OldChangesList extends ChangesList {
 		# Edit/log timestamp
 		$this->insertTimestamp( $s, $rc );
 		# Bytes added or removed
-		if( $wgRCShowChangedSize && ($cd = $rc->getCharacterDifference()) ) {
-			$s .= "$cd  . . ";
+		if( $wgRCShowChangedSize ) {
+			$cd = $rc->getCharacterDifference();
+			if( $cd != '' ) {
+				$s .= "$cd  . . ";
+			}
 		}
 		# User tool links
 		$this->insertUserRelatedLinks($s,$rc);
