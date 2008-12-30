@@ -249,6 +249,7 @@ class ImagePage extends Article {
 		$r .= "{| id=mw_metadata class=mw_metadata\n";
 		foreach ( $metadata as $type => $stuff ) {
 			foreach ( $stuff as $v ) {
+				# FIXME, why is this using escapeId for a class?!
 				$class = Sanitizer::escapeId( $v['id'] );
 				if( $type == 'collapsed' ) {
 					$class .= ' collapsable';

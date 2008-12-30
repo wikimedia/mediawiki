@@ -451,7 +451,7 @@ class Title {
 	 * Escape a text fragment, say from a link, for a URL
 	 */
 	static function escapeFragmentForURL( $fragment ) {
-		return Sanitizer::escapeId( $fragment, Sanitizer::NONE );
+		return Sanitizer::escapeId( $fragment );
 	}
 
 #----------------------------------------------------------------------------

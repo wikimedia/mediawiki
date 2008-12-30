@@ -3615,7 +3615,7 @@ class Parser
 
 			# Save headline for section edit hint before it's escaped
 			$headlineHint = $safeHeadline;
-			$safeHeadline = Sanitizer::escapeId( $safeHeadline, Sanitizer::NONE );
+			$safeHeadline = Sanitizer::escapeId( $safeHeadline );
 			# HTML names must be case-insensitively unique (bug 10721)
 			$arrayKey = strtolower( $safeHeadline );
 
