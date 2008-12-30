@@ -3636,3 +3636,10 @@ $wgUniversalEditButton = true;
 * Disable for wikis that have their interwiki table updated automatically from a central location (like Wikimedia)
 */
 $wgEnableSpecialInterwiki = true;
+
+/**
+ * Allow id's that don't conform to HTML4 backward compatibility requirements.
+ * This is currently for testing; if all goes well, this option will be removed
+ * and the functionality will be enabled universally.
+ */
+$wgEnforceHtmlIds = true;

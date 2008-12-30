@@ -451,7 +451,9 @@ class Title {
 	 * Escape a text fragment, say from a link, for a URL
 	 */
 	static function escapeFragmentForURL( $fragment ) {
-		return Sanitizer::escapeId( $fragment );
+		global $wgEnforceHtmlIds;
+		return Sanitizer::escapeId( $fragment,
+			$wgEnforceHtmlIds ? array() : 'xml' );
 	}
 
 #----------------------------------------------------------------------------
