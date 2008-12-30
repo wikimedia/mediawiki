@@ -29,7 +29,8 @@ class ParserOutput
 	/**
 	 * Overridden title for display
 	 */
-	private $displayTitle = false;
+	private $displayTitle = false; #for use in the <title> tag
+	private $displayTitleH1 = false; #for use in the <h1> tag, may contain further HTML tags
 
 	function ParserOutput( $text = '', $languageLinks = array(), $categoryLinks = array(),
 		$containsOldMagic = false, $titletext = '' )
@@ -145,6 +146,15 @@ class ParserOutput
 	}
 
 	/**
+	 * Get the title to be used for display
+	 *
+	 * @return string
+	 */
+	public function getDisplayTitle() {
+		return $this->displayTitle;
+	}
+	
+	/**
 	 * Override the title to be used for display
 	 * -- this is assumed to have been validated
 	 * (check equal normalisation, etc.)
@@ -154,14 +164,13 @@ class ParserOutput
 	public function setDisplayTitle( $text ) {
 		$this->displayTitle = $text;
 	}
-
-	/**
-	 * Get the title to be used for display
-	 *
-	 * @return string
-	 */
-	public function getDisplayTitle() {
-		return $this->displayTitle;
+	
+	public function getDisplayTitleH1() {
+		return $this->displayTitleH1;
+	}
+	
+	public function setDisplayTitleH1( $html ) {
+		$this->displayTitleH1 = $html;
 	}
 
 	/**
