@@ -115,9 +115,16 @@ class SpecialSearch {
 	public function showResults( $term ) {
 		global $wgOut, $wgDisableTextSearch, $wgContLang;
 		wfProfileIn( __METHOD__ );
-
-		$this->setupPage( $term );
+		
 		$this->searchEngine = SearchEngine::create();
+		$search =& $this->searchEngine;
+		$search->setLimitOffset( $this->limit, $this->offset );
+		$search->setNamespaces( $this->namespaces );
+		$search->showRedirects = $this->searchRedirects;
+		$search->prefix = $this->mPrefix;
+		$term = $search->transformSearchTerm($term);
+		
+		$this->setupPage( $term );
 		
 		if( $wgDisableTextSearch ) {
 			global $wgSearchForwardUrl;
@@ -144,13 +151,8 @@ class SpecialSearch {
 		}
 		
 		$t = Title::newFromText( $term );
-		// fetch search results
-		$search =& $this->searchEngine;
-		$search->setLimitOffset( $this->limit, $this->offset );
-		$search->setNamespaces( $this->namespaces );
-		$search->showRedirects = $this->searchRedirects;
-		$search->prefix = $this->mPrefix;
-		$term = $search->transformSearchTerm($term);
+		
+		// fetch search results		
 		$rewritten = $search->replacePrefixes($term);
 
 		$titleMatches = $search->searchTitle( $rewritten );
@@ -854,7 +856,7 @@ class SpecialSearchOld {
 	 */
 	function __construct( &$request, &$user ) {
 		list( $this->limit, $this->offset ) = $request->getLimitOffset( 20, 'searchlimit' );
-
+		$this->mPrefix = $request->getVal('prefix', '');
 		$this->namespaces = $this->powerSearch( $request );
 		if( empty( $this->namespaces ) ) {
 			$this->namespaces = SearchEngine::userNamespaces( $user );
@@ -919,6 +921,13 @@ class SpecialSearchOld {
 		global $wgOut, $wgUser;
 		$sk = $wgUser->getSkin();
 
+		$search = SearchEngine::create();
+		$search->setLimitOffset( $this->limit, $this->offset );
+		$search->setNamespaces( $this->namespaces );
+		$search->showRedirects = $this->searchRedirects;
+		$search->prefix = $this->mPrefix;
+		$term = $search->transformSearchTerm($term);
+		
 		$this->setupPage( $term );
 
 		$wgOut->addWikiMsg( 'searchresulttext' );
@@ -957,12 +966,7 @@ class SpecialSearchOld {
 			return;
 		}
 
-		$wgOut->addHTML( $this->shortDialog( $term ) );
-
-		$search = SearchEngine::create();
-		$search->setLimitOffset( $this->limit, $this->offset );
-		$search->setNamespaces( $this->namespaces );
-		$search->showRedirects = $this->searchRedirects;
+		$wgOut->addHTML( $this->shortDialog( $term ) );		
 		$rewritten = $search->replacePrefixes($term);
 
 		$titleMatches = $search->searchTitle( $rewritten );
