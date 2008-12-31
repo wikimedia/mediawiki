@@ -280,7 +280,6 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'דף_ריק' ),
 	'LinkSearch'                => array( 'חיפוש_קישורים_חיצוניים' ),
 	'DeletedContributions'      => array( 'תרומות_מחוקות' ),
-	'Interwiki'                 => array( 'בינוויקי' ),
 );
 
 $namespaceNames = array(
