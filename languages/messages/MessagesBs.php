@@ -2951,7 +2951,6 @@ Molimo Vas da potvrdite da stvarno želite da ponovo napravite ovaj članak.",
 'autocomment-prefix'  => '-&#32;',
 'pipe-separator'      => '|',
 'word-separator'      => '&#32;',
-'ellipsis-separator'  => '…',
 
 # Multipage image navigation
 'imgmultipageprev' => '← prethodna stranica',

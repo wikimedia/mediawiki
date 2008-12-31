@@ -3537,7 +3537,7 @@ Please confirm that you really want to recreate this page.",
 'autocomment-prefix'  => '-&#32;', # only translate this message to other languages if you have to change it
 'pipe-separator'      => '|', # only translate this message to other languages if you have to change it
 'word-separator'      => '&#32;', # only translate this message to other languages if you have to change it
-'ellipsis-separator'  => '…', # only translate this message to other languages if you have to change it
+'ellipsis'            => '…', # only translate this message to other languages if you have to change it
 
 # Multipage image navigation
 'imgmultipageprev' => '← previous page',
