@@ -29,7 +29,6 @@ CREATE TABLE /*$wgDBprefix*/user_restrictions (
 
 	PRIMARY KEY ur_id (ur_id),
 	-- For looking up restrictions for user and title
-	INDEX ur_user (ur_user),
 	INDEX ur_user_page(ur_user,ur_page_namespace,ur_page_title(255)),
 	INDEX ur_user_namespace(ur_user,ur_namespace),
 	-- For Special:ListUserRestrictions
