@@ -1201,13 +1201,13 @@ It appears to have been deleted.',
 It already exists.',
 'userrestricted-page'              => '<big>\'\'\'Your user name or IP address has been restricted from editing page "$1".\'\'\'</big>
 
-The restriction was put by [[User:$2|$2]].
+The restriction was set by [[User:$2|$2]].
 The reason given is \'\'$3\'\'.
 
-Restriction was put on $4 at $5 and expires on $6 at $7.
+The estriction was set on $4 at $5 and expires on $6 at $7.
 
 You can contact [[User:$2|$2]] or another [[{{MediaWiki:Grouppage-sysop}}|administrator]] to discuss the restriction.',
-'userrestricted-namespace'         => "<big>'''Your user name or IP address has been restricted from editing $1 namespace.'''</big>
+'userrestricted-namespace'         => "<big>'''Your user name or IP address has been restricted from editing the $1 namespace.'''</big>
 
 The restriction was put by [[User:$2|$2]].
 The reason given is ''$3''.
@@ -1217,10 +1217,10 @@ Restriction was put on $4 at $5 and expires on $6 at $7.
 You can contact [[User:$2|$2]] or another [[{{MediaWiki:Grouppage-sysop}}|administrator]] to discuss the restriction.",
 'userrestricted-page-indef'        => '<big>\'\'\'Your user name or IP address has been restricted from editing page "$1".\'\'\'</big>
 
-The restriction was put by [[User:$2|$2]].
+The restriction was set by [[User:$2|$2]].
 The reason given is \'\'$3\'\'.
 
-Restriction was put on $4 at $5 and will not expire.
+The restriction was set on $4 at $5 and will not expire.
 
 You can contact [[User:$2|$2]] or another [[{{MediaWiki:Grouppage-sysop}}|administrator]] to discuss the restriction.',
 'userrestricted-namespace-indef'   => "<big>'''Your user name or IP address has been restricted from editing $1 namespace.'''</big>
@@ -1700,6 +1700,7 @@ please see math/README to configure.',
 'right-userrights'           => 'Edit all user rights',
 'right-userrights-interwiki' => 'Edit user rights of users on other wikis',
 'right-siteadmin'            => 'Lock and unlock the database',
+'right-restrict'             => 'Restrict users from editing certain pages and namespaces',
 
 # User rights log
 'rightslog'      => 'User rights log',
@@ -1741,6 +1742,7 @@ please see math/README to configure.',
 'action-userrights'           => 'edit all user rights',
 'action-userrights-interwiki' => 'edit user rights of users on other wikis',
 'action-siteadmin'            => 'lock or unlock the database',
+'action-restrict'             => 'restrict users from editing pages',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|change|changes}}',
@@ -2743,7 +2745,7 @@ You cannot create an account',
 'userrestrictiontype-page'        => 'Page',
 
 # Special:RemoveRestrictions
-'removerestrictions'           => 'Remove restriction from a user',
+'removerestrictions'           => 'Remove the restriction for a user',
 'removerestrictions-intro'     => 'Use the form below to remove a restriction from a certain user.',
 'removerestrictions-noid'      => 'No restriction ID was specified.',
 'removerestrictions-wrongid'   => 'Restriction with that ID not found.
@@ -2764,8 +2766,8 @@ Most probably someone has removed it or it expired.',
 'restrictuser-go'               => 'Restrict user',
 'restrictuser-notfound'         => 'User not found',
 'restrictuser-existing'         => 'Existing restrictions',
-'restrictuser-legend-page'      => 'Restrict from editing certain page',
-'restrictuser-legend-namespace' => 'Restrict from editing certain namespace',
+'restrictuser-legend-page'      => 'Restrict from editing a page',
+'restrictuser-legend-namespace' => 'Restrict from editing a namespace',
 'restrictuser-title'            => 'Page to restrict:',
 'restrictuser-namespace'        => 'Namespace:',
 'restrictuser-expiry'           => 'Expires:',
