@@ -1204,7 +1204,7 @@ It already exists.',
 The restriction was set by [[User:$2|$2]].
 The reason given is \'\'$3\'\'.
 
-The estriction was set on $4 at $5 and expires on $6 at $7.
+The restriction was set on $4 at $5 and expires on $6 at $7.
 
 You can contact [[User:$2|$2]] or another [[{{MediaWiki:Grouppage-sysop}}|administrator]] to discuss the restriction.',
 'userrestricted-namespace'         => "<big>'''Your user name or IP address has been restricted from editing the $1 namespace.'''</big>
