@@ -168,6 +168,7 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'ПразнаСтраница' ),
 	'LinkSearch'                => array( 'ПребарајВрска' ),
 	'DeletedContributions'      => array( 'ИзбришаниПридонеси' ),
+	'Interwiki'                 => array( 'Интервики' ),
 );
 
 $magicWords = array(

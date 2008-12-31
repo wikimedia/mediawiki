@@ -276,6 +276,7 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'LegePagina' ),
 	'LinkSearch'                => array( 'VerwijzingenZoeken', 'LinksZoeken' ),
 	'DeletedContributions'      => array( 'VerwijderdeBijdragen' ),
+	'Interwiki'                 => array( 'Interwiki' ),
 );
 
 $linkTrail = '/^([a-zäöüïëéèà]+)(.*)$/sDu';

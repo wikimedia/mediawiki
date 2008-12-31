@@ -117,6 +117,7 @@ $specialPageAliases = array(
 	'MergeHistory'              => array( 'Stawizny zjednoćić' ),
 	'Filepath'                  => array( 'Datajowy puć' ),
 	'Invalidateemail'           => array( 'Njepłaćiwa e-mejl' ),
+	'Interwiki'                 => array( 'Interwiki' ),
 );
 
 $messages = array(

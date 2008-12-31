@@ -140,6 +140,7 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'Üres lap' ),
 	'LinkSearch'                => array( 'Hivatkozás keresés' ),
 	'DeletedContributions'      => array( 'Törölt szerkesztések' ),
+	'Interwiki'                 => array( 'Wikiközi hivatkozások' ),
 );
 
 $datePreferences = array(

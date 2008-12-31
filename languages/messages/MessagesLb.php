@@ -124,6 +124,7 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'Eidel Säit' ),
 	'LinkSearch'                => array( 'Weblink-Sich' ),
 	'DeletedContributions'      => array( 'Geläschte Kontributiounen' ),
+	'Interwiki'                 => array( 'Interwiki' ),
 );
 
 $messages = array(
