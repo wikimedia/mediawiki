@@ -83,7 +83,6 @@ The following extensions are migrated into MediaWiki 1.14:
 * RenderHash
 * NoMoveUserPages
 * UniversalEditButton
-* Special:Interwiki to show the interwiki table in a locally editable format (was extension Interwiki)
 
 === New features in 1.14 ===
 
