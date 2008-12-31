@@ -543,9 +543,6 @@ $messages = array(
 [[Special:UnusedCategories|વણ વપરાયેલી શ્રેણીઓ]] અત્રે દર્શાવવામાં આવી નથી.
 [[Special:WantedCategories|ઈચ્છિત શ્રેણીઓ]] પણ જોઈ જુઓ.',
 
-# Special:Interwiki
-'interwiki_reasonfield' => 'કારણ',
-
 # Special:LinkSearch
 'linksearch-ok' => 'શોધ',
 

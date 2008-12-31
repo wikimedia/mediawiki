@@ -1739,9 +1739,6 @@ Zie oek [[Special:WantedCategories|gewunste kattegerieën]].",
 'special-categories-sort-count' => 'op antal sorteren',
 'special-categories-sort-abc'   => 'alfebetisch sorteren',
 
-# Special:Interwiki
-'interwiki_addbutton' => 'Toevoegen',
-
 # Special:ListUsers
 'listusersfrom'      => 'Teun vanof:',
 'listusers-submit'   => 'Teun',

@@ -372,9 +372,6 @@ $messages = array(
 'allarticles'    => 'Чыла лаштык-влак',
 'allpagessubmit' => 'Кайе',
 
-# Special:Interwiki
-'interwiki_reasonfield' => 'Амал',
-
 # Special:LinkSearch
 'linksearch-ok' => 'Кучал',
 

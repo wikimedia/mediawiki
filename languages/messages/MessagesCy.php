@@ -1523,9 +1523,6 @@ Gweler hefyd [[Special:WantedCategories|categorïau sydd eu hangen]].",
 # Special:DeletedContributions
 'deletedcontributions' => "Cyfraniadau'r defnyddiwr a ddilëwyd",
 
-# Special:Interwiki
-'interwiki_defaultreason' => 'dim rheswm wedi ei roi',
-
 # Special:LinkSearch
 'linksearch-pat' => 'Patrwm chwilio:',
 'linksearch-ns'  => 'Parth:',

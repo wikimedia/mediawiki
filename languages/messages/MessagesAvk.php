@@ -1267,38 +1267,6 @@ Abdi sulara, setikel da va ari skedasiki va teza stujel.',
 'special-categories-sort-count' => 'Otafa mubera',
 'special-categories-sort-abc'   => 'Abavafa mubera',
 
-# Special:Interwiki
-'interwiki'                => "Wira va 'interwiki' orig isu betara",
-'interwiki-title-norights' => "Wira va 'interwiki' orig",
-'interwiki_addbutton'      => 'Loplekura',
-'interwiki_added'          => '"$1" abdueosta ko \'interwiki\' origak al zo loplekunhur.',
-'interwiki_addfailed'      => '"$1" abdueosta ko \'interwiki\' origak me zo roloplekur.
-Rotir koeon ixam tir.',
-'interwiki_addintro'       => "Rin va warzafa 'interwiki' abdueosta dun loplekul.
-Me vulkul da bata va darka ( ) ik briva (:) ik 'ampersand' (&) ik miltastaa (=) me roruldar.",
-'interwiki_addtext'        => "Loplekura va 'interwiki' abdueosta",
-'interwiki_defaultreason'  => 'Meka bazena lazava',
-'interwiki_deleted'        => '"$1" abdueosta div \'interwiki\' origak al zo tioltenher.',
-'interwiki_deleting'       => 'Rin va "$1" abdueosta dun sulal.',
-'interwiki_delfailed'      => '"$1" abdueosta div \'interwiki\' origak me zo rotiolter.',
-'interwiki_delquestion'    => 'Sulara va "$1"',
-'interwiki_edited'         => '"$1" abdueosta koe \'interwiki\' origak al zo betanhar.',
-'interwiki_editerror'      => '"$1" abdueosta koe \'interwiki\' origak me zo robetar.
-Rotir koeon me krulder.',
-'interwiki_editintro'      => "Rin va 'interwiki' abdueosta dun betal.
-Me vulkul da batcoba va kruldesi gluyasiki rotempar !",
-'interwiki_edittext'       => "Betara va 'interwiki' abdueosta",
-'interwiki_error'          => "ROKLA : 'Interwiki' origak tir vlardaf oke rotaca al sokir.",
-'interwiki_intro'          => "Ta lo giva icde 'interwiki' origak va [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] wil !
-Batcoba tir [[Special:Log/interwiki|'log' dem betaks]] va 'interwiki' origak.",
-'interwiki_log_added'      => '"$2" abdueosta ($3) (trans: $4) (local: $5) loplekuyuna ko \'interwiki\' origak',
-'interwiki_log_deleted'    => '"$2" abdueosta plekuyuna div \'interwiki\' origak',
-'interwiki_log_edited'     => '"$2" abdueosta ($3) (trans: $4) (local: $5) betayana koe \'interwiki\' origak',
-'interwiki_prefix'         => 'Abdueosta',
-'interwiki_reasonfield'    => 'Lazava',
-'interwikilogpage'         => "'Interwiki' origak 'log'",
-'interwikilogpagetext'     => "Batcoba tir 'log' dem betaks va [[Special:Interwiki|'interwiki' origak]].",
-
 # Special:LinkSearch
 'linksearch-ns' => 'Yoltxo :',
 'linksearch-ok' => 'Aneyara',

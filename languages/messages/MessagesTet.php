@@ -554,12 +554,6 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 # Special:Categories
 'categories' => 'Kategoria sira',
 
-# Special:Interwiki
-'interwiki_addbutton'     => 'Tau tan',
-'interwiki_defaultreason' => 'laiha motivu',
-'interwiki_delquestion'   => 'Halakon $1',
-'interwiki_reasonfield'   => 'Motivu',
-
 # Special:LinkSearch
 'linksearch-ns' => 'Espasu pájina nian:',
 'linksearch-ok' => 'Buka',

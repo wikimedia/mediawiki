@@ -157,7 +157,6 @@ $wgIgnoredMessages = array(
 	'newuserlogentry',
 	'restrictlogpage',
 	'wantedtemplates-summary',
-	'interwiki_logentry',
 );
 
 /** Optional messages, which may be translated only if changed in the target language. */
@@ -335,8 +334,6 @@ $wgOptionalMessages = array(
 	'whatlinkshere-backlink',
 	'recentchangeslinked-backlink',
 	'diff-with-additional',
-	'interwiki_defaulturl',
-	'interwiki_url',
 );
 
 /** EXIF messages, which may be set as optional in several checks, but are generally mandatory */

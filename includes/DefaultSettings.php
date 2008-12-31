@@ -1239,7 +1239,6 @@ $wgGroupPermissions['sysop']['movefile']         = true;
 // Permission to change users' group assignments
 $wgGroupPermissions['bureaucrat']['userrights']  = true;
 $wgGroupPermissions['bureaucrat']['noratelimit'] = true;
-$wgGroupPermissions['bureaucrat']['interwiki']   = true;
 // Permission to change users' groups assignments across wikis
 #$wgGroupPermissions['bureaucrat']['userrights-interwiki'] = true;
 
@@ -2795,7 +2794,6 @@ $wgLogTypes = array( '',
 	'upload',
 	'move',
 	'import',
-	'interwiki',
 	'patrol',
 	'merge',
 	'suppress',
@@ -2851,7 +2849,6 @@ $wgLogNames = array(
 	'upload'  => 'uploadlogpage',
 	'move'    => 'movelogpage',
 	'import'  => 'importlogpage',
-	'interwiki' => 'interwikilogpage',
 	'patrol'  => 'patrol-log-page',
 	'merge'   => 'mergelog',
 	'suppress' => 'suppressionlog',
@@ -2873,7 +2870,6 @@ $wgLogHeaders = array(
 	'upload'  => 'uploadlogpagetext',
 	'move'    => 'movelogpagetext',
 	'import'  => 'importlogpagetext',
-	'interwiki' => 'interwikilogpagetext',
 	'patrol'  => 'patrol-log-header',
 	'merge'   => 'mergelogpagetext',
 	'suppress' => 'suppressionlogtext',
@@ -2906,10 +2902,6 @@ $wgLogActions = array(
 	'move/move_redir'   => '1movedto2_redir',
 	'import/upload'     => 'import-logentry-upload',
 	'import/interwiki'  => 'import-logentry-interwiki',
-	'interwiki/interwiki' => 'interwiki_logentry',
-	'interwiki/iw_add' => 'interwiki_log_added',
-	'interwiki/iw_delete' => 'interwiki_log_deleted',
-	'interwiki/iw_edit' => 'interwiki_log_edited',
 	'merge/merge'       => 'pagemerge-logentry',
 	'suppress/revision' => 'revdelete-logentry',
 	'suppress/file'     => 'revdelete-logentry',
@@ -3032,7 +3024,6 @@ $wgSpecialPageGroups = array(
 	'Specialpages'              => 'other',
 	'Blockme'                   => 'other',
 	'Booksources'               => 'other',
-	'Interwiki'                 => 'other',
 );
 
 /**
@@ -3640,12 +3631,6 @@ $wgEdititis = false;
 * See http://universaleditbutton.org for more background information
 */
 $wgUniversalEditButton = true;
-
-/**
-* Enable the Interwiki special page. 
-* Disable for wikis that have their interwiki table updated automatically from a central location (like Wikimedia)
-*/
-$wgEnableSpecialInterwiki = true;
 
 /**
  * Allow id's that don't conform to HTML4 backward compatibility requirements.

@@ -124,7 +124,6 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'Eidel Säit' ),
 	'LinkSearch'                => array( 'Weblink-Sich' ),
 	'DeletedContributions'      => array( 'Geläschte Kontributiounen' ),
-	'Interwiki'                 => array( 'Interwiki' ),
 );
 
 $messages = array(
@@ -1608,44 +1607,6 @@ Kuckt och [[Special:WantedCategories|Gewënschte Kategorien]].',
 
 # Special:DeletedContributions
 'deletedcontributions' => 'Geläschte Kontributiounen',
-
-# Special:Interwiki
-'interwiki'                => 'Interwiki-Date kucken a veränneren',
-'interwiki-title-norights' => 'Interwiki-Date kucken',
-'interwiki_addbutton'      => 'Derbäisetzen',
-'interwiki_added'          => 'De Prefix "$1" gou an d\'Interwiki-Tabell derbäigesat.',
-'interwiki_addfailed'      => 'De Prefix "$1" konnt net an d\'Interwiki-Tabell derbäigesat ginn.
-Méiglecherweis gëtt et e schn an der Interwiki-Tabell.',
-'interwiki_addintro'       => 'Dir setzt en neien Interwiki-Prefix derbäi.
-Denkt drunn datt keng Espacen ( ), Et-commerciale (&), Gläichzeechen (=) a keng Doppelpunkten (:) däerfen dra sinn.',
-'interwiki_addtext'        => 'En Interwiki-prefix derbäisetzen',
-'interwiki-badprefix'      => 'Den Interwiki-Prefix "$1" huet net valabel Buchstawen',
-'interwiki_defaultreason'  => 'kee Grond uginn',
-'interwiki_defaulturl'     => 'http://www.beispill.com/$1',
-'interwiki_deleted'        => 'De Prefix "$1" gouf aus der Interwiki-Tabell erausgeholl.',
-'interwiki_deleting'       => 'Dir läscht de Prefix "$1".',
-'interwiki_delfailed'      => 'Prefix "$1" konnt net aus der Interwiki-Tabell erausgeholl ginn.',
-'interwiki_delquestion'    => 'Läscht "$1"',
-'interwiki_edited'         => 'De Prefix "$1" gouf an der Interwiki-Tabell geännert.',
-'interwiki_editerror'      => 'De Prefix "$1" kann an der Interwiki-Tabell net geännert ginn.
-Méiglecherweis gëtt et en net.',
-'interwiki_editintro'      => 'Dir ännert en Interwiki Prefix.
-Denkt drun, datt dëst kann dozou féieren datt Linen déi et scho gëtt net méi fonctionnieren.',
-'interwiki_edittext'       => 'En interwiki Prefix änneren',
-'interwiki_error'          => "Feeler: D'Interwiki-Tabell ass eidel.",
-'interwiki_intro'          => "Kuckt [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] fir méi Informatiounen iwwert d'Interwiki-Tabell.
-Et gëtt eng [[Special:Log/interwiki|Lëscht vun den Ännerungen]] vun dëser Interwiki-Tabell.",
-'interwiki_local'          => 'Dës Wiki als Lokal-Wiki definéieren',
-'interwiki_log_added'      => 'huet de Prefix "$2" ($3) (trans: $4) (lokal: $5) an d\'Interwiki-Tabell derbäigesat',
-'interwiki_log_deleted'    => 'huet de Prefix "$2" aus der Interwiki-Tabell erausgeholl',
-'interwiki_log_edited'     => 'huet de Prefix "$2": ($3) (trans: $4) (lokal: $5) an der Interwiki-Tabell geännert',
-'interwiki-not-enabled'    => "D'Ännere vun der Interwiki-Tabell gouf ausgeschalt.",
-'interwiki_prefix'         => 'Prefix',
-'interwiki_reasonfield'    => 'Grond',
-'interwiki_trans'          => 'Interwikitransklusiounen erlaben',
-'interwikilogpage'         => 'Lëscht mat der Interwikitabell',
-'interwikilogpagetext'     => 'Dëst ass eng Lëscht mat den Ännerunge vun der [[Special:Interwiki|Interwikitabell]].',
-'right-interwiki'          => 'Interwiki-Daten änneren',
 
 # Special:LinkSearch
 'linksearch'      => 'Weblink-Sich',

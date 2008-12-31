@@ -714,9 +714,6 @@ Ta duillagyn er [[Special:Watchlist|dty rolley arrey]] ayns '''clou trome'''.",
 'special-categories-sort-count' => 'sorçhaghey rere coontey',
 'special-categories-sort-abc'   => 'sorçhaghey rere lettyr',
 
-# Special:Interwiki
-'interwiki_reasonfield' => 'Fa',
-
 # Special:LinkSearch
 'linksearch-ok' => 'Ronsaghey',
 

@@ -105,7 +105,6 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'KurasaTupu' ),
 	'LinkSearch'                => array( 'TafutaKiungo' ),
 	'DeletedContributions'      => array( 'MichangoIliyofutwa' ),
-	'Interwiki'                 => array( 'Viungovyawiki' ),
 );
 
 $messages = array(

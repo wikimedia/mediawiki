@@ -1561,43 +1561,6 @@ Template:消除歧義',
 # Special:DeletedContributions
 'deletedcontributions' => '已刪除的用戶貢獻',
 
-# Special:Interwiki
-'interwiki'                => '檢視並編輯跨維基連結表',
-'interwiki-title-norights' => '檢視跨維基資料',
-'interwiki_addbutton'      => '加入',
-'interwiki_added'          => '前綴 "$1" 已經成功地加入到跨維基連結表。',
-'interwiki_addfailed'      => '前綴 "$1" 不能加入到跨維基連結表。
-可能已經在跨維基連結表中存在。',
-'interwiki_addintro'       => '您現在加入一個新的跨維基連結前綴。
-要記住它不可以包含空格 ( )、冒號 (:)、連字號 (&)，或者是等號 (=)。',
-'interwiki_addtext'        => '新增一個跨維基前綴',
-'interwiki-badprefix'      => '所指定的跨維基前綴 "$1" 含有無效的字母',
-'interwiki_defaultreason'  => '無給出原因',
-'interwiki_deleted'        => '已成功地從連結表中刪除前綴"$1"。',
-'interwiki_deleting'       => '您正在刪除前綴"$1"。',
-'interwiki_delfailed'      => '無法從連結表刪除前綴"$1"。',
-'interwiki_delquestion'    => '正在刪除"$1"',
-'interwiki_edited'         => '前綴 "$1" 已經在跨維基連結表中修改。',
-'interwiki_editerror'      => '前綴 "$1" 不能在跨維基連結表中修改。
-可能它並不存在。',
-'interwiki_editintro'      => '您現正修改跨維基連結前綴。
-記住這動作可以中斷現有的連結。',
-'interwiki_edittext'       => '修改一個跨維基連結前綴',
-'interwiki_error'          => '錯誤: 跨維基連結表為空，或是發生其它錯誤。',
-'interwiki_intro'          => '請參閱[http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org]以取得更多有關跨維基連結表的訊息。
-這裏有跨維基連結表的[[Special:Log/interwiki|更動日誌]]。',
-'interwiki_local'          => '定義這個為一個本地wiki',
-'interwiki_log_added'      => '加入了連結前綴 "$2" ($3) (含: $4) (本: $5) 到跨維基連結表中',
-'interwiki_log_deleted'    => '在跨維基連結表中已刪除 "$2"',
-'interwiki_log_edited'     => '在跨維基連結表中修改了連結前綴 "$2" : ($3) (含: $4) (本: $5)',
-'interwiki-not-enabled'    => '跨維基表格編輯已經停用。',
-'interwiki_prefix'         => '前綴',
-'interwiki_reasonfield'    => '原因',
-'interwiki_trans'          => '容許跨維基包含',
-'interwikilogpage'         => '跨維基連結表日誌',
-'interwikilogpagetext'     => '這個是對[[Special:Interwiki|跨維基連結表]]的改動日誌。',
-'right-interwiki'          => '修改跨維基資料',
-
 # Special:LinkSearch
 'linksearch'       => '搜尋網頁連結',
 'linksearch-pat'   => '搜尋網址:',

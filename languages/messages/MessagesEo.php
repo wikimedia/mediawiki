@@ -1691,43 +1691,6 @@ Vidu ankaŭ [[Special:WantedCategories|Dezirataj kategorioj]].',
 # Special:DeletedContributions
 'deletedcontributions' => 'Forigitaj kontribuoj de uzantoj',
 
-# Special:Interwiki
-'interwiki'                => 'Rigardi kaj redakti intervikiajn datenojn',
-'interwiki-title-norights' => 'Rigardi intervikiajn datenojn',
-'interwiki_addbutton'      => 'Aldoni',
-'interwiki_added'          => 'Prefikso "$1" estis sukcese aldonita al la intervikia tabelo.',
-'interwiki_addfailed'      => 'Prefikso "$1" ne eblis esti aldonita al la intervikia tabelo.
-Eble ĝi jam ekzistas en la intervikia tabelo.',
-'interwiki_addintro'       => 'Vi aldonas novan intervikian prefikson.
-Memoru ke ĝi ne povas enhavi spacetojn ( ), kolojn (:), kajsignojn (&), aŭ egalsignojn (=).',
-'interwiki_addtext'        => 'Aldonu intervikian prefikson',
-'interwiki-badprefix'      => 'Specifigita intervika prefikso "$1" enhavas nevalidajn signojn',
-'interwiki_defaultreason'  => 'nenia kialo skribata',
-'interwiki_deleted'        => 'Prefikso "$1" estis sukcese forigita de la intervikia tabelo.',
-'interwiki_deleting'       => 'Vi forigas prefikson "$1".',
-'interwiki_delfailed'      => 'Prefikso "$1" ne eblis esti forigita el la intervikia tabelo.',
-'interwiki_delquestion'    => 'Forigante "$1"',
-'interwiki_edited'         => 'Prefikso "$1" estis sukcese modifita en la intervikian tabelon.',
-'interwiki_editerror'      => 'Prefikso "$1" ne eblis esti modifita en la intervikia tabelo.
-Verŝajne ĝi ne ekzistas.',
-'interwiki_editintro'      => 'Vi redaktas intervikian prefikson.
-Notu ke ĉi tiu ago povas rompi ekzistantajn ligilojn.',
-'interwiki_edittext'       => 'Redaktante intervikian prefikson',
-'interwiki_error'          => 'ERARO: La intervikia tabelo estas malplena, aŭ iel misfunkciis.',
-'interwiki_intro'          => 'Vidu [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] por plia informo pri la intervikia tabelo.
-Ekzistas [[Special:Log/interwiki|protokolo pri ŝanĝoj]] por la intervikia tabelo.',
-'interwiki_local'          => 'Defini ĉi tiun kiel lokan vikion',
-'interwiki_log_added'      => 'Aldonis prefikson "$2" ($3) (transvikie: $4) (loke: $5) al la intervikia tabelo',
-'interwiki_log_deleted'    => 'Forigita prefikso "$2" de la intervikia tabelo',
-'interwiki_log_edited'     => 'modifis prefikson "$2" : ($3) (transvikie: $4) (loke: $5) en la intervikia tabelo',
-'interwiki-not-enabled'    => 'Redaktado de la intervika tabelo estis malŝaltita.',
-'interwiki_prefix'         => 'Prefikso',
-'interwiki_reasonfield'    => 'Kialo',
-'interwiki_trans'          => 'Permesi intervikiajn transinkluzivaĵojn',
-'interwikilogpage'         => 'Loglibro pri la intervikia tabelo',
-'interwikilogpagetext'     => 'Jen loglibro de ŝanĝoj al la [[Special:Interwiki|intervikia tabelo]].',
-'right-interwiki'          => 'Redakti intervikiajn datenojn',
-
 # Special:LinkSearch
 'linksearch'       => 'Serĉi retajn ligilojn',
 'linksearch-pat'   => 'Serĉesprimo:',

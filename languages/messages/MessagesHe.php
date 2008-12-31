@@ -1843,43 +1843,6 @@ PICT # שונות
 # Special:DeletedContributions
 'deletedcontributions' => 'תרומות משתמש מחוקות',
 
-# Special:Interwiki
-'interwiki'                => 'הצגת ועריכת מידע הבינוויקי',
-'interwiki-title-norights' => 'הצגת מידע הבינוויקי',
-'interwiki_addbutton'      => 'הוספה',
-'interwiki_added'          => 'הקידומת "$1" נוספה בהצלחה לטבלת הבינוויקי.',
-'interwiki_addfailed'      => 'לא ניתן להוסיף את הקידומת "$1" לטבלת הבינוויקי.
-ייתכן שהיא כבר קיימת בטבלה.',
-'interwiki_addintro'       => 'הנכם עורכים קידומת בינוויקי.
-זכרו שלא ניתן לכלול רווחים ( ), נקודותיים (:), אמפרסנד (&) או הסימן שווה (=).',
-'interwiki_addtext'        => 'הוספת קידומת בינוויקי',
-'interwiki-badprefix'      => 'קידומת הבינוויקי שצוינה, "$1", כוללת תווים בלתי תקינים',
-'interwiki_defaultreason'  => 'לא ניתנה סיבה',
-'interwiki_deleted'        => 'הקידומת "$1" הוסרה בהצלחה מטבלת הבינוויקי.',
-'interwiki_deleting'       => 'הנכם מוחקים את הקידומת "$1".',
-'interwiki_delfailed'      => 'לא ניתן להסיר את הקידומת "$1" מטבלת הבינוויקי.',
-'interwiki_delquestion'    => 'מחיקת "$1"',
-'interwiki_edited'         => 'הקידומת "$1" שונתה בהצלחה בטבלת הבינוויקי.',
-'interwiki_editerror'      => 'לא ניתן לשנות את הקידומת "$1" בטבלת הבינוויקי.
-ייתכן שהיא אינה קיימת.',
-'interwiki_editintro'      => 'הנכם עורכים קידומת בינוויקי.
-זכרו שפעולה זו עלולה לשבור קישורים קיימים.',
-'interwiki_edittext'       => 'עריכת קידומת בינוויקי',
-'interwiki_error'          => 'שגיאה: טבלת הבינוויקי ריקה, או שיש שגיאה אחרת.',
-'interwiki_intro'          => 'ראו [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] למידע נוסף אודות טבלת הבינוויקי.
-ישנו [[Special:Log/interwiki|יומן שינויים]] לטבלת הבינוויקי.',
-'interwiki_local'          => 'הגדרה כאתר ויקי מקומי',
-'interwiki_log_added'      => 'הקידומת "$2" ($3) (הכללה: $4) (מקומית: $5) נוספה לטבלת הבינוויקי',
-'interwiki_log_deleted'    => 'הסיר את הקידומת "$2" מטבלת הבינוויקי',
-'interwiki_log_edited'     => 'הקידומת "$2" : ($3) (הכללה: $4) (מקומית: $5) שונתה בטבלת הבינוויקי',
-'interwiki-not-enabled'    => 'אפשרות העריכה של טבלת הבינוויקי מבוטלת.',
-'interwiki_prefix'         => 'קידומת',
-'interwiki_reasonfield'    => 'סיבה',
-'interwiki_trans'          => 'אפשרות להכללת דפים מהאתר',
-'interwikilogpage'         => 'יומן טבלת הבינוויקי',
-'interwikilogpagetext'     => 'זהו יומן השינויים שנערכו ב[[Special:Interwiki|טבלת הבינוויקי]].',
-'right-interwiki'          => 'עריכת נתוני הבינוויקי',
-
 # Special:LinkSearch
 'linksearch'       => 'חיפוש קישורים חיצוניים',
 'linksearch-pat'   => 'קישור לחיפוש:',

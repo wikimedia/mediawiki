@@ -104,7 +104,6 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'Läärsyte' ),
 	'LinkSearch'                => array( 'Suech no Gleicher' ),
 	'DeletedContributions'      => array( 'Gleschti Byytreeg' ),
-	'Interwiki'                 => array( 'Interwiki' ),
 );
 
 $linkTrail = '/^([äöüßa-z]+)(.*)$/sDu';
@@ -1604,33 +1603,6 @@ Lueg au d Lischt vu dr [[Special:WantedCategories|gwinschte Kategorie]].',
 
 # Special:DeletedContributions
 'deletedcontributions' => 'Gleschti Bytreg',
-
-# Special:Interwiki
-'interwiki'                => 'Interwiki-Date aaluege un bearbeite',
-'interwiki-title-norights' => 'Interwiki-Date aaluege',
-'interwiki_addbutton'      => 'Zuefiege',
-'interwiki_added'          => '„$1“ isch mit Erfolg dr Interwiki-Tabälle zuegfiegt wore.',
-'interwiki_addfailed'      => '„$1“ het nit chenne dr Interwiki-Tabälle zuegfiegt wäre.',
-'interwiki_addintro'       => 'Du fiegsch e nej Interwiki-Präfix zue. Gib Acht, ass es kei Läärzeiche ( ), Chaufmännisch Un (&), Glyychzeiche (=) un kei Doppelpunkt (:) derf enthalte.',
-'interwiki_addtext'        => 'E Interwiki-Präfix zuefiege',
-'interwiki-badprefix'      => 'Im feschtgleite Interwikipräfix „$1“ het s nit giltigi Zeiche din',
-'interwiki_defaultreason'  => 'kei Grund aagee',
-'interwiki_deleted'        => '„$1“ isch mit Erfolg us dr Interwiki-Tabälle usegnuh wore.',
-'interwiki_deleting'       => 'Du bisch am Lesche vum Präfix „$1“.',
-'interwiki_delfailed'      => '„$1“ het nit chenne us dr Interwiki-Tabälle glescht wäre.',
-'interwiki_delquestion'    => 'Lescht „$1“',
-'interwiki_edited'         => 'S Präfix „$1“ isch mit Erfolg in dr Interwiki-Tabälle gänderet wore.',
-'interwiki_editerror'      => 'S Präfix „$1“ cha in dr Interwiki-Tabälle nit gänderet wäre.
-Villicht git s es nit.',
-'interwiki_editintro'      => 'Du bisch am Ändere vun eme Präfix.
-Gib Acht, ass des Gleicher cha uugiltig mache, wu s scho git.',
-'interwiki_edittext'       => 'Interwiki-Präfix bearbeite',
-'interwiki_error'          => 'Fähler: D Interwiki-Tabälle isch läär.',
-'interwiki_intro'          => 'Lueg [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] fir meh Informatione iber d Interwiki-Tabälle. S [[Special:Log/interwiki|Logbuech]] zeigt alli Änderige an dr Interwiki-Tabälle.',
-'interwiki_local'          => 'Definier des as lokals Wiki',
-'interwiki_log_added'      => 'het „$2“ ($3) (trans: $4) (lokal: $5) dr Interwiki-Tabälle zuegfiegt',
-'interwiki_log_deleted'    => 'het „$2“ us dr Interwiki-Tabälle usegnuh',
-'interwiki_log_edited'     => 'gändereti Präfix „$2“: ($3) (trans: $4) (lokal: $5) in dr Interwiki-Tabälle',
 
 # Special:LinkSearch
 'linksearch'       => 'Suech Netzgleicher',

@@ -1551,10 +1551,6 @@ Sjá einnig [[Special:WantedCategories|eftirsótta flokka]].',
 # Special:DeletedContributions
 'deletedcontributions' => 'Eyddar breytingar notenda',
 
-# Special:Interwiki
-'interwiki_defaultreason' => 'engin ástæða gefin',
-'interwiki_reasonfield'   => 'Ástæða',
-
 # Special:LinkSearch
 'linksearch'    => 'Leita að vefföngum',
 'linksearch-ns' => 'Nafnrými:',

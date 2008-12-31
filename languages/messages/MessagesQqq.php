@@ -1469,41 +1469,6 @@ Example: [[:Image:Addon-icn.png]]',
 # Special:DeletedContributions
 'deletedcontributions' => 'Title of [[Special:DeletedContributions]] (extension), a special page with a list of edits to pages which were deleted. Only viewable by sysops. The message is also shown as a link on [[Special:Contributions]] to the DeletedContributions special page.',
 
-# Special:Interwiki
-'interwiki'                => 'This message is the title of the special page [[Special:Interwiki]].',
-'interwiki-title-norights' => 'Part of the interwiki extension. This message is the title of the special page [[Special:Interwiki]] when the user has no right to edit the interwiki data, so can only view them.',
-'interwiki_addbutton'      => 'This message is the text of the button to submit the interwiki prefix you are adding.
-
-{{Identical|Add}}',
-'interwiki_defaultreason'  => 'This message is the default reason in the interwiki log (when adding or deleting a prefix).
-
-{{Identical|No reason given}}',
-'interwiki_deleting'       => '-',
-'interwiki_delquestion'    => 'Parameter $1 is the interwiki prefix you are deleting.
-
-{{Identical|Deleting $1}}',
-'interwiki_editerror'      => 'Error message when modifying a prefix has failed.',
-'interwiki_error'          => 'This error message is shown when the Special:Interwiki page is empty.',
-'interwiki_local'          => 'Used on [[Special:Interwiki]] as a column header.
-
-Meaning of the column data are: References to this via URL from external sources are:
-* 0: not honored (usually blocked by "page not found")
-* 1: redirected to the target URLs given the interwiki link definitions (treated like references in local pages)',
-'interwiki_log_added'      => 'Shows up in "Special:Log/interwiki" when someone has added a prefix. Leave parameters and text between brackets exactly as it is.',
-'interwiki_log_deleted'    => 'Shows up in "Special:Log/interwiki" when someone removed a prefix.',
-'interwiki_log_edited'     => 'Shows up in "Special:Log/interwiki" when someone has modified a prefix. Leave parameters and text between brackets exactly as it is.',
-'interwiki_prefix'         => 'Used on [[Special:Interwiki]] as a column header of the table.',
-'interwiki_reasonfield'    => '{{Identical|Reason}}',
-'interwiki_trans'          => 'User in [[Special:Interwiki]] as table column header.
-
-Meaning of the data in the column:
-* 1: Allow interwiki transclusions
-* 0: Do not allow them',
-'interwiki_url'            => 'Used on [[Special:Interwiki]] as a column header of the table.',
-'interwikilogpage'         => 'This message is shown as page title on Special:Log/interwiki.',
-'interwikilogpagetext'     => 'Summary shown on Special:Log/interwiki.',
-'right-interwiki'          => '{{doc-right}}',
-
 # Special:LinkSearch
 'linksearch-ns' => '{{Identical|Namespace}}',
 'linksearch-ok' => '{{Identical|Search}}',

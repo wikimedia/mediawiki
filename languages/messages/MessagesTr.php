@@ -1305,9 +1305,6 @@ Kayıt tipini, kullanıcı ismini, sayfa ismini girerek listeyi daraltabilirsini
 # Special:DeletedContributions
 'deletedcontributions' => 'Silinen kullanıcı katkıları',
 
-# Special:Interwiki
-'interwiki_reasonfield' => 'Neden',
-
 # Special:LinkSearch
 'linksearch-ns' => 'İsimalanı:',
 'linksearch-ok' => 'Ara',

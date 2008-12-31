@@ -1589,45 +1589,6 @@ Talìa macari li [[Special:WantedCategories|catigurìi addumannati]].',
 # Special:DeletedContributions
 'deletedcontributions' => 'Cuntribbuti utenti scancillati',
 
-# Special:Interwiki
-'interwiki'                => 'Talìa e mudìfica li dati interwiki',
-'interwiki-title-norights' => 'Talìa li dati interwiki',
-'interwiki_addbutton'      => 'Iunci',
-'interwiki_added'          => 'Lu prifissi "$1" vinni iunciutu a la tabedda di li interwiki.',
-'interwiki_addfailed'      => 'Mpussìbbili iunciri lu prufissu "$1" a la tabedda di li interwiki.
-Lu prifissi putissi èssiri già prisenti ntâ tabedda.',
-'interwiki_addintro'       => 'Ora veni iunciutu nu novu prifissu interwiki.
-Non sunnu ammittuti li caràttiri: spàzziu ( ), dui punti (:), e cummirciali (&), sìmmulu di uguali (=).',
-'interwiki_addtext'        => 'Jùncicci nu prifissu interwiki',
-'interwiki-badprefix'      => 'Lu prifissu interwiki "$1" cunteni caràttiri non vàlidi',
-'interwiki_defaultreason'  => 'nudda mutivazzioni nnicata',
-'interwiki_defaulturl'     => 'http://www.example.com/$1',
-'interwiki_deleted'        => 'Lu prifissu "$1" vinni scancillatu cu successu dâ tabedda di li interwiki.',
-'interwiki_deleting'       => 'Stai pi scancillari lu prufissu "$1"',
-'interwiki_delfailed'      => 'Rimuzzioni dû prifissi "$1" dâ tabedda di li interwiki non arinisciuta.',
-'interwiki_delquestion'    => 'Scancellu "$1"',
-'interwiki_edited'         => 'Lu prifissi "$1" vinni canciatu nnâ tabedda di li interwiki.',
-'interwiki_editerror'      => 'Mpussìbbili mudificari lu prifissi "$1" nnâ tabedda di li interwiki.
-Lu prifissu putissi èssiri ca non c\'è.',
-'interwiki_editintro'      => 'Si sta pi mudificari nu prifissu interwiki.
-Chistu pò non fari funziunari arcuni lijami ca ci sù.',
-'interwiki_edittext'       => 'Mudìfica di nu prifissu interwiki',
-'interwiki_error'          => "SBÀGGHIU: La tabedda di li interwiki è vacanti, o c'è qualchi àutru sbàgghiu.",
-'interwiki_intro'          => "Talìa [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] pi chiossai nfurmazzioni supr'a tabedda di li interwiki.
-C'è nu [[Special:Log/interwiki|riggistru di li canciamenti]] a la tabedda di li interwiki.",
-'interwiki_local'          => 'Qualificari chistu comu a nu wiki lucali',
-'interwiki_log_added'      => 'juncìu lu prifissu "$2" ($3) (trans: $4) (lucali: $5) a la tabedda di li interwiki',
-'interwiki_log_deleted'    => 'rimuvìu lu prifissu "$2" dâ tabedda di li interwiki',
-'interwiki_log_edited'     => 'mudificau lu prifissu "$2" : ($3) (trans: $4) (lucali: $5) nnâ tabedda di li interwiki',
-'interwiki-not-enabled'    => 'La mudìfica dâ tabedda interwiki vinni disàttivata.',
-'interwiki_prefix'         => 'Prifissu',
-'interwiki_reasonfield'    => 'Mutivu',
-'interwiki_trans'          => 'Cunzenti interwiki transclusions',
-'interwiki_url'            => 'URL',
-'interwikilogpage'         => 'Riggistru tabedda interwiki',
-'interwikilogpagetext'     => "Riggistru di li canciamenti fatti a la [[Special:Interwiki|tabedda di l'interwiki]].",
-'right-interwiki'          => 'Mudìfica li dati interwiki',
-
 # Special:LinkSearch
 'linksearch'       => 'Circata lijami di fora',
 'linksearch-pat'   => 'Mudellu di circata:',

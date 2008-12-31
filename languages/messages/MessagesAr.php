@@ -140,6 +140,7 @@ $namespaceAliases = array(
 	'نقاش_الصورة' => NS_FILE_TALK,
 );
 
+
 $magicWords = array(
 	'redirect'              => array( '0', '#تحويل', '#REDIRECT' ),
 	'notoc'                 => array( '0', '__لافهرس__', '__NOTOC__' ),
@@ -361,7 +362,6 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'صفحة_فارغة' ),
 	'LinkSearch'                => array( 'بحث_الوصلات' ),
 	'DeletedContributions'      => array( 'مساهمات_محذوفة' ),
-	'Interwiki'                 => array( 'إنترويكي' ),
 );
 
 $imageFiles = array(
@@ -1958,44 +1958,6 @@ PICT # متنوع
 
 # Special:DeletedContributions
 'deletedcontributions' => 'مساهمات المستخدم المحذوفة',
-
-# Special:Interwiki
-'interwiki'                => 'عرض وتعديل بيانات الإنترويكي',
-'interwiki-title-norights' => 'عرض بيانات الإنترويكي',
-'interwiki_addbutton'      => 'إضافة',
-'interwiki_added'          => 'البادئة "$1" تمت إضافتها بنجاح إلى جدول الإنترويكي.',
-'interwiki_addfailed'      => 'البادئة "$1" لم يمكن إضافتها إلى جدول الإنترويكي.
-على الأرجح هي موجودة بالفعل في جدول الإنترويكي.',
-'interwiki_addintro'       => 'أنت تضيف بادئة إنترويكي جديدة.
-تذكر أنها لا يمكن أن تحتوي على مسافات ( )، نقطتين فوق بعض (:)، علامة و (&)، أو علامة يساوي (=).',
-'interwiki_addtext'        => 'أضف بادئة إنترويكي',
-'interwiki-badprefix'      => 'بادئة إنترويكي محددة "$1" تحتوي أحرفا غير صحيحة',
-'interwiki_defaultreason'  => 'لا سبب معطى',
-'interwiki_deleted'        => 'البادئة "$1" تمت إزالتها بنجاح من جدول الإنترويكي.',
-'interwiki_deleting'       => 'أنت تحذف البادئة "$1".',
-'interwiki_delfailed'      => 'البادئة "$1" لم يمكن إزالتها من جدول الإنترويكي.',
-'interwiki_delquestion'    => 'حذف "$1"',
-'interwiki_edited'         => 'البادئة "$1" تم تعديلها بنجاح في جدول الإنترويكي..',
-'interwiki_editerror'      => 'البادئة "$1" لم يمكن تعديلها في جدول الإنترويكي.
-من المحتمل أنها غير موجودة.',
-'interwiki_editintro'      => 'أنت تعدل بادئة إنترويكي موجودة.
-تذكر أن هذا يمكن أن يكسر الوصلات الحالية.',
-'interwiki_edittext'       => 'تعديل بادئة إنترويكي',
-'interwiki_error'          => 'خطأ: جدول الإنترويكي فارغ، أو حدث خطأ آخر.',
-'interwiki_intro'          => 'انظر [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] لمزيد من المعلومات حول جدول الإنترويكي.
-يوجد [[Special:Log/interwiki|سجل بالتغييرات]] لجدول الإنترويكي.',
-'interwiki_local'          => 'تعريف هذه كويكي محلّية',
-'interwiki_log_added'      => 'أضاف "$2" ($3) (نقل: $4) (محلي: $5) إلى جدول الإنترويكي',
-'interwiki_log_deleted'    => 'أزال البادئة "$2" من جدول الإنترويكي',
-'interwiki_log_edited'     => 'عدل البادئة "$2" : ($3) (عابر: $4) (محلي: $5) في جدول الإنترويكي',
-'interwiki-not-enabled'    => 'تعديل جدول الإنترويكي عُطّل.',
-'interwiki_prefix'         => 'بادئة',
-'interwiki_reasonfield'    => 'سبب',
-'interwiki_trans'          => 'عابر',
-'interwiki_url'            => 'مسار',
-'interwikilogpage'         => 'سجل جدول الإنترويكي',
-'interwikilogpagetext'     => 'هذا سجل بالتغييرات في [[Special:Interwiki|جدول الإنترويكي]].',
-'right-interwiki'          => 'تعديل بيانات الإنترويكي',
 
 # Special:LinkSearch
 'linksearch'       => 'بحث وصلات الويب',

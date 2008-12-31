@@ -276,7 +276,6 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'LegePagina' ),
 	'LinkSearch'                => array( 'VerwijzingenZoeken', 'LinksZoeken' ),
 	'DeletedContributions'      => array( 'VerwijderdeBijdragen' ),
-	'Interwiki'                 => array( 'Interwiki' ),
 );
 
 $linkTrail = '/^([a-zäöüïëéèà]+)(.*)$/sDu';
@@ -1892,39 +1891,6 @@ Zie ook [[Special:WantedCategories|niet-bestaande categorieën met verwijzingen]
 
 # Special:DeletedContributions
 'deletedcontributions' => 'Verwijderde gebruikersbijdragen',
-
-# Special:Interwiki
-'interwiki'                => 'Interwikigegevens bekijken en wijzigen',
-'interwiki-title-norights' => 'Interwikigegevens bekijken',
-'interwiki_addbutton'      => 'Toevoegen',
-'interwiki_added'          => 'Voorvoegsel "$1" is toegevoegd aan de interwikitabel.',
-'interwiki_addfailed'      => 'Voorvoegsel "$1" kon niet worden toegevoegd aan de interwikitabel. Mogelijk bestaat hij al in de interwikitabel.',
-'interwiki_addintro'       => 'U bent een nieuw interwikivoorvoegsel aan het toevoegen. Let op dat dit geen spaties ( ), dubbelepunt (:), ampersands (&), of gelijkheidstekens (=) mag bevatten.',
-'interwiki_addtext'        => 'Een interwikivoorvoegsel toevoegen',
-'interwiki-badprefix'      => 'Het interwikivoorvoegsel "$1" bevat ongeldige karakters',
-'interwiki_defaultreason'  => 'geen reden gegeven',
-'interwiki_deleted'        => 'Voorvoegsel "$1" is verwijderd uit de interwikitabel.',
-'interwiki_deleting'       => 'U bent voorvoegsel "$1" aan het verwijderen.',
-'interwiki_delfailed'      => 'Voorvoegsel "$1" kon niet worden verwijderd van de interwikitabel.',
-'interwiki_delquestion'    => '"$1" aan het verwijderen',
-'interwiki_edited'         => 'Voorvoegsel "$1" is gewijzigd in de interwikitabel.',
-'interwiki_editerror'      => 'Voorvoegsel "$1" kan niet worden gewijzigd in de interwikitabel. Mogelijk bestaat hij niet.',
-'interwiki_editintro'      => 'U bent een interwikivoorvoegsel aan het bewerken. Let op dat dit bestaande links kan breken.',
-'interwiki_edittext'       => 'Een interwikivoorvoegsel bewerken',
-'interwiki_error'          => 'FOUT: De interwikitabel is leeg, of iets anders ging verkeerd.',
-'interwiki_intro'          => 'Zie [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] voor meer informatie over de interwikitabel.
-Er is een [[Special:Log/interwiki|logboek van wijzigingen]] aan de interwikitabel.',
-'interwiki_local'          => 'Als lokale wiki instellen',
-'interwiki_log_added'      => 'Voegde "$2" ($3) (trans: $4) (local: $5) toe aan de interwikitabel',
-'interwiki_log_deleted'    => 'Verwijderde voorvoegsel "$2" van de interwikitabel',
-'interwiki_log_edited'     => 'wijzigde voorvoegsel "$2": ($3) (trans: $4) (local: $5) in de interwikitabel',
-'interwiki-not-enabled'    => 'Het bewerken van de interwikitabel is uitgeschakeld.',
-'interwiki_prefix'         => 'Voorvoegsel',
-'interwiki_reasonfield'    => 'Reden',
-'interwiki_trans'          => 'Interwikitransclusies toestaan',
-'interwikilogpage'         => 'Logboek interwikitabel',
-'interwikilogpagetext'     => 'Dit is een logboek van wijzigingen aan de [[Special:Interwiki|interwikitabel]].',
-'right-interwiki'          => 'Interwikigegevens bewerken',
 
 # Special:LinkSearch
 'linksearch'       => 'Externe verwijzingen zoeken',

@@ -744,9 +744,6 @@ $messages = array(
 'categoriespagetext' => "Τ' αφκά τα κατηγορίας έχνε απές σελίδας και μέσα. [[Special:UnusedCategories|Κατηγορίας που 'κ εμεταχειρίσκουνταν]] 'κ επορείτε να ελέπετε τα αδακά.
 Τερέστεν και τα [[Special:WantedCategories|κατηγορίας που χρειάσκουνταν]].",
 
-# Special:Interwiki
-'interwikilogpage' => 'Κατάλογον τραπεζίου Interwiki',
-
 # Special:ListGroupRights
 'listgrouprights-rights' => 'Δικαιώματα',
 

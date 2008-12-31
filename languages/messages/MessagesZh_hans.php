@@ -1586,43 +1586,6 @@ Template:消除歧義',
 # Special:DeletedContributions
 'deletedcontributions' => '已删除的用户贡献',
 
-# Special:Interwiki
-'interwiki'                => '查看并编辑跨维基连结表',
-'interwiki-title-norights' => '查看跨维基资料',
-'interwiki_addbutton'      => '加入',
-'interwiki_added'          => '前缀 "$1" 已经成功地加入到跨维基连结表。',
-'interwiki_addfailed'      => '前缀 "$1" 不能加入到跨维基连结表。
-可能已经在跨维基连结表中存在。',
-'interwiki_addintro'       => '您现在加入一个新的跨维基连结前缀。
-要记住它不可以包含空格 ( )、冒号 (:)、连字号 (&)，或者是等号 (=)。',
-'interwiki_addtext'        => '新增一个跨维基前缀',
-'interwiki-badprefix'      => '所指定的跨维基前缀 "$1" 含有无效的字母',
-'interwiki_defaultreason'  => '无给出原因',
-'interwiki_deleted'        => '已成功地从连结表中删除前缀"$1"。',
-'interwiki_deleting'       => '您正在删除前缀"$1"。',
-'interwiki_delfailed'      => '无法从连结表删除前缀"$1"。',
-'interwiki_delquestion'    => '正在删除"$1"',
-'interwiki_edited'         => '前缀 "$1" 已经在跨维基连结表中修改。',
-'interwiki_editerror'      => '前缀 "$1" 不能在跨维基连结表中修改。
-可能它并不存在。',
-'interwiki_editintro'      => '您现正修改跨维基连结前缀。
-记住这动作可以中断现有的连结。',
-'interwiki_edittext'       => '修改一个跨维基连结前缀',
-'interwiki_error'          => '错误: 跨维基连结表为空，或是发生其它错误。',
-'interwiki_intro'          => '请参阅[http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org]以取得更多有关跨维基连结表的信息。
-这里有跨维基连结表的[[Special:Log/interwiki|更动日志]]。',
-'interwiki_local'          => '定义这个为一个本地wiki',
-'interwiki_log_added'      => '加入了连结前缀 "$2" ($3) (含: $4) (本: $5) 到跨维基连结表中',
-'interwiki_log_deleted'    => '在跨维基连结表中已删除 "$2"',
-'interwiki_log_edited'     => '在跨维基连结表中修改了连结前缀 "$2" : ($3) (含: $4) (本: $5)',
-'interwiki-not-enabled'    => '跨维基表格编辑已经停用。',
-'interwiki_prefix'         => '前缀',
-'interwiki_reasonfield'    => '原因',
-'interwiki_trans'          => '容许跨维基包含',
-'interwikilogpage'         => '跨维基连结表日志',
-'interwikilogpagetext'     => '这个是对[[Special:Interwiki|跨维基连结表]]的改动日志。',
-'right-interwiki'          => '修改跨维基资料',
-
 # Special:LinkSearch
 'linksearch'       => '搜索网页链接',
 'linksearch-pat'   => '搜索网址:',

@@ -151,7 +151,6 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( '白紙ページ' ),
 	'LinkSearch'                => array( '外部リンク検索' ),
 	'DeletedContributions'      => array( '削除された投稿記録', '削除歴' ),
-	'Interwiki'                 => array( 'インターウィキ' ),
 );
 
 $magicWords = array(
@@ -1671,38 +1670,6 @@ PICT # misc.
 
 # Special:DeletedContributions
 'deletedcontributions' => '利用者の削除された投稿履歴',
-
-# Special:Interwiki
-'interwiki'                => 'インターウィキデータの閲覧と編集',
-'interwiki-title-norights' => 'インターウィキデータの一覧',
-'interwiki_addbutton'      => '追加',
-'interwiki_added'          => '接頭辞 "$1" はインターウィキテーブルに正常に追加されました。',
-'interwiki_addfailed'      => '接頭辞 "$1" をインターウィキテーブルに追加することができませんでした。すでに同じものが、インターウィキテーブルの中に存在している可能性があります。',
-'interwiki_addintro'       => 'あなたはインターウィキの新しい接頭辞を追加しようとしています。その中にスペース ( )、コロン (:)、アンパーサンド (&)、等号 (=) といった記号を含むことができないことに注意してください。',
-'interwiki_addtext'        => 'インターウィキの接頭辞を追加する',
-'interwiki-badprefix'      => '指定されたインターウィキ接頭辞 "$1" は無効な文字を含んでいます',
-'interwiki_defaultreason'  => '理由が記述されていません',
-'interwiki_deleted'        => '接頭辞 "$1" はインターウィキテーブルから正常に削除されました。',
-'interwiki_deleting'       => 'あなたは接頭辞 "$1" を削除しようとしています。',
-'interwiki_delfailed'      => '接頭辞 "$1" をインターウィキテーブルから削除できませんでした。',
-'interwiki_delquestion'    => '"$1"を削除',
-'interwiki_edited'         => '接頭辞 "$1" はインターウィキテーブル内で正常に変更されました。',
-'interwiki_editerror'      => 'インターウィキテーブル内で接頭辞 "$1" を変更できませんでした。存在していない可能性があります。',
-'interwiki_editintro'      => 'あなたはインターウィキ用接頭辞を編集しようとしています。この作業によりすでに存在しているリンクを破壊する可能性があります。',
-'interwiki_edittext'       => 'インターウィキ用接頭辞の編集',
-'interwiki_error'          => 'エラー: インターウィキテーブルが空か、他の理由でうまくいきませんでした。',
-'interwiki_intro'          => 'インターウィキテーブルについては[http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org]をご覧ください。インターウィキテーブルの[[Special:Log/interwiki|ログ]]もあります。',
-'interwiki_local'          => 'ローカルウィキとして定義',
-'interwiki_log_added'      => 'インターウィキテーブルに接頭辞 "$2" ($3) (trans: $4) (local: $5) を追加しました',
-'interwiki_log_deleted'    => 'インターウィキテーブルから接頭辞 "$2" を削除しました',
-'interwiki_log_edited'     => 'インターウィキテーブル内の接頭辞 "$2" を ($3) (trans: $4) (local: $5) に変更しました',
-'interwiki-not-enabled'    => 'インターウィキテーブルの編集は無効になっています。',
-'interwiki_prefix'         => '接頭辞',
-'interwiki_reasonfield'    => '理由',
-'interwiki_trans'          => 'ウィキ間トランスクルージョンを許可',
-'interwikilogpage'         => 'インターウィキ編集記録',
-'interwikilogpagetext'     => 'これは[[Special:Interwiki|インターウィキテーブル]]の変更記録です。',
-'right-interwiki'          => 'インターウィキの編集データ',
 
 # Special:LinkSearch
 'linksearch'       => '外部リンクの検索',

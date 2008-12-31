@@ -1302,10 +1302,6 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'categoriespagetext'          => 'በዚሁ ሥራ ዕቅድ ውስጥ የሚከተሉ መደቦች ይኖራሉ።',
 'special-categories-sort-abc' => 'በፊደል ተራ ይደርደሩ',
 
-# Special:Interwiki
-'interwiki_defaultreason' => 'ምንም ምክንያት አልተሰጠም',
-'interwiki_reasonfield'   => 'ምክንያት',
-
 # Special:LinkSearch
 'linksearch'    => 'የድረ-ገጽ መያያዣ ለመፈልግ',
 'linksearch-ns' => 'ክፍለ-ዊኪ፦',

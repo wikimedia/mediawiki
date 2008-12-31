@@ -1463,9 +1463,6 @@ Gwelet ivez ar [[Special:WantedCategories|rummadoù a vank]].',
 # Special:DeletedContributions
 'deletedcontributions' => 'Degasadennoù diverket un implijer',
 
-# Special:Interwiki
-'interwiki_addbutton' => 'Ouzhpennañ',
-
 # Special:LinkSearch
 'linksearch'      => 'Klask liammoù Kenrouedad',
 'linksearch-pat'  => 'Klask an droienn :',

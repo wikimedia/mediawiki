@@ -1742,18 +1742,6 @@ $2',
 # Special:DeletedContributions
 'deletedcontributions' => 'Διαγραμμένες συνεισφορές χρήστη',
 
-# Special:Interwiki
-'interwiki'                => 'Εμφάνιση και επεξεργασία των δεδομένων ιντερβίκι',
-'interwiki-title-norights' => 'Εμφάνιση δεδομένων ιντερβίκι',
-'interwiki_addbutton'      => 'Προσθήκη',
-'interwiki_defaultreason'  => 'Δεν δίνετε λόγος',
-'interwiki_delquestion'    => 'Διαγραφή του "$1"',
-'interwiki_error'          => 'Σφάλμα: Ο πίνακας ιντερβίκι είναι άδειος, ή κάτι άλλο έχει πάει στραβά.',
-'interwiki_prefix'         => 'Πρόθεμα',
-'interwiki_reasonfield'    => 'Λόγος',
-'interwikilogpage'         => 'Καταγραφή του πίνακα ιντερβίκι',
-'right-interwiki'          => 'Επεξεργασία των δεδομένων ιντερβίκι',
-
 # Special:LinkSearch
 'linksearch'      => 'Αναζήτηση διαδικτυακών συνδέσμων',
 'linksearch-ns'   => 'Περιοχή:',

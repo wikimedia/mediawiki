@@ -1685,43 +1685,6 @@ Véase también las [[Special:WantedCategories|categorías requeridas]].',
 # Special:DeletedContributions
 'deletedcontributions' => 'Contribuciones de usuario borradas',
 
-# Special:Interwiki
-'interwiki'                => 'Ver y editar la tabla de interwikis',
-'interwiki-title-norights' => 'Ver datos de interwikis',
-'interwiki_addbutton'      => 'Agregar',
-'interwiki_added'          => 'El prefijo «$1» ha sido añadido correctamente a la tabla de interwikis.',
-'interwiki_addfailed'      => 'El prefijo «$1» no se puede añadir a la tabla de interwikis.
-Posiblemente ya exista.',
-'interwiki_addintro'       => "Estás añadiendo un nuevo prefijo interwiki.
-Recuerda que no puede contener espacios ( ), dos puntos (:), ni los signos ''et'' (&), o ''igual'' (=).",
-'interwiki_addtext'        => 'Añadir un prefijo interwiki',
-'interwiki-badprefix'      => 'El prefijo interwiki especificado «$1» contiene caracteres no válidos',
-'interwiki_defaultreason'  => 'no se da ninguna razón',
-'interwiki_deleted'        => 'El prefijo «$1» ha sido borrado correctamente de la tabla de interwikis.',
-'interwiki_deleting'       => 'Estás borrando el prefijo «$1».',
-'interwiki_delfailed'      => 'El prefijo «$1» no puede ser borrado de la tabla de interwikis.',
-'interwiki_delquestion'    => 'Borrando «$1»',
-'interwiki_edited'         => 'El prefijo «$1» ha sido modificado correctamente en la tabla de interwikis.',
-'interwiki_editerror'      => 'El prefijo «$1» no puede ser modificado en la tabla de interwikis.
-Posiblemente no exista.',
-'interwiki_editintro'      => 'Estás editando un prefijo interwiki.
-Recuerda que esto puede romper enlaces existentes.',
-'interwiki_edittext'       => 'Editando un prefijo interwiki',
-'interwiki_error'          => 'Error: La tabla de interwikis está vacía, u otra cosa salió mal.',
-'interwiki_intro'          => 'Consulte [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] para obtener más información acerca de la tabla de interwikis.
-Hay un [[Special:Log/interwiki|registro de cambios]] realizados en la tabla.',
-'interwiki_local'          => 'Define este como un wiki local',
-'interwiki_log_added'      => 'añadido el prefijo «$2» ($3) (trans: $4) (local: $5) a la tabla de interwikis',
-'interwiki_log_deleted'    => 'eliminado el prefijo «$2» de la tabla de interwikis',
-'interwiki_log_edited'     => 'modificado el prefijo «$2» : ($3) (trans: $4) (local: $5) en la tabla de interwikis',
-'interwiki-not-enabled'    => 'Se ha deshabilitado la edición de la tabla de interwikis.',
-'interwiki_prefix'         => 'Prefijo',
-'interwiki_reasonfield'    => 'Motivo',
-'interwiki_trans'          => 'Permitir transclusiones interwiki',
-'interwikilogpage'         => 'Registro de la tabla de interwikis',
-'interwikilogpagetext'     => 'Este es un registro de cambios de la [[Special:Interwiki|tabla de interwikis]].',
-'right-interwiki'          => 'Editar datos de interwiki',
-
 # Special:LinkSearch
 'linksearch'       => 'Buscar enlaces a páginas web',
 'linksearch-pat'   => 'Patrón de búsqueda:',

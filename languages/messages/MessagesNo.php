@@ -158,7 +158,6 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'Blank side' ),
 	'LinkSearch'                => array( 'Lenkesøk' ),
 	'DeletedContributions'      => array( 'Slettede bidrag' ),
-	'Interwiki'                 => array( 'Interwiki' ),
 );
 
 $messages = array(
@@ -1650,35 +1649,6 @@ Se også [[Special:WantedCategories|ønskede kategorier]].',
 
 # Special:DeletedContributions
 'deletedcontributions' => 'Slettede brukerbidrag',
-
-# Special:Interwiki
-'interwiki'                => 'Vis og manipuler interwikidata',
-'interwiki-title-norights' => 'Vis interwikidata',
-'interwiki_addbutton'      => 'Legg til',
-'interwiki_added'          => 'Prefikset «$1» ble lagt til i interwikitabellen.',
-'interwiki_addfailed'      => 'Prefikset «$1» kunne ikke legges til i interwikitabellen. Det er kanskje brukt der fra før.',
-'interwiki_addintro'       => 'Du legger til et nytt interwikiprefiks. Husk at det ikke kan inneholde mellomrom ( ), kolon (:), &-tegn eller likhetstegn (=).',
-'interwiki_addtext'        => 'Legg til et interwikiprefiks.',
-'interwiki_defaultreason'  => 'ingen grunn gitt',
-'interwiki_deleted'        => 'Prefikset «$1» ble fjernet fra interwikitabellen.',
-'interwiki_deleting'       => 'Du sletter prefikset «$1».',
-'interwiki_delfailed'      => 'Prefikset «$1» kunne ikke fjernes fra interwikitabellen.',
-'interwiki_delquestion'    => 'Sletter «$1»',
-'interwiki_edited'         => 'Prefikset «$1» ble endret i interwikitabellen.',
-'interwiki_editerror'      => 'Prefikset «$1» kan ikke endres i interwikitabellen. Det finnes muligens ikke.',
-'interwiki_editintro'      => 'Du redigerer et interwikiprefiks. Merk at dette kan ødelegge eksisterende lenker.',
-'interwiki_edittext'       => 'Redigerer et interwikiprefiks',
-'interwiki_error'          => 'FEIL: Interwikitabellen er tom, eller noe gikk gærent.',
-'interwiki_intro'          => 'Se [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] for mer informasjon om interwikitabellen. Det er en [[Special:Log/interwiki|logg]] over endringer i interwikitabellen.',
-'interwiki_local'          => 'Lokal',
-'interwiki_log_added'      => 'La til «$2» ($3) (trans: $4) (lokal: $5) til interwikitabellen',
-'interwiki_log_deleted'    => 'Fjernet prefikset «$2» fra interwikitabellen',
-'interwiki_log_edited'     => 'endret prefikset «$2»: ($3) (trans: $4) (lokal: $5) i interwikitabellen',
-'interwiki_prefix'         => 'Prefiks',
-'interwiki_reasonfield'    => 'Årsak',
-'interwikilogpage'         => 'Interwikitabellogg',
-'interwikilogpagetext'     => 'Dette er en logg over endringer i [[Special:Interwiki|interwikitabellen]].',
-'right-interwiki'          => 'Redigere interwikidata',
 
 # Special:LinkSearch
 'linksearch'       => 'Søk i eksterne lenker',

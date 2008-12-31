@@ -216,9 +216,6 @@ Indi pagkalimti ang pag ilis sang imo mga pagpasulabi sa {{SITENAME}}.',
 'alphaindexline' => '$1 sa $2',
 'allpagessubmit' => 'Sige',
 
-# Special:Interwiki
-'interwiki_reasonfield' => 'Rason',
-
 # Special:LinkSearch
 'linksearch-ok' => 'Pangita-a',
 

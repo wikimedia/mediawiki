@@ -148,7 +148,6 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'Leerseite' ),
 	'LinkSearch'                => array( 'Weblink-Suche' ),
 	'DeletedContributions'      => array( 'Gelöschte Beiträge' ),
-	'Interwiki'                 => array( 'Interwiki' ),
 );
 
 $datePreferences = array(
@@ -1826,40 +1825,6 @@ Siehe auch die Liste der [[Special:WantedCategories|gewünschten Kategorien]].',
 
 # Special:DeletedContributions
 'deletedcontributions' => 'Gelöschte Beiträge',
-
-# Special:Interwiki
-'interwiki'                => 'Interwiki-Daten betrachten und bearbeiten',
-'interwiki-title-norights' => 'Interwiki-Daten betrachten',
-'interwiki_addbutton'      => 'Hinzufügen',
-'interwiki_added'          => '„$1“ wurde erfolgreich der Interwiki-Tabelle hinzugefügt.',
-'interwiki_addfailed'      => '„$1“ konnte nicht der Interwiki-Tabelle hinzugefügt werden.',
-'interwiki_addintro'       => 'Du fügst ein neues Interwiki-Präfix hinzu. Beachte, dass es kein Leerzeichen ( ), Kaufmännisches Und (&), Gleichheitszeichen (=) und keinen Doppelpunkt (:) enthalten darf.',
-'interwiki_addtext'        => 'Ein Interwiki-Präfix hinzufügen',
-'interwiki-badprefix'      => 'Festgelegtes Interwikipräfix „$1“ beinhaltet ungültige Zeichen',
-'interwiki_defaultreason'  => 'kein Grund angegeben',
-'interwiki_deleted'        => '„$1“ wurde erfolgreich aus der Interwiki-Tabelle entfernt.',
-'interwiki_deleting'       => 'Du bist dabei das Präfix „$1“ zu löschen.',
-'interwiki_delfailed'      => '„$1“ konnte nicht aus der Interwiki-Tabelle gelöscht werden.',
-'interwiki_delquestion'    => 'Löscht „$1“',
-'interwiki_edited'         => 'Das Präfix „$1“ wurde erfolgreich in der Interwiki-Tabelle geändert.',
-'interwiki_editerror'      => 'Das Präfix „$1“ kann in der Interwiki-Tabelle nicht geändert werden.
-Möglicherweise existiert es nicht.',
-'interwiki_editintro'      => 'Du bist dabei ein Präfix zu ändern.
-Beachte, dass dies bereits vorhandene Links ungültig machen kann.',
-'interwiki_edittext'       => 'Interwiki-Präfix bearbeiten',
-'interwiki_error'          => 'Fehler: Die Interwiki-Tabelle ist leer.',
-'interwiki_intro'          => 'Siehe [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] für weitere Informationen über die Interwiki-Tabelle. Das [[Special:Log/interwiki|Logbuch]] zeigt alle Änderungen an der Interwiki-Tabelle.',
-'interwiki_local'          => 'Dieses als ein lokales Wiki definieren',
-'interwiki_log_added'      => 'hat „$2“ ($3) (trans: $4) (lokal: $5) der Interwiki-Tabelle hinzugefügt',
-'interwiki_log_deleted'    => 'hat „$2“ aus der Interwiki-Tabelle entfernt',
-'interwiki_log_edited'     => 'veränderte Präfix „$2“: ($3) (trans: $4) (lokal: $5) in der Interwiki-Tabelle',
-'interwiki-not-enabled'    => 'Bearbeiten der Interwikitabelle wurde deaktiviert.',
-'interwiki_prefix'         => 'Präfix',
-'interwiki_reasonfield'    => 'Grund',
-'interwiki_trans'          => 'Interwikitransklusionen erlauben',
-'interwikilogpage'         => 'Interwikitabelle-Logbuch',
-'interwikilogpagetext'     => 'In diesem Logbuch werden Änderungen an der [[Special:Interwiki|Interwiki-Tabelle]] protokolliert.',
-'right-interwiki'          => 'Interwiki-Tabelle bearbeiten',
 
 # Special:LinkSearch
 'linksearch'       => 'Weblink-Suche',
