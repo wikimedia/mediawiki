@@ -63,6 +63,7 @@ class SpecialSearch {
 	 */
 	function __construct( &$request, &$user ) {
 		list( $this->limit, $this->offset ) = $request->getLimitOffset( 20, 'searchlimit' );
+		$this->mPrefix = $request->getVal('prefix', '');
 		# Extract requested namespaces
 		$this->namespaces = $this->powerSearch( $request );
 		if( empty( $this->namespaces ) ) {
@@ -148,6 +149,8 @@ class SpecialSearch {
 		$search->setLimitOffset( $this->limit, $this->offset );
 		$search->setNamespaces( $this->namespaces );
 		$search->showRedirects = $this->searchRedirects;
+		$search->prefix = $this->mPrefix;
+		$term = $search->transformSearchTerm($term);
 		$rewritten = $search->replacePrefixes($term);
 
 		$titleMatches = $search->searchTitle( $rewritten );

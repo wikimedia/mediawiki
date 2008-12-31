@@ -49,6 +49,14 @@ class SearchEngine {
 	}
 	
 	/**
+	 * Transform search term in cases when parts of the query came as different GET params (when supported)
+	 * e.g. for prefix queries: search=test&prefix=Main_Page/Archive -> test prefix:Main Page/Archive
+	 */
+	function transformSearchTerm( $term ) {
+		return $term;
+	}
+	
+	/**
 	 * If an exact title match can be find, or a very slightly close match,
 	 * return the title. If no match, returns NULL.
 	 *
