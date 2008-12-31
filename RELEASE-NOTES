@@ -574,8 +574,6 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 16726) siprop=namespacealiases should also list localized aliases
 * (bug 16730) Added apprfiltercascade parameter to list=allpages to filter
   cascade-protected pages
-* (bug 15430) Cancel the upload process and rollback database changes in case 
-  no article associated with the file can be created 
 
 === Languages updated in 1.14 ===
 
