@@ -1748,7 +1748,7 @@ please see math/README to configure.',
 'recentchangeslinked-summary'  => "This is a list of changes made recently to pages linked from a specified page (or to members of a specified category).
 Pages on [[Special:Watchlist|your watchlist]] are '''bold'''.",
 'recentchangeslinked-page'     => 'Page name:',
-'recentchangeslinked-to'       => 'Linked to this page instead',
+'recentchangeslinked-to'       => 'Show changes to pages linked to the given page instead',
 
 # Upload
 'upload'                      => 'Upload file',
