@@ -1698,7 +1698,6 @@ $1 አሁን ገና ታግዷል። ዝርዝሩን ማስተካከል ፈለጉ
 'movenologin'               => 'ገና አልገቡም',
 'movenologintext'           => 'ገጽ ለማዛወር [[Special:UserLogin|በብዕር ስም መግባት]] ይኖርብዎታል።',
 'movenotallowed'            => 'በዚህ ዊኪ ገጾችን ለማዛወር ፈቃድ የለዎም።',
-'movenotallowedfile'        => 'ፋይልን ለማዛወር ፈቃድ የለዎም።',
 'cant-move-user-page'       => 'ከንዑስ ገጾች በቀር፣ የአባል ገጽ ለማዛወር ፈቃድ የለዎም።',
 'newtitle'                  => 'አዲሱ አርእስት',
 'move-watch'                => 'ይህ ገጽ በተከታተሉት ገጾች ይጨመር',

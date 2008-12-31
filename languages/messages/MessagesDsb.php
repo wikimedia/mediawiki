@@ -2107,6 +2107,7 @@ W toś tyma padoma dej wopśimjeśe boka manualnje se pśesunuś resp. gromadu w
 'movepage-max-pages'           => 'Maksimalna licba $1 {{PLURAL:$1|boka|bokowu|bokow|bokow}} jo se pśesunuła a žedne dalšne wěcej njedaje se awtomatiski pśesunuś.',
 '1movedto2'                    => '„[[$1]]“ pśesunjone na „[[$2]]“',
 '1movedto2_redir'              => 'Nastawk „[[$1]]“ jo se pśesunuł na „[[$2]]“. Pśi tom jo jadno dalejpósrědnjenje se pśepisało.',
+'move-redirect-suppressed'     => 'dakejpósrědnjenje pódtłocone',
 'movelogpage'                  => 'Protokol pśesunjenjow',
 'movelogpagetext'              => 'How jo lisćina wšyknych pśesunjonych bokow.',
 'movereason'                   => 'Pśicyna',

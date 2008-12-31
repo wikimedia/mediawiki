@@ -1613,51 +1613,103 @@ Lueg au d Lischt vu dr [[Special:WantedCategories|gwinschte Kategorie]].',
 'linksearch-line'  => '$1 isch vo $2 verknüpft',
 'linksearch-error' => 'Platzhalter chönne numme am Aafang verwändet werre.',
 
+# Special:ListUsers
+'listusersfrom'      => 'Zeig Benutzer ab:',
+'listusers-submit'   => 'Zeig',
+'listusers-noresult' => 'Kei Benutzer gfunde.',
+
+# Special:Log/newusers
+'newuserlogpage'              => 'Nejaamäldigs-Logbuech',
+'newuserlogpagetext'          => 'Des isch e Logbuech fir nej aagleiti Benutzerchonte.',
+'newuserlog-byemail'          => 's Passwort isch per E-Mail gschickt wore',
+'newuserlog-create-entry'     => 'Benutzer isch nej regischtriert wore',
+'newuserlog-create2-entry'    => 'het e Benutzerchonto aagleit fir $1',
+'newuserlog-autocreate-entry' => 'Benutzerchonto isch automatisch aagleit wore',
+
+# Special:ListGroupRights
+'listgrouprights'                 => 'Benutzergruppe-Rächt',
+'listgrouprights-summary'         => 'Des isch e Liste vu dr Benutzergruppe, wu in däm Wiki definiert sin, un dr Rächt, wu dermit verbunde sin.
+Zuesätzligi Informatione iber einzelni Rächt git s [[{{MediaWiki:Listgrouprights-helppage}}|doo]].',
+'listgrouprights-group'           => 'Grupp',
+'listgrouprights-rights'          => 'Rächt',
+'listgrouprights-helppage'        => 'Help:Grupperächt',
+'listgrouprights-members'         => '(Mitgliiderlischt)',
+'listgrouprights-addgroup'        => 'Cha Benutzer zue {{PLURAL:$2|däre Grupp|däne Gruppe}} zuefiege: $1',
+'listgrouprights-removegroup'     => 'Cha Benutzer us {{PLURAL:$2|däre Grupp|däne Gruppe}} useneh: $1',
+'listgrouprights-addgroup-all'    => 'Cha Benutzer zue allene Gruppe zuefiege',
+'listgrouprights-removegroup-all' => 'Cha Benutzer us allene Gruppe useneh',
+
 # E-mail user
 'mailnologin'     => 'Du bisch nid aagmäldet oder hesch keis Mail aaggä',
 'mailnologintext' => 'Du muesch [[Special:UserLogin|aagmäldet syy]] un e bstätigti E-Mail-Adräss in Dyyne [[Special:Preferences|Yystellige]] aagee ha, fir dass epper anderem es E-Mail chasch schicke.',
 'emailuser'       => 'Es Mail schrybe',
 'emailpage'       => 'E-Mail an Benutzer',
-'emailpagetext'   => 'Öpperem, wo sälber e bestätigeti e-Mail-Adrässe het aaggä, chasch du mit däm Formular es Mail schicke.
-Im Absänder steit dyni eigeti e-Mail-Adrässe us dine [[Special:Preferences|Istellige]], so das me dir cha antworte.',
+'emailpagetext'   => 'Du chasch im Benutzer mit däm Formular e E-Mail schicke.
+As Absender wird d E-Mail-Adräss us Dyyne [[Special:Preferences|Yystellige]] yytrait, ass dr Benutzer Dir cha Antwort gee.',
 'usermailererror' => 'S Mail-Objekt het e Fähler zruckgee:',
+'defemailsubject' => '{{SITENAME}}-E-Mail',
 'noemailtitle'    => 'Kei e-Mail-Adrässe',
 'noemailtext'     => 'Dä Benutzer het kei bstätigti E-Mail-Adräss aagee oder wet kei E-Mails vo andere Benutzer.',
-'emailfrom'       => 'Vo',
-'emailto'         => 'Empfänger',
-'emailsubject'    => 'Titel',
-'emailmessage'    => 'E-Bost',
+'email-legend'    => 'E-Mail an e andere {{SITENAME}}-Benutzer schicke',
+'emailfrom'       => 'Vu:',
+'emailto'         => 'An:',
+'emailsubject'    => 'Betreff:',
+'emailmessage'    => 'Nochricht:',
 'emailsend'       => 'Abschicke',
+'emailccme'       => 'Schick e Kopii vu dr E-Mail a mii',
+'emailccsubject'  => 'Kopii vu Dyynere Nochricht an $1: $2',
 'emailsent'       => 'E-Mail furtgschickt',
 'emailsenttext'   => 'Dys E-Mail isch verschickt worde.',
+'emailuserfooter' => 'Die E-Mail isch vum {{SITENAME}}-Benutzer „$1“ an „$2“ gschickt wore.',
 
 # Watchlist
-'watchlist'         => 'Beobachtigslischte',
-'mywatchlist'       => 'Beobachtigslischte',
-'watchlistfor'      => "(für '''$1''')",
-'nowatchlist'       => 'Du hesch ke Yträg uf dyre Beobachtigslischte.',
-'watchnologintext'  => 'Du muesch [[Special:UserLogin|aagmäldet]] syy, zum Dyyni Beobachtigssyte z bearbeite.',
-'addedwatch'        => 'zue de Beobachtigslischte drzue do',
-'addedwatchtext'    => 'D Syte "[[:$1]]" stoht jetz uf Ihre [[Special:Watchlist|Beobachtigslischte]].
+'watchlist'            => 'Beobachtigslischte',
+'mywatchlist'          => 'Beobachtigslischte',
+'watchlistfor'         => "(für '''$1''')",
+'nowatchlist'          => 'Du hesch ke Yträg uf dyre Beobachtigslischte.',
+'watchlistanontext'    => 'Du muesch Di $1 go Dyyni Beobachtungslischt z säh oder go Yytreg uf ere bearbeite.',
+'watchnologin'         => 'Du bisch nit aagmäldet',
+'watchnologintext'     => 'Du muesch [[Special:UserLogin|aagmäldet]] syy, zum Dyyni Beobachtigssyte z bearbeite.',
+'addedwatch'           => 'zue de Beobachtigslischte drzue do',
+'addedwatchtext'       => 'D Syte "[[:$1]]" stoht jetz uf Ihre [[Special:Watchlist|Beobachtigslischte]].
 Neui Änderige an de Syte odr de Diskussionssyte drvo chasch jetz dört seh. Usserdem sin selli Änderige uf de [[Special:RecentChanges|letschte Änderige]] fett gschriibe, dass Si s schneller finde.
 
 Wenn Si d Syte spöter wiedr vo de Lischte striiche wenn, denn drucke Si eifach uf "nümm beobachte".',
-'removedwatch'      => 'Us der Beobachtigsliste glösche',
-'removedwatchtext'  => 'D Syte «[[:$1]]» isch us dyre [[Special:Watchlist|Beobachtigsliste]] glösche worde.',
-'watch'             => 'beobachte',
-'watchthispage'     => 'Die Syte beobachte',
-'unwatch'           => 'nümm beobachte',
-'watchnochange'     => 'Vo den Artikle, wo du beobachtisch, isch im aazeigte Zytruum kene veränderet worde.',
-'watchlist-details' => '{{PLURAL:$1|1 Syte wird|$1 Sytene wärde}} beobachtet (Diskussionssyte nid zelt, aber ou beobachtet).',
-'wlshowlast'        => 'Zeig di letschte $1 Stunde $2 Tage $3',
+'removedwatch'         => 'Us der Beobachtigsliste glösche',
+'removedwatchtext'     => 'D Syte «[[:$1]]» isch us dyre [[Special:Watchlist|Beobachtigsliste]] glösche worde.',
+'watch'                => 'beobachte',
+'watchthispage'        => 'Die Syte beobachte',
+'unwatch'              => 'nümm beobachte',
+'unwatchthispage'      => 'Nimmi beobachte',
+'notanarticle'         => 'Kei Syte',
+'notvisiblerev'        => 'Version isch glescht wore',
+'watchnochange'        => 'Vo den Artikle, wo du beobachtisch, isch im aazeigte Zytruum kene veränderet worde.',
+'watchlist-details'    => '{{PLURAL:$1|1 Syte wird|$1 Sytene wärde}} beobachtet (Diskussionssyte nid zelt, aber ou beobachtet).',
+'wlheader-enotif'      => '* Dr E-Mail-Benochrichtigungsdienscht isch aktiviert.',
+'wlheader-showupdated' => "* Syte mit Anderige, wu no nit aagluegt sin, sin '''fett''' dargstellt.",
+'watchmethod-recent'   => 'Iberpriefe vu dr letschte Bearbeitige fir d Beobachtigslischt',
+'watchmethod-list'     => 'Iberpriefe vu dr Beobachtigslischt no letschte Bearbeitige',
+'watchlistcontains'    => 'In Dyynere Beobachtigslischt het s $1 {{PLURAL:$1|Syte|Syte}}.',
+'iteminvalidname'      => 'Probläm mit em Yytrag „$1“, uugiltige Name.',
+'wlnote'               => "Do {{PLURAL:$1|chunnt di letscht Änderig|chemme di letschte '''$1''' Änderige}} vu dr letschte {{PLURAL:$2|Stund|'''$2''' Stunde}}.",
+'wlshowlast'           => 'Zeig di letschte $1 Stunde $2 Tage $3',
+'watchlist-options'    => 'Aazeigoptione',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Am beobachte …',
 'unwatching' => 'Nümm am beobachten …',
 
-'enotif_subject'     => 'D {{SITENAME}} Syte $PAGETITLE isch vum $PAGEEDITOR $CHANGEDORCREATED wore.',
-'enotif_lastvisited' => '$1 zeigt alli Änderige uf s Mol.',
-'enotif_body'        => 'Liebe/r $WATCHINGUSERNAME,
+'enotif_mailer'                => '{{SITENAME}} E-Mail-Benochrichtigungsdienscht',
+'enotif_reset'                 => 'Alli Syte as aagluegt markiere',
+'enotif_newpagetext'           => 'Des isch e neiji Syte.',
+'enotif_impersonal_salutation' => '{{SITENAME}}-Benutzer',
+'changed'                      => 'gänderet',
+'created'                      => 'aagleit',
+'enotif_subject'               => 'D {{SITENAME}} Syte $PAGETITLE isch vum $PAGEEDITOR $CHANGEDORCREATED wore.',
+'enotif_lastvisited'           => '$1 zeigt alli Änderige uf s Mol.',
+'enotif_lastdiff'              => 'Lueg $1 no däre Änderig.',
+'enotif_anon_editor'           => 'Anonyme Benutzer $1',
+'enotif_body'                  => 'Liebe/r $WATCHINGUSERNAME,
 
 d {{SITENAME}} Syte $PAGETITLE isch vom $PAGEEDITOR am $PAGEEDITDATE $CHANGEDORCREATED,
 di aktuelli Version isch: $PAGETITLE_URL
@@ -1678,40 +1730,71 @@ Ihri Beobachtigslischte {{fullurl:Special:Watchlist/edit}}
 Hilf zue de Benutzig gits uff {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
-'deletepage'            => 'Syte lösche',
-'confirm'               => 'Bstätige',
-'excontentauthor'       => "einzige Inhalt: '$1' (bearbeitet worde nume dür '$2')",
-'historywarning'        => '<span style="color:#ff0000">OBACHT:</span> Die Syte, wu Du wit lesche, het e Versionsgschicht:',
-'confirmdeletetext'     => 'Du bisch dra, e Artikel oder e Bild mitsamt dr Versionsgschicht fir immer us der Datebank z lesche.
+'deletepage'             => 'Syte lösche',
+'confirm'                => 'Bstätige',
+'excontent'              => "Alter Inhalt: '$1'",
+'excontentauthor'        => "einzige Inhalt: '$1' (bearbeitet worde nume dür '$2')",
+'exbeforeblank'          => "Inhalt voreb d Syte gläärt woren isch: '$1'",
+'exblank'                => 'Syte isch läär gsi',
+'delete-confirm'         => '„$1“ lesche',
+'delete-legend'          => 'Lesche',
+'historywarning'         => '<span style="color:#ff0000">OBACHT:</span> Die Syte, wu Du wit lesche, het e Versionsgschicht:',
+'confirmdeletetext'      => 'Du bisch dra, e Artikel oder e Bild mitsamt dr Versionsgschicht fir immer us der Datebank z lesche.
 Bitte bi Dir iber d Konsequänze bewusst, un bi sicher, dass Du Di an unsri [[{{MediaWiki:Policy-url}}|Leitlinie]] haltsch.',
-'actioncomplete'        => 'Uftrag usgfiert.',
-'deletedtext'           => '«<nowiki>$1</nowiki>» isch glescht wore.
+'actioncomplete'         => 'Uftrag usgfiert.',
+'deletedtext'            => '«<nowiki>$1</nowiki>» isch glescht wore.
 Im $2 het s e Lischt vu dr letschte Leschige.',
-'deletedarticle'        => '„[[$1]]“ glescht',
-'dellogpage'            => 'Lösch-Logbuech',
-'deletionlog'           => 'Lösch-Logbuech',
-'deletecomment'         => 'Löschigsgrund',
-'deleteotherreason'     => 'Andere/zuesätzleche Grund:',
-'deletereasonotherlist' => 'Andere Grund',
+'deletedarticle'         => '„[[$1]]“ glescht',
+'suppressedarticle'      => 'het d Sichtbarkeit vu „[[$1]]“ gänderet',
+'dellogpage'             => 'Lösch-Logbuech',
+'dellogpagetext'         => 'Des isch s Logbuech vu dr gleschte Syte un Dateie.',
+'deletionlog'            => 'Lösch-Logbuech',
+'reverted'               => 'Uf e alti Version zruckgsetzt',
+'deletecomment'          => 'Löschigsgrund',
+'deleteotherreason'      => 'Andere/zuesätzleche Grund:',
+'deletereasonotherlist'  => 'Andere Grund',
+'deletereason-dropdown'  => '* Allgmeini Leschgrind
+** Wunsch vum Autor
+** Urheberrächtsverletzig
+** Vandalismus',
+'delete-edit-reasonlist' => 'Leschgrind bearbeite',
+'delete-toobig'          => 'Die Syte het e arg langi Versionsgschicht mit meh as $1 {{PLURAL:$1|Version|Versione}}. S Lesche vu sonige Syte isch yygschränkt wore go verhindere, ass dr Server vu {{SITENAME}} us Versäh zytwys iberlaschtet wird.',
+'delete-warning-toobig'  => 'Die Syte het e arg langi Versionsgschicht mit meh as $1 {{PLURAL:$1|Version|Versione}}. S Lesche cha dr Datebankbetriib vu {{SITENAME}} stere.',
 
 # Rollback
-'rollback_short' => 'Zrucksetze',
-'rollbacklink'   => 'Zrüggsetze',
-'alreadyrolled'  => 'Cha d Änderig uf [[:$1]] wo [[User:$2|$2]] ([[User talk:$2|Talk]]) gmacht het nit zruckneh will des öbber anderscht scho gmacht het.
+'rollback'         => 'Zrucksetze vu dr Änderige',
+'rollback_short'   => 'Zrucksetze',
+'rollbacklink'     => 'Zrüggsetze',
+'rollbackfailed'   => 'S Zrucksetze het nit funktioniert',
+'cantrollback'     => 'D Änderig cha nit zruckgsetzt wäre, wel s keini friejere Autore git.',
+'alreadyrolled'    => 'Cha d Änderig uf [[:$1]] wo [[User:$2|$2]] ([[User talk:$2|Talk]]) gmacht het nit zruckneh will des öbber anderscht scho gmacht het.
 
 Di letschti Änderig het [[User:$3|$3]] ([[User talk:$3|Talk]]) gmacht.',
-'revertpage'     => 'Ruckgängig gmacht zue dr letschte Änderig vo [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) mit de letzte Version vo [[User:$1|$1]] widerhergstellt', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'      => 'Dr Änderigskommentar isch: „<i>$1</i>“.', # only shown if there is an edit comment
+'revertpage'       => 'Ruckgängig gmacht zue dr letschte Änderig vo [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) mit de letzte Version vo [[User:$1|$1]] widerhergstellt', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'D Änderige vu $1 sin ruckgängig gmacht wore un di letscht Version vu $2 isch widerhärgstellt wore.',
+'sessionfailure'   => 'S het e Probläm mit em Ibertrage vu Dyyne Benutzerdate gee.
+Die Aktion isch wäge däm us Sicherheitsgrind abbroche wore go ne falschi Zueornig vu Dyyne Änderige zuen eme andere Benutzer verhindere.
+Bitte gang zruck, tue d Syte nej lade un versuech s nomol.',
 
 # Protect
 'protectlogpage'              => 'Syteschutz-Logbuech',
 'protectlogtext'              => 'Des isch e Lischt vu dr blockierte Syte. Lueg [[Special:ProtectedPages|Gschitzti Syte]] fir meh Informatione.',
+'protectedarticle'            => 'het „[[$1]]“ gschitzt',
+'modifiedarticleprotection'   => 'het dr Schutz vu „[[$1]]“ gänderet',
+'unprotectedarticle'          => 'het dr Schutz vu „[[$1]]“ ufghebt',
+'movedarticleprotection'      => 'het dr Syteschutz vu „[[$2]]“ uf „[[$1]]“ ibertrait',
+'protect-title'               => 'Schutz vu „$1“ ändere',
 'prot_1movedto2'              => '[[$1]] isch uf [[$2]] verschobe worde.',
+'protect-legend'              => 'Syteschutzstatus ändere',
 'protectcomment'              => 'Grund vu dr Sperrig',
 'protectexpiry'               => 'Gsperrt bis:',
 'protect_expiry_invalid'      => 'Di gwählti Duur isch nid gültig.',
 'protect_expiry_old'          => 'Di gwählti Duur isch scho vergange.',
 'protect-unchain'             => 'Verschiebschutz ändere',
 'protect-text'                => 'Hie chasch der Schutzstatus vor Syte <strong><nowiki>$1</nowiki></strong> azeigen und ändere.',
+'protect-locked-blocked'      => 'Du chasch dr Syteschutz nit ändere, wel Dyy benutzerchonto gsperrt isch. Do sin di aktuälle Syteschutz-Yystellige fir d Syte <strong>„$1“:</strong>',
+'protect-locked-dblock'       => 'D Datebank isch gsperrt, dr Syteschutz cha wäge däm nit gänderet wäre. Doo sin di aktuälle Syteschutz-Yystellige fir d Syte <strong>„$1“:</strong>',
 'protect-locked-access'       => 'Dys Konto het nid di nötige Rächt, für der Schutzstatus z ändere.
 Hie sy di aktuelle Schutzystellige vor Syte <strong>$1</strong>:',
 'protect-cascadeon'           => 'Die Syten isch gschützt, wil si {{PLURAL:$1|zur folgende Syte|zu de folgende Syte}} ghört, wo derfür e Kaskadesperrig gilt.
@@ -1722,11 +1805,37 @@ Der Schutzstatus vo dere Syte lat sech la ändere, aber das het kei Yfluss uf d 
 'protect-level-sysop'         => 'Nur Adminischtratore',
 'protect-summary-cascade'     => 'Kaskade',
 'protect-expiring'            => 'bis $1 (UTC)',
+'protect-expiry-indefinite'   => 'uubschränkt',
 'protect-cascade'             => 'Kaskadesperrig – alli yybundnige Vorlage sy mitgsperrt.',
 'protect-cantedit'            => 'Du chasch der Schutzstatus vo dere Syte nid ändere, wil du kener Berächtigunge hesch, für se z bearbeite.',
+'protect-othertime'           => 'Anderi Sperrduur:',
+'protect-othertime-op'        => 'anderi Sperrduur',
+'protect-existing-expiry'     => 'Aktuälls Syteschutzänd: $2, $3 Uhr',
+'protect-otherreason'         => 'Andere/zuesätzlige Grund:',
+'protect-otherreason-op'      => 'andere/zuesätzlige Grund',
+'protect-dropdown'            => '*Allgmeini Schutzgrind
+** Netzgleich-Spam
+** Editwar
+** Vylmol yybundeni Vorlag
+** Syte mit ere hoche Bsuecherzahl',
+'protect-edit-reasonlist'     => 'Schutzgrind bearbeite',
 'protect-expiry-options'      => '1 Stund:1 hour,2 Stunde:2 hours,6 Stunde:6 hours,1 Tag:1 day,3 Täg:3 days,1 Wuche:1 week,2 Wuche:2 weeks,1 Monet:1 month,3 Monet:3 months,1 Johr:1 year,Fir immer:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Schutzstatus',
 'restriction-level'           => 'Schutzhöchi:',
+'minimum-size'                => 'Mindeschtgressi',
+'maximum-size'                => 'Maximalgressi:',
+'pagesize'                    => '(Bytes)',
+
+# Restrictions (nouns)
+'restriction-edit'   => 'Bearbeite',
+'restriction-move'   => 'Verschiebe',
+'restriction-create' => 'Aalege',
+'restriction-upload' => 'Uffelade',
+
+# Restriction levels
+'restriction-level-sysop'         => 'gschitzt (nume Ammanne)',
+'restriction-level-autoconfirmed' => 'gschitzt (nume aagmäldeti Benutzer, wu nit nej sin)',
+'restriction-level-all'           => 'alli',
 
 # Undelete
 'undeletehistorynoadmin' => 'Dä Artikel isch glescht wore. Dr Grund fir d Leschig isch in dr Zämmefassig aagee, derzue au Aagaabe zum letschte Benutzer, wu dä Artikel bearbeitet het vor dr Leschig. Dr aktuäll Täxt vum gleschte Artikel isch nume zuegängli fir Ammanne.',

@@ -218,7 +218,7 @@ $messages = array(
 'versionrequiredtext' => 'Για να κουλεύετε αβούτεν τη σελίδαν χρειάσκεται η έκδοση $1 τη MediaWiki.
 Τερέστεν τη [[Special:Version|version page]].',
 
-'ok'                      => 'Ἐγεντον',
+'ok'                      => 'Εγέντον',
 'retrievedfrom'           => 'Ασο "$1"',
 'youhavenewmessages'      => 'Έχετε $1 ($2).',
 'newmessageslink'         => 'καινούρεα μενέματα',
@@ -259,6 +259,7 @@ $messages = array(
 'laggedslavemode'      => "Ωρία: Η σελίδαν ίσως ξάι 'κ εχ' τα υστερνά τα αλλαγάς.",
 'readonly'             => 'Βάση δογμενίων εν ασπαλιζμένον',
 'enterlockreason'      => "Βαλέστεν λόγον για τ' ασπάλιγμαν και ους πότε θα εν ασπαλιγμένον",
+'missingarticle-diff'  => '(Δεαφ: $1, $2)',
 'internalerror'        => 'Σφάλμαν απές μερέαν',
 'internalerror_info'   => 'Σφάλμαν απές μερέαν: $1',
 'filecopyerror'        => 'Η αντιγραφή τ\' αρχείου ασό "$1" σο "$2" \'κ εγέντον.',
@@ -501,6 +502,11 @@ $messages = array(
 'diff-src'                => 'πηγήν',
 'diff-with'               => '&#32;με $1 $2',
 'diff-with-final'         => '&#32;και $1 $2',
+'diff-width'              => 'πλάτος',
+'diff-height'             => 'ύψος',
+'diff-td'                 => "'''κελλίον'''",
+'diff-dt'                 => "εις '''όρον ορισμού'''",
+'diff-strike'             => "'''εγκάρσιον σβήσεμαν'''",
 
 # Search results
 'noexactmatch'             => "'''Η Βικιπαίδειαν 'κ εχ' σελίδαν με τ' όνεμαν \"\$1\".'''
@@ -517,18 +523,25 @@ $messages = array(
 'search-external'          => 'Εύρον σα εξ μερέαν',
 
 # Preferences page
-'preferences'       => 'Αγαπεμένα',
-'mypreferences'     => "Τ' εμά τ' αγαπεμένα",
-'changepassword'    => 'Άλλαξον σημάδιν',
-'skin-preview'      => 'Πρώτον τέρεμαν',
-'math'              => 'Απόδοσην μαθηματικίων',
-'dateformat'        => 'Μορφή ημερομηνίας',
-'datetime'          => 'Ημερομηνίαν και ώραν',
-'prefs-misc'        => 'Διαφ',
-'saveprefs'         => 'Αποθήκεμαν',
-'searchresultshead' => 'Εύρον',
-'timezonelegend'    => 'Χρονικόν ζώνην',
-'localtime'         => 'Τοπικόν χρόνον:',
+'preferences'           => 'Αγαπεμένα',
+'mypreferences'         => "Τ' εμά τ' αγαπεμένα",
+'changepassword'        => 'Άλλαξον σημάδιν',
+'skin'                  => 'Όψην',
+'skin-preview'          => 'Πρώτον τέρεμαν',
+'math'                  => 'Απόδοσην μαθηματικίων',
+'dateformat'            => 'Μορφή ημερομηνίας',
+'datetime'              => 'Ημερομηνίαν και ώραν',
+'math_unknown_function' => 'άγνωρος συνάρτησην',
+'math_lexing_error'     => 'σφάλμαν λεξικής ανάλυσης',
+'math_syntax_error'     => 'σφάλμαν σύνταξης',
+'prefs-misc'            => 'Διαφ',
+'saveprefs'             => 'Αποθήκεμαν',
+'searchresultshead'     => 'Εύρον',
+'timezonelegend'        => 'Χρονικόν ζώνην',
+'localtime'             => 'Τοπικόν χρόνον:',
+
+# User rights
+'userrights-groupsmember' => 'Μέλος τη:',
 
 # Groups
 'group-user'       => 'Χρήστες',
@@ -634,6 +647,7 @@ $messages = array(
 'filehist-help'                 => "Εφτάτε κλικ σ' έναν ημερομηνίαν/ώραν απάν αέτς για να τερείτε πως έτον τ' αρχείον σ' εκείνεν την ώραν.",
 'filehist-current'              => 'υστερινά',
 'filehist-datetime'             => 'Ώραν/Ημερομ.',
+'filehist-nothumb'              => "'Κ εν γραφικήν σύνοψην (thumbnail)",
 'filehist-user'                 => 'Χρήστες',
 'filehist-dimensions'           => 'Διαστάσεις',
 'filehist-filesize'             => 'Μέγεθος',
@@ -669,13 +683,15 @@ $messages = array(
 'randomredirect' => 'Τυχαία διπλά συνδέσμ',
 
 # Statistics
-'statistics' => 'Στατιστικήν',
+'statistics'       => 'Στατιστικήν',
+'statistics-pages' => 'Σελίδας',
 
 'disambiguations' => 'Σελίδας εξηγησίων',
 
 'doubleredirects' => 'Περισσά διπλά συνδέσμ',
 
-'brokenredirects' => 'Τσακωμένα διπλά συνδέσμ',
+'brokenredirects'        => 'Τσακωμένα διπλά συνδέσμ',
+'brokenredirects-delete' => '(σβήσεμαν)',
 
 'withoutinterwiki'        => "Σελίδας ντο κ' έχνε συνδέσμ",
 'withoutinterwiki-legend' => 'Προθέκεμαν',
@@ -743,6 +759,9 @@ $messages = array(
 'categories'         => 'Κατηγορίας',
 'categoriespagetext' => "Τ' αφκά τα κατηγορίας έχνε απές σελίδας και μέσα. [[Special:UnusedCategories|Κατηγορίας που 'κ εμεταχειρίσκουνταν]] 'κ επορείτε να ελέπετε τα αδακά.
 Τερέστεν και τα [[Special:WantedCategories|κατηγορίας που χρειάσκουνταν]].",
+
+# Special:Log/newusers
+'newuserlog-create-entry' => 'Νέον χρήστες',
 
 # Special:ListGroupRights
 'listgrouprights-rights' => 'Δικαιώματα',
@@ -845,16 +864,17 @@ $messages = array(
 'sp-contributions-submit'      => 'Αράεμαν',
 
 # What links here
-'whatlinkshere'       => "Ντο δεκνίζ' αδακές",
-'whatlinkshere-title' => 'Σελίδας ντο συνδέουν ση σελίδαν $1',
-'whatlinkshere-page'  => 'Σελίδαν:',
-'linkshere'           => "Αβούτα τα σελίδας δεκνίζνε σο '''[[:$1]]''':",
-'nolinkshere'         => "'Κ ευρέθεν σελίδα το δεκνίζ' ση σελίδαν '''[[:$1]]'''.",
-'isredirect'          => 'σελίδαν διπλού σύνδεσμονος',
-'istemplate'          => 'ενσωμάτωση',
-'whatlinkshere-prev'  => '{{PLURAL:$1|προτεσνή|προτεσνά $1}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|υστερνή|υστερναία $1}}',
-'whatlinkshere-links' => '← σύνδεσμοι',
+'whatlinkshere'           => "Ντο δεκνίζ' αδακές",
+'whatlinkshere-title'     => 'Σελίδας ντο συνδέουν ση σελίδαν $1',
+'whatlinkshere-page'      => 'Σελίδαν:',
+'linkshere'               => "Αβούτα τα σελίδας δεκνίζνε σο '''[[:$1]]''':",
+'nolinkshere'             => "'Κ ευρέθεν σελίδα το δεκνίζ' ση σελίδαν '''[[:$1]]'''.",
+'isredirect'              => 'σελίδαν διπλού σύνδεσμονος',
+'istemplate'              => 'ενσωμάτωση',
+'whatlinkshere-prev'      => '{{PLURAL:$1|προτεσνή|προτεσνά $1}}',
+'whatlinkshere-next'      => '{{PLURAL:$1|υστερνή|υστερναία $1}}',
+'whatlinkshere-links'     => '← σύνδεσμοι',
+'whatlinkshere-hidetrans' => '$1 υπερκλείσμ',
 
 # Block/unblock
 'blockip'            => 'Ασπάλιγμαν τη χρήστε',
@@ -1013,6 +1033,7 @@ $messages = array(
 'nextdiff'     => 'Άλλον διαφορά →',
 
 # Media information
+'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|σελίδα|σελίδας}}',
 'file-info-size'       => '($1 × $2 εικονοστοιχεία, μέγεθος αρχείου: $3, MIME τύπος: $4)',
 'file-nohires'         => "<small>'Κ εχ κι άλλο ψηλόν ανάλυσην.</small>",
 'svg-long-desc'        => "(Αρχείον SVG, κατ' όνομα $1 × $2 εικονοστοιχεία, μέγεθος αρχεί: $3)",
@@ -1068,9 +1089,14 @@ $messages = array(
 'exif-primarychromaticities'       => 'Πρωτεύοντες χρωματισμοί',
 'exif-imagedescription'            => 'Τίτλος εικόνας',
 
+'exif-subjectdistance-value' => '$1 μέτρα',
+
 'exif-focalplaneresolutionunit-2' => 'ίντζας',
 
+'exif-subjectdistancerange-1' => 'Macro',
+
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+'exif-gpsspeed-m' => 'Μίλιαν την ώραν',
 'exif-gpsspeed-n' => 'Κορδίλαι',
 
 # External editor support
@@ -1088,7 +1114,7 @@ $messages = array(
 'recreate' => 'Ποίσον αξάν',
 
 # action=purge
-'confirm_purge_button' => 'Ἐγεντον',
+'confirm_purge_button' => 'Εγέντον',
 
 # Multipage image navigation
 'imgmultipageprev' => '← πρωτεζνόν σελίδα',
@@ -1114,6 +1140,7 @@ $messages = array(
 # Special:Version
 'version'                  => 'Έκδοση', # Not used as normal message but as header for the special page itself
 'version-specialpages'     => 'Ειδικά σελίδας',
+'version-other'            => 'Αλλέτερα',
 'version-hooks'            => 'Αγκιστρία',
 'version-license'          => 'Ἀδεια',
 'version-software-version' => 'Έκδοση',
@@ -1127,7 +1154,7 @@ $messages = array(
 
 # Special:SpecialPages
 'specialpages'             => 'Ειδικά σελίδας',
-'specialpages-group-other' => 'Αλέτερα ειδικά σελίδας',
+'specialpages-group-other' => 'Αλλέτερα ειδικά σελίδας',
 
 # Special:BlankPage
 'blankpage' => 'Κενόν σελίδα',

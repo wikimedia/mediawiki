@@ -924,8 +924,8 @@ Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddi
 'searchmenu-new'                   => "'''Creu'r dudalen \"[[:\$1]]\" ar y wici hwn!'''",
 'searchhelp-url'                   => 'Help:Cymorth',
 'searchmenu-prefix'                => "[[Special:PrefixIndex/$1|Chwilio drwy tudalennau gyda'r rhagddodiad hwn]]",
-'searchprofile-articles'           => 'Tudalennau',
-'searchprofile-articles-and-proj'  => 'Tudalennau a Prosiect',
+'searchprofile-articles'           => 'Tudalennau pwnc',
+'searchprofile-articles-and-proj'  => 'Tudalennau pwnc a phrosiect',
 'searchprofile-project'            => 'Tudalennau prosiect',
 'searchprofile-images'             => 'Ffeiliau',
 'searchprofile-everything'         => 'Popeth',
@@ -1985,7 +1985,7 @@ Os felly, gallwch symud y dudalen sgwrs neu ei gyfuno ar ôl symud y dudalen ei 
 'movenotallowed'            => 'Nid oes caniatâd gennych i symud tudalennau.',
 'newtitle'                  => "I'r teitl newydd:",
 'move-watch'                => 'Gwylier y dudalen hon',
-'movepagebtn'               => 'Symud tudalen',
+'movepagebtn'               => 'Symud y dudalen',
 'pagemovedsub'              => 'Y symud wedi llwyddo',
 'movepage-moved'            => '<big>\'\'\'Symudwyd y dudalen "$1" i "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'             => "Mae tudalen gyda'r darpar enw yn bodoli'n barod, neu mae eich darpar enw yn annilys.
@@ -2016,6 +2016,7 @@ nid yw'n bosib cyflawnu'r symud.",
 'immobile-source-namespace' => 'Ni ellir symud tudalennau yn y parth "$1".',
 'immobile-target-namespace' => 'Ni ellir symud tudalennau i\'r parth "$1".',
 'immobile-source-page'      => 'Ni ellir symud y dudalen hon.',
+'fix-double-redirects'      => "Yn diwygio unrhyw ailgyfeiriadau sy'n cysylltu i'r teitl gwreiddiol",
 
 # Export
 'export'            => 'Allforio tudalennau',
