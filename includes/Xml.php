@@ -277,7 +277,7 @@ class Xml {
 	 * @param $attribs other attributes
 	 * @return string HTML
 	 */
-	public static function check( $name, $checked=false, $attribs = array() ) {
+	public static function check( $name, $checked=false, $attribs=array() ) {
 		return self::element( 'input', array_merge(
 			array(
 				'name' => $name,
@@ -295,7 +295,7 @@ class Xml {
 	 * @param $attribs other attributes
 	 * @return string HTML
 	 */
-	public static function radio( $name, $value, $checked = false, $attribs = array() ) {
+	public static function radio( $name, $value, $checked=false, $attribs=array() ) {
 		return self::element( 'input', array(
 			'name' => $name,
 			'type' => 'radio',
@@ -305,12 +305,11 @@ class Xml {
 	/**
 	 * Convenience function to build an HTML form label
 	 * @param $label text of the label
-	 * @param $id
-	 * @param $attribs Array: extra attributes
+	 * @param $id 
 	 * @return string HTML
 	 */
-	public static function label( $label, $id, $attribs = array() ) {
-		return self::element( 'label', array( 'for' => $id ) + $attribs, $label );
+	public static function label( $label, $id ) {
+		return self::element( 'label', array( 'for' => $id ), $label );
 	}
 
 	/**
@@ -320,22 +319,21 @@ class Xml {
 	 * @param $id id of the input
 	 * @param $size value of the size attribute
 	 * @param $value value of the value attribute
-	 * @param $inputAttribs other attributes for the input
-	 * @param $labelAttribs other attributes for the label
+	 * @param $attribs other attributes
 	 * @return string HTML
 	 */
-	public static function inputLabel( $label, $name, $id, $size = false, $value = false, $inputAttribs = array(), $labelAttribs = array() ) {
-		list( $label, $input ) = self::inputLabelSep( $label, $name, $id, $size, $value, $inputAttribs, $labelAttribs );
+	public static function inputLabel( $label, $name, $id, $size=false, $value=false, $attribs=array() ) {
+		list( $label, $input ) = self::inputLabelSep( $label, $name, $id, $size, $value, $attribs );
 		return $label . '&nbsp;' . $input;
 	}
 
 	/**
 	 * Same as Xml::inputLabel() but return input and label in an array
 	 */
-	public static function inputLabelSep( $label, $name, $id, $size = false, $value = false, $inputAttribs = array(), $labelAttribs = array() ) {
+	public static function inputLabelSep( $label, $name, $id, $size=false, $value=false, $attribs=array() ) {
 		return array(
-			Xml::label( $label, $id, $labelAttribs ),
-			self::input( $name, $size, $value, array( 'id' => $id ) + $inputAttribs )
+			Xml::label( $label, $id ),
+			self::input( $name, $size, $value, array( 'id' => $id ) + $attribs )
 		);
 	}
 
@@ -343,20 +341,20 @@ class Xml {
 	 * Convenience function to build an HTML checkbox with a label
 	 * @return string HTML
 	 */
-	public static function checkLabel( $label, $name, $id, $checked = false, $inputAttribs = array(), $labelAttribs = array() ) {
-		return self::check( $name, $checked, array( 'id' => $id ) + $inputAttribs ) .
+	public static function checkLabel( $label, $name, $id, $checked=false, $attribs=array() ) {
+		return self::check( $name, $checked, array( 'id' => $id ) + $attribs ) .
 			'&nbsp;' .
-			self::label( $label, $id, $labelAttribs );
+			self::label( $label, $id );
 	}
 
 	/**
 	 * Convenience function to build an HTML radio button with a label
 	 * @return string HTML
 	 */
-	public static function radioLabel( $label, $name, $value, $id, $checked = false, $inputAttribs = array(), $labelAttribs = array() ) {
-		return self::radio( $name, $value, $checked, array( 'id' => $id ) + $inputAttribs ) .
+	public static function radioLabel( $label, $name, $value, $id, $checked=false, $attribs=array() ) {
+		return self::radio( $name, $value, $checked, array( 'id' => $id ) + $attribs ) .
 			'&nbsp;' .
-			self::label( $label, $id, $labelAttribs );
+			self::label( $label, $id );
 	}
 
 	/**
@@ -365,7 +363,7 @@ class Xml {
 	 * @param $attribs Array: optional custom attributes
 	 * @return string HTML
 	 */
-	public static function submitButton( $value, $attribs = array() ) {
+	public static function submitButton( $value, $attribs=array() ) {
 		return self::element( 'input', array( 'type' => 'submit', 'value' => $value ) + $attribs );
 	}
 
@@ -376,7 +374,7 @@ class Xml {
 	 * @param $attribs Array: optional custom attributes
 	 * @return string HTML
 	 */
-	public static function hidden( $name, $value, $attribs = array() ) {
+	public static function hidden( $name, $value, $attribs=array() ) {
 		return self::element( 'input', array(
 			'name' => $name,
 			'type' => 'hidden',
@@ -391,8 +389,8 @@ class Xml {
 	 * @param $attribs array: optional additional HTML attributes
 	 * @return string HTML
 	 */
-	public static function option( $text, $value = null, $selected = false,
-			$attribs = array() ) {
+	public static function option( $text, $value=null, $selected=false,
+			$attribs=array() ) {
 		if( !is_null( $value ) ) {
 			$attribs['value'] = $value;
 		}
@@ -426,7 +424,7 @@ class Xml {
 				} elseif ( substr( $value, 0, 1) == '*' && substr( $value, 1, 1) != '*' ) {
 					// A new group is starting ...
 					$value = trim( substr( $value, 1 ) );
-					if( $optgroup ) $options .= self::closeElement( 'optgroup' );
+					if( $optgroup ) $options .= self::closeElement('optgroup');
 					$options .= self::openElement( 'optgroup', array( 'label' => $value ) );
 					$optgroup = true;
 				} elseif ( substr( $value, 0, 2) == '**' ) {
@@ -435,7 +433,7 @@ class Xml {
 					$options .= self::option( $value, $value, $selected === $value );
 				} else {
 					// groupless reason list
-					if( $optgroup ) $options .= self::closeElement( 'optgroup' );
+					if( $optgroup ) $options .= self::closeElement('optgroup');
 					$options .= self::option( $value, $value, $selected === $value );
 					$optgroup = false;
 				}
