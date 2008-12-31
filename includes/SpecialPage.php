@@ -150,7 +150,6 @@ class SpecialPage
 		'Blockip'                   => array( 'SpecialPage', 'Blockip', 'block' ),
 		'Undelete'                  => array( 'SpecialPage', 'Undelete', 'deletedhistory' ),
 		'Import'                    => 'SpecialImport',
-		'Interwiki'                 => 'SpecialInterwiki',
 		'Lockdb'                    => array( 'SpecialPage', 'Lockdb', 'siteadmin' ),
 		'Unlockdb'                  => array( 'SpecialPage', 'Unlockdb', 'siteadmin' ),
 		'Userrights'                => 'UserrightsPage',
