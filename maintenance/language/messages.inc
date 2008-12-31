@@ -1003,6 +1003,7 @@ $wgMessageStructure = array(
 		'right-userrights',
 		'right-userrights-interwiki',
 		'right-siteadmin',
+		'right-restrict',
 	),
 	'rightslog' => array(
 		'rightslog',
@@ -1044,6 +1045,7 @@ $wgMessageStructure = array(
 		'action-userrights',
 		'action-userrights-interwiki',
 		'action-siteadmin',
+		'action-restrict',
 	),
 	'recentchanges' => array(
 		'nchanges',
