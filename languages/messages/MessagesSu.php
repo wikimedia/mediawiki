@@ -1372,10 +1372,6 @@ Baca ogé [[Special:WantedCategories|kategori nu dipikabutuh]].',
 # Special:DeletedContributions
 'deletedcontributions' => 'Kontribusi nu dihapus',
 
-# Special:Interwiki
-'interwiki_delquestion' => 'Ngahapus "$1"',
-'interwiki_reasonfield' => 'Alesan',
-
 # Special:LinkSearch
 'linksearch'       => 'Sungsi tumbu ramat',
 'linksearch-pat'   => 'Pola sungsi:',

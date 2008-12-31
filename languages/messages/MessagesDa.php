@@ -1470,9 +1470,6 @@ Sletningsloggen for denne fil er gengivet herunder.",
 # Special:DeletedContributions
 'deletedcontributions' => 'Slettede brugerbidrag',
 
-# Special:Interwiki
-'interwiki_reasonfield' => 'Begrundelse',
-
 # Special:LinkSearch
 'linksearch'       => 'Søg i weblinks',
 'linksearch-pat'   => 'Søg efter links til:',

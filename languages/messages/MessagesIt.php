@@ -1653,41 +1653,6 @@ Vedi anche le [[Special:WantedCategories|categorie richieste]].',
 # Special:DeletedContributions
 'deletedcontributions' => 'Contributi utente cancellati',
 
-# Special:Interwiki
-'interwiki'                => 'Visualizza e modifica i dati interwiki',
-'interwiki-title-norights' => 'Visualizza i dati interwiki',
-'interwiki_addbutton'      => 'Aggiungi',
-'interwiki_added'          => 'Il prefisso "$1" è stato aggiunto alla tabella degli interwiki.',
-'interwiki_addfailed'      => 'Impossibile aggiungere il prefisso "$1" alla tabella degli interwiki.
-Il prefisso potrebbe essere già presente in tabella.',
-'interwiki_addintro'       => 'Sta per essere aggiunto un nuovo prefisso interwiki.
-Non sono ammessi i caratteri: spazio ( ), due punti (:), e commerciale (&), simbolo di uguale (=).',
-'interwiki_addtext'        => 'Aggiungi un prefisso interwiki',
-'interwiki-badprefix'      => 'Il prefisso interwiki "$1" specificato contiene caratteri non validi',
-'interwiki_defaultreason'  => 'nessuna motivazione indicata',
-'interwiki_deleted'        => 'Il prefisso "$1" è stato cancellato con successo dalla tabella degli interwiki.',
-'interwiki_deleting'       => 'Stai cancellando il prefisso "$1"',
-'interwiki_delfailed'      => 'Rimozione del prefisso "$1" dalla tabella degli interwiki fallita.',
-'interwiki_delquestion'    => 'Cancello "$1"',
-'interwiki_edited'         => 'Il prefisso "$1" è stato modificato nella tabella degli interwiki.',
-'interwiki_editerror'      => 'Impossibile modificare il prefisso "$1" nella tabella degli interwiki.
-Il prefisso potrebbe essere inesistente.',
-'interwiki_editintro'      => 'Si sta modificando un prefisso interwiki.
-Ciò può rendere non funzionanti dei collegamenti esistenti.',
-'interwiki_edittext'       => 'Modifica di un prefisso interwiki',
-'interwiki_error'          => "ERRORE: La tabella degli interwiki è vuota, o c'è qualche altro errore.",
-'interwiki_intro'          => 'Vedi [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] per maggiori informazioni sulla tabella degli interwiki.
-Esiste un [[Special:Log/interwiki|registro delle modifiche]] alla tabella degli interwiki.',
-'interwiki_log_added'      => 'ha aggiunto il prefisso "$2" ($3) (trans: $4) (locale: $5) alla tabella degli interwiki',
-'interwiki_log_deleted'    => 'ha rimosso il prefisso "$2" dalla tabella degli interwiki',
-'interwiki_log_edited'     => 'ha modificato il prefisso "$2" : ($3) (trans: $4) (locale: $5) nella tabella degli interwiki',
-'interwiki-not-enabled'    => 'La modifica della tabella degli interwiki è stata disattivata.',
-'interwiki_prefix'         => 'Prefisso',
-'interwiki_reasonfield'    => 'Motivo',
-'interwikilogpage'         => 'Registro tabella interwiki',
-'interwikilogpagetext'     => 'Registro dei cambiamenti apportati alla [[Special:Interwiki|tabella degli interwiki]].',
-'right-interwiki'          => 'Modifica i dati interwiki',
-
 # Special:LinkSearch
 'linksearch'       => 'Ricerca collegamenti esterni',
 'linksearch-pat'   => 'Pattern di ricerca:',

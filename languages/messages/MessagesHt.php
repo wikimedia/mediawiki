@@ -937,38 +937,6 @@ Mande ou byen si ou ap byen fè kreye li ankò toutbon (gade jounal paj sa a pou
 'special-categories-sort-count' => 'klase pa valè',
 'special-categories-sort-abc'   => 'klase alfabetikalman',
 
-# Special:Interwiki
-'interwiki'                => 'Wè epi edite enfòmasyon entèwiki yo',
-'interwiki-title-norights' => 'Wè enfòmasyon interwiki',
-'interwiki_addbutton'      => 'Ajoute',
-'interwiki_added'          => 'Prefix "$1" te ajoute sou tab interwiki-a avèk siksès.',
-'interwiki_addfailed'      => 'Prefix "$1" pa t’ kapab ajoute sou tab interwiki-a.
-Posibleman paske li deja ekziste nan tab interwiki-a.',
-'interwiki_addintro'       => 'W’ap mete yon nouvo prefix interwiki.
-Sonje ke li pa ka genyen ladan li espace ( ), de pwen (:), anmpèsand (&), ou sign egalite (=).',
-'interwiki_addtext'        => 'Mete yon prefix interwiki',
-'interwiki_defaultreason'  => 'oken rezon pa t’ bay',
-'interwiki_deleted'        => 'Prefix "$1" te retire nan tab interwiki-a avèk siksès.',
-'interwiki_deleting'       => 'W’ap delete prefix "$1".',
-'interwiki_delfailed'      => 'Prefix "$1" pa t\' kapab sòti nan tab interwiki-a.',
-'interwiki_delquestion'    => 'Delete "$1"',
-'interwiki_edited'         => 'Prefix "$1" te modifye nan tab interwiki-a avèk siksès.',
-'interwiki_editerror'      => 'Prefix "$1" pa ka modifye nan tab interwiki-a.
-Posibleman li pa ekziste.',
-'interwiki_editintro'      => 'W’ap edite yon prefix interwiki.
-Sonje ke sa ka kase chèn ki deja ekziste.',
-'interwiki_edittext'       => 'Edite yon prefix interwiki',
-'interwiki_error'          => 'ERÈ:  Tab interwiki-a vid, oubien yon lòt bagay mal mache.',
-'interwiki_intro'          => 'Wè [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] pou plis enfòmasyon sou tab interwiki-a.
-Geyen yon [[Special:Log/interwiki|jounal pou chanjman yo]] nan tab interwiki-a.',
-'interwiki_log_added'      => 'te ajoute prefix "$2" ($3) (trans: $4) (local: $5) nan tab interwiki-a',
-'interwiki_log_deleted'    => 'prefix ki te retire "$2" nan tab interwiki-a',
-'interwiki_log_edited'     => 'prefix ki te modifye "$2" : ($3) (trans: $4) (local: $5) nan tab interwiki-a',
-'interwiki_prefix'         => 'Prefix',
-'interwiki_reasonfield'    => 'Rezon',
-'interwikilogpage'         => 'Jounal tab interwiki-a',
-'interwikilogpagetext'     => 'Sa se yon jounal chanjman nan [[Special:Interwiki|tab interwiki-a]].',
-
 # Special:Log/newusers
 'newuserlogpage'              => 'Istorik pou kreyasyon kont itilizatè yo',
 'newuserlogpagetext'          => 'Men jounal, istorik kreyasyon kont itilizatè yo.',

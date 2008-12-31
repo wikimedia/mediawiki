@@ -346,9 +346,6 @@ $messages = array(
 # Special:Categories
 'categories' => '𐌺𐌿𐌽𐌾𐍉𐍃',
 
-# Special:Interwiki
-'interwiki_reasonfield' => 'Faírina',
-
 # Special:LinkSearch
 'linksearch-ns' => 'Seidofera:',
 

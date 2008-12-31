@@ -1625,43 +1625,6 @@ Bok wobjadnawa se ako bok wujasnjenja zapśimjeśa, gaž wótkazujo na nju [[Med
 # Special:DeletedContributions
 'deletedcontributions' => 'Wulašowane wužywarske pśinoski',
 
-# Special:Interwiki
-'interwiki'                => 'Daty interwiki se wobglědaś a wobźěłaś',
-'interwiki-title-norights' => 'Daty interwiki se wobglědaś',
-'interwiki_addbutton'      => 'Pśidaś',
-'interwiki_added'          => 'Prefiks "$1" jo se wuspěšnje tabeli interwiki pśidał.',
-'interwiki_addfailed'      => 'Prefiks "$1" njejo se dał tabeli interwiki pśidaś.
-Snaź eksistěrujo južo w tabeli interwiki.',
-'interwiki_addintro'       => 'Pśidawaš nowy prefiks interwiki.
-Źiwaj na to, až njesmějo wopśimjeś prozne znamjenja ( ), dwójodypki (:), pśekupny A (&) abo znamuška rownosći (=).',
-'interwiki_addtext'        => 'Prefiks interwiki pśidaś',
-'interwiki-badprefix'      => 'Podaty prefiks interwiki "$1" wopśimujo njepłaśiwe znamuška',
-'interwiki_defaultreason'  => 'žedna pśicyna pódana',
-'interwiki_deleted'        => 'Prefiks "$1" jo se wuspěšnje z tabele interwiki wupórał.',
-'interwiki_deleting'       => 'Lašujoš prefiks "$1".',
-'interwiki_delfailed'      => 'Prefiks "$1" njejo se dał z tabele interwiki wupóraś.',
-'interwiki_delquestion'    => '"$1" se lašujo',
-'interwiki_edited'         => 'Prefiks "$1" jo se wuspěšnje w tabeli interwiki změnił.',
-'interwiki_editerror'      => 'Prefiks "$1" njedajo se w tabeli interwiki změniś.
-Snaź njeeksistěrujo.',
-'interwiki_editintro'      => 'Wobźěłujoš prefiks interwiki.
-Źiwaj na to, až to móžo eksistěrujuce wótkaze skóńcowaś',
-'interwiki_edittext'       => 'Prefiks interwiki wobźěłaś',
-'interwiki_error'          => 'Zmólka: Tabela interwiki jo prozna abo něco druge jo wopak.',
-'interwiki_intro'          => 'Glědaj [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] za dalšne informacije wó tabeli interwiki.
-Jo [[Special:Log/interwiki|protokol změnow]] za tabelu interwiki.',
-'interwiki_local'          => 'To ako lokalny wiki definěrowaś',
-'interwiki_log_added'      => 'jo pśidał prefiks "$2" ($3) (trans: $4) (lokalny: $5) tabeli interwiki',
-'interwiki_log_deleted'    => 'jo wupórał prefiks "$2" z tabele interwiki',
-'interwiki_log_edited'     => 'jo změnił prefiks "$2": ($3) (trans: $4) (lokalny: $5) w tabeli interwiki',
-'interwiki-not-enabled'    => 'Wobźěłowanje tabele interwiki bu znjemóžnjene.',
-'interwiki_prefix'         => 'Prefiks',
-'interwiki_reasonfield'    => 'Pśicyna',
-'interwiki_trans'          => 'Interwikijowe transkluzije dowóliś',
-'interwikilogpage'         => 'Protokol tabele interwiki',
-'interwikilogpagetext'     => 'To jo protokol změnow k [[Special:Interwiki|tabeli interwiki]].',
-'right-interwiki'          => 'Daty interwiki wobźěłaś',
-
 # Special:LinkSearch
 'linksearch'       => 'Webwótkaze pytaś',
 'linksearch-pat'   => 'Pytański muster:',

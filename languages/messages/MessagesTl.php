@@ -1596,45 +1596,6 @@ Tingnan din ang [[Special:WantedCategories|ninanais na mga kaurian]].',
 # Special:DeletedContributions
 'deletedcontributions' => 'Naburang ambag ng tagagamit',
 
-# Special:Interwiki
-'interwiki'                => "Tingnan at baguhin ang datong pangugnayang-wiki (''interwiki'')",
-'interwiki-title-norights' => "Tingnan ang datong pangugnayang-wiki (''interwiki'')",
-'interwiki_addbutton'      => 'Idagdag',
-'interwiki_added'          => "Matagumpay na naidagdag ang unlaping \"\$1\" sa tablang pangugnayang-wiki (''interwiki'').",
-'interwiki_addfailed'      => "Hindi maidagdag ang unlaping \"\$1\" sa tablang pangugnayang-wiki (''interwiki'').
-Maaaring umiiral na ito sa loob ng tablang pangugnayang-wiki.",
-'interwiki_addintro'       => "Nagdaragdag ng isang bagong unlaping pangugnayang-wiki (''interwiki'').
-Tandaan lamang na hindi ito maaaring maglaman ng mga puwang ( ), mga tutuldok (:), bantas para sa \"at\" (&), o mga bantas na pangkatumbas (=).",
-'interwiki_addtext'        => "Magdagdag ng isang unlaping pangugnayang-wiki (''interwiki'')",
-'interwiki-badprefix'      => "Naglalaman ang tinukoy na pangpaguugnayan ng wiking (''interwiki'') unlaping \"\$1\" ng hindi tanggap na mga panitik",
-'interwiki_defaultreason'  => 'walang dahilang ibinigay',
-'interwiki_defaulturl'     => 'http://www.halimbawa.com/$1',
-'interwiki_deleted'        => "Matagumpay na natanggal ang unlaping \"\$1\" mula sa tablang pangugnayang-wiki (''interwiki'').",
-'interwiki_deleting'       => 'Binubura mo ang unlaping "$1".',
-'interwiki_delfailed'      => "Hindi matanggal ang unlaping \"\$1\" mula sa tablang pangugnayang-wiki (''interwiki'').",
-'interwiki_delquestion'    => 'Binubura ang "$1"',
-'interwiki_edited'         => "Matagumpay na nabago ang unlaping \"\$1\" sa loob ng tablang pangugnayang-wiki (''interwiki'').",
-'interwiki_editerror'      => "Hindi mabago ang unlaping \"\$1\" sa loob ng tablang pangugnayang-wiki (''interwiki'').
-Maaaring hindi pa ito umiiral.",
-'interwiki_editintro'      => "Binabago mo ang unlaping pangugnayang-wiki (''interwiki'').
-Tandaan na maaaring maputol nito ang umiiral na mga kawing.",
-'interwiki_edittext'       => "Binabago ang isang unlaping pangugnayang-wiki (''interwiki'')",
-'interwiki_error'          => "Kamalian: Walang laman ang tablang pangugnayang-wiki (''interwiki''), o may iba pang bagay na nagkaroon ng kamalian/suliranin.",
-'interwiki_intro'          => "Tingnan ang  [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] para sa mas maraming pang kabatiran tungkol sa tablang panguganayang-wiki (''interwiki'').
-Mayroong isang [[Special:Log/interwiki|talaan ng mga pagbabagong]] ginawa sa tablang pangugnayang-wiki.",
-'interwiki_local'          => 'Bigyang kahulugan ito bilang isang pampook (lokal) na wiki',
-'interwiki_log_added'      => 'idinagdag ang unlaping "$2" ($3) (trans: $4) (lokal: $5) sa tablang pangugnayang-wiki (\'\'interwiki\'\')',
-'interwiki_log_deleted'    => "tinanggal ang unlaping \"\$2\" mula tablang pangugnayang-wiki (''interwiki'')",
-'interwiki_log_edited'     => 'binago ang unlaping "$2" : ($3) (trans: $4) (lokal: $5) sa loob ng tablang pangugnayang-wiki (\'\'interwiki\'\')',
-'interwiki-not-enabled'    => 'Hindi pinagana ang paggawa ng pagbabago sa tablang pangpaguugnayan ng wiki.',
-'interwiki_prefix'         => 'Unlapi',
-'interwiki_reasonfield'    => 'Dahilan',
-'interwiki_trans'          => 'Pahintulutan ang mga paglipat-samang (transklusyon) pangugnayang-wiki',
-'interwiki_url'            => 'URL',
-'interwikilogpage'         => 'Talaan ng tablang pangugnayang-wiki',
-'interwikilogpagetext'     => 'Isa itong talaan ng mga pagbabago sa [[Special:Interwiki|tablang pangugnayang-wiki]].',
-'right-interwiki'          => "Baguhin ang datong pangugnayang-wiki (''interwiki'')",
-
 # Special:LinkSearch
 'linksearch'       => 'Hanapin ang kawing na pang-web',
 'linksearch-pat'   => 'Huwaran ng hanap',

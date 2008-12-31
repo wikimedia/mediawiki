@@ -960,12 +960,6 @@ Nō xiquitta [[Special:WantedCategories|neneuhcāyōtl monequi]].',
 'special-categories-sort-count' => 'tlapōhualcopa',
 'special-categories-sort-abc'   => 'tlahtōlcopa',
 
-# Special:Interwiki
-'interwiki_addbutton'     => 'Ticcētilīz',
-'interwiki_defaultreason' => 'ahmo cah īxtlamatiliztli',
-'interwiki_delquestion'   => 'Mopolocah "$1"',
-'interwiki_reasonfield'   => 'Īxtlamatiliztli',
-
 # Special:LinkSearch
 'linksearch'    => 'Tiquintēmōz tzonhuiliztli mātlatzālan',
 'linksearch-ns' => 'Tōcātzin:',

@@ -1124,11 +1124,6 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'special-categories-sort-count' => 'аравтомс цётонь коряс',
 'special-categories-sort-abc'   => 'аравтомс альфавитэнь коряс',
 
-# Special:Interwiki
-'interwiki_addbutton'     => 'Поладомс',
-'interwiki_defaultreason' => 'тувтал апак ёвта',
-'interwiki_reasonfield'   => 'Тувтал',
-
 # Special:LinkSearch
 'linksearch-ns' => 'Лем потмозо:',
 'linksearch-ok' => 'Вешнэмс',

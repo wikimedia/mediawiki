@@ -171,7 +171,6 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'ទំព័រទទេ' ),
 	'LinkSearch'                => array( 'ស្វែងរកតំណភ្ជាប់' ),
 	'DeletedContributions'      => array( 'ការរួមចំណែកដែលត្រូវបានលុបចោល' ),
-	'Interwiki'                 => array( 'អន្តរវិគី' ),
 );
 
 $magicWords = array(
@@ -1625,41 +1624,6 @@ $2',
 
 # Special:DeletedContributions
 'deletedcontributions' => 'ការរួមចំណែកដែលត្រូវបានលុប',
-
-# Special:Interwiki
-'interwiki'                => 'មើលនិងកែប្រែទិន្នន័យអន្តរវិគី',
-'interwiki-title-norights' => 'មើលទិន្នន័យអន្តរវិគី',
-'interwiki_addbutton'      => 'បន្ថែម',
-'interwiki_added'          => 'បុព្វបទ "$1" ត្រូវបានបន្ថែមទៅក្នុងតារាងអន្តរវិគីដោយជោគជ័យ។',
-'interwiki_addfailed'      => 'បុព្វបទ "$1" មិនអាចបន្ថែមទៅក្នុងតារាងអន្តរវិគីបានទេ។
-
-ប្រហែលជាវាមានរួចហើយនៅក្នុងតារាងអន្តរវិគី។',
-'interwiki_addintro'       => 'អ្នកកំពុងបន្ថែមបុព្វបទអន្តរវិគីថ្មីមួយ។
-
-សូមចងចាំថាវាមិនអាចមាន ដកឃ្លា( ) ចុច២(:) សញ្ញានិង(&) ឬសញ្ញាស្មើ(=)បានទេ។',
-'interwiki_addtext'        => 'បន្ថែមបុព្វបទអន្តរវិគី',
-'interwiki_defaultreason'  => 'គ្មានមូលហេតុត្រូវបានផ្តល់ឱ្យ',
-'interwiki_defaulturl'     => 'http://www.example.com/$1',
-'interwiki_deleted'        => 'បុព្វបទ"$1"បានដកចេញពីតារាងអន្តរវិគីដោយជោគជ័យហើយ។',
-'interwiki_deleting'       => 'លោកអ្នកកំពុងលុបបុព្វបទ "$1"។',
-'interwiki_delfailed'      => 'បុព្វបទ"$1"មិនអាចដកចេញពីតារាងអន្តរវិគីបានទេ។',
-'interwiki_delquestion'    => 'ការលុបចេញ "$1"',
-'interwiki_edited'         => 'បុព្វបទ"$1"ត្រូវបានកែសម្រួលក្នុងតារាងអន្តរវិគីដោយជោគជ័យហើយ។',
-'interwiki_editerror'      => 'បុព្វបទ "$1" មិនអាចកែសម្រួលនៅក្នុងតារាងអន្តរវិគីបានទេ។
-
-ប្រហែលជាវាមិនមានអត្ថិភាពទេ។',
-'interwiki_editintro'      => 'អ្នកកំពុងកែប្រែបុព្វបទអន្តរវិគី។
-
-ចូរចងចាំថាវាអាចនាំឱ្យខូចតំណភ្ជាប់ដែលមានស្រេច។',
-'interwiki_edittext'       => 'ការកែប្រែបុព្វបទអន្តរវិគី',
-'interwiki_error'          => 'កំហុស:តារាងអន្តរវិគីគឺទទេ ឬក៏មានអ្វីផ្សេងទៀតមានបញ្ហា។',
-'interwiki_intro'          => 'មើល[http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org]ចំពោះព័ត៌មានបន្ថែមអំពីតារាងអន្តរវិគី។ នេះ​ជា[[Special:Log/interwiki|កំណត់ហេតុនៃបំលាស់ប្តូរ]]ក្នុងតារាងអន្តរវិគីនេះ។',
-'interwiki_log_added'      => 'បានបន្ថែម "$2" ($3) (trans: $4) (local: $5) ក្នុងតារាងអន្តរវិគី ៖',
-'interwiki_log_deleted'    => 'បានដកបុព្វបទ"$2"ចេញពីតារាងអន្តរវិគី',
-'interwiki_log_edited'     => 'កែសម្រួលបុព្វបទ "$2" : ($3) (trans: $4) (local: $5) នៅក្នុងតារាងអន្តរវិគី',
-'interwiki_prefix'         => 'បុព្វបទ',
-'interwiki_reasonfield'    => 'មូលហេតុ',
-'right-interwiki'          => 'កែប្រែទិន្នន័យអន្តរវិគី',
 
 # Special:LinkSearch
 'linksearch'      => 'ស្វែងរកតំណភ្ជាប់វិប',

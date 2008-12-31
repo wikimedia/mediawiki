@@ -1687,14 +1687,6 @@ Kiek ok bi de [[Special:WantedCategories|wünschten Kategorien]].',
 # Special:DeletedContributions
 'deletedcontributions' => 'Wegsmetene Bidrääg vun’n Bruker',
 
-# Special:Interwiki
-'interwiki_addbutton'     => 'Tofögen',
-'interwiki_addtext'       => 'Interwiki-Präfix tofögen',
-'interwiki_defaultreason' => 'keen Grund angeven',
-'interwiki_delquestion'   => '„$1“ warrt rutsmeten',
-'interwiki_prefix'        => 'Präfix',
-'interwiki_reasonfield'   => 'Grund',
-
 # Special:LinkSearch
 'linksearch'       => 'Weblenken söken',
 'linksearch-pat'   => 'Söökmunster:',

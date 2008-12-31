@@ -125,7 +125,6 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'صفحه_خالی' ),
 	'LinkSearch'                => array( 'جستجوی_پیوند' ),
 	'DeletedContributions'      => array( 'مشارکت‌های_حذف_شده' ),
-	'Interwiki'                 => array( 'میان‌ویکی' ),
 );
 
 $digitTransformTable = array(
@@ -1894,41 +1893,6 @@ $2',
 
 # Special:DeletedContributions
 'deletedcontributions' => 'مشارکت‌های حذف شده',
-
-# Special:Interwiki
-'interwiki'                => 'نمایش و ویرایش اطلاعات میان‌ویکی',
-'interwiki-title-norights' => 'مشاهدهٔ اطلاعات میان‌ویکی',
-'interwiki_addbutton'      => 'افزودن',
-'interwiki_added'          => 'پیشوند «$1» با موفقیت به جدول میان‌ویکی افزوده شد.',
-'interwiki_addfailed'      => 'پیشوند «$1» را نمی‌توان به جدول میان‌ویکی افزود.
-احتمالاً این پیشوند از قبل در جدول میان‌ویکی وجود دارد.',
-'interwiki_addintro'       => 'شما در حال ویرایش یک پیشوند میان‌ویکی هستید.
-توجه داشته باشید که این پیشوند نمی‌تواند شامل فاصله ( )، دو نقطه (:)، علامت آمپرساند (&) یا علامت مساوی (=) باشد.',
-'interwiki_addtext'        => 'افزودن یک پیشوند میان‌ویکی',
-'interwiki_defaultreason'  => 'دلیلی ارائه نشد',
-'interwiki_deleted'        => 'پیشوند «$1» با موفقیت از جدول میان‌ویکی حذف شد.',
-'interwiki_deleting'       => 'شما در حال حذف کردن پیشوند «$1» هستید.',
-'interwiki_delfailed'      => 'پیشوند «$1» را نمی‌توان از جدول میان‌ویکی حذف کرد.',
-'interwiki_delquestion'    => 'حذف «$1»',
-'interwiki_edited'         => 'پیشوند «$1» با موفقیت در جدول میان‌ویکی تغییر داده شد.',
-'interwiki_editerror'      => 'پیشوند «$1» را نمی‌توان در جدول میان‌ویکی تغییر داد.
-احتمالاً این پیشوند وجود ندارد.',
-'interwiki_editintro'      => 'شما در حال ویرایش یک پیشوند میان‌ویکی هستید.
-توجه داشته باشید که این کار می‌تواند پیوندهای موجود را خراب کند.',
-'interwiki_edittext'       => 'ویرایش یک پیشوند میان‌ویکی',
-'interwiki_error'          => 'خطا: جدول میان‌ویکی خالی است، یا چیز دیگری مشکل دارد.',
-'interwiki_intro'          => 'برای اطلاعات بیشتر در مورد جدول میان‌ویکی [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] را ببینید.
-[[Special:Log/interwiki|سیاهه‌ای از تغییرات]] جدول میان‌ویکی نیز وجود دارد.',
-'interwiki_local'          => 'مشخص کردن به عنوان یک ویکی محلی',
-'interwiki_log_added'      => 'پیشوند «$2» ($3) (میانی: $4) (محلی: $5) را به جدول میان‌ویکی افزود',
-'interwiki_log_deleted'    => 'پیشوند «$2» را از جدول میان‌ویکی حذف کرد',
-'interwiki_log_edited'     => 'پیشوند «$2» : ($3) (میانی: $4) (محلی: $5) را در جدول میان‌ویکی تغییر داد',
-'interwiki_prefix'         => 'پیشوند',
-'interwiki_reasonfield'    => 'دلایل',
-'interwiki_trans'          => 'اجازهٔ گنجاندن میان‌ویکی را بده',
-'interwikilogpage'         => 'سیاههٔ جدول میان‌ویکی',
-'interwikilogpagetext'     => 'این سیاهه‌ای از تغییرات در [[Special:Interwiki|جدول میان‌ویکی‌ها]] است.',
-'right-interwiki'          => 'ویرایش اطلاعات میان‌ویکی',
 
 # Special:LinkSearch
 'linksearch'       => 'جستجوی پیوندهای وب',

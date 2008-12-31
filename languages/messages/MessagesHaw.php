@@ -512,11 +512,6 @@ Ke hoʻohiki nei ʻoe iā kākou: ua kākau ʻoe i kēia kikokikona na ʻo ʻoe 
 # Special:DeletedContributions
 'deletedcontributions' => 'Nā ha‘awina o ka inoa mea ho‘ohana i kāpae ‘ia ai',
 
-# Special:Interwiki
-'interwiki_addbutton'     => 'Ho‘ohui',
-'interwiki_defaultreason' => '‘a‘ohe kumu',
-'interwiki_reasonfield'   => 'Kumu',
-
 # Special:ListUsers
 'listusers-submit' => 'Hō‘ike',
 

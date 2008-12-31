@@ -1161,9 +1161,6 @@ $1 საათში.',
 'categoriespagetext'          => 'ვიკიპედიაში შემდეგი კატეგორიებია.',
 'special-categories-sort-abc' => 'ანბანზე დალაგება',
 
-# Special:Interwiki
-'interwiki_reasonfield' => 'მიზეზი',
-
 # Special:LinkSearch
 'linksearch-ns' => 'სახელთა სივრცე:',
 

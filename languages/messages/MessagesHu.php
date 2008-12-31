@@ -140,7 +140,6 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'Üres lap' ),
 	'LinkSearch'                => array( 'Hivatkozás keresés' ),
 	'DeletedContributions'      => array( 'Törölt szerkesztések' ),
-	'Interwiki'                 => array( 'Wikiközi hivatkozások' ),
 );
 
 $datePreferences = array(
@@ -1804,41 +1803,6 @@ Lásd még a [[Special:WantedCategories|keresett kategóriák]] listáját.',
 
 # Special:DeletedContributions
 'deletedcontributions' => 'Törölt szerkesztések',
-
-# Special:Interwiki
-'interwiki'                => 'Wikiközi hivatkozások adatainak megtekintése és szerkesztése',
-'interwiki-title-norights' => 'Wikiközi hivatkozások adatainak megtekintése',
-'interwiki_addbutton'      => 'Hozzáadás',
-'interwiki_added'          => 'A(z) „$1” előtagot sikeresen hozzáadtam az wikiközi hivatkozások táblájához.',
-'interwiki_addfailed'      => 'A(z) „$1” előtagot nem tudtam hozzáadni a wikiközi hivatkozások táblájához. Valószínűleg már létezik.',
-'interwiki_addintro'       => 'Új wikiközi hivatkozás előtag hozzáadására készülsz. Ügyelj arra, hogy ne tartalmazzon szóközt ( ), kettőspontot (:), és- (&), vagy egyenlő (=) jeleket.',
-'interwiki_addtext'        => 'Wikiközi hivatkozás előtag hozzáadása',
-'interwiki-badprefix'      => 'A wikiközi hivatkozásnak megadott „$1” előtag érvénytelen karaktereket tartalmaz',
-'interwiki_defaultreason'  => 'nincs ok megadva',
-'interwiki_deleted'        => 'A(z) „$1” előtagot sikeresen eltávolítottam a wikiközi hivatkozások táblájából.',
-'interwiki_deleting'       => 'A(z) „$1” előtag törlésére készülsz.',
-'interwiki_delfailed'      => 'A(z) „$1” előtagot nem sikerült eltávolítanom a wikiközi hivatkozások táblájából.',
-'interwiki_delquestion'    => '„$1” törlése',
-'interwiki_edited'         => 'A „$1” előtagot sikeresen módosítottad a wikiközi hivatkozások táblájában.',
-'interwiki_editerror'      => 'A(z) „$1” előtagot nem lehet módosítani a wikiközi hivatkozások táblájában.
-Valószínűleg nem létezik ilyen előtag.',
-'interwiki_editintro'      => 'Egy wikiközi hivatkozás előtagját akarod módosítani.
-Ne feledd, hogy ez működésképtelenné teheti a már létező hivatkozásokat!',
-'interwiki_edittext'       => 'Wikiközi hivatkozás előtagjának módosítása',
-'interwiki_error'          => 'Hiba: A wikiközi hivatkozások táblája üres, vagy valami más romlott el.',
-'interwiki_intro'          => 'Lásd a(z) [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] lapot további információkért a wikiközi hivatkozások táblájáról.
-Megtekintheted a wikiközi hivatkozások táblájában bekövetkezett [[Special:Log/interwiki|változások naplóját]] is.',
-'interwiki_local'          => 'Beállítás helyi wikiként',
-'interwiki_log_added'      => 'hozzáadta a(z) „$2” előtagot ($3) (trans: $4) (local: $5) a wikiközi hivatkozások táblájához',
-'interwiki_log_deleted'    => 'eltávolította a(z) „$2” előtagot a wikiközi hivatkozások táblájából',
-'interwiki_log_edited'     => 'módosította a(z) „$2” előtagot : ($3) (trans: $4) (local: $5) a wikiközi hivatkozások táblájában',
-'interwiki-not-enabled'    => 'A wikiközi hivatkozások táblájának szerkesztése nem engedélyezett.',
-'interwiki_prefix'         => 'Előtag',
-'interwiki_reasonfield'    => 'Indoklás',
-'interwiki_trans'          => 'Wikiközi beillesztések engedélyezve',
-'interwikilogpage'         => 'Wikiközi hivatkozások naplója',
-'interwikilogpagetext'     => 'Ez a [[Special:Interwiki|wikiközi hivatkozások táblájában]] történt változások naplója.',
-'right-interwiki'          => 'wikiközi hivatkozások módosítása',
 
 # Special:LinkSearch
 'linksearch'       => 'Keresés külső hivatkozások szerint',

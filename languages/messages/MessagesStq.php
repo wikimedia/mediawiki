@@ -1493,27 +1493,6 @@ Ju Uutgoawe kon truch ju Uutwoal fon dän Logbouktyp, fon dän Benutser of dän 
 # Special:DeletedContributions
 'deletedcontributions' => 'Läskede Benutserbiedraage',
 
-# Special:Interwiki
-'interwiki'               => 'Interwiki-Doaten bekiekje un beoarbaidje',
-'interwiki_addbutton'     => 'Bietouföigje',
-'interwiki_added'         => '„$1“ wuude mäd Ärfoulch ju Interwiki-Tabelle bietouföiged.',
-'interwiki_addfailed'     => '„$1“ kuude nit ju Interwiki-Tabelle bietouföiged wäide.',
-'interwiki_addintro'      => 'Du föigest n näi Interwiki-Präfix bietou. Beoachte, dät et neen Loosteeken ( ), Koopmons-Un (&), Gliekhaidsteeken (=) un naan Dubbelpunkt (:) änthoolde duur.',
-'interwiki_addtext'       => 'N Interwiki-Präfix bietouföigje',
-'interwiki_defaultreason' => 'naan Gruund ounroat',
-'interwiki_deleted'       => '„$1“ wuude mäd Ärfoulch uut ju Interwiki-Tabelle wächhoald.',
-'interwiki_deleting'      => 'Du hoalst Prefix "$1" wäch.',
-'interwiki_delfailed'     => '„$1“ kuude nit uut ju Interwiki-Tabelle läsked wäide.',
-'interwiki_delquestion'   => 'Läsket „$1“',
-'interwiki_error'         => 'Failer: Ju Interwiki-Tabelle is loos.',
-'interwiki_intro'         => 'Sjuch [http://www.mediawiki.org/wiki/Interwiki_table MediaWiki.org] foar wiedere Informatione uur ju Interwiki-Tabelle. Dät [[Special:Log/interwiki|Logbouk]] wiest aal Annerengen an ju Interwiki-Tabelle.',
-'interwiki_log_added'     => 'häd „$2“ ($3) (trans: $4) (lokal: $5) ju Interwiki-Tabelle bietouföiged',
-'interwiki_log_deleted'   => 'häd „$2“ uut ju Interwiki-Tabelle wächhoald',
-'interwiki_prefix'        => 'Präfix',
-'interwiki_reasonfield'   => 'Gruund',
-'interwikilogpage'        => 'Interwiki-Tabellenlogbouk',
-'interwikilogpagetext'    => 'In dit Logbouk wäide Annerengen an ju [[Special:Interwiki|Interwiki-Tabelle]] protokollierd.',
-
 # Special:LinkSearch
 'linksearch'       => 'Webferbiendenge-Säike',
 'linksearch-pat'   => 'Säikmuster:',

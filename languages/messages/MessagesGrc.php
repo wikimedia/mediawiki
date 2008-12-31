@@ -1288,12 +1288,6 @@ $1',
 # Special:DeletedContributions
 'deletedcontributions' => 'Διαγράψαι τοὺς ἐράνους τοῦ χρωμένου',
 
-# Special:Interwiki
-'interwiki_addbutton'     => 'Προστιθέναι',
-'interwiki_defaultreason' => 'οὐδεμία δεδομένη αἰτία',
-'interwiki_prefix'        => 'Πρόθεμα',
-'interwiki_reasonfield'   => 'Αἰτία',
-
 # Special:LinkSearch
 'linksearch'      => 'Ζήτησις ἱστοσυνδέσμων',
 'linksearch-pat'  => 'Θέμα ζητήσεως:',
