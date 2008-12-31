@@ -1261,6 +1261,7 @@ END;
 		$oldid = $wgRequest->getVal( 'oldid' );
 		$diff = $wgRequest->getVal( 'diff' );
 		if ( ! $wgOut->isArticle() ) { return ''; }
+		if( !$wgArticle instanceOf Article ) { return ''; }
 		if ( isset( $oldid ) || isset( $diff ) ) { return ''; }
 		if ( 0 == $wgArticle->getID() ) { return ''; }
 
