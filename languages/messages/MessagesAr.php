@@ -140,7 +140,6 @@ $namespaceAliases = array(
 	'نقاش_الصورة' => NS_FILE_TALK,
 );
 
-
 $magicWords = array(
 	'redirect'              => array( '0', '#تحويل', '#REDIRECT' ),
 	'notoc'                 => array( '0', '__لافهرس__', '__NOTOC__' ),
@@ -362,6 +361,7 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'صفحة_فارغة' ),
 	'LinkSearch'                => array( 'بحث_الوصلات' ),
 	'DeletedContributions'      => array( 'مساهمات_محذوفة' ),
+	'Interwiki'                 => array( 'إنترويكي' ),
 );
 
 $imageFiles = array(

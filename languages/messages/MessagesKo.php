@@ -127,6 +127,7 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( '빈문서' ),
 	'LinkSearch'                => array( '외부링크찾기', '외부링크검색' ),
 	'DeletedContributions'      => array( '삭제된기여' ),
+	'Interwiki'                 => array( '인터위키' ),
 );
 
 $magicWords = array(

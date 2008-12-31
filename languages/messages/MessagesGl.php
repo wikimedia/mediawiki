@@ -124,6 +124,7 @@ $specialPageAliases = array(
 	'Invalidateemail'           => array( 'Invalidar o enderezo de correo electrónico' ),
 	'Blankpage'                 => array( 'Baleirar a páxina' ),
 	'DeletedContributions'      => array( 'Contribucións borradas' ),
+	'Interwiki'                 => array( 'Interwiki' ),
 );
 
 $messages = array(

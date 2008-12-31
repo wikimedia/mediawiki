@@ -104,6 +104,7 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'Läärsyte' ),
 	'LinkSearch'                => array( 'Suech no Gleicher' ),
 	'DeletedContributions'      => array( 'Gleschti Byytreeg' ),
+	'Interwiki'                 => array( 'Interwiki' ),
 );
 
 $linkTrail = '/^([äöüßa-z]+)(.*)$/sDu';

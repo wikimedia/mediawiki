@@ -151,6 +151,7 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( '白紙ページ' ),
 	'LinkSearch'                => array( '外部リンク検索' ),
 	'DeletedContributions'      => array( '削除された投稿記録', '削除歴' ),
+	'Interwiki'                 => array( 'インターウィキ' ),
 );
 
 $magicWords = array(

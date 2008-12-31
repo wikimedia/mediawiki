@@ -125,6 +125,7 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'صفحه_خالی' ),
 	'LinkSearch'                => array( 'جستجوی_پیوند' ),
 	'DeletedContributions'      => array( 'مشارکت‌های_حذف_شده' ),
+	'Interwiki'                 => array( 'میان‌ویکی' ),
 );
 
 $digitTransformTable = array(

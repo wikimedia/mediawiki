@@ -171,6 +171,7 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'ទំព័រទទេ' ),
 	'LinkSearch'                => array( 'ស្វែងរកតំណភ្ជាប់' ),
 	'DeletedContributions'      => array( 'ការរួមចំណែកដែលត្រូវបានលុបចោល' ),
+	'Interwiki'                 => array( 'អន្តរវិគី' ),
 );
 
 $magicWords = array(

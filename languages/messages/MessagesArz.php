@@ -275,6 +275,7 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'صفحة_فارغة' ),
 	'LinkSearch'                => array( 'بحث_الوصلات' ),
 	'DeletedContributions'      => array( 'مساهمات_محذوفة' ),
+	'Interwiki'                 => array( 'إنترويكى' ),
 );
 
 $messages = array(

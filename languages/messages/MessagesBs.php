@@ -124,6 +124,7 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'PraznaStranica' ),
 	'LinkSearch'                => array( 'PotragaLinkova' ),
 	'DeletedContributions'      => array( 'ObrisaniDoprinosi' ),
+	'Interwiki'                 => array( 'Medjuwiki' ),
 );
 
 $magicWords = array(
