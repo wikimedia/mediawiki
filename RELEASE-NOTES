@@ -252,7 +252,6 @@ The following extensions are migrated into MediaWiki 1.14:
   'li' elements
 * (bug 16754) Making arbitrary rows of sortable tables sticky:
   |- class="unsortable"
-* (bug 16617) Add "talk" link to list of templates in edit mode
 * Show subversion too even if a "normal" version number is available
 * (bug 16121) Add a note that a page move was without creating a redirect in the
   move log

@@ -1630,13 +1630,11 @@ class Linker {
 					$protected = '';
 				}
 				if( $titleObj->quickUserCan( 'edit' ) ) {
-					$editLink = $this->link( $titleObj, wfMsgHtml( 'editlink' ), array(), array( 'action' => 'edit' ), 'known' );
+					$editLink = $this->makeLinkObj( $titleObj, wfMsg('editlink'), 'action=edit' );
 				} else {
-					$editLink = $this->link( $titleObj, wfMsgHtml( 'viewsourcelink' ), array(), array( 'action' => 'edit' ), 'known' );
+					$editLink = $this->makeLinkObj( $titleObj, wfMsg('viewsourcelink'), 'action=edit' );
 				}
-				$talkLink = $this->link( $titleObj->getTalkPage(), wfMsgHtml( 'talkpagelinktext' ) );
-				$outText .= Xml::tags( 'li', array(),
-						$this->link( $titleObj ) . ' (' . $editLink . ' ' . wfMsgHtml( 'pipe-separator' ) . ' ' . $talkLink . ') ' . $protected ) . "\n";
+				$outText .= '<li>' . $this->link( $titleObj ) . ' (' . $editLink . ') ' . $protected . '</li>';
 			}
 			$outText .= '</ul>';
 		}
