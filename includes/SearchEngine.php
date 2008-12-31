@@ -13,6 +13,7 @@
 class SearchEngine {
 	var $limit = 10;
 	var $offset = 0;
+	var $prefix = '';
 	var $searchTerms = array();
 	var $namespaces = array( NS_MAIN );
 	var $showRedirects = false;
