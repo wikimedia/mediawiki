@@ -309,10 +309,7 @@ class OutputPage {
 		}
 	}
 
-	# "HTML title" means <title>
-	public function setHTMLTitle( $name ) { $this->mHTMLtitle = $name; }
-	
-	# "Page title" means <h1>
+	public function setHTMLTitle( $name ) {$this->mHTMLtitle = $name; }
 	public function setPageTitle( $name ) {
 		global $action, $wgContLang;
 		$name = $wgContLang->convert($name, true);
@@ -323,7 +320,7 @@ class OutputPage {
 				$name .= ' - '.$taction;
 			}
 		}
-		
+
 		$this->setHTMLTitle( wfMsg( 'pagetitle', $name ) );
 	}
 	public function getHTMLTitle() { return $this->mHTMLtitle; }
@@ -542,10 +539,8 @@ class OutputPage {
 			}
 		}
 		// Display title
-		if( ( $displayTitleText = $parserOutput->getDisplayTitle() ) !== false ) {
-			$this->setPageTitle( $parserOutput->getDisplayTitleH1() );
-			$this->setHTMLTitle( wfMsg( 'pagetitle', $displayTitleText ) ); #override the HTML that setPageTitle slated for inclusion in the <title>
-		}
+		if( ( $dt = $parserOutput->getDisplayTitle() ) !== false )
+			$this->setPageTitle( $dt );
 
 		// Hooks registered in the object
 		global $wgParserOutputHooks;
