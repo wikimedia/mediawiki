@@ -1232,6 +1232,7 @@ $wgGroupPermissions['sysop']['markbotedits']     = true;
 $wgGroupPermissions['sysop']['apihighlimits']    = true;
 $wgGroupPermissions['sysop']['browsearchive']    = true;
 $wgGroupPermissions['sysop']['noratelimit']      = true;
+$wgGroupPermissions['sysop']['restrict']         = true;
 $wgGroupPermissions['sysop']['movefile']         = true;
 #$wgGroupPermissions['sysop']['mergehistory']     = true;
 
@@ -2798,6 +2799,7 @@ $wgLogTypes = array( '',
 	'patrol',
 	'merge',
 	'suppress',
+	'restrict',
 );
 
 /**
@@ -2853,6 +2855,7 @@ $wgLogNames = array(
 	'patrol'  => 'patrol-log-page',
 	'merge'   => 'mergelog',
 	'suppress' => 'suppressionlog',
+	'restrict' => 'restrictionlog',
 );
 
 /**
@@ -2874,6 +2877,7 @@ $wgLogHeaders = array(
 	'patrol'  => 'patrol-log-header',
 	'merge'   => 'mergelogpagetext',
 	'suppress' => 'suppressionlogtext',
+	'restrict' => 'restrictionlogtext',
 );
 
 /**
@@ -2913,6 +2917,8 @@ $wgLogActions = array(
 	'suppress/delete'   => 'suppressedarticle',
 	'suppress/block'	=> 'blocklogentry',
 	'suppress/reblock'  => 'reblock-logentry',
+	'restrict/restrict' => 'restrictentry',
+	'restrict/remove'   => 'restrictremoveentry',
 );
 
 /**
@@ -2984,6 +2990,8 @@ $wgSpecialPageGroups = array(
 	'Preferences'               => 'users',
 	'Resetpass'                 => 'users',
 	'DeletedContributions'      => 'users',
+	'ListUserRestrictions'      => 'users',
+	'RestrictUser'              => 'users',
 
 	'Mostlinked'                => 'highuse',
 	'Mostlinkedcategories'      => 'highuse',
