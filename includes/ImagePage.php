@@ -107,11 +107,6 @@ class ImagePage extends Article {
 			$wgOut->setRobotPolicy( 'noindex,nofollow' );
 			$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
 			$this->viewUpdates();
-
-			# And also show "redirected from" message
-			$sk = $wgUser->getSkin();
-			$redir = $sk->makeKnownLinkObj( $this->mRedirectedFrom, '', 'redirect=no' );
-			$wgOut->setSubtitle( wfMsgExt( 'redirectedfrom', array( 'parseinline', 'replaceafter' ), $redir ) );
 		}
 
 		# Show shared description, if needed
