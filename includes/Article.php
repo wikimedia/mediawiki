@@ -2435,12 +2435,7 @@ class Article {
 		);
 
 		# Delete restrictions for it
-		$dbw->delete( 'page_restrictions', array( 'pr_page' => $id ), __METHOD__ );
-		$dbw->delete( 'user_restrictions',
-			array(
-				'ur_page_namespace' => $this->mTitle->getNamespace(),
-				'ur_page_title' => $this->mTitle->getDBKey()
-			), __METHOD__ );
+		$dbw->delete( 'page_restrictions', array ( 'pr_page' => $id ), __METHOD__ );
 
 		# Now that it's safely backed up, delete it
 		$dbw->delete( 'page', array( 'page_id' => $id ), __METHOD__);
