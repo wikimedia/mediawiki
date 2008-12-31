@@ -255,7 +255,6 @@ The following extensions are migrated into MediaWiki 1.14:
 * Show subversion too even if a "normal" version number is available
 * (bug 16121) Add a note that a page move was without creating a redirect in the
   move log
-* Image moving is now enabled for sysops by default
 
 === Bug fixes in 1.14 ===
 
