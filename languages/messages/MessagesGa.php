@@ -126,6 +126,7 @@ $messages = array(
 'tog-watchlisthidebots'       => 'Folaigh athruithe de chuid róbait ón liosta faire',
 'tog-watchlisthideminor'      => 'Folaigh mionathruithe ón liosta faire',
 'tog-ccmeonemails'            => 'Cuir cóip chugam de gach teactaireacht r-phoist a chuirim chuig úsáideoirí eile',
+'tog-diffonly'                => 'Ná taispeáin inneachar an leathanaigh faoi difríochteanna',
 'tog-showhiddencats'          => 'Taispeáin chatagóirí folaithe',
 'tog-norollbackdiff'          => 'Fág an difr ar lár tar éis athruithe a rolladh siar',
 
@@ -528,12 +529,16 @@ Iontráil seoladh dea-fhormáidte le do thoil, nó glan an réimse sin.',
 
 # Password reset dialog
 'resetpass'                 => "Athshocraigh d'fhocail faire",
+'resetpass_announce'        => "Logáil tú isteach le cód sealadach a seoladh chugat i r-phost.
+Chun d'iarratas logáil isteach a chríochnú, caithfidh tú focal faire nua a roghnú anseo:",
 'resetpass_text'            => '<!-- Cur téacs anseo -->',
 'resetpass_header'          => 'Athshocraigh pasfhocail chuntais',
 'oldpassword'               => 'Focal faire reatha:',
 'newpassword'               => 'Focal faire nua:',
 'retypenew'                 => 'Athiontráil an focal nua faire:',
 'resetpass_submit'          => 'Roghnaigh focal faire agus logáil isteach',
+'resetpass_bad_temporary'   => "Níl an focal faire sealadach bailí.
+B'fhéidir gur athraigh tú d'fhocal faire roimhe seo, nó gur iarr tú ar ceann nua.",
 'resetpass_forbidden'       => 'Ní féidir focail faire a athrú',
 'resetpass-no-info'         => 'Caithfidh tú bheith logáilte istigh chun teacht ar an leathanach seo go díreach.',
 'resetpass-submit-loggedin' => "Athraigh d'fhocal faire",
@@ -573,6 +578,7 @@ Iontráil seoladh dea-fhormáidte le do thoil, nó glan an réimse sin.',
 'showdiff'               => 'Taispeáin athruithe',
 'anoneditwarning'        => "'''Rabhadh:''' Níl tú logáilte isteach. Cuirfear do sheoladh IP i stair eagarthóireachta an leathanaigh seo.",
 'missingsummary'         => "'''Cuimhneachán:''' Níor thug tú achoimriú don athrú. Má chliceáileann tú Sábháil arís, sábhálfar an t-athrú gan é a hachoimriú.",
+'missingcommenttext'     => 'Cuir nóta tráchta isteach faoi seo, le do thoil.',
 'summary-preview'        => 'Réamhamharc an achoimriú:',
 'blockedtitle'           => 'Tá an úsáideoir seo faoi chosc',
 'blockedtext'            => "<big>'''Chuir \$1 cosc ar d’ainm úsáideora nó ar do sheoladh IP.'''</big>
@@ -616,6 +622,8 @@ Má tháinig tú anseo as dearmad, brúigh ar cnaipe '''ar ais''' ar do bhrabhs�
 níor sábháladh é go fóill!'''",
 'userjspreview'          => "'''Cuimhnigh nach bhfuil seo ach réamhamharc do JavaScript úsáideora
 - níor sábháladh é go fóill!'''",
+'userinvalidcssjstitle'  => "'''Seachain:''' Níl craiceann ar bith darbh ainm \"\$1\".
+Cuimhnigh go úsáideann leathanaigh saincheaptha .css agus .js teideal i gcás íochtar, m.sh. úsaidtear {{ns:user}}:Foo/monobook.css in ann {{ns:user}}:Foo/Monobook.css.",
 'updated'                => '(Leasaithe)',
 'note'                   => '<strong>Tabhair faoi deara:</strong>',
 'previewnote'            => '<strong>Cuimhnigh nach bhfuil ach réamhamharc sa leathanach seo, agus nach sábháladh fós é!</strong>',

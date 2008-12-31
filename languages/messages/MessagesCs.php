@@ -1493,7 +1493,7 @@ Jméno načítaného souboru: <strong><tt>$1</tt></strong><br />
 Jméno existujícího souboru: <strong><tt>$2</tt></strong><br />
 Vyberte jiné jméno.',
 'fileexists-thumb'            => "<center>'''Existující soubor:'''</center>",
-'fileexists-thumbnail-yes'    => 'Toto soubor je možná obrázek ve zmenšené velikosti <i>(náhled)</i>. Zkontrolujte soubor <strong><tt>$1</tt></strong>.<br />
+'fileexists-thumbnail-yes'    => 'Tento soubor je zřejmě obrázek ve zmenšené velikosti <i>(náhled)</i>. Zkontrolujte soubor <strong><tt>$1</tt></strong>.<br />
 Pokud je zmiňovaný soubor větší, ale jinak stejný, není potřeba zvlášť načítat jeho zmenšenou verzi.',
 'file-thumbnail-no'           => 'Jméno souboru začíná na <strong><tt>$1</tt></strong>.
 Možná to je obrázek ve zmenšené velikosti <i>(náhled)</i>.
@@ -1560,9 +1560,9 @@ PICT # různé
 'imagelist-summary'     => 'Tato speciální stránka zobrazuje všechny načtené soubory.
 Ve výchozím stavu je poslední načtený soubor nahoře.
 Kliknutím na hlavičku sloupce můžete změnit řazení.',
-'imagelist_search_for'  => 'Hledat obrázek podle názvu:',
+'imagelist_search_for'  => 'Hledat soubor podle názvu:',
 'imgfile'               => 'soubor',
-'imagelist'             => 'Seznam načtených obrázků',
+'imagelist'             => 'Seznam souborů',
 'imagelist_date'        => 'Datum',
 'imagelist_name'        => 'Název',
 'imagelist_user'        => 'Uživatel',
@@ -1716,7 +1716,7 @@ Vstup: <code>typ obsahu/podtyp</code>, např. <code>image/jpeg</code>.',
 'uncategorizedimages'     => 'Nekategorizované soubory',
 'uncategorizedtemplates'  => 'Nekategorizované šablony',
 'unusedcategories'        => 'Nepoužívané kategorie',
-'unusedimages'            => 'Nepoužívané obrázky a soubory',
+'unusedimages'            => 'Nepoužívané soubory',
 'popularpages'            => 'Nejnavštěvovanější stránky',
 'wantedcategories'        => 'Žádané kategorie',
 'wantedpages'             => 'Požadované stránky',
@@ -2275,6 +2275,7 @@ V těchto případech musíte přesunout nebo sloučit stránky manuálně, jest
 'movepage-max-pages'           => '{{PLURAL:$1|Byla přesunuta maximálně povolená jedna stránka|Byly přesunuty maximálně povolené $1 stránky|Bylo přesunuto maximálně povolených $1 stránek}}, více jich už automaticky přesunuto nebude.',
 '1movedto2'                    => 'Stránka [[$1]] přemístěna na stránku [[$2]]',
 '1movedto2_redir'              => 'Stránka [[$1]] přemístěna na stránku [[$2]] s výměnou přesměrování',
+'move-redirect-suppressed'     => 'přesměrování potlačeno',
 'movelogpage'                  => 'Kniha přesunů',
 'movelogpagetext'              => 'Toto je záznam všech přesunů stránek.',
 'movereason'                   => 'Důvod:',
@@ -2558,8 +2559,8 @@ $1',
 'show-big-image-thumb' => '<small>Velikost tohoto náhledu je: $1 × $2 pixelů</small>',
 
 # Special:NewFiles
-'newimages'             => 'Galerie nových obrázků',
-'imagelisttext'         => "Níže je {{PLURAL:$1|jeden obrázek|seznam '''$1'''&nbsp;obrázků seřazených $2|seznam '''$1'''&nbsp;obrázků seřazených $2}}.",
+'newimages'             => 'Galerie nových souborů',
+'imagelisttext'         => "Níže je {{plural:$1|jeden soubor|seznam '''$1'''&nbsp;souborů seřazených $2|seznam '''$1'''&nbsp;souborů seřazených $2}}.",
 'newimages-summary'     => 'Na této speciální stránce se zobrazují poslední načtené soubory.',
 'newimages-legend'      => 'Filtr',
 'newimages-label'       => 'Název souboru (nebo jeho část):',

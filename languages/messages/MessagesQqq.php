@@ -821,6 +821,7 @@ Viewprevnext is sometimes preceded by the [[MediaWiki:Showingresults]] or [[Medi
 'searchhelp-url'                 => '{{Identical|HelpContent}}
 Description: The URL of the search help page.
 {{doc-important|Do not change "Help:" part.}}',
+'searchprofile-articles'         => 'A quick link in the advanced search box on [[Special:Search]]. Clicking on this link starts a search in the content pages of the wiki.',
 'searchprofile-articles-tooltip' => '{{Identical|Search in $1}}',
 'searchprofile-project-tooltip'  => '{{Identical|Search in $1}}',
 'search-result-size'             => 'Shown per line of a [[Special:Search|search result]]
@@ -968,7 +969,6 @@ The right to use the "This is a minor edit" checkbox. See {{msg|minoredit|pl=yes
 'right-move'               => '{{doc-right}}
 The right to move any page that is not protected from moving.',
 'right-move-rootuserpages' => '{{doc-right}}',
-'right-movefile'           => '{{doc-right}}',
 'right-upload'             => '{{doc-right}}
 The right to [[Special:Upload|upload]] a file (this includes images, media, audio, ...).',
 'right-reupload'           => '{{doc-right}}

@@ -608,19 +608,26 @@ $messages = array(
 'diff-multi'              => '({{PLURAL:$1|يوه منځګړې مخليدنه نه ده ښکاره شوې|$1 منځګړې مخليدنې نه دي ښکاره شوي}}.)',
 
 # Search results
-'searchresults'         => 'د لټون پايلې',
-'searchsubtitle'        => "تاسو د '''[[:$1]]''' لپاره لټون کړی",
-'searchsubtitleinvalid' => "تاسو د '''$1''' لپاره لټون کړی",
-'noexactmatch'          => "'''تر اوسه پورې د \"\$1\" په نوم هېڅ کوم مخ نشته.''' تاسو کولای شی چې [[:\$1|همدا مخ جوړ کړی]].",
-'prevn'                 => 'تېر $1',
-'nextn'                 => 'راتلونکي $1',
-'viewprevnext'          => '($1) ($2) ($3) ښکاره کول',
-'searchhelp-url'        => 'Help:لړليک',
-'search-suggest'        => 'آيا همدا ستاسو موخه ده: $1',
-'search-relatedarticle' => 'اړونده',
-'searchall'             => 'ټول',
-'powersearch'           => 'پرمختللې پلټنه',
-'powersearch-legend'    => 'پرمختللې پلټنه',
+'searchresults'            => 'د لټون پايلې',
+'searchsubtitle'           => "تاسو د '''[[:$1]]''' لپاره لټون کړی",
+'searchsubtitleinvalid'    => "تاسو د '''$1''' لپاره لټون کړی",
+'noexactmatch'             => "'''تر اوسه پورې د \"\$1\" په نوم هېڅ کوم مخ نشته.''' تاسو کولای شی چې [[:\$1|همدا مخ جوړ کړی]].",
+'prevn'                    => 'تېر $1',
+'nextn'                    => 'راتلونکي $1',
+'viewprevnext'             => '($1) ($2) ($3) ښکاره کول',
+'searchhelp-url'           => 'Help:لړليک',
+'searchprofile-images'     => 'دوتنې',
+'search-suggest'           => 'آيا همدا ستاسو موخه ده: $1',
+'search-interwiki-caption' => 'خورلڼې پروژې',
+'search-interwiki-default' => '$1 پايلې:',
+'search-interwiki-more'    => '(نور)',
+'search-relatedarticle'    => 'اړونده',
+'searchall'                => 'ټول',
+'powersearch'              => 'پرمختللې پلټنه',
+'powersearch-legend'       => 'پرمختللې پلټنه',
+'powersearch-ns'           => 'په نوم-تشيالونو کې پلټل:',
+'powersearch-field'        => 'پلټنه د',
+'search-external'          => 'باندنۍ پلټنه',
 
 # Preferences page
 'preferences'           => 'غوره توبونه',
@@ -643,6 +650,7 @@ $messages = array(
 'prefs-watchlist'       => 'کتلی لړليک',
 'prefs-watchlist-days'  => 'د ورځو شمېر چې په کتلي لړليک کې به ښکاري:',
 'prefs-misc'            => 'بېلابېل',
+'prefs-resetpass'       => 'پټنوم بدلول',
 'saveprefs'             => 'خوندي کول',
 'resetprefs'            => 'بيا سمول',
 'textboxsize'           => 'سمادېدنه',
@@ -651,8 +659,9 @@ $messages = array(
 'recentchangescount'    => 'د هغو سمادونو شمېر چې په وروستي بدلونو کې يې ليدل غواړی:',
 'savedprefs'            => 'ستاسو غوره توبونه خوندي شوه.',
 'timezonelegend'        => 'د وخت سيمه',
-'localtime'             => 'سيمه ايز وخت',
-'servertime'            => 'د پالنګر وخت',
+'localtime'             => 'سيمه ايز وخت:',
+'timezoneselect'        => 'د وخت سيمه:',
+'servertime'            => 'د پالنګر وخت:',
 'allowemail'            => 'د نورو کارونکو لخوا د برېښليک رالېږل چارن کړه',
 'prefs-namespaces'      => 'نوم-تشيالونه',
 'defaultns'             => 'په دغو نوم-تشيالونو کې د ټاکل شوو سمونونو له مخې لټون وکړی:',
@@ -675,12 +684,19 @@ $messages = array(
 
 'grouppage-sysop' => '{{ns:project}}:پازوالان',
 
+# Rights
+'right-delete'        => 'مخونه ړنګول',
+'right-browsearchive' => 'ړنګ شوي مخونه پلټل',
+
 # User rights log
 'rightslog'  => 'د کارونکي د رښتو يادښت',
 'rightsnone' => '(هېڅ)',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-move' => 'همدا مخ لېږدول',
+'action-createpage' => 'مخونه جوړول',
+'action-move'       => 'همدا مخ لېږدول',
+'action-delete'     => 'همدا مخ ړنګول',
+'action-undelete'   => 'همدا مخ ناړنګول',
 
 # Recent changes
 'nchanges'                       => '$1 {{PLURAL:$1|بدلون|بدلونونه}}',

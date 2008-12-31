@@ -2280,6 +2280,7 @@ stranica za razgovor nije mogla biti premještena jer takva već postoji na novo
 'movepage-max-pages'           => 'Maksimum od $1 {{PLURAL:$1|stranice|stranice|stranica}} je premješteno i više nije moguće premjestiti automatski.',
 '1movedto2'                    => 'članak [[$1]] premješten na [[$2]]',
 '1movedto2_redir'              => 'stranica [[$1]] premještena u stranicu [[$2]] putem preusmjerenja',
+'move-redirect-suppressed'     => 'preusmjeravanje onemogućeno',
 'movelogpage'                  => 'Protokol premještanja',
 'movelogpagetext'              => 'Ispod je spisak stranica koje su premještene.',
 'movereason'                   => 'Razlog:',
