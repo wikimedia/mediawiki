@@ -1160,11 +1160,15 @@ END;
 		global $wgOut;
 		$sep = " |\n";
 
-		$s = $this->mainPageLink();
+		$s = $this->mainPageLink() . $sep
+		  . $this->specialLink( 'recentchanges' );
 
 		if ( $wgOut->isArticleRelated() ) {
-			$s .=  $sep . $this->editThisPage() . $sep . $this->historyLink();
+			$s .=  $sep . $this->editThisPage()
+			  . $sep . $this->historyLink();
 		}
+		# Many people don't like this dropdown box
+		#$s .= $sep . $this->specialPagesList();
 
 		$s .= $this->variantLinks();
 

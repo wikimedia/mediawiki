@@ -227,6 +227,10 @@ class SkinStandard extends Skin {
 			# "Post a comment" link
 			if( ( $wgTitle->isTalkPage() || $wgOut->showNewSectionLink() ) && $action != 'edit' && !$wpPreview )
 				$s .= '<br />' . $this->makeKnownLinkObj( $wgTitle, wfMsg( 'postcomment' ), 'action=edit&section=new' );
+			
+			#if( $tns%2 && $action!='edit' && !$wpPreview) {
+				#$s.= '<br />'.$this->makeKnownLink($wgTitle->getPrefixedText(),wfMsg('postcomment'),'action=edit&section=new');
+			#}
 
 			/*
 			watching could cause problems in edit mode:
@@ -249,6 +253,11 @@ class SkinStandard extends Skin {
 			$s .= $sep . $this->talkLink();
 			if ($articleExists && $action !='history') {
 				$s .= $sep . $this->historyLink();
+			}
+			$s.=$sep . $this->whatLinksHere();
+
+			if($wgOut->isArticleRelated()) {
+				$s .= $sep . $this->watchPageLinksLink();
 			}
 
 			if ( NS_USER == $wgTitle->getNamespace()

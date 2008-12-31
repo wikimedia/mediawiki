@@ -462,6 +462,8 @@ The following extensions are migrated into MediaWiki 1.14:
 * Ensure that all HTML id's begin with a letter as required by XHTML standard
 * Image moving over an existing file no longer throws a database error
 * (bug 14117) Image redirects from the shared repo now show "redirected from"
+* (bug 16786) Restored "redundant" links recently removed from Classic sidebar
+
 
 === API changes in 1.14 ===
 
