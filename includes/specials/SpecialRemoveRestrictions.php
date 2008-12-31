@@ -56,7 +56,5 @@ function wfSpecialRemoveRestrictionsProcess( $r ) {
 	if( $r->isNamespace() )
 		$params[] = $r->getNamespace();
 	$log->addEntry( 'remove', Title::makeTitle( NS_USER, $r->getSubjectText() ), $reason, $params );
-	$userObj = User::newFromName( $r->getSubjectText(), false );
-	$userObj->invalidateCache();
 	return $result;
 }
