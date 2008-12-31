@@ -430,7 +430,6 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'BlankPage' ),
 	'LinkSearch'                => array( 'LinkSearch' ),
 	'DeletedContributions'      => array( 'DeletedContributions' ),
-	'Interwiki'                 => array( 'Interwiki' ),
 );
 
 /**
