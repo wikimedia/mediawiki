@@ -1024,8 +1024,8 @@ You may have already successfully changed your password or requested a new tempo
 'hr_tip'          => 'Horizontal line (use sparingly)',
 
 # Edit pages
-'summary'                          => 'Summary:',
-'subject'                          => 'Subject/headline:',
+'summary'                          => 'Summary',
+'subject'                          => 'Subject/headline',
 'minoredit'                        => 'This is a minor edit',
 'watchthis'                        => 'Watch this page',
 'savearticle'                      => 'Save page',
@@ -1040,8 +1040,8 @@ If you click Save again, your edit will be saved without one.",
 'missingcommenttext'               => 'Please enter a comment below.',
 'missingcommentheader'             => "'''Reminder:''' You have not provided a subject/headline for this comment.
 If you click Save again, your edit will be saved without one.",
-'summary-preview'                  => 'Summary preview:',
-'subject-preview'                  => 'Subject/headline preview:',
+'summary-preview'                  => 'Summary preview',
+'subject-preview'                  => 'Subject/headline preview',
 'blockedtitle'                     => 'User is blocked',
 'blockedtext'                      => "<big>'''Your user name or IP address has been blocked.'''</big>
 

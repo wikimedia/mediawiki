@@ -17,30 +17,30 @@
  * usually the same, but they are now allowed to be different.
  */
 class EditPage {
-	const AS_SUCCESS_UPDATE             = 200;
-	const AS_SUCCESS_NEW_ARTICLE        = 201;
-	const AS_HOOK_ERROR                 = 210;
-	const AS_FILTERING                  = 211;
-	const AS_HOOK_ERROR_EXPECTED        = 212;
-	const AS_BLOCKED_PAGE_FOR_USER      = 215;
-	const AS_CONTENT_TOO_BIG            = 216;
-	const AS_USER_CANNOT_EDIT           = 217;
-	const AS_READ_ONLY_PAGE_ANON        = 218;
-	const AS_READ_ONLY_PAGE_LOGGED      = 219;
-	const AS_READ_ONLY_PAGE             = 220;
-	const AS_RATE_LIMITED               = 221;
-	const AS_ARTICLE_WAS_DELETED        = 222;
-	const AS_NO_CREATE_PERMISSION       = 223;
-	const AS_BLANK_ARTICLE              = 224;
-	const AS_CONFLICT_DETECTED          = 225;
-	const AS_SUMMARY_NEEDED             = 226;
-	const AS_TEXTBOX_EMPTY              = 228;
-	const AS_MAX_ARTICLE_SIZE_EXCEEDED  = 229;
-	const AS_OK                         = 230;
-	const AS_END                        = 231;
-	const AS_SPAM_ERROR                 = 232;
-	const AS_IMAGE_REDIRECT_ANON        = 233;
-	const AS_IMAGE_REDIRECT_LOGGED      = 234;
+	const AS_SUCCESS_UPDATE			= 200;
+	const AS_SUCCESS_NEW_ARTICLE		= 201;
+	const AS_HOOK_ERROR			= 210;
+	const AS_FILTERING			= 211;
+	const AS_HOOK_ERROR_EXPECTED		= 212;
+	const AS_BLOCKED_PAGE_FOR_USER		= 215;
+	const AS_CONTENT_TOO_BIG		= 216;
+	const AS_USER_CANNOT_EDIT		= 217;
+	const AS_READ_ONLY_PAGE_ANON		= 218;
+	const AS_READ_ONLY_PAGE_LOGGED		= 219;
+	const AS_READ_ONLY_PAGE			= 220;
+	const AS_RATE_LIMITED			= 221;
+	const AS_ARTICLE_WAS_DELETED		= 222;
+	const AS_NO_CREATE_PERMISSION		= 223;
+	const AS_BLANK_ARTICLE			= 224;
+	const AS_CONFLICT_DETECTED		= 225;
+	const AS_SUMMARY_NEEDED			= 226;
+	const AS_TEXTBOX_EMPTY			= 228;
+	const AS_MAX_ARTICLE_SIZE_EXCEEDED	= 229;
+	const AS_OK				= 230;
+	const AS_END				= 231;
+	const AS_SPAM_ERROR			= 232;
+	const AS_IMAGE_REDIRECT_ANON		= 233;
+	const AS_IMAGE_REDIRECT_LOGGED		= 234;
 
 	var $mArticle;
 	var $mTitle;
@@ -237,7 +237,7 @@ class EditPage {
 	 * To turn the feature on, set $wgUseMetadataEdit = true ; in LocalSettings
 	 *  and set $wgMetadataWhitelist to the *full* title of the template whitelist
 	 */
-	function extractMetaDataFromArticle() {
+	function extractMetaDataFromArticle () {
 		global $wgUseMetadataEdit, $wgMetadataWhitelist, $wgContLang;
 		$this->mMetaData = '';
 		if ( !$wgUseMetadataEdit ) return;
@@ -546,8 +546,8 @@ class EditPage {
 	 */
 	function importFormData( &$request ) {
 		global $wgLang, $wgUser;
-
-		wfProfileIn( __METHOD__ );
+		$fname = 'EditPage::importFormData';
+		wfProfileIn( $fname );
 
 		# Section edit can come from either the form or a link
 		$this->section = $request->getVal( 'wpSection', $request->getVal( 'section' ) );
@@ -572,7 +572,7 @@ class EditPage {
 
 			if ( is_null( $this->edittime ) ) {
 				# If the form is incomplete, force to preview.
-				wfDebug( __METHOD__ . ": Form data appears to be incomplete\n" );
+				wfDebug( "$fname: Form data appears to be incomplete\n" );
 				wfDebug( "POST DATA: " . var_export( $_POST, true ) . "\n" );
 				$this->preview  = true;
 			} else {
@@ -589,14 +589,14 @@ class EditPage {
 					# if the user hits enter in the comment box.
 					# The unmarked state will be assumed to be a save,
 					# if the form seems otherwise complete.
-					wfDebug( __METHOD__ . ": Passed token check.\n" );
+					wfDebug( "$fname: Passed token check.\n" );
 				} else if ( $this->diff ) {
 					# Failed token check, but only requested "Show Changes".
-					wfDebug( __METHOD__ . ": Failed token check; Show Changes requested.\n" );
+					wfDebug( "$fname: Failed token check; Show Changes requested.\n" );
 				} else {
 					# Page might be a hack attempt posted from
 					# an external site. Preview instead of saving.
-					wfDebug( __METHOD__ . ": Failed token check; forcing preview\n" );
+					wfDebug( "$fname: Failed token check; forcing preview\n" );
 					$this->preview = true;
 				}
 			}
@@ -626,7 +626,7 @@ class EditPage {
 			$this->autoSumm = $request->getText( 'wpAutoSummary' );
 		} else {
 			# Not a posted form? Start with nothing.
-			wfDebug( __METHOD__ . ": Not a posted form.\n" );
+			wfDebug( "$fname: Not a posted form.\n" );
 			$this->textbox1  = '';
 			$this->textbox2  = '';
 			$this->mMetaData = '';
@@ -651,7 +651,7 @@ class EditPage {
 		$this->live = $request->getCheck( 'live' );
 		$this->editintro = $request->getText( 'editintro' );
 
-		wfProfileOut( __METHOD__ );
+		wfProfileOut( $fname );
 	}
 
 	/**
@@ -731,8 +731,9 @@ class EditPage {
 		global $wgFilterCallback, $wgUser, $wgOut, $wgParser;
 		global $wgMaxArticleSize;
 
-		wfProfileIn( __METHOD__ );
-		wfProfileIn( __METHOD__ . '-checks' );
+		$fname = 'EditPage::attemptSave';
+		wfProfileIn( $fname );
+		wfProfileIn( "$fname-checks" );
 
 		if ( !wfRunHooks( 'EditPage::attemptSave', array( &$this ) ) )
 		{
@@ -766,96 +767,96 @@ class EditPage {
 			$pdbk = $this->mTitle->getPrefixedDBkey();
 			$match = str_replace( "\n", '', $match );
 			wfDebugLog( 'SpamRegex', "$ip spam regex hit [[$pdbk]]: \"$match\"" );
-			wfProfileOut( __METHOD__ . '-checks' );
-			wfProfileOut( __METHOD__ );
+			wfProfileOut( "$fname-checks" );
+			wfProfileOut( $fname );
 			return self::AS_SPAM_ERROR;
 		}
 		if ( $wgFilterCallback && $wgFilterCallback( $this->mTitle, $this->textbox1, $this->section, $this->hookError, $this->summary ) ) {
 			# Error messages or other handling should be performed by the filter function
-			wfProfileOut( __METHOD__ . '-checks' );
-			wfProfileOut( __METHOD__ );
+			wfProfileOut( "$fname-checks" );
+			wfProfileOut( $fname );
 			return self::AS_FILTERING;
 		}
 		if ( !wfRunHooks( 'EditFilter', array( $this, $this->textbox1, $this->section, &$this->hookError, $this->summary ) ) ) {
 			# Error messages etc. could be handled within the hook...
-			wfProfileOut( __METHOD__ . '-checks' );
-			wfProfileOut( __METHOD__ );
+			wfProfileOut( "$fname-checks" );
+			wfProfileOut( $fname );
 			return self::AS_HOOK_ERROR;
 		} elseif ( $this->hookError != '' ) {
 			# ...or the hook could be expecting us to produce an error
-			wfProfileOut( __METHOD__ . '-checks' );
-			wfProfileOut( __METHOD__ );
+			wfProfileOut( "$fname-checks" );
+			wfProfileOut( $fname );
 			return self::AS_HOOK_ERROR_EXPECTED;
 		}
 		if ( $wgUser->isBlockedFrom( $this->mTitle, false ) ) {
 			# Check block state against master, thus 'false'.
-			wfProfileOut( __METHOD__ . '-checks' );
-			wfProfileOut( __METHOD__ );
+			wfProfileOut( "$fname-checks" );
+			wfProfileOut( $fname );
 			return self::AS_BLOCKED_PAGE_FOR_USER;
 		}
 		$this->kblength = (int)(strlen( $this->textbox1 ) / 1024);
 		if ( $this->kblength > $wgMaxArticleSize ) {
 			// Error will be displayed by showEditForm()
 			$this->tooBig = true;
-			wfProfileOut( __METHOD__ . '-checks' );
-			wfProfileOut( __METHOD__ );
+			wfProfileOut( "$fname-checks" );
+			wfProfileOut( $fname );
 			return self::AS_CONTENT_TOO_BIG;
 		}
 
 		if ( !$wgUser->isAllowed('edit') ) {
 			if ( $wgUser->isAnon() ) {
-				wfProfileOut( __METHOD__ . '-checks' );
-				wfProfileOut( __METHOD__ );
+				wfProfileOut( "$fname-checks" );
+				wfProfileOut( $fname );
 				return self::AS_READ_ONLY_PAGE_ANON;
 			}
 			else {
-				wfProfileOut( __METHOD__ . '-checks' );
-				wfProfileOut( __METHOD__ );
+				wfProfileOut( "$fname-checks" );
+				wfProfileOut( $fname );
 				return self::AS_READ_ONLY_PAGE_LOGGED;
 			}
 		}
 
 		if ( wfReadOnly() ) {
-			wfProfileOut( __METHOD__ . '-checks' );
-			wfProfileOut( __METHOD__ );
+			wfProfileOut( "$fname-checks" );
+			wfProfileOut( $fname );
 			return self::AS_READ_ONLY_PAGE;
 		}
 		if ( $wgUser->pingLimiter() ) {
-			wfProfileOut( __METHOD__ . '-checks' );
-			wfProfileOut( __METHOD__ );
+			wfProfileOut( "$fname-checks" );
+			wfProfileOut( $fname );
 			return self::AS_RATE_LIMITED;
 		}
 
 		# If the article has been deleted while editing, don't save it without
 		# confirmation
 		if ( $this->wasDeletedSinceLastEdit() && !$this->recreate ) {
-			wfProfileOut( __METHOD__ . '-checks' );
-			wfProfileOut( __METHOD__ );
+			wfProfileOut( "$fname-checks" );
+			wfProfileOut( $fname );
 			return self::AS_ARTICLE_WAS_DELETED;
 		}
 
-		wfProfileOut( __METHOD__ . '-checks' );
+		wfProfileOut( "$fname-checks" );
 
 		# If article is new, insert it.
 		$aid = $this->mTitle->getArticleID( GAID_FOR_UPDATE );
 		if ( 0 == $aid ) {
 			// Late check for create permission, just in case *PARANOIA*
 			if ( !$this->mTitle->userCan( 'create' ) ) {
-				wfDebug( __METHOD__ . ": no create permission\n" );
-				wfProfileOut( __METHOD__ );
+				wfDebug( "$fname: no create permission\n" );
+				wfProfileOut( $fname );
 				return self::AS_NO_CREATE_PERMISSION;
 			}
 
 			# Don't save a new article if it's blank.
 			if ( '' == $this->textbox1 ) {
-				wfProfileOut( __METHOD__ );
+				wfProfileOut( $fname );
 				return self::AS_BLANK_ARTICLE;
 			}
 
 			// Run post-section-merge edit filter
 			if ( !wfRunHooks( 'EditFilterMerged', array( $this, $this->textbox1, &$this->hookError, $this->summary ) ) ) {
 				# Error messages etc. could be handled within the hook...
-				wfProfileOut( __METHOD__ );
+				wfProfileOut( $fname );
 				return self::AS_HOOK_ERROR;
 			}
 
@@ -864,7 +865,7 @@ class EditPage {
 			$this->mArticle->insertNewArticle( $this->textbox1, $this->summary,
 				$this->minoredit, $this->watchthis, false, $isComment, $bot);
 
-			wfProfileOut( __METHOD__ );
+			wfProfileOut( $fname );
 			return self::AS_SUCCESS_NEW_ARTICLE;
 		}
 
@@ -929,7 +930,7 @@ class EditPage {
 		}
 
 		if ( $this->isConflict ) {
-			wfProfileOut( __METHOD__ );
+			wfProfileOut( $fname );
 			return self::AS_CONFLICT_DETECTED;
 		}
 
@@ -938,7 +939,7 @@ class EditPage {
 		// Run post-section-merge edit filter
 		if ( !wfRunHooks( 'EditFilterMerged', array( $this, $text, &$this->hookError, $this->summary ) ) ) {
 			# Error messages etc. could be handled within the hook...
-			wfProfileOut( __METHOD__ );
+			wfProfileOut( $fname );
 			return self::AS_HOOK_ERROR;
 		}
 
@@ -948,7 +949,7 @@ class EditPage {
 		) {
 			if ( md5( $this->summary ) == $this->autoSumm ) {
 				$this->missingSummary = true;
-				wfProfileOut( __METHOD__ );
+				wfProfileOut( $fname );
 				return self::AS_SUMMARY_NEEDED;
 			}
 		}
@@ -957,13 +958,13 @@ class EditPage {
 		if ( $this->section == 'new' && !$this->allowBlankSummary ) {
 			if (trim($this->summary) == '') {
 				$this->missingSummary = true;
-				wfProfileOut( __METHOD__ );
+				wfProfileOut( $fname );
 				return self::AS_SUMMARY_NEEDED;
 			}
 		}
 
 		# All's well
-		wfProfileIn( __METHOD__ . '-sectionanchor' );
+		wfProfileIn( "$fname-sectionanchor" );
 		$sectionanchor = '';
 		if ( $this->section == 'new' ) {
 			if ( $this->textbox1 == '' ) {
@@ -988,7 +989,7 @@ class EditPage {
 				$sectionanchor = $wgParser->guessSectionNameFromWikiText( $matches[2] );
 			}
 		}
-		wfProfileOut( __METHOD__ . '-sectionanchor' );
+		wfProfileOut( "$fname-sectionanchor" );
 
 		// Save errors may fall down to the edit form, but we've now
 		// merged the section into full text. Clear the section field
@@ -1001,19 +1002,19 @@ class EditPage {
 		$this->kblength = (int)(strlen( $text ) / 1024);
 		if ( $this->kblength > $wgMaxArticleSize ) {
 			$this->tooBig = true;
-			wfProfileOut( __METHOD__ );
+			wfProfileOut( $fname );
 			return self::AS_MAX_ARTICLE_SIZE_EXCEEDED;
 		}
 
 		# update the article here
 		if ( $this->mArticle->updateArticle( $text, $this->summary, $this->minoredit,
 			$this->watchthis, $bot, $sectionanchor ) ) {
-			wfProfileOut( __METHOD__ );
+			wfProfileOut( $fname );
 			return self::AS_SUCCESS_UPDATE;
 		} else {
 			$this->isConflict = true;
 		}
-		wfProfileOut( __METHOD__ );
+		wfProfileOut( $fname );
 		return self::AS_END;
 	}
 	
@@ -1084,7 +1085,7 @@ class EditPage {
 			$wgOut->setPageTitle( wfMsg( $msg, $wgTitle->getPrefixedText() ) );
 		} else {
 			# Use the title defined by DISPLAYTITLE magic word when present
-			if ( isset( $this->mParserOutput )
+			if ( isset($this->mParserOutput)
 			 && ( $dt = $this->mParserOutput->getDisplayTitle() ) !== false ) {
 				$title = $dt;
 			} else {
@@ -1107,10 +1108,11 @@ class EditPage {
 		# Some hook probably called this function  without checking
 		# for is_null($wgTitle) first. Bail out right here so we don't
 		# do lots of work just to discard it right after.
-		if ( is_null( $wgTitle ) )
+		if (is_null($wgTitle))
 			return;
 
-		wfProfileIn( __METHOD__ );
+		$fname = 'EditPage::showEditForm';
+		wfProfileIn( $fname );
 
 		$sk = $wgUser->getSkin();
 
@@ -1256,13 +1258,16 @@ class EditPage {
 		#if ( "no" == $redirect ) { $q .= "&redirect=no"; }
 		$action = $wgTitle->escapeLocalURL( $q );
 
-		$summary = wfMsgExt( 'summary', array( 'parseinline' ) );
-		$subject = wfMsgExt( 'subject', array( 'parseinline' ) );
+		$colonSep = wfMsg( 'colon-separator' );
+		$summary = wfMsg( 'summary' ) . $colonSep;
+		$subject = wfMsg( 'subject' ) . $colonSep;
 
-		$cancel = $sk->makeKnownLinkObj( $wgTitle, wfMsgHtml( 'cancel' ) );
-		$edithelpurl = Skin::makeInternalOrExternalUrl( wfMsgForContent( 'edithelppage' ) );
-		$edithelp = Xml::element( 'a', array( 'target' => 'helpwindow', 'href' => $edithelpurl ), wfMsg( 'edithelp' ) ) .
-			' ' . wfMsgExt( 'newwindow', array( 'parseinline' ) );
+		$cancel = $sk->makeKnownLink( $wgTitle->getPrefixedText(),
+				wfMsgExt('cancel', array('parseinline')) );
+		$edithelpurl = Skin::makeInternalOrExternalUrl( wfMsgForContent( 'edithelppage' ));
+		$edithelp = '<a target="helpwindow" href="'.$edithelpurl.'">'.
+			htmlspecialchars( wfMsg( 'edithelp' ) ).'</a> '.
+			htmlspecialchars( wfMsg( 'newwindow' ) );
 
 		global $wgRightsText;
 		if ( $wgRightsText ) {
@@ -1328,25 +1333,17 @@ class EditPage {
 		$autosumm = $this->autoSumm ? $this->autoSumm : md5( $this->summary );
 		$summaryhiddens .= Xml::hidden( 'wpAutoSummary', $autosumm );
 		if ( $this->section == 'new' ) {
-			$commentsubject = "<span id='wpSummaryLabel'><label for='wpSummary'>{$subject}</label></span>\n" .
-				"<input tabindex='1' type='text' value=\"$summarytext\" name='wpSummary' id='wpSummary' maxlength='200' size='60' />" .
-				"{$summaryhiddens}<br />";
+			$commentsubject="<span id='wpSummaryLabel'><label for='wpSummary'>{$subject}</label></span>\n<input tabindex='1' type='text' value=\"$summarytext\" name='wpSummary' id='wpSummary' maxlength='200' size='60' />{$summaryhiddens}<br />";
 			$editsummary = "<div class='editOptions'>\n";
 			global $wgParser;
 			$formattedSummary = wfMsgForContent( 'newsectionsummary', $wgParser->stripSectionName( $this->summary ) );
-			$subjectpreview = $summarytext && $this->preview ?
-				"<div class=\"mw-summary-preview\">" . wfMsgExt( 'subject-preview', array( 'escapenoentities' ) ) .
-				$sk->commentBlock( $formattedSummary, $this->mTitle, true ) . "</div>\n" : '';
+			$subjectpreview = $summarytext && $this->preview ? "<div class=\"mw-summary-preview\">".wfMsg('subject-preview').$colonSep.$sk->commentBlock( $formattedSummary, $this->mTitle, true )."</div>\n" : '';
 			$summarypreview = '';
 		} else {
 			$commentsubject = '';
-			$editsummary = "<div class='editOptions'>\n<span id='wpSummaryLabel'><label for='wpSummary'>{$summary}</label></span>\n" .
-				"<input tabindex='2' type='text' value=\"$summarytext\" name='wpSummary' id='wpSummary' maxlength='200' size='60' />" .
-				"{$summaryhiddens}<br />";
+			$editsummary="<div class='editOptions'>\n<span id='wpSummaryLabel'><label for='wpSummary'>{$summary}</label></span>\n<input tabindex='2' type='text' value=\"$summarytext\" name='wpSummary' id='wpSummary' maxlength='200' size='60' />{$summaryhiddens}<br />";
+			$summarypreview = $summarytext && $this->preview ? "<div class=\"mw-summary-preview\">".wfMsg('summary-preview').$colonSep.$sk->commentBlock( $this->summary, $this->mTitle )."</div>\n" : '';
 			$subjectpreview = '';
-			$summarypreview = $summarytext && $this->preview ?
-				"<div class=\"mw-summary-preview\">" . wfMsgExt( 'summary-preview', array( 'escapenoentities' ) ) .
-				$sk->commentBlock( $this->summary, $this->mTitle ) . "</div>\n" : '';
 		}
 
 		# Set focus to the edit box on load, except on preview or diff, where it would interfere with the display
@@ -1361,7 +1358,7 @@ class EditPage {
 
 		global $wgUseMetadataEdit ;
 		if ( $wgUseMetadataEdit ) {
-			$metadata = $this->mMetaData;
+			$metadata = $this->mMetaData ;
 			$metadata = htmlspecialchars( $wgContLang->recodeForEdit( $metadata ) ) ;
 			$top = wfMsgWikiHtml( 'metadata_help' );
 			/* ToDo: Replace with clean code */
@@ -1377,15 +1374,15 @@ class EditPage {
 		$recreate = '';
 		if ( $this->wasDeletedSinceLastEdit() ) {
 			if ( 'save' != $this->formtype ) {
-				$wgOut->addWikiMsg( 'deletedwhileediting' );
+				$wgOut->addWikiMsg('deletedwhileediting');
 			} else {
 				// Hide the toolbar and edit area, use can click preview to get it back
 				// Add an confirmation checkbox and explanation.
 				$toolbar = '';
-				$recreate = wfMsgExt( 'confirmrecreate',  array( 'parse' ), $this->lastDelete->user_name , $this->lastDelete->log_comment ) .
-					"<br />" .
-					Xml::checkLabel( wfMsg( 'recreate' ), 'wpRecreate', 'wpRecreate', false,
-						array( 'tabindex' => '1' ), array( 'title' => wfMsg( 'tooltip-recreate' ) ) );
+				$recreate = $wgOut->parse( wfMsg( 'confirmrecreate',  $this->lastDelete->user_name , $this->lastDelete->log_comment ));
+				$recreate .=
+					"<br /><input tabindex='1' type='checkbox' value='1' name='wpRecreate' id='wpRecreate' />".
+					"<label for='wpRecreate' title='".wfMsg('tooltip-recreate')."'>". wfMsg('recreate')."</label>";
 			}
 		}
 
@@ -1473,13 +1470,13 @@ END
 );
 
 		if ( $this->isConflict && wfRunHooks( 'EditPageBeforeConflictDiff', array( &$this, &$wgOut ) ) ) {
-			$wgOut->wrapWikiMsg( '==$1==', 'yourdiff' );
+			$wgOut->wrapWikiMsg( '==$1==', "yourdiff" );
 
 			$de = new DifferenceEngine( $this->mTitle );
 			$de->setText( $this->textbox2, $this->textbox1 );
-			$de->showDiff( wfMsgExt( 'yourtext', array( 'parseinline' ) ), wfMsgExt( 'storedversion', array( 'parseinline' ) ) );
+			$de->showDiff( wfMsg( "yourtext" ), wfMsg( "storedversion" ) );
 
-			$wgOut->wrapWikiMsg( '==$1==', 'yourtext' );
+			$wgOut->wrapWikiMsg( '==$1==', "yourtext" );
 			$this->showTextbox2();
 		}
 		$wgOut->addHTML( $this->editFormTextBottom );
@@ -1488,7 +1485,7 @@ END
 			$this->displayPreviewArea( $previewOutput, false );
 		}
 
-		wfProfileOut( __METHOD__ );
+		wfProfileOut( $fname );
 	}
 
 	protected function showFormBeforeText() {
@@ -1824,14 +1821,15 @@ END
 	 * @todo document
 	 */
 	function mergeChangesInto( &$editText ){
-		wfProfileIn( __METHOD__ );
+		$fname = 'EditPage::mergeChangesInto';
+		wfProfileIn( $fname );
 
 		$db = wfGetDB( DB_MASTER );
 
 		// This is the revision the editor started from
 		$baseRevision = $this->getBaseRevision();
 		if ( is_null( $baseRevision ) ) {
-			wfProfileOut( __METHOD__ );
+			wfProfileOut( $fname );
 			return false;
 		}
 		$baseText = $baseRevision->getText();
@@ -1840,7 +1838,7 @@ END
 		$currentRevision =  Revision::loadFromTitle(
 			$db, $this->mTitle );
 		if ( is_null( $currentRevision ) ) {
-			wfProfileOut( __METHOD__ );
+			wfProfileOut( $fname );
 			return false;
 		}
 		$currentText = $currentRevision->getText();
@@ -1848,10 +1846,10 @@ END
 		$result = '';
 		if ( wfMerge( $baseText, $editText, $currentText, $result ) ) {
 			$editText = $result;
-			wfProfileOut( __METHOD__ );
+			wfProfileOut( $fname );
 			return true;
 		} else {
-			wfProfileOut( __METHOD__ );
+			wfProfileOut( $fname );
 			return false;
 		}
 	}
@@ -1920,109 +1918,109 @@ END
 		 */
 		$toolarray = array(
 			array(
-				'image'  => $wgLang->getImageFile( 'button-bold' ),
+				'image'  => $wgLang->getImageFile('button-bold'),
 				'id'     => 'mw-editbutton-bold',
 				'open'   => '\'\'\'',
 				'close'  => '\'\'\'',
-				'sample' => wfMsg( 'bold_sample' ),
-				'tip'    => wfMsg( 'bold_tip' ),
+				'sample' => wfMsg('bold_sample'),
+				'tip'    => wfMsg('bold_tip'),
 				'key'    => 'B'
 			),
 			array(
-				'image'  => $wgLang->getImageFile( 'button-italic' ),
+				'image'  => $wgLang->getImageFile('button-italic'),
 				'id'     => 'mw-editbutton-italic',
 				'open'   => '\'\'',
 				'close'  => '\'\'',
-				'sample' => wfMsg( 'italic_sample' ),
-				'tip'    => wfMsg( 'italic_tip' ),
+				'sample' => wfMsg('italic_sample'),
+				'tip'    => wfMsg('italic_tip'),
 				'key'    => 'I'
 			),
 			array(
-				'image'  => $wgLang->getImageFile( 'button-link' ),
+				'image'  => $wgLang->getImageFile('button-link'),
 				'id'     => 'mw-editbutton-link',
 				'open'   => '[[',
 				'close'  => ']]',
-				'sample' => wfMsg( 'link_sample' ),
-				'tip'    => wfMsg( 'link_tip' ),
+				'sample' => wfMsg('link_sample'),
+				'tip'    => wfMsg('link_tip'),
 				'key'    => 'L'
 			),
 			array(
-				'image'  => $wgLang->getImageFile( 'button-extlink' ),
+				'image'  => $wgLang->getImageFile('button-extlink'),
 				'id'     => 'mw-editbutton-extlink',
 				'open'   => '[',
 				'close'  => ']',
-				'sample' => wfMsg( 'extlink_sample' ),
-				'tip'    => wfMsg( 'extlink_tip' ),
+				'sample' => wfMsg('extlink_sample'),
+				'tip'    => wfMsg('extlink_tip'),
 				'key'    => 'X'
 			),
 			array(
-				'image'  => $wgLang->getImageFile( 'button-headline' ),
+				'image'  => $wgLang->getImageFile('button-headline'),
 				'id'     => 'mw-editbutton-headline',
 				'open'   => "\n== ",
 				'close'  => " ==\n",
-				'sample' => wfMsg( 'headline_sample' ),
-				'tip'    => wfMsg( 'headline_tip' ),
+				'sample' => wfMsg('headline_sample'),
+				'tip'    => wfMsg('headline_tip'),
 				'key'    => 'H'
 			),
 			array(
-				'image'  => $wgLang->getImageFile( 'button-image' ),
+				'image'  => $wgLang->getImageFile('button-image'),
 				'id'     => 'mw-editbutton-image',
-				'open'   => '[['.$wgContLang->getNsText( NS_FILE ).':',
+				'open'   => '[['.$wgContLang->getNsText(NS_FILE).':',
 				'close'  => ']]',
-				'sample' => wfMsg( 'image_sample' ),
-				'tip'    => wfMsg( 'image_tip' ),
+				'sample' => wfMsg('image_sample'),
+				'tip'    => wfMsg('image_tip'),
 				'key'    => 'D'
 			),
 			array(
-				'image'  => $wgLang->getImageFile( 'button-media' ),
+				'image'  => $wgLang->getImageFile('button-media'),
 				'id'     => 'mw-editbutton-media',
-				'open'   => '[['.$wgContLang->getNsText( NS_MEDIA ).':',
+				'open'   => '[['.$wgContLang->getNsText(NS_MEDIA).':',
 				'close'  => ']]',
-				'sample' => wfMsg( 'media_sample' ),
-				'tip'    => wfMsg( 'media_tip' ),
+				'sample' => wfMsg('media_sample'),
+				'tip'    => wfMsg('media_tip'),
 				'key'    => 'M'
 			),
 			array(
-				'image'  => $wgLang->getImageFile( 'button-math' ),
+				'image'  => $wgLang->getImageFile('button-math'),
 				'id'     => 'mw-editbutton-math',
 				'open'   => "<math>",
 				'close'  => "</math>",
-				'sample' => wfMsg( 'math_sample' ),
-				'tip'    => wfMsg( 'math_tip' ),
+				'sample' => wfMsg('math_sample'),
+				'tip'    => wfMsg('math_tip'),
 				'key'    => 'C'
 			),
 			array(
-				'image'  => $wgLang->getImageFile( 'button-nowiki' ),
+				'image'  => $wgLang->getImageFile('button-nowiki'),
 				'id'     => 'mw-editbutton-nowiki',
 				'open'   => "<nowiki>",
 				'close'  => "</nowiki>",
-				'sample' => wfMsg( 'nowiki_sample' ),
-				'tip'    => wfMsg( 'nowiki_tip' ),
+				'sample' => wfMsg('nowiki_sample'),
+				'tip'    => wfMsg('nowiki_tip'),
 				'key'    => 'N'
 			),
 			array(
-				'image'  => $wgLang->getImageFile( 'button-sig' ),
+				'image'  => $wgLang->getImageFile('button-sig'),
 				'id'     => 'mw-editbutton-signature',
 				'open'   => '--~~~~',
 				'close'  => '',
 				'sample' => '',
-				'tip'    => wfMsg( 'sig_tip' ),
+				'tip'    => wfMsg('sig_tip'),
 				'key'    => 'Y'
 			),
 			array(
-				'image'  => $wgLang->getImageFile( 'button-hr' ),
+				'image'  => $wgLang->getImageFile('button-hr'),
 				'id'     => 'mw-editbutton-hr',
 				'open'   => "\n----\n",
 				'close'  => '',
 				'sample' => '',
-				'tip'    => wfMsg( 'hr_tip' ),
+				'tip'    => wfMsg('hr_tip'),
 				'key'    => 'R'
 			)
 		);
 		$toolbar = "<div id='toolbar'>\n";
 		$toolbar.="<script type='$wgJsMimeType'>\n/*<![CDATA[*/\n";
 
-		foreach( $toolarray as $tool ) {
+		foreach($toolarray as $tool) {
 			$params = array(
 				$image = $wgStylePath.'/common/images/'.$tool['image'],
 				// Note that we use the tip both for the ALT tag and the TITLE tag of the image.
@@ -2063,8 +2061,8 @@ END
 		$checkboxes = array();
 
 		$checkboxes['minor'] = '';
-		$minorLabel = wfMsgExt( 'minoredit', array( 'parseinline' ) );
-		if ( $wgUser->isAllowed( 'minoredit' ) ) {
+		$minorLabel = wfMsgExt('minoredit', array('parseinline'));
+		if ( $wgUser->isAllowed('minoredit') ) {
 			$attribs = array(
 				'tabindex'  => ++$tabindex,
 				'accesskey' => wfMsg( 'accesskey-minoredit' ),
@@ -2072,10 +2070,10 @@ END
 			);
 			$checkboxes['minor'] =
 				Xml::check( 'wpMinoredit', $checked['minor'], $attribs ) .
-				"&nbsp;<label for='wpMinoredit'" . $skin->tooltip( 'minoredit', 'withaccess' ) . ">{$minorLabel}</label>";
+				"&nbsp;<label for='wpMinoredit'".$skin->tooltip('minoredit', 'withaccess').">{$minorLabel}</label>";
 		}
 
-		$watchLabel = wfMsgExt( 'watchthis', array( 'parseinline' ) );
+		$watchLabel = wfMsgExt('watchthis', array('parseinline'));
 		$checkboxes['watch'] = '';
 		if ( $wgUser->isLoggedIn() ) {
 			$attribs = array(
@@ -2085,7 +2083,7 @@ END
 			);
 			$checkboxes['watch'] =
 				Xml::check( 'wpWatchthis', $checked['watch'], $attribs ) .
-				"&nbsp;<label for='wpWatchthis'" . $skin->tooltip('watch', 'withaccess') . ">{$watchLabel}</label>";
+				"&nbsp;<label for='wpWatchthis'".$skin->tooltip('watch', 'withaccess').">{$watchLabel}</label>";
 		}
 		wfRunHooks( 'EditPageBeforeEditChecks', array( &$this, &$checkboxes, &$tabindex ) );
 		return $checkboxes;
@@ -2099,7 +2097,7 @@ END
 	 *
 	 * @return array
 	 */
-	public function getEditButtons( &$tabindex ) {
+	public function getEditButtons(&$tabindex) {
 		global $wgLivePreview, $wgUser;
 
 		$buttons = array();
@@ -2109,11 +2107,11 @@ END
 			'name'      => 'wpSave',
 			'type'      => 'submit',
 			'tabindex'  => ++$tabindex,
-			'value'     => wfMsg( 'savearticle' ),
-			'accesskey' => wfMsg( 'accesskey-save' ),
+			'value'     => wfMsg('savearticle'),
+			'accesskey' => wfMsg('accesskey-save'),
 			'title'     => wfMsg( 'tooltip-save' ).' ['.wfMsg( 'accesskey-save' ).']',
 		);
-		$buttons['save'] = Xml::element( 'input', $temp, '' );
+		$buttons['save'] = Xml::element('input', $temp, '');
 
 		++$tabindex; // use the same for preview and live preview
 		if ( $wgLivePreview && $wgUser->getOption( 'uselivepreview' ) ) {
@@ -2122,12 +2120,12 @@ END
 				'name'      => 'wpPreview',
 				'type'      => 'submit',
 				'tabindex'  => $tabindex,
-				'value'     => wfMsg( 'showpreview' ),
+				'value'     => wfMsg('showpreview'),
 				'accesskey' => '',
 				'title'     => wfMsg( 'tooltip-preview' ).' ['.wfMsg( 'accesskey-preview' ).']',
 				'style'     => 'display: none;',
 			);
-			$buttons['preview'] = Xml::element( 'input', $temp, '' );
+			$buttons['preview'] = Xml::element('input', $temp, '');
 
 			$temp = array(
 				'id'        => 'wpLivePreview',
@@ -2139,18 +2137,18 @@ END
 				'title'     => '',
 				'onclick'   => $this->doLivePreviewScript(),
 			);
-			$buttons['live'] = Xml::element( 'input', $temp, '' );
+			$buttons['live'] = Xml::element('input', $temp, '');
 		} else {
 			$temp = array(
 				'id'        => 'wpPreview',
 				'name'      => 'wpPreview',
 				'type'      => 'submit',
 				'tabindex'  => $tabindex,
-				'value'     => wfMsg( 'showpreview' ),
-				'accesskey' => wfMsg( 'accesskey-preview' ),
+				'value'     => wfMsg('showpreview'),
+				'accesskey' => wfMsg('accesskey-preview'),
 				'title'     => wfMsg( 'tooltip-preview' ).' ['.wfMsg( 'accesskey-preview' ).']',
 			);
-			$buttons['preview'] = Xml::element( 'input', $temp, '' );
+			$buttons['preview'] = Xml::element('input', $temp, '');
 			$buttons['live'] = '';
 		}
 
@@ -2159,11 +2157,11 @@ END
 			'name'      => 'wpDiff',
 			'type'      => 'submit',
 			'tabindex'  => ++$tabindex,
-			'value'     => wfMsg( 'showdiff' ),
-			'accesskey' => wfMsg( 'accesskey-diff' ),
+			'value'     => wfMsg('showdiff'),
+			'accesskey' => wfMsg('accesskey-diff'),
 			'title'     => wfMsg( 'tooltip-diff' ).' ['.wfMsg( 'accesskey-diff' ).']',
 		);
-		$buttons['diff'] = Xml::element( 'input', $temp, '' );
+		$buttons['diff'] = Xml::element('input', $temp, '');
 
 		wfRunHooks( 'EditPageBeforeEditButtons', array( &$this, &$buttons, &$tabindex ) );
 		return $buttons;
@@ -2212,8 +2210,8 @@ END
 		$newtext = $this->mArticle->replaceSection(
 			$this->section, $this->textbox1, $this->summary, $this->edittime );
 		$newtext = $this->mArticle->preSaveTransform( $newtext );
-		$oldtitle = wfMsgExt( 'currentrev', array( 'parseinline' ) );
-		$newtitle = wfMsgExt( 'yourtext', array( 'parseinline' ) );
+		$oldtitle = wfMsgExt( 'currentrev', array('parseinline') );
+		$newtitle = wfMsgExt( 'yourtext', array('parseinline') );
 		if ( $oldtext !== false  || $newtext != '' ) {
 			$de = new DifferenceEngine( $this->mTitle );
 			$de->setText( $oldtext, $newtext );
