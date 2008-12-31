@@ -145,9 +145,10 @@ $wgMysqlUpdates = array(
 	array( 'update_password_format' ),
 	
 	// 1.14
-	array( 'add_field', 'site_stats',     'ss_active_users',  'patch-ss_active_users.sql' ),
+	array( 'add_field', 'site_stats',     'ss_active_users',   'patch-ss_active_users.sql' ),
 	array( 'do_active_users_init' ),
-	array( 'add_field', 'ipblocks',     'ipb_allow_usertalk',  'patch-ipb_allow_usertalk.sql' )
+	array( 'add_field', 'ipblocks',     'ipb_allow_usertalk',  'patch-ipb_allow_usertalk.sql' ),
+	array( 'add_table', 'user_restrictions',                   'patch-user_restrictions.sql' ),
 );
 
 
