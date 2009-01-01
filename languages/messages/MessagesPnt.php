@@ -792,7 +792,7 @@ $messages = array(
 
 'changed'            => 'ελλάγεν',
 'created'            => 'έντον',
-'enotif_anon_editor' => 'ανόνυμον χρήστες $1',
+'enotif_anon_editor' => 'ανώνυμον χρήστες $1',
 
 # Delete
 'deletepage'            => 'Σβήσον τη σελίδαν',

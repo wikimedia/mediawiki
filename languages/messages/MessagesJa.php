@@ -1193,6 +1193,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'right-move'                 => 'ページの移動',
 'right-move-subpages'        => 'サブページを含めたページの移動',
 'right-move-rootuserpages'   => '利用者ページ本体の移動',
+'right-movefile'             => 'ファイルの移動',
 'right-suppressredirect'     => 'ページの移動の際にもとのページ名からのリダイレクトを作成しない',
 'right-upload'               => 'ファイルのアップロード',
 'right-reupload'             => '存在するファイルの上書き',
@@ -1253,6 +1254,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'action-move'                 => 'このページの移動',
 'action-move-subpages'        => 'このページ及びサブページの移動',
 'action-move-rootuserpages'   => '利用者ページ本体の移動',
+'action-movefile'             => 'このファイルの移動',
 'action-upload'               => 'このファイルのアップロード',
 'action-reupload'             => 'このファイルの上書き',
 'action-reupload-shared'      => '共有リポジトリにあるこのファイルの上書き',
@@ -1535,8 +1537,8 @@ PICT # misc.
 'statistics-header-views'      => '閲覧に関する統計',
 'statistics-header-users'      => '登録利用者に関する統計',
 'statistics-articles'          => '記事数',
-'statistics-pages'             => '総項目数',
-'statistics-pages-desc'        => 'ノートページやリダイレクトを含んだこのWiki内全てのページです。',
+'statistics-pages'             => '総ページ数',
+'statistics-pages-desc'        => 'ノートページやリダイレクトなどを含んだこのウィキ内の全てのページです。',
 'statistics-files'             => 'アップロードされたファイル数',
 'statistics-edits'             => '編集回数の総計',
 'statistics-edits-average'     => '1項目あたりの編集回数',
@@ -2140,13 +2142,19 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'movenologin'                  => 'ログインしていません',
 'movenologintext'              => 'ページを移動するためには、アカウント作成の上、[[Special:UserLogin|ログイン]]している必要があります。',
 'movenotallowed'               => 'あなたにはページを移動する権限がありません。',
+'movenotallowedfile'           => 'あなたにはファイルを移動させる権限がありません。',
 'cant-move-user-page'          => 'あなたは、（サブページは別にして）利用者ページを移動させる権限を持っていません。',
 'cant-move-to-user-page'       => 'あなたは、（利用者サブページを除く）利用者ページへページを移動させる権限を持っていません。',
 'newtitle'                     => '新しいページ名',
 'move-watch'                   => '移動するページをウォッチ',
 'movepagebtn'                  => 'ページを移動',
 'pagemovedsub'                 => '無事移動しました。',
-'movepage-moved'               => '<big>\'\'\'"$1"は"$2"へ移動されました。\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>'''「$1」は「$2」へ移動されました'''</big>
+
+リダイレクトが作成されました。", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => "<big>'''「$1」は「$2」へ移動されました'''</big>
+
+リダイレクトは作成されませんでした。", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => '指定された移動先には既にページが存在するか、名前が不適切です。',
 'cantmove-titleprotected'      => '移動先ページが作成保護対象となっているため、ページを移動できません。',
 'talkexists'                   => "'''ページ自身は移動されましたが、付随のノートページは移動先のページが存在したため移動できませんでした。手動で内容を統合してください。'''",

@@ -396,7 +396,15 @@ Reomĩsérõ ta'ãnga peteĩ kuatiaroguépe, eipuru peteĩ joaju:
 
 # Special:AllPages
 'allpages'          => 'Opaite kuatiarogue',
+'alphaindexline'    => '$1 $2 peve',
+'nextpage'          => 'Kuatia rogue upeigua($1)',
+'prevpage'          => 'Kuatia rogue mboyvegua ($1)',
+'allpagesfrom'      => 'Ehechauka kuatia rogue oñepyrũva:   -pe',
+'allpagesto'        => 'Ehechauka kuatia rogue opáva:  -pe',
+'allarticles'       => 'Opa kuatia rogue',
+'allinnamespace'    => "Opa kuatia rogue (pa'ũ $1)",
 'allnotinnamespace' => 'Opaite kuatiarogue (fuera del espacio $1)',
+'allpagesprev'      => 'Mboyvegua',
 'allpagesnext'      => 'Upeigua',
 'allpagessubmit'    => 'Hechauka',
 

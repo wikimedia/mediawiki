@@ -1325,6 +1325,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen
 'right-move'                 => 'Seiten verschieben',
 'right-move-subpages'        => 'Seiten inklusive Unterseiten verschieben',
 'right-move-rootuserpages'   => 'Haupt-Benutzerseiten verschieben',
+'right-movefile'             => 'Dateien verschieben',
 'right-suppressredirect'     => 'Beim Verschieben die Erstellung einer Weiterleitung unterdrücken',
 'right-upload'               => 'Dateien hochladen',
 'right-reupload'             => 'Überschreiben einer vorhandenen Datei',
@@ -1385,6 +1386,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen
 'action-move'                 => 'die Seite zu verschieben',
 'action-move-subpages'        => 'diese Seite und zugehörige Unterseiten zu verschieben',
 'action-move-rootuserpages'   => 'Haupt-Benutzerseiten zu verschieben',
+'action-movefile'             => 'Diese Datei verschieben',
 'action-upload'               => 'Dateien hochzuladen',
 'action-reupload'             => 'die vorhandene Datei zu überschreiben',
 'action-reupload-shared'      => 'diese Datei aus dem gemeinsam genutzten Repositorium zu überschreiben',
@@ -2298,13 +2300,19 @@ Bitte den '''neuen''' Titel unter '''Ziel''' eintragen, darunter die Umbenennung
 'movenologin'                  => 'Du bist nicht angemeldet',
 'movenologintext'              => 'Du musst ein registrierter Benutzer und [[Special:UserLogin|angemeldet]] sein, um eine Seite zu verschieben.',
 'movenotallowed'               => 'Du hast keine Berechtigung, Seiten zu verschieben.',
+'movenotallowedfile'           => 'Du hast keine Berechtigung, Dateien zu verschieben.',
 'cant-move-user-page'          => 'Du hast keine Berechtigung, Benutzerhauptseiten zu verschieben.',
 'cant-move-to-user-page'       => 'Du hast nicht die Berechtigung, Seiten auf eine Benutzerseite zu verschieben (mit Ausnahme von Benutzerunterseiten).',
 'newtitle'                     => 'Ziel:',
 'move-watch'                   => 'Diese Seite beobachten',
 'movepagebtn'                  => 'Seite verschieben',
 'pagemovedsub'                 => 'Verschiebung erfolgreich',
-'movepage-moved'               => "<big>'''Die Seite „$1“ wurde nach „$2“ verschoben.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>'''Die Seite „$1“ wurde nach „$2“ verschoben.'''</big>
+
+Es wurde eine Weiterleitung erstellt.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => "<big>'''„$1“ wurde nach „$2“ verschoben.'''</big>
+
+Die Erstellung einer Weiterleitung wurde unterdrückt.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => 'Unter diesem Namen existiert bereits eine Seite. Bitte wähle einen anderen Namen.',
 'cantmove-titleprotected'      => 'Die Verschiebung kann nicht durchgeführt werden, da der Zieltitel zur Erstellung gesperrt ist.',
 'talkexists'                   => 'Die Seite selbst wurde erfolgreich verschoben, aber die zugehörige Diskussions-Seite nicht, da bereits eine mit dem neuen Titel existiert. Bitte gleiche die Inhalte von Hand ab.',

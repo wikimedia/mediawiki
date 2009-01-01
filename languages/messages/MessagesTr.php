@@ -7,6 +7,7 @@
  * @author Bekiroflaz
  * @author Dbl2010
  * @author Erkan Yilmaz
+ * @author Joseph
  * @author Karduelis
  * @author Katpatuka
  * @author Mach
@@ -839,6 +840,42 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'diff-multi'              => '(Gösterilmeyen {{PLURAL:$1|$1 ara değişiklik|$1 ara değişiklik}} bulunmaktadır.)',
 'diff-movedto'            => '$1 sayfasına taşındı',
 'diff-src'                => 'kaynak',
+'diff-p'                  => "bir '''paragraf'''",
+'diff-blockquote'         => "bir '''alıntı'''",
+'diff-h1'                 => "bir '''başlık (1. seviye)'''",
+'diff-h2'                 => "bir '''başlık (2. seviye)'''",
+'diff-h3'                 => "bir '''başlık (3. seviye)'''",
+'diff-h4'                 => "bir '''başlık (4. seviye)'''",
+'diff-h5'                 => "bir '''başlık (5. seviye)'''",
+'diff-pre'                => "bir '''önceden biçimlendirilmiş kalıp'''",
+'diff-div'                => "bir '''ayrım'''",
+'diff-ul'                 => "bir '''sıralanmamış liste'''",
+'diff-ol'                 => "bir '''sıralı liste'''",
+'diff-li'                 => "bir '''liste öğesi'''",
+'diff-table'              => "bir '''tablo'''",
+'diff-tbody'              => "bir '''tablo içeriği'''",
+'diff-tr'                 => "bir '''satır'''",
+'diff-td'                 => "bir '''hücre'''",
+'diff-th'                 => "bir '''başlık'''",
+'diff-br'                 => "bir '''satır sonu'''",
+'diff-hr'                 => "bir '''yatay cetvel'''",
+'diff-code'               => "bir '''bilgisayar kod bloğu'''",
+'diff-dl'                 => "bir '''tanım listesi'''",
+'diff-dt'                 => "bir '''tanım terimi'''",
+'diff-dd'                 => "bir '''tanım'''",
+'diff-input'              => "bir '''girdi'''",
+'diff-form'               => "bir '''form'''",
+'diff-img'                => "bir '''resim'''",
+'diff-a'                  => "bir '''bağlantı'''",
+'diff-i'                  => "'''eğik yazılar'''",
+'diff-b'                  => "'''kalın'''",
+'diff-font'               => "'''yazıtipi'''",
+'diff-big'                => "'''büyük'''",
+'diff-del'                => "'''silinmiş'''",
+'diff-tt'                 => "'''sabit genişlik'''",
+'diff-sub'                => "'''altsimge'''",
+'diff-sup'                => "'''üstsimge'''",
+'diff-strike'             => "'''üstüçizili'''",
 
 # Search results
 'searchresults'             => 'Arama sonuçları',

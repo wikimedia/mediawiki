@@ -488,7 +488,7 @@ $messages = array(
 'disclaimers'          => 'Jogi nyilatkozat',
 'disclaimerpage'       => 'Project:Jogi nyilatkozat',
 'edithelp'             => 'Szerkesztési súgó',
-'edithelppage'         => 'Help:Hogyan szerkessz lapokat?',
+'edithelppage'         => 'Help:Szerkesztés',
 'faq'                  => 'GyIK',
 'faqpage'              => 'Project:GyIK',
 'helppage'             => 'Help:Tartalom',
@@ -553,7 +553,7 @@ a wiki nem ismeri fel',
 'nosuchspecialpage' => 'Nem létezik ilyen speciális lap',
 'nospecialpagetext' => "<big>'''Érvénytelen speciális lapot akartál megtekinteni.'''</big>
 
-Az érvényes speciális lapok listáját a [[Special:SpecialPages|Speciális lapok]] címen találod.",
+Az érvényes speciális lapok listáját a [[Special:SpecialPages|Speciális lapok]] oldalon találod.",
 
 # General errors
 'error'                => 'Hiba',
@@ -1309,6 +1309,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'right-move'                 => 'lapok átnevezése',
 'right-move-subpages'        => 'lapok átnevezése az allapjukkal együtt',
 'right-move-rootuserpages'   => 'szerkesztői lapok mozgatása',
+'right-movefile'             => 'fájlok átnevezése',
 'right-suppressredirect'     => 'nem készít átirányítást a régi néven lapok átnevezésekor',
 'right-upload'               => 'fájlok feltöltése',
 'right-reupload'             => 'létező fájlok felülírása',
@@ -1369,6 +1370,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'action-move'                 => 'lap átnevezése',
 'action-move-subpages'        => 'lap és allapjainak átnevezése',
 'action-move-rootuserpages'   => 'szerkesztői lapok átnevezése',
+'action-movefile'             => 'fájlok átnevezése',
 'action-upload'               => 'fájl feltöltése',
 'action-reupload'             => 'már létező fájl felülírása',
 'action-reupload-shared'      => 'közös megosztón található fájl felülírása',
@@ -2286,13 +2288,19 @@ Ezen esetekben a vitalapot külön, kézzel kell átnevezned a kívánságaid sz
 'movenologin'                  => 'Nem jelentkeztél be',
 'movenologintext'              => 'Ahhoz, hogy átnevezhess egy lapot, [[Special:UserLogin|be kell lépned]].',
 'movenotallowed'               => 'Nincs jogod a lapok átnevezéséhez.',
+'movenotallowedfile'           => 'Nincs megfelelő jogosultságod a fájlok átnevezéséhez.',
 'cant-move-user-page'          => 'Nem nevezhetsz át szerkesztői lapokat (az allapokon kívül).',
 'cant-move-to-user-page'       => 'Nincs jogosultságod átnevezni egy lapot szerkesztői lapnak (kivéve annak allapjának).',
 'newtitle'                     => 'Az új cím:',
 'move-watch'                   => 'Figyeld a lapot',
 'movepagebtn'                  => 'Lap átnevezése',
 'pagemovedsub'                 => 'Átnevezés sikeres',
-'movepage-moved'               => "<big>'''„$1” átnevezve „$2” névre'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>'''„$1” átnevezve „$2” névre'''</big>
+
+A régi címről átirányítás készült az új címre.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => "<big>'''„$1” átnevezve „$2” névre'''</big>
+
+A régi címről nem sikerült átirányítást készíteni.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => 'Ilyen névvel már létezik lap, vagy az általad választott név érvénytelen.
 Kérlek, válassz egy másik nevet.',
 'cantmove-titleprotected'      => 'Nem nevezheted át a lapot, mert az új cím le van védve a létrehozás ellen.',

@@ -1116,6 +1116,7 @@ Spytaj swoje naprašowanje z prefiksom ''all:'' wužiwać, zo by wšón wobsah (
 'right-move'                 => 'Strony přesunyć',
 'right-move-subpages'        => 'Strony z jich podstronami přesunyć',
 'right-move-rootuserpages'   => 'Hłowne wužiwarske strony přesunyć',
+'right-movefile'             => 'Dataje přesunyć',
 'right-suppressredirect'     => 'Při přesunjenju strony ze stareho mjena žane daleposrědkowanje wutworić',
 'right-upload'               => 'Dataje nahrać',
 'right-reupload'             => 'Eksistowacu dataju přepisać',
@@ -1176,6 +1177,7 @@ Spytaj swoje naprašowanje z prefiksom ''all:'' wužiwać, zo by wšón wobsah (
 'action-move'                 => 'tutu stronu přesunyć',
 'action-move-subpages'        => 'tutu stronu a jeje podstrony přesunyć',
 'action-move-rootuserpages'   => 'hłowne wužiwarske strony přesunyć',
+'action-movefile'             => 'Tutu dataju přesunyć',
 'action-upload'               => 'tutu dataju nahrać',
 'action-reupload'             => 'eksistowacu dataju přepisać',
 'action-reupload-shared'      => 'tutu dataju na zhromadnym repozitoriju přepisać',
@@ -2060,13 +2062,19 @@ W tutych padach dyrbiš stronu manuelnje přesunyć abo zaměšeć, jeli sej to 
 'movenologin'                  => 'Njejsy přizjewjeny.',
 'movenologintext'              => 'Dyrbiš zregistrowany wužiwar a [[Special:UserLogin|přizjewjeny]] być, zo by stronu přesunyć móhł.',
 'movenotallowed'               => 'Nimaš prawo, zo by strony přesunył.',
+'movenotallowedfile'           => 'Nimaš prawo dataje přesunyć.',
 'cant-move-user-page'          => 'Nimaš prawo wužiwarske strony přesunyć (wothladajo wot podstronow)',
 'cant-move-to-user-page'       => 'Nimaš prawo stronu do wužiwarskeje strony přesunyć (z wuwzaćom do wužiwarskeje podstrony).',
 'newtitle'                     => 'pod nowe hesło',
 'move-watch'                   => 'Stronu wobkedźbować',
 'movepagebtn'                  => 'Stronu přesunyć',
 'pagemovedsub'                 => 'Přesunjenje wuspěšne',
-'movepage-moved'               => '<big>\'\'\'Strona "$1" bu do "$2" přesunjena.\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'Strona "$1" bu do "$2" přesunjena.\'\'\'</big>
+
+Daleposrědkowanje bu wutworjene.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => '<big>\'\'\'"$1" bu do  "$2" přesunjena\'\'\'</big>
+
+Wutworjenje daleposrědkowanja bu potłóčene.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => 'Strona z tutym mjenom hižo eksistuje abo mjeno, kotrež sy wuzwolił, płaćiwe njeje. Prošu wuzwol druhe mjeno.',
 'cantmove-titleprotected'      => 'Njemóžeš stronu do tutoho městna přesunyć, dokelž nowy titul bu přećiwo wutworjenju škitany',
 'talkexists'                   => 'Strona sama bu z wuspěchom přesunjena, diskusijna strona pak njeda so přesunyć, dokelž pod nowym titulom hižo eksistuje. Prošu změš jeju manuelnje.',

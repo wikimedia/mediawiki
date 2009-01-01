@@ -2239,6 +2239,7 @@ Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|i
 'import-nonewrevisions'      => 'Visos versijos buvo importuotos anksčiau.',
 'xml-error-string'           => '$1 $2 eilutėje, $3 stulpelyje ($4 baitas): $5',
 'import-upload'              => 'Įkelti XML duomenis',
+'import-token-mismatch'      => 'Sesijos duomenys prarasti. Bandykite iš naujo.',
 
 # Import log
 'importlogpage'                    => 'Importo istorija',

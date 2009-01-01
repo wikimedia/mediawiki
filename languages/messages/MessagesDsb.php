@@ -1139,6 +1139,7 @@ Móžoš bok ale teke [[:$1|sam załožyś]].",
 'right-move'                 => 'pśesunuś boki',
 'right-move-subpages'        => 'Boki ze swójimi pódbokami pśesunuś',
 'right-move-rootuserpages'   => 'Głowne wužywarske boki pśesunuś',
+'right-movefile'             => 'Dataje pśesunuś',
 'right-suppressredirect'     => 'Pśi pśesunjenju žedne dalejpósrědnjenje ze starego mjenja napóraś',
 'right-upload'               => 'lódowaś dataje',
 'right-reupload'             => 'Eksistěrujucu dataju pśepisaś',
@@ -1199,6 +1200,7 @@ Móžoš bok ale teke [[:$1|sam załožyś]].",
 'action-move'                 => 'toś ten bok pśesunuś',
 'action-move-subpages'        => 'toś ten bok a jogo pódboki pśesunuś',
 'action-move-rootuserpages'   => 'głowne wužywarske boki pśesunuś',
+'action-movefile'             => 'Toś tu dataju pśesunuś',
 'action-upload'               => 'toś tu dataju nagraś',
 'action-reupload'             => 'toś tu eksistěrujucu dataju pśepisaś',
 'action-reupload-shared'      => 'toś tu dataju w zgroamdnem repozitoriumje pśepisaś',
@@ -2087,13 +2089,19 @@ W toś tyma padoma dej wopśimjeśe boka manualnje se pśesunuś resp. gromadu w
 'movenologin'                  => 'Njepśizjawjony(a)',
 'movenologintext'              => 'Aby mógał bok pśesunuś, dejš byś [[Special:UserLogin|pśizjawjony wužywaŕ]].',
 'movenotallowed'               => 'Njamaš pšawo pśesuwaś boki.',
+'movenotallowedfile'           => 'Njamaš pšawo dataje pśesunuś.',
 'cant-move-user-page'          => 'Njamaš pšawo wužywarske boki pśesunuś (mimo pódbokow).',
 'cant-move-to-user-page'       => 'Njamaš pšawo bok k wužywarskemu bokoju pśesunuś (z wuwześim k wužywarskemu pódbokoju).',
 'newtitle'                     => 'nowy nadpis:',
 'move-watch'                   => 'Toś ten bok wobglědowaś',
 'movepagebtn'                  => 'Bok pśesunuś',
 'pagemovedsub'                 => 'Bok jo se pśesunuł.',
-'movepage-moved'               => '<big>\'\'\'Bok "$1" jo se do "$2" pśesunuł.\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'Bok "$1" jo se do "$2" pśesunuł.\'\'\'</big>
+
+Dalejpósrědnjenje jo se napórało.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => '<big>\'\'\'"$1" jo se pśesunuł do "$2"\'\'\'</big>
+
+Napóranje dalejpósrědnjenja jo se pódtłocyło.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => 'Bok z takim mjenim južo eksistěrujo abo mě, kótarež sćo wuwzólił jo njepłaśece. Pšosym wuzwól nowe mě.',
 'cantmove-titleprotected'      => 'Njamóžoš bok k toś tomu městnoju pśesunuś, dokulaž nowy titel jo pśeśiwo napóranjeju šćitany.',
 'talkexists'                   => 'Samy bok jo se pśesunuł, ale pśisłušny diskusijny bok nic, dokulaž eksistěrujo južo taki bok z nowym mjenim. Pšosym pśirownaj wopśimjeśi manualnje.',

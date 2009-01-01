@@ -1321,6 +1321,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'right-move'                 => 'Přesun stránek',
 'right-move-subpages'        => 'Přesunování stránek i s jejich podstránkami',
 'right-move-rootuserpages'   => 'Přesouvání kořenových uživatelských stránek',
+'right-movefile'             => 'Přesouvání souborů',
 'right-suppressredirect'     => 'Nevytváření přesměrování po přesunu stránky',
 'right-upload'               => 'Nahrávání souborů',
 'right-reupload'             => 'Přepisování existujících souborů',
@@ -1381,6 +1382,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'action-move'                 => 'přesunout tuto stránku',
 'action-move-subpages'        => 'přesunout tuto stránku a její podstránky',
 'action-move-rootuserpages'   => 'přesouvat kořenové uživatelské stránky',
+'action-movefile'             => 'přesunout tento soubor',
 'action-upload'               => 'nahrát tento soubor',
 'action-reupload'             => 'přepsat tento existující soubor',
 'action-reupload-shared'      => 'upřednostnit tento soubor před souborem ze sdíleného úložiště',
@@ -2255,13 +2257,19 @@ V těchto případech musíte přesunout nebo sloučit stránky manuálně, jest
 'movenologin'                  => 'Nejste přihlášen(a)!',
 'movenologintext'              => 'Pro přesouvání stránek se musíte [[Special:UserLogin|přihlásit]].',
 'movenotallowed'               => 'Nemáte oprávnění k přesunu stránek.',
+'movenotallowedfile'           => 'Nemáte právo přesouvat soubory',
 'cant-move-user-page'          => 'Nemáte oprávnění přesouvat uživatelské stránky.',
 'cant-move-to-user-page'       => 'Nemáte oprávnění přesouvat na uživatelskou stránku (pouze na podstránku uživatelské stránky).',
 'newtitle'                     => 'Na nový název:',
 'move-watch'                   => 'Sledovat tuto stránku',
 'movepagebtn'                  => 'Přesunout stránku',
 'pagemovedsub'                 => 'Úspěšně přesunuto',
-'movepage-moved'               => "<big>'''Stránka „$1“ byla přesunuta na „$2“'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>'''Stránka „$1“ byla přesunuta na „$2“'''</big>
+
+Přesměrování bylo vytvořeno.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => "<big>'''Stránka „$1“ byla přesunuta na „$2“'''</big>
+
+Přesměrování nebylo vytvořeno.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => 'Takto nazvaná stránka již existuje, nebo Vámi zvolený název je neplatný. Zvolte jiný název.',
 'cantmove-titleprotected'      => 'Stránku nelze přesunout na zadané místo, protože název je uzamčen proti vytváření',
 'talkexists'                   => 'Stránka byla přesunuta úspěšně, ale diskusní stránka přesunuta být nemohla, neboť pod novým názvem již nějaká stránka existuje. Proveďte prosím ruční sloučení.',

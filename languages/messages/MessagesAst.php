@@ -499,16 +499,18 @@ Pues inorar esti mensaxe si la cuenta foi creada por error.',
 'loginlanguagelabel'         => 'Llingua: $1',
 
 # Password reset dialog
-'resetpass'               => "Restablecer la clave d'usuariu",
-'resetpass_announce'      => "Identificástiti con una clave temporal unviada per corréu. P'acabar d'identificate has escribir equí una clave nueva:",
-'resetpass_header'        => 'Restablecer contraseña',
-'oldpassword'             => 'Clave vieya:',
-'newpassword'             => 'Clave nueva:',
-'retypenew'               => 'Repiti la nueva clave:',
-'resetpass_submit'        => 'Camudar clave y identificase',
-'resetpass_success'       => '¡La to clave cambióse correutamente! Agora identificándote...',
-'resetpass_bad_temporary' => 'Clave temporal non válida. Seique yá camudaras correutamente la clave o solicitaras una nueva clave temporal.',
-'resetpass_forbidden'     => 'Les claves nun se puen camudar',
+'resetpass'                 => "Restablecer la clave d'usuariu",
+'resetpass_announce'        => "Identificástiti con una clave temporal unviada per corréu. P'acabar d'identificate has escribir equí una clave nueva:",
+'resetpass_header'          => 'Camudar la clave de la cuenta',
+'oldpassword'               => 'Clave vieya:',
+'newpassword'               => 'Clave nueva:',
+'retypenew'                 => 'Repiti la nueva clave:',
+'resetpass_submit'          => 'Camudar clave y identificase',
+'resetpass_success'         => '¡La to clave cambióse correutamente! Agora identificándote...',
+'resetpass_bad_temporary'   => 'Clave temporal non válida. Seique yá camudaras correutamente la clave o solicitaras una nueva clave temporal.',
+'resetpass_forbidden'       => 'Les claves nun se puen camudar',
+'resetpass-submit-loggedin' => 'Camudar clave',
+'resetpass-temp-password'   => 'Clave temporal:',
 
 # Edit page toolbar
 'bold_sample'     => 'Testu en negrina',
@@ -905,12 +907,12 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'viewprevnext'                     => 'Ver ($1) ($2) ($3)',
 'searchmenu-legend'                => 'Opciones de busca',
 'searchmenu-exists'                => "'''Hai una páxina nomada \"[[\$1]]\" nesta wiki'''",
-'searchmenu-new'                   => "'''¡[[\$1|Crear]] la páxina \"[[\$1]]\" nesta wiki!'''",
+'searchmenu-new'                   => "'''¡Crear la páxina \"[[:\$1]]\" nesta wiki!'''",
 'searchhelp-url'                   => 'Help:Conteníos',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Ver páxines con esti prefixu]]',
 'searchprofile-articles'           => 'Páxines',
-'searchprofile-articles-and-proj'  => 'Páxines y proyeutu',
-'searchprofile-project'            => 'Proyeutu',
+'searchprofile-articles-and-proj'  => 'Páxines de conteníu y de proyeutu',
+'searchprofile-project'            => 'Páxines de proyeutu',
 'searchprofile-images'             => 'Archivos',
 'searchprofile-everything'         => 'Too',
 'searchprofile-advanced'           => 'Avanzao',
@@ -996,9 +998,10 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'savedprefs'               => 'Les tos preferencies quedaron grabaes.',
 'timezonelegend'           => 'Zona horaria',
 'timezonetext'             => '¹Diferencia horaria ente la UTC y la to hora llocal.',
-'localtime'                => 'Hora llocal',
-'timezoneoffset'           => 'Diferencia¹',
-'servertime'               => 'Hora del sirvidor',
+'localtime'                => 'Hora llocal:',
+'timezoneselect'           => 'Zona horaria:',
+'timezoneoffset'           => 'Diferencia¹:',
+'servertime'               => 'Hora del sirvidor:',
 'guesstimezone'            => 'Obtener del navegador',
 'allowemail'               => 'Dexar a los otros usuarios mandate correos',
 'prefs-searchoptions'      => 'Opciones de busca',
@@ -1829,6 +1832,7 @@ Consulta'l [[Special:Log/delete|rexistru d'esborraos]] pa ver los esborraos y re
 'undelete-error-long'          => "Atopáronse errores al restaurar l'archivu:
 
 $1",
+'undelete-show-file-submit'    => 'Sí',
 
 # Namespace form on various pages
 'namespace'      => 'Espaciu de nomes:',
@@ -2026,7 +2030,9 @@ Nestos casos vas tener que treslladar o fusionar la páxina manualmente.",
 'move-watch'                => 'Vixilar esta páxina',
 'movepagebtn'               => 'Treslladar la páxina',
 'pagemovedsub'              => 'Treslláu correctu',
-'movepage-moved'            => '<big>\'\'\'"$1" treslladóse a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'            => '<big>\'\'\'"$1" treslladóse a "$2"\'\'\'</big>
+
+Creóse una redireición.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'             => "Yá hai una páxina con esi nome, o'l nome qu'escoyisti nun ye válidu. Por favor, escueyi otru nome.",
 'cantmove-titleprotected'   => "Nun pues mover una páxina a esti llugar porque'l nuevu títulu foi protexíu de la so creación",
 'talkexists'                => "'''La páxina treslladóse correutamente, pero non la so páxina d'alderique porque yá esiste una col títulu nuevu. Por favor, fusiónala manualmente.'''",

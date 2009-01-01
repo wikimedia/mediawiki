@@ -1366,6 +1366,7 @@ Ga na of latex, dvips en gs correct geïnstalleerd zijn en zet om',
 'right-move'                 => "Pagina's hernoemen",
 'right-move-subpages'        => "Pagina's inclusief subpagina's verplaatsen",
 'right-move-rootuserpages'   => "Gebruikerspagina's van het hoogste niveau hernoemen",
+'right-movefile'             => 'Bestanden hernoemen',
 'right-suppressredirect'     => 'Een doorverwijzing op de doelpagina verwijderen bij het hernoemen van een pagina',
 'right-upload'               => 'Bestanden uploaden',
 'right-reupload'             => 'Een bestaand bestand overschrijven',
@@ -1426,6 +1427,7 @@ Ga na of latex, dvips en gs correct geïnstalleerd zijn en zet om',
 'action-move'                 => 'deze pagina te hernoemen',
 'action-move-subpages'        => "deze pagina en bijbehorende subpagina's te hernoemen",
 'action-move-rootuserpages'   => "gebruikerspagina's van het hoogste niveau te hernoemen",
+'action-movefile'             => 'dit bestand te hernoemen',
 'action-upload'               => 'dit bestand te uploaden',
 'action-reupload'             => 'dit bestaande bestand te overschrijven',
 'action-reupload-shared'      => 'dit bestand te uploaden, terwijl er al een bestand met dezelfde naam in de gedeelde repository staat',
@@ -2380,13 +2382,19 @@ Zorg ervoor dat u die gevolgen overziet voordat u deze handeling uitvoert.",
 'movenologin'                  => 'Niet aangemeld',
 'movenologintext'              => 'U moet [[Special:UserLogin|aangemeld]] zijn om een pagina te hernoemen.',
 'movenotallowed'               => "U hebt geen rechten om pagina's te hernoemen.",
+'movenotallowedfile'           => 'U hebt geen rechten om bestanden te hernoemen.',
 'cant-move-user-page'          => "U hebt geen rechten om gebruikerspagina's te hernoemen.",
 'cant-move-to-user-page'       => 'U hebt geen rechten om een pagina naar een gebruikerspagina te hernoemen. Hernoemen naar een subpagina is wel mogelijk.',
 'newtitle'                     => 'Naar de nieuwe paginanaam:',
 'move-watch'                   => 'Deze pagina volgen',
 'movepagebtn'                  => 'Pagina hernoemen',
 'pagemovedsub'                 => 'Hernoemen pagina geslaagd',
-'movepage-moved'               => '<big>\'\'\'"$1" is hernoemd naar "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1" is hernoemd naar "$2"\'\'\'</big>
+
+Er is een doorverwijzing aangemaakt.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => '<big>\'\'\'"$1" is hernoemd naar "$2"\'\'\'</big>
+
+Er is geen doorverwijzing aangemaakt.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => 'De pagina bestaat al of de paginanaam is ongeldig.
 Kies een andere paginanaam.',
 'cantmove-titleprotected'      => 'U kunt geen pagina naar deze titel hernoemen, omdat de nieuwe titel beveiligd is tegen het aanmaken ervan.',
