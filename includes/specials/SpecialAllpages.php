@@ -11,15 +11,15 @@ class SpecialAllpages extends IncludableSpecialPage {
 	 */
 	protected $maxPerPage = 345;
 
-    /**
-     * Maximum number of pages to show on single index subpage.
-     */
-    protected $maxLineCount = 200;
+	/**
+	 * Maximum number of pages to show on single index subpage.
+	 */
+	protected $maxLineCount = 200;
 
-    /**
-     * Maximum number of chars to show for an entry.
-     */
-    protected $maxPageLength = 70;
+	/**
+	 * Maximum number of chars to show for an entry.
+	 */
+	protected $maxPageLength = 70;
 
 	/**
 	 * Determines, which message describes the input field 'nsfrom'.
