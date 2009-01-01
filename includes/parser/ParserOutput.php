@@ -87,6 +87,14 @@ class ParserOutput
 	function addLink( $title, $id = null ) {
 		$ns = $title->getNamespace();
 		$dbk = $title->getDBkey();
+		if ( $ns == NS_MEDIA ) {
+			// Normalize this pseudo-alias if it makes it down here...
+			$ns = NS_FILE;
+		} elseif( $ns == NS_SPECIAL ) {
+			// We don't record Special: links currently
+			// It might actually be wise to, but we'd need to do some normalization.
+			return;
+		}
 		if ( !isset( $this->mLinks[$ns] ) ) {
 			$this->mLinks[$ns] = array();
 		}
