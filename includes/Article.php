@@ -1562,7 +1562,7 @@ class Article {
 					# Update recentchanges
 					if( !( $flags & EDIT_SUPPRESS_RC ) ) {
 						# Mark as patrolled if the user can do so
-						$patrolled = $wgUseRCPatrol && $user->isAllowed('autopatrol');
+						$patrolled = $wgUseRCPatrol && $this->mTitle->userCan('autopatrol');
 						# Add RC row to the DB
 						$rc = RecentChange::notifyEdit( $now, $this->mTitle, $isminor, $user, $summary,
 							$this->mLatest, $this->getTimestamp(), $bot, '', $oldsize, $newsize,
@@ -1644,7 +1644,7 @@ class Article {
 			if( !( $flags & EDIT_SUPPRESS_RC ) ) {
 				global $wgUseRCPatrol, $wgUseNPPatrol;
 				# Mark as patrolled if the user can do so
-				$patrolled = ($wgUseRCPatrol || $wgUseNPPatrol) && $user->isAllowed('autopatrol');
+				$patrolled = ($wgUseRCPatrol || $wgUseNPPatrol) && $this->mTitle->userCan('autopatrol');
 				# Add RC row to the DB
 				$rc = RecentChange::notifyNew( $now, $this->mTitle, $isminor, $user, $summary, $bot,
 					'', strlen($text), $revisionId, $patrolled );
