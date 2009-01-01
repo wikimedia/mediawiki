@@ -2207,7 +2207,7 @@ PMID 1234
 ####
 
 !! test
-Nonexistant template
+Nonexistent template
 !! input
 {{thistemplatedoesnotexist}}
 !! result
@@ -2749,7 +2749,7 @@ PST
 !! end
 
 !! test
-pre-save transform: nonexistant template
+pre-save transform: nonexistent template
 !! options
 PST
 !! input

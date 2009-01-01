@@ -1781,7 +1781,7 @@ END
 
 	/**
 	 * Creates a basic error page which informs the user that
-	 * they have attempted to edit a nonexistant section.
+	 * they have attempted to edit a nonexistent section.
 	 */
 	function noSuchSectionPage() {
 		global $wgOut, $wgTitle;

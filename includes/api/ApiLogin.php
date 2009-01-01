@@ -44,7 +44,7 @@ class ApiLogin extends ApiBase {
 	 * Executes the log-in attempt using the parameters passed. If
 	 * the log-in succeeeds, it attaches a cookie to the session
 	 * and outputs the user id, username, and session token. If a
-	 * log-in fails, as the result of a bad password, a nonexistant
+	 * log-in fails, as the result of a bad password, a nonexistent
 	 * user, or any other reason, the host is cached with an expiry
 	 * and no log-in attempts will be accepted until that expiry
 	 * is reached. The expiry is $this->mLoginThrottle.
