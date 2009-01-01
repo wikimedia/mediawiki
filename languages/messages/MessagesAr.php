@@ -140,7 +140,6 @@ $namespaceAliases = array(
 	'نقاش_الصورة' => NS_FILE_TALK,
 );
 
-
 $magicWords = array(
 	'redirect'              => array( '0', '#تحويل', '#REDIRECT' ),
 	'notoc'                 => array( '0', '__لافهرس__', '__NOTOC__' ),
@@ -174,6 +173,7 @@ $magicWords = array(
 	'numberoffiles'         => array( '1', 'عدد_الملفات', 'عدد_ملفات', 'NUMBEROFFILES' ),
 	'numberofusers'         => array( '1', 'عدد_المستخدمين', 'عدد_مستخدمين', 'NUMBEROFUSERS' ),
 	'numberofedits'         => array( '1', 'عدد_التعديلات', 'عدد_تعديلات', 'NUMBEROFEDITS' ),
+	'numberofviews'         => array( '1', 'عدد_المشاهدات', 'عدد_مشاهدات', 'NUMBEROFVIEWS' ),
 	'pagename'              => array( '1', 'اسم_الصفحة', 'اسم_صفحة', 'PAGENAME' ),
 	'pagenamee'             => array( '1', 'عنوان_الصفحة', 'عنوان_صفحة', 'PAGENAMEE' ),
 	'namespace'             => array( '1', 'نطاق', 'NAMESPACE' ),
@@ -306,8 +306,8 @@ $specialPageAliases = array(
 	'Mostlinked'                => array( 'الأكثر_وصلا' ),
 	'Mostlinkedcategories'      => array( 'أكثر_التصنيفات_وصلا', 'أكثر_التصنيفات_استخداما' ),
 	'Mostlinkedtemplates'       => array( 'أكثر_القوالب_وصلا', 'أكثر_القوالب_استخداما' ),
-	'Mostcategories'            => array( 'أكثر_الصفحات_تصنيفا' ),
 	'Mostimages'                => array( 'أكثر_الصور_وصلا' ),
+	'Mostcategories'            => array( 'أكثر_الصفحات_تصنيفا' ),
 	'Mostrevisions'             => array( 'الأكثر_تعديلا' ),
 	'Fewestrevisions'           => array( 'الأقل_تعديلا' ),
 	'Shortpages'                => array( 'صفحات_قصيرة' ),

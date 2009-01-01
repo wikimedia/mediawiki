@@ -29,6 +29,25 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK  => 'Pogovor_o_kategoriji'
 );
 
+$specialPageAliases = array(
+	'DoubleRedirects'           => array( 'DvojnePreusmeritve' ),
+	'BrokenRedirects'           => array( 'PokvarjenePreusmeritve' ),
+	'Disambiguations'           => array( 'Razločitve' ),
+	'Userlogin'                 => array( 'Prijava' ),
+	'Userlogout'                => array( 'Odjava' ),
+	'CreateAccount'             => array( 'Registracija' ),
+	'Preferences'               => array( 'Nastavitve' ),
+	'Watchlist'                 => array( 'SpisekNadzorov' ),
+	'Recentchanges'             => array( 'ZadnjeSpremembe' ),
+	'Upload'                    => array( 'Nalaganje' ),
+	'Imagelist'                 => array( 'SeznamDatotek', 'SeznamSlik' ),
+	'Newimages'                 => array( 'NoveDatoteke', 'NoveSlike' ),
+	'Listusers'                 => array( 'SeznamUporabnikov' ),
+	'Listgrouprights'           => array( 'SeznamPravicSkupin' ),
+	'Statistics'                => array( 'Statistika' ),
+	'Randompage'                => array( 'Nakljucno', 'NakljucnaStran' ),
+);
+
 $datePreferences = array(
 	'default',
 	'dmy short',

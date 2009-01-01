@@ -36,7 +36,6 @@ $namespaceAliases = array(
 	'Razgovor_o_datoteci' => NS_FILE_TALK,
 );
 
-
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'DvostrukaPreusmjerenja' ),
 	'BrokenRedirects'           => array( 'NedovrsenaPreusmjerenja' ),
