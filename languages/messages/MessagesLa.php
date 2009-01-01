@@ -443,6 +443,7 @@ Inquisitio: $2',
 'viewsourcetext'       => 'Fontem videas et exscribeas:',
 'protectedinterface'   => 'Haec pagina dat textum interfaciei pro logiciali, et est protecta ad vandalismum vetandum.',
 'editinginterface'     => "'''Caveat censor:''' Emendas iam paginam quae textum interfaciei logicialem dat. Mutationes vultum {{grammar:genitive|{{SITENAME}}}} omnibus usoribus afficient. In nuntia MediaWiki vertendo, quaesumus te uti [http://translatewiki.net/wiki/Main_Page?setlang=la Betawiki].",
+'sqlhidden'            => '(inquisitio SQL celata)',
 'namespaceprotected'   => "Tibi non licet paginas spatii nominalis '''$1''' recensere.",
 'ns-specialprotected'  => 'Paginae speciales recenseri non possunt.',
 'titleprotected'       => "Hic titulus protectus est ab usore [[User:$1|$1]] ne creetur.
@@ -908,6 +909,7 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'right-move'                 => 'Paginas movere',
 'right-move-subpages'        => 'Paginas una cum subpaginis movere',
 'right-move-rootuserpages'   => 'Paginas usorum movere',
+'right-movefile'             => 'Fasciculos movere',
 'right-suppressredirect'     => 'Non creare redirectionem ex titulo vetere paginam movendo',
 'right-upload'               => 'Fasciculos imponere',
 'right-upload_by_url'        => 'Fasciculum imponere ex inscriptione URL',
@@ -948,6 +950,7 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'action-move'                 => 'hanc paginam movere',
 'action-move-subpages'        => 'hanc paginam una cum subpaginis movere',
 'action-move-rootuserpages'   => 'paginas usorum movere',
+'action-movefile'             => 'hunc fasciculum movere',
 'action-upload'               => 'hunc fasciculum imponere',
 'action-upload_by_url'        => 'hunc fasciculum imponere ex inscriptione URL',
 'action-delete'               => 'hanc paginam delere',
@@ -1590,13 +1593,19 @@ Ergo manu necesse disputationes motare vel contribuere erit, si vis.",
 'movenologin'               => 'Conventum non apertum',
 'movenologintext'           => 'Rationem usoris habere et [[Special:UserLogin|conventum aperire]] debes ad movendum paginam.',
 'movenotallowed'            => 'Tibi non licet paginas movere.',
+'movenotallowedfile'        => 'Tibi non licet fasciculos movere.',
 'cant-move-user-page'       => 'Tibi non licet paginas usorum movere (solum eorum subpaginas).',
 'cant-move-to-user-page'    => 'Tibi non licet paginam ad paginam usoris movere (solum ad paginae usoris subpaginam).',
 'newtitle'                  => 'Ad titulum novum:',
 'move-watch'                => 'Hanc paginam custodire',
 'movepagebtn'               => 'Paginam movere',
 'pagemovedsub'              => 'Pagina mota est',
-'movepage-moved'            => '<big>\'\'\'"$1" mota est ad "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'            => '<big>\'\'\'"$1" mota est ad "$2"\'\'\'</big>
+
+Redirectio creata est.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect' => '<big>\'\'\'"$1" mota est ad "$2"\'\'\'</big>
+
+Redirectio non creata est.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'             => 'Pagina huius tituli iam est, aut invalidum est nomen electum.
 Quaesumus, titulum alterum elige.',
 'cantmove-titleprotected'   => 'Tibi non licet paginam ad hunc titulum movere, quia hic titulus protectus est ne creetur',
@@ -1642,6 +1651,7 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 
 # Special:Import
 'import'                     => 'Paginas importare',
+'import-interwiki-source'    => 'Vici et pagina fons:',
 'import-interwiki-submit'    => 'Importare',
 'import-interwiki-namespace' => 'Transferre paginas in spatium nominale:',
 'import-comment'             => 'Sententia:',
@@ -1761,18 +1771,27 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'exif-aperturevalue'       => 'Apertura',
 'exif-meteringmode'        => 'Modus mensurae',
 'exif-lightsource'         => 'Fons lucis',
+'exif-filesource'          => 'Fons fasciculi',
 'exif-scenetype'           => 'Typus scaenae',
 'exif-cfapattern'          => 'exemplum CFA',
 'exif-contrast'            => 'Contentio',
+'exif-gpslatitude'         => 'Latitudo',
 'exif-gpsaltitude'         => 'Altitudo',
+'exif-gpsdifferential'     => 'Correctio differentialis GPS',
 
 'exif-subjectdistance-value' => '$1 metra',
 
-'exif-meteringmode-1' => 'Media',
+'exif-meteringmode-1'   => 'Media',
+'exif-meteringmode-255' => 'Alia',
 
 'exif-lightsource-0'  => 'Ignota',
 'exif-lightsource-11' => 'Umbra',
 
+'exif-focalplaneresolutionunit-2' => 'unciae',
+
+'exif-gaincontrol-0' => 'Nullum',
+
+'exif-subjectdistancerange-0' => 'Ignota',
 'exif-subjectdistancerange-1' => 'Macro',
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
@@ -1851,6 +1870,7 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 'table_pager_first'        => 'Prima pagina',
 'table_pager_last'         => 'Ultima pagina',
 'table_pager_limit_submit' => 'Ire',
+'table_pager_empty'        => 'Nullum eventum',
 
 # Auto-summaries
 'autosumm-blank'   => 'paginam vacuavit',
@@ -1909,6 +1929,7 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 # Special:SpecialPages
 'specialpages'                 => 'Paginae speciales',
 'specialpages-group-users'     => 'Usores eorumque potestates',
+'specialpages-group-pages'     => 'Index paginarum',
 'specialpages-group-pagetools' => 'Instrumenta paginarum',
 'specialpages-group-wiki'      => 'Vici-data et instrumenta',
 'specialpages-group-redirects' => 'Paginae speciales redirigentes',

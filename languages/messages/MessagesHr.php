@@ -1311,6 +1311,7 @@ Primijetite da uporaba navigacijskih poveznica resetira vaše izbore u koloni.',
 'right-move'                 => 'Premještanje stranica',
 'right-move-subpages'        => 'Premještanje stranica s njihovim podstranicama',
 'right-move-rootuserpages'   => 'Premještanje osnovne stranice suradnika',
+'right-movefile'             => 'Premještanje datoteka',
 'right-suppressredirect'     => 'Ne radi preusmjeravanje od starog imena prilikom premještanja stranice',
 'right-upload'               => 'Postavljanje datoteka',
 'right-reupload'             => 'Postavljanje nove inačice datoteke',
@@ -1371,6 +1372,7 @@ Primijetite da uporaba navigacijskih poveznica resetira vaše izbore u koloni.',
 'action-move'                 => 'premještanje ove stranice',
 'action-move-subpages'        => 'premještanje ove stranice, i njenih podstranica',
 'action-move-rootuserpages'   => 'premještanje osnovne stranice suradnika',
+'action-movefile'             => 'premjesti ovu datoteku',
 'action-upload'               => 'postavljanje ove datoteke',
 'action-reupload'             => 'postavljanje nove inačice ove datoteke',
 'action-reupload-shared'      => 'postavljanje nove inačice ove datoteke na zajedničkom poslužitelju',
@@ -2270,13 +2272,19 @@ ako to želite.",
 'movenologin'                  => 'Niste prijavljeni',
 'movenologintext'              => 'Ako želite premjestiti stranicu morate biti [[Special:UserLogin|prijavljeni]].',
 'movenotallowed'               => 'Nemate pravo premještanja stranica.',
+'movenotallowedfile'           => 'Nemate ovlasti za premještanje datoteka.',
 'cant-move-user-page'          => 'Nemate dopuštenja za premještanje root suradničkih stranica.',
 'cant-move-to-user-page'       => 'Nemate dopuštenje za premještanje stranice na suradničku stranicu (osim kao podstranicu)',
 'newtitle'                     => 'Na novi naslov',
 'move-watch'                   => 'Prati ovu stranicu',
 'movepagebtn'                  => 'Premjesti stranicu',
 'pagemovedsub'                 => 'Premještanje uspjelo',
-'movepage-moved'               => '<big>\'\'\'"$1" je premješteno na "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1" je premješteno na "$2"\'\'\'</big>
+
+Napravljeno je preusmjeravanje.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => '<big>\'\'\'"$1" je premješteno na "$2"\'\'\'</big>
+
+Stvaranje preusmjeravanja je izostavljeno.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => 'Stranica pod tim imenom već postoji ili ime koje ste odabrali nije u skladu s pravilima.
 Molimo odaberite drugo ime.',
 'cantmove-titleprotected'      => 'Ne možete premjestiti ovu stranicu na ovo mjesto, jer je novi naslov zaštićen od kreiranja',

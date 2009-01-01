@@ -1331,6 +1331,7 @@ Wiki-Köbes, enem Sörver-Minsch, oder luur ens en de
 'right-move'                 => 'Sigge ömnenne',
 'right-move-subpages'        => 'Sigge, un ier Ungersigge, zosamme ömnenne',
 'right-move-rootuserpages'   => '(Houp)-Metmaacher-Sigg Ömnänne',
+'right-movefile'             => 'Dateie ömnenne',
 'right-suppressredirect'     => 'Kein automatesche Ömleidung aanlääje beim Ömnenne',
 'right-upload'               => 'Dateie huhlade',
 'right-reupload'             => 'En Datei ußtuusche, di ussem Wiki kütt',
@@ -1391,6 +1392,7 @@ Wiki-Köbes, enem Sörver-Minsch, oder luur ens en de
 'action-move'                 => 'di Sigg ömzebenänne',
 'action-move-subpages'        => 'hee di Sigg un ier Ongersigge ömzebenänne',
 'action-move-rootuserpages'   => 'enem Metmaacher sing (Houp)-Metmaacher-Sigg ömzenänne',
+'action-movefile'             => 'Die Datei ömnenne',
 'action-upload'               => 'hee di Datei huhzelade',
 'action-reupload'             => 'hee di Datei, di et ald jitt, ußzetuusche',
 'action-reupload-shared'      => 'hee di Datei „för“ di ze säze, di et en de jemeinsame Biblijoteek ald jitt',
@@ -1450,6 +1452,7 @@ Wiki-Köbes, enem Sörver-Minsch, oder luur ens en de
 # Recent changes linked
 'recentchangeslinked'          => 'Änderunge aan Sigge, wo hee drop jelink es',
 'recentchangeslinked-title'    => 'Änderunge aan Sigge, die vun „$1“ uß verlink sin',
+'recentchangeslinked-backlink' => '←&nbsp;$1',
 'recentchangeslinked-noresult' => 'Et woodte kein Änderunge aan verlinkte Sigge jemaat en dä Zick.',
 'recentchangeslinked-summary'  => "Hee die Sondersigg hät en Liß met Änderunge aan Sigge, di vun de aanjejovve Sigg uß verlink sin.
 Bei Saachjruppe sen et de Sigge en dä Saachjrupp.
@@ -1660,6 +1663,7 @@ Mer ävver han och en [[Special:WhatLinksHere/$2|Komplätte Leß]].',
 
 # File reversion
 'filerevert'                => '„$1“ zerök holle',
+'filerevert-backlink'       => '←&nbsp;$1',
 'filerevert-legend'         => 'Datei zeröck holle',
 'filerevert-intro'          => '<span class="plainlinks">Do bes di Datei \'\'\'[[Media:$1|$1]]\'\'\' op di [$4 Version fum $2 öm $3 Uhr] zeröck aam sätze.</span>',
 'filerevert-comment'        => 'Jrond:',
@@ -1670,6 +1674,7 @@ Mer ävver han och en [[Special:WhatLinksHere/$2|Komplätte Leß]].',
 
 # File deletion
 'filedelete'                  => 'Schmieß „$1“ fott',
+'filedelete-backlink'         => '←&nbsp;$1',
 'filedelete-legend'           => 'Schmieß de Datei fott',
 'filedelete-intro'            => "Do beß di Datei '''„[[Media:$1|$1]]“''' am Fottschmieße.",
 'filedelete-intro-old'        => '<span class="plainlinks">Do schmiiß de Version [$4 fum $2 öm $3 Uhr] fun dä Datei „[[Media:$1|$1]]“ fott.</span>',
@@ -2379,13 +2384,19 @@ En dänne Fäll, muss De Der dä Enhald vun dä Klaafsigge selvs vörnemme, un e
 'movenologin'                  => 'Nit Enjelogg',
 'movenologintext'              => 'Do mööts ald aanjemeldt un [[Special:UserLogin|enjelogg]] sin, öm en Sigg ömzenenne.',
 'movenotallowed'               => 'Do kriss nit erlaub, en däm Wiki hee de Sigge ömzenenne.',
+'movenotallowedfile'           => 'Do häs nit dat Rääsch, Dateie ömzenenne.',
 'cant-move-user-page'          => 'Do häs nit dat Rääsch, öm enem Metmaacher sing eetzte Sigg ömzedeufe.',
 'cant-move-to-user-page'       => 'Do häs nit dat Rääsch, en Sigg tirkäk op en Metmaacher-Sigg ömzenänne, Do kanns se ävver op en Ungersigg dofun ömnenne.',
 'newtitle'                     => 'op dä neue Name',
 'move-watch'                   => 'Op die Sigg hee oppasse',
 'movepagebtn'                  => 'Ömnenne',
 'pagemovedsub'                 => 'Dat Ömnenne hät jeflupp',
-'movepage-moved'               => "<big>'''De Sigg „$1“ es jez en „$2“ ömjenannt.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>'''De Sigg „$1“ es jez en „$2“ ömjenannt.'''</big>
+
+En Ömleidung vum ahle Name op der neue es aanjelaat.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => "<big>'''De Sigg „$1“ es jez en „$2“ ömjenannt.'''</big>
+
+Kein Ömleidung woodt aanjelaat.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => "De Sigg met däm Name jitt et ald, oder dä Name ka'mer oder darf mer nit bruche.<br />Do muss Der ene andere Name ussöke.",
 'cantmove-titleprotected'      => 'Die Sigg ömzenänne es esu nit müjjelesch, dänn dä neu Name vun dä Sigg es jäje et Neu-Aanlääje jeschötz.',
 'talkexists'                   => '<strong>Opjepass:</strong> De Sigg selver woodt jetz ömjenannt, ävver dä ehr Klaafsigg kunnte mer nit met ömnenne. Et jitt ald ein met däm neue Name. Bes esu jod un dun die zwei vun Hand zosamme läje!',
@@ -2399,6 +2410,7 @@ En dänne Fäll, muss De Der dä Enhald vun dä Klaafsigge selvs vörnemme, un e
 'movepage-max-pages'           => 'Mer han jëtz {{PLURAL:$1|ëijn Sigg|$1 Sigge|kein Sigg}} ömjenanndt. Mieh jeiht nit automatėsch.',
 '1movedto2'                    => 'hät de Sigg vun „[[$1]]“ en „[[$2]]“ ömjenannt.',
 '1movedto2_redir'              => 'hät de Sigg vun „[[$1]]“ en „[[$2]]“ ömjenannt un doför de ahl Ömleitungs-Sigg fottjeschmesse.',
+'move-redirect-suppressed'     => 'Ömleidung ongerdrök',
 'movelogpage'                  => 'Logboch vum Sigge Ömnenne',
 'movelogpagetext'              => 'Hee sin de Neuste ömjenannte Sigge opjeliss, un wä et jedon hät.',
 'movereason'                   => 'Aanlass:',

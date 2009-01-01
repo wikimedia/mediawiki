@@ -1286,6 +1286,7 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'right-move'                 => 'Flytta sidor',
 'right-move-subpages'        => 'Flytta sidor med deras undersidor',
 'right-move-rootuserpages'   => 'Flytta root-användarsidor',
+'right-movefile'             => 'Flytta filer',
 'right-suppressredirect'     => 'Behöver inte skapa omdirigeringar vid sidflyttning',
 'right-upload'               => 'Ladda upp filer',
 'right-reupload'             => 'Skriva över existerande filer',
@@ -1346,6 +1347,7 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'action-move'                 => 'flytta denna sida',
 'action-move-subpages'        => 'flytta denna sida, och dess undersidor',
 'action-move-rootuserpages'   => 'flytta root-användarsidor',
+'action-movefile'             => 'flytta den här filen',
 'action-upload'               => 'ladda upp denna fil',
 'action-reupload'             => 'skriva över denna existerade fil',
 'action-reupload-shared'      => 'skriva över denna fil i gemensam databas',
@@ -2252,13 +2254,19 @@ I de fallen måste du flytta eller sammanfoga sidan manuellt, om det önskas.",
 'movenologin'                  => 'Inte inloggad',
 'movenologintext'              => 'För att flytta en sida måste du vara registrerad användare och [[Special:UserLogin|inloggad]].',
 'movenotallowed'               => 'Du har inte behörighet att flytta sidor på den här wikin.',
+'movenotallowedfile'           => 'Du har inte tillåtelse att flytta filer.',
 'cant-move-user-page'          => 'Du har inte behörighet att flytta användarsidor (bortsett från undersidor).',
 'cant-move-to-user-page'       => 'Du har inte behörighet att flytta en sida till en användarsida (förutom till en användarundersida).',
 'newtitle'                     => 'Till nya titeln:',
 'move-watch'                   => 'Bevaka denna sida',
 'movepagebtn'                  => 'Flytta sidan',
 'pagemovedsub'                 => 'Flyttningen lyckades',
-'movepage-moved'               => '<big>\'\'\'"$1" har flyttats till "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1" har flyttats till "$2"\'\'\'</big>
+
+En omdirigering har skapats.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => '<big>\'\'\'"$1" har flyttats till "$2"\'\'\'</big>
+
+Skapandet av en omdirigering har upphävts.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => 'Antingen existerar redan en sida med det namnet, eller så har du valt ett namn som inte är tillåtet.
 Välj något annat namn istället.',
 'cantmove-titleprotected'      => 'Du kan inte flytta sidan till den titeln, eftersom den nya titeln har skyddats från att skapas.',

@@ -1251,6 +1251,7 @@ Pokušajte u Vaš upit uključiti prefiks ''all:'' da bi ste pretražili sav sad
 'right-move'                 => 'Preusmjeravanje stranica',
 'right-move-subpages'        => 'Preusmjeravanje stranica sa svim podstranicama',
 'right-move-rootuserpages'   => 'Premještanje stranica osnovnih korisnika',
+'right-movefile'             => 'Premještanje datoteka',
 'right-suppressredirect'     => 'Ne pravi preusmjeravanje sa starog imena pri preusmjeravanju stranica',
 'right-upload'               => 'Postavljanje datoteka',
 'right-reupload'             => 'Postavljanje nove verzije datoteke',
@@ -1311,6 +1312,7 @@ Pokušajte u Vaš upit uključiti prefiks ''all:'' da bi ste pretražili sav sad
 'action-move'                 => 'premjestite ovu stranicu',
 'action-move-subpages'        => 'premjestite ovu stranicu, i njene podstranice',
 'action-move-rootuserpages'   => 'premjestite stranice osnovnog korisnika',
+'action-movefile'             => 'premjesti ovu datoteku',
 'action-upload'               => 'postavljate ovu datoteku',
 'action-reupload'             => 'stavite novu verziju postojeće datoteke',
 'action-reupload-shared'      => 'postavite ovu datoteku iz zajedničke ostave',
@@ -2259,13 +2261,19 @@ U tim slučajevima, moraćete ručno da premjestite stranicu ukoliko to želite.
 'movenologin'                  => 'Niste prijavljeni',
 'movenologintext'              => 'Morate biti registrovani korisnik i [[Special:UserLogin|prijavljeni]] da biste premjestili stranicu.',
 'movenotallowed'               => 'Nemate dopuštenje za premještanje stranica.',
+'movenotallowedfile'           => 'Nemate dopuštenja da premještanje datoteke.',
 'cant-move-user-page'          => 'Nemate dopuštenje da premještate korisničke stranice (bez podstranica).',
 'cant-move-to-user-page'       => 'Nemate dopuštenje da premjestite stranicu na korisničku stranicu (osim na korisničku podstranicu).',
 'newtitle'                     => 'Novi naslov',
 'move-watch'                   => 'Prati ovu stranicu',
 'movepagebtn'                  => 'premjestite stranicu',
 'pagemovedsub'                 => 'Premještanje uspjelo',
-'movepage-moved'               => '<big>\'\'\'"$1" je premještena na "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1" je premještena na "$2"\'\'\'</big>
+
+Preusmjerenje je napravljeno.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => '<big>\'\'\'"$1" je premješteno na "$2"\'\'\'</big>
+
+Pravljenje preusmjerenja je onemogućeno.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => 'Stranica pod tim imenom već postoji, ili je ime koje ste izabrali neispravno.  Molimo Vas da izaberete drugo ime.',
 'cantmove-titleprotected'      => 'Ne možete premjestiti stranicu na ovu lokaciju, jer je novi naslov zaštićen od pravljenja',
 'talkexists'                   => 'Sama stranica je uspješno premještena, ali

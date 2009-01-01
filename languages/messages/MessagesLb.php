@@ -1133,6 +1133,7 @@ iwwerpréift déi korrekt Installatioun vu LaTeX, dvips, gs a convert",
 'right-move'                 => 'Säite réckelen',
 'right-move-subpages'        => 'Säiten zesumme mat hiren Ënnersäite réckelen',
 'right-move-rootuserpages'   => 'Haapt-Benotzersäite réckelen',
+'right-movefile'             => 'Fichiere réckelen',
 'right-suppressredirect'     => 'Kee Redirect vum ale Numm aus uleeë wann eng Säit eréckelt gëtt',
 'right-upload'               => 'Fichieren eroplueden',
 'right-reupload'             => 'E Fichier iwwerschreiwen',
@@ -1168,6 +1169,7 @@ iwwerpréift déi korrekt Installatioun vu LaTeX, dvips, gs a convert",
 'right-importupload'         => 'Säite vun engem eropgeluedene Ficher importéieren',
 'right-patrol'               => 'Aneren hir Ännerungen als kontrolléiert markéieren',
 'right-unwatchedpages'       => 'Lëscht vun den net iwwerwaachte Säite weisen',
+'right-trackback'            => 'En Trackback matdeelen',
 'right-mergehistory'         => 'Zesummeféierung vum Historique vun de Versioune vu Säiten',
 'right-userrights'           => 'All Benotzerrechter änneren',
 'right-userrights-interwiki' => 'Benotzerrechter vu Benotzer op anere Wiki-Siten änneren',
@@ -1204,6 +1206,7 @@ iwwerpréift déi korrekt Installatioun vu LaTeX, dvips, gs a convert",
 'action-import'               => "dës Säit aus enger anerer Wiki z'importéieren",
 'action-importupload'         => "dës Säit duerch d'Eropluede vun engem Fichier importéieren",
 'action-unwatchedpages'       => "d'Lëscht vun den net iwwerwaachte Säiten ze kucken",
+'action-trackback'            => "en ''Trackback'' matzedeelen",
 'action-mergehistory'         => "d'Versiounsgeschicht vun dëser Säiten zesummenze féieren",
 'action-userrights'           => "all Benotzerrechter z'änneren",
 'action-userrights-interwiki' => "d'Rechter vu Benotzer vun anere Wikien z'änneren",
@@ -2075,13 +2078,17 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'movenologin'                  => 'Net ageloggt',
 'movenologintext'              => 'Dir musst e registréierte Benotzer an [[Special:UserLogin|ageloggt]] sinn, fir eng Säit ze réckelen.',
 'movenotallowed'               => 'Dir hutt net déi néideg Rechter fir Säiten ze réckelen.',
+'movenotallowedfile'           => "Dir hutt net d'Recht fir Fichieren ze réckelen.",
 'cant-move-user-page'          => 'Dir hutt net déi néideg Rechter fir Benotzerhaaptsäiten ze réckelen.',
 'cant-move-to-user-page'       => "Dir hutt net d'Recht fir eng Säit op rng Benotzersäit (ausser op eng Ënnersäit vun enger Benotzersäit) ze réckelen.",
 'newtitle'                     => 'Op den neien Titel:',
 'move-watch'                   => 'Dës Säit iwwerwaachen',
 'movepagebtn'                  => 'Säit réckelen',
 'pagemovedsub'                 => 'Gouf geréckelt',
-'movepage-moved'               => "<big>'''D'Säit \"\$1\" gouf op \"\$2\" geréckelt.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>'''D'Säit \"\$1\" gouf op \"\$2\" geréckelt.'''</big>
+
+
+Et gouf eng Viruleedung ugeluecht.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => 'Eng Säit mat dësem Numm gëtt et schonns, oder den Numm deen Dir gewielt hutt gëtt net akzeptéiert. Wielt w.e.g. en aneren Numm.',
 'cantmove-titleprotected'      => "Dir kënnt keng Säit op dës Plaz réckelen, well dee neien Titel fir d'Uleeë gespaart ass",
 'talkexists'                   => "D'Säit selwer gouf erfollegräich geréckelt, mee d'Diskussiounssäit konnt net mat eriwwergeholl gi well et schonns eng ënnert deem neien Titel gëtt. W.e.g. setzt dës manuell zesummen.",
@@ -2329,9 +2336,10 @@ Dëst warscheinlech duerch en externe Link den op der schwaarzer Lëscht (blackl
 'markedaspatrollederrortext' => 'Dir musst eng Säitenännerung auswielen.',
 
 # Patrol log
-'patrol-log-page' => 'Kontroll-Logbuch',
-'patrol-log-auto' => '(automatesch)',
-'patrol-log-diff' => 'Versioun $1',
+'patrol-log-page'      => 'Kontroll-Logbuch',
+'patrol-log-auto'      => '(automatesch)',
+'patrol-log-diff'      => 'Versioun $1',
+'log-show-hide-patrol' => 'Kontroll-Logbuch $1',
 
 # Image deletion
 'deletedrevision'                 => 'Al, geläschte Versioun $1',
@@ -2670,8 +2678,13 @@ Sollt et sech net ëm äre Benotzerkont handelen, da maacht de Link *net* op. De
 'scarytranscludetoolong'  => "[D'URL ass ze laang]",
 
 # Trackbacks
-'trackbackremove' => '([$1 läschen])',
-'trackbacklink'   => 'Zréckverfollegen',
+'trackbackbox'      => "<div id=\"mw_trackbacks\">
+''Trackbacke'' fir dës Säit:<br />
+\$1
+</div>",
+'trackbackremove'   => '([$1 läschen])',
+'trackbacklink'     => 'Zréckverfollegen',
+'trackbackdeleteok' => "Den ''Trackback'' gouf geläscht.",
 
 # Delete conflict
 'deletedwhileediting' => "'''Opgepasst''': Dës Säit gouf geläscht nodeems datt dir ugefaangen hutt se z'änneren!",

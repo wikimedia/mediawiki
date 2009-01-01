@@ -1403,7 +1403,9 @@ Jndr'à ste case, 'a pàgene non g'avène spustete e pò t'a cupià a màne 'u c
 'move-watch'                => 'condrolle sta pàgene',
 'movepagebtn'               => "Spueste 'a pàgene",
 'pagemovedsub'              => 'Spustaminde eseguite',
-'movepage-moved'            => "<big>'''\"\$1\" ha state spustate jndr'à \"\$2\"'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'            => "<big>'''\"\$1\" ha state spustate jndr'à \"\$2\"'''</big>
+
+'Nu ridirezionamende ha sate ccrejete", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'             => "'Na pàgene cu stu nome già esiste, o 'u nome ca tu è scacchiete non g'è valide.
 Pe piacere scacchie n'otre nome.",
 'talkexists'                => "''''A pàgene ha state spustete, però 'a pàgene de le 'ngazzaminde pò essere ca non g'à state spustete purcè ne ste n'otre già cu 'u titele nuéve.

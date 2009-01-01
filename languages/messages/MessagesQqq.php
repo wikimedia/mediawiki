@@ -744,11 +744,15 @@ Parameter $1 is either {{msg|revdelete-content}} (when unhiding the page content
 'revdelete-log-message'     => 'This log message is used together with {{msg|revdelete-logentry}} in the deletion or suppression logs when changing visibility restrictions for page revisions.
 
 *Parameter $1 is either {{msg|revdelete-hid}} (when hiding data), {{msg|revdelete-unhid}} (when unhiding data), {{msg|revdelete-restricted}} (when applying restrictions for sysops),  {{msg|revdelete-unrestricted}} (when removing restrictions for sysops), or a combination of those messages.
-*Parameter $2 is the number of revisions for which the restrictions are changed.',
-'logdelete-log-message'     => 'This log message appears in brackets after the message {{msg|logdelete-logentry}} in the deletion or suppression logs when changing the visibility of a log entry for events. For a brief description of the process of changing the visibility of events and their log entries see this [http://www.mediawiki.org/wiki/RevisionDelete mediawiki explanation].
+*Parameter $2 is the number of revisions for which the restrictions are changed.
+
+Please note that the parameters in a log entry will appear in the log only in the default language of the wiki. View [[Special:Log]] for examples on Betawiki with English default language.',
+'logdelete-log-message'     => 'This log message appears in brackets after the message {{msg|logdelete-logentry}} in the deletion or suppression logs when changing the visibility of a log entry for events. For a brief description of the process of changing the visibility of events and their log entries see this [http://www.mediawiki.org/wiki/RevisionDelete mediawiki explanation]. 
 
 *Parameter $1 is either {{msg|revdelete-hid}} (when hiding data), {{msg|revdelete-unhid}} (when unhiding data), {{msg|revdelete-restricted}} (when applying restrictions for sysops),  {{msg|revdelete-unrestricted}} (when removing restrictions for sysops), or a combination of those messages.
-*Parameter $2 is the number of events for which the restrictions are changed.',
+*Parameter $2 is the number of events for which the restrictions are changed.
+
+Please note that the parameters in a log entry will appear in the log only in the default language of the wiki. View [[Special:Log]] for examples on Betawiki with English default language.',
 
 # Suppression log
 'suppressionlog'     => 'Title of the suppression log. Shown in the drop down menu at [[Special:log]] and as header of [[Special:log/suppress]].',
@@ -842,7 +846,8 @@ $1 is the relevance of this result in per cent.
 * $1–$2 is the range of results shown on the page
 * $3 is the total number of results from the search
 * $4 is the number of results shown on the page (equal to the size of the $1–$2 interval)',
-'nonefound'                      => 'This message appears on the search results page if no results are found. "all:" should remain untranslated.',
+'nonefound'                      => 'This message appears on the search results page if no results are found.
+{{doc-important|Do not translate "all:".}}',
 'search-nonefound'               => 'Message shown when a search returned no results (when using the default MediaWiki search engine).',
 'powersearch'                    => 'Verb. Text of search button at the bottom of [[Special:Search]], for searching in selected namespaces.
 
@@ -969,6 +974,7 @@ The right to use the "This is a minor edit" checkbox. See {{msg|minoredit|pl=yes
 'right-move'               => '{{doc-right}}
 The right to move any page that is not protected from moving.',
 'right-move-rootuserpages' => '{{doc-right}}',
+'right-movefile'           => '{{doc-right}}',
 'right-upload'             => '{{doc-right}}
 The right to [[Special:Upload|upload]] a file (this includes images, media, audio, ...).',
 'right-reupload'           => '{{doc-right}}

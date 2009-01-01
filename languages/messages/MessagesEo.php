@@ -1205,6 +1205,7 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'right-move'                 => 'Movi paĝojn',
 'right-move-subpages'        => 'Alinomigi paĝojn kun ĝiaj subpaĝoj',
 'right-move-rootuserpages'   => 'Movi radikajn uzanto-paĝojn',
+'right-movefile'             => 'Alinomigi dosierojn',
 'right-suppressredirect'     => 'Ne krei alidirektilon de la malnova nomo kiam movante paĝon',
 'right-upload'               => 'Alŝuti dosierojn',
 'right-reupload'             => 'Anstataŭigi ekzistantan dosieron',
@@ -1265,6 +1266,7 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'action-move'                 => 'movi ĉi tiun paĝon',
 'action-move-subpages'        => 'movi ĉi tiun paĝon, kaj ties subpaĝojn',
 'action-move-rootuserpages'   => 'movi radikajn uzanto-paĝojn',
+'action-movefile'             => 'alinomigi ĉi tiun dosieron',
 'action-upload'               => 'alŝuti ĉi tiun dosieron',
 'action-reupload'             => 'anstataŭigi ĉi tiun ekzistantan dosieron',
 'action-reupload-shared'      => 'anstataŭigi ĉi tiun dosieron en kolektiva dosierujo',
@@ -2170,13 +2172,19 @@ Tiujokaze, vi nepre permane kunigu la diskuto-paĝojn se vi tion deziras.",
 'movenologin'                  => 'Ne ensalutinta',
 'movenologintext'              => 'Vi nepre estu registrita uzanto kaj [[Special:UserLogin|ensalutu]] por rajti movi paĝojn.',
 'movenotallowed'               => 'Vi ne rajtas movi paĝojn.',
+'movenotallowedfile'           => 'Vi ne havas rajton alinomigi dosierojn.',
 'cant-move-user-page'          => 'Vi ne rajtas movi radikajn uzanto-paĝojn.',
 'cant-move-to-user-page'       => 'Vi ne rajtas movi paĝon al uzula paĝo (krom al uzula subpaĝo).',
 'newtitle'                     => 'Al nova titolo',
 'move-watch'                   => 'Atenti ĉi tiun paĝon',
 'movepagebtn'                  => 'Alinomigi paĝon',
 'pagemovedsub'                 => 'Sukcesis alinomigo',
-'movepage-moved'               => '<big>\'\'\'"$1" estis alinomigita al "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1" estis alinomigita al "$2"\'\'\'</big>
+
+Alidirektilo estis kreita.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => '<big>\'\'\'"$1" estis alinomigita al "$2"\'\'\'</big>
+
+La kreado de alidirektilo estis nuligita.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => 'Paĝo kun tiu nomo jam ekzistas, aŭ la nomo kiun vi elektis ne validas.
 Bonvolu elekti alian nomon.',
 'cantmove-titleprotected'      => 'Vi ne povas movi paĝo al ĉi loko, ĉar la nova titolo estis protektita kontraŭ kreado',

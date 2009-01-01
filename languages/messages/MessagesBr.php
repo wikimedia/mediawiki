@@ -728,27 +728,28 @@ A-gostez eo bet lezet an arventenn-se.',
 An abeg roet gant $3 zo ''$2''",
 
 # History pages
-'viewpagelogs'        => 'Gwelet ar marilhoù evit ar bajenn-mañ',
-'nohistory'           => "Ar bajenn-mañ n'he deus tamm istor ebet.",
-'currentrev'          => 'Stumm a-vremañ pe stumm red',
-'revisionasof'        => 'Stumm eus an $1',
-'revision-info'       => 'Stumm eus an $1 gant $2', # Additionally available: $3: revision id
-'previousrevision'    => '← Stumm kent',
-'nextrevision'        => "Stumm war-lerc'h →",
-'currentrevisionlink' => 'Gwelet ar stumm red',
-'cur'                 => 'red',
-'next'                => 'goude',
-'last'                => 'diwez',
-'page_first'          => 'kentañ',
-'page_last'           => 'diwezhañ',
-'histlegend'          => "Sellet ouzh an diforc'hioù : lakait un ask adal d'ar stummoù a fell deoc'h keñveriañ ha pouezit war kadarnaat pe war ar bouton en traoñ.<br />
+'viewpagelogs'           => 'Gwelet ar marilhoù evit ar bajenn-mañ',
+'nohistory'              => "Ar bajenn-mañ n'he deus tamm istor ebet.",
+'currentrev'             => 'Stumm a-vremañ pe stumm red',
+'revisionasof'           => 'Stumm eus an $1',
+'revision-info'          => 'Stumm eus an $1 gant $2', # Additionally available: $3: revision id
+'previousrevision'       => '← Stumm kent',
+'nextrevision'           => "Stumm war-lerc'h →",
+'currentrevisionlink'    => 'Gwelet ar stumm red',
+'cur'                    => 'red',
+'next'                   => 'goude',
+'last'                   => 'diwez',
+'page_first'             => 'kentañ',
+'page_last'              => 'diwezhañ',
+'histlegend'             => "Sellet ouzh an diforc'hioù : lakait un ask adal d'ar stummoù a fell deoc'h keñveriañ ha pouezit war kadarnaat pe war ar bouton en traoñ.<br />
 Alc'hwez : (red) = diforc'hioù gant ar stumm a-vremañ,
 (diwez) = diforc'hioù gant ar stumm kent, D = kemm dister",
-'deletedrev'          => '[diverket]',
-'histfirst'           => 'Kentañ',
-'histlast'            => 'Diwezhañ',
-'historysize'         => '({{PLURAL:$1|$1 okted|$1 okted}})',
-'historyempty'        => '(goullo)',
+'history-fieldset-title' => 'Furchal en istor',
+'deletedrev'             => '[diverket]',
+'histfirst'              => 'Kentañ',
+'histlast'               => 'Diwezhañ',
+'historysize'            => '({{PLURAL:$1|$1 okted|$1 okted}})',
+'historyempty'           => '(goullo)',
 
 # Revision feed
 'history-feed-title'          => "Istor ar c'hemmoù",
@@ -2448,7 +2449,7 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da skou
 
 # External editor support
 'edit-externally'      => 'Kemmañ ar restr-mañ dre un arload diavaez',
-'edit-externally-help' => "Gwelet skoazell an [http://www.mediawiki.org/wiki/Manual:External_editors arloadoù diavaez] a-benn gouzout hiroc'h.",
+'edit-externally-help' => "(Gwelet [http://www.mediawiki.org/wiki/Manual:External_editors erbedadennoù staliañ an aozer diavaez] a-benn gouzout hiroc'h).",
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'an holl',

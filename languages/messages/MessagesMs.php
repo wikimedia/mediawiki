@@ -1041,10 +1041,8 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 'showingresults'                   => "Yang berikut ialah '''$1''' hasil bermula daripada yang {{PLURAL:$2|pertama|ke-'''$2'''}}.",
 'showingresultsnum'                => "Yang berikut ialah '''$3''' hasil bermula daripada yang {{PLURAL:$2|pertama|ke-'''$2'''}}.",
 'showingresultstotal'              => "Yang berikut ialah {{PLURAL:$4|hasil '''$1'''|hasil '''$1 - $2'''}} daripada '''$3'''",
-'nonefound'                        => "'''Catatan''': Kegagalan pencarian biasanya
-disebabkan oleh pencarian perkataan-perkataan yang terlalu umum, seperti \"ada\"
-dan \"dari\" yang tidak diindekskan, atau disebabkan oleh pencarian lebih
-daripada satu kata kunci (hanya laman yang mengandungi kesemua kata kunci akan ditunjukkan).",
+'nonefound'                        => "'''Catatan''': Ketika lalai, hanya sesetengah ruang nama digelintar.
+Cuba berikan awalan ''all:'' untuk menggelintar semua kandungan (termasuk laman perbincangan, templat, dan lain-lain), atau gunakan ruang nama yang dikehendaki sebagai awalan.",
 'search-nonefound'                 => 'Tiada hasil yang sepadan dengan pertanyaan tersebut.',
 'powersearch'                      => 'Cari',
 'powersearch-legend'               => 'Gelintar maju',
@@ -1178,6 +1176,7 @@ daripada satu kata kunci (hanya laman yang mengandungi kesemua kata kunci akan d
 'right-move'                 => 'Memindah laman',
 'right-move-subpages'        => 'Memindahkan laman berserta sublaman',
 'right-move-rootuserpages'   => 'Memindahkan laman induk pengguna',
+'right-movefile'             => 'Memindahkan fail',
 'right-suppressredirect'     => 'Memindahkan sesebuah laman tanpa mencipta lencongan',
 'right-upload'               => 'Memuat naik fail',
 'right-reupload'             => 'Menulis ganti fail sedia ada',
@@ -1238,6 +1237,7 @@ daripada satu kata kunci (hanya laman yang mengandungi kesemua kata kunci akan d
 'action-move'                 => 'memindahkan laman ini',
 'action-move-subpages'        => 'memindahkan laman ini dan sublaman-sublamannya',
 'action-move-rootuserpages'   => 'memindahkan laman induk pengguna',
+'action-movefile'             => 'pindah fail ini',
 'action-upload'               => 'memuat naik fail ini',
 'action-reupload'             => 'menulis ganti fail ini',
 'action-reupload-shared'      => 'mengatasi fail dari gedung kongsi ini',
@@ -2136,13 +2136,19 @@ Dalam kes tersebut, anda terpaksa melencongkan atau menggabungkan laman secara m
 'movenologin'                  => 'Belum log masuk.',
 'movenologintext'              => 'Anda mesti [[Special:UserLogin|log masuk]] terlebih dahulu untuk memindahkan laman.',
 'movenotallowed'               => 'Anda tidak mempunyai keizinan untuk memindahkan laman.',
+'movenotallowedfile'           => 'Anda tidak mempunyai keizinan untuk memindahkan fail.',
 'cant-move-user-page'          => 'Anda tidak mempunyai keizinan untuk memindahkan laman pengguna (tidak termasuk sublaman-sublamannya).',
 'cant-move-to-user-page'       => 'Anda tidak mempunyai keizinan untuk memindahkan sesebuah laman ke mana-mana laman pengguna (kecuali sebagai sublamannya sahaja).',
 'newtitle'                     => 'Kepada tajuk baru:',
 'move-watch'                   => 'Pantau laman ini',
 'movepagebtn'                  => 'Pindah laman',
 'pagemovedsub'                 => 'Pemindahan berjaya',
-'movepage-moved'               => '<big>\'\'\'"$1" telah dipindahkan ke "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1" telah dipindahkan ke "$2"\'\'\'</big>
+
+Lencongan telah dicipta.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => '<big>\'\'\'"$1" telah dipindahkan ke "$2"\'\'\'</big>
+
+Penciptaan lencongan telah dihalang.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => 'Laman dengan nama tersebut telah pun wujud,
 atau nama yang anda pilih tidak sah.
 Sila pilih nama lain.',
@@ -2158,6 +2164,7 @@ Sila pilih nama lain.',
 'movepage-max-pages'           => 'Jumlah maksimum $1 laman telah dipindahkan secara automatik.',
 '1movedto2'                    => '[[$1]] dipindahkan ke [[$2]]',
 '1movedto2_redir'              => '[[$1]] dipindahkan ke [[$2]] menerusi pelencongan',
+'move-redirect-suppressed'     => 'halang pelencongan',
 'movelogpage'                  => 'Log pemindahan',
 'movelogpagetext'              => 'Yang berikut ialah senarai pemindahan laman.',
 'movereason'                   => 'Sebab:',
