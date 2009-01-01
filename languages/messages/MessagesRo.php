@@ -82,11 +82,13 @@ $specialPageAliases = array(
 	'Unusedimages'              => array( 'Imagini nefolosite' ),
 	'Wantedpages'               => array( 'Pagini dorite', 'Legături invalide' ),
 	'Wantedcategories'          => array( 'Categorii dorite' ),
+	'Wantedfiles'               => array( 'Fişiere dorite' ),
+	'Wantedtemplates'           => array( 'Formate dorite' ),
 	'Mostlinked'                => array( 'Legături multe' ),
 	'Mostlinkedcategories'      => array( 'Categorii des folosite' ),
 	'Mostlinkedtemplates'       => array( 'Formate des folosite' ),
-	'Mostcategories'            => array( 'Categorii multe' ),
 	'Mostimages'                => array( 'Imagini multe' ),
+	'Mostcategories'            => array( 'Categorii multe' ),
 	'Mostrevisions'             => array( 'Revizii multe' ),
 	'Fewestrevisions'           => array( 'Revizii puţine' ),
 	'Shortpages'                => array( 'Pagini scurte' ),
@@ -139,6 +141,7 @@ $specialPageAliases = array(
 	'Filepath'                  => array( 'Cale fişier' ),
 	'Invalidateemail'           => array( 'Invalidează email' ),
 	'Blankpage'                 => array( 'Pagină goală' ),
+	'DeletedContributions'      => array( 'Contibuţii şterse' ),
 );
 
 $datePreferences = false;

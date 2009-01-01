@@ -49,7 +49,6 @@ $namespaceAliases = array(
 	'Kategória_vita' => NS_CATEGORY_TALK,
 );
 
-
 $fallback8bitEncoding = "iso8859-2";
 $separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );
 
@@ -64,8 +63,8 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Figyelőlistám' ),
 	'Recentchanges'             => array( 'Friss változtatások' ),
 	'Upload'                    => array( 'Feltöltés' ),
-	'Imagelist'                 => array( 'Képlista' ),
-	'Newimages'                 => array( 'Új képek galériája' ),
+	'Imagelist'                 => array( 'Fájllista', 'Képlista' ),
+	'Newimages'                 => array( 'Új fájlok', 'Új képek', 'Új képek galériája' ),
 	'Listusers'                 => array( 'Szerkesztők listája', 'Szerkesztők', 'Felhasználók' ),
 	'Listgrouprights'           => array( 'Szerkesztői csoportok jogai' ),
 	'Statistics'                => array( 'Statisztika', 'Statisztikák' ),
@@ -73,7 +72,7 @@ $specialPageAliases = array(
 	'Lonelypages'               => array( 'Árva lapok', 'Magányos lapok' ),
 	'Uncategorizedpages'        => array( 'Kategorizálatlan lapok' ),
 	'Uncategorizedcategories'   => array( 'Kategorizálatlan kategóriák' ),
-	'Uncategorizedimages'       => array( 'Kategorizálatlan képek', 'Kategorizálatlan fájlok' ),
+	'Uncategorizedimages'       => array( 'Kategorizálatlan fájlok', 'Kategorizálatlan képek' ),
 	'Uncategorizedtemplates'    => array( 'Kategorizálatlan sablonok' ),
 	'Unusedcategories'          => array( 'Nem használt kategóriák' ),
 	'Unusedimages'              => array( 'Nem használt képek' ),
@@ -84,7 +83,7 @@ $specialPageAliases = array(
 	'Mostlinked'                => array( 'Legtöbbet hivatkozott lapok' ),
 	'Mostlinkedcategories'      => array( 'Legtöbbet hivatkozott kategóriák' ),
 	'Mostlinkedtemplates'       => array( 'Legtöbbet hivatkozott sablonok' ),
-	'Mostimages'                => array( 'Legtöbbet használt képek' ),
+	'Mostimages'                => array( 'Legtöbbet használt fájlok', 'Legtöbbet használt képek' ),
 	'Mostcategories'            => array( 'Legtöbb kategóriába tartozó lapok' ),
 	'Mostrevisions'             => array( 'Legtöbbet szerkesztett lapok' ),
 	'Fewestrevisions'           => array( 'Legkevesebbet szerkesztett lapok' ),
@@ -133,7 +132,7 @@ $specialPageAliases = array(
 	'Popularpages'              => array( 'Népszerű oldalak' ),
 	'Search'                    => array( 'Keresés' ),
 	'Resetpass'                 => array( 'Jelszócsere' ),
-	'Withoutinterwiki'          => array( 'Interwikilinkek nélküli lapok' ),
+	'Withoutinterwiki'          => array( 'Wikiközi hivatkozás nélküli lapok', 'Interwikilinkek nélküli lapok' ),
 	'MergeHistory'              => array( 'Laptörténetek egyesítése', 'Laptörténet-egyesítés' ),
 	'Filepath'                  => array( 'Fájl elérési útja', 'Fájl elérési út' ),
 	'Invalidateemail'           => array( 'E-mail cím érvénytelenítése' ),
