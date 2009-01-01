@@ -452,8 +452,8 @@ class Title {
 	 */
 	static function escapeFragmentForURL( $fragment ) {
 		global $wgEnforceHtmlIds;
-		return Sanitizer::escapeId( $fragment,
-			$wgEnforceHtmlIds ? array() : 'xml' );
+		return wfUrlencode( Sanitizer::escapeId( $fragment,
+			$wgEnforceHtmlIds ? array() : 'xml' ) );
 	}
 
 #----------------------------------------------------------------------------
