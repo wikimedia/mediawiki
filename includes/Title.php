@@ -1222,6 +1222,10 @@ class Title {
 				// Show user page-specific message only if the user can move other pages
 				$errors[] = array( 'cant-move-user-page' );
 			}
+			// Check if user is allowed to move files if it's a file
+			if( $this->getNamespace() == NS_FILE && !$user->isAllowed( 'movefile' ) ) {
+				$errors[] = array( 'movenotallowedfile' );
+			}
 			// Check for immobile pages
 			if( !MWNamespace::isMovable( $this->getNamespace() ) ) {
 				// Specific message for this case
