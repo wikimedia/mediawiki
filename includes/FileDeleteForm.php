@@ -113,7 +113,7 @@ class FileDeleteForm {
 						global $wgRequest;
 						if( $wgRequest->getCheck( 'wpWatch' ) ) {
 							$article->doWatch();
-						} elseif( $this->mTitle->userIsWatching() ) {
+						} elseif( $title->userIsWatching() ) {
 							$article->doUnwatch();
 						}
 						wfRunHooks('ArticleDeleteComplete', array(&$article, &$wgUser, $reason, $id));
