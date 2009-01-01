@@ -1163,41 +1163,42 @@ $wgEmailConfirmToEdit=false;
 $wgGroupPermissions = array();
 
 // Implicit group for all visitors
-$wgGroupPermissions['*'    ]['createaccount']    = true;
-$wgGroupPermissions['*'    ]['read']             = true;
-$wgGroupPermissions['*'    ]['edit']             = true;
-$wgGroupPermissions['*'    ]['createpage']       = true;
-$wgGroupPermissions['*'    ]['createtalk']       = true;
-$wgGroupPermissions['*'    ]['writeapi']         = true;
+$wgGroupPermissions['*']['createaccount']    = true;
+$wgGroupPermissions['*']['read']             = true;
+$wgGroupPermissions['*']['edit']             = true;
+$wgGroupPermissions['*']['createpage']       = true;
+$wgGroupPermissions['*']['createtalk']       = true;
+$wgGroupPermissions['*']['writeapi']         = true;
 
 // Implicit group for all logged-in accounts
-$wgGroupPermissions['user' ]['move']             = true;
-$wgGroupPermissions['user' ]['move-subpages']    = true;
-$wgGroupPermissions['user' ]['move-rootuserpages'] = true; // can move root userpages
-$wgGroupPermissions['user' ]['read']             = true;
-$wgGroupPermissions['user' ]['edit']             = true;
-$wgGroupPermissions['user' ]['createpage']       = true;
-$wgGroupPermissions['user' ]['createtalk']       = true;
-$wgGroupPermissions['user' ]['writeapi']         = true;
-$wgGroupPermissions['user' ]['upload']           = true;
-$wgGroupPermissions['user' ]['reupload']         = true;
-$wgGroupPermissions['user' ]['reupload-shared']  = true;
-$wgGroupPermissions['user' ]['minoredit']        = true;
-$wgGroupPermissions['user' ]['purge']            = true; // can use ?action=purge without clicking "ok"
+$wgGroupPermissions['user']['move']             = true;
+$wgGroupPermissions['user']['move-subpages']    = true;
+$wgGroupPermissions['user']['move-rootuserpages'] = true; // can move root userpages
+//$wgGroupPermissions['user']['movefile']         = true;	// Disabled for now due to possible bugs and security concerns
+$wgGroupPermissions['user']['read']             = true;
+$wgGroupPermissions['user']['edit']             = true;
+$wgGroupPermissions['user']['createpage']       = true;
+$wgGroupPermissions['user']['createtalk']       = true;
+$wgGroupPermissions['user']['writeapi']         = true;
+$wgGroupPermissions['user']['upload']           = true;
+$wgGroupPermissions['user']['reupload']         = true;
+$wgGroupPermissions['user']['reupload-shared']  = true;
+$wgGroupPermissions['user']['minoredit']        = true;
+$wgGroupPermissions['user']['purge']            = true; // can use ?action=purge without clicking "ok"
 
 // Implicit group for accounts that pass $wgAutoConfirmAge
 $wgGroupPermissions['autoconfirmed']['autoconfirmed'] = true;
 
 // Users with bot privilege can have their edits hidden
 // from various log pages by default
-$wgGroupPermissions['bot'  ]['bot']              = true;
-$wgGroupPermissions['bot'  ]['autoconfirmed']    = true;
-$wgGroupPermissions['bot'  ]['nominornewtalk']   = true;
-$wgGroupPermissions['bot'  ]['autopatrol']       = true;
-$wgGroupPermissions['bot'  ]['suppressredirect'] = true;
-$wgGroupPermissions['bot'  ]['apihighlimits']    = true;
-$wgGroupPermissions['bot'  ]['writeapi']         = true;
-#$wgGroupPermissions['bot'  ]['editprotected']    = true; // can edit all protected pages without cascade protection enabled
+$wgGroupPermissions['bot']['bot']              = true;
+$wgGroupPermissions['bot']['autoconfirmed']    = true;
+$wgGroupPermissions['bot']['nominornewtalk']   = true;
+$wgGroupPermissions['bot']['autopatrol']       = true;
+$wgGroupPermissions['bot']['suppressredirect'] = true;
+$wgGroupPermissions['bot']['apihighlimits']    = true;
+$wgGroupPermissions['bot']['writeapi']         = true;
+#$wgGroupPermissions['bot']['editprotected']    = true; // can edit all protected pages without cascade protection enabled
 
 // Most extra permission abilities go to this group
 $wgGroupPermissions['sysop']['block']            = true;
@@ -1231,6 +1232,7 @@ $wgGroupPermissions['sysop']['markbotedits']     = true;
 $wgGroupPermissions['sysop']['apihighlimits']    = true;
 $wgGroupPermissions['sysop']['browsearchive']    = true;
 $wgGroupPermissions['sysop']['noratelimit']      = true;
+$wgGroupPermissions['sysop']['movefile']         = true;
 #$wgGroupPermissions['sysop']['mergehistory']     = true;
 
 // Permission to change users' group assignments
@@ -1668,8 +1670,8 @@ $wgAllowExternalImagesFrom = '';
  */
 $wgEnableImageWhitelist = true;
  
-/** Allows to move images and other media files. Experemintal, not sure if it always works */
-$wgAllowImageMoving = false;
+/** Allows to move images and other media files */
+$wgAllowImageMoving = true;
 
 /** Disable database-intensive features */
 $wgMiserMode = false;

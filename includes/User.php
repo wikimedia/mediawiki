@@ -151,6 +151,7 @@ class User {
 		'markbotedits',
 		'minoredit',
 		'move',
+		'movefile',
 		'move-rootuserpages',
 		'move-subpages',
 		'nominornewtalk',
