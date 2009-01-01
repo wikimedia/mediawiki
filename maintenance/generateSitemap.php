@@ -424,7 +424,7 @@ class GenerateSitemap {
 	 *
 	 * @static
 	 *
-	 * @param string $url An RFC 2396 compilant URL
+	 * @param string $url An RFC 2396 compliant URL
 	 * @param string $date A ISO 8601 date
 	 * @param string $priority A priority indicator, 0.0 - 1.0 inclusive with a 0.1 stepsize
 	 *
