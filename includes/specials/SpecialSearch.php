@@ -930,6 +930,24 @@ class SpecialSearchOld {
 		
 		$this->setupPage( $term );
 
+		$rewritten = $search->replacePrefixes($term);
+		$titleMatches = $search->searchTitle( $rewritten );
+		$textMatches = $search->searchText( $rewritten );
+
+		// did you mean... suggestions
+		if($textMatches && $textMatches->hasSuggestion()){
+			$st = SpecialPage::getTitleFor( 'Search' );			
+			$stParams = wfArrayToCGI( array( 
+					'search' 	=> $textMatches->getSuggestionQuery(), 
+					'fulltext' 	=> wfMsg('search')),
+					$this->powerSearchOptions());
+					
+			$suggestLink = '<a href="'.$st->escapeLocalURL($stParams).'">'.
+					$textMatches->getSuggestionSnippet().'</a>';
+			 		
+			$wgOut->addHTML('<div class="searchdidyoumean">'.wfMsg('search-suggest',$suggestLink).'</div>');
+		}
+
 		$wgOut->addWikiMsg( 'searchresulttext' );
 
 		if( '' === trim( $term ) ) {
@@ -967,9 +985,6 @@ class SpecialSearchOld {
 		}
 
 		$wgOut->addHTML( $this->shortDialog( $term ) );		
-		$rewritten = $search->replacePrefixes($term);
-
-		$titleMatches = $search->searchTitle( $rewritten );
 
 		// Sometimes the search engine knows there are too many hits
 		if ($titleMatches instanceof SearchResultTooMany) {
@@ -980,22 +995,6 @@ class SpecialSearchOld {
 			return;
 		}
 		
-		$textMatches = $search->searchText( $rewritten );
-
-		// did you mean... suggestions
-		if($textMatches && $textMatches->hasSuggestion()){
-			$st = SpecialPage::getTitleFor( 'Search' );			
-			$stParams = wfArrayToCGI( array( 
-					'search' 	=> $textMatches->getSuggestionQuery(), 
-					'fulltext' 	=> wfMsg('search')),
-					$this->powerSearchOptions());
-					
-			$suggestLink = '<a href="'.$st->escapeLocalURL($stParams).'">'.
-					$textMatches->getSuggestionSnippet().'</a>';
-			 		
-			$wgOut->addHTML('<div class="searchdidyoumean">'.wfMsg('search-suggest',$suggestLink).'</div>');
-		}
-
 		// show number of results
 		$num = ( $titleMatches ? $titleMatches->numRows() : 0 )
 			+ ( $textMatches ? $textMatches->numRows() : 0);
