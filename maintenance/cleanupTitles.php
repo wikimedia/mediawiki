@@ -48,7 +48,7 @@ class TitleCleanup extends TableCleanup {
 
 		$title = Title::newFromText( $verified );
 
-		if( !is_null( $title ) && $title->equals( $current ) ) {
+		if( !is_null( $title ) && $title->equals( $current ) && $title->canExist() ) {
 			return $this->progress( 0 );  // all is fine
 		}
 

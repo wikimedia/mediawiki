@@ -3172,6 +3172,15 @@ class Title {
 	public function isKnown() {
 		return $this->exists() || $this->isAlwaysKnown();
 	}
+	
+	/**
+	* Is this in a namespace that allows actual pages?
+	*
+	* @return \type{\bool} TRUE or FALSE
+	*/
+	public function canExist() {
+		return $this->mNamespace >= 0 && $this->mNamespace != NS_MEDIA;
+	}
 
 	/**
 	 * Update page_touched timestamps and send squid purge messages for
