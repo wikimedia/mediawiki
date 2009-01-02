@@ -268,9 +268,15 @@ class EmailUserForm {
 		}
 	
 		$nu = User::newFromName( $nt->getText() );
-		if( is_null( $nu ) || !$nu->canReceiveEmail() ) {
-			wfDebug( "Target is invalid user or can't receive.\n" );
+		if( is_null( $nu ) ) {
+			wfDebug( "Target is invalid user.\n" );
+			return "notarget";
+		} else if ( !$nu->isEmailConfirmed() ) {
+			wfDebug( "User has no valid email.\n" );
 			return "noemail";
+		} else if ( !$nu->canReceiveEmail() ) {
+			wfDebug( "User does not allow user emails.\n" );
+			return "nowikiemail";
 		}
 		
 		return $nu;
