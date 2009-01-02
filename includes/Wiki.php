@@ -52,7 +52,10 @@ class MediaWiki {
 	 */
 	function initialize( &$title, &$article, &$output, &$user, $request ) {
 		wfProfileIn( __METHOD__ );
-		$this->preliminaryChecks( $title, $output, $request );
+		if( !$this->preliminaryChecks( $title, $output, $request ) ) {
+			wfProfileOut( __METHOD__ );
+			return;
+		}
 		if( !$this->initializeSpecialCases( $title, $output, $request ) ) {
 			$new_article = $this->initializeArticle( $title, $request );
 			if( is_object( $new_article ) ) {
@@ -145,8 +148,10 @@ class MediaWiki {
 		if( !is_null( $title ) && !$title->userCanRead() ) {
 			$output->loginToUse();
 			$output->output();
-			throw new MWException("Permission Error: you do not have access to view this page");
+			$output->disable();
+			return false;
 		}
+		return true;
 	}
 
 	/**

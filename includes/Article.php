@@ -846,8 +846,9 @@ class Article {
 			if( !$this->mTitle->userCanRead() ) {
 				$wgOut->loginToUse();
 				$wgOut->output();
+				$wgOut->disable();
 				wfProfileOut( __METHOD__ );
-				throw new MWException("Permission Error: you do not have access to view this page");
+				return;
 			}
 
 			# We're looking at an old revision

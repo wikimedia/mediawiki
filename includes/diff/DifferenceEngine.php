@@ -151,8 +151,9 @@ CONTROL;
 		if ( !$this->mOldPage->userCanRead() || !$this->mNewPage->userCanRead() ) {
 			$wgOut->loginToUse();
 			$wgOut->output();
+			$wgOut->disable();
 			wfProfileOut( __METHOD__ );
-			throw new MWException("Permission Error: you do not have access to view this page");
+			return;
 		}
 
 		$sk = $wgUser->getSkin();
