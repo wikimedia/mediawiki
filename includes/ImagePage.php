@@ -93,10 +93,11 @@ class ImagePage extends Article {
 			$showmeta = false;
 		}
 
-		if( $this->displayImg->exists() )
+		if( !$diff && $this->displayImg->exists() )
 			$wgOut->addHTML( $this->showTOC($showmeta) );
 
-		$this->openShowImage();
+		if( !$diff )
+			$this->openShowImage();
 
 		# No need to display noarticletext, we use our own message, output in openShowImage()
 		if( $this->getID() ) {
