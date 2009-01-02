@@ -195,7 +195,7 @@ class NamespaceConflictChecker {
 
 	function reportConflict( $row, $suffix ) {
 		$newTitle = Title::makeTitleSafe( $row->namespace, $row->title );
-		if( !$newTitle ) {
+		if( is_null($newTitle) || !$newTitle->canExist() ) {
 			// Title is also an illegal title...
 			// For the moment we'll let these slide to cleanupTitles or whoever.
 			printf( "... %d (0,\"%s\")\n",
