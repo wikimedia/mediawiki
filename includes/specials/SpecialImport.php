@@ -158,7 +158,7 @@ class SpecialImport extends SpecialPage {
 						Xml::label( wfMsg( 'import-comment' ), 'mw-import-comment' ) .
 					"</td>
 					<td class='mw-input'>" .
-						Xml::input( 'log-comment', 50, '',
+						Xml::input( 'log-comment', 50, $this->logcomment,
 							array( 'id' => 'mw-import-comment', 'type' => 'text' ) ) . ' ' .
 					"</td>
 				</tr>
