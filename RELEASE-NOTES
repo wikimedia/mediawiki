@@ -256,6 +256,7 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 16121) Add a note that a page move was without creating a redirect in the
   move log
 * Image moving is now enabled for sysops by default
+* Make "Did you mean" search feature more noticeable
 
 === Bug fixes in 1.14 ===
 
