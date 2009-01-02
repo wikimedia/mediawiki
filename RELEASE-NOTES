@@ -462,6 +462,8 @@ The following extensions are migrated into MediaWiki 1.14:
   file extension (e.g. Foo. jpg).
 * Image moving over an existing file no longer throws a database error
 * (bug 16786) Restored "redundant" links recently removed from Classic sidebar
+* (bug 16850) $wgActionPaths can have query strings now, previously, this broke
+  local URLs
 
 
 === API changes in 1.14 ===
