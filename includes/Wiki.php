@@ -145,7 +145,7 @@ class MediaWiki {
 		if( !is_null( $title ) && !$title->userCanRead() ) {
 			$output->loginToUse();
 			$output->output();
-			exit;
+			throw new MWException("Permission Error: you do not have access to view this page");
 		}
 	}
 

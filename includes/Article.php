@@ -847,7 +847,7 @@ class Article {
 				$wgOut->loginToUse();
 				$wgOut->output();
 				wfProfileOut( __METHOD__ );
-				exit;
+				throw new MWException("Permission Error: you do not have access to view this page");
 			}
 
 			# We're looking at an old revision

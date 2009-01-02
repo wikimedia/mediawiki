@@ -148,11 +148,11 @@ CONTROL;
 		$wgOut->setSubtitle( wfMsgExt( 'difference', array( 'parseinline' ) ) );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 
-		if ( !( $this->mOldPage->userCanRead() && $this->mNewPage->userCanRead() ) ) {
+		if ( !$this->mOldPage->userCanRead() || !$this->mNewPage->userCanRead() ) {
 			$wgOut->loginToUse();
 			$wgOut->output();
 			wfProfileOut( __METHOD__ );
-			exit;
+			throw new MWException("Permission Error: you do not have access to view this page");
 		}
 
 		$sk = $wgUser->getSkin();
@@ -423,11 +423,11 @@ CONTROL;
 
 		# Check if user is allowed to look at this page. If not, bail out.
 		#
-		if ( !( $this->mTitle->userCanRead() ) ) {
+		if ( !$this->mTitle->userCanRead() ) {
 			$wgOut->loginToUse();
 			$wgOut->output();
 			wfProfileOut( __METHOD__ );
-			exit;
+			throw new MWException("Permission Error: you do not have access to view this page");
 		}
 
 		# Prepare the header box
