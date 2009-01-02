@@ -970,7 +970,7 @@ $wgSiteSupportPage	= ''; # A page where you users can receive donations
 $wgReadOnly             = null;
 
 /***
- * If this lock file exists, the wiki will be forced into read-only mode.
+ * If this lock file exists (size > 0), the wiki will be forced into read-only mode.
  * Its contents will be shown to users as part of the read-only warning
  * message.
  */
