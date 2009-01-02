@@ -2149,6 +2149,8 @@ class Article {
 		$latest = $dbw->selectField( 'page', 'page_latest', $conds, __METHOD__ );
 		if( $latest === false ) {
 			$wgOut->showFatalError( wfMsgExt( 'cannotdelete', array( 'parse' ) ) );
+			$wgOut->addHTML( Xml::element( 'h2', null, LogPage::logName( 'delete' ) ) );
+			LogEventsList::showLogExtract( $wgOut, 'delete', $this->mTitle->getPrefixedText() );
 			return;
 		}
 
@@ -2359,10 +2361,13 @@ class Article {
 				$wgOut->returnToMain( false );
 				wfRunHooks('ArticleDeleteComplete', array(&$this, &$wgUser, $reason, $id));
 			} else {
-				if( $error == '' )
+				if( $error == '' ) {
 					$wgOut->showFatalError( wfMsgExt( 'cannotdelete', array( 'parse' ) ) );
-				else
+					$wgOut->addHTML( Xml::element( 'h2', null, LogPage::logName( 'delete' ) ) );
+					LogEventsList::showLogExtract( $wgOut, 'delete', $this->mTitle->getPrefixedText() );
+				} else {
 					$wgOut->showFatalError( $error );
+				}
 			}
 		}
 	}
