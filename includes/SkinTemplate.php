@@ -879,9 +879,10 @@ class SkinTemplate extends Skin {
 
 			// Also add a "permalink" while we're at it
 			if ( $this->mRevisionId ) {
+				global $wgScript;
 				$nav_urls['permalink'] = array(
 					'text' => wfMsg( 'permalink' ),
-					'href' => $wgTitle->getLocalURL( "oldid=$this->mRevisionId" )
+					'href' => "{$wgScript}?oldid={$this->mRevisionId}"
 				);
 			}
 
