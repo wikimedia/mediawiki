@@ -34,7 +34,7 @@ class RawPage {
 		}
 
 		$ctype = $this->mRequest->getVal( 'ctype' );
-		$smaxage = $this->mRequest->getIntOrNull( 'smaxage', $wgSquidMaxage );
+		$smaxage = $this->mRequest->getIntOrNull( 'smaxage' );
 		$maxage = $this->mRequest->getInt( 'maxage', $wgSquidMaxage );
 
 		$this->mExpandTemplates = $this->mRequest->getVal( 'templates' ) === 'expand';
