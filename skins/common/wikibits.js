@@ -661,7 +661,7 @@ function ts_resortTable(lnk) {
 		span.setAttribute('sortdir','down');
 	}
 
-	for(var i in staticRows) {
+	for (var i = 0; i < staticRows.length; i++) {
 		var row = staticRows[i];
 		newRows.splice(row[2], 0, row);
 	}
