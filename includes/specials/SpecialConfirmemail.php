@@ -36,7 +36,8 @@ class EmailConfirmation extends UnlistedSpecialPage {
 				$title = SpecialPage::getTitleFor( 'Userlogin' );
 				$self = SpecialPage::getTitleFor( 'Confirmemail' );
 				$skin = $wgUser->getSkin();
-				$llink = $skin->makeKnownLinkObj( $title, wfMsgHtml( 'loginreqlink' ), 'returnto=' . $self->getPrefixedUrl() );
+				$llink = $skin->makeKnownLinkObj( $title, wfMsgHtml( 'loginreqlink' ), 
+					'returnto=' . $self->getPrefixedUrl() );
 				$wgOut->addHTML( wfMsgWikiHtml( 'confirmemail_needlogin', $llink ) );
 			}
 		} else {
