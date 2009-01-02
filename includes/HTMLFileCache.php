@@ -24,7 +24,6 @@ class HTMLFileCache {
 
 	public function __construct( &$title, $type = 'view' ) {
 		$this->mTitle = $title;
-		$type = $type ? $type : 'view';
 		$this->mType = ($type == 'raw' || $type == 'view' ) ? $type : false;
 		$this->fileCacheName(); // init name
 	}
