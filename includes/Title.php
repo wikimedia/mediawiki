@@ -761,7 +761,7 @@ class Title {
 						if( isset( $matches[4] ) ) $query .= $matches[4];
 						$url = str_replace( '$1', $dbkey, $wgActionPaths[$action] );
 						if( $query != '' ) {
-							$url .= wfAppendQuery( $url, $query );
+							$url = wfAppendQuery( $url, $query );
 						}
 					}
 				}
