@@ -1980,7 +1980,7 @@ Input: contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'unwatchedpages-summary' => '', # do not translate or duplicate this message to other languages
 
 # List redirects
-'listredirects'         => 'List redirects',
+'listredirects'         => 'List of redirects',
 'listredirects-summary' => '', # do not translate or duplicate this message to other languages
 
 # Unused templates
