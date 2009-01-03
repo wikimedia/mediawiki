@@ -2321,7 +2321,7 @@ class User {
 		
 		wfRunHooks( 'UserSetCookies', array( $this, &$session, &$cookies ) );
 		#check for null, since the hook could cause a null value 
-		if ( !is_null( $session ) && !is_null( $_SESSION ) ){
+		if ( !is_null( $session ) && isset( $_SESSION ) ){
 			$_SESSION = $session + $_SESSION;
 		}
 		foreach ( $cookies as $name => $value ) {
