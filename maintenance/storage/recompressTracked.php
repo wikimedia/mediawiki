@@ -169,7 +169,9 @@ class RecompressTracked {
 	function startSlaveProcs() {
 		$cmd = 'php ' . wfEscapeShellArg( __FILE__ );
 		foreach ( self::$cmdLineOptionMap as $cmdOption => $classOption ) {
-			if ( in_array( $cmdOption, self::$optionsWithArgs ) ) {
+			if ( $cmdOption == 'slave-id' ) {
+				continue;
+			} elseif ( in_array( $cmdOption, self::$optionsWithArgs ) && isset( $this->$classOption ) ) {
 				$cmd .= " --$cmdOption " . wfEscapeShellArg( $this->$classOption );
 			} elseif ( $this->$classOption ) {
 				$cmd .= " --$cmdOption";
@@ -184,14 +186,14 @@ class RecompressTracked {
 			$pipes = false;
 			$spec = array( 
 				array( 'pipe', 'r' ),
-				array( 'file', '/dev/stdout', 'w' ),
-				array( 'file', '/dev/stderr', 'w' )
+				array( 'file', 'php://stdout', 'w' ),
+				array( 'file', 'php://stderr', 'w' )
 			);
 			wfSuppressWarnings();
 			$proc = proc_open( "$cmd --slave-id $i", $spec, $pipes );
 			wfRestoreWarnings();
 			if ( !$proc ) {
-				$this->critical( "Error opening slave process" );
+				$this->critical( "Error opening slave process: $cmd" );
 				exit( 1 );
 			}
 			$this->slaveProcs[$i] = $proc;
@@ -396,6 +398,7 @@ class RecompressTracked {
 			case 'quit':
 				return;
 			}
+			wfWaitForSlaves( 5 );
 		}
 	}
 
