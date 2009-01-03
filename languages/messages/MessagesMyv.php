@@ -45,7 +45,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'ВанстнемаКерькс' ),
 	'Recentchanges'             => array( 'ЧыяконьПолавтомат' ),
 	'Upload'                    => array( 'Йовкстамо' ),
-	'Imagelist'                 => array( 'АртовксКерькс' ),
+	'Listfiles'                 => array( 'АртовксКерькс' ),
 	'Newimages'                 => array( 'ОдАртовкст' ),
 	'Statistics'                => array( 'Статистика' ),
 	'Randompage'                => array( 'КодамоПонгсьЛопа' ),
@@ -955,13 +955,13 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'nolicense'          => 'Лицензия арась',
 'upload_source_file' => ' (арси машинасот файла)',
 
-# Special:FileList
+# Special:ListFiles
 'imgfile'        => 'файл',
-'imagelist'      => 'Файлат-мезть',
-'imagelist_date' => 'Чи',
-'imagelist_name' => 'Лемезэ',
-'imagelist_user' => 'Теиця',
-'imagelist_size' => 'Покшолма',
+'listfiles'      => 'Файлат-мезть',
+'listfiles_date' => 'Чи',
+'listfiles_name' => 'Лемезэ',
+'listfiles_user' => 'Теиця',
+'listfiles_size' => 'Покшолма',
 
 # File description page
 'filehist'                       => 'Файланть эрямопингезэ',

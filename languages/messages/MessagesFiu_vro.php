@@ -964,15 +964,15 @@ Kas olõt kimmäs, et tahat taad üles laatiq? Kaeq ka sissekirotust taa teedüs
 'upload_source_url'  => ' (avalik tüütäv võrgoaadrõs)',
 'upload_source_file' => ' (teedüstü su puutrin)',
 
-# Special:FileList
-'imagelist_search_for'  => 'Pildi nime otsminõ:',
+# Special:ListFiles
+'listfiles_search_for'  => 'Pildi nime otsminõ:',
 'imgfile'               => 'teedüstü',
-'imagelist'             => 'Pilte nimekiri',
-'imagelist_date'        => 'Kuupäiv',
-'imagelist_name'        => 'Nimi',
-'imagelist_user'        => 'Pruukja',
-'imagelist_size'        => 'Suurus (baidõn)',
-'imagelist_description' => 'Seletüs',
+'listfiles'             => 'Pilte nimekiri',
+'listfiles_date'        => 'Kuupäiv',
+'listfiles_name'        => 'Nimi',
+'listfiles_user'        => 'Pruukja',
+'listfiles_size'        => 'Suurus (baidõn)',
+'listfiles_description' => 'Seletüs',
 
 # File description page
 'filehist'                  => 'Teedüstü aolugu',

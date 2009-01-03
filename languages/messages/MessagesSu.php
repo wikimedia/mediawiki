@@ -48,7 +48,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Awaskeuneun' ),
 	'Recentchanges'             => array( 'AnyarRobah' ),
 	'Upload'                    => array( 'Kunjal' ),
-	'Imagelist'                 => array( 'DaptarGambar' ),
+	'Listfiles'                 => array( 'DaptarGambar' ),
 	'Newimages'                 => array( 'GambarAnyar' ),
 	'Listusers'                 => array( 'DaptarPamake' ),
 	'Listgrouprights'           => array( 'DaptarHakPamake' ),
@@ -1155,15 +1155,15 @@ Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anje
 'upload_source_url'  => '(URL nu sohéh sarta bisa dibuka ku umum)',
 'upload_source_file' => ' (koropak dina komputer salira)',
 
-# Special:FileList
-'imagelist_search_for'  => 'Sungsi ngaran média:',
+# Special:ListFiles
+'listfiles_search_for'  => 'Sungsi ngaran média:',
 'imgfile'               => 'koropak',
-'imagelist'             => 'Daptar gambar',
-'imagelist_date'        => 'Titimangsa',
-'imagelist_name'        => 'Ngaran',
-'imagelist_user'        => 'Pamaké',
-'imagelist_size'        => 'Badagna',
-'imagelist_description' => 'Pedaran',
+'listfiles'             => 'Daptar gambar',
+'listfiles_date'        => 'Titimangsa',
+'listfiles_name'        => 'Ngaran',
+'listfiles_user'        => 'Pamaké',
+'listfiles_size'        => 'Badagna',
+'listfiles_description' => 'Pedaran',
 
 # File description page
 'filehist'                       => 'Sajarah gambar',

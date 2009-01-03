@@ -591,13 +591,13 @@ Matlakala ago ba [[Special:Watchlist|lenanong la gago la matlakala ditlhapetšo]
 'license-nopreview'  => '(Ponopele ga e gona)',
 'upload_source_file' => '(faele go khomphuthara ya gago)',
 
-# Special:FileList
+# Special:ListFiles
 'imgfile'        => 'faele',
-'imagelist'      => 'Lenano la difaele',
-'imagelist_date' => 'Letšatšikgwedi',
-'imagelist_name' => 'Leina',
-'imagelist_user' => 'Mošumiši',
-'imagelist_size' => 'Bogolo',
+'listfiles'      => 'Lenano la difaele',
+'listfiles_date' => 'Letšatšikgwedi',
+'listfiles_name' => 'Leina',
+'listfiles_user' => 'Mošumiši',
+'listfiles_size' => 'Bogolo',
 
 # File description page
 'filehist'                  => 'Histori ya faele',

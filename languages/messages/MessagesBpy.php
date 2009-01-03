@@ -529,8 +529,8 @@ $messages = array(
 'uploadedimage'   => 'আপলোডকরানি অইল "[[$1]]"',
 'watchthisupload' => 'পাতাএহান খিয়ালে থ',
 
-# Special:FileList
-'imagelist' => 'ছবির তালিকা',
+# Special:ListFiles
+'listfiles' => 'ছবির তালিকা',
 
 # File description page
 'filehist'                  => 'ফাইলর ইতিহাস',

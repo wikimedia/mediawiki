@@ -1014,18 +1014,18 @@ Velaquí el antigu rustrihu d´esborrau pa esti archivu:",
 'upload_source_url'  => ' (una URL vália i acesibri)',
 'upload_source_file' => ' (un archivu nel tu ordinaol)',
 
-# Special:FileList
-'imagelist-summary'     => 'Esta páhina especial muestra tolos archivus empuntaus.
+# Special:ListFiles
+'listfiles-summary'     => 'Esta páhina especial muestra tolos archivus empuntaus.
 Pol defetu los úrtimus archivus empuntaus se muestran ena parti arta la lista.
 Pursa nel entítulu la coluna pa chambal el ordin.',
-'imagelist_search_for'  => 'Landeal pol nombri la imahin:',
+'listfiles_search_for'  => 'Landeal pol nombri la imahin:',
 'imgfile'               => 'archivu',
-'imagelist'             => 'Lista d´archivus',
-'imagelist_date'        => 'Fecha',
-'imagelist_name'        => 'Nombri',
-'imagelist_user'        => 'Usuáriu',
-'imagelist_size'        => 'Grandol',
-'imagelist_description' => 'Descrición',
+'listfiles'             => 'Lista d´archivus',
+'listfiles_date'        => 'Fecha',
+'listfiles_name'        => 'Nombri',
+'listfiles_user'        => 'Usuáriu',
+'listfiles_size'        => 'Grandol',
+'listfiles_description' => 'Descrición',
 
 # File description page
 'filehist'                  => 'Estorial el archivu',

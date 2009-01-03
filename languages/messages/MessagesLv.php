@@ -898,18 +898,18 @@ Lūdzu izvēlies aprakstošāku vārdu šim failam.',
 
 'license' => 'Licence:',
 
-# Special:FileList
-'imagelist-summary'     => 'Šajā lapā ir redzami visi augšuplādētie faili.
+# Special:ListFiles
+'listfiles-summary'     => 'Šajā lapā ir redzami visi augšuplādētie faili.
 Pēc noklusējuma, pēdējie ielādētie faili atrodas saraksta augšā.
 Uzklikšķinot uz kādas kolonnas virsraksta, var sakārtot pēc kāda cita parametra.',
-'imagelist_search_for'  => 'Meklēt failu pēc vārda:',
+'listfiles_search_for'  => 'Meklēt failu pēc vārda:',
 'imgfile'               => 'fails',
-'imagelist'             => 'Attēlu uzskaitījums',
-'imagelist_date'        => 'Datums',
-'imagelist_name'        => 'Nosaukums',
-'imagelist_user'        => 'Lietotājs',
-'imagelist_size'        => 'Izmērs',
-'imagelist_description' => 'Apraksts',
+'listfiles'             => 'Attēlu uzskaitījums',
+'listfiles_date'        => 'Datums',
+'listfiles_name'        => 'Nosaukums',
+'listfiles_user'        => 'Lietotājs',
+'listfiles_size'        => 'Izmērs',
+'listfiles_description' => 'Apraksts',
 
 # File description page
 'filehist'                  => 'Faila hronoloģija',

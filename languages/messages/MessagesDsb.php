@@ -67,7 +67,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Wobglědowańka' ),
 	'Recentchanges'             => array( 'Slědne změny' ),
 	'Upload'                    => array( 'Uploadowaś' ),
-	'Imagelist'                 => array( 'Lisćina datajow' ),
+	'Listfiles'                 => array( 'Lisćina datajow' ),
 	'Newimages'                 => array( 'Nowe dataje' ),
 	'Listusers'                 => array( 'Wužywarje' ),
 	'Listgrouprights'           => array( 'Kupkowe pšawa' ),
@@ -1381,16 +1381,16 @@ PICT # misc.
 'upload_source_url'  => ' (płaśeca, zjawnje pśistupna URL)',
 'upload_source_file' => ' (dataja na twójom kompjuterje)',
 
-# Special:FileList
-'imagelist-summary'     => 'Toś ten specialny bok nalicyjo wšykne uploadowane dataje. Normalnje pokazuje se te dataje, ako su slědne se uploadowali, ako prědne w lisćinje. Tłocenje na napise špaltow změnijo sortěrowanje.',
-'imagelist_search_for'  => 'Za medijowym mjenim pytaś:',
+# Special:ListFiles
+'listfiles-summary'     => 'Toś ten specialny bok nalicyjo wšykne uploadowane dataje. Normalnje pokazuje se te dataje, ako su slědne se uploadowali, ako prědne w lisćinje. Tłocenje na napise špaltow změnijo sortěrowanje.',
+'listfiles_search_for'  => 'Za medijowym mjenim pytaś:',
 'imgfile'               => 'dataja',
-'imagelist'             => 'Lisćina datajow',
-'imagelist_date'        => 'datum',
-'imagelist_name'        => 'mě dataje',
-'imagelist_user'        => 'wužywaŕ',
-'imagelist_size'        => 'Wjelikosć (byte)',
-'imagelist_description' => 'Zespominanje',
+'listfiles'             => 'Lisćina datajow',
+'listfiles_date'        => 'datum',
+'listfiles_name'        => 'mě dataje',
+'listfiles_user'        => 'wužywaŕ',
+'listfiles_size'        => 'Wjelikosć (byte)',
+'listfiles_description' => 'Zespominanje',
 
 # File description page
 'filehist'                       => 'Stawizny dataje',

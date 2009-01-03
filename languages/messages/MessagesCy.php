@@ -1286,18 +1286,18 @@ Efallai yr hoffech rhoi cynnig arni ar adeg llai prysur.',
 'upload_source_url'  => " (URL dilys, ar gael i'r cyhoedd)",
 'upload_source_file' => ' (ffeil ar eich cyfrifiadur)',
 
-# Special:FileList
-'imagelist-summary'     => "Rhestr yr holl ffeiliau sydd wedi eu huwchlwytho sydd ar y dudalen hon. 
+# Special:ListFiles
+'listfiles-summary'     => "Rhestr yr holl ffeiliau sydd wedi eu huwchlwytho sydd ar y dudalen hon. 
 Trefnir y rhestr yn ôl amser uwchlwytho, gyda'r diweddaraf ar flaen y rhestr.
 Gallwch newid trefn y rhestr trwy bwyso ar bennawd colofn.",
-'imagelist_search_for'  => "Chwilio am enw'r ddelwedd:",
+'listfiles_search_for'  => "Chwilio am enw'r ddelwedd:",
 'imgfile'               => 'ffeil',
-'imagelist'             => "Rhestr o'r holl ffeiliau",
-'imagelist_date'        => 'Dyddiad',
-'imagelist_name'        => 'Enw',
-'imagelist_user'        => 'Defnyddiwr',
-'imagelist_size'        => 'Maint',
-'imagelist_description' => 'Disgrifiad',
+'listfiles'             => "Rhestr o'r holl ffeiliau",
+'listfiles_date'        => 'Dyddiad',
+'listfiles_name'        => 'Enw',
+'listfiles_user'        => 'Defnyddiwr',
+'listfiles_size'        => 'Maint',
+'listfiles_description' => 'Disgrifiad',
 
 # File description page
 'filehist'                       => 'Hanes y ffeil',

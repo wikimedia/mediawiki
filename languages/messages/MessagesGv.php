@@ -570,14 +570,14 @@ Ta duillagyn er [[Special:Watchlist|dty rolley arrey]] ayns '''clou trome'''.",
 'license-nopreview'  => '(Cha nel roie-haishbynys ry-gheddyn)',
 'upload_source_file' => ' (coadan er dty cho-earrooder)',
 
-# Special:FileList
+# Special:ListFiles
 'imgfile'               => 'coadan',
-'imagelist'             => 'Rolley coadanyn',
-'imagelist_date'        => 'Date',
-'imagelist_name'        => 'Ennym',
-'imagelist_user'        => 'Ymmydeyr',
-'imagelist_size'        => 'Mooadys',
-'imagelist_description' => 'Coontey',
+'listfiles'             => 'Rolley coadanyn',
+'listfiles_date'        => 'Date',
+'listfiles_name'        => 'Ennym',
+'listfiles_user'        => 'Ymmydeyr',
+'listfiles_size'        => 'Mooadys',
+'listfiles_description' => 'Coontey',
 
 # File description page
 'filehist'                       => 'Shennaghys y choadan',

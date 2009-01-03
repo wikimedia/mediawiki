@@ -911,15 +911,15 @@ $2',
 'upload_source_url'  => ' (一個有效的，可公開訪問的 URL)',
 'upload_source_file' => ' (在您電腦上的一個檔案)',
 
-# Special:FileList
-'imagelist_search_for'  => '按圖片名稱搜尋:',
+# Special:ListFiles
+'listfiles_search_for'  => '按圖片名稱搜尋:',
 'imgfile'               => '檔案',
-'imagelist'             => '檔案列表',
-'imagelist_date'        => '日期',
-'imagelist_name'        => '名稱',
-'imagelist_user'        => '使用者',
-'imagelist_size'        => '大小',
-'imagelist_description' => '描述',
+'listfiles'             => '檔案列表',
+'listfiles_date'        => '日期',
+'listfiles_name'        => '名稱',
+'listfiles_user'        => '使用者',
+'listfiles_size'        => '大小',
+'listfiles_description' => '描述',
 
 # File description page
 'filehist'                  => '檔案歷史',

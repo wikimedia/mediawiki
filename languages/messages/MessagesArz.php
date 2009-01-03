@@ -199,7 +199,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'قايمة_المراقبة' ),
 	'Recentchanges'             => array( 'أحدث_التغييرات' ),
 	'Upload'                    => array( 'رفع' ),
-	'Imagelist'                 => array( 'قايمة_الصور' ),
+	'Listfiles'                 => array( 'قايمة_الصور' ),
 	'Newimages'                 => array( 'صور_جديدة' ),
 	'Listusers'                 => array( 'عرض_المستخدمين', 'قايمة_المستخدمين' ),
 	'Listgrouprights'           => array( 'عرض_صلاحيات_المجموعات' ),
@@ -1592,18 +1592,18 @@ PICT # misc.
 'upload_source_url'  => '  (اليوأرإل صحيح وممكن توصل ليه)',
 'upload_source_file' => ' (ملف على الكمبيوتر بتاعك)',
 
-# Special:FileList
-'imagelist-summary'     => 'الصفحة المخصوصة دى بتعرض كل الملفات المتحملة.
+# Special:ListFiles
+'listfiles-summary'     => 'الصفحة المخصوصة دى بتعرض كل الملفات المتحملة.
 اوتوماتيكى اخر الملفات اللى اتحملت ح تظهر فى اللستة من فوق.
 لو دوست على راس العمود الترتيب ح يتغير.',
-'imagelist_search_for'  => 'دور على اسم الميديا:',
+'listfiles_search_for'  => 'دور على اسم الميديا:',
 'imgfile'               => 'ملف',
-'imagelist'             => 'لستة الملفات',
-'imagelist_date'        => 'تاريخ',
-'imagelist_name'        => 'اسم',
-'imagelist_user'        => 'يوزر',
-'imagelist_size'        => 'حجم',
-'imagelist_description' => 'وصف',
+'listfiles'             => 'لستة الملفات',
+'listfiles_date'        => 'تاريخ',
+'listfiles_name'        => 'اسم',
+'listfiles_user'        => 'يوزر',
+'listfiles_size'        => 'حجم',
+'listfiles_description' => 'وصف',
 
 # File description page
 'filehist'                       => 'تاريخ الملف',

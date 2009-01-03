@@ -1253,18 +1253,18 @@ $3 చెప్పిన కారణం: ''$2''",
 'upload_source_url'  => ' (సార్వజనికంగా అందుబాటులో ఉన్న, సరైన URL)',
 'upload_source_file' => ' (మీ కంప్యూటర్లో ఒక ఫైలు)',
 
-# Special:FileList
-'imagelist-summary'     => 'ఈ ప్రత్యేక పేజీ ఇప్పటి వరకూ అప్లోడయిన ఫైళ్లను చూపిస్తుంది.
+# Special:ListFiles
+'listfiles-summary'     => 'ఈ ప్రత్యేక పేజీ ఇప్పటి వరకూ అప్లోడయిన ఫైళ్లను చూపిస్తుంది.
 ఏ క్రమాన్నీ పేర్కొనకపోతే ఇటీవలే అప్లోడయిన ఫైళ్లను ముందుగా చూపిస్తుంది.
 నిలువు వరుసలకున్న శీర్షికలపై నొక్కితే క్రమపరిచే విధానం మారుతుంది.',
-'imagelist_search_for'  => 'మీడియా పేరుకై వెతుకు:',
+'listfiles_search_for'  => 'మీడియా పేరుకై వెతుకు:',
 'imgfile'               => 'ఫైలు',
-'imagelist'             => 'ఫైళ్ళ జాబితా',
-'imagelist_date'        => 'తేదీ',
-'imagelist_name'        => 'పేరు',
-'imagelist_user'        => 'వాడుకరి',
-'imagelist_size'        => 'పరిమాణం',
-'imagelist_description' => 'వివరణ',
+'listfiles'             => 'ఫైళ్ళ జాబితా',
+'listfiles_date'        => 'తేదీ',
+'listfiles_name'        => 'పేరు',
+'listfiles_user'        => 'వాడుకరి',
+'listfiles_size'        => 'పరిమాణం',
+'listfiles_description' => 'వివరణ',
 
 # File description page
 'filehist'                       => 'ఫైలు చరితం',

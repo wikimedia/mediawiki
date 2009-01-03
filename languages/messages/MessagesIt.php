@@ -79,7 +79,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'OsservatiSpeciali' ),
 	'Recentchanges'             => array( 'UltimeModifiche' ),
 	'Upload'                    => array( 'Carica' ),
-	'Imagelist'                 => array( 'Immagini' ),
+	'Listfiles'                 => array( 'Immagini' ),
 	'Newimages'                 => array( 'ImmaginiRecenti' ),
 	'Listusers'                 => array( 'Utenti', 'ElencoUtenti' ),
 	'Listgrouprights'           => array( 'ElencoPermessiGruppi' ),
@@ -1404,18 +1404,18 @@ PICT # misc.
 'upload_source_url'  => ' (una URL corretta e accessibile)',
 'upload_source_file' => ' (un file sul proprio computer)',
 
-# Special:FileList
-'imagelist-summary'     => "Questa pagina speciale mostra tutti i file caricati.
+# Special:ListFiles
+'listfiles-summary'     => "Questa pagina speciale mostra tutti i file caricati.
 I file caricati più di recente vengono mostrati all'inizio della lista.
 Per modificare l'ordinamento, fare clic sull'intestazione della colonna prescelta.",
-'imagelist_search_for'  => 'Ricerca immagini per nome:',
+'listfiles_search_for'  => 'Ricerca immagini per nome:',
 'imgfile'               => 'file',
-'imagelist'             => 'Elenco dei file',
-'imagelist_date'        => 'Data',
-'imagelist_name'        => 'Nome',
-'imagelist_user'        => 'Utente',
-'imagelist_size'        => 'Dimensione in byte',
-'imagelist_description' => 'Descrizione',
+'listfiles'             => 'Elenco dei file',
+'listfiles_date'        => 'Data',
+'listfiles_name'        => 'Nome',
+'listfiles_user'        => 'Utente',
+'listfiles_size'        => 'Dimensione in byte',
+'listfiles_description' => 'Descrizione',
 
 # File description page
 'filehist'                       => 'Cronologia del file',

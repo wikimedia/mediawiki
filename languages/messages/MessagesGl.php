@@ -51,7 +51,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Listaxe de vixilancia' ),
 	'Recentchanges'             => array( 'Cambios recentes' ),
 	'Upload'                    => array( 'Cargar' ),
-	'Imagelist'                 => array( 'Listaxe de imaxes' ),
+	'Listfiles'                 => array( 'Listaxe de imaxes' ),
 	'Newimages'                 => array( 'Imaxes novas' ),
 	'Listusers'                 => array( 'Listaxe de usuarios' ),
 	'Listgrouprights'           => array( 'Listaxe de dereitos segundo o grupo' ),
@@ -1426,18 +1426,18 @@ Tamén pode reintentalo cando haxa menos actividade.',
 'upload_source_url'  => ' (un URL válido, accesíbel publicamente)',
 'upload_source_file' => ' (un ficheiro no seu ordenador)',
 
-# Special:FileList
-'imagelist-summary'     => 'Esta páxina especial amosa todos os ficheiros cargados.
+# Special:ListFiles
+'listfiles-summary'     => 'Esta páxina especial amosa todos os ficheiros cargados.
 Por omisión, os ficheiros enviados máis recentemente aparecen no alto da listaxe.
 Premendo nunha cabeceira da columna cambia a ordenación.',
-'imagelist_search_for'  => 'Buscar polo nome do ficheiro multimedia:',
+'listfiles_search_for'  => 'Buscar polo nome do ficheiro multimedia:',
 'imgfile'               => 'ficheiro',
-'imagelist'             => 'Listaxe de imaxes',
-'imagelist_date'        => 'Data',
-'imagelist_name'        => 'Nome',
-'imagelist_user'        => 'Usuario',
-'imagelist_size'        => 'Tamaño (bytes)',
-'imagelist_description' => 'Descrición',
+'listfiles'             => 'Listaxe de imaxes',
+'listfiles_date'        => 'Data',
+'listfiles_name'        => 'Nome',
+'listfiles_user'        => 'Usuario',
+'listfiles_size'        => 'Tamaño (bytes)',
+'listfiles_description' => 'Descrición',
 
 # File description page
 'filehist'                       => 'Historial do ficheiro',

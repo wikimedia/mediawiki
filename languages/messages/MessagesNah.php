@@ -807,12 +807,12 @@ Timitztlātlauhtiah, xitlahcuiloa occē tōcāitl.',
 
 'upload_source_file' => ' (cē tlahcuilōlli mochīuhpōhualhuazco)',
 
-# Special:FileList
-'imagelist_search_for' => 'Tlatēmōz mēdiatl tōcācopa:',
+# Special:ListFiles
+'listfiles_search_for' => 'Tlatēmōz mēdiatl tōcācopa:',
 'imgfile'              => 'īxiptli',
-'imagelist'            => 'Mochīntīn īxiptli',
-'imagelist_name'       => 'Tōcāitl',
-'imagelist_user'       => 'Tlatequitiltilīlli',
+'listfiles'            => 'Mochīntīn īxiptli',
+'listfiles_name'       => 'Tōcāitl',
+'listfiles_user'       => 'Tlatequitiltilīlli',
 
 # File description page
 'filehist'                       => 'Tlahcuilōlli tlahcuilōlloh',

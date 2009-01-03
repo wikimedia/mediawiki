@@ -1179,13 +1179,13 @@ Parameter $1 is a link to the deletion log, with the text in {{msg|deletionlog}}
 'license-nopreview' => 'Error message when a certain license does not exist',
 
 # Special:FileList
-'imagelist-summary'     => 'This message is displayed at the top of [[Special:ImageList]] to explain how to use that special page.',
+'listfiles-summary'     => 'This message is displayed at the top of [[Special:ImageList]] to explain how to use that special page.',
 'imgfile'               => '{{Identical|File}}',
-'imagelist'             => '{{Identical|File list}}',
-'imagelist_date'        => '{{Identical|Date}}',
-'imagelist_name'        => '{{Identical|Name}}',
-'imagelist_user'        => '{{Identical|User}}',
-'imagelist_description' => '{{Identical|Description}}',
+'listfiles'             => '{{Identical|File list}}',
+'listfiles_date'        => '{{Identical|Date}}',
+'listfiles_name'        => '{{Identical|Name}}',
+'listfiles_user'        => '{{Identical|User}}',
+'listfiles_description' => '{{Identical|Description}}',
 
 # File description page
 'filehist'                       => 'Text shown on a media description page. Heads the section where the different versions of the file are displayed.',

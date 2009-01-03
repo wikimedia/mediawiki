@@ -1342,18 +1342,18 @@ Maaaring ibigin mong subukin uli sa isang hindi gaanong abalang panahon.',
 'upload_source_url'  => ' (isang tanggap at napupuntahan ng publikong URL)',
 'upload_source_file' => ' (isang talaksan sa iyong kompyuter)',
 
-# Special:FileList
-'imagelist-summary'     => 'Ipinapakita nitong natatanging pahinang ang lahat ng naikargang mga talaksan.
+# Special:ListFiles
+'listfiles-summary'     => 'Ipinapakita nitong natatanging pahinang ang lahat ng naikargang mga talaksan.
 Bilang naitakda ipinapakita sa itaas ng talaan ang huling ikinargang mga talaksan.
 Mababago ang pagkakapangkat-pangkat sa pamamagitan ng pagpindot sa isang paulo ng pahabang kahanayan.',
-'imagelist_search_for'  => 'Hanapin ang pangalan ng midya:',
+'listfiles_search_for'  => 'Hanapin ang pangalan ng midya:',
 'imgfile'               => 'talaksan',
-'imagelist'             => 'Talaan ng talaksan',
-'imagelist_date'        => 'Petsa',
-'imagelist_name'        => 'Pangalan',
-'imagelist_user'        => 'Tagagamit',
-'imagelist_size'        => 'Sukat',
-'imagelist_description' => 'Paglalarawan',
+'listfiles'             => 'Talaan ng talaksan',
+'listfiles_date'        => 'Petsa',
+'listfiles_name'        => 'Pangalan',
+'listfiles_user'        => 'Tagagamit',
+'listfiles_size'        => 'Sukat',
+'listfiles_description' => 'Paglalarawan',
 
 # File description page
 'filehist'                       => 'Kasaysayan ng talaksan',

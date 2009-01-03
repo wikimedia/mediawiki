@@ -104,7 +104,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Tarkkailulista' ),
 	'Recentchanges'             => array( 'Tuoreet_muutokset' ),
 	'Upload'                    => array( 'Tallenna', 'Lisää_tiedosto' ),
-	'Imagelist'                 => array( 'Tiedostoluettelo' ),
+	'Listfiles'                 => array( 'Tiedostoluettelo' ),
 	'Newimages'                 => array( 'Uudet_tiedostot', 'Uudet_kuvat' ),
 	'Listusers'                 => array( 'Käyttäjät' ),
 	'Listgrouprights'           => array( 'Käyttäjäryhmien_oikeudet' ),
@@ -1391,16 +1391,16 @@ Harkitse, haluatko jatkaa tämän tiedoston tallentamista. Tiedoston poistoloki 
 'upload_source_url'  => ' (julkinen verkko-osoite)',
 'upload_source_file' => ' (tiedosto tietokoneella)',
 
-# Special:FileList
-'imagelist-summary'     => 'Tämä toimintosivu näyttää kaikki tallennetut tiedostot. Viimeisin tallennettu tiedosto on listalla ensimmäisenä. Ryhmittelyperustetta voi vaihtaa napsauttamalla sarakenimeä.',
-'imagelist_search_for'  => 'Nimihaku',
+# Special:ListFiles
+'listfiles-summary'     => 'Tämä toimintosivu näyttää kaikki tallennetut tiedostot. Viimeisin tallennettu tiedosto on listalla ensimmäisenä. Ryhmittelyperustetta voi vaihtaa napsauttamalla sarakenimeä.',
+'listfiles_search_for'  => 'Nimihaku',
 'imgfile'               => 'tiedosto',
-'imagelist'             => 'Tiedostoluettelo',
-'imagelist_date'        => 'Päiväys',
-'imagelist_name'        => 'Nimi',
-'imagelist_user'        => 'Tallentaja',
-'imagelist_size'        => 'Koko',
-'imagelist_description' => 'Kuvaus',
+'listfiles'             => 'Tiedostoluettelo',
+'listfiles_date'        => 'Päiväys',
+'listfiles_name'        => 'Nimi',
+'listfiles_user'        => 'Tallentaja',
+'listfiles_size'        => 'Koko',
+'listfiles_description' => 'Kuvaus',
 
 # File description page
 'filehist'                       => 'Tiedoston historia',

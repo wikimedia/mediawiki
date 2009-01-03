@@ -47,7 +47,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Wobkedźbowanki' ),
 	'Recentchanges'             => array( 'Aktualne změny' ),
 	'Upload'                    => array( 'Nahraće' ),
-	'Imagelist'                 => array( 'Dataje' ),
+	'Listfiles'                 => array( 'Dataje' ),
 	'Newimages'                 => array( 'Nowe dataje' ),
 	'Listusers'                 => array( 'Wužiwarjo' ),
 	'Listgrouprights'           => array( 'Skupinske prawa' ),
@@ -1361,16 +1361,16 @@ PICT # misc.
 'upload_source_url'  => ' (płaćiwy, zjawnje docpějomny URL)',
 'upload_source_file' => ' (dataja na twojim ličaku)',
 
-# Special:FileList
-'imagelist-summary'     => 'Tuta specialna strona naliči wšě nahrate dataje. Standardnje so naposlědk nahrate dateje cyle horjeka pokazuja. Kliknjo na nadpisma stołpikow móžeš sortěrowanje wobroćić abo po druhich kriterijach rjadować.',
-'imagelist_search_for'  => 'Za mjenom wobraza pytać:',
+# Special:ListFiles
+'listfiles-summary'     => 'Tuta specialna strona naliči wšě nahrate dataje. Standardnje so naposlědk nahrate dateje cyle horjeka pokazuja. Kliknjo na nadpisma stołpikow móžeš sortěrowanje wobroćić abo po druhich kriterijach rjadować.',
+'listfiles_search_for'  => 'Za mjenom wobraza pytać:',
 'imgfile'               => 'dataja',
-'imagelist'             => 'Lisćina datajow',
-'imagelist_date'        => 'datum',
-'imagelist_name'        => 'mjeno dataje',
-'imagelist_user'        => 'wužiwar',
-'imagelist_size'        => 'wulkosć (byte)',
-'imagelist_description' => 'wopisanje',
+'listfiles'             => 'Lisćina datajow',
+'listfiles_date'        => 'datum',
+'listfiles_name'        => 'mjeno dataje',
+'listfiles_user'        => 'wužiwar',
+'listfiles_size'        => 'wulkosć (byte)',
+'listfiles_description' => 'wopisanje',
 
 # File description page
 'filehist'                       => 'Wersije dataje',

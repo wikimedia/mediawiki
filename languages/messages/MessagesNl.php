@@ -200,7 +200,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Volglijst' ),
 	'Recentchanges'             => array( 'RecenteWijzigingen' ),
 	'Upload'                    => array( 'Uploaden' ),
-	'Imagelist'                 => array( 'Bestandenlijst', 'Afbeeldingenlijst' ),
+	'Listfiles'                 => array( 'Bestandenlijst', 'Afbeeldingenlijst' ),
 	'Newimages'                 => array( 'NieuweBestanden', 'NieuweAfbeeldingen' ),
 	'Listusers'                 => array( 'Gebruikerslijst', 'Gebruikerlijst' ),
 	'Listgrouprights'           => array( 'GroepsrechtenWeergeven' ),
@@ -1634,18 +1634,18 @@ U kunt het misschien proberen als het minder druk is.',
 'upload_source_url'  => ' (een geldige, publiek toegankelijke URL)',
 'upload_source_file' => ' (een bestand op uw computer)',
 
-# Special:FileList
-'imagelist-summary'     => 'Op deze speciale pagina zijn alle toegevoegde bestanden te bekijken.
+# Special:ListFiles
+'listfiles-summary'     => 'Op deze speciale pagina zijn alle toegevoegde bestanden te bekijken.
 Standaard worden de laatst toegevoegde bestanden bovenaan de lijst weergegeven.
 Klikken op een kolomkop verandert de sortering.',
-'imagelist_search_for'  => 'Zoeken naar bestand:',
+'listfiles_search_for'  => 'Zoeken naar bestand:',
 'imgfile'               => 'bestand',
-'imagelist'             => 'Bestandslijst',
-'imagelist_date'        => 'Datum',
-'imagelist_name'        => 'Naam',
-'imagelist_user'        => 'Gebruiker',
-'imagelist_size'        => 'Grootte (bytes)',
-'imagelist_description' => 'Beschrijving',
+'listfiles'             => 'Bestandslijst',
+'listfiles_date'        => 'Datum',
+'listfiles_name'        => 'Naam',
+'listfiles_user'        => 'Gebruiker',
+'listfiles_size'        => 'Grootte (bytes)',
+'listfiles_description' => 'Beschrijving',
 
 # File description page
 'filehist'                       => 'Bestandsgeschiedenis',

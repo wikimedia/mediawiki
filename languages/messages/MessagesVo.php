@@ -62,7 +62,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Galädalised' ),
 	'Recentchanges'             => array( 'Votükamsnulik' ),
 	'Upload'                    => array( 'Löpükön' ),
-	'Imagelist'                 => array( 'Magodalised' ),
+	'Listfiles'                 => array( 'Magodalised' ),
 	'Newimages'                 => array( 'Magodsnulik', 'Magods nulik' ),
 	'Listusers'                 => array( 'Gebanalised' ),
 	'Statistics'                => array( 'Statits' ),
@@ -1142,18 +1142,18 @@ Binosöv gudikum, if steifülolöv dönu ün tim votik läs jäfädik.',
 'upload_source_url'  => ' (el URL lonöföl ä fa valans gebovik)',
 'upload_source_file' => ' (ragiv pö nünöm olik)',
 
-# Special:FileList
-'imagelist-summary'     => 'Su pad patik at ragivs pelöpüköl valik pelisedons.
+# Special:ListFiles
+'listfiles-summary'     => 'Su pad patik at ragivs pelöpüköl valik pelisedons.
 Nomiko ragivs pelöpüköl lätikün palisedons primü lised.
 Klikolös tiädi padüla ad votükön sökaleodi at.',
-'imagelist_search_for'  => 'Sukön ragivanemi:',
+'listfiles_search_for'  => 'Sukön ragivanemi:',
 'imgfile'               => 'ragiv',
-'imagelist'             => 'Ragivalised',
-'imagelist_date'        => 'Dät',
-'imagelist_name'        => 'Nem',
-'imagelist_user'        => 'Geban',
-'imagelist_size'        => 'Gretot',
-'imagelist_description' => 'Bepenam',
+'listfiles'             => 'Ragivalised',
+'listfiles_date'        => 'Dät',
+'listfiles_name'        => 'Nem',
+'listfiles_user'        => 'Geban',
+'listfiles_size'        => 'Gretot',
+'listfiles_description' => 'Bepenam',
 
 # File description page
 'filehist'                  => 'Jenotem ragiva',

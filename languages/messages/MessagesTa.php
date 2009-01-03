@@ -1058,15 +1058,15 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'upload_source_url'  => ' (செல்லுபடியான, இணைய முகவரி)',
 'upload_source_file' => ' (உங்கள் கணணியில் உள்ள கோப்பு)',
 
-# Special:FileList
-'imagelist_search_for'  => 'பின்வரும் பெயருள்ள ஊடகக் கோப்பைத் தேடு:',
+# Special:ListFiles
+'listfiles_search_for'  => 'பின்வரும் பெயருள்ள ஊடகக் கோப்பைத் தேடு:',
 'imgfile'               => 'கோப்பு',
-'imagelist'             => 'படிமங்களின் பட்டியல்',
-'imagelist_date'        => 'நாள்',
-'imagelist_name'        => 'பெயர்',
-'imagelist_user'        => 'பயனர்',
-'imagelist_size'        => 'அளவு',
-'imagelist_description' => 'விளக்கம்',
+'listfiles'             => 'படிமங்களின் பட்டியல்',
+'listfiles_date'        => 'நாள்',
+'listfiles_name'        => 'பெயர்',
+'listfiles_user'        => 'பயனர்',
+'listfiles_size'        => 'அளவு',
+'listfiles_description' => 'விளக்கம்',
 
 # File description page
 'filehist'                       => 'கோப்பு வரலாறு',

@@ -205,8 +205,8 @@ $messages = array(
 
 'license' => 'Лицензиялоо:',
 
-# Special:FileList
-'imagelist' => 'Файлдар тизмеси',
+# Special:ListFiles
+'listfiles' => 'Файлдар тизмеси',
 
 # File description page
 'imagelinks' => 'Шилтемелер',

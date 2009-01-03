@@ -1085,18 +1085,18 @@ $1',
 'upload_source_url'  => ' (ἔγκυρος τίς, δημοσίως προσπελάσιμος URL)',
 'upload_source_file' => ' (ἀρχεῖον τι ἐν τῇ ὑπολογιστικῇ μηχανῇ σου)',
 
-# Special:FileList
-'imagelist-summary'     => 'Ἡδε εἰδικὴ δέλτος δεικνύει ἅπαντα τὰ ἐπιπεφορτισμένα ἀρχεῖα.
+# Special:ListFiles
+'listfiles-summary'     => 'Ἡδε εἰδικὴ δέλτος δεικνύει ἅπαντα τὰ ἐπιπεφορτισμένα ἀρχεῖα.
 Κατὰ προεπιλογὴν τὰ ὑστάτως ἐπιπεφορτισμένα ἀρχεῖα δεινύονται ἐν τῇ κορυφῇ τοῦ καταλόγου.
 Πίεσον ἐπικεφαλίδα τινὰ στήλης ἵνα ἡ καταλογὴ ἀλλάξηται.',
-'imagelist_search_for'  => 'Ἀναζήτησις τοῦ τῶν μέσων ὀνόματος:',
+'listfiles_search_for'  => 'Ἀναζήτησις τοῦ τῶν μέσων ὀνόματος:',
 'imgfile'               => 'ἀρχεῖον',
-'imagelist'             => 'Κατάλογος πάντων τῶν φορτίων',
-'imagelist_date'        => 'Χρονολογία',
-'imagelist_name'        => 'Ὄνομα',
-'imagelist_user'        => 'Χρώμενος',
-'imagelist_size'        => 'Ὁπόσος',
-'imagelist_description' => 'Διέξοδος',
+'listfiles'             => 'Κατάλογος πάντων τῶν φορτίων',
+'listfiles_date'        => 'Χρονολογία',
+'listfiles_name'        => 'Ὄνομα',
+'listfiles_user'        => 'Χρώμενος',
+'listfiles_size'        => 'Ὁπόσος',
+'listfiles_description' => 'Διέξοδος',
 
 # File description page
 'filehist'                       => 'Τοῦ ἀρχείου συγγραφή',

@@ -1119,18 +1119,18 @@ $1',
 'upload_source_url'  => '(як нишони интернетии мӯътабар ва оммавӣ)',
 'upload_source_file' => ' (парвандае дар компютери шумо)',
 
-# Special:FileList
-'imagelist-summary'     => 'Ин саҳифаи вижа тамоми парвандаҳои боргузоришударо нишон медиҳад.
+# Special:ListFiles
+'listfiles-summary'     => 'Ин саҳифаи вижа тамоми парвандаҳои боргузоришударо нишон медиҳад.
 Ба таври пешфарз охирин парвандаҳои боргузоришуда дар болои феҳрист нишон дода шудаанд.
 Як клик кардани рӯи унвони сутунҳо боиси тағйири тартиби намоиши парвандаҳо мешавад.',
-'imagelist_search_for'  => 'Ҷустуҷӯи номи акс:',
+'listfiles_search_for'  => 'Ҷустуҷӯи номи акс:',
 'imgfile'               => 'парванда',
-'imagelist'             => 'Феҳристи парванда',
-'imagelist_date'        => 'Сана',
-'imagelist_name'        => 'Ном',
-'imagelist_user'        => 'Корбар',
-'imagelist_size'        => 'Андоза(ҳаҷм)',
-'imagelist_description' => 'Тавсифот',
+'listfiles'             => 'Феҳристи парванда',
+'listfiles_date'        => 'Сана',
+'listfiles_name'        => 'Ном',
+'listfiles_user'        => 'Корбар',
+'listfiles_size'        => 'Андоза(ҳаҷм)',
+'listfiles_description' => 'Тавсифот',
 
 # File description page
 'filehist'                       => 'Таърихи файл',

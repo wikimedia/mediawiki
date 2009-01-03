@@ -241,8 +241,8 @@ $messages = array(
 'uploadbtn' => 'kokumbisa',
 'savefile'  => 'kobómbisa kásá-kásá',
 
-# Special:FileList
-'imagelist_date' => 'Mokɔlɔ',
+# Special:ListFiles
+'listfiles_date' => 'Mokɔlɔ',
 
 # File deletion
 'filedelete-submit' => 'Kolímwisa',

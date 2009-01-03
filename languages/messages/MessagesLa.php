@@ -68,7 +68,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Paginae custoditae' ),
 	'Recentchanges'             => array( 'Nuper mutata', 'Mutationes recentes' ),
 	'Upload'                    => array( 'Fasciculos onerare', 'Imagines onerare' ),
-	'Imagelist'                 => array( 'Fasciculi', 'Imagines' ),
+	'Listfiles'                 => array( 'Fasciculi', 'Imagines' ),
 	'Newimages'                 => array( 'Fasciculi novi', 'Imagines novae' ),
 	'Listusers'                 => array( 'Usores' ),
 	'Listgrouprights'           => array( 'Gregum usorum potestates', 'Iura gregum' ),
@@ -1054,13 +1054,13 @@ Commodule notatio fasciculorum deletorum hic datur:",
 'nolicense'         => 'Nulla selecta',
 'license-nopreview' => '(Praevisum monstrari non potest)',
 
-# Special:FileList
+# Special:ListFiles
 'imgfile'               => 'fasciculus',
-'imagelist'             => 'Fasciculorum index',
-'imagelist_name'        => 'Nomen',
-'imagelist_user'        => 'Usor',
-'imagelist_size'        => 'Magnitudo',
-'imagelist_description' => 'Descriptio',
+'listfiles'             => 'Fasciculorum index',
+'listfiles_name'        => 'Nomen',
+'listfiles_user'        => 'Usor',
+'listfiles_size'        => 'Magnitudo',
+'listfiles_description' => 'Descriptio',
 
 # File description page
 'filehist'                  => 'Historia fasciculi',

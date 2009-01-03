@@ -833,15 +833,15 @@ Ma tesɛiḍ tugna-nni s resolution tameqqrant, azen-it, ma ulac beddel isem-is.
 'upload_source_url'  => ' (URL saḥiḥ)',
 'upload_source_file' => ' (afaylu deg uselkim inek)',
 
-# Special:FileList
-'imagelist_search_for'  => 'Nadi ɣef yisem n tugna:',
+# Special:ListFiles
+'listfiles_search_for'  => 'Nadi ɣef yisem n tugna:',
 'imgfile'               => 'afaylu',
-'imagelist'             => 'Umuɣ n tugniwin',
-'imagelist_date'        => 'Azemz',
-'imagelist_name'        => 'Isem',
-'imagelist_user'        => 'Amseqdac',
-'imagelist_size'        => 'Tiddi (bytes/octets)',
-'imagelist_description' => 'Aglam',
+'listfiles'             => 'Umuɣ n tugniwin',
+'listfiles_date'        => 'Azemz',
+'listfiles_name'        => 'Isem',
+'listfiles_user'        => 'Amseqdac',
+'listfiles_size'        => 'Tiddi (bytes/octets)',
+'listfiles_description' => 'Aglam',
 
 # File description page
 'filehist-current'          => 'Lux a',

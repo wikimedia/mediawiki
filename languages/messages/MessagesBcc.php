@@ -59,7 +59,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'لیست چارگ' ),
 	'Recentchanges'             => array( 'نوکین تغییرات' ),
 	'Upload'                    => array( 'آپلود' ),
-	'Imagelist'                 => array( 'لیست عکس' ),
+	'Listfiles'                 => array( 'لیست عکس' ),
 	'Newimages'                 => array( 'نوکین عکسان' ),
 	'Listusers'                 => array( 'لیست کاربر' ),
 	'Listgrouprights'           => array( 'لیست حقوق گروه' ),
@@ -1439,18 +1439,18 @@ PICT # misc.
 'upload_source_url'  => '(یک متعبرین، عمومی دسترسی انت URL)',
 'upload_source_file' => '(یک فایل ته شمی کامپیوتر)',
 
-# Special:FileList
-'imagelist-summary'     => 'ای حاصین صفحه کل آپلودی فایلانء پیش داریت.
+# Special:ListFiles
+'listfiles-summary'     => 'ای حاصین صفحه کل آپلودی فایلانء پیش داریت.
 به طور پیش فرض اهری فایل آپلودی ته بالاد لیست پیش دارگ بیت.
 یک کلیکی بالاد ستون ترتیب عوض کنت.',
-'imagelist_search_for'  => 'گردگ په  مدیا:',
+'listfiles_search_for'  => 'گردگ په  مدیا:',
 'imgfile'               => 'فایل',
-'imagelist'             => 'لیست فایل',
-'imagelist_date'        => 'تاریح',
-'imagelist_name'        => 'نام',
-'imagelist_user'        => 'کاربر',
-'imagelist_size'        => 'اندازه',
-'imagelist_description' => 'توضیح',
+'listfiles'             => 'لیست فایل',
+'listfiles_date'        => 'تاریح',
+'listfiles_name'        => 'نام',
+'listfiles_user'        => 'کاربر',
+'listfiles_size'        => 'اندازه',
+'listfiles_description' => 'توضیح',
 
 # File description page
 'filehist'                       => 'تاریح فایل',

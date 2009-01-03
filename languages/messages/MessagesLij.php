@@ -52,7 +52,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Osservæ speçiali' ),
 	'Recentchanges'             => array( 'Ûrtime modiffiche' ),
 	'Upload'                    => array( 'Carrega' ),
-	'Imagelist'                 => array( 'Immaggini' ),
+	'Listfiles'                 => array( 'Immaggini' ),
 	'Newimages'                 => array( 'Immaggini reçenti' ),
 	'Listusers'                 => array( 'Utenti' ),
 	'Statistics'                => array( 'Statistighe' ),
@@ -626,11 +626,11 @@ E paggine in osservassion son dipinte in '''grascietto'''.",
 'license'   => 'Permisso:',
 'nolicense' => 'Nisciûnn-a liçensa indicâa',
 
-# Special:FileList
-'imagelist_search_for' => "Çerca pe nomme de l'imàgine:",
+# Special:ListFiles
+'listfiles_search_for' => "Çerca pe nomme de l'imàgine:",
 'imgfile'              => 'papê',
-'imagelist'            => "Lista d'archivvi",
-'imagelist_date'       => 'Dæta',
+'listfiles'            => "Lista d'archivvi",
+'listfiles_date'       => 'Dæta',
 
 # File description page
 'filehist'                  => "Cronologîa de l'archivvio",

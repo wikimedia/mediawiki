@@ -1307,18 +1307,18 @@ $2',
 'upload_source_url'  => ' (一個有效的，可公開訪問的 URL)',
 'upload_source_file' => ' (在您電腦上的一個檔案)',
 
-# Special:FileList
-'imagelist-summary'     => '這個特殊頁面顯示所有上傳過的檔案。
+# Special:ListFiles
+'listfiles-summary'     => '這個特殊頁面顯示所有上傳過的檔案。
 預設中最後上傳的檔案會顯示在這個列表中的最頂處。
 點擊一欄的標題去改變這個排列。',
-'imagelist_search_for'  => '按檔案名稱搜索:',
+'listfiles_search_for'  => '按檔案名稱搜索:',
 'imgfile'               => '檔案',
-'imagelist'             => '檔案列表',
-'imagelist_date'        => '日期',
-'imagelist_name'        => '名稱',
-'imagelist_user'        => '用戶',
-'imagelist_size'        => '大小',
-'imagelist_description' => '描述',
+'listfiles'             => '檔案列表',
+'listfiles_date'        => '日期',
+'listfiles_name'        => '名稱',
+'listfiles_user'        => '用戶',
+'listfiles_size'        => '大小',
+'listfiles_description' => '描述',
 
 # File description page
 'filehist'                       => '檔案歷史',

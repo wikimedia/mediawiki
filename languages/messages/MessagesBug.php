@@ -307,8 +307,8 @@ $messages = array(
 'upload'    => 'Lureng berkas',
 'uploadbtn' => 'Lureng berkas',
 
-# Special:FileList
-'imagelist_name' => 'Aseŋ',
+# Special:ListFiles
+'listfiles_name' => 'Aseŋ',
 
 # File description page
 'filehist-user'       => 'Papaké',

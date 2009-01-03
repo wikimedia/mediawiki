@@ -50,7 +50,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'კონტროლსია' ),
 	'Recentchanges'             => array( 'ბოლოცვლილებები' ),
 	'Upload'                    => array( 'ატვირთვა' ),
-	'Imagelist'                 => array( 'სურსია' ),
+	'Listfiles'                 => array( 'სურსია' ),
 	'Newimages'                 => array( 'ახსურათები' ),
 	'Statistics'                => array( 'სტატისტიკა' ),
 	'Randompage'                => array( 'შემთხვევით', 'შემთხვევითიგვერდი' ),
@@ -976,15 +976,15 @@ $1 საათში.',
 'nolicense'          => 'არაფერი არის მონიშნული',
 'upload_source_file' => ' (ფაილი შენს კომპიუტერზე)',
 
-# Special:FileList
-'imagelist_search_for'  => 'ძიება სურათის სახელის მიხედვით:',
+# Special:ListFiles
+'listfiles_search_for'  => 'ძიება სურათის სახელის მიხედვით:',
 'imgfile'               => 'ფაილი',
-'imagelist'             => 'სურათების სია',
-'imagelist_date'        => 'თარიღი',
-'imagelist_name'        => 'სახელი',
-'imagelist_user'        => 'მომხმარებელი',
-'imagelist_size'        => 'ზომა (ბაიტები)',
-'imagelist_description' => 'აღწერილობა',
+'listfiles'             => 'სურათების სია',
+'listfiles_date'        => 'თარიღი',
+'listfiles_name'        => 'სახელი',
+'listfiles_user'        => 'მომხმარებელი',
+'listfiles_size'        => 'ზომა (ბაიტები)',
+'listfiles_description' => 'აღწერილობა',
 
 # File description page
 'filehist'                       => 'ფაილის ისტორია',

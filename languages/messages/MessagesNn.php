@@ -164,7 +164,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Overvakingsliste' ),
 	'Recentchanges'             => array( 'Siste endringar' ),
 	'Upload'                    => array( 'Last opp' ),
-	'Imagelist'                 => array( 'Filliste' ),
+	'Listfiles'                 => array( 'Filliste' ),
 	'Newimages'                 => array( 'Nye filer' ),
 	'Listusers'                 => array( 'Brukarliste' ),
 	'Statistics'                => array( 'Statistikk' ),
@@ -1473,16 +1473,16 @@ PICT # div.
 'upload_source_url'  => ' (ei gyldig, offentleg tilgjengeleg nettadresse)',
 'upload_source_file' => ' (ei fil på datamaskina di)',
 
-# Special:FileList
-'imagelist-summary'     => 'Denne spesialsida viser alle opplasta filer. Dei sist opplasta filene vert viste på toppen som standard. Klikk på ei kolonneoverskrift for å byte sorteringsmetode.',
-'imagelist_search_for'  => 'Søk etter filnamn:',
+# Special:ListFiles
+'listfiles-summary'     => 'Denne spesialsida viser alle opplasta filer. Dei sist opplasta filene vert viste på toppen som standard. Klikk på ei kolonneoverskrift for å byte sorteringsmetode.',
+'listfiles_search_for'  => 'Søk etter filnamn:',
 'imgfile'               => 'fil',
-'imagelist'             => 'Filliste',
-'imagelist_date'        => 'Dato',
-'imagelist_name'        => 'Namn',
-'imagelist_user'        => 'Brukar',
-'imagelist_size'        => 'Storleik',
-'imagelist_description' => 'Beskriving',
+'listfiles'             => 'Filliste',
+'listfiles_date'        => 'Dato',
+'listfiles_name'        => 'Namn',
+'listfiles_user'        => 'Brukar',
+'listfiles_size'        => 'Storleik',
+'listfiles_description' => 'Beskriving',
 
 # File description page
 'filehist'                       => 'Filhistorikk',

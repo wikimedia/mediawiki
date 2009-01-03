@@ -59,7 +59,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Lista de seguit', 'ListraDe Seguit', 'Seguit' ),
 	'Recentchanges'             => array( 'Darrièrs cambiaments', 'DarrièrsCambiaments', 'Darrièras Modificacions' ),
 	'Upload'                    => array( 'Telecargament', 'Telecargaments' ),
-	'Imagelist'                 => array( 'Lista dels imatges', 'ListaDelsImatges' ),
+	'Listfiles'                 => array( 'Lista dels imatges', 'ListaDelsImatges' ),
 	'Newimages'                 => array( 'Imatges novèls', 'ImatgesNovèls' ),
 	'Listusers'                 => array( 'Lista dels utilizaires', 'ListaDelsUtilizaires' ),
 	'Listgrouprights'           => array( 'Lista dels gropes utilizaire', 'ListadelsGropesUtilizaire', 'ListaGropesUtilizaire', 'Tièra dels gropes utilizaire', 'TièradelsGropesUtilizaire', 'TièraGropesUtilizaire' ),
@@ -1473,18 +1473,18 @@ Se lo problèma persistís, contactatz un [[Special:ListUsers/sysop|administrato
 'upload_source_url'  => ' (una URL valida e accessibla publicament)',
 'upload_source_file' => ' (un fichièr sus vòstre ordenador)',
 
-# Special:FileList
-'imagelist-summary'     => 'Aquesta pagina especiala mòstra totes los fichièrs importats.
+# Special:ListFiles
+'listfiles-summary'     => 'Aquesta pagina especiala mòstra totes los fichièrs importats.
 Per defaut, las darrièrs fichièrs importats son afichats en naut de la lista.
 Un clic en tèsta de colomna càmbia l’òrdre d’afichatge.',
-'imagelist_search_for'  => 'Recèrca del mèdia nomenat :',
+'listfiles_search_for'  => 'Recèrca del mèdia nomenat :',
 'imgfile'               => 'fichièr',
-'imagelist'             => 'Lista dels imatges',
-'imagelist_date'        => 'Data',
-'imagelist_name'        => 'Nom',
-'imagelist_user'        => 'Utilizaire',
-'imagelist_size'        => 'Talha (en octets)',
-'imagelist_description' => 'Descripcion',
+'listfiles'             => 'Lista dels imatges',
+'listfiles_date'        => 'Data',
+'listfiles_name'        => 'Nom',
+'listfiles_user'        => 'Utilizaire',
+'listfiles_size'        => 'Talha (en octets)',
+'listfiles_description' => 'Descripcion',
 
 # File description page
 'filehist'                       => 'Istoric del fichièr',

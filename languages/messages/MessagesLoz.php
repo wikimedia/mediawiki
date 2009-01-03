@@ -576,10 +576,10 @@ di uplodezi media.',
 
 'license-nopreview' => '(PendiBe di nupdeti)',
 
-# Special:FileList
+# Special:ListFiles
 'imgfile'        => 'imegi',
-'imagelist'      => 'Mukoloko di imegina',
-'imagelist_user' => 'Sebelu',
+'listfiles'      => 'Mukoloko di imegina',
+'listfiles_user' => 'Sebelu',
 
 # File description page
 'filehist'                  => 'Imegi bundau',

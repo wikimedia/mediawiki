@@ -417,8 +417,8 @@ Páiginas que steian an ls [[Special:Watchlist|tous begiados]] son amostradas an
 'uploadlogpage' => 'Registro de carregamiento',
 'uploadedimage' => 'cargou "[[$1]]"',
 
-# Special:FileList
-'imagelist' => 'Fexeiros',
+# Special:ListFiles
+'listfiles' => 'Fexeiros',
 
 # File description page
 'filehist'                  => 'Stórico de l fexeiro',

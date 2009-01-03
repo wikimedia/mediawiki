@@ -1268,15 +1268,15 @@ Aukera ezazu, mesedez, fitxategi izen deskriptiboago bat.',
 'upload_source_url'  => ' (baliozko URL publikoa)',
 'upload_source_file' => ' (zure ordenagailuko fitxategi bat)',
 
-# Special:FileList
-'imagelist_search_for'  => 'Irudiaren izenagatik bilatu:',
+# Special:ListFiles
+'listfiles_search_for'  => 'Irudiaren izenagatik bilatu:',
 'imgfile'               => 'fitxategia',
-'imagelist'             => 'Fitxategien zerrenda',
-'imagelist_date'        => 'Data',
-'imagelist_name'        => 'Izena',
-'imagelist_user'        => 'Erabiltzailea',
-'imagelist_size'        => 'Tamaina (byte)',
-'imagelist_description' => 'Deskribapena',
+'listfiles'             => 'Fitxategien zerrenda',
+'listfiles_date'        => 'Data',
+'listfiles_name'        => 'Izena',
+'listfiles_user'        => 'Erabiltzailea',
+'listfiles_size'        => 'Tamaina (byte)',
+'listfiles_description' => 'Deskribapena',
 
 # File description page
 'filehist'                       => 'Fitxategiaren historia',

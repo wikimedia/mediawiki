@@ -183,7 +183,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Volglieste' ),
 	'Recentchanges'             => array( 'Leste_wiezigingen' ),
 	'Upload'                    => array( 'Bestanden_toevoegen' ),
-	'Imagelist'                 => array( 'Ofbeeldingenlieste' ),
+	'Listfiles'                 => array( 'Ofbeeldingenlieste' ),
 	'Newimages'                 => array( 'Nieje_ofbeeldingen' ),
 	'Listusers'                 => array( 'Gebrukerslieste' ),
 	'Listgrouprights'           => array( 'Groepsrechen bekieken' ),
@@ -1509,18 +1509,18 @@ Bedenk eers of 't inderdaod de bedoeling is dat dit bestand toe-evoeg wonnen.
 'upload_source_url'  => ' (een geldig, pebliek toegankelijk webadres)',
 'upload_source_file' => ' (een bestand op joew computer)',
 
-# Special:FileList
-'imagelist-summary'     => 'Op disse speciale pagina ku-j alle toe-evoegen bestanden bekieken.
+# Special:ListFiles
+'listfiles-summary'     => 'Op disse speciale pagina ku-j alle toe-evoegen bestanden bekieken.
 Standard wonnen de les toe-evoegen bestanden bovenan de lieste ezet.
 Klikken op een kelomkop veraandert de sortering.',
-'imagelist_search_for'  => 'Zeuk op ofbeeldingnaam:',
+'listfiles_search_for'  => 'Zeuk op ofbeeldingnaam:',
 'imgfile'               => 'bestand',
-'imagelist'             => 'Ofbeeldingenlieste',
-'imagelist_date'        => 'Daotum',
-'imagelist_name'        => 'Naam',
-'imagelist_user'        => 'Gebruker',
-'imagelist_size'        => 'Grootte (bytes)',
-'imagelist_description' => 'Beschrieving',
+'listfiles'             => 'Ofbeeldingenlieste',
+'listfiles_date'        => 'Daotum',
+'listfiles_name'        => 'Naam',
+'listfiles_user'        => 'Gebruker',
+'listfiles_size'        => 'Grootte (bytes)',
+'listfiles_description' => 'Beschrieving',
 
 # File description page
 'filehist'                       => 'Bestansgeschiedenisse',

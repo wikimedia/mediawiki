@@ -603,14 +603,14 @@ to upload files.',
 'license-nopreview'  => '(ਝਲਕ ਉਪਲੱਬਧ ਨਹੀਂ)',
 'upload_source_file' => ' (ਤੁਹਾਡੇ ਕੰਪਿਊਟਰ ਉੱਤੇ ਇੱਕ ਫਾਇਲ)',
 
-# Special:FileList
+# Special:ListFiles
 'imgfile'               => 'ਫਾਇਲ',
-'imagelist'             => 'ਫਾਇਲ ਲਿਸਟ',
-'imagelist_date'        => 'ਮਿਤੀ',
-'imagelist_name'        => 'ਨਾਂ',
-'imagelist_user'        => 'ਯੂਜ਼ਰ',
-'imagelist_size'        => 'ਆਕਾਰ',
-'imagelist_description' => 'ਵੇਰਵਾ',
+'listfiles'             => 'ਫਾਇਲ ਲਿਸਟ',
+'listfiles_date'        => 'ਮਿਤੀ',
+'listfiles_name'        => 'ਨਾਂ',
+'listfiles_user'        => 'ਯੂਜ਼ਰ',
+'listfiles_size'        => 'ਆਕਾਰ',
+'listfiles_description' => 'ਵੇਰਵਾ',
 
 # File description page
 'filehist'                  => 'ਫਾਇਲ ਅਤੀਤ',

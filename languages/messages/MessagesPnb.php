@@ -606,14 +606,14 @@ $messages = array(
 'license-nopreview'  => '(کچا کم نئیں ویکھ سکدے او)',
 'upload_source_file' => ' (تواڈے کمپیوٹر تے اک فائل)',
 
-# Special:FileList
+# Special:ListFiles
 'imgfile'               => 'فائل',
-'imagelist'             => 'فائل لسٹ',
-'imagelist_date'        => 'تاریخ',
-'imagelist_name'        => 'ناں',
-'imagelist_user'        => 'ورتن آلا',
-'imagelist_size'        => 'ناپ',
-'imagelist_description' => 'تفصیل',
+'listfiles'             => 'فائل لسٹ',
+'listfiles_date'        => 'تاریخ',
+'listfiles_name'        => 'ناں',
+'listfiles_user'        => 'ورتن آلا',
+'listfiles_size'        => 'ناپ',
+'listfiles_description' => 'تفصیل',
 
 # File description page
 'filehist'                       => 'پچھلی حالت',

@@ -1027,18 +1027,18 @@ PICT # vàire marche diferente
 'upload_source_url'  => "  (n'anliura bon-a e che as peula dovresse)",
 'upload_source_file' => " (n'archivi da sò calcolator)",
 
-# Special:FileList
-'imagelist-summary'     => "Sta pàgina special-sì a la smon tuti j'archivi ch'a ëstàit carià.
+# Special:ListFiles
+'listfiles-summary'     => "Sta pàgina special-sì a la smon tuti j'archivi ch'a ëstàit carià.
 Për sòlit j'ùltim carià a resto an sima.
 Ch'a-i bata 'n colp col rat ansima a j'antestassion dle colòne për cangé órdin.",
-'imagelist_search_for'  => "Arsërca për nòm d'archivi multimojen:",
+'listfiles_search_for'  => "Arsërca për nòm d'archivi multimojen:",
 'imgfile'               => 'archivi',
-'imagelist'             => 'Lista dle figure',
-'imagelist_date'        => 'Data',
-'imagelist_name'        => 'Nòm',
-'imagelist_user'        => 'Utent',
-'imagelist_size'        => 'Amzura an byte',
-'imagelist_description' => 'Descrission',
+'listfiles'             => 'Lista dle figure',
+'listfiles_date'        => 'Data',
+'listfiles_name'        => 'Nòm',
+'listfiles_user'        => 'Utent',
+'listfiles_size'        => 'Amzura an byte',
+'listfiles_description' => 'Descrission',
 
 # File description page
 'filehist'                  => "Stòria dl'archivi",

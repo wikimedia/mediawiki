@@ -357,8 +357,8 @@ $messages = array(
 'uploadlogpage' => 'ལོག་སྐྱེལ་བཙུགས་འབད།',
 'uploadedimage' => '"[[$1]]" སྐྱེལ་བཙུགས་འབད་ཡོདཔ།',
 
-# Special:FileList
-'imagelist' => 'ཡིག་སྣོད་ཐོ་ཡིག།',
+# Special:ListFiles
+'listfiles' => 'ཡིག་སྣོད་ཐོ་ཡིག།',
 
 # File description page
 'filehist'                  => 'ཡིག་སྣོད་སྤྱོད་ཤུལ།',

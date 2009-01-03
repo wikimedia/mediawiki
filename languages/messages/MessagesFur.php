@@ -46,7 +46,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'TignudisDiVoli' ),
 	'Recentchanges'             => array( 'UltinsCambiaments' ),
 	'Upload'                    => array( 'Cjame' ),
-	'Imagelist'                 => array( 'Figuris' ),
+	'Listfiles'                 => array( 'Figuris' ),
 	'Newimages'                 => array( 'GnovisFiguris' ),
 	'Listusers'                 => array( 'Utents', 'ListeUtents' ),
 	'Statistics'                => array( 'Statistichis' ),
@@ -740,13 +740,13 @@ Par includi une figure intune pagjine, dopre un leam inte form
 'sourcefilename'     => 'Non dal file origjinâl:',
 'destfilename'       => 'Non dal file di destinazion:',
 
-# Special:FileList
-'imagelist'             => 'Liste des figuris',
-'imagelist_date'        => 'Date',
-'imagelist_name'        => 'Non',
-'imagelist_user'        => 'Utent',
-'imagelist_size'        => 'Dimension in bytes',
-'imagelist_description' => 'Descrizion',
+# Special:ListFiles
+'listfiles'             => 'Liste des figuris',
+'listfiles_date'        => 'Date',
+'listfiles_name'        => 'Non',
+'listfiles_user'        => 'Utent',
+'listfiles_size'        => 'Dimension in bytes',
+'listfiles_description' => 'Descrizion',
 
 # File description page
 'filehist'                  => 'Storic dal file',

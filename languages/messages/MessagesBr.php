@@ -39,7 +39,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Roll evezhiañ' ),
 	'Recentchanges'             => array( 'KemmoùDiwezhañ' ),
 	'Upload'                    => array( 'Pellgargañ' ),
-	'Imagelist'                 => array( 'RollSkeudennoù' ),
+	'Listfiles'                 => array( 'RollSkeudennoù' ),
 	'Newimages'                 => array( 'SkeudennoùNevez' ),
 	'Statistics'                => array( 'Stadegoù' ),
 	'Newpages'                  => array( 'PajennoùNevez' ),
@@ -1240,18 +1240,18 @@ Ma talc'h ar gudenn, kit e darempred gant [[Special:ListUsers/sysop|merourien ar
 'upload_source_url'  => " (Un URL reizh a c'hall bezañ tizhet gant an holl)",
 'upload_source_file' => " (ur restr war hoc'h urzhiataer)",
 
-# Special:FileList
-'imagelist-summary'     => 'Diskouez a ra ar bajenn zibar-mañ an holl restroù bet enporzhiet.
+# Special:ListFiles
+'listfiles-summary'     => 'Diskouez a ra ar bajenn zibar-mañ an holl restroù bet enporzhiet.
 Dre ziouer e teu ar restroù enporzhiet da ziwezhañ e laez ar roll.
 Klikañ war penn ar bann a cheñch an urzh kinnig.',
-'imagelist_search_for'  => 'Klask anv ar skeudenn :',
+'listfiles_search_for'  => 'Klask anv ar skeudenn :',
 'imgfile'               => 'restr',
-'imagelist'             => 'Roll ar skeudennoù',
-'imagelist_date'        => 'Deiziad',
-'imagelist_name'        => 'Anv',
-'imagelist_user'        => 'Implijer',
-'imagelist_size'        => 'Ment (e bitoù)',
-'imagelist_description' => 'Deskrivadur',
+'listfiles'             => 'Roll ar skeudennoù',
+'listfiles_date'        => 'Deiziad',
+'listfiles_name'        => 'Anv',
+'listfiles_user'        => 'Implijer',
+'listfiles_size'        => 'Ment (e bitoù)',
+'listfiles_description' => 'Deskrivadur',
 
 # File description page
 'filehist'                       => 'Istor ar restr',

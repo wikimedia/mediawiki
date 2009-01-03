@@ -1384,18 +1384,18 @@ $1',
 'upload_source_url'  => ' （啱嘅，公開嘅網址）',
 'upload_source_file' => ' （你部電腦裏面嘅一個檔案）',
 
-# Special:FileList
-'imagelist-summary'     => '呢個特別版顯示全部上載過嘅檔案。
+# Special:ListFiles
+'listfiles-summary'     => '呢個特別版顯示全部上載過嘅檔案。
 響預設最後上載嘅檔案會顯示響呢個表嘅最頂。
 撳一欄嘅標題去改個排列。',
-'imagelist_search_for'  => '搵媒體名:',
+'listfiles_search_for'  => '搵媒體名:',
 'imgfile'               => '檔案',
-'imagelist'             => '檔案清單',
-'imagelist_date'        => '日期',
-'imagelist_name'        => '名',
-'imagelist_user'        => '用戶',
-'imagelist_size'        => '大細',
-'imagelist_description' => '描述',
+'listfiles'             => '檔案清單',
+'listfiles_date'        => '日期',
+'listfiles_name'        => '名',
+'listfiles_user'        => '用戶',
+'listfiles_size'        => '大細',
+'listfiles_description' => '描述',
 
 # File description page
 'filehist'                       => '檔案歷史',

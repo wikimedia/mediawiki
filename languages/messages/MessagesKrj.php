@@ -229,7 +229,7 @@ Lantawa sa [[Special:Version|version kang page]].',
 
 'upload-file-error' => 'Sayup internal',
 
-# Special:FileList
+# Special:ListFiles
 'imgfile' => 'inayap',
 
 # File deletion

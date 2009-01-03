@@ -43,7 +43,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'LisSwivi' ),
 	'Recentchanges'             => array( 'ChanjmanResan' ),
 	'Upload'                    => array( 'Telechaje' ),
-	'Imagelist'                 => array( 'LisImaj' ),
+	'Listfiles'                 => array( 'LisImaj' ),
 	'Newimages'                 => array( 'NouvoImaj' ),
 	'Listusers'                 => array( 'LisItilizatè', 'LisYonItilizatè' ),
 	'Listgrouprights'           => array( 'LisDwaGroup' ),
@@ -832,8 +832,8 @@ Mande ou byen si ou ap byen fè kreye li ankò toutbon (gade jounal paj sa a pou
 'uploadlogpage' => 'Istorik chajman pou fichye miltimedya',
 'uploadedimage' => 'chaje « [[$1]] »',
 
-# Special:FileList
-'imagelist' => 'Lis fichye yo',
+# Special:ListFiles
+'listfiles' => 'Lis fichye yo',
 
 # File description page
 'filehist'                  => 'Istorik fichye a',

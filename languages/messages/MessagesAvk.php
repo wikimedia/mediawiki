@@ -35,7 +35,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Suzdasiki' ),
 	'Recentchanges'             => array( 'NoeltafBetakseem' ),
 	'Upload'                    => array( 'Kalvajara' ),
-	'Imagelist'                 => array( 'Ewaveem' ),
+	'Listfiles'                 => array( 'Ewaveem' ),
 	'Newimages'                 => array( 'WarzafEwaveem' ),
 	'Listusers'                 => array( 'Favesikeem' ),
 	'Statistics'                => array( 'Enkopaceem' ),
@@ -1066,15 +1066,15 @@ Sulara \"log\" va batu bu krafiason batlize zo nedir :",
 'upload_source_url'  => ' (enafe sanegon rovansane URL mane)',
 'upload_source_file' => ' (iyeltak koe rinafo vusiko)',
 
-# Special:FileList
-'imagelist_search_for'  => 'Aneyara va ewavayolt :',
+# Special:ListFiles
+'listfiles_search_for'  => 'Aneyara va ewavayolt :',
 'imgfile'               => 'iyeltak',
-'imagelist'             => 'Ewavavexala',
-'imagelist_date'        => 'Evla',
-'imagelist_name'        => 'Yolt',
-'imagelist_user'        => 'Favesik',
-'imagelist_size'        => 'Lum',
-'imagelist_description' => 'Pimtara',
+'listfiles'             => 'Ewavavexala',
+'listfiles_date'        => 'Evla',
+'listfiles_name'        => 'Yolt',
+'listfiles_user'        => 'Favesik',
+'listfiles_size'        => 'Lum',
+'listfiles_description' => 'Pimtara',
 
 # File description page
 'filehist'                       => 'Iyeltakizvot',

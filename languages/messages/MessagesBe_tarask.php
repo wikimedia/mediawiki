@@ -176,7 +176,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Сьпіс_назіраньня' ),
 	'Recentchanges'             => array( 'Апошнія_зьмены' ),
 	'Upload'                    => array( 'Загрузка' ),
-	'Imagelist'                 => array( 'Сьпіс_файлаў' ),
+	'Listfiles'                 => array( 'Сьпіс_файлаў' ),
 	'Newimages'                 => array( 'Новыя_файлы' ),
 	'Listusers'                 => array( 'Сьпіс_удзельнікаў' ),
 	'Statistics'                => array( 'Статыстыка' ),
@@ -1513,18 +1513,18 @@ $2',
 'upload_source_url'  => ' (слушны, агульнадаступны URL-адрас)',
 'upload_source_file' => ' (файл на Вашым кампутары)',
 
-# Special:FileList
-'imagelist-summary'     => 'На гэтай спэцыяльнай старонцы паказаныя ўсе загружаныя файлы.
+# Special:ListFiles
+'listfiles-summary'     => 'На гэтай спэцыяльнай старонцы паказаныя ўсе загружаныя файлы.
 Па змоўчваньні апошнія загружаныя файлы адлюстраваныя зьверху сьпісу.
 Націсьніце на назву слупка, каб зьмяніць парадак сартаваньня.',
-'imagelist_search_for'  => 'Пошук па назьве файла:',
+'listfiles_search_for'  => 'Пошук па назьве файла:',
 'imgfile'               => 'файл',
-'imagelist'             => 'Сьпіс файлаў',
-'imagelist_date'        => 'Дата',
-'imagelist_name'        => 'Назва',
-'imagelist_user'        => 'Удзельнік',
-'imagelist_size'        => 'Памер',
-'imagelist_description' => 'Апісаньне',
+'listfiles'             => 'Сьпіс файлаў',
+'listfiles_date'        => 'Дата',
+'listfiles_name'        => 'Назва',
+'listfiles_user'        => 'Удзельнік',
+'listfiles_size'        => 'Памер',
+'listfiles_description' => 'Апісаньне',
 
 # File description page
 'filehist'                       => 'Гісторыя файла',

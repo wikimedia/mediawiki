@@ -1078,15 +1078,15 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'upload_source_url'  => ' (ትክክለኛ፣ በግልጽ የሚገኝ URL)',
 'upload_source_file' => ' (በኮምፒውተርዎ ላይ ያለበት ፋይል)',
 
-# Special:FileList
-'imagelist_search_for'  => 'ለMedia ፋይል ስም ፍለጋ፦',
+# Special:ListFiles
+'listfiles_search_for'  => 'ለMedia ፋይል ስም ፍለጋ፦',
 'imgfile'               => 'ፋይሉ',
-'imagelist'             => 'የፋይል / ሥዕሎች ዝርዝር',
-'imagelist_date'        => 'ቀን እ.ኤ.አ',
-'imagelist_name'        => 'የፋይል ስም',
-'imagelist_user'        => 'አቅራቢው',
-'imagelist_size'        => 'መጠን (byte)',
-'imagelist_description' => 'ማጠቃለያ',
+'listfiles'             => 'የፋይል / ሥዕሎች ዝርዝር',
+'listfiles_date'        => 'ቀን እ.ኤ.አ',
+'listfiles_name'        => 'የፋይል ስም',
+'listfiles_user'        => 'አቅራቢው',
+'listfiles_size'        => 'መጠን (byte)',
+'listfiles_description' => 'ማጠቃለያ',
 
 # File description page
 'filehist'                       => 'የፋይሉ ታሪክ',

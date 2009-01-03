@@ -1499,18 +1499,18 @@ $3 зазначив таку причину: ''$2''",
 'upload_source_url'  => ' (вірна, публічно доступна інтернет-адреса)',
 'upload_source_file' => " (файл на вашому комп'ютері)",
 
-# Special:FileList
-'imagelist-summary'     => 'Ця спеціальна сторінка показує всі завантажені файли.
+# Special:ListFiles
+'listfiles-summary'     => 'Ця спеціальна сторінка показує всі завантажені файли.
 За замовчуванням останні завантажені файли показані зверху.
 Натисніть на заголовок стовпчика, щоб відсортувати.',
-'imagelist_search_for'  => 'Пошук по назві зображення:',
+'listfiles_search_for'  => 'Пошук по назві зображення:',
 'imgfile'               => 'файл',
-'imagelist'             => 'Список файлів',
-'imagelist_date'        => 'Дата',
-'imagelist_name'        => 'Назва',
-'imagelist_user'        => 'Користувач',
-'imagelist_size'        => 'Розмір (в байтах)',
-'imagelist_description' => 'Опис',
+'listfiles'             => 'Список файлів',
+'listfiles_date'        => 'Дата',
+'listfiles_name'        => 'Назва',
+'listfiles_user'        => 'Користувач',
+'listfiles_size'        => 'Розмір (в байтах)',
+'listfiles_description' => 'Опис',
 
 # File description page
 'filehist'                       => 'Історія файлу',

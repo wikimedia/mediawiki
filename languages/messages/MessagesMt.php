@@ -53,7 +53,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Lista t\'osservazzjoni' ),
 	'Recentchanges'             => array( 'TibdilRiċenti' ),
 	'Upload'                    => array( 'Tella\'' ),
-	'Imagelist'                 => array( 'ListaStampi' ),
+	'Listfiles'                 => array( 'ListaStampi' ),
 	'Newimages'                 => array( 'StampiĠodda' ),
 	'Listusers'                 => array( 'Listja l-Utenti', 'Lista tal-Utenti' ),
 	'Listgrouprights'           => array( 'ListjaDrittijietGrupp' ),
@@ -1397,18 +1397,18 @@ Jekk jogħġbok verifika li s-sit huwa attiv, stenna għal ftit u erġa' prova m
 'upload_source_url'  => ' (URL validu u aċċessibli)',
 'upload_source_file' => ' (fajl fuq il-komputer tiegħek)',
 
-# Special:FileList
-'imagelist-summary'     => "Din il-paġna speċjali turi l-fajls kollha mtella'.
+# Special:ListFiles
+'listfiles-summary'     => "Din il-paġna speċjali turi l-fajls kollha mtella'.
 L-aktar ''uploads'' riċenti jiġu fuq in-naħa ta' fuq tal-lista.
 Biex tagħmel modifika fl-ordni tal-kolonna, klikkja fuq it-titlu tal-kolonna stess.",
-'imagelist_search_for'  => 'Fittex stampi skont l-isem:',
+'listfiles_search_for'  => 'Fittex stampi skont l-isem:',
 'imgfile'               => 'fajl',
-'imagelist'             => 'Lista tal-fajl',
-'imagelist_date'        => 'Data',
-'imagelist_name'        => 'Isem',
-'imagelist_user'        => 'Utent',
-'imagelist_size'        => 'Daqs',
-'imagelist_description' => 'Deskrizzjoni',
+'listfiles'             => 'Lista tal-fajl',
+'listfiles_date'        => 'Data',
+'listfiles_name'        => 'Isem',
+'listfiles_user'        => 'Utent',
+'listfiles_size'        => 'Daqs',
+'listfiles_description' => 'Deskrizzjoni',
 
 # File description page
 'filehist'                       => 'Kronoloġija tal-fajl',

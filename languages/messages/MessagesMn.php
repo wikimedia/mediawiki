@@ -1103,18 +1103,18 @@ URL нь зөв болон сайт ажиллагаатай байгаа эсэ
 'upload_source_url'  => ' (хүчинтэй, нийтэд нээлттэй URL)',
 'upload_source_file' => '(таны компьютер доторх файл)',
 
-# Special:FileList
-'imagelist-summary'     => 'Энэ тусгай хуудсанд бүх оруулагдсан файлыг харуулсан байгаа.
+# Special:ListFiles
+'listfiles-summary'     => 'Энэ тусгай хуудсанд бүх оруулагдсан файлыг харуулсан байгаа.
 Хамгийн сүүлд оруулсан файлууд жагсаалтын хамгийн дээр байгаа.
 Баганын гарчиг дээр дарвал жагсаалт өөрчлөгдөнө.',
-'imagelist_search_for'  => 'Зургийн нэрээр хайх:',
+'listfiles_search_for'  => 'Зургийн нэрээр хайх:',
 'imgfile'               => 'файл',
-'imagelist'             => 'Файлын жагсаалт',
-'imagelist_date'        => 'Огноо',
-'imagelist_name'        => 'Нэр',
-'imagelist_user'        => 'Хэрэглэгч',
-'imagelist_size'        => 'Хэмжээ (bytes)',
-'imagelist_description' => 'Тодорхойлолт/Дүрслэл',
+'listfiles'             => 'Файлын жагсаалт',
+'listfiles_date'        => 'Огноо',
+'listfiles_name'        => 'Нэр',
+'listfiles_user'        => 'Хэрэглэгч',
+'listfiles_size'        => 'Хэмжээ (bytes)',
+'listfiles_description' => 'Тодорхойлолт/Дүрслэл',
 
 # File description page
 'filehist'                  => 'Файлын түүх',

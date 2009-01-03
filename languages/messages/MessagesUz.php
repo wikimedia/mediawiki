@@ -374,8 +374,8 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 'uploadlogpage' => 'Yuklash qaydlari',
 'uploadedimage' => '"[[$1]]" yuklandi',
 
-# Special:FileList
-'imagelist' => 'Fayllar roʻyxati',
+# Special:ListFiles
+'listfiles' => 'Fayllar roʻyxati',
 
 # File description page
 'filehist'                  => 'Fayl tarixi',

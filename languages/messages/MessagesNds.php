@@ -135,7 +135,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Oppasslist' ),
 	'Recentchanges'             => array( 'Toletzt ännert', 'Neeste Ännern' ),
 	'Upload'                    => array( 'Hoochladen' ),
-	'Imagelist'                 => array( 'Dateilist' ),
+	'Listfiles'                 => array( 'Dateilist' ),
 	'Newimages'                 => array( 'Nee Datein' ),
 	'Listusers'                 => array( 'Brukers' ),
 	'Listgrouprights'           => array( 'Gruppenrechten' ),
@@ -1438,16 +1438,16 @@ Kann angahn, dat dat beter geiht, wenn du dat to en Tiet versöchst, to de op de
 'upload_source_url'  => ' (gellen, apen togängliche URL)',
 'upload_source_file' => ' (en Datei op dien Reekner)',
 
-# Special:FileList
-'imagelist-summary'     => 'Disse Spezialsied wiest all Datein. As Standard warrt de ne’esten Datein toeerst wiest. Wenn du op de enkelten Överschriften klickst, kannst du de Sortreeg ümdreihn oder na en anner Kriterium sorteren.',
-'imagelist_search_for'  => 'Söök na Datei:',
+# Special:ListFiles
+'listfiles-summary'     => 'Disse Spezialsied wiest all Datein. As Standard warrt de ne’esten Datein toeerst wiest. Wenn du op de enkelten Överschriften klickst, kannst du de Sortreeg ümdreihn oder na en anner Kriterium sorteren.',
+'listfiles_search_for'  => 'Söök na Datei:',
 'imgfile'               => 'Datei',
-'imagelist'             => 'Billerlist',
-'imagelist_date'        => 'Datum',
-'imagelist_name'        => 'Naam',
-'imagelist_user'        => 'Bruker',
-'imagelist_size'        => 'Grött (Bytes)',
-'imagelist_description' => 'Beschrieven',
+'listfiles'             => 'Billerlist',
+'listfiles_date'        => 'Datum',
+'listfiles_name'        => 'Naam',
+'listfiles_user'        => 'Bruker',
+'listfiles_size'        => 'Grött (Bytes)',
+'listfiles_description' => 'Beschrieven',
 
 # File description page
 'filehist'                       => 'Datei-Historie',

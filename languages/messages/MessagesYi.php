@@ -57,7 +57,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'אויפֿפאסן ליסטע', 'מיין אויפֿפאסן ליסטע' ),
 	'Recentchanges'             => array( 'לעצטע ענדערונגען' ),
 	'Upload'                    => array( 'ארויפלאדן' ),
-	'Imagelist'                 => array( 'בילדער' ),
+	'Listfiles'                 => array( 'בילדער' ),
 	'Newimages'                 => array( 'נייע בילדער' ),
 	'Listusers'                 => array( 'ליסטע פון באניצערס' ),
 	'Statistics'                => array( 'סטאטיסטיק' ),
@@ -1082,14 +1082,14 @@ $2',
 'destfilename'    => 'ציל טעקע נאמען:',
 'watchthisupload' => 'פאס אויף דעם בלאט',
 
-# Special:FileList
+# Special:ListFiles
 'imgfile'               => 'טעקע',
-'imagelist'             => 'טעקע ליסטע',
-'imagelist_date'        => 'דאטע',
-'imagelist_name'        => 'נאמען',
-'imagelist_user'        => 'באַניצער',
-'imagelist_size'        => 'גרייס',
-'imagelist_description' => 'באַשרײַבונג',
+'listfiles'             => 'טעקע ליסטע',
+'listfiles_date'        => 'דאטע',
+'listfiles_name'        => 'נאמען',
+'listfiles_user'        => 'באַניצער',
+'listfiles_size'        => 'גרייס',
+'listfiles_description' => 'באַשרײַבונג',
 
 # File description page
 'filehist'                       => 'היסטאריע פֿון דער טעקע',

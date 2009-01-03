@@ -75,7 +75,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'ウォッチリスト' ),
 	'Recentchanges'             => array( '最近更新したページ' ),
 	'Upload'                    => array( 'アップロード' ),
-	'Imagelist'                 => array( 'ファイルリスト' ),
+	'Listfiles'                 => array( 'ファイルリスト' ),
 	'Newimages'                 => array( '新しいファイルの一覧', '新着画像展示室' ),
 	'Listusers'                 => array( '登録利用者の一覧' ),
 	'Listgrouprights'           => array( '利用者グループの権限一覧' ),
@@ -1449,18 +1449,18 @@ PICT # misc.
 'upload_source_url'  => '（インターネット上のURL）',
 'upload_source_file' => '（あなたのコンピューター上のファイル）',
 
-# Special:FileList
-'imagelist-summary'     => 'この特別ページではすべてのアップロードされたファイルの一覧を表示します。
+# Special:ListFiles
+'listfiles-summary'     => 'この特別ページではすべてのアップロードされたファイルの一覧を表示します。
 
 ソートのデフォルトでは新しい順です。ヘッダのクリックでソート順と種類を変更できます。',
-'imagelist_search_for'  => 'メディア名で検索:',
+'listfiles_search_for'  => 'メディア名で検索:',
 'imgfile'               => 'ファイル',
-'imagelist'             => 'ファイルリスト',
-'imagelist_date'        => '日時',
-'imagelist_name'        => '名前',
-'imagelist_user'        => '利用者',
-'imagelist_size'        => 'サイズ（バイト）',
-'imagelist_description' => '概要',
+'listfiles'             => 'ファイルリスト',
+'listfiles_date'        => '日時',
+'listfiles_name'        => '名前',
+'listfiles_user'        => '利用者',
+'listfiles_size'        => 'サイズ（バイト）',
+'listfiles_description' => '概要',
 
 # File description page
 'filehist'                       => 'ファイルの履歴',

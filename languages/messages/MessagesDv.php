@@ -34,7 +34,7 @@ $specialPageAliases = array(
 	'Preferences'               => array( 'ތަރުޖީހުތައް' ),
 	'Recentchanges'             => array( 'އެންމެ ފަހުގެ ބަދަލްތައް' ),
 	'Upload'                    => array( 'ފޮނުއްވާ' ),
-	'Imagelist'                 => array( 'ފައިލް ލިސްޓް' ),
+	'Listfiles'                 => array( 'ފައިލް ލިސްޓް' ),
 	'Newimages'                 => array( 'އާ ފައިލް' ),
 	'Randompage'                => array( 'ކޮންމެވެސް ސަފްޙާއެއް' ),
 	'Uncategorizedtemplates'    => array( 'ޤިސްމުކުރެވިފައި ނުވާ ފަންވަތް' ),
@@ -308,8 +308,8 @@ $messages = array(
 'uploadedfiles'     => 'ފޮނުވިފައިވާ ފައިލުތައް',
 'uploadwarning'     => 'ފައިލުފޮނުއްވުމުގެ ކުރިން ދެވޭ އިންޒާރު',
 
-# Special:FileList
-'imagelist' => 'ފައިލުތަކުގެ ފިހުރިސްތު',
+# Special:ListFiles
+'listfiles' => 'ފައިލުތަކުގެ ފިހުރިސްތު',
 
 # File description page
 'imagelinks' => 'ފާލަންތައް',

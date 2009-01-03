@@ -208,7 +208,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Liste de suivi', 'Listedesuivi', 'Suivi' ),
 	'Recentchanges'             => array( 'Modifications récentes', 'Modifications recentes' ),
 	'Upload'                    => array( 'Téléchargement', 'Telechargement' ),
-	'Imagelist'                 => array( 'Liste des images', 'Listedesimages', 'Liste images', 'Listeimages' ),
+	'Listfiles'                 => array( 'Liste des images', 'Listedesimages', 'Liste images', 'Listeimages' ),
 	'Newimages'                 => array( 'Nouvelles images', 'Nouveaux fichiers' ),
 	'Listusers'                 => array( 'Liste des utilisateurs', 'Liste des participants', 'Utilisateurs', 'Participants' ),
 	'Listgrouprights'           => array( 'Liste des groupes utilisateur', 'ListedesGroupesUtilisateur', 'ListeGroupesUtilisateur' ),
@@ -1541,18 +1541,18 @@ Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]
 'upload_source_url'  => ' (une URL valide et accessible publiquement)',
 'upload_source_file' => ' (un fichier sur votre ordinateur)',
 
-# Special:FileList
-'imagelist-summary'     => 'Cette page spéciale montre tous les fichiers importés.
+# Special:ListFiles
+'listfiles-summary'     => 'Cette page spéciale montre tous les fichiers importés.
 Par défaut, les derniers fichiers importés sont affichés en haut de la liste.
 Un clic en tête de colonne change l’ordre d’affichage.',
-'imagelist_search_for'  => 'Recherche pour l’image nommée :',
+'listfiles_search_for'  => 'Recherche pour l’image nommée :',
 'imgfile'               => 'fichier',
-'imagelist'             => 'Liste des images',
-'imagelist_date'        => 'Date',
-'imagelist_name'        => 'Nom',
-'imagelist_user'        => 'Utilisateur',
-'imagelist_size'        => 'Octets',
-'imagelist_description' => 'Description',
+'listfiles'             => 'Liste des images',
+'listfiles_date'        => 'Date',
+'listfiles_name'        => 'Nom',
+'listfiles_user'        => 'Utilisateur',
+'listfiles_size'        => 'Octets',
+'listfiles_description' => 'Description',
 
 # File description page
 'filehist'                       => 'Historique du fichier',

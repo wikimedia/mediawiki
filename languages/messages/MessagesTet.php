@@ -37,7 +37,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Lista hateke' ),
 	'Recentchanges'             => array( 'Mudansa foufoun sira' ),
 	'Upload'                    => array( 'Tau iha arkivu laran' ),
-	'Imagelist'                 => array( 'Lista imajen' ),
+	'Listfiles'                 => array( 'Lista imajen' ),
 	'Newimages'                 => array( 'Imajen foun' ),
 	'Listusers'                 => array( 'Lista uza-na\'in' ),
 	'Statistics'                => array( 'Estatístika' ),
@@ -479,10 +479,10 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 
 'license' => 'Lisensa:',
 
-# Special:FileList
-'imagelist_date' => 'Tempu',
-'imagelist_name' => 'Naran',
-'imagelist_user' => "Uza-na'in",
+# Special:ListFiles
+'listfiles_date' => 'Tempu',
+'listfiles_name' => 'Naran',
+'listfiles_user' => "Uza-na'in",
 
 # File description page
 'filehist-deleteall' => 'halakon hotu',

@@ -1290,18 +1290,18 @@ $2',
 'upload_source_url'  => ' (сапраўдны, публічна дасягальны URL)',
 'upload_source_file' => ' (файл на вашай машыне)',
 
-# Special:FileList
-'imagelist-summary'     => 'Тут паказаныя ўсе ўкладзеныя файлы.
+# Special:ListFiles
+'listfiles-summary'     => 'Тут паказаныя ўсе ўкладзеныя файлы.
 Прадвызначаны парадак такі, што апошнія файлы паказваюцца ўверсе.
 Клік на загалоўку калонкі мяняе парадак.',
-'imagelist_search_for'  => 'Знайсці назву выявы:',
+'listfiles_search_for'  => 'Знайсці назву выявы:',
 'imgfile'               => 'файл',
-'imagelist'             => 'Усе файлы',
-'imagelist_date'        => 'Дата',
-'imagelist_name'        => 'Назва',
-'imagelist_user'        => 'Удзельнік',
-'imagelist_size'        => 'Памер у байтах',
-'imagelist_description' => 'Апісанне',
+'listfiles'             => 'Усе файлы',
+'listfiles_date'        => 'Дата',
+'listfiles_name'        => 'Назва',
+'listfiles_user'        => 'Удзельнік',
+'listfiles_size'        => 'Памер у байтах',
+'listfiles_description' => 'Апісанне',
 
 # File description page
 'filehist'                       => 'Гісторыя файла',

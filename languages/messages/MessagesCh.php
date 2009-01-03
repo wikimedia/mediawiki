@@ -794,8 +794,8 @@ Fanapunta na fana'an ti gus nuebu i listan-ñiha i guinahan {{SITENAME}}.",
 'uploadlogpage' => "Na'kåtga i log",
 'uploadedimage' => 'mana\'kåtga hulu\' "[[$1]]"',
 
-# Special:FileList
-'imagelist' => 'Listan atkibu',
+# Special:ListFiles
+'listfiles' => 'Listan atkibu',
 
 # File description page
 'filehist'                  => 'Historian atkibu',

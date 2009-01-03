@@ -238,12 +238,12 @@ Proba [[Special:Search|sercho sur li wiki]] por relatet pagines.',
 'fileuploadsummary' => 'Resume:',
 'watchthisupload'   => 'Observa disi pagine',
 
-# Special:FileList
-'imagelist_search_for'  => 'Sercha imaje nome:',
-'imagelist_name'        => 'Nome',
-'imagelist_user'        => 'Usere',
-'imagelist_size'        => 'Grandeso (bites)',
-'imagelist_description' => 'Deskriptione',
+# Special:ListFiles
+'listfiles_search_for'  => 'Sercha imaje nome:',
+'listfiles_name'        => 'Nome',
+'listfiles_user'        => 'Usere',
+'listfiles_size'        => 'Grandeso (bites)',
+'listfiles_description' => 'Deskriptione',
 
 # File description page
 'filehist-user' => 'Usere',

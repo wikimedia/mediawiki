@@ -328,9 +328,9 @@ $messages = array(
 'fileuploadsummary' => 'Тидын нерген кӱчыкын:',
 'watchthisupload'   => 'Тиде лаштыкым эскераш',
 
-# Special:FileList
+# Special:ListFiles
 'imgfile'        => 'файл',
-'imagelist_user' => 'Пайдаланыше',
+'listfiles_user' => 'Пайдаланыше',
 
 # File description page
 'filehist-deleteone' => 'шӧраш',

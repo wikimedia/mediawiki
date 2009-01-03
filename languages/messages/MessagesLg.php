@@ -349,8 +349,8 @@ oba ku gano agali ku lupapula luno.<br />
 'upload'        => 'Teekayo fayiro',
 'uploadlogpage' => 'Likooda eya fayiro eziteekedwa ku wiki',
 
-# Special:FileList
-'imagelist_user' => 'Memba',
+# Special:ListFiles
+'listfiles_user' => 'Memba',
 
 # File description page
 'filehist'            => 'Ebyafaayo ebya fayiro eno',

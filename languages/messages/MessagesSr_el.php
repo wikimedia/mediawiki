@@ -978,15 +978,15 @@ molimo vratite se i pošaljite ovaj fajl pod novim imenom. [[File:$1|thumb|cente
 'upload_source_url'  => ' (validan, javno dostupan URL)',
 'upload_source_file' => ' (fajl na vašem računaru)',
 
-# Special:FileList
-'imagelist_search_for'  => 'Traži ime slike:',
+# Special:ListFiles
+'listfiles_search_for'  => 'Traži ime slike:',
 'imgfile'               => 'fajl',
-'imagelist'             => 'Spisak slika',
-'imagelist_date'        => 'Datum',
-'imagelist_name'        => 'Ime',
-'imagelist_user'        => 'Korisnik',
-'imagelist_size'        => 'Veličina (bajtovi)',
-'imagelist_description' => 'Opis slike',
+'listfiles'             => 'Spisak slika',
+'listfiles_date'        => 'Datum',
+'listfiles_name'        => 'Ime',
+'listfiles_user'        => 'Korisnik',
+'listfiles_size'        => 'Veličina (bajtovi)',
+'listfiles_description' => 'Opis slike',
 
 # File description page
 'imagelinks'                => 'Upotreba slike',

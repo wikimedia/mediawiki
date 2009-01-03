@@ -84,7 +84,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Obserwowane' ),
 	'Recentchanges'             => array( 'Ostatnie zmiany', 'OZ' ),
 	'Upload'                    => array( 'Prześlij' ),
-	'Imagelist'                 => array( 'Pliki' ),
+	'Listfiles'                 => array( 'Pliki' ),
 	'Newimages'                 => array( 'Nowe pliki' ),
 	'Listusers'                 => array( 'Użytkownicy' ),
 	'Listgrouprights'           => array( 'Uprawnienia grup użytkowników', 'Uprawnienia' ),
@@ -1530,18 +1530,18 @@ Możesz także spróbować w czasie mniejszego obciążenia serwera.',
 'upload_source_url'  => ' (poprawny, publicznie dostępny adres URL)',
 'upload_source_file' => ' (plik na twoim komputerze)',
 
-# Special:FileList
-'imagelist-summary'     => 'Na tej stronie specjalnej prezentowane są wszystkie pliki przesłane na serwer.
+# Special:ListFiles
+'listfiles-summary'     => 'Na tej stronie specjalnej prezentowane są wszystkie pliki przesłane na serwer.
 Domyślnie na górze listy umieszczane są ostatnio przesłane pliki.
 Kliknięcie w nagłówek kolumny zmienia sposób sortowania.',
-'imagelist_search_for'  => 'Szukaj pliku o nazwie',
+'listfiles_search_for'  => 'Szukaj pliku o nazwie',
 'imgfile'               => 'plik',
-'imagelist'             => 'Lista plików',
-'imagelist_date'        => 'Data',
-'imagelist_name'        => 'Nazwa',
-'imagelist_user'        => 'Użytkownik',
-'imagelist_size'        => 'Wielkość',
-'imagelist_description' => 'Opis',
+'listfiles'             => 'Lista plików',
+'listfiles_date'        => 'Data',
+'listfiles_name'        => 'Nazwa',
+'listfiles_user'        => 'Użytkownik',
+'listfiles_size'        => 'Wielkość',
+'listfiles_description' => 'Opis',
 
 # File description page
 'filehist'                       => 'Historia pliku',

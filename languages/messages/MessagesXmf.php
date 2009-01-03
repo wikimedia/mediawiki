@@ -357,9 +357,9 @@ $messages = array(
 'uploadlogpage' => 'გიმოხარგუაშ რეგისტრაცია',
 'uploadedimage' => 'გეთებაა "[[$1]]"',
 
-# Special:FileList
-'imagelist'      => 'სურათეფიშ ერკებულ',
-'imagelist_name' => 'სახელ',
+# Special:ListFiles
+'listfiles'      => 'სურათეფიშ ერკებულ',
+'listfiles_name' => 'სახელ',
 
 # File description page
 'filehist'            => 'ფაილიშ ისტორია',

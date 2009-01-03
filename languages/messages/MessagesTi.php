@@ -115,11 +115,11 @@ $messages = array(
 # Upload
 'savefile' => 'ምስሊ ኣቐምጥ',
 
-# Special:FileList
+# Special:ListFiles
 'imgfile'        => 'ምስሊ',
-'imagelist'      => 'ምስልታት',
-'imagelist_name' => 'ሽም',
-'imagelist_user' => 'ኣባል',
+'listfiles'      => 'ምስልታት',
+'listfiles_name' => 'ሽም',
+'listfiles_user' => 'ኣባል',
 
 # Miscellaneous special pages
 'nbytes'            => '$1 {{PLURAL:$1|ባይት|ባይታት}}',

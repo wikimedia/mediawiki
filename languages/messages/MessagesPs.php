@@ -34,7 +34,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'کتلی لړليک' ),
 	'Recentchanges'             => array( 'اوسني بدلونونه' ),
 	'Upload'                    => array( 'پورته کول' ),
-	'Imagelist'                 => array( 'د انځورونو لړليک' ),
+	'Listfiles'                 => array( 'د انځورونو لړليک' ),
 	'Newimages'                 => array( 'نوي انځورونه' ),
 	'Listusers'                 => array( 'د کارونکو لړليک' ),
 	'Randompage'                => array( 'ناټاکلی، ناټاکلی مخ' ),
@@ -775,15 +775,15 @@ $messages = array(
 'nolicense'          => 'هېڅ نه دي ټاکل شوي',
 'upload_source_file' => '(ستاسو په کمپيوټر کې يوه دوتنه)',
 
-# Special:FileList
-'imagelist_search_for'  => 'د انځور د نوم لټون:',
+# Special:ListFiles
+'listfiles_search_for'  => 'د انځور د نوم لټون:',
 'imgfile'               => 'دوتنه',
-'imagelist'             => 'د دوتنو لړليک',
-'imagelist_date'        => 'نېټه',
-'imagelist_name'        => 'نوم',
-'imagelist_user'        => 'کارونکی',
-'imagelist_size'        => 'کچه (bytes)',
-'imagelist_description' => 'څرګندونه',
+'listfiles'             => 'د دوتنو لړليک',
+'listfiles_date'        => 'نېټه',
+'listfiles_name'        => 'نوم',
+'listfiles_user'        => 'کارونکی',
+'listfiles_size'        => 'کچه (bytes)',
+'listfiles_description' => 'څرګندونه',
 
 # File description page
 'filehist'                  => 'د دوتنې پېښليک',

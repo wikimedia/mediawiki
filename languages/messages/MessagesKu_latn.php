@@ -844,14 +844,14 @@ Zanibe, ku ev barkirina kê were qebûlkirin ya na.
 
 'license' => 'Lîsens:',
 
-# Special:FileList
-'imagelist_search_for'  => 'Li navî wêneyê bigere:',
-'imagelist'             => 'Listeya wêneyan',
-'imagelist_date'        => 'Dem',
-'imagelist_name'        => 'Nav',
-'imagelist_user'        => 'Bikarhêner',
-'imagelist_size'        => 'Mezinbûn',
-'imagelist_description' => 'Wesif',
+# Special:ListFiles
+'listfiles_search_for'  => 'Li navî wêneyê bigere:',
+'listfiles'             => 'Listeya wêneyan',
+'listfiles_date'        => 'Dem',
+'listfiles_name'        => 'Nav',
+'listfiles_user'        => 'Bikarhêner',
+'listfiles_size'        => 'Mezinbûn',
+'listfiles_description' => 'Wesif',
 
 # File description page
 'filehist'                  => 'Dîroka datayê',

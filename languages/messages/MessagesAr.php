@@ -286,7 +286,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'قائمة_المراقبة' ),
 	'Recentchanges'             => array( 'أحدث_التغييرات' ),
 	'Upload'                    => array( 'رفع' ),
-	'Imagelist'                 => array( 'قائمة_الصور' ),
+	'Listfiles'                 => array( 'قائمة_الصور' ),
 	'Newimages'                 => array( 'صور_جديدة' ),
 	'Listusers'                 => array( 'عرض_المستخدمين', 'قائمة_المستخدمين' ),
 	'Listgrouprights'           => array( 'عرض_صلاحيات_المجموعات' ),
@@ -1705,18 +1705,18 @@ PICT # متنوع
 'upload_source_url'  => '  (مسار صحيح، يمكن الوصول إليه)',
 'upload_source_file' => ' (ملف على حاسوبك)',
 
-# Special:FileList
-'imagelist-summary'     => 'هذه الصفحة الخاصة تعرض كل الملفات المرفوعة.
+# Special:ListFiles
+'listfiles-summary'     => 'هذه الصفحة الخاصة تعرض كل الملفات المرفوعة.
 افتراضيا آخر الملفات المرفوعة تعرض أعلى القائمة.
 الضغط على رأس العامود يغير الترتيب.',
-'imagelist_search_for'  => 'ابحث عن اسم الميديا:',
+'listfiles_search_for'  => 'ابحث عن اسم الميديا:',
 'imgfile'               => 'ملف',
-'imagelist'             => 'قائمة الملفات',
-'imagelist_date'        => 'تاريخ',
-'imagelist_name'        => 'اسم',
-'imagelist_user'        => 'مستخدم',
-'imagelist_size'        => 'حجم',
-'imagelist_description' => 'وصف',
+'listfiles'             => 'قائمة الملفات',
+'listfiles_date'        => 'تاريخ',
+'listfiles_name'        => 'اسم',
+'listfiles_user'        => 'مستخدم',
+'listfiles_size'        => 'حجم',
+'listfiles_description' => 'وصف',
 
 # File description page
 'filehist'                       => 'تاريخ الملف',

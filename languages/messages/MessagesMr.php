@@ -50,7 +50,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'पहार्‍याची सूची' ),
 	'Recentchanges'             => array( 'अलीकडील बदल' ),
 	'Upload'                    => array( 'चढवा' ),
-	'Imagelist'                 => array( 'चित्रयादी' ),
+	'Listfiles'                 => array( 'चित्रयादी' ),
 	'Newimages'                 => array( 'नवीन चित्रे' ),
 	'Listusers'                 => array( 'सदस्यांची यादी' ),
 	'Listgrouprights'           => array( 'गट अधिकार यादी' ),
@@ -1245,18 +1245,18 @@ $3ने ''$2'' कारण दिले आहे.",
 'upload_source_url'  => '(एक सुयोग्य,सार्वजनिकरित्या उपलब्ध URL)',
 'upload_source_file' => '(तुमच्या संगणकावरील एक संचिका)',
 
-# Special:FileList
-'imagelist-summary'     => 'हे विशेष पान सर्व चढविलेल्या संचिका दर्शिविते.
+# Special:ListFiles
+'listfiles-summary'     => 'हे विशेष पान सर्व चढविलेल्या संचिका दर्शिविते.
 सर्वसाधारणपणे सगळ्यात शेवटी बदल झालेल्या संचिका सर्वात वर दिसतात.
 रकान्याच्या नावापुढे टिचकी देऊन संचिकांचा अनुक्रम बदलता येतो.',
-'imagelist_search_for'  => 'चित्र नावाने शोध:',
+'listfiles_search_for'  => 'चित्र नावाने शोध:',
 'imgfile'               => 'संचिका',
-'imagelist'             => 'चित्र यादी',
-'imagelist_date'        => 'दिनांक',
-'imagelist_name'        => 'नाव',
-'imagelist_user'        => 'सदस्य',
-'imagelist_size'        => 'आकार (बाईट्स)',
-'imagelist_description' => 'वर्णन',
+'listfiles'             => 'चित्र यादी',
+'listfiles_date'        => 'दिनांक',
+'listfiles_name'        => 'नाव',
+'listfiles_user'        => 'सदस्य',
+'listfiles_size'        => 'आकार (बाईट्स)',
+'listfiles_description' => 'वर्णन',
 
 # File description page
 'filehist'                       => 'संचिकेचा इतिहास',

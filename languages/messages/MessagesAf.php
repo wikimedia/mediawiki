@@ -48,7 +48,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Dophoulys' ),
 	'Recentchanges'             => array( 'Onlangse wysigings', 'Onlangsewysigings' ),
 	'Upload'                    => array( 'Laai', 'Oplaai' ),
-	'Imagelist'                 => array( 'Beeldelys', 'Prentelys', 'Lêerslys' ),
+	'Listfiles'                 => array( 'Beeldelys', 'Prentelys', 'Lêerslys' ),
 	'Newimages'                 => array( 'Nuwe beelde', 'Nuwebeelde', 'Nuwe lêers', 'Nuwelêers' ),
 	'Listusers'                 => array( 'Gebruikerslys', 'Lysgebruikers' ),
 	'Listgrouprights'           => array( 'LysGroepRegte' ),
@@ -1224,18 +1224,18 @@ Die verwyderingsinligting van die lêer word vir u gemak hier herhaal:",
 'upload_source_url'  => " ('n geldige, publiek toeganklike URL)",
 'upload_source_file' => " ('n lêer op u rekenaar)",
 
-# Special:FileList
-'imagelist-summary'     => 'Die spesiale bladsy wys al die opgelaaide lêers.
+# Special:ListFiles
+'listfiles-summary'     => 'Die spesiale bladsy wys al die opgelaaide lêers.
 Die nuutste lêer word eerste vertoon.
 Klik op die opskrifte om die tabel anders te sorteer.',
-'imagelist_search_for'  => 'Soek vir medianaam:',
+'listfiles_search_for'  => 'Soek vir medianaam:',
 'imgfile'               => 'lêer',
-'imagelist'             => 'Prentelys',
-'imagelist_date'        => 'Datum',
-'imagelist_name'        => 'Naam',
-'imagelist_user'        => 'Gebruiker',
-'imagelist_size'        => 'Grootte',
-'imagelist_description' => 'Beskrywing',
+'listfiles'             => 'Prentelys',
+'listfiles_date'        => 'Datum',
+'listfiles_name'        => 'Naam',
+'listfiles_user'        => 'Gebruiker',
+'listfiles_size'        => 'Grootte',
+'listfiles_description' => 'Beskrywing',
 
 # File description page
 'filehist'                       => 'Lêergeskiedenis',

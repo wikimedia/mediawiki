@@ -1331,16 +1331,16 @@ $2',
 'upload_source_url'  => ' (валидан, јавно доступан УРЛ)',
 'upload_source_file' => ' (фајл на вашем рачунару)',
 
-# Special:FileList
-'imagelist-summary'     => 'Ова посебна страна приказује све послате фајлове. Подразумева се да је последњи послат фајл приказан на врху списка. Кликом на заглавље колоне мења се принцип сортирања.',
-'imagelist_search_for'  => 'Тражи име слике:',
+# Special:ListFiles
+'listfiles-summary'     => 'Ова посебна страна приказује све послате фајлове. Подразумева се да је последњи послат фајл приказан на врху списка. Кликом на заглавље колоне мења се принцип сортирања.',
+'listfiles_search_for'  => 'Тражи име слике:',
 'imgfile'               => 'фајл',
-'imagelist'             => 'Списак слика',
-'imagelist_date'        => 'Датум',
-'imagelist_name'        => 'Име',
-'imagelist_user'        => 'Корисник',
-'imagelist_size'        => 'Величина (бајтови)',
-'imagelist_description' => 'Опис слике',
+'listfiles'             => 'Списак слика',
+'listfiles_date'        => 'Датум',
+'listfiles_name'        => 'Име',
+'listfiles_user'        => 'Корисник',
+'listfiles_size'        => 'Величина (бајтови)',
+'listfiles_description' => 'Опис слике',
 
 # File description page
 'filehist'                       => 'Историја фајла',

@@ -94,7 +94,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'ЛистаНаНабљудувања' ),
 	'Recentchanges'             => array( 'СкорешниПромени' ),
 	'Upload'                    => array( 'Подигнување', 'Подигнувања' ),
-	'Imagelist'                 => array( 'ЛистаНаСлики', 'ЛистаНаПодатотеки' ),
+	'Listfiles'                 => array( 'ЛистаНаСлики', 'ЛистаНаПодатотеки' ),
 	'Newimages'                 => array( 'НовиСлики', 'НовиПодатотеки' ),
 	'Listusers'                 => array( 'ЛистаНаКорисници', 'ЛистаКорисници' ),
 	'Listgrouprights'           => array( 'ЛистаНаГрупниПрава' ),
@@ -1554,18 +1554,18 @@ PICT # misc.
 'upload_source_url'  => ' (валидна, јавно достапна адреса (URL))',
 'upload_source_file' => '(податотека на вашиот компјутер)',
 
-# Special:FileList
-'imagelist-summary'     => 'Оваа специјална страница ги покажува сите подигнати податотеки.
+# Special:ListFiles
+'listfiles-summary'     => 'Оваа специјална страница ги покажува сите подигнати податотеки.
 По основно последно подигнатите страници се прикажани на почеток од листата.
 Со клик на насловот на колоната може да се промени подредувањето.',
-'imagelist_search_for'  => 'Побарај име на медија:',
+'listfiles_search_for'  => 'Побарај име на медија:',
 'imgfile'               => 'податотека',
-'imagelist'             => 'Листа на слики',
-'imagelist_date'        => 'Датум',
-'imagelist_name'        => 'Име',
-'imagelist_user'        => 'Корисник',
-'imagelist_size'        => 'Големина (бајти)',
-'imagelist_description' => 'Опис',
+'listfiles'             => 'Листа на слики',
+'listfiles_date'        => 'Датум',
+'listfiles_name'        => 'Име',
+'listfiles_user'        => 'Корисник',
+'listfiles_size'        => 'Големина (бајти)',
+'listfiles_description' => 'Опис',
 
 # File description page
 'filehist'                       => 'Историја на податотеката',

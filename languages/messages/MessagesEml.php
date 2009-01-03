@@ -105,8 +105,8 @@ Putiv cuntinuèr ad usèr {{SITENAME}} anonimamèint, o putiv cunnètterv dòp c
 'filedesc'          => "Ugêt d'al cambiamèint",
 'fileuploadsummary' => "Ugêt d'al cambiamèint:",
 
-# Special:FileList
-'imagelist_size' => 'Dimensiòun (bytes)',
+# Special:ListFiles
+'listfiles_size' => 'Dimensiòun (bytes)',
 
 # Random page
 'randompage' => 'Una pàgina a chès',

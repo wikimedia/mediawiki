@@ -54,7 +54,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Volglies' ),
 	'Recentchanges'             => array( 'Lètste verangeringe' ),
 	'Upload'                    => array( 'Uploade' ),
-	'Imagelist'                 => array( 'Plaetjes' ),
+	'Listfiles'                 => array( 'Plaetjes' ),
 	'Newimages'                 => array( 'Nuuj plaetjes' ),
 	'Listusers'                 => array( 'Gebroekers' ),
 	'Statistics'                => array( 'Sjtatistieke' ),
@@ -1342,18 +1342,18 @@ Lèver zeker te zeen detse gesjik bös om door te gaon met 't uploade van dit be
 'upload_source_url'  => " ('ne geldige, publiek toegankelike URL)",
 'upload_source_file' => " ('n bestand op diene computer)",
 
-# Special:FileList
-'imagelist-summary'     => "Op dees speciaal pazjena zeen alle toegevoogde bestenj te bekieke.
+# Special:ListFiles
+'listfiles-summary'     => "Op dees speciaal pazjena zeen alle toegevoogde bestenj te bekieke.
 Standerd waere de lets toegevoogde bestenj baovenaan de lies weergegaeve.
 Klikke op 'ne kolomkop verangert de sortering.",
-'imagelist_search_for'  => 'Zeuk nao bestandj:',
+'listfiles_search_for'  => 'Zeuk nao bestandj:',
 'imgfile'               => 'bestandj',
-'imagelist'             => 'Lies van aafbeildinge',
-'imagelist_date'        => 'Datum',
-'imagelist_name'        => 'Naom',
-'imagelist_user'        => 'Gebroeker',
-'imagelist_size'        => 'Gruutde (bytes)',
-'imagelist_description' => 'Besjrieving',
+'listfiles'             => 'Lies van aafbeildinge',
+'listfiles_date'        => 'Datum',
+'listfiles_name'        => 'Naom',
+'listfiles_user'        => 'Gebroeker',
+'listfiles_size'        => 'Gruutde (bytes)',
+'listfiles_description' => 'Besjrieving',
 
 # File description page
 'filehist'                       => 'Bestandsgesjiedenis',

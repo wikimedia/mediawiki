@@ -39,7 +39,7 @@ $namespaceAliases = array(
 
 $specialPageAliases = array(
 	'Upload'                    => array( 'Ngarko' ),
-	'Imagelist'                 => array( 'ListaSkedave' ),
+	'Listfiles'                 => array( 'ListaSkedave' ),
 	'Newimages'                 => array( 'SkedaTëReja' ),
 	'Listusers'                 => array( 'RreshtoPërdoruesit' ),
 	'Statistics'                => array( 'Statistika' ),
@@ -1123,18 +1123,18 @@ Këshillohet që ta provoni kur të jetë më pak e zënë.',
 'upload_source_url'  => ' (URL e vlefshme, publikisht e përdorshme)',
 'upload_source_file' => ' (skeda në kompjuterin tuaj)',
 
-# Special:FileList
-'imagelist-summary'     => 'Kjo faqe speciale tregon tërë skedat e ngarkuara.
+# Special:ListFiles
+'listfiles-summary'     => 'Kjo faqe speciale tregon tërë skedat e ngarkuara.
 Fillimisht skedat e ngarkuara së fundmi jepen më sipër.
 Shtypni kolonat e tjera për të ndryshuar radhitjen.',
-'imagelist_search_for'  => 'Kërko për emrin e figurës:',
+'listfiles_search_for'  => 'Kërko për emrin e figurës:',
 'imgfile'               => 'skeda',
-'imagelist'             => 'Lista e figurave',
-'imagelist_date'        => 'Data',
-'imagelist_name'        => 'Emri',
-'imagelist_user'        => 'Përdoruesi',
-'imagelist_size'        => 'Madhësia (bytes)',
-'imagelist_description' => 'Përshkrimi',
+'listfiles'             => 'Lista e figurave',
+'listfiles_date'        => 'Data',
+'listfiles_name'        => 'Emri',
+'listfiles_user'        => 'Përdoruesi',
+'listfiles_size'        => 'Madhësia (bytes)',
+'listfiles_description' => 'Përshkrimi',
 
 # File description page
 'filehist'                       => 'Historiku i dosjes',

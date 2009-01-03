@@ -985,14 +985,14 @@ Pàggene sus 'a [[Special:Watchlist|le Pàggene condrollete]] sonde in '''grasce
 'license-nopreview'  => "(L'andeprime non g'è disponibbile)",
 'upload_source_file' => " ('nu fail sus a 'u combiuter tue)",
 
-# Special:FileList
+# Special:ListFiles
 'imgfile'               => 'file',
-'imagelist'             => 'Liste de le fail',
-'imagelist_date'        => 'Sciurne',
-'imagelist_name'        => 'Nome',
-'imagelist_user'        => 'Utende',
-'imagelist_size'        => 'Dimenzione',
-'imagelist_description' => 'Descrizione',
+'listfiles'             => 'Liste de le fail',
+'listfiles_date'        => 'Sciurne',
+'listfiles_name'        => 'Nome',
+'listfiles_user'        => 'Utende',
+'listfiles_size'        => 'Dimenzione',
+'listfiles_description' => 'Descrizione',
 
 # File description page
 'filehist'                       => 'cunde',

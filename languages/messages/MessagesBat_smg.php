@@ -772,16 +772,16 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'upload_source_url'  => ' (tėkrs, vėišā priėinams URL)',
 'upload_source_file' => ' (fails Tamstas kompioterī)',
 
-# Special:FileList
-'imagelist-summary'     => 'Tas specēlus poslapis ruod vėsus ikeltus failus.
+# Special:ListFiles
+'listfiles-summary'     => 'Tas specēlus poslapis ruod vėsus ikeltus failus.
 Palē numatīma paskiausē ikeltė failā īr ruoduomė sāroša vėršou.
 Paspaude ont štolpelė ontraštės pakeisėt ėšruokavėma.',
 'imgfile'               => 'fails',
-'imagelist'             => 'Failu sārašos',
-'imagelist_name'        => 'Pavadinėms',
-'imagelist_user'        => 'Nauduotuos',
-'imagelist_size'        => 'Dėdoms',
-'imagelist_description' => 'Aprašīms',
+'listfiles'             => 'Failu sārašos',
+'listfiles_name'        => 'Pavadinėms',
+'listfiles_user'        => 'Nauduotuos',
+'listfiles_size'        => 'Dėdoms',
+'listfiles_description' => 'Aprašīms',
 
 # File description page
 'filehist'                  => 'Abruozdielė istuorėjė',

@@ -53,7 +53,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( '주시문서', '주시목록' ),
 	'Recentchanges'             => array( '최근바뀜' ),
 	'Upload'                    => array( '파일올리기', '그림올리기' ),
-	'Imagelist'                 => array( '파일', '그림', '파일목록', '그림목록' ),
+	'Listfiles'                 => array( '파일', '그림', '파일목록', '그림목록' ),
 	'Newimages'                 => array( '새파일', '새그림' ),
 	'Listusers'                 => array( '사용자', '사용자목록' ),
 	'Listgrouprights'           => array( '사용자권한', '권한목록' ),
@@ -1383,17 +1383,17 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'upload_source_url'  => ' (유효하고, 모든 사람이 접근 가능한 URL)',
 'upload_source_file' => ' (당신의 컴퓨터에 있는 파일)',
 
-# Special:FileList
-'imagelist-summary'     => '이 위키에 올라와 있는 모든 파일이 나열되어 있습니다.
+# Special:ListFiles
+'listfiles-summary'     => '이 위키에 올라와 있는 모든 파일이 나열되어 있습니다.
 기본적으로 가장 최근에 올라온 파일이 가장 위에 올라와 있습니다.
 다른 방식으로 정렬하려면 기준 열의 머리칸을 눌러주세요.',
 'imgfile'               => '파일',
-'imagelist'             => '파일 목록',
-'imagelist_date'        => '날짜',
-'imagelist_name'        => '이름',
-'imagelist_user'        => '사용자',
-'imagelist_size'        => '크기',
-'imagelist_description' => '설명',
+'listfiles'             => '파일 목록',
+'listfiles_date'        => '날짜',
+'listfiles_name'        => '이름',
+'listfiles_user'        => '사용자',
+'listfiles_size'        => '크기',
+'listfiles_description' => '설명',
 
 # File description page
 'filehist'                       => '파일 역사',

@@ -1245,16 +1245,16 @@ Wan dät Problem fääre bestoant, informier n [[Special:ListUsers/sysop|System-
 'upload_source_url'  => ' (gultige, eepentelk tougongelke URL)',
 'upload_source_file' => ' (ne Doatäi ap Jou Computer)',
 
-# Special:FileList
-'imagelist-summary'     => 'Disse Spezialsiede liestet aal hoochleedene Doatäie ap. Standoardmäitich wäide do toulääst hoochleedene Doatäie toueerst anwiesd. Truch n Klik ap do Spaltenuurschrifte kon ju Sortierenge uumetroald wäide of der kon ätter ne uur Spalte sortierd wäide.',
-'imagelist_search_for'  => 'Säik ätter Doatäi:',
+# Special:ListFiles
+'listfiles-summary'     => 'Disse Spezialsiede liestet aal hoochleedene Doatäie ap. Standoardmäitich wäide do toulääst hoochleedene Doatäie toueerst anwiesd. Truch n Klik ap do Spaltenuurschrifte kon ju Sortierenge uumetroald wäide of der kon ätter ne uur Spalte sortierd wäide.',
+'listfiles_search_for'  => 'Säik ätter Doatäi:',
 'imgfile'               => 'Doatäi',
-'imagelist'             => 'Bieldelieste',
-'imagelist_date'        => 'Doatum',
-'imagelist_name'        => 'Noome',
-'imagelist_user'        => 'Benutser',
-'imagelist_size'        => 'Grööte',
-'imagelist_description' => 'Beschrieuwenge',
+'listfiles'             => 'Bieldelieste',
+'listfiles_date'        => 'Doatum',
+'listfiles_name'        => 'Noome',
+'listfiles_user'        => 'Benutser',
+'listfiles_size'        => 'Grööte',
+'listfiles_description' => 'Beschrieuwenge',
 
 # File description page
 'filehist'                       => 'Doatäiversione',

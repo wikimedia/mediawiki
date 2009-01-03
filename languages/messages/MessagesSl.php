@@ -40,7 +40,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'SpisekNadzorov' ),
 	'Recentchanges'             => array( 'ZadnjeSpremembe' ),
 	'Upload'                    => array( 'Nalaganje' ),
-	'Imagelist'                 => array( 'SeznamDatotek', 'SeznamSlik' ),
+	'Listfiles'                 => array( 'SeznamDatotek', 'SeznamSlik' ),
 	'Newimages'                 => array( 'NoveDatoteke', 'NoveSlike' ),
 	'Listusers'                 => array( 'SeznamUporabnikov' ),
 	'Listgrouprights'           => array( 'SeznamPravicSkupin' ),
@@ -762,8 +762,8 @@ ali za neposredno povezavo z datoteko
 'license'   => 'Dovoljenje:',
 'nolicense' => 'Nobeno (opomba: datoteka bo morda izbrisana)',
 
-# Special:FileList
-'imagelist' => 'Seznam datotek',
+# Special:ListFiles
+'listfiles' => 'Seznam datotek',
 
 # File description page
 'imagelinks'                => 'Strani z datoteko',

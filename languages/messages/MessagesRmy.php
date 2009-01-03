@@ -346,8 +346,8 @@ Kana avilyan kathe doshatar, ja palpale.',
 'badfilename' => 'O chitrosko anav sas paruvdo; o nevo anav si "$1".',
 'savefile'    => 'Uxtav file',
 
-# Special:FileList
-'imagelist' => 'Patrinipen le chitrengo',
+# Special:ListFiles
+'listfiles' => 'Patrinipen le chitrengo',
 
 # File description page
 'imagelinks' => 'Chitroske phandimata',

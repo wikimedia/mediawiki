@@ -1301,18 +1301,18 @@ PICT # misc.
 'upload_source_url'  => ' (сөптөөх URL, ким баҕарбыт киирэр сирэ)',
 'upload_source_file' => ' (билэ компьютергар баар)',
 
-# Special:FileList
-'imagelist-summary'     => 'Бу анал сирэй киллэриллибит билэлэри барытын көрдөрөр.
+# Special:ListFiles
+'listfiles-summary'     => 'Бу анал сирэй киллэриллибит билэлэри барытын көрдөрөр.
 Соторутааҕыта киллэриллибиттэр үөһэ сылдьаллар.
 Колонка баһын баттаатаххына наардааһын бэрээдэгэ уларыйар.',
-'imagelist_search_for'  => 'Миэдьийэни (ойууну) аатынан көрдөтүү:',
+'listfiles_search_for'  => 'Миэдьийэни (ойууну) аатынан көрдөтүү:',
 'imgfile'               => 'билэ',
-'imagelist'             => 'Билэлэр',
-'imagelist_date'        => 'Күнэ-ыйа',
-'imagelist_name'        => 'Аата',
-'imagelist_user'        => 'Кыттааччы',
-'imagelist_size'        => 'Кээмэйэ',
-'imagelist_description' => 'Быһаарыыта',
+'listfiles'             => 'Билэлэр',
+'listfiles_date'        => 'Күнэ-ыйа',
+'listfiles_name'        => 'Аата',
+'listfiles_user'        => 'Кыттааччы',
+'listfiles_size'        => 'Кээмэйэ',
+'listfiles_description' => 'Быһаарыыта',
 
 # File description page
 'filehist'                       => 'Билэ устуоруйата',

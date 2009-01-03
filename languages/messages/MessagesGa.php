@@ -975,15 +975,15 @@ uaslódáil é arís, le do thoil.',
 'upload_source_url'  => ' (URL bailí is féidir a rochtain go poiblí)',
 'upload_source_file' => ' (comhad ar do riomhaire)',
 
-# Special:FileList
-'imagelist_search_for'  => 'Cuardaigh le íomhá ab ainm:',
+# Special:ListFiles
+'listfiles_search_for'  => 'Cuardaigh le íomhá ab ainm:',
 'imgfile'               => 'comhad',
-'imagelist'             => 'Liosta íomhánna',
-'imagelist_date'        => 'Dáta',
-'imagelist_name'        => 'Ainm',
-'imagelist_user'        => 'Úsáideoir',
-'imagelist_size'        => 'Méid',
-'imagelist_description' => 'Tuairisc',
+'listfiles'             => 'Liosta íomhánna',
+'listfiles_date'        => 'Dáta',
+'listfiles_name'        => 'Ainm',
+'listfiles_user'        => 'Úsáideoir',
+'listfiles_size'        => 'Méid',
+'listfiles_description' => 'Tuairisc',
 
 # File description page
 'filehist'                       => 'Stair comhad',

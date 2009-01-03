@@ -75,7 +75,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Páginas vigiadas', 'Artigos vigiados', 'Vigiados' ),
 	'Recentchanges'             => array( 'Mudanças recentes' ),
 	'Upload'                    => array( 'Carregar imagem', 'Carregar ficheiro', 'Carregar arquivo', 'Enviar' ),
-	'Imagelist'                 => array( 'Lista de imagens', 'Lista de ficheiros', 'Lista de arquivos' ),
+	'Listfiles'                 => array( 'Lista de imagens', 'Lista de ficheiros', 'Lista de arquivos' ),
 	'Newimages'                 => array( 'Imagens novas', 'Ficheiros novos', 'Arquivos novos' ),
 	'Listusers'                 => array( 'Lista de usuários', 'Lista de utilizadores' ),
 	'Listgrouprights'           => array( 'Listar privilégios de grupos' ),
@@ -1437,18 +1437,18 @@ Caso o problema persista, contacte um [[Special:ListUsers/sysop|administrador]].
 'upload_source_url'  => ' (um URL válido, publicamente acessível)',
 'upload_source_file' => ' (um ficheiro no seu computador)',
 
-# Special:FileList
-'imagelist-summary'     => 'Esta página especial mostra todos os ficheiros carregados.
+# Special:ListFiles
+'listfiles-summary'     => 'Esta página especial mostra todos os ficheiros carregados.
 Por defeito, os últimos ficheiros carregados são mostrados no topo da lista.
 Um clique sobre um cabeçalho de coluna altera a ordenação.',
-'imagelist_search_for'  => 'Pesquisar por nome de imagem:',
+'listfiles_search_for'  => 'Pesquisar por nome de imagem:',
 'imgfile'               => 'ficheiro',
-'imagelist'             => 'Lista de ficheiros',
-'imagelist_date'        => 'Data',
-'imagelist_name'        => 'Nome',
-'imagelist_user'        => 'Utilizador',
-'imagelist_size'        => 'Tamanho',
-'imagelist_description' => 'Descrição',
+'listfiles'             => 'Lista de ficheiros',
+'listfiles_date'        => 'Data',
+'listfiles_name'        => 'Nome',
+'listfiles_user'        => 'Utilizador',
+'listfiles_size'        => 'Tamanho',
+'listfiles_description' => 'Descrição',
 
 # File description page
 'filehist'                       => 'Histórico do ficheiro',

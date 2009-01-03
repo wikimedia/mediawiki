@@ -1183,17 +1183,17 @@ $2',
 
 'license-nopreview' => '（謝草覽）',
 
-# Special:FileList
-'imagelist-summary'     => '此奇頁示檔之全呈也。
+# Special:ListFiles
+'listfiles-summary'     => '此奇頁示檔之全呈也。
 設最後之檔呈示於表頂。
 點題改其列之。',
-'imagelist_search_for'  => '以媒名尋：',
+'listfiles_search_for'  => '以媒名尋：',
 'imgfile'               => '檔',
-'imagelist_date'        => '時',
-'imagelist_name'        => '名',
-'imagelist_user'        => '簿',
-'imagelist_size'        => '幅（位元組）',
-'imagelist_description' => '述',
+'listfiles_date'        => '時',
+'listfiles_name'        => '名',
+'listfiles_user'        => '簿',
+'listfiles_size'        => '幅（位元組）',
+'listfiles_description' => '述',
 
 # File description page
 'filehist'                       => '檔史',

@@ -80,7 +80,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Seguimiento', 'Lista de seguimiento' ),
 	'Recentchanges'             => array( 'CambiosRecientes', 'Cambios recientes' ),
 	'Upload'                    => array( 'SubirArchivo', 'Subir archivo' ),
-	'Imagelist'                 => array( 'ListaImágenes', 'Lista de imágenes' ),
+	'Listfiles'                 => array( 'ListaImágenes', 'Lista de imágenes' ),
 	'Newimages'                 => array( 'NuevasImágenes', 'Nuevas imágenes' ),
 	'Listusers'                 => array( 'ListaUsuarios', 'Lista de usuarios' ),
 	'Listgrouprights'           => array( 'ListaDerechosGrupos', 'Derechos de grupos de usuarios' ),
@@ -1431,18 +1431,18 @@ Por favor, elige un nombre más descriptivo.',
 'upload_source_url'  => ' (una URL válida y accesible públicamente)',
 'upload_source_file' => ' (un archivo en su ordenador)',
 
-# Special:FileList
-'imagelist-summary'     => 'Esta página muestra todos los archivos subidos.
+# Special:ListFiles
+'listfiles-summary'     => 'Esta página muestra todos los archivos subidos.
 Por defecto, el último subido se muestra al principio de la lista.
 Un click sobre el encabezamiento de la columna cambia el orden.',
-'imagelist_search_for'  => 'Buscar por nombre de imagen:',
+'listfiles_search_for'  => 'Buscar por nombre de imagen:',
 'imgfile'               => 'archivo',
-'imagelist'             => 'Lista de archivos',
-'imagelist_date'        => 'Fecha',
-'imagelist_name'        => 'Nombre',
-'imagelist_user'        => 'Usuario',
-'imagelist_size'        => 'Tamaño (bytes)',
-'imagelist_description' => 'Descripción',
+'listfiles'             => 'Lista de archivos',
+'listfiles_date'        => 'Fecha',
+'listfiles_name'        => 'Nombre',
+'listfiles_user'        => 'Usuario',
+'listfiles_size'        => 'Tamaño (bytes)',
+'listfiles_description' => 'Descripción',
 
 # File description page
 'filehist'                       => 'Historial del archivo',

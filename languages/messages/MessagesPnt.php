@@ -633,14 +633,14 @@ $messages = array(
 'upload-file-error' => 'Σφάλμαν απές μερέαν',
 'upload-misc-error' => 'Αναγνώριμον λάθος φορτωματί',
 
-# Special:FileList
+# Special:ListFiles
 'imgfile'               => 'αρχείον',
-'imagelist'             => 'Λίσταν εικονίων',
-'imagelist_date'        => 'Ημερομηνία',
-'imagelist_name'        => 'Όνεμαν',
-'imagelist_user'        => 'Χρήστες',
-'imagelist_size'        => 'Μέγεθος',
-'imagelist_description' => 'Σχόλιον',
+'listfiles'             => 'Λίσταν εικονίων',
+'listfiles_date'        => 'Ημερομηνία',
+'listfiles_name'        => 'Όνεμαν',
+'listfiles_user'        => 'Χρήστες',
+'listfiles_size'        => 'Μέγεθος',
+'listfiles_description' => 'Σχόλιον',
 
 # File description page
 'filehist'                      => "Ιστορικόν τ' αρχείου",

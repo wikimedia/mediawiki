@@ -379,13 +379,13 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 
 'nolicense' => 'Nǣnne gecorenne',
 
-# Special:FileList
-'imagelist_search_for'  => 'Sēcan biliþnaman:',
-'imagelist'             => 'Biliþgetalu',
-'imagelist_date'        => 'Tælmearc',
-'imagelist_name'        => 'Nama',
-'imagelist_user'        => 'Brūcend',
-'imagelist_description' => 'Tōwritennes',
+# Special:ListFiles
+'listfiles_search_for'  => 'Sēcan biliþnaman:',
+'listfiles'             => 'Biliþgetalu',
+'listfiles_date'        => 'Tælmearc',
+'listfiles_name'        => 'Nama',
+'listfiles_user'        => 'Brūcend',
+'listfiles_description' => 'Tōwritennes',
 
 # File description page
 'filehist-user'  => 'Brūcend',

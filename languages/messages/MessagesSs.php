@@ -85,10 +85,10 @@ $messages = array(
 # Preferences page
 'searchresultshead' => 'Kucálata',
 
-# Special:FileList
-'imagelist_date' => 'Lusuku',
-'imagelist_name' => 'Ligama',
-'imagelist_user' => 'Umuntfu',
+# Special:ListFiles
+'listfiles_date' => 'Lusuku',
+'listfiles_name' => 'Ligama',
+'listfiles_user' => 'Umuntfu',
 
 # File description page
 'filehist-datetime' => 'Lusuku/Síkhatsí',

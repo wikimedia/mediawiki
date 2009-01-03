@@ -48,7 +48,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'මුරලැයිස්තුව' ),
 	'Recentchanges'             => array( 'මෑත වෙනස්වීම්' ),
 	'Upload'                    => array( 'උඩුගත කිරීම' ),
-	'Imagelist'                 => array( 'රූප ලැයිස්තුව' ),
+	'Listfiles'                 => array( 'රූප ලැයිස්තුව' ),
 	'Newimages'                 => array( 'අලුත් රූප' ),
 	'Listusers'                 => array( 'පරිශීලකයන් ලැයිස්තු ගත කරන්න', 'පරිශීලක ලැයිස්තුව' ),
 	'Listgrouprights'           => array( 'කණ්ඩායම් හිමිකම් ලැයිස්තුගතකරන්න' ),
@@ -1476,18 +1476,18 @@ PICT # විවිධ.
 'upload_source_url'  => ' (නීතික, ප්‍රජාව විසින් ප්‍රවේශ්‍ය කලාප ලිපිනය (URL) කි)',
 'upload_source_file' => ' (ඔබගේ පරිගණකයේ ගොනුවකි)',
 
-# Special:FileList
-'imagelist-summary'     => 'මෙම විශේෂ පිටුවෙහි දැක්වෙන්නේ සියළු උඩුගත කල ගොනුය.
+# Special:ListFiles
+'listfiles-summary'     => 'මෙම විශේෂ පිටුවෙහි දැක්වෙන්නේ සියළු උඩුගත කල ගොනුය.
 අවසානයට උඩුගත කල ගොනු පෙරනිමියෙන් ලැයිස්තුවෙහි ඉහළින්ම දැක්වේ.
 පේළි ශීර්ෂකය ක්ලික් කිරීමෙන් සුබෙදුම් පටිපාටිය වෙනස් කල හැක.',
-'imagelist_search_for'  => 'මාධ්‍ය නාමය සඳහා ගවේෂණය කරන්න:',
+'listfiles_search_for'  => 'මාධ්‍ය නාමය සඳහා ගවේෂණය කරන්න:',
 'imgfile'               => 'ගොනුව',
-'imagelist'             => 'ගොනු ලැයිස්තුව',
-'imagelist_date'        => 'දිනය',
-'imagelist_name'        => 'නම',
-'imagelist_user'        => 'පරිශීලක',
-'imagelist_size'        => 'විශාලත්වය',
-'imagelist_description' => 'විස්තරය',
+'listfiles'             => 'ගොනු ලැයිස්තුව',
+'listfiles_date'        => 'දිනය',
+'listfiles_name'        => 'නම',
+'listfiles_user'        => 'පරිශීලක',
+'listfiles_size'        => 'විශාලත්වය',
+'listfiles_description' => 'විස්තරය',
 
 # File description page
 'filehist'                       => 'ගොනු ඉතිහාසය',

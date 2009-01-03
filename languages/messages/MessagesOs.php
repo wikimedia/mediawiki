@@ -406,8 +406,8 @@ $3',
 'uploadvirus'     => 'Файлы разынд вирус! Кæс $1',
 'watchthisupload' => 'Ацы файлмæ дæ цæст æрдар',
 
-# Special:FileList
-'imagelist' => 'Нывты номхыгъд',
+# Special:ListFiles
+'listfiles' => 'Нывты номхыгъд',
 
 # File description page
 'filehist'          => 'Файлы истори',

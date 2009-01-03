@@ -590,10 +590,10 @@ Bákannà ẹ tún ṣèlérí fún wa wípé ẹ̀yin lẹkọ́ fúnra arayín
 'minlength1'        => 'Ó kéréjù àwọn orúkọ faili gbọdọ̀ jẹ́ lẹ́tà kan.',
 'uploadedimage'     => 'ti ru "[[$1]]" s\'ókè',
 
-# Special:FileList
-'imagelist'      => 'Àkójọ faili',
-'imagelist_name' => 'Orúkọ',
-'imagelist_user' => 'Oníṣe',
+# Special:ListFiles
+'listfiles'      => 'Àkójọ faili',
+'listfiles_name' => 'Orúkọ',
+'listfiles_user' => 'Oníṣe',
 
 # File description page
 'filehist'                  => 'Ìtàn faili',

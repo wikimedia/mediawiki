@@ -315,8 +315,8 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'fileexists-thumb' => "<center>'''Immagine esistente'''</center>",
 'uploadedimage'    => 'ha carecato "[[$1]]"',
 
-# Special:FileList
-'imagelist_name' => 'Nomme',
+# Special:ListFiles
+'listfiles_name' => 'Nomme',
 
 # File description page
 'filehist-user'    => 'Utente',

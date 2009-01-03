@@ -47,7 +47,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'ListaPracenja' ),
 	'Recentchanges'             => array( 'NedavneIzmjene' ),
 	'Upload'                    => array( 'Postavljanje' ),
-	'Imagelist'                 => array( 'ListaSlika' ),
+	'Listfiles'                 => array( 'ListaSlika' ),
 	'Newimages'                 => array( 'NoveSlike' ),
 	'Listusers'                 => array( 'ListaKorisnika' ),
 	'Listgrouprights'           => array( 'ListaKorisnickihPrava' ),
@@ -1507,18 +1507,18 @@ Možda možete pokušati kada bude manje opterećenje.',
 'upload_source_url'  => ' (validni, javno dostupni URL)',
 'upload_source_file' => ' (datoteka na Vašem računaru)',
 
-# Special:FileList
-'imagelist-summary'     => 'Ova specijalna stranica prikazuje sve postavljene datoteke.
+# Special:ListFiles
+'listfiles-summary'     => 'Ova specijalna stranica prikazuje sve postavljene datoteke.
 Uobičajeno je da posljednja postavljena datoteka bude prikazana na vrhu spiska.
 Klikom na zaglavlje kolone možete promjeniti način sortiranja.',
-'imagelist_search_for'  => 'Traži medije po imenu:',
+'listfiles_search_for'  => 'Traži medije po imenu:',
 'imgfile'               => 'datoteka',
-'imagelist'             => 'Spisak slika',
-'imagelist_date'        => 'Datum',
-'imagelist_name'        => 'Naziv',
-'imagelist_user'        => 'Korisnik',
-'imagelist_size'        => 'Veličina',
-'imagelist_description' => 'Opis',
+'listfiles'             => 'Spisak slika',
+'listfiles_date'        => 'Datum',
+'listfiles_name'        => 'Naziv',
+'listfiles_user'        => 'Korisnik',
+'listfiles_size'        => 'Veličina',
+'listfiles_description' => 'Opis',
 
 # File description page
 'filehist'                       => 'Historija datoteke',

@@ -203,9 +203,9 @@ $messages = array(
 'upload'   => 'Чуоза Файл',
 'filename' => 'файл цIе',
 
-# Special:FileList
-'imagelist_name' => 'Файли цІе',
-'imagelist_user' => 'юзер',
+# Special:ListFiles
+'listfiles_name' => 'Файли цІе',
+'listfiles_user' => 'юзер',
 
 # Random page
 'randompage' => 'Ца хууш нисделла таптар',

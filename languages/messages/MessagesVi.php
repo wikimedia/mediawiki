@@ -57,7 +57,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Danh sách theo dõi' ),
 	'Recentchanges'             => array( 'Thay đổi gần đây' ),
 	'Upload'                    => array( 'Tải lên' ),
-	'Imagelist'                 => array( 'Danh sách hình' ),
+	'Listfiles'                 => array( 'Danh sách hình' ),
 	'Newimages'                 => array( 'Hình mới', 'Tập tin mới' ),
 	'Listusers'                 => array( 'Danh sách thành viên' ),
 	'Statistics'                => array( 'Thống kê' ),
@@ -1442,18 +1442,18 @@ Nếu vẫn còn bị lỗi, xin hãy liên hệ với một [[Special:ListUsers
 'upload_source_url'  => ' (địa chỉ URL đúng, có thể truy cập)',
 'upload_source_file' => ' (tập tin trên máy của bạn)',
 
-# Special:FileList
-'imagelist-summary'     => 'Trang đặc biệt này liệt kê các tập tin được tải lên.
+# Special:ListFiles
+'listfiles-summary'     => 'Trang đặc biệt này liệt kê các tập tin được tải lên.
 Theo mặc định, các tập tin mới nhất được xếp vào đầu danh sách.
 Hãy nhấn chuột vào tiêu đề cột để thay đổi thứ tự sắp xếp.',
-'imagelist_search_for'  => 'Tìm kiếm theo tên tập tin:',
+'listfiles_search_for'  => 'Tìm kiếm theo tên tập tin:',
 'imgfile'               => 'tập tin',
-'imagelist'             => 'Danh sách tập tin',
-'imagelist_date'        => 'Ngày tải',
-'imagelist_name'        => 'Tên',
-'imagelist_user'        => 'Thành viên tải',
-'imagelist_size'        => 'Kích cỡ',
-'imagelist_description' => 'Miêu tả',
+'listfiles'             => 'Danh sách tập tin',
+'listfiles_date'        => 'Ngày tải',
+'listfiles_name'        => 'Tên',
+'listfiles_user'        => 'Thành viên tải',
+'listfiles_size'        => 'Kích cỡ',
+'listfiles_description' => 'Miêu tả',
 
 # File description page
 'filehist'                       => 'Lịch sử tập tin',

@@ -958,15 +958,15 @@ An historial nin pagparâ kan ''file'' nakakaag digdi para sa konbenyensya:",
 'upload_source_url'  => ' (sarong tama, na bukas sa publikong URL)',
 'upload_source_file' => " (sarong ''file'' sa kompyuter mo)",
 
-# Special:FileList
-'imagelist_search_for'  => 'Hanápon an pangaran kan retrato:',
+# Special:ListFiles
+'listfiles_search_for'  => 'Hanápon an pangaran kan retrato:',
 'imgfile'               => 'dokumento',
-'imagelist'             => 'Lista kan dokumento',
-'imagelist_date'        => 'Petsa',
-'imagelist_name'        => 'Pangaran',
-'imagelist_user'        => 'Parágamit',
-'imagelist_size'        => 'Sukol',
-'imagelist_description' => 'Deskripsión',
+'listfiles'             => 'Lista kan dokumento',
+'listfiles_date'        => 'Petsa',
+'listfiles_name'        => 'Pangaran',
+'listfiles_user'        => 'Parágamit',
+'listfiles_size'        => 'Sukol',
+'listfiles_description' => 'Deskripsión',
 
 # File description page
 'filehist'                  => 'Uusipón nin file',

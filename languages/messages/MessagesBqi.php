@@ -449,8 +449,8 @@ $1',
 'uploadlogpage' => 'نمایه آپلود',
 'uploadedimage' => 'آپلود وابید "[[$1]]"',
 
-# Special:FileList
-'imagelist' => 'لیست فایل',
+# Special:ListFiles
+'listfiles' => 'لیست فایل',
 
 # File description page
 'filehist'                  => 'گزارش تاریخی فایل',

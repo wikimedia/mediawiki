@@ -455,8 +455,8 @@ Ke hoʻohiki nei ʻoe iā kākou: ua kākau ʻoe i kēia kikokikona na ʻo ʻoe 
 'filedesc'          => "Hō'ulu'ulu mana'o",
 'fileuploadsummary' => "Hō'ulu'ulu mana'o:",
 
-# Special:FileList
-'imagelist_name' => 'Inoa',
+# Special:ListFiles
+'listfiles_name' => 'Inoa',
 
 # File description page
 'filehist'            => 'Mo‘olelo o ka waihona',

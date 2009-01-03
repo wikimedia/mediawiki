@@ -54,7 +54,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'লক্ষ্যতালিকা' ),
 	'Recentchanges'             => array( 'শেহতীয়া কাম' ),
 	'Upload'                    => array( 'বোজাই' ),
-	'Imagelist'                 => array( 'চিত্র-তালিকা' ),
+	'Listfiles'                 => array( 'চিত্র-তালিকা' ),
 	'Newimages'                 => array( 'নতুন চিত্র' ),
 	'Listusers'                 => array( 'সদস্য-তালিকা' ),
 	'Listgrouprights'           => array( 'গোটৰ অধিকাৰসমুহ' ),
@@ -781,8 +781,8 @@ $1',
 'uploadlogpage' => 'আপলোড সুচী',
 'uploadedimage' => '"[[$1]]" আপলোড কৰা হ’ল',
 
-# Special:FileList
-'imagelist' => 'ফাইলৰ তালিকা',
+# Special:ListFiles
+'listfiles' => 'ফাইলৰ তালিকা',
 
 # File description page
 'filehist'                  => 'ফাইলৰ ইতিবৃত্ত',
