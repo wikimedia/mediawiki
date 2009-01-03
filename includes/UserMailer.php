@@ -448,9 +448,6 @@ class EmailNotification {
 		$replyto = ''; /* fail safe */
 		$keys    = array();
 
-		# regarding the use of oldid as an indicator for the last visited version, see also
-		# http://bugzilla.wikipeda.org/show_bug.cgi?id=603 "Delete + undelete cycle doesn't preserve old_id"
-		# However, in the case of a new page which is already watched, we have no previous version to compare
 		if( $this->oldid ) {
 			$difflink = $this->title->getFullUrl( 'diff=0&oldid=' . $this->oldid );
 			$keys['$NEWPAGE'] = wfMsgForContent( 'enotif_lastvisited', $difflink );
