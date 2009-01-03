@@ -476,8 +476,7 @@ class ContribsPager extends ReverseChronologicalPager {
 				$difftext .= $this->messages['newarticle'];
 			}
 
-			if( !$page->getUserPermissionsErrors( 'rollback', $wgUser )
-			&&  !$page->getUserPermissionsErrors( 'edit', $wgUser ) ) {
+			if( $page->userCan( 'rollback') && $page->userCan( 'edit' ) ) {
 				$topmarktext .= ' '.$sk->generateRollback( $rev );
 			}
 
