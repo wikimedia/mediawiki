@@ -1899,6 +1899,7 @@ A click on a column header changes the sorting.',
 'listfiles_user'        => 'User',
 'listfiles_size'        => 'Size',
 'listfiles_description' => 'Description',
+'listfiles_count'       => 'Versions',
 
 # File description page
 'filehist'                       => 'File history',
