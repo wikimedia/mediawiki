@@ -354,7 +354,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Watchlist' ),
 	'Recentchanges'             => array( 'RecentChanges' ),
 	'Upload'                    => array( 'Upload' ),
-	'Imagelist'                 => array( 'ListFiles', 'FileList', 'ImageList' ),
+	'Listfiles'                 => array( 'ListFiles', 'FileList', 'ImageList' ),
 	'Newimages'                 => array( 'NewFiles', 'NewImages' ),
 	'Listusers'                 => array( 'ListUsers', 'UserList' ),
 	'Listgrouprights'           => array( 'ListGroupRights' ),
@@ -1887,18 +1887,18 @@ You may want to try at a less busy time.',
 'upload_source_url'  => ' (a valid, publicly accessible URL)',
 'upload_source_file' => ' (a file on your computer)',
 
-# Special:FileList
-'imagelist-summary'     => 'This special page shows all uploaded files.
+# Special:ListFiles
+'listfiles-summary'     => 'This special page shows all uploaded files.
 By default the last uploaded files are shown at top of the list.
 A click on a column header changes the sorting.',
-'imagelist_search_for'  => 'Search for media name:',
+'listfiles_search_for'  => 'Search for media name:',
 'imgfile'               => 'file',
-'imagelist'             => 'File list',
-'imagelist_date'        => 'Date',
-'imagelist_name'        => 'Name',
-'imagelist_user'        => 'User',
-'imagelist_size'        => 'Size',
-'imagelist_description' => 'Description',
+'listfiles'             => 'File list',
+'listfiles_date'        => 'Date',
+'listfiles_name'        => 'Name',
+'listfiles_user'        => 'User',
+'listfiles_size'        => 'Size',
+'listfiles_description' => 'Description',
 
 # File description page
 'filehist'                       => 'File history',
