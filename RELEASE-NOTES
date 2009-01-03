@@ -454,9 +454,9 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 16612) Fixed "noprint" class for Modern skin print style
 * Section anchors now have an "id" attribute as well as a "name" attribute,
   even when Tidy is not used
-* (bugs 212, 16026) revision-info, revision-info-current, cannotdelete,
-  redirectedfrom, historywarning, difference, summary and subject messages now
-  use Wiki text rather than raw HTML markup
+* (bug 16026) revision-info, revision-info-current, cannotdelete,
+  redirectedfrom, historywarning and difference messages now use Wiki text
+  rather than raw HTML markup
 * (bug 13835) Fix rendering of {{filepath:Wiki.png|nowiki}}
 * (bug 16772) Special:Upload now correctly rejects files with spaces in the
   file extension (e.g. Foo. jpg).
