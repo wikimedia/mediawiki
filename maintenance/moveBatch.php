@@ -7,10 +7,11 @@
  * @ingroup Maintenance
  * @author Tim Starling
  *
- * USAGE: php moveBatch.php [-u <user>] [-r <reason>] [-i <interval>] <listfile>
+ * USAGE: php moveBatch.php [-u <user>] [-r <reason>] [-i <interval>] [listfile]
  *
- * <listfile> - file with two titles per line, separated with pipe characters;
- * the first title is the source, the second is the destination
+ * [listfile] - file with two titles per line, separated with pipe characters;
+ * the first title is the source, the second is the destination.
+ * Standard input is used if listfile is not given.
  * <user> - username to perform moves as
  * <reason> - reason to be given for moves
  * <interval> - number of seconds to sleep after each move
