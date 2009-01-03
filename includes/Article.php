@@ -850,6 +850,10 @@ class Article {
 				wfProfileOut( __METHOD__ );
 				return;
 			}
+			
+			# For ?curid=x urls, disallow indexing
+			if( $wgRequest->getInt('curid') )
+				$wgOut->setRobotPolicy( 'noindex,follow' );
 
 			# We're looking at an old revision
 			if( !empty( $oldid ) ) {
