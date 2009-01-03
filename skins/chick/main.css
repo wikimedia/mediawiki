@@ -176,7 +176,7 @@ span.subpages { display: block; }
 #bodyContent h5 {
     margin-bottom: 0.3em;
 }
-.firstHeading { margin-bottom:0.1em; }
+#firstHeading { margin-bottom:0.1em; }
 
 /* user notification thing */
 .usermessage {
