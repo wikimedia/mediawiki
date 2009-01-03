@@ -461,8 +461,8 @@ if( empty( $memlimit ) || $memlimit == -1 ) {
 		$n = intval( $m[1] * (1024*1024) );
 	}
 	if( $n < 20*1024*1024 ) {
-		print "Attempting to raise limit to 20M... ";
-		if( false === ini_set( "memory_limit", "20M" ) ) {
+		print "Attempting to raise limit to 50M... ";
+		if( false === ini_set( "memory_limit", "50M" ) ) {
 			print "failed.<br /><b>" . htmlspecialchars( $memlimit ) . " seems too low, installation may fail!</b>";
 		} else {
 			$conf->raiseMemory = true;
@@ -1661,7 +1661,7 @@ set_include_path( implode( PATH_SEPARATOR, \$path ) . PATH_SEPARATOR . get_inclu
 require_once( \"\$IP/includes/DefaultSettings.php\" );
 
 # If PHP's memory limit is very low, some operations may fail.
-" . ($conf->raiseMemory ? '' : '# ' ) . "ini_set( 'memory_limit', '20M' );" . "
+" . ($conf->raiseMemory ? '' : '# ' ) . "ini_set( 'memory_limit', '50M' );" . "
 
 if ( \$wgCommandLineMode ) {
 	if ( isset( \$_SERVER ) && array_key_exists( 'REQUEST_METHOD', \$_SERVER ) ) {
