@@ -1113,7 +1113,9 @@ class Title {
 			else if( $result === false )
 				$errors[] = array('badaccess-group0'); # a generic "We don't want them to do that"
 		}
-		if( $doExpensiveQueries && !wfRunHooks( 'getUserPermissionsErrorsExpensive', array(&$this,&$user,$action,&$result) ) ) {
+		if( $doExpensiveQueries && !wfRunHooks( 'getUserPermissionsErrorsExpensive', 
+			array(&$this,&$user,$action,&$result) ) )
+		{
 			if( is_array($result) && count($result) && !is_array($result[0]) )
 				$errors[] = $result; # A single array representing an error
 			else if( is_array($result) && is_array($result[0]) )
@@ -1139,7 +1141,8 @@ class Title {
 
 		# protect css/js subpages of user pages
 		# XXX: this might be better using restrictions
-		# XXX: Find a way to work around the php bug that prevents using $this->userCanEditCssJsSubpage() from working
+		# XXX: Find a way to work around the php bug that prevents using 
+		# $this->userCanEditCssJsSubpage() from working
 		if( $this->isCssJsSubpage() && !$user->isAllowed('editusercssjs')
 			&& !preg_match('/^'.preg_quote($user->getName(), '/').'\//', $this->mTextform) )
 		{
@@ -1161,39 +1164,41 @@ class Title {
 					$right = ( $right == 'sysop' ) ? 'protect' : $right;
 					if( '' != $right && !$user->isAllowed( $right ) ) {
 						$pages = '';
-						foreach( $cascadingSources as $page )
+						foreach( $cascadingSources as $page ) {
 							$pages .= '* [[:' . $page->getPrefixedText() . "]]\n";
+						}
 						$errors[] = array( 'cascadeprotected', count( $cascadingSources ), $pages );
 					}
 				}
 			}
 		}
 
-		foreach( $this->getRestrictions($action) as $right ) {
-			// Backwards compatibility, rewrite sysop -> protect
-			if( $right == 'sysop' ) {
-				$right = 'protect';
-			}
-			if( '' != $right && !$user->isAllowed( $right ) ) {
-				// Users with 'editprotected' permission can edit protected pages
-				if( $action=='edit' && $user->isAllowed( 'editprotected' ) ) {
-					// Users with 'editprotected' permission cannot edit protected pages
-					// with cascading option turned on.
-					if( $this->mCascadeRestriction ) {
-						$errors[] = array( 'protectedpagetext', $right );
+		# Get restrictions on each action, 'create' handled below
+		if( $action != 'create' ) {
+			foreach( $this->getRestrictions($action) as $right ) {
+				// Backwards compatibility, rewrite sysop -> protect
+				if( $right == 'sysop' ) {
+					$right = 'protect';
+				}
+				if( '' != $right && !$user->isAllowed( $right ) ) {
+					// Users with 'editprotected' permission can edit protected pages
+					if( $action=='edit' && $user->isAllowed( 'editprotected' ) ) {
+						// Users with 'editprotected' permission cannot edit protected pages
+						// with cascading option turned on.
+						if( $this->mCascadeRestriction ) {
+							$errors[] = array( 'protectedpagetext', $right );
+						} else {
+							// Nothing, user can edit!
+						}
 					} else {
-						// Nothing, user can edit!
+						$errors[] = array( 'protectedpagetext', $right );
 					}
-				} else {
-					$errors[] = array( 'protectedpagetext', $right );
 				}
 			}
 		}
 
-		if( $action == 'protect' ) {
-			if( $this->getUserPermissionsErrors('edit', $user) != array() ) {
-				$errors[] = array( 'protect-cantedit' ); // If they can't edit, they shouldn't protect.
-			}
+		if( $action == 'protect' && $this->getUserPermissionsErrors('edit',$user) != array() ) {
+			$errors[] = array( 'protect-cantedit' ); // If they can't edit, they shouldn't protect.
 		}
 
 		if( $action == 'create' ) {
