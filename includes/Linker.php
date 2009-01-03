@@ -1579,6 +1579,7 @@ class Linker {
 		);
 		if( $wgRequest->getBool( 'bot' ) ) {
 			$query['bot'] = '1';
+			$query['hidediff'] = '1'; // bug 15999
 		}
 		$query['token'] = $wgUser->editToken( array( $title->getPrefixedText(),
 			$rev->getUserText() ) );
