@@ -36,9 +36,11 @@ class OrphanStats {
 		}
 		unset( $res );
 
-		echo "Number of orphans: $num\n" .
-			"Average size: " . round( $totalSize / $num, 0 ) . " bytes\n" .
+		echo "Number of orphans: $num\n";
+		if ( $num > 0 ) {
+			echo "Average size: " . round( $totalSize / $num, 0 ) . " bytes\n" .
 			"Max size: $maxSize\n" . 
 			"Number of unique texts: " . count( $hashes ) . "\n";
+		}
 	}
 }
