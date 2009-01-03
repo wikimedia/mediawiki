@@ -2989,10 +2989,28 @@ class User {
 	 *                                non-existent/anonymous user accounts.
 	 */
 	public function getRegistration() {
-		return $this->mId > 0
+		return $this->getId() > 0
 			? $this->mRegistration
 			: false;
 	}
+	
+	/**
+	 * Get the timestamp of the first edit
+	 *
+	 * @return \types{\string,\bool} string Timestamp of first edit, or false for
+	 *                                non-existent/anonymous user accounts.
+	 */
+	public function getFirstEditTimestamp() {
+		if( $this->getId() == 0 ) return false; // anons
+		$dbr = wfGetDB( DB_SLAVE );
+		$time = $dbr->selectField( 'revision', 'rev_timestamp',
+			array( 'rev_user' => $this->getId() ),
+			__METHOD__,
+			array( 'ORDER BY' => 'rev_timestamp ASC' )
+		);
+		if( !$time ) return false; // no edits
+		return wfTimestamp( TS_MW, $time );
+	}	
 
 	/**
 	 * Get the permissions associated with a given list of groups
