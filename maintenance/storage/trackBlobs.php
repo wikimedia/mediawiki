@@ -249,7 +249,16 @@ class TrackBlobs {
 		foreach ( $this->clusters as $cluster ) {
 			echo "Searching for orphan blobs in $cluster...\n";
 			$lb = wfGetLBFactory()->getExternalLB( $cluster );
-			$extDB = $lb->getConnection( DB_SLAVE );
+			try {
+				$extDB = $lb->getConnection( DB_SLAVE );
+			} catch ( DBConnectionError $e ) {
+				if ( strpos( $e->error, 'Unknown database' ) !== false ) {
+					echo "No database on $cluster\n";
+				} else {
+					echo "Error on $cluster: " . $e->getMessage() . "\n";
+				}
+				continue;
+			}
 			$startId = 0;
 			$batchesDone = 0;
 			$actualBlobs = gmp_init( 0 );
