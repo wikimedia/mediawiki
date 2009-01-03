@@ -49,6 +49,7 @@ class ImageListPager extends TablePager {
 
 	function getFieldNames() {
 		if ( !$this->mFieldNames ) {
+			global $wgMiserMode;
 			$this->mFieldNames = array(
 				'img_timestamp' => wfMsg( 'listfiles_date' ),
 				'img_name' => wfMsg( 'listfiles_name' ),
@@ -56,6 +57,9 @@ class ImageListPager extends TablePager {
 				'img_size' => wfMsg( 'listfiles_size' ),
 				'img_description' => wfMsg( 'listfiles_description' ),
 			);
+			if( !$wgMiserMode ) {
+				$this->mFieldNames['COUNT(oi_archive_name)'] = wfMsg( 'listfiles_count' );
+			}
 		}
 		return $this->mFieldNames;
 	}
@@ -66,13 +70,22 @@ class ImageListPager extends TablePager {
 	}
 
 	function getQueryInfo() {
-		$fields = $this->getFieldNames();
-		$fields = array_keys( $fields );
+		$tables = array( 'image' );
+		$fields = array_keys( $this->getFieldNames() );
 		$fields[] = 'img_user';
+		$options = $join_conds = array();
+		# Depends on $wgMiserMode
+		if( isset($this->mFieldNames['COUNT(oi_archive_name)']) ) {
+			$tables[] = 'oldimage';
+			$options = array('GROUP BY' => 'img_name');
+			$join_conds = array('oldimage' => array('LEFT JOIN','oi_name = img_name') );
+		}
 		return array(
-			'tables' => 'image',
-			'fields' => $fields,
-			'conds' => $this->mQueryConds
+			'tables'     => $tables,
+			'fields'     => $fields,
+			'conds'      => $this->mQueryConds,
+			'options'    => $options,
+			'join_conds' => $join_conds
 		);
 	}
 
@@ -123,6 +136,8 @@ class ImageListPager extends TablePager {
 				return $this->getSkin()->formatSize( $value );
 			case 'img_description':
 				return $this->getSkin()->commentBlock( $value );
+			case 'COUNT(oi_archive_name)':
+				return intval($value)+1;
 		}
 	}
 
