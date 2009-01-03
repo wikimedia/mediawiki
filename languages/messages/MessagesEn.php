@@ -852,7 +852,7 @@ $2',
 'customcssjsprotected' => "You do not have permission to edit this page, because it contains another user's personal settings.",
 'ns-specialprotected'  => 'Special pages cannot be edited.',
 'titleprotected'       => "This title has been protected from creation by [[User:$1|$1]].
-The reason given is ''$2''.",
+The reason given is \"<i>$2</i>\".",
 
 # Virus scanner
 'virus-badscanner'     => 'Bad configuration: unknown virus scanner: <i>$1</i>',
