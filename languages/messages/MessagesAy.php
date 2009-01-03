@@ -180,10 +180,10 @@ $messages = array(
 
 'license' => 'Iyawsawi:',
 
-# Special:FileList
-'imagelist_date'        => 'Uru jakhu',
-'imagelist_user'        => 'Apnaqiri',
-'imagelist_description' => 'Uñt’ayawi',
+# Special:ListFiles
+'listfiles_date'        => 'Uru jakhu',
+'listfiles_user'        => 'Apnaqiri',
+'listfiles_description' => 'Uñt’ayawi',
 
 # File description page
 'filehist-user' => 'Apnaqiri',

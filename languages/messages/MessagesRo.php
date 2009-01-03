@@ -67,7 +67,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Pagini urmărite' ),
 	'Recentchanges'             => array( 'Schimbări recente' ),
 	'Upload'                    => array( 'Încărcare' ),
-	'Imagelist'                 => array( 'Listă imagini' ),
+	'Listfiles'                 => array( 'Listă imagini' ),
 	'Newimages'                 => array( 'Imagini noi' ),
 	'Listusers'                 => array( 'Listă utilizatori' ),
 	'Listgrouprights'           => array( 'Listă drepturi grup' ),
@@ -1396,18 +1396,18 @@ Poate doreşti să încerci la o oră mai puţin ocupată.',
 'upload_source_url'  => ' (un URL valid, accesibil public)',
 'upload_source_file' => ' (un fişier de pe computerul tău)',
 
-# Special:FileList
-'imagelist-summary'     => 'Această pagină specială arată toate fişierele încărcate.
+# Special:ListFiles
+'listfiles-summary'     => 'Această pagină specială arată toate fişierele încărcate.
 În mod normal ultimul fişier încărcat este aşezat în capul listei.
 O apăsare pe antetul coloanei schimbă sortarea.',
-'imagelist_search_for'  => 'Caută imagine după nume:',
+'listfiles_search_for'  => 'Caută imagine după nume:',
 'imgfile'               => 'fişier',
-'imagelist'             => 'Lista imaginilor',
-'imagelist_date'        => 'Data',
-'imagelist_name'        => 'Nume',
-'imagelist_user'        => 'Utilizator',
-'imagelist_size'        => 'Mărime (octeţi)',
-'imagelist_description' => 'Descriere',
+'listfiles'             => 'Lista imaginilor',
+'listfiles_date'        => 'Data',
+'listfiles_name'        => 'Nume',
+'listfiles_user'        => 'Utilizator',
+'listfiles_size'        => 'Mărime (octeţi)',
+'listfiles_description' => 'Descriere',
 
 # File description page
 'filehist'                       => 'Istoricul fişierului',

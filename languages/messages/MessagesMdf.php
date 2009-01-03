@@ -54,7 +54,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Мельгеванома' ),
 	'Recentchanges'             => array( 'УлхкомбаньПолафнематне' ),
 	'Upload'                    => array( 'Тонгома' ),
-	'Imagelist'                 => array( 'НяйфКярькс' ),
+	'Listfiles'                 => array( 'НяйфКярькс' ),
 	'Newimages'                 => array( 'ОдНяйфне' ),
 	'Listusers'                 => array( 'ЛувомТиихне' ),
 	'Statistics'                => array( 'Статистик' ),
@@ -1287,18 +1287,18 @@ $3 макссь туфталсь - ''$2''",
 'upload_source_url'  => ' (кондясти, сембонди панжада URL)',
 'upload_source_file' => ' (файлсь тонь содама машинасот)',
 
-# Special:FileList
-'imagelist-summary'     => 'Тя башка тевонь лопаса няфневихть сембе тонкф файлхне.
+# Special:ListFiles
+'listfiles-summary'     => 'Тя башка тевонь лопаса няфневихть сембе тонкф файлхне.
 Мъзярс апак полафтт мекольце тонкф файлхне лувомаса няфневихть вяре.
 Палмань коняксонцты люпштамась полафнесы кикснень арафнемать.',
-'imagelist_search_for'  => 'Вешендемс медиа лем:',
+'listfiles_search_for'  => 'Вешендемс медиа лем:',
 'imgfile'               => 'файл',
-'imagelist'             => 'Файлхт',
-'imagelist_date'        => 'Ши',
-'imagelist_name'        => 'Лем',
-'imagelist_user'        => 'Тии',
-'imagelist_size'        => 'Кувалма',
-'imagelist_description' => 'Информацие',
+'listfiles'             => 'Файлхт',
+'listfiles_date'        => 'Ши',
+'listfiles_name'        => 'Лем',
+'listfiles_user'        => 'Тии',
+'listfiles_size'        => 'Кувалма',
+'listfiles_description' => 'Информацие',
 
 # File description page
 'filehist'                       => 'Файлонь историясь',

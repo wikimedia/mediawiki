@@ -49,7 +49,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Stebimieji' ),
 	'Recentchanges'             => array( 'Naujausi keitimai' ),
 	'Upload'                    => array( 'Įkėlimas' ),
-	'Imagelist'                 => array( 'Paveikslėlių sąrašas' ),
+	'Listfiles'                 => array( 'Paveikslėlių sąrašas' ),
 	'Newimages'                 => array( 'Nauji paveikslėliai' ),
 	'Listusers'                 => array( 'Naudotojų sąrašas' ),
 	'Statistics'                => array( 'Statistika' ),
@@ -1403,18 +1403,18 @@ Jūs turėtumėte nuspręsti, ar verta toliau įkeldinėti šį failą.
 'upload_source_url'  => ' (tikras, viešai prieinamas URL)',
 'upload_source_file' => ' (failas jūsų kompiuteryje)',
 
-# Special:FileList
-'imagelist-summary'     => 'Šis specialus puslapis rodo visus įkeltus failus.
+# Special:ListFiles
+'listfiles-summary'     => 'Šis specialus puslapis rodo visus įkeltus failus.
 Pagal numatymą paskutiniai įkelti failai rodomi sąrašo viršuje.
 Paspaudę ant stulpelio antraštės pakeiste išrikiavimą.',
-'imagelist_search_for'  => 'Ieškoti failo pavadinimo:',
+'listfiles_search_for'  => 'Ieškoti failo pavadinimo:',
 'imgfile'               => 'failas',
-'imagelist'             => 'Failų sąrašas',
-'imagelist_date'        => 'Data',
-'imagelist_name'        => 'Pavadinimas',
-'imagelist_user'        => 'Naudotojas',
-'imagelist_size'        => 'Dydis',
-'imagelist_description' => 'Aprašymas',
+'listfiles'             => 'Failų sąrašas',
+'listfiles_date'        => 'Data',
+'listfiles_name'        => 'Pavadinimas',
+'listfiles_user'        => 'Naudotojas',
+'listfiles_size'        => 'Dydis',
+'listfiles_description' => 'Aprašymas',
 
 # File description page
 'filehist'                       => 'Paveikslėlio istorija',

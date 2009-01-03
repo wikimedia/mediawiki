@@ -353,8 +353,8 @@ Tasniwin di [[Special:Watchlist|Tabdart uḥṭṭu inec]] d '''tizurarin'''.",
 'uploadedimage'     => 'itwazdem-d "[[$1]]"',
 'watchthisupload'   => 'Xm tasbtirt a',
 
-# Special:FileList
-'imagelist' => 'Tabdart n ifayluten',
+# Special:ListFiles
+'listfiles' => 'Tabdart n ifayluten',
 
 # File description page
 'filehist'                  => 'Amzruy n ufaylu',

@@ -49,7 +49,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Atentaro' ),
 	'Recentchanges'             => array( 'Lastaj ŝanĝoj' ),
 	'Upload'                    => array( 'Alŝuti' ),
-	'Imagelist'                 => array( 'Bildolisto' ),
+	'Listfiles'                 => array( 'Bildolisto' ),
 	'Newimages'                 => array( 'Novaj bildoj' ),
 	'Listusers'                 => array( 'Listo de uzantoj' ),
 	'Listgrouprights'           => array( 'Gruprajtoj de uzantoj' ),
@@ -1436,18 +1436,18 @@ Se la problemo kontinuas, kontaku [[Special:ListUsers/sysop|sisteman administran
 'upload_source_url'  => ' (valida, publike atingebla URL-o)',
 'upload_source_file' => ' (dosiero en via komputilo)',
 
-# Special:FileList
-'imagelist-summary'     => 'Ĉi tiu speciala paĝo montras ĉiujn alŝutitajn dosierojn.
+# Special:ListFiles
+'listfiles-summary'     => 'Ĉi tiu speciala paĝo montras ĉiujn alŝutitajn dosierojn.
 Defaŭlte, la lasta alŝutitaj dosieroj estas montrataj supren.
 Klaku la kolumnan titolon por ŝanĝi la direkton de ordigo.',
-'imagelist_search_for'  => 'Serĉi dosieran nomon:',
+'listfiles_search_for'  => 'Serĉi dosieran nomon:',
 'imgfile'               => 'dosiero',
-'imagelist'             => 'Listo de alŝutitaj dosieroj',
-'imagelist_date'        => 'Dato',
-'imagelist_name'        => 'Nomo',
-'imagelist_user'        => 'Uzanto',
-'imagelist_size'        => 'Grandeco',
-'imagelist_description' => 'Priskribo',
+'listfiles'             => 'Listo de alŝutitaj dosieroj',
+'listfiles_date'        => 'Dato',
+'listfiles_name'        => 'Nomo',
+'listfiles_user'        => 'Uzanto',
+'listfiles_size'        => 'Grandeco',
+'listfiles_description' => 'Priskribo',
 
 # File description page
 'filehist'                       => 'Historio de dosiero',

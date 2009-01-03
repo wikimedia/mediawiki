@@ -734,16 +734,16 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'upload_source_url'  => ' (тĕрĕс, пурте курма пултаракан интертетел адресĕ)',
 'upload_source_file' => ' (сирĕн компьютер çинчи файл)',
 
-# Special:FileList
-'imagelist-summary'     => 'Ку ятарлă страницăра эсир пур кĕртнĕ файлсене куратăр.
+# Special:ListFiles
+'listfiles-summary'     => 'Ку ятарлă страницăра эсир пур кĕртнĕ файлсене куратăр.
 Нумай пулмасть кĕртнисем çулте вырнаçнă.
 Юпа тăррине пуссан йĕркелӳ майĕ улшăнĕ.',
-'imagelist_search_for'  => 'Ӳкерчĕк ячĕ тăрăх шырани:',
-'imagelist'             => 'Ӳкерчěксен списокě',
-'imagelist_name'        => 'Файл ячĕ',
-'imagelist_user'        => 'Хутшăнакан',
-'imagelist_size'        => 'Виçи',
-'imagelist_description' => 'Ăнлантаркăч',
+'listfiles_search_for'  => 'Ӳкерчĕк ячĕ тăрăх шырани:',
+'listfiles'             => 'Ӳкерчěксен списокě',
+'listfiles_name'        => 'Файл ячĕ',
+'listfiles_user'        => 'Хутшăнакан',
+'listfiles_size'        => 'Виçи',
+'listfiles_description' => 'Ăнлантаркăч',
 
 # File description page
 'filehist'                  => 'Файл историйĕ',

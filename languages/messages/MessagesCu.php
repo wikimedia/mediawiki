@@ -335,12 +335,12 @@ $messages = array(
 'uploadedimage'    => '⁖ [[$1]] ⁖ положє́нъ ѥ́стъ',
 'watchthisupload'  => 'си страни́цѧ блюдє́ниѥ',
 
-# Special:FileList
+# Special:ListFiles
 'imgfile'        => 'дѣ́ло',
-'imagelist'      => 'дѣ́лъ ката́логъ',
-'imagelist_name' => 'и́мѧ',
-'imagelist_user' => 'по́льꙃєватєл҄ь',
-'imagelist_size' => 'мѣ́ра',
+'listfiles'      => 'дѣ́лъ ката́логъ',
+'listfiles_name' => 'и́мѧ',
+'listfiles_user' => 'по́льꙃєватєл҄ь',
+'listfiles_size' => 'мѣ́ра',
 
 # File description page
 'filehist-deleteone' => 'поничьжє́ниѥ',

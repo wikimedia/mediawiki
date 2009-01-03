@@ -1442,18 +1442,18 @@ Ak problém pretrváva, kontaktujte [[Special:ListUsers/sysop|správcu systému]
 'upload_source_url'  => ' (platný, verejne prístupný URL)',
 'upload_source_file' => ' (súbor na vašom počítači)',
 
-# Special:FileList
-'imagelist-summary'     => 'Táto špeciálna stránka zobrazuje všetky nahrané súbory.
+# Special:ListFiles
+'listfiles-summary'     => 'Táto špeciálna stránka zobrazuje všetky nahrané súbory.
 Posledné nahrané súbory sa štandardne zobrazujú na vrchu.
 Kliknutím na hlavičku stĺpca zmeníte poradie triedenia.',
-'imagelist_search_for'  => 'Hľadať názov súboru:',
+'listfiles_search_for'  => 'Hľadať názov súboru:',
 'imgfile'               => 'súbor',
-'imagelist'             => 'Zoznam obrázkov',
-'imagelist_date'        => 'Dátum',
-'imagelist_name'        => 'Názov',
-'imagelist_user'        => 'Používateľ',
-'imagelist_size'        => 'Veľkosť (v bajtoch)',
-'imagelist_description' => 'Popis',
+'listfiles'             => 'Zoznam obrázkov',
+'listfiles_date'        => 'Dátum',
+'listfiles_name'        => 'Názov',
+'listfiles_user'        => 'Používateľ',
+'listfiles_size'        => 'Veľkosť (v bajtoch)',
+'listfiles_description' => 'Popis',
 
 # File description page
 'filehist'                       => 'História súboru',

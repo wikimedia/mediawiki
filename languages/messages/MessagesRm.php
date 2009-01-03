@@ -509,8 +509,8 @@ Per integrar il maletg/purtret en tes artitgel sas ti per exempel duvrar in dals
 'sourcefilename'    => 'file sin tes computer:',
 'destfilename'      => 'num dal file sin il server:',
 
-# Special:FileList
-'imagelist' => 'Glista dals maletgs',
+# Special:ListFiles
+'listfiles' => 'Glista dals maletgs',
 
 # File description page
 'filehist'                  => 'Istorgia da las versiuns',

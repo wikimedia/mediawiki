@@ -69,7 +69,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Senarai pantau' ),
 	'Recentchanges'             => array( 'Perubahan terkini' ),
 	'Upload'                    => array( 'Muat naik' ),
-	'Imagelist'                 => array( 'Senarai imej' ),
+	'Listfiles'                 => array( 'Senarai imej' ),
 	'Newimages'                 => array( 'Imej baru' ),
 	'Listusers'                 => array( 'Senarai pengguna' ),
 	'Listgrouprights'           => array( 'Senarai hak kumpulan' ),
@@ -1398,17 +1398,17 @@ Untuk rujukan, yang berikut ialah log penghapusan bagi fail ini:",
 'upload_source_url'  => ' (URL yang boleh diakses oleh orang awam)',
 'upload_source_file' => ' (fail dalam komputer anda)',
 
-# Special:FileList
-'imagelist-summary'     => 'Laman khas ini memaparkan senarai fail yang telah dimuat naik.
+# Special:ListFiles
+'listfiles-summary'     => 'Laman khas ini memaparkan senarai fail yang telah dimuat naik.
 Klik di atas mana-mana lajur yang berkenaan untuk menukar tertib susunan.',
-'imagelist_search_for'  => 'Cari nama imej:',
+'listfiles_search_for'  => 'Cari nama imej:',
 'imgfile'               => 'fail',
-'imagelist'             => 'Senarai fail',
-'imagelist_date'        => 'Tarikh',
-'imagelist_name'        => 'Nama',
-'imagelist_user'        => 'Pengguna',
-'imagelist_size'        => 'Saiz',
-'imagelist_description' => 'Huraian',
+'listfiles'             => 'Senarai fail',
+'listfiles_date'        => 'Tarikh',
+'listfiles_name'        => 'Nama',
+'listfiles_user'        => 'Pengguna',
+'listfiles_size'        => 'Saiz',
+'listfiles_description' => 'Huraian',
 
 # File description page
 'filehist'                       => 'Sejarah fail',

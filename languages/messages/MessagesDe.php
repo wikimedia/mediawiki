@@ -73,7 +73,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Beobachtungsliste' ),
 	'Recentchanges'             => array( 'Letzte_Änderungen' ),
 	'Upload'                    => array( 'Hochladen' ),
-	'Imagelist'                 => array( 'Dateien', 'Dateiliste' ),
+	'Listfiles'                 => array( 'Dateien', 'Dateiliste' ),
 	'Newimages'                 => array( 'Neue_Dateien' ),
 	'Listusers'                 => array( 'Benutzer' ),
 	'Listgrouprights'           => array( 'Gruppenrechte' ),
@@ -1579,16 +1579,16 @@ Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|Syst
 'upload_source_url'  => ' (gültige, öffentlich zugängliche URL)',
 'upload_source_file' => ' (eine Datei auf deinem Computer)',
 
-# Special:FileList
-'imagelist-summary'     => 'Diese Spezialseite listet alle hochgeladenen Dateien auf. Standardmäßig werden die zuletzt hochgeladenen Dateien zuerst angezeigt. Durch einen Klick auf die Spaltenüberschriften kann die Sortierung umgedreht werden oder es kann nach einer anderen Spalte sortiert werden.',
-'imagelist_search_for'  => 'Suche nach Datei:',
+# Special:ListFiles
+'listfiles-summary'     => 'Diese Spezialseite listet alle hochgeladenen Dateien auf. Standardmäßig werden die zuletzt hochgeladenen Dateien zuerst angezeigt. Durch einen Klick auf die Spaltenüberschriften kann die Sortierung umgedreht werden oder es kann nach einer anderen Spalte sortiert werden.',
+'listfiles_search_for'  => 'Suche nach Datei:',
 'imgfile'               => 'Datei',
-'imagelist'             => 'Dateiliste',
-'imagelist_date'        => 'Datum',
-'imagelist_name'        => 'Name',
-'imagelist_user'        => 'Benutzer',
-'imagelist_size'        => 'Größe',
-'imagelist_description' => 'Beschreibung',
+'listfiles'             => 'Dateiliste',
+'listfiles_date'        => 'Datum',
+'listfiles_name'        => 'Name',
+'listfiles_user'        => 'Benutzer',
+'listfiles_size'        => 'Größe',
+'listfiles_description' => 'Beschreibung',
 
 # File description page
 'filehist'                       => 'Dateiversionen',

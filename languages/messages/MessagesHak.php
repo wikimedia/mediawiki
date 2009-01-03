@@ -835,15 +835,15 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.',
 'upload_source_url'  => '(Yit-ke yû-háu ke, hí-khó kûng-khôi fóng-mun ke URL)',
 'upload_source_file' => '(ngì thien-nó chûng ke tóng-on)',
 
-# Special:FileList
-'imagelist_search_for'  => 'On-cheu thù-chhiong miàng-chhṳ̂n sêu-chhà:',
+# Special:ListFiles
+'listfiles_search_for'  => 'On-cheu thù-chhiong miàng-chhṳ̂n sêu-chhà:',
 'imgfile'               => 'tóng-on',
-'imagelist'             => 'Tóng-on lie̍t-péu',
-'imagelist_date'        => 'Ngit-khì',
-'imagelist_name'        => 'Miàng-chhṳ̂n',
-'imagelist_user'        => 'Yung-fu',
-'imagelist_size'        => 'Thai-séu',
-'imagelist_description' => 'Mèu-sut',
+'listfiles'             => 'Tóng-on lie̍t-péu',
+'listfiles_date'        => 'Ngit-khì',
+'listfiles_name'        => 'Miàng-chhṳ̂n',
+'listfiles_user'        => 'Yung-fu',
+'listfiles_size'        => 'Thai-séu',
+'listfiles_description' => 'Mèu-sut',
 
 # File description page
 'filehist-deleteone'        => 'chhù-thet',

@@ -1108,18 +1108,18 @@ Mapaliaring mas masanting yang subukan nung mas ditak la reng gagamit.',
 'upload_source_url'  => ' (metung a URL a matatanggap at aluban ding malda)',
 'upload_source_file' => ' (metung a simpan king kekang computer)',
 
-# Special:FileList
-'imagelist-summary'     => 'Papakit no ngan niting bulung a makabukud/espesial deng simpan a milulan (uploaded files).
+# Special:ListFiles
+'listfiles-summary'     => 'Papakit no ngan niting bulung a makabukud/espesial deng simpan a milulan (uploaded files).
 Karaniwan, keta lang babo ning tala deng simpan a tauling milulan.
 Miyalilan ing pamanayus nung i-click ya ing pamagat ning kolum (column header).',
-'imagelist_search_for'  => 'Maintun kang lagyu ning media:',
+'listfiles_search_for'  => 'Maintun kang lagyu ning media:',
 'imgfile'               => 'simpan',
-'imagelist'             => 'Tala da reng simpan (file list)',
-'imagelist_date'        => 'Petsa',
-'imagelist_name'        => 'Lagyu',
-'imagelist_user'        => 'Talagamit',
-'imagelist_size'        => 'Dagul',
-'imagelist_description' => 'Pamilarawan (description)',
+'listfiles'             => 'Tala da reng simpan (file list)',
+'listfiles_date'        => 'Petsa',
+'listfiles_name'        => 'Lagyu',
+'listfiles_user'        => 'Talagamit',
+'listfiles_size'        => 'Dagul',
+'listfiles_description' => 'Pamilarawan (description)',
 
 # File description page
 'filehist'                       => 'Amlat ning simpan (File history)',

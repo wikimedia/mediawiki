@@ -69,7 +69,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Folchlist', 'Jo Folchlist' ),
 	'Recentchanges'             => array( 'Koartlyn feroare', 'Koarts feroare' ),
 	'Upload'                    => array( 'Bied triem oan', 'Oanbied', 'Bied bestân oan' ),
-	'Imagelist'                 => array( 'Ofbyld list', 'Ofbyldlist' ),
+	'Listfiles'                 => array( 'Ofbyld list', 'Ofbyldlist' ),
 	'Newimages'                 => array( 'Nije ôfbylden', 'Nije ôfbyldings', 'Nije ôfbyldingen', 'List mei nije ôfbylden', 'Nije Ofbylden' ),
 	'Listusers'                 => array( 'Meidoggerlist', 'Brûkerlist' ),
 	'Statistics'                => array( 'Statistyk' ),
@@ -1338,18 +1338,18 @@ Jo kinne it faaks besykje as it wat minder drok is.",
 'upload_source_url'  => ' (in jildige, publyk tagonklike URL)',
 'upload_source_file' => ' (in triem op jo kompjûter)',
 
-# Special:FileList
-'imagelist-summary'     => 'Op dizze spesjale side binne alle tafoege triemmen te besjen.
+# Special:ListFiles
+'listfiles-summary'     => 'Op dizze spesjale side binne alle tafoege triemmen te besjen.
 Standert wurde de lêst tafoege triemmen boppe oan de list werjûn.
 Klikken op in kolomkop feroaret de sortearring.',
-'imagelist_search_for'  => 'Sykje nei triem:',
+'listfiles_search_for'  => 'Sykje nei triem:',
 'imgfile'               => 'triem',
-'imagelist'             => 'Ofbyld list',
-'imagelist_date'        => 'Datum',
-'imagelist_name'        => 'Namme',
-'imagelist_user'        => 'Meidogger',
-'imagelist_size'        => 'Grutte',
-'imagelist_description' => 'Beskriuwing',
+'listfiles'             => 'Ofbyld list',
+'listfiles_date'        => 'Datum',
+'listfiles_name'        => 'Namme',
+'listfiles_user'        => 'Meidogger',
+'listfiles_size'        => 'Grutte',
+'listfiles_description' => 'Beskriuwing',
 
 # File description page
 'filehist'                       => 'Triem skiednis',

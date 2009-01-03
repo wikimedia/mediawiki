@@ -1252,18 +1252,18 @@ Mbok-menawa panjenengan bisa nyoba manèh ing wektu sing luwih longgar.',
 'upload_source_url'  => ' (sawijining URL absah sing bisa diaksès publik)',
 'upload_source_file' => ' (sawijining berkas ing komputeré panjenengan)',
 
-# Special:FileList
-'imagelist-summary'     => 'Kaca astaméwa utawa kusus iki nuduhaké kabèh berkas sing wis diunggahaké.
+# Special:ListFiles
+'listfiles-summary'     => 'Kaca astaméwa utawa kusus iki nuduhaké kabèh berkas sing wis diunggahaké.
 Sacara baku, berkas pungkasan sing diunggahaké dituduhaké ing urutan dhuwur dhéwé.
 Klik sirahé kolom kanggo ngowahi urutan.',
-'imagelist_search_for'  => 'Golèk jeneng gambar:',
+'listfiles_search_for'  => 'Golèk jeneng gambar:',
 'imgfile'               => 'gambar',
-'imagelist'             => 'Daftar gambar',
-'imagelist_date'        => 'Tanggal',
-'imagelist_name'        => 'Jeneng',
-'imagelist_user'        => 'Panganggo',
-'imagelist_size'        => 'Ukuran (bita)',
-'imagelist_description' => 'Dèskripsi',
+'listfiles'             => 'Daftar gambar',
+'listfiles_date'        => 'Tanggal',
+'listfiles_name'        => 'Jeneng',
+'listfiles_user'        => 'Panganggo',
+'listfiles_size'        => 'Ukuran (bita)',
+'listfiles_description' => 'Dèskripsi',
 
 # File description page
 'filehist'                       => 'Sajarah berkas',

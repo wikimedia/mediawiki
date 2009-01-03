@@ -95,7 +95,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Llista de seguiment' ),
 	'Recentchanges'             => array( 'Canvis recents' ),
 	'Upload'                    => array( 'Carrega' ),
-	'Imagelist'                 => array( 'Imatges' ),
+	'Listfiles'                 => array( 'Imatges' ),
 	'Newimages'                 => array( 'Imatges noves' ),
 	'Listusers'                 => array( 'Usuaris' ),
 	'Listgrouprights'           => array( 'Drets dels grups d\'usuaris' ),
@@ -1419,18 +1419,18 @@ A continuació teniu el registre d'eliminació per a que pugueu comprovar els mo
 'upload_source_url'  => ' (un URL vàlid i accessible públicament)',
 'upload_source_file' => ' (un fitxer en el vostre ordinador)',
 
-# Special:FileList
-'imagelist-summary'     => "Aquesta pàgina especial mostra tots els fitxers carregats.
+# Special:ListFiles
+'listfiles-summary'     => "Aquesta pàgina especial mostra tots els fitxers carregats.
 Per defecte, els darrers en ser carregats apareixen al principi de la llista.
 Clicant al capdamunt de les columnes podeu canviar-ne l'ordenació.",
-'imagelist_search_for'  => "Cerca el nom d'un fitxer de medis:",
+'listfiles_search_for'  => "Cerca el nom d'un fitxer de medis:",
 'imgfile'               => 'fitxer',
-'imagelist'             => 'Llista de fitxers',
-'imagelist_date'        => 'Data',
-'imagelist_name'        => 'Nom',
-'imagelist_user'        => 'Usuari',
-'imagelist_size'        => 'Mida (octets)',
-'imagelist_description' => 'Descripció',
+'listfiles'             => 'Llista de fitxers',
+'listfiles_date'        => 'Data',
+'listfiles_name'        => 'Nom',
+'listfiles_user'        => 'Usuari',
+'listfiles_size'        => 'Mida (octets)',
+'listfiles_description' => 'Descripció',
 
 # File description page
 'filehist'                       => 'Historial del fitxer',

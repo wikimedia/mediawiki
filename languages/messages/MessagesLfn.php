@@ -516,10 +516,10 @@ Pajes a [[Special:Watchlist|tu lista de pajes oservada]] es en leteras '''forte'
 
 'upload-file-error' => 'Era interna',
 
-# Special:FileList
+# Special:ListFiles
 'imgfile'        => 'fix',
-'imagelist'      => 'Lista de imajes',
-'imagelist_name' => 'Nom',
+'listfiles'      => 'Lista de imajes',
+'listfiles_name' => 'Nom',
 
 # File description page
 'filehist'                  => 'Istoria de fix',

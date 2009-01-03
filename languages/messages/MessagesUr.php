@@ -411,8 +411,8 @@ $messages = array(
 'destfilename'      => 'تعین شدہ اسم ملف:',
 'watchthisupload'   => 'یہ صفحہ زیر نظر کیجیۓ',
 
-# Special:FileList
-'imagelist' => 'فہرست فائل',
+# Special:ListFiles
+'listfiles' => 'فہرست فائل',
 
 # File description page
 'imagelinks'     => 'روابط',

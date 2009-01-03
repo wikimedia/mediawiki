@@ -208,7 +208,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Daftar pantauan', 'Daftarpantauan' ),
 	'Recentchanges'             => array( 'Perubahan terbaru', 'Perubahanterbaru' ),
 	'Upload'                    => array( 'Pemuatan' ),
-	'Imagelist'                 => array( 'Daftar berkas', 'Daftarberkas' ),
+	'Listfiles'                 => array( 'Daftar berkas', 'Daftarberkas' ),
 	'Newimages'                 => array( 'Berkas baru', 'Berkasbaru' ),
 	'Listusers'                 => array( 'Daftar pengguna', 'Daftarpengguna' ),
 	'Listgrouprights'           => array( 'Daftar hak kelompok' ),
@@ -1496,18 +1496,18 @@ Log penghapusan berkas adalah sebagai berikut:",
 'upload_source_url'  => ' (suatu URL valid yang dapat diakses publik)',
 'upload_source_file' => ' (suatu berkas di komputer Anda)',
 
-# Special:FileList
-'imagelist-summary'     => 'Halaman istimewa ini menampilkan semua berkas yang telah dimuat.
+# Special:ListFiles
+'listfiles-summary'     => 'Halaman istimewa ini menampilkan semua berkas yang telah dimuat.
 Secara baku, berkas yang terakhir dimuat berada pada urutan teratas.
 Klik pada kepala kolom untuk mengubah urutan.',
-'imagelist_search_for'  => 'Cari nama berkas:',
+'listfiles_search_for'  => 'Cari nama berkas:',
 'imgfile'               => 'berkas',
-'imagelist'             => 'Daftar berkas',
-'imagelist_date'        => 'Tanggal',
-'imagelist_name'        => 'Nama',
-'imagelist_user'        => 'Pengguna',
-'imagelist_size'        => 'Besar',
-'imagelist_description' => 'Deskripsi',
+'listfiles'             => 'Daftar berkas',
+'listfiles_date'        => 'Tanggal',
+'listfiles_name'        => 'Nama',
+'listfiles_user'        => 'Pengguna',
+'listfiles_size'        => 'Besar',
+'listfiles_description' => 'Deskripsi',
 
 # File description page
 'filehist'                       => 'Riwayat berkas',

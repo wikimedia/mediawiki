@@ -860,15 +860,15 @@ Dagiti panid iti [[Special:Watchlist|listaan ti bambantayam]] ket '''naipuskol''
 'upload_source_url'  => ' (maysa a valido, ken maakses ti publico nga URL)',
 'upload_source_file' => ' (file iti kompiutermo)',
 
-# Special:FileList
-'imagelist_search_for'  => 'Agsapul iti nagan ti media:',
+# Special:ListFiles
+'listfiles_search_for'  => 'Agsapul iti nagan ti media:',
 'imgfile'               => 'file',
-'imagelist'             => 'Listaan ti file',
-'imagelist_date'        => 'Petsa',
-'imagelist_name'        => 'Nagan',
-'imagelist_user'        => 'Agar-aramat',
-'imagelist_size'        => 'Kadakkel',
-'imagelist_description' => 'Deskripsion',
+'listfiles'             => 'Listaan ti file',
+'listfiles_date'        => 'Petsa',
+'listfiles_name'        => 'Nagan',
+'listfiles_user'        => 'Agar-aramat',
+'listfiles_size'        => 'Kadakkel',
+'listfiles_description' => 'Deskripsion',
 
 # File description page
 'filehist'                       => 'Pakasaritaan ti file',

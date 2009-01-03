@@ -261,9 +261,9 @@ $messages = array(
 
 'nolicense' => 'Chemnorume dullinnongey',
 
-# Special:FileList
-'imagelist_name' => 'Üy',
-'imagelist_user' => 'Lludüchi',
+# Special:ListFiles
+'listfiles_name' => 'Üy',
+'listfiles_user' => 'Lludüchi',
 
 # File description page
 'filehist-deleteall' => 'kom ñamümün',

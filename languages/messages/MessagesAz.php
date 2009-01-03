@@ -556,11 +556,11 @@ Bu səhifə üçün silmə qeydləri aşağıda göstərilmişdir:",
 'license'   => 'Lisenziya',
 'nolicense' => 'Heç biri seçilməmişdir',
 
-# Special:FileList
-'imagelist'      => 'Fayl siyahısı',
-'imagelist_date' => 'Tarix',
-'imagelist_name' => 'Ad',
-'imagelist_user' => 'İstifadəçi',
+# Special:ListFiles
+'listfiles'      => 'Fayl siyahısı',
+'listfiles_date' => 'Tarix',
+'listfiles_name' => 'Ad',
+'listfiles_user' => 'İstifadəçi',
 
 # File description page
 'imagelinks'                     => 'İstifadə edilən səhifələr',

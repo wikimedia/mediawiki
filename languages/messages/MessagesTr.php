@@ -51,7 +51,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'İzlemeListesi' ),
 	'Recentchanges'             => array( 'SonDeğişiklikler' ),
 	'Upload'                    => array( 'Yükle' ),
-	'Imagelist'                 => array( 'ResimListesi' ),
+	'Listfiles'                 => array( 'ResimListesi' ),
 	'Newimages'                 => array( 'YeniResimler' ),
 	'Listusers'                 => array( 'KullanıcıListesi' ),
 	'Listgrouprights'           => array( 'GrupHaklarıListesi' ),
@@ -1148,15 +1148,15 @@ Bu dosyanın silme kayıtları kolaylık olması için burada sunulmuştur:",
 'upload_source_url'  => ' (geçerli, herkesin ulaşabileceği bir URL)',
 'upload_source_file' => ' (bilgisayarınızdaki bir dosya)',
 
-# Special:FileList
-'imagelist_search_for'  => 'Medya adı ara:',
+# Special:ListFiles
+'listfiles_search_for'  => 'Medya adı ara:',
 'imgfile'               => 'dosya',
-'imagelist'             => 'Resim listesi',
-'imagelist_date'        => 'Tarih',
-'imagelist_name'        => 'Ad',
-'imagelist_user'        => 'Kullanıcı',
-'imagelist_size'        => 'Boyut (bayt)',
-'imagelist_description' => 'Tanım',
+'listfiles'             => 'Resim listesi',
+'listfiles_date'        => 'Tarih',
+'listfiles_name'        => 'Ad',
+'listfiles_user'        => 'Kullanıcı',
+'listfiles_size'        => 'Boyut (bayt)',
+'listfiles_description' => 'Tanım',
 
 # File description page
 'filehist'                       => 'Dosya geçmişi',

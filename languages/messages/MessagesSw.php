@@ -41,7 +41,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Maangalizi' ),
 	'Recentchanges'             => array( 'MabadalikoyaKaribuni' ),
 	'Upload'                    => array( 'Pakia' ),
-	'Imagelist'                 => array( 'OrodhayaFali', 'OrodhayaPicha' ),
+	'Listfiles'                 => array( 'OrodhayaFali', 'OrodhayaPicha' ),
 	'Newimages'                 => array( 'FailiMpya', 'FailimpyazaPicha' ),
 	'Listusers'                 => array( 'OrodhayaWatumiaji', 'OrodhayaMtumiaji' ),
 	'Listgrouprights'           => array( 'OrodhayaWasimamizi' ),
@@ -584,8 +584,8 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 
 'license' => 'Hatimiliki:',
 
-# Special:FileList
-'imagelist' => 'Orodha ya mafaili',
+# Special:ListFiles
+'listfiles' => 'Orodha ya mafaili',
 
 # File description page
 'filehist'                  => 'Historia ya faili',

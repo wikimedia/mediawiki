@@ -592,8 +592,8 @@ Hamarino tsara aloha dia avereno alefa indray.',
 
 'nolicense' => 'Tsy misy safidy',
 
-# Special:FileList
-'imagelist' => 'Lisitry ny rakitra',
+# Special:ListFiles
+'listfiles' => 'Lisitry ny rakitra',
 
 # File description page
 'imagelinks'                => 'Rohy',

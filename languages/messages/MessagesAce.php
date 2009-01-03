@@ -328,8 +328,8 @@ Nyoë pat nakeuh log seunampôh nibak ôn nyoë:",
 'uploadlogpage' => 'Log peutamong',
 'uploadedimage' => 'peutamong "[[$1]]"',
 
-# Special:FileList
-'imagelist' => 'Dapeuta beureukah',
+# Special:ListFiles
+'listfiles' => 'Dapeuta beureukah',
 
 # File description page
 'filehist'                  => 'Riwayat beureukah',

@@ -53,7 +53,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Limu toppte' ),
 	'Recentchanges'             => array( 'Coppite yu mujj' ),
 	'Upload'                    => array( 'Yeb' ),
-	'Imagelist'                 => array( 'Limu nataal yi' ),
+	'Listfiles'                 => array( 'Limu nataal yi' ),
 	'Newimages'                 => array( 'Nataal bu bees' ),
 	'Listusers'                 => array( 'Limu jëfandikukat yi' ),
 	'Listgrouprights'           => array( 'Limu mboolooy jëfandikukat' ),
@@ -1027,9 +1027,9 @@ Ngir-yàlla tànnal beneen tur.',
 
 Jaar-jaaru far gi man na laa dimbali ci nga see ndaxam jar na nga yebaat ko.",
 
-# Special:FileList
-'imagelist'      => 'Limu nataal yi',
-'imagelist_user' => 'Jëfëndikookat',
+# Special:ListFiles
+'listfiles'      => 'Limu nataal yi',
+'listfiles_user' => 'Jëfëndikookat',
 
 # File description page
 'filehist'            => 'Jaar-jaaru dencukaay bi',

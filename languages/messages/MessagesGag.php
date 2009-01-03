@@ -545,8 +545,8 @@ Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 'uploadlogpage' => 'Fayl üklemäk jurnalları',
 'uploadedimage' => 'Üklenen: "[[$1]]"',
 
-# Special:FileList
-'imagelist' => 'Pätret listası',
+# Special:ListFiles
+'listfiles' => 'Pätret listası',
 
 # File description page
 'filehist'                  => 'Fayl istoriyası',

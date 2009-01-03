@@ -1291,18 +1291,18 @@ Si'l problema persiste, contauta con un [[Special:ListUsers/sysop|alministrador]
 'upload_source_url'  => ' (una URL válida y accesible públicamente)',
 'upload_source_file' => ' (un archivu del to ordenador)',
 
-# Special:FileList
-'imagelist-summary'     => "Esta páxina especial amuesa tolos archivos xubíos.
+# Special:ListFiles
+'listfiles-summary'     => "Esta páxina especial amuesa tolos archivos xubíos.
 Por defeutu los caberos archivos xubíos amuésense a lo cimero de la llista.
 Calcando na cabecera d'una columna camúdase l'orde acordies con ella.",
-'imagelist_search_for'  => "Buscar por nome d'archivu multimedia:",
+'listfiles_search_for'  => "Buscar por nome d'archivu multimedia:",
 'imgfile'               => 'archivu',
-'imagelist'             => "Llista d'imáxenes",
-'imagelist_date'        => 'Fecha',
-'imagelist_name'        => 'Nome',
-'imagelist_user'        => 'Usuariu',
-'imagelist_size'        => 'Tamañu',
-'imagelist_description' => 'Descripción',
+'listfiles'             => "Llista d'imáxenes",
+'listfiles_date'        => 'Fecha',
+'listfiles_name'        => 'Nome',
+'listfiles_user'        => 'Usuariu',
+'listfiles_size'        => 'Tamañu',
+'listfiles_description' => 'Descripción',
 
 # File description page
 'filehist'                       => 'Historial del archivu',

@@ -1017,18 +1017,18 @@ $3 мына бойле бир себеп бельгиледи: ''$2''",
 'upload_source_url'  => ' (догъру, публик тарзда кирмеге мусаадели интернет адрес)',
 'upload_source_file' => ' (компьютеринъиздеки файл)',
 
-# Special:FileList
-'imagelist-summary'     => 'Бу махсус саифе бутюн юкленген файлларны косьтере.
+# Special:ListFiles
+'listfiles-summary'     => 'Бу махсус саифе бутюн юкленген файлларны косьтере.
 Якъынларда юкленген файллар джедвельнинъ юкъарысында косьтериле.
 Сутун серлевасына бир басув сортирлеменинъ тертибини денъиштирир.',
-'imagelist_search_for'  => 'Файл адыны къыдырув:',
+'listfiles_search_for'  => 'Файл адыны къыдырув:',
 'imgfile'               => 'файл',
-'imagelist'             => 'Ресим джедвели',
-'imagelist_date'        => 'Тарих',
-'imagelist_name'        => 'Файл ады',
-'imagelist_user'        => 'Къулланыджы',
-'imagelist_size'        => 'Буюклик',
-'imagelist_description' => 'Тасвир',
+'listfiles'             => 'Ресим джедвели',
+'listfiles_date'        => 'Тарих',
+'listfiles_name'        => 'Файл ады',
+'listfiles_user'        => 'Къулланыджы',
+'listfiles_size'        => 'Буюклик',
+'listfiles_description' => 'Тасвир',
 
 # File description page
 'filehist'                  => 'Файлнынъ кечмиши',

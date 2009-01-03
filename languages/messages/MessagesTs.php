@@ -269,11 +269,11 @@ U hi tshembisa nakambe leswaku hi wena mutsari wa leswi nyikeriwaka laha, kumbe 
 # Upload
 'upload' => 'Khandziyisa fayili',
 
-# Special:FileList
+# Special:ListFiles
 'imgfile'        => 'fayili',
-'imagelist'      => 'Nxaxamelo wa tifayili',
-'imagelist_date' => 'Siku',
-'imagelist_name' => 'vito',
+'listfiles'      => 'Nxaxamelo wa tifayili',
+'listfiles_date' => 'Siku',
+'listfiles_name' => 'vito',
 
 # File description page
 'filehist-deleteall' => 'sula hinkwaswo',

@@ -1516,18 +1516,18 @@ PICT # различные
 'upload_source_url'  => ' (правильный, публично доступный интернет-адрес)',
 'upload_source_file' => ' (файл на вашем компьютере)',
 
-# Special:FileList
-'imagelist-summary'     => 'Эта служебная страница показывает все загруженные файлы.
+# Special:ListFiles
+'listfiles-summary'     => 'Эта служебная страница показывает все загруженные файлы.
 Недавно загруженные файлы по умолчанию показываются в верху списка.
 Щелчок на заголовке колонки изменяет порядок сортировки.',
-'imagelist_search_for'  => 'Поиск по имени изображения:',
+'listfiles_search_for'  => 'Поиск по имени изображения:',
 'imgfile'               => 'файл',
-'imagelist'             => 'Список файлов',
-'imagelist_date'        => 'Дата',
-'imagelist_name'        => 'Имя файла',
-'imagelist_user'        => 'Участник',
-'imagelist_size'        => 'Размер',
-'imagelist_description' => 'Описание',
+'listfiles'             => 'Список файлов',
+'listfiles_date'        => 'Дата',
+'listfiles_name'        => 'Имя файла',
+'listfiles_user'        => 'Участник',
+'listfiles_size'        => 'Размер',
+'listfiles_description' => 'Описание',
 
 # File description page
 'filehist'                       => 'История файла',

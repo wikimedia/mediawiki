@@ -100,8 +100,8 @@ $2، $1', # $1 date, $2 time
 # Upload
 'upload' => 'فایل بار بی یلدن',
 
-# Special:FileList
-'imagelist' => 'هارشی ئون ره لیست',
+# Special:ListFiles
+'listfiles' => 'هارشی ئون ره لیست',
 
 'disambiguations' => 'گجگجی بایری ولگ ئون',
 

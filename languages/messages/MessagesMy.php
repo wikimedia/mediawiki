@@ -236,10 +236,10 @@ $messages = array(
 'fileuploadsummary' => 'အ​ကျဉ်း​ချုပ်:',
 'watchthisupload'   => 'ဤ​စာ​မျက်​နှာ​အား​စောင့်​ကြည့်​ပါ​',
 
-# Special:FileList
+# Special:ListFiles
 'imgfile'        => 'ဖိုင်',
-'imagelist'      => 'ဖိုင်စာရင်း',
-'imagelist_date' => 'နေ့စွဲ',
+'listfiles'      => 'ဖိုင်စာရင်း',
+'listfiles_date' => 'နေ့စွဲ',
 
 # File description page
 'filehist'           => 'ဖိုင်မှတ်တမ်း',

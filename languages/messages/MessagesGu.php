@@ -449,8 +449,8 @@ $messages = array(
 'uploadlogpage' => 'ચઢાવેલી ફાઇલોનું માહિતિ પત્રક',
 'filesource'    => 'સ્ત્રોત:',
 
-# Special:FileList
-'imagelist' => 'ફાઇલોની યાદી',
+# Special:ListFiles
+'listfiles' => 'ફાઇલોની યાદી',
 
 # File description page
 'filehist'                  => 'ફાઇલનો ઇતિહાસ',

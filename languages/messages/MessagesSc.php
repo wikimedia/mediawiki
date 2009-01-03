@@ -351,8 +351,8 @@ Tutti i tempi indicati sono calcolati sul fuso orario del server.',
 'savefile'          => 'Salva file',
 'uploadedimage'     => 'caricato "[[$1]]"',
 
-# Special:FileList
-'imagelist' => 'Lista delle immagini',
+# Special:ListFiles
+'listfiles' => 'Lista delle immagini',
 
 # File description page
 'imagelinks'     => 'Link alle immagini',

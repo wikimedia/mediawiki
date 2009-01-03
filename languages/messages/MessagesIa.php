@@ -48,7 +48,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Observatorio' ),
 	'Recentchanges'             => array( 'ModificationesRecente' ),
 	'Upload'                    => array( 'Cargar' ),
-	'Imagelist'                 => array( 'ListaDeImagines' ),
+	'Listfiles'                 => array( 'ListaDeImagines' ),
 	'Newimages'                 => array( 'NoveImagines' ),
 	'Listusers'                 => array( 'ListarUsatores', 'ListaDeUsatores' ),
 	'Listgrouprights'           => array( 'ListarDerectosDeGruppos' ),
@@ -1459,18 +1459,18 @@ Pote esser preferite reprovar quando le sito es minus occupate.',
 'upload_source_url'  => ' (un adresse URL valide e publicamente accessibile)',
 'upload_source_file' => ' (un file in tu computator)',
 
-# Special:FileList
-'imagelist-summary'     => 'Iste pagina special monstra tote le files cargate.
+# Special:ListFiles
+'listfiles-summary'     => 'Iste pagina special monstra tote le files cargate.
 Per predefinition le ultime files cargate se monstra al initio del lista.
 Tu pote reordinar le lista con un clic super le titulo de un columna.',
-'imagelist_search_for'  => 'Cercar un nomine de media:',
+'listfiles_search_for'  => 'Cercar un nomine de media:',
 'imgfile'               => 'file',
-'imagelist'             => 'Lista de files',
-'imagelist_date'        => 'Data',
-'imagelist_name'        => 'Nomine',
-'imagelist_user'        => 'Usator',
-'imagelist_size'        => 'Grandor',
-'imagelist_description' => 'Description',
+'listfiles'             => 'Lista de files',
+'listfiles_date'        => 'Data',
+'listfiles_name'        => 'Nomine',
+'listfiles_user'        => 'Usator',
+'listfiles_size'        => 'Grandor',
+'listfiles_description' => 'Description',
 
 # File description page
 'filehist'                       => 'Historia del file',

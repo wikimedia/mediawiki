@@ -302,11 +302,11 @@ $messages = array(
 
 'nolicense' => 'केहिपनि छानिएन',
 
-# Special:FileList
-'imagelist_date'        => 'मिति',
-'imagelist_name'        => 'नाम',
-'imagelist_user'        => 'प्रयोगकर्ता',
-'imagelist_description' => 'वर्णन',
+# Special:ListFiles
+'listfiles_date'        => 'मिति',
+'listfiles_name'        => 'नाम',
+'listfiles_user'        => 'प्रयोगकर्ता',
+'listfiles_description' => 'वर्णन',
 
 # File description page
 'nolinkstoimage'   => 'यो फाईलसंग लिंकभएको कुनै पृष्ठ छैन.',

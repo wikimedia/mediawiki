@@ -757,15 +757,15 @@ Informacion: (curt) = quiíxde vercion currentua,
 'nolicense'         => 'Seleccion coccebj hun',
 'license-nopreview' => '(Necuáxiit)',
 
-# Special:FileList
-'imagelist_search_for'  => 'Yahöxde IDde ciúchan:',
+# Special:ListFiles
+'listfiles_search_for'  => 'Yahöxde IDde ciúchan:',
 'imgfile'               => 'ciúchan',
-'imagelist'             => 'Listade ciúchán',
-'imagelist_date'        => 'Datum',
-'imagelist_name'        => 'Nom',
-'imagelist_user'        => 'Caitom',
-'imagelist_size'        => 'Bajlip',
-'imagelist_description' => 'Discripcion',
+'listfiles'             => 'Listade ciúchán',
+'listfiles_date'        => 'Datum',
+'listfiles_name'        => 'Nom',
+'listfiles_user'        => 'Caitom',
+'listfiles_size'        => 'Bajlip',
+'listfiles_description' => 'Discripcion',
 
 # File description page
 'filehist'                  => 'Historiade ciúchan',

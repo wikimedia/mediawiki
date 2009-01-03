@@ -1015,15 +1015,15 @@ PICT # de totes sôrtes
 'upload_source_url'  => ' (una URL valida et accèssibla publicament)',
 'upload_source_file' => ' (un fichiér sur voutron ordenator)',
 
-# Special:FileList
-'imagelist_search_for'  => 'Rechèrche por l’émâge apelâ :',
+# Special:ListFiles
+'listfiles_search_for'  => 'Rechèrche por l’émâge apelâ :',
 'imgfile'               => 'fichiér',
-'imagelist'             => 'Lista de les émâges',
-'imagelist_date'        => 'Dâta',
-'imagelist_name'        => 'Nom',
-'imagelist_user'        => 'Utilisator',
-'imagelist_size'        => 'Octèts',
-'imagelist_description' => 'Dèscripcion',
+'listfiles'             => 'Lista de les émâges',
+'listfiles_date'        => 'Dâta',
+'listfiles_name'        => 'Nom',
+'listfiles_user'        => 'Utilisator',
+'listfiles_size'        => 'Octèts',
+'listfiles_description' => 'Dèscripcion',
 
 # File description page
 'filehist'                  => 'Historico du fichiér',

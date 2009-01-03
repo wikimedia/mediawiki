@@ -667,13 +667,13 @@ $2',
 'uploadlogpage' => 'Йөкләү журналы',
 'uploadedimage' => '«[[$1]]» йөкләнгән',
 
-# Special:FileList
-'imagelist'             => 'Сүрәтләр исемлеге',
-'imagelist_date'        => 'Вакыт',
-'imagelist_name'        => 'Ат',
-'imagelist_user'        => 'Кулланучы',
-'imagelist_size'        => 'Үлчәм',
-'imagelist_description' => 'Тасвир',
+# Special:ListFiles
+'listfiles'             => 'Сүрәтләр исемлеге',
+'listfiles_date'        => 'Вакыт',
+'listfiles_name'        => 'Ат',
+'listfiles_user'        => 'Кулланучы',
+'listfiles_size'        => 'Үлчәм',
+'listfiles_description' => 'Тасвир',
 
 # File description page
 'filehist'                  => 'Файлның тарихы',

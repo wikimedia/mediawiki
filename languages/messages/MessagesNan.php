@@ -468,13 +468,13 @@ $messages = array(
 'destfilename'      => 'Tóng-àn sin miâ:',
 'watchthisupload'   => 'Kàm-sī chit ia̍h',
 
-# Special:FileList
-'imagelist'             => 'Iáⁿ-siōng lia̍t-toaⁿ',
-'imagelist_date'        => 'Ji̍t-kî',
-'imagelist_name'        => 'Miâ',
-'imagelist_user'        => 'Iōng-chiá',
-'imagelist_size'        => 'Toā-sè',
-'imagelist_description' => 'Soat-bêng',
+# Special:ListFiles
+'listfiles'             => 'Iáⁿ-siōng lia̍t-toaⁿ',
+'listfiles_date'        => 'Ji̍t-kî',
+'listfiles_name'        => 'Miâ',
+'listfiles_user'        => 'Iōng-chiá',
+'listfiles_size'        => 'Toā-sè',
+'listfiles_description' => 'Soat-bêng',
 
 # File description page
 'imagelinks'       => 'Iáⁿ-siōng liân-kiat',

@@ -291,7 +291,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Baqılaw_tizimi' ),
 	'Recentchanges'             => array( 'Jwıqtağı_özgerister' ),
 	'Upload'                    => array( 'Qotarıp_berw', 'Qotarw' ),
-	'Imagelist'                 => array( 'Swret_tizimi' ),
+	'Listfiles'                 => array( 'Swret_tizimi' ),
 	'Newimages'                 => array( 'Jaña_swretter' ),
 	'Listusers'                 => array( 'Qatıswşılar', 'Qatıswşı_tizimi' ),
 	'Listgrouprights'           => array( 'Top_quqıqtarı_tizimi' ),
@@ -1502,18 +1502,18 @@ Talabıñızdı qol tïgen kezinde qaýta baýqap körwiñiz mümkin.',
 'upload_source_url'  => ' (jaramdı, barşağa qatınawlı URL)',
 'upload_source_file' => ' (komp′ywteriñizdegi faýl)',
 
-# Special:FileList
-'imagelist-summary'     => 'Bul arnaýı bette barlıq qotarıp berilgen faýldar körsetiledi.
+# Special:ListFiles
+'listfiles-summary'     => 'Bul arnaýı bette barlıq qotarıp berilgen faýldar körsetiledi.
 Soñğı qotarıp berilgen faýldar tizimde joğarğı şetimen ädepkiden körsetiledi.
 Bağannıñ bas jolın nuqığanda surıptawdıñ rettewi özgertiledi.',
-'imagelist_search_for'  => 'Taspa atawın izdew:',
+'listfiles_search_for'  => 'Taspa atawın izdew:',
 'imgfile'               => 'faýl',
-'imagelist'             => 'Faýl tizimi',
-'imagelist_date'        => 'Kün-aýı',
-'imagelist_name'        => 'Atawı',
-'imagelist_user'        => 'Qatıswşı',
-'imagelist_size'        => 'Mölşeri',
-'imagelist_description' => 'Sïpattaması',
+'listfiles'             => 'Faýl tizimi',
+'listfiles_date'        => 'Kün-aýı',
+'listfiles_name'        => 'Atawı',
+'listfiles_user'        => 'Qatıswşı',
+'listfiles_size'        => 'Mölşeri',
+'listfiles_description' => 'Sïpattaması',
 
 # File description page
 'filehist'                       => 'Faýl tarïxı',

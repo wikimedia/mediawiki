@@ -1015,18 +1015,18 @@ Bu fayl içün yoq etüvniñ jurnalını mında baqıp olasıñız:",
 'upload_source_url'  => ' (doğru, püblik tarzda kirmege musaadeli internet adres)',
 'upload_source_file' => ' (kompyuteriñizdeki fayl)',
 
-# Special:FileList
-'imagelist-summary'     => 'Bu mahsus saife bütün yüklengen fayllarnı köstere.
+# Special:ListFiles
+'listfiles-summary'     => 'Bu mahsus saife bütün yüklengen fayllarnı köstere.
 Yaqınlarda yüklengen fayllar cedvelniñ yuqarısında kösterile.
 Sutun serlevasına bir basuv sortirlemeniñ tertibini deñiştirir.',
-'imagelist_search_for'  => 'Fayl adını qıdıruv:',
+'listfiles_search_for'  => 'Fayl adını qıdıruv:',
 'imgfile'               => 'fayl',
-'imagelist'             => 'Resim cedveli',
-'imagelist_date'        => 'Tarih',
-'imagelist_name'        => 'Fayl adı',
-'imagelist_user'        => 'Qullanıcı',
-'imagelist_size'        => 'Büyüklik',
-'imagelist_description' => 'Tasvir',
+'listfiles'             => 'Resim cedveli',
+'listfiles_date'        => 'Tarih',
+'listfiles_name'        => 'Fayl adı',
+'listfiles_user'        => 'Qullanıcı',
+'listfiles_size'        => 'Büyüklik',
+'listfiles_description' => 'Tasvir',
 
 # File description page
 'filehist'                  => 'Faylnıñ keçmişi',

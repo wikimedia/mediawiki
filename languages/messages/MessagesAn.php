@@ -59,7 +59,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Lista de seguimiento' ),
 	'Recentchanges'             => array( 'Zaguers cambeos', 'cambeos rezients' ),
 	'Upload'                    => array( 'Cargar', 'Puyar' ),
-	'Imagelist'                 => array( 'Lista d\'imáchens', 'Lista d\'imachens' ),
+	'Listfiles'                 => array( 'Lista d\'imáchens', 'Lista d\'imachens' ),
 	'Newimages'                 => array( 'Nuebas imáchens', 'Nuebas imachens' ),
 	'Listusers'                 => array( 'Lista d\'usuarios' ),
 	'Listgrouprights'           => array( 'Lis' ),
@@ -1354,18 +1354,18 @@ PICT # misz.
 'upload_source_url'  => ' (una URL conforme y publicament aczesible)',
 'upload_source_file' => ' (un archibo en o suyo ordenador)',
 
-# Special:FileList
-'imagelist-summary'     => "Ista pachina espezial amuestra toz os archibos cargatos.
+# Special:ListFiles
+'listfiles-summary'     => "Ista pachina espezial amuestra toz os archibos cargatos.
 Por defeuto os zaguers archibos cargatos s'amuestran en o cobalto d'a lista.
 Fendo click en un encabezau de colunna se cambia o criterio d'ordenazión.",
-'imagelist_search_for'  => "Mirar por nombre de l'archibo:",
+'listfiles_search_for'  => "Mirar por nombre de l'archibo:",
 'imgfile'               => 'archibo',
-'imagelist'             => 'Lista de imachens',
-'imagelist_date'        => 'Calendata:',
-'imagelist_name'        => 'Nombre',
-'imagelist_user'        => 'Usuario',
-'imagelist_size'        => 'Grandaria (bytes)',
-'imagelist_description' => 'Descripzión',
+'listfiles'             => 'Lista de imachens',
+'listfiles_date'        => 'Calendata:',
+'listfiles_name'        => 'Nombre',
+'listfiles_user'        => 'Usuario',
+'listfiles_size'        => 'Grandaria (bytes)',
+'listfiles_description' => 'Descripzión',
 
 # File description page
 'filehist'                       => "Istorial de l'archibo",

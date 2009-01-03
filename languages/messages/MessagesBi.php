@@ -89,8 +89,8 @@ $messages = array(
 # Preferences page
 'servertime' => 'Taem blong server',
 
-# Special:FileList
-'imagelist_name' => 'Nem',
+# Special:ListFiles
+'listfiles_name' => 'Nem',
 
 # Miscellaneous special pages
 'shortpages' => 'Ol smol pej',

@@ -67,7 +67,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Mítt eftirlit' ),
 	'Recentchanges'             => array( 'Seinastu broytingar' ),
 	'Upload'                    => array( 'Legg fílu upp' ),
-	'Imagelist'                 => array( 'Myndalisti' ),
+	'Listfiles'                 => array( 'Myndalisti' ),
 	'Newimages'                 => array( 'Nýggjar myndir' ),
 	'Listusers'                 => array( 'Brúkaralisti' ),
 	'Statistics'                => array( 'Hagtøl' ),
@@ -651,10 +651,10 @@ fyri at leggja fílur upp.',
 'license'   => 'Loyvi:',
 'nolicense' => 'Onki valt',
 
-# Special:FileList
-'imagelist'      => 'Myndalisti',
-'imagelist_name' => 'Navn',
-'imagelist_user' => 'Brúkari',
+# Special:ListFiles
+'listfiles'      => 'Myndalisti',
+'listfiles_name' => 'Navn',
+'listfiles_user' => 'Brúkari',
 
 # File description page
 'filehist'          => 'Søga fílu',

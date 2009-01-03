@@ -1042,15 +1042,15 @@ $3-এর দেয়া কারণ হল ''$2''",
 'upload_source_url'  => ' (একটি বৈধ, উন্মুক্ত URL)',
 'upload_source_file' => ' (আপনার কম্পিউটারের একটি ফাইল)',
 
-# Special:FileList
-'imagelist_search_for'  => 'ছবির নাম অনুসন্ধান:',
+# Special:ListFiles
+'listfiles_search_for'  => 'ছবির নাম অনুসন্ধান:',
 'imgfile'               => 'ফাইল',
-'imagelist'             => 'ছবির তালিকা',
-'imagelist_date'        => 'তারিখ',
-'imagelist_name'        => 'নাম',
-'imagelist_user'        => 'ব্যবহারকারী',
-'imagelist_size'        => 'আকার',
-'imagelist_description' => 'বিবরণ',
+'listfiles'             => 'ছবির তালিকা',
+'listfiles_date'        => 'তারিখ',
+'listfiles_name'        => 'নাম',
+'listfiles_user'        => 'ব্যবহারকারী',
+'listfiles_size'        => 'আকার',
+'listfiles_description' => 'বিবরণ',
 
 # File description page
 'filehist'                  => 'ফাইলের ইতিহাস',

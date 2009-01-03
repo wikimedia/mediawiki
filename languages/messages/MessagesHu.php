@@ -63,7 +63,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Figyelőlistám' ),
 	'Recentchanges'             => array( 'Friss változtatások' ),
 	'Upload'                    => array( 'Feltöltés' ),
-	'Imagelist'                 => array( 'Fájllista', 'Képlista' ),
+	'Listfiles'                 => array( 'Fájllista', 'Képlista' ),
 	'Newimages'                 => array( 'Új fájlok', 'Új képek', 'Új képek galériája' ),
 	'Listusers'                 => array( 'Szerkesztők listája', 'Szerkesztők', 'Felhasználók' ),
 	'Listgrouprights'           => array( 'Szerkesztői csoportok jogai' ),
@@ -1551,18 +1551,18 @@ PICT # ált.
 'upload_source_url'  => ' (egy érvényes, nyilvánosan elérhető URL)',
 'upload_source_file' => ' (egy fájl a számítógépeden)',
 
-# Special:FileList
-'imagelist-summary'     => 'Ezen a speciális lapon látható az összes feltöltött fájl.
+# Special:ListFiles
+'listfiles-summary'     => 'Ezen a speciális lapon látható az összes feltöltött fájl.
 A legutóbb feltöltött fájlok vannak a lista elején.
 Az oszlopok címeire kattintva változtathatod meg a rendezést.',
-'imagelist_search_for'  => 'Keresés fájl nevére:',
+'listfiles_search_for'  => 'Keresés fájl nevére:',
 'imgfile'               => 'fájl',
-'imagelist'             => 'Fájllista',
-'imagelist_date'        => 'Dátum',
-'imagelist_name'        => 'Név',
-'imagelist_user'        => 'feltöltő',
-'imagelist_size'        => 'Méret',
-'imagelist_description' => 'Leírás',
+'listfiles'             => 'Fájllista',
+'listfiles_date'        => 'Dátum',
+'listfiles_name'        => 'Név',
+'listfiles_user'        => 'feltöltő',
+'listfiles_size'        => 'Méret',
+'listfiles_description' => 'Leírás',
 
 # File description page
 'filehist'                       => 'Fájltörténet',

@@ -49,7 +49,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'TegnùiDeOcio' ),
 	'Recentchanges'             => array( 'ÙltimiCanbiamenti' ),
 	'Upload'                    => array( 'Carga' ),
-	'Imagelist'                 => array( 'Imagini' ),
+	'Listfiles'                 => array( 'Imagini' ),
 	'Newimages'                 => array( 'ImaginiReçenti' ),
 	'Listusers'                 => array( 'Utenti' ),
 	'Listgrouprights'           => array( 'ListaDiritiDeGrupo' ),
@@ -1370,18 +1370,18 @@ Se el problema el persiste, contatar un [[Special:ListUsers/sysop|aministrador]]
 'upload_source_url'  => ' (na URL coreta e acessibile)',
 'upload_source_file' => ' (un file sul to computer)',
 
-# Special:FileList
-'imagelist-summary'     => "Sta pagina speciale la fa védar tuti i file caricài.
+# Special:ListFiles
+'listfiles-summary'     => "Sta pagina speciale la fa védar tuti i file caricài.
 I file caricài piessè de reçente i vien mostrà a l'inizio de la lista.
 Par modificar l'ordinamento, struca su l'intestazion de la colona presièlta.",
-'imagelist_search_for'  => 'Çerca imagini par nome:',
+'listfiles_search_for'  => 'Çerca imagini par nome:',
 'imgfile'               => 'file',
-'imagelist'             => 'Imagini',
-'imagelist_date'        => 'Data',
-'imagelist_name'        => 'Nome',
-'imagelist_user'        => 'Utente',
-'imagelist_size'        => 'Dimension in byte',
-'imagelist_description' => 'Descrizion',
+'listfiles'             => 'Imagini',
+'listfiles_date'        => 'Data',
+'listfiles_name'        => 'Nome',
+'listfiles_user'        => 'Utente',
+'listfiles_size'        => 'Dimension in byte',
+'listfiles_description' => 'Descrizion',
 
 # File description page
 'filehist'                       => 'Cronologia del file',

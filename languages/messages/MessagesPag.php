@@ -183,8 +183,8 @@ $messages = array(
 'sourcefilename'  => 'Filename na pinanlapuan:',
 'watchthisupload' => 'Bantayan yan bolong',
 
-# Special:FileList
-'imagelist_name' => 'Ngaran',
+# Special:ListFiles
+'listfiles_name' => 'Ngaran',
 
 # File description page
 'imagelinks'       => 'Saray Gawing',

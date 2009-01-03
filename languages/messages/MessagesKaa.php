@@ -49,7 +49,7 @@ $specialPageAliases = array(
 	'Preferences'               => array( 'Sazlawlar' ),
 	'Watchlist'                 => array( 'Baqlaw dizimi' ),
 	'Recentchanges'             => array( 'Aqırg\'ı o\'zgerisler' ),
-	'Imagelist'                 => array( 'Su\'wretler dizimi' ),
+	'Listfiles'                 => array( 'Su\'wretler dizimi' ),
 	'Newimages'                 => array( 'Taza su\'wretler' ),
 	'Listusers'                 => array( 'Paydalanıwshılar', 'Paydalanıwshı dizimi' ),
 	'Statistics'                => array( 'Statistika' ),
@@ -1223,15 +1223,15 @@ Sha'rtli belgiler: (ha'z.) = ha'zirgi nusqasi menen parqı,
 'upload_source_url'  => " (jaramlı, ha'mmege ashıq URL)",
 'upload_source_file' => " (sizin' kompyuterin'izdegi fayl)",
 
-# Special:FileList
-'imagelist_search_for'  => 'Media atamasın izlew:',
+# Special:ListFiles
+'listfiles_search_for'  => 'Media atamasın izlew:',
 'imgfile'               => 'fayl',
-'imagelist'             => 'Fayllar dizimi',
-'imagelist_date'        => "Sa'ne",
-'imagelist_name'        => 'Atama',
-'imagelist_user'        => 'Paydalnıwshı',
-'imagelist_size'        => "Ha'jim",
-'imagelist_description' => 'Kommentariy',
+'listfiles'             => 'Fayllar dizimi',
+'listfiles_date'        => "Sa'ne",
+'listfiles_name'        => 'Atama',
+'listfiles_user'        => 'Paydalnıwshı',
+'listfiles_size'        => "Ha'jim",
+'listfiles_description' => 'Kommentariy',
 
 # File description page
 'filehist'                       => 'Fayl tariyxı',

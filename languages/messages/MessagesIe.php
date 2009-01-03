@@ -250,8 +250,8 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'filedesc'  => 'Descrition',
 'savefile'  => 'Conservar file',
 
-# Special:FileList
-'imagelist' => 'Liste de images',
+# Special:ListFiles
+'listfiles' => 'Liste de images',
 
 # File description page
 'filehist-comment' => 'Comenta',

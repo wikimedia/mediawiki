@@ -1182,18 +1182,18 @@ PICT # misc.
 'upload_source_url'  => ' (एक वैध, सभी जगहोंसे उपलब्ध URL)',
 'upload_source_file' => ' (आपके कम्प्यूटरपर होनेवाली फ़ाईल)',
 
-# Special:FileList
-'imagelist-summary'     => 'यह विशेष पृष्ठ सभी अपलोड की हुई फ़ाईलें दर्शाता हैं।
+# Special:ListFiles
+'listfiles-summary'     => 'यह विशेष पृष्ठ सभी अपलोड की हुई फ़ाईलें दर्शाता हैं।
 सामान्यत: सबसे बादमें अपलोड हुई फ़ाईलें सबसे उपर दिखती हैं।
 कालम कें शीर्षकमें क्लिक करने से अनुक्रम बदला जा सकता हैं।',
-'imagelist_search_for'  => 'इस मीडिया नाम से खोजें:',
+'listfiles_search_for'  => 'इस मीडिया नाम से खोजें:',
 'imgfile'               => 'फ़ाईल',
-'imagelist'             => 'चित्र सूची',
-'imagelist_date'        => 'दिनांक',
-'imagelist_name'        => 'नाम',
-'imagelist_user'        => 'सदस्य',
-'imagelist_size'        => 'आकार',
-'imagelist_description' => 'ज़ानकारी',
+'listfiles'             => 'चित्र सूची',
+'listfiles_date'        => 'दिनांक',
+'listfiles_name'        => 'नाम',
+'listfiles_user'        => 'सदस्य',
+'listfiles_size'        => 'आकार',
+'listfiles_description' => 'ज़ानकारी',
 
 # File description page
 'filehist'                       => 'फ़ाईलका इतिहास',

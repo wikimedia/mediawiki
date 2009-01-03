@@ -158,8 +158,8 @@ $messages = array(
 'upload'   => 'ܛܥܢܐ ܦ̮ܥܝܠ',
 'filename' => 'ܫܡܐ ܕܫܘܦܝܢܐ',
 
-# Special:FileList
-'imagelist_name' => 'ܫܡܐ',
+# Special:ListFiles
+'listfiles_name' => 'ܫܡܐ',
 
 # Random page
 'randompage' => 'ܡܓܠܬܐ ܚܘܝܚܐ',

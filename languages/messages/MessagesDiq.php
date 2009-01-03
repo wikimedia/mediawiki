@@ -374,11 +374,11 @@ It must have at least $1 characters and be different from your username.',
 'filesource' => 'Çımey:',
 'savefile'   => 'Dosya qeyd ke',
 
-# Special:FileList
+# Special:ListFiles
 'imgfile'        => 'dosya',
-'imagelist'      => 'Lista Dosya',
-'imagelist_date' => 'Tarix',
-'imagelist_user' => 'Karber',
+'listfiles'      => 'Lista Dosya',
+'listfiles_date' => 'Tarix',
+'listfiles_user' => 'Karber',
 
 # File description page
 'filehist'          => 'Tarixê dosya',

@@ -141,7 +141,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Списък за наблюдение' ),
 	'Recentchanges'             => array( 'Последни промени' ),
 	'Upload'                    => array( 'Качване' ),
-	'Imagelist'                 => array( 'Файлове' ),
+	'Listfiles'                 => array( 'Файлове' ),
 	'Newimages'                 => array( 'Нови файлове' ),
 	'Listusers'                 => array( 'Потребители' ),
 	'Listgrouprights'           => array( 'Групови права' ),
@@ -1435,18 +1435,18 @@ $2',
 'upload_source_url'  => ' (правилен, публично достъпен интернет-адрес)',
 'upload_source_file' => ' (файл на вашия компютър)',
 
-# Special:FileList
-'imagelist-summary'     => 'Тази специална страница показва всички качени файлове.
+# Special:ListFiles
+'listfiles-summary'     => 'Тази специална страница показва всички качени файлове.
 По подразбиране последно качените файлове се показват най-високо в списъка.
 Сортирането се променя с щракване в заглавна клетка на колоната.',
-'imagelist_search_for'  => 'Търсене по име на файла:',
+'listfiles_search_for'  => 'Търсене по име на файла:',
 'imgfile'               => 'файл',
-'imagelist'             => 'Списък на файловете',
-'imagelist_date'        => 'Дата',
-'imagelist_name'        => 'Име на файла',
-'imagelist_user'        => 'Потребител',
-'imagelist_size'        => 'Размер',
-'imagelist_description' => 'Описание',
+'listfiles'             => 'Списък на файловете',
+'listfiles_date'        => 'Дата',
+'listfiles_name'        => 'Име на файла',
+'listfiles_user'        => 'Потребител',
+'listfiles_size'        => 'Размер',
+'listfiles_description' => 'Описание',
 
 # File description page
 'filehist'                       => 'История на файла',

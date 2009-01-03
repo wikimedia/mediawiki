@@ -744,8 +744,8 @@ Tae pit the eimage intae a page, uise an airtin i the form
 
 'nolicense' => 'Nane selected',
 
-# Special:FileList
-'imagelist' => 'Eimage leet',
+# Special:ListFiles
+'listfiles' => 'Eimage leet',
 
 # File description page
 'imagelinks'     => 'Eimage airtins',

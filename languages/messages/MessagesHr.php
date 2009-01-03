@@ -53,7 +53,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Praćene_stranice' ),
 	'Recentchanges'             => array( 'Nedavne_promjene' ),
 	'Upload'                    => array( 'Postavi_datoteku' ),
-	'Imagelist'                 => array( 'Slike' ),
+	'Listfiles'                 => array( 'Slike' ),
 	'Newimages'                 => array( 'Nove_slike' ),
 	'Listusers'                 => array( 'Suradnici', 'Popis_suradnika' ),
 	'Listgrouprights'           => array( 'Suradničke_skupine' ),
@@ -1538,18 +1538,18 @@ Ukoliko se problem ponovi, javite to [[Special:ListUsers/sysop|administratoru]].
 'upload_source_url'  => ' (valjani, javno dostupni URL)',
 'upload_source_file' => ' (datoteka na vašem računalu)',
 
-# Special:FileList
-'imagelist-summary'     => 'Ova posebna stranica pokazuje sve postavljene datoteke.
+# Special:ListFiles
+'listfiles-summary'     => 'Ova posebna stranica pokazuje sve postavljene datoteke.
 Na vrhu popisa se nalaze najnovije postavljene datoteke.
 Poredak datoteka mijenja se pritiskom na naslov stupca.',
-'imagelist_search_for'  => 'Traži ime slike:',
+'listfiles_search_for'  => 'Traži ime slike:',
 'imgfile'               => 'datoteka',
-'imagelist'             => 'Popis slika',
-'imagelist_date'        => 'Datum',
-'imagelist_name'        => 'Naziv slike',
-'imagelist_user'        => 'Suradnik',
-'imagelist_size'        => 'Veličina (u bajtovima)',
-'imagelist_description' => 'Opis',
+'listfiles'             => 'Popis slika',
+'listfiles_date'        => 'Datum',
+'listfiles_name'        => 'Naziv slike',
+'listfiles_user'        => 'Suradnik',
+'listfiles_size'        => 'Veličina (u bajtovima)',
+'listfiles_description' => 'Opis',
 
 # File description page
 'filehist'                       => 'Povijest datoteke',

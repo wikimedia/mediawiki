@@ -221,8 +221,8 @@ $1",
 'fileexists'    => 'Tha faidhle leis an ainm seo ann cheana; nach faigh sibh cinnt air <strong><tt>$1</tt></strong> gu bheil sibh ag iarraidh atharrachadh.',
 'savefile'      => 'Sàbhail faidhle',
 
-# Special:FileList
-'imagelist' => 'Liosta nan ìomhaigh',
+# Special:ListFiles
+'listfiles' => 'Liosta nan ìomhaigh',
 
 # Random page
 'randompage' => 'Duilleag thuairmeach',

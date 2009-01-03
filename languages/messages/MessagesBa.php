@@ -225,8 +225,8 @@ $messages = array(
 # Recent changes linked
 'recentchangeslinked' => 'Бәйле үҙгәртеүҙәр',
 
-# Special:FileList
-'imagelist_user' => 'Ҡатнашыусы',
+# Special:ListFiles
+'listfiles_user' => 'Ҡатнашыусы',
 
 # MIME search
 'mimesearch' => 'MIME буйынса эҙләү',

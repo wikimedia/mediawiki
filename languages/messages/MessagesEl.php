@@ -82,7 +82,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'ΛίσταΠαρακολούθησης' ),
 	'Recentchanges'             => array( 'ΠρόσφατεςΑλλαγές' ),
 	'Upload'                    => array( 'Επιφόρτωση' ),
-	'Imagelist'                 => array( 'ΚατάλογοςΑρχείων' ),
+	'Listfiles'                 => array( 'ΚατάλογοςΑρχείων' ),
 	'Newimages'                 => array( 'ΝέαΑρχεία' ),
 	'Listusers'                 => array( 'ΚατάλογοςΧρηστών' ),
 	'Listgrouprights'           => array( 'ΚατάλογοςΔικαιωμάτωνΧρηστών' ),
@@ -1527,18 +1527,18 @@ $2',
 'upload_source_url'  => ' (ένα έγκυρο, δημόσια προσβάσιμο URL)',
 'upload_source_file' => ' (ένα αρχείο στον υπολογιστή σας)',
 
-# Special:FileList
-'imagelist-summary'     => 'Αυτή η ειδική σελίδα δείχνει όλα τα ανεβασμένα αρχεία.
+# Special:ListFiles
+'listfiles-summary'     => 'Αυτή η ειδική σελίδα δείχνει όλα τα ανεβασμένα αρχεία.
 Τα πιο πρόσφατα είναι στην κορυφή της λίστας.
 Πατήστε στην επικεφαλίδα μιας σειράς για αλλάξει η ιεράρχηση.',
-'imagelist_search_for'  => 'Αναζήτηση για όνομα πολυμέσου:',
+'listfiles_search_for'  => 'Αναζήτηση για όνομα πολυμέσου:',
 'imgfile'               => 'αρχείο',
-'imagelist'             => 'Κατάλογος εικόνων',
-'imagelist_date'        => 'Ημερομηνία',
-'imagelist_name'        => 'Όνομα',
-'imagelist_user'        => 'Χρήστης',
-'imagelist_size'        => 'Μέγεθος',
-'imagelist_description' => 'Περιγραφή',
+'listfiles'             => 'Κατάλογος εικόνων',
+'listfiles_date'        => 'Ημερομηνία',
+'listfiles_name'        => 'Όνομα',
+'listfiles_user'        => 'Χρήστης',
+'listfiles_size'        => 'Μέγεθος',
+'listfiles_description' => 'Περιγραφή',
 
 # File description page
 'filehist'                       => 'Ιστορικό αρχείου',

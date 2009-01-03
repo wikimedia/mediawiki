@@ -469,15 +469,15 @@ $messages = array(
 'destfilename'      => '目标文件名:',
 'watchthisupload'   => '监控该只页面',
 
-# Special:FileList
-'imagelist_search_for'  => '寻图片名字:',
+# Special:ListFiles
+'listfiles_search_for'  => '寻图片名字:',
 'imgfile'               => '源文件',
-'imagelist'             => '文件列表',
-'imagelist_date'        => '日脚',
-'imagelist_name'        => '名字',
-'imagelist_user'        => '用户',
-'imagelist_size'        => '尺寸 (bytes)',
-'imagelist_description' => '描述',
+'listfiles'             => '文件列表',
+'listfiles_date'        => '日脚',
+'listfiles_name'        => '名字',
+'listfiles_user'        => '用户',
+'listfiles_size'        => '尺寸 (bytes)',
+'listfiles_description' => '描述',
 
 # File description page
 'filehist'                  => '文物历史',

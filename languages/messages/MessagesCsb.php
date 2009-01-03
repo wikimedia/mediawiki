@@ -457,9 +457,9 @@ Eżlë klëczi na ti starnie nie są sczérowóne do ce, tedë [[Special:UserLog
 'uploadedimage'     => 'wladënk: "$1"',
 'uploaddisabled'    => 'Przeprôszómë! Mòżlëwòta wladënkù lopków na nen serwer òsta wëłączonô.',
 
-# Special:FileList
-'imagelist'      => 'Lësta òbrôzków',
-'imagelist_user' => 'Brëkòwnik',
+# Special:ListFiles
+'listfiles'      => 'Lësta òbrôzków',
+'listfiles_user' => 'Brëkòwnik',
 
 # File description page
 'filehist-user'  => 'Brëkòwnik',

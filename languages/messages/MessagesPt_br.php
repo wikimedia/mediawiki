@@ -70,7 +70,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Páginas vigiadas', 'Artigos vigiados', 'Vigiados' ),
 	'Recentchanges'             => array( 'Mudanças recentes', 'Recentes' ),
 	'Upload'                    => array( 'Carregar imagem', 'Carregar ficheiro', 'Carregar arquivo', 'Enviar' ),
-	'Imagelist'                 => array( 'Lista de imagens', 'Lista de ficheiros', 'Lista de arquivos' ),
+	'Listfiles'                 => array( 'Lista de imagens', 'Lista de ficheiros', 'Lista de arquivos' ),
 	'Newimages'                 => array( 'Imagens novas', 'Ficheiros novos', 'Arquivos novos' ),
 	'Listusers'                 => array( 'Lista de usuários', 'Lista de utilizadores' ),
 	'Listgrouprights'           => array( 'Listar privilégios de grupos' ),
@@ -1447,18 +1447,18 @@ PICT # misc.
 'upload_source_url'  => ' (um URL válido, publicamente acessível)',
 'upload_source_file' => ' (um arquivo no seu computador)',
 
-# Special:FileList
-'imagelist-summary'     => 'Esta página especial mostra todos os arquivos carregados.
+# Special:ListFiles
+'listfiles-summary'     => 'Esta página especial mostra todos os arquivos carregados.
 Por padrão, os últimos arquivos carregados são mostrados no topo da lista.
 Um clique sobre um cabeçalho de coluna altera a ordenação.',
-'imagelist_search_for'  => 'Pesquisar por nome de imagem:',
+'listfiles_search_for'  => 'Pesquisar por nome de imagem:',
 'imgfile'               => 'arquivo',
-'imagelist'             => 'Lista de arquivo',
-'imagelist_date'        => 'Data',
-'imagelist_name'        => 'Nome',
-'imagelist_user'        => 'Usuário',
-'imagelist_size'        => 'Tamanho',
-'imagelist_description' => 'Descrição',
+'listfiles'             => 'Lista de arquivo',
+'listfiles_date'        => 'Data',
+'listfiles_name'        => 'Nome',
+'listfiles_user'        => 'Usuário',
+'listfiles_size'        => 'Tamanho',
+'listfiles_description' => 'Descrição',
 
 # File description page
 'filehist'                       => 'Histórico do arquivo',

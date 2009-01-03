@@ -1012,14 +1012,14 @@ Palun kaalutlege, kas Te tõesti soovite seda faili üles laadida.',
 'license'   => 'Litsents:',
 'nolicense' => 'pole valitud',
 
-# Special:FileList
+# Special:ListFiles
 'imgfile'               => 'fail',
-'imagelist'             => 'Piltide loend',
-'imagelist_date'        => 'Kuupäev',
-'imagelist_name'        => 'Nimi',
-'imagelist_user'        => 'Kasutaja',
-'imagelist_size'        => 'Suurus',
-'imagelist_description' => 'Kirjeldus',
+'listfiles'             => 'Piltide loend',
+'listfiles_date'        => 'Kuupäev',
+'listfiles_name'        => 'Nimi',
+'listfiles_user'        => 'Kasutaja',
+'listfiles_size'        => 'Suurus',
+'listfiles_description' => 'Kirjeldus',
 
 # File description page
 'filehist'                  => 'Faili ajalugu',

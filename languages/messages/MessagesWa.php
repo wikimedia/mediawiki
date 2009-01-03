@@ -788,14 +788,14 @@ ou co po les sons
 'nolicense'          => 'Nole licince tchoezeye',
 'upload_source_file' => ' (on fitchî sol copiutrece da vosse)',
 
-# Special:FileList
-'imagelist_search_for'  => "Cweri l' no d' imådje:",
+# Special:ListFiles
+'listfiles_search_for'  => "Cweri l' no d' imådje:",
 'imgfile'               => 'fitchî',
-'imagelist'             => 'Djivêye des imådjes',
-'imagelist_name'        => 'No',
-'imagelist_user'        => 'Uzeu',
-'imagelist_size'        => 'Grandeu',
-'imagelist_description' => 'Discrijhaedje',
+'listfiles'             => 'Djivêye des imådjes',
+'listfiles_name'        => 'No',
+'listfiles_user'        => 'Uzeu',
+'listfiles_size'        => 'Grandeu',
+'listfiles_description' => 'Discrijhaedje',
 
 # File description page
 'filehist-deleteall'        => 'disfacer ttafwait',

@@ -644,15 +644,15 @@ $1 | $2',
 'upload_source_url'  => ' (almmolaš URL-čujuhus)',
 'upload_source_file' => ' (fiila dihtoris)',
 
-# Special:FileList
-'imagelist_search_for'  => 'Nammaohcan',
+# Special:ListFiles
+'listfiles_search_for'  => 'Nammaohcan',
 'imgfile'               => 'fiila',
-'imagelist'             => 'Fiilalogahallan',
-'imagelist_date'        => 'Beaivemearri',
-'imagelist_name'        => 'Namma',
-'imagelist_user'        => 'Vurkejeaddji',
-'imagelist_size'        => 'Sturrodat',
-'imagelist_description' => 'Govvádus',
+'listfiles'             => 'Fiilalogahallan',
+'listfiles_date'        => 'Beaivemearri',
+'listfiles_name'        => 'Namma',
+'listfiles_user'        => 'Vurkejeaddji',
+'listfiles_size'        => 'Sturrodat',
+'listfiles_description' => 'Govvádus',
 
 # File description page
 'filehist'                  => 'Fiilla historjá',

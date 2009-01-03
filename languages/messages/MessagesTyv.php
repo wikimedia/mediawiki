@@ -406,13 +406,13 @@ $1',
 'upload-file-error' => 'Иштики алдаг',
 'upload-misc-error' => 'Билбес кииреринге алдаг',
 
-# Special:FileList
+# Special:ListFiles
 'imgfile'               => 'файл',
-'imagelist'             => 'Файл даңзызы',
-'imagelist_name'        => 'Ат',
-'imagelist_user'        => 'Ажыглакчы',
-'imagelist_size'        => 'Хемчээл',
-'imagelist_description' => 'Тодарадып бижээни',
+'listfiles'             => 'Файл даңзызы',
+'listfiles_name'        => 'Ат',
+'listfiles_user'        => 'Ажыглакчы',
+'listfiles_size'        => 'Хемчээл',
+'listfiles_description' => 'Тодарадып бижээни',
 
 # File description page
 'filehist'           => 'Файлдың төөгүзү',

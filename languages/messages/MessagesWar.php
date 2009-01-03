@@ -220,9 +220,9 @@ $messages = array(
 'upload'    => 'Pagkarga hin file',
 'uploadbtn' => 'Igkarga an file',
 
-# Special:FileList
-'imagelist_date' => 'Pitsa',
-'imagelist_name' => 'Ngaran',
+# Special:ListFiles
+'listfiles_date' => 'Pitsa',
+'listfiles_name' => 'Ngaran',
 
 # File description page
 'filehist-datetime' => 'Pitsa/Oras',

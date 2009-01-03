@@ -123,8 +123,8 @@ $messages = array(
 # Recent changes
 'recentchanges' => 'Te mau fa’ahuru-’ē-ra’a ’āpī',
 
-# Special:FileList
-'imagelist_user' => 'Ta’ata fa’a’ohipa',
+# Special:ListFiles
+'listfiles_user' => 'Ta’ata fa’a’ohipa',
 
 # File description page
 'filehist-user' => 'Ta’ata',

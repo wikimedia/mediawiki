@@ -40,7 +40,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Watiqasqa', 'Watiqasqakuna' ),
 	'Recentchanges'             => array( 'NaqhaHukchasqa' ),
 	'Upload'                    => array( 'Churkuy' ),
-	'Imagelist'                 => array( 'RikchaSutisuyu' ),
+	'Listfiles'                 => array( 'RikchaSutisuyu' ),
 	'Newimages'                 => array( 'MusuqRikcha', 'MusuqRikchakuna' ),
 	'Listusers'                 => array( 'Ruraqkuna', 'RuraqSutisuyu' ),
 	'Listgrouprights'           => array( 'HunuHayni', 'HunupHaynin', 'RuraqpaHaynin', 'RuraqkunapHayninkuna' ),
@@ -1345,18 +1345,18 @@ Kay qatiqpiqa willañiqimanta qulluy hallch'atam rikunki:",
 'upload_source_url'  => ' (allin, sapsi chayanalla URL tiyay)',
 'upload_source_file' => ' (antañiqiqniykipi willañiqi)',
 
-# Special:FileList
-'imagelist-summary'     => "Kay sapaq p'anqapiqa tukuy churkusqa willañiqikunatam rikunki.
+# Special:ListFiles
+'listfiles-summary'     => "Kay sapaq p'anqapiqa tukuy churkusqa willañiqikunatam rikunki.
 Kikinmantaqa ñaqha churkusqa willañiqikunatam sutisuyup patanpi rikunki.
 Wachup umanpi ñit'ispaqa allichaytam hukchanki.",
-'imagelist_search_for'  => 'Rikchap sutinta maskay:',
+'listfiles_search_for'  => 'Rikchap sutinta maskay:',
 'imgfile'               => 'willañiqi',
-'imagelist'             => 'Rikchakuna',
-'imagelist_date'        => "P'unchaw",
-'imagelist_name'        => 'Suti',
-'imagelist_user'        => 'Ruraq',
-'imagelist_size'        => 'Hatun kay',
-'imagelist_description' => "T'iktuna",
+'listfiles'             => 'Rikchakuna',
+'listfiles_date'        => "P'unchaw",
+'listfiles_name'        => 'Suti',
+'listfiles_user'        => 'Ruraq',
+'listfiles_size'        => 'Hatun kay',
+'listfiles_description' => "T'iktuna",
 
 # File description page
 'filehist'                       => 'Willañiqip wiñay kawsaynin',

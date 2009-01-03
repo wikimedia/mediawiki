@@ -56,7 +56,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Sirey' ),
 	'Recentchanges'             => array( 'BakaseywanKenki' ),
 	'Upload'                    => array( 'Uploti' ),
-	'Imagelist'                 => array( 'Gefrerey' ),
+	'Listfiles'                 => array( 'Gefrerey' ),
 	'Newimages'                 => array( 'NyunGefre' ),
 	'Listusers'                 => array( 'Masyinrey' ),
 	'Randompage'                => array( 'SomaPapira' ),
@@ -770,15 +770,15 @@ Papira ini [[Special:Watchlist|yu Tan Luku réy]] '''fatu'''.",
 
 'license-nopreview' => '(No fusi)',
 
-# Special:FileList
-'imagelist_search_for'  => 'Suku na gefre:',
+# Special:ListFiles
+'listfiles_search_for'  => 'Suku na gefre:',
 'imgfile'               => 'gefre',
-'imagelist'             => 'Réy fu file',
-'imagelist_date'        => 'Datum',
-'imagelist_name'        => 'Nen',
-'imagelist_user'        => 'Masyin',
-'imagelist_size'        => 'Gran (byte)',
-'imagelist_description' => 'Infrumasi',
+'listfiles'             => 'Réy fu file',
+'listfiles_date'        => 'Datum',
+'listfiles_name'        => 'Nen',
+'listfiles_user'        => 'Masyin',
+'listfiles_size'        => 'Gran (byte)',
+'listfiles_description' => 'Infrumasi',
 
 # File description page
 'filehist'                  => 'File historia',

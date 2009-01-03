@@ -42,7 +42,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'ຕິດຕາມ' ),
 	'Recentchanges'             => array( 'ການດັດແກ້ຫຼ້າສຸດ' ),
 	'Upload'                    => array( 'ອັປໂຫຼດໄຟລ໌' ),
-	'Imagelist'                 => array( 'ລາຍຊື່ຮູບ' ),
+	'Listfiles'                 => array( 'ລາຍຊື່ຮູບ' ),
 	'Newimages'                 => array( 'ຮູບໃໝ່' ),
 	'Listusers'                 => array( 'ລາຍຊື່ຜູ້ໃຊ້' ),
 	'Statistics'                => array( 'ສະຖິຕິ' ),
@@ -539,8 +539,8 @@ $messages = array(
 'savefile'          => 'ບັນທຶກໄຟລ໌',
 'watchthisupload'   => 'ຕິດຕາມໜ້ານີ້',
 
-# Special:FileList
-'imagelist' => 'ລາຍຊື່ໄຟລ໌',
+# Special:ListFiles
+'listfiles' => 'ລາຍຊື່ໄຟລ໌',
 
 # File description page
 'filehist'            => 'ປະຫວັດໄຟລ໌',

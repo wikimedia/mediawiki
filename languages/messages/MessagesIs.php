@@ -155,7 +155,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Vaktlistinn' ),
 	'Recentchanges'             => array( 'Nýlegar breytingar' ),
 	'Upload'                    => array( 'Hlaða inn' ),
-	'Imagelist'                 => array( 'Myndalisti' ),
+	'Listfiles'                 => array( 'Myndalisti' ),
 	'Newimages'                 => array( 'Nýjar myndir' ),
 	'Listusers'                 => array( 'Notendalisti' ),
 	'Listgrouprights'           => array( 'Réttindalisti' ),
@@ -1339,15 +1339,15 @@ Gjörðu svo vel og endurnefndu skrána og hladdu henni inn aftur.',
 'license-nopreview'  => '(Forskoðun ekki fáanleg)',
 'upload_source_file' => '(skrá á tölvunni þinni)',
 
-# Special:FileList
-'imagelist_search_for'  => 'Leita að miðilsnafni:',
+# Special:ListFiles
+'listfiles_search_for'  => 'Leita að miðilsnafni:',
 'imgfile'               => 'skrá',
-'imagelist'             => 'Skráalisti',
-'imagelist_date'        => 'Dagsetning',
-'imagelist_name'        => 'Nafn',
-'imagelist_user'        => 'Notandi',
-'imagelist_size'        => 'Stærð (bæti)',
-'imagelist_description' => 'Lýsing',
+'listfiles'             => 'Skráalisti',
+'listfiles_date'        => 'Dagsetning',
+'listfiles_name'        => 'Nafn',
+'listfiles_user'        => 'Notandi',
+'listfiles_size'        => 'Stærð (bæti)',
+'listfiles_description' => 'Lýsing',
 
 # File description page
 'filehist'                       => 'Breytingaskrá skjals',

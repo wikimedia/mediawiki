@@ -40,7 +40,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'ٽيٽ فهرست' ),
 	'Recentchanges'             => array( 'تازيون تبديليون' ),
 	'Upload'                    => array( 'چاڙهيو' ),
-	'Imagelist'                 => array( 'عڪس فهرست' ),
+	'Listfiles'                 => array( 'عڪس فهرست' ),
 	'Newimages'                 => array( 'نوان عڪس' ),
 	'Listusers'                 => array( 'يوزر فهرست' ),
 	'Statistics'                => array( 'انگ اکر' ),
@@ -529,8 +529,8 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'uploadlogpage' => 'چاڙهه لاگ',
 'uploadedimage' => '"[[$1]]" چاڙهيو ويو',
 
-# Special:FileList
-'imagelist' => 'فائيل فهرست',
+# Special:ListFiles
+'listfiles' => 'فائيل فهرست',
 
 # File description page
 'filehist'                       => 'فائيل جي سوانح',

@@ -248,7 +248,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Watchlist', 'Sledované_stránky' ),
 	'Recentchanges'             => array( 'Recentchanges', 'Poslední_změny', 'Posledni_zmeny' ),
 	'Upload'                    => array( 'Upload', 'Načíst_soubor', 'Nacist_soubor' ),
-	'Imagelist'                 => array( 'Imagelist', 'Seznam_souborů' ),
+	'Listfiles'                 => array( 'Listfiles', 'Seznam_souborů' ),
 	'Newimages'                 => array( 'Newimages', 'Galerie_nových_obrázků' ),
 	'Listusers'                 => array( 'Listusers', 'Uživatelé', 'Uzivatele' ),
 	'Statistics'                => array( 'Statistics', 'Statistiky' ),
@@ -1558,18 +1558,18 @@ PICT # různé
 'upload_source_url'  => ' (platné, veřejně přístupné URL)',
 'upload_source_file' => ' (soubor na vašem počítači)',
 
-# Special:FileList
-'imagelist-summary'     => 'Tato speciální stránka zobrazuje všechny načtené soubory.
+# Special:ListFiles
+'listfiles-summary'     => 'Tato speciální stránka zobrazuje všechny načtené soubory.
 Ve výchozím stavu je poslední načtený soubor nahoře.
 Kliknutím na hlavičku sloupce můžete změnit řazení.',
-'imagelist_search_for'  => 'Hledat soubor podle názvu:',
+'listfiles_search_for'  => 'Hledat soubor podle názvu:',
 'imgfile'               => 'soubor',
-'imagelist'             => 'Seznam souborů',
-'imagelist_date'        => 'Datum',
-'imagelist_name'        => 'Název',
-'imagelist_user'        => 'Uživatel',
-'imagelist_size'        => 'Velikost (bajtů)',
-'imagelist_description' => 'Popis',
+'listfiles'             => 'Seznam souborů',
+'listfiles_date'        => 'Datum',
+'listfiles_name'        => 'Název',
+'listfiles_user'        => 'Uživatel',
+'listfiles_size'        => 'Velikost (bajtů)',
+'listfiles_description' => 'Popis',
 
 # File description page
 'filehist'                       => 'Historie souboru',

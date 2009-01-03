@@ -68,7 +68,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( '监视列表' ),
 	'Recentchanges'             => array( '最近更改' ),
 	'Upload'                    => array( '上传文件' ),
-	'Imagelist'                 => array( '文件列表' ),
+	'Listfiles'                 => array( '文件列表' ),
 	'Newimages'                 => array( '新建文件' ),
 	'Listusers'                 => array( '用户列表' ),
 	'Listgrouprights'           => array( '群组权限' ),
@@ -1407,18 +1407,18 @@ $2',
 'upload_source_url'  => ' (一个有效的，可公开访问的 URL)',
 'upload_source_file' => ' (在您计算机上的一个文件)',
 
-# Special:FileList
-'imagelist-summary'     => '这个特殊页面显示所有上传过的文件。
+# Special:ListFiles
+'listfiles-summary'     => '这个特殊页面显示所有上传过的文件。
 预设中最后上传的文件会显示在这个列表中的最顶处。
 点击一栏的标题去改变这个排列。',
-'imagelist_search_for'  => '按媒体名称搜索:',
+'listfiles_search_for'  => '按媒体名称搜索:',
 'imgfile'               => '文件',
-'imagelist'             => '文件列表',
-'imagelist_date'        => '日期',
-'imagelist_name'        => '名称',
-'imagelist_user'        => '用户',
-'imagelist_size'        => '大小',
-'imagelist_description' => '描述',
+'listfiles'             => '文件列表',
+'listfiles_date'        => '日期',
+'listfiles_name'        => '名称',
+'listfiles_user'        => '用户',
+'listfiles_size'        => '大小',
+'listfiles_description' => '描述',
 
 # File description page
 'filehist'                       => '文件历史',

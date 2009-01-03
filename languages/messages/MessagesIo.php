@@ -578,12 +578,12 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'uploadedimage'     => 'adkargita "[[$1]]"',
 'uploaddisabled'    => 'Pardonez, la adkargo esas desaktiva.',
 
-# Special:FileList
+# Special:ListFiles
 'imgfile'        => 'arkivo',
-'imagelist'      => 'Listo di imaji',
-'imagelist_date' => 'Dato',
-'imagelist_name' => 'Nomo',
-'imagelist_user' => 'Uzanto',
+'listfiles'      => 'Listo di imaji',
+'listfiles_date' => 'Dato',
+'listfiles_name' => 'Nomo',
+'listfiles_user' => 'Uzanto',
 
 # File description page
 'filehist'                       => 'Historio dil arkivo',

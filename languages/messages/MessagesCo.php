@@ -274,11 +274,11 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 
 'upload-file-error' => 'Errore internu',
 
-# Special:FileList
+# Special:ListFiles
 'imgfile'        => 'schedariu',
-'imagelist_date' => 'Data',
-'imagelist_name' => 'Nome',
-'imagelist_user' => 'Utilizatore',
+'listfiles_date' => 'Data',
+'listfiles_name' => 'Nome',
+'listfiles_user' => 'Utilizatore',
 
 # File description page
 'filehist'         => "Cronolugia di l'imagine",

@@ -1310,18 +1310,18 @@ Saait aap ke kamti busy time kosis kare ke chaahi.',
 'upload_source_url'  => ' (ek valid, publicly accessible URL)',
 'upload_source_file' => ' (aap ke computer me ek file)',
 
-# Special:FileList
-'imagelist-summary'     => 'Ii khaas panna sab uploaded file ke dekhae hai.
+# Special:ListFiles
+'listfiles-summary'     => 'Ii khaas panna sab uploaded file ke dekhae hai.
 Default se akhri uploaded file ke list me pahile dekhawa gais hai.
 Column header me click kare se sorting badal jaai.',
-'imagelist_search_for'  => 'Media ke naam khojo:',
+'listfiles_search_for'  => 'Media ke naam khojo:',
 'imgfile'               => 'file',
-'imagelist'             => 'Chapa ke suchi',
-'imagelist_date'        => 'Tarik',
-'imagelist_name'        => 'Naam',
-'imagelist_user'        => 'Sadasya',
-'imagelist_size'        => 'Size',
-'imagelist_description' => 'Description',
+'listfiles'             => 'Chapa ke suchi',
+'listfiles_date'        => 'Tarik',
+'listfiles_name'        => 'Naam',
+'listfiles_user'        => 'Sadasya',
+'listfiles_size'        => 'Size',
+'listfiles_description' => 'Description',
 
 # File description page
 'filehist'                       => 'File ke itihaas',

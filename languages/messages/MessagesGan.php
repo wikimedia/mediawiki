@@ -899,15 +899,15 @@ $2',
 'upload_source_url'  => '(一隻有效嗰，公開嗰 URL)',
 'upload_source_file' => '(倷電腦嗰一隻檔案)',
 
-# Special:FileList
-'imagelist_search_for'  => '按媒體名字尋:',
+# Special:ListFiles
+'listfiles_search_for'  => '按媒體名字尋:',
 'imgfile'               => '檔案',
-'imagelist'             => '檔案列表',
-'imagelist_date'        => '日期',
-'imagelist_name'        => '名稱',
-'imagelist_user'        => '用戶',
-'imagelist_size'        => '大細',
-'imagelist_description' => '簡話',
+'listfiles'             => '檔案列表',
+'listfiles_date'        => '日期',
+'listfiles_name'        => '名稱',
+'listfiles_user'        => '用戶',
+'listfiles_size'        => '大細',
+'listfiles_description' => '簡話',
 
 # File description page
 'filehist'                  => '檔案歷史',

@@ -430,9 +430,9 @@ Zínhar, bu bitneñ wağraq kisäklärgä bülü turında uylap qara.",
 'uploaddisabled'    => 'Ğafu it, yökläw sünderelgän kileş tora.',
 'uploadcorrupt'     => 'Bu birem yä üze watıq, yä quşımtası yaraqsız. Birem tikşerüdän soñ qabat yöklä zínhar.',
 
-# Special:FileList
+# Special:ListFiles
 'imgfile'   => 'fayl',
-'imagelist' => 'Räsem tezmäse',
+'listfiles' => 'Räsem tezmäse',
 
 # File description page
 'filehist-dimensions' => 'Ölçemi',

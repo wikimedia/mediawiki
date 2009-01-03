@@ -55,7 +55,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'ArtìculiTaliati' ),
 	'Recentchanges'             => array( 'ÙrtimiCanciamenti' ),
 	'Upload'                    => array( 'Càrrica' ),
-	'Imagelist'                 => array( 'Mmàggini' ),
+	'Listfiles'                 => array( 'Mmàggini' ),
 	'Newimages'                 => array( 'MmàgginiRicenti' ),
 	'Listusers'                 => array( 'Utilizzatura', 'ListaUtilizzatura' ),
 	'Listgrouprights'           => array( 'AlencuPirmessiGruppi' ),
@@ -1339,18 +1339,18 @@ PICT # arcuni
 'upload_source_url'  => '(na URL curretta e accissìbbili)',
 'upload_source_file' => '(un file supra lu propiu computer)',
 
-# Special:FileList
-'imagelist-summary'     => "Sta pàggina spiciali ammustra tutti li file caricati.
+# Special:ListFiles
+'listfiles-summary'     => "Sta pàggina spiciali ammustra tutti li file caricati.
 Li file caricati di cchiù picca tempu sunnu ammustrati ô princìpiu dâ lista.
 Pi canciari l'urdinamentu, fari clic supra a la ntistazzioni dâ culonna scigghiuta.",
-'imagelist_search_for'  => 'Ricerca dâ mmàggini di nomu:',
+'listfiles_search_for'  => 'Ricerca dâ mmàggini di nomu:',
 'imgfile'               => 'file',
-'imagelist'             => 'Alencu dî file',
-'imagelist_date'        => 'Data',
-'imagelist_name'        => 'Nomu',
-'imagelist_user'        => 'Utenti',
-'imagelist_size'        => 'Diminzioni (bytes)',
-'imagelist_description' => 'Discrizzioni',
+'listfiles'             => 'Alencu dî file',
+'listfiles_date'        => 'Data',
+'listfiles_name'        => 'Nomu',
+'listfiles_user'        => 'Utenti',
+'listfiles_size'        => 'Diminzioni (bytes)',
+'listfiles_description' => 'Discrizzioni',
 
 # File description page
 'filehist'                       => 'Crunuluggìa dô file',

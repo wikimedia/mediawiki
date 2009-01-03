@@ -60,7 +60,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'Bevakningslista', 'Övervakningslista' ),
 	'Recentchanges'             => array( 'Senaste ändringar' ),
 	'Upload'                    => array( 'Uppladdning' ),
-	'Imagelist'                 => array( 'Bildlista' ),
+	'Listfiles'                 => array( 'Bildlista' ),
 	'Newimages'                 => array( 'Nya bilder' ),
 	'Listusers'                 => array( 'Användare', 'Användarlista' ),
 	'Listgrouprights'           => array( 'Grupprättighetslista' ),
@@ -1532,18 +1532,18 @@ Om problemet kvarstår, kontakta en [[Special:ListUsers/sysop|administratör]].'
 'upload_source_url'  => ' (en giltig URL som är allmänt åtkomlig)',
 'upload_source_file' => ' (en fil på din dator)',
 
-# Special:FileList
-'imagelist-summary'     => 'Den här specialsidan visar alla filer som har laddats upp.
+# Special:ListFiles
+'listfiles-summary'     => 'Den här specialsidan visar alla filer som har laddats upp.
 Som standard visas de senast upladdade filerna högst upp i listan.
 Genom att klicka på rubrikerna för kolumnerna kan man ändra sorteringsordningen.',
-'imagelist_search_for'  => 'Sök efter filnamn:',
+'listfiles_search_for'  => 'Sök efter filnamn:',
 'imgfile'               => 'fil',
-'imagelist'             => 'Fillista',
-'imagelist_date'        => 'Datum',
-'imagelist_name'        => 'Namn',
-'imagelist_user'        => 'Användare',
-'imagelist_size'        => 'Storlek (byte)',
-'imagelist_description' => 'Beskrivning',
+'listfiles'             => 'Fillista',
+'listfiles_date'        => 'Datum',
+'listfiles_name'        => 'Namn',
+'listfiles_user'        => 'Användare',
+'listfiles_size'        => 'Storlek (byte)',
+'listfiles_description' => 'Beskrivning',
 
 # File description page
 'filehist'                       => 'Filhistorik',

@@ -284,9 +284,9 @@ $messages = array(
 'uploadedimage'   => 'ushlaþiþ "[[$1]]"',
 'watchthisupload' => 'Witan so seido',
 
-# Special:FileList
+# Special:ListFiles
 'imgfile'   => 'Feilans',
-'imagelist' => 'Feilans tala',
+'listfiles' => 'Feilans tala',
 
 # File description page
 'filehist'            => 'Feilans áiris',

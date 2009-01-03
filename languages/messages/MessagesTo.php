@@ -547,15 +547,15 @@ Ko e konga ʻi olunga, ko e '''konga pē ʻe taha''' ʻe haofaki ʻi he lomiʻi 
 'license'   => 'Laiseni:',
 'nolicense' => 'ʻIkai fili ha taha',
 
-# Special:FileList
-'imagelist_search_for'  => 'Kumi ki he hingoa ʻo e faitā:',
+# Special:ListFiles
+'listfiles_search_for'  => 'Kumi ki he hingoa ʻo e faitā:',
 'imgfile'               => 'faile',
-'imagelist'             => 'Hokohoko faitā',
-'imagelist_date'        => 'ʻAho',
-'imagelist_name'        => 'Hingoa',
-'imagelist_user'        => 'ʻEtita',
-'imagelist_size'        => 'Hono lahi (ʻū valu)',
-'imagelist_description' => 'Fakamahino',
+'listfiles'             => 'Hokohoko faitā',
+'listfiles_date'        => 'ʻAho',
+'listfiles_name'        => 'Hingoa',
+'listfiles_user'        => 'ʻEtita',
+'listfiles_size'        => 'Hono lahi (ʻū valu)',
+'listfiles_description' => 'Fakamahino',
 
 # File description page
 'imagelinks'                => 'Ngaahi fehokotaki',

@@ -1234,16 +1234,16 @@ Rejer wyćepań tygo plika je podany půńižej, cobyś miou wygoda:",
 'upload_source_url'  => ' (poprowny, publičńy dostympny URL)',
 'upload_source_file' => ' (plik na twojym komputře)',
 
-# Special:FileList
-'imagelist-summary'     => 'To je ekstra zajta na kery sům pokazywane wšyske pliki wćepane na serwer. Důmyślńy na wiyrchu listy wyśwjetlajům śe pliki wćepane na uostatku. Coby půmjyńić sposůb sortowańo, klikńij na naguůwek kolůmny.',
-'imagelist_search_for'  => 'Šnupej za grafikům uo mjańe:',
+# Special:ListFiles
+'listfiles-summary'     => 'To je ekstra zajta na kery sům pokazywane wšyske pliki wćepane na serwer. Důmyślńy na wiyrchu listy wyśwjetlajům śe pliki wćepane na uostatku. Coby půmjyńić sposůb sortowańo, klikńij na naguůwek kolůmny.',
+'listfiles_search_for'  => 'Šnupej za grafikům uo mjańe:',
 'imgfile'               => 'plik',
-'imagelist'             => 'Lista plikůw',
-'imagelist_date'        => 'Data',
-'imagelist_name'        => 'Mjano',
-'imagelist_user'        => 'Užytkowńik',
-'imagelist_size'        => 'Rozmior (bajty)',
-'imagelist_description' => 'Uopis',
+'listfiles'             => 'Lista plikůw',
+'listfiles_date'        => 'Data',
+'listfiles_name'        => 'Mjano',
+'listfiles_user'        => 'Užytkowńik',
+'listfiles_size'        => 'Rozmior (bajty)',
+'listfiles_description' => 'Uopis',
 
 # File description page
 'filehist'                       => 'Historjo pliku',

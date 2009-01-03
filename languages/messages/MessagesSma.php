@@ -415,13 +415,13 @@ Dov dorje v채rrhtoedimmie g책책vnese bielieh, jallh [[Special:UserLogin|logge s�
 
 'license' => 'Liseense',
 
-# Special:FileList
-'imagelist_search_for' => 'Ohtsedh ihke guvvie nomme:',
+# Special:ListFiles
+'listfiles_search_for' => 'Ohtsedh ihke guvvie nomme:',
 'imgfile'              => 'guvvie',
-'imagelist'            => 'Guvvie l채stoe',
-'imagelist_name'       => 'Nomme',
-'imagelist_user'       => 'Nuhtjien',
-'imagelist_size'       => 'Stoerre',
+'listfiles'            => 'Guvvie l채stoe',
+'listfiles_name'       => 'Nomme',
+'listfiles_user'       => 'Nuhtjien',
+'listfiles_size'       => 'Stoerre',
 
 # File description page
 'filehist'                  => 'Baalka histovrije',
