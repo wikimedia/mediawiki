@@ -242,6 +242,8 @@ class ProtectionForm {
 		$expiry = array();
 		foreach( $this->mApplicableTypes as $action ) {
 			$expiry[$action] = $this->getExpiry( $action );
+			if( empty($this->mRestrictions[$action]) )
+				continue; // unprotected
 			if ( !$expiry[$action] ) {
 				$this->show( wfMsg( 'protect_expiry_invalid' ) );
 				return false;
