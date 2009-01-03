@@ -94,7 +94,7 @@ class SpecialPage
 
 		'Recentchanges'             => 'SpecialRecentchanges',
 		'Upload'                    => array( 'SpecialPage', 'Upload' ),
-		'Imagelist'                 => array( 'SpecialPage', 'Imagelist' ),
+		'Listfiles'                 => array( 'SpecialPage', 'Listfiles' ),
 		'Newimages'                 => array( 'IncludableSpecialPage', 'Newimages' ),
 		'Listusers'                 => array( 'SpecialPage', 'Listusers' ),
 		'Listgrouprights'           => 'SpecialListGroupRights',

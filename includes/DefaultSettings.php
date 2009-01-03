@@ -2959,7 +2959,7 @@ $wgSpecialPageGroups = array(
 	'Log'                       => 'changes',
 
 	'Upload'                    => 'media',
-	'Imagelist'                 => 'media',
+	'Listfiles'                 => 'media',
 	'MIMEsearch'                => 'media',
 	'FileDuplicateSearch'       => 'media',
 	'Filepath'                  => 'media',
