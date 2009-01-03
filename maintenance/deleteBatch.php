@@ -2,9 +2,10 @@
 
 /**
  * Deletes a batch of pages
- * Usage: php deleteBatch.php [-u <user>] [-r <reason>] [-i <interval>] <listfile>
+ * Usage: php deleteBatch.php [-u <user>] [-r <reason>] [-i <interval>] [listfile]
  * where
- * 	<listfile> is a file where each line contains the title of a page to be deleted.
+ *	[listfile] is a file where each line contains the title of a page to be
+ *             deleted, standard input is used if listfile is not given.
  *	<user> is the username
  *	<reason> is the delete reason
  *	<interval> is the number of seconds to sleep for after each delete

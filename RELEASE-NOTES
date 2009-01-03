@@ -464,6 +464,8 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 16786) Restored "redundant" links recently removed from Classic sidebar
 * (bug 16850) $wgActionPaths can have query strings now, previously, this broke
   local URLs
+* (bug 16376) Mention in deleteBatch.php and moveBatch.php maintenance scripts
+  that STDIN can be used for page list
 
 
 === API changes in 1.14 ===
