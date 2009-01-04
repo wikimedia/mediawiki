@@ -2072,7 +2072,12 @@ class Title {
 				if ( $ns = $wgContLang->getNsIndex( $p )) {
 					# Ordinary namespace
 					$dbkey = $m[2];
+					# Disallow Talk:File:x type titles...
+					if( $this->mNamespace == NS_TALK && $ns > 0 )
+						return false; // bug 5280 title issues
 					$this->mNamespace = $ns;
+					if( $ns == NS_TALK && $firstPass )
+						continue; # Do another namespace split...
 				} elseif( Interwiki::isValidInterwiki( $p ) ) {
 					if( !$firstPass ) {
 						# Can't make a local interwiki link to an interwiki link.
