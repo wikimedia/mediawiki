@@ -2658,7 +2658,7 @@ class Article {
 			$revId = false;
 		}
 
-		wfRunHooks( 'ArticleRollbackComplete', array( $this, $wgUser, $target ) );
+		wfRunHooks( 'ArticleRollbackComplete', array( $this, $wgUser, $target, $current ) );
 
 		$resultDetails = array(
 			'summary' => $summary,

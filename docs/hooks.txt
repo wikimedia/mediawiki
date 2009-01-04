@@ -420,6 +420,7 @@ $oldPageID: the page ID of the revision when archived (may be null)
 $article: the article that was edited
 $user: the user who did the rollback
 $revision: the revision the page was reverted back to
+$current: the reverted revision
 
 'ArticleSave': before an article is saved
 $article: the article (object) being saved
