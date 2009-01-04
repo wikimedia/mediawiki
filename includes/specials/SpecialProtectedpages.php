@@ -84,7 +84,7 @@ class ProtectedPagesForm {
 		if ( $row->pr_expiry != 'infinity' && strlen($row->pr_expiry) ) {
 			$expiry = Block::decodeExpiry( $row->pr_expiry );
 
-			$expiry_description = wfMsgForContent( 'protect-expiring', $wgLang->timeanddate( $expiry ) );
+			$expiry_description = wfMsgForContent( 'protect-expiring' , $wgLang->timeanddate( $expiry ) , $wgLang->date( $expiry ) , $wgLang->time( $expiry ) );
 
 			$description_items[] = $expiry_description;
 		}
