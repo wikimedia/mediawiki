@@ -1943,7 +1943,9 @@ class Article {
 						$protect_description .= "[$action=$restrictions] (";
 						if( $encodedExpiry[$action] != 'infinity' ) {
 							$protect_description .= wfMsgForContent( 'protect-expiring', 
-								$wgContLang->timeanddate( $expiry[$action], false, false ) ); 	 
+								$wgContLang->timeanddate( $expiry[$action], false, false ) ,
+								$wgContLang->date( $expiry[$action], false, false ) ,
+								$wgContLang->time( $expiry[$action], false, false ) ); 	 
 						} else {
 							$protect_description .= wfMsgForContent( 'protect-expiry-indefinite' );
 						}
