@@ -59,6 +59,9 @@ define( 'MW_ATTRIBS_REGEX',
 /**
  * List of all named character entities defined in HTML 4.01
  * http://www.w3.org/TR/html4/sgml/entities.html
+ * This list does *not* include &apos;, which is part of XHTML
+ * 1.0 but not HTML 4.01.  It is handled as a special case in
+ * the code.
  * @private
  */
 global $wgHtmlEntities;
@@ -318,6 +321,7 @@ $wgHtmlEntities = array(
 
 /**
  * Character entity aliases accepted by MediaWiki
+ * XXX: decodeEntity() assumes that all values in this array are valid keys to $wgHtmlEntities
  */
 global $wgHtmlEntityAliases;
 $wgHtmlEntityAliases = array(
@@ -954,7 +958,7 @@ class Sanitizer {
 	 * encoded text for an attribute value.
 	 *
 	 * See http://www.w3.org/TR/REC-xml/#AVNormalize for background,
-	 * but note that we're not returning the value, but are returning
+	 * but note that we are not returning the value, but are returning
 	 * XML source fragments that will be slapped into output.
 	 *
 	 * @param string $text
@@ -1032,6 +1036,8 @@ class Sanitizer {
 			return "&{$wgHtmlEntityAliases[$name]};";
 		} elseif( isset( $wgHtmlEntities[$name] ) ) {
 			return "&$name;";
+		} elseif( $name == 'apos' ) {
+			return "&#39;";  // "&apos;" is valid in XHTML, but not in HTML4
 		} else {
 			return "&amp;$name;";
 		}
@@ -1133,6 +1139,8 @@ class Sanitizer {
 		}
 		if( isset( $wgHtmlEntities[$name] ) ) {
 			return codepointToUtf8( $wgHtmlEntities[$name] );
+		} elseif( $name == 'apos' ) {
+			return "'";  // "&apos;" is not in $wgHtmlEntities, but it's still valid XHTML
 		} else {
 			return "&$name;";
 		}
