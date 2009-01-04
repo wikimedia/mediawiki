@@ -114,9 +114,23 @@ class ImageCleanup extends TableCleanup {
 		$db = wfGetDB( DB_MASTER );
 		$version = 0;
 		$final = $new;
+		$has_page = Title::makeTitle( NS_FILE, $orig )->exists();
 		
-		while( $db->selectField( 'image', 'img_name', array( 'img_name' => $final ), __METHOD__ ) ||
-			Title::makeTitle( NS_FILE, $final )->exists() ) {
+		while( true ) {
+			$test = $db->selectField( 'image', 'img_name', array( 'img_name' => $final ), __METHOD__ );
+			$conflict = ( $test !== false );
+
+			if( !$conflict && ( $has_page || $version > 0 ) ) {
+				// If the file has a description page, don't try to move it to a
+				// title that already has one.  But if we have a misnamed file
+				// with no corresponding page, and there just happens to exist a
+				// page with no file at the corrected title, it's probably not a
+				// coincidence and we shouldn't shy from reuniting them.
+				$conflict = Title::makeTitle( NS_FILE, $final )->exists();
+			}
+			if( !$conflict ) {
+				break;
+			}
 			$this->log( "Rename conflicts with '$final'..." );
 			$version++;
 			$final = $this->appendTitle( $new, "_$version" );
