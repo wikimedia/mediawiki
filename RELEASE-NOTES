@@ -466,6 +466,8 @@ The following extensions are migrated into MediaWiki 1.14:
   local URLs
 * (bug 16376) Mention in deleteBatch.php and moveBatch.php maintenance scripts
   that STDIN can be used for page list
+* Sanitizer::decodeCharReferences() now decodes the XHTML "&apos;" character
+  entity (loosely related to bug 14365)
 
 
 === API changes in 1.14 ===
