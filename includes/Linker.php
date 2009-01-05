@@ -1515,11 +1515,21 @@ class Linker {
 	 * @param string $anchor  The anchor to give the headline (the bit after the #)
 	 * @param string $text    The text of the header
 	 * @param string $link    HTML to add for the section edit link
+	 * @param mixed  $legacyAnchor A second, optional anchor to give for
+	 *   backward compatibility (false to omit)
 	 *
 	 * @return string HTML headline
 	 */
-	public function makeHeadline( $level, $attribs, $anchor, $text, $link ) {
-		return "<a name=\"$anchor\" id=\"$anchor\"></a><h$level$attribs$link <span class=\"mw-headline\">$text</span></h$level>";
+	public function makeHeadline( $level, $attribs, $anchor, $text, $link, $legacyAnchor = false ) {
+		$ret = "<a name=\"$anchor\" id=\"$anchor\"></a>"
+			. "<h$level$attribs"
+			. $link
+			. " <span class=\"mw-headline\">$text</span>"
+			. "</h$level>";
+		if ( $legacyAnchor !== false ) {
+			$ret = "<a name=\"$legacyAnchor\" id=\"$legacyAnchor\"></a>$ret";
+		}
+		return $ret;
 	}
 
 	/**
