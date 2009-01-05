@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author An13sa
  * @author Bengoa
  * @author Helix84
  * @author Kaustubh
@@ -322,7 +323,7 @@ $messages = array(
 'nstab-project'   => 'Proiektu orrialdea',
 'nstab-image'     => 'Fitxategia',
 'nstab-mediawiki' => 'Mezua',
-'nstab-template'  => 'Txantiloia',
+'nstab-template'  => 'Txantiloi',
 'nstab-help'      => 'Laguntza orrialdea',
 'nstab-category'  => 'Kategoria',
 
@@ -439,7 +440,7 @@ Zure kontua sortu egin da. Ez ahaztu [[Special:Preferences|{{SITENAME}}(e)ko hob
 Mesedez, beste bat aukeratu.',
 'youremail'                  => 'E-posta:',
 'username'                   => 'Erabiltzaile izena:',
-'uid'                        => 'Lankide zenbakia:',
+'uid'                        => 'Erabiltzaile zenbakia:',
 'prefs-memberingroups'       => '{{PLURAL:$1|Taldeko|taldeetako}} kidea:',
 'yourrealname'               => 'Benetako izena:',
 'yourlanguage'               => 'Hizkuntza:',
@@ -648,7 +649,7 @@ Blokeatu zuen administratzaileak honako azalpena eman zuen: $1</strong>',
 'protectedpagewarning'             => '<strong>OHARRA:  Orri hau blokeaturik dago, administratzaileek soilik eraldatu dezakete.</strong>',
 'semiprotectedpagewarning'         => '<big><strong>Oharra: Orrialde hau erregistratutako erabiltzaileek bakarrik aldatzeko babestuta dago.</strong></big>',
 'cascadeprotectedwarning'          => "'''Oharra:''' Orrialde hau blokeatua izan da eta administratzaileek baino ez dute berau aldatzeko ahalmena, honako {{PLURAL:$1|orrialdeko|orrialdeetako}} kaskada-babesean txertatuta dagoelako:",
-'titleprotectedwarning'            => '<strong>OHARRA:  Orrialde hau blokeatuta dago eta bakkarrik lankide batzuk aldatu edo sortu dezakete.</strong>',
+'titleprotectedwarning'            => '<strong>OHARRA:  Orrialde hau blokeatuta dago eta bakarrik erabiltzaile batzuek sortu dezakete.</strong>',
 'templatesused'                    => 'Orrialde honetan erabiltzen diren txantiloiak:',
 'templatesusedpreview'             => 'Aurreikuspen honetan erabiltzen diren txantiloiak:',
 'templatesusedsection'             => 'Atal honetan erabiltzen diren txantiloiak:',
@@ -1012,9 +1013,9 @@ Saia zaitez zure eskeraren aurretik ''all:'' jartzen eduki guztien artean bilatz
 'saveusergroups'              => 'Erabiltzaile taldeak gorde',
 'userrights-groupsmember'     => 'Partaide da hemen:',
 'userrights-reason'           => 'Aldatzeko arrazoia:',
-'userrights-no-interwiki'     => 'Ez duzu beste wikietan lankide eskumenak aldatzeko baimenik.',
+'userrights-no-interwiki'     => 'Ez duzu beste wikietan erabiltzaile eskumenak aldatzeko baimenik.',
 'userrights-nodatabase'       => '$1 datubasea ez da existitzen edo ez dago lokalki.',
-'userrights-notallowed'       => 'Zure kontuak ez du baimenik lankide eskumenak emateko.',
+'userrights-notallowed'       => 'Zure kontuak ez du baimenik erabiltzaile eskumenak emateko.',
 'userrights-changeable-col'   => 'Alda ditzakezun taldeak',
 'userrights-unchangeable-col' => 'Aldatu ezin ditzakezun taldeak',
 
@@ -1036,7 +1037,7 @@ Saia zaitez zure eskeraren aurretik ''all:'' jartzen eduki guztien artean bilatz
 'group-suppress-member'      => 'Gainikuspena',
 
 'grouppage-user'          => '{{ns:project}}:Lankideak',
-'grouppage-autoconfirmed' => '{{ns:project}}:Lankide autokonfirmatuak',
+'grouppage-autoconfirmed' => '{{ns:project}}:Erabiltzaile autokonfirmatuak',
 'grouppage-bot'           => '{{ns:project}}:Bot-ak',
 'grouppage-sysop'         => '{{ns:project}}:Administratzaileak',
 'grouppage-bureaucrat'    => '{{ns:project}}:Burokratak',
@@ -1073,8 +1074,8 @@ Saia zaitez zure eskeraren aurretik ''all:'' jartzen eduki guztien artean bilatz
 'right-suppressrevision'     => 'Administratzaileentzat izkutatutako berrikuspenak berrikusi edo berrezarri',
 'right-suppressionlog'       => 'Log pribatuak ikusi',
 'right-block'                => 'Beste lankideek edita ez dezaten blokeatu',
-'right-blockemail'           => 'Lankide batek emailak bidal ez ditzan blokeatu',
-'right-hideuser'             => 'Lankide izen bat blokeatu, publikotik izkutatuz',
+'right-blockemail'           => 'Erabiltzaile batek emailak bidal ez ditzan blokeatu',
+'right-hideuser'             => 'Erabiltzaile izen bat blokeatu, publikotik izkutatuz',
 'right-ipblock-exempt'       => 'IP blokeoen, auto-blokeoen eta maila blokeoen gainetik pasa.',
 'right-proxyunbannable'      => 'Proxyen blokeo automatikoen gainetik pasa',
 'right-protect'              => 'Orrialde babestuak aldatu eta babes maila aldatu',
@@ -1150,7 +1151,7 @@ Saia zaitez zure eskeraren aurretik ''all:'' jartzen eduki guztien artean bilatz
 'rcshowhideminor'                   => '$1 aldaketa txikiak',
 'rcshowhidebots'                    => '$1 bot-ak',
 'rcshowhideliu'                     => '$1 erabiltzaile erregistratuak',
-'rcshowhideanons'                   => '$1 lankide anonimoak',
+'rcshowhideanons'                   => '$1 erabiltzaile anonimoak',
 'rcshowhidepatr'                    => '$1 patruilatutako aldaketak',
 'rcshowhidemine'                    => '$1 nire ekarpenak',
 'rclinks'                           => 'Erakutsi azken $1 aldaketak $2 egunetan.<br />$3',
@@ -1528,7 +1529,7 @@ Baimendutako protokoloak: <tt>$1</tt>',
 'newuserlogpage'              => 'Erabiltzaile erregistroa',
 'newuserlogpagetext'          => 'Hau azken erabiltzaileen sorreren erregistroa da.',
 'newuserlog-byemail'          => 'pasahitza e-postaz bidali da',
-'newuserlog-create-entry'     => 'Lankide berria',
+'newuserlog-create-entry'     => 'Erabiltzaile berria',
 'newuserlog-create2-entry'    => '$1(r)entzako kontua sortu da',
 'newuserlog-autocreate-entry' => 'Automatikoki sorturiko kontua',
 
@@ -1807,7 +1808,7 @@ $1',
 'sp-contributions-newbies-title' => 'Lankideen ekarpenak lankide berrietn',
 'sp-contributions-blocklog'      => 'Blokeaketa erregistroa',
 'sp-contributions-search'        => 'Ekarpenentzako bilaketa',
-'sp-contributions-username'      => 'IP helbide edo lankide-izena:',
+'sp-contributions-username'      => 'IP helbidea edo erabiltzaile izena:',
 'sp-contributions-submit'        => 'Bilatu',
 
 # What links here
@@ -1843,9 +1844,9 @@ $1',
 ** Orrialdetatik edukia ezabatzea
 ** Spam-a edota kanpoko loturak ezarri
 ** Bandalismoa egitea
-** Beste lankideei mehatxatzea
+** Beste erabiltzaileei mehatxatzea
 ** Kontu ugari erabiltzea
-** Lankide izen desegokia',
+** Erabiltzaile izen desegokia',
 'ipbanononly'                     => 'Erabiltzaile anonimoak bakarrik blokeatu',
 'ipbcreateaccount'                => 'Kontua sortzea debekatu',
 'ipbemailban'                     => 'Erabiltzaileak e-mailak bidal ditzan ekidin',
@@ -1863,7 +1864,7 @@ $1',
 'blockipsuccesssub'               => 'Blokeoa burutu da',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] erabiltzaileari blokeoa ezarri zaio.<br />
 Ikus [[Special:IPBlockList|IP blokeoen zerrenda]] blokeoak aztertzeko.',
-'ipb-edit-dropdown'               => 'Lankide bat blokeatzeko arrazoiak',
+'ipb-edit-dropdown'               => 'Blokeatzeko arrazoiak aldatu',
 'ipb-unblock-addr'                => '$1 lankide edo IP helbideari blokeoa baliogabetu',
 'ipb-unblock'                     => 'Erabiltzaile izen edo IP helbide bati blokeoa kendu',
 'ipb-blocklist-addr'              => '$1(r)en blokeoak ikusi',
@@ -1876,7 +1877,7 @@ Ikus [[Special:IPBlockList|IP blokeoen zerrenda]] blokeoak aztertzeko.',
 'unblocked-id'                    => '$1 blokeaketa ezabatu da',
 'ipblocklist'                     => 'Blokeatutako IP helbide eta erabiltzaileak',
 'ipblocklist-legend'              => 'Blokeatutako erabiltzaile bat bilatu',
-'ipblocklist-username'            => 'Lankide izena edo IP helbidea:',
+'ipblocklist-username'            => 'Erabiltzaile izena edo IP helbidea:',
 'ipblocklist-sh-userblocks'       => 'Kontuaren blokeoak $1',
 'ipblocklist-sh-tempblocks'       => 'Denbora baterako blokeoak $1',
 'ipblocklist-sh-addressblocks'    => 'IP bakarreko blokeoak $1',

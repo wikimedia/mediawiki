@@ -277,13 +277,13 @@ $linkTrail = '/^([a-záéíóúöüőűÁÉÍÓÚÖÜŐŰ]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Hivatkozások aláhúzása:',
-'tog-highlightbroken'         => 'Nem létező lapok <a href="" class="new">így</a> (alternatíva: így<a href="" class="internal">?</a>).',
+'tog-highlightbroken'         => 'Nem létező lapok jelölése <a href="" class="new">így</a> (alternatíva: így<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Bekezdések teljes szélességű tördelése („sorkizárás”)',
 'tog-hideminor'               => 'Apró változtatások elrejtése a Friss változtatások lapon',
 'tog-extendwatchlist'         => 'A figyelőlistán az összes változtatás látszódjon (ne csak az utolsó)',
 'tog-usenewrc'                => 'Fejlettebb friss változások listája (JavaScript)',
 'tog-numberheadings'          => 'Fejezetcímek automatikus számozása',
-'tog-showtoolbar'             => 'Szerkesztőeszközsor látható (JavaScript)',
+'tog-showtoolbar'             => 'Szerkesztőeszközsor megjelenítése (JavaScript)',
 'tog-editondblclick'          => 'A lapok szerkesztése dupla kattintásra (JavaScript)',
 'tog-editsection'             => '[szerkesztés] linkek az egyes szakaszok szerkesztéséhez',
 'tog-editsectiononrightclick' => 'Szakaszok szerkesztése a szakaszcímre való jobb kattintással (JavaScript)',
@@ -318,7 +318,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'A másoknak küldött e-mailjeimről kapjak én is másolatot',
 'tog-diffonly'                => 'Ne mutassa a lap tartalmát lapváltozatok közötti eltérések megtekintésekor',
 'tog-showhiddencats'          => 'Rejtett kategóriák megjelenítése',
-'tog-norollbackdiff'          => 'Ne jelenjen meg a diff visszaállítás után',
+'tog-norollbackdiff'          => 'Ne jelenjenek meg az eltérések a visszaállítás után',
 
 'underline-always'  => 'Mindig',
 'underline-never'   => 'Soha',
@@ -392,7 +392,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|Egy|$1}} fájl található ebben a kategóriában.',
 'listingcontinuesabbrev'         => 'folyt.',
 
-'mainpagetext'      => "<big>'''A MediaWiki telepítése sikerült.'''</big>",
+'mainpagetext'      => "<big>'''A MediaWiki telepítése sikeresen befejeződött.'''</big>",
 'mainpagedocfooter' => "Ha segítségre van szükséged a wikiszoftver használatához, akkor keresd fel a [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] oldalt.
 
 == Alapok (angol nyelven) ==
@@ -449,7 +449,7 @@ $messages = array(
 'unprotect'         => 'Védelem ki',
 'unprotectthispage' => 'Lapvédelem megszüntetése',
 'newpage'           => 'Új lap',
-'talkpage'          => 'Lap megbeszélése',
+'talkpage'          => 'Megbeszélés a lappal kapcsolatban',
 'talkpagelinktext'  => 'vita',
 'specialpage'       => 'Speciális lap',
 'personaltools'     => 'Személyes eszközök',
@@ -511,7 +511,7 @@ $messages = array(
 'youhavenewmessages'      => 'Új üzenet vár $1! (Az üzenetet $2.)',
 'newmessageslink'         => 'a vitalapodon',
 'newmessagesdifflink'     => 'külön is megtekintheted',
-'youhavenewmessagesmulti' => 'Új üzenetet vár a(z) $1 lapon',
+'youhavenewmessagesmulti' => 'Új üzenetet vár a(z) $1 wikin',
 'editsection'             => 'szerkesztés',
 'editold'                 => 'szerkesztés',
 'viewsourceold'           => 'lapforrás',
@@ -526,7 +526,7 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|Egy|$1}} törölt szerkesztés',
 'feedlinks'               => 'Hírcsatorna:',
 'feed-invalid'            => 'Érvénytelen a figyelt hírcsatorna típusa.',
-'feed-unavailable'        => 'A wikin nincs elérhető hírcsatorna',
+'feed-unavailable'        => 'Ezen wikin nincs elérhető hírcsatorna',
 'site-rss-feed'           => '$1 RSS csatorna',
 'site-atom-feed'          => '$1 Atom hírcsatorna',
 'page-rss-feed'           => '„$1” RSS hírcsatorna',
@@ -1563,6 +1563,7 @@ Az oszlopok címeire kattintva változtathatod meg a rendezést.',
 'listfiles_user'        => 'feltöltő',
 'listfiles_size'        => 'Méret',
 'listfiles_description' => 'Leírás',
+'listfiles_count'       => 'Változatok',
 
 # File description page
 'filehist'                       => 'Fájltörténet',
@@ -1842,28 +1843,29 @@ Az egyes csoportokról további információt [[{{MediaWiki:Listgrouprights-help
 'listgrouprights-removegroup-all' => 'bármelyik csoportból távolíthat el szerkesztőket',
 
 # E-mail user
-'mailnologin'     => 'Nincs feladó',
-'mailnologintext' => 'Ahhoz hogy másoknak e-mailt küldhess, [[Special:UserLogin|be kell jelentkezned]] és meg kell adnod egy érvényes e-mail címet a [[Special:Preferences|beállításaidban]].',
-'emailuser'       => 'E-mail küldése ezen szerkesztőnek',
-'emailpage'       => 'E-mail küldése',
-'emailpagetext'   => 'A szerkesztő e-mail-címére ezen űrlap kitöltésével üzenetet tudsz küldeni.
+'mailnologin'      => 'Nincs feladó',
+'mailnologintext'  => 'Ahhoz hogy másoknak e-mailt küldhess, [[Special:UserLogin|be kell jelentkezned]] és meg kell adnod egy érvényes e-mail címet a [[Special:Preferences|beállításaidban]].',
+'emailuser'        => 'E-mail küldése ezen szerkesztőnek',
+'emailpage'        => 'E-mail küldése',
+'emailpagetext'    => 'A szerkesztő e-mail-címére ezen űrlap kitöltésével üzenetet tudsz küldeni.
 Feladóként a [[Special:Preferences|beállításaid]]nál megadott e-mail-címed fog szerepelni, így a címzett közvetlenül neked tud majd válaszolni.',
-'usermailererror' => 'A postázó objektum által visszaadott hiba:',
-'defemailsubject' => '{{SITENAME}} e-mail',
-'noemailtitle'    => 'Nincs e-mail cím',
-'noemailtext'     => 'Ez a felhasználó nem adott meg e-mail címet, vagy
-nem kíván másoktól leveleket kapni.',
-'email-legend'    => 'E-mail küldése egy másik {{SITENAME}}-szerkesztőnek',
-'emailfrom'       => 'Feladó:',
-'emailto'         => 'Címzett:',
-'emailsubject'    => 'Téma:',
-'emailmessage'    => 'Üzenet:',
-'emailsend'       => 'Küldés',
-'emailccme'       => 'Az üzenet másolatát küldje el nekem is e-mailben.',
-'emailccsubject'  => '$1 szerkesztőnek küldött $2 tárgyú üzenet másolata',
-'emailsent'       => 'E-mail elküldve',
-'emailsenttext'   => 'Az e-mail üzenetedet elküldtem.',
-'emailuserfooter' => 'Ezt az e-mailt $1 küldte $2 számára, az „E-mail küldése ezen szerkesztőnek” funkció használatával a(z) {{SITENAME}} wikin.',
+'usermailererror'  => 'A postázó objektum által visszaadott hiba:',
+'defemailsubject'  => '{{SITENAME}} e-mail',
+'noemailtitle'     => 'Nincs e-mail cím',
+'noemailtext'      => 'Ez a szerkesztő nem adott meg érvényes e-mail címet.',
+'nowikiemailtitle' => 'Nem küldhető e-mail üzenet',
+'nowikiemailtext'  => 'Ez a szerkesztő nem kíván másoktól e-mail üzeneteket fogadni.',
+'email-legend'     => 'E-mail küldése egy másik {{SITENAME}}-szerkesztőnek',
+'emailfrom'        => 'Feladó:',
+'emailto'          => 'Címzett:',
+'emailsubject'     => 'Téma:',
+'emailmessage'     => 'Üzenet:',
+'emailsend'        => 'Küldés',
+'emailccme'        => 'Az üzenet másolatát küldje el nekem is e-mailben.',
+'emailccsubject'   => '$1 szerkesztőnek küldött $2 tárgyú üzenet másolata',
+'emailsent'        => 'E-mail elküldve',
+'emailsenttext'    => 'Az e-mail üzenetedet elküldtem.',
+'emailuserfooter'  => 'Ezt az e-mailt $1 küldte $2 számára, az „E-mail küldése ezen szerkesztőnek” funkció használatával a(z) {{SITENAME}} wikin.',
 
 # Watchlist
 'watchlist'            => 'Figyelőlistám',
@@ -1913,7 +1915,7 @@ Ezután minden, a lapon vagy annak vitalapján történő változást ott fogsz 
 'enotif_body'                  => 'Kedves $WATCHINGUSERNAME!
 
 
-A(z) {{SITENAME}} $PAGETITLE című oldalát $CHANGEDORCREATED $PAGEEDITDATE-n $PAGEEDITOR, a jelenlegi verziót lásd a $PAGETITLE_URL webcímen.
+$PAGEEDITDATE-n $PAGEEDITOR $CHANGEDORCREATED a(z) {{SITENAME}} $PAGETITLE című oldalát; a jelenlegi verziót a $PAGETITLE_URL webcímen találod.
 
 $NEWPAGE
 
@@ -1923,13 +1925,13 @@ A szerkesztő elérhetősége:
 levél: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Ha nem keresed fel ezt az oldalt, akkor nem kapsz értesítést a további változtatásokról. A figyelőlistádon lévő lapok értesítési jelzőit is alaphelyzetbe állítottad.
+Amíg nem keresed fel az oldalt, vagy nem állítod alaphelyzetbe a figyelőlistádnál, nem kapsz értesítést a további változtatásokról.
 
              Baráti üdvözlettel: {{SITENAME}} értesítő rendszere
 
 --
-A figyelőlistád beállításainak módosításához keresd fel a
-{{fullurl:{{ns:special}}:Figyelőlistám/edit}} címet
+A figyelőlistád módosításához keresd fel a
+{{fullurl:{{ns:special}}:Watchlist/edit}} címet
 
 Visszajelzés és további segítség:
 {{fullurl:{{MediaWiki:Helppage}}}}',

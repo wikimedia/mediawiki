@@ -1201,6 +1201,7 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'right-move'                 => 'Trasladar páginas',
 'right-move-subpages'        => 'Trasladar páginas con sus subpáginas',
 'right-move-rootuserpages'   => 'Mover páginas del usuario raíz',
+'right-movefile'             => 'Mover archivos',
 'right-suppressredirect'     => 'No crear una redirección en el viejo nombre al trasladar una página',
 'right-upload'               => 'Subir archivos',
 'right-reupload'             => 'Subir una nueva versión de un archivo existente',
@@ -1261,6 +1262,7 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'action-move'                 => 'mover esta página',
 'action-move-subpages'        => 'mover esta página y sus subpáginas',
 'action-move-rootuserpages'   => 'mover páginas del usuario raíz',
+'action-movefile'             => 'Mover este archivo',
 'action-upload'               => 'subir este archivo',
 'action-reupload'             => 'remplazar este archivo existente',
 'action-reupload-shared'      => 'remplazar este archivo existente en un depósito compartido',
@@ -1443,6 +1445,7 @@ Un click sobre el encabezamiento de la columna cambia el orden.',
 'listfiles_user'        => 'Usuario',
 'listfiles_size'        => 'Tamaño (bytes)',
 'listfiles_description' => 'Descripción',
+'listfiles_count'       => 'Versiones',
 
 # File description page
 'filehist'                       => 'Historial del archivo',
@@ -1722,27 +1725,29 @@ Puede haber información adicional sobre privilegios individuales en [[{{MediaWi
 'listgrouprights-removegroup-all' => 'Puede eliminar todos los grupos',
 
 # E-mail user
-'mailnologin'     => 'Ninguna dirección de envio',
-'mailnologintext' => 'Debes [[Special:UserLogin|iniciar sesión]] y tener una dirección electrónica válida en tus [[Special:Preferences|preferencias]] para enviar un correo electrónico a otros usuarios.',
-'emailuser'       => 'Enviar correo electrónico a este usuario',
-'emailpage'       => 'Correo electrónico a usuario',
-'emailpagetext'   => 'Puedes usar el formulario de abajo para enviar un correo electrónico a este usuario.
+'mailnologin'      => 'Ninguna dirección de envio',
+'mailnologintext'  => 'Debes [[Special:UserLogin|iniciar sesión]] y tener una dirección electrónica válida en tus [[Special:Preferences|preferencias]] para enviar un correo electrónico a otros usuarios.',
+'emailuser'        => 'Enviar correo electrónico a este usuario',
+'emailpage'        => 'Correo electrónico a usuario',
+'emailpagetext'    => 'Puedes usar el formulario de abajo para enviar un correo electrónico a este usuario.
 La dirección electrónica que indicaste en [[Special:Preferences|tus preferencias de usuario]] aparecerá en el remitente para que el destinatario pueda responderte.',
-'usermailererror' => 'El sistema de correo devolvió un error:',
-'defemailsubject' => 'Correo de {{SITENAME}}',
-'noemailtitle'    => 'No hay dirección de correo electrónico',
-'noemailtext'     => 'Este usuario no ha especificado una dirección de correo electrónico válida, o ha elegido no recibir correo electrónico de otros usuarios.',
-'email-legend'    => 'Enviar un correo electrónico a otro usuario de {{SITENAME}}',
-'emailfrom'       => 'De:',
-'emailto'         => 'Para:',
-'emailsubject'    => 'Asunto:',
-'emailmessage'    => 'Mensaje:',
-'emailsend'       => 'Enviar',
-'emailccme'       => 'Enviarme una copia de mi mensaje.',
-'emailccsubject'  => 'Copia de tu mensaje a $1: $2',
-'emailsent'       => 'Correo electrónico enviado',
-'emailsenttext'   => 'Su correo electrónico ha sido enviado.',
-'emailuserfooter' => 'Este correo electrónico fue enviado por $1 a $2 a través de la función «Enviar correo electrónico a este usuario» en {{SITENAME}}.',
+'usermailererror'  => 'El sistema de correo devolvió un error:',
+'defemailsubject'  => 'Correo de {{SITENAME}}',
+'noemailtitle'     => 'No hay dirección de correo electrónico',
+'noemailtext'      => 'Este usuario no ha especificado una dirección de correo electrónico válida.',
+'nowikiemailtitle' => 'correos electrónicos no permitidos',
+'nowikiemailtext'  => 'Este usuario ha elegido no recibir correos electrónicos de otros usuarios.',
+'email-legend'     => 'Enviar un correo electrónico a otro usuario de {{SITENAME}}',
+'emailfrom'        => 'De:',
+'emailto'          => 'Para:',
+'emailsubject'     => 'Asunto:',
+'emailmessage'     => 'Mensaje:',
+'emailsend'        => 'Enviar',
+'emailccme'        => 'Enviarme una copia de mi mensaje.',
+'emailccsubject'   => 'Copia de tu mensaje a $1: $2',
+'emailsent'        => 'Correo electrónico enviado',
+'emailsenttext'    => 'Su correo electrónico ha sido enviado.',
+'emailuserfooter'  => 'Este correo electrónico fue enviado por $1 a $2 a través de la función «Enviar correo electrónico a este usuario» en {{SITENAME}}.',
 
 # Watchlist
 'watchlist'            => 'Lista de seguimiento',
@@ -2159,13 +2164,19 @@ En estos casos, deberá trasladar manualmente el contenido de la página de disc
 'movenologin'                  => 'No ha iniciado sesión',
 'movenologintext'              => 'Es necesario ser usuario registrado y [[Special:UserLogin|haber iniciado sesión]] para renombrar una página.',
 'movenotallowed'               => 'No tienes permiso para trasladar páginas.',
+'movenotallowedfile'           => 'No tiene permiso para mover archivos.',
 'cant-move-user-page'          => 'No tienes permiso para mover páginas de usuario (excepto subpáginas).',
 'cant-move-to-user-page'       => 'No tienes permiso para mover una página a una página de usuario (excepto a subpáginas de usuario).',
 'newtitle'                     => 'A título nuevo',
 'move-watch'                   => 'Vigilar este artículo',
 'movepagebtn'                  => 'Renombrar página',
 'pagemovedsub'                 => 'Renombrado realizado con éxito',
-'movepage-moved'               => '<big>\'\'\'"$1" ha sido trasladado a "$2".\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1" ha sido trasladado a "$2".\'\'\'</big>
+
+Un redirecionamiento ha sido creado.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => '<big>\'\'\'"$1" ha sido movido a "$2"\'\'\'</big>
+
+La creación de un redireccionamiento ha sido suprimida.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => 'Ya existe una página con ese nombre o el nombre que ha elegido no es válido. Por favor, elija otro nombre.',
 'cantmove-titleprotected'      => 'No se pueden mover páginas a esta ubicacion, porque se ha protegido la creación de este nuevo título.',
 'talkexists'                   => 'La página fue renombrada con éxito, pero la discusión no se pudo mover porque ya existe una en el título nuevo. Por favor incorpore su contenido manualmente.',
@@ -2179,6 +2190,7 @@ En estos casos, deberá trasladar manualmente el contenido de la página de disc
 'movepage-max-pages'           => 'Se {{PLURAL:$1|ha trasladado un máximo de una página|han trasladado un máximo de $1 páginas}}, y no se van a mover más automáticamente.',
 '1movedto2'                    => '[[$1]] trasladada a [[$2]]',
 '1movedto2_redir'              => '[[$1]] trasladada a [[$2]] sobre una redirección',
+'move-redirect-suppressed'     => 'Redireccionamiento suprimido',
 'movelogpage'                  => 'Registro de traslados',
 'movelogpagetext'              => 'Abajo se encuentra una lista de páginas trasladadas.',
 'movereason'                   => 'Motivo:',

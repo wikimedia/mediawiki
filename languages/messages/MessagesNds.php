@@ -2160,7 +2160,9 @@ In disse Fäll musst du de Siet, wenn du dat willst, vun Hand schuven.",
 'move-watch'                => 'Op disse Siet oppassen',
 'movepagebtn'               => 'Siet schuven',
 'pagemovedsub'              => 'Schuven hett Spood',
-'movepage-moved'            => "<big>'''De Sied „$1“ is na „$2“ schaven worrn.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'            => "<big>'''De Sied „$1“ is na „$2“ schaven worrn.'''</big>
+
+En Redirect is inricht.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'             => 'Ünner dissen Naam gifft dat al ene Siet.
 Bitte söök en annern Naam ut.',
 'cantmove-titleprotected'   => 'Du kannst de Siet nich na dissen ne’en Naam schuven. De Naam is gegen dat nee Opstellen schuult.',

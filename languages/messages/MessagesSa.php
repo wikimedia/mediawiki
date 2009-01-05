@@ -86,6 +86,9 @@ $messages = array(
 'qbfind'        => 'शोध',
 'qbedit'        => 'संपादयति',
 'qbpageoptions' => 'इदम्‌ पृष्ठ',
+'qbmyoptions'   => 'मदीय लिखितपृष्ठ',
+'mypage'        => 'मम पृष्ठ',
+'mytalk'        => 'मम लोकप्रवाद',
 'navigation'    => 'सुचालन',
 'and'           => '&#32;एवम्',
 
@@ -98,6 +101,14 @@ $messages = array(
 'history_short'    => 'इतिहास',
 'printableversion' => 'मुद्रणस्य पाठ',
 'permalink'        => 'स्थायी निबन्धन',
+'print'            => 'मुद्रण',
+'edit'             => 'सम्पादन',
+'create'           => 'सृजति',
+'editthispage'     => 'इदं पृष्ठस्य सम्पादनार्थ',
+'create-this-page' => 'इदं पृष्ठ सृजामि',
+'delete'           => 'विलोप',
+'protect'          => 'सुरक्षित करोसि',
+'protect_change'   => 'सुरक्षा नियम परिवर्त',
 'newpage'          => 'नविन पृष्ठ',
 'talkpagelinktext' => 'संवाद',
 'specialpage'      => 'विशेष पृष्ठ',
@@ -142,6 +153,9 @@ $messages = array(
 'gotaccountlink'          => 'प्रवेश करोसि',
 'loginsuccesstitle'       => 'सुस्वागतम्‌ प्रवेश यशस्वी अस्ति',
 
+# Edit page toolbar
+'italic_sample' => 'इटालिकाक्षर्‌',
+
 # Edit pages
 'watchthis'   => 'इदं पृष्ठ निरीक्षा',
 'savearticle' => 'पृष्ठ त्रायते',
@@ -185,6 +199,7 @@ $messages = array(
 'longpages'    => 'दीर्घ पृष्ठ',
 'newpages'     => 'नूतन पृष्ठ',
 'ancientpages' => 'प्राचीनतम् पृष्ठा',
+'move'         => 'नामभेद',
 'movethispage' => 'इदं पृष्ठस्य स्थानांतर',
 
 # Book sources
@@ -204,6 +219,7 @@ $messages = array(
 'emailmessage' => 'सन्देशः',
 
 # Watchlist
+'watch'         => 'निरीक्षति',
 'watchthispage' => 'प्रतिरक्षति इदं पृष्ठ',
 
 # Displayed when you click the "watch" button and it is in the process of watching

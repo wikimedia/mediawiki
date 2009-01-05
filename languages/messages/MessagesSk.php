@@ -1258,6 +1258,7 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 'action-move'                 => 'presunúť túto stránku',
 'action-move-subpages'        => 'presunúť túto stránku a jej podtránky',
 'action-move-rootuserpages'   => 'presunúť koreňové stránky používateľa',
+'action-movefile'             => 'presunúť tento súbor',
 'action-upload'               => 'nahrať tento súbor',
 'action-reupload'             => 'prepísať tento existujúci súbor',
 'action-reupload-shared'      => 'uprednostniť tento súbor pred súborom zo zdieľaného úložiska',
@@ -2183,7 +2184,12 @@ V takých prípadoch budete musieť, ak si to želáte, premiestniť alebo zlú�
 'move-watch'                   => 'Sledovať túto stránku',
 'movepagebtn'                  => 'Presunúť stránku',
 'pagemovedsub'                 => 'Presun bol úspešný',
-'movepage-moved'               => "<big>'''„$1” bolo presunuté na „$2”'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>'''„$1” bolo presunuté na „$2”'''</big>
+
+Bolo vytvorené presmerovanie.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => "<big>'''„$1” bolo presunuté na „$2”'''</big>
+
+Vytvorenie presmerovania bolo potlačené.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => 'Stránka s týmto názvom už existuje alebo
 vami zadaný názov je neplatný.
 Prosím vyberte si iný názov.',

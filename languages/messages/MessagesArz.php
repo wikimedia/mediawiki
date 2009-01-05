@@ -1604,6 +1604,7 @@ PICT # misc.
 'listfiles_user'        => 'يوزر',
 'listfiles_size'        => 'حجم',
 'listfiles_description' => 'وصف',
+'listfiles_count'       => 'نسخ',
 
 # File description page
 'filehist'                       => 'تاريخ الملف',
@@ -1707,7 +1708,7 @@ PICT # misc.
 'statistics-articles'          => 'صفحات المحتوى',
 'statistics-pages'             => 'الصفحات',
 'statistics-pages-desc'        => 'كل الصفحات فى الويكى، بما فيها صفحات النقاش، التحويلات، إلى آخره.',
-'statistics-files'             => 'الملفات المرفوعة',
+'statistics-files'             => 'الملفات المتحملة',
 'statistics-edits'             => 'تعديلات الصفحات من بداية {{SITENAME}}',
 'statistics-edits-average'     => 'متوسط التعديلات لكل صفحة',
 'statistics-views-total'       => 'إجمالى المشاهدات',
@@ -1884,27 +1885,29 @@ PICT # misc.
 'listgrouprights-removegroup-all' => 'ممكن تشيل كل المجموعات',
 
 # E-mail user
-'mailnologin'     => 'مافيش عنوان نبعت عليه',
-'mailnologintext' => 'لازم تعمل [[Special:UserLogin|تسجيل الدخول]] و تدخل ايميل صحيح فى صفحة [[Special:Preferences|التفضيلات]] علشان تقدر تبعت ايميلات لليوزرز التانيين.',
-'emailuser'       => 'ابعت ايميل لليوزر دا',
-'emailpage'       => 'ابعت ايميل لليوزر ده',
-'emailpagetext'   => 'ممكن تستعمل الاستمارة اللى تحت دى عشان تيعت ايميل لليوزر دا.
+'mailnologin'      => 'مافيش عنوان نبعت عليه',
+'mailnologintext'  => 'لازم تعمل [[Special:UserLogin|تسجيل الدخول]] و تدخل ايميل صحيح فى صفحة [[Special:Preferences|التفضيلات]] علشان تقدر تبعت ايميلات لليوزرز التانيين.',
+'emailuser'        => 'ابعت ايميل لليوزر دا',
+'emailpage'        => 'ابعت ايميل لليوزر ده',
+'emailpagetext'    => 'ممكن تستعمل الاستمارة اللى تحت دى عشان تيعت ايميل لليوزر دا.
 عنوان الايميل اللى كتبته فى [[Special:Preferences|التفضيلات بتاعتك]] ح يظهر على انه عنوان الاستمارة و بكدة اللى حيستقبله ح يقدر يرد على الايميل.',
-'usermailererror' => 'البريد رجع غلط:',
-'defemailsubject' => 'إيميل من {{SITENAME}}',
-'noemailtitle'    => 'مافيش  عنوان ايميل',
-'noemailtext'     => 'يا إما اليوزر دا ما كتبش االايميل بتاعه صح ، أو  انه طلب ما يستلمش ايميلات من اليوزرز التانيين.',
-'email-legend'    => 'ابعت إيميل ليوزر {{SITENAME}} تانى',
-'emailfrom'       => 'من:',
-'emailto'         => 'لـ:',
-'emailsubject'    => 'الموضوع:',
-'emailmessage'    => 'الرساله:',
-'emailsend'       => 'إبعت',
-'emailccme'       => 'ابعتلى نسخة من الايميل اللى بعته.',
-'emailccsubject'  => 'نسخة من رسالتك ل $1: $2',
-'emailsent'       => 'الإيميل اتبعت',
-'emailsenttext'   => 'الايميل بتاعك اتبعت خلاص.',
-'emailuserfooter' => 'الايميل دا بعته $1 لـ $2 عن طريق خاصية "مراسلة اليوزر" فى {{SITENAME}}.',
+'usermailererror'  => 'البريد رجع غلط:',
+'defemailsubject'  => 'إيميل من {{SITENAME}}',
+'noemailtitle'     => 'مافيش  عنوان ايميل',
+'noemailtext'      => 'اليوزر دا ما كتبش االايميل بتاعه صح .',
+'nowikiemailtitle' => 'الايميلات مش مسموح بيها',
+'nowikiemailtext'  => 'اليوزر دا اختار انه ما يستقبلش ايميلات من اليوزرز التانيين.',
+'email-legend'     => 'ابعت إيميل ليوزر {{SITENAME}} تانى',
+'emailfrom'        => 'من:',
+'emailto'          => 'لـ:',
+'emailsubject'     => 'الموضوع:',
+'emailmessage'     => 'الرساله:',
+'emailsend'        => 'إبعت',
+'emailccme'        => 'ابعتلى نسخة من الايميل اللى بعته.',
+'emailccsubject'   => 'نسخة من رسالتك ل $1: $2',
+'emailsent'        => 'الإيميل اتبعت',
+'emailsenttext'    => 'الايميل بتاعك اتبعت خلاص.',
+'emailuserfooter'  => 'الايميل دا بعته $1 لـ $2 عن طريق خاصية "مراسلة اليوزر" فى {{SITENAME}}.',
 
 # Watchlist
 'watchlist'            => 'لستة الصفحات اللى باراقبها',
@@ -2343,7 +2346,12 @@ $1 ممنوع فعلا. عايز تغير الإعدادات؟',
 'move-watch'                   => 'راقب الصفحه دى',
 'movepagebtn'                  => 'نقل الصفحه',
 'pagemovedsub'                 => 'تم  النقل بنجاح',
-'movepage-moved'               => '<big>\'\'\'"$1" اتنقلت ل"$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1" خلاص اتنقلت لـ "$2"\'\'\'</big>
+
+التحويله اتعملت.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => '<big>\'\'\'"$1" خلاص اتنقلت لـ "$2"\'\'\'</big>
+
+التحويله ما اتعملتش.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => 'يا اما فيه صفحه  بالاسم ده، او ان الاسم اللى  تم اختياره مش صالح.
 لو سمحت اختار اسم تانى.',
 'cantmove-titleprotected'      => 'ما ينفعش تنقل صفحة للمكان دا،لأن العنوان الجديد محمى ضد الانشاء',

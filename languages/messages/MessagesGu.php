@@ -351,6 +351,9 @@ $messages = array(
 આગળ વધતાં બે વખત વિચારજો અને જો તમને લાગે કે આ પાનું ફરી વાર બનાવવું ઉચિત છે, તો જ અહીં ફેરફાર કરજો.
 પાનું હટવ્યાં પહેલાનાં બધા ફેરફારોની સૂચિ તમારી સહુલીયત માટે અહીં આપી છે:",
 
+# Account creation failure
+'cantcreateaccounttitle' => 'ખાતું ખોલી શકાય તેમ નથી',
+
 # History pages
 'viewpagelogs'        => 'આ પાનાનાં લૉગ જુઓ',
 'nohistory'           => 'આ પાનાનાં ફેરફારનો ઇતિહાસ નથી.',
@@ -395,7 +398,7 @@ $messages = array(
 'mypreferences'     => 'મારી પસંદ',
 'skin-preview'      => 'ફેરફાર બતાવો',
 'datetime'          => 'તારીખ અને સમય',
-'prefs-watchlist'   => 'ધ્યાનસૂચી',
+'prefs-watchlist'   => 'ધ્યાનસૂચિ',
 'searchresultshead' => 'શોધો',
 
 # Groups
@@ -551,7 +554,7 @@ $messages = array(
 
 # E-mail user
 'emailuser'    => 'સભ્યને ઇ-મેલ કરો',
-'emailfrom'    => 'મોકલનાર:',
+'emailfrom'    => 'પ્રેષક:',
 'emailto'      => 'પ્રતિ:',
 'emailsubject' => 'વિષય:',
 'emailmessage' => 'સંદેશો:',

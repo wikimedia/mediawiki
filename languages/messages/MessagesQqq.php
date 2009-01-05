@@ -583,7 +583,9 @@ $1 is the minimum number of characters in the password.',
 
 {{Identical|Watch this page}}',
 'savearticle'                      => 'Text on the Save page button. See also {{msg|showpreview}} and {{msg|showdiff}} for the other buttons.',
-'preview'                          => '{{Identical|Preview}}',
+'preview'                          => 'The title of the Preview page shown after clicking the "Show preview" button in the edit page. Since this is a heading, it should probably be translated as a noun and not as a verb.
+
+{{Identical|Preview}}',
 'showpreview'                      => 'The text of the button to preview the page you are editing. See also {{msg|showdiff}} and {{msg|savearticle}} for the other buttons.',
 'showdiff'                         => 'Button below the edit page. See also {{msg|showpreview}} and {{msg|savearticle}} for the other buttons.',
 'anoneditwarning'                  => 'Shown when editing a page anonymously.',
@@ -675,7 +677,7 @@ first",
 'page_last'              => "This is part of the navigation message on the top and bottom of Special pages which are lists of things in alphabetical order, e.g. the 'Categories' special page. It is followed by the message [[Mediawiki:viewprevnext]].
 
 {{Identical|Last}}",
-'histlegend'             => 'Text in history page',
+'histlegend'             => 'Text in history page. Refers to {{msg-mw|cur}}, {{msg-mw|last}}, and {{msg-mw|minoreditletter}}.',
 'history-fieldset-title' => 'Fieldset label in the edit history pages.',
 'deletedrev'             => 'When comparing deleted revisions for sysops
 
@@ -1049,6 +1051,7 @@ The rate limits have no effect on the groups that have this right. Rate limits i
 'action-move'                 => '{{Doc-action}}',
 'action-move-subpages'        => '{{Doc-action}}',
 'action-move-rootuserpages'   => '{{Doc-action}}',
+'action-movefile'             => '{{doc-action}}',
 'action-upload'               => '{{Doc-action}}',
 'action-reupload'             => '{{Doc-action}}',
 'action-reupload-shared'      => '{{Doc-action}}',
@@ -1178,7 +1181,7 @@ Parameter $1 is a link to the deletion log, with the text in {{msg|deletionlog}}
 'nolicense'         => '{{Identical|None selected}}',
 'license-nopreview' => 'Error message when a certain license does not exist',
 
-# Special:FileList
+# Special:ListFiles
 'listfiles-summary'     => 'This message is displayed at the top of [[Special:ImageList]] to explain how to use that special page.',
 'imgfile'               => '{{Identical|File}}',
 'listfiles'             => '{{Identical|File list}}',
@@ -1186,6 +1189,7 @@ Parameter $1 is a link to the deletion log, with the text in {{msg|deletionlog}}
 'listfiles_name'        => '{{Identical|Name}}',
 'listfiles_user'        => '{{Identical|User}}',
 'listfiles_description' => '{{Identical|Description}}',
+'listfiles_count'       => 'One of the table column headers in [[Special:Listfiles]] denoting the amount of saved versions of that file.',
 
 # File description page
 'filehist'                       => 'Text shown on a media description page. Heads the section where the different versions of the file are displayed.',
@@ -1827,6 +1831,7 @@ See also [[MediaWiki:Blocklistline]].',
 'reblock-logentry'             => '* $1 is the user being reblocked
 * $2 is the expiry time of the block
 * $3 is the reason of the block',
+'blocklogtext'                 => 'See {{msg-mw|ipblocklist}} for the special page name.',
 'block-log-flags-noautoblock'  => '{{Identical|Autoblock disabled}}',
 'block-log-flags-noemail'      => "Log message for [[Special:Log/block]] to note that a user cannot use the 'email another user' option.
 
@@ -1923,7 +1928,10 @@ Tooltip shown when hovering over a little sign of a thumb image, to go to the im
 :$2: line number
 :$3: columm number
 :$4: ?? $this->mByte . $this->mContext
-:$5: error description',
+:$5: error description
+----
+:Example
+Import failed: XML import parse failure at line 1, col 1 (byte 3; "- <mediawiki xml"): Empty document',
 'import-upload'           => 'Used on [[Special:Import]].
 
 Related messages: {{msg|right-importupload|pl=yes}} (the user right for this).',

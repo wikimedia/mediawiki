@@ -971,7 +971,7 @@ Maaari mong [[:\$1|likhain ang pahinang ito]].",
 'showingresultsnum'                => "Ipinapakita sa ibaba ang {{PLURAL:$3|'''1''' resultang|'''$3''' mga resultang}} nagsisimula sa #'''$2'''.",
 'showingresultstotal'              => "Ipinapakita sa ibaba ang {{PLURAL:$4|resultang '''$1''' ng '''$3'''|mga resultang '''$1 - $2''' ng '''$3'''}}",
 'nonefound'                        => "'''Paunawa''': Ilang mga espasyo ng pangalan lamang ang hinahanap ayon sa likas na pagkakatakda.
-Subukin lagyan ng unlapi/paunang ''lahat:'' upang hanapin ang lahat ng mga nialalaman (kabilang ang mga pahina ng usapan, mga suleras, atbp), o gamitin ang ninanais na espasyo ng pangalan bilang unlapi.",
+Subuking lagyan ng unlapi/paunang ''all:'' upang hanapin ang lahat ng mga nialalaman (kabilang ang mga pahina ng usapan, mga suleras, atbp), o gamitin ang ninanais na espasyo ng pangalan bilang unlapi.",
 'search-nonefound'                 => 'Walang mga resultang tumutugma sa katanungan/pagtatanong.',
 'powersearch'                      => 'Paghahanap na may mas mataas na antas',
 'powersearch-legend'               => 'Paghahanap na may mas mataas na antas',
@@ -1168,6 +1168,7 @@ pakitingnan ang matematika/BASAHINAKO para maisaayos ang konpigurasyon.',
 'action-move'                 => 'ilipat itong pahina',
 'action-move-subpages'        => 'ilipat itong pahina, pati ang mga kabahaging pahina (subpahina) nito',
 'action-move-rootuserpages'   => 'ilipat ang mga pinagugatang mga pahina ng tagagamit',
+'action-movefile'             => 'ilipat ang talaksang ito',
 'action-upload'               => 'ikarga itong talaksan',
 'action-reupload'             => 'patungan itong pahinang umiiral',
 'action-reupload-shared'      => 'daigin itong talaksan sa isang pinagsasaluhang taguan/repositoryo',
@@ -1354,6 +1355,7 @@ Mababago ang pagkakapangkat-pangkat sa pamamagitan ng pagpindot sa isang paulo n
 'listfiles_user'        => 'Tagagamit',
 'listfiles_size'        => 'Sukat',
 'listfiles_description' => 'Paglalarawan',
+'listfiles_count'       => 'Mga bersyon',
 
 # File description page
 'filehist'                       => 'Kasaysayan ng talaksan',
@@ -1633,28 +1635,29 @@ Maaaring may mga [[{{MediaWiki:Listgrouprights-helppage}}|karagdagang kabatiran]
 'listgrouprights-removegroup-all' => 'Maaaring tanggalin ang lahat ng mga pangkat',
 
 # E-mail user
-'mailnologin'     => 'Walang adres na mapagpapadalahan',
-'mailnologintext' => 'Kailangan mong [[Special:UserLogin|lumagda]] at magkaroon ng tanggap na e-liham sa iyong [[Special:Preferences|mga kagustuhan]] para makapagpadala ng e-liham sa ibang mga tagagamit.',
-'emailuser'       => 'Padalhan ng e-liham ang tagagamit',
-'emailpage'       => 'Magpadala ng e-liham sa tagagamit',
-'emailpagetext'   => 'Magagamit mo ang pormularyo sa ibaba para makapagpadala ng mensahe sa pamamagitan ng isang e-liham para sa tagagamit na ito.
+'mailnologin'      => 'Walang adres na mapagpapadalahan',
+'mailnologintext'  => 'Kailangan mong [[Special:UserLogin|lumagda]] at magkaroon ng tanggap na e-liham sa iyong [[Special:Preferences|mga kagustuhan]] para makapagpadala ng e-liham sa ibang mga tagagamit.',
+'emailuser'        => 'Padalhan ng e-liham ang tagagamit',
+'emailpage'        => 'Magpadala ng e-liham sa tagagamit',
+'emailpagetext'    => 'Magagamit mo ang pormularyo sa ibaba para makapagpadala ng mensahe sa pamamagitan ng isang e-liham para sa tagagamit na ito.
 Ang ipinasok mong adres ng e-liham sa [[Special:Preferences|iyong mga kagustuhan ng tagagamit]] ay lilitaw bilang adres na "Mula kay" ng e-liham, para tuwirang makatugon sa iyo ang nakatanggap.',
-'usermailererror' => 'Pagkakamaling sanhi ng pagkakabalik ng liham mula sa puntirya:',
-'defemailsubject' => 'E-liham ng {{SITENAME}}',
-'noemailtitle'    => 'Walang adres ng e-liham',
-'noemailtext'     => 'Hindi nagbigay ng tanggap na e-liham ang tagagamit na ito,
-o pinili niyang huwag tumanggap ng e-liham mula sa ibang mga tagagamit.',
-'email-legend'    => 'Magpadala ng e-liham patungo sa isa pang tagagamit ng {{SITENAME}}',
-'emailfrom'       => 'Mula kay:',
-'emailto'         => 'Para kay:',
-'emailsubject'    => 'Paksa:',
-'emailmessage'    => 'Mensahe:',
-'emailsend'       => 'Ipadala',
-'emailccme'       => 'Padalhan ako ng sipi ng aking mensahe sa pamamagitan ng e-liham.',
-'emailccsubject'  => 'Kopya ng iyong mensahe sa $1: $2',
-'emailsent'       => 'Naipadala na ang e-liham',
-'emailsenttext'   => 'Naipadala na ang mensahe ng iyong e-liham.',
-'emailuserfooter' => 'Ipinadala ang e-liham na ito ni $1 para kay $2 sa pamamagitan ng tungkuling "Magpadala ng e-liham" na nasa {{SITENAME}}.',
+'usermailererror'  => 'Pagkakamaling sanhi ng pagkakabalik ng liham mula sa puntirya:',
+'defemailsubject'  => 'E-liham ng {{SITENAME}}',
+'noemailtitle'     => 'Walang adres ng e-liham',
+'noemailtext'      => 'Ang tagagamit na ito ay hindi tumukoy ng isang tanggap na adres ng e-liham.',
+'nowikiemailtitle' => 'Walang pinapahintulutang e-liham',
+'nowikiemailtext'  => 'Pinili ng tagagamit na ito na huwag makatanggap ng e-liham mula sa ibang mga tagagamit.',
+'email-legend'     => 'Magpadala ng e-liham patungo sa isa pang tagagamit ng {{SITENAME}}',
+'emailfrom'        => 'Mula kay:',
+'emailto'          => 'Para kay:',
+'emailsubject'     => 'Paksa:',
+'emailmessage'     => 'Mensahe:',
+'emailsend'        => 'Ipadala',
+'emailccme'        => 'Padalhan ako ng sipi ng aking mensahe sa pamamagitan ng e-liham.',
+'emailccsubject'   => 'Kopya ng iyong mensahe sa $1: $2',
+'emailsent'        => 'Naipadala na ang e-liham',
+'emailsenttext'    => 'Naipadala na ang mensahe ng iyong e-liham.',
+'emailuserfooter'  => 'Ipinadala ang e-liham na ito ni $1 para kay $2 sa pamamagitan ng tungkuling "Magpadala ng e-liham" na nasa {{SITENAME}}.',
 
 # Watchlist
 'watchlist'            => 'Mga binabantayan ko',
@@ -2076,7 +2079,7 @@ pakitiyak na nauunawaan mo ang mga kahihinatnan nito bago magpatuloy.",
 Sa mga kasong ganoon, kailangan mong ilipat o pagsamahin/pagsanibin ang pahina sa manwal o kinakamay na paraan kung nanaisin.",
 'movearticle'                  => 'Ilipat ang pahina:',
 'movenologin'                  => 'Hindi nakalagda',
-'movenologintext'              => 'Dapat lamang na isa kang nagpatala/nakarehistrong tagagamit at [[Special:UserLogin|nakalagda]] na muna upang makapaglipat ng isang pahina.',
+'movenologintext'              => 'Dapat na isa kang nakapagpatala (nakarehistro) at [[Special:UserLogin|nakalagda]]ng tagagamit upang makapaglipat ng isang pahina.',
 'movenotallowed'               => 'Wala kang permisong maglipat ng pahina.',
 'movenotallowedfile'           => 'Wala kang pahintulot upang makapaglipat ng mga talaksan.',
 'cant-move-user-page'          => 'Wala kang pahintulot para makapaglipat ng mga pahina ng tagagamit (bukod pa sa kabahaging mga pahina o subpahina).',
@@ -2085,7 +2088,12 @@ Sa mga kasong ganoon, kailangan mong ilipat o pagsamahin/pagsanibin ang pahina s
 'move-watch'                   => 'Bantayan ang pahinang ito',
 'movepagebtn'                  => 'Ilipat ang pahina',
 'pagemovedsub'                 => 'Matagumpay ang paglipat',
-'movepage-moved'               => '<big>\'\'\'Inilipat ang "$1" sa "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'Inilipat ang "$1" patungo sa "$2"\'\'\'</big>
+
+Nalikha ang isang panturo.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => '<big>\'\'\'Inilipat ang "$1" patungo sa "$2"\'\'\'</big>
+
+Pinigilan ang paglikha ng isang panturo.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => 'May umiiral nang pahinang may ganyang pangalan, o ang
 pangalang pinili mo ay hindi tanggap.
 Pumili muli ng ibang pangalan.',

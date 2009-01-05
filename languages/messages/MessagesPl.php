@@ -1542,6 +1542,7 @@ Kliknięcie w nagłówek kolumny zmienia sposób sortowania.',
 'listfiles_user'        => 'Użytkownik',
 'listfiles_size'        => 'Wielkość',
 'listfiles_description' => 'Opis',
+'listfiles_count'       => 'Wersje',
 
 # File description page
 'filehist'                       => 'Historia pliku',
@@ -1819,27 +1820,29 @@ Sprawdź stronę z [[{{MediaWiki:Listgrouprights-helppage}}|dodatkowymi informac
 'listgrouprights-removegroup-all' => 'Można usunąć ze wszystkich grup',
 
 # E-mail user
-'mailnologin'     => 'Brak adresu',
-'mailnologintext' => 'Musisz się [[Special:UserLogin|zalogować]] i mieć wpisany aktualny adres e-mailowy w swoich [[Special:Preferences|preferencjach]], aby móc wysłać e-mail do innego użytkownika.',
-'emailuser'       => 'Wyślij e-mail do tego użytkownika',
-'emailpage'       => 'Wyślij e-mail do użytkownika',
-'emailpagetext'   => 'Możesz użyć poniższego formularza, aby wysłać wiadomość e-mail do tego użytkownika.
+'mailnologin'      => 'Brak adresu',
+'mailnologintext'  => 'Musisz się [[Special:UserLogin|zalogować]] i mieć wpisany aktualny adres e-mailowy w swoich [[Special:Preferences|preferencjach]], aby móc wysłać e-mail do innego użytkownika.',
+'emailuser'        => 'Wyślij e-mail do tego użytkownika',
+'emailpage'        => 'Wyślij e-mail do użytkownika',
+'emailpagetext'    => 'Możesz użyć poniższego formularza, aby wysłać wiadomość e-mail do tego użytkownika.
 Adres e-mailowy, który został przez Ciebie wprowadzony w [[Special:Preferences|Twoich preferencjach]], pojawi się w polu „Od”, dzięki czemu odbiorca będzie mógł Ci odpowiedzieć.',
-'usermailererror' => 'Moduł obsługi poczty zwrócił błąd:',
-'defemailsubject' => 'Wiadomość z {{GRAMMAR:D.lp|{{SITENAME}}}}',
-'noemailtitle'    => 'Brak adresu e-mail',
-'noemailtext'     => 'Ten użytkownik nie podał poprawnego adresu e-mail albo zadecydował, że nie chce otrzymywać wiadomości e-mail od innych użytkowników.',
-'email-legend'    => 'Wyślij e-mail do innego użytkownika {{GRAMMAR:MS.lp|{{SITENAME}}}}',
-'emailfrom'       => 'Od:',
-'emailto'         => 'Do:',
-'emailsubject'    => 'Temat:',
-'emailmessage'    => 'Wiadomość:',
-'emailsend'       => 'Wyślij',
-'emailccme'       => 'Wyślij mi kopię mojej wiadomości.',
-'emailccsubject'  => 'Kopia Twojej wiadomości do $1: $2',
-'emailsent'       => 'Wiadomość została wysłana',
-'emailsenttext'   => 'Twoja wiadomość została wysłana.',
-'emailuserfooter' => 'Wiadomość e-mail została wysłana z {{GRAMMAR:D.lp|{{SITENAME}}}} do $2 przez $1 z użyciem „Wyślij e-mail do tego użytkownika”.',
+'usermailererror'  => 'Moduł obsługi poczty zwrócił błąd:',
+'defemailsubject'  => 'Wiadomość z {{GRAMMAR:D.lp|{{SITENAME}}}}',
+'noemailtitle'     => 'Brak adresu e-mail',
+'noemailtext'      => 'Ten użytkownik nie podał poprawnego adresu e-mail.',
+'nowikiemailtitle' => 'Brak zezwolenia na otrzymywanie e-mailów',
+'nowikiemailtext'  => 'Ten użytkownik nie chce otrzymywać wiadomości e-mail od innych użytkowników.',
+'email-legend'     => 'Wyślij e-mail do innego użytkownika {{GRAMMAR:MS.lp|{{SITENAME}}}}',
+'emailfrom'        => 'Od:',
+'emailto'          => 'Do:',
+'emailsubject'     => 'Temat:',
+'emailmessage'     => 'Wiadomość:',
+'emailsend'        => 'Wyślij',
+'emailccme'        => 'Wyślij mi kopię mojej wiadomości.',
+'emailccsubject'   => 'Kopia Twojej wiadomości do $1: $2',
+'emailsent'        => 'Wiadomość została wysłana',
+'emailsenttext'    => 'Twoja wiadomość została wysłana.',
+'emailuserfooter'  => 'Wiadomość e-mail została wysłana z {{GRAMMAR:D.lp|{{SITENAME}}}} do $2 przez $1 z użyciem „Wyślij e-mail do tego użytkownika”.',
 
 # Watchlist
 'watchlist'            => 'Obserwowane',
@@ -2276,9 +2279,12 @@ W takich przypadkach treść dyskusji można przenieść tylko ręcznie.',
 'move-watch'                   => 'Obserwuj',
 'movepagebtn'                  => 'Przenieś stronę',
 'pagemovedsub'                 => 'Przeniesienie powiodło się',
-'movepage-moved'               => "<big>'''Strona „$1” została przeniesiona do „$2”.'''</big>
+'movepage-moved'               => "<big>'''„$1” została przeniesiona do „$2”'''</big>
 
 Zostało utworzone przekierowanie.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => "<big>'''„$1” została przeniesiona do „$2”'''</big>
+
+Przekierowanie nie zostało utworzone.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => 'Strona o podanej nazwie już istnieje albo wybrana przez Ciebie nazwa nie jest poprawna.
 Wybierz inną nazwę.',
 'cantmove-titleprotected'      => 'Nie możesz przenieść strony, ponieważ nowa nazwa strony jest niedozwolona z powodu zabezpieczenia przed utworzeniem',
@@ -2293,7 +2299,7 @@ Wybierz inną nazwę.',
 'movepage-max-pages'           => 'Przeniesionych zostało $1 {{PLURAL:$1|strona|strony|stron}}. Większa liczba nie może być przeniesiona automatycznie.',
 '1movedto2'                    => 'stronę [[$1]] przeniósł do [[$2]]',
 '1movedto2_redir'              => 'stronę [[$1]] przeniósł do [[$2]] nad przekierowaniem',
-'move-redirect-suppressed'     => 'ograniczenie nie dotyczy',
+'move-redirect-suppressed'     => 'nie utworzono przekierowania pod starym tytułem',
 'movelogpage'                  => 'Przeniesione',
 'movelogpagetext'              => 'Lista stron, które ostatnio zostały przeniesione.',
 'movereason'                   => 'Powód',
@@ -2522,7 +2528,7 @@ Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony int
 
 # Patrolling
 'markaspatrolleddiff'                 => 'oznacz edycję jako „sprawdzoną”',
-'markaspatrolledtext'                 => 'Oznacz tę stronę jako „sprawdzony”',
+'markaspatrolledtext'                 => 'Oznacz tę stronę jako „sprawdzoną”',
 'markedaspatrolled'                   => 'Sprawdzone',
 'markedaspatrolledtext'               => 'Ta wersja została oznaczona jako „sprawdzona”.',
 'rcpatroldisabled'                    => 'Wyłączono funkcjonalność patrolowania na ostatnich zmianach',
