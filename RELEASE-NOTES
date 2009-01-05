@@ -468,7 +468,7 @@ The following extensions are migrated into MediaWiki 1.14:
   that STDIN can be used for page list
 * Sanitizer::decodeCharReferences() now decodes the XHTML "&apos;" character
   entity (loosely related to bug 14365)
-
+* Fix XSS in Special:Search with extended engine features ("did you mean")
 
 === API changes in 1.14 ===
 
