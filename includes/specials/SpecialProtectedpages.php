@@ -16,7 +16,6 @@ class ProtectedPagesForm {
 	public function showList( $msg = '' ) {
 		global $wgOut, $wgRequest;
 
-		$wgOut->setPagetitle( wfMsg( "protectedpages" ) );
 		if ( "" != $msg ) {
 			$wgOut->setSubtitle( $msg );
 		}
@@ -84,7 +83,7 @@ class ProtectedPagesForm {
 		if ( $row->pr_expiry != 'infinity' && strlen($row->pr_expiry) ) {
 			$expiry = Block::decodeExpiry( $row->pr_expiry );
 
-			$expiry_description = wfMsgForContent( 'protect-expiring' , $wgLang->timeanddate( $expiry ) , $wgLang->date( $expiry ) , $wgLang->time( $expiry ) );
+			$expiry_description = wfMsg( 'protect-expiring' , $wgLang->timeanddate( $expiry ) , $wgLang->date( $expiry ) , $wgLang->time( $expiry ) );
 
 			$description_items[] = $expiry_description;
 		}

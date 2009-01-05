@@ -16,7 +16,6 @@ class ProtectedTitlesForm {
 	function showList( $msg = '' ) {
 		global $wgOut, $wgRequest;
 
-		$wgOut->setPagetitle( wfMsg( "protectedtitles" ) );
 		if ( "" != $msg ) {
 			$wgOut->setSubtitle( $msg );
 		}
@@ -75,7 +74,7 @@ class ProtectedTitlesForm {
 		if ( $row->pt_expiry != 'infinity' && strlen($row->pt_expiry) ) {
 			$expiry = Block::decodeExpiry( $row->pt_expiry );
 
-			$expiry_description = wfMsgForContent( 'protect-expiring', $wgLang->timeanddate( $expiry ) , $wgLang->date( $expiry ) , $wgLang->time( $expiry ) );
+			$expiry_description = wfMsg( 'protect-expiring', $wgLang->timeanddate( $expiry ) , $wgLang->date( $expiry ) , $wgLang->time( $expiry ) );
 
 			$description_items[] = $expiry_description;
 		}
