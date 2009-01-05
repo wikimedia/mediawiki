@@ -1335,6 +1335,7 @@ $3 указал следующую причину: ''$2''",
 'action-move'                 => 'переименование этой страницы',
 'action-move-subpages'        => 'переименование этой страницы со всеми её подстраницами',
 'action-move-rootuserpages'   => 'переименовывать корневые страницы участников',
+'action-movefile'             => 'переименовать этот файл',
 'action-upload'               => 'загрузка этого файла',
 'action-reupload'             => 'перезапись существующего файла',
 'action-reupload-shared'      => 'перекрытие файла из общего хранилища',
@@ -2257,7 +2258,12 @@ $1',
 'move-watch'                   => 'Включить эту страницу в список наблюдения',
 'movepagebtn'                  => 'Переименовать страницу',
 'pagemovedsub'                 => 'Страница переименована',
-'movepage-moved'               => "<big>'''Страница «$1» переименована в «$2»'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>'''Страница «$1» переименована в «$2»'''</big>
+
+Редирект был создан.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => "<big>'''Страница «$1» переименована в «$2»'''</big>
+
+Создание редиректа было запрещено.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => 'Страница с таким именем уже существует или указанное вами название недопустимо.
 Пожалуйста, выберите другое название.',
 'cantmove-titleprotected'      => 'Невозможно переименовать страницу, так как новое название входит в список запрещённых.',

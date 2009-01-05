@@ -1230,6 +1230,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'action-move'                 => 'spostare questa pagina',
 'action-move-subpages'        => 'spostare questa pagina e le relative sottopagine',
 'action-move-rootuserpages'   => 'spostare le pagine principali degli utenti',
+'action-movefile'             => 'spostare questo file',
 'action-upload'               => 'caricare questo file',
 'action-reupload'             => 'sovrascrivere questo file esistente',
 'action-reupload-shared'      => "sovrascrivere questo file presente nell'archivio condiviso",
@@ -1416,6 +1417,7 @@ Per modificare l'ordinamento, fare clic sull'intestazione della colonna prescelt
 'listfiles_user'        => 'Utente',
 'listfiles_size'        => 'Dimensione in byte',
 'listfiles_description' => 'Descrizione',
+'listfiles_count'       => 'Versioni',
 
 # File description page
 'filehist'                       => 'Cronologia del file',
@@ -1698,7 +1700,8 @@ Potrebbero esserci [[{{MediaWiki:Listgrouprights-helppage}}|ulteriori informazio
 'usermailererror' => "L'oggetto mail ha restituito l'errore:",
 'defemailsubject' => 'Messaggio da {{SITENAME}}',
 'noemailtitle'    => 'Nessun indirizzo e-mail',
-'noemailtext'     => 'Questo utente non ha indicato un indirizzo e-mail valido, oppure ha scelto di non ricevere messaggi di posta elettronica dagli altri utenti.',
+'noemailtext'     => 'Questo utente non ha indicato un indirizzo e-mail valido.',
+'nowikiemailtext' => 'Questo utente ha scelto di non ricevere messaggi di posta elettronica dagli altri utenti.',
 'email-legend'    => 'Invia una e-mail a un altro utente di {{SITENAME}}',
 'emailfrom'       => 'Da:',
 'emailto'         => 'A:',
@@ -2122,7 +2125,12 @@ In questi casi, se lo si ritiene opportuno, occorre spostare o aggiungere manual
 'move-watch'                   => 'Aggiungi la pagina agli osservati speciali',
 'movepagebtn'                  => 'Sposta la pagina',
 'pagemovedsub'                 => 'Spostamento effettuato con successo',
-'movepage-moved'               => '<big>\'\'\'"$1" è stata spostata a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1" è stata spostata a "$2"\'\'\'</big>
+
+È stato creato un redirect.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => '<big>\'\'\'"$1" è stato spostato in "$2"\'\'\'</big>
+
+La creazione di un reindirizzamento è stata soppressa.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => 'Una pagina con questo nome esiste già, oppure il nome che hai scelto non è valido.<br /> Scegli, per cortesia, un titolo diverso per la pagina.',
 'cantmove-titleprotected'      => 'Lo spostamento della pagina non è possibile in quanto il nuovo titolo è stato protetto per impedirne la creazione',
 'talkexists'                   => "'''La pagina è stata spostata correttamente, ma non è stato possibile spostare la pagina di discussione perché ne esiste già un'altra con il nuovo titolo. Integrare manualmente i contenuti delle due pagine.'''",
@@ -2136,6 +2144,7 @@ In questi casi, se lo si ritiene opportuno, occorre spostare o aggiungere manual
 'movepage-max-pages'           => 'È stato spostato il numero massimo di $1 {{PLURAL:$1|pagina|pagine}} e non protranno essere spostate ulteriori pagine automaticamente.',
 '1movedto2'                    => 'ha spostato [[$1]] a [[$2]]',
 '1movedto2_redir'              => 'ha spostato [[$1]] a [[$2]] tramite redirect',
+'move-redirect-suppressed'     => 'reindirizzamento soppresso',
 'movelogpage'                  => 'Spostamenti',
 'movelogpagetext'              => 'Di seguito sono elencate le pagine spostate di recente.',
 'movereason'                   => 'Motivo:',
@@ -2149,7 +2158,7 @@ La pagina specificata come destinazione "[[:$1]]" esiste già. Vuoi cancellarla 
 'selfmove'                     => "Il titolo di destinazione inserito è uguale a quello di provenienza: '''attenzione''', leggi i titoli dei campi prima di confermare un comando! Il secondo campo contiene un commento che è necessario per giustificare lo spostamento della pagine e viene memorizzato nel log.",
 'immobile-source-namespace'    => 'Non puoi spostare pagine nel namespace "$1"',
 'immobile-target-namespace'    => 'Non puoi spostare pagine nel namespace "$1"',
-'immobile-target-namespace-iw' => 'Il link interwiki non è una valida motivazione per spostare una pagina.',
+'immobile-target-namespace-iw' => 'Il link interwiki non è una destinazione valida per spostare la pagina.',
 'immobile-source-page'         => 'Questa pagina non può essere spostata.',
 'immobile-target-page'         => 'Non puoi spostare a questo titolo.',
 'imagenocrossnamespace'        => "Non puoi spostare un'immagine fuori del namespace Immagine.",

@@ -10,6 +10,7 @@
  * @author Melancholie
  * @author Michawiki
  * @author MinuteElectron
+ * @author Smeira
  * @author Tlustulimu
  * @author Urhixidur
  * @author Yekrats
@@ -1448,6 +1449,7 @@ Klaku la kolumnan titolon por ŝanĝi la direkton de ordigo.',
 'listfiles_user'        => 'Uzanto',
 'listfiles_size'        => 'Grandeco',
 'listfiles_description' => 'Priskribo',
+'listfiles_count'       => 'Versioj',
 
 # File description page
 'filehist'                       => 'Historio de dosiero',
@@ -1729,27 +1731,29 @@ Estas [[{{MediaWiki:Listgrouprights-helppage}}|aldona informo]] pri individuaj r
 'listgrouprights-removegroup-all' => 'Povi forigi ĉiujn grupojn',
 
 # E-mail user
-'mailnologin'     => 'Neniu alsendota adreso',
-'mailnologintext' => 'Vi nepre estu [[Special:UserLogin|salutanta]] kaj havanta validan retpoŝtadreson en viaj [[Special:Preferences|preferoj]] por retpoŝti al aliaj uzantoj.',
-'emailuser'       => 'Retpoŝti ĉi tiun uzanton',
-'emailpage'       => 'Retpoŝti uzanton',
-'emailpagetext'   => 'Vi povas uzi la jenan paĝon por sendi retpoŝtan mesaĝon al ĉi tiu uzanto.
+'mailnologin'      => 'Neniu alsendota adreso',
+'mailnologintext'  => 'Vi nepre estu [[Special:UserLogin|salutanta]] kaj havanta validan retpoŝtadreson en viaj [[Special:Preferences|preferoj]] por retpoŝti al aliaj uzantoj.',
+'emailuser'        => 'Retpoŝti ĉi tiun uzanton',
+'emailpage'        => 'Retpoŝti uzanton',
+'emailpagetext'    => 'Vi povas uzi la jenan paĝon por sendi retpoŝtan mesaĝon al ĉi tiu uzanto.
 La retadreso kiun vi enigis en [[Special:Preferences|viaj preferoj]] aperos kiel la "De" adreso de la retpoŝto, do la ricevonto eblos respondi rekte al vi.',
-'usermailererror' => 'Resendita retmesaĝa erarsubjekto:',
-'defemailsubject' => '{{SITENAME}} ****-retmesaĝo',
-'noemailtitle'    => 'Neniu retpoŝtadreso',
-'noemailtext'     => 'Ĉi tiu uzanto aŭ ne donis validan retpoŝtadreson aŭ elektis ne ricevi retpoŝton de aliaj uzantoj.',
-'email-legend'    => 'Sendi retpoŝton al alia {{SITENAME}}-uzanto',
-'emailfrom'       => 'De:',
-'emailto'         => 'Al:',
-'emailsubject'    => 'Temo:',
-'emailmessage'    => 'Mesaĝo:',
-'emailsend'       => 'Sendi',
-'emailccme'       => 'Retpoŝti al mi kopion de mia mesaĝo.',
-'emailccsubject'  => 'Kopio de via mesaĝo al $1: $2',
-'emailsent'       => 'Retmesaĝo sendita',
-'emailsenttext'   => 'Via retmesaĝo estas sendita.',
-'emailuserfooter' => 'Ĉi tiun retpoŝton sendis $1 al $2 per funkcio "Email user" ĉe {{SITENAME}}.',
+'usermailererror'  => 'Resendita retmesaĝa erarsubjekto:',
+'defemailsubject'  => '{{SITENAME}} ****-retmesaĝo',
+'noemailtitle'     => 'Neniu retpoŝtadreso',
+'noemailtext'      => 'Ĉi tiu uzanto ne donis validan retadreson.',
+'nowikiemailtitle' => 'Retpoŝto ne permesita',
+'nowikiemailtext'  => 'Ĉi tiu uzanto elektis ne ricevi retpoŝton de aliaj uzantoj.',
+'email-legend'     => 'Sendi retpoŝton al alia {{SITENAME}}-uzanto',
+'emailfrom'        => 'De:',
+'emailto'          => 'Al:',
+'emailsubject'     => 'Temo:',
+'emailmessage'     => 'Mesaĝo:',
+'emailsend'        => 'Sendi',
+'emailccme'        => 'Retpoŝti al mi kopion de mia mesaĝo.',
+'emailccsubject'   => 'Kopio de via mesaĝo al $1: $2',
+'emailsent'        => 'Retmesaĝo sendita',
+'emailsenttext'    => 'Via retmesaĝo estas sendita.',
+'emailuserfooter'  => 'Ĉi tiun retpoŝton sendis $1 al $2 per funkcio "Email user" ĉe {{SITENAME}}.',
 
 # Watchlist
 'watchlist'            => 'Atentaro',
@@ -2384,7 +2388,7 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'spamprotectionmatch' => 'La jena teksto ekagigis la spam-filtrilon: $1',
 'spambot_username'    => 'Trudmesaĝa forigo de MediaWiki',
 'spam_reverting'      => 'Restarigo de lasta versio ne entenante ligilojn al $1',
-'spam_blanking'       => 'Forviŝo de ĉiuj versioj entenate ligilojn al $1',
+'spam_blanking'       => 'Forviŝo de ĉiuj versioj entenantaj ligilojn al $1',
 
 # Info page
 'infosubtitle'   => 'Informoj por paĝo',

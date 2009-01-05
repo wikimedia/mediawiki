@@ -105,8 +105,8 @@ $messages = array(
 'tog-editwidth'               => 'Cuir uasmhéid ar an mbosca eagair',
 'tog-watchcreations'          => 'Cuir ar mo liosta faire leathanaigh a chruthaím',
 'tog-watchdefault'            => 'Déan faire ar leathanaigh a athraím',
-'tog-watchmoves'              => 'Déan faire ar leathanaigh a athainmnaím',
-'tog-watchdeletion'           => 'Déan faire ar leathanaigh a scriosaim',
+'tog-watchmoves'              => 'Cuir ar mo liosta faire leathanaigh a athainmnaím',
+'tog-watchdeletion'           => 'Cuir ar mo liosta faire leathanaigh a scriosaím',
 'tog-minordefault'            => 'Déan mionathruithe de gach aon athrú, mar réamhshocrú',
 'tog-previewontop'            => 'Cuir an réamhamharc os cionn an bhosca eagair, <br />agus ná cuir é taobh thíos de',
 'tog-previewonfirst'          => 'Taispeáin réamhamharc don chéad athrú',
@@ -529,7 +529,7 @@ Iontráil seoladh dea-fhormáidte le do thoil, nó glan an réimse sin.',
 
 # Password reset dialog
 'resetpass'                 => "Athshocraigh d'fhocail faire",
-'resetpass_announce'        => "Logáil tú isteach le cód sealadach a seoladh chugat i r-phost.
+'resetpass_announce'        => "Tá tú logáilte isteach le cód sealadach a seoladh chugat i r-phost.
 Chun d'iarratas logáil isteach a chríochnú, caithfidh tú focal faire nua a roghnú anseo:",
 'resetpass_text'            => '<!-- Cur téacs anseo -->',
 'resetpass_header'          => 'Athshocraigh pasfhocail chuntais',
@@ -622,7 +622,7 @@ Má tháinig tú anseo as dearmad, brúigh ar cnaipe '''ar ais''' ar do bhrabhs�
 níor sábháladh é go fóill!'''",
 'userjspreview'          => "'''Cuimhnigh nach bhfuil seo ach réamhamharc do JavaScript úsáideora
 - níor sábháladh é go fóill!'''",
-'userinvalidcssjstitle'  => "'''Seachain:''' Níl craiceann ar bith darbh ainm \"\$1\".
+'userinvalidcssjstitle'  => "'''AIRE:''' Níl craiceann ar bith darbh ainm \"\$1\".
 Cuimhnigh go úsáideann leathanaigh saincheaptha .css agus .js teideal i gcás íochtar, m.sh. úsaidtear {{ns:user}}:Foo/monobook.css in ann {{ns:user}}:Foo/Monobook.css.",
 'updated'                => '(Leasaithe)',
 'note'                   => '<strong>Tabhair faoi deara:</strong>',
@@ -2027,7 +2027,7 @@ cúlra i bhfócas)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'an t-iomlán',
-'imagelistall'     => 'gach',
+'imagelistall'     => 'an t-iomlán',
 'watchlistall2'    => 'an t-iomlán',
 'namespacesall'    => 'an t-iomlán',
 'monthsall'        => 'gach mí',

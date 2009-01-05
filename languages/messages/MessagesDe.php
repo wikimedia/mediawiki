@@ -1177,7 +1177,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen
 'prefs-search-nscustom'            => 'Suche in weiteren Namensräumen:',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 Wort|$2 Wörter}})',
 'search-result-score'              => 'Relevanz: $1 %',
-'search-redirect'                  => '(Weiterleitung auf „$1“)',
+'search-redirect'                  => '(Weiterleitung von „$1“)',
 'search-section'                   => '(Abschnitt $1)',
 'search-suggest'                   => 'Meintest du „$1“?',
 'search-interwiki-caption'         => 'Schwesterprojekte',
@@ -1589,6 +1589,7 @@ Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|Syst
 'listfiles_user'        => 'Benutzer',
 'listfiles_size'        => 'Größe',
 'listfiles_description' => 'Beschreibung',
+'listfiles_count'       => 'Versionen',
 
 # File description page
 'filehist'                       => 'Dateiversionen',
@@ -1864,27 +1865,29 @@ Zusätzliche Informationen über einzelne Rechte können [[{{MediaWiki:Listgroup
 'listgrouprights-removegroup-all' => 'Kann Benutzer aus allen Gruppen entfernen',
 
 # E-mail user
-'mailnologin'     => 'Fehler beim E-Mail-Versand',
-'mailnologintext' => 'Du musst [[Special:UserLogin|angemeldet sein]] und eine bestätigte E-Mail-Adresse in deinen [[Special:Preferences|Einstellungen]] eingetragen haben, um anderen Benutzern E-Mails schicken zu können.',
-'emailuser'       => 'E-Mail an diesen Benutzer',
-'emailpage'       => 'E-Mail an Benutzer',
-'emailpagetext'   => 'Du kannst dem Benutzer mit dem unten stehenden Formular eine E-Mail senden.
+'mailnologin'      => 'Fehler beim E-Mail-Versand',
+'mailnologintext'  => 'Du musst [[Special:UserLogin|angemeldet sein]] und eine bestätigte E-Mail-Adresse in deinen [[Special:Preferences|Einstellungen]] eingetragen haben, um anderen Benutzern E-Mails schicken zu können.',
+'emailuser'        => 'E-Mail an diesen Benutzer',
+'emailpage'        => 'E-Mail an Benutzer',
+'emailpagetext'    => 'Du kannst dem Benutzer mit dem unten stehenden Formular eine E-Mail senden.
 Als Absender wird die E-Mail-Adresse aus deinen [[Special:Preferences|Einstellungen]] eingetragen, damit der Benutzer dir antworten kann.',
-'usermailererror' => 'Das E-Mail-Objekt gab einen Fehler zurück:',
-'defemailsubject' => '{{SITENAME}}-E-Mail',
-'noemailtitle'    => 'Keine E-Mail-Adresse',
-'noemailtext'     => 'Dieser Benutzer hat keine gültige E-Mail-Adresse angegeben oder möchte keine E-Mail von anderen Benutzern empfangen.',
-'email-legend'    => 'E-Mail an einen anderen {{SITENAME}}-Benutzer senden',
-'emailfrom'       => 'Von:',
-'emailto'         => 'An:',
-'emailsubject'    => 'Betreff:',
-'emailmessage'    => 'Nachricht:',
-'emailsend'       => 'Senden',
-'emailccme'       => 'Sende eine Kopie der E-Mail an mich',
-'emailccsubject'  => 'Kopie deiner Nachricht an $1: $2',
-'emailsent'       => 'E-Mail verschickt',
-'emailsenttext'   => 'Deine E-Mail wurde verschickt.',
-'emailuserfooter' => 'Diese E-Mail wurde von {{SITENAME}}-Benutzer „$1“ an „$2“ gesendet.',
+'usermailererror'  => 'Das E-Mail-Objekt gab einen Fehler zurück:',
+'defemailsubject'  => '{{SITENAME}}-E-Mail',
+'noemailtitle'     => 'Keine E-Mail-Adresse',
+'noemailtext'      => 'Dieser Benutzer hat keine gültige E-Mail-Adresse angegeben.',
+'nowikiemailtitle' => 'E-Mail-Versand nicht möglich',
+'nowikiemailtext'  => 'Dieser Benutzer möchte keine E-Mails von anderen Benutzern erhalten.',
+'email-legend'     => 'E-Mail an einen anderen {{SITENAME}}-Benutzer senden',
+'emailfrom'        => 'Von:',
+'emailto'          => 'An:',
+'emailsubject'     => 'Betreff:',
+'emailmessage'     => 'Nachricht:',
+'emailsend'        => 'Senden',
+'emailccme'        => 'Sende eine Kopie der E-Mail an mich',
+'emailccsubject'   => 'Kopie deiner Nachricht an $1: $2',
+'emailsent'        => 'E-Mail verschickt',
+'emailsenttext'    => 'Deine E-Mail wurde verschickt.',
+'emailuserfooter'  => 'Diese E-Mail wurde von {{SITENAME}}-Benutzer „$1“ an „$2“ gesendet.',
 
 # Watchlist
 'watchlist'            => 'Beobachtungsliste',
@@ -2029,7 +2032,7 @@ Siehe die [[Special:ProtectedPages|Liste der geschützten Seiten]] für alle akt
 'protect-level-autoconfirmed' => 'Sperrung für nicht registrierte Benutzer',
 'protect-level-sysop'         => 'Nur Administratoren',
 'protect-summary-cascade'     => 'kaskadierend',
-'protect-expiring'            => 'bis $1 (UTC)',
+'protect-expiring'            => 'bis $2, $3 Uhr (UTC)',
 'protect-expiry-indefinite'   => 'unbeschränkt',
 'protect-cascade'             => 'Kaskadierende Sperre – alle in diese Seite eingebundenen Vorlagen werden ebenfalls gesperrt.',
 'protect-cantedit'            => 'Du kannst die Sperre dieser Seite nicht ändern, da du keine Berechtigung zum Bearbeiten der Seite hast.',
@@ -2781,9 +2784,9 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 'exif-orientation-2' => 'Horizontal gespiegelt', # 0th row: top; 0th column: right
 'exif-orientation-3' => 'Um 180° gedreht', # 0th row: bottom; 0th column: right
 'exif-orientation-4' => 'Vertikal gespiegelt', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => 'Entgegen dem Uhrzeigersinn um 90° gedreht und dann vertikal gespiegelt', # 0th row: left; 0th column: top
-'exif-orientation-6' => 'Um 90° in Uhrzeigersinn gedreht', # 0th row: right; 0th column: top
-'exif-orientation-7' => 'Um 90° in Uhrzeigersinn gedreht und dann vertikal gespiegelt', # 0th row: right; 0th column: bottom
+'exif-orientation-5' => 'Entgegen dem Uhrzeigersinn um 90° gedreht und vertikal gespiegelt', # 0th row: left; 0th column: top
+'exif-orientation-6' => 'Um 90° im Uhrzeigersinn gedreht', # 0th row: right; 0th column: top
+'exif-orientation-7' => 'Um 90° im Uhrzeigersinn gedreht und vertikal gespiegelt', # 0th row: right; 0th column: bottom
 'exif-orientation-8' => 'Um 90° entgegen dem Uhrzeigersinn gedreht', # 0th row: left; 0th column: bottom
 
 'exif-planarconfiguration-1' => 'Grobformat',

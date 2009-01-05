@@ -1209,7 +1209,7 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'right-editusercssjs'        => 'Editar os ficheiros CSS e JS doutros usuarios',
 'right-rollback'             => 'Reversión rápida da edición dun usuario dunha páxina particular',
 'right-markbotedits'         => 'Marcar as edicións desfeitas como edicións dun bot',
-'right-noratelimit'          => 'Non lle afectan os límites superiores',
+'right-noratelimit'          => 'Non lle afectan os límites de frecuencia',
 'right-import'               => 'Importar páxinas doutros wikis',
 'right-importupload'         => 'Importar páxinas desde un ficheiro cargado',
 'right-patrol'               => 'Marcar edicións como patrulladas',
@@ -1238,6 +1238,7 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'action-move'                 => 'mover esta páxina',
 'action-move-subpages'        => 'mover esta páxina e as súas subpáxinas',
 'action-move-rootuserpages'   => 'mover páxinas de usuario raíz',
+'action-movefile'             => 'mover este ficheiro',
 'action-upload'               => 'cargar este ficheiro',
 'action-reupload'             => 'sobreescribir este ficheiro existente',
 'action-reupload-shared'      => 'sobreescribir este ficheiro nun repositorio compartido',
@@ -1438,6 +1439,7 @@ Premendo nunha cabeceira da columna cambia a ordenación.',
 'listfiles_user'        => 'Usuario',
 'listfiles_size'        => 'Tamaño (bytes)',
 'listfiles_description' => 'Descrición',
+'listfiles_count'       => 'Versións',
 
 # File description page
 'filehist'                       => 'Historial do ficheiro',
@@ -2163,7 +2165,12 @@ Nestes casos, terá que mover ou mesturar a páxina manualmente se o desexa.",
 'move-watch'                   => 'Vixiar esta páxina',
 'movepagebtn'                  => 'Mover a páxina',
 'pagemovedsub'                 => 'O movemento foi un éxito',
-'movepage-moved'               => '<big>\'\'\'"$1" foi movida a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'A páxina "$1" foi movida a "$2"\'\'\'</big>
+
+Creouse unha redirección da primeira cara á segunda.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => '<big>\'\'\'A páxina "$1" foi movida a "$2"\'\'\'</big>
+
+A creación da redirección da primeira cara á segunda foi cancelada.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => 'Xa existe unha páxina con ese nome, ou o nome que escolleu non é válido.
 Por favor escolla outro nome.',
 'cantmove-titleprotected'      => 'Vostede non pode mover a páxina a esta ubicación, porque o novo título foi protexido da creación',

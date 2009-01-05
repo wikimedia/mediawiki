@@ -1254,6 +1254,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'action-move'                 => 'mover esta página',
 'action-move-subpages'        => 'mover esta página e suas subpáginas',
 'action-move-rootuserpages'   => 'mover páginas raiz de utilizadores',
+'action-movefile'             => 'mover este ficheiro',
 'action-upload'               => 'enviar este ficheiro',
 'action-reupload'             => 'sobrescrever o ficheiro existente',
 'action-reupload-shared'      => 'sobrescrever este ficheiro disponível em um repositório partilhado',
@@ -1449,6 +1450,7 @@ Um clique sobre um cabeçalho de coluna altera a ordenação.',
 'listfiles_user'        => 'Utilizador',
 'listfiles_size'        => 'Tamanho',
 'listfiles_description' => 'Descrição',
+'listfiles_count'       => 'Versões',
 
 # File description page
 'filehist'                       => 'Histórico do ficheiro',
@@ -1723,27 +1725,29 @@ Se encontram disponíveis [[{{MediaWiki:Listgrouprights-helppage}}|informações
 'listgrouprights-removegroup-all' => 'Podem remover acesso a todos os grupos',
 
 # E-mail user
-'mailnologin'     => 'Nenhum endereço de envio',
-'mailnologintext' => 'Necessita de estar [[Special:UserLogin|autenticado]] e de possuir um endereço de e-mail válido nas suas [[Special:Preferences|preferências]] para poder enviar um e-mail a outros utilizadores.',
-'emailuser'       => 'Contactar este utilizador',
-'emailpage'       => 'Contactar utilizador',
-'emailpagetext'   => 'Utilize o formulário abaixo para enviar uma mensagem a este utilizador.
+'mailnologin'      => 'Nenhum endereço de envio',
+'mailnologintext'  => 'Necessita de estar [[Special:UserLogin|autenticado]] e de possuir um endereço de e-mail válido nas suas [[Special:Preferences|preferências]] para poder enviar um e-mail a outros utilizadores.',
+'emailuser'        => 'Contactar este utilizador',
+'emailpage'        => 'Contactar utilizador',
+'emailpagetext'    => 'Utilize o formulário abaixo para enviar uma mensagem a este utilizador.
 O endereço que você introduziu nas [[Special:Preferences|suas preferências]] irá aparecer no campo "Remetente" do e-mail, para que o destinatário lhe possa responder directamente.',
-'usermailererror' => 'Objecto de correio retornou um erro:',
-'defemailsubject' => 'E-mail: {{SITENAME}}',
-'noemailtitle'    => 'Sem endereço de e-mail',
-'noemailtext'     => 'Este utilizador não especificou um endereço de e-mail válido, ou optou por não receber e-mail de outros utilizadores.',
-'email-legend'    => 'Enviar e-mail para outro utilizador da {{SITENAME}}',
-'emailfrom'       => 'De:',
-'emailto'         => 'Para:',
-'emailsubject'    => 'Assunto:',
-'emailmessage'    => 'Mensagem:',
-'emailsend'       => 'Enviar',
-'emailccme'       => 'Enviar ao meu e-mail uma cópia de minha mensagem.',
-'emailccsubject'  => 'Cópia de sua mensagem para $1: $2',
-'emailsent'       => 'E-mail enviado',
-'emailsenttext'   => 'A sua mensagem foi enviada.',
-'emailuserfooter' => 'Este e-mail foi enviado por $1 para $2 através da opção de "contactar utilizador" da {{SITENAME}}.',
+'usermailererror'  => 'Objecto de correio retornou um erro:',
+'defemailsubject'  => 'E-mail: {{SITENAME}}',
+'noemailtitle'     => 'Sem endereço de e-mail',
+'noemailtext'      => 'Este utilizador não especificou um endereço de e-mail válido.',
+'nowikiemailtitle' => 'E-mail não permitido',
+'nowikiemailtext'  => 'Este utilizador optou por não receber e-mail de outros utilizadores.',
+'email-legend'     => 'Enviar e-mail para outro utilizador da {{SITENAME}}',
+'emailfrom'        => 'De:',
+'emailto'          => 'Para:',
+'emailsubject'     => 'Assunto:',
+'emailmessage'     => 'Mensagem:',
+'emailsend'        => 'Enviar',
+'emailccme'        => 'Enviar ao meu e-mail uma cópia de minha mensagem.',
+'emailccsubject'   => 'Cópia de sua mensagem para $1: $2',
+'emailsent'        => 'E-mail enviado',
+'emailsenttext'    => 'A sua mensagem foi enviada.',
+'emailuserfooter'  => 'Este e-mail foi enviado por $1 para $2 através da opção de "contactar utilizador" da {{SITENAME}}.',
 
 # Watchlist
 'watchlist'            => 'Artigos vigiados',
@@ -2167,7 +2171,12 @@ Nestes casos, você terá que mover ou mesclar a página manualmente, se assim d
 'move-watch'                   => 'Vigiar esta página',
 'movepagebtn'                  => 'Mover página',
 'pagemovedsub'                 => 'Página movida com sucesso',
-'movepage-moved'               => '<big>\'\'\'"$1" foi movida para "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1" foi movida para "$2"\'\'\'</big>
+
+Um redirecionamento foi criado.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => '<big>\'\'\'"$1" foi movida para "$2"\'\'\'</big>
+
+A criação de um redirecionamento foi suprimida.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => 'Uma página com este título já existe, ou o título que escolheu é inválido.
 Por favor, escolha outro nome.',
 'cantmove-titleprotected'      => 'Você não pode mover uma página para tal denominação uma vez que o novo título se encontra protegido contra criação',
@@ -2182,6 +2191,7 @@ Por favor, escolha outro nome.',
 'movepage-max-pages'           => 'O limite de $1 {{PLURAL:$1|página movida|páginas movidas}} foi atingido; não será possível mover mais páginas de forma automática.',
 '1movedto2'                    => 'moveu [[$1]] para [[$2]]',
 '1movedto2_redir'              => 'moveu [[$1]] para [[$2]] sobre redireccionamento',
+'move-redirect-suppressed'     => 'redirecionamento suprimido',
 'movelogpage'                  => 'Registo de movimento',
 'movelogpagetext'              => 'Abaixo encontra-se uma lista de páginas movidas.',
 'movereason'                   => 'Motivo:',

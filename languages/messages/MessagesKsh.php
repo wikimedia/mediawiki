@@ -1623,6 +1623,7 @@ Velleich probees De et och zo en Zick, wo winnijer loss es.',
 'listfiles_user'        => 'Metmaacher',
 'listfiles_size'        => 'Byte',
 'listfiles_description' => 'Wat es op däm Beld drop?',
+'listfiles_count'       => 'Versione',
 
 # File description page
 'filehist'                       => 'De Versione vun dä Datei',
@@ -1934,33 +1935,35 @@ Mieh övver de einzel Rääschte fenkt Er op de [[{{MediaWiki:Listgrouprights-he
 'listgrouprights-removegroup-all' => 'Metmaacher us alle Metmaacher-Jruppe eruß nämme',
 
 # E-mail user
-'mailnologin'     => 'Keij E-Mail Adress',
-'mailnologintext' => 'Do mööts ald aanjemeldt un [[Special:UserLogin|enjelogg]] sin, un en jode E-Mail 
+'mailnologin'      => 'Keij E-Mail Adress',
+'mailnologintext'  => 'Do mööts ald aanjemeldt un [[Special:UserLogin|enjelogg]] sin, un en jode E-Mail 
 Adress en Dinge [[Special:Preferences|ming Enstellunge]] stonn han, öm en E-Mail aan andere Metmaacher ze 
 schecke.',
-'emailuser'       => 'E-mail aan dä Metmaacher',
-'emailpage'       => 'E-mail aan ene Metmaacher',
-'emailpagetext'   => 'Wann dä Metmaacher en E-mail Adress aanjejovve hätt en singe Enstellunge,
+'emailuser'        => 'E-mail aan dä Metmaacher',
+'emailpage'        => 'E-mail aan ene Metmaacher',
+'emailpagetext'    => 'Wann dä Metmaacher en E-mail Adress aanjejovve hätt en singe Enstellunge,
 un die deit et och, dann kanns De met däm Fomular hee unge en einzelne E-Mail aan dä Metmaacher schecke.
 Ding E-mail Adress, die De en [[Special:Preferences|Ding eije Enstellunge]] aanjejovve häs,
 die weed als em Avsender sing Adress en die E-Mail enjedrage.
 Domet kann, wä die E-Mail kritt, drop antwoote, un die Antwood jeiht tirek aan Dech.
 Alles klor?',
-'usermailererror' => 'Dat E-Mail-Objek jov ene Fähler us:',
-'defemailsubject' => 'E-Mail üvver de {{SITENAME}}.',
-'noemailtitle'    => 'Kein E-Mail Adress',
-'noemailtext'     => 'Dä Metmaacher hät kein E-Mail Adress enjedrage, oder hä well kein E-Mail krije.',
-'email-legend'    => 'Scheck en<i lang="en"> e-mail</i> aan ene andere Metmaacher fum Wiki',
-'emailfrom'       => 'Vun:',
-'emailto'         => 'Aan:',
-'emailsubject'    => 'Üvverschreff:',
-'emailmessage'    => 'Dä Tex fun Dinge Nohresch:',
-'emailsend'       => 'Avschecke',
-'emailccme'       => 'Scheck mer en Kopie vun dä E-Mail.',
-'emailccsubject'  => 'En Kopie vun Dinger E-Mail aan $1: $2',
-'emailsent'       => 'E-Mail es ungerwähs',
-'emailsenttext'   => 'Ding E-Mail es jetz lossjescheck woode.',
-'emailuserfooter' => 'Hee di e-mail hät dä „$1“ an „$2“ jescheck, un doför en de {{SITENAME}} dat „{{int:emailuser}}“ jebruch.',
+'usermailererror'  => 'Dat E-Mail-Objek jov ene Fähler us:',
+'defemailsubject'  => 'E-Mail üvver de {{SITENAME}}.',
+'noemailtitle'     => 'Kein E-Mail Adress',
+'noemailtext'      => 'Dä Metmaacher hät kein jöltijje Adreß för sing <i lang="en">e-mail</i> enjedrage.<!-- oder hä well kein E-Mail krije. -->',
+'nowikiemailtitle' => 'Kein <i lang="en">e-mail</i> zojelohße',
+'nowikiemailtext'  => 'Hee dä Metmaacher well kein <i lang="en">e-mail</i> vun ander Metmaachere jescheck krijje.',
+'email-legend'     => 'Scheck en<i lang="en"> e-mail</i> aan ene andere Metmaacher fum Wiki',
+'emailfrom'        => 'Vun:',
+'emailto'          => 'Aan:',
+'emailsubject'     => 'Üvverschreff:',
+'emailmessage'     => 'Dä Tex fun Dinge Nohresch:',
+'emailsend'        => 'Avschecke',
+'emailccme'        => 'Scheck mer en Kopie vun dä E-Mail.',
+'emailccsubject'   => 'En Kopie vun Dinger E-Mail aan $1: $2',
+'emailsent'        => 'E-Mail es ungerwähs',
+'emailsenttext'    => 'Ding E-Mail es jetz lossjescheck woode.',
+'emailuserfooter'  => 'Hee di e-mail hät dä „$1“ an „$2“ jescheck, un doför en de {{SITENAME}} dat „{{int:emailuser}}“ jebruch.',
 
 # Watchlist
 'watchlist'            => 'ming Oppassliss',

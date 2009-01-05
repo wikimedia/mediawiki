@@ -1409,6 +1409,7 @@ Klik di atas mana-mana lajur yang berkenaan untuk menukar tertib susunan.',
 'listfiles_user'        => 'Pengguna',
 'listfiles_size'        => 'Saiz',
 'listfiles_description' => 'Huraian',
+'listfiles_count'       => 'Versi',
 
 # File description page
 'filehist'                       => 'Sejarah fail',
@@ -1685,31 +1686,32 @@ Anda boleh mengetahui [[{{MediaWiki:Listgrouprights-helppage}}|maklumat tambahan
 'listgrouprights-removegroup-all' => 'Boleh membuang semua kumpulan',
 
 # E-mail user
-'mailnologin'     => 'Tiada alamat e-mel',
-'mailnologintext' => 'Anda perlu [[Special:UserLogin|log masuk]]
+'mailnologin'      => 'Tiada alamat e-mel',
+'mailnologintext'  => 'Anda perlu [[Special:UserLogin|log masuk]]
 terlebih dahulu dan mempunyai alamat e-mel yang sah dalam
 [[Special:Preferences|laman keutamaan]] untuk mengirim e-mel kepada pengguna lain.',
-'emailuser'       => 'Kirim e-mel kepada pengguna ini',
-'emailpage'       => 'E-mel pengguna',
-'emailpagetext'   => 'Gunakan borang berikut untuk mengirim pesanan e-mel kepada pengguna ini.
+'emailuser'        => 'Kirim e-mel kepada pengguna ini',
+'emailpage'        => 'E-mel pengguna',
+'emailpagetext'    => 'Gunakan borang berikut untuk mengirim pesanan e-mel kepada pengguna ini.
 
 Alamat e-mel yang ditetapkan dalam [[Special:Preferences|keutamaan anda]] akan digunakan sebagai alamat "Daripada" dalam e-mel tersebut supaya si penerima boleh membalasnya.',
-'usermailererror' => 'Objek Mail memulangkan ralat:',
-'defemailsubject' => 'E-mel {{SITENAME}}',
-'noemailtitle'    => 'Tiada alamat e-mel',
-'noemailtext'     => 'Pengguna ini tidak menetapkan alamat e-mel yang sah,
-atau telah memilih untuk tidak menerima e-mel daripada pengguna lain.',
-'email-legend'    => 'Kirim e-mel kepada pengguna {{SITENAME}} lain',
-'emailfrom'       => 'Daripada:',
-'emailto'         => 'Kepada:',
-'emailsubject'    => 'Perkara:',
-'emailmessage'    => 'Pesanan:',
-'emailsend'       => 'Kirim',
-'emailccme'       => 'Kirim salinan mesej ini kepada saya.',
-'emailccsubject'  => 'Salinan bagi mesej anda kepada $1: $2',
-'emailsent'       => 'E-mel dikirim',
-'emailsenttext'   => 'E-mel anda telah dikirim.',
-'emailuserfooter' => 'E-mel ini telah dikirim oleh $1 kepada $2 menggunakan alat "E-mel pengguna" di {{SITENAME}}.',
+'usermailererror'  => 'Objek Mail memulangkan ralat:',
+'defemailsubject'  => 'E-mel {{SITENAME}}',
+'noemailtitle'     => 'Tiada alamat e-mel',
+'noemailtext'      => 'Pengguna ini tidak menetapkan alamat e-mel yang sah.',
+'nowikiemailtitle' => 'E-mel tidak dibenarkan',
+'nowikiemailtext'  => 'Pengguna ini tidak mahu menerima e-mel daripada pengguna lain.',
+'email-legend'     => 'Kirim e-mel kepada pengguna {{SITENAME}} lain',
+'emailfrom'        => 'Daripada:',
+'emailto'          => 'Kepada:',
+'emailsubject'     => 'Perkara:',
+'emailmessage'     => 'Pesanan:',
+'emailsend'        => 'Kirim',
+'emailccme'        => 'Kirim salinan mesej ini kepada saya.',
+'emailccsubject'   => 'Salinan bagi mesej anda kepada $1: $2',
+'emailsent'        => 'E-mel dikirim',
+'emailsenttext'    => 'E-mel anda telah dikirim.',
+'emailuserfooter'  => 'E-mel ini telah dikirim oleh $1 kepada $2 menggunakan alat "E-mel pengguna" di {{SITENAME}}.',
 
 # Watchlist
 'watchlist'            => 'Senarai pantau',

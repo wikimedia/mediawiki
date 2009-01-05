@@ -1401,6 +1401,7 @@ Harkitse, haluatko jatkaa tämän tiedoston tallentamista. Tiedoston poistoloki 
 'listfiles_user'        => 'Tallentaja',
 'listfiles_size'        => 'Koko',
 'listfiles_description' => 'Kuvaus',
+'listfiles_count'       => 'Versioita',
 
 # File description page
 'filehist'                       => 'Tiedoston historia',
@@ -1676,26 +1677,28 @@ Lisätietoa yksittäisistä käyttäjäoikeuksista saattaa löytyä [[{{MediaWik
 'listgrouprights-removegroup-all' => 'Voi poistaa jäseniä kaikista ryhmistä',
 
 # E-mail user
-'mailnologin'     => 'Lähettäjän osoite puuttuu',
-'mailnologintext' => 'Sinun pitää olla [[Special:UserLogin|kirjautuneena sisään]] ja [[Special:Preferences|asetuksissasi]] pitää olla toimiva ja <strong>varmennettu</strong> sähköpostiosoite, jotta voit lähettää sähköpostia muille käyttäjille.',
-'emailuser'       => 'Lähetä sähköpostia tälle käyttäjälle',
-'emailpage'       => 'Lähetä sähköpostia käyttäjälle',
-'emailpagetext'   => 'Jos tämä käyttäjä on antanut asetuksissaan kelvollisen sähköpostiosoitteen, alla olevalla lomakkeella voit lähettää hänelle viestin. [[Special:Preferences|Omissa asetuksissasi]] annettu sähköpostiosoite näkyy sähköpostin lähettäjän osoitteena, jotta vastaanottaja voi suoraan vastata viestiin.',
-'usermailererror' => 'Postitus palautti virheen:',
-'defemailsubject' => '{{SITENAME}}-sähköposti',
-'noemailtitle'    => 'Ei sähköpostiosoitetta',
-'noemailtext'     => 'Tämä käyttäjä ei ole määritellyt kelpoa sähköpostiosoitetta tai ei halua postia muilta käyttäjiltä.',
-'email-legend'    => 'Sähköpostin lähetys {{GRAMMAR:genitive|{{SITENAME}}}} käyttäjälle',
-'emailfrom'       => 'Lähettäjä',
-'emailto'         => 'Vastaanottaja',
-'emailsubject'    => 'Aihe',
-'emailmessage'    => 'Viesti',
-'emailsend'       => 'Lähetä',
-'emailccme'       => 'Lähetä kopio viestistä minulle.',
-'emailccsubject'  => 'Kopio lähettämästäsi viestistä osoitteeseen $1: $2',
-'emailsent'       => 'Sähköposti lähetetty',
-'emailsenttext'   => 'Sähköpostiviestisi on lähetetty.',
-'emailuserfooter' => 'Tämän sähköpostin lähetti $1 käyttäjälle $2 käyttämällä ”Lähetä sähköpostia” -toimintoa {{GRAMMAR:inessive|{{SITENAME}}}}.',
+'mailnologin'      => 'Lähettäjän osoite puuttuu',
+'mailnologintext'  => 'Sinun pitää olla [[Special:UserLogin|kirjautuneena sisään]] ja [[Special:Preferences|asetuksissasi]] pitää olla toimiva ja <strong>varmennettu</strong> sähköpostiosoite, jotta voit lähettää sähköpostia muille käyttäjille.',
+'emailuser'        => 'Lähetä sähköpostia tälle käyttäjälle',
+'emailpage'        => 'Lähetä sähköpostia käyttäjälle',
+'emailpagetext'    => 'Jos tämä käyttäjä on antanut asetuksissaan kelvollisen sähköpostiosoitteen, alla olevalla lomakkeella voit lähettää hänelle viestin. [[Special:Preferences|Omissa asetuksissasi]] annettu sähköpostiosoite näkyy sähköpostin lähettäjän osoitteena, jotta vastaanottaja voi suoraan vastata viestiin.',
+'usermailererror'  => 'Postitus palautti virheen:',
+'defemailsubject'  => '{{SITENAME}}-sähköposti',
+'noemailtitle'     => 'Ei sähköpostiosoitetta',
+'noemailtext'      => 'Tämä käyttäjä ei ole määritellyt kelvollista sähköpostiosoitetta.',
+'nowikiemailtitle' => 'Sähköpostin lähettäminen ei sallittu',
+'nowikiemailtext'  => 'Tämä käyttäjä ei halua sähköpostia muilta käyttäjiltä.',
+'email-legend'     => 'Sähköpostin lähetys {{GRAMMAR:genitive|{{SITENAME}}}} käyttäjälle',
+'emailfrom'        => 'Lähettäjä',
+'emailto'          => 'Vastaanottaja',
+'emailsubject'     => 'Aihe',
+'emailmessage'     => 'Viesti',
+'emailsend'        => 'Lähetä',
+'emailccme'        => 'Lähetä kopio viestistä minulle.',
+'emailccsubject'   => 'Kopio lähettämästäsi viestistä osoitteeseen $1: $2',
+'emailsent'        => 'Sähköposti lähetetty',
+'emailsenttext'    => 'Sähköpostiviestisi on lähetetty.',
+'emailuserfooter'  => 'Tämän sähköpostin lähetti $1 käyttäjälle $2 käyttämällä ”Lähetä sähköpostia” -toimintoa {{GRAMMAR:inessive|{{SITENAME}}}}.',
 
 # Watchlist
 'watchlist'            => 'Tarkkailulista',
@@ -2097,7 +2100,12 @@ Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.",
 'move-watch'                   => 'Tarkkaile tätä sivua',
 'movepagebtn'                  => 'Siirrä sivu',
 'pagemovedsub'                 => 'Siirto onnistui',
-'movepage-moved'               => "<big>'''$1 on siirretty nimelle $2'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>'''$1 on siirretty nimelle $2'''</big>
+
+Ohjaus luotiin.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => "<big>'''$1 on siirretty nimelle $2'''</big>
+
+Ohjausta ei luotu.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => 'Kohdesivu on jo olemassa, tai valittu nimi ei ole sopiva. Ole hyvä ja valitse uusi nimi.',
 'cantmove-titleprotected'      => 'Sivua ei voi siirtää tälle nimelle, koska tämän nimisen sivun luonti on estetty.',
 'talkexists'                   => 'Sivun siirto onnistui, mutta keskustelusivua ei voitu siirtää, koska uuden otsikon alla on jo keskustelusivu. Keskustelusivujen sisältö täytyy yhdistää käsin.',
@@ -2112,6 +2120,7 @@ Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.",
 $1 {{PLURAL:$1|sivu|sivua}} siirettiin.',
 '1movedto2'                    => 'siirsi sivun ”$1” uudelle nimelle ”$2”',
 '1movedto2_redir'              => 'siirsi sivun ”$1” ohjauksen ”$2” päälle',
+'move-redirect-suppressed'     => 'ei ohjausta',
 'movelogpage'                  => 'Siirtoloki',
 'movelogpagetext'              => 'Tämä on loki siirretyistä sivuista.',
 'movereason'                   => 'Syy',

@@ -8,6 +8,7 @@
  * @author Huji
  * @author Ladsgroup
  * @author Mardetanha
+ * @author Meisam
  * @author Meno25
  * @author Roozbeh Pournader <roozbeh at gmail.com>
  * @author לערי ריינהארט
@@ -1468,6 +1469,7 @@ $2',
 'action-move'                 => 'انتقال این صفحه',
 'action-move-subpages'        => 'انتقال این صفحه و زیرصفحه‌های آن',
 'action-move-rootuserpages'   => 'انتقال صفحه‌های کاربری سرشاخه',
+'action-movefile'             => 'این پرونده را انتقال بده',
 'action-upload'               => 'بارگذاری این پرونده',
 'action-reupload'             => 'نوشتن روی این پرونده موجود',
 'action-reupload-shared'      => 'باطل کردن این پرونده روی یک مخزن مشترک',
@@ -1938,7 +1940,7 @@ $2',
 خود داشته باشید.',
 'emailuser'        => 'پست الکترونیکی به این کاربر',
 'emailpage'        => 'پست الکترونیکی به کاربر',
-'emailpagetext'    => 'شما می‌توانید از فرم زیر برای ارسال یک نامهٔ الکترونیکی به این کاربر استفاده کنید.
+'emailpagetext'    => 'شما می‌توانید از فرم زیر برای ارسال یک نامه الکترونیکی به این کاربر استفاده کنید.
 نشانی پست الکترونیکی‌ای که در [[Special:Preferences|ترجیحات کاربریتان]] وارد کرده‌اید در نشانی فرستنده (From) نامه خواهد آمد، تا گیرنده بتواند پاسخ دهد.',
 'usermailererror'  => 'پست الکترونیکی دچار خطا شد:',
 'defemailsubject'  => 'پست الکترونیکی {{SITENAME}}',
@@ -1947,7 +1949,7 @@ $2',
 یا تصمیم گرفته از کاربران دیگر پست الکترونیکی دریافت نکند.',
 'nowikiemailtitle' => 'اجازهٔ ارسال نامهٔ الکترونیکی داده نشده‌است',
 'nowikiemailtext'  => 'این کاربر انتخاب کرده که از دیگر کاربران نامهٔ الکترونیکی دریافت نکند.',
-'email-legend'     => 'ارسال نامهٔ الکترونیکی به یک کاربر دیگر {{SITENAME}}',
+'email-legend'     => 'ارسال نامه الکترونیکی به یک کاربر دیگر {{SITENAME}}',
 'emailfrom'        => 'از:',
 'emailto'          => 'به:',
 'emailsubject'     => 'عنوان:',
@@ -2387,7 +2389,12 @@ $1',
 'move-watch'                   => 'پی‌گیری این صفحه',
 'movepagebtn'                  => 'صفحه منتقل شود',
 'pagemovedsub'                 => 'انتقال با موفقیت انجام شد',
-'movepage-moved'               => "<big>'''«$1» به «$2» منتقل شد'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>'''«$1» به «$2» منتقل شد'''</big>
+
+یک تغییر مسیر ایجاد شد.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => "<big>'''«$1» به «$2» منتقل شد'''</big>
+
+از ایجاد تغییر مسیر ممانعت شد.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => 'صفحه‌ای با این نام از قبل وجود دارد، یا نامی که انتخاب کرده‌اید معتبر نیست.
 لطفاً نام دیگری انتخاب کنید.',
 'cantmove-titleprotected'      => 'شما نمی‌توانید صفحه را به این نشانی انتقال دهید، چرا که عنوان جدید در برابر ایجاد محافظت شده‌است',

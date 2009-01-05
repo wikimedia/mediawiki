@@ -5,6 +5,7 @@
  * @file
  *
  * @author Itsmine
+ * @author Omnipaedista
  */
 
 /**
@@ -311,6 +312,7 @@ $messages = array(
 'thisisdeleted'           => '還$1或閱之？',
 'viewdeleted'             => '閱$1之？',
 'restorelink'             => '$1已刪',
+'feedlinks'               => '源：',
 'feed-unavailable'        => '聯合源無視也',
 'site-rss-feed'           => '$1之RSS源',
 'site-atom-feed'          => '$1之Atom源',
@@ -342,7 +344,7 @@ $messages = array(
 'error'                => '有誤',
 'databaseerror'        => '庫藏誤然',
 'dberrortext'          => '問庫語誤，或軟體瑕焉。
-末語道:
+末語道：
 <blockquote><tt>$1</tt></blockquote>
 內此函式"<tt>$2</tt>".
 MySQL報有誤"<tt>$3: $4</tt>"。',
@@ -380,10 +382,11 @@ $1',
 'perfcached'           => '下為謄本，恐不新也。',
 'perfcachedts'         => '下為謄本，$1新之。',
 'wrong_wfQuery_params' => 'wfQuery()參數謬然<br />
-函式: $1<br />
-問語: $2',
+函式： $1<br />
+問語： $2',
 'viewsource'           => '覽源',
 'viewsourcefor'        => '$1',
+'actionthrottled'      => '無為',
 'protectedinterface'   => '此頁司版，緘之以遠濫。',
 'editinginterface'     => "'''警示：'''此頁司版，一髮牽身，惠慎之。如譯之，可慮[http://translatewiki.net/wiki/Main_Page?setlang=zh-hant Betawiki]也，為MediaWiki軟件本地化之計劃也。",
 'sqlhidden'            => '(SQL隱然)',
@@ -507,6 +510,7 @@ $2',
 'italic_tip'      => '斜體',
 'link_sample'     => '鏈',
 'link_tip'        => '鏈內',
+'extlink_sample'  => 'http://www.example.com 鍵題',
 'extlink_tip'     => '冠http://以鏈外',
 'headline_sample' => '題',
 'headline_tip'    => '二題',
@@ -662,6 +666,7 @@ $2',
 'currentrev'             => '今審',
 'currentrev-asof'        => '$1之今審',
 'revisionasof'           => '$1審',
+'revision-info'          => '$1之審由$2', # Additionally available: $3: revision id
 'previousrevision'       => '←舊',
 'nextrevision'           => '新→',
 'currentrevisionlink'    => '今審',
@@ -895,6 +900,7 @@ $2',
 'prefsnologin'              => '未登簿',
 'prefsnologintext'          => '註記須<span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} 登簿]</span>。',
 'prefsreset'                => '簿註歸白',
+'qbsettings-none'           => '無',
 'changepassword'            => '易符節',
 'skin'                      => '面版',
 'skin-preview'              => '草覽',
@@ -1002,6 +1008,7 @@ $2',
 'right-move'                 => '遷頁',
 'right-move-subpages'        => '連遷子頁',
 'right-move-rootuserpages'   => '遷根齋',
+'right-movefile'             => '非勳檔',
 'right-suppressredirect'     => '遷頁時無增轉',
 'right-upload'               => '貢獻品物',
 'right-reupload'             => '蓋現之品物',
@@ -1171,6 +1178,7 @@ $2',
 'successfulupload'           => '檔案安矣',
 'uploadwarning'              => '慎焉！',
 'savefile'                   => '存之',
+'uploadedimage'              => '進獻"[[$1]]"',
 'overwroteimage'             => '新置「[[$1]]」矣',
 'uploaddisabledtext'         => '貢被禁也。',
 'sourcefilename'             => '源名：',
@@ -1189,11 +1197,13 @@ $2',
 點題改其列之。',
 'listfiles_search_for'  => '以媒名尋：',
 'imgfile'               => '檔',
+'listfiles'             => '見檔',
 'listfiles_date'        => '時',
 'listfiles_name'        => '名',
 'listfiles_user'        => '簿',
 'listfiles_size'        => '幅（位元組）',
 'listfiles_description' => '述',
+'listfiles_count'       => '擇',
 
 # File description page
 'filehist'                       => '檔史',
@@ -1348,6 +1358,7 @@ $2',
 'mostcategories'          => '跨船',
 'mostimages'              => '名檔',
 'mostrevisions'           => '屢審',
+'prefixindex'             => '以鏈外查',
 'shortpages'              => '短篇',
 'longpages'               => '長言',
 'protectedpages'          => '頁錮',
@@ -1761,6 +1772,7 @@ $1',
 'ipb-unblock'                     => '赦簿、址',
 'ipb-blocklist-addr'              => '$1之禁',
 'ipb-blocklist'                   => '列禁',
+'ipb-blocklist-contribs'          => '$1勛績',
 'unblockip'                       => '赦簿',
 'unblockiptext'                   => '函下赦禁。',
 'ipusubmit'                       => '赦此址',
@@ -1850,7 +1862,9 @@ $1已被禁矣。爾是否改此置？',
 'move-watch'                   => '派哨',
 'movepagebtn'                  => '遷文',
 'pagemovedsub'                 => '遷成矣',
-'movepage-moved'               => "<big>'''「$1」已遷至「$2」'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>'''「$1」已遷至「$2」'''</big>
+
+轉增矣。", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => '此題早存，或名謬焉；請更之。',
 'cantmove-titleprotected'      => '爾不可動頁至此，因新題已緘焉，防建之。',
 'talkexists'                   => "'''文遷成而議未移，蓋早存也；請併之。'''",
@@ -2131,6 +2145,8 @@ $1已被禁矣。爾是否改此置？',
 'thumbsize'            => '縮圖幅',
 'widthheight'          => '$1矩$2',
 'widthheightpage'      => '$1矩$2，共$3頁',
+'file-info'            => '（大小：$1，MIME類型：$2）',
+'file-info-size'       => '（像素$1矩$2，大小：$3，MIME類型：$4）',
 'svg-long-desc'        => '（SVG檔，貌有像素$1矩$2，幅$3）',
 'show-big-image'       => '全幅',
 'show-big-image-thumb' => '<small>縮圖幅有像素$1矩$2</small>',
@@ -2169,16 +2185,29 @@ $1已被禁矣。爾是否改此置？',
 * focallength', # Do not translate list items
 
 # EXIF tags
-'exif-imagewidth'        => '寬',
-'exif-imagelength'       => '長',
-'exif-datetime'          => '文檔修訂之日期時辰',
-'exif-make'              => '出廠',
-'exif-model'             => '型號',
-'exif-datetimeoriginal'  => '數據生成之日期時辰',
-'exif-datetimedigitized' => '數位化之日期時辰',
-'exif-exposuretime'      => '曝光',
-'exif-fnumber'           => '光圈',
-'exif-focallength'       => '焦距',
+'exif-imagewidth'                => '寬',
+'exif-imagelength'               => '長',
+'exif-photometricinterpretation' => '像素構成',
+'exif-datetime'                  => '文檔修訂之日期時辰',
+'exif-make'                      => '出廠',
+'exif-model'                     => '型號',
+'exif-artist'                    => '作者',
+'exif-exifversion'               => 'Exif版本',
+'exif-datetimeoriginal'          => '數據生成之日期時辰',
+'exif-datetimedigitized'         => '數位化之日期時辰',
+'exif-exposuretime'              => '曝光',
+'exif-exposuretime-format'       => '$1 秒 ($2)',
+'exif-fnumber'                   => '光圈',
+'exif-aperturevalue'             => '光圈',
+'exif-brightnessvalue'           => '光度',
+'exif-flash'                     => '閃光燈',
+'exif-focallength'               => '焦距',
+'exif-flashenergy'               => '閃光燈能量',
+'exif-contrast'                  => '對比',
+'exif-saturation'                => '飽和度',
+'exif-sharpness'                 => '清晰度',
+
+'exif-meteringmode-255' => '其他',
 
 # Flash modes
 'exif-flash-fired-0'    => '閃無火',
@@ -2191,6 +2220,10 @@ $1已被禁矣。爾是否改此置？',
 'exif-flash-mode-3'     => '自模',
 'exif-flash-function-1' => '無閃',
 'exif-flash-redeye-1'   => '紅退模',
+
+'exif-focalplaneresolutionunit-2' => '吋',
+
+'exif-gaincontrol-0' => '無',
 
 # External editor support
 'edit-externally'      => '以外部程式修此文',
@@ -2343,7 +2376,7 @@ $1
 'fileduplicatesearch-legend'   => '尋重',
 'fileduplicatesearch-filename' => '名：',
 'fileduplicatesearch-submit'   => '尋',
-'fileduplicatesearch-info'     => '$1 × $2 像素<br />大小: $3<br />MIME類型: $4',
+'fileduplicatesearch-info'     => '像素$1矩$2<br />大小：$3<br />MIME類型：$4',
 'fileduplicatesearch-result-1' => '案 "$1" 無重也。',
 'fileduplicatesearch-result-n' => '案 "$1" 重有$2。',
 

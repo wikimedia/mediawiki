@@ -47,6 +47,7 @@ $dateFormats = array(
 
 $messages = array(
 # User preference toggles
+'tog-editondblclick'      => 'Άλλαγμαν σελιδίων με διπλόν κλικ (JavaScript)',
 'tog-shownumberswatching' => "Δείξον τοι χρήστς π' δεαβάζνε",
 'tog-showhiddencats'      => 'Δείξον κρυμμένα κατηγορίας',
 
@@ -226,6 +227,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Έχετε καινούρεα μενέματα σο $1',
 'editsection'             => 'άλλαξον',
 'editold'                 => 'άλλαξον',
+'editlink'                => 'άλλαξον',
 'editsectionhint'         => "Άλλαξον κομμάτ': $1",
 'toc'                     => 'Περιεχόμενα',
 'showtoc'                 => 'δείξον',
@@ -616,6 +618,7 @@ $messages = array(
 'upload'            => 'Φόρτωσον αρχείον',
 'uploadbtn'         => 'Φόρτωσον αρχείον',
 'reupload'          => 'Φόρτωσον αξάν',
+'reuploaddesc'      => 'Στα! Μην εφτάς το φόρτεμαν! Δέβα οπίς ση σελίδαν φωρτεματί!',
 'uploadnologin'     => "'Κ είστουν απές. Εμπάτε σην λογαρίανεσουν.",
 'uploadnologintext' => "Πρεπ' σην σελίδαν [[Special:UserLogin|απές]] να είσνε (log in) για πορείτε να φορτώνετε αρχεία.",
 'uploaderror'       => 'Έντον λάθος σο φόρτωμαν',
@@ -668,6 +671,7 @@ $messages = array(
 
 # MIME search
 'mimesearch' => 'Αράεμαν MIME',
+'mimetype'   => 'Τύπον MIME:',
 
 # List redirects
 'listredirects' => 'Κατάλογον με διπλά συνδέσμ',
@@ -840,8 +844,9 @@ $messages = array(
 'restriction-upload' => "Σκώσ' ατό",
 
 # Undelete
-'undeletebtn'            => 'Ποίσον ξαν',
-'undelete-search-submit' => 'Εύρον',
+'undeletebtn'               => 'Ποίσον ξαν',
+'undelete-search-submit'    => 'Εύρον',
+'undelete-show-file-submit' => 'Ναι',
 
 # Namespace form on various pages
 'namespace'      => 'Περιοχήν:',
@@ -937,7 +942,9 @@ $messages = array(
 'move-watch'              => 'Ωρίαγμαν τη σελίδας',
 'movepagebtn'             => 'Ετεροχλάεμαν σελίδας',
 'pagemovedsub'            => 'Ετερχλαεύτεν',
-'movepage-moved'          => '<big>\'\'\'"$1" επήγεν σο "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>\'\'\'"$1" επήγεν σο "$2"\'\'\'</big>
+
+Διπλόν σύνδεζμον εγέντον.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Σελίδαν με αήκον όνεμαν υπάρχει.
 Βαλέστεν άλλο όνεμαν.',
 'cantmove-titleprotected' => "'Κ επορείτε ν' εφτάτε σελίδαν με τ' αβούτον τ' όνεμαν επειδή εσπάλισανατο.",
@@ -973,7 +980,8 @@ $messages = array(
 'import-noarticle'        => "'Κ εχ' σελίδαν για έμπαζμαν!",
 
 # Import log
-'importlogpage' => 'Αρχείον εμπαζματίων',
+'importlogpage'             => 'Αρχείον εμπαζματίων',
+'import-logentry-interwiki' => 'εγέντον εισαγωγήν transwiki σην σελίδαν $1',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => "Τ' εμόν η σελίδαν",
@@ -1041,9 +1049,10 @@ $messages = array(
 'show-big-image-thumb' => "<small>Μέγεθος τη πρώτ' τερεματί: $1 × $2 εικονοστοιχεία</small>",
 
 # Special:NewFiles
-'newimages' => 'Τερέστεν τα καινούρεα φωτογραφίας',
-'ilsubmit'  => 'Αράεμαν',
-'bydate'    => 'ημερομηνίας',
+'newimages'        => 'Τερέστεν τα καινούρεα φωτογραφίας',
+'newimages-legend' => 'Φίλτρον',
+'ilsubmit'         => 'Αράεμαν',
+'bydate'           => 'ημερομηνίας',
 
 # Bad image list
 'bad_image_list' => "Η σύνταξην εν αέτς:
@@ -1080,10 +1089,10 @@ $messages = array(
 'exif-xresolution'                 => 'Οριζόντιον ανάλυση',
 'exif-yresolution'                 => 'Κατακόρυφον ανάλυση',
 'exif-resolutionunit'              => 'Μονάδα μέτρησης ανάλυσης X και Y',
-'exif-stripoffsets'                => 'Τοποθέτηση δεδομενίων εικόνας',
+'exif-stripoffsets'                => 'Τοποθέτηση δογμενίων εικόνας',
 'exif-stripbytecounts'             => 'Bytes ανά συμπιεσμένον λωρίδα',
 'exif-jpeginterchangeformat'       => 'Μετάθεση σε JPEG SOI',
-'exif-jpeginterchangeformatlength' => 'Bytes δεδομενίων JPEG',
+'exif-jpeginterchangeformatlength' => 'Bytes δογμενίων JPEG',
 'exif-transferfunction'            => 'Λειτουργία μεταφοράς',
 'exif-whitepoint'                  => "Χρωματικόν προσδιορισμός τ' άσπρου",
 'exif-primarychromaticities'       => 'Πρωτεύοντες χρωματισμοί',
@@ -1091,9 +1100,13 @@ $messages = array(
 
 'exif-subjectdistance-value' => '$1 μέτρα',
 
+'exif-meteringmode-3' => 'Μονοσημειακόν',
+
 'exif-focalplaneresolutionunit-2' => 'ίντζας',
 
 'exif-subjectdistancerange-1' => 'Macro',
+
+'exif-gpsstatus-v' => 'Διαλειτουργικότητα μετρησίων',
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-m' => 'Μίλιαν την ώραν',
@@ -1123,6 +1136,8 @@ $messages = array(
 'imgmultigoto'     => 'Δέβα σην σελίδαν $1',
 
 # Table pager
+'ascending_abbrev'         => 'ανεβ',
+'descending_abbrev'        => 'κατεβ',
 'table_pager_next'         => 'Επόμενον σελίδα',
 'table_pager_prev'         => 'Πρωτεζνόν σελίδα',
 'table_pager_first'        => 'Πρώτον σελίδα',
