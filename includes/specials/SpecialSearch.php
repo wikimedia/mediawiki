@@ -169,7 +169,7 @@ class SpecialSearch {
 				$this->powerSearchOptions()
 			);
 			$suggestLink = $sk->makeKnownLinkObj( $st,
-				htmlspecialchars( $textMatches->getSuggestionSnippet() ),
+				$textMatches->getSuggestionSnippet(),
 				$stParams );
 
 			$this->didYouMeanHtml = '<div class="searchdidyoumean">'.wfMsg('search-suggest',$suggestLink).'</div>';
@@ -947,7 +947,7 @@ class SpecialSearchOld {
 					$this->powerSearchOptions());
 					
 			$suggestLink = $sk->makeKnownLinkObj( $st,
-				htmlspecialchars( $textMatches->getSuggestionSnippet() ),
+				$textMatches->getSuggestionSnippet(),
 				$stParams );
 			 		
 			$wgOut->addHTML('<div class="searchdidyoumean">'.wfMsg('search-suggest',$suggestLink).'</div>');
