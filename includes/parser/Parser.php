@@ -3617,14 +3617,60 @@ class Parser
 
 			# Save headline for section edit hint before it's escaped
 			$headlineHint = $safeHeadline;
-			$safeHeadline = Sanitizer::escapeId( $safeHeadline,
-				$wgEnforceHtmlIds ? 'noninitial' : 'xml' );
-			# HTML names must be case-insensitively unique (bug 10721)
+
+			if ( $wgEnforceHtmlIds ) {
+				$legacyHeadline = false;
+				$safeHeadline = Sanitizer::escapeId( $safeHeadline,
+					'noninitial' );
+			} else {
+				# For reverse compatibility, provide an id that's
+				# HTML4-compatible, like we used to.
+				#
+				# It may be worth noting, academically, that it's possible for
+				# the legacy anchor to conflict with a non-legacy headline
+				# anchor on the page.  In this case likely the "correct" thing
+				# would be to either drop the legacy anchors or make sure
+				# they're numbered first.  However, this would require people
+				# to type in section names like "abc_.D7.93.D7.90.D7.A4"
+				# manually, so let's not bother worrying about it.
+				$legacyHeadline = Sanitizer::escapeId( $safeHeadline,
+					'noninitial' );
+				$safeHeadline = Sanitizer::escapeId( $safeHeadline, 'xml' );
+
+				if ( $legacyHeadline == $safeHeadline ) {
+					# No reason to have both (in fact, we can't)
+					$legacyHeadline = false;
+				} elseif ( $legacyHeadline != Sanitizer::escapeId(
+				$legacyHeadline, 'xml' ) ) {
+					# The legacy id is invalid XML.  We used to allow this, but
+					# there's no reason to do so anymore.  Backward
+					# compatibility will fail slightly in this case, but it's
+					# no big deal.
+					$legacyHeadline = false;
+				}
+			}
+
+			# HTML names must be case-insensitively unique (bug 10721).  FIXME:
+			# Does this apply to Unicode characters?  Because we aren't
+			# handling those here.
 			$arrayKey = strtolower( $safeHeadline );
+			if ( $legacyHeadline === false ) {
+				$legacyArrayKey = false;
+			} else {
+				$legacyArrayKey = strtolower( $legacyHeadline );
+			}
 
 			# count how many in assoc. array so we can track dupes in anchors
-			isset( $refers[$arrayKey] ) ? $refers[$arrayKey]++ : $refers[$arrayKey] = 1;
-			$refcount[$headlineCount] = $refers[$arrayKey];
+			if ( isset( $refers[$arrayKey] ) ) {
+				$refers[$arrayKey]++;
+			} else {
+				$refers[$arrayKey] = 1;
+			}
+			if ( isset( $refers[$legacyArrayKey] ) ) {
+				$refers[$legacyArrayKey]++;
+			} else {
+				$refers[$legacyArrayKey] = 1;
+			}
 
 			# Don't number the heading if it is the only one (looks silly)
 			if( $doNumberHeadings && count( $matches[3] ) > 1) {
@@ -3634,8 +3680,12 @@ class Parser
 
 			# Create the anchor for linking from the TOC to the section
 			$anchor = $safeHeadline;
-			if($refcount[$headlineCount] > 1 ) {
-				$anchor .= '_' . $refcount[$headlineCount];
+			$legacyAnchor = $legacyHeadline;
+			if ( $refers[$arrayKey] > 1 ) {
+				$anchor .= '_' . $refers[$arrayKey];
+			}
+			if ( $legacyHeadline !== false && $refers[$legacyArrayKey] > 1 ) {
+				$legacyAnchor .= '_' . $refers[$legacyArrayKey];
 			}
 			if( $enoughToc && ( !isset($wgMaxTocLevel) || $toclevel<$wgMaxTocLevel ) ) {
 				$toc .= $sk->tocLine($anchor, $tocline, $numbering, $toclevel);
@@ -3653,7 +3703,9 @@ class Parser
 			} else {
 				$editlink = '';
 			}
-			$head[$headlineCount] = $sk->makeHeadline( $level, $matches['attrib'][$headlineCount], $anchor, $headline, $editlink );
+			$head[$headlineCount] = $sk->makeHeadline( $level,
+				$matches['attrib'][$headlineCount], $anchor, $headline,
+				$editlink, $legacyAnchor );
 
 			$headlineCount++;
 		}
