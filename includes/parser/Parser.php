@@ -3618,7 +3618,7 @@ class Parser
 			# Save headline for section edit hint before it's escaped
 			$headlineHint = $safeHeadline;
 			$safeHeadline = Sanitizer::escapeId( $safeHeadline,
-				$wgEnforceHtmlIds ? array() : 'xml' );
+				$wgEnforceHtmlIds ? 'noninitial' : 'xml' );
 			# HTML names must be case-insensitively unique (bug 10721)
 			$arrayKey = strtolower( $safeHeadline );
 
@@ -4688,7 +4688,7 @@ class Parser
 		# Strip out wikitext links(they break the anchor)
 		$text = $this->stripSectionName( $text );
 		return '#' . Sanitizer::escapeId( $text,
-			$wgEnforceHtmlIds ? array() : 'xml' );
+			$wgEnforceHtmlIds ? 'noninitial' : 'xml' );
 	}
 
 	/**

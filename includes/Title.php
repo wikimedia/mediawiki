@@ -457,7 +457,7 @@ class Title {
 		# one version of Opera 9.x.  The W3C validator, for one, doesn't seem
 		# to care if they aren't encoded.
 		return Sanitizer::escapeId( $fragment,
-			$wgEnforceHtmlIds ? array() : 'xml' );
+			$wgEnforceHtmlIds ? 'noninitial' : 'xml' );
 	}
 
 #----------------------------------------------------------------------------
