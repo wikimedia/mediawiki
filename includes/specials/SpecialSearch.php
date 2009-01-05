@@ -113,8 +113,10 @@ class SpecialSearch {
 	 * @param string $term
 	 */
 	public function showResults( $term ) {
-		global $wgOut, $wgDisableTextSearch, $wgContLang;
+		global $wgOut, $wgUser, $wgDisableTextSearch, $wgContLang;
 		wfProfileIn( __METHOD__ );
+		
+		$sk = $wgUser->getSkin();
 		
 		$this->searchEngine = SearchEngine::create();
 		$search =& $this->searchEngine;
@@ -166,8 +168,9 @@ class SpecialSearch {
 				array( 'search' => $textMatches->getSuggestionQuery(), 'fulltext' 	=> wfMsg('search') ),
 				$this->powerSearchOptions()
 			);
-			$suggestLink = '<a href="'.$st->escapeLocalURL($stParams).'">'.
-				$textMatches->getSuggestionSnippet().'</a>';
+			$suggestLink = $sk->makeKnownLinkObj( $st,
+				htmlspecialchars( $textMatches->getSuggestionSnippet() ),
+				$stParams );
 
 			$this->didYouMeanHtml = '<div class="searchdidyoumean">'.wfMsg('search-suggest',$suggestLink).'</div>';
 		}
@@ -384,7 +387,7 @@ class SpecialSearch {
 	 * @param array $terms terms to highlight
 	 */
 	protected function showHit( $result, $terms ) {
-		global $wgContLang, $wgLang;
+		global $wgContLang, $wgLang, $wgUser;
 		wfProfileIn( __METHOD__ );
 
 		if( $result->isBrokenTitle() ) {
@@ -392,6 +395,7 @@ class SpecialSearch {
 			return "<!-- Broken link in search result -->\n";
 		}
 
+		$sk = $wgUser->getSkin();
 		$t = $result->getTitle();
 
 		$link = $this->sk->makeKnownLinkObj( $t, $result->getTitleSnippet($terms));
@@ -457,8 +461,8 @@ class SpecialSearch {
 				array('search'    => wfMsgForContent('searchrelated').':'.$t->getPrefixedText(),
 				      'fulltext'  => wfMsg('search') ));
 			
-			$related = ' -- <a href="'.$st->escapeLocalURL($stParams).'">'. 
-				wfMsg('search-relatedarticle').'</a>';
+			$related = ' -- ' . $sk->makeKnownLinkObj( $st,
+				wfMsg('search-relatedarticle'), $stParams );
 		}
 
 		// Include a thumbnail for media files...
@@ -942,8 +946,9 @@ class SpecialSearchOld {
 					'fulltext' 	=> wfMsg('search')),
 					$this->powerSearchOptions());
 					
-			$suggestLink = '<a href="'.$st->escapeLocalURL($stParams).'">'.
-					$textMatches->getSuggestionSnippet().'</a>';
+			$suggestLink = $sk->makeKnownLinkObj( $st,
+				htmlspecialchars( $textMatches->getSuggestionSnippet() ),
+				$stParams );
 			 		
 			$wgOut->addHTML('<div class="searchdidyoumean">'.wfMsg('search-suggest',$suggestLink).'</div>');
 		}
@@ -1233,8 +1238,8 @@ class SpecialSearchOld {
 				array('search'    => wfMsgForContent('searchrelated').':'.$t->getPrefixedText(),
 				      'fulltext'  => wfMsg('search') ));
 			
-			$related = ' -- <a href="'.$st->escapeLocalURL($stParams).'">'. 
-				wfMsg('search-relatedarticle').'</a>';
+			$related = ' -- ' . $sk->makeKnownLinkObj( $st,
+				wfMsg('search-relatedarticle'), $stParams );
 		}
 				
 		// Include a thumbnail for media files...
