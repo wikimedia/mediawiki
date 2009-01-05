@@ -620,7 +620,7 @@ class Sanitizer {
 			if ( $attribute === 'id' ) {
 				global $wgEnforceHtmlIds;
 				$value = Sanitizer::escapeId( $value,
-					$wgEnforceHtmlIds ? array() : 'xml' );
+					$wgEnforceHtmlIds ? 'noninitial' : 'xml' );
 			}
 
 			// If this attribute was previously set, override it.
@@ -806,18 +806,11 @@ class Sanitizer {
 			$id = urlencode( Sanitizer::decodeCharReferences( strtr( $id, ' ', '_' ) ) );
 			$id = str_replace( array_keys( $replace ), array_values( $replace ), $id );
 
-			/*
-			// Let's not go changing our links just yet, since we plan to
-			// rip this out anyway and switch to the prettier Unicode-friendly
-			// links as XHTML and HTML 5 allow and browsers seem to think is
-			// just a-ok to do.
-			//
 			if ( !preg_match( '/^[a-zA-Z]/', $id )
 			&& !in_array( 'noninitial', $options ) )  {
 				// Initial character must be a letter!
 				$id = "x$id";
 			}
-			*/
 			return $id;
 		}
 
