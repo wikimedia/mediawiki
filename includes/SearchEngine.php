@@ -470,7 +470,7 @@ class SearchResultSet {
 	}
 
 	/**
-	 * @return string highlighted suggested query, '' if none
+	 * @return string HTML highlighted suggested query, '' if none
 	 */
 	function getSuggestionSnippet(){
 		return '';
