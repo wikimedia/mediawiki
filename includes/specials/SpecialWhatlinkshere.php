@@ -256,7 +256,7 @@ class WhatLinksHerePage {
 	}
 
 	protected function listStart() {
-		return Xml::openElement( 'ul' );
+		return Xml::openElement( 'ul', array ( 'id' => 'mw-whatlinkshere-list' ) );
 	}
 
 	protected function listItem( $row, $nt, $notClose = false ) {
