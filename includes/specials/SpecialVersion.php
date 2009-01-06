@@ -13,7 +13,7 @@ class SpecialVersion extends SpecialPage {
 	private $firstExtOpened = true;
 
 	function __construct(){
-		parent::__construct( 'Version' );	
+		parent::__construct( 'Version' );
 	}
 
 	/**
@@ -27,7 +27,7 @@ class SpecialVersion extends SpecialPage {
 		$this->outputHeader();
 
 		$wgOut->addHTML( '<div dir="ltr">' );
-		$text = 
+		$text =
 			$this->MediaWikiCredits() .
 			$this->softwareInformation() .
 			$this->extensionCredits();
@@ -114,7 +114,7 @@ class SpecialVersion extends SpecialPage {
 		wfProfileOut( __METHOD__ );
 		return $version;
 	}
-	
+
 	/**
 	 * Return a string of the MediaWiki version with a link to SVN revision if
 	 * available
@@ -162,8 +162,8 @@ class SpecialVersion extends SpecialPage {
 					if ( isset( $extension['version'] ) ) {
 						$version = $extension['version'];
 					}
-					if ( isset( $extension['svn-revision'] ) && 
-						preg_match( '/\$(?:Rev|LastChangedRevision|Revision): *(\d+)/', 
+					if ( isset( $extension['svn-revision'] ) &&
+						preg_match( '/\$(?:Rev|LastChangedRevision|Revision): *(\d+)/',
 							$extension['svn-revision'], $m ) ) {
 						$subVersion = 'r' . $m[1];
 					}
@@ -188,24 +188,24 @@ class SpecialVersion extends SpecialPage {
 
 		if ( count( $wgExtensionFunctions ) ) {
 			$out .= $this->openExtType( wfMsg( 'version-extension-functions' ) );
-			$out .= '<tr><td colspan="3">' . $this->listToText( $wgExtensionFunctions ) . "</td></tr>\n";
+			$out .= '<tr><td colspan="3" style="direction:ltr">' . $this->listToText( $wgExtensionFunctions ) . "</td></tr>\n";
 		}
 
 		if ( $cnt = count( $tags = $wgParser->getTags() ) ) {
 			for ( $i = 0; $i < $cnt; ++$i )
 				$tags[$i] = "&lt;{$tags[$i]}&gt;";
 			$out .= $this->openExtType( wfMsg( 'version-parser-extensiontags' ) );
-			$out .= '<tr><td colspan="3">' . $this->listToText( $tags ). "</td></tr>\n";
+			$out .= '<tr><td colspan="3" style="direction:ltr">' . $this->listToText( $tags ). "</td></tr>\n";
 		}
 
 		if( $cnt = count( $fhooks = $wgParser->getFunctionHooks() ) ) {
 			$out .= $this->openExtType( wfMsg( 'version-parser-function-hooks' ) );
-			$out .= '<tr><td colspan="3">' . $this->listToText( $fhooks ) . "</td></tr>\n";
+			$out .= '<tr><td colspan="3" style="direction:ltr">' . $this->listToText( $fhooks ) . "</td></tr>\n";
 		}
 
 		if ( count( $wgSkinExtensionFunctions ) ) {
 			$out .= $this->openExtType( wfMsg( 'version-skin-extension-functions' ) );
-			$out .= '<tr><td colspan="3">' . $this->listToText( $wgSkinExtensionFunctions ) . "</td></tr>\n";
+			$out .= '<tr><td colspan="3" style="direction:ltr">' . $this->listToText( $wgSkinExtensionFunctions ) . "</td></tr>\n";
 		}
 		$out .= Xml::closeElement( 'table' );
 		return $out;
@@ -238,7 +238,7 @@ class SpecialVersion extends SpecialPage {
 		return "<tr>
 				<td><em>$extension $version</em></td>
 				<td>$description</td>
-				<td>" . $this->listToText( (array)$author ) . "</td>
+				<td class=\"sv-ext-authors\">" . $this->listToText( (array)$author ) . "</td>
 			</tr>\n";
 	}
 
@@ -331,7 +331,7 @@ class SpecialVersion extends SpecialPage {
 		} else {
 			if( is_object( $list[0] ) )
 				$class = get_class( $list[0] );
-			else 
+			else
 				$class = $list[0];
 			return "($class, {$list[1]})";
 		}
