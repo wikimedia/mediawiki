@@ -1881,6 +1881,8 @@ $wgMessageStructure = array(
 		'movepagebtn',
 		'pagemovedsub',
 		'movepage-moved',
+		'movepage-moved-redirect',
+		'movepage-moved-noredirect',
 		'articleexists',
 		'cantmove-titleprotected',
 		'talkexists',
