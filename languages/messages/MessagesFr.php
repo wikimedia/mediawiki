@@ -2275,12 +2275,7 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 'move-watch'                   => 'Suivre cette page',
 'movepagebtn'                  => 'Renommer la page',
 'pagemovedsub'                 => 'Renommage réussi',
-'movepage-moved'               => "<big>'''« $1 »''' a été déplacé vers '''« $2 »'''</big>
-
-Une redirection a été créé.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'movepage-moved-noredirect'    => "<big>'''« $1 » a été déplacé vers « $2 »'''</big>
-
-La création de la redirection a été supprimé.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>'''« $1 »''' a été déplacé vers '''« $2 »'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => 'Il existe déjà une page portant ce titre, ou le titre que vous avez choisi n’est pas valide. Veuillez en choisir un autre.',
 'cantmove-titleprotected'      => 'Vous ne pouvez pas déplacer une page vers cet emplacement car le nouveau titre a été protégé à la création.',
 'talkexists'                   => 'La page elle-même a été déplacée avec succès, mais la page de discussion n’a pas pu être déplacée car il en existait déjà une sous le nouveau nom. Veuillez les fusionner manuellement.',

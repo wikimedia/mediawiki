@@ -2079,12 +2079,7 @@ En ixos casos, si lo deseya, abrá de tresladar u combinar manualment o conteniu
 'move-watch'                   => 'Cosirar iste articlo',
 'movepagebtn'                  => 'Tresladar pachina',
 'pagemovedsub'                 => 'Treslado feito correutament',
-'movepage-moved'               => "<big>S'ha tresladato '''\"\$1\"  ta \"\$2\"'''</big>
-
-S'ha creyato una reendrezera.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'movepage-moved-noredirect'    => "<big>'''S'ha treladato \"\$1\" ta \"\$2\"'''</big>
-
-S'ha canzelato a creyazión d'una reendrezera.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>S'ha tresladato '''\"\$1\"  ta \"\$2\"'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => 'Ya bi ha una pachina con ixe nombre u o nombre que ha eslechito no ye conforme. Por fabor trigue un atro nombre.',
 'cantmove-titleprotected'      => 'No puede tresladar una pachina ta íste títol porque o nuebo títol ye protechito y no puede estar creyato',
 'talkexists'                   => "A pachina s'ha tresladato correutament, pero a descusión no s'ha puesto tresladar porque ya esiste una con o nuebo títol. Por fabor, encorpore manualment o suyo conteniu.",

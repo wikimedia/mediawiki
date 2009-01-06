@@ -2099,12 +2099,7 @@ W toś tyma padoma dej wopśimjeśe boka manualnje se pśesunuś resp. gromadu w
 'move-watch'                   => 'Toś ten bok wobglědowaś',
 'movepagebtn'                  => 'Bok pśesunuś',
 'pagemovedsub'                 => 'Bok jo se pśesunuł.',
-'movepage-moved'               => '<big>\'\'\'Bok "$1" jo se do "$2" pśesunuł.\'\'\'</big>
-
-Dalejpósrědnjenje jo se napórało.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'movepage-moved-noredirect'    => '<big>\'\'\'"$1" jo se pśesunuł do "$2"\'\'\'</big>
-
-Napóranje dalejpósrědnjenja jo se pódtłocyło.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'Bok "$1" jo se do "$2" pśesunuł.\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => 'Bok z takim mjenim južo eksistěrujo abo mě, kótarež sćo wuwzólił jo njepłaśece. Pšosym wuzwól nowe mě.',
 'cantmove-titleprotected'      => 'Njamóžoš bok k toś tomu městnoju pśesunuś, dokulaž nowy titel jo pśeśiwo napóranjeju šćitany.',
 'talkexists'                   => 'Samy bok jo se pśesunuł, ale pśisłušny diskusijny bok nic, dokulaž eksistěrujo južo taki bok z nowym mjenim. Pšosym pśirownaj wopśimjeśi manualnje.',

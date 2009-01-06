@@ -2267,12 +2267,7 @@ U tim slučajevima, moraćete ručno da premjestite stranicu ukoliko to želite.
 'move-watch'                   => 'Prati ovu stranicu',
 'movepagebtn'                  => 'premjestite stranicu',
 'pagemovedsub'                 => 'Premještanje uspjelo',
-'movepage-moved'               => '<big>\'\'\'"$1" je premještena na "$2"\'\'\'</big>
-
-Preusmjerenje je napravljeno.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'movepage-moved-noredirect'    => '<big>\'\'\'"$1" je premješteno na "$2"\'\'\'</big>
-
-Pravljenje preusmjerenja je onemogućeno.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1" je premještena na "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => 'Stranica pod tim imenom već postoji, ili je ime koje ste izabrali neispravno.  Molimo Vas da izaberete drugo ime.',
 'cantmove-titleprotected'      => 'Ne možete premjestiti stranicu na ovu lokaciju, jer je novi naslov zaštićen od pravljenja',
 'talkexists'                   => 'Sama stranica je uspješno premještena, ali
