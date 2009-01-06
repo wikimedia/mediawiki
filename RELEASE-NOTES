@@ -257,6 +257,7 @@ The following extensions are migrated into MediaWiki 1.14:
   move log
 * Image moving is now enabled for sysops by default
 * Make "Did you mean" search feature more noticeable
+* Added "Advanced search" link to the search form
 
 === Bug fixes in 1.14 ===
 
