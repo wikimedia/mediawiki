@@ -2279,12 +2279,7 @@ W takich przypadkach treść dyskusji można przenieść tylko ręcznie.',
 'move-watch'                   => 'Obserwuj',
 'movepagebtn'                  => 'Przenieś stronę',
 'pagemovedsub'                 => 'Przeniesienie powiodło się',
-'movepage-moved'               => "<big>'''„$1” została przeniesiona do „$2”'''</big>
-
-Zostało utworzone przekierowanie.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'movepage-moved-noredirect'    => "<big>'''„$1” została przeniesiona do „$2”'''</big>
-
-Przekierowanie nie zostało utworzone.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>'''„$1” została przeniesiona do „$2”'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => 'Strona o podanej nazwie już istnieje albo wybrana przez Ciebie nazwa nie jest poprawna.
 Wybierz inną nazwę.',
 'cantmove-titleprotected'      => 'Nie możesz przenieść strony, ponieważ nowa nazwa strony jest niedozwolona z powodu zabezpieczenia przed utworzeniem',

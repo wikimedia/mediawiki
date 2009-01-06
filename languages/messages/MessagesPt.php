@@ -2171,12 +2171,7 @@ Nestes casos, você terá que mover ou mesclar a página manualmente, se assim d
 'move-watch'                   => 'Vigiar esta página',
 'movepagebtn'                  => 'Mover página',
 'pagemovedsub'                 => 'Página movida com sucesso',
-'movepage-moved'               => '<big>\'\'\'"$1" foi movida para "$2"\'\'\'</big>
-
-Um redirecionamento foi criado.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'movepage-moved-noredirect'    => '<big>\'\'\'"$1" foi movida para "$2"\'\'\'</big>
-
-A criação de um redirecionamento foi suprimida.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1" foi movida para "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => 'Uma página com este título já existe, ou o título que escolheu é inválido.
 Por favor, escolha outro nome.',
 'cantmove-titleprotected'      => 'Você não pode mover uma página para tal denominação uma vez que o novo título se encontra protegido contra criação',

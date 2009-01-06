@@ -2296,12 +2296,7 @@ Ezen esetekben a vitalapot külön, kézzel kell átnevezned a kívánságaid sz
 'move-watch'                   => 'Figyeld a lapot',
 'movepagebtn'                  => 'Lap átnevezése',
 'pagemovedsub'                 => 'Átnevezés sikeres',
-'movepage-moved'               => "<big>'''„$1” átnevezve „$2” névre'''</big>
-
-A régi címről átirányítás készült az új címre.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'movepage-moved-noredirect'    => "<big>'''„$1” átnevezve „$2” névre'''</big>
-
-A régi címről nem sikerült átirányítást készíteni.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>'''„$1” átnevezve „$2” névre'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => 'Ilyen névvel már létezik lap, vagy az általad választott név érvénytelen.
 Kérlek, válassz egy másik nevet.',
 'cantmove-titleprotected'      => 'Nem nevezheted át a lapot, mert az új cím le van védve a létrehozás ellen.',

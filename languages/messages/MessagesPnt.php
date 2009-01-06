@@ -942,9 +942,7 @@ $messages = array(
 'move-watch'              => 'Ωρίαγμαν τη σελίδας',
 'movepagebtn'             => 'Ετεροχλάεμαν σελίδας',
 'pagemovedsub'            => 'Ετερχλαεύτεν',
-'movepage-moved'          => '<big>\'\'\'"$1" επήγεν σο "$2"\'\'\'</big>
-
-Διπλόν σύνδεζμον εγέντον.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>\'\'\'"$1" επήγεν σο "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Σελίδαν με αήκον όνεμαν υπάρχει.
 Βαλέστεν άλλο όνεμαν.',
 'cantmove-titleprotected' => "'Κ επορείτε ν' εφτάτε σελίδαν με τ' αβούτον τ' όνεμαν επειδή εσπάλισανατο.",

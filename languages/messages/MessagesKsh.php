@@ -2394,12 +2394,7 @@ En dänne Fäll, muss De Der dä Enhald vun dä Klaafsigge selvs vörnemme, un e
 'move-watch'                   => 'Op die Sigg hee oppasse',
 'movepagebtn'                  => 'Ömnenne',
 'pagemovedsub'                 => 'Dat Ömnenne hät jeflupp',
-'movepage-moved'               => "<big>'''De Sigg „$1“ es jez en „$2“ ömjenannt.'''</big>
-
-En Ömleidung vum ahle Name op der neue es aanjelaat.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'movepage-moved-noredirect'    => "<big>'''De Sigg „$1“ es jez en „$2“ ömjenannt.'''</big>
-
-Kein Ömleidung woodt aanjelaat.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>'''De Sigg „$1“ es jez en „$2“ ömjenannt.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => "De Sigg met däm Name jitt et ald, oder dä Name ka'mer oder darf mer nit bruche.<br />Do muss Der ene andere Name ussöke.",
 'cantmove-titleprotected'      => 'Die Sigg ömzenänne es esu nit müjjelesch, dänn dä neu Name vun dä Sigg es jäje et Neu-Aanlääje jeschötz.',
 'talkexists'                   => '<strong>Opjepass:</strong> De Sigg selver woodt jetz ömjenannt, ävver dä ehr Klaafsigg kunnte mer nit met ömnenne. Et jitt ald ein met däm neue Name. Bes esu jod un dun die zwei vun Hand zosamme läje!',

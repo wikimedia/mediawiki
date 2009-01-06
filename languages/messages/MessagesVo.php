@@ -2002,12 +2002,7 @@ Votükam at kanon binön mu staböfik ä no paspetöl pö pad pöpedik. Suemolö
 'move-watch'                   => 'Pladolöd padi at ini galädalised',
 'movepagebtn'                  => 'Topätükolöd padi',
 'pagemovedsub'                 => 'Topätükam eplöpon',
-'movepage-moved'               => '<big>\'\'\'"$1" petopätükon lü "$2"\'\'\'</big>
-
-Lüodüköm pejafon.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'movepage-moved-noredirect'    => '<big>\'\'\'Pad: "$1" petopätükon ad pad: "$2"\'\'\'</big>
-
-Lüoküköm ye no pejafon.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1" petopätükon lü "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => 'Pad labü nem at ya dabinon, u nem fa ol pevälöl no lonöfon.
 Välolös nemi votik.',
 'cantmove-titleprotected'      => 'No kanol topätükön padi bi jafam tiäda nulik at penemögükon.',

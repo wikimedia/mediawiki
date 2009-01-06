@@ -2107,12 +2107,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'move-watch'                   => '이 문서 주시하기',
 'movepagebtn'                  => '이동',
 'pagemovedsub'                 => '문서 이동함',
-'movepage-moved'               => '<big>\'\'\'"$1" 문서를 "$2" 문서로 이동했습니다.\'\'\'</big>
-
-넘겨주기 문서가 생성되었습니다.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'movepage-moved-noredirect'    => '<big>\'\'\'"$1" 문서를 "$2" 문서로 이동했습니다.\'\'\'</big>
-
-넘겨주기 문서가 생성되지 않았습니다.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1" 문서를 "$2" 문서로 이동했습니다.\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => '문서가 이미 존재하거나, 문서 이름이 올바르지 않습니다. 다른 제목으로 시도해주세요.',
 'cantmove-titleprotected'      => '새로운 제목으로 문서를 만드는 것이 금지되어 있어, 문서를 이동할 수 없습니다.',
 'talkexists'                   => "'''문서는 이동되었습니다. 하지만 딸린 토론 문서의 새 이름으로 된 문서가 이미 존재해서, 토론 문서는 이동하지 않았습니다. 직접 문서를 합쳐 주세요.'''",

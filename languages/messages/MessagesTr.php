@@ -1743,9 +1743,7 @@ Bu durumlarda sayfayı kendiniz aktarmalısınız.",
 'move-watch'              => 'Bu sayfayı izle',
 'movepagebtn'             => 'İsmi değiştir',
 'pagemovedsub'            => 'İsim değişikliği tamamlandı.',
-'movepage-moved'          => '<big>\'\'\'"$1",  "$2" sayfasına taşındı\'\'\'</big>
-
-Bir yönlendirme oluşturuldu.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => '<big>\'\'\'"$1",  "$2" sayfasına taşındı\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Bu isimde bir sayfa bulunmakta veya seçmiş olduğunuz isim geçersizdir.
 Lütfen başka bir isim deneyiniz.',
 'talkexists'              => "'''Sayfanın kendisi başarıyla taşındı, ancak tartışma sayfası taşınamadı çünkü taşınacağı isimde zaten bir sayfa vardı. Lütfen sayfanın içeriğini diğer sayfaya kendiniz taşıyın.'''",
