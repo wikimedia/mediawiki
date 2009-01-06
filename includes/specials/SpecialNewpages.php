@@ -70,6 +70,8 @@ class SpecialNewpages extends SpecialPage {
 			// PG offsets not just digits!
 			if ( preg_match( '/^offset=([^=]+)$/', $bit, $m ) )
 				$this->opts->setValue( 'offset',  intval($m[1]) );
+			if ( preg_match( '/^username=(.*)$/', $bit, $m ) )
+				$this->opts->setValue( 'username', $m[1] );
 			if ( preg_match( '/^namespace=(.*)$/', $bit, $m ) ) {
 				$ns = $wgLang->getNsIndex( $m[1] );
 				if( $ns !== false ) {
