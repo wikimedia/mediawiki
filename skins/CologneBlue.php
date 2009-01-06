@@ -299,7 +299,8 @@ class SkinCologneBlue extends Skin {
 		$s .= "<input type='text' id=\"searchInput{$this->searchboxes}\" class=\"mw-searchInput\" name=\"search\" size=\"14\" value=\""
 		  . htmlspecialchars(substr($search,0,256)) . "\" /><br />"
 		  . "<input type='submit' id=\"searchGoButton{$this->searchboxes}\" class=\"searchButton\" name=\"go\" value=\"" . htmlspecialchars( wfMsg( "searcharticle" ) ) . "\" />"
-		  . "<input type='submit' id=\"mw-searchButton{$this->searchboxes}\" class=\"searchButton\" name=\"fulltext\" value=\"" . htmlspecialchars( wfMsg( "search" ) ) . "\" /></form>";
+		  . "<input type='submit' id=\"mw-searchButton{$this->searchboxes}\" class=\"searchButton\" name=\"fulltext\" value=\"" . htmlspecialchars( wfMsg( "search" ) ) . "\" />\n"
+		  . '<a href="' . wfMsg ('searchaction') . '" rel="search">' . wfMsg ('powersearch-legend') . '</a></form>';
 
 		// Ensure unique id's for search boxes made after the first
 		$this->searchboxes = $this->searchboxes == '' ? 2 : $this->searchboxes + 1;

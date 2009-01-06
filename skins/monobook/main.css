@@ -715,7 +715,9 @@ input.searchButton {
 	padding: .5em .4em .4em .4em;
 	text-align: center;
 }
-
+#p-search a {
+	font-size: 95%;
+}
 /*
 ** the personal toolbar
 */
