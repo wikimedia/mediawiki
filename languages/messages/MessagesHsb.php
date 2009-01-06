@@ -2072,12 +2072,7 @@ W tutych padach dyrbiš stronu manuelnje přesunyć abo zaměšeć, jeli sej to 
 'move-watch'                   => 'Stronu wobkedźbować',
 'movepagebtn'                  => 'Stronu přesunyć',
 'pagemovedsub'                 => 'Přesunjenje wuspěšne',
-'movepage-moved'               => '<big>\'\'\'Strona "$1" bu do "$2" přesunjena.\'\'\'</big>
-
-Daleposrědkowanje bu wutworjene.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'movepage-moved-noredirect'    => '<big>\'\'\'"$1" bu do  "$2" přesunjena\'\'\'</big>
-
-Wutworjenje daleposrědkowanja bu potłóčene.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'Strona "$1" bu do "$2" přesunjena.\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => 'Strona z tutym mjenom hižo eksistuje abo mjeno, kotrež sy wuzwolił, płaćiwe njeje. Prošu wuzwol druhe mjeno.',
 'cantmove-titleprotected'      => 'Njemóžeš stronu do tutoho městna přesunyć, dokelž nowy titul bu přećiwo wutworjenju škitany',
 'talkexists'                   => 'Strona sama bu z wuspěchom přesunjena, diskusijna strona pak njeda so přesunyć, dokelž pod nowym titulom hižo eksistuje. Prošu změš jeju manuelnje.',

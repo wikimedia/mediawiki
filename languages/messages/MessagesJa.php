@@ -2173,12 +2173,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'move-watch'                   => '移動するページをウォッチ',
 'movepagebtn'                  => 'ページを移動',
 'pagemovedsub'                 => '無事移動しました。',
-'movepage-moved'               => "<big>'''「$1」は「$2」へ移動されました'''</big>
-
-リダイレクトが作成されました。", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'movepage-moved-noredirect'    => "<big>'''「$1」は「$2」へ移動されました'''</big>
-
-リダイレクトは作成されませんでした。", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>'''「$1」は「$2」へ移動されました'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => '指定された移動先には既にページが存在するか、名前が不適切です。',
 'cantmove-titleprotected'      => '移動先ページが作成保護対象となっているため、ページを移動できません。',
 'talkexists'                   => "'''ページ自身は移動されましたが、付随のノートページは移動先のページが存在したため移動できませんでした。手動で内容を統合してください。'''",

@@ -1714,9 +1714,7 @@ $1',
 'move-watch'                   => 'Ἑφορᾶν τήνδε τὴν δέλτον',
 'movepagebtn'                  => 'Κινεῖν τὴν δέλτον',
 'pagemovedsub'                 => 'Κεκίνηται ἡ δέλτος',
-'movepage-moved'               => '<big>\'\'\'"$1" κεκίνηται πρὸς "$2"\'\'\'</big>
-
-Ἀναδιεύθυνσίς τις ἐποιήθη.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1" κεκίνηται πρὸς "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => 'Εἶτε ἢ ἐστὶ δέλτος τις οὕτως ὀνομαστὴ ἢ ἄκυρον ἐστι τὸ ἐπειλεγμένον ὄνομα.
 Ἄλλως τὴν δέλτον ὀνόμασον.',
 'talkexists'                   => "'''Κεκίνηται μὲν ἡ δέλτος αὐτὴ, ἡ δὲ διαλόγου δέλτος οὐ κεκίνηται ὅτι ἤδη ἐστὶ ἐνθάδε διαλόγου δέλτος.

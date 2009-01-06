@@ -2041,12 +2041,7 @@ $1 бэлиэр хааччахтаммыт. Хааччахтааһын туру�
 'move-watch'                   => 'Кэтээн көрөргө',
 'movepagebtn'                  => 'Аатын уларыт',
 'pagemovedsub'                 => 'Аата уларыйда',
-'movepage-moved'               => '<big>\'\'\'"$1" сирэй аата маннык буолла "$2"\'\'\'</big>
-
-Утаарыы-сирэй оҥоһулунна.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'movepage-moved-noredirect'    => '<big>\'\'\'"$1" сирэй аата маннык буолла "$2"\'\'\'</big>
-
-Утаарыы-сирэй оҥорор бобуллубут.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1" сирэй аата маннык буолла "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => 'Маннык ааттаах сирэй баар, эбэтэр
 маннык аат көҥүллэммэт эбит.
 Атын аатта таларгар көрдөһөбүт.',

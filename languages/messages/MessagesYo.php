@@ -841,9 +841,7 @@ Tí ó bá jẹ́ báhun, ẹ gbúdọ̀ ṣe ìyípò rẹ̀ fúnra yín.",
 'move-watch'       => 'Mójútó ojúewé yìí',
 'movepagebtn'      => 'Yípò ojúewé',
 'pagemovedsub'     => 'Ìyípò ti já sí rere',
-'movepage-moved'   => "<big>'''\"\$1\" ti yípò sí \"\$2\"'''</big>
-
-A ti ṣ'èdá átúnjúwe.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'   => "<big>'''\"\$1\" ti yípò sí \"\$2\"'''</big>.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'    => 'Ojúewé pẹ̀lú orúkọ un wà tẹ́lẹ̀, tàbí kójẹ́pé orúkọ tí ẹ yàn kò ní ìbámu.
 Ẹ jọ̀wọ́ ẹ yan orúkọ mìíràn.',
 'movedto'          => 'tiyípò sí',

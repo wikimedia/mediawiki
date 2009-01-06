@@ -2134,9 +2134,7 @@ manual paginile de discuţii, dacă doreşti acest lucru.",
 'move-watch'                => 'Urmăreşte această pagină',
 'movepagebtn'               => 'Mută pagina',
 'pagemovedsub'              => 'Pagina a fost mutată',
-'movepage-moved'            => '<big>\'\'\'Pagina "$1" a fost mutată la pagina "$2"\'\'\'</big>
-
-A fost creată o redirecţionare.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'            => '<big>\'\'\'Pagina "$1" a fost mutată la pagina "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'             => 'O pagină cu acelaşi nume există deja, sau numele pe care l-ai ales este invalid. Te rugăm să alegi un alt nume.',
 'cantmove-titleprotected'   => 'Nu poţi muta o pagina în această locaţie, pentru că noul titlu a fost protejat la creare',
 'talkexists'                => "'''Pagina în sine a fost mutată, dar pagina de discuţii nu a putut fi mutată deoarece deja există o alta cu acelaşi nume. Te rugăm să unifici manual cele două pagini de discuţii.'''",
