@@ -2464,12 +2464,7 @@ $1 ممنوع بالفعل. هل تريد تغيير الإعدادات؟',
 'move-watch'                   => 'راقب هذه الصفحة',
 'movepagebtn'                  => 'نقل الصفحة',
 'pagemovedsub'                 => 'تم النقل بنجاح',
-'movepage-moved'               => '<big>\'\'\'"$1" تم نقلها إلى "$2"\'\'\'</big>
-
-تم إنشاء تحويلة.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'movepage-moved-noredirect'    => '<big>\'\'\'"$1" تم نقلها إلى "$2"\'\'\'</big>
-
-إنشاء التحويلة تم التغاضي عنه.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1" تم نقلها إلى "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => 'توجد صفحة بهذا الاسم، أو أن الاسم الذي تم اختياره غير صالح.
 من فضلك اختر اسم آخر.',
 'cantmove-titleprotected'      => 'لا يمكنك نقل صفحة إلى هذا الموقع، لأن العنوان الجديد تمت حمايته ضد الإنشاء',

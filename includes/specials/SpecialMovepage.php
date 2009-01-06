@@ -168,7 +168,8 @@ class MovePageForm {
 
 		$wgOut->addHTML(
 			 Xml::openElement( 'form', array( 'method' => 'post', 'action' => $titleObj->getLocalURL( 'action=submit' ), 'id' => 'movepage' ) ) .
-			 Xml::fieldset( wfMsg( 'move-page-legend' ) ) .
+			 Xml::openElement( 'fieldset' ) .
+			 Xml::element( 'legend', null, wfMsg( 'move-page-legend' ) ) .
 			 Xml::openElement( 'table', array( 'border' => '0', 'id' => 'mw-movepage-table' ) ) .
 			 "<tr>
 			 	<td class='mw-label'>" .
@@ -348,8 +349,7 @@ class MovePageForm {
 		$oldLink = "<span class='plainlinks'>[$oldUrl $oldText]</span>";
 		$newLink = "<span class='plainlinks'>[$newUrl $newText]</span>";
 
-		$msgName = $createRedirect ? 'movepage-moved' : 'movepage-moved-noredirect';
-		$wgOut->addWikiMsg( $msgName, $oldLink, $newLink, $oldText, $newText );
+		$wgOut->addWikiMsg( 'movepage-moved', $oldLink, $newLink, $oldText, $newText );
 
 		# Now we move extra pages we've been asked to move: subpages and talk
 		# pages.  First, if the old page or the new page is a talk page, we

@@ -2030,9 +2030,7 @@ Nestos casos vas tener que treslladar o fusionar la páxina manualmente.",
 'move-watch'                => 'Vixilar esta páxina',
 'movepagebtn'               => 'Treslladar la páxina',
 'pagemovedsub'              => 'Treslláu correctu',
-'movepage-moved'            => '<big>\'\'\'"$1" treslladóse a "$2"\'\'\'</big>
-
-Creóse una redireición.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'            => '<big>\'\'\'"$1" treslladóse a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'             => "Yá hai una páxina con esi nome, o'l nome qu'escoyisti nun ye válidu. Por favor, escueyi otru nome.",
 'cantmove-titleprotected'   => "Nun pues mover una páxina a esti llugar porque'l nuevu títulu foi protexíu de la so creación",
 'talkexists'                => "'''La páxina treslladóse correutamente, pero non la so páxina d'alderique porque yá esiste una col títulu nuevu. Por favor, fusiónala manualmente.'''",

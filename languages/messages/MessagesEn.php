@@ -2703,12 +2703,7 @@ In those cases, you will have to move or merge the page manually if desired.",
 'move-watch'                   => 'Watch this page',
 'movepagebtn'                  => 'Move page',
 'pagemovedsub'                 => 'Move succeeded',
-'movepage-moved'               => '<big>\'\'\'"$1" has been moved to "$2"\'\'\'</big>
-
-A redirect has been created.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'movepage-moved-noredirect'    => '<big>\'\'\'"$1" has been moved to "$2"\'\'\'</big>
-
-The creation of a redirect has been suppressed.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1" has been moved to "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => 'A page of that name already exists, or the name you have chosen is not valid.
 Please choose another name.',
 'cantmove-titleprotected'      => 'You cannot move a page to this location, because the new title has been protected from creation',

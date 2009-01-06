@@ -2258,12 +2258,7 @@ $1 ужо заблякаваны. Вы жадаеце зьмяніць пара�
 'move-watch'                   => 'Назіраць за гэтай старонкай',
 'movepagebtn'                  => 'Перанесьці старонку',
 'pagemovedsub'                 => 'Пасьпяховы перанос',
-'movepage-moved'               => "<big>'''Старонка «$1» была перанесеная ў «$2»'''</big>
-
-Перанакіраваньне было створанае.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'movepage-moved-noredirect'    => "<big>'''Старонка «$1» была перанесеная ў «$2»'''</big>
-
-Перанакіраваньне не было створанае.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>'''Старонка «$1» была перанесеная ў «$2»'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => 'Старонка з такой назвай ужо існуе, альбо абраная Вамі назва недапушчальная. Калі ласка, абярыце іншую назву.',
 'cantmove-titleprotected'      => 'Немагчыма перанесьці старонку, таму што новая назва знаходзіцца ў сьпісе забароненых',
 'talkexists'                   => "'''Старонка пасьпяхова перанесеная, але не атрымалася перанесьці старонку абмеркаваньня, таму што старонка з такой назвай ужо існуе. Калі ласка, аб'яднайце тэксты самастойна.'''",

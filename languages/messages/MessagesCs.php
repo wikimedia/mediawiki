@@ -2267,12 +2267,7 @@ V těchto případech musíte přesunout nebo sloučit stránky manuálně, jest
 'move-watch'                   => 'Sledovat tuto stránku',
 'movepagebtn'                  => 'Přesunout stránku',
 'pagemovedsub'                 => 'Úspěšně přesunuto',
-'movepage-moved'               => "<big>'''Stránka „$1“ byla přesunuta na „$2“'''</big>
-
-Přesměrování bylo vytvořeno.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'movepage-moved-noredirect'    => "<big>'''Stránka „$1“ byla přesunuta na „$2“'''</big>
-
-Přesměrování nebylo vytvořeno.", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>'''Stránka „$1“ byla přesunuta na „$2“'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => 'Takto nazvaná stránka již existuje, nebo Vámi zvolený název je neplatný. Zvolte jiný název.',
 'cantmove-titleprotected'      => 'Stránku nelze přesunout na zadané místo, protože název je uzamčen proti vytváření',
 'talkexists'                   => 'Stránka byla přesunuta úspěšně, ale diskusní stránka přesunuta být nemohla, neboť pod novým názvem již nějaká stránka existuje. Proveďte prosím ruční sloučení.',

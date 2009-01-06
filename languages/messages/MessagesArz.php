@@ -2346,12 +2346,7 @@ $1 ممنوع فعلا. عايز تغير الإعدادات؟',
 'move-watch'                   => 'راقب الصفحه دى',
 'movepagebtn'                  => 'نقل الصفحه',
 'pagemovedsub'                 => 'تم  النقل بنجاح',
-'movepage-moved'               => '<big>\'\'\'"$1" خلاص اتنقلت لـ "$2"\'\'\'</big>
-
-التحويله اتعملت.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'movepage-moved-noredirect'    => '<big>\'\'\'"$1" خلاص اتنقلت لـ "$2"\'\'\'</big>
-
-التحويله ما اتعملتش.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => '<big>\'\'\'"$1" خلاص اتنقلت لـ "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'                => 'يا اما فيه صفحه  بالاسم ده، او ان الاسم اللى  تم اختياره مش صالح.
 لو سمحت اختار اسم تانى.',
 'cantmove-titleprotected'      => 'ما ينفعش تنقل صفحة للمكان دا،لأن العنوان الجديد محمى ضد الانشاء',
