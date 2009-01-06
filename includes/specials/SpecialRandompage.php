@@ -8,19 +8,23 @@
  * @license GNU General Public Licence 2.0 or later
  */
 class RandomPage extends SpecialPage {
-	private $namespace = NS_MAIN;  // namespace to select pages from
+	private $namespaces;  // namespaces to select pages from
 
 	function __construct( $name = 'Randompage' ){
+		global $wgContentNamespaces;
+
+		$this->namespaces = $wgContentNamespaces;
+
 		parent::__construct( $name );
 	}
 
-	public function getNamespace() {
-		return $this->namespace;
+	public function getNamespaces() {
+		return $this->namespaces;
 	}
 
 	public function setNamespace ( $ns ) {
 		if( $ns < NS_MAIN ) $ns = NS_MAIN;
-		$this->namespace = $ns;
+		$this->namespaces = array( $ns );
 	}
 
 	// select redirects instead of normal pages?
@@ -67,7 +71,7 @@ class RandomPage extends SpecialPage {
 			$row = $this->selectRandomPageFromDB( "0" );
 
 		if( $row )
-			return Title::makeTitleSafe( $this->namespace, $row->page_title );
+			return Title::makeTitleSafe( $row->page_namespace, $row->page_title );
 		else
 			return null;
 	}
@@ -81,13 +85,13 @@ class RandomPage extends SpecialPage {
 		$use_index = $dbr->useIndexClause( 'page_random' );
 		$page = $dbr->tableName( 'page' );
 
-		$ns = (int) $this->namespace;
+		$ns = implode( ",", $this->namespaces );
 		$redirect = $this->isRedirect() ? 1 : 0;
 
 		$extra = $wgExtraRandompageSQL ? "AND ($wgExtraRandompageSQL)" : "";
-		$sql = "SELECT page_title
+		$sql = "SELECT page_title, page_namespace
 			FROM $page $use_index
-			WHERE page_namespace = $ns
+			WHERE page_namespace IN ( $ns )
 			AND page_is_redirect = $redirect
 			AND page_random >= $randstr
 			$extra
