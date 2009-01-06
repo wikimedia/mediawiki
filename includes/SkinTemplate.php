@@ -596,7 +596,7 @@ class SkinTemplate extends Skin {
 		}
 		if( $checkEdit && !$title->isKnown() ) {
 			$classes[] = 'new';
-			$query = 'action=edit';
+			$query = 'action=edit&redlink=1';
 		}
 
 		$text = wfMsg( $message );
