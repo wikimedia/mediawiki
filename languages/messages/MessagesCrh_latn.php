@@ -1205,7 +1205,7 @@ Mında [[Special:UnusedCategories|qullanılmağan kategoriyalar]] kösterilmegen
 'usermailererror' => 'E-mail beyanatı yollanğan vaqıtta hata olıp çıqtı',
 'defemailsubject' => '{{SITENAME}} e-mail',
 'noemailtitle'    => 'E-mail adresi yoqtır',
-'noemailtext'     => 'Bu qullanıcı ya mevcüt olğan elektron poçta adresini yazmağan, ya da başqa qullanıcılardan mektüp aluvdan vazgeçken.',
+'noemailtext'     => 'Bu qullanıcı uyğun elektron poçta adresini bildirmegen.',
 'emailfrom'       => 'Kimden:',
 'emailto'         => 'Kimge:',
 'emailsubject'    => 'Mektüp mevzusı:',

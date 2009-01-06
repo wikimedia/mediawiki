@@ -547,10 +547,10 @@ Twójo konto jo se załožyło. Njezabydni změniś swóje [[Special:Preferences
 'passwordtooshort'           => 'Twójo gronidło jo njepłaśiwe abo pśeliš krotke. Wóno dej nanejmjenjej {{PLURAL:$|1 pismik|$1 pismika|$1 pismiki|$1 pismikow}} měś a njesmějo se z wužywarskim mjenim makaś.',
 'mailmypassword'             => 'Nowe gronidło pśipósłaś',
 'passwordremindertitle'      => 'Nowe nachylne pótajmne słowo za {{SITENAME}}',
-'passwordremindertext'       => 'Něchten z adresu $1 (nejskerjej ty) jo se wupšosył nowe gronidło za {{SITENAME}} ($4).
-Nachylne gronidło za wužywarja "$2" jo se napórało a jo něnto "$3". Jolic jo to twój wótglěd było, musyš se něnto pśijawiś a wubraś nowe gronidło.
+'passwordremindertext'       => 'Něchten z IP-adresu $1 (nejskerjej ty) jo se wupšosył nowe gronidło za {{SITENAME}} ($4).
+Nachylne gronidło za wužywarja "$2" jo se napórało a jo něnto "$3". Jolic jo to twój wótglěd było, musyš se něnto pśijawiś a wubraś nowe gronidło. Twójo nachylne gronidło pśepadnjo za {{PLURAL:$5|jadyn źeń|$5 dnja|$5 dny|$5 dnjow}}.
 
-Jolic jo něchten drugi wó nowe šćitne gronidło pšosył abo ty sy se zasej na swójo gronidło dopomnjeł  a njocoš wěcej jo změniś, móžoš toś tu powěsć ignorěrowaś a swójo stare gronidło dalej wužywaś.',
+Jolic jo něchten drugi wó nowe šćitne gronidło pšosył abo ty sy se zasej dopomnjeł na swójo gronidło  a njocoš wěcej jo změniś, móžoš toś tu powěsć ignorěrowaś a swójo stare gronidło dalej wužywaś.',
 'noemail'                    => 'Wužywaŕ „$1“ njejo e-mailowu adresu zapódał.',
 'passwordsent'               => 'Nowe šćitne gronidło jo se wótpósłało na e-mailowu adresu wužywarja „$1“.
 Pšosym pśizjaw se zasej, gaž jo dostanjoš.',
@@ -2100,6 +2100,7 @@ W toś tyma padoma dej wopśimjeśe boka manualnje se pśesunuś resp. gromadu w
 'movepagebtn'                  => 'Bok pśesunuś',
 'pagemovedsub'                 => 'Bok jo se pśesunuł.',
 'movepage-moved'               => '<big>\'\'\'Bok "$1" jo se do "$2" pśesunuł.\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => 'Napóranje dalejpósrědnjenja jo se pódtłocyło.',
 'articleexists'                => 'Bok z takim mjenim južo eksistěrujo abo mě, kótarež sćo wuwzólił jo njepłaśece. Pšosym wuzwól nowe mě.',
 'cantmove-titleprotected'      => 'Njamóžoš bok k toś tomu městnoju pśesunuś, dokulaž nowy titel jo pśeśiwo napóranjeju šćitany.',
 'talkexists'                   => 'Samy bok jo se pśesunuł, ale pśisłušny diskusijny bok nic, dokulaž eksistěrujo južo taki bok z nowym mjenim. Pšosym pśirownaj wopśimjeśi manualnje.',

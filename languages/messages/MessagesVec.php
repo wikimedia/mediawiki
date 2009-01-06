@@ -2099,9 +2099,7 @@ Acèrtete de ver ben valutà le conseguenze del spostamento, prima de procédar.
 'movepagebtn'                  => 'Sposta sta pàxena',
 'pagemovedsub'                 => 'Spostamento efetuà con sucesso',
 'movepage-moved'               => '<big>\'\'\'"$1" la xe stà spostà a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'movepage-moved-noredirect'    => '<big>\'\'\'"$1" xe stà spostà a "$2"\'\'\'</big>
-
-La creassion de un reindirissamento la xe stà sopressa.', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => 'La creassion de un reindirissamento la xe stà sopressa.',
 'articleexists'                => "Na pàxena con sto nome la existe xà, opure el nome che te ghè sielto no'l xè vałido.<br />Siegli, par piaser, un titoło diverso par ła voçe.",
 'cantmove-titleprotected'      => 'No se pol mìa spostar la pagina, in quanto el novo titolo el xe stà proteto par inpedirghene la creazion',
 'talkexists'                   => "'''La pagina la xe stà spostà coretamente, ma no s'à mìa podesto spostar la pagina de discussion parché ghe ne xe xà n'altra col stesso nome. Par piaser meti insieme i contenuti de le do pagine a man.'''",

@@ -1068,6 +1068,7 @@ Configure kare khatir meharbani kar ke math/README ke dekho.',
 'right-move'                 => 'Panna ke naam badlo',
 'right-move-subpages'        => 'Panna aur uske subpanna ke naam badlo',
 'right-move-rootuserpages'   => 'Root sadasya ke panna ke naam badlo',
+'right-movefile'             => 'File ke naam badlo',
 'right-suppressredirect'     => 'Panna ke naam badalte ke time, purana naam se redirect ke nai banao.',
 'right-upload'               => 'File ke upload karo',
 'right-reupload'             => 'Ek abhi waala file ke uppar se likho',
@@ -1663,6 +1664,7 @@ Meharbani kar ke duusra naam choose karo.',
 
 # Special:NewFiles
 'newimages' => 'Nawaa files ke gallery',
+'ilsubmit'  => 'Khojo',
 
 # Bad image list
 'bad_image_list' => 'Format ii rakam hai:

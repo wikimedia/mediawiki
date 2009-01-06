@@ -549,10 +549,11 @@ Por favor, ténteo de novo.',
 Debe conter como mínimo {{PLURAL:$1|1 carácter|$1 caracteres}} e ten que ser diferente do seu nome de usuario.',
 'mailmypassword'             => 'Enviádeme un contrasinal novo por correo',
 'passwordremindertitle'      => 'Novo contrasinal temporal para {{SITENAME}}',
-'passwordremindertext'       => 'Alguén (probablemente vostede, desde o enderezo IP $1) pediu un novo
-contrasinal para entrar en {{SITENAME}} ($4). Un contrasinal temporal do usuario
+'passwordremindertext'       => 'Alguén (probablemente vostede, desde o enderezo IP $1) solicitou un novo
+contrasinal para acceder a {{SITENAME}} ($4). Un contrasinal temporal para o usuario
 "$2" foi creado e fixado como "$3". Se esa foi a súa
-intención, necesitará entrar no sistema e escoller un novo contrasinal agora.
+intención, necesitará acceder ao sistema e escoller un novo contrasinal agora.
+O seu contrasinal temporal caducará {{PLURAL:$5|nun día|en $5 días}}.
 
 Se foi alguén diferente o que fixo esta solicitude ou se xa se lembra do seu contrasinal
 e non o quere modificar, pode ignorar esta mensaxe e
@@ -1716,27 +1717,29 @@ Se quere máis información acerca dos dereitos individuais, pode atopala [[{{Me
 'listgrouprights-removegroup-all' => 'Pode eliminar todos os grupos',
 
 # E-mail user
-'mailnologin'     => 'Non existe enderezo para o envío',
-'mailnologintext' => 'Debe [[Special:UserLogin|acceder ao sistema]] e ter rexistrado un enderezo de correo electrónico válido nas súas [[Special:Preferences|preferencias]] para enviar correos electrónicos a outros usuarios.',
-'emailuser'       => 'Enviar un correo electrónico a este usuario',
-'emailpage'       => 'Enviar un correo electrónico a un usuario',
-'emailpagetext'   => 'Pode usar o formulario de embaixo para enviar unha mensaxe de correo electrónico a este usuario.
+'mailnologin'      => 'Non existe enderezo para o envío',
+'mailnologintext'  => 'Debe [[Special:UserLogin|acceder ao sistema]] e ter rexistrado un enderezo de correo electrónico válido nas súas [[Special:Preferences|preferencias]] para enviar correos electrónicos a outros usuarios.',
+'emailuser'        => 'Enviar un correo electrónico a este usuario',
+'emailpage'        => 'Enviar un correo electrónico a un usuario',
+'emailpagetext'    => 'Pode usar o formulario de embaixo para enviar unha mensaxe de correo electrónico a este usuario.
 O correo electrónico que inseriu [[Special:Preferences|nas súas preferencias]] aparecerá no campo "De:" do correo, polo que o receptor da mensaxe poderalle responder.',
-'usermailererror' => 'O obxecto enviado deu unha mensaxe de erro:',
-'defemailsubject' => 'Correo electrónico de {{SITENAME}}',
-'noemailtitle'    => 'Sen enderezo de correo electrónico',
-'noemailtext'     => 'Este usuario non rexistrou un enderezo de correo electrónico válido ou elixiu non recibir correos electrónicos doutros usuarios.',
-'email-legend'    => 'Enviar un correo electrónico a outro usuario de {{SITENAME}}',
-'emailfrom'       => 'De:',
-'emailto'         => 'Para:',
-'emailsubject'    => 'Asunto:',
-'emailmessage'    => 'Mensaxe:',
-'emailsend'       => 'Enviar',
-'emailccme'       => 'Enviar unha copia da mensaxe para min.',
-'emailccsubject'  => 'Copia da mensaxe para $1: $2',
-'emailsent'       => 'Mensaxe enviada',
-'emailsenttext'   => 'A súa mensaxe de correo electrónico foi enviada.',
-'emailuserfooter' => 'Este correo electrónico foi enviado por $1 a $2 mediante a función "Enviar un correo electrónico a este usuario" de {{SITENAME}}.',
+'usermailererror'  => 'O obxecto enviado deu unha mensaxe de erro:',
+'defemailsubject'  => 'Correo electrónico de {{SITENAME}}',
+'noemailtitle'     => 'Sen enderezo de correo electrónico',
+'noemailtext'      => 'Este usuario non especificou un enderezo de correo electrónico válido.',
+'nowikiemailtitle' => 'Sen correo electrónico habilitado',
+'nowikiemailtext'  => 'Este usuario elixiu non recibir correos electrónicos doutros usuarios.',
+'email-legend'     => 'Enviar un correo electrónico a outro usuario de {{SITENAME}}',
+'emailfrom'        => 'De:',
+'emailto'          => 'Para:',
+'emailsubject'     => 'Asunto:',
+'emailmessage'     => 'Mensaxe:',
+'emailsend'        => 'Enviar',
+'emailccme'        => 'Enviar unha copia da mensaxe para min.',
+'emailccsubject'   => 'Copia da mensaxe para $1: $2',
+'emailsent'        => 'Mensaxe enviada',
+'emailsenttext'    => 'A súa mensaxe de correo electrónico foi enviada.',
+'emailuserfooter'  => 'Este correo electrónico foi enviado por $1 a $2 mediante a función "Enviar un correo electrónico a este usuario" de {{SITENAME}}.',
 
 # Watchlist
 'watchlist'            => 'A miña listaxe de vixilancia',
@@ -2166,6 +2169,7 @@ Nestes casos, terá que mover ou mesturar a páxina manualmente se o desexa.",
 'movepagebtn'                  => 'Mover a páxina',
 'pagemovedsub'                 => 'O movemento foi un éxito',
 'movepage-moved'               => '<big>\'\'\'A páxina "$1" foi movida a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => 'A creación da redirección da primeira cara á segunda foi cancelada.',
 'articleexists'                => 'Xa existe unha páxina con ese nome, ou o nome que escolleu non é válido.
 Por favor escolla outro nome.',
 'cantmove-titleprotected'      => 'Vostede non pode mover a páxina a esta ubicación, porque o novo título foi protexido da creación',

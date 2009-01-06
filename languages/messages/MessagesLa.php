@@ -519,6 +519,7 @@ Confirma orthographiam.',
 tesseram novam petivit pro {{grammar:ablative|{{SITENAME}}}} ($4).
 Tessera temporaria usoris "$2" creata est: "$3".
 Si vis, conventum aperias et statim tesseram tuam mutes.
+Tessera temporaria exibit {{PLURAL:$5|unam diem|$5 dies}}.
 
 Si non ipse hanc petitionem fecisti, aut si tesserae tuae
 meministi et etiam nolis eam mutare, potes hunc nuntium
@@ -722,7 +723,7 @@ Titulus: '''(nov)''' = dissimilis ab emendatione novissima,
 
 # Revision deletion
 'rev-deleted-comment'   => '(summarium celatum)',
-'rev-deleted-user'      => '(nomen usoris remotum est)',
+'rev-deleted-user'      => '(nomen usoris celatum est)',
 'rev-deleted-event'     => '(actio actorum celata)',
 'rev-delundel'          => 'monstrare/celare',
 'revisiondelete'        => 'Emendationem delere',
@@ -743,6 +744,7 @@ Titulus: '''(nov)''' = dissimilis ab emendatione novissima,
 # History merging
 'mergehistory-from'        => 'Pagina imponenda:',
 'mergehistory-into'        => 'Pagina petita:',
+'mergehistory-submit'      => 'Confundere emendationes',
 'mergehistory-autocomment' => 'confundavit [[:$1]] cum [[:$2]]',
 'mergehistory-comment'     => 'confundavit [[:$1]] cum [[:$2]]: $3',
 
@@ -1045,6 +1047,7 @@ Ad fasciculum in pagina includendum, utere nexu:
 *'''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fasciculus.ogg]]''' pro nexum ad fasciculum directum.",
 'upload-permitted'   => 'Genera fasciculorum licita: $1.',
 'upload-preferred'   => 'Genera fasciculorum suasa: $1.',
+'upload-prohibited'  => 'Typi fasciculorum vetiti: $1.',
 'uploadlog'          => 'notatio fasciculorum impositorum',
 'uploadlogpage'      => 'Notatio fasciculorum impositorum',
 'uploadlogpagetext'  => 'Subter est index fasciculorum recentissimorum impositorum.
@@ -1059,6 +1062,7 @@ Vide etiam [[Special:NewFiles|pinacothecam fasciculorum recentissimorum imposito
 'ignorewarnings'     => 'Ignorare monita omnia',
 'minlength1'         => 'Nomina fasciculorum saltem unam litteram habere debent.',
 'badfilename'        => 'Nomen fasciculi ad "$1" mutatum est.',
+'filetype-missing'   => 'Fasciculus extensionem non habet (sicut e.&nbsp;g. ".jpg").',
 'large-file'         => 'Suasum est ut fasciculi $1 magnitudine non excedant; magnitudo huius fasciculi est $2.',
 'fileexists-thumb'   => "<center>'''Imago quae iam est'''</center>",
 'successfulupload'   => 'Impositum est perfectum',
@@ -1484,6 +1488,9 @@ Si pagina nova cum ipso nomine post deletionem creata est, emendationes restitut
 'undeleteinvert'            => 'Selectionem invertere',
 'undeletecomment'           => 'Sententia:',
 'undeletedarticle'          => 'restituit "[[$1]]"',
+'undeletedrevisions'        => '{{PLURAL:$1|1 emendatio recuperata|$1 emendationes recuperatae}}',
+'undeletedrevisions-files'  => '{{PLURAL:$1|1 emendatio recuperata|$1 emendationes recuperatae}} et {{PLURAL:1 fasciculus recuperatus|$2 fasciculi recuperati}}',
+'undeletedfiles'            => '{{PLURAL:$1|1 fasciculus recuperatus|$1 fasciculi recuperati}}',
 'cannotundelete'            => 'Abrogatio deletionis fefellit; fortasse aliquis iam paginam restituit.',
 'undelete-header'           => 'Pro paginis nuper deletis, vide [[Special:Log/delete|indicem deletionum]].',
 'undelete-search-box'       => 'Quaerere inter paginas iam deletas',
@@ -1654,6 +1661,7 @@ Ergo manu necesse disputationes motare vel contribuere erit, si vis.",
 'movepagebtn'               => 'Paginam movere',
 'pagemovedsub'              => 'Pagina mota est',
 'movepage-moved'            => '<big>\'\'\'"$1" mota est ad "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect' => 'Redirectio non creata est.',
 'articleexists'             => 'Pagina huius tituli iam est, aut invalidum est nomen electum.
 Quaesumus, titulum alterum elige.',
 'cantmove-titleprotected'   => 'Tibi non licet paginam ad hunc titulum movere, quia hic titulus protectus est ne creetur',
@@ -1711,13 +1719,17 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'import-upload-filename'     => 'Nomen fasciculi:',
 'import-comment'             => 'Sententia:',
 'importstart'                => 'Adportare paginas...',
+'import-revision-count'      => '$1 {{PLURAL:$1|emendatio|emendationes}}',
 'importbadinterwiki'         => 'Nexus intervicus malus',
 'importsuccess'              => 'Adportatio finita!',
+'xml-error-string'           => '$1 in linea $2 et columna $3 (octetus $4): $5',
 'import-upload'              => 'XML imponere et importare',
 
 # Import log
-'importlogpage'             => 'Acta adportationum',
-'import-logentry-interwiki' => 'adportavit transvici $1',
+'importlogpage'                    => 'Acta adportationum',
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|emendatio|emendationes}}',
+'import-logentry-interwiki'        => 'adportavit transvici $1',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|emendatio|emendationes}} ex $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Pagina usoris mea',
@@ -1855,6 +1867,7 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'exif-whitepoint'                => 'Chromaticitas puncti albi',
 'exif-primarychromaticities'     => 'Chromaticitates primariae',
 'exif-imagedescription'          => 'Descriptio imaginis',
+'exif-model'                     => 'Typus photomachinae',
 'exif-artist'                    => 'Auctor',
 'exif-exifversion'               => 'Emendatio Exif',
 'exif-colorspace'                => 'Spatium colorimetricum',
@@ -1885,6 +1898,7 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'exif-gpslatitude'               => 'Latitudo',
 'exif-gpslongitude'              => 'Longitudo',
 'exif-gpsaltitude'               => 'Altitudo',
+'exif-gpstimestamp'              => 'Tempus GPS (horologium atomicum)',
 'exif-gpsstatus'                 => 'Status receptoris',
 'exif-gpsmeasuremode'            => 'Modus mensurae',
 'exif-gpsspeedref'               => 'Unitum celeritatis',
@@ -2086,6 +2100,7 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 'version-variables'             => 'Variabilia',
 'version-other'                 => 'Alia',
 'version-hooks'                 => 'Extensiones',
+'version-extension-functions'   => 'Functiones extensionum',
 'version-parser-function-hooks' => 'Extensiones functionum programmatis analysis lexicalis',
 'version-hook-name'             => 'Nomen extensionis',
 'version-version'               => 'Versio',
@@ -2105,6 +2120,7 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 
 # Special:SpecialPages
 'specialpages'                 => 'Paginae speciales',
+'specialpages-group-other'     => 'Aliae paginae speciales',
 'specialpages-group-login'     => 'Conventum aperire / conventum creare',
 'specialpages-group-users'     => 'Usores eorumque potestates',
 'specialpages-group-pages'     => 'Index paginarum',

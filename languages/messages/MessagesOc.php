@@ -1096,9 +1096,8 @@ Asseguratz-vos qu'aqueste cambiament pòsca conservar la continuitat de l'istori
 'showingresults'                   => "Afichatge {{PLURAL:$1|d''''1''' resultat|de '''$1''' resultats}} a partir del #'''$2'''.",
 'showingresultsnum'                => "Afichatge {{PLURAL:$3|d''''1''' resultat|de '''$3''' resultats}} a partir del #'''$2'''.",
 'showingresultstotal'              => "Visionament çaijós {{PLURAL:$4|del resultat '''$1''' de '''$3'''|dels resultats de '''$1 - $2''' de '''$3'''}}",
-'nonefound'                        => '<strong>Nòta</strong>: l\'abséncia de resultat es sovent deguda a l\'emplec de tèrmes de recèrca tròp corrents, coma "a" o "de",
-que son pas indexats, o a l\'emplec de mantun tèrme de recèrca (solas las paginas que
-contenon totes los tèrmes apareisson dins los resultats).',
+'nonefound'                        => "<strong>Nòta</strong>: Sonque qualques espacis de noms son recercats per defaut
+Ensajatz en utilizant lo prefix ''all:'' per recercar tot lo contengut (tot incluent las paginas de discussion, los modèls, etc), o utilizatz l'espaci de nom coma prefix.",
 'search-nonefound'                 => 'I a pas cap de resultat correspondent a la requèsta.',
 'powersearch'                      => 'Recèrca avançada',
 'powersearch-legend'               => 'Recèrca avançada',
@@ -1772,7 +1771,7 @@ L'adreça electronica qu'avètz indicada dins [[Special:Preferences|vòstras pre
 'usermailererror' => 'Error dins lo subjècte del corrièr electronic :',
 'defemailsubject' => 'Corrièr electronic mandat dempuèi {{SITENAME}}',
 'noemailtitle'    => "Pas d'adreça electronica",
-'noemailtext'     => "Aquesta utilizaire a pas especificat d'adreça electronica valida o a causit de recebre pas de corrièr electronic dels autres utilizaires.",
+'noemailtext'     => "Aqueste utilizaire a pas especificat d'adreça electronica valida.",
 'email-legend'    => 'Mandar un corrièr electronic a un autre utilizaire de {{SITENAME}}',
 'emailfrom'       => 'Expeditor :',
 'emailto'         => 'Destinatari :',

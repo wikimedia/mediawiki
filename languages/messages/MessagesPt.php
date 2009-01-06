@@ -573,7 +573,8 @@ Deve de ter no mínimo {{PLURAL:$1|1 caracter|$1 caracteres}} e ser diferente do
 'mailmypassword'             => 'Enviar uma nova palavra-chave por e-mail',
 'passwordremindertitle'      => 'Nova palavra-chave temporária em {{SITENAME}}',
 'passwordremindertext'       => 'Alguém (provavelmente você, a partir do endereço de IP $1) solicitou que fosse lhe enviada uma nova palavra-chave para {{SITENAME}} ($4).
-A palavra-chave temporária para o utilizador "$2" é, a partir de agora, "$3". Caso essa tenha sido a sua intenção, entre na sua conta e defina uma nova palavra-chave.
+Foi criada uma palavra-chave temporária para o utilizador "$2", e foi reposta como "$3". Caso esta tenha sido a sua intenção, entre na sua conta e escolha uma nova palavra-chave agora.
+A sua palavra-chave temporária expirará em {{PLURAL:$5|um dia|$5 dias}}.
 
 Caso tenha sido outra pessoa a fazer este pedido, ou caso você já se tenha lembrado da sua palavra-chave e não deseja alterará-la, ignore esta mensagem e continue a utilizar a palavra-chave antiga.',
 'noemail'                    => 'Não há um endereço de correio electrónico associado ao utilizador "$1".',
@@ -787,7 +788,7 @@ Pode voltar atrás e editar uma página já existente, ou [[Special:UserLogin|au
 'nocreate-loggedin'                => 'Você não possui permissões de criar novas páginas.',
 'permissionserrors'                => 'Erros de permissões',
 'permissionserrorstext'            => 'Você não possui permissão de fazer isso, {{PLURAL:$1|pelo seguinte motivo|pelos seguintes motivos}}:',
-'permissionserrorstext-withaction' => 'Você não possui permissão para $2, {{PLURAL:$1|pelo seguinte motivo|pelos motivos a seguir}}:',
+'permissionserrorstext-withaction' => 'Você não possui permissão para $2, {{PLURAL:$1|pelo seguinte motivo|pelos seguintes motivos}}:',
 'recreate-deleted-warn'            => "'''Atenção: Você está criando novamente uma página já eliminada em outra ocasião.'''
 
 Certifique-se de que seja adequado prosseguir editando esta página.
@@ -1104,7 +1105,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'prefs-watchlist-days'      => 'Dias a mostrar na lista de vigiados:',
 'prefs-watchlist-days-max'  => '(máximo: 7 dias)',
 'prefs-watchlist-edits'     => 'Número de edições a mostrar na lista de vigiados expandida:',
-'prefs-watchlist-edits-max' => '(número máximo: 1000)',
+'prefs-watchlist-edits-max' => '(máximo: 1000)',
 'prefs-misc'                => 'Diversos',
 'prefs-resetpass'           => 'Alterar palavra-chave',
 'saveprefs'                 => 'Salvar',
@@ -1141,7 +1142,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 # User rights
 'userrights'                  => 'Gestão de privilégios de utilizadores', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'      => 'Gerir grupos de utilizadores',
-'userrights-user-editname'    => 'Intruduza um nome de utilizador:',
+'userrights-user-editname'    => 'Introduza um nome de utilizador:',
 'editusergroup'               => 'Editar Grupos de Utilizadores',
 'editinguser'                 => "Modificando privilégios do utilizador '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'Editar grupos do utilizador',
@@ -2172,6 +2173,7 @@ Nestes casos, você terá que mover ou mesclar a página manualmente, se assim d
 'movepagebtn'                  => 'Mover página',
 'pagemovedsub'                 => 'Página movida com sucesso',
 'movepage-moved'               => '<big>\'\'\'"$1" foi movida para "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => 'A criação de um redirecionamento foi suprimida.',
 'articleexists'                => 'Uma página com este título já existe, ou o título que escolheu é inválido.
 Por favor, escolha outro nome.',
 'cantmove-titleprotected'      => 'Você não pode mover uma página para tal denominação uma vez que o novo título se encontra protegido contra criação',

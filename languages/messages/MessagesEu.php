@@ -8,6 +8,7 @@
  * @author Bengoa
  * @author Helix84
  * @author Kaustubh
+ * @author Kobazulo
  * @author Malafaya
  * @author Theklan
  * @author Unai Fdz. de Betoño
@@ -1184,6 +1185,7 @@ Saia zaitez zure eskeraren aurretik ''all:'' jartzen eduki guztien artean bilatz
 'reuploaddesc'                => 'Igotzeko formulariora itzuli.',
 'uploadnologin'               => 'Saioa hasi gabe',
 'uploadnologintext'           => 'Fitxategiak igotzeko [[Special:UserLogin|saioa hasi]] behar duzu.',
+'upload_directory_missing'    => 'Igoeren direktorioa ($1) ezin da aurkitu eta web zerbitzariak ezin du sortu.',
 'upload_directory_read_only'  => 'Web zerbitzariak ez dauka igoera direktorioan ($1) idazteko baimenik.',
 'uploaderror'                 => 'Errorea igotzerakoan',
 'uploadtext'                  => "Fitxategiak igotzeko beheko formularioa erabil dezakezu. Aurretik igotako irudiak ikusi edo bilatzeko [[Special:FileList|igotako fitxategien zerrendara]] jo. Igoerak eta ezabatutakoak [[Special:Log/upload|igoera erregistroan]] zerrendatzen dira.
@@ -1224,10 +1226,14 @@ Aurretik dagoen fitxategiaren izena: <strong><tt>$2</tt></strong><br />
 Hautatu beste izen bat.',
 'fileexists-thumb'            => "<center>'''Irudia badago'''</center>",
 'fileexists-thumbnail-yes'    => 'Badirudi neurri txikiko irudia dela <i>(irudi txikia)</i>. Egiaztatu <strong><tt>$1</tt></strong> fitxategia.<br /> Egiaztatutako fitxategia eta jatorrizkoa berdinak badira ez dago irudi txikia igo beharrik.',
+'file-thumbnail-no'           => 'Fitxategiaren izena <strong><tt>$1</tt></strong>-(r)ekin hasten da.
+Badirudi tamaina txikiko irudia <i>(thumbnail)</i> dela.
+Irudi hau bereizmen handiagoan izango bazenu igo ezazu, bestela, fitxategiaren izena aldatu mesedez.',
 'fileexists-forbidden'        => 'Badago izen hori daukan fitxategi bat; mesedez, atzera itzuli eta igo fitxategia izen ezberdin batekin. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Badago izen hori daukan fitxategi bat elkarbanatutako fitxategi-biltegian.
 Oraindik ere fitxategia igo nahi baduzu atzera itzuli eta izen berri bat erabili, mesedez. [[Fitxategi:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Fitxategi hau beste fitxategi {{PLURAL:$1|honen|hauen}} kopia bat da:',
+'file-deleted-duplicate'      => 'Fitxategi honen ([[$1]]) fitxategi berbera aldez aurretik ezabatua izan da. Fitxategi horren ezabaketa-erregistroa begiratu beharko zenuke berriz igo baino lehen.',
 'successfulupload'            => 'Igoera arrakastatsua',
 'uploadwarning'               => 'Igotzeko oharra',
 'savefile'                    => 'Fitxategia gorde',
@@ -1278,6 +1284,7 @@ Aukera ezazu, mesedez, fitxategi izen deskriptiboago bat.',
 'listfiles_user'        => 'Erabiltzailea',
 'listfiles_size'        => 'Tamaina (byte)',
 'listfiles_description' => 'Deskribapena',
+'listfiles_count'       => 'Bertsioak',
 
 # File description page
 'filehist'                       => 'Fitxategiaren historia',
@@ -1477,7 +1484,8 @@ Aukera ezazu, mesedez, fitxategi izen deskriptiboago bat.',
 'speciallogtitlelabel' => 'Izenburua:',
 'log'                  => 'Erregistroak',
 'all-logs-page'        => 'Erregistro guztiak',
-'alllogstext'          => 'Igoera, ezabaketa, babes, blokeaketa eta administratzaile erregistroen erakusketa. Zerrenda mugatu dezakezu erregistro mota, erabiltzaile izena edo eragindako orrialdea aukeratuz.',
+'alllogstext'          => '{{SITENAME}} orrialdearen erregistro guztien erakusketa konbinatua.
+Erregistro mota, erabiltzailearen izena edota orrialdearen izena iragaziz bistaratu daiteke. Letra larriak eta xeheak bereizten dira.',
 'logempty'             => 'Ez dago emaitzarik erregistroan.',
 'log-title-wildcard'   => 'Testu honekin hasten diren izenburuak bilatu',
 
@@ -1554,6 +1562,7 @@ Baimendutako protokoloak: <tt>$1</tt>',
 'defemailsubject' => 'E-posta {{SITENAME}}(e)tik',
 'noemailtitle'    => 'Posta helbiderik ez',
 'noemailtext'     => 'Erabiltzaile honek ez du baliozko posta helbiderik zehaztu edo beste erabiltzaileengandik mezurik ez jasotzea aukeratu du.',
+'nowikiemailtext' => 'Erabiltzaile honek beste erabiltzaileengandik e-postak ez jasotzea hautatu du.',
 'email-legend'    => 'Bidali e-posta bat {{SITENAME}}(e)ko beste lankide bati',
 'emailfrom'       => 'Nork:',
 'emailto'         => 'Nori:',
@@ -1967,6 +1976,7 @@ Kasu horietan orrialdea eskuz mugitu edo bestearekin bateratu beharko duzu.",
 'movepagebtn'                  => 'Orrialde mugitu',
 'pagemovedsub'                 => 'Mugimendua eginda',
 'movepage-moved'               => '<big>\'\'\'"$1" "$2"(e)ra mugitu da\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => 'Birzuzenketa baten sorrera kendu da.',
 'articleexists'                => 'Izen hori duen artikulu bat badago edo hautatutako izena ez da baliozkoa. Mesedez, beste izen bat aukeratu.',
 'cantmove-titleprotected'      => 'Ezin duzu orrialde bat leku honetara mugitu izenburu berri hori sor ez dadin babesa duelako',
 'talkexists'                   => "'''Orrialde hau arazorik gabe mugitu da, baina eztabaida orrialde ezin izan da mugitu izenburu berriarekin jada bat existitzen delako. Mesedez, eskuz batu itzazu biak.'''",
@@ -2628,6 +2638,7 @@ Egiaztapen kode hau $4 iraungiko da.',
 # action=purge
 'confirm_purge_button' => 'Ados',
 'confirm-purge-top'    => 'Orrialde honen katxea ezabatu?',
+'confirm-purge-bottom' => 'Orrialdea purgatzean katxea ezabatzen du eta orrialdearen bertsiorik eguneratuena erakustera behartzen du.',
 
 # Multipage image navigation
 'imgmultipageprev' => '&larr; aurreko orrialdea',
@@ -2660,6 +2671,7 @@ Egiaztapen kode hau $4 iraungiko da.',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => '{{PLURAL:$1|segundu $1|$1 segundu}} baino berriagoak diren aldaketak ez dira zerrenda honetan agertuko.',
+'lag-warn-high'   => 'Zerbitzariaren atzerapen handia dela eta, {{PLURAL:$1|segundu $1|$1 segundu}} baino berriagoak diren aldaketak baliteke zerrenda honetan ez azaltzea.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Zure jarraipen zerrendak {{PLURAL:$1|titulu bat du|$1 titulu ditu}}, eztabaida orrialdeak kenduta.',

@@ -1224,7 +1224,7 @@ Gweler y [[Special:NewFiles|galeri o ffeiliau newydd]] i fwrw golwg drostynt.",
 'illegalfilename'             => 'Mae\'r enw ffeil "$1" yn cynnwys nodau sydd wedi\'u gwahardd mewn teitlau tudalennau. Ail-enwch y ffeil ac uwchlwythwch hi eto os gwelwch yn dda.',
 'badfilename'                 => 'Mae enw\'r ffeil wedi\'i newid i "$1".',
 'filetype-badmime'            => "Ni chaniateir uwchlwytho ffeiliau o'r math MIME '$1'.",
-'filetype-bad-ie-mime'        => 'Ni ellir uwchlwytho\'r ffeil hon oherwydd y byddai Internet Explorer yn ei adnabod fel "1", sef math annilys o ffeil sydd efallai hefyd yn beryglus.',
+'filetype-bad-ie-mime'        => 'Ni ellir uwchlwytho\'r ffeil hon oherwydd y byddai Internet Explorer yn ei adnabod fel "$1", sef math annilys o ffeil sydd efallai hefyd yn beryglus.',
 'filetype-unwanted-type'      => "Mae'r math '''\".\$1\"''' o ffeil yn anghymeradwy.  Mae'n well defnyddio ffeil {{PLURAL:\$3|o'r math|o'r math|o'r mathau|o'r mathau|o'r mathau|o'r mathau}} \$2.",
 'filetype-banned-type'        => "Ni chaniateir ffeiliau o'r math '''\".\$1\"'''.  \$2 yw'r {{PLURAL:\$3|math|math|mathau|mathau|mathau|mathau}} o ffeil a ganiateir.",
 'filetype-missing'            => "Nid oes gan y ffeil hon estyniad (megis '.jpg').",
@@ -2011,6 +2011,7 @@ Os felly, gallwch symud y dudalen sgwrs neu ei gyfuno ar ôl symud y dudalen ei 
 'movepagebtn'               => 'Symud y dudalen',
 'pagemovedsub'              => 'Y symud wedi llwyddo',
 'movepage-moved'            => '<big>\'\'\'Symudwyd y dudalen "$1" i "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect' => 'Ni osodwyd tudalen ailgyfeirio.',
 'articleexists'             => "Mae tudalen gyda'r darpar enw yn bodoli'n barod, neu mae eich darpar enw yn annilys.
 Dewiswch enw arall os gwelwch yn dda.",
 'talkexists'                => "'''Mae'r dudalen wedi'i symud yn llwyddiannus, ond nid oedd hi'n bosibl symud y dudalen sgwrs oherwydd bod yna dudalen sgwrs gyda'r enw newydd yn bodoli'n barod. Cyfunwch y ddwy dudalen, os gwelwch yn dda.'''",

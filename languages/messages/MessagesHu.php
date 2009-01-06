@@ -290,7 +290,7 @@ $messages = array(
 'tog-showtoc'                 => 'Tartalomjegyzék megjelenítése a három fejezetnél többel rendelkező cikkeknél',
 'tog-rememberpassword'        => 'Emlékezzen rám ezen a számítógépen',
 'tog-editwidth'               => 'Teljes szélességű szerkesztőablak',
-'tog-watchcreations'          => 'Általad létrehozott lapok felvétele a figyelőlistádra',
+'tog-watchcreations'          => 'Az általam létrehozott lapok felvétele a figyelőlistára',
 'tog-watchdefault'            => 'Szerkesztett cikkek felvétele a figyelőlistára',
 'tog-watchmoves'              => 'Átnevezett lapok felvétele a figyelőlistára',
 'tog-watchdeletion'           => 'Törölt cikkek felvétele a figyelőlistára',
@@ -304,8 +304,8 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'Jelenítse meg az e-mail címemet a figyelmeztető e-mailekben',
 'tog-shownumberswatching'     => 'Az oldalt figyelő szerkesztők számának mutatása',
 'tog-fancysig'                => 'Aláírás automatikus hivatkozás nélkül',
-'tog-externaleditor'          => 'Külső szerkesztőprogram használata (csak haladók számára, speciális beállításokra van szükség a számítógépeden)',
-'tog-externaldiff'            => 'Külső diff program használata (csak haladók számára, speciális beállításokra van szükség a számítógépeden)',
+'tog-externaleditor'          => 'Külső szerkesztőprogram használata (csak haladók számára, speciális beállításokra van szükség a számítógépen)',
+'tog-externaldiff'            => 'Külső diff program használata (csak haladók számára, speciális beállításokra van szükség a számítógépen)',
 'tog-showjumplinks'           => 'Helyezzen el hivatkozást („Ugrás”) a beépített eszköztárra',
 'tog-uselivepreview'          => 'Élő előnézet használata (JavaScript) (Teszt)',
 'tog-forceeditsummary'        => 'Figyelmeztessen, ha nem adok meg szerkesztési összefoglalót',
@@ -698,6 +698,7 @@ Legalább {{PLURAL:$1|egy|$1}} karakterből kell állnia, és nem egyezhet meg a
 {{SITENAME}} wikis ($4) felhasználói fiókjához.
 "$2" számára most egy ideiglenes jelszót készítettünk: "$3".
 Ha te kértél új jelszót, lépj be, és változtasd meg.
+Az ideiglenes jelszó {{PLURAL:$5|egy nap|$5 nap}} múlva érvényét veszti.
 
 Ha nem te küldted a kérést, vagy közben eszedbe jutott a régi,
 és már nem akarod megváltoztatni, nyugodtan hagyd figyelmen kívül
@@ -2210,7 +2211,7 @@ $1',
 'change-blocklink'                => 'blokkolás módosítása',
 'contribslink'                    => 'szerkesztései',
 'autoblocker'                     => "Az általad használt IP-cím autoblokkolva van, mivel korábban a kitiltott „[[User:$1|$1]]” használta. ($1 blokkolásának indoklása: „'''$2'''”) Ha nem te vagy $1, lépj kapcsolatba valamelyik adminisztrátorral, és kérd az autoblokk feloldását. Ne felejtsd el megírni neki, hogy kinek szóló blokkba ütköztél bele!",
-'blocklogpage'                    => 'Blokkolási_napló',
+'blocklogpage'                    => 'Blokkolási napló',
 'blocklog-fulllog'                => 'Teljes blokkolási napló',
 'blocklogentry'                   => '„$1” blokkolva $2 $3 időtartamra',
 'reblock-logentry'                => 'megváltoztatta [[$1]] blokkjának beállításait, a blokk lejárta: $2 $3',
@@ -2297,6 +2298,7 @@ Ezen esetekben a vitalapot külön, kézzel kell átnevezned a kívánságaid sz
 'movepagebtn'                  => 'Lap átnevezése',
 'pagemovedsub'                 => 'Átnevezés sikeres',
 'movepage-moved'               => "<big>'''„$1” átnevezve „$2” névre'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => 'A régi címről nem sikerült átirányítást készíteni.',
 'articleexists'                => 'Ilyen névvel már létezik lap, vagy az általad választott név érvénytelen.
 Kérlek, válassz egy másik nevet.',
 'cantmove-titleprotected'      => 'Nem nevezheted át a lapot, mert az új cím le van védve a létrehozás ellen.',

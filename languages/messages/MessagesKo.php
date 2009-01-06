@@ -810,9 +810,9 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'copyrightwarning'                 => "{{SITENAME}}에서의 모든 기여는 $2 라이센스에 따라 배포된다는 점을 유의해 주세요($1에서 자세한 사항을 읽어 주세요). 만약 이에 대해 동의하지 않는다면, 문서를 저장하지 말아 주세요.<br />
 또한 당신의 기여는 직접 작성했거나, 또는 퍼블릭 도메인과 같은 자유 문서에서 가져왔다는 것을 보증해야 합니다.
 '''저작권이 있는 내용을 허가 없이 저장하지 마세요!'''",
-'copyrightwarning2'                => "{{SITENAME}}에서의 모든 기여는 다른 사용자가 편집, 수정, 삭제할 수 있다는 점을 유의해 주세요. 만약 이에 대해 찬성하지 않는다면, 문서를 저장하지 말아 주세요.<br />
-또한 당신의 기여는 직접 작성했거나, 또는 퍼블릭 도메인과 같은 자유 문서에서 가져왔다는 것을 보증해야 합니다($1에서 자세한 사항을 읽어 주세요).
-'''저작권이 있는 내용을 허가 없이 저장하지 마세요!'''",
+'copyrightwarning2'                => '{{SITENAME}}에서의 모든 기여는 다른 사용자가 편집, 수정, 삭제할 수 있다는 점을 유의해 주세요. 만약 이에 대해 동의하지 않는다면, 문서를 저장하지 말아 주세요.<br />
+또한 당신의 기여는 직접 작성했거나, 또는 퍼블릭 도메인과 같은 자유 문서에서 가져왔다는 것을 보증해야 합니다 ($1에서 자세한 사항을 읽어 주세요).
+<strong>저작권이 있는 내용을 허가 없이 저장하지 마세요!</strong>',
 'longpagewarning'                  => "'''주의: 이 문서의 용량이 $1킬로바이트입니다. 몇몇 웹 브라우저에서는 32킬로바이트 이상의 문서를 편집할 때 문제가 발생할 수 있습니다. 만약의 경우를 대비하여, 문서를 여러 문단으로 나누어서 편집할 수 있습니다.'''",
 'longpageerror'                    => "'''오류: 문서의 크기가 $1킬로바이트로, 최대 가능한 크기인 $2킬로바이트보다 큽니다. 저장할 수 없습니다.'''",
 'readonlywarning'                  => '<strong>주의: 데이터베이스가 관리를 위해 잠겨 있습니다. 따라서 문서를 편집한 내용을 지금 저장할 수 없습니다.
@@ -843,6 +843,8 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'deleted-notice'                   => '이 문서는 삭제되어 있습니다.
 이 문서의 삭제 기록은 다음과 같습니다.',
 'deletelog-fulllog'                => '전체 기록 보기',
+'edit-hook-aborted'                => '훅에 의해 편집이 중단되었습니다.
+아무런 설명도 주어지지 않았습니다.',
 'edit-gone-missing'                => '문서를 저장하지 못했습니다.
 문서가 삭제되었을 수 있습니다.',
 'edit-conflict'                    => '편집 충돌.',
@@ -904,11 +906,17 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'rev-deleted-user'            => '(계정 이름 삭제됨)',
 'rev-deleted-event'           => '(로그 삭제됨)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-이 문서의 판은 문서 역사에서 제거되었습니다.
+이 문서의 편집은 문서 역사에서 제거되었습니다.
 [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다..</div>',
+'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
+이 문서의 편집은 문서 역사에서 제거되었습니다.
+당신은 {{SITENAME}}의 관리자로서, 삭제된 편집을 볼 수 있습니다;
+[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다.</div>',
 'rev-delundel'                => '보이기/숨기기',
 'revisiondelete'              => '버전 삭제/복구',
+'revdelete-nooldid-title'     => '대상 판이 잘못되었습니다.',
 'revdelete-selected'          => "'''[[:$1]]의 선택된 판:'''",
+'logdelete-selected'          => "'''선택한 로그:'''",
 'revdelete-text'              => "'''삭제된 판과 기록은 문서 역사와 기록에 계속 나타나지만, 내용은 공개되지 않을 것입니다.'''
 
 {{SITENAME}}의 다른 관리자는 다른 제한이 설정되어 있지 않는 한, 숨겨진 내용을 볼 수 있고, 같은 도구를 이용해 복구할 수 있습니다.",
@@ -942,21 +950,28 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'suppressionlog' => '숨기기 기록',
 
 # History merging
-'mergehistory'             => '문서 역사 합치기',
-'mergehistory-box'         => '두 문서의 역사 합치기:',
-'mergehistory-from'        => '원본 문서 이름:',
-'mergehistory-into'        => '새 문서 이름:',
-'mergehistory-list'        => '병합 가능한 문서 역사',
-'mergehistory-go'          => '합칠 수 있는 편집 보기',
-'mergehistory-submit'      => '문서 역사 합치기',
-'mergehistory-empty'       => '합칠 수 있는 판이 없습니다.',
-'mergehistory-success'     => '[[:$1]]의 $3개의 판이 [[:$2]]에 성공적으로 합쳐졌습니다.',
-'mergehistory-autocomment' => '[[:$1]] 문서를 [[:$2]]로 병합함',
-'mergehistory-comment'     => '[[:$1]] 문서를 [[:$2]] 문서와 합침: $3',
+'mergehistory'                     => '문서 역사 합치기',
+'mergehistory-box'                 => '두 문서의 역사 합치기:',
+'mergehistory-from'                => '원본 문서 이름:',
+'mergehistory-into'                => '새 문서 이름:',
+'mergehistory-list'                => '병합 가능한 문서 역사',
+'mergehistory-go'                  => '합칠 수 있는 편집 보기',
+'mergehistory-submit'              => '문서 역사 합치기',
+'mergehistory-empty'               => '합칠 수 있는 판이 없습니다.',
+'mergehistory-success'             => '[[:$1]]의 $3개의 판이 [[:$2]]에 성공적으로 합쳐졌습니다.',
+'mergehistory-no-source'           => '원본 문서 $1이 존재하지 않습니다.',
+'mergehistory-no-destination'      => '대상 문서 $1이 존재하지 않습니다.',
+'mergehistory-invalid-source'      => '원본 문서 이름에는 반드시 유효한 제목을 입력해야 합니다.',
+'mergehistory-invalid-destination' => '대상 문서 이름에는 반드시 유효한 제목을 입력해야 합니다.',
+'mergehistory-autocomment'         => '[[:$1]] 문서를 [[:$2]]로 병합함',
+'mergehistory-comment'             => '[[:$1]] 문서를 [[:$2]] 문서와 합침: $3',
+'mergehistory-same-destination'    => '원본 문서 이름과 새 문서 이름은 같을 수 없습니다.',
 
 # Merge log
-'mergelog'    => '합병 기록',
-'revertmerge' => '병합 해제',
+'mergelog'           => '합병 기록',
+'pagemerge-logentry' => '[[$1]]을 [[$2]]에 병합 ($3판이 위로 옮겨짐)',
+'revertmerge'        => '병합 해제',
+'mergelogpagetext'   => '다음은 한 문서의 역사를 다른 문서의 역사와 합친 최근 기록입니다.',
 
 # Diffs
 'history-title'           => '"$1" 문서의 변경 내력',
@@ -970,8 +985,11 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'diff-movedto'            => '$1(으)로 이동',
 'diff-styleadded'         => '$1 스타일 추가됨',
 'diff-added'              => '$1 추가됨',
+'diff-changedto'          => '$1(으)로 변경',
 'diff-styleremoved'       => '$1 스타일 제거됨',
 'diff-removed'            => '$1 제거됨',
+'diff-src'                => '출처',
+'diff-with-final'         => '&#32;그리고 $1 $2',
 'diff-width'              => '너비',
 'diff-height'             => '높이',
 'diff-p'                  => "'''문단'''",
@@ -994,6 +1012,8 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'diff-a'                  => "'''링크'''",
 'diff-i'                  => "'''기울임꼴'''",
 'diff-b'                  => "'''굵은 글씨'''",
+'diff-font'               => "'''글꼴'''",
+'diff-big'                => "'''큰 글씨'''",
 'diff-del'                => "'''삭제됨'''",
 'diff-tt'                 => "'''고정폭 글꼴'''",
 'diff-sub'                => "'''아랫첨자'''",
@@ -1231,9 +1251,11 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'action-createaccount'        => '새 계정 만들기',
 'action-minoredit'            => '이 편집을 사소한 편집으로 표시하기',
 'action-move'                 => '이 문서 옮기기',
+'action-move-subpages'        => '하위 문서를 함께 옮길',
 'action-movefile'             => '이 파일을 옮길',
 'action-upload'               => '이 파일을 올리기',
 'action-reupload'             => '이미 존재하는 파일 덮어쓰기',
+'action-reupload-shared'      => '공용 저장소의 파일을 무시하고 저장할',
 'action-upload_by_url'        => 'URL 주소를 통해 이 파일을 올리기',
 'action-writeapi'             => 'API를 작성할',
 'action-delete'               => '이 문서 삭제하기',
@@ -1241,6 +1263,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'action-deletedhistory'       => '이 문서의 삭제된 기여의 역사 보기',
 'action-browsearchive'        => '삭제된 문서 찾기',
 'action-undelete'             => '이 문서를 복구하기',
+'action-suppressrevision'     => '이 숨겨진 판을 검토하고 복구할',
 'action-suppressionlog'       => '비공개 로그를 볼',
 'action-block'                => '이 사용자를 편집하지 못하도록 차단',
 'action-protect'              => '이 문서의 보호 설정을 변경하기',
@@ -1344,6 +1367,9 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 존재하는 파일 이름: <strong><tt>$2</tt></strong><br />
 다른 이름으로 시도해 주세요.',
 'fileexists-thumb'            => "<center>'''존재하는 파일'''</center>",
+'fileexists-thumbnail-yes'    => '이 파일은 줄어든 크기의 그림 (섬네일)으로 보입니다.
+<strong><tt>$1</tt></strong> 파일을 확인해주세요.<br />
+확인한 파일이 원래 크기의 같은 그림이라면 다른 섬네일을 올릴 필요가 없습니다.',
 'file-thumbnail-no'           => '파일 이름이 <strong><tt>$1</tt></strong>으로 시작합니다.
 이것은 파일의 크기가 줄어든 그림 (썸네일)으로 보입니다.
 당신이 최대 해상도의 파일을 갖고 있다면 최대 해상도의 파일로 올려주세요, 아니라면 파일의 이름을 바꿔 주세요.',
@@ -1351,6 +1377,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'fileexists-shared-forbidden' => '같은 이름의 파일이 이미 위키미디어 공용에 있습니다.
 파일을 업로드하길 원하신다면 뒤로 돌아가서 다른 이름으로 시도해 주시기 바랍니다. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => '현재 올리고 있는 파일이 아래 파일과 중복됩니다:',
+'file-deleted-duplicate'      => '이 파일과 같은 파일 ([[$1]])이 이전에 삭제된 적이 있습니다. 파일을 다시 올리기 전에 문서의 삭제 기록을 확인해 주시기 바랍니다.',
 'successfulupload'            => '올리기 성공',
 'uploadwarning'               => '올리기 경고',
 'savefile'                    => '파일 저장',
@@ -1449,6 +1476,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'shareduploadwiki-linktext'      => '자료의 설명 문서',
 'shareduploadduplicate'          => '이 파일은 공용 저장소의 $1과 중복되어 있습니다.',
 'shareduploadduplicate-linktext' => '다른 파일',
+'shareduploadconflict'           => '이 파일은 공용 저장소의 같은 이름을 가진 $1과 중복됩니다.',
 'shareduploadconflict-linktext'  => '다른 파일',
 'noimage'                        => '파일이 없습니다. $1 할 수 있습니다.',
 'noimage-linktext'               => '업로드',
@@ -2108,6 +2136,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'movepagebtn'                  => '이동',
 'pagemovedsub'                 => '문서 이동함',
 'movepage-moved'               => '<big>\'\'\'"$1" 문서를 "$2" 문서로 이동했습니다.\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => '넘겨주기 문서가 생성되지 않았습니다.',
 'articleexists'                => '문서가 이미 존재하거나, 문서 이름이 올바르지 않습니다. 다른 제목으로 시도해주세요.',
 'cantmove-titleprotected'      => '새로운 제목으로 문서를 만드는 것이 금지되어 있어, 문서를 이동할 수 없습니다.',
 'talkexists'                   => "'''문서는 이동되었습니다. 하지만 딸린 토론 문서의 새 이름으로 된 문서가 이미 존재해서, 토론 문서는 이동하지 않았습니다. 직접 문서를 합쳐 주세요.'''",
@@ -2196,6 +2225,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'importbadinterwiki'         => '인터위키 링크가 잘못되었습니다.',
 'importnotext'               => '내용이 없습니다.',
 'importsuccess'              => '가져오기 완료!',
+'importhistoryconflict'      => '문서 역사가 충돌하는 버전이 있습니다. (이전에 이 문서가 가져오기된 적이 있을 수 있습니다)',
 'importnofile'               => '가져오기용 파일이 업로드되지 않았습니다.',
 'importuploaderrorsize'      => '파일 올리기를 통한 가져오기에 실패했습니다.
 파일이 허용된 크기 제한보다 큽니다.',
@@ -2457,6 +2487,8 @@ Variants for Chinese language
 'exif-aperturevalue'       => '조리개',
 'exif-brightnessvalue'     => '밝기',
 'exif-exposurebiasvalue'   => '노출 보정값',
+'exif-subjectdistance'     => '대상과의 거리',
+'exif-meteringmode'        => '측광 방식',
 'exif-lightsource'         => '광원',
 'exif-flash'               => '플래시',
 'exif-focallength'         => '렌즈 초점 거리',
@@ -2465,8 +2497,10 @@ Variants for Chinese language
 'exif-exposuremode'        => '노출 방식',
 'exif-whitebalance'        => '화이트 밸런스',
 'exif-digitalzoomratio'    => '디지털 줌 비율',
+'exif-contrast'            => '대비',
 'exif-saturation'          => '채도',
 'exif-sharpness'           => '선명도',
+'exif-gpsversionid'        => 'GPS 태그 버전',
 'exif-gpslatituderef'      => '북위 또는 남위',
 'exif-gpslatitude'         => '위도',
 'exif-gpslongituderef'     => '동경 또는 서경',
@@ -2475,6 +2509,7 @@ Variants for Chinese language
 'exif-gpsaltitude'         => '고도',
 'exif-gpstimestamp'        => 'GPS 시간 (원자 시계)',
 'exif-gpsstatus'           => '수신기 상태',
+'exif-gpsimgdirection'     => '이미지 방향',
 'exif-gpsdestlatitude'     => '목적지의 위도',
 'exif-gpsdestlongitude'    => '목적지의 경도',
 'exif-gpsdestdistance'     => '목적지와의 거리',
@@ -2499,7 +2534,14 @@ Variants for Chinese language
 
 'exif-subjectdistance-value' => '$1 미터',
 
-'exif-meteringmode-0' => '알 수 없음',
+'exif-meteringmode-0'   => '알 수 없음',
+'exif-meteringmode-1'   => '평균 측광',
+'exif-meteringmode-2'   => '중앙 중점 평균 측광',
+'exif-meteringmode-3'   => '스팟 측광',
+'exif-meteringmode-4'   => '멀티스팟 측광',
+'exif-meteringmode-5'   => '평가 측광',
+'exif-meteringmode-6'   => '부분',
+'exif-meteringmode-255' => '기타',
 
 'exif-lightsource-0'   => '알 수 없음',
 'exif-lightsource-1'   => '태양광',
@@ -2536,6 +2578,8 @@ Variants for Chinese language
 'exif-scenecapturetype-1' => '풍경',
 'exif-scenecapturetype-2' => '인물 사진',
 'exif-scenecapturetype-3' => '야경 사진',
+
+'exif-contrast-0' => '보통',
 
 'exif-saturation-0' => '보통',
 'exif-saturation-1' => '저채도',
@@ -2624,6 +2668,7 @@ $5
 # action=purge
 'confirm_purge_button' => '확인',
 'confirm-purge-top'    => '문서의 캐시를 지울까요?',
+'confirm-purge-bottom' => '문서를 새로고침하는 것은 캐시를 갱신하고 가장 최근의 버전이 나타나게 할 것입니다.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← 이전 문서',
@@ -2647,6 +2692,9 @@ $5
 
 # Live preview
 'livepreview-loading' => '불러오는 중...',
+'livepreview-ready'   => '불러 오는 중… 준비!',
+'livepreview-error'   => '연결에 실패하였습니다: $1 "$2"
+일반 미리보기를 이용하십시오.',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => '최근 $1 초 안에 변경된 문서 목록은 표시되지 않을 수 있습니다.',
@@ -2674,6 +2722,9 @@ $5
 'watchlisttools-view' => '주시문서 최근 바뀜',
 'watchlisttools-edit' => '주시문서 목록 보기/편집하기',
 'watchlisttools-raw'  => '주시문서 목록 직접 편집하기',
+
+# Core parser functions
+'duplicate-defaultsort' => '경고: 기본 정렬 키 "$2"가 이전의 기본 정렬 키 "$2"를 덮어쓰고 있습니다.',
 
 # Special:Version
 'version'                          => '버전', # Not used as normal message but as header for the special page itself

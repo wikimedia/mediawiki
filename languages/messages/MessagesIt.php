@@ -575,7 +575,7 @@ Deve contenere almeno {{PLURAL:$1|1 carattere|$1 caratteri}} ed essere diversa d
 'passwordremindertitle'      => 'Servizio Password Reminder di {{SITENAME}}',
 'passwordremindertext'       => 'Qualcuno (probabilmente tu, con indirizzo IP $1) ha richiesto l\'invio di una nuova password di accesso a {{SITENAME}} ($4).
 Una password temporanea per l\'utente "$2" è stata impostata a "$3".
-È opportuno eseguire un accesso quanto prima e cambiare la password immediatamente.
+È opportuno eseguire un accesso quanto prima e cambiare la password immediatamente. La password temporanea scadrà dopo {{PLURAL:$5|un giorno|$5 giorni}}.
 
 Se non sei stato tu a fare la richiesta, oppure hai ritrovato la password e non desideri più cambiarla, puoi ignorare questo messaggio e continuare a usare la vecchia password.',
 'noemail'                    => 'Nessun indirizzo e-mail registrato per l\'utente "$1".',
@@ -2126,6 +2126,7 @@ In questi casi, se lo si ritiene opportuno, occorre spostare o aggiungere manual
 'movepagebtn'                  => 'Sposta la pagina',
 'pagemovedsub'                 => 'Spostamento effettuato con successo',
 'movepage-moved'               => '<big>\'\'\'"$1" è stata spostata a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => 'La creazione di un reindirizzamento è stata soppressa.',
 'articleexists'                => 'Una pagina con questo nome esiste già, oppure il nome che hai scelto non è valido.<br /> Scegli, per cortesia, un titolo diverso per la pagina.',
 'cantmove-titleprotected'      => 'Lo spostamento della pagina non è possibile in quanto il nuovo titolo è stato protetto per impedirne la creazione',
 'talkexists'                   => "'''La pagina è stata spostata correttamente, ma non è stato possibile spostare la pagina di discussione perché ne esiste già un'altra con il nuovo titolo. Integrare manualmente i contenuti delle due pagine.'''",

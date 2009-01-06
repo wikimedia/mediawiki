@@ -2242,6 +2242,7 @@ Please leave the link http://www.mediawiki.org/wiki/Manual:External_editors exac
 'autosumm-new'     => 'The auto summary when creating a new page. $1 are the first X number of characters of the new page.',
 
 # Size units
+'size-bytes'     => 'Size (of a page, typically) in bytes.',
 'size-kilobytes' => 'Size (of a page, typically) in kibibytes (1 kibibyte = 1024 bytes).',
 'size-megabytes' => 'Size (of a file, typically) in mebibytes (1 mebibyte = 1024×1024 bytes).',
 'size-gigabytes' => 'Size (of a file, typically) in gibibytes (1 gibibyte = 1024×1024×1024 bytes).',

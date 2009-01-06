@@ -2185,6 +2185,7 @@ V takých prípadoch budete musieť, ak si to želáte, premiestniť alebo zlú�
 'movepagebtn'                  => 'Presunúť stránku',
 'pagemovedsub'                 => 'Presun bol úspešný',
 'movepage-moved'               => "<big>'''„$1” bolo presunuté na „$2”'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => 'Vytvorenie presmerovania bolo potlačené.',
 'articleexists'                => 'Stránka s týmto názvom už existuje alebo
 vami zadaný názov je neplatný.
 Prosím vyberte si iný názov.',
