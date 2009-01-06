@@ -1732,7 +1732,7 @@ Mehr Informatschonen över enkelte Rechten staht ünner [[{{MediaWiki:Listgroupr
 'usermailererror' => 'Dat Mail-Objekt hett en Fehler trüchgeven:',
 'defemailsubject' => '{{SITENAME}} E-Mail',
 'noemailtitle'    => 'Kene E-Mail-Adress',
-'noemailtext'     => 'Disse Bruker hett kene güllige E-Mail-Adress angeven, oder will kene E-Mail vun annere Bruker tostüürt kriegen.',
+'noemailtext'     => 'Disse Bruker hett kene güllige E-Mail-Adress angeven.',
 'email-legend'    => 'en annern Bruker op {{SITENAME}} en E-Mail tostüren',
 'emailfrom'       => 'Vun:',
 'emailto'         => 'An:',

@@ -590,7 +590,7 @@ Verifique su deletreo, o [[Special:UserLogin/signup|cree una nueva cuenta]].',
 'passwordremindertitle'      => 'Recordatorio de contraseña de {{SITENAME}}',
 'passwordremindertext'       => 'Alguien (probablemente tú, desde la dirección IP $1) solicitó que te enviáramos una nueva contraseña para tu cuenta en {{SITENAME}} ($4).
 Se ha creado la siguiente contraseña temporal para el usuario «$2»: «$3»
-Ahora deberías iniciar sesión y cambiar tu contraseña.
+Ahora deberías iniciar sesión y cambiar tu contraseña. Su contraseña temporal expirará en {{PLURAL:$5|un día|$5 días}}.
 
 Si fue otro quien solicitó este mensaje o has recordado tu contraseña y ya no deseas cambiarla, puedes ignorar este mensaje y seguir usando tu contraseña original.',
 'noemail'                    => 'No hay una dirección de correo electrónico registrada para "$1".',
@@ -1262,7 +1262,7 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'action-move'                 => 'mover esta página',
 'action-move-subpages'        => 'mover esta página y sus subpáginas',
 'action-move-rootuserpages'   => 'mover páginas del usuario raíz',
-'action-movefile'             => 'Mover este archivo',
+'action-movefile'             => 'mover este archivo',
 'action-upload'               => 'subir este archivo',
 'action-reupload'             => 'remplazar este archivo existente',
 'action-reupload-shared'      => 'remplazar este archivo existente en un depósito compartido',
@@ -2164,7 +2164,7 @@ En estos casos, deberá trasladar manualmente el contenido de la página de disc
 'movenologin'                  => 'No ha iniciado sesión',
 'movenologintext'              => 'Es necesario ser usuario registrado y [[Special:UserLogin|haber iniciado sesión]] para renombrar una página.',
 'movenotallowed'               => 'No tienes permiso para trasladar páginas.',
-'movenotallowedfile'           => 'No tiene permiso para mover archivos.',
+'movenotallowedfile'           => 'No tienes permiso para mover archivos.',
 'cant-move-user-page'          => 'No tienes permiso para mover páginas de usuario (excepto subpáginas).',
 'cant-move-to-user-page'       => 'No tienes permiso para mover una página a una página de usuario (excepto a subpáginas de usuario).',
 'newtitle'                     => 'A título nuevo',
@@ -2172,6 +2172,7 @@ En estos casos, deberá trasladar manualmente el contenido de la página de disc
 'movepagebtn'                  => 'Renombrar página',
 'pagemovedsub'                 => 'Renombrado realizado con éxito',
 'movepage-moved'               => '<big>\'\'\'"$1" ha sido trasladado a "$2".\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => 'Se ha suprimido la creación de la redirección.',
 'articleexists'                => 'Ya existe una página con ese nombre o el nombre que ha elegido no es válido. Por favor, elija otro nombre.',
 'cantmove-titleprotected'      => 'No se pueden mover páginas a esta ubicacion, porque se ha protegido la creación de este nuevo título.',
 'talkexists'                   => 'La página fue renombrada con éxito, pero la discusión no se pudo mover porque ya existe una en el título nuevo. Por favor incorpore su contenido manualmente.',
@@ -2185,7 +2186,7 @@ En estos casos, deberá trasladar manualmente el contenido de la página de disc
 'movepage-max-pages'           => 'Se {{PLURAL:$1|ha trasladado un máximo de una página|han trasladado un máximo de $1 páginas}}, y no se van a mover más automáticamente.',
 '1movedto2'                    => '[[$1]] trasladada a [[$2]]',
 '1movedto2_redir'              => '[[$1]] trasladada a [[$2]] sobre una redirección',
-'move-redirect-suppressed'     => 'Redireccionamiento suprimido',
+'move-redirect-suppressed'     => 'redireccionamiento suprimido',
 'movelogpage'                  => 'Registro de traslados',
 'movelogpagetext'              => 'Abajo se encuentra una lista de páginas trasladadas.',
 'movereason'                   => 'Motivo:',

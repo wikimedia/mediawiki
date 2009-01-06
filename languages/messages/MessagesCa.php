@@ -2567,7 +2567,7 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'exif-focallengthin35mmfilm'       => 'Distància focal per a peŀlícula de 35 mm',
 'exif-scenecapturetype'            => "Tipus de captura d'escena",
 'exif-gaincontrol'                 => "Control d'escena",
-'exif-contrast'                    => 'Contrast',
+'exif-contrast'                    => 'Taädam',
 'exif-saturation'                  => 'Saturació',
 'exif-sharpness'                   => 'Nitidesa',
 'exif-devicesettingdescription'    => 'Descripció dels paràmetres del dispositiu',

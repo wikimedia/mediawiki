@@ -2259,6 +2259,7 @@ $1',
 'movepagebtn'                  => 'Переименовать страницу',
 'pagemovedsub'                 => 'Страница переименована',
 'movepage-moved'               => "<big>'''Страница «$1» переименована в «$2»'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => 'Создание редиректа было запрещено.',
 'articleexists'                => 'Страница с таким именем уже существует или указанное вами название недопустимо.
 Пожалуйста, выберите другое название.',
 'cantmove-titleprotected'      => 'Невозможно переименовать страницу, так как новое название входит в список запрещённых.',

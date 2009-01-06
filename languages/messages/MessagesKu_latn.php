@@ -1389,7 +1389,8 @@ da bikarî navê wê rûpelê biguherînî.',
 'move-watch'                => 'Vê rûpelê bişopîne',
 'movepagebtn'               => 'Vê rûpelê bigerîne',
 'pagemovedsub'              => 'Gerandin serkeftî',
-'movepage-moved'            => "<big>'''\"\$1\" çû cihê \"\$2\"'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'            => '<big>\'\'\'"$1" çû cihê "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect' => "Redirect'ek nehate çêkirin",
 'articleexists'             => 'Rûpela bi vî navî heye, an navê ku te hilbijart derbas nabe. Navekî din hilbijêre.',
 'cantmove-titleprotected'   => 'Tu nikanê vê rûpelê bervê vê cihê bigerînê ji ber ku sernava nuh tê parastin ji bo çêkirinê',
 'movedto'                   => 'bû',

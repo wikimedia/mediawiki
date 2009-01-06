@@ -80,6 +80,7 @@ Mit anderen Benutzer können Sie auch über die Benutzerdiskussionsseiten Kontak
 Das automatisch generierte Passwort für Benutzer „$2“ lautet nun: $3
 
 Sie sollten sich jetzt anmelden und das Passwort ändern: {{fullurl:{{ns:special}}:Userlogin}}
+Das neue Passwort ist {{PLURAL:$5|1 Tag|$5 Tage}} gültig.
 
 Bitte ignorieren Sie diese E-Mail, falls Sie sie nicht selbst angefordert haben. Das alte Passwort bleibt weiterhin gültig.',
 'passwordsent'               => 'Ein neues, temporäres Passwort wurde an die E-Mail-Adresse von Benutzer „$1“ gesandt.
@@ -451,6 +452,7 @@ In diesen Fällen müssen Sie, falls gewünscht, den Inhalt der Seite von Hand v
 Bitte den '''neuen''' Titel unter '''Ziel''' eintragen, darunter die Umbenennung bitte '''begründen.'''",
 'movenologintext'        => 'Sie müssen ein registrierter Benutzer und [[Special:UserLogin|angemeldet]] sein, um eine Seite zu verschieben.',
 'movenotallowed'         => 'Sie haben keine Berechtigung, Seiten zu verschieben.',
+'movenotallowedfile'     => 'Sie haben keine Berechtigung, Dateien zu verschieben.',
 'cant-move-user-page'    => 'Sie haben keine Berechtigung, Benutzerhauptseiten zu verschieben.',
 'cant-move-to-user-page' => 'Sie haben nicht die Berechtigung, Seiten auf eine Benutzerseite zu verschieben (mit Ausnahme von Benutzerunterseiten).',
 'articleexists'          => 'Unter diesem Namen existiert bereits eine Seite. Bitte wählen Sie einen anderen Namen.',

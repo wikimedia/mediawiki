@@ -718,6 +718,7 @@ Mit anderen Benutzer kannst du auch über die Benutzerdiskussionsseiten Kontakt 
 Das automatisch generierte Passwort für Benutzer „$2“ lautet nun: $3
 
 Du solltest dich jetzt anmelden und das Passwort ändern: {{fullurl:{{ns:special}}:Userlogin}}
+Das neue Passwort ist {{PLURAL:$5|1 Tag|$5 Tage}} gültig.
 
 Bitte ignoriere diese E-Mail, falls du sie nicht selbst angefordert hast. Das alte Passwort bleibt weiterhin gültig.',
 'noemail'                    => 'Benutzer „$1“ hat keine E-Mail-Adresse angegeben.',
@@ -2311,6 +2312,7 @@ Bitte den '''neuen''' Titel unter '''Ziel''' eintragen, darunter die Umbenennung
 'movepagebtn'                  => 'Seite verschieben',
 'pagemovedsub'                 => 'Verschiebung erfolgreich',
 'movepage-moved'               => "<big>'''Die Seite „$1“ wurde nach „$2“ verschoben.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => 'Die Erstellung einer Weiterleitung wurde unterdrückt.',
 'articleexists'                => 'Unter diesem Namen existiert bereits eine Seite. Bitte wähle einen anderen Namen.',
 'cantmove-titleprotected'      => 'Die Verschiebung kann nicht durchgeführt werden, da der Zieltitel zur Erstellung gesperrt ist.',
 'talkexists'                   => 'Die Seite selbst wurde erfolgreich verschoben, aber die zugehörige Diskussions-Seite nicht, da bereits eine mit dem neuen Titel existiert. Bitte gleiche die Inhalte von Hand ab.',

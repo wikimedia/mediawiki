@@ -462,7 +462,7 @@ Die Sperri isch dur [[User:$1|$1]] yygrichtet wore mit dr Begrindig ''„$2“''
 </div><br />
 We du jitz öppis uf der {{SITENAME}} änderisch, de wird dyni IP-Adrässen als Urhäber regischtriert u nid dy Benutzername. Du chasch di mit em glychen oder emnen andere Benutzername nöi aamälde.',
 'welcomecreation'            => '==Willcho, $1!==
-Dyy Benutzerchonto isch aaglait wore.
+Dyy Benutzerkonto isch aaglait wore.
 Vergiss nid, dyni Yystellige aazpasse.',
 'loginpagetitle'             => 'Benutzer-Aamelde',
 'yourname'                   => 'Dyy Benutzername',
@@ -470,18 +470,18 @@ Vergiss nid, dyni Yystellige aazpasse.',
 'yourpasswordagain'          => 'Passwort no mol yygee',
 'remembermypassword'         => 'Passwort spychere',
 'yourdomainname'             => 'Dyyni Domäne',
-'externaldberror'            => 'Entwäder s lit e Fähler bi dr externe Authentifizierung vor, oder Du derfsch Dyy extern Benutzerchonto nid aktualisiere.',
+'externaldberror'            => 'Entwäder s lit e Fähler bi dr externe Authentifizierung vor, oder Du derfsch Dyy extern Benutzerkonto nid aktualisiere.',
 'login'                      => 'Aamälde',
-'nav-login-createaccount'    => 'Aamälde / Chonto aaleege',
+'nav-login-createaccount'    => 'Aamälde / Konto aaleege',
 'loginprompt'                => '<small>Für di bir {{SITENAME}} aazmälde, muesch Cookies erloube!</small>',
 'userlogin'                  => 'Aamälde',
 'logout'                     => 'Abmälde',
 'userlogout'                 => 'Abmälde',
 'notloggedin'                => 'Nit aagmäldet',
-'nologin'                    => 'No kei Benutzerchonto? $1.',
-'nologinlink'                => '»Chonto aaleege«',
+'nologin'                    => 'No kei Benutzerkonto? $1.',
+'nologinlink'                => '»Konto aaleege«',
 'createaccount'              => 'Nöis Benutzerkonto aalege',
-'gotaccount'                 => 'Du häsch scho a Chonto? $1',
+'gotaccount'                 => 'Du häsch scho a Konto? $1',
 'gotaccountlink'             => '»Login fir Benutzer, wu scho aagmäldet sin«',
 'createaccountmail'          => 'iber E-Mail',
 'badretype'                  => 'Di beidi Passwörter stimme nid zämme.',
@@ -523,7 +523,8 @@ Es mues mindischtens {{PLURAL:$1|1 Zeiche|$1 Zeiche}} ha u sech vom Benutzername
 
 S automatisch generiert Passwort fir dr Benutzer $2 heisst jetz: $3
 
-Du sottsch dich jetzt aamälde un s Passwort ändere: {{fullurl:Special:UserLogin}}
+Du sottsch dich jetzt aamälde un s Passwort ändere: {{fullurl:Special:UserLogin}}.
+Des Passwort lauft ab in {{PLURAL:$5|eim Tag|$5 Täg}}.
 
 Bitte ignorier die E-Mail, wänn Du s nid sälber aagforderet hesch. S alt Passwort blybt wyter giltig.',
 'noemail'                    => 'Dr Benutzer "$1" het kei E-Mail-Adräss aagee.',
@@ -536,7 +537,7 @@ Zum Missbruuch z verhindere, isch au d Megligkeit gsperrt wore, e nej Passwort a
 Voreb ass no mee Mails iber d {{SITENAME}}-Mailfunktion an die Adräss gschickt wäre, muesch d Inschtruktione in däm Mail befolge, zum bstätige, ass es wirkli Dyys isch.',
 'throttled-mailpassword'     => 'In dr letschte {{PLURAL:$1|Stund|$1 Stunde}} isch scho ne nej Passwort aagforderet wore. Zum Missbruch vu däre Funktion z verhindere, cha nume {{PLURAL:$1|eimol in dr Stund|alli $1 Stunde}} e nej Passwort aageforderet wäre.',
 'mailerror'                  => 'Fähler bim Sende vun de Mail: $1',
-'acct_creation_throttle_hit' => 'Du hesch scho {{PLURAL:$1|1 Benutzerchonto|$1 Benutzerchonte}} aagleit.
+'acct_creation_throttle_hit' => 'Du hesch scho {{PLURAL:$1|1 Benutzerkonto|$1 Benutzerkonte}} aagleit.
 Du chasch keini meh aalege.',
 'emailauthenticated'         => 'Di E-Mail-Adräss isch am $2 um $3 Uhr bschtätigt worde.',
 'emailnotauthenticated'      => 'Dyni E-Mail-Adräss isch nonig bstätigt. Wäg däm gehn di erwyterete E-Mail-Funktione nonig.
@@ -547,15 +548,15 @@ Fir d Bstätigung muesch em Gleich nogoh, wu Dir gschickt woren isch. Du chasch 
 Bitte gib ä neiji Adress in nem gültige Format ii, odr tue s Feld leere.',
 'accountcreated'             => 'De Benutzer isch agleit worre.',
 'accountcreatedtext'         => 'De Benutzer $1 isch aagleit worre.',
-'createaccount-title'        => 'Aalege vum e Benutzerchonto fir {{SITENAME}}',
-'createaccount-text'         => 'Fir Dii isch e Benutzerchonto "$2" uf {{SITENAME}} ($4) aaglait wore. S Passwort fir "$2" , wu automatisch generiert woren isch, isch "$3". Du sottsch Di jetz aamälde un s Passwort ändere.
+'createaccount-title'        => 'Aalege vum e Benutzerkonto fir {{SITENAME}}',
+'createaccount-text'         => 'Fir Dii isch e Benutzerkonto "$2" uf {{SITENAME}} ($4) aaglait wore. S Passwort fir "$2" , wu automatisch generiert woren isch, isch "$3". Du sottsch Di jetz aamälde un s Passwort ändere.
 
-Wänn s Benutzerchonto us Versäh aaglait woren isch, chasch die Nochricht ignoriere.',
+Wänn s Benutzerkonto us Versäh aaglait woren isch, chasch die Nochricht ignoriere.',
 'login-throttled'            => 'Du hesch z vilmol vergebli versuecht, Di unter däm Benutzername aazmälde. Bitte wart, voreb Du s non emol versuechsch.',
 'loginlanguagelabel'         => 'Sproch: $1',
 
 # Password reset dialog
-'resetpass'                 => 'Passwort fir s Benutzerchonto ändere oder zrucksetze',
+'resetpass'                 => 'Passwort fir s Benutzerkonto ändere oder zrucksetze',
 'resetpass_announce'        => 'Aamäldig mit em Code, wu per Mail zuegschickt woren isch. Zum d Aamäldig abzschliesse, muesch jetz e nej Passwort wehle.',
 'resetpass_header'          => 'Passwort zrucksetze',
 'oldpassword'               => 'Alts Passwort',
@@ -662,7 +663,7 @@ Zum die Syte aalege, chasch do in däm Chaschte unte aafange schrybe (lueg [[{{M
 Wänn do nid hesch welle aane goh, no druck in Dyynem Browser uf '''Zruck'''.",
 'anontalkpagetext'                 => "''Des isch e Diskussionssyte vo me anonyme Benutzer, wo kei Zuegang aaglait het oder wo ne nit bruucht. Sälleweg muen mir di numerischi IP-Adräss bruuche zum ihn oder si z identifiziere. Sone IP-Adräss cha au vo mehrere Benutzer deilt werde. Wenn Si en anonyme Benutzer sin un s Gfiehl hen, dass do irrelevanti Kommentar an Si grichtet wärde, derno [[Special:UserLogin|lege Si sich bitte en Zuegang aa odr mälde sich aa]] zum in Zuekunft Verwirrige mit andere anonyme Benutzer z vermide.''",
 'noarticletext'                    => "Uf dere Syte het's no kei Tekscht. Du chasch uf anderne Syte [[Special:Search/{{PAGENAME}}|dä Ytrag sueche]] oder [{{fullurl:{{FULLPAGENAME}}|action=edit}} die Syte bearbeite].",
-'userpage-userdoesnotexist'        => 'S Benutzerchonto „$1“ git s nid. Bitte prief, eb Du die Syte wirkli wit aalege/bearbeite.',
+'userpage-userdoesnotexist'        => 'S Benutzerkonto „$1“ git s nit. Bitte prief, eb Du die Syte wirkli wit aalege/bearbeite.',
 'clearyourcache'                   => "'''Hywys:''' Noch dynere Änderig muess no der Browser-Cache gläärt wäre!<br />'''Mozilla/Safari/Konqueror:''' ''Strg-Umschalttaschte-R'' (oder ''Umschalttasche'' druckt halte und uf s ''Nei-Lade''-Symbol klicke), '''IE:''' ''Strg-F5'', '''Opera/Firefox:''' ''F5''",
 'usercssjsyoucanpreview'           => '<strong>Tipp:</strong> Nimm dr Vorschau-Chnopf, zum Dyy nej CSS/JS vor em Spichere z teschte.',
 'usercsspreview'                   => "== Vorschau vu Dyynem Benutzer-CSS. ==
@@ -766,8 +767,8 @@ S {{PLURAL:$2|derf nid meh wie ein Ufruef|derfe nid meh wie $1 Ufruef}} gee.',
 'undo-summary' => 'D Änderig $1 vu [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) isch ruckgängig gmacht wore.',
 
 # Account creation failure
-'cantcreateaccounttitle' => 'Benutzerchonto cha nid aaglait wäre.',
-'cantcreateaccount-text' => "S Aalege vu me Benutzerchonto vu dr IP-Adräss '''($1)''' isch dur [[User:$3|$3]] gsperrt wore.
+'cantcreateaccounttitle' => 'Benutzerkonto cha nid aagleit wäre.',
+'cantcreateaccount-text' => "S Aalege vu me Benutzerkonto vu dr IP-Adräss '''($1)''' isch dur [[User:$3|$3]] gsperrt wore.
 
 Grund vu dr Sperri: ''$2''",
 
@@ -1089,7 +1090,7 @@ prief di korrekt Installation vu latex, dvips, gs un convert',
 'userrights-reason'           => 'Grund:',
 'userrights-no-interwiki'     => 'Du hesch nit d Berächtigung, Benutzerrächt in andere Wiki z ändere.',
 'userrights-nodatabase'       => 'D Datebank $1 git s nit oder si isch nit lokal.',
-'userrights-nologin'          => 'Du muesch Di mit eme Ammanne-Benutzerchonto [[Special:UserLogin|aamälde]], zum Benutzerrächt z ändere.',
+'userrights-nologin'          => 'Du muesch Di mit eme Ammanne-Benutzerkonto [[Special:UserLogin|aamälde]], zum Benutzerrächt z ändere.',
 'userrights-notallowed'       => 'Du hesch nit d Berächtigung zum Benutzerrächt vergee.',
 'userrights-changeable-col'   => 'Gruppezuegherigkeit, wu Du chasch ändere',
 'userrights-unchangeable-col' => 'Gruppezuegherigkeit, wu Du nit chasch ändere',
@@ -1123,7 +1124,7 @@ prief di korrekt Installation vu latex, dvips, gs un convert',
 'right-edit'                 => 'Syte bearbeite',
 'right-createpage'           => 'Syten aalege (usser Diskussionssyte)',
 'right-createtalk'           => 'Diskussionssyte aalege',
-'right-createaccount'        => 'Benutzerchonto aalege',
+'right-createaccount'        => 'Benutzerkonto aalege',
 'right-minoredit'            => 'Bearbeitige as chly markiere',
 'right-move'                 => 'Syte verschiebe',
 'right-move-subpages'        => 'Syte verschiebe mitsamt dr Untersyte',
@@ -1184,7 +1185,7 @@ prief di korrekt Installation vu latex, dvips, gs un convert',
 'action-edit'                 => 'die Syte z bearbeite',
 'action-createpage'           => 'Syten aazlege',
 'action-createtalk'           => 'Diskussionssyten aazlege',
-'action-createaccount'        => 'e Benutzerchonto aazlege',
+'action-createaccount'        => 'e Benutzerkonto aazlege',
 'action-minoredit'            => 'die Bearbeitig as chlei z markiere',
 'action-move'                 => 'die Syte z verschiebe',
 'action-move-subpages'        => 'die Syte un di zuegherige Untersyte z verschiebe',
@@ -1627,8 +1628,8 @@ Lueg au d Lischt vu dr [[Special:WantedCategories|gwinschte Kategorie]].',
 'newuserlogpagetext'          => 'Des isch e Logbuech fir nej aagleiti Benutzerchonte.',
 'newuserlog-byemail'          => 's Passwort isch per E-Mail gschickt wore',
 'newuserlog-create-entry'     => 'Benutzer isch nej regischtriert wore',
-'newuserlog-create2-entry'    => 'het e Benutzerchonto aagleit fir $1',
-'newuserlog-autocreate-entry' => 'Benutzerchonto isch automatisch aagleit wore',
+'newuserlog-create2-entry'    => 'het e Benutzerkonto aagleit fir $1',
+'newuserlog-autocreate-entry' => 'Benutzerkonto isch automatisch aagleit wore',
 
 # Special:ListGroupRights
 'listgrouprights'                 => 'Benutzergruppe-Rächt',
@@ -1799,7 +1800,7 @@ Bitte gang zruck, tue d Syte nej lade un versuech s nomol.',
 'protect_expiry_old'          => 'Di gwählti Duur isch scho vergange.',
 'protect-unchain'             => 'Verschiebschutz ändere',
 'protect-text'                => 'Hie chasch der Schutzstatus vor Syte <strong><nowiki>$1</nowiki></strong> azeigen und ändere.',
-'protect-locked-blocked'      => 'Du chasch dr Syteschutz nit ändere, wel Dyy benutzerchonto gsperrt isch. Do sin di aktuälle Syteschutz-Yystellige fir d Syte <strong>„$1“:</strong>',
+'protect-locked-blocked'      => 'Du chasch dr Syteschutz nit ändere, wel Dyy Benutzerkonto gsperrt isch. Do sin di aktuälle Syteschutz-Yystellige fir d Syte <strong>„$1“:</strong>',
 'protect-locked-dblock'       => 'D Datebank isch gsperrt, dr Syteschutz cha wäge däm nit gänderet wäre. Doo sin di aktuälle Syteschutz-Yystellige fir d Syte <strong>„$1“:</strong>',
 'protect-locked-access'       => 'Dys Konto het nid di nötige Rächt, für der Schutzstatus z ändere.
 Hie sy di aktuelle Schutzystellige vor Syte <strong>$1</strong>:',
@@ -2074,6 +2075,7 @@ I söttigne Fäll müessti d Diskussionssyten allefalls vo Hand kopiert wärde."
 'movepagebtn'                  => 'Artikel verschiebe',
 'pagemovedsub'                 => 'Verschiebig erfolgrych',
 'movepage-moved'               => '<big>\'\'\'"$1" isch verschobe wore uf "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => 'D Erstellig vonere Wyterleitig isch unterdruggt worde.',
 'articleexists'                => 'E Syte mit däm Name git s scho oder de Name isch nid giltig. Bitte nimm en andere.',
 'cantmove-titleprotected'      => 'Die Syte het nüt chönne verschobe werde, wyl de nöie Titel gsperrt isch.',
 'talkexists'                   => 'D Syte sälber isch erfolgrych verschobe worde, nid aber d Diskussionssyte, wil s under em nöue Titel scho eini het gä. Bitte setz se vo Hand zäme.',
@@ -2166,7 +2168,7 @@ Alli Transwiki-Import-Aktione werde im [[Special:Log/import|Import-Logbuech]] pr
 'importnotext'               => 'Leer oder kei Teggscht',
 'importsuccess'              => 'Dr Import isch abgschlosse.',
 'importhistoryconflict'      => 'Es het scho ältri Versione wo mit dere kollidiere. Es isch mögli dass die Syte scho emool importiert worde isch.',
-'importnosources'            => 'Für de Transwiki-Import sin kei Quelle definiert worde. Deswege isch s direkte Ufelade vo Gschichtsversione gsperrt.',
+'importnosources'            => 'Für de Transwiki-Import sin kei Quelle definiert worde. Wege dem isch s direkte Ufelade vo Gschichtsversione gsperrt.',
 'importnofile'               => 'Es isch kei Importdatei ufeglade worde.',
 'importuploaderrorsize'      => 'S Ufelade vo dr Importdatei isch misslunge. D Datei isch grösser als erlaubt isch.',
 'importuploaderrorpartial'   => 'S Ufelade vo dr Importdatei isch misslunge. D Datei het numme zum Deil chönne ufeglade werde.',
@@ -2196,7 +2198,7 @@ Alli Transwiki-Import-Aktione werde im [[Special:Log/import|Import-Logbuech]] pr
 'tooltip-pt-watchlist'            => 'Lischte vo de beobachtete Syte.',
 'tooltip-pt-mycontris'            => 'Lischte vo myne Byträg',
 'tooltip-pt-login'                => 'Aamälde',
-'tooltip-pt-anonlogin'            => 'Mir ermuntre dich zwar dass du dich miteme Benutzerchonto aamääldsch, es isch aber kei Pflicht!',
+'tooltip-pt-anonlogin'            => 'Mir ermuntre dich zwar dass du dich miteme Benutzerkonto aamääldsch, es isch aber kei Pflicht!',
 'tooltip-pt-logout'               => 'Abmälde',
 'tooltip-ca-talk'                 => 'Diskussion zum Artikelinhalt',
 'tooltip-ca-edit'                 => 'Syte bearbeite. Bitte vor em Spychere d Vorschou aaluege.',
@@ -2649,7 +2651,7 @@ Anderi Metadate sy standardmäßig versteckt.
 'confirmemail'             => 'Bstätigung vo Ihre E-Poscht-Adräss',
 'confirmemail_noemail'     => 'Du hesch in dyne [[Special:Preferences|persönliche Ystellige]] e kei E-Mail-Adress ygää.',
 'confirmemail_text'        => 'Dermit du di erwyterete Mailfunktione chasch bruuche, muesch du die e-Mail-Adrässe, wo du hesch aaggä, la bestätige. Klick ufe Chnopf unte; das schickt dir es Mail. I däm Mail isch e Link; we du däm Link folgsch, de tuesch dadermit bestätige, das die e-Mail-Adrässe dyni isch.',
-'confirmemail_pending'     => '<div class="error">Es isch dir scho en Code zum bestätige zuegschiggt worde. Falls du dyn Chonto grad ersch erstellt hesch, muesch vilycht noo e weng warte bis d E-Mail ytrifft, bevor du en nöie Code aafordresch.</div>',
+'confirmemail_pending'     => '<div class="error">Es isch Dir scho en Code zum Bestätige zuegschiggt worde. Falls du Dyn Konto grad erscht aagleit hesch, muesch villicht noo e weng warte bis d E-Mail ytrifft, bevor du en nöie Code aafordresch.</div>',
 'confirmemail_send'        => 'Bestätigungs-Mail verschicke',
 'confirmemail_sent'        => 'Es isch dir es Mail zur Adrässbestätigung gschickt worde.',
 'confirmemail_oncreate'    => 'En Code isch aa dyni E-Mail-Adress zum bestätige gschiggt worde. Du bruuch de Code zwar nüt zume dich aamälde, er wird aber zume aktiviere vo de E-Mail-Funktione in däm Wiki bruucht.',

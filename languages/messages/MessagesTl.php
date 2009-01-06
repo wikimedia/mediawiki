@@ -2089,6 +2089,7 @@ Sa mga kasong ganoon, kailangan mong ilipat o pagsamahin/pagsanibin ang pahina s
 'movepagebtn'                  => 'Ilipat ang pahina',
 'pagemovedsub'                 => 'Matagumpay ang paglipat',
 'movepage-moved'               => '<big>\'\'\'Inilipat ang "$1" patungo sa "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => 'Pinigilan ang paglikha ng isang panturo.',
 'articleexists'                => 'May umiiral nang pahinang may ganyang pangalan, o ang
 pangalang pinili mo ay hindi tanggap.
 Pumili muli ng ibang pangalan.',

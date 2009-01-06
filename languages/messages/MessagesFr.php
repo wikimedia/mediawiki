@@ -704,6 +704,7 @@ Vérifiez que vous avez bien orthographié le nom, ou [[Special:UserLogin/signup
 passe pour {{SITENAME}} ($4). Un mot de passe temporaire a été créé pour
 l’utilisateur « $2 » et est « $3 ». Si cela était votre intention, vous devrez
 vous connecter et choisir un nouveau mot de passe.
+Votre mot de passe temporaire expirera dans $5 {{PLURAL:$5|jour|jours}}.
 
 Si vous n’êtes pas l’auteur de cette demande, ou si vous vous souvenez à présent
 de votre ancien mot de passe et que vous ne souhaitez plus en changer, vous
@@ -2276,6 +2277,7 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 'movepagebtn'                  => 'Renommer la page',
 'pagemovedsub'                 => 'Renommage réussi',
 'movepage-moved'               => "<big>'''« $1 »''' a été déplacé vers '''« $2 »'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => 'La création de la redirection a été supprimé.',
 'articleexists'                => 'Il existe déjà une page portant ce titre, ou le titre que vous avez choisi n’est pas valide. Veuillez en choisir un autre.',
 'cantmove-titleprotected'      => 'Vous ne pouvez pas déplacer une page vers cet emplacement car le nouveau titre a été protégé à la création.',
 'talkexists'                   => 'La page elle-même a été déplacée avec succès, mais la page de discussion n’a pas pu être déplacée car il en existait déjà une sous le nouveau nom. Veuillez les fusionner manuellement.',

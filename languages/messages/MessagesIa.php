@@ -2232,6 +2232,7 @@ pro mover un pagina.',
 'movepagebtn'                  => 'Renominar pagina',
 'pagemovedsub'                 => 'Renomination succedite',
 'movepage-moved'               => '<big>\'\'\'"$1" ha essite renominate a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => 'Le creation de un redirection ha essite supprimite.',
 'articleexists'                => 'Un pagina con iste nomine ja existe, o le nomine seligite non es valide.
 Per favor selige un altere nomine.',
 'cantmove-titleprotected'      => 'Tu non pote renominar un pagina a iste titulo, proque le nove titulo ha essite protegite contra creation',

@@ -2280,6 +2280,7 @@ ako to želite.",
 'movepagebtn'                  => 'Premjesti stranicu',
 'pagemovedsub'                 => 'Premještanje uspjelo',
 'movepage-moved'               => '<big>\'\'\'"$1" je premješteno na "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => 'Stvaranje preusmjeravanja je izostavljeno.',
 'articleexists'                => 'Stranica pod tim imenom već postoji ili ime koje ste odabrali nije u skladu s pravilima.
 Molimo odaberite drugo ime.',
 'cantmove-titleprotected'      => 'Ne možete premjestiti ovu stranicu na ovo mjesto, jer je novi naslov zaštićen od kreiranja',

@@ -2179,6 +2179,7 @@ I desse falla lyt du flytte eller flette saman sida manuelt.",
 'movepagebtn'                  => 'Flytt side',
 'pagemovedsub'                 => 'Flyttinga er gjennomført',
 'movepage-moved'               => "<big>'''«$1» er flytt til «$2»'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => 'Det vart ikkje oppretta ei omdirigering.',
 'articleexists'                => 'Ei side med det namnet finst allereie, eller det namnet du har valt er ikkje gyldig. Vel eit anna namn.',
 'cantmove-titleprotected'      => 'Du kan ikkje flytte sida hit, fordi det nye sidenamnet er verna mot oppretting.',
 'talkexists'                   => "'''Innhaldssida vart flytt, men diskusjonssida som høyrer til kunne ikkje flyttast fordi det allereie finst ei side med den nye tittelen. Du lyt difor flette dei saman manuelt.'''",

@@ -1187,7 +1187,8 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'showingresults'                   => 'Zobrazuji <strong>$1</strong> {{PLURAL:$1|výsledek|výsledky|výsledků}} počínaje od <strong>$2</strong>.',
 'showingresultsnum'                => 'Zobrazuji <strong>$3</strong> {{PLURAL:$3|výsledek|výsledky|výsledků}} počínaje od <strong>$2</strong>.',
 'showingresultstotal'              => "{{PLURAL:$4|Zobrazuje se výsledek '''$1''' z&nbsp;'''$3'''|Zobrazují se výsledky '''$1–$2''' z&nbsp;'''$3'''}}",
-'nonefound'                        => '<strong>Poznámka</strong>: neúspěšná hledání jsou často důsledkem zadání slov, která nejsou indexována, nebo uvedením mnoha slov najednou (ve výsledku se objeví jen ty stránky, které obsahují všechna zadaná slova).',
+'nonefound'                        => "'''Poznámka''': Standardně se hledá jen v některých jmenných prostorech.
+Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně diskusí, šablon atd.), případně místo toho napište název požadovaného jmenného prostoru.",
 'search-nonefound'                 => 'Na váš dotaz nebyly nalezeny žádné výsledky.',
 'powersearch'                      => 'Hledání',
 'powersearch-legend'               => 'Rozšířené vyhledávání',
@@ -2268,6 +2269,7 @@ V těchto případech musíte přesunout nebo sloučit stránky manuálně, jest
 'movepagebtn'                  => 'Přesunout stránku',
 'pagemovedsub'                 => 'Úspěšně přesunuto',
 'movepage-moved'               => "<big>'''Stránka „$1“ byla přesunuta na „$2“'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-noredirect'    => 'Přesměrování nebylo vytvořeno.',
 'articleexists'                => 'Takto nazvaná stránka již existuje, nebo Vámi zvolený název je neplatný. Zvolte jiný název.',
 'cantmove-titleprotected'      => 'Stránku nelze přesunout na zadané místo, protože název je uzamčen proti vytváření',
 'talkexists'                   => 'Stránka byla přesunuta úspěšně, ale diskusní stránka přesunuta být nemohla, neboť pod novým názvem již nějaká stránka existuje. Proveďte prosím ruční sloučení.',

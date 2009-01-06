@@ -372,7 +372,7 @@ $messages = array(
 'newmessageslink'         => 'נייע מעלדונגען',
 'newmessagesdifflink'     => 'לעצטע ענדערונג',
 'youhavenewmessagesmulti' => 'איר האט נייע מעסעדזשעס אין $1',
-'editsection'             => 'ענדערן',
+'editsection'             => 'באַאַרבעטן',
 'editold'                 => 'ענדערן',
 'viewsourceold'           => 'ווײַזן מקור',
 'editlink'                => 'רעדאַקטירן',
@@ -1487,12 +1487,7 @@ $NEWPAGE
 'cannotundelete'            => 'צוריקשטעלונג איז דורכגעפאלן; עס איז מעגליך אז אן אנדערע האט דאס שוין צוריקגעשטעלט.',
 'undeletedpage'             => "'''דער בלאט $1 איז געווארן צוריקגעשטעלט.'''
 
-זעט דעם [[Special:Log/delete| אויסמעקן לאג]] פאר א ליסטע פון די לעצטע אויסגעמעקטע און צוריקגעשטעלטע בלעטער.
-
-
-'''דער בלאט $1 איז געווארן צוריקגעשטעלט.'''
-
-זעה די [[{{ns:special}}:Log/delete|אויסמעקן לאג]] פאר א ליסטע פון אויסגעמעקטע און צוריקגעשטעלטע בלעטער.",
+זעט דעם [[Special:Log/delete| אויסמעקן לאג]] פֿאר א ליסטע פון די לעצטע אויסגעמעקטע און צוריקגעשטעלטע בלעטער.",
 'undelete-search-box'       => 'זוכן אויסגעמעקטע בלעטער',
 'undelete-search-prefix'    => 'ווײַז בלעטער וואס הייבן אן מיט:',
 'undelete-search-submit'    => 'זוכן',
@@ -1553,9 +1548,7 @@ $NEWPAGE
 'ipbreasonotherlist'       => 'אנדער סיבה',
 'ipbsubmit'                => 'בלאקירן דעם באַניצער',
 'ipbother'                 => 'אַנדער צײַט',
-'ipboptions'               => '15 מינוט:15 minutes,
-1 שעה:1 hour,
-2 שעהן:2 hours,
+'ipboptions'               => '2 שעהן:2 hours,
 1 טאָג:1 day,
 3 טעג:3 days,
 1 װאָך:1 week,

@@ -721,6 +721,7 @@ gedaan tot het toezenden van een nieuw wachtwoord voor {{SITENAME}}
 ($4). Er is een tijdelijk wachtwoord aangemaakt voor gebruiker "$2":
 "$3". Als dat uw bedoeling was, meld u dan nu aan en kies een nieuw
 wachtwoord.
+Uw tijdelijke wachtwoord vervalt over {{PLURAL:$5|$5 dag|$5 dagen}}.
 
 Als iemand anders dan u dit verzoek heeft gedaan of als u zich inmiddels het
 wachtwoord herinnert en het niet langer wilt wijzigen, negeer dit bericht
@@ -2393,6 +2394,8 @@ Zorg ervoor dat u die gevolgen overziet voordat u deze handeling uitvoert.",
 'movepagebtn'                  => 'Pagina hernoemen',
 'pagemovedsub'                 => 'De pagina is hernoemd',
 'movepage-moved'               => '<big>\'\'\'"$1" is hernoemd naar "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-redirect'      => 'Er is een doorverwijzing aangemaakt.',
+'movepage-moved-noredirect'    => 'Er is geen doorverwijzing aangemaakt.',
 'articleexists'                => 'De pagina bestaat al of de paginanaam is ongeldig.
 Kies een andere paginanaam.',
 'cantmove-titleprotected'      => 'U kunt geen pagina naar deze paginaam hernoemen, omdat deze paginaam beveiligd is tegen het aanmaken ervan.',
