@@ -18,14 +18,16 @@ Usage:
                          [--new-only] [--redirects-only]
     php refreshLinks.php [<start>] [-e <end>] [-m <maxlag>] --old-redirects-only
 
-    --help               : This help message
-    --dfn-only           : Delete links from nonexistent articles only
-    --new-only           : Only affect articles with just a single edit
-    --redirects-only     : Only fix redirects, not all links
-    --old-redirects-only : Only fix redirects with no redirect table entry
-    -m <number>          : Maximum replication lag
-    <start>              : First page id to refresh
-    -e <number>          : Last page id to refresh
+    --help                : This help message
+    --dfn-only            : Delete links from nonexistent articles only
+    --batch-size <number> : The delete batch size when removing links from
+                            nonexistent articles (default 100)
+    --new-only            : Only affect articles with just a single edit
+    --redirects-only      : Only fix redirects, not all links
+    --old-redirects-only  : Only fix redirects with no redirect table entry
+    -m <number>           : Maximum replication lag
+    <start>               : First page id to refresh
+    -e <number>           : Last page id to refresh
 
 TEXT;
 	exit(0);
@@ -44,10 +46,8 @@ if ( !$options['dfn-only'] ) {
 }
 // this bit's bad for replication: disabling temporarily
 // --brion 2005-07-16
-//deleteLinksFromNonexistent();
+deleteLinksFromNonexistent($options['m'], $options['batch-size']);
 
 if ( $options['globals'] ) {
 	print_r( $GLOBALS );
 }
-
-
