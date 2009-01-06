@@ -2337,6 +2337,8 @@ $1 כבר נחסם. האם ברצונכם לשנות את הגדרות החסי�
 'movepagebtn'                  => 'העברה',
 'pagemovedsub'                 => 'ההעברה הושלמה בהצלחה',
 'movepage-moved'               => '<big>הדף "$1" הועבר לשם "$2".</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-redirect'      => 'נוצרה הפניה.',
+'movepage-moved-noredirect'    => 'יצירת ההפניה בוטלה.',
 'articleexists'                => 'קיים כבר דף עם אותו שם, או שהשם שבחרתם אינו חוקי.
 אנא בחרו שם אחר.',
 'cantmove-titleprotected'      => 'אינכם יכולים להעביר את הדף לשם זה, כיוון שהשם החדש הוגן מוגן העברה',
