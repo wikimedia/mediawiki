@@ -71,7 +71,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * The 'BeforeWatchlist' hook has been removed due to internal changes in
   Special:Watchlist. 'SpecialWatchlistQuery' should now be used by extensions
   to customize the watchlist database query.
-
+* Added $wgNewPasswordExpiry, to specify an expiry time (in seconds) to 
+  tempoary passwords
 
 === Migrated extensions ===
 The following extensions are migrated into MediaWiki 1.14:
@@ -258,6 +259,7 @@ The following extensions are migrated into MediaWiki 1.14:
 * Image moving is now enabled for sysops by default
 * Make "Did you mean" search feature more noticeable
 * Added "Advanced search" link to the search form
+* (bug 2242) Add an expiry time to temporary passwords
 
 === Bug fixes in 1.14 ===
 

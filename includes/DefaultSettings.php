@@ -521,6 +521,11 @@ $wgUserEmailUseReplyTo = false;
 $wgPasswordReminderResendTime = 24;
 
 /**
+ * The time, in seconds, when an emailed temporary password expires.
+ */
+$wgNewPasswordExpiry  = 3600 * 24 * 7;
+
+/**
  * SMTP Mode
  * For using a direct (authenticated) SMTP server connection.
  * Default to false or fill an array :
