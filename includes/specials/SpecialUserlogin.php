@@ -670,7 +670,8 @@ class LoginForm {
 		$u->setNewpassword( $np, $throttle );
 		$u->saveSettings();
 
-		$m = wfMsg( $emailText, $ip, $u->getName(), $np, $wgServer . $wgScript, round( $wgNewPasswordExpiry / 86400 ) );
+		$m = wfMsgExt( $emailText, array( 'parsemag' ), $ip, $u->getName(), $np,
+				$wgServer . $wgScript, round( $wgNewPasswordExpiry / 86400 ) );
 		$result = $u->sendMail( wfMsg( $emailTitle ), $m );
 
 		return $result;
