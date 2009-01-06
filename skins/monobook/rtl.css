@@ -160,8 +160,8 @@ li#ca-watch {
 	margin-right: 13.6em;
 	border-left: 0;
 	border-right: 1px solid #fabd23;
-} 
-* html #column-content { 
+}
+* html #column-content {
 	float: none;
 	margin-left: 0;
 	margin-right: 0;
@@ -230,4 +230,11 @@ html > body div#bodyContent ul {
 }
 html > body div#bodyContent ul#filetoc {
 	display: block;
+}
+
+#sv-ext, #sv-hooks {
+direction:rtl;
+}
+.sv-ext-authors {
+direction:ltr;
 }
