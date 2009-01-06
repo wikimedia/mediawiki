@@ -349,7 +349,9 @@ class MovePageForm {
 		$oldLink = "<span class='plainlinks'>[$oldUrl $oldText]</span>";
 		$newLink = "<span class='plainlinks'>[$newUrl $newText]</span>";
 
+		$msgName = $createRedirect ? 'movepage-moved-redirect' : 'movepage-moved-noredirect';
 		$wgOut->addWikiMsg( 'movepage-moved', $oldLink, $newLink, $oldText, $newText );
+		$wgOut->addWikiMsg( $msgName );
 
 		# Now we move extra pages we've been asked to move: subpages and talk
 		# pages.  First, if the old page or the new page is a talk page, we
