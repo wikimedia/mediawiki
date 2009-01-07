@@ -142,7 +142,7 @@ class MergehistoryForm {
 	}
 
 	private function showHistory() {
-		global $wgLang, $wgContLang, $wgUser, $wgOut;
+		global $wgLang, $wgUser, $wgOut;
 
 		$this->sk = $wgUser->getSkin();
 
@@ -163,27 +163,26 @@ class MergehistoryForm {
 		if( $haveRevisions ) {
 			# Format the user-visible controls (comment field, submission button)
 			# in a nice little table
-			$align = $wgContLang->isRtl() ? 'left' : 'right';
 			$table =
 				Xml::openElement( 'fieldset' ) .
-				Xml::openElement( 'table' ) .
+				Xml::openElement( 'table', array( 'id' => 'mw-mergehistory-table' ) ) .
 					"<tr>
-						<td colspan='2'>" .
+						<td class='mw-label'>" .
 							wfMsgExt( 'mergehistory-merge', array('parseinline'),
 								$this->mTargetObj->getPrefixedText(), $this->mDestObj->getPrefixedText() ) .
 						"</td>
 					</tr>
 					<tr>
-						<td align='$align'>" .
+						<td class='mw-label'>" .
 							Xml::label( wfMsg( 'undeletecomment' ), 'wpComment' ) .
 						"</td>
-						<td>" .
+						<td class='mw-input'>" .
 							Xml::input( 'wpComment', 50, $this->mComment ) .
 						"</td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
-						<td>" .
+						<td class='mw-submit'>" .
 							Xml::submitButton( wfMsg( 'mergehistory-submit' ), array( 'name' => 'merge', 'id' => 'mw-merge-submit' ) ) .
 						"</td>
 					</tr>" .
