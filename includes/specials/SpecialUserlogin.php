@@ -654,7 +654,7 @@ class LoginForm {
 	 * @private
 	 */
 	function mailPasswordInternal( $u, $throttle = true, $emailTitle = 'passwordremindertitle', $emailText = 'passwordremindertext' ) {
-		global $wgServer, $wgScript, $wgUser, $wgNewPasswordExpiry;
+		global $wgServer, $wgScript, $wgUser;
 
 		if ( '' == $u->getEmail() ) {
 			return new WikiError( wfMsg( 'noemail', $u->getName() ) );
@@ -670,8 +670,7 @@ class LoginForm {
 		$u->setNewpassword( $np, $throttle );
 		$u->saveSettings();
 
-		$m = wfMsgExt( $emailText, array( 'parsemag' ), $ip, $u->getName(), $np,
-				$wgServer . $wgScript, round( $wgNewPasswordExpiry / 86400 ) );
+		$m = wfMsg( $emailText, $ip, $u->getName(), $np, $wgServer . $wgScript );
 		$result = $u->sendMail( wfMsg( $emailTitle ), $m );
 
 		return $result;
