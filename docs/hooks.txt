@@ -551,6 +551,13 @@ Return true to allow the normal editor to be used, or false
 if implementing a custom editor, e.g. for a special namespace,
 etc.
 
+'NewDifferenceEngine': Called when a new DifferenceEngine object is made
+$title: the diff page title (nullable)
+&$oldId: the actual old Id to use in the diff
+&$newId: the actual new Id to use in the diff (0 means current)
+$old: the ?old= param value from the url
+$new: the ?new= param value from the url
+
 'DiffViewHeader': called before diff display
 $diff: DifferenceEngine object that's calling
 $oldRev: Revision object of the "old" revision (may be null/invalid)
