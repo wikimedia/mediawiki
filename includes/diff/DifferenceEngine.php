@@ -46,11 +46,8 @@ class DifferenceEngine {
 		if ( 'prev' === $new ) {
 			# Show diff between revision $old and the previous one.
 			# Get previous one from DB.
-			#
 			$this->mNewid = intval($old);
-
 			$this->mOldid = $this->mTitle->getPreviousRevisionID( $this->mNewid );
-
 		} elseif ( 'next' === $new ) {
 			# Show diff between revision $old and the previous one.
 			# Get previous one from DB.
@@ -62,10 +59,10 @@ class DifferenceEngine {
 				# revision is cur, which is "0".
 				$this->mNewid = 0;
 			}
-
 		} else {
 			$this->mOldid = intval($old);
 			$this->mNewid = intval($new);
+			wfRunHooks( 'NewDifferenceEngine', array(&$titleObj, &$this->mOldid, &$this->mNewid, $old, $new) ); 
 		}
 		$this->mRcidMarkPatrolled = intval($rcid);  # force it to be an integer
 		$this->mRefreshCache = $refreshCache;
