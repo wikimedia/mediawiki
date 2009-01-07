@@ -2101,11 +2101,26 @@ function wfIniGetBool( $setting ) {
 function wfShellExec( $cmd, &$retval=null ) {
 	global $IP, $wgMaxShellMemory, $wgMaxShellFileSize, $wgMaxShellTime;
 
-	if( wfIniGetBool( 'safe_mode' ) ) {
-		wfDebug( "wfShellExec can't run in safe_mode, PHP's exec functions are too broken.\n" );
+	static $disabled;
+	if ( is_null( $disabled ) ) {
+		$disabled = false;
+		if( wfIniGetBool( 'safe_mode' ) ) {
+			wfDebug( "wfShellExec can't run in safe_mode, PHP's exec functions are too broken.\n" );
+			$disabled = true;
+		}
+		$functions = explode( ',', ini_get( 'disable_functions' ) );
+		$functions = array_map( 'trim', $functions );
+		$functions = array_map( 'strtolower', $functions );
+		if ( in_array( 'passthru', $functions ) ) {
+			wfDebug( "passthru is in disabled_functions\n" );
+			$disabled = true;
+		}
+	}
+	if ( $disabled ) {
 		$retval = 1;
 		return "Unable to run external programs in safe mode.";
 	}
+
 	wfInitShellLocale();
 
 	if ( php_uname( 's' ) == 'Linux' ) {
