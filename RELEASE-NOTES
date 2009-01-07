@@ -258,7 +258,6 @@ The following extensions are migrated into MediaWiki 1.14:
   move log
 * Image moving is now enabled for sysops by default
 * Make "Did you mean" search feature more noticeable
-* Added "Advanced search" link to the search form
 * (bug 2242) Add an expiry time to temporary passwords
 * (bug 16720) Transcluded Special:NewPages processes "/username="
 
