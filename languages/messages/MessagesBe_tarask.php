@@ -2259,6 +2259,7 @@ $1 ужо заблякаваны. Вы жадаеце зьмяніць пара�
 'movepagebtn'                  => 'Перанесьці старонку',
 'pagemovedsub'                 => 'Пасьпяховы перанос',
 'movepage-moved'               => "<big>'''Старонка «$1» была перанесеная ў «$2»'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-redirect'      => 'Перанакіраваньне было створана.',
 'movepage-moved-noredirect'    => 'Перанакіраваньне не было створанае.',
 'articleexists'                => 'Старонка з такой назвай ужо існуе, альбо абраная Вамі назва недапушчальная. Калі ласка, абярыце іншую назву.',
 'cantmove-titleprotected'      => 'Немагчыма перанесьці старонку, таму што новая назва знаходзіцца ў сьпісе забароненых',

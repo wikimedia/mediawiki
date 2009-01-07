@@ -513,7 +513,7 @@ Koräkolös tonatami nema at, u [[Special:UserLogin/signup|jafolös kali nulik]]
 Muton binädon me {{PLURAL:$1|malat|malats}} pu $1 e difön de gebananem olik.',
 'mailmypassword'             => 'Sedön letavödi nulik',
 'passwordremindertitle'      => 'Letavöd nulik nelaidik in {{SITENAME}}',
-'passwordremindertext'       => 'Ek (luveratiko ol, se ladet-IP: $1) ebegon sedi letavöda nulik pro {{SITENAME}} ($4). Letavöd nelaidüpik pejafon pro geban: „$2“ e pesedon ele „$3“. If atos ejenon ma vil olik, mutol anu nunädön oli e välön letavödi nulik. Letavöd nelaidüpik ola labon duli {{PLURAL:$5|dela bal|delas $5}}.
+'passwordremindertext'       => 'Ek (luveratiko ol, se ladet-IP: $1) ebegon sedi letavöda nulik pro {{SITENAME}} ($4). Letavöd nelaidüpik pejafon pro geban: „$2“ e pesedon ele „$3“. If atos ejenon ma vil olik, mutol anu nunädön oli e välön letavödi nulik.
 
 If pösod votik edunon begi at, ud if anu memol letavödi olik e no plu vilol votükön oni, dalol nedemön penedi at e laigebön letavödi rigik ola.',
 'noemail'                    => 'Ladet leäktronik nonik peregistaron pro geban "$1".',
@@ -893,6 +893,7 @@ Kontrololös, va votükam at okipon fovöfi padajenotema.',
 'diff-h3'                 => "a '''suspenäd (nivod: 3)'''",
 'diff-h4'                 => "'''suspenäd (nivod: 4)'''",
 'diff-h5'                 => "'''suspenäd (nivod: 5)'''",
+'diff-pre'                => "'''vödemadilod pebüofomätüköl'''",
 'diff-div'                => "'''teil'''",
 'diff-ul'                 => "'''lised no peleodüköl'''",
 'diff-ol'                 => "'''lised peleodüköl'''",
@@ -904,9 +905,11 @@ Kontrololös, va votükam at okipon fovöfi padajenotema.',
 'diff-th'                 => "'''tiäd'''",
 'diff-br'                 => "'''lienabreik'''",
 'diff-hr'                 => "'''lien horitätik'''",
+'diff-code'               => "'''vödemadilod binü programakot'''",
 'diff-dl'                 => "'''miedetalised'''",
 'diff-dt'                 => "'''miedetanotod'''",
 'diff-dd'                 => "'''miedet'''",
+'diff-input'              => "'''fometafel'''",
 'diff-form'               => "'''fomet'''",
 'diff-img'                => "'''magod'''",
 'diff-span'               => "'''stäänöp'''",
@@ -919,6 +922,9 @@ Kontrololös, va votükam at okipon fovöfi padajenotema.',
 'diff-big'                => "'''gretik'''",
 'diff-del'                => "'''pemoükon'''",
 'diff-tt'                 => "'''vidot nevotükovik'''",
+'diff-sub'                => "'''pedonopenöl'''",
+'diff-sup'                => "'''pelöpopenöl'''",
+'diff-strike'             => "'''peduliunöl'''",
 
 # Search results
 'searchresults'                    => 'Sukaseks',
@@ -1010,6 +1016,8 @@ Kontrololös, va votükam at okipon fovöfi padajenotema.',
 vestigolös stitami verätik ela latex, ela dvips, ela gs, e feajafön',
 'math_bad_tmpdir'           => 'No mögos ad penön ini / jafön ragiviär(i) matematik nelaidüpik.',
 'math_bad_output'           => 'No mögos ad penön ini / jafön ragiviär(i) matematik labü seks',
+'math_notexvc'              => 'Program-texvc ledunovik no petuvon;
+logolös eli math/README ad givulön parametemi.',
 'prefs-personal'            => 'Gebananüns',
 'prefs-rc'                  => 'Votükams nulik',
 'prefs-watchlist'           => 'Galädalised',
@@ -1104,6 +1112,7 @@ vestigolös stitami verätik ela latex, ela dvips, ela gs, e feajafön',
 'right-minoredit'            => 'Malön redakamis as püliks.',
 'right-move'                 => 'Topätükön padis',
 'right-move-subpages'        => 'Topätükön padis kobü donapads onsik',
+'right-move-rootuserpages'   => 'Topätükön gebanapadis cifik',
 'right-movefile'             => 'Topätükön ragivis',
 'right-suppressredirect'     => 'No jafön lüodükömi de nem büik posä pad petopätükon',
 'right-upload'               => 'Löpükön ragivis',
@@ -1114,6 +1123,7 @@ vestigolös stitami verätik ela latex, ela dvips, ela gs, e feajafön',
 'right-autoconfirmed'        => 'Redakön padis dilo pejelölis',
 'right-bot'                  => 'Palelogön as dun itjäfidik',
 'right-nominornewtalk'       => 'No dälön redakames pülik bespikapadas ad kodön nuni: „nuns nulik“',
+'right-apihighlimits'        => 'Gebön miedis löpikum pö seivids-API',
 'right-writeapi'             => 'Gebi ela API penamik',
 'right-delete'               => 'Moükön padis',
 'right-bigdelete'            => 'Moükön padis labü jenotems lunik',
@@ -1157,6 +1167,7 @@ vestigolös stitami verätik ela latex, ela dvips, ela gs, e feajafön',
 'action-minoredit'            => 'bepenön redakami at as pülik',
 'action-move'                 => 'topätükön padi at',
 'action-move-subpages'        => 'topätükön padi at äsi donapadis onik',
+'action-move-rootuserpages'   => 'topätükön gebanapadis cifik',
 'action-movefile'             => 'topätükön ragivi at',
 'action-upload'               => 'löpükön ragivi at',
 'action-reupload'             => 'lovepladön sui ragiv dabinöl at',
@@ -1175,6 +1186,7 @@ vestigolös stitami verätik ela latex, ela dvips, ela gs, e feajafön',
 'action-import'               => 'nüveigön padi at se vük votik',
 'action-importupload'         => 'nüveigön padi at se ragivilöpükam',
 'action-unwatchedpages'       => 'Logön lisedi padas no pagalädölas',
+'action-mergehistory'         => 'balön jenotemi pada at',
 'action-userrights'           => 'redakön gebanagitätis valik',
 'action-userrights-interwiki' => 'redakön gebanagitätis gebanas vükas votik',
 'action-siteadmin'            => 'lökofärmükön u maifükön nünodemi',
@@ -2041,6 +2053,7 @@ Votükam at kanon binön mu staböfik ä no paspetöl pö pad pöpedik. Suemolö
 'movepagebtn'                  => 'Topätükolöd padi',
 'pagemovedsub'                 => 'Topätükam eplöpon',
 'movepage-moved'               => '<big>\'\'\'"$1" petopätükon lü "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-redirect'      => 'Lüodüköm pejafon.',
 'movepage-moved-noredirect'    => 'Lüoküköm ye no pejafon.',
 'articleexists'                => 'Pad labü nem at ya dabinon, u nem fa ol pevälöl no lonöfon.
 Välolös nemi votik.',
@@ -2074,6 +2087,7 @@ Yeged nulik "[[:$1]]" ya dabinon. Vilol-li moükön oni ad jafön spadi pro top�
 'immobile-source-page'         => 'Pad at no binon topätükovik.',
 'immobile-target-page'         => 'Topätükam ad tiäd at nemögon.',
 'imagenocrossnamespace'        => 'Ragivs no kanons patopätükön ini nemaspad no pedisinöl pro ragivs',
+'imagetypemismatch'            => 'Poyümot ragiva nulik no pöton pö sot onik',
 'imageinvalidfilename'         => 'Zeilaragivanem no lonöfon',
 'fix-double-redirects'         => 'Verätükön lüodükömis, kels dugons lü tiäd rigik',
 'move-leave-redirect'          => 'Posbinükön as lüodüköm',
@@ -2381,14 +2395,18 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 'exif-brightnessvalue'             => 'Litöf',
 'exif-exposurebiasvalue'           => 'Gudükumam jonama',
 'exif-subjectdistance'             => 'Fagot zeila',
+'exif-meteringmode'                => 'Mafamamod',
 'exif-lightsource'                 => 'Litafonät',
 'exif-flash'                       => 'Kämalelit',
 'exif-focallength'                 => 'Foukafagot',
 'exif-subjectarea'                 => 'Portät',
 'exif-flashenergy'                 => 'Nämet kämalelita',
+'exif-subjectlocation'             => 'Staned zeila',
 'exif-exposureindex'               => 'Mafädanum litükama',
+'exif-sensingmethod'               => 'Senametod',
 'exif-filesource'                  => 'Fonät ragiva',
 'exif-scenetype'                   => 'Sot süfüla',
+'exif-cfapattern'                  => 'Pated-CFA',
 'exif-exposuremode'                => 'Litükamamod',
 'exif-whitebalance'                => 'Vietaleigavet',
 'exif-scenecapturetype'            => 'Sot süfülilasumama',
@@ -2405,13 +2423,17 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 'exif-gpsaltitude'                 => 'Geilot',
 'exif-gpstimestamp'                => 'tim-GPS (glok taumik)',
 'exif-gpssatellites'               => 'Muneds pö mafam pegeböls',
+'exif-gpsstatus'                   => 'Getanastad',
+'exif-gpsmeasuremode'              => 'Mafamametod',
 'exif-gpsdop'                      => 'Kurat mafama',
 'exif-gpsspeedref'                 => 'Vifotastabäd',
+'exif-gpsspeed'                    => 'Vifot GPS-getiana',
 'exif-gpstrack'                    => 'Mufalüod',
 'exif-gpsimgdirection'             => 'Lüod magoda',
 'exif-gpsdestlatitude'             => 'Zeilavidet',
 'exif-gpsdestlongitude'            => 'Zeilalunet',
 'exif-gpsdestdistance'             => 'Fagot jü lükömöp',
+'exif-gpsprocessingmethod'         => 'Nem dunamoda-GPS',
 'exif-gpsareainformation'          => 'Nem topäda: GPS',
 'exif-gpsdatestamp'                => 'Dät ela GPS',
 
@@ -2421,7 +2443,9 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 'exif-unknowndate' => 'Dät nesevädik',
 
 'exif-orientation-1' => 'Nomik', # 0th row: top; 0th column: left
+'exif-orientation-2' => 'Petülöl horitäto', # 0th row: top; 0th column: right
 'exif-orientation-3' => 'Mö 180° pefleköl', # 0th row: bottom; 0th column: right
+'exif-orientation-4' => 'Petülöl pendito', # 0th row: bottom; 0th column: left
 
 'exif-componentsconfiguration-0' => 'no dabinon',
 
@@ -2437,6 +2461,7 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 
 'exif-meteringmode-0'   => 'Nesevädik',
 'exif-meteringmode-1'   => 'Zäned',
+'exif-meteringmode-5'   => 'Pated',
 'exif-meteringmode-6'   => 'Dilik',
 'exif-meteringmode-255' => 'Votik',
 
@@ -2485,6 +2510,7 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 'exif-sharpness-2' => 'Nämöfik',
 
 'exif-subjectdistancerange-0' => 'Nesevädik',
+'exif-subjectdistancerange-1' => 'Makro',
 'exif-subjectdistancerange-2' => 'Loged nilik',
 'exif-subjectdistancerange-3' => 'Loged fägik',
 
@@ -2629,12 +2655,14 @@ Kanol i [[Special:Watchlist/edit|gebön redakametodi kösömik]].',
 
 # Special:Version
 'version'                  => 'Fomam', # Not used as normal message but as header for the special page itself
+'version-extensions'       => 'veitükumams pestitöl',
 'version-specialpages'     => 'Pads patik',
 'version-other'            => 'Votik',
 'version-hooks'            => 'Huköms',
 'version-hook-name'        => 'Hukömanem',
 'version-version'          => 'Fomam',
 'version-license'          => 'Dälazöt',
+'version-software'         => 'Programs pestitöl',
 'version-software-product' => 'Prodäd',
 'version-software-version' => 'Fomam',
 
@@ -2647,9 +2675,16 @@ Kanol i [[Special:Watchlist/edit|gebön redakametodi kösömik]].',
 Penolös ragivanemi nen foyümot: „{{ns:file}}:“',
 
 # Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Sukön ragivis petelüköl',
+'fileduplicatesearch-summary'  => 'Sukön ragivis petelüköl stabü völad kontrolasaedota onsik.
+
+Penolös ragivanemi nen foyümot: „{{ns:file}}:“.',
+'fileduplicatesearch-legend'   => 'Sukön telükoti',
 'fileduplicatesearch-filename' => 'Ragivanem:',
 'fileduplicatesearch-submit'   => 'Sukön',
 'fileduplicatesearch-info'     => 'pixels $1 × $2 <br />Ragivagretot: $3<br />MIME-sot: $4',
+'fileduplicatesearch-result-1' => 'Ragiv: „$1“ no labon telükoti kuratik.',
+'fileduplicatesearch-result-n' => 'Ragiv: „$1“ labon {{PLURAL:$2|telükoti kuratik bal|telükotis kuratik $2}}.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Pads patik',
