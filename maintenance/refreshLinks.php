@@ -5,7 +5,7 @@
  */
 
 /** */
-$optionsWithArgs = array( 'm', 'e' );
+$optionsWithArgs = array('batch-size', 'm', 'e' );
 
 require_once( "commandLine.inc" );
 require_once( "refreshLinks.inc" );
@@ -15,13 +15,13 @@ if( isset( $options['help'] ) ) {
 Usage:
     php refreshLinks.php --help
     php refreshLinks.php [<start>] [-e <end>] [-m <maxlag>] [--dfn-only]
-                         [--new-only] [--redirects-only]
+                         [--batch-size <size>] [--new-only] [--redirects-only]
     php refreshLinks.php [<start>] [-e <end>] [-m <maxlag>] --old-redirects-only
 
     --help                : This help message
     --dfn-only            : Delete links from nonexistent articles only
     --batch-size <number> : The delete batch size when removing links from
-                            nonexistent articles (default 100)
+                            nonexistent articles (defaults to 100)
     --new-only            : Only affect articles with just a single edit
     --redirects-only      : Only fix redirects, not all links
     --old-redirects-only  : Only fix redirects with no redirect table entry
