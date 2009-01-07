@@ -217,9 +217,9 @@ class SpecialAllpages extends IncludableSpecialPage {
 				$out2 .= '<tr valign="top"><td>' . $nsForm;
 				$out2 .= '</td><td align="' . $align . '" style="font-size: smaller; margin-bottom: 1em;">' .
 					$wgUser->getSkin()->makeKnownLinkObj( $this->getTitle(), wfMsgHtml ( 'allpages' ) );
-				$out2 .= "</td></tr></table><hr />";
+				$out2 .= "</td></tr></table>";
 			} else {
-				$out2 = $nsForm . '<hr />';
+				$out2 = $nsForm;
 			}
 		}
 		$wgOut->addHTML( $out2 . $out );
@@ -394,7 +394,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 					wfMsgHtml( 'nextpage', htmlspecialchars( $t->getText() ) ), $q );
 				$out2 .= ' | ' . $nextLink;
 			}
-			$out2 .= "</td></tr></table><hr />";
+			$out2 .= "</td></tr></table>";
 		}
 
 		$wgOut->addHTML( $out2 . $out );
