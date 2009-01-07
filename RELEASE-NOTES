@@ -474,6 +474,7 @@ The following extensions are migrated into MediaWiki 1.14:
   that STDIN can be used for page list
 * (bug 16560) Special:Random returns a page from ContentNamespaces, and no
   longer from NS_MAIN
+* (bug 16921) Add a maxlength for the reason field of the page move form
 
 === API changes in 1.14 ===
 
