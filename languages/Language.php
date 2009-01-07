@@ -419,12 +419,28 @@ class Language {
 		return wfMsgExt( $msg, array( 'parsemag', 'language' => $this ) );
 	}
 
-	function getLanguageName( $code ) {
+	/**
+	 * Get a language name
+	 *
+	 * @param $code String language code
+	 * @return $localized boolean gets the localized language name
+	 */
+	function getLanguageName( $code, $localized = false ) {
 		$names = self::getLanguageNames();
 		if ( !array_key_exists( $code, $names ) ) {
 			return '';
 		}
-		return $names[$code];
+		if( $localized ) {
+			$languageNames = array();
+			wfRunHooks( 'LanguageGetLocalizedLanguageNames', array( &$languageNames, $this->getCode() ) );
+			return isset( $languageNames[$code] ) ? $languageNames[$code] : $names[$code];
+		} else {
+			return $names[$code];
+		}
+	}
+
+	function getLanguageNameLocalized( $code ) {
+		return self::getLanguageName( $code, true );
 	}
 
 	function getMonthName( $key ) {
