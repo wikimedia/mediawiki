@@ -553,7 +553,6 @@ Debe conter como mínimo {{PLURAL:$1|1 carácter|$1 caracteres}} e ten que ser d
 contrasinal para acceder a {{SITENAME}} ($4). Un contrasinal temporal para o usuario
 "$2" foi creado e fixado como "$3". Se esa foi a súa
 intención, necesitará acceder ao sistema e escoller un novo contrasinal agora.
-O seu contrasinal temporal caducará {{PLURAL:$5|nun día|en $5 días}}.
 
 Se foi alguén diferente o que fixo esta solicitude ou se xa se lembra do seu contrasinal
 e non o quere modificar, pode ignorar esta mensaxe e

@@ -472,13 +472,13 @@ Pakisubok muli.',
 Dapat na mayroon itong {{PLURAL:$1|1 panitik|$1 mga panitik}} (karakter) at naiiba sa iyong pangalang pantagagamit.',
 'mailmypassword'             => 'Ipadala sa pamamagitan ng e-liham ang bagong hudyat',
 'passwordremindertitle'      => 'Bagong pansamantalang hudyat para sa {{SITENAME}}',
-'passwordremindertext'       => 'Mayroong taong (maaaring ikaw, mula sa adres ng IP na $1) humiling ng isang bagong 
+'passwordremindertext'       => 'Mayroong (na maaaring ikaw, mula sa adres ng IP na $1) humiling ng isang bagong 
 hudyat para sa {{SITENAME}} ($4). Isang pansamantalang hudyat ang nilikha 
-para sa tagagamit na "$2" at itinakda bilang "$3".  Kung ito ang iyong pakay, 
+para sa tagagamit na "$2" at itinakda sa "$3".  Kung ito ang iyong pakay, 
 kailangan mo na ngayong lumagda/tumala at pumili ng isang bagong hudyat. 
 
 Kung ibang tao ang humiling nito, o kung naalala mo na ang iyong hudyat,
-at hindi mo ibig baguhin ito, maaari mong huwag pansinin ang mensaheng ito at
+at hindi mo na ibig pang baguhin ito, maaari mong huwag pansinin ang mensaheng ito at
 magpatuloy sa paggamit ng iyong lumang hudyat.',
 'noemail'                    => 'Walang nakatalang adres ng e-liham para sa tagagamit na "$1".',
 'passwordsent'               => 'Isang bagong hudyat ang ipinadala sa adres ng e-liham na nakatala para kay "$1".

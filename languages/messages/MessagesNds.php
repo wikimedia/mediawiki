@@ -616,7 +616,7 @@ Kiek de Schrievwies na oder [[Special:UserLogin/signup|mell di as ne’en Bruker
 'mailmypassword'             => 'En nee Passwoord tostüren',
 'passwordremindertitle'      => 'Nee Passwoort för {{SITENAME}}',
 'passwordremindertext'       => 'Een (IP-Adress $1) hett för en nee Passwoord to’n Anmellen bi {{SITENAME}} beden ($4).
-Dat Passwoord för Bruker „$2“ is nu „$3“. Mell di nu an un änner dien Passwoord.
+En temporär Passwoord för Bruker „$2“ is opstellt worrn un heet „$3“. Wenn du dat wullt hest, denn musst du di nu anmellen un en nee Passwoord wählen. 
 
 Wenn du nich sülvst för en nee Passwoord beden hest, denn bruukst di wegen disse Naricht nich to kümmern un kannst dien oold Passwoord wiederbruken.',
 'noemail'                    => 'Bruker „$1“ hett kene E-Mail-Adress angeven.',
