@@ -4736,11 +4736,21 @@ class Parser
 	 * "== Header ==".
 	 */
 	public function guessSectionNameFromWikiText( $text ) {
-		global $wgEnforceHtmlIds;
 		# Strip out wikitext links(they break the anchor)
 		$text = $this->stripSectionName( $text );
-		return '#' . Sanitizer::escapeId( $text,
-			$wgEnforceHtmlIds ? 'noninitial' : 'xml' );
+		$headline = Sanitizer::decodeCharReferences( $text );
+		# strip out HTML
+		$headline = StringUtils::delimiterReplace( '<', '>', '', $headline );
+		$headline = trim( $headline );
+		$sectionanchor = '#' . urlencode( str_replace( ' ', '_', $headline ) );
+		$replacearray = array(
+			'%3A' => ':',
+			'%' => '.'
+		);
+		return str_replace(
+			array_keys( $replacearray ),
+			array_values( $replacearray ),
+			$sectionanchor );
 	}
 
 	/**
