@@ -107,7 +107,6 @@ $specialPageAliases = array(
 	'Emailuser'                 => array( '电邮用户' ),
 	'Confirmemail'              => array( '确认电子邮件' ),
 	'Whatlinkshere'             => array( '链入页面' ),
-	'Recentchangeslinked'       => array( '最近更改' ),
 	'Movepage'                  => array( '移动页面' ),
 	'Booksources'               => array( '网络书源' ),
 	'Categories'                => array( '页面分类' ),
