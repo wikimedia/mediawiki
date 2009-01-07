@@ -334,9 +334,15 @@ class MonoBookTemplate extends QuickTemplate {
 		<h5><?php $this->msg('otherlanguages') ?></h5>
 		<div class="pBody">
 			<ul>
-<?php		foreach($this->data['language_urls'] as $langlink) { ?>
+<?php		foreach($this->data['language_urls'] as $langlink) {
+			// Add title tag only if differ from shown text
+			$titleTag = $langlink['title'] == $langlink['text'] 
+				? ''
+				: 'title="' . htmlspecialchars( $langlink['title'] ) . '"';
+			?>
 				<li class="<?php echo htmlspecialchars($langlink['class'])?>"><?php
-				?><a href="<?php echo htmlspecialchars($langlink['href']) ?>"><?php echo $langlink['text'] ?></a></li>
+				?><a href="<?php echo htmlspecialchars($langlink['href']) ?>"
+				<? echo $titleTag ?> > <?php echo $langlink['text'] ?></a></li>
 <?php		} ?>
 			</ul>
 		</div>
