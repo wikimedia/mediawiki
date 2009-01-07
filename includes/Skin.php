@@ -1633,7 +1633,7 @@ END;
 			return '';
 		}
 
-		$s = wfMsg( 'otherlanguages' ) . ': ';
+		$s = wfMsg( 'otherlanguages' ) . wfMsg( 'colon-separator' );
 		$first = true;
 		if($wgContLang->isRTL()) $s .= '<span dir="LTR">';
 		foreach( $a as $l ) {

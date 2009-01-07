@@ -98,7 +98,7 @@ class LogPage {
 			if ($rcComment == '')
 				$rcComment = $this->comment;
 			else
-				$rcComment .= ': ' . $this->comment;
+				$rcComment .= wfMsgForContent( 'colon-separator' ) . $this->comment;
 		}
 		return $rcComment;
 	}

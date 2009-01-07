@@ -353,7 +353,7 @@ class SpecialContributions extends SpecialPage {
 
 	protected function feedItemDesc( $revision ) {
 		if( $revision ) {
-			return '<p>' . htmlspecialchars( $revision->getUserText() ) . ': ' .
+			return '<p>' . htmlspecialchars( $revision->getUserText() ) . wfMsgForContent( 'colon-separator' ) .
 				htmlspecialchars( FeedItem::stripComment( $revision->getComment() ) ) . 
 				"</p>\n<hr />\n<div>" .
 				nl2br( htmlspecialchars( $revision->getText() ) ) . "</div>";

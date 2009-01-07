@@ -67,7 +67,7 @@ class FileDeleteForm {
 			$reason = $this->DeleteReasonList;
 			if ( $reason != 'other' && $this->DeleteReason != '') {
 				// Entry from drop down menu + additional comment
-				$reason .= ': ' . $this->DeleteReason;
+				$reason .= wfMsgForContent( 'colon-separator' ) . $this->DeleteReason;
 			} elseif ( $reason == 'other' ) {
 				$reason = $this->DeleteReason;
 			}

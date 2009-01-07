@@ -573,7 +573,7 @@ class PageHistory {
 			$rev->getUserText(),
 			$wgContLang->timeanddate( $rev->getTimestamp() ) );
 		} else {
-			$title = $rev->getUserText() . ": " . FeedItem::stripComment( $rev->getComment() );
+			$title = $rev->getUserText() . wfMsgForContent( 'colon-separator' ) . FeedItem::stripComment( $rev->getComment() );
 		}
 
 		return new FeedItem(

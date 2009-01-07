@@ -2559,8 +2559,8 @@ class Title {
 			);
 			# Update the protection log
 			$log = new LogPage( 'protect' );
-			$comment = wfMsgForContent('prot_1movedto2',$this->getPrefixedText(), $nt->getPrefixedText() );
-			if( $reason ) $comment .= ': ' . $reason;
+			$comment = wfMsgForContent( 'prot_1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() );
+			if( $reason ) $comment .= wfMsgForContent( 'colon-separator' ) . $reason;
 			$log->addEntry( 'move_prot', $nt, $comment, array($this->getPrefixedText()) ); // FIXME: $params?
 		}
 

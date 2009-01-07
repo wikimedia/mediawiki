@@ -363,7 +363,7 @@ class IPBlockForm {
 		$reasonstr = $this->BlockReasonList;
 		if ( $reasonstr != 'other' && $this->BlockReason != '' ) {
 			// Entry from drop down menu + additional comment
-			$reasonstr .= ': ' . $this->BlockReason;
+			$reasonstr .= wfMsgForContent( 'colon-separator' ) . $this->BlockReason;
 		} elseif ( $reasonstr == 'other' ) {
 			$reasonstr = $this->BlockReason;
 		}
