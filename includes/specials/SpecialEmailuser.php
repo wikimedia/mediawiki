@@ -268,7 +268,7 @@ class EmailUserForm {
 		}
 	
 		$nu = User::newFromName( $nt->getText() );
-		if( is_null( $nu ) ) {
+		if( is_null( $nu ) || !$nu->getId() ) {
 			wfDebug( "Target is invalid user.\n" );
 			return "notarget";
 		} else if ( !$nu->isEmailConfirmed() ) {
