@@ -181,7 +181,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 					"from=" . wfUrlEncode( $s->page_title ) .
 					"&prefix=" . wfUrlEncode( $prefix ) . $namespaceparam );
 			}
-			$out2 .= "</td></tr></table><hr />";
+			$out2 .= "</td></tr></table>";
 		}
 
 		$wgOut->addHTML( $out2 . $out );
