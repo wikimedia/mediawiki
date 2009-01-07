@@ -115,12 +115,11 @@ class MediaWiki {
 			if( count( $wgContLang->getVariants() ) > 1 && !is_null( $ret ) && $ret->getArticleID() == 0 )
 				$wgContLang->findVariantLink( $title, $ret );
 		}
-		if( is_null( $ret ) || $ret->getNamespace() != NS_SPECIAL ) {
-			$oldid = $wgRequest->getInt( 'oldid' );
-			if( !$oldid )
-				$oldid = $wgRequest->getInt( 'diff' );
-			// Allow oldid to override a changed or missing title
-			if( $oldid && ( $rev = Revision::newFromId( $oldid ) ) ) {
+		if( ( $oldid = $wgRequest->getInt( 'oldid' ) )
+			&& ( is_null( $ret ) || $ret->getNamespace() != NS_SPECIAL ) ) {
+			// Allow oldid to override a changed or missing title.
+			$rev = Revision::newFromId( $oldid );
+			if( $rev ) {
 				$ret = $rev->getTitle();
 			}
 		}
