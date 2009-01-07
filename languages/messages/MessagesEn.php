@@ -937,7 +937,6 @@ It must have at least {{PLURAL:$1|1 character|$1 characters}} and be different f
 password for {{SITENAME}} ($4). A temporary password for user
 "$2" has been created and was set to "$3". If this was your
 intent, you will need to log in and choose a new password now.
-Your temporary password will expire in {{PLURAL:$5|one day|$5 days}}.
 
 If someone else made this request, or if you have remembered your password,
 and you no longer wish to change it, you may ignore this message and
