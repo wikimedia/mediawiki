@@ -136,23 +136,13 @@ function fixLinksFromArticle( $id ) {
 	$dbw->immediateCommit();
 }
 
-/*
- * Removes non-existing links from pages from pagelinks, imagelinks,
- * categorylinks, templatelinks and externallinks tables.
- *
- * @param $maxLag
- * @param $batchSize The size of deletion batches
- *
- * @author Merlijn van Deen <valhallasw@arctus.nl>
- */
-function deleteLinksFromNonexistent( $maxLag = 0, $batchSize = 100 ) {
+function deleteLinksFromNonexistent( $maxLag = 0 ) {
 	$fname = 'deleteLinksFromNonexistent';
+
 	wfWaitForSlaves( $maxLag );
-	
+
 	$dbw = wfGetDB( DB_MASTER );
-	$dbr = wfGetDB( DB_SLAVE );
-	$dbr->bufferResults(false);
-	
+
 	$linksTables = array(
 		'pagelinks' => 'pl_from',
 		'imagelinks' => 'il_from',
@@ -160,65 +150,27 @@ function deleteLinksFromNonexistent( $maxLag = 0, $batchSize = 100 ) {
 		'templatelinks' => 'tl_from',
 		'externallinks' => 'el_from',
 	);
-	
-	
-	$readPage = $dbr->tableName( 'page' );
+
+	$page = $dbw->tableName( 'page' );
+
+
 	foreach ( $linksTables as $table => $field ) {
-		$readLinks = $dbr->tableName( $table );
-		
-		$sql = "SELECT DISTINCT( $field ) FROM $readLinks LEFT JOIN $readPage ON $field=page_id WHERE page_id IS NULL;";
-		print "Retrieving illegal entries from $table: \tRUNNING";
-		
-		$results = $dbr->query( $sql, $fname . ':' . $readLinks );
-		print "\x08\x08\x08\x08\x08\x08\x08" . $results->numRows() . " illegal " . $field. "s. ";
-		
-		if ( $results->numRows() == 0 ) {
-			print "\n";
-			continue;
-		}
-		
-		$counter = 0;
-		$list = array();
-		print "Removing illegal links: 1..";
-		foreach( $results as $row ) {
-			$counter++;
-			$list[] = $row->$field;
-			if ( ( $counter % $batchSize ) == 0 ) {
-				print $counter . "..";
-				deleteBatch($dbw, $table, $field, $list);
-				$list = '';
+		if ( !$dbw->ping() ) {
+			print "DB disconnected, reconnecting...";
+			while ( !$dbw->ping() ) {
+				print ".";
+				sleep(10);
 			}
+			print "\n";
 		}
-		print $counter . "\n";
-		deleteBatch($dbw, $table, $field, $list);
+
+		$pTable = $dbw->tableName( $table );
+		$sql = "DELETE $pTable FROM $pTable LEFT JOIN $page ON page_id=$field WHERE page_id IS NULL";
+
+		print "Deleting $table from non-existent articles...";
+		$dbw->query( $sql, $fname );
+		print " fixed " .$dbw->affectedRows() . " row(s)\n";
 	}
 }
 
-/* Deletes a batch of items from a table.
- * Runs the query: DELETE FROM <$table> WHERE <$field> IN (<$list>)
- * 
- * @param $dbw Database Database object to run the DELETE query on
- * @param $table table to work on; will be converted via $dbw->tableName.
- * @param $field column to search in
- * @param $list values to remove. Array with SQL-safe (!) values. 
- *
- * @author Merlijn van Deen <valhallasw@arctus.nl>
- */
-function deleteBatch($dbw, $table, $field, $list) {
-	if (count($list) == 0) return;
-	
-	$masterLinks = $dbw->tableName( $table );
-	$fname = "deleteBatch:masterLinks";	
-	
-	if ( !$dbw->ping() ) {
-		print "\nDB disconnected, reconnecting...";
-		while ( !$dbw->ping() ) {
-			print ".";
-			sleep(10);
-		}
-		print "\n";
-	}
-
-	$sql = "DELETE FROM $masterLinks WHERE $field IN (" . join("," , $list) . ");";
-	$dbw->query($sql, $fname);
-}
+?>
