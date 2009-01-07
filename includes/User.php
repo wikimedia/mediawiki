@@ -2705,7 +2705,14 @@ class User {
 	 * @return \bool True if matches, false otherwise
 	 */
 	function checkTemporaryPassword( $plaintext ) {
-		return self::comparePasswords( $this->mNewpassword, $plaintext, $this->getId() );
+		global $wgNewPasswordExpiry;
+		if( self::comparePasswords( $this->mNewpassword, $plaintext, $this->getId() ) ) {
+			$this->load();
+			$expiry = wfTimestamp( TS_UNIX, $this->mNewpassTime ) + $wgNewPasswordExpiry;
+			return ( time() < $expiry );
+		} else {
+			return false;
+		}
 	}
 
 	/**
