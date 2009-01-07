@@ -1148,7 +1148,8 @@ END;
 		  . '<input type="text" id="searchInput'.$this->searchboxes.'" name="search" size="19" value="'
 		  . htmlspecialchars(substr($search,0,256)) . "\" />\n"
 		  . '<input type="submit" name="go" value="' . wfMsg ('searcharticle') . '" />&nbsp;'
-		  . '<input type="submit" name="fulltext" value="' . wfMsg ('searchbutton') . "\" />\n</form>";
+		  . '<input type="submit" name="fulltext" value="' . wfMsg ('searchbutton') . "\" />\n"
+		  . '<a href="' . $this->escapeSearchLink() . '" rel="search">' . wfMsg ('powersearch-legend') . '</a></form>';
 
 		// Ensure unique id's for search boxes made after the first
 		$this->searchboxes = $this->searchboxes == '' ? 2 : $this->searchboxes + 1;
