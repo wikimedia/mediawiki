@@ -906,21 +906,21 @@ class SpecialSearchOld {
 			}
 		}
 
-		$wgOut->wrapWikiMsg( "==$1==\n", 'notitlematches' );
+		$extra = $wgOut->parse( '=='.wfMsgNoTrans( 'notitlematches' )."==\n" );
 		if( $t->quickUserCan( 'create' ) && $t->quickUserCan( 'edit' ) ) {
-			$wgOut->addWikiMsg( 'noexactmatch', wfEscapeWikiText( $term ) );
+			$extra .= wfMsgExt( 'noexactmatch', 'parse', wfEscapeWikiText( $term ) );
 		} else {
-			$wgOut->addWikiMsg( 'noexactmatch-nocreate', wfEscapeWikiText( $term ) );
+			$extra .= wfMsgExt( 'noexactmatch-nocreate', 'parse', wfEscapeWikiText( $term ) );
 		}
 
-		return $this->showResults( $term );
+		$this->showResults( $term, $extra );
 	}
 
 	/**
 	 * @param string $term
-	 * @public
+	 * @param string $extra Extra HTML to add after "did you mean"
 	 */
-	function showResults( $term ) {
+	public function showResults( $term, $extra = '' ) {
 		wfProfileIn( __METHOD__ );
 		global $wgOut, $wgUser;
 		$sk = $wgUser->getSkin();
@@ -952,6 +952,8 @@ class SpecialSearchOld {
 			 		
 			$wgOut->addHTML('<div class="searchdidyoumean">'.wfMsg('search-suggest',$suggestLink).'</div>');
 		}
+
+		$wgOut->addHTML( $extra );
 
 		$wgOut->addWikiMsg( 'searchresulttext' );
 
