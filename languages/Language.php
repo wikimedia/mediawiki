@@ -55,6 +55,7 @@ class FakeConverter {
 class Language {
 	var $mConverter, $mVariants, $mCode, $mLoaded = false;
 	var $mMagicExtensions = array(), $mMagicHookDone = false;
+	var $mLocalizedLanguagesNames = null;
 
 	static public $mLocalisationKeys = array(
 		'fallback', 'namespaceNames', 'mathNames', 'bookstoreList',
@@ -410,6 +411,19 @@ class Language {
 	}
 
 	/**
+	 * Get localized language names
+	 *
+	 * @return array
+	 */
+	function getLocalizedLanguageNames() {
+		if( !is_array( $this->mLocalizedLanguagesNames ) ) {
+			$this->mLocalizedLanguagesNames = array();
+			wfRunHooks( 'LanguageGetLocalizedLanguageNames', array( &$this->mLocalizedLanguagesNames, $this->getCode() ) );
+		}
+		return $this->mLocalizedLanguagesNames;
+	}
+
+	/**
 	 * Get a message from the MediaWiki namespace.
 	 *
 	 * @param $msg String: message name
@@ -431,8 +445,7 @@ class Language {
 			return '';
 		}
 		if( $localized ) {
-			$languageNames = array();
-			wfRunHooks( 'LanguageGetLocalizedLanguageNames', array( &$languageNames, $this->getCode() ) );
+			$languageNames = $this->getLocalizedLanguageNames();
 			return isset( $languageNames[$code] ) ? $languageNames[$code] : $names[$code];
 		} else {
 			return $names[$code];
