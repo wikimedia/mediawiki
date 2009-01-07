@@ -53,7 +53,6 @@ $namespaceAliases = array(
 	'نقاش_الصورة' => NS_FILE_TALK,
 );
 
-
 $magicWords = array(
 	'redirect'              => array( '0', '#تحويل', '#تحويل', '#REDIRECT' ),
 	'notoc'                 => array( '0', '__لافهرس__', '__لافهرس__', '__NOTOC__' ),
@@ -87,6 +86,7 @@ $magicWords = array(
 	'numberoffiles'         => array( '1', 'عدد_الملفات', 'عدد_ملفات', 'عدد_الملفات', 'عدد_ملفات', 'NUMBEROFFILES' ),
 	'numberofusers'         => array( '1', 'عدد_المستخدمين', 'عدد_مستخدمين', 'عدد_المستخدمين', 'عدد_مستخدمين', 'NUMBEROFUSERS' ),
 	'numberofedits'         => array( '1', 'عدد_التعديلات', 'عدد_تعديلات', 'عدد_التعديلات', 'عدد_تعديلات', 'NUMBEROFEDITS' ),
+	'numberofviews'         => array( '1', 'عدد_المشاهدات', 'عدد_مشاهدات', 'عدد_المشاهدات', 'عدد_مشاهدات', 'NUMBEROFVIEWS' ),
 	'pagename'              => array( '1', 'اسم_الصفحة', 'اسم_صفحة', 'اسم_الصفحة', 'اسم_صفحة', 'PAGENAME' ),
 	'pagenamee'             => array( '1', 'عنوان_الصفحة', 'عنوان_صفحة', 'عنوان_الصفحة', 'عنوان_صفحة', 'PAGENAMEE' ),
 	'namespace'             => array( '1', 'نطاق', 'نطاق', 'NAMESPACE' ),
@@ -128,8 +128,8 @@ $magicWords = array(
 	'img_middle'            => array( '1', 'وسط', 'وسط', 'middle' ),
 	'img_bottom'            => array( '1', 'أسفل', 'أسفل', 'bottom' ),
 	'img_text_bottom'       => array( '1', 'نص_أسفل', 'نص_أسفل', 'text-bottom' ),
-	'img_link'              => array( '1', 'وصلة=$1', 'رابط=$1', 'link=$1' ),
-	'img_alt'               => array( '1', 'بديل=$1', 'alt=$1' ),
+	'img_link'              => array( '1', 'وصلة=$1', 'رابط=$1', 'وصلة=$1', 'رابط=$1', 'link=$1' ),
+	'img_alt'               => array( '1', 'بديل=$1', 'بديل=$1', 'alt=$1' ),
 	'int'                   => array( '0', 'محتوى:', 'محتوى:', 'INT:' ),
 	'sitename'              => array( '1', 'اسم_الموقع', 'اسم_موقع', 'اسم_الموقع', 'اسم_موقع', 'SITENAME' ),
 	'ns'                    => array( '0', 'نط:', 'نط:', 'NS:' ),
@@ -219,8 +219,8 @@ $specialPageAliases = array(
 	'Mostlinked'                => array( 'الأكثر_وصلا' ),
 	'Mostlinkedcategories'      => array( 'أكثر_التصنيفات_وصلا', 'أكثر_التصنيفات_استخداما' ),
 	'Mostlinkedtemplates'       => array( 'أكثر_القوالب_وصلا', 'أكثر_القوالب_استخداما' ),
-	'Mostcategories'            => array( 'أكثر_التصنيفات' ),
 	'Mostimages'                => array( 'أكثر_الصور' ),
+	'Mostcategories'            => array( 'أكثر_التصنيفات' ),
 	'Mostrevisions'             => array( 'أكثر_المراجعات' ),
 	'Fewestrevisions'           => array( 'أقل_المراجعات' ),
 	'Shortpages'                => array( 'صفحات_قصيرة' ),
