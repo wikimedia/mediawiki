@@ -20,14 +20,10 @@ function wfSpecialWatchlist( $par ) {
 
 	# Anons don't get a watchlist
 	if( $wgUser->isAnon() ) {
+		$wgOut->setPageTitle( wfMsg( 'watchnologin' ) );
 		$llink = $skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Userlogin' ), 
 			wfMsgHtml( 'loginreqlink' ), 'returnto=' . $specialTitle->getPrefixedUrl() );
 		$wgOut->addHTML( wfMsgWikiHtml( 'watchlistanontext', $llink ) );
-		# Add login form for convenience
-		$form = new LoginForm( $wgRequest );
-		$form->execute();
-		# Set page title (also LoginForm sets it too, but we prefer this one)
-		$wgOut->setPageTitle( wfMsg( 'watchnologin' ) );
 		return;
 	}
 
