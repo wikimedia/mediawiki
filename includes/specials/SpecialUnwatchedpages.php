@@ -20,11 +20,9 @@ class UnwatchedpagesPage extends QueryPage {
 	function isSyndicated() { return false; }
 
 	function getSQL() {
-		global $wgContentNamespaces;
 		$dbr = wfGetDB( DB_SLAVE );
 		list( $page, $watchlist ) = $dbr->tableNamesN( 'page', 'watchlist' );
-		$content = implode(',',$wgContentNamespaces);
-		$content = $content ? $content : NS_MAIN;
+		$mwns = NS_MEDIAWIKI;
 		return
 			"
 			SELECT
@@ -34,7 +32,7 @@ class UnwatchedpagesPage extends QueryPage {
 				page_namespace as value
 			FROM $page
 			LEFT JOIN $watchlist ON wl_namespace = page_namespace AND page_title = wl_title
-			WHERE wl_title IS NULL AND page_is_redirect = 0 AND page_namespace IN ($content)
+			WHERE wl_title IS NULL AND page_is_redirect = 0 AND page_namespace<>$mwns
 			";
 	}
 
