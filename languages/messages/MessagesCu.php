@@ -339,7 +339,7 @@ $messages = array(
 'uploadbtn'         => 'положє́ниѥ дѣ́ла',
 'uploadlog'         => 'дѣ́лъ положє́ниꙗ їсторі́ꙗ',
 'uploadlogpage'     => 'дѣ́лъ положє́ниꙗ їсторі́ꙗ',
-'filename'          => 'дѣ́лъ и́мѧ',
+'filename'          => 'дѣ́ла и́мѧ',
 'filedesc'          => 'опьса́ниѥ',
 'fileuploadsummary' => 'опьса́ниѥ:',
 'successfulupload'  => 'дѣ́ло положєно ѥ́стъ',
@@ -429,7 +429,7 @@ $messages = array(
 'newuserlog-autocreate-entry' => 'по́льꙃєватєлꙗ мѣ́сто аѵтомати́чьно сътворєно́ ѥ́стъ',
 
 # E-mail user
-'emailuser' => 'Посъли епїстолѫ єлєктроникѫ',
+'emailuser' => 'посъли єпїстолѫ',
 
 # Watchlist
 'watchlist'      => 'моꙗ́ блюдє́ниꙗ',

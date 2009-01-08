@@ -626,6 +626,7 @@ es jetz vürjemerk: "$3".
 Do solls De tirek jlich enlogge,
 un dat Passwood widder ändere,
 wann dat esu Dinge Wonsch wor.
+Dat neu Passwood leuf noh {{PLURAL:$5|einem Daach|$5 Dääch|noch hück}} us.
 Dä Transport üvver et Netz met e-mail
 es unsecher, do künne Fremde metlese,
 un winnichstens de Jeheimdeenste dun
@@ -1249,6 +1250,7 @@ Wiki-Köbes, enem Sörver-Minsch, oder luur ens en de
 'prefs-resetpass'           => 'Passwoood tuusche',
 'saveprefs'                 => 'Fasshalde',
 'resetprefs'                => 'Zeröck setze',
+'restoreprefs'              => 'Alles op der Shtandatt retuur stelle',
 'textboxsize'               => 'Beim Bearbeide',
 'prefs-edit-boxsize'        => 'Dat Feld zöm Schrieve sull han:',
 'rows'                      => 'Reihe:',
@@ -2396,6 +2398,7 @@ En dänne Fäll, muss De Der dä Enhald vun dä Klaafsigge selvs vörnemme, un e
 'movepagebtn'                  => 'Ömnenne',
 'pagemovedsub'                 => 'Dat Ömnenne hät jeflupp',
 'movepage-moved'               => "<big>'''De Sigg „$1“ es jez en „$2“ ömjenannt.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-redirect'      => 'En Ömleidung es aanjelaat woode.',
 'movepage-moved-noredirect'    => 'Kein Ömleidung woodt aanjelaat.',
 'articleexists'                => "De Sigg met däm Name jitt et ald, oder dä Name ka'mer oder darf mer nit bruche.<br />Do muss Der ene andere Name ussöke.",
 'cantmove-titleprotected'      => 'Die Sigg ömzenänne es esu nit müjjelesch, dänn dä neu Name vun dä Sigg es jäje et Neu-Aanlääje jeschötz.',

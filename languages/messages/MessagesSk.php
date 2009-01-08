@@ -576,6 +576,7 @@ Musí mať dĺžku aspoň {{PLURAL:$1|$1 znak|$1 znaky|$1 znakov}} a líšiť sa
 požiadal, aby sme vám zaslali nové prihlasovacie heslo do {{GRAMMAR:genitív|{{SITENAME}}}} ($4).
 Pre používateľa „$2“ bolo vytvorené nové heslo „$3“.
 Ak to bolo vaším zámerom, teraz by ste sa mali prihlásiť a zmeniť svoje heslo.
+Platnosť vášho dočasného hesla vyprší o {{PLURAL:$5|jeden deň|$5 dni|$5 dní}}.
 
 Ak túto požiadavku poslal niekto iný alebo ste si spomenuli svoje heslo a neželáte
 si ho zmeniť, môžete túto správu ignorovať a naďalej používať svoje staré heslo.',
@@ -1455,6 +1456,7 @@ Kliknutím na hlavičku stĺpca zmeníte poradie triedenia.',
 'listfiles_user'        => 'Používateľ',
 'listfiles_size'        => 'Veľkosť (v bajtoch)',
 'listfiles_description' => 'Popis',
+'listfiles_count'       => 'Verzie',
 
 # File description page
 'filehist'                       => 'História súboru',
@@ -1731,29 +1733,30 @@ Môžete si prečítať [[{{MediaWiki:Listgrouprights-helppage}}|ďalšie inform
 'listgrouprights-removegroup-all' => 'Môže odoberať všetky skupiny',
 
 # E-mail user
-'mailnologin'     => 'Žiadna adresa na zaslanie',
-'mailnologintext' => 'Musíte byť [[Special:UserLogin|prihlásený]] a mať platnú e-mailovú adresu vo vašich [[Special:Preferences|nastaveniach]], aby ste mohli iným používateľom posielať e-maily.',
-'emailuser'       => 'E-mail tomuto používateľovi',
-'emailpage'       => 'E-mail používateľovi',
-'emailpagetext'   => 'Ak tento používateľ zadal platnú emailovú adresu vo svojich nastaveniach,
+'mailnologin'      => 'Žiadna adresa na zaslanie',
+'mailnologintext'  => 'Musíte byť [[Special:UserLogin|prihlásený]] a mať platnú e-mailovú adresu vo vašich [[Special:Preferences|nastaveniach]], aby ste mohli iným používateľom posielať e-maily.',
+'emailuser'        => 'E-mail tomuto používateľovi',
+'emailpage'        => 'E-mail používateľovi',
+'emailpagetext'    => 'Ak tento používateľ zadal platnú emailovú adresu vo svojich nastaveniach,
 môžete mu pomocou nasledovného formulára poslať email.
 Emailová adresa, ktorú ste zadali vo svojich [[Special:Preferences|nastaveniach]] sa zobrazí ako adresa odosielateľa emailu, aby vám mohol príjemca priamo odpovedať.',
-'usermailererror' => 'Emailový program vrátil chybu:',
-'defemailsubject' => 'email {{GRAMMAR:genitív|{{SITENAME}}}}',
-'noemailtitle'    => 'Chýba e-mailová adresa',
-'noemailtext'     => 'Tento používateľ nešpecifikoval platnú e-mailovú adresu
-alebo sa rozhodol, že nebude prijímať e-maily od druhých používateľov.',
-'email-legend'    => 'Poslať email používateľovi {{GRAMMAR:genitív|{{SITENAME}}}}',
-'emailfrom'       => 'Od:',
-'emailto'         => 'Komu:',
-'emailsubject'    => 'Predmet:',
-'emailmessage'    => 'Správa:',
-'emailsend'       => 'Odoslať',
-'emailccme'       => 'Pošli mi emailom kópiu mojej správy.',
-'emailccsubject'  => 'Kópia správy pre $1: $2',
-'emailsent'       => 'E-mail bol odoslaný',
-'emailsenttext'   => 'Vaša e-mailová správa bola odoslaná.',
-'emailuserfooter' => 'Tento email poslal $1 pre $2 pomocu funkcie „Email používateľovi” na {{GRAMMAR:lokál|{{SITENAME}}}}.',
+'usermailererror'  => 'Emailový program vrátil chybu:',
+'defemailsubject'  => 'email {{GRAMMAR:genitív|{{SITENAME}}}}',
+'noemailtitle'     => 'Chýba e-mailová adresa',
+'noemailtext'      => 'Tento používateľ neuviedol svoju platnú e-mailovú adresu.',
+'nowikiemailtitle' => 'Posielanie emailov nie je umožnené',
+'nowikiemailtext'  => 'Tento používateľ sa rozhodol, že si neželá prijímať emaily od ostatných používateľov.',
+'email-legend'     => 'Poslať email používateľovi {{GRAMMAR:genitív|{{SITENAME}}}}',
+'emailfrom'        => 'Od:',
+'emailto'          => 'Komu:',
+'emailsubject'     => 'Predmet:',
+'emailmessage'     => 'Správa:',
+'emailsend'        => 'Odoslať',
+'emailccme'        => 'Pošli mi emailom kópiu mojej správy.',
+'emailccsubject'   => 'Kópia správy pre $1: $2',
+'emailsent'        => 'E-mail bol odoslaný',
+'emailsenttext'    => 'Vaša e-mailová správa bola odoslaná.',
+'emailuserfooter'  => 'Tento email poslal $1 pre $2 pomocu funkcie „Email používateľovi” na {{GRAMMAR:lokál|{{SITENAME}}}}.',
 
 # Watchlist
 'watchlist'            => 'Sledované stránky',
@@ -2185,6 +2188,7 @@ V takých prípadoch budete musieť, ak si to želáte, premiestniť alebo zlú�
 'movepagebtn'                  => 'Presunúť stránku',
 'pagemovedsub'                 => 'Presun bol úspešný',
 'movepage-moved'               => "<big>'''„$1” bolo presunuté na „$2”'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-redirect'      => 'Bolo vytvorené presmerovanie.',
 'movepage-moved-noredirect'    => 'Vytvorenie presmerovania bolo potlačené.',
 'articleexists'                => 'Stránka s týmto názvom už existuje alebo
 vami zadaný názov je neplatný.

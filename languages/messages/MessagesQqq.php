@@ -42,6 +42,7 @@
  * @author Nike
  * @author Node ue
  * @author Octahedron80
+ * @author Platonides
  * @author Purodha
  * @author Raymond
  * @author SPQRobin
@@ -518,7 +519,8 @@ $1 is the minimum number of characters in the password.',
 * $1 is an IP addres. Example: 123.123.123.123
 * $2 is a username. Example: Joe
 * $3 is a password. Example: er##@fdas!
-* $4 is a URL. Example: http://wiki.example.com',
+* $4 is a URL. Example: http://wiki.example.com
+* $5 is a number of days in which the temporary password will expire',
 'noemail'                    => 'Shown as error message when trying to register a user sending password to e-mail adress and no e-mail address has been given. Registering users and sending a password to an e-mail address may require non-standard user rights. ([http://translatewiki.net/w/i.php?title=Special:UserLogin&action=submitlogin&type=signup Register user link])',
 'acct_creation_throttle_hit' => 'Errormessage at [[Special:CreateAccount]].',
 'emailauthenticated'         => 'In user preferences. ([[Special:Preferences]])
@@ -1820,6 +1822,7 @@ See also [[MediaWiki:Blocklogentry]].',
 'emailblock'                   => '{{Identical|E-mail blocked}}',
 'blocklist-nousertalk'         => 'Used in [[Special:IPBlockList]] when "Allow this user to edit own talk page while blocked" option hasn\'t been flagged. See also {{msg-mw|Block-log-flags-nousertalk}}.',
 'blocklink'                    => "Display name for a link that, when selected, leads to a form where a user can be blocked. Used in page history and recent changes pages. Example: \"''UserName (Talk | contribs | '''block''')''\".",
+'change-blocklink'             => 'Used to name the link on Special:Log',
 'contribslink'                 => 'Short for "contributions". Used as display name for a link to user contributions on history pages, [[Special:RecentChanges]], [[Special:Watchlist]], etc.',
 'blocklogpage'                 => '{{Identical|Block log}}',
 'blocklog-fulllog'             => 'Shown at Special:BlockIP at the end of the block log if there are more than 10 entries for this user, see [[Special:BlockIP/Raymond]] as example (visible for sysops only).',
@@ -1881,7 +1884,9 @@ Shown as subtitle of [[Special:MovePage/testpage]]. $1 is the title of the page 
 'pagemovedsub'            => 'Message displayed as aheader of the body, after succesfully moving a page from source to target name.',
 'movepage-moved'          => 'Message displayed after succesfully moving a page from source to target name.
 * $1 is the source page as a link with display name
-* $2 is the target page as a link with display name', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+* $2 is the target page as a link with display name
+* $3 (optional) is the source page name without a link
+* $4 (optional) is the target page name without a link', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movetalk'                => 'The text of the checkbox to watch the associated talk page to the page you are moving. This only appears when the talk page is not empty.',
 'move-subpages'           => 'The text of an option on the special page [[Special:MovePage|MovePage]]. If this option is ticked, any subpages will be moved with the main page to a new title.',
 'move-talk-subpages'      => 'The text of an option on the special page [[Special:MovePage|MovePage]]. If this option is ticked, any subpages will be moved with the talk page to a new title.',

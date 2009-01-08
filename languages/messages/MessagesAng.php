@@ -5,6 +5,7 @@
  * @file
  *
  * @author JJohnson
+ * @author Omnipaedista
  * @author Spacebirdy
  * @author Wōdenhelm
  */
@@ -132,6 +133,7 @@ $messages = array(
 'permalink'         => 'Fæst bend',
 'print'             => 'Gemǣlan',
 'edit'              => 'Ādihtan',
+'create'            => 'Scieppene',
 'editthispage'      => 'Ādihtan þisne tramet',
 'delete'            => 'āfeorsian',
 'deletethispage'    => 'Þisne tramet āfeorsian',

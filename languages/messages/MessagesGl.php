@@ -553,6 +553,7 @@ Debe conter como mínimo {{PLURAL:$1|1 carácter|$1 caracteres}} e ten que ser d
 contrasinal para acceder a {{SITENAME}} ($4). Un contrasinal temporal para o usuario
 "$2" foi creado e fixado como "$3". Se esa foi a súa
 intención, necesitará acceder ao sistema e escoller un novo contrasinal agora.
+O seu contrasinal temporal caducará {{PLURAL:$5|nun día|en $5 días}}.
 
 Se foi alguén diferente o que fixo esta solicitude ou se xa se lembra do seu contrasinal
 e non o quere modificar, pode ignorar esta mensaxe e
@@ -1093,6 +1094,7 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'prefs-resetpass'           => 'Cambiar o contrasinal',
 'saveprefs'                 => 'Gardar as preferencias',
 'resetprefs'                => 'Eliminar os cambios non gardados',
+'restoreprefs'              => 'Restaurar todas as características por defecto',
 'textboxsize'               => 'Edición',
 'prefs-edit-boxsize'        => 'Tamaño da caixa de edición.',
 'rows'                      => 'Filas:',
@@ -2168,6 +2170,7 @@ Nestes casos, terá que mover ou mesturar a páxina manualmente se o desexa.",
 'movepagebtn'                  => 'Mover a páxina',
 'pagemovedsub'                 => 'O movemento foi un éxito',
 'movepage-moved'               => '<big>\'\'\'A páxina "$1" foi movida a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-redirect'      => 'Creouse unha redirección da primeira cara á segunda.',
 'movepage-moved-noredirect'    => 'A creación da redirección da primeira cara á segunda foi cancelada.',
 'articleexists'                => 'Xa existe unha páxina con ese nome, ou o nome que escolleu non é válido.
 Por favor escolla outro nome.',

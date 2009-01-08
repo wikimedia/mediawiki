@@ -575,7 +575,7 @@ Deve contenere almeno {{PLURAL:$1|1 carattere|$1 caratteri}} ed essere diversa d
 'passwordremindertitle'      => 'Servizio Password Reminder di {{SITENAME}}',
 'passwordremindertext'       => 'Qualcuno (probabilmente tu, con indirizzo IP $1) ha richiesto l\'invio di una nuova password di accesso a {{SITENAME}} ($4).
 Una password temporanea per l\'utente "$2" è stata impostata a "$3".
-È opportuno eseguire un accesso quanto prima e cambiare la password immediatamente.
+È opportuno eseguire un accesso quanto prima e cambiare la password immediatamente. La password temporanea scadrà dopo {{PLURAL:$5|un giorno|$5 giorni}}.
 
 Se non sei stato tu a fare la richiesta, oppure hai ritrovato la password e non desideri più cambiarla, puoi ignorare questo messaggio e continuare a usare la vecchia password.',
 'noemail'                    => 'Nessun indirizzo e-mail registrato per l\'utente "$1".',
@@ -1692,27 +1692,28 @@ Potrebbero esserci [[{{MediaWiki:Listgrouprights-helppage}}|ulteriori informazio
 'listgrouprights-removegroup-all' => 'Può rimuovere tutti i gruppi',
 
 # E-mail user
-'mailnologin'     => 'Nessun indirizzo cui inviare il messaggio',
-'mailnologintext' => 'Per inviare messaggi e-mail ad altri utenti è necessario [[Special:UserLogin|accedere al sito]] e aver registrato un indirizzo valido nelle proprie [[Special:Preferences|preferenze]].',
-'emailuser'       => "Scrivi all'utente",
-'emailpage'       => "Invia un messaggio e-mail all'utente",
-'emailpagetext'   => 'È possibile utilizzare il modulo seguente per inviare un\'email a questo utente. L\'indirizzo indicato nelle [[Special:Preferences|preferenze]] del mittente apparirà nel campo "Da:" del messaggio per consentire al destinatario di rispondere direttamente.',
-'usermailererror' => "L'oggetto mail ha restituito l'errore:",
-'defemailsubject' => 'Messaggio da {{SITENAME}}',
-'noemailtitle'    => 'Nessun indirizzo e-mail',
-'noemailtext'     => 'Questo utente non ha indicato un indirizzo e-mail valido.',
-'nowikiemailtext' => 'Questo utente ha scelto di non ricevere messaggi di posta elettronica dagli altri utenti.',
-'email-legend'    => 'Invia una e-mail a un altro utente di {{SITENAME}}',
-'emailfrom'       => 'Da:',
-'emailto'         => 'A:',
-'emailsubject'    => 'Oggetto:',
-'emailmessage'    => 'Messaggio:',
-'emailsend'       => 'Invia',
-'emailccme'       => 'Invia in copia al mio indirizzo.',
-'emailccsubject'  => 'Copia del messaggio inviato a $1: $2',
-'emailsent'       => 'Messaggio inviato',
-'emailsenttext'   => 'Il messaggio e-mail è stato inviato.',
-'emailuserfooter' => 'Questa e-mail è stata inviata da $1 a $2 attraverso la funzione "Invia un messaggio e-mail all\'utente" su {{SITENAME}}.',
+'mailnologin'      => 'Nessun indirizzo cui inviare il messaggio',
+'mailnologintext'  => 'Per inviare messaggi e-mail ad altri utenti è necessario [[Special:UserLogin|accedere al sito]] e aver registrato un indirizzo valido nelle proprie [[Special:Preferences|preferenze]].',
+'emailuser'        => "Scrivi all'utente",
+'emailpage'        => "Invia un messaggio e-mail all'utente",
+'emailpagetext'    => 'È possibile utilizzare il modulo seguente per inviare un\'email a questo utente. L\'indirizzo indicato nelle [[Special:Preferences|preferenze]] del mittente apparirà nel campo "Da:" del messaggio per consentire al destinatario di rispondere direttamente.',
+'usermailererror'  => "L'oggetto mail ha restituito l'errore:",
+'defemailsubject'  => 'Messaggio da {{SITENAME}}',
+'noemailtitle'     => 'Nessun indirizzo e-mail',
+'noemailtext'      => 'Questo utente non ha indicato un indirizzo e-mail valido.',
+'nowikiemailtitle' => 'E-mail non permessa',
+'nowikiemailtext'  => 'Questo utente ha scelto di non ricevere messaggi di posta elettronica dagli altri utenti.',
+'email-legend'     => 'Invia una e-mail a un altro utente di {{SITENAME}}',
+'emailfrom'        => 'Da:',
+'emailto'          => 'A:',
+'emailsubject'     => 'Oggetto:',
+'emailmessage'     => 'Messaggio:',
+'emailsend'        => 'Invia',
+'emailccme'        => 'Invia in copia al mio indirizzo.',
+'emailccsubject'   => 'Copia del messaggio inviato a $1: $2',
+'emailsent'        => 'Messaggio inviato',
+'emailsenttext'    => 'Il messaggio e-mail è stato inviato.',
+'emailuserfooter'  => 'Questa e-mail è stata inviata da $1 a $2 attraverso la funzione "Invia un messaggio e-mail all\'utente" su {{SITENAME}}.',
 
 # Watchlist
 'watchlist'            => 'Osservati speciali',
@@ -2126,6 +2127,7 @@ In questi casi, se lo si ritiene opportuno, occorre spostare o aggiungere manual
 'movepagebtn'                  => 'Sposta la pagina',
 'pagemovedsub'                 => 'Spostamento effettuato con successo',
 'movepage-moved'               => '<big>\'\'\'"$1" è stata spostata a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-redirect'      => 'Un reindirizzamento è stato creato.',
 'movepage-moved-noredirect'    => 'La creazione di un reindirizzamento è stata soppressa.',
 'articleexists'                => 'Una pagina con questo nome esiste già, oppure il nome che hai scelto non è valido.<br /> Scegli, per cortesia, un titolo diverso per la pagina.',
 'cantmove-titleprotected'      => 'Lo spostamento della pagina non è possibile in quanto il nuovo titolo è stato protetto per impedirne la creazione',
