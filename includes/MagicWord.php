@@ -109,6 +109,7 @@ class MagicWord {
 		'index',
 		'noindex',
 		'numberingroup',
+		'protectionlevel',
 	);
 
 	/* Array of caching hints for ParserCache */
