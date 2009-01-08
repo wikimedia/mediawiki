@@ -2759,9 +2759,6 @@ Vă rugăm să confirmaţi faptul că într-adevăr doriţi să recreaţi acest 
 'confirm_purge_button' => 'OK',
 'confirm-purge-top'    => 'Doriţi să reîncărcaţi pagina?',
 
-# Separators for various lists, etc.
-'comma-separator' => ',&#32;',
-
 # Multipage image navigation
 'imgmultipageprev' => '← pagina anterioară',
 'imgmultipagenext' => 'pagina următoare →',
