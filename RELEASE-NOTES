@@ -32,7 +32,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 === Bug fixes in 1.15 ===
 
-* (bug 16921) Add a maxlength for the reason field of the page move form
 
 === Languages updated in 1.15 ===
 

@@ -184,7 +184,7 @@ class MovePageForm {
 					Xml::label( wfMsg( 'newtitle' ), 'wpNewTitle' ) .
 				"</td>
 				<td class='mw-input'>" .
-					Xml::input( 'wpNewTitle', 60, $newTitle->getPrefixedText(), array( 'type' => 'text', 'id' => 'wpNewTitle' ) ) .
+					Xml::input( 'wpNewTitle', 40, $newTitle->getPrefixedText(), array( 'type' => 'text', 'id' => 'wpNewTitle' ) ) .
 					Xml::hidden( 'wpOldTitle', $this->oldTitle->getPrefixedText() ) .
 				"</td>
 			</tr>
@@ -193,8 +193,7 @@ class MovePageForm {
 					Xml::label( wfMsg( 'movereason' ), 'wpReason' ) .
 				"</td>
 				<td class='mw-input'>" .
-					Xml::input( 'wpReason', 60, $this->reason, array( 'type' => 'text', 
-						'id' => 'wpReason', 'maxlength' => 200 ) ) .
+					Xml::tags( 'textarea', array( 'name' => 'wpReason', 'id' => 'wpReason', 'cols' => 60, 'rows' => 2 ), htmlspecialchars( $this->reason ) ) .
 				"</td>
 			</tr>"
 		);
