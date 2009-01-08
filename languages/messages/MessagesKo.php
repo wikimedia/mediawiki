@@ -648,6 +648,7 @@ $messages = array(
 'passwordremindertitle'      => '{{SITENAME}}에서 보내는 새 임시 암호',
 'passwordremindertext'       => 'IP 주소 $1에게서 당신에게 {{SITENAME}} ($4)의 새 암호를 보내달라는 요청이 왔습니다.
 사용자 ‘$2’의 암호는 이제 ‘$3’입니다. 로그인한 다음 암호를 변경해 주세요.
+당신의 임시 암호는 {{PLURAL:$5|하루|$5일}} 후에 만료됩니다.
 
 만약 이 암호 요청을 다른 사람이 보낸 것이거나, 또는 예전에 사용하던 암호를 기억해냈다면 이 메시지를 무시하고 예전 암호를 계속 사용할 수 있습니다.',
 'noemail'                    => '사용자 ‘$1’에 등록된 이메일 주소가 없습니다.',
@@ -958,6 +959,9 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'mergehistory-from'                => '원본 문서 이름:',
 'mergehistory-into'                => '새 문서 이름:',
 'mergehistory-list'                => '병합 가능한 문서 역사',
+'mergehistory-merge'               => '[[:$1]] 문서의 다음 판이 [[:$2]] 문서로 병합될 수 있습니다.
+병합하려는 판과 그 이전의 판을 선택하시려면 라디오 버튼을 이용해주세요.
+둘러보기 링크를 이용하는 것은 이 문서를 초기화시킬 것입니다.',
 'mergehistory-go'                  => '합칠 수 있는 편집 보기',
 'mergehistory-submit'              => '문서 역사 합치기',
 'mergehistory-empty'               => '합칠 수 있는 판이 없습니다.',
@@ -2213,6 +2217,9 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 # Special:Import
 'import'                     => '문서 가져오기',
 'importinterwiki'            => '다른 위키에서 문서 가져오기',
+'import-interwiki-text'      => '문서를 가져올 위키를 선택하고, 문서 제목을 입력해주세요.
+편집 날짜와 편집자의 이름이 보존될 것입니다.
+모든 가져오기는 [[Special:Log/import|가져오기 기록]]에 기록될 것입니다.',
 'import-interwiki-source'    => '원본 위키/문서:',
 'import-interwiki-history'   => '이 문서의 모든 역사를 가져오기',
 'import-interwiki-submit'    => '가져오기',
@@ -2504,6 +2511,7 @@ Variants for Chinese language
 'exif-contrast'            => '대비',
 'exif-saturation'          => '채도',
 'exif-sharpness'           => '선명도',
+'exif-imageuniqueid'       => '이미지 고유 ID',
 'exif-gpsversionid'        => 'GPS 태그 버전',
 'exif-gpslatituderef'      => '북위 또는 남위',
 'exif-gpslatitude'         => '위도',

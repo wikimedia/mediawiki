@@ -590,6 +590,7 @@ Verifique su deletreo, o [[Special:UserLogin/signup|cree una nueva cuenta]].',
 'passwordremindertitle'      => 'Recordatorio de contraseña de {{SITENAME}}',
 'passwordremindertext'       => 'Alguien (probablemente tú, desde la dirección IP $1) solicitó que te enviáramos una nueva contraseña para tu cuenta en {{SITENAME}} ($4).
 Se ha creado la siguiente contraseña temporal para el usuario «$2»: «$3»
+Ahora deberías iniciar sesión y cambiar tu contraseña. Su contraseña temporal expirará en {{PLURAL:$5|un día|$5 días}}.
 
 Si fue otro quien solicitó este mensaje o has recordado tu contraseña y ya no deseas cambiarla, puedes ignorar este mensaje y seguir usando tu contraseña original.',
 'noemail'                    => 'No hay una dirección de correo electrónico registrada para "$1".',
@@ -664,7 +665,7 @@ Puede que ya hayas cambiado la contraseña o que hayas pedido una temporal.',
 'summary'                          => 'Resumen:',
 'subject'                          => 'Tema/título:',
 'minoredit'                        => 'Esta es una edición menor',
-'watchthis'                        => 'Vigilar este artículo',
+'watchthis'                        => 'Vigilar esta página',
 'savearticle'                      => 'Grabar la página',
 'preview'                          => 'Previsualizar',
 'showpreview'                      => 'Mostrar previsualización',
@@ -2086,7 +2087,7 @@ las páginas en particular que han sido objeto de vandalismo).',
 'ipblocklist-no-results'          => 'El nombre de usuario o IP indicado no está bloqueado.',
 'blocklink'                       => 'bloquear',
 'unblocklink'                     => 'desbloquear',
-'change-blocklink'                => 'cambiar bloque',
+'change-blocklink'                => 'cambiar bloqueo',
 'contribslink'                    => 'contribuciones',
 'autoblocker'                     => 'Has sido bloqueado automáticamente porque tu dirección IP ha sido usada recientemente por «[[User:$1|$1]]». La razón esgrimida para bloquear a «[[User:$1|$1]]» fue «$2».',
 'blocklogpage'                    => 'Bloqueos de usuarios',
@@ -2171,6 +2172,7 @@ En estos casos, deberá trasladar manualmente el contenido de la página de disc
 'movepagebtn'                  => 'Renombrar página',
 'pagemovedsub'                 => 'Renombrado realizado con éxito',
 'movepage-moved'               => '<big>\'\'\'"$1" ha sido trasladado a "$2".\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-redirect'      => 'Un redireccionamiento ha sido creado.',
 'movepage-moved-noredirect'    => 'Se ha suprimido la creación de la redirección.',
 'articleexists'                => 'Ya existe una página con ese nombre o el nombre que ha elegido no es válido. Por favor, elija otro nombre.',
 'cantmove-titleprotected'      => 'No se pueden mover páginas a esta ubicacion, porque se ha protegido la creación de este nuevo título.',

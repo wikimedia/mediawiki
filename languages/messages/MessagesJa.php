@@ -621,9 +621,9 @@ $2',
 'passwordtooshort'           => 'パスワードが無効、または短すぎます。パスワードは$1文字以上の文字列でなければなりません。また利用者名と同じものは使えません。',
 'mailmypassword'             => '新しいパスワードをメールで送る',
 'passwordremindertitle'      => '{{SITENAME}} パスワード再送通知',
-'passwordremindertext'       => 'どなたか（$1のIPアドレスの使用者）が{{SITENAME}} ($4) のログイン用パスワードの再発行を依頼しました。利用者"$2"の仮パスワードは "$3" です。もしあなたがパスワードの発行を依頼したのであれば、ログインして別のパスワードに変更してください。
+'passwordremindertext'       => 'どなたか（$1 のIPアドレスの使用者）が {{SITENAME}} ($4) のログイン用パスワードの再発行を申請しました。利用者 "$2" の仮パスワードは "$3" です。もしあなたがパスワードの発行を依頼したのであれば、ログインして別のパスワードに変更してください。この仮パスワードは{{PLURAL:$5|1日|$5日間}}で有効期限が切れます。
 
-パスワード再発行の依頼に覚えがない、またはログイン用パスワードを思い出されパスワード変更の必要がないのであるならば、このメッセージは無視してください。引き続き以前のパスワードを使用し続けることができます。',
+パスワード再発行の申請に覚えがない、またはログイン用パスワードを思い出されパスワード変更の必要がないならば、このメッセージは無視してください。引き続き以前のパスワードを使用し続けることができます。',
 'noemail'                    => '利用者 "$1" のメールアドレスは登録されていません。',
 'passwordsent'               => '新しいパスワードを "$1" さんの登録済みメールアドレスに送信しました。メールを受け取ったら、再度ログインしてください。',
 'blocked-mailpassword'       => 'あなたの使用しているIPアドレスからの編集はブロックされています。悪用防止のため、パスワードの再発行は無効化されています。',
@@ -1085,7 +1085,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'powersearch'                      => '検索',
 'powersearch-legend'               => '高度な検索',
 'powersearch-ns'                   => '名前空間を指定して検索:',
-'powersearch-redir'                => 'リダイレクトの一覧',
+'powersearch-redir'                => 'リダイレクトを表示',
 'powersearch-field'                => '検索キーワード:',
 'search-external'                  => '外部検索',
 'searchdisabled'                   => '<p>全文検索はサーバー負荷の都合から、一時的に使用停止しています。元に戻るまでGoogleでの全文検索を利用してください。検索結果は少し古い内容となります。</p>',
@@ -1097,7 +1097,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'prefsnologin'              => 'ログインしていません',
 'prefsnologintext'          => '個人設定を変更するためには<span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} ログイン]</span>する必要があります。',
 'prefsreset'                => '個人設定を保存されている状態に復帰しました。',
-'qbsettings'                => 'クイックバー設定',
+'qbsettings'                => 'クイックバー',
 'qbsettings-none'           => 'なし',
 'qbsettings-fixedleft'      => '左端',
 'qbsettings-fixedright'     => '右端',
@@ -1130,6 +1130,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'prefs-resetpass'           => 'パスワードの変更',
 'saveprefs'                 => '設定を保存',
 'resetprefs'                => '変更を破棄',
+'restoreprefs'              => '初期設定に戻す',
 'textboxsize'               => '編集画面',
 'prefs-edit-boxsize'        => '編集ウィンドウのサイズ。',
 'rows'                      => '縦:',
@@ -1332,10 +1333,10 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'rc-enhanced-hide'                  => '詳細を隠す',
 
 # Recent changes linked
-'recentchangeslinked'          => 'リンク先の更新状況',
-'recentchangeslinked-title'    => '"$1" からリンクされているページの更新状況',
+'recentchangeslinked'          => '関連ページの更新状況',
+'recentchangeslinked-title'    => '"$1" と関連するページの更新状況',
 'recentchangeslinked-noresult' => '指定期間中に指定ページのリンク先に更新はありませんでした。',
-'recentchangeslinked-summary'  => "この特別ページはリンク先の更新状況です。あなたのウォッチリストにあるページは'''太字'''で表示されます。",
+'recentchangeslinked-summary'  => "以下は指定されたページからリンクしているページ（もしくは指定されたカテゴリに含まれているページ）に最近加えられた変更の一覧です。[[Special:Watchlist|あなたのウォッチリスト]]にあるページは'''太字'''で表示されています。",
 'recentchangeslinked-page'     => 'ページ名:',
 'recentchangeslinked-to'       => 'リンク元の更新状況に切り替える',
 
@@ -2174,6 +2175,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'movepagebtn'                  => 'ページを移動',
 'pagemovedsub'                 => '無事移動しました。',
 'movepage-moved'               => "<big>'''「$1」は「$2」へ移動されました'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-redirect'      => 'リダイレクトが作成されました。',
 'movepage-moved-noredirect'    => 'リダイレクトは作成されませんでした。',
 'articleexists'                => '指定された移動先には既にページが存在するか、名前が不適切です。',
 'cantmove-titleprotected'      => '移動先ページが作成保護対象となっているため、ページを移動できません。',
@@ -2319,7 +2321,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'tooltip-n-randompage'            => 'ランダムに記事を選んで表示',
 'tooltip-n-help'                  => 'ヘルプ・使い方',
 'tooltip-t-whatlinkshere'         => 'このページにリンクしているページの一覧',
-'tooltip-t-recentchangeslinked'   => '最近更新が行われたこのページのリンク先',
+'tooltip-t-recentchangeslinked'   => 'このページからリンクしているページの最近の更新',
 'tooltip-feed-rss'                => 'このページのRSSフィード',
 'tooltip-feed-atom'               => 'このページのAtomフィード',
 'tooltip-t-contributions'         => 'この利用者の投稿記録を表示',

@@ -704,6 +704,7 @@ Vérifiez que vous avez bien orthographié le nom, ou [[Special:UserLogin/signup
 passe pour {{SITENAME}} ($4). Un mot de passe temporaire a été créé pour
 l’utilisateur « $2 » et est « $3 ». Si cela était votre intention, vous devrez
 vous connecter et choisir un nouveau mot de passe.
+Votre mot de passe temporaire expirera dans $5 {{PLURAL:$5|jour|jours}}.
 
 Si vous n’êtes pas l’auteur de cette demande, ou si vous vous souvenez à présent
 de votre ancien mot de passe et que vous ne souhaitez plus en changer, vous
@@ -1212,6 +1213,7 @@ Essayer en utilisant le préfixe ''all:'' pour rechercher tout le contenu (en y 
 'prefs-resetpass'           => 'Modifier le mot de passe',
 'saveprefs'                 => 'Enregistrer les préférences',
 'resetprefs'                => 'Rétablir les préférences',
+'restoreprefs'              => 'Restaurer toutes les valeurs par défaut',
 'textboxsize'               => 'Fenêtre de modification',
 'prefs-edit-boxsize'        => 'Taille de la fenêtre de modification.',
 'rows'                      => 'Rangées :',

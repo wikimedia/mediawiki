@@ -645,6 +645,7 @@ Musi mieć co najmniej $1 {{PLURAL:$1|znak|znaki|znaków}} i być inne, niż Two
 poprosił o przesłanie nowego hasła do {{GRAMMAR:D.lp|{{SITENAME}}}} ($4).
 Dla użytkownika „$2” zostało wygenerowane tymczasowe hasło i jest nim „$3”.
 Jeśli było to zamierzone działanie, to po zalogowaniu się, musisz podać nowe hasło.
+Tymczasowe hasło wygaśnie za {{PLURAL:$5|1 dzień|$5 dni}}.
 
 Jeśli to nie Ty prosiłeś o przesłanie hasła lub przypomniałeś sobie hasło i nie chcesz go zmieniać, wystarczy, że zignorujesz tę wiadomość i dalej będziesz się posługiwać swoim dotychczasowym hasłem.',
 'noemail'                    => 'Brak zdefiniowanego adresu e-mail dla użytkownika „$1”.',
@@ -2280,6 +2281,7 @@ W takich przypadkach treść dyskusji można przenieść tylko ręcznie.',
 'movepagebtn'                  => 'Przenieś stronę',
 'pagemovedsub'                 => 'Przeniesienie powiodło się',
 'movepage-moved'               => "<big>'''„$1” została przeniesiona do „$2”'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-redirect'      => 'Przekierowanie zostało utworzone.',
 'movepage-moved-noredirect'    => 'Przekierowanie nie zostało utworzone.',
 'articleexists'                => 'Strona o podanej nazwie już istnieje albo wybrana przez Ciebie nazwa nie jest poprawna.
 Wybierz inną nazwę.',

@@ -628,13 +628,15 @@ Verificatz qu'avètz plan ortografiat lo nom, o [[Special:UserLogin/signup|creat
 Deu conténer almens $1 caractèr{{PLURAL:$1||s}} e èsser diferent de vòstre nom d’utilizaire.',
 'mailmypassword'             => 'Mandar un senhal novèl per corrièr electronic',
 'passwordremindertitle'      => 'Senhal temporari novèl sus {{SITENAME}}',
-'passwordremindertext'       => "Qualqu'un (probablament vos, amb l'adreça IP $1) a demandat un senhal novèl per {{SITENAME}} ($4).
-Un senhal temporari es estat creat per
+'passwordremindertext'       => "Qualqu'un (probablament vos, amb l'adreça IP $1) a demandat un senhal novèl 
+per {{SITENAME}} ($4). Un senhal temporari es estat creat per
 l’utilizaire « $2 » e es « $3 ». S'aquò èra vòstra intencion, vos caldrà
 vos connectar e causir un senhal novèl.
+Vòstre senhal temporari expirarà dins $5 {{PLURAL:$5|jorn|jorns}}.
 
 Se sètz pas l’autor d'aquesta demanda, o se vos remembratz ara
-de vòstre senhal ancian e que desiratz pas mai ne cambiar, podètz ignorar aqueste messatge e contunhar d'utilizar vòstre senhal ancian.",
+de vòstre senhal ancian e que desiratz pas mai ne cambiar, 
+podètz ignorar aqueste messatge e contunhar d'utilizar vòstre senhal ancian.",
 'noemail'                    => "Cap d'adreça electronica es pas estada enregistrada per l'utilizaire « $1 ».",
 'passwordsent'               => "Un senhal novèl es estat mandat a l'adreça electronica de l'utilizaire « $1 ».
 Identificatz-vos tre que l'aurètz recebut.",
@@ -1167,6 +1169,7 @@ Atencion, lor indexacion de contengut {{SITENAME}} benlèu es pas a jorn.',
 'localtime'                 => 'Ora locala :',
 'timezoneselect'            => 'Zòna orària :',
 'timezoneuseserverdefault'  => 'Utilizar la valor del servidor',
+'timezoneuseoffset'         => 'Autre (especificar lo descalatge)',
 'timezoneoffset'            => 'Decalatge orari¹ :',
 'servertime'                => 'Ora del servidor :',
 'guesstimezone'             => 'Utilizar la valor del navigador',
@@ -1232,6 +1235,7 @@ Atencion, lor indexacion de contengut {{SITENAME}} benlèu es pas a jorn.',
 'right-move'                 => 'Tornar nomenar de paginas',
 'right-move-subpages'        => 'Desplaçar de paginas amb lor sospaginas',
 'right-move-rootuserpages'   => 'Tornar nomenar las paginas de l’utilizaire de banca.',
+'right-movefile'             => 'Desplaçar los fichièrs',
 'right-suppressredirect'     => 'Crear pas de redireccion dempuèi la pagina anciana en renomenant la pagina',
 'right-upload'               => 'Telecargar de fichièrs',
 'right-reupload'             => 'Espotir un fichièr existent',
@@ -1292,6 +1296,7 @@ Atencion, lor indexacion de contengut {{SITENAME}} benlèu es pas a jorn.',
 'action-move'                 => 'tornar nomenar aquesta pagina',
 'action-move-subpages'        => 'tornar nomenar aquesta pagina e sas sospaginas',
 'action-move-rootuserpages'   => 'tornar nomenar las paginas de l’utilizaire de banca.',
+'action-movefile'             => 'tornar nomenar aqueste fichièr',
 'action-upload'               => 'importar aqueste fichièr',
 'action-reupload'             => 'espotir aqueste fichièr existent',
 'action-reupload-shared'      => 'passar otra aqueste fichièr sus un depaus partejat',
@@ -1484,6 +1489,7 @@ Un clic en tèsta de colomna càmbia l’òrdre d’afichatge.',
 'listfiles_user'        => 'Utilizaire',
 'listfiles_size'        => 'Talha (en octets)',
 'listfiles_description' => 'Descripcion',
+'listfiles_count'       => 'Versions',
 
 # File description page
 'filehist'                       => 'Istoric del fichièr',
@@ -1760,29 +1766,31 @@ I pòt aver [[{{MediaWiki:Listgrouprights-helppage}}|d'entresenhas complementàr
 'listgrouprights-removegroup-all' => 'Pòt levar totes los gropes',
 
 # E-mail user
-'mailnologin'     => "Pas d'adreça",
-'mailnologintext' => 'Vos cal èsser [[Special:UserLogin|connectat(ada)]]
+'mailnologin'      => "Pas d'adreça",
+'mailnologintext'  => 'Vos cal èsser [[Special:UserLogin|connectat(ada)]]
 e aver indicat una adreça electronica valida dins vòstras [[Special:Preferences|preferéncias]]
 per poder mandar un messatge a un autre utilizaire.',
-'emailuser'       => 'Mandar un messatge a aqueste utilizaire',
-'emailpage'       => 'Mandar un corrièr electronic a l’utilizaire',
-'emailpagetext'   => "Podètz utilizar lo formulari çaijós per mandar un corrièr electronic a aqueste utilizaire.
+'emailuser'        => 'Mandar un messatge a aqueste utilizaire',
+'emailpage'        => 'Mandar un corrièr electronic a l’utilizaire',
+'emailpagetext'    => "Podètz utilizar lo formulari çaijós per mandar un corrièr electronic a aqueste utilizaire.
 L'adreça electronica qu'avètz indicada dins [[Special:Preferences|vòstras preferéncias]] apareisserà dins lo camp « Expeditor » de vòstre messatge. E mai, lo destinatari vos poirà respondre dirèctament.",
-'usermailererror' => 'Error dins lo subjècte del corrièr electronic :',
-'defemailsubject' => 'Corrièr electronic mandat dempuèi {{SITENAME}}',
-'noemailtitle'    => "Pas d'adreça electronica",
-'noemailtext'     => "Aqueste utilizaire a pas especificat d'adreça electronica valida.",
-'email-legend'    => 'Mandar un corrièr electronic a un autre utilizaire de {{SITENAME}}',
-'emailfrom'       => 'Expeditor :',
-'emailto'         => 'Destinatari :',
-'emailsubject'    => 'Subjècte :',
-'emailmessage'    => 'Messatge :',
-'emailsend'       => 'Mandar',
-'emailccme'       => 'Me mandar per corrièr electronic una còpia de mon messatge.',
-'emailccsubject'  => 'Còpia de vòstre messatge a $1 : $2',
-'emailsent'       => 'Messatge mandat',
-'emailsenttext'   => 'Vòstre messatge es estat mandat.',
-'emailuserfooter' => 'Aqueste corrièr electronic es estat mandat per « $1 » a « $2 » per la foncion « Mandar un corrièr electronic a l’utilizaire » sus {{SITENAME}}.',
+'usermailererror'  => 'Error dins lo subjècte del corrièr electronic :',
+'defemailsubject'  => 'Corrièr electronic mandat dempuèi {{SITENAME}}',
+'noemailtitle'     => "Pas d'adreça electronica",
+'noemailtext'      => "Aqueste utilizaire a pas especificat d'adreça electronica valida.",
+'nowikiemailtitle' => 'Pas de corrièr electronic autorizat',
+'nowikiemailtext'  => "Aqueste utilizaire a causit de recebre pas de corrièr electronic de la part d'autres utilizaires.",
+'email-legend'     => 'Mandar un corrièr electronic a un autre utilizaire de {{SITENAME}}',
+'emailfrom'        => 'Expeditor :',
+'emailto'          => 'Destinatari :',
+'emailsubject'     => 'Subjècte :',
+'emailmessage'     => 'Messatge :',
+'emailsend'        => 'Mandar',
+'emailccme'        => 'Me mandar per corrièr electronic una còpia de mon messatge.',
+'emailccsubject'   => 'Còpia de vòstre messatge a $1 : $2',
+'emailsent'        => 'Messatge mandat',
+'emailsenttext'    => 'Vòstre messatge es estat mandat.',
+'emailuserfooter'  => 'Aqueste corrièr electronic es estat mandat per « $1 » a « $2 » per la foncion « Mandar un corrièr electronic a l’utilizaire » sus {{SITENAME}}.',
 
 # Watchlist
 'watchlist'            => 'Lista de seguit',
@@ -2197,6 +2205,7 @@ Dins aqueste cas, deuretz desplaçar o fusionar la pagina manualament se o volè
 'movenologintext'              => "Per poder tornar nomenar un article, vos cal èsser [[Special:UserLogin|connectat(ada)]]
 en tant qu'utilizaire enregistrat.",
 'movenotallowed'               => 'Avètz pas la permission de tornar nomenar de paginas.',
+'movenotallowedfile'           => 'Avètz pas la permission de desplaçar los fichièrs.',
 'cant-move-user-page'          => "Avètz pas la permission de tornar nomenar de paginas d'utilizaires raices sus aqueste wiki.",
 'cant-move-to-user-page'       => "Avètz pas la permission de tornar nomenar una pagina cap a una pagina d'utilizaire (a l'excepcion d'una sospagina).",
 'newtitle'                     => 'Títol novèl',
@@ -2204,6 +2213,8 @@ en tant qu'utilizaire enregistrat.",
 'movepagebtn'                  => "Tornar nomenar l'article",
 'pagemovedsub'                 => 'Cambiament de nom capitat',
 'movepage-moved'               => 'La pagina « $1 » es estada renomenada en « $2 ».', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-redirect'      => 'Una redireccion es estada creada.',
+'movepage-moved-noredirect'    => 'La creacion de la redireccion es estada suprimida.',
 'articleexists'                => "Existís ja un article que pòrta aqueste títol, o lo títol qu'avètz causit es pas valid.
 Causissètz-ne un autre.",
 'cantmove-titleprotected'      => 'Avètz pas la possibilitat de desplaçar una pagina cap a aqueste emplaçament perque lo títol es estat protegit a la creacion.',
@@ -2220,6 +2231,7 @@ jol nom novèl. Se vos plai, fusionatz-las manualament.",
 'movepage-max-pages'           => "Lo maximom de $1 {{PLURAL:$1|pagina es estat renomenat|paginas son estadas renomenadas}} e cap d'autra o poirà pas èsser automaticament.",
 '1movedto2'                    => 'a renomenat [[$1]] en [[$2]]',
 '1movedto2_redir'              => 'a redirigit [[$1]] cap a [[$2]]',
+'move-redirect-suppressed'     => 'redireccion suprimida',
 'movelogpage'                  => 'Istoric dels cambiaments de nom',
 'movelogpagetext'              => 'Vaquí la lista de las darrièras paginas renomenadas.',
 'movereason'                   => 'Motiu :',

@@ -519,6 +519,7 @@ Confirma orthographiam.',
 tesseram novam petivit pro {{grammar:ablative|{{SITENAME}}}} ($4).
 Tessera temporaria usoris "$2" creata est: "$3".
 Si vis, conventum aperias et statim tesseram tuam mutes.
+Tessera temporaria exibit {{PLURAL:$5|unam diem|$5 dies}}.
 
 Si non ipse hanc petitionem fecisti, aut si tesserae tuae
 meministi et etiam nolis eam mutare, potes hunc nuntium
@@ -731,7 +732,7 @@ Titulus: '''(nov)''' = dissimilis ab emendatione novissima,
 'revisiondelete'         => 'Emendationem delere',
 'revdelete-selected'     => "'''{{PLURAL:$2|Emendatio selecta|Emendationes selectae}} paginae [[:$1]]:'''",
 'revdelete-hide-text'    => 'Celare textum emendationis',
-'revdelete-hide-comment' => 'Celare adnotum emendationis',
+'revdelete-hide-comment' => 'Celare summarium emendationis',
 'revdelete-hide-image'   => 'Celare contentum fasciculi',
 'revdelete-log'          => 'Summarium pro actis:',
 'revdel-restore'         => 'Visibilitatem mutare',

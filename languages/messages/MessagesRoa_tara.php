@@ -372,99 +372,104 @@ $2',
 'virus-unknownscanner' => 'antivirus scanusciute:',
 
 # Login and logout pages
-'logouttitle'               => 'Utende assute',
-'logouttext'                => "<strong>Tu tè scolleghete.</strong>
+'logouttitle'                => 'Utende assute',
+'logouttext'                 => "<strong>Tu tè scolleghete.</strong>
 
 Tu puè condinuà a ausà {{SITENAME}} in mode anonime, o tu puè [[Special:UserLogin|collegarte 'n'otra vote]] cumme 'u stesse utende o cumme 'n'otre utende.
 Note Bbuene ca certe pàggene ponne condinuà a essere viste cumme ce tu ste angore colleghete, fine a quanne a cache d'u browser no se sdeveche.",
-'welcomecreation'           => "== Bovegne, $1! ==
+'welcomecreation'            => "== Bovegne, $1! ==
 'U cunde tue ha state ccrejete.
 No te sce scurdanne de cangià le [[Special:Preferences|{{SITENAME}} preferenze tue]].",
-'loginpagetitle'            => "Nome de l'utende",
-'yourname'                  => 'Nome utende:',
-'yourpassword'              => 'Passuord:',
-'yourpasswordagain'         => "Scrive 'a passuord notra vote:",
-'remembermypassword'        => "Arrencuerdete 'u nome mie sus a stu combiuter",
-'yourdomainname'            => "'U nome d'u dominie tue:",
-'externaldberror'           => "Vide bbuene, o stè 'n'errore de autendicazione a 'u database oppure tu non ge puè aggiorna 'u cunde tue esterne.",
-'login'                     => 'Tràse',
-'nav-login-createaccount'   => 'Tràse / Reggistrete',
-'loginprompt'               => "Tu a tenè le cookies abilitate pe tràse jndr'à {{SITENAME}}.",
-'userlogin'                 => 'Tràse / Reggistrete',
-'logout'                    => 'Isse',
-'userlogout'                => 'Isse',
-'notloggedin'               => 'Non ge sì colleghete',
-'nologin'                   => "Non ge tine n'utenze? $1.",
-'nologinlink'               => "Ccreje 'nu cunde utende",
-'createaccount'             => "Ccreje 'nu cunde",
-'gotaccount'                => "Tine già 'nu cunde? $1.",
-'gotaccountlink'            => 'Tràse',
-'createaccountmail'         => 'pe e-mail',
-'badretype'                 => 'Le passuord ca è scritte non ge sonde uguale.',
-'userexists'                => "'U nome de l'utende ca è scritte jè già ausete.
+'loginpagetitle'             => "Nome de l'utende",
+'yourname'                   => 'Nome utende:',
+'yourpassword'               => 'Passuord:',
+'yourpasswordagain'          => "Scrive 'a passuord notra vote:",
+'remembermypassword'         => "Arrencuerdete 'u nome mie sus a stu combiuter",
+'yourdomainname'             => "'U nome d'u dominie tue:",
+'externaldberror'            => "Vide bbuene, o stè 'n'errore de autendicazione a 'u database oppure tu non ge puè aggiorna 'u cunde tue esterne.",
+'login'                      => 'Tràse',
+'nav-login-createaccount'    => 'Tràse / Reggistrete',
+'loginprompt'                => "Tu a tenè le cookies abilitate pe tràse jndr'à {{SITENAME}}.",
+'userlogin'                  => 'Tràse / Reggistrete',
+'logout'                     => 'Isse',
+'userlogout'                 => 'Isse',
+'notloggedin'                => 'Non ge sì colleghete',
+'nologin'                    => "Non ge tine n'utenze? $1.",
+'nologinlink'                => "Ccreje 'nu cunde utende",
+'createaccount'              => "Ccreje 'nu cunde",
+'gotaccount'                 => "Tine già 'nu cunde? $1.",
+'gotaccountlink'             => 'Tràse',
+'createaccountmail'          => 'pe e-mail',
+'badretype'                  => 'Le passuord ca è scritte non ge sonde uguale.',
+'userexists'                 => "'U nome de l'utende ca è scritte jè già ausete.
 Mittene n'otre.",
-'youremail'                 => 'Poste:',
-'username'                  => "Nome de l'utende:",
-'uid'                       => 'ID Utende:',
-'prefs-memberingroups'      => "Membre {{PLURAL:$1|d'u gruppe|de le gruppe}}:",
-'yourrealname'              => 'Nome vere:',
-'yourlanguage'              => 'Lènga:',
-'yournick'                  => 'Firma toje:',
-'badsig'                    => "'A firme grezze jè sbagliete.
+'youremail'                  => 'Poste:',
+'username'                   => "Nome de l'utende:",
+'uid'                        => 'ID Utende:',
+'prefs-memberingroups'       => "Membre {{PLURAL:$1|d'u gruppe|de le gruppe}}:",
+'yourrealname'               => 'Nome vere:',
+'yourlanguage'               => 'Lènga:',
+'yournick'                   => 'Firma toje:',
+'badsig'                     => "'A firme grezze jè sbagliete.
 Condrolle le tag HTML.",
-'badsiglength'              => "'A firme jè troppe longhe.
+'badsiglength'               => "'A firme jè troppe longhe.
 Addà essere assaje assaje sotte a $1 {{PLURAL:$1|carattere|carattere}}.",
-'email'                     => 'Poste',
-'prefs-help-realname'       => "'U nome vere (quidde d'u munne reale) jè facoltative.
+'email'                      => 'Poste',
+'prefs-help-realname'        => "'U nome vere (quidde d'u munne reale) jè facoltative.
 Ce tu 'u mitte, a fatje ca è fatte t'avène ricanusciute.",
-'loginerror'                => 'Errore de collegamende',
-'prefs-help-email'          => "L'indirizze e-mail jè facoltative ma te dè 'a possibbilità de mannarte 'na password nova nove ce tu te scuèrde quedde ca tenive.
+'loginerror'                 => 'Errore de collegamende',
+'prefs-help-email'           => "L'indirizze e-mail jè facoltative ma te dè 'a possibbilità de mannarte 'na password nova nove ce tu te scuèrde quedde ca tenive.
 Tu puè pure scacchià de lassà otre condatte ausanne l'utende tue o le pàggene de le 'ngazzaminde senza ca abbesogne de fa canoscere l'idendità toje.",
-'prefs-help-email-required' => "L'indirizze e-mail jè obbligatorie.",
-'nocookiesnew'              => "'U cunde utende ha state ccrejete ma angore non g'è trasute jndr'à {{SITENAME}}.
+'prefs-help-email-required'  => "L'indirizze e-mail jè obbligatorie.",
+'nocookiesnew'               => "'U cunde utende ha state ccrejete ma angore non g'è trasute jndr'à {{SITENAME}}.
 
 {{SITENAME}} ause le cookie pe fà collegà l'utinde.
 Tu tine le cookie disabbilitete.
 Pe piacere, ce vuè ccu trase, abilitesce le cookie e pò prueve a mettere 'a ''login'' e 'a password.",
-'nocookieslogin'            => "{{SITENAME}} ause le cookie pe fà trasè l'utinde.
+'nocookieslogin'             => "{{SITENAME}} ause le cookie pe fà trasè l'utinde.
 
 Tu tine le cookie disabbilitete.
 Pe piacere, vide ce l'abilitesce e pò prueve 'n'otra vote a mettere le date tue.",
-'noname'                    => "Non gìè specifichete 'nu nome utende valide.",
-'loginsuccesstitle'         => 'Tutte a poste, è trasute!',
-'loginsuccess'              => "'''Mò tu si colleghete jndr'à {{SITENAME}} cumme \"\$1\".'''",
-'nosuchuser'                => "Non g'esiste n'utende cu 'u nome \"\$1\".
+'noname'                     => "Non gìè specifichete 'nu nome utende valide.",
+'loginsuccesstitle'          => 'Tutte a poste, è trasute!',
+'loginsuccess'               => "'''Mò tu si colleghete jndr'à {{SITENAME}} cumme \"\$1\".'''",
+'nosuchuser'                 => "Non g'esiste n'utende cu 'u nome \"\$1\".
 Vide bbuene a cumme l'è scritte, o [[Special:UserLogin/signup|ccreje n'utende nuève]].",
-'nosuchusershort'           => 'Non ge ste nisciune utende cu \'u nome "<nowiki>$1</nowiki>".
+'nosuchusershort'            => 'Non ge ste nisciune utende cu \'u nome "<nowiki>$1</nowiki>".
 Condrolle accume l\'è scritte.',
-'nouserspecified'           => "A scrivere pe forze 'u nome de l'utende.",
-'wrongpassword'             => "E mise 'na passuor sbagliete.
+'nouserspecified'            => "A scrivere pe forze 'u nome de l'utende.",
+'wrongpassword'              => "E mise 'na passuor sbagliete.
 Prueve n'otra vote.",
-'wrongpasswordempty'        => "'A passuord 'nzerite jè vianghe.
+'wrongpasswordempty'         => "'A passuord 'nzerite jè vianghe.
 Mitta n'otra vota.",
-'passwordtooshort'          => "'A passuord ca è mise o non g'è valida o jè troppe piccenne.
+'passwordtooshort'           => "'A passuord ca è mise o non g'è valida o jè troppe piccenne.
 Tu a mettere almene {{PLURAL:$1|1 carattere|$1 carattere}} e adda essere diverse da 'u nome utende.",
-'mailmypassword'            => 'Passuord nova pe e-mail',
-'passwordremindertitle'     => 'Passuord temboranea nova pe {{SITENAME}}',
-'passwordremindertext'      => "Quacchedune (pò essere tu, da quiste indirizze IP \$1) ha cerchete 'na nova passuord pe {{SITENAME}} (\$4). 
-'Na passuord temboranea pe l'utende \"\$2\" ha state ccrejete e ha state 'mbostete a \"\$3\".
-Ce quiste ere quidde ca vulive, mo vide ce te colleghe e te scacchie 'na passuord nova.
+'mailmypassword'             => 'Passuord nova pe e-mail',
+'passwordremindertitle'      => 'Passuord temboranea nova pe {{SITENAME}}',
+'passwordremindertext'       => "Quacchedune (pò essere tu, da quiste indirizze IP \$1) ha cerchete 'na nova password pe {{SITENAME}} (\$4). 
+'Na password temboranea pe l'utende \"\$2\" ha state ccrejete e ha state 'mbostete a \"\$3\".
+Ce quiste ere quidde ca vulive, mo vide ce te colleghe e te scacchie 'na password nova.
+'A password temboranea adda murè 'mbrà {{PLURAL:\$5|'nu giurne|\$5 giurne}}.
 
-Ce quacche otre 'nvece ha fatte sta rechieste, o ce tu t'è recurdate 'a passuord, e non g'à vuè cu cangè cchiù, allore no sce penzanne a 'stu messagge e continue a ausà 'a vecchia passuord.",
-'noemail'                   => 'Non ge stonne email reggistrete pe l\'utende "$1".',
-'passwordsent'              => "'Na nova passuord ha state mannete a l'indirizze e-mail reggistrete pe \"\$1\".
+Ce quacche otre 'nvece ha fatte sta rechieste, o ce tu t'è recurdate 'a password, e non g'à vuè cu cangè cchiù, allore no sce penzanne a 'stu messagge e continue a ausà 'a vecchia password.",
+'noemail'                    => 'Non ge stonne email reggistrete pe l\'utende "$1".',
+'passwordsent'               => "'Na nova passuord ha state mannete a l'indirizze e-mail reggistrete pe \"\$1\".
 Pe piacere, colleghete n'otra vota quanne l'è ricevute.",
-'blocked-mailpassword'      => "L'indirizze IP tue jè blocchete pe le cangiaminde e accussì tu non ge puè ausà 'a funzione de recupere d'a password pe prevenìe l'abbuse.",
-'eauthentsent'              => "'N'e-mail de conferme ha state mannete a l'indirizze ca tu è ditte.
+'blocked-mailpassword'       => "L'indirizze IP tue jè blocchete pe le cangiaminde e accussì tu non ge puè ausà 'a funzione de recupere d'a password pe prevenìe l'abbuse.",
+'eauthentsent'               => "'N'e-mail de conferme ha state mannete a l'indirizze ca tu è ditte.
 Apprime ca otre e-mail avènene mannete a 'u cunde tue, tu ha seguì le 'struzione ca stonne jndr'à l'e-mail, pe confermà l'iscrizione.",
-'mailerror'                 => "Errore mannanne 'a mail: $1",
-'emailauthenticated'        => "L'indirizze e-mail ca ne date ha state autendichete 'u sciurne $2 a le $3.",
-'noemailprefs'              => "Specifiche 'n'indirizze e-mail pe ste dettaglie ca onne essere fatiete.",
-'emailconfirmlink'          => "Conferme l'indirizze e-mail tue",
-'accountcreated'            => 'cunde utende ccrejete',
-'accountcreatedtext'        => "'U cunde utende pe $1 ha state ccrejete.",
-'createaccount-title'       => "Ccreazzione de 'u cunde utende pe {{SITENAME}}",
-'loginlanguagelabel'        => 'Lénga: $1',
+'throttled-mailpassword'     => "'Nu arrecordatore de password ha stete già mannete jndr'à {{PLURAL:$1|l'urtema ore|l'urteme $1 ore}}.
+Pe prevenì l'abbuse, sulamende 'nu arrecordatore de password avene mannete ogne {{PLURAL:$1|ore|$1 ore}}.",
+'mailerror'                  => "Errore mannanne 'a mail: $1",
+'acct_creation_throttle_hit' => "Ne dispiace ma tu è già ccrejete {{PLURAL:$1|'nu cunde utende|$1 cunde utinde}}.
+Tu non ge ne puè ccrejà cchiù.",
+'emailauthenticated'         => "L'indirizze e-mail ca ne date ha state autendichete 'u sciurne $2 a le $3.",
+'noemailprefs'               => "Specifiche 'n'indirizze e-mail pe ste dettaglie ca onne essere fatiete.",
+'emailconfirmlink'           => "Conferme l'indirizze e-mail tue",
+'accountcreated'             => 'cunde utende ccrejete',
+'accountcreatedtext'         => "'U cunde utende pe $1 ha state ccrejete.",
+'createaccount-title'        => "Ccreazzione de 'u cunde utende pe {{SITENAME}}",
+'loginlanguagelabel'         => 'Lénga: $1',
 
 # Password reset dialog
 'resetpass'                 => "Cange 'a password",
@@ -835,6 +840,7 @@ condrolle ce l'installazione de latex, dvips, gs e convertitore jè corrette",
 'prefs-personal'            => "Profile de l'utende",
 'prefs-rc'                  => 'Cangiaminde recende',
 'prefs-watchlist'           => 'Pàggene condrollete',
+'prefs-watchlist-days'      => "Giurne da fà vedè jndr'à liste de le pàggene condrollete:",
 'prefs-watchlist-days-max'  => '(massime 7 sciurne)',
 'prefs-watchlist-edits-max' => '(numere massime: 1000)',
 'prefs-misc'                => 'Misc',
@@ -902,6 +908,7 @@ condrolle ce l'installazione de latex, dvips, gs e convertitore jè corrette",
 'right-read'          => 'Ligge le pàggene',
 'right-edit'          => 'Cange le pàggene',
 'right-createpage'    => "Ccreje le pàggene (ca non ge tènene le pàggene de le 'ngazzaminde)",
+'right-createtalk'    => "Ccreje le pàggene de le 'ngazzaminde",
 'right-createaccount' => 'Ccreje nueve cunde utinde',
 'right-minoredit'     => 'Signe le cangiaminde cumme stuedéche',
 'right-move'          => 'Spuéste le pàggene',
@@ -911,8 +918,10 @@ condrolle ce l'installazione de latex, dvips, gs e convertitore jè corrette",
 'right-upload_by_url' => "Careche 'nu file da l'indirizze URL",
 'right-delete'        => 'Scangille le pàggene',
 'right-bigdelete'     => "Scangille le pàggene cu 'na storia longa longa",
+'right-browsearchive' => 'Cirche le pàggene scangellete',
 'right-undelete'      => "Repristine 'na pàgene",
 'right-block'         => 'Blocche otre utinde a fà le cangiaminde',
+'right-editinterface' => "Cange l'inderfacce utende",
 'right-import'        => "Pàggene 'mbortete da otre Uicchipèdie",
 'right-userrights'    => 'Cange tutte le deritte utende',
 
@@ -931,6 +940,7 @@ condrolle ce l'installazione de latex, dvips, gs e convertitore jè corrette",
 'action-move-subpages'  => 'spuéste sta pàgene e tutte chidde ca stonne sotte a jedde',
 'action-movefile'       => 'spueste stu file',
 'action-upload'         => 'careche stu fail',
+'action-upload_by_url'  => "careche stu file da st'indirizze web",
 'action-writeapi'       => "ause 'a scritta API",
 'action-delete'         => 'scangille sta pàgene',
 'action-deleterevision' => 'scangille sta versione',
@@ -1199,6 +1209,7 @@ Vide 'a [[Special:NewFiles|gallerie de le file nuève]] pe vedè l'otre andeprim
 'deletedcontributions' => "Condrebbute de l'utende scangellete",
 
 # Special:LinkSearch
+'linksearch'      => 'Cirche le collegaminde web',
 'linksearch-ns'   => 'Neimspeise:',
 'linksearch-ok'   => 'Cirche',
 'linksearch-line' => '$1 jè pundete da $2',
@@ -1208,6 +1219,7 @@ Vide 'a [[Special:NewFiles|gallerie de le file nuève]] pe vedè l'otre andeprim
 'listusers-noresult' => 'Nisciune utende acchiete.',
 
 # Special:Log/newusers
+'newuserlogpage'              => 'Archivije de ccreazione de le utinde',
 'newuserlog-byemail'          => 'password mannete pe e-mail',
 'newuserlog-create-entry'     => 'Utende nuève',
 'newuserlog-create2-entry'    => 'cunde utende ccrejete pe $1',
@@ -1550,7 +1562,18 @@ Puè vedè sulamende 'u sorgende.",
 'tooltip-watch'                   => "Mitte sta pàgene jndr'à liste de le pàggene condrollete",
 
 # Attribution
-'others' => 'otre',
+'siteuser'  => 'Utende de {{SITENAME}} $1',
+'others'    => 'otre',
+'siteusers' => '{{PLURAL:$2|utende|utinde}} de {{SITENAME}} $1',
+
+# Info page
+'infosubtitle' => "'Mbormazione pe pàgene",
+'numedits'     => 'Numere de cangiaminde (pàgene): $1',
+'numtalkedits' => "Numere de cangiaminde (pàgene de le 'ngazzaminde): $1",
+
+# Math options
+'mw_math_simple' => 'HTML ce jè avveramende facile oppure PNG',
+'mw_math_html'   => 'HTML ce jè possibbile oppure PNG',
 
 # Patrol log
 'patrol-log-auto' => '(automatiche)',

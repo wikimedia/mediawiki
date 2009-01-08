@@ -698,6 +698,7 @@ Legalább {{PLURAL:$1|egy|$1}} karakterből kell állnia, és nem egyezhet meg a
 {{SITENAME}} wikis ($4) felhasználói fiókjához.
 "$2" számára most egy ideiglenes jelszót készítettünk: "$3".
 Ha te kértél új jelszót, lépj be, és változtasd meg.
+Az ideiglenes jelszó {{PLURAL:$5|egy nap|$5 nap}} múlva érvényét veszti.
 
 Ha nem te küldted a kérést, vagy közben eszedbe jutott a régi,
 és már nem akarod megváltoztatni, nyugodtan hagyd figyelmen kívül

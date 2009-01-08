@@ -5,6 +5,7 @@
  * @file
  *
  * @author Alno
+ * @author Jagwar
  * @author Urhixidur
  * @author לערי ריינהארט
  */
@@ -805,8 +806,24 @@ Ny fanovana farany dia nataon'i [[User:$3|$3]] ([[User talk:$3|Dinika]]).",
 'protect-legend'              => 'Fanekena ny fiarovana pejy',
 'protectcomment'              => "Anton'ny fiarovana ny pejy",
 'protect-text'                => 'Afaka jerenao na ovainao eto ny politikam-piarovana ny pejy <strong><nowiki>$1</nowiki></strong>.',
+'protect-locked-blocked'      => 'Tsy afaka ovanao ny sokajy ny fiarovana raha tsy mahazo manoratra ianao.
+Ity ny sokajy ny pejy <strong>$1</strong> :',
+'protect-locked-dblock'       => 'Tsy afaka solona ny sokajy ny fiarovana satria ny voatohana ny fotom-pandraisana.
+Ity ny reglajy ny pejy  <strong>$1</strong>',
+'protect-cascadeon'           => "Voaaro ity pejy ity satria ao anatin'ny ireto pejy izy, voaaro izy io miarak'amin'ny « fiarovana an-driana ». Afaka solonao ny sokaji-piarovana an'ity pejy fa tsy ho voakitika ny fiarovana an-driana.",
+'protect-default'             => 'Tsy misy fiarovana',
 'protect-level-autoconfirmed' => 'Sakano ny mpikambana tsy misoratra anarana',
 'protect-level-sysop'         => 'Sysops ihany',
+'protect-summary-cascade'     => 'Fiarovana an-driana',
+'protect-expiring'            => "Miala amin'ny $1",
+'protect-expiry-indefinite'   => 'tsiefa',
+'protect-cantedit'            => "Tsy afaka manolo ny sokaji-piarovan'ity pejy ity ianao satria tsy manana ny sata ilaina",
+'protect-otherreason'         => 'Antony afa miampy :',
+'protect-dropdown'            => "*Anton'ny fiarovana
+** Misy be mpanimba
+** Misy be mpametraka spam
+** Misy adim-panontana
+** Misy olona maro no mandalo eo",
 'protect-expiry-options'      => '2 ora:2 hours,1 andro:1 day,3 andro:3 days,1 herinandro:1 week,2 herinandro:2 weeks,1 volana:1 month,3 volana:3 months,6 volana:6 months,1 taona:1 year,mandrakizay:infinite', # display1:time1,display2:time2,...
 
 # Undelete

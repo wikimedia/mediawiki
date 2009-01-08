@@ -1550,6 +1550,7 @@ Poredak datoteka mijenja se pritiskom na naslov stupca.',
 'listfiles_user'        => 'Suradnik',
 'listfiles_size'        => 'Veličina (u bajtovima)',
 'listfiles_description' => 'Opis',
+'listfiles_count'       => 'Inačice',
 
 # File description page
 'filehist'                       => 'Povijest datoteke',
@@ -1827,29 +1828,31 @@ Dodatne informacije o pojedinim pravim se mogu pronaći [[{{MediaWiki:Listgroupr
 'listgrouprights-removegroup-all' => 'Moguće ukloniti sve skupine',
 
 # E-mail user
-'mailnologin'     => 'Nema adrese pošiljaoca',
-'mailnologintext' => 'Morate biti [[Special:UserLogin|prijavljeni]]
+'mailnologin'      => 'Nema adrese pošiljaoca',
+'mailnologintext'  => 'Morate biti [[Special:UserLogin|prijavljeni]]
 i imati valjanu adresu e-pošte u svojim [[Special:Preferences|postavkama]]
 da bi mogli slati poštu drugim suradnicima.',
-'emailuser'       => 'Pošalji e-poštu ovom suradniku',
-'emailpage'       => 'Pošalji e-poštu suradniku',
-'emailpagetext'   => 'Možete koristiti ovaj obrazac za poslati elektroničku poštu ovom suradniku.
+'emailuser'        => 'Pošalji e-poštu ovom suradniku',
+'emailpage'        => 'Pošalji e-poštu suradniku',
+'emailpagetext'    => 'Možete koristiti ovaj obrazac za poslati elektroničku poštu ovom suradniku.
 E-mail adresa iz vaših [[Special:Preferences|postavki]] nalazit će se u "From" polju poruke i primatelj će vam moći odgovoriti.',
-'usermailererror' => 'Sustav pošte javio je pogrešku:',
-'defemailsubject' => '{{SITENAME}} elektronička pošta (e-mail)',
-'noemailtitle'    => 'Nema adrese primaoca',
-'noemailtext'     => 'Ovaj suradnik nije unio valjanu e-mail adresu ili se odlučio na neće primati poštu od drugih suradnika.',
-'email-legend'    => 'Pošalji elektroničku poštu drugom {{SITENAME}} suradniku',
-'emailfrom'       => 'Od:',
-'emailto'         => 'Za:',
-'emailsubject'    => 'Tema:',
-'emailmessage'    => 'Poruka:',
-'emailsend'       => 'Pošalji',
-'emailccme'       => 'Pošalji mi e-mailom kopiju moje poruke.',
-'emailccsubject'  => 'Kopija vaše poruke suradniku $1: $2',
-'emailsent'       => 'E-mail poslan',
-'emailsenttext'   => 'Vaša poruka je poslana.',
-'emailuserfooter' => 'Ovaj e-mail je poslan od $1 za $2 korištenjem "elektroničke pošte" s projekta {{SITENAME}}.',
+'usermailererror'  => 'Sustav pošte javio je pogrešku:',
+'defemailsubject'  => '{{SITENAME}} elektronička pošta (e-mail)',
+'noemailtitle'     => 'Nema adrese primaoca',
+'noemailtext'      => 'Ovaj suradnik nije odredio valjanu e-mail adresu.',
+'nowikiemailtitle' => 'E-mail nije dozvoljen',
+'nowikiemailtext'  => 'Ovaj suradnik je odlučio ne primati e-mail od drugih suradnika.',
+'email-legend'     => 'Pošalji elektroničku poštu drugom {{SITENAME}} suradniku',
+'emailfrom'        => 'Od:',
+'emailto'          => 'Za:',
+'emailsubject'     => 'Tema:',
+'emailmessage'     => 'Poruka:',
+'emailsend'        => 'Pošalji',
+'emailccme'        => 'Pošalji mi e-mailom kopiju moje poruke.',
+'emailccsubject'   => 'Kopija vaše poruke suradniku $1: $2',
+'emailsent'        => 'E-mail poslan',
+'emailsenttext'    => 'Vaša poruka je poslana.',
+'emailuserfooter'  => 'Ovaj e-mail je poslan od $1 za $2 korištenjem "elektroničke pošte" s projekta {{SITENAME}}.',
 
 # Watchlist
 'watchlist'            => 'Moj popis praćenja',
@@ -2280,6 +2283,7 @@ ako to želite.",
 'movepagebtn'                  => 'Premjesti stranicu',
 'pagemovedsub'                 => 'Premještanje uspjelo',
 'movepage-moved'               => '<big>\'\'\'"$1" je premješteno na "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-redirect'      => 'Napravljeno je preusmjeravanje.',
 'movepage-moved-noredirect'    => 'Stvaranje preusmjeravanja je izostavljeno.',
 'articleexists'                => 'Stranica pod tim imenom već postoji ili ime koje ste odabrali nije u skladu s pravilima.
 Molimo odaberite drugo ime.',

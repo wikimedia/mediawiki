@@ -718,6 +718,7 @@ Mit anderen Benutzer kannst du auch über die Benutzerdiskussionsseiten Kontakt 
 Das automatisch generierte Passwort für Benutzer „$2“ lautet nun: $3
 
 Du solltest dich jetzt anmelden und das Passwort ändern: {{fullurl:{{ns:special}}:Userlogin}}
+Das neue Passwort ist {{PLURAL:$5|1 Tag|$5 Tage}} gültig.
 
 Bitte ignoriere diese E-Mail, falls du sie nicht selbst angefordert hast. Das alte Passwort bleibt weiterhin gültig.',
 'noemail'                    => 'Benutzer „$1“ hat keine E-Mail-Adresse angegeben.',
@@ -1085,7 +1086,7 @@ Stelle sicher, dass die Versionsgeschichte eines Artikels historisch korrekt ist
 'visualcomparison'        => 'Visueller Vergleich',
 'wikicodecomparison'      => 'Wikitext-Vergleich',
 'editundo'                => 'rückgängig',
-'diff-multi'              => '(Der Versionsvergleich bezieht {{PLURAL:$1|1 dazwischen liegende Version|$1 dazwischen liegende Versionen}} mit ein.)',
+'diff-multi'              => '(Der Versionsvergleich bezieht {{PLURAL:$1|1 dazwischenliegende Version|$1 dazwischenliegende Versionen}} mit ein.)',
 'diff-movedto'            => 'verschoben nach $1',
 'diff-styleadded'         => '$1-Style ergänzt',
 'diff-added'              => '$1 hinzugefügt',
@@ -1242,6 +1243,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen
 'prefs-resetpass'           => 'Passwort ändern',
 'saveprefs'                 => 'Einstellungen speichern',
 'resetprefs'                => 'Eingaben verwerfen',
+'restoreprefs'              => 'Alle Standardeinstellungen wiederherstellen',
 'textboxsize'               => 'Bearbeiten',
 'prefs-edit-boxsize'        => 'Größe des Bearbeitungsfensters:',
 'rows'                      => 'Zeilen',

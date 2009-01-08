@@ -606,14 +606,10 @@ Provjerite da li ste dobro ukucali.',
 Šifra mora imati najmanje {{PLURAL:$1|1 znak|$1 znakova}} i mora se razlikovati od Vašeg korisničkog imena.',
 'mailmypassword'             => 'Pošalji mi novu šifru',
 'passwordremindertitle'      => '{{SITENAME}} podsjetnik za lozinku',
-'passwordremindertext'       => 'Neko (vjerovatno Vi, sa IP adrese $1)
-je zahtjevao da vam pošaljemo novu {{SITENAME}} lozinku za prijavljivanje na {{SERVERNAME}} ($4).
-Lozinka za korisnika "$2" je sad "$3".
-Sad treba da se prijavite i promjenite lozinku.
+'passwordremindertext'       => 'Neko (vjerovatno Vi, sa IP adrese $1) je zahtjevao da vam pošaljemo novu šifru za {{SITENAME}}  ($4). Privremena šifra za korisnika "$2" je napravljena i glasi "$3". Ako ste to željeli, sad treba da se prijavite i promjenite lozinku.
+Vaša privremena šifra će isteči za {{PLURAL:$5|$5 dan|$5 dana}}.
 
-Ako je neko drugi napravio ovaj zahtjev ili ako ste se sjetili vaše lozinke i
-ne želite više da je promjenite, možete da ignorišete ovu poruku i da nastavite koristeći
-vašu staru lozinku.',
+Ako je neko drugi napravio ovaj zahtjev ili ako ste se sjetili vaše šifre i ne želite više da je promjenite, možete da ignorišete ovu poruku i da nastavite koristeći vašu staru šifru.',
 'noemail'                    => 'Ne postoji adresa e-pošte za korisnika "$1".',
 'passwordsent'               => 'Nova lozinka je poslata na adresu e-pošte
 korisnika "$1".
@@ -2116,7 +2112,7 @@ $1',
 'blockiptext'                     => 'Upotrebite donji upitnik da biste uklonili prava pisanja sa određene IP adrese ili korisničkog imena.  Ovo bi trebalo da bude urađeno samo da bi se spriječio vandalizam, i u skladu sa [[{{MediaWiki:Policy-url}}|smjernicama]]. Unesite konkretan razlog ispod (na primjer, navodeći koje stranice su vandalizovane).',
 'ipaddress'                       => 'IP adresa:',
 'ipadressorusername'              => 'IP adresa ili korisničko ime:',
-'ipbexpiry'                       => 'Trajanje',
+'ipbexpiry'                       => 'Ističe:',
 'ipbreason'                       => 'Razlog',
 'ipbreasonotherlist'              => 'Ostali razlozi',
 'ipbreason-dropdown'              => '*Najčešći razlozi blokiranja
@@ -2275,6 +2271,7 @@ U tim slučajevima, moraćete ručno da premjestite stranicu ukoliko to želite.
 'movepagebtn'                  => 'premjestite stranicu',
 'pagemovedsub'                 => 'Premještanje uspjelo',
 'movepage-moved'               => '<big>\'\'\'"$1" je premještena na "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-redirect'      => 'Preusmjerenje je napravljeno.',
 'movepage-moved-noredirect'    => 'Pravljenje preusmjerenja je onemogućeno.',
 'articleexists'                => 'Stranica pod tim imenom već postoji, ili je ime koje ste izabrali neispravno.  Molimo Vas da izaberete drugo ime.',
 'cantmove-titleprotected'      => 'Ne možete premjestiti stranicu na ovu lokaciju, jer je novi naslov zaštićen od pravljenja',

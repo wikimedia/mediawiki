@@ -548,7 +548,7 @@ Twójo konto jo se załožyło. Njezabydni změniś swóje [[Special:Preferences
 'mailmypassword'             => 'Nowe gronidło pśipósłaś',
 'passwordremindertitle'      => 'Nowe nachylne pótajmne słowo za {{SITENAME}}',
 'passwordremindertext'       => 'Něchten z IP-adresu $1 (nejskerjej ty) jo se wupšosył nowe gronidło za {{SITENAME}} ($4).
-Nachylne gronidło za wužywarja "$2" jo se napórało a jo něnto "$3". Jolic jo to twój wótglěd było, musyš se něnto pśijawiś a wubraś nowe gronidło. 
+Nachylne gronidło za wužywarja "$2" jo se napórało a jo něnto "$3". Jolic jo to twój wótglěd było, musyš se něnto pśijawiś a wubraś nowe gronidło. Twójo nachylne gronidło pśepadnjo za {{PLURAL:$5|jadyn źeń|$5 dnja|$5 dny|$5 dnjow}}.
 
 Jolic jo něchten drugi wó nowe šćitne gronidło pšosył abo ty sy se zasej dopomnjeł na swójo gronidło  a njocoš wěcej jo změniś, móžoš toś tu powěsć ignorěrowaś a swójo stare gronidło dalej wužywaś.',
 'noemail'                    => 'Wužywaŕ „$1“ njejo e-mailowu adresu zapódał.',
@@ -1055,6 +1055,7 @@ Móžoš bok ale teke [[:$1|sam załožyś]].",
 'prefs-resetpass'           => 'Gronidło změniś',
 'saveprefs'                 => 'Składowaś',
 'resetprefs'                => 'Njeskłaźone změny zachyśiś',
+'restoreprefs'              => 'Wše standardne nastajenja wobnowiś',
 'textboxsize'               => 'Wobźěłaś',
 'prefs-edit-boxsize'        => 'Wjelikosć wobźěłowańskego wokna',
 'rows'                      => 'Rědki:',
