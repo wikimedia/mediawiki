@@ -32,7 +32,7 @@ class PreferencesForm {
 	 * Constructor
 	 * Load some values
 	 */
-	function PreferencesForm( &$request ) {
+	function __construct( &$request ) {
 		global $wgContLang, $wgUser, $wgAllowRealName;
 
 		$this->mQuickbar = $request->getVal( 'wpQuickbar' );
@@ -60,6 +60,7 @@ class PreferencesForm {
 		$this->mUnderline = $request->getInt( 'wpOpunderline' );
 		$this->mAction = $request->getVal( 'action' );
 		$this->mReset = $request->getCheck( 'wpReset' );
+		$this->mRestoreprefs = $request->getCheck( 'wpRestore' );
 		$this->mPosted = $request->wasPosted();
 		$this->mSuccess = $request->getCheck( 'success' );
 		$this->mWatchlistDays = $request->getVal( 'wpWatchlistDays' );
@@ -117,6 +118,8 @@ class PreferencesForm {
 			$this->mainPrefsForm( 'reset', wfMsg( 'prefsreset' ) );
 		} else if ( $this->mSaveprefs ) {
 			$this->savePreferences();
+		} else if ( $this->mRestoreprefs ) {
+			$this->restorePreferences();
 		} else {
 			$this->resetPrefs();
 			$this->mainPrefsForm( '' );
@@ -434,6 +437,17 @@ class PreferencesForm {
 		}
 
 		wfRunHooks( 'ResetPreferences', array( $this, $wgUser ) );
+	}
+	
+	/**
+	 * @access private
+	 */
+	function restorePreferences() {
+		global $wgUser;
+		$wgUser->restoreOptions();
+		$wgUser->setCookies();
+		$wgUser->saveSettings();
+		$this->mainPrefsForm( 'success' );
 	}
 
 	/**
@@ -1192,11 +1206,11 @@ class PreferencesForm {
 		$skin = $wgUser->getSkin();
 		$wgOut->addHTML( "
 	<div id='prefsubmit'>
-	<div>
-		<input type='submit' name='wpSaveprefs' class='btnSavePrefs' value=\"" . wfMsgHtml( 'saveprefs' ) . '"'.$skin->tooltipAndAccesskey('save')." />
+		<input type='submit' name='wpSaveprefs' class='btnSavePrefs' value=\"" . wfMsgHtml( 'saveprefs' ) . 
+			'"'.$skin->tooltipAndAccesskey('save')." />
 		<input type='submit' name='wpReset' value=\"" . wfMsgHtml( 'resetprefs' ) . "\" />
-	</div>
-
+		<input type='submit' name='wpRestore' class='btnSavePrefs' style='float:right;' value=\"" . 
+			wfMsgHtml( 'restoreprefs' ) . "\" />
 	</div>
 
 	<input type='hidden' name='wpEditToken' value=\"{$token}\" />

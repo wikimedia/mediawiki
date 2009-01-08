@@ -1909,6 +1909,13 @@ class User {
 		}
 		$this->mOptions[$oname] = $val;
 	}
+	
+	/**
+	 * Reset all options to the site defaults
+	 */	
+	function restoreOptions() {
+		$this->mOptions = User::getDefaultOptions();
+	}
 
 	/**
 	 * Get the user's preferred date format.
