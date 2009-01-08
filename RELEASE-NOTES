@@ -5,7 +5,7 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 == MediaWiki 1.14 ==
 
-THIS IS NOT A RELEASE YET
+This is a release candidate for the 2008 Q1 branch of MediaWiki.
 
 MediaWiki is now using a "continuous integration" development model with
 quarterly snapshot releases. The latest development code is always kept

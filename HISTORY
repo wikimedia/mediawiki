@@ -1,7 +1,115 @@
 Change notes from older releases. For current info see RELEASE-NOTES.
 
+== Changes since 1.13.2 ==
 
-== MediaWiki 1.13 ==
+David Remahl of Apple's Product Security team has identified a number of 
+security issues in previous releases of MediaWiki. Subsequent analysis by the
+MediaWiki development team expanded the scope of these vulnerabilities. The
+issues with a significant impact are as follows:
+
+* An XSS vulnerability affecting all MediaWiki installations between 1.13.0 and
+  1.13.2. [CVE-2008-5249]
+* A local script injection vulnerability affecting Internet Explorer clients for 
+  all MediaWiki installations with uploads enabled. [CVE-2008-5250]
+* A local script injection vulnerability affecting clients with SVG scripting 
+  capability (such as Firefox 1.5+), for all MediaWiki installations with SVG 
+  uploads enabled. [CVE-2008-5250]
+* A CSRF vulnerability affecting the Special:Import feature, for all MediaWiki 
+  installations since the feature was introduced in 1.3.0. [CVE-2008-5252]
+
+XSS (cross-site scripting) vulnerabilities allow an attacker to steal an
+authorised user's login session, and to act as that user on the wiki. The
+authorised user must visit a web page controlled by the attacker in order to
+activate the attack. Intranet wikis are vulnerable if the attacker can 
+determine the intranet URL.
+
+Local script injection vulnerabilities are like XSS vulnerabilities, except 
+that the attacker must have an account on the local wiki, and there is no 
+external site involved. The attacker uploads a script to the wiki, which another
+user is tricked into executing, with the effect that the attacker is able to act 
+as the privileged user.
+
+CSRF vulnerabilities allow an attacker to act as an authorised user on the wiki,
+but unlike an XSS vulnerability, the attacker can only act as the user in a
+specific and restricted way. The present CSRF vulnerability allows pages to be
+edited, with forged revision histories. Like an XSS vulnerability, the
+authorised user must visit the malicious web page to activate the attack.
+
+These four vulnerabilities are all fixed in this release.
+
+David Remahl also reminded us of some security-related configuration issues:
+
+* By default, MediaWiki stores a backup of deleted images in the images/deleted
+  directory. If you do not want these images to be publically accessible, make
+  sure this directory is not accessible from the web. MediaWiki takes some steps
+  to avoid leaking these images, but these measures are not perfect.
+* Set display_errors=off in your php.ini to avoid path disclosure via PHP fatal
+  errors. This is the default on most shared web hosts.
+* Enabling MediaWiki's debugging features, such as $wgShowExceptionDetails, may 
+  lead to path disclosure.
+
+Other changes in this release:
+
+* Avoid fatal error in profileinfo.php when not configured.
+* Add a .htaccess to deleted images directory for additional protection against 
+  exposure of deleted files with known SHA-1 hashes on default installations. 
+* Avoid streaming uploaded files to the user via index.php. This allows 
+  security-conscious users to serve uploaded files via a different domain, and
+  thus client-side scripts executed from that domain cannot access the login
+  cookies. Affects Special:Undelete, img_auth.php and thumb.php.
+* When streaming files via index.php, use the MIME type detected from the 
+  file extension, not from the data. This reduces the XSS attack surface.
+* Blacklist redirects via Special:Filepath. Such redirects exacerbate any 
+  XSS vulnerabilities involving uploads of files containing scripts.
+* Internationalisation updates.
+
+== Changes since 1.13.1 ==
+
+* Security: Work around misconfiguration by requiring strict comparisons for
+  in_array in User::isAllowed().
+* (bug 14944) Added $wgShellLocale for configuration of an appropriate locale 
+  to use for LC_CTYPE during shell invocation. For servers that don't have 
+  en_US.utf8. Also added locale detection during install.
+* Localisation updates
+* Security: Fixed XSS vulnerability in useskin parameter.
+
+== Changes since 1.13.0 ==
+
+* (bug 15460) Fixed intermittent deadlock errors and poor concurrent 
+  performance for installations without memcached.
+* (bug 13770) Fixed DOM module detection for installations with both dom 
+  and domxml.
+* (bug 15148) Fixed Special:BlockIP for PostgreSQL
+* Fixed SQLite support for non-memcached installations
+* Localisation updates, Achinese (ace) added.
+
+== Changes since 1.13.0rc2 ==
+
+* (bug 13770) Fixed incorrect detection of PHP's DOM module
+* Fix regression from r37834: accesskey tooltip hint should be given for the 
+  minor edit and watch labels on the edit page.
+* Updated Chinese simplified/traditional conversion tables
+
+== Changes since 1.13.0rc1 ==
+
+* $wgForwardSearchUrl has been removed entirely. Documented setting since 1.4
+  has been $wgSearchForwardUrl.
+* (bug 14907) DatabasePostgres::fieldType now defined.
+* (bug 14966) Fix SearchEngineDummy class for silently non-functional search
+  on Sqlite instead of horribly fatal error breaky one.
+* (bug 14987) Only fix double redirects on page move when the checkbox is
+  checked
+* (bug 13376) Use $wgPasswordSender, not $wgEmergencyContact, as return
+  address for page update notification mails.
+* API: Registration time of users registered before the DB field was created is now
+  shown as empty instead of the current time.
+* (bug 14904): fragments were lost when redirects were fixed.
+* Added magic word __STATICREDIRECT__ to suppress the redirect fixer
+* (bug 15035) Revert English linkTrail to /^([a-z]+)(.*)$/sD, as it was before 
+  r36253. Multiple reports of breakage due to old (pre-5.0) PCRE libraries, 
+  both bundled with PHP and packaged with distros such as RHEL. 
+* (bug 14944) Shell invocation of external programs such as ImageMagick convert 
+  was broken in PHP 5.2.6, if the server had a non-UTF-8 locale.
 
 === Configuration changes in 1.13 ===
 
