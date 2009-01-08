@@ -2954,15 +2954,6 @@ Molimo Vas da potvrdite da stvarno želite da ponovo napravite ovaj članak.",
 'confirm-purge-top'    => 'Da li želite obrisati keš ove stranice?',
 'confirm-purge-bottom' => 'Ispražnjava keš stranice i prikazuje najsvježiju verziju.',
 
-# Separators for various lists, etc.
-'catseparator'        => '|',
-'semicolon-separator' => ';&#32;',
-'comma-separator'     => ',&#32;',
-'colon-separator'     => ':&#32;',
-'autocomment-prefix'  => '-&#32;',
-'pipe-separator'      => '|',
-'word-separator'      => '&#32;',
-
 # Multipage image navigation
 'imgmultipageprev' => '← prethodna stranica',
 'imgmultipagenext' => 'slijedeća stranica →',

@@ -2980,14 +2980,6 @@ $1
 'confirm-purge-top'    => 'මෙම පිටුවෙහි පූර්වාපේක්‍ෂී සංචිතය (කෑෂය) හිස් කල යුතුද?',
 'confirm-purge-bottom' => 'පිටුවක් විමෝචනය කිරීම විසින් පූර්වාපේක්‍ෂිත සංචිතය (කෑෂය) හිස් කොට ඉතාමත් මෑත අනුවාදය පෙන්නුම් කිරීමට බල කරයි.',
 
-# Separators for various lists, etc.
-'catseparator'        => '|',
-'semicolon-separator' => ';&#32;',
-'comma-separator'     => ',&#32;',
-'colon-separator'     => ':&#32;',
-'autocomment-prefix'  => '-&#32;',
-'pipe-separator'      => '|',
-
 # Multipage image navigation
 'imgmultipageprev' => '← පෙර පිටුව',
 'imgmultipagenext' => 'ඊළඟ පිටුව →',

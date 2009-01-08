@@ -2696,14 +2696,6 @@ Stu còdici di cunferma scadi automaticamenti a li $4.',
 'confirm-purge-top'    => "S'addisìa puliri la cache di sta pàggina?",
 'confirm-purge-bottom' => "Pulizziari la cache di na pàggina pirmetti d'ammustrari la sô virsioni cchiù nova.",
 
-# Separators for various lists, etc.
-'catseparator'        => '|',
-'semicolon-separator' => ';&#32;',
-'comma-separator'     => ',&#32;',
-'colon-separator'     => ':&#32;',
-'autocomment-prefix'  => '-&#32;',
-'pipe-separator'      => '|',
-
 # Multipage image navigation
 'imgmultipageprev' => '← pàggina pricidenti',
 'imgmultipagenext' => 'pàggina siquenti →',

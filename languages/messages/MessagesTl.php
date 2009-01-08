@@ -2773,9 +2773,6 @@ Pakitiyak kung ibig mo talagang likhain muli ang pahinang ito.",
 'confirm-purge-top'    => 'Linisin/hawiin ang taguan ng pahinang ito?',
 'confirm-purge-bottom' => 'Nililinis/hinahawi ng pagpurga/pagdalisay ng isang pahina ang taguan at mapipilitang palitawin/ilantad ang pinakapangkasalukuyang bersyon.',
 
-# Separators for various lists, etc.
-'catseparator' => '|',
-
 # Multipage image navigation
 'imgmultipageprev' => '← nakaraang pahina',
 'imgmultipagenext' => 'susunod na pahina →',

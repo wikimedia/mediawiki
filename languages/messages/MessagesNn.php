@@ -2850,10 +2850,6 @@ Du må stadfeste at du verkeleg vil nyopprette denne sida.",
 'confirm-purge-top'    => 'Vil du slette tenarane sin mellomlagra versjon av denne sida?',
 'confirm-purge-bottom' => 'Reinsing av ei side slettar mellomlageret og tvinger fram den nyaste versjonen.',
 
-# Separators for various lists, etc.
-'catseparator'        => '|',
-'semicolon-separator' => ';&#32;',
-
 # Multipage image navigation
 'imgmultipageprev' => '← førre side',
 'imgmultipagenext' => 'neste side →',
