@@ -56,8 +56,10 @@ class Http {
 
 			curl_setopt( $c, CURLOPT_TIMEOUT, $timeout );
 			curl_setopt( $c, CURLOPT_USERAGENT, self :: userAgent() );
-			if ( $method == 'POST' )
+			if ( $method == 'POST' ) {
 				curl_setopt( $c, CURLOPT_POST, true );
+				curl_setopt( $c, CURLOPT_POSTFIELDS, '' );
+			}
 			else
 				curl_setopt( $c, CURLOPT_CUSTOMREQUEST, $method );
 
