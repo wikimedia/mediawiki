@@ -45,6 +45,7 @@ class CoreParserFunctions {
 		$parser->setFunctionHook( 'filepath',         array( __CLASS__, 'filepath'         ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'pagesincategory',  array( __CLASS__, 'pagesincategory'  ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'pagesize',         array( __CLASS__, 'pagesize'         ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'protectionlevel',  array( __CLASS__, 'protectionlevel'  ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'tag',              array( __CLASS__, 'tagObj'           ), SFH_OBJECT_ARGS );
 
 		if ( $wgAllowDisplayTitle ) {
@@ -291,6 +292,16 @@ class CoreParserFunctions {
 			$parser->mOutput->addTemplate( $title, $id, $rev ? $rev->getId() : 0 );
 		}	
 		return self::formatRaw( $length, $raw );
+	}
+	
+	/**
+	* Returns the requested protection level for the current page
+	*/
+	static function protectionlevel( $parser, $type = '' ) {
+		$restrictions = $parser->mTitle->getRestrictions( strtolower( $type ) );
+		# Title::getRestrictions returns an array, its possible it may have
+		# multiple values in the future
+		return implode( $restrictions, ',' );
 	}
 
 	static function language( $parser, $arg = '' ) {

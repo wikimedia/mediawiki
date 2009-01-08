@@ -333,6 +333,7 @@ $magicWords = array(
 	'noindex'                => array( 1,    '__NOINDEX__'            ),
 	'numberingroup'          => array( 1,    'NUMBERINGROUP', 'NUMINGROUP' ),
 	'staticredirect'         => array( 1,    '__STATICREDIRECT__'     ),
+	'protectionlevel'        => array( 1,    'PROTECTIONLEVEL'        ),
 );
 
 /**
