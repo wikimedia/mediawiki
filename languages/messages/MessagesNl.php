@@ -721,7 +721,6 @@ gedaan tot het toezenden van een nieuw wachtwoord voor {{SITENAME}}
 ($4). Er is een tijdelijk wachtwoord aangemaakt voor gebruiker "$2":
 "$3". Als dat uw bedoeling was, meld u dan nu aan en kies een nieuw
 wachtwoord.
-Uw tijdelijke wachtwoord vervalt over {{PLURAL:$5|$5 dag|$5 dagen}}.
 
 Als iemand anders dan u dit verzoek heeft gedaan of als u zich inmiddels het
 wachtwoord herinnert en het niet langer wilt wijzigen, negeer dit bericht
@@ -1725,7 +1724,7 @@ Invoer: contenttype/subtype, bijvoorbeeld <tt>image/jpeg</tt>.',
 'unwatchedpages' => "Pagina's die niet op een volglijst staan",
 
 # List redirects
-'listredirects' => 'Lijst van doorverwijzingen',
+'listredirects' => 'Doorverwijzingenlijst',
 
 # Unused templates
 'unusedtemplates'     => 'Ongebruikte sjablonen',

@@ -432,7 +432,7 @@ Mäd uur Benutsere koast du uk uur do Benutserdiskussionssieden Kontakt apnieme,
 'passwordtooshort'           => 'Failer bie ju Woal fon dät Paaswoud. Dät mout mindestens {{PLURAL:$1|1 Teeken|$1 Teekene}} loang weese.',
 'mailmypassword'             => 'Näi Paaswoud touseende',
 'passwordremindertitle'      => 'Näi Paaswoud foar n {{SITENAME}}-Benutserkonto',
-'passwordremindertext'       => 'Wäl (woarschienelk du sälwen, fon ju IP-Adresse $1) häd n näi Paaswoud foar ju Anmäldenge bie {{SITENAME}} ($4) anfoarderd. Dät automatisk generierde tiedwiese Paaswoud foar Benutser "$2" lut nu: "$3". Is dät wät du foarhiest, dan schääst du die nu anmäldje un dät Paaswoud annerje. Dät tiedwiese Paaswoud lapt ou in {{PLURAL:$5|aan Dai|$5 Deege}}.
+'passwordremindertext'       => 'Wäl (woarschienelk du sälwen, fon ju IP-Adresse $1) häd n näi Paaswoud foar ju Anmäldenge bie {{SITENAME}} ($4) anfoarderd. Dät automatisk generierde tiedwiese Paaswoud foar Benutser "$2" lut nu: "$3". Is dät wät du foarhiest, dan schääst du die nu anmäldje un dät Paaswoud annerje.
 
 Ignorier disse E-Mail, in dän Fal du ju nit sälwen anfoarderd hääst of wan du dien oold Paaswoud wier betoanke kuust. Dät oolde Paaswoud blift dan wieders gultich.',
 'noemail'                    => 'Benutser "$1" häd neen Email-Adrässe anroat of häd ju E-Mail-Funktion deaktivierd.',

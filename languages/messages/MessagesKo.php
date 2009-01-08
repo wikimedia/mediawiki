@@ -646,7 +646,7 @@ $messages = array(
 암호 길이는 적어도 $1자보다 길고 사용자 이름과 달라야 합니다.',
 'mailmypassword'             => '새 암호를 이메일로 보내기',
 'passwordremindertitle'      => '{{SITENAME}}에서 보내는 새 임시 암호',
-'passwordremindertext'       => 'IP 주소 $1에게서 당신에게 {{SITENAME}}($4)의 새 암호를 보내달라는 요청이 왔습니다.
+'passwordremindertext'       => 'IP 주소 $1에게서 당신에게 {{SITENAME}} ($4)의 새 암호를 보내달라는 요청이 왔습니다.
 사용자 ‘$2’의 암호는 이제 ‘$3’입니다. 로그인한 다음 암호를 변경해 주세요.
 
 만약 이 암호 요청을 다른 사람이 보낸 것이거나, 또는 예전에 사용하던 암호를 기억해냈다면 이 메시지를 무시하고 예전 암호를 계속 사용할 수 있습니다.',
@@ -853,6 +853,9 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 문서가 이미 존재합니다.',
 
 # Parser/template warnings
+'expensive-parserfunction-warning'        => '경고: 이 문서는 너무 많은 파서 함수를 포함하고 있습니다.
+
+현재 $1개의 함수가 포함되어 있으며, 파서 함수는 $2개 이하로 하는 것이 좋습니다.',
 'expensive-parserfunction-category'       => '느린 파서 함수 호출을 너무 많이 하는 문서',
 'post-expand-template-inclusion-warning'  => '경고: 틀 포함 크기가 너무 큽니다.
 일부 틀은 포함되지 않을 수 있습니다.',
@@ -1049,7 +1052,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'searchprofile-everything-tooltip' => '토론 문서를 포함한 모든 문서 찾기',
 'search-result-size'               => '$1 ($2개 단어)',
 'search-result-score'              => '유사도: $1%',
-'search-redirect'                  => '($1로 넘겨줌)',
+'search-redirect'                  => '($1에서 넘어옴)',
 'search-section'                   => '($1 문단)',
 'search-suggest'                   => '$1 문서를 찾고 계신가요?',
 'search-interwiki-caption'         => '자매 프로젝트',
@@ -1901,6 +1904,7 @@ $NEWPAGE
 'restriction-edit'   => '편집',
 'restriction-move'   => '이동',
 'restriction-create' => '만들기',
+'restriction-upload' => '올리기',
 
 # Restriction levels
 'restriction-level-sysop'         => '보호됨',
@@ -2724,6 +2728,7 @@ $5
 'watchlisttools-raw'  => '주시문서 목록 직접 편집하기',
 
 # Core parser functions
+'unknown_extension_tag' => '알 수 없는 확장 기능 태그 "$1"',
 'duplicate-defaultsort' => '경고: 기본 정렬 키 "$2"가 이전의 기본 정렬 키 "$2"를 덮어쓰고 있습니다.',
 
 # Special:Version

@@ -2184,6 +2184,7 @@ Tiujokaze, vi nepre permane kunigu la diskuto-paĝojn se vi tion deziras.",
 'movepagebtn'                  => 'Alinomigi paĝon',
 'pagemovedsub'                 => 'Sukcesis alinomigo',
 'movepage-moved'               => '<big>\'\'\'"$1" estis alinomigita al "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-redirect'      => 'Alidirektilo estis kreita.',
 'movepage-moved-noredirect'    => 'La kreado de alidirektilo estis nuligita.',
 'articleexists'                => 'Paĝo kun tiu nomo jam ekzistas, aŭ la nomo kiun vi elektis ne validas.
 Bonvolu elekti alian nomon.',

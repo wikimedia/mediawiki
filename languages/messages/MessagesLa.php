@@ -519,7 +519,6 @@ Confirma orthographiam.',
 tesseram novam petivit pro {{grammar:ablative|{{SITENAME}}}} ($4).
 Tessera temporaria usoris "$2" creata est: "$3".
 Si vis, conventum aperias et statim tesseram tuam mutes.
-Tessera temporaria exibit {{PLURAL:$5|unam diem|$5 dies}}.
 
 Si non ipse hanc petitionem fecisti, aut si tesserae tuae
 meministi et etiam nolis eam mutare, potes hunc nuntium
@@ -682,6 +681,9 @@ Haec pagina deleta esse videtur.',
 'edit-already-exists'              => 'Non potui paginam novam creare
 quia haec pagina iam est.',
 
+# Parser/template warnings
+'parser-template-loop-warning' => 'Ansula formulae detecta: [[$1]]',
+
 # "Undo" feature
 'undo-norev'   => 'Recensio abrogari non potuit quia non est aut deleta est.',
 'undo-summary' => 'Abrogans recensionem $1 ab usore [[Special:Contributions/$2|$2]] ([[User talk:$2|Disputatio]])',
@@ -722,24 +724,26 @@ Titulus: '''(nov)''' = dissimilis ab emendatione novissima,
 'history-feed-item-nocomment' => '$1 ad $2', # user at time
 
 # Revision deletion
-'rev-deleted-comment'   => '(summarium celatum)',
-'rev-deleted-user'      => '(nomen usoris celatum est)',
-'rev-deleted-event'     => '(actio actorum celata)',
-'rev-delundel'          => 'monstrare/celare',
-'revisiondelete'        => 'Emendationem delere',
-'revdelete-selected'    => "'''{{PLURAL:$2|Emendatio selecta|Emendationes selectae}} paginae [[:$1]]:'''",
-'revdelete-hide-image'  => 'Celare contentum fasciculi',
-'revdelete-log'         => 'Summarium pro actis:',
-'revdel-restore'        => 'Visibilitatem mutare',
-'pagehist'              => 'Historia paginae',
-'deletedhist'           => 'Historia deleta',
-'revdelete-content'     => 'contenta',
-'revdelete-summary'     => 'summarium recensionis',
-'revdelete-uname'       => 'nomen usoris',
-'revdelete-hid'         => 'celavit $1',
-'revdelete-unhid'       => 'monstravit $1',
-'revdelete-log-message' => '$1 {{PLURAL:$2|unius emendationis|$2 emendationum}}',
-'logdelete-log-message' => '$1 {{PLURAL:$2|unius eventi|$2 eventorum}}',
+'rev-deleted-comment'    => '(summarium celatum)',
+'rev-deleted-user'       => '(nomen usoris celatum est)',
+'rev-deleted-event'      => '(actio actorum celata)',
+'rev-delundel'           => 'monstrare/celare',
+'revisiondelete'         => 'Emendationem delere',
+'revdelete-selected'     => "'''{{PLURAL:$2|Emendatio selecta|Emendationes selectae}} paginae [[:$1]]:'''",
+'revdelete-hide-text'    => 'Celare textum emendationis',
+'revdelete-hide-comment' => 'Celare adnotum emendationis',
+'revdelete-hide-image'   => 'Celare contentum fasciculi',
+'revdelete-log'          => 'Summarium pro actis:',
+'revdel-restore'         => 'Visibilitatem mutare',
+'pagehist'               => 'Historia paginae',
+'deletedhist'            => 'Historia deleta',
+'revdelete-content'      => 'contenta',
+'revdelete-summary'      => 'summarium recensionis',
+'revdelete-uname'        => 'nomen usoris',
+'revdelete-hid'          => 'celavit $1',
+'revdelete-unhid'        => 'monstravit $1',
+'revdelete-log-message'  => '$1 {{PLURAL:$2|unius emendationis|$2 emendationum}}',
+'logdelete-log-message'  => '$1 {{PLURAL:$2|unius eventi|$2 eventorum}}',
 
 # History merging
 'mergehistory-from'        => 'Pagina imponenda:',
@@ -1661,6 +1665,7 @@ Ergo manu necesse disputationes motare vel contribuere erit, si vis.",
 'movepagebtn'               => 'Paginam movere',
 'pagemovedsub'              => 'Pagina mota est',
 'movepage-moved'            => '<big>\'\'\'"$1" mota est ad "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-redirect'   => 'Redirectio creata est.',
 'movepage-moved-noredirect' => 'Redirectio non creata est.',
 'articleexists'             => 'Pagina huius tituli iam est, aut invalidum est nomen electum.
 Quaesumus, titulum alterum elige.',

@@ -590,7 +590,6 @@ Verifique su deletreo, o [[Special:UserLogin/signup|cree una nueva cuenta]].',
 'passwordremindertitle'      => 'Recordatorio de contraseña de {{SITENAME}}',
 'passwordremindertext'       => 'Alguien (probablemente tú, desde la dirección IP $1) solicitó que te enviáramos una nueva contraseña para tu cuenta en {{SITENAME}} ($4).
 Se ha creado la siguiente contraseña temporal para el usuario «$2»: «$3»
-Ahora deberías iniciar sesión y cambiar tu contraseña. Su contraseña temporal expirará en {{PLURAL:$5|un día|$5 días}}.
 
 Si fue otro quien solicitó este mensaje o has recordado tu contraseña y ya no deseas cambiarla, puedes ignorar este mensaje y seguir usando tu contraseña original.',
 'noemail'                    => 'No hay una dirección de correo electrónico registrada para "$1".',
