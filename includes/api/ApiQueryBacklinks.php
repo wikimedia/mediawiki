@@ -169,6 +169,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			$this->addWhereFld('page_is_redirect', 0);
 		$this->addOption('LIMIT', $this->params['limit'] + 1);
 		$this->addOption('ORDER BY', $this->bl_sort);
+		$this->addOption('USE INDEX', array('page' => 'PRIMARY'));
 	}
 
 	private function run($resultPageSet = null) {
