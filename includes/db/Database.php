@@ -922,7 +922,7 @@ class Database {
 		$row = $this->fetchRow( $res );
 		if ( $row !== false ) {
 			$this->freeResult( $res );
-			return $row[0];
+			return reset( $row );
 		} else {
 			return false;
 		}

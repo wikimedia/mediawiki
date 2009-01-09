@@ -410,6 +410,14 @@ class DatabaseSqlite extends Database {
 		return "SearchEngineDummy";
 	}
 
+	/**
+	 * No-op version of deadlockLoop
+	 */
+	public function deadlockLoop( /*...*/ ) {
+		$args = func_get_args();
+		$function = array_shift( $args );
+		return call_user_func_array( $function, $args );
+	}
 }
 
 /**
