@@ -81,6 +81,8 @@ function migrate_page_restrictions( $db ) {
 	echo "...removing dead rows from page_restrictions\n";
 	// Kill any broken rows from previous imports
 	$db->delete( 'page_restrictions', array( 'pr_level' => '' ) );
+	// Kill other invalid rows
+	$db->deleteJoin( 'page_restrictions', 'page', 'pr_page', 'page_id', array('page_namespace' => NS_MEDIAWIKI) );
 	echo "...Done!\n";
 }
 
