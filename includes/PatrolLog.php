@@ -14,22 +14,26 @@ class PatrolLog {
 	 * @param mixed $change Change identifier or RecentChange object
 	 * @param bool $auto Was this patrol event automatic?
 	 */
-	public static function record( $change, $auto = false ) {
-		if( !( is_object( $change ) && $change instanceof RecentChange ) ) {
-			$change = RecentChange::newFromId( $change );
-			if( !is_object( $change ) )
+	public static function record( $rc, $auto = false ) {
+		if( !( $rc instanceof RecentChange ) ) {
+			$rc = RecentChange::newFromId( $rc );
+			if( !is_object( $rc ) )
 				return false;
 		}
-		$title = Title::makeTitleSafe( $change->getAttribute( 'rc_namespace' ),
-					$change->getAttribute( 'rc_title' ) );
+		$title = Title::makeTitleSafe( $rc->getAttribute( 'rc_namespace' ), $rc->getAttribute( 'rc_title' ) );
 		if( is_object( $title ) ) {
-			$params = self::buildParams( $change, $auto );
+			$params = self::buildParams( $rc, $auto );
 			$log = new LogPage( 'patrol', false ); # False suppresses RC entries
 			$log->addEntry( 'patrol', $title, '', $params );
+			# Notify external application via UDP.
+			# We send this to IRC but do not want to add it the RC table.
+			global $wgRC2UDPAddress, $wgRC2UDPOmitBots;
+			if( $wgRC2UDPAddress && ( !$rc->getAttribute('rc_bot') || !$wgRC2UDPOmitBots ) ) {
+				self::sendToUDP( $rc->getIRCLine() );
+			}
 			return true;
-		} else {
-			return false;
 		}
+		return false;
 	}
 
 	/**
