@@ -473,16 +473,22 @@ class RecentChange
 		RecentChange::notifyMove( $timestamp, $oldTitle, $newTitle, $user, $comment, $ip, true );
 	}
 
-	public static function notifyLog( $timestamp, &$title, &$user, $actionComment, $ip='',
-	   $type, $action, $target, $logComment, $params, $newId=0 )
+	public static function notifyLog( $timestamp, &$title, &$user, $actionComment, $ip='', $type, 
+		$action, $target, $logComment, $params, $newId=0 )
 	{
+		global $wgLogRestrictions;
+		# Don't add private logs to RC!
+		if( isset($wgLogRestrictions[$type]) && !$wgLogRestrictions[$type] == '*' ) {
+			return false;
+		}
 		$rc = self::newLogEntry( $timestamp, $title, $user, $actionComment, $ip, $type, $action,
 			$target, $logComment, $params, $newId );
 		$rc->save();
+		return true;
 	}
 
 	public static function newLogEntry( $timestamp, &$title, &$user, $actionComment, $ip='',
-	   $type, $action, $target, $logComment, $params, $newId=0 )
+		$type, $action, $target, $logComment, $params, $newId=0 )
 	{
 		global $wgRequest;
 

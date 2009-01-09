@@ -80,13 +80,10 @@ class LogPage {
 		}
 		# And update recentchanges
 		if( $this->updateRecentChanges ) {
-			# Don't add private logs to RC!
-			if( !isset($wgLogRestrictions[$this->type]) || $wgLogRestrictions[$this->type]=='*' ) {
-				$titleObj = SpecialPage::getTitleFor( 'Log', $this->type );
-				$rcComment = $this->getRcComment();
-				RecentChange::notifyLog( $now, $titleObj, $this->doer, $rcComment, '',
-					$this->type, $this->action, $this->target, $this->comment, $this->params, $newId );
-			}
+			$titleObj = SpecialPage::getTitleFor( 'Log', $this->type );
+			$rcComment = $this->getRcComment();
+			RecentChange::notifyLog( $now, $titleObj, $this->doer, $rcComment, '', $this->type,
+				$this->action, $this->target, $this->comment, $this->params, $newId );
 		} else if( $this->sendToUDP ) {
 			# Notify external application via UDP.
 			# We send this to IRC but do not want to add it the RC table.
