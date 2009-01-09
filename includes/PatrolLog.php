@@ -23,14 +23,8 @@ class PatrolLog {
 		$title = Title::makeTitleSafe( $rc->getAttribute( 'rc_namespace' ), $rc->getAttribute( 'rc_title' ) );
 		if( is_object( $title ) ) {
 			$params = self::buildParams( $rc, $auto );
-			$log = new LogPage( 'patrol', false ); # False suppresses RC entries
+			$log = new LogPage( 'patrol', false, true ); # False suppresses RC entries
 			$log->addEntry( 'patrol', $title, '', $params );
-			# Notify external application via UDP.
-			# We send this to IRC but do not want to add it the RC table.
-			global $wgRC2UDPAddress, $wgRC2UDPOmitBots;
-			if( $wgRC2UDPAddress && ( !$rc->getAttribute('rc_bot') || !$wgRC2UDPOmitBots ) ) {
-				RecentChange::sendToUDP( $rc->getIRCLine() );
-			}
 			return true;
 		}
 		return false;
