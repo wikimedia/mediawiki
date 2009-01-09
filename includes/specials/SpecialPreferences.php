@@ -443,11 +443,12 @@ class PreferencesForm {
 	 * @access private
 	 */
 	function restorePreferences() {
-		global $wgUser;
+		global $wgUser, $wgOut;
 		$wgUser->restoreOptions();
 		$wgUser->setCookies();
 		$wgUser->saveSettings();
-		$this->mainPrefsForm( 'success' );
+		$title = SpecialPage::getTitleFor( 'Preferences' );
+		$wgOut->redirect( $title->getFullURL( 'success' ) );
 	}
 
 	/**
