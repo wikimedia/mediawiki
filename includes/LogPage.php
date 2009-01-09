@@ -81,16 +81,18 @@ class LogPage {
 		# And update recentchanges
 		if( $this->updateRecentChanges ) {
 			$titleObj = SpecialPage::getTitleFor( 'Log', $this->type );
-			$rcComment = $this->getRcComment();
-			RecentChange::notifyLog( $now, $titleObj, $this->doer, $rcComment, '', $this->type,
+			RecentChange::notifyLog( $now, $titleObj, $this->doer, $this->getRcComment(), '', $this->type,
 				$this->action, $this->target, $this->comment, $this->params, $newId );
 		} else if( $this->sendToUDP ) {
+			# Don't send private logs to UDP
+			if( isset($wgLogRestrictions[$this->type]) && $wgLogRestrictions[$this->type] !='*' ) {
+				return true;
+			}
 			# Notify external application via UDP.
 			# We send this to IRC but do not want to add it the RC table.
 			global $wgRC2UDPAddress, $wgRC2UDPOmitBots;
 			$titleObj = SpecialPage::getTitleFor( 'Log', $this->type );
-			$rcComment = $this->getRcComment();
-			$rc = RecentChange::newLogEntry( $now, $titleObj, $this->doer, $rcComment, '',
+			$rc = RecentChange::newLogEntry( $now, $titleObj, $this->doer, $this->getRcComment(), '',
 				$this->type, $this->action, $this->target, $this->comment, $this->params, $newId );
 			if( $wgRC2UDPAddress && ( !$rc->getAttribute('rc_bot') || !$wgRC2UDPOmitBots ) ) {
 				RecentChange::sendToUDP( $rc->getIRCLine() );
