@@ -166,6 +166,9 @@ class RecentChange
 
 		# Set the ID
 		$this->mAttribs['rc_id'] = $dbw->insertId();
+		
+		# Notify extensions
+		wfRunHooks( 'RecentChange_save', array( &$this ) );
 
 		# Notify external application via UDP
 		if( $wgRC2UDPAddress && ( !$this->mAttribs['rc_bot'] || !$wgRC2UDPOmitBots ) ) {
@@ -193,9 +196,6 @@ class RecentChange
 				$this->mAttribs['rc_minor'],
 				$this->mAttribs['rc_last_oldid'] );
 		}
-
-		# Notify extensions
-		wfRunHooks( 'RecentChange_save', array( &$this ) );
 	}
 
 	/**
