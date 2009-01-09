@@ -38,7 +38,7 @@ Change notes from older releases. For current info see RELEASE-NOTES.
 * Added $wgRC2UDPInterwikiPrefix which adds an interwiki prefix
   ($wgLocalInterwiki) onto the page names in the UDP feed.
 * Added $wgAllowUserSkin to let the wiki's owner disable user selectable skins
-  on the wiki. If it's set to true, then the skin used will *always* be
+  on the wiki. If it's set to false, then the skin used will *always* be
   $wgDefaultSkin.
 * Added $wgEnotifUseRealName, which allows UserMailer to send out e-mails based
   on the user's real name if one is set. Defaults to false (use the username)
