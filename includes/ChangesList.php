@@ -508,10 +508,8 @@ class EnhancedChangesList extends ChangesList {
 		if( !$showdifflinks ) {
 		   $curLink = $this->message['cur'];
 		   $diffLink = $this->message['diff'];
-		} else if( $rc_type == RC_NEW || $rc_type == RC_LOG || $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
-			if( $rc_type != RC_NEW ) {
-				$curLink = $this->message['cur'];
-			}
+		} else if( in_array( $rc_type, array(RC_NEW,RC_LOG,RC_MOVE,RC_MOVE_OVER_REDIRECT) ) ) {
+			$curLink = ($rc_type != RC_NEW) ? $this->message['cur'] : $curLink;
 			$diffLink = $this->message['diff'];
 		} else {
 			$diffLink = $this->skin->makeKnownLinkObj( $rc->getTitle(), $this->message['diff'], 
@@ -519,9 +517,9 @@ class EnhancedChangesList extends ChangesList {
 		}
 
 		# Make "last" link
-		if( !$showdifflinks ) {
+		if( !$showdifflinks || !$rc_last_oldid ) {
 		    $lastLink = $this->message['last'];
-		} else if( $rc_last_oldid == 0 || $rc_type == RC_LOG || $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
+		} else if( $rc_type == RC_LOG || $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
 			$lastLink = $this->message['last'];
 		} else {
 			$lastLink = $this->skin->makeKnownLinkObj( $rc->getTitle(), $this->message['last'],
@@ -633,7 +631,7 @@ class EnhancedChangesList extends ChangesList {
 		$expandTitle = htmlspecialchars( wfMsg('rc-enhanced-expand') );
 		$closeTitle = htmlspecialchars( wfMsg('rc-enhanced-hide') );
 
-		$tl  = "<span id='mw-rc-openarrow-$jsid' class='mw-changeslist-expanded' style='visibility:hidden'><a href='#' $toggleLink title='$expandTitle'>" . $this->sideArrow() . "</a></span>";
+		$tl = "<span id='mw-rc-openarrow-$jsid' class='mw-changeslist-expanded' style='visibility:hidden'><a href='#' $toggleLink title='$expandTitle'>" . $this->sideArrow() . "</a></span>";
 		$tl .= "<span id='mw-rc-closearrow-$jsid' class='mw-changeslist-hidden' style='display:none'><a href='#' $toggleLink title='$closeTitle'>" . $this->downArrow() . "</a></span>";
 		$r .= '<td valign="top" style="white-space: nowrap"><tt>'.$tl.'&nbsp;';
 

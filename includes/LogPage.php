@@ -47,15 +47,14 @@ class LogPage {
 	  * @param bool $rc Whether to update recent changes as well as the logging table
 	  * @param bool $udp Whether to send to the UDP feed
 	  */
-	function __construct( $type, $rc = true, $udp = true ) {
+	public function __construct( $type, $rc = true, $udp = true ) {
 		$this->type = $type;
 		$this->updateRecentChanges = $rc;
 		$this->sendToUDP = $udp;
 	}
 
 	protected function saveContent() {
-		global $wgUser, $wgLogRestrictions;
-		$fname = 'LogPage::saveContent';
+		global $wgLogRestrictions;
 
 		$dbw = wfGetDB( DB_MASTER );
 		$log_id = $dbw->nextSequenceValue( 'log_log_id_seq' );
@@ -72,12 +71,9 @@ class LogPage {
 			'log_comment' => $this->comment,
 			'log_params' => $this->params
 		);
-		$dbw->insert( 'logging', $data, $fname );
+		$dbw->insert( 'logging', $data, __METHOD__ );
 		$newId = !is_null($log_id) ? $log_id : $dbw->insertId();
 
-		if( !($dbw->affectedRows() > 0) ) {
-			wfDebugLog( "logging", "LogPage::saveContent failed to insert row - Error {$dbw->lastErrno()}: {$dbw->lastError()}" );
-		}
 		# And update recentchanges
 		if( $this->updateRecentChanges ) {
 			$titleObj = SpecialPage::getTitleFor( 'Log', $this->type );
@@ -157,7 +153,7 @@ class LogPage {
 	 * @param string $type logtype
 	 * @return string Headertext of this logtype
 	 */
-	static function logHeader( $type ) {
+	public static function logHeader( $type ) {
 		global $wgLogHeaders, $wgMessageCache;
 		$wgMessageCache->loadAllMessages();
 		return wfMsgExt($wgLogHeaders[$type],array('parseinline'));
@@ -167,7 +163,7 @@ class LogPage {
 	 * @static
 	 * @return HTML string
 	 */
-	static function actionText( $type, $action, $title = NULL, $skin = NULL, 
+	public static function actionText( $type, $action, $title = NULL, $skin = NULL, 
 		$params = array(), $filterWikilinks = false ) 
 	{
 		global $wgLang, $wgContLang, $wgLogActions, $wgMessageCache;
@@ -308,7 +304,7 @@ class LogPage {
 	 * @param array $params Parameters passed later to wfMsg.* functions
 	 * @param User $doer The user doing the action
 	 */
-	function addEntry( $action, $target, $comment, $params = array(), $doer = null ) {
+	public function addEntry( $action, $target, $comment, $params = array(), $doer = null ) {
 		if ( !is_array( $params ) ) {
 			$params = array( $params );
 		}
@@ -336,7 +332,7 @@ class LogPage {
 	 * Create a blob from a parameter array
 	 * @static
 	 */
-	static function makeParamBlob( $params ) {
+	public static function makeParamBlob( $params ) {
 		return implode( "\n", $params );
 	}
 
@@ -344,7 +340,7 @@ class LogPage {
 	 * Extract a parameter array from a blob
 	 * @static
 	 */
-	static function extractParams( $blob ) {
+	public static function extractParams( $blob ) {
 		if ( $blob === '' ) {
 			return array();
 		} else {

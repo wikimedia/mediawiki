@@ -318,9 +318,7 @@ class RecentChange
 	{
 		if( !$ip ) {
 			$ip = wfGetIP();
-			if( !$ip ) {
-				$ip = '';
-			}
+			if( !$ip ) $ip = '';
 		}
 
 		$rc = new RecentChange;
@@ -372,9 +370,7 @@ class RecentChange
 	{
 		if( !$ip ) {
 			$ip = wfGetIP();
-			if( !$ip ) {
-				$ip = '';
-			}
+			if( !$ip ) $ip = '';
 		}
 
 		$rc = new RecentChange;
@@ -420,12 +416,9 @@ class RecentChange
 	public static function notifyMove( $timestamp, &$oldTitle, &$newTitle, &$user, $comment, $ip='', $overRedir = false )
 	{
 		global $wgRequest;
-
 		if( !$ip ) {
 			$ip = wfGetIP();
-			if( !$ip ) {
-				$ip = '';
-			}
+			if( !$ip ) $ip = '';
 		}
 
 		$rc = new RecentChange;
@@ -491,12 +484,9 @@ class RecentChange
 		$type, $action, $target, $logComment, $params, $newId=0 )
 	{
 		global $wgRequest;
-
 		if( !$ip ) {
 			$ip = wfGetIP();
-			if( !$ip ) {
-				$ip = '';
-			}
+			if( !$ip ) $ip = '';
 		}
 
 		$rc = new RecentChange;
