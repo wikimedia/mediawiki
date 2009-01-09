@@ -657,7 +657,11 @@ class RecentChange
 			$flag = $rc_log_action;
 		} else {
 			$comment = self::cleanupForIRC( $rc_comment );
-			$flag = ($rc_patrolled ? "" : "!") . ($rc_new ? "N" : "") . ($rc_minor ? "M" : "") . ($rc_bot ? "B" : "");
+			$flag = '';
+			if( !$rc_patrolled && ($wgUseRCPatrol || $rc_new && $wgUseNPPatrol) ) {
+				$flag .= '!';
+			}
+			$flag .= ($rc_new ? "N" : "") . ($rc_minor ? "M" : "") . ($rc_bot ? "B" : "");
 		}
 
 		if ( $wgRC2UDPInterwikiPrefix === true ) {
