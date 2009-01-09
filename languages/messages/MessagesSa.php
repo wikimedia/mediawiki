@@ -27,24 +27,27 @@ $digitTransformTable = array(
 $linkPrefixExtension = false;
 
 $namespaceNames = array(
-	NS_MEDIA            => 'Media',
-	NS_SPECIAL          => 'Special',
-	NS_MAIN	            => '',
-	NS_TALK	            => 'संभाषणं',
+	NS_MEDIA            => 'माध्यम',
+	NS_SPECIAL          => 'विशेष',
+	NS_TALK             => 'संभाषणं',
 	NS_USER             => 'योजकः',
 	NS_USER_TALK        => 'योजकसंभाषणं',
-	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => '$1संभाषणं',
 	NS_FILE             => 'चित्रं',
 	NS_FILE_TALK        => 'चित्रसंभाषणं',
-	NS_MEDIAWIKI        => 'MediaWiki',
-	NS_MEDIAWIKI_TALK   => 'MediaWiki_talk',
-	NS_TEMPLATE         => 'Template',
-	NS_TEMPLATE_TALK    => 'Template_talk',
-	NS_HELP             => 'उपकारः',
-	NS_HELP_TALK        => 'उपकारसंभाषणं',
+	NS_MEDIAWIKI        => 'मिडीयाविकी',
+	NS_MEDIAWIKI_TALK   => 'मिडियाविकीसंभाषणं',
+	NS_TEMPLATE         => 'बिंबधर',
+	NS_TEMPLATE_TALK    => 'बिंबधर संभाषणं',
+	NS_HELP             => 'सहाय्य',
+	NS_HELP_TALK        => 'सहाय्यसंभाषणं',
 	NS_CATEGORY         => 'वर्गः',
 	NS_CATEGORY_TALK    => 'वर्गसंभाषणं',
+);
+
+$namespaceAliases = array(
+	'उपकारः' => NS_HELP,
+	'उपकारसंभाषणं' => NS_HELP_TALK,
 );
 
 $messages = array(
