@@ -476,6 +476,14 @@ class RecentChange
 	public static function notifyLog( $timestamp, &$title, &$user, $actionComment, $ip='',
 	   $type, $action, $target, $logComment, $params, $newId=0 )
 	{
+		$rc = self::newLogEntry( $timestamp, $title, $user, $actionComment, $ip, $type, $action,
+			$target, $logComment, $params, $newId );
+		$rc->save();
+	}
+
+	public static function newLogEntry( $timestamp, &$title, &$user, $actionComment, $ip='',
+	   $type, $action, $target, $logComment, $params, $newId=0 )
+	{
 		global $wgRequest;
 
 		if( !$ip ) {
@@ -518,7 +526,7 @@ class RecentChange
 			'lastTimestamp' => 0,
 			'actionComment' => $actionComment, // the comment appended to the action, passed from LogPage
 		);
-		$rc->save();
+		return $rc;
 	}
 
 	# Initialises the members of this object from a mysql row object

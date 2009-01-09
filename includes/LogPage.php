@@ -37,7 +37,7 @@ class LogPage {
 	/* @access private */
 	var $type, $action, $comment, $params, $target, $doer;
 	/* @acess public */
-	var $updateRecentChanges;
+	var $updateRecentChanges, $sendToUDP;
 
 	/**
 	  * Constructor
@@ -45,10 +45,12 @@ class LogPage {
 	  * @param string $type One of '', 'block', 'protect', 'rights', 'delete',
 	  *               'upload', 'move'
 	  * @param bool $rc Whether to update recent changes as well as the logging table
+	  * @param bool $udp Whether to send to the UDP feed
 	  */
-	function __construct( $type, $rc = true ) {
+	function __construct( $type, $rc = true, $udp = true ) {
 		$this->type = $type;
 		$this->updateRecentChanges = $rc;
+		$this->sendToUDP = $udp;
 	}
 
 	protected function saveContent() {
@@ -84,6 +86,17 @@ class LogPage {
 				$rcComment = $this->getRcComment();
 				RecentChange::notifyLog( $now, $titleObj, $this->doer, $rcComment, '',
 					$this->type, $this->action, $this->target, $this->comment, $this->params, $newId );
+			}
+		} else if( $this->sendToUDP ) {
+			# Notify external application via UDP.
+			# We send this to IRC but do not want to add it the RC table.
+			global $wgRC2UDPAddress, $wgRC2UDPOmitBots;
+			$titleObj = SpecialPage::getTitleFor( 'Log', $this->type );
+			$rcComment = $this->getRcComment();
+			$rc = RecentChange::newLogEntry( $now, $titleObj, $this->doer, $rcComment, '',
+				$this->type, $this->action, $this->target, $this->comment, $this->params, $newId );
+			if( $wgRC2UDPAddress && ( !$rc->getAttribute('rc_bot') || !$wgRC2UDPOmitBots ) ) {
+				RecentChange::sendToUDP( $rc->getIRCLine() );
 			}
 		}
 		return true;
