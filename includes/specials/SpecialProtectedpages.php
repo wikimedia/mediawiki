@@ -16,12 +16,12 @@ class ProtectedPagesForm {
 	public function showList( $msg = '' ) {
 		global $wgOut, $wgRequest;
 
-		if ( "" != $msg ) {
+		if( "" != $msg ) {
 			$wgOut->setSubtitle( $msg );
 		}
 
 		// Purge expired entries on one in every 10 queries
-		if ( !mt_rand( 0, 10 ) ) {
+		if( !mt_rand( 0, 10 ) ) {
 			Title::purgeExpiredRestrictions();
 		}
 
@@ -37,7 +37,7 @@ class ProtectedPagesForm {
 
 		$wgOut->addHTML( $this->showOptions( $NS, $type, $level, $sizetype, $size, $indefOnly, $cascadeOnly ) );
 
-		if ( $pager->getNumRows() ) {
+		if( $pager->getNumRows() ) {
 			$s = $pager->getNavigationBar();
 			$s .= "<ul>" .
 				$pager->getBody() .
@@ -73,31 +73,34 @@ class ProtectedPagesForm {
 
 		$description_items[] = $protType;
 
-		if ( $row->pr_cascade ) {
+		if( $row->pr_cascade ) {
 			$description_items[] = wfMsg( 'protect-summary-cascade' );
 		}
 
 		$expiry_description = '';
 		$stxt = '';
 
-		if ( $row->pr_expiry != 'infinity' && strlen($row->pr_expiry) ) {
+		if( $row->pr_expiry != 'infinity' && strlen($row->pr_expiry) ) {
 			$expiry = Block::decodeExpiry( $row->pr_expiry );
 
-			$expiry_description = wfMsg( 'protect-expiring' , $wgLang->timeanddate( $expiry ) , $wgLang->date( $expiry ) , $wgLang->time( $expiry ) );
+			$expiry_description = wfMsg( 'protect-expiring' , $wgLang->timeanddate( $expiry ) , 
+				$wgLang->date( $expiry ) , $wgLang->time( $expiry ) );
 
 			$description_items[] = $expiry_description;
 		}
 
-		if (!is_null($size = $row->page_len)) {
+		if(!is_null($size = $row->page_len)) {
 			$stxt = $wgContLang->getDirMark() . ' ' . $skin->formatRevisionSize( $size );
 		}
 
 		# Show a link to the change protection form for allowed users otherwise a link to the protection log
 		if( $wgUser->isAllowed( 'protect' ) ) {
-			$changeProtection = ' (' . $skin->makeKnownLinkObj( $title, wfMsgHtml( 'protect_change' ), 'action=unprotect' ) . ')';
+			$changeProtection = ' (' . $skin->makeKnownLinkObj( $title, wfMsgHtml( 'protect_change' ),
+				'action=unprotect' ) . ')';
 		} else {
 			$ltitle = SpecialPage::getTitleFor( 'Log' );
-			$changeProtection = ' (' . $skin->makeKnownLinkObj( $ltitle, wfMsgHtml( 'protectlogpage' ), 'type=protect&page=' . $title->getPrefixedUrl() ) . ')';
+			$changeProtection = ' (' . $skin->makeKnownLinkObj( $ltitle, wfMsgHtml( 'protectlogpage' ), 
+				'type=protect&page=' . $title->getPrefixedUrl() ) . ')';
 		}
 
 		wfProfileOut( __METHOD__ );
@@ -220,7 +223,7 @@ class ProtectedPagesForm {
 
 		// First pass to load the log names
 		foreach( $wgRestrictionLevels as $type ) {
-			if ( $type !='' && $type !='*') {
+			if( $type !='' && $type !='*') {
 				$text = wfMsg("restriction-level-$type");
 				$m[$text] = $type;
 			}
@@ -248,8 +251,9 @@ class ProtectedPagesPager extends AlphabeticPager {
 	public $mForm, $mConds;
 	private $type, $level, $namespace, $sizetype, $size, $indefonly;
 
-	function __construct( $form, $conds = array(), $type, $level, $namespace, $sizetype='', 
-							$size=0, $indefonly = false, $cascadeonly = false ) {
+	function __construct( $form, $conds = array(), $type, $level, $namespace, $sizetype='', $size=0, 
+		$indefonly = false, $cascadeonly = false )
+	{
 		$this->mForm = $form;
 		$this->mConds = $conds;
 		$this->type = ( $type ) ? $type : 'edit';
@@ -263,15 +267,12 @@ class ProtectedPagesPager extends AlphabeticPager {
 	}
 
 	function getStartBody() {
-		wfProfileIn( __METHOD__ );
 		# Do a link batch query
 		$lb = new LinkBatch;
 		while( $row = $this->mResult->fetchObject() ) {
 			$lb->add( $row->page_namespace, $row->page_title );
 		}
 		$lb->execute();
-
-		wfProfileOut( __METHOD__ );
 		return '';
 	}
 
@@ -284,7 +285,7 @@ class ProtectedPagesPager extends AlphabeticPager {
 		$conds[] = 'pr_expiry>' . $this->mDb->addQuotes( $this->mDb->timestamp() );
 		$conds[] = 'page_id=pr_page';
 		$conds[] = 'pr_type=' . $this->mDb->addQuotes( $this->type );
-
+		
 		if( $this->sizetype=='min' ) {
 			$conds[] = 'page_len>=' . $this->size;
 		} else if( $this->sizetype=='max' ) {
@@ -294,7 +295,7 @@ class ProtectedPagesPager extends AlphabeticPager {
 		if( $this->indefonly ) {
 			$conds[] = "pr_expiry = 'infinity' OR pr_expiry IS NULL";
 		}
-		if ( $this->cascadeonly ) {
+		if( $this->cascadeonly ) {
 			$conds[] = "pr_cascade = '1'";
 		}
 
@@ -318,8 +319,6 @@ class ProtectedPagesPager extends AlphabeticPager {
  * Constructor
  */
 function wfSpecialProtectedpages() {
-
 	$ppForm = new ProtectedPagesForm();
-
 	$ppForm->showList();
 }
