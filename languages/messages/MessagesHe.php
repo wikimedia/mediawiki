@@ -191,6 +191,7 @@ $magicWords = array(
 	'noindex'               => array( 1,    '__לא_לחיפוש__',                      '__NOINDEX__'            ),
 	'numberingroup'         => array( 1,    'מספר בקבוצה',                        'NUMBERINGROUP', 'NUMINGROUP' ),
 	'staticredirect'        => array( 1,    '__הפניה_קבועה__',                     '__STATICREDIRECT__'     ),
+	'protectionlevel'       => array( 1,    'רמת הגנה',                           'PROTECTIONLEVEL'        ),
 );
 
 $specialPageAliases = array(
