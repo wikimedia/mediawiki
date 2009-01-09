@@ -29,7 +29,7 @@ class PatrolLog {
 			# We send this to IRC but do not want to add it the RC table.
 			global $wgRC2UDPAddress, $wgRC2UDPOmitBots;
 			if( $wgRC2UDPAddress && ( !$rc->getAttribute('rc_bot') || !$wgRC2UDPOmitBots ) ) {
-				self::sendToUDP( $rc->getIRCLine() );
+				RecentChange::sendToUDP( $rc->getIRCLine() );
 			}
 			return true;
 		}
