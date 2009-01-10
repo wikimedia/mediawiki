@@ -13,7 +13,7 @@
  * @ingroup Language
  *
  * @author Zhengzhu Feng <zhengzhu@gmail.com>
- * @maintainers fdcn <fdcn64@gmail.com>, shinjiman <shinjiman@gmail.com>
+ * @maintainers fdcn <fdcn64@gmail.com>, shinjiman <shinjiman@gmail.com>, PhiLiP <philip.npc@gmail.com>
  */
 class LanguageConverter {
 	var $mPreferredVariant='';
@@ -21,6 +21,8 @@ class LanguageConverter {
 	var $mVariants, $mVariantFallbacks, $mVariantNames;
 	var $mTablesLoaded = false;
 	var $mTables;
+	var $mManualAddTables;
+	var $mManualRemoveTables;
 	var $mTitleDisplay='';
 	var $mDoTitleConvert=true, $mDoContentConvert=true;
 	var $mManualLevel; // 'bidirectional' 'unidirectional' 'disable' for each variants
@@ -81,10 +83,13 @@ class LanguageConverter {
 			'N'=>'N'        // current variant name
 		);
 		$this->mFlags = array_merge($f, $flags);
-		foreach( $this->mVariants as $v)
+		foreach( $this->mVariants as $v) {
 			$this->mManualLevel[$v]=array_key_exists($v,$manualLevel)
 								?$manualLevel[$v]
 								:'bidirectional';
+			$this->mManualAddTables[$v] = array();
+			$this->mManualRemoveTables[$v] = array();
+		}
 	}
 
 	/**
@@ -323,13 +328,12 @@ class LanguageConverter {
 
 		return $ret;
 	}
-
-
+	
 	/**
-	 * apply manual conversion
+	 * prepare manual conversion table
 	 * @private
 	 */
-	function applyManualConv($convRule){
+	function prepareManualConv($convRule){
 		// use syntax -{T|zh:TitleZh;zh-tw:TitleTw}- for custom conversion in title
 		$title = $convRule->getTitle();
 		if($title){
@@ -342,10 +346,29 @@ class LanguageConverter {
 		$action = $convRule->getRulesAction();
 		foreach($convTable as $v=>$t) {
 			if( !in_array($v,$this->mVariants) )continue;
-			if( $action=="add" )
-				$this->mTables[$v]->mergeArray($t);
+			if( $action=="add" ) {
+				foreach($t as $from=>$to) {
+					// more efficient than array_merge(), about 2.5 times.
+					$this->mManualAddTables[$v][$from] = $to;
+				}
+			}
 			elseif ( $action=="remove" )
-				$this->mTables[$v]->removeArray($t);
+				$this->mManualRemoveTables[$v] = array_merge($this->mManualRemoveTables[$v], $t);
+		}
+	}
+
+	/**
+	 * apply manual conversion from $this->mManualAddTables and $this->mManualRemoveTables
+	 * @private
+	 */
+	function applyManualConv(){
+		//apply manual conversion table to global table
+		foreach($this->mVariants as $v) {
+			if (count($this->mManualAddTables[$v]) > 0) {
+				$this->mTables[$v]->mergeArray($this->mManualAddTables[$v]);
+			}
+			if (count($this->mManualRemoveTables[$v]) > 0)
+				$this->mTables[$v]->removeArray($this->mManualRemoveTables[$v]);
 		}
 	}
 
@@ -438,32 +461,26 @@ class LanguageConverter {
 		$plang = $this->getPreferredVariant();
 		$tarray = StringUtils::explode($this->mMarkup['end'], $text);
 		$text = '';
-		$lastDelim = false;
+
+		$marks = array();
 		foreach($tarray as $txt) {
 			$marked = explode($this->mMarkup['begin'], $txt, 2);
-
+			if (array_key_exists(1, $marked)) {
+				$crule = new ConverterRule($marked[1], $this);
+				$crule->parse($plang);
+				$marked[1] = $crule->getDisplay();
+				$this->prepareManualConv($crule);
+			}
+			array_push($marks, $marked);
+		}
+		$this->applyManualConv();
+		foreach ($marks as $marked) {
 			if( $this->mDoContentConvert )
 				$text .= $this->autoConvert($marked[0],$plang);
 			else
 				$text .= $marked[0];
-
-			if(array_key_exists(1, $marked)){
-				// strip the flags from syntax like -{T| ... }-
-				$crule = new ConverterRule($marked[1], $this);
-				$crule->parse($plang);
-
-				$text .= $crule->getDisplay();
-				$this->applyManualConv($crule);
-				$lastDelim = false;
-			} else {
-				// Reinsert the }- which wasn't part of anything
-				$text .= $this->mMarkup['end'];
-				$lastDelim = true;
-			}
-		}
-		if ( $lastDelim ) {
-			// Remove the last delimiter (wasn't real)
-			$text = substr( $text, 0, -strlen( $this->mMarkup['end'] ) );
+			if( array_key_exists(1, $marked) )
+				$text .= $marked[1];
 		}
 
 		return $text;
@@ -800,6 +817,7 @@ class LanguageConverter {
  * @ingroup Language
  * @author  fdcn <fdcn64@gmail.com>
  */
+
 class ConverterRule {
 	var $mText; // original text in -{text}-
 	var $mConverter; // LanguageConverter object 

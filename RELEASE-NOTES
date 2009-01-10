@@ -33,7 +33,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   for the current page for a given action
   
 === Bug fixes in 1.15 ===
-
+* Fixing the caching issue by using -{T|xxx}- syntax (only applies on wiki with LanguageConverter class)
+* Improving the efficiency by using -{A|xxx}- syntax (only applies on wiki with LanguageConverter class)
 
 === Languages updated in 1.15 ===
 
