@@ -511,6 +511,7 @@ class OutputPage {
 		$this->mLanguageLinks += $parserOutput->getLanguageLinks();
 		$this->addCategoryLinks( $parserOutput->getCategories() );
 		$this->mNewSectionLink = $parserOutput->getNewSection();
+		$this->setPageTitle($parserOutput->mTitleText);
 
 		if( is_null( $wgExemptFromUserRobotsControl ) ) {
 			$bannedNamespaces = $wgContentNamespaces;
