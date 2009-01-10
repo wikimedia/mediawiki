@@ -3449,7 +3449,7 @@ class Parser
 	 * @private
 	 */
 	function formatHeadings( $text, $isMain=true ) {
-		global $wgMaxTocLevel, $wgContLang;
+		global $wgMaxTocLevel, $wgContLang, $wgEnforceHtmlIds;
 
 		$doNumberHeadings = $this->mOptions->getNumberHeadings();
 		$showEditLink = $this->mOptions->getEditSection();
@@ -3594,17 +3594,71 @@ class Parser
 				}
 			}
 
-			list( $anchor, $legacyAnchor, $tocline, $headlineHint ) =
-				$this->processHeadingText( $headline );
+			# The safe header is a version of the header text safe to use for links
+			# Avoid insertion of weird stuff like <math> by expanding the relevant sections
+			$safeHeadline = $this->mStripState->unstripBoth( $headline );
+
+			# Remove link placeholders by the link text.
+			#     <!--LINK number-->
+			# turns into
+			#     link text with suffix
+			$safeHeadline = $this->replaceLinkHoldersText( $safeHeadline );
+
+			# Strip out HTML (other than plain <sup> and <sub>: bug 8393)
+			$tocline = preg_replace(
+				array( '#<(?!/?(sup|sub)).*?'.'>#', '#<(/?(sup|sub)).*?'.'>#' ),
+				array( '',                          '<$1>'),
+				$safeHeadline
+			);
+			$tocline = trim( $tocline );
+
+			# For the anchor, strip out HTML-y stuff period
+			$safeHeadline = preg_replace( '/<.*?'.'>/', '', $safeHeadline );
+			$safeHeadline = trim( $safeHeadline );
+
+			# Save headline for section edit hint before it's escaped
+			$headlineHint = $safeHeadline;
+
+			if ( $wgEnforceHtmlIds ) {
+				$legacyHeadline = false;
+				$safeHeadline = Sanitizer::escapeId( $safeHeadline,
+					'noninitial' );
+			} else {
+				# For reverse compatibility, provide an id that's
+				# HTML4-compatible, like we used to.
+				#
+				# It may be worth noting, academically, that it's possible for
+				# the legacy anchor to conflict with a non-legacy headline
+				# anchor on the page.  In this case likely the "correct" thing
+				# would be to either drop the legacy anchors or make sure
+				# they're numbered first.  However, this would require people
+				# to type in section names like "abc_.D7.93.D7.90.D7.A4"
+				# manually, so let's not bother worrying about it.
+				$legacyHeadline = Sanitizer::escapeId( $safeHeadline,
+					'noninitial' );
+				$safeHeadline = Sanitizer::escapeId( $safeHeadline, 'xml' );
+
+				if ( $legacyHeadline == $safeHeadline ) {
+					# No reason to have both (in fact, we can't)
+					$legacyHeadline = false;
+				} elseif ( $legacyHeadline != Sanitizer::escapeId(
+				$legacyHeadline, 'xml' ) ) {
+					# The legacy id is invalid XML.  We used to allow this, but
+					# there's no reason to do so anymore.  Backward
+					# compatibility will fail slightly in this case, but it's
+					# no big deal.
+					$legacyHeadline = false;
+				}
+			}
 
 			# HTML names must be case-insensitively unique (bug 10721).  FIXME:
 			# Does this apply to Unicode characters?  Because we aren't
 			# handling those here.
-			$arrayKey = strtolower( $anchor );
-			if ( $legacyAnchor === false ) {
+			$arrayKey = strtolower( $safeHeadline );
+			if ( $legacyHeadline === false ) {
 				$legacyArrayKey = false;
 			} else {
-				$legacyArrayKey = strtolower( $legacyAnchor );
+				$legacyArrayKey = strtolower( $legacyHeadline );
 			}
 
 			# count how many in assoc. array so we can track dupes in anchors
@@ -3626,10 +3680,12 @@ class Parser
 			}
 
 			# Create the anchor for linking from the TOC to the section
+			$anchor = $safeHeadline;
+			$legacyAnchor = $legacyHeadline;
 			if ( $refers[$arrayKey] > 1 ) {
 				$anchor .= '_' . $refers[$arrayKey];
 			}
-			if ( $legacyAnchor !== false && $refers[$legacyArrayKey] > 1 ) {
+			if ( $legacyHeadline !== false && $refers[$legacyArrayKey] > 1 ) {
 				$legacyAnchor .= '_' . $refers[$legacyArrayKey];
 			}
 			if( $enoughToc && ( !isset($wgMaxTocLevel) || $toclevel<$wgMaxTocLevel ) ) {
@@ -3699,70 +3755,6 @@ class Parser
 		} else {
 			return $full;
 		}
-	}
-
-	private function processHeadingText( $headline ) {
-		global $wgEnforceHtmlIds;
-
-		# The safe header is a version of the header text safe to use for links
-		# Avoid insertion of weird stuff like <math> by expanding the relevant sections
-		$safeHeadline = $this->mStripState->unstripBoth( $headline );
-
-		# Remove link placeholders by the link text.
-		#     <!--LINK number-->
-		# turns into
-		#     link text with suffix
-		$safeHeadline = $this->replaceLinkHoldersText( $safeHeadline );
-
-		# Strip out HTML (other than plain <sup> and <sub>: bug 8393)
-		$tocline = preg_replace(
-			array( '#<(?!/?(sup|sub)).*?'.'>#', '#<(/?(sup|sub)).*?'.'>#' ),
-			array( '',                          '<$1>'),
-			$safeHeadline
-		);
-		$tocline = trim( $tocline );
-
-		# For the anchor, strip out HTML-y stuff period
-		$safeHeadline = preg_replace( '/<.*?'.'>/', '', $safeHeadline );
-		$safeHeadline = trim( $safeHeadline );
-
-		# Save headline for section edit hint before it's escaped
-		$headlineHint = $safeHeadline;
-
-		if ( $wgEnforceHtmlIds ) {
-			$legacyHeadline = false;
-			$safeHeadline = Sanitizer::escapeId( $safeHeadline,
-				'noninitial' );
-		} else {
-			# For reverse compatibility, provide an id that's
-			# HTML4-compatible, like we used to.
-			#
-			# It may be worth noting, academically, that it's possible for
-			# the legacy anchor to conflict with a non-legacy headline
-			# anchor on the page.  In this case likely the "correct" thing
-			# would be to either drop the legacy anchors or make sure
-			# they're numbered first.  However, this would require people
-			# to type in section names like "abc_.D7.93.D7.90.D7.A4"
-			# manually, so let's not bother worrying about it.
-			$legacyHeadline = Sanitizer::escapeId( $safeHeadline,
-				'noninitial' );
-			$safeHeadline = Sanitizer::escapeId( $safeHeadline, 'xml' );
-
-			if ( $legacyHeadline == $safeHeadline ) {
-				# No reason to have both (in fact, we can't)
-				$legacyHeadline = false;
-			} elseif ( $legacyHeadline != Sanitizer::escapeId(
-			$legacyHeadline, 'xml' ) ) {
-				# The legacy id is invalid XML.  We used to allow this, but
-				# there's no reason to do so anymore.  Backward
-				# compatibility will fail slightly in this case, but it's
-				# no big deal.
-				$legacyHeadline = false;
-			}
-		}
-
-		return array( $safeHeadline, $legacyHeadline, $tocline,
-			$headlineHint );
 	}
 
 	/**
@@ -4745,9 +4737,21 @@ class Parser
 	 * "== Header ==".
 	 */
 	public function guessSectionNameFromWikiText( $text ) {
+		# Strip out wikitext links(they break the anchor)
 		$text = $this->stripSectionName( $text );
-		list( $text, /* unneeded here */ ) = $this->processHeadingText( $text );
-		return "#$text";
+		$headline = Sanitizer::decodeCharReferences( $text );
+		# strip out HTML
+		$headline = StringUtils::delimiterReplace( '<', '>', '', $headline );
+		$headline = trim( $headline );
+		$sectionanchor = '#' . urlencode( str_replace( ' ', '_', $headline ) );
+		$replacearray = array(
+			'%3A' => ':',
+			'%' => '.'
+		);
+		return str_replace(
+			array_keys( $replacearray ),
+			array_values( $replacearray ),
+			$sectionanchor );
 	}
 
 	/**
