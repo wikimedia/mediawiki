@@ -224,6 +224,10 @@ $wgFileStore['deleted']['hash'] = 3;         ///< 3-level subdirectory split
  *                      equivalent to the corresponding member of $wgDBservers
  *    tablePrefix       Table prefix, the foreign wiki's $wgDBprefix
  *    hasSharedCache    True if the wiki's shared cache is accessible via the local $wgMemc
+ * 
+ * ForeignAPIRepo:
+ *    apibase              Use for the foreign API's URL
+ *    apiThumbCacheExpiry  How long to locally cache thumbs for
  *
  * The default is to initialise these arrays from the MW<1.11 backwards compatible settings:
  * $wgUploadPath, $wgThumbnailScriptPath, $wgSharedUploadDirectory, etc.
