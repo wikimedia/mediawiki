@@ -228,6 +228,21 @@ class Article {
 			return $this->mContent;
 		}
 	}
+	
+	/**
+	 * Get the text of the current revision. No side-effects...
+	 *
+	 * @return Return the text of the current revision
+	*/
+	public function getRawText() {
+		// Check process cache for current revision
+		if( $this->mContentLoaded && $this->mOldId == 0 ) {
+			return $this->mContent;
+		}
+		$rev = Revision::newFromTitle( $this->mTitle );
+		$text = $rev ? $rev->getRawText() : false;
+		return $text;
+	}
 
 	/**
 	 * This function returns the text of a section, specified by a number ($section).
@@ -1128,7 +1143,7 @@ class Article {
 			if( $this->getID() == 0 ) {
 				$text = false;
 			} else {
-				$text = $this->getContent();
+				$text = $this->getRawText();
 			}
 			$wgMessageCache->replace( $this->mTitle->getDBkey(), $text );
 		}
@@ -1490,7 +1505,7 @@ class Article {
 		$isminor = ( $flags & EDIT_MINOR ) && $user->isAllowed('minoredit');
 		$bot = $flags & EDIT_FORCE_BOT;
 
-		$oldtext = $this->getContent();
+		$oldtext = $this->getRawText(); // current revision
 		$oldsize = strlen( $oldtext );
 
 		# Provide autosummaries if one is not provided and autosummaries are enabled.
@@ -2398,7 +2413,7 @@ class Article {
 			return false;
 		}
 
-		$u = new SiteStatsUpdate( 0, 1, -(int)$this->isCountable( $this->getContent() ), -1 );
+		$u = new SiteStatsUpdate( 0, 1, -(int)$this->isCountable( $this->getRawText() ), -1 );
 		array_push( $wgDeferredUpdateList, $u );
 
 		// Bitfields to further suppress the content
