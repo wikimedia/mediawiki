@@ -471,7 +471,7 @@ class RecentChange
 	{
 		global $wgLogRestrictions;
 		# Don't add private logs to RC!
-		if( isset($wgLogRestrictions[$type]) && !$wgLogRestrictions[$type] == '*' ) {
+		if( isset($wgLogRestrictions[$type]) && $wgLogRestrictions[$type] != '*' ) {
 			return false;
 		}
 		$rc = self::newLogEntry( $timestamp, $title, $user, $actionComment, $ip, $type, $action,
