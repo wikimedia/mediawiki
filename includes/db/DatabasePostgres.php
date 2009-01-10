@@ -1056,7 +1056,13 @@ class DatabasePostgres extends Database {
 	 */
 	function getServerVersion() {
 		$versionInfo = pg_version( $this->mConn );
-		$this->numeric_version = $versionInfo['server'];
+		if ( isset( $versionInfo['server'] ) ) {
+			$this->numeric_version = $versionInfo['server'];
+		} else {
+			// There's no way to identify the precise version before 7.4, but 
+			// it doesn't matter anyway since we're just going to give an error.
+			$this->numeric_version = '7.3 or earlier';
+		}
 		return $this->numeric_version;
 	}
 
