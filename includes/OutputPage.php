@@ -511,8 +511,6 @@ class OutputPage {
 		$this->mLanguageLinks += $parserOutput->getLanguageLinks();
 		$this->addCategoryLinks( $parserOutput->getCategories() );
 		$this->mNewSectionLink = $parserOutput->getNewSection();
-		if ($wgTitle->mNamespace !== NS_SPECIAL)
-			$this->setPageTitle($parserOutput->getTitleText());
 
 		if( is_null( $wgExemptFromUserRobotsControl ) ) {
 			$bannedNamespaces = $wgContentNamespaces;
@@ -540,9 +538,11 @@ class OutputPage {
 				$this->mTemplateIds[$ns] = $dbks;
 			}
 		}
-		// Display title
+		// Page title
 		if( ( $dt = $parserOutput->getDisplayTitle() ) !== false )
 			$this->setPageTitle( $dt );
+		else if ( ( $title = $parserOutput->getTitleText() ) != '' )
+			$this->setPageTitle( $title );
 
 		// Hooks registered in the object
 		global $wgParserOutputHooks;
