@@ -894,7 +894,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			continue;
 		}
 
-		print "<li>Connected to $myver";
+		print "<li>Connected to {$conf->DBtype} $myver";
 		if ($conf->DBtype == 'mysql') {
 			if( version_compare( $myver, "4.0.14" ) < 0 ) {
 				print "</li>\n";
@@ -945,7 +945,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			$wgDatabase->selectDB( $wgDBname );
 		}
 		else if ($conf->DBtype == 'postgres') {
-			if( version_compare( $myver, "PostgreSQL 8.0" ) < 0 ) {
+			if( version_compare( $myver, "8.0" ) < 0 ) {
 				dieout( "<b>Postgres 8.0 or later is required</b>. Aborting." );
 			}
 		}
