@@ -94,6 +94,9 @@ class ParserOutput
 			// We don't record Special: links currently
 			// It might actually be wise to, but we'd need to do some normalization.
 			return;
+		} elseif( $dbk === '' ) {
+			// Don't record self links -  [[#Foo]]
+			return;
 		}
 		if ( !isset( $this->mLinks[$ns] ) ) {
 			$this->mLinks[$ns] = array();
