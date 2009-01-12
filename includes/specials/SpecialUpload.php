@@ -504,12 +504,13 @@ class UploadForm {
 		if ( ! $this->mIgnoreWarning ) {
 			$warning = '';
 
+			if( str_replace( ' ', '_', $basename ) != $filtered ) {
+				$warning .=  '<li>'.wfMsgHtml( 'badfilename', htmlspecialchars( $this->mDestName ) ).'</li>';
+			}
+
 			global $wgCapitalLinks;
 			if( $wgCapitalLinks ) {
 				$filtered = ucfirst( $filtered );
-			}
-			if( $basename != $filtered ) {
-				$warning .=  '<li>'.wfMsgHtml( 'badfilename', htmlspecialchars( $this->mDestName ) ).'</li>';
 			}
 
 			global $wgCheckFileExtensions;
