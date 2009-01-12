@@ -44,6 +44,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 16798) JSON encoding errors for some characters outside the BMP
 * (bug 16629) prop=info&inprop=protection lists empty legacy protections
   incorrectly
+* (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
+  and listing all deleted pages possible
 
 === Languages updated in 1.15 ===
 
