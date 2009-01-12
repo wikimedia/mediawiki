@@ -362,7 +362,7 @@ class LogEventsList {
 		}
 
 		return Xml::tags( 'li', array( "class" => "mw-logline-$row->log_type" ),
-			$del . $time . ' ' . $userLink . ' ' . $action . ' ' . $comment . ' ' . $revert );
+			$del . $time . ' ' . $userLink . ' ' . $action . ' ' . $comment . ' ' . $revert ) . "\n";
 	}
 
 	/**
