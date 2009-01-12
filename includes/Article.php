@@ -218,7 +218,7 @@ class Article {
 				if( wfEmptyMsg( $message, $text ) )
 					$text = '';
 			} else {
-				$text = wfMsg( $wgUser->isLoggedIn() ? 'noarticletext' : 'noarticletextanon' );
+				$text = wfMsgExt( $wgUser->isLoggedIn() ? 'noarticletext' : 'noarticletextanon', 'parsemag' );
 			}
 			wfProfileOut( __METHOD__ );
 			return $text;
@@ -831,14 +831,16 @@ class Article {
 				$this->showDeletionLog();
 			}
 			$text = $this->getContent();
-			if( $text === false ) {
+			// For now, check also for ID until getContent actually returns
+			// false for pages that do not exists
+			if( $text === false || $this->getID() === 0 ) {
 				# Failed to load, replace text with error message
 				$t = $this->mTitle->getPrefixedText();
 				if( $oldid ) {
-					$d = wfMsgExt( 'missingarticle-rev', array( 'escape' ), $oldid );
-					$text = wfMsg( 'missing-article', $t, $d );
+					$d = wfMsgExt( 'missingarticle-rev', 'escape', $oldid );
+					$text = wfMsgExt( 'missing-article', 'parsemag', $t, $d );
 				} else {
-					$text = wfMsg( 'noarticletext' );
+					$text = wfMsgExt( 'noarticletext', 'parsemag' );
 				}
 			}
 			
