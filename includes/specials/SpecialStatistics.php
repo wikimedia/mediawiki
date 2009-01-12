@@ -108,7 +108,7 @@ class SpecialStatistics extends SpecialPage {
 		}
 		return Xml::openElement( 'tr', $trExtraParams ) .
 			Xml::openElement( 'td' ) . $text . Xml::closeElement( 'td' ) .
-			Xml::openElement( 'td' ) . $number . Xml::closeElement( 'td' ) .
+			Xml::openElement( 'td', array( 'class' => 'mw-statistics-numbers' ) ) . $number . Xml::closeElement( 'td' ) .
 			Xml::closeElement( 'tr' );
 	}
 	
