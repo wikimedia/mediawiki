@@ -38,6 +38,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 === Bug fixes in 1.15 ===
 * Fixing the caching issue by using -{T|xxx}- syntax (only applies on wiki with LanguageConverter class)
 * Improving the efficiency by using -{A|xxx}- syntax (only applies on wiki with LanguageConverter class)
+* (bug 16968) Special:Upload no longer throws useless warnings.
 
 == API changes in 1.15 ==
 * (bug 16798) JSON encoding errors for some characters outside the BMP
