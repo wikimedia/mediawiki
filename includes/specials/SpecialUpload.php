@@ -508,11 +508,6 @@ class UploadForm {
 				$warning .=  '<li>'.wfMsgHtml( 'badfilename', htmlspecialchars( $this->mDestName ) ).'</li>';
 			}
 
-			global $wgCapitalLinks;
-			if( $wgCapitalLinks ) {
-				$filtered = ucfirst( $filtered );
-			}
-
 			global $wgCheckFileExtensions;
 			if ( $wgCheckFileExtensions ) {
 				if ( !$this->checkFileExtension( $finalExt, $wgFileExtensions ) ) {
