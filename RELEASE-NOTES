@@ -18,6 +18,9 @@ will be made on the development trunk and appear in the next quarterly release.
 Those wishing to use the latest code instead of a branch release can obtain
 it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
+=== API changes in 1.14rc1 ===
+* (bug 16798) JSON encoding errors for some characters outside the BMP
+
 === Configuration changes in 1.14 ===
 
 * $wgExemptFromUserRobotsControl is an array of namespaces to be exempt from

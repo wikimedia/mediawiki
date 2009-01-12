@@ -168,6 +168,17 @@ class Services_JSON
                 return chr(0xC0 | (($bytes >> 6) & 0x1F))
                      . chr(0x80 | ($bytes & 0x3F));
 
+            case (0xFC00 & $bytes) == 0xD800 && strlen($utf16) >= 4 && (0xFC & ord($utf16{2})) == 0xDC:
+                // return a 4-byte UTF-8 character
+                $char = ((($bytes & 0x03FF) << 10)
+                       | ((ord($utf16{2}) & 0x03) << 8)
+                       | ord($utf16{3}));
+                $char += 0x10000;
+                return chr(0xF0 | (($char >> 18) & 0x07))
+                     . chr(0x80 | (($char >> 12) & 0x3F))
+                     . chr(0x80 | (($char >> 6) & 0x3F))
+                     . chr(0x80 | ($char & 0x3F));
+
             case (0xFFFF & $bytes) == $bytes:
                 // return a 3-byte UTF-8 character
                 // see: http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
@@ -218,6 +229,20 @@ class Services_JSON
                          | (0x0F & (ord($utf8{1}) >> 2)))
                      . chr((0xC0 & (ord($utf8{1}) << 6))
                          | (0x7F & ord($utf8{2})));
+
+            case 4:
+                // return a UTF-16 surrogate pair from a 4-byte UTF-8 char
+                if(ord($utf8{0}) > 0xF4) return ''; # invalid
+                $char = ((0x1C0000 & (ord($utf8{0}) << 18))
+                       | (0x03F000 & (ord($utf8{1}) << 12))
+                       | (0x000FC0 & (ord($utf8{2}) << 6))
+                       | (0x00003F & ord($utf8{3})));
+                if($char > 0x10FFFF) return ''; # invalid
+                $char -= 0x10000;
+                return chr(0xD8 | (($char >> 18) & 0x03))
+                     . chr(($char >> 10) & 0xFF)
+                     . chr(0xDC | (($char >> 8) & 0x03))
+                     . chr($char & 0xFF);
         }
 
         // ignoring UTF-32 for now, sorry
@@ -346,40 +371,19 @@ class Services_JSON
                         case (($ord_var_c & 0xF8) == 0xF0):
                             // characters U-00010000 - U-001FFFFF, mask 11110XXX
                             // see http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
+                            // These will always return a surrogate pair
                             $char = pack('C*', $ord_var_c,
                                          ord($var{$c + 1}),
                                          ord($var{$c + 2}),
                                          ord($var{$c + 3}));
                             $c += 3;
                             $utf16 = $this->utf82utf16($char);
-                            $ascii .= sprintf('\u%04s', bin2hex($utf16));
-                            break;
-
-                        case (($ord_var_c & 0xFC) == 0xF8):
-                            // characters U-00200000 - U-03FFFFFF, mask 111110XX
-                            // see http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
-                            $char = pack('C*', $ord_var_c,
-                                         ord($var{$c + 1}),
-                                         ord($var{$c + 2}),
-                                         ord($var{$c + 3}),
-                                         ord($var{$c + 4}));
-                            $c += 4;
-                            $utf16 = $this->utf82utf16($char);
-                            $ascii .= sprintf('\u%04s', bin2hex($utf16));
-                            break;
-
-                        case (($ord_var_c & 0xFE) == 0xFC):
-                            // characters U-04000000 - U-7FFFFFFF, mask 1111110X
-                            // see http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
-                            $char = pack('C*', $ord_var_c,
-                                         ord($var{$c + 1}),
-                                         ord($var{$c + 2}),
-                                         ord($var{$c + 3}),
-                                         ord($var{$c + 4}),
-                                         ord($var{$c + 5}));
-                            $c += 5;
-                            $utf16 = $this->utf82utf16($char);
-                            $ascii .= sprintf('\u%04s', bin2hex($utf16));
+                            if($utf16 == '') {
+                                $ascii .= '\ufffd';
+                            } else {
+                                $utf16 = str_split($utf16, 2);
+                                $ascii .= sprintf('\u%04s\u%04s', bin2hex($utf16[0]), bin2hex($utf16[1]));
+                            }
                             break;
                     }
                 }
@@ -589,6 +593,16 @@ class Services_JSON
                                    ($delim == "'" && $substr_chrs_c_2 != '\\"')) {
                                     $utf8 .= $chrs{++$c};
                                 }
+                                break;
+
+                            case preg_match('/\\\uD[89AB][0-9A-F]{2}\\\uD[C-F][0-9A-F]{2}/i', substr($chrs, $c, 12)):
+                                // escaped unicode surrogate pair
+                                $utf16 = chr(hexdec(substr($chrs, ($c + 2), 2)))
+                                       . chr(hexdec(substr($chrs, ($c + 4), 2)))
+                                       . chr(hexdec(substr($chrs, ($c + 8), 2)))
+                                       . chr(hexdec(substr($chrs, ($c + 10), 2)));
+                                $utf8 .= $this->utf162utf8($utf16);
+                                $c += 11;
                                 break;
 
                             case preg_match('/\\\u[0-9A-F]{4}/i', substr($chrs, $c, 6)):
