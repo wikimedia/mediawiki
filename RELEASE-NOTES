@@ -33,7 +33,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   for the current page for a given action
 * Added "__\" magic word to eat up all whitespace and newlines to the next 
   non-whitespace character, to facilitate writing readable template code where
-  whitespace is significant.
+  whitespace is significant. 
   
 === Bug fixes in 1.15 ===
 * Fixing the caching issue by using -{T|xxx}- syntax (only applies on wiki with LanguageConverter class)
