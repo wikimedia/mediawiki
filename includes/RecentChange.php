@@ -593,7 +593,7 @@ class RecentChange
 		return $trail;
 	}
 
-	protected function getIRCLine() {
+	public function getIRCLine() {
 		global $wgUseRCPatrol, $wgUseNPPatrol, $wgRC2UDPInterwikiPrefix, $wgLocalInterwiki;
 
 		// FIXME: Would be good to replace these 2 extract() calls with something more explicit

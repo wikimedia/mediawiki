@@ -29,7 +29,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added "Advanced search" link to the search form
 * Special:Upload can now have a custom upload message instead of uploadtext by
   passing "uploadmsg" parameter in the url
-* (bug 9947) Add PROTECTIONLEVEL parser funtion to return the protection level
+* (bug 9947) Add PROTECTIONLEVEL parser function to return the protection level
   for the current page for a given action
 * Added "__\" magic word to eat up all whitespace and newlines to the next 
   non-whitespace character, to facilitate writing readable template code where
