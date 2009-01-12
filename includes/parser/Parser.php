@@ -327,6 +327,12 @@ class Parser
 		$text = $this->internalParse( $text );
 		$text = $this->mStripState->unstripGeneral( $text );
 
+		# To make wikitext easier to read where significant 
+		# whitespace is a problem, '__\' will be eaten up along with 
+		# all whitespace and newlines that follow it, up to the next 
+		# non-whitespace character. (Compare 'dnl' from m4.)
+		$text = preg_replace('/__\\\\\s*/', '', $text);
+
 		# Clean up special characters, only run once, next-to-last before doBlockLevels
 		$fixtags = array(
 			# french spaces, last one Guillemet-left
