@@ -212,6 +212,38 @@ class ApiQueryInfo extends ApiQueryBase {
 				if($row->pr_cascade)
 					$a['cascade'] = '';
 				$protections[$row->pr_page][] = $a;
+				
+				# Also check old restrictions
+				if($pageRestrictions[$row->pr_page]) {
+					foreach(explode(':', trim($pageRestrictions[$pageid])) as $restrict) {
+						$temp = explode('=', trim($restrict));
+						if(count($temp) == 1) {
+							// old old format should be treated as edit/move restriction
+							$restriction = trim( $temp[0] );
+							if($restriction == '')
+								continue;
+							$protections[$row->pr_page][] = array(
+								'type' => 'edit',
+								'level' => $restriction,
+								'expiry' => 'infinity',
+							);
+							$protections[$row->pr_page][] = array(
+								'type' => 'move',
+								'level' => $restriction,
+								'expiry' => 'infinity',
+							);
+						} else {
+							$restriction = trim( $temp[1] );
+							if($restriction == '')
+								continue;
+							$protections[$row->pr_page][] = array(
+								'type' => $temp[0],
+								'level' => $restriction,
+								'expiry' => 'infinity',
+							);
+						}
+					}
+				}
 			}
 			$db->freeResult($res);
 			
@@ -418,34 +450,6 @@ class ApiQueryInfo extends ApiQueryBase {
 				$pageInfo['protection'] = array();
 				if (isset($protections[$pageid])) {
 					$pageInfo['protection'] = $protections[$pageid];
-					$result->setIndexedTagName($pageInfo['protection'], 'pr');
-				}
-				# Also check old restrictions
-				if( $pageRestrictions[$pageid] ) {
-					foreach( explode( ':', trim( $pageRestrictions[$pageid] ) ) as $restrict ) {
-						$temp = explode( '=', trim( $restrict ) );
-						if(count($temp) == 1) {
-							// old old format should be treated as edit/move restriction
-							$restriction = trim( $temp[0] );
-							$pageInfo['protection'][] = array(
-								'type' => 'edit',
-								'level' => $restriction,
-								'expiry' => 'infinity',
-							);
-							$pageInfo['protection'][] = array(
-								'type' => 'move',
-								'level' => $restriction,
-								'expiry' => 'infinity',
-							);
-						} else {
-							$restriction = trim( $temp[1] );
-							$pageInfo['protection'][] = array(
-								'type' => $temp[0],
-								'level' => $restriction,
-								'expiry' => 'infinity',
-							);
-						}
-					}
 					$result->setIndexedTagName($pageInfo['protection'], 'pr');
 				}
 			}
