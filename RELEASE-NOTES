@@ -39,6 +39,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fixing the caching issue by using -{T|xxx}- syntax (only applies on wiki with LanguageConverter class)
 * Improving the efficiency by using -{A|xxx}- syntax (only applies on wiki with LanguageConverter class)
 
+== API changes in 1.15 ==
+* (bug 16798) JSON encoding errors for some characters outside the BMP
+
 === Languages updated in 1.15 ===
 
 MediaWiki supports over 300 languages. Many localisations are updated
