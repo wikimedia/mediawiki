@@ -9,6 +9,12 @@
 
 function wfSpecialRevisiondelete( $par = null ) {
 	global $wgOut, $wgRequest, $wgUser;
+	
+	if ( wfReadOnly() ) {
+		$wgOut->readOnlyPage();
+		return;
+	}
+		
 	# Handle our many different possible input types
 	$target = $wgRequest->getText( 'target' );
 	$oldid = $wgRequest->getArray( 'oldid' );
