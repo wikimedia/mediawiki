@@ -92,6 +92,8 @@ class ExternalStore {
 				$url = $store->store( $params, $data ); // Try to save the object
 			} catch ( DBConnectionError $error ) {
 				$url = false;
+			} catch( DBQueryError $error ) {
+				$url = false;
 			}
 			if ( $url ) {
 				return $url; // Done!
