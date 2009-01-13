@@ -574,7 +574,7 @@ class EditPage {
 				# If the form is incomplete, force to preview.
 				wfDebug( "$fname: Form data appears to be incomplete\n" );
 				wfDebug( "POST DATA: " . var_export( $_POST, true ) . "\n" );
-				$this->preview  = true;
+				$this->preview = true;
 			} else {
 				/* Fallback for live preview */
 				$this->preview = $request->getCheck( 'wpPreview' ) || $request->getCheck( 'wpLivePreview' );
@@ -900,15 +900,20 @@ class EditPage {
 			}
 		}
 		$userid = $wgUser->getId();
+		
+		# Suppress edit conflict with self, except for section edits where merging is required.
+		if ( $this->isConflict && $this->section == '' && $this->userWasLastToEdit($userid,$this->edittime) ) {
+			wfDebug( "EditPage::editForm Suppressing edit conflict, same user.\n" );
+			$this->isConflict = false;
+		}
 
 		if ( $this->isConflict ) {
 			wfDebug( "EditPage::editForm conflict! getting section '$this->section' for time '$this->edittime' (article time '" .
 				$this->mArticle->getTimestamp() . "')\n" );
-			$text = $this->mArticle->replaceSection( $this->section, $this->textbox1, $this->summary, $this->edittime);
-		}
-		else {
+			$text = $this->mArticle->replaceSection( $this->section, $this->textbox1, $this->summary, $this->edittime );
+		} else {
 			wfDebug( "EditPage::editForm getting section '$this->section'\n" );
-			$text = $this->mArticle->replaceSection( $this->section, $this->textbox1, $this->summary);
+			$text = $this->mArticle->replaceSection( $this->section, $this->textbox1, $this->summary );
 		}
 		if ( is_null( $text ) ) {
 			wfDebug( "EditPage::editForm activating conflict; section replace failed.\n" );
@@ -916,23 +921,16 @@ class EditPage {
 			$text = $this->textbox1;
 		}
 
-		# Suppress edit conflict with self, except for section edits where merging is required.
-		if ( $this->section == '' && $userid && $this->userWasLastToEdit($userid,$this->edittime) ) {
-			wfDebug( "EditPage::editForm Suppressing edit conflict, same user.\n" );
-			$this->isConflict = false;
-		} else {
-			# switch from section editing to normal editing in edit conflict
-			if ( $this->isConflict ) {
-				# Attempt merge
-				if ( $this->mergeChangesInto( $text ) ) {
-					// Successful merge! Maybe we should tell the user the good news?
-					$this->isConflict = false;
-					wfDebug( "EditPage::editForm Suppressing edit conflict, successful merge.\n" );
-				} else {
-					$this->section = '';
-					$this->textbox1 = $text;
-					wfDebug( "EditPage::editForm Keeping edit conflict, failed merge.\n" );
-				}
+		if ( $this->isConflict ) {
+			# Attempt merge
+			if ( $this->mergeChangesInto( $text ) ) {
+				// Successful merge! Maybe we should tell the user the good news?
+				$this->isConflict = false;
+				wfDebug( "EditPage::editForm Suppressing edit conflict, successful merge.\n" );
+			} else {
+				$this->section = '';
+				$this->textbox1 = $text;
+				wfDebug( "EditPage::editForm Keeping edit conflict, failed merge.\n" );
 			}
 		}
 
@@ -1015,7 +1013,8 @@ class EditPage {
 
 		# update the article here
 		if ( $this->mArticle->updateArticle( $text, $this->summary, $this->minoredit,
-			$this->watchthis, $bot, $sectionanchor ) ) {
+			$this->watchthis, $bot, $sectionanchor ) ) 
+		{
 			wfProfileOut( $fname );
 			return self::AS_SUCCESS_UPDATE;
 		} else {
@@ -1031,6 +1030,7 @@ class EditPage {
 	 * 50 revisions for the sake of performance.
 	 */
 	protected function userWasLastToEdit( $id, $edittime ) {
+		if( !$id ) return false;
 		$dbw = wfGetDB( DB_MASTER );
 		$res = $dbw->select( 'revision',
 			'rev_user',
