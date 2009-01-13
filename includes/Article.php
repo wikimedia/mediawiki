@@ -853,7 +853,15 @@ class Article {
 					// for better machine handling of broken links.
 					$return404 = true;
 				}
-			} 
+			} else if( $ns == NS_USER || $ns == NS_USER_TALK ) {
+				# User/User_talk subpages are not modified. (bug 11443)
+				if( !$this->mTitle->isSubpage() ) {
+					$block = new Block();
+					if( $block->load( $this->mTitle->getBaseText() ) ) {
+						$wgOut->setRobotpolicy( 'noindex,nofollow' );
+					}
+				}
+			}
 
 			if( $return404 ) {
 				$wgRequest->response()->header( "HTTP/1.x 404 Not Found" );
