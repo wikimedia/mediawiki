@@ -711,7 +711,7 @@ class UploadBase {
 				}
 			}
 
-			wfDebug( __METHOD__.": FOUND VIRUS! scanner feedback: $output" );
+			wfDebug( __METHOD__.": FOUND VIRUS! scanner feedback: $output \n" );
 			return $output;
 		}
 	}

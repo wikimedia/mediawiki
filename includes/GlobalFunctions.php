@@ -431,7 +431,7 @@ function wfGetLangObj( $langcode = false ){
 		return Language::factory( $langcode );
 
 	# $langcode is a string, but not a valid language code; use content language.
-	wfDebug( 'Invalid language code passed to wfGetLangObj, falling back to content language.' );
+	wfDebug( "Invalid language code passed to wfGetLangObj, falling back to content language.\n" );
 	return $wgContLang;
 }
 
@@ -771,7 +771,7 @@ function wfAbruptExit( $error = false ){
 			wfDebug("WARNING: Abrupt exit in $file at line $line\n");
 		}
 	} else {
-		wfDebug('WARNING: Abrupt exit\n');
+		wfDebug("WARNING: Abrupt exit\n");
 	}
 
 	wfLogProfilingData();
@@ -1837,7 +1837,7 @@ function wfGetCachedNotice( $name ) {
 			$parserMemc->set( $key, array( 'html' => $parsed, 'hash' => md5( $notice ) ), 600 );
 			$notice = $parsed;
 		} else {
-			wfDebug( 'wfGetCachedNotice called for ' . $name . ' with no $wgOut available' );
+			wfDebug( 'wfGetCachedNotice called for ' . $name . ' with no $wgOut available'."\n" );
 			$notice = '';
 		}
 	}

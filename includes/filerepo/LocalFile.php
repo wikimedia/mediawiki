@@ -1760,12 +1760,12 @@ class LocalFileMoveBatch {
 			$oldName = $row->oi_archive_name;
 			$bits = explode( '!', $oldName, 2 );
 			if( count( $bits ) != 2 ) {
-				wfDebug( 'Invalid old file name: ' . $oldName );
+				wfDebug( "Invalid old file name: $oldName \n" );
 				continue;
 			}
 			list( $timestamp, $filename ) = $bits;
 			if( $this->oldName != $filename ) {
-				wfDebug( 'Invalid old file name:' . $oldName );
+				wfDebug( "Invalid old file name: $oldName \n" );
 				continue;
 			}
 			$this->oldCount++;

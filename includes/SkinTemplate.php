@@ -454,7 +454,7 @@ class SkinTemplate extends Skin {
 
 		// original version by hansm
 		if( !wfRunHooks( 'SkinTemplateOutputPageBeforeExec', array( &$this, &$tpl ) ) ) {
-			wfDebug( __METHOD__ . ': Hook SkinTemplateOutputPageBeforeExec broke outputPage execution!' );
+			wfDebug( __METHOD__ . ": Hook SkinTemplateOutputPageBeforeExec broke outputPage execution!\n" );
 		}
 
 		// allow extensions adding stuff after the page content.

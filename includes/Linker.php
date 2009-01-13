@@ -618,7 +618,7 @@ class Linker {
 		$img = '';
 		$success = wfRunHooks('LinkerMakeExternalImage', array( &$url, &$alt, &$img ) );
 		if(!$success) {
-			wfDebug("Hook LinkerMakeExternalImage changed the output of external image with url {$url} and alt text {$alt} to {$img}", true);
+			wfDebug("Hook LinkerMakeExternalImage changed the output of external image with url {$url} and alt text {$alt} to {$img}\n", true);
 			return $img;
 		}
 		return Xml::element( 'img',
@@ -1020,7 +1020,7 @@ class Linker {
 		$link = '';
 		$success = wfRunHooks('LinkerMakeExternalLink', array( &$url, &$text, &$link ) );
 		if(!$success) {
-			wfDebug("Hook LinkerMakeExternalLink changed the output of link with url {$url} and text {$text} to {$link}", true);
+			wfDebug("Hook LinkerMakeExternalLink changed the output of link with url {$url} and text {$text} to {$link}\n", true);
 			return $link;
 		}
 		return '<a href="'.$url.'"'.$attribsText.'>'.$text.'</a>';
