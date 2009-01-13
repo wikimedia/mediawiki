@@ -644,6 +644,13 @@ class EditPage {
 			if ( $this->section == 'new' && $request->getVal( 'preloadtitle' ) ) {
 				$this->summary = $request->getVal( 'preloadtitle' );
 			}
+			elseif ( $this->section != 'new' && $request->getVal( 'summary' ) ) {
+				$this->summary = $request->getText( 'summary' );
+			}
+			
+			if ( $request->getVal( 'minor' ) ) {
+				$this->minoredit = true;
+			}
 		}
 
 		$this->oldid = $request->getInt( 'oldid' );
