@@ -45,6 +45,10 @@ if ( !$options['dfn-only'] ) {
 	refreshLinks( $start, $options['new-only'], $options['m'], $options['e'], $options['redirects-only'], $options['old-redirects-only'] );
 }
 
+if ( !isset( $options['batch-size'] ) ) {
+  $options['batch-size'] = 100;
+}
+
 deleteLinksFromNonexistent($options['m'], $options['batch-size']);
 
 if ( $options['globals'] ) {
