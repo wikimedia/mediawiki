@@ -23,11 +23,11 @@ class SpecialRecentChanges extends SpecialPage {
 		$opts->add( 'limit', (int)$wgUser->getOption( 'rclimit' ) );
 		$opts->add( 'from', '' );
 
-		$opts->add( 'hideminor',     (bool)$wgUser->getOption( 'hideminor' ) );
+		$opts->add( 'hideminor',     $wgUser->getBoolOption( 'hideminor' ) );
 		$opts->add( 'hidebots',      true  );
 		$opts->add( 'hideanons',     false );
 		$opts->add( 'hideliu',       false );
-		$opts->add( 'hidepatrolled', false );
+		$opts->add( 'hidepatrolled', $wgUser->getBoolOption( 'hidepatrolled' ) );
 		$opts->add( 'hidemyself',    false );
 
 		$opts->add( 'namespace', '', FormOptions::INTNULL );

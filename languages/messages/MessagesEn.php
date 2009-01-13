@@ -490,6 +490,7 @@ XHTML id names.
 'tog-highlightbroken'         => 'Format broken links <a href="" class="new">like this</a> (alternative: like this<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Justify paragraphs',
 'tog-hideminor'               => 'Hide minor edits in recent changes',
+'tog-hidepatrolled'           => 'Hide patrolled edits in recent changes',
 'tog-extendwatchlist'         => 'Expand watchlist to show all applicable changes',
 'tog-usenewrc'                => 'Enhanced recent changes (JavaScript)',
 'tog-numberheadings'          => 'Auto-number headings',
@@ -524,6 +525,7 @@ XHTML id names.
 'tog-watchlisthideminor'      => 'Hide minor edits from the watchlist',
 'tog-watchlisthideliu'        => 'Hide edits by logged in users from the watchlist',
 'tog-watchlisthideanons'      => 'Hide edits by anonymous users from the watchlist',
+'tog-watchlisthidepatrolled'  => 'Hide patrolled edits from the watchlist',
 'tog-nolangconversion'        => 'Disable variants conversion', # only translate this message to other languages if you have to change it
 'tog-ccmeonemails'            => 'Send me copies of e-mails I send to other users',
 'tog-diffonly'                => 'Do not show page content below diffs',

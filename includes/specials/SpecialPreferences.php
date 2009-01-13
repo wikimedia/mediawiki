@@ -1093,6 +1093,7 @@ class PreferencesForm {
 		);
 
 		$toggles[] = 'hideminor';
+		$toggles[] = 'hidepatrolled';
 		if( $wgRCShowWatchingUsers )
 			$toggles[] = 'shownumberswatching';
 		$toggles[] = 'usenewrc';
@@ -1112,7 +1113,8 @@ class PreferencesForm {
 			Xml::inputLabel( wfMsg( 'prefs-watchlist-edits' ), 'wpWatchlistEdits', 'wpWatchlistEdits', 3, $this->mWatchlistEdits ) . ' ' .
 			wfMsgHTML( 'prefs-watchlist-edits-max' ) .
 			'<br /><br />' .
-			$this->getToggles( array( 'watchlisthideminor', 'watchlisthidebots', 'watchlisthideown', 'watchlisthideanons', 'watchlisthideliu' ) )
+			$this->getToggles( array( 'watchlisthideminor', 'watchlisthidebots', 'watchlisthideown',
+				'watchlisthideanons', 'watchlisthideliu', 'watchlisthidepatrolled' ) )
 		);
 
 		if( $wgUser->isAllowed( 'createpage' ) || $wgUser->isAllowed( 'createtalk' ) ) {
