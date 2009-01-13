@@ -131,8 +131,8 @@ function fillDestFilename(id) {
 		fname = path.substring(backslash+1, 10000);
 	}
 
-	// Capitalise first letter and replace spaces by underscores
-	fname = fname.charAt(0).toUpperCase().concat(fname.substring(1,10000)).replace(/ /g, '_');
+	// Replace spaces by underscores
+	fname = fname.replace(/ /g, '_');
 
 	// Output result
 	var destFile = document.getElementById('wpDestFile');

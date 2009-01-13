@@ -504,6 +504,9 @@ class UploadForm {
 		if ( ! $this->mIgnoreWarning ) {
 			$warning = '';
 
+			global $wgCapitalLinks;
+			if ( $wgCapitalLinks ) ucfirst( $basename );
+
 			if( str_replace( ' ', '_', $basename ) != $filtered ) {
 				$warning .=  '<li>'.wfMsgHtml( 'badfilename', htmlspecialchars( $this->mDestName ) ).'</li>';
 			}
