@@ -1209,8 +1209,8 @@ class PreferencesForm {
 		$skin = $wgUser->getSkin();
 		$wgOut->addHTML( "
 	<div id='prefsubmit'>
-		<input type='submit' name='wpRestore' class='btnSavePrefs' style='float:right;' value=\"" . 
-			wfMsgHtml( 'restoreprefs' ) . "\" />
+		<input type='submit' name='wpRestore' class='btnSavePrefs' style=float:".
+			($wgLang->isRTL() ? 'left' : 'right') . " value=\"" . wfMsgHtml( 'restoreprefs' ) . "\" />
 		<input type='submit' name='wpSaveprefs' class='btnSavePrefs' value=\"" . wfMsgHtml( 'saveprefs' ) . 
 			'"'.$skin->tooltipAndAccesskey('save')." />
 		<input type='submit' name='wpReset' value=\"" . wfMsgHtml( 'resetprefs' ) . "\" />
