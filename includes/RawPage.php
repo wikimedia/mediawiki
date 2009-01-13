@@ -164,7 +164,7 @@ class RawPage {
 		$text = $this->getRawText();
 
 		if( !wfRunHooks( 'RawPageViewBeforeOutput', array( &$this, &$text ) ) ) {
-			wfDebug( __METHOD__ . ': RawPageViewBeforeOutput hook broke raw page output.' );
+			wfDebug( __METHOD__ . ": RawPageViewBeforeOutput hook broke raw page output.\n" );
 		}
 
 		echo $text;

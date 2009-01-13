@@ -372,7 +372,7 @@ class UploadForm {
 
 		if( !wfRunHooks( 'UploadForm:BeforeProcessing', array( &$this ) ) )
 		{
-			wfDebug( "Hook 'UploadForm:BeforeProcessing' broke processing the file." );
+			wfDebug( "Hook 'UploadForm:BeforeProcessing' broke processing the file.\n" );
 			return self::BEFORE_PROCESSING;
 		}
 
@@ -957,7 +957,7 @@ wgUploadAutoFill = {$autofill};
 
 		if( !wfRunHooks( 'UploadForm:initial', array( &$this ) ) )
 		{
-			wfDebug( "Hook 'UploadForm:initial' broke output of the upload form" );
+			wfDebug( "Hook 'UploadForm:initial' broke output of the upload form\n" );
 			return false;
 		}
 
@@ -1658,7 +1658,7 @@ wgUploadAutoFill = {$autofill};
 				}
 			}
 
-			wfDebug( __METHOD__.": FOUND VIRUS! scanner feedback: $output" );
+			wfDebug( __METHOD__.": FOUND VIRUS! scanner feedback: $output \n" );
 			return $output;
 		}
 	}

@@ -744,7 +744,7 @@ class EditPage {
 
 		if ( !wfRunHooks( 'EditPage::attemptSave', array( &$this ) ) )
 		{
-			wfDebug( "Hook 'EditPage::attemptSave' aborted article saving" );
+			wfDebug( "Hook 'EditPage::attemptSave' aborted article saving\n" );
 			return self::AS_HOOK_ERROR;
 		}
 

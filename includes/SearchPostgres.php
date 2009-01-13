@@ -70,7 +70,7 @@ class SearchPostgres extends SearchEngine {
 	*/
 	function parseQuery( $term ) {
 
-		wfDebug( "parseQuery received: $term" );
+		wfDebug( "parseQuery received: $term \n" );
 
 		## No backslashes allowed
 		$term = preg_replace('/\\\/', '', $term);
@@ -122,7 +122,7 @@ class SearchPostgres extends SearchEngine {
 		## Quote the whole thing
 		$searchstring = $this->db->addQuotes($searchstring);
 
-		wfDebug( "parseQuery returned: $searchstring" );
+		wfDebug( "parseQuery returned: $searchstring \n" );
 
 		return $searchstring;
 
@@ -194,7 +194,7 @@ class SearchPostgres extends SearchEngine {
 
 		$query .= $this->db->limitResult( '', $this->limit, $this->offset );
 
-		wfDebug( "searchQuery returned: $query" );
+		wfDebug( "searchQuery returned: $query \n" );
 
 		return $query;
 	}
