@@ -1013,9 +1013,13 @@ class User {
 	 * @return \type{\arrayof{\string}} Array of user toggle names
 	 */
 	static function getToggles() {
-		global $wgContLang;
+		global $wgContLang, $wgUseRCPatrol;
 		$extraToggles = array();
 		wfRunHooks( 'UserToggles', array( &$extraToggles ) );
+		if( $wgUseRCPatrol ) {
+			$extraToggles[] = 'hidepatrolled';
+			$extraToggles[] = 'watchlisthidepatrolled';
+		}
 		return array_merge( self::$mToggles, $extraToggles, $wgContLang->getExtraUserToggles() );
 	}
 
