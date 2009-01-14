@@ -1067,7 +1067,7 @@ class PreferencesForm {
 		$wgOut->addHTML( Xml::closeElement( 'fieldset' ) );
 
 		# Recent changes
-		global $wgRCMaxAge;
+		global $wgRCMaxAge, $wgUseRCPatrol;
 		$wgOut->addHTML(
 			Xml::fieldset( wfMsg( 'prefs-rc' ) ) .
  			Xml::openElement( 'table' ) .
@@ -1093,7 +1093,8 @@ class PreferencesForm {
 		);
 
 		$toggles[] = 'hideminor';
-		$toggles[] = 'hidepatrolled';
+		if( $wgUseRCPatrol )
+			$toggles[] = 'hidepatrolled';
 		if( $wgRCShowWatchingUsers )
 			$toggles[] = 'shownumberswatching';
 		$toggles[] = 'usenewrc';
@@ -1104,6 +1105,12 @@ class PreferencesForm {
 		);
 
 		# Watchlist
+		$watchlistToggles = array( 'watchlisthideminor', 'watchlisthidebots', 'watchlisthideown',
+				'watchlisthideanons', 'watchlisthideliu' );
+		if( $wgUseRCPatrol ) {
+			$watchlistToggles[] = 'watchlisthidepatrolled';
+		}
+
 		$wgOut->addHTML( 
 			Xml::fieldset( wfMsg( 'prefs-watchlist' ) ) .
 			Xml::inputLabel( wfMsg( 'prefs-watchlist-days' ), 'wpWatchlistDays', 'wpWatchlistDays', 3, $this->mWatchlistDays ) . ' ' .
@@ -1113,8 +1120,7 @@ class PreferencesForm {
 			Xml::inputLabel( wfMsg( 'prefs-watchlist-edits' ), 'wpWatchlistEdits', 'wpWatchlistEdits', 3, $this->mWatchlistEdits ) . ' ' .
 			wfMsgHTML( 'prefs-watchlist-edits-max' ) .
 			'<br /><br />' .
-			$this->getToggles( array( 'watchlisthideminor', 'watchlisthidebots', 'watchlisthideown',
-				'watchlisthideanons', 'watchlisthideliu', 'watchlisthidepatrolled' ) )
+			$this->getToggles( $watchlistToggles )
 		);
 
 		if( $wgUser->isAllowed( 'createpage' ) || $wgUser->isAllowed( 'createtalk' ) ) {
