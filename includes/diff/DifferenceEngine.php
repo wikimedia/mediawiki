@@ -432,7 +432,8 @@ CONTROL;
 		#
 		$sk = $wgUser->getSkin();
 
-		if( !$this->mOldid || $this->mOldid == $this->mNewid ) {
+		$next = $this->mTitle->getNextRevisionID( $this->mNewid );
+		if( !$next ) {
 			$nextlink = '';
 		} else {
 			$nextlink = '<br/>' . $sk->makeKnownLinkObj( $this->mTitle, wfMsgHtml( 'nextdiff' ), 
