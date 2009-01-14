@@ -3310,7 +3310,6 @@ class Parser
 						throw new MWException( '<html> extension tag encountered unexpectedly' );
 					}
 				case 'nowiki':
-					$content = strtr($content, array('-{' => '-&#123;', '}-' => '&#125;-'));
 					$output = Xml::escapeTagsOnly( $content );
 					break;
 				case 'math':
