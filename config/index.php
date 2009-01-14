@@ -79,6 +79,12 @@ $ourdb['mssql']['compile']       = 'mssql not ready'; # Change to 'mssql' after 
 $ourdb['mssql']['bgcolor']       = '#ffc0cb';
 $ourdb['mssql']['rootuser']      = 'administrator';
 
+$ourdb['ibm_db2']['fullname']   = 'DB2';
+$ourdb['ibm_db2']['havedriver'] = 0;
+$ourdb['ibm_db2']['compile']    = 'ibm_db2';
+$ourdb['ibm_db2']['bgcolor']    = '#ffeba1';
+$ourdb['ibm_db2']['rootuser']   = 'db2admin';
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
@@ -615,6 +621,12 @@ print "<li style='font-weight:bold;color:green;font-size:110%'>Environment check
 	## MSSQL specific
 	// We need a second field so it doesn't overwrite the MySQL one
 	$conf->DBprefix2 = importPost( "DBprefix2" );
+	
+	## DB2 specific:
+	// New variable in order to have a different default port number
+	$conf->DBport_db2   = importPost( "DBport_db2",      "50000" );
+	$conf->DBmwschema   = importPost( "DBmwschema",  "mediawiki" );
+	$conf->DBcataloged  = importPost( "DBcataloged",  "cataloged" );
 
 	$conf->ShellLocale = getShellLocale( $conf->LanguageCode );
 
@@ -786,6 +798,9 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			$wgDBprefix = $conf->DBprefix2;
 		}
 
+		## DB2 specific:
+		$wgDBcataloged = $conf->DBcataloged;
+		
 		$wgCommandLineMode = true;
 		if (! defined ( 'STDERR' ) )
 			define( 'STDERR', fopen("php://stderr", "wb"));
@@ -861,12 +876,31 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			} #conn. att.
 
 			if( !$ok ) { continue; }
-
+		}
+		else if( $conf->DBtype == 'ibm_db2' ) {
+			if( $useRoot ) {
+				$db_user = $conf->RootUser;
+				$db_pass = $conf->RootPW;
+			} else {
+				$db_user = $wgDBuser;
+				$db_pass = $wgDBpassword;
+			}
+			
+			echo( "<li>Attempting to connect to database \"$wgDBname\" as \"$db_user\"..." );
+			$wgDatabase = $dbc->newFromParams($wgDBserver, $db_user, $db_pass, $wgDBname, 1);
+			if (!$wgDatabase->isOpen()) {
+				print " error: " . $wgDatabase->lastError() . "</li>\n";
+			} else {
+				$myver = $wgDatabase->getServerVersion();
+			}
+			if (is_callable(array($wgDatabase, 'initial_setup'))) $wgDatabase->initial_setup('', $wgDBname);
+			
 		} else { # not mysql
 			error_reporting( E_ALL );
 			$wgSuperUser = '';
 			## Possible connect as a superuser
-			if( $useRoot && $conf->DBtype != 'sqlite' ) {
+			// Changed !mysql to postgres check since it seems to only apply to postgres
+			if( $useRoot && $conf->DBtype == 'postgres' ) {
 				$wgDBsuperuser = $conf->RootUser;
 				echo( "<li>Attempting to connect to database \"postgres\" as superuser \"$wgDBsuperuser\"..." );
 				$wgDatabase = $dbc->newFromParams($wgDBserver, $wgDBsuperuser, $conf->RootPW, "postgres", 1);
@@ -1113,6 +1147,8 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			$revid = $revision->insertOn( $wgDatabase );
 			$article->updateRevisionOn( $wgDatabase, $revision );
 		}
+		// Now that all database work is done, make sure everything is committed
+		$wgDatabase->commit();
 
 		/* Write out the config file now that all is well */
 		print "<li style=\"list-style: none\">\n";
@@ -1459,6 +1495,25 @@ if( count( $errs ) ) {
 		<p>Avoid exotic characters; something like <tt>mw_</tt> is good.</p>
 	</div>
 	</fieldset>
+	
+	<?php database_switcher('ibm_db2'); ?>
+	<div class="config-input"><?php
+		aField( $conf, "DBport_db2", "Database port:" );
+	?></div>
+	<div class="config-input"><?php
+		aField( $conf, "DBmwschema", "Schema for mediawiki:" );
+	?></div>
+	<div>Select one:</div>
+		<ul class="plain">
+		<li><?php aField( $conf, "DBcataloged", "Cataloged (DB2 installed locally)", "radio", "cataloged" ); ?></li>
+		<li><?php aField( $conf, "DBcataloged", "Uncataloged (remote DB2 through ODBC)", "radio", "uncataloged" ); ?></li>
+		</ul>
+	<div class="config-desc">
+		<p>If you need to share one database between multiple wikis, or
+		between MediaWiki and another web application, you may specify
+		a different schema to avoid conflicts.</p>
+	</div>
+	</fieldset>
 
 	<div class="config-input" style="padding:2em 0 3em">
 		<label class='column'>&nbsp;</label>
@@ -1629,6 +1684,12 @@ function writeLocalSettings( $conf ) {
 		$dbsettings =
 "# MSSQL specific settings
 \$wgDBprefix         = \"{$slconf['DBprefix2']}\";";
+	} elseif( $conf->DBtype == 'ibm_db2' ) {
+		$dbsettings =
+"# DB2 specific settings
+\$wgDBport_db2       = \"{$slconf['DBport_db2']}\";
+\$wgDBmwschema       = \"{$slconf['DBmwschema']}\";
+\$wgDBcataloged      = \"{$slconf['DBcataloged']}\";";
 	} else {
 		// ummm... :D
 		$dbsettings = '';

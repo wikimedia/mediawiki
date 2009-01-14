@@ -1,0 +1,41 @@
+== Syntax differences between other databases and IBM DB2 ==
+{| border cellspacing=0 cellpadding=4
+!MySQL!!IBM DB2
+|-
+
+|SELECT 1 FROM $table LIMIT 1
+|SELECT COUNT(*) FROM SYSIBM.SYSTABLES ST
+WHERE ST.NAME = '$table' AND ST.CREATOR = '$schema'
+|-
+|MySQL code tries to read one row and interprets lack of error as proof of existence.
+|DB2 code counts the number of TABLES of that name in the database. There ought to be 1 for it to exist.
+|-
+|BEGIN
+|(implicit)
+|-
+|TEXT
+|VARCHAR(255) or CLOB
+|-
+|TIMESTAMPTZ
+|TIMESTAMP
+|-
+|BYTEA
+|VARGRAPHIC(255)
+|-
+|DEFAULT nextval('some_kind_of_sequence'),
+|GENERATED ALWAYS AS IDENTITY (START WITH 0, INCREMENT BY 1),
+|-
+|CIDR
+|VARCHAR(255)
+|-
+|LIMIT 10
+|FETCH FIRST 10 ROWS ONLY
+|-
+|ROLLBACK TO
+|ROLLBACK TO SAVEPOINT
+|-
+|RELEASE
+|RELEASE SAVEPOINT
+|}
+== See also ==
+*[http://ca.php.net/manual/en/function.db2-connect.php PHP Manual for DB2 functions]

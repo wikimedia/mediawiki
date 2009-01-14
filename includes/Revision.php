@@ -961,6 +961,10 @@ class Revision {
 	 */
 	static function getTimestampFromId( $title, $id ) {
 		$dbr = wfGetDB( DB_SLAVE );
+		// Casting fix for DB2
+		if ($id == '') {
+			$id = 0;
+		}
 		$conds = array( 'rev_id' => $id );
 		$conds['rev_page'] = $title->getArticleId();
 		$timestamp = $dbr->selectField( 'revision', 'rev_timestamp', $conds, __METHOD__ );
