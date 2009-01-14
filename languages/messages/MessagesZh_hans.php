@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简化字)‬)
+/** Simplified Chinese (‪中文(简体)‬)
  *
  * @ingroup Language
  * @file
@@ -9,6 +9,7 @@
  * @author Gzdavidwong
  * @author O
  * @author Shinjiman
+ * @author Wmr89502270
  */
 
 $namespaceNames = array(
@@ -575,13 +576,9 @@ $2',
 'passwordtooshort'           => '您的密码不正确或太短，不能少于$1个字元，而且必须跟用户名不同。',
 'mailmypassword'             => '将新密码寄给我',
 'passwordremindertitle'      => '{{SITENAME}}的新临时密码',
-'passwordremindertext'       => '有人(可能是您，来自IP地址$1)已请求{{SITENAME}}的新密码 ($4)。
-用户"$2"的一个新临时密码现在已被设置好为"$3"。
-如果这个动作是您所指示的，您便需要立即登入并选择一个新的密码。
-您的临时密码会于$5天内过期。
+'passwordremindertext'       => '有人（有可能是您，来自IP地址$1）已请求{{SITENAME}}的新密码（$4）。用户"$2"的一个新临时密码现在已被设置好为"$3"。如果这个动作是您所指示的，请您立即登入并选择一个新的密码。临时密码有效期为{{PLURAL:$5|一天|$5天}}。
 
-如果是其他人发出了该请求，或者您已经记起了您的密码并不准备改变它，
-您可以忽略此消息并继续使用您的旧密码。',
+如果是其他人发出了该请求，或者您已经记起了您的密码并不准备改变它，您可以忽略此消息并继续使用您的旧密码。',
 'noemail'                    => '用户"$1"没有登记电子邮件地址。',
 'passwordsent'               => '用户"$1"的新密码已经寄往所登记的电子邮件地址。
 请在收到后再登录。',
@@ -1100,7 +1097,7 @@ $2',
 'prefs-edit-boxsize'        => '编辑框尺寸',
 'rows'                      => '行:',
 'columns'                   => '列:',
-'searchresultshead'         => '搜索结果设定',
+'searchresultshead'         => '搜索',
 'resultsperpage'            => '每页显示链接数',
 'contextlines'              => '每链显示行数:',
 'contextchars'              => '每行显示字数:',
@@ -1703,31 +1700,31 @@ Template:消除歧義',
 'listgrouprights-removegroup-all' => '可以移除所有群组',
 
 # E-mail user
-'mailnologin'     => '无电邮地址',
-'mailnologintext' => '您必须先[[Special:UserLogin|登录]]
+'mailnologin'      => '无电邮地址',
+'mailnologintext'  => '您必须先[[Special:UserLogin|登录]]
 并在[[Special:Preferences|参数设置]]
 中有一个有效的电子邮箱地址才可以向其他用户发邮件。',
-'emailuser'       => '向该用户发邮件',
-'emailpage'       => '向用户发邮件',
-'emailpagetext'   => '您可以用下面的表格去寄一封电邮给这位用户。
+'emailuser'        => '向该用户发邮件',
+'emailpage'        => '向用户发邮件',
+'emailpagetext'    => '您可以用下面的表格去寄一封电邮给这位用户。
 您在[[Special:Preferences|您参数设置]]中所输入的电子邮箱地址将出现在邮件"发件人"一栏中，这样该用户就可以回复您。',
-'usermailererror' => 'Mail 对象返回错误:',
-'defemailsubject' => '{{SITENAME}}电子邮件',
-'noemailtitle'    => '无电子邮件地址',
-'noemailtext'     => '该用户还没有指定一个有效的电子邮件地址。',
+'usermailererror'  => 'Mail 对象返回错误:',
+'defemailsubject'  => '{{SITENAME}}电子邮件',
+'noemailtitle'     => '无电子邮件地址',
+'noemailtext'      => '该用户还没有指定一个有效的电子邮件地址。',
 'nowikiemailtitle' => '不容许电子邮件',
 'nowikiemailtext'  => '这位用户选择不接收其他用户的电子邮件。',
-'email-legend'    => '发一封电子邮件至另一位{{SITENAME}}用户',
-'emailfrom'       => '发件人:',
-'emailto'         => '收件人:',
-'emailsubject'    => '主题:',
-'emailmessage'    => '信息:',
-'emailsend'       => '发送',
-'emailccme'       => '将我的消息的副本发送一份到我的邮箱。',
-'emailccsubject'  => '将您的消息复制到 $1: $2',
-'emailsent'       => '电子邮件已发送',
-'emailsenttext'   => '您的电子邮件已经发出。',
-'emailuserfooter' => '这封电邮是由$1寄给$2经{{SITENAME}}的“电邮用户”功能发出的。',
+'email-legend'     => '发一封电子邮件至另一位{{SITENAME}}用户',
+'emailfrom'        => '发件人:',
+'emailto'          => '收件人:',
+'emailsubject'     => '主题:',
+'emailmessage'     => '信息:',
+'emailsend'        => '发送',
+'emailccme'        => '将我的消息的副本发送一份到我的邮箱。',
+'emailccsubject'   => '将您的消息复制到 $1: $2',
+'emailsent'        => '电子邮件已发送',
+'emailsenttext'    => '您的电子邮件已经发出。',
+'emailuserfooter'  => '这封电邮是由$1寄给$2经{{SITENAME}}的“电邮用户”功能发出的。',
 
 # Watchlist
 'watchlist'            => '监视列表',
@@ -1981,7 +1978,7 @@ $1',
 # What links here
 'whatlinkshere'            => '链入页面',
 'whatlinkshere-title'      => '链接到“$1”的页面',
-'whatlinkshere-page'       => '页面:',
+'whatlinkshere-page'       => '页面：',
 'linkshere'                => '以下页面链接到[[:$1]]：',
 'nolinkshere'              => '没有页面链接到[[:$1]]。',
 'nolinkshere-ns'           => '在所选的名字空间内没有页面链接到[[:$1]]。',
@@ -2942,7 +2939,7 @@ $1
 输入档名时不需要输入 "{{ns:file}}:" 开头。',
 'fileduplicatesearch-legend'   => '找重覆',
 'fileduplicatesearch-filename' => '文件名称:',
-'fileduplicatesearch-submit'   => '找',
+'fileduplicatesearch-submit'   => '搜索',
 'fileduplicatesearch-info'     => '$1 × $2 像素<br />文件大小: $3<br />MIME类型: $4',
 'fileduplicatesearch-result-1' => '文件 "$1" 无完全相同的重覆。',
 'fileduplicatesearch-result-n' => '文件 "$1" 有$2项完全相同的重覆。',

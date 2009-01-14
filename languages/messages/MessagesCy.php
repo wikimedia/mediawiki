@@ -526,7 +526,7 @@ Sicrhewch eich bod chi wedi'i sillafu'n gywir, neu [[Special:UserLogin/signup|cr
 'mailmypassword'             => 'Anfoner cyfrinair newydd ataf trwy e-bost',
 'passwordremindertitle'      => 'Hysbysu cyfrinair dros dro newydd ar gyfer {{SITENAME}}',
 'passwordremindertext'       => 'Mae rhywun (chi mwy na thebyg, o\'r cyfeiriad IP $1) wedi gofyn i ni anfon cyfrinair newydd atoch ar gyfer {{SITENAME}} ($4).
-Mae cyfrinair dros dro, sef "$3", wedi ei greu ar gyfer y defnyddiwr "$2". Os mai dyma oedd y bwriad, yna dylech fewngofnodi a\'i newid cyn gynted â phosib.
+Mae cyfrinair dros dro, sef "$3", wedi ei greu ar gyfer y defnyddiwr "$2". Os mai dyma oedd y bwriad, yna dylech fewngofnodi a\'i newid cyn gynted â phosib. Daw\'ch cyfrinair dros dro i ben ymhen {{PLURAL:$5||diwrnod|deuddydd|tridiau|$5 diwrnod|$5 diwrnod}}.
 
 Os mai rhywun arall a holodd am y cyfrinair, ynteu eich bod wedi cofio\'r hen gyfrinair, ac nac ydych am newid y cyfrinair, rhydd i chi anwybyddu\'r neges hon a pharhau i ddefnyddio\'r cyfrinair gwreiddiol.',
 'noemail'                    => "Does dim cyfeiriad e-bost yng nghofnodion y defnyddiwr '$1'.",
@@ -875,12 +875,15 @@ Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddi
 'diff-multi'              => '(Ni ddangosir {{PLURAL:$1|yr $1 diwygiad|yr $1 diwygiad|y $1 ddiwygiad|y $1 diwygiad|y $1 diwygiad|y $1 diwygiad}} rhyngol.)',
 'diff-movedto'            => 'wedi symud i $1',
 'diff-added'              => 'wedi ychwanegu $1',
+'diff-changedto'          => 'newidiwyd i $1',
 'diff-movedoutof'         => "wedi'i symud oddi ar $1",
+'diff-removed'            => 'tynnwyd $1',
 'diff-changedfrom'        => 'wedi newid o $1',
 'diff-src'                => 'gwreiddiol',
 'diff-width'              => 'lled',
 'diff-height'             => 'uchder',
 'diff-p'                  => "'''paragraff'''",
+'diff-blockquote'         => "'''dyfyniad'''",
 'diff-h1'                 => "'''pennawd (lefel 1)'''",
 'diff-h2'                 => "'''pennawd (lefel 2)'''",
 'diff-h3'                 => "'''pennawd (lefel 3)'''",
@@ -1090,10 +1093,12 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'right-minoredit'            => "Marcio golygiadau'n rhai bychain",
 'right-move'                 => 'Symud tudalennau',
 'right-move-subpages'        => "Symud tudalennau gyda'u his-dudalennau",
+'right-movefile'             => 'Symud ffeiliau',
 'right-suppressredirect'     => "Peidio â chreu ailgyfeiriad o'r hen enw wrth symud tudalen",
 'right-upload'               => 'Uwchlwytho ffeiliau',
 'right-reupload'             => 'Trosysgrifo ffeil sydd eisoes yn bod',
 'right-reupload-own'         => "Trosysgrifo ffeil sydd eisoes yn bod ac wedi ei uwchlwytho gennych chi'ch hunan",
+'right-upload_by_url'        => 'Uwchlwytho ffeil oddi ar gyfeiriad URL',
 'right-autoconfirmed'        => 'Golygu tudalennau sydd wedi eu lled-ddiogelu',
 'right-delete'               => 'Dileu tudalennau',
 'right-bigdelete'            => 'Dileu tudalennau a hanes llwythog iddynt',
@@ -1131,6 +1136,7 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'action-minoredit'            => "marcio'r golygiad yn un bach",
 'action-move'                 => 'symud y dudalen',
 'action-move-subpages'        => "symud y dudalen a'i is-dudalennau",
+'action-movefile'             => 'symud y ffeil hon',
 'action-upload'               => "uwchlwytho'r ffeil",
 'action-reupload'             => 'trosysgrifo ffeil sydd eisoes ar gael',
 'action-upload_by_url'        => "uuchlwytho'r ffeil o gyfeiriad URL",
@@ -1145,6 +1151,7 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'action-protect'              => 'newid lefelau gwarchod y dudalen hon',
 'action-import'               => "mewnforio'r dudalen hon o wici arall",
 'action-importupload'         => "mewnforio'r dudalen hon drwy uwchlwytho ffeil XML",
+'action-patrol'               => 'marcio bod golygiad defnyddiwr arall wedi derbyn ymweliad patrôl',
 'action-unwatchedpages'       => 'gweld rhestr y tudalennau heb neb yn eu gwylio',
 'action-mergehistory'         => 'cyfuno hanes y dudalen hon',
 'action-userrights'           => 'golygu holl alluoedd y defnyddwyr',
@@ -1564,29 +1571,31 @@ Gweler hefyd [[Special:WantedCategories|categorïau sydd eu hangen]].",
 'listgrouprights-members'  => '(rhestr aelodau)',
 
 # E-mail user
-'mailnologin'     => "Does dim cyfeiriad i'w anfon iddo",
-'mailnologintext' => 'Rhaid eich bod wedi [[Special:UserLogin|mewngofnodi]]
+'mailnologin'      => "Does dim cyfeiriad i'w anfon iddo",
+'mailnologintext'  => 'Rhaid eich bod wedi [[Special:UserLogin|mewngofnodi]]
 a bod cyfeiriad e-bost dilys yn eich [[Special:Preferences|dewisiadau]]
 er mwyn medru anfon e-bost at ddefnyddwyr eraill.',
-'emailuser'       => 'Anfon e-bost at y defnyddiwr hwn',
-'emailpage'       => 'Anfon e-bost at ddefnyddiwr',
-'emailpagetext'   => "Os yw'r cyfeiriad e-bost sydd yn newisiadau'r defnyddiwr hwn yn un dilys, gellir anfon neges ato o'i ysgrifennu ar y ffurflen isod. 
+'emailuser'        => 'Anfon e-bost at y defnyddiwr hwn',
+'emailpage'        => 'Anfon e-bost at ddefnyddiwr',
+'emailpagetext'    => "Os yw'r cyfeiriad e-bost sydd yn newisiadau'r defnyddiwr hwn yn un dilys, gellir anfon neges ato o'i ysgrifennu ar y ffurflen isod. 
 Bydd y cyfeiriad e-bost a osodoch yn eich [[Special:Preferences|dewisiadau chithau]] yn ymddangos ym maes \"Oddi wrth\" yr e-bost, fel bod y defnyddiwr arall yn gallu anfon ateb atoch.",
-'usermailererror' => 'Dychwelwyd gwall gan y rhaglen e-bost:',
-'defemailsubject' => 'E-bost {{SITENAME}}',
-'noemailtitle'    => 'Dim cyfeiriad e-bost',
-'noemailtext'     => "Nid yw'r defnyddiwr hwn wedi gosod cyfeiriad e-bost dilys.",
-'email-legend'    => 'Anfon e-bost at ddefnyddiwr {{SITENAME}} arall',
-'emailfrom'       => 'Oddi wrth:',
-'emailto'         => 'At:',
-'emailsubject'    => 'Pwnc:',
-'emailmessage'    => 'Neges:',
-'emailsend'       => 'Anfon',
-'emailccme'       => "Anfoner gopi o'r neges e-bost ataf.",
-'emailccsubject'  => "Copi o'ch neges at $1: $2",
-'emailsent'       => "Neges e-bost wedi'i hanfon",
-'emailsenttext'   => 'Mae eich neges e-bost wedi cael ei hanfon.',
-'emailuserfooter' => 'Anfonwyd yr e-bost hwn oddi wrth $1 at $2 trwy ddefnyddio\'r teclyn "Anfon e-bost at ddefnyddiwr" ar {{SITENAME}}.',
+'usermailererror'  => 'Dychwelwyd gwall gan y rhaglen e-bost:',
+'defemailsubject'  => 'E-bost {{SITENAME}}',
+'noemailtitle'     => 'Dim cyfeiriad e-bost',
+'noemailtext'      => "Nid yw'r defnyddiwr hwn wedi gosod cyfeiriad e-bost dilys.",
+'nowikiemailtitle' => 'Ni chaniateir e-bostio',
+'nowikiemailtext'  => "Mae'r defnyddiwr hwn wedi dewis peidio derbyn e-byst oddi wrth ddefnyddwyr eraill.",
+'email-legend'     => 'Anfon e-bost at ddefnyddiwr {{SITENAME}} arall',
+'emailfrom'        => 'Oddi wrth:',
+'emailto'          => 'At:',
+'emailsubject'     => 'Pwnc:',
+'emailmessage'     => 'Neges:',
+'emailsend'        => 'Anfon',
+'emailccme'        => "Anfoner gopi o'r neges e-bost ataf.",
+'emailccsubject'   => "Copi o'ch neges at $1: $2",
+'emailsent'        => "Neges e-bost wedi'i hanfon",
+'emailsenttext'    => 'Mae eich neges e-bost wedi cael ei hanfon.',
+'emailuserfooter'  => 'Anfonwyd yr e-bost hwn oddi wrth $1 at $2 trwy ddefnyddio\'r teclyn "Anfon e-bost at ddefnyddiwr" ar {{SITENAME}}.',
 
 # Watchlist
 'watchlist'            => 'Fy rhestr gwylio',
@@ -1868,7 +1877,7 @@ $1',
 'blockiptext'                     => "Defnyddiwch y ffurflen isod i flocio cyfeiriad IP neu ddefnyddiwr rhag ysgrifennu i'r databas. Dylech chi ddim ond gwneud hyn er mwyn rhwystro fandaliaeth a chan ddilyn [[{{MediaWiki:Policy-url}}|polisi'r wici]]. Llenwch y rheswm am y bloc yn y blwch isod -- dywedwch pa dudalen sydd wedi cael ei fandaleiddio.",
 'ipaddress'                       => 'Cyfeiriad IP:',
 'ipadressorusername'              => 'Cyfeiriad IP neu enw defnyddiwr:',
-'ipbexpiry'                       => 'Am gyfnod o:',
+'ipbexpiry'                       => 'Am gyfnod:',
 'ipbreason'                       => 'Rheswm:',
 'ipbreasonotherlist'              => 'Rheswm arall',
 'ipbreason-dropdown'              => '*Rhesymau cyffredin dros flocio
@@ -2221,9 +2230,10 @@ Achos hyn yn fwy na thebyg yw presenoldeb cysylltiad i wefan ar y rhestr gwahard
 'markedaspatrollederror-noautopatrol' => "Ni chaniateir i chi farcio'ch newidiadau eich hunan fel rhai derbyniol.",
 
 # Patrol log
-'patrol-log-page' => 'Lòg patrolio',
-'patrol-log-line' => 'wedi marcio bod fersiwn $1 o $2 wedi derbyn ymweliad patrôl $3',
-'patrol-log-auto' => '(awtomatig)',
+'patrol-log-page'      => 'Lòg patrolio',
+'patrol-log-line'      => 'wedi marcio bod fersiwn $1 o $2 wedi derbyn ymweliad patrôl $3',
+'patrol-log-auto'      => '(awtomatig)',
+'log-show-hide-patrol' => '$1 lòg patrolio',
 
 # Image deletion
 'deletedrevision'                 => 'Wedi dileu hen ddiwygiad $1.',
@@ -2239,6 +2249,9 @@ $1",
 # Browsing diffs
 'previousdiff' => '← Y fersiwn gynt',
 'nextdiff'     => 'Y fersiwn dilynol →',
+
+# Visual comparison
+'visual-comparison' => "Cymharu â'r llygad",
 
 # Media information
 'mediawarning'         => "'''Rhybudd''': Gallasai'r ffeil hon gynnwys côd maleisus; os ydyw mae'n bosib y bydd eich cyfrifiadur yn cael ei danseilio wrth lwytho'r ffeil.
@@ -2384,6 +2397,9 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-gpsdestdistance'             => 'Pellter i ben y daith',
 'exif-gpsareainformation'          => "Enw'r parth GPS",
 'exif-gpsdatestamp'                => 'Dyddiad GPS',
+
+# EXIF attributes
+'exif-compression-1' => 'Heb ei gywasgu',
 
 'exif-unknowndate' => 'Dyddiad anhysbys',
 

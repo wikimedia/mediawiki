@@ -55,7 +55,8 @@ Falls dies nicht der Fall ist, haben Sie eventuell einen Fehler in der Software 
 Sie können {{SITENAME}} jetzt anonym weiter benutzen, oder sich erneut unter dem selben oder einem anderen Benutzernamen [[Special:UserLogin|anmelden]].',
 'welcomecreation'            => '== Willkommen, $1! ==
 
-Ihr Benutzerkonto wurde eingerichtet. Vergessen Sie nicht, Ihre Einstellungen anzupassen.',
+Ihr Benutzerkonto wurde eingerichtet.
+Vergessen Sie nicht, Ihre [[Special:Preferences|{{SITENAME}}-Einstellungen]] anzupassen.',
 'yourdomainname'             => 'Ihre Domain:',
 'externaldberror'            => 'Entweder es liegt ein Fehler bei der externen Authentifizierung vor, oder Sie dürfen Ihr externes Benutzerkonto nicht aktualisieren.',
 'nologin'                    => 'Sie haben kein Benutzerkonto? $1.',

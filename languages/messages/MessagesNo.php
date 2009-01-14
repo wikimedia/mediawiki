@@ -166,6 +166,7 @@ $messages = array(
 'tog-highlightbroken'         => 'Formater lenker til ikke-eksisterende sider <a href="" class="new">slik</a> (alternativt: slik<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Blokkjusterte avsnitt',
 'tog-hideminor'               => 'Skjul mindre endringer i siste endringer',
+'tog-hidepatrolled'           => 'Skjul patruljerte endringer i siste endringer',
 'tog-extendwatchlist'         => 'Utvid overvåkningslisten til å vise alle endringer i valgt tidsrom',
 'tog-usenewrc'                => 'Forbedret siste endringer (ikke for alle nettlesere)',
 'tog-numberheadings'          => 'Nummerer overskrifter',
@@ -200,6 +201,7 @@ $messages = array(
 'tog-watchlisthideminor'      => 'Skjul mindre endringer fra overvåkningslisten',
 'tog-watchlisthideliu'        => 'Skjul endringer av innloggede brukere fra overvåkningslisten',
 'tog-watchlisthideanons'      => 'Skjul endringer av anonyme brukere fra overvåkningslisten',
+'tog-watchlisthidepatrolled'  => 'Skjul patruljerte endringer fra overvåkningslisten',
 'tog-nolangconversion'        => 'Slå av variantkonvertering',
 'tog-ccmeonemails'            => 'Send meg kopier av e-poster jeg sender til andre brukere',
 'tog-diffonly'                => 'Ikke vis sideinnhold under differ',
@@ -568,7 +570,7 @@ Det må ha minst {{PLURAL:$1|ett tegn|$1 tegn}} og kan ikke være det samme som 
 'passwordremindertext'       => 'Noen (antagelig deg, fra IP-adressen $1) ba oss sende deg et nytt
 passord til {{SITENAME}} ($4). Et midlertidig passord for «$2» har
 blitt laget og sendt til «$3». Om det var det du ville, må du logge inn
-og velge et nytt passord nå.
+og velge et nytt passord nå. Det midlertidige passordet vil utgå om {{PLURAL:$5|én dag|$5 dager}}.
 
 Dersom denne forespørselen ble utført av noen andre, eller om du kom på passordet
 og ikke lenger ønsker å endre det, kan du ignorere denne beskjeden
@@ -793,7 +795,7 @@ Disse parameterne har blitt utelatt.',
 'undo-success' => 'Redigeringen kan omgjøres. Sjekk sammenligningen under for å bekrefte at du vil gjøre dette, og lagre endringene for å fullføre omgjøringen.',
 'undo-failure' => 'Redigeringen kunne ikke omgjøres på grunn av konflikterende etterfølgende redigeringer.',
 'undo-norev'   => 'Redigeringen kunne ikke fjernes fordi den ikke eksisterer eller ble slettet',
-'undo-summary' => 'Fjerner revisjon $1 av [[Special:Contributions/$2]] ([[User talk:$2|diskusjon]] | [[Special:Contributions/$2|{{int:contribsilnk}}]])',
+'undo-summary' => 'Fjerner revisjon $1 av [[Special:Contributions/$2]] ([[User talk:$2|diskusjon]] | [[Special:Contributions/$2|{{int:contribslink}}]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Kan ikke opprette konto',
@@ -1075,6 +1077,7 @@ se math/README for oppsett.',
 'prefs-resetpass'           => 'Endre passord',
 'saveprefs'                 => 'Lagre',
 'resetprefs'                => 'Tilbakestill ulagrede endringer',
+'restoreprefs'              => 'Tilbakestill til standardinnstillinger overalt',
 'textboxsize'               => 'Redigering',
 'prefs-edit-boxsize'        => 'Størrelse på redigeringsvinduet.',
 'rows'                      => 'Rader:',
@@ -2125,6 +2128,7 @@ I disse tilfellene er du nødt til å flytte eller flette sammen siden manuelt."
 'movepagebtn'                  => 'Flytt side',
 'pagemovedsub'                 => 'Flytting gjennomført',
 'movepage-moved'               => "<big>'''«$1» ble flyttet til «$2»'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-redirect'      => 'En omdirigering har blitt opprettet.',
 'movepage-moved-noredirect'    => 'Det ble ikke opprettet en omdirigering.',
 'articleexists'                => 'En side med det navnet finnes fra før, eller valgte navn er ugyldig. Velg et annet navn.',
 'cantmove-titleprotected'      => 'Du kan ikke flytte en side til dette navnet, fordi den nye tittelen er beskyttet fra opprettelse.',

@@ -16,6 +16,7 @@
  * @author Peter Andersen
  * @author Remember the dot
  * @author Sir48
+ * @author Slomox
  * @author Svip
  * @author Urhixidur
  */
@@ -1000,7 +1001,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'timezonelegend'           => 'Tidszone',
 'timezonetext'             => 'Indtast antal timer din lokale tid er forskellig fra serverens tid (UTC). Der bliver automatisk tilpasset til dansk tid, ellers skulle man for eksempel for dansk vintertid, indtaste "1" (og "2" når vi er på sommertid).',
 'localtime'                => 'Lokaltid',
-'timezoneoffset'           => 'Forskel',
+'timezoneoffset'           => 'Forskel¹:',
 'servertime'               => 'Serverens tid er nu',
 'guesstimezone'            => 'Hent tidszone fra browseren',
 'allowemail'               => 'Tillade E-mails fra andre brugere.',

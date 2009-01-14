@@ -718,10 +718,11 @@ Nezapomeňte si upravit [[Special:Preferences|nastavení {{grammar:2sg|{{SITENAM
 Musí obsahovat nejméně $1 {{plural:$1|znak|znaky|znaků}} a nesmí být stejné jako uživatelské jméno.',
 'mailmypassword'             => 'Poslat e-mailem nové heslo',
 'passwordremindertitle'      => 'Nové dočasné heslo na {{grammar:4sg|{{SITENAME}}}}',
-'passwordremindertext'       => 'Někdo (patrně Vy, z IP adresy $1) žádal, abychom Vám poslali nové heslo
+'passwordremindertext'       => 'Někdo (patrně Vy, z IP adresy $1) požádal, abychom Vám poslali nové heslo
 pro přihlášení do {{grammar:2sg|{{SITENAME}}}} ($4). Uživateli „$2“ bylo
 proto nastaveno dočasné heslo „$3“. Pokud jste to byl(a) vy, můžete se
-nyní přihlásit a zvolit si nové heslo.
+nyní přihlásit a zvolit si nové heslo. Platnost tohoto dočasného hesla
+vyprší za {{PLURAL:$5|jeden den|$5 dny|$5 dní}}.
 
 Pokud jste o změnu hesla nežádal(a) nebo jste si na původní heslo již
 vzpomněl(a) a už ho změnit nechcete, můžete tuto zprávu ignorovat
@@ -1142,7 +1143,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'searchresulttext'                 => 'Pro více informací o tom, jak hledat na {{grammar:6sg|{{SITENAME}}}}, se podívejte do [[{{MediaWiki:Helppage}}|nápovědy]].',
 'searchsubtitle'                   => 'Hledáno „[[:$1]]“',
 'searchsubtitleinvalid'            => 'Hledáno „$1“',
-'noexactmatch'                     => "'''Neexistuje žádná stránka s názvem \"\$1\".''' Můžete ji však [[:\$1|vytvořit]].",
+'noexactmatch'                     => "'''Neexistuje žádná stránka s názvem „$1“.''' Můžete ji však [[:$1|vytvořit]].",
 'noexactmatch-nocreate'            => "'''Neexistuje žádná stránka s názvem „$1“.'''",
 'toomanymatches'                   => 'Požadavku odpovídá příliš mnoho záznamů, zkuste jiný dotaz.',
 'titlematches'                     => 'Stránky s odpovídajícím názvem',
@@ -1238,6 +1239,7 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'prefs-resetpass'           => 'Změnit heslo',
 'saveprefs'                 => 'Uložit nastavení',
 'resetprefs'                => 'Vrátit původní nastavení',
+'restoreprefs'              => 'Obnovit všechna výchozí nastavení',
 'textboxsize'               => 'Editace',
 'prefs-edit-boxsize'        => 'Velikost editačního okna:',
 'rows'                      => 'Řádky',

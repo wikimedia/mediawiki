@@ -125,6 +125,7 @@ $messages = array(
 'tog-highlightbroken'         => 'Wotkazy na prózdne strony wuzběhnyć',
 'tog-justify'                 => 'Tekst w blokowej sadźbje',
 'tog-hideminor'               => 'Snadne změny w aktualnych změnach schować',
+'tog-hidepatrolled'           => 'Dohladawane změny w aktualnych změnach schować',
 'tog-extendwatchlist'         => 'Rozšěrjena lisćina wobkedźbowankow',
 'tog-usenewrc'                => 'Rozšěrjena lisćina aktualnych změnow (trjeba JavaScript)',
 'tog-numberheadings'          => 'Nadpisma awtomatisce čisłować',
@@ -159,6 +160,7 @@ $messages = array(
 'tog-watchlisthideminor'      => 'Snadne změny we wobkedźbowankach schować',
 'tog-watchlisthideliu'        => 'Změny přizjewjenych wužiwarjow z wobkedźbowankow schować',
 'tog-watchlisthideanons'      => 'Změny anonymnych wužiwarjow z wobkedźbowankow schować',
+'tog-watchlisthidepatrolled'  => 'Dohladowane změny we wobkedźbowankach schować',
 'tog-nolangconversion'        => 'Konwertowanje rěčnych wariantow znjemóžnić',
 'tog-ccmeonemails'            => 'Kopije mejlkow dóstać, kiž druhim wužiwarjam pósćelu',
 'tog-diffonly'                => 'Jenož rozdźěle pokazać (nic pak zbytny wobsah)',
@@ -2602,6 +2604,7 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'exif-whitebalance-0' => 'Automatiske wurunanje běłeho',
 'exif-whitebalance-1' => 'Manuelne wurunanje běłeho',
 
+'exif-scenecapturetype-0' => 'Standard',
 'exif-scenecapturetype-1' => 'Krajina',
 'exif-scenecapturetype-2' => 'Portret',
 'exif-scenecapturetype-3' => 'Nócna scena',
@@ -2703,6 +2706,7 @@ Tute wobkrućenski kod spadnje $4.',
 'trackbackbox'      => '<div id="mw_trackbacks">Trackbacks za tutón nastawk:<br />
 $1</div>',
 'trackbackremove'   => '([$1 wušmórnyć])',
+'trackbacklink'     => 'Wróćosćěhowanje',
 'trackbackdeleteok' => 'Trackback bu wuspěšnje wušmórnjeny.',
 
 # Delete conflict

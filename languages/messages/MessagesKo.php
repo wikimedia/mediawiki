@@ -1089,7 +1089,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'qbsettings-fixedright'     => '오른쪽 고정',
 'qbsettings-floatingleft'   => '왼쪽 유동',
 'qbsettings-floatingright'  => '오른쪽 유동',
-'changepassword'            => '암호 바꾸기',
+'changepassword'            => '비밀번호 바꾸기',
 'skin'                      => '스킨',
 'skin-preview'              => '미리 보기',
 'math'                      => '수식',
@@ -1116,6 +1116,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'prefs-resetpass'           => '비밀번호 바꾸기',
 'saveprefs'                 => '저장',
 'resetprefs'                => '저장하지 않은 설정 되돌리기',
+'restoreprefs'              => '기본값을 복구',
 'textboxsize'               => '편집상자 크기',
 'prefs-edit-boxsize'        => '편집 창의 크기',
 'rows'                      => '줄 수:',
@@ -1446,6 +1447,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'listfiles-summary'     => '이 위키에 올라와 있는 모든 파일이 나열되어 있습니다.
 기본적으로 가장 최근에 올라온 파일이 가장 위에 올라와 있습니다.
 다른 방식으로 정렬하려면 기준 열의 머리칸을 눌러주세요.',
+'listfiles_search_for'  => '다음 이름을 가진 미디어 찾기:',
 'imgfile'               => '파일',
 'listfiles'             => '파일 목록',
 'listfiles_date'        => '날짜',
@@ -1453,6 +1455,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'listfiles_user'        => '사용자',
 'listfiles_size'        => '크기',
 'listfiles_description' => '설명',
+'listfiles_count'       => '버전',
 
 # File description page
 'filehist'                       => '파일 역사',
@@ -1476,6 +1479,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 이 파일을 가리키는 모든 문서를 보려면 [[Special:WhatLinksHere/$2|여기]]를 참고해 주십시오.',
 'nolinkstoimage'                 => '이 그림을 사용하는 문서가 없습니다.',
 'morelinkstoimage'               => '이 파일이 쓰이고 있는 문서 목록 [[Special:WhatLinksHere/$1|더 보기]].',
+'redirectstofile'                => '다음 {{PLURAL:$1|파일|$1개의 파일}}이 이 파일로 넘겨주고 있습니다:',
 'duplicatesoffile'               => '다음 $1개의 파일이 중복됩니다:',
 'sharedupload'                   => '이 자료는 위키미디어 공용에 있습니다. 다른 프로젝트에서 사용하고 있을 가능성이 있습니다.',
 'shareduploadwiki'               => '$1에서 더 자세한 정보를 얻을 수 있습니다.',
@@ -1498,6 +1502,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'filerevert-defaultcomment' => '$1 $2 버전으로 되돌림',
 'filerevert-submit'         => '되돌리기',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' 파일을 [$4 $2 $3 버전]으로 되돌렸습니다.",
+'filerevert-badversion'     => '주어진 타임스탬프를 가진 파일의 로컬 버전이 없습니다.',
 
 # File deletion
 'filedelete'                  => '$1 삭제하기',
@@ -1637,7 +1642,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'unusedimagestext'        => '다른 사이트에서 그림의 URL을 직접 사용하고 있을 가능성이 있고, 따라서 그림이 이 목록에 있어도 실제로 어딘가에서 사용하고 있을 수 있습니다.',
 'unusedcategoriestext'    => '사용하지 않는 분류 문서들의 목록입니다.',
 'notargettitle'           => '해당하는 문서 없음',
-'notargettext'            => '기능을 수행할 목표 문서나 목표 사용자를 지정하지 않았습니다.',
+'notargettext'            => '기능을 수행할 대상 문서나 사용자를 지정하지 않았습니다.',
 'nopagetitle'             => '해당 문서 없음',
 'pager-newer-n'           => '이전 $1개',
 'pager-older-n'           => '다음 $1개',
@@ -2144,6 +2149,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'movepagebtn'                  => '이동',
 'pagemovedsub'                 => '문서 이동함',
 'movepage-moved'               => '<big>\'\'\'"$1" 문서를 "$2" 문서로 이동했습니다.\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-redirect'      => '넘겨주기가 생성되었습니다.',
 'movepage-moved-noredirect'    => '넘겨주기 문서가 생성되지 않았습니다.',
 'articleexists'                => '문서가 이미 존재하거나, 문서 이름이 올바르지 않습니다. 다른 제목으로 시도해주세요.',
 'cantmove-titleprotected'      => '새로운 제목으로 문서를 만드는 것이 금지되어 있어, 문서를 이동할 수 없습니다.',
@@ -2598,6 +2604,8 @@ Variants for Chinese language
 'exif-saturation-2' => '고채도',
 
 'exif-sharpness-0' => '보통',
+
+'exif-subjectdistancerange-0' => '알 수 없음',
 
 # Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
 'exif-gpslatitude-n' => '북위',

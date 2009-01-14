@@ -167,6 +167,7 @@ $messages = array(
 'mainpage-description' => 'Hēafodsīde',
 'portal'               => 'Gemǣnscipe Ingang',
 'portal-url'           => 'Project:Gemǣnscipe Ingang',
+'privacy'              => 'Ānlīepnesse þēaw',
 
 'versionrequired' => 'Fadunge $1 þæs MediaWicis nēodaþ',
 
@@ -188,6 +189,7 @@ $messages = array(
 'nstab-special'  => 'Syndrig',
 'nstab-image'    => 'Mētung',
 'nstab-template' => 'Bisen',
+'nstab-help'     => 'Helptramet',
 'nstab-category' => 'Flocc',
 
 # Main script and global functions
@@ -678,6 +680,7 @@ Bidde cēos ōðerne naman.',
 'imagelistall'     => 'eall',
 'watchlistall2'    => 'eall',
 'namespacesall'    => 'eall',
+'monthsall'        => 'eall',
 
 # E-mail address confirmation
 'confirmemail_body' => 'Hwilchwega, gewēne þu of IP stōwe $1, hæfþ in namanbēc gestt ǣnne hordcleofan

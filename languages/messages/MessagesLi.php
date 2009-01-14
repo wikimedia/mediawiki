@@ -541,7 +541,7 @@ Controleer dien spelling, of gebroek ongersjtaond formuleer om \'n nuuj gebroeke
 'passwordtooshort'           => "Dien wachwaord is te kort. 't Mót minstes oet {{PLURAL:$1|1 teike|$1 teikes}} besjtaon.",
 'mailmypassword'             => "Sjik mich 'n nuuj wachwaord",
 'passwordremindertitle'      => 'Nuuj tiedelik wachwaord van {{SITENAME}}',
-'passwordremindertext'       => 'Emes (waorsjienlik dich zelf) haet vanaaf IP-adres $1 verzoch \'n nuuj wachwoord veur {{SITENAME}} ($4) verzoch. \'t Nuuj wachwoord veur gebroeker "$2" is "$3". Es dat dien bedoeling waor, mèl diech daan noe aan en kees \'n nuuj wachwoord.
+'passwordremindertext'       => 'Emes (waorsjienlik dich zelf) haet vanaaf IP-adres $1 \'n nuuj wachwoord veur {{SITENAME}} ($4) verzoch. \'t Nuuj wachwoord veur gebroeker "$2" is "$3". Es dat dien bedoeling waor, mèl diech daan noe aan en kees \'n nuuj wachwoord. \'t Tiedelik wachwoord verluip euver {{PLURAL:$5|$5 daag|$5 daag}}.
 
 Es emes anders dit verzeuk heet gedoon, of wens te diech dien wachwoord weer herinners en \'t neet mie wèls wiezige, negeer dan dit berich en blief dien aud wachwoord gebroeke.',
 'noemail'                    => 'D\'r is gein geregistreerd e-mailadres veur "$1".',

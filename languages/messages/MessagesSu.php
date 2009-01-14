@@ -519,7 +519,7 @@ kudu kurang ti $1 {{PLURAL:$1|karaktér|karaktér}}.',
 'passwordtooshort'           => 'Sandi anjeun pondok teuing, sahanteuna kudu {{PLURAL:$1|1 karakter|$1 karakter}} jeung kudu beda jeung ngaran pamaké.',
 'mailmypassword'             => 'Kirim sandi anyar ngaliwatan surélék',
 'passwordremindertitle'      => 'Pangéling sandi ti {{SITENAME}}',
-'passwordremindertext'       => 'Aya (jigana anjeun ti alamat IP $1) nu ménta sangkan dikiriman sandi anyar asup log {{SITENAME}} ($4). Sandi anyar keur pamaké "$2" ayeuna diganti jadi "$3". Anjeun kudu asup log sarta ngarobah sandi anjeun ayeuna.
+'passwordremindertext'       => 'Aya (jigana anjeun ti alamat IP $1) nu ménta sangkan dikiriman sandi anyar asup log {{SITENAME}} ($4). Saheulaanan, sandi anyar keur pamaké "$2" ayeuna diganti jadi "$3". Anjeun kudu asup log sarta ngarobah sandi anjeun ayeuna. Ieu sandi bakal kadaluwarsa dina {{PLURAL:$5|sapoé|$5 poé}}.
 
 Mun pamundut ieu datang ti nu séjén, atawa mun anjeun geus inget sandi anu tadina poho, sarta teu hayang ngarobah sandina, anjeun teu kudu ngawaro kana ieu surat sarta bisa tetep maké sandi anu ti heula.',
 'noemail'                    => 'Teu aya alamat surélék karékam pikeun "$1".',

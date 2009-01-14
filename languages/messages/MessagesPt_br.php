@@ -13,6 +13,7 @@
  * @author Lijealso
  * @author Rodrigo Calanca Nishino
  * @author Urhixidur
+ * @author Waldir
  * @author Yves Marques Junqueira
  * @author לערי ריינהארט
  * @author 555
@@ -241,9 +242,9 @@ $messages = array(
 'thu'           => 'Qui',
 'fri'           => 'Sex',
 'sat'           => 'Sáb',
-'january'       => 'Janeiro',
-'february'      => 'Fevereiro',
-'march'         => 'Março',
+'january'       => 'janeiro',
+'february'      => 'fevereiro',
+'march'         => 'março',
 'april'         => 'Abril',
 'may_long'      => 'Maio',
 'june'          => 'Junho',
@@ -253,9 +254,9 @@ $messages = array(
 'october'       => 'Outubro',
 'november'      => 'Novembro',
 'december'      => 'Dezembro',
-'january-gen'   => 'Janeiro',
-'february-gen'  => 'Fevereiro',
-'march-gen'     => 'Março',
+'january-gen'   => 'janeiro',
+'february-gen'  => 'fevereiro',
+'march-gen'     => 'março',
 'april-gen'     => 'Abril',
 'may-gen'       => 'Maio',
 'june-gen'      => 'Junho',
@@ -596,8 +597,8 @@ Verifique se digitou corretamente, ou [[Special:UserLogin/signup|crie uma nova c
 Deve de ter no mínimo {{PLURAL:$1|1 caracter|$1 caracteres}} e ser diferente do seu nome de usuário.',
 'mailmypassword'             => "Enviar uma nova senha por ''e-mail''",
 'passwordremindertitle'      => 'Nova senha temporária em {{SITENAME}}',
-'passwordremindertext'       => 'Alguém (provavelmente você, a partir do endereço de IP $1) solicitou uma nova senha para {{SITENAME}} ($4).
-A senha temporária criada para o usuário "$2" é, a partir de agora, "$3". Se esta era sua intenção, você precisará se autenticar e escolher uma nova senha agora.
+'passwordremindertext'       => 'Alguém (provavelmente você, a partir do endereço de IP $1) solicitou uma nova senha para {{SITENAME}} ($4). Foi criada uma senha temporária para o usuário "$2", sendo ela "$3". Se esta era sua intenção, você precisará se autenticar e escolher uma nova senha agora.
+A sua senha temporária expirará em {{PLURAL:$5|um dia|$5 dias}}.
 
 Se foi outra pessoa quem fez este pedido, ou se você já lembrou a sua senha, e não quer mais alterá-la, você pode ignorar esta mensagem e continuar utilizando sua senha antiga.',
 'noemail'                    => 'Não há um endereço de e-mail associado ao usuário "$1".',

@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Smihael
  * @author XJamRastafire
  * @author romanm
  * @author sl.wikipedia.org administrators
@@ -337,7 +338,12 @@ in [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Uporabniški priroč
 # General errors
 'error'                => 'Napaka',
 'databaseerror'        => 'Napaka zbirke podatkov',
-'dberrortext'          => 'Iskanje ali drugo želeno dejanje je verjetno zahtevalo preveč časa. Mogoči razlogi so: <ul> <li>Iskanje z vsemi besedami v narekovajih. Poskusite najprej iskati brez njih. Kadar to ni zadosti, vpišite še nekaj iskalnih pojmov ali dodajte besedo ali dve zunaj narekovajev, s čimer boste označili splošno predmetno področje. <li>Zelo obsežen spisek nadzorov (verjetno čez 10.000 strani) ob obremenjenih strežnikih. <li>Morda ste poskušali dejanje izvesti ob začasni izredni obremenitvi strežnikov. Ob izrednih obremenitvah lahko pride do nenadnega končanja številnih pomembnih opravil, da se dosežejo običajni odzivni časi. Če se zahtevano dejanje sicer izvede brez težav, poskusite znova v nekaj minutah. </ul> <p>Splošno sporočilo o napaki je:</p> <p> Prišlo je do napake zbirke podatkov. Vzrok bi lahko bil nesprejemljiv iskalni niz (glejte $5) ali programski hrošč. Zadnje poskušano iskanje:</p> <blockquote><tt>$1</tt></blockquote> znotraj funkcije »<tt>$2</tt>«. MySQL je vrnil napako »<tt>$3: $4</tt>«. <p>Če je zgornja napaka 2013, je vaš postopek končal upravljavec podatkovnega bremena. Prosimo, poskusite z ustreznejšim iskanjem ali iskanje ponovite ob manj obremenjenih strežnikih. Opravičujemo se za nevšečnosti.</p>',
+'dberrortext'          => 'Prišlo je do napake zbirke podatkov.
+Vzrok bi lahko bil nesprejemljiv iskalni niz ali programski hrošč.
+Zadnje poskušano iskanje:
+<blockquote><tt>$1</tt></blockquote>
+znotraj funkcije »<tt>$2</tt>«.
+MySQL je vrnil napako »<tt>$3: $4</tt>«.',
 'dberrortextcl'        => 'Pri iskanju v zbirki podatkov je prišlo do skladenjske napake. Zadnje iskanje v zbirki podatkov: »$1« iz funkcije »$2«. MySQL je vrnil napako »$3: $4«.',
 'noconnect'            => 'S PB na $1 se ne morem povezati.',
 'nodb'                 => "Zbirke podatkov '$1' ne morem izbrati",
@@ -442,6 +448,8 @@ Preverite črkovanje ali pa si z uporabo prikazanega obrazca ustvarite nov upora
 je zahteval, da vam pošljemo novo prijavno geslo za {{GRAMMAR:tožilnik|{{SITENAME}}}} ($4).
 Geslo uporabnika ''$2'' je odslej ''$3''.
 Z njim se lahko prijavite in ga spremenite.
+To začasno geslo bo poteklo v {{PLURAL:$5|enem dnevu|$5 dnevih|$5 dnevih}}.
+
 
 Če je geslo zahteval nekdo drug ali ste se spomnili starega in ga ne želite več spremeniti, lahko sporočilo prezrete in se še naprej prijavljate s starim.",
 'noemail'                    => 'Elektronska pošta uporabnika »$1« ni zapisana.',
@@ -449,12 +457,12 @@ Z njim se lahko prijavite in ga spremenite.
 'blocked-mailpassword'       => 'Urejanje z vašega IP naslova je blokirano. Da bi preprečili zlorabe, vam ni dovoljeno tudi uporabljati funkcije za povrnitev pozabljenega gesla.',
 'eauthentsent'               => 'E-sporočilo je poslano na navedeni e-naslov. Če želite tja poslati še katero, po v omenjenem sporočilu navedenih navodilih potrdite lastništvo naslova.',
 'mailerror'                  => 'Napaka pri pošiljanju pošte: $1',
-'acct_creation_throttle_hit' => 'Obiskovalci {{GRAMMAR:rodilnik|{{SITENAME}}}} so s tem [[IP-naslov]]om v zadnjih 24 urah ustvarili že $1 {{PLURAL:$1|uporabniški račun|uporabniška računa|uporabniške račune|uporabniških računov|uporabniških računov}} in s tem dosegli največje dopustno število v omenjenem časovnem obdobju. Novih računov zato s tem IP-naslovom trenutno žal ne morete več ustvariti.
+'acct_creation_throttle_hit' => 'Obiskovalci {{GRAMMAR:rodilnik|{{SITENAME}}}} so s tem IP-naslovom v zadnjih 24 urah ustvarili že $1 {{PLURAL:$1|uporabniški račun|uporabniška računa|uporabniške račune|uporabniških računov|uporabniških računov}} in s tem dosegli največje dopustno število v omenjenem časovnem obdobju. Novih računov zato s tem IP-naslovom trenutno žal ne morete več ustvariti.
 
 == Urejate prek posredniškega strežnika? ==
 
 Če urejate prek AOL ali iz Bližnjega vzhoda, Afrike, Avstralije, Nove Zelandije ali iz šole, knjižnice ali podjetja, si IP-naslov morda delite z drugimi uporabniki. Če je tako, ste to sporočilo morda prejeli, čeprav niste ustvarili še nobenega računa. Znova se lahko poskusite registrirati po nekaj urah.',
-'emailauthenticated'         => 'Čas potrditve vašega e-poštnega naslova: $1',
+'emailauthenticated'         => 'Vaš e-poštni naslov je bil potrjen $2 $3.',
 'emailnotauthenticated'      => 'Vaš e-poštni naslov še ni potrjen. Za navedene
 možnosti se e-pošte ne bo pošiljalo.',
 'noemailprefs'               => '<strong>E-poštnega naslova niste vnesli</strong>, zato naslednje možnosti ne bodo delovale.',
@@ -463,7 +471,7 @@ možnosti se e-pošte ne bo pošiljalo.',
 'accountcreated'             => 'Račun je ustvarjen',
 'accountcreatedtext'         => 'Uporabniški račun za »$1« je ustvarjen.',
 'createaccount-title'        => 'Ustvarjanje računa za {{GRAMMAR:tožilnik|{{SITENAME}}}}',
-'createaccount-text'         => 'Nekdo ($1) je ustvaril račun $2 na {{GRAMMAR:dajalnik|{{SITENAME}}}} ($4). Geslo za »$2« je »$3«. Priporočljivo je, da se prijavite in spremenite svoje geslo sedaj.
+'createaccount-text'         => 'Nekdo je ustvaril račun $2 na {{GRAMMAR:dajalnik|{{SITENAME}}}} ($4). Geslo za »$2« je »$3«. Priporočljivo je, da se prijavite in spremenite svoje geslo sedaj.
 
 To sporočilo lahko prezrete, če je bil račun ustvarjen pomotoma.',
 'loginlanguagelabel'         => 'Jezik: $1',

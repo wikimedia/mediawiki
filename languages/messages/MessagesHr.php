@@ -701,10 +701,10 @@ Možete omogućiti drugima da vas kontaktiraju na suradničkoj stranici ili stra
 'passwordtooshort'           => 'Vaša je lozinka nevaljana ili prekratka. Lozinka mora sadržavati najmanje {{PLURAL:$1|1 znak|$1 znakova}} i mora biti različita od imena.',
 'mailmypassword'             => 'Pošalji mi novu lozinku',
 'passwordremindertitle'      => '{{SITENAME}}: nova lozinka.',
-'passwordremindertext'       => 'Netko je (vjerojatno vi, s IP adrese $1)
-zatražio da vam pošaljemo novu lozinku za projekt {{SITENAME}} ($4).
+'passwordremindertext'       => 'Netko je (vjerojatno vi, s IP adrese $1) zatražio novu lozinku za projekt {{SITENAME}} ($4).
 Privremena lozinka za suradnika "$2" je postavljena na "$3".
-Molimo vas da se odmah prijavite i promijenite lozinku.
+Ukoliko ste to vi učinili, molimo vas da se prijavite i promijenite lozinku.
+Privremena lozinka vrijedi još {{PLURAL:$5|$5 dan|$5 dana}}.
 
 Ukoliko niste zatražili novu lozinku, ili ste se sjetili stare lozinke i
 više ju ne želite promijeniti, slobodno zanemarite ovu poruku i nastavite
@@ -1227,6 +1227,7 @@ Primijetite da uporaba navigacijskih poveznica resetira vaše izbore u koloni.',
 'prefs-resetpass'           => 'Promijeni lozinku',
 'saveprefs'                 => 'Spremi',
 'resetprefs'                => 'Vrati na prvotne postavke',
+'restoreprefs'              => "Vrati sve postavke na pretpostavljeno stanje - ''default''",
 'textboxsize'               => 'Širina okvira za uređivanje',
 'prefs-edit-boxsize'        => 'Veličina prozora za uređivanje.',
 'rows'                      => 'Redova',
@@ -1349,7 +1350,7 @@ Primijetite da uporaba navigacijskih poveznica resetira vaše izbore u koloni.',
 'right-patrol'               => 'Označavanje izmjena pregledanim',
 'right-autopatrol'           => 'Izmjene su automatski označene kao pregledane',
 'right-patrolmarks'          => 'Vidljive oznake pregledavanja u nedavnim promjenama',
-'right-unwatchedpages'       => 'Vidljiv popis negledanih stranica',
+'right-unwatchedpages'       => 'Vidljiv popis nepraćenih stranica',
 'right-trackback'            => 'Podnijeti trackback',
 'right-mergehistory'         => 'Spajanje povijesti stranica',
 'right-userrights'           => 'Uređivanje svih suradničkih prava',
@@ -1625,7 +1626,7 @@ A [[Special:WhatLinksHere/$2|Ovdje se nalazi]] kompletan popis.',
 'download'           => 'skidanje',
 
 # Unwatched pages
-'unwatchedpages' => 'Nenadgledane stranice',
+'unwatchedpages' => 'Nepraćene stranice',
 
 # List redirects
 'listredirects' => 'Popis preusmjeravanja',

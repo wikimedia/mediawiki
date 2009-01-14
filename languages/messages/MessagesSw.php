@@ -567,6 +567,7 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'minoreditletter'                => 'd',
 'newpageletter'                  => 'P',
 'boteditletter'                  => 'r',
+'newsectionsummary'              => '/* $1 */ mjadala mpya',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Mabadiliko husika',
