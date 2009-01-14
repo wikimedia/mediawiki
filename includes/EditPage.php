@@ -177,22 +177,22 @@ class EditPage {
 					}
 					if ( $result ) {
 						# Inform the user of our success and set an automatic edit summary
-						$this->editFormPageTop .= $wgOut->parse( wfMsgNoTrans( 'undo-success' ) );
+						$this->editFormPageTop .= $wgOut->wrapWikiMsg( '<div class="mw-undo-success">$1</div>', 'undo-success' );
 						$firstrev = $oldrev->getNext();
 						# If we just undid one rev, use an autosummary
 						if ( $firstrev->mId == $undo ) {
-							$this->summary = wfMsgForContent('undo-summary', $undo, $undorev->getUserText());
+							$this->summary = wfMsgForContent( 'undo-summary', $undo, $undorev->getUserText() );
 						}
 						$this->formtype = 'diff';
 					} else {
 						# Warn the user that something went wrong
-						$this->editFormPageTop .= $wgOut->parse( wfMsgNoTrans( 'undo-failure' ) );
+						$this->editFormPageTop .= $wgOut->wrapWikiMsg( '<div class="error mw-undo-failure">$1</div>', 'undo-failure' );
 					}
 				} else {
 					// Failed basic sanity checks.
 					// Older revisions may have been removed since the link
 					// was created, or we may simply have got bogus input.
-					$this->editFormPageTop .= $wgOut->parse( wfMsgNoTrans( 'undo-norev' ) );
+					$this->editFormPageTop .= $wgOut->wrapWikiMsg( '<div class="error mw-undo-norev">$1</div>', 'undo-norev' );
 				}
 			} else if ( $section != '' ) {
 				if ( $section == 'new' ) {

@@ -750,7 +750,7 @@ Dyrbjała mjenje hač $2 {{PLURAL:$2|wołanje|wołanjej|wołanja|wołanjow}} mě
 
 # "Undo" feature
 'undo-success' => 'Wersija je so wuspěšnje wotstroniła. Prošu přepruwuj deleka w přirunanskim napohledźe, hač twoja změna bu přewzata a klikń potom na „Składować”, zo by změnu składował.',
-'undo-failure' => '<span class="error">Wobdźěłanje njehodźeše so wotstronić, dokelž wotpowědny wotrězk bu mjeztym změnjeny.</span>',
+'undo-failure' => 'Wobdźěłanje njehodźeše so wotstronić, dokelž wotpowědny wotrězk bu mjeztym změnjeny.',
 'undo-norev'   => 'Změna njeda so cofnyć, dokelž njeeksistuje abo bu wušmórnjena.',
 'undo-summary' => 'Změna $1 [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusija]]) bu cofnjena.',
 

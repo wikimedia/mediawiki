@@ -781,7 +781,7 @@ Der bør være færre end $2, lige nu er der $1.',
 
 # "Undo" feature
 'undo-success' => 'Ændringen er nu annulleret. Kontroller venligst bearbejdningen i sammenligningen og klik så på „Gem side“, for at gemme den.',
-'undo-failure' => '<span class="error">Ændringen kunne ikke annulleres, da det pågældende afsnit i mellemtiden er ændret.</span>',
+'undo-failure' => 'Ændringen kunne ikke annulleres, da det pågældende afsnit i mellemtiden er ændret.',
 'undo-norev'   => 'Ændringen kunne ikke annuleres fordi den ikke eksisterer eller er blevet slettet.',
 'undo-summary' => 'Fjerner version $1 af [[Special:Contributions/$2|$2]] ([[User talk:$2|diskussion]])',
 

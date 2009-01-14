@@ -841,7 +841,7 @@ Nu {{PLURAL:$1|is dor een|sünd dor $1}}, wesen {{PLURAL:$2|dröff dat blot een|
 
 # "Undo" feature
 'undo-success' => 'De Ännern kann trüchdreiht warrn. Vergliek ünnen de Versionen, dat ok allens richtig is, un spieker de Sied denn af.',
-'undo-failure' => '<span class="error">Kunn de Siet nich op de vörige Version trüchdreihn. De Afsnitt is twischendör al wedder ännert worrn.</span>',
+'undo-failure' => 'Kunn de Siet nich op de vörige Version trüchdreihn. De Afsnitt is twischendör al wedder ännert worrn.',
 'undo-norev'   => 'De Ännern kunn nich trüchdreiht warrn, de gifft dat nich oder is wegsmeten worrn.',
 'undo-summary' => 'Ännern $1 vun [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskuschoon]]) trüchdreiht.',
 

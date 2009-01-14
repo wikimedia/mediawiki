@@ -672,7 +672,7 @@ Der {{PLURAL:$2|duur nit moor as 1 Aproup|duuren nit moor as $1 Aproupe}} weese.
 
 # "Undo" feature
 'undo-success' => 'Ju Annerenge kuud mäd Ärfoulch tourääch annerd wäide. Jädden ju Beoarbaidenge in ju Ferglieksansicht kontrollierje un dan ap „Siede spiekerje“ klikke, uum ju tou spiekerjen.',
-'undo-failure' => '<span class="error">Ju Annerenge kuud nit tourääch annerd wäide, deer ju betroffene Oudeelenge intwisken ferannerd wuude.</span>',
+'undo-failure' => 'Ju Annerenge kuud nit tourääch annerd wäide, deer ju betroffene Oudeelenge intwisken ferannerd wuude.',
 'undo-norev'   => 'Ju Beoarbaidenge kuud nit räägels troald wäide, deer ju nit foarhounden is of läsked wuude.',
 'undo-summary' => 'Annerenge $1 fon [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) wuude tourääch annerd.',
 
