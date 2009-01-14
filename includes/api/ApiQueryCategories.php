@@ -81,6 +81,19 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 
 		$this->addTables('categorylinks');
 		$this->addWhereFld('cl_from', array_keys($this->getPageSet()->getGoodTitles()));
+		if(!is_null($params['categories']))
+		{
+			$cats = array();
+			foreach($params['categories'] as $cat)
+			{
+				$title = Title::newFromText($cat);
+				if($title->getNamespace() != NS_CATEGORY)
+					$this->setWarning("``$cat'' is not a category");
+				else
+					$cats[] = $title->getDBkey();
+			}
+			$this->addWhereFld('cl_to', $cats);
+		}
 		if(!is_null($params['continue'])) {
 			$cont = explode('|', $params['continue']);
 			if(count($cont) != 2)
@@ -112,6 +125,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 				$this->addWhere(array('pp_propname IS NULL'));
 		}
 
+		$this->addOption('USE INDEX', array('categorylinks' => 'cl_from'));
 		# Don't order by cl_from if it's constant in the WHERE clause
 		if(count($this->getPageSet()->getGoodTitles()) == 1)
 			$this->addOption('ORDER BY', 'cl_to');
@@ -202,6 +216,9 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 				ApiBase :: PARAM_MAX2 => ApiBase :: LIMIT_BIG2
 			),
 			'continue' => null,
+			'categories' => array(
+				ApiBase :: PARAM_ISMULTI => true,
+			),
 		);
 	}
 
@@ -211,6 +228,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 			'limit' => 'How many categories to return',
 			'show' => 'Which kind of categories to show',
 			'continue' => 'When more results are available, use this to continue',
+			'categories' => 'Only list these categories. Useful for checking whether a certain page is in a certain category',
 		);
 	}
 
