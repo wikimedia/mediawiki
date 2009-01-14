@@ -76,6 +76,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				case 'extensions':
 					$this->appendExtensions( $p );
 					break;
+				case 'fileextensions':
+					$this->appendFileExtensions( $p );
+					break;
 				default :
 					ApiBase :: dieDebug( __METHOD__, "Unknown prop=$p" );
 			}
@@ -286,6 +289,17 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$this->getResult()->setIndexedTagName( $data, 'group' );
 		$this->getResult()->addValue( 'query', $property, $data );
 	}
+	
+	protected function appendFileExtensions( $property ) {
+		global $wgFileExtensions;
+		
+		$data = array();
+		foreach( $wgFileExtensions as $ext ) {
+			$data[] = array( 'ext' => $ext );
+		}
+		$this->getResult()->setIndexedTagName( $data, 'fe' );
+		$this->getResult()->addValue( 'query', $property, $data );
+	}
 
 	protected function appendExtensions( $property ) {
 		global $wgExtensionCredits;
@@ -337,6 +351,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					'statistics',
 					'usergroups',
 					'extensions',
+					'fileextensions',
 				)
 			),
 			'filteriw' => array(
@@ -363,6 +378,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				' "dbrepllag"    - Returns database server with the highest replication lag',
 				' "usergroups"   - Returns user groups and the associated permissions',
 				' "extensions"   - Returns extensions installed on the wiki',
+				' "fileextensions" - Returns list of file extensions allowed to be uploaded',
 			),
 			'filteriw' =>  'Return only local or only nonlocal entries of the interwiki map',
 			'showalldb' => 'List all database servers, not just the one lagging the most',
