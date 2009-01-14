@@ -310,20 +310,38 @@ class CoreParserFunctions {
 		return $lang != '' ? $lang : $arg;
 	}
 
-	static function pad( $string = '', $length = 0, $char = 0, $direction = STR_PAD_RIGHT ) {
-		$length = min( max( $length, 0 ), 500 );
-		$char = substr( $char, 0, 1 );
-		return ( $string !== '' && (int)$length > 0 && strlen( trim( (string)$char ) ) > 0 )
-				? str_pad( $string, $length, (string)$char, $direction )
-				: $string;
+	/**
+	 * Unicode-safe str_pad with the restriction that $length is forced to be <= 500
+ 	 */
+	static function pad( $string, $length, $padding = '0', $direction = STR_PAD_RIGHT ) {
+		$lengthOfPadding = mb_strlen( $padding );		
+		if ( $lengthOfPadding == 0 ) return $string;
+		
+		# The remaining length to add counts down to 0 as padding is added
+		$length = min( $length, 500 ) - mb_strlen( $string );
+		# $finalPadding is just $padding repeated enough times so that 
+		# mb_strlen( $string ) + mb_strlen( $finalPadding ) == $length
+		$finalPadding = '';
+		while ( $length > 0 ) {
+			# If $length < $lengthofPadding, truncate $padding so we get the
+			# exact length desired.
+			$finalPadding .= mb_substr( $padding, 0, $length );
+			$length -= $lengthOfPadding;
+		}
+		
+		if ( $direction == STR_PAD_LEFT ) {
+			return $finalPadding . $string;
+		} else {
+			return $string . $finalPadding;
+		}
 	}
 
-	static function padleft( $parser, $string = '', $length = 0, $char = 0 ) {
-		return self::pad( $string, $length, $char, STR_PAD_LEFT );
+	static function padleft( $parser, $string = '', $length = 0, $padding = '0' ) {
+		return self::pad( $string, $length, $padding, STR_PAD_LEFT );
 	}
 
-	static function padright( $parser, $string = '', $length = 0, $char = 0 ) {
-		return self::pad( $string, $length, $char );
+	static function padright( $parser, $string = '', $length = 0, $padding = '0' ) {
+		return self::pad( $string, $length, $padding );
 	}
 
 	static function anchorencode( $parser, $text ) {
