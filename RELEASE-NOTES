@@ -18,11 +18,6 @@ will be made on the development trunk and appear in the next quarterly release.
 Those wishing to use the latest code instead of a branch release can obtain
 it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
-=== API changes in 1.14rc1 ===
-* (bug 16798) JSON encoding errors for some characters outside the BMP
-* (bug 16629) prop=info&inprop=protection lists empty legacy protections
-  incorrectly
-
 === Configuration changes in 1.14 ===
 
 * $wgExemptFromUserRobotsControl is an array of namespaces to be exempt from
@@ -584,6 +579,10 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 16726) siprop=namespacealiases should also list localized aliases
 * (bug 16730) Added apprfiltercascade parameter to list=allpages to filter
   cascade-protected pages
+* (bug 16798) JSON encoding errors for some characters outside the BMP
+* (bug 16629) prop=info&inprop=protection lists empty legacy protections
+  incorrectly
+* (bug 15261, 16262) API no longer outputs invalid UTF-8
 
 === Languages updated in 1.14 ===
 
