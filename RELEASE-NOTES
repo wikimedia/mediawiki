@@ -34,7 +34,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added "__\" magic word to eat up all whitespace and newlines to the next 
   non-whitespace character, to facilitate writing readable template code where
   whitespace is significant. 
-* (bug 17002) Add &minor= and &summary= as parameters in the url when editing, to automatically add a summary or a minor edit.
+* (bug 17002) Add &minor= and &summary= as parameters in the url when editing,
+  to automatically add a summary or a minor edit.
+* (bug 16852) padleft and padright now accept multiletter pad characters
   
 === Bug fixes in 1.15 ===
 * Fixing the caching issue by using -{T|xxx}- syntax (only applies on wiki with LanguageConverter class)
@@ -42,6 +44,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 16968) Special:Upload no longer throws useless warnings.
 * (bug 15470) Special:Upload no longer force-capitalizes titles
 * (bug 17000) Special:RevisionDelete now checks if the database is locked before trying to delete the edit.
+* (bug 16852) padleft and padright now handle multibyte characters correctly
 
 == API changes in 1.15 ==
 * (bug 16798) JSON encoding errors for some characters outside the BMP

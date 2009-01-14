@@ -7233,6 +7233,24 @@ language=fa
 </p>
 !! end
 
+!! test
+Multibyte character in padleft
+!! input
+{{padleft:-Hello|7|Æ}}
+!! result
+<p>Æ-Hello
+</p>
+!! end
+
+!! test
+Multibyte character in padright
+!! input
+{{padright:Hello-|7|Æ}}
+!! result
+<p>Hello-Æ
+</p>
+!! end
+
 #
 #
 #
