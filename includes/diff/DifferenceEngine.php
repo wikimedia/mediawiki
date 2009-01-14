@@ -108,7 +108,7 @@ CONTROL;
 		}
 
 		$wgOut->setArticleFlag( false );
-		if ( ! $this->loadRevisionData() ) {
+		if ( !$this->loadRevisionData() ) {
 			$t = $this->mTitle->getPrefixedText();
 			$d = wfMsgExt( 'missingarticle-diff', array( 'escape' ), $this->mOldid, $this->mNewid );
 			$wgOut->setPagetitle( wfMsg( 'errorpagetitle' ) );
@@ -432,11 +432,14 @@ CONTROL;
 		#
 		$sk = $wgUser->getSkin();
 
-		$nextlink = $sk->makeKnownLinkObj( $this->mTitle, wfMsgHtml( 'nextdiff' ), 'diff=next&oldid='.$this->mNewid.$this->htmlDiffArgument(), '', '', 'id="differences-nextlink"' );
-		$header = "<div class=\"firstrevisionheader\" style=\"text-align: center\"><strong>{$this->mOldtitle}</strong><br />" .
-		$sk->revUserTools( $this->mNewRev ) . "<br />" .
-		$sk->revComment( $this->mNewRev ) . "<br />" .
-		$nextlink . "</div>\n";
+		if( !$this->mOldid || $this->mOldid == $this->mNewid ) {
+			$nextlink = '';
+		} else {
+			$nextlink = '<br/>' . $sk->makeKnownLinkObj( $this->mTitle, wfMsgHtml( 'nextdiff' ), 
+				'diff=next&oldid=' . $this->mNewid.$this->htmlDiffArgument(), '', '', 'id="differences-nextlink"' );
+		}
+		$header = "<div class=\"firstrevisionheader\" style=\"text-align: center\">" .
+			$sk->revUserTools( $this->mNewRev ) . "<br/>" . $sk->revComment( $this->mNewRev ) . $nextlink . "</div>\n";
 
 		$wgOut->addHTML( $header );
 
