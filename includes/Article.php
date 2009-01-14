@@ -780,6 +780,16 @@ class Article {
 			wfProfileOut( __METHOD__ );
 			return;
 		}
+		
+		if( $ns == NS_USER || $ns == NS_USER_TALK ) {
+			# User/User_talk subpages are not modified. (bug 11443)
+			if( !$this->mTitle->isSubpage() ) {
+				$block = new Block();
+				if( $block->load( $this->mTitle->getBaseText() ) ) {
+					$wgOut->setRobotpolicy( 'noindex,nofollow' );
+				}
+			}
+		}
 
 		# Should the parser cache be used?
 		$pcache = $this->useParserCache( $oldid );
@@ -852,14 +862,6 @@ class Article {
 					// If there's no backing content, send a 404 Not Found
 					// for better machine handling of broken links.
 					$return404 = true;
-				}
-			} else if( $ns == NS_USER || $ns == NS_USER_TALK ) {
-				# User/User_talk subpages are not modified. (bug 11443)
-				if( !$this->mTitle->isSubpage() ) {
-					$block = new Block();
-					if( $block->load( $this->mTitle->getBaseText() ) ) {
-						$wgOut->setRobotpolicy( 'noindex,nofollow' );
-					}
 				}
 			}
 
