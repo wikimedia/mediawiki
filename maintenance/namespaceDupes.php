@@ -224,12 +224,19 @@ class NamespaceConflictChecker {
 	function resolveConflict( $row, $resolvable, $suffix ) {
 		if( !$resolvable ) {
 			echo "...  *** old title {$row->title}\n";
-			$row->title .= $suffix;
-			echo "...  *** new title {$row->title}\n";
-			$title = Title::makeTitleSafe( $row->namespace, $row->title );
-			if ( ! $title ) {
-				echo "... !!! invalid title\n";
-				return false;
+			while( true ) {
+				$row->title .= $suffix;
+				echo "...  *** new title {$row->title}\n";
+				$title = Title::makeTitleSafe( $row->namespace, $row->title );
+				if ( ! $title ) {
+					echo "... !!! invalid title\n";
+					return false;
+				}
+				if ( $id = $title->getArticleId() ) {
+					echo "...  *** page exists with ID $id ***\n";
+				} else {	
+					break;
+				}
 			}
 			echo "...  *** using suffixed form [[" . $title->getPrefixedText() . "]] ***\n";
 		}
