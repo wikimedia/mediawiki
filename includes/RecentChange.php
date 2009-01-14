@@ -197,6 +197,14 @@ class RecentChange
 				$this->mAttribs['rc_last_oldid'] );
 		}
 	}
+	
+	public function notifyRC2UDP() {
+		global $wgRC2UDPAddress, $wgRC2UDPOmitBots;
+		# Notify external application via UDP
+		if( $wgRC2UDPAddress && ( !$this->mAttribs['rc_bot'] || !$wgRC2UDPOmitBots ) ) {
+			self::sendToUDP( $this->getIRCLine() );
+		}
+	}
 
 	/**
 	 * Send some text to UDP
