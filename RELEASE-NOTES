@@ -39,10 +39,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 16852) padleft and padright now accept multiletter pad characters
   
 === Bug fixes in 1.15 ===
-* Fixing the caching issue by using -{T|xxx}- syntax (only applies on wiki with
-  LanguageConverter class)
-* Improving the efficiency by using -{A|xxx}- syntax (only applies on wiki with
-  LanguageConverter class)
 * (bug 16968) Special:Upload no longer throws useless warnings.
 * (bug 15470) Special:Upload no longer force-capitalizes titles
 * (bug 17000) Special:RevisionDelete now checks if the database is locked before
