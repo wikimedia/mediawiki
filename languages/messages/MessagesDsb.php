@@ -770,7 +770,7 @@ Njesmějo daś wěcej nježli $2 {{PLURAL:$2|wołanja|wołanjowu|wołanjow|woła
 
 # "Undo" feature
 'undo-success' => 'Wobźěłanje móžo se wótpóraś. Pšosym pśeglěduj dołojcne pśirownowanje aby se wěsty był, až to wót wěrnosći coš, a pón składuj změny, aby se wobźěłanje doskóńcnje wótpórało.',
-'undo-failure' => '<span class="error">Změna njejo se mógała wótpóraś, dokulaž jo něchten pótrjefjony wótrězk mjaztym změnił.</span>',
+'undo-failure' => 'Změna njejo se mógała wótpóraś, dokulaž jo něchten pótrjefjony wótrězk mjaztym změnił.',
 'undo-norev'   => 'Změna njeda se wótwrośiś, dokulaž njeeksistěčujo abo jo se wulašowała.',
 'undo-summary' => 'Wersija $1 wót [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskusija]]) jo se anulěrowała',
 

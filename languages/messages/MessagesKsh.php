@@ -942,8 +942,8 @@ Ene Jrond weße mer nit.',
 
 # "Undo" feature
 'undo-success' => 'De Änderung könnte mer zeröck nämme. Beloor Der de Ungerscheid un dann donn di Sigg avspeichere, wann De dengks, et es en Oodenung esu.',
-'undo-failure' => '<span class="error">Dat kunnt mer nit zeröck nämme, dä Afschnedd wood enzwesche ald widder beärbeidt.</span>',
-'undo-norev'   => '<span class="error">Do ka\'mer nix zeröck nämme. Di Version jidd_et nit, odder se es verstoche odder fottjeschmesse woode.</span>',
+'undo-failure' => 'Dat kunnt mer nit zeröck nämme, dä Afschnedd wood enzwesche ald widder beärbeidt.',
+'undo-norev'   => 'Do ka\'mer nix zeröck nämme. Di Version jidd_et nit, odder se es verstoche odder fottjeschmesse woode.',
 'undo-summary' => 'De Änderung $1 fum [[Special:Contributions/$2|$2]] ([[User talk:$2|Klaaf]]) zeröck jenomme.',
 
 # Account creation failure
