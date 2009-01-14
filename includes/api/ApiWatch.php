@@ -29,8 +29,7 @@ if (!defined('MEDIAWIKI')) {
 }
 
 /**
- * API module to allow users to log out of the wiki. API equivalent of
- * Special:Userlogout.
+ * API module to allow users to watch a page
  *
  * @ingroup API
  */
