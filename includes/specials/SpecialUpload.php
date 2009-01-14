@@ -504,10 +504,13 @@ class UploadForm {
 		if ( ! $this->mIgnoreWarning ) {
 			$warning = '';
 
-			global $wgCapitalLinks;
-			if ( $wgCapitalLinks ) ucfirst( $basename );
+			$comparableName = str_replace( ' ', '_', $basename );
+			global $wgCapitalLinks, $wgContLang;
+			if ( $wgCapitalLinks ) {
+				$comparableName = $wgContLang->ucfirst( $comparableName );
+			}
 
-			if( str_replace( ' ', '_', $basename ) != $filtered ) {
+			if( $comparableName !== $filtered ) {
 				$warning .=  '<li>'.wfMsgHtml( 'badfilename', htmlspecialchars( $this->mDestName ) ).'</li>';
 			}
 
