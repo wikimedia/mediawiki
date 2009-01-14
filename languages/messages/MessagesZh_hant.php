@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(傳統字)‬)
+/** Traditional Chinese (‪中文(繁體)‬)
  *
  * @ingroup Language
  * @file
@@ -480,7 +480,6 @@ $2',
 'passwordremindertext'       => '有人(可能是您，來自IP位址$1)已請求{{SITENAME}}的新密碼 ($4)。
 用戶"$2"的一個新臨時密碼現在已被設定好為"$3"。
 如果這個動作是您所指示的，您便需要立即登入並選擇一個新的密碼。
-您的臨時密碼會於$5天內過期。
 
 如果是其他人發出了該請求，或者您已經記起了您的密碼並不準備改變它，
 您可以忽略此消息並繼續使用您的舊密碼。',
@@ -1603,31 +1602,31 @@ Template:消除歧義',
 'listgrouprights-removegroup-all' => '可以移除所有群組',
 
 # E-mail user
-'mailnologin'     => '無電郵地址',
-'mailnologintext' => '您必須先[[Special:UserLogin|登入]]
+'mailnologin'      => '無電郵地址',
+'mailnologintext'  => '您必須先[[Special:UserLogin|登入]]
 並在[[Special:Preferences|參數設置]]
 中有一個有效的e-mail地址才可以電郵其他用戶。',
-'emailuser'       => 'E-mail該用戶',
-'emailpage'       => 'E-mail用戶',
-'emailpagetext'   => '您可以用下面的表格去寄一封電郵給這位用戶。
+'emailuser'        => 'E-mail該用戶',
+'emailpage'        => 'E-mail用戶',
+'emailpagetext'    => '您可以用下面的表格去寄一封電郵給這位用戶。
 您在[[Special:Preferences|您參數設置]]中所輸入的e-mail地址將出現在郵件「發件人」一欄中，這樣該用戶就可以回覆您。',
-'usermailererror' => '目標郵件地址返回錯誤：',
-'defemailsubject' => '{{SITENAME}}電子郵件',
-'noemailtitle'    => '無e-mail地址',
-'noemailtext'     => '該用戶還沒有指定一個有效的e-mail地址。',
+'usermailererror'  => '目標郵件地址返回錯誤：',
+'defemailsubject'  => '{{SITENAME}}電子郵件',
+'noemailtitle'     => '無e-mail地址',
+'noemailtext'      => '該用戶還沒有指定一個有效的e-mail地址。',
 'nowikiemailtitle' => '不容許電子郵件',
 'nowikiemailtext'  => '這位用戶選擇不接收其他用戶的電子郵件。',
-'email-legend'    => '發一封電子郵件至另一位{{SITENAME}}用戶',
-'emailfrom'       => '發件人:',
-'emailto'         => '收件人:',
-'emailsubject'    => '主題:',
-'emailmessage'    => '訊息:',
-'emailsend'       => '發送',
-'emailccme'       => '將我的消息的副本發送一份到我的電郵信箱。',
-'emailccsubject'  => '將您的訊息複製到 $1: $2',
-'emailsent'       => '電子郵件已發送',
-'emailsenttext'   => '您的電子郵件已經發出。',
-'emailuserfooter' => '這封電郵是由$1寄給$2經{{SITENAME}}的「電郵用戶」功能發出的。',
+'email-legend'     => '發一封電子郵件至另一位{{SITENAME}}用戶',
+'emailfrom'        => '發件人:',
+'emailto'          => '收件人:',
+'emailsubject'     => '主題:',
+'emailmessage'     => '訊息:',
+'emailsend'        => '發送',
+'emailccme'        => '將我的消息的副本發送一份到我的電郵信箱。',
+'emailccsubject'   => '將您的訊息複製到 $1: $2',
+'emailsent'        => '電子郵件已發送',
+'emailsenttext'    => '您的電子郵件已經發出。',
+'emailuserfooter'  => '這封電郵是由$1寄給$2經{{SITENAME}}的「電郵用戶」功能發出的。',
 
 # Watchlist
 'watchlist'            => '監視列表',

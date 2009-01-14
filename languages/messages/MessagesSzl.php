@@ -207,7 +207,7 @@ $messages = array(
 'viewhelppage'      => 'Zajta pomocy',
 'categorypage'      => 'Zajta katygoryji',
 'viewtalkpage'      => 'Zajta godki',
-'otherlanguages'    => 'W inkšych godkach',
+'otherlanguages'    => 'We inkszych godkach',
 'redirectedfrom'    => '(Překerowano s $1)',
 'redirectpagesub'   => 'Zajta překerowujůnco',
 'lastmodifiedat'    => 'Ta zajta uostatńo sprowjano $2, $1.', # $1 date, $2 time
@@ -257,7 +257,7 @@ $messages = array(
 'editold'                 => 'sprowjej',
 'viewsourceold'           => 'pokož zdřůduo',
 'editlink'                => 'sprowjej',
-'viewsourcelink'          => 'tekst zdřůduowy',
+'viewsourcelink'          => 'zdrzůdłowy tekst',
 'editsectionhint'         => 'Sprowjej tajla: $1',
 'toc'                     => 'Wykoz',
 'showtoc'                 => 'pokož',
@@ -272,7 +272,7 @@ $messages = array(
 'site-atom-feed'          => 'Kanau Atom {{GRAMMAR:D.lp|$1}}',
 'page-rss-feed'           => 'Kanau RSS "$1"',
 'page-atom-feed'          => 'Kanau Atom "$1"',
-'red-link-title'          => '$1 (ješče ńy utwořono)',
+'red-link-title'          => '$1 (jeszcze ńy napisane)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Zajta',

@@ -8,6 +8,32 @@
  */
 
 $messages = array(
+# User preference toggles
+'tog-justify'              => 'Hikahata xirhapa',
+'tog-hideminor'            => 'Tumbeta mindzulamiso leyi tsongo',
+'tog-usenewrc'             => 'Kucinca ka sweswinyana loku hlutiweke (JavaScript)',
+'tog-showtoc'              => 'Komba nxaxamelo wa leswingandzeni (eka tinhlokomhaka tinharhu kumbe kutlula)',
+'tog-rememberpassword'     => 'Tsundzuka ku nghena eka Khompuyuta leyi',
+'tog-watchcreations'       => 'Hoxa matluka lawa ndzi matumbuluxaka eka leswi ndziswi languteke',
+'tog-watchdefault'         => 'Hoxa matluka lawa ndzi malulamisaka eka leswi ndziswi languteke',
+'tog-watchmoves'           => "Hoxa matluka lawa ndzi mayisaka kun'wana eka leswi ndziswi languteke",
+'tog-watchdeletion'        => 'Hoxa matluka lawa ndzi masulaka eka leswi ndziswi languteke',
+'tog-enotifwatchlistpages' => 'ndzurhumele e-mail loko leswi ndzi swi languteke swi lulamisiwa',
+'tog-enotifusertalkpages'  => 'ndzurhumele e-mail loko tluka ra mbulavulo na mina ri lulamisiwa',
+'tog-enotifminoredits'     => 'ndzurhumele e-mail loko ku endleka mindzulamiso leyi ntsongo',
+'tog-enotifrevealaddr'     => 'Paluxa e-mail yamina eka mapapila lawa ndzimarhumelaka',
+'tog-shownumberswatching'  => 'Komba ntsengo wa vatirhisi lava hlaleleke tluka',
+'tog-forceeditsummary'     => 'Ndzivutisisi loko ndzinga hoxi nkomiso wa ndzulamiso lowu ndzi wu endleke',
+'tog-watchlisthideown'     => 'Tumbeta mindzulamiso ya mina eka leswi ndzi swi languteke',
+'tog-watchlisthidebots'    => 'Tumbeta mindzulamiso ya rhobhoti eka leswi ndzi swi languteke',
+'tog-watchlisthideminor'   => 'Tumbeta mindzulamiso leyi tsongo eka leswi ndzi swi languteke',
+'tog-watchlisthideliu'     => 'Tumbeta mindzulamiso ya vatirhisiwa lava ngheneke eka leswi ndzi swi languteke',
+'tog-watchlisthideanons'   => 'Tumbeta mindzulamiso ya vatirhisiwa lavanga tivekiki eka leswi ndzi swi languteke',
+'tog-ccmeonemails'         => "Ndzirhumele khopi ya ti e-mail leti ndzi ti rhumelaka van'wana",
+
+'underline-always' => 'Nkarhi hinkwawo',
+'underline-never'  => "Swinga endleki ni kan'we",
+
 # Dates
 'sunday'    => 'Sonto',
 'mon'       => 'Musombhunuko',
@@ -241,6 +267,7 @@ U hi tshembisa nakambe leswaku hi wena mutsari wa leswi nyikeriwaka laha, kumbe 
 'searchrelated'         => 'Yelanaka',
 'searchall'             => 'Hinkwaswo',
 'showingresults'        => "Kombisa e hansi kufika eka {{PLURAL:$1|'''1''' mbuyelo|'''$1''' mimbuyelo}} Kusungula hi#'''$2'''.",
+'powersearch'           => 'Ndzavisiso',
 
 # Preferences page
 'mypreferences'   => 'Minhlawulo ya mina',
@@ -290,8 +317,9 @@ U hi tshembisa nakambe leswaku hi wena mutsari wa leswi nyikeriwaka laha, kumbe 
 'specialloguserlabel' => 'Mutirhisi:',
 
 # Special:AllPages
-'allpages'    => 'Matluka hinkwawo',
-'allarticles' => 'Matluka hinkwawo',
+'allpages'       => 'Matluka hinkwawo',
+'alphaindexline' => '$1 kuya fika eka $2',
+'allarticles'    => 'Matluka hinkwawo',
 
 # Special:LinkSearch
 'linksearch-ok' => 'Lava',

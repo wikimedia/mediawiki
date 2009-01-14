@@ -308,6 +308,7 @@ $messages = array(
 'tog-highlightbroken'         => 'Links auf leere Seiten hervorheben <a href="" class="new">Beispiel</a> (Alternative: wie dieser<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Text als Blocksatz',
 'tog-hideminor'               => 'Kleine Änderungen ausblenden',
+'tog-hidepatrolled'           => 'Kontrollierte Änderungen in den „Letzten Änderungen“ ausblenden',
 'tog-extendwatchlist'         => 'Erweiterte Beobachtungsliste',
 'tog-usenewrc'                => 'Erweiterte Darstellung (benötigt JavaScript)',
 'tog-numberheadings'          => 'Überschriften automatisch nummerieren',
@@ -334,7 +335,7 @@ $messages = array(
 'tog-fancysig'                => 'Signatur ohne Verlinkung zur Benutzerseite',
 'tog-externaleditor'          => 'Externen Editor als Standard benutzen (nur für Experten, es müssen spezielle Einstellungen auf dem eigenen Computer vorgenommen werden)',
 'tog-externaldiff'            => 'Externes Diff-Programm als Standard benutzen (nur für Experten, es müssen spezielle Einstellungen auf dem eigenen Computer vorgenommen werden)',
-'tog-showjumplinks'           => '„Wechseln-zu“-Links ermöglichen',
+'tog-showjumplinks'           => '„Wechseln-zu“-Links aktivieren',
 'tog-uselivepreview'          => 'Live-Vorschau nutzen (JavaScript) (experimentell)',
 'tog-forceeditsummary'        => 'Warnen, wenn beim Speichern die Zusammenfassung fehlt',
 'tog-watchlisthideown'        => 'Eigene Bearbeitungen ausblenden',
@@ -342,6 +343,7 @@ $messages = array(
 'tog-watchlisthideminor'      => 'Kleine Bearbeitungen ausblenden',
 'tog-watchlisthideliu'        => 'Bearbeitungen angemeldeter Benutzer ausblenden',
 'tog-watchlisthideanons'      => 'Bearbeitungen anonymer Benutzer (IP-Adressen) ausblenden',
+'tog-watchlisthidepatrolled'  => 'Kontrollierte Änderungen in der Beobachtungsliste ausblenden',
 'tog-nolangconversion'        => 'Konvertierung von Sprachvarianten deaktivieren',
 'tog-ccmeonemails'            => 'Schicke mir Kopien der E-Mails, die ich anderen Benutzern sende',
 'tog-diffonly'                => 'Zeige beim Versionsvergleich nur die Unterschiede, nicht die vollständige Seite',
@@ -569,7 +571,7 @@ $messages = array(
 'nstab-user'      => 'Benutzerseite',
 'nstab-media'     => 'Media',
 'nstab-special'   => 'Spezialseite',
-'nstab-project'   => 'Portalseite',
+'nstab-project'   => 'Projektseite',
 'nstab-image'     => 'Datei',
 'nstab-mediawiki' => 'MediaWiki-Systemtext',
 'nstab-template'  => 'Vorlage',
@@ -660,7 +662,8 @@ Die Sperre wurde durch [[User:$1|$1]] mit der Begründung ''„$2“'' eingerich
 Du kannst {{SITENAME}} jetzt anonym weiter benutzen, oder dich erneut unter dem selben oder einem anderen Benutzernamen [[Special:UserLogin|anmelden]].',
 'welcomecreation'            => '== Willkommen, $1! ==
 
-Dein Benutzerkonto wurde eingerichtet. Vergiss nicht, deine Einstellungen anzupassen.',
+Dein Benutzerkonto wurde eingerichtet.
+Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] anzupassen.',
 'loginpagetitle'             => 'Benutzer-Anmeldung',
 'yourname'                   => 'Benutzername:',
 'yourpassword'               => 'Passwort:',
@@ -2510,7 +2513,16 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'myskin.css'      => '/* CSS an dieser Stelle wirkt sich auf den MySkin-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
 'chick.css'       => '/* CSS an dieser Stelle wirkt sich auf den Küken-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
 'simple.css'      => '/* CSS an dieser Stelle wirkt sich auf den Einfach-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
-'modern.css'      => '/* CSS an dieser Stelle wirkt sich auf den Modern-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
+'modern.css'      => '/* CSS an dieser Stelle wirkt sich auf den Modern-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */
+
+/* Kleinschreibung in Navigationsbereichen verhindern */
+.portlet h5, 
+.portlet h6, 
+#p-personal ul, 
+#p-cactions li a, 
+#preftoc a {
+    text-transform: none;
+}',
 'print.css'       => '/* CSS an dieser Stelle wirkt sich auf die Druckausgabe aus */',
 'handheld.css'    => '/* CSS an dieser Stelle wirkt sich auf Handheld-Geräte, basierend auf den in $wgHandheldStyle konfigurierten Skin, aus */',
 

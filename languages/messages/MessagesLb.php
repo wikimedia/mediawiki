@@ -390,7 +390,7 @@ $messages = array(
 'nstab-user'      => 'Benotzersäit',
 'nstab-media'     => 'Media Säit',
 'nstab-special'   => 'Spezialsäit',
-'nstab-project'   => 'Porject:',
+'nstab-project'   => 'Project:',
 'nstab-image'     => 'Fichier',
 'nstab-mediawiki' => 'Systemmessage',
 'nstab-template'  => 'Schabloun',
@@ -764,7 +764,7 @@ Et däerfen net méi wéi $2 {{PLURAL:$2|Ufro|Ufroe}} sinn, aktuell {{PLURAL:$2|
 
 # "Undo" feature
 'undo-success' => "D'Ännerung gëtt réckgängeg gemaach. Iwwerpréift w.e.g. de Verglach ënnedrënner fir nozekuckeen ob et esou richteg ass, duerno späichert w.e.g d'Ännerungen of fir dës Aktioun ofzeschléissen.",
-'undo-failure' => 'D\'Ännerung konnt net réckgängeg gemaach ginn, wëll de betraffenen Abschnitt an der Tëschenzäit geännert gouf.',
+'undo-failure' => "D'Ännerung konnt net réckgängeg gemaach ginn, wëll de betraffenen Abschnitt an der Tëschenzäit geännert gouf.",
 'undo-norev'   => "D'Ännerung kann net zréckgesat ginn, well et se net gëtt oder well se scho geläscht ass.",
 'undo-summary' => 'Ännerung $1 vu(n) [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussioun]] | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]]) annulléieren.',
 
@@ -1742,7 +1742,7 @@ Fir d\'Astellungen op ärer Iwwerwaachungslëscht unzupassen, besicht w.e.g.: {{
 
 # Delete
 'deletepage'             => 'Säit läschen',
-'confirm'                => 'Konfirméieren',
+'confirm'                => 'Confirméieren',
 'excontent'              => "Inhalt war: '$1'",
 'excontentauthor'        => "Op der Säit stoung: '$1' (An als eenzegen dru geschriwwen hat de Benotzer '[[Special:Contributions/$2|$2]]').",
 'exbeforeblank'          => "Den Inhalt virum Läsche war: '$1'",
@@ -1751,7 +1751,7 @@ Fir d\'Astellungen op ärer Iwwerwaachungslëscht unzupassen, besicht w.e.g.: {{
 'delete-legend'          => 'Läschen',
 'historywarning'         => 'Opgepasst: Déi Säit déi dir läsche wëllt huet en Historique.',
 'confirmdeletetext'      => "Dir sidd am Gaang, eng Säit mat hirem kompletten Historique vollstänneg aus der Datebank ze läschen.
-W.e.g. konfirméiert, datt Dir dëst wierklech wëllt, datt Dir d'Konsequenze verstitt, an datt dat Ganzt en accordance mat de [[{{MediaWiki:Policy-url}}|Richtlinien]] geschitt.",
+W.e.g. confirméiert, datt Dir dëst wierklech wëllt, datt Dir d'Konsequenze verstitt, an datt dat Ganzt am Aklang mat de [[{{MediaWiki:Policy-url}}|Richtlinne]] geschitt.",
 'actioncomplete'         => 'Aktioun ofgeschloss',
 'deletedtext'            => '"<nowiki>$1</nowiki>" gouf geläscht. Kuckt $2 fir eng Lëscht vun de Säiten déi viru Kuerzem geläscht goufen.',
 'deletedarticle'         => '"$1" gouf geläscht',

@@ -588,24 +588,25 @@ Ratio data est: \'\'$2\'\'.
 
 * Initium obstructionis: $8
 * Finis obstructionis: $6
-* Obstructus est: $7
+* Obstructus destinatus: $7
 
 Potes ad $1 aut [[{{MediaWiki:Grouppage-sysop}}|magistratum]] alium nuntium mittere ad impedimentum disputandum.
 Nota bene te non posse proprietate "Litteras electronicas usori mittere" uti, nisi tibi est inscriptio electronica confirmata apud [[Special:Preferences|praeferentias usoris tuas]] vel si tibi etiam litterae electronicae obstructi sunt.
-Locus IP tuus est $3, et numerus obstructionis est #$5. Quaesumus te eos scripturum si quaestiones ullas roges.',
+Locus IP tuus temporarius est $3, et numerus obstructionis est #$5. Quaesumus te eos scripturum si quaestiones ullas roges.',
 'autoblockedtext'                  => 'Locus IP tuus automatice obstructus est quia usor alius, qui a magistratu $1 obstructus est, eum adhiberat.
 Ratio data est:
 
 :\'\'$2\'\'
 
-* Initium obstructionis erit: $8
-* Finis obstructionis erit: $6
+* Initium obstructionis: $8
+* Finis obstructionis: $6
+* Obstructus destinatus: $7
 
 Potes ad $1 aut [[{{MediaWiki:Grouppage-sysop}}|magistratum]] alium nuntium mittere ad impedimentum disputandum.
 
 Nota bene te non posse proprietate "Litteras electronicas usori mittere" uti, nisi tibi est inscriptio electronica confirmata apud [[Special:Preferences|praeferentias usoris tuas]].
 
-Numerus obstructionis tuus est #$5. Quaesumus te eum scripturum si quaestiones ullas roges.',
+Locus IP tuus temporarius $3 est et numerus obstructionis tuus est #$5. Quaesumus te eos scripturum si quaestiones ullas roges.',
 'blockednoreason'                  => 'nulla causa data',
 'blockedoriginalsource'            => "Fons '''$1''' subter monstratur:",
 'blockededitsource'                => "Textus '''tuarum emendationum''' in '''$1''' subter monstratur:",
@@ -667,7 +668,7 @@ Considera paginam in partes minores frangere.',
 'nocreatetitle'                    => 'Creatio paginarum coercita',
 'nocreate-loggedin'                => 'Tibi non licet paginas novas creare.',
 'permissionserrors'                => 'Errores permissionis',
-'permissionserrorstext-withaction' => 'Tibi non licet $2, quia:',
+'permissionserrorstext-withaction' => 'Tibi non licet $2, ex {{PLURAL:$1|ratione|rationibus}}:',
 'recreate-deleted-warn'            => "'''Cave: paginam qui antea iam deleta est creas.'''
 
 Tibi oportet meditari utrum hanc paginam creare tamen convenit. Commodule notatio paginarum deletarum hic datur:",
@@ -683,7 +684,7 @@ Haec pagina deleta esse videtur.',
 quia haec pagina iam est.',
 
 # Parser/template warnings
-'parser-template-loop-warning' => 'Ansula formulae detecta: [[$1]]',
+'parser-template-loop-warning' => 'Ansa formulae detecta: [[$1]]',
 
 # "Undo" feature
 'undo-norev'   => 'Recensio abrogari non potuit quia non est aut deleta est.',
@@ -727,7 +728,7 @@ Titulus: '''(nov)''' = dissimilis ab emendatione novissima,
 # Revision deletion
 'rev-deleted-comment'    => '(summarium celatum)',
 'rev-deleted-user'       => '(nomen usoris celatum est)',
-'rev-deleted-event'      => '(actio actorum celata)',
+'rev-deleted-event'      => '(perscriptio celata)',
 'rev-delundel'           => 'monstrare/celare',
 'revisiondelete'         => 'Emendationem delere',
 'revdelete-selected'     => "'''{{PLURAL:$2|Emendatio selecta|Emendationes selectae}} paginae [[:$1]]:'''",
@@ -1449,7 +1450,7 @@ ad emendationem proximam ab $2.',
 'protect-fallback'          => 'Postulat permissum "$1"',
 'protect-level-sysop'       => 'Magistratus soli',
 'protect-summary-cascade'   => 'defluens',
-'protect-expiring'          => 'exit $3, $2 (UTC)',
+'protect-expiring'          => 'exit $1 (UTC)',
 'protect-expiry-indefinite' => 'infinita',
 'protect-cascade'           => 'Formulas aliasque paginas hac in pagina adhibitas protegere (protectio defluens quasi cataracta)',
 'protect-othertime'         => 'Exitus alius:',
@@ -1603,6 +1604,7 @@ Si pagina nova cum ipso nomine post deletionem creata est, emendationes restitut
 'reblock-logentry'             => 'modificavit obstructionem usoris [[$1]], exire $2 $3',
 'blocklogtext'                 => 'Hic est index actorum obstructionis deobstructionisque. Loci IP qui automatice obstructi sunt non enumerantur. Vide [[Special:IPBlockList|indicem usorum locorumque IP obstructorum]] pro indice toto.',
 'unblocklogentry'              => 'deobstruxit $1',
+'block-log-flags-anononly'     => 'solum usores anonymi',
 'block-log-flags-nocreate'     => 'creatio rationum obstructa',
 'block-log-flags-noemail'      => 'Litterae electronicae obstructae',
 'block-log-flags-nousertalk'   => 'non potest paginam disputationis suam recensere',

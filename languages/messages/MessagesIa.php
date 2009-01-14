@@ -131,6 +131,7 @@ $messages = array(
 'tog-highlightbroken'         => 'Formatar ligamines rupte <a href="" class="new">assi</a> (alternativemente: assi<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Justificar paragraphos',
 'tog-hideminor'               => 'Celar modificationes recente minor',
+'tog-hidepatrolled'           => 'Celar le modificationes patruliate in le modificationes recente',
 'tog-extendwatchlist'         => 'Expander le observatorio a tote le modificationes applicabile',
 'tog-usenewrc'                => 'Modificationes recente meliorate (JavaScript)',
 'tog-numberheadings'          => 'Numerar titulos automaticamente',
@@ -165,6 +166,7 @@ $messages = array(
 'tog-watchlisthideminor'      => 'Excluder le modificationes minor del observatorio',
 'tog-watchlisthideliu'        => 'Celar modificationes per usatores identificate del observatorio',
 'tog-watchlisthideanons'      => 'Celar modificationes per usatores anonyme del observatorio',
+'tog-watchlisthidepatrolled'  => 'Celar le modificationes patruliate del observatorio',
 'tog-nolangconversion'        => 'Disactivar conversion de variantes',
 'tog-ccmeonemails'            => 'Inviar me copias del messages de e-mail que io invia a altere usatores',
 'tog-diffonly'                => 'Non monstrar le contento del pagina sub le comparation de duo versiones',
@@ -560,6 +562,7 @@ Illo debe haber al minus {{PLURAL:$1|1 character|$1 characteres}} e debe differe
 contrasigno pro {{SITENAME}} ($4). Un contrasigno temporari pro le usator
 "$2" ha essite create, le qual es "$3". Si isto esseva tu
 intention, tu debe ora aperir un session e seliger un nove contrasigno.
+Tu contrasigno temporari expirara in {{PLURAL:$5|un die|$5 dies}}.
 
 Si un altere persona ha facite iste requesta, o si tu te ha rememorate tu contrasigno,
 e tu non vole plus cambiar lo, tu pote ignorar iste message e
@@ -1116,6 +1119,7 @@ per favor vide math/README pro configurar lo.",
 'prefs-resetpass'           => 'Cambiar contrasigno',
 'saveprefs'                 => 'Confirmar',
 'resetprefs'                => 'Reverter cambios',
+'restoreprefs'              => 'Restaurar tote le configurationes predefinite',
 'textboxsize'               => 'Modification',
 'prefs-edit-boxsize'        => 'Dimensiones del fenestra de modification.',
 'rows'                      => 'Lineas:',
@@ -1471,6 +1475,7 @@ Tu pote reordinar le lista con un clic super le titulo de un columna.',
 'listfiles_user'        => 'Usator',
 'listfiles_size'        => 'Grandor',
 'listfiles_description' => 'Description',
+'listfiles_count'       => 'Versiones',
 
 # File description page
 'filehist'                       => 'Historia del file',
@@ -1751,31 +1756,32 @@ Il pote haber [[{{MediaWiki:Listgrouprights-helppage}}|informationes additional]
 'listgrouprights-removegroup-all' => 'Pote eliminar tote le gruppos',
 
 # E-mail user
-'mailnologin'     => 'Necun adresse de invio',
-'mailnologintext' => 'Tu debe [[Special:UserLogin|aperir un session]]
+'mailnologin'      => 'Necun adresse de invio',
+'mailnologintext'  => 'Tu debe [[Special:UserLogin|aperir un session]]
 e haber un adresse de e-mail valide in tu [[Special:Preferences|preferentias]]
 pro inviar e-mail a altere usatores.',
-'emailuser'       => 'Inviar e-mail a iste usator',
-'emailpage'       => 'Inviar e-mail al usator',
-'emailpagetext'   => 'Le formulario infra es pro inviar un message de e-mail a iste usator.
+'emailuser'        => 'Inviar e-mail a iste usator',
+'emailpage'        => 'Inviar e-mail al usator',
+'emailpagetext'    => 'Le formulario infra es pro inviar un message de e-mail a iste usator.
 Le adresse de e-mail que tu indicava in [[Special:Preferences|tu preferentias de usator]] apparera
 como le adresse del expeditor del e-mail, de modo que le destinatario pote responder directemente a te.',
-'usermailererror' => 'Le objecto de e-mail retornava le error:',
-'defemailsubject' => 'E-mail de {{SITENAME}}',
-'noemailtitle'    => 'Nulle adresse de e-mail',
-'noemailtext'     => 'Iste usator non ha specificate un adresse de e-mail valide,
-o ha optate pro non reciper e-mail de altere usatores.',
-'email-legend'    => 'Inviar e-mail a un altere usator de {{SITENAME}}',
-'emailfrom'       => 'Expeditor:',
-'emailto'         => 'Destinatario:',
-'emailsubject'    => 'Subjecto:',
-'emailmessage'    => 'Message:',
-'emailsend'       => 'Inviar',
-'emailccme'       => 'Inviar me un copia de mi message.',
-'emailccsubject'  => 'Copia de tu message a $1: $2',
-'emailsent'       => 'E-mail inviate',
-'emailsenttext'   => 'Tu message de e-mail ha essite inviate.',
-'emailuserfooter' => 'Iste e-mail esseva inviate per $1 a $2 con le function "Inviar e-mail al usator" a {{SITENAME}}.',
+'usermailererror'  => 'Le objecto de e-mail retornava le error:',
+'defemailsubject'  => 'E-mail de {{SITENAME}}',
+'noemailtitle'     => 'Nulle adresse de e-mail',
+'noemailtext'      => 'Iste usator non ha specificate un adresse de e-mail valide.',
+'nowikiemailtitle' => 'E-mail non permittite',
+'nowikiemailtext'  => 'Iste usator ha optate pro non reciper e-mail de altere usatores.',
+'email-legend'     => 'Inviar e-mail a un altere usator de {{SITENAME}}',
+'emailfrom'        => 'Expeditor:',
+'emailto'          => 'Destinatario:',
+'emailsubject'     => 'Subjecto:',
+'emailmessage'     => 'Message:',
+'emailsend'        => 'Inviar',
+'emailccme'        => 'Inviar me un copia de mi message.',
+'emailccsubject'   => 'Copia de tu message a $1: $2',
+'emailsent'        => 'E-mail inviate',
+'emailsenttext'    => 'Tu message de e-mail ha essite inviate.',
+'emailuserfooter'  => 'Iste e-mail esseva inviate per $1 a $2 con le function "Inviar e-mail al usator" a {{SITENAME}}.',
 
 # Watchlist
 'watchlist'            => 'Mi observatorio',
@@ -2232,6 +2238,7 @@ pro mover un pagina.',
 'movepagebtn'                  => 'Renominar pagina',
 'pagemovedsub'                 => 'Renomination succedite',
 'movepage-moved'               => '<big>\'\'\'"$1" ha essite renominate a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-redirect'      => 'Un redirection ha essite create.',
 'movepage-moved-noredirect'    => 'Le creation de un redirection ha essite supprimite.',
 'articleexists'                => 'Un pagina con iste nomine ja existe, o le nomine seligite non es valide.
 Per favor selige un altere nomine.',

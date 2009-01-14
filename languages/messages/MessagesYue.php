@@ -1,5 +1,5 @@
 <?php
-/** Cantonese (粵語/廣東話)
+/** Yue (粵語)
  *
  * @ingroup Language
  * @file
@@ -553,7 +553,6 @@ $1',
 請求 {{SITENAME}} 嘅新密碼 ($4)。
 而家用戶 "$2" 嘅新臨時密碼設定咗做 "$3"。
 如果呢個係你所要求嘅，你就需要即刻登入，揀一個新嘅密碼。
-你個臨時密碼會響$5日內過期。
 
 如果係其他人作出呢個請求，
 又或者你記得返你嘅密碼而又唔想再轉，
@@ -1675,29 +1674,29 @@ Template:搞清楚',
 'listgrouprights-removegroup-all' => '可以拎走全部組',
 
 # E-mail user
-'mailnologin'     => '冇傳送地址',
-'mailnologintext' => '你一定要[[Special:UserLogin|登入咗]]同埋喺你嘅[[Special:Preferences|喜好設定]]度有個有效嘅電郵地址先可以傳送電郵畀其他用戶。',
-'emailuser'       => '發電郵畀呢位用戶',
-'emailpage'       => '發電郵畀用戶',
-'emailpagetext'   => '你可以用下面嘅表去寄一封電郵畀呢位用戶。
+'mailnologin'      => '冇傳送地址',
+'mailnologintext'  => '你一定要[[Special:UserLogin|登入咗]]同埋喺你嘅[[Special:Preferences|喜好設定]]度有個有效嘅電郵地址先可以傳送電郵畀其他用戶。',
+'emailuser'        => '發電郵畀呢位用戶',
+'emailpage'        => '發電郵畀用戶',
+'emailpagetext'    => '你可以用下面嘅表去寄一封電郵畀呢位用戶。
 你喺[[Special:Preferences|你嘅用戶喜好設定]]入面填寫嘅電郵地址會出現喺呢封電郵「由」嘅地址度，以便收件人可以回覆到。',
-'usermailererror' => '目標郵件地址返回錯誤：',
-'defemailsubject' => '{{SITENAME}} 電郵',
-'noemailtitle'    => '無電郵地址',
-'noemailtext'     => '呢個用戶重未指定一個有效嘅電郵地址。',
+'usermailererror'  => '目標郵件地址返回錯誤：',
+'defemailsubject'  => '{{SITENAME}} 電郵',
+'noemailtitle'     => '無電郵地址',
+'noemailtext'      => '呢個用戶重未指定一個有效嘅電郵地址。',
 'nowikiemailtitle' => '唔容許電郵',
 'nowikiemailtext'  => '呢位用戶揀咗唔收其他用戶畀佢嘅電郵。',
-'email-legend'    => '寄電郵畀另一位{{SITENAME}}用戶',
-'emailfrom'       => '由:',
-'emailto'         => '到:',
-'emailsubject'    => '主題:',
-'emailmessage'    => '信息:',
-'emailsend'       => '傳送',
-'emailccme'       => '傳送一個我嘅信息電郵畀我。',
-'emailccsubject'  => '你畀$1: $2封信嘅副本',
-'emailsent'       => '電郵已傳送',
-'emailsenttext'   => '你嘅電郵信息已傳送。',
-'emailuserfooter' => '呢封電郵係由$1寄畀$2經{{SITENAME}}嘅「電郵用戶」功能發出嘅。',
+'email-legend'     => '寄電郵畀另一位{{SITENAME}}用戶',
+'emailfrom'        => '由:',
+'emailto'          => '到:',
+'emailsubject'     => '主題:',
+'emailmessage'     => '信息:',
+'emailsend'        => '傳送',
+'emailccme'        => '傳送一個我嘅信息電郵畀我。',
+'emailccsubject'   => '你畀$1: $2封信嘅副本',
+'emailsent'        => '電郵已傳送',
+'emailsenttext'    => '你嘅電郵信息已傳送。',
+'emailuserfooter'  => '呢封電郵係由$1寄畀$2經{{SITENAME}}嘅「電郵用戶」功能發出嘅。',
 
 # Watchlist
 'watchlist'            => '監視清單',

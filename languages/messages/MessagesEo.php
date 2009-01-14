@@ -167,6 +167,7 @@ $messages = array(
 'tog-highlightbroken'         => 'Ruĝigi ligilojn al neekzistantaj paĝoj',
 'tog-justify'                 => 'Alkadrigi liniojn',
 'tog-hideminor'               => 'Kaŝi malgrandajn redaktetojn ĉe <i>Lastaj ŝanĝoj</i>',
+'tog-hidepatrolled'           => 'Kaŝi patrolitajn redaktojn en lastaj ŝanĝoj',
 'tog-extendwatchlist'         => 'Etendi la atentaron por montri ĉiujn aplikeblajn ŝanĝon',
 'tog-usenewrc'                => 'Novstila Lastaj Ŝanĝoj (bezonas JavaSkripton)',
 'tog-numberheadings'          => 'Aŭtomate numerigi sekciojn',
@@ -202,6 +203,7 @@ $messages = array(
 'tog-watchlisthideminor'      => 'Kaŝu malgrandajn redaktojn de la atentaro',
 'tog-watchlisthideliu'        => 'Kaŝi redaktojn de ensalutitaj uzantoj de la atentaro',
 'tog-watchlisthideanons'      => 'Kaŝi redaktojn de anonimuloj de la atentaro',
+'tog-watchlisthidepatrolled'  => 'Kaŝi patrolitajn redaktojn de la atentaro',
 'tog-nolangconversion'        => 'Malŝalti konvertadon de variantoj',
 'tog-ccmeonemails'            => 'Sendi al mi kopiojn de retpoŝtaĵoj, kiujn mi sendis al aliaj uzuloj.',
 'tog-diffonly'                => 'Ne montri paĝan enhavon sub la ŝanĝoj',
@@ -588,7 +590,7 @@ Kontrolu vian literumadon, aŭ [[Special:UserLogin/signup|kreu novan konton]].',
 'passwordremindertext'       => 'Iu (probable vi, el IP-adreso $1) petis novan
 pasvorton por {{SITENAME}} ($4). Provizora pasvorto por uzanto
 "$2" estis kreita kaj estis farita al "$3". Se ĉi tiu estis via
-intencio, vi devos ensaluti kaj elekti novan pasvorton nun.
+intencio, vi devos ensaluti kaj elekti novan pasvorton nun. Via provizora pasvorto malvalidiĝos post  {{PLURAL:$5|unu tago|$5 tagoj}}.
 
 Se iu alia faris ĉi tiun peton, aŭ se vi estas rememorita vian pasvorton,
 kaj ne plu volas ŝanĝi ĝin, vi povas ignori ĉi tiun mesaĝon kaj 
@@ -1120,6 +1122,7 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'prefs-resetpass'           => 'Ŝanĝi pasvorton',
 'saveprefs'                 => 'Konservi preferojn',
 'resetprefs'                => 'Forviŝi nekonservitajn ŝanĝojn',
+'restoreprefs'              => 'Restarigi ĉiujn defaŭltajn preferojn',
 'textboxsize'               => 'Grandeco de redakta tekstujo',
 'prefs-edit-boxsize'        => 'Grandeco de la redakto-kesko.',
 'rows'                      => 'Linioj:',

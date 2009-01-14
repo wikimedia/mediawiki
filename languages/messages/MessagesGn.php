@@ -500,6 +500,7 @@ Reomĩsérõ ta'ãnga peteĩ kuatiaroguépe, eipuru peteĩ joaju:
 'tooltip-pt-mycontris'   => "Tysỹi che mba'emoĩmbyre",
 'tooltip-ca-move'        => 'Guerova kuatiarogue',
 'tooltip-p-logo'         => 'Ape',
+'tooltip-n-mainpage'     => 'Eho ijapépe',
 
 # Spam protection
 'spamprotectiontitle' => 'Filtro de protección contra spam',
