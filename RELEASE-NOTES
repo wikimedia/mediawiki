@@ -37,7 +37,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
-* (bug 15470) Special:Upload no longer force-capitalizes titles
 * (bug 17000) Special:RevisionDelete now checks if the database is locked before
   trying to delete the edit.
 * (bug 16852) padleft and padright now handle multibyte characters correctly
