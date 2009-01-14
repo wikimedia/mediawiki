@@ -1693,6 +1693,11 @@ define('TS_ORACLE', 6);
 define('TS_POSTGRES', 7);
 
 /**
+ * DB2 format time
+ */
+define('TS_DB2', 8);
+
+/**
  * @param mixed $outputtype A timestamp in one of the supported formats, the
  *                          function will autodetect which format is supplied
  *                          and act accordingly.
@@ -1753,6 +1758,8 @@ function wfTimestamp($outputtype=TS_UNIX,$ts=0) {
 			return gmdate( 'd-M-y h.i.s A', $uts) . ' +00:00';
 		case TS_POSTGRES:
 			return gmdate( 'Y-m-d H:i:s', $uts) . ' GMT';
+		case TS_DB2:
+			return gmdate( 'Y-m-d H:i:s', $uts);
 		default:
 			throw new MWException( 'wfTimestamp() called with illegal output type.');
 	}

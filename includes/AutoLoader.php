@@ -320,6 +320,11 @@ $wgAutoloadLocalClasses = array(
 	'PostgresField' => 'includes/db/DatabasePostgres.php',
 	'ResultWrapper' => 'includes/db/Database.php',
 	'SQLiteField' => 'includes/db/DatabaseSqlite.php',
+	
+	'DatabaseIbm_db2' => 'includes/db/DatabaseIbm_db2.php',
+	'IBM_DB2Field' => 'includes/db/DatabaseIbm_db2.php',
+	'IBM_DB2SearchResultSet' => 'includes/SearchIBM_DB2.php',
+	'SearchIBM_DB2' => 'includes/SearchIBM_DB2.php',
 
 	# includes/diff
 	'AncestorComparator' => 'includes/diff/HTMLDiff.php',
