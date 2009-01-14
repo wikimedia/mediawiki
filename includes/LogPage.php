@@ -45,12 +45,12 @@ class LogPage {
 	  * @param string $type One of '', 'block', 'protect', 'rights', 'delete',
 	  *               'upload', 'move'
 	  * @param bool $rc Whether to update recent changes as well as the logging table
-	  * @param bool $udp Whether to send to the UDP feed
+	  * @param bool $udp Whether to send to the UDP feed if not to RC
 	  */
-	public function __construct( $type, $rc = true, $udp = true ) {
+	public function __construct( $type, $rc = true, $udp = 'UDP' ) {
 		$this->type = $type;
 		$this->updateRecentChanges = $rc;
-		$this->sendToUDP = $udp;
+		$this->sendToUDP = ($udp == 'UDP');
 	}
 
 	protected function saveContent() {
