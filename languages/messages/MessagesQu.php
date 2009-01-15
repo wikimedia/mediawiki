@@ -5,6 +5,7 @@
  * @file
  *
  * @author AlimanRuna
+ * @author Omnipaedista
  * @author לערי ריינהארט
  */
 
@@ -1052,9 +1053,9 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'savedprefs'                => "Allinkachinaykikunaqa hallch'asqañam.",
 'timezonelegend'            => "Pacha t'urpi",
 'timezonetext'              => "¹Hayk'a urataq qampa tiyayllaykip pachan sirwiqpa pachanmanta (UTC).",
-'localtime'                 => 'Tiyaylla pacha',
-'timezoneoffset'            => 'Huk kay¹',
-'servertime'                => 'Sirwiqpa pachan',
+'localtime'                 => 'Tiyaylla pacha:',
+'timezoneoffset'            => 'Huk kay¹:',
+'servertime'                => 'Sirwiqpa pachan:',
 'guesstimezone'             => 'Pacha suyuta chaskimuy',
 'allowemail'                => 'Huk ruraqkunamanta e-chaskita saqillay',
 'prefs-searchoptions'       => 'Akllanakunata maskay',

@@ -319,6 +319,9 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Tu âs gnûfs messaçs su $1',
 'editsection'             => 'cambie',
 'editold'                 => 'cambie',
+'viewsourceold'           => 'cjale risultive',
+'editlink'                => 'cambie',
+'viewsourcelink'          => 'cjale risultive',
 'editsectionhint'         => 'cambie la sezion $1',
 'toc'                     => 'Tabele dai contignûts',
 'showtoc'                 => 'mostre',
@@ -423,8 +426,7 @@ E à di jessi di almancul {{PLURAL:$1|1 caratar|$1 caratars}} e jessi difarente 
 'mailmypassword'            => 'Mande une gnove peraule clâf ae me direzion di pueste eletroniche',
 'passwordremindertitle'     => 'Gnove peraule clâf temporanie par {{SITENAME}}',
 'passwordremindertext'      => 'Cualchidun (probabilmentri tu, de direzion IP $1) al à domandât une gnove peraule clâf par jentrâ in {{SITENAME}} ($4).
-Une peraule clâf temporanee par l\'utent "$2" e je stade creade e impuestade a "$3".
-Se cheste e jere la tô intenzion tu varâs di jentrâ e sielzi une gnove peraule clâf cumò.
+Une peraule clâf temporanie par l\'utent "$2" e je stade creade e impuestade a "$3". Se cheste e jere la tô intenzion, tu varâs di jentrâ e sielzi une gnove peraule clâf cumò. La to peraule clâf temporanie e scjadarà daspò {{PLURAL:$5|une zornade|$5 zornadis}}.
 
 Se no tu âs domandât tu chest o se tu âs cjatât la peraule clâf e no tu vuelis plui cambiâle, tu puedis ignorâ chest messaç e continuâ a doprâ la vecje peraule clâf.',
 'noemail'                   => 'Nissune direzion email regjistrade par l\'utent "$1".',
@@ -557,7 +559,7 @@ Ve ca par comoditât l'elenc des eliminazions precedentis par cheste pagjine:",
 'histlegend'             => "Confront tra lis versions: sielç lis caselis des versions che ti interessin e frache Invio o il boton in bas.
 
 Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la version precedente, '''p''' = piçul cambiament",
-'history-fieldset-title' => 'Cîr tal storic',
+'history-fieldset-title' => 'Sgarfe tal storic',
 'deletedrev'             => '[eliminade]',
 'histfirst'              => 'Prime',
 'histlast'               => 'Ultime',
@@ -565,6 +567,8 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'historyempty'           => '(vueide)',
 
 # Revision feed
+'history-feed-title'          => 'Storic des revisions',
+'history-feed-description'    => 'Storic des revisions de pagjine su cheste wiki',
 'history-feed-item-nocomment' => '$1 ai $2', # user at time
 
 # Revision deletion
@@ -739,6 +743,10 @@ Par includi une figure intune pagjine, dopre un leam inte form
 'uploaddisabledtext' => 'Lis cjamadis a son disativâts su cheste wiki.',
 'sourcefilename'     => 'Non dal file origjinâl:',
 'destfilename'       => 'Non dal file di destinazion:',
+'watchthisupload'    => 'Ten di voli',
+
+'license'   => 'Licence pal ûs:',
+'nolicense' => 'Nissune licence sielte',
 
 # Special:ListFiles
 'listfiles'             => 'Liste des figuris',
@@ -747,6 +755,7 @@ Par includi une figure intune pagjine, dopre un leam inte form
 'listfiles_user'        => 'Utent',
 'listfiles_size'        => 'Dimension in bytes',
 'listfiles_description' => 'Descrizion',
+'listfiles_count'       => 'Versions',
 
 # File description page
 'filehist'                  => 'Storic dal file',
@@ -791,13 +800,18 @@ Par includi une figure intune pagjine, dopre un leam inte form
 'randomredirect' => 'Un re-indreçament casuâl',
 
 # Statistics
-'statistics'              => 'Statistichis',
-'statistics-header-users' => 'Statistichis dai utents',
-'statistics-pages'        => 'Pagjinis',
-'statistics-files'        => 'Files cjamâts sù',
-'statistics-users'        => '[[Special:ListUsers|Utents]] regjistrâts',
-'statistics-users-active' => 'Utents atîfs',
-'statistics-mostpopular'  => 'Pagjinis plui visitadis',
+'statistics'                   => 'Statistichis',
+'statistics-header-pages'      => 'Statistichis su lis pagjinis',
+'statistics-header-edits'      => 'Statistichis sui cambiaments',
+'statistics-header-views'      => 'Statistichis su lis viodudis',
+'statistics-header-users'      => 'Statistichis dai utents',
+'statistics-articles'          => 'Pagjinis di contignûts',
+'statistics-pages'             => 'Pagjinis',
+'statistics-files'             => 'Files cjamâts sù',
+'statistics-users'             => '[[Special:ListUsers|Utents]] regjistrâts',
+'statistics-users-active'      => 'Utents atîfs',
+'statistics-users-active-desc' => 'Utents che a àn fat une azion {{PLURAL:$1|intal ultin dì|intai ultins $1 dîs}}',
+'statistics-mostpopular'       => 'Pagjinis plui visitadis',
 
 'disambiguations' => 'Pagjinis di disambiguazion',
 
@@ -818,9 +832,10 @@ Par includi une figure intune pagjine, dopre un leam inte form
 'ncategories'             => '$1 {{PLURAL:$1|categorie|categoriis}}',
 'nlinks'                  => '$1 {{PLURAL:$1|leam|leams}}',
 'nmembers'                => '$1 {{PLURAL:$1|element|elements}}',
+'nrevisions'              => '$1 {{PLURAL:$1|revision|revisions}}',
 'nviews'                  => '$1 {{PLURAL:$1|viodude|viodudis}}',
 'lonelypages'             => 'Pagjinis solitaris',
-'lonelypagestext'         => 'Nissune pagjine in {{SITENAME}} e à leams aes pagjinis ca sot.',
+'lonelypagestext'         => 'Lis pagjinis ca sot no àn leams di altris pagjinis di {{SITENAME}} e no son includudis in altris pagjinis.',
 'uncategorizedpages'      => 'Pagjinis cence categorie',
 'uncategorizedcategories' => 'Categoriis cence categorie',
 'uncategorizedimages'     => 'Files cence une categorie',
@@ -830,6 +845,8 @@ Par includi une figure intune pagjine, dopre un leam inte form
 'popularpages'            => 'Pagjinis popolârs',
 'wantedcategories'        => 'Categoriis desideradis',
 'wantedpages'             => 'Pagjinis desideradis',
+'wantedfiles'             => 'Files desiderâts',
+'wantedtemplates'         => 'Modei desiderâts',
 'mostlinked'              => 'Pagjinis a cui pontin il maiôr numar di leams',
 'mostlinkedcategories'    => 'Categoriis a cui pontin il maiôr numar di leams',
 'mostlinkedtemplates'     => 'Modei plui doprâts',
@@ -842,11 +859,14 @@ Par includi une figure intune pagjine, dopre un leam inte form
 'deadendpages'            => 'Pagjinis cence usite',
 'protectedpages'          => 'Pagjinis protezudis',
 'listusers'               => 'Liste dai utents',
+'usereditcount'           => '$1 {{PLURAL:$1|contribût|contribûts}}',
 'newpages'                => 'Gnovis pagjinis',
 'newpages-username'       => 'Non utent:',
 'ancientpages'            => 'Pagjinis plui vecjis',
 'move'                    => 'Môf',
 'movethispage'            => 'Môf cheste pagjine',
+'pager-newer-n'           => '{{PLURAL:$1|1 plui gnûf|$1 plui gnûfs}}',
+'pager-older-n'           => '{{PLURAL:$1|1 plui vieri|$1 plui vieris}}',
 
 # Book sources
 'booksources'    => 'Fonts librariis',
@@ -910,7 +930,7 @@ Cjale ancje lis [[Special:WantedCategories|categoriis desideradis]].',
 'emailpage'       => 'Mande un messaç di pueste eletroniche al utent',
 'defemailsubject' => 'Messaç di {{SITENAME}}',
 'noemailtitle'    => 'Nissune direzion email',
-'noemailtext'     => 'Chest utent nol à specificât une direzion di pueste valide o al à sielzût di no ricevi pueste di altris utents.',
+'noemailtext'     => 'Chest utent nol à specificât une direzion di pueste valide.',
 'email-legend'    => 'Mande un messaç di pueste eletroniche a un altri utent di {{SITENAME}}',
 'emailfrom'       => 'Di:',
 'emailto'         => 'A:',
@@ -918,6 +938,8 @@ Cjale ancje lis [[Special:WantedCategories|categoriis desideradis]].',
 'emailmessage'    => 'Messaç:',
 'emailsend'       => 'Mande',
 'emailccme'       => 'Mandimi une copie.',
+'emailsent'       => 'Messaç mandât',
+'emailsenttext'   => 'Il messaç di pueste eletroniche al è stât mandât.',
 
 # Watchlist
 'watchlist'            => 'Tignûts di voli',
@@ -1017,6 +1039,7 @@ Tu puedis cambiâ il nivel di protezion di cheste pagjine, ma chest nol varà ef
 'restriction-create' => 'Creazion',
 
 # Undelete
+'viewdeletedpage'        => 'Viôt lis pagjinis eliminadis',
 'undeletebtn'            => 'Ripristine',
 'undeletecomment'        => 'Coment:',
 'undeletedarticle'       => 'al à recuperât "[[$1]]"',
@@ -1037,8 +1060,11 @@ Tu puedis cambiâ il nivel di protezion di cheste pagjine, ma chest nol varà ef
 'month'               => 'Scomençant dal mês (e prime):',
 'year'                => 'Scomençant dal an (e prime):',
 
+'sp-contributions-newbies'     => 'Mostre dome i contribûts dai gnûfs utents',
 'sp-contributions-newbies-sub' => 'Pai gnûfs utents',
 'sp-contributions-blocklog'    => 'Regjistri dai blocs',
+'sp-contributions-search'      => 'Cîr contribûts',
+'sp-contributions-username'    => 'Direzion IP o non utent:',
 'sp-contributions-submit'      => 'Cîr',
 
 # What links here
@@ -1303,7 +1329,7 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 
 # External editor support
 'edit-externally'      => 'Modifiche chest file cuntune aplicazion esterne',
-'edit-externally-help' => 'Cjale [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] par altris informazions.',
+'edit-externally-help' => '(Cjale lis [http://www.mediawiki.org/wiki/Manual:External_editors istruzions] par vê altris informazions)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'ducj',

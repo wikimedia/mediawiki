@@ -155,6 +155,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Schick mr Kopie vo de E-Mails, won i andere schick.',
 'tog-diffonly'                => 'Numme Versionsunterschiid aazeige, ohni d Syte',
 'tog-showhiddencats'          => 'Zeig di versteckte Kategorie',
+'tog-noconvertlink'           => 'Konvertierig vum Titel deaktiviere',
 'tog-norollbackdiff'          => 'Unterschid noch em Zrucksetze unterdrucke',
 
 'underline-always'  => 'immer',
@@ -561,6 +562,7 @@ Wänn s Benutzerkonto us Versäh aaglait woren isch, chasch die Nochricht ignori
 # Password reset dialog
 'resetpass'                 => 'Passwort fir s Benutzerkonto ändere oder zrucksetze',
 'resetpass_announce'        => 'Aamäldig mit em Code, wu per Mail zuegschickt woren isch. Zum d Aamäldig abzschliesse, muesch jetz e nej Passwort wehle.',
+'resetpass_text'            => '<!-- Tue do dr Text ergänze -->',
 'resetpass_header'          => 'Passwort zrucksetze',
 'oldpassword'               => 'Alts Passwort',
 'newpassword'               => 'Nöis Passwort',
@@ -729,7 +731,7 @@ Grund fir d Sperri: $1',
 'template-protected'               => '(schrybgschützt)',
 'template-semiprotected'           => '(schrybgschitzt fir Benutzer, wo nit aagmäldet oder nei sin)',
 'hiddencategories'                 => 'Die Syte ghert zue {{PLURAL:$1|einere versteckte Kategori|$1 versteckte Kategorie}}:',
-'edittools'                        => '<!-- Selle Text wird untr em "ändere"-Formular un bim "Uffelade"-Formular aagzeigt. -->',
+'edittools'                        => '<!-- Dää Text wird unter em "Ändere"-Formular un bim "Uffelade"-Formular aagzeigt. -->',
 'nocreatetitle'                    => 'S Aalege vu neje Syte isch yygschränkt.',
 'nocreatetext'                     => "Uf {{SITENAME}} isch d Erstellig vo nöue Syten ygschränkt.
 Du chasch nur Syten ändere, wo's scho git, oder muesch di [[Special:UserLogin|amälde]].",

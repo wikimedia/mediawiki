@@ -400,6 +400,7 @@ Ja tu izvēlies to norādīt, šo lietos lai identificētu tavu darbu (ieguldīj
 ludza, lai nosutam Tev jaunu {{SITENAME}} ($4) paroli.
 Lietotajam $2 pagaidu parole tagad ir $3.
 Ludzu, nomaini paroli, kad esi veiksmigi iekluvis ieksa.
+Tavas pagaidu paroles deriiguma terminsh beigsies peec {{PLURAL:$5|vienas dienas|$5 dienaam}}.
 
 Ja paroles pieprasījumu bija nosūtījis kāds cits, vai arī tu atcerējies savu veco paroli, šo var ignorēt. Vecā parole joprojām darbojas.',
 'noemail'                    => 'Lietotājs "$1" nav reģistrējis e-pasta adresi.',
@@ -1099,7 +1100,7 @@ Papildu informāciju par katru individuālu piekļuves tiesību veidu, iespējam
 Tā e-pasta adrese, kuru tu esi norādījis [[Special:Preferences|savā izvēļu lapā]], parādīsies e-pasta "From" lauciņā, tādejādi saņēmējs varēs tev atbildēt.',
 'defemailsubject' => 'E-pasts par {{grammar:akuzatīvs|{{SITENAME}}}}',
 'noemailtitle'    => 'Nav e-pasta adreses',
-'noemailtext'     => 'Šis lietotājs nav norādījis derīgu e-pasta adresi vai arī ir izvēlējies nesaņemt e-pastu no citiem lietotājiem.',
+'noemailtext'     => 'Šis lietotājs nav norādījis derīgu e-pasta adresi.',
 'emailfrom'       => 'No:',
 'emailto'         => 'Kam:',
 'emailsubject'    => 'Temats:',

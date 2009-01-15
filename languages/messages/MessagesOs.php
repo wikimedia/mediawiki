@@ -133,6 +133,7 @@ $messages = array(
 'qbbrowse'       => 'Фен',
 'qbedit'         => 'Баив æй',
 'qbpageoptions'  => 'Ацы фарс',
+'qbpageinfo'     => 'Фарсы контекст',
 'qbmyoptions'    => 'Мæ фæрстæ',
 'qbspecialpages' => 'Сæрмагонд фæрстæ',
 'moredotdotdot'  => 'Фылдæр…',
@@ -152,6 +153,7 @@ $messages = array(
 'searcharticle'     => 'Статьямæ',
 'history'           => 'Фарсы истори',
 'history_short'     => 'Истори',
+'info_short'        => 'Информаци',
 'printableversion'  => 'Мыхурмæ верси',
 'permalink'         => 'Ацы версимæ æрвитæн',
 'print'             => 'Мыхуыр',
@@ -188,6 +190,7 @@ $messages = array(
 'redirectpagesub'   => 'Рарвитыны фарс',
 'lastmodifiedat'    => 'Ацы фарс фæстаг хатт ивд æрцыд: $1, $2.', # $1 date, $2 time
 'protectedpage'     => 'Æхгæд фарс',
+'jumptonavigation'  => 'навигаци',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{grammar:genitive|{{SITENAME}}}} тыххæй',
@@ -218,8 +221,10 @@ $messages = array(
 'showtoc'             => 'равдис',
 'hidetoc'             => 'бамбæхс',
 'viewdeleted'         => '$1 фенын дæ фæнды?',
-'site-rss-feed'       => '$1 — RSS-уаццаг',
-'site-atom-feed'      => '$1 — Atom-уаццаг',
+'site-rss-feed'       => '$1 — RSS-уадздзаг',
+'site-atom-feed'      => '$1 — Atom-уадздзаг',
+'page-rss-feed'       => '«$1» — RSS-уадздзаг',
+'page-atom-feed'      => '«$1» — Atom-уадздзаг',
 'red-link-title'      => '$1 (фыст нæма у)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -368,6 +373,7 @@ $messages = array(
 # Preferences page
 'mypreferences'           => 'Æрмадз',
 'prefsnologin'            => 'Системæйæн дæхи нæ бацамыдтай',
+'qbsettings'              => 'Навигацион таг',
 'qbsettings-none'         => 'Ма равдис',
 'qbsettings-fixedleft'    => 'Галиуырдыгæй',
 'qbsettings-fixedright'   => 'Рахизырдыгæй',

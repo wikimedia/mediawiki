@@ -2496,6 +2496,8 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 'exif-orientation-3' => 'Mö 180° pefleköl', # 0th row: bottom; 0th column: right
 'exif-orientation-4' => 'Petülöl pendito', # 0th row: bottom; 0th column: left
 
+'exif-planarconfiguration-1' => 'fomät grobik',
+
 'exif-componentsconfiguration-0' => 'no dabinon',
 
 'exif-exposureprogram-0' => 'No pemiedetöl',
