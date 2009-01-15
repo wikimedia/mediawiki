@@ -2664,7 +2664,7 @@ class Title {
 		}
 
 		# Save a null revision in the page's history notifying of the move
-		$nullRevision = Revision::newNullRevision( $dbw, $oldid, $comment, true );
+		$nullRevision = Revision::newNullRevision( $dbw, $oldid, $comment, false );
 		$nullRevId = $nullRevision->insertOn( $dbw );
 		
 		$article = new Article( $this );
@@ -2763,7 +2763,7 @@ class Title {
 		$now = $dbw->timestamp();
 
 		# Save a null revision in the page's history notifying of the move
-		$nullRevision = Revision::newNullRevision( $dbw, $oldid, $comment, true );
+		$nullRevision = Revision::newNullRevision( $dbw, $oldid, $comment, false );
 		$nullRevId = $nullRevision->insertOn( $dbw );
 		
 		$article = new Article( $this );
