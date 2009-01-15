@@ -101,11 +101,11 @@ class DatabaseSqlite extends Database {
 		return $res;
 	}
 
-	function freeResult(&$res) {
+	function freeResult($res) {
 		if ($res instanceof ResultWrapper) $res->result = NULL; else $res = NULL;
 	}
 
-	function fetchObject(&$res) {
+	function fetchObject($res) {
 		if ($res instanceof ResultWrapper) $r =& $res->result; else $r =& $res;
 		$cur = current($r);
 		if (is_array($cur)) {
@@ -117,7 +117,7 @@ class DatabaseSqlite extends Database {
 		return false;
 	}
 
-	function fetchRow(&$res) {
+	function fetchRow($res) {
 		if ($res instanceof ResultWrapper) $r =& $res->result; else $r =& $res;
 		$cur = current($r);
 		if (is_array($cur)) {
@@ -130,17 +130,17 @@ class DatabaseSqlite extends Database {
 	/**
 	 * The PDO::Statement class implements the array interface so count() will work
 	 */
-	function numRows(&$res) {
+	function numRows($res) {
 		$r = $res instanceof ResultWrapper ? $res->result : $res;
 		return count($r);
 	}
 
-	function numFields(&$res) {
+	function numFields($res) {
 		$r = $res instanceof ResultWrapper ? $res->result : $res;
 		return is_array($r) ? count($r[0]) : 0;
 	}
 
-	function fieldName(&$res,$n) {
+	function fieldName($res,$n) {
 		$r = $res instanceof ResultWrapper ? $res->result : $res;
 		if (is_array($r)) {
 			$keys = array_keys($r[0]);
@@ -157,13 +157,20 @@ class DatabaseSqlite extends Database {
 	}
 
 	/**
+	 * Index names have DB scope
+	 */
+	function indexName( $index ) {
+		return $index;
+	}
+
+	/**
 	 * This must be called after nextSequenceVal
 	 */
 	function insertId() {
 		return $this->mConn->lastInsertId();
 	}
 
-	function dataSeek(&$res,$row) {
+	function dataSeek($res,$row) {
 		if ($res instanceof ResultWrapper) $r =& $res->result; else $r =& $res;
 		reset($r);
 		if ($row > 0) for ($i = 0; $i < $row; $i++) next($r);
@@ -194,7 +201,7 @@ class DatabaseSqlite extends Database {
 	 * - if errors are explicitly ignored, returns NULL on failure
 	 */
 	function indexInfo($table, $index, $fname = 'Database::indexExists') {
-		$sql = 'PRAGMA index_info(' . $this->addQuotes( $index ) . ')';
+		$sql = 'PRAGMA index_info(' . $this->addQuotes( $this->indexName( $index ) ) . ')';
 		$res = $this->query( $sql, $fname );
 		if ( !$res ) {
 			return null;
@@ -213,7 +220,7 @@ class DatabaseSqlite extends Database {
 		$row = $this->selectRow( 'sqlite_master', '*', 
 			array(
 				'type' => 'index',
-				'name' => $index,
+				'name' => $this->indexName( $index ),
 			), $fname );
 		if ( !$row || !isset( $row->sql ) ) {
 			return null;
@@ -314,7 +321,7 @@ class DatabaseSqlite extends Database {
 	/**
 	 * Query whether a given column exists in the mediawiki schema
 	 */
-	function fieldExists($table, $field) {
+	function fieldExists($table, $field, $fname = '') {
 		$info = $this->fieldInfo( $table, $field );
 		return (bool)$info;
 	}
@@ -335,19 +342,19 @@ class DatabaseSqlite extends Database {
 		return false;
 	}
 
-	function begin() {
+	function begin( $fname = '' ) {
 		if ($this->mTrxLevel == 1) $this->commit();
 		$this->mConn->beginTransaction();
 		$this->mTrxLevel = 1;
 	}
 
-	function commit() {
+	function commit( $fname = '' ) {
 		if ($this->mTrxLevel == 0) return;
 		$this->mConn->commit();
 		$this->mTrxLevel = 0;
 	}
 
-	function rollback() {
+	function rollback( $fname = '' ) {
 		if ($this->mTrxLevel == 0) return;
 		$this->mConn->rollBack();
 		$this->mTrxLevel = 0;
