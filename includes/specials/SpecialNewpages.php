@@ -239,7 +239,8 @@ class SpecialNewpages extends SpecialPage {
 
 		$title = Title::makeTitleSafe( $result->rc_namespace, $result->rc_title );
 		$time = $wgLang->timeAndDate( $result->rc_timestamp, true );
-		$plink = $this->skin->makeKnownLinkObj( $title, '', $this->patrollable( $result ) ? 'rcid=' . $result->rc_id : '' );
+		$query = $this->patrollable( $result ) ? "rcid={$result->rc_id}&redirect=no" : 'redirect=no';
+		$plink = $this->skin->makeKnownLinkObj( $title, '', $query );
 		$hist = $this->skin->makeKnownLinkObj( $title, wfMsgHtml( 'hist' ), 'action=history' );
 		$length = wfMsgExt( 'nbytes', array( 'parsemag', 'escape' ),
 			$wgLang->formatNum( $result->length ) );
