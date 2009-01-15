@@ -47,11 +47,13 @@ require_once( "$IP/includes/Namespace.php" );
 require_once( "$IP/includes/ProfilerStub.php" );
 require_once( "$IP/includes/GlobalFunctions.php" );
 require_once( "$IP/includes/Hooks.php" );
+require_once( "$IP/includes/Exception.php" );
 
 # If we get an exception, the user needs to know
 # all the details
 $wgShowExceptionDetails = true;
-
+$wgShowSQLErrors = true;
+wfInstallExceptionHandler();
 ## Databases we support:
 
 $ourdb = array();
