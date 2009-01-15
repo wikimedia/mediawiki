@@ -3034,6 +3034,28 @@ class Title {
 	}
 	
 	/**
+	 * Get the first revision of the page
+	 *
+	 * @param $flags \type{\int} GAID_FOR_UPDATE
+	 * @return Revision (or NULL if page doesn't exist)
+	 */
+	public function getFirstRevision( $flags=0 ) {
+		$db = ($flags & GAID_FOR_UPDATE) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
+		$pageId = $this->getArticleId($flags);
+		if( !$pageId ) return NULL;
+		$row = $db->selectRow( 'revision', '*',
+			array( 'rev_page' => $pageId ),
+			__METHOD__,
+			array( 'ORDER BY' => 'rev_timestamp ASC', 'LIMIT' => 1 )
+		);
+		if( !$row ) {
+			return NULL;
+		} else {
+			return new Revision( $row );
+		}
+	}
+	
+	/**
 	 * Check if this is a new page
 	 *
 	 * @return bool
