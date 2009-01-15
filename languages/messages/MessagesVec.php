@@ -128,6 +128,7 @@ $messages = array(
 'tog-highlightbroken'         => "Evidensia i cołegamenti che i punta a voxe 'ncora da scrìvar",
 'tog-justify'                 => 'Paragrafo: giustificà',
 'tog-hideminor'               => 'Scondi łe modifighe picenine n\'te ła paxena "Ultime modifighe"',
+'tog-hidepatrolled'           => 'Scondi le modìfeghe verificà tra le ultime modìfeghe',
 'tog-extendwatchlist'         => 'Espandi ła funsion osservai speciałi mostrando tute łe modifighe aplicabili',
 'tog-usenewrc'                => 'Ultime modifiche avanzade (ghe vol JavaScript)',
 'tog-numberheadings'          => 'Auto-numerazion dei titoli de paragrafo',
@@ -162,6 +163,7 @@ $messages = array(
 'tog-watchlisthideminor'      => 'Scondi le modifiche picenine nei osservati speciali',
 'tog-watchlisthideliu'        => "Scondi le modifiche dei utenti registrà tra le pàxene tegnùe d'ocio",
 'tog-watchlisthideanons'      => "Scondi le modifiche dei utenti anonimi tra le pàxene tegnùe d'ocio",
+'tog-watchlisthidepatrolled'  => 'Scondi le modìfeghe verificà ne i osservati speciali',
 'tog-ccmeonemails'            => 'Màndeme na copia dei messagi spedìi ai altri utenti',
 'tog-diffonly'                => 'No stà mostrar el contenuto de la pagina dopo el confronto tra version',
 'tog-showhiddencats'          => 'Mostra łe categorie sconte',
@@ -543,6 +545,7 @@ La gà da contegner almanco {{PLURAL:$1|$1 caràtere|$1 caràteri}} e la gà da 
 'passwordremindertext'       => 'Qualcheduni (probabilmente ti, da l\'indirizo IP $1) el gà domandà che ghe vegna mandà na nova password par {{SITENAME}} ($4).
 Na password tenporànea par l\'utente "$2" la xe stà creà e inpostà a "$3".
 Se xe questo che te voléi far, desso te podi entrar co\' sta password tenporanea e inpostar na password nova.
+La to password tenporànea la scade in {{PLURAL:$5|un zorno|$5 zorni}}.
 
 Se no te sì mìa stà ti a far la domanda, opure t\'è vegnù in mente la password e no te vol più canbiarla, te pol ignorar sto mesagio e continuar a doparar la vecia password.',
 'noemail'                    => 'Nissuna casela e-mail la risulta registrà par l\'Utente "$1".',
@@ -1058,6 +1061,7 @@ Assicùrete che la continuità storica de la pagina no la vegna alterà.',
 'prefs-resetpass'           => 'Cànbia password',
 'saveprefs'                 => 'Salva le preferense',
 'resetprefs'                => 'Reinposta le preferense',
+'restoreprefs'              => 'Ripristina le inpostassion predefinìe',
 'textboxsize'               => 'Dimension de la casela de modifica',
 'prefs-edit-boxsize'        => 'Dimension de la finestra de modìfega.',
 'rows'                      => 'Righe:',
@@ -1844,7 +1848,7 @@ Le impostazion atuali par la pagina le xe <strong>$1</strong>:',
 ** Pàxena doparà assè
 ** Vandalismi ripetùi',
 'protect-edit-reasonlist'     => 'Cànbia i motivi de la protesion',
-'protect-expiry-options'      => '2 ore:2 hours,1 giòrno:1 day,3 giòrni:3 days,1 setimana:1 week,2 setimane:2 weeks,1 mese:1 month,3 mesi:3 months,6 mesi:6 months,1 ano:1 year,infinito:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 ora:1 hour,1 zòrno:1 day,1 stimana:1 week,2 stimane:2 weeks,1 mese:1 month,3 mesi:3 months,6 mesi:6 months,1 ano:1 year,infinito:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Parmesso:',
 'restriction-level'           => 'Livel de restrizion',
 'minimum-size'                => 'Dimension minima',
@@ -2099,6 +2103,7 @@ Acèrtete de ver ben valutà le conseguenze del spostamento, prima de procédar.
 'movepagebtn'                  => 'Sposta sta pàxena',
 'pagemovedsub'                 => 'Spostamento efetuà con sucesso',
 'movepage-moved'               => '<big>\'\'\'"$1" la xe stà spostà a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-redirect'      => 'Un reindirissamento el xe stà creà.',
 'movepage-moved-noredirect'    => 'La creassion de un reindirissamento la xe stà sopressa.',
 'articleexists'                => "Na pàxena con sto nome la existe xà, opure el nome che te ghè sielto no'l xè vałido.<br />Siegli, par piaser, un titoło diverso par ła voçe.",
 'cantmove-titleprotected'      => 'No se pol mìa spostar la pagina, in quanto el novo titolo el xe stà proteto par inpedirghene la creazion',

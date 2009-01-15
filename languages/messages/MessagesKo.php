@@ -250,6 +250,7 @@ $messages = array(
 'tog-highlightbroken'         => '없는 문서로 연결된 링크를 <a href="" class="new">이렇게</a> 보이기(선택하지 않으면 <a href="" class="internal">이렇게</a> 보임)',
 'tog-justify'                 => '문단 정렬하기',
 'tog-hideminor'               => '사소한 편집을 최근 바뀜에서 숨기기',
+'tog-hidepatrolled'           => '최근 바뀜에서 검토된 편집을 숨기기',
 'tog-extendwatchlist'         => '주시 문서를 모든 변경 목록에 적용하기',
 'tog-usenewrc'                => '향상된 최근 바뀜 (자바스크립트)',
 'tog-numberheadings'          => '머릿글 번호 매기기',
@@ -284,6 +285,7 @@ $messages = array(
 'tog-watchlisthideminor'      => '주시문서 목록에서 사소한 편집을 숨기기',
 'tog-watchlisthideliu'        => '주시문서 목록에서 로그인한 사용자의 편집을 숨기기',
 'tog-watchlisthideanons'      => '주시문서 목록에서 비등록 사용자의 편집을 숨기기',
+'tog-watchlisthidepatrolled'  => '주시문서 목록에서 검토된 편집을 숨기기',
 'tog-ccmeonemails'            => '이메일을 보낼 때 내 이메일로 복사본을 보내기',
 'tog-diffonly'                => '편집 차이를 비교할 때 문서 내용을 보여주지 않기',
 'tog-showhiddencats'          => '숨겨진 분류 보기',
@@ -2547,6 +2549,7 @@ Variants for Chinese language
 
 'exif-exposureprogram-0' => '정의되지 않음',
 'exif-exposureprogram-1' => '수동',
+'exif-exposureprogram-2' => '일반 프로그램',
 'exif-exposureprogram-3' => '조리개 우선',
 'exif-exposureprogram-4' => '셔터 우선',
 

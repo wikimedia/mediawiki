@@ -6,6 +6,7 @@
  *
  * @author Gmelfi
  * @author Melos
+ * @author Omnipaedista
  * @author Santu
  * @author Sarvaturi
  * @author Tonyfroio
@@ -1633,7 +1634,7 @@ Protucolli suppurtati: <tt>$1</tt>',
 'usermailererror' => "L'uggettu mail hà ristituitu l'erruri:",
 'defemailsubject' => 'Missaggiu di {{SITENAME}}',
 'noemailtitle'    => 'Nuddu ndirizzu e-mail',
-'noemailtext'     => "St'utilizzaturi nun spicificau nu nnirizzu email vàlidu, o scigghìu di nun ricìviri email di àutri utilizzatura.",
+'noemailtext'     => "St'utilizzaturi nun spicificau nu nnirizzu email vàlidu.",
 'email-legend'    => "Manna n'e-mail a n'àutru utenti di {{SITENAME}}",
 'emailfrom'       => 'Di:',
 'emailto'         => 'A:',

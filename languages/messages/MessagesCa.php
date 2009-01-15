@@ -588,7 +588,7 @@ Ha de tenir un mínim {{PLURAL:$1|d'un caràcter|de $1 caràcters}} i ésser dif
 'mailmypassword'             => "Envia'm una nova contrasenya per correu electrònic",
 'passwordremindertitle'      => 'Nova contrasenya temporal per al projecte {{SITENAME}}',
 'passwordremindertext'       => "Algú (vós mateix segurament, des de l'adreça l'IP $1) ha soŀlicitat que us enviéssim una nova contrasenya per a iniciar la sessió al projecte {{SITENAME}} ($4).
-La contrasenya per a l'usuari «$2» és ara «$3». Si aquesta fou la vostra intenció, ara hauríeu d'iniciar la sessió i canviar la vostra contrasenya.
+La nova contrasenya temporal per a l'usuari «$2» és ara «$3». Si aquesta fou la vostra intenció, ara hauríeu d'iniciar la sessió i canviar-la. Tingueu present que és temporal i caducarà d'aquí {{PLURAL:$5|un dia|$5 dies}}.
 
 Si algú altre hagués fet aquesta soŀlicitud o si ja haguéssiu recordat la vostra contrasenya i
 no volguéssiu canviar-la, ignoreu aquest missatge i continueu utilitzant
@@ -1110,6 +1110,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'prefs-resetpass'           => 'Canvia la contrasenya',
 'saveprefs'                 => 'Desa les preferències',
 'resetprefs'                => 'Esborra els canvis no guardats',
+'restoreprefs'              => 'Restaura les preferències per defecte',
 'textboxsize'               => 'Dimensions de la caixa de text',
 'prefs-edit-boxsize'        => "Mida de la finestra d'edició.",
 'rows'                      => 'Files',
@@ -1194,6 +1195,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'right-move'                 => 'Moure pàgines',
 'right-move-subpages'        => 'Moure pàgines amb les seves subpàgines',
 'right-move-rootuserpages'   => "Moure pàgines d'usuari root",
+'right-movefile'             => 'Moure fitxers',
 'right-suppressredirect'     => 'No crear redireccions quan es reanomena una pàgina',
 'right-upload'               => 'Carregar fitxers',
 'right-reupload'             => "Carregar al damunt d'un fitxer existent",
@@ -1254,6 +1256,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'action-move'                 => 'moure aquesta pàgina',
 'action-move-subpages'        => 'moure aquesta pàgina, i llurs subpàgines',
 'action-move-rootuserpages'   => "moure pàgines d'usuari root",
+'action-movefile'             => 'moure aquest fitxer',
 'action-upload'               => 'carregar aquest fitxer',
 'action-reupload'             => 'substituir aquest fitxer',
 'action-reupload-shared'      => 'substituir aquest fitxer en un dipòsit compartit',
@@ -1431,6 +1434,7 @@ Clicant al capdamunt de les columnes podeu canviar-ne l'ordenació.",
 'listfiles_user'        => 'Usuari',
 'listfiles_size'        => 'Mida (octets)',
 'listfiles_description' => 'Descripció',
+'listfiles_count'       => 'Versions',
 
 # File description page
 'filehist'                       => 'Historial del fitxer',
@@ -1717,7 +1721,8 @@ L'adreça electrònica que heu entrat en [[Special:Preferences|les vostres prefe
 'usermailererror' => "L'objecte de correu ha retornat un error:",
 'defemailsubject' => 'Adreça correl de {{SITENAME}}',
 'noemailtitle'    => 'No hi ha cap adreça electrònica',
-'noemailtext'     => "Aquest usuari no ha especificat una adreça electrònica vàlida, o ha escollit no rebre correu electrònic d'altres usuaris.",
+'noemailtext'     => 'Aquest usuari no ha especificat una adreça electrònica vàlida.',
+'nowikiemailtext' => "Aquest usuari ha escollir no rebre missatges electrònics d'altres usuaris.",
 'email-legend'    => 'Enviar un correu electrònic a un altre usuari de {{SITENAME}}',
 'emailfrom'       => 'De:',
 'emailto'         => 'Per a:',
@@ -2162,6 +2167,7 @@ En aquests casos, haureu de traslladar o fusionar la pàgina manualment si ho de
 'movenologintext'              => "Heu de ser un usuari registrat i estar [[Special:UserLogin|dintre d'una sessió]]
 per reanomenar una pàgina.",
 'movenotallowed'               => 'No teniu permís per a moure pàgines.',
+'movenotallowedfile'           => 'No teniu el permís per a moure fitxers.',
 'cant-move-user-page'          => "No teniu permís per a moure pàgines d'usuari (independentment de les subpàgines).",
 'cant-move-to-user-page'       => "No teniu permís per a moure una pàgina a una pàgina d'usuari (independentment de poder fer-ho cap a una subpàgina d'usuari).",
 'newtitle'                     => 'A títol nou',
@@ -2169,6 +2175,7 @@ per reanomenar una pàgina.",
 'movepagebtn'                  => 'Reanomena la pàgina',
 'pagemovedsub'                 => 'Reanomenament amb èxit',
 'movepage-moved'               => "<big>'''«$1» s'ha mogut a «$2»'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-redirect'      => "S'ha creat una redirecció.",
 'articleexists'                => 'Ja existeix una pàgina amb aquest nom, o el nom que heu triat no és vàlid.
 Trieu-ne un altre, si us plau.',
 'cantmove-titleprotected'      => "No podeu moure una pàgina a aquesta ubicació, perquè s'ha protegit la creació del títol nou",

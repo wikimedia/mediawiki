@@ -470,9 +470,15 @@ Tu non ge ne puè ccrejà cchiù.",
 Nisciuna mail t'avène mannete pe tutte le seguende dettaglie.",
 'noemailprefs'               => "Specifiche 'n'indirizze e-mail pe ste dettaglie ca onne essere fatiete.",
 'emailconfirmlink'           => "Conferme l'indirizze e-mail tue",
+'invalidemailaddress'        => "L'indirizze e-mail non ge pò essere accettete cumme l'è scritte purcè tène 'nu formete invalide.
+Pe piacere mitte l'indirizze a cumme criste cumanne, ce nò no 'u scè mettènne proprie.",
 'accountcreated'             => 'cunde utende ccrejete',
 'accountcreatedtext'         => "'U cunde utende pe $1 ha state ccrejete.",
 'createaccount-title'        => "Ccreazzione de 'u cunde utende pe {{SITENAME}}",
+'createaccount-text'         => 'Quacchedune ha ccrejete \'nu cunde utende cu l\'indirizze e-mail tue sus a {{SITENAME}} ($4) chiamete "$2", cu password "$3".
+Tu, mò, t\'avisse a collegà e cangià \'a password toje.
+
+Tu puè pure cacà stu messagge, ce stu cunde utende ha state ccrejete pe errore.',
 'loginlanguagelabel'         => 'Lénga: $1',
 
 # Password reset dialog
@@ -618,6 +624,9 @@ Pare proprie ca l'onne scangellete.",
 'parser-template-loop-warning'            => "Amme acchiete 'nu cicle de template: [[$1]]",
 'parser-template-recursion-depth-warning' => "Ha state supranete 'u limite di ricorsione de le template ($1)",
 
+# "Undo" feature
+'undo-summary' => "Repristine 'a revisione $1 da [[Special:Contributions/$2|$2]] ([[User talk:$2|'Ngazzaminde]])",
+
 # Account creation failure
 'cantcreateaccounttitle' => "Non ge puè ccrejà 'nu cunde utende",
 'cantcreateaccount-text' => "'A creazione d'u cunde utende da stu 'ndirizze IP ('''$1''') ha state blocchete da [[User:$3|$3]].
@@ -688,13 +697,14 @@ Leggenda: (cur) = differenze cu 'a versiona corrende,
 'suppressionlog' => 'Archivie de le soppressiune',
 
 # History merging
-'mergehistory-from'           => 'Pàgene sorgende:',
-'mergehistory-into'           => 'Pàgene de destinazione:',
-'mergehistory-submit'         => "Scuagghije 'nzieme le revisiune",
-'mergehistory-no-source'      => "'A pàgena sorgende $1 non g'esiste.",
-'mergehistory-no-destination' => "'A pàgene de destinazione $1 non g'esiste.",
-'mergehistory-autocomment'    => "Squagghiete [[:$1]] jndr'à [[:$2]]",
-'mergehistory-comment'        => "Squagghiete [[:$1]] jndr'à [[:$2]]: $3",
+'mergehistory-from'             => 'Pàgene sorgende:',
+'mergehistory-into'             => 'Pàgene de destinazione:',
+'mergehistory-submit'           => "Scuagghije 'nzieme le revisiune",
+'mergehistory-no-source'        => "'A pàgena sorgende $1 non g'esiste.",
+'mergehistory-no-destination'   => "'A pàgene de destinazione $1 non g'esiste.",
+'mergehistory-autocomment'      => "Squagghiete [[:$1]] jndr'à [[:$2]]",
+'mergehistory-comment'          => "Squagghiete [[:$1]] jndr'à [[:$2]]: $3",
+'mergehistory-same-destination' => 'Le pàggene sorgende e de destinazione non ge ponne essere le stesse',
 
 # Merge log
 'mergelog' => 'Archivije de le scuagghiaminde',
@@ -881,6 +891,7 @@ condrolle ce l'installazione de latex, dvips, gs e convertitore jè corrette",
 # User rights
 'userrights-lookup-user'         => "Gestisce le gruppe de l'utinde",
 'userrights-user-editname'       => "Mitte 'nu nome utende:",
+'editinguser'                    => "Stè cange le deritte de l'utinde de l'utende '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'       => "Cange le gruppe d'utinde",
 'saveusergroups'                 => "Reggistre le gruppe d'utinde",
 'userrights-groupsmember'        => 'Membre de:',
@@ -927,6 +938,8 @@ condrolle ce l'installazione de latex, dvips, gs e convertitore jè corrette",
 'right-browsearchive' => 'Cirche le pàggene scangellete',
 'right-undelete'      => "Repristine 'na pàgene",
 'right-block'         => 'Blocche otre utinde a fà le cangiaminde',
+'right-blockemail'    => "Blocche l'utente a fà mannà le email",
+'right-protect'       => 'Cange le levèelle de protezione e cange le pàggene prutette',
 'right-editinterface' => "Cange l'inderfacce utende",
 'right-import'        => "Pàggene 'mbortete da otre Uicchipèdie",
 'right-userrights'    => 'Cange tutte le deritte utende',
@@ -1035,6 +1048,7 @@ Vide 'a [[Special:NewFiles|gallerie de le file nuève]] pe vedè l'otre andeprim
 'upload_source_file' => " ('nu fail sus a 'u combiuter tue)",
 
 # Special:ListFiles
+'listfiles_search_for'  => 'Cirche pe nome de le media:',
 'imgfile'               => 'file',
 'listfiles'             => 'Liste de le fail',
 'listfiles_date'        => 'Sciurne',
@@ -1042,6 +1056,7 @@ Vide 'a [[Special:NewFiles|gallerie de le file nuève]] pe vedè l'otre andeprim
 'listfiles_user'        => 'Utende',
 'listfiles_size'        => 'Dimenzione',
 'listfiles_description' => 'Descrizione',
+'listfiles_count'       => 'Versiune',
 
 # File description page
 'filehist'                       => 'cunde',
@@ -1078,7 +1093,9 @@ Vide 'a [[Special:NewFiles|gallerie de le file nuève]] pe vedè l'otre andeprim
 'filedelete'                  => 'Scangille $1',
 'filedelete-backlink'         => '← $1',
 'filedelete-legend'           => "Scangille 'u file",
+'filedelete-comment'          => "Mutive d'u scangellamende:",
 'filedelete-submit'           => 'Scangille',
+'filedelete-success'          => "'''$1''' ha state scangellete.",
 'filedelete-nofile'           => "'''$1''' non g'esiste.",
 'filedelete-otherreason'      => 'Otre/addizionale mutive:',
 'filedelete-reason-otherlist' => 'Otre mutive',
@@ -1277,12 +1294,14 @@ Le cangiaminde future a sta pàgene e 'a pàgene de le 'ngazzaminde associete le
 'notanarticle'      => "Non g'è 'na vosce",
 'notvisiblerev'     => "'A revisione ha state scangellete",
 'watchlist-details' => "{{PLURAL:$1|$1 pàgene|$1 pàggene}} jndr'à liste de le pàggene condrollete, scartanne le pàggene de le 'ngazzaminde.",
+'wlheader-enotif'   => "* 'A notifiche de le e-mail notification jè abbilitete.",
 'wlshowlast'        => "Vide l'urteme $1 ore $2 sciurne $3",
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Fà vedè...',
 'unwatching' => 'No fà vedè...',
 
+'enotif_mailer'                => '{{SITENAME}} Notificatore de email',
 'enotif_reset'                 => 'Signe tutte le pàggene cumme visitete',
 'enotif_newpagetext'           => "Queste è 'na pàgena nove.",
 'enotif_impersonal_salutation' => 'Utende de {{SITENAME}}',
@@ -1307,6 +1326,7 @@ Conferme quidde ca ste face, ce si sicure ca è capite quidde ca ste cumbine e c
 Vide $2 pe \'na reggistrazione de le scangellaziune recende.',
 'deletedarticle'        => 'scangillete "[[$1]]"',
 'dellogpage'            => 'Archivie de le scangellaminde',
+'deletionlog'           => 'Archivije de le scangellaminde',
 'deletecomment'         => "Mutive p'a scangellazione:",
 'deleteotherreason'     => 'Otre mutive de cchiù:',
 'deletereasonotherlist' => 'Otre mutive',
@@ -1361,21 +1381,22 @@ Tu puè cangià 'u levèlle de protezione de sta pàgene ma stu cangiamende non 
 'restriction-level-all'           => 'ogne levèlle',
 
 # Undelete
-'undelete'                 => 'Vide le pàggene scangellete',
-'viewdeletedpage'          => 'Vide le pàggene scangellete',
-'undelete-fieldset-title'  => 'Repristine le revisiune',
-'undeleterevisions'        => '$1 {{PLURAL:$1|revisione|revisiune}} archiviete',
-'undelete-revision'        => 'Revisiona scangellete de $1 (cumme de $4, a $5) da $3:',
-'undeletebtn'              => 'Repristine',
-'undeletelink'             => 'repristine',
-'undeletereset'            => 'Azzere',
-'undeleteinvert'           => 'Selezione a smerse',
-'undeletecomment'          => 'Commende:',
-'undeletedarticle'         => 'ripristinete "[[$1]]"',
-'undeletedrevisions'       => '{{PLURAL:$1|1 revisione|$1 revisiune}} ripristinete',
-'undeletedrevisions-files' => '{{PLURAL:$1|1 revisione|$1 revisiune}} e {{PLURAL:$2|1 file|$2 file}} ripristinete',
-'undeletedfiles'           => '{{PLURAL:$1|1 file|$1 file}} ripristinete',
-'undelete-search-submit'   => 'Cirche',
+'undelete'                  => 'Vide le pàggene scangellete',
+'viewdeletedpage'           => 'Vide le pàggene scangellete',
+'undelete-fieldset-title'   => 'Repristine le revisiune',
+'undeleterevisions'         => '$1 {{PLURAL:$1|revisione|revisiune}} archiviete',
+'undelete-revision'         => 'Revisiona scangellete de $1 (cumme de $4, a $5) da $3:',
+'undeletebtn'               => 'Repristine',
+'undeletelink'              => 'repristine',
+'undeletereset'             => 'Azzere',
+'undeleteinvert'            => 'Selezione a smerse',
+'undeletecomment'           => 'Commende:',
+'undeletedarticle'          => 'ripristinete "[[$1]]"',
+'undeletedrevisions'        => '{{PLURAL:$1|1 revisione|$1 revisiune}} ripristinete',
+'undeletedrevisions-files'  => '{{PLURAL:$1|1 revisione|$1 revisiune}} e {{PLURAL:$2|1 file|$2 file}} ripristinete',
+'undeletedfiles'            => '{{PLURAL:$1|1 file|$1 file}} ripristinete',
+'undelete-search-submit'    => 'Cirche',
+'undelete-show-file-submit' => 'Sine',
 
 # Namespace form on various pages
 'namespace'      => 'Namespace:',
@@ -1411,6 +1432,8 @@ Tu puè cangià 'u levèlle de protezione de sta pàgene ma stu cangiamende non 
 
 # Block/unblock
 'blockip'                      => "Blocche l'utende",
+'ipbreason'                    => 'Mutive:',
+'ipbreasonotherlist'           => 'Otre mutive',
 'ipbanononly'                  => "Blocche sulamende l'utinde anonime",
 'ipbsubmit'                    => "Blocche st'utende",
 'ipboptions'                   => '2 ore:2 hours,1 giurne:1 day,3 giurne:3 days,1 sumane:1 week,2 sumane:2 weeks,1 mese:1 month,3 mise:3 months,6 mise:6 months,1 anne:1 year,infinite:infinite', # display1:time1,display2:time2,...
@@ -1491,6 +1514,7 @@ Videta tu 'a màne a 'ngollà 'a pàgena vecchie cu quedda nova.'''",
 'movelogpage'               => 'Archivije de le spustaminde',
 'movereason'                => 'Raggione:',
 'revertmove'                => 'a smerse',
+'delete_and_move'           => 'Scangille e spuèste',
 'immobile-source-namespace' => 'Non ge pozze spustà le pàggene da \'u namespace "$1"',
 'immobile-target-namespace' => 'Non ge pozze spustà le pàggene jndr\'à \'u namespace "$1"',
 'immobile-source-page'      => 'Sta pàgene non ge se pò spustà.',
