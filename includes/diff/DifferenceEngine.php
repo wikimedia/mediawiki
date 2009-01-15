@@ -172,15 +172,15 @@ CONTROL;
 				// Look for an unpatrolled change corresponding to this diff
 				$db = wfGetDB( DB_SLAVE );
 				$change = RecentChange::newFromConds(
-				array(
-				// Add redundant user,timestamp condition so we can use the existing index
-						'rc_user_text'  => $this->mNewRev->getUserText( Revision::FOR_THIS_USER ),
-						'rc_timestamp'  => $db->timestamp( $this->mNewRev->getTimestamp() ),
-						'rc_this_oldid' => $this->mNewid,
-						'rc_last_oldid' => $this->mOldid,
-						'rc_patrolled'  => 0
-				),
-				__METHOD__
+					array(
+					// Add redundant user,timestamp condition so we can use the existing index
+							'rc_user_text'  => $this->mNewRev->getRawUserText(),
+							'rc_timestamp'  => $db->timestamp( $this->mNewRev->getTimestamp() ),
+							'rc_this_oldid' => $this->mNewid,
+							'rc_last_oldid' => $this->mOldid,
+							'rc_patrolled'  => 0
+					),
+					__METHOD__
 				);
 				if( $change instanceof RecentChange ) {
 					$rcid = $change->mAttribs['rc_id'];
