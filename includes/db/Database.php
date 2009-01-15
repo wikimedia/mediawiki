@@ -570,7 +570,7 @@ class Database {
 		$ret = $this->doQuery( $commentedSql );
 
 		# Try reconnecting if the connection was lost
-		if ( false === $ret && ( $this->lastErrno() == 2013 || $this->lastErrno() == 2006 ) ) {
+		if ( false === $ret && $this->wasErrorReissuable() ) {
 			# Transaction is gone, like it or not
 			$this->mTrxLevel = 0;
 			wfDebug( "Connection lost, reconnecting...\n" );
@@ -1814,6 +1814,14 @@ class Database {
 	 */
 	function wasDeadlock() {
 		return $this->lastErrno() == 1213;
+	}
+
+	/**
+	 * Determines if the last query error was something that should be dealt 
+	 * with by pinging the connection and reissuing the query
+	 */
+	function wasErrorReissuable() {
+		return $this->lastErrno() == 2013 || $this->lastErrno() == 2006;
 	}
 
 	/**

@@ -161,23 +161,26 @@ class MWException extends Exception {
 			if( $hookResult = $this->runHooks( get_class( $this ) . "Raw" ) ) {
 				die( $hookResult );
 			}
-			echo $this->htmlHeader();
-			echo $this->getHTML();
-			echo $this->htmlFooter();
+			if ( defined( 'MEDIAWIKI_INSTALL' ) ) {
+				echo $this->getHTML();
+			} else {
+				echo $this->htmlHeader();
+				echo $this->getHTML();
+				echo $this->htmlFooter();
+			}
 		}
 	}
 
 	/**
 	 * Output a report about the exception and takes care of formatting.
-	 * It will be either HTML or plain text based on $wgCommandLineMode.
+	 * It will be either HTML or plain text based on isCommandLine().
 	 */
 	function report() {
-		global $wgCommandLineMode;
 		$log = $this->getLogMessage();
 		if ( $log ) {
 			wfDebugLog( 'exception', $log );
 		}
-		if ( $wgCommandLineMode ) {
+		if ( self::isCommandLine() ) {
 			wfPrintError( $this->getText() );
 		} else {
 			$this->reportHTML();
@@ -213,6 +216,10 @@ class MWException extends Exception {
 	 */
 	function htmlFooter() {
 		echo "</body></html>";
+	}
+
+	static function isCommandLine() {
+		return !empty( $GLOBALS['wgCommandLineMode'] ) && !defined( 'MEDIAWIKI_INSTALL' );
 	}
 }
 
@@ -264,6 +271,7 @@ function wfInstallExceptionHandler() {
  * Report an exception to the user
  */
 function wfReportException( Exception $e ) {
+	$cmdLine = MWException::isCommandLine();
 	 if ( $e instanceof MWException ) {
 		 try {
 			 $e->report();
@@ -276,7 +284,7 @@ function wfReportException( Exception $e ) {
 			 "\n\nException caught inside exception handler: " .
 			 $e2->__toString() . "\n";
 
-			 if ( !empty( $GLOBALS['wgCommandLineMode'] ) ) {
+			 if ( $cmdLine ) {
 				 wfPrintError( $message );
 			 } else {
 				 echo nl2br( htmlspecialchars( $message ) ). "\n";
@@ -288,7 +296,7 @@ function wfReportException( Exception $e ) {
 		 if ( $GLOBALS['wgShowExceptionDetails'] ) {
 			 $message .= "\n" . $e->getTraceAsString() ."\n";
 		 }
-		 if ( !empty( $GLOBALS['wgCommandLineMode'] ) ) {
+		 if ( $cmdLine ) {
 			 wfPrintError( $message );
 		 } else {
 			 echo nl2br( htmlspecialchars( $message ) ). "\n";
@@ -298,7 +306,7 @@ function wfReportException( Exception $e ) {
 
 /**
  * Print a message, if possible to STDERR.
- * Use this in command line mode only (see wgCommandLineMode)
+ * Use this in command line mode only (see isCommandLine)
  */
 function wfPrintError( $message ) {
 	#NOTE: STDERR may not be available, especially if php-cgi is used from the command line (bug #15602).
