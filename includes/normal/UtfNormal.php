@@ -72,6 +72,9 @@ class UtfNormal {
 	 * @return string a clean, shiny, normalized UTF-8 string
 	 */
 	static function cleanUp( $string ) {
+		if( !is_string( $string ) ) {
+			return $string;
+		}
 		if( NORMALIZE_ICU ) {
 			# We exclude a few chars that ICU would not.
 			$string = preg_replace(
