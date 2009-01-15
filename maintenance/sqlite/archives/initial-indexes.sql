@@ -51,8 +51,8 @@ CREATE TABLE /*_*/user_tmp (
   user_registration binary(14),
   user_editcount int
 );
-CREATE UNIQUE INDEX user_name ON /*_*/user_tmp (user_name);
-CREATE INDEX user_email_token ON /*_*/user_tmp (user_email_token);
+CREATE UNIQUE INDEX /*i*/user_name ON /*_*/user_tmp (user_name);
+CREATE INDEX /*i*/user_email_token ON /*_*/user_tmp (user_email_token);
 
 
 CREATE TABLE /*_*/user_groups_tmp (
@@ -60,8 +60,8 @@ CREATE TABLE /*_*/user_groups_tmp (
   ug_group varbinary(16) NOT NULL default ''
 );
 
-CREATE UNIQUE INDEX ug_user_group ON /*_*/user_groups_tmp (ug_user,ug_group);
-CREATE INDEX ug_group ON /*_*/user_groups_tmp (ug_group);
+CREATE UNIQUE INDEX /*i*/ug_user_group ON /*_*/user_groups_tmp (ug_user,ug_group);
+CREATE INDEX /*i*/ug_group ON /*_*/user_groups_tmp (ug_group);
 
 CREATE TABLE /*_*/page_tmp (
   page_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -77,9 +77,9 @@ CREATE TABLE /*_*/page_tmp (
   page_len int unsigned NOT NULL
 );
 
-CREATE UNIQUE INDEX name_title ON /*_*/page_tmp (page_namespace,page_title);
-CREATE INDEX page_random ON /*_*/page_tmp (page_random);
-CREATE INDEX page_len ON /*_*/page_tmp (page_len);
+CREATE UNIQUE INDEX /*i*/name_title ON /*_*/page_tmp (page_namespace,page_title);
+CREATE INDEX /*i*/page_random ON /*_*/page_tmp (page_random);
+CREATE INDEX /*i*/page_len ON /*_*/page_tmp (page_len);
 
 
 CREATE TABLE /*_*/revision_tmp (
@@ -95,11 +95,11 @@ CREATE TABLE /*_*/revision_tmp (
   rev_len int unsigned,
   rev_parent_id int unsigned default NULL
 );
-CREATE UNIQUE INDEX rev_page_id ON /*_*/revision_tmp (rev_page, rev_id);
-CREATE INDEX rev_timestamp ON /*_*/revision_tmp (rev_timestamp);
-CREATE INDEX page_timestamp ON /*_*/revision_tmp (rev_page,rev_timestamp);
-CREATE INDEX user_timestamp ON /*_*/revision_tmp (rev_user,rev_timestamp);
-CREATE INDEX usertext_timestamp ON /*_*/revision_tmp (rev_user_text,rev_timestamp);
+CREATE UNIQUE INDEX /*i*/rev_page_id ON /*_*/revision_tmp (rev_page, rev_id);
+CREATE INDEX /*i*/rev_timestamp ON /*_*/revision_tmp (rev_timestamp);
+CREATE INDEX /*i*/page_timestamp ON /*_*/revision_tmp (rev_page,rev_timestamp);
+CREATE INDEX /*i*/user_timestamp ON /*_*/revision_tmp (rev_user,rev_timestamp);
+CREATE INDEX /*i*/usertext_timestamp ON /*_*/revision_tmp (rev_user_text,rev_timestamp);
 
 CREATE TABLE /*_*/pagelinks_tmp (
   pl_from int unsigned NOT NULL default 0,
@@ -107,8 +107,8 @@ CREATE TABLE /*_*/pagelinks_tmp (
   pl_title varchar(255) binary NOT NULL default ''
 );
 
-CREATE UNIQUE INDEX pl_from ON /*_*/pagelinks_tmp (pl_from,pl_namespace,pl_title);
-CREATE INDEX pl_namespace_title ON /*_*/pagelinks_tmp (pl_namespace,pl_title,pl_from);
+CREATE UNIQUE INDEX /*i*/pl_from ON /*_*/pagelinks_tmp (pl_from,pl_namespace,pl_title);
+CREATE INDEX /*i*/pl_namespace_title ON /*_*/pagelinks_tmp (pl_namespace,pl_title,pl_from);
 
 
 CREATE TABLE /*_*/templatelinks_tmp (
@@ -117,16 +117,16 @@ CREATE TABLE /*_*/templatelinks_tmp (
   tl_title varchar(255) binary NOT NULL default ''
 );
 
-CREATE UNIQUE INDEX tl_from ON /*_*/templatelinks_tmp (tl_from,tl_namespace,tl_title);
-CREATE INDEX tl_namespace_title ON /*_*/templatelinks_tmp (tl_namespace,tl_title,tl_from);
+CREATE UNIQUE INDEX /*i*/tl_from ON /*_*/templatelinks_tmp (tl_from,tl_namespace,tl_title);
+CREATE INDEX /*i*/tl_namespace_title ON /*_*/templatelinks_tmp (tl_namespace,tl_title,tl_from);
 
 
 CREATE TABLE /*_*/imagelinks_tmp (
   il_from int unsigned NOT NULL default 0,
   il_to varchar(255) binary NOT NULL default ''
 ) /*$wgDBTableOptions*/;
-CREATE UNIQUE INDEX il_from ON /*_*/imagelinks_tmp (il_from,il_to);
-CREATE INDEX il_to ON /*_*/imagelinks_tmp (il_to,il_from);
+CREATE UNIQUE INDEX /*i*/il_from ON /*_*/imagelinks_tmp (il_from,il_to);
+CREATE INDEX /*i*/il_to ON /*_*/imagelinks_tmp (il_to,il_from);
 
 
 CREATE TABLE /*_*/categorylinks_tmp (
@@ -135,9 +135,9 @@ CREATE TABLE /*_*/categorylinks_tmp (
   cl_sortkey varchar(70) binary NOT NULL default '',
   cl_timestamp timestamp NOT NULL
 );
-CREATE UNIQUE INDEX cl_from ON /*_*/categorylinks_tmp (cl_from,cl_to);
-CREATE INDEX cl_sortkey ON /*_*/categorylinks_tmp (cl_to,cl_sortkey,cl_from);
-CREATE INDEX cl_timestamp ON /*_*/categorylinks_tmp (cl_to,cl_timestamp);
+CREATE UNIQUE INDEX /*i*/cl_from ON /*_*/categorylinks_tmp (cl_from,cl_to);
+CREATE INDEX /*i*/cl_sortkey ON /*_*/categorylinks_tmp (cl_to,cl_sortkey,cl_from);
+CREATE INDEX /*i*/cl_timestamp ON /*_*/categorylinks_tmp (cl_to,cl_timestamp);
 
 
 CREATE TABLE /*_*/category_tmp (
@@ -148,8 +148,8 @@ CREATE TABLE /*_*/category_tmp (
   cat_files int signed NOT NULL default 0,
   cat_hidden tinyint unsigned NOT NULL default 0
 );
-CREATE UNIQUE INDEX cat_title ON /*_*/category_tmp (cat_title);
-CREATE INDEX cat_pages ON /*_*/category_tmp (cat_pages);
+CREATE UNIQUE INDEX /*i*/cat_title ON /*_*/category_tmp (cat_title);
+CREATE INDEX /*i*/cat_pages ON /*_*/category_tmp (cat_pages);
 
 CREATE TABLE /*_*/langlinks_tmp (
   ll_from int unsigned NOT NULL default 0,
@@ -157,8 +157,8 @@ CREATE TABLE /*_*/langlinks_tmp (
   ll_title varchar(255) binary NOT NULL default ''
 );
 
-CREATE UNIQUE INDEX ll_from ON /*_*/langlinks_tmp (ll_from, ll_lang);
-CREATE INDEX ll_lang_title ON /*_*/langlinks_tmp (ll_lang, ll_title);
+CREATE UNIQUE INDEX /*i*/ll_from ON /*_*/langlinks_tmp (ll_from, ll_lang);
+CREATE INDEX /*i*/ll_lang_title ON /*_*/langlinks_tmp (ll_lang, ll_title);
 
 
 CREATE TABLE /*_*/site_stats_tmp (
@@ -172,7 +172,7 @@ CREATE TABLE /*_*/site_stats_tmp (
   ss_admins int default '-1',
   ss_images int default 0
 );
-CREATE UNIQUE INDEX ss_row_id ON /*_*/site_stats_tmp (ss_row_id);
+CREATE UNIQUE INDEX /*i*/ss_row_id ON /*_*/site_stats_tmp (ss_row_id);
 
 
 CREATE TABLE /*_*/ipblocks_tmp (
@@ -196,11 +196,11 @@ CREATE TABLE /*_*/ipblocks_tmp (
   ipb_block_email bool NOT NULL default 0,
   ipb_allow_usertalk bool NOT NULL default 0
 );
-CREATE UNIQUE INDEX ipb_address ON /*_*/ipblocks_tmp (ipb_address(255), ipb_user, ipb_auto, ipb_anon_only);
-CREATE INDEX ipb_user ON /*_*/ipblocks_tmp (ipb_user);
-CREATE INDEX ipb_range ON /*_*/ipblocks_tmp (ipb_range_start(8), ipb_range_end(8));
-CREATE INDEX ipb_timestamp ON /*_*/ipblocks_tmp (ipb_timestamp);
-CREATE INDEX ipb_expiry ON /*_*/ipblocks_tmp (ipb_expiry);
+CREATE UNIQUE INDEX /*i*/ipb_address ON /*_*/ipblocks_tmp (ipb_address(255), ipb_user, ipb_auto, ipb_anon_only);
+CREATE INDEX /*i*/ipb_user ON /*_*/ipblocks_tmp (ipb_user);
+CREATE INDEX /*i*/ipb_range ON /*_*/ipblocks_tmp (ipb_range_start(8), ipb_range_end(8));
+CREATE INDEX /*i*/ipb_timestamp ON /*_*/ipblocks_tmp (ipb_timestamp);
+CREATE INDEX /*i*/ipb_expiry ON /*_*/ipblocks_tmp (ipb_expiry);
 
 
 CREATE TABLE /*_*/watchlist_tmp (
@@ -210,8 +210,8 @@ CREATE TABLE /*_*/watchlist_tmp (
   wl_notificationtimestamp varbinary(14)
 );
 
-CREATE UNIQUE INDEX wl_user_namespace_title ON /*_*/watchlist_tmp (wl_user, wl_namespace, wl_title);
-CREATE INDEX namespace_title ON /*_*/watchlist_tmp (wl_namespace, wl_title);
+CREATE UNIQUE INDEX /*i*/wl_user_namespace_title ON /*_*/watchlist_tmp (wl_user, wl_namespace, wl_title);
+CREATE INDEX /*i*/namespace_title ON /*_*/watchlist_tmp (wl_namespace, wl_title);
 
 
 CREATE TABLE /*_*/math_tmp (
@@ -222,7 +222,7 @@ CREATE TABLE /*_*/math_tmp (
   math_mathml text  
 );
 
-CREATE UNIQUE INDEX math_inputhash ON /*_*/math_tmp (math_inputhash);
+CREATE UNIQUE INDEX /*i*/math_inputhash ON /*_*/math_tmp (math_inputhash);
 
 
 CREATE TABLE /*_*/interwiki_tmp (
@@ -232,7 +232,7 @@ CREATE TABLE /*_*/interwiki_tmp (
   iw_trans tinyint NOT NULL default 0
 );
 
-CREATE UNIQUE INDEX iw_prefix ON /*_*/interwiki_tmp (iw_prefix);
+CREATE UNIQUE INDEX /*i*/iw_prefix ON /*_*/interwiki_tmp (iw_prefix);
 
 
 CREATE TABLE /*_*/page_restrictions_tmp (
@@ -245,10 +245,10 @@ CREATE TABLE /*_*/page_restrictions_tmp (
   pr_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT
 );
 
-CREATE UNIQUE INDEX pr_pagetype ON /*_*/page_restrictions_tmp (pr_page,pr_type);
-CREATE UNIQUE INDEX pr_typelevel ON /*_*/page_restrictions_tmp (pr_type,pr_level);
-CREATE UNIQUE INDEX pr_level ON /*_*/page_restrictions_tmp (pr_level);
-CREATE UNIQUE INDEX pr_cascade ON /*_*/page_restrictions_tmp (pr_cascade);
+CREATE UNIQUE INDEX /*i*/pr_pagetype ON /*_*/page_restrictions_tmp (pr_page,pr_type);
+CREATE UNIQUE INDEX /*i*/pr_typelevel ON /*_*/page_restrictions_tmp (pr_type,pr_level);
+CREATE UNIQUE INDEX /*i*/pr_level ON /*_*/page_restrictions_tmp (pr_level);
+CREATE UNIQUE INDEX /*i*/pr_cascade ON /*_*/page_restrictions_tmp (pr_cascade);
 
 CREATE TABLE /*_*/protected_titles_tmp (
   pt_namespace int NOT NULL,
@@ -259,15 +259,15 @@ CREATE TABLE /*_*/protected_titles_tmp (
   pt_expiry varbinary(14) NOT NULL default '',
   pt_create_perm varbinary(60) NOT NULL
 );
-CREATE UNIQUE INDEX pt_namespace_title ON /*_*/protected_titles_tmp (pt_namespace,pt_title);
-CREATE INDEX pt_timestamp ON /*_*/protected_titles_tmp (pt_timestamp);
+CREATE UNIQUE INDEX /*i*/pt_namespace_title ON /*_*/protected_titles_tmp (pt_namespace,pt_title);
+CREATE INDEX /*i*/pt_timestamp ON /*_*/protected_titles_tmp (pt_timestamp);
 
 CREATE TABLE /*_*/page_props_tmp (
   pp_page int NOT NULL,
   pp_propname varbinary(60) NOT NULL,
   pp_value blob NOT NULL
 );
-CREATE UNIQUE INDEX pp_page_propname ON /*_*/page_props_tmp (pp_page,pp_propname);
+CREATE UNIQUE INDEX /*i*/pp_page_propname ON /*_*/page_props_tmp (pp_page,pp_propname);
 
 --------------------------------------------------------------------------------
 -- Populate the new tables using INSERT SELECT
@@ -344,9 +344,9 @@ CREATE TABLE /*_*/searchindex (
   si_title varchar(255) NOT NULL default '',
   si_text mediumtext NOT NULL
 );
-CREATE UNIQUE INDEX si_page ON /*_*/searchindex (si_page);
-CREATE INDEX si_title ON /*_*/searchindex (si_title);
-CREATE INDEX si_text ON /*_*/searchindex (si_text);
+CREATE UNIQUE INDEX /*i*/si_page ON /*_*/searchindex (si_page);
+CREATE INDEX /*i*/si_title ON /*_*/searchindex (si_title);
+CREATE INDEX /*i*/si_text ON /*_*/searchindex (si_text);
 
 DROP TABLE IF EXISTS /*_*/transcache;
 CREATE TABLE /*_*/transcache (
@@ -354,14 +354,14 @@ CREATE TABLE /*_*/transcache (
   tc_contents text,
   tc_time int NOT NULL
 ) /*$wgDBTableOptions*/;
-CREATE UNIQUE INDEX tc_url_idx ON /*_*/transcache (tc_url);
+CREATE UNIQUE INDEX /*i*/tc_url_idx ON /*_*/transcache (tc_url);
 
 DROP TABLE IF EXISTS /*_*/querycache_info;
 CREATE TABLE /*_*/querycache_info (
   qci_type varbinary(32) NOT NULL default '',
   qci_timestamp binary(14) NOT NULL default '19700101000000'
 ) /*$wgDBTableOptions*/;
-CREATE UNIQUE INDEX qci_type ON /*_*/querycache_info (qci_type);
+CREATE UNIQUE INDEX /*i*/qci_type ON /*_*/querycache_info (qci_type);
 
 --------------------------------------------------------------------------------
 -- Empty some cache tables to make the update faster
@@ -375,43 +375,43 @@ DELETE FROM /*_*/querycachetwo;
 -- Add indexes to tables with no unique indexes
 --------------------------------------------------------------------------------
 
-CREATE INDEX un_user_id ON /*_*/user_newtalk (user_id);
-CREATE INDEX un_user_ip ON /*_*/user_newtalk (user_ip);
-CREATE INDEX name_title_timestamp ON /*_*/archive (ar_namespace,ar_title,ar_timestamp);
-CREATE INDEX ar_usertext_timestamp ON /*_*/archive (ar_user_text,ar_timestamp);
-CREATE INDEX el_from ON /*_*/externallinks (el_from, el_to(40));
-CREATE INDEX el_to ON /*_*/externallinks (el_to(60), el_from);
-CREATE INDEX el_index ON /*_*/externallinks (el_index(60));
-CREATE INDEX img_usertext_timestamp ON /*_*/image (img_user_text,img_timestamp);
-CREATE INDEX img_size ON /*_*/image (img_size);
-CREATE INDEX img_timestamp ON /*_*/image (img_timestamp);
-CREATE INDEX img_sha1 ON /*_*/image (img_sha1);
-CREATE INDEX oi_usertext_timestamp ON /*_*/oldimage (oi_user_text,oi_timestamp);
-CREATE INDEX oi_name_timestamp ON /*_*/oldimage (oi_name,oi_timestamp);
-CREATE INDEX oi_name_archive_name ON /*_*/oldimage (oi_name,oi_archive_name(14));
-CREATE INDEX oi_sha1 ON /*_*/oldimage (oi_sha1);
-CREATE INDEX fa_name ON /*_*/filearchive (fa_name, fa_timestamp);
-CREATE INDEX fa_group_key ON /*_*/filearchive (fa_storage_group, fa_storage_key);
-CREATE INDEX fa_deleted_timestamp ON /*_*/filearchive (fa_deleted_timestamp);
-CREATE INDEX fa_user_timestamp ON /*_*/filearchive (fa_user_text,fa_timestamp);
-CREATE INDEX rc_timestamp ON /*_*/recentchanges (rc_timestamp);
-CREATE INDEX rc_namespace_title ON /*_*/recentchanges (rc_namespace, rc_title);
-CREATE INDEX rc_cur_id ON /*_*/recentchanges (rc_cur_id);
-CREATE INDEX new_name_timestamp ON /*_*/recentchanges (rc_new,rc_namespace,rc_timestamp);
-CREATE INDEX rc_ip ON /*_*/recentchanges (rc_ip);
-CREATE INDEX rc_ns_usertext ON /*_*/recentchanges (rc_namespace, rc_user_text);
-CREATE INDEX rc_user_text ON /*_*/recentchanges (rc_user_text, rc_timestamp);
-CREATE INDEX qc_type_value ON /*_*/querycache (qc_type,qc_value);
-CREATE INDEX oc_exptime ON /*_*/objectcache (exptime);
-CREATE INDEX type_time ON /*_*/logging (log_type, log_timestamp);
-CREATE INDEX user_time ON /*_*/logging (log_user, log_timestamp);
-CREATE INDEX page_time ON /*_*/logging (log_namespace, log_title, log_timestamp);
-CREATE INDEX times ON /*_*/logging (log_timestamp);
-CREATE INDEX tb_page ON /*_*/trackbacks (tb_page);
-CREATE INDEX job_cmd_namespace_title ON /*_*/job (job_cmd, job_namespace, job_title);
-CREATE INDEX rd_ns_title ON /*_*/redirect (rd_namespace,rd_title,rd_from);
-CREATE INDEX qcc_type ON /*_*/querycachetwo (qcc_type,qcc_value);
-CREATE INDEX qcc_title ON /*_*/querycachetwo (qcc_type,qcc_namespace,qcc_title);
-CREATE INDEX qcc_titletwo ON /*_*/querycachetwo (qcc_type,qcc_namespacetwo,qcc_titletwo);
+CREATE INDEX /*i*/un_user_id ON /*_*/user_newtalk (user_id);
+CREATE INDEX /*i*/un_user_ip ON /*_*/user_newtalk (user_ip);
+CREATE INDEX /*i*/name_title_timestamp ON /*_*/archive (ar_namespace,ar_title,ar_timestamp);
+CREATE INDEX /*i*/ar_usertext_timestamp ON /*_*/archive (ar_user_text,ar_timestamp);
+CREATE INDEX /*i*/el_from ON /*_*/externallinks (el_from, el_to(40));
+CREATE INDEX /*i*/el_to ON /*_*/externallinks (el_to(60), el_from);
+CREATE INDEX /*i*/el_index ON /*_*/externallinks (el_index(60));
+CREATE INDEX /*i*/img_usertext_timestamp ON /*_*/image (img_user_text,img_timestamp);
+CREATE INDEX /*i*/img_size ON /*_*/image (img_size);
+CREATE INDEX /*i*/img_timestamp ON /*_*/image (img_timestamp);
+CREATE INDEX /*i*/img_sha1 ON /*_*/image (img_sha1);
+CREATE INDEX /*i*/oi_usertext_timestamp ON /*_*/oldimage (oi_user_text,oi_timestamp);
+CREATE INDEX /*i*/oi_name_timestamp ON /*_*/oldimage (oi_name,oi_timestamp);
+CREATE INDEX /*i*/oi_name_archive_name ON /*_*/oldimage (oi_name,oi_archive_name(14));
+CREATE INDEX /*i*/oi_sha1 ON /*_*/oldimage (oi_sha1);
+CREATE INDEX /*i*/fa_name ON /*_*/filearchive (fa_name, fa_timestamp);
+CREATE INDEX /*i*/fa_group_key ON /*_*/filearchive (fa_storage_group, fa_storage_key);
+CREATE INDEX /*i*/fa_deleted_timestamp ON /*_*/filearchive (fa_deleted_timestamp);
+CREATE INDEX /*i*/fa_user_timestamp ON /*_*/filearchive (fa_user_text,fa_timestamp);
+CREATE INDEX /*i*/rc_timestamp ON /*_*/recentchanges (rc_timestamp);
+CREATE INDEX /*i*/rc_namespace_title ON /*_*/recentchanges (rc_namespace, rc_title);
+CREATE INDEX /*i*/rc_cur_id ON /*_*/recentchanges (rc_cur_id);
+CREATE INDEX /*i*/new_name_timestamp ON /*_*/recentchanges (rc_new,rc_namespace,rc_timestamp);
+CREATE INDEX /*i*/rc_ip ON /*_*/recentchanges (rc_ip);
+CREATE INDEX /*i*/rc_ns_usertext ON /*_*/recentchanges (rc_namespace, rc_user_text);
+CREATE INDEX /*i*/rc_user_text ON /*_*/recentchanges (rc_user_text, rc_timestamp);
+CREATE INDEX /*i*/qc_type_value ON /*_*/querycache (qc_type,qc_value);
+CREATE INDEX /*i*/oc_exptime ON /*_*/objectcache (exptime);
+CREATE INDEX /*i*/type_time ON /*_*/logging (log_type, log_timestamp);
+CREATE INDEX /*i*/user_time ON /*_*/logging (log_user, log_timestamp);
+CREATE INDEX /*i*/page_time ON /*_*/logging (log_namespace, log_title, log_timestamp);
+CREATE INDEX /*i*/times ON /*_*/logging (log_timestamp);
+CREATE INDEX /*i*/tb_page ON /*_*/trackbacks (tb_page);
+CREATE INDEX /*i*/job_cmd_namespace_title ON /*_*/job (job_cmd, job_namespace, job_title);
+CREATE INDEX /*i*/rd_ns_title ON /*_*/redirect (rd_namespace,rd_title,rd_from);
+CREATE INDEX /*i*/qcc_type ON /*_*/querycachetwo (qcc_type,qcc_value);
+CREATE INDEX /*i*/qcc_title ON /*_*/querycachetwo (qcc_type,qcc_namespace,qcc_title);
+CREATE INDEX /*i*/qcc_titletwo ON /*_*/querycachetwo (qcc_type,qcc_namespacetwo,qcc_titletwo);
 
 INSERT INTO /*_*/updatelog VALUES ('initial_indexes');

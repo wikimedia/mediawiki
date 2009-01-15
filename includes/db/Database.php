@@ -1191,6 +1191,7 @@ class Database {
 		# SHOW INDEX should work for 3.x and up:
 		# http://dev.mysql.com/doc/mysql/en/SHOW_INDEX.html
 		$table = $this->tableName( $table );
+		$index = $this->indexName( $index );
 		$sql = 'SHOW INDEX FROM '.$table;
 		$res = $this->query( $sql, $fname );
 		if ( !$res ) {
@@ -1574,6 +1575,18 @@ class Database {
 	}
 
 	/**
+	 * Get the name of an index in a given table
+	 */
+	function indexName( $index ) {
+		// Backwards-compatibility hack
+		if ( $index == 'ar_usertext_timestamp' ) {
+			return 'usertext_timestamp';
+		} else {
+			return $index;
+		}
+	}
+
+	/**
 	 * Wrapper for addslashes()
 	 * @param $s String: to be slashed.
 	 * @return String: slashed string.
@@ -1621,7 +1634,7 @@ class Database {
 	 * PostgreSQL doesn't have them and returns ""
 	 */
 	function useIndexClause( $index ) {
-		return "FORCE INDEX ($index)";
+		return "FORCE INDEX (" . $this->indexName( $index ) . ")";
 	}
 
 	/**
@@ -2258,8 +2271,12 @@ class Database {
 		}
 
 		// Table prefixes
-		$ins = preg_replace_callback( '/\/\*(?:\$wgDBprefix|_)\*\/([a-zA-Z_0-9]*)/',
-			array( &$this, 'tableNameCallback' ), $ins );
+		$ins = preg_replace_callback( '!/\*(?:\$wgDBprefix|_)\*/([a-zA-Z_0-9]*)!',
+			array( $this, 'tableNameCallback' ), $ins );
+
+		// Index names
+		$ins = preg_replace_callback( '!/\*i\*/([a-zA-Z_0-9]*)!', 
+			array( $this, 'indexNameCallback' ), $ins );
 		return $ins;
 	}
 
@@ -2269,6 +2286,13 @@ class Database {
 	 */
 	protected function tableNameCallback( $matches ) {
 		return $this->tableName( $matches[1] );
+	}
+
+	/**
+	 * Index name callback
+	 */
+	protected function indexNameCallback( $matches ) {
+		return $this->indexName( $matches[1] );
 	}
 
 	/*

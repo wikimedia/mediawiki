@@ -698,7 +698,7 @@ class DatabasePostgres extends Database {
 			return NULL;
 		}
 		while ( $row = $this->fetchObject( $res ) ) {
-			if ( $row->indexname == $index ) {
+			if ( $row->indexname == $this->indexName( $index ) ) {
 				return $row;
 			}
 		}
@@ -707,7 +707,9 @@ class DatabasePostgres extends Database {
 
 	function indexUnique ($table, $index, $fname = 'Database::indexUnique' ) {
 		$sql = "SELECT indexname FROM pg_indexes WHERE tablename='{$table}'".
-			" AND indexdef LIKE 'CREATE UNIQUE%({$index})'";
+			" AND indexdef LIKE 'CREATE UNIQUE%(" . 
+			$this->strencode( $this->indexName( $index ) ) .
+			")'";
 		$res = $this->query( $sql, $fname );
 		if ( !$res )
 			return NULL;
