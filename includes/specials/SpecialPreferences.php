@@ -1214,13 +1214,12 @@ class PreferencesForm {
 		$token = htmlspecialchars( $wgUser->editToken() );
 		$skin = $wgUser->getSkin();
 		$wgOut->addHTML( "
-	<div id='prefsubmit'>
-		<input type='submit' name='wpRestore' class='btnSavePrefs' style=float:".
-			($wgLang->isRTL() ? 'left' : 'right') . " value=\"" . wfMsgHtml( 'restoreprefs' ) . "\" />
-		<input type='submit' name='wpSaveprefs' class='btnSavePrefs' value=\"" . wfMsgHtml( 'saveprefs' ) . 
+	<table id='prefsubmit' cellpadding='0' width='100%' style='background:none;'><tr>
+		<td><input type='submit' name='wpSaveprefs' class='btnSavePrefs' value=\"" . wfMsgHtml( 'saveprefs' ) . 
 			'"'.$skin->tooltipAndAccesskey('save')." />
-		<input type='submit' name='wpReset' value=\"" . wfMsgHtml( 'resetprefs' ) . "\" />
-	</div>
+		<input type='submit' name='wpReset' value=\"" . wfMsgHtml( 'resetprefs' ) . "\" /></td>
+		<td align='right'><input type='submit' name='wpRestore' value=\"" . wfMsgHtml( 'restoreprefs' ) . "\" /></td>
+	</tr></table>
 
 	<input type='hidden' name='wpEditToken' value=\"{$token}\" />
 	</div></form>\n" );
