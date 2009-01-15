@@ -86,13 +86,10 @@ class LogPage {
 			}
 			# Notify external application via UDP.
 			# We send this to IRC but do not want to add it the RC table.
-			global $wgRC2UDPAddress, $wgRC2UDPOmitBots;
 			$titleObj = SpecialPage::getTitleFor( 'Log', $this->type );
 			$rc = RecentChange::newLogEntry( $now, $titleObj, $this->doer, $this->getRcComment(), '',
 				$this->type, $this->action, $this->target, $this->comment, $this->params, $newId );
-			if( $wgRC2UDPAddress && ( !$rc->getAttribute('rc_bot') || !$wgRC2UDPOmitBots ) ) {
-				RecentChange::sendToUDP( $rc->getIRCLine() );
-			}
+			$rc->notifyRC2UDP();
 		}
 		return true;
 	}
