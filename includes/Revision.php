@@ -819,7 +819,8 @@ class Revision {
 				'rev_timestamp'  => $dbw->timestamp( $this->mTimestamp ),
 				'rev_deleted'    => $this->mDeleted,
 				'rev_len'	     => $this->mSize,
-				'rev_parent_id'  => $this->mParentId ? $this->mParentId : $this->getPreviousRevisionId( $dbw )
+				'rev_parent_id'  => is_null($this->mParentId) ?
+					$this->getPreviousRevisionId( $dbw ) : $this->mParentId
 			), __METHOD__
 		);
 
