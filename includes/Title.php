@@ -2064,14 +2064,20 @@ class Title {
 
 		# Namespace or interwiki prefix
 		$firstPass = true;
+		$prefixRegexp = "/^(.+?)_*:_*(.*)$/S";
 		do {
 			$m = array();
-			if ( preg_match( "/^(.+?)_*:_*(.*)$/S", $dbkey, $m ) ) {
+			if ( preg_match( $prefixRegexp, $dbkey, $m ) ) {
 				$p = $m[1];
-				if ( $ns = $wgContLang->getNsIndex( $p )) {
+				if ( $ns = $wgContLang->getNsIndex( $p ) ) {
 					# Ordinary namespace
 					$dbkey = $m[2];
 					$this->mNamespace = $ns;
+					# For Talk:X pages, check if X has a "namespace" prefix
+					if( $ns == NS_TALK && preg_match( $prefixRegexp, $dbkey, $x ) ) {
+						if( $wgContLang->getNsIndex( $x[1] ) )
+							return false; # Disallow Talk:File:x type titles...
+					}
 				} elseif( Interwiki::isValidInterwiki( $p ) ) {
 					if( !$firstPass ) {
 						# Can't make a local interwiki link to an interwiki link.
