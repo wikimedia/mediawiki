@@ -242,7 +242,7 @@ class UsercreateTemplate extends QuickTemplate {
 					if ( $inputItem['type'] == 'checkbox' && !empty( $inputItem['msg'] ) ) {
 						?>
 				<label for="<?php echo htmlspecialchars( $inputItem['name'] ); ?>"><?php
-					$this->msg( $inputItem['msg'] ) ?></label><?php
+					$this->msgHtml( $inputItem['msg'] ) ?></label><?php
 					}
 				?>
 			</td>

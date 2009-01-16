@@ -34,6 +34,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 17002) Add &minor= and &summary= as parameters in the url when editing,
   to automatically add a summary or a minor edit.
 * (bug 16852) padleft and padright now accept multiletter pad characters
+* When using 'UserCreateForm' hook to add new checkboxes into Special:UserLogin/signup,
+  the messages can now contain HTML to allow hyperlinking to the site's Terms
+  of Service page, for example
   
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
