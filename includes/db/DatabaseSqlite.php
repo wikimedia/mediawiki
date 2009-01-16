@@ -157,13 +157,6 @@ class DatabaseSqlite extends Database {
 	}
 
 	/**
-	 * Index names have DB scope
-	 */
-	function indexName( $index ) {
-		return $index;
-	}
-
-	/**
 	 * This must be called after nextSequenceVal
 	 */
 	function insertId() {

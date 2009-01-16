@@ -149,6 +149,7 @@ $wgUpdates = array(
 		array( 'add_field', 'site_stats',     'ss_active_users',  'patch-ss_active_users.sql' ),
 		array( 'do_active_users_init' ),
 		array( 'add_field', 'ipblocks',     'ipb_allow_usertalk',  'patch-ipb_allow_usertalk.sql' ),
+		array( 'add_index', 'user_newtalk', 'un_user_id', 'patch-index-renames.sql' ),
 	),
 
 	'sqlite' => array(
