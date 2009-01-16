@@ -1380,15 +1380,16 @@ class EditPage {
 		$recreate = '';
 		if ( $this->wasDeletedSinceLastEdit() ) {
 			if ( 'save' != $this->formtype ) {
-				$wgOut->addWikiMsg('deletedwhileediting');
+				$wgOut->wrapWikiMsg( '<div class="error mw-deleted-while-editing">$1</div>', 'deletedwhileediting' );
 			} else {
-				// Hide the toolbar and edit area, use can click preview to get it back
+				// Hide the toolbar and edit area, user can click preview to get it back
 				// Add an confirmation checkbox and explanation.
 				$toolbar = '';
-				$recreate = $wgOut->parse( wfMsg( 'confirmrecreate',  $this->lastDelete->user_name , $this->lastDelete->log_comment ));
-				$recreate .=
-					"<br /><input tabindex='1' type='checkbox' value='1' name='wpRecreate' id='wpRecreate' />".
-					"<label for='wpRecreate' title='".wfMsg('tooltip-recreate')."'>". wfMsg('recreate')."</label>";
+				$recreate = '<div class="mw-confirm-recreate">' .
+						$wgOut->parse( wfMsg( 'confirmrecreate',  $this->lastDelete->user_name , $this->lastDelete->log_comment ) ) .
+						Xml::checkLabel( wfMsg( 'recreate' ), 'wpRecreate', 'wpRecreate', false,
+							array( 'title' => $sk->titleAttrib( 'recreate' ), 'tabindex' => 1, 'id' => 'wpRecreate' )
+						) . '</div>';
 			}
 		}
 

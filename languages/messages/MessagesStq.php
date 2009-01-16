@@ -2649,9 +2649,9 @@ $1
 'trackbackdeleteok' => 'Trackback wuude mäd Ärfoulch läsked.',
 
 # Delete conflict
-'deletedwhileediting' => '<span class="error">Oachtenge: Disse Siede wuude al läsked, ätter dät du anfangd hiedest, hier tou beoarbaidjen!
+'deletedwhileediting' => 'Oachtenge: Disse Siede wuude al läsked, ätter dät du anfangd hiedest, hier tou beoarbaidjen!
 Kiekje in dät [{{fullurl:Special:Log|type=delete&page=}}{{FULLPAGENAMEE}} Läsk-Logbouk] ätter,
-wieruum ju Siede läsked wuude. Wan du ju Siede spiekerst, wäd ju näi anlaid.</span>',
+wieruum ju Siede läsked wuude. Wan du ju Siede spiekerst, wäd ju näi anlaid.',
 'confirmrecreate'     => "Benutser [[User:$1|$1]] ([[User talk:$1|Diskussion]]) häd disse Siede läsked, ätter dät du ounfangd hääst, ju tou beoarbaidjen. Ju Begruundenge lutte:
 ''$2''.
 Bestäätigje, dät du disse Siede wuddelk näi moakje moatest.",
