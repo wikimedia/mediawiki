@@ -1143,6 +1143,7 @@ $wgMessageStructure = array(
 		'overwroteimage',
 		'uploaddisabled',
 		'uploaddisabledtext',
+		'php-uploaddisabledtext',
 		'uploadscripted',
 		'uploadcorrupt',
 		'uploadvirus',

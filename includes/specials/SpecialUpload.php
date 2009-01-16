@@ -228,6 +228,12 @@ class UploadForm {
 		global $wgUser, $wgOut;
 		global $wgEnableUploads;
 
+		# Check php's file_uploads setting
+		if( !wfIniGetBool( 'file_uploads' ) ) {
+			$wgOut->showErrorPage( 'uploaddisabled', 'php-uploaddisabledtext', array( $this->mDesiredDestName ) );
+			return;
+		}
+
 		# Check uploading enabled
 		if( !$wgEnableUploads ) {
 			$wgOut->showErrorPage( 'uploaddisabled', 'uploaddisabledtext', array( $this->mDesiredDestName ) );
