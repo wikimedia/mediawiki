@@ -37,7 +37,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * When using 'UserCreateForm' hook to add new checkboxes into Special:UserLogin/signup,
   the messages can now contain HTML to allow hyperlinking to the site's Terms
   of Service page, for example
-  
+* Add new hook 'UserLoadFromDatabase' that is called while loading a user
+  from the database.
+
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
 * (bug 17000) Special:RevisionDelete now checks if the database is locked before
