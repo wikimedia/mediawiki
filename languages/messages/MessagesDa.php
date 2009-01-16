@@ -2500,9 +2500,9 @@ $1
 'trackbackdeleteok' => 'Trackback blev slettet.',
 
 # Delete conflict
-'deletedwhileediting' => '<span class="error">Bemærk: Det blev forsøgt at slette denne side, efter at du var begyndt, at ændre den! 
+'deletedwhileediting' => 'Bemærk: Det blev forsøgt at slette denne side, efter at du var begyndt, at ændre den! 
 Kig i [{{fullurl:Special:Log|type=delete&page=}}{{FULLPAGENAMEE}} slette-loggen], 
-hvorfor siden blev slettet. Hvis du gemmer siden bliver den oprettet igen.</span>',
+hvorfor siden blev slettet. Hvis du gemmer siden bliver den oprettet igen.',
 'confirmrecreate'     => "Bruger [[User:$1|$1]] ([[User talk:$1|Diskussion]]) har slettet denne side, efter at du begyndte at ændre den. Begrundelsen lyder:
 : ''$2''
 Bekræft venligst, at du virkelig vil oprette denne side igen.",
