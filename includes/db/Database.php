@@ -1575,18 +1575,6 @@ class Database {
 	}
 
 	/**
-	 * Get the name of an index in a given table
-	 */
-	function indexName( $index ) {
-		// Backwards-compatibility hack
-		if ( $index == 'ar_usertext_timestamp' ) {
-			return 'usertext_timestamp';
-		} else {
-			return $index;
-		}
-	}
-
-	/**
 	 * Wrapper for addslashes()
 	 * @param $s String: to be slashed.
 	 * @return String: slashed string.
@@ -1634,7 +1622,7 @@ class Database {
 	 * PostgreSQL doesn't have them and returns ""
 	 */
 	function useIndexClause( $index ) {
-		return "FORCE INDEX (" . $this->indexName( $index ) . ")";
+		return "FORCE INDEX (" . $index . ")";
 	}
 
 	/**
@@ -2274,9 +2262,6 @@ class Database {
 		$ins = preg_replace_callback( '!/\*(?:\$wgDBprefix|_)\*/([a-zA-Z_0-9]*)!',
 			array( $this, 'tableNameCallback' ), $ins );
 
-		// Index names
-		$ins = preg_replace_callback( '!/\*i\*/([a-zA-Z_0-9]*)!', 
-			array( $this, 'indexNameCallback' ), $ins );
 		return $ins;
 	}
 
@@ -2286,13 +2271,6 @@ class Database {
 	 */
 	protected function tableNameCallback( $matches ) {
 		return $this->tableName( $matches[1] );
-	}
-
-	/**
-	 * Index name callback
-	 */
-	protected function indexNameCallback( $matches ) {
-		return $this->indexName( $matches[1] );
 	}
 
 	/*
