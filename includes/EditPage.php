@@ -918,10 +918,8 @@ class EditPage {
 		if ( is_null( $text ) ) {
 			wfDebug( "EditPage::editForm activating conflict; section replace failed.\n" );
 			$this->isConflict = true;
-			$text = $this->textbox1;
-		}
-
-		if ( $this->isConflict ) {
+			$text = $this->textbox1; // do not try to merge here!
+		} else if ( $this->isConflict ) {
 			# Attempt merge
 			if ( $this->mergeChangesInto( $text ) ) {
 				// Successful merge! Maybe we should tell the user the good news?
@@ -1149,9 +1147,7 @@ class EditPage {
 			if ( $this->section != '' && $this->section != 'new' ) {
 				$matches = array();
 				if ( !$this->summary && !$this->preview && !$this->diff ) {
-					preg_match( "/^(=+)(.+)\\1/mi",
-						$this->textbox1,
-						$matches );
+					preg_match( "/^(=+)(.+)\\1/mi", $this->textbox1, $matches );
 					if ( !empty( $matches[2] ) ) {
 						global $wgParser;
 						$this->summary = "/* " .
@@ -1842,8 +1838,7 @@ END
 		$baseText = $baseRevision->getText();
 
 		// The current state, we want to merge updates into it
-		$currentRevision =  Revision::loadFromTitle(
-			$db, $this->mTitle );
+		$currentRevision = Revision::loadFromTitle( $db, $this->mTitle );
 		if ( is_null( $currentRevision ) ) {
 			wfProfileOut( $fname );
 			return false;
