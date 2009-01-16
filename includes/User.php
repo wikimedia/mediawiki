@@ -886,6 +886,8 @@ class User {
 		$dbr = wfGetDB( DB_MASTER );
 		$s = $dbr->selectRow( 'user', '*', array( 'user_id' => $this->mId ), __METHOD__ );
 
+		wfRunHooks( 'UserLoadFromDatabase', array( $this, &$s ) );
+
 		if ( $s !== false ) {
 			# Initialise user table data
 			$this->loadFromRow( $s );
