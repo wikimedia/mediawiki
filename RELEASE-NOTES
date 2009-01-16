@@ -48,7 +48,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
   and listing all deleted pages possible
 * (bug 16844) Added clcategories parameter to prop=categories
-* (bug 17025) Add "fileextension" parameter to meta=siteinfo&siprop=
+* (bug 17025) Added siprop=fileextension to meta=siteinfo
+* (bug 17027) Added siprop=configvars to meta=siteinfo
 
 === Languages updated in 1.15 ===
 
