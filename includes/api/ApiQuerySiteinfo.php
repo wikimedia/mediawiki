@@ -80,7 +80,6 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					$this->appendFileExtensions( $p );
 					break;
 				case 'configvars':
-					global $wgAPIReadableConfigVars;
 					$this->appendConfigvars( $p, $params['configvars'] );
 					break;
 				default :
