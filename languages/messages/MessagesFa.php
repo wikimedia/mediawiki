@@ -362,6 +362,7 @@ $magicWords = array(
 	'noindex'               => array( '1', '__بی‌نمایه__', '__NOINDEX__' ),
 	'numberingroup'         => array( '1', 'تعداددرگروه', 'NUMBERINGROUP', 'NUMINGROUP' ),
 	'staticredirect'        => array( '1', '__تغییرمسیرثابت__', '__STATICREDIRECT__' ),
+	'protectionlevel'       => array( '1', 'سطح‌حغاطت', 'سطح_حفاظت', 'PROTECTIONLEVEL' ),
 );
 
 
