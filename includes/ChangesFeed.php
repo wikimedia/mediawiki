@@ -18,7 +18,7 @@ class ChangesFeed {
 			$feedTitle, htmlspecialchars( $description ), $wgTitle->getFullUrl() );
 	}
 
-	public function execute( $feed, $rows, $limit = 0 , $hideminor = false, $lastmod = false ) {
+	public function execute( $feed, $rows, $limit=0, $hideminor=false, $lastmod=false, $target='' ) {
 		global $messageMemc, $wgFeedCacheTimeout;
 		global $wgFeedClasses, $wgSitename, $wgContLanguageCode;
 
@@ -27,7 +27,7 @@ class ChangesFeed {
 		}
 
 		$timekey = wfMemcKey( $this->type, $this->format, 'timestamp' );
-		$key = wfMemcKey( $this->type, $this->format, 'limit', $limit, 'minor', $hideminor );
+		$key = wfMemcKey( $this->type, $this->format, $limit, $hideminor, $target );
 
 		FeedUtils::checkPurge($timekey, $key);
 
