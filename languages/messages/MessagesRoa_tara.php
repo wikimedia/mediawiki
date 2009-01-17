@@ -479,6 +479,8 @@ Pe piacere mitte l'indirizze a cumme criste cumanne, ce nò no 'u scè mettènne
 Tu, mò, t\'avisse a collegà e cangià \'a password toje.
 
 Tu puè pure cacà stu messagge, ce stu cunde utende ha state ccrejete pe errore.',
+'login-throttled'            => "Urtemamende tu è pruvete troppe vote a mettere 'a password d'u cunde tue.
+Pe piacere vide c'aspitte 'nu picche de timbe prima de pruvà 'n'otra vote e a prossema vote, vide ce ta signe 'a password.",
 'loginlanguagelabel'         => 'Lénga: $1',
 
 # Password reset dialog
@@ -933,6 +935,7 @@ condrolle ce l'installazione de latex, dvips, gs e convertitore jè corrette",
 'right-movefile'      => 'Spueste le file',
 'right-upload'        => 'Careche le fail',
 'right-upload_by_url' => "Careche 'nu file da l'indirizze URL",
+'right-autoconfirmed' => 'Cange le pàggene prutette a metà',
 'right-delete'        => 'Scangille le pàggene',
 'right-bigdelete'     => "Scangille le pàggene cu 'na storia longa longa",
 'right-browsearchive' => 'Cirche le pàggene scangellete',
@@ -1177,6 +1180,7 @@ Vide 'a [[Special:NewFiles|gallerie de le file nuève]] pe vedè l'otre andeprim
 'wantedcategories'        => 'Categorije cerchete',
 'wantedpages'             => 'Pàggene cchiù cerchete',
 'wantedfiles'             => 'File cchiù cerchete',
+'wantedtemplates'         => 'Template cchiù ausete',
 'mostlinked'              => 'Pàggene cchiù appundete',
 'mostlinkedcategories'    => 'Categorije cchiù appundete',
 'mostlinkedtemplates'     => 'Template cchiù appundete',
@@ -1225,6 +1229,7 @@ Vide 'a [[Special:NewFiles|gallerie de le file nuève]] pe vedè l'otre andeprim
 'allpagesnext'      => 'Prossime',
 'allpagessubmit'    => 'Veje',
 'allpagesprefix'    => "Fa vedè le pàggene cu 'u prefisse:",
+'allpages-bad-ns'   => '{{SITENAME}} non ge tène \'u namaspace "$1".',
 
 # Special:Categories
 'categories'                    => 'Le Categorije',
@@ -1339,6 +1344,7 @@ Vide $2 pe \'na reggistrazione de le scangellaziune recende.',
 'protectedarticle'            => 'prutette "[[$1]]"',
 'unprotectedarticle'          => 'sprutette "[[$1]]"',
 'protect-title'               => 'Cange levèlle de protezione pe "$1"',
+'prot_1movedto2'              => "[[$1]] spustete jndr'à [[$2]]",
 'protect-backlink'            => '← $1',
 'protect-legend'              => "Conferme 'a protezione",
 'protectcomment'              => 'Commende:',
@@ -1705,8 +1711,10 @@ Otre avènene scunnute pe defolt.
 'exif-customrendered-0' => 'Processe normele',
 'exif-customrendered-1' => 'Processe personalizzete',
 
+'exif-scenecapturetype-0' => 'Stàndàrd',
 'exif-scenecapturetype-1' => 'Orizzondele',
 'exif-scenecapturetype-2' => 'Vertichele',
+'exif-scenecapturetype-3' => 'Scene de notte',
 
 'exif-gaincontrol-0' => 'Ninde',
 
@@ -1778,7 +1786,8 @@ Otre avènene scunnute pe defolt.
 'table_pager_empty'        => 'Nisciune resultete',
 
 # Auto-summaries
-'autosumm-new' => 'Pàgena nove: $1',
+'autoredircomment' => 'Stoche a ridirezione sus a [[$1]]',
+'autosumm-new'     => 'Pàgena nove: $1',
 
 # Live preview
 'livepreview-loading' => 'Stoche a careche…',

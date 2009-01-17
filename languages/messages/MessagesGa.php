@@ -858,7 +858,7 @@ den am an freastalaí (UTC).',
 'group-bot'        => 'Róbónna',
 'group-sysop'      => 'Riarthóirí',
 'group-bureaucrat' => 'Maorlathaigh',
-'group-all'        => '(an t-iomlán)',
+'group-all'        => '(iad uile)',
 
 'group-user-member'       => 'Úsáideoir',
 'group-bot-member'        => 'Róbó',
@@ -2030,10 +2030,10 @@ cúlra i bhfócas)',
 'edit-externally-help' => '(Féach ar na [http://www.mediawiki.org/wiki/Manual:External_editors treoracha cumraíochta] as Béarla le tuilleadh eolais)',
 
 # 'all' in various places, this might be different for inflected languages
-'recentchangesall' => 'an t-iomlán',
-'imagelistall'     => 'an t-iomlán',
+'recentchangesall' => 'iad uile',
+'imagelistall'     => 'iad uile',
 'watchlistall2'    => 'an t-iomlán',
-'namespacesall'    => 'an t-iomlán',
+'namespacesall'    => 'iad uile',
 'monthsall'        => 'gach mí',
 
 # E-mail address confirmation

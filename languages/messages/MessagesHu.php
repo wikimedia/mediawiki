@@ -1853,7 +1853,7 @@ Az egyes csoportokról további információt [[{{MediaWiki:Listgrouprights-help
 'emailpage'        => 'E-mail küldése',
 'emailpagetext'    => 'A szerkesztő e-mail-címére ezen űrlap kitöltésével üzenetet tudsz küldeni.
 Feladóként a [[Special:Preferences|beállításaid]]nál megadott e-mail-címed fog szerepelni, így a címzett közvetlenül neked tud majd válaszolni.',
-'usermailererror'  => 'A postázó objektum által visszaadott hiba:',
+'usermailererror'  => 'A levélküldő objektum hibával tért vissza:',
 'defemailsubject'  => '{{SITENAME}} e-mail',
 'noemailtitle'     => 'Nincs e-mail cím',
 'noemailtext'      => 'Ez a szerkesztő nem adott meg érvényes e-mail címet.',
@@ -2042,7 +2042,7 @@ Megváltoztathatod ezen lap védelmi szintjét, de az nem lesz hatással a kaszk
 
 # Restrictions (nouns)
 'restriction-edit'   => 'Szerkesztés',
-'restriction-move'   => 'Átmozgatás',
+'restriction-move'   => 'Átnevezés',
 'restriction-create' => 'Létrehozás',
 'restriction-upload' => 'Feltöltés',
 

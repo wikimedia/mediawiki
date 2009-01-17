@@ -238,6 +238,9 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Tu ave mesajes nova en $1',
 'editsection'             => 'cambia',
 'editold'                 => 'edita',
+'viewsourceold'           => 'vide orijin',
+'editlink'                => 'cambia',
+'viewsourcelink'          => 'vide orijin',
 'editsectionhint'         => 'Edita sesion: $1',
 'toc'                     => 'Contenida',
 'showtoc'                 => 'mostra',
@@ -412,7 +415,7 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 'histlegend'             => 'Diferente eleje: Marca la caxas de radio de esta varias per compare e clica entra o la boton a la funda.<br />
 (presente) = difere de la varia presente,
 (presedente) = difere con varia presedente, M = edita minor.',
-'history-fieldset-title' => 'Xerca en istoria',
+'history-fieldset-title' => 'Surfa istoria',
 'histfirst'              => 'Prima',
 'histlast'               => 'Ultima',
 'historysize'            => '({{PLURAL:$1|1 otuple|$1 otuples}})',
@@ -855,8 +858,8 @@ En esta casos, tu va nesesa move o fusa la paje per mano, si desirada.",
 'others' => 'otras',
 
 # Browsing diffs
-'previousdiff' => '← Difere presedente',
-'nextdiff'     => 'Difere seguente →',
+'previousdiff' => '← Difere plu vea',
+'nextdiff'     => 'Difere plu nova →',
 
 # Media information
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|paje|pajes}}',
@@ -896,7 +899,7 @@ Si la fix ia es cambiada de se stato orijinal, alga detalias pote no es clara en
 
 # External editor support
 'edit-externally'      => 'Edita esta fix con un programa esterna',
-'edit-externally-help' => 'Vide la [http://www.mediawiki.org/wiki/Manual:External_editors instruis per comensa] per plu instruis.',
+'edit-externally-help' => '(Vide la [http://www.mediawiki.org/wiki/Manual:External_editors instruis per comensa] per plu instruis)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tota',

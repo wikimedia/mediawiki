@@ -1819,17 +1819,23 @@ $NEWPAGE
 'numedits'     => 'צאל פון רעדאקציעס (בלאט): $1',
 
 # Patrolling
-'markaspatrolleddiff' => 'באצייכנען אלס פאטראלירט',
-'markaspatrolledtext' => 'באצייכנען בלאט אלס פאטראלירט',
-'markedaspatrolled'   => 'באצייכנט אלס פאטראלירט',
+'markaspatrolleddiff'    => 'באצייכנען אלס פאטראלירט',
+'markaspatrolledtext'    => 'באצייכנען בלאט אלס פאטראלירט',
+'markedaspatrolled'      => 'באצייכנט אלס פאטראלירט',
+'markedaspatrollederror' => 'נישט מעגלעך צו צייכענען אלס פאַטראלירט',
 
 # Patrol log
-'patrol-log-page' => 'פאטראלירן לאג-בוך',
+'patrol-log-page'      => 'פאטראלירן לאג-בוך',
+'patrol-log-header'    => 'דאס איז א לאג-בוך פון פאַטראליטע רעוויזיעס.',
+'patrol-log-line'      => 'געצייכנט $1 פון בלאט $2 ווי פאַטראלירט $3',
+'patrol-log-auto'      => '(אויטאמאַטיש)',
+'log-show-hide-patrol' => '$1 פאַטראלירן לאג-בוך',
 
 # Image deletion
-'deletedrevision'       => 'אויסגעמעקט אלטע ווערסיע $1.',
-'filedeleteerror-short' => 'גרייז ביים אויסמעקן טעקע: $1',
-'filedelete-missing'    => 'קען נישט אויסמעקן טעקע "$1", ווייל זי עקזיסטירט נישט.',
+'deletedrevision'                 => 'אויסגעמעקט אלטע ווערסיע $1.',
+'filedeleteerror-short'           => 'גרייז ביים אויסמעקן טעקע: $1',
+'filedelete-missing'              => 'קען נישט אויסמעקן טעקע "$1", ווייל זי עקזיסטירט נישט.',
+'filedelete-current-unregistered' => 'די טעקע "$1" איז נישט אין דער דאטנבאזע.',
 
 # Browsing diffs
 'previousdiff' => 'פריערדיגע ווערסיע →',
