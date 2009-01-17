@@ -1,5 +1,5 @@
 <?php
-/** Yue (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * @ingroup Language
  * @file
@@ -142,6 +142,7 @@ $messages = array(
 'tog-highlightbroken'         => '格式化連結 <a href="" class="new">好似咁</a>（又或者: 好似咁<a href="" class="internal">?</a>）.',
 'tog-justify'                 => '拍齊段落',
 'tog-hideminor'               => '最新更改唔顯示小修改',
+'tog-hidepatrolled'           => '響最近修改度隱藏巡查過嘅編輯',
 'tog-extendwatchlist'         => '展開監視清單去顯示合適嘅更改',
 'tog-usenewrc'                => '強化版最近更改（JavaScript）',
 'tog-numberheadings'          => '標題自動編號',
@@ -176,6 +177,7 @@ $messages = array(
 'tog-watchlisthideminor'      => '響監視清單度隱藏小修改',
 'tog-watchlisthideliu'        => '響監視清單度隱藏登入用戶',
 'tog-watchlisthideanons'      => '響監視清單度隱藏匿名用戶',
+'tog-watchlisthidepatrolled'  => '響監視清單度隱藏巡查過嘅編輯',
 'tog-nolangconversion'        => '唔要用字轉換',
 'tog-ccmeonemails'            => '當我寄電郵畀其他人嗰陣寄返封副本畀我',
 'tog-diffonly'                => '響差異下面唔顯示頁面內容',
@@ -553,6 +555,7 @@ $1',
 請求 {{SITENAME}} 嘅新密碼 ($4)。
 而家用戶 "$2" 嘅新臨時密碼設定咗做 "$3"。
 如果呢個係你所要求嘅，你就需要即刻登入，揀一個新嘅密碼。
+你個臨時密碼會響{{PLURAL:$5|一|$5}}日內過期。
 
 如果係其他人作出呢個請求，
 又或者你記得返你嘅密碼而又唔想再轉，
@@ -1354,6 +1357,7 @@ $1',
 'overwroteimage'              => '已經上載咗"[[$1]]"嘅新版本',
 'uploaddisabled'              => '上載已停用',
 'uploaddisabledtext'          => '檔案上載已經停用。',
+'php-uploaddisabledtext'      => 'PHP 檔案上載已經停用。請檢查 file_uploads 設定。',
 'uploadscripted'              => '呢個檔案包含可能會誤被瀏覽器解釋執行嘅 HTML 或 script 代碼。',
 'uploadcorrupt'               => '呢個檔案已損壞或係用咗錯誤嘅副檔名。請檢查吓個檔案，然後再試下上載多次。',
 'uploadvirus'                 => '呢個檔案有病毒！詳情：$1',

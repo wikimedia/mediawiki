@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * @ingroup Language
  * @file
@@ -72,6 +72,7 @@ $messages = array(
 'tog-highlightbroken'         => '毀壞的鏈結格式<a href="" class="new">像這樣</a> (或者像這個<a href="" class="internal">?</a>)',
 'tog-justify'                 => '段落對齊',
 'tog-hideminor'               => '最近更改中隱藏小修改',
+'tog-hidepatrolled'           => '於最近更改中隱藏巡查過的編輯',
 'tog-extendwatchlist'         => '增強監視清單以顯示所有可用更改',
 'tog-usenewrc'                => '增強最近更改 (JavaScript)',
 'tog-numberheadings'          => '標題自動編號',
@@ -106,6 +107,7 @@ $messages = array(
 'tog-watchlisthideminor'      => '監視列表中隱藏小修改',
 'tog-watchlisthideliu'        => '監視列表中隱藏登入用戶',
 'tog-watchlisthideanons'      => '監視列表中隱藏匿名用戶',
+'tog-watchlisthidepatrolled'  => '監視清單中隱藏已巡查的編輯',
 'tog-nolangconversion'        => '不進行用字轉換',
 'tog-ccmeonemails'            => '當我寄電子郵件給其他用戶時，也寄一份複本到我的信箱。',
 'tog-diffonly'                => '在比較兩個修訂版本差異時不顯示頁面內容',
@@ -480,6 +482,7 @@ $2',
 'passwordremindertext'       => '有人(可能是您，來自IP位址$1)已請求{{SITENAME}}的新密碼 ($4)。
 用戶"$2"的一個新臨時密碼現在已被設定好為"$3"。
 如果這個動作是您所指示的，您便需要立即登入並選擇一個新的密碼。
+您的臨時密碼會於{{PLURAL:$5|一|$5}}天內過期。
 
 如果是其他人發出了該請求，或者您已經記起了您的密碼並不準備改變它，
 您可以忽略此消息並繼續使用您的舊密碼。',
@@ -1277,6 +1280,7 @@ $2',
 'overwroteimage'              => '已經上載"[[$1]]"的新版本',
 'uploaddisabled'              => '無法上傳',
 'uploaddisabledtext'          => '檔案上傳不可用。',
+'php-uploaddisabledtext'      => 'PHP 檔案上載已經停用。請檢查 file_uploads 設定。',
 'uploadscripted'              => '該檔案包含可能被網路瀏覽器錯誤解釋的 HTML 或腳本代碼。',
 'uploadcorrupt'               => '該檔案包含或具有一個不正確的擴展名。請檢查此檔案並重新上傳。',
 'uploadvirus'                 => '該檔案包含有病毒！詳情: $1',
