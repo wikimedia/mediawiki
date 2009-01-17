@@ -456,7 +456,7 @@ $messages = array(
 'hidetoc'                 => '非表示',
 'thisisdeleted'           => '$1 を表示または復帰しますか？',
 'viewdeleted'             => '$1の削除記録と履歴を確認する',
-'restorelink'             => '削除された $1 編集',
+'restorelink'             => '削除された$1件の編集',
 'feedlinks'               => 'フィード:',
 'feed-invalid'            => 'フィード形式の指定が間違っています。',
 'feed-unavailable'        => 'フィードの配信に対応していません。',
@@ -516,9 +516,8 @@ $1',
 
 削除された版のページへの古い差分表示や固定リンクをたどった時にこのようなことになります。
 
-それ以外の操作でこのメッセージが表示された場合、ソフトウェアのバグの可能性があります。
-[[Special:ListUsers/sysop|管理者]]までURL の情報を添えてお知らせください。',
-'missingarticle-rev'   => '(版#: $1)',
+それ以外の操作でこのメッセージが表示された場合、ソフトウェアのバグの可能性があります。[[Special:ListUsers/sysop|管理者]]までそのURLを添えてお知らせください。',
+'missingarticle-rev'   => '(版番号: $1)',
 'missingarticle-diff'  => '(差分: $1, $2)',
 'readonly_lag'         => 'データベースはスレーブ・サーバーがマスター・サーバーに同期するまで自動的にロックされています',
 'internalerror'        => '内部処理エラー',
@@ -1777,7 +1776,7 @@ PICT # misc.
 'watchthispage'        => 'ウォッチリストに追加',
 'unwatch'              => 'ウォッチリストから削除',
 'unwatchthispage'      => 'ウォッチリストから削除',
-'notanarticle'         => 'これは記事ではありません。',
+'notanarticle'         => '記事ではありません',
 'notvisiblerev'        => 'この版は削除されました',
 'watchnochange'        => 'その期間内にウォッチリストにあるページはどれも編集されていません。',
 'watchlist-details'    => 'あなたのウォッチリストには $1件のページが入っています（ノートページは数えません）。',

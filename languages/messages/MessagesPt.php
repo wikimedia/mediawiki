@@ -2925,9 +2925,10 @@ Você também pode [[Special:Watchlist/edit|editar a lista da forma convencional
 'filepath'         => 'Caminho do ficheiro',
 'filepath-page'    => 'Ficheiro:',
 'filepath-submit'  => 'Diretório',
-'filepath-summary' => 'Através dsta página especial é possível descobrir o endereço completo de um determinado ficheiro. As imagens serão exibidas em sua resolução máxima, outros tipos de ficheiros serão iniciados automaticamente em seus programas correspondentes.
+'filepath-summary' => 'Através desta página especial, é possível descobrir o endereço completo de um determinado ficheiro.
+As imagens serão exibidas em sua resolução máxima, outros tipos de ficheiros serão iniciados automaticamente em seus programas correspondentes.
 
-Entre com o nome do ficheiro sem utilizar o prefixo "{{ns:file}}:".',
+Introduza o nome do ficheiro sem utilizar o prefixo "{{ns:file}}:".',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Procurar por ficheiros duplicados',

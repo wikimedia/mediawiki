@@ -1359,7 +1359,7 @@ Om du fortsatt ønsker å laste opp fila, gå tilbake og last den opp under et n
 'overwroteimage'              => 'last opp en ny versjon av «[[$1]]»',
 'uploaddisabled'              => 'Opplastingsfunksjonen er slått av',
 'uploaddisabledtext'          => 'Opplasting er slått av.',
-'php-uploaddisabledtext'      => 'PHP filopplasting er deaktivert. Sjekk innstillingen for file_uploads.',
+'php-uploaddisabledtext'      => 'PHP-filopplasting er deaktivert. Sjekk innstillingen for file_uploads.',
 'uploadscripted'              => 'Denne fila inneholder HTML eller skripting som kan feiltolkes av en nettleser.',
 'uploadcorrupt'               => 'Denne fila er ødelagt eller er en ugyldig filtype. Sjekk fila og last den opp på nytt.',
 'uploadvirus'                 => 'Denne fila inneholder virus! Detaljer: $1',

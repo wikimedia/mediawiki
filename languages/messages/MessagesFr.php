@@ -1495,6 +1495,7 @@ Si vous voulez encore l’importer, veuillez revenir en arrière et l’importer
 'overwroteimage'              => 'a importé une nouvelle version de « [[$1]] »',
 'uploaddisabled'              => 'Import de fichiers désactivé.',
 'uploaddisabledtext'          => 'L’import de fichiers vers le serveur est désactivé.',
+'php-uploaddisabledtext'      => "Le téléchargement de fichiers a été désactivé dans PHP. Vérifiez l'option de configuration file_uploads.",
 'uploadscripted'              => 'Ce fichier contient du code HTML ou un script qui pourrait être interprété de façon incorrecte par un navigateur Internet.',
 'uploadcorrupt'               => 'Ce fichier est corrompu, a une taille nulle ou possède une extension invalide.
 Veuillez vérifer le fichier.',

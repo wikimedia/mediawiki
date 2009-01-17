@@ -246,6 +246,7 @@ $messages = array(
 'showtoc'                 => 'mostra',
 'hidetoc'                 => 'asconde',
 'viewdeleted'             => 'Vide $1?',
+'feedlinks'               => 'Flue:',
 'site-rss-feed'           => '$1 RSS Flue',
 'site-atom-feed'          => '$1 Atom Flue',
 'page-rss-feed'           => '"$1" RSS Flue',
@@ -300,7 +301,8 @@ $messages = array(
 'prefs-help-realname'     => 'Tu nom vera no es obligada, ma si tu vole dona tu nom vera, el va es usada per onora tu per tu labora.',
 'loginsuccesstitle'       => 'Entra susedente',
 'loginsuccess'            => "'''Tu ia entrada aora a {{SITENAME}} como \"\$1\".'''",
-'nosuchuser'              => 'Es no usor con la nom "$1". Esamina la spele, o crea un conta nova.',
+'nosuchuser'              => 'Es no usor con la nom "$1".
+Esamina la spele, o [[Special:UserLogin/signup|crea un conta nova]].',
 'nosuchusershort'         => 'Es no usor con esta nom "<nowiki>$1</nowiki>". Esamina la spele.',
 'nouserspecified'         => 'Tu debe indica un nom de usor.',
 'wrongpassword'           => 'La sinia de entra no es coreta. Per favore, atenta ancora.',
@@ -324,7 +326,9 @@ Ante alga otra eposta es enviada a la conta, tu va nesesa segue la instruis en l
 'loginlanguagelabel'      => 'Lingua: $1',
 
 # Password reset dialog
-'retypenew' => 'Re-entra tu sinia secreta nova:',
+'oldpassword' => 'Sinia secreta vea:',
+'newpassword' => 'Sinia secreta nova:',
+'retypenew'   => 'Re-entra tu sinia secreta nova:',
 
 # Edit page toolbar
 'bold_sample'     => 'Testo en leteras forte',
@@ -706,7 +710,7 @@ Asi es la ajustas presente per la paje <strong>$1</strong>:',
 'protect-expiring'            => 'fini $1 (UTC)',
 'protect-cascade'             => 'Proteje pajes ce es incluida en esta paje (proteje cascadente)',
 'protect-cantedit'            => 'Tu no pote cambia la nivel de proteje de esta paje, per ce tu no ave la permite per edita el.',
-'protect-expiry-options'      => '2 oras:2 hours,1 dia:1 day,3 dias:3 days,1 semana:1 week,2 semanas:2 weeks,1 mensa:1 month,3 mensas:3 months,6 mensas:6 months,1 anio:1 year,nonlimitada:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 ora:1 hour,1 dia:1 day,1 semana:1 week,2 semanas:2 weeks,1 mensa:1 month,3 mensas:3 months,6 mensas:6 months,1 anio:1 year,nonlimitada:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Permete:',
 'restriction-level'           => 'Nivel de restrinje:',
 
@@ -915,7 +919,11 @@ Si la fix ia es cambiada de se stato orijinal, alga detalias pote no es clara en
 'watchlisttools-raw'  => 'Edita la lista rua de pajes oservada',
 
 # Special:Version
-'version' => 'Varia', # Not used as normal message but as header for the special page itself
+'version'         => 'Varia', # Not used as normal message but as header for the special page itself
+'version-version' => 'Varia',
+
+# Special:FilePath
+'filepath-page' => 'Fix:',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'Xerca',

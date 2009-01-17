@@ -484,6 +484,7 @@ Ke hoʻohiki nei ʻoe iā kākou: ua kākau ʻoe i kēia kikokikona na ʻo ʻoe 
 'nbytes'            => '$1 {{PLURAL:$1|‘ai|‘ai}}',
 'nlinks'            => '$1 {{PLURAL:$1|loulou|loulou}}',
 'nmembers'          => '$1 {{PLURAL:$1|lālā|lālā}}',
+'wantedcategories'  => 'Nā māhele makemake',
 'shortpages'        => 'Nā ʻaoʻao pōkole',
 'longpages'         => 'Nā ʻaoʻao lōʻihi',
 'newpages'          => 'Nā ‘ao‘ao hou',
@@ -535,6 +536,7 @@ Ke hoʻohiki nei ʻoe iā kākou: ua kākau ʻoe i kēia kikokikona na ʻo ʻoe 
 'changed' => 'ua loli ‘ia',
 
 # Delete
+'deletepage'             => 'Kāpae ʻaoʻao',
 'actioncomplete'         => 'Ua pau',
 'deletedtext'            => 'Ua kāpae ʻo "<nowiki>$1</nowiki>".
 E ʻike i $2 no ka papa o nā kāpae ʻana hou.',
@@ -599,6 +601,7 @@ E ʻike i $2 no ka papa o nā kāpae ʻana hou.',
 'newtitle'                => 'I ka inoa hou:',
 'move-watch'              => 'E nānā pono i kēia mea',
 'movepagebtn'             => "E ho'ololi",
+'pagemovedsub'            => 'Kūleʻa ka neʻe ʻana',
 '1movedto2'               => 'Ua hoʻoneʻe ʻo [[$1]] iā [[$2]]',
 'movereason'              => 'Kumu:',
 'delete_and_move'         => 'E kāpae a e ho‘ololi i ka inoa',
@@ -642,6 +645,7 @@ Hiki iā ʻoe ke ʻikena i kāna molekumu.',
 'tooltip-t-upload'         => 'Ho‘ouka i nā waihona',
 'tooltip-t-specialpages'   => 'Helu o nā papa nui apau',
 'tooltip-ca-nstab-project' => 'Nānā i ka ‘ao‘ao papahana',
+'tooltip-ca-nstab-help'    => 'Nānaina i ka ʻaoʻao kōkua',
 'tooltip-minoredit'        => 'Wae i kēia hoʻopololei me he hoʻopololei iki',
 'tooltip-save'             => 'Mālama i kāu ho‘opololei',
 
