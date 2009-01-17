@@ -84,6 +84,7 @@ class EditPage {
 
 	/* $didSave should be set to true whenever an article was succesfully altered. */
 	public $didSave = false;
+	public $undidRev = 0;
 
 	public $suppressIntro = false;
 
@@ -182,6 +183,7 @@ class EditPage {
 						# If we just undid one rev, use an autosummary
 						if ( $firstrev->mId == $undo ) {
 							$this->summary = wfMsgForContent( 'undo-summary', $undo, $undorev->getUserText() );
+							$this->undidRev = $undo;
 						}
 						$this->formtype = 'diff';
 					} else {
