@@ -2086,11 +2086,15 @@ class User {
 	 * @param $action \string action to be checked
 	 * @return \bool True if action is allowed, else false
 	 */
-	function isAllowed($action='') {
+	function isAllowed( $action = '' ) {
 		if ( $action === '' )
-			// In the spirit of DWIM
-			return true;
-
+			return true; // In the spirit of DWIM
+		# Patrolling may not be enabled
+		if( $action === 'patrol' || $action === 'autopatrol' ) {
+			global $wgUseRCPatrol, $wgUseNPPatrol;
+			if( !$wgUseRCPatrol && !$wgUseNPPatrol )
+				return true;
+		}
 		# Use strict parameter to avoid matching numeric 0 accidentally inserted 
 		# by misconfiguration: 0 == 'foo'
 		return in_array( $action, $this->getRights(), true );
