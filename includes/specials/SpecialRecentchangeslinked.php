@@ -22,9 +22,10 @@ class SpecialRecentchangeslinked extends SpecialRecentchanges {
 		$opts['target'] = $par;
 	}
 
-	public function feedSetup(){
+	public function feedSetup() {
 		global $wgRequest;
 		$opts = parent::feedSetup();
+		# Feed is cached on limit,hideminor,target; other params would randomly not work
 		$opts['target'] = $wgRequest->getVal( 'target' );
 		return $opts;
 	}
@@ -133,9 +134,14 @@ class SpecialRecentchangeslinked extends SpecialRecentchanges {
 				}
 			}
 
-			$subsql[] = $dbr->selectSQLText( array_merge( $tables, array( $link_table ) ), $select, $conds + $subconds,
-							 __METHOD__, array( 'ORDER BY' => 'rc_timestamp DESC', 'LIMIT' => $limit ),
-							 $join_conds + array( $link_table => array( 'INNER JOIN', $subjoin ) ) );
+			$subsql[] = $dbr->selectSQLText( 
+				array_merge( $tables, array( $link_table ) ), 
+				$select, 
+				$conds + $subconds,
+				__METHOD__, 
+				array( 'ORDER BY' => 'rc_timestamp DESC', 'LIMIT' => $limit ),
+				$join_conds + array( $link_table => array( 'INNER JOIN', $subjoin ) )
+			);
 		}
 
 		if( count($subsql) == 0 )
