@@ -1,5 +1,5 @@
 <?php
-/** Achinese (Achèh)
+/** Achinese (Acèh)
  *
  * @ingroup Language
  * @file

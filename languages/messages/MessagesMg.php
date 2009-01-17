@@ -51,6 +51,7 @@ $messages = array(
 'tog-highlightbroken'         => 'Aseho <a href="" class="new">toy izao</a> ny rohy tapaka (na koa: toy izao<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Ahitsio ny paragrafy',
 'tog-hideminor'               => "Aza aseho amin'ny lisitry ny vao niova ny fanovana madinika",
+'tog-extendwatchlist'         => 'Ampiasa ny fanaram-pejy tsaratsara',
 'tog-usenewrc'                => 'Lisitry ny vao niova nohatsaraina (mila JavaScript)',
 'tog-numberheadings'          => 'Asio laharany ny lohateny',
 'tog-showtoolbar'             => 'Asehoy ny edit toolbar (mila JavaScript)',
@@ -60,7 +61,10 @@ $messages = array(
 'tog-showtoc'                 => "Asehoy ny fanoroan-takila (ho an'ny pejy misy lohateny mihoatra ny 3)",
 'tog-rememberpassword'        => 'Tadidio ny tenimiafiko',
 'tog-editwidth'               => "Farany lehibe ny velaran'ny boaty fanovana",
+'tog-watchcreations'          => "Ampina ao anarin'ny pejy fanaraha-maso ny pejy amboariko",
 'tog-watchdefault'            => "Atsofohy ao amin'ny lisitry ny pejy arahinao maso ny pejy izay ovainao na foroninao",
+'tog-watchmoves'              => "Ampina ao anatin'ny pejiko fanaraha-maso ny pejy soloiko anarana",
+'tog-watchdeletion'           => "Ampina anatin'ny pejy fanaraha-maso ny pejy nofafako",
 'tog-minordefault'            => 'Mariho ho madinika foana aloha ny fanovana rehetra',
 'tog-previewontop'            => "Asehoy alohan'ny boaty fanovana ny tsipalotra",
 'tog-previewonfirst'          => "Asehoy ny tsipalotra amin'ny fanovana voalohany",
@@ -74,6 +78,9 @@ $messages = array(
 'tog-externaleditor'          => 'Fitaovana hafa no hanaovana ny fanovana pejy',
 'tog-externaldiff'            => 'Fitaovana hafa no hanaovana ny fampitahana',
 'tog-showjumplinks'           => 'Ampiasao ny rohy "handeha eto"',
+'tog-watchlisthideown'        => "Tsy ampiseho anatin'ny pejy fanaraha-maso ny zavatra nosoratako",
+'tog-watchlisthideminor'      => "Tsy aseho ny fisoloina kely anatin'ny pejy fanaraha-maso",
+'tog-ccmeonemails'            => "Andefaso tahaka ny imailaka alefako amin'ny mpikambana afa",
 
 'underline-always'  => 'Foana foana',
 'underline-never'   => 'Tsy tsipihina mihitsy',
@@ -149,7 +156,9 @@ $messages = array(
 'info_short'        => 'Fampahalalana',
 'permalink'         => 'Rohy maharitra',
 'edit'              => 'Ovao',
+'create'            => 'Amboary',
 'editthispage'      => 'Ovay ity pejy ity',
+'create-this-page'  => 'Amboary ity pejy ity',
 'delete'            => 'Fafao',
 'deletethispage'    => 'Fafao ity pejy ity',
 'undelete_short'    => 'Avereno ny fanovana {{PLURAL:$1|$1|$1}}',
@@ -228,46 +237,49 @@ Ny asa voafaritra tao amin'ny URL dia tsy fantatr'ity wiki ity",
 'nospecialpagetext' => 'Nangataka pejy manokana tsy misy ianao, azonao jerena eto [[Special:SpecialPages|{{int:specialpages}}]] ny lisitry ny pejy manokana.',
 
 # General errors
-'error'           => 'Tsy mety',
-'databaseerror'   => "Tsy fetezana eo amin'ny toby",
-'dberrortext'     => 'Nisy tsi-fetezana teo amin\'ny requête base de données
+'error'            => 'Tsy mety',
+'databaseerror'    => "Tsy fetezana eo amin'ny toby",
+'dberrortext'      => 'Nisy tsi-fetezana teo amin\'ny requête base de données
 Inoana fa ny rindrankajy no misy olana (bug).
 Ny requête farany dia:
 <blockquote><tt>$1</tt></blockquote>
 tao amin\'ny fonction "<tt>$2</tt>".
 Toy izao no navalin\'ny MySQL "<tt>$3: $4</tt>".',
-'dberrortextcl'   => 'Nisy tsi-fetezana teo amin\'ny requête base de données
+'dberrortextcl'    => 'Nisy tsi-fetezana teo amin\'ny requête base de données
 Ny requête farany dia:
 "$1"
 tao amin\'ny fonction "$2".
 Toy izao no navalin\'ny MySQL "$3: $4"',
-'noconnect'       => "
+'noconnect'        => "
 	Miala tsiny! Misedra olana kely ny wiki ankehitriny, ary tsy afaka mifandray amin'ny serveur banky angona <br />
 $1",
-'cachederror'     => "Ity manaraka ity no dika caché an'io pejy ilainao io, nefa mety ho efa mialin'andro.",
-'laggedslavemode' => 'Fampitandremana: Mety ho tsy nisy fanovana vao haingana angamba io pejy io',
-'readonly'        => 'Mihidy ny banky angona',
-'enterlockreason' => 'Manomeza antony hanidiana ny pejy, ahitana ny fotoana tokony hamahana izay fihidiana izay',
-'readonlytext'    => "
+'cachederror'      => "Ity manaraka ity no dika caché an'io pejy ilainao io, nefa mety ho efa mialin'andro.",
+'laggedslavemode'  => 'Fampitandremana: Mety ho tsy nisy fanovana vao haingana angamba io pejy io',
+'readonly'         => 'Mihidy ny banky angona',
+'enterlockreason'  => 'Manomeza antony hanidiana ny pejy, ahitana ny fotoana tokony hamahana izay fihidiana izay',
+'readonlytext'     => "
 Mihidy vonjimaika aloha ny banky angona ka tsy afaka anaovana fanovana na fanampiana vaovao. Azo inoana fa asa fikolokoloana mahazatra ihany io ka rehefa vita izay asa izay dia hverina amin'ny laoniny izy.
 
 Ny mpitantana nanidy azy dia nametraka ito fanazavana ito: $1",
-'readonly_lag'    => "
+'readonly_lag'     => "
 Mihidy ho azy aloha ny banky angona mandra-pahatratran'ny serveur andevo ny tompony",
-'internalerror'   => "Tsy fetezana anatin'ny rindrankajy",
-'filecopyerror'   => 'Tsy voadika ho "$2" ilay rakitra"$1".',
-'filerenameerror' => 'Tsy voaova ho "$2" ny anaran\'ilay rakitra "$1".',
-'filedeleteerror' => 'Tsy voafafa ilay rakitra "$1".',
-'filenotfound'    => 'Tsy hita ilay rakitra "$1".',
-'unexpected'      => 'Tsy nandrasana: "$1"="$2".',
-'formerror'       => 'Tsy mety: tsy lasa ny fisy',
-'badarticleerror' => "Tsy azo atao eto amin'ity pejy ity io asa io.",
-'cannotdelete'    => 'Tsy voafafa ny pejy na rakitra nomenao. (Angamba efa nisy olon-kafa namafa ilay izy.)',
-'badtitle'        => 'Tsy mety ny lohateny',
-'badtitletext'    => "Tsy mety io anaram-pejy nangatahinao io na tsy misy n'inon'inona na rohy dikan-teny vahiny misy diso tsipelina.",
-'perfcached'      => 'Ireto angona ireto dia nalaina tao anaty cache koa mety ho efa lany daty.:',
-'viewsource'      => 'Hijery fango',
-'sqlhidden'       => '(nafenina ny requête SQL)',
+'internalerror'    => "Tsy fetezana anatin'ny rindrankajy",
+'filecopyerror'    => 'Tsy voadika ho "$2" ilay rakitra"$1".',
+'filerenameerror'  => 'Tsy voaova ho "$2" ny anaran\'ilay rakitra "$1".',
+'filedeleteerror'  => 'Tsy voafafa ilay rakitra "$1".',
+'filenotfound'     => 'Tsy hita ilay rakitra "$1".',
+'fileexistserror'  => "Tsy afaka manoratra ao anatin'ilay dossier « $1 » : efa misy ilay fisy",
+'unexpected'       => 'Tsy nandrasana: "$1"="$2".',
+'formerror'        => 'Tsy mety: tsy lasa ny fisy',
+'badarticleerror'  => "Tsy azo atao eto amin'ity pejy ity io asa io.",
+'cannotdelete'     => 'Tsy voafafa ny pejy na rakitra nomenao. (Angamba efa nisy olon-kafa namafa ilay izy.)',
+'badtitle'         => 'Tsy mety ny lohateny',
+'badtitletext'     => "Tsy mety io anaram-pejy nangatahinao io na tsy misy n'inon'inona na rohy dikan-teny vahiny misy diso tsipelina.",
+'perfcached'       => 'Ireto angona ireto dia nalaina tao anaty cache koa mety ho efa lany daty.:',
+'viewsource'       => 'Hijery fango',
+'viewsourcefor'    => "ho an'ny $1",
+'editinginterface' => "'''Tandremo :''' manova pejy ampiasan'ny lôjisialy wiki ianao. Mety hita ny mpikambana sàsany izy io. Rehefa tia mandika teny ianao, jereo ny volavola MediaWiki ho an'ny internationalisation ny hafatra [http://translatewiki.net/wiki/Main_Page?setlang=fr Betawiki].",
+'sqlhidden'        => '(nafenina ny requête SQL)',
 
 # Login and logout pages
 'logouttitle'                => 'Fivoahana',
@@ -441,6 +453,7 @@ Tsara raha saratsarahinao ho fizarana maromaro ity pejy ity.</strong>",
 koa tsy afaka mitahiry ny fanovana nataonao aloha ianao izao. Angamba tokony hanao Couper coller aloha 
 ianao dia tehirizo anaty rakitra ny fanovanao mandra-paha.</strong>',
 'protectedpagewarning'   => '<strong>FAMPITANDREMANA:  Voaaro ity pejy ity ka ny mpikambana manana ny fahazoan-dàlana sysop ihany no afaka manova azy.</strong>',
+'template-protected'     => '(voaaro)',
 'nocreatetitle'          => 'Voafetra ny famoronana pejy',
 'nocreatetext'           => " Voafetra ihany ny fahafahana mamorona pejy eto amin'ity sehatra ity.  Ny pejy efa misy no azonao ovaina, na [[Special:UserLogin|midira na mamoròna kaonty]].",
 
