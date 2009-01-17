@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * @ingroup Language
  * @file
@@ -68,6 +68,7 @@ $specialPageAliases = array(
 	'Preferences'               => array( '参数设置' ),
 	'Watchlist'                 => array( '监视列表' ),
 	'Recentchanges'             => array( '最近更改' ),
+	'Recentchangeslinked'       => array( '链出更改' ),
 	'Upload'                    => array( '上传文件' ),
 	'Listfiles'                 => array( '文件列表' ),
 	'Newimages'                 => array( '新建文件' ),
@@ -80,7 +81,7 @@ $specialPageAliases = array(
 	'Uncategorizedcategories'   => array( '未归类分类' ),
 	'Uncategorizedimages'       => array( '未归类文件' ),
 	'Uncategorizedtemplates'    => array( '未归类模版' ),
-	'Unusedcategories'          => array( '未使用的模板' ),
+	'Unusedcategories'          => array( '未使用分类' ),
 	'Unusedimages'              => array( '未使用文件' ),
 	'Wantedpages'               => array( '待撰页面' ),
 	'Wantedcategories'          => array( '待撰分类' ),
@@ -166,6 +167,7 @@ $messages = array(
 'tog-highlightbroken'         => '无效链接格式<a href="" class="new">像这样</a> (或者像这个<a href="" class="internal">?</a>)',
 'tog-justify'                 => '段落对齐',
 'tog-hideminor'               => '最近更改中隐藏小修改',
+'tog-hidepatrolled'           => '于最近更改中隐藏巡查过的编辑',
 'tog-extendwatchlist'         => '增强监视列表以显示所有可用更改',
 'tog-usenewrc'                => '增强最近更改 (JavaScript)',
 'tog-numberheadings'          => '标题自动编号',
@@ -200,6 +202,7 @@ $messages = array(
 'tog-watchlisthideminor'      => '在监视列表中隐藏微小更改',
 'tog-watchlisthideliu'        => '在监视列表中隐藏登入用户',
 'tog-watchlisthideanons'      => '在监视列表中隐藏匿名用户',
+'tog-watchlisthidepatrolled'  => '在监视列表中隐藏已巡查的编辑',
 'tog-nolangconversion'        => '不进行用字转换',
 'tog-ccmeonemails'            => '把我发送给其他用户的邮件同时发送副本给我自己',
 'tog-diffonly'                => '在比较两个修订版本差异时不显示页面内容',
@@ -576,9 +579,13 @@ $2',
 'passwordtooshort'           => '您的密码不正确或太短，不能少于$1个字元，而且必须跟用户名不同。',
 'mailmypassword'             => '将新密码寄给我',
 'passwordremindertitle'      => '{{SITENAME}}的新临时密码',
-'passwordremindertext'       => '有人（有可能是您，来自IP地址$1）已请求{{SITENAME}}的新密码（$4）。用户"$2"的一个新临时密码现在已被设置好为"$3"。如果这个动作是您所指示的，请您立即登入并选择一个新的密码。临时密码有效期为{{PLURAL:$5|一天|$5天}}。
+'passwordremindertext'       => '有人（有可能是您，来自IP地址$1）已请求{{SITENAME}}的新密码（$4）。
+用户"$2"的一个新临时密码现在已被设置好为"$3"。
+如果这个动作是您所指示的，请您立即登入并选择一个新的密码。
+您的临时密码会于{{PLURAL:$5|一|$5}}天内过期。
 
-如果是其他人发出了该请求，或者您已经记起了您的密码并不准备改变它，您可以忽略此消息并继续使用您的旧密码。',
+如果是其他人发出了该请求，或者您已经记起了您的密码并不准备改变它，
+您可以忽略此消息并继续使用您的旧密码。',
 'noemail'                    => '用户"$1"没有登记电子邮件地址。',
 'passwordsent'               => '用户"$1"的新密码已经寄往所登记的电子邮件地址。
 请在收到后再登录。',
@@ -1374,6 +1381,7 @@ $2',
 'overwroteimage'              => '已经上载"[[$1]]"的新版本',
 'uploaddisabled'              => '无法上传',
 'uploaddisabledtext'          => '文件上传不可用。',
+'php-uploaddisabledtext'      => 'PHP 文件上载已经停用。请检查 file_uploads 设置。',
 'uploadscripted'              => '该文件包含可能被网络浏览器错误解释的 HTML 或脚本代码。',
 'uploadcorrupt'               => '该文件包含或具有一个不正确的扩展名。请检查此文件并重新上传。',
 'uploadvirus'                 => '该文件包含有病毒！详情: $1',
@@ -2395,10 +2403,6 @@ $1已经被封锁。您是否想更改这个设置？',
 'skinname-standard'    => '标准',
 'skinname-nostalgia'   => '怀旧',
 'skinname-cologneblue' => '科隆香水蓝',
-'skinname-monobook'    => 'MonoBook',
-'skinname-myskin'      => 'MySkin',
-'skinname-chick'       => 'Chick',
-'skinname-simple'      => 'Simple',
 'skinname-modern'      => '现代',
 
 # Math options
