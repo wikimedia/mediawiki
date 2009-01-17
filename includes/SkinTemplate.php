@@ -416,13 +416,8 @@ class SkinTemplate extends Skin {
 				if ( $nt ) {
 					$language_urls[] = array(
 						'href' => $nt->getFullURL(),
-						'text' => ( $wgContLang->getLanguageName( $nt->getInterwiki() ) != ''
-							? $wgContLang->getLanguageName( $nt->getInterwiki() )
-							: $l ),
-						'class' => $class,
-						'title' => ( $wgLang->getLanguageNameLocalized( $nt->getInterwiki() ) != ''
-							? $wgLang->getLanguageNameLocalized( $nt->getInterwiki() )
-							: $l )
+						'text' => ($wgContLang->getLanguageName( $nt->getInterwiki()) != ''?$wgContLang->getLanguageName( $nt->getInterwiki()) : $l),
+						'class' => $class
 					);
 				}
 			}

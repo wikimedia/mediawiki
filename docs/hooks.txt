@@ -790,10 +790,6 @@ $password: The password entered by the user
 &$result: Set this and return false to override the internal checks
 $user: User the password is being validated for
 
-'LanguageGetLocalizedLanguageNames': Use to get localized language names
-&$languageNames: localized language names (array)
-$lang: laguage code (string)
-
 'LanguageGetMagic': Use this to define synonyms of magic words depending of the language
 $magicExtensions: associative array of magic words synonyms
 $lang: laguage code (string)
