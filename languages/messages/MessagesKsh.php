@@ -1553,6 +1553,8 @@ wann De se noch han wells.',
 'overwroteimage'              => 'hät en neue Version huhjelade vun: „[[$1]]“',
 'uploaddisabled'              => 'Huhlade jesperrt',
 'uploaddisabledtext'          => 'Et Huhlade es jesperrt.',
+'php-uploaddisabledtext'      => 'Et Dateie Huhlade es en PHP affjeschalldt.
+Bes esu joot un donn noh de Enshtellung <i lang="en">file_uploads</i> loore.',
 'uploadscripted'              => 'En dä Datei es HTML dren oder Code vun enem Skripp, dä künnt Dinge Brauser en do verkihrte Hals krije un usführe.',
 'uploadcorrupt'               => 'Schad.
 <br />

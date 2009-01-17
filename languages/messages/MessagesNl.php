@@ -1582,6 +1582,7 @@ Raadpleeg het verwijderingslogboek voordat u verder gaat.',
 'overwroteimage'              => 'heeft een nieuwe versie van "[[$1]]" toegevoegd',
 'uploaddisabled'              => 'Uploaden is uitgeschakeld',
 'uploaddisabledtext'          => 'Het uploaden van bestanden is uitgeschakeld.',
+'php-uploaddisabledtext'      => 'PHP-bestanduploads zijn uitgeschakeld. Controleer a.u.b. de file_uploads-instelling.',
 'uploadscripted'              => 'Dit bestand bevat HTML- of scriptcode die foutief door uw browser kan worden weergegeven.',
 'uploadcorrupt'               => 'Het bestand is corrupt of heeft een onjuiste extensie.
 Controleer het bestand en upload het opnieuw.',

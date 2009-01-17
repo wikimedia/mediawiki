@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author ChrisiPK
  * @author Church of emacs
  * @author Jimmy Collins <jimmy.collins@web.de>
  * @author Li-sung
@@ -335,7 +336,7 @@ $messages = array(
 'tog-fancysig'                => 'Signatur ohne Verlinkung zur Benutzerseite',
 'tog-externaleditor'          => 'Externen Editor als Standard benutzen (nur für Experten, es müssen spezielle Einstellungen auf dem eigenen Computer vorgenommen werden)',
 'tog-externaldiff'            => 'Externes Diff-Programm als Standard benutzen (nur für Experten, es müssen spezielle Einstellungen auf dem eigenen Computer vorgenommen werden)',
-'tog-showjumplinks'           => '„Wechseln-zu“-Links aktivieren',
+'tog-showjumplinks'           => '„Wechseln zu“-Links aktivieren',
 'tog-uselivepreview'          => 'Live-Vorschau nutzen (JavaScript) (experimentell)',
 'tog-forceeditsummary'        => 'Warnen, wenn beim Speichern die Zusammenfassung fehlt',
 'tog-watchlisthideown'        => 'Eigene Bearbeitungen ausblenden',
@@ -702,8 +703,8 @@ Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] anzupass
 'prefs-help-email'           => 'Die Angabe einer E-Mail ist optional, ermöglicht aber die Zusendung eines Ersatzpasswortes, wenn du dein Passwort vergessen hast.
 Mit anderen Benutzer kannst du auch über die Benutzerdiskussionsseiten Kontakt aufnehmen, ohne dass du deine Identität offenlegen musst.',
 'prefs-help-email-required'  => 'Es wird eine gültige E-Mail-Adresse benötigt.',
-'nocookiesnew'               => 'Der Benutzerzugang wurde erstellt, aber du bist nicht eingeloggt. {{SITENAME}} benötigt für diese Funktion Cookies, bitte aktiviere diese und logge dich dann mit deinem neuen Benutzernamen und dem zugehörigen Passwort ein.',
-'nocookieslogin'             => '{{SITENAME}} benutzt Cookies zum Einloggen der Benutzer. Du hast Cookies deaktiviert, bitte aktiviere diese und versuchen es erneut.',
+'nocookiesnew'               => 'Der Benutzerzugang wurde erstellt, aber du bist nicht angemeldet. {{SITENAME}} benötigt für diese Funktion Cookies, bitte aktiviere diese und melde dich dann mit deinem neuen Benutzernamen und dem zugehörigen Passwort an.',
+'nocookieslogin'             => '{{SITENAME}} benutzt Cookies zur Anmeldung der Benutzer. Du hast Cookies deaktiviert, bitte aktiviere diese und versuchen es erneut.',
 'noname'                     => 'Du musst einen gültigen Benutzernamen angeben.',
 'loginsuccesstitle'          => 'Anmeldung erfolgreich',
 'loginsuccess'               => 'Du bist jetzt als „$1“ bei {{SITENAME}} angemeldet.',
@@ -902,7 +903,7 @@ Bitte füge deine Änderungen in das obere Textfeld ein.
 'nonunicodebrowser'                => '<strong>Achtung:</strong> Dein Browser kann Unicode-Zeichen nicht richtig verarbeiten. Bitte verwende einen anderen Browser um Seiten zu bearbeiten.',
 'editingold'                       => '<strong>ACHTUNG: Du bearbeitest eine alte Version dieser Seite. Wenn du speicherst, werden alle neueren Versionen überschrieben.</strong>',
 'yourdiff'                         => 'Unterschiede',
-'copyrightwarning'                 => '<strong>Bitte <big>kopiere keine Webseiten</big>, die nicht deine eigenen sind, benutzen <big>keine urheberrechtlich geschützten Werke</big> ohne Erlaubnis des Copyright-Inhabers!</strong><br />
+'copyrightwarning'                 => '<strong>Bitte <big>kopiere keine Webseiten</big>, die nicht deine eigenen sind, benutze <big>keine urheberrechtlich geschützten Werke</big> ohne Erlaubnis des Copyright-Inhabers!</strong><br />
 Du gibst uns hiermit deine Zusage, dass du den Text <strong>selbst verfasst</strong> hast, dass der Text Allgemeingut (<strong>public domain</strong>) ist, oder dass der <strong>Copyright-Inhaber</strong> seine <strong>Zustimmung</strong> gegeben hat. Falls dieser Text bereits woanders veröffentlicht wurde, weise bitte auf der Diskussionsseite darauf hin.
 <i>Bitte beachte, dass alle {{SITENAME}}-Beiträge automatisch unter der „$2“ stehen (siehe $1 für Details). Falls du nicht möchtest, dass deine Arbeit hier von anderen verändert und verbreitet wird, dann drücke nicht auf „Seite speichern“.</i>',
 'copyrightwarning2'                => 'Bitte beachte, dass alle Beiträge zu {{SITENAME}} von anderen Mitwirkenden bearbeitet, geändert oder gelöscht werden können.
@@ -1229,7 +1230,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen
 'math_failure'              => 'Parser-Fehler',
 'math_unknown_error'        => 'Unbekannter Fehler',
 'math_unknown_function'     => 'Unbekannte Funktion ',
-'math_lexing_error'         => "'Lexing'-Fehler",
+'math_lexing_error'         => '„Lexing“-Fehler',
 'math_syntax_error'         => 'Syntaxfehler',
 'math_image_error'          => 'die PNG-Konvertierung schlug fehl',
 'math_bad_tmpdir'           => 'Das temporäre Verzeichnis für mathematische Formeln kann nicht angelegt oder beschrieben werden.',
@@ -1423,7 +1424,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen
 'recentchanges-legend'              => 'Anzeigeoptionen',
 'recentchangestext'                 => "Auf dieser Seite kannst du die letzten Änderungen auf '''{{SITENAME}}''' nachverfolgen.",
 'recentchanges-feed-description'    => 'Verfolge mit diesem Feed die letzten Änderungen in {{SITENAME}}.',
-'rcnote'                            => "Angezeigt {{PLURAL:$1|wird '''1''' Änderung|werden die letzten '''$1''' Änderungen}} {{PLURAL:$2|des letzten Tages|der letzten '''$2''' Tage}}. Stand: $4, $5. (<b><tt>Neu</tt></b>&nbsp;– neuer Eintrag; <b><tt>K</tt></b>&nbsp;– kleine Änderung; <b><tt>B</tt></b>&nbsp;– Änderung durch einen Bot; ''(± Zahl)''&nbsp;– Größenänderung in Byte)",
+'rcnote'                            => "Angezeigt {{PLURAL:$1|wird '''1''' Änderung|werden die letzten '''$1''' Änderungen}} {{PLURAL:$2|des letzten Tages|der letzten '''$2''' Tage}}. Stand: $4, $5. (<b><tt>N</tt></b>&nbsp;– neuer Eintrag; <b><tt>K</tt></b>&nbsp;– kleine Änderung; <b><tt>B</tt></b>&nbsp;– Änderung durch einen Bot; ''(± Zahl)''&nbsp;– Größenänderung in Byte)",
 'rcnotefrom'                        => "Angezeigt werden die Änderungen seit '''$2''' (max. '''$1''' Einträge).",
 'rclistfrom'                        => 'Nur Änderungen seit $1 zeigen.',
 'rcshowhideminor'                   => 'Kleine Änderungen $1',
@@ -1525,7 +1526,7 @@ Bitte prüfe, ob du das Bild in voller Auflösung vorliegen hast und lade dieses
 Wenn du diese Datei trotzdem hochladen möchtest, gehe bitte zurück und ändere den Namen.
 [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Diese Datei ist ein Duplikat der folgenden {{PLURAL:$1|Datei|$1 Dateien}}:',
-'file-deleted-duplicate'      => 'Eine identische Datei dieser Datei ([[$1]]) wurde früher gelöscht. Überprüfe das Löschlogbuch, bevor du sie hochlädst.',
+'file-deleted-duplicate'      => 'Eine identische Datei dieser Datei ([[$1]]) wurde früher gelöscht. Überprüfe das Lösch-Logbuch, bevor du sie hochlädst.',
 'successfulupload'            => 'Erfolgreich hochgeladen',
 'uploadwarning'               => 'Warnung',
 'savefile'                    => 'Datei speichern',
@@ -1533,6 +1534,7 @@ Wenn du diese Datei trotzdem hochladen möchtest, gehe bitte zurück und ändere
 'overwroteimage'              => 'hat eine neue Version von „[[$1]]“ hochgeladen',
 'uploaddisabled'              => 'Hochladen deaktiviert',
 'uploaddisabledtext'          => 'Das Hochladen von Dateien ist deaktiviert.',
+'php-uploaddisabledtext'      => 'PHP-Datei-Uploads wurden deaktiviert. Bitte überprüf die file_uploads-Einstellung.',
 'uploadscripted'              => 'Diese Datei enthält HTML- oder Scriptcode, der irrtümlich von einem Webbrowser ausgeführt werden könnte.',
 'uploadcorrupt'               => 'Die Datei ist beschädigt oder hat eine falsche Datei-Erweiterung. Bitte überprüfe die Datei und wiederhole den Hochlade-Vorgang.',
 'uploadvirus'                 => 'Diese Datei enthält einen Virus! Details: $1',
@@ -1933,7 +1935,7 @@ Wenn du die Seite wieder von deiner Beobachtungsliste entfernen möchtest, klick
 'watching'   => 'Beobachten …',
 'unwatching' => 'Nicht beobachten …',
 
-'enotif_mailer'                => '{{SITENAME}} E-Mail-Benachrichtigungsdienst',
+'enotif_mailer'                => '{{SITENAME}}-E-Mail-Benachrichtigungsdienst',
 'enotif_reset'                 => 'Alle Seiten als besucht markieren',
 'enotif_newpagetext'           => 'Das ist eine neue Seite.',
 'enotif_impersonal_salutation' => '{{SITENAME}}-Benutzer',
@@ -1957,9 +1959,9 @@ Kontakt zum Bearbeiter:
 E-Mail: $PAGEEDITOR_EMAIL
 Wiki: $PAGEEDITOR_WIKI
 
-Es werden solange keine weiteren Benachrichtigungsmails gesendet, bis du die Seite wieder besucht hast. Auf deiner Beobachtungsliste kannst du alle Benachrichtigungsmarker zusammen zurücksetzen.
+Es werden solange keine weiteren Benachrichtigungs-E-Mails gesendet, bis du die Seite wieder besucht hast. Auf deiner Beobachtungsliste kannst du alle Benachrichtigungsmarker zusammen zurücksetzen.
 
-             Dein freundliches {{SITENAME}} Benachrichtigungssystem
+             Dein freundliches {{SITENAME}}-Benachrichtigungssystem
 
 --
 Um die Einstellungen deiner Beobachtungsliste anzupassen, besuche: {{fullurl:Special:Watchlist/edit}}',
@@ -1967,7 +1969,7 @@ Um die Einstellungen deiner Beobachtungsliste anzupassen, besuche: {{fullurl:Spe
 # Delete
 'deletepage'             => 'Seite löschen',
 'confirm'                => 'Bestätigen',
-'excontent'              => "Alter Inhalt: '$1'",
+'excontent'              => 'Alter Inhalt: „$1“',
 'excontentauthor'        => 'Inhalt war: „$1“ (einziger Bearbeiter: [[Special:Contributions/$2|$2]])',
 'exbeforeblank'          => "Inhalt vor dem Leeren der Seite: '$1'",
 'exblank'                => 'Seite war leer',
@@ -2138,7 +2140,7 @@ $1',
 'sp-contributions-newbies'       => 'Zeige nur Beiträge neuer Benutzer',
 'sp-contributions-newbies-sub'   => 'Für Neulinge',
 'sp-contributions-newbies-title' => 'Benutzerbeiträge von neuen Benutzern',
-'sp-contributions-blocklog'      => 'Sperrlogbuch',
+'sp-contributions-blocklog'      => 'Sperr-Logbuch',
 'sp-contributions-search'        => 'Suche nach Benutzerbeiträgen',
 'sp-contributions-username'      => 'IP-Adresse oder Benutzername:',
 'sp-contributions-submit'        => 'Suchen',

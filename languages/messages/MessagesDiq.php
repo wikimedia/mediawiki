@@ -163,7 +163,7 @@ href="" class="internal"}?{/a}) bımocne.',
 'create-this-page'  => 'Na pele bınuse',
 'delete'            => 'bıestere',
 'deletethispage'    => 'Ena pele bıestere',
-'undelete_short'    => 'Vurnayışê $1 peyser bia',
+'undelete_short'    => '{{PLURAL:$1|yew vurnayışi|$1 vurnayışan}} meestere',
 'protect'           => 'kılit ke',
 'protect_change'    => 'kılit-kerdene bıvurne',
 'protectthispage'   => 'Ena perre kılit ke',
@@ -301,6 +301,7 @@ If you choose to provide it, this will be used for giving you attribution for yo
 'passwordtooshort'          => 'Parola to nêvêrena ya ki zaf kılma.
 It must have at least $1 characters and be different from your username.',
 'mailmypassword'            => 'E-mail sera parola newiye bırışe',
+'accountcreated'            => 'Hesab vıraciya',
 'loginlanguagelabel'        => 'Zıwan: $1',
 
 # Password reset dialog
@@ -468,6 +469,9 @@ It must have at least $1 characters and be different from your username.',
 'autoblocker'  => 'Şıma otomatikmen kılit biy, çıke adresa şımawa \'\'IP\'\'y terefê "[[User:$1|$1]]" gureniyena. 
 Sebebê kılit-biyayışê $1\'i: "$2"o',
 'blocklogpage' => 'Protokolê kıliti',
+
+# Move page
+'1movedto2' => '[[$1]] berd be [[$2]]',
 
 # Thumbnails
 'thumbnail-more' => 'Gırd ke',

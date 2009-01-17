@@ -607,6 +607,7 @@ $messages = array(
 'compareselectedversions' => 'ټاکلې بڼې سره پرتله کول',
 'editundo'                => 'ناکړ',
 'diff-multi'              => '({{PLURAL:$1|يوه منځګړې مخليدنه نه ده ښکاره شوې|$1 منځګړې مخليدنې نه دي ښکاره شوي}}.)',
+'diff-src'                => 'سرچينه',
 
 # Search results
 'searchresults'            => 'د لټون پايلې',
@@ -849,6 +850,7 @@ $messages = array(
 
 # Statistics
 'statistics'             => 'شمار',
+'statistics-pages'       => 'مخونه',
 'statistics-mostpopular' => 'تر ټولو ډېر کتل شوي مخونه',
 
 'disambiguations' => 'د څرګندونې مخونه',

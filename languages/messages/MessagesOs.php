@@ -626,7 +626,7 @@ $3',
 'nextdiff' => 'Фæстæдæр ивддзинад →',
 
 # Media information
-'widthheightpage' => '$1 × $2, $3 фарсы',
+'widthheightpage' => '$1 × $2, $3 {{PLURAL:$3|фарс|фарсы}}',
 
 # Special:NewFiles
 'newimages' => 'Ног нывты галерей',

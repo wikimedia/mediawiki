@@ -2071,11 +2071,11 @@ $NEWPAGE
 'protect-existing-expiry'     => 'تاريخ الانتهاء الموجود: $3، $2',
 'protect-otherreason'         => 'سبب آخر/إضافى:',
 'protect-otherreason-op'      => 'سبب آخر/إضافى',
-'protect-dropdown'            => '*أسباب الحماية الشائعة
+'protect-dropdown'            => '*أسباب الحماية الشايعة
 ** تخريب شديد
 ** سبام شديد
-** حرب تحرير معرقلة للعمل المنتج
-** صفحة زوارها كثيرون',
+** حرب تحرير بتعطل العمل المنتج
+** صفحة زوارها كتير',
 'protect-edit-reasonlist'     => 'عدل أسباب الحماية',
 'protect-expiry-options'      => '1 ساعة:1 hour,1 يوم:1 day,1 أسبوع:1 week,2 أسبوع:2 weeks,1 شهر:1 month,3 شهر:3 months,6 شهر:6 months,1 سنة:1 year,لا نهائى:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'سماح:',

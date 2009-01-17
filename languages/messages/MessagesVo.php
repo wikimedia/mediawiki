@@ -107,6 +107,7 @@ $messages = array(
 'tog-highlightbroken'         => 'Jonön yümis dädik <a href="" class="new">ön mod at</a> (voto: ön mod at<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Lonedükön bagafis',
 'tog-hideminor'               => 'Klänedön redakamis pülik su lised votükamas nulik',
+'tog-hidepatrolled'           => 'Klänedön redakamis pezepöl in lised votükamas nulik.',
 'tog-extendwatchlist'         => 'Stäänükön galädalisedi ad jonön votükamis tefik valik',
 'tog-usenewrc'                => 'Lised pamenodöl votükamas nulik (JavaScript)',
 'tog-numberheadings'          => 'Givön itjäfidiko nümis dilädatiädes',
@@ -141,6 +142,7 @@ $messages = array(
 'tog-watchlisthideminor'      => 'Klänedön redakamis pülik se galädalised',
 'tog-watchlisthideliu'        => 'Klänedön redakamis gebanas senunädöl se galädalised',
 'tog-watchlisthideanons'      => 'Klänedön redakamis gebanas nennemik se galädalised',
+'tog-watchlisthidepatrolled'  => 'Klänedön redakamis pezepöl in galädalised',
 'tog-ccmeonemails'            => 'Sedön obe kopiedis penedas, kelis sedob gebanes votik',
 'tog-diffonly'                => 'No jonön padaninädi dis difs',
 'tog-showhiddencats'          => 'Jonön kladis peklänedöl',
@@ -1595,11 +1597,14 @@ Ad brefükam lisedi, kanol välön lisedasoti, gebananemi, u padi tefik.',
 'deletedcontributions' => 'Gebanakeblünots pemoüköl',
 
 # Special:LinkSearch
-'linksearch'      => 'Sukön bevüresodayümis',
-'linksearch-pat'  => 'Sukapated:',
-'linksearch-ns'   => 'Nemaspad:',
-'linksearch-ok'   => 'Suk',
-'linksearch-line' => '$1 labon yümi se $2',
+'linksearch'       => 'Sukön bevüresodayümis',
+'linksearch-pat'   => 'Sukapated:',
+'linksearch-ns'    => 'Nemaspad:',
+'linksearch-ok'    => 'Suk',
+'linksearch-text'  => 'WilStelüls kanons pagebön, a.s. „*.wikipedia.org“.<br />
+Protoks pestütöl: <tt>$1</tt>',
+'linksearch-line'  => '$1 labon yümi se $2',
+'linksearch-error' => 'Stelüls kanons pubön te lä prim lotidiananema.',
 
 # Special:ListUsers
 'listusersfrom'      => 'Jonolöd gebanis primölo me:',
@@ -2221,6 +2226,8 @@ Dakipolös oni su nünöm olik e löpükolös oni isio.',
 'tooltip-n-help'                  => 'Is kanoy tuvön yufi e nünis.',
 'tooltip-t-whatlinkshere'         => 'Lised padas valik, kels yumons isio',
 'tooltip-t-recentchangeslinked'   => 'Votükams nulik padas, lü kels pad at yumon',
+'tooltip-feed-rss'                => 'Kanad (RSS) pro pad at',
+'tooltip-feed-atom'               => 'Kanad (Toum) pro pad at',
 'tooltip-t-contributions'         => 'Logön keblünotalisedi gebana at',
 'tooltip-t-emailuser'             => 'Sedolös penedi gebane at',
 'tooltip-t-upload'                => 'Löpükön ragivis',
@@ -2541,6 +2548,9 @@ Te lisedaliens (liens me * primöl) pabevobons. Yüm balid liena muton binön y�
 'exif-focalplaneresolutionunit-2' => 'puids',
 
 'exif-sensingmethod-1' => 'No pemiedetöl',
+'exif-sensingmethod-5' => 'Kölisenian mastripik sürfatik',
+'exif-sensingmethod-7' => 'Senian killienöfik',
+'exif-sensingmethod-8' => 'Kölisenian lienöfik mastripik',
 
 'exif-scenetype-1' => 'Magod pefotograföl nemediko',
 

@@ -1329,6 +1329,7 @@ Wänn Du die Datei einewäg wit uffelade, gang bitte zruck un ändere dr Name.
 'overwroteimage'              => 'het e neiji Version vu „[[$1]]“ uffeglade',
 'uploaddisabled'              => 'Uffelade deaktiviert',
 'uploaddisabledtext'          => 'S Uffelade vu Dateie isch deaktiviert.',
+'php-uploaddisabledtext'      => 'S Uffelade vu PHP-Dateie isch deaktiviert wore. Bitte iberprief d file_uploads-Yystellig.',
 'uploadscripted'              => 'In däre Datei git s HTML- oder Scriptcode, wu fälschligerwyys vun eme Webbrowser usgfiert chennt were.',
 'uploadcorrupt'               => 'Die Datei isch bschädigt oder het e falschi Datei-Erwyterig. Bitte iberprief d Datei un lad si no mol uffe.',
 'uploadvirus'                 => 'In däre Datei het s e Virus! Detail: $1',
