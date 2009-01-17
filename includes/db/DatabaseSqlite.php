@@ -194,7 +194,7 @@ class DatabaseSqlite extends Database {
 	 * - if errors are explicitly ignored, returns NULL on failure
 	 */
 	function indexInfo($table, $index, $fname = 'Database::indexExists') {
-		$sql = 'PRAGMA index_info(' . $this->addQuotes( $this->indexName( $index ) ) . ')';
+		$sql = 'PRAGMA index_info(' . $this->addQuotes( $index ) . ')';
 		$res = $this->query( $sql, $fname );
 		if ( !$res ) {
 			return null;
@@ -213,7 +213,7 @@ class DatabaseSqlite extends Database {
 		$row = $this->selectRow( 'sqlite_master', '*', 
 			array(
 				'type' => 'index',
-				'name' => $this->indexName( $index ),
+				'name' => $index,
 			), $fname );
 		if ( !$row || !isset( $row->sql ) ) {
 			return null;
