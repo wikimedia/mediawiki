@@ -868,6 +868,15 @@ class EditPage {
 				wfProfileOut( $fname );
 				return self::AS_HOOK_ERROR;
 			}
+			
+			# Handle the user preference to force summaries here. Check if it's not a redirect.
+			if ( !$this->allowBlankSummary && !Title::newFromRedirect( $this->textbox1 ) ) {
+				if ( md5( $this->summary ) == $this->autoSumm ) {
+					$this->missingSummary = true;
+					wfProfileOut( $fname );
+					return self::AS_SUMMARY_NEEDED;
+				}
+			}
 
 			$isComment = ( $this->section == 'new' );
 
@@ -949,9 +958,9 @@ class EditPage {
 		}
 
 		# Handle the user preference to force summaries here, but not for null edits
-		if ( $this->section != 'new' && !$this->allowBlankSummary && 0 != strcmp($oldtext, $text) &&
-			!is_object( Title::newFromRedirect( $text ) ) # check if it's not a redirect
-		) {
+		if ( $this->section != 'new' && !$this->allowBlankSummary && 0 != strcmp($oldtext,$text) 
+			&& !Title::newFromRedirect( $text ) ) # check if it's not a redirect
+		{
 			if ( md5( $this->summary ) == $this->autoSumm ) {
 				$this->missingSummary = true;
 				wfProfileOut( $fname );
