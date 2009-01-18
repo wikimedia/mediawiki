@@ -33,12 +33,12 @@ function wfSpecialRevisiondelete( $par = null ) {
 	# Only one target set at a time please!
 	$i = (bool)$file + (bool)$oldid + (bool)$logid + (bool)$artimestamp + (bool)$fileid + (bool)$img;
 	if( $i !== 1 ) {
-		$wgOut->showErrorPage( 'revdelete-nooldid-title', 'revdelete-nooldid-text' );
+		$wgOut->showErrorPage( 'revdelete-toomanytargets-title', 'revdelete-toomanytargets-text' );
 		return;
 	}
 	# Logs must have a type given
 	if( $logid && !strpos($page->getDBKey(),'/') ) {
-		$wgOut->showErrorPage( 'revdelete-nooldid-title', 'revdelete-nooldid-text' );
+		$wgOut->showErrorPage( 'revdelete-nologtype-title', 'revdelete-nologtype-text' );
 		return;
 	}
 	# Either submit or create our form
@@ -490,7 +490,7 @@ class RevisionDeleteForm {
 			$bitfields |= $logRows[$logid]->log_deleted;
 		}
 		if( !$logItems ) {
-			$wgOut->showErrorPage( 'revdelete-nooldid-title', 'revdelete-nooldid-text' );
+			$wgOut->showErrorPage( 'revdelete-nologid-title', 'revdelete-nologid-text' );
 			return;
 		}
 		
