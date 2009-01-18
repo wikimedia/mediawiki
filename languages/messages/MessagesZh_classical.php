@@ -69,6 +69,7 @@ $messages = array(
 'tog-justify'                 => '齊段落',
 'tog-hideminor'               => '隱近校',
 'tog-hidepatrolled'           => '隱近巡',
+'tog-newpageshidepatrolled'   => '隱新巡',
 'tog-extendwatchlist'         => '展列見變',
 'tog-usenewrc'                => '青出近易（JavaScript）',
 'tog-numberheadings'          => '生章數',
