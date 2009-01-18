@@ -491,6 +491,7 @@ XHTML id names.
 'tog-justify'                 => 'Justify paragraphs',
 'tog-hideminor'               => 'Hide minor edits in recent changes',
 'tog-hidepatrolled'           => 'Hide patrolled edits in recent changes',
+'tog-newpageshidepatrolled'   => 'Hide patrolled pages from new page list',
 'tog-extendwatchlist'         => 'Expand watchlist to show all applicable changes',
 'tog-usenewrc'                => 'Enhanced recent changes (JavaScript)',
 'tog-numberheadings'          => 'Auto-number headings',
