@@ -399,7 +399,7 @@ class XmlDumpWriter {
 
 	function namespaces() {
 		global $wgContLang;
-		$spaces = "  <namespaces>\n";
+		$spaces = "<namespaces>\n";
 		foreach( $wgContLang->getFormattedNamespaces() as $ns => $title ) {
 			$spaces .= '      ' . Xml::element( 'namespace', array( 'key' => $ns ), $title ) . "\n";
 		}
