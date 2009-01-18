@@ -373,19 +373,18 @@ class LogEventsList {
 		$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 		// If event was hidden from sysops
 		if( !self::userCan( $row, LogPage::DELETED_RESTRICTED ) ) {
-			$del = $this->message['rev-delundel'];
+			$del = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ), '('.$this->message['rev-delundel'].')' );
 		} else if( $row->log_type == 'suppress' ) {
 			// No one should be hiding from the oversight log
-			$del = $this->message['rev-delundel'];
+			$del = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ), '('.$this->message['rev-delundel'].')' );
 		} else {
 			$target = SpecialPage::getTitleFor( 'Log', $row->log_type );
-			$del = $this->skin->makeKnownLinkObj( $revdel, $this->message['rev-delundel'],
-				'target=' . $target->getPrefixedUrl() . '&logid='.$row->log_id );
-			// Bolden oversighted content
-			if( self::isDeleted( $row, LogPage::DELETED_RESTRICTED ) )
-				$del = "<strong>$del</strong>";
+			$query = array( 'target' => $target->getPrefixedUrl(),
+				'logid' => $row->log_id
+			);
+			$del = $this->skin->revDeleteLink( $query, self::isDeleted( $row, LogPage::DELETED_RESTRICTED ) );
 		}
-		return "<tt>(<small>$del</small>)</tt>";
+		return $del;
 	}
 
 	/**

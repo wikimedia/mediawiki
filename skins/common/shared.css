@@ -311,3 +311,10 @@ div.mw-warning-with-logexcerpt {
 div.mw-warning-with-logexcerpt ul li {
 	font-size: 90%;
 }
+
+/* (show/hide) revision deletion links */
+span.mw-revdelundel-link,
+strong.mw-revdelundel-link {
+	font-family: monospace;
+	font-size: smaller
+}

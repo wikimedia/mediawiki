@@ -226,37 +226,29 @@ CONTROL;
 
 		$rdel = ''; $ldel = '';
 		if( $wgUser->isAllowed( 'deleterevision' ) ) {
-			$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 			if( !$this->mOldRev->userCan( Revision::DELETED_RESTRICTED ) ) {
 				// If revision was hidden from sysops
-				$ldel = wfMsgHtml( 'rev-delundel' );
+				$ldel = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ), '('.wfMsgHtml( 'rev-delundel' ).')' );
 			} else {
-				$ldel = $sk->makeKnownLinkObj( $revdel,
-				wfMsgHtml( 'rev-delundel' ),
-					'target=' . urlencode( $this->mOldRev->mTitle->getPrefixedDbkey() ) .
-					'&oldid=' . urlencode( $this->mOldRev->getId() ) );
-				// Bolden oversighted content
-				if( $this->mOldRev->isDeleted( Revision::DELETED_RESTRICTED ) )
-				$ldel = "<strong>$ldel</strong>";
+				$query = array( 'target' => $this->mOldRev->mTitle->getPrefixedDbkey(),
+					'oldid' => $this->mOldRev->getId()
+				);
+				$ldel = $sk->revDeleteLink( $query, $this->mOldRev->isDeleted( Revision::DELETED_RESTRICTED ) );
 			}
-			$ldel = "&nbsp;&nbsp;&nbsp;<tt>(<small>$ldel</small>)</tt> ";
+			$ldel = "&nbsp;&nbsp;&nbsp;$ldel ";
 			// We don't currently handle well changing the top revision's settings
 			if( $this->mNewRev->isCurrent() ) {
-				// If revision was hidden from sysops
-				$rdel = wfMsgHtml( 'rev-delundel' );
+				$rdel = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ), '('.wfMsgHtml( 'rev-delundel' ).')' );
 			} else if( !$this->mNewRev->userCan( Revision::DELETED_RESTRICTED ) ) {
 				// If revision was hidden from sysops
-				$rdel = wfMsgHtml( 'rev-delundel' );
+				$rdel = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ), '('.wfMsgHtml( 'rev-delundel' ).')' );
 			} else {
-				$rdel = $sk->makeKnownLinkObj( $revdel,
-				wfMsgHtml( 'rev-delundel' ),
-					'target=' . urlencode( $this->mNewRev->mTitle->getPrefixedDbkey() ) .
-					'&oldid=' . urlencode( $this->mNewRev->getId() ) );
-				// Bolden oversighted content
-				if( $this->mNewRev->isDeleted( Revision::DELETED_RESTRICTED ) )
-				$rdel = "<strong>$rdel</strong>";
+				$query = array( 'target' =>  $this->mNewRev->mTitle->getPrefixedDbkey(),
+					'oldid' => $this->mNewRev->getId()
+				);
+				$rdel = $sk->revDeleteLink( $query, $this->mNewRev->isDeleted( Revision::DELETED_RESTRICTED ) );
 			}
-			$rdel = "&nbsp;&nbsp;&nbsp;<tt>(<small>$rdel</small>)</tt> ";
+			$rdel = "&nbsp;&nbsp;&nbsp;$rdel ";
 		}
 
 		$oldHeader = '<div id="mw-diff-otitle1"><strong>'.$this->mOldtitle.'</strong></div>' .

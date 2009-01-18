@@ -41,6 +41,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   from the database.
 * (bug 17045) Options on the block form are prefilled with the options of the 
   existing block when modifying an existing block.
+* (bug 17055) "(show/hide)" links to Special:RevisionDelete now use a CSS class 
+  rather than hardcoded HTML tags
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
