@@ -17,6 +17,7 @@ $wgMessageStructure = array(
 		'tog-justify',
 		'tog-hideminor',
 		'tog-hidepatrolled',
+		'tog-newpageshidepatrolled',
 		'tog-extendwatchlist',
 		'tog-usenewrc',
 		'tog-numberheadings',
