@@ -40,7 +40,7 @@ class MailAddress {
 		} else {
 			$this->address = strval( $address );
 			$this->name = strval( $name );
-			$this->reaName = strval( $realName );
+			$this->realName = strval( $realName );
 		}
 	}
 
