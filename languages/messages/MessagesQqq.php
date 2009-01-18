@@ -58,6 +58,7 @@
  * @author UV
  * @author Urhixidur
  * @author Vinhtantran
+ * @author Waldir
  * @author Yyy
  * @author פוילישער
  */
@@ -1174,6 +1175,7 @@ Parameter $2 is a date and time.',
 'overwroteimage'              => 'Log text when uploading a new version of a file',
 'uploaddisabled'              => 'Title of the Special:Upload page when upload is disabled.',
 'uploaddisabledtext'          => 'This message can have parameter $1, which contains the name of the target file. See r22243 and [https://bugzilla.wikimedia.org/show_bug.cgi?id=8818 bug 8818].',
+'php-uploaddisabledtext'      => 'This means that file uploading is disabled in PHP, not upload of PHP-files.',
 'uploadvirus'                 => 'Note displayed when uploaded file contains a virus',
 'sourcefilename'              => 'In [[Special:Upload]]',
 'destfilename'                => 'In [[Special:Upload]]',

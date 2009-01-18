@@ -262,6 +262,7 @@ $messages = array(
 'tog-justify'                 => 'Justera indrag',
 'tog-hideminor'               => 'Visa inte mindre redigeringar i Senaste ändringar',
 'tog-hidepatrolled'           => 'Dölj patrullerade redigeringar i senaste ändringar',
+'tog-newpageshidepatrolled'   => 'Göm patrullerade sidor från listan över nya sidor',
 'tog-extendwatchlist'         => 'Utöka bevakningslistan till att visa alla ändringar',
 'tog-usenewrc'                => 'Avancerad Senaste ändringar (Javascript)',
 'tog-numberheadings'          => 'Numrerade rubriker',
@@ -972,6 +973,8 @@ Det kan finnas mer information i [{{fullurl:Special:Log/delete|page={{FULLPAGENA
 'revdelete-nooldid-text'      => 'Antingen har du inte angivit någon sidversion att utföra funktionen på,
 eller så finns inte den version du angav,
 eller så försöker du gömma den senaste versionen av sidan.',
+'revdelete-nologtype-title'   => 'Ingen loggtyp specificerad',
+'revdelete-nologtype-text'    => 'Du har inte specificerat en loggtyp att utföra denna handling på.',
 'revdelete-selected'          => "'''{{PLURAL:$2|Vald version|Valda versioner}} av [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Vald loggåtgärd|Valda loggåtgärder}}:'''",
 'revdelete-text'              => "'''Borttagna versioner och åtgärder kommer fortfarande att synas i historiken och i loggar, men deras innehåll kommer ej att vara tillgängligt för allmänheten.'''
