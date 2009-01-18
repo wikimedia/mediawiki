@@ -22,7 +22,7 @@ class PatrolLog {
 		}
 		$title = Title::makeTitleSafe( $rc->getAttribute( 'rc_namespace' ), $rc->getAttribute( 'rc_title' ) );
 		if( is_object( $title ) ) {
-			$params = self::buildParams( $rc, $auto );
+			$params = self::buildParams( $rc, $auto, $auto ? "skipUDP" : "UDP" );
 			$log = new LogPage( 'patrol', false ); # False suppresses RC entries
 			$log->addEntry( 'patrol', $title, '', $params );
 			return true;
