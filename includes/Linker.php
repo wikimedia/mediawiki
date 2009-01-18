@@ -1793,4 +1793,23 @@ class Linker {
 		wfProfileOut( __METHOD__ );
 		return false;
 	}
+	
+	/**
+	 * Creates a (show/hide) link for deleting revisions/log entries
+	 *
+	 * @param array $query  Query parameters to be passed to link()
+	 * @param bool $restricted  Set to true to use a <strong> instead of a <span>
+	 *
+	 * @return string HTML <a> link to Special:Revisiondelete, wrapped in a
+	 * span to allow for customization of appearance with CSS
+	 */
+	public function revDeleteLink( $query = array(), $restricted = false ) {
+		$sp = SpecialPage::getTitleFor( 'Revisiondelete' );
+		$text = wfMsgHtml( 'rev-delundel' );
+		$tag = 'span';
+		if( $restricted )
+			$tag = 'strong';
+		$link = $this->link( $sp, $text, array(), $query, array( 'known', 'noclasses' ) );
+		return Xml::tags( $tag, array( 'class' => 'mw-revdelundel-link' ), "($link)" );
+	}
 }
