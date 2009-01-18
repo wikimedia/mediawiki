@@ -106,6 +106,15 @@ class IPBlockForm {
 				( $currentBlock->mAddress == $this->BlockAddress ) ) ) {
 					$wgOut->addWikiMsg( 'ipb-needreblock', $this->BlockAddress );
 					$alreadyBlocked = true;
+					# Set the block form settings to the existing block
+					$this->BlockAnonOnly = $currentBlock->mAnonOnly;
+					$this->BlockCreateAccount = $currentBlock->mCreateAccount;
+					$this->BlockEnableAutoblock = $currentBlock->mEnableAutoblock;
+					$this->BlockEmail = $currentBlock->mBlockEmail;
+					$this->BlockHideName = $currentBlock->mHideName;
+					$this->BlockAllowUsertalk = $currentBlock->mAllowUsertalk;
+					$this->BlockOther = wfTimestamp( TS_RFC2822, $currentBlock->mExpiry );
+					$this->BlockReason = $currentBlock->mReason;
 			}
 		}
 

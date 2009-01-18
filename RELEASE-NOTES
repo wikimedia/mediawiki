@@ -39,6 +39,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   of Service page, for example
 * Add new hook 'UserLoadFromDatabase' that is called while loading a user
   from the database.
+* (bug 17045) Options on the block form are prefilled with the options of the 
+  existing block when modifying an existing block.
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
