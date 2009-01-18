@@ -1286,8 +1286,7 @@ function, the specified revision does not exist, or you are attempting to hide t
 'revdelete-toomanytargets-title' => 'Too many targets',
 'revdelete-toomanytargets-text'  => 'You have specified too many types of targets to perform this action on.',
 'revdelete-nologid-title'        => 'Invalid log entry',
-'revdelete-nologid-text'         => 'You have either not specified a target log event(s) to perform this
-function or the specified entry does not exist.',
+'revdelete-nologid-text'         => 'You have either not specified a target log event to perform this function or the specified entry does not exist.',
 'revdelete-selected'             => "'''{{PLURAL:$2|Selected revision|Selected revisions}} of [[:$1]]:'''",
 'logdelete-selected'             => "'''{{PLURAL:$1|Selected log event|Selected log events}}:'''",
 'revdelete-text'                 => "'''Deleted revisions and events will still appear in the page history and logs, but parts of their content will be inaccessible to the public.'''
