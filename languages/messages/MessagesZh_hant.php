@@ -73,6 +73,7 @@ $messages = array(
 'tog-justify'                 => '段落對齊',
 'tog-hideminor'               => '最近更改中隱藏小修改',
 'tog-hidepatrolled'           => '於最近更改中隱藏巡查過的編輯',
+'tog-newpageshidepatrolled'   => '於新頁面清單中隱藏巡查過的頁面',
 'tog-extendwatchlist'         => '增強監視清單以顯示所有可用更改',
 'tog-usenewrc'                => '增強最近更改 (JavaScript)',
 'tog-numberheadings'          => '標題自動編號',
