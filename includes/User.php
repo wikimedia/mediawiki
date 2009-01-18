@@ -1020,6 +1020,7 @@ class User {
 		wfRunHooks( 'UserToggles', array( &$extraToggles ) );
 		if( $wgUseRCPatrol ) {
 			$extraToggles[] = 'hidepatrolled';
+			$extraToggles[] = 'newpageshidepatrolled';
 			$extraToggles[] = 'watchlisthidepatrolled';
 		}
 		return array_merge( self::$mToggles, $extraToggles, $wgContLang->getExtraUserToggles() );

@@ -1093,10 +1093,11 @@ class PreferencesForm {
 		);
 
 		$toggles[] = 'hideminor';
-		if( $wgUseRCPatrol )
+		if( $wgUseRCPatrol ) {
 			$toggles[] = 'hidepatrolled';
-		if( $wgRCShowWatchingUsers )
-			$toggles[] = 'shownumberswatching';
+			$toggles[] = 'newpageshidepatrolled';
+		}
+		if( $wgRCShowWatchingUsers ) $toggles[] = 'shownumberswatching';
 		$toggles[] = 'usenewrc';
 
 		$wgOut->addHTML(
@@ -1106,10 +1107,8 @@ class PreferencesForm {
 
 		# Watchlist
 		$watchlistToggles = array( 'watchlisthideminor', 'watchlisthidebots', 'watchlisthideown',
-				'watchlisthideanons', 'watchlisthideliu' );
-		if( $wgUseRCPatrol ) {
-			$watchlistToggles[] = 'watchlisthidepatrolled';
-		}
+			'watchlisthideanons', 'watchlisthideliu' );
+		if( $wgUseRCPatrol ) $watchlistToggles[] = 'watchlisthidepatrolled';
 
 		$wgOut->addHTML( 
 			Xml::fieldset( wfMsg( 'prefs-watchlist' ) ) .

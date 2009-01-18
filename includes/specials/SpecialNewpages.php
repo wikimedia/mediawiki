@@ -24,7 +24,7 @@ class SpecialNewpages extends SpecialPage {
 		$opts = new FormOptions();
 		$this->opts = $opts; // bind
 		$opts->add( 'hideliu', false );
-		$opts->add( 'hidepatrolled', false );
+		$opts->add( 'hidepatrolled', $wgUser->getBoolOption( 'newpageshidepatrolled' ) );
 		$opts->add( 'hidebots', false );
 		$opts->add( 'hideredirs', true );
 		$opts->add( 'limit', (int)$wgUser->getOption( 'rclimit' ) );
