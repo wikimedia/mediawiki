@@ -2094,7 +2094,7 @@ class User {
 		if( $action === 'patrol' || $action === 'autopatrol' ) {
 			global $wgUseRCPatrol, $wgUseNPPatrol;
 			if( !$wgUseRCPatrol && !$wgUseNPPatrol )
-				return true;
+				return false;
 		}
 		# Use strict parameter to avoid matching numeric 0 accidentally inserted 
 		# by misconfiguration: 0 == 'foo'
