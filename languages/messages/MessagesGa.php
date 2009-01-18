@@ -1228,6 +1228,7 @@ taobh istigh den tréimhse atá roghnaithe agat.',
 'iteminvalidname'      => "Fadhb leis an mír '$1', ainm neamhbhailí...",
 'wlnote'               => "Is {{PLURAL:$1|é seo thíos an t-athrú deireanach|iad seo thíos na '''$1''' athruithe deireanacha}} {{PLURAL:$2|san uair deireanach|sna '''$2''' uaire deireanacha}}.",
 'wlshowlast'           => 'Líon na n-uair is déanaí le taispeáint: $1. Líon na laethanta is déanaí le taispeáint: $2. Taispeáin $3.',
+'watchlist-options'    => 'Roghanna don liosta faire',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Ag faire...',
@@ -1378,7 +1379,7 @@ Is an téacs as na leagan scriosta seo ar fáil do riarthóirí amháin.',
 
 # Namespace form on various pages
 'namespace'      => 'Ainmspás:',
-'invert'         => 'Cuir an roghnú bun os cionn',
+'invert'         => 'Iompaigh rogha bunoscionn',
 'blanknamespace' => '(Gnáth)',
 
 # Contributions
@@ -1388,15 +1389,15 @@ Is an téacs as na leagan scriosta seo ar fáil do riarthóirí amháin.',
 'contribsub2'         => 'Do $1 ($2)',
 'nocontribs'          => 'Níor bhfuarthas aon athrú a raibh cosúil le na crítéir seo.',
 'uctop'               => ' (barr)',
-'month'               => 'As mí (agus is luaithe):',
-'year'                => 'As bliain (agus is luaithe):',
+'month'               => 'Ón mhí seo (agus níos luaithe):',
+'year'                => 'Ón bhliain seo (agus níos luaithe):',
 
-'sp-contributions-newbies'       => 'Taispeáin dréachtaí as cuntas nua amháin',
+'sp-contributions-newbies'       => 'Taispeáin dréachtaí ó chuntais nua amháin',
 'sp-contributions-newbies-sub'   => 'Le cuntais nua',
 'sp-contributions-newbies-title' => 'Dréachtaí úsáideora do chuntasaí nua',
 'sp-contributions-blocklog'      => 'Log coisc',
-'sp-contributions-search'        => 'Cuardaigh le dréachtaí',
-'sp-contributions-username'      => 'Seoladh IP ná ainm úsáideora:',
+'sp-contributions-search'        => 'Cuardaigh dréachtaí',
+'sp-contributions-username'      => 'Seoladh IP nó ainm úsáideora:',
 'sp-contributions-submit'        => 'Cuardaigh',
 
 # What links here

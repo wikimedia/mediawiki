@@ -225,6 +225,7 @@ $messages = array(
 'helppage'             => 'Help:Contenis',
 'mainpage'             => 'Paje Prima',
 'mainpage-description' => 'Paje Prima',
+'policy-url'           => 'Project:Politica',
 'portal'               => 'Porta comunial',
 'portal-url'           => 'Project:Porta comunial',
 'privacy'              => 'Promete de privadia',
@@ -298,6 +299,7 @@ $messages = array(
 'yourrealname'            => 'Nom vera:',
 'yourlanguage'            => 'Lingua:',
 'yournick'                => 'Suscrive:',
+'email'                   => 'Eposta',
 'prefs-help-realname'     => 'Tu nom vera no es obligada, ma si tu vole dona tu nom vera, el va es usada per onora tu per tu labora.',
 'loginsuccesstitle'       => 'Entra susedente',
 'loginsuccess'            => "'''Tu ia entrada aora a {{SITENAME}} como \"\$1\".'''",
@@ -605,6 +607,8 @@ Pajes a [[Special:Watchlist|tu lista de pajes oservada]] es en leteras '''forte'
 'movethispage'            => 'Move esta paje',
 'unusedimagestext'        => '<p>Nota ce otra locas de rede pote lia a un imaje con un URL direta, e donce el pote continua es listada asi contra ce el es usada ativa.</p>',
 'unusedcategoriestext'    => 'La categorias seguente esiste sin es usada par otra articles o categorias.',
+'pager-newer-n'           => '{{PLURAL:$1|1 plu resente|$1 plu resentes}}',
+'pager-older-n'           => '{{PLURAL:$1|1 plu vea|$1 plu veas}}',
 
 # Book sources
 'booksources'    => 'Orijines de libros',
@@ -732,8 +736,10 @@ Asi es la ajustas presente per la paje <strong>$1</strong>:',
 'month'         => 'De mensa (e plu vea):',
 'year'          => 'De anio (e plu vea):',
 
+'sp-contributions-newbies'     => 'Sola mostra contribuis de contas nova',
 'sp-contributions-newbies-sub' => 'Per contas nova',
 'sp-contributions-blocklog'    => 'Impedi arcivo',
+'sp-contributions-search'      => 'Xerca per contribuis',
 'sp-contributions-username'    => 'Adirije de IP o nom de usor:',
 'sp-contributions-submit'      => 'Xerca',
 

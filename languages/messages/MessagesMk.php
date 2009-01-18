@@ -3138,7 +3138,7 @@ $1
 'version-other'                    => 'Друго',
 'version-mediahandlers'            => 'Медија ракувачи',
 'version-hooks'                    => 'Куки',
-'version-extension-functions'      => 'Функции на проширувањето',
+'version-extension-functions'      => 'Функции на проширувања',
 'version-parser-extensiontags'     => 'Приврзоци на парсер проширување',
 'version-parser-function-hooks'    => 'Куки на парсер функција',
 'version-skin-extension-functions' => 'Функции на проширување на изглед',

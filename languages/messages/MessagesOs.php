@@ -385,10 +385,43 @@ $messages = array(
 'timezoneoffset'          => 'Хъауджыдæрдзинад',
 
 # Groups
-'group-all' => '(æппæт)',
+'group'            => 'Къорд:',
+'group-user'       => 'Архайджытæ',
+'group-bot'        => 'Роботтæ',
+'group-sysop'      => 'Админтæ',
+'group-bureaucrat' => 'Бюрократтæ',
+'group-all'        => '(æппæт)',
+
+'group-user-member'       => 'архайæг',
+'group-bot-member'        => 'робот',
+'group-sysop-member'      => 'админ',
+'group-bureaucrat-member' => 'бюрократ',
+
+'grouppage-user'       => '{{ns:project}}:Архайджытæ',
+'grouppage-bot'        => '{{ns:project}}:Роботтæ',
+'grouppage-sysop'      => '{{ns:project}}:Админтæ',
+'grouppage-bureaucrat' => '{{ns:project}}:Бюрократтæ',
+
+# Rights
+'right-read'          => 'фæрстæ кæсын',
+'right-edit'          => 'фæрстæ ивын',
+'right-move'          => 'фæрсты нæмттæ ивын',
+'right-move-subpages' => 'фæрсты æмæ сæ дæлфæрсты нæмттæ ивын',
+'right-movefile'      => 'файлты нæмттæ ивын',
+'right-upload'        => 'файлтæ сæвæрын',
+'right-upload_by_url' => 'интернет-адрисæй файлтæ сæвæрын',
+'right-delete'        => 'фæрстæ аппарын',
+'right-bigdelete'     => 'фæрстæ æмæ сæ ивды истори аппарын',
 
 # User rights log
 'rightsnone' => '(нæй)',
+
+# Associated actions - in the sentence "You do not have permission to X"
+'action-read'     => 'ацы фарс кæсын',
+'action-edit'     => 'ацы фарс ивын',
+'action-move'     => 'ацы фарсы ном ивын',
+'action-movefile' => 'ацы файлы ном ивын',
+'action-delete'   => 'ацы фарс аппарын',
 
 # Recent changes
 'recentchanges'     => 'Фæстаг ивддзинæдтæ',
@@ -409,13 +442,19 @@ $3',
 'recentchangeslinked' => 'Баст ивддзинæдтæ',
 
 # Upload
-'upload'          => 'Ног файл сæвæр',
-'uploadbtn'       => 'Ног файл сæвæр',
-'uploadnologin'   => 'Системæйæн дæхи нæ бацамыдтай',
-'filename'        => 'Файлы ном',
-'savefile'        => 'Бавæр æй',
-'uploadvirus'     => 'Файлы разынд вирус! Кæс $1',
-'watchthisupload' => 'Ацы файлмæ дæ цæст æрдар',
+'upload'           => 'Ног файл сæвæр',
+'uploadbtn'        => 'Ног файл сæвæр',
+'uploadnologin'    => 'Системæйæн дæхи нæ бацамыдтай',
+'uploaderror'      => 'Файл сæвæрыны рæдыд',
+'filename'         => 'Файлы ном',
+'minlength1'       => 'Файлы номы хъуамæ æппынкъаддæр иу дамгъæ уа.',
+'fileexists-thumb' => "<center>'''Ис ахæм файл'''</center>",
+'successfulupload' => 'Файлы сæвæрд фæрæстмæ',
+'savefile'         => 'Бавæр æй',
+'uploadvirus'      => 'Файлы разынд вирус! Кæс $1',
+'watchthisupload'  => 'Ацы файлмæ дæ цæст æрдар',
+
+'upload-file-error' => 'Мидæг рæдыд',
 
 # Special:ListFiles
 'listfiles' => 'Нывты номхыгъд',
@@ -500,6 +539,9 @@ $3',
 
 # Special:ListUsers
 'listusers-submit' => 'Равдис',
+
+# Special:ListGroupRights
+'listgrouprights-group' => 'Къорд',
 
 # E-mail user
 'mailnologintext' => 'Фыстæгтæ æрвитынмæ хъуамæ [[Special:UserLogin|системæйæн дæхи бавдисай]] æмæ дæ бæлвырд электронон посты адрис [[Special:Preferences|ныффыссай]].',
