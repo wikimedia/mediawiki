@@ -1012,7 +1012,7 @@ podrobnosti o smazání mohou být uvedeny v [{{fullurl:Special:Log/delete|page=
 'revdelete-nooldid-title'        => 'Nezadána revize',
 'revdelete-nooldid-text'         => 'Nezvolili jste revize, na které chcete tuto funkci použít.',
 'revdelete-toomanytargets-title' => 'Příliš mnoho cílů',
-'revdelete-nologid-title'        => 'Neplatný záznam v knize záznamů',
+'revdelete-nologid-title'        => 'Neplatný protokolovací záznam',
 'revdelete-selected'             => "'''{{PLURAL:$2|Vybrána $1 revize|Vybrány $1 revize|Vybráno $1 revizí}} stránky '''[[:$1]]:''''''",
 'logdelete-selected'             => "'''{{PLURAL:$1|Vybraná protokolovaná událost|Vybrané protokolované události}}:'''",
 'revdelete-text'                 => "'''Smazané verze a události budou nadále zobrazeny v historii stránky a protokolovacích záznamech, ale jejich text nebude veřejně dostupný.'''
@@ -1519,7 +1519,7 @@ Načtěte soubor v plném rozlišením, pokud je k dispozici, nebo změňte jmé
 'overwroteimage'              => 'načtena nová verze "[[$1]]"',
 'uploaddisabled'              => 'Načítání souborů vypnuto.',
 'uploaddisabledtext'          => 'Načítání souborů je vypnuto.',
-'php-uploaddisabledtext'      => 'PHP upload souborů není povolen. Prosím, zkontrolujte nastavení file_uploads.',
+'php-uploaddisabledtext'      => 'V PHP je vypnuto načítání souborů. Prosím, zkontrolujte nastavení file_uploads.',
 'uploadscripted'              => 'Tento soubor obsahuje HTML nebo kód skriptu, který by mohl být prohlížečem chybně interpretován.',
 'uploadcorrupt'               => 'Soubor je poškozen nebo nemá správnou příponu. Zkontrolujte prosím soubor a zkuste ho načíst znovu.',
 'uploadvirus'                 => 'Tento soubor obsahuje virus! Podrobnosti: $1',

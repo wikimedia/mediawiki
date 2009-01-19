@@ -26,6 +26,7 @@
  * @author INkubusse
  * @author Jon Harald Søby
  * @author Kizito
+ * @author Klenje
  * @author Kwj2772
  * @author Leinad
  * @author Lejonel
@@ -908,6 +909,7 @@ $1 is the relevance of this result in per cent.
 'searchresultshead'         => 'This is the label of the tab in [[Special:Preferences|my preferences]] which contains options for searching the wiki.
 
 {{Identical|Search}}',
+'contextchars'              => 'Used in Preferences/Search tab',
 'stub-threshold'            => 'Used in [[Special:Preferences]], tab "Misc".',
 'recentchangesdays'         => 'Used in [[Special:Preferences]], tab "Recent changes".',
 'recentchangesdays-max'     => 'Shown as hint in [[Special:Preferences]], tab "Recent changes"',
@@ -950,7 +952,8 @@ Shown as legend of the second fieldset of the tab 'Search' in [[Special:Preferen
 'group-bureaucrat'    => 'Name of group',
 'group-suppress'      => 'This is an optional (disabled by default) user group, meant for the [[mw:RevisionDelete|RevisionDelete]] feature, to change the visibility of revisions through [[Special:RevisionDelete]].
 
-* See also: {{msg|Group-suppress-member|pl=yes}} for a member of this group.',
+* See also: {{msg-mw|Group-suppress-member|pl=yes}} for a member of this group.
+{{Identical|Oversight}}',
 'group-all'           => 'The name of the user group that contains all users, including anonymous users
 
 {{Identical|All}}',
@@ -962,7 +965,8 @@ Shown as legend of the second fieldset of the tab 'Search' in [[Special:Preferen
 'group-bureaucrat-member'    => 'Name of member of group',
 'group-suppress-member'      => 'This is a member of the optional (disabled by default) user group, meant for the [[mw:RevisionDelete|RevisionDelete]] feature, to change the visibility of revisions through [[Special:RevisionDelete]].
 
-* See also: {{msg|Group-suppress|pl=yes}} for the name of the group.',
+* See also: {{msg|Group-suppress|pl=yes}} for the name of the group.
+{{Identical|Oversight}}',
 
 'grouppage-user'          => 'Link to group page on wiki',
 'grouppage-autoconfirmed' => 'Link to group page on wiki.',
@@ -1465,15 +1469,15 @@ Example: [[:Image:Addon-icn.png]]',
 
 {{Identical|All pages}}',
 'alphaindexline' => 'Used on [[Special:AllPages]] if the main namespace contains more than 960 pages. Indicates the page range displayed behind the link. "from page $1 to page $2". $1 is the source page name. $1 is the target page name.',
-'nextpage'       => 'Third part of the navigation bar for the special page [[Special:AllPages]]. $1 is a page title. The other parts are [[MediaWiki:Allarticles]] and [[MediaWiki:Prevpage]].
+'nextpage'       => 'Third part of the navigation bar for the special page [[Special:AllPages]]. $1 is a page title. The other parts are {{msg-mw|Allarticles}} and {{msg-mw|Prevpage}}.
 
 {{Identical|Next page}}',
-'prevpage'       => 'Second part of the navigation bar for the special page [[Special:AllPages]]. $1 is a page title. The other parts are [[MediaWiki:Allarticles]] and [[MediaWiki:Nextpage]].
+'prevpage'       => 'Second part of the navigation bar for the special page [[Special:AllPages]]. $1 is a page title. The other parts are {{msg-mw|Allarticles}} and {{msg-mw|Nextpage}}.
 
 {{Identical|Previous page}}',
 'allpagesfrom'   => 'Option in [[Special:AllPages]]. See also {{msg|allpagesto}}.',
 'allpagesto'     => 'Option in [[Special:AllPages]]. See also {{msg|allpagesfrom}}.',
-'allarticles'    => 'First part of the navigation bar for the special page [[Special:AllPages]]. The other parts are [[MediaWiki:Prevpage]] and [[MediaWiki:Nextpage]].
+'allarticles'    => 'First part of the navigation bar for the special page [[Special:AllPages]]. The other parts are {{msg-mw|Prevpage}} and {{msg-mw|Nextpage}}.
 {{Identical|All pages}}',
 'allpagesprev'   => "Allegedly used in [[Special:AllPages]], although I haven't seen it.
 
@@ -1828,12 +1832,12 @@ Example line:
 * $1 - word "{{msg|Hide}}" or "{{msg|Show}}"',
 'ipblocklist-submit'           => '{{Identical|Search}}',
 'blocklistline'                => 'This is the text of an entry in the Special:IPBlockList.
-*$1 is the hour and date of the block. 
-*$2 is the sysop. 
-*$3 is the blocked user or IP (with link to contributions and talk)
-*$4 contains "hour and date of expiry, details (\'\'reason\'\')"
+* $1 is the hour and date of the block. 
+* $2 is the sysop. 
+* $3 is the blocked user or IP (with link to contributions and talk)
+* $4 contains "hour and date of expiry, details (\'\'reason\'\')"
 
-See also [[MediaWiki:Blocklogentry]].',
+See also {{msg-mw|Blocklogentry}}.',
 'infiniteblock'                => '{{Identical|Infinite}}',
 'anononlyblock'                => '{{Identical|Anon only}}',
 'noautoblockblock'             => '{{Identical|Autoblock disabled}}',
@@ -1845,10 +1849,10 @@ See also [[MediaWiki:Blocklogentry]].',
 'blocklogpage'                 => '{{Identical|Block log}}',
 'blocklog-fulllog'             => 'Shown at Special:BlockIP at the end of the block log if there are more than 10 entries for this user, see [[Special:BlockIP/Raymond]] as example (visible for sysops only).',
 'blocklogentry'                => 'This is the text of an entry in the Block log (and RC), after hour (and date, only in the Block log) and sysop name: 
-*$1 is the blocked user or IP (with link to contributions and talk)
-*$2 is the duration of the block (hours, days etc.) or the specified expiry date
-*$3 contains "(details) (\'\'reason\'\')"
-See also [[MediaWiki:Blocklistline]].',
+* $1 is the blocked user or IP (with link to contributions and talk)
+* $2 is the duration of the block (hours, days etc.) or the specified expiry date
+* $3 contains "(details) (\'\'reason\'\')"
+See also {{msg-mw|Blocklistline}}.',
 'reblock-logentry'             => '* $1 is the user being reblocked
 * $2 is the expiry time of the block
 * $3 is the reason of the block',

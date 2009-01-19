@@ -1093,6 +1093,7 @@ $1 საათში.',
 
 # Statistics
 'statistics'              => 'სტატისტიკა',
+'statistics-header-pages' => 'გვერდების სტატისტიკა',
 'statistics-header-users' => 'მომხმარებლის სტატისტიკა',
 'statistics-pages'        => 'გვერდები',
 'statistics-files'        => 'ავტვირთული ფაილები',

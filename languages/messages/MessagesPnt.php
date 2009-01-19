@@ -127,6 +127,7 @@ $messages = array(
 'newwindow'      => "(ανοίγ' σ' άλλον παραθύρ)",
 'cancel'         => 'Χάτεμαν',
 'qbfind'         => 'Εύρον',
+'qbbrowse'       => 'Πλοήγησην',
 'qbedit'         => 'Άλλαξον',
 'qbpageoptions'  => 'Ατή η σελίδαν',
 'qbpageinfo'     => 'Συμφραζόμενα',
@@ -228,7 +229,9 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Έχετε καινούρεα μενέματα σο $1',
 'editsection'             => 'άλλαξον',
 'editold'                 => 'άλλαξον',
+'viewsourceold'           => 'τερέστεν κωδικόν',
 'editlink'                => 'άλλαξον',
+'viewsourcelink'          => 'τερέστεν κωδικόν',
 'editsectionhint'         => "Άλλαξον κομμάτ': $1",
 'toc'                     => 'Περιεχόμενα',
 'showtoc'                 => 'δείξον',
@@ -309,11 +312,13 @@ $messages = array(
 'createaccount'              => 'Ποίσον λογαρίαν',
 'gotaccount'                 => 'Λογαρίαν έχετε; $1.',
 'gotaccountlink'             => 'Εμπάτε',
+'createaccountmail'          => 'με ελεκτρονικόν μένεμαν',
 'badretype'                  => "Τα σημάδε ντ' εγράψετεν 'κ ταιριάζνε.",
 'userexists'                 => "Τ' όνεμαν έχ' ατό άλλος χρήστες.
 Βαλέστε άλλον όνεμαν.",
 'youremail'                  => 'Ελεκτρονικόν μένεμαν:',
 'username'                   => 'Όνεμα χρήστε:',
+'uid'                        => 'ID Χρήστε:',
 'yourrealname'               => 'Πραματικόν όνεμαν:',
 'yourlanguage'               => "Τ' εσόν η γλώσσαν:",
 'yournick'                   => 'Υπογραφή:',
@@ -358,6 +363,7 @@ $messages = array(
 'loginlanguagelabel'         => 'Γλώσσαν: $1',
 
 # Password reset dialog
+'resetpass'   => 'Νέον σημάδιν',
 'oldpassword' => 'Παλαιόν σημάδιν:',
 'newpassword' => 'Καινούρεον σημάδιν:',
 'retypenew'   => 'Γράψον ξαν το νέον σημάδιν:',
@@ -490,10 +496,12 @@ $messages = array(
 'history-feed-item-nocomment' => '$1 σο $2', # user at time
 
 # Revision deletion
-'rev-delundel'    => 'δείξον/κρύψον',
-'pagehist'        => 'Ιστορίαν σελίδας',
-'deletedhist'     => 'Σβηγμένον ιστορίαν',
-'revdelete-uname' => "όνεμαν χρήστ'",
+'rev-delundel'      => 'δείξον/κρύψον',
+'pagehist'          => 'Ιστορίαν σελίδας',
+'deletedhist'       => 'Σβηγμένον ιστορίαν',
+'revdelete-content' => 'περιεχόμενον',
+'revdelete-summary' => 'σύνοψη',
+'revdelete-uname'   => "όνεμαν χρήστ'",
 
 # Diffs
 'history-title'           => 'Ιστορικόν εκδοσίων για τη σελίδαν "$1"',
@@ -518,6 +526,7 @@ $messages = array(
 'nextn'                    => '$1 επομένων',
 'viewprevnext'             => 'Τέρεν ($1) ($2) ($3)',
 'searchhelp-url'           => 'Help:Περιεχόμενα',
+'searchprofile-images'     => 'Αρχεία',
 'search-suggest'           => 'Γιαμ αραεύετε: $1',
 'search-interwiki-caption' => 'Αδερφικά έργα',
 'search-interwiki-more'    => '(πλέα)',
@@ -537,11 +546,13 @@ $messages = array(
 'math_unknown_function' => 'άγνωρος συνάρτησην',
 'math_lexing_error'     => 'σφάλμαν λεξικής ανάλυσης',
 'math_syntax_error'     => 'σφάλμαν σύνταξης',
+'prefs-rc'              => 'Υστερνά αλλαγάς',
 'prefs-misc'            => 'Διαφ',
 'saveprefs'             => 'Αποθήκεμαν',
 'searchresultshead'     => 'Εύρον',
 'timezonelegend'        => 'Χρονικόν ζώνην',
 'localtime'             => 'Τοπικόν χρόνον:',
+'files'                 => 'Αρχεία',
 
 # User rights
 'userrights-groupsmember' => 'Μέλος τη:',
@@ -558,7 +569,7 @@ $messages = array(
 'group-bot-member'        => 'bot',
 'group-sysop-member'      => 'Νοματέας',
 'group-bureaucrat-member' => 'Γέροντας',
-'group-suppress-member'   => 'Επίβλεμμαν',
+'group-suppress-member'   => 'Επόπτες',
 
 'grouppage-sysop'      => '{{ns:project}}:Νοματέοι',
 'grouppage-bureaucrat' => '{{ns:project}}:Γεροντάδες',

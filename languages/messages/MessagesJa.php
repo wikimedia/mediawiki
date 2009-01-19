@@ -764,9 +764,9 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 * '''IE:''' [Ctrl] を押しながら [更新] をクリック、または [Ctrl]-[F5]
 * '''Konqueror:''' [再読み込み] をクリック、または [F5]
 * '''Opera:''' 「ツール」→「設定」からキャッシュをクリア。",
-'usercssjsyoucanpreview'           => '<strong>ヒント:</strong> 「{{int:showpreview}}」ボタンを使うと保存前に新しいスタイルシート・スクリプトをテストできます。',
+'usercssjsyoucanpreview'           => '<strong>助言:</strong> 「{{int:showpreview}}」ボタンを使うと保存前に新しいスタイルシートやスクリプトをテストできます。',
 'usercsspreview'                   => "'''あなたはユーザースタイルシートをプレビューしています。まだ保存されていないので注意してください。'''",
-'userjspreview'                    => "'''あなたはユーザースクリプトをテスト・プレビューしています。まだ保存されていないので注意してください。'''",
+'userjspreview'                    => "'''あなたはユーザースクリプトを試験的にプレビューしています。まだ保存されていないので注意してください。'''",
 'userinvalidcssjstitle'            => "'''警告:''' \"\$1\" という外装はありません。.css と .js ページを編集する際にはタイトルを小文字にすることを忘れないでください。例えば {{ns:user}}:Hoge/Monobook.css ではなく {{ns:user}}:Hoge/monobook.css となります。",
 'updated'                          => '（更新）',
 'note'                             => '<strong>お知らせ:</strong>',
@@ -779,9 +779,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 ''{{SITENAME}}ではHTMLの使用に制限を設けておらず、JavaScript での攻撃を予防するためにプレビューを表示していません。''
 
 <strong>この編集が問題ないものであるならば再度保存してください。それでもうまくいかない際には一度[[Special:UserLogout|ログアウト]]して、もう一度ログインしてみてください。</strong>",
-'token_suffix_mismatch'            => '<strong>あなたの使用しているクライアントが、エディット・トークン内の句読点を正しく処理していないことを確認しました。
-このページの文章が破損するのを防ぐため、あなたの編集は反映されません。
-問題のある匿名プロキシサービスを利用していると、この問題が起こることがあります。</strong>',
+'token_suffix_mismatch'            => '<strong>あなたの使用しているクライアントが、編集トークン内の句読点を正しく処理していないことを確認しました。このページの文章が破損するのを防ぐため、あなたの編集は反映されません。問題のある匿名プロキシサービスを利用していると、この問題が起こることがあります。</strong>',
 'editing'                          => '$1 を編集中',
 'editingsection'                   => '$1 を編集中（セクション単位編集）',
 'editingcomment'                   => '$1 を編集中（新規コメント）',
@@ -789,7 +787,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'explainconflict'                  => 'あなたがこのページを編集し始めた後に、他の誰かがこのページを変更しました。上側のテキストエリアは現在の最新の状態です。あなたの編集していた文章は下側のテキストエリアに示されています。編集していた文章を、上側のテキストエリアの文章に組み込んでください。<strong>上側のテキストエリアの内容だけ</strong>が、「{{int:Savearticle}}」をクリックした時に実際に保存されます。',
 'yourtext'                         => 'あなたの文章',
 'storedversion'                    => '保存された版',
-'nonunicodebrowser'                => '<strong>警告: あなたの使用しているブラウザはUnicode互換ではありません。項目を編集する前にブラウザを変更してください。</strong>',
+'nonunicodebrowser'                => '<strong>警告: あなたの使用しているブラウザはユニコードに準拠していません。ページを編集する前にブラウザを変更してください。</strong>',
 'editingold'                       => '<strong>警告: あなたはこのページの古い版を編集しています。もしこの文章を保存すると、この版以降に追加された全ての変更が無効になってしまいます。</strong>',
 'yourdiff'                         => 'あなたの更新内容',
 'copyrightwarning'                 => "'''■投稿する前に以下を確認してください■'''
@@ -1016,7 +1014,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'diff-th'                 => "'''ヘッダ'''",
 'diff-br'                 => "'''改行'''",
 'diff-hr'                 => "'''水平線'''",
-'diff-code'               => "'''プログラミングコード'''",
+'diff-code'               => "'''プログラムコード'''",
 'diff-dl'                 => "'''定義リスト'''",
 'diff-dt'                 => "'''定義語'''",
 'diff-dd'                 => "'''定義'''",
@@ -1046,7 +1044,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'noexactmatch'                     => "'''「$1」というタイトルのページは存在しません。'''[[:$1|新規作成する]]ことができます。",
 'noexactmatch-nocreate'            => "'''「$1」というタイトルのページは存在しません。'''",
 'toomanymatches'                   => '一致したページが多すぎます、他の検索語を指定してください',
-'titlematches'                     => 'ページタイトルと一致',
+'titlematches'                     => 'ページ名と一致',
 'notitlematches'                   => 'ページ名とは一致しませんでした',
 'textmatches'                      => 'ページ内本文と一致',
 'notextmatches'                    => 'ページ内本文とは一致しませんでした',
@@ -1057,7 +1055,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'searchmenu-exists'                => "'''このウィキには「[[$1]]」というタイトルのページがあります'''",
 'searchmenu-new'                   => "'''このウィキでページ\"[[:\$1|\$1]]\"を新規作成する'''",
 'searchhelp-url'                   => 'Help:目次',
-'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|このプレフィックスをもつページを見る]]',
+'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|この文字列から始まる名前のページを見る]]',
 'searchprofile-articles'           => '記事',
 'searchprofile-articles-and-proj'  => '記事とプロジェクト文書',
 'searchprofile-project'            => 'プロジェクトページ',
@@ -1096,7 +1094,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'powersearch-redir'                => 'リダイレクトを表示',
 'powersearch-field'                => '検索キーワード:',
 'search-external'                  => '外部検索',
-'searchdisabled'                   => '<p>全文検索はサーバー負荷の都合から、一時的に使用停止しています。元に戻るまでGoogleでの全文検索を利用してください。検索結果は少し古い内容となります。</p>',
+'searchdisabled'                   => '{{SITENAME}} の全文検索はサーバー負荷の都合から、一時的に使用停止しています。元に戻るまで Google での全文検索を利用してください。検索結果は少し古い内容となります。',
 
 # Preferences page
 'preferences'               => '個人設定',
@@ -1196,8 +1194,8 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'group-bot'           => 'ボット',
 'group-sysop'         => '管理者',
 'group-bureaucrat'    => 'ビューロクラット',
-'group-suppress'      => 'Oversights',
-'group-all'           => '（すべて）',
+'group-suppress'      => 'Oversight',
+'group-all'           => '(全員)',
 
 'group-user-member'          => '利用者',
 'group-autoconfirmed-member' => '{{int:group-autoconfirmed}}',
@@ -1357,16 +1355,16 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'uploadnologintext'           => 'ファイルをアップロードするには[[Special:UserLogin|ログイン]]する必要があります。',
 'upload_directory_missing'    => 'アップロードディレクトリ ($1) が見つからずウェブサーバによっても作成できませんでした。',
 'upload_directory_read_only'  => 'アップロード先のディレクトリ ($1) にウェブサーバーが書き込めません。',
-'uploaderror'                 => 'アップロード エラー',
+'uploaderror'                 => 'アップロードのエラー',
 'uploadtext'                  => "ファイルを新しくアップロードする場合には、以下のフォームを利用してください。過去にアップロードされたファイルの表示・検索には[[Special:FileList|{{int:imagelist}}]]をご利用ください。アップロードの記録は[[Special:Log/upload|アップロード記録]]、削除の記録は[[Special:Log/delete|削除記録]]にも記録されます。
 
 ページにファイルを挿入するには以下の書式のリンクを使います。
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}:<nowiki>File.jpg]]</nowiki></tt>''' とするとファイルをもとのサイズのまま表示します
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}:<nowiki>File.png|200px|thumb|left|代替テキスト]]</nowiki></tt>''' とすると左寄せの枠内に200px幅に縮小した画像を説明文（代替テキスト）を添えて表示します
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}:<nowiki>File.ogg]]</nowiki></tt>''' とするとファイルを表示せずに直接ファイルへリンクします",
-'upload-permitted'            => '許可されているファイル形式： $1',
-'upload-preferred'            => '推奨されているファイル形式： $1',
-'upload-prohibited'           => '禁止されているファイル形式： $1',
+'upload-permitted'            => '許可されているファイル形式: $1',
+'upload-preferred'            => '推奨されているファイル形式: $1',
+'upload-prohibited'           => '禁止されているファイル形式: $1',
 'uploadlog'                   => 'アップロード記録',
 'uploadlogpage'               => 'アップロード記録',
 'uploadlogpagetext'           => '以下はファイルアップロードの最近の記録です。画像付きで見るには[[Special:NewFiles|新規ファイルの一覧]]をご覧ください。',
@@ -1406,7 +1404,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'file-exists-duplicate'       => 'このファイルは以下のファイルと重複しています',
 'file-deleted-duplicate'      => 'このファイル ([[$1]]) と同一のファイルが以前に削除されています。再度アップロードをする前に、以前削除されたファイルの削除記録を確認してください。',
 'successfulupload'            => 'アップロード成功',
-'uploadwarning'               => 'アップロード 警告',
+'uploadwarning'               => 'アップロード警告',
 'savefile'                    => 'ファイルを保存',
 'uploadedimage'               => '"$1" をアップロードしました。',
 'overwroteimage'              => '"[[$1]]"の新しい版をアップロードしました',
@@ -1597,7 +1595,7 @@ PICT # misc.
 
 'withoutinterwiki'         => '言語間リンクを持たないページ',
 'withoutinterwiki-summary' => '以下のページには多言語版へのリンクがありません:',
-'withoutinterwiki-legend'  => 'プレフィックス',
+'withoutinterwiki-legend'  => '先頭文字列',
 'withoutinterwiki-submit'  => '表示',
 
 'fewestrevisions' => '編集履歴の少ないページ',
@@ -1629,7 +1627,7 @@ PICT # misc.
 'mostcategories'          => 'カテゴリの多い項目',
 'mostimages'              => 'リンクの多いファイル',
 'mostrevisions'           => '版の多い項目',
-'prefixindex'             => '全ページ (ページ指定)',
+'prefixindex'             => '前方一致ページ一覧',
 'shortpages'              => '短いページ',
 'longpages'               => '長いページ',
 'deadendpages'            => '有効なページへのリンクがないページ',
@@ -1677,12 +1675,12 @@ PICT # misc.
 'log-title-wildcard'   => 'この文字列で始まるタイトルを検索する',
 
 # Special:AllPages
-'allpages'          => '全ページ',
+'allpages'          => 'ページ一覧',
 'alphaindexline'    => '$1―$2',
 'nextpage'          => '次のページ（$1）',
 'prevpage'          => '前のページ（$1）',
-'allpagesfrom'      => '表示開始ページ:',
-'allpagesto'        => '表示ページの最後:',
+'allpagesfrom'      => '最初に表示するページ:',
+'allpagesto'        => '最後に表示するページ:',
 'allarticles'       => '全ページ',
 'allinnamespace'    => '全ページ ($1 名前空間)',
 'allnotinnamespace' => '全ページ ($1 名前空間を除く)',
@@ -1807,9 +1805,7 @@ PICT # misc.
 'changed'                      => '変更',
 'created'                      => '作成',
 'enotif_subject'               => '{{SITENAME}} のページ "$PAGETITLE" が $PAGEEDITOR によって$CHANGEDORCREATEDされました',
-'enotif_lastvisited'           => '
-あなたが最後に閲覧してからの差分を見るには以下のURLにアクセスしてください:
-$1',
+'enotif_lastvisited'           => 'あなたが最後に閲覧してからなされた全ての変更を $1 で確認できます。',
 'enotif_lastdiff'              => 'この変更内容を表示するには $1 を見てください。',
 'enotif_anon_editor'           => '匿名利用者 $1',
 'enotif_body'                  => '$WATCHINGUSERNAMEさん、
@@ -1899,12 +1895,9 @@ $NEWPAGE
 'protect_expiry_old'          => '保護期限が過去の時刻です。',
 'protect-unchain'             => '移動権限を操作',
 'protect-text'                => "ページ \"'''<nowiki>\$1</nowiki>'''\" の保護レベルを表示・操作できます。",
-'protect-locked-blocked'      => 'あなたはブロックされているため、保護レベルを変更できません。
-現在のページ<strong>$1</strong>の状態は以下の通りです:',
-'protect-locked-dblock'       => '現在データベースがロックされているため保護レベルを変更できません
-現在のページ<strong>$1</strong>の状態は以下の通りです:',
-'protect-locked-access'       => 'あなたのアカウントはページの保護レベルを変更する権限を持っていません。
-現在のページ<strong>$1</strong>の状態は以下の通りです:',
+'protect-locked-blocked'      => 'あなたはブロックされているため、保護レベルを変更できません。現在のページ <strong>$1</strong> の状態は以下の通りです:',
+'protect-locked-dblock'       => '現在データベースがロックされているため、保護レベルを変更できません。現在のページ <strong>$1</strong> の状態は以下の通りです:',
+'protect-locked-access'       => 'あなたのアカウントはページの保護レベルを変更する権限を持っていません。現在のページ<strong>$1</strong>の状態は以下の通りです:',
 'protect-cascadeon'           => 'このページはカスケード保護されている以下のページから呼び出されているため、編集できないように保護されています。保護レベルを変更することは可能ですが、このカスケード保護には影響しません。',
 'protect-default'             => '（解除）',
 'protect-fallback'            => '"$1" 権限が必要です',
@@ -2082,7 +2075,7 @@ $NEWPAGE
 'ipblocklist-sh-tempblocks'       => '期限付きブロックを$1',
 'ipblocklist-sh-addressblocks'    => 'シングルIPブロックを$1',
 'ipblocklist-submit'              => '検索',
-'blocklistline'                   => '$1, $2 は $3 をブロック （$4）',
+'blocklistline'                   => '$1、$2 が $3 をブロック ($4)',
 'infiniteblock'                   => '無期限',
 'expiringblock'                   => '$1 に解除',
 'anononlyblock'                   => '匿名のみ',
@@ -2099,7 +2092,7 @@ $NEWPAGE
 'autoblocker'                     => '投稿ブロックされている利用者 "$1" と同じIPアドレスのため、自動的にブロックされています。ブロックの理由は "$2" です。',
 'blocklogpage'                    => '投稿ブロック記録',
 'blocklog-fulllog'                => '投稿ブロック記録全てを見る',
-'blocklogentry'                   => '"$1" を $2 ブロックしました $3',
+'blocklogentry'                   => '$1 を $2 ブロックしました $3',
 'reblock-logentry'                => '"[[$1]]" のブロックの設定を $2 に変更しました $3',
 'blocklogtext'                    => 'このページは投稿ブロックと解除の操作記録です。自動的に投稿ブロックされたIPアドレスは記録されていません。現時点で有効な投稿ブロックは[[Special:IPBlockList|ブロック中の利用者一覧]]をご覧ください。',
 'unblocklogentry'                 => '"$1" をブロック解除しました',
@@ -2121,10 +2114,8 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'blockme'                         => 'ブロックする',
 'proxyblocker'                    => 'プロキシブロッカー',
 'proxyblocker-disabled'           => 'この機能は無効になっています。',
-'proxyblockreason'                => 'Your IP address has been blocked because it is an open proxy. Please contact your Internet service provider or tech support and inform them of this serious security problem.
-
-:あなたの使用しているIPアドレスは公開プロキシであるため投稿ブロックされています。あなたのインターネット・サービス・プロバイダ、もしくは技術担当者に連絡を取り、これが深刻なセキュリティ問題であることを伝えてください。',
-'proxyblocksuccess'               => '終了しました。',
+'proxyblockreason'                => 'あなたの使用しているIPアドレスは公開プロキシであるため投稿ブロックされています。あなたのインターネット・サービス・プロバイダ、もしくは技術担当者に連絡を取り、これが深刻なセキュリティ問題であることを伝えてください。',
+'proxyblocksuccess'               => '完了。',
 'sorbsreason'                     => 'あなたのIPアドレスは公開プロキシであると、{{SITENAME}}のブラックリストに掲載されています。',
 'sorbs_create_account_reason'     => 'あなたのIPアドレスが公開プロキシであると{{SITENAME}}のブラックリストに掲載されているため、アカウントを作成できません。',
 'cant-block-while-blocked'        => 'あなたは投稿ブロックされているため、他の利用者を投稿ブロックすることはできません。',
@@ -2163,7 +2154,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 ページの移動に伴う影響をよく考えてから踏み切るようにしてください。",
 'movepagetalktext'             => '付随するノートのページがある場合には、基本的には、一緒に移動されることになります。
 
-但し、以下の場合については別です。
+ただし、以下の場合については別です。
 *名前空間をまたがる移動の場合
 *移動先に既に履歴のあるノートページが存在する場合
 *下のチェックボックスのチェックマークを消した場合
@@ -2240,7 +2231,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'allmessagescurrent'        => '現在の文章',
 'allmessagestext'           => 'これはMediaWiki名前空間で利用可能なシステムメッセージの一覧です。もし MediaWiki の一般的なローカリゼーションに貢献したい場合は、[http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] や [http://translatewiki.net?setlang=ja Betawiki] を訪れてみてください。',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages''' が無効なので、このページを使うことはできません。",
-'allmessagesfilter'         => 'メッセージ名フィルタ:',
+'allmessagesfilter'         => 'メッセージ名で絞り込み:',
 'allmessagesmodified'       => '変更されたもののみを表示',
 
 # Thumbnails
@@ -2256,7 +2247,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'import'                     => 'ページデータの取り込み',
 'importinterwiki'            => 'Transwikiインポート',
 'import-interwiki-text'      => 'インポートするウィキとページ名を選択してください。変更履歴の日付と編集者の名前は保持されます。トランスウィキ・インポートの操作は全て[[Special:Log/import|インポート記録]]に記録されます。',
-'import-interwiki-source'    => 'ソース ウィキ/ページ:',
+'import-interwiki-source'    => '取り込み元のウィキとページ:',
 'import-interwiki-history'   => 'このページの全ての版を複製する',
 'import-interwiki-submit'    => '取り込み',
 'import-interwiki-namespace' => '目的の名前空間:',
@@ -2267,7 +2258,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'import-revision-count'      => '$1 版',
 'importnopages'              => 'インポートするページがありません',
 'importfailed'               => '取り込みに失敗しました: $1',
-'importunknownsource'        => 'インポートするソースのファイルタイプが不明です',
+'importunknownsource'        => '取り込み元のファイルタイプが不明です',
 'importcantopen'             => 'インポートファイルを開けませんでした',
 'importbadinterwiki'         => '他ウィキへのリンクが正しくありません',
 'importnotext'               => '内容が空か、テキストがありません。',
@@ -2911,12 +2902,12 @@ $1
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'あなたのウォッチリストには $1件のページが登録されています（ノートページは数えません）。',
-'watchlistedit-noitems'        => 'あなたのウォッチリストには、現在タイトルがありません。',
+'watchlistedit-noitems'        => 'あなたのウォッチリストには項目がありません。',
 'watchlistedit-normal-title'   => 'ウォッチリストの編集',
-'watchlistedit-normal-legend'  => 'ウォッチリストからタイトルを削除',
-'watchlistedit-normal-explain' => 'あなたのウォッチリストにあるタイトルが以下に表示されています。タイトルの横にあるチェックボックスにチェックを入れ、「{{int:watchlistedit-normal-submit}}」を選べば削除できます。また、[[Special:Watchlist/raw|一覧をテキストで編集]]することもできます。',
-'watchlistedit-normal-submit'  => 'タイトルの削除',
-'watchlistedit-normal-done'    => 'あなたのウォッチリストから $1 タイトルを削除しました:',
+'watchlistedit-normal-legend'  => 'ウォッチリストから項目を削除',
+'watchlistedit-normal-explain' => 'あなたのウォッチリストに入っている項目が以下に表示されています。項目の横にあるチェックボックスにチェックを入れ、「{{int:watchlistedit-normal-submit}}」を選べば削除できます。また、[[Special:Watchlist/raw|一覧をテキストで編集]]することもできます。',
+'watchlistedit-normal-submit'  => '項目の削除',
+'watchlistedit-normal-done'    => 'あなたのウォッチリストから $1件の項目を削除しました:',
 'watchlistedit-raw-title'      => 'ウォッチリストをテキストで編集',
 'watchlistedit-raw-legend'     => 'ウォッチリストをテキストで編集',
 'watchlistedit-raw-explain'    => 'あなたのウォッチリストに含まれるページが以下に表示されています。1行につき1つのページを表し、リストから追加・削除することにより編集できます。編集を反映させるには「{{int:Watchlistedit-raw-submit}}」を選びます。この編集方法の他に、[[Special:Watchlist/edit|標準のエディタ]]も利用できます。',
