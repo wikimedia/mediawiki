@@ -849,7 +849,9 @@ class Article {
 				if( $oldid ) {
 					$d = wfMsgExt( 'missingarticle-rev', 'escape', $oldid );
 					$text = wfMsgExt( 'missing-article', 'parsemag', $t, $d );
-				} else {
+				// Always use page content for pages in the MediaWiki namespace
+				// since it contains the default message
+				} elseif ( $this->mTitle->getNamespace() != NS_MEDIAWIKI ) {
 					$text = wfMsgExt( 'noarticletext', 'parsemag' );
 				}
 			}
