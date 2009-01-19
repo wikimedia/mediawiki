@@ -41,7 +41,8 @@ class ApiQueryContributions extends ApiQueryBase {
 
 	private $params, $username;
 	private $fld_ids = false, $fld_title = false, $fld_timestamp = false,
-			$fld_comment = false, $fld_flags = false;
+			$fld_comment = false, $fld_flags = false,
+			$fld_patrolled = false;
 
 	public function execute() {
 
@@ -54,6 +55,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		$this->fld_comment = isset($prop['comment']);
 		$this->fld_flags = isset($prop['flags']);
 		$this->fld_timestamp = isset($prop['timestamp']);
+		$this->fld_patrolled = isset($prop['patrolled']);
 
 		// TODO: if the query is going only against the revision table, should this be done?
 		$this->selectNamedDB('contributions', DB_SLAVE, 'contributions');
@@ -132,12 +134,12 @@ class ApiQueryContributions extends ApiQueryBase {
 	 * Prepares the query and returns the limit of rows requested
 	 */
 	private function prepareQuery() {
-
-		//We're after the revision table, and the corresponding page row for
-		//anything we retrieve.
-		$this->addTables(array('revision', 'page'));
+		// We're after the revision table, and the corresponding page
+		// row for anything we retrieve. We may also need the
+		// recentchanges row.
+		$this->addTables(array('page', 'revision'));
 		$this->addWhere('page_id=rev_page');
-		
+
 		// Handle continue parameter
 		if($this->multiUserMode && !is_null($this->params['continue']))
 		{
@@ -170,14 +172,17 @@ class ApiQueryContributions extends ApiQueryBase {
 		$show = $this->params['show'];
 		if (!is_null($show)) {
 			$show = array_flip($show);
-			if (isset ($show['minor']) && isset ($show['!minor']))
+			if ((isset($show['minor']) && isset($show['!minor']))
+			   		|| (isset($show['patrolled']) && isset($show['!patrolled'])))
 				$this->dieUsage("Incorrect parameter - mutually exclusive values may not be supplied", 'show');
 
-			$this->addWhereIf('rev_minor_edit = 0', isset ($show['!minor']));
-			$this->addWhereIf('rev_minor_edit != 0', isset ($show['minor']));
+			$this->addWhereIf('rev_minor_edit = 0', isset($show['!minor']));
+			$this->addWhereIf('rev_minor_edit != 0', isset($show['minor']));
+			$this->addWhereIf('rc_patrolled = 0', isset($show['!patrolled']));
+			$this->addWhereIf('rc_patrolled != 0', isset($show['patrolled']));
 		}
 		$this->addOption('LIMIT', $this->params['limit'] + 1);
-		$this->addOption( 'USE INDEX', array( 'revision' => 'usertext_timestamp' ) );
+		$this->addOption('USE INDEX', array('revision' => 'usertext_timestamp'));
 
 		// Mandatory fields: timestamp allows request continuation
 		// ns+title checks if the user has access rights for this page
@@ -187,7 +192,22 @@ class ApiQueryContributions extends ApiQueryBase {
 			'page_namespace',
 			'page_title',
 			'rev_user_text',
-			));
+		));
+		
+		if(isset($show['patrolled']) || isset($show['!patrolled']) ||
+				 $this->fld_patrolled)
+		{
+			global $wgUser;
+			if(!$wgUser->useRCPatrol() && !$wgUser->useNPPatrol())
+				$this->dieUsage("You need the patrol right to request the patrolled flag", 'permissiondenied');
+			$this->addTables('recentchanges');
+			if(isset($show['patrolled']) || isset($show['!patrolled']))
+				$this->addWhere('rc_this_oldid=rev_id');
+			else
+				$this->addJoinConds(array('recentchanges' => array(
+					'LEFT JOIN',
+					'rc_this_oldid=rev_id')));
+		}
 
 		$this->addFieldsIf('rev_page', $this->fld_ids);
 		$this->addFieldsIf('rev_id', $this->fld_ids || $this->fld_flags);
@@ -196,6 +216,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		$this->addFieldsIf('rev_comment', $this->fld_comment);
 		$this->addFieldsIf('rev_minor_edit', $this->fld_flags);
 		$this->addFieldsIf('rev_parent_id', $this->fld_flags);
+		$this->addFieldsIf('rc_patrolled', $this->fld_patrolled);
 	}
 
 	/**
@@ -228,8 +249,11 @@ class ApiQueryContributions extends ApiQueryBase {
 				$vals['top'] = '';
 		}
 
-		if ($this->fld_comment && isset( $row->rev_comment ) )
+		if ($this->fld_comment && isset($row->rev_comment))
 			$vals['comment'] = $row->rev_comment;
+
+		if ($this->fld_patrolled && $row->rc_patrolled)
+			$vals['patrolled'] = '';
 
 		return $vals;
 	}
@@ -279,7 +303,8 @@ class ApiQueryContributions extends ApiQueryBase {
 					'title',
 					'timestamp',
 					'comment',
-					'flags'
+					'flags',
+					'patrolled',
 				)
 			),
 			'show' => array (
@@ -287,6 +312,8 @@ class ApiQueryContributions extends ApiQueryBase {
 				ApiBase :: PARAM_TYPE => array (
 					'minor',
 					'!minor',
+					'patrolled',
+					'!patrolled',
 				)
 			),
 		);
@@ -303,7 +330,8 @@ class ApiQueryContributions extends ApiQueryBase {
 			'dir' => 'The direction to search (older or newer).',
 			'namespace' => 'Only list contributions in these namespaces',
 			'prop' => 'Include additional pieces of information',
-			'show' => 'Show only items that meet this criteria, e.g. non minor edits only: show=!minor',
+			'show' => array('Show only items that meet this criteria, e.g. non minor edits only: show=!minor',
+					'NOTE: if show=patrolled or show=!patrolled is set, revisions older than $wgRCMaxAge won\'t be shown',),
 		);
 	}
 
