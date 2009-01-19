@@ -43,6 +43,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   existing block when modifying an existing block.
 * (bug 17055) "(show/hide)" links to Special:RevisionDelete now use a CSS class 
   rather than hardcoded HTML tags
+* Added new hook 'WantedPages::getSQL' into SpecialWantedpages.php to allow extensions
+  to alter the SQL query which is used to get the list of wanted pages
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
