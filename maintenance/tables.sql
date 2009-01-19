@@ -408,7 +408,7 @@ CREATE TABLE /*_*/pagelinks (
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/pl_from ON /*_*/pagelinks (pl_from,pl_namespace,pl_title);
-CREATE INDEX /*i*/pl_namespace_title ON /*_*/pagelinks (pl_namespace,pl_title,pl_from);
+CREATE INDEX /*i*/pl_namespace ON /*_*/pagelinks (pl_namespace,pl_title,pl_from);
 
 
 --
@@ -427,7 +427,7 @@ CREATE TABLE /*_*/templatelinks (
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/tl_from ON /*_*/templatelinks (tl_from,tl_namespace,tl_title);
-CREATE INDEX /*i*/tl_namespace_title ON /*_*/templatelinks (tl_namespace,tl_title,tl_from);
+CREATE INDEX /*i*/tl_namespace ON /*_*/templatelinks (tl_namespace,tl_title,tl_from);
 
 
 --
@@ -563,7 +563,7 @@ CREATE TABLE /*_*/langlinks (
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/ll_from ON /*_*/langlinks (ll_from, ll_lang);
-CREATE INDEX /*i*/ll_lang_title ON /*_*/langlinks (ll_lang, ll_title);
+CREATE INDEX /*i*/ll_lang ON /*_*/langlinks (ll_lang, ll_title);
 
 
 --
@@ -697,7 +697,7 @@ CREATE TABLE /*_*/image (
   -- Filename.
   -- This is also the title of the associated description page,
   -- which will be in namespace 6 (NS_FILE).
-  img_name varchar(255) binary NOT NULL default '' primary key,
+  img_name varchar(255) binary NOT NULL default '' PRIMARY KEY,
   
   -- File size in bytes.
   img_size int unsigned NOT NULL default 0,
@@ -838,7 +838,7 @@ CREATE TABLE /*_*/filearchive (
 -- pick out by image name
 CREATE INDEX /*i*/fa_name ON /*_*/filearchive (fa_name, fa_timestamp);
 -- pick out dupe files
-CREATE INDEX /*i*/fa_group_key ON /*_*/filearchive (fa_storage_group, fa_storage_key);
+CREATE INDEX /*i*/fa_storage_group ON /*_*/filearchive (fa_storage_group, fa_storage_key);
 -- sort by deletion time
 CREATE INDEX /*i*/fa_deleted_timestamp ON /*_*/filearchive (fa_deleted_timestamp);
 -- sort by uploader
@@ -943,7 +943,7 @@ CREATE TABLE /*_*/watchlist (
   
 ) /*$wgDBTableOptions*/;
 
-CREATE UNIQUE INDEX /*i*/wl_user_namespace_title ON /*_*/watchlist (wl_user, wl_namespace, wl_title);
+CREATE UNIQUE INDEX /*i*/wl_user ON /*_*/watchlist (wl_user, wl_namespace, wl_title);
 CREATE INDEX /*i*/namespace_title ON /*_*/watchlist (wl_namespace, wl_title);
 
 
@@ -1034,18 +1034,18 @@ CREATE TABLE /*_*/querycache (
   qc_title varchar(255) binary NOT NULL default ''
 ) /*$wgDBTableOptions*/;
 
-CREATE INDEX /*i*/qc_type_value ON /*_*/querycache (qc_type,qc_value);
+CREATE INDEX /*i*/qc_type ON /*_*/querycache (qc_type,qc_value);
 
 
 --
 -- For a few generic cache operations if not using Memcached
 --
 CREATE TABLE /*_*/objectcache (
-  keyname varbinary(255) NOT NULL default '' primary key,
+  keyname varbinary(255) NOT NULL default '' PRIMARY KEY,
   value mediumblob,
   exptime datetime
 ) /*$wgDBTableOptions*/;
-CREATE INDEX /*i*/oc_exptime ON /*_*/objectcache (exptime);
+CREATE INDEX /*i*/exptime ON /*_*/objectcache (exptime);
 
 
 --
@@ -1126,7 +1126,7 @@ CREATE TABLE /*_*/job (
   job_params blob NOT NULL
 ) /*$wgDBTableOptions*/;
 
-CREATE INDEX /*i*/job_cmd_namespace_title ON /*_*/job (job_cmd, job_namespace, job_title);
+CREATE INDEX /*i*/job_cmd ON /*_*/job (job_cmd, job_namespace, job_title);
 
 
 -- Details of updates to cached special pages
@@ -1145,7 +1145,7 @@ CREATE UNIQUE INDEX /*i*/qci_type ON /*_*/querycache_info (qci_type);
 -- For each redirect, this table contains exactly one row defining its target
 CREATE TABLE /*_*/redirect (
   -- Key to the page_id of the redirect page
-  rd_from int unsigned NOT NULL default 0 primary key,
+  rd_from int unsigned NOT NULL default 0 PRIMARY KEY,
 
   -- Key to page_namespace/page_title of the target page.
   -- The target page may or may not exist, and due to renames
@@ -1231,7 +1231,7 @@ CREATE UNIQUE INDEX /*i*/pp_page_propname ON /*_*/page_props (pp_page,pp_propnam
 
 -- A table to log updates, one text key row per update.
 CREATE TABLE /*_*/updatelog (
-  ul_key varchar(255) NOT NULL primary key
+  ul_key varchar(255) NOT NULL PRIMARY KEY
 ) /*$wgDBTableOptions*/;
 
 -- vim: sw=2 sts=2 et

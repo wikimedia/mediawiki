@@ -1579,8 +1579,13 @@ class Database {
 	 */
 	function indexName( $index ) {
 		// Backwards-compatibility hack
-		if ( $index == 'ar_usertext_timestamp' ) {
-			return 'usertext_timestamp';
+		$renamed = array(
+			'ar_usertext_timestamp'	=> 'usertext_timestamp',
+			'un_user_id'		=> 'user_id',
+			'un_user_ip'		=> 'user_ip',
+		);
+		if( isset( $renamed[$index] ) ) {
+			return $renamed[$index];
 		} else {
 			return $index;
 		}
