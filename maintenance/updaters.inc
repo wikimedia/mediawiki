@@ -149,8 +149,6 @@ $wgUpdates = array(
 		array( 'add_field', 'site_stats',     'ss_active_users',  'patch-ss_active_users.sql' ),
 		array( 'do_active_users_init' ),
 		array( 'add_field', 'ipblocks',     'ipb_allow_usertalk',  'patch-ipb_allow_usertalk.sql' ),
-		array( 'add_index', 'user_newtalk', 'un_user_id', 'patch-index-renames.sql' ),
-		array( 'do_unique_pl_tl_il' ),
 	),
 
 	'sqlite' => array(
@@ -1267,17 +1265,6 @@ function sqlite_initial_indexes() {
 	echo "done\n";
 }
 
-function do_unique_pl_tl_il() {
-	global $wgDatabase;
-	$info = $wgDatabase->indexInfo( 'pagelinks', 'pl_namespace' );
-	if( !$info->Non_unique ) {
-		echo "...pl_namespace, tl_namespace, il_to indices are already UNIQUE.\n";
-	} else {
-		echo "Making pl_namespace, tl_namespace and il_to indices UNIQUE... ";
-		dbsource( archive( 'patch-pl-tl-il-unique.sql' ), $wgDatabase );
-		echo "ok\n";
-	}
-}
 
 /***********************************************************************
  * Start PG crap
