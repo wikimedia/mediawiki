@@ -583,6 +583,7 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 16629) prop=info&inprop=protection lists empty legacy protections
   incorrectly
 * (bug 15261, 16262) API no longer outputs invalid UTF-8
+* Fix broken list=alllinks paging and make alunique actually work
 
 === Languages updated in 1.14 ===
 
