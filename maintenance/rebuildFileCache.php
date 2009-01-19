@@ -35,6 +35,7 @@ $end += $BATCH_SIZE - 1;
 $blockStart = $start;
 $blockEnd = $start + $BATCH_SIZE - 1;
 
+$dbw = wfGetDB( DB_MASTER );
 // Go through each page and save the output
 while( $blockEnd <= $end ) {
 	// Get the pages
@@ -78,6 +79,7 @@ while( $blockEnd <= $end ) {
 		} else {
 			echo "Page {$row->page_id} not cacheable\n";
 		}
+		$dbw->commit(); // commit any changes
 	}
 	$blockStart += $BATCH_SIZE;
 	$blockEnd += $BATCH_SIZE;
