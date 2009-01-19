@@ -168,7 +168,6 @@ $messages = array(
 'tog-justify'                 => '段落对齐',
 'tog-hideminor'               => '最近更改中隐藏小修改',
 'tog-hidepatrolled'           => '于最近更改中隐藏巡查过的编辑',
-'tog-newpageshidepatrolled'   => '于新页面列表中隐藏巡查过的页面',
 'tog-newpageshidepatrolled'   => '於新頁面清單中隱藏巡查過的頁面',
 'tog-extendwatchlist'         => '增强监视列表以显示所有可用更改',
 'tog-usenewrc'                => '增强最近更改 (JavaScript)',
