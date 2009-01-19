@@ -17,6 +17,7 @@ $wgDisableCounters = false; // no real hits here
 $start = isset($args[0]) ? intval($args[0]) : 0;
 $overwrite = isset( $args[1] ) && $args[1] === 'overwrite';
 echo "Building content page file cache from page {$start}!\n";
+echo "Format: <start> [overwrite]\n";
 
 $dbr = wfGetDB( DB_SLAVE );
 $start = $start > 0 ? $start : $dbr->selectField( 'page', 'MIN(page_id)', false, __FUNCTION__ );
