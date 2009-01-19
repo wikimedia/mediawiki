@@ -64,6 +64,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 16844) Added clcategories parameter to prop=categories
 * (bug 17025) Added siprop=fileextension to meta=siteinfo
 * (bug 17027) Added siprop=configvars to meta=siteinfo
+* (bug 17048) Show the 'new' flag in list=usercontribs for the revision that created the
+  page, even if it's not the top revision
 
 === Languages updated in 1.15 ===
 

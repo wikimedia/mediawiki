@@ -195,7 +195,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		// $this->addFieldsIf('rev_text_id', $this->fld_ids); // Should this field be exposed?
 		$this->addFieldsIf('rev_comment', $this->fld_comment);
 		$this->addFieldsIf('rev_minor_edit', $this->fld_flags);
-		$this->addFieldsIf('page_is_new', $this->fld_flags);
+		$this->addFieldsIf('rev_parent_id', $this->fld_flags);
 	}
 
 	/**
@@ -220,7 +220,7 @@ class ApiQueryContributions extends ApiQueryBase {
 			$vals['timestamp'] = wfTimestamp(TS_ISO_8601, $row->rev_timestamp);
 
 		if ($this->fld_flags) {
-			if ($row->page_is_new)
+			if ($row->rev_parent_id == 0)
 				$vals['new'] = '';
 			if ($row->rev_minor_edit)
 				$vals['minor'] = '';
