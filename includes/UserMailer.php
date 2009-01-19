@@ -101,7 +101,7 @@ class UserMailer {
 	 * @param $from MailAddress: sender's email
 	 * @param $subject String: email's subject.
 	 * @param $body String: email's text.
-	 * @param $replyto String: optional reply-to email (default: null).
+	 * @param $replyto MailAddress: optional reply-to email (default: null).
 	 * @param $contentType String: optional custom Content-Type
 	 * @return mixed True on success, a WikiError object on failure.
 	 */
