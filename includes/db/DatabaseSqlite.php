@@ -157,6 +157,13 @@ class DatabaseSqlite extends Database {
 	}
 
 	/**
+	 * Index names have DB scope
+	 */
+	function indexName( $index ) {
+		return $index;
+	}
+
+	/**
 	 * This must be called after nextSequenceVal
 	 */
 	function insertId() {
@@ -194,7 +201,7 @@ class DatabaseSqlite extends Database {
 	 * - if errors are explicitly ignored, returns NULL on failure
 	 */
 	function indexInfo($table, $index, $fname = 'Database::indexExists') {
-		$sql = 'PRAGMA index_info(' . $this->addQuotes( $index ) . ')';
+		$sql = 'PRAGMA index_info(' . $this->addQuotes( $this->indexName( $index ) ) . ')';
 		$res = $this->query( $sql, $fname );
 		if ( !$res ) {
 			return null;
@@ -213,7 +220,7 @@ class DatabaseSqlite extends Database {
 		$row = $this->selectRow( 'sqlite_master', '*', 
 			array(
 				'type' => 'index',
-				'name' => $index,
+				'name' => $this->indexName( $index ),
 			), $fname );
 		if ( !$row || !isset( $row->sql ) ) {
 			return null;

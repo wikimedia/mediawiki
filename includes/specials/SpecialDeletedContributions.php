@@ -44,7 +44,7 @@ class DeletedContribsPager extends IndexPager {
 		$condition = array();
 
 		$condition['ar_user_text'] = $this->target;
-		$index = 'ar_usertext_timestamp';
+		$index = 'usertext_timestamp';
 
 		return array( $index, $condition );
 	}
