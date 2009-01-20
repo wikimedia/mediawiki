@@ -66,6 +66,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 17048) Show the 'new' flag in list=usercontribs for the revision that created the
   page, even if it's not the top revision
 * (bug 17069) Added ucshow=patrolled|!patrolled to list=usercontribs
+* action=delete respects $wgDeleteRevisionsLimit and the bigdelete user right
 
 === Languages updated in 1.15 ===
 
