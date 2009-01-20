@@ -109,7 +109,7 @@ class UploadBase {
 		if( is_null( $nt ) ) {
 			$result = array( 'status' => $this->mTitleError );
 			if( $this->mTitleError == self::ILLEGAL_FILENAME )
-				$resul['filtered'] = $this->mFilteredName;
+				$result['filtered'] = $this->mFilteredName;
 			if ( $this->mTitleError == self::FILETYPE_BADTYPE )
 				$result['finalExt'] = $this->mFinalExtension;
 			return $result;
