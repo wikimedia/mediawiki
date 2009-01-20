@@ -698,6 +698,7 @@ abstract class ApiBase {
 		'noemail' => array('code' => 'noemail', 'info' => "The user has not specified a valid e-mail address, or has chosen not to receive e-mail from other users"),
 		'rcpatroldisabled' => array('code' => 'patroldisabled', 'info' => "Patrolling is disabled on this wiki"),
 		'markedaspatrollederror-noautopatrol' => array('code' => 'noautopatrol', 'info' => "You don't have permission to patrol your own changes"),
+		'delete-toobig' => array('code' => 'bigdelete', 'info' => "You can't delete this page because it has more than \$1 revisions"),
 
 		// API-specific messages
 		'missingparam' => array('code' => 'no$1', 'info' => "The \$1 parameter must be set"),
