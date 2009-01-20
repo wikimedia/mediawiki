@@ -79,9 +79,6 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				case 'fileextensions':
 					$this->appendFileExtensions( $p );
 					break;
-				case 'configvars':
-					$this->appendConfigvars( $p, $params['configvars'] );
-					break;
 				default :
 					ApiBase :: dieDebug( __METHOD__, "Unknown prop=$p" );
 			}
@@ -336,39 +333,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$this->getResult()->setIndexedTagName( $data, 'ext' );
 		$this->getResult()->addValue( 'query', $property, $data );
 	}
-	
-	protected function appendConfigvars( $property, $vars ) {
-		global $wgAPIReadableConfigVars;
-		if(empty($vars))
-			$vars = $wgAPIReadableConfigVars;
-		$data = array();
-		foreach((array)$vars as $var)
-		{
-			$value = $GLOBALS[$var];
-			$r = array();
-			$r['name'] = $var;
-			$r['type'] = gettype($value);
-			if(is_object($value))
-				$r['class'] = get_class($value);
-			elseif(is_bool($value))
-				$r['value'] = ($value ? 'true' : 'false');
-			elseif(!is_null($value))
-			{
-				$r['value'] = $value;
-				if(is_array($value))
-				{
-					$this->getResult()->setIndexedTagName($r['value'], 'elem');
-					$this->getResult()->setIndexedTagName_recursive($r['value'], 'elem');
-				}
-			}
-			$data[] = $r;
-		}
-		$this->getResult()->setIndexedTagName($data, 'config');
-		$this->getResult()->addValue('query', $property, $data);
-	}
+
 
 	public function getAllowedParams() {
-		global $wgAPIReadableConfigVars;
 		return array(
 			'prop' => array(
 				ApiBase :: PARAM_DFLT => 'general',
@@ -385,7 +352,6 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					'usergroups',
 					'extensions',
 					'fileextensions',
-					'configvars',
 				)
 			),
 			'filteriw' => array(
@@ -395,10 +361,6 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				)
 			),
 			'showalldb' => false,
-			'configvars' => array(
-				ApiBase :: PARAM_ISMULTI => true,
-				ApiBase :: PARAM_TYPE => $wgAPIReadableConfigVars,
-			),
 		);
 	}
 
@@ -417,11 +379,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				' "usergroups"   - Returns user groups and the associated permissions',
 				' "extensions"   - Returns extensions installed on the wiki',
 				' "fileextensions" - Returns list of file extensions allowed to be uploaded',
-				' "configvars"   - Returns the value of certain configuration variables',
 			),
 			'filteriw' =>  'Return only local or only nonlocal entries of the interwiki map',
 			'showalldb' => 'List all database servers, not just the one lagging the most',
-			'configvars' => 'Configuration variables to get. If empty, all configuration variables will be listed.',
 		);
 	}
 
@@ -434,7 +394,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			'api.php?action=query&meta=siteinfo&siprop=general|namespaces|namespacealiases|statistics',
 			'api.php?action=query&meta=siteinfo&siprop=interwikimap&sifilteriw=local',
 			'api.php?action=query&meta=siteinfo&siprop=dbrepllag&sishowalldb',
-		);
+			);
 	}
 
 	public function getVersion() {
