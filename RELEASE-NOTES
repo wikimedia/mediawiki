@@ -53,7 +53,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 16852) padleft and padright now handle multibyte characters correctly
 * (bug 17010) maintenance/namespaceDupes.php now add the suffix recursively if
   the destination page exists
-* Page moves should not be minor edits
 * (bug 17035) Special:Upload now fails gracefully if PHP's file_uploads has been
   disabled
 * Fixing the caching issue by using -{T|xxx}- syntax (only applies on wiki with LanguageConverter class)
