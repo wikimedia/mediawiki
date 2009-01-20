@@ -870,6 +870,12 @@ $2',
 'revdelete-nooldid-title'     => '无效的目标修订',
 'revdelete-nooldid-text'      => '您尚未指定一个目标修订去进行这个功能、
 所指定的修订不存在，或者您尝试去隐藏现时的修订。',
+'revdelete-nologtype-title'      => '没有给出日志类型',
+'revdelete-nologtype-text'       => '您尚未指定一种日志类型去做这个动作。',
+'revdelete-toomanytargets-title' => '过多的目标',
+'revdelete-toomanytargets-text'  => '您指定了过多的目标去做这个动作。',
+'revdelete-nologid-title'        => '无效的日志项目',
+'revdelete-nologid-text'         => '您尚未指定一个目标日志项目去进行这个动作或指定的项目不存在。',
 'revdelete-selected'          => "'''选取'''$1'''的$2次修订:'''",
 'logdelete-selected'          => "'''选取'''$1'''的日志项目:'''",
 'revdelete-text'              => "'''删除的修订仍将显示在页面历史中, 但它们的文本内容已不能被公众访问。'''
