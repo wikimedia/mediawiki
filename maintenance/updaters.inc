@@ -1269,7 +1269,7 @@ function sqlite_initial_indexes() {
 function do_unique_pl_tl_il() {
 	global $wgDatabase;
 	$info = $wgDatabase->indexInfo( 'pagelinks', 'pl_namespace' );
-	if( !$info->Non_unique ) {
+	if( is_array($info) && !$info[0]->Non_unique ) {
 		echo "...pl_namespace, tl_namespace, il_to indices are already UNIQUE.\n";
 	} else {
 		echo "Making pl_namespace, tl_namespace and il_to indices UNIQUE... ";
