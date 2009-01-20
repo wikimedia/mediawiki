@@ -2077,6 +2077,8 @@ class Title {
 					if( $ns == NS_TALK && preg_match( $prefixRegexp, $dbkey, $x ) ) {
 						if( $wgContLang->getNsIndex( $x[1] ) )
 							return false; # Disallow Talk:File:x type titles...
+						else if( Interwiki::isValidInterwiki( $x[1] ) )
+							return false; # Disallow Talk:Interwiki:x type titles...
 					}
 				} elseif( Interwiki::isValidInterwiki( $p ) ) {
 					if( !$firstPass ) {
