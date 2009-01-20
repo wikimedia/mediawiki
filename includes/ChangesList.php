@@ -318,6 +318,26 @@ class ChangesList {
 			return '<span class="mw-rc-unwatched">' . $link . '</span>';
 		}
 	}
+	
+	/** Inserts a rollback link */
+	protected function insertRollback( &$s, &$rc ) {
+		global $wgUser;
+		if( !$rc->mAttribs['rc_new'] && $rc->mAttribs['rc_this_oldid'] && $wgUser->isAllowed('rollback') ) {
+			$page = $rc->getTitle();
+			/** Check for rollback and edit permissions, disallow special pages, and only
+			  * show a link on the top-most revision */
+			if( $rc->mAttribs['rc_cur_id'] > 0 && $page->userCan('rollback') && $page->userCan('edit')
+				&& $page->getLatestRevID() == $rc->mAttribs['rc_this_oldid'] )
+			{
+				$rev = new Revision( array(
+					'id'        => $rc->mAttribs['rc_this_oldid'],
+					'user'      => $rc->mAttribs['rc_user'],
+					'user_text' => $rc->mAttribs['rc_user_text']
+				) );
+				$s .= ' '.$this->skin->generateRollback( $rev );
+			}
+		}	
+	}
 }
 
 
@@ -369,11 +389,13 @@ class OldChangesList extends ChangesList {
 			}
 		}
 		# User tool links
-		$this->insertUserRelatedLinks($s,$rc);
+		$this->insertUserRelatedLinks( $s, $rc );
 		# Log action text (if any)
-		$this->insertAction($s, $rc);
+		$this->insertAction( $s, $rc );
 		# Edit or log comment
-		$this->insertComment($s, $rc);
+		$this->insertComment( $s, $rc );
+		# Rollback
+		$this->insertRollback( $s, $rc );
 		# Mark revision as deleted if so
 		if( !$rc->mAttribs['rc_log_type'] && $this->isDeleted($rc,Revision::DELETED_TEXT) ) {
 		   $s .= ' <tt>' . wfMsgHtml( 'deletedrev' ) . '</tt>';
@@ -763,9 +785,11 @@ class EnhancedChangesList extends ChangesList {
 			$r .= $rcObj->userlink;
 			$r .= $rcObj->usertalklink;
 			// log action
-			parent::insertAction( $r, $rcObj );
+			$this->insertAction( $r, $rcObj );
 			// log comment
-			parent::insertComment( $r, $rcObj );
+			$this->insertComment( $r, $rcObj );
+			# Rollback
+			$this->insertRollback( $r, $rcObj );
 			# Mark revision as deleted
 			if( !$rc_log_type && $this->isDeleted($rcObj,Revision::DELETED_TEXT) ) {
 				$r .= ' <tt>' . wfMsgHtml( 'deletedrev' ) . '</tt>';
@@ -881,15 +905,8 @@ class EnhancedChangesList extends ChangesList {
 					$this->skin, LogPage::extractParams($rc_params), true, true );
 			}
 		}
-		# Edit or log comment
-		if( $rc_type != RC_MOVE && $rc_type != RC_MOVE_OVER_REDIRECT ) {
-			// log comment
-			if ( $this->isDeleted($rcObj,LogPage::DELETED_COMMENT) ) {
-			   $r .= ' <span class="history-deleted">' . wfMsg('rev-deleted-comment') . '</span>';
-			} else {
-			  $r .= $this->skin->commentBlock( $rc_comment, $rcObj->getTitle() );
-			}
-		}
+		$this->insertComment( $r, $rcObj );
+		$this->insertRollback( $r, $rcObj );
 		# Show how many people are watching this if enabled
 		$r .= $this->numberofWatchingusers($rcObj->numberofWatchingusers);
 
