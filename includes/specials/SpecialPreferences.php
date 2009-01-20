@@ -1212,12 +1212,13 @@ class PreferencesForm {
 
 		$token = htmlspecialchars( $wgUser->editToken() );
 		$skin = $wgUser->getSkin();
+		$rtl = $wgContLang->isRTL() ? 'left' : 'right';
 		$wgOut->addHTML( "
 	<table id='prefsubmit' cellpadding='0' width='100%' style='background:none;'><tr>
 		<td><input type='submit' name='wpSaveprefs' class='btnSavePrefs' value=\"" . wfMsgHtml( 'saveprefs' ) . 
 			'"'.$skin->tooltipAndAccesskey('save')." />
 		<input type='submit' name='wpReset' value=\"" . wfMsgHtml( 'resetprefs' ) . "\" /></td>
-		<td align='right'><input type='submit' name='wpRestore' value=\"" . wfMsgHtml( 'restoreprefs' ) . "\" /></td>
+		<td align='$rtl'><input type='submit' name='wpRestore' value=\"" . wfMsgHtml( 'restoreprefs' ) . "\" /></td>
 	</tr></table>
 
 	<input type='hidden' name='wpEditToken' value=\"{$token}\" />
