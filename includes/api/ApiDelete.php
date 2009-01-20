@@ -79,8 +79,7 @@ class ApiDelete extends ApiBase {
 				$this->dieUsageMsg(current($retval));
 		} else {
 			$articleObj = new Article($titleObj);
-				$bigHistory = $articleObj->isBigDeletion();
-				if( $bigHistory && !$wgUser->isAllowed( 'bigdelete' ) ) {
+				if( $articleObj->isBigDeletion() && !$wgUser->isAllowed( 'bigdelete' ) ) {
 					global $wgDeleteRevisionsLimit;
 					$this->dieUsageMsg(array('delete-toobig', $wgDeleteRevisionsLimit));
 				}
