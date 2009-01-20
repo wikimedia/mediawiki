@@ -768,6 +768,12 @@ $2',
 'revdelete-nooldid-title'     => '無效的目標修訂',
 'revdelete-nooldid-text'      => '您尚未指定一個目標修訂去進行這個功能、
 所指定的修訂不存在，或者您嘗試去隱藏現時的修訂。',
+'revdelete-nologtype-title'      => '沒有給出日誌類型',
+'revdelete-nologtype-text'       => '您尚未指定一種日誌類型去做這個動作。',
+'revdelete-toomanytargets-title' => '過多的目標',
+'revdelete-toomanytargets-text'  => '您指定了過多的目標去做這個動作。',
+'revdelete-nologid-title'        => '無效的日誌項目',
+'revdelete-nologid-text'         => '您尚未指定一個目標日誌項目去進行這個動作或指定的項目不存在。',
 'revdelete-selected'          => "'''選取'''$1'''的$2次修訂:'''",
 'logdelete-selected'          => "'''選取'''$1'''的日誌項目:'''",
 'revdelete-text'              => "'''刪除的修訂仍將顯示在頁面歷史中, 但它們的文字內容已不能被公眾訪問。'''

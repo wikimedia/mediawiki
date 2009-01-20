@@ -845,6 +845,12 @@ $1',
 'revdelete-nooldid-title'     => '無效嘅目標修訂',
 'revdelete-nooldid-text'      => '你一係重未指定一個目標修訂去進行呢個功能、
 所指定嘅修訂唔存在，或者你試緊去隱藏現時嘅修訂。',
+'revdelete-nologtype-title'      => '無畀到紀錄類型',
+'revdelete-nologtype-text'       => '你未指定一種紀錄類型去做呢個動作。',
+'revdelete-toomanytargets-title' => '太多目標',
+'revdelete-toomanytargets-text'  => '你指定咗太多嘅目標去做呢個動作。',
+'revdelete-nologid-title'        => '無效嘅日誌項目',
+'revdelete-nologid-text'         => '你未指定一個目標日誌項目去進行呢個動作或者指定嘅項目唔存在。',
 'revdelete-selected'          => "'''揀[[:$1]]嘅$2次修訂：'''",
 'logdelete-selected'          => "'''揀[[:$1]]嘅日誌事件：'''",
 'revdelete-text'              => "'''刪除咗嘅修訂係會仍然出現喺個頁面歷史以及日誌度，但係佢哋嘅文字內容係唔可以供公眾瀏覽。'''
