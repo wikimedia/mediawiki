@@ -26,7 +26,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 === New features in 1.15 ===
 
 * (bug 2242) Add an expiry time to temporary passwords
-* Added "Advanced search" link to the search form
 * Special:Upload can now have a custom upload message instead of uploadtext by
   passing "uploadmsg" parameter in the url
 * (bug 9947) Add PROTECTIONLEVEL parser function to return the protection level
