@@ -291,23 +291,19 @@ class PageHistory {
 		$s = "($curlink) ($lastlink) $arbitrary";
 
 		if( $wgUser->isAllowed( 'deleterevision' ) ) {
-			$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 			if( $firstInList ) {
 				// We don't currently handle well changing the top revision's settings
-				$del = $this->message['rev-delundel'];
+				$del = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ), '('.$this->message['rev-delundel'].')' );
 			} else if( !$rev->userCan( Revision::DELETED_RESTRICTED ) ) {
 				// If revision was hidden from sysops
-				$del = $this->message['rev-delundel'];
+				$del = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ), '('.$this->message['rev-delundel'].')' );
 			} else {
-				$del = $this->mSkin->makeKnownLinkObj( $revdel,
-				$this->message['rev-delundel'],
-					'target=' . urlencode( $this->mTitle->getPrefixedDbkey() ) .
-					'&oldid=' . urlencode( $rev->getId() ) );
-				// Bolden oversighted content
-				if( $rev->isDeleted( Revision::DELETED_RESTRICTED ) )
-				$del = "<strong>$del</strong>";
+				$query = array( 'target' => $this->mTitle->getPrefixedDbkey(),
+					'oldid' => $rev->getId()
+				);
+				$del = $this->mSkin->revDeleteLink( $query, $rev->isDeleted( Revision::DELETED_RESTRICTED ) );
 			}
-			$s .= " <tt>(<small>$del</small>)</tt> ";
+			$s .= " $del ";
 		}
 
 		$s .= " $link";
