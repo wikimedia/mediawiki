@@ -295,10 +295,20 @@ class Title {
 	 * Extract a redirect destination from a string and return the
 	 * Title, or null if the text doesn't contain a valid redirect
 	 *
-	 * @param $text \type{String} Text with possible redirect
+	 * @param $text \type{\string} Text with possible redirect
+	 * @param $getAllTargets \type{\bool} Should we get an array of every target or just the final one?
+	 * @param $noRecurse \type{\bool} This will prevent any and all recursion, only getting the very next target
+	 *	This is mainly meant for Article::insertRedirect so that the redirect table still works properly
+	 *	(makes double redirect and broken redirect reports display accurate results).
 	 * @return \type{Title} The corresponding Title
+	 * @return \type{\array} Array of redirect targets (Title objects), with the destination being last
 	 */
-	public static function newFromRedirect( $text ) {
+	public static function newFromRedirect( $text, $getAllTargets = false, $noRecurse = false ) {
+		global $wgMaxRedirects;
+		// are redirects disabled?
+		// Note that we should get a Title object if possible if $noRecurse is true so that the redirect table functions properly
+		if( !$noRecurse && $wgMaxRedirects < 1 )
+			return null;
 		$redir = MagicWord::get( 'redirect' );
 		$text = trim($text);
 		if( $redir->matchStartAndRemove( $text ) ) {
@@ -316,11 +326,36 @@ class Title {
 					$m[1] = urldecode( ltrim( $m[1], ':' ) );
 				}
 				$title = Title::newFromText( $m[1] );
-				// Redirects to some special pages are not permitted
-				if( $title instanceof Title 
-						&& !$title->isSpecial( 'Userlogout' )
-						&& !$title->isSpecial( 'Filepath' ) ) 
-				{
+				// If the initial title is a redirect to bad special pages or is invalid, quit early
+				if( !$title instanceof Title || !$title->isValidRedirectTarget() ) {
+					return null;
+				}
+				// If $noRecurse is true, simply return here
+				if( $noRecurse ) {
+					return $title;
+				}
+				// recursive check to follow double redirects
+				$recurse = $wgMaxRedirects;
+				$targets = array();
+				while( --$recurse >= 0 ) {
+					// Redirects to some special pages are not permitted
+					if( $title instanceof Title && $title->isValidRedirectTarget() ) {
+						$targets[] = $title;
+						if( $title->isRedirect() ) {
+							$article = new Article( $title, 0 );
+							$title = $article->getRedirectTarget();
+						} else {
+							break;
+						}
+					} else {
+						break;
+					}
+				}
+				if( $getAllTargets ) {
+					// return every target or null if no targets due to invalid title or whatever
+					return ( $targets === array() ) ? null : $targets;
+				} else {
+					// return the final destination -- invalid titles are checked earlier
 					return $title;
 				}
 			}
@@ -3425,5 +3460,27 @@ class Title {
 			$redirs[] = self::newFromRow( $row );
 		}
 		return $redirs;
+	}
+	
+	/**
+	 * Check if this Title is a valid redirect target
+	 *
+	 * @return \type{\bool} TRUE or FALSE
+	 */
+	public function isValidRedirectTarget() {
+		global $wgInvalidRedirectTargets;
+		
+		// invalid redirect targets are stored in a global array, but explicity disallow Userlogout here
+		if( $this->isSpecial( 'Userlogout' ) ) {
+			return false;
+		}
+		
+		foreach( $wgInvalidRedirectTargets as $target ) {
+			if( $this->isSpecial( $target ) ) {
+				return false;
+			}
+		}
+		
+		return true;
 	}
 }

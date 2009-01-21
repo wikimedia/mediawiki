@@ -3612,6 +3612,25 @@ $wgMaximumMovedPages = 100;
 $wgFixDoubleRedirects = false;
 
 /**
+ * Max number of redirects to follow when resolving redirects.
+ * 1 means only the first redirect is followed (default behavior).
+ * 0 or less means no redirects are followed.
+ */
+$wgMaxRedirects = 1;
+
+/**
+ * Array of invalid page redirect targets.
+ * Attempting to create a redirect to any of the pages in this array
+ * will make the redirect fail.
+ * Userlogout is hard-coded, so it does not need to be listed here.
+ * (bug 10569) Disallow Mypage and Mytalk as well.
+ *
+ * As of now, this only checks special pages. Redirects to pages in
+ * other namespaces cannot be invalidated by this variable.
+ */
+$wgInvalidRedirectTargets = array( 'Filepath', 'Mypage', 'Mytalk' );
+ 
+/**
  * Array of namespaces to generate a sitemap for when the
  * maintenance/generateSitemap.php script is run, or false if one is to be ge-
  * nerated for all namespaces.
