@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * @ingroup Language
  * @file
@@ -1347,6 +1347,7 @@ $2',
 'filename'                    => '文件名',
 'filedesc'                    => '文件描述',
 'fileuploadsummary'           => '文件描述:',
+'filereuploadsummary'         => '文件更改:',
 'filestatus'                  => '版权状态:',
 'filesource'                  => '来源:',
 'uploadedfiles'               => '已上传文件',

@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * @ingroup Language
  * @file
@@ -1246,6 +1246,7 @@ $2',
 'filename'                    => '檔案名',
 'filedesc'                    => '檔案描述',
 'fileuploadsummary'           => '檔案描述:',
+'filereuploadsummary'         => '檔案更改:',
 'filestatus'                  => '版權狀態:',
 'filesource'                  => '來源:',
 'uploadedfiles'               => '已上載檔案',
