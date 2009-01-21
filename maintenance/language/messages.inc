@@ -1117,6 +1117,7 @@ $wgMessageStructure = array(
 		'filename',
 		'filedesc',
 		'fileuploadsummary',
+		'filereuploadsummary',
 		'filestatus',
 		'filesource',
 		'uploadedfiles',
