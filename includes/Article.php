@@ -103,7 +103,8 @@ class Article {
 	 * @return Title object
 	 */
 	public function insertRedirect() {
-		$retval = Title::newFromRedirect( $this->getContent() );
+		// set noRecurse so that we always get an entry even if redirects are "disabled"
+		$retval = Title::newFromRedirect( $this->getContent(), false, true );
 		if( !$retval ) {
 			return null;
 		}
@@ -135,7 +136,7 @@ class Article {
 	 * @return mixed false, Title of in-wiki target, or string with URL
 	 */
 	public function followRedirectText( $text ) {
-		$rt = Title::newFromRedirect( $text );
+		$rt = Title::newFromRedirect( $text ); // only get the final target
 		# process if title object is valid and not special:userlogout
 		if( $rt ) {
 			if( $rt->getInterwiki() != '' ) {
@@ -584,9 +585,10 @@ class Article {
 			}
 			// Apparently loadPageData was never called
 			$this->loadContent();
-			$titleObj = Title::newFromRedirect( $this->fetchContent() );
+			// Only get the next target to reduce load times
+			$titleObj = Title::newFromRedirect( $this->fetchContent(), false, true );
 		} else {
-			$titleObj = Title::newFromRedirect( $text );
+			$titleObj = Title::newFromRedirect( $text, false, true );
 		}
 		return $titleObj !== NULL;
 	}
@@ -919,7 +921,7 @@ class Article {
 					$wgOut->addHTML( htmlspecialchars( $this->mContent ) );
 					$wgOut->addHTML( "\n</pre>\n" );
 				}
-			} else if( $rt = Title::newFromRedirect( $text ) ) {
+			} else if( $rt = Title::newFromRedirect( $text, true ) ) { # get an array of redirect targets
 				# Don't append the subtitle if this was an old revision
 				$wgOut->addHTML( $this->viewRedirect( $rt, !$wasRedirected && $this->isCurrent() ) );
 				$parseout = $wgParser->parse($text, $this->mTitle, ParserOptions::newFromUser($wgUser));
@@ -1039,24 +1041,41 @@ class Article {
 
 	/**
 	 * View redirect
-	 * @param $target Title object of destination to redirect
+	 * @param $target Title object or Array of destination(s) to redirect
 	 * @param $appendSubtitle Boolean [optional]
 	 * @param $forceKnown Boolean: should the image be shown as a bluelink regardless of existence?
 	 */
 	public function viewRedirect( $target, $appendSubtitle = true, $forceKnown = false ) {
 		global $wgParser, $wgOut, $wgContLang, $wgStylePath, $wgUser;
 		# Display redirect
+		if( !is_array( $target ) ) {
+			$target = array( $target );
+		}
 		$imageDir = $wgContLang->isRTL() ? 'rtl' : 'ltr';
-		$imageUrl = $wgStylePath.'/common/images/redirect' . $imageDir . '.png';
-
+		$imageUrl = $wgStylePath . '/common/images/redirect' . $imageDir . '.png';
+		$imageUrl2 = $wgStylePath . '/common/images/nextredirect' . $imageDir . '.png';
+		$alt2 = $wgContLang->isRTL() ? '&larr;' : '&rarr;'; // should -> and <- be used instead of entities?
+		
 		if( $appendSubtitle ) {
 			$wgOut->appendSubtitle( wfMsgHtml( 'redirectpagesub' ) );
 		}
 		$sk = $wgUser->getSkin();
+		// the loop prepends the arrow image before the link, so the first case needs to be outside
+		$title = array_shift( $target );
 		if( $forceKnown ) {
-			$link = $sk->makeKnownLinkObj( $target, htmlspecialchars( $target->getFullText() ) );
+			$link = $sk->makeKnownLinkObj( $title, htmlspecialchars( $title->getFullText() ) );
 		} else {
-			$link = $sk->makeLinkObj( $target, htmlspecialchars( $target->getFullText() ) );
+			$link = $sk->makeLinkObj( $title, htmlspecialchars( $title->getFullText() ) );
+		}
+		// automatically append redirect=no to each link, since most of them are redirect pages themselves
+		foreach( $target as $rt ) {
+			if( $forceKnown ) {
+				$link .= '<img src="'.$imageUrl2.'" alt="'.$alt2.' " />'
+					. $sk->makeKnownLinkObj( $rt, htmlspecialchars( $rt->getFullText() ) );
+			} else {
+				$link .= '<img src="'.$imageUrl2.'" alt="'.$alt2.' " />'
+					. $sk->makeLinkObj( $rt, htmlspecialchars( $rt->getFullText() ) );
+			}
 		}
 		return '<img src="'.$imageUrl.'" alt="#REDIRECT " />' .
 			'<span class="redirectText">'.$link.'</span>';
@@ -3428,9 +3447,9 @@ class Article {
 	public static function getAutosummary( $oldtext, $newtext, $flags ) {
 		# Decide what kind of autosummary is needed.
 
-		# Redirect autosummaries
-		$ot = Title::newFromRedirect( $oldtext );
-		$rt = Title::newFromRedirect( $newtext );
+		# Redirect autosummaries -- should only get the next target and not recurse
+		$ot = Title::newFromRedirect( $oldtext, false, true );
+		$rt = Title::newFromRedirect( $newtext, false, true );
 		if( is_object( $rt ) && ( !is_object( $ot ) || !$rt->equals( $ot ) || $ot->getFragment() != $rt->getFragment() ) ) {
 			return wfMsgForContent( 'autoredircomment', $rt->getFullText() );
 		}

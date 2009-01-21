@@ -1687,7 +1687,7 @@ END
 			$parserOptions->setTidy(true);
 			$parserOutput = $wgParser->parse( $previewtext, $this->mTitle, $parserOptions );
 			$previewHTML = $parserOutput->mText;
-		} elseif ( $rt = Title::newFromRedirect( $this->textbox1 ) ) {
+		} elseif ( $rt = Title::newFromRedirect( $this->textbox1, true ) ) {
 			$previewHTML = $this->mArticle->viewRedirect( $rt, false );
 		} else {
 			$toparse = $this->textbox1;
