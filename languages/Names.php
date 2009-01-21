@@ -184,7 +184,9 @@
 	'lo' => 'ລາວ',# Laotian
 	'loz' => 'Silozi', # Lozi
 	'lt' => 'Lietuvių',	# Lithuanian
+	'ltc' => '文言文',
 	'lv' => 'Latviešu',	# Latvian
+	'lzh' => '文言',	# Literary Chinese -- (bug 8217) lzh instead of zh-classical, http://www.sil.org/iso639-3/codes.asp?order=639_3&letter=l
 	'lzz' => 'Lazuri Nena',	#Laz
 	'mai' => 'मैथिली', # Maithili
 	'map-bms' => 'Basa Banyumasan', # Banyumasan 
@@ -225,6 +227,7 @@
 	'nv' => 'Diné bizaad',	# Navajo
 	'ny' => 'Chi-Chewa',	# Chichewa
 	'oc' => 'Occitan',		# Occitan
+	'och' => '古文',
 	'om' => 'Oromoo', 		# Oromo
 	'or' => 'ଓଡ଼ିଆ',		# Oriya
 	'os' => 'Иронау', # Ossetic
@@ -342,7 +345,7 @@
 	'za' => '(Cuengh)',		# Zhuang
 	'zea' => 'Zeêuws',	# Zeeuws/Zeaws
 	'zh' => '中文',						# (Zhōng Wén) - Chinese
-	'zh-classical' => '文言',			# Classical Chinese/Literary Chinese
+	'zh-classical' => '文言',			# Classical Chinese/Literary Chinese -- (see bug 8217)
 	'zh-cn' => "\xE2\x80\xAA中文(中国大陆)\xE2\x80\xAC",	# Chinese (PRC)
 	'zh-hans' => "\xE2\x80\xAA中文(简体)\xE2\x80\xAC",	# Chinese written using the Simplified Chinese script
 	'zh-hant' => "\xE2\x80\xAA中文(繁體)\xE2\x80\xAC",	# Chinese written using the Traditional Chinese script

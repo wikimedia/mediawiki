@@ -1,6 +1,6 @@
 <?php
 
-/** Classical Chinese (文言)
+/** Late Time Chinese (文言文)
  *
  * @ingroup Language
  * @file
