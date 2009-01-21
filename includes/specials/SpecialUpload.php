@@ -62,6 +62,7 @@ class UploadForm {
 		$this->mDesiredDestName   = $request->getText( 'wpDestFile' );
 		$this->mIgnoreWarning     = $request->getCheck( 'wpIgnoreWarning' );
 		$this->mComment           = $request->getText( 'wpUploadDescription' );
+		$this->mReUpload          = $request->getCheck( 'wpReUpload' );
 
 		if( !$request->wasPosted() ) {
 			# GET requests just give the main form; no data except destination
@@ -868,6 +869,7 @@ class UploadForm {
 	 */
 	function unsaveUploadedFile() {
 		global $wgOut;
+		if( !$this->mTempPath ) return true; // nothing to delete
 		$repo = RepoGroup::singleton()->getLocalRepo();
 		$success = $repo->freeTemp( $this->mTempPath );
 		if ( ! $success ) {
@@ -1073,7 +1075,8 @@ wgUploadAutoFill = {$autofill};
 		$sourcefilename = wfMsgExt( 'sourcefilename', array( 'parseinline', 'escapenoentities' ) );
         $destfilename = wfMsgExt( 'destfilename', array( 'parseinline', 'escapenoentities' ) ); 
 		
-		$summary = wfMsgExt( 'fileuploadsummary', 'parseinline' );
+		$msg = $this->mReUpload ? 'filereuploadsummary' : 'fileuploadsummary';
+		$summary = wfMsgExt( $msg, 'parseinline' );
 
 		$licenses = new Licenses();
 		$license = wfMsgExt( 'license', array( 'parseinline' ) );
@@ -1087,10 +1090,9 @@ wgUploadAutoFill = {$autofill};
 
 		$encDestName = htmlspecialchars( $this->mDesiredDestName );
 
-		$watchChecked = $this->watchCheck()
-			? 'checked="checked"'
-			: '';
-		$warningChecked = $this->mIgnoreWarning ? 'checked' : '';
+		$watchChecked = $this->watchCheck() ? 'checked="checked"' : '';
+		# Re-uploads should not need "file exist already" warnings
+		$warningChecked = ($this->mIgnoreWarning || $this->mReUpload) ? 'checked' : '';
 
 		// Prepare form for upload or upload/copy
 		if( $wgAllowCopyUploads && $wgUser->isAllowed( 'upload_by_url' ) ) {
@@ -1125,6 +1127,8 @@ wgUploadAutoFill = {$autofill};
 			$warningRow = '';
 			$destOnkeyup = '';
 		}
+		# Uploading a new version? If so, the name is fixed.
+		$on = $this->mReUpload ? "disabled='disabled'" : "";
 
 		$encComment = htmlspecialchars( $this->mComment );
 
@@ -1156,7 +1160,7 @@ wgUploadAutoFill = {$autofill};
 				</td>
 				<td class='mw-input'>
 					<input tabindex='2' type='text' name='wpDestFile' id='wpDestFile' size='60'
-						value=\"{$encDestName}\" onchange='toggleFilenameFiller()' $destOnkeyup />
+						value=\"{$encDestName}\" onchange='toggleFilenameFiller()' $on $destOnkeyup />
 				</td>
 			</tr>
 			<tr>
@@ -1171,8 +1175,8 @@ wgUploadAutoFill = {$autofill};
 			</tr>
 			<tr>"
 		);
-
-		if ( $licenseshtml != '' ) {
+		# Re-uploads should not need license info
+		if ( !$this->mReUpload && $licenseshtml != '' ) {
 			global $wgStylePath;
 			$wgOut->addHTML( "
 					<td class='mw-label'>
@@ -1704,7 +1708,7 @@ wgUploadAutoFill = {$autofill};
 	 * @access private
 	 */
 	function cleanupTempFile() {
-		if ( $this->mRemoveTempFile && file_exists( $this->mTempPath ) ) {
+		if ( $this->mRemoveTempFile && $this->mTempPath && file_exists( $this->mTempPath ) ) {
 			wfDebug( "SpecialUpload::cleanupTempFile: Removing temporary file {$this->mTempPath}\n" );
 			unlink( $this->mTempPath );
 		}
