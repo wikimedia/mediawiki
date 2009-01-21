@@ -1092,7 +1092,7 @@ wgUploadAutoFill = {$autofill};
 
 		$watchChecked = $this->watchCheck() ? 'checked="checked"' : '';
 		# Re-uploads should not need "file exist already" warnings
-		$warningChecked = ($this->mIgnoreWarning || $this->mReUpload) ? 'checked' : '';
+		$warningChecked = ($this->mIgnoreWarning || $this->mReUpload) ? 'checked="checked"' : '';
 
 		// Prepare form for upload or upload/copy
 		if( $wgAllowCopyUploads && $wgUser->isAllowed( 'upload_by_url' ) ) {
@@ -1234,7 +1234,7 @@ wgUploadAutoFill = {$autofill};
 				<td>
 					<input tabindex='7' type='checkbox' name='wpWatchthis' id='wpWatchthis' $watchChecked value='true' />
 					<label for='wpWatchthis'>" . wfMsgHtml( 'watchthisupload' ) . "</label>
-					<input tabindex='8' type='checkbox' name='wpIgnoreWarning' id='wpIgnoreWarning' value='true' $warningChecked/>
+					<input tabindex='8' type='checkbox' name='wpIgnoreWarning' id='wpIgnoreWarning' value='true' $warningChecked />
 					<label for='wpIgnoreWarning'>" . wfMsgHtml( 'ignorewarnings' ) . "</label>
 				</td>
 			</tr>
