@@ -113,7 +113,11 @@ class IPBlockForm {
 					$this->BlockEmail = $currentBlock->mBlockEmail;
 					$this->BlockHideName = $currentBlock->mHideName;
 					$this->BlockAllowUsertalk = $currentBlock->mAllowUsertalk;
-					$this->BlockOther = wfTimestamp( TS_RFC2822, $currentBlock->mExpiry );
+					if( $currentBlock->mExpiry == 'infinity' ) {
+						$this->BlockOther = 'indefinite';
+					} else {
+						$this->BlockOther = wfTimestamp( TS_ISO_8601, $currentBlock->mExpiry );
+					}
 					$this->BlockReason = $currentBlock->mReason;
 			}
 		}
