@@ -192,7 +192,14 @@ class ApiResult extends ApiBase {
 	public function cleanUpUTF8()
 	{
 		$data = & $this->getData();
-		array_walk_recursive($data, array('UtfNormal', 'cleanUp'));
+		array_walk_recursive($data, array('ApiResult', 'cleanUp_helper'));
+	}
+	
+	private static function cleanUp_helper($s)
+	{
+		if(!is_string($s))
+			return $s;
+		return UtfNormal::cleanUp($s);
 	}
 
 	public function execute() {
