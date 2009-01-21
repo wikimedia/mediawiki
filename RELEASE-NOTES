@@ -33,17 +33,21 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 17002) Add &minor= and &summary= as parameters in the url when editing,
   to automatically add a summary or a minor edit.
 * (bug 16852) padleft and padright now accept multiletter pad characters
-* When using 'UserCreateForm' hook to add new checkboxes into Special:UserLogin/signup,
-  the messages can now contain HTML to allow hyperlinking to the site's Terms
-  of Service page, for example
+* When using 'UserCreateForm' hook to add new checkboxes into
+  Special:UserLogin/signup, the messages can now contain HTML to allow
+  hyperlinking to the site's Terms of Service page, for example
 * Add new hook 'UserLoadFromDatabase' that is called while loading a user
   from the database.
 * (bug 17045) Options on the block form are prefilled with the options of the 
   existing block when modifying an existing block.
 * (bug 17055) "(show/hide)" links to Special:RevisionDelete now use a CSS class 
   rather than hardcoded HTML tags
-* Added new hook 'WantedPages::getSQL' into SpecialWantedpages.php to allow extensions
-  to alter the SQL query which is used to get the list of wanted pages
+* Added new hook 'WantedPages::getSQL' into SpecialWantedpages.php to allow
+  extensions to alter the SQL query which is used to get the list of wanted
+  pages
+* (bugs 16957/16969) Add show/hide to preferences for RC patrol options on
+  specialpages
+* (bug 11443) Auto-noindex user/user talk pages for blocked user
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
@@ -54,17 +58,22 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   the destination page exists
 * (bug 17035) Special:Upload now fails gracefully if PHP's file_uploads has been
   disabled
-* Fixing the caching issue by using -{T|xxx}- syntax (only applies on wiki with LanguageConverter class)
-* Improving the efficiency by using -{A|xxx}- syntax (only applies on wiki with LanguageConverter class)
+* Fixing the caching issue by using -{T|xxx}- syntax (only applies on wiki with
+  LanguageConverter class)
+* Improving the efficiency by using -{A|xxx}- syntax (only applies on wiki with
+  LanguageConverter class)
 * (bug 17054) Added more descriptive errors in Special:RevisionDelete
+* (bug 11527) Diff on page with one revision shows "Next" link to same diff
+* (bug 15936) New page's patrol button should always be visible
+* (bug 8065) Fix summary forcing for new pages
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
   and listing all deleted pages possible
 * (bug 16844) Added clcategories parameter to prop=categories
 * (bug 17025) Add "fileextension" parameter to meta=siteinfo&siprop=
-* (bug 17048) Show the 'new' flag in list=usercontribs for the revision that created the
-  page, even if it's not the top revision
+* (bug 17048) Show the 'new' flag in list=usercontribs for the revision that
+  created the page, even if it's not the top revision
 * (bug 17069) Added ucshow=patrolled|!patrolled to list=usercontribs
 * action=delete respects $wgDeleteRevisionsLimit and the bigdelete user right
 
