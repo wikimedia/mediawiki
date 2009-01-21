@@ -79,10 +79,10 @@ class ApiDelete extends ApiBase {
 				$this->dieUsageMsg(current($retval));
 		} else {
 			$articleObj = new Article($titleObj);
-				if( $articleObj->isBigDeletion() && !$wgUser->isAllowed( 'bigdelete' ) ) {
-					global $wgDeleteRevisionsLimit;
-					$this->dieUsageMsg(array('delete-toobig', $wgDeleteRevisionsLimit));
-				}
+			if( $articleObj->isBigDeletion() && !$wgUser->isAllowed( 'bigdelete' ) ) {
+				global $wgDeleteRevisionsLimit;
+				$this->dieUsageMsg(array('delete-toobig', $wgDeleteRevisionsLimit));
+			}
 			$retval = self::delete($articleObj, $params['token'], $reason);
 			
 			if(count($retval))
