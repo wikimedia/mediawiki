@@ -1585,7 +1585,7 @@ Hal ieu teu diwenangkeun pikeun nyegah karuksakan {{SITENAME}} nu teu dihaja.',
 'undeletepage'                 => 'Témbongkeun atawa simpen deui kaca nu geus dihapus',
 'undeletepagetitle'            => "'''Béréndélan révisi [[:$1]]''' anu dihapus.",
 'viewdeletedpage'              => 'Témbongkeun kaca nu dihapus',
-'undeletepagetext'             => 'Kaca di handap ieu geus dihapus tapi masih kénéh aya na arsip sarta bisa disimpen deui. Arsip aya kalana dibersihan.',
+'undeletepagetext'             => '{{PLURAL:$1|Kaca di handap ieu|Aya $1 kaca}}  geus dihapus tapi masih kénéh aya na arsip sarta bisa disimpen deui. Arsip aya kalana dibersihan.',
 'undeleterevisions'            => '$1 {{PLURAL:$1|révisi|révisi}} diarsipkeun',
 'undeletehistory'              => 'Mun anjeun nyimpen deui kacana, sadaya révisi bakal disimpen deui dina jujutan.
 Mun aya kaca anyar nu ngaranna sarua dijieun deui satutasna dihapus, révisi nu disimpen tadi bakal némbongan salaku jujutan nu ti heula, sarta révisi kiwari kaca nu hirup moal otomatis kaganti.',

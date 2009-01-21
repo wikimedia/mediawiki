@@ -969,6 +969,7 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'search-mwsuggest-enabled'         => 'önerilerle',
 'search-mwsuggest-disabled'        => 'öneri yok',
 'search-relatedarticle'            => 'ilgili',
+'mwsuggest-disable'                => 'AJAX önerilerini devre dışı bırak',
 'searchrelated'                    => 'ilgili',
 'searchall'                        => 'hepsi',
 'showingresults'                   => "$2. sonuçtan başlayarak {{PLURAL:$1|'''1''' sonuç |'''$1''' sonuç }} aşağıdadır:",
@@ -1571,12 +1572,12 @@ Ayrıca [[Special:WantedCategories|İstenen kategoriler]]'e bakınız.",
 'mailnologintext'  => 'Diğer kullanıcılara e-posta gönderebilmeniz için [[Special:UserLogin|oturum aç]]malısınız ve [[Special:Preferences|tercihler]] sayfasında geçerli bir e-posta adresiniz olmalı.',
 'emailuser'        => 'Kullanıcıya e-posta gönder',
 'emailpage'        => 'Kullanıcıya e-posta gönder',
-'emailpagetext'    => 'Aşağıdaki form kullanıcı hesabıyla ilişkilendirilmiş geçerli bir e-posta adresi olduğu takdirde ilgili kişiye bir e-posta gönderecek. 
-Yanıt alabilmeniz için "From" (Kimden) kısmına tercih formunda belirttiğiniz e-posta adresi eklenecek.',
+'emailpagetext'    => 'Bu kullanıcıya e-posta mesajı göndermek için aşağıdaki formu kullanabilirsiniz.
+[[Special:Preferences|Kullanıcı tercihlerinizde]] girdiğiniz e-posta adresiniz, e-postanın "From (Kimden)" adresinde görünecektir, bu yüzden alıcı size direk cevap verebilecektir.',
 'usermailererror'  => 'Eposta hizmeti hata verdi:',
 'defemailsubject'  => '{{SITENAME}} e-posta',
 'noemailtitle'     => 'e-posta adresi yok',
-'noemailtext'      => 'Kullanıcı e-posta adresi belirtmemiş ya da diğer kullanıcılardan posta almak istemiyor.',
+'noemailtext'      => 'Bu kullanıcı geçerli bir e-posta adresi belirtmemiş.',
 'nowikiemailtitle' => 'E-postalara izin verilmiyor',
 'nowikiemailtext'  => 'Bu kullanıcı, diğer kullanıcılardan e-posta almamayı tercih etti.',
 'email-legend'     => 'Diğer {{SITENAME}} kullanıcısına e-posta gönder',
@@ -1793,6 +1794,7 @@ Arşiv düzenli olarak temizlenebilir.',
 'undelete-search-box'       => 'Silinmiş sayfaları ara',
 'undelete-search-submit'    => 'Ara',
 'undelete-no-results'       => 'Silme arşivinde birbiriyle eşleşen hiçbir sayfaya rastlanmadı.',
+'undelete-cleanup-error'    => 'Kullanılmayan "$1" arşiv dosyasını silerken hata.',
 'undelete-error-short'      => 'Bu dosyanın silinmesini geri alırken hata çıktı: $1',
 'undelete-error-long'       => 'Bu dosyanın silinmesini geri alırken hatalar çıktı:
 
@@ -1840,138 +1842,192 @@ $1',
 'whatlinkshere-filters'    => 'Filtreler',
 
 # Block/unblock
-'blockip'                      => 'Kullanıcıyı engelle',
-'blockip-legend'               => 'Kullanıcıyı engelle',
-'blockiptext'                  => "Aşağıdaki formu kullanarak belli bir IP'nin veya kayıtlı kullanıcının değişiklik yapmasını engelleyebilirsiniz. Bu sadece vandalizmi engellemek için ve [[{{MediaWiki:Policy-url}}|kurallara]] uygun olarak yapılmalı. Aşağıya mutlaka engelleme ile ilgili bir açıklama yazınız. (örnek: -Şu- sayfalarda vandalizm yapmıştır).",
-'ipaddress'                    => 'IP Adresi',
-'ipadressorusername'           => 'IP adresi veya kullanıcı adı',
-'ipbexpiry'                    => 'Bitiş süresi',
-'ipbreason'                    => 'Neden:',
-'ipbreasonotherlist'           => 'Başka sebep',
-'ipbanononly'                  => 'Sadece anonim kullanıcıları engelle',
-'ipbcreateaccount'             => 'Hesap oluşturulmasına engel ol',
-'ipbemailban'                  => 'Kullanıcının e-posta göndermesine engel ol',
-'ipbsubmit'                    => 'Bu kullanıcıyı engelle',
-'ipbother'                     => 'Farklı zaman',
-'ipboptions'                   => '15 dakika:15 minutes,1 saat:1 hour,3 saat:3 hours,24 saat:24 hours,48 saat:48 hours,1 hafta:1 week,1 ay:1 month,süresiz:infinite', # display1:time1,display2:time2,...
-'ipbotheroption'               => 'farklı',
-'ipbotherreason'               => 'Başka/ek sebepler:',
-'ipbwatchuser'                 => 'Bu kullanıcının kullanıcı ve tartışma sayfalarını izle',
-'ipb-change-block'             => 'Bu ayarlarla kullanıcıyı yeniden engelle',
-'badipaddress'                 => 'Geçersiz IP adresi',
-'blockipsuccesssub'            => 'IP adresi engelleme işlemi başarılı oldu',
-'blockipsuccesstext'           => '"$1" engellendi.
+'blockip'                         => 'Kullanıcıyı engelle',
+'blockip-legend'                  => 'Kullanıcıyı engelle',
+'blockiptext'                     => "Aşağıdaki formu kullanarak belli bir IP'nin veya kayıtlı kullanıcının değişiklik yapmasını engelleyebilirsiniz. Bu sadece vandalizmi engellemek için ve [[{{MediaWiki:Policy-url}}|kurallara]] uygun olarak yapılmalı. Aşağıya mutlaka engelleme ile ilgili bir açıklama yazınız. (örnek: -Şu- sayfalarda vandalizm yapmıştır).",
+'ipaddress'                       => 'IP Adresi',
+'ipadressorusername'              => 'IP adresi veya kullanıcı adı',
+'ipbexpiry'                       => 'Bitiş süresi',
+'ipbreason'                       => 'Neden:',
+'ipbreasonotherlist'              => 'Başka sebep',
+'ipbreason-dropdown'              => '*Genel engelleme sebepleri
+** Yanlış bilgi eklemek
+** Sayfalardan içeriği çıkarmak
+** Dış sitelere spam bağlantı vermek
+** Sayfalara mantıksız/anlaşılmaz sözler eklemek
+** Tehditvari davranış/Taciz
+** Birden fazla hesabı kötüye kullanmak
+** Kabul edilemez kullanıcı adı',
+'ipbanononly'                     => 'Sadece anonim kullanıcıları engelle',
+'ipbcreateaccount'                => 'Hesap oluşturulmasına engel ol',
+'ipbemailban'                     => 'Kullanıcının e-posta göndermesine engel ol',
+'ipbenableautoblock'              => 'Bu kullanıcı tarafından kullanılan son IP adresini ve değişişiklik yapmaya çalıştıkları mütakip IPleri otomatik olarak engelle',
+'ipbsubmit'                       => 'Bu kullanıcıyı engelle',
+'ipbother'                        => 'Farklı zaman',
+'ipboptions'                      => '15 dakika:15 minutes,1 saat:1 hour,3 saat:3 hours,24 saat:24 hours,48 saat:48 hours,1 hafta:1 week,1 ay:1 month,süresiz:infinite', # display1:time1,display2:time2,...
+'ipbotheroption'                  => 'farklı',
+'ipbotherreason'                  => 'Başka/ek sebepler:',
+'ipbhidename'                     => 'Kullanıcı adını, engelleme günlüğünde, aktif engelleme listesinde ve kullanıcı listesinde gizle',
+'ipbwatchuser'                    => 'Bu kullanıcının kullanıcı ve tartışma sayfalarını izle',
+'ipballowusertalk'                => 'Bu kullanıcının engelliyken kendi tartışma sayfasını değiştirebilmesine izin ver',
+'ipb-change-block'                => 'Bu ayarlarla kullanıcıyı yeniden engelle',
+'badipaddress'                    => 'Geçersiz IP adresi',
+'blockipsuccesssub'               => 'IP adresi engelleme işlemi başarılı oldu',
+'blockipsuccesstext'              => '"$1" engellendi.
 <br />[[Special:IPBlockList|IP adresi engellenenler]] listesine bakınız.',
-'ipb-edit-dropdown'            => 'Engelleme nedenleri düzenle',
-'ipb-unblock-addr'             => '$1 için engellemeyi kaldır',
-'ipb-unblock'                  => 'Engellemeyi kaldır',
-'ipb-blocklist-addr'           => '$1 için mevcut engellemeler',
-'ipb-blocklist'                => 'Mevcut olan engellemeleri göster',
-'ipb-blocklist-contribs'       => '$1 için katkılar',
-'unblockip'                    => 'Kullanıcının engellemesini kaldır',
-'ipusubmit'                    => 'Bu adresin engellemesini kaldır',
-'unblocked'                    => '[[User:$1|$1]] - engelleme kaldırıldı',
-'unblocked-id'                 => '$1 engeli çıkarıldı',
-'ipblocklist'                  => 'Engellenmiş IP adresleri ve kullanıcı adları',
-'ipblocklist-legend'           => 'Engellenen kullanıcı ara',
-'ipblocklist-username'         => 'Kullanıcı adı veya IP adresi:',
-'ipblocklist-sh-userblocks'    => 'Hesap engellemelerini $1',
-'ipblocklist-sh-tempblocks'    => 'Geçici engellemeleri $1',
-'ipblocklist-sh-addressblocks' => 'Tek IP engellemelerini $1',
-'ipblocklist-submit'           => 'Ara',
-'blocklistline'                => '$1, $2 blok etti: $3 ($4)',
-'infiniteblock'                => 'süresiz',
-'expiringblock'                => '$1 tarihinde doluyor',
-'anononlyblock'                => 'sadece anonim',
-'noautoblockblock'             => 'otomatik engelleme devre dışı bırakıldı',
-'createaccountblock'           => 'hesap yaratımı engellendi',
-'emailblock'                   => 'e-posta engellendi',
-'ipblocklist-empty'            => 'Engelleme listesi boş.',
-'blocklink'                    => 'engelle',
-'unblocklink'                  => 'engellemeyi kaldır',
-'contribslink'                 => 'Katkılar',
-'autoblocker'                  => 'Otomatik olarak engellendiniz çünkü yakın zamanda IP adresiniz "[[User:$1|$1]]" kullanıcısı tarafından  kullanılmıştır. $1 isimli kullanıcının engellenmesi için verilen sebep: "\'\'\'$2\'\'\'"',
-'blocklogpage'                 => 'Erişim engelleme kayıtları',
-'blocklog-fulllog'             => 'Tüm engelleme kaydı',
-'blocklogentry'                => '[[$1]], $2 $3 tarihleri arası süresince engellendi',
-'blocklogtext'                 => 'Burada kullanıcı erişimine yönelik engelleme ya da engelleme kaldırma kayıtları listelenmektedir. Otomatik  IP adresi engellemeleri listeye dahil değildir. Şu anda erişimi durdurulmuş kullanıcıları [[Special:IPBlockList|IP engelleme listesi]] sayfasından görebilirsiniz.',
-'unblocklogentry'              => '$1 kullanıcının engellemesi kaldırıldı',
-'block-log-flags-anononly'     => 'sadece anonim kullanıcılar',
-'block-log-flags-nocreate'     => 'hesap yaratımı engellendi',
-'block-log-flags-noautoblock'  => 'Otomatik engelleme iptal edildi',
-'block-log-flags-noemail'      => 'e-posta engellendi',
-'ipb_expiry_invalid'           => 'Geçersiz bitiş zamanı.',
-'ipb_already_blocked'          => '"$1" zaten engellenmiş',
-'ipb-needreblock'              => '== Zaten engellenmiş ==
+'ipb-edit-dropdown'               => 'Engelleme nedenleri düzenle',
+'ipb-unblock-addr'                => '$1 için engellemeyi kaldır',
+'ipb-unblock'                     => 'Engellemeyi kaldır',
+'ipb-blocklist-addr'              => '$1 için mevcut engellemeler',
+'ipb-blocklist'                   => 'Mevcut olan engellemeleri göster',
+'ipb-blocklist-contribs'          => '$1 için katkılar',
+'unblockip'                       => 'Kullanıcının engellemesini kaldır',
+'ipusubmit'                       => 'Bu adresin engellemesini kaldır',
+'unblocked'                       => '[[User:$1|$1]] - engelleme kaldırıldı',
+'unblocked-id'                    => '$1 engeli çıkarıldı',
+'ipblocklist'                     => 'Engellenmiş IP adresleri ve kullanıcı adları',
+'ipblocklist-legend'              => 'Engellenen kullanıcı ara',
+'ipblocklist-username'            => 'Kullanıcı adı veya IP adresi:',
+'ipblocklist-sh-userblocks'       => 'Hesap engellemelerini $1',
+'ipblocklist-sh-tempblocks'       => 'Geçici engellemeleri $1',
+'ipblocklist-sh-addressblocks'    => 'Tek IP engellemelerini $1',
+'ipblocklist-submit'              => 'Ara',
+'blocklistline'                   => '$1, $2 blok etti: $3 ($4)',
+'infiniteblock'                   => 'süresiz',
+'expiringblock'                   => '$1 tarihinde doluyor',
+'anononlyblock'                   => 'sadece anonim',
+'noautoblockblock'                => 'otomatik engelleme devre dışı bırakıldı',
+'createaccountblock'              => 'hesap yaratımı engellendi',
+'emailblock'                      => 'e-posta engellendi',
+'blocklist-nousertalk'            => 'kendi tartışma sayfasını değiştiremez',
+'ipblocklist-empty'               => 'Engelleme listesi boş.',
+'ipblocklist-no-results'          => 'İstenen IP adresi ya da kullanıcı adı engellenmedi.',
+'blocklink'                       => 'engelle',
+'unblocklink'                     => 'engellemeyi kaldır',
+'change-blocklink'                => 'engeli değiştir',
+'contribslink'                    => 'Katkılar',
+'autoblocker'                     => 'Otomatik olarak engellendiniz çünkü yakın zamanda IP adresiniz "[[User:$1|$1]]" kullanıcısı tarafından  kullanılmıştır. $1 isimli kullanıcının engellenmesi için verilen sebep: "\'\'\'$2\'\'\'"',
+'blocklogpage'                    => 'Erişim engelleme kayıtları',
+'blocklog-fulllog'                => 'Tüm engelleme kaydı',
+'blocklogentry'                   => '[[$1]], $2 $3 tarihleri arası süresince engellendi',
+'reblock-logentry'                => '[[$1]] için bitiş tarihi $2 $3 olmak üzere engelleme ayarlarını değiştirdi',
+'blocklogtext'                    => 'Burada kullanıcı erişimine yönelik engelleme ya da engelleme kaldırma kayıtları listelenmektedir. Otomatik  IP adresi engellemeleri listeye dahil değildir. Şu anda erişimi durdurulmuş kullanıcıları [[Special:IPBlockList|IP engelleme listesi]] sayfasından görebilirsiniz.',
+'unblocklogentry'                 => '$1 kullanıcının engellemesi kaldırıldı',
+'block-log-flags-anononly'        => 'sadece anonim kullanıcılar',
+'block-log-flags-nocreate'        => 'hesap yaratımı engellendi',
+'block-log-flags-noautoblock'     => 'Otomatik engelleme iptal edildi',
+'block-log-flags-noemail'         => 'e-posta engellendi',
+'block-log-flags-nousertalk'      => 'kendi tartışma sayfasını değiştiremez',
+'block-log-flags-angry-autoblock' => 'gelişmiş oto-engelleme devrede',
+'range_block_disabled'            => 'Hizmetliler için aralık engellemesi oluşturma yeteneği devre dışı.',
+'ipb_expiry_invalid'              => 'Geçersiz bitiş zamanı.',
+'ipb_expiry_temp'                 => 'Gizli kullanıcı adı engellemeleri kalıcı olmalı.',
+'ipb_already_blocked'             => '"$1" zaten engellenmiş',
+'ipb-needreblock'                 => '== Zaten engellenmiş ==
 $1 zaten engellenmiş. Ayarları değiştirmek istiyor musunuz?',
-'ipb_cant_unblock'             => 'Hata: Engelleme IDsi $1 bulunamadı.
+'ipb_cant_unblock'                => 'Hata: Engelleme IDsi $1 bulunamadı.
 Engelleme kaldırılmış olabilir.',
-'ip_range_invalid'             => 'Geçersiz IP aralığı.',
-'blockme'                      => 'Beni engelle',
-'proxyblocker'                 => 'Proxy engelleyici',
-'proxyblocker-disabled'        => 'Bu özellik engellenildi.',
-'proxyblocksuccess'            => 'Tamamlanmıştır.',
-'cant-block-while-blocked'     => 'Siz engelliyken başka kullanıcıları engelleyemezsiniz.',
+'ipb_blocked_as_range'            => 'Hata: $1 IP adresi doğrudan engellenmemiş ve engelleme kaldırılamaz.
+Ancak, bu adres $2 aralığının parçası olarak engellenmiş, aralık engellemesini kaldırabilirsiniz.',
+'ip_range_invalid'                => 'Geçersiz IP aralığı.',
+'blockme'                         => 'Beni engelle',
+'proxyblocker'                    => 'Proxy engelleyici',
+'proxyblocker-disabled'           => 'Bu özellik engellenildi.',
+'proxyblockreason'                => 'IP adresiniz açık bir proxy olduğu için engellendi.
+Lütfen İnternet sevis sağlayınız ile ya da teknik destek ile irtibat kurun ve bu ciddi güvenlik probleminden haberdar edin.',
+'proxyblocksuccess'               => 'Tamamlanmıştır.',
+'sorbsreason'                     => "IP adresiniz, {{SITENAME}} sitesi tarafından kullanılan DNSBL'de açık proxy olarak listelenmiş.",
+'sorbs_create_account_reason'     => "IP adresiniz {{SITENAME}} sitesi tarafından kullanılan DNSBL'de açık proxy olarak listelenmiş.
+Hesap oluşturamazsınız",
+'cant-block-while-blocked'        => 'Siz engelliyken başka kullanıcıları engelleyemezsiniz.',
 
 # Developer tools
 'lockdb'              => 'Veritabanı kilitli',
 'unlockdb'            => 'Veritabanı kilitini aç',
+'lockdbtext'          => 'Veritabanını kilitlemek; tüm kullanıcıların sayfaları, tercihlerini ve izleme listelerini değiştirmelerini ve veritabanında değişiklik gerektiren diğer şeyleri askıya alır.
+Lütfen yapmak istediğinizin bu olduğunu ve bakım işleriniz bittiğinde veritabanını açacağınızı teyit edin.',
+'unlockdbtext'        => 'Veritabanının kilidini açmak; tüm kullanıcılara sayfaları, tercihlerini ve izleme listelerini değiştirmelerini ve veritabanında değişiklik gerektiren diğer şeyleri yapabilme yeteneğini geri verir.
+Lütfen yapmak istediğinizin bu olduğunu teyit edin.',
+'lockconfirm'         => 'Evet, veritabanını kilitlemeyi gerçekten istiyorum.',
 'unlockconfirm'       => 'Evet, veritabanının kilidini açmak istediğimden eminim.',
 'lockbtn'             => 'Veritabanı kilitli',
 'unlockbtn'           => 'Veritabanın kilidi kaldır',
+'locknoconfirm'       => 'Onay kutusunu seçmediniz.',
 'lockdbsuccesssub'    => 'Veritabanı kilitlendi',
 'unlockdbsuccesssub'  => 'Veritabanı kiliti açıldı.',
+'lockdbsuccesstext'   => 'Veritabanı kilitlendi.<br />
+Bakımın işleriniz bittiğinde veritabanının [[Special:UnlockDB|kilidini açmayı]] unutmayın.',
 'unlockdbsuccesstext' => 'Veritanı kilidi açıldı.',
+'lockfilenotwritable' => 'Veritabanı kilitleme dosyası yazılabilir değil.
+Bu, veritabanını kilitleyip açabilmek için, web sunucusu tarafından yazılabilir olmalıdır.',
 'databasenotlocked'   => 'Veritabanı kilitli değil.',
 
 # Move page
-'move-page'               => '$1 taşınıyor',
-'move-page-legend'        => 'İsim değişikliği',
-'movepagetext'            => "Aşağıdaki form kullanılarak sayfanın adı değiştirilir. Beraberinde tüm geçmiş kayıtları da yeni isme aktarılır. Eski isim yeni isme yönlendirme hâline dönüşür. Otomatik olarak eski başlığa yönlendirmeleri güncelleyebilirsiniz. Bu işlemi otomatik yapmak istemezseniz tüm [[Special:DoubleRedirects|çift]] veya [[Special:BrokenRedirects|geçersiz]] yönlendirmeleri kendiniz düzeltmeniz gerekecek. Yapacağınız bu değişikllikle tüm bağlantıların olması gerektiği gibi çalıştığından sizin sorumlu olduğunuzu unutmayınız.
+'move-page'                    => '$1 taşınıyor',
+'move-page-legend'             => 'İsim değişikliği',
+'movepagetext'                 => "Aşağıdaki form kullanılarak sayfanın adı değiştirilir. Beraberinde tüm geçmiş kayıtları da yeni isme aktarılır. Eski isim yeni isme yönlendirme hâline dönüşür. Otomatik olarak eski başlığa yönlendirmeleri güncelleyebilirsiniz. Bu işlemi otomatik yapmak istemezseniz tüm [[Special:DoubleRedirects|çift]] veya [[Special:BrokenRedirects|geçersiz]] yönlendirmeleri kendiniz düzeltmeniz gerekecek. Yapacağınız bu değişikllikle tüm bağlantıların olması gerektiği gibi çalıştığından sizin sorumlu olduğunuzu unutmayınız.
 
 Eğer yeni isimde bir madde zaten varsa isim değişikliği '''yapılmayacaktır'''. Ayrıca, isim değişikliğinden pişman olursanız değişikliği geri alabilir ve başka hiçbir sayfaya da dokunmamış olursunuz.
 
 '''UYARI!'''
 Bu değişim popüler bir sayfa için beklenmeyen sonuçlar doğurabilir; lütfen değişikliği yapmadan önce olabilecekleri göz önünde bulundurun.",
-'movepagetalktext'        => "İlişikteki tartışma sayfası da (eğer varsa) otomatik olarak yeni isme taşınacaktır. Ama şu durumlarda '''taşınmaz''':
+'movepagetalktext'             => "İlişikteki tartışma sayfası da (eğer varsa) otomatik olarak yeni isme taşınacaktır. Ama şu durumlarda '''taşınmaz''':
 
 *Alanlar arası bir taşıma ise, (örnek: \"Project:\" --> \"Help:\")
 *Yeni isimde bir tartışma sayfası zaten var ise,
 *Alttaki kutucuğu seçmediyseniz.
 
 Bu durumlarda sayfayı kendiniz aktarmalısınız.",
-'movearticle'             => 'Eski isim',
-'movenologin'             => 'Sistemde değilsiniz.',
-'movenologintext'         => 'Sayfanın adını değiştirebilmek için kayıtlı ve [[Special:UserLogin|sisteme]] giriş yapmış olmanız gerekmektedir.',
-'movenotallowed'          => 'Sayfaları taşımaya izniniz yok.',
-'movenotallowedfile'      => 'Sayfaları taşımaya izniniz yok.',
-'newtitle'                => 'Yeni isim',
-'move-watch'              => 'Bu sayfayı izle',
-'movepagebtn'             => 'İsmi değiştir',
-'pagemovedsub'            => 'İsim değişikliği tamamlandı.',
-'movepage-moved'          => '<big>\'\'\'"$1",  "$2" sayfasına taşındı\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'movepage-moved-redirect' => 'Bir yönlendirme oluşturuldu.',
-'articleexists'           => 'Bu isimde bir sayfa bulunmakta veya seçmiş olduğunuz isim geçersizdir.
+'movearticle'                  => 'Eski isim',
+'movenologin'                  => 'Sistemde değilsiniz.',
+'movenologintext'              => 'Sayfanın adını değiştirebilmek için kayıtlı ve [[Special:UserLogin|sisteme]] giriş yapmış olmanız gerekmektedir.',
+'movenotallowed'               => 'Sayfaları taşımaya izniniz yok.',
+'movenotallowedfile'           => 'Sayfaları taşımaya izniniz yok.',
+'cant-move-user-page'          => 'Kullanıcı sayfalarını taşımaya izniniz yok (altsayfalardan başka).',
+'cant-move-to-user-page'       => 'Bir sayfayı, bir kullanıcı sayfasına taşımaya izniniz yok (bir kullanıcı altsayfası dışında).',
+'newtitle'                     => 'Yeni isim',
+'move-watch'                   => 'Bu sayfayı izle',
+'movepagebtn'                  => 'İsmi değiştir',
+'pagemovedsub'                 => 'İsim değişikliği tamamlandı.',
+'movepage-moved'               => '<big>\'\'\'"$1",  "$2" sayfasına taşındı\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-redirect'      => 'Bir yönlendirme oluşturuldu.',
+'movepage-moved-noredirect'    => 'Bir yönlendirme oluşturulması bastırıldı.',
+'articleexists'                => 'Bu isimde bir sayfa bulunmakta veya seçmiş olduğunuz isim geçersizdir.
 Lütfen başka bir isim deneyiniz.',
-'talkexists'              => "'''Sayfanın kendisi başarıyla taşındı, ancak tartışma sayfası taşınamadı çünkü taşınacağı isimde zaten bir sayfa vardı. Lütfen sayfanın içeriğini diğer sayfaya kendiniz taşıyın.'''",
-'movedto'                 => 'taşındı:',
-'movetalk'                => 'Varsa "tartışma" sayfasını da aktar.',
-'movepage-page-exists'    => '$1 maddesi zaten var olmaktadır, ve otomatikman yeniden yazılamaz.',
-'movepage-page-moved'     => '$1 sayfası $2 sayfasına taşındı.',
-'1movedto2'               => '[[$1]] sayfasının yeni adı: [[$2]]',
-'1movedto2_redir'         => '[[$1]] başlığı [[$2]] sayfasına yönlendirildi',
-'movelogpage'             => 'İsim değişikliği kayıtları',
-'movelogpagetext'         => 'Aşağıda bulunan liste adı değiştirilmiş sayfaları gösterir.',
-'movereason'              => 'Neden:',
-'revertmove'              => 'geriye al',
-'delete_and_move'         => 'Sil ve taşı',
-'delete_and_move_text'    => '==Silinmesi gerekiyor==
+'cantmove-titleprotected'      => 'Bir sayfayı bu konuma taşıyamazsınız, çünkü yeni başlığın oluşturulması korunuyor',
+'talkexists'                   => "'''Sayfanın kendisi başarıyla taşındı, ancak tartışma sayfası taşınamadı çünkü taşınacağı isimde zaten bir sayfa vardı. Lütfen sayfanın içeriğini diğer sayfaya kendiniz taşıyın.'''",
+'movedto'                      => 'taşındı:',
+'movetalk'                     => 'Varsa "tartışma" sayfasını da aktar.',
+'move-subpages'                => 'Tüm altsayfaları taşı, eğer mümkünse',
+'move-talk-subpages'           => 'Tartışma sayfasının tüm altsayfalarını taşı, eğer mümkünse',
+'movepage-page-exists'         => '$1 maddesi zaten var olmaktadır, ve otomatikman yeniden yazılamaz.',
+'movepage-page-moved'          => '$1 sayfası $2 sayfasına taşındı.',
+'movepage-page-unmoved'        => '$1 sayfası $2 başlığına taşınamıyor.',
+'movepage-max-pages'           => 'En fazla $1 {{PLURAL:$1|sayfa|sayfa}} taşındı ve daha fazlası otomatik olarak taşınamaz.',
+'1movedto2'                    => '[[$1]] sayfasının yeni adı: [[$2]]',
+'1movedto2_redir'              => '[[$1]] başlığı [[$2]] sayfasına yönlendirildi',
+'move-redirect-suppressed'     => 'yönlendirme bastırılmış',
+'movelogpage'                  => 'İsim değişikliği kayıtları',
+'movelogpagetext'              => 'Aşağıda bulunan liste adı değiştirilmiş sayfaları gösterir.',
+'movereason'                   => 'Neden:',
+'revertmove'                   => 'geriye al',
+'delete_and_move'              => 'Sil ve taşı',
+'delete_and_move_text'         => '==Silinmesi gerekiyor==
 
 "[[:$1]]" isimli bir sayfa zaten mevcut. O sayfayı silerek, isim değişikliğini gerçekleştirmeye devam etmek istiyor musunuz?',
-'delete_and_move_confirm' => 'Evet, sayfayı sil',
-'delete_and_move_reason'  => 'İsim değişikliğinin gerçekleşmesi için silindi.',
-'selfmove'                => 'Olmasını istediğiniz isim ile mevcut isim aynı. Değişiklik mümkün değil.',
-'immobile-source-page'    => 'Bu sayfanın adı değiştirilemez.',
+'delete_and_move_confirm'      => 'Evet, sayfayı sil',
+'delete_and_move_reason'       => 'İsim değişikliğinin gerçekleşmesi için silindi.',
+'selfmove'                     => 'Olmasını istediğiniz isim ile mevcut isim aynı. Değişiklik mümkün değil.',
+'immobile-source-namespace'    => '"$1" ad alanında sayfalar taşınamıyor',
+'immobile-target-namespace'    => 'Sayfalar "$1" ad alanına taşınamıyor',
+'immobile-target-namespace-iw' => 'Vikilerarası bağlantı, sayfa taşıması için geçerli bir hedef değil.',
+'immobile-source-page'         => 'Bu sayfanın adı değiştirilemez.',
+'immobile-target-page'         => 'Bu hedef başlığına taşınamaz.',
+'imagenocrossnamespace'        => 'Dosya, dosyalar için olmayan ad alanına taşınamaz',
+'imagetypemismatch'            => 'Yeni dosya eklentisi tipiyle eşleşmiyor',
+'imageinvalidfilename'         => 'Hedef dosya adı geçersiz',
+'fix-double-redirects'         => 'Orijinal başlığa işaret eden yönlendirmeleri güncelle',
+'move-leave-redirect'          => 'Arkada bir yönlendirme bırak',
 
 # Export
 'export'            => 'Sayfa kaydet',
@@ -1993,9 +2049,12 @@ Lütfen başka bir isim deneyiniz.',
 'allmessagesmodified'       => 'Sadece değiştirilmişleri göster',
 
 # Thumbnails
-'thumbnail-more'  => 'Büyüt',
-'filemissing'     => 'Dosya bulunmadı',
-'thumbnail_error' => 'Önizleme oluşturmada hata: $1',
+'thumbnail-more'           => 'Büyüt',
+'filemissing'              => 'Dosya bulunmadı',
+'thumbnail_error'          => 'Önizleme oluşturmada hata: $1',
+'djvu_page_error'          => 'DjVu sayfası kapsamdışı',
+'djvu_no_xml'              => 'DjVu dosyası için XML alınamıyor',
+'thumbnail_invalid_params' => 'Geçersiz küçük resim parametreleri',
 
 # Special:Import
 'import'                     => 'Sayfaları aktar',
@@ -2009,14 +2068,18 @@ Lütfen başka bir isim deneyiniz.',
 'importnopages'              => 'Aktarılacak dosya yok.',
 'importfailed'               => '$1 aktarımı başarısız',
 'importunknownsource'        => 'Bilinmeyen içeri aktarım kaynak türü',
+'importcantopen'             => 'İçeri aktarma dosyası açılamadı',
 'importbadinterwiki'         => 'Yanlış interwiki bağlantısı',
 'importnotext'               => 'Boş ya da metin yok',
 'importsuccess'              => 'Aktarma sonuçlandı!',
 'importnofile'               => 'Bir aktarım dosyası yüklenmedi.',
+'import-parse-failure'       => 'XML içeri aktarma derlemesi başarısız',
+'import-noarticle'           => 'İçe aktarılacak sayfa yok!',
 'import-upload'              => 'XML bilgileri yükle',
 
 # Import log
 'importlogpage'             => 'Dosya aktarım kayıtları',
+'import-logentry-upload'    => '[[$1]] dosya yüklemesiyle içe aktarıldı',
 'import-logentry-interwiki' => '$1 transvikileşmiş',
 
 # Tooltip help for the actions
@@ -2149,6 +2212,8 @@ Lütfen başka bir isim deneyiniz.',
 'newimages'             => 'Yeni resimler',
 'imagelisttext'         => "Aşağıdaki liste '''$2''' göre dizilmiş {{PLURAL:$1|adet dosyayı|adet dosyayı}} göstermektedir.",
 'newimages-summary'     => 'Bu özel sayfa, en son yüklenen dosyaları göstermektedir.',
+'newimages-legend'      => 'Filtre',
+'newimages-label'       => 'Dosya adı (ya da bir parçası):',
 'showhidebots'          => '(botları $1)',
 'noimages'              => 'Görecek bir şey yok.',
 'ilsubmit'              => 'Ara',
@@ -2477,39 +2542,39 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 'monthsall'        => 'hepsi',
 
 # E-mail address confirmation
-'confirmemail'            => 'E-posta adresini onayla',
-'confirmemail_noemail'    => '[[Special:Preferences|Kullanıcı tercihlerinizde]] tanımlanmış uygun bir e-posta adresiniz yok.',
-'confirmemail_text'       => "Viki'nin e-posta işlevlerini kullanmabilmek için, önce e-posta adresinizin doğrulanması gerekiyor.
+'confirmemail'             => 'E-posta adresini onayla',
+'confirmemail_noemail'     => '[[Special:Preferences|Kullanıcı tercihlerinizde]] tanımlanmış uygun bir e-posta adresiniz yok.',
+'confirmemail_text'        => "Viki'nin e-posta işlevlerini kullanmabilmek için, önce e-posta adresinizin doğrulanması gerekiyor.
 Adresinize onay e-postası göndermek için aşağıdaki butonu tıklayın.
 Gönderilecek iletide adresinizi onaylamak için tarayıcınızla erişebileceğiniz, onay kodu içeren bir bağlantı olacak;
 linki tarayıcınıda açın ve e-posta adresinizin geçerliliğini doğrulayın.",
-'confirmemail_send'       => 'Onay kodu gönder',
-'confirmemail_sent'       => 'Onay e-postası gönderildi.',
-'confirmemail_sendfailed' => '{{SITENAME}} Onay maili gönderemedi. Geçersiz karakterler olabilir adresi kontrol edin
+'confirmemail_send'        => 'Onay kodu gönder',
+'confirmemail_sent'        => 'Onay e-postası gönderildi.',
+'confirmemail_sendfailed'  => '{{SITENAME}} Onay maili gönderemedi. Geçersiz karakterler olabilir adresi kontrol edin
 
 Mail yazılımı iade etti:$1',
-'confirmemail_invalid'    => 'Geçersiz onay kodu. Onay kodunun son kullanma tarihi geçmiş olabilir.',
-'confirmemail_needlogin'  => 'E-posta adresinizi onaylamak için önce $1 yapmalısınız.',
-'confirmemail_success'    => "E-posta adresiniz onaylandı. Oturum açıp Viki'nin tadını çıkarabilirsiniz.",
-'confirmemail_loggedin'   => 'E-posta adresiniz onaylandı.',
-'confirmemail_error'      => 'Onayınız bilinmeyen bir hata nedeniyle kaydedilemedi.',
-'confirmemail_subject'    => '{{SITENAME}} e-posta adres onayı.',
-'confirmemail_body'       => '$1 internet adresinden yapılan erişimle {{SITENAME}} sitesinde 
-bu e-posta adresi ile ilişkilendirilen $2 kullanıcı hesabı 
-açıldı.  
+'confirmemail_invalid'     => 'Geçersiz onay kodu. Onay kodunun son kullanma tarihi geçmiş olabilir.',
+'confirmemail_needlogin'   => 'E-posta adresinizi onaylamak için önce $1 yapmalısınız.',
+'confirmemail_success'     => "E-posta adresiniz onaylandı. Oturum açıp Viki'nin tadını çıkarabilirsiniz.",
+'confirmemail_loggedin'    => 'E-posta adresiniz onaylandı.',
+'confirmemail_error'       => 'Onayınız bilinmeyen bir hata nedeniyle kaydedilemedi.',
+'confirmemail_subject'     => '{{SITENAME}} e-posta adres onayı.',
+'confirmemail_body'        => 'Birisi, muhtemelen siz, $1 IP adresinden,
+{{SITENAME}} sitesinde bu e-posta adresi ile $2 hesabını açtı.  
 
-Bu e-posta adresinin bahsi geçen kullanıcı hesabına ait olduğunu
-onaylamak ve {{SITENAME}} sitesindeki e-posta işlevlerini aktif hale 
-getirmek için aşağıdakı bağlantıyı tıklayın.
+Bu hesabın gerçekten size ait olduğunu onaylamak ve {{SITENAME}} sitesindeki
+e-posta işlevlerini aktif hale getirmek için aşağıdakı bağlantıyı tarayıcınızda açın.
 
 $3
 
-Bahsi geçen kullanıcı hesabı size ait değilse yapmanız gereken
-birşey yok.
+Eğer hesabı siz *açmadıysanız*, e-posta adresi doğrulamasını
+iptal etmek için aşağıdaki bağlantıyı takip edin:
 
 $5
 
 Bu onay kodu $4 tarihine kadar geçerli olacak.',
+'confirmemail_invalidated' => 'E-posta adresi doğrulaması iptal edildi',
+'invalidateemail'          => 'E-posta doğrulamasını iptal et',
 
 # Scary transclusion
 'scarytranscludetoolong' => '[URL çok uzun]',
@@ -2555,6 +2620,11 @@ Sayfayı baştan açmak isityorsanız, lütfen onaylayın.",
 # Live preview
 'livepreview-loading' => 'Yükleniyor...',
 'livepreview-ready'   => 'Yükleniyor...  Tamam!',
+'livepreview-failed'  => 'Canlı önizleme başarısız! Normal önizlemeyi deneyin.',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => '$1 {{PLURAL:$1|dakikadan|dakikadan}} yeni değişiklikler bu listede görünmeyebilir.',
+'lag-warn-high'   => 'Veritabanı sunucusundaki aşırı gecikmeden dolayı, $1 {{PLURAL:$1|dakikadan|dakikadan}} yeni değişiklikler bu listede görünmeyebilir.',
 
 # Watchlist editor
 'watchlistedit-noitems'        => 'İzleme listeniz hiçbir başlık içermemektedir.',
@@ -2579,13 +2649,18 @@ Bir başlığı çıkarmak için, yanındaki kutucuğu işaretleyin, ve Başlık
 'watchlisttools-edit' => 'İzleme listesini gör ve düzenle',
 'watchlisttools-raw'  => 'Ham izleme listesini düzenle',
 
+# Core parser functions
+'unknown_extension_tag' => 'Bilinmeyen eklenti etiketi "$1"',
+
 # Special:Version
 'version'                          => 'Sürüm', # Not used as normal message but as header for the special page itself
 'version-extensions'               => 'Yüklü ekler',
 'version-specialpages'             => 'Özel sayfalar',
 'version-variables'                => 'Değişkenler',
 'version-other'                    => 'Diğer',
+'version-mediahandlers'            => 'Ortam işleyiciler',
 'version-extension-functions'      => 'Ek fonksiyonları',
+'version-parser-extensiontags'     => 'Derleyici eklenti etiketleri',
 'version-skin-extension-functions' => 'Tema eki fonksiyonları',
 'version-version'                  => 'Sürüm',
 'version-license'                  => 'Lisans',
@@ -2605,6 +2680,9 @@ Bir başlığı çıkarmak için, yanındaki kutucuğu işaretleyin, ve Başlık
 
 # Special:SpecialPages
 'specialpages'                   => 'Özel sayfalar',
+'specialpages-note'              => '----
+* Normal özel sayfalar.
+* <span class="mw-specialpagerestricted">Kısıtlı özel sayfalar.</span>',
 'specialpages-group-maintenance' => 'Bakım raporları',
 'specialpages-group-other'       => 'Diğer özel sayfalar',
 'specialpages-group-login'       => 'Oturum aç / hesap edin',

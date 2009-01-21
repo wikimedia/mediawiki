@@ -1341,6 +1341,7 @@ Vexa a [[Special:NewFiles|galería de imaxes novas]] para unha visión máis xer
 'filename'                    => 'Nome do ficheiro',
 'filedesc'                    => 'Resumo',
 'fileuploadsummary'           => 'Descrición:',
+'filereuploadsummary'         => 'Cambios no ficheiro:',
 'filestatus'                  => 'Status dos dereitos de autor:',
 'filesource'                  => 'Fonte:',
 'uploadedfiles'               => 'Ficheiros cargados en {{SITENAME}}',

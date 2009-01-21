@@ -1460,6 +1460,7 @@ Voyez la [[Special:NewFiles|gallerie des nouvelles images]] pour une présentati
 'filename'                    => 'Nom du fichier',
 'filedesc'                    => 'Description',
 'fileuploadsummary'           => 'Description :',
+'filereuploadsummary'         => 'Modifications du fichier :',
 'filestatus'                  => 'Statut des droits d’auteur :',
 'filesource'                  => 'Source :',
 'uploadedfiles'               => 'Fichiers importés',

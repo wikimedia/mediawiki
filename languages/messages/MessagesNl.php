@@ -1535,6 +1535,7 @@ Zie de [[Special:NewFiles|galerij met nieuwe bestanden]] voor een visueler overz
 'filename'                    => 'Bestandsnaam',
 'filedesc'                    => 'Beschrijving',
 'fileuploadsummary'           => 'Samenvatting:',
+'filereuploadsummary'         => 'Bestandswijzigingen:',
 'filestatus'                  => 'Auteursrechtensituatie:',
 'filesource'                  => 'Bron:',
 'uploadedfiles'               => 'Geüploade bestanden',

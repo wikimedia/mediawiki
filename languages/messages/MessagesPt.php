@@ -1357,6 +1357,7 @@ Consulte a [[Special:NewFiles|galeria de novos ficheiros]] para uma visualizaç�
 'filename'                    => 'Nome do ficheiro',
 'filedesc'                    => 'Descrição do ficheiro',
 'fileuploadsummary'           => 'Sumário:',
+'filereuploadsummary'         => 'Alterações ao ficheiro:',
 'filestatus'                  => 'Estado dos direitos de autor:',
 'filesource'                  => 'Fonte:',
 'uploadedfiles'               => 'Ficheiros carregados',

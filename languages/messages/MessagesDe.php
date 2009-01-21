@@ -1501,6 +1501,7 @@ Bitte beachte, dass, genau wie bei normalen Seiteninhalten, andere Benutzer dein
 'filename'                    => 'Dateiname',
 'filedesc'                    => 'Beschreibung',
 'fileuploadsummary'           => 'Beschreibung/Quelle:',
+'filereuploadsummary'         => 'Dateiänderungen:',
 'filestatus'                  => 'Copyright-Status:',
 'filesource'                  => 'Quelle:',
 'uploadedfiles'               => 'Hochgeladene Dateien',

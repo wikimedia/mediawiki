@@ -707,9 +707,9 @@ $messages = array(
 'headline_sample' => '제목',
 'headline_tip'    => '2단계 문단 제목',
 'math_sample'     => '여기에 수식을 쓰세요',
-'math_tip'        => '수식 (LaTeX)',
+'math_tip'        => '수식(LaTeX)',
 'nowiki_sample'   => '여기에 위키 문법을 사용하지 않을 글을 적어 주세요',
-'nowiki_tip'      => '위키 문법 무시하기',
+'nowiki_tip'      => '위키 문법 사용하지 않기',
 'image_tip'       => '파일 넣기',
 'media_tip'       => '파일 링크하기',
 'sig_tip'         => '내 서명과 현재 시각',
@@ -924,6 +924,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'revisiondelete'                 => '버전 삭제/복구',
 'revdelete-nooldid-title'        => '대상 판이 잘못되었습니다.',
 'revdelete-nologtype-title'      => '기록의 종류가 제시되지 않았습니다.',
+'revdelete-nologtype-text'       => '당신은 이 명령을 수행할 기록의 종류를 제시하지 않았습니다.',
 'revdelete-toomanytargets-title' => '대상이 너무 많습니다.',
 'revdelete-nologid-title'        => '잘못된 기록',
 'revdelete-selected'             => "'''[[:$1]]의 선택된 판:'''",
@@ -933,12 +934,14 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 {{SITENAME}}의 다른 관리자는 다른 제한이 설정되어 있지 않는 한, 숨겨진 내용을 볼 수 있고, 같은 도구를 이용해 복구할 수 있습니다.",
 'revdelete-legend'               => '보이기 제한을 설정',
 'revdelete-hide-text'            => '판의 내용을 숨기기',
+'revdelete-hide-name'            => '로그 내용과 대상을 숨기기',
 'revdelete-hide-comment'         => '편집 요약을 숨기기',
 'revdelete-hide-user'            => '편집자의 계정 이름/IP를 숨기기',
 'revdelete-hide-restricted'      => '관리자에게도 이 제한을 적용하고 이 인터페이스를 잠금',
 'revdelete-suppress'             => '문서 내용을 관리자에게도 보이지 않게 숨기기',
 'revdelete-hide-image'           => '파일을 숨기기',
 'revdelete-unsuppress'           => '복구된 판에 대한 제한을 해제',
+'revdelete-log'                  => '이유:',
 'revdelete-submit'               => '선택된 판에 적용',
 'revdelete-logentry'             => '[[$1]]의 판의 보이기 설정을 변경함',
 'logdelete-logentry'             => '[[$1]]의 로그 보이기 설정을 변경함',
@@ -988,7 +991,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'mergelogpagetext'   => '다음은 한 문서의 역사를 다른 문서의 역사와 합친 최근 기록입니다.',
 
 # Diffs
-'history-title'           => '"$1" 문서의 변경 내력',
+'history-title'           => '‘$1’ 문서의 변경 내력',
 'difference'              => '(버전 사이의 차이)',
 'lineno'                  => '$1번째 줄:',
 'compareselectedversions' => '선택된 판들을 비교하기',
@@ -1308,7 +1311,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'rcshowhideanons'                   => '익명 사용자를 $1',
 'rcshowhidepatr'                    => '검토된 편집을 $1',
 'rcshowhidemine'                    => '내 편집을 $1',
-'rclinks'                           => '최근 $2일 동안에 바뀐 $1개의 문서를 봅니다.<br />$3',
+'rclinks'                           => '최근 $2일간의 $1개 변경 기록 보기<br />$3',
 'diff'                              => '차이',
 'hist'                              => '역사',
 'hide'                              => '숨기기',
@@ -1325,7 +1328,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 
 # Recent changes linked
 'recentchangeslinked'          => '가리키는 글의 바뀜',
-'recentchangeslinked-title'    => '"$1" 문서에 관련된 문서 바뀜',
+'recentchangeslinked-title'    => '‘$1’ 문서에 관련된 문서 바뀜',
 'recentchangeslinked-noresult' => '여기를 가리키는 글 중에는 주어진 기간 동안의 최근 바뀜이 없습니다.',
 'recentchangeslinked-summary'  => "여기를 가리키는 문서(분류일 경우 이 분류에 포함된 문서)에 대한 최근 바뀜이 나와 있습니다.
 [[Special:Watchlist|주시하는 문서]]는 '''굵은''' 글씨로 나타납니다.",
@@ -1383,12 +1386,12 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 존재하는 파일 이름: <strong><tt>$2</tt></strong><br />
 다른 이름으로 시도해 주세요.',
 'fileexists-thumb'            => "<center>'''존재하는 파일'''</center>",
-'fileexists-thumbnail-yes'    => '이 파일은 줄어든 크기의 그림 (섬네일)으로 보입니다.
+'fileexists-thumbnail-yes'    => '이 파일은 원본 그림이 아닌, 다른 그림의 크기를 줄인 섬네일 파일인 것 같습니다.
 <strong><tt>$1</tt></strong> 파일을 확인해주세요.<br />
-확인한 파일이 원래 크기의 같은 그림이라면 다른 섬네일을 올릴 필요가 없습니다.',
+해당 파일이 현재 올리려는 파일과 같다면, 더 작은 크기의 그림을 올릴 필요는 없습니다.',
 'file-thumbnail-no'           => '파일 이름이 <strong><tt>$1</tt></strong>으로 시작합니다.
-이것은 파일의 크기가 줄어든 그림 (썸네일)으로 보입니다.
-당신이 최대 해상도의 파일을 갖고 있다면 최대 해상도의 파일로 올려주세요, 아니라면 파일의 이름을 바꿔 주세요.',
+이 파일은 원본 그림이 아닌, 다른 그림의 크기를 줄인 섬네일 파일인 것 같습니다.
+더 해상도가 좋은 파일이 있다면 그 파일을 올려주세요. 아니면 올리려는 파일 이름을 바꾸어 주세요.',
 'fileexists-forbidden'        => '같은 이름의 파일이 이미 있습니다. 뒤로 돌아가서 다른 이름으로 시도해 주시기 바랍니다. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => '같은 이름의 파일이 이미 위키미디어 공용에 있습니다.
 파일을 업로드하길 원하신다면 뒤로 돌아가서 다른 이름으로 시도해 주시기 바랍니다. [[File:$1|thumb|center|$1]]',
@@ -1397,7 +1400,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'successfulupload'            => '올리기 성공',
 'uploadwarning'               => '올리기 경고',
 'savefile'                    => '파일 저장',
-'uploadedimage'               => '‘[[$1]]’을(를) 올렸습니다.',
+'uploadedimage'               => '‘[[$1]]’ 파일을 올렸습니다.',
 'overwroteimage'              => '‘[[$1]]’ 파일의 새 버전을 올렸습니다.',
 'uploaddisabled'              => '올리기 비활성화됨',
 'uploaddisabledtext'          => '파일 올리기 기능이 비활성화되어 있습니다.',
@@ -1482,11 +1485,11 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'filehist-filesize'              => '파일 크기',
 'filehist-comment'               => '내용',
 'imagelinks'                     => '파일 링크',
-'linkstoimage'                   => '다음 $1개의 문서가 이 그림을 사용하고 있습니다:',
+'linkstoimage'                   => '다음 $1개의 문서가 이 파일을 사용하고 있습니다:',
 'linkstoimage-more'              => '$1개 이상의 문서들이 이 파일을 가리키고 있습니다.
 다음 목록은 이 파일을 가리키는 처음 $1개 문서만 보여주고 있습니다. 
 이 파일을 가리키는 모든 문서를 보려면 [[Special:WhatLinksHere/$2|여기]]를 참고해 주십시오.',
-'nolinkstoimage'                 => '이 그림을 사용하는 문서가 없습니다.',
+'nolinkstoimage'                 => '이 파일을 사용하는 문서가 없습니다.',
 'morelinkstoimage'               => '이 파일이 쓰이고 있는 문서 목록 [[Special:WhatLinksHere/$1|더 보기]].',
 'redirectstofile'                => '다음 {{PLURAL:$1|파일|$1개의 파일}}이 이 파일로 넘겨주고 있습니다:',
 'duplicatesoffile'               => '다음 $1개의 파일이 중복됩니다:',
@@ -1649,7 +1652,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'ancientpages'            => '오래된 문서 목록',
 'move'                    => '이동',
 'movethispage'            => '문서 이동하기',
-'unusedimagestext'        => '다른 사이트에서 그림의 URL을 직접 사용하고 있을 가능성이 있고, 따라서 그림이 이 목록에 있어도 실제로 어딘가에서 사용하고 있을 수 있습니다.',
+'unusedimagestext'        => '다른 사이트에서 URL 접근을 통해 파일을 사용할 수 있기 때문에, 아래 목록에 있는 파일도 실제로 사용 중일 가능성이 있다는 점을 주의해주세요.',
 'unusedcategoriestext'    => '사용하지 않는 분류 문서들의 목록입니다.',
 'notargettitle'           => '해당하는 문서 없음',
 'notargettext'            => '기능을 수행할 대상 문서나 사용자를 지정하지 않았습니다.',
@@ -2158,8 +2161,8 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'move-watch'                   => '이 문서 주시하기',
 'movepagebtn'                  => '이동',
 'pagemovedsub'                 => '문서 이동함',
-'movepage-moved'               => '<big>\'\'\'"$1" 문서를 "$2" 문서로 이동했습니다.\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'movepage-moved-redirect'      => '넘겨주기가 생성되었습니다.',
+'movepage-moved'               => "<big>'''‘$1’ 문서를 ‘$2’ 문서로 이동함'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-redirect'      => '넘겨주기 문서가 생성되었습니다.',
 'movepage-moved-noredirect'    => '넘겨주기 문서가 생성되지 않았습니다.',
 'articleexists'                => '문서가 이미 존재하거나, 문서 이름이 올바르지 않습니다. 다른 제목으로 시도해주세요.',
 'cantmove-titleprotected'      => '새로운 제목으로 문서를 만드는 것이 금지되어 있어, 문서를 이동할 수 없습니다.',
@@ -2436,7 +2439,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''경고''': 이 파일에는 시스템을 위험하게 만드는 악성 코드가 들어있을 수 있습니다.<hr />",
-'imagemaxsize'         => '그림 설명 문서의 그림 크기를 제한:',
+'imagemaxsize'         => '파일 설명 문서의 그림 크기를 제한하기:',
 'thumbsize'            => '섬네일 크기:',
 'widthheightpage'      => '$1×$2, $3페이지',
 'file-info'            => '(파일 크기: $1, MIME 종류: $2)',
@@ -2476,7 +2479,7 @@ Variants for Chinese language
 
 # Metadata
 'metadata'          => '메타데이터',
-'metadata-help'     => '이 파일은 카메라/스캐너에서 추가한 부가 정보를 담고 있습니다. 파일을 편집한다면, 변경된 그림에는 일부 부가 정보가 빠질 수 있습니다.',
+'metadata-help'     => '이 파일은 카메라/스캐너에서 기록한 부가 정보를 가지고 있습니다. 프로그램에서 파일을 편집할 경우, 새로 저장한 그림 파일에 일부 부가 정보가 빠질 수 있습니다.',
 'metadata-expand'   => '자세한 정보 보이기',
 'metadata-collapse' => '자세한 정보 숨기기',
 'metadata-fields'   => 'EXIF 메타데이터 표가 접혀 있을 때, 다음의 속성값만이 기본적으로 보이게 됩니다. 나머지 값은 자동적으로 숨겨집니다.
@@ -2522,6 +2525,10 @@ Variants for Chinese language
 'exif-lightsource'                 => '광원',
 'exif-flash'                       => '플래시',
 'exif-focallength'                 => '렌즈 초점 거리',
+'exif-flashenergy'                 => '플래시 광량',
+'exif-focalplanexresolution'       => '초점면 X방향 해상도',
+'exif-focalplaneyresolution'       => '초점면 Y방향 해상도',
+'exif-focalplaneresolutionunit'    => '초점면 해상도 단위',
 'exif-subjectlocation'             => '대상 위치',
 'exif-exposureindex'               => '노출 지수',
 'exif-cfapattern'                  => 'CFA 패턴',
@@ -2541,6 +2548,8 @@ Variants for Chinese language
 'exif-gpsaltitude'                 => '고도',
 'exif-gpstimestamp'                => 'GPS 시간 (원자 시계)',
 'exif-gpsstatus'                   => '수신기 상태',
+'exif-gpsspeedref'                 => '속도 단위',
+'exif-gpsspeed'                    => 'GPS 수신기 속도',
 'exif-gpsimgdirection'             => '이미지 방향',
 'exif-gpsdestlatitude'             => '목적지의 위도',
 'exif-gpsdestlongitude'            => '목적지의 경도',
@@ -2564,6 +2573,7 @@ Variants for Chinese language
 'exif-exposureprogram-2' => '일반 프로그램',
 'exif-exposureprogram-3' => '조리개 우선',
 'exif-exposureprogram-4' => '셔터 우선',
+'exif-exposureprogram-8' => '풍경 모드 (초점이 배경인 풍경 사진용)',
 
 'exif-subjectdistance-value' => '$1 미터',
 
@@ -2581,6 +2591,8 @@ Variants for Chinese language
 'exif-lightsource-2'   => '형광등',
 'exif-lightsource-3'   => '텅스텐 (백열광)',
 'exif-lightsource-4'   => '플래시',
+'exif-lightsource-9'   => '맑은 날씨',
+'exif-lightsource-10'  => '흐린 날씨',
 'exif-lightsource-11'  => '그늘',
 'exif-lightsource-12'  => '주광색 형광등 (D 5700 – 7100K)',
 'exif-lightsource-13'  => '주백색 형광등 (N 4600 – 5400K)',
@@ -2595,6 +2607,8 @@ Variants for Chinese language
 # Flash modes
 'exif-flash-fired-0'  => '플래시가 터지지 않음',
 'exif-flash-fired-1'  => '플래시 터짐',
+'exif-flash-mode-1'   => '플래시 강제',
+'exif-flash-mode-2'   => '플래시 억제',
 'exif-flash-mode-3'   => '자동 모드',
 'exif-flash-redeye-1' => '적목 방지 모드',
 
@@ -2621,6 +2635,7 @@ Variants for Chinese language
 'exif-saturation-2' => '고채도',
 
 'exif-sharpness-0' => '보통',
+'exif-sharpness-1' => '부드러움',
 
 'exif-subjectdistancerange-0' => '알 수 없음',
 
@@ -2790,10 +2805,10 @@ $5
 'filepath'         => '파일 경로',
 'filepath-page'    => '파일:',
 'filepath-submit'  => '경로',
-'filepath-summary' => '파일의 전체 주소를 알려줍니다.
-그림은 최고 해상도로 보여주고 다른 파일은 연결된 프로그램으로 바로 실행합니다.
+'filepath-summary' => '파일의 실제 URL 주소를 엽니다.
+그림 파일일 경우 원본 해상도의 파일이 열립니다. 다른 종류의 파일일 경우 그 파일의 종류에 맞는 프로그램이 실행됩니다.
 
-"{{ns:file}}:" 접두어를 빼고 파일 이름만 넣으세요.',
+"{{ns:file}}:" 접두어를 뺀 파일 이름을 입력해주세요.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => '중복된 파일 찾기',

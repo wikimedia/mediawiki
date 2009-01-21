@@ -1440,6 +1440,7 @@ Przejdź na stronę [[Special:NewFiles|galerii nowych plików]], by zobaczyć pl
 'filename'                    => 'Nazwa pliku',
 'filedesc'                    => 'Opis',
 'fileuploadsummary'           => 'Opis',
+'filereuploadsummary'         => 'Zmiany w pliku:',
 'filestatus'                  => 'Status prawny',
 'filesource'                  => 'Źródło',
 'uploadedfiles'               => 'Przesłane pliki',

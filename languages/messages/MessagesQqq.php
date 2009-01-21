@@ -27,6 +27,7 @@
  * @author Jon Harald Søby
  * @author Kizito
  * @author Klenje
+ * @author Klutzy
  * @author Kwj2772
  * @author Leinad
  * @author Lejonel
@@ -1442,6 +1443,7 @@ Example: [[:Image:Addon-icn.png]]',
 
 {{Identical|Move}}',
 'movethispage'            => '{{Identical|Move this page}}',
+'unusedimagestext'        => 'Header message of [[Special:UnusedFiles]]',
 'pager-newer-n'           => "This is part of the navigation message on the top and bottom of Special pages which are lists of things in date order, e.g. the User's contributions page. It is passed as the second argument of [[MediaWiki:Viewprevnext]]. $1 is the number of items shown per page.",
 'pager-older-n'           => "This is part of the navigation message on the top and bottom of Special pages which are lists of things in date order, e.g. the User's contributions page. It is passed as the first argument of [[MediaWiki:Viewprevnext]]. $1 is the number of items shown per page.",
 
