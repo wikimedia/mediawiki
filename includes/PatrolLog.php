@@ -39,12 +39,8 @@ class PatrolLog {
 	 * @return string
 	 */
 	public static function makeActionText( $title, $params, $skin ) {
-		# This is a bit of a hack, but...if $skin is not a Skin, then *do nothing*
-		# -- this is fine, because the action text we would be queried for under
-		# these conditions would have gone into recentchanges, which we aren't
-		# supposed to be updating
+		list( $cur, /* $prev */, $auto ) = $params;
 		if( is_object( $skin ) ) {
-			list( $cur, /* $prev */, $auto ) = $params;
 			# Standard link to the page in question
 			$link = $skin->makeLinkObj( $title );
 			if( $title->exists() ) {
@@ -62,7 +58,8 @@ class PatrolLog {
 			# Put it all together
 			return wfMsgHtml( 'patrol-log-line', $diff, $link, $auto );
 		} else {
-			return '';
+			$text = $title->getPrefixedText();
+			return wfMsgForContent( 'patrol-log-line', wfMsgHtml('patrol-log-diff',$cur), "[[$text]]", '' );
 		}
 	}
 
