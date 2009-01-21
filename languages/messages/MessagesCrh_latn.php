@@ -414,7 +414,7 @@ Lütfen, URL yazıp bundan [[Special:ListUsers/sysop|administratorğa]] haber be
 'filedeleteerror'      => '"$1" faylı yoq etilip olamay.',
 'directorycreateerror' => '"$1" direktoriyası yaratılıp olamay.',
 'filenotfound'         => '"$1" faylı tapılıp olamay.',
-'fileexistserror'      => '"$1" faylı saqlanıp olamay. Öyle fayl endi mevcüt.',
+'fileexistserror'      => '"$1" faylı saqlanıp olamay. Öyle fayl endi mevcut.',
 'unexpected'           => 'beklenmegen deger: "$1"="$2".',
 'formerror'            => 'Hata: formanıñ malümatını yollamaqnıñ iç çaresi yoq',
 'badarticleerror'      => 'Siz yapmağa istegen işlev bu saifede yapılıp оlamay.',
@@ -613,7 +613,7 @@ IP adresiñiz — $3, blok etüv identifikatorı — #$5. Lütfen, administrator
 'confirmedittitle'                 => 'E-mail adresini tasdıqlamaq lâzimdir',
 'confirmedittext'                  => 'Saifeni deñiştirmeden evel e-mail adresiñizni tasdıqlamalısıñız. Lütfen, [[Special:Preferences|sazlamalar saifesinde]] e-mail adresiñizni kirsetiñiz ve tasdıqlañız.',
 'nosuchsectiontitle'               => 'Öyle bölüm yoq',
-'nosuchsectiontext'                => 'Mevcüt olmağan bölümni deñiştirip baqtıñız. $1 bölümi yoq olğanı içün metniñiz saqlanacaq yeri yoq.',
+'nosuchsectiontext'                => 'Mevcut olmağan bölümni deñiştirip baqtıñız. $1 bölümi yoq olğanı içün metniñiz saqlanacaq yeri yoq.',
 'loginreqtitle'                    => 'Oturım açmalısıñız',
 'loginreqlink'                     => 'oturım aç',
 'loginreqpagetext'                 => 'Başqa saifelerni baqmaq içün $1 borclusıñız.',
@@ -684,7 +684,7 @@ Malümat bazasını kilitlegen administratоr öz areketini böyle añlattı: $1
 'hiddencategories'                 => 'Bu saife $1 gizli kategoriyağa mensüptir:',
 'nocreatetitle'                    => 'Saife yaratuv sıñırlıdır',
 'nocreatetext'                     => '{{SITENAME}} saytında yañı saife yaratuv sıñırlıdır.
-Keri qaytıp mevcüt olğan saifeni deñiştire, [[Special:UserLogin|oturım aça ya da yañı bir esap yaratıp olasıñız]].',
+Keri qaytıp mevcut olğan saifeni deñiştire, [[Special:UserLogin|oturım aça ya da yañı bir esap yaratıp olasıñız]].',
 'nocreate-loggedin'                => 'Yañı saifeler yaratmağa iziniñiz yoqtır.',
 'permissionserrors'                => 'İrişim aqlarınıñ hataları',
 'permissionserrorstext'            => 'Bunı yapmağa iziniñiz yoqtır. {{PLURAL:$1|Sebep|Sebepler}}:',
@@ -699,7 +699,7 @@ Ola bile ki, o yoq etilgendir.',
 'edit-conflict'                    => 'Deñişiklikler konflikti.',
 'edit-no-change'                   => 'Yapqan deñişikligiñiz saqlanmağan, çünki metinde bir türlü deñişiklik yapılmadı.',
 'edit-already-exists'              => 'Yañı saifeni yaratmaq mümkün degil.
-O endi mevcüt.',
+O endi mevcut.',
 
 # "Undo" feature
 'undo-success' => 'Deñişiklik lâğu etile bile. Lütfen, aynı bu deñişiklikler meni meraqlandıra dep emin olmaq içün versiyalar teñeştirilüvini közden keçirip deñişikliklerni tamamen yapmaq içün "Saifeni saqla" dögmesine basıñız.',
@@ -740,7 +740,7 @@ $3 mına böyle bir sebep belgiledi: ''$2''",
 'history-feed-title'          => 'Deñişiklikler tarihı',
 'history-feed-description'    => 'Vikide bu saifeniñ deñişiklikler tarihı',
 'history-feed-item-nocomment' => '$2 üstünde $1', # user at time
-'history-feed-empty'          => 'İstenilgen saife mevcüt degil.
+'history-feed-empty'          => 'İstenilgen saife mevcut degil.
 O yoq eilgen ya da adı deñiştirilgen ola bile.
 Vikide bu saifege oşağan saifelerni [[Special:Search|tapıp baqıñız]].',
 
@@ -911,7 +911,7 @@ Vikide bu saifege oşağan saifelerni [[Special:Search|tapıp baqıñız]].',
 'recentchangeslinked'          => 'Bağlı deñişiklikler',
 'recentchangeslinked-title'    => '"$1" ile bağlı deñişiklikler',
 'recentchangeslinked-noresult' => 'Saylanğan vaqıtta bağlı saifelerde iç deñişiklik yoq edi.',
-'recentchangeslinked-summary'  => "Bu mahsus saifede bağlı saifelerde soñki yapqan deñişiklikler cedveli mevcüt. [[Special:Watchlist|Közetüv cedveliñiz]]deki saifeler '''qalın''' olaraq kösterile.",
+'recentchangeslinked-summary'  => "Bu mahsus saifede bağlı saifelerde soñki yapqan deñişiklikler cedveli mevcut. [[Special:Watchlist|Közetüv cedveliñiz]]deki saifeler '''qalın''' olaraq kösterile.",
 
 # Upload
 'upload'                      => 'Fayl yükle',
@@ -920,7 +920,7 @@ Vikide bu saifege oşağan saifelerni [[Special:Search|tapıp baqıñız]].',
 'reuploaddesc'                => 'Yükleme formasına keri qayt.',
 'uploadnologin'               => 'Oturım açmadıñız',
 'uploadnologintext'           => 'Fayl yüklep olmaq içün [[Special:UserLogin|oturım açmaq]] kereksiñiz.',
-'upload_directory_missing'    => 'Yüklemeler içün direktoriya ($1) mevcüt degil ve veb-server tarafından yapılıp olamay.',
+'upload_directory_missing'    => 'Yüklemeler içün direktoriya ($1) mevcut degil ve veb-server tarafından yapılıp olamay.',
 'upload_directory_read_only'  => 'Web serverniñ ($1) cüzdanına fayllar saqlamağa aqları yoqtır.',
 'uploaderror'                 => 'Yükleme hatası',
 'uploadtext'                  => "Fayllar yüklemek içün aşağıdaki formanı qullanıñız.
@@ -946,7 +946,7 @@ Daa körgezmeli körüniş içün [[Special:NewFiles|yañı fayllar galereyasın
 'ignorewarning'               => 'Tenbini ignor etip faylnı yükle.',
 'ignorewarnings'              => 'Tenbini ignor et',
 'minlength1'                  => 'Faylnıñ adı eñ azdan bir ariften ibaret olmalı.',
-'illegalfilename'             => '"$1" faylınıñ adında serleva içün yasaqlı işaretler mevcüt. Lütfen, fayl adını deñiştirip yañıdan yüklep baqıñız.',
+'illegalfilename'             => '"$1" faylınıñ adında serleva içün yasaqlı işaretler bar. Lütfen, fayl adını deñiştirip yañıdan yüklep baqıñız.',
 'badfilename'                 => 'Fayl adı $1 olaraq deñiştirildi.',
 'filetype-badmime'            => '"$1" MIME çeşitindeki fayllar yükleme yasaqlıdır.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' — istenilmegen fayl çeşiti. 
@@ -958,20 +958,20 @@ Daa körgezmeli körüniş içün [[Special:NewFiles|yañı fayllar galereyasın
 'largefileserver'             => 'Bu faylnıñ uzunlığı serverde izin berilgenden büyükçedir.',
 'emptyfile'                   => 'İhtimal ki, yüklengen fayl boş. İhtimallı sebep - fayl adlandıruv
 hatasıdır. Lütfen, tamam bu faylnı yüklemege isteycek ekeniñizni teşkeriñiz.',
-'fileexists'                  => 'Bu isimde bir fayl mevcüttir. Lütfen, eger siz deñiştirmekten emin olmasañız başta <strong><tt>$1</tt></strong> faylına köz taşlañız.',
+'fileexists'                  => 'Bu isimde bir fayl endi bar. Lütfen, eger siz deñiştirmekten emin olmasañız başta <strong><tt>$1</tt></strong> faylına köz taşlañız.',
 'filepageexists'              => 'Bu fayl içün tasvir saifesi endi yapılğan (<strong><tt>$1</tt></strong>), lâkin bu adda bir fayl yoqtır. Yazılğan tasvir resim tasvir saifesinde kösterilmeycek. Yañı bir tasvir qоşmaq içün onı qolnen deñiştirmege mecbursıñız.',
-'fileexists-extension'        => 'Buña oşağan adda bir fayl mevcüttir:<br />
+'fileexists-extension'        => 'Buña oşağan adda bir fayl bar:<br />
 Yüklengen faylnıñ adı: <strong><tt>$1</tt></strong><br />
-Mevcüt olğan faylnıñ adı: <strong><tt>$2</tt></strong><br />
+Mevcut olğan faylnıñ adı: <strong><tt>$2</tt></strong><br />
 Lütfen, başqa bir ad saylap yazıñız.',
-'fileexists-thumb'            => "<center>'''Mevcüt fayl'''</center>",
+'fileexists-thumb'            => "<center>'''Mevcut fayl'''</center>",
 'fileexists-thumbnail-yes'    => 'Belki de bu fayl bir küçülgen kopiyadır (thumbnail). Lütfen, <strong><tt>$1</tt></strong> faylını teşkeriñiz.<br />
 Eger belgilengen fayl aynı şu resim olsa, onıñ küçülgen kopiyasını ayrı olaraq yüklemek aceti yoqtır.',
 'file-thumbnail-no'           => 'Faylnıñ adı <strong><tt>$1</tt></strong>nen başlana. Belki de bu resimniñ ufaqlaştırılğan bir kopiyasıdır <i>(thumbnail)</i>.
 Eger sizde bu resim tam büyükliginde bar olsa, lütfen, onı yükleñiñiz ya da faylnıñ adını deñiştiriñiz.',
-'fileexists-forbidden'        => 'Bu isimde bir fayl mevcüttir. Lütfen, keri qaytıñız, fayl ismini
+'fileexists-forbidden'        => 'Bu isimde bir fayl endi bar. Lütfen, keri qaytıñız, fayl ismini
 deñiştirip yañıdan yükleñiz. [[File:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Fayllar umumiy tutulğan yerinde bu isimde bir fayl mevcüttir.
+'fileexists-shared-forbidden' => 'Fayllar umumiy tutulğan yerinde bu isimde bir fayl endi bar.
 Eger bu faylnı ep bir yüklemege isteseñiz, keri qaytıñız ve fayl ismini deñiştirip yañıdan yükleñiz.
 [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Bu fayl aşağıdaki {{PLURAL:$1|faylnıñ|fayllarnıñ}} dublikatı ola:',
@@ -982,14 +982,14 @@ Eger bu faylnı ep bir yüklemege isteseñiz, keri qaytıñız ve fayl ismini de
 'overwroteimage'              => '"[[$1]]" yañı versiyası yüklendi',
 'uploaddisabled'              => 'Yükleme yasaqlıdır.',
 'uploaddisabledtext'          => 'Fayl yükleme yasaqlıdır.',
-'uploadscripted'              => 'Bu faylda brauzer tarafından yañlışnen işlenip olur HTML kodu ya da skript mevcüt.',
+'uploadscripted'              => 'Bu faylda brauzer tarafından yañlışnen işlenip olur HTML kodu ya da skript bar.',
 'uploadcorrupt'               => 'Bu fayl ya zararlandı, ya da yañlış uzantılı. Lütfen, faylnı teşkerip yañıdan yüklep baqıñız.',
 'uploadvirus'                 => 'Bu fayl viruslıdır! $1 baqıñız',
 'sourcefilename'              => 'Yüklemege istegeniñiz fayl:',
 'destfilename'                => 'Faylnıñ istenilgen adı:',
 'upload-maxfilesize'          => 'Azamiy (maksimal) fayl büyükligi: $1',
 'watchthisupload'             => 'Bu faylnı közetüv cedveline kirset',
-'filewasdeleted'              => 'Bu isimde bir fayl mevcüt edi, amma yoq etilgen edi. Lütfen, tekrar yüklemeden evel $1 teşkeriñiz.',
+'filewasdeleted'              => 'Bu isimde bir fayl bar edi, amma yoq etilgen edi. Lütfen, tekrar yüklemeden evel $1 teşkeriñiz.',
 'upload-wasdeleted'           => "'''Diqqat: Evelde yoq etilgen faylnı yüklemektesiñiz.'''
 
 Er alda bu faylnı yüklemege devam etmege isteysiñizmi?
@@ -1095,7 +1095,7 @@ Eger saifede, [[MediaWiki:Disambiguationspage]] saifesinde adı keçken şablon 
 'doubleredirectstext' => 'Er satırda, ekinci yollama metniniñ ilk satırınıñ (umumen ekinci yollamanıñ da işaret etmek kerek olğanı "asıl" maqsatnıñ) yanında ilk ve ekinci yollamağa bağlantılar bar.',
 
 'brokenredirects'        => 'Bar olmağan saifege yapılğan yollamalar',
-'brokenredirectstext'    => 'Aşağıdki yollama, mevcüt olmağan bir saifege işaret ete.',
+'brokenredirectstext'    => 'Aşağıdki yollama, mevcut olmağan bir saifege işaret ete.',
 'brokenredirects-edit'   => '(deñiştir)',
 'brokenredirects-delete' => '(yoq et)',
 
@@ -1197,7 +1197,7 @@ Mında [[Special:UnusedCategories|qullanılmağan kategoriyalar]] kösterilmegen
 
 # E-mail user
 'mailnologin'     => 'Mektüp yollanacaq adresi yoqtır',
-'mailnologintext' => 'Diger qullanıcılarğa elektron mektüpler yollap olmaq içün [[Special:UserLogin|oturım açmalısıñız]] ve [[Special:Preferences|sazlamalarıñızda]] mevcüt olğan e-mail adresiniñ saibi olmalısıñız.',
+'mailnologintext' => 'Diger qullanıcılarğa elektron mektüpler yollap olmaq içün [[Special:UserLogin|oturım açmalısıñız]] ve [[Special:Preferences|sazlamalarıñızda]] mevcut olğan e-mail adresiniñ saibi olmalısıñız.',
 'emailuser'       => 'Qullanıcığa mektüp',
 'emailpage'       => 'Qullanıcığa elektron mektüp yolla',
 'emailpagetext'   => 'Aşağıdaki formanı toldurıp bu qullanıcığa mektüp yollap olursıñız.
@@ -1240,7 +1240,7 @@ Birazdan soñ közetüv cedveliñizden bir de bir saifeni yoq etmege isteseñiz 
 'wlheader-showupdated' => "* Soñki ziyaretiñizden soñraki saife deñişiklikleri '''qalın''' olaraq kösterildi.",
 'watchmethod-recent'   => 'soñki deñişiklikler arasında közetken saifeleriñiz qıdırıla',
 'watchmethod-list'     => 'közetüv cedvelindeki saifeler teşkerile',
-'watchlistcontains'    => 'Siziñ közetüv cedveliñizde {{PLURAL:$1|1|$1}} saife mevcüttir.',
+'watchlistcontains'    => 'Siziñ közetüv cedveliñizde {{PLURAL:$1|1|$1}} saife bar.',
 'iteminvalidname'      => '"$1" saifesi munasebetinen problema olıp çıqtı, elverişli olmağan isimdir…',
 'wlnote'               => "Aşağıda soñki {{PLURAL:$2|saat|'''$2''' saat}} içinde yapılğan soñki {{PLURAL:$1|deñişiklik|'''$1''' deñişiklik}} kösterile.",
 'wlshowlast'           => 'Soñki $2 kün $1 saat içün $3 köster',
@@ -1444,14 +1444,13 @@ Bu saifeniñ qorçalav seviyesini deñiştirip olasıñız, amma kaskadlı qorç
 'movepagetext'            => "Aşağıdaki formanı qullanıp saifeniñ adını deñiştirilir. Bunıñnen beraber deñişiklik jurnalı da yañı adğa avuştırılır.
 Eski ad yañı adğa yollama olur. Eski serlevağa yollama saifelerni avtomatik olaraq yañartıp olasıñız. Bu işlemi avtomatik yapmağa istemeseñiz, bütün [[Special:DoubleRedirects|çift]] ve [[Special:BrokenRedirects|yırtıq]] yollama saifelerini özüñiz tüzetmege mecbur olursıñız. Bağlantılar endiden berli doğru çalışmasından emin olmalısıñız.
 
-Yañı adda bir ad zaten mevcüt olsa, ad deñişikligi '''yapılmaycaq''', ancaq mevcüt olğan saife yollama ya da boş olsa ad deñişikligi mümkün olacaq. Bu demek ki, saife adını yañlıştan deñiştirgen olsañız deminki adını keri qaytarıp olasıñız, amma mevcüt olğan saifeni tesadüfen yoq etalmaysıñız.
+Yañı adda bir ad endi bar olsa, ad deñişikligi '''yapılmaycaq''', ancaq mevcut olğan saife yollama ya da boş olsa ad deñişikligi mümkün olacaq. Bu demek ki, saife adını yañlıştan deñiştirgen olsañız deminki adını keri qaytarıp olasıñız, amma mevcut olğan saifeni tesadüfen yoq etalmaysıñız.
 
 '''TENBİ!'''
 Ad deñiştirüv populâr saifeler içün büyük deñişmelerge sebep ola bilir. Lütfen, deñişiklikni yapmadan evel ola bileceklerni köz ögüne alıñız.",
-'movepagetalktext'        => "Qoşulğan muzakere saifesiniñ de (mevcüt olsa)
-adı avtomatik tarzda deñiştirilecek. '''Müstesnalar:'''
+'movepagetalktext'        => "Qoşulğan muzakere saifesiniñ de (bar olsa) adı avtomatik tarzda deñiştirilecek. '''Müstesnalar:'''
 
-*Aynı bu isimde boş olmağan bir muzakere saifesi endi mevcüttir;
+*Aynı bu isimde boş olmağan bir muzakere saifesi endi bar;
 *Aşağıdaki boşluqqa işaret qoymadıñız.
 
 Böyle allarda, kerek olsa, saifelerni qolnen taşımağa ya da birleştirmege mecbur olursıñız.",
@@ -1464,10 +1463,10 @@ Böyle allarda, kerek olsa, saifelerni qolnen taşımağa ya da birleştirmege m
 'movepagebtn'             => 'Adını deñiştir',
 'pagemovedsub'            => 'Ad deñişikligi tamamlandı',
 'movepage-moved'          => '<big>\'\'\'"$1" saifesiniñ adı "$2" olaraq deñiştirildi\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'           => 'Bu adda bir saife endi mevcüt ya da siz yazğan ad yasaqlı.
+'articleexists'           => 'Bu adda bir saife endi bar ya da siz yazğan ad yasaqlı.
 Lütfen, başqa bir ad saylap yazıñız.',
 'cantmove-titleprotected' => 'Siz yazğan yañı ad yasaqlıdır, bunıñ içün saife adını deñiştirmekniñ çaresi yoq.',
-'talkexists'              => "'''Saifeniñ adı deñiştirildi, amma muzakere saifesiniñ adını deñiştirmege mümkünlik yoqtır, çünki aynı bu adda bir saife endi mevcüttir. Lütfen, bularnı qolnen birleştiriñiz.'''",
+'talkexists'              => "'''Saifeniñ adı deñiştirildi, amma muzakere saifesiniñ adını deñiştirmege mümkünlik yoqtır, çünki aynı bu adda bir saife endi bar. Lütfen, bularnı qolnen birleştiriñiz.'''",
 'movedto'                 => 'adı deñiştirildi:',
 'movetalk'                => 'Muzakere saifesiniñ adını deñiştir.',
 '1movedto2'               => '"[[$1]]" saifesiniñ adı "[[$2]]" olaraq deñiştirildi',
@@ -1477,9 +1476,9 @@ Lütfen, başqa bir ad saylap yazıñız.',
 'movereason'              => 'Sebep',
 'revertmove'              => 'Kerige al',
 'delete_and_move'         => 'Yoq et ve adını deñiştir',
-'delete_and_move_text'    => '==Yoq etmek lâzimdir==
+'delete_and_move_text'    => '== Yoq etmek lâzimdir ==
 
-"[[:$1]]" saifesi endi mevcüt. Adını deñiştirip olmaq içün onı yoq etmege isteysiñizmi?',
+"[[:$1]]" saifesi endi bar. Adını deñiştirip olmaq içün onı yoq etmege isteysiñizmi?',
 'delete_and_move_confirm' => 'Ebet, bu saifeni yoq et',
 'delete_and_move_reason'  => 'İsim deñiştirip olmaq içün yoq etildi',
 'selfmove'                => 'Bu saifeniñ adını deñiştirmege imkân yoqtır, çünki asıl ile yañı adları bir kele.',
@@ -1492,7 +1491,7 @@ Lütfen, başqa bir ad saylap yazıñız.',
 'allmessagesname'     => 'İsim',
 'allmessagesdefault'  => 'Original metin',
 'allmessagescurrent'  => 'Şimdi qullanılğan metin',
-'allmessagestext'     => 'İşbu cedvel MediaWikide mevcüt olğan bütün sistema beyanatlarınıñ cedvelidir.
+'allmessagestext'     => 'İşbu cedvel MediaWikide mevcut olğan bütün sistema beyanatlarınıñ cedvelidir.
 MediaWiki interfeysiniñ çeşit tillerge tercime etüvde iştirak etmege isteseñiz [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] ve [http://translatewiki.net Betawiki] saifelerine ziyaret etiñiz.',
 'allmessagesfilter'   => 'Metin ayrıştırıcı filtrı:',
 'allmessagesmodified' => 'Tek deñiştirilgenlerni köster',
@@ -1533,7 +1532,7 @@ MediaWiki interfeysiniñ çeşit tillerge tercime etüvde iştirak etmege istese
 'tooltip-ca-watch'                => 'Bu saifeni közetüvge al',
 'tooltip-ca-unwatch'              => 'Bu saifeni közetmekni taşla',
 'tooltip-search'                  => '{{SITENAME}} saytında qıdıruv yap',
-'tooltip-search-go'               => 'Bu adda saife mevcüt olsa, oña bar',
+'tooltip-search-go'               => 'Bu adda saife mevcut olsa, oña bar',
 'tooltip-search-fulltext'         => 'Bu metini olğan saifeler qıdır',
 'tooltip-p-logo'                  => 'Baş saife',
 'tooltip-n-mainpage'              => 'Başlanğıç saifesine qaytıñız',

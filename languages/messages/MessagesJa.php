@@ -349,7 +349,7 @@ $messages = array(
 'mypage'         => '自分のページ',
 'mytalk'         => '自分の会話',
 'anontalk'       => 'このIP利用者の会話',
-'navigation'     => 'ナビゲーション',
+'navigation'     => '案内',
 'and'            => '&#32;および',
 
 # Metadata in edit box
@@ -407,7 +407,7 @@ $messages = array(
 'viewcount'         => 'このページは $1 回アクセスされました。',
 'protectedpage'     => '保護されたページ',
 'jumpto'            => '移動:',
-'jumptonavigation'  => 'ナビゲーション',
+'jumptonavigation'  => 'メニュー',
 'jumptosearch'      => '検索',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -768,7 +768,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'usercsspreview'                   => "'''あなたはユーザースタイルシートをプレビューしています。まだ保存されていないので注意してください。'''",
 'userjspreview'                    => "'''あなたはユーザースクリプトを試験的にプレビューしています。まだ保存されていないので注意してください。'''",
 'userinvalidcssjstitle'            => "'''警告:''' \"\$1\" という外装はありません。.css と .js ページを編集する際にはタイトルを小文字にすることを忘れないでください。例えば {{ns:user}}:Hoge/Monobook.css ではなく {{ns:user}}:Hoge/monobook.css となります。",
-'updated'                          => '（更新）',
+'updated'                          => '(更新)',
 'note'                             => '<strong>お知らせ:</strong>',
 'previewnote'                      => '<strong>これはプレビューです。
 まだ保存されていません!</strong>',
@@ -819,9 +819,9 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'permissionserrors'                => '認証エラー',
 'permissionserrorstext'            => 'あなたにはこのページの編集権限がありません。理由は以下の通りです:',
 'permissionserrorstext-withaction' => '以下に示された理由により$2を行うことができません:',
-'recreate-deleted-warn'            => "'''警告:あなたは以前に削除されたページを再作成しようとしています。'''
+'recreate-deleted-warn'            => "'''警告: あなたは以前に削除されたページを再作成しようとしています。'''
 
-このページの編集が適切であるかどうか確認してください。参考として以下にこのページの削除記録を表示しています:",
+このページを編集し続けることが適切であるかどうか確認してください。参考として以下にこのページの削除記録を表示しています:",
 'deleted-notice'                   => 'このページは削除されています。
 参考のため、このページの削除ログが以下に表示されています。',
 'deletelog-fulllog'                => '完全なログを表示',
@@ -871,14 +871,14 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'last'                   => '前の版',
 'page_first'             => '先頭',
 'page_last'              => '末尾',
-'histlegend'             => '差分を表示するには比較したい版のラジオボタンを選択し、エンターキーを押すか、ページ下部のボタンを押します。<br />
-凡例:（最新版）= 最新版との比較、（前の版）= 直前の版との比較、{{int:minoreditletter}} = 細部の編集',
+'histlegend'             => "差分を表示するには比較したい版のラジオボタンを選択し、エンターキーを押すか、下部のボタンを押します。<br />
+凡例: '''({{int:cur}})''' = 最新版との比較、'''({{int:last}})''' = 直前の版との比較、'''{{int:minoreditletter}}''' = 細部の編集",
 'history-fieldset-title' => '履歴の検索',
 'deletedrev'             => '[削除済み]',
 'histfirst'              => '最古',
 'histlast'               => '最新',
-'historysize'            => '（$1 バイト）',
-'historyempty'           => '（空です）',
+'historysize'            => '($1 バイト)',
+'historyempty'           => '(空)',
 
 # Revision feed
 'history-feed-title'          => '変更履歴',
@@ -1050,7 +1050,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'notextmatches'                    => 'ページ内本文とは一致しませんでした',
 'prevn'                            => '前 $1',
 'nextn'                            => '次 $1',
-'viewprevnext'                     => '（$1）（$2）（$3）を表示',
+'viewprevnext'                     => '($1) ($2) ($3) を表示',
 'searchmenu-legend'                => '検索オプション',
 'searchmenu-exists'                => "'''このウィキには「[[$1]]」というタイトルのページがあります'''",
 'searchmenu-new'                   => "'''このウィキでページ\"[[:\$1|\$1]]\"を新規作成する'''",
@@ -1080,7 +1080,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'search-mwsuggest-enabled'         => '検索候補を表示',
 'search-mwsuggest-disabled'        => '検索候補を表示しない',
 'search-relatedarticle'            => '関連',
-'mwsuggest-disable'                => 'AJAX による検索語候補の表示を無効にする',
+'mwsuggest-disable'                => 'AJAXによる検索候補の提示を無効にする',
 'searchrelated'                    => '関連',
 'searchall'                        => 'all',
 'showingresults'                   => '<b>$2</b> 件目から <b>$1</b> 件を表示しています。',
@@ -1255,7 +1255,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'right-markbotedits'         => 'ロールバックをボットの編集として印づけ',
 'right-noratelimit'          => '速度制限を受けない',
 'right-import'               => '他のウィキからのページのインポート',
-'right-importupload'         => 'ファイルのアップロードからのページのインポート',
+'right-importupload'         => 'ファイルアップロードからのページのインポート',
 'right-patrol'               => '他人の編集をパトロール済みとして印づけ',
 'right-autopatrol'           => '自分の編集をパトロール済みとして自動的に印する',
 'right-patrolmarks'          => '最近更新したページのパトロールマークの閲覧',
@@ -1371,6 +1371,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'filename'                    => 'ファイル名',
 'filedesc'                    => 'ファイルの概要',
 'fileuploadsummary'           => 'ファイルの概要:',
+'filereuploadsummary'         => 'ファイルの変更:',
 'filestatus'                  => '著作権状態:',
 'filesource'                  => 'ファイルの出典:',
 'uploadedfiles'               => 'アップロードされたファイル',
@@ -1453,7 +1454,7 @@ PICT # misc.
 
 'license'            => 'ライセンス:',
 'nolicense'          => 'ライセンス情報を選択してください:',
-'license-nopreview'  => '（プレビューはありません）',
+'license-nopreview'  => '(プレビューはありません)',
 'upload_source_url'  => '（インターネット上のURL）',
 'upload_source_file' => '（あなたのコンピューター上のファイル）',
 
@@ -2021,7 +2022,7 @@ $NEWPAGE
 'whatlinkshere-hidetrans'  => 'テンプレート呼出を$1',
 'whatlinkshere-hidelinks'  => 'リンクを$1',
 'whatlinkshere-hideimages' => 'ファイル呼び出しを$1',
-'whatlinkshere-filters'    => 'フィルタ',
+'whatlinkshere-filters'    => '絞り込み',
 
 # Block/unblock
 'blockip'                         => '投稿ブロック',
@@ -2029,7 +2030,7 @@ $NEWPAGE
 'blockiptext'                     => '指定した利用者やIPアドレスからの投稿をブロックすることができます。',
 'ipaddress'                       => 'IPアドレス',
 'ipadressorusername'              => '利用者名 / IPアドレス',
-'ipbexpiry'                       => '期間',
+'ipbexpiry'                       => '期間:',
 'ipbreason'                       => '理由:',
 'ipbreasonotherlist'              => 'その他',
 'ipbreason-dropdown'              => '*よくあるブロック理由
@@ -2473,9 +2474,9 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'newimages'             => '新規ファイルギャラリー',
 'imagelisttext'         => "'''$1''' 個のファイルを $2 に表示しています",
 'newimages-summary'     => 'この特別ページでは最近、アップロードされたファイルを表示します。',
-'newimages-legend'      => 'フィルター',
-'newimages-label'       => 'ファイル名 (もしくはその一部) が:',
-'showhidebots'          => '（ボットを$1）',
+'newimages-legend'      => '絞り込み',
+'newimages-label'       => 'ファイル名 (もしくはその一部):',
+'showhidebots'          => '(ボットを$1)',
 'noimages'              => '画像がありません。',
 'ilsubmit'              => '検索',
 'bydate'                => '日付順',

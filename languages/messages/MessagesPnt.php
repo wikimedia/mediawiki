@@ -330,7 +330,7 @@ $messages = array(
 'loginerror'                 => 'Σφάλμα εγγραφής',
 'noname'                     => "'Κ έβαλατε καλόν όνεμαν χρήστονος.",
 'loginsuccesstitle'          => "Έντον τ' εσέβεμαν",
-'loginsuccess'               => "'''Εσήβετεν σο {{SITENAME}} ους \"\$1\".'''",
+'loginsuccess'               => "'''Εσήβετεν σο {{SITENAME}} με τ'όνεμαν \"\$1\".'''",
 'nosuchuser'                 => 'Αδά \'κ εχ\' χρήστεν με τ\' όνεμαν "$1".
 Το γράψιμον ωρία γιά [[Special:UserLogin/signup|ποίσον καινούρεον λογαρίαν]].',
 'nosuchusershort'            => 'Αδά \'κ εχ\' χρήστεν με τ\' όνομα "<nowiki>$1</nowiki>".

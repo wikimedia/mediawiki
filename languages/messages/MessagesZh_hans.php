@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简化字)‬)
+/** Simplified Chinese (‪中文(简体)‬)
  *
  * @ingroup Language
  * @file
@@ -856,19 +856,19 @@ $2',
 尝试[[Special:Search|搜索本站]]获得相关的新建页面。',
 
 # Revision deletion
-'rev-deleted-comment'         => '(注释已移除)',
-'rev-deleted-user'            => '(用户名已移除)',
-'rev-deleted-event'           => '(日志动作已移除)',
-'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">该页面修订已经被从公共文档中移除。
+'rev-deleted-comment'            => '(注释已移除)',
+'rev-deleted-user'               => '(用户名已移除)',
+'rev-deleted-event'              => '(日志动作已移除)',
+'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">该页面修订已经被从公共文档中移除。
 在[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 删除日志]中您可能会查看到详细的信息。</div>',
-'rev-deleted-text-view'       => "<div class='mw-warning plainlinks'>
+'rev-deleted-text-view'          => "<div class='mw-warning plainlinks'>
 该页面修订已经被从公共文档中移除。作为{{SITENAME}}的管理员，您可以查看它；
 在[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} 删除日志]中您可能会查看到详细的信息。
 </div>",
-'rev-delundel'                => '显示/隐藏',
-'revisiondelete'              => '删除/恢复删除修订',
-'revdelete-nooldid-title'     => '无效的目标修订',
-'revdelete-nooldid-text'      => '您尚未指定一个目标修订去进行这个功能、
+'rev-delundel'                   => '显示/隐藏',
+'revisiondelete'                 => '删除/恢复删除修订',
+'revdelete-nooldid-title'        => '无效的目标修订',
+'revdelete-nooldid-text'         => '您尚未指定一个目标修订去进行这个功能、
 所指定的修订不存在，或者您尝试去隐藏现时的修订。',
 'revdelete-nologtype-title'      => '没有给出日志类型',
 'revdelete-nologtype-text'       => '您尚未指定一种日志类型去做这个动作。',
@@ -876,38 +876,38 @@ $2',
 'revdelete-toomanytargets-text'  => '您指定了过多的目标去做这个动作。',
 'revdelete-nologid-title'        => '无效的日志项目',
 'revdelete-nologid-text'         => '您尚未指定一个目标日志项目去进行这个动作或指定的项目不存在。',
-'revdelete-selected'          => "'''选取'''$1'''的$2次修订:'''",
-'logdelete-selected'          => "'''选取'''$1'''的日志项目:'''",
-'revdelete-text'              => "'''删除的修订仍将显示在页面历史中, 但它们的文本内容已不能被公众访问。'''
+'revdelete-selected'             => "'''选取'''$1'''的$2次修订:'''",
+'logdelete-selected'             => "'''选取'''$1'''的日志项目:'''",
+'revdelete-text'                 => "'''删除的修订仍将显示在页面历史中, 但它们的文本内容已不能被公众访问。'''
 
 在{{SITENAME}}的其他管理员将仍能访问隐藏的内容并通过与此相同的界面恢复删除，除非站点工作者进行了一些附加的限制。",
-'revdelete-legend'            => '设置可见性之限制',
-'revdelete-hide-text'         => '隐藏修订文本',
-'revdelete-hide-name'         => '隐藏动作和目标',
-'revdelete-hide-comment'      => '隐藏编辑说明',
-'revdelete-hide-user'         => '隐藏编辑者的用户名/IP',
-'revdelete-hide-restricted'   => '将此限制同样应用于管理员同时锁定这个界面',
-'revdelete-suppress'          => '同时废止由操作员以及其他用户的资料',
-'revdelete-hide-image'        => '隐藏文件内容',
-'revdelete-unsuppress'        => '在已恢复的修订中移除限制',
-'revdelete-log'               => '日志注释:',
-'revdelete-submit'            => '应用于选中的修订',
-'revdelete-logentry'          => '[[$1]]的修订可见性已更改',
-'logdelete-logentry'          => '[[$1]]的事件可见性已更改',
-'revdelete-success'           => "'''修订的可见性已经成功设置。'''",
-'logdelete-success'           => "'''事件的可见性已经成功设置。'''",
-'revdel-restore'              => '更改可见性',
-'pagehist'                    => '页面历史',
-'deletedhist'                 => '已删除之历史',
-'revdelete-content'           => '内容',
-'revdelete-summary'           => '编辑摘要',
-'revdelete-uname'             => '用户名',
-'revdelete-restricted'        => '已应用限制至操作员',
-'revdelete-unrestricted'      => '已移除对于操作员的限制',
-'revdelete-hid'               => '隐藏 $1',
-'revdelete-unhid'             => '不隐藏 $1',
-'revdelete-log-message'       => '$1的$2次修订',
-'logdelete-log-message'       => '$1的$2项事件',
+'revdelete-legend'               => '设置可见性之限制',
+'revdelete-hide-text'            => '隐藏修订文本',
+'revdelete-hide-name'            => '隐藏动作和目标',
+'revdelete-hide-comment'         => '隐藏编辑说明',
+'revdelete-hide-user'            => '隐藏编辑者的用户名/IP',
+'revdelete-hide-restricted'      => '将此限制同样应用于管理员同时锁定这个界面',
+'revdelete-suppress'             => '同时废止由操作员以及其他用户的资料',
+'revdelete-hide-image'           => '隐藏文件内容',
+'revdelete-unsuppress'           => '在已恢复的修订中移除限制',
+'revdelete-log'                  => '日志注释:',
+'revdelete-submit'               => '应用于选中的修订',
+'revdelete-logentry'             => '[[$1]]的修订可见性已更改',
+'logdelete-logentry'             => '[[$1]]的事件可见性已更改',
+'revdelete-success'              => "'''修订的可见性已经成功设置。'''",
+'logdelete-success'              => "'''事件的可见性已经成功设置。'''",
+'revdel-restore'                 => '更改可见性',
+'pagehist'                       => '页面历史',
+'deletedhist'                    => '已删除之历史',
+'revdelete-content'              => '内容',
+'revdelete-summary'              => '编辑摘要',
+'revdelete-uname'                => '用户名',
+'revdelete-restricted'           => '已应用限制至操作员',
+'revdelete-unrestricted'         => '已移除对于操作员的限制',
+'revdelete-hid'                  => '隐藏 $1',
+'revdelete-unhid'                => '不隐藏 $1',
+'revdelete-log-message'          => '$1的$2次修订',
+'logdelete-log-message'          => '$1的$2项事件',
 
 # Suppression log
 'suppressionlog'     => '废止日志',
