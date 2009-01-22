@@ -245,6 +245,7 @@ class ModernTemplate extends QuickTemplate {
 
 	/*************************************************************************************************/
 	function searchBox() {
+		global $wgUseTwoButtonsSearchForm;
 ?>
 	<!-- search -->
 	<div id="p-search" class="portlet">
@@ -254,8 +255,11 @@ class ModernTemplate extends QuickTemplate {
 				<input id="searchInput" name="search" type="text"<?php echo $this->skin->tooltipAndAccesskey('search');
 					if( isset( $this->data['search'] ) ) {
 						?> value="<?php $this->text('search') ?>"<?php } ?> />
-				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="<?php $this->msg('searcharticle') ?>"<?php echo $this->skin->tooltipAndAccesskey( 'search-go' ); ?> />&nbsp;
-				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="<?php $this->msg('searchbutton') ?>"<?php echo $this->skin->tooltipAndAccesskey( 'search-fulltext' ); ?> />
+				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="<?php $this->msg('searcharticle') ?>"<?php echo $this->skin->tooltipAndAccesskey( 'search-go' ); ?> /><?php if ($wgUseTwoButtonsSearchForm) { ?>&nbsp;
+				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="<?php $this->msg('searchbutton') ?>"<?php echo $this->skin->tooltipAndAccesskey( 'search-fulltext' ); ?> /><?php } else { ?>
+
+				<div><a href="<?php $this->text('searchaction') ?>" rel="search"><?php $this->msg('powersearch-legend') ?></a></div><?php } ?>
+
 			</div></form>
 		</div><!-- pBody -->
 	</div><!-- portlet -->

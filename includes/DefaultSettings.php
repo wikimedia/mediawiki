@@ -1455,7 +1455,7 @@ $wgCacheEpoch = '20030516000000';
  * to ensure that client-side caches don't keep obsolete copies of global
  * styles.
  */
-$wgStyleVersion = '198';
+$wgStyleVersion = '199';
 
 
 # Server-side caching:
@@ -3657,10 +3657,10 @@ $wgPasswordAttemptThrottle = array( 'count' => 5, 'seconds' => 300 );
 $wgEdititis = false;
 
 /**
-* Enable the UniversalEditButton for browsers that support it
-* (currently only Firefox with an extension)
-* See http://universaleditbutton.org for more background information
-*/
+ * Enable the UniversalEditButton for browsers that support it
+ * (currently only Firefox with an extension)
+ * See http://universaleditbutton.org for more background information
+ */
 $wgUniversalEditButton = true;
 
 /**
@@ -3669,3 +3669,10 @@ $wgUniversalEditButton = true;
  * and the functionality will be enabled universally.
  */
 $wgEnforceHtmlIds = true;
+
+/**
+ * Search form behavior
+ * true = use Go & Search buttons
+ * false = use Go button & Advanced search link
+ */
+$wgUseTwoButtonsSearchForm = true;
