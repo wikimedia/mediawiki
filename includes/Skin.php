@@ -1566,8 +1566,8 @@ END;
 	function historyLink() {
 		global $wgTitle;
 
-		return $this->makeKnownLinkObj( $wgTitle,
-		  wfMsg( 'history' ), 'action=history' );
+		return $this->link( $wgTitle, wfMsg( 'history' ),
+			array( 'rel' => 'archives' ), array( 'action' => 'history' ) );
 	}
 
 	function whatLinksHere() {
