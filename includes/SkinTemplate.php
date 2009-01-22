@@ -710,7 +710,8 @@ class SkinTemplate extends Skin {
 				$content_actions['history'] = array(
 					'class' => ($action == 'history') ? 'selected' : false,
 					'text' => wfMsg('history_short'),
-					'href' => $this->mTitle->getLocalUrl( 'action=history')
+					'href' => $this->mTitle->getLocalUrl( 'action=history' ),
+					'rel' => 'archives',
 				);
 
 				if( $wgUser->isAllowed('delete') ) {

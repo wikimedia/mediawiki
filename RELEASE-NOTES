@@ -51,6 +51,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11644) Add $wgMaxRedirects variable to control how many redirects are recursed
   through until the "destination" page is reached.
 * Add $wgInvalidRedirectTargets variable to prevent redirects to certain special pages.
+* Use HTML5 rel attributes for some links, where appropriate
   
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.

@@ -304,20 +304,18 @@ abstract class IndexPager implements Pager {
 		if ( $query === null ) {
 			return $text;
 		}
-		if( $type == 'prev' || $type == 'next' ) {
-			$attrs = "rel=\"$type\"";
-		} elseif( $type == 'first' ) {
-			$attrs = "rel=\"start\"";
-		} else {
-			# HTML 4 has no rel="end" . . .
-			$attrs = '';
+
+		$attrs = array();
+		if( in_array( $type, array( 'first', 'prev', 'next', 'last' ) ) ) {
+			# HTML5 rel attributes
+			$attrs['rel'] = $type;
 		}
 
 		if( $type ) {
-			$attrs .= " class=\"mw-{$type}link\"" ;
+			$attrs['class'] = "mw-{$type}link";
 		}
-		return $this->getSkin()->makeKnownLinkObj( $this->getTitle(), $text,
-			wfArrayToCGI( $query, $this->getDefaultQuery() ), '', '', $attrs );
+		return $this->getSkin()->link( $this->getTitle(), $text,
+			$attrs, $query + $this->getDefaultQuery(), 'known' );
 	}
 
 	/**
