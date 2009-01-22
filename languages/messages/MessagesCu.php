@@ -19,7 +19,7 @@ $linkPrefixExtension = true;
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Срѣ́дьства',
-	NS_SPECIAL          => 'Наро_чьна',
+	NS_SPECIAL          => 'Наро́чьна',
 	NS_TALK             => 'Бєсѣ́да',
 	NS_USER             => 'По́льꙃєватєл҄ь',
 	NS_USER_TALK        => 'По́льꙃєватєлꙗ_бєсѣ́да',

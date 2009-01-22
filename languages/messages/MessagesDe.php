@@ -296,6 +296,7 @@ $magicWords = array(
 	'noindex'               => array( '1', '__NICHT_INDIZIEREN__', '__NOINDEX__' ),
 	'numberingroup'         => array( '1', 'BENUTZER_IN_GRUPPE', 'NUMBERINGROUP', 'NUMINGROUP' ),
 	'staticredirect'        => array( '1', '__PERMANENTE_WEITERLEITUNG__', '__STATICREDIRECT__' ),
+	'protectionlevel'       => array( '1', 'SCHUTZSTATUS', 'PROTECTIONLEVEL' ),
 );
 
 $imageFiles = array(
