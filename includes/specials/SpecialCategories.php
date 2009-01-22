@@ -61,6 +61,7 @@ class CategoryPager extends AlphabeticPager {
 	function getDefaultQuery() {
 		parent::getDefaultQuery();
 		unset( $this->mDefaultQuery['from'] );
+		return $this->mDefaultQuery;
 	}
 #	protected function getOrderTypeMessages() {
 #		return array( 'abc' => 'special-categories-sort-abc',
