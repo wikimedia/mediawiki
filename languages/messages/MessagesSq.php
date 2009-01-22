@@ -27,14 +27,15 @@ $namespaceNames = array(
 	NS_TEMPLATE_TALK    => 'Stampa_diskutim',
 	NS_HELP             => 'Ndihmë',
 	NS_HELP_TALK        => 'Ndihmë_diskutim',
-	NS_CATEGORY         => 'Kategori',
-	NS_CATEGORY_TALK    => 'Kategori_Diskutim',
+	NS_CATEGORY         => 'Kategoria',
+	NS_CATEGORY_TALK    => 'Kategoria_diskutim',
 );
 
-# Compatbility with alt names
 $namespaceAliases = array(
 	'Perdoruesi' => NS_USER,
 	'Perdoruesi_diskutim' => NS_USER_TALK,
+	'Kategori' => NS_CATEGORY,
+	'Kategori_Diskutim' => NS_CATEGORY_TALK,
 );
 
 $specialPageAliases = array(
