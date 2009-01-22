@@ -715,7 +715,10 @@ input.searchButton {
 	padding: .5em .4em .4em .4em;
 	text-align: center;
 }
-
+#p-search #searchform div div {
+	margin-top: .4em;
+	font-size: 95%;
+}
 /*
 ** the personal toolbar
 */

@@ -1140,16 +1140,22 @@ END;
 	}
 
 	function searchForm() {
-		global $wgRequest;
+		global $wgRequest, $wgUseTwoButtonsSearchForm;
 		$search = $wgRequest->getText( 'search' );
 
 		$s = '<form id="searchform'.$this->searchboxes.'" name="search" class="inline" method="post" action="'
 		  . $this->escapeSearchLink() . "\">\n"
 		  . '<input type="text" id="searchInput'.$this->searchboxes.'" name="search" size="19" value="'
 		  . htmlspecialchars(substr($search,0,256)) . "\" />\n"
-		  . '<input type="submit" name="go" value="' . wfMsg ('searcharticle') . '" />&nbsp;'
-		  . '<input type="submit" name="fulltext" value="' . wfMsg ('searchbutton') . "\" />\n</form>";
-
+		  . '<input type="submit" name="go" value="' . wfMsg ('searcharticle') . '" />';
+		
+		if ($wgUseTwoButtonsSearchForm)
+			$s .= '&nbsp;<input type="submit" name="fulltext" value="' . wfMsg ('searchbutton') . "\" />\n";
+		else
+			$s .= ' <a href="' . $this->escapeSearchLink() . '" rel="search">' . wfMsg ('powersearch-legend') . "</a>\n";
+		
+		$s .= '</form>';
+		
 		// Ensure unique id's for search boxes made after the first
 		$this->searchboxes = $this->searchboxes == '' ? 2 : $this->searchboxes + 1;
 		

@@ -22,6 +22,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 * Added $wgNewPasswordExpiry, to specify an expiry time (in seconds) to
   temporary passwords
+* Added $wgUseTwoButtonsSearchForm to choose the Search form behavior/look
 
 === New features in 1.15 ===
 
@@ -48,20 +49,23 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bugs 16957/16969) Add show/hide to preferences for RC patrol options on
   specialpages
 * (bug 11443) Auto-noindex user/user talk pages for blocked user
-* (bug 11644) Add $wgMaxRedirects variable to control how many redirects are recursed
-  through until the "destination" page is reached.
-* Add $wgInvalidRedirectTargets variable to prevent redirects to certain special pages.
+* (bug 11644) Add $wgMaxRedirects variable to control how many redirects are
+  recursed through until the "destination" page is reached.
+* Add $wgInvalidRedirectTargets variable to prevent redirects to certain
+  special pages.
 * Use HTML5 rel attributes for some links, where appropriate
+* Added optional alternative Search form look - Go button & Advanced search
+  link instead of Go button & Search button
   
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
-* (bug 17000) Special:RevisionDelete now checks if the database is locked before
-  trying to delete the edit.
+* (bug 17000) Special:RevisionDelete now checks if the database is locked
+  before trying to delete the edit.
 * (bug 16852) padleft and padright now handle multibyte characters correctly
 * (bug 17010) maintenance/namespaceDupes.php now add the suffix recursively if
   the destination page exists
-* (bug 17035) Special:Upload now fails gracefully if PHP's file_uploads has been
-  disabled
+* (bug 17035) Special:Upload now fails gracefully if PHP's file_uploads has
+  been disabled
 * Fixing the caching issue by using -{T|xxx}- syntax (only applies on wiki with
   LanguageConverter class)
 * Improving the efficiency by using -{A|xxx}- syntax (only applies on wiki with
@@ -70,8 +74,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11527) Diff on page with one revision shows "Next" link to same diff
 * (bug 15936) New page's patrol button should always be visible
 * (bug 8065) Fix summary forcing for new pages
-* (bug 10569) redirects to Special:Mypage and Special:Mytalk are no longer allowed
-  by default. Change $wgInvalidRedirectTargets to re-enable.
+* (bug 10569) redirects to Special:Mypage and Special:Mytalk are no longer
+  allowed by default. Change $wgInvalidRedirectTargets to re-enable.
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
