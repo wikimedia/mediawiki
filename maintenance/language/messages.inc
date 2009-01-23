@@ -10,6 +10,7 @@
 $wgMessageStructure = array(
 	'sidebar' => array(
 		'sidebar',
+		'language-link-title',
 	),
 	'toggles' => array(
 		'tog-underline',
