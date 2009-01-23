@@ -116,12 +116,6 @@ table.filehistory th {
 	padding: 0.1em 1em 0.3em 0;
 }
 
-/* feed links */
-#feed-atom, #feed-rss {
-	background: none;
-	padding-left: 0;
-}
-
 #p-cactions li {
 	float: right;
 }

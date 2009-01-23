@@ -175,6 +175,12 @@ input.searchButton {
     padding: 0.5em 0.4em 0.4em 0.4em;
 }
 
+/* feed links */
+a.feedlink {
+	background: url("../common/images/feed-icon.png") center left no-repeat;
+	padding-left: 16px;
+}
+
 textarea {
   width: 100%;
 }

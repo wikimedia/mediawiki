@@ -71,6 +71,12 @@ div.magnify,
 	right: 0;
 }
 
+/* feed links */
+a.feedlink {
+	background: none;
+	padding-left: 0;
+}
+
 /* Fix margins for non-css2 browsers */
 /* top right bottom left */
 
