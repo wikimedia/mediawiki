@@ -1039,7 +1039,7 @@ Użycie linków nawigacyjnych kasuje wybór w kolumnie.',
 'compareselectedversions' => 'porównaj wybrane wersje',
 'visualcomparison'        => 'Porównanie treści',
 'wikicodecomparison'      => 'Porównanie wikitekstu',
-'editundo'                => 'anuluj zmiany',
+'editundo'                => 'anuluj edycję',
 'diff-multi'              => '(Nie pokazano $1 {{PLURAL:$1|wersji|wersji}} pomiędzy niniejszymi.)',
 'diff-movedto'            => 'przeniesiono do $1',
 'diff-styleadded'         => 'dodano styl: $1',
@@ -2476,7 +2476,7 @@ Wszystkie operacje importu transwiki są odnotowywane w [[Special:Log/import|rej
 'tooltip-recreate'                => 'Utwórz stronę pomimo jej wcześniejszego usunięcia.',
 'tooltip-upload'                  => 'Rozpoczęcie przesyłania',
 'tooltip-rollback'                => '"cofnij" wycofuje jednym kliknięciem zmianę(-y) tej strony dokonane przez ostatniego edytującego.',
-'tooltip-undo'                    => '„anuluj zmiany” wycofuje tę zmianę i otwiera okno edycji w trybie podglądu.
+'tooltip-undo'                    => '„anuluj edycję” wycofuje tę edycję i otwiera okno edycji w trybie podglądu.
 Pozwala na wpisanie powodu w opisie zmian.',
 
 # Stylesheets
@@ -3126,5 +3126,8 @@ Wpisz nazwę pliku z pominięciem prefiksu „{{ns:file}}:”.',
 #Linie zaczynające się od # są traktowane jako komentarze
 
 #Put all regex fragments above this line. Leave this line exactly as it is</pre>',
+
+# Language links
+'language-link-title' => 'wersja $1',
 
 );

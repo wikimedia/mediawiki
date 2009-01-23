@@ -1364,6 +1364,7 @@ Vide le [[Special:NewFiles|galeria de nove files]] pro un presentation plus visu
 'filename'                    => 'Nomine del file',
 'filedesc'                    => 'Summario',
 'fileuploadsummary'           => 'Summario:',
+'filereuploadsummary'         => 'Modificationes al file:',
 'filestatus'                  => 'Stato de copyright:',
 'filesource'                  => 'Origine:',
 'uploadedfiles'               => 'Files cargate',

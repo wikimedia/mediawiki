@@ -1362,6 +1362,7 @@ Vizuálny prehľad nájdete v [[Special:NewFiles|galérii novo nahraných súbor
 'filename'                    => 'Názov súboru',
 'filedesc'                    => 'Opis súboru',
 'fileuploadsummary'           => 'Zhrnutie:',
+'filereuploadsummary'         => 'Zmeny súboru:',
 'filestatus'                  => 'Stav autorských práv:',
 'filesource'                  => 'Zdroj:',
 'uploadedfiles'               => 'Nahrané súbory',
@@ -3002,5 +3003,8 @@ Zadajte názov súboru bez predpony „{{ns:file}}:“.',
 #Riadky, ktoré začínajú znakom # sa považujú za komentáre
 
 #Napíšte všetky časti reg. výrazov nad tento riadok. Nechajte tento riadok presne tak, ako je</pre>',
+
+# Language links
+'language-link-title' => 'verzia v jazyku $1',
 
 );

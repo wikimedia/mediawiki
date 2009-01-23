@@ -926,6 +926,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'revdelete-nologtype-title'      => '기록의 종류가 제시되지 않았습니다.',
 'revdelete-nologtype-text'       => '당신은 이 명령을 수행할 기록의 종류를 제시하지 않았습니다.',
 'revdelete-toomanytargets-title' => '대상이 너무 많습니다.',
+'revdelete-toomanytargets-text'  => '당신은 명령을 수행할 대상을 너무 많이 입력하였습니다.',
 'revdelete-nologid-title'        => '잘못된 기록',
 'revdelete-selected'             => "'''[[:$1]]의 선택된 판:'''",
 'logdelete-selected'             => "'''선택한 로그:'''",
@@ -1029,6 +1030,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'diff-a'                  => "'''링크'''",
 'diff-i'                  => "'''기울임꼴'''",
 'diff-b'                  => "'''굵은 글씨'''",
+'diff-em'                 => "'''강조'''",
 'diff-font'               => "'''글꼴'''",
 'diff-big'                => "'''큰 글씨'''",
 'diff-del'                => "'''삭제됨'''",
@@ -2496,6 +2498,7 @@ Variants for Chinese language
 'exif-orientation'                 => '방향',
 'exif-xresolution'                 => '수평 해상도',
 'exif-yresolution'                 => '수직 해상도',
+'exif-resolutionunit'              => 'X, Y방향 해상도 단위',
 'exif-jpeginterchangeformatlength' => 'JPEG 데이터 바이트 수',
 'exif-datetime'                    => '파일이 변경된 날짜와 시간',
 'exif-imagedescription'            => '그림 제목',
@@ -2627,6 +2630,10 @@ Variants for Chinese language
 'exif-scenecapturetype-3' => '야경 사진',
 
 'exif-gaincontrol-0' => '없음',
+'exif-gaincontrol-1' => '약하게 증가',
+'exif-gaincontrol-2' => '강하게 증가',
+'exif-gaincontrol-3' => '약하게 감소',
+'exif-gaincontrol-4' => '강하게 감소',
 
 'exif-contrast-0' => '보통',
 
@@ -2729,6 +2736,7 @@ $5
 'imgmultipageprev' => '← 이전 문서',
 'imgmultipagenext' => '다음 문서 →',
 'imgmultigo'       => '이동',
+'imgmultigoto'     => '$1 문서로 가기',
 
 # Table pager
 'table_pager_next'         => '다음 문서',
@@ -2843,5 +2851,8 @@ $5
 # Special:BlankPage
 'blankpage'              => '빈 문서',
 'intentionallyblankpage' => '이 문서는 고의적으로 빈 채 방치되어 있습니다.',
+
+# Language links
+'language-link-title' => '$1 버전',
 
 );

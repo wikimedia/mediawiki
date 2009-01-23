@@ -212,6 +212,7 @@ $messages = array(
 'aboutsite'            => 'دەربارەی {{SITENAME}}',
 'copyrightpage'        => '{{ns:project}}:مافەکانی لەبەرگرتنەوە',
 'currentevents-url'    => 'Project:ڕووداوە بەردەوامەکان',
+'disclaimers'          => 'نالێ‌بەرپرس‌بوونی‌یەکان',
 'edithelp'             => 'ڕێنمایی بۆ دەستکاری کردن',
 'edithelppage'         => 'Help:دەستکاری کردن',
 'faq'                  => 'پرسیاری هه‌میشه‌ دووباره‌(پهد(',
@@ -374,6 +375,8 @@ $messages = array(
 'mypreferences' => 'ھەڵبژاردەکانی من',
 'skin-preview'  => 'پێش بینین',
 
+'group-user-member' => 'بەکارھێنەر',
+
 # Recent changes
 'recentchanges'   => 'دوایین گۆڕانکارییەکان',
 'rcnote'          => "لە خوارەوەدا {{PLURAL:$1|'''۱''' گۆڕانکاری |دوایین '''$1''' گۆڕانکارییەکان}} لە دوایین {{PLURAL:$2|ڕۆژ|'''$2''' ڕۆژەوە}} ، تا $5، $4 دەبینن.",
@@ -419,6 +422,17 @@ $messages = array(
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'چاودێڕی...',
 
+# Delete
+'deletepage'      => 'پەڕە بسڕەوەو',
+'confirm'         => 'پشتدار بکەرەوە',
+'excontent'       => "ناوەڕۆک ئەمە بو: '$1'",
+'excontentauthor' => "ناوەڕۆک ئەمە بو: '$1'(و تەنھا بەشداریکەر  '[[Special:Contributions/$2|$2]]' بوو)",
+'exbeforeblank'   => "ناوەڕۆک بەر لە بەتاڵ کردنەوە ئەمە بوو: '$1'",
+'exblank'         => 'پەڕە خاڵی بوو',
+'delete-confirm'  => 'سڕینەوەی "$1"',
+'delete-legend'   => 'سڕینەوە',
+'historywarning'  => 'ئاگاداری: ئەم پەڕە کە ئەتەوێ بیسڕیتەوە مێژووی ھەیە',
+
 # Rollback
 'rollbacklink' => 'گەڕاندنەوە',
 
@@ -441,7 +455,34 @@ $messages = array(
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'په‌ڕه‌ی تایبه‌تی خۆم',
+'tooltip-n-mainpage'              => 'دیتنی دەستپێک',
+'tooltip-n-portal'                => 'زانیاری لە سەر {{SITENAME}}، ئێوە چی ئەتوانن بکەن، ھەر شتێک لە کوێ پەیدا دەبێ',
+'tooltip-n-recentchanges'         => 'لیستی دوایین گۆڕانکارییەکان لەم ویکییەدا',
+'tooltip-n-randompage'            => 'پەڕەیەک بە ھەڵکەوت نیشان بدە',
+'tooltip-n-help'                  => 'شوێنێک بۆ پرسیارەکان.',
+'tooltip-t-whatlinkshere'         => 'لیستی ھەموو پەڕەیەک کە بەگرەوە گرێ دراون.',
+'tooltip-t-recentchangeslinked'   => 'دوایین گۆڕانکارییەکان لەو پەڕانە کە بەگرەوە گرێ دراون',
+'tooltip-feed-rss'                => 'RSS بۆ ئەم گۆڕانکارییەکانی ئەم پەڕە',
+'tooltip-feed-atom'               => 'Atom feed بۆ ئەم گۆڕانکارییەکانی ئەم پەڕە',
+'tooltip-t-contributions'         => 'بینینی بەشدارییەکانی ئەم بەکارھێنەرە',
+'tooltip-t-emailuser'             => 'ئیمەیلێک بنێرە بۆ ئەم بەکارھێنەرە',
+'tooltip-t-upload'                => 'پەڕگەیەک (فایل) بار بکە',
+'tooltip-t-specialpages'          => 'لیستی ھەموو پەڕە تایبەتەکان',
+'tooltip-t-print'                 => 'وەشانی ئامادە بۆ چاپی ئەم پەڕە',
+'tooltip-t-permalink'             => 'گرێدەری ھەمیشەیی بۆ ئەم وەشنەی ئەم پەڕەیە',
+'tooltip-ca-nstab-main'           => 'بینینی پەڕەی ناوەڕۆک',
 'tooltip-ca-nstab-user'           => 'پەڕەی بەکارھێنەر تەماشا بکە',
+'tooltip-ca-nstab-media'          => 'پەڕەی میدیا چاو لێ بکە',
+'tooltip-ca-nstab-special'        => 'ئەمە پەڕەیەکی تایبەتە، ناتوانی ئەم پەڕە خۆی دەستکاری بکەیت',
+'tooltip-ca-nstab-project'        => 'بینینی پەڕەی پرۆژە',
+'tooltip-ca-nstab-image'          => 'بینینی پەڕەی پەڕگە',
+'tooltip-ca-nstab-mediawiki'      => 'بینینی پەیامی سیستەم',
+'tooltip-ca-nstab-template'       => 'بینینی شابلۆنەکە',
+'tooltip-ca-nstab-help'           => 'بینینی پەڕەی رێنمایی',
+'tooltip-ca-nstab-category'       => 'بینینی پەڕەی ھاوپۆلەکان',
+'tooltip-minoredit'               => 'ئەمە وەک گۆڕانکارییەکی بچووک دیاری بکە',
+'tooltip-save'                    => 'گۆڕانکارییەکانی خۆت پاشکەوت بکە',
+'tooltip-preview'                 => 'پێش بینینی گۆڕانکارییەکان، تکایە پێش پاشکەوت کردن ئەمە بەکار بھێنە',
 'tooltip-compareselectedversions' => 'جیاوازییەکانی دوو وەشانە دیاریکراوەی ئەم پەڕە ببینە.',
 
 # Skin names

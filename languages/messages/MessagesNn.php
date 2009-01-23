@@ -1395,6 +1395,7 @@ For å bruke ei fil på ei side, bruk ei slik lenkje:
 'filename'                    => 'Filnamn',
 'filedesc'                    => 'Skildring',
 'fileuploadsummary'           => 'Skildring:',
+'filereuploadsummary'         => 'Filendringar:',
 'filestatus'                  => 'Opphavsrettsstatus:',
 'filesource'                  => 'Kjelde:',
 'uploadedfiles'               => 'Filer som er opplasta',
@@ -2099,7 +2100,7 @@ Sjå [[Special:IPBlockList|blokkeringslista]] for alle blokkeringar.',
 'ipblocklist'                     => 'Blokkerte IP-adresser og brukarnamn',
 'ipblocklist-legend'              => 'Finn ein blokkert brukar',
 'ipblocklist-username'            => 'Brukarnamn eller IP-adresse:',
-'ipblocklist-sh-userblocks'       => '$1 blokkeringar av kontoen',
+'ipblocklist-sh-userblocks'       => '$1 blokkeringar av kontoar',
 'ipblocklist-sh-tempblocks'       => '$1 mellombelse blokkeringar',
 'ipblocklist-sh-addressblocks'    => '$1 blokkeringar av individuelle IP-adresser',
 'ipblocklist-submit'              => 'Søk',
@@ -2995,5 +2996,8 @@ Skriv inn filnamn utan «{{ns:file}}:»-prefikset.',
 #Linjer som byrjar med # vert rekna som kommentarar
 
 #Skriv alle fragment av regulære uttrykk over denne lina. La denne linja vere som ho er</pre>',
+
+# Language links
+'language-link-title' => '$1 versjon',
 
 );

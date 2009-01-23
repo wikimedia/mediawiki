@@ -1270,6 +1270,7 @@ Para maisama ang isang talaksan sa loob ng isang pahina, gumamit ng isang kawing
 'filename'                    => 'Pangalan ng talaksan',
 'filedesc'                    => 'Buod',
 'fileuploadsummary'           => 'Buod:',
+'filereuploadsummary'         => 'Mga pagbabago sa talaksan:',
 'filestatus'                  => 'Kalagayan ng karapang-ari:',
 'filesource'                  => 'Pinagmulan:',
 'uploadedfiles'               => 'Naikargang mga talaksan',

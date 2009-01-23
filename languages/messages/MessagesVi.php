@@ -1363,6 +1363,7 @@ Xem [[Special:NewFiles|trang trưng bày các tập tin mới]] để xem trực
 'filename'                    => 'Tên tập tin:',
 'filedesc'                    => 'Miêu tả:',
 'fileuploadsummary'           => 'Tóm lược:',
+'filereuploadsummary'         => 'Các thay đổi của tập tin:',
 'filestatus'                  => 'Bản quyền:',
 'filesource'                  => 'Nguồn:',
 'uploadedfiles'               => 'Tập tin đã tải',

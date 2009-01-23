@@ -1296,6 +1296,7 @@ Lueg au d [[Special:NewFiles|Galerii vu neije Dateie]] fir e visuälle Iberblick
 'filename'                    => 'Dateiname',
 'filedesc'                    => 'Bschryybig',
 'fileuploadsummary'           => 'Bschryybig/Quälle:',
+'filereuploadsummary'         => 'Dateiänderige:',
 'filestatus'                  => 'Urheberrächts-Status:',
 'filesource'                  => 'Quälle:',
 'uploadedfiles'               => 'Uffegladeni Dateie',
@@ -2856,5 +2857,8 @@ D Yygab muess ohni dr Zuesatz „{{ns:file}}:“ erfolge.',
 #E positive Verglyych fiert zue dr Aazeig vum Bild, suscht wird s Bild nume as Gleich aazeigt
 #Zyylete, wu mit eme # aafange, wäre as Kommentar behandlet
 #Fragmänt vu reguläre Usdrick noch däre Zyylete yytrage. Die Zyylete nit verändere</pre>',
+
+# Language links
+'language-link-title' => '$1 Version',
 
 );

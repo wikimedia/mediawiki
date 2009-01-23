@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Als-Holder
  * @author ChrisiPK
  * @author Church of emacs
  * @author Jimmy Collins <jimmy.collins@web.de>
@@ -20,6 +21,7 @@
  * @author Remember the dot
  * @author Revolus
  * @author Spacebirdy
+ * @author Srhat
  * @author Tim Bartel (avatar) <wikipedistik@computerkultur.org> small changes
  * @author UV
  * @author Umherirrender
@@ -2048,7 +2050,7 @@ Siehe die [[Special:ProtectedPages|Liste der geschützten Seiten]] für alle akt
 'protect-level-autoconfirmed' => 'Sperrung für nicht registrierte Benutzer',
 'protect-level-sysop'         => 'Nur Administratoren',
 'protect-summary-cascade'     => 'kaskadierend',
-'protect-expiring'            => 'bis $2, $3 Uhr (UTC)',
+'protect-expiring'            => 'bis $1 (UTC)',
 'protect-expiry-indefinite'   => 'unbeschränkt',
 'protect-cascade'             => 'Kaskadierende Sperre – alle in diese Seite eingebundenen Vorlagen werden ebenfalls gesperrt.',
 'protect-cantedit'            => 'Du kannst die Sperre dieser Seite nicht ändern, da du keine Berechtigung zum Bearbeiten der Seite hast.',
@@ -3151,5 +3153,8 @@ Die Eingabe muss ohne den Zusatz „{{ns:file}}:“ erfolgen.',
 #Ein positiver Vergleich führt zur Anzeige des Bildes, andernfalls wird das Bild nur als Link angezeigt
 #Zeilen, die mit einem # beginnen, werden als Kommentar behandelt
 #Fragmente regulärer Ausdrücke nach dieser Zeile eintragen. Diese Zeile nicht verändern</pre>',
+
+# Language links
+'language-link-title' => '$1 Version',
 
 );

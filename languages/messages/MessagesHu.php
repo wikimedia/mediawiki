@@ -926,7 +926,7 @@ Nem lett magyarázat csatolva.',
 Már létezik.',
 
 # Parser/template warnings
-'expensive-parserfunction-warning'        => 'Figyelem: ezen a lapon túl sok erőforásigényes értelmes sablon-hívás található.
+'expensive-parserfunction-warning'        => 'Figyelem: ezen a lapon túl sok erőforrásigényes értelmes sablon-hívás található.
 
 Kevesebb, mint {{PLURAL:$2|egy|$2}} kellene, jelenleg {{PLURAL:$1|egy|$1}} van.',
 'expensive-parserfunction-category'       => 'Túl sok bonyolult értelmes sablon-hívással rendelkező lapok',
@@ -1471,6 +1471,7 @@ Lásd még az [[Special:NewFiles|új fáljlok galériáját]]',
 'filename'                    => 'Fájlnév',
 'filedesc'                    => 'Összegzés',
 'fileuploadsummary'           => 'Összefoglaló:',
+'filereuploadsummary'         => 'Változtatások:',
 'filestatus'                  => 'Szerzői jogi állapot:',
 'filesource'                  => 'Forrás:',
 'uploadedfiles'               => 'Feltöltött fájlok',
@@ -3105,5 +3106,8 @@ Add meg a fájl nevét „{{ns:file}}:” előtag nélkül.',
 #A #-tel kezdődő sorok megjegyzésnek számítanak
 
 #A reguláris kifejezéseket ezen sor alá írd. Ezt a sort hagyd így, ahogy van.</pre>',
+
+# Language links
+'language-link-title' => 'Nyelv: $1',
 
 );
