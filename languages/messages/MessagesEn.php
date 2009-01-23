@@ -473,7 +473,7 @@ future releases. Also note that since each list value is wrapped in a unique
 XHTML id it should only appear once and include characters that are legal
 XHTML id names.
 */
-'sidebar' => '
+'sidebar'             => '
 * navigation
 ** mainpage|mainpage-description
 ** portal-url|portal
@@ -484,6 +484,7 @@ XHTML id names.
 * SEARCH
 * TOOLBOX
 * LANGUAGES', # do not translate or duplicate this message to other languages
+'language-link-title' => '$1 version',
 
 # User preference toggles
 'tog-underline'               => 'Underline links:',
@@ -3790,6 +3791,4 @@ Enter the filename without the "{{ns:file}}:" prefix.',
 #Lines beginning with # are treated as comments
 
 #Put all regex fragments above this line. Leave this line exactly as it is</pre>',
-
-'language-link-title' => '$1 version',
 );
