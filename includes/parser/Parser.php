@@ -1406,12 +1406,6 @@ class Parser
 
 			$url = Sanitizer::cleanUrl( $url );
 
-			if ( $this->mOptions->mExternalLinkTarget ) {
-				$attribs = array( 'target' => $this->mOptions->mExternalLinkTarget );
-			} else {
-				$attribs = array();
-			}
-
 			# Use the encoded URL
 			# This means that users can paste URLs directly into the text
 			# Funny characters like &ouml; aren't valid in URLs anyway
