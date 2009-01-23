@@ -23,6 +23,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added $wgNewPasswordExpiry, to specify an expiry time (in seconds) to
   temporary passwords
 * Added $wgUseTwoButtonsSearchForm to choose the Search form behavior/look
+* Added $wgNoFollowDomainExceptions to allow exempting particular domain names
+  from rel="nofollow" on external links
 
 === New features in 1.15 ===
 
