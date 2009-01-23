@@ -96,9 +96,11 @@ class DateFormatter
 	}
 
 	/**
-	 * @static
+	 * Get a DateFormatter object
+	 *
+	 * @return DateFormatter object
 	 */
-	function &getInstance() {
+	public static function &getInstance() {
 		global $wgMemc;
 		static $dateFormatter = false;
 		if ( !$dateFormatter ) {
@@ -112,8 +114,8 @@ class DateFormatter
 	}
 
 	/**
-	 * @param string $preference User preference
-	 * @param string $text Text to reformat
+	 * @param $preference String: User preference
+	 * @param $text String: Text to reformat
 	 */
 	function reformat( $preference, $text ) {
 		if ( isset( $this->preferences[$preference] ) ) {
