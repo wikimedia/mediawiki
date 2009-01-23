@@ -1130,7 +1130,7 @@ class Parser
 		if ( $text === false ) {
 			# Not an image, make a link
 			$text = $sk->makeExternalLink( $url, $wgContLang->markNoConversion($url), true, 'free', 
-				$this->getExternalLinkAttribs() );
+				$this->getExternalLinkAttribs( $url ) );
 			# Register it in the output object...
 			# Replace unnecessary URL escape codes with their equivalent characters
 			$pasteurized = self::replaceUnusualEscapes( $url );
@@ -1410,8 +1410,8 @@ class Parser
 			# This means that users can paste URLs directly into the text
 			# Funny characters like &ouml; aren't valid in URLs anyway
 			# This was changed in August 2004
-			$s .= $sk->makeExternalLink( $url, $text, false, $linktype, $this->getExternalLinkAttribs() ) 
-				. $dtrail . $trail;
+			$s .= $sk->makeExternalLink( $url, $text, false, $linktype,
+				$this->getExternalLinkAttribs( $url ) ) . $dtrail . $trail;
 
 			# Register link in the output object.
 			# Replace unnecessary URL escape codes with the referenced character
@@ -1424,12 +1424,36 @@ class Parser
 		return $s;
 	}
 
-	function getExternalLinkAttribs() {
+	/**
+	 * Get an associative array of additional HTML attributes appropriate for a
+	 * particular external link.  This currently may include rel => nofollow
+	 * (depending on configuration, namespace, and the URL's domain) and/or a
+	 * target attribute (depending on configuration).
+	 *
+	 * @param string $url Optional URL, to extract the domain from for rel =>
+	 *   nofollow if appropriate
+	 * @return array Associative array of HTML attributes
+	 */
+	function getExternalLinkAttribs( $url = false ) {
 		$attribs = array();
 		global $wgNoFollowLinks, $wgNoFollowNsExceptions;
 		$ns = $this->mTitle->getNamespace();
 		if( $wgNoFollowLinks && !in_array($ns, $wgNoFollowNsExceptions) ) {
 			$attribs['rel'] = 'nofollow';
+
+			global $wgNoFollowDomainExceptions;
+			if ( $wgNoFollowDomainExceptions ) {
+				$bits = wfParseUrl( $url );
+				if ( is_array( $bits ) && isset( $bits['host'] ) ) {
+					foreach ( $wgNoFollowDomainExceptions as $domain ) {
+						if( substr( $bits['host'], -strlen( $domain ) )
+						== $domain ) {
+							unset( $attribs['rel'] );
+							break;
+						}
+					}
+				}
+			}
 		}
 		if ( $this->mOptions->getExternalLinkTarget() ) {
 			$attribs['target'] = $this->mOptions->getExternalLinkTarget();

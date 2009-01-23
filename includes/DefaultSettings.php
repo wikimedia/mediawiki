@@ -3085,6 +3085,19 @@ $wgNoFollowLinks = true;
 $wgNoFollowNsExceptions = array();
 
 /**
+ * If this is set to an array of domains, external links to these domain names
+ * (or any subdomains) will not be set to rel="nofollow" regardless of the
+ * value of $wgNoFollowLinks.  For instance:
+ *
+ * $wgNoFollowDomainExceptions = array( 'en.wikipedia.org', 'wiktionary.org' );
+ *
+ * This would add rel="nofollow" to links to de.wikipedia.org, but not
+ * en.wikipedia.org, wiktionary.org, en.wiktionary.org, us.en.wikipedia.org,
+ * etc.
+ */
+$wgNoFollowDomainExceptions = array();
+
+/**
  * Default robot policy.  The default policy is to encourage indexing and fol-
  * lowing of links.  It may be overridden on a per-namespace and/or per-page
  * basis.
