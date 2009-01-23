@@ -10,7 +10,6 @@
 $wgMessageStructure = array(
 	'sidebar' => array(
 		'sidebar',
-		'language-link-title',
 	),
 	'toggles' => array(
 		'tog-underline',
@@ -2890,6 +2889,9 @@ $wgMessageStructure = array(
 	'external_images' => array(
 		'external_image_whitelist',
 	),
+	'language-links' => array(
+		'language-link-title',
+	),
 );
 
 /** Comments for each block */
@@ -3086,6 +3088,7 @@ Variants for Chinese language",
 	'special-specialpages'  => 'Special:SpecialPages',
 	'special-blank'         => 'Special:BlankPage',
 	'external_images'       => 'External image whitelist',
+	'language-links'        => 'Language links',
 );
 
 /** Short comments for standalone messages */
