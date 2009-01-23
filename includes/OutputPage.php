@@ -409,6 +409,7 @@ class OutputPage {
 			$sk = $wgUser->getSkin();
 			foreach ( $categories as $category => $type ) {
 				$title = Title::makeTitleSafe( NS_CATEGORY, $category );
+				$wgContLang->findVariantLink( $category, $title );
 				$text = $wgContLang->convertHtml( $title->getText() );
 				$this->mCategoryLinks[$type][] = $sk->makeLinkObj( $title, $text );
 			}
