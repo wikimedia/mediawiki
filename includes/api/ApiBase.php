@@ -635,6 +635,7 @@ abstract class ApiBase {
 	 * Call main module's error handler
 	 */
 	public function dieUsage($description, $errorCode, $httpRespCode = 0) {
+		wfProfileClose();
 		throw new UsageException($description, $this->encodeParamName($errorCode), $httpRespCode);
 	}
 
