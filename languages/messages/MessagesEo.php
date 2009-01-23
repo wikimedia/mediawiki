@@ -1366,6 +1366,7 @@ Por inkluzivi la dosieron en paĝon, skribu ligilon laŭ la formoj
 'filename'                    => 'Dosiernomo',
 'filedesc'                    => 'Resumo',
 'fileuploadsummary'           => 'Resumo:',
+'filereuploadsummary'         => 'Dosieraj ŝanĝoj:',
 'filestatus'                  => 'Kopirajta statuso:',
 'filesource'                  => 'Fonto:',
 'uploadedfiles'               => 'Alŝutitaj dosieroj',

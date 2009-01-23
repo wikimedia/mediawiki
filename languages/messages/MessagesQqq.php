@@ -2436,4 +2436,17 @@ $1 is the name of the requested file.',
 # External image whitelist
 'external_image_whitelist' => "As usual please leave all the wiki markup, including the spaces, as they are. You can translate the text, including 'Leave this line exactly as it is'.",
 
+# Language links
+'language-link-title' => 'Part of <HEAD> in HTML source.
+
+$1 contains the native language name.
+
+Example:
+<pre>
+<link title="Deutsch Version" rel="alternate" lang="de" xml:lang="de" hreflang="de" href="http://de.wikipedia.org/wiki/pagename" />
+<link title="English Version" rel="alternate" lang="en" xml:lang="en" hreflang="en" href="http://en.wikipedia.org/wiki/pagename" />
+<link title="Français Version" rel="alternate" lang="fr" xml:lang="fr" hreflang="fr" href="http://fr.wikipedia.org/wiki/pagename" />
+<link title="Nederlands Version" rel="alternate" lang="nl" xml:lang="nl" hreflang="nl" href="http://nl.wikipedia.org/wiki/pagename" />
+</pre>',
+
 );

@@ -1450,6 +1450,7 @@ Se [[Special:NewFiles|galleriet över nya filer]] för en mer visuell översikt.
 'filename'                    => 'Filnamn',
 'filedesc'                    => 'Beskrivning',
 'fileuploadsummary'           => 'Beskrivning<br />och licens:',
+'filereuploadsummary'         => 'Filändringar:',
 'filestatus'                  => 'Upphovsrättslig status:',
 'filesource'                  => 'Källa:',
 'uploadedfiles'               => 'Uppladdade filer',
@@ -2475,6 +2476,7 @@ Vänligen använd förhandsgranskningsknappen innan du sparar.',
 
 # Scripts
 'common.js'   => '/* JavaScript som skrivs här körs varje gång en användare laddar en sida. */',
+'standard.js' => '/* JavaScript här kommer att laddas för de som använder skinnet Standard */',
 'monobook.js' => '/* Javascript härifrån laddas endast för användare som använder Monobook-utseendet */',
 
 # Metadata
@@ -3085,5 +3087,8 @@ Skriv filnamnet utan prefixet "{{ns:file}}:" .',
 #Rader som börjar med # behandlas som kommentarer
 
 #Skriv alla fragment av reguljära uttryck ovanför den här raden. Lämna den här raden precis som den är</pre>',
+
+# Language links
+'language-link-title' => '$1 version',
 
 );

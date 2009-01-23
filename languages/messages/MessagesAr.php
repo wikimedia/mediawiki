@@ -7,6 +7,7 @@
  * @author Agurzil
  * @author Alnokta
  * @author Chaos
+ * @author Ciphers
  * @author Gharbeia
  * @author Jak
  * @author Khaledhosny
@@ -1610,6 +1611,7 @@ $2',
 'filename'                    => 'اسم الملف',
 'filedesc'                    => 'ملخص',
 'fileuploadsummary'           => 'ملخص:',
+'filereuploadsummary'         => 'تغييرات الملف:',
 'filestatus'                  => 'حالة حقوق النسخ:',
 'filesource'                  => 'مصدر:',
 'uploadedfiles'               => 'الملفات المرفوعة',
@@ -3200,8 +3202,8 @@ $1
 'comma-separator'     => '،&#32;',
 
 # Multipage image navigation
-'imgmultipageprev' => '← الصفحة السابقة',
-'imgmultipagenext' => 'الصفحة التالية →',
+'imgmultipageprev' => '→ الصفحة السابقة',
+'imgmultipagenext' => 'الصفحة التالية ←',
 'imgmultigo'       => 'اذهب!',
 'imgmultigoto'     => 'اذهب إلى صفحة $1',
 
@@ -3403,5 +3405,8 @@ $1
 #السطور التي تبدأ ب# تتم معاملتها كتعليقات
 
 #ضع كل منثورات التعبيرات المنتظمة فوق هذا السطر. اترك هذا السطر تماما كما هو</pre>',
+
+# Language links
+'language-link-title' => '$1 نسخة',
 
 );

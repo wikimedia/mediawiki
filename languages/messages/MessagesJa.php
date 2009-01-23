@@ -770,8 +770,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'userinvalidcssjstitle'            => "'''警告:''' \"\$1\" という外装はありません。.css と .js ページを編集する際にはタイトルを小文字にすることを忘れないでください。例えば {{ns:user}}:Hoge/Monobook.css ではなく {{ns:user}}:Hoge/monobook.css となります。",
 'updated'                          => '(更新)',
 'note'                             => '<strong>お知らせ:</strong>',
-'previewnote'                      => '<strong>これはプレビューです。
-まだ保存されていません!</strong>',
+'previewnote'                      => '<strong>これはプレビューです。まだ保存されていません！</strong>',
 'previewconflict'                  => 'このプレビューは、上の文章編集エリアの文章を保存した場合にどう見えるようになるかを示すものです。',
 'session_fail_preview'             => '<strong>申し訳ありません！セッションが切断されたため編集を保存できませんでした。もう一度やりなおしてください。それでも失敗する場合、ログアウトしてからログインし直してください。</strong>',
 'session_fail_preview_html'        => "<strong>申し訳ありません。セッションが切断されたため編集を保存することができませんでした。</strong>
@@ -1264,7 +1263,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'right-mergehistory'         => 'ページの履歴の統合',
 'right-userrights'           => '全利用者権限の編集',
 'right-userrights-interwiki' => '他のウィキの利用者の利用者権限の編集',
-'right-siteadmin'            => 'データベースのロック・ロック解除',
+'right-siteadmin'            => 'データベースのロックおよびロック解除',
 
 # User rights log
 'rightslog'      => '利用者権限変更記録',
@@ -1306,7 +1305,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'action-mergehistory'         => 'このページの履歴統合',
 'action-userrights'           => '全利用者権限の変更',
 'action-userrights-interwiki' => '他のウィキ上の利用者の利用者権限変更',
-'action-siteadmin'            => 'データベースのロック・ロック解除',
+'action-siteadmin'            => 'データベースのロックもしくはロック解除',
 
 # Recent changes
 'nchanges'                          => '$1 回の更新',
@@ -2106,7 +2105,7 @@ $NEWPAGE
 'range_block_disabled'            => '広域ブロックは無効に設定されています。',
 'ipb_expiry_invalid'              => '不正な期間です。',
 'ipb_expiry_temp'                 => '利用者名を秘匿したブロックは無期限でなければなりません。',
-'ipb_already_blocked'             => '"$1" は既にブロックされています',
+'ipb_already_blocked'             => '「$1」は既にブロックされています',
 'ipb-needreblock'                 => '== すでにブロックされています ==
 $1 は、すでにブロックされています。設定を変更しますか？',
 'ipb_cant_unblock'                => 'エラー: ブロックされた ID $1 が見つかりません。おそらく既にブロック解除されています。',
@@ -3052,5 +3051,8 @@ $1
 #行の冒頭に # をつけるとコメントとして扱われます
 
 #正規表現は全てこの行の上に置いてください。この行を変更しないでください</pre>',
+
+# Language links
+'language-link-title' => '$1版',
 
 );

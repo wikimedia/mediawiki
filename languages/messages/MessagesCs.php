@@ -427,7 +427,7 @@ $messages = array(
 'category-file-count-limited'    => 'Tato kategorie obsahuje {{PLURAL:$1|následující soubor|následující $1 soubory|následujících $1 souborů}}.',
 'listingcontinuesabbrev'         => 'pokrač.',
 
-'mainpagetext'      => "<big>'''MediaWiki bylo úspěšně nainstalováno.'''</big>",
+'mainpagetext'      => "<big>'''MediaWiki byla úspěšně nainstalována.'''</big>",
 'mainpagedocfooter' => '[http://meta.wikimedia.org/wiki/Help:Contents Uživatelská příručka] vám napoví, jak MediaWiki používat.
 
 == Začínáme ==
@@ -1480,6 +1480,7 @@ Pro vložení obrázku do stránky použijte jeden z následujících způsobů 
 'filename'                    => 'Soubor',
 'filedesc'                    => 'Popis',
 'fileuploadsummary'           => 'Popis:',
+'filereuploadsummary'         => 'Změny v souboru:',
 'filestatus'                  => 'Autorská práva:',
 'filesource'                  => 'Zdroj:',
 'uploadedfiles'               => 'Načtené soubory',
@@ -3116,5 +3117,8 @@ Zadejte jméno souboru bez označení "{{ns:file}}:".',
 #Řádky začínající znakem # se považují za komentáře.
 
 #Všechny regulární výrazy uveďte nad touto řádkou. Tuto řádku ponechte beze změny.</pre>',
+
+# Language links
+'language-link-title' => '$1',
 
 );

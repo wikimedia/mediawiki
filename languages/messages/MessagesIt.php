@@ -2133,7 +2133,7 @@ In questi casi, se lo si ritiene opportuno, occorre spostare o aggiungere manual
 'movepagebtn'                  => 'Sposta la pagina',
 'pagemovedsub'                 => 'Spostamento effettuato con successo',
 'movepage-moved'               => '<big>\'\'\'"$1" è stata spostata a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'movepage-moved-redirect'      => 'Un reindirizzamento è stato creato.',
+'movepage-moved-redirect'      => 'È stato creato un redirect.',
 'movepage-moved-noredirect'    => 'La creazione di un reindirizzamento è stata soppressa.',
 'articleexists'                => 'Una pagina con questo nome esiste già, oppure il nome che hai scelto non è valido.<br /> Scegli, per cortesia, un titolo diverso per la pagina.',
 'cantmove-titleprotected'      => 'Lo spostamento della pagina non è possibile in quanto il nuovo titolo è stato protetto per impedirne la creazione',

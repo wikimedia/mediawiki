@@ -2980,4 +2980,7 @@ Entre com o nome de ficheiro sem fornecer o prefixo "{{ns:file}}:".',
 # As linhas que começam com # são tratadas como comentários
 # Coloque todos os fragmentos de regex acima dessa linha. Deixe esta linha exatamente como ela é </ pre>',
 
+# Language links
+'language-link-title' => 'Versão $1',
+
 );
