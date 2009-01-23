@@ -92,7 +92,7 @@ class Profiler {
 	 * @param $functionname string
 	 */
 	function profileOut($functionname) {
-		global $wgDebugFunctionEntry, $wgProfiling;;
+		global $wgDebugFunctionEntry, $wgProfiling;
 		if( !$wgProfiling ) return;
 		$memory = memory_get_usage();
 		$time = $this->getTime();
