@@ -1550,6 +1550,7 @@ class OutputPage {
 					'title' => wfMsg( 'language-link-title', $wgContLang->getLanguageName( $t->getInterwiki() ) ),
 					'rel' => 'alternate',
 					'lang' => $t->getInterwiki(),
+					'xml:lang' => $t->getInterwiki(),
 					'hreflang' => $t->getInterwiki(),
 					'href' => $t->getFullURL()
 				) );
