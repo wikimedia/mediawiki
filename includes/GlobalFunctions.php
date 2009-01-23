@@ -2339,9 +2339,16 @@ function wfMergeErrorArrays(/*...*/) {
 }
 
 /**
- * Make a URL index, appropriate for the el_index field of externallinks.
+ * parse_url() work-alike, but non-broken.  Differences:
+ *
+ * 1) Does not raise warnings on bad URLs (just returns false)
+ * 2) Handles protocols that don't use :// (e.g., mailto: and news:) correctly
+ * 3) Adds a "delimiter" element to the array, either '://' or ':' (see (2))
+ *
+ * @param string $url A URL to parse
+ * @return array Bits of the URL in an associative array, per PHP docs
  */
-function wfMakeUrlIndex( $url ) {
+function wfParseUrl( $url ) {
 	global $wgUrlProtocols; // Allow all protocols defined in DefaultSettings/LocalSettings.php
 	wfSuppressWarnings();
 	$bits = parse_url( $url );
@@ -2349,12 +2356,12 @@ function wfMakeUrlIndex( $url ) {
 	if ( !$bits ) {
 		return false;
 	}
+
 	// most of the protocols are followed by ://, but mailto: and sometimes news: not, check for it
-	$delimiter = '';
-	if ( in_array( $bits['scheme'] . '://' , $wgUrlProtocols ) ) {
-		$delimiter = '://';
-	} elseif ( in_array( $bits['scheme'] .':' , $wgUrlProtocols ) ) {
-		$delimiter = ':';
+	if ( in_array( $bits['scheme'] . '://', $wgUrlProtocols ) ) {
+		$bits['delimiter'] = '://';
+	} elseif ( in_array( $bits['scheme'] . ':', $wgUrlProtocols ) ) {
+		$bits['delimiter'] = ':';
 		// parse_url detects for news: and mailto: the host part of an url as path
 		// We have to correct this wrong detection
 		if ( isset ( $bits['path'] ) ) {
@@ -2364,6 +2371,15 @@ function wfMakeUrlIndex( $url ) {
 	} else {
 		return false;
 	}
+
+	return $bits;
+}
+
+/**
+ * Make a URL index, appropriate for the el_index field of externallinks.
+ */
+function wfMakeUrlIndex( $url ) {
+	$bits = wfParseUrl( $url );
 
 	// Reverse the labels in the hostname, convert to lower case
 	// For emails reverse domainpart only
@@ -2386,7 +2402,7 @@ function wfMakeUrlIndex( $url ) {
 	}
 	// Reconstruct the pseudo-URL
 	$prot = $bits['scheme'];
-	$index = "$prot$delimiter$reversedHost";
+	$index = $prot . $bits['delimiter'] . $reversedHost;
 	// Leave out user and password. Add the port, path, query and fragment
 	if ( isset( $bits['port'] ) )      $index .= ':' . $bits['port'];
 	if ( isset( $bits['path'] ) ) {
