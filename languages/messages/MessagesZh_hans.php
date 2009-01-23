@@ -2987,4 +2987,6 @@ $1
 
 #在这行上面输入所有的regex。留下这行一样的文字</pre>',
 
+# Language links
+'language-link-title' => '$1版本',
 );

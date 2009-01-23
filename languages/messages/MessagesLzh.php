@@ -2429,4 +2429,6 @@ $1
 
 #入正表式。同留</pre>',
 
+# Language links
+'language-link-title' => '$1之版',
 );
