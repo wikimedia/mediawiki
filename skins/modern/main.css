@@ -162,6 +162,12 @@ textarea {
 	margin-top: .4em;
 }
 
+/* feed links */
+#feed-atom, #feed-rss {
+	background: url("feed-icon.png") center left no-repeat;
+	padding-left: 16px;
+}
+
 .portlet h5 {
 	padding: 0.1em 0 0.3em 1em;
 	margin: 0 0 0 0;
