@@ -199,7 +199,7 @@ class LanguageConverter {
 	}
 	
 	/**
-	 * caption convert, base on preg_replace_callback
+	 * caption convert, base on preg_replace
 	 *
 	 * to convert text in "title" or "alt", like '<img alt="text" ... '
 	 * or '<span title="text" ... '
