@@ -1541,6 +1541,20 @@ class OutputPage {
 			$tags[] = Xml::element( 'link', $tag );
 		}
 
+		// Language Links
+		global $wgContLang;
+		$langLinks = $this->getLanguageLinks();
+		foreach( $langLinks as $link ) {
+			$t = Title::newFromText( $link );
+			$tags[] = Xml::element( 'link', array(
+					'title' => wfMsg( 'language-link-title', $wgContLang->getLanguageName( $t->getInterwiki() ) ),
+					'rel' => 'alternate',
+					'lang' => $t->getInterwiki(),
+					'hreflang' => $t->getInterwiki(),
+					'href' => $t->getFullURL()
+				) );
+		}
+
 		if( $wgFeed ) {
 			global $wgTitle;
 			foreach( $this->getSyndicationLinks() as $format => $link ) {
