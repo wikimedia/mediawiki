@@ -2952,4 +2952,6 @@ $1
 
 #響呢行上面入晒全部嘅regex。留番呢行一樣嘅字</pre>',
 
+# Language links
+'language-link-title' => '$1版',
 );
