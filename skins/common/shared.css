@@ -318,3 +318,9 @@ strong.mw-revdelundel-link {
 	font-family: monospace;
 	font-size: smaller
 }
+
+/* feed links */
+a.feedlink {
+	background: url("images/feed-icon.png") center left no-repeat;
+	padding-left: 16px;
+}

@@ -77,12 +77,6 @@ div.magnify,
 	right: 0;
 }
 
-/* feed links */
-#feed-atom, #feed-rss {
-	background: none;
-	padding-left: 0;
-}
-
 #p-cactions {
 	left: auto;
 	right: 11.5em;
