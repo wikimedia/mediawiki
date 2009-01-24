@@ -4,7 +4,7 @@
  * @ingroup Language
  * @file
  *
- * @author Niklas Laxsröm
+ * @author Niklas Laxström
  * @author Sulev Iva (Võrok)
  * @author Võrok
  */
