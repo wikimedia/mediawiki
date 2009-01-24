@@ -58,7 +58,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Use HTML5 rel attributes for some links, where appropriate
 * Added optional alternative Search form look - Go button & Advanced search
   link instead of Go button & Search button
-  
+* (bug 2314) Add links to user custom CSS and JS to Special:Preferences
+
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
 * (bug 17000) Special:RevisionDelete now checks if the database is locked
