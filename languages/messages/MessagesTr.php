@@ -763,6 +763,7 @@ Bu $2 çağrıdan az olmalı, şu anda {{PLURAL:$1|1 çağrı var|$1 çağrı va
 'post-expand-template-inclusion-warning'  => 'Uyarı: Katılan şablon içeriği çok geniş. 
 Bazı şablonlar sayfaya katılmayacak.',
 'post-expand-template-inclusion-category' => 'Şablon içerik genişliği sınırı aşılan sayfalar',
+'post-expand-template-argument-category'  => 'Geçersiz şablon argümanları içeren sayfalar',
 'parser-template-loop-warning'            => 'Şablon düğümü tespit edildi: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Şablon özyineleme yoğunluğu limiti aşıldı ($1)',
 
@@ -859,6 +860,9 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'revdelete-hid'                  => 'gizle $1',
 'revdelete-unhid'                => 'göster $1',
 
+# Suppression log
+'suppressionlog' => 'Gizleme kayıtları',
+
 # History merging
 'mergehistory'                     => 'Sayfa geçmişlerini takas et.',
 'mergehistory-box'                 => 'İki sayfanın revizyonlarını birleştir:',
@@ -882,6 +886,7 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'mergelog'           => 'Birleştirme kaydı',
 'pagemerge-logentry' => "[[$1]] ile [[$2]] birleştirildi ($3'e kadar olan revizyonlar)",
 'revertmerge'        => 'Ayır',
+'mergelogpagetext'   => 'Aşaüıdaki liste, sayfaların geçmiş versiyonlarının birbirleriyle en son birleştirilmelerini içerir',
 
 # Diffs
 'history-title'           => '"$1" sayfasının geçmişi',
@@ -896,6 +901,8 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'diff-styleadded'         => '$1 stili eklendi',
 'diff-added'              => '$1 eklendi',
 'diff-changedto'          => '$1 olarak değiştirildi',
+'diff-movedoutof'         => '$1 den taşındı',
+'diff-styleremoved'       => '$1 stili silindi',
 'diff-removed'            => '$1 silindi',
 'diff-src'                => 'kaynak',
 'diff-with'               => '&#32;$1 $2 ile',
@@ -990,6 +997,7 @@ Bu sayfa değişikiliği kamu arşivlerinden silinmiştir.
 'searchall'                        => 'hepsi',
 'showingresults'                   => "$2. sonuçtan başlayarak {{PLURAL:$1|'''1''' sonuç |'''$1''' sonuç }} aşağıdadır:",
 'showingresultsnum'                => "'''$2''' sonuçtan başlayarak {{PLURAL:$3|'''1''' sonuç|'''$3''' sonuç}} aşağıdadır:",
+'showingresultstotal'              => "Toplam {{PLURAL:$4|'''$3''' sonuçtan '''$1''' tanesi|'''$3''' sonuçtan '''$1 - $2''' arası sonuçlar}} gösteriliyor",
 'nonefound'                        => "'''Not''': Sadece bazı alan adları varsayılan olarak aranır.
 Aramanızın başına '''all:''' önekini ekleyerek tüm içeriği aramayı (tartışma sayfalarını, şablonları vb. kapsayacak şekilde) deneyin veya önek olarak istenilen alan adını kullanın.",
 'search-nonefound'                 => 'Sorguyla eşleşen bir sonuç yok.',
@@ -1071,6 +1079,8 @@ ayarlamak için math/README'ye bakın.",
 'defaultns'                 => 'Aramayı aşağıdaki seçili alanlarda yap.',
 'default'                   => 'orijinal',
 'files'                     => 'Dosyalar',
+'prefs-custom-css'          => 'Özel CSS',
+'prefs-custom-js'           => 'Özel JS',
 
 # User rights
 'userrights'                  => 'Kullanıcı hakları yönetimi', # Not used as normal message but as header for the special page itself
@@ -1137,6 +1147,7 @@ ayarlamak için math/README'ye bakın.",
 'right-purge'                => 'Doğrulama yapmadan bir sayfa için site belleğini temizle',
 'right-autoconfirmed'        => 'Yarı-korunumlu sayfaları değiştir',
 'right-bot'                  => 'Otomatik bir işlem gibi muamele gör',
+'right-nominornewtalk'       => 'Kullanıcı tartışma sayfalarında yaptığı küçük değişiklikler kullanıcıya yeni mesaj bildirimiyle bidirilmez',
 'right-apihighlimits'        => 'API sorgularında yüksek limit kullan',
 'right-writeapi'             => 'API yaz kullanımı',
 'right-delete'               => 'Sayfaları sil',
@@ -1296,6 +1307,10 @@ bu dosyanın boyutu $2.',
 'largefileserver'             => 'Bu dosyanın uzunluğu sunucuda izin verilenden daha büyüktür.',
 'emptyfile'                   => 'Yüklediğiniz dosya boş görünüyor. Bunun sebebi dosya adındaki bir yazım hatası olabilir. Lütfen dosyayı gerçekten tyüklemek isteyip istemediğinizden emin olun.',
 'fileexists'                  => 'Bu isimde bir dosya mevcut. Eğer değiştirmekten emin değilseniz ilk önce <strong><tt>$1</tt></strong> dosyasına bir gözatın.',
+'fileexists-extension'        => 'Benzer isimle başka bir dosya mevcut:<br />
+Yüklenilen dosyanın adı: <strong><tt>$1</tt></strong><br />
+Varolan dosyanın adı: <strong><tt>$2</tt></strong><br />
+Lütfen başka bir isim seçin',
 'fileexists-thumb'            => "<center>'''Bu isimde zaten bir resim var'''</center>",
 'fileexists-thumbnail-yes'    => 'The file seems to be an image of reduced size <i>(thumbnail)</i>.
 Please check the file <strong><tt>$1</tt></strong>.<br />
@@ -1303,10 +1318,14 @@ If the checked file is the same image of original size it is not necessary to up
 Bu dosya, bir resmi küçültülmüş vesiyonu gibi görünüyor <i>(thumbnail)</i>
 Lütfen <strong><tt>$1</tt></strong> dosyasını kontrol edin .<br />
 Eğer kontrol edilen dosya ile orijinal boyutundaki aynı dosyaysa fazladan pul imge yüklemeye gerek yoktur.',
+'file-thumbnail-no'           => 'Bu dosyanın adı <strong><tt>$1</tt></strong> ile başlıyor.
+Bu başka bir resim küçültülmüş versiyonuna benziyor <i>(thumbnail)</i>
+Eğer sizde bu resmin tam çöznürlükteki versiyonu varsa onu yükleyin, aksi takdirde lütfen dosya adını değiştirin.',
 'fileexists-forbidden'        => 'Bu isimde zaten dosya var; lütfen farklı bir isimle yeniden yükleyin. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Bu isimde bir dosya ortak havuzda zaten mevcut.
 Dosyanızı yinede yüklemek istiyorsanız, lütfen geri gidip yeni bir isim kullanın. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Bu dosya aşağıdaki {{PLURAL:$1|dosyanın|dosyaların}} kopyasıdır:',
+'file-deleted-duplicate'      => 'Bu dosyanın özdeşi olan başka bir dosya ([[$1]]) daha önceden silindi. Bu dosyayı yeniden yüklemeden önce diğer dosyanın silme kayıtlarını kontrol etmelisiniz.',
 'successfulupload'            => 'Yükleme başarılı',
 'uploadwarning'               => 'Yükleme uyarısı',
 'savefile'                    => 'Dosyayı kaydet',
@@ -1314,6 +1333,7 @@ Dosyanızı yinede yüklemek istiyorsanız, lütfen geri gidip yeni bir isim kul
 'overwroteimage'              => '"[[$1]]" resminin yeni versiyonu yüklenmiştir',
 'uploaddisabled'              => 'Geçici olarak şu anda herhangi bir dosya yüklenmez. Biraz sonra bir daha deneyiniz.',
 'uploaddisabledtext'          => 'Dosya yüklemeleri devredışı bırakılmıştır.',
+'php-uploaddisabledtext'      => 'PHP dosyası yüklemeleri devre dışıdır. Lütfen file_uploads ayarını kontrol edin.',
 'uploadscripted'              => 'Bu dosya bir internet tarayıcısı tarafından hatalı çevrilebilecek bir HTML veya script kodu içermektedir.',
 'uploadcorrupt'               => 'Bu dosya ya bozuk ya da uzantısı yanlış. Dosyayı kontrol edip, tekrar yüklemeyi deneyin.',
 'uploadvirus'                 => 'Bu dosya virüslüdür! Detayları: $1',
@@ -1326,14 +1346,27 @@ Dosyanızı yinede yüklemek istiyorsanız, lütfen geri gidip yeni bir isim kul
 
 Dosyanın yüklenmesinin uygun olup olmadığını dikkate almalısınız.
 Bu dosyanın silme kayıtları kolaylık olması için burada sunulmuştur:",
+'filename-bad-prefix'         => 'Yüklemekte olçduğunuz dosyanın adı, genel olarak dijital kameralar tarafından otomatik olarak ekelenen ve açıklayıcı olmayan <strong>"$1"</strong> ile başlamaktadır.
+Lütfen dosyanız için daha açıklayıcı bir isim seçin.',
 
-'upload-proto-error' => 'Hatalı protokol',
-'upload-file-error'  => 'Dahili hata',
-'upload-misc-error'  => 'Bilinmeyen yükleme hatası',
+'upload-proto-error'      => 'Hatalı protokol',
+'upload-proto-error-text' => "Uzaktan yükleme, <code>http://</code> veya <code>ftp://</code> ile başlayan URL'ler gerektirmektedir.",
+'upload-file-error'       => 'Dahili hata',
+'upload-file-error-text'  => 'Sunucuda geçici dosya oluşturma girişimi sırasında bir iç hata meydana geldi.
+Lütfen bir [[Special:ListUsers/sysop|yonetici]]yle iletişime geçin.',
+'upload-misc-error'       => 'Bilinmeyen yükleme hatası',
+'upload-misc-error-text'  => 'Yükleme sırasında bilinmeyen bir hata meydana geldi.
+Lütfen bağlantının geçerli ve ulaşılabilir olduğunu doğrulayın ve yeniden deneyin.
+Eğer problem tekrarlanırsa, bir [[Special:ListUsers/sysop|yönetici]]yle temasa geçin',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
-'upload-curl-error6'  => "URL'ye ulaşılamadı",
-'upload-curl-error28' => 'Yüklemede zaman aşımı',
+'upload-curl-error6'       => "URL'ye ulaşılamadı",
+'upload-curl-error6-text'  => "Belirtilen URL'ye erişilemiyor.
+Lütfen URL'nin doğru ve sitenin açık olduğunu kontrol edin.",
+'upload-curl-error28'      => 'Yüklemede zaman aşımı',
+'upload-curl-error28-text' => 'Bu sitenin yanıt vermesi çok uzun sürüyor.
+Lütfen sitenin açık olduğunu kontrol edin, kısa bir süre bekleyin ve yeniden deneyin.
+Sitenin daha az meşgul olduğu bir zamanda denemek daha iyi olabilir.',
 
 'license'            => 'Lisans:',
 'nolicense'          => 'Hiçbirini seçme',
@@ -1342,6 +1375,9 @@ Bu dosyanın silme kayıtları kolaylık olması için burada sunulmuştur:",
 'upload_source_file' => ' (bilgisayarınızdaki bir dosya)',
 
 # Special:ListFiles
+'listfiles-summary'     => 'Bu özel sayfa yüklenilen tüm resimleri gösterir.
+Varsayılan olarak en son yüklenen resimler listenin başında gösterilir.
+Bir sütünun başlığına tıklayarak sıralamayı değiştirebilirsiniz.',
 'listfiles_search_for'  => 'Medya adı ara:',
 'imgfile'               => 'dosya',
 'listfiles'             => 'Resim listesi',
@@ -1361,6 +1397,7 @@ Bu dosyanın silme kayıtları kolaylık olması için burada sunulmuştur:",
 'filehist-current'               => 'Şimdiki',
 'filehist-datetime'              => 'Gün/Zaman',
 'filehist-thumb'                 => 'Küçük resim',
+'filehist-thumbtext'             => '$1 tarihindeki versiyonun küçültülmüş hali',
 'filehist-nothumb'               => 'Küçük resim yok',
 'filehist-user'                  => 'Kullanıcı',
 'filehist-dimensions'            => 'Boyutlar',
@@ -1810,7 +1847,7 @@ Bu sayfanın koruma seviyesini değiştirebilirsiniz; ancak bu kademeli korumaya
 'undeletepagetext'          => 'Aşağıdaki {{PLURAL:$1|sayfa|$1 sayfa}} silinmiştir ama hala arşivdedir ve geri getirilebilir.
 Arşiv düzenli olarak temizlenebilir.',
 'undelete-fieldset-title'   => 'Revizyonları geri yükle',
-'undeleteextrahelp'         => "Sayfala birlikte geçmişi geri getirmek için onay kutularına dokunmadan '''Geri getir!''' tuşuna tıklayın. Sayfanın geçmişini ayrı ayrı getirmek için geri getirmek istediğiniz değişikliklerin onay kutularını seçip '''Geri getir!''' tuşuna tıklayın. Seçilen onay kutularını ve '''Neden''' alanını sıfırlamak için '''Vazgeç''' tuşuna tıklayın.",
+'undeleteextrahelp'         => "Sayfalarla birlikte geçmişi geri getirmek için onay kutularına dokunmadan '''Geri getir!''' tuşuna tıklayın. Sayfanın geçmişini ayrı ayrı getirmek için geri getirmek istediğiniz değişikliklerin onay kutularını seçip '''Geri getir!''' tuşuna tıklayın. Seçilen onay kutularını ve neden alanını sıfırlamak için '''Vazgeç''' tuşuna tıklayın.",
 'undeleterevisions'         => '$1 {{PLURAL:$1|revizyon|revizyon}} arşivlendi',
 'undeletehistory'           => 'Eğer bu sayfa geri getiriyorsanız sayfanın bütün geçmişi de geri getirilecektir. Silindikten sonra aynı isimle yeni bir sayfa eklenmişse geri gelecek sayfanın geçmişi varolan sayfayı değiştirmeden halihazırdaki geçmişe eklenecektir.',
 'undeletehistorynoadmin'    => 'Bu madde silinmiştir. Silinme sebebi ve silinme öncesinde maddeyi düzenleyen kullanıcıların detayları aşağıdaki özette verilmiştir. Bu silinmiş sürümlerin metinleri ise sadece yöneticiler tarafından görülebilir.',

@@ -1062,9 +1062,11 @@ pakitingnan ang matematika/BASAHINAKO para maisaayos ang konpigurasyon.',
 'defaultns'                 => 'Maghanap sa mga pangalan ng espasyong ito ayon sa likas na pagtatakda:',
 'default'                   => 'Likas na pagtatakda',
 'files'                     => 'Mga talaksan',
+'prefs-custom-css'          => 'Pasadyang CSS',
+'prefs-custom-js'           => 'Pasadyang JS',
 
 # User rights
-'userrights'                  => 'Pamamahala ng mga karapatang ng tagagamit', # Not used as normal message but as header for the special page itself
+'userrights'                  => 'Pamamahala ng mga karapatan ng tagagamit', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'      => 'Pamahalaan ang mga pangkat ng tagagamit',
 'userrights-user-editname'    => 'Magpasok ng isang pangalan ng tagagamit:',
 'editusergroup'               => 'Baguhin ang mga pangkat ng tagagamit',
@@ -2967,5 +2969,8 @@ Ipasok ang pangalan ng talaksan na wala ang unlaping \"{{ns:image}}:\".",
 #Itinuturing bilang mga kumento/puna ang mga hanay/hilerang nagsisimula sa #
 
 #Ilagay sa ibabaw ng hanay na ito ang mga piraso ng karaniwang pagpapahayag.  Pabayaang talagang ganito lang ang hanay/hilerang ito</pre>',
+
+# Language links
+'language-link-title' => 'Bersyong $1',
 
 );

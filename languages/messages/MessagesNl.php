@@ -1321,6 +1321,8 @@ Ga na of latex, dvips en gs correct geïnstalleerd zijn en zet om',
 'defaultns'                 => 'Standaard in deze naamruimten zoeken:',
 'default'                   => 'standaard',
 'files'                     => 'Bestanden',
+'prefs-custom-css'          => 'Persoonlijke CSS',
+'prefs-custom-js'           => 'Persoonlijke JS',
 
 # User rights
 'userrights'                  => 'Gebruikersrechtenbeheer', # Not used as normal message but as header for the special page itself

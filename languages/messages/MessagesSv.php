@@ -1241,6 +1241,8 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'defaultns'                 => 'Sök i följande namnrymder som förval:',
 'default'                   => 'ursprungsinställning',
 'files'                     => 'Filer',
+'prefs-custom-css'          => 'Personlig CSS',
+'prefs-custom-js'           => 'Personlig JavaScript',
 
 # User rights
 'userrights'                  => 'Användarrättigheter', # Not used as normal message but as header for the special page itself
@@ -2223,8 +2225,9 @@ $1 är redan blockerad. Vill du ändra inställningarna?',
 'proxyblocker-disabled'           => 'Den här funktionen är avaktiverad.',
 'proxyblockreason'                => 'Din IP-adress har blivit blockerad eftersom den tillhör en öppen proxy. Kontakta din internetleverantör eller din organisations eller företags tekniska support, och informera dem om denna allvarliga säkerhetsrisk.',
 'proxyblocksuccess'               => 'Gjort.',
-'sorbsreason'                     => 'Din IP-adress finns med på DNSBL:s lista över öppna proxies.',
-'sorbs_create_account_reason'     => 'Din IP-adress finns med på listan över öppna proxyn, DNSBL, som används av {{SITENAME}}. Du kan därför inte skapa något användarkonto.',
+'sorbsreason'                     => 'Din IP-adress är listad som öppen proxy i den DNSBL {{SITENAME}} använder.',
+'sorbs_create_account_reason'     => 'Din IP-adress är listad som en öppen proxy i den DNSBL som används av {{SITENAME}}.
+Du får inte skapa ett användarkonto',
 'cant-block-while-blocked'        => 'Du kan inte blockera andra användare medan du är blockerad.',
 
 # Developer tools
@@ -2475,9 +2478,15 @@ Vänligen använd förhandsgranskningsknappen innan du sparar.',
 'modern.css'      => '/* CSS som skrivs här kommer att påverka alla användare av skalet Modern */',
 
 # Scripts
-'common.js'   => '/* JavaScript som skrivs här körs varje gång en användare laddar en sida. */',
-'standard.js' => '/* JavaScript här kommer att laddas för de som använder skinnet Standard */',
-'monobook.js' => '/* Javascript härifrån laddas endast för användare som använder Monobook-utseendet */',
+'common.js'      => '/* JavaScript som skrivs här körs varje gång en användare laddar en sida. */',
+'standard.js'    => '/* JavaScript här kommer att laddas för de som använder skinnet Standard */',
+'nostalgia.js'   => '/* JavaScript här kommer att laddas för de som använder skalet Nostalgia */',
+'cologneblue.js' => '/* JavaScript här kommer att laddas för de som använder skalet Cologne Blue */',
+'monobook.js'    => '/* Javascript härifrån laddas endast för användare som använder Monobook-utseendet */',
+'myskin.js'      => '/* JavaScript här kommer att laddas för de som använder skalet Myskin */',
+'chick.js'       => '/* JavaScript här kommer att laddas för de som använder skalet Chick */',
+'simple.js'      => '/* JavaScript här kommer att laddas för de som använder skalet Simple */',
+'modern.js'      => '/* JavaScript här kommer att laddas för de som använder skalet Modern */',
 
 # Metadata
 'nodublincore'      => 'Dublin Core RDF metadata avstängt på den här servern.',

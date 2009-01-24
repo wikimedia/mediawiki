@@ -1286,6 +1286,8 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen
 'defaultns'                 => 'In diesen Namensräumen soll standardmäßig gesucht werden:',
 'default'                   => 'Voreinstellung',
 'files'                     => 'Dateien',
+'prefs-custom-css'          => 'Benutzerdefinierte CSS',
+'prefs-custom-js'           => 'Benutzerdefiniertes JS',
 
 # User rights
 'userrights'                  => 'Benutzerrechteverwaltung', # Not used as normal message but as header for the special page itself
@@ -2050,7 +2052,7 @@ Siehe die [[Special:ProtectedPages|Liste der geschützten Seiten]] für alle akt
 'protect-level-autoconfirmed' => 'Sperrung für nicht registrierte Benutzer',
 'protect-level-sysop'         => 'Nur Administratoren',
 'protect-summary-cascade'     => 'kaskadierend',
-'protect-expiring'            => 'bis $1 (UTC)',
+'protect-expiring'            => 'bis $2, $3 Uhr (UTC)',
 'protect-expiry-indefinite'   => 'unbeschränkt',
 'protect-cascade'             => 'Kaskadierende Sperre – alle in diese Seite eingebundenen Vorlagen werden ebenfalls gesperrt.',
 'protect-cantedit'            => 'Du kannst die Sperre dieser Seite nicht ändern, da du keine Berechtigung zum Bearbeiten der Seite hast.',

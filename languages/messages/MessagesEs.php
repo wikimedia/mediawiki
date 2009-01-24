@@ -176,6 +176,7 @@ $messages = array(
 'tog-justify'                 => 'Ajustar párrafos',
 'tog-hideminor'               => 'Ocultar ediciones menores en «cambios recientes»',
 'tog-hidepatrolled'           => 'Ocultar ediciones patrulladas en los cambios recientes',
+'tog-newpageshidepatrolled'   => 'ocultar páginas vigiladas de la nueva lista de páginas',
 'tog-extendwatchlist'         => 'Expandir la lista de seguimiento a todos los cambios aplicables',
 'tog-usenewrc'                => 'Cambios recientes realzados (no funciona en todos los navegadores)',
 'tog-numberheadings'          => 'Numerar automáticamente los encabezados',
@@ -868,54 +869,60 @@ Puede haber sido borrada del wiki o renombrada.
 Prueba a [[Special:Search|buscar en el wiki]] nuevas páginas relevantes.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(comentario eliminado)',
-'rev-deleted-user'            => '(nombre de usuario eliminado)',
-'rev-deleted-event'           => '(entrada borrada)',
-'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
+'rev-deleted-comment'            => '(comentario eliminado)',
+'rev-deleted-user'               => '(nombre de usuario eliminado)',
+'rev-deleted-event'              => '(entrada borrada)',
+'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
 Esta revisión de la página ha sido eliminada de los archivos públicos.
 Puede haber detalles en el [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de borrado].
 </div>',
-'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
+'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
 Esta revisión de la página ha sido eliminada de los archivos públicos.
 Como administrador de este wiki puedes verla;
 puede haber detalles en el [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registro de borrado].
 </div>',
-'rev-delundel'                => 'mostrar/ocultar',
-'revisiondelete'              => 'Borrar/deshacer borrado revisiones',
-'revdelete-nooldid-title'     => 'No hay revisión destino',
-'revdelete-nooldid-text'      => 'No se ha especificado una revisión o revisiones destino sobre las que realizar esta función.',
-'revdelete-selected'          => "'''{{PLURAL:$2|Revisión seleccionada|Revisiones seleccionadas}} de [[:$1]]:'''",
-'logdelete-selected'          => "'''{{PLURAL:$1|Seleccionado un evento|Seleccionados eventos}}:'''",
-'revdelete-text'              => "'''Las revisiones borradas aún aparecerán en el historial de la página y en los registros, pero sus contenidos no serán accesibles al público.'''
+'rev-delundel'                   => 'mostrar/ocultar',
+'revisiondelete'                 => 'Borrar/deshacer borrado revisiones',
+'revdelete-nooldid-title'        => 'No hay revisión destino',
+'revdelete-nooldid-text'         => 'No se ha especificado una revisión o revisiones destino sobre las que realizar esta función.',
+'revdelete-nologtype-title'      => 'ningún nombre dado',
+'revdelete-nologtype-text'       => 'usted no ha especificado ningún nombre para ejecutar esta acción.',
+'revdelete-toomanytargets-title' => 'demasiados objetivos',
+'revdelete-toomanytargets-text'  => 'usted ha especificado demasiados tipos de objetivos para ejecutar esta acción.',
+'revdelete-nologid-title'        => 'ingreso inválido',
+'revdelete-nologid-text'         => 'Usted tampoco ha especificado un objetivo de eventos para ejecutar esta función o la entrada especificada no existe.',
+'revdelete-selected'             => "'''{{PLURAL:$2|Revisión seleccionada|Revisiones seleccionadas}} de [[:$1]]:'''",
+'logdelete-selected'             => "'''{{PLURAL:$1|Seleccionado un evento|Seleccionados eventos}}:'''",
+'revdelete-text'                 => "'''Las revisiones borradas aún aparecerán en el historial de la página y en los registros, pero sus contenidos no serán accesibles al público.'''
 
 Otros administradores de {{SITENAME}} aún podrán acceder al contenido oculto y podrán deshacer el borrado a través de la misma interfaz, a menos que se establezcan restricciones adicionales.",
-'revdelete-legend'            => 'Establecer restricciones de revisión:',
-'revdelete-hide-text'         => 'Ocultar el texto de la revisión',
-'revdelete-hide-name'         => 'Ocultar acción y objetivo',
-'revdelete-hide-comment'      => 'Ocultar comentario de edición',
-'revdelete-hide-user'         => 'Ocultar el nombre/IP del editor',
-'revdelete-hide-restricted'   => 'Aplicar estas restricciones a los administradores tal como al resto',
-'revdelete-suppress'          => 'Eliminar datos de los administradores tal como al resto',
-'revdelete-hide-image'        => 'Ocultar el contenido del archivo',
-'revdelete-unsuppress'        => 'Eliminar restricciones de revisiones restauradas',
-'revdelete-log'               => 'Comentario de registro:',
-'revdelete-submit'            => 'Aplicar a la revisión seleccionada',
-'revdelete-logentry'          => 'cambiada la visibilidad de la revisión para [[$1]]',
-'logdelete-logentry'          => 'cambiada la visibilidad de eventos de [[$1]]',
-'revdelete-success'           => 'Visibilidad de revisiones cambiada correctamente.',
-'logdelete-success'           => 'Visibilidad de eventos cambiada correctamente.',
-'revdel-restore'              => 'Cambiar visibilidad',
-'pagehist'                    => 'Historial de la página',
-'deletedhist'                 => 'Historial borrado',
-'revdelete-content'           => 'contenido',
-'revdelete-summary'           => 'editar resumen',
-'revdelete-uname'             => 'nombre de usuario',
-'revdelete-restricted'        => 'restricciones para sysops aplicadas',
-'revdelete-unrestricted'      => 'restricciones para sysops eliminadas',
-'revdelete-hid'               => 'ocultar $1',
-'revdelete-unhid'             => 'mostrar $1',
-'revdelete-log-message'       => '$1 para $2 {{PLURAL:$2|revisión|revisiones}}',
-'logdelete-log-message'       => '$1 de $2 {{PLURAL:$2|evento|eventos}}',
+'revdelete-legend'               => 'Establecer restricciones de revisión:',
+'revdelete-hide-text'            => 'Ocultar el texto de la revisión',
+'revdelete-hide-name'            => 'Ocultar acción y objetivo',
+'revdelete-hide-comment'         => 'Ocultar comentario de edición',
+'revdelete-hide-user'            => 'Ocultar el nombre/IP del editor',
+'revdelete-hide-restricted'      => 'Aplicar estas restricciones a los administradores tal como al resto',
+'revdelete-suppress'             => 'Eliminar datos de los administradores tal como al resto',
+'revdelete-hide-image'           => 'Ocultar el contenido del archivo',
+'revdelete-unsuppress'           => 'Eliminar restricciones de revisiones restauradas',
+'revdelete-log'                  => 'Comentario de registro:',
+'revdelete-submit'               => 'Aplicar a la revisión seleccionada',
+'revdelete-logentry'             => 'cambiada la visibilidad de la revisión para [[$1]]',
+'logdelete-logentry'             => 'cambiada la visibilidad de eventos de [[$1]]',
+'revdelete-success'              => 'Visibilidad de revisiones cambiada correctamente.',
+'logdelete-success'              => 'Visibilidad de eventos cambiada correctamente.',
+'revdel-restore'                 => 'Cambiar visibilidad',
+'pagehist'                       => 'Historial de la página',
+'deletedhist'                    => 'Historial borrado',
+'revdelete-content'              => 'contenido',
+'revdelete-summary'              => 'editar resumen',
+'revdelete-uname'                => 'nombre de usuario',
+'revdelete-restricted'           => 'restricciones para sysops aplicadas',
+'revdelete-unrestricted'         => 'restricciones para sysops eliminadas',
+'revdelete-hid'                  => 'ocultar $1',
+'revdelete-unhid'                => 'mostrar $1',
+'revdelete-log-message'          => '$1 para $2 {{PLURAL:$2|revisión|revisiones}}',
+'logdelete-log-message'          => '$1 de $2 {{PLURAL:$2|evento|eventos}}',
 
 # Suppression log
 'suppressionlog'     => 'Log de supresiones',
@@ -1148,6 +1155,8 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'defaultns'                 => 'Buscar en estos espacios de nombres por defecto:',
 'default'                   => 'por defecto',
 'files'                     => 'Archivos',
+'prefs-custom-css'          => 'CSS preferido',
+'prefs-custom-js'           => 'JS preferido',
 
 # User rights
 'userrights'                  => 'Configuración de permisos de usuarios', # Not used as normal message but as header for the special page itself
@@ -1358,6 +1367,7 @@ Mira la [[Special:NewFiles|galería de archivos nuevos]] para una descripción v
 'filename'                    => 'Nombre del archivo',
 'filedesc'                    => 'Sumario',
 'fileuploadsummary'           => 'Descripción:',
+'filereuploadsummary'         => 'Cambios de archivo:',
 'filestatus'                  => 'Estado de copyright:',
 'filesource'                  => 'Fuente:',
 'uploadedfiles'               => 'Archivos subidos',
@@ -2973,5 +2983,8 @@ Ingrese el nombre del archivo sin el prefijo "{{ns:file}}:".',
 #Las líneas que empiezan por «#» se consideran comentarios
 
 #Put all regex fragments above this line. Deja esta línea exactamente como está</pre>',
+
+# Language links
+'language-link-title' => '$1 versión',
 
 );

@@ -1148,6 +1148,8 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'defaultns'                 => 'Pesquisar por padrão nestes espaços nominais:',
 'default'                   => 'padrão',
 'files'                     => 'Ficheiros',
+'prefs-custom-css'          => 'CSS personalizada',
+'prefs-custom-js'           => 'JS personalizado',
 
 # User rights
 'userrights'                  => 'Gestão de privilégios de utilizadores', # Not used as normal message but as header for the special page itself

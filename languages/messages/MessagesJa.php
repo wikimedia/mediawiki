@@ -455,7 +455,7 @@ $messages = array(
 'toc'                     => '目次',
 'showtoc'                 => '表示',
 'hidetoc'                 => '非表示',
-'thisisdeleted'           => '$1 を表示または復帰しますか？',
+'thisisdeleted'           => '$1を閲覧または復帰する',
 'viewdeleted'             => '$1の削除記録と履歴を確認する',
 'restorelink'             => '削除された$1件の編集',
 'feedlinks'               => 'フィード:',
@@ -1164,6 +1164,8 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'defaultns'                 => '標準で検索する名前空間:',
 'default'                   => 'デフォルト',
 'files'                     => 'ファイル',
+'prefs-custom-css'          => 'ユーザーCSS',
+'prefs-custom-js'           => 'ユーザーJS',
 
 # User rights
 'userrights'                  => '利用者権限の管理', # Not used as normal message but as header for the special page itself

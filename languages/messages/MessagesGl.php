@@ -1132,6 +1132,8 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'defaultns'                 => 'Procurar por omisión nestes espazos de nomes:',
 'default'                   => 'predeterminado',
 'files'                     => 'Ficheiros',
+'prefs-custom-css'          => 'CSS personalizado',
+'prefs-custom-js'           => 'JS personalizado',
 
 # User rights
 'userrights'                  => 'Xestión dos dereitos de usuario', # Not used as normal message but as header for the special page itself
@@ -2967,5 +2969,8 @@ Introduza o nome do ficheiro sen o prefixo "{{ns:file}}:".',
 #As liñas que comecen por "#" trátanse de comentarios
 
 #Poña todos os fragmentos por riba desta liña. Deixe esta liña tal e como está</pre>',
+
+# Language links
+'language-link-title' => 'Versión en $1',
 
 );

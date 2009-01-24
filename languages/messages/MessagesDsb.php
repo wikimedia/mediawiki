@@ -1093,6 +1093,8 @@ Móžoš bok ale teke [[:$1|sam załožyś]].",
 'defaultns'                 => 'Standardnje ma se w toś tych mjenjowych rumach pytaś:',
 'default'                   => 'Standard',
 'files'                     => 'Dataje',
+'prefs-custom-css'          => 'Swójski CSS',
+'prefs-custom-js'           => 'Swójski JS',
 
 # User rights
 'userrights'                  => 'Zastojanje wužywarskich pšawow', # Not used as normal message but as header for the special page itself
@@ -2910,5 +2912,8 @@ Zapódaj datajowe mě bźez prefiksa "{{ns:file}}:".',
 #Ze smužkami, kótarež zachopiju se z #, wobchadaju ako z komentarami
 
 #Staj wše fragmenty regularnych wurazow nad smužku. Wóstaj toś tu smužku rowno tak jo</pre>',
+
+# Language links
+'language-link-title' => 'wersija $1',
 
 );

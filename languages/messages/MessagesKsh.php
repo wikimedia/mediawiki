@@ -3294,4 +3294,7 @@ Der Name moß ohne der Försatz „{{ns:file}}:“ aanjejovve wääde.',
 # Reije met # am Aanfang, sen bloß Kommenta
 # Donn de Brochstöck hee noh endrare, un di Reih sellver nit ändere</pre>',
 
+# Language links
+'language-link-title' => 'Fassong op $1',
+
 );
