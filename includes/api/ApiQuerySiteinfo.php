@@ -88,6 +88,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	protected function appendGeneralInfo( $property ) {
 		global $wgSitename, $wgVersion, $wgCapitalLinks, $wgRightsCode, $wgRightsText, $wgContLang;
 		global $wgLanguageCode, $IP, $wgEnableWriteAPI, $wgLang, $wgLocaltimezone, $wgLocalTZoffset;
+		global $wgLegalTitleChars;
 
 		$data = array();
 		$mainPage = Title :: newFromText(wfMsgForContent('mainpage'));
@@ -109,6 +110,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		if( $wgContLang->isRTL() ) 
 			$data['rtl'] = '';
 		$data['fallback8bitEncoding'] = $wgLang->fallback8bitEncoding();
+		$data['legaltitlechars'] = $wgLegalTitleChars;
 		
 		if( wfReadOnly() )
 			$data['readonly'] = '';
