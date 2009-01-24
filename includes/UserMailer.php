@@ -400,7 +400,7 @@ class EmailNotification {
 			$this->compose( $user );
 		}
 
-		$latestTimestamp = Revision::getTimestampFromId( $title, $title->getLatestRevID() );
+		$latestTimestamp = Revision::getTimestampFromId( $title, $title->getLatestRevID(GAID_FOR_UPDATE) );
 		// Do not update watchlists if something else already did.
 		if ( $timestamp >= $latestTimestamp && ($wgShowUpdatedMarker || $wgEnotifWatchlist) ) {
 			# Mark the changed watch-listed page with a timestamp, so that the page is
