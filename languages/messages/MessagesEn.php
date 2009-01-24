@@ -2452,7 +2452,7 @@ You can change this page's protection level, but it will not affect the cascadin
 'restriction-upload' => 'Upload',
 
 # Restriction levels
-'restriction-level-sysop'         => 'full protected',
+'restriction-level-sysop'         => 'fully protected',
 'restriction-level-autoconfirmed' => 'semi protected',
 'restriction-level-all'           => 'any level',
 
