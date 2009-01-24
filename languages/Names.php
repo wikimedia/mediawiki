@@ -87,7 +87,7 @@
 	'fa' => 'فارسی',	# Persian
 	'ff' => 'Fulfulde',		# Fulfulde, Maasina
 	'fi' => 'Suomi',		# Finnish
-	'fiu-vro' => 'Võro',    # Võro
+	'fiu-vro' => 'Võro',    # Võro (deprecated code, 'vro' in ISO 639-3 since 2009-01-16)
 	'fj' => 'Na Vosa Vakaviti',	# Fijian
 	'fo' => 'Føroyskt',	# Faroese
 	'fr' => 'Français',	# French
@@ -329,6 +329,7 @@
 	'vi' => 'Tiếng Việt',	# Vietnamese
 	'vls' => 'West-Vlams', # West Flemish
 	'vo' => 'Volapük',	# Volapük
+	'vro' => 'Võro',    # Võro
 	'wa' => 'Walon',		# Walloon
 	'war' => 'Winaray', # Waray-Waray
 	'wo' => 'Wolof',		# Wolof
