@@ -1299,6 +1299,8 @@ $2',
 'defaultns'                 => 'מרחבי שם לחיפוש כברירת מחדל:',
 'default'                   => 'ברירת מחדל',
 'files'                     => 'קבצים',
+'prefs-custom-css'          => 'קובץ CSS מותאם אישית',
+'prefs-custom-js'           => 'קובץ JS מותאם אישית',
 
 # User rights
 'userrights'                  => 'ניהול הרשאות משתמש', # Not used as normal message but as header for the special page itself
