@@ -1070,6 +1070,8 @@ Spytaj swoje naprašowanje z prefiksom ''all:'' wužiwać, zo by wšón wobsah (
 'defaultns'                 => 'W tutych mjenowych rumach awtomatisce pytać:',
 'default'                   => 'standard',
 'files'                     => 'Dataje',
+'prefs-custom-css'          => 'Swójski CSS',
+'prefs-custom-js'           => 'Swójski JS',
 
 # User rights
 'userrights'                  => 'Zrjadowanje wužiwarskich prawow', # Not used as normal message but as header for the special page itself

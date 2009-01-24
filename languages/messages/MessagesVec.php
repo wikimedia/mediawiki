@@ -129,6 +129,7 @@ $messages = array(
 'tog-justify'                 => 'Paragrafo: giustificà',
 'tog-hideminor'               => 'Scondi łe modifighe picenine n\'te ła paxena "Ultime modifighe"',
 'tog-hidepatrolled'           => 'Scondi le modìfeghe verificà tra le ultime modìfeghe',
+'tog-newpageshidepatrolled'   => "Scondi le pàxene verificà da l'elenco de le pàxene piassè nove",
 'tog-extendwatchlist'         => 'Espandi ła funsion osservai speciałi mostrando tute łe modifighe aplicabili',
 'tog-usenewrc'                => 'Ultime modifiche avanzade (ghe vol JavaScript)',
 'tog-numberheadings'          => 'Auto-numerazion dei titoli de paragrafo',
@@ -832,6 +833,9 @@ Consulta el [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registro de scanc
 'revisiondelete'              => 'Scanceła o ripristina version',
 'revdelete-nooldid-title'     => 'Version mìa specificà',
 'revdelete-nooldid-text'      => 'No xe stà specificà alcuna version de la pagina su cui eseguir sta funzion.',
+'revdelete-nologtype-title'   => 'Nissun tipo de registro specificà',
+'revdelete-nologtype-text'    => "No ti gà indicà nissun tipo de registro su cui eseguir l'azion.",
+'revdelete-nologid-title'     => 'Eròr de indicazion dei registri',
 'revdelete-selected'          => "'''{{PLURAL:$2|Version selezionà|Versioni selezionà}} de [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Evento del registro selezionà|Eventi del registro selezionè}}:'''",
 'revdelete-text'              => "'''Le versioni scancelàe le resta visibili ne la cronologia de la pagina, mentre el testo contegnùo no'l xe acessibile al publico.'''
@@ -1090,6 +1094,8 @@ Assicùrete che la continuità storica de la pagina no la vegna alterà.',
 'defaultns'                 => 'Çerca in sti namespace se non diversamente specificà:',
 'default'                   => 'predefinìo',
 'files'                     => 'Imagini',
+'prefs-custom-css'          => 'CSS personalixà',
+'prefs-custom-js'           => 'JS personalixà',
 
 # User rights
 'userrights'                  => 'Gestion dei parmessi relativi ai utenti', # Not used as normal message but as header for the special page itself
@@ -1300,6 +1306,7 @@ Varda la [[Special:NewFiles|galerìa dei file nóvi]] par na vision de insieme.'
 'filename'                    => 'Nome del file',
 'filedesc'                    => 'Somario',
 'fileuploadsummary'           => 'Somario:',
+'filereuploadsummary'         => 'Canbiamenti al file:',
 'filestatus'                  => 'Informazion sul copyright:',
 'filesource'                  => 'Fonte:',
 'uploadedfiles'               => 'Files caricà su {{SITENAME}}',
@@ -1340,6 +1347,7 @@ Se te vol cargar el file istesso, par piaser torna indrio e canbia el nome che t
 'overwroteimage'              => 'gà cargà na version nova de "[[$1]]"',
 'uploaddisabled'              => 'Semo spiacenti, ma el caricamento de file el xe tenporaneamente sospeso.',
 'uploaddisabledtext'          => "El caricamento dei file no'l xe mìa ativo.",
+'php-uploaddisabledtext'      => 'El caricamento de file tramite PHP el xe disabilità. Contròla la configurassion de file_uploads.',
 'uploadscripted'              => 'Sto file contegne codexe HTML o de script, che podaria essere interpretà eroneamente da un browser web.',
 'uploadcorrupt'               => 'El file el xe coróto o el gà na estension mìa giusta. Controla el file e dopo próa de novo a cargarlo.',
 'uploadvirus'                 => 'Sto file contegne un virus! Detagli: $1',
@@ -2880,5 +2888,8 @@ Inserissi el nome del file senza el prefisso \"{{ns:file}}:\"",
 #Le linee che taca con # le xe de comento
 
 #Inserissi de sora de sta riga tuti i framenti de regex. Lassa sta riga esatamente cussita come la xe</pre>",
+
+# Language links
+'language-link-title' => 'Version $1',
 
 );

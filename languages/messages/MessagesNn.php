@@ -1187,6 +1187,8 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'defaultns'                 => 'Søk som standard i desse namneromma:',
 'default'                   => 'standard',
 'files'                     => 'Filer',
+'prefs-custom-css'          => 'Eigendefinert CSS',
+'prefs-custom-js'           => 'Eigendefinert JavaScript',
 
 # User rights
 'userrights'                  => 'Administrering av brukartilgang', # Not used as normal message but as header for the special page itself
@@ -1802,7 +1804,7 @@ E-postadressa du har sett i [[Special:Preferences|innstillingane dine]] vil dukk
 'addedwatch'           => 'Lagt til overvakingslista',
 'addedwatchtext'       => "Sida «[[:$1]]» er lagt til [[Special:Watchlist|overvakingslista]] di. Framtidige endringar av denne sida og den tilhøyrande diskusjonssida vil bli oppførde her, og sida vil vera '''utheva''' på «[[Special:RecentChanges|siste endringar]]» for å gjera deg merksam på henne.
 
-Om du seinere vil fjerne sida frå overvakingslista, klikk på «Fjern overvaking» på den aktuelle sida.",
+Om du seinare vil fjerne sida frå overvakingslista, klikk på «Fjern overvaking» på den aktuelle sida.",
 'removedwatch'         => 'Fjerna frå overvakingslista',
 'removedwatchtext'     => 'Sida «<nowiki>$1</nowiki>» er fjerna frå overvakingslista.',
 'watch'                => 'Overvak',
@@ -2998,6 +3000,6 @@ Skriv inn filnamn utan «{{ns:file}}:»-prefikset.',
 #Skriv alle fragment av regulære uttrykk over denne lina. La denne linja vere som ho er</pre>',
 
 # Language links
-'language-link-title' => '$1 versjon',
+'language-link-title' => 'versjon på «$1»',
 
 );

@@ -977,6 +977,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'mergehistory-submit'              => '문서 역사 합치기',
 'mergehistory-empty'               => '합칠 수 있는 판이 없습니다.',
 'mergehistory-success'             => '[[:$1]]의 $3개의 판이 [[:$2]]에 성공적으로 합쳐졌습니다.',
+'mergehistory-fail'                => '문서 역사 합치기 명령을 수행할 수 없습니다. 문서와 시간 변수를 다시 확인하십시오.',
 'mergehistory-no-source'           => '원본 문서 $1이 존재하지 않습니다.',
 'mergehistory-no-destination'      => '대상 문서 $1이 존재하지 않습니다.',
 'mergehistory-invalid-source'      => '원본 문서 이름에는 반드시 유효한 제목을 입력해야 합니다.',
@@ -1027,6 +1028,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'diff-code'               => "'''컴퓨터 코드 블록'''",
 'diff-input'              => "'''입력 상자'''",
 'diff-img'                => "'''그림'''",
+'diff-span'               => "'''span''' 태그",
 'diff-a'                  => "'''링크'''",
 'diff-i'                  => "'''기울임꼴'''",
 'diff-b'                  => "'''굵은 글씨'''",
@@ -1153,10 +1155,12 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'guesstimezone'             => '웹 브라우저 설정에서 가져오기',
 'allowemail'                => '다른 사용자로부터의 이메일 허용',
 'prefs-searchoptions'       => '검색 설정',
-'prefs-namespaces'          => '네임스페이스',
+'prefs-namespaces'          => '이름공간',
 'defaultns'                 => '기본으로 다음의 이름공간에서 찾기:',
 'default'                   => '기본값',
 'files'                     => '파일',
+'prefs-custom-css'          => '사용자 CSS',
+'prefs-custom-js'           => '사용자 자바스크립트',
 
 # User rights
 'userrights'                  => '사용자 권한 관리', # Not used as normal message but as header for the special page itself
@@ -1363,6 +1367,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'filename'                    => '파일 이름',
 'filedesc'                    => '파일의 설명',
 'fileuploadsummary'           => '설명:',
+'filereuploadsummary'         => '파일 변경에 대한 요약:',
 'filestatus'                  => '저작권 상태:',
 'filesource'                  => '출처:',
 'uploadedfiles'               => '파일 올리기',
@@ -1550,7 +1555,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 
 # Unused templates
 'unusedtemplates'     => '사용하지 않는 틀 목록',
-'unusedtemplatestext' => '다른 문서에서 사용하지 않는 {{ns:template}} 네임스페이스 문서의 목록입니다.
+'unusedtemplatestext' => '다른 문서에서 사용하지 않는 {{ns:template}} 이름공간 문서의 목록입니다.
 
 삭제하기 전에 사용 여부를 다시 확인해 주세요.',
 'unusedtemplateswlh'  => '다른 링크',
@@ -1686,6 +1691,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'nextpage'          => '다음 문서 ($1)',
 'prevpage'          => '이전 문서 ($1)',
 'allpagesfrom'      => '다음으로 시작하는 문서들을 보여주기:',
+'allpagesto'        => '다음으로 끝나는 문서들을 보여주기:',
 'allarticles'       => '모든 문서',
 'allinnamespace'    => '$1 이름공간의 모든 문서',
 'allnotinnamespace' => '$1 네임스페이스를 제외한 모든 문서 목록',
@@ -1701,6 +1707,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'categoriespagetext'          => '문서나 자료를 담고 있는 분류 목록입니다.
 [[Special:UnusedCategories|사용되지 않는 분류]]는 여기에 보이지 않습니다.
 [[Special:WantedCategories|필요한 분류]]도 참고하세요.',
+'categoriesfrom'              => '다음으로 시작하는 분류들을 보여주기:',
 'special-categories-sort-abc' => '알파벳순으로 정렬',
 
 # Special:DeletedContributions
@@ -2534,6 +2541,7 @@ Variants for Chinese language
 'exif-focalplaneresolutionunit'    => '초점면 해상도 단위',
 'exif-subjectlocation'             => '대상 위치',
 'exif-exposureindex'               => '노출 지수',
+'exif-sensingmethod'               => '감지 방식',
 'exif-cfapattern'                  => 'CFA 패턴',
 'exif-exposuremode'                => '노출 방식',
 'exif-whitebalance'                => '화이트 밸런스',
@@ -2616,6 +2624,8 @@ Variants for Chinese language
 'exif-flash-redeye-1' => '적목 방지 모드',
 
 'exif-focalplaneresolutionunit-2' => '인치',
+
+'exif-sensingmethod-1' => '정의되지 않음',
 
 'exif-exposuremode-0' => '자동 노출',
 'exif-exposuremode-1' => '수동 노출',

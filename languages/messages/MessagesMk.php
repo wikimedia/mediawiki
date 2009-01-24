@@ -260,6 +260,8 @@ $messages = array(
 'tog-highlightbroken'         => 'Формат на неправилни врски <a href="" class="new">на овој начин</a> (алтернативно: вака<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Двостранично порамнување на параграфите',
 'tog-hideminor'               => 'Сокриј ситни уредувања во скорешни промени',
+'tog-hidepatrolled'           => 'Сокриј патролирани уредувања во скорешни промени',
+'tog-newpageshidepatrolled'   => 'Сокриј патролирани страници од листа на нови страници',
 'tog-extendwatchlist'         => 'Прошири листа на набљудувања со приказ на сите можни промени',
 'tog-usenewrc'                => 'Подобрени скорешни промени (JavaScript)',
 'tog-numberheadings'          => 'Автоматско нумерирање на заглавија',
@@ -294,6 +296,7 @@ $messages = array(
 'tog-watchlisthideminor'      => 'Сокриј ситни уредувања во листата на набљудувања',
 'tog-watchlisthideliu'        => 'Сокриј уредувања на најавени корисници во мојата листа на набљудувања',
 'tog-watchlisthideanons'      => 'Сокриј уредувања од анонимни корисници во мојата листа на набљудувања',
+'tog-watchlisthidepatrolled'  => 'Сокриј патролирани уредувања од листа на набљудувања',
 'tog-nolangconversion'        => 'Оневозможи различни конверзии',
 'tog-ccmeonemails'            => 'Праќај ми копии од е-пораките што ги праќам до други корисници',
 'tog-diffonly'                => 'Не ја покажувај содржината на страницата под разликите',
@@ -479,9 +482,9 @@ $messages = array(
 'portal'               => 'Портал',
 'portal-url'           => 'Project:Портал на заедницата',
 'privacy'              => 'Заштита на личните податоци',
-'privacypage'          => 'Project:Заштита на личните податоци',
+'privacypage'          => 'Project:Политика на приватност',
 
-'badaccess'        => 'Грешка во пермисии',
+'badaccess'        => 'Немате овластување',
 'badaccess-group0' => 'Немате дозвола да ја извршите бараната акција.',
 'badaccess-groups' => 'Акцијата што ја баравте е ограничена само на корисници во {{PLURAL:$2|групата|една од групите}}: $1.',
 
@@ -1456,6 +1459,7 @@ $2',
 'filename'                    => 'Име на податотека',
 'filedesc'                    => 'Опис',
 'fileuploadsummary'           => 'Опис:',
+'filereuploadsummary'         => 'Промени на податотека:',
 'filestatus'                  => 'Copyright статус:',
 'filesource'                  => 'Извор:',
 'uploadedfiles'               => 'Подигнати податотеки',
@@ -3201,5 +3205,8 @@ $1
 #Lines beginning with # are treated as comments
 
 #Put all regex fragments above this line. Leave this line exactly as it is</pre>',
+
+# Language links
+'language-link-title' => '$1 верзија',
 
 );

@@ -1251,6 +1251,8 @@ Essayer en utilisant le préfixe ''all:'' pour rechercher tout le contenu (en y 
 'defaultns'                 => 'Rechercher par défaut dans ces espaces de noms',
 'default'                   => 'défaut',
 'files'                     => 'Fichiers',
+'prefs-custom-css'          => 'CSS personnalisé',
+'prefs-custom-js'           => 'JavaScript personnalisé',
 
 # User rights
 'userrights'                  => 'Gestion des droits utilisateur', # Not used as normal message but as header for the special page itself

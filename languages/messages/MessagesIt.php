@@ -843,56 +843,60 @@ Legenda: (corr) = differenze con la versione corrente, (prec) = differenze con l
 'history-feed-empty'          => 'La pagina richiesta non esiste; potrebbe essere stata cancellata dal sito o rinominata. Verificare con la [[Special:Search|pagina di ricerca]] se vi sono nuove pagine.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(commento rimosso)',
-'rev-deleted-user'            => '(nome utente rimosso)',
-'rev-deleted-event'           => '(azione del log rimossa)',
-'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
+'rev-deleted-comment'            => '(commento rimosso)',
+'rev-deleted-user'               => '(nome utente rimosso)',
+'rev-deleted-event'              => '(azione del log rimossa)',
+'rev-deleted-text-permission'    => '<div class="mw-warning plainlinks">
 Questa versione della pagina è stata rimossa dagli archivi visibili al pubblico.
 Consultare il [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} log di cancellazione] per ulteriori dettagli.
 </div>',
-'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
+'rev-deleted-text-view'          => '<div class="mw-warning plainlinks">
 Questa versione della pagina è stata rimossa dagli archivi visibili al pubblico.
 Il testo può essere visualizzato soltanto dagli amministratori del sito.
 Consultare il [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} log di cancellazione] per ulteriori dettagli.
 </div>',
-'rev-delundel'                => 'mostra/nascondi',
-'revisiondelete'              => 'Cancella o ripristina versioni',
-'revdelete-nooldid-title'     => 'Versione non specificata',
-'revdelete-nooldid-text'      => 'Non è stata specificata alcuna versione della pagina su cui eseguire questa funzione.',
-'revdelete-nologtype-title'   => 'Nessun tipo di registro specificato',
-'revdelete-nologtype-text'    => "Non è stato specificato alcun tipo di registro su cui eseguire l'azione.",
-'revdelete-selected'          => "'''{{PLURAL:$2|Versione selezionata|Versioni selezionate}} di [[:$1]]:'''",
-'logdelete-selected'          => "'''{{PLURAL:$1|Evento del registro selezionato|Eventi del registro selezionati}}:'''",
-'revdelete-text'              => "'''Le versioni cancellate restano visibili nella cronologia della pagina, mentre il testo contenuto non è accessibile al pubblico.'''
+'rev-delundel'                   => 'mostra/nascondi',
+'revisiondelete'                 => 'Cancella o ripristina versioni',
+'revdelete-nooldid-title'        => 'Versione non specificata',
+'revdelete-nooldid-text'         => 'Non è stata specificata alcuna versione della pagina su cui eseguire questa funzione.',
+'revdelete-nologtype-title'      => 'Nessun tipo di registro specificato',
+'revdelete-nologtype-text'       => "Non è stato specificato alcun tipo di registro su cui eseguire l'azione.",
+'revdelete-toomanytargets-title' => 'Troppi target',
+'revdelete-toomanytargets-text'  => "Hai specificato troppi tipi di target per eseguire quest'operazione.",
+'revdelete-nologid-title'        => 'Errore di indicazione del log',
+'revdelete-nologid-text'         => 'Per eseguire questa funzione non hai specificato un target per il log oppure il log non esiste.',
+'revdelete-selected'             => "'''{{PLURAL:$2|Versione selezionata|Versioni selezionate}} di [[:$1]]:'''",
+'logdelete-selected'             => "'''{{PLURAL:$1|Evento del registro selezionato|Eventi del registro selezionati}}:'''",
+'revdelete-text'                 => "'''Le versioni cancellate restano visibili nella cronologia della pagina, mentre il testo contenuto non è accessibile al pubblico.'''
 
 Gli altri amministratori del sito potranno accedere comunque ai contenuti nascosti e ripristinarli attraverso questa stessa interfaccia, se non sono state impostate altre limitazioni in fase di installazione del sito.",
-'revdelete-legend'            => 'Imposta le seguenti limitazioni sulle versioni cancellate:',
-'revdelete-hide-text'         => 'Nascondi il testo della versione',
-'revdelete-hide-name'         => 'Nascondi azione e oggetto della stessa',
-'revdelete-hide-comment'      => "Nascondi l'oggetto della modifica",
-'revdelete-hide-user'         => "Nascondi il nome o l'indirizzo IP dell'autore",
-'revdelete-hide-restricted'   => 'Applica le limitazioni indicate anche agli amministratori',
-'revdelete-suppress'          => 'Nascondi le informazioni anche agli amministratori',
-'revdelete-hide-image'        => 'Nascondi i contenuti del file',
-'revdelete-unsuppress'        => 'Elimina le limitazioni sulle revisioni ripristinate',
-'revdelete-log'               => 'Commento per il log:',
-'revdelete-submit'            => 'Applica alla revisione selezionata',
-'revdelete-logentry'          => 'ha modificato la visibilità per una revisione di [[$1]]',
-'logdelete-logentry'          => "ha modificato la visibilità dell'evento [[$1]]",
-'revdelete-success'           => "'''Visibilità della revisione impostata correttamente.'''",
-'logdelete-success'           => "'''Visibilità dell'evento impostata correttamente.'''",
-'revdel-restore'              => 'Cambia la visibilità',
-'pagehist'                    => 'Cronologia della pagina',
-'deletedhist'                 => 'Cronologia cancellata',
-'revdelete-content'           => 'contenuto',
-'revdelete-summary'           => 'riassunto della modifica',
-'revdelete-uname'             => 'nome utente',
-'revdelete-restricted'        => 'limitazioni ai soli amministratori attivate',
-'revdelete-unrestricted'      => 'limitazioni ai soli amministratori rimosse',
-'revdelete-hid'               => 'nascondi $1',
-'revdelete-unhid'             => 'rendi visibile $1',
-'revdelete-log-message'       => '$1 per $2 {{PLURAL:$2|revisione|revisioni}}',
-'logdelete-log-message'       => '$1 per $2 {{PLURAL:$2|evento|eventi}}',
+'revdelete-legend'               => 'Imposta le seguenti limitazioni sulle versioni cancellate:',
+'revdelete-hide-text'            => 'Nascondi il testo della versione',
+'revdelete-hide-name'            => 'Nascondi azione e oggetto della stessa',
+'revdelete-hide-comment'         => "Nascondi l'oggetto della modifica",
+'revdelete-hide-user'            => "Nascondi il nome o l'indirizzo IP dell'autore",
+'revdelete-hide-restricted'      => 'Applica le limitazioni indicate anche agli amministratori',
+'revdelete-suppress'             => 'Nascondi le informazioni anche agli amministratori',
+'revdelete-hide-image'           => 'Nascondi i contenuti del file',
+'revdelete-unsuppress'           => 'Elimina le limitazioni sulle revisioni ripristinate',
+'revdelete-log'                  => 'Commento per il log:',
+'revdelete-submit'               => 'Applica alla revisione selezionata',
+'revdelete-logentry'             => 'ha modificato la visibilità per una revisione di [[$1]]',
+'logdelete-logentry'             => "ha modificato la visibilità dell'evento [[$1]]",
+'revdelete-success'              => "'''Visibilità della revisione impostata correttamente.'''",
+'logdelete-success'              => "'''Visibilità dell'evento impostata correttamente.'''",
+'revdel-restore'                 => 'Cambia la visibilità',
+'pagehist'                       => 'Cronologia della pagina',
+'deletedhist'                    => 'Cronologia cancellata',
+'revdelete-content'              => 'contenuto',
+'revdelete-summary'              => 'riassunto della modifica',
+'revdelete-uname'                => 'nome utente',
+'revdelete-restricted'           => 'limitazioni ai soli amministratori attivate',
+'revdelete-unrestricted'         => 'limitazioni ai soli amministratori rimosse',
+'revdelete-hid'                  => 'nascondi $1',
+'revdelete-unhid'                => 'rendi visibile $1',
+'revdelete-log-message'          => '$1 per $2 {{PLURAL:$2|revisione|revisioni}}',
+'logdelete-log-message'          => '$1 per $2 {{PLURAL:$2|evento|eventi}}',
 
 # Suppression log
 'suppressionlog'     => 'Log delle soppressioni',
@@ -1326,6 +1330,7 @@ Guarda la [[Special:NewFiles|galleria dei nuovi file]] per una visione d'insieme
 'filename'                    => 'Nome del file',
 'filedesc'                    => 'Dettagli',
 'fileuploadsummary'           => 'Dettagli del file:',
+'filereuploadsummary'         => 'Cambiamenti al file:',
 'filestatus'                  => 'Informazioni sul copyright:',
 'filesource'                  => 'Fonte:',
 'uploadedfiles'               => 'Elenco dei file caricati',
@@ -1364,6 +1369,7 @@ Se si dispone dell'immagine nella risoluzione originale, si prega di caricarla. 
 'overwroteimage'              => 'ha caricato una nuova versione di "[[$1]]"',
 'uploaddisabled'              => 'Siamo spiacenti, ma il caricamento di file è temporaneamente sospeso.',
 'uploaddisabledtext'          => 'Il caricamento dei file non è attivo.',
+'php-uploaddisabledtext'      => 'Il caricamento di file tramite PHP è disabilitato. Controlla la configurazione di file_uploads.',
 'uploadscripted'              => 'Questo file contiene codice HTML o di script, che potrebbe essere interpretato erroneamente da un browser web.',
 'uploadcorrupt'               => "Il file è corrotto o ha un'estensione non corretta. Controllare il file e provare di nuovo il caricamento.",
 'uploadvirus'                 => 'Questo file contiene un virus! Dettagli: $1',
@@ -2935,5 +2941,8 @@ Inserire il nome del file senza il prefisso \"{{ns:file}}:\"",
 #Le linee che iniziano con # sono di commento
 
 #Inserisci sopra questa riga tutti i frammenti di regex. Lascia questa riga esattamente com'è</pre>",
+
+# Language links
+'language-link-title' => 'Versione $1',
 
 );

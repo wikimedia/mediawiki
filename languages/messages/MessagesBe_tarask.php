@@ -1227,6 +1227,8 @@ $2',
 'defaultns'                 => 'Па змоўчаньні, шукаць у наступных прасторах назваў:',
 'default'                   => 'па змоўчаньні',
 'files'                     => 'Файлы',
+'prefs-custom-css'          => 'Індывідуальны CSS',
+'prefs-custom-js'           => 'Індывідуальны JS',
 
 # User rights
 'userrights'                  => 'Кіраваньне правамі ўдзельнікаў і ўдзельніц', # Not used as normal message but as header for the special page itself
@@ -3070,5 +3072,8 @@ $1
 #Радкі, пазначаныя #, лічыцца камэнтарамі
 
 #Зьмясьціце ўсе часткі рэгулярных выразаў над гэтым радком. Сам радок пакіньце ў такім жа выглядзе</pre>',
+
+# Language links
+'language-link-title' => '$1 вэрсія',
 
 );

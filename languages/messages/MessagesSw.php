@@ -552,7 +552,7 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'nchanges'                       => '{{PLURAL:$1|badiliko|mabadiliko}} $1',
 'recentchanges'                  => 'Mabadiliko ya karibuni',
 'recentchanges-feed-description' => 'Tumia tawanyiko hili kufuatilia mabadiliko yote ya hivi karibuni katika Wiki.',
-'rcnote'                         => "Yanayofuata {{PLURAL:$1|ni badiliko '''1'''|ni mabadiliko '''$1''' ya mwisho}} kutoka katika {{PLURAL:$2|siku iliyopita|siku '''$2''' zilizopita}}, hadi $3.",
+'rcnote'                         => "Yanayofuata ni {{PLURAL:$1|badiliko '''1'''|mabadiliko '''$1''' ya mwisho}} kutoka katika {{PLURAL:$2|siku iliyopita|siku '''$2''' zilizopita}}, hadi $5, $4.",
 'rcnotefrom'                     => "Hapo chini yaonekana mabadiliko tangu '''$2''' (tunaonyesha hadi '''$1''').",
 'rclistfrom'                     => 'Onyesha mabadiliko mapya kuanzia $1',
 'rcshowhideminor'                => '$1 mabadiliko madogo',
@@ -600,11 +600,11 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'filehist-filesize'         => 'Ukubwa wa faili',
 'filehist-comment'          => 'Maoni',
 'imagelinks'                => 'Viungo',
-'linkstoimage'              => 'Kurasa hizi zimeunganishwa na faili hili:',
+'linkstoimage'              => '{{PLURAL:$1|Ukurasa huu|Kurasa hizi $1}} zimeunganishwa na faili hili:',
 'nolinkstoimage'            => 'Hakuna kurasa zozote zilizounganishwa na faili hii.',
 'sharedupload'              => 'Faili hii inaweza kushirikiwa na miradi mingine.',
 'noimage'                   => 'Hakuna faili yenye jina hili, $1 kama unayo.',
-'noimage-linktext'          => 'pakia picha',
+'noimage-linktext'          => 'pakia faili',
 'uploadnewversion-linktext' => 'Pakia toleo jipya la faili hii',
 
 # MIME search
@@ -643,7 +643,7 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'lonelypages'             => 'Kurasa ambazo haziungwi kutoka ukurasa mwingine wowote',
 'uncategorizedpages'      => 'Kurasa ambazo hazijawekwa katika jamii',
 'uncategorizedcategories' => 'Jamii ambazo hazijawekwa katika jamii',
-'uncategorizedimages'     => 'Picha ambazo hazijawekwa katika jamii',
+'uncategorizedimages'     => 'Mafaili ambazo hazijawekwa katika jamii',
 'uncategorizedtemplates'  => 'Vigezo ambavyo havijawekwa katika jamii',
 'unusedcategories'        => 'Jamii ambazo hazitumiwi',
 'unusedimages'            => 'Mafaili ambayo hayatumiwi',
@@ -883,7 +883,7 @@ Chagua jina lengine.',
 'tooltip-t-specialpages'          => 'Orodha ya kurasa maalum zote',
 'tooltip-ca-nstab-user'           => 'Tazama ukurasa wa mtumiaji',
 'tooltip-ca-nstab-project'        => 'Tazama ukurasa wa mradi',
-'tooltip-ca-nstab-image'          => 'Angalia ukurasa wa picha',
+'tooltip-ca-nstab-image'          => 'Angalia ukurasa wa faili',
 'tooltip-ca-nstab-template'       => 'Tazama kigezo',
 'tooltip-ca-nstab-help'           => 'Tazama ukurasa wa msaada',
 'tooltip-ca-nstab-category'       => 'Tazama ukurasa wa jamii',
@@ -934,7 +934,7 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 
 # External editor support
 'edit-externally'      => 'Tumia programu ya nje kuhariri faili hii',
-'edit-externally-help' => 'Ona [http://www.mediawiki.org/wiki/Manual:External_editors maelezo (kwa Kiingereza)] kwa maarifa mengine.',
+'edit-externally-help' => '(Ona [http://www.mediawiki.org/wiki/Manual:External_editors maelezo (kwa Kiingereza)] kwa maarifa mengine.)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'zote',

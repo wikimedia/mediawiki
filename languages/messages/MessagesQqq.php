@@ -382,8 +382,8 @@ The format is: "{{int:youhavenewmessages| [[MediaWiki:Newmessageslink/{{SUBPAGEN
 'hidetoc'                 => 'This is the link used to hide the table of contents
 
 {{Identical|Hide}}',
-'restorelink'             => "This text is always displayed in conjunction with the \"thisisdeleted\" message (View or restore \$1?).  The user will see
-View or restore <nowiki>{{PLURAL:\$1|one deleted edit|\$1 deleted edits}}</nowiki>?    i.e ''View or restore one deleted edit?''     or 
+'restorelink'             => "This text is always displayed in conjunction with the {{msg-mw|thisisdeleted}} message (View or restore $1?). The user will see
+View or restore <nowiki>{{PLURAL:$1|one deleted edit|$1 deleted edits}}</nowiki>?    i.e ''View or restore one deleted edit?''     or 
 ''View or restore n deleted edits?''",
 'feed-unavailable'        => 'This message is displayed when a user tries to use an RSS or Atom feed on a wiki where such feeds have been disabled.',
 'site-rss-feed'           => "Used in the HTML header of a wiki's RSS feed.
@@ -925,6 +925,7 @@ Shown as legend of the second fieldset of the tab 'Search' in [[Special:Preferen
 'defaultns'                 => 'Used in [[Special:Preferences]], tab "Search".',
 'default'                   => '{{Identical|Default}}',
 'files'                     => 'Title of a tab in [[Special:Preferences]].',
+'prefs-custom-css'          => 'visible on [[Special:Preferences]] -[Skins].',
 
 # User rights
 'userrights'                  => 'Page title of [[Special:UserRights]].', # Not used as normal message but as header for the special page itself

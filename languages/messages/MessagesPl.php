@@ -357,7 +357,7 @@ $messages = array(
 'qbspecialpages' => 'strony specjalne',
 'moredotdotdot'  => 'Więcej...',
 'mypage'         => 'Moja strona',
-'mytalk'         => 'moja dyskusja',
+'mytalk'         => 'Moja dyskusja',
 'anontalk'       => 'Dyskusja tego IP',
 'navigation'     => 'Nawigacja',
 'and'            => '&#32;oraz',
@@ -399,7 +399,7 @@ $messages = array(
 'personaltools'     => 'Osobiste',
 'postcomment'       => 'Skomentuj',
 'articlepage'       => 'Artykuł',
-'talk'              => 'dyskusja',
+'talk'              => 'Dyskusja',
 'views'             => 'Widok',
 'toolbox'           => 'Narzędzia',
 'userpage'          => 'Strona użytkownika',
@@ -1162,7 +1162,7 @@ Jednak informacje o treści {{GRAMMAR:D.lp|{{SITENAME}}}} mogą być w Google ni
 
 # Preferences page
 'preferences'               => 'Preferencje',
-'mypreferences'             => 'preferencje',
+'mypreferences'             => 'Preferencje',
 'prefs-edits'               => 'Liczba edycji',
 'prefsnologin'              => 'Nie jesteś zalogowany',
 'prefsnologintext'          => 'Musisz się <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} zalogować]</span> przed zmianą swoich preferencji.',
@@ -1231,6 +1231,8 @@ Zapoznaj się z math/README w celu konfiguracji.',
 'defaultns'                 => 'Domyślnie przeszukuj przestrzenie nazw',
 'default'                   => 'domyślnie',
 'files'                     => 'Pliki',
+'prefs-custom-css'          => 'Dostosuj CSS',
+'prefs-custom-js'           => 'Dostosuj JS',
 
 # User rights
 'userrights'                  => 'Zarządzaj uprawnieniami użytkowników', # Not used as normal message but as header for the special page itself
@@ -1739,7 +1741,7 @@ Strona uznawana jest za ujednoznaczniającą, jeśli zawiera ona szablon linkowa
 'newpages'                => 'Nowe strony',
 'newpages-username'       => 'Nazwa użytkownika',
 'ancientpages'            => 'Najstarsze strony',
-'move'                    => 'przenieś',
+'move'                    => 'Przenieś',
 'movethispage'            => 'Przenieś tę stronę',
 'unusedimagestext'        => 'Inne witryny mogą odwoływać się do tych plików, używając bezpośrednich adresów URL. Oznacza to, że niektóre z plików mogą się znajdować na tej liście pomimo tego, że są wykorzystywane.',
 'unusedcategoriestext'    => 'Poniższe kategorie istnieją, choć nie korzysta z nich żadna strona ani kategoria.',
@@ -1860,7 +1862,7 @@ Adres e-mailowy, który został przez Ciebie wprowadzony w [[Special:Preferences
 
 # Watchlist
 'watchlist'            => 'Obserwowane',
-'mywatchlist'          => 'obserwowane',
+'mywatchlist'          => 'Obserwowane',
 'watchlistfor'         => "(raport dla użytkownika '''$1''')",
 'nowatchlist'          => 'Lista obserwowanych przez Ciebie stron jest pusta.',
 'watchlistanontext'    => '$1, aby obejrzeć lub edytować elementy listy obserwowanych.',
