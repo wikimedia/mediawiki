@@ -168,6 +168,9 @@ CONTROL;
 			// If we've been given an explicit change identifier, use it; saves time
 			if( $this->mRcidMarkPatrolled ) {
 				$rcid = $this->mRcidMarkPatrolled;
+				$rc = RecentChange::newFromId( $rcid );
+				// Already patrolled?
+				$rcid = is_object($rc) && !$rc->getAttribute('rc_patrolled') ? $rcid : 0;
 			} else {
 				// Look for an unpatrolled change corresponding to this diff
 				$db = wfGetDB( DB_SLAVE );
