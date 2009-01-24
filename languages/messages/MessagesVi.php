@@ -106,7 +106,7 @@ $specialPageAliases = array(
 );
 
 $magicWords = array(
-	'redirect'               => array( 0,    '#redirect' , '#đổi'             ),
+	'redirect'               => array( 0,    '#redirect' , '#đổi', '#đổi'             ),
 	'notoc'                  => array( 0,    '__NOTOC__' , '__KHÔNGMỤCMỤC__'             ),
 	'forcetoc'               => array( 0,    '__FORCETOC__', '__LUÔNMỤCLỤC__'        ),
 	'toc'                    => array( 0,    '__TOC__' , '__MỤCLỤC__'               ),
