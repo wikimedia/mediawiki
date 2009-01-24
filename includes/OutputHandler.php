@@ -10,7 +10,7 @@ function wfOutputHandler( $s ) {
 		$headers = apache_response_headers();
 		$isHTML = true;
 		foreach ( $headers as $name => $value ) {
-			if ( strtolower( $name ) == 'content-type' && strpos( $value, 'text/html' ) === false ) {
+			if ( strtolower( $name ) == 'content-type' && strpos( $value, 'text/html' ) === false && strpos( $value, 'application/xhtml+xml' ) === false ) {
 				$isHTML = false;
 				break;
 			}
@@ -123,18 +123,55 @@ function wfDoContentLength( $length ) {
  * Replace the output with an error if the HTML is not valid
  */
 function wfHtmlValidationHandler( $s ) {
-	global $IP;
-	$tidy = new tidy;
-	$tidy->parseString( $s, "$IP/includes/tidy.conf", 'utf8' );
-	if ( $tidy->getStatus() == 0 ) {
-		return $s;
+	global $IP, $wgTidyInternal, $wgTidyConf;
+	if ( $wgTidyInternal ) {
+		$tidy = new tidy;
+	
+		$tidy->parseString( $s, $wgTidyConf, 'utf8' );
+		if ( $tidy->getStatus() == 0 ) {
+			return $s;
+		}
+
+		$errors = $tidy->errorBuffer;
+	} else {
+		// Copied from Parser::externalTidy();
+		global $wgTidyBin, $wgTidyOpts;
+
+		$cleansource = '';
+		$opts = ' -utf8';
+
+		$descriptorspec = array(
+			0 => array( 'pipe', 'r' ),
+			1 => array( 'file', wfGetNull(), 'a' ),
+			2 => array( 'pipe', 'w' )
+		);
+		$pipes = array();
+		if( function_exists( 'proc_open' ) ) {
+			$process = proc_open("$wgTidyBin -config $wgTidyConf $wgTidyOpts$opts", $descriptorspec, $pipes );
+			if ( is_resource( $process ) ) {
+				fwrite( $pipes[0], $s );
+				fclose( $pipes[0] );
+				while( !feof( $pipes[2] ) ) {
+					$errors .= fgets( $pipes[2], 1024 );
+				}
+				fclose( $pipes[2] );
+				$ret = proc_close( $process );
+				if( ( $ret < 0 && $errors == '' ) || $ret == 0 )
+					return $s;
+			} else {
+				return $s;
+			}
+			
+		} else {
+			return $s;
+		}
 	}
 
 	header( 'Cache-Control: no-cache' );
 
 	$out = <<<EOT
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
 <title>HTML validation error</title>
 <style>
@@ -147,7 +184,7 @@ li { white-space: pre }
 <ul>
 EOT;
 
-	$error = strtok( $tidy->errorBuffer, "\n" );
+	$error = strtok( $errors, "\n" );
 	$badLines = array();
 	while ( $error !== false ) {
 		if ( preg_match( '/^line (\d+)/', $error, $m ) ) {
@@ -158,7 +195,8 @@ EOT;
 		$error = strtok( "\n" );
 	}
 
-	$out .= '<pre>' . htmlspecialchars( $tidy->errorBuffer ) . '</pre>';
+	$out .= '</ul>';
+	$out .= '<pre>' . htmlspecialchars( $errors ) . '</pre>';
 	$out .= '<ol>';
 	$line = strtok( $s, "\n" );
 	$i = 1;
