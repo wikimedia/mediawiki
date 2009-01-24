@@ -137,6 +137,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$this->addFields($this->bl_title);
 		if($this->hasNS)
 			$this->addFields($this->bl_ns);
+		// We can't use LinkBatch here because $this->hasNS may be false
 		$titleWhere = array();
 		foreach($this->redirTitles as $t)
 			$titleWhere[] = "{$this->bl_title} = ".$db->addQuotes($t->getDBKey()).
