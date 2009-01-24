@@ -137,13 +137,11 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$this->addFields($this->bl_title);
 		if($this->hasNS)
 			$this->addFields($this->bl_ns);
-		$titleWhere = '';
+		$titleWhere = array();
 		foreach($this->redirTitles as $t)
-			$titleWhere .= ($titleWhere != '' ? " OR " : '') .
-					"({$this->bl_title} = ".$db->addQuotes($t->getDBKey()).
-					($this->hasNS ? " AND {$this->bl_ns} = '{$t->getNamespace()}'" : "") .
-					")";
-		$this->addWhere($titleWhere);
+			$titleWhere[] = "{$this->bl_title} = ".$db->addQuotes($t->getDBKey()).
+					($this->hasNS ? " AND {$this->bl_ns} = '{$t->getNamespace()}'" : "");
+		$this->addWhere($db->makeList($titleWhere, LIST_OR));
 		$this->addWhereFld('page_namespace', $this->params['namespace']);
 		if(!is_null($this->redirID))
 		{
