@@ -404,7 +404,8 @@ class IPBlockForm {
 		$block = new Block( $this->BlockAddress, $userId, $wgUser->getId(),
 			$reasonstr, wfTimestampNow(), 0, $expiry, $this->BlockAnonOnly,
 			$this->BlockCreateAccount, $this->BlockEnableAutoblock, $this->BlockHideName,
-			$this->BlockEmail, isset( $this->BlockAllowUsertalk ) ? $this->BlockAllowUsertalk : $wgBlockAllowsUTEdit );
+			$this->BlockEmail, isset( $this->BlockAllowUsertalk ) ? $this->BlockAllowUsertalk : $wgBlockAllowsUTEdit
+		);
 
 		if ( wfRunHooks('BlockIp', array(&$block, &$wgUser)) ) {
 
@@ -430,6 +431,10 @@ class IPBlockForm {
 			if ( $this->BlockWatchUser ) { 
 				$wgUser->addWatch ( Title::makeTitle( NS_USER, $this->BlockAddress ) );
 			}
+			
+			# Block constructor sanitizes certain block options on insert
+			$this->BlockEmail = $block->mBlockEmail;
+			$this->BlockEnableAutoblock = $block->mEnableAutoblock;
 
 			# Prepare log parameters
 			$logParams = array();
@@ -500,7 +505,7 @@ class IPBlockForm {
 		global $wgBlockAllowsUTEdit;
 		$flags = array();
 		if( $this->BlockAnonOnly && IP::isIPAddress( $this->BlockAddress ) )
-					// when blocking a user the option 'anononly' is not available/has no effect -> do not write this into log
+			// when blocking a user the option 'anononly' is not available/has no effect -> do not write this into log
 			$flags[] = 'anononly';
 		if( $this->BlockCreateAccount )
 			$flags[] = 'nocreate';
