@@ -20,17 +20,14 @@ class CategoryPage extends Article {
 		if ( isset( $diff ) && $diffOnly )
 			return Article::view();
 
-		if(!wfRunHooks('CategoryPageView', array(&$this))) return;
+		if( !wfRunHooks( 'CategoryPageView', array( &$this ) ) )
+			return;
 
 		if ( NS_CATEGORY == $this->mTitle->getNamespace() ) {
 			$this->openShowCategory();
 		}
 
 		Article::view();
-
-		# If the article we've just shown is in the "Image" namespace,
-		# follow it with the history list and link list for the image
-		# it describes.
 
 		if ( NS_CATEGORY == $this->mTitle->getNamespace() ) {
 			$this->closeShowCategory();
@@ -79,7 +76,7 @@ class CategoryViewer {
 		$this->from = $from;
 		$this->until = $until;
 		$this->limit = $wgCategoryPagingLimit;
-		$this->cat = Category::newFromName( $title->getDBKey() );
+		$this->cat = Category::newFromTitle( $title );
 	}
 
 	/**
@@ -317,7 +314,7 @@ class CategoryViewer {
 			$countmsg = $this->getCountMessage( $rescnt, $dbcnt, 'file' );
 
 			return "<div id=\"mw-category-media\">\n" .
-			'<h2>' . wfMsg( 'category-media-header', htmlspecialchars($this->title->getText()) ) . "</h2>\n" .
+			'<h2>' . wfMsg( 'category-media-header', htmlspecialchars( $this->title->getText() ) ) . "</h2>\n" .
 			$countmsg . $this->gallery->toHTML() . "\n</div>";
 		} else {
 			return '';
@@ -452,12 +449,12 @@ class CategoryViewer {
 		$sk = $this->getSkin();
 		$limitText = $wgLang->formatNum( $limit );
 
-		$prevLink = htmlspecialchars( wfMsg( 'prevn', $limitText ) );
+		$prevLink = wfMsgExt( 'prevn', array( 'escape' ), $limitText );
 		if( $first != '' ) {
 			$prevLink = $sk->makeLinkObj( $title, $prevLink,
 				wfArrayToCGI( $query + array( 'until' => $first ) ) );
 		}
-		$nextLink = htmlspecialchars( wfMsg( 'nextn', $limitText ) );
+		$nextLink = wfMsgExt( 'nextn', array( 'escape' ), $limitText );
 		if( $last != '' ) {
 			$nextLink = $sk->makeLinkObj( $title, $nextLink,
 				wfArrayToCGI( $query + array( 'from' => $last ) ) );
