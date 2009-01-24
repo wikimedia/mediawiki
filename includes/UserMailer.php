@@ -316,7 +316,6 @@ class EmailNotification {
 	 * @param $oldid (default: false)
 	 */
 	function actuallyNotifyOnPageChange($editor, $title, $timestamp, $summary, $minorEdit, $oldid=false) {
-
 		# we use $wgPasswordSender as sender's address
 		global $wgEnotifWatchlist;
 		global $wgEnotifMinorEdits, $wgEnotifUserTalk, $wgShowUpdatedMarker;
@@ -372,7 +371,6 @@ class EmailNotification {
 				$dbr = wfGetDB( DB_SLAVE );
 
 				list( $user ) = $dbr->tableNamesN( 'user' );
-
 				$res = $dbr->select( array( 'watchlist', 'user' ),
 					array( "$user.*" ),
 					array(
@@ -381,7 +379,8 @@ class EmailNotification {
 						'wl_namespace' => $title->getNamespace(),
 						$userCondition,
 						'wl_notificationtimestamp IS NULL',
-					), __METHOD__ );
+					), __METHOD__
+				);
 				$userArray = UserArray::newFromResult( $res );
 
 				foreach ( $userArray as $watchingUser ) {
@@ -401,8 +400,6 @@ class EmailNotification {
 			$this->compose( $user );
 		}
 
-		$this->sendMails();
-
 		$latestTimestamp = Revision::getTimestampFromId( $title, $title->getLatestRevID() );
 		// Do not update watchlists if something else already did.
 		if ( $timestamp >= $latestTimestamp && ($wgShowUpdatedMarker || $wgEnotifWatchlist) ) {
@@ -410,17 +407,21 @@ class EmailNotification {
 			# listed with an "updated since your last visit" icon in the watch list. Do
 			# not do this to users for their own edits.
 			$dbw = wfGetDB( DB_MASTER );
+			$dbw->begin();
 			$dbw->update( 'watchlist',
 				array( /* SET */
 					'wl_notificationtimestamp' => $dbw->timestamp($timestamp)
 				), array( /* WHERE */
 					'wl_title' => $title->getDBkey(),
 					'wl_namespace' => $title->getNamespace(),
-					'wl_notificationtimestamp IS NULL',
+					'wl_notificationtimestamp IS NULL', // store oldest unseen change time
 					'wl_user != ' . $editor->getID()
 				), __METHOD__
 			);
+			$dbw->commit();
 		}
+		
+		$this->sendMails();
 
 		wfProfileOut( __METHOD__ );
 	} # function NotifyOnChange
