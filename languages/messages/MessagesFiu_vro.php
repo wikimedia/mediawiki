@@ -1,9 +1,9 @@
 <?php
-/** Võro
+/** VÃµro
  *
  * @ingroup Language
  * @file
- * @comment Deprecated code. Falls back to 'vro'.
+ * @comment Deprecated language code. Falls back to 'vro'.
  */
 
 $fallback = 'vro';
