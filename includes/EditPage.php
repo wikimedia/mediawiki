@@ -881,7 +881,7 @@ class EditPage {
 			$isComment = ( $this->section == 'new' );
 
 			$this->mArticle->insertNewArticle( $this->textbox1, $this->summary,
-				$this->minoredit, $this->watchthis, false, $isComment, $bot);
+				$this->minoredit, $this->watchthis, false, $isComment, $bot );
 
 			wfProfileOut( $fname );
 			return self::AS_SUCCESS_NEW_ARTICLE;
@@ -2405,7 +2405,9 @@ END
 		global $wgUser, $wgOut, $wgTitle, $wgRequest;
 
 		$resultDetails = false;
-		$value = $this->internalAttemptSave( $resultDetails, $wgUser->isAllowed('bot') && $wgRequest->getBool('bot', true) );
+		# Allow bots to exempt some edits from bot flagging
+		$bot = $wgUser->isAllowed('bot') && $wgRequest->getBool('bot',true);
+		$value = $this->internalAttemptSave( $resultDetails, $bot );
 
 		if ( $value == self::AS_SUCCESS_UPDATE || $value == self::AS_SUCCESS_NEW_ARTICLE ) {
 			$this->didSave = true;
