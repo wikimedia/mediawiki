@@ -1135,6 +1135,8 @@ $2',
 'defaultns'                 => '默认搜索的名字空间',
 'default'                   => '默认',
 'files'                     => '文件',
+'prefs-custom-css'          => '自定义CSS',
+'prefs-custom-js'           => '自定义JS',
 
 # User rights
 'userrights'                  => '用户权限管理', # Not used as normal message but as header for the special page itself
