@@ -1033,6 +1033,8 @@ $2',
 'defaultns'                 => '預設搜索的名字空間',
 'default'                   => '預設',
 'files'                     => '檔案',
+'prefs-custom-css'          => '自定CSS',
+'prefs-custom-js'           => '自定JS',
 
 # User rights
 'userrights'                  => '用戶權限管理', # Not used as normal message but as header for the special page itself

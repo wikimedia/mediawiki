@@ -961,6 +961,8 @@ $2',
 'defaultns'                 => '定尋之名集：',
 'default'                   => '予定',
 'files'                     => '檔',
+'prefs-custom-css'          => '定之CSS',
+'prefs-custom-js'           => '定之JS',
 
 # User rights
 'userrights'                     => '齋權管', # Not used as normal message but as header for the special page itself

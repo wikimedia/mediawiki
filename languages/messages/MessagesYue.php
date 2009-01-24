@@ -1,5 +1,5 @@
 <?php
-/** Yue (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * @ingroup Language
  * @file
@@ -1110,6 +1110,8 @@ $1',
 'defaultns'                 => '預設喺呢啲空間名搵嘢：',
 'default'                   => '預設',
 'files'                     => '檔案',
+'prefs-custom-css'          => '自定 CSS',
+'prefs-custom-js'           => '自定 JS',
 
 # User rights
 'userrights'                  => '用戶權限管理', # Not used as normal message but as header for the special page itself
