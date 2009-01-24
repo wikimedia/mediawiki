@@ -908,6 +908,8 @@ $wgMessageStructure = array(
 		'default',
 		'defaultns',
 		'files',
+		'prefs-custom-css',
+		'prefs-custom-js',
 	),
 	'userrights' => array(
 		'userrights',
