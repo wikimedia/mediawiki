@@ -864,13 +864,18 @@ class PreferencesForm {
 				}
 			}
 			asort($validSkinNames);
-			foreach ($validSkinNames as $skinkey => $sn ) {
+			foreach( $validSkinNames as $skinkey => $sn ) {
 				$checked = $skinkey == $this->mSkin ? ' checked="checked"' : '';
 				$mplink = htmlspecialchars( $mptitle->getLocalURL( "useskin=$skinkey" ) );
 				$previewlink = "(<a target='_blank' href=\"$mplink\">$previewtext</a>)";
+				$cssPage = Title::makeTitleSafe( NS_USER, $wgUser->getName().'/'.$skinkey.'.css' );
+				$jsPage = Title::makeTitleSafe( NS_USER, $wgUser->getName().'/'.$skinkey.'.js' );
+				$customCSS = $sk->makeLinkObj( $cssPage, wfMsgHtml('prefs-custom-css') );
+				$customJS = $sk->makeLinkObj( $jsPage, wfMsgHtml('prefs-custom-js') ); 
 				if( $skinkey == $wgDefaultSkin )
 					$sn .= ' (' . wfMsg( 'default' ) . ')';
-				$wgOut->addHTML( "<input type='radio' name='wpSkin' id=\"wpSkin$skinkey\" value=\"$skinkey\"$checked /> <label for=\"wpSkin$skinkey\">{$sn}</label> $previewlink<br />\n" );
+				$wgOut->addHTML( "<input type='radio' name='wpSkin' id=\"wpSkin$skinkey\" value=\"$skinkey\"$checked /> 
+					<label for=\"wpSkin$skinkey\">{$sn}</label> $previewlink ($customCSS) ($customJS)<br />\n" );
 			}
 			$wgOut->addHTML( "</fieldset>\n\n" );
 		}
