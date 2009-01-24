@@ -1574,6 +1574,8 @@ please see math/README to configure.',
 'defaultns'                 => 'Search in these namespaces by default:',
 'default'                   => 'default',
 'files'                     => 'Files',
+'prefs-custom-css'          => 'Custom CSS',
+'prefs-custom-js'           => 'Custom JS',
 
 # User rights
 'userrights'                     => 'User rights management', # Not used as normal message but as header for the special page itself
