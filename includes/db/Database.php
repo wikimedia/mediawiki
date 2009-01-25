@@ -1397,7 +1397,7 @@ class Database {
 				} else {
 					$list .= $field." IN (".$this->makeList($value).") ";
 				}
-			} elseif( is_null($value) ) {
+			} elseif( $value === null ) {
 				if ( $mode == LIST_AND || $mode == LIST_OR ) {
 					$list .= "$field IS ";
 				} elseif ( $mode == LIST_SET ) {
@@ -1605,7 +1605,7 @@ class Database {
 	 * Otherwise returns as-is
 	 */
 	function addQuotes( $s ) {
-		if ( is_null( $s ) ) {
+		if ( $s === null ) {
 			return 'NULL';
 		} else {
 			# This will also quote numeric values. This should be harmless,
@@ -1621,7 +1621,7 @@ class Database {
 	 */
 	function escapeLike( $s ) {
 		$s=$this->strencode( $s );
-		$s=str_replace(array('%','_'),array('\%','\_'),$s);
+		$s=str_replace(array('%','_','\\'),array('\%','\_','\\\\'),$s);
 		return $s;
 	}
 
