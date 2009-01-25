@@ -327,6 +327,7 @@ $magicWords = array(
 	'filepath'               => array( 0,    'FILEPATH:'              ),
 	'tag'                    => array( 0,    'tag'                    ),
 	'hiddencat'              => array( 1,    '__HIDDENCAT__'          ),
+	'ignoreunused'           => array( 1,    '__IGNOREUNUSED__'       ),
 	'pagesincategory'        => array( 1,    'PAGESINCATEGORY', 'PAGESINCAT' ),
 	'pagesize'               => array( 1,    'PAGESIZE'               ),
 	'index'                  => array( 1,    '__INDEX__'              ),
