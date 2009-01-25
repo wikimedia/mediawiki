@@ -465,6 +465,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		$rev = new Revision( $row );
 
 		$page = Title::makeTitle( $row->page_namespace, $row->page_title );
+		$page->resetArticleId( $row->rev_page ); // use process cache
 		$link = $sk->makeLinkObj( $page, $page->getPrefixedText(), $page->isRedirect() ? 'redirect=no' : '' );
 		# Mark current revisions
 		$difftext = $topmarktext = '';
