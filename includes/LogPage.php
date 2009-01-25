@@ -213,11 +213,19 @@ class LogPage {
 					} else if ( $type == 'protect' && count($params) == 3 ) {
 						$details .= " {$params[1]}"; // restrictions and expiries
 						if( $params[2] ) {
-							$details .= ' ['.wfMsg('protect-summary-cascade').']';
+							if ( $skin ) {
+								$details .= ' ['.wfMsg('protect-summary-cascade').']';
+							} else {
+								$details .= ' ['.wfMsgForContent('protect-summary-cascade').']';
+							}
 						}
 					} else if ( $type == 'move' && count( $params ) == 3 ) {
 						if( $params[2] ) {
-							$details .= ' [' . wfMsg( 'move-redirect-suppressed' ) . ']';
+							if ( $skin ) {
+								$details .= ' [' . wfMsg( 'move-redirect-suppressed' ) . ']';
+							} else {
+								$details .= ' [' . wfMsgForContent( 'move-redirect-suppressed' ) . ']';
+							}
 						}
 					}
 					$rv = wfMsgReal( $wgLogActions[$key], $params, true, !$skin ) . $details;
