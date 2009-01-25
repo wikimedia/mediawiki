@@ -872,7 +872,7 @@ class PreferencesForm {
 				if( $skinkey == $this->mSkin ) {
 					$cssPage = Title::makeTitleSafe( NS_USER, $wgUser->getName().'/'.$skinkey.'.css' );
 					$jsPage = Title::makeTitleSafe( NS_USER, $wgUser->getName().'/'.$skinkey.'.js' );
-					$customCSS = $sk->makeLinkObj( $cssPage, wfMsgHtml('prefs-custom-css') );
+					$customCSS = $sk->makeLinkObj( $cssPage, wfMsgExt('prefs-custom-css', array() ) );
 					$customJS = $sk->makeLinkObj( $jsPage, wfMsgHtml('prefs-custom-js') );
 					$extraLinks = " ($customCSS) ($customJS)";
 				}
