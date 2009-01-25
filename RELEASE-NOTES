@@ -81,6 +81,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 10569) redirects to Special:Mypage and Special:Mytalk are no longer
   allowed by default. Change $wgInvalidRedirectTargets to re-enable.
 * (bug 3043) Feed links of given page are now preceded by standard feed icon
+* (bug 17150) escapeLike now escapes literal \ properly
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
