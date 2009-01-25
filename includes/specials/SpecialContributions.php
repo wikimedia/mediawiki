@@ -396,9 +396,9 @@ class ContribsPager extends ReverseChronologicalPager {
 		$queryInfo = array(
 			'tables' => $tables,
 			'fields' => array(
-				'page_namespace', 'page_title', 'page_is_new', 'page_latest', 'rev_id', 'rev_page',
-				'rev_text_id', 'rev_timestamp', 'rev_comment', 'rev_minor_edit', 'rev_user',
-				'rev_user_text', 'rev_parent_id', 'rev_deleted'
+				'page_namespace', 'page_title', 'page_is_new', 'page_latest', 'page_is_redirect',
+				'rev_id', 'rev_page','rev_text_id', 'rev_timestamp', 'rev_comment', 'rev_minor_edit', 
+				'rev_user', 'rev_user_text', 'rev_parent_id', 'rev_deleted'
 			),
 			'conds' => $conds,
 			'options' => array( 'USE INDEX' => array('revision' => $index) ),
@@ -458,36 +458,36 @@ class ContribsPager extends ReverseChronologicalPager {
 	 * @todo This would probably look a lot nicer in a table.
 	 */
 	function formatRow( $row ) {
-		wfProfileIn( __METHOD__ );
-
 		global $wgLang, $wgUser, $wgContLang;
+		wfProfileIn( __METHOD__ );
 
 		$sk = $this->getSkin();
 		$rev = new Revision( $row );
 
 		$page = Title::makeTitle( $row->page_namespace, $row->page_title );
-		$link = $sk->makeKnownLinkObj( $page );
+		$link = $sk->makeLinkObj( $page, $page->getPrefixedText(), $page->isRedirect() ? 'redirect=no' : '' );
+		# Mark current revisions
 		$difftext = $topmarktext = '';
 		if( $row->rev_id == $row->page_latest ) {
 			$topmarktext .= '<strong>' . $this->messages['uctop'] . '</strong>';
 			if( !$row->page_is_new ) {
 				$difftext .= '(' . $sk->makeKnownLinkObj( $page, $this->messages['diff'], 'diff=0' ) . ')';
+				# Add rollback link
+				if( $page->userCan( 'rollback') && $page->userCan( 'edit' ) ) {
+					$topmarktext .= ' '.$sk->generateRollback( $rev );
+				}
 			} else {
 				$difftext .= $this->messages['newarticle'];
 			}
-
-			if( $page->userCan( 'rollback') && $page->userCan( 'edit' ) ) {
-				$topmarktext .= ' '.$sk->generateRollback( $rev );
-			}
-
 		}
 		# Is there a visible previous revision?
 		if( $rev->userCan(Revision::DELETED_TEXT) ) {
-			$difftext = '(' . $sk->makeKnownLinkObj( $page, $this->messages['diff'], 'diff=prev&oldid='.$row->rev_id ) . ')';
+			$difftext = '(' . $sk->makeKnownLinkObj( $page, $this->messages['diff'],
+				'diff=prev&oldid='.$row->rev_id ) . ')';
 		} else {
 			$difftext = '(' . $this->messages['diff'] . ')';
 		}
-		$histlink='('.$sk->makeKnownLinkObj( $page, $this->messages['hist'], 'action=history' ) . ')';
+		$histlink = '('.$sk->makeKnownLinkObj( $page, $this->messages['hist'], 'action=history' ) . ')';
 
 		$comment = $wgContLang->getDirMark() . $sk->revComment( $rev, false, true );
 		$date = $wgLang->timeanddate( wfTimestamp( TS_MW, $row->rev_timestamp ), true );
@@ -510,7 +510,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			$nflag = '';
 		}
 
-		if( $row->rev_minor_edit ) {
+		if( $rev->isMinor() ) {
 			$mflag = '<span class="minor">' . $this->messages['minoreditletter'] . '</span> ';
 		} else {
 			$mflag = '';
