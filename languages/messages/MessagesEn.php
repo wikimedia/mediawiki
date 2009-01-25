@@ -1846,7 +1846,7 @@ If you still want to upload your file, please go back and use a new name. [[File
 'overwroteimage'              => 'uploaded a new version of "[[$1]]"',
 'uploaddisabled'              => 'Uploads disabled',
 'uploaddisabledtext'          => 'File uploads are disabled.',
-'php-uploaddisabledtext'      => 'PHP file uploads are disabled. Please check the file_uploads setting.',
+'php-uploaddisabledtext'      => 'File uploads are disabled in PHP. Please check the file_uploads setting.',
 'uploadscripted'              => 'This file contains HTML or script code that may be erroneously interpreted by a web browser.',
 'uploadcorrupt'               => 'The file is corrupt or has an incorrect extension.
 Please check the file and upload again.',
