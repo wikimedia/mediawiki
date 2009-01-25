@@ -218,7 +218,7 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Podkreślenie linków',
-'tog-highlightbroken'         => 'Oznacz <a href="" class="new">tak</a> linki do brakujących stron (alternatywa: dołączany znak zapytania<a href="" class="internal">?</a>).',
+'tog-highlightbroken'         => 'Oznacz <a href="" class="new">tak</a> linki do brakujących stron (alternatywa – dołączany znak zapytania<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Wyrównuj tekst w akapitach do obu stron',
 'tog-hideminor'               => 'Ukryj drobne poprawki w „Ostatnich zmianach”',
 'tog-hidepatrolled'           => 'Ukryj sprawdzone edycje w ostatnich zmianach',
@@ -445,13 +445,13 @@ $messages = array(
 
 'badaccess'        => 'Niewłaściwe uprawnienia',
 'badaccess-group0' => 'Nie masz uprawnień wymaganych do wykonania tej operacji.',
-'badaccess-groups' => 'Wykonywanie tej operacji zostało ograniczone do użytkowników w {{PLURAL:$2|grupie|jednej z grup}}: $1.',
+'badaccess-groups' => 'Wykonywanie tej operacji zostało ograniczone do użytkowników w {{PLURAL:$2|grupie|jednej z grup:}} $1.',
 
 'versionrequired'     => 'Wymagane MediaWiki w wersji $1',
 'versionrequiredtext' => 'Użycie tej strony wymaga oprogramowania MediaWiki w wersji $1. Zobacz stronę [[Special:Version|wersja oprogramowania]].',
 
 'ok'                      => 'OK',
-'retrievedfrom'           => 'Źródło: „$1”',
+'retrievedfrom'           => 'Źródło „$1”',
 'youhavenewmessages'      => 'Masz $1 ($2).',
 'newmessageslink'         => 'nowe wiadomości',
 'newmessagesdifflink'     => 'różnica z poprzednią wersją',
@@ -527,19 +527,19 @@ Zazwyczaj jest to spowodowane odwołaniem do nieaktualnego linku prowadzącego d
 
 Jeśli tak nie jest, możliwe, że problem został wywołany przez błąd w oprogramowaniu.
 Można zgłosić ten fakt [[Special:ListUsers/sysop|administratorowi]], podając adres URL.',
-'missingarticle-rev'   => '(wersja: $1)',
+'missingarticle-rev'   => '(wersja $1)',
 'missingarticle-diff'  => '(różnica: $1, $2)',
 'readonly_lag'         => 'Baza danych została automatycznie zablokowana na czas potrzebny do wykonania synchronizacji zmian między serwerem głównym i serwerami pośredniczącymi.',
 'internalerror'        => 'Błąd wewnętrzny',
-'internalerror_info'   => 'Błąd wewnętrzny: $1',
+'internalerror_info'   => 'Błąd wewnętrzny – $1',
 'filecopyerror'        => 'Nie można skopiować pliku „$1” do „$2”.',
 'filerenameerror'      => 'Nie można zmienić nazwy pliku „$1” na „$2”.',
 'filedeleteerror'      => 'Nie można usunąć pliku „$1”.',
 'directorycreateerror' => 'Nie udało się utworzyć katalogu „$1”.',
 'filenotfound'         => 'Nie można znaleźć pliku „$1”.',
-'fileexistserror'      => 'Nie udało się zapisać do pliku „$1”: plik istnieje',
+'fileexistserror'      => 'Nie udało się zapisać do pliku „$1” ponieważ plik istnieje',
 'unexpected'           => 'Niespodziewana wartość: „$1”=„$2”.',
-'formerror'            => 'Błąd: nie można wysłać formularza',
+'formerror'            => 'Błąd – nie można wysłać formularza',
 'badarticleerror'      => 'Dla tej strony ta operacja nie może być wykonana.',
 'cannotdelete'         => 'Nie można usunąć podanej strony lub grafiki.
 Możliwe, że zostały już usunięte przez kogoś innego.',
@@ -888,10 +888,10 @@ Strona już istnieje.',
 
 Powinno być mniej niż $2 {{PLURAL:$2|wywołanie|wywołania|wywołań}}, a obecnie {{PLURAL:$1|jest $1 wywołanie|są $1 wywołania|jest $1 wywołań}}.',
 'expensive-parserfunction-category'       => 'Strony ze zbyt dużą liczbą wywołań trudnych funkcji parsera',
-'post-expand-template-inclusion-warning'  => 'Uwaga: Zbyt duża wielkość wykorzystanych szablonów.
+'post-expand-template-inclusion-warning'  => 'Uwaga – zbyt duża wielkość wykorzystanych szablonów.
 Niektóre szablony nie zostaną użyte.',
 'post-expand-template-inclusion-category' => 'Strony, w których przekroczone jest ograniczenie wielkości użytych szablonów',
-'post-expand-template-argument-warning'   => 'Uwaga: Strona zawiera co najmniej jeden argument szablonu, który po rozwinięciu jest zbyt duży.
+'post-expand-template-argument-warning'   => 'Uwaga – strona zawiera co najmniej jeden argument szablonu, który po rozwinięciu jest zbyt duży.
 Argument ten będzie pominięty.',
 'post-expand-template-argument-category'  => 'Strony, w których użyto szablonu z pominięciem argumentów',
 'parser-template-loop-warning'            => 'Wykryto szablon zapętlenia: [[$1]]',
@@ -1231,8 +1231,8 @@ Zapoznaj się z math/README w celu konfiguracji.',
 'defaultns'                 => 'Domyślnie przeszukuj przestrzenie nazw',
 'default'                   => 'domyślnie',
 'files'                     => 'Pliki',
-'prefs-custom-css'          => 'Dostosuj CSS',
-'prefs-custom-js'           => 'Dostosuj JS',
+'prefs-custom-css'          => 'Własny CSS',
+'prefs-custom-js'           => 'Własny JavaScript',
 
 # User rights
 'userrights'                  => 'Zarządzaj uprawnieniami użytkowników', # Not used as normal message but as header for the special page itself
@@ -1601,7 +1601,7 @@ Dostępna jest też [[Special:WhatLinksHere/$2|pełna lista]].',
 'filerevert'                => 'Przywracanie $1',
 'filerevert-legend'         => 'Przywracanie poprzedniej wersji pliku',
 'filerevert-intro'          => "Zamierzasz przywrócić '''[[Media:$1|$1]]''' do [wersji $4 z $3, $2].",
-'filerevert-comment'        => 'Komentarz:',
+'filerevert-comment'        => 'Komentarz',
 'filerevert-defaultcomment' => 'Przywrócono wersję z $2, $1',
 'filerevert-submit'         => 'Przywróć',
 'filerevert-success'        => "Plik '''[[Media:$1|$1]]''' został cofnięty do [wersji $4 z $3, $2].",
@@ -1612,7 +1612,7 @@ Dostępna jest też [[Special:WhatLinksHere/$2|pełna lista]].',
 'filedelete-legend'           => 'Usuń plik',
 'filedelete-intro'            => "Usuwasz '''[[Media:$1|$1]]'''.",
 'filedelete-intro-old'        => "Usuwasz wersję pliku '''[[Media:$1|$1]]''' z datą [$4 $3, $2].",
-'filedelete-comment'          => 'Komentarz:',
+'filedelete-comment'          => 'Komentarz',
 'filedelete-submit'           => 'Usuń',
 'filedelete-success'          => "Usunięto plik '''$1'''.",
 'filedelete-success-old'      => "Usunięto plik '''[[Media:$1|$1]]''' w wersji z $3, $2.",
@@ -2230,7 +2230,7 @@ By przejrzeć listę obecnie aktywnych blokad, przejdź na stronę [[Special:IPB
 'ipb-needreblock'                 => '== Istniejąca blokada ==
 $1 jest już zablokowany. Czy chcesz zmienić ustawienia blokady?',
 'ipb_cant_unblock'                => 'Błąd: Blokada o ID $1 nie została znaleziona. Mogła ona zostać zdjęta wcześniej.',
-'ipb_blocked_as_range'            => 'Błąd: Adres IP $1 nie został zablokowany bezpośrednio i nie może zostać odblokowany.
+'ipb_blocked_as_range'            => 'Błąd – adres IP $1 nie został zablokowany bezpośrednio i nie może zostać odblokowany.
 Należy on do zablokowanego zakresu adresów $2. Odblokować można tylko cały zakres.',
 'ip_range_invalid'                => 'Niepoprawny zakres adresów IP.',
 'blockme'                         => 'Zablokuj mnie',
@@ -2382,9 +2382,9 @@ Wszystkie operacje importu transwiki są odnotowywane w [[Special:Log/import|rej
 'import-interwiki-source'    => 'Źródło wiki/strony:',
 'import-interwiki-history'   => 'Kopiuj całą historię edycji tej strony',
 'import-interwiki-submit'    => 'Importuj',
-'import-interwiki-namespace' => 'Docelowa przestrzeń nazw:',
-'import-upload-filename'     => 'Nazwa pliku:',
-'import-comment'             => 'Komentarz:',
+'import-interwiki-namespace' => 'Docelowa przestrzeń nazw',
+'import-upload-filename'     => 'Nazwa pliku',
+'import-comment'             => 'Komentarz',
 'importtext'                 => 'Używając narzędzia [[Special:Export|eksportu]], wyeksportuj plik ze źródłowej wiki, zapisz go na swoim dysku, a następnie prześlij go tutaj.',
 'importstart'                => 'Trwa importowanie stron...',
 'import-revision-count'      => '$1 {{PLURAL:$1|wersja|wersje|wersji}}',

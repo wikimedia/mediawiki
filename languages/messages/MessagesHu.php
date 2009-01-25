@@ -1264,6 +1264,8 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'defaultns'                 => 'Alapértelmezett keresés az alábbi névterekben:',
 'default'                   => 'alapértelmezés',
 'files'                     => 'Fájlok',
+'prefs-custom-css'          => 'saját CSS',
+'prefs-custom-js'           => 'saját JS',
 
 # User rights
 'userrights'                  => 'Szerkesztői jogok beállítása', # Not used as normal message but as header for the special page itself
@@ -1754,7 +1756,9 @@ Egy oldal egyértelműsítő lapnak számít, ha tartalmazza a [[MediaWiki:Disam
 'protectedtitlesempty'    => 'Jelenleg nincsenek ilyen típusú védett lapok.',
 'listusers'               => 'Szerkesztők',
 'listusers-editsonly'     => 'Csak a szerkesztéssel rendelkező szerkesztők mutatása',
+'listusers-creationsort'  => 'Rendezés létrehozási dátum szerint',
 'usereditcount'           => '{{PLURAL:$1|egy|$1}} szerkesztés',
+'usercreated'             => 'Létrehozva $1, $2-kor',
 'newpages'                => 'Új lapok',
 'newpages-username'       => 'Felhasználói név:',
 'ancientpages'            => 'Régóta nem változott szócikkek',

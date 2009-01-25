@@ -1436,7 +1436,11 @@ Example: [[:Image:Addon-icn.png]]',
 'protectedtitlesempty'    => 'Used on [[Special:ProtectedTitles]]. This text appears if the list of protected titles is empty. See the [http://www.mediawiki.org/wiki/Project:Protected_titles help page on Mediawiki] for more information.',
 'listusers'               => 'Name of special page displayed in [[Special:SpecialPages]]',
 'listusers-editsonly'     => 'Option in [[Special:ListUsers]].',
+'listusers-creationsort'  => 'Option in [[Special:ListUsers]].',
 'usereditcount'           => 'Shown behind every username on [[Special:ListUsers]].',
+'usercreated'             => 'Used in [[Special:ListUsers]].
+* <code>$1</code> is a date
+* <code>$2</code> is a time',
 'newpages'                => 'Name of special page displayed in [[Special:SpecialPages]]',
 'newpages-username'       => '{{Identical|Username}}',
 'ancientpages'            => 'Name of special page displayed in [[Special:SpecialPages]]',

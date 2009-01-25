@@ -1644,7 +1644,9 @@ PICT # misc.
 'protectedtitlesempty'    => '現在作成保護されているページはありません。',
 'listusers'               => '登録利用者の一覧',
 'listusers-editsonly'     => '投稿記録のある利用者のみを表示',
+'listusers-creationsort'  => '作成日順に整列',
 'usereditcount'           => '編集回数 $1 回',
+'usercreated'             => '$1 $2 に作成',
 'newpages'                => '新しいページ',
 'newpages-username'       => '利用者名:',
 'ancientpages'            => '更新されていないページ',
@@ -1985,7 +1987,7 @@ $NEWPAGE
 
 # Namespace form on various pages
 'namespace'      => '名前空間:',
-'invert'         => '選択した名前空間を隠す',
+'invert'         => '選択したものを除く',
 'blanknamespace' => '（標準）',
 
 # Contributions

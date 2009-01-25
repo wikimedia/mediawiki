@@ -1288,6 +1288,8 @@ Wiki-Köbes, enem Sörver-Minsch, oder luur ens en de
 'defaultns'                 => 'Dun standaadmäßich en hee dä Appachtemengs söke:',
 'default'                   => 'Standaad',
 'files'                     => 'Dateie',
+'prefs-custom-css'          => 'Selfsjemaat <i lang="en">Cascading Style Sheet</i>',
+'prefs-custom-js'           => 'Selfsjemaat JavaSkipp',
 
 # User rights
 'userrights'                  => 'Metmaacher ehr Räächde verwalte', # Not used as normal message but as header for the special page itself
@@ -1831,7 +1833,9 @@ vun dä Sigg dovör.',
 'protectedtitlesempty'    => 'Op di Aat sin jrad kein Sigge jäje et neu Aanlääje jeschötz.',
 'listusers'               => 'Metmaacherliss',
 'listusers-editsonly'     => 'Donn nor Metmaacher zeije, di och ens jät jeschrevve han.',
+'listusers-creationsort'  => 'Noh em Dattum vum Aanmellde zoteere',
 'usereditcount'           => '{{PLURAL:$1|Ein Änderung|$1 Änderuge|Nix jedonn}}',
+'usercreated'             => 'Aanjemelldt aam $1 öm $2 Uhr',
 'newpages'                => 'Neu Sigge',
 'newpages-username'       => 'Metmaacher Name:',
 'ancientpages'            => 'Atikele zoteet vun Ahl noh Neu',

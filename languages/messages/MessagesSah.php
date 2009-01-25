@@ -1014,6 +1014,8 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'defaultns'                 => 'Чопчу ыйыллыбатаҕына бу ааттар быыстарыгар көрдүүргэ:',
 'default'                   => 'чопчу ыйыллыбатаҕына маннык',
 'files'                     => 'Билэлэр',
+'prefs-custom-css'          => 'Бэйэ CSS',
+'prefs-custom-js'           => 'Бэйэ JS',
 
 # User rights
 'userrights'                  => 'Кыттааччылар бырааптарын салайыы', # Not used as normal message but as header for the special page itself
@@ -1504,7 +1506,9 @@ PICT # misc.
 'protectedtitlesempty'    => 'Биир да аат бу параметрдарынан көмүскэммэт',
 'listusers'               => 'Кыттааччылар испииһэктэрэ',
 'listusers-editsonly'     => 'Саатар биир көннөрүүнү оҥорбут кыттааччылары көрдөр',
+'listusers-creationsort'  => 'Айыллыбыт күнүнэн наардаа',
 'usereditcount'           => '$1 {{PLURAL:$1|көннөрүү|көннөрүү}}',
+'usercreated'             => '$1, $2 айыллыбыт',
 'newpages'                => 'Саҥа ыстатыйалар',
 'newpages-username'       => 'Кыттааччы:',
 'ancientpages'            => 'Бүтэһик уларытыы киирбитинэн наардаммыт ыстатыйалар',

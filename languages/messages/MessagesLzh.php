@@ -1066,6 +1066,7 @@ $2',
 'right-siteadmin'            => '鎖與解鎖資料庫',
 
 # User rights log
+'rightslog'  => '權限志',
 'rightsnone' => '（凡）',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -1252,6 +1253,9 @@ $2',
 'shareduploadduplicate-linktext' => '另檔',
 'shareduploadconflict'           => '此檔重名於共檔之$1。',
 'shareduploadconflict-linktext'  => '另檔',
+'noimage'                        => '查無此檔，爾可$1。',
+'noimage-linktext'               => '貢焉',
+'uploadnewversion-linktext'      => '更新此檔',
 'imagepage-searchdupe'           => '尋重檔',
 
 # File reversion
@@ -1376,6 +1380,7 @@ $2',
 'prefixindex'             => '以鏈外查',
 'shortpages'              => '短篇',
 'longpages'               => '長言',
+'deadendpages'            => '此無路也',
 'protectedpages'          => '頁錮',
 'protectedpages-indef'    => '只示無期之錮',
 'protectedpages-cascade'  => '只示連串之錮',

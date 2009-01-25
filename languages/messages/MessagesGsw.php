@@ -1087,6 +1087,8 @@ prief di korrekt Installation vu latex, dvips, gs un convert',
 'defaultns'                 => 'Namensrüüm wo standardmäässig söll gsuecht wärde:',
 'default'                   => 'Voryystellig',
 'files'                     => 'Bilder',
+'prefs-custom-css'          => 'Benutzerdefinierti CSS',
+'prefs-custom-js'           => 'Benutzerdefiniert JS',
 
 # User rights
 'userrights'                  => 'Benutzerrächtsverwaltig', # Not used as normal message but as header for the special page itself
@@ -1562,7 +1564,9 @@ In jedere Zyylete het s Gleicher zue dr erschte un dr zwote Wyterleitig un s Zii
 'protectedtitlesempty'    => 'Im Momänt sin kei Syte fir s Nejaalege gsperrt mit däne Parameter.',
 'listusers'               => 'Lischte vo Benutzer',
 'listusers-editsonly'     => 'Zeig nume Benutzer mit Byytreg',
+'listusers-creationsort'  => 'Sortiert noch em Datum',
 'usereditcount'           => '$1 {{PLURAL:$1|Bearbeitig|Bearbeitige}}',
+'usercreated'             => 'Aagleit uf $1 am $2',
 'newpages'                => 'Nöji Artikel',
 'newpages-username'       => 'Benutzername:',
 'ancientpages'            => 'alti Sytene',

@@ -110,6 +110,7 @@ $messages = array(
 'disclaimerpage'       => 'Project:Asmigl n umatu',
 'edithelp'             => 'Tallalt deg uẓareg',
 'edithelppage'         => 'Help:Aẓareg',
+'helppage'             => 'Help:tallalt',
 'mainpage'             => 'Tasna Tamzwarut',
 'mainpage-description' => 'Tasna Tamzwarut',
 'portal'               => 'Tawwart n timetti',
@@ -181,7 +182,7 @@ itxessat ad di-s tili {{PLURAL:$1|1 usekkil|$1 isekkilen}} u ad tili temṣebda 
 inna neɣ ada-s-ad nesekk Taguri n wadaf tamaynut i {{SITENAME}} ($4).
 Taguri n wadaf n useqdac "$2" ruxa d "$3".
 ixessa ad tadeffed bac ad tbeddeled ruxa.
-
+ɣar {{PLURAL:$5|one day|$5 days}} at sala taguri n wadaf tamaynut .
 mala war illi d cekk ur tawi x manaya , qim sexdam Taguri n wadaf inecc taqburt.',
 'noemail'                 => 'War illi ca n e-mail ɣar useqdac a "$1".',
 'passwordsent'            => 'Taguri n wadaf tamaynut twassekked i e-mail  "$1".
@@ -265,22 +266,23 @@ tzemred addewred ɣar deffar, niɣ [[Special:UserLogin|Adeff niɣ egg amiḍan]]
 Ẓar aɣmis n umzruy n usfad n Tasna ya bac ad tsenad ma mliḥ ad tkemled aẓṛag.",
 
 # History pages
-'viewpagelogs'        => 'Ẓar aɣmis n Tasna ya',
-'currentrev'          => 'Afegged n ruxa',
-'revisionasof'        => 'Affegged am $1',
-'revision-info'       => 'Afegged am $1 s $2', # Additionally available: $3: revision id
-'previousrevision'    => '←Affegged n zik/zic',
-'nextrevision'        => 'Afegged d amaynu→',
-'currentrevisionlink' => 'Afegged n rux',
-'cur'                 => 'N ruxa',
-'last'                => 'anggaru',
-'page_first'          => 'amzwaru',
-'page_last'           => 'anggaru',
-'histlegend'          => 'imṣebḍiyen: Sti(ixter) tibuttonin a ɣar wadday n tunɣilin n Tasna bac ad tsmzazal(compare).<br />
+'viewpagelogs'           => 'Ẓar aɣmis n Tasna ya',
+'currentrev'             => 'Afegged n ruxa',
+'revisionasof'           => 'Affegged am $1',
+'revision-info'          => 'Afegged am $1 s $2', # Additionally available: $3: revision id
+'previousrevision'       => '←Affegged n zik/zic',
+'nextrevision'           => 'Afegged d amaynu→',
+'currentrevisionlink'    => 'Afegged n rux',
+'cur'                    => 'N ruxa',
+'last'                   => 'anggaru',
+'page_first'             => 'amzwaru',
+'page_last'              => 'anggaru',
+'histlegend'             => 'imṣebḍiyen: Sti(ixter) tibuttonin a ɣar wadday n tunɣilin n Tasna bac ad tsmzazal(compare).<br />
 Tasarut: (cur) = imṣebḍiyen ag tunɣilt n ruxa,
 (last) = imṣebḍiyen ag tunɣilt n zik, M = taẓrigt d-tamẓeyant.',
-'histfirst'           => 'Amzwaru qaε',
-'histlast'            => 'Anggaru qaε',
+'history-fieldset-title' => 'Amezruy',
+'histfirst'              => 'Amzwaru qaε',
+'histlast'               => 'Anggaru qaε',
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 ɣar $2', # user at time
@@ -371,7 +373,7 @@ Tasniwin di [[Special:Watchlist|Tabdart uḥṭṭu inec]] d '''tizurarin'''.",
 'nolinkstoimage'            => 'war telli ca n Tasna teqqen-d ɣa ufaylu ya.',
 'sharedupload'              => 'Wa d ijj ufaylu itwacrec jar aṭṭas n isenfaren(projects).',
 'noimage'                   => 'war illi ca n ufaylu s isem a , tzemred ad $1.',
-'noimage-linktext'          => 'Zdem-it-id',
+'noimage-linktext'          => 'Zdem d ijj',
 'uploadnewversion-linktext' => 'Zdem-d tunɣilt d-tamaynut n ufaylu a',
 
 # File deletion
@@ -437,6 +439,8 @@ Tasniwin di [[Special:Watchlist|Tabdart uḥṭṭu inec]] d '''tizurarin'''.",
 'ancientpages'            => 'Tasniwin n zik qqaε',
 'move'                    => 'Snaql',
 'movethispage'            => 'snaql Tasna ya',
+'pager-newer-n'           => '{{PLURAL:$1|amynu 1|amynu $1}}',
+'pager-older-n'           => '{{PLURAL:$1|aqbur 1|aqbur $1}}',
 
 # Book sources
 'booksources'    => 'iɣbalen n udlis',
@@ -551,8 +555,11 @@ Tezemred ad tbedeld aswir n uḥeṭṭu n Tasna ya, maca war itegg walu i uḥe
 'month'         => 'Zeg ayur (ar amzwaru):',
 'year'          => 'Zi asgg°as (d zik):',
 
+'sp-contributions-newbies'     => 'Ẓar Tabdart n tiggawin n useqdac a deg umiḍan amaynu waha',
 'sp-contributions-newbies-sub' => 'i imiḍan imaynuten',
 'sp-contributions-blocklog'    => 'Aɣmis n iẓariqqen',
+'sp-contributions-search'      => 'Arzu x tiggawin',
+'sp-contributions-username'    => 'Tansa IP d isem useqdac:',
 'sp-contributions-submit'      => 'Tarzzut',
 
 # What links here
@@ -706,7 +713,7 @@ mayn nniḍn ad itwasenfar.
 
 # External editor support
 'edit-externally'      => 'Ẓṛeg afaylu a s usnas zi baṛṛa',
-'edit-externally-help' => 'Xemm [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] i bezzaf n tilɣa(informations).',
+'edit-externally-help' => 'Xemm [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] i ktar n tilɣa(informations).',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'maṛṛa',

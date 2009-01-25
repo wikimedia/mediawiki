@@ -662,10 +662,10 @@ Užblokavo $1. Nurodyta priežastis yra ''$2''.
 * Blokavimo pabaiga: $6
 * Numatytas blokuojamasis: $7
 
-Jūs galite susisiekti su $1 arba kitu [[{{MediaWiki:Grouppage-sysop}}|administratoriumi]], kad aptartumėte užblokavimą.
-Jūs negalite naudotis funkcija „Rašyti laišką šiam naudotojui“, jei nesate pateikę tikro savo el. pašto adreso savo [[Special:Preferences|paskyros nustatymuose]] ir nesate užblokuotas nuo jos naudojimo.
-Jūsų dabartinis IP adresas yra $3, o blokavimo ID yra #$5.
-Prašome nurodyti vieną ar abu juos, kai kreipiatės dėl blokavimo.",
+Jūs galite susisiekti su $1 arba kuriuo nors kitu [[{{MediaWiki:Grouppage-sysop}}|administratoriumi]] ir aptarti neaiškumus dėl blokavimo.
+Atkreipkite dėmesį, kad negalėsite naudotis funkcija „Rašyti laišką šiam naudotojui“, jei nesate užsiregistravę ir pateikę realaus savo el. pašto adreso naudotojo [[Special:Preferences|nustatymuose]], arba, jei jums užblokuotas šios funkcijos naudojimas.
+Jūsų IP adresas yra $3, o blokavimo ID yra #$5.
+Prašome nurodyti vieną iš jų ar abu, kai kreipiatės dėl blokavimo.",
 'autoblockedtext'                  => "Jūsų IP adresas buvo automatiškai užblokuotas, nes jį naudojo kitas naudotojas, kurį užblokavo $1.
 Nurodyta priežastis yra ši:
 
@@ -675,18 +675,18 @@ Nurodyta priežastis yra ši:
 * Blokavimo pabaiga: $6
 * Numatomas blokavimo laikas: $7
 
-Jūs galite susisiekti su $1 arba kitu [[{{MediaWiki:Grouppage-sysop}}|administratoriumi]], kad aptartumėte užblokavimą.
+Jūs galite susisiekti su $1 arba kitu [[{{MediaWiki:Grouppage-sysop}}|administratoriumi]], kad aptartumėte neaiškumus dėl blokavimo.
 
-Jūs negalite naudotis funkcija „Rašyti laišką šiam naudotojui“, jei nesate užregistravę tikro el. pašto adreso savo [[Special:Preferences|naudotojo nustatymuose]] ir nesate užblokuotas nuo jos naudojimo.
+Jūs negalite naudotis funkcija „Rašyti laišką šiam naudotojui“, jei nesate nurodę tikro el. pašto adreso savo [[Special:Preferences|naudotojo nustatymuose]]. Taip pat Jūs negalite naudotis šia funkcija, jei Jums užblokuotas jos naudojimas.
 
-Jūsų esamas IP adresas yra $3, blokavimo ID yra $5.
-Prašome nurodyti šiuos duomenis visuose prašymuose, kuriuos darote.",
+Jūsų IP adresas yra $3, blokavimo ID yra $5.
+Prašome nurodyti šiuos duomenis visais atvejais, kai kreipiatės dėl blokavimo.",
 'blockednoreason'                  => 'priežastis nenurodyta',
 'blockedoriginalsource'            => "Žemiau yra rodomas '''$1''' turinys:",
 'blockededitsource'                => "''Jūsų keitimų''' tekstas puslapiui '''$1''' yra rodomas žemiau:",
 'whitelistedittitle'               => 'Norint redaguoti reikia prisijungti',
 'whitelistedittext'                => 'Jūs turite $1, kad redaguotumėte puslapius.',
-'confirmedittitle'                 => 'Reikalingas el. pašto patvirtinimas, kad redaguotumėte',
+'confirmedittitle'                 => 'Kad galėtumėte redaguoti, reikalingas el. pašto patvirtinimas',
 'confirmedittext'                  => 'Jums reikia patvirtinti el. pašto adresą, prieš redaguojant puslapius.
 Prašome nurodyti ir patvirtinti jūsų el. pašto adresą per jūsų [[Special:Preferences|naudotojo nustatymus]].',
 'nosuchsectiontitle'               => 'Nėra tokio skyriaus',
@@ -2053,9 +2053,10 @@ ankščiau užblokuotam IP adresui ar naudotojui.',
 'blocklogpage'                 => 'Blokavimų istorija',
 'blocklog-fulllog'             => 'Pilnas blokavimų registras',
 'blocklogentry'                => 'blokavo [[$1]], blokavimo laikas - $2 $3',
+'reblock-logentry'             => 'pakeisti [[$1]] blokavimo nustatymai, naujas blokavimo laikas – $2 $3',
 'blocklogtext'                 => 'Čia yra naudotojų blokavimo ir atblokavimo sąrašas.
-Automatiškai blokuoti IP adresai nėra išvardinti.
-Jei norite pamatyti dabar blokuojamus adresus, žiūrėkite [[Special:IPBlockList|IP blokavimų istoriją]].',
+Automatiškai blokuoti IP adresai neišvardinti.
+Jei norite pamatyti dabar blokuojamus adresus, žiūrėkite [[Special:IPBlockList|IP blokavimų sąrašą]].',
 'unblocklogentry'              => 'atblokavo $1',
 'block-log-flags-anononly'     => 'tik anoniminiai naudotojai',
 'block-log-flags-nocreate'     => 'paskyrų kūrimas išjungtas',
