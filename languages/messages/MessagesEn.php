@@ -2133,7 +2133,7 @@ Each row contains links to the first and second redirect, as well as the target 
 'listusers-editsonly'             => 'Show only users with edits',
 'listusers-creationsort'          => 'Sort by creation date',
 'usereditcount'                   => '$1 {{PLURAL:$1|edit|edits}}',
-'usercreated'                     => 'Created on $1',
+'usercreated'                     => 'Created on $1 at $2',
 'newpages'                        => 'New pages',
 'newpages-summary'                => '', # do not translate or duplicate this message to other languages
 'newpages-username'               => 'Username:',

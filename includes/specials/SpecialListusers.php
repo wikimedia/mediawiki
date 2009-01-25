@@ -142,8 +142,9 @@ class UsersPager extends AlphabeticPager {
 		$created = '';
 		# Some rows may be NULL
 		if( $row->creation ) {
-			$d = $wgLang->timeanddate( wfTimestamp( TS_MW, $row->creation ), true );
-			$created = ' (' . wfMsgHtml( 'usercreated', $d ) . ')';
+			$d = $wgLang->date( wfTimestamp( TS_MW, $row->creation ), true );
+			$t = $wgLang->time( wfTimestamp( TS_MW, $row->creation ), true );
+			$created = ' (' . wfMsgHtml( 'usercreated', $d, $t ) . ')';
 		}
 
 		wfRunHooks( 'SpecialListusersFormatRow', array( &$item, $row ) );
