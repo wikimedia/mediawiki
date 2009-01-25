@@ -1518,7 +1518,7 @@ Template:消除歧義',
 'protectedtitlesempty'    => '在這些參數之下並無標題正在保護。',
 'listusers'               => '用戶列表',
 'listusers-editsonly'     => '只顯示有編輯的用戶',
-'listusers-creationsort'  => '按建立日期排序'
+'listusers-creationsort'  => '按建立日期排序',
 'usereditcount'           => '$1次編輯',
 'usercreated'             => '於$1 $2建立',
 'newpages'                => '最新頁面',
