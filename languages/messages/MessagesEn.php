@@ -2130,7 +2130,9 @@ Each row contains links to the first and second redirect, as well as the target 
 'protectedtitlesempty'            => 'No titles are currently protected with these parameters.',
 'listusers'                       => 'User list',
 'listusers-summary'               => '', # do not translate or duplicate this message to other languages
-'listusers-editsonly'             => 'Show users with edits only',
+'listusers-editsonly'             => 'Show only users with edits',
+'listusers-creationsort'          => 'Sort by creation date',
+'usercreated'                     => 'Created on $1',
 'usereditcount'                   => '$1 {{PLURAL:$1|edit|edits}}',
 'newpages'                        => 'New pages',
 'newpages-summary'                => '', # do not translate or duplicate this message to other languages
