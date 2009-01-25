@@ -3439,6 +3439,9 @@ class Parser
 				wfDebug( __METHOD__.": [[MediaWiki:hidden-category-category]] is not a valid title!\n" );
 			}
 		}
+		if ( isset( $this->mDoubleUnderscores['ignoreunused'] ) && $this->mTitle->getNamespace() == NS_CATEGORY ) {
+			$this->mOutput->setProperty( 'ignoreunused', 'y' );
+		}
 		# (bug 8068) Allow control over whether robots index a page.
 		#
 		# FIXME (bug 14899): __INDEX__ always overrides __NOINDEX__ here!  This
