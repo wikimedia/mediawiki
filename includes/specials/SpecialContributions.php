@@ -464,9 +464,9 @@ class ContribsPager extends ReverseChronologicalPager {
 		$sk = $this->getSkin();
 		$rev = new Revision( $row );
 
-		$page = Title::makeTitle( $row->page_namespace, $row->page_title );
+		$page = Title::newFromRow( $row );
 		$page->resetArticleId( $row->rev_page ); // use process cache
-		$link = $sk->makeLinkObj( $page, $page->getPrefixedText(), $row->page_is_redirect ? 'redirect=no' : '' );
+		$link = $sk->makeLinkObj( $page, $page->getPrefixedText(), $page->isRedirect() ? 'redirect=no' : '' );
 		# Mark current revisions
 		$difftext = $topmarktext = '';
 		if( $row->rev_id == $row->page_latest ) {
