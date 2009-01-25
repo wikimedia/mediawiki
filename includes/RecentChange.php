@@ -235,12 +235,12 @@ class RecentChange
 	}
 	
 	/**
-	 * Remove newlines and carriage returns
+	 * Remove newlines, carriage returns and decode html entites
 	 * @param string $line
 	 * @return string
 	 */
 	public static function cleanupForIRC( $text ) {
-		return str_replace(array("\n", "\r"), array("", ""), $text);
+		return Sanitizer::decodeCharReferences( str_replace( array( "\n", "\r" ), array( "", "" ), $text ) );
 	}
 
 	/**
