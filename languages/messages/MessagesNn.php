@@ -401,7 +401,7 @@ $messages = array(
 'searcharticle'     => 'Vis',
 'history'           => 'Sidehistorikk',
 'history_short'     => 'Historikk',
-'updatedmarker'     => 'oppdatert etter mitt siste besøk',
+'updatedmarker'     => 'oppdatert etter det siste besøket mitt',
 'info_short'        => 'Informasjon',
 'printableversion'  => 'Utskriftsversjon',
 'permalink'         => 'Fast lenkje',
@@ -1673,7 +1673,9 @@ Ei [[Special:WhatLinksHere/$2|fullstendig liste]] er tilgjengeleg.',
 'protectedtitlesempty'    => 'Ingen sider er verna på den valde måten akkurat no.',
 'listusers'               => 'Brukarliste',
 'listusers-editsonly'     => 'Vis berre brukarar med endringar',
+'listusers-creationsort'  => 'Sorter etter opprettingsdato',
 'usereditcount'           => '{{PLURAL:$1|éi endring|$1 endringar}}',
+'usercreated'             => 'Oppretta den $1 $2',
 'newpages'                => 'Nye sider',
 'newpages-username'       => 'Brukarnamn:',
 'ancientpages'            => 'Eldste sider',
@@ -3000,6 +3002,6 @@ Skriv inn filnamn utan «{{ns:file}}:»-prefikset.',
 #Skriv alle fragment av regulære uttrykk over denne lina. La denne linja vere som ho er</pre>',
 
 # Language links
-'language-link-title' => 'versjon på «$1»',
+'language-link-title' => 'Versjon på «$1»',
 
 );

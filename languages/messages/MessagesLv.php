@@ -76,6 +76,8 @@ $messages = array(
 'tog-watchlisthideown'        => 'Paslēpt manus labojumus manā uzraugāmo sarakstā.',
 'tog-watchlisthidebots'       => 'Paslēpt botu labojumus manā uzraugāmo sarakstā.',
 'tog-watchlisthideminor'      => 'Paslēpt maznozīmīgos labojumus manā uzraugāmo sarakstā',
+'tog-watchlisthideliu'        => 'Uzraugāmo rakstu sarakstā paslēpt reģistrēto lietotāju izmaiņas',
+'tog-watchlisthideanons'      => 'Uzraugāmo rakstu sarakstā paslēpt anonīmo lietotāju izmaiņas',
 'tog-ccmeonemails'            => 'Sūtīt sev, citiem lietotājiem nosūtīto epastu, kopijas',
 'tog-diffonly'                => 'Nerādīt lapu saturu zem izmaiņām',
 'tog-showhiddencats'          => 'Rādīt slēptās kategorijas',
@@ -178,6 +180,9 @@ $messages = array(
 'navigation'     => 'Navigācija',
 'and'            => '&#32;un',
 
+# Metadata in edit box
+'metadata_help' => 'Metadati:',
+
 'errorpagetitle'    => 'Kļūda',
 'returnto'          => 'Atgriezties: $1.',
 'tagline'           => "No ''{{grammar:ģenitīvs|{{SITENAME}}}}''",
@@ -218,6 +223,7 @@ $messages = array(
 'userpage'          => 'Skatīt lietotāja lapu',
 'projectpage'       => 'Skatīt projekta lapu',
 'imagepage'         => 'Aplūkot attēla lapu',
+'viewhelppage'      => 'Atvērt palīdzību',
 'viewtalkpage'      => 'Skatīt diskusiju',
 'otherlanguages'    => 'Citās valodās',
 'redirectedfrom'    => '(Pāradresēts no $1)',
@@ -240,9 +246,12 @@ $messages = array(
 'disclaimers'          => 'Saistību atrunas',
 'edithelp'             => 'Palīdzība izmaiņām',
 'edithelppage'         => 'Help:Rediģēšana',
+'faq'                  => 'BUJ',
+'faqpage'              => 'Project:BUJ',
 'helppage'             => 'Help:Saturs',
 'mainpage'             => 'Sākumlapa',
 'mainpage-description' => 'Sākumlapa',
+'policy-url'           => 'Project:Politika',
 'portal'               => 'Kopienas portāls',
 'portal-url'           => 'Project:Kopienas portāls',
 'privacy'              => 'Privātuma politika',
@@ -263,6 +272,7 @@ $messages = array(
 'editold'             => 'rediģēt',
 'viewsourceold'       => 'aplūkot kodu',
 'editlink'            => 'labot',
+'viewsourcelink'      => 'Skatīt pirmkodu',
 'editsectionhint'     => 'Rediģēt sadaļu: $1',
 'toc'                 => 'Satura rādītājs',
 'showtoc'             => 'parādīt',
@@ -300,6 +310,7 @@ $messages = array(
 'databaseerror'        => 'Datu bāzes kļūda',
 'noconnect'            => 'Šajā wiki ir radušās tehniskas grūtības un nav iespējams savienoties ar datubāžu serveri. <br />
 $1',
+'nodb'                 => 'Kļūda, pieslēdzoties datubāzei $1',
 'cachederror'          => 'Šī ir lapas saglabātā versija, iespējams, ka tā nav atjaunināta.',
 'laggedslavemode'      => 'Uzmanību: Iespējams, šajā lapā nav redzami nesen izdarītie papildinājumi.',
 'readonly'             => 'Datubāze bloķēta',
@@ -316,7 +327,9 @@ Par šo var paziņot [[Special:ListUsers/sysop|kādam administratoram]], norādo
 'filecopyerror'        => 'Nav iespējams nokopēt failu "$1" uz "$2"',
 'filerenameerror'      => 'Neizdevās pārdēvēt failu "$1" par "$2".',
 'filedeleteerror'      => 'Nevar izdzēst failu "$1".',
+'directorycreateerror' => 'Nevar izveidot mapi "$1".',
 'filenotfound'         => 'Neizdevās atrast failu "$1".',
+'fileexistserror'      => 'Nevar saglabāt failā "$1": fails jau pastāv',
 'formerror'            => 'Kļūda: neizdevās nosūtīt saturu',
 'badarticleerror'      => 'Šo darbību nevar veikt šajā lapā.',
 'cannotdelete'         => 'Nevar izdzēst norādīto lapu vai failu. (Iespējams, to jau ir izdzēsis kāds cits)',
@@ -422,9 +435,11 @@ Lai novērstu šīs funkcijas ļaunprātīgu izmantošanu, iespējams nosūtīt 
 'loginlanguagelabel'         => 'Valoda: $1',
 
 # Password reset dialog
-'oldpassword' => 'Vecā parole',
-'newpassword' => 'Jaunā parole',
-'retypenew'   => 'Atkārto jauno paroli',
+'oldpassword'               => 'Vecā parole',
+'newpassword'               => 'Jaunā parole',
+'retypenew'                 => 'Atkārto jauno paroli',
+'resetpass-submit-loggedin' => 'Mainīt paroli',
+'resetpass-temp-password'   => 'Pagaidu parole:',
 
 # Edit page toolbar
 'bold_sample'     => 'Teksts boldā',
@@ -575,6 +590,7 @@ Tev vajadzētu pārliecināties, vai ir lietderīgi turpināt izmainīt šo lapu
 Te var apskatīties dzēšanas reģistru, kurā jābūt datiem par to kas, kad un kāpēc šo lapu izdzēsa.",
 'deleted-notice'            => 'Šī lapa ir tikusi izdzēsta.
 Te var apskatīties dzēšanas reģistra fragmentu, lai noskaidrotu kurš, kāpēc un kad to izdzēsa.',
+'deletelog-fulllog'         => 'Skatīt pilnu žurnālu',
 'edit-already-exists'       => 'Nevar izveidot jaunu lapu.
 Tā jau eksistē.',
 
@@ -621,11 +637,16 @@ m = maznozīmīgs labojums.',
 'history-feed-title'          => 'Versiju hronoloģija',
 'history-feed-description'    => 'Šīs wiki lapas versiju hronoloģija',
 'history-feed-item-nocomment' => '$1 : $2', # user at time
+'history-feed-empty'          => 'Pieprasītā lapa nepastāv.
+Iespējams, tā ir izdzēsta vai pārdēvēta.
+Mēģiniet [[Special:Search|meklēt]], lai atrastu saistītas lapas!',
 
 # Revision deletion
-'rev-deleted-comment' => '(komentārs nodzēsts)',
-'rev-deleted-user'    => '(lietotāja vārds nodzēsts)',
-'rev-delundel'        => 'rādīt/slēpt',
+'rev-deleted-comment'       => '(komentārs nodzēsts)',
+'rev-deleted-user'          => '(lietotāja vārds nodzēsts)',
+'rev-delundel'              => 'rādīt/slēpt',
+'revdelete-nologtype-title' => 'Nav dots žurnāla veids.',
+'revdelete-nologid-title'   => 'Nederīgs žurnāla ieraksts',
 
 # Diffs
 'history-title'           => '"$1" versiju hronoloģija',
@@ -741,6 +762,8 @@ Pagaidām vari meklēt, izmantojot Google vai Yahoo.
 'group-bot-member'        => 'Bots',
 'group-sysop-member'      => 'Administrators',
 'group-bureaucrat-member' => 'Birokrāts',
+
+'grouppage-sysop' => '{{ns:project}}:Administratori',
 
 # Rights
 'right-read'             => 'Lasīt lapas',
@@ -927,7 +950,7 @@ Uzklikšķinot uz kādas kolonnas virsraksta, var sakārtot pēc kāda cita para
 'imagelinks'                => 'Attēlu saites',
 'linkstoimage'              => '{{PLURAL:$1|Šajā lapā ir saite|Šajās $1 lapās ir saites}} uz šo failu:',
 'nolinkstoimage'            => 'Nevienā lapā nav norāžu uz šo attēlu.',
-'sharedupload'              => 'Šis fails ir no *** [[literal]] translation',
+'sharedupload'              => 'Šis fails ir augšupielādēts koplietojams citos projektos.',
 'noimage'                   => 'Ar šādu nosaukumu nav neviena faila, bet tu vari [$1].',
 'noimage-linktext'          => 'augšuplādēt to',
 'uploadnewversion-linktext' => 'Augšupielādēt jaunu šī faila versiju',
@@ -1228,6 +1251,10 @@ Lūdzu, spied \"''back''\" un atjaunini iepriekšējo lapu. Tad mēģini vēlrei
 'protect_expiry_invalid'      => 'Beigu termiņš ir nederīgs.',
 'protect_expiry_old'          => 'Beigu termiņs ir pagātnē.',
 'protect-text'                => 'Šeit var apskatīties un izmainīt lapas <strong><nowiki>$1</nowiki></strong> aizsardzības līmeni.',
+'protect-locked-access'       => 'Jūsu kontam nav tiesību mainīt lapas aizsardzības pakāpi.
+Pašreizējie lapas <strong>$1</strong> iestatījumi ir:',
+'protect-default'             => '(noklusējuma)',
+'protect-fallback'            => 'Nepieciešama atļauja "$1"',
 'protect-level-autoconfirmed' => 'Bloķēt nereģistētos lietotājus',
 'protect-level-sysop'         => 'Tikai adminiem',
 'protect-cascade'             => "Aizsargāt šajā lapā iekļautās lapas (veidnes) ''(cascading protection)''",
@@ -1460,8 +1487,9 @@ Pirmajā gadījumā var arī lietot šādu metodi, piem., [[{{ns:special}}:Expor
 'allmessagesmodified'       => 'Rādīt tikai izmainītos',
 
 # Thumbnails
-'thumbnail-more' => 'Palielināt',
-'filemissing'    => 'Trūkst faila',
+'thumbnail-more'  => 'Palielināt',
+'filemissing'     => 'Trūkst faila',
+'thumbnail_error' => 'Kļūda, veidojot sīktēlu: $1',
 
 # Special:Import
 'import'          => 'Importēt lapas',

@@ -1640,7 +1640,9 @@ PICT # misc.
 'protectedtitlesempty'    => 'هچ عنوانی هنو گو ای پارامتران محافظت نهنت.',
 'listusers'               => 'لیست کاربر',
 'listusers-editsonly'     => 'فقط کاربرانی که اصلاحاتش هست پیش بدار',
+'listusers-creationsort'  => 'ترتیب په اساس تاریح',
 'usereditcount'           => '$1 {{PLURAL:$1|اصلاح|اصلاحات}}',
+'usercreated'             => 'شربوتگ  $1 ته $2',
 'newpages'                => 'نوکین صفحات',
 'newpages-username'       => 'نام کاربری:',
 'ancientpages'            => 'صفحات قدیمی',
@@ -3129,5 +3131,8 @@ $1
 #خطوطی که گون # شروع بنت په داب نظر جاه کاینت
 
 #کل بخشان رجکسء بالادء ای خظ بل. ای خط هنچوش که هست بلی</pre>',
+
+# Language links
+'language-link-title' => '$1 نسخه',
 
 );

@@ -1189,6 +1189,8 @@ Atencion, lor indexacion de contengut {{SITENAME}} benlèu es pas a jorn.',
 'defaultns'                 => 'Per defaut, recercar dins aquestes espacis :',
 'default'                   => 'defaut',
 'files'                     => 'Fichièrs',
+'prefs-custom-css'          => 'CSS personalizat',
+'prefs-custom-js'           => 'JS personalizat',
 
 # User rights
 'userrights'                  => "Gestion dels dreches d'utilizaire", # Not used as normal message but as header for the special page itself
@@ -1398,6 +1400,7 @@ Vejatz la [[Special:NewFiles|galariá dels imatges novèls]] per una presentacio
 'filename'                    => 'Nom del fichièr',
 'filedesc'                    => 'Descripcion',
 'fileuploadsummary'           => 'Resumit :',
+'filereuploadsummary'         => 'Modificacions del fichièr :',
 'filestatus'                  => "Estatut dels dreches d'autor :",
 'filesource'                  => 'Font :',
 'uploadedfiles'               => 'Fichièrs importats',
@@ -1678,7 +1681,9 @@ Una pagina es tractada coma una pagina d’omonimia s'utiliza un modèl qu'es li
 'protectedtitlesempty'    => 'Cap de títol es pas actualament protegit amb aquestes paramètres.',
 'listusers'               => 'Lista dels participants',
 'listusers-editsonly'     => "Mostrar pas que los utilizaires qu'an al mens una contribucion",
+'listusers-creationsort'  => 'Triar per data de creacion',
 'usereditcount'           => '$1 {{PLURAL:$1|cambiament|cambiaments}}',
+'usercreated'             => 'Creat lo $1 a $2',
 'newpages'                => 'Paginas novèlas',
 'newpages-username'       => "Nom d'utilizaire :",
 'ancientpages'            => 'Articles mai ancians',
@@ -3036,5 +3041,8 @@ Picatz lo nom del fichièr sens lo prefix « {{ns:file}}: ».',
 #Las linhas que començan amb # seràn consideradas coma de comentaris
 
 #Indicatz totes los fragments d’expressions regularas en bas d'aquesta linha. Aquesta darrièra deu èsser daissada exactament coma es.</pre>",
+
+# Language links
+'language-link-title' => 'version en $1',
 
 );

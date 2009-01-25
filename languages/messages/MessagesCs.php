@@ -1273,6 +1273,8 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'defaultns'                 => 'Implicitně hledat v těchto jmenných prostorech:',
 'default'                   => 'implicitní',
 'files'                     => 'Soubory',
+'prefs-custom-css'          => 'Vlastní CSS',
+'prefs-custom-js'           => 'Vlastní JS',
 
 # User rights
 'userrights'                  => 'Správa uživatelských skupin', # Not used as normal message but as header for the special page itself
@@ -1756,7 +1758,9 @@ Vstup: <code>typ obsahu/podtyp</code>, např. <code>image/jpeg</code>.',
 'protectedtitlesempty'    => 'S těmito parametry nejsou zamčeny žádné názvy.',
 'listusers'               => 'Uživatelé',
 'listusers-editsonly'     => 'Zobrazit pouze uživatele s editacemi',
+'listusers-creationsort'  => 'Seřadit podle data vytvoření',
 'usereditcount'           => '$1 {{PLURAL:$1|editace|editace|editací}}',
+'usercreated'             => 'Vytvořeno $1 v $2',
 'newpages'                => 'Nejnovější stránky',
 'newpages-username'       => 'Uživatelské jméno:',
 'ancientpages'            => 'Nejdéle needitované stránky',

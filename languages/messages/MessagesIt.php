@@ -1123,6 +1123,8 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'defaultns'                 => 'Cerca in questi namespace se non diversamente specificato:',
 'default'                   => 'predefinito',
 'files'                     => 'File',
+'prefs-custom-css'          => 'CSS personalizzato',
+'prefs-custom-js'           => 'JS personalizzato',
 
 # User rights
 'userrights'                  => 'Gestione dei permessi relativi agli utenti', # Not used as normal message but as header for the special page itself
@@ -1605,7 +1607,9 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'protectedtitlesempty'    => 'Al momento non esistono titoli protetti con i parametri specificati.',
 'listusers'               => 'Elenco degli utenti',
 'listusers-editsonly'     => 'Mostra solo utenti con dei contributi',
+'listusers-creationsort'  => 'Ordina per data di creazione',
 'usereditcount'           => '$1 {{PLURAL:$1|contributo|contributi}}',
+'usercreated'             => 'Creato il $1 alle $2',
 'newpages'                => 'Pagine più recenti',
 'newpages-username'       => 'Nome utente:',
 'ancientpages'            => 'Pagine meno recenti',

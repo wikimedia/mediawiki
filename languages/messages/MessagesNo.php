@@ -1113,6 +1113,8 @@ se math/README for oppsett.',
 'defaultns'                 => 'Søk i disse navnerommene som standard:',
 'default'                   => 'standard',
 'files'                     => 'Filer',
+'prefs-custom-css'          => 'Personlig CSS',
+'prefs-custom-js'           => 'Personlig Javascript',
 
 # User rights
 'userrights'                     => 'Brukerrettighetskontroll', # Not used as normal message but as header for the special page itself
@@ -1324,6 +1326,7 @@ Se [[Special:NewFiles|galleriet over nye filer]] for en mer visuell visning',
 'filename'                    => 'Filnavn',
 'filedesc'                    => 'Beskrivelse',
 'fileuploadsummary'           => 'Beskrivelse:',
+'filereuploadsummary'         => 'Filendringer:',
 'filestatus'                  => 'Opphavsrettsstatus:',
 'filesource'                  => 'Kilde:',
 'uploadedfiles'               => 'Filer som er lastet opp',
@@ -1602,7 +1605,9 @@ En side anses om en pekerside om den inneholder en mal som det lenkes til fra [[
 'protectedtitlesempty'    => 'Ingen titler beskyttes med disse parameterne for øyeblikket.',
 'listusers'               => 'Brukerliste',
 'listusers-editsonly'     => 'Vis bare brukere med redigeringer',
+'listusers-creationsort'  => 'Sorter etter opprettelsesdato',
 'usereditcount'           => '{{PLURAL:$1|én redigering|$1 redigeringer}}',
+'usercreated'             => 'Opprettet den $1 $2',
 'newpages'                => 'Nye sider',
 'newpages-username'       => 'Brukernavn:',
 'ancientpages'            => 'Eldste sider',
@@ -2961,5 +2966,8 @@ Skriv inn filnavn uten «{{ns:file}}:»-prefikset.',
 #Linjer som begynner med # anses som kommentarer
 
 #Skriv alle fragmenter av regulære uttrykk over denne lina. La denne linja være som den er</pre>',
+
+# Language links
+'language-link-title' => 'Versjon på «$1»',
 
 );

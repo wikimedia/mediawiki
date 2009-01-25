@@ -1155,6 +1155,8 @@ per favor vide math/README pro configurar lo.",
 'defaultns'                 => 'Cercar initialmente in iste spatios de nomines:',
 'default'                   => 'predefinition',
 'files'                     => 'Files',
+'prefs-custom-css'          => 'CSS personalisate',
+'prefs-custom-js'           => 'JS personalisate',
 
 # User rights
 'userrights'                  => 'Gestion de derectos de usator', # Not used as normal message but as header for the special page itself
@@ -1664,7 +1666,9 @@ Cata linea contine ligamines al prime e al secunde redirection, con le destinati
 'protectedtitlesempty'    => 'Nulle titulos es actualmente protegite con iste parametros.',
 'listusers'               => 'Lista de usatores',
 'listusers-editsonly'     => 'Monstrar solmente usatores con modificationes',
+'listusers-creationsort'  => 'Ordinar per data de creation',
 'usereditcount'           => '$1 {{PLURAL:$1|modification|modificationes}}',
+'usercreated'             => 'Create le $1 a $2',
 'newpages'                => 'Nove paginas',
 'newpages-username'       => 'Nomine de usator:',
 'ancientpages'            => 'Paginas le plus ancian',
