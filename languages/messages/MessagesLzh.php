@@ -1381,7 +1381,7 @@ $2',
 'protectedpages-cascade'  => '只示連串之錮',
 'listusers'               => '點簿',
 'listusers-editsonly'     => '只示有纂之簿',
-'listusers-creationsort'  => '按日築'
+'listusers-creationsort'  => '按日築',
 'usereditcount'           => '$1纂',
 'usercreated'             => '建於$1$2',
 'newpages'                => '新灶',
