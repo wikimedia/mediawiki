@@ -589,7 +589,7 @@ class SpecialRecentChanges extends SpecialPage {
 
 		$note = '';
 		if( !wfEmptyMsg( 'rclegend', wfMsg('rclegend') ) ) {
-			$note .= wfMsgExt( 'rclegend', array('parseinline') );
+			$note .= '<div class="mw-rclegend">' . wfMsgExt( 'rclegend', array('parseinline') ) . "</div>\n";
 		}
 		if( $options['from'] ) {
 			$note .= wfMsgExt( 'rcnotefrom', array( 'parseinline' ),
