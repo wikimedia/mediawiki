@@ -1202,7 +1202,7 @@ wgUploadAutoFill = {$autofill};
 			}
 		}
 
-		if ( $wgUseCopyrightUpload ) {
+		if ( !$this->mReUpload && $wgUseCopyrightUpload ) {
 			$filestatus = wfMsgExt( 'filestatus', 'escapenoentities' );
 			$copystatus =  htmlspecialchars( $this->mCopyrightStatus );
 			$filesource = wfMsgExt( 'filesource', 'escapenoentities' );
