@@ -533,6 +533,10 @@ $1',
 'badsig'                     => '無效嘅程式碼簽名。檢查吓 HTML 有無錯。',
 'badsiglength'               => '簽名太長喇。
 佢嘅長度一定要響$1個字元以下。',
+'yourgender'                 => '性別:',
+'gender-unknown'             => '未指定',
+'gender-male'                => '男',
+'gender-female'              => '女',
 'email'                      => '電郵',
 'prefs-help-realname'        => '真名係可以選填嘅。
 如果你選擇提供佢，佢會用來喺有需要嘅時候標示你嘅作品。',

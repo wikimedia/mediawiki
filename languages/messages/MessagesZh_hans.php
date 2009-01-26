@@ -561,6 +561,10 @@ $2',
 'badsig'                     => '错误的原始签名。检查一下HTML标签。',
 'badsiglength'               => '签名过长。
 它的长度必须在$1个字符以下。',
+'yourgender'                 => '性别:',
+'gender-unknown'             => '未指定',
+'gender-male'                => '男',
+'gender-female'              => '女',
 'email'                      => '电子邮箱',
 'prefs-help-realname'        => '真实姓名是可选的。
 如果您选择提供它，那它便用以对您的贡献署名。',
