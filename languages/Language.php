@@ -2073,6 +2073,7 @@ class Language {
 	 * These details may be overriden per language.
 	 */
 	function gender( $gender, $forms ) {
+		if ( !count($forms) ) { return ''; }
 		$forms = $this->preConvertPlural( $forms, 2 );
 		if ( $gender === 'male' ) return $forms[0];
 		if ( $gender === 'female' ) return $forms[1];
