@@ -446,6 +446,10 @@ Pumili lamang ng iba pang pangalan.',
 Pakisuri ang mga tatak ng HTML.',
 'badsiglength'               => 'Napakahaba ng panlagda.
 Dapat na mas mababa kaysa $1 {{PLURAL:$1|na panitik|na mga panitik}} (karakter).',
+'yourgender'                 => 'Kasarian:',
+'gender-unknown'             => 'Hindi tinukoy',
+'gender-male'                => 'Lalaki',
+'gender-female'              => 'Babae',
 'email'                      => 'E-liham',
 'prefs-help-realname'        => "Opsyonal ('di-talaga kailangan) ang tunay na pangalan.
 Kung pipiliin mong ibigay ito, gagamitin ito para mabigyan ka ng pagkilala para iyong mga ginawa.",

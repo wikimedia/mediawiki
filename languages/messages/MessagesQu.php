@@ -959,7 +959,7 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'viewprevnext'                     => 'Qhaway ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Maskaypaq akllanakuna',
 'searchmenu-exists'                => "'''Kay wikipiqa «[[$1]]» sutiyuq p'anqam kachkan'''",
-'searchmenu-new'                   => "'''Kay wikipi ''$1'' sutiyuq p'anqata [[:$1|kamariy]]!'''",
+'searchmenu-new'                   => "'''Kay wikipi \"[[:\$1]]\" sutiyuq p'anqata kamariy!'''",
 'searchhelp-url'                   => 'Help:Yanapana',
 'searchmenu-prefix'                => "[[Special:PrefixIndex/$1|Kay ñawpa k'askaqchayuq huk p'anqakunata maskay]]",
 'searchprofile-articles'           => "Samiq p'anqakuna",
@@ -1058,6 +1058,9 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'timezonelegend'            => "Pacha t'urpi",
 'timezonetext'              => "¹Hayk'a urataq qampa tiyayllaykip pachan sirwiqpa pachanmanta (UTC).",
 'localtime'                 => 'Tiyaylla pacha:',
+'timezoneselect'            => 'Pacha suyu:',
+'timezoneuseserverdefault'  => 'Sirwiqpa kikinmanta',
+'timezoneuseoffset'         => 'Huk pacha (pachap wakin kayninta willay)',
 'timezoneoffset'            => 'Huk kay¹:',
 'servertime'                => 'Sirwiqpa pachan:',
 'guesstimezone'             => 'Pacha suyuta chaskimuy',
@@ -1123,6 +1126,7 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'right-move'                 => "P'anqakunata astay",
 'right-move-subpages'        => "P'anqakunata urin p'anqankunatawan astay",
 'right-move-rootuserpages'   => "Ruraqpa saphi p'anqankunata astay",
+'right-movefile'             => 'Willañiqikunata astay',
 'right-suppressredirect'     => "Huk p'anqata astaspa pusapuna p'anqata mana kamariy",
 'right-upload'               => 'Willañiqikunata churkuy',
 'right-reupload'             => 'Kachkaqña willañiqita huknachay',
@@ -1183,6 +1187,7 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'action-move'                 => "kay p'anqata astay",
 'action-move-subpages'        => "kay p'anqata urin p'anqankunatapas astay",
 'action-move-rootuserpages'   => "ruraqpa saphi p'anqankunata astay",
+'action-movefile'             => 'kay willañiqita astay',
 'action-upload'               => 'kay willañiqita churkuy',
 'action-reupload'             => 'kay kachkaqña willañiqita huknachay',
 'action-reupload-shared'      => 'kay willañiqita rakinakusqa churanapi qhawarpariy',
@@ -1272,6 +1277,7 @@ Rikchata huk p'anqaman ch'aqtanaykipaqqa kay hunt'ana p'anqapi t'inkita llamk'ac
 'filename'                    => 'Willañiqip sutin',
 'filedesc'                    => 'Pisichay',
 'fileuploadsummary'           => "T'iktu:",
+'filereuploadsummary'         => 'Willañiqi astasqakuna:',
 'filestatus'                  => 'Ima hina iskaychay hayñiyuq:',
 'filesource'                  => 'Pukyu:',
 'uploadedfiles'               => 'Churkusqa willañiqikuna',
@@ -1362,6 +1368,7 @@ Wachup umanpi ñit'ispaqa allichaytam hukchanki.",
 'listfiles_user'        => 'Ruraq',
 'listfiles_size'        => 'Hatun kay',
 'listfiles_description' => "T'iktuna",
+'listfiles_count'       => 'Musuqchasqakuna',
 
 # File description page
 'filehist'                       => 'Willañiqip wiñay kawsaynin',
@@ -1538,6 +1545,7 @@ Kay p'anqapiqa huk pusapuna p'anqaman pusapuq p'anqakunap sutinkunatam rikunki. 
 'listusers'               => 'Tukuy ruraqkuna',
 'listusers-editsonly'     => "Llamk'apusqayuq ruraqkunallata rikuchiy",
 'usereditcount'           => "$1 {{PLURAL:$1|llamk'apusqa|llamk'apusqakuna}}",
+'usercreated'             => "Kamarisqa $1 p'unchawpi $2 pachapi",
 'newpages'                => "Musuq p'anqakuna",
 'newpages-username'       => 'Ruraqpa sutin:',
 'ancientpages'            => "Ñawpaqta qallarisqa p'anqakuna",
@@ -1645,7 +1653,7 @@ Qampa [[Special:Preferences|allinkachinaykikunapi]] qillqakamachisqayki imamayta
 'usermailererror' => 'Chaski llikaqa pantasqatam kutichimurqan:',
 'defemailsubject' => "{{SITENAME}} p'anqamanta chaski",
 'noemailtitle'    => 'Manam kanchu e-chaski imamayta',
-'noemailtext'     => 'Kay ruraqqa manam willawarqanchu chaniyuq imamaytata, ichataq huk ruraqkunamanta e-chaski chaskiykuyman ama nirqanmi.',
+'noemailtext'     => 'Kay ruraqqa manam willawarqanchu chaniyuq imamaytata.',
 'email-legend'    => '{{SITENAME}}pi huk ruraqman e-chaskita kachay',
 'emailfrom'       => 'Kachaq:',
 'emailto'         => 'Chaskiq:',
@@ -2837,5 +2845,8 @@ Mana “{{ns:file}}:” k'askaqniyuq willañiqip sutinta yaykuchiy.",
 #«#» nisqawan qallariq sinrukunaqa willapuy hinam llamk'apusqa kanqa
 
 #Tukuy regex rakikunata kay siq'ip hananman churay. Kay sinruta kay hinallatam saqiy</pre>",
+
+# Language links
+'language-link-title' => '$1 musuqchasqa',
 
 );
