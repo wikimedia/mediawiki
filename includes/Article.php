@@ -261,6 +261,28 @@ class Article {
 		global $wgParser;
 		return $wgParser->getSection( $text, $section );
 	}
+	
+	/**
+	 * Get the text that needs to be saved in order to undo all revisions
+	 * between $undo and $undoafter. Revisions must belong to the same page,
+	 * must exist and must not be deleted
+	 * @param $undo Revision 
+	 * @param $undoafter Revision Must be an earlier revision than $undo
+	 * @return mixed string on success, false on failure
+	 */
+	public function getUndoText( Revision $undo, Revision $undoafter = null ) {
+		$undo_text = $undo->getText();
+		$undoafter_text = $undoafter->getText();
+		$cur_text = $this->getContent();
+		if ( $cur_text == $undo_text ) {
+			# No use doing a merge if it's just a straight revert.
+			return $undoafter_text;
+		}
+		$undone_text = '';
+		if ( !wfMerge( $undo_text, $undoafter_text, $cur_text, $undone_text ) )
+			return false;
+		return $undone_text;
+	}
 
 	/**
 	 * @return int The oldid of the article that is to be shown, 0 for the
