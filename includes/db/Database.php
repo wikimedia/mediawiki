@@ -1620,8 +1620,9 @@ class Database {
 	 * Escape string for safe LIKE usage
 	 */
 	function escapeLike( $s ) {
+		$s=str_replace('\\','\\\\',$s);
 		$s=$this->strencode( $s );
-		$s=str_replace(array('%','_','\\'),array('\%','\_','\\\\'),$s);
+		$s=str_replace(array('%','_'),array('\%','\_'),$s);
 		return $s;
 	}
 
