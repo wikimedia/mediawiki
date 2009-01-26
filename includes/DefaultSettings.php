@@ -2430,6 +2430,7 @@ $wgDefaultUserOptions = array(
 	'watchmoves'              => 0,
 	'watchdeletion'           => 0,
 	'noconvertlink'           => 0,
+	'gender'                  => 'unknown',
 );
 
 /** Whether or not to allow and use real name fields. Defaults to true. */

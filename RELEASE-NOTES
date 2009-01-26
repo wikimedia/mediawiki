@@ -63,6 +63,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 17145) Specific categories can be excluded from Special:UnusedCategories
   with __IGNOREUNUSED__
 * (bug 13040) Gender switch in user preferences
+* (bug 13040) {{GENDER:}} magic word for interface messages
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.

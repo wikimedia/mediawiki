@@ -27,6 +27,7 @@ class CoreParserFunctions {
 		$parser->setFunctionHook( 'fullurle',         array( __CLASS__, 'fullurle'         ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'formatnum',        array( __CLASS__, 'formatnum'        ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'grammar',          array( __CLASS__, 'grammar'          ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'gender',           array( __CLASS__, 'gender'           ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'plural',           array( __CLASS__, 'plural'           ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'numberofpages',    array( __CLASS__, 'numberofpages'    ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'numberofusers',    array( __CLASS__, 'numberofusers'    ), SFH_NO_HASH );
@@ -155,6 +156,22 @@ class CoreParserFunctions {
 		return $parser->getFunctionLang()->convertGrammar( $word, $case );
 	}
 
+	static function gender( $parser, $user ) {
+		$forms = array_slice( func_get_args(), 2);
+
+		// default
+		$gender = User::getDefaultOption( 'gender' );
+
+		// check parameter, or use $wgUser if in interface message
+		$user = User::newFromName( $user );
+		if ( $user ) {
+			$gender = $user->getOption( 'gender' );
+		} elseif ( $parser->mOptions->getInterfaceMessage() ) {
+			global $wgUser;
+			$gender = $wgUser->getOption( 'gender' );
+		}
+		return $parser->getFunctionLang()->gender( $gender, $forms );
+	}
 	static function plural( $parser, $text = '') {
 		$forms = array_slice( func_get_args(), 2);
 		$text = $parser->getFunctionLang()->parseFormattedNumber( $text );
