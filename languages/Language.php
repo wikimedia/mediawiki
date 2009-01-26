@@ -2065,6 +2065,21 @@ class Language {
 	}
 
 	/**
+	 * Provides an alternative text depending on specified gender.
+	 * Usage {{gender:username|masculine|feminine|neutral}}.
+	 * username is optional, in which case the gender of current user is used,
+	 * but only in (some) interface messages; otherwise default gender is used.
+	 * If second or third parameter are not specified, masculine is used.
+	 * These details may be overriden per language.
+	 */
+	function gender( $gender, $forms ) {
+		$forms = $this->preConvertPlural( $forms, 2 );
+		if ( $gender === 'male' ) return $forms[0];
+		if ( $gender === 'female' ) return $forms[1];
+		return isset($forms[2]) ? $forms[2] : $forms[0];
+	}
+
+	/**
 	 * Plural form transformations, needed for some languages.
 	 * For example, there are 3 form of plural in Russian and Polish,
 	 * depending on "count mod 10". See [[w:Plural]]
