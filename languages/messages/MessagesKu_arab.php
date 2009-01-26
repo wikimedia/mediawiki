@@ -311,6 +311,8 @@ $messages = array(
 'passwordremindertitle'   => 'تێپەڕوشەیەکی نوێی کاتی بۆ  {{SITENAME}}',
 'noemail'                 => 'ھیچ ئەدرەسێکی e-mail تۆمار نەکراوە بۆ بەکارھێنەر  "$1" .',
 'emailauthenticated'      => 'پۆستی ئه‌لیكترۆنی ناسراو: $1.',
+'emailnotauthenticated'   => 'ئیمەیلەکەت ھێشتا نەناسراوە.
+ھیچ ئیمەیلێک بۆ ئەم بابەتانەی خوارەوە نانێردرێت.',
 'emailconfirmlink'        => 'پۆستی ئه‌لیكترۆنی خۆت بنووسه‌',
 'accountcreated'          => 'هه‌ژماره‌كه‌ سه‌ركه‌وتووانه‌ دروست كرا',
 'loginlanguagelabel'      => 'زمان: $1',
@@ -401,8 +403,8 @@ $messages = array(
 'compareselectedversions' => 'ھەڵسەنگاندنی وەشانە ھەڵبژاردراوەکان',
 
 # Search results
-'noexactmatch' => "'''ھیچ پەڕەیەک ھەر بەم سەردێڕەوە نیە.''' 
-ئێستە دەتوانی ئەم پەڕە دروست بکەیت",
+'noexactmatch' => '\'\'\'پەڕەیەک بە ناوی  "$1"ەوە نیە.\'\'\'
+دەتوانی ئەم پەڕە [[:"$1"|دروست بکەیت]].',
 'powersearch'  => 'بە ھێز بگەڕە',
 
 # Preferences page

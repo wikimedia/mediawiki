@@ -575,6 +575,10 @@ Käyttäjätunnuksesi on luotu.
 'yournick'                   => 'Allekirjoitus',
 'badsig'                     => 'Allekirjoitus ei kelpaa.',
 'badsiglength'               => 'Allekirjoitus on liian pitkä – sen on oltava alle $1 {{PLURAL:$1|merkki|merkkiä}}.',
+'yourgender'                 => 'Sukupuoli',
+'gender-unknown'             => 'Määrittelemätön',
+'gender-male'                => 'Mies',
+'gender-female'              => 'Nainen',
 'email'                      => 'Sähköpostitoiminnot',
 'prefs-help-realname'        => 'Vapaaehtoinen. Nimesi näytetään käyttäjätunnuksesi sijasta sivun tekijäluettelossa.',
 'loginerror'                 => 'Sisäänkirjautumisvirhe',
@@ -1121,6 +1125,8 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'defaultns'                 => 'Etsi oletusarvoisesti näistä nimiavaruuksista',
 'default'                   => 'oletus',
 'files'                     => 'Tiedostot',
+'prefs-custom-css'          => 'Käyttäjäkohtainen CSS-tyylisivu',
+'prefs-custom-js'           => 'Käyttäjäkohtainen JavaScript-sivu',
 
 # User rights
 'userrights'                  => 'Käyttöoikeuksien hallinta', # Not used as normal message but as header for the special page itself
@@ -1583,7 +1589,9 @@ Seuraava lista näyttää {{PLURAL:$1|ensimmäisen linkittävän sivun|$1 ensimm
 'protectedtitlesempty'    => 'Ei suojattuja sivunimiä näillä hakuehdoilla.',
 'listusers'               => 'Käyttäjälista',
 'listusers-editsonly'     => 'Näytä vain käyttäjät, joilla on muokkauksia',
+'listusers-creationsort'  => 'Lajittele tunnuksen luontipäivämäärän mukaan',
 'usereditcount'           => '$1 {{PLURAL:$1|muokkaus|muokkausta}}',
+'usercreated'             => 'Luotu $1 kello $2',
 'newpages'                => 'Uudet sivut',
 'newpages-username'       => 'Käyttäjätunnus',
 'ancientpages'            => 'Kauan muokkaamattomat sivut',

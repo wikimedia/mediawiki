@@ -651,6 +651,10 @@ Välj ett annat namn.',
 'badsig'                     => 'Det är något fel med råsignaturen, kontrollera HTML-koden.',
 'badsiglength'               => 'Signaturen är för lång.
 Den får innehålla högst $1 {{PLURAL:$1|tecken|tecken}}.',
+'yourgender'                 => 'Kön:',
+'gender-unknown'             => 'Ospecificerat',
+'gender-male'                => 'Man',
+'gender-female'              => 'Kvinna',
 'email'                      => 'E-post',
 'prefs-help-realname'        => 'Riktigt namn behöver inte anges.
 Om du väljer att ange ditt riktiga namn, kommer det att användas för att tillskriva dig ditt arbete.',
