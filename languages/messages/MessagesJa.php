@@ -1575,7 +1575,7 @@ PICT # misc.
 'statistics-pages-desc'        => 'ノートページやリダイレクトなどを含んだこのウィキ内の全てのページです。',
 'statistics-files'             => 'アップロードされたファイル数',
 'statistics-edits'             => '編集回数の総計',
-'statistics-edits-average'     => '1項目あたりの編集回数',
+'statistics-edits-average'     => '1ページあたりの編集回数',
 'statistics-views-total'       => '総閲覧回数',
 'statistics-views-peredit'     => '閲覧回数に対する編集回数の割合',
 'statistics-jobqueue'          => '[http://www.mediawiki.org/wiki/Manual:Job_queue ジョブ・キュー]の長さ',

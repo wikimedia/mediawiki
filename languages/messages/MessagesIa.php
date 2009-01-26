@@ -532,6 +532,10 @@ Selige un altere nomine.',
 'badsig'                     => 'Signatura crude invalide; verificar le etiquettas HTML.',
 'badsiglength'               => 'Le signatura es troppo longe.
 Illo debe haber minus de $1 {{PLURAL:$1|character|characteres}}.',
+'yourgender'                 => 'Genere:',
+'gender-unknown'             => 'Non specificate',
+'gender-male'                => 'Masculin',
+'gender-female'              => 'Feminin',
 'email'                      => 'E-mail',
 'prefs-help-realname'        => 'Le nomine real es optional.
 Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contributiones.',

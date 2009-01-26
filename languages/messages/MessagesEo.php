@@ -1639,6 +1639,7 @@ Paĝo estas traktata kiel apartigilo se ĝi uzas ŝablonon kiu estas ligita de [
 'protectedtitlesempty'    => 'Neniuj titoloj estas nune protektitaj kun ĉi parametroj.',
 'listusers'               => 'Uzantaro',
 'listusers-editsonly'     => 'Montri uzantojn kun redaktoj nur',
+'listusers-creationsort'  => 'Ordigi laŭ dato de kreado',
 'usereditcount'           => '$1 {{PLURAL:$1|redakto|redaktoj}}',
 'usercreated'             => 'Kreita je $1, $2',
 'newpages'                => 'Novaj paĝoj',

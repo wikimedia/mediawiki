@@ -450,6 +450,10 @@ Mesedez, beste bat aukeratu.',
 'badsig'                     => 'Baliogabeko sinadura; egiaztatu HTML etiketak.',
 'badsiglength'               => 'Ezizen luzeegia hautatu duzu;
 $1 karakteretik behera izan behar du.',
+'yourgender'                 => 'Generoa:',
+'gender-unknown'             => 'Zehaztugabea',
+'gender-male'                => 'Gizona',
+'gender-female'              => 'Emakumea',
 'email'                      => 'E-posta',
 'prefs-help-realname'        => '* Benetako izena (aukerakoa): zehaztea erabakiz gero, zure lanarentzako atribuzio bezala balioko du.',
 'loginerror'                 => 'Errorea saioa hastean',
@@ -1020,6 +1024,7 @@ Saia zaitez zure eskeraren aurretik ''all:'' jartzen eduki guztien artean bilatz
 'userrights-reason'           => 'Aldatzeko arrazoia:',
 'userrights-no-interwiki'     => 'Ez duzu beste wikietan erabiltzaile eskumenak aldatzeko baimenik.',
 'userrights-nodatabase'       => '$1 datubasea ez da existitzen edo ez dago lokalki.',
+'userrights-nologin'          => 'Administratzaile kontu batekin [[Special:UserLogin|hasi behar duzu saioa]] erabiltzaile eskubideak esleitzeko.',
 'userrights-notallowed'       => 'Zure kontuak ez du baimenik erabiltzaile eskumenak emateko.',
 'userrights-changeable-col'   => 'Alda ditzakezun taldeak',
 'userrights-unchangeable-col' => 'Aldatu ezin ditzakezun taldeak',
@@ -1207,6 +1212,7 @@ Orrialde baten irudi bat txertatzeko, erabili kode hauetako bat:
 'filename'                    => 'Fitxategi izena',
 'filedesc'                    => 'Laburpena',
 'fileuploadsummary'           => 'Laburpena:',
+'filereuploadsummary'         => 'Fitxategi aldaketak:',
 'filestatus'                  => 'Copyright egoera:',
 'filesource'                  => 'Iturria:',
 'uploadedfiles'               => 'Igotako fitxategiak',
@@ -1245,6 +1251,7 @@ Oraindik ere fitxategia igo nahi baduzu atzera itzuli eta izen berri bat erabili
 'overwroteimage'              => '"[[$1]]"ren bertsio berri bat igo',
 'uploaddisabled'              => 'Igoerak ezgaituta daude',
 'uploaddisabledtext'          => 'Fitxategiak igotzea ezgaituta dago.',
+'php-uploaddisabledtext'      => 'Fitxategi igoerak PHP-n ezinduta daude. Ikusi fitxategi_igoerak mesedez.',
 'uploadscripted'              => 'Fitxategi honek web zerbitzariak modu ezegokian interpretatu lezakeen HTML edo script kodea dauka.',
 'uploadcorrupt'               => 'Fitxategiak akatsak ditu edo luzapena ezegokia da. Mesedez, egiaztatu fitxategia ondo dagoela eta berriz igo.',
 'uploadvirus'                 => 'Fitxategiak birusa dauka! Xehetasunak: $1',
@@ -1460,7 +1467,9 @@ Aukera ezazu, mesedez, fitxategi izen deskriptiboago bat.',
 'protectedtitlesempty'    => 'Ez dago parametro horiekin babesturiko izenbururik momentu honetan.',
 'listusers'               => 'Erabiltzaileen zerrenda',
 'listusers-editsonly'     => 'Aldaketak egin dituzten erabiltzaileak soilik erakutsi',
+'listusers-creationsort'  => 'Sorrera dataren arabera sailkatu',
 'usereditcount'           => '{{PLURAL:$1|aldaketa $1|$1 aldaketa}}',
+'usercreated'             => '$2-(e)tan $1-(a)n sortua',
 'newpages'                => 'Orrialde berriak',
 'newpages-username'       => 'Erabiltzaile-izena:',
 'ancientpages'            => 'Orrialde zaharrenak',
@@ -1711,6 +1720,8 @@ kontu izan.',
 'protect_expiry_old'          => 'Iraungipen-data iragan da.',
 'protect-unchain'             => 'Mugitzeko blokeoa kendu',
 'protect-text'                => '<strong><nowiki>$1</nowiki></strong> orrialdearen babes maila ikusi eta aldatu egin beharko zenuke.',
+'protect-locked-blocked'      => 'Babes-mailak ezin dira aldatu blokeatuta dagoen bitartean.
+Hemen daude <strong>$1</strong> orrialdearen egungo ezarpenak:',
 'protect-locked-access'       => 'Zure kontuak ez du baimenik babes mailak aldatzeko.
 Hemen daude <strong>$1</strong> orrialderako oraingo ezarpenak:',
 'protect-cascadeon'           => 'Orrialde hau momentu honetan babespean dago honako orrialde {{PLURAL:$1|honek kaskada bidezko babesa duelako|hauek kaskada bidezko babesa dutelako}}.
@@ -2766,5 +2777,8 @@ Fitxategiaren izena sartu "{{ns:file}}:" aurrizkia gabe.',
 # Special:BlankPage
 'blankpage'              => 'Orrialde txuria',
 'intentionallyblankpage' => 'Orri hau nahita utzi da hutsik',
+
+# Language links
+'language-link-title' => '$1 bertsioa',
 
 );

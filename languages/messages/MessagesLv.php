@@ -308,6 +308,11 @@ $messages = array(
 # General errors
 'error'                => 'Kļūda',
 'databaseerror'        => 'Datu bāzes kļūda',
+'dberrortextcl'        => 'Datubāzes vaicājumā pieļauta sintakses kļūda.
+Pēdējais priekšraksts:
+"$1"
+palaists funkcijā "$2".
+Izdotā MySQL kļūda: "$3: $4"',
 'noconnect'            => 'Šajā wiki ir radušās tehniskas grūtības un nav iespējams savienoties ar datubāžu serveri. <br />
 $1',
 'nodb'                 => 'Kļūda, pieslēdzoties datubāzei $1',
@@ -316,12 +321,13 @@ $1',
 'readonly'             => 'Datubāze bloķēta',
 'readonlytext'         => 'Datubāze šobrīd ir bloķēta pret jauniem ierakstiem un citām izmaiņām. Visdrīzāk iemesls ir parasts datubāzes uzturēšanas pasākums, pēc kura tā tiks atjaunota normālā stāvoklī. Administrators, kurš nobloķēja datubāzi, norādīja šādu iemeslu:
 <p>$1',
-'missing-article'      => 'Datubāze neatrada lapas, ar nosaukumu "$1" $2, tekstu.
+'missing-article'      => 'Teksts lapai ar nosaukumu "$1" $2 datubāzē nav atrodams.
 
-To parasti izraisa novecojusi izmaiņu vai hronoloģijas saite uz izdzēstu lapu.
+Tas parasti notiek novecojušu saišu gadījumā: pieprasot izmaiņas vai hronoloģiju lapai, kas ir izdzēsta.
 
-Ja tajai lapai tur bija jābūt, tā iespējams ir kļūda programmā.
-Par šo var paziņot [[Special:ListUsers/sysop|kādam administratoram]], norādot arī URL.',
+Ja lapai ir jābūt, tad, iespējams, ir kļūda programmā.
+Par to varat ziņot [[Special:ListUsers/sysop|kādam administratoram]], norādot arī URL.',
+'missingarticle-diff'  => '(Salīdz.: $1, $2)',
 'internalerror'        => 'Iekšēja kļūda',
 'internalerror_info'   => 'Iekšējā kļūda: $1',
 'filecopyerror'        => 'Nav iespējams nokopēt failu "$1" uz "$2"',
