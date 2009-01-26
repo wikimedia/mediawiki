@@ -1660,6 +1660,8 @@ END
 
 		$parserOptions = ParserOptions::newFromUser( $wgUser );
 		$parserOptions->setEditSection( false );
+		$parserOptions->setIsPreview( true );
+		$parserOptions->setIsSectionPreview( !is_null($this->section) && $this->section !== '' );
 
 		global $wgRawHtml;
 		if ( $wgRawHtml && !$this->mTokenOk ) {

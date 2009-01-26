@@ -33,6 +33,8 @@ class ParserOptions
 	var $mExternalLinkTarget;        # Target attribute for external links
 
 	var $mUser;                      # Stored user object, just used to initialise the skin
+	var $mIsPreview;                 # Parsing the page for a "preview" operation
+	var $mIsSectionPreview;          # Parsing the page for a "preview" operation on a single section
 
 	function getUseTeX()                        { return $this->mUseTeX; }
 	function getUseDynamicDates()               { return $this->mUseDynamicDates; }
@@ -54,6 +56,8 @@ class ParserOptions
 	function getEnableLimitReport()             { return $this->mEnableLimitReport; }
 	function getCleanSignatures()               { return $this->mCleanSignatures; }
 	function getExternalLinkTarget()            { return $this->mExternalLinkTarget; }
+	function getIsPreview()                     { return $this->mIsPreview; }
+	function getIsSectionPreview()              { return $this->mIsSectionPreview; }
 
 	function getSkin() {
 		if ( !isset( $this->mSkin ) ) {
@@ -99,6 +103,8 @@ class ParserOptions
 	function setTimestamp( $x )                 { return wfSetVar( $this->mTimestamp, $x ); }
 	function setCleanSignatures( $x )           { return wfSetVar( $this->mCleanSignatures, $x ); }
 	function setExternalLinkTarget( $x )        { return wfSetVar( $this->mExternalLinkTarget, $x ); }
+	function setIsPreview( $x )                 { return wfSetVar( $this->mIsPreview, $x ); }
+	function setIsSectionPreview( $x )          { return wfSetVar( $this->mIsSectionPreview, $x ); }
 
 	function __construct( $user = null ) {
 		$this->initialiseFromUser( $user );
@@ -156,6 +162,8 @@ class ParserOptions
 		$this->mEnableLimitReport = false;
 		$this->mCleanSignatures = $wgCleanSignatures;
 		$this->mExternalLinkTarget = $wgExternalLinkTarget;
+		$this->mIsPreview = false;
+		$this->mIsSectionPreview = false;
 		wfProfileOut( $fname );
 	}
 }
