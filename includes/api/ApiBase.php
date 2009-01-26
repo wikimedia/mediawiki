@@ -705,6 +705,7 @@ abstract class ApiBase {
 		'missingparam' => array('code' => 'no$1', 'info' => "The \$1 parameter must be set"),
 		'invalidtitle' => array('code' => 'invalidtitle', 'info' => "Bad title ``\$1''"),
 		'nosuchpageid' => array('code' => 'nosuchpageid', 'info' => "There is no page with ID \$1"),
+		'nosuchrevid' => array('code' => 'nosuchrevid', 'info' => "There is no revision with ID \$1"),
 		'invaliduser' => array('code' => 'invaliduser', 'info' => "Invalid username ``\$1''"),
 		'invalidexpiry' => array('code' => 'invalidexpiry', 'info' => "Invalid expiry time ``\$1''"),
 		'pastexpiry' => array('code' => 'pastexpiry', 'info' => "Expiry time ``\$1'' is in the past"),
@@ -739,8 +740,10 @@ abstract class ApiBase {
 		'blankpage' => array('code' => 'emptypage', 'info' => "Creating new, empty pages is not allowed"),
 		'editconflict' => array('code' => 'editconflict', 'info' => "Edit conflict detected"),
 		'hashcheckfailed' => array('code' => 'badmd5', 'info' => "The supplied MD5 hash was incorrect"),
-		'missingtext' => array('code' => 'notext', 'info' => "One of the text, appendtext and prependtext parameters must be set"),
+		'missingtext' => array('code' => 'notext', 'info' => "One of the text, appendtext, prependtext and undo parameters must be set"),
 		'emptynewsection' => array('code' => 'emptynewsection', 'info' => 'Creating empty new sections is not possible.'),
+		'revwrongpage' => array('code' => 'revwrongpage', 'info' => "r\$1 is not a revision of ``\$2''"),
+		'undo-failure' => array('code' => 'undofailure', 'info' => 'Undo failed due to conflicting intermediate edits'),
 	);
 
 	/**

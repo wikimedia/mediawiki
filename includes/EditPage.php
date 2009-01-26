@@ -165,18 +165,13 @@ class EditPage {
 					$undorev->getPage() == $this->mArticle->getID() &&
 					!$undorev->isDeleted( Revision::DELETED_TEXT ) &&
 					!$oldrev->isDeleted( Revision::DELETED_TEXT ) ) {
-					$undorev_text = $undorev->getText();
-					$oldrev_text = $oldrev->getText();
-					$currev_text = $text;
-
-					if ( $currev_text != $undorev_text ) {
-						$result = wfMerge( $undorev_text, $oldrev_text, $currev_text, $text );
+					
+					$undotext = $this->mArticle->getUndoText( $undorev, $oldrev );
+					if ( $undotext === false ) {
+						# Warn the user that something went wrong
+						$this->editFormPageTop .= $wgOut->parse( '<div class="error mw-undo-failure">' . wfMsgNoTrans( 'undo-failure' ) . '</div>' );
 					} else {
-						# No use doing a merge if it's just a straight revert.
-						$text = $oldrev_text;
-						$result = true;
-					}
-					if ( $result ) {
+						$text = $undotext;
 						# Inform the user of our success and set an automatic edit summary
 						$this->editFormPageTop .= $wgOut->parse( '<div class="mw-undo-success">' . wfMsgNoTrans( 'undo-success' ) . '</div>' );
 						$firstrev = $oldrev->getNext();
@@ -186,9 +181,6 @@ class EditPage {
 							$this->undidRev = $undo;
 						}
 						$this->formtype = 'diff';
-					} else {
-						# Warn the user that something went wrong
-						$this->editFormPageTop .= $wgOut->parse( '<div class="error mw-undo-failure">' . wfMsgNoTrans( 'undo-failure' ) . '</div>' );
 					}
 				} else {
 					// Failed basic sanity checks.
