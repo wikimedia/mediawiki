@@ -1604,7 +1604,8 @@ Ayrıca [[Special:WantedCategories|İstenen kategoriler]]'e bakınız.",
 'special-categories-sort-abc'   => 'alfabetik olarak sırala',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Silinen kullanıcı katkıları',
+'deletedcontributions'       => 'Silinen kullanıcı katkıları',
+'deletedcontributions-title' => 'Silinen kullanıcı katkıları',
 
 # Special:LinkSearch
 'linksearch'    => 'Web bağlantılarını ara',

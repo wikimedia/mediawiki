@@ -425,7 +425,8 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 'categories' => 'Categurii',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Cuntribüziun scancelaa',
+'deletedcontributions'       => 'Cuntribüziun scancelaa',
+'deletedcontributions-title' => 'Cuntribüziun scancelaa',
 
 # E-mail user
 'emailuser' => 'Manda un email al duvrátt',

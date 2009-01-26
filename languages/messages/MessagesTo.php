@@ -687,7 +687,8 @@ Ko e konga ʻi olunga, ko e '''konga pē ʻe taha''' ʻe haofaki ʻi he lomiʻi 
 'categoriespagetext' => 'ʻOku ʻi ai ha ngaahi faʻahinga pehē.',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Ngaahi foaki ʻo ha ʻetita kuo tāmateʻi',
+'deletedcontributions'       => 'Ngaahi foaki ʻo ha ʻetita kuo tāmateʻi',
+'deletedcontributions-title' => 'Ngaahi foaki ʻo ha ʻetita kuo tāmateʻi',
 
 # Special:LinkSearch
 'linksearch'       => 'Kumi ha ngaahi fehokotaki fakamatamatakupenga',

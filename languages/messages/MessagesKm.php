@@ -1623,7 +1623,8 @@ $2',
 'special-categories-sort-abc'   => 'តម្រៀបតាមអក្ខរក្រម',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'ការរួមចំណែកដែលត្រូវបានលុប',
+'deletedcontributions'       => 'ការរួមចំណែកដែលត្រូវបានលុប',
+'deletedcontributions-title' => 'ការរួមចំណែកដែលត្រូវបានលុប',
 
 # Special:LinkSearch
 'linksearch'      => 'ស្វែងរកតំណភ្ជាប់វិប',

@@ -1808,7 +1808,8 @@ Voyez aussi [[Special:WantedCategories|les catégories demandées]].',
 'special-categories-sort-abc'   => 'tri alphabétique',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Contributions supprimées',
+'deletedcontributions'       => 'Contributions supprimées',
+'deletedcontributions-title' => 'Contributions supprimées',
 
 # Special:LinkSearch
 'linksearch'       => 'Rechercher des liens Internet',

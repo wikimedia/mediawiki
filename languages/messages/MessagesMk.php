@@ -1821,7 +1821,8 @@ PICT # misc.
 'special-categories-sort-abc'   => 'алфанумеричко подредување по',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Избришани кориснички придонеси',
+'deletedcontributions'       => 'Избришани кориснички придонеси',
+'deletedcontributions-title' => 'Избришани кориснички придонеси',
 
 # Special:LinkSearch
 'linksearch'       => 'Пребарај веб врски',

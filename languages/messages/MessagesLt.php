@@ -1652,7 +1652,8 @@ Taip pat žiūrėkite [[Special:WantedCategories|trokštamas kategorijas]].',
 'special-categories-sort-abc'   => 'rikiuoti pagal abėcėlę',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Ištrintas naudotojo indėlis',
+'deletedcontributions'       => 'Ištrintas naudotojo indėlis',
+'deletedcontributions-title' => 'Ištrintas naudotojo indėlis',
 
 # Special:LinkSearch
 'linksearch'     => 'Ieškoti interneto nuorodose',

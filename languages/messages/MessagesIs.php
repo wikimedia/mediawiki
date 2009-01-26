@@ -1549,7 +1549,8 @@ Sjá einnig [[Special:WantedCategories|eftirsótta flokka]].',
 'special-categories-sort-abc'   => 'raða eftir stafrófinu',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Eyddar breytingar notenda',
+'deletedcontributions'       => 'Eyddar breytingar notenda',
+'deletedcontributions-title' => 'Eyddar breytingar notenda',
 
 # Special:LinkSearch
 'linksearch'    => 'Leita að vefföngum',

@@ -1106,7 +1106,8 @@ Možete suziti pregled odabirom tipa istorije, korisničkog imena ili tražene s
 'categoriespagetext' => 'Sledeće kategorije već postoje na vikiju',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Obrisane izmene',
+'deletedcontributions'       => 'Obrisane izmene',
+'deletedcontributions-title' => 'Obrisane izmene',
 
 # Special:ListUsers
 'listusersfrom' => 'Prikaži korisnike počevši od:',

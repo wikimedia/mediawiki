@@ -1308,7 +1308,8 @@ $1',
 'special-categories-sort-abc'   => 'ἀλφαβητικὴ ταξινόμησις',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Διαγράψαι τοὺς ἐράνους τοῦ χρωμένου',
+'deletedcontributions'       => 'Διαγράψαι τοὺς ἐράνους τοῦ χρωμένου',
+'deletedcontributions-title' => 'Διαγράψαι τοὺς ἐράνους τοῦ χρωμένου',
 
 # Special:LinkSearch
 'linksearch'      => 'Ζήτησις ἱστοσυνδέσμων',

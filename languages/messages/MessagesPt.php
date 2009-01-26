@@ -1704,7 +1704,8 @@ Veja também as [[Special:WantedCategories|categorias em falta]].',
 'special-categories-sort-abc'   => 'ordenar alfabeticamente',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Edições eliminadas',
+'deletedcontributions'       => 'Edições eliminadas',
+'deletedcontributions-title' => 'Edições eliminadas',
 
 # Special:LinkSearch
 'linksearch'       => 'Procurar por links da web',

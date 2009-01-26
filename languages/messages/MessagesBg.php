@@ -1686,7 +1686,8 @@ $2',
 'special-categories-sort-abc'   => 'сортиране по азбучен ред',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Изтрити приноси на потребител',
+'deletedcontributions'       => 'Изтрити приноси на потребител',
+'deletedcontributions-title' => 'Изтрити приноси на потребител',
 
 # Special:LinkSearch
 'linksearch'       => 'Търсене на външни препратки',

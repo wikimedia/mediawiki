@@ -1909,7 +1909,8 @@ Zie ook [[Special:WantedCategories|niet-bestaande categorieën met verwijzingen]
 'special-categories-sort-abc'   => 'alfabetisch sorteren',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Verwijderde gebruikersbijdragen',
+'deletedcontributions'       => 'Verwijderde gebruikersbijdragen',
+'deletedcontributions-title' => 'Verwijderde gebruikersbijdragen',
 
 # Special:LinkSearch
 'linksearch'       => 'Externe verwijzingen zoeken',

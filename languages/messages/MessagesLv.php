@@ -1097,7 +1097,8 @@ Skatīt arī [[Special:WantedCategories|''sarkanās'' kategorijas]].",
 'categoriesfrom'     => 'Parādīt kategorijas sākot ar:',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Izdzēstais lietotāju devums',
+'deletedcontributions'       => 'Izdzēstais lietotāju devums',
+'deletedcontributions-title' => 'Izdzēstais lietotāju devums',
 
 # Special:ListUsers
 'listusersfrom' => 'Parādīt lietotājus sākot ar:',

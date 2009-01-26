@@ -1579,7 +1579,8 @@ Template:消除歧義',
 'special-categories-sort-abc'   => '按字母排列',
 
 # Special:DeletedContributions
-'deletedcontributions' => '已刪除的用戶貢獻',
+'deletedcontributions'       => '已刪除的用戶貢獻',
+'deletedcontributions-title' => '已刪除的用戶貢獻',
 
 # Special:LinkSearch
 'linksearch'       => '搜尋網頁連結',

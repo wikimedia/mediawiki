@@ -1567,7 +1567,8 @@ $3 макссь туфталсь - ''$2''",
 'special-categories-sort-abc'   => 'арафтомс алфавитонь коряс',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Нардаф тиихнень путкссна',
+'deletedcontributions'       => 'Нардаф тиихнень путкссна',
+'deletedcontributions-title' => 'Нардаф тиихнень путкссна',
 
 # Special:LinkSearch
 'linksearch'       => 'Вешендемс интернет сюлмафкснень',

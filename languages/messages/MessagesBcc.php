@@ -1704,7 +1704,8 @@ PICT # misc.
 'special-categories-sort-abc'   => 'ترتیب الفبی',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'مشارکتان کابر حذف بوتء',
+'deletedcontributions'       => 'مشارکتان کابر حذف بوتء',
+'deletedcontributions-title' => 'مشارکتان کابر حذف بوتء',
 
 # Special:LinkSearch
 'linksearch'       => 'گردگ لینکان وب',

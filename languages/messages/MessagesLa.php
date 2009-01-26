@@ -1309,7 +1309,8 @@ Vide etiam [[Special:WantedCategories|categorias desideratas]].',
 'special-categories-sort-abc'   => 'ordinare secundum abecedarium',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Conlationes usoris deletae',
+'deletedcontributions'       => 'Conlationes usoris deletae',
+'deletedcontributions-title' => 'Conlationes usoris deletae',
 
 # Special:LinkSearch
 'linksearch'    => 'Quaerere nexus externos',

@@ -1642,7 +1642,8 @@ Bok wobjadnawa se ako bok wujasnjenja zapśimjeśa, gaž wótkazujo na nju [[Med
 'special-categories-sort-abc'   => 'pśewuběrowaś pó alfabeśe',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Wulašowane wužywarske pśinoski',
+'deletedcontributions'       => 'Wulašowane wužywarske pśinoski',
+'deletedcontributions-title' => 'Wulašowane wužywarske pśinoski',
 
 # Special:LinkSearch
 'linksearch'       => 'Webwótkaze pytaś',

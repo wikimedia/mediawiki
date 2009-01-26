@@ -1661,7 +1661,8 @@ Lihat juga [[Special:WantedCategories|senarai kategori dikehendaki]].',
 'special-categories-sort-abc'   => 'susun mengikut tertib abjad',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Sumbangan dihapuskan',
+'deletedcontributions'       => 'Sumbangan dihapuskan',
+'deletedcontributions-title' => 'Sumbangan dihapuskan',
 
 # Special:LinkSearch
 'linksearch'       => 'Cari pautan web',

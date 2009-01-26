@@ -1680,7 +1680,8 @@ Sjuch ek [[Special:WantedCategories|net-besteande kategoryen mei ferwizings]].',
 'special-categories-sort-abc'   => 'alfabetysk sortearje',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Wiske meidogger bydragen',
+'deletedcontributions'       => 'Wiske meidogger bydragen',
+'deletedcontributions-title' => 'Wiske meidogger bydragen',
 
 # Special:LinkSearch
 'linksearch'       => 'Eksterne ferwizings sykje',

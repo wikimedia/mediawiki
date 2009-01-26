@@ -1519,7 +1519,8 @@ Shih edhe [[Special:WantedCategories|kategoritë e dëshiruara]].',
 'special-categories-sort-abc'   => 'radhiti sipas alfabetit',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Kontribute të grisura',
+'deletedcontributions'       => 'Kontribute të grisura',
+'deletedcontributions-title' => 'Kontribute të grisura',
 
 # Special:LinkSearch
 'linksearch'       => 'Kërkoni lidhje të jashtme',

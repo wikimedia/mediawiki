@@ -705,7 +705,8 @@ di uplodezi media.',
 'categories' => 'Kattegori',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Afina di sebelu bye sa afi kulobala',
+'deletedcontributions'       => 'Afina di sebelu bye sa afi kulobala',
+'deletedcontributions-title' => 'Afina di sebelu bye sa afi kulobala',
 
 # Special:ListUsers
 'listusersfrom'      => 'Kamukile sebelu di:',

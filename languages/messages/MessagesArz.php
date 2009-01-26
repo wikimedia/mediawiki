@@ -1849,7 +1849,8 @@ PICT # misc.
 'special-categories-sort-abc'   => 'ترتيب ابجدي',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'تعديلات اليوزر الممسوحة',
+'deletedcontributions'       => 'تعديلات اليوزر الممسوحة',
+'deletedcontributions-title' => 'تعديلات اليوزر الممسوحة',
 
 # Special:LinkSearch
 'linksearch'       => 'دور فى لينكات الويب',

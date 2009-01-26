@@ -1595,7 +1595,8 @@ Talìa macari li [[Special:WantedCategories|catigurìi addumannati]].',
 'special-categories-sort-abc'   => 'ordina alfabbeticamenti',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Cuntribbuti utenti scancillati',
+'deletedcontributions'       => 'Cuntribbuti utenti scancillati',
+'deletedcontributions-title' => 'Cuntribbuti utenti scancillati',
 
 # Special:LinkSearch
 'linksearch'       => 'Circata lijami di fora',

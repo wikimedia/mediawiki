@@ -1157,7 +1157,8 @@ Níl na [[Special:UnusedCategories|catagóiri gan úsáid]] ar fáil anseo.
 Féach freisin ar [[Special:WantedCategories|catagóirí agus iarraidh ag gabháil leis]].',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Dréachtaí úsáideora scriosta',
+'deletedcontributions'       => 'Dréachtaí úsáideora scriosta',
+'deletedcontributions-title' => 'Dréachtaí úsáideora scriosta',
 
 # Special:LinkSearch
 'linksearch-ns'   => 'Ainmspás:',

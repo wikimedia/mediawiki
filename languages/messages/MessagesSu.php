@@ -1370,7 +1370,8 @@ Baca ogé [[Special:WantedCategories|kategori nu dipikabutuh]].',
 'special-categories-sort-count' => 'ngurut numutkeun jumlah',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Kontribusi nu dihapus',
+'deletedcontributions'       => 'Kontribusi nu dihapus',
+'deletedcontributions-title' => 'Kontribusi nu dihapus',
 
 # Special:LinkSearch
 'linksearch'       => 'Sungsi tumbu ramat',

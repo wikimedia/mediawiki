@@ -1672,7 +1672,8 @@ Vegeu també [[Special:WantedCategories|les categories soŀlicitades]].",
 'special-categories-sort-abc'   => 'ordena alfabèticament',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Contribucions esborrades',
+'deletedcontributions'       => 'Contribucions esborrades',
+'deletedcontributions-title' => 'Contribucions esborrades',
 
 # Special:LinkSearch
 'linksearch'       => 'Cerca enllaços web',

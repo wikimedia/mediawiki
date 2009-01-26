@@ -1730,7 +1730,8 @@ Vide etiam le [[Special:WantedCategories|categorias desirate]].',
 'special-categories-sort-abc'   => 'ordinar alphabeticamente',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Contributiones delite de usatores',
+'deletedcontributions'       => 'Contributiones delite de usatores',
+'deletedcontributions-title' => 'Contributiones delite de usatores',
 
 # Special:LinkSearch
 'linksearch'       => 'Cercar per ligamines web',

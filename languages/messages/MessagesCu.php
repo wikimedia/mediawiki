@@ -415,7 +415,8 @@ $messages = array(
 'categories' => 'катигорі́ѩ',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'пони́чьжєнꙑ добродѣꙗ́ниꙗ',
+'deletedcontributions'       => 'пони́чьжєнꙑ добродѣꙗ́ниꙗ',
+'deletedcontributions-title' => 'пони́чьжєнꙑ добродѣꙗ́ниꙗ',
 
 # Special:LinkSearch
 'linksearch-ok' => 'ищи́',

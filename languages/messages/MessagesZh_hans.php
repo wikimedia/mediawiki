@@ -1681,7 +1681,8 @@ Template:消除歧義',
 'special-categories-sort-abc'   => '按字母排列',
 
 # Special:DeletedContributions
-'deletedcontributions' => '已删除的用户贡献',
+'deletedcontributions'       => '已删除的用户贡献',
+'deletedcontributions-title' => '已删除的用户贡献',
 
 # Special:LinkSearch
 'linksearch'       => '搜索网页链接',
