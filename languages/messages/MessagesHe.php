@@ -144,6 +144,7 @@ $magicWords = array(
 	'servername'            => array( 0,    'שם השרת',                              'SERVERNAME'             ),
 	'scriptpath'            => array( 0,    'נתיב הקבצים',                          'SCRIPTPATH'             ),
 	'grammar'               => array( 0,    'דקדוק:',                               'GRAMMAR:'               ),
+	'gender'                => array( 0,    'מגדר:',                                  'GENDER:'                ),
 	'notitleconvert'        => array( 0,    '__ללא_המרת_כותרת__',                  '__NOTITLECONVERT__', '__NOTC__'),
 	'nocontentconvert'      => array( 0,    '__ללא_המרת_תוכן__',                   '__NOCONTENTCONVERT__', '__NOCC__'),
 	'currentweek'           => array( 1,    'שבוע נוכחי',                           'CURRENTWEEK'            ),
@@ -734,6 +735,10 @@ $2',
 אנא בדקו את תגיות ה־HTML.',
 'badsiglength'               => 'החתימה ארוכה מדי.
 היא חייבת להיות קצרה מ־{{PLURAL:$1|תו אחד|$1 תווים}}.',
+'yourgender'                 => 'מין:',
+'gender-unknown'             => 'לא צוין',
+'gender-male'                => 'זכר',
+'gender-female'              => 'נקבה',
 'email'                      => 'דוא"ל',
 'prefs-help-realname'        => 'השם האמיתי הוא אופציונאלי.
 אם תבחרו לספקו, הוא ישמש לייחוס עבודתכם אליכם.',
