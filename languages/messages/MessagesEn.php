@@ -286,6 +286,7 @@ $magicWords = array(
 	'servername'             => array( 0,    'SERVERNAME'             ),
 	'scriptpath'             => array( 0,    'SCRIPTPATH'             ),
 	'grammar'                => array( 0,    'GRAMMAR:'               ),
+	'gender'                 => array( 0,    'GENDER:'                ),
 	'notitleconvert'         => array( 0,    '__NOTITLECONVERT__', '__NOTC__'),
 	'nocontentconvert'       => array( 0,    '__NOCONTENTCONVERT__', '__NOCC__'),
 	'currentweek'            => array( 1,    'CURRENTWEEK'            ),
@@ -908,6 +909,10 @@ Please choose a different name.',
 Check HTML tags.',
 'badsiglength'               => 'The signature is too long.
 It must be under $1 {{PLURAL:$1|character|characters}}.',
+'yourgender'                 => 'Gender:',
+'gender-unknown'             => 'Unspecified',
+'gender-male'                => 'Male',
+'gender-female'              => 'Female',
 'email'                      => 'E-mail',
 'prefs-help-realname'        => 'Real name is optional.
 If you choose to provide it, this will be used for giving you attribution for your work.',
