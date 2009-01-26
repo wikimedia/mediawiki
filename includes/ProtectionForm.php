@@ -374,7 +374,8 @@ class ProtectionForm {
 					</tr></table>";
 			}
 			# Add custom expiry field
-			$attribs = array( 'id' => "mwProtect-$action-expires", 'onkeyup' => 'ProtectionForm.updateExpiry(this)' ) + $this->disabledAttrib;
+			$attribs = array( 'id' => "mwProtect-$action-expires",
+				'onkeyup' => 'ProtectionForm.updateExpiry(this)' ) + $this->disabledAttrib;
 			$out .= "<table><tr>
 					<td class='mw-label'>" .
 						$mProtectother .
