@@ -26,7 +26,7 @@ class PreferencesForm {
 	var $mUserLanguage, $mUserVariant;
 	var $mSearch, $mRecent, $mRecentDays, $mTimeZone, $mHourDiff, $mSearchLines, $mSearchChars, $mAction;
 	var $mReset, $mPosted, $mToggles, $mSearchNs, $mRealName, $mImageSize;
-	var $mUnderline, $mWatchlistEdits;
+	var $mUnderline, $mWatchlistEdits, $mGender;
 
 	/**
 	 * Constructor
@@ -66,6 +66,7 @@ class PreferencesForm {
 		$this->mWatchlistDays = $request->getVal( 'wpWatchlistDays' );
 		$this->mWatchlistEdits = $request->getVal( 'wpWatchlistEdits' );
 		$this->mDisableMWSuggest = $request->getCheck( 'wpDisableMWSuggest' );
+		$this->mGender = $request->getVal( 'wpGender' );
 
 		$this->mSaveprefs = $request->getCheck( 'wpSaveprefs' ) &&
 			$this->mPosted &&
@@ -207,6 +208,15 @@ class PreferencesForm {
 		}
 	}
 
+	function validateGender( $val ) {
+		$valid = array( 'male', 'female', 'unknown' );
+		if ( in_array($val, $valid) ) {
+			return $val;
+		} else {
+			return User::getDefaultOption( 'gender' );
+		}
+	}
+
 	/**
 	 * @access private
 	 */
@@ -272,6 +282,7 @@ class PreferencesForm {
 		$wgUser->setOption( 'underline', $this->validateInt($this->mUnderline, 0, 2) );
 		$wgUser->setOption( 'watchlistdays', $this->validateFloat( $this->mWatchlistDays, 0, 7 ) );
 		$wgUser->setOption( 'disablesuggest', $this->mDisableMWSuggest );
+		$wgUser->setOption( 'gender', $this->validateGender( $this->mGender ) );
 
 		# Set search namespace options
 		foreach( $this->mSearchNs as $i => $value ) {
@@ -423,6 +434,7 @@ class PreferencesForm {
 		$this->mUnderline = $wgUser->getOption( 'underline' );
 		$this->mWatchlistDays = $wgUser->getOption( 'watchlistdays' );
 		$this->mDisableMWSuggest = $wgUser->getBoolOption( 'disablesuggest' );
+		$this->mGender = $wgUser->getOption( 'gender' );
 
 		$togs = User::getToggles();
 		foreach ( $togs as $tname ) {
@@ -735,7 +747,19 @@ class PreferencesForm {
 			$this->tableRow( '&nbsp;', $this->getToggle( 'fancysig' ) )
 		);
 
-		list( $lsLabel, $lsSelect) = Xml::languageSelector( $this->mUserLanguage );
+		$gender = new XMLSelect( 'wpGender', 'wpGender', $this->mGender );
+		$gender->addOption( wfMsg( 'gender-unknown' ), 'unknown' );
+		$gender->addOption( wfMsg( 'gender-male' ), 'male' );
+		$gender->addOption( wfMsg( 'gender-female' ), 'female' );
+
+		$wgOut->addHTML(
+			$this->tableRow(
+				Xml::label( wfMsg( 'yourgender' ), 'wpGender' ),
+				$gender->getHTML()
+			)
+		);
+
+		list( $lsLabel, $lsSelect) = Xml::languageSelector( $this->mUserLanguage, false );
 		$wgOut->addHTML(
 			$this->tableRow( $lsLabel, $lsSelect )
 		);
