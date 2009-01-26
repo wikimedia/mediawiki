@@ -86,6 +86,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   allowed by default. Change $wgInvalidRedirectTargets to re-enable.
 * (bug 3043) Feed links of given page are now preceded by standard feed icon
 * (bug 17150) escapeLike now escapes literal \ properly
+* Inconsistent use of sysop, admin, administrator in system messages changed
+  to 'administrator'
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
