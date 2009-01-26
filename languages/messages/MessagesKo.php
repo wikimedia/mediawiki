@@ -629,6 +629,10 @@ $messages = array(
 'yournick'                   => '서명:',
 'badsig'                     => '서명이 잘못되었습니다. HTML 태그를 확인해주세요.',
 'badsiglength'               => '서명이 너무 깁니다. 서명은 $1자보다 짧아야 합니다.',
+'yourgender'                 => '성별:',
+'gender-unknown'             => '무응답',
+'gender-male'                => '남성',
+'gender-female'              => '여성',
 'email'                      => '이메일',
 'prefs-help-realname'        => '실명 기입은 자유입니다. 실명을 입력할 경우 문서 기여에 자신의 이름이 들어가게 됩니다.',
 'loginerror'                 => '로그인 오류',
@@ -2560,6 +2564,7 @@ Variants for Chinese language
 'exif-gpsaltitude'                 => '고도',
 'exif-gpstimestamp'                => 'GPS 시간 (원자 시계)',
 'exif-gpsstatus'                   => '수신기 상태',
+'exif-gpsmeasuremode'              => '측정 방식',
 'exif-gpsspeedref'                 => '속도 단위',
 'exif-gpsspeed'                    => 'GPS 수신기 속도',
 'exif-gpsimgdirection'             => '이미지 방향',
@@ -2647,6 +2652,7 @@ Variants for Chinese language
 'exif-gaincontrol-4' => '강하게 감소',
 
 'exif-contrast-0' => '보통',
+'exif-contrast-1' => '부드러움',
 
 'exif-saturation-0' => '보통',
 'exif-saturation-1' => '저채도',
@@ -2656,6 +2662,9 @@ Variants for Chinese language
 'exif-sharpness-1' => '부드러움',
 
 'exif-subjectdistancerange-0' => '알 수 없음',
+'exif-subjectdistancerange-1' => '접사',
+'exif-subjectdistancerange-2' => '근거리',
+'exif-subjectdistancerange-3' => '원거리',
 
 # Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
 'exif-gpslatitude-n' => '북위',
@@ -2767,6 +2776,7 @@ $5
 # Live preview
 'livepreview-loading' => '불러오는 중...',
 'livepreview-ready'   => '불러 오는 중… 준비!',
+'livepreview-failed'  => 'Live 미리 보기 실패! 일반 미리 보기를 이용해주세요.',
 'livepreview-error'   => '연결에 실패하였습니다: $1 "$2"
 일반 미리보기를 이용하십시오.',
 

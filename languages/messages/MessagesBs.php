@@ -1205,6 +1205,8 @@ Pokušajte u Vaš upit uključiti prefiks ''all:'' da bi ste pretražili sav sad
 'defaultns'                 => 'Uobičajeno tražite u ovim imenskim prostorima:',
 'default'                   => 'standardno',
 'files'                     => 'Datoteke',
+'prefs-custom-css'          => 'Prilagođeni CSS',
+'prefs-custom-js'           => 'Prilagođeni JS',
 
 # User rights
 'userrights'                  => 'Postavke korisničkih prava', # Not used as normal message but as header for the special page itself
@@ -1711,7 +1713,9 @@ Stranica se smatra čvorom, ukoliko koristi šablon koji je povezan sa spiskom [
 'protectedtitlesempty'    => 'Nema naslova zaštićenih članaka sa ovim parametrima.',
 'listusers'               => 'Spisak korisnika',
 'listusers-editsonly'     => 'Pokaži samo korisnike koji su uređivali',
+'listusers-creationsort'  => 'Sortiraj po datumu pravljenja',
 'usereditcount'           => '$1 {{PLURAL:$1|izmjena|izmjene}}',
+'usercreated'             => 'Napravljeno dana $1 u $2',
 'newpages'                => 'Nove stranice',
 'newpages-username'       => 'Korisničko ime:',
 'ancientpages'            => 'Najstarije stranice',

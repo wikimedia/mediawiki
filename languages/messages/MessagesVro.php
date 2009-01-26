@@ -447,8 +447,10 @@ Kaeq kiräpilt üle vai [[Special:UserLogin/signup|luuq vahtsõnõ pruukjanimi]]
 'passwordremindertext'       => 'Kiäki (arvadaq saq esiq, puutri võrgonummõr $1),
 pallõl\' vahtsõt sisseminegi salasõnna {{SITENAME}} ($4) jaos.
 Pruukja "$2" salasõna om noq "$3". Ku olõt nimega sisse lännüq, võit taa aotlidsõ salasõna ärq muutaq.
+Aotlinõ salasõna lätt vanas {{PLURAL:$5|üte päävä|$5 päävä}} peräst.
 
-Ku taa pallõmisõ om tennüq kiä tõõnõ vai ku olõt uma salasõna miilde tulõtanuq ja taha-i taad inämb muutaq, sis teku-i seost sõnomist vällä ja pruugiq umma vanna salasõnna edesi.',
+Ku taa pallõmisõ om tennüq kiä tõõnõ vai ku olõt uma salasõna miilde tulõtanuq ja taha-i taad inämb muutaq, 
+sis teku-i seost sõnomist vällä ja pruugiq umma vanna salasõnna edesi.',
 'noemail'                    => 'Kah\'os olõ-i meil pruukja "$1" e-postiaadrõssit.',
 'passwordsent'               => 'Vahtsõnõ salasõna om saadõt pruukja "$1" kirotõdu e-postiaadrõsi pääle. Ku olõt salasõna kätte saanuq, mineq nimega sisse.',
 'blocked-mailpassword'       => 'Su võrgonumbrilõ om pant pääle toimõndamiskiild, miä lasõ-i salasõnna miilde tulõtaq.',
@@ -704,6 +706,8 @@ Lisateedüst või ollaq [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} k
 'logdelete-logentry'          => 'muudõt lehe [[$1]] muutmiisi nättävüst',
 'revdelete-success'           => "'''Kujo nättävüs paika säet.'''",
 'logdelete-success'           => "'''Muutmiisi nättävüs paika säet.'''",
+'pagehist'                    => 'Leheküle aolugu',
+'revdelete-content'           => 'sisu',
 'revdelete-uname'             => 'pruukjanimi',
 
 # History merging
@@ -723,6 +727,7 @@ Lisateedüst või ollaq [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} k
 'editundo'                => 'võtaq tagasi',
 'diff-multi'              => '(Kujjõ vaihõl {{PLURAL:$1|üts näütämäldä muutminõ|$1 näütämäldä muutmist}}.)',
 'diff-src'                => 'läteq',
+'diff-width'              => 'lakjus',
 
 # Search results
 'searchresults'             => 'Otsmisõ tulõmusõq',

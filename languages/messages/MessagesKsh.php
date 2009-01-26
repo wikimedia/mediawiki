@@ -226,7 +226,7 @@ $messages = array(
 'tog-nolangconversion'        => 'Sprochevariante nit ömwandele',
 'tog-ccmeonemails'            => 'Scheck mer en Kopie, wann ich en E-mail an ene andere Metmaacher scheck',
 'tog-diffonly'                => 'Zeich beim Versione Verjliche nur de Ungerscheid aan (ävver pack nit noch de janze Sigg dodronger)',
-'tog-showhiddencats'          => 'Verstoche Saachjroppe aanzeije',
+'tog-showhiddencats'          => 'Donn Verstoche Saachjroppe aanzeije',
 'tog-noconvertlink'           => 'Don de Tittele nit ümwandelle',
 'tog-norollbackdiff'          => 'Donn noh „{{int:Rollback}}“ de Ungerscheide nit aanzeije',
 
@@ -587,15 +587,14 @@ Denk dran, Do künnts Der [[Special:Preferences|Ding Enstellunge hee op de {{SIT
 'yournick'                   => 'Name för en Ding Ungerschreff:',
 'badsig'                     => 'Di Ungeschreff jëijd_esu nit — luer noh dem HTML do_dren un maach et rėshtėsh.',
 'badsiglength'               => 'Ding Unterschref darf nit länger wi {{PLURAL:$1|eij|$1|keij}} Zeische sin.',
-'email'                      => 'e-mail',
+'yourgender'                 => 'Do bes:',
+'gender-unknown'             => 'wesse mer nit',
+'gender-male'                => 'Kääl odder Jung',
+'gender-female'              => 'Möhn, Weech odder Mädche',
+'email'                      => 'E-mail',
 'prefs-help-realname'        => '* Dinge richtije Name - kanns De fott looße - wann De en nenne wells, dann weed hee jebruch, öm Ding Beidräch domet ze schmöcke.',
 'loginerror'                 => 'Fähler beim Enlogge',
-'prefs-help-email'           => 'E-mail - kanns De fottlooße, un es för Andre nit ze sinn - mäht
-et ävver müjjelich, Der e neu Passwoot ze schecke, wann De et
-ens verjäße häß. Do kannß och zohlohße, dat mer met Der övver Ding
-Metmaacherklaafsigg en e-mail schecke kann. Esu künne ander Metmaacher
-met Der en Kontak kumme, ohne dat se Dinge Name oder Ding e-Mail Adress
-kenne mööte.',
+'prefs-help-email'           => '* Ding <i lang="en">e-mail</i> Adress - kanns De fottlooße, un se es för Andre nit ze sinn - mäht et ävver müjjelich, Der e neu Passwoot ze schecke, wann De et ens verjäße häß. Do kannß och zohlohße, dat mer Der domet övver Ding Metmaacherklaafsigg en <i lang="en">e-mail</i> schecke kann. Esu künne ander Metmaacher met Der en Kontak kumme, ohne dat se Dinge Name oder Ding <i lang="en">e-Mail</i> Adress kenne mööte.',
 'prefs-help-email-required'  => 'Do moß en jöltije E-Mail-Adress aanjevve.',
 'nocookiesnew'               => 'Dinge neue Metmaacher Name es enjerich, ävver dat automatisch Enlogge wor dann nix. 
 Schad.
@@ -1230,7 +1229,7 @@ dat dänne ihr Daate topaktuell sin,
 'qbsettings-fixedright'     => 'Am rächte Rand fass aanjepapp',
 'qbsettings-floatingleft'   => 'Am linke Rand am Schwevve',
 'qbsettings-floatingright'  => 'Am rächte Rand am Schwevve',
-'changepassword'            => 'Passwood ändere',
+'changepassword'            => 'Passwood',
 'skin'                      => 'Et Ussinn',
 'skin-preview'              => 'Vör-Ansich',
 'math'                      => 'Mathematisch Formele',
@@ -1256,7 +1255,7 @@ Wiki-Köbes, enem Sörver-Minsch, oder luur ens en de
 'prefs-watchlist-edits'     => 'Aanzahl Änderunge för en ming verjrößerte Oppassliss aanzezeije:',
 'prefs-watchlist-edits-max' => '(Nit mieh wie 1000)',
 'prefs-misc'                => 'Söns',
-'prefs-resetpass'           => 'Passwoood tuusche',
+'prefs-resetpass'           => 'Dat Passwood ändere',
 'saveprefs'                 => 'Fasshalde',
 'resetprefs'                => 'Zeröck setze',
 'restoreprefs'              => 'Alles op der Shtandatt retuur stelle',

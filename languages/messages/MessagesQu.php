@@ -512,6 +512,10 @@ Ama qunqaychu [[Special:Preferences|{{SITENAME}} allinkachinaykikunata]] kikinch
 'badsig'                     => "Chawa silq'usqaykiqa manam allinchu; HTML sananchakunata llanchiy.",
 'badsiglength'               => 'Chutu sutiykiqa nisyu sunim.
 $1 {{PLURAL:$1|sanampamanta|sanampakunamanta}} aswan pisi kananmi.',
+'yourgender'                 => 'Qhari icha warmi:',
+'gender-unknown'             => 'Mana riqsisqa',
+'gender-male'                => 'Qhari',
+'gender-female'              => 'Warmi',
 'email'                      => 'E-chaski',
 'prefs-help-realname'        => "* Chiqap sutiyki (munaspaqa): quwaptiykiqa, llamk'apusqaykikunam paywan sananchasqa kanqa.",
 'loginerror'                 => "Pantasqa llamk'apuy tiyaypa qallarisqan",
@@ -534,8 +538,8 @@ Allin qillqasqaykita llanchiriy.',
 'mailmypassword'             => 'Musuq yaykuna rimata e-chaskiwan kachamuway',
 'passwordremindertitle'      => "{{SITENAME}}paq musuq mit'alla yaykuna rima",
 'passwordremindertext'       => 'Pipas (qamchiki, $1 IP huchhayuq tiyaymanta) mañakuwarqan {{SITENAME}}paq musuq yaykuna rimatam e-chaski imamaytaykiman kachayta ($4).
-"$2" sutiyuq ruraqpa yaykuna rimanqa kunan "$3" kachkan.
-Kunanqa yaykunaykim tiyanman yaykuna rimaykita hukchanaykipaq.
+"$2" sutiyuq ruraqpa mit\'alla yaykuna rimanqa kamarisqañam, "$3" sutichasqam kachkan. Munarqaspaykiqa, kunan yaykuspa musuq yaykuna rimaykitam akllay.
+Mit\'alla yaykuna rimaykiqa kunanmanta {{PLURAL:$5|huk p\'unchawpi|$5 p\'unchawkunapi}} puchukanqa.
 
 Huk runa kay willayta mañakurqaptinqa icha yaykuna rimaykita hukchayta manaña munaspayki, kay willayta qhawarparispa ñawpaq yaykuna rimaykita llamk\'arayachiytam atinki.',
 'noemail'                    => 'Manam kanchu "$1" sutiyuq ruraqpa e-chaski imamaytan.',

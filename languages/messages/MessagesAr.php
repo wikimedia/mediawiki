@@ -781,6 +781,10 @@ $2',
 'badsig'                     => 'توقيع خام غير صحيح؛ تحقق من وسوم HTML.',
 'badsiglength'               => 'التوقيع طويل جدا.
 يجب أن يكون أقل من $1 {{PLURAL:$1|حرف|حروف}}.',
+'yourgender'                 => 'النوع:',
+'gender-unknown'             => 'غير محدد',
+'gender-male'                => 'ذكر',
+'gender-female'              => 'أنثى',
 'email'                      => 'البريد الإلكتروني',
 'prefs-help-realname'        => 'الاسم الحقيقي اختياري.
 لو اخترت أن توفره، فسيستخدم في الإشارة إلى عملك.',
@@ -1401,6 +1405,8 @@ $2',
 'defaultns'                 => 'ابحث في هذه النطاقات افتراضيا:',
 'default'                   => 'افتراضي',
 'files'                     => 'ملفات',
+'prefs-custom-css'          => 'CSS مخصص',
+'prefs-custom-js'           => 'جافاسكريبت مخصص',
 
 # User rights
 'userrights'                  => 'إدارة صلاحيات المستخدم', # Not used as normal message but as header for the special page itself
@@ -1912,7 +1918,9 @@ PICT # متنوع
 'protectedtitlesempty'    => 'لا توجد عناوين محمية حاليا بهذه المحددات.',
 'listusers'               => 'قائمة الأعضاء',
 'listusers-editsonly'     => 'عرض المستخدمين الذين قاموا بتعديلات فقط',
+'listusers-creationsort'  => 'رتب بواسطة تاريخ الإنشاء',
 'usereditcount'           => '$1 {{PLURAL:$1|تعديل|تعديل}}',
+'usercreated'             => 'تم إنشاؤه في $1 الساعة $2',
 'newpages'                => 'صفحات جديدة',
 'newpages-username'       => 'اسم المستخدم:',
 'ancientpages'            => 'أقدم الصفحات',

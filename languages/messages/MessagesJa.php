@@ -604,6 +604,10 @@ $2',
 'yournick'                   => '署名:',
 'badsig'                     => '署名が正しくありません。HTMLタグを見直してください。',
 'badsiglength'               => '署名が長すぎます。$1文字以下である必要があります。',
+'yourgender'                 => '性:',
+'gender-unknown'             => '未指定',
+'gender-male'                => '男',
+'gender-female'              => '女',
 'email'                      => 'メールアドレス',
 'prefs-help-realname'        => '本名登録は任意です。本名を登録した場合、あなたの著作物の帰属表示に用いられます。',
 'loginerror'                 => 'ログイン失敗',
@@ -1703,7 +1707,7 @@ PICT # misc.
 'special-categories-sort-abc'   => 'アルファベット順',
 
 # Special:DeletedContributions
-'deletedcontributions'       => '利用者の削除された投稿履歴',
+'deletedcontributions'       => '削除された投稿履歴',
 'deletedcontributions-title' => '利用者の削除された投稿履歴',
 
 # Special:LinkSearch

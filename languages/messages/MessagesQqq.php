@@ -1502,8 +1502,8 @@ Example: [[:Image:Addon-icn.png]]',
 'special-categories-sort-count' => 'This message is used on [[Special:Categories]] to sort the list by the number of members in the categories.',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Title of [[Special:DeletedContributions]] (extension), a special page with a list of edits to pages which were deleted. Only viewable by sysops. The message is also shown as a link on [[Special:Contributions]] to the DeletedContributions special page.',
-'deletedcontributions-title' => 'Title of [[Special:DeletedContributions]] (extension), a special page with a list of edits to pages which were deleted. Only viewable by sysops. The message is also shown as a link on [[Special:Contributions]] to the DeletedContributions special page.',
+'deletedcontributions'       => 'The message is shown as a link on [[Special:Contributions]] to the DeletedContributions special page.',
+'deletedcontributions-title' => 'Title of [[Special:DeletedContributions]] (extension), a special page with a list of edits to pages which were deleted. Only viewable by sysops.',
 
 # Special:LinkSearch
 'linksearch-ns' => '{{Identical|Namespace}}',
