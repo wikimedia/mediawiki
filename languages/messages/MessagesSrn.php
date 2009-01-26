@@ -929,7 +929,8 @@ Papira ini [[Special:Watchlist|yu Tan Luku réy]] '''fatu'''.",
 'categories' => 'Den grupu',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Trowe kenki fu masyin',
+'deletedcontributions'       => 'Trowe kenki fu masyin',
+'deletedcontributions-title' => 'Trowe kenki fu masyin',
 
 # Special:ListUsers
 'listusersfrom'      => 'Masyin libi si fu:',

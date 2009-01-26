@@ -1568,7 +1568,8 @@ PICT # misc.
 'special-categories-sort-abc'   => 'алпабыытынан бэрээдэктээһин',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Сотуллубут көннөрүү',
+'deletedcontributions'       => 'Сотуллубут көннөрүү',
+'deletedcontributions-title' => 'Сотуллубут көннөрүү',
 
 # Special:LinkSearch
 'linksearch'       => 'Тас сигэлэри көрдөөһүн',

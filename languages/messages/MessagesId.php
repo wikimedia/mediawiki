@@ -1759,7 +1759,8 @@ Lihat pula [[Special:WantedCategories|daftar kategori yang dibutuhkan]].',
 'special-categories-sort-abc'   => 'urutkan menurut abjad',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Kontribusi yang dihapus',
+'deletedcontributions'       => 'Kontribusi yang dihapus',
+'deletedcontributions-title' => 'Kontribusi yang dihapus',
 
 # Special:LinkSearch
 'linksearch'       => 'Pencarian pranala luar',

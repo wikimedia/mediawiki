@@ -1912,7 +1912,8 @@ Mer han_er eije Leßte för de
 'special-categories-sort-abc'   => 'Zoteere nohm Alphabett',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Fottjeschmesse Versione',
+'deletedcontributions'       => 'Fottjeschmesse Versione',
+'deletedcontributions-title' => 'Fottjeschmesse Versione',
 
 # Special:LinkSearch
 'linksearch'       => 'Lėngkß op Websigge sööke',

@@ -1328,7 +1328,8 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'categoriespagetext' => 'Հետևյալ կատեգորիաները պարունակում են էջեր կամ մեդիա։',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Մասնակցի ջնջված ներդրում',
+'deletedcontributions'       => 'Մասնակցի ջնջված ներդրում',
+'deletedcontributions-title' => 'Մասնակցի ջնջված ներդրում',
 
 # Special:LinkSearch
 'linksearch-ok' => 'Որոնել',

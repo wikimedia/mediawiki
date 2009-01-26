@@ -1230,7 +1230,8 @@ $3-এর দেয়া কারণ হল ''$2''",
 'categoriespagetext' => 'এ উইকিতে বর্তমান বিষয়শ্রেণীসমূহ:',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'মুছে ফেলা ব্যবহারকারী অবদান',
+'deletedcontributions'       => 'মুছে ফেলা ব্যবহারকারী অবদান',
+'deletedcontributions-title' => 'মুছে ফেলা ব্যবহারকারী অবদান',
 
 # Special:LinkSearch
 'linksearch'      => 'ওয়েব লিঙ্কসমূহ অনুসন্ধান করো',

@@ -608,7 +608,8 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'categories' => 'Klynger',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Slettede brugerbidråg',
+'deletedcontributions'       => 'Slettede brugerbidråg',
+'deletedcontributions-title' => 'Slettede brugerbidråg',
 
 # Special:LinkSearch
 'linksearch'       => 'Søĝ i weblinks',

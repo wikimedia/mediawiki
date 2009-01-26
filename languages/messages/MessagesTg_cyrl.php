@@ -1352,7 +1352,8 @@ $1',
 'special-categories-sort-abc'   => 'муратаб кардани алифбоӣ',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Ҳиссагузориҳои ҳазфшудаи корбар',
+'deletedcontributions'       => 'Ҳиссагузориҳои ҳазфшудаи корбар',
+'deletedcontributions-title' => 'Ҳиссагузориҳои ҳазфшудаи корбар',
 
 # Special:LinkSearch
 'linksearch'       => 'Ҷусутҷӣ пайвандҳои веб',

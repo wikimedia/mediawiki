@@ -1538,7 +1538,8 @@ $2',
 'special-categories-sort-abc'   => 'пд. алфавіту',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Выдалены ўклад удзельніка',
+'deletedcontributions'       => 'Выдалены ўклад удзельніка',
+'deletedcontributions-title' => 'Выдалены ўклад удзельніка',
 
 # Special:LinkSearch
 'linksearch'       => 'Знайсці ў спасылках',

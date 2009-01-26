@@ -1667,7 +1667,8 @@ Se også [[Special:WantedCategories|ønskede kategorier]].',
 'special-categories-sort-abc'   => 'sorter alfabetisk',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Slettede brukerbidrag',
+'deletedcontributions'       => 'Slettede brukerbidrag',
+'deletedcontributions-title' => 'Slettede brukerbidrag',
 
 # Special:LinkSearch
 'linksearch'       => 'Søk i eksterne lenker',

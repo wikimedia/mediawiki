@@ -724,7 +724,8 @@ Matlakala ago ba [[Special:Watchlist|lenanong la gago la matlakala ditlhapetšo]
 'categories' => 'Dihlopha',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Diabe tša mošomiši tšeo di phumutšwego',
+'deletedcontributions'       => 'Diabe tša mošomiši tšeo di phumutšwego',
+'deletedcontributions-title' => 'Diabe tša mošomiši tšeo di phumutšwego',
 
 # Special:LinkSearch
 'linksearch-ok' => 'Fetleka',

@@ -204,6 +204,8 @@ class DeletedContributionsPage extends SpecialPage {
 
 		global $wgUser, $wgOut, $wgLang, $wgRequest;
 
+		$wgOut->setPageTitle( wfMsg( 'deletedcontributions-title' ) );
+
 		$options = array();
 
 		if ( isset( $par ) ) {

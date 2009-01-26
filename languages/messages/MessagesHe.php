@@ -1868,7 +1868,8 @@ PICT # שונות
 'special-categories-sort-abc'   => 'סידור לפי סדר האלף בית',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'תרומות משתמש מחוקות',
+'deletedcontributions'       => 'תרומות משתמש מחוקות',
+'deletedcontributions-title' => 'תרומות משתמש מחוקות',
 
 # Special:LinkSearch
 'linksearch'       => 'חיפוש קישורים חיצוניים',

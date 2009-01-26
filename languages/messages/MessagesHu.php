@@ -1821,7 +1821,8 @@ Lásd még a [[Special:WantedCategories|keresett kategóriák]] listáját.',
 'special-categories-sort-abc'   => 'rendezés ABC szerint',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Törölt szerkesztések',
+'deletedcontributions'       => 'Törölt szerkesztések',
+'deletedcontributions-title' => 'Törölt szerkesztések',
 
 # Special:LinkSearch
 'linksearch'       => 'Keresés külső hivatkozások szerint',

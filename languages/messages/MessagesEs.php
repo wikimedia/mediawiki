@@ -1700,7 +1700,8 @@ Véase también las [[Special:WantedCategories|categorías requeridas]].',
 'special-categories-sort-abc'   => 'ordenar alfabéticamente',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Contribuciones de usuario borradas',
+'deletedcontributions'       => 'Contribuciones de usuario borradas',
+'deletedcontributions-title' => 'Contribuciones de usuario borradas',
 
 # Special:LinkSearch
 'linksearch'       => 'Buscar enlaces a páginas web',

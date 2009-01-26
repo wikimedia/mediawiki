@@ -258,7 +258,8 @@ $messages = array(
 'allpagessubmit'    => 'Үтәргә',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Ҡулланыусыларҙың юйылған өлөшө',
+'deletedcontributions'       => 'Ҡулланыусыларҙың юйылған өлөшө',
+'deletedcontributions-title' => 'Ҡулланыусыларҙың юйылған өлөшө',
 
 # E-mail user
 'emailuser'    => 'Ҡатнашыусыға хат',

@@ -1706,7 +1706,8 @@ Pozri aj [[Special:WantedCategories|žiadané kategórie]].',
 'special-categories-sort-abc'   => 'zoradiť podľa abecedy',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Zmazané príspevky používateľa',
+'deletedcontributions'       => 'Zmazané príspevky používateľa',
+'deletedcontributions-title' => 'Zmazané príspevky používateľa',
 
 # Special:LinkSearch
 'linksearch'       => 'Hľadať webové odkazy',

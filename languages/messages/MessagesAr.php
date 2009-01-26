@@ -1974,7 +1974,8 @@ PICT # متنوع
 'special-categories-sort-abc'   => 'رتب هجائيا',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'مساهمات المستخدم المحذوفة',
+'deletedcontributions'       => 'مساهمات المستخدم المحذوفة',
+'deletedcontributions-title' => 'مساهمات المستخدم المحذوفة',
 
 # Special:LinkSearch
 'linksearch'       => 'بحث وصلات الويب',

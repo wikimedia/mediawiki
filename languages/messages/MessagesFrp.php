@@ -1212,7 +1212,8 @@ PICT # de totes sôrtes
 'special-categories-sort-abc'   => 'tri alfabètico',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Contribucions suprimâs d’un utilisator',
+'deletedcontributions'       => 'Contribucions suprimâs d’un utilisator',
+'deletedcontributions-title' => 'Contribucions suprimâs d’un utilisator',
 
 # Special:LinkSearch
 'linksearch'       => 'Rechèrchiér des lims Malyâjo',

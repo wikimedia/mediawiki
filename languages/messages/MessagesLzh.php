@@ -1447,7 +1447,8 @@ $2',
 'special-categories-sort-abc'   => '排字',
 
 # Special:DeletedContributions
-'deletedcontributions' => '已刪之積',
+'deletedcontributions'       => '已刪之積',
+'deletedcontributions-title' => '已刪之積',
 
 # Special:LinkSearch
 'linksearch'       => '尋網連',

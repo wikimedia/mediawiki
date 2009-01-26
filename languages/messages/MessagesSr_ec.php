@@ -1578,7 +1578,8 @@ $2',
 'special-categories-sort-abc'   => 'сортирај азбучно',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Обрисане измене',
+'deletedcontributions'       => 'Обрисане измене',
+'deletedcontributions-title' => 'Обрисане измене',
 
 # Special:LinkSearch
 'linksearch'       => 'претрага веб линкова',

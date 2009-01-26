@@ -1462,7 +1462,8 @@ Gwelet ivez ar [[Special:WantedCategories|rummadoù a vank]].',
 'special-categories-sort-abc'   => 'urzh al lizherenneg',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Degasadennoù diverket un implijer',
+'deletedcontributions'       => 'Degasadennoù diverket un implijer',
+'deletedcontributions-title' => 'Degasadennoù diverket un implijer',
 
 # Special:LinkSearch
 'linksearch'      => 'Klask liammoù Kenrouedad',

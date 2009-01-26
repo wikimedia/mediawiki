@@ -1543,7 +1543,8 @@ Ju Uutgoawe kon truch ju Uutwoal fon dän Logbouktyp, fon dän Benutser of dän 
 'special-categories-sort-abc'   => 'Sortierenge ätter Alphabet',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Läskede Benutserbiedraage',
+'deletedcontributions'       => 'Läskede Benutserbiedraage',
+'deletedcontributions-title' => 'Läskede Benutserbiedraage',
 
 # Special:LinkSearch
 'linksearch'       => 'Webferbiendenge-Säike',

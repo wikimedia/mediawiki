@@ -1651,7 +1651,8 @@ Template:搞清楚',
 'special-categories-sort-abc'   => '跟字母排',
 
 # Special:DeletedContributions
-'deletedcontributions' => '已經刪除咗嘅用戶貢獻',
+'deletedcontributions'       => '已經刪除咗嘅用戶貢獻',
+'deletedcontributions-title' => '已經刪除咗嘅用戶貢獻',
 
 # Special:LinkSearch
 'linksearch'       => '搵網頁連結',

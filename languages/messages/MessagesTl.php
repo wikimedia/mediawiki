@@ -1611,7 +1611,8 @@ Tingnan din ang [[Special:WantedCategories|ninanais na mga kaurian]].',
 'special-categories-sort-abc'   => 'ayusin sa pamamagitan ng alpabeto',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Naburang ambag ng tagagamit',
+'deletedcontributions'       => 'Naburang ambag ng tagagamit',
+'deletedcontributions-title' => 'Naburang ambag ng tagagamit',
 
 # Special:LinkSearch
 'linksearch'       => 'Hanapin ang kawing na pang-web',

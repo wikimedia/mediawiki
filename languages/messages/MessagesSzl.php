@@ -1479,7 +1479,8 @@ Kukńij tyż [[Special:WantedCategories|ńyistńyjůnce kategoryje]].',
 'special-categories-sort-abc'   => 'sortowanie wedle alfabyta',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Wyćepane sprowjyńa użytkowńika',
+'deletedcontributions'       => 'Wyćepane sprowjyńa użytkowńika',
+'deletedcontributions-title' => 'Wyćepane sprowjyńa użytkowńika',
 
 # Special:LinkSearch
 'linksearch'       => 'Sznuparka uod auskuplůngůw',

@@ -1767,7 +1767,8 @@ $2',
 'special-categories-sort-abc'   => 'αλφαβητική ταξινόμηση',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Διαγραμμένες συνεισφορές χρήστη',
+'deletedcontributions'       => 'Διαγραμμένες συνεισφορές χρήστη',
+'deletedcontributions-title' => 'Διαγραμμένες συνεισφορές χρήστη',
 
 # Special:LinkSearch
 'linksearch'      => 'Αναζήτηση διαδικτυακών συνδέσμων',

@@ -1469,7 +1469,8 @@ Sletningsloggen for denne fil er gengivet herunder.",
 'special-categories-sort-abc'   => 'sorter alfabetisk',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Slettede brugerbidrag',
+'deletedcontributions'       => 'Slettede brugerbidrag',
+'deletedcontributions-title' => 'Slettede brugerbidrag',
 
 # Special:LinkSearch
 'linksearch'       => 'Søg i weblinks',

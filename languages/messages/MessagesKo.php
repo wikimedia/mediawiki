@@ -1711,7 +1711,8 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'special-categories-sort-abc' => '알파벳순으로 정렬',
 
 # Special:DeletedContributions
-'deletedcontributions' => '삭제된 기여 목록',
+'deletedcontributions'       => '삭제된 기여 목록',
+'deletedcontributions-title' => '삭제된 기여 목록',
 
 # Special:LinkSearch
 'linksearch'       => '웹 링크 찾기',

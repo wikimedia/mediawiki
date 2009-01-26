@@ -1056,7 +1056,8 @@ Binêre [[Special:WantedCategories|kategorîyên xastî]].',
 'special-categories-sort-abc'   => 'hatîye rêzkirin li gorî alfabeyê',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Guherandinên bikarhênerekî yê jêbirî',
+'deletedcontributions'       => 'Guherandinên bikarhênerekî yê jêbirî',
+'deletedcontributions-title' => 'Guherandinên bikarhênerekî yê jêbirî',
 
 # Special:LinkSearch
 'linksearch-ok' => 'Lêbigere',

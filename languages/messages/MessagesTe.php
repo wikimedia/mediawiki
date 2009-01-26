@@ -1499,7 +1499,8 @@ $3 చెప్పిన కారణం: ''$2''",
 'special-categories-sort-abc'   => 'అకారాది క్రమంలో అమర్చు',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'తొలగించబడిన సభ్యుని రచనలు',
+'deletedcontributions'       => 'తొలగించబడిన సభ్యుని రచనలు',
+'deletedcontributions-title' => 'తొలగించబడిన సభ్యుని రచనలు',
 
 # Special:LinkSearch
 'linksearch'       => 'వెబ్ లింకుల్లో వెతుకు',

@@ -1555,7 +1555,8 @@ $1 เป็นผู้ดำเนินการบล็อกในคร�
 'special-categories-sort-abc'   => 'เรียงลำดับตามตัวอักษร',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'การแก้ไขที่ถูกลบ',
+'deletedcontributions'       => 'การแก้ไขที่ถูกลบ',
+'deletedcontributions-title' => 'การแก้ไขที่ถูกลบ',
 
 # Special:LinkSearch
 'linksearch-pat'  => 'รูปแบบการค้นหา:',

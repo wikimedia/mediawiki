@@ -1820,7 +1820,8 @@ Možná Vás budou zajímat [[Special:WantedCategories|žádané kategorie]].',
 'special-categories-sort-abc'   => 'seřadit abecedně',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Smazané editace uživatele',
+'deletedcontributions'       => 'Smazané editace uživatele',
+'deletedcontributions-title' => 'Smazané editace uživatele',
 
 # Special:LinkSearch
 'linksearch'       => 'Hledání externích odkazů',

@@ -1734,7 +1734,8 @@ Sjå òg [[Special:WantedCategories|ønska kategoriar]].',
 'special-categories-sort-abc'   => 'sorter alfabetisk',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Sletta brukarbidrag',
+'deletedcontributions'       => 'Sletta brukarbidrag',
+'deletedcontributions-title' => 'Sletta brukarbidrag',
 
 # Special:LinkSearch
 'linksearch'       => 'Søk i eksterne lenkjer',

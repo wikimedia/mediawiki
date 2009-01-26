@@ -1615,7 +1615,8 @@ Kuckt och [[Special:WantedCategories|Gewënschte Kategorien]].',
 'special-categories-sort-abc'   => 'alphabetesch sortéieren',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Geläschte Kontributiounen',
+'deletedcontributions'       => 'Geläschte Kontributiounen',
+'deletedcontributions-title' => 'Geläschte Kontributiounen',
 
 # Special:LinkSearch
 'linksearch'      => 'Weblink-Sich',

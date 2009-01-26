@@ -1450,7 +1450,8 @@ U kan die resultate vernou deur 'n boekstaaftipe, gebruikersnaam of spesifieke b
 'special-categories-sort-abc'   => 'sorteer alfabeties',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Geskrapte gebruikersbydraes',
+'deletedcontributions'       => 'Geskrapte gebruikersbydraes',
+'deletedcontributions-title' => 'Geskrapte gebruikersbydraes',
 
 # Special:LinkSearch
 'linksearch'       => 'Soek webskakels',

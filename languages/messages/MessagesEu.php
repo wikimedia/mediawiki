@@ -1520,7 +1520,8 @@ Ikus, gainera [[Special:WantedCategories|kategoriarik eskatuenak]].',
 'special-categories-sort-abc'   => 'alfabetikoki aldatu',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Ezabatutako ekarpenak',
+'deletedcontributions'       => 'Ezabatutako ekarpenak',
+'deletedcontributions-title' => 'Ezabatutako ekarpenak',
 
 # Special:LinkSearch
 'linksearch'       => 'Web loturak bilatu',

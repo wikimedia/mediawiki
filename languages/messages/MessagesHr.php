@@ -1793,7 +1793,8 @@ Možete suziti prikaz odabirući tip evidencije, suradničko ime ili stranicu u 
 'special-categories-sort-abc'   => 'abecedno razvrstavanje',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Obrisani suradnički doprinosi',
+'deletedcontributions'       => 'Obrisani suradnički doprinosi',
+'deletedcontributions-title' => 'Obrisani suradnički doprinosi',
 
 # Special:LinkSearch
 'linksearch'       => 'Pretraživanje vanjskih poveznica',

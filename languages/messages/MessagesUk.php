@@ -1768,7 +1768,8 @@ PICT # різні
 'special-categories-sort-abc'   => 'упорядкувати за алфавітом',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Вилучений внесок користувача',
+'deletedcontributions'       => 'Вилучений внесок користувача',
+'deletedcontributions-title' => 'Вилучений внесок користувача',
 
 # Special:LinkSearch
 'linksearch'       => 'Пошук зовнішніх посилань',

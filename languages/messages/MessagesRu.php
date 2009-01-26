@@ -1784,7 +1784,8 @@ PICT # различные
 'special-categories-sort-abc'   => 'упорядочить по алфавиту',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Удалённый вклад',
+'deletedcontributions'       => 'Удалённый вклад',
+'deletedcontributions-title' => 'Удалённый вклад',
 
 # Special:LinkSearch
 'linksearch'       => 'Поиск внешних ссылок',

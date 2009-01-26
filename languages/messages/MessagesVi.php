@@ -1705,7 +1705,8 @@ Xem thêm [[Special:WantedCategories|thể loại cần thiết]].',
 'special-categories-sort-abc'   => 'xếp theo vần',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Đóng góp đã bị xóa của thành viên',
+'deletedcontributions'       => 'Đóng góp đã bị xóa của thành viên',
+'deletedcontributions-title' => 'Đóng góp đã bị xóa của thành viên',
 
 # Special:LinkSearch
 'linksearch'       => 'Tìm liên kết ngoài',

@@ -1500,7 +1500,8 @@ Deleng uga [[Special:WantedCategories|kategori-kategori sing diperlokaké]].',
 'special-categories-sort-abc'   => 'urutna miturut abjad',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Kontribusi panganggo sing dibusak',
+'deletedcontributions'       => 'Kontribusi panganggo sing dibusak',
+'deletedcontributions-title' => 'Kontribusi panganggo sing dibusak',
 
 # Special:LinkSearch
 'linksearch'       => 'Golèk pranala jaba',

@@ -955,7 +955,8 @@ Cjale ancje lis [[Special:WantedCategories|categoriis desideradis]].',
 'categoriesfrom'     => 'Mostre lis categoriis scomençant di:',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Contribûts dal utent eliminâts',
+'deletedcontributions'       => 'Contribûts dal utent eliminâts',
+'deletedcontributions-title' => 'Contribûts dal utent eliminâts',
 
 # Special:LinkSearch
 'linksearch-ns' => 'Spazi dai nons:',

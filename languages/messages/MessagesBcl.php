@@ -1142,7 +1142,8 @@ An páhina pigkokonsiderar na páhina nin klaripikasyon kun naggagamit ini nin t
 'categoriespagetext' => 'Igwa nin laog ang mga minasunod na kategorya.',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Parâon an mga kontribusyon kan parágamit',
+'deletedcontributions'       => 'Parâon an mga kontribusyon kan parágamit',
+'deletedcontributions-title' => 'Parâon an mga kontribusyon kan parágamit',
 
 # Special:LinkSearch
 'linksearch-ok'   => 'Hanápon',

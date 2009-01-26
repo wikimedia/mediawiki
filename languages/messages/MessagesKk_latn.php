@@ -1721,7 +1721,8 @@ Mında taqırıp atında qoldalmaýtın birqatar tañbalar bolwı mümkin.',
 'special-categories-sort-abc'   => 'älipbïmen surıptaw',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Qatıswşınıñ joýılğan ülesi',
+'deletedcontributions'       => 'Qatıswşınıñ joýılğan ülesi',
+'deletedcontributions-title' => 'Qatıswşınıñ joýılğan ülesi',
 
 # Special:LinkSearch
 'linksearch'       => 'Sırtqı siltemelerdi izdew',

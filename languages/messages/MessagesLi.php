@@ -1561,7 +1561,8 @@ Op eder raegel vings te de ierste redirectpazjena, de twiede redirectpazjena en 
 'special-categories-sort-abc'   => 'alfabetisch sortere',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Gewisde gebroekersbiedrage',
+'deletedcontributions'       => 'Gewisde gebroekersbiedrage',
+'deletedcontributions-title' => 'Gewisde gebroekersbiedrage',
 
 # Special:LinkSearch
 'linksearch'       => 'Extern links zeuke',

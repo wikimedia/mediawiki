@@ -1626,7 +1626,8 @@ Lueg au d Lischt vu dr [[Special:WantedCategories|gwinschte Kategorie]].',
 'special-categories-sort-abc'   => 'Sortierig no Alfabet',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Gleschti Bytreg',
+'deletedcontributions'       => 'Gleschti Bytreg',
+'deletedcontributions-title' => 'Gleschti Bytreg',
 
 # Special:LinkSearch
 'linksearch'       => 'Suech Netzgleicher',

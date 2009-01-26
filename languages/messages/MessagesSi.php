@@ -1725,7 +1725,8 @@ PICT # විවිධ.
 'special-categories-sort-abc'   => 'අකාරාදියේ පිළිවෙලට සුබෙදන්න',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'මකාදැමූ පරිශීලක දායකත්වයන්',
+'deletedcontributions'       => 'මකාදැමූ පරිශීලක දායකත්වයන්',
+'deletedcontributions-title' => 'මකාදැමූ පරිශීලක දායකත්වයන්',
 
 # Special:LinkSearch
 'linksearch'       => 'වෙබ් සබැඳි ගවේෂණය කරන්න',

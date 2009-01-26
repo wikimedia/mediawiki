@@ -940,7 +940,8 @@ $messages = array(
 'special-categories-sort-abc' => 'د ابېڅو له مخې اوډل',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'د کارونکي ونډې ړنګې شوې',
+'deletedcontributions'       => 'د کارونکي ونډې ړنګې شوې',
+'deletedcontributions-title' => 'د کارونکي ونډې ړنګې شوې',
 
 # Special:LinkSearch
 'linksearch'      => 'د جال تړنې پلټل',

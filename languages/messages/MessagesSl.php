@@ -1125,7 +1125,8 @@ Vsaka vrstica vsebuje povezave k prvi in drugi preusmeritvi ter prvo vrstico bes
 'categoriesfrom'     => 'Prikaži kategorije, ki se začnejo na:',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Izbrisani uporabnikovi prispevki',
+'deletedcontributions'       => 'Izbrisani uporabnikovi prispevki',
+'deletedcontributions-title' => 'Izbrisani uporabnikovi prispevki',
 
 # Special:LinkSearch
 'linksearch'       => 'Išči spletne povezave',

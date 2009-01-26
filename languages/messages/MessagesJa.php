@@ -1703,7 +1703,8 @@ PICT # misc.
 'special-categories-sort-abc'   => 'アルファベット順',
 
 # Special:DeletedContributions
-'deletedcontributions' => '利用者の削除された投稿履歴',
+'deletedcontributions'       => '利用者の削除された投稿履歴',
+'deletedcontributions-title' => '利用者の削除された投稿履歴',
 
 # Special:LinkSearch
 'linksearch'       => '外部リンクの検索',

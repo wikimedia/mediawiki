@@ -1594,7 +1594,8 @@ Ad brefükam lisedi, kanol välön lisedasoti, gebananemi, u padi tefik.',
 'special-categories-sort-abc'   => 'leodükön ma lafab',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Gebanakeblünots pemoüköl',
+'deletedcontributions'       => 'Gebanakeblünots pemoüköl',
+'deletedcontributions-title' => 'Gebanakeblünots pemoüköl',
 
 # Special:LinkSearch
 'linksearch'       => 'Sukön bevüresodayümis',

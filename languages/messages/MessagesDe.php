@@ -1849,7 +1849,8 @@ Siehe auch die Liste der [[Special:WantedCategories|gewünschten Kategorien]].',
 'special-categories-sort-abc'   => 'Sortierung nach Alphabet',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Gelöschte Beiträge',
+'deletedcontributions'       => 'Gelöschte Beiträge',
+'deletedcontributions-title' => 'Gelöschte Beiträge',
 
 # Special:LinkSearch
 'linksearch'       => 'Weblink-Suche',

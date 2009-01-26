@@ -1700,7 +1700,8 @@ Vidu ankaŭ [[Special:WantedCategories|Dezirataj kategorioj]].',
 'special-categories-sort-abc'   => 'ordigi laŭ alfabeto',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Forigitaj kontribuoj de uzantoj',
+'deletedcontributions'       => 'Forigitaj kontribuoj de uzantoj',
+'deletedcontributions-title' => 'Forigitaj kontribuoj de uzantoj',
 
 # Special:LinkSearch
 'linksearch'       => 'Serĉi retajn ligilojn',
