@@ -51,6 +51,20 @@ class ApiOpenSearch extends ApiBase {
 		$this->getMain()->setCacheMaxAge(1200);
 
 		$srchres = PrefixSearch::titleSearch( $search, $limit, $namespaces );
+		
+		if( $params['redirects'] ) {
+			foreach( $srchres as &$t ) {
+				$title = Title::newFromText( $t );
+				if( is_null( $title ) ) {
+					continue;
+				}
+				$article = new Article( $title );
+				$redirTitle = $article->getRedirectTarget();
+				if( !is_null( $redirTitle ) ) {
+					$t = $redirTitle->getPrefixedText();
+				}
+			}
+		}
 
 		// Set top level elements
 		$result = $this->getResult();
@@ -73,6 +87,7 @@ class ApiOpenSearch extends ApiBase {
 				ApiBase :: PARAM_TYPE => 'namespace',
 				ApiBase :: PARAM_ISMULTI => true
 			),
+			'redirects' => false,
 		);
 	}
 
@@ -81,6 +96,7 @@ class ApiOpenSearch extends ApiBase {
 			'search' => 'Search string',
 			'limit' => 'Maximum amount of results to return',
 			'namespace' => 'Namespaces to search',
+			'redirects' => 'Resolve redirects',
 		);
 	}
 
