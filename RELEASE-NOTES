@@ -107,6 +107,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 17069) Added ucshow=patrolled|!patrolled to list=usercontribs
 * action=delete respects $wgDeleteRevisionsLimit and the bigdelete user right
 * (bug 15949) Add undo functionality to action=edit
+* (bug 17142) Added redirects parameter to action=opensearch to control redirect
+  resolution
 
 === Languages updated in 1.15 ===
 
