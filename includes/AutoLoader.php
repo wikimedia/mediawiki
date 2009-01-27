@@ -581,7 +581,7 @@ class AutoLoader {
 		global $wgAutoloadClasses;
 
 		foreach( $wgAutoloadClasses as $class => $file ) {
-			if( !( class_exists( $class ) || interface_exists( $class ) ) ) {
+			if( !( class_exists( $class, false ) || interface_exists( $class, false ) ) ) {
 				require( $file );
 			}
 		}
