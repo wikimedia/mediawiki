@@ -197,6 +197,11 @@ if($wgMetaNamespace === FALSE) {
 # To determine the user language, use $wgLang->getCode()
 $wgContLanguageCode = $wgLanguageCode;
 
+# If file caching is enabled, disable $wgShowIPInHeader
+if ( $wgUseFileCache ) {
+	$wgShowIPinHeader = false;
+}
+
 wfProfileOut( $fname.'-misc1' );
 wfProfileIn( $fname.'-memcached' );
 

@@ -67,6 +67,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 3301) Optionally sort user list according to account creation time
 * Remote description pages for foreign file repos are now fetched in the
   content language.
+* (bug 17180) If $wgUseFileCache is enabled, $wgShowIPinHeader is automatically
+  set to false.
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
