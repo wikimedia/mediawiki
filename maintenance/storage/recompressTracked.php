@@ -333,7 +333,6 @@ class RecompressTracked {
 		} else {
 			$this->info( "Moving orphans..." );
 		}
-		$ids = array();
 
 		while ( true ) {
 			$res = $dbr->select( 'blob_tracking',
@@ -353,6 +352,7 @@ class RecompressTracked {
 			if ( !$res->numRows() ) {
 				break;
 			}
+			$ids = array();
 			foreach ( $res as $row ) {
 				$ids[] = $row->bt_text_id;
 				$i++;
@@ -366,6 +366,12 @@ class RecompressTracked {
 				array_unshift( $args, 'doOrphanList' );
 				call_user_func_array( array( $this, 'dispatch' ), $args );
 			}
+			if ( count( $ids ) ) {
+				$args = $ids;
+				array_unshift( $args, 'doOrphanList' );
+				call_user_func_array( array( $this, 'dispatch' ), $args );
+			}
+
 			$startId = $row->bt_text_id;
 			$this->report( 'orphans', $i, $numOrphans );
 		}
