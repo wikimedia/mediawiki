@@ -15,7 +15,7 @@ class UploadFromUrl extends UploadBase {
 	function initialize( $name, $url ) {
 		global $wgTmpDirectory;
 		$local_file = tempnam( $wgTmpDirectory, 'WEBUPLOAD' );
-		$this-initialize( $name, $local_file, 0, true );
+		$this->initialize( $name, $local_file, 0, true );
 
 		$this->mUrl = trim( $url );
 	}
