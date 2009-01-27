@@ -64,6 +64,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   with __IGNOREUNUSED__
 * (bug 13040) Gender switch in user preferences
 * (bug 13040) {{GENDER:}} magic word for interface messages
+* (bug 14423) Check block flag validity for block logging
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
