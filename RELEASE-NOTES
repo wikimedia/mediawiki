@@ -65,6 +65,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13040) Gender switch in user preferences
 * (bug 13040) {{GENDER:}} magic word for interface messages
 * (bug 3301) Optionally sort user list according to account creation time
+* Remote description pages for foreign file repos are now fetched in the
+  content language.
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.

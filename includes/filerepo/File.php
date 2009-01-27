@@ -1068,15 +1068,16 @@ abstract class File {
 	 * Get the HTML text of the description page, if available
 	 */
 	function getDescriptionText() {
-		global $wgMemc;
+		global $wgMemc, $wgLang;
 		if ( !$this->repo->fetchDescription ) {
 			return false;
 		}
-		$renderUrl = $this->repo->getDescriptionRenderUrl( $this->getName() );
+		$renderUrl = $this->repo->getDescriptionRenderUrl( $this->getName(), $wgContLang->getCode() );
 		if ( $renderUrl ) {
 			if ( $this->repo->descriptionCacheExpiry > 0 ) {
 				wfDebug("Attempting to get the description from cache...");
-				$key = wfMemcKey( 'RemoteFileDescription', 'url', md5($renderUrl) );
+				$key = wfMemcKey( 'RemoteFileDescription', 'url', $wgContLang->getCode(), 
+									$this->getName() );
 				$obj = $wgMemc->get($key);
 				if ($obj) {
 					wfDebug("success!\n");
@@ -1086,7 +1087,9 @@ abstract class File {
 			}
 			wfDebug( "Fetching shared description from $renderUrl\n" );
 			$res = Http::get( $renderUrl );
-			if ( $res && $this->repo->descriptionCacheExpiry > 0 ) $wgMemc->set( $key, $res, $this->repo->descriptionCacheExpiry );
+			if ( $res && $this->repo->descriptionCacheExpiry > 0 ) {
+				$wgMemc->set( $key, $res, $this->repo->descriptionCacheExpiry );
+			}
 			return $res;
 		} else {
 			return false;

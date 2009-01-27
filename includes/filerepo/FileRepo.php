@@ -294,16 +294,22 @@ abstract class FileRepo {
 	 * MediaWiki this means action=render. This should only be called by the
 	 * repository's file class, since it may return invalid results. User code
 	 * should use File::getDescriptionText().
+	 * @param string $name Name of image to fetch
+	 * @param string $lang Language to fetch it in, if any.
 	 */
-	function getDescriptionRenderUrl( $name ) {
+	function getDescriptionRenderUrl( $name, $lang = null ) {
+		$query = 'action=render';
+		if ( !is_null( $lang ) ) {
+			$query .= '&uselang=' . $lang;
+		}
 		if ( isset( $this->scriptDirUrl ) ) {
 			return $this->scriptDirUrl . '/index.php?title=' .
 				wfUrlencode( 'Image:' . $name ) .
-				'&action=render';
+				"&$query";
 		} else {
 			$descUrl = $this->getDescriptionUrl( $name );
 			if ( $descUrl ) {
-				return wfAppendQuery( $descUrl, 'action=render' );
+				return wfAppendQuery( $descUrl, $query );
 			} else {
 				return false;
 			}
