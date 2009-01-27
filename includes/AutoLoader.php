@@ -436,6 +436,7 @@ $wgAutoloadLocalClasses = array(
 	'Preprocessor_DOM' => 'includes/parser/Preprocessor_DOM.php',
 	'Preprocessor_Hash' => 'includes/parser/Preprocessor_Hash.php',
 	'StripState' => 'includes/parser/Parser.php',
+	'MWTidy' => 'includes/parser/Tidy.php',
 
 	# includes/specials
 	'AncientPagesPage' => 'includes/specials/SpecialAncientpages.php',
