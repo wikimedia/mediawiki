@@ -2898,9 +2898,6 @@ $wgMessageStructure = array(
 	'external_images' => array(
 		'external_image_whitelist',
 	),
-	'language-links' => array(
-		'language-link-title',
-	),
 );
 
 /** Comments for each block */
