@@ -2878,8 +2878,8 @@ A temporary folder is missing.',
 'accesskey-search'                  => 'f', # do not translate or duplicate this message to other languages
 'accesskey-search-go'               => '', # do not translate or duplicate this message to other languages
 'accesskey-search-fulltext'         => '', # do not translate or duplicate this message to other languages
-'accesskey-p-logo'                  => '', # do not translate or duplicate this message to other languages
-'accesskey-n-mainpage'              => 'z', # do not translate or duplicate this message to other languages
+'accesskey-p-logo'                  => 'z', # do not translate or duplicate this message to other languages
+'accesskey-n-mainpage'              => '', # do not translate or duplicate this message to other languages
 'accesskey-n-portal'                => '', # do not translate or duplicate this message to other languages
 'accesskey-n-currentevents'         => '', # do not translate or duplicate this message to other languages
 'accesskey-n-recentchanges'         => 'r', # do not translate or duplicate this message to other languages
@@ -2941,7 +2941,7 @@ You can view its source.',
 'tooltip-search'                  => 'Search {{SITENAME}}',
 'tooltip-search-go'               => 'Go to a page with this exact name if exists',
 'tooltip-search-fulltext'         => 'Search the pages for this text',
-'tooltip-p-logo'                  => 'Main Page',
+'tooltip-p-logo'                  => 'Visit the Main Page',
 'tooltip-n-mainpage'              => 'Visit the Main Page',
 'tooltip-n-portal'                => 'About the project, what you can do, where to find things',
 'tooltip-n-currentevents'         => 'Find background information on current events',
