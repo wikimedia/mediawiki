@@ -68,6 +68,8 @@
 	'cy' => 'Cymraeg',		# Welsh
 	'da' => 'Dansk',		# Danish
 	'de' => 'Deutsch',		# German ("Du")
+	'de-at' => 'Österreichisches Deutsch',		# Austrian German
+	'de-ch' => 'Schweizer Hochdeutsch',		# Swiss Standard German
 	'de-formal' => 'Deutsch (Sie-Form)',		# German - formal address ("Sie")
 	'diq' => 'Zazaki',		# Zazaki
 	'dk' => 'Dansk (deprecated:da)', 		# Unused code currently falls back to Danish, 'da' is correct for the language
