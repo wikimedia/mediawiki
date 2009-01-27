@@ -58,8 +58,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   link instead of Go button & Search button
 * (bug 2314) Add links to user custom CSS and JS to Special:Preferences
 * More helpful error message on raw page access if PHP_SELF isn't set
-* (bug 17145) Specific categories can be excluded from Special:UnusedCategories
-  with __IGNOREUNUSED__
 * (bug 13040) Gender switch in user preferences
 * (bug 13040) {{GENDER:}} magic word for interface messages
 * (bug 3301) Optionally sort user list according to account creation time
