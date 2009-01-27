@@ -564,6 +564,7 @@ class ParserTest {
 			'wgForeignFileRepos' => array(),
 			'wgLinkHolderBatchSize' => $linkHolderBatchSize,
 			'wgEnforceHtmlIds' => true,
+			'wgExternalLinkTarget' => false,
 			);
 		$this->savedGlobals = array();
 		foreach( $settings as $var => $val ) {
