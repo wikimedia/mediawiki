@@ -3801,7 +3801,4 @@ Enter the filename without the "{{ns:file}}:" prefix.',
 
 #Put all regex fragments above this line. Leave this line exactly as it is</pre>',
 
-# Language links
-'language-link-title' => '$1 version',
-
 );
