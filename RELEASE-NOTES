@@ -98,6 +98,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 15811) Re-upload form tweaks: license fields removed, destination locked,
   comment label uses better message
 * Whole HTML validation ($wgValidateAllHtml) now works with external tidy
+* Parser tests no longer fail when $wgExternalLinkTarget is set in LocalSettings
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
