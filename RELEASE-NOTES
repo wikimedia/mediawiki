@@ -64,7 +64,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   with __IGNOREUNUSED__
 * (bug 13040) Gender switch in user preferences
 * (bug 13040) {{GENDER:}} magic word for interface messages
-* (bug 14423) Check block flag validity for block logging
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
@@ -89,6 +88,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 17150) escapeLike now escapes literal \ properly
 * Inconsistent use of sysop, admin, administrator in system messages changed
   to 'administrator'
+* (bug 14423) Check block flag validity for block logging
+* DB transaction and slave-lag avoidance tweaks for Email Notifications
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
