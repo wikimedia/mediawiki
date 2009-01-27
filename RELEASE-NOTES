@@ -1,4 +1,4 @@
-		= MediaWiki release notes =
+= MediaWiki release notes =
 
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
@@ -92,12 +92,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14423) Check block flag validity for block logging
 * DB transaction and slave-lag avoidance tweaks for Email Notifications
 * (bug 17104) Removed [Mark as patrolled] link for already patrolled revisions
-* (bug 17106) Added 'redirect=no' and 'mw-redirect' class to redirects at
-  "user contributions"
+* (bug 17106) Added 'redirect=no' and 'mw-redirect' class to redirects at "user contributions"
 * Rollback links on new pages removed from "user contributions"
-* (bug 15811) Re-upload form tweaks: license fields removed, destination locked,
-  comment label uses better message
-* Whole HTML validation ($wgValidateAllHtml) now works with external tidy
+* (bug 15811) Re-upload form tweaks: license fields removed, destination locked, comment
+ label uses better message
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
