@@ -1006,19 +1006,8 @@ wgUploadAutoFill = {$autofill};
 			$wgOut->addHTML( "<h2>{$sub}</h2>\n" .
 			  "<span class='error'>{$msg}</span>\n" );
 		}
-
-		$uploadMsg = $wgRequest->getVal( 'uploadmsg' );
-		if( $uploadMsg ) {
-			$uploadMsgName = 'uploadtext-' . $uploadMsg;
-			// Fall back to normal message if the custom messages is empty
-			if( wfEmptyMsg( $uploadMsgName, wfMsg( $uploadMsgName ) ) )
-				$uploadMsgName = 'uploadtext';
-		} else {
-			$uploadMsgName = 'uploadtext';
-		}
-
 		$wgOut->addHTML( '<div id="uploadtext">' );
-		$wgOut->addWikiMsg( $uploadMsgName, $this->mDesiredDestName );
+		$wgOut->addWikiMsg( 'uploadtext', $this->mDesiredDestName );
 		$wgOut->addHTML( "</div>\n" );
 
 		# Print a list of allowed file extensions, if so configured.  We ignore
