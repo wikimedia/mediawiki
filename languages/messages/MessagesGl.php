@@ -537,15 +537,15 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'loginerror'                 => 'Erro ao acceder ao sistema',
 'prefs-help-email'           => 'O enderezo de correo electrónico é opcional, pero permite que se lle envíe un contrasinal novo se se esquece del.
 Tamén pode deixar que outras persoas se poñan en contacto con vostede desde a súa páxina de usuario ou de conversa sen necesidade de revelar a súa identidade.',
-'prefs-help-email-required'  => 'O enderezo de correo electrónico é requirido.',
+'prefs-help-email-required'  => 'Requírese o enderezo de correo electrónico.',
 'nocookiesnew'               => "A conta de usuario foi creada, pero non está rexistrado. {{SITENAME}} usa ''cookies'' para o rexistro. Vostede ten deshabilitadas as ''cookies''. Por favor, habilíteas, e logo rexístrese co seu novo nome de usuario e contrasinal.",
 'nocookieslogin'             => '{{SITENAME}} usa cookies para rexistrar os usuarios. Vostede ten as cookies deshabilitadas. Por favor, habilíteas e ténteo de novo.',
 'noname'                     => 'Non especificou un nome de usuario válido.',
 'loginsuccesstitle'          => 'Acceso exitoso',
 'loginsuccess'               => "'''Accedeu ao sistema {{SITENAME}} como \"\$1\".'''",
-'nosuchuser'                 => 'non hai ningún usuario chamado "$1".
+'nosuchuser'                 => 'Non hai ningún usuario chamado "$1".
 Verifique o nome que inseriu ou [[Special:UserLogin/signup|cree unha nova conta]].',
-'nosuchusershort'            => 'non hai ningún usuario chamado "<nowiki>$1</nowiki>".
+'nosuchusershort'            => 'Non hai ningún usuario chamado "<nowiki>$1</nowiki>".
 Verifique o nome que inseriu.',
 'nouserspecified'            => 'Debe especificar un nome de usuario.',
 'wrongpassword'              => 'o contrasinal escrito é incorrecto.
@@ -1365,8 +1365,9 @@ Vexa a [[Special:NewFiles|galería de imaxes novas]] para unha visión máis xer
 'filetype-missing'            => 'O ficheiro non conta cunha extensión (como ".jpg").',
 'large-file'                  => 'Recoméndase que o tamaño dos ficheiros non supere $1; este ficheiro ocupa $2.',
 'largefileserver'             => 'Este ficheiro é de maior tamaño có permitido pola configuración do servidor.',
-'emptyfile'                   => 'O ficheiro que cargou semella estar baleiro. Isto pode deberse a un erro ortográfico no seu nome.
-Por favor verifique se realmente quere cargar este ficheiro.',
+'emptyfile'                   => 'O ficheiro que cargou semella estar baleiro.
+Isto pode deberse a un erro ortográfico no seu nome.
+Por favor, verifique se realmente quere cargar este ficheiro.',
 'fileexists'                  => 'Xa existe un ficheiro con ese nome. Por favor, verifique <strong><tt>$1</tt></strong> se non está seguro de que quere cambialo.',
 'filepageexists'              => 'A páxina de descrición deste ficheiro xa foi creada en <strong><tt>$1</tt></strong>, pero polo de agora non existe ningún ficheiro con este nome. O resumo que escribiu non aparecerá na páxina de descrición. Para facer que o resumo apareza alí, necesitará editar a páxina manualmente',
 'fileexists-extension'        => 'Xa existe un ficheiro cun nome semellante:<br />
@@ -1380,9 +1381,8 @@ Se o ficheiro seleccionado é a mesma imaxe de tamaño orixinal non é preciso e
 Parece tratarse dunha imaxe de tamaño reducido <i>(miniatura)</i>.
 Se dispón dunha versión desta imaxe de maior resolución, se non, múdelle o nome ao ficheiro.',
 'fileexists-forbidden'        => 'Xa hai un ficheiro co mesmo nome; por favor retroceda e cargue o ficheiro cun novo nome. [[File:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Xa existe un ficheiro con este nome no depósito de ficheiros compartidos.
-Se aínda quere cargar o seu ficheiro, por favor, volte atrás e use outro nome.
-[[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Xa existe un ficheiro con este nome no repositorio de ficheiros compartidos.
+Se aínda quere cargar o seu ficheiro, por favor, volte atrás e use outro nome. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Este ficheiro é un duplicado {{PLURAL:$1|do seguinte|dos seguintes}}:',
 'file-deleted-duplicate'      => 'Un ficheiro idéntico a este ("[[$1]]") foi borrado previamente. Debería comprobar o historial de borrados do ficheiro antes de proceder a cargalo de novo.',
 'successfulupload'            => 'Carga con éxito',

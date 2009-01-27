@@ -776,7 +776,7 @@ $2',
 'nocreate-loggedin'                => 'איר זענט נישט ערלויבט צו שאַפֿן נײַע בלעטער.',
 'permissionserrors'                => 'ערלויבענישן פעילערס',
 'permissionserrorstext'            => 'איר זענט נישט ערלויבט צו טון דאס, פֿאר , {{PLURAL:$1|דער פֿאלגנדער סיבה|די פֿאלגנדע סיבות}}:',
-'permissionserrorstext-withaction' => 'איר זענט נישט ערלויבט $2, וועגן {{PLURAL:$1|דער פֿאלגנדער סיבה| די פֿאלגנדע סיבות}}:',
+'permissionserrorstext-withaction' => 'איר זענט נישט ערלויבט צו $2, וועגן {{PLURAL:$1|דער פֿאלגנדער סיבה| די פֿאלגנדע סיבות}}:',
 'recreate-deleted-warn'            => "'''ווארענונג: איר שאפט א נייעם בלאט וואס איז שוין איינמאל געווארן אויסגעמעקט.'''
 
 אנא שיקלו אם יהיה זה נכון להמשיך לערוך את הדף.
@@ -1040,6 +1040,7 @@ $2',
 'right-autoconfirmed' => 'רעדאקטירן האלב-געשיצטע בלעטער',
 'right-delete'        => 'מעקן בלעטער',
 'right-undelete'      => 'צוריקשטעלן א בלאט',
+'right-import'        => 'אימפארטירן בלעטער פון אנדערע וויקיס',
 
 # User rights log
 'rightslog'      => 'באַניצער רעכטן לאג',
@@ -1047,8 +1048,12 @@ $2',
 'rightsnone'     => '(גארנישט)',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-delete'   => 'אויסמעקן דעם בלאַט',
-'action-undelete' => 'צוריקשטעלן דעם בלאט',
+'action-read'       => 'ליינען דעם בלאַט',
+'action-edit'       => 'רעדאקטירן דעם בלאַט',
+'action-createpage' => 'שאַפֿן בלעטער',
+'action-move'       => 'באַוועגן דעם בלאַט',
+'action-delete'     => 'אויסמעקן דעם בלאַט',
+'action-undelete'   => 'צוריקשטעלן דעם בלאט',
 
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|ענדערונג|$1 ענדערונגען}}',

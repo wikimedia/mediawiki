@@ -481,6 +481,10 @@ Llogaria juaj është hapur. Mos harroni të ndryshoni parapëlqimet e {{SITENAM
 'yournick'                   => 'Nënshkrimi',
 'badsig'                     => 'Sintaksa e signaturës është e pavlefshme, kontrolloni HTML-in.',
 'badsiglength'               => 'Nënshkrimi është tepër i gjatë; duhet të jetë nën $1 {{PLURAL:$1|shkronjë|shkronja}}.',
+'yourgender'                 => 'Gjinia:',
+'gender-unknown'             => 'Pacaktuar',
+'gender-male'                => 'Mashkull',
+'gender-female'              => 'Femër',
 'email'                      => 'Email',
 'prefs-help-realname'        => '* Emri i vërtetë (opsion): Për të përmendur emrin tuaj si kontribuues në varësi nga puna juaj këtu.',
 'loginerror'                 => 'Gabim hyrje',
@@ -1463,7 +1467,9 @@ Një faqe trajtohet si faqe kthjelluese nëse përdor stampat e lidhura nga [[Me
 'protectedtitlesempty'    => 'Asnjë titull i mbrojtur nuk u gjet në këtë hapësirë.',
 'listusers'               => 'Lista e përdoruesve',
 'listusers-editsonly'     => 'Trego vetëm përdoruesit me redaktime',
+'listusers-creationsort'  => 'Radhiti sipas datës së krijimit',
 'usereditcount'           => '$1 {{PLURAL:$1|redaktim|redaktime}}',
+'usercreated'             => 'Krijuar më $1 në $2',
 'newpages'                => 'Artikuj të rinj',
 'newpages-username'       => 'Përdoruesi:',
 'ancientpages'            => 'Artikuj më të vjetër',
@@ -1854,6 +1860,7 @@ Plotësoni arsyen specifike më poshtë (p.sh., tregoni faqet specifike që u va
 'ipboptions'                   => '1 Orë:1 hour,2 Orë:2 hours,6 Orë:6 hours,1 Ditë:1 day,3 Ditë:3 days,1 Javë:1 week,2 Javë:2 weeks,1 Muaj:1 month,3 Muaj:3 months,1 Vjet:1 year,Pa kufi:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'               => 'tjetër',
 'ipbotherreason'               => 'Arsye tjetër/shtesë',
+'ipbwatchuser'                 => 'Shiko faqen e prezantimit dhe diskutimit të këtij përdoruesi',
 'badipaddress'                 => 'Nuk ka asnjë përdorues me atë emër',
 'blockipsuccesssub'            => 'Bllokimi u bë me sukses',
 'blockipsuccesstext'           => 'Përdoruesi/IP-Adresa [[Special:Contributions/$1|$1]] u bllokua.<br />

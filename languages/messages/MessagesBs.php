@@ -587,6 +587,10 @@ Molimo Vas da izaberete drugo ime.',
 Provjerite HTML tagove.',
 'badsiglength'               => 'Potpis je predug.
 Mora biti ispod $1 {{PLURAL:$1|karakter|karaktera}}.',
+'yourgender'                 => 'Spol:',
+'gender-unknown'             => 'Neodređen',
+'gender-male'                => 'Muški',
+'gender-female'              => 'Žensko',
 'email'                      => 'E-mail',
 'prefs-help-realname'        => 'Pravo ime nije obavezno.
 Ako izaberete da date ime, biće korišteno za pripisivanje za vaš rad.',

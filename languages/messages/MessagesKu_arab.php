@@ -149,6 +149,7 @@ $messages = array(
 'mytalk'         => 'په‌ڕه‌ی گفتوگۆی من',
 'anontalk'       => 'گفتوگۆ بۆ ئه‌م ئای‌پی‌ یه‌',
 'navigation'     => 'نمایشكردن',
+'and'            => '&#32;و',
 
 # Metadata in edit box
 'metadata_help' => 'دراوه‌ی مێتا:',
@@ -212,16 +213,19 @@ $messages = array(
 'aboutsite'            => 'دەربارەی {{SITENAME}}',
 'copyrightpage'        => '{{ns:project}}:مافەکانی لەبەرگرتنەوە',
 'currentevents-url'    => 'Project:ڕووداوە بەردەوامەکان',
-'disclaimers'          => 'نالێ‌بەرپرس‌بوونی‌یەکان',
+'disclaimers'          => 'بەرپرس‌نەبوونییەکان',
 'edithelp'             => 'ڕێنمایی بۆ دەستکاری کردن',
 'edithelppage'         => 'Help:دەستکاری کردن',
 'faq'                  => 'پرسیار و وەڵام (FAQ)',
 'faqpage'              => 'Project:پرسیار و وەڵام',
+'helppage'             => 'Help:رێنمایییەکان',
 'mainpage'             => 'ده‌ستپێک',
 'mainpage-description' => 'ده‌ستپێک',
 'portal'               => 'دەروازەی بەکارھێنەران',
 'portal-url'           => 'Project: دەروازەی بەکارھێنەران',
 'privacy'              => 'سیاسەتی پاراستنی داتاکان',
+
+'badaccess' => 'ھەڵە لە بە دەست ھێنان',
 
 'versionrequired'     => 'پێویستیت به‌ وه‌شانی $1 ـی‌ ویكیمیدیایه‌',
 'versionrequiredtext' => 'پێویستیت به‌ وه‌شانی $1 ـێ ویكیمیدیا هه‌یه‌ بۆ به‌كاربردنی ئه‌م په‌ڕه‌یه‌
@@ -229,10 +233,15 @@ $messages = array(
 
 'ok'                      => 'باشه‌',
 'retrievedfrom'           => 'له‌ لایه‌ن "$1" گه‌ڕاوه‌ته‌وه‌.',
+'youhavenewmessages'      => '$1ت ھەیە ($2).',
 'newmessageslink'         => 'په‌یامێكی نوێ',
 'newmessagesdifflink'     => 'دوا گۆڕانكارییه‌كان',
 'youhavenewmessagesmulti' => 'په‌یامێكی نوێت هه‌یه‌ له‌ $1.',
 'editsection'             => 'ده‌ستكاری',
+'editold'                 => 'دەستکاری',
+'viewsourceold'           => 'بینینی سەرچاوە',
+'editlink'                => 'دەستکاری',
+'viewsourcelink'          => 'بینینی سەرچاوە',
 'editsectionhint'         => 'ده‌ستكاریی به‌شی: $1',
 'toc'                     => 'ناوەڕۆک',
 'showtoc'                 => 'نیشاندان',
@@ -449,7 +458,11 @@ $messages = array(
 'pager-older-n' => '{{PLURAL:$1|کۆنتر 1|کۆنتر $1}}',
 
 # Special:AllPages
-'allarticles' => 'ھەمووی وتارەکان',
+'alphaindexline' => '$1 تا $2',
+'nextpage'       => 'پەڕەی پاشەوە ($1)',
+'prevpage'       => 'پەڕەی پێشەوە ($1)',
+'allpagesfrom'   => 'بینینی پەڕەکان بە دەست پێ کردن لە:',
+'allarticles'    => 'ھەمووی وتارەکان',
 
 # Special:Categories
 'categories' => 'هاوپۆله‌كان',

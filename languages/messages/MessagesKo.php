@@ -2547,6 +2547,7 @@ Variants for Chinese language
 'exif-subjectlocation'             => '대상 위치',
 'exif-exposureindex'               => '노출 지수',
 'exif-sensingmethod'               => '감지 방식',
+'exif-filesource'                  => '파일 출처',
 'exif-cfapattern'                  => 'CFA 패턴',
 'exif-exposuremode'                => '노출 방식',
 'exif-whitebalance'                => '화이트 밸런스',
@@ -2571,6 +2572,7 @@ Variants for Chinese language
 'exif-gpsdestlatitude'             => '목적지의 위도',
 'exif-gpsdestlongitude'            => '목적지의 경도',
 'exif-gpsdestdistance'             => '목적지와의 거리',
+'exif-gpsareainformation'          => 'GPS 구역 이름',
 'exif-gpsdatestamp'                => 'GPS 날짜',
 'exif-gpsdifferential'             => 'GPS 차이 보정',
 
@@ -2624,6 +2626,9 @@ Variants for Chinese language
 # Flash modes
 'exif-flash-fired-0'  => '플래시가 터지지 않음',
 'exif-flash-fired-1'  => '플래시 터짐',
+'exif-flash-return-0' => '플래시 반사광 감지 기능을 사용하지 않음',
+'exif-flash-return-2' => '플래시 반사광이 감지되지 않음',
+'exif-flash-return-3' => '플래시 반사광이 감지됨',
 'exif-flash-mode-1'   => '플래시 강제',
 'exif-flash-mode-2'   => '플래시 억제',
 'exif-flash-mode-3'   => '자동 모드',

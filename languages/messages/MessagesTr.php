@@ -520,6 +520,10 @@ Hesabınız açıldı.
 'badsig'                     => 'Geçersiz ham imza; HTML etiketlerini kontorl edin.',
 'badsiglength'               => 'İmza çok uzun
 $1 {{PLURAL:$1|karakterin|karakterin}} altında olmalı.',
+'yourgender'                 => 'Cinsiyet:',
+'gender-unknown'             => 'Belirtilmemiş',
+'gender-male'                => 'Erkek',
+'gender-female'              => 'Bayan',
 'email'                      => 'E-posta',
 'prefs-help-realname'        => '* Gerçek isim (isteğe bağlı): eğer gerçek isminizi vermeyi seçerseniz, çalışmanızı size atfederken kullanılacaktır.',
 'loginerror'                 => 'Oturum açma hatası.',
@@ -1415,6 +1419,7 @@ Sıradaki liste sadece bu dosyaya bağlantı veren {{PLURAL:$1|ilk dosyayı|ilk 
 'sharedupload'                   => 'Bu dosya ortak alana yüklenmiştir ve diğer projelerde de kullanılıyor olabilir.',
 'shareduploadwiki'               => 'Lütfen daha fazla bilgi için $1 sayfasına bakın.',
 'shareduploadwiki-linktext'      => 'dosya açıklama sayfası',
+'shareduploadduplicate'          => 'Bu dosya paylaşılan depodan $1 ile aynıdır.',
 'shareduploadduplicate-linktext' => 'başka dosya',
 'shareduploadconflict-linktext'  => 'başka dosya',
 'noimage'                        => 'Bu isimde dosya yok. Siz $1.',
@@ -1425,6 +1430,7 @@ Sıradaki liste sadece bu dosyaya bağlantı veren {{PLURAL:$1|ilk dosyayı|ilk 
 # File reversion
 'filerevert'         => '$1 dosyasını eski haline döndür',
 'filerevert-legend'  => 'Dosyayı eski haline döndür',
+'filerevert-intro'   => "'''[[Media:$1|$1]]''' medyasının [$4 $3, $2 tarihli versiyonu]nu geri getiriyorsunuz.",
 'filerevert-comment' => 'Yorum:',
 'filerevert-submit'  => 'Eski haline döndür',
 
