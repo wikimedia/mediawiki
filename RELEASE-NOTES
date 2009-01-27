@@ -70,6 +70,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 17180) If $wgUseFileCache is enabled, $wgShowIPinHeader is automatically
   set to false.
 * (bug 16604) Mark non-patrolled edits in feeds with "!"
+* (bug 16604) Show title/rev in IRC for patrol log
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
