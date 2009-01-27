@@ -64,6 +64,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   with __IGNOREUNUSED__
 * (bug 13040) Gender switch in user preferences
 * (bug 13040) {{GENDER:}} magic word for interface messages
+* (bug 3301) Optionally sort user list according to account creation time
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
@@ -93,6 +94,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 17104) Removed [Mark as patrolled] link for already patrolled revisions
 * (bug 17106) Added 'redirect=no' and 'mw-redirect' class to redirects at "user contributions"
 * Rollback links on new pages removed from "user contributions"
+* (bug 15811) Re-upload form tweaks: license fields removed, destination locked, comment
+ label uses better message
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
