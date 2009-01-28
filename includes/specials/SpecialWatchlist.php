@@ -159,10 +159,12 @@ function wfSpecialWatchlist( $par ) {
 	if( $wgUser->getOption( 'extendwatchlist' )) {
 		$andLatest='';
  		$limitWatchlist = intval( $wgUser->getOption( 'wllimit' ) );
+		$usePage = false;
 	} else {
 	# Top log Ids for a page are not stored
 		$andLatest = 'rc_this_oldid=page_latest OR rc_type=' . RC_LOG;
 		$limitWatchlist = 0;
+		$usePage = true;
 	}
 
 	# Show a message about slave lag, if applicable
@@ -189,12 +191,11 @@ function wfSpecialWatchlist( $par ) {
 	}
 	$form .= '<hr />';
 	
-	$tables = array( 'recentchanges', 'watchlist', 'page' );
+	$tables = array( 'recentchanges', 'watchlist' );
 	$fields = array( "{$recentchanges}.*" );
 	$conds = array();
 	$join_conds = array(
 		'watchlist' => array('INNER JOIN',"wl_user='{$uid}' AND wl_namespace=rc_namespace AND wl_title=rc_title"),
-		'page'      => array('LEFT JOIN','rc_cur_id=page_id')
 	);
 	$options = array( 'ORDER BY' => 'rc_timestamp DESC' );
 	if( $wgShowUpdatedMarker ) {
@@ -212,6 +213,11 @@ function wfSpecialWatchlist( $par ) {
 	if( $andHideAnons ) $conds[] = $andHideAnons;
 	if( $andHidePatrolled ) $conds[] = $andHidePatrolled;
 	if( $nameSpaceClause ) $conds[] = $nameSpaceClause;
+
+	if ( $usePage ) {
+		$tables[] = 'page';
+		$join_conds['page'] = array('LEFT JOIN','rc_cur_id=page_id');
+	}
 	
 	wfRunHooks('SpecialWatchlistQuery', array(&$conds,&$tables,&$join_conds,&$fields) );
 	
