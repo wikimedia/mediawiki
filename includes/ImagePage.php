@@ -557,7 +557,7 @@ EOT
 	public function getUploadUrl() {
 		$this->loadFile();
 		$uploadTitle = SpecialPage::getTitleFor( 'Upload' );
-		return $uploadTitle->getFullUrl( 'wpDestFile=' . urlencode( $this->img->getName() ) . '&wpReUpload=1' );
+		return $uploadTitle->getFullUrl( 'wpDestFile=' . urlencode( $this->img->getName() ) . '&wpForReUpload=1' );
 	}
 
 	/**
