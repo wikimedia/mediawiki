@@ -340,6 +340,9 @@ class ChangesList {
 	}
 
 	protected function insertTags( &$s, &$rc, &$classes ) {
+		if ( empty($rc->mAttribs['ts_tags']) )
+			return;
+			
 		list($tagSummary, $newClasses) = ChangeTags::formatSummaryRow( $rc->mAttribs['ts_tags'], 'changeslist' );
 		$classes = array_merge( $classes, $newClasses );
 		$s .= ' ' . $tagSummary;
