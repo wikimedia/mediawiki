@@ -449,12 +449,12 @@ class CategoryViewer {
 		$sk = $this->getSkin();
 		$limitText = $wgLang->formatNum( $limit );
 
-		$prevLink = wfMsgExt( 'prevn', array( 'escape' ), $limitText );
+		$prevLink = wfMsgExt( 'prevn', array( 'escape', 'parsemag' ), $limitText );
 		if( $first != '' ) {
 			$prevLink = $sk->makeLinkObj( $title, $prevLink,
 				wfArrayToCGI( $query + array( 'until' => $first ) ) );
 		}
-		$nextLink = wfMsgExt( 'nextn', array( 'escape' ), $limitText );
+		$nextLink = wfMsgExt( 'nextn', array( 'escape', 'parsemag' ), $limitText );
 		if( $last != '' ) {
 			$nextLink = $sk->makeLinkObj( $title, $nextLink,
 				wfArrayToCGI( $query + array( 'from' => $last ) ) );
