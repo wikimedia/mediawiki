@@ -109,6 +109,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Parser tests no longer fail when $wgAlwaysUseTidy is set in LocalSettings.php
 * Removed redundant dupe warnings on reupload for the same title. Dupe warnings
   for identical files at different titles are still given.
+* Add 'change tagging' facility, where changes can be tagged internally with
+  certain designations, which are displayed on various summaries of changes, and
+  the entries can be styled with CSS.
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
