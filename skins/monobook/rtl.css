@@ -148,7 +148,7 @@ li#ca-watch {
 	float: left;
 }
 /* Fix link icons */
-.external {
+.external, a.feedlink {
 	padding: 0 !important;
 	background: none !important;
 }
