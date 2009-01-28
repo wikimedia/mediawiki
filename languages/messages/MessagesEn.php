@@ -432,6 +432,7 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'BlankPage' ),
 	'LinkSearch'                => array( 'LinkSearch' ),
 	'DeletedContributions'      => array( 'DeletedContributions' ),
+	'Tags'                      => array( 'Tags' ),
 );
 
 /**
