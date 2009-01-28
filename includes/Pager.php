@@ -315,7 +315,7 @@ abstract class IndexPager implements Pager {
 			$attrs['class'] = "mw-{$type}link";
 		}
 		return $this->getSkin()->link( $this->getTitle(), $text,
-			$attrs, $query + $this->getDefaultQuery(), 'known' );
+			$attrs, $query + $this->getDefaultQuery(), 'noclasses' );
 	}
 
 	/**
