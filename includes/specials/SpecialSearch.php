@@ -41,7 +41,7 @@ function wfSpecialSearch( $par = '' ) {
 		|| !is_null( $wgRequest->getVal( 'offset' )) 
 		|| !is_null( $wgRequest->getVal( 'searchx' )) )
 	{
-		$searchPage->showResults( $search, 'search' );
+		$searchPage->showResults( $search );
 	} else {
 		$searchPage->goResult( $search );
 	}
