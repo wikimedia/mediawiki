@@ -485,7 +485,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			if( !$row->page_is_new ) {
 				$difftext .= '(' . $sk->makeKnownLinkObj( $page, $this->messages['diff'], 'diff=0' ) . ')';
 				# Add rollback link
-				if( $page->userCan( 'rollback') && $page->userCan( 'edit' ) ) {
+				if( $page->quickUserCan( 'rollback') && $page->quickUserCan( 'edit' ) ) {
 					$topmarktext .= ' '.$sk->generateRollback( $rev );
 				}
 			} else {
