@@ -189,7 +189,7 @@ class CategoryViewer {
 	 */
 	function addPage( $title, $sortkey, $pageLength, $isRedirect = false ) {
 		global $wgContLang;
-		$titletext = $wgContLang->convert($title);
+		$titletext = $wgContLang->convert( $title->getPrefixedText() );
 		$this->articles[] = $isRedirect
 			? '<span class="redirect-in-category">' . $this->getSkin()->makeKnownLinkObj( $title, $titletext ) . '</span>'
 			: $this->getSkin()->makeSizeLinkObj( $pageLength, $title, $titletext );
