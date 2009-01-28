@@ -98,8 +98,9 @@ class UsersPager extends AlphabeticPager {
 		$query = array(
 			'tables' => " $user $useIndex LEFT JOIN $user_groups ON user_id=ug_user
 				LEFT JOIN $ipblocks ON user_id=ipb_user AND ipb_auto=0 ",
-			'fields' => array('user_name',
-				'MAX(user_id) AS user_id',
+			'fields' => array(
+				$this->creationSort ? 'MAX(user_name) AS user_name' : 'user_name',
+				$this->creationSort ? 'user_id' : 'MAX(user_id) AS user_id',
 				'MAX(user_editcount) AS edits',
 				'COUNT(ug_group) AS numgroups',
 				'MAX(ug_group) AS singlegroup',
