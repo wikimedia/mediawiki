@@ -2898,6 +2898,18 @@ $wgMessageStructure = array(
 	'external_images' => array(
 		'external_image_whitelist',
 	),
+	'special-tag' => array(
+		'tag-filter',
+		'tag-filter-submit',
+		'tags-title',
+		'tags-intro',
+		'tags-tag',
+		'tags-display-header',
+		'tags-description-header',
+		'tags-hitcount-header',
+		'tags-edit',
+		'tags-hitcount',
+	),
 );
 
 /** Comments for each block */
@@ -3094,6 +3106,7 @@ Variants for Chinese language",
 	'special-specialpages'  => 'Special:SpecialPages',
 	'special-blank'         => 'Special:BlankPage',
 	'external_images'       => 'External image whitelist',
+	'special-tag'           => 'Special:Tag',
 );
 
 /** Short comments for standalone messages */
