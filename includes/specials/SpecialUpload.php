@@ -1250,6 +1250,7 @@ wgUploadAutoFill = {$autofill};
 			</tr>" .
 			Xml::closeElement( 'table' ) .
 			Xml::hidden( 'wpDestFileWarningAck', '', array( 'id' => 'wpDestFileWarningAck' ) ) .
+			xml::hidden( 'wpReUpload', $this->mReUpload ) .
 			Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'form' )
 		);
