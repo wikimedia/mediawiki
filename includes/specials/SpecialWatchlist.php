@@ -323,6 +323,8 @@ function wfSpecialWatchlist( $par ) {
 			$linkBatch->add( NS_USER, $userNameUnderscored );
 		}
 		$linkBatch->add( NS_USER_TALK, $userNameUnderscored );
+
+		$linkBatch->add( $row->rc_namespace, $row->rc_title );
 	}
 	$linkBatch->execute();
 	$dbr->dataSeek( $res, 0 );
