@@ -2843,7 +2843,4 @@ Gitt den Numm vum Fichier ouni de Prefix \"{{ns:file}}:\" an.",
 
 #All regulär Ausdréck ënnen un dëser Zeil androen. Dës Zeil genee esou loosse wéi se ass</pre>",
 
-# Language links
-'language-link-title' => '$1 Versioun',
-
 );

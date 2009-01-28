@@ -2975,7 +2975,4 @@ Enigu la dosiernomon sen la "{{ns:file}}:" prefikso.',
 
 #Enmetu ĉiujn koderojn pri regulaj esprimoj super ĉi tiu linio. Lasu la linion senŝanĝe.</pre>',
 
-# Language links
-'language-link-title' => '$1-versio',
-
 );

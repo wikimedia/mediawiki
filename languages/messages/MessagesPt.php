@@ -13,6 +13,7 @@
  * @author Nuno Tavares
  * @author Paulo Juntas
  * @author Rei-artur
+ * @author Remember the dot
  * @author Rodrigo Calanca Nishino
  * @author Sir Lestaty de Lioncourt
  * @author Sérgio Ribeiro
@@ -1772,8 +1773,8 @@ O endereço que você introduziu nas [[Special:Preferences|suas preferências]] 
 'emailuserfooter'  => 'Este e-mail foi enviado por $1 para $2 através da opção de "contactar utilizador" da {{SITENAME}}.',
 
 # Watchlist
-'watchlist'            => 'Artigos vigiados',
-'mywatchlist'          => 'Artigos vigiados',
+'watchlist'            => 'Páginas vigiadas',
+'mywatchlist'          => 'Páginas vigiadas',
 'watchlistfor'         => "(para '''$1''')",
 'nowatchlist'          => 'A sua lista de vigiados não possui títulos.',
 'watchlistanontext'    => 'Por favor, $1 para ver ou editar os itens na sua lista de vigiados.',
@@ -2988,8 +2989,5 @@ Entre com o nome de ficheiro sem fornecer o prefixo "{{ns:file}}:".',
 # Aqueles que corresponderem serão exibidos como imagens, caso contrário, apenas um link para a imagem será mostrada
 # As linhas que começam com # são tratadas como comentários
 # Coloque todos os fragmentos de regex acima dessa linha. Deixe esta linha exatamente como ela é </ pre>',
-
-# Language links
-'language-link-title' => 'Versão $1',
 
 );

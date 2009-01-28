@@ -3013,7 +3013,4 @@ Zadajte názov súboru bez predpony „{{ns:file}}:“.',
 
 #Napíšte všetky časti reg. výrazov nad tento riadok. Nechajte tento riadok presne tak, ako je</pre>',
 
-# Language links
-'language-link-title' => 'verzia v jazyku $1',
-
 );

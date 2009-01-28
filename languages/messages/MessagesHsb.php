@@ -2881,7 +2881,16 @@ Zapodaj datajowe mjeno '''bjez''' prefiksa \"{{ns:file}}:\".",
 
 #Zapodaj wšě fragmenty regularnych wurazow nad tutej linku. Wostaj tutu linku eksaktnje kaž je</pre>',
 
-# Language links
-'language-link-title' => 'wersija $1',
+# Special:Tag
+'tag-filter'              => 'Filter [[Special:Tags|tafličkow]]:',
+'tag-filter-submit'       => 'Filter',
+'tags-title'              => 'Taflički',
+'tags-intro'              => 'Tuta strona nalistuje taflički, z kotrymiž softwara móže změnu markěrować a jich woznam.',
+'tags-tag'                => 'Interne mjeno taflički',
+'tags-display-header'     => 'Napohlad na lisćinach změnow',
+'tags-description-header' => 'Dospołne wopisanje woznama',
+'tags-hitcount-header'    => 'Změny z tafličkami',
+'tags-edit'               => 'změnić',
+'tags-hitcount'           => '$1 {{PLURAL:$1|změna|změnje|změny|změnow}}',
 
 );

@@ -571,6 +571,10 @@ Por favor, indique un nombre diferente.',
 'badsig'                     => 'El código de tu firma no es válido; comprueba las etiquetas HTML.',
 'badsiglength'               => 'El apodo para firmas es demasiado largo.
 Debe ser de menos de $1 {{PLURAL:$1|carácter|caracteres}}.',
+'yourgender'                 => 'Sexo:',
+'gender-unknown'             => 'No especificado',
+'gender-male'                => 'Varón',
+'gender-female'              => 'Mujer',
 'email'                      => 'Correo electrónico',
 'prefs-help-realname'        => '* Nombre real (opcional): si opta por proporcionarlo, se usará para dar atribución a su trabajo.',
 'loginerror'                 => 'Error de inicio de sesión',
@@ -1640,7 +1644,9 @@ Cada fila contiene enlaces al segundo y tercer redirect, así como la primera l�
 'protectedtitlesempty'    => 'Actualmente no existen entradas protegidas con esos parámetros.',
 'listusers'               => 'Lista de usuarios',
 'listusers-editsonly'     => 'Muestra sólo usuarios con ediciones',
+'listusers-creationsort'  => 'Ordenado por fecha de creación',
 'usereditcount'           => '$1 {{PLURAL:$1|edición|ediciones}}',
+'usercreated'             => 'Creado en $1 en $2',
 'newpages'                => 'Páginas nuevas',
 'newpages-username'       => 'Nombre de usuario',
 'ancientpages'            => 'Artículos más antiguos',
@@ -2984,8 +2990,5 @@ Ingrese el nombre del archivo sin el prefijo "{{ns:file}}:".',
 #Las líneas que empiezan por «#» se consideran comentarios
 
 #Put all regex fragments above this line. Deja esta línea exactamente como está</pre>',
-
-# Language links
-'language-link-title' => '$1 versión',
 
 );

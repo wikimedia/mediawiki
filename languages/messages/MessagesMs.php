@@ -2963,7 +2963,4 @@ Sila masukkan nama fail tanpa awalan "{{ns:file}}:".',
 
 #Jangan letak ungkapan nalar di bawah baris ini dan jangan ubah baris ini</pre>',
 
-# Language links
-'language-link-title' => 'versi $1',
-
 );

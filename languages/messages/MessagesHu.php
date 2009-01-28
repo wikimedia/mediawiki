@@ -673,6 +673,10 @@ Ne felejtsd el átnézni a [[Special:Preferences|személyes beállításaidat]].
 'badsig'                     => 'Érvénytelen aláírás; ellenőrizd a HTML-formázást.',
 'badsiglength'               => 'A megadott név túl hosszú;
 {{PLURAL:$1|Egy|$1}} karakternél rövidebbnek kell lennie.',
+'yourgender'                 => 'Nem:',
+'gender-unknown'             => 'Nincs megadva',
+'gender-male'                => 'Férfi',
+'gender-female'              => 'Nő',
 'email'                      => 'E-mail',
 'prefs-help-realname'        => 'A valódi nevet nem kötelező megadni, de ha úgy döntesz, hogy megadod, azzal leszel feltüntetve a munkád szerzőjeként.',
 'loginerror'                 => 'Hiba történt a bejelentkezés során',
@@ -3111,8 +3115,5 @@ Add meg a fájl nevét „{{ns:file}}:” előtag nélkül.',
 #A #-tel kezdődő sorok megjegyzésnek számítanak
 
 #A reguláris kifejezéseket ezen sor alá írd. Ezt a sort hagyd így, ahogy van.</pre>',
-
-# Language links
-'language-link-title' => 'Nyelv: $1',
 
 );

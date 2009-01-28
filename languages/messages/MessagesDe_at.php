@@ -11,4 +11,5 @@ $fallback = 'de';
 $messages = array(
 # Dates
 'january' => 'Jänner',
+
 );

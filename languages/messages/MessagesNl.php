@@ -100,6 +100,7 @@ $magicWords = array(
 	'numberoffiles'         => array( '1', 'AANTALBESTANDEN', 'NUMBEROFFILES' ),
 	'numberofusers'         => array( '1', 'AANTALGEBRUIKERS', 'NUMBEROFUSERS' ),
 	'numberofedits'         => array( '1', 'AANTALBEWERKINGEN', 'NUMBEROFEDITS' ),
+	'numberofviews'         => array( '1', 'AANTALKERENBEKEKEN', 'NUMBEROFVIEWS' ),
 	'pagename'              => array( '1', 'PAGINANAAM', 'PAGENAME' ),
 	'pagenamee'             => array( '1', 'PAGINANAAME', 'PAGENAMEE' ),
 	'namespace'             => array( '1', 'NAAMRUIMTE', 'NAMESPACE' ),
@@ -143,6 +144,7 @@ $magicWords = array(
 	'servername'            => array( '0', 'SERVERNAAM', 'SERVERNAME' ),
 	'scriptpath'            => array( '0', 'SCRIPTPAD', 'SCRIPTPATH' ),
 	'grammar'               => array( '0', 'GRAMMATICA:', 'GRAMMAR:' ),
+	'gender'                => array( '0', 'GESLACHT:', 'GENDER:' ),
 	'notitleconvert'        => array( '0', '__GEENTITELCONVERSIE__', '__GEENTC__', '__NOTITLECONVERT__', '__NOTC__' ),
 	'nocontentconvert'      => array( '0', '__GEENINHOUDCONVERSIE__', '__GEENIC__', '__NOCONTENTCONVERT__', '__NOCC__' ),
 	'currentweek'           => array( '1', 'HUIDIGEWEEK', 'CURRENTWEEK' ),
@@ -181,12 +183,14 @@ $magicWords = array(
 	'special'               => array( '0', 'speciaal', 'special' ),
 	'defaultsort'           => array( '1', 'STANDAARDSORTERING:', 'DEFAULTSORT:', 'DEFAULTSORTKEY:', 'DEFAULTCATEGORYSORT:' ),
 	'filepath'              => array( '0', 'BESTANDSPAD:', 'FILEPATH:' ),
+	'tag'                   => array( '0', 'label', 'tag' ),
 	'hiddencat'             => array( '1', '__VERBORGENCAT__', '__HIDDENCAT__' ),
 	'pagesincategory'       => array( '1', 'PAGINASINCATEGORIE', 'PAGINASINCAT', 'PAGESINCATEGORY', 'PAGESINCAT' ),
 	'pagesize'              => array( '1', 'PAGINAGROOTTE', 'PAGESIZE' ),
 	'noindex'               => array( '1', '__GEENINDEX__', '__NOINDEX__' ),
 	'numberingroup'         => array( '1', 'AANTALINGROEP', 'NUMBERINGROUP', 'NUMINGROUP' ),
 	'staticredirect'        => array( '1', '__STATISCHEDOORVERWIJZING__', '__STATISCHEREDIRECT__', '__STATICREDIRECT__' ),
+	'protectionlevel'       => array( '1', 'BEVEILIGINGSNIVEAU', 'PROTECTIONLEVEL' ),
 );
 
 $specialPageAliases = array(
@@ -233,7 +237,7 @@ $specialPageAliases = array(
 	'Protectedtitles'           => array( 'BeveiligdeTitels', 'BeschermdeTitels' ),
 	'Allpages'                  => array( 'AllePaginas', 'AllePagina’s', 'AllePagina\'s' ),
 	'Prefixindex'               => array( 'Voorvoegselindex', 'Prefixindex' ),
-	'Ipblocklist'               => array( 'IP-blokkeerlijst', 'IPblokkeerlijst', 'IpBlokkeerlijst' ),
+	'Ipblocklist'               => array( 'Blokkeerlijst', 'IP-blokkeerlijst', 'IPblokkeerlijst', 'IpBlokkeerlijst' ),
 	'Specialpages'              => array( 'SpecialePaginas', 'SpecialePagina’s', 'SpecialePagina\'s' ),
 	'Contributions'             => array( 'Bijdragen' ),
 	'Emailuser'                 => array( 'GebruikerE-mailen', 'E-mailGebruiker' ),
@@ -276,6 +280,7 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'LegePagina' ),
 	'LinkSearch'                => array( 'VerwijzingenZoeken', 'LinksZoeken' ),
 	'DeletedContributions'      => array( 'VerwijderdeBijdragen' ),
+	'Tags'                      => array( 'Labels' ),
 );
 
 $linkTrail = '/^([a-zäöüïëéèà]+)(.*)$/sDu';
@@ -3266,7 +3271,16 @@ Voer de bestandsnaam in zonder het voorvoegsel "{{ns:file}}:".',
 
 #Zet alle reguliere expressiefragmenten boven deze regel. Laat deze regel onveranderd</pre>',
 
-# Language links
-'language-link-title' => 'Versie: $1',
+# Special:Tag
+'tag-filter'              => '[[Special:Tags|Labelfilter]]:',
+'tag-filter-submit'       => 'Filteren',
+'tags-title'              => 'Labels',
+'tags-intro'              => 'Op deze pagina staan de labels waarmee de software iedere bewerking kan markeren, en hun betekenis.',
+'tags-tag'                => 'Interne labelnaam',
+'tags-display-header'     => 'Weergave in wijzigingslijsten',
+'tags-description-header' => 'Volledige beschrijving van betekenis',
+'tags-hitcount-header'    => 'Gelabelde bewerkingen',
+'tags-edit'               => 'bewerking',
+'tags-hitcount'           => '$1 {{PLURAL:$1|wijziging|wijzigingen}}',
 
 );

@@ -2846,7 +2846,4 @@ Mana “{{ns:file}}:” k'askaqniyuq willañiqip sutinta yaykuchiy.",
 
 #Tukuy regex rakikunata kay siq'ip hananman churay. Kay sinruta kay hinallatam saqiy</pre>",
 
-# Language links
-'language-link-title' => '$1 musuqchasqa',
-
 );

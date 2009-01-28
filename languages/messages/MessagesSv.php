@@ -1987,7 +1987,7 @@ Sidan ändrades senast av [[User:$3|$3]] ([[User talk:$3|diskussion]] | [[Specia
 'protectlogtext'              => 'Detta är en lista över applicerande och borttagande av skrivskydd.',
 'protectedarticle'            => 'skyddade [[$1]]',
 'modifiedarticleprotection'   => 'ändrade skyddsnivån för "[[$1]]"',
-'unprotectedarticle'          => 'tog bort skydd av $1',
+'unprotectedarticle'          => 'tog bort skydd av "[[$1]]"',
 'movedarticleprotection'      => 'flyttade skyddsinställningar från "[[$2]]" till "[[$1]]"',
 'protect-title'               => 'Skyddsinställningar för "$1"',
 'prot_1movedto2'              => 'flyttade [[$1]] till [[$2]]',
@@ -2076,7 +2076,7 @@ I sådana fall måste du se till att den senaste raderade versionen inte är ikr
 'cannotundelete'               => 'Återställning misslyckades; kanske någon redan har återställt sidan.',
 'undeletedpage'                => "<big>'''$1 har återställts'''</big>
 
-I  [[Special:Log/delete|borttagningsloggen]] kan du hitta information om nyligen borttagna och återställda sidor.",
+Se [[Special:Log/delete|raderingsloggen]] för en förteckning över de senaste raderingarna och återställningarna.",
 'undelete-header'              => 'Se [[Special:Log/delete|raderingsloggen]] för nyligen raderade sidor.',
 'undelete-search-box'          => 'Sök efter raderade sidor',
 'undelete-search-prefix'       => 'Sidor som börjar med:',
@@ -3103,8 +3103,5 @@ Skriv filnamnet utan prefixet "{{ns:file}}:" .',
 #Rader som börjar med # behandlas som kommentarer
 
 #Skriv alla fragment av reguljära uttryck ovanför den här raden. Lämna den här raden precis som den är</pre>',
-
-# Language links
-'language-link-title' => 'Version på $1',
 
 );

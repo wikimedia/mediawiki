@@ -2867,7 +2867,4 @@ D Yygab muess ohni dr Zuesatz „{{ns:file}}:“ erfolge.',
 #Zyylete, wu mit eme # aafange, wäre as Kommentar behandlet
 #Fragmänt vu reguläre Usdrick noch däre Zyylete yytrage. Die Zyylete nit verändere</pre>',
 
-# Language links
-'language-link-title' => '$1 Version',
-
 );

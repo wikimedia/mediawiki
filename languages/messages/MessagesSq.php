@@ -607,13 +607,15 @@ Arsyeja e dhënë për këtë është:
 :\'\'$2\'\'
 
 * Fillimi i bllokimit: $8
-* Afati i kalimit të bllokimit: $6
+* Kalimi i kohës së bllokimit: $6
+* Zgjatja e bllokimit: $7
 
 Ju mund të kontaktoni $1 ose një tjetër [[{{MediaWiki:Grouppage-sysop}}|administrues]] për ta diskutuar bllokimin.
 
-Vini re : që nuk mund ta përdorni "dërgo e-mail" feature përveç nëse keni një e-mail valid të regjistruar në [[Special:Preferences|preferencat tuaja]]                                        dhe nuk jeni bllokuar nga përdorimi i tij.
+Vini re : që nuk mund ta përdorni mundësinë "dërgo porosi elektronike" përveç nëse keni një postë elektronike të vlefshme të regjistruar në [[Special:Preferences|preferencat tuaja]] dhe nuk jeni bllokuar nga përdorimi i saj.
 
-Numri idendifikues i bllokimit tuaj është $5. Ju lutemi përfshijeni këtë Numër në të gjitha kërkesat që i bëni.',
+IP adresa juaj e tanishme është $3 dhe ID e bllokimit është #$5.
+Ju lutemi përfshini këto detaje në të gjitha kërkesat që i bëni.',
 'blockednoreason'                  => 'nuk ka arsye',
 'blockedoriginalsource'            => "Më poshtë tregohet burimi i '''$1''':",
 'blockededitsource'                => "Më poshtë tregohet teksti i '''redaktimeve tuaja''' të '''$1''':",
@@ -1854,6 +1856,7 @@ Plotësoni arsyen specifike më poshtë (p.sh., tregoni faqet specifike që u va
 ** Nofkë të papranueshme',
 'ipbanononly'                  => 'Blloko vetëm përdoruesin anonim',
 'ipbcreateaccount'             => 'Mbroje krijimin e llogarive',
+'ipbemailban'                  => 'Pa mundëso dërgimin  e porosive elektronike nga përdoruesit',
 'ipbenableautoblock'           => 'Blloko edhe IP adresën që ka përdor ky përdorues deri tash, si dhe të gjitha subadresat nga të cilat mundohet ky përdorues të editoj.',
 'ipbsubmit'                    => 'Blloko këtë përdorues',
 'ipbother'                     => 'Kohë tjetër',
@@ -1962,6 +1965,7 @@ Në ato raste, duhet ta zhvendosni ose përpuqni faqen vetë n.q.s. dëshironi."
 'movenologin'               => 'Nuk keni hyrë brenda',
 'movenologintext'           => 'Duhet të keni hapur një llogari dhe të keni [[Special:UserLogin|hyrë brenda]] për të zhvendosur një faqe.',
 'movenotallowed'            => 'Nuk ju lejohet të zhvendosni faqe.',
+'movenotallowedfile'        => 'Nuk keni leje për të lëvizur skeda.',
 'newtitle'                  => 'Tek titulli i ri',
 'move-watch'                => 'Mbikqyre këtë faqe',
 'movepagebtn'               => 'Zhvendose faqen',
@@ -2030,6 +2034,7 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 'import-comment'           => 'Arsyeja:',
 'importtext'               => 'Ju lutem eksportoni këtë skedë nga burimi wiki duke përdorur mjetin Special:Export, ruajeni në diskun tuaj dhe ngarkojeni këtu.',
 'importstart'              => 'Duke importuar faqet...',
+'importnopages'            => "S'ka faqe për tu importuar.",
 'importfailed'             => 'Importimi dështoi: $1',
 'importcantopen'           => 'Nuk mund të hapë skedën e importuar',
 'importbadinterwiki'       => 'Lidhje e prishur interwiki',
@@ -2440,7 +2445,7 @@ $1
 'trackbackdeleteok' => 'Lidhja ndjekëse u hoq.',
 
 # Delete conflict
-'deletedwhileediting' => 'Kujdes! Kjo faqe është grisur pasi ju keni filluar redaktimin!',
+'deletedwhileediting' => 'Kujdes! Kjo faqe është grisur pasi keni filluar redaktimin!',
 'confirmrecreate'     => "Përdoruesi [[User:$1|$1]] ([[User talk:$1|diskutime]]) grisi këtë artikull mbasi ju filluat ta redaktoni për arsyen:
 : ''$2''
 Ju lutem konfirmoni nëse dëshironi me të vertetë ta ri-krijoni këtë artikull.",
@@ -2559,8 +2564,5 @@ Vendosni emrin e skedës pa parashtesën "{{ns:file}}:".',
 # Special:BlankPage
 'blankpage'              => 'Faqe e zbrazët',
 'intentionallyblankpage' => 'Kjo faqe me qëllim është lënë e zbrazët',
-
-# Language links
-'language-link-title' => 'versioni $1',
 
 );

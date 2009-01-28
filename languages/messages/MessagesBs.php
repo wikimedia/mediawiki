@@ -3176,7 +3176,4 @@ Unesite ime datoteke bez "{{ns:file}}:" prefiksa.',
 
 #Stavite sve regex fragmente iznad ove linije. Ostavite ovu liniju onakvu kakva je</pre>',
 
-# Language links
-'language-link-title' => '$1 verzija',
-
 );

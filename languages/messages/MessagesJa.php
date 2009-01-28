@@ -66,7 +66,7 @@ $namespaceAliases = array(
 
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( '二重リダイレクト' ),
-	'BrokenRedirects'           => array( '迷子のリダイレクト' ),
+	'BrokenRedirects'           => array( '迷子のリダイレクト', '壊れたリダイレクト' ),
 	'Disambiguations'           => array( '曖昧さ回避のページ', '曖昧さ回避' ),
 	'Userlogin'                 => array( 'ログイン' ),
 	'Userlogout'                => array( 'ログアウト' ),
@@ -75,8 +75,8 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'ウォッチリスト' ),
 	'Recentchanges'             => array( '最近更新したページ' ),
 	'Upload'                    => array( 'アップロード' ),
-	'Listfiles'                 => array( 'ファイルリスト' ),
-	'Newimages'                 => array( '新しいファイルの一覧', '新着画像展示室' ),
+	'Listfiles'                 => array( 'ファイルリスト', 'ファイル一覧' ),
+	'Newimages'                 => array( '新着ファイル', '新しいファイルの一覧', '新着画像展示室' ),
 	'Listusers'                 => array( '登録利用者の一覧' ),
 	'Listgrouprights'           => array( '利用者グループの権限一覧' ),
 	'Statistics'                => array( '統計' ),
@@ -96,7 +96,7 @@ $specialPageAliases = array(
 	'Mostlinkedcategories'      => array( '被リンクの多いカテゴリ' ),
 	'Mostlinkedtemplates'       => array( '被リンクの多いテンプレート', '使用箇所の多いテンプレート' ),
 	'Mostimages'                => array( '被リンクの多いファイル', '使用箇所の多いファイル' ),
-	'Mostcategories'            => array( 'カテゴリの多い項目', 'カテゴリの多いページ' ),
+	'Mostcategories'            => array( 'カテゴリの多いページ', 'カテゴリの多い項目' ),
 	'Mostrevisions'             => array( '編集履歴の多いページ', '版の多い項目', '版の多いページ' ),
 	'Fewestrevisions'           => array( '編集履歴の少ないページ', '版の少ない項目', '版の少ないページ' ),
 	'Shortpages'                => array( '短いページ' ),
@@ -106,30 +106,30 @@ $specialPageAliases = array(
 	'Deadendpages'              => array( '有効なページへのリンクがないページ', '行き止まりページ' ),
 	'Protectedpages'            => array( '保護されているページ' ),
 	'Protectedtitles'           => array( '作成保護されているページ名' ),
-	'Allpages'                  => array( '全ページ', 'ページ一覧' ),
-	'Prefixindex'               => array( '始点指定ページ一覧' ),
+	'Allpages'                  => array( 'ページ一覧', '全ページ' ),
+	'Prefixindex'               => array( '前方一致ページ一覧', '始点指定ページ一覧' ),
 	'Ipblocklist'               => array( 'ブロックの一覧' ),
 	'Specialpages'              => array( '特別ページ一覧' ),
 	'Contributions'             => array( '投稿記録' ),
 	'Emailuser'                 => array( 'ウィキメール' ),
 	'Confirmemail'              => array( 'メールアドレスの確認' ),
 	'Whatlinkshere'             => array( 'リンク元' ),
-	'Recentchangeslinked'       => array( 'リンク先の更新状況', '関連ページの更新状況' ),
+	'Recentchangeslinked'       => array( '関連ページの更新状況', 'リンク先の更新状況' ),
 	'Movepage'                  => array( '移動' ),
 	'Blockme'                   => array( '自己ブロック' ),
 	'Booksources'               => array( '文献資料' ),
 	'Categories'                => array( 'カテゴリ', 'カテゴリ一覧' ),
 	'Export'                    => array( 'データ書き出し' ),
 	'Version'                   => array( 'バージョン情報' ),
-	'Allmessages'               => array( 'メッセージ一覧', '表示メッセージの一覧' ),
-	'Log'                       => array( 'ログ' ),
+	'Allmessages'               => array( 'メッセージ一覧', 'システムメッセージの一覧', '表示メッセージの一覧' ),
+	'Log'                       => array( 'ログ', '記録' ),
 	'Blockip'                   => array( '投稿ブロック' ),
 	'Undelete'                  => array( '復帰' ),
 	'Import'                    => array( 'インポート' ),
 	'Lockdb'                    => array( 'データベースロック' ),
-	'Unlockdb'                  => array( 'データベース解除' ),
+	'Unlockdb'                  => array( 'データベースロック解除', 'データベース解除' ),
 	'Userrights'                => array( '利用者権限' ),
-	'MIMEsearch'                => array( 'MIME検索' ),
+	'MIMEsearch'                => array( 'MIME検索', 'MIMEタイプ検索' ),
 	'FileDuplicateSearch'       => array( '重複ファイル検索' ),
 	'Unwatchedpages'            => array( 'ウォッチされていないページ' ),
 	'Listredirects'             => array( 'リダイレクトの一覧' ),
@@ -150,7 +150,8 @@ $specialPageAliases = array(
 	'Invalidateemail'           => array( 'ウィキメール無効' ),
 	'Blankpage'                 => array( '白紙ページ' ),
 	'LinkSearch'                => array( '外部リンク検索' ),
-	'DeletedContributions'      => array( '削除された投稿記録', '削除歴' ),
+	'DeletedContributions'      => array( '削除された投稿記録', '削除された投稿履歴', '削除歴' ),
+	'Tags'                      => array( 'タグ' ),
 );
 
 $magicWords = array(
@@ -681,7 +682,7 @@ $2',
 'bold_tip'        => '強い強調（太字）',
 'italic_sample'   => '弱い強調（斜体）',
 'italic_tip'      => '弱い強調（斜体）',
-'link_sample'     => '項目名',
+'link_sample'     => 'ページ名',
 'link_tip'        => '内部リンク',
 'extlink_sample'  => 'http://www.example.com リンクのタイトル',
 'extlink_tip'     => '外部リンク（http:// を忘れずにつけてください）',
@@ -707,7 +708,7 @@ $2',
 'showpreview'                      => 'プレビューを表示',
 'showlivepreview'                  => 'ライブプレビュー',
 'showdiff'                         => '差分を表示',
-'anoneditwarning'                  => "'''警告:'''あなたはログインしていません。このまま投稿を行った場合、あなたのIPアドレスがこの項目の履歴に記録されます。",
+'anoneditwarning'                  => "'''警告:''' あなたはログインしていません。このまま投稿を行った場合、あなたのIPアドレスがこのページの編集履歴に記録されます。",
 'missingsummary'                   => "'''注意:''' 要約欄が空欄です。投稿ボタンをもう一度押すと、要約なしのまま投稿されます。",
 'missingcommenttext'               => '以下にコメントを入力してください。',
 'missingcommentheader'             => "'''注意:''' 題名・見出しが空欄です。投稿ボタンをもう一度押すと、要約なしのまま投稿されます。",
@@ -982,7 +983,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'visualcomparison'        => '表示結果の比較',
 'wikicodecomparison'      => 'ウィキテキストの比較',
 'editundo'                => '取り消し',
-'diff-multi'              => '（間の $1 版分が非表示です）',
+'diff-multi'              => '(間の $1版分が非表示)',
 'diff-movedto'            => '$1へ移動',
 'diff-styleadded'         => '$1 のスタイル追加',
 'diff-added'              => '$1の追加',
@@ -1176,7 +1177,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'userrights-lookup-user'      => '利用者グループを管理',
 'userrights-user-editname'    => '利用者名:',
 'editusergroup'               => '利用者グループを編集',
-'editinguser'                 => "利用者 [[User:$1|$1]]'''（[[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]）の権限を編集中",
+'editinguser'                 => "利用者 '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) の権限を変更中",
 'userrights-editusergroup'    => '利用者グループを編集',
 'saveusergroups'              => '利用者グループを保存',
 'userrights-groupsmember'     => '所属グループ:',
@@ -1319,8 +1320,8 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'recentchanges-legend'              => '最近更新されたページのオプション',
 'recentchangestext'                 => '最近の更新はこのページから確認できます。',
 'recentchanges-feed-description'    => '最近の更新はこのフィードで確認できます。',
-'rcnote'                            => "以下は $4 $5 までの{{PLURAL:$2|1日|'''$2'''日間}}になされた'''$1'''件の変更です（<strong>{{int:newpageletter}}</strong>=新規項目、<strong>{{int:minoreditletter}}</strong>=細部の編集、<strong>{{int:boteditletter}}</strong>=ボットの編集）",
-'rcnotefrom'                        => '以下は <b>$2</b> までの更新です。（最大 <b>$1</b> 件）',
+'rcnote'                            => "以下は $4 $5 までの{{PLURAL:$2|1日|'''$2'''日間}}になされた'''$1'''件の変更です。(<strong>{{int:newpageletter}}</strong>=新規ページ、<strong>{{int:minoreditletter}}</strong>=細部の編集、<strong>{{int:boteditletter}}</strong>=ボットの編集)",
+'rcnotefrom'                        => "以下は '''$2''' 以降になされた変更です (最大 '''$1'''件)。",
 'rclistfrom'                        => '$1からの更新を表示する',
 'rcshowhideminor'                   => '細部の編集を$1',
 'rcshowhidebots'                    => 'ボットの編集を$1',
@@ -1610,7 +1611,7 @@ PICT # misc.
 'nbytes'                  => '$1 バイト',
 'ncategories'             => '$1 のカテゴリ',
 'nlinks'                  => '$1 個のリンク',
-'nmembers'                => '$1 項目',
+'nmembers'                => '$1項目',
 'nrevisions'              => '$1 の版',
 'nviews'                  => '$1 回表示',
 'specialpage-empty'       => '合致するものがありません。',
@@ -1630,9 +1631,9 @@ PICT # misc.
 'mostlinked'              => '被リンクの多いページ',
 'mostlinkedcategories'    => '項目の多いカテゴリ',
 'mostlinkedtemplates'     => '使用箇所の多いテンプレート',
-'mostcategories'          => 'カテゴリの多い項目',
+'mostcategories'          => 'カテゴリの多いページ',
 'mostimages'              => 'リンクの多いファイル',
-'mostrevisions'           => '版の多い項目',
+'mostrevisions'           => '版の多いページ',
 'prefixindex'             => '前方一致ページ一覧',
 'shortpages'              => '短いページ',
 'longpages'               => '長いページ',
@@ -1657,7 +1658,7 @@ PICT # misc.
 'move'                    => '移動',
 'movethispage'            => 'このページを移動',
 'unusedimagestext'        => '他のウェブサイトがURLを直接用いてファイルにリンクしている場合もあります。以下のファイル一覧には、そのような形で利用されているファイルが含まれている可能性があります。',
-'unusedcategoriestext'    => '以下のカテゴリページはどの項目・カテゴリからも使われていません。',
+'unusedcategoriestext'    => '以下のカテゴリはページが存在しますが、他のどのページおよびカテゴリからも使われていません。',
 'notargettitle'           => '対象となるページが存在しません',
 'notargettext'            => '対象となるページまたは利用者が指定されていません。',
 'nopagetitle'             => 'そのようなページはありません',
@@ -1993,7 +1994,7 @@ $NEWPAGE
 # Namespace form on various pages
 'namespace'      => '名前空間:',
 'invert'         => '選択したものを除く',
-'blanknamespace' => '（標準）',
+'blanknamespace' => '(標準)',
 
 # Contributions
 'contributions'       => '利用者の投稿記録',
@@ -2317,7 +2318,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'tooltip-ca-watch'                => 'このページをウォッチリストに追加',
 'tooltip-ca-unwatch'              => 'このページをウォッチリストから外す',
 'tooltip-search'                  => 'ウィキ内を検索',
-'tooltip-search-go'               => '入力された文字列と一致する項目がある場合そのページへ移動します',
+'tooltip-search-go'               => '入力された文字列と一致するものがある場合、そのページへ移動します',
 'tooltip-search-fulltext'         => '入力された文字列が含まれるページを検索します',
 'tooltip-p-logo'                  => 'メインページ',
 'tooltip-n-mainpage'              => 'メインページに移動',
@@ -2406,10 +2407,10 @@ $1 は、すでにブロックされています。設定を変更しますか�
 
 # Info page
 'infosubtitle'   => 'ページ情報',
-'numedits'       => '編集数（項目）: $1',
+'numedits'       => '編集数（主ページ）: $1',
 'numtalkedits'   => '編集数（ノート）: $1',
 'numwatchers'    => 'ウォッチしている利用者数: $1',
-'numauthors'     => '投稿者数（項目）: $1',
+'numauthors'     => '投稿者数（主ページ）: $1',
 'numtalkauthors' => '投稿者数（ノート）: $1',
 
 # Skin names
@@ -2432,7 +2433,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 
 # Patrolling
 'markaspatrolleddiff'                 => 'パトロール済みにする',
-'markaspatrolledtext'                 => 'この項目をパトロール済みにする',
+'markaspatrolledtext'                 => 'このページをパトロール済みにする',
 'markedaspatrolled'                   => 'パトロール済みにしました。',
 'markedaspatrolledtext'               => '選択された編集をパトロール済みにしました。',
 'rcpatroldisabled'                    => '最近更新したページのパトロールは無効',
@@ -2848,8 +2849,7 @@ $5
 'scarytranscludetoolong'  => '[URLが長すぎます]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">
-この項目へのトラックバック:
+'trackbackbox'      => '<div id="mw_trackbacks">このページへのトラックバック:<br />
 $1
 </div>',
 'trackbackremove'   => ' ([$1 削除])',
@@ -3053,15 +3053,12 @@ $1
 'intentionallyblankpage' => 'このページは意図的に白紙にされています',
 
 # External image whitelist
-'external_image_whitelist' => ' #この行を変更しないでください<pre>
-#この下に正規表現 (//の間にある記述) を置いてください
-#外部の（ホットリンクされている）画像の URLs と一致するか検証されます
+'external_image_whitelist' => ' #この行はそのままにしておいてください<pre>
+#この下に正規表現 (//の間にくる記述) を置いてください
+#外部の (ホットリンクとして表示している) 画像の URL と一致するか検査されます
 #一致する場合は画像として、一致しない場合は画像へのリンクとして表示されます
-#行の冒頭に # をつけるとコメントとして扱われます
+#行の頭に # をつけるとコメントとして扱われます
 
 #正規表現は全てこの行の上に置いてください。この行を変更しないでください</pre>',
-
-# Language links
-'language-link-title' => '$1版',
 
 );

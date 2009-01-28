@@ -2901,7 +2901,4 @@ Kirjoita tiedostonimi ilman ”{{ns:file}}:”-etuliitettä.',
 
 #Laita kaikki säännöllisten lausekkeiden palaset tämän rivit yläpuolelle. Älä muuta tätä riviä lainkaan</pre>',
 
-# Language links
-'language-link-title' => 'Versio kielellä $1',
-
 );

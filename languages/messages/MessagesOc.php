@@ -3043,7 +3043,4 @@ Picatz lo nom del fichièr sens lo prefix « {{ns:file}}: ».',
 
 #Indicatz totes los fragments d’expressions regularas en bas d'aquesta linha. Aquesta darrièra deu èsser daissada exactament coma es.</pre>",
 
-# Language links
-'language-link-title' => 'version en $1',
-
 );
