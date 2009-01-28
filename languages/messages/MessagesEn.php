@@ -3812,5 +3812,5 @@ Enter the filename without the "{{ns:file}}:" prefix.',
 'tags-description-header' => 'Full description of meaning',
 'tags-hitcount-header' => 'Tagged edits',
 'tags-edit' => 'edit',
-'tags-hitcount' => '$1 changes',
+'tags-hitcount' => '$1 {{PLURAL:$1|change|changes}}',
 );
