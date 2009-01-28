@@ -2221,7 +2221,7 @@ $1已經被封鎖。您是否想更改這個設定？',
 'tooltip-search'                  => '搜尋該網站',
 'tooltip-search-go'               => '如果相同的標題存在的話便直接前往該頁面',
 'tooltip-search-fulltext'         => '搜尋該文字的頁面',
-'tooltip-p-logo'                  => '首頁',
+'tooltip-p-logo'                  => '訪問首頁',
 'tooltip-n-mainpage'              => '訪問首頁',
 'tooltip-n-portal'                => '關於本計劃、你可以做什麼、應該如何做',
 'tooltip-n-currentevents'         => '提供當前新聞事件的背景資料',
@@ -2894,8 +2894,4 @@ $1
 #有 # 開頭的行會當成註解
 
 #在這行上面輸入所有的regex。留下這行一樣的文字</pre>',
-
-# Language links
-'language-link-title' => '$1版本',
-
 );

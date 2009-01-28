@@ -2277,7 +2277,7 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 'tooltip-search'                  => '搵{{SITENAME}}',
 'tooltip-search-go'               => '如果相同嘅標題存在嘅話就直接去嗰一版',
 'tooltip-search-fulltext'         => '搵呢個文字嘅版',
-'tooltip-p-logo'                  => '頭版',
+'tooltip-p-logo'                  => '睇頭版',
 'tooltip-n-mainpage'              => '睇頭版',
 'tooltip-n-portal'                => '關於呢個計劃，你可以做乜，應該要點做',
 'tooltip-n-currentevents'         => '提供而家發生嘅事嘅背景資料',
@@ -2960,8 +2960,4 @@ $1
 #有 # 開頭嘅行會當做註解
 
 #響呢行上面入晒全部嘅regex。留番呢行一樣嘅字</pre>',
-
-# Language links
-'language-link-title' => '$1版',
-
 );

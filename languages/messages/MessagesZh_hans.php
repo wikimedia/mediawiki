@@ -2322,7 +2322,7 @@ $1已经被封锁。您是否想更改这个设置？',
 'tooltip-search'                  => '搜索该网站',
 'tooltip-search-go'               => '如果相同的标题存在的话便直接前往该页面',
 'tooltip-search-fulltext'         => '搜索该文字的页面',
-'tooltip-p-logo'                  => '首页',
+'tooltip-p-logo'                  => '访问首页',
 'tooltip-n-mainpage'              => '访问首页',
 'tooltip-n-portal'                => '关于本计划, 您可以做什么, 应该如何做',
 'tooltip-n-currentevents'         => '提供当前事件的背景资料',
@@ -2995,8 +2995,4 @@ $1
 #有 # 开头的行会当成注解
 
 #在这行上面输入所有的regex。留下这行一样的文字</pre>',
-
-# Language links
-'language-link-title' => '$1版本',
-
 );
