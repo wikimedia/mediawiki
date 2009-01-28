@@ -1235,7 +1235,7 @@ CREATE TABLE /*_*/updatelog (
 ) /*$wgDBTableOptions*/;
 
 --- A table to track tags for revisions, logs and recent changes.
-REATE TABLE /*_*/change_tag (
+CREATE TABLE /*_*/change_tag (
 	ct_rc_id int NULL,
 	ct_log_id int NULL,
 	ct_rev_id int NULL,
