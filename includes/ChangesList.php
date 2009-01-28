@@ -338,6 +338,12 @@ class ChangesList {
 			}
 		}	
 	}
+
+	protected function insertTags( &$s, &$rc, &$classes ) {
+		list($tagSummary, $newClasses) = ChangeTags::formatSummaryRow( $rc->mAttribs['ts_tags'], 'changeslist' );
+		$classes = array_merge( $classes, $newClasses );
+		$s .= ' ' . $tagSummary;
+	}
 }
 
 
@@ -358,6 +364,7 @@ class OldChangesList extends ChangesList {
 		$this->insertDateHeader( $dateheader, $rc->mAttribs['rc_timestamp'] );
 
 		$s = '';
+		$classes = array();
 		// Moved pages
 		if( $rc->mAttribs['rc_type'] == RC_MOVE || $rc->mAttribs['rc_type'] == RC_MOVE_OVER_REDIRECT ) {
 			$this->insertMove( $s, $rc );
@@ -394,6 +401,8 @@ class OldChangesList extends ChangesList {
 		$this->insertAction( $s, $rc );
 		# Edit or log comment
 		$this->insertComment( $s, $rc );
+		# Tags
+		$this->insertTags( $s, $rc, $classes );
 		# Rollback
 		$this->insertRollback( $s, $rc );
 		# Mark revision as deleted if so
@@ -409,7 +418,7 @@ class OldChangesList extends ChangesList {
 		wfRunHooks( 'OldChangesListRecentChangesLine', array(&$this, &$s, $rc) );
 
 		wfProfileOut( __METHOD__ );
-		return "$dateheader<li>$s</li>\n";
+		return "$dateheader<li class=\"".implode( ' ', $classes )."\">$s</li>\n";
 	}
 }
 

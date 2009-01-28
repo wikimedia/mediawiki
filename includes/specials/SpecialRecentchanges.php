@@ -35,6 +35,7 @@ class SpecialRecentChanges extends SpecialPage {
 
 		$opts->add( 'categories', '' );
 		$opts->add( 'categories_any', false );
+		$opts->add( 'tagfilter', '' );
 		return $opts;
 	}
 
@@ -275,12 +276,18 @@ class SpecialRecentChanges extends SpecialPage {
 		$namespace = $opts['namespace'];
 		$invert = $opts['invert'];
 
+		$join_conds = array();
+
 		// JOIN on watchlist for users
 		if( $uid ) {
 			$tables[] = 'watchlist';
-			$join_conds = array( 'watchlist' => array('LEFT JOIN',
-				"wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace") );
+			$join_conds['watchlist'] = array('LEFT JOIN',
+				"wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace");
 		}
+
+		// Tag stuff.
+		$fields = array(); // Fields are * in this case, so let the function modify an empty array to keep it happy.
+		ChangeTags::modifyDisplayQuery( &$tables, $fields, &$conds, &$join_conds, $opts['tagfilter'] );
 
 		wfRunHooks('SpecialRecentChangesQuery', array( &$conds, &$tables, &$join_conds, $opts ) );
 
@@ -453,6 +460,8 @@ class SpecialRecentChanges extends SpecialPage {
 		if( $wgAllowCategorizedRecentChanges ) {
 			$extraOpts['category'] = $this->categoryFilterForm( $opts );
 		}
+
+		$extraOpts['tagfilter'] = ChangeTags::buildTagFilterSelector( $opts['tagfilter'] );
 
 		wfRunHooks( 'SpecialRecentChangesPanel', array( &$extraOpts, $opts ) );
 		return $extraOpts;

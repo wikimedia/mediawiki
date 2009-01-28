@@ -159,6 +159,7 @@ class SpecialPage
 		'Randomredirect'            => 'SpecialRandomredirect',
 		'Withoutinterwiki'          => array( 'SpecialPage', 'Withoutinterwiki' ),
 		'Filepath'                  => array( 'SpecialPage', 'Filepath' ),
+		'Tags'			    => 'SpecialTags',
 
 		'Mypage'                    => array( 'SpecialMypage' ),
 		'Mytalk'                    => array( 'SpecialMytalk' ),

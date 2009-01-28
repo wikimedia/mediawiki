@@ -27,7 +27,13 @@ function diffcheck() {
 				}
 				if (oli) { // it's the second checked radio
 					if (inputs[1].checked) {
-						oli.className = "selected";
+						if ( (typeof oli.className) != 'undefined') {
+							oli.classNameOriginal = oli.className.replace( 'selected', '' );
+						} else {
+							oli.classNameOriginal = '';
+						}
+						
+						oli.className = "selected "+oli.classNameOriginal;
 						return false;
 					}
 				} else if (inputs[0].checked) {
@@ -42,7 +48,13 @@ function diffcheck() {
 				if (dli) {
 					inputs[1].style.visibility = 'hidden';
 				}
-				lis[i].className = "selected";
+				if ( (typeof lis[i].className) != 'undefined') {
+					lis[i].classNameOriginal = lis[i].className.replace( 'selected', '' );
+				} else {
+					lis[i].classNameOriginal = '';
+				}
+						
+				lis[i].className = "selected "+lis[i].classNameOriginal;
 				oli = lis[i];
 			}  else { // no radio is checked in this row
 				if (!oli) {
@@ -55,7 +67,7 @@ function diffcheck() {
 				} else {
 					inputs[1].style.visibility = 'visible';
 				}
-				lis[i].className = "";
+				lis[i].className = lis[i].classNameOriginal;
 			}
 		}
 	}
