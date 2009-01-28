@@ -745,8 +745,8 @@ abstract class TablePager extends IndexPager {
 	}
 
 	function formatRow( $row ) {
-		$class = $this->getRowClass( $row );
-		$s = "<tr class=\"$class\">\n";
+		$rowClass = $this->getRowClass( $row );
+		$s = "<tr class=\"$rowClass\">\n";
 		$fieldNames = $this->getFieldNames();
 		$this->mCurrentRow = $row;  # In case formatValue needs to know
 		foreach ( $fieldNames as $field => $name ) {
