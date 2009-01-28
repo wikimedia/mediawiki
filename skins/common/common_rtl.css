@@ -48,7 +48,7 @@ html > body div#article ul {
 }
 
 /* feed links */
-a.feedlink, a.feedlink {
-	background: none;
-	padding-left: 0;
+a.feedlink {
+	background: none !important;
+	padding-left: 0 !important;
 }
