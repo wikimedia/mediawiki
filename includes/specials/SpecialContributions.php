@@ -397,8 +397,8 @@ class ContribsPager extends ReverseChronologicalPager {
 			'tables' => $tables,
 			'fields' => array(
 				'page_namespace', 'page_title', 'page_is_new', 'page_latest', 'page_is_redirect',
-				'rev_id', 'rev_page','rev_text_id', 'rev_timestamp', 'rev_comment', 'rev_minor_edit', 
-				'rev_user', 'rev_user_text', 'rev_parent_id', 'rev_deleted'
+				'page_len','rev_id', 'rev_page', 'rev_text_id', 'rev_timestamp', 'rev_comment', 
+				'rev_minor_edit', 'rev_user', 'rev_user_text', 'rev_parent_id', 'rev_deleted'
 			),
 			'conds' => $conds,
 			'options' => array( 'USE INDEX' => array('revision' => $index) ),
