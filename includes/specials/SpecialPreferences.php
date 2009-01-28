@@ -893,18 +893,16 @@ class PreferencesForm {
 				$mplink = htmlspecialchars( $mptitle->getLocalURL( "useskin=$skinkey" ) );
 				$previewlink = "(<a target='_blank' href=\"$mplink\">$previewtext</a>)";
 				$extraLinks = '';
-				if( $skinkey == $this->mSkin ) {
-					global $wgAllowUserCss, $wgAllowUserJs;
-					if( $wgAllowUserCss ) {
-						$cssPage = Title::makeTitleSafe( NS_USER, $wgUser->getName().'/'.$skinkey.'.css' );
-						$customCSS = $sk->makeLinkObj( $cssPage, wfMsgExt('prefs-custom-css', array() ) );
-						$extraLinks .= " ($customCSS)";
-					}
-					if( $wgAllowUserJs ) {
-						$jsPage = Title::makeTitleSafe( NS_USER, $wgUser->getName().'/'.$skinkey.'.js' );
-						$customJS = $sk->makeLinkObj( $jsPage, wfMsgHtml('prefs-custom-js') );
-						$extraLinks .= " ($customJS)";
-					}
+				global $wgAllowUserCss, $wgAllowUserJs;
+				if( $wgAllowUserCss ) {
+					$cssPage = Title::makeTitleSafe( NS_USER, $wgUser->getName().'/'.$skinkey.'.css' );
+					$customCSS = $sk->makeLinkObj( $cssPage, wfMsgExt('prefs-custom-css', array() ) );
+					$extraLinks .= " ($customCSS)";
+				}
+				if( $wgAllowUserJs ) {
+					$jsPage = Title::makeTitleSafe( NS_USER, $wgUser->getName().'/'.$skinkey.'.js' );
+					$customJS = $sk->makeLinkObj( $jsPage, wfMsgHtml('prefs-custom-js') );
+					$extraLinks .= " ($customJS)";
 				}
 				if( $skinkey == $wgDefaultSkin )
 					$sn .= ' (' . wfMsg( 'default' ) . ')';
