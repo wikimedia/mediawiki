@@ -96,7 +96,7 @@ function wfSpecialWatchlist( $par ) {
 	}
 
 	$dbr = wfGetDB( DB_SLAVE, 'watchlist' );
-	list( $page, $watchlist, $recentchanges ) = $dbr->tableNamesN( 'page', 'watchlist', 'recentchanges' );
+	$recentchanges = $dbr->tableName( 'recentchanges' );
 
 	$watchlistCount = $dbr->selectField( 'watchlist', 'COUNT(*)',
 		array( 'wl_user' => $uid ), __METHOD__ );
