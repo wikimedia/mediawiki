@@ -158,6 +158,9 @@ $wgUpdates = array(
 		array( 'do_active_users_init' ),
 		array( 'add_field', 'ipblocks',     'ipb_allow_usertalk',  'patch-ipb_allow_usertalk.sql' ),
 		array( 'sqlite_initial_indexes' ),
+		array( 'add_table', 'change_tag',			   'patch-change_tag.sql' ),
+		array( 'add_table', 'tag_summary',			   'patch-change_tag.sql' ),
+		array( 'add_table', 'valid_tag',			   'patch-change_tag.sql' ),
 	),
 );
 

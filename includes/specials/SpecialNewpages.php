@@ -32,6 +32,7 @@ class SpecialNewpages extends SpecialPage {
 		$opts->add( 'namespace', '0' );
 		$opts->add( 'username', '' );
 		$opts->add( 'feed', '' );
+		$opts->add( 'tagfilter', '' );
 
 		// Set values
 		$opts->fetchValuesFromRequest( $wgRequest );
@@ -176,6 +177,8 @@ class SpecialNewpages extends SpecialPage {
 		}
 		$hidden = implode( "\n", $hidden );
 
+		list( $tagFilterLabel, $tagFilterSelector ) = ChangeTags::buildTagFilterSelector( $this->opts['tagfilter'] );
+
 		$form = Xml::openElement( 'form', array( 'action' => $wgScript ) ) .
 			Xml::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) .
 			Xml::fieldset( wfMsg( 'newpages' ) ) .
@@ -186,6 +189,14 @@ class SpecialNewpages extends SpecialPage {
 				"</td>
 				<td class='mw-input'>" .
 					Xml::namespaceSelector( $namespace, 'all' ) .
+				"</td>
+			</tr>" .
+			"<tr>
+				<td class='mw-label'>" .
+					$tagFilterLabel .
+				"</td>
+				<td class='mw-input'>" .
+					$tagFilterSelector .
 				"</td>
 			</tr>" .
 			($wgEnableNewpagesUserFilter ?
@@ -235,6 +246,9 @@ class SpecialNewpages extends SpecialPage {
 	 */
 	public function formatRow( $result ) {
 		global $wgLang, $wgContLang, $wgUser;
+
+		$classes = array();
+		
 		$dm = $wgContLang->getDirMark();
 
 		$title = Title::makeTitleSafe( $result->rc_namespace, $result->rc_title );
@@ -247,9 +261,17 @@ class SpecialNewpages extends SpecialPage {
 		$ulink = $this->skin->userLink( $result->rc_user, $result->rc_user_text ) . ' ' .
 			$this->skin->userToolLinks( $result->rc_user, $result->rc_user_text );
 		$comment = $this->skin->commentBlock( $result->rc_comment );
-		$css = $this->patrollable( $result ) ? " class='not-patrolled'" : '';
+		
+		if ( $this->patrollable( $result ) )
+			$classes[] = 'not-patrolled';
 
-		return "<li{$css}>{$time} {$dm}{$plink} ({$hist}) {$dm}[{$length}] {$dm}{$ulink} {$comment}</li>\n";
+		# Tags, if any.
+		list( $tagDisplay, $newClasses ) = ChangeTags::formatSummaryRow( $result->ts_tags, 'newpages' );
+		$classes = array_merge( $classes, $newClasses );
+
+		$css = count($classes) ? ' class="'.implode( " ", $classes).'"' : '';
+
+		return "<li{$css}>{$time} {$dm}{$plink} ({$hist}) {$dm}[{$length}] {$dm}{$ulink} {$comment} {$tagDisplay}</li>\n";
 	}
 
 	/**
@@ -378,7 +400,6 @@ class NewPagesPager extends ReverseChronologicalPager {
 		} else {
 			$rcIndexes = array( 'rc_timestamp' );
 		}
-		$conds[] = 'page_id = rc_cur_id';
 
 		# $wgEnableNewpagesUserFilter - temp WMF hack
 		if( $wgEnableNewpagesUserFilter && $user ) {
@@ -400,13 +421,24 @@ class NewPagesPager extends ReverseChronologicalPager {
 			$conds['page_is_redirect'] = 0;
 		}
 
-		return array(
+		$info = array(
 			'tables' => array( 'recentchanges', 'page' ),
 			'fields' => 'rc_namespace,rc_title, rc_cur_id, rc_user,rc_user_text,rc_comment,
-				rc_timestamp,rc_patrolled,rc_id,page_len as length, page_latest as rev_id',
+				rc_timestamp,rc_patrolled,rc_id,page_len as length, page_latest as rev_id, ts_tags',
 			'conds' => $conds,
-			'options' => array( 'USE INDEX' => array('recentchanges' => $rcIndexes) )
+			'options' => array( 'USE INDEX' => array('recentchanges' => $rcIndexes) ),
+			'join_conds' => array(
+				'page' => array('INNER JOIN', 'page_id=rc_cur_id'),
+			),
 		);
+
+		## Empty array for fields, it'll be set by us anyway.
+		$fields = array();
+
+		## Modify query for tags
+		ChangeTags::modifyDisplayQuery( $info['tables'], $fields, $info['conds'], $info['join_conds'], $this->opts['tagfilter'] );
+
+		return $info;
 	}
 
 	function getIndexField() {

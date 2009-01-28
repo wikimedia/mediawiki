@@ -846,6 +846,9 @@ $options: the options.  Will always include either 'known' or 'broken', and may
 'LinksUpdateConstructed': At the end of LinksUpdate() is contruction.
 &$linksUpdate: the LinkUpdate object
 
+'ListDefinedTags': When trying to find all defined tags.
+&$tags: The list of tags.
+
 'LoadAllMessages': called by MessageCache::loadAllMessages() to load extensions messages
 
 'LoadExtensionSchemaUpdates': called by maintenance/updaters.inc when upgrading database schema
