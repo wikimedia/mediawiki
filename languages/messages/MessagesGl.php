@@ -411,16 +411,17 @@ Pode atopar unha lista coas páxinas especiais válidas en [[Special:SpecialPage
 # General errors
 'error'                => 'Erro',
 'databaseerror'        => 'Erro na base de datos',
-'dberrortext'          => 'Ocorreu un erro de sintaxe na consulta á base de datos. Isto pódese deber a un erro no programa.
+'dberrortext'          => 'Ocorreu un erro de sintaxe na consulta á base de datos.
+Isto pódese deber a un erro no programa.
 A última consulta á base de datos foi:
 <blockquote><tt>$1</tt></blockquote>
 desde a función "<tt>$2</tt>".
-MySQL retornou o erro "<tt>$3: $4</tt>".',
+MySQL devolveu o erro "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Ocorreu un erro de sintaxe na consulta.
 A última consulta á base de datos foi:
 "$1"
 desde a función "$2".
-MySQL retornou o erro "$3: $4".',
+MySQL devolveu o erro "$3: $4"',
 'noconnect'            => 'O wiki está experimentando algunhas dificultades técnicas e non se pode contactar co servidor da base de datos.<br />
 $1',
 'nodb'                 => 'Non se pode seleccionar a base de datos $1',
@@ -2194,7 +2195,7 @@ Nestes casos, terá que mover ou mesturar a páxina manualmente se o desexa.",
 'movepage-moved-noredirect'    => 'A creación da redirección da primeira cara á segunda foi cancelada.',
 'articleexists'                => 'Xa existe unha páxina con ese nome, ou o nome que escolleu non é válido.
 Por favor escolla outro nome.',
-'cantmove-titleprotected'      => 'Vostede non pode mover a páxina a esta ubicación, porque o novo título foi protexido da creación',
+'cantmove-titleprotected'      => 'Non pode mover a páxina a este destino, xa que o novo título foi protexido fronte á creación',
 'talkexists'                   => "'''Só foi movida con éxito a páxina, pero a páxina de conserva non puido ser movida porque xa existe unha co novo título. Por favor, mestúreas de xeito manual.'''",
 'movedto'                      => 'movido a',
 'movetalk'                     => 'Mover a páxina de conversa, se cómpre',
@@ -2977,7 +2978,16 @@ Introduza o nome do ficheiro sen o prefixo "{{ns:file}}:".',
 
 #Poña todos os fragmentos por riba desta liña. Deixe esta liña tal e como está</pre>',
 
-# Language links
-'language-link-title' => 'Versión en $1',
+# Special:Tag
+'tag-filter'              => 'Filtrar as [[Special:Tags|etiquetas]]:',
+'tag-filter-submit'       => 'Filtro',
+'tags-title'              => 'Etiquetas',
+'tags-intro'              => 'Esta páxina lista as etiquetas coas que o software pode marcar unha edición, e mailos seus significados.',
+'tags-tag'                => 'Nome interno da etiqueta',
+'tags-display-header'     => 'Aparición nas listas de cambios',
+'tags-description-header' => 'Descrición completa do significado',
+'tags-hitcount-header'    => 'Edicións etiquetadas',
+'tags-edit'               => 'editar',
+'tags-hitcount'           => '$1 {{PLURAL:$1|cambio|cambios}}',
 
 );

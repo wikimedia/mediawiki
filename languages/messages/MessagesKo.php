@@ -2878,7 +2878,4 @@ $5
 'blankpage'              => '빈 문서',
 'intentionallyblankpage' => '이 문서는 고의적으로 빈 채 방치되어 있습니다.',
 
-# Language links
-'language-link-title' => '$1 버전',
-
 );

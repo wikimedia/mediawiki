@@ -3127,7 +3127,4 @@ Zadejte jméno souboru bez označení "{{ns:file}}:".',
 
 #Všechny regulární výrazy uveďte nad touto řádkou. Tuto řádku ponechte beze změny.</pre>',
 
-# Language links
-'language-link-title' => '$1',
-
 );

@@ -2951,7 +2951,4 @@ Inserire il nome del file senza il prefisso \"{{ns:file}}:\"",
 
 #Inserisci sopra questa riga tutti i frammenti di regex. Lascia questa riga esattamente com'è</pre>",
 
-# Language links
-'language-link-title' => 'Versione $1',
-
 );

@@ -620,8 +620,8 @@ Wybierz inną nazwę użytkownika.',
 Dopuszczalna długość to $1 {{PLURAL:$1|znak|znaki|znaków}}.',
 'yourgender'                 => 'Płeć',
 'gender-unknown'             => 'nie określono',
-'gender-male'                => 'męska',
-'gender-female'              => 'żeńska',
+'gender-male'                => 'mężczyzna',
+'gender-female'              => 'kobieta',
 'email'                      => 'E-mail',
 'prefs-help-realname'        => 'Wpisanie imienia i nazwiska nie jest obowiązkowe.
 Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje autorstwo.',
@@ -1277,7 +1277,7 @@ Zapoznaj się z math/README w celu konfiguracji.',
 'group-suppress-member'      => 'rewizor',
 
 'grouppage-user'          => '{{ns:project}}:Użytkownicy',
-'grouppage-autoconfirmed' => '{{ns:project}}:Automatycznie zatwierdzeni użytkownicy',
+'grouppage-autoconfirmed' => '{{ns:project}}:Automatycznie zatwierdzani użytkownicy',
 'grouppage-bot'           => '{{ns:project}}:Boty',
 'grouppage-sysop'         => '{{ns:project}}:Administratorzy',
 'grouppage-bureaucrat'    => '{{ns:project}}:Biurokraci',
@@ -2484,7 +2484,7 @@ Wszystkie operacje importu transwiki są odnotowywane w [[Special:Log/import|rej
 'tooltip-watch'                   => 'Dodaj tę stronę do listy obserwowanych',
 'tooltip-recreate'                => 'Utwórz stronę pomimo jej wcześniejszego usunięcia.',
 'tooltip-upload'                  => 'Rozpoczęcie przesyłania',
-'tooltip-rollback'                => '"cofnij" wycofuje jednym kliknięciem zmianę(-y) tej strony dokonane przez ostatniego edytującego.',
+'tooltip-rollback'                => '„cofnij” jednym kliknięciem wycofuje zmianę(-y) tej strony wykonane przez ostatniego edytującego.',
 'tooltip-undo'                    => '„anuluj edycję” wycofuje tę edycję i otwiera okno edycji w trybie podglądu.
 Pozwala na wpisanie powodu w opisie zmian.',
 
@@ -3135,8 +3135,5 @@ Wpisz nazwę pliku z pominięciem prefiksu „{{ns:file}}:”.',
 #Linie zaczynające się od # są traktowane jako komentarze
 
 #Put all regex fragments above this line. Leave this line exactly as it is</pre>',
-
-# Language links
-'language-link-title' => 'wersja $1',
 
 );

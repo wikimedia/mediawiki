@@ -2778,7 +2778,4 @@ Fitxategiaren izena sartu "{{ns:file}}:" aurrizkia gabe.',
 'blankpage'              => 'Orrialde txuria',
 'intentionallyblankpage' => 'Orri hau nahita utzi da hutsik',
 
-# Language links
-'language-link-title' => '$1 bertsioa',
-
 );

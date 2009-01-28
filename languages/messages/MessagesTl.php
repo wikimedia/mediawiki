@@ -1213,7 +1213,7 @@ pakitingnan ang matematika/BASAHINAKO para maisaayos ang konpigurasyon.',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|pagbabago|mga pagbabago}}',
-'recentchanges'                     => 'Kamakailang mga pagbabago',
+'recentchanges'                     => 'Kamakailang pagbabago',
 'recentchanges-legend'              => 'Mga pagpipilian para sa kamakailang mga pagbabago',
 'recentchangestext'                 => 'Subaybayan ang mga pinakahuling pagbabago sa wiki sa pahinang ito.',
 'recentchanges-feed-description'    => 'Sundan ang pinakahuling mga pagbabago sa wiki sa pamamagitan ng feed na ito.',
@@ -2976,8 +2976,5 @@ Ipasok ang pangalan ng talaksan na wala ang unlaping \"{{ns:image}}:\".",
 #Itinuturing bilang mga kumento/puna ang mga hanay/hilerang nagsisimula sa #
 
 #Ilagay sa ibabaw ng hanay na ito ang mga piraso ng karaniwang pagpapahayag.  Pabayaang talagang ganito lang ang hanay/hilerang ito</pre>',
-
-# Language links
-'language-link-title' => 'Bersyong $1',
 
 );

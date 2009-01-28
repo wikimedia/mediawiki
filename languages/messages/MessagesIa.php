@@ -3074,7 +3074,4 @@ Entra le nomine del file sin le prefixo \"{{ns:file}}:\".",
 
 #Insere omne fragmentos regex super iste linea. Lassa iste linea exactemente como illo es</pre>',
 
-# Language links
-'language-link-title' => 'Version in $1',
-
 );

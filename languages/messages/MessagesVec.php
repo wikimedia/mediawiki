@@ -2892,7 +2892,4 @@ Inserissi el nome del file senza el prefisso \"{{ns:file}}:\"",
 
 #Inserissi de sora de sta riga tuti i framenti de regex. Lassa sta riga esatamente cussita come la xe</pre>",
 
-# Language links
-'language-link-title' => 'Version $1',
-
 );

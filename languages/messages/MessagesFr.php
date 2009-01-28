@@ -3123,7 +3123,16 @@ Entrez le nom du fichier sans le préfixe « {{ns:file}}: ».',
 
 #Indiquez tous les fragments d’expressions régulières en bas de celle-ligne. Cette dernière doit être laissée exactement telle quelle.</pre>",
 
-# Language links
-'language-link-title' => 'version en $1',
+# Special:Tag
+'tag-filter'              => 'Filtrer les [[Special:Tags|balises]] :',
+'tag-filter-submit'       => 'Filtrer',
+'tags-title'              => 'Balises',
+'tags-intro'              => 'Cette page liste les balises que le logiciel peut utiliser pour marquer une modification avec, et leur signification.',
+'tags-tag'                => 'Nom interne de la balise',
+'tags-display-header'     => 'Apparence dans les listes de modifications',
+'tags-description-header' => 'Description complète de la balise',
+'tags-hitcount-header'    => 'Modifications balisées',
+'tags-edit'               => 'modifier',
+'tags-hitcount'           => '$1 {{PLURAL:$1|modification|modifications}}',
 
 );

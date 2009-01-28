@@ -3006,7 +3006,4 @@ Skriv inn filnamn utan «{{ns:file}}:»-prefikset.',
 
 #Skriv alle fragment av regulære uttrykk over denne lina. La denne linja vere som ho er</pre>',
 
-# Language links
-'language-link-title' => 'Versjon på «$1»',
-
 );

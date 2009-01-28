@@ -3163,7 +3163,4 @@ Die Eingabe muss ohne den Zusatz „{{ns:file}}:“ erfolgen.',
 #Zeilen, die mit einem # beginnen, werden als Kommentar behandelt
 #Fragmente regulärer Ausdrücke nach dieser Zeile eintragen. Diese Zeile nicht verändern</pre>',
 
-# Language links
-'language-link-title' => '$1 Version',
-
 );

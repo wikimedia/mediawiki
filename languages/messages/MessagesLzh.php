@@ -262,7 +262,7 @@ $messages = array(
 'redirectpagesub'   => '渡',
 'lastmodifiedat'    => '此頁於$1$2方易。', # $1 date, $2 time
 'viewcount'         => '此頁$1閱矣',
-'protectedpage'     => '函啟矣',
+'protectedpage'     => '此頁錮矣',
 'jumpto'            => '往：',
 'jumptonavigation'  => '嚮',
 'jumptosearch'      => '尋',
@@ -444,7 +444,7 @@ $2',
 查HTML籤之。',
 'badsiglength'               => '自畫長哉。
 莫逾$1字。',
-'yourgender'                 => '善男信女：',
+'yourgender'                 => '雌雄︰',
 'gender-unknown'             => '未',
 'gender-male'                => '男',
 'gender-female'              => '女',
@@ -936,7 +936,7 @@ $2',
 'prefs-misc'                => '雜',
 'prefs-resetpass'           => '更符節',
 'saveprefs'                 => '儲',
-'resetprefs'                => '除未儲之修',
+'resetprefs'                => '棄',
 'restoreprefs'              => '復全設',
 'textboxsize'               => '在修',
 'prefs-edit-boxsize'        => '修框尺',
@@ -969,7 +969,7 @@ $2',
 'prefs-custom-js'           => '定之JS',
 
 # User rights
-'userrights'                     => '齋權管', # Not used as normal message but as header for the special page itself
+'userrights'                     => '秉治權任', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'         => '司社',
 'userrights-user-editname'       => '簿名：',
 'editusergroup'                  => '治社',
@@ -977,17 +977,19 @@ $2',
 'userrights-editusergroup'       => '治社',
 'saveusergroups'                 => '定之',
 'userrights-groupsmember'        => '有員：',
-'userrights-groups-help'         => '爾動員之社也：
-* 選解員之社屬。
-* 未選則非社屬。
-* 一＊即選屬後無倒之，反亦之。',
+'userrights-groups-help'         => '足下可為者有二︰
+
+*賦其權，此其一也；
+*去其職，此其二也。
+
+*而星號在前者，一旦賦予，不可去也，宜慎焉。',
 'userrights-reason'              => '因：',
 'userrights-no-interwiki'        => '爾無權改他山wiki之簿權也。',
 'userrights-nodatabase'          => '資料庫$1無存或非本地也。',
 'userrights-nologin'             => '爾以有秩乲簿[[Special:UserLogin|登]]後以定簿之權也。',
 'userrights-notallowed'          => '爾之簿無權定簿之權也。',
-'userrights-changeable-col'      => '爾可動之社',
-'userrights-unchangeable-col'    => '爾非動之社',
+'userrights-changeable-col'      => '爾所管轄',
+'userrights-unchangeable-col'    => '非爾所轄',
 'userrights-irreversible-marker' => '$1＊',
 
 # Groups
@@ -1070,7 +1072,7 @@ $2',
 'right-siteadmin'            => '鎖與解鎖資料庫',
 
 # User rights log
-'rightslog'  => '權限志',
+'rightslog'  => '職權志',
 'rightsnone' => '（凡）',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -1390,7 +1392,7 @@ $2',
 'protectedpages-cascade'  => '只示連串之錮',
 'listusers'               => '點簿',
 'listusers-editsonly'     => '只示有纂之簿',
-'listusers-creationsort'  => '按日築',
+'listusers-creationsort'  => '按先後列之',
 'usereditcount'           => '$1纂',
 'usercreated'             => '建於$1$2',
 'newpages'                => '新灶',
@@ -1452,7 +1454,7 @@ $2',
 
 # Special:DeletedContributions
 'deletedcontributions'       => '已刪之積',
-'deletedcontributions-title' => '已刪之積',
+'deletedcontributions-title' => '所棄之事',
 
 # Special:LinkSearch
 'linksearch'       => '尋網連',
@@ -1478,9 +1480,8 @@ $2',
 'newuserlog-autocreate-entry' => '已自註之簿',
 
 # Special:ListGroupRights
-'listgrouprights'                 => '簿組權',
-'listgrouprights-summary'         => '下乃wiki之簿權表及存取之權也。
-欲知權節，可望[[{{MediaWiki:Listgrouprights-helppage}}|此]]矣。',
+'listgrouprights'                 => '權任一覽',
+'listgrouprights-summary'         => '此所列述，諸職所司也，各有異同。欲知其詳，請閱[[{{MediaWiki:Listgrouprights-helppage}}|此文]]。',
 'listgrouprights-group'           => '組',
 'listgrouprights-rights'          => '權',
 'listgrouprights-helppage'        => 'Help:組權',
@@ -1607,11 +1608,11 @@ $NEWPAGE
 'delete-warning-toobig'  => '此頁含大誌，過$1修。刪之可亂{{SITENAME}}之事也；續時留神之。',
 
 # Rollback
-'rollback'         => '退修',
-'rollback_short'   => '退',
-'rollbacklink'     => '退',
-'rollbackfailed'   => '退未成',
-'cantrollback'     => '退修不成，作者獨也。',
+'rollback'         => '反正',
+'rollback_short'   => '正',
+'rollbacklink'     => '正',
+'rollbackfailed'   => '未能反正',
+'cantrollback'     => '獨一作者，無以反正。',
 'alreadyrolled'    => '[[User:$2|$2]]（[[User talk:$2|議]] | [[Special:Contributions/$2|{{int:contribslink}}]]）作[[:$1]]，退不成也。有易或已退焉。新纂者為[[User:$3|$3]]（[[User talk:$3|議]] | [[Special:Contributions/$3|{{int:contribslink}}]]）',
 'editcomment'      => '贊曰"<i>$1</i>"', # only shown if there is an edit comment
 'revertpage'       => '去[[Special:Contributions/$2|$2]]之作（欲言之，可至[[User talk:$2|此]]）為[[User:$1|$1]]之本耳', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
@@ -2442,4 +2443,5 @@ $1
 #有 # 之為注
 
 #入正表式。同留</pre>',
+
 );

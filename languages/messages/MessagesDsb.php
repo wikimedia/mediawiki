@@ -2920,7 +2920,16 @@ Zapódaj datajowe mě bźez prefiksa "{{ns:file}}:".',
 
 #Staj wše fragmenty regularnych wurazow nad smužku. Wóstaj toś tu smužku rowno tak jo</pre>',
 
-# Language links
-'language-link-title' => 'wersija $1',
+# Special:Tag
+'tag-filter'              => 'Filter [[Special:Tags|toflickow]]:',
+'tag-filter-submit'       => 'Filter',
+'tags-title'              => 'Toflicki',
+'tags-intro'              => 'Toś ten bok nalicyjo toflicki, z kótarymiž softwara móžo změnu markěrowaś a jich wóznam.',
+'tags-tag'                => 'Interne mě toflicki',
+'tags-display-header'     => 'Naglěd na lisćinach změnow',
+'tags-description-header' => 'Dopołne wopisanje wóznama',
+'tags-hitcount-header'    => 'Změny z toflickami',
+'tags-edit'               => 'wobźěłaś',
+'tags-hitcount'           => '$1 {{PLURAL:$1|změna|změnje|změny|změnow}}',
 
 );

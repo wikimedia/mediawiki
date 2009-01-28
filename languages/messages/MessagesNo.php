@@ -547,6 +547,10 @@ Ikke glem å endre [[Special:Preferences|innstillingene]] dine.',
 'badsig'                     => 'Ugyldig råsignatur; sjekk HTML-elementer.',
 'badsiglength'               => 'Signaturen er for lang.
 Den kan maks inneholde $1 {{PLURAL:$1|tegn|tegn}}.',
+'yourgender'                 => 'Kjønn:',
+'gender-unknown'             => 'Uspesifisert',
+'gender-male'                => 'Mann',
+'gender-female'              => 'Kvinne',
 'email'                      => 'E-post',
 'prefs-help-realname'        => '* Virkelig navn (valgfritt): dersom du velger å oppgi navnet, vil det bli brukt til å kreditere deg for ditt arbeid.',
 'loginerror'                 => 'Innloggingsfeil',
@@ -2967,8 +2971,5 @@ Skriv inn filnavn uten «{{ns:file}}:»-prefikset.',
 #Linjer som begynner med # anses som kommentarer
 
 #Skriv alle fragmenter av regulære uttrykk over denne lina. La denne linja være som den er</pre>',
-
-# Language links
-'language-link-title' => 'Versjon på «$1»',
 
 );
