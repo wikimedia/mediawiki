@@ -1123,7 +1123,7 @@ wgUploadAutoFill = {$autofill};
 			$destOnkeyup = '';
 		}
 		# Uploading a new version? If so, the name is fixed.
-		$on = $this->mReUpload ? "disabled='disabled'" : "";
+		$on = $this->mReUpload ? "readonly='readonly'" : "";
 
 		$encComment = htmlspecialchars( $this->mComment );
 
