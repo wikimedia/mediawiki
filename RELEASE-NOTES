@@ -117,6 +117,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 17069) Added ucshow=patrolled|!patrolled to list=usercontribs
 * action=delete respects $wgDeleteRevisionsLimit and the bigdelete user right
 * (bug 15949) Add undo functionality to action=edit
+* (bug 16483) Kill filesort in ApiQueryBacklinks caused by missing parentheses.
+  Building query properly now using makeList()
 
 === Languages updated in 1.15 ===
 
@@ -127,6 +129,7 @@ regularly. Below only new and removed languages are listed.
 * Swiss Standard German (de-ch) (new)
 * Literary Chinese (lzh) (new)
 * Võro (vro) (renamed from fiu-vro)
+* (bug 17151) Add magic word alias for #redirect for Vietnamese
 
 == Compatibility ==
 
