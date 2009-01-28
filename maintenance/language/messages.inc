@@ -3094,7 +3094,6 @@ Variants for Chinese language",
 	'special-specialpages'  => 'Special:SpecialPages',
 	'special-blank'         => 'Special:BlankPage',
 	'external_images'       => 'External image whitelist',
-	'language-links'        => 'Language links',
 );
 
 /** Short comments for standalone messages */

@@ -186,7 +186,6 @@ $magicWords = array(
 	'filepath'              => array( 0,    'נתיב לקובץ:',                        'FILEPATH:'              ),
 	'tag'                   => array( 0,    'תגית',                              'tag'                    ),
 	'hiddencat'             => array( 1,    '__קטגוריה_מוסתרת__',                  '__HIDDENCAT__'          ),
-	'ignoreunused'          => array( 1,    '__אפשר_לא_בשימוש__',                '__IGNOREUNUSED__'       ),
 	'pagesincategory'       => array( 1,    'דפים בקטגוריה',                       'PAGESINCATEGORY', 'PAGESINCAT' ),
 	'pagesize'              => array( 1,    'גודל דף',                            'PAGESIZE'               ),
 	'index'                 => array( 1,    '__לחיפוש__',                         '__INDEX__'              ),
@@ -2506,7 +2505,7 @@ $1 כבר נחסם. האם ברצונכם לשנות את הגדרות החסי�
 'tooltip-search'                  => 'חיפוש ב{{grammar:תחילית|{{SITENAME}}}}',
 'tooltip-search-go'               => 'מעבר לדף בשם הזה בדיוק, אם הוא קיים',
 'tooltip-search-fulltext'         => 'חיפוש טקסט זה בדפים',
-'tooltip-p-logo'                  => 'עמוד ראשי',
+'tooltip-p-logo'                  => 'ביקור בעמוד הראשי',
 'tooltip-n-mainpage'              => 'ביקור בעמוד הראשי',
 'tooltip-n-portal'                => 'אודות המיזם, איך תוכלו לעזור, איפה למצוא דברים',
 'tooltip-n-currentevents'         => 'מציאת מידע רקע על האירועים האחרונים',
@@ -3228,8 +3227,5 @@ $1
 #שורות המתחילות בסימן # הן הערות
 
 #נא לכתוב את כל הביטויים הרגולריים מעל שורה זו. נא להשאיר שורה זו בדיוק כפי שהיא</pre>',
-
-# Language links
-'language-link-title' => 'גרסה בשפה $1',
 
 );
