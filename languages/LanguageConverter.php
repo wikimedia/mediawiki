@@ -199,6 +199,25 @@ class LanguageConverter {
 	}
 	
 	/**
+	 * caption convert, base on preg_replace_callback
+	 *
+	 * to convert text in "title" or "alt", like '<img alt="text" ... '
+	 * or '<span title="text" ... '
+	 *
+	 * @return string like ' alt="yyyy"' or ' title="yyyy"'
+	 * @private
+	 */
+	function captionConvert( $matches ) {
+		// we convert captions except URL
+		$toVariant = $this->getPreferredVariant();
+		$title = $matches[1];
+		$text  = $matches[2];
+		if( !strpos( $text, '://' ) )
+			$text = $this->translate($text, $toVariant);
+		return " $title=\"$text\"";
+	}
+
+	/**
 	 * dictionary-based conversion
 	 *
 	 * @param string $text the text to be converted
@@ -248,8 +267,13 @@ class LanguageConverter {
 
 		$ret = $this->translate($m[0], $toVariant);
 		$mstart = $m[1]+strlen($m[0]);
+		
+		// enable convertsion of '<img alt="xxxx" ... ' or '<span title="xxxx" ... '
+		$captionpattern  = '/\s(title|alt)\s*=\s*"([\s\S]*?)"/';
 		foreach($matches as $m) {
-			$ret .= substr($text, $mstart, $m[1]-$mstart);
+			$mark = substr($text, $mstart, $m[1]-$mstart);
+			$mark = preg_replace_callback($captionpattern, array(&$this, 'captionConvert'), $mark);
+			$ret .= $mark;
 			$ret .= $this->translate($m[0], $toVariant);
 			$mstart = $m[1] + strlen($m[0]);
 		}
