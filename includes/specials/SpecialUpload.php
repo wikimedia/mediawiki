@@ -566,8 +566,10 @@ class UploadForm {
 		 * Try actually saving the thing...
 		 * It will show an error form on failure.
 		 */
-		$pageText = self::getInitialPageText( $this->mComment, $this->mLicense,
-			$this->mCopyrightStatus, $this->mCopyrightSource );
+		if( !$this->mReUpload ) {
+			$pageText = self::getInitialPageText( $this->mComment, $this->mLicense,
+				$this->mCopyrightStatus, $this->mCopyrightSource );
+		}	
 
 		$status = $this->mLocalFile->upload( $this->mTempPath, $this->mComment, $pageText,
 			File::DELETE_SOURCE, $this->mFileProps );
