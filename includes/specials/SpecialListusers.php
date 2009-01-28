@@ -104,7 +104,7 @@ class UsersPager extends AlphabeticPager {
 				'COUNT(ug_group) AS numgroups',
 				'MAX(ug_group) AS singlegroup',
 				'MIN(user_registration) AS creation'),
-			'options' => array('GROUP BY' => 'user_name'),
+			'options' => array('GROUP BY' => $this->creationSort ? 'user_id' : 'user_name'),
 			'conds' => $conds
 		);
 
