@@ -62,6 +62,7 @@ class UploadForm {
 		$this->mDesiredDestName   = $request->getText( 'wpDestFile' );
 		$this->mIgnoreWarning     = $request->getCheck( 'wpIgnoreWarning' );
 		$this->mComment           = $request->getText( 'wpUploadDescription' );
+		$this->mForReUpload       = $request->getBool( 'wpForReUpload' );
 		$this->mReUpload          = $request->getCheck( 'wpReUpload' );
 
 		if( !$request->wasPosted() ) {
@@ -73,8 +74,6 @@ class UploadForm {
 		# Placeholders for text injection by hooks (empty per default)
 		$this->uploadFormTextTop = "";
 		$this->uploadFormTextAfterSummary = "";
-
-		$this->mReUpload          = $request->getCheck( 'wpReUpload' );
 		$this->mUploadClicked     = $request->getCheck( 'wpUpload' );
 
 		$this->mLicense           = $request->getText( 'wpLicense' );
@@ -566,7 +565,7 @@ class UploadForm {
 		 * Try actually saving the thing...
 		 * It will show an error form on failure.
 		 */
-		if( !$this->mReUpload ) {
+		if( !$this->mForReUpload ) {
 			$pageText = self::getInitialPageText( $this->mComment, $this->mLicense,
 				$this->mCopyrightStatus, $this->mCopyrightSource );
 		}	
@@ -770,7 +769,7 @@ class UploadForm {
 				$title = $file->getTitle();
 				# Don't throw the warning when the titles are the same, it's a reupload
 				# and highly redundant.
-				if ( !$title->equals( $destinationTitle ) || !$this->mReUpload ) {
+				if ( !$title->equals( $destinationTitle ) || !$this->mForReUpload ) {
 					$msg .= $title->getPrefixedText() .
 						"|" . $title->getText() . "\n";
 				}
@@ -1070,7 +1069,7 @@ wgUploadAutoFill = {$autofill};
 		$sourcefilename = wfMsgExt( 'sourcefilename', array( 'parseinline', 'escapenoentities' ) );
         $destfilename = wfMsgExt( 'destfilename', array( 'parseinline', 'escapenoentities' ) ); 
 		
-		$msg = $this->mReUpload ? 'filereuploadsummary' : 'fileuploadsummary';
+		$msg = $this->mForReUpload ? 'filereuploadsummary' : 'fileuploadsummary';
 		$summary = wfMsgExt( $msg, 'parseinline' );
 
 		$licenses = new Licenses();
@@ -1087,7 +1086,7 @@ wgUploadAutoFill = {$autofill};
 
 		$watchChecked = $this->watchCheck() ? 'checked="checked"' : '';
 		# Re-uploads should not need "file exist already" warnings
-		$warningChecked = ($this->mIgnoreWarning || $this->mReUpload) ? 'checked="checked"' : '';
+		$warningChecked = ($this->mIgnoreWarning || $this->mForReUpload) ? 'checked="checked"' : '';
 
 		// Prepare form for upload or upload/copy
 		if( $wgAllowCopyUploads && $wgUser->isAllowed( 'upload_by_url' ) ) {
@@ -1123,7 +1122,7 @@ wgUploadAutoFill = {$autofill};
 			$destOnkeyup = '';
 		}
 		# Uploading a new version? If so, the name is fixed.
-		$on = $this->mReUpload ? "readonly='readonly'" : "";
+		$on = $this->mForReUpload ? "readonly='readonly'" : "";
 
 		$encComment = htmlspecialchars( $this->mComment );
 
@@ -1171,7 +1170,7 @@ wgUploadAutoFill = {$autofill};
 			<tr>"
 		);
 		# Re-uploads should not need license info
-		if ( !$this->mReUpload && $licenseshtml != '' ) {
+		if ( !$this->mForReUpload && $licenseshtml != '' ) {
 			global $wgStylePath;
 			$wgOut->addHTML( "
 					<td class='mw-label'>
@@ -1197,7 +1196,7 @@ wgUploadAutoFill = {$autofill};
 			}
 		}
 
-		if ( !$this->mReUpload && $wgUseCopyrightUpload ) {
+		if ( !$this->mForReUpload && $wgUseCopyrightUpload ) {
 			$filestatus = wfMsgExt( 'filestatus', 'escapenoentities' );
 			$copystatus =  htmlspecialchars( $this->mCopyrightStatus );
 			$filesource = wfMsgExt( 'filesource', 'escapenoentities' );
@@ -1250,7 +1249,7 @@ wgUploadAutoFill = {$autofill};
 			</tr>" .
 			Xml::closeElement( 'table' ) .
 			Xml::hidden( 'wpDestFileWarningAck', '', array( 'id' => 'wpDestFileWarningAck' ) ) .
-			xml::hidden( 'wpReUpload', $this->mReUpload ) .
+			Xml::hidden( 'wpForReUpload', $this->mForReUpload ) .
 			Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'form' )
 		);
