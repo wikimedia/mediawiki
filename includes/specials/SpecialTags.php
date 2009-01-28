@@ -9,7 +9,7 @@ class SpecialTags extends SpecialPage {
 		parent::__construct( 'Tags' );
 	}
 
-	function execute() {
+	function execute( $par ) {
 		global $wgOut, $wgUser, $wgMessageCache;
 
 		$wgMessageCache->loadAllMessages();
