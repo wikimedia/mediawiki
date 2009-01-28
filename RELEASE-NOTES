@@ -106,6 +106,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 15391) catch DBQueryErrors on external storage insertion. This avoids error 
   messages on save were the edit in fact is saved.
 * (bug 17184) Remove duplicate "z" accesskey in MonoBook
+* Remove redundant dupe warnings on reupload for the same title. Dupe warnings
+  for identical files at different titles are still given.
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
