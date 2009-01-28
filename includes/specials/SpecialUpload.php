@@ -550,7 +550,7 @@ class UploadForm {
 				$warning .= self::getExistsWarning( $this->mLocalFile );
 			}
 			
-			$warning .= $this->getDupeWarning( $this->mTempPath, $finalExt, $nt );
+			$warning .= $this->getDupeWarning( $this->mTempPath, $finalExt );
 			
 			if( $warning != '' ) {
 				/**
@@ -757,7 +757,7 @@ class UploadForm {
 	 * Check for duplicate files and throw up a warning before the upload
 	 * completes.
 	 */
-	function getDupeWarning( $tempfile, $extension, $destinationTitle ) {
+	function getDupeWarning( $tempfile, $extension ) {
 		$hash = File::sha1Base36( $tempfile );
 		$dupes = RepoGroup::singleton()->findBySha1( $hash );
 		$archivedImage = new ArchivedFile( null, 0, $hash.".$extension" );
@@ -766,12 +766,8 @@ class UploadForm {
 			$msg = "<gallery>";
 			foreach( $dupes as $file ) {
 				$title = $file->getTitle();
-				# Don't throw the warning when the titles are the same, it's a reupload
-				# and highly redundant.
-				if ( !$title->equals( $destinationTitle ) || !$this->mIsReUpload ) {
-					$msg .= $title->getPrefixedText() .
-						"|" . $title->getText() . "\n";
-				}
+				$msg .= $title->getPrefixedText() .
+					"|" . $title->getText() . "\n";
 			}
 			$msg .= "</gallery>";
 			return "<li>" .
