@@ -53,9 +53,11 @@ class Categoryfinder {
 		# Set the list of target categories; convert them to DBKEY form first
 		$this->targets = array () ;
 		foreach ( $categories AS $c ) {
-			$ct = Title::newFromText ( $c , NS_CATEGORY ) ;
-			$c = $ct->getDBkey () ;
-			$this->targets[$c] = $c ;
+			$ct = Title::makeTitleSafe( NS_CATEGORY, $c );
+			if( $ct ) {
+				$c = $ct->getDBkey();
+				$this->targets[$c] = $c;
+			}
 		}
 	}
 
