@@ -1056,7 +1056,7 @@ class Title {
  	 */
 	public function userCan( $action, $doExpensiveQueries = true ) {
 		global $wgUser;
-		return ( $this->getUserPermissionsErrorsInternal( $action, $wgUser, $doExpensiveQueries ) === array());
+		return ($this->getUserPermissionsErrorsInternal( $action, $wgUser, $doExpensiveQueries, true ) === array());
 	}
 
 	/**
@@ -1158,9 +1158,10 @@ class Title {
 	 * @param $action \type{\string} action that permission needs to be checked for
 	 * @param $user \type{User} user to check
 	 * @param $doExpensiveQueries \type{\bool} Set this to false to avoid doing unnecessary queries.
+	 * @param $short \type{\bool} Set this to true to stop after the first permission error.
 	 * @return \type{\array} Array of arrays of the arguments to wfMsg to explain permissions problems.
 	 */
-	private function getUserPermissionsErrorsInternal( $action, $user, $doExpensiveQueries = true ) {
+	private function getUserPermissionsErrorsInternal( $action, $user, $doExpensiveQueries=true, $short=false ) {
 		wfProfileIn( __METHOD__ );
 
 		$errors = array();
@@ -1170,7 +1171,7 @@ class Title {
 			wfProfileOut( __METHOD__ );
 			return $result ? array() : array( array( 'badaccess-group0' ) );
 		}
-
+		// Check getUserPermissionsErrors hook
 		if( !wfRunHooks( 'getUserPermissionsErrors', array(&$this,&$user,$action,&$result) ) ) {
 			if( is_array($result) && count($result) && !is_array($result[0]) )
 				$errors[] = $result; # A single array representing an error
@@ -1181,6 +1182,12 @@ class Title {
 			else if( $result === false )
 				$errors[] = array('badaccess-group0'); # a generic "We don't want them to do that"
 		}
+		# Short-circuit point
+		if( $short && count($errors) > 0 ) {
+			wfProfileOut( __METHOD__ );
+			return $errors;
+		}
+		// Check getUserPermissionsErrorsExpensive hook
 		if( $doExpensiveQueries && !wfRunHooks( 'getUserPermissionsErrorsExpensive', array(&$this,&$user,$action,&$result) ) ) {
 			if( is_array($result) && count($result) && !is_array($result[0]) )
 				$errors[] = $result; # A single array representing an error
@@ -1190,6 +1197,11 @@ class Title {
 				$errors[] = array($result); # A string representing a message-id
 			else if( $result === false )
 				$errors[] = array('badaccess-group0'); # a generic "We don't want them to do that"
+		}
+		# Short-circuit point
+		if( $short && count($errors) > 0 ) {
+			wfProfileOut( __METHOD__ );
+			return $errors;
 		}
 		
 		// TODO: document
@@ -1236,6 +1248,11 @@ class Title {
 				}
 			}
 		}
+		# Short-circuit point
+		if( $short && count($errors) > 0 ) {
+			wfProfileOut( __METHOD__ );
+			return $errors;
+		}
 
 		foreach( $this->getRestrictions($action) as $right ) {
 			// Backwards compatibility, rewrite sysop -> protect
@@ -1249,13 +1266,16 @@ class Title {
 					// with cascading option turned on.
 					if( $this->mCascadeRestriction ) {
 						$errors[] = array( 'protectedpagetext', $right );
-					} else {
-						// Nothing, user can edit!
 					}
 				} else {
 					$errors[] = array( 'protectedpagetext', $right );
 				}
 			}
+		}
+		# Short-circuit point
+		if( $short && count($errors) > 0 ) {
+			wfProfileOut( __METHOD__ );
+			return $errors;
 		}
 
 		if( $action == 'protect' ) {
