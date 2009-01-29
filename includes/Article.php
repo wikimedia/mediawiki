@@ -103,8 +103,7 @@ class Article {
 	 * @return Title object
 	 */
 	public function insertRedirect() {
-		// set noRecurse so that we always get an entry even if redirects are "disabled"
-		$retval = Title::newFromRedirect( $this->getContent(), false, true );
+		$retval = Title::newFromRedirect( $this->getContent() );
 		if( !$retval ) {
 			return null;
 		}
@@ -136,7 +135,7 @@ class Article {
 	 * @return mixed false, Title of in-wiki target, or string with URL
 	 */
 	public function followRedirectText( $text ) {
-		$rt = Title::newFromRedirect( $text ); // only get the final target
+		$rt = Title::newFromRedirectRecurse( $text ); // recurse through to only get the final target
 		# process if title object is valid and not special:userlogout
 		if( $rt ) {
 			if( $rt->getInterwiki() != '' ) {
@@ -607,10 +606,9 @@ class Article {
 			}
 			// Apparently loadPageData was never called
 			$this->loadContent();
-			// Only get the next target to reduce load times
-			$titleObj = Title::newFromRedirect( $this->fetchContent(), false, true );
+			$titleObj = Title::newFromRedirectRe( $this->fetchContent() );
 		} else {
-			$titleObj = Title::newFromRedirect( $text, false, true );
+			$titleObj = Title::newFromRedirect( $text );
 		}
 		return $titleObj !== NULL;
 	}
@@ -943,7 +941,7 @@ class Article {
 					$wgOut->addHTML( htmlspecialchars( $this->mContent ) );
 					$wgOut->addHTML( "\n</pre>\n" );
 				}
-			} else if( $rt = Title::newFromRedirect( $text, true ) ) { # get an array of redirect targets
+			} else if( $rt = Title::newFromRedirectArray( $text ) ) { # get an array of redirect targets
 				# Don't append the subtitle if this was an old revision
 				$wgOut->addHTML( $this->viewRedirect( $rt, !$wasRedirected && $this->isCurrent() ) );
 				$parseout = $wgParser->parse($text, $this->mTitle, ParserOptions::newFromUser($wgUser));
@@ -3475,9 +3473,9 @@ class Article {
 	public static function getAutosummary( $oldtext, $newtext, $flags ) {
 		# Decide what kind of autosummary is needed.
 
-		# Redirect autosummaries -- should only get the next target and not recurse
-		$ot = Title::newFromRedirect( $oldtext, false, true );
-		$rt = Title::newFromRedirect( $newtext, false, true );
+		# Redirect autosummaries
+		$ot = Title::newFromRedirect( $oldtext );
+		$rt = Title::newFromRedirect( $newtext );
 		if( is_object( $rt ) && ( !is_object( $ot ) || !$rt->equals( $ot ) || $ot->getFragment() != $rt->getFragment() ) ) {
 			return wfMsgForContent( 'autoredircomment', $rt->getFullText() );
 		}
