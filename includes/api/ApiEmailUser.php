@@ -57,8 +57,11 @@ class ApiEmailUser extends ApiBase {
 		
 		// Validate target 
 		$targetUser = EmailUserForm::validateEmailTarget( $params['target'] );
+		if( isset( $params['check'] ) ) 
+			($targetUser instanceof User)? $this->dieUsageMsg( array( 'usermailenabled' ) ) : $this->dieUsageMsg( array( 'usermaildisabled' ) );
 		if ( !( $targetUser instanceof User ) )
 			$this->dieUsageMsg( array( $targetUser ) );
+		
 		
 		// Check permissions
 		$error = EmailUserForm::getPermissionsError( $wgUser, $params['token'] );
@@ -77,7 +80,7 @@ class ApiEmailUser extends ApiBase {
 		$this->getResult()->addValue( null, $this->getModuleName(), $result );
 	}
 	
-	public function mustBePosted() { return true; }
+	//public function mustBePosted() { return true; }
 
 	public function getAllowedParams() {
 		return array (
@@ -86,6 +89,7 @@ class ApiEmailUser extends ApiBase {
 			'text' => null,
 			'token' => null,
 			'ccme' => false,
+			'check' => null,
 		);
 	}
 
@@ -96,6 +100,7 @@ class ApiEmailUser extends ApiBase {
 			'text' => 'Mail body',
 			'token' => 'A token previously acquired via prop=info',
 			'ccme' => 'Send a copy of this mail to me',
+			'check' => 'Check if the user has email enabled',
 		);
 	}
 
@@ -107,7 +112,8 @@ class ApiEmailUser extends ApiBase {
 
 	protected function getExamples() {
 		return array (
-			'api.php?action=emailuser&target=WikiSysop&text=Content'
+			'api.php?action=emailuser&target=WikiSysop&text=Content',
+			'api.php?action=emailuser&target=WikiSysop&check=yes',
 		);
 	}
 
