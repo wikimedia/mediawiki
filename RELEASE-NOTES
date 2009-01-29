@@ -69,6 +69,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 16604) Show title/rev in IRC for patrol log
 * (bug 16854) Whether a page is being parsed as a preview or section preview
   can now be determined and set with ParserOptions.
+* Wrap message 'confirmemail_pending' into a div with CSS classes "error" and
+  "mw-confirmemail-pending"
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
