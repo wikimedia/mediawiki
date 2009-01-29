@@ -294,21 +294,77 @@ class Title {
 	/**
 	 * Extract a redirect destination from a string and return the
 	 * Title, or null if the text doesn't contain a valid redirect
+	 * This will only return the very next target, useful for
+	 * the redirect table and other checks that don't need full recursion
 	 *
 	 * @param $text \type{\string} Text with possible redirect
-	 * @param $getAllTargets \type{\bool} Should we get an array of every target or just the final one?
-	 * @param $noRecurse \type{\bool} This will prevent any and all recursion, only getting the very next target
-	 *	This is mainly meant for Article::insertRedirect so that the redirect table still works properly
-	 *	(makes double redirect and broken redirect reports display accurate results).
 	 * @return \type{Title} The corresponding Title
-	 * @return \type{\array} Array of redirect targets (Title objects), with the destination being last
 	 */
-	public static function newFromRedirect( $text, $getAllTargets = false, $noRecurse = false ) {
+	public static function newFromRedirect( $text ) {
+		return self::newFromRedirectInternal( $text );
+	}
+	
+	/**
+	 * Extract a redirect destination from a string and return the
+	 * Title, or null if the text doesn't contain a valid redirect
+	 * This will recurse down $wgMaxRedirects times or until a non-redirect target is hit
+	 * in order to provide (hopefully) the Title of the final destination instead of another redirect
+	 *
+	 * @param $text \type{\string} Text with possible redirect
+	 * @return \type{Title} The corresponding Title
+	 */
+	public static function newFromRedirectRecurse( $text ) {
+		$titles = self::newFromRedirectArray( $text );
+		return array_pop( $titles );
+	}
+	
+	/**
+	 * Extract a redirect destination from a string and return an
+	 * array of Titles, or null if the text doesn't contain a valid redirect
+	 * The last element in the array is the final destination after all redirects
+	 * have been resolved (up to $wgMaxRedirects times)
+	 *
+	 * @param $text \type{\string} Text with possible redirect
+	 * @return \type{\array} Array of Titles, with the destination last
+	 */
+	public static function newFromRedirectArray( $text ) {
 		global $wgMaxRedirects;
 		// are redirects disabled?
-		// Note that we should get a Title object if possible if $noRecurse is true so that the redirect table functions properly
-		if( !$noRecurse && $wgMaxRedirects < 1 )
+		if( $wgMaxRedirects < 1 )
 			return null;
+		$title = self::newFromRedirectInternal( $text );
+		if( is_null( $title ) )
+			return null;
+		// recursive check to follow double redirects
+		$recurse = $wgMaxRedirects;
+		$titles = array( $title );
+		while( --$recurse >= 0 ) {
+			if( $title->isRedirect() ) {
+				$article = new Article( $title, 0 );
+				$newtitle = $article->getRedirectTarget();
+			} else {
+				break;
+			}
+			// Redirects to some special pages are not permitted
+			if( $newtitle instanceOf Title && $newtitle->isValidRedirectTarget() ) {
+				// the new title passes the checks, so make that our current title so that further recursion can be checked
+				$title = $newtitle;
+				$titles[] = $newtitle;
+			} else {
+				break;
+			}
+		}
+		return $titles;
+	}
+	
+	/**
+	 * Really extract the redirect destination
+	 * Do not call this function directly, use one of the newFromRedirect* functions above
+	 *
+	 * @param $text \type{\string} Text with possible redirect
+	 * @return \type{Title} The corresponding Title
+	 */
+	protected static function newFromRedirectInternal( $text ) {
 		$redir = MagicWord::get( 'redirect' );
 		$text = trim($text);
 		if( $redir->matchStartAndRemove( $text ) ) {
@@ -326,38 +382,11 @@ class Title {
 					$m[1] = urldecode( ltrim( $m[1], ':' ) );
 				}
 				$title = Title::newFromText( $m[1] );
-				// If the initial title is a redirect to bad special pages or is invalid, quit early
+				// If the title is a redirect to bad special pages or is invalid, return null
 				if( !$title instanceof Title || !$title->isValidRedirectTarget() ) {
 					return null;
 				}
-				// If $noRecurse is true, simply return here
-				if( $noRecurse ) {
-					return $title;
-				}
-				// recursive check to follow double redirects
-				$recurse = $wgMaxRedirects;
-				$targets = array();
-				while( --$recurse >= 0 ) {
-					// Redirects to some special pages are not permitted
-					if( $title instanceof Title && $title->isValidRedirectTarget() ) {
-						$targets[] = $title;
-						if( $title->isRedirect() ) {
-							$article = new Article( $title, 0 );
-							$title = $article->getRedirectTarget();
-						} else {
-							break;
-						}
-					} else {
-						break;
-					}
-				}
-				if( $getAllTargets ) {
-					// return every target or null if no targets due to invalid title or whatever
-					return ( $targets === array() ) ? null : $targets;
-				} else {
-					// return the final destination -- invalid titles are checked earlier
-					return $title;
-				}
+				return $title;
 			}
 		}
 		return null;
