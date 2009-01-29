@@ -282,6 +282,7 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'דף_ריק' ),
 	'LinkSearch'                => array( 'חיפוש_קישורים_חיצוניים' ),
 	'DeletedContributions'      => array( 'תרומות_מחוקות' ),
+	'Tags'                      => array( 'תגיות' ),
 );
 
 $namespaceNames = array(
@@ -3227,5 +3228,17 @@ $1
 #שורות המתחילות בסימן # הן הערות
 
 #נא לכתוב את כל הביטויים הרגולריים מעל שורה זו. נא להשאיר שורה זו בדיוק כפי שהיא</pre>',
+
+# Special:Tags
+'tag-filter'              => 'מסנן [[Special:Tags|תגיות]]:',
+'tag-filter-submit'       => 'סינון',
+'tags-title'              => 'תגיות',
+'tags-intro'              => 'דף זה מכיל רשימה של תגיות שהתוכנה יכולה לסמן איתן עריכה, ומשמעויותיהן.',
+'tags-tag'                => 'שם התגית הפנימי',
+'tags-display-header'     => 'הופעה ברשימות השינויים',
+'tags-description-header' => 'תיאור מלא של המשמעות',
+'tags-hitcount-header'    => 'עריכות עם תגיות',
+'tags-edit'               => 'עריכה',
+'tags-hitcount'           => '{{PLURAL:$1|שינוי אחד|$1 שינויים}}',
 
 );

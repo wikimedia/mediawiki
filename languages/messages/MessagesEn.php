@@ -3802,7 +3802,7 @@ Enter the filename without the "{{ns:file}}:" prefix.',
 
 #Put all regex fragments above this line. Leave this line exactly as it is</pre>',
 
-# Special:Tag
+# Special:Tags
 'tag-filter'              => '[[Special:Tags|Tag]] filter:',
 'tag-filter-submit'       => 'Filter',
 'tags-title'              => 'Tags',
