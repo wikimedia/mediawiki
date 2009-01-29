@@ -2898,7 +2898,7 @@ $wgMessageStructure = array(
 	'external_images' => array(
 		'external_image_whitelist',
 	),
-	'special-tag' => array(
+	'special-tags' => array(
 		'tag-filter',
 		'tag-filter-submit',
 		'tags-title',
@@ -3106,7 +3106,7 @@ Variants for Chinese language",
 	'special-specialpages'  => 'Special:SpecialPages',
 	'special-blank'         => 'Special:BlankPage',
 	'external_images'       => 'External image whitelist',
-	'special-tag'           => 'Special:Tag',
+	'special-tags'          => 'Special:Tags',
 );
 
 /** Short comments for standalone messages */
