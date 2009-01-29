@@ -110,6 +110,7 @@ class SpecialRecentChanges extends SpecialPage {
 			foreach( $rows as $row ) {
 				$batch->add( NS_USER, $row->rc_user_text  );
 				$batch->add( NS_USER_TALK, $row->rc_user_text  );
+				$batch->add( $row->rc_namespace, $row->rc_title );
 			}
 			$batch->execute();
 		}
