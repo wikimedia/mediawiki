@@ -1385,6 +1385,11 @@ $user: User object
 $user: User to get rights for
 &$rights: Current rights
 
+'UserIsBlockedGlobally': Check if user is blocked on all wikis.
+&$user: User object
+$ip: User's IP address
+&$blocked: Whether the user is blocked, to be modified by the hook
+
 'UserLoadDefaults': called when loading a default user
 $user: user object
 $name: user name
