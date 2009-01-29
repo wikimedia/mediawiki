@@ -128,6 +128,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 15949) Add undo functionality to action=edit
 * (bug 16483) Kill filesort in ApiQueryBacklinks caused by missing parentheses.
   Building query properly now using makeList()
+* Add "check" parameter to action=email
 
 === Languages updated in 1.15 ===
 

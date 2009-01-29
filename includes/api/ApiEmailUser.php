@@ -50,17 +50,27 @@ class ApiEmailUser extends ApiBase {
 		// Check required parameters
 		if ( !isset( $params['target'] ) )
 			$this->dieUsageMsg( array( 'missingparam', 'target' ) );
+		// Validate target 
+		$targetUser = EmailUserForm::validateEmailTarget( $params['target'] );
+		if( isset( $params['check'] ) ) 
+			if($targetUser instanceof User) {
+				$result = array( 'result' => 'Enabled' );
+				$this->getResult()->addValue( null, $this->getModuleName(), $result );
+				return;
+			}
+			else {
+				$result = array( 'result' => 'Disabled' );
+				$this->getResult()->addValue( null, $this->getModuleName(), $result );
+				return;
+			} //$this->dieUsageMsg( array( 'usermailenabled' ) ) : $this->dieUsageMsg( array( 'usermaildisabled' ) );
+		if ( !( $targetUser instanceof User ) )
+			$this->dieUsageMsg( array( $targetUser ) );
+		
+		//Check more parameters
 		if ( !isset( $params['text'] ) )
 			$this->dieUsageMsg( array( 'missingparam', 'text' ) );
 		if ( !isset( $params['token'] ) )
 			$this->dieUsageMsg( array( 'missingparam', 'token' ) );	
-		
-		// Validate target 
-		$targetUser = EmailUserForm::validateEmailTarget( $params['target'] );
-		if( isset( $params['check'] ) ) 
-			($targetUser instanceof User)? $this->dieUsageMsg( array( 'usermailenabled' ) ) : $this->dieUsageMsg( array( 'usermaildisabled' ) );
-		if ( !( $targetUser instanceof User ) )
-			$this->dieUsageMsg( array( $targetUser ) );
 		
 		
 		// Check permissions
@@ -80,7 +90,7 @@ class ApiEmailUser extends ApiBase {
 		$this->getResult()->addValue( null, $this->getModuleName(), $result );
 	}
 	
-	//public function mustBePosted() { return true; }
+	public function mustBePosted() { return true; }
 
 	public function getAllowedParams() {
 		return array (
