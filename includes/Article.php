@@ -994,7 +994,7 @@ class Article {
 		# Only diffs and new page links from RC give rcid params, so if
 		# we are just viewing the page normally with no rcid, try to find it. 
 		# This is more convenient for users.
-		if( $this->mTitle->exists() && $this->mTitle->userCan('patrol', false) ) {
+		if( $this->mTitle->exists() && $this->mTitle->quickUserCan('patrol') ) {
 			if( empty($rcid) ) {
 				$firstRev = $this->mTitle->getFirstRevision();
 				$rcid = $firstRev ? $firstRev->isUnpatrolled() : 0;
@@ -1006,7 +1006,7 @@ class Article {
 		}
 		# If we have been passed an &rcid= parameter, we want to give the user a
 		# chance to mark this new article as patrolled.
-		if( !empty($rcid) && $this->mTitle->exists() && $this->mTitle->userCan('patrol', false) ) {
+		if( !empty($rcid) && $this->mTitle->exists() && $this->mTitle->quickUserCan('patrol') ) {
 			$wgOut->addHTML(
 				"<div class='patrollink'>" .
 					wfMsgHtml( 'markaspatrolledlink',
