@@ -52,21 +52,21 @@ class ApiEmailUser extends ApiBase {
 			$this->dieUsageMsg( array( 'missingparam', 'target' ) );
 		// Validate target 
 		$targetUser = EmailUserForm::validateEmailTarget( $params['target'] );
-		if( isset( $params['check'] ) ) 
-			if($targetUser instanceof User) {
+		if ( isset( $params['check'] ) ) {
+			// Only a check was requested; don't actually send a mail
+			if ( $targetUser instanceof User )
 				$result = array( 'result' => 'Enabled' );
-				$this->getResult()->addValue( null, $this->getModuleName(), $result );
-				return;
-			}
-			else {
+			else
 				$result = array( 'result' => 'Disabled' );
-				$this->getResult()->addValue( null, $this->getModuleName(), $result );
-				return;
-			}
+			
+			$this->getResult()->addValue( null, $this->getModuleName(), $result );
+			return;
+		}
+		// If $targetUser is not a User it represents an error message
 		if ( !( $targetUser instanceof User ) )
 			$this->dieUsageMsg( array( $targetUser ) );
 		
-		//Check more parameters
+		// Check more parameters
 		if ( !isset( $params['text'] ) )
 			$this->dieUsageMsg( array( 'missingparam', 'text' ) );
 		if ( !isset( $params['token'] ) )
@@ -110,7 +110,7 @@ class ApiEmailUser extends ApiBase {
 			'text' => 'Mail body',
 			'token' => 'A token previously acquired via prop=info',
 			'ccme' => 'Send a copy of this mail to me',
-			'check' => 'Check if the user has email enabled',
+			'check' => 'Only check whether the user has email enabled',
 		);
 	}
 
