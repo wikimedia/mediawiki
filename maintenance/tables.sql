@@ -1257,7 +1257,7 @@ CREATE TABLE /*_*/tag_summary (
 
 	UNIQUE KEY (ts_rc_id),
 	UNIQUE KEY (ts_log_id),
-	UNIQUE KEY (ts_rev_id),
+	UNIQUE KEY (ts_rev_id)
 ) /*$wgDBTableOptions*/;
 
 CREATE TABLE /*_*/valid_tag (
