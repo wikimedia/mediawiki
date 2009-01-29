@@ -33,7 +33,7 @@ class ZhConverter extends LanguageConverter {
 			'zh-sg'   => '新加坡',
 			'zh-my'   => '大马',
 		);
-		$this->mLanguageNames = array_merge($this->mLanguageNames,$names);
+		$this->mVariantNames = array_merge($this->mVariantNames,$names);
 	}
 
 	function loadDefaultTables() {
