@@ -701,6 +701,7 @@ abstract class ApiBase {
 		'rcpatroldisabled' => array('code' => 'patroldisabled', 'info' => "Patrolling is disabled on this wiki"),
 		'markedaspatrollederror-noautopatrol' => array('code' => 'noautopatrol', 'info' => "You don't have permission to patrol your own changes"),
 		'delete-toobig' => array('code' => 'bigdelete', 'info' => "You can't delete this page because it has more than \$1 revisions"),
+		'movenotallowedfile' => array('code' => 'cantmovefile', 'info' => "You don't have permission to move files"),
 
 		// API-specific messages
 		'missingparam' => array('code' => 'no$1', 'info' => "The \$1 parameter must be set"),
