@@ -62,7 +62,7 @@ class ApiEmailUser extends ApiBase {
 				$result = array( 'result' => 'Disabled' );
 				$this->getResult()->addValue( null, $this->getModuleName(), $result );
 				return;
-			} //$this->dieUsageMsg( array( 'usermailenabled' ) ) : $this->dieUsageMsg( array( 'usermaildisabled' ) );
+			}
 		if ( !( $targetUser instanceof User ) )
 			$this->dieUsageMsg( array( $targetUser ) );
 		
