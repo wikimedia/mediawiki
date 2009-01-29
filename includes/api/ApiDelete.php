@@ -137,9 +137,10 @@ class ApiDelete extends ApiBase {
 			if($reason === false)
 				return array(array('cannotdelete'));
 		}
-		
-		if (!wfRunHooks('ArticleDelete', array(&$article, &$wgUser, &$reason)))
-			$this->dieUsageMsg(array('hookaborted'));
+
+		$error = '';
+		if (!wfRunHooks('ArticleDelete', array(&$article, &$wgUser, &$reason, $error)))
+			$this->dieUsageMsg(array('hookaborted', $error));
 
 		// Luckily, Article.php provides a reusable delete function that does the hard work for us
 		if($article->doDeleteArticle($reason)) {
