@@ -113,6 +113,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   certain designations, which are displayed on various summaries of changes, and
   the entries can be styled with CSS.
 * (bug 17207) Fix regression breaking category page display on PHP 5.1
+* Categoryfinder utility class no longer fails on invalid input or gives wrong
+  results for category names that include pseudo-namespaces
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
