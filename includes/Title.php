@@ -1088,7 +1088,7 @@ class Title {
 		}
 
 		// Edit blocks should not affect reading. Account creation blocks handled at userlogin.
-		if ( $user->isBlockedFrom( $this ) && $action != 'read' && $action != 'createaccount' ) {
+		if ( $action != 'read' && $action != 'createaccount' && $user->isBlockedFrom( $this ) ) {
 			$block = $user->mBlock;
 
 			// This is from OutputPage::blockedPage
