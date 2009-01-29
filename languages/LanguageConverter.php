@@ -296,12 +296,19 @@ class LanguageConverter {
 			if( !in_array($v,$this->mVariants) )continue;
 			if( $action=="add" ) {
 				foreach($t as $from=>$to) {
-					// more efficient than array_merge(), about 2.5 times.
-					$this->mManualAddTables[$v][$from] = $to;
+					// to ensure that $from and $to not be left blank
+					// so $this->translate() could always return a string
+					if ($from || $to)
+						// more efficient than array_merge(), about 2.5 times.
+						$this->mManualAddTables[$v][$from] = $to;
 				}
 			}
-			elseif ( $action=="remove" )
-				$this->mManualRemoveTables[$v] = array_merge($this->mManualRemoveTables[$v], $t);
+			elseif ( $action=="remove" ) {
+				foreach($t as $from=>$to) {
+					if ($from || $to)
+						$this->mManualRemoveTables[$v][$from] = $to;
+				}
+			}
 		}
 	}
 
