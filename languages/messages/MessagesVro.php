@@ -633,6 +633,7 @@ Võit toimõndaq olõmanolõvit lehti vai [[Special:UserLogin|minnäq nimega sis
 'recreate-deleted-warn'     => "'''Hoiatus: Sa proovit vahtsõst luvvaq lehte, miä om ärq kistutõt.'''
 
 Kas tahat taad lehte tõtõstõ toimõndaq? Kaeq ka sissekirotust seo lehe ärqkistutamisõ kotsilõ:",
+'edit-conflict'             => 'Samaaignõ toimõndus.',
 
 # "Undo" feature
 'undo-success' => "Tagasivõtminõ läts' kõrda. Kaeq üle, kas taa om tuu, midä sa tetäq tahtsõt ja pästäq muutusõq.",
@@ -2042,7 +2043,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'confirmemail'            => 'Kinnüdäq e-postiaadrõssit',
 'confirmemail_noemail'    => 'Sul olõ-i [[Special:Preferences|ummi säädmiisihe]] pant kõlbolist e-postiaadrõssit.',
 'confirmemail_text'       => 'Taa viki nõud e-postiaadrõsi kinnütämist, inne ku e-posti pruukiq võit. Saadaq alanolõva nupi pääle vaotõn uma aadrõsi pääle kinnütüse küsümise kiri. Säält lövvät lingi, mink vaotamisõga kinnütät uma e-postiaadrõsi.',
-'confirmemail_pending'    => '<div class="error">Kinnütüskiri om jo ärq saadõt. Ku lõit õkva vahtsõ pruukjanime, oodaq mõni minot sõnomi tulõkit, inne ku proovit vahtsõst.</div>',
+'confirmemail_pending'    => 'Kinnütüskiri om jo ärq saadõt. Ku lõit õkva vahtsõ pruukjanime, oodaq mõni minot sõnomi tulõkit, inne ku proovit vahtsõst.',
 'confirmemail_send'       => 'Saadaq kinnütüskiri ärq',
 'confirmemail_sent'       => 'Kinnütüskiri ärq saadõt.',
 'confirmemail_oncreate'   => 'Kinnütüskiri saadõti su e-postiaadrõsi pääle. Kinnütüskuudi olõ-i joht vajja nimega sisseminekis, a tuu tulõ sul ärq saataq, ku tahat, et sa saanuq taan vikin e-posti saataq.',

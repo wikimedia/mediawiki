@@ -2877,8 +2877,8 @@ Le alteres essera initialmente celate.
 Activa le button infra pro inviar un message de confirmation a tu adresse.
 Le message includera un ligamine continente un codice;
 visita le ligamine in tu navigator pro confirmar que tu adresse de e-mail es valide.',
-'confirmemail_pending'     => '<div class="error">Un codice de confirmation ha ja essite inviate a te;
-si tu ha recentemente create tu conto, es recommendate attender le arrivata de illo durante alcun minutas ante de provar requestar un nove codice.</div>',
+'confirmemail_pending'     => 'Un codice de confirmation ha ja essite inviate a te;
+si tu ha recentemente create tu conto, es recommendate attender le arrivata de illo durante alcun minutas ante de provar requestar un nove codice.',
 'confirmemail_send'        => 'Inviar un codice de confirmation',
 'confirmemail_sent'        => 'Message de confirmation inviate.',
 'confirmemail_oncreate'    => 'Un codice de confirmation ha essite inviate a tu adresse de e-mail.

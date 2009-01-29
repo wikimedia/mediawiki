@@ -1084,6 +1084,7 @@ Vide 'a [[Special:NewFiles|gallerie de le file nuève]] pe vedè l'otre andeprim
 'license'            => 'Licenziete da:',
 'nolicense'          => 'Ninde selezionete',
 'license-nopreview'  => "(L'andeprime non g'è disponibbile)",
+'upload_source_url'  => " ('na URL, valide e accessibbile pubblicamende)",
 'upload_source_file' => " ('nu fail sus a 'u combiuter tue)",
 
 # Special:ListFiles
@@ -1230,6 +1231,7 @@ Vide 'a [[Special:NewFiles|gallerie de le file nuève]] pe vedè l'otre andeprim
 'longpages'               => 'Pàggene longhe',
 'deadendpages'            => 'Pàggene senza collegamende',
 'protectedpages'          => 'Pàggene prutette',
+'protectedpagesempty'     => 'Nisciuna pàgene jè prutette pe mò cu ste parametre.',
 'protectedtitles'         => 'Titele prutette',
 'listusers'               => "Liste de l'utende",
 'usereditcount'           => '$1 {{PLURAL:$1|cangiamende|cangiaminde}}',

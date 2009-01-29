@@ -2756,11 +2756,9 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'confirmemail'             => 'Conferma indirizzo e-mail',
 'confirmemail_noemail'     => 'Non è stato indicato un indirizzo e-mail valido nelle proprie [[Special:Preferences|preferenze]].',
 'confirmemail_text'        => "Questo sito richiede la verifica dell'indirizzo e-mail prima di poter usare le funzioni connesse all'email. Premere il pulsante qui sotto per inviare una richiesta di conferma al proprio indirizzo; nel messaggio è presente un collegamento che contiene un codice. Visitare il collegamento con il proprio browser per confermare che l'indirizzo e-mail è valido.",
-'confirmemail_pending'     => '<div class="error">
-Il codice di conferma è già stato spedito via posta elettronica; se l\'account è stato
-creato di recente, si prega di attendere l\'arrivo del codice per qualche minuto prima
-di tentare di richiederne uno nuovo.
-</div>',
+'confirmemail_pending'     => "Il codice di conferma è già stato spedito via posta elettronica; se l'account è stato
+creato di recente, si prega di attendere l'arrivo del codice per qualche minuto prima
+di tentare di richiederne uno nuovo.",
 'confirmemail_send'        => 'Invia un codice di conferma via e-mail.',
 'confirmemail_sent'        => 'Messaggio e-mail di conferma inviato.',
 'confirmemail_oncreate'    => "Un codice di conferma è stato spedito all'indirizzo

@@ -3056,8 +3056,8 @@ Andere velden worden verborgen.
 Klik op de onderstaande knop om een bevestigingsbericht te ontvangen.
 Dit bericht bevat een verwijzing met een code.
 Open die verwijzing om uw e-mailadres te bevestigen.',
-'confirmemail_pending'     => '<div class="error">Er is al een bevestigingsbericht aan u verzonden.
-Als u recentelijk uw gebruiker hebt aangemaakt, wacht dan een paar minuten totdat die aankomt voordat u opnieuw een e-mail laat sturen.</div>',
+'confirmemail_pending'     => 'Er is al een bevestigingsbericht aan u verzonden.
+Als u recentelijk uw gebruiker hebt aangemaakt, wacht dan een paar minuten totdat die aankomt voordat u opnieuw een e-mail laat sturen.',
 'confirmemail_send'        => 'Een bevestigingscode verzenden',
 'confirmemail_sent'        => 'Bevestigingscode verzonden.',
 'confirmemail_oncreate'    => 'Er is een bevestigingscode naar uw e-mailadres verzonden.
@@ -3271,7 +3271,7 @@ Voer de bestandsnaam in zonder het voorvoegsel "{{ns:file}}:".',
 
 #Zet alle reguliere expressiefragmenten boven deze regel. Laat deze regel onveranderd</pre>',
 
-# Special:Tag
+# Special:Tags
 'tag-filter'              => '[[Special:Tags|Labelfilter]]:',
 'tag-filter-submit'       => 'Filteren',
 'tags-title'              => 'Labels',

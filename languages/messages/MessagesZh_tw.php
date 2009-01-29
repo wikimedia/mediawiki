@@ -36,19 +36,19 @@ $namespaceNames = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => '鏈結標注底線',
-'tog-hideminor'               => '近期變動中隱藏細微修改',
-'tog-usenewrc'                => '增強版近期變動 (JavaScript)',
-'tog-watchcreations'          => '將我建立的頁面加入監視列表',
-'tog-watchdefault'            => '將我更改的頁面加入監視列表',
-'tog-watchmoves'              => '將我移動的頁面加入監視列表',
-'tog-watchdeletion'           => '將我刪除的頁面加入監視列表',
-'tog-minordefault'            => '預設將編輯設定為細微修改',
-'tog-enotifwatchlistpages'    => '當我監視的頁面改變時發電子郵件給我',
-'tog-shownumberswatching'     => '顯示監視數目',
-'tog-uselivepreview'          => '使用即時預覽 (JavaScript) (試驗中)',
-'tog-watchlisthideminor'      => '監視列表中隱藏細微修改',
-'tog-ccmeonemails'            => '當我寄電子郵件給其他使用者時，也寄一份複本到我的信箱。',
+'tog-underline'            => '鏈結標注底線',
+'tog-hideminor'            => '近期變動中隱藏細微修改',
+'tog-usenewrc'             => '增強版近期變動 (JavaScript)',
+'tog-watchcreations'       => '將我建立的頁面加入監視列表',
+'tog-watchdefault'         => '將我更改的頁面加入監視列表',
+'tog-watchmoves'           => '將我移動的頁面加入監視列表',
+'tog-watchdeletion'        => '將我刪除的頁面加入監視列表',
+'tog-minordefault'         => '預設將編輯設定為細微修改',
+'tog-enotifwatchlistpages' => '當我監視的頁面改變時發電子郵件給我',
+'tog-shownumberswatching'  => '顯示監視數目',
+'tog-uselivepreview'       => '使用即時預覽 (JavaScript) (試驗中)',
+'tog-watchlisthideminor'   => '監視列表中隱藏細微修改',
+'tog-ccmeonemails'         => '當我寄電子郵件給其他使用者時，也寄一份複本到我的信箱。',
 
 # Categories related messages
 'subcategories'                 => '子分類',
@@ -434,7 +434,5 @@ $messages = array(
 'confirmemail_text'       => '此網站要求您在使用郵件功能之前驗證您的電子郵件地址。
 點擊以下按鈕可向您的郵箱發送一封確認郵件。該郵件包含有一行代碼連結；
 請在您的瀏覽器中加載此連結以確認您的電子郵件地址是有效的。',
-'confirmemail_pending'    => '<div class="error">
-一個確認代碼已經被發送到您的郵箱，您可能需要等幾分鐘才能收到。如果無法收到，請在申請一個新的確認碼！
-</div>',
+'confirmemail_pending'    => '一個確認代碼已經被發送到您的郵箱，您可能需要等幾分鐘才能收到。如果無法收到，請在申請一個新的確認碼！',
 );

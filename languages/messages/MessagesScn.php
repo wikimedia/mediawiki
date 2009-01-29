@@ -2661,7 +2661,7 @@ Li lijami succissivi, supra la stissa riga, sunnu cunzidirati comu eccizzioni (p
 'confirmemail'             => 'Cunferma ndirizzu e-mail',
 'confirmemail_noemail'     => 'Nun hà statu ndicatu un ndirizzu e-mail vàlidu ntê propi [[Special:Preferences|prifirenzi]].',
 'confirmemail_text'        => "Stu situ richiedi la virìfica di l ndirizzu e-mail prima di putiri usari li funzioni cunnessi a l'email. Prèmiri lu pulsanti ccà sutta pi mannari na richiesta di cunferma a lu propiu ndirizzu; ntô missaggiu è prisenti un culligamenti ca cunteni un còdici. Visitari lu culligamentu cu lu propiu browser pi cunfirmari ca lu ndirizzu e-mail è vàlidu.",
-'confirmemail_pending'     => "<div class=\"error\"> Lu còdici di cunferma hà già statu spiditu via posta alittrònica; siddu l'account hà statu criatu di ricenti, si preja d'attènniri l'arrivu dû còdici pi quarchi minutu prima di tintari d'addumannàrinni unu novu. </div>",
+'confirmemail_pending'     => "Lu còdici di cunferma hà già statu spiditu via posta alittrònica; siddu l'account hà statu criatu di ricenti, si preja d'attènniri l'arrivu dû còdici pi quarchi minutu prima di tintari d'addumannàrinni unu novu.",
 'confirmemail_send'        => 'Manna un còdici di cunferma via e-mail.',
 'confirmemail_sent'        => 'Missaggiu e-mail di cunferma mannatu.',
 'confirmemail_oncreate'    => 'Un còdici di cunferma hà statu spiditu a lu ndirizzu di posta alittrònica ndicatu. Lu còdici nun è nicissariu pi tràsiri lu situ, ma è nicissariu furnirilu pi putiri abbilitari tutti li funzioni dû situ ca fannu usu dâ posta alittrònica.',

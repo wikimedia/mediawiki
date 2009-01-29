@@ -1859,9 +1859,7 @@ Ano man na takod sa parehong linyang ini pigkokonsiderar na eksepsyon, i.e. mga 
 'confirmemail'            => "Kompirmaron an ''e''-surat",
 'confirmemail_noemail'    => "Mayô kang pigkaag na marhay na ''e''-surat sa saimong [[Special:Preferences|mga kabôtan nin parágamit]].",
 'confirmemail_text'       => "Kaipuhan an pag-''validate'' kan saimong e-koreo bago ka makagamit nin ''features'' na e-koreo. Pindoton an butones sa babâ tangarig magpadara nin kompirmasyon sa saimong e-koreo. An surat igwang takod na may koda; ikarga an takod sa browser para makompirmar na valido an saimong e-koreo.",
-'confirmemail_pending'    => "<div class=\"error\">
-May pigpadara nang kompirmasyon sa ''e''-surat mo; kun kagigibo mo pa sana kan saimong ''account'', maghalat ka nin mga dikit na minutos bago ka maghagad giraray nin bâgong ''code''.
-</div>",
+'confirmemail_pending'    => "May pigpadara nang kompirmasyon sa ''e''-surat mo; kun kagigibo mo pa sana kan saimong ''account'', maghalat ka nin mga dikit na minutos bago ka maghagad giraray nin bâgong ''code''.",
 'confirmemail_send'       => 'Magpadará nin kompirmasyon',
 'confirmemail_sent'       => "Napadará na an kompirmasyon sa ''e''-surat.",
 'confirmemail_oncreate'   => "May pigpadara nang kompirmasyon sa saimong ''e''-surat.

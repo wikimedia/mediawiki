@@ -2784,7 +2784,7 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'confirmemail'             => 'Konfirmi retadreson',
 'confirmemail_noemail'     => 'Vi ne havas validan retpoŝtan adreson notitan en viaj [[Special:Preferences|Preferoj]].',
 'confirmemail_text'        => 'Ĉi tiu vikio postulas ke vi validigu vian retadreson antaŭ ol uzadi la retmesaĝpreferojn. Bonvolu alklaki la suban butonon por sendi konfirmesaĝon al via adreso. La mesaĝo entenos ligilon kun kodo; bonvolu alŝuti la ligilon en vian foliumilon por konfirmi ke via retadreso validas.',
-'confirmemail_pending'     => '<div class="error">Konfirma kodo estis jam repoŝtis al vi; se vi lastatempe kreis vian konton, vi eble volus atenti kelkajn minutojn por ĝi aliĝi antaŭ vi petus novan kodon.</div>',
+'confirmemail_pending'     => 'Konfirma kodo estis jam repoŝtis al vi; se vi lastatempe kreis vian konton, vi eble volus atenti kelkajn minutojn por ĝi aliĝi antaŭ vi petus novan kodon.',
 'confirmemail_send'        => 'Retmesaĝi konfirmkodon',
 'confirmemail_sent'        => 'Konfirma retmesaĝo estas sendita.',
 'confirmemail_oncreate'    => 'Konfirma kodo estis sendita al via retpoŝta adreso.
@@ -2974,5 +2974,13 @@ Enigu la dosiernomon sen la "{{ns:file}}:" prefikso.',
 #Linioj komencantaj kun # estas traktata kiel komentoj.
 
 #Enmetu ĉiujn koderojn pri regulaj esprimoj super ĉi tiu linio. Lasu la linion senŝanĝe.</pre>',
+
+# Special:Tags
+'tag-filter'        => '[[Special:Tags|Etikeda]] filtrilo:',
+'tag-filter-submit' => 'Filtrilo',
+'tags-title'        => 'Etikedoj',
+'tags-tag'          => 'Interna etikeda nomo',
+'tags-edit'         => 'redakti',
+'tags-hitcount'     => '$1 {{PLURAL:$1|ŝanĝo|ŝanĝoj}}',
 
 );

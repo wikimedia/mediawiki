@@ -1987,9 +1987,8 @@ $1',
 'confirmemail'            => '確認email地址',
 'confirmemail_noemail'    => '倷冇到倷嗰[[Special:Preferences|用戶設置]]設正一隻有效嗰電子郵件地址。',
 'confirmemail_text'       => '箇隻網站要求倷用email功能之前確認下倷嗰email地址。按吖下底嗰鍵來發封確認郵件到倷嗰郵箱。佢會附帶一隻代碼連結；請到倷嗰瀏覽器打開箇隻連結來確認倷嗰email地址係有效嗰。',
-'confirmemail_pending'    => '<div class="error">
-一隻確認代碼發到倷嗰郵箱，噉可能要等幾分鐘。
-要係冇收到，請申請過新嗰確認碼！</div>',
+'confirmemail_pending'    => '一隻確認代碼發到倷嗰郵箱，噉可能要等幾分鐘。
+要係冇收到，請申請過新嗰確認碼！',
 'confirmemail_send'       => '寄出確認碼',
 'confirmemail_sent'       => '確認郵件發出嘞。',
 'confirmemail_oncreate'   => '一隻確認碼發到倷嗰郵箱。箇隻代碼伓係話倷要仰上登入，但要係倷想用 wiki 嗰任何email嗰相關功能，就非要先提交箇隻代碼。',

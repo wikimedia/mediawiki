@@ -2797,9 +2797,7 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'confirmemail_noemail'     => 'No tienes una dirección de correo electrónico válida en tus [[Special:Preferences|preferencias de usuario]].',
 'confirmemail_text'        => '{{SITENAME}} requiere que valide su dirección de correo antes de usarlo. Pulse el botón de abajo para enviar la confirmación.
 El correo incluirá un enlace con un código. Introdúzcalo para confirmar la validez de su dirección.',
-'confirmemail_pending'     => '<div class="error">
-Ya se te ha enviado un código de confirmación; si creaste una cuenta recientemente, puede que tengas que esperar unos minutos para que te llegue antes de intentar pedir un nuevo código.
-</div>',
+'confirmemail_pending'     => 'Ya se te ha enviado un código de confirmación; si creaste una cuenta recientemente, puede que tengas que esperar unos minutos para que te llegue antes de intentar pedir un nuevo código.',
 'confirmemail_send'        => 'Envíar el código de confimación.',
 'confirmemail_sent'        => 'Confirmación de correo enviada.',
 'confirmemail_oncreate'    => 'Se ha enviado un código de confirmación a tu dirección de correo electrónico.

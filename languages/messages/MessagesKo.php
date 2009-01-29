@@ -1657,7 +1657,9 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'protectedtitlesempty'    => '해당 조건에 맞는 생성 금지 표제어가 없습니다.',
 'listusers'               => '사용자 목록',
 'listusers-editsonly'     => '기여가 있는 사용자만 보기',
+'listusers-creationsort'  => '계정 등록일 순으로 정렬',
 'usereditcount'           => '$1개의 편집',
+'usercreated'             => '$1 $2에 계정 생성됨',
 'newpages'                => '새 문서 목록',
 'newpages-username'       => '이름:',
 'ancientpages'            => '오래된 문서 목록',
@@ -2706,7 +2708,7 @@ Variants for Chinese language
 'confirmemail'             => '이메일 주소 확인',
 'confirmemail_noemail'     => '[[Special:Preferences|환경 설정]]에 이메일을 설정하지 않았습니다.',
 'confirmemail_text'        => '{{SITENAME}}에서는 이메일 기능을 사용하기 전에, 이메일 인증을 받아야 합니다. 아래의 버튼을 누르면 인증 메일을 보냅니다. 메일에는 인증 코드가 들어있는 링크가 있습니다. 그 링크를 웹 브라우저로 열면 인증이 완료됩니다.',
-'confirmemail_pending'     => '<div class="error">이미 확인 이메일을 보냈습니다. 계정을 최근에 만들었다면 이메일을 보내는 데에 몇 분이 걸릴 수 있으므로 잠시 후에 다시 확인해 주세요.</div>',
+'confirmemail_pending'     => '이미 확인 이메일을 보냈습니다. 계정을 최근에 만들었다면 이메일을 보내는 데에 몇 분이 걸릴 수 있으므로 잠시 후에 다시 확인해 주세요.',
 'confirmemail_send'        => '인증 코드를 메일로 보내기',
 'confirmemail_sent'        => '인증 이메일을 보냈습니다.',
 'confirmemail_oncreate'    => '확인 이메일을 보냈습니다. 이 확인 과정은 로그인하는 데에 필요하지는 않지만, 위키 프로그램에서 제공하는 이메일 기능을 사용하기 위해서 필요합니다.',
@@ -2877,5 +2879,11 @@ $5
 # Special:BlankPage
 'blankpage'              => '빈 문서',
 'intentionallyblankpage' => '이 문서는 고의적으로 빈 채 방치되어 있습니다.',
+
+# Special:Tags
+'tag-filter'        => '[[Special:Tags|태그]] 필터:',
+'tag-filter-submit' => '필터',
+'tags-title'        => '태그',
+'tags-edit'         => '편집',
 
 );

@@ -2895,10 +2895,8 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'confirmemail'             => 'Potvrzení e-mailové adresy',
 'confirmemail_noemail'     => 'Ve svém [[Special:Preferences|uživatelském nastavení]] jste nezadali platnou e-mailovou adresu.',
 'confirmemail_text'        => 'Tato wiki vyžaduje, abyste před využíváním některých funkcí potvrdili svoji e-mailovou adresu. Kliknutím na tlačítko níže odešlete potvrzovací e-mail na vámi uvedenou adresu. Tento e-mail obsahuje odkaz a potvrzovací kód; zobrazením odkazované stránky ve svém internetovém prohlížeči potvrdíte, že zadaná adresa je platná.',
-'confirmemail_pending'     => '<div class="error">
-Potvrzovací kód vám byl již zaslán na váš e-mail.
-Pokud jste si založili účet před chvílí, vyčkejte, prosíme, několik minut na doručení kódu dříve, než požádáte o nový.
-</div>',
+'confirmemail_pending'     => 'Potvrzovací kód vám byl již zaslán na váš e-mail.
+Pokud jste si založili účet před chvílí, vyčkejte, prosíme, několik minut na doručení kódu dříve, než požádáte o nový.',
 'confirmemail_send'        => 'Odeslat potvrzovací kód',
 'confirmemail_sent'        => 'Potvrzovací e-mail byl odeslán',
 'confirmemail_oncreate'    => 'Na vaši e-mailovou adresu byl zaslán potvrzovací kód.

@@ -2778,11 +2778,9 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 electrònic per a poder gaudir d'algunes facilitats. Cliqueu el botó inferior
 per a enviar un codi de confirmació a la vostra adreça. Seguiu l'enllaç que
 hi haurà al missatge enviat per a confirmar que el vostre correu és correcte.",
-'confirmemail_pending'     => "<div class=\"error\">
-Ja s'ha enviat el vostre codi de confirmació per correu electrònic; si
+'confirmemail_pending'     => "Ja s'ha enviat el vostre codi de confirmació per correu electrònic; si
 fa poc hi heu creat el vostre compte, abans de mirar de demanar un nou
-codi, primer hauríeu d'esperar alguns minuts per a rebre'l.
-</div>",
+codi, primer hauríeu d'esperar alguns minuts per a rebre'l.",
 'confirmemail_send'        => 'Envia per correu electrònic un codi de confirmació',
 'confirmemail_sent'        => "S'ha enviat un missatge de confirmació.",
 'confirmemail_oncreate'    => "S'ha enviat un codi de confirmació a la vostra adreça de correu electrònic.

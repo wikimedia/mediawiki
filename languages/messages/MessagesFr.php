@@ -2918,7 +2918,8 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'confirmemail'             => 'Confirmer adresse de courriel',
 'confirmemail_noemail'     => 'L’adresse de courriel configurée dans vos [[Special:Preferences|préférences]] n’est pas valide.',
 'confirmemail_text'        => 'Ce wiki nécessite la vérification de votre adresse de courriel avant de pouvoir utiliser toute fonction de messagerie. Utilisez le bouton ci-dessous pour envoyer un courriel de confirmation à votre adresse. Le courriel contiendra un lien contenant un code, chargez ce lien dans votre navigateur pour valider votre adresse.',
-'confirmemail_pending'     => '<div class="error"> Un code de confirmation vous a déjà été envoyé par courriel ; si vous venez de créer votre compte, veuillez attendre quelques minutes que le courriel arrive avant de demander un nouveau code. </div>',
+'confirmemail_pending'     => 'Un code de confirmation vous a déjà été envoyé par courriel ;
+si vous venez de créer votre compte, veuillez attendre quelques minutes que le courriel arrive avant de demander un nouveau code.',
 'confirmemail_send'        => 'Envoyer un code de confirmation',
 'confirmemail_sent'        => 'Courriel de confirmation envoyé',
 'confirmemail_oncreate'    => 'Un code de confirmation a été envoyé à votre adresse de courriel. Ce code n’est pas requis pour se connecter, mais vous en aurez besoin pour activer les fonctionnalités liées aux courriels sur ce wiki.',
@@ -3123,7 +3124,7 @@ Entrez le nom du fichier sans le préfixe « {{ns:file}}: ».',
 
 #Indiquez tous les fragments d’expressions régulières en bas de celle-ligne. Cette dernière doit être laissée exactement telle quelle.</pre>",
 
-# Special:Tag
+# Special:Tags
 'tag-filter'              => 'Filtrer les [[Special:Tags|balises]] :',
 'tag-filter-submit'       => 'Filtrer',
 'tags-title'              => 'Balises',

@@ -508,6 +508,10 @@ No xublide presonalizar [[Special:Preferences|as suyas preferenzias en {{SITENAM
 'yournick'                   => 'Siñadura:',
 'badsig'                     => 'A suya siñadura no ye conforme; comprebe as etiquetas HTML.',
 'badsiglength'               => 'A siñadura ye masiau larga. No abría de tener más de $1 {{PLURAL:$1|caráuter|caráuters}}.',
+'yourgender'                 => 'Secso:',
+'gender-unknown'             => 'No espezificato',
+'gender-male'                => 'Ombre',
+'gender-female'              => 'Muller',
 'email'                      => 'Adreza de correu-e',
 'prefs-help-realname'        => "* Nombre reyal (opzional): si esliche escribir-lo, se ferá serbir ta l'atribuzión d'a suya faina.",
 'loginerror'                 => 'Error en enzetar a sesión',
@@ -1072,6 +1076,8 @@ Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.",
 'defaultns'                 => 'Mirar por defeuto en istos espazios de nombres:',
 'default'                   => 'por defeuto',
 'files'                     => 'Archibos',
+'prefs-custom-css'          => 'CSS presonalizato',
+'prefs-custom-js'           => 'JS presonalizato',
 
 # User rights
 'userrights'                  => "Confegurazión d'os dreitos d'os usuarios", # Not used as normal message but as header for the special page itself
@@ -1279,6 +1285,7 @@ Ta encluyir un archibo u imachen en una pachina, emplegue un binclo d'una d'ista
 'filename'                    => "Nombre de l'archibo",
 'filedesc'                    => 'Resumen',
 'fileuploadsummary'           => 'Resumen:',
+'filereuploadsummary'         => "Cambios de l'archibo:",
 'filestatus'                  => "Estau d'os dreitos d'autor (copyright):",
 'filesource'                  => 'Fuent:',
 'uploadedfiles'               => 'Archibos cargatos',
@@ -1555,7 +1562,9 @@ Una pachina se considera pachina de desambigazión si fa serbir una plantilla pr
 'protectedtitlesempty'    => 'En iste inte no bi ha garra títol protechito con ixos parametros.',
 'listusers'               => "Lista d'usuarios",
 'listusers-editsonly'     => 'Amostrar nomás usuarios con edizions',
+'listusers-creationsort'  => 'Ordenato por calendata de creyazión',
 'usereditcount'           => '$1 {{PLURAL:$1|edizión|edizions}}',
+'usercreated'             => 'Creyato o $1 á las $2',
 'newpages'                => 'Pachinas nuebas',
 'newpages-username'       => "Nombre d'usuario",
 'ancientpages'            => 'Pachinas más biellas',
@@ -1615,7 +1624,8 @@ Se beigan tamién as [[Special:WantedCategories|categorías requiestas]].",
 'special-categories-sort-abc'   => 'ordenar alfabeticament',
 
 # Special:DeletedContributions
-'deletedcontributions' => "Contrebuzions d'usuario borratas",
+'deletedcontributions'       => "Contrebuzions d'usuario borratas",
+'deletedcontributions-title' => "Contrebuzions d'usuario borradas",
 
 # Special:LinkSearch
 'linksearch'       => 'Mirar binclos ta pachinas web',
@@ -1845,7 +1855,7 @@ Contino se i amuestran as opzions autuals d'a pachina <strong>$1</strong>:",
 'pagesize'                    => '(bytes)',
 
 # Restrictions (nouns)
-'restriction-edit'   => 'Editar',
+'restriction-edit'   => 'Edizión',
 'restriction-move'   => 'Tresladar',
 'restriction-create' => 'Creyar',
 'restriction-upload' => 'Carga',
@@ -2677,9 +2687,7 @@ Se consideran nomás os elementos d'una lista (linias que escomienzan por *). O 
 'confirmemail'             => 'Confirmar adreza de correu-e',
 'confirmemail_noemail'     => "No tiene una adreza de correu-e conforme en as suyas [[Special:Preferences|preferenzias d'usuario]].",
 'confirmemail_text'        => "{{SITENAME}} requiere que confirme a suya adreza de correu-e antis de poder usar as funzions de correu-e. Punche o botón de baxo ta nimbiar un mensache de confirmazión t'a suya adreza. O mensache encluirá un binclo con un codigo. Escriba-lo ta confirmar que a suya adreza ye conforme.",
-'confirmemail_pending'     => '<div class="error">
-Ya se le ha nimbiato un codigo de confirmazión; si creyó una cuenta fa poco tiempo, puede que s\'estime más asperar bels menutos á beyer si le plega antis de pedir un nuebo codigo.
-</div>',
+'confirmemail_pending'     => "Ya se le ha nimbiato un codigo de confirmazión; si creyó una cuenta fa poco tiempo, puede que s'estime más asperar bels menutos á beyer si le plega antis de pedir un nuebo codigo.",
 'confirmemail_send'        => 'Nimbiar un codigo de confirmazión.',
 'confirmemail_sent'        => "S'ha nimbiato un correu de confirmazión.",
 'confirmemail_oncreate'    => "S'ha nimbiato un codigo de confirmazión t'a suya adreza de correu-e.
@@ -2868,5 +2876,17 @@ Escriba o nombre de l\'archibo sin o prefixo "{{ns:file}}:".',
 #As ringleras que prenzipian por «#» se consideran comentarios
 
 #Meta toz os fragmentos de regex por denzima d'ista ringlera. No faiga cambeos en ista linia</pre>",
+
+# Special:Tags
+'tag-filter'              => 'Filtrar as [[Special:Tags|etiquetas]]:',
+'tag-filter-submit'       => 'Filtrar',
+'tags-title'              => 'Etiquetas',
+'tags-intro'              => 'Ista pachina amuestra as etiquetas con que o software puet siñalar una edizión, y o suyo sinnificau.',
+'tags-tag'                => "Nombre interno d'a etiqueta",
+'tags-display-header'     => 'Aparenzia en as listas de cambeos',
+'tags-description-header' => "Descripzión completa d'o sinnificau",
+'tags-hitcount-header'    => 'Edizions etiquetatas',
+'tags-edit'               => 'editar',
+'tags-hitcount'           => '$1 {{PLURAL:$1|cambeo|cambeos}}',
 
 );

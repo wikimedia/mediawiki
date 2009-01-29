@@ -588,9 +588,9 @@ Provjerite HTML tagove.',
 'badsiglength'               => 'Potpis je predug.
 Mora biti ispod $1 {{PLURAL:$1|karakter|karaktera}}.',
 'yourgender'                 => 'Spol:',
-'gender-unknown'             => 'Neodređen',
-'gender-male'                => 'Muški',
-'gender-female'              => 'Žensko',
+'gender-unknown'             => 'neodređen',
+'gender-male'                => 'muški',
+'gender-female'              => 'žensko',
 'email'                      => 'E-mail',
 'prefs-help-realname'        => 'Pravo ime nije obavezno.
 Ako izaberete da date ime, biće korišteno za pripisivanje za vaš rad.',
@@ -2916,8 +2916,8 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'confirmemail'             => 'Potvrdite adresu e-pošte',
 'confirmemail_noemail'     => 'Niste unijeli tačnu e-mail adresu u Vaše [[Special:Preferences|korisničke postavke]].',
 'confirmemail_text'        => 'Ova viki zahtjeva da potvrdite adresu Vaše e-pošte prije nego što koristite mogućnosti e-pošte. Aktivirajte dugme ispod kako bi ste poslali poštu za potvrdu na Vašu adresu. Pošta uključuje poveznicu koja sadrži kod; učitajte poveznicu u Vaš brauzer da bi ste potvrdili da je adresa Vaše e-pošte validna.',
-'confirmemail_pending'     => '<div class="error">Konfirmacioni kod Vam je već poslan putem e-maila;
-ako ste nedavno otvorili Vaš račun, trebali bi pričekati par minuta da poslana pošta stigne, prije nego što ponovno zahtijevate novi kod.</div>',
+'confirmemail_pending'     => 'Konfirmacioni kod Vam je već poslan putem e-maila;
+ako ste nedavno otvorili Vaš račun, trebali bi pričekati par minuta da poslana pošta stigne, prije nego što ponovno zahtijevate novi kod.',
 'confirmemail_send'        => 'Pošaljite kod za potvrdu',
 'confirmemail_sent'        => 'E-pošta za potvrđivanje poslata.',
 'confirmemail_oncreate'    => 'Kod za potvrđivanje Vam je poslat na Vašu e-mail adresu.
@@ -3175,5 +3175,17 @@ Unesite ime datoteke bez "{{ns:file}}:" prefiksa.',
 #Linije koje počinju sa # se tretiraju kao komentari
 
 #Stavite sve regex fragmente iznad ove linije. Ostavite ovu liniju onakvu kakva je</pre>',
+
+# Special:Tags
+'tag-filter'              => 'Filter [[Special:Tags|oznaka]]:',
+'tag-filter-submit'       => 'Filter',
+'tags-title'              => 'Oznake',
+'tags-intro'              => 'Ova stranica prikazuje spisak oznaka koje softver može staviti na svaku izmjenu i njihovo značenje.',
+'tags-tag'                => 'Unutrašnji naziv oznake',
+'tags-display-header'     => 'Vidljivost na spisku izmjena',
+'tags-description-header' => 'Puni opis značenja',
+'tags-hitcount-header'    => 'Označene izmjene',
+'tags-edit'               => 'uređivanje',
+'tags-hitcount'           => '$1 {{PLURAL:$1|izmjena|izmjene|izmjena}}',
 
 );

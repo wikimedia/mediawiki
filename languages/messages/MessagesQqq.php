@@ -2442,4 +2442,8 @@ $1 is the name of the requested file.',
 # External image whitelist
 'external_image_whitelist' => "As usual please leave all the wiki markup, including the spaces, as they are. You can translate the text, including 'Leave this line exactly as it is'.",
 
+# Special:Tags
+'tag-filter-submit' => '{{Identical|Filter}}',
+'tags-edit'         => '{{Identical|Edit}}',
+
 );

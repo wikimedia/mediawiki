@@ -1844,7 +1844,7 @@ Axuda:
 'confirmdeletetext'      => 'Está a piques de borrar de xeito permanente unha páxina ou imaxe con todo o seu historial na base de datos.
 Por favor, confirme que é realmente a súa intención, que comprende as consecuencias e que está obrando de acordo coas regras [[{{MediaWiki:Policy-url}}|da política e normas]].',
 'actioncomplete'         => 'A acción foi completada',
-'deletedtext'            => '"<nowiki>$1</nowiki>" foi borrado.
+'deletedtext'            => 'A páxina "<nowiki>$1</nowiki>" foi borrada.
 No $2 pode ver unha listaxe dos borrados máis recentes.',
 'deletedarticle'         => 'borrou "[[$1]]"',
 'suppressedarticle'      => 'suprimiu "[[$1]]"',
@@ -1974,7 +1974,7 @@ O texto das revisións eliminadas só está á disposición dos administradores.
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|revisión|revisións}} e $2 {{PLURAL:$2|ficheiro restaurado|ficheiros restaurados}}',
 'undeletedfiles'               => '$1 {{PLURAL:$1|ficheiro restaurado|ficheiros restaurados}}',
 'cannotundelete'               => 'Non se restaurou a páxina porque alguén xa o fixo antes.',
-'undeletedpage'                => "<big>'''$1 foi restaurado'''</big>
+'undeletedpage'                => "<big>'''A páxina \"\$1\" foi restaurada'''</big>
 
 Comprobe o [[Special:Log/delete|rexistro de borrados]] para ver as entradas recentes no rexistro de páxinas eliminadas e restauradas.",
 'undelete-header'              => 'Vexa [[Special:Log/delete|no rexistro de borrados]] as páxinas eliminadas recentemente.',
@@ -2783,7 +2783,7 @@ Outros agocharanse por omisión.
 'confirmemail'             => 'Confirmar o enderezo de correo electrónico',
 'confirmemail_noemail'     => 'Non ten rexistrado ningún enderezo de correo electrónico válido nas súas [[Special:Preferences|preferencias de usuario]].',
 'confirmemail_text'        => '{{SITENAME}} require que lle dea validez ao seu enderezo de correo electrónico antes de utilizar as funcións relacionadas con el. Prema no botón de embaixo para enviar un correo de confirmación ao seu enderezo. O correo incluirá unha ligazón cun código: faga clic nesta ligazón para abrila no seu navegador web e así confirmar que o seu enderezo é válido.',
-'confirmemail_pending'     => '<div class="error"> Envióuselle un código de confirmación ao enderezo de correo electrónico; se creou a conta hai pouco debe esperar uns minutos antes de solicitar un novo código.</div>',
+'confirmemail_pending'     => ' Envióuselle un código de confirmación ao enderezo de correo electrónico; se creou a conta hai pouco debe esperar uns minutos antes de solicitar un novo código.',
 'confirmemail_send'        => 'Enviar por correo elecrónico un código de confirmación',
 'confirmemail_sent'        => 'Correo electrónico de confirmación enviado.',
 'confirmemail_oncreate'    => 'Envióuselle un código de confirmación ao enderezo de correo electrónico. Este código non é imprescindible para entrar no wiki, pero é preciso para activar as funcións do wiki baseadas no correo.',
@@ -2978,7 +2978,7 @@ Introduza o nome do ficheiro sen o prefixo "{{ns:file}}:".',
 
 #Poña todos os fragmentos por riba desta liña. Deixe esta liña tal e como está</pre>',
 
-# Special:Tag
+# Special:Tags
 'tag-filter'              => 'Filtrar as [[Special:Tags|etiquetas]]:',
 'tag-filter-submit'       => 'Filtro',
 'tags-title'              => 'Etiquetas',

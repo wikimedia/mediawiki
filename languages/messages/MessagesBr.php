@@ -2463,9 +2463,8 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da skou
 'confirmemail'             => "Kadarnaat ar chomlec'h postel",
 'confirmemail_noemail'     => "N'hoc'h eus ket spisaet chomlec'h postel mat ebet en ho [[Special:Preferences|penndibaboù implijer]].",
 'confirmemail_text'        => "Rankout a ra ar wiki-mañ bezañ gwiriet ho chomlec'h postel a-raok gallout implijout nep arc'hwel postel. Implijit ar bouton a-is evit kas ur postel kadarnaat d'ho chomlec'h. Ul liamm ennañ ur c'hod a vo er postel. Kargit al liamm-se en o merdeer evit kadarnaat ho chomlec'h.",
-'confirmemail_pending'     => "<div class=\"error\">
-Ur c'hod kadarnaat zo bet kaset deoc'h dre bostel c'hoazh;
-a-raok klask goulenn unan nevez, m'emaoc'h o paouez krouiñ ho kont, e vo fur eus ho perzh gortoz un nebeud munutoù ha leuskel amzer dezhañ d'en em gavout betek ennoc'h.</div>",
+'confirmemail_pending'     => "Ur c'hod kadarnaat zo bet kaset deoc'h dre bostel c'hoazh;
+a-raok klask goulenn unan nevez, m'emaoc'h o paouez krouiñ ho kont, e vo fur eus ho perzh gortoz un nebeud munutoù ha leuskel amzer dezhañ d'en em gavout betek ennoc'h.",
 'confirmemail_send'        => "Kas ur c'hod kadarnaat",
 'confirmemail_sent'        => 'Postel kadarnaat kaset',
 'confirmemail_oncreate'    => "Kaset ez eus bet ur c'hod kadarnaat d'ho chomlec'h postel.

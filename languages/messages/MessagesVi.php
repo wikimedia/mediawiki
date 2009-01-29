@@ -2799,11 +2799,9 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 trước khi sử dụng tính năng thư điện tử. Nhấn vào nút bên dưới để gửi thư
 xác nhận đến địa chỉ của bạn. Thư xác nhận sẽ có kèm một liên kết có chứa một mã số;
 tải liên kết đó trong trình duyệt để xác nhận địa chỉ thư điện tử của bạn là đúng.',
-'confirmemail_pending'     => '<div class="error">
-Mã xác đã được gửi đến địa chỉ thư điện tử của bạn; nếu bạn
+'confirmemail_pending'     => 'Mã xác đã được gửi đến địa chỉ thư điện tử của bạn; nếu bạn
 mới vừa tạo tài khoản, xin chờ vài phút để thư tới nơi rồi
-hãy cố gắng yêu cầu mã mới.
-</div>',
+hãy cố gắng yêu cầu mã mới.',
 'confirmemail_send'        => 'Gửi thư xác nhận',
 'confirmemail_sent'        => 'Thư xác nhận đã được gửi',
 'confirmemail_oncreate'    => 'Đã gửi mã xác nhận đến địa chỉ thư điện tử của bạn.

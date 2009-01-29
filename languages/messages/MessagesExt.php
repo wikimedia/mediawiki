@@ -2101,11 +2101,9 @@ Cualisquiel otru atihu ena mesma línia se consierará ececión, p.s. páhinas o
 'confirmemail'             => 'Confirmal email',
 'confirmemail_noemail'     => 'Nu as escrebiu una direción d´email correta enas tus [[Special:Preferences|preferéncias]].',
 'confirmemail_text'        => "{{SITENAME}} requieri que confirmis la tu direción d'email enantis de gastal las huncionis de correu. Ativa el botón d'embahu pa envial un correu e confirmación a la tu direción. El correu incluirá un atihu con un cóigu; sigui el atihu pa confirmal la tu direción d'email.",
-'confirmemail_pending'     => '<div class="error">
-Un coigu e confirmación s\'á enviau a la tu direción d\'email; si acabihas de
+'confirmemail_pending'     => "Un coigu e confirmación s'á enviau a la tu direción d'email; si acabihas de
 crial la tu cuenta, aspera duranti angunus minutus a que te chegui el
-correu enantis de solicital otru coigu.
-</div>',
+correu enantis de solicital otru coigu.",
 'confirmemail_send'        => 'Envial un coigu e confirmación pol email',
 'confirmemail_sent'        => 'Email de confirmación enviau.',
 'confirmemail_oncreate'    => "S'á enviau un cóigu e confirmación a la tu direción de correu eletrónicu.

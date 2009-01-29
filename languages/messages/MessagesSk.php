@@ -2813,11 +2813,9 @@ Každý ďalší odkaz na rovnakom riadku sa považuje za výnimku, t.j. článk
 pred používaním e-mailových funkcií. Kliknite na tlačidlo dole, aby sa na vašu adresu odoslal potvrdzovací
 e-mail. V e-maili bude aj odkaz obsahujúci kód; otvorte odkaz
 vo vašom prehliadači, čím potvrdíte, že vaša e-mailová adresa je platná.',
-'confirmemail_pending'     => '<div class="error">
-Potvrdzovací kód vám už bol zaslaný; ak ste si účet vytvorili len nedávno
+'confirmemail_pending'     => 'Potvrdzovací kód vám už bol zaslaný; ak ste si účet vytvorili len nedávno
 mali by ste počkať niekoľko minút, kým vám bude email doručený, predtým
-než si vyžiadate nový kód.
-</div>',
+než si vyžiadate nový kód.',
 'confirmemail_send'        => 'Odoslať potvrdzovací kód',
 'confirmemail_sent'        => 'Potvrdzovací e-mail odoslaný.',
 'confirmemail_oncreate'    => 'Na vašu emailovú adresu bol odoslaný potvrdzovací kód.
@@ -3012,5 +3010,17 @@ Zadajte názov súboru bez predpony „{{ns:file}}:“.',
 #Riadky, ktoré začínajú znakom # sa považujú za komentáre
 
 #Napíšte všetky časti reg. výrazov nad tento riadok. Nechajte tento riadok presne tak, ako je</pre>',
+
+# Special:Tags
+'tag-filter'              => 'Filter [[Special:Tags|značiek]]:',
+'tag-filter-submit'       => 'Filter',
+'tags-title'              => 'Značky',
+'tags-intro'              => 'Táto stránka obsahuje zoznam značiek, s ktorým softvér môže pracovať a upravovať ich a ich význam.',
+'tags-tag'                => 'Vnútorný názov značky',
+'tags-display-header'     => 'Vzhľad v zoznamoch úprav',
+'tags-description-header' => 'Úplný popis významu',
+'tags-hitcount-header'    => 'Označené úpravy',
+'tags-edit'               => 'upraviť',
+'tags-hitcount'           => '$1 {{PLURAL:$1|zmena|zmeny|zmien}}',
 
 );

@@ -596,6 +596,10 @@ Vergeet nich, de Sied för di persönlich [[Special:Preferences|intostellen]].',
 'yournick'                   => 'Dien Ökelnaam (för dat Ünnerschrieven)',
 'badsig'                     => 'De Signatur is nich korrekt, kiek nochmal na de HTML-Tags.',
 'badsiglength'               => 'De Ünnerschrift is to lang; de schall weniger as $1 {{PLURAL:$1|Teken|Tekens}} hebben.',
+'yourgender'                 => 'Geslecht:',
+'gender-unknown'             => 'Nich angeven',
+'gender-male'                => 'Mann',
+'gender-female'              => 'Fro',
 'email'                      => 'Nettbreef',
 'prefs-help-realname'        => 'De echte Naam mutt nich angeven warrn. Wenn du em angiffst, warrt de Naam bruukt, dat diene Arbeit di torekent warrn kann.',
 'loginerror'                 => 'Fehler bi dat Anmellen',
@@ -904,6 +908,7 @@ Mehr över dat Wegsmieten is in dat [{{fullurl:Special:Log/delete|page={{FULLPAG
 'revisiondelete'              => 'Versionen wegsmieten/wedderhalen',
 'revdelete-nooldid-title'     => 'kene Versionen dor, de passt',
 'revdelete-nooldid-text'      => 'Du hest keen Version för disse Akschoon angeven, de utwählte Version gifft dat nich oder du versöchst, de ne’este Version wegtodoon.',
+'revdelete-nologtype-title'   => 'Keen Logbooktyp angeven',
 'revdelete-selected'          => "'''{{PLURAL:$2|Wählte Version|Wählte Versionen}} vun [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Wählt Logbook-Indrag|Wählte Logbook-Indrääg}}:'''",
 'revdelete-text'              => "'''Wegsmetene Versionen staht noch jümmer in de Versionsgeschicht, sünd aver nich mehr apen intosehn.'''
@@ -1165,6 +1170,8 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 'defaultns'                 => 'In disse Naamrüüm schall standardmatig söökt warrn:',
 'default'                   => 'Standard',
 'files'                     => 'Datein',
+'prefs-custom-css'          => 'Anpasst CSS',
+'prefs-custom-js'           => 'Anpasst JS',
 
 # User rights
 'userrights'                  => 'Brukerrechten inrichten', # Not used as normal message but as header for the special page itself
@@ -1372,6 +1379,7 @@ Kiek bi de [[Special:NewFiles|Galerie vun ne’e Datein]] för en Översicht mit
 'filename'                    => 'Dateinaam',
 'filedesc'                    => 'Beschrieven',
 'fileuploadsummary'           => 'Tosamenfaten:',
+'filereuploadsummary'         => 'Dateiännern:',
 'filestatus'                  => 'Copyright-Status:',
 'filesource'                  => 'Born:',
 'uploadedfiles'               => 'Hoochladene Datein',
@@ -1634,7 +1642,9 @@ to den vun den tweeten Wiederleiden wiest warrt, un to den de eerste Wiederleide
 'protectedtitlesempty'    => 'Opstunns sünd mit disse Parameters kene Sieden sperrt.',
 'listusers'               => 'Brukerlist',
 'listusers-editsonly'     => 'Blot Brukers mit Bidrääg wiesen',
+'listusers-creationsort'  => 'Na Opstelldatum sorteren',
 'usereditcount'           => '$1 {{PLURAL:$1|Ännern|Ännern}}',
+'usercreated'             => 'Opstellt an’n $1 üm $2',
 'newpages'                => 'Ne’e Sieden',
 'newpages-username'       => 'Brukernaam:',
 'ancientpages'            => 'Öllste Sieden',
@@ -2760,7 +2770,7 @@ Wat denn noch an Lenken kummt in de Reeg, dat sünd Utnahmen, bi de dat Bild lie
 'confirmemail'             => 'Nettbreefadress bestätigen',
 'confirmemail_noemail'     => 'Du hest kene bestätigte Nettbreefadress in diene [[Special:Preferences|Instellen]] angeven.',
 'confirmemail_text'        => '{{SITENAME}} verlangt, dat du diene Nettbreefadress bestätigst, ehrder du de Nettbreeffunkschonen bruken kannst. Klick op den Knopp wieder ünnen, dat di en Bestätigungskood tostüürt warrt.',
-'confirmemail_pending'     => '<div class="error">Di is al en Bestätigungs-Kood över E-Mail toschickt worrn. Wenn du dien Brukerkonto nu eerst nee opstellt hest, denn tööv doch noch en poor Minuten op de E-Mail, ehrdat du di en ne’en Kood toschicken lettst.</div>',
+'confirmemail_pending'     => 'Di is al en Bestätigungs-Kood över E-Mail toschickt worrn. Wenn du dien Brukerkonto nu eerst nee opstellt hest, denn tööv doch noch en poor Minuten op de E-Mail, ehrdat du di en ne’en Kood toschicken lettst.',
 'confirmemail_send'        => 'Bestätigungskood tostüren.',
 'confirmemail_sent'        => 'Bestätigungsnettbreef afschickt.',
 'confirmemail_oncreate'    => 'Du hest en Bestätigungs-Kood an dien E-Mail-Adress kregen. Disse Kood is för dat Anmellen nich nödig. He warrt blot bruukt, dat du de E-Mail-Funkschonen in dat Wiki bruken kannst.',
@@ -2946,5 +2956,13 @@ Geev den Dateinaam ahn dat Präfix „{{ns:file}}:“ in.',
 #En positiv Vergliek föhrt dorto, dat dat Bild wiest warrt, ans warrt dat Bild blot as Lenk wiest
 #Regen, de mit en # anfangt, warrt as Kommentar behannelt
 #Delen vun reguläre Utdrück na disse Reeg indragen. Disse Reeg nich ännern</pre>',
+
+# Special:Tags
+'tag-filter'        => '
+[[Special:Tags|Tag]]-Filter:',
+'tag-filter-submit' => 'Filter',
+'tags-title'        => 'Tags',
+'tags-edit'         => 'ännern',
+'tags-hitcount'     => '$1 {{PLURAL:$1|Ännern|Ännern}}',
 
 );
