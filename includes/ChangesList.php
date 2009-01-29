@@ -347,6 +347,10 @@ class ChangesList {
 		$classes = array_merge( $classes, $newClasses );
 		$s .= ' ' . $tagSummary;
 	}
+
+	protected function insertExtra( &$s, &$rc, &$classes ) {
+		## Empty, used for subclassers to add anything special.
+	}
 }
 
 
@@ -408,6 +412,9 @@ class OldChangesList extends ChangesList {
 		$this->insertTags( $s, $rc, $classes );
 		# Rollback
 		$this->insertRollback( $s, $rc );
+		# For subclasses
+		$this->insertExtra( $s, $rc, $classes );
+		
 		# Mark revision as deleted if so
 		if( !$rc->mAttribs['rc_log_type'] && $this->isDeleted($rc,Revision::DELETED_TEXT) ) {
 		   $s .= ' <tt>' . wfMsgHtml( 'deletedrev' ) . '</tt>';
