@@ -2737,8 +2737,7 @@ Nakatakdang itago ang iba pa.
 'confirmemail_text'        => "Pinagagawa ng {{SITENAME}} na patotohanan mo ang iyong adres ng e-liham bago gamitin ang mga kasangkapang-katangian ng e-liham.  Pindutin at buhayin ang pindutan sa ibaba para makapagpadala ng isang makapagpapatotoong e-liham (kompirmasyon) patungo sa iyong adres.
 Makakasama sa liham ang isang kawing na naglalaman ng kodigo;
 Ikarga ang kawing sa iyong pantingin-tingin (''browser'') para mapatotohanang katanggap-tanggap ang iyong adres ng e-liham.",
-'confirmemail_pending'     => '<div class="error">
-Naipadala na sa iyong e-liham ang kodigo ng pagpapatotoo (kumpirmasyon); kung kamakailan mo lamang nilikha ang iyong kuwenta/akawnt, maaaring ibigin mong maghintay ng ilang minuto para makarating muna ito bago subuking humiling ng isang bagong kodigo.</div>',
+'confirmemail_pending'     => 'Naipadala na sa iyong e-liham ang kodigo ng pagpapatotoo (kumpirmasyon); kung kamakailan mo lamang nilikha ang iyong kuwenta/akawnt, maaaring ibigin mong maghintay ng ilang minuto para makarating muna ito bago subuking humiling ng isang bagong kodigo.',
 'confirmemail_send'        => 'Magpadala ng isang kodigo ng pagpapatotoo (kumpirmasyon)',
 'confirmemail_sent'        => 'Naipadala na ang magpapatotoong e-liham (kumpirmasyon).',
 'confirmemail_oncreate'    => 'Nagpadala na ng isang kodigo ng pagpapatotoo (kumpirmasyon) patungo sa iyong adres ng e-liham.  Hindi kailangan ang kodigong ito para makalagda, ngunit kailangan mong ibigay muna ito bago paganahin/paandarin ang anumang pang e-liham na kasangkapang-katangiang nasa loob ng wiki.',
@@ -2976,5 +2975,17 @@ Ipasok ang pangalan ng talaksan na wala ang unlaping \"{{ns:image}}:\".",
 #Itinuturing bilang mga kumento/puna ang mga hanay/hilerang nagsisimula sa #
 
 #Ilagay sa ibabaw ng hanay na ito ang mga piraso ng karaniwang pagpapahayag.  Pabayaang talagang ganito lang ang hanay/hilerang ito</pre>',
+
+# Special:Tags
+'tag-filter'              => '[[Special:Tags|Tatakan]] ang pansala:',
+'tag-filter-submit'       => 'Pansala',
+'tags-title'              => 'Mga tatak',
+'tags-intro'              => 'Itinatala ng pahinang ito ang mga tatak na maaaring ipantatak ng sopwer sa isang pagbabago, at ang kanilang kahulugan.',
+'tags-tag'                => 'Panloob na pangalan ng tatak',
+'tags-display-header'     => 'Anyo sa ibabaw ng mga talaan ng pagbabago',
+'tags-description-header' => 'Buong paglalarawan ng kahulugan',
+'tags-hitcount-header'    => 'Tinatakang mga pagbabago',
+'tags-edit'               => 'baguhin',
+'tags-hitcount'           => '$1 {{PLURAL:$1|pagbabago|mga pagbabago}}',
 
 );

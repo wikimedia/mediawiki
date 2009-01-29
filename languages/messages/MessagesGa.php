@@ -389,7 +389,7 @@ $1',
 
 De ghnáth, tarlaíonn sé seo nuair a leantar nasc stáire nó difr chuig leathanach a scriosadh.
 
-Murab fhíor é seo, is féidir go bhfuair tú fabht sa bhogearraí. Beimid buíoch duit é a chur in iúl do [[Speisialta:ListUsers/sysop|riarthóir]], chomh maith le URL an suíoimh.',
+Murab fhíor é seo, is féidir go bhfuair tú fabht sa bhogearraí. Beimid buíoch duit é a chur in iúl do [[Special:ListUsers/sysop|riarthóir]], chomh maith le URL an suíoimh.',
 'missingarticle-rev'   => '(leagan#: $1)',
 'missingarticle-diff'  => '(Diof: $1, $2)',
 'readonly_lag'         => 'Glasáladh an bunachar sonraí go huathoibríoch, go dtiocfaidh na sclábhfhreastalaithe suas leis an máistirfhreastalaí.',
@@ -409,7 +409,7 @@ B'fhéidir gur scrios duine eile é cheana féin.",
 'badtitletext'         => "Bhí teideal an leathanaigh a d'iarr tú ar neamhbhailí, folamh, nó
 teideal idirtheangach nó idirvicí nasctha go mícheart.",
 'perfcached'           => 'Fuarthas na sonraí a leanas as taisce, agus is dócha go bhfuil siad as dáta.',
-'wrong_wfQuery_params' => 'Paraiméadair míchearta don wfQuery()<br />
+'wrong_wfQuery_params' => 'Paraiméadair mhíchearta don wfQuery()<br />
 Feidhm: $1<br />
 Iarratas: $2',
 'viewsource'           => 'Féach ar fhoinse',
@@ -472,6 +472,7 @@ Roghnaigh ainm eile agus bain triail eile as.',
 'badsig'                     => 'Amhsíniú neamhbhailí; scrúdaigh na clibeanna HTML.',
 'badsiglength'               => 'Tá an síniú ró-fhada.<br />
 Caithfidh sé bheith níos giorra ná {{PLURAL:$1|carachtar|carachtair}}.',
+'yourgender'                 => 'Inscne:',
 'email'                      => 'Ríomhphost',
 'prefs-help-realname'        => '* <strong>Fíorainm</strong> (roghnach): má toghaíonn tú é sin a chur ar fáil, úsáidfear é chun
 do chuid dreachtaí a chur i leith tusa.',
@@ -500,10 +501,10 @@ Bain triail eile as.",
 Caithfidh go bhfuil {{PLURAL:$1|1 carachtar|$1 carachtair}} carachtar ann ar a laghad.",
 'mailmypassword'             => "Seol m'fhocal faire chugam.",
 'passwordremindertitle'      => 'Cuimneachán an fhocail faire ó {{SITENAME}}',
-'passwordremindertext'       => 'D\'iarr duine éigin (tusa de réir cosúlachta, ón seoladh IP $1)
-go sheolfaimis focal faire {{GRAMMAR:genitive|{{SITENAME}}}} nua  ($4).
-"$3" an focal faire don úsáideoir "$2" anois.
-Ba chóir duit lógail isteach anois agus d\'fhocal faire a athrú.',
+'passwordremindertext'       => 'D\'iarr duine éigin (tusa de réir cosúlachta, ón seoladh IP $1) go sheolfaimis focal faire {{GRAMMAR:genitive|{{SITENAME}}}} nua  ($4).
+"$3" an focal faire don úsáideoir "$2" anois. Ba chóir duit lógail isteach anois agus d\'fhocal faire a athrú.
+
+Rachaidh d\'fhocail faire sealadach as feidhm i gceann {{PLURAL:$5|lá amháin|$5 lae}}.',
 'noemail'                    => 'Níl aon seoladh ríomhphoist i gcuntas don úsáideoir "$1".',
 'passwordsent'               => 'Cuireadh focal nua faire chuig an ríomhsheoladh atá cláraithe do "$1".
 Nuair atá sé agat, logáil isteach arís chun fíordheimhniu a dhéanamh.',

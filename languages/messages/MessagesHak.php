@@ -1560,8 +1560,8 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'confirmemail'            => 'Khok-ngin email thi-tiám',
 'confirmemail_noemail'    => 'Ngì mò-yû chhai ngì-ke [[Special:Preferences|yung-fu sat-thin]] sû-ngi̍p yit-ke yû-háu ke email thi-tiám.',
 'confirmemail_text'       => 'Chhṳ́ mióng-chham yêu-khiù ngì chhai sṳ́-yung sin-siông kûng-nèn chṳ̂-chhièn ngiam-chṳn ngì-ke sin-siông thi-tiám. Tiám-kit yî-ha on-néu chhṳ̍t-hiong ngì-ke sin-siông fat-sung yit-fûng khok-ngin sin-siông. Ke-sin-siông pâu-hàm yû yit-hòng me̍t-me̍t lièn-kiet; chhiáng chhai ngì-ke hi-khí chûng kâ-chai chhṳ́ lièn-kiet yî khok-ngin ngì-ke sin-siông thi-tiám he yû-háu ke.',
-'confirmemail_pending'    => '<div class="error"> Yit-ke khok-ngin me̍t-me̍t yí-kîn pûn fat-sung to ngì-ke sin-siông, ngì khó-nèn sî-yeu tén kí-fun chhòi-nèn chhòi-nèn sû-tó.
-Kó-yèn mò-fap sû-tó, chhiáng chhai sṳ̂n-chhiáng yit-ke sîn-ke khok-ngin me̍t-me̍t! </div>',
+'confirmemail_pending'    => ' Yit-ke khok-ngin me̍t-me̍t yí-kîn pûn fat-sung to ngì-ke sin-siông, ngì khó-nèn sî-yeu tén kí-fun chhòi-nèn chhòi-nèn sû-tó.
+Kó-yèn mò-fap sû-tó, chhiáng chhai sṳ̂n-chhiáng yit-ke sîn-ke khok-ngin me̍t-me̍t!',
 'confirmemail_send'       => 'Ki-chhut khok-ngin me̍t-me̍t',
 'confirmemail_sent'       => 'Khok-ngin sin-siông yí-kîn fat-sung.',
 'confirmemail_oncreate'   => 'Yit-ke khok-ngin me̍t-me̍t yí-kîn pûn fat-sung to ngì-ke sin-siông. Ke me̍t-me̍t pin-put yêu-khiù ngì chin-hàng tên-liu̍k, than na-he ngì yeu khí-yung chhai chhṳ́-wiki sông ke ngim-hò kî-yî email sin-siông ke kûng-nèn, ngì pit-sî siên thì-kâu chhṳ́ me̍t-me̍t.',

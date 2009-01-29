@@ -2552,8 +2552,8 @@ Pranala-pranala sabanjuré ing baris sing padha dianggep minangka ''pengecualian
 'confirmemail_text'        => '{{SITENAME}} ngwajibaké panjenengan ndhedhes utawa konfirmasi alamat e-mail panjenengan sadurungé bisa nganggo fitur-fitur e-mail.
 Pencèten tombol ing ngisor iki kanggo ngirim sawijining kode konfirmasi arupa sawijining pranala;
 Tuladen pranala iki ing panjlajah wèb panjenengan kanggo ndhedhes yèn alamat e-mail panjenengan pancèn bener.',
-'confirmemail_pending'     => '<div class="error">Sawijining kode konfirmasi wis dikirim menyang alamat e-mail panjenengan;
-yèn panjenengan lagi waé nggawé akun utawa rékening panjenengan, mangga nunggu sawetara menit nganti layang iku tekan sadurungé nyuwun kode anyar manèh.</div>',
+'confirmemail_pending'     => 'Sawijining kode konfirmasi wis dikirim menyang alamat e-mail panjenengan;
+yèn panjenengan lagi waé nggawé akun utawa rékening panjenengan, mangga nunggu sawetara menit nganti layang iku tekan sadurungé nyuwun kode anyar manèh.',
 'confirmemail_send'        => 'Kirim kode konfirmasi',
 'confirmemail_sent'        => 'E-mail mawa kode konfirmasi wis dikirim.',
 'confirmemail_oncreate'    => 'Sawijining kode pandhedhesan (konfirmasi) wis dikirim menyang alamat e-mail panjenengan.

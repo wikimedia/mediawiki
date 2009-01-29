@@ -2402,7 +2402,7 @@ Të tjerat do të fshihen.
 'confirmemail'             => 'Vërtetoni adresën tuaj',
 'confirmemail_noemail'     => 'Ju nuk keni dhënë email të sakt te [[Special:Preferences|parapëlqimet e juaja]].',
 'confirmemail_text'        => 'Për të marrë email duhet të vërtetoni adresen tuaj. Shtypni butonin e mëposhtëm për të dërguar një email vërtetimi tek adresa juaj. Email-i do të përmbajë një lidhje me kod të shifruar. Duke ndjekur lidhjen nëpërmjet shfletuesit tuaj do të vërtetoni adresën.',
-'confirmemail_pending'     => '<div class="error">Një kod vërtetimi ju është dërguar më parë. Nëse sapo hapët llogarinë tuaj prisni disa minuta deri sa t\'iu arrijë mesazhi përpara se të kërkoni një kod të ri.</div>',
+'confirmemail_pending'     => "Një kod vërtetimi ju është dërguar më parë. Nëse sapo hapët llogarinë tuaj prisni disa minuta deri sa t'iu arrijë mesazhi përpara se të kërkoni një kod të ri.",
 'confirmemail_send'        => 'Dërgo vërtetimin',
 'confirmemail_sent'        => 'Email-i për vërtetim është dërguar.',
 'confirmemail_oncreate'    => 'Një kod vërtetimi është dërguar tek adresa juaj e email-it.

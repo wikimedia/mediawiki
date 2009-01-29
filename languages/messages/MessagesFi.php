@@ -488,7 +488,9 @@ $1',
 'laggedslavemode'      => 'Varoitus: Sivu ei välttämättä sisällä viimeisimpiä muutoksia.',
 'readonly'             => 'Tietokanta on lukittu',
 'enterlockreason'      => 'Anna lukituksen syy sekä sen arvioitu poistamisaika',
-'readonlytext'         => '{{GRAMMAR:genitive|{{SITENAME}}}} tietokanta on tällä hetkellä lukittu. Uusia sivuja ei voi luoda eikä muitakaan muutoksia tehdä. Syynä ovat todennäköisimmin rutiininomaiset tietokannan ylläpitotoimet. Tietokannan lukinneen ylläpitäjän selitys: $1',
+'readonlytext'         => 'Tietokanta on tällä hetkellä lukittu. Uusia sivuja ei voi luoda eikä muitakaan muutoksia tehdä. Syynä ovat todennäköisimmin rutiininomaiset tietokannan ylläpitotoimet.
+
+Tietokannan lukinneen ylläpitäjän selitys: $1',
 'missing-article'      => 'Sivun sisältöä ei löytynyt tietokannasta: $1 $2.
 
 Useimmiten tämä johtuu vanhentuneesta vertailu- tai historiasivulinkistä poistettuun sivuun.
@@ -539,7 +541,9 @@ $2',
 
 # Login and logout pages
 'logouttitle'                => 'Uloskirjautuminen',
-'logouttext'                 => 'Olet nyt kirjautunut ulos {{GRAMMAR:elative|{{SITENAME}}}}. Voit jatkaa {{GRAMMAR:genitive|{{SITENAME}}}} käyttöä nimettömänä, tai kirjautua uudelleen sisään.',
+'logouttext'                 => '<strong>Olet nyt kirjautunut ulos.</strong>
+
+Voit jatkaa {{GRAMMAR:genitive|{{SITENAME}}}} käyttöä nimettömänä, tai [[Special:UserLogin|kirjautua uudelleen sisään]].',
 'welcomecreation'            => '== Tervetuloa $1! ==
 Käyttäjätunnuksesi on luotu.
 Älä unohda virittää {{GRAMMAR:genitive|{{SITENAME}}}} [[Special:Preferences|asetuksiasi]].',
@@ -734,7 +738,7 @@ Liitä kaikki ylläolevat tiedot mahdollisiin kyselyihisi.",
 *'''Konqueror''': napsauta päivitä tai paina ''F5''
 *'''Opera:''' saatat joutua tyhjentämään välimuistin kokonaan (''Tools→Preferences'').",
 'usercssjsyoucanpreview'           => 'Voit testata uutta CSS:ää tai JavaScriptiä ennen tallennusta esikatselulla.',
-'usercsspreview'                   => "'''Tämä on CSS:n esikatselu. Mitään muutoksia ei ole vielä tallennettu.'''",
+'usercsspreview'                   => "'''Tämä on CSS:n esikatselu. Muutoksia ei ole vielä tallennettu.'''",
 'userjspreview'                    => "'''Tämä on JavaScriptin esikatselu.'''",
 'userinvalidcssjstitle'            => "'''Varoitus:''' Tyyliä nimeltä ”$1” ei ole olemassa. Muista, että käyttäjän määrittelemät .css- ja .js-sivut alkavat pienellä alkukirjaimella, esim. {{ns:user}}:Matti Meikäläinen/monobook.css eikä {{ns:user}}:Matti Meikäläinen/Monobook.css.",
 'updated'                          => '(Päivitetty)',
@@ -1333,6 +1337,7 @@ Voit käyttää tiedostoja wikisivuilla seuraavilla tavoilla:
 'filename'                    => 'Tiedoston nimi:',
 'filedesc'                    => 'Yhteenveto',
 'fileuploadsummary'           => 'Yhteenveto',
+'filereuploadsummary'         => 'Tiedostomuutokset:',
 'filestatus'                  => 'Tiedoston tekijänoikeudet',
 'filesource'                  => 'Lähde',
 'uploadedfiles'               => 'Lisätyt tiedostot',
@@ -2713,7 +2718,7 @@ Vain *-merkillä alkavat rivit otetaan huomioon. Ensimmäisen linkin on osoitett
 'confirmemail'             => 'Varmenna sähköpostiosoite',
 'confirmemail_noemail'     => 'Sinulla ei ole kelvollista sähköpostiosoitetta [[Special:Preferences|asetuksissasi]].',
 'confirmemail_text'        => 'Tämä wiki vaatii sähköpostiosoitteen varmentamisen, ennen kuin voit käyttää sähköpostitoimintoja. Lähetä alla olevasta painikkeesta varmennusviesti osoitteeseesi. Viesti sisältää linkin, jonka avaamalla varmennat sähköpostiosoitteesi.',
-'confirmemail_pending'     => '<div class="error">Varmennusviesti on jo lähetetty. Jos loit tunnuksen äskettäin, odota muutama minuutti viestin saapumista, ennen kuin yrität uudelleen.</div>',
+'confirmemail_pending'     => 'Varmennusviesti on jo lähetetty. Jos loit tunnuksen äskettäin, odota muutama minuutti viestin saapumista, ennen kuin yrität uudelleen.',
 'confirmemail_send'        => 'Lähetä varmennusviesti',
 'confirmemail_sent'        => 'Varmennusviesti lähetetty.',
 'confirmemail_oncreate'    => 'Varmennusviesti lähetettiin sähköpostiosoitteeseesi. Varmennuskoodia ei tarvita sisäänkirjautumiseen, mutta se täytyy antaa, ennen kuin voit käyttää sähköpostitoimintoja tässä wikissä.',
@@ -2768,7 +2773,7 @@ Varmista, että haluat luoda sivun uudelleen.",
 # Multipage image navigation
 'imgmultipageprev' => '← edellinen sivu',
 'imgmultipagenext' => 'seuraava sivu →',
-'imgmultigo'       => 'Mene!',
+'imgmultigo'       => 'Siirry',
 'imgmultigoto'     => 'Sivu $1',
 
 # Table pager
@@ -2900,5 +2905,9 @@ Kirjoita tiedostonimi ilman ”{{ns:file}}:”-etuliitettä.',
 #Rivit, jotka alkavat #-merkillä ovat kommentteja
 
 #Laita kaikki säännöllisten lausekkeiden palaset tämän rivit yläpuolelle. Älä muuta tätä riviä lainkaan</pre>',
+
+# Special:Tags
+'tags-edit'     => 'muokkaa',
+'tags-hitcount' => '$1 {{PLURAL:$1|muutos|muutosta}}',
 
 );

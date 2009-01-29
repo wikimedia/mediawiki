@@ -300,7 +300,7 @@ $messages = array(
 'logout'                  => 'ده‌رچوون',
 'userlogout'              => 'دەرچوون',
 'notloggedin'             => 'له‌ ژووره‌وه‌ نیت',
-'nologin'                 => 'ناتوانیت بچییه‌ ژووره‌وه‌؟ $1.',
+'nologin'                 => 'ھەژمارت نییە؟  $1.',
 'nologinlink'             => 'ببه‌ به‌ ئه‌ندام',
 'createaccount'           => 'هه‌ژماری نوێ',
 'gotaccount'              => 'خاوه‌نی هه‌ژماری خۆتی؟ $1.',
@@ -316,6 +316,9 @@ $messages = array(
 'yourvariant'             => 'ڕه‌گه‌ز',
 'yournick'                => 'نازناو',
 'badsig'                  => 'ئیمزاكه‌ هه‌ڵه‌یه‌، ته‌ماشای كۆدی HTML بكه‌‌',
+'gender-male'             => 'پیاو',
+'gender-female'           => 'ژن',
+'loginsuccesstitle'       => 'سرەکەوتی بۆ چوونە ژوورەوە!',
 'mailmypassword'          => 'تێپەڕوشەیەکی نوێ بنێرە بۆ E-mailەکەم',
 'passwordremindertitle'   => 'تێپەڕوشەیەکی نوێی کاتی بۆ  {{SITENAME}}',
 'noemail'                 => 'ھیچ ئەدرەسێکی e-mail تۆمار نەکراوە بۆ بەکارھێنەر  "$1" .',
@@ -412,9 +415,10 @@ $messages = array(
 'compareselectedversions' => 'ھەڵسەنگاندنی وەشانە ھەڵبژاردراوەکان',
 
 # Search results
-'noexactmatch' => '\'\'\'پەڕەیەک بە ناوی  "$1"ەوە نیە.\'\'\'
+'noexactmatch'             => '\'\'\'پەڕەیەک بە ناوی  "$1"ەوە نیە.\'\'\'
 دەتوانی ئەم پەڕە [[:"$1"|دروست بکەیت]].',
-'powersearch'  => 'بە ھێز بگەڕە',
+'search-interwiki-caption' => 'پرۆژە خوشکەکان',
+'powersearch'              => 'بە ھێز بگەڕە',
 
 # Preferences page
 'mypreferences' => 'ھەڵبژاردەکانی من',
@@ -466,6 +470,9 @@ $messages = array(
 
 # Special:Categories
 'categories' => 'هاوپۆله‌كان',
+
+# Special:Log/newusers
+'newuserlog-create-entry' => 'بەکارھێنەری نوێ',
 
 # E-mail user
 'emailuser'       => 'بۆ ئەم بەکارھێنەرە E-Mail بنێرە',

@@ -2610,9 +2610,7 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 funcionalidaes de mensaxes. Da-y al botón que tienes equí embaxo pa unviar un avisu de
 confirmación a la to direición. Esti avisu va incluyir un enllaz con un códigu; carga
 l'enllaz nel to navegador pa confirmar la to direición de corréu electrónicu.",
-'confirmemail_pending'     => '<div class="error">
-Yá s\'unvió un códigu de confirmación a la to direición de corréu; si creasti hai poco la to cuenta, pues esperar dellos minutos a que-y de tiempu a llegar enantes de pidir otru códigu nuevu.
-</div>',
+'confirmemail_pending'     => "Yá s'unvió un códigu de confirmación a la to direición de corréu; si creasti hai poco la to cuenta, pues esperar dellos minutos a que-y de tiempu a llegar enantes de pidir otru códigu nuevu.",
 'confirmemail_send'        => 'Unviar códigu de confirmación',
 'confirmemail_sent'        => 'Corréu de confirmación unviáu.',
 'confirmemail_oncreate'    => "Unvióse un códigu de confirmación a la to direición de corréu.

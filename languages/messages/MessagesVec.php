@@ -2700,10 +2700,8 @@ I colegamenti sucessivi, su la stessa riga, i xe considerà come ecezion (cioè 
 Struca el boton qua soto par mandar na richiesta de conferma al to indirizo.
 Nel messagio che te riva te catarè un colegamento che contien un codice.
 Visita el colegamento col to browser par confermar che el to indirizo el xe valido.",
-'confirmemail_pending'     => '<div class="error">
-El codice de conferma el xe zà stà spedìo par posta eletronica; se l\'account el xe stà
-creà de reçente, par piaser speta par qualche minuto che riva el codice prima de domandàrghene uno novo.
-</div>',
+'confirmemail_pending'     => "El codice de conferma el xe zà stà spedìo par posta eletronica; se l'account el xe stà
+creà de reçente, par piaser speta par qualche minuto che riva el codice prima de domandàrghene uno novo.",
 'confirmemail_send'        => 'Spedissi un codice de conferma par e-mail',
 'confirmemail_sent'        => 'Email de conferma invià.',
 'confirmemail_oncreate'    => "Un codice de conferma el xe stà spedìo a l'indirizo

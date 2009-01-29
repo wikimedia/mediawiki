@@ -448,8 +448,8 @@ Mesedez, beste bat aukeratu.',
 'yourvariant'                => 'Aldaera',
 'yournick'                   => 'Erabiltzaile izena:',
 'badsig'                     => 'Baliogabeko sinadura; egiaztatu HTML etiketak.',
-'badsiglength'               => 'Ezizen luzeegia hautatu duzu;
-$1 karakteretik behera izan behar du.',
+'badsiglength'               => 'Sinadura luzeegia hautatu duzu.
+$1 {{PLURAL:$1|karakteretik|karakteretik}} behera izan behar du.',
 'yourgender'                 => 'Generoa:',
 'gender-unknown'             => 'Zehaztugabea',
 'gender-male'                => 'Gizona',
@@ -472,7 +472,7 @@ Mesedez, egiaztatu ondo idatzi duzun edo [[Special:UserLogin/signup|kontu berria
 'wrongpassword'              => 'Pasahitza ez da zuzena. Saiatu berriz.',
 'wrongpasswordempty'         => 'Pasahitza hutsik dago. Saiatu berriz.',
 'passwordtooshort'           => 'Zure pasahitza laburregia da.
-$1 karaktere izan behar ditu gutxienez.',
+{{PLURAL:$1|karaktere 1|$1 karaktere}} izan behar ditu eta zure lankide izenetik ezberdina izan.',
 'mailmypassword'             => 'Pasahitza berria e-postaz bidali',
 'passwordremindertitle'      => 'Pasahitzaren gogorarazpena {{SITENAME}}(e)tik',
 'passwordremindertext'       => 'Norbaitek (ziurrenik zuk, $1 IP helbidetik) pasahitz berri bat
@@ -1571,7 +1571,8 @@ Baimendutako protokoloak: <tt>$1</tt>',
 'mailnologintext'  => 'Beste erabiltzaileei e-posta mezuak bidaltzeko [[Special:UserLogin|saioa hasi]] eta baliozko e-posta helbidea behar duzu izan zure [[Special:Preferences|hobespenetan]].',
 'emailuser'        => 'Erabiltzaile honi e-posta bidali',
 'emailpage'        => 'Erabiltzaileari e-posta bidali',
-'emailpagetext'    => 'Erabiltzaile honek baliozko e-posta helbide bat ezarri badu bere hobespenetan, beheko formularioa erabiliz mezu bat bidal dakioke. Hobespenetan daukazun e-posta helbidea azalduko da mezuaren bidaltzaile bezala eta beraz erantzun ahal izango dizu.',
+'emailpagetext'    => 'Erabiltzaile honek baliozko e-posta helbide bat ezarri badu bere hobespenetan, beheko formularioa erabiliz mezu bat bidal dakioke. 
+[[Special:Preferences|Hobespenetan]] daukazun e-posta helbidea azalduko da mezuaren bidaltzaile bezala eta beraz erantzun ahal izango dizu.',
 'usermailererror'  => 'Mail objektuak errore hau itzuli du:',
 'defemailsubject'  => 'E-posta {{SITENAME}}(e)tik',
 'noemailtitle'     => 'Posta helbiderik ez',
@@ -2609,7 +2610,7 @@ Zerrenda elementuak (hasieran * duten lerroak) baino ez dira kontuan hartzen. Le
 'confirmemail'             => 'E-posta helbidea egiaztatu',
 'confirmemail_noemail'     => 'Ez daukazu e-posta helbiderik zehaztuta zure [[Special:Preferences|hobespenetan]].',
 'confirmemail_text'        => 'Wiki honetan zure e-posta helbidea egiaztatzea beharrezkoa da e-postarekin zerikusia duten ezaugarriak erabili aurretik. Beheko botoia jo zure helbidera egiaztapen mezu bat bidaltzeko. Mezuan kode bat duen lotura bat joango da atxikita; lotura hori zure nabigatzailean ireki ezazu e-posta helbidea egiaztatzeko.',
-'confirmemail_pending'     => '<div class="error">Egiaztapen kode bat bidali zaizu jada; erabiltzaile kontua duela gutxi sortu baduzu, mezua iritsi bitartean minutu batzuk itxaron beharko zenituzke kode berri bat eskatu aurretik.</div>',
+'confirmemail_pending'     => 'Egiaztapen kode bat bidali zaizu jada; erabiltzaile kontua duela gutxi sortu baduzu, mezua iritsi bitartean minutu batzuk itxaron beharko zenituzke kode berri bat eskatu aurretik.',
 'confirmemail_send'        => 'Egiaztapen kodea e-postaz bidali',
 'confirmemail_sent'        => 'Egiaztapen mezua bidali da.',
 'confirmemail_oncreate'    => 'Egiaztapen kodea bidali zaizu zure e-posta helbidera. Kode hau ez da beharrezkoa saioa hasteko, baina bai wikiak eskaintzen dituen e-posta zerbitzuez profitatzeko.',
@@ -2777,5 +2778,8 @@ Fitxategiaren izena sartu "{{ns:file}}:" aurrizkia gabe.',
 # Special:BlankPage
 'blankpage'              => 'Orrialde txuria',
 'intentionallyblankpage' => 'Orri hau nahita utzi da hutsik',
+
+# Special:Tags
+'tags-edit' => 'edit',
 
 );

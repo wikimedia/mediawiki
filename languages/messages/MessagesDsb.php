@@ -2720,7 +2720,7 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'confirmemail'             => 'E-mailowu adresu wobkšuśiś.',
 'confirmemail_noemail'     => 'W swójich [[Special:Preferences|nastajenjach]] njejsy płaśecu e-mailowu adresu zapódał.',
 'confirmemail_text'        => '{{SITENAME}} pomina, až wobkšuśijoš swóju e-mailowu adresu, nježlic až móžoš e-mailowe funkcije wužywaś. Tłocyš-lic na tłocatko, dostanjoš e-mailku, w kótarejž jo wótkaz z wobkšuśenskim gronidłom. Tłocenje na wótkaz wobkšuśijo, až twója e-mailowa adresa jo korektna.',
-'confirmemail_pending'     => '<div class="error">Tebje jo južo jadno wobkšuśeńske gronidło se pśimailowało. Sy-lic swójo wužywarske konto akle gano wutwórił, ga pócakaj hyšći žedne minuty na e-mail, nježlic až pominaš nowe gronidło.</div>',
+'confirmemail_pending'     => 'Tebje jo južo jadno wobkšuśeńske gronidło se pśimailowało. Sy-lic swójo wužywarske konto akle gano wutwórił, ga pócakaj hyšći žedne minuty na e-mail, nježlic až pominaš nowe gronidło.',
 'confirmemail_send'        => 'Wobkšuśeńske gronidło pósłaś',
 'confirmemail_sent'        => 'Wobkšuśeńska e-mailka pósłana.',
 'confirmemail_oncreate'    => 'Na Twóju adresu jo se wótpósłało wobkšuśeńske gronidło. Toś ten kod njejo notny za pśizjawjenje, ale za aktiwěrowanje e-mailowych funkcijow we wikiju.',
@@ -2920,7 +2920,7 @@ Zapódaj datajowe mě bźez prefiksa "{{ns:file}}:".',
 
 #Staj wše fragmenty regularnych wurazow nad smužku. Wóstaj toś tu smužku rowno tak jo</pre>',
 
-# Special:Tag
+# Special:Tags
 'tag-filter'              => 'Filter [[Special:Tags|toflickow]]:',
 'tag-filter-submit'       => 'Filter',
 'tags-title'              => 'Toflicki',

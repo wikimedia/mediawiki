@@ -260,7 +260,7 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].'
 'articlepage'       => 'Artiklilehekülg',
 'talk'              => 'Arutelu',
 'views'             => 'vaatamisi',
-'toolbox'           => 'Tööriistakast',
+'toolbox'           => 'Tööriistad',
 'userpage'          => 'Kasutajalehekülg',
 'projectpage'       => 'Metalehekülg',
 'imagepage'         => 'Pildilehekülg',

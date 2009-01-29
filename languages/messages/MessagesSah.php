@@ -28,7 +28,7 @@ $namespaceNames = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'Бу ыйынньыктары бэлиэтээ:',
+'tog-underline'               => 'Ыйынньыктары аннынан тардыы:',
 'tog-highlightbroken'         => 'Кураанах ыйынньыктары <a href="" class="new">маннык</a> (эбэтэр: маннык<a href="" class="internal">?</a>) көрдөр.',
 'tog-justify'                 => 'Сирэй кэтитинэн тарҕат',
 'tog-hideminor'               => 'Кыра көннөрүүлэри көрдөрбөккө',
@@ -73,10 +73,10 @@ $messages = array(
 'tog-ccmeonemails'            => 'Атын кыттааччыларга суруйбут суруктарбын бэйэбэр эмиэ ыыт',
 'tog-diffonly'                => 'Икки барылы тэҥнииргэ сирэй иһин көрдөрүмэ',
 'tog-showhiddencats'          => 'Кистэммит категориялары көрдөр',
-'tog-norollbackdiff'          => 'Төннөрүү кэнниттэн торумнар араастарын көрдөрүмэ',
+'tog-norollbackdiff'          => 'Төннөрүү кэнниттэн барыллар уратыларын көрдөрүмэ',
 
 'underline-always'  => 'Куруук',
-'underline-never'   => 'Хаһан да',
+'underline-never'   => 'Аннынан тардыма',
 'underline-default' => 'Браузер настройкатынан',
 
 # Dates
@@ -1003,16 +1003,16 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'recentchangesdays-max'     => '(улааппыта $1 күн)',
 'recentchangescount'        => 'Историяларга уонна регистрация сурунаалларыгар көрдөрүллэр саҥа уларытыылар ахсааннара:',
 'savedprefs'                => 'Эн туруорууларыҥ олохтоннулар.',
-'timezonelegend'            => 'Чаһыы пуойаһа',
-'timezonetext'              => '¹Эн бириэмэҥ сиэрбэр (Гринвич, UTC) бириэмэтиттэн хас чаас уратылааҕын киллэр.',
-'localtime'                 => 'Олорор сириҥ бириэмэтэ:',
-'timezoneselect'            => 'Олохтоох кэмэ:',
+'timezonelegend'            => 'Олохтоох кэм',
+'timezonetext'              => '¹Олохтоох кэмиҥ сиэрбэр (Гринвич, UTC) кэмиттэн хас чаас уратылааҕын киллэр.',
+'localtime'                 => 'Олохтоох кэмим:',
+'timezoneselect'            => 'Олохтоох кэм:',
 'timezoneuseserverdefault'  => 'Сиэрбэр туруоруутунан',
 'timezoneuseoffset'         => 'Атын (сыҕарыйыытын көрдөр)',
 'timezoneoffset'            => 'Сыҕарыйыы¹:',
 'servertime'                => 'Сиэрбэр бириэмэтэ:',
-'guesstimezone'             => 'Интэриниэтиҥ бырагыраамматыттан ылан толор',
-'allowemail'                => 'Атын кыттааччылартан сурук тутары көҥүллүүргэ',
+'guesstimezone'             => 'Интэриниэтим бырагыраамматыттан ылан толор',
+'allowemail'                => 'Атын кыттааччылартан сурук тутары көҥүллүүбүн',
 'prefs-searchoptions'       => 'Көрдөөһүн туруоруулара',
 'prefs-namespaces'          => 'Аат дала',
 'defaultns'                 => 'Чопчу ыйыллыбатаҕына бу ааттар быыстарыгар көрдүүргэ:',
@@ -1047,7 +1047,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'group-user'          => 'Кыттааччылар',
 'group-autoconfirmed' => 'Аптамаатынан бигэргэтиллибит кыттааччылар',
 'group-bot'           => 'Роботтар',
-'group-sysop'         => 'Дьаһабыл',
+'group-sysop'         => 'Дьаһабыллар',
 'group-bureaucrat'    => 'Бюрокрааттар',
 'group-suppress'      => 'Алҕастар',
 'group-all'           => '(бары)',
@@ -1429,21 +1429,21 @@ PICT # misc.
 
 # Statistics
 'statistics'                   => 'Статистика',
-'statistics-header-pages'      => 'Сирэй статистиката',
-'statistics-header-edits'      => 'Көннөрүү статистиката',
+'statistics-header-pages'      => 'Сирэй статиистиката',
+'statistics-header-edits'      => 'Көннөрүү статиистиката',
 'statistics-header-views'      => 'Көрөөһүн статистиката',
-'statistics-header-users'      => 'Кыттааччы статистиката',
-'statistics-articles'          => 'Ыстатыйа иһинээҕитэ',
+'statistics-header-users'      => 'Кыттааччылар статиистикалара',
+'statistics-articles'          => 'Ыстатыйалар ахсааннара',
 'statistics-pages'             => 'Сирэйдэр',
 'statistics-pages-desc'        => 'Биики бары сирэйдэрин (ырытыы сирэйдэрин, утаарыылары уо.д.а киллэрэн туран).',
-'statistics-files'             => 'Киллэриллибит билэлэр ахсааннара',
-'statistics-edits'             => '{{SITENAME}} туруоҕуттан көннөрүү ахсаана',
+'statistics-files'             => 'Киллэриллибит билэлэр (ойуулар иҥин) ахсааннара',
+'statistics-edits'             => '{{SITENAME}} оҥоһуллуоҕуттан көннөрүү ахсаана',
 'statistics-edits-average'     => 'Биир сирэйгэ ортотунан хас көннөрүү тиксэрэ',
 'statistics-views-total'       => 'Көрүү ахсаана',
 'statistics-views-peredit'     => 'Биир улартыыга тиксэр көрүү ахсаана',
 'statistics-jobqueue'          => '[http://www.mediawiki.org/wiki/Manual:Job_queue Job queue] кээмэйэ',
-'statistics-users'             => '[[Special:ListUsers|Кыттааччы]] бэлиэтэммит',
-'statistics-users-active'      => 'Көхтөөх кыттааччылар',
+'statistics-users'             => 'Бэлиэтэммит [[Special:ListUsers|кыттааччы]] ахсаана',
+'statistics-users-active'      => 'Көхтөөх кыттааччылар ахсааннара',
 'statistics-users-active-desc' => 'Ааспыт {{PLURAL:$1|биир хонук иһигэр|$1 хонукка}} тугу эмэ оҥорбут кыттааччылар',
 'statistics-mostpopular'       => 'Саамай элбэхтик көрүллэр ыстатыйалар',
 
@@ -2674,9 +2674,9 @@ $1',
 'confirmemail_text'        => '{{SITENAME}} движога үлэлиэҥ иннинэ электроннай аадырыскын бигэргэтэри эрэйэр.
 Аналлаах тимэҕи баттаан эппит аадырыскар сурукта ыыттар.
 Ол суругу арыйдаххына, аадырыһыҥ бигэргэтиллиэ.',
-'confirmemail_pending'     => '<div class="error">Бигэргэтии куода номнуо ыытыллыбыт.
+'confirmemail_pending'     => 'Бигэргэтии куода номнуо ыытыллыбыт.
 Бэйэҕин соторутааҕыта билиһиннэрбит буоллаххына ол сурук кэлэрин кыратык кэтэһэ түс.
-Ол кэннэ, кэлбэтэҕинэ, куоду өссө көрдөөр.</div>',
+Ол кэннэ, кэлбэтэҕинэ, куоду өссө көрдөөр.',
 'confirmemail_send'        => 'Бигэргэтии куодун почтанан ыыт',
 'confirmemail_sent'        => 'Бигэргэтэр сурук ыытылынна.',
 'confirmemail_oncreate'    => 'Бигэргэтэр сурук эппит почтаҕар ыытылынна.

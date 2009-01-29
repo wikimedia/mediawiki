@@ -2242,8 +2242,8 @@ mo aluban detang pamangamit a maki kaugnayan king e-mail. I-click me ing button
 king lalam ba yang magparlang e-mail kekang babye patune. Kayabe ya ketang e-mail
 ing metung a suglung a maki code; ibili me ketang kekang browser itang suglung
 ba mung patutwan a ustu ya ing kekang e-mail address.',
-'confirmemail_pending'     => '<div class="error">Atin nang miparalang confirmation code keka kapamilatan ning e-mail;
-nung kaibat-ibat mu pamung miglalang e-mail account, panayan me pamung datang kilub ning mapilan a minutu bayu ka maniad bayung code.</div>',
+'confirmemail_pending'     => 'Atin nang miparalang confirmation code keka kapamilatan ning e-mail;
+nung kaibat-ibat mu pamung miglalang e-mail account, panayan me pamung datang kilub ning mapilan a minutu bayu ka maniad bayung code.',
 'confirmemail_send'        => 'Magparla kang confirmation code',
 'confirmemail_sent'        => 'Patutuan ing e-mail miparla ya.',
 'confirmemail_oncreate'    => 'Ating miparalang confirmation code ketang kekang e-mail address.

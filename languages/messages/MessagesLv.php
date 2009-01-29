@@ -1685,8 +1685,8 @@ Pārējie lauki, pēc noklusējuma, būs paslēpti.
 Spied uz zemāk esošās pogas, lai uz tavu e-pasta adresi nosūtītu apstiprināšanas e-pastu. 
 Tajā būs saite ar kodu; spied uz tās saites vai atver to savā interneta pārlūkā, 
 lai apstiprinātu tavas e-pasta adreses derīgumu.',
-'confirmemail_pending'     => '<div class="error">Apstiprināšanas kods jau tev tika nosūtīts pa e-pastu;
-ja tu nupat izveidoji savu kontu, varētu drusku pagaidīt, kamēr tas kods pienāk, pirms mēģināt dabūt jaunu.</div>',
+'confirmemail_pending'     => 'Apstiprināšanas kods jau tev tika nosūtīts pa e-pastu;
+ja tu nupat izveidoji savu kontu, varētu drusku pagaidīt, kamēr tas kods pienāk, pirms mēģināt dabūt jaunu.',
 'confirmemail_send'        => 'Nosūtīt apstiprināšanas kodu',
 'confirmemail_sent'        => 'Apstiprināšanas e-pasts nosūtīts.',
 'confirmemail_oncreate'    => 'Apstiprinājuma kods tika nosūtīts uz tavu e-pasta adresi.

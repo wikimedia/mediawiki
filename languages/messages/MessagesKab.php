@@ -1426,10 +1426,8 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'confirmemail_text'       => 'Deg wiki-yagi, yessefk ad tvalidiḍ tansa n email inek
 qbel ad tesseqdceḍ iḍaɣaren n email. Tella taqeffalt d akessar, wekki fell-as
 iwakken yettwazen ungal n usentem semail. Email-nni yesɛa azady, ldi-t.',
-'confirmemail_pending'    => '<div class="error">
-Yettwazen-ak yagi ungal n usentem; lukan txelqeḍ isem wemseqdac tura kan,
-ahat yessefk ad tegguniḍ cwiṭ qbel ad tɛreḍeḍ ad testeqsiḍ ɣef ungal amaynut.
-</div>',
+'confirmemail_pending'    => 'Yettwazen-ak yagi ungal n usentem; lukan txelqeḍ isem wemseqdac tura kan,
+ahat yessefk ad tegguniḍ cwiṭ qbel ad tɛreḍeḍ ad testeqsiḍ ɣef ungal amaynut.',
 'confirmemail_send'       => 'Azen-iyi-d angal n usentem s e-mail iwakken ad snetmeɣ.',
 'confirmemail_sent'       => 'E-mail yettwazen iwakken ad tsentmeḍ.',
 'confirmemail_oncreate'   => 'Angal n usentem yettwazen ar tansa n e-mail inek.

@@ -2767,8 +2767,8 @@ Basqaları ädepkiden jasırıladı.
 Öziñizdiñ mekenjaýıñızğa quptaw xatın jöneltw üşin tömendegi batırmanı nuqıñız.
 Xattıñ işinde kodı bar silteme kiristirmek; 
 e-poşta jaýıñızdıñ jaramdılığın quptaw üşin siltemeni şolğıştıñ mekenjaý jolağına engizip aşıñız.',
-'confirmemail_pending'     => '<div class="error">Quptaw kodı aldaqaşan xatpen jiberiligen;
-eger jwıqta tirkelseñiz, jaña kodın suratw aldınan xat kelwin birşama mïnöt küte turıñız.</div>',
+'confirmemail_pending'     => 'Quptaw kodı aldaqaşan xatpen jiberiligen;
+eger jwıqta tirkelseñiz, jaña kodın suratw aldınan xat kelwin birşama mïnöt küte turıñız.',
 'confirmemail_send'        => 'Quptaw kodın jöneltw',
 'confirmemail_sent'        => 'Quptaw xatı jöneltildi.',
 'confirmemail_oncreate'    => 'Quptaw kodı e-poşta mekenjaýıñızğa jöneltildi.

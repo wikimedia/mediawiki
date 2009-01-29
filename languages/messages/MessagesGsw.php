@@ -2676,7 +2676,7 @@ Anderi Metadate sy standardmäßig versteckt.
 'confirmemail'             => 'Bstätigung vo Ihre E-Poscht-Adräss',
 'confirmemail_noemail'     => 'Du hesch in dyne [[Special:Preferences|persönliche Ystellige]] e kei E-Mail-Adress ygää.',
 'confirmemail_text'        => 'Dermit du di erwyterete Mailfunktione chasch bruuche, muesch du die e-Mail-Adrässe, wo du hesch aaggä, la bestätige. Klick ufe Chnopf unte; das schickt dir es Mail. I däm Mail isch e Link; we du däm Link folgsch, de tuesch dadermit bestätige, das die e-Mail-Adrässe dyni isch.',
-'confirmemail_pending'     => '<div class="error">Es isch Dir scho en Code zum Bestätige zuegschiggt worde. Falls du Dyn Konto grad erscht aagleit hesch, muesch villicht noo e weng warte bis d E-Mail ytrifft, bevor du en nöie Code aafordresch.</div>',
+'confirmemail_pending'     => 'Es isch Dir scho en Code zum Bestätige zuegschiggt worde. Falls du Dyn Konto grad erscht aagleit hesch, muesch villicht noo e weng warte bis d E-Mail ytrifft, bevor du en nöie Code aafordresch.',
 'confirmemail_send'        => 'Bestätigungs-Mail verschicke',
 'confirmemail_sent'        => 'Es isch dir es Mail zur Adrässbestätigung gschickt worde.',
 'confirmemail_oncreate'    => 'En Code isch aa dyni E-Mail-Adress zum bestätige gschiggt worde. Du bruuch de Code zwar nüt zum dich aamälde, er wird aber zum aktiviere vo de E-Mail-Funktione in däm Wiki bruucht.',
@@ -2866,5 +2866,17 @@ D Yygab muess ohni dr Zuesatz „{{ns:file}}:“ erfolge.',
 #E positive Verglyych fiert zue dr Aazeig vum Bild, suscht wird s Bild nume as Gleich aazeigt
 #Zyylete, wu mit eme # aafange, wäre as Kommentar behandlet
 #Fragmänt vu reguläre Usdrick noch däre Zyylete yytrage. Die Zyylete nit verändere</pre>',
+
+# Special:Tags
+'tag-filter'              => '[[Special:Tag|Tag]]-Filter:',
+'tag-filter-submit'       => 'Filter',
+'tags-title'              => 'Tag',
+'tags-intro'              => 'Die Syte zeigt alli Tag, wu Bearbeitige mit markiert wäre un derzue d Bedytig vun ene.',
+'tags-tag'                => 'Interne Tagname',
+'tags-display-header'     => 'Benännig uf dr Änderigslischte',
+'tags-description-header' => 'Vollständigi Bschryybig',
+'tags-hitcount-header'    => 'taggti Bearbeitige',
+'tags-edit'               => 'bearbeite',
+'tags-hitcount'           => '$1 {{PLURAL:$1|Änderig|Änderige}}',
 
 );

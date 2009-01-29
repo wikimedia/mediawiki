@@ -2706,8 +2706,8 @@ Altele vor fi ascunse implicit.
 'confirmemail'             => 'Confirmă adresa de email',
 'confirmemail_noemail'     => 'Nu aveţi o adresă de email validă setată la [[Special:Preferences|preferinţe]].',
 'confirmemail_text'        => 'Acest wiki necesită validarea adresei de email înaintea folosirii funcţiilor email. Apăsaţi butonul de dedesupt pentru a trimite un email de confirmare către adresa dvs. Acesta va include o legătură care va conţine codul; încărcaţi legătura în browser pentru a valida adresa de email.',
-'confirmemail_pending'     => '<div class="error">Un cod de confirmare a fost trimis deja prin e-mail către tine;
-dacă ai creat recent contul, aşteaptă câteva minute să ajungă la tine înainte de a cere un nou cod.</div>',
+'confirmemail_pending'     => 'Un cod de confirmare a fost trimis deja prin e-mail către tine;
+dacă ai creat recent contul, aşteaptă câteva minute să ajungă la tine înainte de a cere un nou cod.',
 'confirmemail_send'        => 'Trimite un cod de confirmare',
 'confirmemail_sent'        => 'E-mailul de confirmare a fost trimis.',
 'confirmemail_oncreate'    => 'Un cod de confirmare a fost trimis la adresa de e-mail.

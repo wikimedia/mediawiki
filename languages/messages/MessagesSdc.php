@@ -1923,9 +1923,7 @@ So cunsidaraddi soru l'erenchi puntaddi (righi ch'ischumenzani cu' lu caràtteri
 'confirmemail'            => 'Cunfèimma indirizzu di postha erettrònica',
 'confirmemail_noemail'    => "Nò è isthaddu indicaddu un'indirizzu postha erettrònica vàriddu i' li pròpri [[Special:Preferences|prifirenzi]].",
 'confirmemail_text'       => "{{SITENAME}} dumanda la verifigga di l'indirizzu di postha erettrònica primma di pudé l'usà. Incalchà lu buttoni in giossu pa invià una prigonta di cunfèimma a lu propriu indirizzu; i' l'imbasciadda è prisenti un cullegamentu chi cunteni un còdizi. Visità lu cullegamentu cu' lu proprio nabiggadori pa cunfèimmà chi l'indirizzu è vàriddu.",
-'confirmemail_pending'    => '<div class="error">
-Un còdizi di cunfèimma è già isthaddu inviaddu pa postha erettrònica; si la registhrazioni è isthadda cridda da poggu, è nezzessàriu aisittà l\'arribu di lu còdizi pa calchi minutu primma di dumandanni unu nobu.
-</div>',
+'confirmemail_pending'    => "Un còdizi di cunfèimma è già isthaddu inviaddu pa postha erettrònica; si la registhrazioni è isthadda cridda da poggu, è nezzessàriu aisittà l'arribu di lu còdizi pa calchi minutu primma di dumandanni unu nobu.",
 'confirmemail_send'       => 'Invia un còdizi di cunfèimma via postha erettrònica.',
 'confirmemail_sent'       => 'Imbasciadda di postha erettrònica di cunfèimma inviaddu.',
 'confirmemail_oncreate'   => "Un còdizi di cunfèimma è isthaddu inviaddu a l'indirizzu di postha erettrònica indicaddu. Lu còdizi nò è nezzessàriu pa intrà i' lu situ, ma pa abirità tutti li funzioni liaddi a la postha erettrònica.",

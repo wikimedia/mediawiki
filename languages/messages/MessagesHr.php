@@ -2890,9 +2890,7 @@ Svaka sljedeća poveznica u istom retku je izuzetak, npr. kod stranica gdje se s
 'confirmemail_text'        => 'U ovom wikiju morate prije korištenja e-mail naredbi verificirati svoju e-mail adresu. Kliknite na dugme ispod kako biste
 poslali poruku s potvrdom na vašu adresu. U poruci će biti poveznica koju morate otvoriti u
 svom web pregledniku da biste verificirali adresu.',
-'confirmemail_pending'     => '<div class="error">
-Već vam je e-mailom poslan potvrdni kôd; ako ste upravo otvorili suradnički račun, molimo pričekajte još nekoliko minuta na e-mailu, prije nego što postavite zahtjev za novi kôd.
-</div>',
+'confirmemail_pending'     => 'Već vam je e-mailom poslan potvrdni kôd; ako ste upravo otvorili suradnički račun, molimo pričekajte još nekoliko minuta na e-mailu, prije nego što postavite zahtjev za novi kôd.',
 'confirmemail_send'        => 'Pošalji kôd za potvrdu e-mail adrese',
 'confirmemail_sent'        => 'Poruka s potvrdom je poslana.',
 'confirmemail_oncreate'    => 'Potvrdni kôd poslan je na vašu elektroničku adresu.

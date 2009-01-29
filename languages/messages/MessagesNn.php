@@ -2816,8 +2816,8 @@ Dei andre felta er gøymde som standard.
 før du får brukt funksjonar knytt til e-post. Klikk på knappen under for å sende ei stadfestingsmelding
 til adressa di. E-posten kjem med ei lenkje som har ein kode; opne
 lenkja i nettlesaren din for å stadfeste at e-postadressa di er gyldig.',
-'confirmemail_pending'     => '<div class="error">Ein stadfestingskode har alt vorte send til deg på e-post;
-gjer vel å vente nokre minutt før du ber om ny kode om du nett har oppretta kontoen din.</div>',
+'confirmemail_pending'     => 'Ein stadfestingskode har alt vorte send til deg på e-post;
+gjer vel å vente nokre minutt før du ber om ny kode om du nett har oppretta kontoen din.',
 'confirmemail_send'        => 'Send stadfestingsmelding',
 'confirmemail_sent'        => 'Stadfestingsmelding er sendt.',
 'confirmemail_oncreate'    => 'Ein stadfestingskode er no send til e-postadressa di.
@@ -3005,5 +3005,14 @@ Skriv inn filnamn utan «{{ns:file}}:»-prefikset.',
 #Linjer som byrjar med # vert rekna som kommentarar
 
 #Skriv alle fragment av regulære uttrykk over denne lina. La denne linja vere som ho er</pre>',
+
+# Special:Tags
+'tag-filter'              => '[[Special:Tags|Merke]]filter:',
+'tag-filter-submit'       => 'Filtrer',
+'tags-title'              => 'Merke',
+'tags-intro'              => 'Denne sida listar opp merka som mjukvara kan merkja ei endring med, og kva desse tyder.',
+'tags-tag'                => 'Internt namn på merke',
+'tags-description-header' => 'Fullstendig skildring av tyding',
+'tags-hitcount-header'    => 'Merkte endringar',
 
 );
