@@ -3496,8 +3496,8 @@ Others will be hidden by default.
 Activate the button below to send a confirmation mail to your address.
 The mail will include a link containing a code;
 load the link in your browser to confirm that your e-mail address is valid.',
-'confirmemail_pending'     => '<div class="error">A confirmation code has already been e-mailed to you;
-if you recently created your account, you may wish to wait a few minutes for it to arrive before trying to request a new code.</div>',
+'confirmemail_pending'     => 'A confirmation code has already been e-mailed to you;
+if you recently created your account, you may wish to wait a few minutes for it to arrive before trying to request a new code.',
 'confirmemail_send'        => 'Mail a confirmation code',
 'confirmemail_sent'        => 'Confirmation e-mail sent.',
 'confirmemail_oncreate'    => 'A confirmation code was sent to your e-mail address.

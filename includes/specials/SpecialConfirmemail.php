@@ -68,13 +68,13 @@ class EmailConfirmation extends UnlistedSpecialPage {
 				$wgOut->addWikiMsg( 'emailauthenticated', $time, $d, $t );
 			}
 			if( $wgUser->isEmailConfirmationPending() ) {
-				$wgOut->addWikiMsg( 'confirmemail_pending' );
+				$wgOut->wrapWikiMsg( "<div class=\"error mw-confirmemail-pending\">$1</div>", 'confirmemail_pending' );
 			}
 			$wgOut->addWikiMsg( 'confirmemail_text' );
 			$self = SpecialPage::getTitleFor( 'Confirmemail' );
 			$form  = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $self->getLocalUrl() ) );
 			$form .= Xml::hidden( 'token', $wgUser->editToken() );
-			$form .= Xml::submitButton( wfMsgHtml( 'confirmemail_send' ) );
+			$form .= Xml::submitButton( wfMsg( 'confirmemail_send' ) );
 			$form .= Xml::closeElement( 'form' );
 			$wgOut->addHTML( $form );
 		}
