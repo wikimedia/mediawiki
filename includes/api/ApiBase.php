@@ -694,6 +694,7 @@ abstract class ApiBase {
 		'ipb_cant_unblock' => array('code' => 'cantunblock', 'info' => "The block you specified was not found. It may have been unblocked already"),
 		'mailnologin' => array('code' => 'cantsend', 'info' => "You're not logged in or you don't have a confirmed e-mail address, so you can't send e-mail"),
 		'usermaildisabled' => array('code' => 'usermaildisabled', 'info' => "User email has been disabled"),
+		'usermailenabled' => array('code' => 'usermailenabled', 'info' => "User email is enabled"),
 		'blockedemailuser' => array('code' => 'blockedfrommail', 'info' => "You have been blocked from sending e-mail"),
 		'notarget' => array('code' => 'notarget', 'info' => "You have not specified a valid target for this action"),
 		'noemail' => array('code' => 'noemail', 'info' => "The user has not specified a valid e-mail address, or has chosen not to receive e-mail from other users"),
