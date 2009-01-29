@@ -18,7 +18,7 @@
 class LanguageConverter {
 	var $mPreferredVariant='';
 	var $mMainLanguageCode;
-	var $mVariants, $mVariantFallbacks, $mLanguageNames;
+	var $mVariants, $mVariantFallbacks, $mVariantNames;
 	var $mTablesLoaded = false;
 	var $mTables;
 	var $mManualAddTables;
@@ -58,7 +58,7 @@ class LanguageConverter {
 		$this->mVariants = $variants;
 		$this->mVariantFallbacks = $variantfallbacks;
 		global $wgLanguageNames;
-		$this->mLanguageNames = $wgLanguageNames;
+		$this->mVariantNames = $wgLanguageNames;
 		$this->mCacheKey = wfMemcKey( 'conversiontables', $maincode );
 		$m = array(
 			'begin'=>'-{', 
@@ -117,9 +117,85 @@ class LanguageConverter {
 		return $this->mMainLanguageCode;
 	}
 
-	// this method body in Language class
+	/**
+	 * get preferred language variants.
+	 * @param boolean $fromUser Get it from $wgUser's preferences
+	 * @return string the preferred language code
+	 * @public
+	 */
 	function getPreferredVariant( $fromUser = true ) {
-		return $this->mLangObj->getPreferredVariant( $fromUser );
+		global $wgUser, $wgRequest, $wgVariantArticlePath, $wgDefaultLanguageVariant;
+
+		if($this->mPreferredVariant)
+			return $this->mPreferredVariant;
+
+		// figure out user lang without constructing wgLang to avoid infinite recursion
+		if( $fromUser )
+			$defaultUserLang = $wgUser->getOption( 'language' );
+		else
+			$defaultUserLang = $this->mMainLanguageCode;
+		$userLang = $wgRequest->getVal( 'uselang', $defaultUserLang );
+		// see if interface language is same as content, if not, prevent conversion
+		if( ! in_array( $userLang, $this->mVariants ) ){ 
+			$this->mPreferredVariant = $this->mMainLanguageCode; // no conversion
+			return $this->mPreferredVariant;
+		}
+
+		// see if the preference is set in the request
+		$req = $wgRequest->getText( 'variant' );
+		if( in_array( $req, $this->mVariants ) ) {
+			$this->mPreferredVariant = $req;
+			return $req;
+		}
+
+		// check the syntax /code/ArticleTitle
+		if($wgVariantArticlePath!=false && isset($_SERVER['SCRIPT_NAME'])){
+			// Note: SCRIPT_NAME probably won't hold the correct value if PHP is run as CGI
+			// (it will hold path to php.cgi binary), and might not exist on some very old PHP installations
+			$scriptBase = basename( $_SERVER['SCRIPT_NAME'] );
+			if(in_array($scriptBase,$this->mVariants)){
+				$this->mPreferredVariant = $scriptBase;
+				return $this->mPreferredVariant;
+			}
+		}
+
+		// get language variant preference from logged in users
+		// Don't call this on stub objects because that causes infinite 
+		// recursion during initialisation
+		if( $fromUser && $wgUser->isLoggedIn() )  {
+			$this->mPreferredVariant = $wgUser->getOption('variant');
+			return $this->mPreferredVariant;
+		}
+
+		// see if default variant is globaly set
+		if($wgDefaultLanguageVariant != false  &&  in_array( $wgDefaultLanguageVariant, $this->mVariants )){
+			$this->mPreferredVariant = $wgDefaultLanguageVariant;
+			return $this->mPreferredVariant;
+		}
+
+		# FIXME rewrite code for parsing http header. The current code
+		# is written specific for detecting zh- variants
+		if( !$this->mPreferredVariant ) {
+			// see if some supported language variant is set in the
+			// http header, but we don't set the mPreferredVariant
+			// variable in case this is called before the user's
+			// preference is loaded
+			$pv=$this->mMainLanguageCode;
+			if(array_key_exists('HTTP_ACCEPT_LANGUAGE', $_SERVER)) {
+				$header = str_replace( '_', '-', strtolower($_SERVER["HTTP_ACCEPT_LANGUAGE"]));
+				$zh = strstr($header, $pv.'-');
+				if($zh) {
+					$ary = split("[,;]",$zh);
+					$pv = $ary[0];
+				}
+			}
+			// don't try to return bad variant
+			if(in_array( $pv, $this->mVariants ))
+				return $pv;
+		}
+
+		return $this->mMainLanguageCode;
+
 	}
 	
 	/**
@@ -132,10 +208,10 @@ class LanguageConverter {
 	 * @private
 	 */
 	function captionConvert( $matches ) {
+		// we convert captions except URL
 		$toVariant = $this->getPreferredVariant();
 		$title = $matches[1];
 		$text  = $matches[2];
-		// we convert captions except URL
 		if( !strpos( $text, '://' ) )
 			$text = $this->translate($text, $toVariant);
 		return " $title=\"$text\"";
@@ -296,19 +372,12 @@ class LanguageConverter {
 			if( !in_array($v,$this->mVariants) )continue;
 			if( $action=="add" ) {
 				foreach($t as $from=>$to) {
-					// to ensure that $from and $to not be left blank
-					// so $this->translate() could always return a string
-					if ($from || $to)
-						// more efficient than array_merge(), about 2.5 times.
-						$this->mManualAddTables[$v][$from] = $to;
+					// more efficient than array_merge(), about 2.5 times.
+					$this->mManualAddTables[$v][$from] = $to;
 				}
 			}
-			elseif ( $action=="remove" ) {
-				foreach($t as $from=>$to) {
-					if ($from || $to)
-						$this->mManualRemoveTables[$v][$from] = $to;
-				}
-			}
+			elseif ( $action=="remove" )
+				$this->mManualRemoveTables[$v] = array_merge($this->mManualRemoveTables[$v], $t);
 		}
 	}
 
@@ -909,7 +978,7 @@ class ConverterRule {
 					$unidtable[$v][$from]=$to;
 			}
 			// syntax error, pass
-			if (!array_key_exists($v,$this->mConverter->mLanguageNames)){
+			if (!array_key_exists($v,$this->mConverter->mVariantNames)){
 				$bidtable = array();
 				$unidtable = array();
 				break;
@@ -927,10 +996,10 @@ class ConverterRule {
 		$varsep = $this->mConverter->mDescVarSep;
 		$text='';
 		foreach($this->mBidtable as $k => $v)
-			$text .= $this->mConverter->mLanguageNames[$k]."$codesep$v$varsep";
+			$text .= $this->mConverter->mVariantNames[$k]."$codesep$v$varsep";
 		foreach($this->mUnidtable as $k => $a)
 			foreach($a as $from=>$to)
-				$text.="$from&#8658;".$this->mConverter->mLanguageNames[$k]."$codesep$to$varsep";
+				$text.=$from.'⇒'.$this->mConverter->mVariantNames[$k]."$codesep$to$varsep";
 		return $text;
 	}
 
@@ -1056,7 +1125,7 @@ class ConverterRule {
 			$this->mRuleDisplay = $rules;
 		} elseif ( in_array('N',$flags) ){
 			// proces N flag: output current variant name
-			$this->mRuleDisplay = $this->mConverter->mLanguageNames[trim($rules)];
+			$this->mRuleDisplay = $this->mConverter->mVariantNames[trim($rules)];
 		} elseif ( in_array('D',$flags) ){
 			// proces D flag: output rules description
 			$this->mRuleDisplay = $this->getRulesDesc();
