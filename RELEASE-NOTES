@@ -85,7 +85,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   LanguageConverter class)
 * (bug 17054) Added more descriptive errors in Special:RevisionDelete
 * (bug 11527) Diff on page with one revision shows "Next" link to same diff
-* (bug 15936) New page's patrol button should always be visible
 * (bug 8065) Fix summary forcing for new pages
 * (bug 10569) redirects to Special:Mypage and Special:Mytalk are no longer
   allowed by default. Change $wgInvalidRedirectTargets to re-enable.
