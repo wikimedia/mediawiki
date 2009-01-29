@@ -57,7 +57,7 @@ class ApiEmailUser extends ApiBase {
 			if ( $targetUser instanceof User )
 				$result = array( 'result' => 'Enabled' );
 			else
-				$result = array( 'result' => 'Disabled' );
+				$result = array( 'result' => 'Disabled', 'error' => $targetUser );
 			
 			$this->getResult()->addValue( null, $this->getModuleName(), $result );
 			return;
@@ -110,7 +110,7 @@ class ApiEmailUser extends ApiBase {
 			'text' => 'Mail body',
 			'token' => 'A token previously acquired via prop=info',
 			'ccme' => 'Send a copy of this mail to me',
-			'check' => 'Only check whether the user has email enabled',
+			'check' => 'Only check whether email can be sent to the target user',
 		);
 	}
 
