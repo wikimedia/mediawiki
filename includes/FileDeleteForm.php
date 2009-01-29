@@ -108,7 +108,8 @@ class FileDeleteForm {
 				$id = $title->getArticleID( GAID_FOR_UPDATE );
 				// Need to delete the associated article
 				$article = new Article( $title );
-				if( wfRunHooks('ArticleDelete', array(&$article, &$wgUser, &$reason)) ) {
+				$error = '';
+				if( wfRunHooks('ArticleDelete', array(&$article, &$wgUser, &$reason, &$error)) ) {
 					if( $article->doDeleteArticle( $reason, $suppress, $id ) ) {
 						global $wgRequest;
 						if( $wgRequest->getCheck( 'wpWatch' ) ) {
