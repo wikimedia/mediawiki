@@ -1,5 +1,5 @@
 <?php
-/** Yue (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * @ingroup Language
  * @file
@@ -2960,5 +2960,18 @@ $1
 #有 # 開頭嘅行會當做註解
 
 #響呢行上面入晒全部嘅regex。留番呢行一樣嘅字</pre>',
+
+# Special:Tags
+'tags'			  => '有效更改過嘅標籤',
+'tag-filter'              => '[[Special:Tags|標籤]]過濾器:',
+'tag-filter-submit'       => '過濾器',
+'tags-title'              => '標籤',
+'tags-intro'              => '呢一版列示咗個軟件標示嘅編輯，同埋佢哋嘅解釋。',
+'tags-tag'                => '內部標籤名',
+'tags-display-header'     => '響更改表嘅出現方式',
+'tags-description-header' => '解釋完整描述',
+'tags-hitcount-header'    => '加咗標籤嘅編輯',
+'tags-edit'               => '編輯',
+'tags-hitcount'           => '$1次更改',
 
 );
