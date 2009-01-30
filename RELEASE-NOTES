@@ -71,6 +71,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   can now be determined and set with ParserOptions.
 * Wrap message 'confirmemail_pending' into a div with CSS classes "error" and
   "mw-confirmemail-pending"
+* Local redirects to foreign images are now displayed on the ImagePage when
+  viewing on the local wiki.
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
