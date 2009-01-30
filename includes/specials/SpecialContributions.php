@@ -233,10 +233,6 @@ class SpecialContributions extends SpecialPage {
 		if( !isset( $this->opts['month'] ) ) {
 			$this->opts['month'] = '';
 		}
-
-		if( !isset( $this->opts['tagfilter'] ) ) {
-			$this->opts['tagfilter'] = '';
-		}
 	
 		if( $this->opts['contribs'] == 'newbie' ) {
 			$this->opts['target'] = '';
@@ -250,6 +246,8 @@ class SpecialContributions extends SpecialPage {
 			}
 			$f .= "\t" . Xml::hidden( $name, $value ) . "\n";
 		}
+
+		$tagFilter = ChangeTags::buildTagFilterSelector( $this->opts['tagfilter'] );
 	
 		$f .= '<fieldset>' .
 			Xml::element( 'legend', array(), wfMsg( 'sp-contributions-search' ) ) .
@@ -262,7 +260,7 @@ class SpecialContributions extends SpecialPage {
 			Xml::label( wfMsg( 'namespace' ), 'namespace' ) . ' ' .
 			Xml::namespaceSelector( $this->opts['namespace'], '' ) .
 			'</span>' .
-			Xml::tags( 'p', null, implode( '&nbsp;', ChangeTags::buildTagFilterSelector( $this->opts['tagfilter'] ) ) ) .
+			( $tagFilter ? Xml::tags( 'p', null, implode( '&nbsp;', $tagFilter ) ) : '' ) .
 			Xml::openElement( 'p' ) .
 			'<span style="white-space: nowrap">' .
 			Xml::label( wfMsg( 'year' ), 'year' ) . ' '.

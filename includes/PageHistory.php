@@ -113,6 +113,7 @@ class PageHistory {
 		$year = $wgRequest->getInt( 'year' );
 		$month = $wgRequest->getInt( 'month' );
 		$tagFilter = $wgRequest->getVal( 'tagfilter' );
+		$tagSelector = ChangeTags::buildTagFilterSelector( $tagFilter );
 
 		$action = htmlspecialchars( $wgScript );
 		$wgOut->addHTML(
@@ -121,7 +122,7 @@ class PageHistory {
 			Xml::hidden( 'title', $this->mTitle->getPrefixedDBKey() ) . "\n" .
 			Xml::hidden( 'action', 'history' ) . "\n" .
 			$this->getDateMenu( $year, $month ) . '&nbsp;' .
-			implode( '&nbsp;', ChangeTags::buildTagFilterSelector( $tagFilter ) ) . '&nbsp;' .
+			( $tagSelector ? ( implode( '&nbsp;', $tagSelector ) . '&nbsp;' ) : '' ) .
 			Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "\n" .
 			'</fieldset></form>'
 		);

@@ -172,7 +172,9 @@ class SpecialRecentchangeslinked extends SpecialRecentchanges {
 			Xml::input( 'target', 40, str_replace('_',' ',$opts['target']) ) .
 			Xml::check( 'showlinkedto', $opts['showlinkedto'], array('id' => 'showlinkedto') ) . ' ' .
 			Xml::label( wfMsg("recentchangeslinked-to"), 'showlinkedto' ) );
-		$extraOpts['tagfilter'] = ChangeTags::buildTagFilterSelector( $opts['tagfilter'] );
+		$tagFilter = ChangeTags::buildTagFilterSelector( $opts['tagfilter'] );
+		if ($tagFilter)
+			$extraOpts['tagfilter'] = $tagFilter;
 		return $extraOpts;
 	}
 

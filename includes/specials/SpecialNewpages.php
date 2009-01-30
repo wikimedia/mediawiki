@@ -177,7 +177,9 @@ class SpecialNewpages extends SpecialPage {
 		}
 		$hidden = implode( "\n", $hidden );
 
-		list( $tagFilterLabel, $tagFilterSelector ) = ChangeTags::buildTagFilterSelector( $this->opts['tagfilter'] );
+		$tagFilter = ChangeTags::buildTagFilterSelector( $this->opts['tagfilter'] );
+		if ($tagFilter)
+			list( $tagFilterLabel, $tagFilterSelector ) = $tagFilter;
 
 		$form = Xml::openElement( 'form', array( 'action' => $wgScript ) ) .
 			Xml::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) .
@@ -190,7 +192,7 @@ class SpecialNewpages extends SpecialPage {
 				<td class='mw-input'>" .
 					Xml::namespaceSelector( $namespace, 'all' ) .
 				"</td>
-			</tr>" .
+			</tr>" . ( $tagFilter ? (
 			"<tr>
 				<td class='mw-label'>" .
 					$tagFilterLabel .
@@ -198,7 +200,7 @@ class SpecialNewpages extends SpecialPage {
 				<td class='mw-input'>" .
 					$tagFilterSelector .
 				"</td>
-			</tr>" .
+			</tr>" ) : '' ) .
 			($wgEnableNewpagesUserFilter ?
 			"<tr>
 				<td class='mw-label'>" .

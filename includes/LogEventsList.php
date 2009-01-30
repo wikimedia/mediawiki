@@ -75,6 +75,8 @@ class LogEventsList {
 		$title = SpecialPage::getTitleFor( 'Log' );
 		$special = htmlspecialchars( $title->getPrefixedDBkey() );
 
+		$tagSelector = ChangeTags::buildTagFilterSelector( $tagFilter );
+
 		$this->out->addHTML( "<form action=\"$action\" method=\"get\"><fieldset>" .
 			Xml::element( 'legend', array(), wfMsg( 'log' ) ) .
 			Xml::hidden( 'title', $special ) . "\n" .
@@ -83,7 +85,7 @@ class LogEventsList {
 			$this->getTitleInput( $page ) . "\n" .
 			( !$wgMiserMode ? ($this->getTitlePattern( $pattern )."\n") : "" ) .
 			"<p>" . $this->getDateMenu( $year, $month ) . "\n" .
-			Xml::tags( 'p', null, implode( '&nbsp;', ChangeTags::buildTagFilterSelector( $tagFilter ) ) ) . "\n" .
+			( $tagSelector ? Xml::tags( 'p', null, implode( '&nbsp;', $tagSelector ) ) :'' ). "\n" .
 			( $filter ? "</p><p>".$this->getFilterLinks( $type, $filter )."\n" : "" ) . "\n" .
 			Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "</p>\n" .
 			"</fieldset></form>"

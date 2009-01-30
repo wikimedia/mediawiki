@@ -462,7 +462,9 @@ class SpecialRecentChanges extends SpecialPage {
 			$extraOpts['category'] = $this->categoryFilterForm( $opts );
 		}
 
-		$extraOpts['tagfilter'] = ChangeTags::buildTagFilterSelector( $opts['tagfilter'] );
+		$tagFilter = ChangeTags::buildTagFilterSelector( $opts['tagfilter'] );
+		if ( count($tagFilter) )
+			$extraOpts['tagfilter'] = $tagFilter;
 
 		wfRunHooks( 'SpecialRecentChangesPanel', array( &$extraOpts, $opts ) );
 		return $extraOpts;
