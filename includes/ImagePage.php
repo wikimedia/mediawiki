@@ -129,11 +129,7 @@ class ImagePage extends Article {
 			array( 'id' => 'filelinks' ),
 			wfMsg( 'imagelinks' ) ) . "\n" );
 		$this->imageDupes();
-		// TODO: We may want to find local images redirecting to a foreign 
-		// file: "The following local files redirect to this file"
-		if( $this->img->isLocal() ) {
-			$this->imageRedirects();
-		}
+		$this->imageRedirects();
 		$this->imageLinks();
 
 		if( $showmeta ) {
