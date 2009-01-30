@@ -3811,7 +3811,7 @@ Enter the filename without the "{{ns:file}}:" prefix.',
 'tags-tag'                => 'Internal tag name',
 'tags-display-header'     => 'Appearance on change lists',
 'tags-description-header' => 'Full description of meaning',
-'tags-hitcount-header'    => 'Tagged edits',
+'tags-hitcount-header'    => 'Tagged changes',
 'tags-edit'               => 'edit',
 'tags-hitcount'           => '$1 {{PLURAL:$1|change|changes}}',
 
