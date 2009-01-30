@@ -96,9 +96,7 @@ class UploadBase {
 	 * Verify whether the upload is sane. 
 	 * Returns self::OK or else an array with error information
 	 */
-	function verifyUpload() {
-		global $wgUser;
-		
+	function verifyUpload() {		
 		/**
 		 * If there was no filename or a zero size given, give up quick.
 		 */
