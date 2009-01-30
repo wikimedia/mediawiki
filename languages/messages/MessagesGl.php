@@ -126,6 +126,8 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( 'Contribucións borradas' ),
 );
 
+$separatorTransformTable = array(',' => '.', '.' => ',' );
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Subliñar as ligazóns:',
