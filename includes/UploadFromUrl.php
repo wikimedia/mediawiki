@@ -45,7 +45,7 @@ class UploadFromUrl extends UploadBase {
 	 * Returns true if there was an error, false otherwise
 	 */
 	private function curlCopy() {
-		global $wgUser, $wgOut;
+		global $wgOut;
 
 		# Open temporary file
 		$this->mCurlDestHandle = @fopen( $this->mTempPath, "wb" );
