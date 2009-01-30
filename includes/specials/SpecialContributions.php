@@ -233,6 +233,10 @@ class SpecialContributions extends SpecialPage {
 		if( !isset( $this->opts['month'] ) ) {
 			$this->opts['month'] = '';
 		}
+
+		if( !isset( $this->opts['tagfilter'] ) ) {
+			$this->opts['tagfilter'] = '';
+		}
 	
 		if( $this->opts['contribs'] == 'newbie' ) {
 			$this->opts['target'] = '';
