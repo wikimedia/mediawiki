@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * @ingroup Language
  * @file
@@ -2993,5 +2993,18 @@ $1
 #有 # 开头的行会当成注解
 
 #在这行上面输入所有的regex。留下这行一样的文字</pre>',
+
+# Special:Tags
+'tags'			  => '有效更改过的标签',
+'tag-filter'              => '[[Special:Tags|标签]]过滤器:',
+'tag-filter-submit'       => '过滤器',
+'tags-title'              => '标签',
+'tags-intro'              => '这个页面列示出在软件中已标示的编辑，以及它们的解释。',
+'tags-tag'                => '内部标签名称',
+'tags-display-header'     => '在更改列表中的出现方式',
+'tags-description-header' => '解释完整描述',
+'tags-hitcount-header'    => '已加上标签的编辑',
+'tags-edit'               => '编辑',
+'tags-hitcount'           => '$1次更改',
 
 );
