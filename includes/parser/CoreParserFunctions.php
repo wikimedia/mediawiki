@@ -333,6 +333,7 @@ class CoreParserFunctions {
 	static function pad( $string, $length, $padding = '0', $direction = STR_PAD_RIGHT ) {
 		$lengthOfPadding = mb_strlen( $padding );		
 		if ( $lengthOfPadding == 0 ) return $string;
+		if ( $length < mb_strlen( $string ) ) return $string;
 		
 		# The remaining length to add counts down to 0 as padding is added
 		$length = min( $length, 500 ) - mb_strlen( $string );
