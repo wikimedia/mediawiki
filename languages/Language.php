@@ -1564,7 +1564,7 @@ class Language {
 			$n = $minLength-1;
 			$out = preg_replace(
 				"/\b(\w{1,$n})\b/",
-				"$1U800",
+				"$1u800",
 				$out );
 		}
 		
@@ -1576,7 +1576,7 @@ class Language {
 		// "example.wikipedia.com" and "192.168.83.1" as well.
 		$out = preg_replace(
 			"/(\w)\.(\w|\*)/u",
-			"$1U82e$2",
+			"$1u82e$2",
 			$out );
 		
 		wfProfileOut( __METHOD__ );
@@ -1589,7 +1589,7 @@ class Language {
 	 * settings or anything else of the sort.
 	 */
 	protected function stripForSearchCallback( $matches ) {
-		return 'U8' . bin2hex( $matches[1] );
+		return 'u8' . bin2hex( $matches[1] );
 	}
 	
 	/**
