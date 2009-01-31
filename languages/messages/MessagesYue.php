@@ -2962,7 +2962,7 @@ $1
 #響呢行上面入晒全部嘅regex。留番呢行一樣嘅字</pre>',
 
 # Special:Tags
-'tags'			  => '有效更改過嘅標籤',
+'tags'                    => '有效更改過嘅標籤',
 'tag-filter'              => '[[Special:Tags|標籤]]過濾器:',
 'tag-filter-submit'       => '過濾器',
 'tags-title'              => '標籤',

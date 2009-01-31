@@ -2995,7 +2995,7 @@ $1
 #在这行上面输入所有的regex。留下这行一样的文字</pre>',
 
 # Special:Tags
-'tags'			  => '有效更改过的标签',
+'tags'                    => '有效更改过的标签',
 'tag-filter'              => '[[Special:Tags|标签]]过滤器:',
 'tag-filter-submit'       => '过滤器',
 'tags-title'              => '标签',

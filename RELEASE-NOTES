@@ -147,13 +147,15 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 === Languages updated in 1.15 ===
 
 MediaWiki supports over 300 languages. Many localisations are updated
-regularly. Below only new and removed languages are listed.
+regularly. Below only new and removed languages are listed, as well as
+changes to languages because of MediaZilla reports.
 
 * Austrian German (de-at) (new)
 * Swiss Standard German (de-ch) (new)
 * Literary Chinese (lzh) (new)
 * Võro (vro) (renamed from fiu-vro)
 * (bug 17151) Add magic word alias for #redirect for Vietnamese
+* (bug 17288) Messages improved for default language (English)
 
 == Compatibility ==
 

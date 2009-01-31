@@ -2911,6 +2911,15 @@ $wgMessageStructure = array(
 		'tags-edit',
 		'tags-hitcount',
 	),
+	'db-error-messages' => array(
+		'dberr-header',
+		'dberr-problems',
+		'dberr-again',
+		'dberr-info',
+		'dberr-usegoogle',
+		'dberr-outofdate',
+		'dberr-cachederror',
+	),
 );
 
 /** Comments for each block */
@@ -3108,6 +3117,7 @@ Variants for Chinese language",
 	'special-blank'         => 'Special:BlankPage',
 	'external_images'       => 'External image whitelist',
 	'special-tags'          => 'Special:Tags',
+	'db-error-messages'     => 'Database error messages',
 );
 
 /** Short comments for standalone messages */

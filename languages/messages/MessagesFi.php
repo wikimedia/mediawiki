@@ -2910,13 +2910,13 @@ Kirjoita tiedostonimi ilman ”{{ns:file}}:”-etuliitettä.',
 'tags-edit'     => 'muokkaa',
 'tags-hitcount' => '$1 {{PLURAL:$1|muutos|muutosta}}',
 
-'dberr-header'   => 'Wikissä on tietokantaongelma',
-'dberr-problems' => 'Tällä sivustolla on teknisiä ongelmia.',
-'dberr-again'    => 'Odota hetki ja lataa sivu uudelleen.',
-'dberr-info'     => '(Tietokantapalvelimeen yhdistäminen epäonnistui: $1)',
-
-'dberr-usegoogle' => 'Voit koittaa etsiä Googlesta kunnes virhe korjataan.',
-'dberr-outofdate' => 'Googlen indeksi ei välttämättä ole ajan tasalla.',
+# Database error messages
+'dberr-header'      => 'Wikissä on tietokantaongelma',
+'dberr-problems'    => 'Tällä sivustolla on teknisiä ongelmia.',
+'dberr-again'       => 'Odota hetki ja lataa sivu uudelleen.',
+'dberr-info'        => '(Tietokantapalvelimeen yhdistäminen epäonnistui: $1)',
+'dberr-usegoogle'   => 'Voit koittaa etsiä Googlesta kunnes virhe korjataan.',
+'dberr-outofdate'   => 'Googlen indeksi ei välttämättä ole ajan tasalla.',
 'dberr-cachederror' => 'Alla on välimuistissa oleva sivun version, joka ei välttämättä ole ajan tasalla.',
 
 );
