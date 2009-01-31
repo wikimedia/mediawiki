@@ -3819,7 +3819,7 @@ Enter the filename without the "{{ns:file}}:" prefix.',
 'dberr-header'   => 'This wiki has a problem',
 'dberr-problems' => 'Sorry! This site is experiencing technical difficulties.',
 'dberr-again'    => 'Try waiting a few minutes and reloading.',
-'dberr-info'     => '(Can\'t contact the database server: $1)',
+'dberr-info'     => '(Cannot contact the database server: $1)',
 
 'dberr-usegoogle' => 'You can try searching via Google in the meantime.',
 'dberr-outofdate' => 'Note that their indexes of our content may be out of date.',
