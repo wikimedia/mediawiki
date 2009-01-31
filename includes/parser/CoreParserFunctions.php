@@ -47,6 +47,12 @@ class CoreParserFunctions {
 		$parser->setFunctionHook( 'pagesincategory',  array( __CLASS__, 'pagesincategory'  ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'pagesize',         array( __CLASS__, 'pagesize'         ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'protectionlevel',  array( __CLASS__, 'protectionlevel'  ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'namespace',        array( __CLASS__, 'namespace'        ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'namespacee',       array( __CLASS__, 'namespacee'       ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'talkspace',        array( __CLASS__, 'talkspace'        ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'talkspacee',       array( __CLASS__, 'talkspacee'       ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'subjectspace',     array( __CLASS__, 'subjectspace'     ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'subjectspacee',    array( __CLASS__, 'subjectspacee'    ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'tag',              array( __CLASS__, 'tagObj'           ), SFH_OBJECT_ARGS );
 
 		if ( $wgAllowDisplayTitle ) {
@@ -248,6 +254,48 @@ class CoreParserFunctions {
 		return self::formatRaw( SiteStats::numberingroup( strtolower( $name ) ), $raw );
 	} 
 
+	
+	/*
+	* Given a title, return the namespace name that would be given by the
+	* corresponding magic word 
+	*/
+	static function namespace( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null($t) )
+			return '';
+		return str_replace( '_', ' ', $t->getNsText() );
+	}
+	static function namespacee( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null($t) )
+			return '';
+		return wfUrlencode( $t->getNsText() );
+	}
+	static function talkspace( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null($t) || !$t->canTalk() )
+			return '';
+		return str_replace( '_', ' ', $t->getTalkNsText() );
+	}
+	static function talkspacee( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null($t) || !$t->canTalk() )
+			return '';
+		return wfUrlencode( $t->getTalkNsText() );
+	}
+	static function subjectspace( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null($t) )
+			return '';
+		return str_replace( '_', ' ', $t->getSubjectNsText() );
+	}
+	static function subjectspacee( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null($t) )
+			return '';
+		return wfUrlencode( $t->getSubjectNsText() );
+	}
+	
 	/**
 	 * Return the number of pages in the given category, or 0 if it's nonexis-
 	 * tent.  This is an expensive parser function and can't be called too many
