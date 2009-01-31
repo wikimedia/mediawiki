@@ -2737,6 +2737,9 @@ $wgBrowserBlackList = array(
  *
  * This variable is currently used ONLY for signature formatting, not for
  * anything else.
+ *
+ * Timezones can be translated by editing MediaWiki messages of type
+ * timezone-nameinlowercase like timezone-utc.
  */
 # $wgLocaltimezone = 'GMT';
 # $wgLocaltimezone = 'PST8PDT';
