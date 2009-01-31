@@ -3272,6 +3272,7 @@ Voer de bestandsnaam in zonder het voorvoegsel "{{ns:file}}:".',
 #Zet alle reguliere expressiefragmenten boven deze regel. Laat deze regel onveranderd</pre>',
 
 # Special:Tags
+'tags'                    => 'Geldige wijzigingslabels',
 'tag-filter'              => '[[Special:Tags|Labelfilter]]:',
 'tag-filter-submit'       => 'Filteren',
 'tags-title'              => 'Labels',
@@ -3282,5 +3283,14 @@ Voer de bestandsnaam in zonder het voorvoegsel "{{ns:file}}:".',
 'tags-hitcount-header'    => 'Gelabelde bewerkingen',
 'tags-edit'               => 'bewerking',
 'tags-hitcount'           => '$1 {{PLURAL:$1|wijziging|wijzigingen}}',
+
+# Database error messages
+'dberr-header'      => 'Deze wiki heeft een probleem',
+'dberr-problems'    => 'Onze excuses. Deze site ondervindt op het moment technische problemen.',
+'dberr-again'       => 'Wacht een aantal minuten en probeer het daarna opnieuw.',
+'dberr-info'        => '(Kan geen verbinding maken met de databaseserver: $1)',
+'dberr-usegoogle'   => 'Wellicht kunt u in de tussentijd zoeken via Google.',
+'dberr-outofdate'   => "Let op: hun indexen van onze pagina's zijn wellicht niet recent.",
+'dberr-cachederror' => 'Deze pagina is een kopie uit de cache en is wellicht niet de meest recente versie.',
 
 );

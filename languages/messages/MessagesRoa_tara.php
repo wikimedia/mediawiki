@@ -564,6 +564,21 @@ Tu non ge puè ausà 'u strumende 'manne 'na mail a stu utende' senza ca mitte n
 [[Special:Preferences|preferenze tue]] e ce è state blocchete sus 'a l'use sue.
 L'IP ca tine mò jè $3 e 'u codece d'u blocche jè #$5.
 Pe piacere mitte ste doje 'mbormaziune ce manne 'na richieste de sblocche.",
+'autoblockedtext'                  => "L'indirizze IP tue ha state automaticamende blocchete purcè ha state ausete da n'otre utende, ca avère state blocchete da \$1.
+'U mutive date jè 'u seguende:
+
+:''\$2''
+
+* Inizie d'u blocche: \$8
+* Scadenze d'u blocche: \$6
+* Blocche 'ndise: \$7
+
+Tu puè cundattà \$1 o une de l'otre [[{{MediaWiki:Grouppage-sysop}}|amministrature]] pe parà de stu probbleme.
+
+Vide Bbuene ca tu non ge puè ausà 'a funziona \"manne n'e-mail a stu utende\" senze ca tu tìne 'n'indirizze e-mail valide e reggistrete jndr'à seziona [[Special:Preferences|me piace accussì]] e tu non ge sinde blocchete da ausarle.
+
+L'indirizze IP corrende jè \$3, e 'u codece d'u blocche jè #\$5.
+Pe piacere mitte tutte le dettaglie ca ponne essere utile pe le richieste tue.",
 'blockednoreason'                  => 'nisciune mutive',
 'blockedoriginalsource'            => "'A sorgende de '''$1''' jè mostreta aqquà sotte:",
 'blockededitsource'                => "'U teste de le '''cangiaminde tue''' sus a '''$1''' ìu stè vide aqquà sotte:",
@@ -573,6 +588,8 @@ Pe piacere mitte ste doje 'mbormaziune ce manne 'na richieste de sblocche.",
 'confirmedittext'                  => "Tu a confermà l'indirizze e-mail tue apprime de cangià le pàggene.
 Pe piacere mitte e validesce l'indirizze e-mail tue ausanne le [[Special:Preferences|preferenze de l'utende]].",
 'nosuchsectiontitle'               => 'Non ge stonne seziune',
+'nosuchsectiontext'                => "Tu stè prueve a cangià 'na sezione ca non g'esiste.
+Ce non ge stè 'a seziona $1, quiste non g'è 'u poste addò a reggistrà le cangiaminde tue.",
 'loginreqtitle'                    => "T'a collegà pe forze",
 'loginreqlink'                     => 'trase',
 'loginreqpagetext'                 => 'Tu a $1 pe vedè otre pàggene.',
@@ -591,6 +608,10 @@ Pe piacere, condrolle ce tu vuè cu ccreje/cange sta pàgene.',
 *'''Opera:''' pulizze 'a cache da ''Tools → Preferences'' (in inglese) (Struminde - Preferenze in tagliàne);
 *'''Internet Explorer:''' cazze ''Ctrl'' e condemboraneamende cazze ''Aggiorna,'' o cazze ''Ctrl-F5''.",
 'usercssjsyoucanpreview'           => "<strong>Conziglie:</strong> Ause 'u buttone 'Vide l'andeprime' pe condrollà 'u CSS/JS nuève apprime de reggistrà.",
+'usercsspreview'                   => "'''Arrecuerdete ca tu ste vide sulamende in andeprime 'u CSS tue.'''
+'''Non g'à state angore reggistrete ninde!'''",
+'userjspreview'                    => "'''Arrecuerdete ca tu ste vide/teste sulamende in andeprime 'u JavaScript tue.'''
+'''Non g'à state angore reggistrete ninde!'''",
 'updated'                          => '(Cangiete)',
 'note'                             => '<strong>Vide Bbuene:</strong>',
 'previewnote'                      => "<strong>Queste è sole 'n'andeprime;
@@ -687,6 +708,7 @@ Leggenda: (cur) = differenze cu 'a versiona corrende,
 'rev-deleted-event'         => "(azione de l'archivie scangillete)",
 'rev-delundel'              => 'fa vedè/scunne',
 'revisiondelete'            => 'Scangille/Repristine revisiune',
+'revdelete-nooldid-title'   => 'Revisione de destinazione invalida',
 'revdelete-nologtype-title' => 'Nisciune tipe de archivije ha state specifichete',
 'revdelete-selected'        => "'''{{PLURAL:$2|Revisiona selezionete|Revisiune selezionete}} de [[:$1]]:'''",
 'revdelete-legend'          => "'Mboste le restriziune sus 'a visibbilità",
@@ -975,6 +997,7 @@ condrolle ce l'installazione de latex, dvips, gs e convertitore jè corrette",
 'right-import'         => "Pàggene 'mbortete da otre Uicchipèdie",
 'right-importupload'   => "'Mborte le pàggene da 'nu file carechete",
 'right-unwatchedpages' => "Vide 'na liste de pàggene non condrollete",
+'right-trackback'      => "Conferme 'nu trackback",
 'right-userrights'     => 'Cange tutte le deritte utende',
 
 # User rights log
@@ -1481,6 +1504,8 @@ Tu puè cangià 'u levèlle de protezione de sta pàgene ma stu cangiamende non 
 
 # Block/unblock
 'blockip'                      => "Blocche l'utende",
+'ipaddress'                    => 'Indirizze IP:',
+'ipadressorusername'           => "Indirizze IP o nome de l'utende:",
 'ipbreason'                    => 'Mutive:',
 'ipbreasonotherlist'           => 'Otre mutive',
 'ipbanononly'                  => "Blocche sulamende l'utinde anonime",
@@ -1596,6 +1621,7 @@ Videta tu 'a màne a 'ngollà 'a pàgena vecchie cu quedda nova.'''",
 'import-comment'     => 'Commende:',
 'importbadinterwiki' => 'collegamende interuicchi errete',
 'importsuccess'      => "'Mbortaziona spicciete!",
+'import-noarticle'   => "Nisciuna pàgene 'mbortete!",
 'xml-error-string'   => "$1 a 'a linea $2, colonne $3 (byte $4): $5",
 'import-upload'      => 'Careche le date in XML',
 
@@ -1653,14 +1679,16 @@ Puè vedè sulamende 'u sorgende.",
 'tooltip-watch'                   => "Mitte sta pàgene jndr'à liste de le pàggene condrollete",
 
 # Attribution
-'siteuser'  => 'Utende de {{SITENAME}} $1',
-'others'    => 'otre',
-'siteusers' => '{{PLURAL:$2|utende|utinde}} de {{SITENAME}} $1',
+'siteuser'    => 'Utende de {{SITENAME}} $1',
+'others'      => 'otre',
+'siteusers'   => '{{PLURAL:$2|utende|utinde}} de {{SITENAME}} $1',
+'creditspage' => 'Pàgene de le crediti',
 
 # Info page
 'infosubtitle' => "'Mbormazione pe pàgene",
 'numedits'     => 'Numere de cangiaminde (pàgene): $1',
 'numtalkedits' => "Numere de cangiaminde (pàgene de le 'ngazzaminde): $1",
+'numwatchers'  => 'Numere de visitature: $1',
 
 # Math options
 'mw_math_simple' => 'HTML ce jè avveramende facile oppure PNG',
@@ -1719,22 +1747,25 @@ Otre avènene scunnute pe defolt.
 * focallength", # Do not translate list items
 
 # EXIF tags
-'exif-orientation'         => 'Oriendamende',
-'exif-imagedescription'    => "Titele de l'immaggine",
-'exif-software'            => 'Softuer ausete',
-'exif-artist'              => 'Autore',
-'exif-copyright'           => "Titolere d'u Copyright",
-'exif-exifversion'         => 'Versione de Exif',
-'exif-usercomment'         => "Commende de l'utende",
-'exif-exposuretime-format' => '$1 sec ($2)',
-'exif-fnumber'             => 'Numere de F',
-'exif-flash'               => 'Flash',
-'exif-contrast'            => 'Condraste',
-'exif-saturation'          => 'Saturazione',
-'exif-gpslatitude'         => 'Latitudene',
-'exif-gpslongitude'        => 'Longitudene',
-'exif-gpsaltitude'         => 'Altitudene',
-'exif-gpsdatestamp'        => "Date d'u GPS",
+'exif-orientation'                 => 'Oriendamende',
+'exif-jpeginterchangeformatlength' => "Byte d'u date d'u JPEG",
+'exif-imagedescription'            => "Titele de l'immaggine",
+'exif-software'                    => 'Softuer ausete',
+'exif-artist'                      => 'Autore',
+'exif-copyright'                   => "Titolere d'u Copyright",
+'exif-exifversion'                 => 'Versione de Exif',
+'exif-usercomment'                 => "Commende de l'utende",
+'exif-exposuretime-format'         => '$1 sec ($2)',
+'exif-fnumber'                     => 'Numere de F',
+'exif-flash'                       => 'Flash',
+'exif-contrast'                    => 'Condraste',
+'exif-saturation'                  => 'Saturazione',
+'exif-gpslatitude'                 => 'Latitudene',
+'exif-gpslongitude'                => 'Longitudene',
+'exif-gpsaltitude'                 => 'Altitudene',
+'exif-gpsdatestamp'                => "Date d'u GPS",
+
+'exif-unknowndate' => 'Data scanusciute',
 
 'exif-orientation-1' => 'Normale', # 0th row: top; 0th column: left
 
@@ -1806,7 +1837,9 @@ Otre avènene scunnute pe defolt.
 'scarytranscludetoolong' => '[URL jè troppe longhe]',
 
 # Trackbacks
-'trackbackremove' => ' ([$1 Scangille])',
+'trackbackremove'   => ' ([$1 Scangille])',
+'trackbacklink'     => 'Trackback',
+'trackbackdeleteok' => "'U trackback ha state scangellete cu successe.",
 
 # Delete conflict
 'deletedwhileediting' => "'''Fà attenziò''': Sta pàgene ha state scangellete apprime ca tu acumenzasse a fà 'u cangiamende!",
@@ -1911,5 +1944,14 @@ Mitte 'u nome d'u file senze 'u \"{{ns:file}}:\" prefisse.",
 # Special:BlankPage
 'blankpage'              => 'Pàgene vacande',
 'intentionallyblankpage' => 'Sta pàgene ha state lassete vianghe apposte',
+
+# Special:Tags
+'tag-filter'              => 'Filtre de le [[Special:Tags|tag]]:',
+'tag-filter-submit'       => 'Filtre',
+'tags-title'              => 'Tag',
+'tags-tag'                => "Nome d'u tag inderne",
+'tags-description-header' => "Descriziona comblete d'u significhete",
+'tags-edit'               => 'cange',
+'tags-hitcount'           => '$1 {{PLURAL:$1|cangiamende|cangiaminde}}',
 
 );

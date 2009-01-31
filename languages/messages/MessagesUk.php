@@ -1221,6 +1221,8 @@ $3 зазначив таку причину: ''$2''",
 'defaultns'                 => 'За замовчуванням шукати в таких просторах назв:',
 'default'                   => 'за замовчуванням',
 'files'                     => 'Файли',
+'prefs-custom-css'          => 'Власний CSS',
+'prefs-custom-js'           => 'Власний JS',
 
 # User rights
 'userrights'                  => 'Управління правами користувачів', # Not used as normal message but as header for the special page itself
@@ -1718,6 +1720,7 @@ PICT # різні
 'listusers'               => 'Список користувачів',
 'listusers-editsonly'     => 'Показати лише користувачів, які зробили принаймні одне редагування',
 'usereditcount'           => '$1 {{PLURAL:$1|редагування|редагування|редагувань}}',
+'usercreated'             => 'Створений $1 о $2',
 'newpages'                => 'Нові сторінки',
 'newpages-username'       => "Ім'я користувача:",
 'ancientpages'            => 'Найстаріші статті',

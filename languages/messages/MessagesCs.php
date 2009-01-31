@@ -1017,7 +1017,7 @@ podrobnosti o smazání mohou být uvedeny v [{{fullurl:Special:Log/delete|page=
 'revdelete-nooldid-text'         => 'Nezvolili jste revize, na které chcete tuto funkci použít.',
 'revdelete-toomanytargets-title' => 'Příliš mnoho cílů',
 'revdelete-nologid-title'        => 'Neplatný protokolovací záznam',
-'revdelete-selected'             => "'''{{PLURAL:$2|Vybrána $1 revize|Vybrány $1 revize|Vybráno $1 revizí}} stránky '''[[:$1]]:''''''",
+'revdelete-selected'             => "'''{{PLURAL:$2|Vybraná|Vybrané}} revize stránky [[:$1]]:'''",
 'logdelete-selected'             => "'''{{PLURAL:$1|Vybraná protokolovaná událost|Vybrané protokolované události}}:'''",
 'revdelete-text'                 => "'''Smazané verze a události budou nadále zobrazeny v historii stránky a protokolovacích záznamech, ale jejich text nebude veřejně dostupný.'''
 
@@ -1027,7 +1027,7 @@ pokud to provozovatel serveru nezakázal.",
 'revdelete-hide-text'            => 'Skrýt text revize',
 'revdelete-hide-name'            => 'Skrýt událost a cíl',
 'revdelete-hide-comment'         => 'Skrýt editační komentář',
-'revdelete-hide-user'            => 'Skrýt uživatelovu IP adresu',
+'revdelete-hide-user'            => 'Skrýt uživatelské jméno/IP adresu',
 'revdelete-hide-restricted'      => 'Tato omezení aplikovat i na správce',
 'revdelete-suppress'             => 'Skrýt data i před správci',
 'revdelete-hide-image'           => 'Skrýt obsah souboru',
@@ -2896,7 +2896,7 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'confirmemail_noemail'     => 'Ve svém [[Special:Preferences|uživatelském nastavení]] jste nezadali platnou e-mailovou adresu.',
 'confirmemail_text'        => 'Tato wiki vyžaduje, abyste před využíváním některých funkcí potvrdili svoji e-mailovou adresu. Kliknutím na tlačítko níže odešlete potvrzovací e-mail na vámi uvedenou adresu. Tento e-mail obsahuje odkaz a potvrzovací kód; zobrazením odkazované stránky ve svém internetovém prohlížeči potvrdíte, že zadaná adresa je platná.',
 'confirmemail_pending'     => 'Potvrzovací kód vám byl již zaslán na váš e-mail.
-Pokud jste si založili účet před chvílí, vyčkejte, prosíme, několik minut na doručení kódu dříve, než požádáte o nový.',
+Pokud jste si účet založili před chvílí, zkuste na doručení kódu několik minut počkat, než požádáte o nový.',
 'confirmemail_send'        => 'Odeslat potvrzovací kód',
 'confirmemail_sent'        => 'Potvrzovací e-mail byl odeslán',
 'confirmemail_oncreate'    => 'Na vaši e-mailovou adresu byl zaslán potvrzovací kód.
@@ -3124,5 +3124,18 @@ Zadejte jméno souboru bez označení "{{ns:file}}:".',
 #Řádky začínající znakem # se považují za komentáře.
 
 #Všechny regulární výrazy uveďte nad touto řádkou. Tuto řádku ponechte beze změny.</pre>',
+
+# Special:Tags
+'tags'                    => 'Platné značky pro změny',
+'tag-filter'              => 'Filtr podle [[Special:Tags|značek]]:',
+'tag-filter-submit'       => 'Filtrovat',
+'tags-title'              => 'Značky',
+'tags-intro'              => 'Tato stránka obsahuje seznam značek, kterými může software označovat jednotlivé editace, a jejich významy.',
+'tags-tag'                => 'Interní název značky',
+'tags-display-header'     => 'Zobrazení na seznamech změn',
+'tags-description-header' => 'Úplný popis významu',
+'tags-hitcount-header'    => 'Označené změny',
+'tags-edit'               => 'editovat',
+'tags-hitcount'           => '$1 {{PLURAL:$1|změna|změny|změn}}',
 
 );

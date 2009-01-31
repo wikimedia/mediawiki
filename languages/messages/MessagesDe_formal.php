@@ -500,7 +500,8 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 # E-mail address confirmation
 'confirmemail_noemail'    => 'Sie haben keine gültige E-Mail-Adresse in Ihren [[Special:Preferences|persönlichen Einstellungen]] eingetragen.',
 'confirmemail_text'       => '{{SITENAME}} erfordert, dass Sie Ihre E-Mail-Adresse bestätigen (authentifizieren), bevor Sie die erweiterten E-Mail-Funktionen benutzen können. Klicken Sie bitte auf die unten stehende, mit „Bestätigungscode zuschicken“ beschriftete Schaltfläche, damit eine automatisch erstellte E-Mail an die angegebene Adresse geschickt wird. Diese E-Mail enthält eine Web-Adresse mit einem Bestätigungscode. Indem Sie diese Webseite in Ihrem Webbrowser öffnen, bestätigen Sie, dass die angegebene E-Mail-Adresse korrekt und gültig ist.',
-'confirmemail_pending'    => 'Es wurde Ihnen bereits ein Bestätigungs-Code per E-Mail zugeschickt. Wenn Sie Ihr Benutzerkonto erst vor kurzem erstellt haben, warte Sie bitte noch ein paar Minuten auf die E-Mail, bevor Sie einen neuen Code anfordern.',
+'confirmemail_pending'    => 'Es wurde Ihnen bereits ein Bestätigungscode per E-Mail zugeschickt.
+Wenn Sie Ihr Benutzerkonto erst vor kurzem erstellt haben, warte Sie bitte noch ein paar Minuten auf die E-Mail, bevor Sie einen neuen Code anfordern.',
 'confirmemail_oncreate'   => 'Ein Bestätigungs-Code wurde an Ihre E-Mail-Adresse gesandt. Dieser Code wird für die Anmeldung nicht benötigt, jedoch wird er zur Aktivierung der E-Mail-Funktionen innerhalb des Wikis gebraucht.',
 'confirmemail_sendfailed' => '{{SITENAME}} konnte die Bestätigungs-E-Mail nicht an Sie versenden.
 Bitte prüfen Sie die E-Mail-Adresse auf ungültige Zeichen.
@@ -545,5 +546,8 @@ Bitte bestätigen Sie, dass Sie diese Seite wirklich neu erstellen möchten.",
 Pro Zeile ist ein Eintrag erlaubt. Wenn Sie fertig sind, klicken Sie auf „Beobachtungsliste speichern“.
 Sie können auch die [[Special:Watchlist/edit|Standard-Bearbeitungsseite]] benutzen.',
 'watchlistedit-raw-done'       => 'Ihre Beobachtungsliste wurde gespeichert.',
+
+# Database error messages
+'dberr-usegoogle' => 'Sie könnten in der Zwischenzeit mit Google suchen.',
 
 );

@@ -176,7 +176,7 @@ $messages = array(
 'tog-watchdefault'            => 'Adicionar páginas editadas por mim à minha lista de vigiados',
 'tog-watchmoves'              => 'Adicionar páginas movidas por mim à minha lista de vigiados',
 'tog-watchdeletion'           => 'Adicionar páginas eliminadas por mim à minha lista de vigiados',
-'tog-minordefault'            => 'Marcar todas as edições como secundárias, por padrão',
+'tog-minordefault'            => 'Marcar todas as edições como secundárias, por defeito',
 'tog-previewontop'            => 'Mostrar previsão antes da caixa de edição',
 'tog-previewonfirst'          => 'Mostrar previsão na primeira edição',
 'tog-nocache'                 => 'Desactivar caching de páginas',
@@ -186,8 +186,8 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'Revelar o meu endereço de email nas notificações',
 'tog-shownumberswatching'     => 'Mostrar o número de utilizadores a vigiar',
 'tog-fancysig'                => 'Assinaturas sem atalhos automáticos',
-'tog-externaleditor'          => 'Utilizar editor externo por padrão (apenas para usuários avançados, já que serão necessárias configurações adicionais em seus computadores)',
-'tog-externaldiff'            => 'Utilizar diferenças externas por padrão (apenas para usuários avançados, já que serão necessárias configurações adicionais em seus computadores)',
+'tog-externaleditor'          => 'Utilizar editor externo por defeito (apenas para usuários avançados, já que serão necessárias configurações adicionais em seus computadores)',
+'tog-externaldiff'            => 'Utilizar diferenças externas por defeito (apenas para usuários avançados, já que serão necessárias configurações adicionais em seus computadores)',
 'tog-showjumplinks'           => 'Activar hiperligações de acessibilidade "ir para"',
 'tog-uselivepreview'          => 'Utilizar pré-visualização em tempo real (JavaScript) (Experimental)',
 'tog-forceeditsummary'        => 'Avisar-me ao introduzir um sumário vazio',
@@ -1072,7 +1072,7 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 'showingresults'                   => "A seguir {{PLURAL:$1|é mostrado '''um''' resultado|são mostrados até '''$1''' resultados}}, iniciando no '''$2'''º.",
 'showingresultsnum'                => "A seguir {{PLURAL:$3|é mostrado '''um''' resultado|são mostrados '''$3''' resultados}}, iniciando com o '''$2'''º.",
 'showingresultstotal'              => "Exibindo {{PLURAL:$4|o resultado '''$1''' de '''$3'''|os resultados '''$1 a $2''' de '''$3'''}}",
-'nonefound'                        => "'''Nota''': apenas alguns espaços nominais são pesquisados por padrão. Tente utilizar o prefixo ''all:'' em sua busca, para pesquisar por todos os conteúdos deste wiki (inclusive páginas de discussão, predefinições etc), ou mesmo, utilizando o espaço nominal desejado como prefixo.",
+'nonefound'                        => "'''Nota''': apenas alguns espaços nominais são pesquisados por defeito. Tente utilizar o prefixo ''all:'' em sua busca, para pesquisar por todos os conteúdos deste wiki (inclusive páginas de discussão, predefinições etc), ou mesmo, utilizando o espaço nominal desejado como prefixo.",
 'search-nonefound'                 => 'Não houve resultados para a pesquisa.',
 'powersearch'                      => 'Pesquisa avançada',
 'powersearch-legend'               => 'Pesquisa avançada',
@@ -1150,7 +1150,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'allowemail'                => 'Permitir email de outros utilizadores',
 'prefs-searchoptions'       => 'Opções de busca',
 'prefs-namespaces'          => 'Espaços nominais',
-'defaultns'                 => 'Pesquisar por padrão nestes espaços nominais:',
+'defaultns'                 => 'Pesquisar por defeito nestes espaços nominais:',
 'default'                   => 'padrão',
 'files'                     => 'Ficheiros',
 'prefs-custom-css'          => 'CSS personalizada',
@@ -2507,7 +2507,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. arti
 Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns detalhes poderão não reflectir completamente as mudanças efectuadas.',
 'metadata-expand'   => 'Mostrar restantes detalhes',
 'metadata-collapse' => 'Esconder detalhes restantes',
-'metadata-fields'   => 'Os campos de metadados EXIF listados nesta mensagem poderão estar presente na exibição da página de imagem quando a tabela de metadados estiver no modo "expandida". Outros poderão estar escondidos por padrão.
+'metadata-fields'   => 'Os campos de metadados EXIF listados nesta mensagem poderão estar presente na exibição da página de imagem quando a tabela de metadados estiver no modo "expandida". Outros poderão estar escondidos por defeito.
 * make
 * model
 * datetimeoriginal
@@ -2793,7 +2793,8 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 'confirmemail'             => 'Confirmar endereço de E-mail',
 'confirmemail_noemail'     => 'Não possui um endereço de e-mail válido indicado nas suas [[Special:Preferences|preferências de utilizador]].',
 'confirmemail_text'        => 'Esta wiki requer que valide o seu endereço de e-mail antes de utilizar as funcionalidades que requerem um endereço de e-mail. Active o botão abaixo para enviar uma confirmação para o seu endereço de e-mail. A mensagem incluíra um endereço que contém um código; carregue o endereço no seu navegador para confirmar que o seu endereço de e-mail encontra-se válido.',
-'confirmemail_pending'     => 'Um código de confirmação já foi enviado para você; caso tenha criado sua conta recentemente, é recomendável aguardar alguns minutos para o receber antes de tentar pedir um novo código.',
+'confirmemail_pending'     => 'Um código de confirmação já lhe foi enviado;
+caso tenha criado sua conta recentemente, é recomendável aguardar alguns minutos para o receber antes de tentar pedir um novo código.',
 'confirmemail_send'        => 'Enviar código de confirmação',
 'confirmemail_sent'        => 'E-mail de confirmação enviado.',
 'confirmemail_oncreate'    => 'Foi enviado um código de confirmação para o seu endereço de e-mail.
@@ -2989,6 +2990,7 @@ Entre com o nome de ficheiro sem fornecer o prefixo "{{ns:file}}:".',
 # Coloque todos os fragmentos de regex acima dessa linha. Deixe esta linha exatamente como ela é </ pre>',
 
 # Special:Tags
+'tags'                    => 'Etiquetas de modificação válidas',
 'tag-filter'              => 'Filtro de [[Special:Tags|etiquetas]]:',
 'tag-filter-submit'       => 'Filtrar',
 'tags-title'              => 'Etiquetas',
@@ -2996,8 +2998,17 @@ Entre com o nome de ficheiro sem fornecer o prefixo "{{ns:file}}:".',
 'tags-tag'                => 'Nome interno da etiqueta',
 'tags-display-header'     => 'Aparência nas listas de modificações',
 'tags-description-header' => 'Descrição completa do significado',
-'tags-hitcount-header'    => 'Edições etiquetadas',
+'tags-hitcount-header'    => 'Modificações etiquetadas',
 'tags-edit'               => 'editar',
 'tags-hitcount'           => '$1 {{PLURAL:$1|modificação|modificações}}',
+
+# Database error messages
+'dberr-header'      => 'Este wiki tem um problema',
+'dberr-problems'    => 'Desculpe! Este sítio está a experimentar dificuldades técnicas.',
+'dberr-again'       => 'Experimente esperar uns minutos e refrescar.',
+'dberr-info'        => '(Não foi possível contactar o servidor de base de dados: $1)',
+'dberr-usegoogle'   => 'Pode tentar pesquisar no Google entretanto.',
+'dberr-outofdate'   => 'Note que os seus índices relativos ao nosso conteúdo podem estar desatualizados.',
+'dberr-cachederror' => 'A seguinte página é uma cópia em cache da página pedida e pode não ser atual.',
 
 );

@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Asoxor
  * @author Bangin
  * @author Erdal Ronahi
  */
@@ -722,8 +723,8 @@ Ev verzyona vê rûpelê hatîye jêbirin. Belkî înformasyon di [{{fullurl:Spe
 'prefs-rc'            => 'Guherandinên dawî',
 'prefs-watchlist'     => 'Lîsteya şopandinê',
 'prefs-misc'          => 'Eyaren cuda',
-'prefs-resetpass'     => 'Şifreyê biguherîne',
-'saveprefs'           => 'Tercîhan qeyd bike',
+'prefs-resetpass'     => 'تێپەڕوشە بگۆڕە',
+'saveprefs'           => 'پاشکەوت',
 'resetprefs'          => 'Nivîsarên netomarkirî şondabike',
 'textboxsize'         => 'Guheranin',
 'rows'                => 'Rêz',
@@ -763,8 +764,8 @@ Ev verzyona vê rûpelê hatîye jêbirin. Belkî înformasyon di [{{fullurl:Spe
 'userrights-unchangeable-col' => 'Grûpan yên tu nikarê biguherînê',
 
 # Groups
-'group'            => 'Kom:',
-'group-user'       => 'Bikarhêneran',
+'group'            => 'گرووپ:',
+'group-user'       => 'بەکارھێنەران',
 'group-bot'        => 'Bot',
 'group-sysop'      => 'Koordînatoran',
 'group-bureaucrat' => 'Bûrokrat',

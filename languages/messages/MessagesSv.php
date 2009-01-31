@@ -3105,6 +3105,7 @@ Skriv filnamnet utan prefixet "{{ns:file}}:" .',
 #Skriv alla fragment av reguljära uttryck ovanför den här raden. Lämna den här raden precis som den är</pre>',
 
 # Special:Tags
+'tags'                    => 'Giltiga ändringstaggar',
 'tag-filter'              => 'Filter för [[Special:Tags|taggar]]:',
 'tag-filter-submit'       => 'Filter',
 'tags-title'              => 'Taggar',
@@ -3112,7 +3113,7 @@ Skriv filnamnet utan prefixet "{{ns:file}}:" .',
 'tags-tag'                => 'Internt taggnamn',
 'tags-display-header'     => 'Utseende på listor över ändringar',
 'tags-description-header' => 'Full beskrivning av betydelse',
-'tags-hitcount-header'    => 'Taggade redigeringar',
+'tags-hitcount-header'    => 'Taggade ändringar',
 'tags-edit'               => 'redigering',
 'tags-hitcount'           => '$1 {{PLURAL:$1|ändring|ändringar}}',
 

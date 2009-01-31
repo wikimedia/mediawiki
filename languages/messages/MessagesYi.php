@@ -554,6 +554,8 @@ $2',
 'yournick'                   => 'חתימה:',
 'badsig'                     => 'נישט גוטע מסוגננת אונטערשריפט; ביטע טשעקט די HTML קאוד.',
 'badsiglength'               => 'אונטערשריפט צו לאנג; מוז זיין ווינציגער פון {{PLURAL:$1|איין אות|$1 אותיות}}.',
+'gender-male'                => 'זכר',
+'gender-female'              => 'נקבה',
 'email'                      => 'אי-מעיל',
 'prefs-help-realname'        => '* עכטער נאמען (אפציאנאל): אויב וועט איר אויסוועלן צוצישטעלן דאס, וועט גענוצט ווערן צו געבן אטריביאציע צו אייער ארבייט.',
 'loginerror'                 => 'לאגירן פֿעלער',
@@ -1462,8 +1464,9 @@ $NEWPAGE
 
 די לעצטע ענדערונג איז געווען פון [[User:$3|$3]] ([[User talk:$3|רעדן]]|[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "קורץ ווארט איז געווען: \"'''\$1'''\".", # only shown if there is an edit comment
-'revertpage'       => 'אויפֿגעריכט פון באַנוצער $2 צוריק צום לעצטע ווערסיע פון באַנוצער $1', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'רעדאַקטירונגען פֿון  [[Special:Contributions/$2|$2]] צוריקגענומען ([[User talk:$2|רעדן]])  צו דער לעצטער ווערסיע פֿון [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'צוריקגעדרייט רעדאַקטירונגען פֿון $1 צו דער לעצטע ווערסיע פֿון $2',
+'sessionfailure'   => "ווײַזט אויס אז ס'איז דא א פראבלעם מיט אייער ארײַנלאגירן; די פעולה איז איז געווארן אנולירט צו פֿאַרהיטן קעגן פֿאַרשטעלן אייער סעסיע. זייט אזוי גוט און גייט צוריק צום פֿריערדיקן בלאט, און פרובירט נאכאַמאָל.",
 
 # Protect
 'protectlogpage'              => 'באשיצונג לאָג-בוך',

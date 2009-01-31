@@ -2807,7 +2807,7 @@ Variants for Chinese language
 'confirmemail'             => 'メールアドレスの確認',
 'confirmemail_noemail'     => '[[Special:Preferences|個人設定]]で有効なメールアドレスが指定されていません。',
 'confirmemail_text'        => 'このウィキではメール通知を受け取る前にメールアドレスの確認が必要です。以下のボタンを押すと「{{int:Confirmemail_subject}}」という件名の確認メールがあなたのメールアドレスに送られます。メールには確認用コードを含むリンクが書かれています。そのリンクを開くことによってメールアドレスの正当性が確認されます。',
-'confirmemail_pending'     => '確認メールは既に送信されています。あなたがこのアカウントを作成したばかりであれば、数分待って既にメールが送信されていないかを確かめてください。',
+'confirmemail_pending'     => '確認メールは既に送信されています。あなたがこのアカウントを作成したばかりであれば、メールが届くまで数分ほど待たなければならないかもしれません。',
 'confirmemail_send'        => '確認用コードを送信する',
 'confirmemail_sent'        => '確認メールを送信しました。',
 'confirmemail_oncreate'    => 'メールアドレスの正当性を確認するためのコードを含んだメールを送信しました。この確認を行わなくてもログインはできますが、確認するまでメール通知の機能は無効化されます。',
@@ -3060,6 +3060,7 @@ $1
 #正規表現は全てこの行の上に置いてください。この行を変更しないでください</pre>',
 
 # Special:Tags
+'tags'                    => '有効な変更タグ',
 'tag-filter'              => '[[Special:Tags|タグ]]絞り込み:',
 'tag-filter-submit'       => '絞り込み',
 'tags-title'              => 'タグ一覧',
@@ -3067,7 +3068,7 @@ $1
 'tags-tag'                => '内部タグ名',
 'tags-display-header'     => '変更リストでの見栄え',
 'tags-description-header' => '意味の完全な解説',
-'tags-hitcount-header'    => 'タグが付けられた編集の数',
+'tags-hitcount-header'    => 'タグ付き変更の数',
 'tags-edit'               => '編集',
 'tags-hitcount'           => '$1件の変更',
 

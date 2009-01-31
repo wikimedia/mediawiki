@@ -2443,7 +2443,28 @@ $1 is the name of the requested file.',
 'external_image_whitelist' => "As usual please leave all the wiki markup, including the spaces, as they are. You can translate the text, including 'Leave this line exactly as it is'.",
 
 # Special:Tags
-'tag-filter-submit' => '{{Identical|Filter}}',
-'tags-edit'         => '{{Identical|Edit}}',
+'tags'                    => 'Shown on [[Special:Specialpages]]',
+'tag-filter'              => 'Caption of a filter shown on lists of changes (e.g. [[Special:Log]], [[Special:Contributions]], [[Special:Newpages]], [[Special:Recentchanges]], [[Special:Recentchangeslinked]], page histories)',
+'tag-filter-submit'       => 'Caption of the submit button displayed next to the tag filter on lists of changes (e.g. [[Special:Log]], [[Special:Contributions]], [[Special:Newpages]], [[Special:Recentchanges]], [[Special:Recentchangeslinked]], page histories)
+
+{{Identical|Filter}}',
+'tags-title'              => 'The title of [[Special:Tags]]',
+'tags-intro'              => 'Explanation on top of [[Special:Tags]].',
+'tags-tag'                => 'Caption of a column in [[Special:Tags]].',
+'tags-display-header'     => 'Caption of a column in [[Special:Tags]]',
+'tags-description-header' => 'Caption of a column in [[Special:Tags]]',
+'tags-hitcount-header'    => 'Caption of a column in [[Special:Tags]]',
+'tags-edit'               => '{{Identical|Edit}}',
+'tags-hitcount'           => 'Shown in the “Tagged changes” column in [[Special:Tags]].
+
+* <code>$1</code> is the number of changes marked with the tag',
+
+# Database error messages
+'dberr-header'    => 'This message does not allow any wiki nor html markup.',
+'dberr-problems'  => 'This message does not allow any wiki nor html markup.',
+'dberr-again'     => 'This message does not allow any wiki nor html markup.',
+'dberr-info'      => 'This message does not allow any wiki nor html markup.',
+'dberr-usegoogle' => 'This message does not allow any wiki nor html markup.',
+'dberr-outofdate' => "In this sentence, '''their''' indexes refers to '''Google's''' indexes. This message does not allow any wiki nor html markup.",
 
 );

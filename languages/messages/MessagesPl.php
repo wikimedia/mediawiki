@@ -727,7 +727,7 @@ Być może właśnie zmieniłeś swoje hasło lub poprosiłeś o nowe tymczasowe
 'hr_tip'          => 'Linia pozioma (nie nadużywaj)',
 
 # Edit pages
-'summary'                          => 'Opis zmian:',
+'summary'                          => 'Opis zmian',
 'subject'                          => 'Temat/nagłówek:',
 'minoredit'                        => 'To jest drobna zmiana',
 'watchthis'                        => 'Obserwuj',
@@ -1114,8 +1114,8 @@ Możesz [[:$1|utworzyć tę stronę]].",
 'notitlematches'                   => 'Nie znaleziono w tytułach',
 'textmatches'                      => 'Znaleziono w treści stron',
 'notextmatches'                    => 'Nie znaleziono w treści stron',
-'prevn'                            => '{{PLURAL:$1|poprzedni|poprzednie $1}}',
-'nextn'                            => '{{PLURAL:$1|następny|następne $1}}',
+'prevn'                            => 'poprzednie $1',
+'nextn'                            => 'następne $1',
 'viewprevnext'                     => 'Zobacz ($1) ($2) ($3)',
 'searchmenu-legend'                => 'Opcje wyszukiwania',
 'searchmenu-exists'                => "* Strona '''[[$1]]'''",
@@ -1247,7 +1247,7 @@ Zapoznaj się z math/README w celu konfiguracji.',
 'userrights-editusergroup'    => 'Edytuj grupy użytkownika',
 'saveusergroups'              => 'Zapisz',
 'userrights-groupsmember'     => 'Należy do:',
-'userrights-groups-help'      => 'Możesz zmienić przynależność tego użytkownika do podanych grup:
+'userrights-groups-help'      => 'Możesz zmienić przynależność tego użytkownika do podanych grup.
 * Zaznaczone pole oznacza przynależność użytkownika do danej grupy.
 * Niezaznaczone pole oznacza, że użytkownik nie należy do danej grupy.
 * Gwiazdka * informuje, że nie możesz usunąć z grupy po dodaniu do niej lub dodać po usunięciu z grupy.',
@@ -1430,7 +1430,7 @@ Strony z [[Special:Watchlist|listy obserwowanych]] są '''wytłuszczone'''.",
 'upload_directory_read_only'  => 'Serwer nie może zapisywać do katalogu ($1) przeznaczonego na przesyłane pliki.',
 'uploaderror'                 => 'Błąd wysyłania',
 'uploadtext'                  => "Użyj poniższego formularza do przesłania plików.
-Jeśli chcesz przejrzeć lub przeszukać dotychczas przesłane pliki, przejdź do [[Special:FileList|listy plików]]. Każde przesłanie jest odnotowane w [[Special:Log/upload|rejestrze przesyłanych plików]], a usunięcie w [[Special:Log/delete|rejestrze usuniętych]].
+Jeśli chcesz przejrzeć lub przeszukać dotychczas przesłane pliki, przejdź do [[Special:FileList|listy plików]]. Każde przesłanie zostaje odnotowane w [[Special:Log/upload|rejestrze przesyłanych plików]], a usunięcie w [[Special:Log/delete|rejestrze usuniętych]].
 
 Plik pojawi się na stronie, jeśli użyjesz linku według jednego z następujących wzorów:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Plik.jpg]]</nowiki></tt>''' pokaże plik w pełnej postaci
@@ -1501,7 +1501,7 @@ Sprawdź plik i załaduj poprawną wersję.',
 'uploadvirus'                 => 'W pliku jest wirus! Szczegóły: $1',
 'sourcefilename'              => 'Nazwa oryginalna',
 'destfilename'                => 'Nazwa docelowa',
-'upload-maxfilesize'          => 'Wielkość pliku jest ograniczona do $1',
+'upload-maxfilesize'          => 'Wielkość pliku ograniczona jest do $1',
 'watchthisupload'             => 'Obserwuj',
 'filewasdeleted'              => 'Plik o tej nazwie istniał, ale został usunięty.
 Zanim załadujesz go ponownie, sprawdź $1.',
@@ -1781,8 +1781,8 @@ Możesz zawęzić liczbę wyników poprzez wybranie typu rejestru, nazwy użytko
 'alphaindexline'    => 'od $1 do $2',
 'nextpage'          => 'Następna strona ($1)',
 'prevpage'          => 'Poprzednia strona ($1)',
-'allpagesfrom'      => 'Strony o tytułach rozpoczynających się od:',
-'allpagesto'        => 'Strony o tytułach kończących się na:',
+'allpagesfrom'      => 'Strony o tytułach rozpoczynających się od',
+'allpagesto'        => 'Strony o tytułach kończących się na',
 'allarticles'       => 'Wszystkie artykuły',
 'allinnamespace'    => 'Wszystkie strony (w przestrzeni nazw $1)',
 'allnotinnamespace' => 'Wszystkie strony (oprócz przestrzeni nazw $1)',
@@ -1797,8 +1797,8 @@ Możesz zawęzić liczbę wyników poprzez wybranie typu rejestru, nazwy użytko
 'categories'                    => 'Kategorie',
 'categoriespagetext'            => 'Strona przedstawia listę kategorii zawierających strony i pliki.
 [[Special:UnusedCategories|Nieużywane kategorie]] nie zostały tutaj pokazane.
-Zobacz też [[Special:WantedCategories|nieistniejące kategorie]].',
-'categoriesfrom'                => 'Wyświetl kategorie, zaczynając od:',
+Zobacz też [[Special:WantedCategories|brakujące kategorie]].',
+'categoriesfrom'                => 'Wyświetl kategorie, zaczynając od',
 'special-categories-sort-count' => 'sortowanie według liczby',
 'special-categories-sort-abc'   => 'sortowanie alfabetyczne',
 
@@ -1951,8 +1951,8 @@ Upewnij się, czy na pewno chcesz to zrobić, że rozumiesz konsekwencje i że r
 'actioncomplete'         => 'Operacja wykonana',
 'deletedtext'            => 'Usunięto „<nowiki>$1</nowiki>”.
 Zobacz na stronie $2 rejestr ostatnio wykonanych usunięć.',
-'deletedarticle'         => 'usunął „[[$1]]”',
-'suppressedarticle'      => 'utajnił „[[$1]]”',
+'deletedarticle'         => 'usunął [[$1]]',
+'suppressedarticle'      => 'utajnił [[$1]]',
 'dellogpage'             => 'Usunięte',
 'dellogpagetext'         => 'Poniżej znajduje się lista ostatnio wykonanych usunięć.',
 'deletionlog'            => 'rejestr usunięć',
@@ -1992,15 +1992,15 @@ Naciśnij „wstecz” w przeglądarce, przeładuj stronę, po czym ponownie wyd
 'protectlogpage'              => 'Zabezpieczone',
 'protectlogtext'              => 'Poniżej znajduje się lista blokad założonych i zdjętych z pojedynczych stron.
 Aby przejrzeć listę obecnie działających zabezpieczeń, przejdź na stronę wykazu [[Special:ProtectedPages|zabezpieczonych stron]].',
-'protectedarticle'            => 'zabezpieczył „[[$1]]”',
-'modifiedarticleprotection'   => 'zmienił poziom zabezpieczenia „[[$1]]”',
-'unprotectedarticle'          => 'odbezpieczył „[[$1]]”',
-'movedarticleprotection'      => 'przeniósł ustawienia zabezpieczeń z „[[$2]]” do „[[$1]]”',
+'protectedarticle'            => 'zabezpieczył [[$1]]',
+'modifiedarticleprotection'   => 'zmienił poziom zabezpieczenia [[$1]]',
+'unprotectedarticle'          => 'odbezpieczył [[$1]]',
+'movedarticleprotection'      => 'przeniósł ustawienia zabezpieczeń z [[$2]] do [[$1]]',
 'protect-title'               => 'Zmiana poziomu zabezpieczenia „$1”',
 'prot_1movedto2'              => 'stronę [[$1]] przeniósł do [[$2]]',
 'protect-legend'              => 'Potwierdź zabezpieczenie',
 'protectcomment'              => 'powód zabezpieczenia',
-'protectexpiry'               => 'Czas wygaśnięcia:',
+'protectexpiry'               => 'Czas wygaśnięcia',
 'protect_expiry_invalid'      => 'Podany czas automatycznego odbezpieczenia jest nieprawidłowy.',
 'protect_expiry_old'          => 'Podany czas automatycznego odblokowania znajduje się w przeszłości.',
 'protect-unchain'             => 'Odblokowanie możliwości przenoszenia strony',
@@ -2019,17 +2019,17 @@ Obecne ustawienia dla strony <strong>$1</strong> to:',
 'protect-expiry-indefinite'   => 'na zawsze',
 'protect-cascade'             => 'Dziedziczenie zabezpieczenia – zabezpiecz wszystkie strony zawarte na tej stronie.',
 'protect-cantedit'            => 'Nie możesz zmienić poziomu zabezpieczenia tej strony, ponieważ nie masz uprawnień do jej edycji.',
-'protect-othertime'           => 'Inny okres:',
+'protect-othertime'           => 'Inny okres',
 'protect-othertime-op'        => 'inny okres',
 'protect-existing-expiry'     => 'Obecny czas wygaśnięcia: $2 o $3',
-'protect-otherreason'         => 'Inny lub dodatkowy powód:',
+'protect-otherreason'         => 'Inny lub dodatkowy powód',
 'protect-otherreason-op'      => 'inny lub dodatkowy powód',
 'protect-dropdown'            => '*Najczęstsze powody zabezpieczenia
 ** Częste wandalizmy
 ** Częste spamowanie
 ** Wojna edycyjna
 ** Wygłupy',
-'protect-edit-reasonlist'     => 'Edytuj przyczynę zabezpieczenia',
+'protect-edit-reasonlist'     => 'Edytuj listę przyczyn zabezpieczenia',
 'protect-expiry-options'      => '2 godziny:2 hours,1 dzień:1 day,3 dni:3 days,1 tydzień:1 week,2 tygodnie:2 weeks,1 miesiąc:1 month,3 miesiące:3 months,6 miesięcy:6 months,1 rok:1 year,na zawsze:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Ograniczenia',
 'restriction-level'           => 'Poziom',
@@ -2038,10 +2038,10 @@ Obecne ustawienia dla strony <strong>$1</strong> to:',
 'pagesize'                    => '(bajtów)',
 
 # Restrictions (nouns)
-'restriction-edit'   => 'Edytowanie',
-'restriction-move'   => 'Przenoszenie',
-'restriction-create' => 'Utworzenie',
-'restriction-upload' => 'Prześlij',
+'restriction-edit'   => 'edytowanie',
+'restriction-move'   => 'przenoszenie',
+'restriction-create' => 'tworzenie',
+'restriction-upload' => 'przesyłanie',
 
 # Restriction levels
 'restriction-level-sysop'         => 'całkowite zabezpieczenie',
@@ -2075,7 +2075,7 @@ Możesz mieć zły link lub wersja mogła zostać odtworzona lub usunięta z arc
 'undeletelink'                 => 'odtwórz',
 'undeletereset'                => 'Wyczyść',
 'undeleteinvert'               => 'Odwróć zaznaczenie',
-'undeletecomment'              => 'Powód odtworzenia:',
+'undeletecomment'              => 'Powód odtworzenia',
 'undeletedarticle'             => 'odtworzył [[$1]]',
 'undeletedrevisions'           => 'odtworzono {{PLURAL:$1|1 wersję|$1 wersje|$1 wersji}}',
 'undeletedrevisions-files'     => 'odtworzono $1 {{PLURAL:$1|wersję|wersje|wersji}} i $2 {{PLURAL:$2|plik|pliki|plików}}',
@@ -2368,7 +2368,7 @@ Możesz również użyć linku, np. [[{{ns:special}}:Export/{{MediaWiki:Mainpage
 'allmessagestext'           => 'Lista wszystkich komunikatów systemowych dostępnych w przestrzeni nazw MediaWiki.
 Odwiedź [http://www.mediawiki.org/wiki/Localisation Tłumaczenie MediaWiki] oraz [http://translatewiki.net Betawiki], jeśli chcesz uczestniczyć w tłumaczeniu oprogramowania MediaWiki.',
 'allmessagesnotsupportedDB' => "Ta strona nie może być użyta, ponieważ zmienna '''\$wgUseDatabaseMessages''' jest wyłączona.",
-'allmessagesfilter'         => 'Filtr nazw komunikatów:',
+'allmessagesfilter'         => 'Filtr nazw komunikatów',
 'allmessagesmodified'       => 'Pokaż tylko zmodyfikowane',
 
 # Thumbnails
@@ -2600,7 +2600,7 @@ $1',
 'imagelisttext'         => "Poniżej na {{PLURAL:$1||posortowanej $2}} liście {{PLURAL:$1|znajduje|znajdują|znajduje}} się '''$1''' {{PLURAL:$1|plik|pliki|plików}}.",
 'newimages-summary'     => 'Na tej stronie specjalnej prezentowane są ostatnio przesłane pliki.',
 'newimages-legend'      => 'Filtruj',
-'newimages-label'       => 'Nazwa pliku (lub jej fragment):',
+'newimages-label'       => 'Nazwa pliku (lub jej fragment)',
 'showhidebots'          => '($1 boty)',
 'noimages'              => 'Brak plików do pokazania.',
 'ilsubmit'              => 'Szukaj',
@@ -2919,7 +2919,7 @@ Otwórz ten link w przeglądarce, czym potwierdzisz, że jesteś użytkownikiem 
 'confirmemail_oncreate'    => 'Link z kodem potwierdzenia został wysłany na Twój adres e-mail.
 Kod ten nie jest wymagany do zalogowania się, jednak będziesz musiał go aktywować otwierając, otrzymany link, w przeglądarce przed włączeniem niektórych opcji e-mail na wiki.',
 'confirmemail_sendfailed'  => 'Nie udało się wysłać potwierdzającej wiadomości e-mail.
-Sprawdzić poprawność adresu.
+Sprawdź poprawność adresu pod kątem literówki.
 
 System pocztowy zwrócił komunikat: $1',
 'confirmemail_invalid'     => 'Błędny kod potwierdzenia.
@@ -3062,7 +3062,7 @@ Możesz również [[Special:Watchlist/edit|użyć standardowego edytora]].',
 
 # Core parser functions
 'unknown_extension_tag' => 'Nieznany znacznik rozszerzenia „$1”',
-'duplicate-defaultsort' => 'Uwaga: Domyślnym kluczem sortowania będzie „$2” i zastąpi on wcześniej występujący klucz „$1”.',
+'duplicate-defaultsort' => 'Uwaga: Domyślnym kluczem sortowania będzie „$2” i zastąpi on wcześniej wykorzystywany klucz „$1”.',
 
 # Special:Version
 'version'                          => 'Wersja oprogramowania', # Not used as normal message but as header for the special page itself
@@ -3122,7 +3122,7 @@ Wpisz nazwę pliku z pominięciem prefiksu „{{ns:file}}:”.',
 'specialpages-group-pagetools'   => 'Narzędzia stron',
 'specialpages-group-wiki'        => 'Informacje oraz narzędzia wiki',
 'specialpages-group-redirects'   => 'Specjalne strony przekierowujące',
-'specialpages-group-spam'        => 'Narzędzia walki ze spamem',
+'specialpages-group-spam'        => 'Narzędzia do walki ze spamem',
 
 # Special:BlankPage
 'blankpage'              => 'Pusta strona',
@@ -3138,15 +3138,25 @@ Wpisz nazwę pliku z pominięciem prefiksu „{{ns:file}}:”.',
 #Put all regex fragments above this line. Leave this line exactly as it is</pre>',
 
 # Special:Tags
+'tags'                    => 'Sprawdź zmiany w oparciu o wzorce tekstu',
 'tag-filter'              => 'Filtr [[Special:Tags|wzorców tekstu]]',
 'tag-filter-submit'       => 'Filtr',
 'tags-title'              => 'Wzorce tekstu',
-'tags-intro'              => 'Na tej stronie znajduje się lista wzorców tekstu, dla których oprogramowanie może oznaczyć edycje dodatkowo wskazując ich znaczenie.',
+'tags-intro'              => 'Na tej stronie znajduje się lista wzorców tekstu, dla których oprogramowanie może oznaczyć edycje, dodatkowo wskazując ich znaczenie.',
 'tags-tag'                => 'Wewnętrzna nazwa wzorca tekstu',
 'tags-display-header'     => 'Wystąpienia na listach zmian',
 'tags-description-header' => 'Pełny opis znaczenia',
-'tags-hitcount-header'    => 'Oznaczone edycje',
+'tags-hitcount-header'    => 'Oznaczone zmiany',
 'tags-edit'               => 'edytuj',
 'tags-hitcount'           => '$1 {{PLURAL:$1|zmiana|zmiany|zmian}}',
+
+# Database error messages
+'dberr-header'      => 'Ta wiki nie działa poprawnie',
+'dberr-problems'    => 'Przepraszamy! Witryna ma problemy techniczne.',
+'dberr-again'       => 'Spróbuj przeładować stronę za kilka minut.',
+'dberr-info'        => '(Brak komunikacji z serwerem bazy danych $1)',
+'dberr-usegoogle'   => 'Możesz spróbować wyszukać w międzyczasie za pomocą Google.',
+'dberr-outofdate'   => 'Uwaga – indeksy zawartości serwisu mogą być nieaktualne.',
+'dberr-cachederror' => 'Strona została pobrana z pamięci podręcznej i może być nieaktualna.',
 
 );
