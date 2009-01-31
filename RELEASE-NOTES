@@ -75,6 +75,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   viewing on the local wiki.
 * The {{NAMESPACE}}, {{TALKSPACE}}, and {{SUBJECTSPACE}} magic words can now be
   used as parser functions to return the desired namespace for a given title.
+* Styled #mw-data-after-content in cologneblue.css to match the rest of the font (bug 17110)
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
