@@ -2518,44 +2518,27 @@ class DBConnectionError extends DBError {
 	}
 
 	function getPageTitle() {
-		global $wgSitename;
-		return "$wgSitename has a problem";
+		global $wgSitename, $wgLang;
+		$header = "$wgSitename has a problem";
+		if ( $wgLang instanceof Language ) {
+			$header = htmlspecialchars( $wgLang->getMessage( 'dberr-header' ) );
+		}
+		
+		return $header;
 	}
 
 	function getHTML() {
-		global $wgTitle, $wgUseFileCache, $title, $wgInputEncoding;
-		global $wgSitename, $wgServer, $wgMessageCache;
+		global $wgLang, $wgMessageCache, $wgUseFileCache;
 
-		# I give up, Brion is right. Getting the message cache to work when there is no DB is tricky.
-		# Hard coding strings instead.
+		$sorry = 'Sorry! This site is experiencing technical difficulties.';
+		$again = 'Try waiting a few minutes and reloading.';
+		$info  = '(Can\'t contact the database server: $1)';
 
-		$noconnect = "<p><strong>Sorry! This site is experiencing technical difficulties.</strong></p><p>Try waiting a few minutes and reloading.</p><p><small>(Can't contact the database server: $1)</small></p>";
-		$mainpage = 'Main Page';
-		$searchdisabled = <<<EOT
-<p style="margin: 1.5em 2em 1em">$wgSitename search is disabled for performance reasons. You can search via Google in the meantime.
-<span style="font-size: 89%; display: block; margin-left: .2em">Note that their indexes of $wgSitename content may be out of date.</span></p>',
-EOT;
-
-		$googlesearch = "
-<!-- SiteSearch Google -->
-<FORM method=GET action=\"http://www.google.com/search\">
-<TABLE bgcolor=\"#FFFFFF\"><tr><td>
-<A HREF=\"http://www.google.com/\">
-<IMG SRC=\"http://www.google.com/logos/Logo_40wht.gif\"
-border=\"0\" ALT=\"Google\"></A>
-</td>
-<td>
-<INPUT TYPE=text name=q size=31 maxlength=255 value=\"$1\">
-<INPUT type=submit name=btnG VALUE=\"Google Search\">
-<font size=-1>
-<input type=hidden name=domains value=\"$wgServer\"><br /><input type=radio name=sitesearch value=\"\"> WWW <input type=radio name=sitesearch value=\"$wgServer\" checked> $wgServer <br />
-<input type='hidden' name='ie' value='$2'>
-<input type='hidden' name='oe' value='$2'>
-</font>
-</td></tr></TABLE>
-</FORM>
-<!-- SiteSearch Google -->";
-		$cachederror = "The following is a cached copy of the requested page, and may not be up to date. ";
+		if ( $wgLang instanceof Language ) {
+			$sorry = htmlspecialchars( $wgLang->getMessage( 'dberr-problems' ) );
+			$again = htmlspecialchars( $wgLang->getMessage( 'dberr-again' ) );
+			$info  = htmlspecialchars( $wgLang->getMessage( 'dberr-info' ) );
+		}
 
 		# No database access
 		if ( is_object( $wgMessageCache ) ) {
@@ -2566,6 +2549,7 @@ border=\"0\" ALT=\"Google\"></A>
 			$this->error = $this->db->getProperty('mServer');
 		}
 
+		$noconnect = "<p><strong>$sorry</strong><br />$again</p><p><small>$info</small></p>";
 		$text = str_replace( '$1', $this->error, $noconnect );
 
 		/*
@@ -2575,38 +2559,81 @@ border=\"0\" ALT=\"Google\"></A>
 				"</p>\n";
 		}*/
 
+		$extra = $this->searchForm();
+
 		if($wgUseFileCache) {
-			if($wgTitle) {
-				$t =& $wgTitle;
-			} else {
-				if($title) {
-					$t = Title::newFromURL( $title );
-				} elseif (@/**/$_REQUEST['search']) {
-					$search = $_REQUEST['search'];
-					return $searchdisabled .
-					  str_replace( array( '$1', '$2' ), array( htmlspecialchars( $search ),
-					  $wgInputEncoding ), $googlesearch );
-				} else {
-					$t = Title::newFromText( $mainpage );
-				}
-			}
-
-			$cache = new HTMLFileCache( $t );
-			if( $cache->isFileCached() ) {
-				// @todo, FIXME: $msg is not defined on the next line.
-				$msg = '<p style="color: red"><b>'.$text."<br />\n" .
-					$cachederror . "</b></p>\n";
-
-				$tag = '<div id="article">';
-				$text = str_replace(
-					$tag,
-					$tag . $text,
-					$cache->fetchPageText() );
-			}
+			$cache = $this->fileCachedPage();
+			if ( $cache !== null ) $extra = $cache;
 		}
 
-		return $text;
+		return $text . '<hr />' . $extra;
 	}
+
+	function searchForm() {
+		global $wgSitename, $wgServer, $wgLang, $wgInputEncoding;
+		$usegoogle = "You can try searching via Google in the meantime.";
+		$outofdate = "Note that their indexes of our content may be out of date.";
+		$googlesearch = "Search";
+
+		if ( $wgLang instanceof Language ) {
+			$usegoogle = htmlspecialchars( $wgLang->getMessage( 'dberr-usegoogle' ) );
+			$outofdate = htmlspecialchars( $wgLang->getMessage( 'dberr-outofdate' ) );
+			$googlesearch  = htmlspecialchars( $wgLang->getMessage( 'searchbutton' ) );
+		}
+
+		$search = htmlspecialchars(@$_REQUEST['search']);
+
+		$trygoogle = <<<EOT
+<div style="margin: 1.5em">$usegoogle<br />
+<small>$outofdate</small></div>
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/search" id="googlesearch">
+    <input type="hidden" name="domains" value="$wgServer" />
+    <input type="hidden" name="num" value="50" />
+    <input type="hidden" name="ie" value="$wgInputEncoding" />
+    <input type="hidden" name="oe" value="$wgInputEncoding" />
+
+    <img src="http://www.google.com/logos/Logo_40wht.gif" style="float:left; margin-left: 1.5em; margin-right: 1.5em;" />
+
+    <input type="text" name="q" size="31" maxlength="255" value="$search" />
+    <input type="submit" name="btnG" value="$googlesearch" />
+  <div>
+    <input type="radio" name="sitesearch" id="gwiki" value="$wgServer" checked="checked" /><label for="gwiki">$wgSitename</label>
+    <input type="radio" name="sitesearch" id="gWWW" value="" /><label for="gWWW">WWW</label>
+  </div>
+</form>
+<!-- SiteSearch Google -->
+EOT;
+		return $trygoogle;
+	}
+
+	function fileCachedPage() {
+		global $wgTitle, $title, $wgLang;
+
+		$cachederror = "The following is a cached copy of the requested page, and may not be up to date. ";
+		$mainpage = 'Main Page';
+		if ( $wgLang instanceof Language ) {
+			$cachederror = htmlspecialchars( $wgLang->getMessage( 'dberr-cachederror' ) );
+			$mainpage    = htmlspecialchars( $wgLang->getMessage( 'mainpage' ) );
+		}
+
+		if($wgTitle) {
+			$t =& $wgTitle;
+		} elseif($title) {
+			$t = Title::newFromURL( $title );
+		} else {
+			$t = Title::newFromText( $mainpage );
+		}
+
+		$cache = new HTMLFileCache( $t );
+		if( $cache->isFileCached() ) {
+			$warning = "<div style='color:red;font-size:150%;font-weight:bold;'>$cachederror</div>";
+			return $warning . $cache->fetchPageText();
+		} else {
+			return '';
+		}
+	}
+
 }
 
 /**
