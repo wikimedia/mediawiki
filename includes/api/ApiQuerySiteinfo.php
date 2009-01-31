@@ -79,6 +79,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				case 'fileextensions':
 					$this->appendFileExtensions( $p );
 					break;
+				case 'rightsinfo':
+					$this->appendRightsInfo( $p );
+					break;
 				default :
 					ApiBase :: dieDebug( __METHOD__, "Unknown prop=$p" );
 			}
@@ -335,6 +338,24 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 
+	protected function appendRightsInfo( $property ) {
+		global $wgRightsPage, $wgRightsUrl, $wgRightsText;
+		$title = Title::newFromText( $wgRightsPage );
+		$url = $title ? $title->getFullURL() : $wgRightsUrl;
+		$text = $wgRightsText;
+		if( !$text && $title ) {
+			$text = $title->getPrefixedText();
+		}
+
+		$data = array(
+			'url' => $url ? $url : '',
+			'text' => $text ?  $text : ''
+		);
+
+		$this->getResult()->addValue( 'query', $property, $data );
+	}
+
+
 	public function getAllowedParams() {
 		return array(
 			'prop' => array(
@@ -352,6 +373,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					'usergroups',
 					'extensions',
 					'fileextensions',
+					'rightsinfo',
 				)
 			),
 			'filteriw' => array(
@@ -379,6 +401,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				' "usergroups"   - Returns user groups and the associated permissions',
 				' "extensions"   - Returns extensions installed on the wiki',
 				' "fileextensions" - Returns list of file extensions allowed to be uploaded',
+				' "rightsinfo"   - Returns wiki rights (license) information if available',
 			),
 			'filteriw' =>  'Return only local or only nonlocal entries of the interwiki map',
 			'showalldb' => 'List all database servers, not just the one lagging the most',

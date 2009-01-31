@@ -138,6 +138,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   Building query properly now using makeList()
 * (bug 17182) Fix pretty printer so URLs with parentheses in them are
   autolinked correctly
+* (bug 17224) Added siprop=rightsinfo to meta=siteinfo
 
 === Languages updated in 1.15 ===
 
