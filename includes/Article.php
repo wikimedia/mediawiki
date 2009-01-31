@@ -606,7 +606,7 @@ class Article {
 			}
 			// Apparently loadPageData was never called
 			$this->loadContent();
-			$titleObj = Title::newFromRedirectRe( $this->fetchContent() );
+			$titleObj = Title::newFromRedirectRecurse( $this->fetchContent() );
 		} else {
 			$titleObj = Title::newFromRedirect( $text );
 		}
