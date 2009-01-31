@@ -1,4 +1,4 @@
-		= MediaWiki release notes =
+= MediaWiki release notes =
 
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
@@ -137,6 +137,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 16483) Kill filesort in ApiQueryBacklinks caused by missing parentheses.
   Building query properly now using makeList()
 * Add "check" parameter to action=email
+* (bug 17182) Fix pretty printer so URLs with parentheses in them are
+  autolinked correctly
 
 === Languages updated in 1.15 ===
 
