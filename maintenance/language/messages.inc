@@ -2899,6 +2899,7 @@ $wgMessageStructure = array(
 		'external_image_whitelist',
 	),
 	'special-tags' => array(
+		'tags',
 		'tag-filter',
 		'tag-filter-submit',
 		'tags-title',
