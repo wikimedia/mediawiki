@@ -2584,7 +2584,9 @@ class Language {
 		if ( $this->namespaceAliases ) {
 			foreach ( $this->namespaceAliases as $name => $index ) {
 				if ( $index === NS_PROJECT_TALK ) {
+					unset( $this->namespaceAliases[$name] );
 					$name = $this->fixVariableInNamespace( $name );
+					$this->namespaceAliases[$name] = $index;
 				}
 				$this->mNamespaceIds[$this->lc($name)] = $index;
 			}
