@@ -50,28 +50,15 @@ class ApiEmailUser extends ApiBase {
 		// Check required parameters
 		if ( !isset( $params['target'] ) )
 			$this->dieUsageMsg( array( 'missingparam', 'target' ) );
-		// Validate target 
-		$targetUser = EmailUserForm::validateEmailTarget( $params['target'] );
-		if ( isset( $params['check'] ) ) {
-			// Only a check was requested; don't actually send a mail
-			if ( $targetUser instanceof User )
-				$result = array( 'result' => 'Enabled' );
-			else
-				$result = array( 'result' => 'Disabled', 'error' => $targetUser );
-			
-			$this->getResult()->addValue( null, $this->getModuleName(), $result );
-			return;
-		}
-		// If $targetUser is not a User it represents an error message
-		if ( !( $targetUser instanceof User ) )
-			$this->dieUsageMsg( array( $targetUser ) );
-		
-		// Check more parameters
 		if ( !isset( $params['text'] ) )
 			$this->dieUsageMsg( array( 'missingparam', 'text' ) );
 		if ( !isset( $params['token'] ) )
 			$this->dieUsageMsg( array( 'missingparam', 'token' ) );	
 		
+		// Validate target 
+		$targetUser = EmailUserForm::validateEmailTarget( $params['target'] );
+		if ( !( $targetUser instanceof User ) )
+			$this->dieUsageMsg( array( $targetUser ) );
 		
 		// Check permissions
 		$error = EmailUserForm::getPermissionsError( $wgUser, $params['token'] );
@@ -99,7 +86,6 @@ class ApiEmailUser extends ApiBase {
 			'text' => null,
 			'token' => null,
 			'ccme' => false,
-			'check' => null,
 		);
 	}
 
@@ -110,7 +96,6 @@ class ApiEmailUser extends ApiBase {
 			'text' => 'Mail body',
 			'token' => 'A token previously acquired via prop=info',
 			'ccme' => 'Send a copy of this mail to me',
-			'check' => 'Only check whether email can be sent to the target user',
 		);
 	}
 
@@ -122,8 +107,7 @@ class ApiEmailUser extends ApiBase {
 
 	protected function getExamples() {
 		return array (
-			'api.php?action=emailuser&target=WikiSysop&text=Content',
-			'api.php?action=emailuser&target=WikiSysop&check=yes',
+			'api.php?action=emailuser&target=WikiSysop&text=Content'
 		);
 	}
 

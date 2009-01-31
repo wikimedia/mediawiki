@@ -136,7 +136,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 15949) Add undo functionality to action=edit
 * (bug 16483) Kill filesort in ApiQueryBacklinks caused by missing parentheses.
   Building query properly now using makeList()
-* Add "check" parameter to action=email
 * (bug 17182) Fix pretty printer so URLs with parentheses in them are
   autolinked correctly
 
