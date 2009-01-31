@@ -1,6 +1,11 @@
 body { margin: 0px; padding: 0px; color: black; }
 #specialform { display: inline; }
 #content { top: 0; margin: 0; padding: 0; }
+#mw-data-after-content {
+ font-family: Verdana, Arial, sans-serif;
+ color: black;
+ font-size: 8pt;
+}
 #topbar { padding: 0px; }
 #powersearch {
   background: #DDEEFF; border-style: solid; border-width: 1px; padding: 2px;
