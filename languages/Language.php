@@ -2565,16 +2565,8 @@ class Language {
 			$this->namespaceNames[NS_PROJECT_TALK] = $wgMetaNamespaceTalk;
 		} else {
 			$talk = $this->namespaceNames[NS_PROJECT_TALK];
-			$talk = str_replace( '$1', $wgMetaNamespace, $talk );
-
-			# Allow grammar transformations
-			# Allowing full message-style parsing would make simple requests 
-			# such as action=raw much more expensive than they need to be. 
-			# This will hopefully cover most cases.
-			$talk = preg_replace_callback( '/{{grammar:(.*?)\|(.*?)}}/i', 
-				array( &$this, 'replaceGrammarInNamespace' ), $talk );
-			$talk = str_replace( ' ', '_', $talk );
-			$this->namespaceNames[NS_PROJECT_TALK] = $talk;
+			$this->namespaceNames[NS_PROJECT_TALK] =
+				$this->fixVariableInNamespace( $talk );
 		}
 		
 		# The above mixing may leave namespaces out of canonical order.
@@ -2591,6 +2583,9 @@ class Language {
 		}
 		if ( $this->namespaceAliases ) {
 			foreach ( $this->namespaceAliases as $name => $index ) {
+				if ( $index === NS_PROJECT_TALK ) {
+					$name = $this->fixVariableInNamespace( $name );
+				}
 				$this->mNamespaceIds[$this->lc($name)] = $index;
 			}
 		}
@@ -2604,6 +2599,21 @@ class Language {
 			$this->defaultDateFormat = $wgAmericanDates ? 'mdy' : 'dmy';
 		}
 		wfProfileOut( __METHOD__ );
+	}
+
+	function fixVariableInNamespace( $talk ) {
+		if ( strpos( $talk, '$1' ) === false ) return $talk;
+
+		global $wgMetaNamespace;
+		$talk = str_replace( '$1', $wgMetaNamespace, $talk );
+
+		# Allow grammar transformations
+		# Allowing full message-style parsing would make simple requests 
+		# such as action=raw much more expensive than they need to be. 
+		# This will hopefully cover most cases.
+		$talk = preg_replace_callback( '/{{grammar:(.*?)\|(.*?)}}/i', 
+			array( &$this, 'replaceGrammarInNamespace' ), $talk );
+		return str_replace( ' ', '_', $talk );
 	}
 
 	function replaceGrammarInNamespace( $m ) {
