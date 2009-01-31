@@ -2793,7 +2793,7 @@ Pakitiyak kung ibig mo talagang likhain muli ang pahinang ito.",
 # action=purge
 'confirm_purge_button' => "Sige/Ayos 'yan/Okey",
 'confirm-purge-top'    => 'Linisin/hawiin ang taguan ng pahinang ito?',
-'confirm-purge-bottom' => 'Nililinis/hinahawi ng pagpurga/pagdalisay ng isang pahina ang taguan at mapipilitang palitawin/ilantad ang pinakapangkasalukuyang bersyon.',
+'confirm-purge-bottom' => 'Nililinis ng pagdadalisay ng isang pahina ang taguan at mapipilitang palitawin ang pinakapangkasalukuyang bersyon.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← nakaraang pahina',
@@ -2977,6 +2977,7 @@ Ipasok ang pangalan ng talaksan na wala ang unlaping \"{{ns:image}}:\".",
 #Ilagay sa ibabaw ng hanay na ito ang mga piraso ng karaniwang pagpapahayag.  Pabayaang talagang ganito lang ang hanay/hilerang ito</pre>',
 
 # Special:Tags
+'tags'                    => 'Tanggap na mga tatak ng pagbabago',
 'tag-filter'              => '[[Special:Tags|Tatakan]] ang pansala:',
 'tag-filter-submit'       => 'Pansala',
 'tags-title'              => 'Mga tatak',
@@ -2984,7 +2985,7 @@ Ipasok ang pangalan ng talaksan na wala ang unlaping \"{{ns:image}}:\".",
 'tags-tag'                => 'Panloob na pangalan ng tatak',
 'tags-display-header'     => 'Anyo sa ibabaw ng mga talaan ng pagbabago',
 'tags-description-header' => 'Buong paglalarawan ng kahulugan',
-'tags-hitcount-header'    => 'Tinatakang mga pagbabago',
+'tags-hitcount-header'    => 'Natatakang mga pagbabago',
 'tags-edit'               => 'baguhin',
 'tags-hitcount'           => '$1 {{PLURAL:$1|pagbabago|mga pagbabago}}',
 

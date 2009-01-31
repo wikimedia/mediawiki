@@ -246,7 +246,7 @@ $messages = array(
 'pagecategories'                 => '{{PLURAL:$1|Kategorija|Kategorijos}}',
 'category_header'                => 'Puslapiai kategorijoje „$1“',
 'subcategories'                  => 'Subkategorijos',
-'category-media-header'          => 'Media kategorijoje „$1“',
+'category-media-header'          => 'Daugialypės terpės failai kategorijoje „$1“',
 'category-empty'                 => "''Šiuo metu ši kategorija neturi jokių puslapių ar failų.''",
 'hidden-categories'              => '{{PLURAL:$1|Paslėpta kategorija|Paslėptos kategorijos}}',
 'hidden-category-category'       => 'Paslėptos kategorijos', # Name of the category where hidden categories will be listed
@@ -446,7 +446,7 @@ turbūt duomenų bazės techninei profilaktikai,
 po to viskas vėl veiks kaip įprasta.
 
 Užrakinusiojo administratoriaus pateiktas rakinimo paaiškinimas: $1',
-'missing-article'      => 'Duomenų bazė nerado puslapio teksto, kurį jis turėtų rasti, pavadinto „$1“ $2.
+'missing-article'      => 'Duomenų bazė nerado puslapio teksto, kurį ji turėtų rasti, pavadinto „$1“ $2.
 
 Paprastai tai būna dėl pasenusios skirtumo ar istorijos nuorodos į puslapį, kuris buvo ištrintas.
 
@@ -479,7 +479,7 @@ Užklausa: $2',
 'viewsource'           => 'Žiūrėti kodą',
 'viewsourcefor'        => 'puslapiui $1',
 'actionthrottled'      => 'Veiksmas apribotas',
-'actionthrottledtext'  => 'Kaip apsauga nuo reklamų, jums neleidžiama atlikti šį veiksmą daug kartų per trumpą laiko tarpą, bet jūs pasiekėte šį limitą. Prašome pamėginti vėl po kelių minučių.',
+'actionthrottledtext'  => 'Kad būtų apsisaugota nuo reklamų, jums neleidžiama daug kartų atlikti šį veiksmą per trumpą laiko tarpą, bet jūs pasiekėte šį limitą. Prašome vėl pamėginti po kelių minučių.',
 'protectedpagetext'    => 'Šis puslapis yra užrakintas, saugant jį nuo redagavimo.',
 'viewsourcetext'       => 'Jūs galite žiūrėti ir kopijuoti puslapio kodą:',
 'protectedinterface'   => 'Šiame puslapyje yra programinės įrangos sąsajos tekstas ir yra apsaugotas, kad būtų apsisaugota nuo piktnaudžiavimo.',
@@ -491,7 +491,7 @@ $2',
 'customcssjsprotected' => 'Jūs neturite teisės redaguoti šio puslapio, nes jame yra kito nautotojo asmeninių nustatymų.',
 'ns-specialprotected'  => 'Specialieji puslapiai negali būti redaguojami.',
 'titleprotected'       => "[[User:$1|$1]] apsaugojo šį pavadinimą nuo sukūrimo.
-Duota priežastis yra ''$2''.",
+Nurodyta priežastis yra ''$2''.",
 
 # Virus scanner
 'virus-badscanner'     => 'Neteisinga konfiguracija: nežinomas viruso skaneris: <i>$1</i>',
@@ -755,13 +755,11 @@ naršyklės gali turėti problemų redaguojant puslapius beveik ar virš 32 kB.
 Prašome pamėginti puslapį padalinti į keletą smulkesnių dalių.</strong>',
 'longpageerror'                    => '<strong>KLAIDA: Tekstas, kurį pateikėte, yra $1 kilobaitų ilgio,
 kuris yra didesnis nei daugiausiai leistini $2 kilobaitai. Jis nebus išsaugotas.</strong>',
-'readonlywarning'                  => '<strong>DĖMESIO: Duomenų bazė buvo užrakinta techninei profilaktikai,
-taigi negalėsite išsaugoti savo pakeitimų dabar. Jūs gali nusikopijuoti tekstą į tekstinį failą
-ir vėliau įkelti jį čia.</strong>
+'readonlywarning'                  => '<strong>DĖMESIO: Duomenų bazė buvo užrakinta techninei profilaktikai, todėl šiuo metu negalėsite išsaugoti savo pakeitimų. Siūlome nusikopijuoti tekstą į tekstinį failą ir vėliau jį čia išsaugoti.</strong>
 
 Ją užrakinusio administratoriaus paaiškinimas: $1',
-'protectedpagewarning'             => '<strong>DĖMESIO:  Šis puslapis yra užrakintas ir jį redaguoti gali tik administratoriaus teises turintys naudotojai.</strong>',
-'semiprotectedpagewarning'         => "'''Pastaba:''' Šis puslapis buvo užrakintas ir jį gali redaguoti tik registruoti naudotojai.",
+'protectedpagewarning'             => '<strong>DĖMESIO:  Šis puslapis yra užrakintas taip, kad jį redaguoti gali tik administratoriaus teises turintys naudotojai.</strong>',
+'semiprotectedpagewarning'         => "'''Pastaba:''' Šis puslapis buvo užrakintas, jį gali redaguoti tik registruoti naudotojai.",
 'cascadeprotectedwarning'          => "'''Dėmesio''': Šis puslapis buvo užrakintas taip, kad tik naudotojai su administratoriaus teisėmis galėtų jį redaguoti, nes jis yra įtrauktas į {{PLURAL:$1|šį puslapį, apsaugotą|šiuos puslapius, apsaugotus}} „pakopinės apsaugos“ pasirinktimi:",
 'titleprotectedwarning'            => '<strong>ĮSPĖJIMAS: Šis puslapis buvo užrakintas taip, kad tik kai kurie naudotojai galėtų jį sukurti.</strong>',
 'templatesused'                    => 'Puslapyje naudojami šablonai:',
@@ -781,7 +779,7 @@ Jūs galite grįžti ir redaguoti jau esantį puslapį, arba [[Special:UserLogin
 'recreate-deleted-warn'            => "'''Dėmesio: Jūs atkuriate puslapį, kuris anksčiau buvo ištrintas.'''
 
 Jūs turite nuspręsti, ar tinka toliau redaguoti šį puslapį.
-Šio puslapio šalinimų istorija yra pateikta čia dėl patogumo:",
+Dėl patogumo čia pateikta šio puslapio šalinimų istorija:",
 'deleted-notice'                   => 'Šis puslapis buvo panaikintas.
 Panaikinto puslapio versijų sąrašas pateiktas žemiau peržiūrėjimui.',
 'deletelog-fulllog'                => 'Peržiūrėti visą protokolą',
@@ -1185,6 +1183,7 @@ teisės",
 'right-move'                 => 'Pervadinti puslapius',
 'right-move-subpages'        => 'Perkelti puslapius su jų subpuslapiais',
 'right-move-rootuserpages'   => 'Perkelti šakninius naudotojo puslapius',
+'right-movefile'             => 'Perkelti failus',
 'right-suppressredirect'     => 'Nekurti peradresavimo iš seno pavadinimo kuomet puslapis pervadinamas',
 'right-upload'               => 'Įkelti failus',
 'right-reupload'             => 'Perrašyti egzistuojantį failą',
@@ -1446,7 +1445,7 @@ Pilnas sąrašas pasiekiamas [[Special:WhatLinksHere/$2|čia]].',
 'nolinkstoimage'                 => 'Į failą nenurodo joks puslapis.',
 'morelinkstoimage'               => 'Žiūrėti [[Special:WhatLinksHere/$1|daugiau nuorodų]] į šį failą.',
 'redirectstofile'                => '{{PLURAL:$1|Šis failas|$1 failai}} peradresuoja į šį failą:',
-'duplicatesoffile'               => '{{PLURAL:$1|failas yra dublikatas|$1 failai yra dublikatai}} šio failo:',
+'duplicatesoffile'               => 'Tai yra šio failo {{PLURAL:$1|dublikatas|$1 dublikatai}}:',
 'sharedupload'                   => 'Šis failas yra įkeltas bendram naudojimui ir gali būti naudojamas kituose projektuose.',
 'shareduploadwiki'               => 'Žiūrėkite $1 tolimesnei informacijai.',
 'shareduploadwiki-desc'          => 'Aprašymas iš jo $1 bendrojoje saugykloje yra rodomas žemiau.',
@@ -1530,7 +1529,7 @@ Pilnas sąrašas pasiekiamas [[Special:WhatLinksHere/$2|čia]].',
 'statistics-jobqueue'          => '[http://www.mediawiki.org/wiki/Manual:Job_queue Užduočių eilės] ilgis',
 'statistics-users'             => 'Registruotų [[Special:ListUsers|naudotojų]]',
 'statistics-users-active'      => 'Aktyvių naudotojų',
-'statistics-users-active-desc' => 'Naudotojai, kurie per {{PLURAL:$1|paskutinę dieną|paskutines $1 dienų}} įnešė savo indėlį',
+'statistics-users-active-desc' => 'Naudotojai, kurie per {{PLURAL:$1|paskutinę dieną|paskutines $1 dienų}} padarė keitimų',
 'statistics-mostpopular'       => 'Daugiausiai rodyti puslapiai',
 
 'disambiguations'      => 'Daugiaprasmių žodžių puslapiai',
@@ -2733,7 +2732,7 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 'confirmemail_text'        => 'Šiame projekte būtina patvirtinti el. pašto adresą prieš naudojant el. pašto funkcijas. Spustelkite žemiau esantį mygtuką,
 kad jūsų el. pašto adresu būtų išsiųstas patvirtinimo kodas.
 Laiške bus atsiųsta nuoroda su kodu, kuria nuėjus, el. pašto adresas bus patvirtintas.',
-'confirmemail_pending'     => 'Patvirtinimo kodas jau nusiųstas jums; jei neseniai sukūrėte savo paskyrą, jūs turėtumėte palaukti jo dar kelias minutes prieš prašant naujo kodo.',
+'confirmemail_pending'     => 'Patvirtinimo kodas jums jau nusiųstas; jei neseniai sukūrėte savo paskyrą, jūs turėtumėte palaukti jo dar kelias minutes prieš prašydami naujo kodo.',
 'confirmemail_send'        => 'Išsiųsti patvirtinimo kodą',
 'confirmemail_sent'        => 'Patvirtinimo laiškas išsiųstas.',
 'confirmemail_oncreate'    => 'Patvirtinimo kodas buvo išsiųstas jūsų el. pašto adresu.
@@ -2911,5 +2910,8 @@ Jūs taip pat galite [[Special:Watchlist/edit|naudoti standartinį redaktorių]]
 # Special:BlankPage
 'blankpage'              => 'Tuščias puslapis',
 'intentionallyblankpage' => 'Šis puslapis specialiai paliktas tuščias',
+
+# Special:Tags
+'tags-edit' => 'taisyti',
 
 );

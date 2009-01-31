@@ -3074,4 +3074,17 @@ Entra le nomine del file sin le prefixo \"{{ns:file}}:\".",
 
 #Insere omne fragmentos regex super iste linea. Lassa iste linea exactemente como illo es</pre>',
 
+# Special:Tags
+'tags'                    => 'Etiquettas valide de modification',
+'tag-filter'              => 'Filtro de [[Special:Tags|etiquettas]]:',
+'tag-filter-submit'       => 'Filtrar',
+'tags-title'              => 'Etiquettas',
+'tags-intro'              => 'Iste pagina lista le etiquettas con le quales le software pote marcar un modification, e lor significato.',
+'tags-tag'                => 'Nomine interne del etiquetta',
+'tags-display-header'     => 'Apparentia in listas de modificationes',
+'tags-description-header' => 'Description complete del significato',
+'tags-hitcount-header'    => 'Modificationes etiquettate',
+'tags-edit'               => 'modificar',
+'tags-hitcount'           => '$1 {{PLURAL:$1|modification|modificationes}}',
+
 );

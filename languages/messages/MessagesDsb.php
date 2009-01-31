@@ -2921,6 +2921,7 @@ Zapódaj datajowe mě bźez prefiksa "{{ns:file}}:".',
 #Staj wše fragmenty regularnych wurazow nad smužku. Wóstaj toś tu smužku rowno tak jo</pre>',
 
 # Special:Tags
+'tags'                    => 'Płaśiwe toflicki změnow',
 'tag-filter'              => 'Filter [[Special:Tags|toflickow]]:',
 'tag-filter-submit'       => 'Filter',
 'tags-title'              => 'Toflicki',
@@ -2931,5 +2932,14 @@ Zapódaj datajowe mě bźez prefiksa "{{ns:file}}:".',
 'tags-hitcount-header'    => 'Změny z toflickami',
 'tags-edit'               => 'wobźěłaś',
 'tags-hitcount'           => '$1 {{PLURAL:$1|změna|změnje|změny|změnow}}',
+
+# Database error messages
+'dberr-header'      => 'Toś ten wiki ma problem',
+'dberr-problems'    => 'Wódaj! Toś to sedło ma techniske śěžkosći.',
+'dberr-again'       => 'Pócakaj někotare minuty a aktualizěruj bok.',
+'dberr-info'        => '(Njejo móžno ze serwerom datoweje banki zwězaś: $1)',
+'dberr-usegoogle'   => 'Móžoš mjaztym pśez Google pytaś.',
+'dberr-outofdate'   => 'Źiwaj na to, až jich indekse našogo wopśimjeśa by mógli zestarjone byś.',
+'dberr-cachederror' => 'Slědujuca jo pufrowana kopija pominanego boka a by mógła zestarjona byś.',
 
 );

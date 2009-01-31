@@ -1011,8 +1011,19 @@ Uzklikšķinot uz kādas kolonnas virsraksta, var sakārtot pēc kāda cita para
 'randomredirect' => 'Nejauša pāradresācijas lapa',
 
 # Statistics
-'statistics'              => 'Statistika',
-'statistics-header-users' => 'Statistika par lietotājiem',
+'statistics'                   => 'Statistika',
+'statistics-header-pages'      => 'Lapu statistika',
+'statistics-header-edits'      => 'Izmaiņu statistika',
+'statistics-header-users'      => 'Statistika par lietotājiem',
+'statistics-articles'          => 'Satura lapas',
+'statistics-pages'             => 'Lapas',
+'statistics-pages-desc'        => 'Visas šajā wiki esošās lapas, ieskaitot diskusiju lapas, pāradresācijas, utt.',
+'statistics-files'             => 'Augšuplādētie faili',
+'statistics-edits'             => 'Lapu izmaiņas kopš {{grammar:ģenitīvs{{SITENAME}}}} izveidošanas',
+'statistics-edits-average'     => 'Vidējais izmaiņu skaits uz lapu',
+'statistics-users'             => 'Reģistrēti lietotāji',
+'statistics-users-active'      => 'Aktīvi lietotāji',
+'statistics-users-active-desc' => 'Lietotāji, kas ir veikuši jebkādu darbību {{PLURAL:$1|iepriekšējā dienā|iepriekšējās $1 dienās}}',
 
 'disambiguations'      => 'Nozīmju atdalīšanas lapas',
 'disambiguationspage'  => 'Template:Disambig',
@@ -1117,7 +1128,7 @@ Skatīt arī [[Special:WantedCategories|''sarkanās'' kategorijas]].",
 # Special:ListGroupRights
 'listgrouprights'         => 'Lietotāju grupu tiesības',
 'listgrouprights-summary' => 'Šis ir šajā wiki definēto lietotāju grupu uskaitījums, kopā ar tām atbilstošajām piekļuves tiesībām.
-Papildu informāciju par katru individuālu piekļuves tiesību veidu, iespējams, var atrast [[{{MediaWiki:Listgrouprights-helppage}}]].',
+Papildu informāciju par katru individuālu piekļuves tiesību veidu, iespējams, var atrast [[{{MediaWiki:Listgrouprights-helppage}}|šeit]].',
 'listgrouprights-group'   => 'Grupa',
 'listgrouprights-rights'  => 'Tiesības',
 

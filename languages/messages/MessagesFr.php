@@ -3125,6 +3125,7 @@ Entrez le nom du fichier sans le préfixe « {{ns:file}}: ».',
 #Indiquez tous les fragments d’expressions régulières en bas de celle-ligne. Cette dernière doit être laissée exactement telle quelle.</pre>",
 
 # Special:Tags
+'tags'                    => 'Balises des modifications valides',
 'tag-filter'              => 'Filtrer les [[Special:Tags|balises]] :',
 'tag-filter-submit'       => 'Filtrer',
 'tags-title'              => 'Balises',

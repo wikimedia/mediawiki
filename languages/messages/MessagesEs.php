@@ -12,6 +12,7 @@
  * @author Baiji
  * @author Bengoa
  * @author Better
+ * @author BicScope
  * @author Boivie
  * @author Cerealito
  * @author Clerc
@@ -312,7 +313,7 @@ $messages = array(
 'qbspecialpages' => 'Páginas especiales',
 'moredotdotdot'  => 'Más...',
 'mypage'         => 'Mi página',
-'mytalk'         => 'Mi discusión',
+'mytalk'         => 'Mi página de discusión',
 'anontalk'       => 'Discusión para esta IP',
 'navigation'     => 'Navegación',
 'and'            => '&#32;y',
@@ -354,7 +355,7 @@ $messages = array(
 'personaltools'     => 'Herramientas personales',
 'postcomment'       => 'Poner un comentario',
 'articlepage'       => 'Ver artículo',
-'talk'              => 'Discusión',
+'talk'              => 'Página de discusión',
 'views'             => 'Vistas',
 'toolbox'           => 'Herramientas',
 'userpage'          => 'Ver página de usuario',
@@ -373,7 +374,7 @@ $messages = array(
 'protectedpage'     => 'Página protegida',
 'jumpto'            => 'Saltar a',
 'jumptonavigation'  => 'navegación',
-'jumptosearch'      => 'búsqueda',
+'jumptosearch'      => 'buscar',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Acerca de {{SITENAME}}',
@@ -387,11 +388,11 @@ $messages = array(
 'disclaimerpage'       => 'Project:Limitación general de responsabilidad',
 'edithelp'             => 'Ayuda de edición',
 'edithelppage'         => 'Help:Cómo se edita una página',
-'faq'                  => 'FAQ',
+'faq'                  => 'Preguntas Frecuentes (FAQ)',
 'faqpage'              => 'Project:FAQ',
 'helppage'             => 'Help:Ayuda',
-'mainpage'             => 'Portada',
-'mainpage-description' => 'Portada',
+'mainpage'             => 'Página Principal',
+'mainpage-description' => 'Página Principal',
 'policy-url'           => 'Project:Políticas',
 'portal'               => 'Portal de la comunidad',
 'portal-url'           => 'Project:Portal de la comunidad',
@@ -408,8 +409,8 @@ $messages = array(
 'ok'                      => 'Aceptar',
 'retrievedfrom'           => 'Obtenido de "$1"',
 'youhavenewmessages'      => 'Tiene $1 ($2).',
-'newmessageslink'         => 'mensajes nuevos',
-'newmessagesdifflink'     => 'último cambio',
+'newmessageslink'         => 'un nuevo mensaje',
+'newmessagesdifflink'     => '(diferencia)',
 'youhavenewmessagesmulti' => 'Tienes nuevos mensajes en $1',
 'editsection'             => 'editar',
 'editold'                 => 'editar',
@@ -571,10 +572,10 @@ Por favor, indique un nombre diferente.',
 'badsig'                     => 'El código de tu firma no es válido; comprueba las etiquetas HTML.',
 'badsiglength'               => 'El apodo para firmas es demasiado largo.
 Debe ser de menos de $1 {{PLURAL:$1|carácter|caracteres}}.',
-'yourgender'                 => 'Sexo:',
-'gender-unknown'             => 'No especificado',
-'gender-male'                => 'Varón',
-'gender-female'              => 'Mujer',
+'yourgender'                 => 'Género:',
+'gender-unknown'             => 'Si especificar',
+'gender-male'                => 'Masculino',
+'gender-female'              => 'Femenino',
 'email'                      => 'Correo electrónico',
 'prefs-help-realname'        => '* Nombre real (opcional): si opta por proporcionarlo, se usará para dar atribución a su trabajo.',
 'loginerror'                 => 'Error de inicio de sesión',
@@ -2988,5 +2989,18 @@ Ingrese el nombre del archivo sin el prefijo "{{ns:file}}:".',
 #Las líneas que empiezan por «#» se consideran comentarios
 
 #Put all regex fragments above this line. Deja esta línea exactamente como está</pre>',
+
+# Special:Tags
+'tags'                    => 'Cambiar etiquetas válidas',
+'tag-filter'              => 'Filtro de [[Special:Tags|etiquetas]]:',
+'tag-filter-submit'       => 'Filtro',
+'tags-title'              => 'Etiquetas',
+'tags-intro'              => 'Ésta página enlista las etiquetas que el software puede marcar y editar, y su significado.',
+'tags-tag'                => 'Nombre de la etiqueta interna',
+'tags-display-header'     => 'Apariencia de la lista de cambios',
+'tags-description-header' => 'Descripción completa de significado',
+'tags-hitcount-header'    => 'Cambios etiquetados',
+'tags-edit'               => 'editar',
+'tags-hitcount'           => '$1 {{PLURAL:$1|cambio|cambios}}',
 
 );

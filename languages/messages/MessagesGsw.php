@@ -2868,6 +2868,7 @@ D Yygab muess ohni dr Zuesatz „{{ns:file}}:“ erfolge.',
 #Fragmänt vu reguläre Usdrick noch däre Zyylete yytrage. Die Zyylete nit verändere</pre>',
 
 # Special:Tags
+'tags'                    => 'Änderigs-Tag priefe',
 'tag-filter'              => '[[Special:Tag|Tag]]-Filter:',
 'tag-filter-submit'       => 'Filter',
 'tags-title'              => 'Tag',

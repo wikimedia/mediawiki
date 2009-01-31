@@ -610,6 +610,10 @@ Causissètz-ne un autre.",
 'badsig'                     => 'Signatura bruta incorrècta, verificatz vòstras balisas HTML.',
 'badsiglength'               => 'Vòstra signatura es tròp longa.
 Sa talha maximala deu èsser de $1 {{PLURAL:$1|caractèr|caractèrs}}.',
+'yourgender'                 => 'Sèxe :',
+'gender-unknown'             => 'Pas entresenhat',
+'gender-male'                => 'Masculin',
+'gender-female'              => 'Femenin',
 'email'                      => 'Corrièr electronic',
 'prefs-help-realname'        => "(facultatiu) : se l'especificatz, serà utilizat per vos atribuir vòstras contribucions.",
 'loginerror'                 => "Error d'identificacion",
@@ -3041,5 +3045,18 @@ Picatz lo nom del fichièr sens lo prefix « {{ns:file}}: ».',
 #Las linhas que començan amb # seràn consideradas coma de comentaris
 
 #Indicatz totes los fragments d’expressions regularas en bas d'aquesta linha. Aquesta darrièra deu èsser daissada exactament coma es.</pre>",
+
+# Special:Tags
+'tags'                    => 'Balisas de las modificacions validas',
+'tag-filter'              => 'Filtrar las [[Special:Tags|balisas]] :',
+'tag-filter-submit'       => 'Filtrar',
+'tags-title'              => 'Balisas',
+'tags-intro'              => 'Aquesta pagina lista las balisas que lo logicial pòt utilizar per marcar una modificacion, e lor significacion.',
+'tags-tag'                => 'Nom intèrn de la balisa',
+'tags-display-header'     => 'Aparéncia dins las listas de modificacions',
+'tags-description-header' => 'Descripcion complèta de la balisa',
+'tags-hitcount-header'    => 'Modificacions balisadas',
+'tags-edit'               => 'modificar',
+'tags-hitcount'           => '$1 {{PLURAL:$1|cambiament|cambiaments}}',
 
 );

@@ -2882,6 +2882,7 @@ Zapodaj datajowe mjeno '''bjez''' prefiksa \"{{ns:file}}:\".",
 #Zapodaj wšě fragmenty regularnych wurazow nad tutej linku. Wostaj tutu linku eksaktnje kaž je</pre>',
 
 # Special:Tags
+'tags'                    => 'Płaćiwe taflički změnow',
 'tag-filter'              => 'Filter [[Special:Tags|tafličkow]]:',
 'tag-filter-submit'       => 'Filter',
 'tags-title'              => 'Taflički',
@@ -2892,5 +2893,14 @@ Zapodaj datajowe mjeno '''bjez''' prefiksa \"{{ns:file}}:\".",
 'tags-hitcount-header'    => 'Změny z tafličkami',
 'tags-edit'               => 'změnić',
 'tags-hitcount'           => '$1 {{PLURAL:$1|změna|změnje|změny|změnow}}',
+
+# Database error messages
+'dberr-header'      => 'Tutón wiki ma problem',
+'dberr-problems'    => 'Wodaj! Tute sydło ma techniske ćežkosće.',
+'dberr-again'       => 'Počakń někotre mjeńšiny a zaktualizuj stronu.',
+'dberr-info'        => '(Njeje móžno ze serwerom datoweje banki zwjazać: $1)',
+'dberr-usegoogle'   => 'Mjeztym móžeš z pomocu Google pytać.',
+'dberr-outofdate'   => 'Wobkedźbuj, zo jich indeksy našeho wobsaha móhli zestarjene być.',
+'dberr-cachederror' => 'Slědowaca je pufrowana kopija požadaneje strony a móhła zestarjena być.',
 
 );

@@ -1110,7 +1110,7 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'prefs-resetpass'           => 'Cambiar o contrasinal',
 'saveprefs'                 => 'Gardar as preferencias',
 'resetprefs'                => 'Eliminar os cambios non gardados',
-'restoreprefs'              => 'Restaurar todas as características por defecto',
+'restoreprefs'              => 'Restaurar todas as preferencias por defecto',
 'textboxsize'               => 'Edición',
 'prefs-edit-boxsize'        => 'Tamaño da caixa de edición.',
 'rows'                      => 'Filas:',
@@ -1961,8 +1961,9 @@ Ao premer en '''''Limpar''''', bórranse o campo do comentario e todas as caixas
 Se se creou unha páxina nova co mesmo nome desde o seu borrado, as revisións restauradas van aparecer no historial anterior.',
 'undeleterevdel'               => 'Non se levará a cabo a reversión do borrado se ocasiona que a última revisión da páxina ou ficheiro se elimine parcialmente.
 Nestes casos, debe retirar a selección ou quitar a ocultación das revisións borradas máis recentes.',
-'undeletehistorynoadmin'       => 'Esta páxina foi borrada. O motivo do borrado consta no resumo de embaixo, xunto cos detalles dos usuarios que editaron esta páxina antes da súa eliminación.
-O texto das revisións eliminadas só está á disposición dos administradores.',
+'undeletehistorynoadmin'       => 'Esta páxina foi borrada.
+O motivo do borrado consta no resumo de embaixo, xunto cos detalles dos usuarios que editaron esta páxina antes da súa eliminación.
+O texto destas revisións eliminadas só está á disposición dos administradores.',
 'undelete-revision'            => 'Revisión eliminada de "$1" (o $4 ás $5) feita por $3:',
 'undeleterevision-missing'     => 'Revisión non válida ou inexistente. Pode que a ligazón conteña un erro ou que a revisión se restaurase ou eliminase do arquivo.',
 'undelete-nodiff'              => 'Non se atopou ningunha revisión anterior.',
@@ -2106,7 +2107,8 @@ Olle a [[Special:IPBlockList|lista de enderezos IP e usuarios bloqueados]] para 
 'unblocklink'                     => 'desbloquear',
 'change-blocklink'                => 'cambiar o bloqueo',
 'contribslink'                    => 'contribucións',
-'autoblocker'                     => 'Autobloqueado porque "[[User:$1|$1]]" usou recentemente este enderezo IP. O motivo do bloqueo de $1 é: "$2".',
+'autoblocker'                     => 'Foi autobloqueado porque "[[User:$1|$1]]" usou recentemente o seu  mesmo enderezo IP.
+O motivo do bloqueo de $1 é: "$2"',
 'blocklogpage'                    => 'Rexistro de bloqueos',
 'blocklog-fulllog'                => 'Rexistro de bloqueos totais',
 'blocklogentry'                   => 'bloqueou a "[[$1]]" cun tempo de duración de $2 $3',
@@ -2785,7 +2787,8 @@ Outros agocharanse por omisión.
 'confirmemail'             => 'Confirmar o enderezo de correo electrónico',
 'confirmemail_noemail'     => 'Non ten rexistrado ningún enderezo de correo electrónico válido nas súas [[Special:Preferences|preferencias de usuario]].',
 'confirmemail_text'        => '{{SITENAME}} require que lle dea validez ao seu enderezo de correo electrónico antes de utilizar as funcións relacionadas con el. Prema no botón de embaixo para enviar un correo de confirmación ao seu enderezo. O correo incluirá unha ligazón cun código: faga clic nesta ligazón para abrila no seu navegador web e así confirmar que o seu enderezo é válido.',
-'confirmemail_pending'     => ' Envióuselle un código de confirmación ao enderezo de correo electrónico; se creou a conta hai pouco debe esperar uns minutos antes de solicitar un novo código.',
+'confirmemail_pending'     => 'Envióuselle un código de confirmación ao enderezo de correo electrónico;
+se creou a conta hai pouco debe esperar uns minutos antes de solicitar un novo código.',
 'confirmemail_send'        => 'Enviar por correo elecrónico un código de confirmación',
 'confirmemail_sent'        => 'Correo electrónico de confirmación enviado.',
 'confirmemail_oncreate'    => 'Envióuselle un código de confirmación ao enderezo de correo electrónico. Este código non é imprescindible para entrar no wiki, pero é preciso para activar as funcións do wiki baseadas no correo.',
@@ -2832,9 +2835,9 @@ $1
 
 # Delete conflict
 'deletedwhileediting' => "'''Aviso:''' esta páxina foi borrada despois de que comezase a editala!",
-'confirmrecreate'     => "O usuario [[User:$1|$1]] ([[User talk:$1|disc.]]) borrou este artigo despois de que vostede comezara a editalo, polo seguinte motivo:
+'confirmrecreate'     => "O usuario [[User:$1|$1]] ([[User talk:$1|conversa]]) borrou este artigo despois de que vostede comezara a editalo, dando o seguinte motivo:
 : ''$2'' 
-Por favor confirme que realmente quere crear o artigo de novo.",
+Por favor, confirme que realmente quere recrear esta páxina.",
 'recreate'            => 'Recrear',
 
 # action=purge
@@ -2981,6 +2984,7 @@ Introduza o nome do ficheiro sen o prefixo "{{ns:file}}:".',
 #Poña todos os fragmentos por riba desta liña. Deixe esta liña tal e como está</pre>',
 
 # Special:Tags
+'tags'                    => 'Etiquetas de cambios válidas',
 'tag-filter'              => 'Filtrar as [[Special:Tags|etiquetas]]:',
 'tag-filter-submit'       => 'Filtro',
 'tags-title'              => 'Etiquetas',

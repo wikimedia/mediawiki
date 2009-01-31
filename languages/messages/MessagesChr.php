@@ -4,9 +4,17 @@
  * @ingroup Language
  * @file
  *
+ * @author Maximillion Pegasus
  */
 
 $messages = array(
+# Dates
+'january'  => 'UᏃᎸᏔᏂ',
+'february' => 'KᎠᎦᎵ',
+'march'    => 'ᎠᏄᏱ',
+'april'    => 'ᏥᎶᏂ',
+'june'     => 'DᎡᎭᎷᏱ',
+
 'about'          => 'ᎬᏩᏚᏫᏛ',
 'article'        => 'ᎤᏓᏡᎬ',
 'qbpageinfo'     => 'ᎦᎷᎯᏍᏗ',
@@ -35,6 +43,12 @@ $messages = array(
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'ᎤᏓᏡᎬ',
 'nstab-category' => 'ᏗᎦᎪᏗ',
+
+# General errors
+'viewsource' => 'DᎢᎧᏃᏗᎢ DᎢᏓᎴᎲᏍᎬ',
+
+# Diffs
+'editundo' => 'IᎬᎾᏕᏍᏗ',
 
 # Search results
 'powersearch' => 'ᎠᏯᏍᏗ',

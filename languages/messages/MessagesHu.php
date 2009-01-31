@@ -3116,4 +3116,10 @@ Add meg a fájl nevét „{{ns:file}}:” előtag nélkül.',
 
 #A reguláris kifejezéseket ezen sor alá írd. Ezt a sort hagyd így, ahogy van.</pre>',
 
+# Special:Tags
+'tag-filter-submit'    => 'Szűrő',
+'tags-title'           => 'Címkék',
+'tags-hitcount-header' => 'Felcímkézett változtatások',
+'tags-edit'            => 'szerkesztés',
+
 );

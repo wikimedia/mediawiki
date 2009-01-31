@@ -3416,6 +3416,7 @@ $1
 #ضع كل منثورات التعبيرات المنتظمة فوق هذا السطر. اترك هذا السطر تماما كما هو</pre>',
 
 # Special:Tags
+'tags'                    => 'وسوم التغيير الصحيحة',
 'tag-filter'              => 'فلتر [[Special:Tags|الوسم]]:',
 'tag-filter-submit'       => 'فلتر',
 'tags-title'              => 'وسوم',
@@ -3423,7 +3424,7 @@ $1
 'tags-tag'                => 'اسم وسم داخلي',
 'tags-display-header'     => 'الظهور في قوائم التغييرات',
 'tags-description-header' => 'وصف كامل للمعنى',
-'tags-hitcount-header'    => 'تعديلات موسومة',
+'tags-hitcount-header'    => 'تغييرات موسومة',
 'tags-edit'               => 'عدل',
 'tags-hitcount'           => '$1 {{PLURAL:$1|تغيير|تغيير}}',
 

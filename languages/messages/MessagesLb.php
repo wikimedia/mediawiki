@@ -390,7 +390,7 @@ $messages = array(
 'nstab-user'      => 'Benotzersäit',
 'nstab-media'     => 'Media Säit',
 'nstab-special'   => 'Spezialsäit',
-'nstab-project'   => 'Project:',
+'nstab-project'   => 'Projetssäit:',
 'nstab-image'     => 'Fichier',
 'nstab-mediawiki' => 'Systemmessage',
 'nstab-template'  => 'Schabloun',
@@ -508,6 +508,10 @@ Sicht iech een anere Benotzernumm.',
 'badsig'                     => "D'Syntax vun ärer Ënnerschëft ass net korrekt; iwwerpréift w.e.g. ären HTML Code.",
 'badsiglength'               => "D'Ënnerschrëft ass ze laang.
 Si muss manner wéi $1 {{PLURAL:$1|Zeechen|Zeechen}} hunn.",
+'yourgender'                 => 'Geschlecht:',
+'gender-unknown'             => 'Net uginn',
+'gender-male'                => 'Männlech',
+'gender-female'              => 'Weiblech',
 'email'                      => 'E-Mail',
 'prefs-help-realname'        => 'Äre richtege Numm ass fakultativ. Wann Dir en ugitt gëtt e benotzt fir iech är Kontributiounen zouzeuerdnen.',
 'loginerror'                 => 'Feeler bäi der Umeldung',
@@ -1080,6 +1084,8 @@ iwwerpréift déi korrekt Installatioun vu LaTeX, dvips, gs a convert",
 'defaultns'                 => 'Dës Nummraim duerchsichen:',
 'default'                   => 'Standard',
 'files'                     => 'Fichieren',
+'prefs-custom-css'          => 'Benotzerdefinéierten CSS',
+'prefs-custom-js'           => 'Benotzerdefinéierte JS',
 
 # User rights
 'userrights'                  => 'Benotzerrechterverwaltung', # Not used as normal message but as header for the special page itself
@@ -1527,7 +1533,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'uncategorizedcategories' => 'Kategorien déi selwer nach keng Kategorie hunn',
 'uncategorizedimages'     => 'Biller ouni Kategorie',
 'uncategorizedtemplates'  => 'Schablounen ouni Kategorie',
-'unusedcategories'        => 'Onbenotzt Kategorien',
+'unusedcategories'        => 'Onbenotzte Kategorien',
 'unusedimages'            => 'Onbenotzte Biller',
 'popularpages'            => 'Populär Säiten',
 'wantedcategories'        => 'Gewënschte Kategorien',
@@ -1556,6 +1562,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'listusers'               => 'Benotzerlëscht',
 'listusers-editsonly'     => 'Nëmme Benotzer mat Ännerunge weisen',
 'usereditcount'           => '$1 {{PLURAL:$1|Ännerung|Ännerungen}}',
+'usercreated'             => 'De(n) $1 ëm $2 Auer ugeluecht',
 'newpages'                => 'Nei Säiten',
 'newpages-username'       => 'Benotzernumm:',
 'ancientpages'            => 'Al Säiten',
@@ -2842,5 +2849,24 @@ Gitt den Numm vum Fichier ouni de Prefix \"{{ns:file}}:\" an.",
 #Zeilen, déi mat engem # ufänken, ginn als Bemierkung behandelt
 
 #All regulär Ausdréck ënnen un dëser Zeil androen. Dës Zeil genee esou loosse wéi se ass</pre>",
+
+# Special:Tags
+'tag-filter'              => '[[Special:Tags|Tag]]-Filter:',
+'tag-filter-submit'       => 'Filter',
+'tags-title'              => 'Markéierungen',
+'tags-intro'              => 'Op dëser Säit stinn all déi Taggen, déi vun dëser Software fir Ännerungen unzeweise benotzt ginn, an hir Bedeitung.',
+'tags-display-header'     => 'Opzielungen op den Ännerungslëschten',
+'tags-description-header' => 'Ganz Beschreiwung vun der Bedeitung',
+'tags-hitcount-header'    => 'Markéiert Ännerungen',
+'tags-edit'               => 'änneren',
+'tags-hitcount'           => '$1 {{PLURAL:$1|Ännerung|Ännerungen}}',
+
+# Database error messages
+'dberr-header'      => 'Dës Wiki huet e Problem',
+'dberr-problems'    => 'Pardon! Dëse Site huet technesch Schwieregkeeten.',
+'dberr-again'       => 'Versicht e puer Minutten ze waarden an dann nei ze lueden.',
+'dberr-info'        => '(Den Databank-Server kann net erreecht ginn: $1)',
+'dberr-usegoogle'   => 'An der Tëschezäit kënnt Dir probéieren mam Google ze sichen.',
+'dberr-cachederror' => 'Dëst ass eng tëschegespäichert Kopie vun der gefroter Säit, a si kann eventuell net aktuell sinn.',
 
 );

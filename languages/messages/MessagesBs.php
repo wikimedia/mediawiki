@@ -3177,6 +3177,7 @@ Unesite ime datoteke bez "{{ns:file}}:" prefiksa.',
 #Stavite sve regex fragmente iznad ove linije. Ostavite ovu liniju onakvu kakva je</pre>',
 
 # Special:Tags
+'tags'                    => 'Oznake valjane izmjene',
 'tag-filter'              => 'Filter [[Special:Tags|oznaka]]:',
 'tag-filter-submit'       => 'Filter',
 'tags-title'              => 'Oznake',

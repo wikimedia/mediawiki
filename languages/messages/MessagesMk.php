@@ -659,6 +659,10 @@ $2',
 Проверете ги HTML таговите.',
 'badsiglength'               => 'Потписот е предолг.
 Мора да биде под $1 {{PLURAL:$1|знак|знаци}}.',
+'yourgender'                 => 'Пол:',
+'gender-unknown'             => 'Неспецифицирано',
+'gender-male'                => 'Машки',
+'gender-female'              => 'Женски',
 'email'                      => 'Е-пошта',
 'prefs-help-realname'        => "'''Вистинското име''' е опционо. 
 Доколку изберете да го впишете вашето име, тоа може да се искористи за давање на заслуги за вашата работа.",
@@ -3210,5 +3214,12 @@ $1
 #Lines beginning with # are treated as comments
 
 #Put all regex fragments above this line. Leave this line exactly as it is</pre>',
+
+# Special:Tags
+'tag-filter'        => '[[Special:Tags|Филтер за приврзок]]:',
+'tag-filter-submit' => 'Филтер',
+'tags-title'        => 'Приврзоци',
+'tags-edit'         => 'уреди',
+'tags-hitcount'     => '$1 {{PLURAL:$1|промена|промени}}',
 
 );
