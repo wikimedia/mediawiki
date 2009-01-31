@@ -152,7 +152,9 @@ class ApiParse extends ApiBase {
 		if(isset($prop['sections']))
 			$result_array['sections'] = $p_result->getSections();
 		if(isset($prop['displaytitle']))
-			$result_array['displaytitle'] = $p_result->getDisplayTitle();
+			$result_array['displaytitle'] = $p_result->getDisplayTitle() ?
+							$p_result->getDisplayTitle() :
+							$titleObj->getPrefixedText();
 		if(!is_null($oldid))
 			$result_array['revid'] = $oldid;
 
