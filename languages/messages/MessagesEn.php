@@ -3815,4 +3815,13 @@ Enter the filename without the "{{ns:file}}:" prefix.',
 'tags-edit'               => 'edit',
 'tags-hitcount'           => '$1 {{PLURAL:$1|change|changes}}',
 
+# Hardcoded dberror messages
+'dberr-header'   => 'This wiki has a problem',
+'dberr-problems' => 'Sorry! This site is experiencing technical difficulties.',
+'dberr-again'    => 'Try waiting a few minutes and reloading.',
+'dberr-info'     => '(Can\'t contact the database server: $1)',
+
+'dberr-usegoogle' => 'You can try searching via Google in the meantime.',
+'dberr-outofdate' => 'Note that their indexes of our content may be out of date.',
+'dberr-cachederror' => 'The following is a cached copy of the requested page, and may not be up to date.',
 );
