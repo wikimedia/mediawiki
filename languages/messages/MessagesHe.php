@@ -3230,6 +3230,7 @@ $1
 #נא לכתוב את כל הביטויים הרגולריים מעל שורה זו. נא להשאיר שורה זו בדיוק כפי שהיא</pre>',
 
 # Special:Tags
+'tags'                    => 'התגיות הקיימות לסימון שינויים',
 'tag-filter'              => 'מסנן [[Special:Tags|תגיות]]:',
 'tag-filter-submit'       => 'סינון',
 'tags-title'              => 'תגיות',
@@ -3237,7 +3238,7 @@ $1
 'tags-tag'                => 'שם התגית הפנימי',
 'tags-display-header'     => 'הופעה ברשימות השינויים',
 'tags-description-header' => 'תיאור מלא של המשמעות',
-'tags-hitcount-header'    => 'עריכות עם תגיות',
+'tags-hitcount-header'    => 'שינויים עם תגיות',
 'tags-edit'               => 'עריכה',
 'tags-hitcount'           => '{{PLURAL:$1|שינוי אחד|$1 שינויים}}',
 
