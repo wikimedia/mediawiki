@@ -73,8 +73,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   "mw-confirmemail-pending"
 * Local redirects to foreign images are now displayed on the ImagePage when
   viewing on the local wiki.
-* The {{NAMESPACE}}, {{TALKSPACE}}, and {{SUBJECTSPACE}} magic words can now be
-  used as parser functions to return the desired namespace for a given title.
+* (bug 8249) The magic words for namespaces and pagenames can now be used as 
+  parser functions to return the desired namespace or normalized title/title part
+  for a given title.
 * Styled #mw-data-after-content in cologneblue.css to match the rest of the font (bug 17110)
 * (bug 7556) Time zone names in signatures lack i18n
 

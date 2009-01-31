@@ -53,6 +53,18 @@ class CoreParserFunctions {
 		$parser->setFunctionHook( 'talkspacee',       array( __CLASS__, 'talkspacee'       ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'subjectspace',     array( __CLASS__, 'subjectspace'     ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'subjectspacee',    array( __CLASS__, 'subjectspacee'    ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'pagename',         array( __CLASS__, 'pagename'         ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'pagenamee',        array( __CLASS__, 'pagenamee'        ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'fullpagename',     array( __CLASS__, 'fullpagename'     ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'fullpagenamee',    array( __CLASS__, 'fullpagenamee'    ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'basepagename',     array( __CLASS__, 'basepagename'     ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'basepagenamee',    array( __CLASS__, 'basepagenamee'    ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'subpagename',      array( __CLASS__, 'subpagename'      ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'subpagenamee',     array( __CLASS__, 'subpagenamee'     ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'talkpagename',     array( __CLASS__, 'talkpagename'     ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'talkpagenamee',    array( __CLASS__, 'talkpagenamee'    ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'subjectpagename',  array( __CLASS__, 'subjectpagename'  ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'subjectpagenamee', array( __CLASS__, 'subjectpagenamee' ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'tag',              array( __CLASS__, 'tagObj'           ), SFH_OBJECT_ARGS );
 
 		if ( $wgAllowDisplayTitle ) {
@@ -294,6 +306,82 @@ class CoreParserFunctions {
 		if ( is_null($t) )
 			return '';
 		return wfUrlencode( $t->getSubjectNsText() );
+	}
+	/*
+	 * Functions to get and normalize pagenames, corresponding to the magic words
+	 * of the same names
+	*/
+	static function pagename( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null($t) )
+			return '';
+		return wfEscapeWikiText( $t->getText() );
+	}
+	static function pagenamee( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null($t) )
+			return '';
+		return $t->getPartialURL();
+	}
+	static function fullpagename( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null($t) || !$t->canTalk() )
+			return '';
+		return wfEscapeWikiText( $t->getPrefixedText() );
+	}
+	static function fullpagenamee( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null($t) || !$t->canTalk() )
+			return '';
+		return $t->getPrefixedURL();
+	}
+	static function subpagename( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null($t) )
+			return '';
+		return $t->getSubpageText();
+	}
+	static function subpagenamee( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null($t) )
+			return '';
+		return $t->getSubpageUrlForm();
+	}
+	static function basepagename( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null($t) )
+			return '';
+		return $t->getBaseText();
+	}
+	static function basepagenamee( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null($t) )
+			return '';
+		return wfUrlEncode( str_replace( ' ', '_', $t->getBaseText() ) );
+	}	
+	static function talkpagename( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null($t) || !$t->canTalk() )
+			return '';
+		return wfEscapeWikiText( $t->getTalkPage()->getPrefixedText() );
+	}
+	static function talkpagenamee( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null($t) || !$t->canTalk() )
+			return '';
+		return $t->getTalkPage()->getPrefixedUrl();
+	}
+	static function subjectpagename( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null($t) )
+			return '';
+		return wfEscapeWikiText( $t->getSubjectPage()->getPrefixedText() );
+	}
+	static function subjectpagenamee( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null($t) )
+			return '';
+		return $t->getSubjectPage()->getPrefixedUrl();
 	}
 	
 	/**
