@@ -235,14 +235,17 @@ class MovePageForm {
 
 		if( ($this->oldTitle->hasSubpages() || $this->oldTitle->getTalkPage()->hasSubpages())
 		&& $this->oldTitle->userCan( 'move-subpages' ) ) {
+			global $wgMaximumMovedPages;
+
 			$wgOut->addHTML( "
 				<tr>
 					<td></td>
 					<td class=\"mw-input\">" .
 				Xml::checkLabel( wfMsg(
-						$this->oldTitle->hasSubpages()
+						( $this->oldTitle->hasSubpages()
 						? 'move-subpages'
-						: 'move-talk-subpages'
+						: 'move-talk-subpages' ),
+						$wgMaximumMovedPages
 					),
 					'wpMovesubpages', 'wpMovesubpages',
 					# Don't check the box if we only have talk subpages to
