@@ -288,7 +288,7 @@ class SpecialRecentChanges extends SpecialPage {
 
 		// Tag stuff.
 		$fields = array(); // Fields are * in this case, so let the function modify an empty array to keep it happy.
-		ChangeTags::modifyDisplayQuery( &$tables, $fields, &$conds, &$join_conds, $opts['tagfilter'] );
+		ChangeTags::modifyDisplayQuery( $tables, $fields, $conds, $join_conds, $opts['tagfilter'] );
 
 		wfRunHooks('SpecialRecentChangesQuery', array( &$conds, &$tables, &$join_conds, $opts ) );
 
