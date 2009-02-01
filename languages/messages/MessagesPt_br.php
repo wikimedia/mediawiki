@@ -1699,7 +1699,7 @@ Veja também as [[Special:WantedCategories|categorias em falta]].',
 'deletedcontributions-title' => 'Contribuições de usuário eliminadas',
 
 # Special:LinkSearch
-'linksearch'       => 'Procurar por ligações da web',
+'linksearch'       => 'Ligações externas',
 'linksearch-pat'   => 'Procurar padrão:',
 'linksearch-ns'    => 'Espaço nominal:',
 'linksearch-ok'    => 'Pesquisar',
@@ -1718,7 +1718,7 @@ Protocolos suportados: <tt>$1</tt>',
 'newuserlogpagetext'          => 'Este é um registro de novas contas de usuário',
 'newuserlog-byemail'          => 'senha enviada por correio-eletrônico',
 'newuserlog-create-entry'     => 'Novo usuário',
-'newuserlog-create2-entry'    => 'criou conta para $1',
+'newuserlog-create2-entry'    => 'criou nova conta para $1',
 'newuserlog-autocreate-entry' => 'Conta criada automaticamente',
 
 # Special:ListGroupRights

@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简化字)‬)
+/**  ()
  *
  * @ingroup Language
  * @file
@@ -584,10 +584,10 @@ $2',
 'passwordtooshort'           => '您的密码不正确或太短，不能少于$1个字元，而且必须跟用户名不同。',
 'mailmypassword'             => '将新密码寄给我',
 'passwordremindertitle'      => '{{SITENAME}}的新临时密码',
-'passwordremindertext'       => '有人（有可能是您，来自IP地址$1）已请求{{SITENAME}}的新密码（$4）。
+'passwordremindertext'       => '有人(可能是您，来自IP地址$1)已请求{{SITENAME}}的新密码 ($4)。
 用户"$2"的一个新临时密码现在已被设置好为"$3"。
-如果这个动作是您所指示的，请您立即登入并选择一个新的密码。
-您的临时密码会于{{PLURAL:$5|一|$5}}天内过期。
+如果这个动作是您所指示的，您便需要立即登入并选择一个新的密码。
+您的临时密码会于$5天内过期。
 
 如果是其他人发出了该请求，或者您已经记起了您的密码并不准备改变它，
 您可以忽略此消息并继续使用您的旧密码。',
@@ -601,7 +601,7 @@ $2',
 'acct_creation_throttle_hit' => '抱歉！您已经创建了$1个账号。你不能再创建了。',
 'emailauthenticated'         => '您的电子邮箱地址已经于$2 $3确认有效。',
 'emailnotauthenticated'      => '您的邮箱地址<strong>还没被认证</strong>。以下功能将不会发送任何邮件。',
-'noemailprefs'               => '<strong>指定一个电子邮箱地址以使用此功能</strong>',
+'noemailprefs'               => '指定一个电子邮箱地址以使用此功能',
 'emailconfirmlink'           => '确认您的邮箱地址',
 'invalidemailaddress'        => '邮箱地址格式不正确，请输入正确的邮箱地址或清空该输入框。',
 'accountcreated'             => '已建立账户',

@@ -388,14 +388,14 @@ $messages = array(
 'talkpagelinktext'  => '会話',
 'specialpage'       => '特別ページ',
 'personaltools'     => '個人用ツール',
-'postcomment'       => 'コメントを投稿',
+'postcomment'       => '新しいセクション',
 'articlepage'       => '記事を表示',
 'talk'              => 'ノート',
 'views'             => '表示',
 'toolbox'           => 'ツールボックス',
 'userpage'          => '利用者ページを表示',
 'projectpage'       => 'プロジェクトページを表示',
-'imagepage'         => 'メディアページを表示',
+'imagepage'         => 'ファイルページを表示',
 'mediawikipage'     => 'メッセージページを表示',
 'templatepage'      => 'テンプレートページを表示',
 'viewhelppage'      => 'ヘルプページを表示',
@@ -604,8 +604,8 @@ $2',
 'yourvariant'                => '言語変種:',
 'yournick'                   => '署名:',
 'badsig'                     => '署名が正しくありません。HTMLタグを見直してください。',
-'badsiglength'               => '署名が長すぎます。$1文字以下である必要があります。',
-'yourgender'                 => '性:',
+'badsiglength'               => 'あなたの署名は長すぎます。$1文字以下である必要があります。',
+'yourgender'                 => '性別:',
 'gender-unknown'             => '未指定',
 'gender-male'                => '男',
 'gender-female'              => '女',
@@ -620,7 +620,9 @@ $2',
 'noname'                     => '利用者名を正しく指定していません。',
 'loginsuccesstitle'          => 'ログイン成功',
 'loginsuccess'               => "'''{{SITENAME}} に \"\$1\" としてログインしました。'''",
-'nosuchuser'                 => '"$1"という利用者は見当たりません。綴りが正しいことを再度確認するか、[[Special:UserLogin/signup|アカウントを作成してください]]。',
+'nosuchuser'                 => '"$1"という利用者は見当たりません。
+利用者名は大文字と小文字を区別しています。
+綴りが正しいことを再度確認するか、[[Special:UserLogin/signup|新たにアカウントを作成してください]]。',
 'nosuchusershort'            => '"<nowiki>$1</nowiki>" という利用者は見当たりません。綴りが正しいことを再度確認してください。',
 'nouserspecified'            => '利用者名を指定してください。',
 'wrongpassword'              => 'パスワードが間違っています。再度入力してください。',
@@ -640,7 +642,7 @@ $2',
 'acct_creation_throttle_hit' => 'あなたは既に $1 アカウントを作成しています。これ以上作成できません。',
 'emailauthenticated'         => 'あなたのメールアドレスは $2 の $3 に確認されています。',
 'emailnotauthenticated'      => 'あなたのメールアドレスは確認されていません。確認されるまで以下のいかなるメールも送られません。',
-'noemailprefs'               => 'これらの機能を有効にするにはメールアドレスを登録してください。',
+'noemailprefs'               => 'これらの機能を有効にするためには個人設定でメールアドレスを登録する必要があります。',
 'emailconfirmlink'           => 'メールアドレスを確認する',
 'invalidemailaddress'        => '入力されたメールアドレスが正しい形式に従っていないため、受け付けられません。正しい形式で入力し直すか、メールアドレス欄を空にしてください。',
 'accountcreated'             => 'アカウントを作成しました',
@@ -786,7 +788,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'token_suffix_mismatch'            => '<strong>あなたの使用しているクライアントが、編集トークン内の句読点を正しく処理していないことを確認しました。このページの文章が破損するのを防ぐため、あなたの編集は反映されません。問題のある匿名プロキシサービスを利用していると、この問題が起こることがあります。</strong>',
 'editing'                          => '$1 を編集中',
 'editingsection'                   => '$1 を編集中（セクション単位編集）',
-'editingcomment'                   => '$1 を編集中（新規コメント）',
+'editingcomment'                   => '$1 を編集中（新しいセクション）',
 'editconflict'                     => '編集競合: $1',
 'explainconflict'                  => 'あなたがこのページを編集し始めた後に、他の誰かがこのページを変更しました。上側のテキストエリアは現在の最新の状態です。あなたの編集していた文章は下側のテキストエリアに示されています。編集していた文章を、上側のテキストエリアの文章に組み込んでください。<strong>上側のテキストエリアの内容だけ</strong>が、「{{int:Savearticle}}」をクリックした時に実際に保存されます。',
 'yourtext'                         => 'あなたの文章',
@@ -1405,7 +1407,8 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 確認したファイルが通常サイズの元画像である場合、追加でサムネイルを登録する必要はありません。',
 'file-thumbnail-no'           => 'ファイル名が <strong><tt>$1</tt></strong> から始まっており、サムネイル（縮小版画像）である可能性が高いです。
 より高精細な画像をお持ちの場合は、フルサイズ版をアップロードしてください。そうでない場合はファイル名を変更してください。',
-'fileexists-forbidden'        => 'この名前のファイルは既に存在しています。前のページに戻り、別のファイル名でアップロードし直してください。
+'fileexists-forbidden'        => 'この名前のファイルは既に存在していて、上書きすることができません。
+あなたはファイルをアップロードしたい場合、戻って新しい名前を使用してください。
 [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'この名前のファイルは共有ファイルリポジトリに既に存在しています。アップロードを継続したい場合は、前のページに戻り、別のファイル名を選択してください。[[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'このファイルは以下のファイルと重複しています',
@@ -1491,7 +1494,7 @@ PICT # misc.
 'filehist-dimensions'            => '解像度',
 'filehist-filesize'              => 'ファイルサイズ',
 'filehist-comment'               => 'コメント',
-'imagelinks'                     => 'リンク',
+'imagelinks'                     => 'ファイルリンク',
 'linkstoimage'                   => 'このファイルは以下の{{PLURAL:$1|ページ|$1ページ}}で使用されています:',
 'linkstoimage-more'              => '$1 以上のページがこのファイルにリンクしています。以下のリストはこのファイルにリンクしている最初の$1ページのリンクのみを表示しています。[[Special:WhatLinksHere/$2|完全なリスト]]も参照してください。',
 'nolinkstoimage'                 => 'このファイルを使用しているページはありません。',
@@ -1524,7 +1527,7 @@ PICT # misc.
 # File deletion
 'filedelete'                  => '$1の削除',
 'filedelete-legend'           => 'ファイルの削除',
-'filedelete-intro'            => "あなたは'''[[Media:$1|$1]]'''を削除しようとしています。",
+'filedelete-intro'            => "あなたは全ての履歴とともに'''[[Media:$1|$1]]'''を削除しようとしています。",
 'filedelete-intro-old'        => "あなたは'''[[Media:$1|$1]]'''の[$4 $3, $2]の版を削除しようとしています。",
 'filedelete-comment'          => '削除理由:',
 'filedelete-submit'           => '削除する',
@@ -1596,7 +1599,7 @@ PICT # misc.
 'double-redirect-fixer'      => 'リダイレクトフィクサー',
 
 'brokenredirects'        => '迷子のリダイレクト',
-'brokenredirectstext'    => '以下は存在しないページにリンクしているリダイレクトです。',
+'brokenredirectstext'    => '以下は存在しないページにリンクしているリダイレクトです:',
 'brokenredirects-edit'   => '(編集)',
 'brokenredirects-delete' => '(削除)',
 
@@ -1712,7 +1715,7 @@ PICT # misc.
 'deletedcontributions-title' => '利用者の削除された投稿履歴',
 
 # Special:LinkSearch
-'linksearch'       => '外部リンクの検索',
+'linksearch'       => '外部リンク',
 'linksearch-pat'   => '検索パターン:',
 'linksearch-ns'    => '名前空間:',
 'linksearch-ok'    => '検索',
@@ -1884,7 +1887,7 @@ $NEWPAGE
 'alreadyrolled'    => 'ページ [[:$1]] の [[User:$2|$2]] ([[User talk:$2|会話]] | [[Special:Contributions/$2|{{int:contribslink}}]])による編集のロールバックに失敗しました。他の利用者がすでに編集を行ったかロールバックしたためです。
 
 このページの最後の編集は [[User:$3|$3]] ([[User talk:$3|会話]] | [[Special:Contributions/$3|{{int:contribslink}}]]) によるものです。',
-'editcomment'      => '編集内容の要約: <i>$1</i>', # only shown if there is an edit comment
+'editcomment'      => '編集内容の要約: "<i>$1</i>"', # only shown if there is an edit comment
 'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|会話]]) による編集を [[User:$1|$1]] による版へ差し戻し', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => '$1 による編集を取り消して $2 による直前の版へ差し戻しました。',
 'sessionfailure'   => 'ログイン・セッションに問題が発生しました。セッションハイジャックを防ぐために操作は取り消されました。ブラウザの「戻る」を押して直前のページを再度読み込んだ後に、もう一度操作を行ってください。',
@@ -1909,7 +1912,7 @@ $NEWPAGE
 'protect-locked-dblock'       => '現在データベースがロックされているため、保護レベルを変更できません。現在のページ <strong>$1</strong> の状態は以下の通りです:',
 'protect-locked-access'       => 'あなたのアカウントはページの保護レベルを変更する権限を持っていません。現在のページ<strong>$1</strong>の状態は以下の通りです:',
 'protect-cascadeon'           => 'このページはカスケード保護されている以下のページから呼び出されているため、編集できないように保護されています。保護レベルを変更することは可能ですが、このカスケード保護には影響しません。',
-'protect-default'             => '（解除）',
+'protect-default'             => 'すべての利用者を許可',
 'protect-fallback'            => '"$1" 権限が必要です',
 'protect-level-autoconfirmed' => '新規利用者と匿名利用者を禁止',
 'protect-level-sysop'         => '{{int:group-sysop}}のみ',
@@ -2075,7 +2078,7 @@ $NEWPAGE
 'ipb-blocklist-contribs'          => '$1 の投稿記録',
 'unblockip'                       => '投稿ブロックを解除する',
 'unblockiptext'                   => '以下のフォームで利用者またはIPアドレスの投稿ブロックを解除できます。',
-'ipusubmit'                       => '投稿ブロックを解除する',
+'ipusubmit'                       => 'このIPアドレスの投稿ブロックを解除する',
 'unblocked'                       => '[[User:$1|$1]] の投稿ブロックを解除しました',
 'unblocked-id'                    => 'ブロック $1 は解除されました',
 'ipblocklist'                     => '投稿ブロック中の利用者やIPアドレス',
@@ -2296,13 +2299,13 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'import-logentry-interwiki-detail' => '$2 の $1 版',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => '自分の利用者ページ',
+'tooltip-pt-userpage'             => 'あなたの利用者ページ',
 'tooltip-pt-anonuserpage'         => 'あなたのIPアドレス用の利用者ページ',
-'tooltip-pt-mytalk'               => '自分の会話ページ',
+'tooltip-pt-mytalk'               => 'あなたの会話ページ',
 'tooltip-pt-anontalk'             => 'あなたのIPアドレスからなされた編集の会話ページ',
 'tooltip-pt-preferences'          => '個人設定',
 'tooltip-pt-watchlist'            => '変更を監視しているページの一覧',
-'tooltip-pt-mycontris'            => '自分の投稿記録',
+'tooltip-pt-mycontris'            => 'あなたの投稿記録',
 'tooltip-pt-login'                => 'ログインすることが推奨されますが、しなくても構いません。',
 'tooltip-pt-anonlogin'            => 'ログインすることが推奨されますが、しなくても構いません。',
 'tooltip-pt-logout'               => 'ログアウト',
@@ -3071,5 +3074,11 @@ $1
 'tags-hitcount-header'    => 'タグ付き変更の数',
 'tags-edit'               => '編集',
 'tags-hitcount'           => '$1件の変更',
+
+# Database error messages
+'dberr-header'   => 'このウィキには問題があります。',
+'dberr-problems' => 'すみません!このサイトは技術的な問題が発生しています。',
+'dberr-again'    => '数分間待った後、再ロードしてみてください。',
+'dberr-info'     => '(データベースサーバー: $1 に接続できませんでした。)',
 
 );

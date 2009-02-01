@@ -2747,7 +2747,7 @@ $1
 'table_pager_empty'        => 'Туох да көстүбэтэ',
 
 # Auto-summaries
-'autosumm-blank'   => 'Сирэй иһэ барыта сотуллубут',
+'autosumm-blank'   => 'Бу сирэй ыраастаныллыбыт',
 'autosumm-replace' => "Сирэй иһэ уларытыллыбыт: '$1'",
 'autoredircomment' => 'Утаарыы: [[$1]]',
 'autosumm-new'     => 'Саҥа: $1',

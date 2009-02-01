@@ -589,7 +589,7 @@ Meld \'t dan effen bie een [[Special:ListUsers/sysop|systeembeheerder]] van {{SI
 'cannotdelete'         => 'Kon de pagina of ofbeelding neet vort-edaon wonnen.',
 'badtitle'             => 'Ongeldige naam',
 'badtitletext'         => 'De naam van de op-evreugen pagina is neet geldig, leeg, of een interwiki-verwiezing naor een onbekende of ongeldige wiki.',
-'perfcached'           => 'Disse gegevens kwammen uut de kas en bin werschienlijk neet akteweel:',
+'perfcached'           => 'Disse gegevens kwammen uut de kas en bin werschienlijk neet actueel:',
 'perfcachedts'         => 'De infermasie dee hieronder steet, is op-esleugen, en is van $1.',
 'querypage-no-updates' => "Opwerderingen veur disse pagina bin op 't mement uut-eschakeld. Data zal noen neet verniejd wonnen.",
 'wrong_wfQuery_params' => 'Parremeters veur wfQuery() wanen verkeerd<br />
@@ -701,7 +701,7 @@ Um misbruuk te veurkoemen wonnen der mar één wachwoordherinnering per {{PLURAL
 Je kunnen gien nieje gebrukers meer registreren.',
 'emailauthenticated'         => 'Joew e-mailadres is bevestig op $2 um $3.',
 'emailnotauthenticated'      => 'E-mailadres is <strong>nog neet bevestig</strong>. Je ontvangen gien berichen veur de onstaonde opties.',
-'noemailprefs'               => '<strong>Gien e-mailadres in-evoerd</strong>, waordeur de onderstaonde functies neet warken.',
+'noemailprefs'               => 'Gien e-mailadres in-evoerd, waordeur de onderstaonde functies neet warken.',
 'emailconfirmlink'           => 'Bevestig e-mailadres',
 'invalidemailaddress'        => "'t E-mailadres kon neet eaccepteerd wonnen umdat de opmaak ongeldig is. 
 Voer de juuste opmaak van 't adres in of laot 't veld leeg.",
@@ -2723,7 +2723,7 @@ Contreleer joew e-mailadres op ongeldige tekens.
 
 Fout bie 't versturen: $1",
 'confirmemail_invalid'     => 'Ongeldige bevestigingscode. De code kan verlopen ween.',
-'confirmemail_needlogin'   => 'Je muttnen $1 um joew e-mailadres te bevestigen.',
+'confirmemail_needlogin'   => 'Je mutten $1 um joew e-mailadres te bevestigen.',
 'confirmemail_success'     => 'Joew e-mailadres is bevestig. Je kunnen noen anmelden en {{SITENAME}} gebruken.',
 'confirmemail_loggedin'    => 'Joew e-mailadres is noen bevestig.',
 'confirmemail_error'       => "Der is iets fout egaon bie 't opslaon van joew bevestiging.",
@@ -2764,6 +2764,7 @@ $1
 # action=purge
 'confirm_purge_button' => 'Bevestig',
 'confirm-purge-top'    => "Klik op 'bevestig' um de kas van disse pagina te legen.",
+'confirm-purge-bottom' => "'t Leegmaken van de kas zörg derveur da-j de leste versie van een pagina zien.",
 
 # Multipage image navigation
 'imgmultipageprev' => '&larr; veurige',

@@ -451,7 +451,7 @@ Waiwiese in ju Bestätigengs-E-Mail.',
 'emailauthenticated'         => 'Jou Email-Adrässe wuude ap n $2 uum $3 Uure bestäätiged.',
 'emailnotauthenticated'      => 'Jou Email-Adrässe wuude <strong>noch nit bestäätiged</strong>. Deeruum is bit nu neen E-
 Mail-Fersoand un Ämpfang foar do foulgjende Funktionen muugelk.',
-'noemailprefs'               => '<strong>Du hääst neen Email-Adrässe anroat</strong>, do foulgjende Funktione sunt deeruum apstuuns nit muugelk.',
+'noemailprefs'               => 'Du hääst neen Email-Adrässe anroat, do foulgjende Funktione sunt deeruum apstuuns nit muugelk.',
 'emailconfirmlink'           => 'Bestäätigje Jou Email-Adrässe',
 'invalidemailaddress'        => 'Ju Email-Adresse wuude nit akzeptierd deeruum dät ju n ungultich Formoat tou hääben schient. Reek jädden ne Adrässe in n gultich Formoat ien of moakje dät Fäild loos.',
 'accountcreated'             => 'Benutserkonto näi anlaid',

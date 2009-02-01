@@ -174,7 +174,7 @@ $messages = array(
 'talkpagelinktext'  => 'Καλάτσεμαν',
 'specialpage'       => 'Ειδικόν σελίδαν',
 'personaltools'     => 'Προσωπικά εργαλεία',
-'postcomment'       => 'Ποίσον σχόλιον',
+'postcomment'       => 'Ποίσον τομέαν',
 'articlepage'       => 'Σελίδα',
 'talk'              => 'Καλάτσεμαν',
 'views'             => 'Τερέματα',
@@ -247,7 +247,7 @@ $messages = array(
 'nstab-main'      => 'Σελίδαν',
 'nstab-user'      => 'Σελίδα χρήστε',
 'nstab-media'     => 'Σελίδα μεσίων',
-'nstab-special'   => 'Ειδικόν',
+'nstab-special'   => 'Ειδικόν σελίδα',
 'nstab-project'   => 'Σχετικά με',
 'nstab-image'     => 'Εικόνα',
 'nstab-mediawiki' => 'Μένεμαν',
@@ -323,7 +323,7 @@ $messages = array(
 'yourlanguage'               => "Τ' εσόν η γλώσσαν:",
 'yournick'                   => 'Υπογραφή:',
 'badsiglength'               => "Η υπογραφή εν πολλά τρανόν.
-Επρέπ να έχ' λιγότερα ασα $1 {{PLURAL:$1|γράμμα|γράμματα}}.",
+Επρέπ' να έχ' λιγότερα άσα $1 {{PLURAL:$1|γράμμα|γράμματα}}.",
 'yourgender'                 => 'Φύλον:',
 'gender-unknown'             => 'Άγνωστο',
 'gender-male'                => 'Άντρας',
@@ -335,8 +335,9 @@ $messages = array(
 'noname'                     => "'Κ έβαλατε καλόν όνεμαν χρήστονος.",
 'loginsuccesstitle'          => "Έντον τ' εσέβεμαν",
 'loginsuccess'               => "'''Εσήβετεν σο {{SITENAME}} με τ'όνεμαν \"\$1\".'''",
-'nosuchuser'                 => 'Αδά \'κ εχ\' χρήστεν με τ\' όνεμαν "$1".
-Το γράψιμον ωρία γιά [[Special:UserLogin/signup|ποίσον καινούρεον λογαρίαν]].',
+'nosuchuser'                 => "Αδά 'κ εχ' χρήστεν με τ' όνεμαν \"\$1\".
+Τ' όνεμα χρήστε εν προσωπικόν δεδομένον.
+Το γράψιμον ωρία γιά [[Special:UserLogin/signup|ποίσον καινούρεον λογαρίαν]].",
 'nosuchusershort'            => 'Αδά \'κ εχ\' χρήστεν με τ\' όνομα "<nowiki>$1</nowiki>".
 Το γράψιμονις ωρία.',
 'nouserspecified'            => "Πρέπ' να ψιλίζετε έναν όνεμαν.",
@@ -367,10 +368,11 @@ $messages = array(
 'loginlanguagelabel'         => 'Γλώσσαν: $1',
 
 # Password reset dialog
-'resetpass'   => 'Νέον σημάδιν',
-'oldpassword' => 'Παλαιόν σημάδιν:',
-'newpassword' => 'Καινούρεον σημάδιν:',
-'retypenew'   => 'Γράψον ξαν το νέον σημάδιν:',
+'resetpass'                 => 'Νέον σημάδιν',
+'oldpassword'               => 'Παλαιόν σημάδιν:',
+'newpassword'               => 'Καινούρεον σημάδιν:',
+'retypenew'                 => 'Γράψον ξαν το νέον σημάδιν:',
+'resetpass-submit-loggedin' => 'Άλλαξον σημάδιν',
 
 # Edit page toolbar
 'bold_sample'     => 'Χοντρόν κείμενον',
@@ -449,7 +451,7 @@ $messages = array(
 Τ' αλλαγάς 'κ εκρατέθαν!</strong>",
 'editing'                => 'Αλλαγήν $1',
 'editingsection'         => 'Αλλαγήν $1 (τμήμα)',
-'editingcomment'         => 'Άλλαγμαν $1 (καλάτσεμαν)',
+'editingcomment'         => 'Άλλαγμαν $1 (καινουρέον τομέαν)',
 'yourtext'               => 'Το γράψιμονις',
 'storedversion'          => 'Αποθηκεμένον μορφή',
 'editingold'             => "<strong>ΩΡΙΑ: Εφτάτε αλλαγάς σε παλαιόν έκδοσην τη σελίδας. 
@@ -671,7 +673,7 @@ $messages = array(
 'filehist-dimensions'           => 'Διαστάσεις',
 'filehist-filesize'             => 'Μέγεθος',
 'filehist-comment'              => 'Σχόλιον',
-'imagelinks'                    => 'Σύνδεσμοι',
+'imagelinks'                    => 'Σύνδεσμοι αρχείων',
 'linkstoimage'                  => "Ατά τα {{PLURAL:$1|σελίδαν δεκνίζ'|$1 σελίδας δεκνίζ'νε}} σην εικόναν:",
 'nolinkstoimage'                => "'Κ εχ σελίδας ντο δεκνίζνε σ' αβούτεν εικόναν.",
 'sharedupload'                  => "Αβούτον τ' αρχείον εφορτώθεν για κοινόν κουλάνεμαν κι εν δυνατόν να χρησιμοπισκάται και σ' άλλα έργα.",
@@ -737,7 +739,7 @@ $messages = array(
 'mostcategories'          => "Σελίδας με τ' ασ' όλτς πολλά κατηγορίας",
 'mostimages'              => "Αρχεία με τ' ασόλων πλέα σελίδας ντο δεκνίζν' εκαικά",
 'mostrevisions'           => "Σελίδας με τ' ασόλων πλέα αλλαγάς",
-'prefixindex'             => 'Κατάλογος κατά πρόθεμαν',
+'prefixindex'             => 'Κατάλογος σελίδων κατά πρόθεμαν',
 'shortpages'              => 'Μικρά σελίδας',
 'longpages'               => 'Τρανά σελίδας',
 'deadendpages'            => 'Αδιέξοδα σελίδας',
@@ -844,9 +846,9 @@ $messages = array(
 'protect-locked-access'       => "Η λογαρίανεσουν 'κ έχ' το δικαίωμαν να αλλάζ' τ' ασπάλιγμαν τη σελίδας.
 Αδά έχ' τ' ατωριζνά τα νομς για τη σελίδαν <strong>$1</strong>:",
 'protect-cascadeon'           => "Αβούτη η σελίδα ατώρα εν ασπαλιγμένον: Εν απές {{PLURAL:$1|σ' ακόλουθουν τη σελίδαν, ντο έχ'|σ' ακόλουθα τα σελίδας, τ' έχνε}} ενεργοποιημένον το διαδοχικόν τ' ασπάλιγμαν. Πορείτε ν' ελλάζετε το επίπεδον ασπαλιγματί τη σελίδας, άμα αβούτο ξάι 'κ θ' αλλάζ' το διαδοχικόν τ' ασπάλιγμαν.",
-'protect-default'             => '(προεπιλεγμένον)',
+'protect-default'             => "Επετρέπ' όλους τς χρήστες",
 'protect-fallback'            => 'Ψαλαφίον δικαιωματίων "$1"',
-'protect-level-autoconfirmed' => 'Ασπάλιγμαν χρηστίων θίχως λογαρίαν',
+'protect-level-autoconfirmed' => 'Ασπάλιγμαν καινουρέων χρηστίων και θίχως λογαρίαν',
 'protect-level-sysop'         => 'Νοματέοι μαναχόν',
 'protect-summary-cascade'     => 'διαδοχικόν',
 'protect-expiring'            => 'λήγει στις $1 (UTC)',
@@ -1003,7 +1005,7 @@ $messages = array(
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => "Τ' εμόν η σελίδαν",
-'tooltip-pt-mytalk'               => "Σελίδαν με τ' εμά τα καλατσέματα",
+'tooltip-pt-mytalk'               => "Τ' εμόν το καλάτσεμαν",
 'tooltip-pt-preferences'          => "Τ' εμά τα προτιμήσεις",
 'tooltip-pt-watchlist'            => "Λίστα με τα σελίδας ντ' ωριάζω",
 'tooltip-pt-mycontris'            => "Λίστα με τα δουλείας ντ' εποίκα",
@@ -1011,7 +1013,7 @@ $messages = array(
 'tooltip-pt-logout'               => 'Απιδεβένετεν τη Βικιπαίδειαν',
 'tooltip-ca-talk'                 => "Γονούσεμαν γι' αβούτον τ' άρθρον",
 'tooltip-ca-edit'                 => "Άλλαγμαν τη σελίδας. Άμαν τερέστεν τ' αλλαγάς πριν θα κρατείτε ατά.",
-'tooltip-ca-addsection'           => "Βαλέστε σχόλιον σ' αβούτο το γουνούσεμα.",
+'tooltip-ca-addsection'           => 'Αρχίνεστε καινουρέον τομέαν.',
 'tooltip-ca-viewsource'           => "Ατό η σελίδαν εν ασπαλιγμένον. Άμαν μπορείτε να τερείτε το κείμενον ατ'ς.",
 'tooltip-ca-history'              => 'Παλαιά εκδώσεις τη σελίδας.',
 'tooltip-ca-protect'              => 'Ασπάλιγμα τη σελίδας',

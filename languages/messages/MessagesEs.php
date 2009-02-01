@@ -437,7 +437,7 @@ $messages = array(
 'nstab-main'      => 'Página',
 'nstab-user'      => 'Usuario',
 'nstab-media'     => 'Media',
-'nstab-special'   => 'Especial',
+'nstab-special'   => 'Página especial',
 'nstab-project'   => 'Página del proyecto',
 'nstab-image'     => 'Archivo',
 'nstab-mediawiki' => 'Mensaje',
@@ -615,7 +615,7 @@ No puedes crear más.',
 'emailauthenticated'         => 'Su dirección electrónica fue autenticada en $2 a $3.',
 'emailnotauthenticated'      => 'Aún no has confirmado tu dirección de correo electrónico.
 Hasta que lo hagas, las siguientes funciones no estarán disponibles.',
-'noemailprefs'               => '<strong>Especifique una dirección electrónica para habilitar estas características.</strong>',
+'noemailprefs'               => 'Especifique una dirección electrónica para habilitar estas características.',
 'emailconfirmlink'           => 'Confirme su dirección de correo electrónico',
 'invalidemailaddress'        => 'La dirección electrónica no puede ser aceptada, pues parece que tiene un formato no válido.
 Por favor, entre una dirección bien formada, o vacíe ese campo.',

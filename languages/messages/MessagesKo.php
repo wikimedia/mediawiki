@@ -1531,7 +1531,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 # File deletion
 'filedelete'                  => '$1 삭제하기',
 'filedelete-legend'           => '파일 삭제하기',
-'filedelete-intro'            => "'''[[Media:$1|$1]]''' 파일을 삭제합니다.",
+'filedelete-intro'            => "'''[[Media:$1|$1]]''' 파일과 모든 역사를 삭제합니다.",
 'filedelete-intro-old'        => "'''[[Media:$1|$1]]''' 파일의 [$4 $2 $3] 버전을 삭제합니다.",
 'filedelete-comment'          => '삭제 이유:',
 'filedelete-submit'           => '삭제',

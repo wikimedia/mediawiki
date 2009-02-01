@@ -213,6 +213,7 @@ $1',
 بوین :[[Special:Version|version page]].',
 
 'ok'                      => 'خووه',
+'pagetitle-view-mainpage' => 'سرصفحه',
 'retrievedfrom'           => 'بازیافت از"$1"',
 'youhavenewmessages'      => 'پیام تاره داری $1 ($2).',
 'newmessageslink'         => 'پیام تازه',

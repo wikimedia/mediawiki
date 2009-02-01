@@ -39,6 +39,7 @@
  * @author MichaelFrey
  * @author Mormegil
  * @author Mpradeep
+ * @author Najami
  * @author Nemo bis
  * @author Niels
  * @author Nike
@@ -401,7 +402,7 @@ HTML markup cannot be used.",
 'nstab-user'      => 'The name for the tab of the user namespace. Example: [[User:Example]]
 
 {{Identical|User page}}',
-'nstab-special'   => 'The name for the tab of the special namespace. Example: [[Special:Example]]',
+'nstab-special'   => 'The name for the tab of the special namespace. Example: [[Special:Version]]',
 'nstab-project'   => 'The name for the tab of the project namespace. Example: [[Project:Example]]',
 'nstab-image'     => 'The name for the tab of the image namespace. Example: [[Image:Example]]
 
@@ -619,6 +620,7 @@ Parameter $1 is the content of section parameter in the URL (for example 1234 in
 'loginreqlink'                     => 'Take a look on inflection. Used as parameter in {{msg|loginreqpagetext}} and {{msg|whitelistedittext}}.
 
 {{Identical|Log in}}',
+'accmailtext'                      => '{{doc-important|Do not translate "<nowiki>[[User talk:$1|$1]]</nowiki>"}}',
 'newarticle'                       => '{{Identical|New}}',
 'newarticletext'                   => "Text displayed above the edit box in editor when trying to create a new page.<br />'''Very important:''' leave <tt><nowiki>{{MediaWiki:Helppage}}</nowiki></tt> exactly as it is!",
 'noarticletext'                    => 'This is the message that you get if you search for a term that has not yet got any entries on the wiki.',
@@ -1381,7 +1383,7 @@ Example: [[:Image:Addon-icn.png]]',
 'double-redirect-fixer'      => "This is the '''username''' of the user who updates the double redirects after a page move. A user is created with this username, so it is perhaps better to not change this message too often. See also {{msg|double-redirect-fixed-move}} and {{msg|fix-double-redirects}}.",
 
 'brokenredirects'        => 'Name of [[Special:BrokenRedirects]] displayed in [[Special:SpecialPages]]',
-'brokenredirectstext'    => 'Shown on top of [[Special:Brokenredirects]].',
+'brokenredirectstext'    => 'Shown on top of [[Special:BrokenRedirects]].',
 'brokenredirects-edit'   => 'Link in [[Special:BrokenRedirects]]
 
 {{Identical|Edit}}',
@@ -2443,7 +2445,7 @@ $1 is the name of the requested file.',
 'external_image_whitelist' => "As usual please leave all the wiki markup, including the spaces, as they are. You can translate the text, including 'Leave this line exactly as it is'.",
 
 # Special:Tags
-'tags'                    => 'Shown on [[Special:Specialpages]]',
+'tags'                    => 'Shown on [[Special:Specialpages]] for page listing the tags that the software may mark an edit with, and their meaning.',
 'tag-filter'              => 'Caption of a filter shown on lists of changes (e.g. [[Special:Log]], [[Special:Contributions]], [[Special:Newpages]], [[Special:Recentchanges]], [[Special:Recentchangeslinked]], page histories)',
 'tag-filter-submit'       => 'Caption of the submit button displayed next to the tag filter on lists of changes (e.g. [[Special:Log]], [[Special:Contributions]], [[Special:Newpages]], [[Special:Recentchanges]], [[Special:Recentchangeslinked]], page histories)
 
