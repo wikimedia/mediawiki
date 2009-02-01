@@ -586,7 +586,7 @@ abstract class File {
 		} while (false);
 
 		wfProfileOut( __METHOD__ );
-		return $thumb;
+		return is_object( $thumb ) ? $thumb : false;
 	}
 
 	/**

@@ -128,6 +128,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7480) Internationalize database error message
 * (bug 16555) Number of links to mediawiki.org scaled back on post-installation
 * (bug 14938) Removing a section no longer leaves excess whitespace
+* (bug 17304) Fixed fatal error when thumbnails couldn't be generated for file
+  history
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions

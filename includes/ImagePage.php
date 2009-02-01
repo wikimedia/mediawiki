@@ -918,7 +918,8 @@ class ImageHistoryList {
 				'alt' => wfMsg( 'filehist-thumbtext', $wgLang->timeAndDate( $timestamp, true ) ),
 				'file-link' => true,
 			);
-			$row .= '</td><td>' . $thumbnail->toHtml( $options );
+			$row .= '</td><td>' . ( $thumbnail ? $thumbnail->toHtml( $options ) : 
+													wfMsgHtml( 'filehist-nothumb' ) );
 		} else {
 			$row .= '</td><td>' . wfMsgHtml( 'filehist-nothumb' );
 		}
