@@ -56,12 +56,12 @@ class SpecialTags extends SpecialPage {
 		$newRow .= Xml::tags( 'td', null, Xml::element( 'tt', null, $tag ) );
 
 		$disp = ChangeTags::tagDescription( $tag );
-		$disp .= ' (' . $sk->link( Title::makeTitle( NS_MEDIAWIKI, "Tag-$tag" ), wfMsg( 'tag-edit' ) ) . ')';
+		$disp .= ' (' . $sk->link( Title::makeTitle( NS_MEDIAWIKI, "Tag-$tag" ), wfMsg( 'tags-edit' ) ) . ')';
 		$newRow .= Xml::tags( 'td', null, $disp );
 
 		$desc = wfMsgExt( "tag-$tag-description", 'parseinline' );
 		$desc = wfEmptyMsg( "tag-$tag-description", $desc ) ? '' : $desc;
-		$desc .= ' (' . $sk->link( Title::makeTitle( NS_MEDIAWIKI, "Tag-$tag-description" ), wfMsg( 'tag-edit' ) ) . ')';
+		$desc .= ' (' . $sk->link( Title::makeTitle( NS_MEDIAWIKI, "Tag-$tag-description" ), wfMsg( 'tags-edit' ) ) . ')';
 		$newRow .= Xml::tags( 'td', null, $desc );
 
 		$hitcount = wfMsg( 'tags-hitcount', $hitcount );
