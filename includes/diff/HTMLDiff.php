@@ -839,6 +839,10 @@ class NoContentTagToString extends TagToString {
 	}
 
 	public function getRemovedDescription(ChangeText $txt) {
+		$tagDescription = wfMsgExt('diff-' . $this->node->qName, 'parseinline' );
+		if( wfEmptyMsg( 'diff-' . $this->node->qName, $tagDescription ) ){
+			$tagDescription = "&lt;" . $this->node->qName . "&gt;";
+		}
 		$txt->addHtml( wfMsgExt('diff-changedfrom', 'parseinline', $tagDescription ) );
 		$this->addAttributes($txt, $this->node->attributes);
 		$txt->addHtml('.');
