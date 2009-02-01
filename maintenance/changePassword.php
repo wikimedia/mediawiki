@@ -13,7 +13,7 @@
 $optionsWithArgs = array( 'user', 'password' );
 require_once 'commandLine.inc';
 
-$USAGE = 
+$USAGE =
 	"Usage: php changePassword.php [--user=user --password=password | --help]\n" .
 	"\toptions:\n" .
 	"\t\t--help      show this message\n" .
@@ -50,8 +50,6 @@ class ChangePassword {
 	}
 
 	function main() {
-		$fname = 'ChangePassword::main';
-
 		$this->user->setPassword( $this->password );
 		$this->user->saveSettings();
 	}
