@@ -1752,7 +1752,7 @@ Estas [[{{MediaWiki:Listgrouprights-helppage}}|aldona informo]] pri individuaj r
 'emailpagetext'    => 'Vi povas uzi la jenan paĝon por sendi retpoŝtan mesaĝon al ĉi tiu uzanto.
 La retadreso kiun vi enigis en [[Special:Preferences|viaj preferoj]] aperos kiel la "De" adreso de la retpoŝto, do la ricevonto eblos respondi rekte al vi.',
 'usermailererror'  => 'Resendita retmesaĝa erarsubjekto:',
-'defemailsubject'  => '{{SITENAME}} ****-retmesaĝo',
+'defemailsubject'  => '{{SITENAME}} retmesaĝo',
 'noemailtitle'     => 'Neniu retpoŝtadreso',
 'noemailtext'      => 'Ĉi tiu uzanto ne donis validan retadreson.',
 'nowikiemailtitle' => 'Retpoŝto ne permesita',

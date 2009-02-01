@@ -534,7 +534,7 @@ Pikeun ngahindar disalahgunakeun, ngan hiji kecap sandi anu baris dikirimkeun sa
 anjeun teu bisa nyieun deui.',
 'emailauthenticated'         => 'Alamat surélék anjeun geus dioténtikasi dina $3, $2.',
 'emailnotauthenticated'      => 'Alamat surélék anjeun <strong>can dioténtikasi</strong>. Moal aya surélék nu bakal dikirim pikeun fitur-fitur di handap ieu.',
-'noemailprefs'               => '<strong>Teu aya alamat surélék</strong>, fitur di handap moal bisa jalan.',
+'noemailprefs'               => 'Teu aya alamat surélék, fitur di handap moal bisa jalan.',
 'emailconfirmlink'           => 'Konfirmasi alamat surélék anjeun',
 'invalidemailaddress'        => 'Alamat surélék teu bisa ditarima sabab formatna salah.
 Mangga lebetkeun alamat nu formatna bener atawa kosongkeun baé.',

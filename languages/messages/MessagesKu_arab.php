@@ -252,10 +252,10 @@ $messages = array(
 'red-link-title'          => '$1  (ھێشتا نەنووسراوە)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'وتار',
+'nstab-main'      => 'په‌ڕه‌',
 'nstab-user'      => 'پەڕەی بەکارھێنەر',
 'nstab-media'     => 'میدیا',
-'nstab-special'   => 'تایبه‌ت',
+'nstab-special'   => 'په‌ڕه‌ی تایبه‌ت',
 'nstab-project'   => 'په‌ڕه‌ی پرۆژه‌',
 'nstab-image'     => 'وێنه‌',
 'nstab-mediawiki' => 'په‌یام',

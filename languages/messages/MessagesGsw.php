@@ -10,6 +10,7 @@
  * @author J. 'mach' wust
  * @author Melancholie
  * @author MichaelFrey
+ * @author Remember the dot
  * @author Spacebirdy
  * @author Strommops
  * @author Urhixidur
@@ -270,14 +271,14 @@ $messages = array(
 'printableversion'  => 'Druck-Aasicht',
 'permalink'         => 'Bschtändigi URL',
 'print'             => 'Drucke',
-'edit'              => 'ändere',
+'edit'              => 'Ändere',
 'create'            => 'Erstelle',
 'editthispage'      => 'Syte bearbeite',
 'create-this-page'  => 'Die Syte afange',
-'delete'            => 'lösche',
+'delete'            => 'Lösche',
 'deletethispage'    => 'Syte lösche',
 'undelete_short'    => '{{PLURAL:$1|1 Version|$1 Versione}} widerherstelle',
-'protect'           => 'schütze',
+'protect'           => 'Schütze',
 'protect_change'    => 'ändere',
 'protectthispage'   => 'Artikel schütze',
 'unprotect'         => 'nümm schütze',
@@ -551,7 +552,7 @@ Du chasch keini meh aalege.',
 'emailauthenticated'         => 'Di E-Mail-Adräss isch am $2 um $3 Uhr bschtätigt worde.',
 'emailnotauthenticated'      => 'Dyni E-Mail-Adräss isch nonig bstätigt. Wäg däm gehn di erwyterete E-Mail-Funktione nonig.
 Fir d Bstätigung muesch em Gleich nogoh, wu Dir gschickt woren isch. Du chasch au e neie sonig Gleich aafordere:',
-'noemailprefs'               => '<strong>Du hesch kei E-Mail-Adrässen aaggä</strong>, drum sy di folgende Funktione nid müglech.',
+'noemailprefs'               => 'Du hesch kei E-Mail-Adrässen aaggä, drum sy di folgende Funktione nid müglech.',
 'emailconfirmlink'           => 'E-Poscht-Adräss bstätige',
 'invalidemailaddress'        => 'Diä E-Mail-Adress isch nit akzeptiert worre, wil s ä ugültigs Format ghet het.
 Bitte gib ä neiji Adress in nem gültige Format ii, odr tue s Feld leere.',
@@ -1574,7 +1575,7 @@ In jedere Zyylete het s Gleicher zue dr erschte un dr zwote Wyterleitig un s Zii
 'newpages'                => 'Nöji Artikel',
 'newpages-username'       => 'Benutzername:',
 'ancientpages'            => 'alti Sytene',
-'move'                    => 'verschiebe',
+'move'                    => 'Verschiebe',
 'movethispage'            => 'Artikel verschiebe',
 'unusedimagestext'        => 'Bitte gib Acht, ass anderi Netzsyte die Datei mit ere diräkte URL chenne vergleiche. Des wird nit as Verwändig erkannt. Wäge däm wird d Datei do ufgfiert.',
 'unusedcategoriestext'    => 'Die Spezialsyte zeigt alli lääre Kategorie, d. h. si wäre nit brucht vu andre Syte oder Kategorie.',
@@ -1708,7 +1709,7 @@ Neui Änderige an de Syte odr de Diskussionssyte drvo chasch jetz dört seh. Uss
 Wenn Si d Syte spöter wiedr vo de Lischte striiche wenn, denn drucke Si eifach uf "nümm beobachte".',
 'removedwatch'         => 'Us der Beobachtigsliste glösche',
 'removedwatchtext'     => 'D Syte «[[:$1]]» isch us dyre [[Special:Watchlist|Beobachtigsliste]] glösche worde.',
-'watch'                => 'beobachte',
+'watch'                => 'Beobachte',
 'watchthispage'        => 'Die Syte beobachte',
 'unwatch'              => 'nümm beobachte',
 'unwatchthispage'      => 'Nimmi beobachte',
@@ -1924,7 +1925,7 @@ $1',
 # Contributions
 'contributions'       => 'Benutzer-Byträg',
 'contributions-title' => 'Benutzerbyytreg vu „$1“',
-'mycontris'           => 'myyni Byyträg',
+'mycontris'           => 'Myyni Byyträg',
 'contribsub2'         => 'Für $1 ($2)',
 'nocontribs'          => 'S sin keini Benutzerbyytreg mit däne Kriterie gfunde wore.',
 'uctop'               => '(aktuell)',

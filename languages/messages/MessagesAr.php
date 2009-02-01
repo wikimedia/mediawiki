@@ -557,14 +557,14 @@ $messages = array(
 'talkpagelinktext'  => 'نقاش',
 'specialpage'       => 'صفحة خاصة',
 'personaltools'     => 'أدوات شخصية',
-'postcomment'       => 'أرسل تعليقا',
+'postcomment'       => 'قسم جديد',
 'articlepage'       => 'عرض صفحة المحتوى',
 'talk'              => 'نقاش',
 'views'             => 'معاينة',
 'toolbox'           => 'صندوق الأدوات',
 'userpage'          => 'عرض صفحة المستخدم',
 'projectpage'       => 'عرض صفحة المشروع',
-'imagepage'         => 'عرض صفحة الميديا',
+'imagepage'         => 'عرض صفحة الملف',
 'mediawikipage'     => 'عرض صفحة الرسالة',
 'templatepage'      => 'عرض صفحة القالب',
 'viewhelppage'      => 'عرض صفحة المساعدة',
@@ -637,13 +637,13 @@ $messages = array(
 'page-atom-feed'          => '"$1" تلقيم أتوم',
 'feed-atom'               => 'أتوم',
 'feed-rss'                => 'أر إس إس',
-'red-link-title'          => '$1 (لم تتم كتابتها بعد)',
+'red-link-title'          => '$1 (الصفحة غير موجودة)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'صفحة',
 'nstab-user'      => 'صفحة مستخدم',
 'nstab-media'     => 'صفحة ميديا',
-'nstab-special'   => 'خاص',
+'nstab-special'   => 'صفحة خاصة',
 'nstab-project'   => 'صفحة مشروع',
 'nstab-image'     => 'ملف',
 'nstab-mediawiki' => 'رسالة',
@@ -779,7 +779,7 @@ $2',
 'yourvariant'                => 'اللهجة:',
 'yournick'                   => 'التوقيع:',
 'badsig'                     => 'توقيع خام غير صحيح؛ تحقق من وسوم HTML.',
-'badsiglength'               => 'التوقيع طويل جدا.
+'badsiglength'               => 'توقيعك طويل جدا.
 يجب أن يكون أقل من $1 {{PLURAL:$1|حرف|حروف}}.',
 'yourgender'                 => 'النوع:',
 'gender-unknown'             => 'غير محدد',
@@ -803,6 +803,7 @@ $2',
 'loginsuccesstitle'          => 'تم الدخول بشكل صحيح',
 'loginsuccess'               => "'''لقد قمت بتسجيل الدخول ل{{SITENAME}} باسم \"\$1\".'''",
 'nosuchuser'                 => 'لا يوجد مستخدم بالاسم "$1".
+أسماء المستخدمين حساسة لحالة الحروف.
 تأكد من إملاء الاسم، أو [[Special:UserLogin/signup|قم بإنشاء حساب جديد]].',
 'nosuchusershort'            => 'لا يوجد مستخدم باسم <nowiki>$1</nowiki>".
 تأكد من إملاء الاسم.',
@@ -830,12 +831,12 @@ $2',
 'throttled-mailpassword'     => 'تم بالفعل إرسال تذكير بكلمة السر، في خلال الـ{{PLURAL:$1|ساعة|$1 ساعة}} الماضية.
 لمنع التخريب، تذكير واحد فقط سيتم إرساله كل {{PLURAL:$1|ساعة|$1 ساعة}}.',
 'mailerror'                  => 'خطأ أثناء إرسال البريد: $1',
-'acct_creation_throttle_hit' => 'لقد قمت بإنشاء {{PLURAL:$1|1 حساب|$1 حساب}}.
-لا يمكنك عمل المزيد.',
+'acct_creation_throttle_hit' => 'الزوار لهذا الويكي باستخدام عنوان الأيبي الخاص بك أنشئوا {{PLURAL:$1|1 0حساب|$1 حساب}} في آخر يوم، وهو الحد الأقصى المسموح به في هذه الفترة الزمنية.
+كنتيجة لذلك، الزوار باستخدام عنوان الأيبيب هذا لا يمكنهم إنشاء أي حسابات أخرى حاليا.',
 'emailauthenticated'         => 'تم تأكيد بريدك الإلكتروني في $2 الساعة $3.',
 'emailnotauthenticated'      => 'لم يتم التحقق من بريدك الإلكتروني.
 لن يتم إرسال رسائل لأي من الميزات التالية.',
-'noemailprefs'               => 'حدد عنوان بريد إلكتروني لتفعيل هذه الخصائص.',
+'noemailprefs'               => 'حدد عنوان بريد إلكتروني في تفضيلاتك لهذه الخصائص لتعمل.',
 'emailconfirmlink'           => 'أكد عنوان بريدك الإلكتروني',
 'invalidemailaddress'        => 'لا يمكن قبول عنوان البريد الإلكتروني حيث تبدو صيغته خاطئة.
 ضع عنوانا مضبوطا أو أفرغ هذا الحقل.',
@@ -952,7 +953,9 @@ $2',
 'loginreqlink'                     => 'دخول',
 'loginreqpagetext'                 => 'يجب عليك $1 لتشاهد صفحات أخرى.',
 'accmailtitle'                     => 'تم إرسال كلمة السر.',
-'accmailtext'                      => "تم إرسال كلمة السر الخاصة بـ '$1' إلى العنوان $2.",
+'accmailtext'                      => "كلمة سر مولدة عشوائيا ل [[User talk:$1|$1]] تم إرسالها إلى $2.
+
+كلمة السر لهذا الحساب الجديد يمكن تغييرها في صفحة ''[[Special:ChangePassword|تغيير كلمة السر]]'' عند تسجيل الدخول.",
 'newarticle'                       => '(جديد)',
 'newarticletext'                   => "لقد تبعت وصلة لصفحة لم يتم إنشائها بعد.
 لإنشاء هذه الصفحة ابدأ الكتابة في الصندوق بالأسفل (انظر في [[{{MediaWiki:Helppage}}|صفحة المساعدة]] للمزيد من المعلومات).
@@ -990,7 +993,7 @@ $2',
 هذا يحدث أحيانا عندما تستخدم خدمة بروكسي مجهولة معيبة أساسها الويب.</strong>',
 'editing'                          => 'تحرير $1',
 'editingsection'                   => 'تحرير $1 (قسم)',
-'editingcomment'                   => 'تحرير $1 (تعليق)',
+'editingcomment'                   => 'تعديل $1 (قسم جديد)',
 'editconflict'                     => 'تضارب في التحرير: $1',
 'explainconflict'                  => "لقد عدل شخص آخر هذه الصفحة بعد أن بدأت أنت بتحريرها.
 صندوق النصوص العلوي يحتوي على النص الموجود حاليا في الصفحة.
@@ -1388,7 +1391,7 @@ $2',
 'stub-threshold'            => 'الحد لتنسيق <a href="#" class="stub">وصلة البذرة</a>:',
 'recentchangesdays'         => 'عدد الأيام المعروضة في أحدث التغييرات:',
 'recentchangesdays-max'     => '(حد أقصى $1 {{PLURAL:$1|يوم|يوم}})',
-'recentchangescount'        => 'عدد التعديلات للعرض في أحدث التغييرات، صفحات التواريخ والسجلات:',
+'recentchangescount'        => 'عدد التعديلات للعرض في أحدث التغييرات، تواريخ الصفحات، وفي السجلات، افتراضيا:',
 'savedprefs'                => 'تم حفظ تفضيلاتك.',
 'timezonelegend'            => 'المنطقة الزمنية',
 'timezonetext'              => '¹عدد الساعات بين توقيتك المحلي وتوقيت الخادم (UTC).',
@@ -1654,8 +1657,8 @@ $2',
 'file-thumbnail-no'           => 'يبدأ الملف ب <strong><tt>$1</tt></strong>. 
 يبدو أن الملف مصغرا لحجم أعلى <i>(تصغير)</i>.
 إذا كانت لديك الصورة في درجة دقة كاملة قم برفعها، أو قم بتغيير اسم الملف من فضلك.',
-'fileexists-forbidden'        => 'هناك ملف بنفس الاسم حاليا؛
-من فضلك تراجع وأعطه اسما جديدا. [[File:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'هناك ملف موجود بهذا الاسم بالفعل، ولا يمكن إعادة الكتابة عليه.
+لو أنك مازلت تريد رفع ملفك، من فضلك عد واستخدم اسما جديدا. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'يوجد ملف بنفس الاسم بالفعل في مستودع الملفات المشترك.
 لو كنت مازلت تريد رفع ملفك، من فضلك ارجع واستخدم اسما جديدا.
 [[File:$1|thumb|center|$1]]',
@@ -1754,7 +1757,7 @@ PICT # متنوع
 'filehist-dimensions'            => 'الأبعاد',
 'filehist-filesize'              => 'حجم الملف',
 'filehist-comment'               => 'تعليق',
-'imagelinks'                     => 'وصلات',
+'imagelinks'                     => 'وصلات الملف',
 'linkstoimage'                   => '{{PLURAL:$1|الصفحة|ال$1 صفحة}} التالية تصل إلى هذا الملف:',
 'linkstoimage-more'              => 'أكثر من $1 {{PLURAL:$1|صفحة تصل|صفحة تصل}} إلى هذا الملف.
 القائمة التالية تعرض {{PLURAL:$1|أول وصلة صفحة|أول $1 وصلة صفحة}} إلى هذا الملف فقط.
@@ -1789,7 +1792,7 @@ PICT # متنوع
 # File deletion
 'filedelete'                  => 'احذف $1',
 'filedelete-legend'           => 'احذف الملف',
-'filedelete-intro'            => "أنت تحذف '''[[Media:$1|$1]]'''.",
+'filedelete-intro'            => "أنت على وشك حذف الملف '''[[Media:$1|$1]]''' مع كل تاريخه.",
 'filedelete-intro-old'        => "أنت تحذف نسخة '''[[Media:$1|$1]]''' بتاريخ [$4 $3، $2].",
 'filedelete-comment'          => 'السبب للحذف:',
 'filedelete-submit'           => 'حذف',
@@ -1865,7 +1868,7 @@ PICT # متنوع
 'double-redirect-fixer'      => 'مصلح التحويل',
 
 'brokenredirects'        => 'تحويلات مكسورة',
-'brokenredirectstext'    => 'التحويلات التالية تصل لصفحات غير موجودة.',
+'brokenredirectstext'    => 'التحويلات التالية تصل لصفحات غير موجودة:',
 'brokenredirects-edit'   => '(عدل)',
 'brokenredirects-delete' => '(حذف)',
 
@@ -1903,7 +1906,7 @@ PICT # متنوع
 'mostcategories'          => 'أكثر الصفحات تصنيفا',
 'mostimages'              => 'أكثر الملفات ارتباطا',
 'mostrevisions'           => 'أكثر الصفحات تعديلا',
-'prefixindex'             => 'فهرس بادئة',
+'prefixindex'             => 'كل الصفحات بالبادئة',
 'shortpages'              => 'صفحات قصيرة',
 'longpages'               => 'صفحات طويلة',
 'deadendpages'            => 'صفحات نهاية مسدودة',
@@ -1986,7 +1989,7 @@ PICT # متنوع
 'deletedcontributions-title' => 'مساهمات المستخدم المحذوفة',
 
 # Special:LinkSearch
-'linksearch'       => 'بحث وصلات الويب',
+'linksearch'       => 'وصلات خارجية',
 'linksearch-pat'   => 'نمط البحث:',
 'linksearch-ns'    => 'النطاق:',
 'linksearch-ok'    => 'بحث',
@@ -2005,7 +2008,7 @@ PICT # متنوع
 'newuserlogpagetext'          => 'هذا سجل بعمليات إنشاء المستخدمين.',
 'newuserlog-byemail'          => 'كلمة السر تم إرسالها بواسطة البريد الإلكتروني',
 'newuserlog-create-entry'     => 'مستخدم جديد',
-'newuserlog-create2-entry'    => 'أنشأ الحساب ل$1',
+'newuserlog-create2-entry'    => 'أنشأ حسابا جديدا $1',
 'newuserlog-autocreate-entry' => 'الحساب تم إنشاؤه تلقائيا',
 
 # Special:ListGroupRights
@@ -2160,7 +2163,7 @@ $NEWPAGE
 شخص آخر عدل أو استرجع الصفحة بالفعل.
 
 آخر تعديل كان بواسطة [[User:$3|$3]] ([[User talk:$3|نقاش]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => 'تعليق التعديل كان: "<i>$1</i>".', # only shown if there is an edit comment
+'editcomment'      => 'ملخص التعديل كان: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'       => 'استرجع التعديلات بواسطة [[Special:Contributions/$2|$2]] ([[User talk:$2|نقاش]]) حتى آخر نسخة بواسطة [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'استرجع تعديلات $1؛
 استرجع حتى آخر نسخة بواسطة $2.',
@@ -2193,9 +2196,9 @@ $NEWPAGE
 الإعدادات الحالية للصفحة <strong>$1</strong> هي:',
 'protect-cascadeon'           => 'هذه الصفحة محمية لكونها مضمنة في {{PLURAL:$1|الصفحة|الصفحات}} التالية، والتي بها خيار حماية الصفحات المدمجة فعال.
 يمكنك تغيير مستوى حماية هذه الصفحة بدون التأثير على حماية الصفحات المدمجة الأخرى.',
-'protect-default'             => '(افتراضي)',
+'protect-default'             => 'السماح لكل المستخدمين',
 'protect-fallback'            => 'يتطلب السماح "$1"',
-'protect-level-autoconfirmed' => 'منع المستخدمين غير المسجلين',
+'protect-level-autoconfirmed' => 'منع المستخدمين الجدد وغير المسجلين',
 'protect-level-sysop'         => 'مدراء النظام فقط',
 'protect-summary-cascade'     => 'مضمنة',
 'protect-expiring'            => 'تنتهي في $1 (UTC)',
@@ -2372,7 +2375,7 @@ $1',
 'ipb-blocklist-contribs'          => 'المساهمات ل$1',
 'unblockip'                       => 'رفع منع مستخدم',
 'unblockiptext'                   => 'استخدم الاستمارة أدناه لاسترجاع صلاحية الكتابة الخاصة بعنوان أيبي أو مستخدم تم سحبها منه مسبقا.',
-'ipusubmit'                       => 'رفع منع هذا العنوان',
+'ipusubmit'                       => 'رفع منع عنوان الأيبي هذا',
 'unblocked'                       => '[[User:$1|$1]] تم رفع منعه',
 'unblocked-id'                    => 'منع $1 تم رفعه',
 'ipblocklist'                     => 'عناوين الأيبي وأسماء المستخدمين الممنوعة',
@@ -2497,8 +2500,8 @@ $1 ممنوع بالفعل. هل تريد تغيير الإعدادات؟',
 من فضلك ادمجهما يدويا.'''",
 'movedto'                      => 'تم نقلها إلى',
 'movetalk'                     => 'انقل صفحة النقاش المرفقة',
-'move-subpages'                => 'انقل كل الصفحات الفرعية، إذا كان هذا ممكنا',
-'move-talk-subpages'           => 'انقل كل الصفحات الفرعية لصفحة النقاش، إذا كان هذا ممكنا',
+'move-subpages'                => 'انقل الصفحات الفرعية (حتى $1)، لو كان هذا ممكنا',
+'move-talk-subpages'           => 'انقل الصفحات الفرعية لصفحة النقاش (حتى $1)، لو كان هذا ممكنا',
 'movepage-page-exists'         => 'الصفحة $1 موجودة بالفعل ولا يمكن الكتابة عليها تلقائيا.',
 'movepage-page-moved'          => 'تم نقل الصفحة $1 إلى $2.',
 'movepage-page-unmoved'        => 'لم يمكن نقل الصفحة $1 إلى $2.',
@@ -2613,20 +2616,20 @@ $1 ممنوع بالفعل. هل تريد تغيير الإعدادات؟',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|مراجعة واحدة|مراجعة}} من $2',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => 'صفحة مستخدمي',
+'tooltip-pt-userpage'             => 'صفحة المستخدم الخاصة بك',
 'tooltip-pt-anonuserpage'         => 'صفحة المستخدم للأيبي الذي تقوم بالتحرير من خلاله',
-'tooltip-pt-mytalk'               => 'صفحة نقاشي',
+'tooltip-pt-mytalk'               => 'صفحة نقاشك',
 'tooltip-pt-anontalk'             => 'نقاش حول التعديلات من عنوان الأيبي هذا',
 'tooltip-pt-preferences'          => 'تفضيلاتي',
 'tooltip-pt-watchlist'            => 'قائمة الصفحات التي تراقب التغييرات التي تحدث بها',
-'tooltip-pt-mycontris'            => 'قائمة مساهماتي',
+'tooltip-pt-mycontris'            => 'قائمة مساهماتك',
 'tooltip-pt-login'                => 'من المفضل أن تقوم بتسجيل الدخول، هذا ليس إلزاميا.',
 'tooltip-pt-anonlogin'            => 'من المفضل أن تقوم بتسجيل الدخول، هذا ليس إلزاميا.',
 'tooltip-pt-logout'               => 'خروج',
 'tooltip-ca-talk'                 => 'نقاش حول صفحة المحتوى',
 'tooltip-ca-edit'                 => 'يمكنك تعديل هذه الصفحة.
 من فضلك استخدم زر العرض المسبق قبل الحفظ.',
-'tooltip-ca-addsection'           => 'أضف تعليقا إلى هذا النقاش.',
+'tooltip-ca-addsection'           => 'ابدأ قسما جديدا',
 'tooltip-ca-viewsource'           => 'هذه الصفحة محمية.
 يمكنك رؤية مصدرها.',
 'tooltip-ca-history'              => 'النسخ السابقة من هذه الصفحة',
@@ -3228,10 +3231,10 @@ $1
 'table_pager_empty'        => 'لا نتائج',
 
 # Auto-summaries
-'autosumm-blank'   => 'إزالة كل المحتوى من الصفحة',
+'autosumm-blank'   => 'أفرغ الصفحة',
 'autosumm-replace' => "استبدال الصفحة ب'$1'",
 'autoredircomment' => 'تحويل إلى [[$1]]',
-'autosumm-new'     => 'صفحة جديدة: $1',
+'autosumm-new'     => "أنشأ الصفحة ب'$1'",
 
 # Size units
 'size-bytes'     => '$1 بايت',
@@ -3427,5 +3430,14 @@ $1
 'tags-hitcount-header'    => 'تغييرات موسومة',
 'tags-edit'               => 'عدل',
 'tags-hitcount'           => '$1 {{PLURAL:$1|تغيير|تغيير}}',
+
+# Database error messages
+'dberr-header'      => 'هذا الويكي به مشكلة',
+'dberr-problems'    => 'عذرا! هذا الموقع يعاني من صعوبات تقنية.',
+'dberr-again'       => 'جرب الانتظار بضع دقائق وإعادة التحميل.',
+'dberr-info'        => '(غير قادر على الاتصال بخادم قاعدة البيانات: $1)',
+'dberr-usegoogle'   => 'يمكنك محاولة البحث من خلال جوجل في الوقت الحاضر.',
+'dberr-outofdate'   => 'لاحظ أن فهارسهم لمحتوانا ربما تكون غير محدثة.',
+'dberr-cachederror' => 'التالي نسخة مخزنة من الصفحة المطلوبة، وربما لا تكون محدثة.',
 
 );

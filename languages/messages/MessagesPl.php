@@ -397,7 +397,7 @@ $messages = array(
 'talkpagelinktext'  => 'dyskusja',
 'specialpage'       => 'Strona specjalna',
 'personaltools'     => 'Osobiste',
-'postcomment'       => 'Skomentuj',
+'postcomment'       => 'Nowa sekcja',
 'articlepage'       => 'Artykuł',
 'talk'              => 'Dyskusja',
 'views'             => 'Widok',
@@ -475,7 +475,7 @@ $messages = array(
 'site-atom-feed'          => 'Kanał Atom {{GRAMMAR:D.lp|$1}}',
 'page-rss-feed'           => 'Kanał RSS „$1”',
 'page-atom-feed'          => 'Kanał Atom „$1”',
-'red-link-title'          => '$1 (jeszcze nie napisana)',
+'red-link-title'          => '$1 (strona nie istnieje)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Strona',
@@ -639,7 +639,8 @@ Spróbuj ponownie po ich odblokowaniu.',
 'loginsuccesstitle'          => 'Zalogowano pomyślnie',
 'loginsuccess'               => "'''Zalogowałeś się do {{GRAMMAR:D.lp|{{SITENAME}}}} jako „$1”.'''",
 'nosuchuser'                 => 'Brak użytkownika o nazwie „$1”.
-Sprawdź pisownię lub [[Special:UserLogin/signup|użyj formularza, by utworzyć nowe konto]].',
+W nazwa użytkownika ma znaczenie wielkość znaków.
+Sprawdź pisownię lub [[Special:UserLogin/signup|utwórz nowe konto]].',
 'nosuchusershort'            => 'Brak użytkownika o nazwie „<nowiki>$1</nowiki>”.
 Sprawdź poprawność pisowni.',
 'nouserspecified'            => 'Musisz podać nazwę użytkownika.',
@@ -665,12 +666,12 @@ Zanim jakiekolwiek inne wiadomości zostaną wysłane na ten adres, należy wyko
 'throttled-mailpassword'     => 'Przypomnienie hasła zostało już wysłane w ciągu {{PLURAL:$1|ostatniej godziny|ostatnich $1 godzin}}.
 W celu powstrzymania nadużyć możliwość wysyłania przypomnień została ograniczona do jednego na {{PLURAL:$1|godzinę|$1 godziny|$1 godzin}}.',
 'mailerror'                  => 'W trakcie wysyłania wiadomości e-mail wystąpił błąd: $1',
-'acct_creation_throttle_hit' => 'Założyłeś już {{PLURAL:$1|konto|$1 konta|$1 kont}}.
-Nie możesz założyć kolejnego.',
+'acct_creation_throttle_hit' => 'Z adresu IP, z którego korzystasz {{PLURAL:$1|ktoś już utworzył dziś konto|goście już utworzyli dziś $1 konta|goście już utworzyli dziś $1 kont}}, co jest maksymalną dopuszczalną liczbą w tym czasie.
+W związku z tym, osoby korzystające z tego adresu IP w chwili obecnej nie mogą założyć kolejnego.',
 'emailauthenticated'         => 'Twój adres e-mail został potwierdzony $2 o $3.',
 'emailnotauthenticated'      => "Twój adres '''e-mail nie został potwierdzony'''.
 Poniższe funkcje poczty nie działają.",
-'noemailprefs'               => 'Musisz podać adres e-mail, by skorzystać z tych funkcji.',
+'noemailprefs'               => 'Musisz podać adres e-mail w preferencjach, by skorzystać z tych funkcji.',
 'emailconfirmlink'           => 'Potwierdź swój adres e-mail',
 'invalidemailaddress'        => 'Adres e-mail jest niepoprawny i nie może być zaakceptowany.
 Wpisz poprawny adres e-mail lub wyczyść pole.',
@@ -789,7 +790,9 @@ Ponieważ brak sekcji $1, nie jest możliwe zapisanie Twojej edycji.',
 'loginreqlink'                     => 'zalogować się',
 'loginreqpagetext'                 => 'Musisz $1, żeby móc przeglądać inne strony.',
 'accmailtitle'                     => 'Hasło zostało wysłane.',
-'accmailtext'                      => 'Hasło użytkownika „$1” zostało wysłane na adres $2.',
+'accmailtext'                      => "Losowo wygenerowane hasło dla [[User talk:$1|$1]] zostało wysłane do $2.
+
+Hasło dla tego nowego konta po zalogowaniu można zmienić na stronie ''[[Special:ChangePassword|zmiana hasła]]''.",
 'newarticle'                       => '(Nowy)',
 'newarticletext'                   => "Brak strony o tym tytule.
 Jeśli chcesz ją utworzyć, wpisz treść strony w poniższym polu (więcej informacji odnajdziesz [[{{MediaWiki:Helppage}}|na stronie pomocy]]). 
@@ -828,7 +831,7 @@ Twoja edycja została odrzucona by zapobiec zniszczeniu tekstu strony.
 Takie problemy zdarzają się w wypadku korzystania z wadliwych anonimowych sieciowych usług proxy.</strong>',
 'editing'                          => 'Edytujesz „$1”',
 'editingsection'                   => 'Edytujesz „$1” (fragment)',
-'editingcomment'                   => 'Edytujesz „$1” (komentarz)',
+'editingcomment'                   => 'Edytujesz „$1” (nowa sekcja)',
 'editconflict'                     => 'Konflikt edycji: $1',
 'explainconflict'                  => "Ktoś zmienił treść strony w trakcie Twojej edycji.
 Górne pole zawiera tekst strony aktualnie zapisany w bazie danych.
@@ -1114,8 +1117,8 @@ Możesz [[:$1|utworzyć tę stronę]].",
 'notitlematches'                   => 'Nie znaleziono w tytułach',
 'textmatches'                      => 'Znaleziono w treści stron',
 'notextmatches'                    => 'Nie znaleziono w treści stron',
-'prevn'                            => 'poprzednie $1',
-'nextn'                            => 'następne $1',
+'prevn'                            => '{{PLURAL:$1|poprzedni|poprzednie $1}}',
+'nextn'                            => '{{PLURAL:$1|następny|następne $1}}',
 'viewprevnext'                     => 'Zobacz ($1) ($2) ($3)',
 'searchmenu-legend'                => 'Opcje wyszukiwania',
 'searchmenu-exists'                => "* Strona '''[[$1]]'''",
@@ -1218,7 +1221,7 @@ Zapoznaj się z math/README w celu konfiguracji.',
 'stub-threshold'            => 'Maksymalny (w bajtach) rozmiar strony oznaczanej jako <a href="#" class="stub">zalążek (stub)</a>',
 'recentchangesdays'         => 'Liczba dni do pokazania w ostatnich zmianach',
 'recentchangesdays-max'     => '(maksymalnie $1 {{PLURAL:$1|dzień|dni}})',
-'recentchangescount'        => 'Liczba pozycji na liście ostatnich zmian, w historii stron i na stronach rejestrów',
+'recentchangescount'        => 'Domyślna liczba pozycji do wyświetlenia na liście ostatnich zmian, w historii stron i na stronach rejestrów',
 'savedprefs'                => 'Twoje preferencje zostały zapisane.',
 'timezonelegend'            => 'Strefa czasowa',
 'timezonetext'              => '¹Liczba godzin różnicy między Twoim czasem lokalnym, a czasem uniwersalnym (UTC).',
@@ -1481,8 +1484,8 @@ Jeśli wybrany plik jest tą samą grafiką co ta w oryginalnym rozmiarze, nie m
 'file-thumbnail-no'           => 'Nazwa pliku zaczyna się od <strong><tt>$1</tt></strong>.
 Wydaje się, że jest to pomniejszona grafika <i>(miniaturka)</i>.
 Jeśli posiadasz tę grafikę w pełnym rozmiarze – prześlij ją. Jeśli chcesz wysłać tę – zmień nazwę przesyłanego obecnie pliku.',
-'fileexists-forbidden'        => 'Plik o tej nazwie już istnieje.
-Cofnij się i załaduj plik pod inną nazwą. [[File:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Plik o tej nazwie już istnieje i nie może zostać nadpisany.
+Jeśli chcesz przesłać plik cofnij się i prześlij go pod inną nazwą. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Plik o tej nazwie już istnieje we współdzielonym repozytorium plików.
 Cofnij się i załaduj plik pod inną nazwą. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Ten plik jest kopią {{PLURAL:$1|pliku|następujących plików:}}',
@@ -1614,7 +1617,7 @@ Dostępna jest też [[Special:WhatLinksHere/$2|pełna lista]].',
 # File deletion
 'filedelete'                  => 'Usuń „$1”',
 'filedelete-legend'           => 'Usuń plik',
-'filedelete-intro'            => "Usuwasz '''[[Media:$1|$1]]'''.",
+'filedelete-intro'            => "Chcesz usunąć plik '''[[Media:$1|$1]]''' razem z całą jego historią.",
 'filedelete-intro-old'        => "Usuwasz wersję pliku '''[[Media:$1|$1]]''' z datą [$4 $3, $2].",
 'filedelete-comment'          => 'Komentarz',
 'filedelete-submit'           => 'Usuń',
@@ -1726,7 +1729,7 @@ Strona uznawana jest za ujednoznaczniającą, jeśli zawiera szablon linkowany p
 'mostcategories'          => 'Strony z największą liczbą kategorii',
 'mostimages'              => 'Najczęściej linkowane pliki',
 'mostrevisions'           => 'Strony o największej liczbie wersji',
-'prefixindex'             => 'Wszystkie strony według prefiksu',
+'prefixindex'             => 'Wszystkie strony o prefiksie',
 'shortpages'              => 'Najkrótsze strony',
 'longpages'               => 'Najdłuższe strony',
 'deadendpages'            => 'Strony bez linków wewnętrznych',
@@ -1807,7 +1810,7 @@ Zobacz też [[Special:WantedCategories|brakujące kategorie]].',
 'deletedcontributions-title' => 'Usunięty wkład użytkownika',
 
 # Special:LinkSearch
-'linksearch'       => 'Wyszukiwarka linków zewnętrznych',
+'linksearch'       => 'Linki zewnętrzne',
 'linksearch-pat'   => 'Wzorzec wyszukiwania',
 'linksearch-ns'    => 'Przestrzeń nazw',
 'linksearch-ok'    => 'Szukaj',
@@ -1826,7 +1829,7 @@ Obsługiwane protokoły: <tt>$1</tt>',
 'newuserlogpagetext'          => 'To jest rejestr ostatnio utworzonych kont użytkowników',
 'newuserlog-byemail'          => 'hasło zostało wysłane e-mailem',
 'newuserlog-create-entry'     => '– nowy użytkownik',
-'newuserlog-create2-entry'    => '– utworzył konto $1',
+'newuserlog-create2-entry'    => 'utworzył konto $1',
 'newuserlog-autocreate-entry' => '– konto utworzone automatycznie',
 
 # Special:ListGroupRights
@@ -1980,7 +1983,7 @@ Bądź ostrożny, ponieważ usunięcie jej może spowodować zakłócenia w prac
 Ktoś inny zdążył już to zrobić lub wprowadził własne poprawki do treści strony.
 
 Autorem ostatniej zmiany jest teraz [[User:$3|$3]] ([[User talk:$3|dyskusja]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => 'Edycję opisano: „<i>$1</i>”.', # only shown if there is an edit comment
+'editcomment'      => 'Edycję opisał „<i>$1</i>”.', # only shown if there is an edit comment
 'revertpage'       => 'Wycofano edycje użytkownika [[Special:Contributions/$2|$2]] ([[User talk:$2|dyskusja]]). Autor przywróconej wersji to [[User:$1|$1]].', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Wycofano edycje użytkownika $1.
 Przywrócono ostatnią wersję autorstwa $2.',
@@ -2010,9 +2013,9 @@ Obecne ustawienia dla strony <strong>$1</strong> to:',
 'protect-locked-dblock'       => 'Nie można zmienić poziomu zabezpieczenia z powodu działającej blokady bazy danych. Obecne ustawienia dla strony <strong>$1</strong> to:',
 'protect-locked-access'       => 'Nie masz uprawnień do zmiany poziomu zabezpieczenia strony. Obecne ustawienia dla strony <strong>$1</strong> to:',
 'protect-cascadeon'           => 'Ta strona jest zabezpieczona przed edycją, ponieważ jest używana przez {{PLURAL:$1|następującą stronę, która została zabezpieczona|następujące strony, które zostały zabezpieczone}} z włączoną opcją dziedziczenia. Możesz zmienić poziom zabezpieczenia strony, ale nie wpłynie to na dziedziczenie zabezpieczenia.',
-'protect-default'             => '(wszyscy)',
+'protect-default'             => 'Dostęp mają wszyscy użytkownicy',
 'protect-fallback'            => 'Wymaga uprawnień „$1”',
-'protect-level-autoconfirmed' => 'tylko zarejestrowani',
+'protect-level-autoconfirmed' => 'Blokuj nowych i niezarejestrowanych użytkowników',
 'protect-level-sysop'         => 'tylko administratorzy',
 'protect-summary-cascade'     => 'dziedziczenie',
 'protect-expiring'            => 'wygasa $1 (UTC)',
@@ -2190,7 +2193,7 @@ Przejdź do [[Special:IPBlockList|listy zablokowanych adresów IP]], by przejrze
 'ipb-blocklist-contribs'          => 'Wkład $1',
 'unblockip'                       => 'Odblokuj użytkownika',
 'unblockiptext'                   => 'Użyj poniższego formularza, by przywrócić możliwość edycji z wcześniej zablokowanego adresu IP lub użytkownikowi.',
-'ipusubmit'                       => 'Odblokuj użytkownika',
+'ipusubmit'                       => 'Odblokuj ten adres IP',
 'unblocked'                       => '[[User:$1|$1]] został odblokowany.',
 'unblocked-id'                    => 'Blokada $1 została zdjęta',
 'ipblocklist'                     => 'Lista zablokowanych adresów IP i użytkowników',
@@ -2311,8 +2314,8 @@ Wybierz inną nazwę.',
 'talkexists'                   => "'''Strona treści została przeniesiona, natomiast strona dyskusji nie, ponieważ strona dyskusji o nowym tytule już istnieje. Połącz teksty obu dyskusji ręcznie.'''",
 'movedto'                      => 'przeniesiono do',
 'movetalk'                     => 'Przenieś także stronę dyskusji, jeśli to możliwe.',
-'move-subpages'                => 'Jeśli to możliwe przenieś wszystkie podstrony',
-'move-talk-subpages'           => 'Jeśli to możliwe przenieś wszystkie strony dyskusji podstron',
+'move-subpages'                => 'Jeśli to możliwe przenieś podstrony (nie więcej niż $1)',
+'move-talk-subpages'           => 'Jeśli to możliwe przenieś strony dyskusji podstron (nie więcej niż $1)',
 'movepage-page-exists'         => 'Strona $1 istnieje. Automatyczne nadpisanie nie jest możliwe.',
 'movepage-page-moved'          => 'Strona $1 została przeniesiona do $2.',
 'movepage-page-unmoved'        => 'Nazwa strony $1 nie może zostać zmieniona na $2.',
@@ -2438,7 +2441,7 @@ Brak katalogu dla plików tymczasowych.',
 'tooltip-pt-logout'               => 'Wyloguj',
 'tooltip-ca-talk'                 => 'Dyskusja o zawartości tej strony.',
 'tooltip-ca-edit'                 => 'Możesz edytować tę stronę. Przed zapisaniem zmian użyj przycisku podgląd.',
-'tooltip-ca-addsection'           => 'Dodaj swój komentarz do dyskusji.',
+'tooltip-ca-addsection'           => 'Dodaj nowy wątek.',
 'tooltip-ca-viewsource'           => 'Ta strona jest zabezpieczona. Możesz zobaczyć tekst źródłowy.',
 'tooltip-ca-history'              => 'Starsze wersje tej strony.',
 'tooltip-ca-protect'              => 'Zabezpiecz tę stronę.',
@@ -2563,6 +2566,7 @@ Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony int
 'patrol-log-header'    => 'Poniżej znajduje się dziennik patrolowania stron.',
 'patrol-log-line'      => 'oznaczył wersję $1 hasła $2 jako sprawdzoną $3',
 'patrol-log-auto'      => '(automatycznie)',
+'patrol-log-diff'      => 'wersja $1',
 'log-show-hide-patrol' => '$1 rejestr sprawdzania',
 
 # Image deletion
@@ -2992,7 +2996,7 @@ Czy na pewno chcesz ją ponownie utworzyć?",
 'autosumm-blank'   => 'UWAGA! Usunięcie treści (strona pozostała pusta)!',
 'autosumm-replace' => 'UWAGA! Zastąpienie treści hasła bardzo krótkim tekstem: „$1”',
 'autoredircomment' => 'Przekierowanie do [[$1]]',
-'autosumm-new'     => 'Nowa strona: $1',
+'autosumm-new'     => 'Utworzył nową stronę „$1”',
 
 # Size units
 'size-kilobytes' => '$1 kB',
