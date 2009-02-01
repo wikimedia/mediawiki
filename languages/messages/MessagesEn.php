@@ -970,7 +970,7 @@ As a result, visitors using this IP address cannot create any more accounts at t
 'emailauthenticated'         => 'Your e-mail address was authenticated on $2 at $3.',
 'emailnotauthenticated'      => 'Your e-mail address is not yet authenticated.
 No e-mail will be sent for any of the following features.',
-'noemailprefs'               => 'Specify an e-mail address in [[Special:Preferences|your preferences]] for these features to work.',
+'noemailprefs'               => 'Specify an e-mail address in your preferences for these features to work.',
 'emailconfirmlink'           => 'Confirm your e-mail address',
 'invalidemailaddress'        => 'The e-mail address cannot be accepted as it appears to have an invalid format.
 Please enter a well-formatted address or empty that field.',
@@ -1968,7 +1968,7 @@ A [[Special:WhatLinksHere/$2|full list]] is available.',
 'filerevert'                => 'Revert $1',
 'filerevert-backlink'       => '← $1', # only translate this message to other languages if you have to change it
 'filerevert-legend'         => 'Revert file',
-'filerevert-intro'          => "You are reverting '''[[Media:$1|$1]]''' to the [$4 version as of $3, $2].",
+'filerevert-intro'          => "You are about to revert the file '''[[Media:$1|$1]]''' to the [$4 version as of $3, $2].",
 'filerevert-comment'        => 'Comment:',
 'filerevert-defaultcomment' => 'Reverted to version as of $2, $1',
 'filerevert-submit'         => 'Revert',
