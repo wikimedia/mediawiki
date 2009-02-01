@@ -35,7 +35,7 @@ class SpecialContributions extends SpecialPage {
 		}
 
 		if( !strlen( $target ) ) {
-			$wgOut->addHTML( $this->getForm( '' ) );
+			$wgOut->addHTML( $this->getForm() );
 			return;
 		}
 
@@ -44,7 +44,7 @@ class SpecialContributions extends SpecialPage {
 
 		$nt = Title::makeTitleSafe( NS_USER, $target );
 		if( !$nt ) {
-			$wgOut->addHTML( $this->getForm( '' ) );
+			$wgOut->addHTML( $this->getForm() );
 			return;
 		}
 		$id = User::idFromName( $nt->getText() );
@@ -64,7 +64,7 @@ class SpecialContributions extends SpecialPage {
 			$this->opts['namespace'] = '';
 		}
 
-		$this->opts['tagfilter'] = $wgRequest->getVal( 'tagfilter' );
+		$this->opts['tagfilter'] = (string) $wgRequest->getVal( 'tagfilter' );
 	
 		// Allows reverts to have the bot flag in recent changes. It is just here to
 		// be passed in the form at the top of the page 
@@ -106,7 +106,7 @@ class SpecialContributions extends SpecialPage {
 
 		wfRunHooks( 'SpecialContributionsBeforeMainOutput', $id );
 
-		$wgOut->addHTML( $this->getForm( $this->opts ) );
+		$wgOut->addHTML( $this->getForm() );
 
 		$pager = new ContribsPager( $target, $this->opts['namespace'], $this->opts['year'], $this->opts['month'] );
 		if( !$pager->getNumRows() ) {
@@ -236,6 +236,10 @@ class SpecialContributions extends SpecialPage {
 	
 		if( $this->opts['contribs'] == 'newbie' ) {
 			$this->opts['target'] = '';
+		}
+
+		if( !isset( $this->opts['tagfilter'] ) ) {
+			$this->opts['tagfilter'] = '';
 		}
 	
 		$f = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
