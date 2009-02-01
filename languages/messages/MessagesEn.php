@@ -3593,7 +3593,7 @@ Please confirm that you really want to recreate this page.",
 # Auto-summaries
 'autosumm-blank'   => 'Blanked the page',
 'autosumm-replace' => "Replaced content with '$1'",
-'autoredircomment' => 'Redirected page to [[$1]] ',
+'autoredircomment' => 'Redirected page to [[$1]]',
 'autosumm-new'     => "Created page with '$1'",
 
 # Autoblock whitelist
