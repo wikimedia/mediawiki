@@ -1099,7 +1099,7 @@ Since there is no section $1, there is no place to save your edit.',
 'accmailtitle'                     => 'Password sent.',
 'accmailtext'                      => "A randomly generated password for [[User talk:$1|$1]] has been sent to $2.
 
-The password for this new account can be changed on the ''[[Special:Preferences|my preferences]]'' page upon logging in.",
+The password for this new account can be changed on the ''[[Special:ChangePassword|change password]]'' page upon logging in.",
 'newarticle'                       => '(New)',
 'newarticletext'                   => "You have followed a link to a page that does not exist yet.
 To create the page, start typing in the box below (see the [[{{MediaWiki:Helppage}}|help page]] for more info).
