@@ -2112,13 +2112,12 @@ function getShellLocale( $wikiLang ) {
 <div id="column-one">
 	<div class="portlet" id="p-logo">
 	  <a style="background-image: url(../skins/common/images/mediawiki.png);"
-	    href="http://www.mediawiki.org/"
+	    href="../"
 	    title="Main Page"></a>
 	</div>
 	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
 	<div class='portlet'><div class='pBody'>
 		<ul>
-			<li><strong><a href="http://www.mediawiki.org/">MediaWiki home</a></strong></li>
 			<li><a href="../README">Readme</a></li>
 			<li><a href="../RELEASE-NOTES">Release notes</a></li>
 			<li><a href="../docs/">Documentation</a></li>
