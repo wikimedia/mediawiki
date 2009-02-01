@@ -127,6 +127,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 17146) Fix for UTF-8 and short word search for some possible MySQL configs
 * (bug 7480) Internationalize database error message
 * (bug 16555) Number of links to mediawiki.org scaled back on post-installation
+* (bug 14938) Removing a section no longer leaves excess whitespace
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
