@@ -489,8 +489,8 @@ Mesedez, saioa hasi jasotakoan.',
 'blocked-mailpassword'       => 'Zure IP helbidea aldaketak egiteko blokeatuta dago, eta beraz ezin da pasahitza berreskuratzeko aukera erabili.',
 'eauthentsent'               => 'Egiaztapen mezu bat bidali da zehaztutako e-posta helbidera.
 Helbide horretara beste edozein mezu bidali aurretik, bertan azaltzen diren argibideak jarraitu behar dituzu, e-posta hori zurea dela egiaztatzeko.',
-'throttled-mailpassword'     => 'Pasahitz gogorarazle bat bidali da jada azken $1 orduetan.
-Bandalismoa saihesteko pasahitz eskaera bat baino ezin da egin $1 orduz behin.',
+'throttled-mailpassword'     => 'Pasahitz gogorarazle bat bidali da jada azken {{PLURAL:$1|orduan|$1 orduetan}}.
+Bandalismoa saihesteko pasahitz eskaera bat baino ezin da egin {{PLURAL:$1|orduan|$1 orduan}} behin.',
 'mailerror'                  => 'Errorea mezua bidaltzerakoan: $1',
 'acct_creation_throttle_hit' => 'Sentitzen dugu, {{PLURAL:$1|erabiltzaile kontu bat sortu duzu|$1 erabiltzaile kontu sortu dituzu}} dagoeneko.
 Ezin duzu gehiago sortu.',
@@ -1172,7 +1172,7 @@ Saia zaitez zure eskeraren aurretik ''all:'' jartzen eduki guztien artean bilatz
 'minoreditletter'                   => 't',
 'newpageletter'                     => 'B',
 'boteditletter'                     => 'b',
-'number_of_watching_users_pageview' => '[$1 jarraitzaile]',
+'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|lankide|lankide}} jarraitzen]',
 'rc_categories'                     => 'Kategorietara mugatu ("|" karaktereaz banandu)',
 'rc_categories_any'                 => 'Edozein',
 'newsectionsummary'                 => '/* $1 */ atal berria',
@@ -2109,7 +2109,7 @@ Fitxategiaren atal bat baino ez zen igo.',
 'import-logentry-upload'           => '[[$1]] igoera bitartez inportatu da',
 'import-logentry-upload-detail'    => '$1 berrikuspen',
 'import-logentry-interwiki'        => '$1 wiki artean mugitu da',
-'import-logentry-interwiki-detail' => '$1 berrikuspen $2(e)tik',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|berrikuspen|berrikuspen}} $2-(e)tik',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Nire lankide orrialdea',

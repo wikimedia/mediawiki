@@ -542,6 +542,10 @@ Contul dumneavoatră a fost creat. Nu uitaţi să vă personalizaţi [[Special:P
 'badsig'                     => 'Semnătură brută incorectă; verificaţi tag-urile HTML.',
 'badsiglength'               => 'Semnătura este prea lungă.
 Dimensiunea trebuie să fie mai mică de $1 {{PLURAL:$1|caracter|caractere}}.',
+'yourgender'                 => 'Gen:',
+'gender-unknown'             => 'Nespecificat',
+'gender-male'                => 'Bărbat',
+'gender-female'              => 'Femeie',
 'email'                      => 'E-mail',
 'prefs-help-realname'        => '* Numele dumneavoastră real (opţional): Dacă decideţi introducerea numelui real aici, acesta va fi folosit pentru a vă atribui munca.<br />',
 'loginerror'                 => 'Eroare de autentificare',
@@ -553,6 +557,7 @@ Dimensiunea trebuie să fie mai mică de $1 {{PLURAL:$1|caracter|caractere}}.',
 'loginsuccesstitle'          => 'Autentificare reuşită',
 'loginsuccess'               => 'Aţi fost autentificat în {{SITENAME}} ca "$1".',
 'nosuchuser'                 => 'Nu există nici un utilizator cu numele „$1”.
+Numele de utilizatori sunt sensibile la majuscule.
 Verifică dacă ai scris corect sau [[Special:UserLogin/signup|creează un nou cont de utilizator]].',
 'nosuchusershort'            => 'Nu este nici un utilizator cu numele "<nowiki>$1</nowiki>". Verificaţi dacă aţi scris corect.',
 'nouserspecified'            => 'Trebuie să specificaţi un nume de utilizator.',
@@ -564,8 +569,8 @@ Trebuie să aibă cel puţin {{PLURAL:$1|1 caracter|$1 caractere}} şi să fie d
 'passwordremindertitle'      => 'Noua parolă temporară la {{SITENAME}}',
 'passwordremindertext'       => 'Cineva (probabil dumneavoastră, de la adresa $1)
 a cerut să vi se trimită o nouă parolă pentru {{SITENAME}} ($4).
-Parola pentru utilizatorul "$2" este acum "$3".
-Este recomandat să intraţi pe {{SITENAME}} şi să vă schimbi parola cât mai curând.
+O parolă temporară pentru utilizatorul "$2" este acum "$3".
+Parola temporară va expirs {{PLURAL:$5|într-o zi|în $5 zile}}.
 
 Dacă această cerere a fost efectuată de altcineva sau dacă v-aţi amintit 
 parola şi nu doriţi să o schimbaţi, ignoraţi acest mesaj şi continuaţi 
@@ -1584,7 +1589,7 @@ O pagină este considerată o pagină de dezambiguizare dacă foloseşte formate
 'mostcategories'          => 'Articole cu cele mai multe categorii',
 'mostimages'              => 'Cele mai căutate imagini',
 'mostrevisions'           => 'Articole cu cele mai multe revizuiri',
-'prefixindex'             => 'Afişare articole începând de la',
+'prefixindex'             => 'Toate paginile cu prefix',
 'shortpages'              => 'Pagini scurte',
 'longpages'               => 'Pagini lungi',
 'deadendpages'            => 'Pagini fără legături',
@@ -1858,9 +1863,9 @@ Iată configuraţia curentă a paginii <strong>$1</strong>:',
 Aici sunt setările curente pentru pagina <strong>$1</strong>:',
 'protect-cascadeon'           => 'Această pagină este protejată deoarece este inclusă în {{PLURAL:$1|următoarea pagină, ce are|următoarele pagini ce au}} activată protejarea la modificare în cascadă.
 Puteţi schimba nivelul de protejare al acestei pagini, dar asta nu va afecta protecţia în cascadă.',
-'protect-default'             => '(standard)',
+'protect-default'             => 'Permite toţi utilizatorii',
 'protect-fallback'            => 'Cere permisiunea "$1"',
-'protect-level-autoconfirmed' => 'Blochează utilizatorii neînregistraţi',
+'protect-level-autoconfirmed' => 'Blochează utilizatorii noi şi neînregistraţi',
 'protect-level-sysop'         => 'Numai administratorii',
 'protect-summary-cascade'     => 'în cascadă',
 'protect-expiring'            => 'expiră $1 (UTC)',
@@ -2246,9 +2251,9 @@ Un dosar temporar lipseşte.',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|versiune|versiuni}} de la $2',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => 'Pagina mea de utilizator',
+'tooltip-pt-userpage'             => 'Pagina dumneavoastră de utilizator',
 'tooltip-pt-anonuserpage'         => 'Pagina de utilizator pentru adresa IP curentă',
-'tooltip-pt-mytalk'               => 'Pagina mea de discuţii',
+'tooltip-pt-mytalk'               => 'Pagina dumneavoastră de discuţii',
 'tooltip-pt-anontalk'             => 'Discuţii despre editări pentru adresa IP curentă',
 'tooltip-pt-preferences'          => 'Preferinţele mele',
 'tooltip-pt-watchlist'            => 'Lista paginilor pe care le monitorizez.',
@@ -2258,7 +2263,7 @@ Un dosar temporar lipseşte.',
 'tooltip-pt-logout'               => 'Închide sesiunea',
 'tooltip-ca-talk'                 => 'Discuţie despre articol',
 'tooltip-ca-edit'                 => 'Poţi edita această pagină. Te rugăm să previzualizezi conţinutul înainte de salvare.',
-'tooltip-ca-addsection'           => 'Adaugă un comentariu acestei discuţii.',
+'tooltip-ca-addsection'           => 'Adaugă o nouă secţiune.',
 'tooltip-ca-viewsource'           => 'Aceasta pagina este protejată. Poţi sa vezi doar codul sursă.',
 'tooltip-ca-history'              => 'Versiuni vechi ale acestui document.',
 'tooltip-ca-protect'              => 'Protejează acest document.',

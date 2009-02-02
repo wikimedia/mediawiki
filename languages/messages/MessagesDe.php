@@ -2234,7 +2234,7 @@ Zur Aufhebung der Sperre siehe die [[Special:IPBlockList|Liste aller aktiven Spe
 'ipb-blocklist-contribs'          => 'Benutzerbeiträge für „$1“',
 'unblockip'                       => 'IP-Adresse freigeben',
 'unblockiptext'                   => 'Mit diesem Formular kannst du eine IP-Adresse oder einen Benutzer freigeben.',
-'ipusubmit'                       => 'IP-Adresse freigeben',
+'ipusubmit'                       => 'Freigeben',
 'unblocked'                       => '[[User:$1|$1]] wurde freigegeben',
 'unblocked-id'                    => 'Sperr-ID $1 wurde freigegeben',
 'ipblocklist'                     => 'Gesperrte IP-Adressen und Benutzernamen',

@@ -461,14 +461,14 @@ $messages = array(
 'talkpagelinktext'  => 'مناقشه',
 'specialpage'       => 'صفحة مخصوصة',
 'personaltools'     => 'ادوات شخصيه',
-'postcomment'       => 'ابعت تعليق',
+'postcomment'       => 'قسم جديد',
 'articlepage'       => 'بين صفحة المحتوى',
 'talk'              => 'مناقشه',
 'views'             => 'مشاهده',
 'toolbox'           => 'علبة العده',
 'userpage'          => 'عرض صفحة اليوزر',
 'projectpage'       => 'عرض صفحة المشروع',
-'imagepage'         => 'عرض صفحة الميديا',
+'imagepage'         => 'عرض صفحة الملف',
 'mediawikipage'     => 'عرض صفحة الرسالة',
 'templatepage'      => 'عرض صفحة القالب',
 'viewhelppage'      => 'بين صفحة المساعدة',
@@ -540,13 +540,13 @@ $messages = array(
 'site-atom-feed'          => '$1 اتوم فييد',
 'page-rss-feed'           => '"$1" ار‌ اس‌ اس فييد',
 'page-atom-feed'          => '"$1" فييد أتوم',
-'red-link-title'          => '$1 (لسة ما اتكتبت ش )',
+'red-link-title'          => '(الصفحه مالهاش وجود)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'صفحة',
 'nstab-user'      => 'صفحة يوزر',
 'nstab-media'     => 'صفحة ميديا',
-'nstab-special'   => 'مخصوص',
+'nstab-special'   => 'صفحه مخصوصه',
 'nstab-project'   => 'صفحة مشروع',
 'nstab-image'     => 'فايل',
 'nstab-mediawiki' => 'رساله',
@@ -677,8 +677,8 @@ $2',
 'yournick'                   => 'الإمضا:',
 'badsig'                     => 'الامضا الخام بتاعتك مش صح.
 اتإكد من التاجز بتاعة الHTML.',
-'badsiglength'               => 'الإمضا بتاعتك طويلة جدا.
-لازم تكون اقل من $1 {{PLURAL:$1|حرف|حروف}}.',
+'badsiglength'               => 'الامضا بتاعتك اطول م اللازم.
+لازم تكون اصغر من$1 {{PLURAL:$1|حرف|حرف}}.',
 'yourgender'                 => 'النوع:',
 'gender-unknown'             => 'مش متحدد',
 'gender-male'                => 'ذكر',
@@ -700,8 +700,9 @@ $2',
 'noname'                     => 'انت ما حددتش اسم يوزر صحيح.',
 'loginsuccesstitle'          => 'تم الدخول بشكل صحيح',
 'loginsuccess'               => "'''تم تسجيل دخولك{{SITENAME}} باسم \"\$1\".'''",
-'nosuchuser'                 => 'مافيش يوزر باسم "$1".
-اتاكد من تهجية الاسم، او [[Special:UserLogin/signup|افتح حساب جديد]].',
+'nosuchuser'                 => 'مافيش يوزر اسمه "$1".
+اسامى اليوزر بتبقى حساسه لحالة الحرف.
+اتأكد من التهجيه, او [[Special:UserLogin/signup|افتح حساب جديد]].',
 'nosuchusershort'            => 'مافيش يوزر باسم <nowiki>$1</nowiki>".
 اتاكد من تهجية الاسم.',
 'nouserspecified'            => 'لازم تحدد اسم يوزر.',
@@ -728,8 +729,8 @@ $2',
 علشان منع التخريب، ح نفكرك مرة و احدة بس كل
 {{PLURAL:$1|ساعة|$1 ساعة}}.',
 'mailerror'                  => 'غلط فى بعتان الايميل : $1',
-'acct_creation_throttle_hit' => 'انت عندك {{PLURAL:$1|1 حساب|$1 حساب}}.
-مش ممكن نفتح واحد تاني.',
+'acct_creation_throttle_hit' => 'الناس اللى دخلت ع الويكي دا باستعمال عنوان الاي بى بتاعك فتحو {{PLURAL:$1|1 حساب|$1 حساب}} ف اليوم اللى فات دا, يعنى وصلو للحد الاقصى المسموح بيه فى الفترة الزمنيه المحدده..
+و عشان كدا, الزوار اللى بيدخلو بعنوان الاى بى دا مش مسموح لهم يفتحو حسابات اكتر فى الوقت الحالى .',
 'emailauthenticated'         => 'اتأكدنا من الايميل بتاعك فى $2 الساعة $3.',
 'emailnotauthenticated'      => 'لسة ما اتكدناش من الايميل بتاعك.
 مش ح يتبعتلك اى  ايميلات بخصوص الميزات دي.',
@@ -845,7 +846,9 @@ $2',
 'loginreqlink'                     => 'ادخل',
 'loginreqpagetext'                 => 'لازم تكون $1 علشان تشوف صفحات تانية.',
 'accmailtitle'                     => ' كلمة السر اتبعتت .',
-'accmailtext'                      => "الباسورد بتاعة '$1' اتبعتت لـ $2.",
+'accmailtext'                      => "الباسورد العشوائيه اللى اتعملت لـ[[User talk:$1|$1]]  اتبعتت لـ $2.
+
+الباسورد بتاعة الحساب الجديد دا ممكن تتغير فى صفحة ''[[Special:ChangePassword|تغيير الباسورد]]''  وقت تسجيل الدخول.",
 'newarticle'                       => '(جديد)',
 'newarticletext'                   => "انت وصلت لصفحه مابتدتش لسه.
 علشان  تبتدى الصفحة ابتدى الكتابه فى الصندوق اللى تحت.
@@ -879,7 +882,7 @@ $2',
 دا ساعات بيحصل لما تستعمل خدمة بروكسى مجهولة بايظة أساسها الويب.</strong>',
 'editing'                          => 'تعديل $1',
 'editingsection'                   => 'تعديل $1 (جزء)',
-'editingcomment'                   => 'تعديل $1 (تعليق)',
+'editingcomment'                   => 'تعديل $1 (قسم جديد)',
 'editconflict'                     => 'تضارب فى التحرير: $1',
 'explainconflict'                  => "فى واحد تانى عدل الصفحة دى  بعد ما انت ابتديت بتحريرها.
 صندوق النصوص الفوقانى فيه النص الموجود دلوقتى فى الصفحة.
@@ -1273,7 +1276,7 @@ $2',
 'stub-threshold'            => 'الحد لتنسيق <a href="#" class="stub">لينك البذرة</a>:',
 'recentchangesdays'         => 'عدد الأيام المعروضة فى اخرالتغييرات:',
 'recentchangesdays-max'     => '(الحد الاقصى $1 {{PLURAL:$1|يوم|ايام}})',
-'recentchangescount'        => 'عدد التعديلات للعرض فى اخر التغييرات، صفحات التواريخ والسجلات:',
+'recentchangescount'        => 'عدد التعديلات اللى بتظهر اوتوماتيكى فى احدث التغييرات, تواريخ الصفحه, و فى السجلات, :',
 'savedprefs'                => 'التفضيلات بتاعتك اتحفظت.',
 'timezonelegend'            => 'منطقة التوقيت',
 'timezonetext'              => '¹الفرق فى الساعات بين توقيتك المحلى و توقيت السيرفر (UTC).',
@@ -1539,8 +1542,8 @@ $2',
 'file-thumbnail-no'           => 'يبدأ الملف ب <strong><tt>$1</tt></strong>. 
 يبدو أن الملف مصتغر لحجم أعلى <i>(تصغير)</i>.
 إذا كان عندك الصورة فى درجة دقة كامله حملها، أو غير اسم الملف من فضلك.',
-'fileexists-forbidden'        => 'فى ملف تانى بنفس الاسم موجود
-لو سمحت ترجع تانى و تحمل الملف باسم جديد. [[File:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'فى ملف بنفس الاسم موجود, و ماينفعش يتكتب عليه.
+لو انتا لسه عايز تحمل الملف بتاعك, لو سمحت ترجع لورا و تستعمل اسم جديد. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'فى ملف بنفس الاسم دا فى مخزن الملفات المشترك.
 لو كنت لسه عايز ترفعه، لو سمحت ارجع وحمل الملف دا باسم جديد.
 [[File:$1|thumb|center|$1]]',
@@ -1639,7 +1642,7 @@ PICT # misc.
 'filehist-dimensions'            => 'ابعاد',
 'filehist-filesize'              => 'حجم الفايل',
 'filehist-comment'               => 'تعليق',
-'imagelinks'                     => 'وصلات',
+'imagelinks'                     => 'لينكات الملف',
 'linkstoimage'                   => '{{PLURAL:$1|الصفحة|ال$1 صفحة}} دى فيها وصله للفايل ده:',
 'linkstoimage-more'              => 'أكتر من $1 {{PLURAL:$1|صفحة تصل|صفحة تصل}} للملف ده .
 القائمة التالية تعرض {{PLURAL:$1|أول وصلة صفحة|أول $1 وصلة صفحة}} للملف ده بس.
@@ -1674,7 +1677,7 @@ PICT # misc.
 # File deletion
 'filedelete'                  => 'امسح $1',
 'filedelete-legend'           => 'امسح الملف',
-'filedelete-intro'            => "أنت بتمسح '''[[Media:$1|$1]]'''.",
+'filedelete-intro'            => "انتا على وشك تمسح الملف'''[[Media:$1|$1]]'''معا كل التاريخ بتاعه.",
 'filedelete-intro-old'        => '<span class="plainlinks">أنت بتمسح نسخة \'\'\'[[Media:$1|$1]]\'\'\'اللى  بتاريخ [$4 $3، $2].</span>',
 'filedelete-comment'          => 'سبب المسح:',
 'filedelete-submit'           => 'مسح',
@@ -1750,7 +1753,7 @@ PICT # misc.
 'double-redirect-fixer'      => 'مصلح التحويل',
 
 'brokenredirects'        => 'تحويلات مكسوره',
-'brokenredirectstext'    => 'التحويلات دى بتوصل لصفحات مش موجودة:',
+'brokenredirectstext'    => 'التحويلات دى بتودى لصفحات  مالهاش وجود:',
 'brokenredirects-edit'   => '(تحرير)',
 'brokenredirects-delete' => '(مسح)',
 
@@ -1788,7 +1791,7 @@ PICT # misc.
 'mostcategories'          => 'اكتر الصفحات فى عدد التصانيف',
 'mostimages'              => 'اكتر الملفات فى عدد الارتباطات',
 'mostrevisions'           => 'اكتر المقالات فى عدد التعديلات',
-'prefixindex'             => 'فهرس البريفكسات',
+'prefixindex'             => 'كل الصفحات اللى بالبرفيكس',
 'shortpages'              => 'صفحات قصيره',
 'longpages'               => 'صفحات طويله',
 'deadendpages'            => 'صفحات ما بتوصلش  لحاجه',
@@ -1870,7 +1873,7 @@ PICT # misc.
 'deletedcontributions-title' => 'تعديلات اليوزر الممسوحة',
 
 # Special:LinkSearch
-'linksearch'       => 'دور فى لينكات الويب',
+'linksearch'       => 'لينكات خارجيه',
 'linksearch-pat'   => 'نظام التدوير:',
 'linksearch-ns'    => 'النطاق:',
 'linksearch-ok'    => 'تدوير',
@@ -1889,7 +1892,7 @@ PICT # misc.
 'newuserlogpagetext'          => 'دا سجل لليوزرز الجداد',
 'newuserlog-byemail'          => 'الباسورد اتبعتت بالايميل',
 'newuserlog-create-entry'     => 'يوزر جديد',
-'newuserlog-create2-entry'    => 'افتح حساب لـ $1',
+'newuserlog-create2-entry'    => 'الحساب الجديد المعمول $1',
 'newuserlog-autocreate-entry' => 'الحساب اتفتح اوتوماتيكي',
 
 # Special:ListGroupRights
@@ -2042,7 +2045,7 @@ $NEWPAGE
 'alreadyrolled'    => 'ماقدرناش نرجع آخر تعديل للصفحة [[$1]] [[User:$2|$2]] ([[User talk:$2|نقاش]]) لأن فى واحد عمل تعديل او ترجيع للصفحة دى قبل كده.
 
 آخر واحد  عدل الصفحة دى هوه [[User:$3|$3]] ([[User talk:$3|نقاش]]).',
-'editcomment'      => 'تعليق التعديل كان: "<i>$1</i>".', # only shown if there is an edit comment
+'editcomment'      => 'ملخص التعديل كان: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'       => 'استرجع التعديلات بواسطة [[Special:Contributions/$2|$2]] ([[User talk:$2|مناقشة]]) لآخر نسخة بواسطة [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'استرجع تعديلات $1؛
 استرجع لآخر نسخة بواسطة $2.',

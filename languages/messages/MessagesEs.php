@@ -353,14 +353,14 @@ $messages = array(
 'talkpagelinktext'  => 'Discutir',
 'specialpage'       => 'Página Especial',
 'personaltools'     => 'Herramientas personales',
-'postcomment'       => 'Poner un comentario',
+'postcomment'       => 'Nueva sección',
 'articlepage'       => 'Ver artículo',
 'talk'              => 'Página de discusión',
 'views'             => 'Vistas',
 'toolbox'           => 'Herramientas',
 'userpage'          => 'Ver página de usuario',
 'projectpage'       => 'Ver página meta',
-'imagepage'         => 'Ver página de imagen',
+'imagepage'         => 'Ver página del archivo',
 'mediawikipage'     => 'Ver página de mensaje',
 'templatepage'      => 'Ver página de plantilla',
 'viewhelppage'      => 'Ver página de ayuda',
@@ -431,7 +431,7 @@ $messages = array(
 'site-atom-feed'          => '$1 Atom feed',
 'page-rss-feed'           => '"$1" RSS feed',
 'page-atom-feed'          => '"$1" Subscripción Atom',
-'red-link-title'          => '$1 (aún no redactado)',
+'red-link-title'          => '$1 (página no existe)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Página',
@@ -570,7 +570,7 @@ Por favor, indique un nombre diferente.',
 'yourvariant'                => 'Variante lingüística',
 'yournick'                   => 'Su apodo (para firmas)',
 'badsig'                     => 'El código de tu firma no es válido; comprueba las etiquetas HTML.',
-'badsiglength'               => 'El apodo para firmas es demasiado largo.
+'badsiglength'               => 'Su firma es demasiado largo.
 Debe ser de menos de $1 {{PLURAL:$1|carácter|caracteres}}.',
 'yourgender'                 => 'Género:',
 'gender-unknown'             => 'Si especificar',
@@ -588,6 +588,7 @@ También puede permitir a otros usuarios que contacten con usted a través de su
 'loginsuccesstitle'          => 'Inicio de sesión exitoso',
 'loginsuccess'               => 'Ha iniciado su sesión en {{SITENAME}} como "$1".',
 'nosuchuser'                 => 'No existe ningún usuario llamado «$1».
+Los nombres de usuario son sensibles a las mayúsculas.
 Verifique su deletreo, o [[Special:UserLogin/signup|cree una nueva cuenta]].',
 'nosuchusershort'            => 'No hay un usuario con el nombre "<nowiki>$1</nowiki>". Compruebe que lo ha escrito correctamente.',
 'nouserspecified'            => 'Debes especificar un nombre de usuario.',
@@ -610,8 +611,8 @@ Antes de que se envíe cualquier otro correo a la cuenta tienes que seguir las i
 'throttled-mailpassword'     => 'Ya se ha enviado un recordatorio de password en {{PLURAL:$1|la última hora|las últimas $1 horas}}.
 Para evitar los abusos, solo se enviará un recordatorio de password cada {{PLURAL:$1|hora|$1 horas}}.',
 'mailerror'                  => 'Error al enviar correo: $1',
-'acct_creation_throttle_hit' => 'Lo sentimos, ya has creado {{PLURAL:$1|una cuenta|$1 cuentas}}.
-No puedes crear más.',
+'acct_creation_throttle_hit' => 'Los visitantes a esta wiki usando su dirección IP han creado {{PLURAL:$1|una cuenta|$1 cuentas}} en el último día. lo cual es lo máximo permitido en este periodo de tiempo.
+Como resultado, los visitantes usando esta dirección IP no pueden crear más cuentas en este momento.',
 'emailauthenticated'         => 'Su dirección electrónica fue autenticada en $2 a $3.',
 'emailnotauthenticated'      => 'Aún no has confirmado tu dirección de correo electrónico.
 Hasta que lo hagas, las siguientes funciones no estarán disponibles.',
@@ -759,7 +760,7 @@ Se rechazó la edición para evitar que el texto de la página se corrompa
 Esto sucede en ocasiones cuando se usa un servicio de proxy anónimo defectuoso.</strong>',
 'editing'                          => 'Editando $1',
 'editingsection'                   => 'Editando $1 (sección)',
-'editingcomment'                   => 'Editando $1 (comentario)',
+'editingcomment'                   => 'Editando $1 (nueva sección)',
 'editconflict'                     => 'Conflicto de edición: $1',
 'explainconflict'                  => "Alguien más ha cambiado esta página desde que empezaste a editarla.
 El área de texto superior contiene el texto de la página como existe actualmente.
@@ -1482,7 +1483,7 @@ archivo a esa fecha.',
 'filehist-dimensions'            => 'Dimensiones',
 'filehist-filesize'              => 'Tamaño',
 'filehist-comment'               => 'Comentario',
-'imagelinks'                     => 'Enlaces a la imagen',
+'imagelinks'                     => 'Enlaces al archivo',
 'linkstoimage'                   => '{{PLURAL:$1|La siguiente página enlaza|Las siguientes páginas enlazan}} a este archivo:',
 'linkstoimage-more'              => 'Hay más de {{PLURAL:$1|una página que enlaza|$1 páginas que enlazan}} con este fichero.
  
@@ -1592,7 +1593,7 @@ Cada fila contiene enlaces al segundo y tercer redirect, así como la primera l�
 'double-redirect-fixer'      => 'Corrector de redirecciones',
 
 'brokenredirects'        => 'Redirecciones incorrectas',
-'brokenredirectstext'    => 'Las redirecciones siguientes enlazan a un artículo que no existe.',
+'brokenredirectstext'    => 'Las siguientes redirecciones enlazan a páginas que no existen:',
 'brokenredirects-edit'   => '(editar)',
 'brokenredirects-delete' => '(borrar)',
 
@@ -1630,7 +1631,7 @@ Cada fila contiene enlaces al segundo y tercer redirect, así como la primera l�
 'mostcategories'          => 'Páginas con más categorías',
 'mostimages'              => 'Imágenes más usadas',
 'mostrevisions'           => 'Artículos con más ediciones',
-'prefixindex'             => 'Páginas por prefijo',
+'prefixindex'             => 'Todas las páginas con prefijo',
 'shortpages'              => 'Páginas cortas',
 'longpages'               => 'Páginas largas',
 'deadendpages'            => 'Páginas sin salida',
@@ -1711,7 +1712,7 @@ Véase también las [[Special:WantedCategories|categorías requeridas]].',
 'deletedcontributions-title' => 'Contribuciones de usuario borradas',
 
 # Special:LinkSearch
-'linksearch'       => 'Buscar enlaces a páginas web',
+'linksearch'       => 'Enlaces externos',
 'linksearch-pat'   => 'Patrón de búsqueda:',
 'linksearch-ns'    => 'Nombre de espacio:',
 'linksearch-ok'    => 'Buscar',
@@ -1730,7 +1731,7 @@ Protocolos soportados: <tt>$1</tt>',
 'newuserlogpagetext'          => 'Este es un registro de creación de usuarios.',
 'newuserlog-byemail'          => 'contraseña enviada por correo electrónico',
 'newuserlog-create-entry'     => 'Usuario nuevo',
-'newuserlog-create2-entry'    => 'creó una cuenta para $1',
+'newuserlog-create2-entry'    => 'Nueva cuenta creada $1',
 'newuserlog-autocreate-entry' => 'Cuenta creada automáticamente',
 
 # Special:ListGroupRights
@@ -1885,7 +1886,7 @@ Véase $2 para un registro de los borrados recientes.',
 'alreadyrolled'    => 'No se puede revertir la última edición de [[:$1]] hecha por [[User:$2|$2]] ([[User talk:$2|discusión]] | [[Special:Contributions/$2|{{int:contribslink}}]]); alguien más ya ha editado o revertido esa página.
 
 La última edición fue hecha por [[User:$3|$3]] ([[User talk:$3|discusión]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => 'El resumen de la edición es: "<i>$1</i>".', # only shown if there is an edit comment
+'editcomment'      => 'El resumen de la edición fue: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'       => 'Revertidas las ediciones de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discusión]]) a la última edición de [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Revertidas las ediciones de $1; recuperada la última versión de $2.',
 'sessionfailure'   => 'Parece que hay un problema con tu sesión;
@@ -1914,9 +1915,9 @@ A continuación se muestran las opciones actuales de la página <strong>$1</stro
 'protect-locked-access'       => 'Su cuenta no tiene permiso para cambiar los niveles de protección de una página.
 A continuación se muestran las opciones actuales de la página <strong>$1</strong>:',
 'protect-cascadeon'           => 'Actualmente esta página está protegida porque está incluida en {{PLURAL:$1|la siguiente página|las siguientes páginas}}, que tienen activada la opción de protección en cascada. Puedes cambiar el nivel de protección de esta página, pero no afectará a la protección en cascada.',
-'protect-default'             => '(por defecto)',
+'protect-default'             => 'Permitir todos los usuarios',
 'protect-fallback'            => 'Necesita el permiso «$1»',
-'protect-level-autoconfirmed' => 'Bloquear usuarios no registrados',
+'protect-level-autoconfirmed' => 'Bloquear usuarios nuevos y no registrados',
 'protect-level-sysop'         => 'Sólo administradores',
 'protect-summary-cascade'     => 'en cascada',
 'protect-expiring'            => 'caduca el $1 (UTC)',
@@ -2089,7 +2090,7 @@ las páginas en particular que han sido objeto de vandalismo).',
 'ipb-blocklist-contribs'          => 'Contribuciones de $1',
 'unblockip'                       => 'Desbloquear usuario',
 'unblockiptext'                   => 'Use el formulario a continuación para devolver los permisos de escritura a una dirección IP que ha sido bloqueada.',
-'ipusubmit'                       => 'Desbloquear esta dirección',
+'ipusubmit'                       => 'Desbloquear esta dirección IP',
 'unblocked'                       => '[[User:$1|$1]] ha sido desbloqueado',
 'unblocked-id'                    => 'Se ha eliminado el bloqueo $1',
 'ipblocklist'                     => 'Lista de direcciones IP y nombres de usuario bloqueadas',
@@ -2203,8 +2204,8 @@ En estos casos, deberá trasladar manualmente el contenido de la página de disc
 'talkexists'                   => 'La página fue renombrada con éxito, pero la discusión no se pudo mover porque ya existe una en el título nuevo. Por favor incorpore su contenido manualmente.',
 'movedto'                      => 'renombrado a',
 'movetalk'                     => 'Renombrar la página de discusión también, si es aplicable.',
-'move-subpages'                => 'Mover todas las subpáginas si es posible',
-'move-talk-subpages'           => 'Mover todas las subpáginas de discusión, si es posible',
+'move-subpages'                => 'Mover las subpáginas (up to $1), si es posible',
+'move-talk-subpages'           => 'Mover las subpáginas de discusión (up to $1), si es posible',
 'movepage-page-exists'         => 'La página $1 ya existe, por lo que no puede ser renombrada automáticamente.',
 'movepage-page-moved'          => 'La página $1 ha sido trasladado a $2.',
 'movepage-page-unmoved'        => 'La página $1 no se ha podido trasladar a $2.',
@@ -2317,19 +2318,19 @@ No hay un directorio temporal.',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revisión|revisiones}} desde $2',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => 'Mi página de usuario',
+'tooltip-pt-userpage'             => 'Su página de usuario',
 'tooltip-pt-anonuserpage'         => 'La página de usuario de la IP desde la que edita',
-'tooltip-pt-mytalk'               => 'Mi página de discusión',
+'tooltip-pt-mytalk'               => 'Su página de discusión',
 'tooltip-pt-anontalk'             => 'Discusión sobre ediciones hechas desde esta dirección IP',
 'tooltip-pt-preferences'          => 'Mis preferencias',
 'tooltip-pt-watchlist'            => 'La lista de páginas para las que está vigilando los cambios',
-'tooltip-pt-mycontris'            => 'Lista de mis contribuciones',
+'tooltip-pt-mycontris'            => 'Lista de sus contribuciones',
 'tooltip-pt-login'                => 'Le animamos a registrarse, aunque no es obligatorio',
 'tooltip-pt-anonlogin'            => 'Le animamos a registrarse, aunque no es obligatorio',
 'tooltip-pt-logout'               => 'Salir de la sesión',
 'tooltip-ca-talk'                 => 'Discusión acerca del artículo',
 'tooltip-ca-edit'                 => 'Puede editar esta página. Por favor, use el botón de previsualización antes de grabar.',
-'tooltip-ca-addsection'           => 'Añada un comentario a esta discusión',
+'tooltip-ca-addsection'           => 'Inicie una nueva sección',
 'tooltip-ca-viewsource'           => 'Esta página está protegida, sólo puede ver su código fuente',
 'tooltip-ca-history'              => 'Versiones anteriores de esta página y sus autores',
 'tooltip-ca-protect'              => 'Proteger esta página',
@@ -2454,6 +2455,7 @@ Esto podría estar causado por un enlace a un sitio externo incluido en la lista
 'patrol-log-header'    => 'Este es un registro de revisiones patrulladas.',
 'patrol-log-line'      => 'revisado $1 de $2 $3',
 'patrol-log-auto'      => '(automático)',
+'patrol-log-diff'      => 'revisión $1',
 'log-show-hide-patrol' => '$1 registro de patrullaje',
 
 # Image deletion
@@ -2869,10 +2871,10 @@ $1
 'table_pager_empty'        => 'No hay resultados',
 
 # Auto-summaries
-'autosumm-blank'   => 'Página blanqueada',
+'autosumm-blank'   => 'Blanqueada la página',
 'autosumm-replace' => "Página reemplazada por «'$1'»",
 'autoredircomment' => 'Redirigiendo a [[$1]]',
-'autosumm-new'     => 'Página nueva: $1',
+'autosumm-new'     => "Página creada con '$1'",
 
 # Live preview
 'livepreview-loading' => 'Cargando…',
@@ -2991,7 +2993,7 @@ Ingrese el nombre del archivo sin el prefijo "{{ns:file}}:".',
 #Put all regex fragments above this line. Deja esta línea exactamente como está</pre>',
 
 # Special:Tags
-'tags'                    => 'Cambiar etiquetas válidas',
+'tags'                    => 'Cambio de etiquetas válida',
 'tag-filter'              => 'Filtro de [[Special:Tags|etiquetas]]:',
 'tag-filter-submit'       => 'Filtro',
 'tags-title'              => 'Etiquetas',
@@ -3002,5 +3004,13 @@ Ingrese el nombre del archivo sin el prefijo "{{ns:file}}:".',
 'tags-hitcount-header'    => 'Cambios etiquetados',
 'tags-edit'               => 'editar',
 'tags-hitcount'           => '$1 {{PLURAL:$1|cambio|cambios}}',
+
+# Database error messages
+'dberr-header'      => 'Este wiki tiene un problema',
+'dberr-problems'    => 'Disculpe!. Este sitio está experimentando dificultades técnicas.',
+'dberr-again'       => 'Intente esperando unos minutosa y recargando.',
+'dberr-info'        => '(No puede contactar la base de datos del servidor: $1)',
+'dberr-outofdate'   => 'Note que los índices de nuestro contenido pueden estar desactualizados.',
+'dberr-cachederror' => 'La siguiente es una página guardada de la página solicitada, y puede no estar actualizada.',
 
 );

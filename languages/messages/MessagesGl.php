@@ -310,14 +310,14 @@ $messages = array(
 'talkpagelinktext'  => 'Conversa',
 'specialpage'       => 'Páxina especial',
 'personaltools'     => 'Ferramentas persoais',
-'postcomment'       => 'Engadir un comentario',
+'postcomment'       => 'Nova sección',
 'articlepage'       => 'Ver artigo',
 'talk'              => 'Conversa',
 'views'             => 'Vistas',
 'toolbox'           => 'Caixa de ferramentas',
 'userpage'          => 'Ver páxina de usuario',
 'projectpage'       => 'Ver páxina do proxecto',
-'imagepage'         => 'Ver a páxina de multimedia',
+'imagepage'         => 'Ver a páxina do ficheiro',
 'mediawikipage'     => 'Ver a páxina da mensaxe',
 'templatepage'      => 'Ver a páxina do modelo',
 'viewhelppage'      => 'Ver a páxina de axuda',
@@ -388,7 +388,7 @@ $messages = array(
 'site-atom-feed'          => 'Fonte de noticias Atom de $1',
 'page-rss-feed'           => 'Fonte de noticias RSS para "$1"',
 'page-atom-feed'          => 'Fonte de noticias Atom para "$1"',
-'red-link-title'          => '$1 (aínda non escrito)',
+'red-link-title'          => '$1 (a páxina aínda non existe)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artigo',
@@ -547,6 +547,7 @@ Tamén pode deixar que outras persoas se poñan en contacto con vostede desde a 
 'loginsuccesstitle'          => 'Acceso exitoso',
 'loginsuccess'               => "'''Accedeu ao sistema {{SITENAME}} como \"\$1\".'''",
 'nosuchuser'                 => 'Non hai ningún usuario chamado "$1".
+Os nomes de usuario diferencian entre maiúsculas e minúsculas.
 Verifique o nome que inseriu ou [[Special:UserLogin/signup|cree unha nova conta]].',
 'nosuchusershort'            => 'Non hai ningún usuario chamado "<nowiki>$1</nowiki>".
 Verifique o nome que inseriu.',
@@ -577,8 +578,8 @@ Antes de enviar outro a esta conta terá que seguir as instrucións que aparecen
 'throttled-mailpassword'     => 'Enviouse un aviso co contrasinal {{PLURAL:$1|na última hora|nas últimas $1 horas}}.
 Para evitar o abuso do sistema só se envía unha mensaxe cada {{PLURAL:$1|hora|$1 horas}}.',
 'mailerror'                  => 'Produciuse un erro ao enviar o correo electrónico: $1',
-'acct_creation_throttle_hit' => 'Sentímolo, xa ten {{PLURAL:$1|creada unha conta|creadas $1 contas}}.
-Non pode crear máis.',
+'acct_creation_throttle_hit' => 'Alguén que visitou este wiki co seu enderezo IP creou, no último día, {{PLURAL:$1|unha conta|$1 contas}}, que é o máximo permitido neste período de tempo.
+Como resultado, os visitantes que usen este enderezo IP non poden crear máis contas nestes intres.',
 'emailauthenticated'         => 'O seu enderezo de correo electrónico foi autenticado o $2 ás $3.',
 'emailnotauthenticated'      => 'O seu enderezo de correo electrónico aínda <strong>non foi autenticado</strong>. Non se enviou ningunha mensaxe por algunha das seguintes razóns.',
 'noemailprefs'               => 'Especifique un enderezo de correo electrónico se quere que funcione esta opción.',
@@ -696,7 +697,9 @@ Por favor, inclúa eses datos nas consultas que faga.',
 'loginreqlink'                     => 'acceder ao sistema',
 'loginreqpagetext'                 => 'Debe $1 para ver outras páxinas.',
 'accmailtitle'                     => 'O contrasinal foi enviado.',
-'accmailtext'                      => 'O contrasinal para "$1" foi enviado a $2.',
+'accmailtext'                      => 'Un contrasinal xerado ao chou para "[[User talk:$1|$1]]" foi enviado a "$2".
+
+O contrasinal para esta conta nova pode ser modificado na páxina especial \'\'[[Special:ChangePassword|Cambiar o contrasinal]]\'\' tras acceder ao sistema.',
 'newarticle'                       => '(Novo)',
 'newarticletext'                   => "Seguiu unha ligazón a unha páxina que aínda non existe.
 Para crear a páxina, comece a escribir na caixa de embaixo (vexa a [[{{MediaWiki:Helppage}}|páxina de axuda]] para máis información).
@@ -729,7 +732,7 @@ Rexeitouse a edición para evitar que se corrompa o texto do artigo. Isto pode a
 empregar un servizo de ''proxy'' anónimo defectuoso baseado na web.</strong>",
 'editing'                          => 'Editando "$1"',
 'editingsection'                   => 'Editando unha sección de "$1"',
-'editingcomment'                   => 'Deixando un comentario en "$1"',
+'editingcomment'                   => 'Editando unha nova sección de "$1"',
 'editconflict'                     => 'Conflito de edición: "$1"',
 'explainconflict'                  => "Alguén cambiou esta páxina desde que comezou a editala.
 A área de texto superior contén o texto da páxina tal e como existe na actualidade.
@@ -1122,7 +1125,7 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'stub-threshold'            => 'Umbral para o formatado de <a href="#" class="stub">ligazón de bosquexo</a> (bytes):',
 'recentchangesdays'         => 'Número de días para mostrar nos cambios recentes:',
 'recentchangesdays-max'     => '(máximo {{PLURAL:$1|un día|$1 días}})',
-'recentchangescount'        => 'Número de edicións para mostrar nos cambios recentes, nos historiais e nas páxinas de rexistros:',
+'recentchangescount'        => 'Número de edicións a mostrar, por defecto, nas páxinas dos cambios recentes, historiais e rexistros:',
 'savedprefs'                => 'As súas preferencias foron gardadas.',
 'timezonelegend'            => 'Zona horaria',
 'timezonetext'              => '¹Insira o número de horas de diferenza entre a súa hora local e a do servidor (UTC).',
@@ -1383,7 +1386,8 @@ Se o ficheiro seleccionado é a mesma imaxe de tamaño orixinal non é preciso e
 'file-thumbnail-no'           => 'O nome do ficheiro comeza por <strong><tt>$1</tt></strong>.
 Parece tratarse dunha imaxe de tamaño reducido <i>(miniatura)</i>.
 Se dispón dunha versión desta imaxe de maior resolución, se non, múdelle o nome ao ficheiro.',
-'fileexists-forbidden'        => 'Xa hai un ficheiro co mesmo nome; por favor retroceda e cargue o ficheiro cun novo nome. [[File:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Xa existe un ficheiro co mesmo nome e este non pode ser sobreescrito.
+Se aínda quere cargar o seu ficheiro, por favor, retroceda e use un novo nome. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Xa existe un ficheiro con este nome no repositorio de ficheiros compartidos.
 Se aínda quere cargar o seu ficheiro, por favor, volte atrás e use outro nome. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Este ficheiro é un duplicado {{PLURAL:$1|do seguinte|dos seguintes}}:',
@@ -1478,7 +1482,7 @@ Premendo nunha cabeceira da columna cambia a ordenación.',
 'filehist-dimensions'            => 'Dimensións',
 'filehist-filesize'              => 'Tamaño do ficheiro',
 'filehist-comment'               => 'Comentario',
-'imagelinks'                     => 'Ligazóns da imaxe',
+'imagelinks'                     => 'Ligazóns do ficheiro',
 'linkstoimage'                   => '{{PLURAL:$1|A seguinte páxina liga|As seguintes $1 páxinas ligan}} con esta imaxe:',
 'linkstoimage-more'              => 'Máis {{PLURAL:$1|dunha páxina liga|de $1 páxinas ligan}} con este ficheiro.
 A seguinte lista só amosa {{PLURAL:$1|a primeira páxina que liga|as primeiras $1 páxina que ligan}} con el.
@@ -1513,7 +1517,7 @@ Hai dispoñible [[Special:WhatLinksHere/$2|unha lista completa]].',
 # File deletion
 'filedelete'                  => 'Eliminar "$1"',
 'filedelete-legend'           => 'Eliminar un ficheiro',
-'filedelete-intro'            => "Vai eliminar \"'''[[Media:\$1|\$1]]'''\".",
+'filedelete-intro'            => "Está a piques de eliminar o ficheiro \"'''[[Media:\$1|\$1]]'''\" xunto con todo o seu historial.",
 'filedelete-intro-old'        => 'Vai eliminar a versión de "\'\'\'[[Media:$1|$1]]\'\'\'" do [$4 $2, ás $3].',
 'filedelete-comment'          => 'Comentario:',
 'filedelete-submit'           => 'Eliminar',
@@ -1587,7 +1591,7 @@ Unha páxina trátase como páxina de homónimos cando nela se usa un modelo que
 'double-redirect-fixer'      => 'Amañador de redireccións',
 
 'brokenredirects'        => 'Redireccións rotas',
-'brokenredirectstext'    => 'Estas redireccións ligan cara a unha páxina que non existe:',
+'brokenredirectstext'    => 'As seguintes redireccións ligan cara a páxinas que non existen:',
 'brokenredirects-edit'   => '(editar)',
 'brokenredirects-delete' => '(borrar)',
 
@@ -1625,7 +1629,7 @@ Unha páxina trátase como páxina de homónimos cando nela se usa un modelo que
 'mostcategories'          => 'Artigos con máis categorías',
 'mostimages'              => 'Ficheiros máis enlazados',
 'mostrevisions'           => 'Artigos con máis revisións',
-'prefixindex'             => 'Mostrar páxinas clasificadas polas letras iniciais',
+'prefixindex'             => 'Todas as páxinas coas iniciais',
 'shortpages'              => 'Páxinas curtas',
 'longpages'               => 'Páxinas longas',
 'deadendpages'            => 'Páxinas sen ligazóns cara a outras',
@@ -1706,7 +1710,7 @@ Véxanse tamén as [[Special:WantedCategories|categorías requiridas]].',
 'deletedcontributions-title' => 'Contribucións eliminadas do usuario',
 
 # Special:LinkSearch
-'linksearch'       => 'Buscar ligazóns web',
+'linksearch'       => 'Ligazóns externas',
 'linksearch-pat'   => 'Patrón de procura:',
 'linksearch-ns'    => 'Espazo de nomes:',
 'linksearch-ok'    => 'Procurar',
@@ -1724,7 +1728,7 @@ Véxanse tamén as [[Special:WantedCategories|categorías requiridas]].',
 'newuserlogpagetext'          => 'Este é un rexistro de creación de contas de usuario.',
 'newuserlog-byemail'          => 'contrasinal enviado por correo electrónico',
 'newuserlog-create-entry'     => 'Novo usuario',
-'newuserlog-create2-entry'    => 'creou unha conta para "$1"',
+'newuserlog-create2-entry'    => 'creou unha nova conta para "$1"',
 'newuserlog-autocreate-entry' => 'Conta de usuario creada automaticamente',
 
 # Special:ListGroupRights
@@ -1878,7 +1882,7 @@ proceda con coidado.',
 'alreadyrolled'    => 'Non se pode desfacer a edición en "[[:$1]]" feita por [[User:$2|$2]] ([[User talk:$2|conversa]] | [[Special:Contributions/$2|{{int:contribslink}}]]); alguén máis editou ou desfixo os cambios desta páxina.
 
 A última edición fíxoa [[User:$3|$3]] ([[User talk:$3|conversa]] | [[Special:Contributions/$2|{{int:contribslink}}]]).',
-'editcomment'      => 'O comentario da edición era: "<i>$1</i>".', # only shown if there is an edit comment
+'editcomment'      => 'O resumo de edición era: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'       => 'Desfixéronse as edicións de [[Special:Contributions/$2|$2]] ([[User talk:$2|conversa]]); cambiado á última versión feita por [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Desfixéronse as edicións de $1;
 volveuse á última edición, feita por $2.',
@@ -1907,9 +1911,9 @@ Velaquí a configuración actual da páxina <strong>$1</strong>:',
 'protect-locked-access'       => 'A súa conta non dispón de permisos para mudar os niveis de protección.
 Velaquí a configuración actual da páxina <strong>$1</strong>:',
 'protect-cascadeon'           => 'Esta páxina está protexida neste momento porque está incluída {{PLURAL:$1|na seguinte páxina, que foi protexida|páxinas, que foron protexidas}} coa opción protección en serie activada. Pode mudar o nivel de protección da páxina pero iso non afectará á protección en serie.',
-'protect-default'             => '(predeterminado)',
+'protect-default'             => 'Permitir a todos os usuarios',
 'protect-fallback'            => 'Require permisos de "$1"',
-'protect-level-autoconfirmed' => 'Bloquear usuarios non rexistrados',
+'protect-level-autoconfirmed' => 'Bloquear os usuarios novos e anónimos',
 'protect-level-sysop'         => 'Só os administradores',
 'protect-summary-cascade'     => 'protección en serie',
 'protect-expiring'            => 'remata $1 (UTC)',
@@ -2083,7 +2087,7 @@ Olle a [[Special:IPBlockList|lista de enderezos IP e usuarios bloqueados]] para 
 'ipb-blocklist-contribs'          => 'Contribucións de "$1"',
 'unblockip'                       => 'Desbloquear o usuario',
 'unblockiptext'                   => 'Use o seguinte formulario para dar de novo acceso de escritura a un enderezo IP ou usuario que estea bloqueado.',
-'ipusubmit'                       => 'Desbloquear este enderezo',
+'ipusubmit'                       => 'Retirar este bloqueo',
 'unblocked'                       => '[[User:$1|$1]] foi desbloqueado',
 'unblocked-id'                    => 'Eliminouse o bloqueo de $1',
 'ipblocklist'                     => 'Enderezos IP e usuarios bloqueados',
@@ -2203,8 +2207,8 @@ Por favor escolla outro nome.',
 'talkexists'                   => "'''Só foi movida con éxito a páxina, pero a páxina de conserva non puido ser movida porque xa existe unha co novo título. Por favor, mestúreas de xeito manual.'''",
 'movedto'                      => 'movido a',
 'movetalk'                     => 'Mover a páxina de conversa, se cómpre',
-'move-subpages'                => 'Mover todas as subpáxinas, se cómpre',
-'move-talk-subpages'           => 'Mover todas as subpáxinas da páxina de conversa, se cómpre',
+'move-subpages'                => 'Mover as subpáxinas (ata $1), se cómpre',
+'move-talk-subpages'           => 'Mover as subpáxinas da páxina de conversa (ata $1), se cómpre',
 'movepage-page-exists'         => 'A páxina "$1" xa existe e non pode ser sobreescrita automaticamente.',
 'movepage-page-moved'          => 'A páxina "$1" foi movida a "$2".',
 'movepage-page-unmoved'        => 'A páxina "$1" non pode ser movida a "$2".',
@@ -2316,19 +2320,19 @@ Gráveo no seu disco duro e cárgueo aquí.',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revisión|revisións}} de $2',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => 'A miña páxina de usuario',
+'tooltip-pt-userpage'             => 'A súa páxina de usuario',
 'tooltip-pt-anonuserpage'         => 'A páxina de usuario da IP desde a que está a editar',
-'tooltip-pt-mytalk'               => 'A miña páxina de conversa',
+'tooltip-pt-mytalk'               => 'A súa páxina de conversa',
 'tooltip-pt-anontalk'             => 'Conversa acerca de edicións feitas desde este enderezo IP',
 'tooltip-pt-preferences'          => 'As miñas preferencias',
 'tooltip-pt-watchlist'            => 'Listaxe de páxinas cuxas modificacións estou a seguir',
-'tooltip-pt-mycontris'            => 'Listaxe das miñas contribucións',
+'tooltip-pt-mycontris'            => 'Lista das súas contribucións',
 'tooltip-pt-login'                => 'Recoméndaselle que acceda ao sistema, porén, non é obrigatorio.',
 'tooltip-pt-anonlogin'            => 'Recoméndaselle rexistrarse, se ben non é obrigatorio.',
 'tooltip-pt-logout'               => 'Saír do sistema',
 'tooltip-ca-talk'                 => 'Conversa acerca do contido desta páxina',
 'tooltip-ca-edit'                 => 'Pode modificar esta páxina; antes de gardala, por favor, utilice o botón de vista previa',
-'tooltip-ca-addsection'           => 'Contribúa cun comentario a esta conversa.',
+'tooltip-ca-addsection'           => 'Comezar unha nova sección',
 'tooltip-ca-viewsource'           => 'Esta páxina está protexida. Pode ver o código fonte.',
 'tooltip-ca-history'              => 'Versións anteriores desta páxina',
 'tooltip-ca-protect'              => 'Protexer esta páxina',
@@ -2442,6 +2446,7 @@ Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está n
 'patrol-log-header'    => 'Este é un rexistro das revisións patrulladas.',
 'patrol-log-line'      => 'marcou a $1 de "$2" como revisada $3',
 'patrol-log-auto'      => '(automático)',
+'patrol-log-diff'      => 'revisión $1',
 'log-show-hide-patrol' => '$1 o rexistro de patrullas',
 
 # Image deletion
@@ -2866,7 +2871,7 @@ Por favor, confirme que realmente quere recrear esta páxina.",
 'autosumm-blank'   => 'O contido da páxina foi eliminado',
 'autosumm-replace' => 'O contido da páxina foi substituído por "$1"',
 'autoredircomment' => 'Redirixida cara a "[[$1]]"',
-'autosumm-new'     => 'Nova páxina: $1',
+'autosumm-new'     => 'Nova páxina: "$1"',
 
 # Live preview
 'livepreview-loading' => 'Cargando…',
@@ -2995,5 +3000,14 @@ Introduza o nome do ficheiro sen o prefixo "{{ns:file}}:".',
 'tags-hitcount-header'    => 'Edicións etiquetadas',
 'tags-edit'               => 'editar',
 'tags-hitcount'           => '$1 {{PLURAL:$1|cambio|cambios}}',
+
+# Database error messages
+'dberr-header'      => 'Este wiki ten un problema',
+'dberr-problems'    => 'Sentímolo! Este sitio está experimentando dificultades técnicas.',
+'dberr-again'       => 'Por favor, agarde uns minutos e logo probe a cargar de novo a páxina.',
+'dberr-info'        => '(Non se pode conectar coa base de datos do servidor: $1)',
+'dberr-usegoogle'   => 'Mentres tanto, pode probar a buscar co Google.',
+'dberr-outofdate'   => 'Teña en conta que os índices de Google do noso contido poden non estar actualizados.',
+'dberr-cachederror' => 'O seguinte contido é unha copia da memoria caché da páxina solicitada, polo que pode non estar actualizada.',
 
 );

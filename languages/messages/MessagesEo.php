@@ -345,14 +345,14 @@ $messages = array(
 'talkpagelinktext'  => 'Diskuto',
 'specialpage'       => 'Speciala Paĝo',
 'personaltools'     => 'Personaj iloj',
-'postcomment'       => 'Afiŝi komenton',
+'postcomment'       => 'Nova sekcio',
 'articlepage'       => 'Rigardi artikolon',
 'talk'              => 'Diskuto',
 'views'             => 'Vidoj',
 'toolbox'           => 'Iloj',
 'userpage'          => 'Rigardi personan paĝon',
 'projectpage'       => 'Rigardi projektopaĝon',
-'imagepage'         => 'Rigardi dosieropaĝon',
+'imagepage'         => 'Vidi dosieropaĝon',
 'mediawikipage'     => 'Vidi mesaĝopaĝon',
 'templatepage'      => 'Vidi ŝablonopaĝon',
 'viewhelppage'      => 'Vidi helpopaĝon',
@@ -423,7 +423,7 @@ $messages = array(
 'site-atom-feed'          => '$1 Atom-fonto',
 'page-rss-feed'           => '"$1" RSS-fonto',
 'page-atom-feed'          => '"$1" Atom-fonto',
-'red-link-title'          => '$1 (ankoraŭ ne verkita)',
+'red-link-title'          => '$1 (paĝo ne ekzistas)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Paĝo',
@@ -759,7 +759,7 @@ La redakto estis malpermesita por preventi koruptado de la teksto de la paĝo.
 Ĉi tiel malofte okazas kiam vi uzas fuŝan TTT-an anoniman prokurilon.</strong>',
 'editing'                          => 'Redaktante $1',
 'editingsection'                   => 'Redaktante $1 (sekcion)',
-'editingcomment'                   => 'Redaktante $1 (komenton)',
+'editingcomment'                   => 'Redaktante $1 (nova sekcio)',
 'editconflict'                     => 'Redakta konflikto: $1',
 'explainconflict'                  => 'Iu alia ŝanĝis la paĝon post kiam vi ekredaktis.
 La supra tekstujo enhavas la aktualan tekston de la artikolo.
@@ -1477,7 +1477,7 @@ Klaku la kolumnan titolon por ŝanĝi la direkton de ordigo.',
 'filehist-dimensions'            => 'Dimensioj',
 'filehist-filesize'              => 'Pezo de dosiero',
 'filehist-comment'               => 'Komento',
-'imagelinks'                     => 'Ligiloj al la dosiero',
+'imagelinks'                     => 'Dosieraj ligiloj',
 'linkstoimage'                   => 'La {{PLURAL:$1|jena paĝo|jenaj paĝoj}} ligas al ĉi tiu dosiero:',
 'linkstoimage-more'              => 'Pli ol $1 {{PLURAL:$1|paĝo|paĝoj}} ligas ĉi tiun dosieron.
 La jena listo montras la {{PLURAL:$1|unua paĝligilo|unuaj $1 paĝligiloj}} al nur ĉi tiu dosiero.

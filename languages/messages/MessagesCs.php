@@ -857,7 +857,9 @@ Prosíme, uveďte tyto údaje při komunikaci se správci.",
 'loginreqlink'                     => 'přihlásit',
 'loginreqpagetext'                 => 'K prohlížení jiných stránek se musíte $1.',
 'accmailtitle'                     => 'Heslo odesláno.',
-'accmailtext'                      => 'Heslo pro „$1“ bylo odesláno na $2.',
+'accmailtext'                      => 'Náhodně vygenerované heslo pro uživatele [[User talk:$1|$1]] bylo odesláno na $2.
+
+Heslo tohoto nového účtu bude možné po přihlášení změnit na [[Special:ChangePassword|stránce pro změnu hesla]].',
 'newarticle'                       => '(Nový)',
 'newarticletext'                   => "Následovali jste odkaz na stránku, která dosud neexistuje.
 Pokud ji chcete vytvořit, napište text do rámečku níže a stiskněte tlačítko ''Uložit změny''. Další rady najdete v [[{{MediaWiki:Helppage}}|nápovědě]].
@@ -888,7 +890,7 @@ Editace byla odmítnuta, aby se zabránilo poškození textu stránky.
 Toto se může někdy stát pokud používáte chybující webový anonymizér.</strong>',
 'editing'                          => 'Editace stránky $1',
 'editingsection'                   => 'Editace stránky $1 (část)',
-'editingcomment'                   => 'Editace stránky $1 (komentář)',
+'editingcomment'                   => 'Editace stránky $1 (nová sekce)',
 'editconflict'                     => 'Editační konflikt: $1',
 'explainconflict'                  => "Někdo změnil stránku po započetí vaší editace.
 Výše vidíte aktuální text stránky.
@@ -1260,7 +1262,7 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'stub-threshold'            => 'Limit pro formátování odkazu jako <a href="#" class="stub">pahýl</a> (v bajtech):',
 'recentchangesdays'         => 'Počet dní zobrazených v posledních změnách:',
 'recentchangesdays-max'     => '(maximálně $1 {{PLURAL:$1|den|dny|dní}})',
-'recentchangescount'        => 'Počet zobrazených záznamů v posledních změnách, historii a knihách záznamů:',
+'recentchangescount'        => 'Počet záznamů implicitně zobrazených v posledních změnách, historii a knihách záznamů:',
 'savedprefs'                => 'Vaše nastavení bylo uloženo.',
 'timezonelegend'            => 'Časové pásmo',
 'timezonetext'              => '¹O kolik se váš místní čas liší od času na serveru (UTC).',
@@ -1515,7 +1517,9 @@ Pokud je zmiňovaný soubor větší, ale jinak stejný, není potřeba zvláš�
 'file-thumbnail-no'           => 'Jméno souboru začíná na <strong><tt>$1</tt></strong>.
 Možná to je obrázek ve zmenšené velikosti <i>(náhled)</i>.
 Načtěte soubor v plném rozlišením, pokud je k dispozici, nebo změňte jméno souboru.',
-'fileexists-forbidden'        => 'Soubor s tímto názvem již existuje; vraťte se a zvolte jiný název. [[File:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Soubor s tímto názvem již existuje a není dovoleno ho přepsat.
+Pokud chcete přesto soubor načíst, vraťte se a zvolte jiný název.
+[[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Soubor s tímto názvem již existuje ve sdíleném úložišti. Pokud přesto chcete váš soubor načíst, vraťte se a zvolte jiný název. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Tento soubor je duplikát {{PLURAL:$1|následujícího souboru|následujících souborů}}:',
 'file-deleted-duplicate'      => 'Identický soubor k tomuto ([[$1]]) byl již dříve smazán. Před tím, než soubor znovu nahrajete, byste měli zkontrolovat záznamy o předchozím smazání.',
@@ -1603,7 +1607,7 @@ Kliknutím na hlavičku sloupce můžete změnit řazení.',
 'filehist-dimensions'            => 'Rozměry',
 'filehist-filesize'              => 'Velikost souboru',
 'filehist-comment'               => 'Komentář',
-'imagelinks'                     => 'Odkazy k souboru',
+'imagelinks'                     => 'Odkazy na soubor',
 'linkstoimage'                   => 'Na soubor {{plural:$1|odkazuje tato stránka|odkazují tyto stránky}}:',
 'linkstoimage-more'              => 'Na tento soubor {{PLURAL:$1|odkazuje více stránek|odkazují více než $1 stránky|odkazuje více než $1 stránek}}.
 Následující seznam zobrazuje pouze {{PLURAL:$1|tu první|první $1|prvních $1}}.
@@ -1638,7 +1642,7 @@ Můžete si prohlédnout [[Special:WhatLinksHere/$2|úplný seznam]].',
 # File deletion
 'filedelete'                  => 'Smazání souboru $1',
 'filedelete-legend'           => 'Smazat soubor',
-'filedelete-intro'            => "Chystáte se smazat '''[[Media:$1|$1]]'''.",
+'filedelete-intro'            => "Chystáte se smazat soubor '''[[Media:$1|$1]]''' i s celou historií.",
 'filedelete-intro-old'        => "Chystáte se smazat verzi souboru '''[[Media:$1|$1]]''' z [$4 $3 $2].",
 'filedelete-comment'          => 'Důvod smazání:',
 'filedelete-submit'           => 'Smazat',
@@ -1709,7 +1713,7 @@ Vstup: <code>typ obsahu/podtyp</code>, např. <code>image/jpeg</code>.',
 'double-redirect-fixer'      => 'Opravář přesměrování',
 
 'brokenredirects'        => 'Přerušená přesměrování',
-'brokenredirectstext'    => 'Tato přesměrování vedou na neexistující stránky.',
+'brokenredirectstext'    => 'Tato přesměrování vedou na neexistující stránky:',
 'brokenredirects-edit'   => '(editovat)',
 'brokenredirects-delete' => '(smazat)',
 
@@ -1828,7 +1832,7 @@ Možná Vás budou zajímat [[Special:WantedCategories|žádané kategorie]].',
 'deletedcontributions-title' => 'Smazané editace uživatele',
 
 # Special:LinkSearch
-'linksearch'       => 'Hledání externích odkazů',
+'linksearch'       => 'Externí odkazy',
 'linksearch-pat'   => 'Vyhledávací vzor:',
 'linksearch-ns'    => 'Jmenný prostor:',
 'linksearch-ok'    => 'Hledat',
@@ -1847,7 +1851,7 @@ Podporované protokoly: <tt>$1</tt>',
 'newuserlogpagetext'          => 'Toto je záznam nově zaregistrovaných uživatelů.',
 'newuserlog-byemail'          => 'heslo zasláno e-mailem',
 'newuserlog-create-entry'     => 'Nově založený uživatel',
-'newuserlog-create2-entry'    => 'založil účet pro $1',
+'newuserlog-create2-entry'    => 'založil účet $1',
 'newuserlog-autocreate-entry' => 'Účet vytvořen automaticky',
 
 # Special:ListGroupRights
@@ -2024,9 +2028,9 @@ Současné nastavení pro tuto stránku je: <strong>$1</strong>:',
 'protect-locked-access'       => 'Tento účet nemá povoleno měnit nastavení zámků.
 Současné nastavení pro tuto stránku je: <strong>$1</strong>:',
 'protect-cascadeon'           => 'Tato stránka je právě zamčena, protože je vložena do {{PLURAL:$1|následující stránky zamčené|následujících stránek zamčených|následujících stránek zamčených}} kaskádovým zámkem. Můžete změnit zámky pro tuto stránku, ale nebude to mít žádný vliv na kaskádové zamčení.',
-'protect-default'             => '(odemčeno)',
+'protect-default'             => 'Povolit všem',
 'protect-fallback'            => 'Vyžaduje povolení "$1"',
-'protect-level-autoconfirmed' => 'Pouze registrovaní',
+'protect-level-autoconfirmed' => 'Zakázat novým a neregistrovaným uživatelům',
 'protect-level-sysop'         => 'Pouze správci',
 'protect-summary-cascade'     => 'kaskádový',
 'protect-expiring'            => 'vyprší $1 (UTC)',
@@ -2294,8 +2298,8 @@ V těchto případech musíte přesunout nebo sloučit stránky manuálně, jest
 'talkexists'                   => 'Stránka byla přesunuta úspěšně, ale diskusní stránka přesunuta být nemohla, neboť pod novým názvem již nějaká stránka existuje. Proveďte prosím ruční sloučení.',
 'movedto'                      => 'přesunuto na',
 'movetalk'                     => 'Přesunout také diskusní stránku, existuje-li.',
-'move-subpages'                => 'Přesunout i všechny podstránky, je-li to možné',
-'move-talk-subpages'           => 'Přesunout i všechny podstránky diskusní stránky, je-li to možné',
+'move-subpages'                => 'Přesunout i podstránky (maximálně $1), pokud existují',
+'move-talk-subpages'           => 'Přesunout i podstránky diskusní stránky (maximálně $1), pokud existují',
 'movepage-page-exists'         => 'Stránka $1 již existuje a nemůže být automaticky přepsána.',
 'movepage-page-moved'          => 'Stránka $1 byla přesunuta na $2.',
 'movepage-page-unmoved'        => 'Stránka $1 nemůže být přesunuta na $2.',
@@ -2403,19 +2407,19 @@ V druhém případě můžete také používat přímý odkaz, např. pomocí [[
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revizi|revize|revizí}} z $2',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => 'Moje uživatelská stránka',
+'tooltip-pt-userpage'             => 'Vaše uživatelská stránka',
 'tooltip-pt-anonuserpage'         => 'Uživatelská stránka pro IP adresu, ze které editujete',
-'tooltip-pt-mytalk'               => 'Moje diskusní stránka',
+'tooltip-pt-mytalk'               => 'Vaše diskusní stránka',
 'tooltip-pt-anontalk'             => 'Diskuse o editacích provedených z této IP adresy',
 'tooltip-pt-preferences'          => 'Moje nastavení',
 'tooltip-pt-watchlist'            => 'Seznam stránek, jejichž změny sleduji',
-'tooltip-pt-mycontris'            => 'Seznam mých příspěvků',
+'tooltip-pt-mycontris'            => 'Seznam vašich příspěvků',
 'tooltip-pt-login'                => 'Doporučujeme vám přihlásit se, ovšem není to povinné.',
 'tooltip-pt-anonlogin'            => 'Doporučujeme vám přihlásit se, ovšem není to povinné.',
 'tooltip-pt-logout'               => 'Odhlásit se',
 'tooltip-ca-talk'                 => 'Diskuse ke stránce',
 'tooltip-ca-edit'                 => 'Tuto stránku můžete editovat. Prosíme použijte tlačítko Ukázat náhled před uložením.',
-'tooltip-ca-addsection'           => 'Přidat k této diskusi svůj komentář.',
+'tooltip-ca-addsection'           => 'Začít novou sekci',
 'tooltip-ca-viewsource'           => 'Tato stránka je zamčena. Můžete si prohlédnout její zdrojový kód.',
 'tooltip-ca-history'              => 'Starší verze této stránky.',
 'tooltip-ca-protect'              => 'Zamknout tuto stránku.',
@@ -2551,8 +2555,9 @@ V druhém případě můžete také používat přímý odkaz, např. pomocí [[
 # Patrol log
 'patrol-log-page'      => 'Kniha prověřených editací',
 'patrol-log-header'    => 'Toto je kniha prověřených verzí.',
-'patrol-log-line'      => 'označuje revizi $1 stránky $2 za prověřenou $3',
+'patrol-log-line'      => 'označuje $1 stránky $2 za prověřenou $3',
 'patrol-log-auto'      => '(automaticky)',
+'patrol-log-diff'      => 'revizi $1',
 'log-show-hide-patrol' => '$1 knihu záznamů patroly',
 
 # Image deletion
@@ -3137,5 +3142,14 @@ Zadejte jméno souboru bez označení "{{ns:file}}:".',
 'tags-hitcount-header'    => 'Označené změny',
 'tags-edit'               => 'editovat',
 'tags-hitcount'           => '$1 {{PLURAL:$1|změna|změny|změn}}',
+
+# Database error messages
+'dberr-header'      => 'Tato wiki má nějaké potíže',
+'dberr-problems'    => 'Promiňte! Tento server má v tuto chvíli technické problémy.',
+'dberr-again'       => 'Zkuste několik minut počkat a poté znovu načíst stránku.',
+'dberr-info'        => '(Nelze navázat spojení s databázovým serverem: $1)',
+'dberr-usegoogle'   => 'Mezitím můžete zkusit hledat pomocí Google.',
+'dberr-outofdate'   => 'Uvědomte si, že jejich vyhledávací index našeho obsahu může být zastaralý.',
+'dberr-cachederror' => 'Následující stránka je kopie z cache a nemusí být aktuální.',
 
 );
