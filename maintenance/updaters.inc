@@ -1450,6 +1450,7 @@ function do_postgres_updates() {
 		echo "Adding in schema \"$wgDBts2schema\" to search_path for user \"$wgDBuser\"\n";
 		$search_path = "$search_path, $wgDBts2schema";
 	}
+	$search_path = str_replace( ', ,', ',', $search_path);
 	if( array_key_exists( 'search_path', $conf ) === false || $search_path != $conf['search_path'] ) {
 		$wgDatabase->doQuery( "ALTER USER $wgDBuser SET search_path = $search_path" );
 		$wgDatabase->doQuery( "SET search_path = $search_path" );
