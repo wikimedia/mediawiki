@@ -931,7 +931,7 @@ class SpecialSearchOld {
 		$search->showRedirects = $this->searchRedirects;
 		$search->prefix = $this->mPrefix;
 		$term = $search->transformSearchTerm($term);
-		
+
 		$this->setupPage( $term );
 
 		$rewritten = $search->replacePrefixes($term);
@@ -945,17 +945,17 @@ class SpecialSearchOld {
 					'search' 	=> $textMatches->getSuggestionQuery(), 
 					'fulltext' 	=> wfMsg('search')),
 					$this->powerSearchOptions());
-					
+
 			$suggestLink = $sk->makeKnownLinkObj( $st,
 				$textMatches->getSuggestionSnippet(),
 				$stParams );
-			 		
+
 			$wgOut->addHTML('<div class="searchdidyoumean">'.wfMsg('search-suggest',$suggestLink).'</div>');
 		}
 
 		$wgOut->addHTML( $extra );
 
-		$wgOut->addWikiMsg( 'searchresulttext' );
+		$wgOut->wrapWikiMsg( "<div class='mw-searchresult'>\n$1</div>", 'searchresulttext' );
 
 		if( '' === trim( $term ) ) {
 			// Empty query -- straight view of search form

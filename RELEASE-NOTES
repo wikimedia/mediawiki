@@ -80,6 +80,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 7556) Time zone names in signatures lack i18n
 * (bug 3311) Automatic category redirects
 * (bug 17236) Suppress 'watch user page link' for IP range blocks
+* Wrap message 'searchresulttext' (Special:Search) into a div with
+  class "mw-searchresult"
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
