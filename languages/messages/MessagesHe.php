@@ -948,7 +948,7 @@ $2',
 'templatesusedsection'             => 'תבניות המופיעות בפסקה זו:',
 'template-protected'               => '(מוגנת)',
 'template-semiprotected'           => '(מוגנת חלקית)',
-'hiddencategories'                 => 'דף זה חבר ב{{PLURAL:$1|קטגוריה מוסתרת אחת|־$1 קטגוריות מוסתרות}}:',
+'hiddencategories'                 => 'דף זה כלול ב{{PLURAL:$1|קטגוריה מוסתרת אחת|־$1 קטגוריות מוסתרות}}:',
 'edittools'                        => '<!-- הטקסט הנכתב כאן יוצג מתחת לטפסי עריכת דפים והעלאת קבצים, ולפיכך ניתן לכתוב להציג בו תווים קשים לכתיבה, קטעים מוכנים של טקסט ועוד. -->',
 'nocreatetitle'                    => 'יצירת הדפים הוגבלה',
 'nocreatetext'                     => 'אתר זה מגביל את האפשרות ליצור דפים חדשים. באפשרותכם לחזור אחורה ולערוך דף קיים, או [[Special:UserLogin|להיכנס לחשבון]].',
@@ -1490,7 +1490,7 @@ $2',
 'recentchangeslinked-title'    => 'שינויים בדפים המקושרים לדף $1',
 'recentchangeslinked-backlink' => '→ $1',
 'recentchangeslinked-noresult' => 'לא היו שינויים בדפים המקושרים בתקופה זו.',
-'recentchangeslinked-summary'  => "בדף מיוחד זה רשומים השינויים האחרונים בדפים המקושרים מתוך הדף (או בדפים החברים בקטגוריה).
+'recentchangeslinked-summary'  => "בדף מיוחד זה רשומים השינויים האחרונים בדפים המקושרים מתוך הדף (או בדפים הכלולים בקטגוריה).
 דפים ב[[Special:Watchlist|רשימת המעקב שלכם]] מוצגים ב'''הדגשה'''.",
 'recentchangeslinked-page'     => 'שם הדף:',
 'recentchangeslinked-to'       => 'הצגת השינויים בדפים המקשרים לדף הנתון במקום זאת',
@@ -1868,7 +1868,7 @@ PICT # שונות
 [[Special:UnusedCategories|קטגוריות שאינן בשימוש]] אינן מוצגות כאן.
 ראו גם את [[Special:WantedCategories|רשימת הקטגוריות המבוקשות]].',
 'categoriesfrom'                => 'הצגת קטגוריות החל מ:',
-'special-categories-sort-count' => 'סידור לפי מספר חברים',
+'special-categories-sort-count' => 'סידור לפי מספר הדפים',
 'special-categories-sort-abc'   => 'סידור לפי סדר האלף בית',
 
 # Special:DeletedContributions
