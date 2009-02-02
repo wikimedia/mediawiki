@@ -408,8 +408,12 @@ class OutputPage {
 		if ( wfRunHooks( 'OutputPageMakeCategoryLinks', array( &$this, $categories, &$this->mCategoryLinks ) ) ) {
 			$sk = $wgUser->getSkin();
 			foreach ( $categories as $category => $type ) {
+				$origcategory = $category;
 				$title = Title::makeTitleSafe( NS_CATEGORY, $category );
-				$wgContLang->findVariantLink( $category, $title );
+				$wgContLang->findVariantLink( $category, $title, true );
+				if ( $category != $origcategory )
+					if ( array_key_exists( $category, $categories ) )
+						continue;
 				$text = $wgContLang->convertHtml( $title->getText() );
 				$this->mCategoryLinks[$type][] = $sk->makeLinkObj( $title, $text );
 			}
