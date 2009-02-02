@@ -539,9 +539,9 @@ class ApiQueryInfo extends ApiQueryBase {
 		return array (
 			'prop' => array (
 				'Which additional properties to get:',
-				' "protection"   - List the protection level of each page',
-				' "talkid"       - The page ID of the talk page for each non-talk page',
-				' "subjectid"     - The page ID of the parent page for each talk page'
+				' protection   - List the protection level of each page',
+				' talkid       - The page ID of the talk page for each non-talk page',
+				' subjectid     - The page ID of the parent page for each talk page'
 			),
 			'token' => 'Request a token to perform a data-modifying action on a page',
 		);
