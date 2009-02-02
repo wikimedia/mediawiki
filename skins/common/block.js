@@ -31,6 +31,7 @@ function updateBlockOptions() {
 	var addy = target.value;
 	var isEmpty = addy.match(/^\s*$/);
 	var isIp = addy.match(/^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}|:(:[0-9A-Fa-f]{1,4}){1,7}|[0-9A-Fa-f]{1,4}(:{1,2}[0-9A-Fa-f]{1,4}|::$){1,7})(\/\d+)?$/);
+	var isIpRange = isIp && addy.match(/\/\d+$/);
 
 	var anonymousRow = document.getElementById('wpAnonOnlyRow');
 	if( anonymousRow ) {
@@ -50,5 +51,10 @@ function updateBlockOptions() {
 	var hideuserRow = document.getElementById('wpEnableHideUser');
 	if( hideuserRow ) {
 		hideuserRow.style.display = isIp && !isEmpty ? 'none' : '';
+	}
+
+	var watchuserRow = document.getElementById('wpEnableWatchUser');
+	if( watchuserRow ) {
+		watchuserRow.style.display = isIpRange && !isEmpty ? 'none' : '';
 	}
 }

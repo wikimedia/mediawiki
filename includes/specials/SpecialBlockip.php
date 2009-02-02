@@ -428,7 +428,9 @@ class IPBlockForm {
 			}
 			wfRunHooks('BlockIpComplete', array($block, $wgUser));
 
-			if ( $this->BlockWatchUser ) { 
+			if ( $this->BlockWatchUser &&
+				# Only show watch link when this is no range block
+				$block->mRangeStart == $block->mRangeEnd) {
 				$wgUser->addWatch ( Title::makeTitle( NS_USER, $this->BlockAddress ) );
 			}
 			
