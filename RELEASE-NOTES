@@ -78,6 +78,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   for a given title.
 * Styled #mw-data-after-content in cologneblue.css to match the rest of the font (bug 17110)
 * (bug 7556) Time zone names in signatures lack i18n
+* (bug 3311) Automatic category redirects
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.
