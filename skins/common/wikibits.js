@@ -807,7 +807,7 @@ function ts_parseFloat( s ) {
 	}
 
 	num = parseFloat(s.replace(/,/g, ""));
-	return (isNaN(num) ? s : num);
+	return (isNaN(num) ? 0 : num);
 }
 
 function ts_currencyToSortKey( s ) {
