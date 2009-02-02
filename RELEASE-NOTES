@@ -39,9 +39,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   hyperlinking to the site's Terms of Service page, for example
 * Add new hook 'UserLoadFromDatabase' that is called while loading a user
   from the database.
-* (bug 17045) Options on the block form are prefilled with the options of the 
+* (bug 17045) Options on the block form are prefilled with the options of the
   existing block when modifying an existing block.
-* (bug 17055) "(show/hide)" links to Special:RevisionDelete now use a CSS class 
+* (bug 17055) "(show/hide)" links to Special:RevisionDelete now use a CSS class
   rather than hardcoded HTML tags
 * Added new hook 'WantedPages::getSQL' into SpecialWantedpages.php to allow
   extensions to alter the SQL query which is used to get the list of wanted
@@ -73,7 +73,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   "mw-confirmemail-pending"
 * Local redirects to foreign images are now displayed on the ImagePage when
   viewing on the local wiki.
-* (bug 8249) The magic words for namespaces and pagenames can now be used as 
+* (bug 8249) The magic words for namespaces and pagenames can now be used as
   parser functions to return the desired namespace or normalized title/title part
   for a given title.
 * Styled #mw-data-after-content in cologneblue.css to match the rest of the font (bug 17110)
@@ -113,7 +113,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   comment label uses better message
 * Whole HTML validation ($wgValidateAllHtml) now works with external tidy
 * Parser tests no longer fail when $wgExternalLinkTarget is set in LocalSettings
-* (bug 15391) catch DBQueryErrors on external storage insertion. This avoids error 
+* (bug 15391) catch DBQueryErrors on external storage insertion. This avoids error
   messages on save were the edit in fact is saved.
 * (bug 17184) Remove duplicate "z" accesskey in MonoBook
 * Parser tests no longer fail when $wgAlwaysUseTidy is set in LocalSettings.php
@@ -133,7 +133,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 17304) Fixed fatal error when thumbnails couldn't be generated for file
   history
 * (bug 17283) Remove double URL escaping in show/hide links for log entries
-  and RevisionDeleteForm::__construct.
+  and RevisionDeleteForm::__construct
+* (bug 17105) Numeric table sorting broken
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
