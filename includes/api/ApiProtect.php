@@ -106,10 +106,12 @@ class ApiProtect extends ApiBase {
 		}
 
 		$cascade = $params['cascade'];
-		if($titleObj->exists()) {
-			$articleObj = new Article($titleObj);
+		$articleObj = new Article($titleObj);
+		if($params['watch'])
+			$articleObj->doWatch();
+		if($titleObj->exists())
 			$ok = $articleObj->updateRestrictions($protections, $params['reason'], $cascade, $expiryarray);
-		} else
+		else
 			$ok = $titleObj->updateTitleProtection($protections['create'], $params['reason'], $expiryarray['create']);
 		if(!$ok)
 			// This is very weird. Maybe the article was deleted or the user was blocked/desysopped in the meantime?
@@ -138,7 +140,8 @@ class ApiProtect extends ApiBase {
 				ApiBase :: PARAM_DFLT => 'infinite',
 			),
 			'reason' => '',
-			'cascade' => false
+			'cascade' => false,
+			'watch' => false,
 		);
 	}
 
@@ -152,6 +155,7 @@ class ApiProtect extends ApiBase {
 			'reason' => 'Reason for (un)protecting (optional)',
 			'cascade' => array('Enable cascading protection (i.e. protect pages included in this page)',
 					'Ignored if not all protection levels are \'sysop\' or \'protect\''),
+			'watch' => 'If set, add the page being (un)protected to your watchlist',
 		);
 	}
 
