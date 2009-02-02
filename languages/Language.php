@@ -39,7 +39,7 @@ class FakeConverter {
 	function parserConvert($t, $p) {return $t;}
 	function getVariants() { return array( $this->mLang->getCode() ); }
 	function getPreferredVariant() {return $this->mLang->getCode(); }
-	function findVariantLink(&$l, &$n, $forTemplate = false) {}
+	function findVariantLink(&$l, &$n, $forTemplate = false, $ignoreSubmitCond = false) {}
 	function getExtraHashOptions() {return '';}
 	function getParsedTitle() {return '';}
 	function markNoConversion($text, $noParse=false) {return $text;}
@@ -2223,10 +2223,12 @@ class Language {
 	 *
 	 * @param $link String: the name of the link
 	 * @param $nt Mixed: the title object of the link
+	 * @param boolean $ignoreSubmitCond: to disable the submit condition if
+	 *      we need to find a category's variant link when database update.
 	 * @return null the input parameters may be modified upon return
 	 */
-	function findVariantLink( &$link, &$nt, $forTemplate = false ) {
-		$this->mConverter->findVariantLink($link, $nt, $forTemplate );
+	function findVariantLink( &$link, &$nt, $forTemplate = false, $ignoreSubmitCond = false ) {
+		$this->mConverter->findVariantLink( $link, $nt, $forTemplate, $ignoreSubmitCond );
 	}
 
 	/**
@@ -2234,7 +2236,6 @@ class Language {
 	 * into an array of all possible variants of the text:
 	 *  'variant' => text in that variant
 	 */
-
 	function convertLinkToAllVariants($text){
 		return $this->mConverter->convertLinkToAllVariants($text);
 	}

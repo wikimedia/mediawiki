@@ -529,10 +529,12 @@ class LanguageConverter {
 	 *
 	 * @param string $link the name of the link
 	 * @param mixed $nt the title object of the link
+	 * @param boolean $ignoreSubmitCond: to disable the submit condition if
+	 *      we need to find a category's variant link when database update.
 	 * @return null the input parameters may be modified upon return
 	 * @public
 	 */
-	function findVariantLink( &$link, &$nt, $forTemplate = false ) {
+	function findVariantLink( &$link, &$nt, $forTemplate = false, $ignoreSubmitCond = false ) {
 		global $wgDisableLangConversion, $wgDisableTitleConversion, $wgRequest, $wgUser;
 		$isredir = $wgRequest->getText( 'redirect', 'yes' );
 		$action = $wgRequest->getText( 'action' );
@@ -543,9 +545,8 @@ class LanguageConverter {
 		$ns=NS_MAIN;
 
 		if ( $disableLinkConversion || ( !$forTemplate && ( $isredir == 'no' || $action == 'edit'
-			|| $action == 'submit' || $linkconvert == 'no' || $wgUser->getOption('noconvertlink') == 1 ) ) ) {
-			return;
-		}
+			|| (!$ignoreSubmitCond && $action == 'submit') || $linkconvert == 'no'
+			|| $wgUser->getOption('noconvertlink') == 1 ) ) ) { return;	}
 
 		if(is_object($nt))
 			$ns = $nt->getNamespace();
@@ -572,7 +573,7 @@ class LanguageConverter {
 		foreach( $titles as $varnt ) {
 			if( $varnt->getArticleID() > 0 ) {
 				$nt = $varnt;
-				$link = $v;
+				$link = $varnt->getText();
 				break;
 			}
 		}

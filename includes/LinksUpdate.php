@@ -465,9 +465,12 @@ class LinksUpdate {
 	 * @private
 	 */
 	function getCategoryInsertions( $existing = array() ) {
+		global $wgContLang;
 		$diffs = array_diff_assoc( $this->mCategories, $existing );
 		$arr = array();
 		foreach ( $diffs as $name => $sortkey ) {
+			$nt = Title::makeTitleSafe( NS_CATEGORY, $name );
+			$wgContLang->findVariantLink( $name, $nt, false, true );
 			$arr[] = array(
 				'cl_from'    => $this->mId,
 				'cl_to'      => $name,
