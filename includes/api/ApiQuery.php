@@ -160,6 +160,14 @@ class ApiQuery extends ApiBase {
 	function getModules() {
 		return array_merge($this->mQueryPropModules, $this->mQueryListModules, $this->mQueryMetaModules);
 	}
+	
+	public function getCustomPrinter() {
+		// If &exportnowrap is set, use the raw formatter
+		if ($this->getParameter('exportnowrap'))
+			return new ApiFormatRaw($this->getMain());
+		else
+			return null;
+	}
 
 	/**
 	 * Query execution happens in the following steps:
@@ -347,6 +355,27 @@ class ApiQuery extends ApiBase {
 
 			$result->setIndexedTagName($pages, 'page');
 			$result->addValue('query', 'pages', $pages);
+			
+			if ($this->params['export']) {
+				$exporter = new WikiExporter($this->getDB());
+				// WikiExporter writes to stdout, so catch its
+				// output with an ob
+				ob_start();
+				$exporter->openStream();
+				foreach ($pageSet->getGoodTitles() as $title)
+					if ($title->userCanRead())
+						$exporter->pageByTitle($title);
+				$exporter->closeStream();
+				$exportxml = ob_get_contents();
+				ob_end_clean();
+				if ($this->params['exportnowrap']) {
+					$result->reset();
+					// Raw formatter will handle this
+					$result->addValue(null, 'text', $exportxml);
+					$result->addValue(null, 'mime', 'text/xml');
+				} else
+					$result->addValue('query', 'export', $exportxml);
+			}
 		}
 	}
 
@@ -415,6 +444,8 @@ class ApiQuery extends ApiBase {
 			),
 			'redirects' => false,
 			'indexpageids' => false,
+			'export' => false,
+			'exportnowrap' => false,
 		);
 	}
 
@@ -491,14 +522,16 @@ class ApiQuery extends ApiBase {
 			'meta' => 'Which meta data to get about the site',
 			'generator' => 'Use the output of a list as the input for other prop/list/meta items',
 			'redirects' => 'Automatically resolve redirects',
-			'indexpageids' => 'Include an additional pageids section listing all returned page IDs.'
+			'indexpageids' => 'Include an additional pageids section listing all returned page IDs.',
+			'export' => 'Export the current revisions of all given or generated pages',
+			'exportnowrap' => 'Return the export XML without wrapping it in an XML result',
 		);
 	}
 
 	public function getDescription() {
 		return array (
 			'Query API module allows applications to get needed pieces of data from the MediaWiki databases,',
-			'and is loosely based on the Query API interface currently available on all MediaWiki servers.',
+			'and is loosely based on the old query.php interface.',
 			'All data modifications will first have to use query to acquire a token to prevent abuse from malicious sites.'
 		);
 	}
