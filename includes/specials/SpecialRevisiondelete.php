@@ -107,7 +107,7 @@ class RevisionDeleteForm {
 			if( $wgUser->isAllowed('undelete') ) {
 				$undelete = SpecialPage::getTitleFor( 'Undelete' );
 				$links[] = $this->skin->makeKnownLinkObj( $undelete, wfMsgHtml( 'deletedhist' ),
-					wfArrayToCGI( array( 'target' => $this->page->getPrefixedUrl() ) ) );
+					wfArrayToCGI( array( 'target' => $this->page->getPrefixedDBkey() ) ) );
 			}
 			# Logs themselves don't have histories or archived revisions
 			$wgOut->setSubtitle( '<p>'.implode($links,' / ').'</p>' );

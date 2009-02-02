@@ -387,7 +387,7 @@ class LogEventsList {
 			$del = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ), '('.$this->message['rev-delundel'].')' );
 		} else {
 			$target = SpecialPage::getTitleFor( 'Log', $row->log_type );
-			$query = array( 'target' => $target->getPrefixedUrl(),
+			$query = array( 'target' => $target->getPrefixedDBkey(),
 				'logid' => $row->log_id
 			);
 			$del = $this->skin->revDeleteLink( $query, self::isDeleted( $row, LogPage::DELETED_RESTRICTED ) );
