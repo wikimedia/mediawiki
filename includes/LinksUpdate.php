@@ -471,6 +471,14 @@ class LinksUpdate {
 		foreach ( $diffs as $name => $sortkey ) {
 			$nt = Title::makeTitleSafe( NS_CATEGORY, $name );
 			$wgContLang->findVariantLink( $name, $nt, true );
+			// for category redirection
+			if ( $nt->isRedirect() ) {
+				$at = new Article( $nt );
+				$nt = $at->getRedirectTarget();
+				// we only redirect a category to another category
+				if ( $nt->getNamespace() == NS_CATEGORY )
+					$name = $nt->getText();
+			}
 			$arr[] = array(
 				'cl_from'    => $this->mId,
 				'cl_to'      => $name,
