@@ -733,11 +733,15 @@ This is the submit button on [[Special:RevisionDelete]].',
 'revdelete-logentry'        => '{{RevisionDelete}}
 This is the message for the log entry in [[Special:Log/delete]] when changing visibility restrictions for page revisions. It is followed by the message {{msg|revdelete-log-message}} in brackets.
 
-The parameter $1 is the page name.',
+The parameter $1 is the page name.
+
+The name of the user doing this task appears before this message.',
 'logdelete-logentry'        => '{{RevisionDelete}}
 This is the message for the log entry in [[Special:Log/delete]] when changing visibility restrictions for log events. It is followed by the message {{msg|logdelete-log-message}} in brackets.
 
-The parameter $1 is the log name in brackets.',
+The parameter $1 is the log name in brackets.
+
+The name of the user who did this task appears before this message.',
 'revdelete-success'         => '{{RevisionDelete}}',
 'logdelete-success'         => '{{RevisionDelete}}',
 'revdel-restore'            => '{{RevisionDelete}}',
@@ -1055,7 +1059,9 @@ The rate limits have no effect on the groups that have this right. Rate limits i
 'rightslogentry' => 'This message is displayed in the [[Special:Log/rights|User Rights Log]] when a bureaucrat changes the user groups for a user.
 
 * Parameter $1 is the username
-* Parameters $2 and $3 are lists of user groups or {{msg-mw|Rightsnone}}',
+* Parameters $2 and $3 are lists of user groups or {{msg-mw|Rightsnone}}
+
+The name of the bureaucrat who did this task appears before this message.',
 'rightsnone'     => 'Default rights for registered users.
 
 {{Identical|None}}',
@@ -1180,7 +1186,8 @@ Parameter $2 is a date and time.',
 'file-thumbnail-no'           => 'Error message at [[Special:Upload]]',
 'fileexists-shared-forbidden' => 'Error message at [[Special:Upload]]',
 'savefile'                    => 'When uploading a file',
-'overwroteimage'              => 'Log text when uploading a new version of a file',
+'uploadedimage'               => 'This is the text of an entry in the [[Special:Log|upload log]] (and Recent Changes), after hour (and date, only in the Upload log) and sysop name. $1 is the name of the file uploaded.',
+'overwroteimage'              => 'This is the text of an entry in the [[Special:Log|upload log]] (and Recent Changes), after hour (and date, only in the Upload log) and sysop name. $1 is the name of the file uploaded.',
 'uploaddisabled'              => 'Title of the Special:Upload page when upload is disabled.',
 'uploaddisabledtext'          => 'This message can have parameter $1, which contains the name of the target file. See r22243 and [https://bugzilla.wikimedia.org/show_bug.cgi?id=8818 bug 8818].',
 'php-uploaddisabledtext'      => 'This means that file uploading is disabled in PHP, not upload of PHP-files.',
@@ -1518,7 +1525,7 @@ Example: [[:Image:Addon-icn.png]]',
 'newuserlogpage'              => 'Part of the "Newuserlog" extension. It is both the title of [[Special:Log/newusers]] and the link you can see in the recent changes.',
 'newuserlogpagetext'          => 'Part of the "Newuserlog" extension. It is the description you can see on [[Special:Log/newusers]].',
 'newuserlog-create-entry'     => 'Part of the "Newuserlog" extension. It is the summary in the [[Special:RecentChanges|recent changes]] and on [[Special:Log/newusers]].',
-'newuserlog-create2-entry'    => 'Part of the "Newuserlog" extension. It is the summary in the [[Special:RecentChanges|recent changes]] and on [[Special:Log/newusers]] when creating an account for someone else ("$1").',
+'newuserlog-create2-entry'    => 'Part of the "Newuserlog" extension. It is the summary in the [[Special:RecentChanges|recent changes]] and on [[Special:Log/newusers]] when creating an account for someone else ("$1"). The name of the user doing this task appears before this message.',
 'newuserlog-autocreate-entry' => 'This message is used in the [[:mw:Extension:Newuserlog|new user log]] to mark an account that was created by MediaWiki as part of a [[:mw:Extension:CentralAuth|CentralAuth]] global account.',
 
 # Special:ListGroupRights
@@ -1831,6 +1838,10 @@ Example line:
 'ipballowusertalk'             => 'Option in [[Special:BlockIP]] that allows the blocked user to edit own talk page.',
 'ipb-change-block'             => 'Confirmation checkbox required for blocks that would override an earlier block. Appears together with {{msg|ipb-needreblock}}.',
 'ipb-edit-dropdown'            => 'Shown beneath the user block form on the right side. It is a link to [[MediaWiki:Ipbreason-dropdown]]. See also {{msg|Delete-edit-reasonlist}} and {{msg|Protect-edit-reasonlist}}.',
+'ipusubmit'                    => 'Used as button text on Special:BlockList?action=unblock. To see the message:
+* Go to [[Special:BlockList]]
+* Click "unblock" for any block (but you can only see "unblock" if you have administrator rights)
+* It is now the button below the form',
 'ipblocklist-sh-userblocks'    => 'Top selection button at [[Special:IPBlockList]], which means Show/Hide indefinite blocks
 
 * $1 - word "{{msg|Hide}}" or "{{msg|Show}}"',
@@ -1863,10 +1874,13 @@ See also {{msg-mw|Blocklogentry}}.',
 * $2 is the duration of the block (hours, days etc.) or the specified expiry date
 * $3 contains "(details) (\'\'reason\'\')"
 See also {{msg-mw|Blocklistline}}.',
-'reblock-logentry'             => '* $1 is the user being reblocked
+'reblock-logentry'             => 'This is the text of an entry in the Block log (and Recent Changes), after hour (and date, only in the Block log) and sysop name:
+* $1 is the user being reblocked
 * $2 is the expiry time of the block
-* $3 is the reason of the block',
+* $3 is the reason for the block',
 'blocklogtext'                 => 'See {{msg-mw|ipblocklist}} for the special page name.',
+'unblocklogentry'              => 'This is the text of an entry in the Block log (and Recent Changes), after hour (and date, only in the Block log) and sysop name:
+* $1 is the user being unblocked',
 'block-log-flags-noautoblock'  => '{{Identical|Autoblock disabled}}',
 'block-log-flags-noemail'      => "Log message for [[Special:Log/block]] to note that a user cannot use the 'email another user' option.
 
@@ -1974,7 +1988,9 @@ Import failed: XML import parse failure at line 1, col 1 (byte 3; "- <mediawiki 
 Related messages: {{msg|right-importupload|pl=yes}} (the user right for this).',
 
 # Import log
-'importlogpage' => '{{Identical|Import log}}',
+'importlogpage'          => '{{Identical|Import log}}',
+'import-logentry-upload' => 'This is the text of an entry in the Import log (and Recent Changes), after hour (and date, only in the Import log) and sysop name:
+* $1 is the name of the imported file',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'This text appears in the tool-tip when you hover the mouse over your the tab with you User name on it',
@@ -2071,10 +2087,14 @@ See also [[MediaWiki:Lastmodifiedat/{{SUBPAGENAME}}]].', # $1 date, $2 time, $3 
 
 # Patrol log
 'patrol-log-page'      => 'Name of log.',
-'patrol-log-line'      => 'Text of notes on entries in the [[Special:Log|patrol log]]. $1 is the reference number of the revision in [[Mediawiki:patrol-log-diff]]. $2 is the page title. $3 appears to be [[Mediawiki:Patrol-log-auto]] (at least sometimes).',
+'patrol-log-header'    => 'Text that appears above the log entries on the [[Special:log|patrol log]].',
+'patrol-log-line'      => 'Text of notes on entries in the [[Special:Log|patrol log]]. $1 is the link whose text is [[Mediawiki:patrol-log-diff]]. $2 is the name of the page. $3 appears to be [[Mediawiki:Patrol-log-auto]] (at least sometimes).
+
+The message appears after the name of the patroller.',
 'patrol-log-auto'      => 'Automated edit summary when patrolling.
 
 {{Identical|Automatic}}',
+'patrol-log-diff'      => 'The text of the diff link in [[MediaWiki:Patrol-log-line]] (inside $1 there)',
 'log-show-hide-patrol' => '* $1 is one of {{msg|show}} or {{msg|hide}}',
 
 # Browsing diffs

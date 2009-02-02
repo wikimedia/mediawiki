@@ -351,7 +351,7 @@ $messages = array(
 'talkpagelinktext'  => 'Discussió',
 'specialpage'       => 'Pàgina especial',
 'personaltools'     => "Eines de l'usuari",
-'postcomment'       => 'Envia un comentari',
+'postcomment'       => 'Nova secció',
 'articlepage'       => 'Mostra la pàgina',
 'talk'              => 'Discussió',
 'views'             => 'Vistes',
@@ -429,7 +429,7 @@ $messages = array(
 'site-atom-feed'          => 'Canal Atom $1',
 'page-rss-feed'           => '«$1» RSS Feed',
 'page-atom-feed'          => 'Canal Atom «$1»',
-'red-link-title'          => "$1 (no s'ha escrit encara)",
+'red-link-title'          => '$1 (encara no existeix)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Pàgina',
@@ -564,8 +564,8 @@ No oblideu de canviar les vostres [[Special:Preferences|preferències de {{SITEN
 'yourvariant'                => 'Variant lingüística:',
 'yournick'                   => 'Signatura:',
 'badsig'                     => 'La signatura que heu inserit no és vàlida; verifiqueu les etiquetes HTML que heu emprat.',
-'badsiglength'               => "La signatura és massa llarga.
-Ha de tenir menys {{PLURAL:$1|d'$1 càracter|de $1 caràcters}}.",
+'badsiglength'               => 'La signatura és massa llarga.
+Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'yourgender'                 => 'Sexe:',
 'gender-unknown'             => 'No especificat',
 'gender-male'                => 'Masculí',
@@ -582,7 +582,7 @@ També podeu contactar amb altres usuaris a través de la vostra pàgina d'usuar
 'loginsuccesstitle'          => "S'ha iniciat la sessió amb èxit",
 'loginsuccess'               => 'Heu iniciat la sessió a {{SITENAME}} com a «$1».',
 'nosuchuser'                 => "No hi ha cap usuari anomenat «$1».
-Reviseu-ne l'ortografia, o [[Special:UserLogin/signup|creeu un compte d'usuari nou]].",
+Reviseu-ne l'ortografia (recordeu que es distingeixen les majúscules i minúscules), o [[Special:UserLogin/signup|creeu un compte d'usuari nou]].",
 'nosuchusershort'            => 'No hi ha cap usuari anomenat «<nowiki>$1</nowiki>». Comproveu que ho hàgiu escrit correctament.',
 'nouserspecified'            => "Heu d'especificar un nom d'usuari.",
 'wrongpassword'              => 'La contrasenya que heu introduït és incorrecta. Torneu-ho a provar.',
@@ -604,8 +604,8 @@ Inicieu una sessió després que la rebeu.",
 'eauthentsent'               => "S'ha enviat un correu electrònic a la direcció especificada. Abans no s'envïi cap altre correu electrònic a aquesta adreça, cal verificar que és realment vostra. Per tant, cal que seguiu les instruccions presents en el correu electrònic que se us ha enviat.",
 'throttled-mailpassword'     => "Ja se us ha enviat un recordatori de contrasenya en {{PLURAL:$1|l'última hora|les últimes $1 hores}}. Per a prevenir abusos, només s'envia un recordatori de contrasenya cada {{PLURAL:$1|hora|$1 hores}}.",
 'mailerror'                  => "S'ha produït un error en enviar el missatge: $1",
-'acct_creation_throttle_hit' => 'Ho sentim, ja teniu {{PLURAL:$1|1 compte creat|$1 comptes creats}}.
-No és permès de tenir-ne més.',
+'acct_creation_throttle_hit' => "Des de la vostra adreça IP ja {{PLURAL:$1|s'ha creat un compte|s'han creat $1 comptes}} en l'últim dia i aquest és el màxim permès en aquest wiki per aquest període de temps.
+Així, des d'aquesta adreça IP no es poden crear més comptes actualment.",
 'emailauthenticated'         => "S'ha autenticat la vostra adreça electrònica el $2 a les $3.",
 'emailnotauthenticated'      => 'La vostra adreça de correu electrònic <strong>encara no està autenticada</strong>. No rebrà cap missatge de correu electrònic per a cap de les següents funcionalitats.',
 'noemailprefs'               => 'Especifiqueu una adreça electrònica per a activar aquestes característiques.',
@@ -721,7 +721,9 @@ El número d'identificació de la vostra adreça IP és $3, i l'ID del bloqueig 
 'loginreqlink'                     => 'inicia una sessió',
 'loginreqpagetext'                 => 'Heu de ser $1 per a visualitzar altres pàgines.',
 'accmailtitle'                     => "S'ha enviat una contrasenya.",
-'accmailtext'                      => "S'ha enviat a $2 la contrasenya per a «$1».",
+'accmailtext'                      => "S'ha enviat una contrasenya aleatòria a $2 per a l'{{GENDER:$1|usuari|usuària}} [[User talk:$1|$1]].
+
+La contrasenya per aquest nou compte pot ser canviada a la pàgina de ''[[Special:ChangePassword|canvi de contrasenya]]'' un cop connectat.",
 'newarticle'                       => '(Nou)',
 'newarticletext'                   => "Heu seguit un enllaç a una pàgina que encara no existeix.
 Per a crear-la, comenceu a escriure en l'espai de sota
@@ -751,7 +753,7 @@ Si us plau, proveu-ho una altra vegada. Si continués sense funcionar, proveu de
 'token_suffix_mismatch'            => "<strong>S'ha rebutjat la vostra edició perquè el vostre client ha fet malbé els caràcters de puntuació en el testimoni d'edició. S'ha rebutjat l'edició per a evitar la corrupció del text de la pàgina. Açò passa a vegades quan s'utilitza un servei web de servidor intermediari anònim amb problemes.</strong>",
 'editing'                          => "S'està editant $1",
 'editingsection'                   => "S'està editant $1 (secció)",
-'editingcomment'                   => "S'està editant $1 (comentari)",
+'editingcomment'                   => "S'està editant $1 (nova secció)",
 'editconflict'                     => "Conflicte d'edició: $1",
 'explainconflict'                  => "Algú més ha canviat aquesta pàgina des que l'heu editada.
 L'àrea de text superior conté el text de la pàgina com existeix actualment.
@@ -1130,7 +1132,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'stub-threshold'            => 'Límit per a formatar l\'enllaç com <a href="#" class="stub">esborrany</a> (en octets):',
 'recentchangesdays'         => 'Dies a mostrar en els canvis recents:',
 'recentchangesdays-max'     => '(màxim $1 {{PLURAL:$1|dia|dies}})',
-'recentchangescount'        => 'Nombre de títols en canvis recents',
+'recentchangescount'        => "Nombre d'edicions a mostrar per defecte als canvis recents, historials de pàgina i registres:",
 'savedprefs'                => "S'han desat les vostres preferències",
 'timezonelegend'            => 'Fus horari',
 'timezonetext'              => "¹El nombre d'hores de diferència entre la vostra hora local i la del servidor (UTC).",
@@ -1388,7 +1390,8 @@ Si el fitxer és la mateixa imatge a mida original, no cal carregar cap miniatur
 'file-thumbnail-no'           => 'El nom del fitxer comença per <strong><tt>$1</tt></strong>.
 Sembla ser una imatge de mida reduïda <i>(miniatura)</i>.
 Si teniu la imatge en resolució completa, pugeu-la, sinó mireu de canviar-li el nom, si us plau.',
-'fileexists-forbidden'        => 'Ja hi existeix un fitxer amb aquest nom; si us plau, torneu enrere i carregueu aquest fitxer sota un altre nom. [[File:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Ja hi existeix un fitxer amb aquest nom i no es pot sobreescriure.
+Si us plau, torneu enrere i carregueu aquest fitxer sota un altre nom. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Ja hi ha un fitxer amb aquest nom al fons comú de fitxers.
 Si us plau, si encara desitgeu carregar el vostre fitxer, torneu enrera i carregueu-ne una còpia amb un altre nom. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Aquest fitxer és un duplicat {{PLURAL:$1|del fitxer |dels següents fitxers:}}',
@@ -1498,7 +1501,7 @@ Podeu consultar la [[Special:WhatLinksHere/$2|llista completa]].",
 # File deletion
 'filedelete'                  => 'Suprimeix $1',
 'filedelete-legend'           => 'Suprimeix el fitxer',
-'filedelete-intro'            => "Esteu eliminant '''[[Media:$1|$1]]'''.",
+'filedelete-intro'            => "Esteu eliminant el fitxer '''[[Media:$1|$1]]''' juntament amb el seu historial.",
 'filedelete-intro-old'        => "Esteu eliminant la versió de '''[[Media:$1|$1]]''' com de [$4 $3, $2].",
 'filedelete-comment'          => 'Comentari:',
 'filedelete-submit'           => 'Suprimeix',
@@ -1609,7 +1612,7 @@ Cada fila conté enllaços a la segona i tercera redirecció, així com la prime
 'mostcategories'          => 'Pàgines que utilitzen més categories',
 'mostimages'              => 'Fitxers més enllaçats',
 'mostrevisions'           => 'Pàgines més modificades',
-'prefixindex'             => 'Cercar per prefix',
+'prefixindex'             => 'Totes les pàgines per prefix',
 'shortpages'              => 'Pàgines curtes',
 'longpages'               => 'Pàgines llargues',
 'deadendpages'            => 'Pàgines atzucac',
@@ -1690,7 +1693,7 @@ Vegeu també [[Special:WantedCategories|les categories soŀlicitades]].",
 'deletedcontributions-title' => 'Contribucions esborrades',
 
 # Special:LinkSearch
-'linksearch'       => 'Cerca enllaços web',
+'linksearch'       => 'Enllaços externs',
 'linksearch-pat'   => 'Patró de cerca:',
 'linksearch-ns'    => 'Espai de noms:',
 'linksearch-ok'    => 'Cerca',
@@ -1868,7 +1871,7 @@ Vegeu $2 per a un registre dels esborrats més recents.',
 per l'usuari [[User:$2|$2]] ([[User talk:$2|Discussió]]); algú altre ha editat o revertit la pàgina.
 
 La darrera edició ha estat feta per l'usuari [[User:$3|$3]] ([[User talk:$3|Discussió]] | [[Special:Contributions/$3|{{int:contribslink}}]]).",
-'editcomment'      => "El comentari d'edició ha estat: «<i>$1</i>».", # only shown if there is an edit comment
+'editcomment'      => "El resum d'edició ha estat: «$1».", # only shown if there is an edit comment
 'revertpage'       => "Revertides les edicions de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussió]]). S'ha recuperat la darrera versió de l'usuari [[User:$1|$1]]", # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => "Edicions revertides de $1; s'ha canviat a la darrera versió de $2.",
 'sessionfailure'   => "Sembla que hi ha problema amb la vostra sessió. Aquesta acció ha estat anuŀlada en prevenció de pirateig de sessió. Si us plau, pitgeu «Torna», i recarregueu la pàgina des d'on veniu, després intenteu-ho de nou.",
@@ -1896,9 +1899,9 @@ Ací hi ha els paràmetres actuals de la pàgina <strong>$1</strong>:",
 'protect-locked-access'       => 'El vostre compte no té permisos per a canviar els nivells de protecció de la pàgina.
 Ací es troben els paràmetres actuals de la pàgina <strong>$1</strong>:',
 'protect-cascadeon'           => "Aquesta pàgina es troba protegida perquè està inclosa en {{PLURAL:$1|la següent pàgina que té|les següents pàgines que tenen}} activada una protecció en cascada. Podeu canviar el nivell de protecció d'aquesta pàgina però això no afectarà la protecció en cascada.",
-'protect-default'             => '(per defecte)',
+'protect-default'             => 'Permet tots els usuaris',
 'protect-fallback'            => 'Cal el permís de «$1»',
-'protect-level-autoconfirmed' => 'Bloca els usuaris no registrats',
+'protect-level-autoconfirmed' => 'Bloca els usuaris novells i no registrats',
 'protect-level-sysop'         => 'Bloqueja tots els usuaris excepte administradors',
 'protect-summary-cascade'     => 'en cascada',
 'protect-expiring'            => 'expira el dia $1 (UTC)',
@@ -2871,10 +2874,10 @@ Confirmeu que realment voleu tornar-la a crear.",
 'table_pager_empty'        => 'Sense resultats',
 
 # Auto-summaries
-'autosumm-blank'   => "S'ha suprimit tot el contingut de la pàgina",
+'autosumm-blank'   => 'Pàgina blanquejada',
 'autosumm-replace' => 'Contingut canviat per «$1».',
 'autoredircomment' => 'Redirecció a [[$1]]',
-'autosumm-new'     => 'Pàgina nova, amb el contingut: «$1».',
+'autosumm-new'     => 'Es crea la pàgina amb «$1».',
 
 # Live preview
 'livepreview-loading' => "S'està carregant…",
@@ -2988,5 +2991,11 @@ Introduïu el nom del fitxer sense el prefix «{{ns:file}}:».",
 #Les línies que començen amb un # es tracten com a comentaris
 
 #Poseu tots els fragments regex al damunt d'aquesta línia. Deixeu aquesta línia exactament com està</pre>",
+
+# Special:Tags
+'tags-edit' => 'edita',
+
+# Database error messages
+'dberr-header' => 'Aquest wiki té un problema',
 
 );

@@ -235,10 +235,10 @@ $messages = array(
 'tog-enotifminoredits'        => '細部の編集でもメールを受け取る',
 'tog-enotifrevealaddr'        => 'あなた以外に送られる通知メールにあなたのメールアドレスを記載する',
 'tog-shownumberswatching'     => 'ページをウォッチしている利用者数を表示する',
-'tog-fancysig'                => '署名用ソース（自動リンクなし）',
+'tog-fancysig'                => '署名を加工せずに使う (自動でリンクしない)',
 'tog-externaleditor'          => '編集に外部アプリケーションを使う (上級者向け・コンピュータに特殊な設定が必要)',
 'tog-externaldiff'            => '差分表示に外部アプリケーションを使う (上級者向け・コンピュータに特殊な設定が必要)',
-'tog-showjumplinks'           => 'アクセシビリティのための "{{int:jumpto}}" リンクを有効にする',
+'tog-showjumplinks'           => 'アクセシビリティのための「{{int:jumpto}}」リンクを有効にする',
 'tog-uselivepreview'          => 'ライブプレビューを使用する (JavaScript, 試験中の機能)',
 'tog-forceeditsummary'        => '要約欄が空欄の場合に警告する',
 'tog-watchlisthideown'        => 'ウォッチリストに自分の編集を表示しない',
@@ -466,7 +466,7 @@ $messages = array(
 'site-atom-feed'          => '$1 Atomフィード',
 'page-rss-feed'           => '"$1" のRSSフィード',
 'page-atom-feed'          => '"$1" のAtomフィード',
-'red-link-title'          => '$1 （未作成ページ）',
+'red-link-title'          => '$1 (未作成ページ)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => '本文',
@@ -534,7 +534,7 @@ $1',
 'formerror'            => 'エラー: フォームを送信できませんでした',
 'badarticleerror'      => 'このページでは要求された操作を行えません。',
 'cannotdelete'         => '指定されたページまたはファイルを削除できませんでした。すでに他の利用者によって削除された可能性があります。',
-'badtitle'             => 'ページタイトルの間違い',
+'badtitle'             => '不正なページ名',
 'badtitletext'         => 'ページ名が未入力、無効、または正しくない言語間リンク・ウィキ間リンクです。ページ名に利用できない文字が含まれている可能性があります。',
 'perfcached'           => '以下のデータはキャッシュであり、最新の更新を反映していない可能性があります。',
 'perfcachedts'         => '以下のデータは $1 に最終更新されたキャッシュです。',
@@ -620,9 +620,7 @@ $2',
 'noname'                     => '利用者名を正しく指定していません。',
 'loginsuccesstitle'          => 'ログイン成功',
 'loginsuccess'               => "'''{{SITENAME}} に \"\$1\" としてログインしました。'''",
-'nosuchuser'                 => '"$1"という利用者は見当たりません。
-利用者名は大文字と小文字を区別しています。
-綴りが正しいことを再度確認するか、[[Special:UserLogin/signup|新たにアカウントを作成してください]]。',
+'nosuchuser'                 => '「$1」という名前の利用者は見当たりません。利用者名では大文字と小文字を区別します。綴りが正しいことを確認するか、[[Special:UserLogin/signup|新たにアカウントを作成してください]]。',
 'nosuchusershort'            => '"<nowiki>$1</nowiki>" という利用者は見当たりません。綴りが正しいことを再度確認してください。',
 'nouserspecified'            => '利用者名を指定してください。',
 'wrongpassword'              => 'パスワードが間違っています。再度入力してください。',
@@ -639,7 +637,8 @@ $2',
 'eauthentsent'               => '指定されたメールアドレスにアドレス確認のためのメールを送信しました。このアカウントが本当にあなたのものであるか確認するため、あなたがメールの内容に従わない限り、その他のメールはこのアカウント宛には送信されません。',
 'throttled-mailpassword'     => '新しいパスワードは $1 時間以内に送信済みです。悪用防止のため、パスワードは $1 時間間隔で再発行可能となります。',
 'mailerror'                  => 'メールの送信中にエラーが発生しました: $1',
-'acct_creation_throttle_hit' => 'あなたは既に $1 アカウントを作成しています。これ以上作成できません。',
+'acct_creation_throttle_hit' => 'あなたと同じIPアドレスでこのウィキへ訪れた方が昨日に $1個のアカウントを作成されました。これは一定期間中に作成が許可されている最大数です。
+そのため、現在このIPアドレスの利用者はアカウントをこれ以上作成できません。',
 'emailauthenticated'         => 'あなたのメールアドレスは $2 の $3 に確認されています。',
 'emailnotauthenticated'      => 'あなたのメールアドレスは確認されていません。確認されるまで以下のいかなるメールも送られません。',
 'noemailprefs'               => 'これらの機能を有効にするためには個人設定でメールアドレスを登録する必要があります。',
@@ -755,7 +754,9 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'loginreqlink'                     => 'ログイン',
 'loginreqpagetext'                 => '他のページを閲覧するには$1する必要があります。',
 'accmailtitle'                     => 'パスワードを送信しました',
-'accmailtext'                      => '"$1" のパスワードを $2 に送信しました。',
+'accmailtext'                      => '[[User talk:$1|$1]] のために無作為に生成したパスワードを $2 に送信しました。
+
+この新アカウントのパスワードはログインした際に[[Special:ChangePassword|パスワード変更]]ページで変更できます。',
 'newarticle'                       => '（新規）',
 'newarticletext'                   => 'あなたがクリックしたリンク先のページはまだ存在していません。
 
@@ -764,7 +765,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 ページを作成するつもりがない場合には、ブラウザの「戻る」ボタンを使って前のページに戻ってください。',
 'anontalkpagetext'                 => "----
 ''これはアカウントをまだ作成していないか、あるいは使っていない匿名利用者のための会話ページです。匿名利用者の識別は利用者名のかわりにIPアドレスを用います。IPアドレスは何人かで共有されることがあります。もしあなたが匿名利用者で無関係なコメントが寄せられているとお考えの場合は、[[Special:UserLogin/signup|アカウントを作成する]]か[[Special:UserLogin|ログインして]]他の匿名利用者と間違えられないようにしてくださるようお願いします。''",
-'noarticletext'                    => '現在このページには内容がありません。他のページから[[Special:Search/{{PAGENAME}}|このページタイトルを検索する]]か、[{{fullurl:{{FULLPAGENAME}}|action=edit}} このページを編集]できます。',
+'noarticletext'                    => '現在このページには内容がありません。他のページから[[Special:Search/{{PAGENAME}}|このページ名を検索する]]か、[{{fullurl:{{FULLPAGENAME}}|action=edit}} このページを編集]できます。',
 'userpage-userdoesnotexist'        => '"$1" という名前のアカウントは登録されていません。このページを編集することが適切かどうか確認してください。',
 'clearyourcache'                   => "'''お知らせ:''' 保存した後、ブラウザのキャッシュをクリアする必要があります。
 * '''Mozilla / Firefox / Safari:''' [Shift] を押しながら [再読み込み] をクリック、または [Ctrl]-[F5] か [Ctrl]-[R] （Macintoshでは [Cmd]-[Shift]-[R]）
@@ -774,7 +775,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'usercssjsyoucanpreview'           => '<strong>助言:</strong> 「{{int:showpreview}}」ボタンを使うと保存前に新しいスタイルシートやスクリプトをテストできます。',
 'usercsspreview'                   => "'''あなたはユーザースタイルシートをプレビューしています。まだ保存されていないので注意してください。'''",
 'userjspreview'                    => "'''あなたはユーザースクリプトを試験的にプレビューしています。まだ保存されていないので注意してください。'''",
-'userinvalidcssjstitle'            => "'''警告:''' \"\$1\" という外装はありません。.css と .js ページを編集する際にはタイトルを小文字にすることを忘れないでください。例えば {{ns:user}}:Hoge/Monobook.css ではなく {{ns:user}}:Hoge/monobook.css となります。",
+'userinvalidcssjstitle'            => "'''警告:''' 「$1」というスキンはありません。.css と .js ページを編集する際にはサブページ名を小文字にすることを忘れないでください。例えば {{ns:user}}:Hoge/Monobook.css ではなく {{ns:user}}:Hoge/monobook.css となります。",
 'updated'                          => '(更新)',
 'note'                             => '<strong>お知らせ:</strong>',
 'previewnote'                      => '<strong>これはプレビューです。まだ保存されていません！</strong>',
@@ -965,8 +966,8 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'mergehistory-fail'                => '履歴の統合を行うことが出来ません。統合を行うページと時刻を再確認してください。',
 'mergehistory-no-source'           => '統合元となるページ $1 が存在しません。',
 'mergehistory-no-destination'      => '統合先のページ $1 が存在しません。',
-'mergehistory-invalid-source'      => '統合元となるページの正確なタイトルを指定してください。',
-'mergehistory-invalid-destination' => '統合先のページの正確なタイトルを指定してください。',
+'mergehistory-invalid-source'      => '統合元となるページの正確な名前を指定してください。',
+'mergehistory-invalid-destination' => '統合先のページの正確な名前を指定してください。',
 'mergehistory-autocomment'         => '[[:$1]]を[[:$2]]に統合',
 'mergehistory-comment'             => '[[:$1]]を[[:$2]]に統合: $3',
 'mergehistory-same-destination'    => '統合元と統合先に同じページを設定することはできません。',
@@ -1047,8 +1048,8 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'searchresulttext'                 => '{{SITENAME}}の検索に関する詳しい情報は、[[{{MediaWiki:Helppage}}|{{int:help}}]]をご覧ください。',
 'searchsubtitle'                   => '検索語: \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|"$1" から始まるページ]] | [[Special:WhatLinksHere/$1|"$1" のリンク元]])',
 'searchsubtitleinvalid'            => "検索語: '''$1'''",
-'noexactmatch'                     => "'''「$1」というタイトルのページは存在しません。'''[[:$1|新規作成する]]ことができます。",
-'noexactmatch-nocreate'            => "'''「$1」というタイトルのページは存在しません。'''",
+'noexactmatch'                     => "'''「$1」という名前のページは存在しません。'''[[:$1|新規作成する]]ことができます。",
+'noexactmatch-nocreate'            => "'''「$1」という名前のページは存在しません。'''",
 'toomanymatches'                   => '一致したページが多すぎます、他の検索語を指定してください',
 'titlematches'                     => 'ページ名と一致',
 'notitlematches'                   => 'ページ名とは一致しませんでした',
@@ -1058,7 +1059,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'nextn'                            => '次 $1',
 'viewprevnext'                     => '($1) ($2) ($3) を表示',
 'searchmenu-legend'                => '検索オプション',
-'searchmenu-exists'                => "'''このウィキには「[[$1]]」というタイトルのページがあります'''",
+'searchmenu-exists'                => "'''このウィキには「[[$1]]」という名前のページがあります'''",
 'searchmenu-new'                   => "'''このウィキでページ\"[[:\$1|\$1]]\"を新規作成する'''",
 'searchhelp-url'                   => 'Help:目次',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|この文字列から始まる名前のページを見る]]',
@@ -1154,7 +1155,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'stub-threshold'            => '<a href="#" class="stub">スタブリンク</a>として表示するしきい値:',
 'recentchangesdays'         => '最近更新したページの表示日数:',
 'recentchangesdays-max'     => '(最大$1日間)',
-'recentchangescount'        => '最近更新したページ・履歴・ログページの表示件数:',
+'recentchangescount'        => '{{int:Recentchanges}}、ページ履歴、およびログで表示する既定の件数:',
 'savedprefs'                => '個人設定を保存しました。',
 'timezonelegend'            => 'タイムゾーン',
 'timezonetext'              => '¹サーバーの時刻（UTC）とあなたの地域の標準時との時差。',
@@ -1386,7 +1387,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'ignorewarning'               => '警告を無視し、保存してしまう',
 'ignorewarnings'              => '警告を無視',
 'minlength1'                  => 'ファイル名は1文字以上である必要があります。',
-'illegalfilename'             => 'ファイル名 "$1" にページ・タイトルとして使えない文字が含まれています。ファイル名を変更してからもう一度アップロードしてください。',
+'illegalfilename'             => 'ファイル名「$1」にページ名として使えない文字が含まれています。ファイル名を変更してからもう一度アップロードしてください。',
 'badfilename'                 => 'ファイル名は "$1" へ変更されました。',
 'filetype-badmime'            => 'MIME タイプ "$1" のファイルのアップロードは許可されていません。',
 'filetype-bad-ie-mime'        => 'このファイルは、禁止されている潜在的に危険なファイル形式 "$1" であるとInternet Explorer が認識してしまうためアップロードできません。',
@@ -1407,8 +1408,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 確認したファイルが通常サイズの元画像である場合、追加でサムネイルを登録する必要はありません。',
 'file-thumbnail-no'           => 'ファイル名が <strong><tt>$1</tt></strong> から始まっており、サムネイル（縮小版画像）である可能性が高いです。
 より高精細な画像をお持ちの場合は、フルサイズ版をアップロードしてください。そうでない場合はファイル名を変更してください。',
-'fileexists-forbidden'        => 'この名前のファイルは既に存在していて、上書きすることができません。
-あなたはファイルをアップロードしたい場合、戻って新しい名前を使用してください。
+'fileexists-forbidden'        => 'この名前のファイルは既に存在しており、上書きできません。それでもファイルをアップロードしたい場合、戻って新しい名前を使用してください。
 [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'この名前のファイルは共有ファイルリポジトリに既に存在しています。アップロードを継続したい場合は、前のページに戻り、別のファイル名を選択してください。[[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'このファイルは以下のファイルと重複しています',
@@ -1679,7 +1679,7 @@ PICT # misc.
 
 # Special:Log
 'specialloguserlabel'  => '利用者名:',
-'speciallogtitlelabel' => 'タイトル:',
+'speciallogtitlelabel' => 'ページ名:',
 'log'                  => 'ログ',
 'all-logs-page'        => '全ての記録',
 'alllogstext'          => '{{SITENAME}}の取得可能なログがまとめて表示されています。ログの種類、実行した利用者、影響を受けたページ（利用者）による絞り込みができます。',
@@ -1700,7 +1700,7 @@ PICT # misc.
 'allpagesnext'      => '次へ',
 'allpagessubmit'    => '表示',
 'allpagesprefix'    => '次の文字列から始まるページを表示:',
-'allpagesbadtitle'  => '指定したタイトルは無効か、他言語版または他ウィキ内のタイトルです。ページタイトルに使用できない文字が含まれている可能性があります。',
+'allpagesbadtitle'  => '指定したページ名は無効か、他言語版または他ウィキ内のページ名です。ページ名に使用できない文字が含まれている可能性があります。',
 'allpages-bad-ns'   => '{{SITENAME}}に "$1" という名前空間はありません。',
 
 # Special:Categories
@@ -2078,7 +2078,7 @@ $NEWPAGE
 'ipb-blocklist-contribs'          => '$1 の投稿記録',
 'unblockip'                       => '投稿ブロックを解除する',
 'unblockiptext'                   => '以下のフォームで利用者またはIPアドレスの投稿ブロックを解除できます。',
-'ipusubmit'                       => 'このIPアドレスの投稿ブロックを解除する',
+'ipusubmit'                       => 'この投稿ブロックを解除',
 'unblocked'                       => '[[User:$1|$1]] の投稿ブロックを解除しました',
 'unblocked-id'                    => 'ブロック $1 は解除されました',
 'ipblocklist'                     => '投稿ブロック中の利用者やIPアドレス',
@@ -2192,8 +2192,8 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'talkexists'                   => "'''ページ自身は移動されましたが、付随のノートページは移動先のページが存在したため移動できませんでした。手動で内容を統合してください。'''",
 'movedto'                      => '移動先:',
 'movetalk'                     => 'ノートページが付随する場合には、それも一緒に移動する',
-'move-subpages'                => 'サブページもすべて移動する',
-'move-talk-subpages'           => 'ノートページのサブページもすべて移動する',
+'move-subpages'                => '可能ならサブページも移動する ($1個まで)',
+'move-talk-subpages'           => '可能ならノートページのサブページも移動する ($1個まで)',
 'movepage-page-exists'         => '$1 という名前のページは既に存在するため自動的な上書きは行われませんでした。',
 'movepage-page-moved'          => '$1 は $2 へ移動されました。',
 'movepage-page-unmoved'        => '$1 を $2 へ移動できませんでした。',
@@ -2224,13 +2224,14 @@ $1 は、すでにブロックされています。設定を変更しますか�
 
 # Export
 'export'            => 'ページデータの書き出し',
-'exporttext'        => 'ここでは単独のまたは複数のページのテキストと編集履歴をXMLの形で書き出すことができます。書き出されたXML文書は他のMediaWikiで動いているウィキに[[Special:Import|インポートページ]]を使って取り込めます。
+'exporttext'        => 'ここでは単独のまたは複数のページのテキストと編集履歴をXMLの形で書き出すことができます。書き出されたXML文書は他の MediaWiki で動いているウィキに[[Special:Import|インポートページ]]を使って取り込めます。
 
-ページデータを書き出すには下のテキストボックスに書き出したいページのタイトルを一行に一ページずつ記入してください。また編集履歴とともに全ての古い版を含んで書き出すのか、最新版のみを書き出すのか選択してください。
+ページデータを書き出すには下のテキストボックスに書き出したいページの名前を一行に一つずつ記入してください。また編集履歴とともに全ての古い版を含んで書き出すのか、最新版のみを書き出すのか選択してください。
 
-後者のケースではリンクの形で使うこともできます。例: "[[{{MediaWiki:Mainpage}}]]"の最新版を取得するには[[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]]を使用します。',
+後者の場合ではリンクの形で使うこともできます。例えば、「[[{{MediaWiki:Mainpage}}]]」の最新版を取得するには[[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]]とします。',
 'exportcuronly'     => 'すべての履歴を含ませずに、最新版のみを書き出す',
-'exportnohistory'   => "'''お知らせ:''' パフォーマンス上の理由により、このフォームによるページの完全な履歴の書き出しは行えません。",
+'exportnohistory'   => "----
+'''注:''' パフォーマンス上の理由により、このフォームによるページの完全な履歴の書き出しは行えません。",
 'export-submit'     => '書き出し',
 'export-addcattext' => 'カテゴリ内のページを対象に加える。 Category:',
 'export-addcat'     => '追加',
@@ -2311,7 +2312,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'tooltip-pt-logout'               => 'ログアウト',
 'tooltip-ca-talk'                 => '記事についての議論',
 'tooltip-ca-edit'                 => 'このページを編集できます。投稿の前に「{{int:showpreview}}」ボタンを使ってください。',
-'tooltip-ca-addsection'           => 'このページにコメントを加える',
+'tooltip-ca-addsection'           => '新しいセクションを開始する',
 'tooltip-ca-viewsource'           => 'このページは保護されています。ページのソースを閲覧できます。',
 'tooltip-ca-history'              => 'このページの過去の版',
 'tooltip-ca-protect'              => 'このページを保護',
@@ -2890,7 +2891,7 @@ $1
 'autosumm-blank'   => 'ページの白紙化',
 'autosumm-replace' => "ページの置換: '$1'",
 'autoredircomment' => '[[$1]]へのリダイレクト',
-'autosumm-new'     => "新しいページ: '$1'",
+'autosumm-new'     => 'ページの作成: $1',
 
 # Size units
 'size-bytes'     => '$1 バイト',
@@ -2921,7 +2922,7 @@ $1
 'watchlistedit-raw-title'      => 'ウォッチリストをテキストで編集',
 'watchlistedit-raw-legend'     => 'ウォッチリストをテキストで編集',
 'watchlistedit-raw-explain'    => 'あなたのウォッチリストに含まれるページが以下に表示されています。1行につき1つのページを表し、リストから追加・削除することにより編集できます。編集を反映させるには「{{int:Watchlistedit-raw-submit}}」を選びます。この編集方法の他に、[[Special:Watchlist/edit|標準のエディタ]]も利用できます。',
-'watchlistedit-raw-titles'     => 'タイトル:',
+'watchlistedit-raw-titles'     => '項目:',
 'watchlistedit-raw-submit'     => 'ウォッチリストを更新',
 'watchlistedit-raw-done'       => 'あなたのウォッチリストを更新しました。',
 'watchlistedit-raw-added'      => '$1件追加しました:',
@@ -2967,6 +2968,8 @@ $1
 'hebrew-calendar-m4'      => 'テベット',
 'hebrew-calendar-m5'      => 'シュバット',
 'hebrew-calendar-m6'      => 'アダル',
+'hebrew-calendar-m6a'     => 'アダル・アレフ',
+'hebrew-calendar-m6b'     => 'アダル・ベート',
 'hebrew-calendar-m7'      => 'ニサン',
 'hebrew-calendar-m8'      => 'イヤール',
 'hebrew-calendar-m9'      => 'シバン',
@@ -2979,6 +2982,8 @@ $1
 'hebrew-calendar-m4-gen'  => 'テベット',
 'hebrew-calendar-m5-gen'  => 'シュバット',
 'hebrew-calendar-m6-gen'  => 'アダル',
+'hebrew-calendar-m6a-gen' => 'アダル・アレフ',
+'hebrew-calendar-m6b-gen' => 'アダル・ベート',
 'hebrew-calendar-m7-gen'  => 'ニサン',
 'hebrew-calendar-m8-gen'  => 'イヤール',
 'hebrew-calendar-m9-gen'  => 'シバン',
@@ -3076,9 +3081,12 @@ $1
 'tags-hitcount'           => '$1件の変更',
 
 # Database error messages
-'dberr-header'   => 'このウィキには問題があります。',
-'dberr-problems' => 'すみません!このサイトは技術的な問題が発生しています。',
-'dberr-again'    => '数分間待った後、再ロードしてみてください。',
-'dberr-info'     => '(データベースサーバー: $1 に接続できませんでした。)',
+'dberr-header'      => 'このウィキには問題があります。',
+'dberr-problems'    => 'すみません！このサイトには技術的な問題が発生しています。',
+'dberr-again'       => '数分間待った後、再ロードしてみてください。',
+'dberr-info'        => '(データベースサーバー: $1 に接続できませんでした。)',
+'dberr-usegoogle'   => '当面の間は、Google を利用して検索することができます。',
+'dberr-outofdate'   => 'このサイトに関する外部のインデックスは最新ではない場合があることに注意してください。',
+'dberr-cachederror' => '次は要求されたページをキャッシュした複製であり、最新の内容ではないかもしれません。',
 
 );

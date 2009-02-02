@@ -305,14 +305,14 @@ $messages = array(
 'talkpagelinktext'  => 'Mesaj',
 'specialpage'       => 'Özel Sayfa',
 'personaltools'     => 'Kişisel aletler',
-'postcomment'       => 'Yorum ekle',
+'postcomment'       => 'Yeni bölüm',
 'articlepage'       => 'Maddeye git',
 'talk'              => '{{#ifeq:{{TALKSPACE}}|Kullanıcı mesaj|mesaj|tartışma}}',
 'views'             => 'Görünümler',
 'toolbox'           => 'Araçlar',
 'userpage'          => 'Kullanıcı sayfasını görüntüle',
 'projectpage'       => 'Proje sayfasına bak',
-'imagepage'         => 'Medya sayfasını görüntüle',
+'imagepage'         => 'Dosya sayfasını görüntüle',
 'mediawikipage'     => 'Mesaj sayfasını göster',
 'templatepage'      => 'Şablon sayfasını görüntüle',
 'viewhelppage'      => 'Yardım sayfasına bak',
@@ -383,13 +383,13 @@ $messages = array(
 'site-atom-feed'          => '$1 Atom Beslemesi',
 'page-rss-feed'           => '"$1" RSS Beslemesi',
 'page-atom-feed'          => '"$1" Atom Beslemesi',
-'red-link-title'          => '$1 (henüz yazılmamış)',
+'red-link-title'          => '$1 (sayfa mevcut değil)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Sayfa',
 'nstab-user'      => 'kullanıcı sayfası',
 'nstab-media'     => 'Medya',
-'nstab-special'   => 'Özel',
+'nstab-special'   => 'Özel sayfa',
 'nstab-project'   => 'Proje sayfası',
 'nstab-image'     => 'Dosya',
 'nstab-mediawiki' => 'arayüz metni',
@@ -518,7 +518,7 @@ Hesabınız açıldı.
 'yourvariant'                => 'Sizce:',
 'yournick'                   => 'İmzalarda gözükmesini istediğiniz isim',
 'badsig'                     => 'Geçersiz ham imza; HTML etiketlerini kontorl edin.',
-'badsiglength'               => 'İmza çok uzun
+'badsiglength'               => 'İmzanız çok uzun.
 $1 {{PLURAL:$1|karakterin|karakterin}} altında olmalı.',
 'yourgender'                 => 'Cinsiyet:',
 'gender-unknown'             => 'Belirtilmemiş',
@@ -538,7 +538,9 @@ Lütfen çerez kullanımını açınız ve yeni kullanıcı adınız ve şifreni
 'noname'                     => 'Geçerli bir kullanıcı adı girmediniz.',
 'loginsuccesstitle'          => 'Oturum açıldı',
 'loginsuccess'               => '{{SITENAME}} sitesinde "$1" kullanıcı adıyla oturum açmış bulunmaktasınız.',
-'nosuchuser'                 => '"$1" adında bir kullanıcı bulunmamaktadır. Yazılışı kontrol edin veya [[Special:UserLogin/signup|yeni bir hesap açın]].',
+'nosuchuser'                 => '"$1" adında bir kullanıcı bulunmamaktadır.
+Kullanıcı adları büyük-küçük harf duyarlıdır.
+Yazılışı kontrol edin veya [[Special:UserLogin/signup|yeni bir hesap açın]].',
 'nosuchusershort'            => '"<nowiki>$1</nowiki>" adında bir kullanıcı bulunmamaktadır. Yazılışı kontrol edin.',
 'nouserspecified'            => 'Bir kullanıcı adı belirtmek zorundasınız.',
 'wrongpassword'              => 'Parolayı yanlış girdiniz. Lütfen tekrar deneyiniz.',
@@ -677,7 +679,9 @@ Lütfen yapacağınız herhangi bir sorguda yukarıdaki bütün detayları bulun
 'loginreqlink'                     => 'oturum aç',
 'loginreqpagetext'                 => 'Diğer sayfaları görmek için $1 olmalısınız.',
 'accmailtitle'                     => 'Parola gönderildi.',
-'accmailtext'                      => '"$1" kullanıcısına ait parola $2 adresine gönderildi.',
+'accmailtext'                      => "[[User talk:$1|$1]] için rasgele oluşturulan parola $2 adresine gönderildi.
+
+Bu yeni hesap için parola, giriş yapıldıktan sonra ''[[Special:ChangePassword|parolayı değiştir]]'' bölümünde değiştirilebilir.",
 'newarticle'                       => '(Yeni)',
 'newarticletext'                   => "Henüz varolmayan bir sayfaya konulmuş bir bağlantıya tıkladınız. Bu sayfayı yaratmak için aşağıdaki metin kutusunu kullanınız. Bilgi için [[{{MediaWiki:Helppage}}|yardım sayfasına]] bakınız. Buraya yanlışlıkla geldiyseniz, programınızın '''Geri''' tuşuna tıklayınız.",
 'anontalkpagetext'                 => "----''Bu sayfa henüz bir kullanıcı hesabı oluşturmamış veya hesabını kullanmayan bir anonim kullanıcının mesaj sayfasıdır. Bu nedenle bu kişiyi belirtmek için rakamsal IP adresini kullanmak zorundayız. Bu gibi IP adresleri birçok kullanıcı tarafından paylaşılabilir. Eğer siz de bir anonim kullanıcıysanız ve size sizin ilginiz olmayan mesajlar geliyorsa, lütfen diğer anonim kullanıcılarla olabilecek olan karmaşayı önlemek için [[Special:UserLogin/signup|bir hesap oluşturun]] veya [[Special:UserLogin|oturum açın]].''",
@@ -703,7 +707,7 @@ Değişikliğiniz, sayfa metninde bozulmayı önlemek için geri çevrildi.
 Eğer sorunlu bir web-tabanlı anonim proksi servisi kullanıyorsanız bu olay bazen gerçekleşebilir.</strong>',
 'editing'                          => '"$1" sayfasını değiştirmektesiniz',
 'editingsection'                   => '"$1" sayfasında bölüm değiştirmektesiniz',
-'editingcomment'                   => '$1 sayfasına mesaj eklemektesiniz.',
+'editingcomment'                   => '$1 değiştiriliyor (yeni bölüm)',
 'editconflict'                     => 'Değişiklik çakışması: $1',
 'explainconflict'                  => 'Siz sayfayı değiştirirken başka biri de değişiklik yaptı.
 Yukarıdaki yazı sayfanın şu anki halini göstermektedir.
@@ -1066,7 +1070,7 @@ ayarlamak için math/README'ye bakın.",
 'stub-threshold'            => '<a href="#" class="stub">Taslak bağlantısı</a> formatı için baraj (byte):',
 'recentchangesdays'         => 'Son değişikliklerde gösterilecek günler:',
 'recentchangesdays-max'     => '(maksimum $1 {{PLURAL:$1|gün|gün}})',
-'recentchangescount'        => 'Son değişiklikler sayfasındaki madde sayısı',
+'recentchangescount'        => 'Son değişiklikler, sayfa geçmişi ve günlüklerde varsayılan olarak gösterilecek değişiklik sayısı',
 'savedprefs'                => 'Ayarlar kaydedildi.',
 'timezonelegend'            => 'Saat dilimi',
 'timezonetext'              => '¹Viki sunucusu (UTC/GMT) ile aranızdaki saat farkı. (Türkiye için +02:00)',
@@ -1325,7 +1329,8 @@ Eğer kontrol edilen dosya ile orijinal boyutundaki aynı dosyaysa fazladan pul 
 'file-thumbnail-no'           => 'Bu dosyanın adı <strong><tt>$1</tt></strong> ile başlıyor.
 Bu başka bir resim küçültülmüş versiyonuna benziyor <i>(thumbnail)</i>
 Eğer sizde bu resmin tam çöznürlükteki versiyonu varsa onu yükleyin, aksi takdirde lütfen dosya adını değiştirin.',
-'fileexists-forbidden'        => 'Bu isimde zaten dosya var; lütfen farklı bir isimle yeniden yükleyin. [[File:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Bu isimde bir dosya zaten var, ve üzerine yazılamıyor.
+Dosyanızı yinede yüklemek istiyorsanız, lütfen geri dönüp yeni bir isim kullanın. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Bu isimde bir dosya ortak havuzda zaten mevcut.
 Dosyanızı yinede yüklemek istiyorsanız, lütfen geri gidip yeni bir isim kullanın. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Bu dosya aşağıdaki {{PLURAL:$1|dosyanın|dosyaların}} kopyasıdır:',
@@ -1407,7 +1412,7 @@ Bir sütünun başlığına tıklayarak sıralamayı değiştirebilirsiniz.',
 'filehist-dimensions'            => 'Boyutlar',
 'filehist-filesize'              => 'Dosya boyutu',
 'filehist-comment'               => 'Açıklama',
-'imagelinks'                     => 'Kullanıldığı sayfalar',
+'imagelinks'                     => 'Dosya bağlantıları',
 'linkstoimage'                   => 'Bu görüntü dosyasına bağlantısı olan {{PLURAL:$1|sayfa|$1 sayfa}}:',
 'linkstoimage-more'              => "$1'den fazla {{PLURAL:$1|sayfa|sayfa}} bu dosyaya bağlantı veriyor.
 Sıradaki liste sadece bu dosyaya bağlantı veren {{PLURAL:$1|ilk dosyayı|ilk $1 dosyayı}} gösteriyor.
@@ -1437,7 +1442,7 @@ Sıradaki liste sadece bu dosyaya bağlantı veren {{PLURAL:$1|ilk dosyayı|ilk 
 # File deletion
 'filedelete'                  => 'Sil $1',
 'filedelete-legend'           => 'Dosya sil',
-'filedelete-intro'            => "'''[[Media:$1|$1]]''' dosyasını silmektesiniz.",
+'filedelete-intro'            => "'''[[Media:$1|$1]]''' dosyasını tüm geçmişiyle birlikte silmek üzeresiniz.",
 'filedelete-comment'          => 'Silinme sebebi:',
 'filedelete-submit'           => 'Sil',
 'filedelete-success'          => "'''$1''' silindi.",
@@ -1503,7 +1508,7 @@ Sıradaki liste sadece bu dosyaya bağlantı veren {{PLURAL:$1|ilk dosyayı|ilk 
 'double-redirect-fixer'      => 'Yönlendirme tamircisi',
 
 'brokenredirects'        => 'Varolmayan maddeye yapılmış yönlendirmeler',
-'brokenredirectstext'    => 'Bu sayfa mevcut olmayan sayfalara yönlendirme içeren bozuk sayfaları listeler.',
+'brokenredirectstext'    => 'Aşağıdaki yönlendirmeler varolmayan sayfalara bağlantı veriyor:',
 'brokenredirects-edit'   => '(değiştir)',
 'brokenredirects-delete' => '(sil)',
 
@@ -1540,7 +1545,7 @@ Sıradaki liste sadece bu dosyaya bağlantı veren {{PLURAL:$1|ilk dosyayı|ilk 
 'mostcategories'          => 'En fazla kategoriye bağlanmış sayfalar',
 'mostimages'              => 'En çok kullanılan resimler',
 'mostrevisions'           => 'En çok değişikliğe uğramış sayfalar',
-'prefixindex'             => 'Önek girerek listeleme',
+'prefixindex'             => 'Önek ile tüm sayfalar',
 'shortpages'              => 'Kısa sayfalar',
 'longpages'               => 'Uzun sayfalar',
 'deadendpages'            => 'Başka sayfalara bağlantısı olmayan sayfalar',
@@ -1614,7 +1619,7 @@ Ayrıca [[Special:WantedCategories|İstenen kategoriler]]'e bakınız.",
 'deletedcontributions-title' => 'Silinen kullanıcı katkıları',
 
 # Special:LinkSearch
-'linksearch'    => 'Web bağlantılarını ara',
+'linksearch'    => 'Dış bağlantılar',
 'linksearch-ns' => 'İsimalanı:',
 'linksearch-ok' => 'Ara',
 
@@ -1779,7 +1784,7 @@ Böyle sayfaların silinmesi, {{SITENAME}} sitesini bozmamak için sınırlanmak
 'alreadyrolled'    => '[[User:$2|$2]] ([[User talk:$2|Talk]]) tarafından [[:$1]] sayfasında yapılmış son değişiklik geriye alınamıyor çünkü bu esnada başka biri sayfada değişiklik yaptı ya da başka biri sayfayı geriye aldı.
 
 Son değişikliği yapan: [[User:$3|$3]] ([[User talk:$3|Talk]]).',
-'editcomment'      => 'Değiştirme notu: "<i>$1</i>" idi.', # only shown if there is an edit comment
+'editcomment'      => 'Değişiklik özeti: "<i>$1</i>" idi.', # only shown if there is an edit comment
 'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) tarafından yapılan değişiklikler geri alınarak, [[User:$1|$1]] tarafından değiştirilmiş önceki sürüm geri getirildi.', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => '$1 tarafından yapılan değişiklikler geri alınarak;
 $2 tarafından değiştirilmiş önceki sürüme geri dönüldü.',
@@ -1809,9 +1814,9 @@ Daha fazla bilgi için [[Project:Koruma altına alınmış sayfa]] sayfasına ba
 <strong>$1</strong> sayfasının geçerli ayarları şunlardır:',
 'protect-cascadeon'           => 'Bu sayfa, kademeli koruma aktif hale getirilmiş aşağıdaki {{PLURAL:$1|$1 sayfada|$1 sayfada}} kullanıldığı için şu an koruma altındadır.
 Bu sayfanın koruma seviyesini değiştirebilirsiniz; ancak bu kademeli korumaya etki etmeyecektir.',
-'protect-default'             => '(standart)',
+'protect-default'             => 'Tüm kullanıcılara izin ver',
 'protect-fallback'            => '"$1" izni gerektir',
-'protect-level-autoconfirmed' => 'kayıtlı olmayan değiştirmesin',
+'protect-level-autoconfirmed' => 'Yeni ve kayıtlı olmayan kullanıcıları engelle',
 'protect-level-sysop'         => 'sadece hizmetliler',
 'protect-summary-cascade'     => 'kademeli',
 'protect-expiring'            => 'bitiş tarihi $1 (UTC)',
@@ -1966,7 +1971,7 @@ $1',
 'ipb-blocklist'                   => 'Mevcut olan engellemeleri göster',
 'ipb-blocklist-contribs'          => '$1 için katkılar',
 'unblockip'                       => 'Kullanıcının engellemesini kaldır',
-'ipusubmit'                       => 'Bu adresin engellemesini kaldır',
+'ipusubmit'                       => 'Bu IP adresinin engellemesini kaldır',
 'unblocked'                       => '[[User:$1|$1]] - engelleme kaldırıldı',
 'unblocked-id'                    => '$1 engeli çıkarıldı',
 'ipblocklist'                     => 'Engellenmiş IP adresleri ve kullanıcı adları',
@@ -2173,19 +2178,19 @@ Geçici dosya kayıp.',
 'import-logentry-interwiki'     => '$1 transvikileşmiş',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => 'Kişisel sayfam',
+'tooltip-pt-userpage'             => 'Kullanıcı sayfanız',
 'tooltip-pt-anonuserpage'         => 'The user page for the ip you',
-'tooltip-pt-mytalk'               => 'Mesaj sayfam',
+'tooltip-pt-mytalk'               => 'Mesaj sayfanız',
 'tooltip-pt-anontalk'             => 'Bu IP adresinden yapılmış değişiklikleri tartış',
 'tooltip-pt-preferences'          => 'Ayarlarım',
 'tooltip-pt-watchlist'            => 'İzlemeye aldığım sayfalar',
-'tooltip-pt-mycontris'            => 'Yaptığım katkıların listesi',
+'tooltip-pt-mycontris'            => 'Yaptığınız katkıların listesi',
 'tooltip-pt-login'                => 'Oturum açmanız tavsiye olunur ama mecbur değilsiniz.',
 'tooltip-pt-anonlogin'            => 'Oturum açmanız tavsiye olunur ama mecbur değilsiniz.',
 'tooltip-pt-logout'               => 'Sistemden çık',
 'tooltip-ca-talk'                 => 'İçerik ile ilgili görüş belirt',
 'tooltip-ca-edit'                 => 'Bu sayfayı değiştirebilirsiniz. Kaydetmeden önce önizleme yapmayı unutmayın.',
-'tooltip-ca-addsection'           => 'Bu tartışmaya yorum ekleyin.',
+'tooltip-ca-addsection'           => 'Yeni bir bölüm başlat.',
 'tooltip-ca-viewsource'           => 'Bu sayfa koruma altında. Sadece kaynak kodunu sadece görebilirsiniz. İçeriği değiştiremezsiniz.',
 'tooltip-ca-history'              => 'Bu sayfanın geçmiş versiyonları.',
 'tooltip-ca-protect'              => 'Bu sayfayı koru',

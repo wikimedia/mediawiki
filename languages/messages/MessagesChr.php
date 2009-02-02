@@ -32,6 +32,7 @@ $messages = array(
 'talk'             => 'ᎧᏃᎮᎸᏗ',
 'toolbox'          => 'ᎪᎱᏍᏗ ᎬᏔᏂᏓᏍᏗ ᎧᏁᏌᎢ',
 'otherlanguages'   => 'ᎭᏫᎾᏗᏢ ᏐᎢ ᏗᎦᏬᏂᎯᏍᏗ',
+'jumptosearch'     => 'ᎡᏗt',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutpage'            => 'Project:ᎬᏩᏚᏫᏛ',
@@ -67,6 +68,9 @@ $messages = array(
 
 # Random page
 'randompage' => 'ᎤᏍᏆᏂᎪᏗ ᎤᏆᏓᏛ',
+
+# Watchlist
+'watch' => 'WᎠᏥ',
 
 # Delete
 'actioncomplete' => 'ᎠᏍᏆᏙᏅᎯ',

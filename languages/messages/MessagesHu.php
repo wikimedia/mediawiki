@@ -456,14 +456,14 @@ $messages = array(
 'talkpagelinktext'  => 'vita',
 'specialpage'       => 'Speciális lap',
 'personaltools'     => 'Személyes eszközök',
-'postcomment'       => 'Megjegyzés beküldése',
+'postcomment'       => 'Új szakasz',
 'articlepage'       => 'Szócikk megtekintése',
 'talk'              => 'Vitalap',
 'views'             => 'Nézetek',
 'toolbox'           => 'Eszközök',
 'userpage'          => 'Szerkesztő lapjának megtekintése',
 'projectpage'       => 'Projektlap megtekintése',
-'imagepage'         => 'Fájl leírólapjának megtekintése',
+'imagepage'         => 'A fájl leírólapjának megtekintése',
 'mediawikipage'     => 'Üzenetlap megtekintése',
 'templatepage'      => 'Sablon lapjának megtekintése',
 'viewhelppage'      => 'Súgólap megtekintése',
@@ -534,7 +534,7 @@ $messages = array(
 'site-atom-feed'          => '$1 Atom hírcsatorna',
 'page-rss-feed'           => '„$1” RSS hírcsatorna',
 'page-atom-feed'          => '„$1” Atom hírcsatorna',
-'red-link-title'          => '$1 (nincs még megírva)',
+'red-link-title'          => '$1 (a lap nem létezik)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Szócikk',
@@ -671,7 +671,7 @@ Ne felejtsd el átnézni a [[Special:Preferences|személyes beállításaidat]].
 'yourvariant'                => 'Változó',
 'yournick'                   => 'Aláírás:',
 'badsig'                     => 'Érvénytelen aláírás; ellenőrizd a HTML-formázást.',
-'badsiglength'               => 'A megadott név túl hosszú;
+'badsiglength'               => 'Az aláírásod túl hosszú.
 {{PLURAL:$1|Egy|$1}} karakternél rövidebbnek kell lennie.',
 'yourgender'                 => 'Nem:',
 'gender-unknown'             => 'Nincs megadva',
@@ -691,6 +691,7 @@ Engedélyezd őket, majd próbáld meg újra.',
 'loginsuccesstitle'          => 'Sikeres bejelentkezés',
 'loginsuccess'               => 'Most már be vagy jelentkezve a(z) {{grammar:ba|{{SITENAME}}}} „$1” néven.',
 'nosuchuser'                 => 'Nem létezik „$1” nevű szerkesztő.
+A szerkesztőnevek kis- és nagybetű-érzékenyek.
 Ellenőrizd, hogy helyesen írtad-e be, vagy [[Special:UserLogin/signup|hozz létre egy új fiókot]].',
 'nosuchusershort'            => 'Nem létezik „<nowiki>$1</nowiki>” nevű szerkesztő.
 Ellenőrizd, hogy helyesen írtad-e be.',
@@ -718,8 +719,8 @@ Lépj be a levélben található adatokkal.',
 'throttled-mailpassword'     => 'Már elküldtünk egy jelszóemlékeztetőt az utóbbi {{PLURAL:$1|egy|$1}} órában.
 A visszaélések elkerülése végett {{PLURAL:$1|egy|$1}} óránként csak egy jelszó-emlékeztetőt küldünk.',
 'mailerror'                  => 'Hiba történt az e-mail küldése közben: $1',
-'acct_creation_throttle_hit' => 'Már létrehoztál {{PLURAL:$1|egy|$1}} felhasználói fiókot.
-Sajnáljuk, de többet nem hozhatsz létre.',
+'acct_creation_throttle_hit' => 'A wiki látogatói már {{PLURAL:$1|Egy|$1}} fiókot hoztak létre az elmúlt egy nap alatt ezt az IP-címet használva. Ez a megengedett maximum ezen időtartam alatt.
+Emiatt az erről a címről látogatók jelenleg nem hozhatnak létre újabb fiókokat.',
 'emailauthenticated'         => '$2, $3-kor megerősítetted az e-mail címedet.',
 'emailnotauthenticated'      => 'Az e-mail címed még <strong>nincs megerősítve</strong>. E-mailek küldése és fogadása nem engedélyezett.',
 'noemailprefs'               => 'Az alábbi funkciók használatához meg kell adnod az e-mail címedet.',
@@ -833,7 +834,9 @@ Kérjük, hogy érdeklődés esetén mindkettőt add meg.",
 'loginreqlink'                     => 'be kell jelentkezned',
 'loginreqpagetext'                 => '$1 más oldalak megtekintéséhez.',
 'accmailtitle'                     => 'A jelszót elküldtük.',
-'accmailtext'                      => '„$1” jelszavát elküldtük a(z) $2 címre.',
+'accmailtext'                      => "A(z) [[User talk:$1|$1]] fiókhoz egy véletlenszerűen generált jelszót küldünk a(z) $2 címre.
+
+Az új fiók jelszava a ''[[Special:ChangePassword|jelszó megváltoztatása]]'' lapon módosítható a bejelentkezés után.",
 'newarticle'                       => '(Új)',
 'newarticletext'                   => "Egy olyan lapra mutató hivatkozást követtél, mely még nem létezik.
 Ha létre akarod hozni, csak gépeld be a szövegét a lenti szövegdobozba. Ha kész vagy, az „Előnézet megtekintése” gombbal ellenőrizheted, hogy úgy fog-e kinézni, ahogy szeretnéd, és a „Lap mentése” gombbal tudod elmenteni.
@@ -869,7 +872,7 @@ a szerkesztési tokenben. A szerkesztés azért lett visszautasítva, hogy megel
 Ez a probléma akkor fordulhat elő, ha hibás, web-alapú proxyszolgáltatást használsz.</strong>',
 'editing'                          => '$1 szerkesztése',
 'editingsection'                   => '$1 szerkesztése (szakasz)',
-'editingcomment'                   => '$1 szerkesztése (üzenet)',
+'editingcomment'                   => '$1 szerkesztése (új szakasz)',
 'editconflict'                     => 'Szerkesztési ütközés: $1',
 'explainconflict'                  => "Valaki megváltoztatta a lapot azóta, hogy szerkeszteni kezdted.
 A felső szövegablak tartalmazza az oldal jelenlegi állapotát.
@@ -1251,7 +1254,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'stub-threshold'            => 'A hivatkozások <a href="#" class="stub">csonkként</a> történő formázásának határa (bájtban):',
 'recentchangesdays'         => 'A friss változtatásokban mutatott napok száma:',
 'recentchangesdays-max'     => '(maximum {{PLURAL:$1|egy|$1}} nap)',
-'recentchangescount'        => 'A friss változtatásokban, laptörténetben, naplókban mutatott szerkesztések száma:',
+'recentchangescount'        => 'A friss változtatásokban, a laptörténetekben és a naplókban mutatott szerkesztések száma:',
 'savedprefs'                => 'Az új beállításaid érvénybe léptek.',
 'timezonelegend'            => 'Időzóna',
 'timezonetext'              => '¹Ennyi óra az eltérés a helyi idő és a szerver ideje (UTC) között.',
@@ -1512,7 +1515,8 @@ Ha az ellenőrzött fájl ugyanakkora, mint az eredeti méretű kép, akkor ninc
 'file-thumbnail-no'           => 'A fájlnév a(z) <strong><tt>$1</tt></strong> karakterlánccal kezdődik.
 Úgy tűnik, hogy ez egy kisméretű kép <i>(bélyegkép)</i>.
 Ha rendelkezel a teljesméretű képpel, akkor töltsd fel azt, egyébként kérjük, hogy változtasd meg a fájlnevet.',
-'fileexists-forbidden'        => 'Egy ugyanilyen nevű fájl már létezik; kérlek menj vissza és töltsd fel a fájlt egy másik néven. [[File:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'Már létezik egy ugyanilyen nevű fájl, és nem lehet felülírni.
+Ha még mindig fel szeretnéd tölteni a fájlt, menj vissza, és adj meg egy új nevet. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Egy ugyanilyen nevű fájl már létezik a közös fájlmegosztóban; kérlek menj vissza és válassz egy másik nevet a fájlnak, ha még mindig fel akarod tölteni! [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Ez a következő {{PLURAL:$1|fájl|fájlok}} duplikátuma:',
 'file-deleted-duplicate'      => 'Egy ehhez hasonló fájlt ([[$1]]) korábban már töröltek. Ellenőrizd a fájl törlési naplóját, mielőtt újra feltöltenéd.',
@@ -1634,7 +1638,7 @@ A teljes lista [[Special:WhatLinksHere/$2|ezen a lapon]] található meg.',
 # File deletion
 'filedelete'                  => '$1 törlése',
 'filedelete-legend'           => 'Fájl törlése',
-'filedelete-intro'            => "Törölni készülsz a következő médiafájlt: '''[[Media:$1|$1]]'''.",
+'filedelete-intro'            => "Törölni készülsz a(z) '''[[Media:$1|$1]]''' médiafájlt, a teljes fájltörténetével együtt.",
 'filedelete-intro-old'        => '<span class="plainlinks">A(z) \'\'\'[[Media:$1|$1]]\'\'\' fájl, dátum: [$4 $3, $2] változatát törlöd.</span>',
 'filedelete-comment'          => 'Indoklás:',
 'filedelete-submit'           => 'Törlés',
@@ -3119,7 +3123,7 @@ Add meg a fájl nevét „{{ns:file}}:” előtag nélkül.',
 # Special:Tags
 'tag-filter-submit'    => 'Szűrő',
 'tags-title'           => 'Címkék',
-'tags-hitcount-header' => 'Felcímkézett változtatások',
+'tags-hitcount-header' => 'Címkézett változtatások',
 'tags-edit'            => 'szerkesztés',
 
 );

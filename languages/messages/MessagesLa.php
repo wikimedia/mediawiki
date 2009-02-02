@@ -314,7 +314,7 @@ $messages = array(
 'talkpagelinktext'  => 'Disputatio',
 'specialpage'       => 'Pagina specialis',
 'personaltools'     => 'Instrumenta personalia',
-'postcomment'       => 'Adnotare',
+'postcomment'       => 'Nova pars',
 'articlepage'       => 'Videre rem',
 'talk'              => 'Disputatio',
 'views'             => 'Visae',
@@ -392,13 +392,13 @@ Vide [[Special:Version|paginam versionis]].',
 'site-atom-feed'          => '$1 Fluxus Atom',
 'page-rss-feed'           => '"$1" Fluxus RSS',
 'page-atom-feed'          => '"$1" Fluxus Atom',
-'red-link-title'          => '$1 (pagina nondum scripta est)',
+'red-link-title'          => '$1 (non est haec pagina)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Res',
 'nstab-user'      => 'Pagina usoris',
 'nstab-media'     => 'Media',
-'nstab-special'   => 'Specialis',
+'nstab-special'   => 'Pagina specialis',
 'nstab-project'   => 'Consilium',
 'nstab-image'     => 'Fasciculus',
 'nstab-mediawiki' => 'Nuntium',
@@ -492,7 +492,7 @@ Nomen usoris alium selige.',
 'yourvariant'                => 'Differentia:',
 'yournick'                   => 'Subscriptio:',
 'badsig'                     => 'Subscriptio cruda non est valida; scrutina HTML textos.',
-'badsiglength'               => 'Subscriptio nimis longa est.
+'badsiglength'               => 'Subscriptio tua nimis longa est.
 {{PLURAL:$1|Una littera est|$1 litterae sunt}} longitudo maxima.',
 'email'                      => 'Litterae electronicae',
 'prefs-help-realname'        => 'Nomen verum non necesse est.
@@ -507,7 +507,7 @@ Si vis, sinit etiam aliis tecum loqui per tuam paginam usoris vel disputationis,
 'loginsuccesstitle'          => 'Conventum prospere apertum est',
 'loginsuccess'               => "'''Apud {{grammar:accusative|{{SITENAME}}}} agnosceris ut \"\$1\".'''",
 'nosuchuser'                 => 'Usor "$1" non est.
-Confirma orthographiam, aut [[Special:UserLogin/signup|crea novam rationem]].',
+Confirma orthographiam (cave litteras maiusculas minusculasque), aut [[Special:UserLogin/signup|novam rationem crea]].',
 'nosuchusershort'            => 'Usor "<nowiki>$1</nowiki>" non est.
 Confirma orthographiam.',
 'nouserspecified'            => 'Nomen usoris indicare debes.',
@@ -524,8 +524,8 @@ Tessera temporaria exibit {{PLURAL:$5|unam diem|$5 dies}}.
 Si non ipse hanc petitionem fecisti, aut si tesserae tuae
 meministi et etiam nolis eam mutare, potes hunc nuntium
 ignorare, et tessera seni uti continuare.',
-'acct_creation_throttle_hit' => 'Iam {{PLURAL:$1|unam rationem|rationes $1}} creavisti.
-Plurimas non tibi licet creare.',
+'acct_creation_throttle_hit' => 'Ex loco IP tuo, die proximo iam {{PLURAL:$1|una ratio creata est|rationes $1 creatae sunt}}.
+Plurimas non licet creare. Ergo, ex hoc loco IP rationes plurimas hodie creari non possunt.',
 'emailauthenticated'         => 'Tua inscriptio electronica recognita est $3, $2.',
 'accountcreated'             => 'Ratio creata',
 'accountcreatedtext'         => 'Ratio pro usore $1 creata est.',
@@ -620,7 +620,9 @@ Locus IP tuus temporarius $3 est et numerus obstructionis tuus est #$5. Quaesumu
 'loginreqlink'                     => 'conventum aperire',
 'loginreqpagetext'                 => 'Necesse est tibi $1 priusquam paginas alias legas.',
 'accmailtitle'                     => 'Tessera missa est.',
-'accmailtext'                      => 'Tessera usoris "$1" ad $2 missa est.',
+'accmailtext'                      => "Tessera nova usoris [[User talk:$1|$1]] ad $2 missa est.
+
+Convento aperto, tessera huius novae rationis hic potest mutari: ''[[Special:ChangePassword|tesseram mutare]]''.",
 'newarticle'                       => '(Nova)',
 'newarticletext'                   => "Per nexum progressus es ad paginam quae nondum exsistit.
 Novam paginam si vis creare, in capsam infra praebitam scribe.
@@ -634,7 +636,7 @@ Si hic es propter errorem, solum '''Retrorsum''' in navigatro tuo preme.",
 'previewnote'                      => '<strong>Memento hanc paginam solum praevisum esse, neque iam servatam!</strong>',
 'editing'                          => 'Recensio paginae "$1"',
 'editingsection'                   => 'Recensens $1 (partem)',
-'editingcomment'                   => 'Recensens $1 (adnotum)',
+'editingcomment'                   => 'Recensens $1 (nova pars)',
 'editconflict'                     => 'Contentio recensionis: $1',
 'explainconflict'                  => "Alius hanc paginam mutavit postquam eadem recensere incipiebas.
 Capsa superior paginae verba recentissima continet.
@@ -1120,7 +1122,7 @@ Commodule notatio fasciculorum deletorum hic datur:",
 'filehist-dimensions'            => 'Dimensiones',
 'filehist-filesize'              => 'Magnitudo fasciculi',
 'filehist-comment'               => 'Sententia',
-'imagelinks'                     => 'Nexus',
+'imagelinks'                     => 'Nexus ad fasciculum',
 'linkstoimage'                   => '{{PLURAL:$1|Haec pagina ad hunc fasciculum nectit:|Paginae sequentes ad hunc fasciculum nectunt:}}',
 'nolinkstoimage'                 => 'Nullae paginae ad hunc fasciculum nectunt.',
 'morelinkstoimage'               => 'Videre [[Special:WhatLinksHere/$1|plures nexus]] ad hunc fasciculum.',
@@ -1143,7 +1145,7 @@ Commodule notatio fasciculorum deletorum hic datur:",
 # File deletion
 'filedelete'                  => 'Delere $1',
 'filedelete-legend'           => 'Fasciculum delere',
-'filedelete-intro'            => "Deles '''[[Media:$1|$1]]'''.",
+'filedelete-intro'            => "Deles fasciculum '''[[Media:$1|$1]]''' una cum tota eius historia.",
 'filedelete-intro-old'        => "Deles fasciculi '''[[Media:$1|$1]]''' emendationem [$4 ex $3, $2].",
 'filedelete-comment'          => 'Causa deletionis:',
 'filedelete-submit'           => 'Delere',
@@ -1208,7 +1210,7 @@ Pagina discretivam esse putatur si formulam adhibet ad quem [[MediaWiki:Disambig
 'double-redirect-fixer'      => 'Rectificator redirectionum',
 
 'brokenredirects'        => 'Redirectiones fractae',
-'brokenredirectstext'    => 'Hae redirectiones ad paginas inexistentes nectunt.',
+'brokenredirectstext'    => 'Hae redirectiones ad paginas inexistentes nectunt:',
 'brokenredirects-edit'   => '(recensere)',
 'brokenredirects-delete' => '(delere)',
 
@@ -1243,7 +1245,7 @@ Pagina discretivam esse putatur si formulam adhibet ad quem [[MediaWiki:Disambig
 'mostcategories'          => 'Paginae plurimis categoriis',
 'mostimages'              => 'Fasciculi maxime annexi',
 'mostrevisions'           => 'Paginae plurimum mutatae',
-'prefixindex'             => 'Quaerere per praefixa',
+'prefixindex'             => 'Paginae omnes cum praefixo',
 'shortpages'              => 'Paginae breves',
 'longpages'               => 'Paginae longae',
 'deadendpages'            => 'Paginae sine nexu',
@@ -1325,7 +1327,7 @@ Vide etiam [[Special:WantedCategories|categorias desideratas]].',
 'newuserlogpagetext'          => 'Hic est index rationum novarum creatarum.',
 'newuserlog-byemail'          => 'tessera missa litteris electronicis',
 'newuserlog-create-entry'     => 'Usor novus',
-'newuserlog-create2-entry'    => 'creavit rationem pro $1',
+'newuserlog-create2-entry'    => 'creavit novam rationem $1',
 'newuserlog-autocreate-entry' => 'Ratio automatice creata',
 
 # Special:ListGroupRights
@@ -1432,7 +1434,7 @@ Adfirma quaesumus te paginam re vera delere velle, te consequentias intellere, e
 'alreadyrolled'    => 'Ad emendationem proximam paginae [[:$1]] ab usore [[User:$2|$2]] ([[User talk:$2|Disputatio]] | [[Special:Contributions/$2|{{int:contribslink}}]]) reverti non potest; alius paginam iam recensuit vel revertit.
 
 Emendatio proxima ab usore [[User:$3|$3]] ([[User talk:$3|Disputatio]] | [[Special:Contributions/$3|{{int:contribslink}}]]) effecta est.',
-'editcomment'      => 'Dictum recensiti erat: "<i>$1</i>".', # only shown if there is an edit comment
+'editcomment'      => 'Summarium erat: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'       => 'Reverti recensiones ab usore [[Special:Contributions/$2|$2]] ([[User talk:$2|Disputatio]]) ad emendationem proximam ab [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Reverti recensiones ab usore $1
 ad emendationem proximam ab $2.',
@@ -1450,7 +1452,7 @@ ad emendationem proximam ab $2.',
 'protectexpiry'             => 'Exitus:',
 'protect_expiry_invalid'    => 'Tempus post quod res exitur est invalidum.',
 'protect_expiry_old'        => 'Tempus est praeteritus.',
-'protect-default'           => '(semper)',
+'protect-default'           => 'Usoribus omnibus licet',
 'protect-fallback'          => 'Postulat permissum "$1"',
 'protect-level-sysop'       => 'Magistratus soli',
 'protect-summary-cascade'   => 'defluens',
@@ -1580,7 +1582,7 @@ Si pagina nova cum ipso nomine post deletionem creata est, emendationes restitut
 'ipb-blocklist-contribs'       => 'Conlationes usoris $1',
 'unblockip'                    => 'Deobstruere locum IP',
 'unblockiptext'                => 'Formam inferam usere ut locum IP deobstruere.',
-'ipusubmit'                    => 'Deobstruere hanc locum',
+'ipusubmit'                    => 'Deobstruere hunc locum IP',
 'unblocked'                    => '[[User:$1|$1]] deobstructus est',
 'unblocked-id'                 => 'Obstructio numeri $1 abrogata est',
 'ipblocklist'                  => 'Usores locique IP obstructi',
@@ -1680,8 +1682,8 @@ Quaesumus, titulum alterum elige.',
 'talkexists'                => "'''Pagina prospere mota est, sed pagina disputationis not moveri potuit quia iam est pagina disputationis sub titulo novo. Disputationes recensendo iunge.'''",
 'movedto'                   => 'mota ad',
 'movetalk'                  => 'Movere etiam paginam disputationis',
-'move-subpages'             => 'Movere etiam omnes subpaginas, si sunt',
-'move-talk-subpages'        => 'Movere etiam omnes subpaginas paginae disputationis, si sunt',
+'move-subpages'             => 'Movere etiam omnes ($1 tenus) subpaginas, si sunt',
+'move-talk-subpages'        => 'Movere etiam omnes ($1 tenus) subpaginas paginae disputationis, si sunt',
 'movepage-page-moved'       => 'Pagina $1 mota est ad $2.',
 'movepage-page-unmoved'     => 'Pagina $1 ad $2 moveri non potuit.',
 '1movedto2'                 => 'movit [[$1]] ad [[$2]]',
@@ -1744,17 +1746,17 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|emendatio|emendationes}} ex $2',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => 'Pagina usoris mea',
-'tooltip-pt-mytalk'               => 'Pagina disputationis mea',
+'tooltip-pt-userpage'             => 'Pagina usoris tua',
+'tooltip-pt-mytalk'               => 'Pagina disputationis tua',
 'tooltip-pt-preferences'          => 'Praeferentiae meae',
 'tooltip-pt-watchlist'            => 'Paginae quae custodis ut eorum mutationes facilius vides',
-'tooltip-pt-mycontris'            => 'Index conlationum mearum',
+'tooltip-pt-mycontris'            => 'Index conlationum tuarum',
 'tooltip-pt-login'                => 'Te conventum aperire hortamur, non autem requisitum',
 'tooltip-pt-anonlogin'            => 'Te conventum aperire hortamur, non autem requisitum',
 'tooltip-pt-logout'               => 'Conventum concludere',
 'tooltip-ca-talk'                 => 'Disputatio de hac pagina',
 'tooltip-ca-edit'                 => 'Hanc paginam recensere potes. Quaesumus praevisum inspice antequam servas.',
-'tooltip-ca-addsection'           => 'Huic disputationi adnotare.',
+'tooltip-ca-addsection'           => 'Novam partem creare',
 'tooltip-ca-viewsource'           => 'Haec pagina protecta est. Fontem inspicere potes.',
 'tooltip-ca-history'              => 'Emendationes huius paginae veteres.',
 'tooltip-ca-protect'              => 'Protegere hanc paginam',
@@ -2076,10 +2078,10 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 'table_pager_empty'        => 'Nullum eventum',
 
 # Auto-summaries
-'autosumm-blank'   => 'paginam vacuavit',
+'autosumm-blank'   => 'Paginam vacuavit',
 'autosumm-replace' => "multa contenta ex pagina removit, contenta nova: '$1'",
 'autoredircomment' => 'Redirigens ad [[$1]]',
-'autosumm-new'     => 'Nova pagina: $1',
+'autosumm-new'     => "Creavit paginam scribendo '$1'",
 
 # Size units
 'size-bytes'     => '$1 octeti',

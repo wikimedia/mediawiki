@@ -628,7 +628,8 @@ $messages = array(
 'yourlanguage'               => '언어:',
 'yournick'                   => '서명:',
 'badsig'                     => '서명이 잘못되었습니다. HTML 태그를 확인해주세요.',
-'badsiglength'               => '서명이 너무 깁니다. 서명은 $1자보다 짧아야 합니다.',
+'badsiglength'               => '서명이 너무 깁니다.
+서명은 $1자보다 짧아야 합니다.',
 'yourgender'                 => '성별:',
 'gender-unknown'             => '무응답',
 'gender-male'                => '남성',
@@ -644,7 +645,9 @@ $messages = array(
 'noname'                     => '사용자 이름이 올바르지 않습니다.',
 'loginsuccesstitle'          => '로그인 성공',
 'loginsuccess'               => "'''{{SITENAME}}에 ‘$1’ 계정으로 로그인했습니다.'''",
-'nosuchuser'                 => '"$1" 사용자가 존재하지 않습니다. 철자가 맞는지 확인해주세요. 또는 [[Special:UserLogin/signup|새 계정을 만들 수 있습니다]].',
+'nosuchuser'                 => '"$1" 사용자가 존재하지 않습니다.
+사용자 이름은 대소문자를 구별합니다. 철자가 맞는지 확인해주세요.
+또는 [[Special:UserLogin/signup|새 계정을 만들 수 있습니다]].',
 'nosuchusershort'            => '‘<nowiki>$1</nowiki>’ 사용자가 존재하지 않습니다. 철자가 맞는지 확인해 주세요.',
 'nouserspecified'            => '사용자 이름을 입력하지 않았습니다.',
 'wrongpassword'              => '암호가 틀립니다. 다시 시도해 주세요.',
@@ -664,8 +667,8 @@ $messages = array(
 'eauthentsent'               => '확인 이메일을 보냈습니다. 이메일 내용의 지시대로 계정 확인 절차를 실행해 주십시오.',
 'throttled-mailpassword'     => '비밀번호 확인 이메일을 이미 최근 $1시간 안에 보냈습니다. 악용을 방지하기 위해 비밀번호 확인은 $1시간마다 하나씩만 보낼 수 있습니다.',
 'mailerror'                  => '메일 보내기 오류: $1',
-'acct_creation_throttle_hit' => '당신은 이미 $1개의 계정이 있습니다.
-더 이상 만들 수 없습니다.',
+'acct_creation_throttle_hit' => '당신의 IP 주소를 이용한 방문자가 이전에 이미 $1개의 계정을 생성하여, 계정 생성 한도를 초과하였습니다.
+따라서 현재로서는 이 IP 주소로는 계정을 더 이상 만들 수 없습니다.',
 'emailauthenticated'         => '당신의 이메일 주소는 $2 $3에 인증되었습니다.',
 'emailnotauthenticated'      => '이메일 주소를 인증하지 않았습니다. 이메일 확인 절차를 거치지 않으면 다음 이메일 기능을 사용할 수 없습니다.',
 'noemailprefs'               => '이 기능을 사용하기 위해서는 이메일 주소를 기입해야 합니다.',
@@ -774,7 +777,9 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'loginreqlink'                     => '로그인',
 'loginreqpagetext'                 => '다른 문서를 보기 위해서는 $1해야 합니다.',
 'accmailtitle'                     => '암호를 보냈습니다.',
-'accmailtext'                      => '‘$1’의 암호를 $2로 보냈습니다.',
+'accmailtext'                      => '임의로 생성된 [[User talk:$1|$1]] 사용자의 비밀번호가 $2로 전송되었습니다.
+
+새 비밀번호는 로그인한 후 [[Special:ChangePassword|변경]]할 수 있습니다.',
 'newarticle'                       => '(새 문서)',
 'newarticletext'                   => "이 문서는 아직 만들어지지 않았습니다. 새 문서를 만들려면 아래의 상자에 문서 내용을 입력하면 됩니다(자세한 내용은 [[{{MediaWiki:Helppage}}|도움말]]을 읽어 주세요).
 만약 잘못 찾아온 문서라면, 웹 브라우저의 '''뒤로''' 버튼을 눌러 주세요.",
@@ -1022,6 +1027,8 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'diff-h3'                 => "'''3단계 제목'''",
 'diff-h4'                 => "'''4단계 제목'''",
 'diff-h5'                 => '5단계 제목',
+'diff-ul'                 => "'''순서 없는 목록'''",
+'diff-ol'                 => "'''순서 있는 목록'''",
 'diff-li'                 => "'''목록'''",
 'diff-table'              => "'''표'''",
 'diff-tr'                 => "'''행'''",
@@ -1031,6 +1038,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'diff-hr'                 => "'''가로줄'''",
 'diff-code'               => "'''컴퓨터 코드 블록'''",
 'diff-input'              => "'''입력 상자'''",
+'diff-form'               => "'''양식'''",
 'diff-img'                => "'''그림'''",
 'diff-span'               => "'''span''' 태그",
 'diff-a'                  => "'''링크'''",
@@ -1146,7 +1154,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'stub-threshold'            => '링크를 <a href="#" class="stub">토막글 링크</a>로 표시할 문서 크기(바이트 수):',
 'recentchangesdays'         => '최근 바뀜에 표시할 날짜 수:',
 'recentchangesdays-max'     => '(최대 $1일)',
-'recentchangescount'        => '최근 바뀜, 역사, 기록 보기에 표시할 문서 수:',
+'recentchangescount'        => '최근 바뀜, 문서 역사, 기록 보기에 기본으로 표시할 문서 수:',
 'savedprefs'                => '설정을 저장했습니다.',
 'timezonelegend'            => '시간대',
 'timezonetext'              => '¹현지 시각과 서버 시각(UTC) 사이의 시차를 써 주세요.',
@@ -1301,6 +1309,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'action-importupload'         => '파일 올리기를 통해 문서를 가져올',
 'action-patrol'               => '다른 사용자의 편집을 검토된 것으로 표시하기',
 'action-autopatrol'           => '자신의 편집을 검토된 것으로 표시할',
+'action-unwatchedpages'       => '주시되지 않은 문서의 목록을 볼',
 'action-trackback'            => '트랙백 보내기',
 'action-mergehistory'         => '이 문서의 역사 합치기',
 'action-userrights'           => '모든 사용자의 권한을 조정',
@@ -1912,7 +1921,7 @@ $NEWPAGE
 'protect-locked-access'       => '문서 보호 수준을 변경할 권한이 없습니다. <strong>$1</strong> 문서의 권한은 다음과 같습니다.',
 'protect-cascadeon'           => '다음의 틀에서 이 문서를 사용하고 있고 그 틀에 연쇄적 보호가 걸려 있어 이 문서도 자동으로 보호됩니다.
 이 문서의 보호 설정을 바꾸어도 연쇄적 보호에 영향을 주지 않습니다.',
-'protect-default'             => '(기본값)',
+'protect-default'             => '모든 사용자에게 허용',
 'protect-fallback'            => '‘$1’ 권한 필요',
 'protect-level-autoconfirmed' => '등록된 사용자만 가능',
 'protect-level-sysop'         => '관리자만 가능',
@@ -2186,8 +2195,8 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'talkexists'                   => "'''문서는 이동되었습니다. 하지만 딸린 토론 문서의 새 이름으로 된 문서가 이미 존재해서, 토론 문서는 이동하지 않았습니다. 직접 문서를 합쳐 주세요.'''",
 'movedto'                      => '새 이름',
 'movetalk'                     => '딸린 토론도 함께 이동합니다.',
-'move-subpages'                => '하위 문서도 함께 이동합니다.',
-'move-talk-subpages'           => '토론 문서에 딸린 문서도 함께 이동합니다.',
+'move-subpages'                => '하위 문서도 함께 ($1으로) 이동합니다.',
+'move-talk-subpages'           => '가능하다면, 토론 문서의 하위 문서도 함께 이동합니다. ($1로 이동합니다)',
 'movepage-page-exists'         => '이동할 수 없습니다. ‘$1’ 문서가 이미 존재합니다.',
 'movepage-page-moved'          => '$1 문서가 $2 (으)로 이동되었습니다.',
 'movepage-page-unmoved'        => '$1 문서를 $2로 이동할 수 없습니다.',
@@ -2777,7 +2786,7 @@ $5
 'table_pager_empty'        => '결과 없음',
 
 # Auto-summaries
-'autosumm-blank'   => '문서의 모든 내용을 삭제',
+'autosumm-blank'   => '문서를 비움',
 'autosumm-replace' => '문서 내용을 ‘$1’으로 교체',
 'autoredircomment' => '[[$1]](으)로 넘겨주기',
 'autosumm-new'     => '새 문서: $1',
@@ -2886,6 +2895,10 @@ $5
 'tag-filter'        => '[[Special:Tags|태그]] 필터:',
 'tag-filter-submit' => '필터',
 'tags-title'        => '태그',
+'tags-tag'          => '내부 태그 이름',
 'tags-edit'         => '편집',
+
+# Database error messages
+'dberr-header' => '이 위키에 문제가 있습니다.',
 
 );
