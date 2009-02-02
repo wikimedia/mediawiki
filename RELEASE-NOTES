@@ -151,6 +151,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   autolinked correctly
 * (bug 17224) Added siprop=rightsinfo to meta=siteinfo
 * (bug 17239) Added prop=displaytitle to action=parse
+* (bug 17317) Added watch parameter to action=protect
 
 === Languages updated in 1.15 ===
 
