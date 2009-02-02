@@ -470,7 +470,7 @@ class LinksUpdate {
 		$arr = array();
 		foreach ( $diffs as $name => $sortkey ) {
 			$nt = Title::makeTitleSafe( NS_CATEGORY, $name );
-			$wgContLang->findVariantLink( $name, $nt, false, true );
+			$wgContLang->findVariantLink( $name, $nt, true );
 			$arr[] = array(
 				'cl_from'    => $this->mId,
 				'cl_to'      => $name,

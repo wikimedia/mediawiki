@@ -225,7 +225,7 @@ class KkConverter extends LanguageConverter {
 	 *    names as they were
 	 *  - do not try to find variants for usernames
 	 */
-	function findVariantLink( &$link, &$nt, $forTemplate = false, $ignoreSubmitCond = false ) {
+	function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
 		// check for user namespace
 		if(is_object($nt)){
 			$ns = $nt->getNamespace();
@@ -234,7 +234,7 @@ class KkConverter extends LanguageConverter {
 		}
 
 		$oldlink=$link;
-		parent::findVariantLink( $link, $nt, $forTemplate, $ignoreSubmitCond );
+		parent::findVariantLink( $link, $nt, $ignoreOtherCond );
 		if( $this->getPreferredVariant()==$this->mMainLanguageCode )
 			$link=$oldlink;
 	}
