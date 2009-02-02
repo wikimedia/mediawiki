@@ -132,6 +132,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14938) Removing a section no longer leaves excess whitespace
 * (bug 17304) Fixed fatal error when thumbnails couldn't be generated for file
   history
+* (bug 17283) Remove double URL escaping in show/hide links for log entries
+  and RevisionDeleteForm::__construct.
 
 == API changes in 1.15 ==
 * (bug 16858) Revamped list=deletedrevs to make listing deleted contributions
