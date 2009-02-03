@@ -156,6 +156,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 17239) Added prop=displaytitle to action=parse
 * (bug 17317) Added watch parameter to action=protect
 * (bug 17007) Added export and exportnowrap parameters to action=query
+* (bug 17326) BREAKING CHANGE: Changed output format for iiprop=metadata
 
 === Languages updated in 1.15 ===
 

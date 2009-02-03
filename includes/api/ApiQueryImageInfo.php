@@ -140,8 +140,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			$vals['sha1'] = wfBaseConvert( $file->getSha1(), 36, 16, 40 );
 		if( isset( $prop['metadata'] ) ) {
 			$metadata = $file->getMetadata();
-			$vals['metadata'] = $metadata ? unserialize( $metadata ) : null;
-			$result->setIndexedTagName_recursive( $vals['metadata'], 'meta' );
+			$vals['metadata'] = $metadata ? self::processMetaData( unserialize( $metadata ), $result ) : null;
 		}
 		if( isset( $prop['mime'] ) ) 
 			$vals['mime'] = $file->getMimeType();
@@ -153,6 +152,22 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			$vals['bitdepth'] = $file->getBitDepth();
 
 		return $vals;
+	}
+	
+	public static function processMetaData($metadata, $result)
+	{
+		$retval = array();
+		foreach($metadata as $key => $value)
+		{
+			$r = array('name' => $key);
+			if(is_array($value))
+				$r['value'] = self::processMetaData($value, $result);
+			else
+				$r['value'] = $value;
+			$retval[] = $r;
+		}
+		$result->setIndexedTagName($retval, 'metadata');
+		return $retval;
 	}
 
 	public function getAllowedParams() {
