@@ -315,7 +315,7 @@ class Title {
 	 */
 	public static function newFromRedirectRecurse( $text ) {
 		$titles = self::newFromRedirectArray( $text );
-		return array_pop( $titles );
+		return $titles ? array_pop( $titles ) : null;
 	}
 	
 	/**
