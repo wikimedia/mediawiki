@@ -1340,7 +1340,7 @@ class EditPage {
 		$autosumm = $this->autoSumm ? $this->autoSumm : md5( $this->summary );
 		$summaryhiddens .= Xml::hidden( 'wpAutoSummary', $autosumm );
 		if ( $this->section == 'new' ) {
-			$commentsubject="<span id='wpSummaryLabel'><label for='wpSummary'>{$subject}</label></span>\n<input tabindex='1' type='text' value=\"$summarytext\" name='wpSummary' id='wpSummary' maxlength='200' size='60' />{$summaryhiddens}<br />";
+			$commentsubject = $wgRequest->getBool( 'nosummary' ) ? '' : "<span id='wpSummaryLabel'><label for='wpSummary'>{$subject}</label></span>\n<input tabindex='1' type='text' value=\"$summarytext\" name='wpSummary' id='wpSummary' maxlength='200' size='60' />{$summaryhiddens}<br />";
 			$editsummary = "<div class='editOptions'>\n";
 			global $wgParser;
 			$formattedSummary = wfMsgForContent( 'newsectionsummary', $wgParser->stripSectionName( $this->summary ) );
