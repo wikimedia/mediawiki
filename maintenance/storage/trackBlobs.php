@@ -11,7 +11,7 @@ if ( count( $args ) < 1 ) {
 	exit( 1 );
 }
 $tracker = new TrackBlobs( $args );
-$tracker->trackBlobs();
+$tracker->run();
 
 class TrackBlobs {
 	var $clusters, $textClause;
@@ -33,7 +33,7 @@ class TrackBlobs {
 		}
 	}
 
-	function trackBlobs() {
+	function run() {
 		$this->initTrackingTable();
 		$this->trackRevisions();
 		$this->trackOrphanText();
@@ -259,14 +259,18 @@ class TrackBlobs {
 				}
 				continue;
 			}
+			$table = $extDB->getLBInfo( 'blobs table' );
+			if ( is_null( $table ) ) {
+				$table = 'blobs';
+			}
 			$startId = 0;
 			$batchesDone = 0;
 			$actualBlobs = gmp_init( 0 );
-			$endId = $extDB->selectField( 'blobs', 'MAX(blob_id)', false, __METHOD__ );
+			$endId = $extDB->selectField( $table, 'MAX(blob_id)', false, __METHOD__ );
 
 			// Build a bitmap of actual blob rows
 			while ( true ) {
-				$res = $extDB->select( 'blobs', 
+				$res = $extDB->select( $table, 
 					array( 'blob_id' ), 
 					array( 'blob_id > ' . $extDB->addQuotes( $startId ) ),
 					__METHOD__,
