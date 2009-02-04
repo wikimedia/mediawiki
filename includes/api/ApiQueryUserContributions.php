@@ -137,7 +137,8 @@ class ApiQueryContributions extends ApiQueryBase {
 		// We're after the revision table, and the corresponding page
 		// row for anything we retrieve. We may also need the
 		// recentchanges row.
-		$this->addTables(array('page', 'revision'));
+		// Tables have to be in this order for STRAIGHT_JOIN
+		$this->addTables(array('revision', 'page'));
 		$this->addWhere('page_id=rev_page');
 
 		// Handle continue parameter
@@ -201,12 +202,20 @@ class ApiQueryContributions extends ApiQueryBase {
 			if(!$wgUser->useRCPatrol() && !$wgUser->useNPPatrol())
 				$this->dieUsage("You need the patrol right to request the patrolled flag", 'permissiondenied');
 			$this->addTables('recentchanges');
+			// Use a redundant join condition on both
+			// timestamp and ID so we can use the timestamp
+			// index
 			if(isset($show['patrolled']) || isset($show['!patrolled']))
+			{
+				$this->addOption('STRAIGHT_JOIN');
+				$this->addWhere('rc_timestamp=rev_timestamp');
 				$this->addWhere('rc_this_oldid=rev_id');
+			}
 			else
 				$this->addJoinConds(array('recentchanges' => array(
-					'LEFT JOIN',
-					'rc_this_oldid=rev_id')));
+					'LEFT JOIN', array(
+						'rc_timestamp=rev_timestamp',
+						'rc_this_oldid=rev_id'))));
 		}
 
 		$this->addFieldsIf('rev_page', $this->fld_ids);
@@ -304,7 +313,7 @@ class ApiQueryContributions extends ApiQueryBase {
 					'timestamp',
 					'comment',
 					'flags',
-//					'patrolled',	# Temporarily disabled, see bug 17215
+					'patrolled',
 				)
 			),
 			'show' => array (
@@ -312,8 +321,8 @@ class ApiQueryContributions extends ApiQueryBase {
 				ApiBase :: PARAM_TYPE => array (
 					'minor',
 					'!minor',
-//					'patrolled',	# Temporarily disabled, see bug 17215
-//					'!patrolled',
+					'patrolled',
+					'!patrolled',
 				)
 			),
 		);
