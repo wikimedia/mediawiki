@@ -161,6 +161,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 17326) BREAKING CHANGE: Changed output format for iiprop=metadata
 * (bug 17355) Added auwitheditsonly parameter to list=allusers
 * (bug 17007) Added action=import
+* BREAKING CHANGE: Removed rctitles parameter from list=recentchanges because of
+  performance concerns
 
 === Languages updated in 1.15 ===
 
