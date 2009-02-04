@@ -5,7 +5,7 @@
  *
  * API for MediaWiki 1.8+
  *
- * Copyright (C) 2008 Roan Kattouw <Firstname>.<Lastname>@home.nl
+ * Copyright (C) 2009 Roan Kattouw <Firstname>.<Lastname>@home.nl
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
