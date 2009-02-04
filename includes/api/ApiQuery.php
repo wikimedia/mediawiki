@@ -373,8 +373,11 @@ class ApiQuery extends ApiBase {
 					// Raw formatter will handle this
 					$result->addValue(null, 'text', $exportxml);
 					$result->addValue(null, 'mime', 'text/xml');
-				} else
-					$result->addValue('query', 'export', $exportxml);
+				} else {
+					$r = array();
+					ApiResult::setContent($r, $exportxml);
+					$result->addValue('query', 'export', $r);
+				}
 			}
 		}
 	}
