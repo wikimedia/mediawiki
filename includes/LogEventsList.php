@@ -600,6 +600,8 @@ class LogPager extends ReverseChronologicalPager {
 			$this->mConds[] = "NULL";
 		} else {
 			$this->mConds['log_user'] = $userid;
+			// Paranoia: avoid brute force searches (bug 17342)
+			$this->mConds[] = 'log_deleted & ' . LogPage::DELETED_USER . ' = 0';
 			$this->user = $usertitle->getText();
 		}
 	}
@@ -640,6 +642,8 @@ class LogPager extends ReverseChronologicalPager {
 			$this->mConds['log_namespace'] = $ns;
 			$this->mConds['log_title'] = $title->getDBkey();
 		}
+		// Paranoia: avoid brute force searches (bug 17342)
+		$this->mConds[] = 'log_deleted & ' . LogPage::DELETED_ACTION . ' = 0';
 	}
 
 	public function getQueryInfo() {
