@@ -452,7 +452,7 @@ Dat es och all op Änglesch:
 'nstab-main'      => 'Atikkel',
 'nstab-user'      => 'Metmaachersigg',
 'nstab-media'     => 'Medijesigg',
-'nstab-special'   => 'Spezial',
+'nstab-special'   => 'Söndersigg',
 'nstab-project'   => 'Projeksigg',
 'nstab-image'     => 'Datei',
 'nstab-mediawiki' => 'Tex',
@@ -607,8 +607,10 @@ Sök Der ene Brauser, dä et kann, dun se enschalte, un dann log Dich noch ens n
 'loginsuccesstitle'          => 'Dat Enlogge hät jeflupp.',
 'loginsuccess'               => '<br />Do bes jetz enjelogg bei de <strong>{{SITENAME}}</strong>, un Dinge Metmaacher Name es „<strong>$1</strong>“.<br />',
 'nosuchuser'                 => 'Dä Metmaacher Name „$1“ wor verkihrt.
+Jroß- un Kleinboochshtabe maache ene Ungerscheid!
+<br />
 Jetz muss De et noch ens versöke.
-Udder donn_<span class="plainlinks">[{{FULLURL:Special:UserLogin|type=signup}} ene neue Metmaacher aanmelde]</span>.',
+Udder donn_[[Special:UserLogin/signup|ene neue Metmaacher aanmelde]].',
 'nosuchusershort'            => 'Dä Metmaacher Name „<nowiki>$1</nowiki>“ wor verkihrt. Jetz muss De et noch ens versöke.',
 'nouserspecified'            => 'Dat jeiht nit als ene Metmaacher Name',
 'wrongpassword'              => 'Dat Passwood oder dä Metmaacher Name wor verkihrt. Jetz muss De et noch ens versöke.',
@@ -656,7 +658,12 @@ Ih dat E-Mails üvver de {{SITENAME}} ehre E-Mail-Knopp verscheck wääde künne
 eets  ens bestätich woode sin. Wat mer doför maache muss, steiht en dä E-Mail dren, die jrad avjescheck woode es.',
 'throttled-mailpassword'     => 'En Erennerung för di Passwood es ungerwähs. Domet ene fiese Möpp keine Dress fabrizeet, passeet dat hüchstens eimol en {{PLURAL:$1|der Stund|$1 Stunde|nidd ens eine Stund}}.',
 'mailerror'                  => 'Fähler beim E-Mail Verschecke: $1.',
-'acct_creation_throttle_hit' => '<b>Schad.</b> Do häs ald {{PLURAL:$1|eine|$1|keine}} Metmaacher Name aanjelaht. Mieh sin nit müjjelich.',
+'acct_creation_throttle_hit' => '<b>Schad.</b> 
+Besöker fun däm Wiki hee han övver de IP-Addräß, övver di De jraad aam
+Netz aam hange bes, övver der letzte Daach (24 Stunde) zosamme jenumme ald
+{{PLURAL:$1|eine|$1|keine}} mol enen neuen Metmaacher aanjelaht.
+Mieh sin nit müjjelich. Dröm künne Lück, die jraad die IP-Addräß han,
+för der Momang nit noch mit Metmaacher neu aanmellde.',
 'emailauthenticated'         => 'Ding E-Mail Adress wood aam <strong>$2</strong> öm <strong>$3</strong> Uhr bestätich.',
 'emailnotauthenticated'      => 'Ding E-Mail Adress es <strong>nit</strong> bestätich. Dröm kann kein E-Mail aan Dich jescheck wääde för:',
 'noemailprefs'               => 'Dun en E-Mail Adress endrage, domet dat et all fluppe kann.',
@@ -791,7 +798,12 @@ Esu lang wie et dä nit jit, hätte mer keine Plaz, wo hen met Dingem Täx.',
 'loginreqlink'                     => 'enjelogg sin',
 'loginreqpagetext'                 => 'Do mööts eets ens $1, öm ander Sigge aanzeluure.',
 'accmailtitle'                     => 'Passwood verscheck.',
-'accmailtext'                      => 'Dat Passwood för dä Metmaacher „$1“ es aan „$2“ jescheck woode.',
+'accmailtext'                      => 'En automattesch un zofällesch neu ußjewörfelt Passwood för dä
+Metmaacher „$1“ es aan „$2“ jescheck woode.
+
+Dat Passwoot för dä neue Zojang kanns De op dä {{int:Specialpage}} zom
+„[[Special:ChangePassword|{{int:resetpass}}]]“ ändere,
+wann De wider enjelogg bes.',
 'newarticle'                       => '(Neu)',
 'newarticletext'                   => 'Ene Link op en Sigg, wo noch nix drop steiht, weil et se noch jar nit jitt, hät Dich noh hee jebraht.
 Öm die Sigg aanzeläje, schriev hee unge en dat Feld eren, un dun dat dann avspeichere.
@@ -855,7 +867,7 @@ Wann dat widder nit flupp, dann versök et ens met [[Special:UserLogout|Uslogge]
 'token_suffix_mismatch'            => '<strong>Ding Änderung ham_mer nit övvernomme. Dinge Brauser hät Sazzeijche em verstoche <i lang="en">Token</i> för et Ändere versout. Dat paßeet och ens, wann enne <i lang="en">Proxy</i> nit fungkßjeneet. Et Affspeichere wör do jefährlesch, do künt dä Sigge_Enhaldt kapott bei jon.</strong>',
 'editing'                          => 'De Sigg „$1“ ändere',
 'editingsection'                   => 'Ne Avschnedd vun dä Sigg: „$1“ ändere',
-'editingcomment'                   => '„$1“ Ändere (ene neue Avschnedd schrieve)',
+'editingcomment'                   => '„$1“ ändere (ene neue Avschnedd schrieve)',
 'editconflict'                     => 'Problemche: „$1“ dubbelt bearbeidt.',
 'explainconflict'                  => '<br />Ene andere Metmaacher hät aan dä Sigg och jet jeändert, un zwar nohdäm Do et Ändere aanjefange häs. Jetz ha\'mer dr Dress am Jang, un Do darfs et widder uszoteere.
 <strong>Opjepass:</strong>
@@ -1696,7 +1708,7 @@ Mer ävver han och en [[Special:WhatLinksHere/$2|Komplätte Leß]].',
 'filedelete'                  => 'Schmieß „$1“ fott',
 'filedelete-backlink'         => '←&nbsp;$1',
 'filedelete-legend'           => 'Schmieß de Datei fott',
-'filedelete-intro'            => "Do beß di Datei '''„[[Media:$1|$1]]“''' am Fottschmieße.",
+'filedelete-intro'            => "Do beß di Datei '''„[[Media:$1|$1]]“''' am Fottschmieße, un och all ier vörrije Versione, der Text övver se, un all de Änderunge draan.",
 'filedelete-intro-old'        => '<span class="plainlinks">Do schmiiß de Version [$4 fum $2 öm $3 Uhr] fun dä Datei „[[Media:$1|$1]]“ fott.</span>',
 'filedelete-comment'          => 'Der Jrund för et Fottschmieße:',
 'filedelete-submit'           => 'Fottschmieße',
@@ -1820,7 +1832,7 @@ vun dä Sigg dovör.',
 'mostcategories'          => 'Atikkele met de miehste Saachjruppe',
 'mostimages'              => 'Belder, Tön, uew. met de miehste Links drop',
 'mostrevisions'           => 'Atikkele met de miehste Änderunge',
-'prefixindex'             => 'All Sigge, die dänne ehr Name met enem bestemmte Wood oder Tex aanfange deit',
+'prefixindex'             => 'All Sigge, dänne ehr Name met enem bestemmte Wood oder Tex aanfängk',
 'shortpages'              => 'Atikele zoteet vun koot noh lang',
 'longpages'               => 'Atikele zoteet vun lang noh koot',
 'deadendpages'            => 'Atikele ohne Links dren',
@@ -1918,7 +1930,7 @@ Mer han_er eije Leßte för de
 'deletedcontributions-title' => 'Fottjeschmesse Versione',
 
 # Special:LinkSearch
-'linksearch'       => 'Lėngkß op Websigge sööke',
+'linksearch'       => 'Lėngkß noh ußerhallef sööke',
 'linksearch-pat'   => 'Sök noh:',
 'linksearch-ns'    => 'Appachtemang:',
 'linksearch-ok'    => 'Sööke',
@@ -1940,7 +1952,7 @@ De Brauserprotokolle, di beim Söke aanjejovve wäde künne, sen: <tt>$1</tt>',
 'newuserlogpagetext'          => 'He sin de Metmaacher opjelėßß, di sesh nöü aanjemäldt han.',
 'newuserlog-byemail'          => 'dat Passwood wood med de e-mail loßjescheck',
 'newuserlog-create-entry'     => 'eß enne nöüje Metmaacher',
-'newuserlog-create2-entry'    => 'Nöüje Zojang enjerėshdt för „$1“',
+'newuserlog-create2-entry'    => 'hät ene nöüje Zojang enjerėshdt för „$1“',
 'newuserlog-autocreate-entry' => 'dä Metmaacher wood automattesch aanjemelldt',
 
 # Special:ListGroupRights
@@ -2126,7 +2138,7 @@ Hee es der aktuelle Stand fum Siggeschotz för di Sigg <strong>„$1“:</strong
 'protect-locked-access'       => 'Do häs nit dat Rääsch, hee em Wiki Sigge ze schötze udder dä Schotz widder opzehevve.
 Di Sigg <strong>„$1“:</strong> es jetz jrad:',
 'protect-cascadeon'           => 'Die Sigg es en enne Schotz-Kaskad. Se es enjebonge en {{PLURAL:$1|die Sigg|$1 Sigge|kein Sigg}}, die per Kaskade-Schotz jeschötz {{PLURAL:$1|es|sin|es}}. Do kanns dä Schotz för die Sigg hee ändere, ävver di Kaskad blief bestonn. Dat hee sin die Sigge en dä Kaskad:',
-'protect-default'             => '-(Standaad)-',
+'protect-default'             => 'Jeede Metmaacher eraan lohße',
 'protect-fallback'            => 'Do weet dat Rääsch „$1“ jebruch.',
 'protect-level-autoconfirmed' => 'Donn neu Metmaacher un namelose Metmaacher nit dranlooße',
 'protect-level-sysop'         => 'Nor de Wiki-Köbesse dranlooße',
@@ -2280,8 +2292,8 @@ Drag bei „Aanlass“ ene möchlichs jenaue Jrund en, wöröm dat Sperre passee
 * Op en IP-Adräß betrocke Jrönd
 ** dat es en Proxy ßööver övver dänn de Lück zo vill Driß aanjestellt han',
 'ipbanononly'                     => 'Nor de namelose Metmaacher sperre',
-'ipbcreateaccount'                => 'et neu Aanmelde verbeede',
-'ipbemailban'                     => 'Et e-mail-Verschecke ongerbenge',
+'ipbcreateaccount'                => 'Et Neu-Aanmelde verbeede',
+'ipbemailban'                     => 'Et <i lang="en">e-mail</i>-Verschecke ongerbenge',
 'ipbenableautoblock'              => 'Dun automatisch de letzte IP-Adress sperre, die dä Metmaacher jehatt hät, un och all die IP-Adresse, vun wo dä versök, jet ze ändere.',
 'ipbsubmit'                       => 'Dun dä Metmaacher sperre',
 'ipbother'                        => 'För en ander Duur:',
@@ -2305,7 +2317,7 @@ un och wann De se ändere wells.',
 'ipb-blocklist-contribs'          => 'De Metmaacher ier Bäjdrähsch för „$1“',
 'unblockip'                       => 'Dä Medmacher widder maache looße',
 'unblockiptext'                   => 'Hee kanns De vörher jesperrte IP_Adresse oder Metmaacher widder freijevve, un dänne esu dat Rääch för ze Schrieve hee em Wiki widder jevve.',
-'ipusubmit'                       => 'Dun de Sperr för die IP-Adress widder ophevve',
+'ipusubmit'                       => 'Sperr ophevve!',
 'unblocked'                       => '[[User:$1|$1]] wood widder zojelooße',
 'unblocked-id'                    => 'De Sperr met dä Nommer $1 es opjehovve',
 'ipblocklist'                     => 'Liss met jesperrte IP-Adresse un Metmaacher Name',
@@ -2424,8 +2436,10 @@ En dänne Fäll, muss De Der dä Enhald vun dä Klaafsigge selvs vörnemme, un e
 'talkexists'                   => '<strong>Opjepass:</strong> De Sigg selver woodt jetz ömjenannt, ävver dä ehr Klaafsigg kunnte mer nit met ömnenne. Et jitt ald ein met däm neue Name. Bes esu jod un dun die zwei vun Hand zosamme läje!',
 'movedto'                      => 'ömjenannt en',
 'movetalk'                     => 'dä ehr Klaafsigg met ömnenne, wat et jeiht',
-'move-subpages'                => 'Don de Ongersigge met_ömnënne',
-'move-talk-subpages'           => 'Don de Ongersigge von de Klaafsigge met_ömnënne',
+'move-subpages'                => 'Don de Ongersigge met_ömnënne, wann_er do sin.
+Beß op {{PLURAL:$1|ein Sigg|$1 Sigge|kei einzel Stöck}}.',
+'move-talk-subpages'           => 'Don de Ongersigge vun de Klaafsigge met_ömnënne, wann_er do sin.
+Beß op {{PLURAL:$1|ein Sigg|$1 Sigge|kei einzel Stöck}}.',
 'movepage-page-exists'         => 'En Sigg „$1“ ham_mer ald, un di bliif och beshtonn, mer don se nit ottomatėsch ußtuusche.',
 'movepage-page-moved'          => 'Di eejemoolijje Sigg „$1“ es jëz op „$2“ ömjenannt.',
 'movepage-page-unmoved'        => 'Mer kůnnte di Sigg „$1“ nit op „$2“ ömnënne.',

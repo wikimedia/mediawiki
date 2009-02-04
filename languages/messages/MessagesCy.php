@@ -117,6 +117,8 @@ $messages = array(
 'tog-highlightbroken'         => 'Fformatio cysylltiadau wedi\'u torri <a href="" class="new">fel hyn</a> (dewis arall: fel hyn<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Unioni paragraffau',
 'tog-hideminor'               => 'Cuddiwch golygiadau bach mewn newidiadau diweddar',
+'tog-hidepatrolled'           => 'Cuddio golygiadau sydd wedi derbyn ymweliad patrôl rhag y rhestr newidiadau diweddar',
+'tog-newpageshidepatrolled'   => 'Cuddio tudalennau sydd wedi derbyn ymweliad patrôl rhag y rhestr tudalennau newydd',
 'tog-extendwatchlist'         => 'Ehangu manylion y rhestr gwylio i ddangos pob golygiad i dudalen, nid dim ond y diweddaraf',
 'tog-usenewrc'                => "Fersiwn well o 'Newidiadau diweddar' (JavaScript)",
 'tog-numberheadings'          => "Rhifo penawdau'n awtomatig",
@@ -151,6 +153,7 @@ $messages = array(
 'tog-watchlisthideminor'      => 'Cuddio golygiadau bychain rhag y rhestr gwylio',
 'tog-watchlisthideliu'        => 'Cuddio golygiadau gan ddefnyddwyr mewngofnodedig rhag y rhestr gwylio',
 'tog-watchlisthideanons'      => 'Cuddio golygiadau gan ddefnyddwyr anhysbys rhag y rhestr gwylio',
+'tog-watchlisthidepatrolled'  => 'Cuddio golygiadau sydd wedi derbyn ymweliad patrôl rhag y rhestr gwylio',
 'tog-ccmeonemails'            => 'Anfoner copi ataf pan anfonaf e-bost at ddefnyddiwr arall',
 'tog-diffonly'                => "Peidio â dangos cynnwys y dudalen islaw'r gymhariaeth ar dudalennau cymharu",
 'tog-showhiddencats'          => 'Dangos categorïau cuddiedig',
@@ -1021,6 +1024,7 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'prefs-resetpass'           => 'Newid y cyfrinair',
 'saveprefs'                 => "Cadw'r dewisiadau",
 'resetprefs'                => "Clirio'r darpar newidiadau",
+'restoreprefs'              => 'Adfer yr holl osodiadau diofyn',
 'textboxsize'               => 'Golygu',
 'prefs-edit-boxsize'        => 'Maint y blwch testun.',
 'rows'                      => 'Rhesi:',
@@ -1230,6 +1234,7 @@ Gweler y [[Special:NewFiles|galeri o ffeiliau newydd]] i fwrw golwg drostynt.",
 'filename'                    => "Enw'r ffeil",
 'filedesc'                    => 'Crynodeb',
 'fileuploadsummary'           => 'Crynodeb:',
+'filereuploadsummary'         => "Newidiadau i'r ffeil:",
 'filestatus'                  => 'Statws hawlfraint:',
 'filesource'                  => 'Ffynhonnell:',
 'uploadedfiles'               => 'Ffeiliau a uwchlwythwyd',
@@ -1514,6 +1519,7 @@ Gallwch newid trefn y rhestr trwy bwyso ar bennawd colofn.",
 'booksources-search-legend' => 'Chwilier am lyfrau',
 'booksources-go'            => 'Mynd',
 'booksources-text'          => "Mae'r rhestr isod yn cynnwys cysylltiadau i wefannau sy'n gwerthu llyfrau newydd a rhai ail-law. Mae rhai o'r gwefannau hefyd yn cynnig gwybodaeth pellach am y llyfrau hyn:",
+'booksources-invalid-isbn'  => "Ymddengys nad yw'r rhif ISBN hwn yn ddilys; efallai y cafwyd gwall wrth drosglwyddo'r rhif.",
 
 # Special:Log
 'specialloguserlabel'  => 'Defnyddiwr:',
@@ -1553,7 +1559,8 @@ Gweler hefyd [[Special:WantedCategories|categorïau sydd eu hangen]].",
 'special-categories-sort-abc'   => 'trefnu yn ôl yr wyddor',
 
 # Special:DeletedContributions
-'deletedcontributions' => "Cyfraniadau'r defnyddiwr a ddilëwyd",
+'deletedcontributions'       => 'Cyfraniadau defnyddiwr i dudalennau dilëedig',
+'deletedcontributions-title' => 'Cyfraniadau defnyddiwr i dudalennau dilëedig',
 
 # Special:LinkSearch
 'linksearch-pat' => 'Patrwm chwilio:',
@@ -1574,12 +1581,14 @@ Gweler hefyd [[Special:WantedCategories|categorïau sydd eu hangen]].",
 'newuserlog-autocreate-entry' => "Cyfrif wedi ei greu'n awtomatig",
 
 # Special:ListGroupRights
-'listgrouprights'          => 'Galluoedd grwpiau defnyddwyr',
-'listgrouprights-summary'  => "Dyma restr o'r grwpiau defnyddwyr sydd i'w cael ar y wici hon, ynghyd â galluoedd aelodau'r gwahanol grwpiau. Cewch wybodaeth pellach am y gwahanol alluoedd ar y [[{{MediaWiki:Listgrouprights-helppage}}|dudalen gymorth]].",
-'listgrouprights-group'    => 'Grŵp',
-'listgrouprights-rights'   => 'Galluoedd',
-'listgrouprights-helppage' => 'Help:Galluoedd yn ôl grŵp',
-'listgrouprights-members'  => '(rhestr aelodau)',
+'listgrouprights'                 => 'Galluoedd grwpiau defnyddwyr',
+'listgrouprights-summary'         => "Dyma restr o'r grwpiau defnyddwyr sydd i'w cael ar y wici hon, ynghyd â galluoedd aelodau'r gwahanol grwpiau. Cewch wybodaeth pellach am y gwahanol alluoedd ar y [[{{MediaWiki:Listgrouprights-helppage}}|dudalen gymorth]].",
+'listgrouprights-group'           => 'Grŵp',
+'listgrouprights-rights'          => 'Galluoedd',
+'listgrouprights-helppage'        => 'Help:Galluoedd yn ôl grŵp',
+'listgrouprights-members'         => '(rhestr aelodau)',
+'listgrouprights-addgroup-all'    => "Yn gallu ychwanegu'r holl grwpiau",
+'listgrouprights-removegroup-all' => "Yn gallu tynnu'r holl grwpiau",
 
 # E-mail user
 'mailnologin'      => "Does dim cyfeiriad i'w anfon iddo",
@@ -2031,6 +2040,7 @@ Os felly, gallwch symud y dudalen sgwrs neu ei gyfuno ar ôl symud y dudalen ei 
 'movepagebtn'               => 'Symud y dudalen',
 'pagemovedsub'              => 'Y symud wedi llwyddo',
 'movepage-moved'            => '<big>\'\'\'Symudwyd y dudalen "$1" i "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved-redirect'   => 'Gosodwyd ail-gyfeiriad.',
 'movepage-moved-noredirect' => 'Ni osodwyd tudalen ailgyfeirio.',
 'articleexists'             => "Mae tudalen gyda'r darpar enw yn bodoli'n barod, neu mae eich darpar enw yn annilys.
 Dewiswch enw arall os gwelwch yn dda.",
@@ -2734,6 +2744,12 @@ Rhowch enw\'r ffeil heb y rhagddodiad "{{ns:file}}:".',
 #Caiff y llinellau sy'n dechrau gyda # eu trin fel sylwadau
 
 #Put all regex fragments above this line. Leave this line exactly as it is</pre>",
+
+# Special:Tags
+'tag-filter-submit' => 'Hidlo',
+'tags-title'        => 'Tagiau',
+'tags-edit'         => 'golygu',
+'tags-hitcount'     => '$1 {{PLURAL:$#|newid}}',
 
 # Database error messages
 'dberr-header'      => 'Mae problem gan y wici hwn',

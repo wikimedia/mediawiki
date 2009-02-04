@@ -1817,7 +1817,8 @@ Jede Zeile enthält Links zu der ersten und zweiten Weiterleitung sowie das Ziel
 'booksources-search-legend' => 'Suche nach Bezugsquellen für Bücher',
 'booksources-go'            => 'Suchen',
 'booksources-text'          => 'Dies ist eine Liste mit Links zu Internetseiten, die neue und gebrauchte Bücher verkaufen. Dort kann es auch weitere Informationen über die Bücher geben. {{SITENAME}} ist mit keinem dieser Anbieter geschäftlich verbunden.',
-'booksources-invalid-isbn'  => 'Vermutlich ist die ISBN ungültig. Suche nach Fehlern in der Kopie.',
+'booksources-invalid-isbn'  => 'Vermutlich ist die ISBN ungültig.
+Bitte prüfe, ob korrekt von der Quelle übertragen wurde.',
 
 # Special:Log
 'specialloguserlabel'  => 'Benutzer:',

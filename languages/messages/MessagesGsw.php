@@ -2117,7 +2117,7 @@ I söttigne Fäll müessti d Diskussionssyten allefalls vo Hand kopiert wärde."
 'movepage-page-unmoved'        => 'D Syte „$1“ het nüt chönne uf „$2“ verschobe werde.',
 'movepage-max-pages'           => 'D Maximalaazaal vo $1 {{PLURAL:$1|Syte|Syte}} isch verschobe worde. Mee chönne automatisch nüt verschobe werde.',
 '1movedto2'                    => '[[$1]] isch uf [[$2]] verschobe worde.',
-'1movedto2_redir'              => '[[$1]] isch uf [[$2]] verschobe wore un het drbyy e Wyterleitig iberrschribe.',
+'1movedto2_redir'              => '[[$1]] isch uf [[$2]] verschobe wore un het drbyy e Wyterleitig iberschribe.',
 'move-redirect-suppressed'     => 'E Wyterleitig isch unterdruggt worde',
 'movelogpage'                  => 'Verschiebigs-Logbuech',
 'movelogpagetext'              => 'Des isch e Lischte mit allene Syte wo verschobe worde sin.',

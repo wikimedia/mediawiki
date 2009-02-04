@@ -671,7 +671,7 @@ Aktivera dem, och logga sen in med ditt nya användarnamn och lösenord.',
 'loginsuccesstitle'          => 'Inloggningen lyckades',
 'loginsuccess'               => "'''Du är nu inloggad på {{SITENAME}} som \"\$1\".'''",
 'nosuchuser'                 => 'Det finns ingen användare med namnet "$1".
-Användarnamn är känsliga för felstavning.
+Användarnamn är skiftlägeskänsliga.
 Kontrollera din stavning, eller [[Special:UserLogin/signup|skapa ett nytt konto]].',
 'nosuchusershort'            => 'Det finns ingen användare som heter "<nowiki>$1</nowiki>". Kontrollera att du stavat rätt.',
 'nouserspecified'            => 'Du måste ange ett användarnamn.',
@@ -694,7 +694,7 @@ Innan någon annan e-post kan skickas härifrån till kontot, måste du följa i
 'throttled-mailpassword'     => 'Ett nytt lösenord har redan skickats för mindre än {{PLURAL:$1|en timme|$1 timmar}} sedan.
 För att förhindra missbruk skickas bara ett nytt lösenord per {{PLURAL:$1|timme|$1-timmarsperiod}}.',
 'mailerror'                  => 'Fel vid skickande av e-post: $1',
-'acct_creation_throttle_hit' => 'Besökare till den här wikin som har använt din IP-adress har skapat {{PLURAL:$1|1 användarkonto|$1 användarkonton}} under de  senaste dagarna, vilket är gränsen inom den här tidsperioden.
+'acct_creation_throttle_hit' => 'Besökare till den här wikin som har använt din IP-adress har skapat {{PLURAL:$1|1 användarkonto|$1 användarkonton}} under den senaste dagen, vilket är det maximalt tillåtna inom den här tidsperioden.
 Som ett resultat kan inte besökare som använder den här IP-adressen skapa några mer användarkonton just nu.',
 'emailauthenticated'         => 'Din e-postadress bekräftades den $2 kl. $3.',
 'emailnotauthenticated'      => 'Din e-postadress är ännu inte bekräftad. Ingen e-post kommer att skickas vad gäller det följande:',
@@ -923,10 +923,11 @@ Dessa parametrar har uteslutits.',
 'parser-template-recursion-depth-warning' => 'Gräns för mallrekursionsdjup överskriden ($1)',
 
 # "Undo" feature
-'undo-success' => 'Sidan kan återställas till tidigare version. Var god och kontrollera jämförelsen nedan för att bekräfta att detta är vad du avser att göra och slutför återställningen genom att spara.',
-'undo-failure' => 'Ändringen kunde inte avlägsnas på grund av motstridande ändringar som gjorts sedan dess.',
-'undo-norev'   => 'Ändringen kan inte avlägsnas eftersom den inte finns eller har raderats.',
-'undo-summary' => 'Tar bort version $1 av [[Special:Contributions/$2|$2]] ([[User talk:$2|diskussion]])',
+'undo-success' => 'Redigeringen kan göras ogjord.
+Var god och kontrollera jämförelsen nedan för att bekräfta att detta är vad du avser att göra, och spara sedan ändringarna nedan för att göra redigeringen ogjord.',
+'undo-failure' => 'Redigeringen kunde inte göras ogjord på grund av konflikt med mellanliggande redigeringar.',
+'undo-norev'   => 'Redigeringen kan inte göras ogjord eftersom den inte finns eller har raderats.',
+'undo-summary' => 'Gör version $1 av [[Special:Contributions/$2|$2]] ([[User talk:$2|diskussion]]) ogjord',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Kan inte skapa konto',
@@ -1060,7 +1061,7 @@ Se till att sidhistorikens kontinuitet behålls när du sammanfogar historik.',
 'compareselectedversions' => 'Jämför angivna versioner',
 'visualcomparison'        => 'Visuell jämförelse',
 'wikicodecomparison'      => 'Wikitextjämförelse',
-'editundo'                => 'avlägsna',
+'editundo'                => 'gör ogjord',
 'diff-multi'              => '({{PLURAL:$1|En mellanliggande version|$1 mellanliggande versioner}} visas inte.)',
 'diff-movedto'            => 'flyttad till $1',
 'diff-styleadded'         => '$1 stil tillagd',
@@ -2474,7 +2475,8 @@ Vänligen använd förhandsgranskningsknappen innan du sparar.',
 'tooltip-recreate'                => 'Återskapa sidan fast den har tagits bort',
 'tooltip-upload'                  => 'Starta uppladdning',
 'tooltip-rollback'                => '"Tillbakarullning" tar med en knapptryckning bort ändringar som gjorts av den som senast redigerade sidan.',
-'tooltip-undo'                    => '"Avlägsna" tar bort ändringen och öppnar redigeringsrutan med förhandsgranskning. Ger möjlighet att skriva en motivering i redigeringssammanfattningen.',
+'tooltip-undo'                    => '"Gör ogjord" återställer denna redigering och öppnar redigeringsrutan med förhandsgranskning.
+Ger möjlighet att skriva en motivering i redigeringssammanfattningen',
 
 # Stylesheets
 'common.css'      => '/* CSS som skrivs här påverkar alla skal */',

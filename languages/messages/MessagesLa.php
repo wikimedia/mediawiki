@@ -1582,7 +1582,7 @@ Si pagina nova cum ipso nomine post deletionem creata est, emendationes restitut
 'ipb-blocklist-contribs'       => 'Conlationes usoris $1',
 'unblockip'                    => 'Deobstruere locum IP',
 'unblockiptext'                => 'Formam inferam usere ut locum IP deobstruere.',
-'ipusubmit'                    => 'Deobstruere hunc locum IP',
+'ipusubmit'                    => 'Hanc obstructionem removere',
 'unblocked'                    => '[[User:$1|$1]] deobstructus est',
 'unblocked-id'                 => 'Obstructio numeri $1 abrogata est',
 'ipblocklist'                  => 'Usores locique IP obstructi',

@@ -644,7 +644,7 @@ Le motif avancé est « ''$2'' ».",
 
 # Login and logout pages
 'logouttitle'                => 'Déconnexion',
-'logouttext'                 => "'''Vous êtes à présent déconnecté(e).'''<br />
+'logouttext'                 => "'''Vous êtes à présent déconnecté{{GENDER:||e|(e)}}.'''<br />
 Vous pouvez continuer à utiliser {{SITENAME}} de façon anonyme, vous reconnecter sous le même nom ou un autre.",
 'welcomecreation'            => '== Bienvenue, $1 ! ==
 
@@ -694,11 +694,11 @@ Elle doit avoir moins de $1 caractère{{PLURAL:$1||s}}.',
 'loginerror'                 => 'Erreur d’identification',
 'prefs-help-email'           => 'Indiquer votre adresse de courriel est facultatif, mais permet de vous envoyer votre mot de passe si vous l’oubliez. Cela permet aussi aux autres utilisateurs — si la section « Courriel » ci-dessous est configurée dans ce sens — de vous contacter par courriel depuis la page [[Special:Emailuser]], sans que votre adresse ne leur soit divulguée.',
 'prefs-help-email-required'  => 'Une adresse de courriel est requise.',
-'nocookiesnew'               => "Le compte utilisateur a été créé, mais vous n’êtes pas connecté. {{SITENAME}} utilise des témoins (''cookies'') pour la connexion mais vous les avez désactivés. Veuillez les activer et vous reconnecter avec le même nom et le même mot de passe.",
+'nocookiesnew'               => "Le compte utilisateur a été créé, mais vous n’êtes pas connecté{{GENDER:||e|(e)}}. {{SITENAME}} utilise des témoins (''cookies'') pour la connexion mais vous les avez désactivés. Veuillez les activer et vous reconnecter avec le même nom et le même mot de passe.",
 'nocookieslogin'             => "{{SITENAME}} utilise des témoins (''cookies'') pour la connexion mais vous les avez désactivés. Veuillez les activer et vous reconnecter.",
 'noname'                     => 'Vous n’avez pas saisi un nom d’utilisateur valide.',
 'loginsuccesstitle'          => 'Identification réussie',
-'loginsuccess'               => 'Vous êtes maintenant connecté(e) à {{SITENAME}} en tant que « $1 ».',
+'loginsuccess'               => 'Vous êtes maintenant connecté{{GENDER:||e|(e)}} à {{SITENAME}} en tant que « $1 ».',
 'nosuchuser'                 => "L’utilisateur « $1 » n’existe pas.
 Le nom d'utilisateur est sensible à la casse.
 Vérifiez que vous avez bien orthographié le nom, ou [[Special:UserLogin/signup|créez-vous un nouveau compte]].",
@@ -744,7 +744,7 @@ Ignorez ce message si ce compte a été créé par erreur.",
 
 # Password reset dialog
 'resetpass'                 => 'Changer le mot de passe',
-'resetpass_announce'        => 'Vous vous êtes enregistré avec un mot de passe temporaire envoyé par courriel. Pour terminer l’enregistrement, vous devez entrer un nouveau mot de passe ici :',
+'resetpass_announce'        => 'Vous vous êtes enregistré{{GENDER:||e|(e)}} avec un mot de passe temporaire envoyé par courriel. Pour terminer l’enregistrement, vous devez entrer un nouveau mot de passe ici :',
 'resetpass_text'            => '<!-- Ajoutez le texte ici -->',
 'resetpass_header'          => 'Modifier le mot de passe du compte',
 'oldpassword'               => 'Ancien mot de passe :',
@@ -792,7 +792,7 @@ Vous avez peut-être déjà modifié votre mot de passe ou demandé un nouveau m
 'showpreview'                      => 'Prévisualiser',
 'showlivepreview'                  => 'Aperçu rapide',
 'showdiff'                         => 'Changements en cours',
-'anoneditwarning'                  => "'''Attention :''' vous n’êtes pas identifié. Votre adresse IP sera enregistrée dans l’historique de cette page.",
+'anoneditwarning'                  => "'''Attention :''' vous n’êtes pas identifié{{GENDER:||e|(e)}}. Votre adresse IP sera enregistrée dans l’historique de cette page.",
 'missingsummary'                   => "'''Rappel :''' vous n’avez pas encore fourni le résumé de votre modification.
 Si vous cliquez de nouveau sur le bouton « Publier », la publication sera faite sans nouvel avertissement.",
 'missingcommenttext'               => 'Veuillez faire votre commentaire ci-dessous.',
@@ -848,7 +848,7 @@ Le mot de passe pour ce nouveau compte peut être changé sur la page ''[[Specia
 'newarticle'                       => '(Nouveau)',
 'newarticletext'                   => "Vous avez suivi un lien vers une page qui n’existe pas encore ou qui a été [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} effacée].
 Pour créer cette page, entrez votre texte dans la boîte ci-dessous (vous pouvez consulter [[{{MediaWiki:Helppage}}|la page d’aide]] pour plus d’informations).
-Si vous êtes arrivé ici par erreur, cliquez sur le bouton '''retour''' de votre navigateur.",
+Si vous êtes arrivé{{GENDER:||e|(e)}} ici par erreur, cliquez sur le bouton '''retour''' de votre navigateur.",
 'anontalkpagetext'                 => "---- ''Vous êtes sur la page de discussion d’un utilisateur anonyme qui n’a pas encore créé de compte ou qui n’en utilise pas. Pour cette raison, nous devons utiliser son adresse IP pour l’identifier. Une adresse IP peut être partagée par plusieurs utilisateurs. Si vous êtes un utilisateur anonyme et si vous constatez que des commentaires qui ne vous concernent pas vous ont été adressés, vous pouvez [[Special:UserLogin/signup|créer un compte]] ou [[Special:UserLogin|vous connecter]] afin d’éviter toute confusion future avec d’autres contributeurs anonymes.''",
 'noarticletext'                    => 'Il n’y a pour l’instant aucun texte sur cette page ; vous pouvez [[Special:Search/{{PAGENAME}}|lancer une recherche sur ce titre de page]], vérifier qu’elle n’a pas été [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} supprimée] ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} créer cette page].',
 'userpage-userdoesnotexist'        => 'Le compte utilisateur « $1 » n’est pas enregistré. Veuillez vérifier que vous voulez créer cette page.',
@@ -912,7 +912,7 @@ Seuls les utilisateurs ayant le statut d’administrateur peuvent la modifier.''
 'nocreate-loggedin'                => 'Vous n’avez pas la permission de créer de nouvelles pages.',
 'permissionserrors'                => 'Erreur de permissions',
 'permissionserrorstext'            => 'Vous n’avez pas la permission d’effectuer l’opération demandée pour {{PLURAL:$1|la raison suivante|les raisons suivantes}} :',
-'permissionserrorstext-withaction' => 'Vous n’êtes pas autorisé à $2, pour {{PLURAL:$1|la raison suivante|les raisons suivantes}} :',
+'permissionserrorstext-withaction' => 'Vous n’êtes pas autorisé{{GENDER:||e|(e)}} à $2, pour {{PLURAL:$1|la raison suivante|les raisons suivantes}} :',
 'recreate-deleted-warn'            => "'''Attention : vous êtes en train de recréer une page qui a été précédemment supprimée.'''
 
 Demandez-vous s’il est réellement approprié de la recréer en vous référant à l’historique des suppressions affiché ci-dessous :",
@@ -1135,7 +1135,7 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 'searchsubtitleinvalid'            => 'Vous avez recherché « $1 »',
 'noexactmatch'                     => "'''Aucune page intitulée « $1 » n’existe.''' Vous pouvez [[:$1|créer cette page]].",
 'noexactmatch-nocreate'            => "'''Il n’existe aucune page intitulée « $1 ».'''",
-'toomanymatches'                   => 'Trop d’occurences ont été trouvées, vous êtes prié de soumettre une requête différente.',
+'toomanymatches'                   => 'Trop d’occurences ont été trouvées, vous êtes prié{{GENDER:||e|(e)}} de soumettre une requête différente.',
 'titlematches'                     => 'Correspondances dans les titres des pages',
 'notitlematches'                   => 'Aucun titre de page ne correspond à la recherche.',
 'textmatches'                      => 'Correspondances dans le texte des pages',
@@ -2008,7 +2008,7 @@ Consultez la [[Special:ProtectedPages|liste des pages protégées]] pour la list
 'protect_expiry_old'          => 'Le temps d’expiration est déjà passé.',
 'protect-unchain'             => 'Débloquer les permissions de renommage',
 'protect-text'                => 'Vous pouvez consulter et modifier le niveau de protection de la page <strong><nowiki>$1</nowiki></strong>.',
-'protect-locked-blocked'      => 'Vous ne pouvez pas modifier le niveau de protection tant que vous êtes bloqué.
+'protect-locked-blocked'      => 'Vous ne pouvez pas modifier le niveau de protection tant que vous êtes bloqué{{GENDER:||e|(e)}}.
 Voici les réglages actuels de la page <strong>$1</strong> :',
 'protect-locked-dblock'       => 'Le niveau de protection ne peut pas être modifié car la base de données est bloquée.
 Voici les réglages actuels de la page <strong>$1</strong> :',
@@ -2245,7 +2245,7 @@ $1 est déjà bloqué. Voulez-vous modifier les paramètres ?',
 'proxyblocksuccess'               => 'Terminé.',
 'sorbsreason'                     => 'Votre adresse IP est listée en tant que mandataire ouvert DNSBL.',
 'sorbs_create_account_reason'     => 'Votre adresse IP est listée en tant que mandataire ouvert DNSBL. Vous ne pouvez créer un compte',
-'cant-block-while-blocked'        => "Vous ne pouvez pas bloquer d'autres utilisateurs pendant que vous êtes bloqué.",
+'cant-block-while-blocked'        => "Vous ne pouvez pas bloquer d'autres utilisateurs pendant que vous êtes bloqué{{GENDER:||e|(e)}}.",
 
 # Developer tools
 'lockdb'              => 'Verrouiller la base',
