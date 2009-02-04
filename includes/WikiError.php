@@ -75,6 +75,16 @@ class WikiErrorMsg extends WikiError {
 		$args = func_get_args();
 		array_shift( $args );
 		$this->mMessage = wfMsgReal( $message, $args, true );
+		$this->mMsgKey = $message;
+		$this->mMsgArgs = $args;
+	}
+	
+	function getMessageKey() {
+		return $this->mMsgKey;
+	}
+	
+	function getMessageArgs() {
+		return $this->mMsgArgs;
 	}
 }
 

@@ -70,6 +70,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			'block' => array( 'ApiQueryInfo', 'getBlockToken' ),
 			'unblock' => array( 'ApiQueryInfo', 'getUnblockToken' ),
 			'email' => array( 'ApiQueryInfo', 'getEmailToken' ),
+			'import' => array( 'ApiQueryInfo', 'getImportToken' ),
 		);
 		wfRunHooks('APIQueryInfoTokens', array(&$this->tokenFunctions));
 		return $this->tokenFunctions;
@@ -166,6 +167,20 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		$cachedEmailToken = $wgUser->editToken();
 		return $cachedEmailToken;
+	}
+	
+	public static function getImportToken($pageid, $title)
+	{
+		global $wgUser;
+		if(!$wgUser->isAllowed('import'))
+			return false;
+
+		static $cachedImportToken = null;
+		if(!is_null($cachedImportToken))
+			return $cachedImportToken;
+
+		$cachedImportToken = $wgUser->editToken();
+		return $cachedImportToken;
 	}
 
 	public function execute() {
