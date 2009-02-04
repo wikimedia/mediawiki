@@ -727,7 +727,16 @@ abstract class ApiBase {
 		'protect-invalidaction' => array('code' => 'protect-invalidaction', 'info' => "Invalid protection type ``\$1''"),
 		'protect-invalidlevel' => array('code' => 'protect-invalidlevel', 'info' => "Invalid protection level ``\$1''"),
 		'toofewexpiries' => array('code' => 'toofewexpiries', 'info' => "\$1 expiry timestamps were provided where \$2 were needed"),
-		
+		'cantimport' => array('code' => 'cantimport', 'info' => "You don't have permission to import pages"),
+		'cantimport-upload' => array('code' => 'cantimport-upload', 'info' => "You don't have permission to import uploaded pages"),
+		'importnofile' => array('code' => 'nofile', 'info' => "You didn't upload a file"),
+		'importuploaderrorsize' => array('code' => 'filetoobig', 'info' => 'The file you uploaded is bigger than the maximum upload size'),
+		'importuploaderrorpartial' => array('code' => 'partialupload', 'info' => 'The file was only partially uploaded'),
+		'importuploaderrortemp' => array('code' => 'notempdir', 'info' => 'The temporary upload directory is missing'),
+		'importcantopen' => array('code' => 'cantopenfile', 'info' => "Couldn't open the uploaded file"),
+		'import-noarticle' => array('code' => 'badinterwiki', 'info' => 'Invalid interwiki title specified'),
+		'importbadinterwiki' => array('code' => 'badinterwiki', 'info' => 'Invalid interwiki title specified'),
+		'import-unknownerror' => array('code' => 'import-unknownerror', 'info' => "Unknown error on import: ``\$1''"),
 
 		// ApiEditPage messages
 		'noimageredirect-anon' => array('code' => 'noimageredirect-anon', 'info' => "Anonymous users can't create image redirects"),

@@ -80,6 +80,7 @@ class ApiMain extends ApiBase {
 		'emailuser' => 'ApiEmailUser',
 		'watch' => 'ApiWatch',
 		'patrol' => 'ApiPatrol',
+		'import' => 'ApiImport',
 	);
 
 	/**
