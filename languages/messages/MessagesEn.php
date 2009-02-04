@@ -1665,7 +1665,7 @@ please see math/README to configure.',
 'right-suppressrevision'     => 'Review and restore revisions hidden from administrators',
 'right-suppressionlog'       => 'View private logs',
 'right-block'                => 'Block other users from editing',
-'right-blockemail'           => 'Block a user from sending email',
+'right-blockemail'           => 'Block a user from sending e-mail',
 'right-hideuser'             => 'Block a username, hiding it from the public',
 'right-ipblock-exempt'       => 'Bypass IP blocks, auto-blocks and range blocks',
 'right-proxyunbannable'      => 'Bypass automatic blocks of proxies',
@@ -2277,7 +2277,7 @@ The e-mail address you entered in [[Special:Preferences|your user preferences]] 
 'emailccsubject'   => 'Copy of your message to $1: $2',
 'emailsent'        => 'E-mail sent',
 'emailsenttext'    => 'Your e-mail message has been sent.',
-'emailuserfooter'  => 'This e-mail was sent by $1 to $2 by the "Email user" function at {{SITENAME}}.',
+'emailuserfooter'  => 'This e-mail was sent by $1 to $2 by the "E-mail user" function at {{SITENAME}}.',
 
 # Watchlist
 'watchlist'            => 'My watchlist',
@@ -3506,7 +3506,7 @@ if you recently created your account, you may wish to wait a few minutes for it 
 'confirmemail_oncreate'    => 'A confirmation code was sent to your e-mail address.
 This code is not required to log in, but you will need to provide it before enabling any e-mail-based features in the wiki.',
 'confirmemail_sendfailed'  => '{{SITENAME}} could not send your confirmation mail.
-Please check your email address for invalid characters.
+Please check your e-mail address for invalid characters.
 
 Mailer returned: $1',
 'confirmemail_invalid'     => 'Invalid confirmation code.
